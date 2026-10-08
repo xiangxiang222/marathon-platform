@@ -28,23 +28,15 @@
   <section class="sheet">
     <div class="cats">
       <button v-for="item in cats" :key="item.label" type="button" @click="item.run()">
-        <span class="swatch" :style="{ background: item.color }">
-          <svg viewBox="0 0 24 24"><path :d="item.path" /></svg>
-        </span>
+        <span class="swatch">{{ item.mark }}</span>
         {{ item.label }}
       </button>
     </div>
     <div class="banner">
       <div>
-        <b>跑团赛历</b>
-        <span>截止日期写在卡片上，同团的人能看见谁报了这场</span>
+        <b>{{ soonest ? soonest.deadlineLabel : "跑团赛历" }}</b>
+        <span>{{ soonest ? soonest.name : "截止日期写在每张卡片右侧" }}</span>
       </div>
-      <svg class="runner" viewBox="0 0 92 86">
-        <circle cx="62" cy="22" r="8" fill="#fff" opacity="0.9" />
-        <path d="M28 70c8-16 14-22 24-22 6 0 10 4 16 4" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" />
-        <path d="M48 48l10 8 14-6" fill="none" stroke="#ffe08a" stroke-width="4" stroke-linecap="round" />
-        <path d="M40 78h28" stroke="#fff" stroke-width="3" opacity="0.5" />
-      </svg>
     </div>
     <div class="channels">
       <button v-for="item in channels" :key="item.kind" type="button" :class="{ on: kind === item.kind }" @click="setKind(item.kind)">
@@ -176,17 +168,17 @@ const statusOptions = [
   { label: "比赛结束", value: "closed" }
 ];
 
-const runner = "M4 16c2-4 4-6 7-6 2 0 3 2 5 2M13 12l2 3 4-2M6 20h10";
 const cats = [
-  { label: "马拉松", color: "#ff5a36", path: runner, run: () => setDistance("full") },
-  { label: "半程", color: "#3d8bfd", path: runner, run: () => setDistance("half") },
-  { label: "10公里", color: "#22c55e", path: runner, run: () => setDistance("10k") },
-  { label: "越野", color: "#c9843a", path: "M3 18l6-8 4 5 3-4 5 7H3z", run: () => setKind("trail") },
-  { label: "线上赛", color: "#7c5cfc", path: "M4 6h16v10H4zM8 20h8M12 16v4", run: () => setKind("online") },
-  { label: "线下赛", color: "#ff8a00", path: "M12 20s6-5 6-9a6 6 0 1 0-12 0c0 4 6 9 6 9z", run: () => setKind("offline") },
-  { label: "亲子", color: "#ff5fa2", path: "M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM16 11a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM5 18c1-3 2-4 3-4s2 1 3 3M13 18c1-3 2-4 3-4s2 1 3 3", run: () => setKind("family") },
-  { label: "铁三", color: "#14b8b3", path: "M5 16h8l2-4h4M7 16a2 2 0 1 0 0.01 0M15 16a2 2 0 1 0 0.01 0", run: () => setKind("tri") }
+  { label: "马拉松", mark: "全", run: () => setDistance("full") },
+  { label: "半程", mark: "半", run: () => setDistance("half") },
+  { label: "10公里", mark: "10", run: () => setDistance("10k") },
+  { label: "越野", mark: "野", run: () => setKind("trail") },
+  { label: "线上赛", mark: "线", run: () => setKind("online") },
+  { label: "线下赛", mark: "下", run: () => setKind("offline") },
+  { label: "亲子", mark: "亲", run: () => setKind("family") },
+  { label: "铁三", mark: "三", run: () => setKind("tri") }
 ];
+const soonest = computed(() => races.value.find((race) => race.open) || null);
 
 const cityNames = computed(() => places.find((item) => item.name === province.value)?.cities || []);
 const monthLabel = computed(() => (month.value ? month.value.replace("-", "年") + "月" : ""));

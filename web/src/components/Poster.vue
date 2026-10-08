@@ -1,50 +1,25 @@
 <template>
-  <svg class="poster" viewBox="0 0 340 230" xmlns="http://www.w3.org/2000/svg" role="img">
+  <svg class="poster" viewBox="0 0 360 240" xmlns="http://www.w3.org/2000/svg" role="img">
     <defs>
-      <linearGradient :id="gid + 'a'" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0" :stop-color="theme.c1" />
-        <stop offset="1" :stop-color="theme.c2" />
+      <linearGradient :id="gid + 'g'" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" :stop-color="theme.a" />
+        <stop offset="1" :stop-color="theme.b" />
       </linearGradient>
-      <linearGradient :id="gid + 'b'" x1="0" y1="1" x2="0" y2="0">
-        <stop offset="0" :stop-color="theme.c3" />
-        <stop offset="1" stop-color="#fff" stop-opacity="0.15" />
-      </linearGradient>
+      <filter :id="gid + 'n'" x="0" y="0" width="100%" height="100%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="3" />
+        <feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.16 0" />
+      </filter>
     </defs>
-    <rect width="340" height="230" :fill="'url(#' + gid + 'a)'" />
-    <g v-if="theme.layout === 'wave'" fill="#fff" opacity="0.9">
-      <rect v-for="n in 18" :key="n" :x="12 + (n - 1) * 18" :y="150 - (n % 5) * 14" width="8" :height="40 + (n % 4) * 16" rx="4" opacity="0.35" />
-    </g>
-    <g v-else-if="theme.layout === 'hills'">
-      <ellipse cx="250" cy="46" rx="28" ry="28" fill="#ffe08a" />
-      <path d="M0 150 C70 110 120 180 180 140 C240 100 280 160 340 120 V230 H0 Z" :fill="theme.c3" opacity="0.9" />
-      <path d="M0 180 C90 150 150 200 230 170 C290 150 320 180 340 168 V230 H0 Z" fill="#1f8f4e" />
-    </g>
-    <g v-else-if="theme.layout === 'sun'">
-      <circle cx="270" cy="58" r="36" fill="#ffd36a" />
-      <path d="M0 160 Q80 120 160 160 T340 140 V230 H0 Z" fill="#ff8a3d" opacity="0.85" />
-      <path d="M40 190 Q120 150 200 188 T340 170 V230 H0 Z" fill="#f45d2a" />
-    </g>
-    <g v-else-if="theme.layout === 'bridge'">
-      <path d="M20 150 Q170 40 320 150" fill="none" stroke="#fff" stroke-width="6" />
-      <path d="M20 150 V190 M80 118 V190 M140 92 V190 M200 92 V190 M260 118 V190 M320 150 V190" stroke="#fff" stroke-width="3" opacity="0.8" />
-      <path d="M0 190 H340 V230 H0 Z" fill="#7ec8ff" opacity="0.45" />
-    </g>
-    <g v-else-if="theme.layout === 'wall'">
-      <path d="M0 120 H40 V80 H90 V120 H140 V70 H200 V120 H250 V90 H310 V120 H340 V230 H0 Z" fill="#c9843a" />
-      <rect x="18" y="96" width="14" height="10" fill="#8d5a24" />
-      <rect x="158" y="88" width="14" height="10" fill="#8d5a24" />
-    </g>
-    <g v-else-if="theme.layout === 'river'">
-      <path d="M0 120 C60 90 110 150 170 120 C230 90 280 150 340 110 V230 H0 Z" fill="#9fd4ff" opacity="0.55" />
-      <path d="M0 165 C90 130 150 190 230 155 C290 135 320 170 340 158 V230 H0 Z" fill="#1d6dff" opacity="0.55" />
-    </g>
-    <g v-else>
-      <circle cx="280" cy="50" r="40" fill="#fff" opacity="0.18" />
-      <path d="M0 170 H340 V230 H0 Z" :fill="'url(#' + gid + 'b)'" />
-    </g>
-    <text x="18" y="36" fill="#fff" font-size="18" font-weight="700">{{ theme.year }}</text>
-    <text x="18" y="78" fill="#fff" font-size="32" font-weight="800">{{ theme.headline }}</text>
-    <text x="18" y="108" fill="#fff" font-size="13" opacity="0.92">{{ theme.line }}</text>
+    <rect width="360" height="240" :fill="'url(#' + gid + 'g)'" />
+    <rect width="360" height="240" :filter="'url(#' + gid + 'n)'" />
+    <path d="M0 176 C70 150 130 198 210 168 C270 146 310 176 360 158" fill="none" :stroke="theme.line" stroke-width="1" opacity="0.55" />
+    <path d="M0 198 C90 174 150 214 240 188 C290 172 330 192 360 184" fill="none" :stroke="theme.line" stroke-width="0.7" opacity="0.28" />
+    <text class="ghost" x="176" y="196">{{ theme.ghost }}</text>
+    <text class="kicker" x="22" y="40">{{ theme.kicker }}</text>
+    <text class="title" x="22" y="96">{{ theme.title }}</text>
+    <text class="sub" x="22" y="126">{{ theme.sub }}</text>
+    <line x1="22" y1="198" x2="92" y2="198" :stroke="theme.line" stroke-width="1" />
+    <text class="meta" x="22" y="218">{{ theme.meta }}</text>
   </svg>
 </template>
 
@@ -55,16 +30,16 @@ const props = defineProps({ id: { type: String, required: true } });
 const gid = computed(() => "p" + props.id.replace(/[^a-z0-9]/gi, ""));
 
 const THEMES = {
-  "caa-10k": { c1: "#5b2dff", c2: "#c44bff", c3: "#fff", layout: "wave", year: "2026", headline: "报名开启", line: "10公里精英赛" },
-  chaoyang: { c1: "#1a6cff", c2: "#49d2ff", c3: "#0b4ea8", layout: "river", year: "2026", headline: "滨河开跑", line: "朝阳半程马拉松" },
-  tmsk: { c1: "#1278e8", c2: "#3ecf8e", c3: "#0e8f4a", layout: "hills", year: "2026", headline: "报名开启", line: "图木舒克马拉松" },
-  bishan: { c1: "#1554d6", c2: "#3aa0ff", c3: "#0a3f86", layout: "river", year: "2026", headline: "璧山开跑", line: "重庆马拉松" },
-  songshanhu: { c1: "#0b4db8", c2: "#2f8dff", c3: "#7ec8ff", layout: "bridge", year: "2026", headline: "松山湖", line: "东莞马拉松" },
-  yuxi: { c1: "#083e86", c2: "#1a74d4", c3: "#49b6ff", layout: "bridge", year: "2026", headline: "抚仙湖", line: "半程马拉松" },
-  jinjiang: { c1: "#e23b2f", c2: "#ff8a3a", c3: "#ffd36a", layout: "sun", year: "2026", headline: "晋江开跑", line: "泉州马拉松" },
-  hailing: { c1: "#ffb703", c2: "#fb8500", c3: "#f45d2a", layout: "sun", year: "2026", headline: "海陵岛", line: "12月20日鸣枪" },
-  huangyaguan: { c1: "#8d5a24", c2: "#e0a15a", c3: "#c9843a", layout: "wall", year: "2027", headline: "长城开跑", line: "黄崖关马拉松" },
-  "closed-sample": { c1: "#5c6770", c2: "#98a2ab", c3: "#d5dbe0", layout: "river", year: "2025", headline: "已结束", line: "收官马拉松" }
+  "caa-10k": { a: "#16141c", b: "#2a2438", line: "#cbb892", ghost: "十", kicker: "WUXI  2026", title: "精英赛", sub: "10 公里", meta: "中国田径协会" },
+  chaoyang: { a: "#101820", b: "#1c3344", line: "#d5e0e8", ghost: "河", kicker: "BEIJING  2026", title: "滨河", sub: "半程马拉松", meta: "11 月 1 日" },
+  tmsk: { a: "#171614", b: "#343026", line: "#c6aa78", ghost: "疆", kicker: "XINJIANG  2026", title: "图木舒克", sub: "马拉松", meta: "11 月 1 日" },
+  bishan: { a: "#12161c", b: "#243044", line: "#a9b7c8", ghost: "山", kicker: "CHONGQING  2026", title: "璧山", sub: "全程 / 半程", meta: "11 月 15 日" },
+  songshanhu: { a: "#10181c", b: "#163640", line: "#8ec9c2", ghost: "湖", kicker: "DONGGUAN  2026", title: "松山湖", sub: "全程 / 半程", meta: "11 月 22 日" },
+  yuxi: { a: "#0e161c", b: "#16323c", line: "#9ed0dc", ghost: "湖", kicker: "YUXI  2026", title: "抚仙湖", sub: "半程马拉松", meta: "11 月 22 日" },
+  jinjiang: { a: "#1c1214", b: "#3a2226", line: "#e2c2b0", ghost: "江", kicker: "QUANZHOU  2026", title: "晋江", sub: "全程 / 半程", meta: "12 月 6 日" },
+  hailing: { a: "#12181e", b: "#1e3344", line: "#e0d2b4", ghost: "岛", kicker: "YANGJIANG  2026", title: "海陵岛", sub: "全程 / 半程", meta: "12 月 20 日" },
+  huangyaguan: { a: "#161310", b: "#3a2c22", line: "#d4b483", ghost: "关", kicker: "TIANJIN  2027", title: "黄崖关", sub: "长城马拉松", meta: "5 月 15 日" },
+  "closed-sample": { a: "#181a1c", b: "#2c3034", line: "#9aa0a6", ghost: "杭", kicker: "HANGZHOU  2025", title: "已结束", sub: "收官马拉松", meta: "2025" }
 };
 
 const theme = computed(() => THEMES[props.id] || THEMES.bishan);
@@ -72,5 +47,10 @@ const theme = computed(() => THEMES[props.id] || THEMES.bishan);
 
 <style scoped>
 .poster { display: block; width: 100%; height: 168px; }
-text { font-family: "PingFang SC", "Microsoft YaHei", sans-serif; }
+text { font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; }
+.kicker { font-size: 11px; letter-spacing: 1.5px; fill: rgba(255, 255, 255, 0.62); }
+.title { font-size: 40px; font-weight: 650; fill: #fff; }
+.sub { font-size: 13px; fill: rgba(255, 255, 255, 0.78); letter-spacing: 1px; }
+.meta { font-size: 11px; letter-spacing: 1.5px; fill: rgba(255, 255, 255, 0.55); }
+.ghost { font-size: 108px; font-weight: 700; fill: #fff; opacity: 0.07; }
 </style>
