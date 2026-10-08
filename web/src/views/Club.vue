@@ -1,22 +1,27 @@
 <template>
-  <main class="page">
-    <router-link class="back" to="/clubs">全部跑团</router-link>
-    <div v-if="club" class="sheet">
+  <main>
+    <router-link class="back" to="/sport">返回运动</router-link>
+    <div v-if="club" class="detail">
       <div class="hero-name">{{ club.name }}</div>
       <div class="row"><span>口令，发到微信群</span><b>{{ club.code }}</b></div>
       <div class="tags" style="margin-top:8px">
-        <span v-for="member in members" :key="member.id" class="tag">{{ member.nickname }}</span>
+        <span v-for="member in members" :key="member.id">{{ member.nickname }}</span>
       </div>
     </div>
-    <div v-if="club && !board.length" class="empty">还没有人标比赛。打开一场，标上想跑或已报名。</div>
+    <p v-if="club && !board.length" class="empty">还没有人标比赛。打开一场，标上想跑或已报名。</p>
     <div v-for="item in board" :key="item.race.id" class="block">
-      <router-link :to="'/races/' + item.race.id"><h2>{{ item.race.name }}</h2></router-link>
-      <div class="meta"><span>{{ item.race.raceDate }}</span><span>{{ item.race.deadlineLabel }}</span></div>
+      <router-link :to="'/races/' + item.race.id" class="card">
+        <Poster :id="item.race.id" />
+        <div class="copy">
+          <p>{{ item.race.name }}</p>
+          <div class="foot"><span>{{ item.race.raceDate }}</span><span>{{ item.race.deadlineLabel }}</span></div>
+        </div>
+      </router-link>
       <div v-for="mark in item.marks" :key="mark.nickname + mark.status" class="mate">
         <span>{{ mark.nickname }}</span><b>{{ mark.status }}</b>
       </div>
     </div>
-    <p v-if="message" class="err">{{ message }}</p>
+    <p v-if="message" class="err" style="padding:0 16px">{{ message }}</p>
   </main>
 </template>
 
@@ -24,6 +29,7 @@
 import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import { api } from "../api";
+import Poster from "../components/Poster.vue";
 
 const route = useRoute();
 const club = ref(null);
@@ -42,3 +48,7 @@ onMounted(async () => {
   }
 });
 </script>
+
+<style scoped>
+.block :deep(.poster) { height: 120px; border-radius: 8px; }
+</style>

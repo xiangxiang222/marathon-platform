@@ -22,7 +22,7 @@ test("open races hide the finished sample and can filter city and distance", asy
   assert.ok(res.body.races.some((r) => r.id === "bishan"));
   assert.equal(res.body.races.some((r) => r.id === "closed-sample"), false);
   const all = await request(app).get("/marathon/api/races?status=all");
-  assert.ok(all.body.races.some((r) => r.id === "closed-sample" && r.regStatus === "已截止"));
+  assert.ok(all.body.races.some((r) => r.id === "closed-sample" && r.regStatus === "已结束"));
   const future = all.body.races.find((r) => r.id === "huangyaguan");
   assert.equal(future.open, true);
   assert.match(future.deadlineLabel, /天后截止/);

@@ -101,7 +101,7 @@ const RACES = [
   }
 ];
 
-const DISTANCE_LABEL = { full: "马拉松", half: "半程马拉松", "10k": "10公里" };
+const DISTANCE_LABEL = { full: "马拉松", half: "半程马拉松", "10k": "10公里组" };
 const TZ = 8 * 3600 * 1000;
 
 function dayIndex(ms) {
@@ -132,9 +132,20 @@ function presentRace(row, now) {
     distanceLabels: distances.map((d) => DISTANCE_LABEL[d] || d),
     raceDate: row.race_date || row.raceDate,
     deadline: row.deadline,
-    regStatus: meta.open ? "报名中" : "已截止",
+    regStatus: phaseLabel(row.race_date || row.raceDate, meta.open, now),
+    kind: KIND[row.id] || "road",
     ...meta
   };
+}
+
+const KIND = { huangyaguan: "trail" };
+
+function phaseLabel(raceDate, open, now) {
+  const today = new Date(now.getTime() + TZ).toISOString().slice(0, 10);
+  if (raceDate < today) return "已结束";
+  if (raceDate === today) return "比赛中";
+  if (!open) return "待开赛";
+  return "报名中";
 }
 
 module.exports = { RACES, DISTANCE_LABEL, deadlineMeta, presentRace };
