@@ -1,0 +1,19 @@
+{
+  "name": "marathon-platform",
+  "version": "1.0.0",
+  "private": true,
+  "description": "赛历与跑团赛历",
+  "scripts": {
+    "install:all": "npm install --prefix server && npm install --prefix web",
+    "dev:server": "npm run dev --prefix server",
+    "dev:web": "npm run dev --prefix web",
+    "dev": "concurrently -n server,web -c green,cyan \"npm run dev:server\" \"npm run dev:web\"",
+    "start": "node server/src/index.js",
+    "build": "npm run build --prefix web",
+    "test": "npm test --prefix server",
+    "seed": "node server/src/seed.js"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
