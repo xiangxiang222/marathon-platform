@@ -1,0 +1,54 @@
+name: Deploy
+
+on:
+  workflow_run:
+    workflows: ["Unit tests"]
+    types: [completed]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: deploy
+    runs-on: ubuntu-latest
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.workflow_run.event == 'push' &&
+       github.event.workflow_run.head_branch == 'main' &&
+       github.event.workflow_run.conclusion == 'success')
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.head_sha || github.sha }}
+      - name: Write deploy key
+        id: cfg
+        env:
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_HOST: ${{ vars.DEPLOY_HOST }}
+        run: |
+          HOST="${DEPLOY_HOST:-140.143.171.77}"
+          RETIRED="192.144.167.212"
+          if [ "$HOST" = "$RETIRED" ]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "主机 $RETIRED 已到期回收，跳过部署。"
+            exit 0
+          fi
+          if [ -z "$DEPLOY_SSH_KEY" ]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "未配置 GitHub Secret DEPLOY_SSH_KEY，跳过部署。"
+            exit 0
+          fi
+          mkdir -p ~/.ssh
+          printf '%s\n' "$DEPLOY_SSH_KEY" | sed 's/\r$//' > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H "$HOST" >> ~/.ssh/known_hosts || true
+          echo "host=$HOST" >> "$GITHUB_OUTPUT"
+          echo "skip=false" >> "$GITHUB_OUTPUT"
+      - name: Sync and restart
+        if: steps.cfg.outputs.skip != 'true'
+        env:
+          DEPLOY_HOST: ${{ steps.cfg.outputs.host }}
+        run: |
+          export DEPLOY_USER=ubuntu
+          export DEPLOY_DIR=/var/www/marathon
+          export DEPLOY_SSH_KEY="$HOME/.ssh/id_ed25519"
+          bash scripts/deploy.sh
