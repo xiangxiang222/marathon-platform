@@ -18,9 +18,13 @@
       </span>
       <span>看看</span>
     </router-link>
-    <router-link to="/mine" class="item" :class="{ on: route.path.startsWith('/mine') }">
+    <router-link to="/mine" class="item" :class="{ on: route.path.startsWith('/mine'), mine: route.path.startsWith('/mine') }">
       <span class="glyph face">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="3.2" /><path d="M6.5 19.5c1-3 2.8-4.5 5.5-4.5s4.5 1.5 5.5 4.5" /></svg>
+        <svg v-if="route.path.startsWith('/mine')" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="9" fill="#2ad4cf" stroke="none" />
+          <path d="M8.4 10.6h.01M15.6 10.6h.01M8.6 14.2c.9.8 2 1.2 3.4 1.2s2.5-.4 3.4-1.2" stroke="#fff" fill="none" />
+        </svg>
+        <svg v-else viewBox="0 0 24 24"><circle cx="12" cy="9" r="3.2" /><path d="M6.5 19.5c1-3 2.8-4.5 5.5-4.5s4.5 1.5 5.5 4.5" /></svg>
       </span>
       <span>我的</span>
     </router-link>
@@ -72,6 +76,7 @@ const route = useRoute();
   background: #2ad4cf;
 }
 .item.home .glyph svg { stroke: #fff; fill: #fff; }
-.item.on:not(.home) { background: #eef1f4; }
-.item.on .face svg { stroke: #2ad4cf; }
+.item.on:not(.home) { background: #e8edf2; }
+.item.mine .glyph { width: 28px; height: 28px; }
+.item.mine .glyph svg { stroke: none; }
 </style>
