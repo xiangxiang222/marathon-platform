@@ -20,7 +20,7 @@
     </router-link>
     <router-link to="/mine" class="item" :class="{ on: route.path.startsWith('/mine') }">
       <span class="glyph face">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" /><path d="M8.5 11h.01M15.5 11h.01M8.8 15c.8.8 2 1.2 3.2 1.2s2.4-.4 3.2-1.2" /></svg>
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="3.2" /><path d="M6.5 19.5c1-3 2.8-4.5 5.5-4.5s4.5 1.5 5.5 4.5" /></svg>
       </span>
       <span>我的</span>
     </router-link>

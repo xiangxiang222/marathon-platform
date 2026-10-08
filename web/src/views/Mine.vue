@@ -20,23 +20,23 @@
   </section>
   <div class="rounds">
     <a href="#plans">
-      <div class="bubble" style="background:#5b8def"><svg viewBox="0 0 24 24"><path d="M6 7h12v12H6z" /><path d="M9 7V5h6v2M9 12h6M9 15h4" /></svg></div>
+      <div class="bubble"><svg viewBox="0 0 24 24"><path d="M6 7h12v12H6z" /><path d="M9 7V5h6v2M9 12h6M9 15h4" /></svg></div>
       订单
     </a>
     <router-link to="/?kind=offline">
-      <div class="bubble" style="background:#ff8a00"><svg viewBox="0 0 24 24"><path d="M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11z" /><circle cx="12" cy="10" r="2" /></svg></div>
+      <div class="bubble"><svg viewBox="0 0 24 24"><path d="M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11z" /><circle cx="12" cy="10" r="2" /></svg></div>
       线下赛
     </router-link>
     <router-link to="/?kind=online">
-      <div class="bubble" style="background:#7c5cfc"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="12" rx="2" /><path d="M8 21h8M12 17v4" /></svg></div>
+      <div class="bubble"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="12" rx="2" /><path d="M8 21h8M12 17v4" /></svg></div>
       线上赛
     </router-link>
     <router-link to="/">
-      <div class="bubble" style="background:#2ad4cf"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6" /><path d="M20 20l-3.5-3.5" /></svg></div>
+      <div class="bubble"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6" /><path d="M20 20l-3.5-3.5" /></svg></div>
       报名查询
     </router-link>
     <a href="#wall">
-      <div class="bubble" style="background:#ff5a36"><svg viewBox="0 0 24 24"><path d="M6 4h12v16H6z" /><path d="M9 8h6M9 12h6M9 16h3" /></svg></div>
+      <div class="bubble"><svg viewBox="0 0 24 24"><path d="M6 4h12v16H6z" /><path d="M9 8h6M9 12h6M9 16h3" /></svg></div>
       我的成绩
     </a>
   </div>
