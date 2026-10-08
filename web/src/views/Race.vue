@@ -1,11 +1,12 @@
 <template>
-  <main class="page">
+  <main>
     <router-link class="back" to="/">返回赛历</router-link>
-    <div v-if="race" class="sheet">
+    <div v-if="race" class="detail-poster"><Poster :id="race.id" /></div>
+    <div v-if="race" class="detail">
       <div class="reg" :class="{ off: !race.open }">{{ race.regStatus }}</div>
-      <div class="hero-name">{{ race.name }}</div>
+      <h1>{{ race.name }}</h1>
       <div class="row"><span>比赛日</span><b>{{ race.raceDate }}</b></div>
-      <div class="row"><span>地点</span><b>{{ race.province }} · {{ race.city }}</b></div>
+      <div class="row"><span>地点</span><b>{{ race.province === race.city ? race.city : race.province + " · " + race.city }}</b></div>
       <div class="row"><span>项目</span><b>{{ race.distanceLabels.join(" / ") }}</b></div>
       <div class="row"><span>报名截止</span><b :class="{ soon: race.open && race.daysLeft <= 3 }">{{ race.deadlineLabel }}</b></div>
     </div>
@@ -13,7 +14,7 @@
       <h2>我这场</h2>
       <p v-if="!ready" class="empty">先到「我的」里起个昵称，再标状态。标完同团的人能看见。</p>
       <div v-else class="statuses">
-        <button v-for="item in statuses" :key="item" class="status" :class="{ on: myStatus === item }" @click="mark(item)">
+        <button v-for="item in statuses" :key="item" type="button" class="status" :class="{ on: myStatus === item }" @click="mark(item)">
           {{ item }}
         </button>
       </div>
@@ -33,6 +34,7 @@
 import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import { api } from "../api";
+import Poster from "../components/Poster.vue";
 
 const route = useRoute();
 const race = ref(null);
@@ -63,3 +65,7 @@ async function mark(status) {
 
 onMounted(load);
 </script>
+
+<style scoped>
+.detail-poster :deep(.poster) { height: 220px; }
+</style>
