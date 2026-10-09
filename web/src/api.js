@@ -4,7 +4,8 @@ export function api(path, options = {}) {
   const headers = { ...(options.headers || {}) };
   if (options.body) headers["Content-Type"] = "application/json";
   const token = localStorage.getItem("marathon_token");
-  if (token) headers.Authorization = "Bearer " + token;
+  if (options.adminToken) headers.Authorization = "Bearer " + options.adminToken;
+  else if (token) headers.Authorization = "Bearer " + token;
   return fetch(base + "/api" + path, { ...options, headers }).then(async (res) => {
     const data = await res.json().catch(() => ({}));
     if (!res.ok) {

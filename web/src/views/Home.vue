@@ -170,7 +170,8 @@ const statusOptions = [
   { label: "报名中", value: "open" },
   { label: "待开赛", value: "wait" },
   { label: "比赛中", value: "live" },
-  { label: "比赛结束", value: "closed" }
+  { label: "比赛结束", value: "closed" },
+  { label: "报名未公布", value: "unannounced" }
 ];
 
 const cats = [
