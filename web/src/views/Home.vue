@@ -24,10 +24,12 @@
         {{ item.label }}
       </button>
     </div>
-    <div class="filters" role="group" aria-label="项目和范围">
+    <div class="filters" role="group" aria-label="项目">
       <button v-for="item in distanceOptions" :key="item.value || 'all'" type="button" :class="{ on: distance === item.value }" @click="setDistance(item.value)">
         {{ item.label }}
       </button>
+    </div>
+    <div class="filters" role="group" aria-label="地点和月份">
       <button type="button" :class="{ on: !!city || sheet === 'city' }" @click="toggleSheet('city')">{{ city || "地点" }}</button>
       <button type="button" :class="{ on: !!month || sheet === 'month' }" @click="toggleSheet('month')">{{ monthLabel || "月份" }}</button>
     </div>

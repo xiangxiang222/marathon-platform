@@ -22,9 +22,11 @@
   </scroll-view>
   <scroll-view class="filters" scroll-x>
     <text wx:for="{{distances}}" wx:key="label" class="chip {{distance === item.value ? 'on' : ''}}" data-value="{{item.value}}" bindtap="setDistance">{{item.label}}</text>
+  </scroll-view>
+  <view class="filters">
     <text class="chip {{city || sheet === 'city' ? 'on' : ''}}" data-sheet="city" bindtap="toggleSheet">{{city || '地点'}}</text>
     <text class="chip {{month || sheet === 'month' ? 'on' : ''}}" data-sheet="month" bindtap="toggleSheet">{{monthLabel || '月份'}}</text>
-  </scroll-view>
+  </view>
 
   <view class="card" wx:if="{{sheet === 'city'}}">
     <text class="chip {{city ? '' : 'on'}}" data-value="" bindtap="pickCity">不限</text>
