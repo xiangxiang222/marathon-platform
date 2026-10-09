@@ -1,0 +1,16 @@
+{
+  "libVersion": "3.17.1",
+  "projectname": "marathon-platform",
+  "setting": {
+    "urlCheck": false,
+    "compileHotReLoad": true,
+    "preloadBackgroundData": false,
+    "autoAudits": false,
+    "useStaticServer": false,
+    "useLanDebug": false,
+    "showES6CompileOption": false,
+    "checkInvalidKey": true,
+    "ignoreDevUnusedFiles": false,
+    "bigPackageSizeSupport": false
+  }
+}

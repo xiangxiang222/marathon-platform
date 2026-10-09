@@ -1,9 +1,12 @@
 node_modules/
 dist/
 web/dist/
+miniprogram/node_modules/
 server/data/
 coverage/
 .env
 .env.local
 .DS_Store
 *.log
+.idea/
+.vscode/

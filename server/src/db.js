@@ -23,7 +23,13 @@ function open() {
       distances TEXT NOT NULL,
       race_date TEXT NOT NULL,
       deadline TEXT NOT NULL,
-      place TEXT NOT NULL
+      place TEXT NOT NULL,
+      reg_start TEXT NOT NULL DEFAULT '',
+      draw_at TEXT NOT NULL DEFAULT '',
+      pay_deadline TEXT NOT NULL DEFAULT '',
+      source TEXT NOT NULL DEFAULT '',
+      updated_at TEXT NOT NULL DEFAULT '',
+      deadline_name TEXT NOT NULL DEFAULT ''
     );
     CREATE TABLE IF NOT EXISTS users (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -52,17 +58,54 @@ function open() {
       PRIMARY KEY (club_id, user_id)
     );
   `);
-  const count = handle.prepare("SELECT COUNT(*) AS n FROM races").get().n;
-  if (count === 0) {
-    const insert = handle.prepare(
-      `INSERT INTO races (id, name, city, province, distances, race_date, deadline, place)
-       VALUES (@id, @name, @city, @province, @distances, @raceDate, @deadline, @place)`
-    );
-    const tx = handle.transaction((rows) => {
-      for (const row of rows) insert.run(row);
-    });
-    tx(RACES);
+  for (const [name, type] of [
+    ["reg_start", "TEXT NOT NULL DEFAULT ''"],
+    ["draw_at", "TEXT NOT NULL DEFAULT ''"],
+    ["pay_deadline", "TEXT NOT NULL DEFAULT ''"],
+    ["source", "TEXT NOT NULL DEFAULT ''"],
+    ["updated_at", "TEXT NOT NULL DEFAULT ''"],
+    ["deadline_name", "TEXT NOT NULL DEFAULT ''"]
+  ]) {
+    const cols = handle.prepare("PRAGMA table_info(races)").all();
+    if (!cols.some((col) => col.name === name)) handle.exec(`ALTER TABLE races ADD COLUMN ${name} ${type}`);
   }
+  const upsert = handle.prepare(
+    `INSERT INTO races (
+       id, name, city, province, distances, race_date, deadline, place,
+       reg_start, draw_at, pay_deadline, source, updated_at, deadline_name
+     ) VALUES (
+       @id, @name, @city, @province, @distances, @raceDate, @deadline, @place,
+       @regStart, @drawAt, @payDeadline, @source, @updatedAt, @deadlineName
+     )
+     ON CONFLICT(id) DO UPDATE SET
+       name = excluded.name,
+       city = excluded.city,
+       province = excluded.province,
+       distances = excluded.distances,
+       race_date = excluded.race_date,
+       deadline = excluded.deadline,
+       place = excluded.place,
+       reg_start = excluded.reg_start,
+       draw_at = excluded.draw_at,
+       pay_deadline = excluded.pay_deadline,
+       source = excluded.source,
+       updated_at = excluded.updated_at,
+       deadline_name = excluded.deadline_name`
+  );
+  const tx = handle.transaction((rows) => {
+    for (const row of rows) {
+      upsert.run({
+        regStart: "",
+        drawAt: "",
+        payDeadline: "",
+        source: "",
+        updatedAt: "",
+        deadlineName: "",
+        ...row
+      });
+    }
+  });
+  tx(RACES);
   return handle;
 }
 

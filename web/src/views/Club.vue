@@ -17,10 +17,13 @@
           <div class="foot"><span>{{ item.race.raceDate }}</span><span>{{ item.race.deadlineLabel }}</span></div>
         </div>
       </router-link>
+      <pre class="share-text">{{ item.text }}</pre>
+      <button class="primary" type="button" @click="copyCard(item)">复制卡片</button>
       <div v-for="mark in item.marks" :key="mark.nickname + mark.status" class="mate">
         <span>{{ mark.nickname }}</span><b>{{ mark.status }}</b>
       </div>
     </div>
+    <p v-if="note" class="note">{{ note }}</p>
     <p v-if="message" class="err" style="padding:0 16px">{{ message }}</p>
   </main>
 </template>
@@ -29,6 +32,7 @@
 import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import { api } from "../api";
+import { copyText } from "../copy";
 import Poster from "../components/Poster.vue";
 
 const route = useRoute();
@@ -36,6 +40,18 @@ const club = ref(null);
 const members = ref([]);
 const board = ref([]);
 const message = ref("");
+const note = ref("");
+
+async function copyCard(card) {
+  note.value = "";
+  message.value = "";
+  try {
+    await copyText(card.text);
+    note.value = "卡片已复制，可以贴到微信群";
+  } catch (err) {
+    message.value = "没有复制成功，可以直接选中上面的文字";
+  }
+}
 
 onMounted(async () => {
   try {
@@ -51,4 +67,8 @@ onMounted(async () => {
 
 <style scoped>
 .block :deep(.poster) { height: 120px; border-radius: 8px; }
+.share-text { margin: 8px 0 0; font: inherit; white-space: pre-wrap; line-height: 1.5; }
+.note { font-size: 12px; }
+.note { color: #12b3ae; padding: 0 16px; }
+.primary { margin-top: 8px; }
 </style>

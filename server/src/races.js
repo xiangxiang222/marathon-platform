@@ -87,7 +87,11 @@ const RACES = [
     distances: "full,half",
     raceDate: "2027-05-15",
     deadline: "2026-12-01T23:59:00+08:00",
-    place: "黄崖关"
+    deadlineName: "早鸟截止",
+    regStart: "2026-09-07",
+    place: "黄崖关",
+    source: "最酷，2026-09-07",
+    updatedAt: "2026-10-08"
   },
   {
     id: "closed-sample",
@@ -108,8 +112,30 @@ function dayIndex(ms) {
   return Math.floor((ms + TZ) / 86400000);
 }
 
+function instant(value) {
+  if (!value) return NaN;
+  const text = String(value);
+  if (/^\d{4}-\d{2}-\d{2}$/.test(text)) return new Date(text + "T23:59:59+08:00").getTime();
+  return new Date(text).getTime();
+}
+
+function formatWhen(value) {
+  const ms = instant(value);
+  if (Number.isNaN(ms)) return "";
+  const shifted = new Date(ms + TZ);
+  const y = shifted.getUTCFullYear();
+  const m = String(shifted.getUTCMonth() + 1).padStart(2, "0");
+  const day = String(shifted.getUTCDate()).padStart(2, "0");
+  if (String(value).includes("T")) {
+    const hh = String(shifted.getUTCHours()).padStart(2, "0");
+    const mm = String(shifted.getUTCMinutes()).padStart(2, "0");
+    return `${y}-${m}-${day} ${hh}:${mm}`;
+  }
+  return `${y}-${m}-${day}`;
+}
+
 function deadlineMeta(deadline, now = new Date()) {
-  const end = new Date(deadline).getTime();
+  const end = instant(deadline);
   const open = end > now.getTime();
   const days = dayIndex(end) - dayIndex(now.getTime());
   let deadlineLabel = "已截止";
@@ -119,9 +145,85 @@ function deadlineMeta(deadline, now = new Date()) {
   return { open, daysLeft: open ? Math.max(days, 0) : 0, deadlineLabel };
 }
 
+function reminderText(name, at, now) {
+  const meta = deadlineMeta(at, now);
+  if (!meta.open) return name + "已过";
+  if (name === "报名截止" || name === "早鸟截止") return meta.deadlineLabel;
+  if (meta.daysLeft <= 0) return "今日" + name;
+  if (meta.daysLeft === 1) {
+    if (name === "出签") return "明天出签";
+    if (name === "缴费截止") return "缴费明天截止";
+    return "明天" + name;
+  }
+  if (name === "出签") return `${meta.daysLeft}天后出签`;
+  if (name === "缴费截止") return `缴费${meta.daysLeft}天后截止`;
+  return `${meta.daysLeft}天后${name}`;
+}
+
+function field(row, camel, snake) {
+  const value = row[snake] != null && row[snake] !== "" ? row[snake] : row[camel];
+  return value || "";
+}
+
+function buildNodes(row, now) {
+  const specs = [
+    ["regStart", "报名开始", field(row, "regStart", "reg_start")],
+    ["deadline", field(row, "deadlineName", "deadline_name") || "报名截止", row.deadline],
+    ["draw", "出签", field(row, "drawAt", "draw_at")],
+    ["pay", "缴费截止", field(row, "payDeadline", "pay_deadline")],
+    ["race", "比赛日", row.race_date || row.raceDate]
+  ];
+  return specs
+    .filter((item) => item[2])
+    .map(([key, label, at]) => {
+      const meta = deadlineMeta(at, now);
+      return {
+        key,
+        label,
+        at: formatWhen(at),
+        past: !meta.open,
+        daysLeft: meta.daysLeft,
+        soon: meta.open && meta.daysLeft <= 3 && key !== "race",
+        text: key === "race" ? "" : reminderText(label, at, now)
+      };
+    });
+}
+
+const ENTERED = ["已报名", "待抽签", "中签", "已缴费"];
+
+function summarizeMarks(counts) {
+  const entered = ENTERED.reduce((sum, key) => sum + (counts[key] || 0), 0);
+  const unpaid = counts["中签"] || 0;
+  const want = counts["想跑"] || 0;
+  const parts = [];
+  if (entered) parts.push(`${entered} 人已报名`);
+  if (unpaid) parts.push(`${unpaid} 人还没缴`);
+  if (!entered && want) parts.push(`${want} 人想跑`);
+  if (!parts.length) return "还没有人标这场";
+  return parts.join("，");
+}
+
+function cardTitle(race) {
+  const head = race.nextNode && race.nextNode.text ? race.nextNode.text : race.deadlineLabel;
+  return `${head} · ${race.name}`;
+}
+
+function shareText(card) {
+  const names = (card.unpaid || [])
+    .map((item) => (typeof item === "string" ? item : item.nickname))
+    .filter(Boolean);
+  const lines = [card.title, card.summary];
+  if (names.length) lines.push("还没缴：" + names.join("、"));
+  if (card.club && card.club.code) lines.push("跑团口令 " + card.club.code);
+  lines.push("打开赛历小程序，标一下你这场的状态。");
+  return lines.join("\n");
+}
+
 function presentRace(row, now) {
   const meta = deadlineMeta(row.deadline, now);
   const distances = String(row.distances).split(",").filter(Boolean);
+  const nodes = buildNodes(row, now);
+  const nextNode = nodes.find((node) => node.key !== "race" && !node.past) || null;
   return {
     id: row.id,
     name: row.name,
@@ -132,6 +234,14 @@ function presentRace(row, now) {
     distanceLabels: distances.map((d) => DISTANCE_LABEL[d] || d),
     raceDate: row.race_date || row.raceDate,
     deadline: row.deadline,
+    deadlineName: field(row, "deadlineName", "deadline_name") || "报名截止",
+    regStart: field(row, "regStart", "reg_start"),
+    drawAt: field(row, "drawAt", "draw_at"),
+    payDeadline: field(row, "payDeadline", "pay_deadline"),
+    source: field(row, "source", "source"),
+    updatedAt: field(row, "updatedAt", "updated_at"),
+    nodes,
+    nextNode,
     regStatus: phaseLabel(row.race_date || row.raceDate, meta.open, now),
     kind: KIND[row.id] || "road",
     ...meta
@@ -148,4 +258,4 @@ function phaseLabel(raceDate, open, now) {
   return "报名中";
 }
 
-module.exports = { RACES, DISTANCE_LABEL, deadlineMeta, presentRace };
+module.exports = { RACES, DISTANCE_LABEL, deadlineMeta, presentRace, summarizeMarks, cardTitle, shareText };

@@ -1,0 +1,16 @@
+---
+description: 改完自动提交、开 PR 并 squash 合入 main
+alwaysApply: true
+---
+
+# 改完即合入
+
+每次做完用户要的功能或修复后，不要再问一句「要不要提交」：
+
+1. 用中文写「为什么」提交。不要空提交。不要提交 `.env`、密钥、`server/data/`。
+2. 在 `main` 上先开功能分支再 push。
+3. `gh pr create` 后立刻 `gh pr merge --squash` 合入 `main`。
+4. 合入后切回 `main` 并 pull。不要 force push `main`。
+
+不要在生产跑 `npm run seed`，不要擅自跑 `./scripts/deploy.sh`。
+部署目录是 `/var/www/marathon`，不要动 `/var/www/beiyexing`。

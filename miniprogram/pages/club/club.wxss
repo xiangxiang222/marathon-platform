@@ -1,0 +1,4 @@
+.tags { margin-top: 12rpx; }
+.sum { margin-top: 16rpx; font-weight: 650; }
+.src { color: #8d949c; font-size: 24rpx; margin-top: 8rpx; }
+.share { margin-top: 16rpx; }

@@ -1,0 +1,22 @@
+<view class="pad">
+  <view class="field">
+    <input placeholder="搜索赛事名称" value="{{q}}" bindinput="onQ" bindconfirm="load" confirm-type="search" />
+    <button class="btn" bindtap="load">搜索</button>
+  </view>
+  <view class="filters">
+    <button class="ghost {{status === 'open' ? 'on' : ''}}" data-status="open" bindtap="setStatus">报名中</button>
+    <button class="ghost {{status === 'all' ? 'on' : ''}}" data-status="all" bindtap="setStatus">全部</button>
+  </view>
+  <view wx:if="{{message}}" class="err">{{message}}</view>
+  <navigator wx:for="{{races}}" wx:key="id" class="card race" url="/pages/race/race?id={{item.id}}">
+    <view class="title"><text class="teal">{{item.regStatus}} </text>{{item.name}}</view>
+    <view class="tags">
+      <text wx:for="{{item.distanceLabels}}" wx:for-item="tag" wx:key="*this" class="chip">{{tag}}</text>
+    </view>
+    <view class="foot">
+      <text>{{item.raceDate}} · {{item.city}}</text>
+      <text class="{{item.soon ? 'soon' : ''}}">{{item.deadlineLabel}}</text>
+    </view>
+  </navigator>
+  <view wx:if="{{loaded && !races.length}}" class="empty">这个范围还没有赛历</view>
+</view>

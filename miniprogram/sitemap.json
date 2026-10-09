@@ -1,0 +1,4 @@
+{
+  "desc": "赛历",
+  "rules": [{ "action": "allow", "page": "*" }]
+}

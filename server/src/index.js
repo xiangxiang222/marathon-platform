@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const express = require("express");
 const { getDb } = require("./db");
-const { presentRace } = require("./races");
+const { presentRace, summarizeMarks, cardTitle, shareText } = require("./races");
 
 function loadEnv() {
   const file = path.join(__dirname, "../../.env");
@@ -29,6 +29,34 @@ function userFrom(req) {
   const token = header.replace(/^Bearer\s+/i, "");
   if (!token || token === header) return null;
   return getDb().prepare("SELECT id, nickname FROM users WHERE token = ?").get(token) || null;
+}
+
+function marksOf(clubId, raceId) {
+  return getDb()
+    .prepare(
+      `SELECT u.nickname, p.status FROM plans p
+       JOIN users u ON u.id = p.user_id
+       JOIN club_members m ON m.user_id = u.id AND m.club_id = ?
+       WHERE p.race_id = ?
+       ORDER BY p.updated_at DESC`
+    )
+    .all(clubId, raceId);
+}
+
+function packCard(race, club, marks) {
+  const counts = {};
+  for (const status of STATUSES) counts[status] = 0;
+  for (const mark of marks) counts[mark.status] += 1;
+  const card = {
+    club: club ? { id: club.id, name: club.name, code: club.code } : null,
+    title: cardTitle(race),
+    summary: summarizeMarks(counts),
+    counts,
+    marks,
+    unpaid: marks.filter((mark) => mark.status === "中签").map((mark) => ({ nickname: mark.nickname }))
+  };
+  card.text = shareText(card);
+  return card;
 }
 
 function requireUser(req, res) {
@@ -79,7 +107,7 @@ app.get(BASE + "/api/races/:id", (req, res) => {
   const clubs = user
     ? getDb()
         .prepare(
-          `SELECT c.id, c.name FROM clubs c
+          `SELECT c.id, c.name, c.code FROM clubs c
            JOIN club_members m ON m.club_id = c.id
            WHERE m.user_id = ? ORDER BY c.id`
         )
@@ -97,7 +125,19 @@ app.get(BASE + "/api/races/:id", (req, res) => {
             .all(race.id, club.id, user.id)
         }))
     : [];
-  res.json({ race, myStatus: mine ? mine.status : "", clubs, statuses: STATUSES });
+  const cards = clubs.map((club) => packCard(race, club, marksOf(club.id, race.id)));
+  res.json({ race, myStatus: mine ? mine.status : "", clubs, cards, statuses: STATUSES });
+});
+
+app.get(BASE + "/api/races/:id/card", (req, res) => {
+  const row = getDb().prepare("SELECT * FROM races WHERE id = ?").get(req.params.id);
+  if (!row) return res.status(404).json({ error: "没有这场比赛" });
+  const code = String(req.query.code || "").trim().toUpperCase();
+  if (!code) return res.status(400).json({ error: "带上跑团口令" });
+  const club = getDb().prepare("SELECT id, name, code FROM clubs WHERE code = ?").get(code);
+  if (!club) return res.status(404).json({ error: "没有这个跑团口令" });
+  const race = presentRace(row, new Date());
+  res.json(packCard(race, club, marksOf(club.id, race.id)));
 });
 
 app.post(BASE + "/api/session", (req, res) => {
@@ -205,6 +245,15 @@ app.get(BASE + "/api/clubs/:id", (req, res) => {
       board.push(item);
     }
     item.marks.push({ nickname: row.nickname, status: row.status });
+  }
+  for (const item of board) {
+    const counts = {};
+    for (const status of STATUSES) counts[status] = 0;
+    for (const mark of item.marks) counts[mark.status] += 1;
+    item.summary = summarizeMarks(counts);
+    item.title = cardTitle(item.race);
+    item.unpaid = item.marks.filter((mark) => mark.status === "中签").map((mark) => mark.nickname);
+    item.text = shareText({ ...item, club });
   }
   res.json({ club, members, board });
 });
