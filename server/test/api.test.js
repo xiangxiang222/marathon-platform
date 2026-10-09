@@ -197,3 +197,38 @@ test("a finish time becomes the career PB, footprint, and this year's race dista
   assert.equal(removed.status, 200);
   assert.equal(removed.body.career.finished, 3);
 });
+
+test("two teammates who are still in the race can go together", async () => {
+  const leader = await session("凑队团长");
+  const mate = await session("凑队队友");
+  const created = await request(app).post("/marathon/api/clubs").set("Authorization", "Bearer " + leader).send({ name: "凑队跑团" });
+  assert.equal(created.status, 200);
+  const code = created.body.club.code;
+  await request(app).post("/marathon/api/clubs/join").set("Authorization", "Bearer " + mate).send({ code });
+
+  await request(app).put("/marathon/api/me/races/jinjiang").set("Authorization", "Bearer " + leader).send({ status: "已报名" });
+  const alone = await request(app).get("/marathon/api/races/jinjiang/card?code=" + code);
+  assert.equal(alone.body.squad.ready, false);
+  assert.equal(alone.body.squad.size, 1);
+  assert.equal(alone.body.squad.text, "还差一个人就能凑一队");
+  assert.equal(/可以一起去/.test(alone.body.text), false);
+
+  await request(app).put("/marathon/api/me/races/jinjiang").set("Authorization", "Bearer " + mate).send({ status: "已缴费" });
+  const card = await request(app).get("/marathon/api/races/jinjiang/card?code=" + code);
+  assert.equal(card.body.squad.ready, true);
+  assert.equal(card.body.squad.size, 2);
+  assert.match(card.body.text, /可以一起去：凑队团长、凑队队友|可以一起去：凑队队友、凑队团长/);
+
+  const missed = await request(app).put("/marathon/api/me/races/hailing").set("Authorization", "Bearer " + leader).send({ status: "未中签" });
+  assert.equal(missed.status, 200);
+  await request(app).put("/marathon/api/me/races/hailing").set("Authorization", "Bearer " + mate).send({ status: "想跑" });
+  const out = await request(app).get("/marathon/api/races/hailing/card?code=" + code);
+  assert.equal(out.body.squad.ready, false);
+  assert.equal(out.body.squad.size, 0);
+  assert.equal(out.body.squad.text, "1 人想跑，还没人报名");
+
+  const board = await request(app).get("/marathon/api/clubs/" + created.body.club.id).set("Authorization", "Bearer " + leader);
+  const jinjiang = board.body.board.find((item) => item.race.id === "jinjiang");
+  assert.equal(jinjiang.squad.ready, true);
+  assert.match(jinjiang.text, /可以一起去/);
+});

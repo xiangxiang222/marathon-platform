@@ -30,7 +30,8 @@ Page({
         const board = (data.board || []).map((item) => ({
           ...item,
           key: item.race.id,
-          unpaidText: (item.unpaid || []).join("、")
+          unpaidText: (item.unpaid || []).join("、"),
+          squadText: item.squad ? item.squad.text : ""
         }));
         this.setData({ club: data.club, members: data.members || [], board, message: "" });
       })

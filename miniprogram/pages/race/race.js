@@ -72,7 +72,10 @@ Page({
           distanceText: (race.distanceLabels || []).join(" / "),
           statuses: data.statuses || [],
           myStatus: data.myStatus || "",
-          clubs: data.clubs || [],
+          clubs: (data.clubs || []).map((club) => {
+            const card = (data.cards || []).find((item) => item.club && item.club.id === club.id);
+            return { ...club, squadText: card && card.squad ? card.squad.text : "" };
+          }),
           cards: (data.cards || []).map(withUnpaid),
           conflicts: data.conflicts || [],
           ready: ready(),

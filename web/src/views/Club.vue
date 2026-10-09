@@ -17,6 +17,7 @@
           <div class="foot"><span>{{ item.race.raceDate }}</span><span>{{ item.race.deadlineLabel }}</span></div>
         </div>
       </router-link>
+      <p v-if="item.squad && item.squad.text" class="squad">{{ item.squad.text }}</p>
       <pre class="share-text">{{ item.text }}</pre>
       <button class="primary" type="button" @click="copyCard(item)">复制卡片</button>
       <div v-for="mark in item.marks" :key="mark.nickname + mark.status" class="mate">
@@ -68,6 +69,7 @@ onMounted(async () => {
 <style scoped>
 .block :deep(.poster) { height: 120px; border-radius: 8px; }
 .share-text { margin: 8px 0 0; font: inherit; white-space: pre-wrap; line-height: 1.5; }
+.squad { margin: 8px 0 0; color: #9a5b12; font-size: 13px; }
 .note { font-size: 12px; }
 .note { color: #12b3ae; padding: 0 16px; }
 .primary { margin-top: 8px; }

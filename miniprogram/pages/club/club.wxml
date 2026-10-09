@@ -14,6 +14,7 @@
     </navigator>
     <view class="sum">{{item.title}}</view>
     <view>{{item.summary}}</view>
+    <view wx:if="{{item.squadText}}" class="warn">{{item.squadText}}</view>
     <view wx:if="{{item.unpaid.length}}" class="src">还没缴：{{item.unpaidText}}</view>
     <button class="btn share" open-type="share" data-id="{{item.race.id}}" data-title="{{item.title}}" bindtap="armShare">发到微信群</button>
     <view wx:for="{{item.marks}}" wx:for-item="mark" wx:key="nickname" class="row">
