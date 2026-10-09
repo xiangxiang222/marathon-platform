@@ -7,3 +7,4 @@
 .result .field { margin-top: 16rpx; }
 .result .field input { background: #f4f5f7; }
 .result .btn { margin-top: 16rpx; }
+.draw { white-space: pre-wrap; }

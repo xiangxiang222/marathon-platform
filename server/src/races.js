@@ -191,6 +191,18 @@ function buildNodes(row, now) {
 
 const ENTERED = ["已报名", "待抽签", "中签", "未中签", "已缴费", "已领物", "完赛", "未完赛", "弃赛"];
 const GOING = ["已报名", "待抽签", "中签", "已缴费", "已领物"];
+const DRAWN = ["中签", "已缴费", "已领物"];
+
+function drawnNames(marks) {
+  return (marks || []).filter((mark) => DRAWN.includes(mark.status)).map((mark) => mark.nickname).filter(Boolean);
+}
+
+function drawPoster(nickname, race) {
+  const name = String(nickname || "").trim();
+  if (!name || !race || !race.name) return "";
+  const place = race.province && race.province !== race.city ? race.province + " " + race.city : race.city;
+  return [name + "中签了", race.name, race.raceDate + " · " + place, "打开赛历，看这场谁一起去。"].join("\n");
+}
 
 function squadOf(marks) {
   const list = marks || [];
@@ -298,6 +310,8 @@ function shareText(card) {
     .map((item) => (typeof item === "string" ? item : item.nickname))
     .filter(Boolean);
   const lines = [card.title, card.summary];
+  const drawn = drawnNames(card.marks);
+  if (drawn.length) lines.push("中了：" + drawn.join("、"));
   if (names.length) lines.push("还没缴：" + names.join("、"));
   if (card.squad && card.squad.ready) {
     const who = card.squad.going.map((mark) => mark.nickname).filter(Boolean);
@@ -354,6 +368,8 @@ module.exports = {
   presentRace,
   summarizeMarks,
   squadOf,
+  drawnNames,
+  drawPoster,
   nearbyOpen,
   alternativeNote,
   cardTitle,

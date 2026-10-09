@@ -48,6 +48,13 @@
     <view wx:if="{{message}}" class="err">{{message}}</view>
   </view>
 
+  <view class="card" wx:if="{{drawText}}">
+    <view class="h2">中签卡片</view>
+    <view class="sum draw">{{drawText}}</view>
+    <button class="btn" bindtap="copyDraw">复制卡片</button>
+    <view wx:if="{{drawError}}" class="err">{{drawError}}</view>
+  </view>
+
   <view class="card" wx:if="{{alternatives.length}}">
     <view class="h2">同期还开着</view>
     <view class="src">{{alternativeNote}}</view>
