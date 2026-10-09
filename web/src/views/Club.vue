@@ -1,68 +1,105 @@
 <template>
   <main>
     <header class="topbar">
-      <router-link to="/sport" aria-label="返回">‹</router-link>
+      <router-link to="/clubs" aria-label="返回">返回</router-link>
       <h1>跑团</h1>
       <span></span>
     </header>
-    <div v-if="club" class="detail">
-      <div class="hero-name">{{ club.name }}</div>
-      <div class="row"><span>口令，发到微信群</span><b>{{ club.code }}</b></div>
-      <div class="tags" style="margin-top:8px">
-        <span v-for="member in members" :key="member.id">{{ member.nickname }}</span>
-      </div>
+
+    <p v-if="phase === 'loading'" class="state">正在打开跑团</p>
+    <div v-else-if="phase === 'error'" class="state">
+      <p class="err">{{ message }}</p>
+      <button class="text-btn" type="button" @click="load">重试</button>
+      <router-link class="text-link" to="/clubs">返回跑团</router-link>
     </div>
-    <div v-if="club" class="block">
-      <h2>团练签到</h2>
-      <p class="rank-label">只记今天谁到了，不记公里。</p>
-      <form class="check-form" @submit.prevent="checkIn">
-        <input v-model="checkNote" maxlength="40" placeholder="可写一句，比如夜跑" />
-        <button class="primary" type="submit">{{ checkedIn ? "改一句" : "签到" }}</button>
-      </form>
-      <button v-if="checkedIn" class="undo" type="button" @click="undoCheckin">撤销今天</button>
-      <p v-if="!checkins.length" class="rank-label">今天还没有人签到。</p>
-      <div v-for="day in checkins" :key="day.date">
-        <p class="rank-label">{{ day.label }}</p>
-        <div v-for="row in day.rows" :key="day.date + '-' + row.userId" class="mate">
-          <span>{{ row.nickname }}</span>
-          <b>{{ row.note }}</b>
+
+    <template v-else-if="club">
+      <section class="detail">
+        <h1 class="hero-name">{{ club.name }}</h1>
+      </section>
+      <section class="block">
+        <div class="code-row">
+          <div>
+            <p class="kicker">口令</p>
+            <b class="code">{{ club.code }}</b>
+          </div>
+          <button class="text-btn" type="button" @click="copyCode">复制口令</button>
         </div>
-      </div>
-      <p v-if="checkMessage" class="err">{{ checkMessage }}</p>
-    </div>
-    <div v-if="ranks.length" class="block">
-      <h2>团内成绩</h2>
-      <p class="rank-label">每人每项只留最好的一场。</p>
-      <div v-for="group in ranks" :key="group.distance">
-        <p class="rank-label">{{ group.label }}</p>
-        <router-link v-for="row in group.rows" :key="group.distance + row.nickname" class="mate" :to="'/races/' + row.raceId">
-          <span>{{ row.place }} {{ row.nickname }}</span>
-          <b>{{ row.clock }}</b>
+        <p class="help">发到微信群。团员在跑团页输入口令加入。</p>
+        <p v-if="codeOk" class="ok" role="status">{{ codeOk }}</p>
+        <p v-if="codeError" class="err">{{ codeError }}</p>
+        <p class="kicker" style="margin-top: 14px">成员 {{ members.length }}</p>
+        <div class="tags">
+          <span v-for="member in members" :key="member.id">{{ member.nickname }}</span>
+        </div>
+      </section>
+
+      <section v-if="!board.length" class="block">
+        <h2>团赛历</h2>
+        <p class="help">还没有人标比赛。到赛历打开一场，标上想跑或已报名。</p>
+      </section>
+      <section v-for="(item, index) in board" :key="item.race.id" class="block">
+        <h2 v-if="index === 0">团赛历</h2>
+        <router-link class="race-row" :to="'/races/' + item.race.id + '?code=' + club.code">
+          <div>
+            <p class="name">{{ item.race.name }}</p>
+            <p class="meta">{{ item.race.raceDate }} · {{ item.race.city }}</p>
+          </div>
+          <span class="trail" :class="{ soon: item.race.open && item.race.daysLeft <= 3 }">{{ item.race.deadlineLabel }}</span>
         </router-link>
-      </div>
-    </div>
-    <p v-if="club && !board.length && !ranks.length" class="empty">还没有人标比赛。打开一场，标上想跑或已报名。</p>
-    <div v-for="item in board" :key="item.race.id" class="block">
-      <router-link :to="'/races/' + item.race.id" class="card">
-        <Poster :id="item.race.id" :name="item.race.name" :city="item.race.city" :date="item.race.raceDate" />
-        <div class="copy">
-          <p>{{ item.race.name }}</p>
-          <div class="foot"><span>{{ item.race.raceDate }}</span><span>{{ item.race.deadlineLabel }}</span></div>
+        <p>{{ item.summary }}</p>
+        <p v-if="unpaidText(item)" class="help">还没缴：{{ unpaidText(item) }}</p>
+        <p v-if="item.squad && item.squad.text" class="help">{{ item.squad.text }}</p>
+        <p v-if="item.alternativeNote" class="help">{{ item.alternativeNote }}</p>
+        <router-link v-for="alt in item.alternatives || []" :key="alt.id" class="race-row" :to="'/races/' + alt.id">
+          <div>
+            <p class="name">{{ alt.name }}</p>
+          </div>
+          <span class="trail">{{ alt.deadlineLabel }}</span>
+        </router-link>
+        <pre class="share-text">{{ item.text }}</pre>
+        <button class="primary" type="button" @click="copyCard(item)">复制发到群</button>
+        <p v-if="copiedId === item.race.id && note" class="ok" role="status">{{ note }}</p>
+        <p v-if="copiedId === item.race.id && copyError" class="err">{{ copyError }}</p>
+        <div v-for="mark in item.marks" :key="mark.nickname + mark.status" class="mate">
+          <span>{{ mark.nickname }}</span>
+          <b>{{ mark.status }}</b>
         </div>
-      </router-link>
-      <p v-if="item.squad && item.squad.text" class="squad">{{ item.squad.text }}</p>
-      <p v-if="item.alternativeNote" class="squad">{{ item.alternativeNote }}</p>
-      <router-link v-for="alt in item.alternatives || []" :key="alt.id" class="mate" :to="'/races/' + alt.id">
-        <span>{{ alt.name }}</span><b>{{ alt.deadlineLabel }}</b>
-      </router-link>
-      <pre class="share-text">{{ item.text }}</pre>
-      <button class="primary" type="button" @click="copyCard(item)">复制卡片</button>
-      <div v-for="mark in item.marks" :key="mark.nickname + mark.status" class="mate">
-        <span>{{ mark.nickname }}</span><b>{{ mark.status }}</b>
-      </div>
-    </div>
-    <p v-if="note" class="note">{{ note }}</p>
-    <p v-if="message" class="err" style="padding:0 16px">{{ message }}</p>
+      </section>
+
+      <section class="block">
+        <h2>团练签到</h2>
+        <p class="help">只记今天谁到了，不记公里，也不代替报名状态。</p>
+        <form class="stack" @submit.prevent="checkIn">
+          <label class="label" for="check-note">一句说明，可不填</label>
+          <input id="check-note" v-model="checkNote" maxlength="40" placeholder="例如 夜跑" />
+          <button class="primary" type="submit" :disabled="checkBusy">{{ checkBusy ? "正在记下…" : checkedIn ? "改这一句" : "签到" }}</button>
+        </form>
+        <button v-if="checkedIn" class="undo" type="button" :disabled="checkBusy" @click="undoCheckin">撤销今天</button>
+        <p v-if="checkOk" class="ok" role="status">{{ checkOk }}</p>
+        <p v-if="checkMessage" class="err">{{ checkMessage }}</p>
+        <p v-if="!checkins.length" class="help">近两周还没有签到。</p>
+        <div v-for="day in checkins" :key="day.date">
+          <p class="kicker" style="margin-top: 12px">{{ day.label }}</p>
+          <div v-for="row in day.rows" :key="day.date + '-' + row.userId" class="mate">
+            <span>{{ row.nickname }}</span>
+            <b>{{ row.note }}</b>
+          </div>
+        </div>
+      </section>
+
+      <section v-if="ranks.length" class="block">
+        <h2>团内最好成绩</h2>
+        <p class="help">每人每个项目只留最好的一场。本人填写，未核验。</p>
+        <div v-for="group in ranks" :key="group.distance">
+          <p class="kicker" style="margin-top: 12px">{{ group.label }}</p>
+          <router-link v-for="row in group.rows" :key="group.distance + row.nickname" class="mate" :to="'/races/' + row.raceId">
+            <span>{{ row.place }} {{ row.nickname }}</span>
+            <b>{{ row.clock }}</b>
+          </router-link>
+        </div>
+      </section>
+    </template>
   </main>
 </template>
 
@@ -71,9 +108,9 @@ import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import { api } from "../api";
 import { copyText } from "../copy";
-import Poster from "../components/Poster.vue";
 
 const route = useRoute();
+const phase = ref("loading");
 const club = ref(null);
 const members = ref([]);
 const board = ref([]);
@@ -81,9 +118,22 @@ const ranks = ref([]);
 const checkins = ref([]);
 const checkedIn = ref(false);
 const checkNote = ref("");
+const checkBusy = ref(false);
 const checkMessage = ref("");
+const checkOk = ref("");
 const message = ref("");
 const note = ref("");
+const copyError = ref("");
+const copiedId = ref("");
+const codeOk = ref("");
+const codeError = ref("");
+
+function unpaidText(item) {
+  return (item.unpaid || [])
+    .map((mark) => (typeof mark === "string" ? mark : mark.nickname))
+    .filter(Boolean)
+    .join("、");
+}
 
 function applyCheckins(data) {
   checkins.value = data.checkins || [];
@@ -91,62 +141,78 @@ function applyCheckins(data) {
   checkNote.value = data.myNote || "";
 }
 
-async function checkIn() {
-  checkMessage.value = "";
+async function load() {
+  phase.value = "loading";
+  message.value = "";
   try {
-    const data = await api("/clubs/" + route.params.id + "/checkins", {
-      method: "POST",
-      body: JSON.stringify({ note: checkNote.value })
-    });
+    const data = await api("/clubs/" + route.params.id);
+    club.value = data.club;
+    members.value = data.members || [];
+    board.value = data.board || [];
+    ranks.value = data.ranks || [];
     applyCheckins(data);
+    phase.value = "ready";
   } catch (err) {
-    checkMessage.value = err.message;
+    phase.value = "error";
+    message.value = err.message;
   }
 }
 
-async function undoCheckin() {
-  checkMessage.value = "";
+async function copyCode() {
+  codeOk.value = "";
+  codeError.value = "";
   try {
-    const data = await api("/clubs/" + route.params.id + "/checkins", { method: "DELETE" });
-    applyCheckins(data);
+    await copyText(club.value.code);
+    codeOk.value = "口令已复制。发到微信群即可。";
   } catch (err) {
-    checkMessage.value = err.message;
+    codeError.value = "没有复制成功。选中上面的口令即可。";
   }
 }
 
 async function copyCard(card) {
   note.value = "";
-  message.value = "";
+  copyError.value = "";
+  copiedId.value = card.race.id;
   try {
     await copyText(card.text);
-    note.value = "卡片已复制，可以贴到微信群";
+    note.value = "已复制。贴到微信群即可。";
   } catch (err) {
-    message.value = "没有复制成功，可以直接选中上面的文字";
+    copyError.value = "没有复制成功。选中下面的文字即可。";
   }
 }
 
-onMounted(async () => {
+async function checkIn() {
+  checkMessage.value = "";
+  checkOk.value = "";
+  checkBusy.value = true;
   try {
-    const data = await api("/clubs/" + route.params.id);
-    club.value = data.club;
-    members.value = data.members;
-    board.value = data.board;
-    ranks.value = data.ranks || [];
+    const data = await api("/clubs/" + route.params.id + "/checkins", {
+      method: "POST",
+      body: JSON.stringify({ note: checkNote.value.trim() })
+    });
     applyCheckins(data);
+    checkOk.value = "已记下今天的签到。";
   } catch (err) {
-    message.value = err.message;
+    checkMessage.value = err.message;
+  } finally {
+    checkBusy.value = false;
   }
-});
-</script>
+}
 
-<style scoped>
-.block :deep(.poster) { height: 120px; border-radius: 8px; }
-.share-text { margin: 8px 0 0; font: inherit; white-space: pre-wrap; line-height: 1.5; }
-.rank-label { margin: 8px 0 0; color: #8d949c; font-size: 12px; }
-.squad { margin: 8px 0 0; color: #9a5b12; font-size: 13px; }
-.note { font-size: 12px; color: #00b7ae; }
-.primary { margin-top: 8px; }
-.check-form { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
-.check-form input { height: 36px; border: 1px solid #e6e8ec; border-radius: 8px; padding: 0 10px; background: #fff; }
-.undo { margin-top: 8px; height: 32px; padding: 0 12px; background: transparent; color: #8d949c; }
-</style>
+async function undoCheckin() {
+  checkMessage.value = "";
+  checkOk.value = "";
+  checkBusy.value = true;
+  try {
+    const data = await api("/clubs/" + route.params.id + "/checkins", { method: "DELETE" });
+    applyCheckins(data);
+    checkOk.value = "已撤销今天的签到。";
+  } catch (err) {
+    checkMessage.value = err.message;
+  } finally {
+    checkBusy.value = false;
+  }
+}
+
+onMounted(load);
+</script>
