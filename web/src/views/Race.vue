@@ -37,6 +37,14 @@
       </div>
       <p v-if="message" class="err">{{ message }}</p>
     </div>
+    <div v-if="alternatives.length" class="block">
+      <h2>同期还开着</h2>
+      <p class="src">{{ alternativeNote }}</p>
+      <router-link v-for="item in alternatives" :key="item.id" class="mate" :to="'/races/' + item.id">
+        <span>{{ item.name }}</span>
+        <b>{{ item.deadlineLabel }}</b>
+      </router-link>
+    </div>
     <div v-if="ready && race" class="block">
       <h2>成绩</h2>
       <p v-if="myResult" class="src">{{ myResult.distanceLabel }} {{ myResult.clock }} · 配速 {{ myResult.pace }}<template v-if="myResult.pb"> · PB</template></p>
@@ -72,7 +80,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
+import { onMounted, ref, watch } from "vue";
 import { useRoute } from "vue-router";
 import { api } from "../api";
 import { copyText } from "../copy";
@@ -85,6 +93,8 @@ const myStatus = ref("");
 const clubs = ref([]);
 const cards = ref([]);
 const conflicts = ref([]);
+const alternatives = ref([]);
+const alternativeNote = ref("");
 const myResult = ref(null);
 const distance = ref("");
 const clock = ref("");
@@ -103,6 +113,8 @@ async function load() {
   clubs.value = data.clubs;
   cards.value = data.cards || [];
   conflicts.value = data.conflicts || [];
+  alternatives.value = data.alternatives || [];
+  alternativeNote.value = data.alternativeNote || "";
   myResult.value = data.myResult || null;
   if (data.myResult) {
     distance.value = data.myResult.distance;
@@ -152,6 +164,17 @@ async function mark(status) {
     message.value = err.message;
   }
 }
+
+watch(
+  () => route.params.id,
+  (id, prev) => {
+    if (!prev || id === prev) return;
+    distance.value = "";
+    clock.value = "";
+    story.value = "";
+    load();
+  }
+);
 
 onMounted(load);
 </script>

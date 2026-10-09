@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const express = require("express");
 const { getDb } = require("./db");
-const { presentRace, summarizeMarks, cardTitle, shareText, reminderHits, fullConflicts, squadOf } = require("./races");
+const { presentRace, summarizeMarks, cardTitle, shareText, reminderHits, fullConflicts, squadOf, nearbyOpen, alternativeNote } = require("./races");
 const { parseClock, decorateResults, careerOf, yearOf } = require("./career");
 
 function loadEnv() {
@@ -59,6 +59,10 @@ function packCard(race, club, marks) {
   };
   card.text = shareText(card);
   return card;
+}
+
+function presentedRaces(now = new Date()) {
+  return getDb().prepare("SELECT * FROM races").all().map((row) => presentRace(row, now));
 }
 
 function gapDays() {
@@ -193,7 +197,26 @@ app.get(BASE + "/api/races/:id", (req, res) => {
     ? fullConflicts(plansFor(user.id), gapDays()).filter((item) => item.races.some((r) => r.id === race.id))
     : [];
   const myResult = user ? resultsFor(user.id, new Date()).find((item) => item.race.id === race.id) || null : null;
-  res.json({ race, myStatus: mine ? mine.status : "", myResult, clubs, cards, conflicts, statuses: STATUSES });
+  const myStatus = mine ? mine.status : "";
+  const missed = [];
+  for (const club of clubs) {
+    for (const mate of club.mates) {
+      if (mate.status === "未中签" && !missed.includes(mate.nickname)) missed.push(mate.nickname);
+    }
+  }
+  const alternatives = myStatus === "未中签" || missed.length ? nearbyOpen(race, presentedRaces()) : [];
+  res.json({
+    race,
+    myStatus,
+    myResult,
+    clubs,
+    cards,
+    conflicts,
+    statuses: STATUSES,
+    alternatives,
+    missed,
+    alternativeNote: alternativeNote(myStatus, missed, alternatives)
+  });
 });
 
 app.get(BASE + "/api/reminders", (req, res) => {
@@ -368,6 +391,7 @@ app.get(BASE + "/api/clubs/:id", (req, res) => {
        ORDER BY r.race_date, p.updated_at DESC`
     )
     .all(club.id);
+  const catalog = presentedRaces();
   const board = [];
   for (const row of plans) {
     const race = presentRace(row, new Date());
@@ -386,6 +410,9 @@ app.get(BASE + "/api/clubs/:id", (req, res) => {
     item.title = cardTitle(item.race);
     item.unpaid = item.marks.filter((mark) => mark.status === "中签").map((mark) => mark.nickname);
     item.squad = squadOf(item.marks);
+    item.missed = item.marks.filter((mark) => mark.status === "未中签").map((mark) => mark.nickname);
+    item.alternatives = item.missed.length ? nearbyOpen(item.race, catalog) : [];
+    item.alternativeNote = alternativeNote("", item.missed, item.alternatives);
     item.text = shareText({ ...item, club });
   }
   res.json({ club, members, board });

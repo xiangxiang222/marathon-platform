@@ -15,6 +15,10 @@
     <view class="sum">{{item.title}}</view>
     <view>{{item.summary}}</view>
     <view wx:if="{{item.squadText}}" class="warn">{{item.squadText}}</view>
+    <view wx:if="{{item.alternativeNote}}" class="warn">{{item.alternativeNote}}</view>
+    <navigator wx:for="{{item.alternatives}}" wx:for-item="alt" wx:key="id" class="row" url="/pages/race/race?id={{alt.id}}">
+      <text>{{alt.name}}</text><text>{{alt.deadlineLabel}}</text>
+    </navigator>
     <view wx:if="{{item.unpaid.length}}" class="src">还没缴：{{item.unpaidText}}</view>
     <button class="btn share" open-type="share" data-id="{{item.race.id}}" data-title="{{item.title}}" bindtap="armShare">发到微信群</button>
     <view wx:for="{{item.marks}}" wx:for-item="mark" wx:key="nickname" class="row">

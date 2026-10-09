@@ -2,7 +2,7 @@ const test = require("node:test");
 const assert = require("node:assert");
 const request = require("supertest");
 const { app } = require("../src/index");
-const { RACES, presentRace, reminderHits } = require("../src/races");
+const { RACES, presentRace, reminderHits, nearbyOpen } = require("../src/races");
 
 async function session(nickname) {
   const res = await request(app).post("/marathon/api/session").send({ nickname });
@@ -231,4 +231,39 @@ test("two teammates who are still in the race can go together", async () => {
   const jinjiang = board.body.board.find((item) => item.race.id === "jinjiang");
   assert.equal(jinjiang.squad.ready, true);
   assert.match(jinjiang.text, /可以一起去/);
+});
+
+test("missing a draw points at nearby races that are still open", () => {
+  const now = new Date("2026-10-09T10:00:00+08:00");
+  const races = RACES.map((row) => presentRace(row, now));
+  const bishan = races.find((race) => race.id === "bishan");
+  assert.deepEqual(
+    nearbyOpen(bishan, races).map((race) => race.id),
+    ["songshanhu", "yuxi", "tmsk"]
+  );
+  const far = races.find((race) => race.id === "huangyaguan");
+  assert.deepEqual(nearbyOpen(far, races), []);
+});
+
+test("a missed draw is the only time nearby races are listed", async () => {
+  const token = await session("没中签");
+  const auth = { Authorization: "Bearer " + token };
+  const quiet = await request(app).get("/marathon/api/races/bishan").set(auth);
+  assert.deepEqual(quiet.body.alternatives, []);
+  assert.equal(quiet.body.alternativeNote, "");
+
+  await request(app).put("/marathon/api/me/races/bishan").set(auth).send({ status: "未中签" });
+  const detail = await request(app).get("/marathon/api/races/bishan").set(auth);
+  const now = new Date();
+  const races = RACES.map((row) => presentRace(row, now));
+  const expected = nearbyOpen(races.find((race) => race.id === "bishan"), races);
+  assert.deepEqual(detail.body.alternatives.map((race) => race.id), expected.map((race) => race.id));
+  assert.equal(detail.body.alternatives.some((race) => race.id === "bishan"), false);
+  if (expected.length) assert.match(detail.body.alternativeNote, /这场没中/);
+
+  const created = await request(app).post("/marathon/api/clubs").set(auth).send({ name: "改报跑团" });
+  const board = await request(app).get("/marathon/api/clubs/" + created.body.club.id).set(auth);
+  const item = board.body.board.find((row) => row.race.id === "bishan");
+  assert.deepEqual(item.alternatives.map((race) => race.id), expected.map((race) => race.id));
+  if (expected.length) assert.match(item.alternativeNote, /没中签没中/);
 });
