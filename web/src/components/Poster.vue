@@ -42,7 +42,9 @@ const THEMES = {
   "closed-sample": { a: "#181a1c", b: "#2c3034", line: "#9aa0a6", ghost: "杭", kicker: "HANGZHOU  2025", title: "已结束", sub: "收官马拉松", meta: "2025" }
 };
 
-const theme = computed(() => THEMES[props.id] || THEMES.bishan);
+const theme = computed(
+  () => THEMES[props.id] || { a: "#14181c", b: "#24303a", line: "#c5ced6", ghost: "赛", kicker: "RACE", title: "赛历", sub: "中国马拉松", meta: "" }
+);
 </script>
 
 <style scoped>

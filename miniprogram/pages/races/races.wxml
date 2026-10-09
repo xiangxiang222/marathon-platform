@@ -6,6 +6,7 @@
   <view class="filters">
     <button class="ghost {{status === 'open' ? 'on' : ''}}" data-status="open" bindtap="setStatus">报名中</button>
     <button class="ghost {{status === 'all' ? 'on' : ''}}" data-status="all" bindtap="setStatus">全部</button>
+    <button class="ghost {{status === 'unannounced' ? 'on' : ''}}" data-status="unannounced" bindtap="setStatus">报名未公布</button>
   </view>
   <view wx:if="{{message}}" class="err">{{message}}</view>
   <navigator wx:for="{{reminders}}" wx:key="key" class="card remind" url="/pages/race/race?id={{item.race.id}}">

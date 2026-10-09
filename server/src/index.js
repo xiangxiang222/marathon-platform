@@ -5,6 +5,7 @@ const express = require("express");
 const { getDb } = require("./db");
 const { presentRace, summarizeMarks, cardTitle, shareText, reminderHits, fullConflicts, squadOf, nearbyOpen, alternativeNote, drawPoster } = require("./races");
 const { parseClock, decorateResults, careerOf, yearOf, bestRanks } = require("./career");
+const { syncOfficial, listOfficial, publishOfficial, ignoreOfficial, applyOfficial } = require("./official");
 
 function loadEnv() {
   const file = path.join(__dirname, "../../.env");
@@ -206,6 +207,7 @@ app.get(BASE + "/api/races", (req, res) => {
   if (status === "live") rows = rows.filter((r) => r.regStatus === "比赛中");
   if (status === "soon") rows = rows.filter((r) => r.regStatus === "未开始");
   if (status === "closed") rows = rows.filter((r) => r.regStatus === "已结束");
+  if (status === "unannounced") rows = rows.filter((r) => r.regStatus === "报名时间未公布");
   const cities = [...new Set(getDb().prepare("SELECT city FROM races ORDER BY city").all().map((r) => r.city))];
   const months = [...new Set(getDb().prepare("SELECT race_date FROM races ORDER BY race_date").all().map((r) => r.race_date.slice(0, 7)))];
   res.json({ races: rows, cities, months, statuses: STATUSES });
@@ -518,6 +520,101 @@ app.delete(BASE + "/api/clubs/:id/checkins", (req, res) => {
   res.json({ ok: true, ...checkinsOf(req.params.id, user.id) });
 });
 
+function requireAdmin(req, res) {
+  const expected = process.env.ADMIN_TOKEN || "";
+  if (!expected) {
+    res.status(404).json({ error: "后台还没打开" });
+    return false;
+  }
+  const header = req.get("authorization") || "";
+  const token = header.replace(/^Bearer\s+/i, "");
+  const left = Buffer.from(token);
+  const right = Buffer.from(expected);
+  if (left.length !== right.length || !crypto.timingSafeEqual(left, right)) {
+    res.status(401).json({ error: "后台口令不对" });
+    return false;
+  }
+  return true;
+}
+
+app.get(BASE + "/api/admin/official", (req, res) => {
+  if (!requireAdmin(req, res)) return;
+  const q = String(req.query.q || "").trim();
+  const status = String(req.query.status || "pending").trim();
+  res.json({
+    rows: listOfficial(getDb(), {
+      q,
+      status: status === "all" ? "" : status,
+      upcomingFrom: q ? "" : cstDay()
+    })
+  });
+});
+
+app.post(BASE + "/api/admin/official/sync", async (req, res) => {
+  if (!requireAdmin(req, res)) return;
+  const name = String((req.body && req.body.name) || "").trim();
+  try {
+    const saved = await syncOfficial(getDb(), { raceName: name, upcomingOnly: !name, pauseMs: name ? 0 : 250 });
+    res.json({
+      ...saved,
+      rows: listOfficial(getDb(), { q: name, status: name ? "" : "pending", upcomingFrom: name ? "" : cstDay() })
+    });
+  } catch (err) {
+    res.status(502).json({ error: err.message || "官网赛历暂时打不开" });
+  }
+});
+
+app.post(BASE + "/api/admin/official/:id/publish", (req, res) => {
+  if (!requireAdmin(req, res)) return;
+  const result = publishOfficial(getDb(), req.params.id);
+  if (result.error) return res.status(result.status).json({ error: result.error });
+  res.json(result);
+});
+
+app.post(BASE + "/api/admin/official/:id/ignore", (req, res) => {
+  if (!requireAdmin(req, res)) return;
+  const result = ignoreOfficial(getDb(), req.params.id);
+  if (result.error) return res.status(result.status).json({ error: result.error });
+  res.json(result);
+});
+
+app.post(BASE + "/api/admin/official/:id/apply", (req, res) => {
+  if (!requireAdmin(req, res)) return;
+  const result = applyOfficial(getDb(), req.params.id);
+  if (result.error) return res.status(result.status).json({ error: result.error });
+  res.json(result);
+});
+
+app.put(BASE + "/api/admin/races/:id", (req, res) => {
+  if (!requireAdmin(req, res)) return;
+  const race = getDb().prepare("SELECT id, reg_start, deadline, draw_at, pay_deadline, deadline_name, source FROM races WHERE id = ?").get(req.params.id);
+  if (!race) return res.status(404).json({ error: "没有这场比赛" });
+  const body = req.body || {};
+  const source = String(body.source || "").trim();
+  const deadlineName = String(body.deadlineName || "").trim();
+  const dates = ["regStart", "deadline", "drawAt", "payDeadline"].map((key) => {
+    const text = String(body[key] || "").trim();
+    if (!text) return "";
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(text)) return null;
+    return text;
+  });
+  if (dates.some((item) => item == null)) return res.status(400).json({ error: "日期写成 2026-10-28 这样" });
+  if (!dates.some(Boolean)) return res.status(400).json({ error: "先填写要记的节点" });
+  if (!source) return res.status(400).json({ error: "报名节点要写来源" });
+  if (source.length > 80) return res.status(400).json({ error: "来源最多 80 个字" });
+  if (deadlineName.length > 12) return res.status(400).json({ error: "节点名称太长" });
+  const current = [race.reg_start, race.deadline, race.draw_at, race.pay_deadline];
+  const next = dates.map((value, index) => value || current[index]);
+  getDb()
+    .prepare(
+      `UPDATE races
+       SET reg_start = ?, deadline = ?, draw_at = ?, pay_deadline = ?, deadline_name = ?, source = ?, updated_at = ?
+       WHERE id = ?`
+    )
+    .run(next[0], next[1], next[2], next[3], deadlineName || race.deadline_name || "报名截止", source, cstDay(), race.id);
+  res.json({ ok: true, race: presentRace(getDb().prepare("SELECT * FROM races WHERE id = ?").get(race.id), new Date()) });
+});
+
 const webDist = path.join(__dirname, "../../web/dist");
 if (fs.existsSync(webDist)) {
   app.use(BASE, express.static(webDist));
@@ -532,6 +629,15 @@ if (require.main === module) {
   const port = Number(process.env.PORT || 3790);
   app.listen(port, () => {
     console.log(`marathon listening on ${port} base ${BASE}`);
+    if (!process.env.ADMIN_TOKEN) return;
+    const pull = () => {
+      syncOfficial(getDb(), { upcomingOnly: true }).then(
+        (saved) => console.log(`official calendar ${saved.count}`),
+        (err) => console.error("official calendar", err.message)
+      );
+    };
+    setTimeout(pull, 15000);
+    setInterval(pull, 24 * 3600 * 1000);
   });
 }
 

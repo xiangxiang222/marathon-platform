@@ -66,6 +66,21 @@ function open() {
       updated_at TEXT NOT NULL,
       PRIMARY KEY (user_id, race_id)
     );
+    CREATE TABLE IF NOT EXISTS official_races (
+      official_id TEXT PRIMARY KEY,
+      name TEXT NOT NULL,
+      race_date TEXT NOT NULL,
+      province TEXT NOT NULL DEFAULT '',
+      city TEXT NOT NULL DEFAULT '',
+      district TEXT NOT NULL DEFAULT '',
+      grade TEXT NOT NULL DEFAULT '',
+      distances TEXT NOT NULL DEFAULT '',
+      items TEXT NOT NULL DEFAULT '',
+      detail_url TEXT NOT NULL DEFAULT '',
+      seen_at TEXT NOT NULL,
+      status TEXT NOT NULL DEFAULT 'pending',
+      race_id TEXT NOT NULL DEFAULT ''
+    );
     CREATE TABLE IF NOT EXISTS checkins (
       club_id INTEGER NOT NULL,
       user_id INTEGER NOT NULL,
@@ -81,7 +96,9 @@ function open() {
     ["pay_deadline", "TEXT NOT NULL DEFAULT ''"],
     ["source", "TEXT NOT NULL DEFAULT ''"],
     ["updated_at", "TEXT NOT NULL DEFAULT ''"],
-    ["deadline_name", "TEXT NOT NULL DEFAULT ''"]
+    ["deadline_name", "TEXT NOT NULL DEFAULT ''"],
+    ["grade", "TEXT NOT NULL DEFAULT ''"],
+    ["official_url", "TEXT NOT NULL DEFAULT ''"]
   ]) {
     const cols = handle.prepare("PRAGMA table_info(races)").all();
     if (!cols.some((col) => col.name === name)) handle.exec(`ALTER TABLE races ADD COLUMN ${name} ${type}`);

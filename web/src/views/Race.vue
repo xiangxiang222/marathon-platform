@@ -9,7 +9,9 @@
       <div class="row"><span>地点</span><b>{{ race.province === race.city ? race.city : race.province + " · " + race.city }}</b></div>
       <div class="row"><span>项目</span><b>{{ race.distanceLabels.join(" / ") }}</b></div>
       <div class="row"><span>{{ race.deadlineName }}</span><b :class="{ soon: race.open && race.daysLeft <= 3 }">{{ race.deadlineLabel }}</b></div>
+      <p v-if="race.gradeLabel" class="src">{{ race.gradeLabel }}</p>
       <p v-if="race.source" class="src">来源 {{ race.source }}<template v-if="race.updatedAt"> · 更新于 {{ race.updatedAt }}</template></p>
+      <p v-if="race.officialUrl" class="src"><a :href="race.officialUrl" target="_blank" rel="noopener">中国马拉松官网这场</a></p>
       <p v-for="item in conflicts" :key="item.text" class="warn">{{ item.text }}</p>
     </div>
     <div v-if="race && race.nodes.length" class="block">

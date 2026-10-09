@@ -3,6 +3,7 @@ const assert = require("node:assert");
 const request = require("supertest");
 const { app } = require("../src/index");
 const { getDb } = require("../src/db");
+const { syncOfficial, listOfficial } = require("../src/official");
 const { RACES, presentRace, reminderHits, nearbyOpen } = require("../src/races");
 
 async function session(nickname) {
@@ -379,4 +380,90 @@ test("a club check-in records who showed up today and keeps yesterday", async ()
   const outsider = await session("签外");
   const denied = await request(app).post("/marathon/api/clubs/" + clubId + "/checkins").set("Authorization", "Bearer " + outsider).send({ note: "路过" });
   assert.equal(denied.status, 403);
+});
+
+test("a race without a signup deadline is not shown as closed", () => {
+  const race = presentRace(
+    { id: "caa-1", name: "未公布报名", city: "重庆", province: "重庆", distances: "half", race_date: "2026-12-27", deadline: "", place: "巴南" },
+    new Date("2026-10-09T10:00:00+08:00")
+  );
+  assert.equal(race.regStatus, "报名时间未公布");
+  assert.equal(race.deadlineLabel, "报名时间未公布");
+  assert.equal(race.open, false);
+});
+
+test("official races stay in review until published, and do not overwrite a known deadline", async () => {
+  process.env.ADMIN_TOKEN = "test-admin";
+  const admin = { Authorization: "Bearer test-admin" };
+  const before = await request(app).get("/marathon/api/races/bishan");
+  const deadline = before.body.race.deadline;
+  const pages = [
+    [
+      { raceId: 1000481014, raceName: "2026重庆璧山马拉松", raceGrade: "A", raceTime: "2026-11-15", raceAddress: "重庆市/重庆市/", raceItem: '["全程","半程"]' },
+      { raceId: 4242, raceName: "2026后台测试马拉松", raceGrade: "B", raceTime: "2026-12-01", raceAddress: "浙江省/杭州市/西湖区", raceItem: '["全程"]' },
+      { raceId: 7, raceName: "2020旧比赛", raceGrade: "C", raceTime: "2020-01-01", raceAddress: "北京市/北京市/", raceItem: '["半程"]' }
+    ]
+  ];
+  const fetchImpl = async () => ({
+    ok: true,
+    json: async () => ({ success: true, data: { results: pages[0], pageCount: 1, totalCount: pages[0].length } })
+  });
+  const saved = await syncOfficial(getDb(), { fetchImpl, pauseMs: 0, now: new Date("2026-10-09T10:00:00+08:00") });
+  assert.equal(saved.count, 2);
+  const pending = listOfficial(getDb(), { status: "pending" });
+  assert.equal(pending.some((row) => row.name === "2020旧比赛"), false);
+  getDb()
+    .prepare(
+      `INSERT INTO official_races (
+         official_id, name, race_date, province, city, district, grade, distances, items, detail_url, seen_at
+       ) VALUES ('old', '2020旧比赛', '2020-01-01', '', '', '', '', '', '', '', '2026-10-09T00:00:00.000Z')`
+    )
+    .run();
+  assert.equal(listOfficial(getDb(), { status: "pending", upcomingFrom: "2026-10-09" }).some((row) => row.officialId === "old"), false);
+  assert.equal(listOfficial(getDb(), { q: "旧比赛" }).some((row) => row.officialId === "old"), true);
+  const bishan = pending.find((row) => row.officialId === "1000481014");
+  assert.equal(bishan.match.id, "bishan");
+
+  const linked = await request(app).post("/marathon/api/admin/official/1000481014/publish").set(admin).send({});
+  assert.equal(linked.status, 200);
+  assert.equal(linked.body.linked, true);
+  const kept = await request(app).get("/marathon/api/races/bishan");
+  assert.equal(kept.body.race.deadline, deadline);
+  assert.equal(kept.body.race.officialUrl, "https://www.runchina.org.cn/#/race/v/detail/1000481014");
+  assert.equal(kept.body.race.gradeLabel, "A 类");
+
+  const created = await request(app).post("/marathon/api/admin/official/4242/publish").set(admin).send({});
+  assert.equal(created.body.raceId, "caa-4242");
+  const fresh = await request(app).get("/marathon/api/races/caa-4242");
+  assert.equal(fresh.body.race.regStatus, "报名时间未公布");
+  assert.equal(fresh.body.race.source, "中国马拉松官网赛历");
+  assert.equal(fresh.body.race.city, "杭州");
+
+  const blank = await request(app).put("/marathon/api/admin/races/bishan").set(admin).send({});
+  assert.equal(blank.status, 400);
+  const still = await request(app).get("/marathon/api/races/bishan");
+  assert.equal(still.body.race.deadline, deadline);
+
+  const sourced = await request(app).put("/marathon/api/admin/races/caa-4242").set(admin).send({ deadline: "2026-12-20", source: "规程，2026-10-09" });
+  assert.equal(sourced.status, 200);
+  assert.equal(sourced.body.race.regStatus, "报名中");
+  assert.equal(sourced.body.race.source, "规程，2026-10-09");
+
+  pages[0] = [{ raceId: 1000481014, raceName: "2026重庆璧山马拉松", raceGrade: "A", raceTime: "2026-11-20", raceAddress: "重庆市/重庆市/", raceItem: '["全程","半程"]' }];
+  await syncOfficial(getDb(), { fetchImpl, pauseMs: 0, now: new Date("2026-10-09T10:00:00+08:00") });
+  const diff = listOfficial(getDb(), { status: "published" }).find((row) => row.officialId === "1000481014");
+  assert.match(diff.diffNote, /2026-11-20/);
+  const unchanged = await request(app).get("/marathon/api/races/bishan");
+  assert.equal(unchanged.body.race.raceDate, "2026-11-15");
+  const applied = await request(app).post("/marathon/api/admin/official/1000481014/apply").set(admin).send({});
+  assert.equal(applied.body.changed, true);
+  const moved = await request(app).get("/marathon/api/races/bishan");
+  assert.equal(moved.body.race.raceDate, "2026-11-20");
+  assert.equal(moved.body.race.deadline, deadline);
+
+  getDb().prepare("UPDATE races SET race_date = ? WHERE id = ?").run("2026-11-15", "bishan");
+
+  const user = await session("后台外");
+  const denied = await request(app).post("/marathon/api/admin/official/sync").set("Authorization", "Bearer " + user).send({});
+  assert.equal(denied.status, 401);
 });

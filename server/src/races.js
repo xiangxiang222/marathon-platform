@@ -135,6 +135,7 @@ function formatWhen(value) {
 }
 
 function deadlineMeta(deadline, now = new Date()) {
+  if (!deadline) return { open: false, known: false, daysLeft: 0, deadlineLabel: "报名时间未公布" };
   const end = instant(deadline);
   const open = end > now.getTime();
   const days = dayIndex(end) - dayIndex(now.getTime());
@@ -142,7 +143,7 @@ function deadlineMeta(deadline, now = new Date()) {
   if (open && days <= 0) deadlineLabel = "今日截止";
   else if (open && days === 1) deadlineLabel = "明天截止";
   else if (open) deadlineLabel = `${days}天后截止`;
-  return { open, daysLeft: open ? Math.max(days, 0) : 0, deadlineLabel };
+  return { open, known: true, daysLeft: open ? Math.max(days, 0) : 0, deadlineLabel };
 }
 
 function reminderText(name, at, now) {
@@ -337,15 +338,18 @@ function presentRace(row, now) {
     distanceLabels: distances.map((d) => DISTANCE_LABEL[d] || d),
     raceDate: row.race_date || row.raceDate,
     deadline: row.deadline,
-    deadlineName: field(row, "deadlineName", "deadline_name") || "报名截止",
+    deadlineName: meta.known ? field(row, "deadlineName", "deadline_name") || "报名截止" : "报名",
     regStart: field(row, "regStart", "reg_start"),
     drawAt: field(row, "drawAt", "draw_at"),
     payDeadline: field(row, "payDeadline", "pay_deadline"),
     source: field(row, "source", "source"),
     updatedAt: field(row, "updatedAt", "updated_at"),
+    grade: row.grade || "",
+    gradeLabel: gradeLabel(row.grade),
+    officialUrl: field(row, "officialUrl", "official_url"),
     nodes,
     nextNode,
-    regStatus: phaseLabel(row.race_date || row.raceDate, meta.open, now),
+    regStatus: phaseLabel(row.race_date || row.raceDate, meta, now),
     kind: KIND[row.id] || "road",
     ...meta
   };
@@ -353,11 +357,18 @@ function presentRace(row, now) {
 
 const KIND = { huangyaguan: "trail" };
 
-function phaseLabel(raceDate, open, now) {
+function gradeLabel(grade) {
+  if (grade === "A" || grade === "B" || grade === "C") return grade + " 类";
+  if (grade === "TEN") return "系列赛";
+  return grade || "";
+}
+
+function phaseLabel(raceDate, meta, now) {
   const today = new Date(now.getTime() + TZ).toISOString().slice(0, 10);
   if (raceDate < today) return "已结束";
   if (raceDate === today) return "比赛中";
-  if (!open) return "待开赛";
+  if (!meta.known) return "报名时间未公布";
+  if (!meta.open) return "待开赛";
   return "报名中";
 }
 
