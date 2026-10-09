@@ -5,6 +5,8 @@ Page({
     nickname: "",
     draft: "",
     plans: [],
+    conflicts: [],
+    reminders: [],
     loaded: false,
     message: "",
     company: "北京华创科技有限公司",
@@ -34,7 +36,14 @@ Page({
     request("/me")
       .then((data) => {
         const plans = (data.plans || []).map((item) => ({ ...item, raceId: item.race.id }));
-        this.setData({ plans, nickname: data.user.nickname, loaded: true });
+        const reminders = (data.reminders || []).map((item) => ({ ...item, key: item.race.id + item.hit.key }));
+        this.setData({
+          plans,
+          reminders,
+          conflicts: data.conflicts || [],
+          nickname: data.user.nickname,
+          loaded: true
+        });
       })
       .catch((err) => this.setData({ loaded: true, message: err.message }));
   }

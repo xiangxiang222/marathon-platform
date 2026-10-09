@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const express = require("express");
 const { getDb } = require("./db");
-const { presentRace, summarizeMarks, cardTitle, shareText } = require("./races");
+const { presentRace, summarizeMarks, cardTitle, shareText, reminderHits, fullConflicts } = require("./races");
 
 function loadEnv() {
   const file = path.join(__dirname, "../../.env");
@@ -17,7 +17,7 @@ function loadEnv() {
 loadEnv();
 
 const BASE = process.env.BASE_PATH || "/marathon";
-const STATUSES = ["想跑", "已报名", "待抽签", "中签", "未中签", "已缴费"];
+const STATUSES = ["想跑", "已报名", "待抽签", "中签", "未中签", "已缴费", "已领物", "完赛", "未完赛", "弃赛"];
 const COMPANY = "北京华创科技有限公司";
 const ICP = "京ICP备2026060284号-2";
 
@@ -57,6 +57,37 @@ function packCard(race, club, marks) {
   };
   card.text = shareText(card);
   return card;
+}
+
+function gapDays() {
+  const n = Number(process.env.FULL_MARATHON_GAP_DAYS || 21);
+  return Number.isFinite(n) && n > 0 ? n : 21;
+}
+
+function plansFor(userId, now = new Date()) {
+  return getDb()
+    .prepare(
+      `SELECT p.status, p.updated_at, r.* FROM plans p
+       JOIN races r ON r.id = p.race_id
+       WHERE p.user_id = ? ORDER BY r.race_date`
+    )
+    .all(userId)
+    .map((row) => ({ status: row.status, updatedAt: row.updated_at, race: presentRace(row, now) }));
+}
+
+function remindable(now = new Date()) {
+  const items = [];
+  for (const row of getDb().prepare("SELECT * FROM races").all()) {
+    const race = presentRace(row, now);
+    for (const hit of reminderHits(race)) {
+      items.push({
+        race: { id: race.id, name: race.name, raceDate: race.raceDate, city: race.city },
+        hit
+      });
+    }
+  }
+  items.sort((a, b) => a.hit.daysLeft - b.hit.daysLeft || a.race.raceDate.localeCompare(b.race.raceDate));
+  return items;
 }
 
 function requireUser(req, res) {
@@ -126,7 +157,25 @@ app.get(BASE + "/api/races/:id", (req, res) => {
         }))
     : [];
   const cards = clubs.map((club) => packCard(race, club, marksOf(club.id, race.id)));
-  res.json({ race, myStatus: mine ? mine.status : "", clubs, cards, statuses: STATUSES });
+  const conflicts = user
+    ? fullConflicts(plansFor(user.id), gapDays()).filter((item) => item.races.some((r) => r.id === race.id))
+    : [];
+  res.json({ race, myStatus: mine ? mine.status : "", clubs, cards, conflicts, statuses: STATUSES });
+});
+
+app.get(BASE + "/api/reminders", (req, res) => {
+  const reminders = remindable();
+  const user = userFrom(req);
+  const plans = user ? plansFor(user.id) : [];
+  const mineIds = new Set(plans.map((plan) => plan.race.id));
+  res.json({
+    gapDays: gapDays(),
+    reminders,
+    mine: reminders
+      .filter((item) => mineIds.has(item.race.id))
+      .map((item) => ({ ...item, myStatus: plans.find((plan) => plan.race.id === item.race.id).status })),
+    conflicts: user ? fullConflicts(plans, gapDays()) : []
+  });
 });
 
 app.get(BASE + "/api/races/:id/card", (req, res) => {
@@ -153,14 +202,7 @@ app.post(BASE + "/api/session", (req, res) => {
 app.get(BASE + "/api/me", (req, res) => {
   const user = requireUser(req, res);
   if (!user) return;
-  const plans = getDb()
-    .prepare(
-      `SELECT p.status, p.updated_at, r.* FROM plans p
-       JOIN races r ON r.id = p.race_id
-       WHERE p.user_id = ? ORDER BY r.race_date`
-    )
-    .all(user.id)
-    .map((row) => ({ status: row.status, race: presentRace(row, new Date()) }));
+  const plans = plansFor(user.id);
   const clubs = getDb()
     .prepare(
       `SELECT c.id, c.name, c.code FROM clubs c
@@ -168,7 +210,8 @@ app.get(BASE + "/api/me", (req, res) => {
        WHERE m.user_id = ? ORDER BY c.id`
     )
     .all(user.id);
-  res.json({ user, plans, clubs });
+  const reminders = remindable().filter((item) => plans.some((plan) => plan.race.id === item.race.id));
+  res.json({ user, plans, clubs, reminders, conflicts: fullConflicts(plans, gapDays()), gapDays: gapDays() });
 });
 
 app.put(BASE + "/api/me/races/:id", (req, res) => {

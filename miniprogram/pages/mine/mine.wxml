@@ -10,6 +10,17 @@
     </view>
     <view wx:if="{{message}}" class="err">{{message}}</view>
   </view>
+  <view class="card" wx:if="{{conflicts.length}}">
+    <view class="h2">全马间隔</view>
+    <view wx:for="{{conflicts}}" wx:key="text" class="warn">{{item.text}}</view>
+  </view>
+  <view class="card" wx:if="{{reminders.length}}">
+    <view class="h2">截止提醒</view>
+    <navigator wx:for="{{reminders}}" wx:key="key" class="plan" url="/pages/race/race?id={{item.race.id}}">
+      <text class="warn">{{item.hit.reason}}</text>
+      <text> {{item.race.name}}</text>
+    </navigator>
+  </view>
   <view class="card" wx:if="{{nickname}}">
     <view class="h2">我标过的场</view>
     <navigator wx:for="{{plans}}" wx:key="raceId" class="plan" url="/pages/race/race?id={{item.race.id}}">

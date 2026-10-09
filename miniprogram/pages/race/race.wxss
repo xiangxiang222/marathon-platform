@@ -1,5 +1,6 @@
 .h2 { font-size: 30rpx; font-weight: 650; margin-bottom: 8rpx; }
 .sum { margin: 8rpx 0 16rpx; }
 .src { color: #8d949c; font-size: 24rpx; margin-top: 12rpx; }
+.warn { margin-top: 12rpx; color: #9a5b12; font-size: 26rpx; }
 .share { margin-top: 16rpx; }
 .nick .field { margin-top: 16rpx; }

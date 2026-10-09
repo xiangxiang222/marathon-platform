@@ -32,6 +32,10 @@
         {{ item.label }}
       </button>
     </div>
+    <router-link v-for="item in reminders" :key="item.race.id + item.hit.key" class="remind" :to="'/races/' + item.race.id">
+      <b>{{ item.hit.reason }}</b>
+      <span>{{ item.race.name }}</span>
+    </router-link>
     <div class="banner">
       <div>
         <b>{{ soonest ? soonest.deadlineLabel : "跑团赛历" }}</b>
@@ -126,6 +130,7 @@ const sheet = ref("");
 const barEl = ref(null);
 const dropTop = ref(180);
 const races = ref([]);
+const reminders = ref([]);
 const province = ref("河北");
 const years = [2025, 2026, 2027];
 
@@ -272,5 +277,8 @@ function confirmStatus() {
 onMounted(() => {
   if (typeof route.query.kind === "string" && route.query.kind) kind.value = route.query.kind;
   load();
+  api("/reminders").then((data) => {
+    reminders.value = (data.reminders || []).slice(0, 3);
+  }).catch(() => {});
 });
 </script>

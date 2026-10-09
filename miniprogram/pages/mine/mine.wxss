@@ -2,3 +2,4 @@
 .h2 { font-size: 30rpx; font-weight: 650; margin-bottom: 8rpx; }
 .plan { display: block; padding: 12rpx 0; }
 .legal { text-align: center; color: #c0c4c8; font-size: 22rpx; padding: 12rpx; }
+.warn { color: #9a5b12; }

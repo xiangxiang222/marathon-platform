@@ -101,6 +101,16 @@ a { color: inherit; text-decoration: none; }
   font-weight: 650;
 }
 
+.remind {
+  display: block;
+  margin: 8px 12px 0;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: #fff6ea;
+  color: #9a5b12;
+}
+.remind b { display: block; font-size: 14px; font-weight: 650; }
+.remind span { display: block; margin-top: 2px; font-size: 12px; }
 .banner {
   margin: 8px 12px 4px;
   height: 72px;

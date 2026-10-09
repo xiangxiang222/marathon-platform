@@ -8,6 +8,10 @@
     <button class="ghost {{status === 'all' ? 'on' : ''}}" data-status="all" bindtap="setStatus">全部</button>
   </view>
   <view wx:if="{{message}}" class="err">{{message}}</view>
+  <navigator wx:for="{{reminders}}" wx:key="key" class="card remind" url="/pages/race/race?id={{item.race.id}}">
+    <view class="title">{{item.hit.reason}}</view>
+    <view class="muted">{{item.race.name}}</view>
+  </navigator>
   <navigator wx:for="{{races}}" wx:key="id" class="card race" url="/pages/race/race?id={{item.id}}">
     <view class="title"><text class="teal">{{item.regStatus}} </text>{{item.name}}</view>
     <view class="tags">
