@@ -1,32 +1,54 @@
 <view class="pad">
+  <view class="h1">跑团</view>
+  <view class="sub">看本团谁报了哪场。口令发到微信群就能加入。</view>
+
   <view wx:if="{{!ready}}" class="card">
-    <view class="muted">先起个昵称，再建团或用口令加入。</view>
-    <view class="field">
-      <input placeholder="怎么称呼你" value="{{draft}}" bindinput="onDraft" />
-      <button class="btn" bindtap="enter">进入</button>
+    <view class="h2">你在团里的名字</view>
+    <view class="help">记下之后才能建团或加入。同团的人会看到这个名字。</view>
+    <view class="stack">
+      <view class="kicker">你在团里的名字</view>
+      <input placeholder="例如 阿宁" value="{{draft}}" maxlength="20" bindinput="onDraft" />
+      <view class="help">1 到 20 个字。</view>
+      <button class="btn" disabled="{{busy}}" bindtap="enter">{{busy ? '正在记下…' : '记下名字'}}</button>
     </view>
+    <view wx:if="{{ok}}" class="ok">{{ok}}</view>
     <view wx:if="{{message}}" class="err">{{message}}</view>
   </view>
+
   <block wx:else>
     <view class="card">
       <view class="h2">建一个团</view>
-      <view class="field">
-        <input placeholder="跑团名称" value="{{name}}" bindinput="onName" />
-        <button class="btn" bindtap="create">创建</button>
+      <view class="stack">
+        <view class="kicker">跑团名称</view>
+        <input placeholder="例如 滨河夜跑" value="{{name}}" maxlength="20" bindinput="onName" />
+        <view class="help">1 到 20 个字。创建后会得到口令。</view>
+        <button class="btn" disabled="{{busy}}" bindtap="create">{{busy ? '正在创建…' : '创建跑团'}}</button>
       </view>
+      <view wx:if="{{createError}}" class="err">{{createError}}</view>
     </view>
     <view class="card">
       <view class="h2">用口令加入</view>
-      <view class="field">
-        <input placeholder="6 位口令" value="{{code}}" bindinput="onCode" />
-        <button class="btn" bindtap="join">加入</button>
+      <view class="stack">
+        <view class="kicker">跑团口令</view>
+        <input placeholder="例如 A1B2C3" value="{{code}}" maxlength="12" bindinput="onCode" />
+        <button class="btn" disabled="{{busy}}" bindtap="join">{{busy ? '正在加入…' : '加入'}}</button>
       </view>
-      <view wx:if="{{message}}" class="err">{{message}}</view>
+      <view wx:if="{{joinError}}" class="err">{{joinError}}</view>
     </view>
-    <navigator wx:for="{{clubs}}" wx:key="id" class="card link" url="/pages/club/club?id={{item.id}}">
-      <view class="title">{{item.name}}</view>
-      <view class="foot"><text>口令，发到微信群</text><text>{{item.code}}</text></view>
-    </navigator>
-    <view wx:if="{{loaded && !clubs.length}}" class="empty">还没有跑团。建一个，把口令发到微信群。</view>
+
+    <view wx:if="{{phase === 'loading'}}" class="state">正在读取跑团</view>
+    <view wx:elif="{{phase === 'error'}}" class="state">
+      <view class="err">{{message}}</view>
+      <button class="line" bindtap="load">重试</button>
+    </view>
+    <view wx:elif="{{!clubs.length}}" class="state">还没有跑团。建一个，把口令发到微信群。</view>
+    <view wx:else class="card">
+      <navigator wx:for="{{clubs}}" wx:key="id" class="race" url="/pages/club/club?id={{item.id}}">
+        <view class="main">
+          <view class="title">{{item.name}}</view>
+          <view class="meta">口令 {{item.code}} · 打开看谁标了哪场</view>
+        </view>
+      </navigator>
+    </view>
   </block>
 </view>

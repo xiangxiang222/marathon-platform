@@ -1,45 +1,83 @@
 <view class="pad">
+  <view class="h1">我的</view>
+  <view wx:if="{{!ready}}" class="sub">记下之后，可以标报名状态，同团的人能看见。</view>
+
   <view class="card">
-    <view wx:if="{{nickname}}" class="title">{{nickname}}</view>
-    <view wx:else>
-      <view class="muted">起个昵称，才能标报名状态。</view>
-      <view class="field">
-        <input placeholder="怎么称呼你" value="{{draft}}" bindinput="onDraft" />
-        <button class="btn" bindtap="enter">进入</button>
+    <block wx:if="{{!ready}}">
+      <view class="kicker">你在团里的名字</view>
+      <view class="stack">
+        <input placeholder="例如 阿宁" value="{{draft}}" maxlength="20" bindinput="onDraft" />
+        <view class="help">同团的人会看到这个名字。1 到 20 个字。</view>
+        <button class="btn" disabled="{{busy}}" bindtap="enter">{{busy ? '正在记下…' : '记下名字'}}</button>
       </view>
-    </view>
+    </block>
+    <block wx:else>
+      <view class="kicker">你在团里的名字</view>
+      <view class="hero">{{nickname}}</view>
+    </block>
+    <view wx:if="{{ok}}" class="ok">{{ok}}</view>
     <view wx:if="{{message}}" class="err">{{message}}</view>
   </view>
-  <view class="card" wx:if="{{conflicts.length}}">
-    <view class="h2">全马间隔</view>
-    <view wx:for="{{conflicts}}" wx:key="text" class="warn">{{item.text}}</view>
-  </view>
-  <view class="card" wx:if="{{reminders.length}}">
-    <view class="h2">截止提醒</view>
-    <navigator wx:for="{{reminders}}" wx:key="key" class="plan" url="/pages/race/race?id={{item.race.id}}">
-      <text class="warn">{{item.hit.reason}}</text>
-      <text> {{item.race.name}}</text>
-    </navigator>
-  </view>
-  <view class="card" wx:if="{{nickname}}">
-    <view class="h2">赛事生涯</view>
-    <view class="sum">完赛 {{career.finished}} 场 · 足迹 {{career.provinces.length}} 省 {{career.cities.length}} 市</view>
-    <view class="sum">半程 {{career.pb.half || '--'}} · 全程 {{career.pb.full || '--'}}</view>
-    <view class="sum">本年比赛 {{career.yearKm}} 公里</view>
-    <navigator wx:for="{{results}}" wx:key="raceId" class="plan" url="/pages/race/race?id={{item.race.id}}">
-      <text class="teal">{{item.clock}}</text>
-      <text wx:if="{{item.pb}}"> PB</text>
-      <text> {{item.race.name}}</text>
-    </navigator>
-    <view wx:if="{{loaded && !results.length}}" class="muted">在赛事页记下成绩后，会出现在这里</view>
-  </view>
-  <view class="card" wx:if="{{nickname}}">
-    <view class="h2">我标过的场</view>
-    <navigator wx:for="{{plans}}" wx:key="raceId" class="plan" url="/pages/race/race?id={{item.race.id}}">
-      <text class="teal">{{item.status}}</text>
-      <text> {{item.race.name}}</text>
-    </navigator>
-    <view wx:if="{{loaded && !plans.length}}" class="muted">还没有标记</view>
-  </view>
+
+  <block wx:if="{{ready}}">
+    <view wx:if="{{phase === 'loading'}}" class="state">正在读取你的赛历</view>
+    <view wx:elif="{{phase === 'error'}}" class="state">
+      <view class="err">{{loadError}}</view>
+      <button class="line" bindtap="load">重试</button>
+    </view>
+    <block wx:else>
+      <view class="card" wx:if="{{conflicts.length}}">
+        <view class="h2">全马隔得太近</view>
+        <view wx:for="{{conflicts}}" wx:key="text" class="warn">{{item.text}}</view>
+      </view>
+      <view class="card" wx:if="{{reminders.length}}">
+        <view class="h2">你标过的场，明天有节点</view>
+        <navigator wx:for="{{reminders}}" wx:key="key" url="/pages/race/race?id={{item.race.id}}" class="race">
+          <view class="main">
+            <view class="soon">{{item.hit.reason}}</view>
+            <view class="meta">{{item.race.name}}</view>
+          </view>
+        </navigator>
+      </view>
+      <view class="card" wx:if="{{urgent.length}}">
+        <view class="h2">先处理</view>
+        <navigator wx:for="{{urgent}}" wx:key="raceId" url="/pages/race/race?id={{item.race.id}}" class="race">
+          <view class="main">
+            <view class="title"><text class="teal">{{item.status}} </text>{{item.race.name}}</view>
+            <view class="meta">{{item.meta}}</view>
+          </view>
+        </navigator>
+      </view>
+      <view class="card" wx:if="{{rest.length || !plans.length}}">
+        <view class="h2">{{urgent.length ? '其他标记' : '我标过的场'}}</view>
+        <navigator wx:for="{{rest}}" wx:key="raceId" url="/pages/race/race?id={{item.race.id}}" class="race">
+          <view class="main">
+            <view class="title"><text class="teal">{{item.status}} </text>{{item.race.name}}</view>
+            <view class="meta">{{item.meta}}</view>
+          </view>
+        </navigator>
+        <view wx:if="{{!plans.length}}" class="help">还没有标记。到赛历打开一场，标上想跑或已报名。</view>
+      </view>
+      <view class="card">
+        <view class="h2">成绩</view>
+        <block wx:if="{{results.length}}">
+          <view>完赛 {{career.finished}} 场</view>
+          <view class="meta">半程 {{career.pb.half || '还没有'}} · 全程 {{career.pb.full || '还没有'}}</view>
+          <view class="help">足迹 {{career.provinces.length}} 个省、{{career.cities.length}} 个市 · 本年比赛 {{career.yearKm}} 公里</view>
+          <view>
+            <text wx:for="{{places}}" wx:key="*this" class="tag">{{item}}</text>
+          </view>
+          <navigator wx:for="{{results}}" wx:key="raceId" url="/pages/race/race?id={{item.race.id}}" class="race">
+            <view class="main">
+              <view class="title">{{item.race.raceDate}} {{item.race.name}}</view>
+              <view class="meta">{{item.distanceLabel}} {{item.clock}} · 配速 {{item.pace}}<text wx:if="{{item.pb}}"> PB</text></view>
+            </view>
+          </navigator>
+          <view class="help">本人填写，未核验。</view>
+        </block>
+        <view wx:else class="help">还没有成绩。比完后在赛事页记下。完赛场数和最好成绩会出现在这里。成绩是本人填写，未核验。</view>
+      </view>
+    </block>
+  </block>
   <view class="legal">{{company}} · {{icp}}</view>
 </view>

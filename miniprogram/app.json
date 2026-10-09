@@ -8,14 +8,14 @@
     "pages/club/club"
   ],
   "window": {
-    "navigationBarBackgroundColor": "#00d1c7",
+    "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTitleText": "赛历",
-    "navigationBarTextStyle": "white",
-    "backgroundColor": "#f4f5f7"
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f3f4f6"
   },
   "tabBar": {
-    "color": "#8d949c",
-    "selectedColor": "#00b7ae",
+    "color": "#5c6570",
+    "selectedColor": "#0f6e6a",
     "backgroundColor": "#ffffff",
     "list": [
       {

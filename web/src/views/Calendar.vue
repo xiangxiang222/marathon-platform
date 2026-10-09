@@ -1,8 +1,8 @@
 <template>
   <main class="calendar">
     <header class="topbar">
-      <router-link to="/" aria-label="返回">‹</router-link>
-      <h1>赛事日历</h1>
+      <router-link to="/" aria-label="返回">返回</router-link>
+      <h1>日历</h1>
       <span></span>
     </header>
     <div class="month">
@@ -11,7 +11,7 @@
       <button type="button" aria-label="下个月" @click="shift(1)">›</button>
     </div>
     <div class="week">
-      <span v-for="name in weeks" :key="name" :class="{ end: name === '日' || name === '六' }">{{ name }}</span>
+      <span v-for="name in weeks" :key="name">{{ name }}</span>
     </div>
     <div class="grid">
       <button
@@ -21,22 +21,27 @@
         class="cell"
         :class="{ out: !cell.inMonth, today: cell.today, picked: cell.date === picked }"
         :disabled="!cell.inMonth"
-        :aria-label="cell.date + (cell.count ? ' ' + cell.count + '场赛事' : '')"
+        :aria-label="cell.date + (cell.count ? ' ' + cell.count + '场' : '')"
         @click="picked = cell.date"
       >
         <span class="num">{{ cell.today ? "今" : cell.day }}</span>
         <span class="lunar">{{ cell.lunar }}</span>
-        <span class="count">{{ cell.count ? cell.count + "场赛事" : "" }}</span>
+        <span class="count">{{ cell.count ? cell.count + "场" : "" }}</span>
       </button>
     </div>
-    <section class="day-races">
+    <p v-if="phase === 'loading'" class="state">正在读取这个月</p>
+    <div v-else-if="phase === 'error'" class="state">
+      <p class="err">{{ message }}</p>
+      <button class="text-btn" type="button" @click="load">重试</button>
+    </div>
+    <section v-else class="day-races">
       <h2>{{ pickedTitle }}</h2>
       <router-link v-for="race in dayRaces" :key="race.id" class="race" :to="'/races/' + race.id">
         <b>{{ race.name }}</b>
-        <span>{{ race.city }}{{ race.distanceLabels.length ? " · " + race.distanceLabels.join(" / ") : "" }}</span>
+        <span>{{ race.city }}<template v-if="race.distanceLabels.length"> · {{ race.distanceLabels.join(" / ") }}</template></span>
         <em>{{ race.regStatus }}</em>
       </router-link>
-      <p v-if="ready && !dayRaces.length" class="none">这一天没有赛事</p>
+      <p v-if="!dayRaces.length" class="none">这一天没有赛事</p>
     </section>
   </main>
 </template>
@@ -52,7 +57,8 @@ const year = ref(today.y);
 const month = ref(today.m);
 const picked = ref(iso(today));
 const races = ref([]);
-const ready = ref(false);
+const phase = ref("loading");
+const message = ref("");
 
 const cells = computed(() => {
   const first = new Date(Date.UTC(year.value, month.value - 1, 1));
@@ -85,8 +91,7 @@ const cells = computed(() => {
 const dayRaces = computed(() => races.value.filter((race) => race.raceDate === picked.value));
 const pickedTitle = computed(() => {
   const [, m, d] = picked.value.split("-");
-  const count = dayRaces.value.length;
-  return Number(m) + "月" + Number(d) + "日" + (ready.value ? " · " + count + "场" : "");
+  return Number(m) + "月" + Number(d) + "日 · " + dayRaces.value.length + "场";
 });
 
 function cstParts(date = new Date()) {
@@ -104,11 +109,18 @@ function monthKey() {
 
 async function load() {
   const key = monthKey();
-  ready.value = false;
-  const data = await api("/races?status=all&month=" + key);
-  if (key !== monthKey()) return;
-  races.value = data.races || [];
-  ready.value = true;
+  phase.value = "loading";
+  message.value = "";
+  try {
+    const data = await api("/races?status=all&month=" + key);
+    if (key !== monthKey()) return;
+    races.value = data.races || [];
+    phase.value = "ready";
+  } catch (err) {
+    if (key !== monthKey()) return;
+    phase.value = "error";
+    message.value = err.message || "这个月没有读出来";
+  }
 }
 
 function shift(delta) {
@@ -124,44 +136,40 @@ onMounted(load);
 </script>
 
 <style scoped>
-.calendar { background: #fff; min-height: 100vh; color: #1c1c1e; }
-.month { display: flex; align-items: center; justify-content: center; gap: 28px; padding: 4px 0 2px; }
-.month b { font-size: 16px; font-weight: 600; }
-.month button { width: 32px; font-size: 22px; color: #666; }
+.calendar { background: #fff; min-height: 100vh; color: #1a1d21; }
+.month { display: flex; align-items: center; justify-content: center; gap: 28px; padding: 8px 0 2px; }
+.month b { font-size: 16px; font-weight: 650; }
+.month button { width: 40px; height: 40px; font-size: 22px; color: #5c6570; }
 .week, .grid { display: grid; grid-template-columns: repeat(7, 1fr); }
-.week { padding: 8px 4px 2px; text-align: center; font-size: 13px; }
-.week .end { color: #e23b3b; }
+.week { padding: 8px 4px 2px; text-align: center; font-size: 13px; color: #5c6570; }
 .grid { padding: 0 2px 8px; }
 .cell {
-  min-height: 74px;
+  min-height: 72px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1px;
   padding: 4px 0 2px;
 }
-.cell:disabled { cursor: default; }
 .num {
   width: 28px;
   height: 28px;
   border-radius: 50%;
   display: grid;
   place-items: center;
-  background: #f2f3f5;
+  background: #f3f4f6;
   font-size: 15px;
-  font-weight: 500;
 }
-.cell.out .num { background: #f7f8fa; color: #c8ccd3; }
-.cell.out .lunar { color: #e1e4e8; }
-.cell.today .num { background: #fff; color: #e23b3b; box-shadow: inset 0 0 0 1.5px #e23b3b; }
-.cell.picked:not(.today) .num { background: #e23b3b; color: #fff; }
+.cell.out .num { background: transparent; color: #c8ccd3; }
+.cell.today .num { box-shadow: inset 0 0 0 1.5px #0f6e6a; color: #0f6e6a; background: #fff; }
+.cell.picked .num { background: #0f6e6a; color: #fff; }
 .lunar, .count { font-size: 10px; line-height: 1.2; min-height: 13px; }
 .lunar { color: #b4b8c0; }
-.count { color: #e23b3b; }
-.day-races { border-top: 8px solid #f6f7f9; padding: 4px 16px 28px; }
-.day-races h2 { margin: 14px 0 4px; font-size: 15px; font-weight: 600; }
-.race { display: block; padding: 12px 0; border-bottom: 1px solid #f0f1f4; }
+.count { color: #0f6e6a; }
+.day-races { border-top: 8px solid #f3f4f6; padding: 4px 16px 28px; }
+.day-races h2 { margin: 14px 0 4px; font-size: 16px; font-weight: 650; }
+.race { display: block; padding: 12px 0; border-bottom: 1px solid #e7eaee; }
 .race b { display: block; font-size: 16px; font-weight: 650; line-height: 1.35; }
-.race span, .race em { display: block; margin-top: 4px; color: #8e949c; font-size: 12px; font-style: normal; }
-.none { color: #8e949c; text-align: center; padding: 28px 0; }
+.race span, .race em { display: block; margin-top: 4px; color: #8b939c; font-size: 12px; font-style: normal; }
+.none { color: #8b939c; text-align: center; padding: 28px 0; }
 </style>
