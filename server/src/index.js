@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const express = require("express");
 const { getDb } = require("./db");
-const { presentRace, summarizeMarks, cardTitle, shareText, reminderHits, fullConflicts, squadOf, nearbyOpen, alternativeNote } = require("./races");
+const { presentRace, summarizeMarks, cardTitle, shareText, reminderHits, fullConflicts, squadOf, nearbyOpen, alternativeNote, drawPoster } = require("./races");
 const { parseClock, decorateResults, careerOf, yearOf } = require("./career");
 
 function loadEnv() {
@@ -215,7 +215,8 @@ app.get(BASE + "/api/races/:id", (req, res) => {
     statuses: STATUSES,
     alternatives,
     missed,
-    alternativeNote: alternativeNote(myStatus, missed, alternatives)
+    alternativeNote: alternativeNote(myStatus, missed, alternatives),
+    drawText: user && myStatus === "中签" ? drawPoster(user.nickname, race) : ""
   });
 });
 

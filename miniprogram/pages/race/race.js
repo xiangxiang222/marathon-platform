@@ -18,6 +18,8 @@ Page({
     conflicts: [],
     alternatives: [],
     alternativeNote: "",
+    drawText: "",
+    drawError: "",
     code: "",
     ready: false,
     draft: "",
@@ -82,6 +84,8 @@ Page({
           conflicts: data.conflicts || [],
           alternatives: data.alternatives || [],
           alternativeNote: data.alternativeNote || "",
+          drawText: data.drawText || "",
+          drawError: "",
           ready: ready(),
           message: "",
           myResult,
@@ -131,6 +135,12 @@ Page({
   },
   onStory(e) {
     this.setData({ story: e.detail.value });
+  },
+  copyDraw() {
+    wx.setClipboardData({
+      data: this.data.drawText || "",
+      fail: () => this.setData({ drawError: "没有复制成功，可以直接选中上面的文字" })
+    });
   },
   saveResult() {
     request("/me/races/" + this.raceId + "/result", "PUT", {

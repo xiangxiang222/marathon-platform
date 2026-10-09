@@ -267,3 +267,29 @@ test("a missed draw is the only time nearby races are listed", async () => {
   assert.deepEqual(item.alternatives.map((race) => race.id), expected.map((race) => race.id));
   if (expected.length) assert.match(item.alternativeNote, /没中签没中/);
 });
+
+test("marking a draw makes a personal card and names who got in", async () => {
+  const token = await session("中签卡");
+  const mate = await session("已缴队友");
+  const auth = { Authorization: "Bearer " + token };
+  const before = await request(app).get("/marathon/api/races/tmsk").set(auth);
+  assert.equal(before.body.drawText, "");
+
+  await request(app).put("/marathon/api/me/races/tmsk").set(auth).send({ status: "中签" });
+  const detail = await request(app).get("/marathon/api/races/tmsk").set(auth);
+  assert.equal(
+    detail.body.drawText,
+    "中签卡中签了\n2026图木舒克马拉松\n2026-11-01 · 新疆 图木舒克\n打开赛历，看这场谁一起去。"
+  );
+  assert.equal(/官方|中签率|保证/.test(detail.body.drawText), false);
+
+  const created = await request(app).post("/marathon/api/clubs").set(auth).send({ name: "中签跑团" });
+  await request(app).post("/marathon/api/clubs/join").set("Authorization", "Bearer " + mate).send({ code: created.body.club.code });
+  await request(app).put("/marathon/api/me/races/tmsk").set("Authorization", "Bearer " + mate).send({ status: "已缴费" });
+  const card = await request(app).get("/marathon/api/races/tmsk/card?code=" + created.body.club.code);
+  assert.match(card.body.text, /中了：(已缴队友、中签卡|中签卡、已缴队友)/);
+
+  await request(app).put("/marathon/api/me/races/tmsk").set(auth).send({ status: "已缴费" });
+  const paid = await request(app).get("/marathon/api/races/tmsk").set(auth);
+  assert.equal(paid.body.drawText, "");
+});

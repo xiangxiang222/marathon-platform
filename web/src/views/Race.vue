@@ -37,6 +37,13 @@
       </div>
       <p v-if="message" class="err">{{ message }}</p>
     </div>
+    <div v-if="drawText" class="block">
+      <h2>中签卡片</h2>
+      <pre class="share-text">{{ drawText }}</pre>
+      <button class="primary" type="button" @click="copyDraw">复制卡片</button>
+      <p v-if="drawNote" class="note">{{ drawNote }}</p>
+      <p v-if="drawError" class="err">{{ drawError }}</p>
+    </div>
     <div v-if="alternatives.length" class="block">
       <h2>同期还开着</h2>
       <p class="src">{{ alternativeNote }}</p>
@@ -95,6 +102,9 @@ const cards = ref([]);
 const conflicts = ref([]);
 const alternatives = ref([]);
 const alternativeNote = ref("");
+const drawText = ref("");
+const drawNote = ref("");
+const drawError = ref("");
 const myResult = ref(null);
 const distance = ref("");
 const clock = ref("");
@@ -115,6 +125,7 @@ async function load() {
   conflicts.value = data.conflicts || [];
   alternatives.value = data.alternatives || [];
   alternativeNote.value = data.alternativeNote || "";
+  drawText.value = data.drawText || "";
   myResult.value = data.myResult || null;
   if (data.myResult) {
     distance.value = data.myResult.distance;
@@ -141,6 +152,17 @@ async function saveResult() {
 function squadLine(club) {
   const card = cards.value.find((item) => item.club && item.club.id === club.id);
   return card && card.squad ? card.squad.text : "";
+}
+
+async function copyDraw() {
+  drawNote.value = "";
+  drawError.value = "";
+  try {
+    await copyText(drawText.value);
+    drawNote.value = "卡片已复制，可以贴到微信群";
+  } catch (err) {
+    drawError.value = "没有复制成功，可以直接选中上面的文字";
+  }
 }
 
 async function copyCard(card) {
