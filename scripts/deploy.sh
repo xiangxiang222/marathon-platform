@@ -31,9 +31,12 @@ rsync -azh --delete --partial --timeout=120 --stats -e "$RSYNC_SSH" \
   --exclude 'node_modules/' \
   --exclude 'web/node_modules/' \
   --exclude 'server/node_modules/' \
+  --exclude 'miniprogram/node_modules/' \
   --exclude 'web/dist/' \
+  --exclude 'coverage/' \
   --exclude 'server/data/' \
   --exclude '.env' \
+  --exclude '.env.local' \
   --exclude '.DS_Store' \
   "$ROOT/" "$USER@$HOST:$DIR/"
 

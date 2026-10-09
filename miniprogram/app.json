@@ -1,0 +1,42 @@
+{
+  "pages": [
+    "pages/races/races",
+    "pages/clubs/clubs",
+    "pages/mine/mine",
+    "pages/race/race",
+    "pages/club/club"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#2ad4cf",
+    "navigationBarTitleText": "赛历",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#f4f5f7"
+  },
+  "tabBar": {
+    "color": "#8d949c",
+    "selectedColor": "#14b8b3",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/races/races",
+        "text": "赛历",
+        "iconPath": "images/races.png",
+        "selectedIconPath": "images/races-on.png"
+      },
+      {
+        "pagePath": "pages/clubs/clubs",
+        "text": "跑团",
+        "iconPath": "images/clubs.png",
+        "selectedIconPath": "images/clubs-on.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "images/mine.png",
+        "selectedIconPath": "images/mine-on.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

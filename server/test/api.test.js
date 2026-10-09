@@ -26,6 +26,10 @@ test("open races hide the finished sample and can filter city and distance", asy
   const future = all.body.races.find((r) => r.id === "huangyaguan");
   assert.equal(future.open, true);
   assert.match(future.deadlineLabel, /天后截止/);
+  assert.equal(future.source, "最酷，2026-09-07");
+  assert.equal(future.regStart, "2026-09-07");
+  assert.equal(future.nextNode.label, "早鸟截止");
+  assert.match(future.nextNode.text, /天后截止/);
 });
 
 test("a club sees a teammate mark the same race", async () => {
@@ -54,6 +58,8 @@ test("a club sees a teammate mark the same race", async () => {
   assert.equal(board.status, 200);
   assert.equal(board.body.members.length, 2);
   assert.equal(board.body.board[0].marks[0].status, "已报名");
+  assert.equal(board.body.board[0].summary, "1 人已报名");
+  assert.match(board.body.board[0].title, /璧山马拉松/);
 
   const outsider = await session("路人");
   const denied = await request(app)
@@ -73,4 +79,28 @@ test("marking a race requires a nickname and a known status", async () => {
   const me = await request(app).get("/marathon/api/me").set("Authorization", "Bearer " + token);
   assert.equal(me.body.plans[0].status, "想跑");
   assert.equal(me.body.plans[0].race.id, "bishan");
+});
+
+test("a club card names who has not paid", async () => {
+  const leader = await session("团长");
+  const mate = await session("队友");
+  const created = await request(app).post("/marathon/api/clubs").set("Authorization", "Bearer " + leader).send({ name: "滨河跑团" });
+  const code = created.body.club.code;
+  await request(app).post("/marathon/api/clubs/join").set("Authorization", "Bearer " + mate).send({ code });
+  await request(app).put("/marathon/api/me/races/bishan").set("Authorization", "Bearer " + leader).send({ status: "已缴费" });
+  await request(app).put("/marathon/api/me/races/bishan").set("Authorization", "Bearer " + mate).send({ status: "中签" });
+
+  const card = await request(app).get("/marathon/api/races/bishan/card?code=" + code);
+  assert.equal(card.status, 200);
+  assert.equal(card.body.summary, "2 人已报名，1 人还没缴");
+  assert.deepEqual(card.body.unpaid, [{ nickname: "队友" }]);
+  assert.match(card.body.title, /截止 · 2026重庆璧山马拉松/);
+  assert.match(card.body.text, /还没缴：队友/);
+  assert.match(card.body.text, new RegExp("跑团口令 " + code));
+
+  const detail = await request(app).get("/marathon/api/races/bishan").set("Authorization", "Bearer " + leader);
+  assert.equal(detail.body.cards[0].summary, "2 人已报名，1 人还没缴");
+
+  const missing = await request(app).get("/marathon/api/races/bishan/card?code=NO-SUCH");
+  assert.equal(missing.status, 404);
 });

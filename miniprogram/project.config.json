@@ -1,0 +1,29 @@
+{
+  "description": "赛历",
+  "packOptions": {
+    "ignore": [],
+    "include": []
+  },
+  "setting": {
+    "es6": true,
+    "minified": false,
+    "urlCheck": false,
+    "coverView": true,
+    "postcss": true,
+    "enhance": true,
+    "minifyWXSS": true,
+    "minifyWXML": true,
+    "disableUseStrict": false,
+    "compileHotReLoad": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    }
+  },
+  "compileType": "miniprogram",
+  "appid": "touristappid",
+  "projectname": "marathon-platform",
+  "libVersion": "3.17.1",
+  "editorSetting": {}
+}

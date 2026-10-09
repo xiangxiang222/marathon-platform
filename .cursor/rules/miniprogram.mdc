@@ -1,0 +1,14 @@
+---
+description: 赛历小程序在本仓库的 miniprogram 目录开发
+alwaysApply: true
+---
+
+# 小程序在本仓库
+
+用户端微信原生小程序放在 `miniprogram/`，用微信开发者工具打开这个目录。不要另开仓库。
+
+接口与现有 H5 同一套：本地 `http://127.0.0.1:3790`，路径前缀 `/marathon/api`，线上 `https://togetherbetter.cn/marathon`。`miniprogram/config.js` 默认走线上；本地联调再把 `USE_LOCAL_API` 改成 `true`。开发者工具里关闭「校验合法域名」。正式版在小程序后台把 `https://togetherbetter.cn` 配进 request 合法域名。
+
+这是独立小程序。不要填写同行者众的 AppID，也不要提交 AppSecret、商户密钥或 `.env`。
+
+`project.config.json` 打开 ES6、增强编译和热重载，基础库与同行者众对齐到 `3.17.1`，直到微信开发者工具给出更新的稳定版。

@@ -1,0 +1,32 @@
+<view class="pad">
+  <view wx:if="{{!ready}}" class="card">
+    <view class="muted">先起个昵称，再建团或用口令加入。</view>
+    <view class="field">
+      <input placeholder="怎么称呼你" value="{{draft}}" bindinput="onDraft" />
+      <button class="btn" bindtap="enter">进入</button>
+    </view>
+    <view wx:if="{{message}}" class="err">{{message}}</view>
+  </view>
+  <block wx:else>
+    <view class="card">
+      <view class="h2">建一个团</view>
+      <view class="field">
+        <input placeholder="跑团名称" value="{{name}}" bindinput="onName" />
+        <button class="btn" bindtap="create">创建</button>
+      </view>
+    </view>
+    <view class="card">
+      <view class="h2">用口令加入</view>
+      <view class="field">
+        <input placeholder="6 位口令" value="{{code}}" bindinput="onCode" />
+        <button class="btn" bindtap="join">加入</button>
+      </view>
+      <view wx:if="{{message}}" class="err">{{message}}</view>
+    </view>
+    <navigator wx:for="{{clubs}}" wx:key="id" class="card link" url="/pages/club/club?id={{item.id}}">
+      <view class="title">{{item.name}}</view>
+      <view class="foot"><text>口令，发到微信群</text><text>{{item.code}}</text></view>
+    </navigator>
+    <view wx:if="{{loaded && !clubs.length}}" class="empty">还没有跑团。建一个，把口令发到微信群。</view>
+  </block>
+</view>
