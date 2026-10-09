@@ -18,6 +18,10 @@
         </div>
       </router-link>
       <p v-if="item.squad && item.squad.text" class="squad">{{ item.squad.text }}</p>
+      <p v-if="item.alternativeNote" class="squad">{{ item.alternativeNote }}</p>
+      <router-link v-for="alt in item.alternatives || []" :key="alt.id" class="mate" :to="'/races/' + alt.id">
+        <span>{{ alt.name }}</span><b>{{ alt.deadlineLabel }}</b>
+      </router-link>
       <pre class="share-text">{{ item.text }}</pre>
       <button class="primary" type="button" @click="copyCard(item)">复制卡片</button>
       <div v-for="mark in item.marks" :key="mark.nickname + mark.status" class="mate">

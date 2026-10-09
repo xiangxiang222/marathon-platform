@@ -31,7 +31,9 @@ Page({
           ...item,
           key: item.race.id,
           unpaidText: (item.unpaid || []).join("、"),
-          squadText: item.squad ? item.squad.text : ""
+          squadText: item.squad ? item.squad.text : "",
+          alternatives: item.alternatives || [],
+          alternativeNote: item.alternativeNote || ""
         }));
         this.setData({ club: data.club, members: data.members || [], board, message: "" });
       })

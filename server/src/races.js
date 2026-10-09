@@ -203,6 +203,40 @@ function squadOf(marks) {
   return { going, interested, size: going.length, ready: going.length >= 2, text };
 }
 
+function nearbyOpen(race, races, limit = 3) {
+  const origin = raceDay(race);
+  const wanted = new Set(race.distances || []);
+  return (races || [])
+    .filter((item) => {
+      if (!item || item.id === race.id || !item.open) return false;
+      const days = Math.round(Math.abs(raceDay(item) - origin) / 86400000);
+      if (days > 45) return false;
+      return (item.distances || []).some((distance) => wanted.has(distance));
+    })
+    .sort((a, b) => {
+      const gap = Math.abs(raceDay(a) - origin) - Math.abs(raceDay(b) - origin);
+      if (gap) return gap;
+      return String(a.raceDate).localeCompare(String(b.raceDate)) || String(a.id).localeCompare(String(b.id));
+    })
+    .slice(0, limit)
+    .map((item) => ({
+      id: item.id,
+      name: item.name,
+      raceDate: item.raceDate,
+      city: item.city,
+      deadlineLabel: item.deadlineLabel
+    }));
+}
+
+function alternativeNote(myStatus, missed, alternatives) {
+  if (!alternatives || !alternatives.length) return "";
+  const others = missed || [];
+  if (myStatus === "未中签" && others.length) return "你和" + others.join("、") + "没中。下面这些日期相近，报名还开着。";
+  if (myStatus === "未中签") return "这场没中。下面这些日期相近，报名还开着。";
+  if (others.length) return others.join("、") + "没中。下面这些日期相近，报名还开着。";
+  return "";
+}
+
 function summarizeMarks(counts) {
   const entered = ENTERED.reduce((sum, key) => sum + (counts[key] || 0), 0);
   const unpaid = counts["中签"] || 0;
@@ -320,6 +354,8 @@ module.exports = {
   presentRace,
   summarizeMarks,
   squadOf,
+  nearbyOpen,
+  alternativeNote,
   cardTitle,
   shareText,
   reminderHits,

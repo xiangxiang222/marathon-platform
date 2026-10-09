@@ -48,6 +48,14 @@
     <view wx:if="{{message}}" class="err">{{message}}</view>
   </view>
 
+  <view class="card" wx:if="{{alternatives.length}}">
+    <view class="h2">同期还开着</view>
+    <view class="src">{{alternativeNote}}</view>
+    <navigator wx:for="{{alternatives}}" wx:key="id" class="row" url="/pages/race/race?id={{item.id}}">
+      <text>{{item.name}}</text><text>{{item.deadlineLabel}}</text>
+    </navigator>
+  </view>
+
   <view class="card result" wx:if="{{ready}}">
     <view class="h2">成绩</view>
     <view wx:if="{{myResult}}" class="sum">{{myResult.distanceLabel}} {{myResult.clock}} · 配速 {{myResult.pace}}<text wx:if="{{myResult.pb}}"> · PB</text></view>
