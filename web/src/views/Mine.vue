@@ -276,7 +276,8 @@ onMounted(load);
 </script>
 
 <style scoped>
-.mine { background: #fff; color: #222; padding-bottom: 8px; }
+.mine { background: #f6f7f9; color: #1c1c1e; padding-bottom: 8px; }
+.chrome, .who, .shortcuts, .walls { background: #fff; }
 .chrome, .tools { display: flex; align-items: center; }
 .chrome { justify-content: space-between; padding: 10px 16px 0; }
 .tools { gap: 18px; }
@@ -289,7 +290,7 @@ onMounted(load);
 .chev { margin-left: auto; stroke: #c5cad1; }
 .nick-form { display: flex; gap: 8px; }
 .nick-form input { height: 32px; border: 1px solid #e6e8ec; border-radius: 16px; padding: 0 12px; width: 140px; outline: none; }
-.nick-form button { height: 32px; padding: 0 12px; border-radius: 16px; background: #2ad4cf; color: #fff; }
+.nick-form button { height: 32px; padding: 0 14px; border-radius: 16px; background: #00d1c7; color: #fff; }
 .err { color: #e35d5d; font-size: 12px; margin: 4px 0 0; }
 .shortcuts { display: flex; justify-content: space-between; padding: 16px 10px 8px; }
 .shortcuts a { width: 64px; text-align: center; font-size: 12px; color: #333; }
@@ -310,7 +311,7 @@ onMounted(load);
 .career { padding-bottom: 8px; }
 .chips { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 16px 8px; }
 .chips button, .lit { font-size: 12px; padding: 2px 8px; border-radius: 10px; background: #f4f5f7; color: #666; }
-.chips button.on { background: #e7faf9; color: #12b3ae; }
+.chips button.on { background: #e7faf9; color: #00b7ae; }
 .scroll { display: flex; gap: 8px; overflow-x: auto; padding: 0 16px 8px; }
 .scroll a { flex: none; width: 168px; background: #f7f8fa; border-radius: 10px; padding: 8px 10px; font-size: 12px; color: #333; }
 .scroll b { display: block; font-size: 16px; }
@@ -320,12 +321,12 @@ onMounted(load);
 .footline { margin: 10px 0 0; color: #8d949c; font-size: 12px; }
 .marks { padding: 0 16px 8px; }
 .marks a { display: block; font-size: 13px; padding: 6px 0; color: #333; }
-.marks b { color: #14b8b3; font-weight: 650; margin-right: 6px; }
+.marks b { color: #00b7ae; font-weight: 650; margin-right: 6px; }
 .quiet { text-align: center; color: #8d949c; font-size: 13px; margin: 0 0 8px; }
 .promo { margin: 8px 12px 12px; border-radius: 12px; overflow: hidden; height: 92px; }
 .promo svg { width: 100%; height: 92px; display: block; }
 .promo text { font-family: "PingFang SC", "Microsoft YaHei", sans-serif; }
-.sheet { margin: 0 12px 12px; background: #f7f8fa; border-radius: 12px; padding: 12px 12px 14px; }
+.sheet { margin: 0 12px 12px; background: #fff; border-radius: 12px; padding: 14px 12px; }
 .head { display: flex; justify-content: space-between; align-items: center; }
 .head h3 { margin: 0; font-size: 16px; font-weight: 700; }
 .head h3 span, .link { color: #8d949c; font-size: 13px; font-weight: 400; }

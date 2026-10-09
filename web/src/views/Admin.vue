@@ -209,5 +209,5 @@ if (token.value) enter();
 .undo { margin-top: 8px; height: 32px; padding: 0 12px; background: transparent; color: #8d949c; }
 .statuses { margin-top: 8px; }
 .link { display: inline-block; }
-a { color: #12b3ae; }
+a { color: #00b7ae; }
 </style>

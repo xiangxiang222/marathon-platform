@@ -8,27 +8,27 @@
     </form>
     <div class="quick4">
       <button type="button" @click="setKind('road')">
-        <span class="ico"><svg viewBox="0 0 24 24"><path d="M4 18h16M6 18l2-8h8l2 8M9 10V6h6v4" /></svg></span>
-        路跑
+        <span class="ico"><svg viewBox="0 0 24 24"><path d="M13 4a2 2 0 1 1-1.2 3.6L8 14l-2 6M11 11l4 1 2 6M14 12l3-2" /></svg></span>
+        路跑赛事
       </button>
       <button type="button" @click="setKind('online')">
-        <span class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="12" rx="2" /><path d="M8 21h8M12 17v4" /></svg></span>
-        线上
+        <span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7" /><path d="M12 8v4l3 2" /></svg></span>
+        线上赛
       </button>
       <button type="button" @click="setKind('offline')">
-        <span class="ico"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z" /><circle cx="12" cy="10" r="2.2" /></svg></span>
-        线下
+        <span class="ico"><svg viewBox="0 0 24 24"><path d="M6 20V5h8l-1.5 3L14 11H6" /></svg></span>
+        线下赛
       </button>
       <button type="button" @click="setKind('trail')">
-        <span class="ico"><svg viewBox="0 0 24 24"><path d="M3 18l6-8 4 5 3-4 5 7H3z" /></svg></span>
-        越野
+        <span class="ico"><svg viewBox="0 0 24 24"><path d="M3 18l5-7 4 4 3-5 6 8" /></svg></span>
+        越野赛事
       </button>
     </div>
   </header>
   <section class="sheet">
     <div class="cats">
       <button v-for="item in cats" :key="item.label" type="button" @click="item.run()">
-        <span class="swatch">{{ item.mark }}</span>
+        <span class="swatch" :class="item.tone" v-html="item.icon"></span>
         {{ item.label }}
       </button>
     </div>
@@ -38,9 +38,10 @@
     </router-link>
     <div class="banner">
       <div>
-        <b>{{ soonest ? soonest.deadlineLabel : "跑团赛历" }}</b>
-        <span>{{ soonest ? soonest.name : "截止日期写在每张卡片右侧" }}</span>
+        <b>{{ soonest ? soonest.name : "跑团赛历" }}</b>
+        <span>{{ soonest ? soonest.raceDate + " · " + soonest.deadlineLabel : "截止日期写在每张卡片上" }}</span>
       </div>
+      <div class="dots"><i class="on"></i><i></i><i></i></div>
     </div>
     <div class="channels">
       <button v-for="item in channels" :key="item.kind" type="button" :class="{ on: kind === item.kind }" @click="setKind(item.kind)">
@@ -101,7 +102,7 @@
               <svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2" /><path d="M8 3v4M16 3v4M4 10h16" /></svg>
               {{ race.raceDate }}
             </span>
-            <span>{{ race.deadlineLabel }}</span>
+            <span :class="{ soon: race.open && race.daysLeft <= 7 }">{{ race.deadlineLabel }}</span>
           </div>
         </div>
       </router-link>
@@ -174,15 +175,16 @@ const statusOptions = [
   { label: "报名未公布", value: "unannounced" }
 ];
 
+const icon = (path) => `<svg viewBox="0 0 24 24"><path d="${path}"/></svg>`;
 const cats = [
-  { label: "马拉松", mark: "全", run: () => setDistance("full") },
-  { label: "半程", mark: "半", run: () => setDistance("half") },
-  { label: "10公里", mark: "10", run: () => setDistance("10k") },
-  { label: "越野", mark: "野", run: () => setKind("trail") },
-  { label: "线上赛", mark: "线", run: () => setKind("online") },
-  { label: "线下赛", mark: "下", run: () => setKind("offline") },
-  { label: "亲子", mark: "亲", run: () => setKind("family") },
-  { label: "铁三", mark: "三", run: () => setKind("tri") }
+  { label: "马拉松", tone: "full", icon: icon("M14 5.2a1.4 1.4 0 1 1-2.4 1.4M7 19.5l3-5 2 1.2 1.4-3 3.2 2.2M9 10.5l2.2-2.2 2.4 1.2"), run: () => setDistance("full") },
+  { label: "半程", tone: "half", icon: icon("M5 16c2-6 5-9 7-9s5 3 7 9M8 16h8"), run: () => setDistance("half") },
+  { label: "10公里", tone: "ten", icon: `<svg viewBox="0 0 24 24"><text x="12" y="16" text-anchor="middle">10</text></svg>`, run: () => setDistance("10k") },
+  { label: "越野", tone: "trail", icon: icon("M3 18l5-7 4 4 3-5 6 8H3"), run: () => setKind("trail") },
+  { label: "线上赛", tone: "online", icon: icon("M12 5a7 7 0 1 0 0 14 7 7 0 0 0 0-14zm0 3v4l2.5 1.5"), run: () => setKind("online") },
+  { label: "线下赛", tone: "offline", icon: icon("M6 20V5h8l-1.6 3.2L14 11.5H6"), run: () => setKind("offline") },
+  { label: "亲子", tone: "family", icon: icon("M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm8 1a2.2 2.2 0 1 0 0-4.4A2.2 2.2 0 0 0 16 11zM4 19c.6-2.4 2.2-3.6 4-3.6s3.4 1.2 4 3.6M12 19c.5-2 1.8-3 3.4-3S18.4 17 19 19"), run: () => setKind("family") },
+  { label: "铁三", tone: "tri", icon: icon("M5 17l4-8 3 4 2-3 5 7H5"), run: () => setKind("tri") }
 ];
 const soonest = computed(() => races.value.find((race) => race.open) || null);
 

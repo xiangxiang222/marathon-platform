@@ -1,6 +1,7 @@
 page {
-  background: #f4f5f7;
-  color: #222;
+  background: #f6f7f9;
+  color: #1c1c1e;
+  font-family: "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", sans-serif;
   font-size: 28rpx;
   line-height: 1.45;
 }
@@ -12,8 +13,8 @@ page {
   padding: 24rpx;
   margin-bottom: 20rpx;
 }
-.muted { color: #8d949c; }
-.teal { color: #14b8b3; }
+.muted { color: #8e949c; }
+.teal { color: #00b7ae; }
 .title { font-size: 32rpx; font-weight: 650; line-height: 1.35; }
 .row {
   display: flex;
@@ -23,9 +24,9 @@ page {
   border-bottom: 1rpx solid #eef0f3;
 }
 .row .k { color: #8d949c; flex: none; }
-.soon { color: #f08a24; }
+.soon { color: #ff8a1a; }
 .err { color: #e35d5d; font-size: 24rpx; margin-top: 8rpx; }
-.note { color: #12b3ae; font-size: 24rpx; margin-top: 8rpx; }
+.note { color: #00b7ae; font-size: 24rpx; margin-top: 8rpx; }
 .empty { color: #8d949c; text-align: center; padding: 48rpx 24rpx; }
 
 .field { display: flex; gap: 16rpx; align-items: center; }
@@ -38,9 +39,9 @@ page {
 }
 button.btn {
   margin: 0;
-  background: #2ad4cf;
+  background: #00d1c7;
   color: #fff;
-  border-radius: 12rpx;
+  border-radius: 32rpx;
   font-size: 28rpx;
   line-height: 72rpx;
   padding: 0 28rpx;
@@ -55,7 +56,7 @@ button.ghost {
   line-height: 64rpx;
   padding: 0 24rpx;
 }
-button.ghost.on { background: #e7faf9; color: #12b3ae; }
+button.ghost.on { background: #e7faf9; color: #00b7ae; }
 button.ghost::after { border: 0; }
 
 .chip {
