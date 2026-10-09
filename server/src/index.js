@@ -4,6 +4,7 @@ const path = require("path");
 const express = require("express");
 const { getDb } = require("./db");
 const { presentRace, summarizeMarks, cardTitle, shareText, reminderHits, fullConflicts } = require("./races");
+const { parseClock, decorateResults, careerOf, yearOf } = require("./career");
 
 function loadEnv() {
   const file = path.join(__dirname, "../../.env");
@@ -73,6 +74,36 @@ function plansFor(userId, now = new Date()) {
     )
     .all(userId)
     .map((row) => ({ status: row.status, updatedAt: row.updated_at, race: presentRace(row, now) }));
+}
+
+function resultsFor(userId, now = new Date()) {
+  const rows = getDb()
+    .prepare(
+      `SELECT res.distance AS result_distance, res.seconds, res.story, r.*
+       FROM results res
+       JOIN races r ON r.id = res.race_id
+       WHERE res.user_id = ?
+       ORDER BY r.race_date DESC, r.id`
+    )
+    .all(userId);
+  return decorateResults(
+    rows.map((row) => {
+      const race = presentRace(row, now);
+      return {
+        distance: row.result_distance,
+        seconds: row.seconds,
+        story: row.story,
+        race: {
+          id: race.id,
+          name: race.name,
+          raceDate: race.raceDate,
+          city: race.city,
+          province: race.province,
+          kind: race.kind
+        }
+      };
+    })
+  );
 }
 
 function remindable(now = new Date()) {
@@ -160,7 +191,8 @@ app.get(BASE + "/api/races/:id", (req, res) => {
   const conflicts = user
     ? fullConflicts(plansFor(user.id), gapDays()).filter((item) => item.races.some((r) => r.id === race.id))
     : [];
-  res.json({ race, myStatus: mine ? mine.status : "", clubs, cards, conflicts, statuses: STATUSES });
+  const myResult = user ? resultsFor(user.id, new Date()).find((item) => item.race.id === race.id) || null : null;
+  res.json({ race, myStatus: mine ? mine.status : "", myResult, clubs, cards, conflicts, statuses: STATUSES });
 });
 
 app.get(BASE + "/api/reminders", (req, res) => {
@@ -211,7 +243,17 @@ app.get(BASE + "/api/me", (req, res) => {
     )
     .all(user.id);
   const reminders = remindable().filter((item) => plans.some((plan) => plan.race.id === item.race.id));
-  res.json({ user, plans, clubs, reminders, conflicts: fullConflicts(plans, gapDays()), gapDays: gapDays() });
+  const results = resultsFor(user.id);
+  res.json({
+    user,
+    plans,
+    clubs,
+    reminders,
+    conflicts: fullConflicts(plans, gapDays()),
+    gapDays: gapDays(),
+    results,
+    career: careerOf(results, yearOf(new Date()))
+  });
 });
 
 app.put(BASE + "/api/me/races/:id", (req, res) => {
@@ -228,6 +270,52 @@ app.put(BASE + "/api/me/races/:id", (req, res) => {
     )
     .run(user.id, race.id, status, new Date().toISOString());
   res.json({ ok: true, status });
+});
+
+app.put(BASE + "/api/me/races/:id/result", (req, res) => {
+  const user = requireUser(req, res);
+  if (!user) return;
+  const row = getDb().prepare("SELECT * FROM races WHERE id = ?").get(req.params.id);
+  if (!row) return res.status(404).json({ error: "没有这场比赛" });
+  const race = presentRace(row, new Date());
+  const distance = String((req.body && req.body.distance) || "");
+  if (!race.distances.includes(distance)) return res.status(400).json({ error: "这场没有这个项目" });
+  const seconds = parseClock(req.body && req.body.time);
+  if (seconds == null) return res.status(400).json({ error: "成绩写成 45:30 或 3:29:59" });
+  const story = String((req.body && req.body.story) || "").trim();
+  if (story.length > 200) return res.status(400).json({ error: "故事最多 200 字" });
+  const now = new Date().toISOString();
+  const db = getDb();
+  db.transaction(() => {
+    db.prepare(
+      `INSERT INTO results (user_id, race_id, distance, seconds, story, updated_at) VALUES (?, ?, ?, ?, ?, ?)
+       ON CONFLICT(user_id, race_id) DO UPDATE SET
+         distance = excluded.distance,
+         seconds = excluded.seconds,
+         story = excluded.story,
+         updated_at = excluded.updated_at`
+    ).run(user.id, race.id, distance, seconds, story, now);
+    db.prepare(
+      `INSERT INTO plans (user_id, race_id, status, updated_at) VALUES (?, ?, ?, ?)
+       ON CONFLICT(user_id, race_id) DO UPDATE SET status = excluded.status, updated_at = excluded.updated_at`
+    ).run(user.id, race.id, "完赛", now);
+  })();
+  const results = resultsFor(user.id);
+  res.json({
+    ok: true,
+    result: results.find((item) => item.race.id === race.id) || null,
+    career: careerOf(results, yearOf(new Date()))
+  });
+});
+
+app.delete(BASE + "/api/me/races/:id/result", (req, res) => {
+  const user = requireUser(req, res);
+  if (!user) return;
+  const race = getDb().prepare("SELECT id FROM races WHERE id = ?").get(req.params.id);
+  if (!race) return res.status(404).json({ error: "没有这场比赛" });
+  getDb().prepare("DELETE FROM results WHERE user_id = ? AND race_id = ?").run(user.id, race.id);
+  const results = resultsFor(user.id);
+  res.json({ ok: true, career: careerOf(results, yearOf(new Date())) });
 });
 
 app.post(BASE + "/api/clubs", (req, res) => {

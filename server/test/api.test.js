@@ -142,3 +142,58 @@ test("two full marathons a week apart are flagged, and finish status is allowed"
   assert.ok(Array.isArray(open.body.reminders));
   assert.equal(open.body.conflicts.length, 0);
 });
+
+test("a finish time becomes the career PB, footprint, and this year's race distance", async () => {
+  const anon = await request(app).put("/marathon/api/me/races/bishan/result").send({ distance: "full", time: "3:30:00" });
+  assert.equal(anon.status, 401);
+
+  const token = await session("记成绩");
+  const auth = { Authorization: "Bearer " + token };
+  const badTime = await request(app).put("/marathon/api/me/races/bishan/result").set(auth).send({ distance: "full", time: "很快" });
+  assert.equal(badTime.status, 400);
+  const badDistance = await request(app).put("/marathon/api/me/races/yuxi/result").set(auth).send({ distance: "10k", time: "45:30" });
+  assert.equal(badDistance.status, 400);
+  const longStory = await request(app)
+    .put("/marathon/api/me/races/bishan/result")
+    .set(auth)
+    .send({ distance: "full", time: "3:30:00", story: "事".repeat(201) });
+  assert.equal(longStory.status, 400);
+
+  const full = await request(app)
+    .put("/marathon/api/me/races/bishan/result")
+    .set(auth)
+    .send({ distance: "full", time: "3:30:00", story: "后程稳住了" });
+  assert.equal(full.status, 200);
+  assert.equal(full.body.result.clock, "3:30:00");
+  assert.equal(full.body.result.pb, true);
+  assert.equal(full.body.result.pace, "4'59\"");
+  assert.equal(full.body.result.story, "后程稳住了");
+
+  const half = await request(app).put("/marathon/api/me/races/yuxi/result").set(auth).send({ distance: "half", time: "1:45:00" });
+  assert.equal(half.status, 200);
+  const older = await request(app).put("/marathon/api/me/races/closed-sample/result").set(auth).send({ distance: "full", time: "4:10:00" });
+  assert.equal(older.status, 200);
+
+  const me = await request(app).get("/marathon/api/me").set(auth);
+  assert.equal(me.body.career.finished, 3);
+  assert.equal(me.body.career.pb.full, "3:30:00");
+  assert.equal(me.body.career.pb.half, "1:45:00");
+  assert.equal(me.body.career.yearKm, 63.29);
+  assert.deepEqual(me.body.career.provinces.sort(), ["云南", "浙江", "重庆"].sort());
+  assert.equal(me.body.plans.find((item) => item.race.id === "bishan").status, "完赛");
+  const saved = me.body.results.find((item) => item.race.id === "closed-sample");
+  assert.equal(saved.pb, false);
+  assert.equal(saved.race.kind, "road");
+
+  const faster = await request(app).put("/marathon/api/me/races/songshanhu/result").set(auth).send({ distance: "full", time: "3:10:00" });
+  assert.equal(faster.status, 200);
+  assert.equal(faster.body.result.pb, true);
+  assert.equal(faster.body.career.pb.full, "3:10:00");
+  const detail = await request(app).get("/marathon/api/races/bishan").set(auth);
+  assert.equal(detail.body.myResult.pb, false);
+  assert.equal(detail.body.myStatus, "完赛");
+
+  const removed = await request(app).delete("/marathon/api/me/races/closed-sample/result").set(auth);
+  assert.equal(removed.status, 200);
+  assert.equal(removed.body.career.finished, 3);
+});

@@ -5,6 +5,8 @@ Page({
     nickname: "",
     draft: "",
     plans: [],
+    results: [],
+    career: { finished: 0, provinces: [], cities: [], pb: { full: "", half: "" }, yearKm: 0 },
     conflicts: [],
     reminders: [],
     loaded: false,
@@ -36,9 +38,12 @@ Page({
     request("/me")
       .then((data) => {
         const plans = (data.plans || []).map((item) => ({ ...item, raceId: item.race.id }));
+        const results = (data.results || []).map((item) => ({ ...item, raceId: item.race.id }));
         const reminders = (data.reminders || []).map((item) => ({ ...item, key: item.race.id + item.hit.key }));
         this.setData({
           plans,
+          results,
+          career: data.career || this.data.career,
           reminders,
           conflicts: data.conflicts || [],
           nickname: data.user.nickname,

@@ -57,6 +57,15 @@ function open() {
       joined_at TEXT NOT NULL,
       PRIMARY KEY (club_id, user_id)
     );
+    CREATE TABLE IF NOT EXISTS results (
+      user_id INTEGER NOT NULL,
+      race_id TEXT NOT NULL,
+      distance TEXT NOT NULL,
+      seconds INTEGER NOT NULL,
+      story TEXT NOT NULL DEFAULT '',
+      updated_at TEXT NOT NULL,
+      PRIMARY KEY (user_id, race_id)
+    );
   `);
   for (const [name, type] of [
     ["reg_start", "TEXT NOT NULL DEFAULT ''"],

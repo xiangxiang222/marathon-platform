@@ -37,6 +37,29 @@
       </div>
       <p v-if="message" class="err">{{ message }}</p>
     </div>
+    <div v-if="ready && race" class="block">
+      <h2>成绩</h2>
+      <p v-if="myResult" class="src">{{ myResult.distanceLabel }} {{ myResult.clock }} · 配速 {{ myResult.pace }}<template v-if="myResult.pb"> · PB</template></p>
+      <p v-if="myResult && myResult.story">{{ myResult.story }}</p>
+      <div class="statuses">
+        <button
+          v-for="(label, i) in race.distanceLabels"
+          :key="race.distances[i]"
+          type="button"
+          class="status"
+          :class="{ on: distance === race.distances[i] }"
+          @click="distance = race.distances[i]"
+        >
+          {{ label }}
+        </button>
+      </div>
+      <form class="result-form" @submit.prevent="saveResult">
+        <input v-model="clock" placeholder="3:29:59" />
+        <input v-model="story" maxlength="200" placeholder="这场想记的一句" />
+        <button class="primary" type="submit">记下成绩</button>
+      </form>
+      <p v-if="resultMessage" class="err">{{ resultMessage }}</p>
+    </div>
     <div v-for="club in clubs" :key="club.id" class="block">
       <h2>{{ club.name }}</h2>
       <div v-if="!club.mates.length" class="empty">团里还没人标这场</div>
@@ -61,8 +84,13 @@ const myStatus = ref("");
 const clubs = ref([]);
 const cards = ref([]);
 const conflicts = ref([]);
+const myResult = ref(null);
+const distance = ref("");
+const clock = ref("");
+const story = ref("");
 const ready = ref(!!localStorage.getItem("marathon_token"));
 const message = ref("");
+const resultMessage = ref("");
 const note = ref("");
 const copyError = ref("");
 
@@ -74,6 +102,27 @@ async function load() {
   clubs.value = data.clubs;
   cards.value = data.cards || [];
   conflicts.value = data.conflicts || [];
+  myResult.value = data.myResult || null;
+  if (data.myResult) {
+    distance.value = data.myResult.distance;
+    clock.value = data.myResult.clock;
+    story.value = data.myResult.story || "";
+  } else if (!distance.value && data.race.distances.length) {
+    distance.value = data.race.distances[0];
+  }
+}
+
+async function saveResult() {
+  resultMessage.value = "";
+  try {
+    await api("/me/races/" + route.params.id + "/result", {
+      method: "PUT",
+      body: JSON.stringify({ distance: distance.value, time: clock.value, story: story.value })
+    });
+    await load();
+  } catch (err) {
+    resultMessage.value = err.message;
+  }
 }
 
 async function copyCard(card) {
@@ -109,4 +158,6 @@ onMounted(load);
 .warn { margin: 10px 0 0; color: #9a5b12; font-size: 13px; line-height: 1.45; }
 .copy-err { padding: 0 16px; }
 .primary { margin-top: 8px; }
+.result-form { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+.result-form input { height: 36px; border: 1px solid #e6e8ec; border-radius: 8px; padding: 0 10px; background: #fff; }
 </style>
