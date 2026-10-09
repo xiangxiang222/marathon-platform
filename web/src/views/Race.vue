@@ -62,6 +62,7 @@
     </div>
     <div v-for="club in clubs" :key="club.id" class="block">
       <h2>{{ club.name }}</h2>
+      <p v-if="squadLine(club)" class="warn">{{ squadLine(club) }}</p>
       <div v-if="!club.mates.length" class="empty">团里还没人标这场</div>
       <div v-for="mate in club.mates" :key="mate.nickname" class="mate">
         <span>{{ mate.nickname }}</span><b>{{ mate.status }}</b>
@@ -123,6 +124,11 @@ async function saveResult() {
   } catch (err) {
     resultMessage.value = err.message;
   }
+}
+
+function squadLine(club) {
+  const card = cards.value.find((item) => item.club && item.club.id === club.id);
+  return card && card.squad ? card.squad.text : "";
 }
 
 async function copyCard(card) {

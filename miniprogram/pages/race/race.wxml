@@ -65,6 +65,7 @@
 
   <view wx:for="{{clubs}}" wx:key="id" class="card">
     <view class="h2">{{item.name}}</view>
+    <view wx:if="{{item.squadText}}" class="warn">{{item.squadText}}</view>
     <view wx:if="{{!item.mates.length}}" class="muted">团里还没人标这场</view>
     <view wx:for="{{item.mates}}" wx:for-item="mate" wx:key="nickname" class="row">
       <text>{{mate.nickname}}</text><text>{{mate.status}}</text>

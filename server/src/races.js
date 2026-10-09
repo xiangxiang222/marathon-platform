@@ -190,6 +190,18 @@ function buildNodes(row, now) {
 }
 
 const ENTERED = ["已报名", "待抽签", "中签", "未中签", "已缴费", "已领物", "完赛", "未完赛", "弃赛"];
+const GOING = ["已报名", "待抽签", "中签", "已缴费", "已领物"];
+
+function squadOf(marks) {
+  const list = marks || [];
+  const going = list.filter((mark) => GOING.includes(mark.status));
+  const interested = list.filter((mark) => mark.status === "想跑");
+  let text = "";
+  if (going.length >= 2) text = going.length + " 人可以一起去";
+  else if (going.length === 1) text = "还差一个人就能凑一队";
+  else if (interested.length) text = interested.length + " 人想跑，还没人报名";
+  return { going, interested, size: going.length, ready: going.length >= 2, text };
+}
 
 function summarizeMarks(counts) {
   const entered = ENTERED.reduce((sum, key) => sum + (counts[key] || 0), 0);
@@ -253,6 +265,10 @@ function shareText(card) {
     .filter(Boolean);
   const lines = [card.title, card.summary];
   if (names.length) lines.push("还没缴：" + names.join("、"));
+  if (card.squad && card.squad.ready) {
+    const who = card.squad.going.map((mark) => mark.nickname).filter(Boolean);
+    if (who.length) lines.push("可以一起去：" + who.join("、"));
+  }
   if (card.club && card.club.code) lines.push("跑团口令 " + card.club.code);
   lines.push("打开赛历小程序，标一下你这场的状态。");
   return lines.join("\n");
@@ -303,6 +319,7 @@ module.exports = {
   deadlineMeta,
   presentRace,
   summarizeMarks,
+  squadOf,
   cardTitle,
   shareText,
   reminderHits,

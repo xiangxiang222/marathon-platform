@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const express = require("express");
 const { getDb } = require("./db");
-const { presentRace, summarizeMarks, cardTitle, shareText, reminderHits, fullConflicts } = require("./races");
+const { presentRace, summarizeMarks, cardTitle, shareText, reminderHits, fullConflicts, squadOf } = require("./races");
 const { parseClock, decorateResults, careerOf, yearOf } = require("./career");
 
 function loadEnv() {
@@ -54,7 +54,8 @@ function packCard(race, club, marks) {
     summary: summarizeMarks(counts),
     counts,
     marks,
-    unpaid: marks.filter((mark) => mark.status === "中签").map((mark) => ({ nickname: mark.nickname }))
+    unpaid: marks.filter((mark) => mark.status === "中签").map((mark) => ({ nickname: mark.nickname })),
+    squad: squadOf(marks)
   };
   card.text = shareText(card);
   return card;
@@ -384,6 +385,7 @@ app.get(BASE + "/api/clubs/:id", (req, res) => {
     item.summary = summarizeMarks(counts);
     item.title = cardTitle(item.race);
     item.unpaid = item.marks.filter((mark) => mark.status === "中签").map((mark) => mark.nickname);
+    item.squad = squadOf(item.marks);
     item.text = shareText({ ...item, club });
   }
   res.json({ club, members, board });
