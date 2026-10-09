@@ -66,6 +66,14 @@ function open() {
       updated_at TEXT NOT NULL,
       PRIMARY KEY (user_id, race_id)
     );
+    CREATE TABLE IF NOT EXISTS checkins (
+      club_id INTEGER NOT NULL,
+      user_id INTEGER NOT NULL,
+      day TEXT NOT NULL,
+      note TEXT NOT NULL DEFAULT '',
+      created_at TEXT NOT NULL,
+      PRIMARY KEY (club_id, user_id, day)
+    );
   `);
   for (const [name, type] of [
     ["reg_start", "TEXT NOT NULL DEFAULT ''"],

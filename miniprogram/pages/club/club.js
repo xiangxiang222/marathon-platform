@@ -1,7 +1,7 @@
 const { request } = require("../../utils/request");
 
 Page({
-  data: { club: null, members: [], board: [], ranks: [], message: "" },
+  data: { club: null, members: [], board: [], ranks: [], checkins: [], checkedIn: false, note: "", checkMessage: "", message: "" },
   onLoad(query) {
     this.clubId = query.id;
     this.pending = null;
@@ -35,8 +35,31 @@ Page({
           alternatives: item.alternatives || [],
           alternativeNote: item.alternativeNote || ""
         }));
-        this.setData({ club: data.club, members: data.members || [], board, ranks: data.ranks || [], message: "" });
+        this.setData({
+          club: data.club,
+          members: data.members || [],
+          board,
+          ranks: data.ranks || [],
+          checkins: data.checkins || [],
+          checkedIn: !!data.checkedIn,
+          note: data.myNote || "",
+          checkMessage: "",
+          message: ""
+        });
       })
       .catch((err) => this.setData({ message: err.message }));
+  },
+  onNote(e) {
+    this.setData({ note: e.detail.value });
+  },
+  checkIn() {
+    request("/clubs/" + this.clubId + "/checkins", "POST", { note: this.data.note })
+      .then((data) => this.setData({ checkins: data.checkins || [], checkedIn: !!data.checkedIn, note: data.myNote || "", checkMessage: "" }))
+      .catch((err) => this.setData({ checkMessage: err.message }));
+  },
+  undoCheckin() {
+    request("/clubs/" + this.clubId + "/checkins", "DELETE")
+      .then((data) => this.setData({ checkins: data.checkins || [], checkedIn: !!data.checkedIn, note: data.myNote || "", checkMessage: "" }))
+      .catch((err) => this.setData({ checkMessage: err.message }));
   }
 });

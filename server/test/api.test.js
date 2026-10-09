@@ -2,6 +2,7 @@ const test = require("node:test");
 const assert = require("node:assert");
 const request = require("supertest");
 const { app } = require("../src/index");
+const { getDb } = require("../src/db");
 const { RACES, presentRace, reminderHits, nearbyOpen } = require("../src/races");
 
 async function session(nickname) {
@@ -321,5 +322,61 @@ test("a club ranks each member's best full and half", async () => {
 
   const outsider = await session("榜外");
   const denied = await request(app).get("/marathon/api/clubs/" + created.body.club.id).set("Authorization", "Bearer " + outsider);
+  assert.equal(denied.status, 403);
+});
+
+test("a club check-in records who showed up today and keeps yesterday", async () => {
+  const leader = await session("团长签");
+  const mate = await session("队友签");
+  const auth = { Authorization: "Bearer " + leader };
+  const created = await request(app).post("/marathon/api/clubs").set(auth).send({ name: "签到跑团" });
+  const clubId = created.body.club.id;
+  await request(app).post("/marathon/api/clubs/join").set("Authorization", "Bearer " + mate).send({ code: created.body.club.code });
+
+  const first = await request(app).post("/marathon/api/clubs/" + clubId + "/checkins").set(auth).send({ note: "夜跑" });
+  assert.equal(first.status, 200);
+  assert.equal(first.body.checkedIn, true);
+  assert.equal(first.body.checkins[0].label, "今天");
+  assert.deepEqual(first.body.checkins[0].rows[0], {
+    userId: first.body.checkins[0].rows[0].userId,
+    nickname: "团长签",
+    note: "夜跑",
+    mine: true
+  });
+  assert.equal(JSON.stringify(first.body.checkins).includes("公里"), false);
+
+  const again = await request(app).post("/marathon/api/clubs/" + clubId + "/checkins").set(auth).send({ note: "轻松跑" });
+  assert.equal(again.body.checkins[0].rows.length, 1);
+  assert.equal(again.body.checkins[0].rows[0].note, "轻松跑");
+
+  const mateIn = await request(app)
+    .post("/marathon/api/clubs/" + clubId + "/checkins")
+    .set("Authorization", "Bearer " + mate)
+    .send({ note: "" });
+  assert.equal(mateIn.body.checkins[0].rows.length, 2);
+
+  const long = await request(app).post("/marathon/api/clubs/" + clubId + "/checkins").set(auth).send({ note: "一".repeat(41) });
+  assert.equal(long.status, 400);
+
+  const leaderRow = getDb().prepare("SELECT id FROM users WHERE token = ?").get(leader);
+  const today = again.body.checkins[0].date;
+  const [y, m, d] = today.split("-").map(Number);
+  const yesterday = new Date(Date.UTC(y, m - 1, d - 1)).toISOString().slice(0, 10);
+  getDb()
+    .prepare("INSERT INTO checkins (club_id, user_id, day, note, created_at) VALUES (?, ?, ?, ?, ?)")
+    .run(clubId, leaderRow.id, yesterday, "昨天到了", "2026-10-08T02:00:00.000Z");
+
+  const board = await request(app).get("/marathon/api/clubs/" + clubId).set(auth);
+  assert.equal(board.body.checkins[0].label, "今天");
+  assert.equal(board.body.checkins[1].label, "昨天");
+  assert.equal(board.body.checkins[1].rows[0].note, "昨天到了");
+
+  const undone = await request(app).delete("/marathon/api/clubs/" + clubId + "/checkins").set(auth);
+  assert.equal(undone.body.checkedIn, false);
+  assert.equal(undone.body.checkins.some((day) => day.label === "今天" && day.rows.some((row) => row.nickname === "团长签")), false);
+  assert.equal(undone.body.checkins.some((day) => day.label === "昨天"), true);
+
+  const outsider = await session("签外");
+  const denied = await request(app).post("/marathon/api/clubs/" + clubId + "/checkins").set("Authorization", "Bearer " + outsider).send({ note: "路过" });
   assert.equal(denied.status, 403);
 });

@@ -6,6 +6,24 @@
       <text wx:for="{{members}}" wx:key="id" class="chip">{{item.nickname}}</text>
     </view>
   </view>
+  <view class="card">
+    <view class="h2">团练签到</view>
+    <view class="src">只记今天谁到了，不记公里。</view>
+    <view class="field">
+      <input placeholder="可写一句，比如夜跑" value="{{note}}" maxlength="40" bindinput="onNote" />
+    </view>
+    <button class="btn" bindtap="checkIn">{{checkedIn ? '改一句' : '签到'}}</button>
+    <button wx:if="{{checkedIn}}" class="ghost" bindtap="undoCheckin">撤销今天</button>
+    <view wx:if="{{!checkins.length}}" class="src">今天还没有人签到。</view>
+    <view wx:for="{{checkins}}" wx:for-item="day" wx:key="date">
+      <view class="src">{{day.label}}</view>
+      <view wx:for="{{day.rows}}" wx:for-item="row" wx:key="userId" class="row">
+        <text>{{row.nickname}}</text>
+        <text>{{row.note}}</text>
+      </view>
+    </view>
+    <view wx:if="{{checkMessage}}" class="err">{{checkMessage}}</view>
+  </view>
   <view class="card" wx:if="{{ranks.length}}">
     <view class="h2">团内成绩</view>
     <view class="src">每人每项只留最好的一场。</view>
