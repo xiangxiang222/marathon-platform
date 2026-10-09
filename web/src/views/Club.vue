@@ -8,6 +8,24 @@
         <span v-for="member in members" :key="member.id">{{ member.nickname }}</span>
       </div>
     </div>
+    <div v-if="club" class="block">
+      <h2>团练签到</h2>
+      <p class="rank-label">只记今天谁到了，不记公里。</p>
+      <form class="check-form" @submit.prevent="checkIn">
+        <input v-model="checkNote" maxlength="40" placeholder="可写一句，比如夜跑" />
+        <button class="primary" type="submit">{{ checkedIn ? "改一句" : "签到" }}</button>
+      </form>
+      <button v-if="checkedIn" class="undo" type="button" @click="undoCheckin">撤销今天</button>
+      <p v-if="!checkins.length" class="rank-label">今天还没有人签到。</p>
+      <div v-for="day in checkins" :key="day.date">
+        <p class="rank-label">{{ day.label }}</p>
+        <div v-for="row in day.rows" :key="day.date + '-' + row.userId" class="mate">
+          <span>{{ row.nickname }}</span>
+          <b>{{ row.note }}</b>
+        </div>
+      </div>
+      <p v-if="checkMessage" class="err">{{ checkMessage }}</p>
+    </div>
     <div v-if="ranks.length" class="block">
       <h2>团内成绩</h2>
       <p class="rank-label">每人每项只留最好的一场。</p>
@@ -56,8 +74,41 @@ const club = ref(null);
 const members = ref([]);
 const board = ref([]);
 const ranks = ref([]);
+const checkins = ref([]);
+const checkedIn = ref(false);
+const checkNote = ref("");
+const checkMessage = ref("");
 const message = ref("");
 const note = ref("");
+
+function applyCheckins(data) {
+  checkins.value = data.checkins || [];
+  checkedIn.value = Boolean(data.checkedIn);
+  checkNote.value = data.myNote || "";
+}
+
+async function checkIn() {
+  checkMessage.value = "";
+  try {
+    const data = await api("/clubs/" + route.params.id + "/checkins", {
+      method: "POST",
+      body: JSON.stringify({ note: checkNote.value })
+    });
+    applyCheckins(data);
+  } catch (err) {
+    checkMessage.value = err.message;
+  }
+}
+
+async function undoCheckin() {
+  checkMessage.value = "";
+  try {
+    const data = await api("/clubs/" + route.params.id + "/checkins", { method: "DELETE" });
+    applyCheckins(data);
+  } catch (err) {
+    checkMessage.value = err.message;
+  }
+}
 
 async function copyCard(card) {
   note.value = "";
@@ -77,6 +128,7 @@ onMounted(async () => {
     members.value = data.members;
     board.value = data.board;
     ranks.value = data.ranks || [];
+    applyCheckins(data);
   } catch (err) {
     message.value = err.message;
   }
@@ -91,4 +143,7 @@ onMounted(async () => {
 .note { font-size: 12px; }
 .note { color: #12b3ae; padding: 0 16px; }
 .primary { margin-top: 8px; }
+.check-form { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+.check-form input { height: 36px; border: 1px solid #e6e8ec; border-radius: 8px; padding: 0 10px; background: #fff; }
+.undo { margin-top: 8px; height: 32px; padding: 0 12px; background: transparent; color: #8d949c; }
 </style>

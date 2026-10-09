@@ -135,6 +135,54 @@ function requireUser(req, res) {
   return user;
 }
 
+function cstDay(date = new Date()) {
+  const shifted = new Date(date.getTime() + 8 * 3600 * 1000);
+  const y = shifted.getUTCFullYear();
+  const m = String(shifted.getUTCMonth() + 1).padStart(2, "0");
+  const d = String(shifted.getUTCDate()).padStart(2, "0");
+  return `${y}-${m}-${d}`;
+}
+
+function shiftDay(day, delta) {
+  const [y, m, d] = day.split("-").map(Number);
+  return new Date(Date.UTC(y, m - 1, d + delta)).toISOString().slice(0, 10);
+}
+
+function dayLabel(day, today) {
+  if (day === today) return "今天";
+  if (day === shiftDay(today, -1)) return "昨天";
+  return day;
+}
+
+function checkinsOf(clubId, userId) {
+  const today = cstDay();
+  const rows = getDb()
+    .prepare(
+      `SELECT u.nickname, c.user_id, c.day, c.note
+       FROM checkins c
+       JOIN users u ON u.id = c.user_id
+       WHERE c.club_id = ? AND c.day >= ?
+       ORDER BY c.day DESC, c.created_at`
+    )
+    .all(clubId, shiftDay(today, -13));
+  const checkins = [];
+  for (const row of rows) {
+    let group = checkins.find((item) => item.date === row.day);
+    if (!group) {
+      group = { date: row.day, label: dayLabel(row.day, today), rows: [] };
+      checkins.push(group);
+    }
+    group.rows.push({
+      userId: row.user_id,
+      nickname: row.nickname,
+      note: row.note,
+      mine: row.user_id === userId
+    });
+  }
+  const mine = rows.find((row) => row.user_id === userId && row.day === today);
+  return { checkins, checkedIn: Boolean(mine), myNote: mine ? mine.note : "" };
+}
+
 app.get(BASE + "/api/meta", (_req, res) => {
   res.json({ company: COMPANY, icp: ICP, product: "赛历" });
 });
@@ -434,7 +482,40 @@ app.get(BASE + "/api/clubs/:id", (req, res) => {
         race: { id: race.id, name: race.name, raceDate: race.raceDate }
       };
     });
-  res.json({ club, members, board, ranks: bestRanks(rankRows) });
+  res.json({ club, members, board, ranks: bestRanks(rankRows), ...checkinsOf(club.id, user.id) });
+});
+
+app.post(BASE + "/api/clubs/:id/checkins", (req, res) => {
+  const user = requireUser(req, res);
+  if (!user) return;
+  const member = getDb()
+    .prepare("SELECT 1 FROM club_members WHERE club_id = ? AND user_id = ?")
+    .get(req.params.id, user.id);
+  if (!member) return res.status(403).json({ error: "你不在这个跑团里" });
+  const note = String((req.body && req.body.note) || "").trim();
+  if (note.length > 40) return res.status(400).json({ error: "一句最多 40 个字" });
+  const day = cstDay();
+  getDb()
+    .prepare(
+      `INSERT INTO checkins (club_id, user_id, day, note, created_at)
+       VALUES (?, ?, ?, ?, ?)
+       ON CONFLICT(club_id, user_id, day) DO UPDATE SET note = excluded.note`
+    )
+    .run(req.params.id, user.id, day, note, new Date().toISOString());
+  res.json({ ok: true, ...checkinsOf(req.params.id, user.id) });
+});
+
+app.delete(BASE + "/api/clubs/:id/checkins", (req, res) => {
+  const user = requireUser(req, res);
+  if (!user) return;
+  const member = getDb()
+    .prepare("SELECT 1 FROM club_members WHERE club_id = ? AND user_id = ?")
+    .get(req.params.id, user.id);
+  if (!member) return res.status(403).json({ error: "你不在这个跑团里" });
+  getDb()
+    .prepare("DELETE FROM checkins WHERE club_id = ? AND user_id = ? AND day = ?")
+    .run(req.params.id, user.id, cstDay());
+  res.json({ ok: true, ...checkinsOf(req.params.id, user.id) });
 });
 
 const webDist = path.join(__dirname, "../../web/dist");
