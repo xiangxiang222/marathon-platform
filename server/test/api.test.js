@@ -3,7 +3,7 @@ const assert = require("node:assert");
 const request = require("supertest");
 const { app } = require("../src/index");
 const { getDb } = require("../src/db");
-const { syncOfficial, listOfficial } = require("../src/official");
+const { syncOfficial, listOfficial, openUpcoming } = require("../src/official");
 const { RACES, presentRace, reminderHits, nearbyOpen } = require("../src/races");
 
 async function session(nickname) {
@@ -533,4 +533,27 @@ test("each edition keeps its own race website, and a later change stays out of t
   assert.equal(missed.changed, 0);
   const kept = listOfficial(getDb(), { q: "2026网站测试" }).find((row) => row.officialId === "9001");
   assert.equal(kept.webUrl, "https://example.com/2026");
+});
+
+test("upcoming official races show on the calendar without inventing a deadline", async () => {
+  const now = new Date("2026-10-09T10:00:00+08:00");
+  getDb()
+    .prepare(
+      `INSERT INTO official_races (
+         official_id, name, race_date, province, city, district, grade, distances, items, detail_url, seen_at, status
+       ) VALUES ('9100', '2026公开赛历测试', '2026-12-20', '浙江', '杭州', '西湖', 'A', 'full', '全程', 'https://www.runchina.org.cn/#/race/v/detail/9100', '2026-10-09T00:00:00.000Z', 'pending')`
+    )
+    .run();
+  const before = await request(app).get("/marathon/api/races/bishan");
+  const opened = openUpcoming(getDb(), now);
+  assert.ok(opened >= 1);
+  const listed = await request(app).get("/marathon/api/races?status=upcoming");
+  const created = listed.body.races.find((race) => race.id === "caa-9100");
+  assert.equal(created.regStatus, "报名时间未公布");
+  assert.equal(created.deadline, "");
+  assert.equal(created.city, "杭州");
+  const kept = await request(app).get("/marathon/api/races/bishan");
+  assert.equal(kept.body.race.deadline, before.body.race.deadline);
+  const hidden = await request(app).get("/marathon/api/races?status=open");
+  assert.equal(hidden.body.races.some((race) => race.id === "caa-9100"), false);
 });

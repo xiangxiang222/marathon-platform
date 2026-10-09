@@ -2,7 +2,7 @@
   <div class="page-title">看看</div>
   <div v-if="races.length" class="look-list">
     <router-link v-for="race in races" :key="race.id" class="look-card" :to="'/races/' + race.id">
-      <Poster :id="race.id" />
+      <Poster :id="race.id" :name="race.name" :city="race.city" :date="race.raceDate" />
       <h2><em>{{ race.regStatus }} </em>{{ race.name }}</h2>
       <div class="tags"><span v-for="tag in race.distanceLabels" :key="tag">{{ tag }}</span><span>{{ race.city }}</span></div>
       <div class="foot">

@@ -40,7 +40,7 @@
     <p v-if="club && !board.length && !ranks.length" class="empty">还没有人标比赛。打开一场，标上想跑或已报名。</p>
     <div v-for="item in board" :key="item.race.id" class="block">
       <router-link :to="'/races/' + item.race.id" class="card">
-        <Poster :id="item.race.id" />
+        <Poster :id="item.race.id" :name="item.race.name" :city="item.race.city" :date="item.race.raceDate" />
         <div class="copy">
           <p>{{ item.race.name }}</p>
           <div class="foot"><span>{{ item.race.raceDate }}</span><span>{{ item.race.deadlineLabel }}</span></div>

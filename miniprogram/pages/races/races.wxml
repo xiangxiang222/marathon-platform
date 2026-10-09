@@ -4,6 +4,7 @@
     <text class="go" bindtap="load">搜索</text>
   </view>
   <view class="filters">
+    <button class="ghost {{status === 'upcoming' ? 'on' : ''}}" data-status="upcoming" bindtap="setStatus">即将开赛</button>
     <button class="ghost {{status === 'open' ? 'on' : ''}}" data-status="open" bindtap="setStatus">报名中</button>
     <button class="ghost {{status === 'all' ? 'on' : ''}}" data-status="all" bindtap="setStatus">全部</button>
     <button class="ghost {{status === 'unannounced' ? 'on' : ''}}" data-status="unannounced" bindtap="setStatus">报名未公布</button>
