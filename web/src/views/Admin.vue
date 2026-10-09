@@ -13,7 +13,7 @@
     <template v-else>
       <div class="block">
         <h2>官网赛历</h2>
-        <p class="hint">只收名称、日期、地点、类别和项目。报名开始、出签、缴费截止要另写来源。已经在赛历里的场，报名时间不会被盖掉。</p>
+        <p class="hint">每一届单独存。中国马拉松官网这场一直有链接。赛事自己的网站，官网给了才记下；没给就空着，也不拿往年的网站来填。每天再对一次，名称、日期、主办、赛事网站有变会标出来。报名时间仍要另写来源，已经记下的截止时间不会被盖掉。</p>
         <form class="check-form" @submit.prevent="search">
           <input v-model="q" placeholder="向官网查名称，例如璧山" />
           <button class="primary" type="submit">查官网</button>
@@ -30,6 +30,14 @@
       <div v-for="row in rows" :key="row.officialId" class="block">
         <h2>{{ row.name }}</h2>
         <p class="hint">{{ row.raceDate }} · {{ row.province }} {{ row.city }} · {{ row.gradeLabel || "未标类别" }} · {{ row.items || "项目未写" }}</p>
+        <p v-if="row.organizer" class="hint">主办 {{ row.organizer }}</p>
+        <p v-if="row.scale" class="hint">规模 {{ row.scale }}</p>
+        <p v-if="row.webUrl" class="hint"><a :href="row.webUrl" target="_blank" rel="noopener">今年的赛事网站</a></p>
+        <p v-else class="hint">{{ row.webNote }}</p>
+        <p v-if="row.priorWeb && row.priorWeb.webUrl !== row.webUrl" class="hint">
+          <a :href="row.priorWeb.webUrl" target="_blank" rel="noopener">{{ row.priorWeb.raceDate.slice(0, 4) }} 届网站</a>
+        </p>
+        <p v-for="change in row.changes" :key="change.id" class="warn">{{ change.label }}：{{ change.oldValue || "空" }} → {{ change.newValue || "空" }}</p>
         <p v-if="row.match && !row.raceId" class="hint">赛历里已有这场：{{ row.match.name }}</p>
         <p v-if="row.diffNote" class="warn">{{ row.diffNote }}</p>
         <p class="hint"><a :href="row.detailUrl" target="_blank" rel="noopener">打开官网这场</a></p>
@@ -37,7 +45,7 @@
           {{ row.match ? "对上已有赛历" : "收入赛历" }}
         </button>
         <button v-if="row.status !== 'ignored'" class="undo" type="button" @click="ignore(row)">忽略</button>
-        <button v-if="row.diffNote" class="undo" type="button" @click="apply(row)">采用官网的名称和日期</button>
+        <button v-if="row.diffNote" class="undo" type="button" @click="apply(row)">采用官网这次的名称、日期和赛事网站</button>
         <router-link v-if="row.raceId" class="hint link" :to="'/races/' + row.raceId">打开赛历这场</router-link>
         <form v-if="row.raceId" class="check-form" @submit.prevent="saveNodes(row)">
           <input v-model="row.regStart" placeholder="报名开始 2026-09-07" />
@@ -68,6 +76,7 @@ const busy = ref(false);
 const ready = ref(false);
 const filters = [
   { label: "待确认", value: "pending" },
+  { label: "有变化", value: "changed" },
   { label: "已收入", value: "published" },
   { label: "已忽略", value: "ignored" }
 ];
@@ -119,6 +128,8 @@ async function search() {
     const data = await admin("/admin/official/sync", { method: "POST", body: JSON.stringify({ name: q.value }) });
     rows.value = (data.rows || []).map((row) => ({ ...row, regStart: "", deadline: "", drawAt: "", payDeadline: "", nodeSource: "" }));
     ready.value = true;
+    saved.value = true;
+    message.value = data.changed ? "官网有 " + data.changed + " 场和上次记下的不一样" : "已向官网对过，没有新的变化";
   } catch (err) {
     fail(err);
   } finally {

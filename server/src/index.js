@@ -541,11 +541,13 @@ app.get(BASE + "/api/admin/official", (req, res) => {
   if (!requireAdmin(req, res)) return;
   const q = String(req.query.q || "").trim();
   const status = String(req.query.status || "pending").trim();
+  const changedOnly = status === "changed";
   res.json({
     rows: listOfficial(getDb(), {
       q,
-      status: status === "all" ? "" : status,
-      upcomingFrom: q ? "" : cstDay()
+      status: changedOnly || status === "all" ? "" : status,
+      upcomingFrom: q ? "" : cstDay(),
+      changedOnly
     })
   });
 });
@@ -632,7 +634,7 @@ if (require.main === module) {
     if (!process.env.ADMIN_TOKEN) return;
     const pull = () => {
       syncOfficial(getDb(), { upcomingOnly: true }).then(
-        (saved) => console.log(`official calendar ${saved.count}`),
+        (saved) => console.log(`official calendar ${saved.count} changed ${saved.changed || 0}`),
         (err) => console.error("official calendar", err.message)
       );
     };

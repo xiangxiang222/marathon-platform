@@ -79,7 +79,20 @@ function open() {
       detail_url TEXT NOT NULL DEFAULT '',
       seen_at TEXT NOT NULL,
       status TEXT NOT NULL DEFAULT 'pending',
-      race_id TEXT NOT NULL DEFAULT ''
+      race_id TEXT NOT NULL DEFAULT '',
+      organizer TEXT NOT NULL DEFAULT '',
+      web_url TEXT NOT NULL DEFAULT '',
+      scale TEXT NOT NULL DEFAULT '',
+      detail_checked_at TEXT NOT NULL DEFAULT ''
+    );
+    CREATE TABLE IF NOT EXISTS official_changes (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      official_id TEXT NOT NULL,
+      field TEXT NOT NULL,
+      label TEXT NOT NULL,
+      old_value TEXT NOT NULL,
+      new_value TEXT NOT NULL,
+      seen_at TEXT NOT NULL
     );
     CREATE TABLE IF NOT EXISTS checkins (
       club_id INTEGER NOT NULL,
@@ -98,10 +111,21 @@ function open() {
     ["updated_at", "TEXT NOT NULL DEFAULT ''"],
     ["deadline_name", "TEXT NOT NULL DEFAULT ''"],
     ["grade", "TEXT NOT NULL DEFAULT ''"],
-    ["official_url", "TEXT NOT NULL DEFAULT ''"]
+    ["official_url", "TEXT NOT NULL DEFAULT ''"],
+    ["organizer", "TEXT NOT NULL DEFAULT ''"],
+    ["event_url", "TEXT NOT NULL DEFAULT ''"]
   ]) {
     const cols = handle.prepare("PRAGMA table_info(races)").all();
     if (!cols.some((col) => col.name === name)) handle.exec(`ALTER TABLE races ADD COLUMN ${name} ${type}`);
+  }
+  for (const [name, type] of [
+    ["organizer", "TEXT NOT NULL DEFAULT ''"],
+    ["web_url", "TEXT NOT NULL DEFAULT ''"],
+    ["scale", "TEXT NOT NULL DEFAULT ''"],
+    ["detail_checked_at", "TEXT NOT NULL DEFAULT ''"]
+  ]) {
+    const cols = handle.prepare("PRAGMA table_info(official_races)").all();
+    if (!cols.some((col) => col.name === name)) handle.exec(`ALTER TABLE official_races ADD COLUMN ${name} ${type}`);
   }
   const upsert = handle.prepare(
     `INSERT INTO races (

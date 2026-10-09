@@ -467,3 +467,70 @@ test("official races stay in review until published, and do not overwrite a know
   const denied = await request(app).post("/marathon/api/admin/official/sync").set("Authorization", "Bearer " + user).send({});
   assert.equal(denied.status, 401);
 });
+
+test("each edition keeps its own race website, and a later change stays out of the calendar until adopted", async () => {
+  process.env.ADMIN_TOKEN = "test-admin";
+  const admin = { Authorization: "Bearer test-admin" };
+  const details = {
+    "9001": { compNameOrganizer: "测试组委会", webUrl: "", scale: "5000" },
+    "9000": { compNameOrganizer: "去年组委会", webUrl: "https://example.com/2025", scale: "" },
+    "9002": { compNameOrganizer: "", webUrl: "javascript:alert(1)", scale: "" }
+  };
+  const pages = [[
+    { raceId: 9001, raceName: "2026网站测试马拉松", raceGrade: "A", raceTime: "2026-12-01", raceAddress: "浙江省/杭州市/西湖区", raceItem: '["全程"]' },
+    { raceId: 9000, raceName: "2025网站测试马拉松", raceGrade: "A", raceTime: "2025-12-01", raceAddress: "浙江省/杭州市/西湖区", raceItem: '["全程"]' },
+    { raceId: 9002, raceName: "2026没有网站马拉松", raceGrade: "B", raceTime: "2026-12-02", raceAddress: "江苏省/南京市/", raceItem: '["半程"]' }
+  ]];
+  const fetchImpl = async (url, init) => {
+    if (String(url).includes("searchById")) {
+      const id = String(JSON.parse(init.body).id);
+      const ssdetails = details[id];
+      return { ok: true, json: async () => ({ success: true, data: ssdetails ? { ssdetails } : {} }) };
+    }
+    return { ok: true, json: async () => ({ success: true, data: { results: pages[0], pageCount: 1, totalCount: pages[0].length } }) };
+  };
+  const now = new Date("2026-10-09T10:00:00+08:00");
+  const saved = await syncOfficial(getDb(), { fetchImpl, pauseMs: 0, upcomingOnly: false, now });
+  assert.equal(saved.changed, 0);
+  const current = listOfficial(getDb(), { q: "2026网站测试" }).find((row) => row.officialId === "9001");
+  assert.equal(current.webUrl, "");
+  assert.equal(current.organizer, "测试组委会");
+  assert.equal(current.priorWeb.webUrl, "https://example.com/2025");
+  assert.match(current.webNote, /不沿用/);
+  const none = listOfficial(getDb(), { q: "没有网站" }).find((row) => row.officialId === "9002");
+  assert.equal(none.webUrl, "");
+  assert.equal(none.priorWeb, null);
+  assert.match(none.webNote, /没有给赛事网站/);
+
+  const published = await request(app).post("/marathon/api/admin/official/9001/publish").set(admin).send({});
+  assert.equal(published.status, 200);
+  const race = await request(app).get("/marathon/api/races/" + published.body.raceId);
+  assert.equal(race.body.race.eventUrl, "");
+  assert.equal(race.body.race.organizer, "测试组委会");
+  assert.equal(race.body.race.deadline, "");
+
+  details["9001"] = { compNameOrganizer: "测试组委会", webUrl: "https://example.com/2026", scale: "5000" };
+  const again = await syncOfficial(getDb(), { fetchImpl, pauseMs: 0, upcomingOnly: false, now });
+  assert.equal(again.changed, 1);
+  const updated = listOfficial(getDb(), { q: "2026网站测试" }).find((row) => row.officialId === "9001");
+  assert.equal(updated.webUrl, "https://example.com/2026");
+  assert.equal(updated.changes.some((change) => change.label === "赛事网站" && change.newValue === "https://example.com/2026"), true);
+  assert.match(updated.diffNote, /example.com\/2026/);
+  const still = await request(app).get("/marathon/api/races/" + published.body.raceId);
+  assert.equal(still.body.race.eventUrl, "");
+
+  const applied = await request(app).post("/marathon/api/admin/official/9001/apply").set(admin).send({});
+  assert.equal(applied.body.changed, true);
+  const adopted = await request(app).get("/marathon/api/races/" + published.body.raceId);
+  assert.equal(adopted.body.race.eventUrl, "https://example.com/2026");
+  assert.equal(adopted.body.race.organizer, "测试组委会");
+  assert.equal(adopted.body.race.deadline, "");
+
+  const quiet = await syncOfficial(getDb(), { fetchImpl, pauseMs: 0, upcomingOnly: false, now });
+  assert.equal(quiet.changed, 0);
+  delete details["9001"];
+  const missed = await syncOfficial(getDb(), { fetchImpl, pauseMs: 0, upcomingOnly: false, now });
+  assert.equal(missed.changed, 0);
+  const kept = listOfficial(getDb(), { q: "2026网站测试" }).find((row) => row.officialId === "9001");
+  assert.equal(kept.webUrl, "https://example.com/2026");
+});
