@@ -558,6 +558,24 @@ test("upcoming official races show on the calendar without inventing a deadline"
   assert.equal(hidden.body.races.some((race) => race.id === "caa-9100"), false);
 });
 
+test("october 2026 lunar labels match the race calendar", async () => {
+  const { lunarLabel } = await import("../../web/src/lunar.js");
+  assert.equal(lunarLabel(2026, 10, 1), "廿一");
+  assert.equal(lunarLabel(2026, 10, 9), "廿九");
+  assert.equal(lunarLabel(2026, 10, 10), "九月");
+  assert.equal(lunarLabel(2026, 10, 11), "初二");
+  assert.equal(lunarLabel(2026, 2, 17), "正月");
+});
+
+test("a calendar month lists races on their race day", async () => {
+  const res = await request(app).get("/marathon/api/races?status=all&month=2026-11");
+  assert.equal(res.status, 200);
+  const bishan = res.body.races.find((race) => race.id === "bishan");
+  assert.equal(bishan.raceDate, "2026-11-15");
+  const other = await request(app).get("/marathon/api/races?status=all&month=2026-10");
+  assert.equal(other.body.races.some((race) => race.id === "bishan"), false);
+});
+
 test("admin signs in with a username and password", async () => {
   process.env.ADMIN_USER = "admin";
   process.env.ADMIN_PASSWORD = "test-pass-8";

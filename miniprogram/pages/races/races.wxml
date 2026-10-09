@@ -1,4 +1,5 @@
 <view class="pad">
+  <navigator class="cal-entry" url="/pages/calendar/calendar">赛事日历</navigator>
   <view class="search">
     <input placeholder="搜索赛事名称" value="{{q}}" bindinput="onQ" bindconfirm="load" confirm-type="search" />
     <text class="go" bindtap="load">搜索</text>

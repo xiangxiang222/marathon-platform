@@ -6,11 +6,13 @@ import Look from "./views/Look.vue";
 import Club from "./views/Club.vue";
 import Mine from "./views/Mine.vue";
 import Admin from "./views/Admin.vue";
+import Calendar from "./views/Calendar.vue";
 
 export default createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     { path: "/", component: Home },
+    { path: "/calendar", component: Calendar, meta: { hideTab: true } },
     { path: "/races/:id", component: Race, meta: { hideTab: true } },
     { path: "/sport", component: Sport },
     { path: "/look", component: Look },

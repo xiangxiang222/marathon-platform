@@ -1,3 +1,4 @@
+.cal-entry { display: block; margin-bottom: 16rpx; padding: 20rpx 24rpx; border-radius: 16rpx; background: #fff6f2; color: #1c1c1e; font-weight: 650; }
 .search { display: flex; align-items: center; height: 72rpx; background: #fff; border-radius: 36rpx; padding: 0 24rpx; margin-bottom: 16rpx; }
 .search input { flex: 1; height: 72rpx; }
 .search .go { color: #8e949c; padding-left: 20rpx; border-left: 1rpx solid #e6e8ec; line-height: 28rpx; }
