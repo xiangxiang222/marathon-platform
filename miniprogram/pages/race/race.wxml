@@ -48,6 +48,21 @@
     <view wx:if="{{message}}" class="err">{{message}}</view>
   </view>
 
+  <view class="card result" wx:if="{{ready}}">
+    <view class="h2">成绩</view>
+    <view wx:if="{{myResult}}" class="sum">{{myResult.distanceLabel}} {{myResult.clock}} · 配速 {{myResult.pace}}<text wx:if="{{myResult.pb}}"> · PB</text></view>
+    <view wx:if="{{myResult.story}}" class="src">{{myResult.story}}</view>
+    <button wx:for="{{distanceOptions}}" wx:key="key" class="ghost {{distance === item.key ? 'on' : ''}}" data-distance="{{item.key}}" bindtap="pickDistance">{{item.label}}</button>
+    <view class="field">
+      <input placeholder="3:29:59" value="{{clock}}" bindinput="onClock" />
+    </view>
+    <view class="field">
+      <input placeholder="这场想记的一句" value="{{story}}" maxlength="200" bindinput="onStory" />
+    </view>
+    <button class="btn" bindtap="saveResult">记下成绩</button>
+    <view wx:if="{{resultMessage}}" class="err">{{resultMessage}}</view>
+  </view>
+
   <view wx:for="{{clubs}}" wx:key="id" class="card">
     <view class="h2">{{item.name}}</view>
     <view wx:if="{{!item.mates.length}}" class="muted">团里还没人标这场</view>

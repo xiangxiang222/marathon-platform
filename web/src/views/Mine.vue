@@ -66,6 +66,45 @@
       <button type="button" :class="{ on: tab === 'time' }" @click="tab = 'time'">时光轴<svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="5.5" /><path d="M8 5v3.2L10.2 10" /></svg></button>
     </div>
 
+    <div v-if="tab === 'honor'" class="career">
+      <div v-if="years.length" class="chips">
+        <button type="button" :class="{ on: mapYear === '' }" @click="mapYear = ''">全部</button>
+        <button v-for="year in years" :key="year" type="button" :class="{ on: mapYear === year }" @click="mapYear = year">{{ year }}</button>
+      </div>
+      <div v-if="litPlaces.length" class="chips">
+        <span v-for="name in litPlaces" :key="name" class="lit">{{ name }}</span>
+      </div>
+      <div v-if="litCards.length" class="scroll">
+        <router-link v-for="item in litCards" :key="item.race.id" :to="'/races/' + item.race.id">
+          <b>{{ item.clock }}</b>
+          <span>{{ item.race.city }} · {{ item.race.raceDate }}</span>
+          {{ item.race.name }}
+        </router-link>
+      </div>
+      <div v-for="group in honorGroups" :key="group.year" class="marks">
+        <p class="year">{{ group.year }}</p>
+        <router-link v-for="item in group.items" :key="item.race.id" :to="'/races/' + item.race.id">
+          <b>{{ item.clock }}</b>{{ item.race.name }}<span v-if="item.pb" class="pb"> PB</span>
+        </router-link>
+      </div>
+      <p v-if="!results.length" class="quiet">在赛事页记下成绩后，会出现在这里</p>
+    </div>
+    <p v-else-if="tab === 'photo'" class="quiet">还没有影像</p>
+    <div v-else-if="tab === 'time'" class="career">
+      <div class="chips">
+        <button type="button" :class="{ on: kindFilter === 'all' }" @click="kindFilter = 'all'">全部</button>
+        <button type="button" :class="{ on: kindFilter === 'road' }" @click="kindFilter = 'road'">路跑</button>
+        <button type="button" :class="{ on: kindFilter === 'trail' }" @click="kindFilter = 'trail'">越野</button>
+        <button type="button" :class="{ on: kindFilter === 'other' }" @click="kindFilter = 'other'">其他</button>
+      </div>
+      <div class="marks">
+        <router-link v-for="item in timeline" :key="item.race.id" :to="'/races/' + item.race.id">
+          <b>{{ item.race.raceDate }}</b>{{ item.race.name }} {{ item.clock }}<span v-if="item.pb" class="pb"> PB</span>
+        </router-link>
+        <p v-if="!timeline.length" class="quiet">还没有成绩</p>
+      </div>
+    </div>
+
     <div class="promo">
       <svg viewBox="0 0 680 168" preserveAspectRatio="xMidYMid slice">
         <defs>
@@ -139,21 +178,12 @@
         <div>
           <span class="medal bib"><svg viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="14" rx="2" /><path d="M9 8h6M12 17v4" /></svg></span>
           <div class="k">最好成绩</div>
-          <div class="line"><span>半程</span><b>--</b></div>
-          <div class="line"><span>全程</span><b>--</b></div>
+          <div class="line"><span>半程</span><b>{{ career.pb.half || "--" }}</b></div>
+          <div class="line"><span>全程</span><b>{{ career.pb.full || "--" }}</b></div>
         </div>
       </div>
+      <p v-if="career.finished" class="footline">足迹 {{ career.provinces.length }} 个省、{{ career.cities.length }} 个市 · 本年比赛 {{ career.yearKm }} 公里</p>
     </section>
-    <div v-if="tab === 'honor' && plans.length" class="marks">
-      <router-link v-for="item in plans" :key="item.race.id" :to="'/races/' + item.race.id">
-        <b>{{ item.status }}</b>{{ item.race.name }}
-      </router-link>
-    </div>
-    <p v-else-if="tab === 'photo'" class="quiet">还没有影像</p>
-    <div v-else-if="tab === 'time'" class="marks">
-      <router-link v-for="item in plans" :key="item.race.id" :to="'/races/' + item.race.id">{{ item.race.raceDate }} {{ item.race.name }}</router-link>
-      <p v-if="!plans.length" class="quiet">还没有标记</p>
-    </div>
     <footer class="legal">{{ company }} · {{ icp }}</footer>
   </div>
 </template>
@@ -165,11 +195,52 @@ import { api } from "../api";
 const nickname = ref(localStorage.getItem("marathon_name") || "");
 const draft = ref("");
 const plans = ref([]);
+const results = ref([]);
+const career = ref({ finished: 0, provinces: [], cities: [], pb: { full: "", half: "" }, yearKm: 0 });
 const conflicts = ref([]);
 const reminders = ref([]);
-const finished = computed(() => plans.value.filter((item) => item.status === "完赛").length);
+const finished = computed(() => career.value.finished);
 const message = ref("");
 const tab = ref("honor");
+const mapYear = ref("");
+const kindFilter = ref("all");
+const years = computed(() => {
+  const list = [];
+  for (const item of results.value) {
+    const year = item.race.raceDate.slice(0, 4);
+    if (!list.includes(year)) list.push(year);
+  }
+  return list;
+});
+const litCards = computed(() =>
+  results.value.filter((item) => !mapYear.value || item.race.raceDate.startsWith(mapYear.value))
+);
+const litPlaces = computed(() => {
+  const names = [];
+  for (const item of litCards.value) {
+    if (!names.includes(item.race.province)) names.push(item.race.province);
+    if (item.race.city !== item.race.province && !names.includes(item.race.city)) names.push(item.race.city);
+  }
+  return names;
+});
+const honorGroups = computed(() => {
+  const map = new Map();
+  for (const item of litCards.value) {
+    const year = item.race.raceDate.slice(0, 4);
+    if (!map.has(year)) map.set(year, []);
+    map.get(year).push(item);
+  }
+  return [...map.entries()].map(([year, items]) => ({ year, items }));
+});
+const timeline = computed(() =>
+  results.value.filter((item) => {
+    const kind = item.race.kind || "road";
+    if (kindFilter.value === "all") return true;
+    if (kindFilter.value === "road") return kind === "road";
+    if (kindFilter.value === "trail") return kind === "trail";
+    return kind !== "road" && kind !== "trail";
+  })
+);
 const company = ref("北京华创科技有限公司");
 const icp = ref("京ICP备2026060284号-2");
 const days = ["一", "二", "三", "四", "五", "六", "日"];
@@ -182,6 +253,8 @@ async function load() {
   const data = await api("/me");
   nickname.value = data.user.nickname;
   plans.value = data.plans;
+  results.value = data.results || [];
+  career.value = data.career || career.value;
   conflicts.value = data.conflicts || [];
   reminders.value = data.reminders || [];
 }
@@ -234,6 +307,17 @@ onMounted(load);
 .walls button:nth-child(3) svg { fill: none; stroke: #ff8a3d; stroke-width: 1.4; }
 .walls button:nth-child(5) svg { fill: none; stroke: #5b8def; stroke-width: 1.4; }
 .walls i { width: 1px; height: 14px; background: #e6e8ec; }
+.career { padding-bottom: 8px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 16px 8px; }
+.chips button, .lit { font-size: 12px; padding: 2px 8px; border-radius: 10px; background: #f4f5f7; color: #666; }
+.chips button.on { background: #e7faf9; color: #12b3ae; }
+.scroll { display: flex; gap: 8px; overflow-x: auto; padding: 0 16px 8px; }
+.scroll a { flex: none; width: 168px; background: #f7f8fa; border-radius: 10px; padding: 8px 10px; font-size: 12px; color: #333; }
+.scroll b { display: block; font-size: 16px; }
+.scroll span { display: block; color: #8d949c; margin: 2px 0 4px; }
+.year { margin: 4px 0 0; font-size: 12px; color: #8d949c; }
+.pb { color: #f0a04b; font-size: 12px; margin-left: 4px; }
+.footline { margin: 10px 0 0; color: #8d949c; font-size: 12px; }
 .marks { padding: 0 16px 8px; }
 .marks a { display: block; font-size: 13px; padding: 6px 0; color: #333; }
 .marks b { color: #14b8b3; font-weight: 650; margin-right: 6px; }

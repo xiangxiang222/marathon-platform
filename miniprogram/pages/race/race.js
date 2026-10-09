@@ -19,7 +19,13 @@ Page({
     code: "",
     ready: false,
     draft: "",
-    message: ""
+    message: "",
+    myResult: null,
+    distanceOptions: [],
+    distance: "",
+    clock: "",
+    story: "",
+    resultMessage: ""
   },
   onLoad(query) {
     this.raceId = query.id;
@@ -56,7 +62,12 @@ Page({
     const jobs = [
       request("/races/" + this.raceId).then((data) => {
         const race = data.race;
-        this.setData({
+        const distanceOptions = (race.distances || []).map((key, i) => ({
+          key,
+          label: (race.distanceLabels || [])[i] || key
+        }));
+        const myResult = data.myResult || null;
+        const patch = {
           race,
           distanceText: (race.distanceLabels || []).join(" / "),
           statuses: data.statuses || [],
@@ -65,8 +76,19 @@ Page({
           cards: (data.cards || []).map(withUnpaid),
           conflicts: data.conflicts || [],
           ready: ready(),
-          message: ""
-        });
+          message: "",
+          myResult,
+          distanceOptions,
+          resultMessage: ""
+        };
+        if (myResult) {
+          patch.distance = myResult.distance;
+          patch.clock = myResult.clock;
+          patch.story = myResult.story || "";
+        } else if (!this.data.distance && distanceOptions[0]) {
+          patch.distance = distanceOptions[0].key;
+        }
+        this.setData(patch);
       })
     ];
     if (this.data.code) {
@@ -93,5 +115,23 @@ Page({
     request("/me/races/" + this.raceId, "PUT", { status })
       .then(() => this.load())
       .catch((err) => this.setData({ message: err.message }));
+  },
+  pickDistance(e) {
+    this.setData({ distance: e.currentTarget.dataset.distance });
+  },
+  onClock(e) {
+    this.setData({ clock: e.detail.value });
+  },
+  onStory(e) {
+    this.setData({ story: e.detail.value });
+  },
+  saveResult() {
+    request("/me/races/" + this.raceId + "/result", "PUT", {
+      distance: this.data.distance,
+      time: (this.data.clock || "").trim(),
+      story: (this.data.story || "").trim()
+    })
+      .then(() => this.load())
+      .catch((err) => this.setData({ resultMessage: err.message }));
   }
 });

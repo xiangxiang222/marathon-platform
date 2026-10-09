@@ -4,3 +4,6 @@
 .warn { margin-top: 12rpx; color: #9a5b12; font-size: 26rpx; }
 .share { margin-top: 16rpx; }
 .nick .field { margin-top: 16rpx; }
+.result .field { margin-top: 16rpx; }
+.result .field input { background: #f4f5f7; }
+.result .btn { margin-top: 16rpx; }

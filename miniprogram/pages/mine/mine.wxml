@@ -22,6 +22,18 @@
     </navigator>
   </view>
   <view class="card" wx:if="{{nickname}}">
+    <view class="h2">赛事生涯</view>
+    <view class="sum">完赛 {{career.finished}} 场 · 足迹 {{career.provinces.length}} 省 {{career.cities.length}} 市</view>
+    <view class="sum">半程 {{career.pb.half || '--'}} · 全程 {{career.pb.full || '--'}}</view>
+    <view class="sum">本年比赛 {{career.yearKm}} 公里</view>
+    <navigator wx:for="{{results}}" wx:key="raceId" class="plan" url="/pages/race/race?id={{item.race.id}}">
+      <text class="teal">{{item.clock}}</text>
+      <text wx:if="{{item.pb}}"> PB</text>
+      <text> {{item.race.name}}</text>
+    </navigator>
+    <view wx:if="{{loaded && !results.length}}" class="muted">在赛事页记下成绩后，会出现在这里</view>
+  </view>
+  <view class="card" wx:if="{{nickname}}">
     <view class="h2">我标过的场</view>
     <navigator wx:for="{{plans}}" wx:key="raceId" class="plan" url="/pages/race/race?id={{item.race.id}}">
       <text class="teal">{{item.status}}</text>
