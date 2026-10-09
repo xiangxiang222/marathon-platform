@@ -1,7 +1,7 @@
 const { request } = require("../../utils/request");
 
 Page({
-  data: { club: null, members: [], board: [], message: "" },
+  data: { club: null, members: [], board: [], ranks: [], message: "" },
   onLoad(query) {
     this.clubId = query.id;
     this.pending = null;
@@ -35,7 +35,7 @@ Page({
           alternatives: item.alternatives || [],
           alternativeNote: item.alternativeNote || ""
         }));
-        this.setData({ club: data.club, members: data.members || [], board, message: "" });
+        this.setData({ club: data.club, members: data.members || [], board, ranks: data.ranks || [], message: "" });
       })
       .catch((err) => this.setData({ message: err.message }));
   }

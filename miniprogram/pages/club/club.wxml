@@ -6,7 +6,18 @@
       <text wx:for="{{members}}" wx:key="id" class="chip">{{item.nickname}}</text>
     </view>
   </view>
-  <view wx:if="{{!board.length}}" class="empty">还没有人标比赛。打开一场，标上想跑或已报名。</view>
+  <view class="card" wx:if="{{ranks.length}}">
+    <view class="h2">团内成绩</view>
+    <view class="src">每人每项只留最好的一场。</view>
+    <view wx:for="{{ranks}}" wx:for-item="group" wx:key="distance">
+      <view class="src">{{group.label}}</view>
+      <navigator wx:for="{{group.rows}}" wx:for-item="row" wx:key="nickname" class="row" url="/pages/race/race?id={{row.raceId}}">
+        <text>{{row.place}} {{row.nickname}}</text>
+        <text>{{row.clock}}</text>
+      </navigator>
+    </view>
+  </view>
+  <view wx:if="{{!board.length && !ranks.length}}" class="empty">还没有人标比赛。打开一场，标上想跑或已报名。</view>
   <view wx:for="{{board}}" wx:key="key" class="card">
     <navigator url="/pages/race/race?id={{item.race.id}}&code={{club.code}}">
       <view class="title">{{item.race.name}}</view>

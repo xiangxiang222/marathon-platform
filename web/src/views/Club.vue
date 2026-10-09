@@ -8,7 +8,18 @@
         <span v-for="member in members" :key="member.id">{{ member.nickname }}</span>
       </div>
     </div>
-    <p v-if="club && !board.length" class="empty">还没有人标比赛。打开一场，标上想跑或已报名。</p>
+    <div v-if="ranks.length" class="block">
+      <h2>团内成绩</h2>
+      <p class="rank-label">每人每项只留最好的一场。</p>
+      <div v-for="group in ranks" :key="group.distance">
+        <p class="rank-label">{{ group.label }}</p>
+        <router-link v-for="row in group.rows" :key="group.distance + row.nickname" class="mate" :to="'/races/' + row.raceId">
+          <span>{{ row.place }} {{ row.nickname }}</span>
+          <b>{{ row.clock }}</b>
+        </router-link>
+      </div>
+    </div>
+    <p v-if="club && !board.length && !ranks.length" class="empty">还没有人标比赛。打开一场，标上想跑或已报名。</p>
     <div v-for="item in board" :key="item.race.id" class="block">
       <router-link :to="'/races/' + item.race.id" class="card">
         <Poster :id="item.race.id" />
@@ -44,6 +55,7 @@ const route = useRoute();
 const club = ref(null);
 const members = ref([]);
 const board = ref([]);
+const ranks = ref([]);
 const message = ref("");
 const note = ref("");
 
@@ -64,6 +76,7 @@ onMounted(async () => {
     club.value = data.club;
     members.value = data.members;
     board.value = data.board;
+    ranks.value = data.ranks || [];
   } catch (err) {
     message.value = err.message;
   }
@@ -73,6 +86,7 @@ onMounted(async () => {
 <style scoped>
 .block :deep(.poster) { height: 120px; border-radius: 8px; }
 .share-text { margin: 8px 0 0; font: inherit; white-space: pre-wrap; line-height: 1.5; }
+.rank-label { margin: 8px 0 0; color: #8d949c; font-size: 12px; }
 .squad { margin: 8px 0 0; color: #9a5b12; font-size: 13px; }
 .note { font-size: 12px; }
 .note { color: #12b3ae; padding: 0 16px; }
