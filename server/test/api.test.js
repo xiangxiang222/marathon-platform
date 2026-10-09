@@ -2,6 +2,7 @@ const test = require("node:test");
 const assert = require("node:assert");
 const request = require("supertest");
 const { app } = require("../src/index");
+const { RACES, presentRace, reminderHits } = require("../src/races");
 
 async function session(nickname) {
   const res = await request(app).post("/marathon/api/session").send({ nickname });
@@ -103,4 +104,41 @@ test("a club card names who has not paid", async () => {
 
   const missing = await request(app).get("/marathon/api/races/bishan/card?code=NO-SUCH");
   assert.equal(missing.status, 404);
+});
+
+test("the day before a deadline is a reminder", () => {
+  const row = RACES.find((race) => race.id === "caa-10k");
+  const race = presentRace(row, new Date("2026-10-09T10:00:00+08:00"));
+  const hits = reminderHits(race);
+  assert.equal(hits.length, 1);
+  assert.equal(hits[0].key, "deadline");
+  assert.equal(hits[0].reason, "明天截止");
+});
+
+test("two full marathons a week apart are flagged, and finish status is allowed", async () => {
+  const token = await session("双马");
+  const auth = { Authorization: "Bearer " + token };
+  const first = await request(app).put("/marathon/api/me/races/bishan").set(auth).send({ status: "已报名" });
+  const second = await request(app).put("/marathon/api/me/races/songshanhu").set(auth).send({ status: "想跑" });
+  const done = await request(app).put("/marathon/api/me/races/closed-sample").set(auth).send({ status: "完赛" });
+  assert.equal(first.status, 200);
+  assert.equal(second.status, 200);
+  assert.equal(done.status, 200);
+
+  const me = await request(app).get("/marathon/api/me").set(auth);
+  assert.equal(me.body.gapDays, 21);
+  assert.equal(me.body.conflicts.length, 1);
+  assert.equal(me.body.conflicts[0].days, 7);
+  assert.match(me.body.conflicts[0].text, /璧山/);
+  assert.match(me.body.conflicts[0].text, /松山湖/);
+
+  const detail = await request(app).get("/marathon/api/races/bishan").set(auth);
+  assert.equal(detail.body.conflicts.length, 1);
+  assert.ok(detail.body.statuses.includes("完赛"));
+  assert.ok(detail.body.statuses.includes("弃赛"));
+
+  const open = await request(app).get("/marathon/api/reminders");
+  assert.equal(open.status, 200);
+  assert.ok(Array.isArray(open.body.reminders));
+  assert.equal(open.body.conflicts.length, 0);
 });

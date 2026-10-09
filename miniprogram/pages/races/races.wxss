@@ -1,3 +1,5 @@
 .filters { margin: 8rpx 0 20rpx; }
+.remind { background: #fff6ea; }
+.remind .title { color: #9a5b12; }
 .race { display: block; }
 .tags { margin-top: 10rpx; }

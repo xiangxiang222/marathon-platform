@@ -189,7 +189,7 @@ function buildNodes(row, now) {
     });
 }
 
-const ENTERED = ["已报名", "待抽签", "中签", "已缴费"];
+const ENTERED = ["已报名", "待抽签", "中签", "未中签", "已缴费", "已领物", "完赛", "未完赛", "弃赛"];
 
 function summarizeMarks(counts) {
   const entered = ENTERED.reduce((sum, key) => sum + (counts[key] || 0), 0);
@@ -206,6 +206,45 @@ function summarizeMarks(counts) {
 function cardTitle(race) {
   const head = race.nextNode && race.nextNode.text ? race.nextNode.text : race.deadlineLabel;
   return `${head} · ${race.name}`;
+}
+
+function reminderHits(race) {
+  const hits = [];
+  for (const node of race.nodes || []) {
+    if (node.past) continue;
+    let reason = "";
+    if (node.key === "draw" && node.daysLeft === 0) reason = node.text || "今天出签";
+    else if (node.key === "race" && node.daysLeft === 1) reason = "明天比赛";
+    else if (node.key !== "race" && node.daysLeft === 1) reason = node.text || "明天" + node.label;
+    if (!reason) continue;
+    hits.push({ key: node.key, label: node.label, text: node.text, reason, daysLeft: node.daysLeft });
+  }
+  return hits;
+}
+
+function raceDay(race) {
+  return Date.parse(String(race.raceDate) + "T12:00:00+08:00");
+}
+
+function fullConflicts(plans, gapDays) {
+  const skip = new Set(["未中签", "未完赛", "弃赛"]);
+  const fulls = (plans || []).filter((plan) => (plan.race.distances || []).includes("full") && !skip.has(plan.status));
+  const found = [];
+  for (let i = 0; i < fulls.length; i++) {
+    for (let j = i + 1; j < fulls.length; j++) {
+      const pair = [fulls[i], fulls[j]].sort((a, b) => String(a.race.raceDate).localeCompare(String(b.race.raceDate)));
+      const days = Math.round(Math.abs(raceDay(pair[1].race) - raceDay(pair[0].race)) / 86400000);
+      if (days >= gapDays) continue;
+      const races = pair.map((plan) => ({ id: plan.race.id, name: plan.race.name, raceDate: plan.race.raceDate }));
+      found.push({
+        days,
+        gapDays,
+        races,
+        text: `${races[0].name} 和 ${races[1].name} 隔了 ${days} 天，全马间隔少于 ${gapDays} 天`
+      });
+    }
+  }
+  return found;
 }
 
 function shareText(card) {
@@ -258,4 +297,14 @@ function phaseLabel(raceDate, open, now) {
   return "报名中";
 }
 
-module.exports = { RACES, DISTANCE_LABEL, deadlineMeta, presentRace, summarizeMarks, cardTitle, shareText };
+module.exports = {
+  RACES,
+  DISTANCE_LABEL,
+  deadlineMeta,
+  presentRace,
+  summarizeMarks,
+  cardTitle,
+  shareText,
+  reminderHits,
+  fullConflicts
+};

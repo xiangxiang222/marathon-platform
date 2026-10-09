@@ -15,6 +15,7 @@ Page({
     clubs: [],
     cards: [],
     card: null,
+    conflicts: [],
     code: "",
     ready: false,
     draft: "",
@@ -62,6 +63,7 @@ Page({
           myStatus: data.myStatus || "",
           clubs: data.clubs || [],
           cards: (data.cards || []).map(withUnpaid),
+          conflicts: data.conflicts || [],
           ready: ready(),
           message: ""
         });

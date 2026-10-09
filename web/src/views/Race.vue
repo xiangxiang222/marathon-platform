@@ -10,6 +10,7 @@
       <div class="row"><span>项目</span><b>{{ race.distanceLabels.join(" / ") }}</b></div>
       <div class="row"><span>{{ race.deadlineName }}</span><b :class="{ soon: race.open && race.daysLeft <= 3 }">{{ race.deadlineLabel }}</b></div>
       <p v-if="race.source" class="src">来源 {{ race.source }}<template v-if="race.updatedAt"> · 更新于 {{ race.updatedAt }}</template></p>
+      <p v-for="item in conflicts" :key="item.text" class="warn">{{ item.text }}</p>
     </div>
     <div v-if="race && race.nodes.length" class="block">
       <h2>时间节点</h2>
@@ -59,6 +60,7 @@ const statuses = ref([]);
 const myStatus = ref("");
 const clubs = ref([]);
 const cards = ref([]);
+const conflicts = ref([]);
 const ready = ref(!!localStorage.getItem("marathon_token"));
 const message = ref("");
 const note = ref("");
@@ -71,6 +73,7 @@ async function load() {
   myStatus.value = data.myStatus;
   clubs.value = data.clubs;
   cards.value = data.cards || [];
+  conflicts.value = data.conflicts || [];
 }
 
 async function copyCard(card) {
@@ -103,6 +106,7 @@ onMounted(load);
 .share-text { margin: 0; font: inherit; white-space: pre-wrap; line-height: 1.5; }
 .src { margin: 8px 0 0; color: #8d949c; font-size: 12px; }
 .note { color: #12b3ae; font-size: 13px; padding: 0 16px; }
+.warn { margin: 10px 0 0; color: #9a5b12; font-size: 13px; line-height: 1.45; }
 .copy-err { padding: 0 16px; }
 .primary { margin-top: 8px; }
 </style>

@@ -1,7 +1,7 @@
 const { request } = require("../../utils/request");
 
 Page({
-  data: { q: "", status: "open", races: [], loaded: false, message: "" },
+  data: { q: "", status: "open", races: [], reminders: [], loaded: false, message: "" },
   onShow() {
     this.load();
   },
@@ -16,6 +16,15 @@ Page({
     const params = ["status=" + (this.data.status || "open")];
     const q = (this.data.q || "").trim();
     if (q) params.push("q=" + encodeURIComponent(q));
+    request("/reminders")
+      .then((data) => {
+        const reminders = (data.reminders || []).slice(0, 3).map((item) => ({
+          ...item,
+          key: item.race.id + item.hit.key
+        }));
+        this.setData({ reminders });
+      })
+      .catch(() => {});
     request("/races?" + params.join("&"))
       .then((data) => {
         const races = (data.races || []).map((race) => ({ ...race, soon: race.open && race.daysLeft <= 3 }));

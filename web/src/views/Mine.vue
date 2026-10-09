@@ -9,6 +9,17 @@
       </div>
     </div>
 
+    <section v-if="conflicts.length" class="sheet warn">
+      <div class="head"><h3>全马间隔</h3></div>
+      <p v-for="item in conflicts" :key="item.text">{{ item.text }}</p>
+    </section>
+    <section v-if="reminders.length" class="sheet">
+      <div class="head"><h3>截止提醒</h3></div>
+      <router-link v-for="item in reminders" :key="item.race.id + item.hit.key" class="remind-line" :to="'/races/' + item.race.id">
+        <b>{{ item.hit.reason }}</b> {{ item.race.name }}
+      </router-link>
+    </section>
+
     <section class="who">
       <div class="face" aria-hidden="true">
         <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="24" fill="#d7dbe2" /><circle cx="18" cy="21" r="2" fill="#fff" /><circle cx="30" cy="21" r="2" fill="#fff" /><path d="M17 28c2 2.4 4.2 3.4 7 3.4s5-1 7-3.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" /></svg>
@@ -123,7 +134,7 @@
         <div>
           <span class="medal"><svg viewBox="0 0 24 24"><circle cx="12" cy="14" r="5" /><path d="M9 4l3 6 3-6" /></svg></span>
           <div class="k">完赛场数</div>
-          <div class="v">0<small> 场</small></div>
+          <div class="v">{{ finished }}<small> 场</small></div>
         </div>
         <div>
           <span class="medal bib"><svg viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="14" rx="2" /><path d="M9 8h6M12 17v4" /></svg></span>
@@ -148,12 +159,15 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { api } from "../api";
 
 const nickname = ref(localStorage.getItem("marathon_name") || "");
 const draft = ref("");
 const plans = ref([]);
+const conflicts = ref([]);
+const reminders = ref([]);
+const finished = computed(() => plans.value.filter((item) => item.status === "完赛").length);
 const message = ref("");
 const tab = ref("honor");
 const company = ref("北京华创科技有限公司");
@@ -168,6 +182,8 @@ async function load() {
   const data = await api("/me");
   nickname.value = data.user.nickname;
   plans.value = data.plans;
+  conflicts.value = data.conflicts || [];
+  reminders.value = data.reminders || [];
 }
 
 async function enter() {
@@ -253,4 +269,8 @@ onMounted(load);
 .v small { font-size: 13px; font-weight: 500; }
 .line { display: flex; justify-content: space-between; margin-top: 6px; font-size: 13px; }
 .legal { text-align: center; color: #c5cad1; font-size: 11px; padding: 4px 12px 8px; }
+.warn p, .remind-line { margin: 8px 0 0; font-size: 13px; line-height: 1.45; }
+.warn p { color: #9a5b12; }
+.remind-line { display: block; color: #333; }
+.remind-line b { color: #9a5b12; margin-right: 6px; }
 </style>
