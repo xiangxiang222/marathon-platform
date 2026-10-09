@@ -102,6 +102,17 @@ function open() {
       created_at TEXT NOT NULL,
       PRIMARY KEY (club_id, user_id, day)
     );
+    CREATE TABLE IF NOT EXISTS admins (
+      username TEXT PRIMARY KEY,
+      password_hash TEXT NOT NULL,
+      salt TEXT NOT NULL,
+      created_at TEXT NOT NULL
+    );
+    CREATE TABLE IF NOT EXISTS admin_sessions (
+      token_hash TEXT PRIMARY KEY,
+      username TEXT NOT NULL,
+      expires_at TEXT NOT NULL
+    );
   `);
   for (const [name, type] of [
     ["reg_start", "TEXT NOT NULL DEFAULT ''"],
