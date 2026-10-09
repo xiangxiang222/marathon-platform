@@ -54,6 +54,7 @@
       >{{name}}</button>
     </view>
     <view class="help">状态由你自己标，同团可见。这里不代报名。</view>
+    <button wx:if="{{ready && myStatus}}" class="line" disabled="{{saving}}" bindtap="drop">不跑这场了</button>
     <view wx:if="{{ok}}" class="ok">{{ok}}</view>
     <view wx:if="{{message}}" class="err">{{message}}</view>
   </view>

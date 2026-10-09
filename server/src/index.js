@@ -275,6 +275,81 @@ app.get(BASE + "/api/races/:id", (req, res) => {
   });
 });
 
+function todayPayload(user, now = new Date()) {
+  const plans = user ? plansFor(user.id, now) : [];
+  const tasks = [];
+  if (user) {
+    for (const item of fullConflicts(plans, gapDays())) {
+      tasks.push({
+        id: "conflict:" + item.races.map((race) => race.id).join(":"),
+        kind: "conflict",
+        title: "全马隔得太近",
+        body: item.text,
+        raceId: item.races[0].id,
+        clubId: null
+      });
+    }
+  }
+  for (const item of remindable(now).filter((row) => plans.some((plan) => plan.race.id === row.race.id))) {
+    const plan = plans.find((row) => row.race.id === item.race.id);
+    tasks.push({
+      id: "reminder:" + item.race.id + ":" + item.hit.key,
+      kind: "reminder",
+      title: item.hit.reason,
+      body: item.race.name + (plan ? " · 你标的是" + plan.status : ""),
+      raceId: item.race.id,
+      clubId: null
+    });
+  }
+  if (user) {
+    const clubs = getDb()
+      .prepare(
+        `SELECT c.id, c.name FROM clubs c
+         JOIN club_members m ON m.club_id = c.id
+         WHERE m.user_id = ? ORDER BY c.id`
+      )
+      .all(user.id);
+    for (const club of clubs) {
+      const marks = getDb()
+        .prepare(
+          `SELECT u.nickname, p.status, r.id AS race_id, r.name
+           FROM plans p
+           JOIN users u ON u.id = p.user_id
+           JOIN races r ON r.id = p.race_id
+           JOIN club_members m ON m.user_id = u.id AND m.club_id = ?
+           ORDER BY r.race_date, r.id`
+        )
+        .all(club.id);
+      const grouped = [];
+      for (const row of marks) {
+        let item = grouped.find((race) => race.id === row.race_id);
+        if (!item) {
+          item = { id: row.race_id, name: row.name, marks: [] };
+          grouped.push(item);
+        }
+        item.marks.push({ nickname: row.nickname, status: row.status });
+      }
+      for (const race of grouped) {
+        const names = race.marks.filter((mark) => mark.status === "中签").map((mark) => mark.nickname);
+        if (!names.length) continue;
+        tasks.push({
+          id: "unpaid:" + club.id + ":" + race.id,
+          kind: "unpaid",
+          title: "还有人没缴",
+          body: club.name + " · " + race.name + "：" + names.join("、"),
+          raceId: race.id,
+          clubId: club.id
+        });
+      }
+    }
+  }
+  return { user: user ? { id: user.id, nickname: user.nickname } : null, tasks };
+}
+
+app.get(BASE + "/api/today", (req, res) => {
+  res.json(todayPayload(userFrom(req)));
+});
+
 app.get(BASE + "/api/reminders", (req, res) => {
   const reminders = remindable();
   const user = userFrom(req);
@@ -350,6 +425,15 @@ app.put(BASE + "/api/me/races/:id", (req, res) => {
     )
     .run(user.id, race.id, status, new Date().toISOString());
   res.json({ ok: true, status });
+});
+
+app.delete(BASE + "/api/me/races/:id", (req, res) => {
+  const user = requireUser(req, res);
+  if (!user) return;
+  const race = getDb().prepare("SELECT id FROM races WHERE id = ?").get(req.params.id);
+  if (!race) return res.status(404).json({ error: "没有这场比赛" });
+  getDb().prepare("DELETE FROM plans WHERE user_id = ? AND race_id = ?").run(user.id, race.id);
+  res.json({ ok: true });
 });
 
 app.put(BASE + "/api/me/races/:id/result", (req, res) => {

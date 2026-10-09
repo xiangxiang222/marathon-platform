@@ -64,6 +64,7 @@
           </div>
         </div>
         <p class="help">状态由你自己标，同团可见。这里不代报名。</p>
+        <button v-if="ready && myStatus" class="text-btn" type="button" :disabled="saving" @click="drop">不跑这场了</button>
         <p v-if="ok" class="ok" role="status">{{ ok }}</p>
         <p v-if="message" class="err">{{ message }}</p>
       </section>
@@ -280,6 +281,22 @@ async function enter() {
     ok.value = "名字已记下。";
   } catch (err) {
     message.value = err.message;
+  } finally {
+    saving.value = false;
+  }
+}
+
+async function drop() {
+  if (!window.confirm("移出这场？已记下的成绩还在。")) return;
+  message.value = "";
+  ok.value = "";
+  saving.value = true;
+  try {
+    await api("/me/races/" + route.params.id, { method: "DELETE" });
+    ok.value = "已移出你的安排";
+    await load({ quiet: true });
+  } catch (err) {
+    message.value = err.message || "没有移出";
   } finally {
     saving.value = false;
   }

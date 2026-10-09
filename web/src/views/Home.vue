@@ -5,7 +5,18 @@
       <p>报名还开着的场，和明天要处理的节点。</p>
     </header>
 
-    <section v-if="reminders.length" class="block">
+    <section v-if="tasks.length" class="block">
+      <h2>要处理</h2>
+      <router-link v-for="task in tasks" :key="task.id" class="remind" :to="task.clubId ? '/clubs/' + task.clubId : '/races/' + task.raceId">
+        <b>{{ task.title }}</b>
+        <span>{{ task.body }}</span>
+      </router-link>
+    </section>
+    <section v-else-if="signedIn" class="block">
+      <h2>要处理</h2>
+      <p class="help">你标过的场这几天没有节点，团里也没有人卡在缴费。</p>
+    </section>
+    <section v-else-if="reminders.length" class="block">
       <h2>{{ reminderTitle }}</h2>
       <router-link v-for="item in reminders" :key="item.race.id + item.hit.key" class="remind" :to="'/races/' + item.race.id">
         <b>{{ item.hit.reason }}</b>
@@ -84,6 +95,8 @@ const cities = ref([]);
 const months = ref([]);
 const reminders = ref([]);
 const reminderTitle = ref("明天的节点");
+const tasks = ref([]);
+const signedIn = ref(false);
 const loading = ref(true);
 const error = ref("");
 
@@ -132,11 +145,21 @@ async function load() {
 
 async function loadReminders() {
   try {
+    const today = await api("/today");
+    signedIn.value = !!today.user;
+    tasks.value = today.tasks || [];
+    if (today.user) {
+      reminders.value = [];
+      return;
+    }
+  } catch (err) {
+    tasks.value = [];
+    signedIn.value = !!localStorage.getItem("marathon_token");
+  }
+  try {
     const data = await api("/reminders");
-    const mine = data.mine || [];
-    const list = mine.length ? mine : data.reminders || [];
-    reminders.value = list.slice(0, 3);
-    reminderTitle.value = mine.length ? "你标过的场，明天有节点" : "明天的节点";
+    reminders.value = (data.reminders || []).slice(0, 3);
+    reminderTitle.value = "明天的节点";
   } catch (err) {
     reminders.value = [];
   }

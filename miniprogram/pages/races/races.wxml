@@ -2,7 +2,20 @@
   <view class="h1">赛历</view>
   <view class="sub">报名还开着的场，和明天要处理的节点。</view>
 
-  <view class="card" wx:if="{{reminders.length}}">
+  <view class="card" wx:if="{{tasks.length}}">
+    <view class="h2">要处理</view>
+    <navigator wx:for="{{tasks}}" wx:key="id" class="race" url="{{item.url}}">
+      <view class="main">
+        <view class="soon">{{item.title}}</view>
+        <view class="meta">{{item.body}}</view>
+      </view>
+    </navigator>
+  </view>
+  <view class="card" wx:elif="{{signedIn}}">
+    <view class="h2">要处理</view>
+    <view class="help">你标过的场这几天没有节点，团里也没有人卡在缴费。</view>
+  </view>
+  <view class="card" wx:elif="{{reminders.length}}">
     <view class="h2">{{reminderTitle}}</view>
     <navigator wx:for="{{reminders}}" wx:key="key" class="race" url="/pages/race/race?id={{item.race.id}}">
       <view class="main">
