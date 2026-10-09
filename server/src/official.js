@@ -327,11 +327,12 @@ async function syncOfficial(db, options = {}) {
   const now = options.now || new Date();
   const fetchImpl = options.fetchImpl || global.fetch;
   const rows = await fetchOfficialPages({ ...options, now, fetchImpl });
+  const maxDetails = options.maxDetails == null ? rows.length : options.maxDetails;
   await attachDetails(rows, {
     now,
     fetchImpl,
     pauseMs: options.pauseMs == null ? 250 : options.pauseMs,
-    maxDetails: options.maxDetails || 80
+    maxDetails
   });
   return saveOfficial(db, rows, now.toISOString());
 }

@@ -556,7 +556,12 @@ app.post(BASE + "/api/admin/official/sync", async (req, res) => {
   if (!requireAdmin(req, res)) return;
   const name = String((req.body && req.body.name) || "").trim();
   try {
-    const saved = await syncOfficial(getDb(), { raceName: name, upcomingOnly: !name, pauseMs: name ? 0 : 250 });
+    const saved = await syncOfficial(getDb(), {
+      raceName: name,
+      upcomingOnly: !name,
+      pauseMs: name ? 0 : 250,
+      maxDetails: name ? 40 : undefined
+    });
     res.json({
       ...saved,
       rows: listOfficial(getDb(), { q: name, status: name ? "" : "pending", upcomingFrom: name ? "" : cstDay() })
