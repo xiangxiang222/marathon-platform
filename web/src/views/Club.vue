@@ -1,7 +1,7 @@
 <template>
   <main>
     <header class="topbar">
-      <router-link to="/clubs" aria-label="返回">返回</router-link>
+      <router-link to="/clubs" aria-label="返回">‹</router-link>
       <h1>跑团</h1>
       <span></span>
     </header>

@@ -4,7 +4,7 @@
 .ym { font-size: 32rpx; font-weight: 650; color: #1c1c1e; }
 .week, .grid { display: grid; grid-template-columns: repeat(7, 1fr); }
 .week { padding: 16rpx 8rpx 4rpx; text-align: center; font-size: 26rpx; }
-.end { color: #5c6570; }
+.end { color: #e23b3b; }
 .cell { min-height: 148rpx; display: flex; flex-direction: column; align-items: center; padding-top: 8rpx; }
 .num {
   width: 56rpx;
@@ -17,11 +17,11 @@
 }
 .out .num { background: #f7f8fa; color: #c8ccd3; }
 .out .lunar { color: #e1e4e8; }
-.today .num { background: #fff; color: #0f6e6a; box-shadow: inset 0 0 0 3rpx #0f6e6a; }
-.picked .num { background: #0f6e6a; color: #fff; }
+.today .num { background: #fff; color: #e23b3b; box-shadow: inset 0 0 0 3rpx #e23b3b; }
+.picked .num { background: #e23b3b; color: #fff; }
 .lunar, .count { font-size: 20rpx; line-height: 1.2; min-height: 26rpx; }
 .lunar { color: #b4b8c0; }
-.count { color: #0f6e6a; }
+.count { color: #e23b3b; }
 .retry { margin: 24rpx 32rpx; }
 .list { border-top: 16rpx solid #f6f7f9; padding: 8rpx 32rpx 48rpx; }
 .picked { font-size: 30rpx; font-weight: 650; padding: 24rpx 0 8rpx; }
