@@ -4,7 +4,7 @@ const path = require("path");
 const express = require("express");
 const { getDb } = require("./db");
 const { presentRace, summarizeMarks, cardTitle, shareText, reminderHits, fullConflicts, squadOf, nearbyOpen, alternativeNote, drawPoster } = require("./races");
-const { parseClock, decorateResults, careerOf, yearOf } = require("./career");
+const { parseClock, decorateResults, careerOf, yearOf, bestRanks } = require("./career");
 
 function loadEnv() {
   const file = path.join(__dirname, "../../.env");
@@ -416,7 +416,25 @@ app.get(BASE + "/api/clubs/:id", (req, res) => {
     item.alternativeNote = alternativeNote("", item.missed, item.alternatives);
     item.text = shareText({ ...item, club });
   }
-  res.json({ club, members, board });
+  const rankRows = getDb()
+    .prepare(
+      `SELECT u.nickname, res.distance AS result_distance, res.seconds, r.*
+       FROM results res
+       JOIN users u ON u.id = res.user_id
+       JOIN races r ON r.id = res.race_id
+       JOIN club_members m ON m.user_id = u.id AND m.club_id = ?`
+    )
+    .all(club.id)
+    .map((row) => {
+      const race = presentRace(row, new Date());
+      return {
+        nickname: row.nickname,
+        distance: row.result_distance,
+        seconds: row.seconds,
+        race: { id: race.id, name: race.name, raceDate: race.raceDate }
+      };
+    });
+  res.json({ club, members, board, ranks: bestRanks(rankRows) });
 });
 
 const webDist = path.join(__dirname, "../../web/dist");

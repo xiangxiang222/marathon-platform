@@ -293,3 +293,33 @@ test("marking a draw makes a personal card and names who got in", async () => {
   const paid = await request(app).get("/marathon/api/races/tmsk").set(auth);
   assert.equal(paid.body.drawText, "");
 });
+
+test("a club ranks each member's best full and half", async () => {
+  const fast = await session("快的");
+  const slow = await session("慢的");
+  const fastAuth = { Authorization: "Bearer " + fast };
+  const slowAuth = { Authorization: "Bearer " + slow };
+  const created = await request(app).post("/marathon/api/clubs").set(fastAuth).send({ name: "成绩跑团" });
+  const code = created.body.club.code;
+  await request(app).post("/marathon/api/clubs/join").set(slowAuth).send({ code });
+  await request(app).put("/marathon/api/me/races/bishan/result").set(fastAuth).send({ distance: "full", time: "3:10:00" });
+  await request(app).put("/marathon/api/me/races/songshanhu/result").set(fastAuth).send({ distance: "full", time: "3:40:00" });
+  await request(app).put("/marathon/api/me/races/yuxi/result").set(fastAuth).send({ distance: "half", time: "1:45:00" });
+  await request(app).put("/marathon/api/me/races/jinjiang/result").set(slowAuth).send({ distance: "full", time: "4:00:00" });
+  await request(app).put("/marathon/api/me/races/hailing/result").set(slowAuth).send({ distance: "half", time: "1:30:00" });
+
+  const board = await request(app).get("/marathon/api/clubs/" + created.body.club.id).set(fastAuth);
+  const full = board.body.ranks.find((group) => group.distance === "full");
+  assert.deepEqual(full.rows.map((row) => row.nickname), ["快的", "慢的"]);
+  assert.equal(full.rows[0].clock, "3:10:00");
+  assert.equal(full.rows[0].raceId, "bishan");
+  assert.equal(full.rows[0].place, 1);
+  const half = board.body.ranks.find((group) => group.distance === "half");
+  assert.equal(half.rows[0].nickname, "慢的");
+  assert.equal(half.rows[0].clock, "1:30:00");
+  assert.equal(half.rows[1].nickname, "快的");
+
+  const outsider = await session("榜外");
+  const denied = await request(app).get("/marathon/api/clubs/" + created.body.club.id).set("Authorization", "Bearer " + outsider);
+  assert.equal(denied.status, 403);
+});

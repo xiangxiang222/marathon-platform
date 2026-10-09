@@ -79,4 +79,33 @@ function careerOf(results, year) {
   };
 }
 
-module.exports = { KM, yearOf, parseClock, formatClock, paceOf, decorateResults, careerOf };
+function bestRanks(rows) {
+  const groups = [];
+  for (const distance of ["full", "half", "10k"]) {
+    const best = new Map();
+    for (const row of rows || []) {
+      if (row.distance !== distance || !row.nickname) continue;
+      const prev = best.get(row.nickname);
+      if (!prev || Number(row.seconds) < prev.seconds) best.set(row.nickname, { ...row, seconds: Number(row.seconds) });
+    }
+    const list = [...best.values()].sort(
+      (a, b) => a.seconds - b.seconds || String(a.nickname).localeCompare(String(b.nickname), "zh")
+    );
+    if (!list.length) continue;
+    groups.push({
+      distance,
+      label: DISTANCE_LABEL[distance] || distance,
+      rows: list.map((row, index) => ({
+        place: index + 1,
+        nickname: row.nickname,
+        clock: formatClock(row.seconds),
+        raceId: row.race.id,
+        raceName: row.race.name,
+        raceDate: row.race.raceDate
+      }))
+    });
+  }
+  return groups;
+}
+
+module.exports = { KM, yearOf, parseClock, formatClock, paceOf, decorateResults, careerOf, bestRanks };
