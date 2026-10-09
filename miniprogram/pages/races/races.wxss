@@ -1,3 +1,6 @@
+.search { display: flex; align-items: center; height: 72rpx; background: #fff; border-radius: 36rpx; padding: 0 24rpx; margin-bottom: 16rpx; }
+.search input { flex: 1; height: 72rpx; }
+.search .go { color: #8e949c; padding-left: 20rpx; border-left: 1rpx solid #e6e8ec; line-height: 28rpx; }
 .filters { margin: 8rpx 0 20rpx; }
 .remind { background: #fff6ea; }
 .remind .title { color: #9a5b12; }

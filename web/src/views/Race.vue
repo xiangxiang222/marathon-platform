@@ -209,7 +209,7 @@ onMounted(load);
 .detail-poster :deep(.poster) { height: 220px; }
 .share-text { margin: 0; font: inherit; white-space: pre-wrap; line-height: 1.5; }
 .src { margin: 8px 0 0; color: #8d949c; font-size: 12px; }
-.note { color: #12b3ae; font-size: 13px; padding: 0 16px; }
+.note { color: #00b7ae; font-size: 13px; padding: 0 16px; }
 .warn { margin: 10px 0 0; color: #9a5b12; font-size: 13px; line-height: 1.45; }
 .copy-err { padding: 0 16px; }
 .primary { margin-top: 8px; }

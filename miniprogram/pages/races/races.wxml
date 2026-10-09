@@ -1,7 +1,7 @@
 <view class="pad">
-  <view class="field">
+  <view class="search">
     <input placeholder="搜索赛事名称" value="{{q}}" bindinput="onQ" bindconfirm="load" confirm-type="search" />
-    <button class="btn" bindtap="load">搜索</button>
+    <text class="go" bindtap="load">搜索</text>
   </view>
   <view class="filters">
     <button class="ghost {{status === 'open' ? 'on' : ''}}" data-status="open" bindtap="setStatus">报名中</button>

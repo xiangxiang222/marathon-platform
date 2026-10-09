@@ -48,7 +48,7 @@ const theme = computed(
 </script>
 
 <style scoped>
-.poster { display: block; width: 100%; height: 168px; }
+.poster { display: block; width: 100%; height: 148px; border-radius: 8px; }
 text { font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; }
 .kicker { font-size: 11px; letter-spacing: 1.5px; fill: rgba(255, 255, 255, 0.62); }
 .title { font-size: 40px; font-weight: 650; fill: #fff; }
