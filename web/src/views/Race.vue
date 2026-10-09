@@ -1,7 +1,7 @@
 <template>
   <main>
     <header class="topbar">
-      <router-link to="/" aria-label="返回">返回</router-link>
+      <router-link to="/" aria-label="返回">‹</router-link>
       <h1>赛事</h1>
       <span></span>
     </header>
@@ -13,6 +13,9 @@
     </div>
 
     <template v-else-if="race">
+      <div class="detail-poster">
+        <Poster cover :id="race.id" :name="race.name" :city="race.city" :date="race.raceDate" />
+      </div>
       <section class="detail">
         <div class="reg">{{ race.regStatus }}</div>
         <h1>{{ race.name }}</h1>
@@ -170,6 +173,7 @@ import { computed, onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import { api } from "../api";
 import { copyText } from "../copy";
+import Poster from "../components/Poster.vue";
 import { groupsFor, nextCallout, placeLine, showSignup, statusHint } from "../product";
 import { useSession } from "../session";
 

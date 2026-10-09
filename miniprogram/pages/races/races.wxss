@@ -1,1 +1,5 @@
-.search button.line { width: auto; margin: 0; line-height: 88rpx; }
+.remind { background: #fff6ea; }
+.remind .h2, .remind .title, .remind .muted { color: #9a5b12; }
+.hit { display: block; padding: 12rpx 0; }
+.card.race { display: block; border-bottom: 0; padding: 28rpx; }
+.foot { margin-top: 12rpx; }

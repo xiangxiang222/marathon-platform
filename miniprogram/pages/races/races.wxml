@@ -1,33 +1,26 @@
 <view class="pad">
-  <view class="h1">赛历</view>
-  <view class="sub">报名还开着的场，和明天要处理的节点。</view>
+  <view class="search">
+    <input placeholder="搜索赛事名称" value="{{q}}" bindinput="onQ" bindconfirm="load" confirm-type="search" />
+    <text class="go" bindtap="load">搜索</text>
+  </view>
 
-  <view class="card" wx:if="{{tasks.length}}">
+  <view class="card remind" wx:if="{{tasks.length}}">
     <view class="h2">要处理</view>
-    <navigator wx:for="{{tasks}}" wx:key="id" class="race" url="{{item.url}}">
-      <view class="main">
-        <view class="soon">{{item.title}}</view>
-        <view class="meta">{{item.body}}</view>
-      </view>
+    <navigator wx:for="{{tasks}}" wx:key="id" class="hit" url="{{item.url}}">
+      <view class="title">{{item.title}}</view>
+      <view class="muted">{{item.body}}</view>
     </navigator>
   </view>
   <view class="card" wx:elif="{{signedIn}}">
     <view class="h2">要处理</view>
     <view class="help">你标过的场这几天没有节点，团里也没有人卡在缴费。</view>
   </view>
-  <view class="card" wx:elif="{{reminders.length}}">
+  <view class="card remind" wx:elif="{{reminders.length}}">
     <view class="h2">{{reminderTitle}}</view>
-    <navigator wx:for="{{reminders}}" wx:key="key" class="race" url="/pages/race/race?id={{item.race.id}}">
-      <view class="main">
-        <view class="soon">{{item.hit.reason}}</view>
-        <view class="meta">{{item.race.name}}</view>
-      </view>
+    <navigator wx:for="{{reminders}}" wx:key="key" class="hit" url="/pages/race/race?id={{item.race.id}}">
+      <view class="title">{{item.hit.reason}}</view>
+      <view class="muted">{{item.race.name}}</view>
     </navigator>
-  </view>
-
-  <view class="search">
-    <input placeholder="赛事名称或城市" value="{{q}}" bindinput="onQ" bindconfirm="load" confirm-type="search" />
-    <button class="line" bindtap="load">搜索</button>
   </view>
 
   <scroll-view class="filters" scroll-x>
@@ -58,14 +51,12 @@
     <button class="line" bindtap="load">重试</button>
   </view>
   <view wx:elif="{{!races.length}}" class="state">这个范围没有赛历。换个状态、地点或月份，或按比赛日查看。</view>
-  <view wx:else class="card">
-    <navigator wx:for="{{races}}" wx:key="id" class="race" url="/pages/race/race?id={{item.id}}">
-      <view class="main">
-        <view class="title"><text class="teal">{{item.regStatus}} </text>{{item.name}}</view>
-        <view class="meta">{{item.meta}}</view>
-      </view>
-      <view class="trail {{item.soon ? 'soon' : ''}}">{{item.deadlineLabel}}</view>
+  <block wx:else>
+    <navigator wx:for="{{races}}" wx:key="id" class="card race" url="/pages/race/race?id={{item.id}}">
+      <view class="title"><text class="teal">{{item.regStatus}} </text>{{item.name}}</view>
+      <view class="meta">{{item.meta}}</view>
+      <view class="foot"><text class="{{item.soon ? 'soon' : ''}}">{{item.deadlineLabel}}</text></view>
     </navigator>
-  </view>
+  </block>
   <navigator class="link" url="/pages/calendar/calendar">按比赛日查看</navigator>
 </view>

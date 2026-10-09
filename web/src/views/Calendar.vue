@@ -1,7 +1,7 @@
 <template>
   <main class="calendar">
     <header class="topbar">
-      <router-link to="/" aria-label="返回">返回</router-link>
+      <router-link to="/" aria-label="返回">‹</router-link>
       <h1>日历</h1>
       <span></span>
     </header>
@@ -11,7 +11,7 @@
       <button type="button" aria-label="下个月" @click="shift(1)">›</button>
     </div>
     <div class="week">
-      <span v-for="name in weeks" :key="name">{{ name }}</span>
+      <span v-for="name in weeks" :key="name" :class="{ end: name === '日' || name === '六' }">{{ name }}</span>
     </div>
     <div class="grid">
       <button
@@ -136,12 +136,13 @@ onMounted(load);
 </script>
 
 <style scoped>
-.calendar { background: #fff; min-height: 100vh; color: #1a1d21; }
-.month { display: flex; align-items: center; justify-content: center; gap: 28px; padding: 8px 0 2px; }
-.month b { font-size: 16px; font-weight: 650; }
-.month button { width: 40px; height: 40px; font-size: 22px; color: #5c6570; }
+.calendar { background: #fff; min-height: 100vh; color: #1c1c1e; }
+.month { display: flex; align-items: center; justify-content: center; gap: 28px; padding: 4px 0 2px; }
+.month b { font-size: 16px; font-weight: 600; }
+.month button { width: 32px; font-size: 22px; color: #666; }
 .week, .grid { display: grid; grid-template-columns: repeat(7, 1fr); }
-.week { padding: 8px 4px 2px; text-align: center; font-size: 13px; color: #5c6570; }
+.week { padding: 8px 4px 2px; text-align: center; font-size: 13px; }
+.week .end { color: #e23b3b; }
 .grid { padding: 0 2px 8px; }
 .cell {
   min-height: 72px;
@@ -161,14 +162,14 @@ onMounted(load);
   font-size: 15px;
 }
 .cell.out .num { background: transparent; color: #c8ccd3; }
-.cell.today .num { box-shadow: inset 0 0 0 1.5px #0f6e6a; color: #0f6e6a; background: #fff; }
-.cell.picked .num { background: #0f6e6a; color: #fff; }
+.cell.today .num { background: #fff; color: #e23b3b; box-shadow: inset 0 0 0 1.5px #e23b3b; }
+.cell.picked:not(.today) .num { background: #e23b3b; color: #fff; }
 .lunar, .count { font-size: 10px; line-height: 1.2; min-height: 13px; }
 .lunar { color: #b4b8c0; }
-.count { color: #0f6e6a; }
-.day-races { border-top: 8px solid #f3f4f6; padding: 4px 16px 28px; }
+.count { color: #e23b3b; }
+.day-races { border-top: 8px solid #f6f7f9; padding: 4px 16px 28px; }
 .day-races h2 { margin: 14px 0 4px; font-size: 16px; font-weight: 650; }
-.race { display: block; padding: 12px 0; border-bottom: 1px solid #e7eaee; }
+.race { display: block; padding: 12px 0; border-bottom: 1px solid #f0f1f4; }
 .race b { display: block; font-size: 16px; font-weight: 650; line-height: 1.35; }
 .race span, .race em { display: block; margin-top: 4px; color: #8b939c; font-size: 12px; font-style: normal; }
 .none { color: #8b939c; text-align: center; padding: 28px 0; }

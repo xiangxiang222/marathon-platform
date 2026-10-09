@@ -1,80 +1,95 @@
 <template>
   <div>
-    <header class="page-head">
-      <h1>赛历</h1>
-      <p>报名还开着的场，和明天要处理的节点。</p>
+    <header class="teal">
+      <form class="search" @submit.prevent="load">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="M20 20l-3.5-3.5" /></svg>
+        <label class="sr" for="race-q">搜索</label>
+        <input id="race-q" v-model="q" placeholder="搜索赛事名称" />
+        <i class="split"></i>
+        <button type="submit">搜索</button>
+      </form>
     </header>
 
-    <section v-if="tasks.length" class="block">
-      <h2>要处理</h2>
-      <router-link v-for="task in tasks" :key="task.id" class="remind" :to="task.clubId ? '/clubs/' + task.clubId : '/races/' + task.raceId">
-        <b>{{ task.title }}</b>
-        <span>{{ task.body }}</span>
-      </router-link>
-    </section>
-    <section v-else-if="signedIn" class="block">
-      <h2>要处理</h2>
-      <p class="help">你标过的场这几天没有节点，团里也没有人卡在缴费。</p>
-    </section>
-    <section v-else-if="reminders.length" class="block">
-      <h2>{{ reminderTitle }}</h2>
-      <router-link v-for="item in reminders" :key="item.race.id + item.hit.key" class="remind" :to="'/races/' + item.race.id">
-        <b>{{ item.hit.reason }}</b>
-        <span>{{ item.race.name }}</span>
-      </router-link>
-    </section>
-
-    <form class="search" @submit.prevent="load">
-      <label class="sr" for="race-q">搜索</label>
-      <input id="race-q" v-model="q" placeholder="赛事名称或城市" />
-      <button type="submit">搜索</button>
-    </form>
-
-    <div class="filters" role="group" aria-label="报名状态">
-      <button v-for="item in statusOptions" :key="item.value" type="button" :class="{ on: status === item.value }" @click="setStatus(item.value)">
-        {{ item.label }}
-      </button>
-    </div>
-    <div class="filters" role="group" aria-label="项目">
-      <button v-for="item in distanceOptions" :key="item.value || 'all'" type="button" :class="{ on: distance === item.value }" @click="setDistance(item.value)">
-        {{ item.label }}
-      </button>
-    </div>
-    <div class="filters" role="group" aria-label="地点和月份">
-      <button type="button" :class="{ on: !!city || sheet === 'city' }" @click="toggleSheet('city')">{{ city || "地点" }}</button>
-      <button type="button" :class="{ on: !!month || sheet === 'month' }" @click="toggleSheet('month')">{{ monthLabel || "月份" }}</button>
-    </div>
-    <div v-if="sheet === 'city'" class="sheet-inline">
-      <button type="button" :class="{ on: !city }" @click="pickCity('')">不限</button>
-      <button v-for="name in cities" :key="name" type="button" :class="{ on: city === name }" @click="pickCity(name)">{{ name }}</button>
-      <p v-if="!cities.length" class="help">还没有地点。</p>
-    </div>
-    <div v-if="sheet === 'month'" class="sheet-inline">
-      <button type="button" :class="{ on: !month }" @click="pickMonth('')">不限</button>
-      <button v-for="item in months" :key="item" type="button" :class="{ on: month === item }" @click="pickMonth(item)">{{ monthText(item) }}</button>
-      <p v-if="!months.length" class="help">还没有月份。</p>
-    </div>
-
-    <p v-if="loading" class="state">正在读取赛历</p>
-    <div v-else-if="error" class="state">
-      <p class="err">{{ error }}</p>
-      <button class="text-btn" type="button" @click="load">重试</button>
-    </div>
-    <div v-else-if="!races.length" class="state">
-      <p>这个范围没有赛历。换个状态、地点或月份，或按比赛日查看。</p>
-    </div>
-    <ul v-else class="list">
-      <li v-for="race in races" :key="race.id">
-        <router-link class="race-row" :to="'/races/' + race.id">
-          <div>
-            <p class="name"><em>{{ race.regStatus }}</em>{{ race.name }}</p>
-            <p class="meta">{{ race.raceDate }} · {{ race.city }}<template v-if="race.distanceLabels.length"> · {{ race.distanceLabels.join(" / ") }}</template></p>
-          </div>
-          <span class="trail" :class="{ soon: race.open && race.daysLeft <= 3 }">{{ race.deadlineLabel }}</span>
+    <section class="sheet">
+      <div v-if="tasks.length" class="inbox">
+        <h2>要处理</h2>
+        <router-link v-for="task in tasks" :key="task.id" class="remind" :to="task.clubId ? '/clubs/' + task.clubId : '/races/' + task.raceId">
+          <b>{{ task.title }}</b>
+          <span>{{ task.body }}</span>
         </router-link>
-      </li>
-    </ul>
-    <router-link class="text-link" to="/calendar">按比赛日查看</router-link>
+      </div>
+      <div v-else-if="signedIn" class="inbox">
+        <h2>要处理</h2>
+        <p class="help">你标过的场这几天没有节点，团里也没有人卡在缴费。</p>
+      </div>
+      <div v-else-if="reminders.length" class="inbox">
+        <h2>{{ reminderTitle }}</h2>
+        <router-link v-for="item in reminders" :key="item.race.id + item.hit.key" class="remind" :to="'/races/' + item.race.id">
+          <b>{{ item.hit.reason }}</b>
+          <span>{{ item.race.name }}</span>
+        </router-link>
+      </div>
+
+      <div class="filters" role="group" aria-label="报名状态">
+        <button v-for="item in statusOptions" :key="item.value" type="button" :class="{ on: status === item.value }" @click="setStatus(item.value)">
+          {{ item.label }}
+        </button>
+      </div>
+      <div class="filters" role="group" aria-label="项目">
+        <button v-for="item in distanceOptions" :key="item.value || 'all'" type="button" :class="{ on: distance === item.value }" @click="setDistance(item.value)">
+          {{ item.label }}
+        </button>
+      </div>
+      <div class="filters" role="group" aria-label="地点和月份">
+        <button type="button" :class="{ on: !!city || sheet === 'city' }" @click="toggleSheet('city')">{{ city || "地点" }}</button>
+        <button type="button" :class="{ on: !!month || sheet === 'month' }" @click="toggleSheet('month')">{{ monthLabel || "月份" }}</button>
+      </div>
+      <div v-if="sheet === 'city'" class="sheet-inline">
+        <button type="button" :class="{ on: !city }" @click="pickCity('')">不限</button>
+        <button v-for="name in cities" :key="name" type="button" :class="{ on: city === name }" @click="pickCity(name)">{{ name }}</button>
+        <p v-if="!cities.length" class="help">还没有地点。</p>
+      </div>
+      <div v-if="sheet === 'month'" class="sheet-inline">
+        <button type="button" :class="{ on: !month }" @click="pickMonth('')">不限</button>
+        <button v-for="item in months" :key="item" type="button" :class="{ on: month === item }" @click="pickMonth(item)">{{ monthText(item) }}</button>
+        <p v-if="!months.length" class="help">还没有月份。</p>
+      </div>
+
+      <p v-if="loading" class="state">正在读取赛历</p>
+      <div v-else-if="error" class="state">
+        <p class="err">{{ error }}</p>
+        <button class="text-btn" type="button" @click="load">重试</button>
+      </div>
+      <div v-else-if="!races.length" class="state">
+        <p>这个范围没有赛历。换个状态、地点或月份，或按比赛日查看。</p>
+      </div>
+      <template v-else>
+        <router-link class="poster-hero" :to="'/races/' + head.id">
+          <Poster large :id="head.id" :name="head.name" :city="head.city" :date="head.raceDate" />
+          <div class="hero-copy">
+            <b><em>{{ head.regStatus }}</em>{{ head.name }}</b>
+            <span>{{ head.raceDate }} · {{ head.city }} · {{ head.deadlineLabel }}</span>
+          </div>
+        </router-link>
+        <div v-if="rest.length" class="poster-grid">
+          <router-link v-for="race in rest" :key="race.id" class="poster-card" :to="'/races/' + race.id">
+            <Poster :id="race.id" :name="race.name" :city="race.city" :date="race.raceDate" />
+            <div class="copy">
+              <p><em>{{ race.regStatus }}</em>{{ race.name }}</p>
+              <div class="tags">
+                <span v-for="tag in race.distanceLabels" :key="tag">{{ tag }}</span>
+                <span v-if="!race.distanceLabels.length">{{ race.city }}</span>
+              </div>
+              <div class="card-foot">
+                <span>{{ race.raceDate }}</span>
+                <span :class="{ soon: race.open && race.daysLeft <= 7 }">{{ race.deadlineLabel }}</span>
+              </div>
+            </div>
+          </router-link>
+        </div>
+      </template>
+      <router-link class="text-link" to="/calendar">按比赛日查看</router-link>
+    </section>
   </div>
 </template>
 
@@ -82,6 +97,7 @@
 import { computed, onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import { api } from "../api";
+import Poster from "../components/Poster.vue";
 
 const route = useRoute();
 const q = ref("");
@@ -115,6 +131,8 @@ const distanceOptions = [
 ];
 const allowedStatus = new Set(statusOptions.map((item) => item.value));
 const monthLabel = computed(() => (month.value ? monthText(month.value) : ""));
+const head = computed(() => races.value[0] || null);
+const rest = computed(() => races.value.slice(1));
 
 function monthText(value) {
   const [year, m] = String(value).split("-");
