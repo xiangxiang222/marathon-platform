@@ -8,44 +8,46 @@
     </form>
     <div class="quick4">
       <button type="button" @click="setKind('road')">
-        <span class="ico"><svg viewBox="0 0 24 24"><path d="M13 4a2 2 0 1 1-1.2 3.6L8 14l-2 6M11 11l4 1 2 6M14 12l3-2" /></svg></span>
+        <span class="ico"><svg viewBox="0 0 24 24"><circle cx="14.2" cy="4.6" r="1.7" /><path d="M13.4 6.8 9.8 12.4 7 11.2M9.8 12.4 12.2 17.4 8.8 21.2M12.2 17.4 16.4 15.6 18.8 19.4M12 9.6 16.4 8.4 18.6 11.4" /></svg></span>
         路跑赛事
       </button>
       <button type="button" @click="setKind('online')">
-        <span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7" /><path d="M12 8v4l3 2" /></svg></span>
+        <span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7.2" /><path d="M12 8.2V12l2.6 1.6" /></svg></span>
         线上赛
       </button>
       <button type="button" @click="setKind('offline')">
-        <span class="ico"><svg viewBox="0 0 24 24"><path d="M6 20V5h8l-1.5 3L14 11H6" /></svg></span>
+        <span class="ico"><svg viewBox="0 0 24 24"><path d="M7 20V4.5M7 5.2h9.2L14 8.6l2.2 3.2H7" /></svg></span>
         线下赛
       </button>
       <button type="button" @click="setKind('trail')">
-        <span class="ico"><svg viewBox="0 0 24 24"><path d="M3 18l5-7 4 4 3-5 6 8" /></svg></span>
+        <span class="ico"><svg viewBox="0 0 24 24"><path d="M3 18.5 8.6 9.2l3.2 4.2 3.4-5.4L21 18.5z" /></svg></span>
         越野赛事
       </button>
     </div>
   </header>
   <section class="sheet">
-    <router-link class="cal-entry" to="/calendar">
-      <span class="swatch cal"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2" /><path d="M8 3v4M16 3v4M4 10h16" /></svg></span>
-      赛事日历
-    </router-link>
     <div class="cats">
-      <button v-for="item in cats" :key="item.label" type="button" @click="item.run()">
-        <span class="swatch" :class="item.tone" v-html="item.icon"></span>
-        {{ item.label }}
-      </button>
+      <template v-for="item in cats" :key="item.label">
+        <router-link v-if="item.to" :to="item.to">
+          <span class="swatch" :class="item.tone" v-html="item.icon"></span>
+          {{ item.label }}
+        </router-link>
+        <button v-else type="button" @click="item.run()">
+          <span class="swatch" :class="item.tone" v-html="item.icon"></span>
+          {{ item.label }}
+        </button>
+      </template>
     </div>
-    <router-link v-for="item in reminders" :key="item.race.id + item.hit.key" class="remind" :to="'/races/' + item.race.id">
-      <b>{{ item.hit.reason }}</b>
-      <span>{{ item.race.name }}</span>
-    </router-link>
-    <router-link v-if="headRace" class="feature" :to="'/races/' + headRace.id">
+    <router-link v-if="headRace" class="hero" :to="'/races/' + headRace.id">
       <Poster :id="headRace.id" :name="headRace.name" :city="headRace.city" :date="headRace.raceDate" />
-      <div class="feature-copy">
+      <div class="hero-copy">
         <b><em>{{ headRace.regStatus }}</em>{{ headRace.name }}</b>
         <span>{{ headRace.raceDate }} · {{ headRace.deadlineLabel }}</span>
       </div>
+    </router-link>
+    <router-link v-for="item in reminders" :key="item.race.id + item.hit.key" class="remind" :to="'/races/' + item.race.id">
+      <b>{{ item.hit.reason }}</b>
+      <span>{{ item.race.name }}</span>
     </router-link>
     <div class="channels">
       <button v-for="item in channels" :key="item.kind" type="button" :class="{ on: kind === item.kind }" @click="setKind(item.kind)">
@@ -184,14 +186,15 @@ const statusOptions = [
 
 const icon = (path) => `<svg viewBox="0 0 24 24"><path d="${path}"/></svg>`;
 const cats = [
-  { label: "马拉松", tone: "full", icon: icon("M14 5.2a1.4 1.4 0 1 1-2.4 1.4M7 19.5l3-5 2 1.2 1.4-3 3.2 2.2M9 10.5l2.2-2.2 2.4 1.2"), run: () => setDistance("full") },
-  { label: "半程", tone: "half", icon: icon("M5 16c2-6 5-9 7-9s5 3 7 9M8 16h8"), run: () => setDistance("half") },
+  { label: "马拉松", tone: "full", icon: icon("M14.2 4.2a1.6 1.6 0 1 1-1.1 2.5M8 20l3.2-6.2 2.2 1.2 1.6-3.4 3.6 2.2M9.4 11.2l2.4-2.4 2.6 1.2"), run: () => setDistance("full") },
+  { label: "半程", tone: "half", icon: icon("M4.5 16.5c2.2-6.2 5.2-9 7.5-9s5.3 2.8 7.5 9M8 16.5h8"), run: () => setDistance("half") },
   { label: "10公里", tone: "ten", icon: `<svg viewBox="0 0 24 24"><text x="12" y="16" text-anchor="middle">10</text></svg>`, run: () => setDistance("10k") },
-  { label: "越野", tone: "trail", icon: icon("M3 18l5-7 4 4 3-5 6 8H3"), run: () => setKind("trail") },
-  { label: "线上赛", tone: "online", icon: icon("M12 5a7 7 0 1 0 0 14 7 7 0 0 0 0-14zm0 3v4l2.5 1.5"), run: () => setKind("online") },
-  { label: "线下赛", tone: "offline", icon: icon("M6 20V5h8l-1.6 3.2L14 11.5H6"), run: () => setKind("offline") },
+  { label: "越野", tone: "trail", icon: icon("M3 18.5 8.2 9.4l3.4 4.2L15 8.2 21 18.5H3z"), run: () => setKind("trail") },
+  { label: "线上赛", tone: "online", icon: icon("M12 4.8a7.2 7.2 0 1 0 0 14.4 7.2 7.2 0 0 0 0-14.4zM12 8.2V12l2.4 1.5"), run: () => setKind("online") },
+  { label: "线下赛", tone: "offline", icon: icon("M6.5 20V4.8h8.2L13 8.2l1.8 3.4H6.5"), run: () => setKind("offline") },
   { label: "亲子", tone: "family", icon: icon("M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm8 1a2.2 2.2 0 1 0 0-4.4A2.2 2.2 0 0 0 16 11zM4 19c.6-2.4 2.2-3.6 4-3.6s3.4 1.2 4 3.6M12 19c.5-2 1.8-3 3.4-3S18.4 17 19 19"), run: () => setKind("family") },
-  { label: "铁三", tone: "tri", icon: icon("M5 17l4-8 3 4 2-3 5 7H5"), run: () => setKind("tri") }
+  { label: "铁三", tone: "tri", icon: icon("M4.5 18 9 9.2l3.2 4.2 2.2-3.4L19.5 18H4.5z"), run: () => setKind("tri") },
+  { label: "赛事日历", tone: "cal", to: "/calendar", icon: icon("M6 5.5h12v13H6zM8 4v3M16 4v3M6 9.5h12") }
 ];
 const headRace = computed(() => races.value.find((race) => race.open) || races.value[0] || null);
 const gridRaces = computed(() => races.value.filter((race) => !headRace.value || race.id !== headRace.value.id));

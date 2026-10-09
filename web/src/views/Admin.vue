@@ -1,6 +1,10 @@
 <template>
   <main>
-    <router-link class="back" to="/">返回赛历</router-link>
+    <header class="topbar">
+      <router-link to="/" aria-label="返回">‹</router-link>
+      <h1>赛历后台</h1>
+      <span></span>
+    </header>
     <div v-if="!authed" class="block">
       <h2>赛历后台</h2>
       <p class="hint">用用户名和密码进入。</p>

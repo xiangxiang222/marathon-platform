@@ -1,7 +1,7 @@
 <template>
-  <div class="sport-head">
+  <div class="page-head">
     <h1>运动</h1>
-    <div class="sub">跑团赛历：建团、发口令、看谁标了这场</div>
+    <p>跑团赛历：建团、发口令、看谁标了这场</p>
   </div>
   <section class="panel">
     <h3>数据中心</h3>

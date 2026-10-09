@@ -1,6 +1,10 @@
 <template>
   <main>
-    <router-link class="back" to="/">返回赛历</router-link>
+    <header class="topbar">
+      <router-link to="/" aria-label="返回">‹</router-link>
+      <h1>赛事</h1>
+      <span></span>
+    </header>
     <div v-if="race" class="detail-poster"><Poster :id="race.id" :name="race.name" :city="race.city" :date="race.raceDate" /></div>
     <div v-if="race" class="detail">
       <div class="reg" :class="{ off: !race.open }">{{ race.regStatus }}</div>
@@ -206,7 +210,7 @@ onMounted(load);
 </script>
 
 <style scoped>
-.detail-poster :deep(.poster) { height: 220px; }
+.detail-poster :deep(.poster) { height: 220px; border-radius: 0; }
 .share-text { margin: 0; font: inherit; white-space: pre-wrap; line-height: 1.5; }
 .src { margin: 8px 0 0; color: #8d949c; font-size: 12px; }
 .note { color: #00b7ae; font-size: 13px; padding: 0 16px; }

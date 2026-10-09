@@ -1,6 +1,10 @@
 <template>
   <main>
-    <router-link class="back" to="/sport">返回运动</router-link>
+    <header class="topbar">
+      <router-link to="/sport" aria-label="返回">‹</router-link>
+      <h1>跑团</h1>
+      <span></span>
+    </header>
     <div v-if="club" class="detail">
       <div class="hero-name">{{ club.name }}</div>
       <div class="row"><span>口令，发到微信群</span><b>{{ club.code }}</b></div>

@@ -1,13 +1,18 @@
 <template>
-  <div class="page-title">看看</div>
-  <div v-if="races.length" class="look-list">
-    <router-link v-for="race in races" :key="race.id" class="look-card" :to="'/races/' + race.id">
+  <div class="page-head"><h1>看看</h1></div>
+  <div v-if="races.length" class="grid">
+    <router-link v-for="race in races" :key="race.id" class="card" :to="'/races/' + race.id">
       <Poster :id="race.id" :name="race.name" :city="race.city" :date="race.raceDate" />
-      <h2><em>{{ race.regStatus }} </em>{{ race.name }}</h2>
-      <div class="tags"><span v-for="tag in race.distanceLabels" :key="tag">{{ tag }}</span><span>{{ race.city }}</span></div>
-      <div class="foot">
-        <span>{{ race.raceDate }}</span>
-        <span :class="{ soon: race.open && race.daysLeft <= 7 }">{{ race.deadlineLabel }}</span>
+      <div class="copy">
+        <p><em>{{ race.regStatus }}</em>{{ race.name }}</p>
+        <div class="tags">
+          <span v-for="tag in race.distanceLabels" :key="tag">{{ tag }}</span>
+          <span v-if="!race.distanceLabels.length">{{ race.city }}</span>
+        </div>
+        <div class="foot">
+          <span class="cal">{{ race.raceDate }}</span>
+          <span :class="{ soon: race.open && race.daysLeft <= 7 }">{{ race.deadlineLabel }}</span>
+        </div>
       </div>
     </router-link>
   </div>
@@ -27,7 +32,3 @@ onMounted(async () => {
 });
 </script>
 
-<style scoped>
-.look-card :deep(.poster) { height: 168px; border-radius: 8px; }
-.look-card em { color: #00b7ae; font-style: normal; font-weight: 650; }
-</style>

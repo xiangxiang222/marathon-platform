@@ -1,6 +1,6 @@
 <template>
   <main class="calendar">
-    <header class="bar">
+    <header class="topbar">
       <router-link to="/" aria-label="返回">‹</router-link>
       <h1>赛事日历</h1>
       <span></span>
@@ -125,14 +125,6 @@ onMounted(load);
 
 <style scoped>
 .calendar { background: #fff; min-height: 100vh; color: #1c1c1e; }
-.bar {
-  display: grid;
-  grid-template-columns: 44px 1fr 44px;
-  align-items: center;
-  height: 48px;
-}
-.bar h1 { margin: 0; text-align: center; font-size: 17px; font-weight: 600; }
-.bar a { text-align: center; font-size: 28px; line-height: 1; color: #222; }
 .month { display: flex; align-items: center; justify-content: center; gap: 28px; padding: 4px 0 2px; }
 .month b { font-size: 16px; font-weight: 600; }
 .month button { width: 32px; font-size: 22px; color: #666; }
