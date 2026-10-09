@@ -1,0 +1,33 @@
+<view class="cal">
+  <view class="nav">
+    <text bindtap="prev">‹</text>
+    <text class="ym">{{year}}年{{month}}月</text>
+    <text bindtap="next">›</text>
+  </view>
+  <view class="week">
+    <text wx:for="{{weeks}}" wx:key="*this" class="{{item === '日' || item === '六' ? 'end' : ''}}">{{item}}</text>
+  </view>
+  <view class="grid">
+    <view
+      wx:for="{{cells}}"
+      wx:key="date"
+      class="cell {{item.inMonth ? '' : 'out'}} {{item.today ? 'today' : ''}} {{item.picked && !item.today ? 'picked' : ''}}"
+      data-date="{{item.date}}"
+      data-in="{{item.inMonth}}"
+      bindtap="pick"
+    >
+      <text class="num">{{item.mark}}</text>
+      <text class="lunar">{{item.lunar}}</text>
+      <text class="count">{{item.countText}}</text>
+    </view>
+  </view>
+  <view wx:if="{{message}}" class="err">{{message}}</view>
+  <view class="list">
+    <view class="picked">{{pickedLabel}}</view>
+    <navigator wx:for="{{dayRaces}}" wx:key="id" url="/pages/race/race?id={{item.id}}" class="race">
+      <view class="name">{{item.name}}</view>
+      <view class="meta">{{item.meta}}</view>
+    </navigator>
+    <view wx:if="{{ready && !dayRaces.length}}" class="empty">这一天没有赛事</view>
+  </view>
+</view>

@@ -26,6 +26,10 @@
     </div>
   </header>
   <section class="sheet">
+    <router-link class="cal-entry" to="/calendar">
+      <span class="swatch cal"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2" /><path d="M8 3v4M16 3v4M4 10h16" /></svg></span>
+      赛事日历
+    </router-link>
     <div class="cats">
       <button v-for="item in cats" :key="item.label" type="button" @click="item.run()">
         <span class="swatch" :class="item.tone" v-html="item.icon"></span>

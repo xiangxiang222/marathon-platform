@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/races/races",
+    "pages/calendar/calendar",
     "pages/clubs/clubs",
     "pages/mine/mine",
     "pages/race/race",

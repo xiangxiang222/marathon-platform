@@ -78,6 +78,18 @@ a { color: inherit; text-decoration: none; }
 .quick4 .ico svg { width: 30px; height: 30px; stroke: #fff; fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 
 .sheet { background: #fff; border-radius: 18px 18px 0 0; margin-top: -12px; position: relative; min-height: 50vh; }
+.cal-entry {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 14px 16px 0;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: #fff6f2;
+  font-size: 15px;
+  font-weight: 650;
+}
+.swatch.cal { width: 40px; height: 40px; border-radius: 12px; background: #ff7a45; }
 .cats {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
