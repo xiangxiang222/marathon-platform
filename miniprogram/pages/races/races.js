@@ -29,6 +29,8 @@ Page({
     months: [],
     races: [],
     reminders: [],
+    tasks: [],
+    signedIn: false,
     reminderTitle: "明天的节点",
     loading: true,
     message: ""
@@ -63,19 +65,26 @@ Page({
     this.load();
   },
   loadReminders() {
-    request("/reminders")
-      .then((data) => {
-        const mine = data.mine || [];
-        const list = (mine.length ? mine : data.reminders || []).slice(0, 3).map((item) => ({
-          ...item,
-          key: item.race.id + item.hit.key
+    request("/today")
+      .then((today) => {
+        const tasks = (today.tasks || []).map((task) => ({
+          ...task,
+          url: task.clubId ? "/pages/club/club?id=" + task.clubId : "/pages/race/race?id=" + task.raceId
         }));
-        this.setData({
-          reminders: list,
-          reminderTitle: mine.length ? "你标过的场，明天有节点" : "明天的节点"
+        if (today.user) {
+          this.setData({ tasks, signedIn: true, reminders: [] });
+          return;
+        }
+        this.setData({ tasks: [], signedIn: false });
+        return request("/reminders").then((data) => {
+          const list = (data.reminders || []).slice(0, 3).map((item) => ({
+            ...item,
+            key: item.race.id + item.hit.key
+          }));
+          this.setData({ reminders: list, reminderTitle: "明天的节点" });
         });
       })
-      .catch(() => this.setData({ reminders: [] }));
+      .catch(() => this.setData({ tasks: [], reminders: [] }));
   },
   load() {
     const params = ["status=" + (this.data.status || "all")];

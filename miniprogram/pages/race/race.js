@@ -171,6 +171,21 @@ Page({
       .then(() => this.setData({ saving: false, ok: "名字已记下。" }))
       .catch((err) => this.setData({ saving: false, message: err.message }));
   },
+  drop() {
+    wx.showModal({
+      title: "移出这场",
+      content: "只移出你的安排，已记下的成绩还在。",
+      success: (res) => {
+        if (!res.confirm) return;
+        request("/me/races/" + this.raceId, "DELETE")
+          .then(() => {
+            this.setData({ ok: "已移出你的安排" });
+            return this.load();
+          })
+          .catch((err) => this.setData({ message: err.message }));
+      }
+    });
+  },
   mark(e) {
     const status = e.currentTarget.dataset.status;
     if (!this.data.ready || this.data.saving || status === this.data.myStatus) return;

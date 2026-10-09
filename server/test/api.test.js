@@ -604,3 +604,35 @@ test("admin signs in with a username and password", async () => {
   const closed = await request(app).get("/marathon/api/admin/official").set("Authorization", "Bearer " + again.body.token);
   assert.equal(closed.status, 401);
 });
+
+test("today names who has not paid, and a plan can be removed", async () => {
+  const guest = await request(app).get("/marathon/api/today");
+  assert.equal(guest.status, 200);
+  assert.equal(guest.body.user, null);
+  assert.equal(guest.body.tasks.length, 0);
+
+  const leader = await session("值班团长");
+  const auth = { Authorization: "Bearer " + leader };
+  const created = await request(app).post("/marathon/api/clubs").set(auth).send({ name: "值班跑团" });
+  const mate = await session("还没缴");
+  await request(app).post("/marathon/api/clubs/join").set("Authorization", "Bearer " + mate).send({ code: created.body.club.code });
+  await request(app).put("/marathon/api/me/races/bishan").set(auth).send({ status: "已缴费" });
+  await request(app).put("/marathon/api/me/races/bishan").set("Authorization", "Bearer " + mate).send({ status: "中签" });
+  await request(app).put("/marathon/api/me/races/songshanhu").set(auth).send({ status: "想跑" });
+
+  const today = await request(app).get("/marathon/api/today").set(auth);
+  assert.equal(today.body.user.nickname, "值班团长");
+  const unpaid = today.body.tasks.find((task) => task.kind === "unpaid");
+  assert.ok(unpaid);
+  assert.match(unpaid.body, /还没缴/);
+  assert.equal(unpaid.clubId, created.body.club.id);
+  assert.ok(today.body.tasks.some((task) => task.kind === "conflict"));
+
+  const anon = await request(app).delete("/marathon/api/me/races/songshanhu");
+  assert.equal(anon.status, 401);
+  const removed = await request(app).delete("/marathon/api/me/races/songshanhu").set(auth);
+  assert.equal(removed.status, 200);
+  const me = await request(app).get("/marathon/api/me").set(auth);
+  assert.equal(me.body.plans.some((plan) => plan.race.id === "songshanhu"), false);
+  assert.equal(me.body.plans.some((plan) => plan.race.id === "bishan"), true);
+});
