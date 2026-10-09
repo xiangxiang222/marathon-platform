@@ -7,7 +7,9 @@
     <view class="row"><text class="k">项目</text><text>{{distanceText}}</text></view>
     <view class="row"><text class="k">{{race.deadlineName}}</text><text class="{{race.open && race.daysLeft <= 3 ? 'soon' : ''}}">{{race.deadlineLabel}}</text></view>
     <view wx:if="{{race.gradeLabel}}" class="src">{{race.gradeLabel}}</view>
+    <view wx:if="{{race.organizer}}" class="src">主办 {{race.organizer}}</view>
     <view wx:if="{{race.source}}" class="src">来源 {{race.source}}<text wx:if="{{race.updatedAt}}"> · 更新于 {{race.updatedAt}}</text></view>
+    <view wx:if="{{race.eventUrl}}" class="src">赛事网站 {{race.eventUrl}}</view>
     <view wx:if="{{race.officialUrl}}" class="src">官网这场 {{race.officialUrl}}</view>
     <view wx:for="{{conflicts}}" wx:key="text" class="warn">{{item.text}}</view>
   </view>

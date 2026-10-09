@@ -10,7 +10,9 @@
       <div class="row"><span>项目</span><b>{{ race.distanceLabels.join(" / ") }}</b></div>
       <div class="row"><span>{{ race.deadlineName }}</span><b :class="{ soon: race.open && race.daysLeft <= 3 }">{{ race.deadlineLabel }}</b></div>
       <p v-if="race.gradeLabel" class="src">{{ race.gradeLabel }}</p>
+      <p v-if="race.organizer" class="src">主办 {{ race.organizer }}</p>
       <p v-if="race.source" class="src">来源 {{ race.source }}<template v-if="race.updatedAt"> · 更新于 {{ race.updatedAt }}</template></p>
+      <p v-if="race.eventUrl" class="src"><a :href="race.eventUrl" target="_blank" rel="noopener">赛事网站</a></p>
       <p v-if="race.officialUrl" class="src"><a :href="race.officialUrl" target="_blank" rel="noopener">中国马拉松官网这场</a></p>
       <p v-for="item in conflicts" :key="item.text" class="warn">{{ item.text }}</p>
     </div>

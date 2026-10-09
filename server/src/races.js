@@ -347,6 +347,8 @@ function presentRace(row, now) {
     grade: row.grade || "",
     gradeLabel: gradeLabel(row.grade),
     officialUrl: field(row, "officialUrl", "official_url"),
+    organizer: field(row, "organizer", "organizer"),
+    eventUrl: field(row, "eventUrl", "event_url"),
     nodes,
     nextNode,
     regStatus: phaseLabel(row.race_date || row.raceDate, meta, now),
