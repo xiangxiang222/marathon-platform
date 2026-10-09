@@ -5,7 +5,7 @@ const express = require("express");
 const { getDb } = require("./db");
 const { presentRace, summarizeMarks, cardTitle, shareText, reminderHits, fullConflicts, squadOf, nearbyOpen, alternativeNote, drawPoster } = require("./races");
 const { parseClock, decorateResults, careerOf, yearOf, bestRanks } = require("./career");
-const { syncOfficial, listOfficial, publishOfficial, ignoreOfficial, applyOfficial } = require("./official");
+const { syncOfficial, listOfficial, publishOfficial, openUpcoming, ignoreOfficial, applyOfficial } = require("./official");
 
 function loadEnv() {
   const file = path.join(__dirname, "../../.env");
@@ -202,6 +202,10 @@ app.get(BASE + "/api/races", (req, res) => {
   if (month) rows = rows.filter((r) => r.raceDate.slice(0, 7) === month);
   if (distance) rows = rows.filter((r) => r.distances.includes(distance));
   if (kind) rows = rows.filter((r) => r.kind === kind);
+  if (status === "upcoming") {
+    const today = cstDay(now);
+    rows = rows.filter((r) => r.raceDate >= today);
+  }
   if (status === "open") rows = rows.filter((r) => r.regStatus === "报名中");
   if (status === "wait") rows = rows.filter((r) => r.regStatus === "待开赛");
   if (status === "live") rows = rows.filter((r) => r.regStatus === "比赛中");
@@ -562,8 +566,10 @@ app.post(BASE + "/api/admin/official/sync", async (req, res) => {
       pauseMs: name ? 0 : 250,
       maxDetails: name ? 40 : undefined
     });
+    const opened = name ? 0 : openUpcoming(getDb());
     res.json({
       ...saved,
+      opened,
       rows: listOfficial(getDb(), { q: name, status: name ? "" : "pending", upcomingFrom: name ? "" : cstDay() })
     });
   } catch (err) {
@@ -636,10 +642,15 @@ if (require.main === module) {
   const port = Number(process.env.PORT || 3790);
   app.listen(port, () => {
     console.log(`marathon listening on ${port} base ${BASE}`);
+    const released = openUpcoming(getDb());
+    console.log(`official released ${released}`);
     if (!process.env.ADMIN_TOKEN) return;
     const pull = () => {
       syncOfficial(getDb(), { upcomingOnly: true }).then(
-        (saved) => console.log(`official calendar ${saved.count} changed ${saved.changed || 0}`),
+        (saved) => {
+          const opened = openUpcoming(getDb());
+          console.log(`official calendar ${saved.count} changed ${saved.changed || 0} opened ${opened}`);
+        },
         (err) => console.error("official calendar", err.message)
       );
     };

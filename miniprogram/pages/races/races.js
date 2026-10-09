@@ -1,7 +1,7 @@
 const { request } = require("../../utils/request");
 
 Page({
-  data: { q: "", status: "open", races: [], reminders: [], loaded: false, message: "" },
+  data: { q: "", status: "upcoming", races: [], reminders: [], loaded: false, message: "" },
   onShow() {
     this.load();
   },
@@ -13,7 +13,7 @@ Page({
     this.load();
   },
   load() {
-    const params = ["status=" + (this.data.status || "open")];
+    const params = ["status=" + (this.data.status || "upcoming")];
     const q = (this.data.q || "").trim();
     if (q) params.push("q=" + encodeURIComponent(q));
     request("/reminders")

@@ -457,6 +457,12 @@ function publishOfficial(db, officialId, now = new Date()) {
          reg_start, draw_at, pay_deadline, source, updated_at, deadline_name, grade, official_url
        ) VALUES (?, ?, ?, ?, ?, ?, '', ?, '', '', '', ?, ?, '', ?, ?)
        ON CONFLICT(id) DO UPDATE SET
+         name = excluded.name,
+         city = excluded.city,
+         province = excluded.province,
+         distances = excluded.distances,
+         race_date = excluded.race_date,
+         place = excluded.place,
          grade = excluded.grade,
          official_url = excluded.official_url`
     ).run(
@@ -477,6 +483,17 @@ function publishOfficial(db, officialId, now = new Date()) {
     return { raceId: id, linked: false };
   })();
   return result;
+}
+
+function openUpcoming(db, now = new Date()) {
+  const today = cstDay(now);
+  const rows = db.prepare("SELECT official_id FROM official_races WHERE status != 'ignored' AND race_date >= ?").all(today);
+  let opened = 0;
+  for (const row of rows) {
+    const result = publishOfficial(db, row.official_id, now);
+    if (!result.error) opened += 1;
+  }
+  return opened;
 }
 
 function ignoreOfficial(db, officialId) {
@@ -511,6 +528,7 @@ module.exports = {
   syncOfficial,
   listOfficial,
   publishOfficial,
+  openUpcoming,
   ignoreOfficial,
   applyOfficial
 };

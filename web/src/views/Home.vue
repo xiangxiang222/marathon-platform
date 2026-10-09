@@ -36,13 +36,13 @@
       <b>{{ item.hit.reason }}</b>
       <span>{{ item.race.name }}</span>
     </router-link>
-    <div class="banner">
-      <div>
-        <b>{{ soonest ? soonest.name : "跑团赛历" }}</b>
-        <span>{{ soonest ? soonest.raceDate + " · " + soonest.deadlineLabel : "截止日期写在每张卡片上" }}</span>
+    <router-link v-if="headRace" class="feature" :to="'/races/' + headRace.id">
+      <Poster :id="headRace.id" :name="headRace.name" :city="headRace.city" :date="headRace.raceDate" />
+      <div class="feature-copy">
+        <b><em>{{ headRace.regStatus }}</em>{{ headRace.name }}</b>
+        <span>{{ headRace.raceDate }} · {{ headRace.deadlineLabel }}</span>
       </div>
-      <div class="dots"><i class="on"></i><i></i><i></i></div>
-    </div>
+    </router-link>
     <div class="channels">
       <button v-for="item in channels" :key="item.kind" type="button" :class="{ on: kind === item.kind }" @click="setKind(item.kind)">
         {{ item.label }}
@@ -86,17 +86,20 @@
             </button>
           </div>
           <div class="actions">
-            <button type="button" class="ghost" @click="draftStatus = 'open'">重置</button>
+            <button type="button" class="ghost" @click="draftStatus = 'upcoming'">重置</button>
             <button type="button" class="ok" @click="confirmStatus">确认</button>
           </div>
         </div>
       </div>
     <div v-if="races.length" class="grid">
-      <router-link v-for="race in races" :key="race.id" class="card" :to="'/races/' + race.id">
-        <Poster :id="race.id" />
+      <router-link v-for="race in gridRaces" :key="race.id" class="card" :to="'/races/' + race.id">
+        <Poster :id="race.id" :name="race.name" :city="race.city" :date="race.raceDate" />
         <div class="copy">
           <p><em>{{ race.regStatus }}</em>{{ race.name }}</p>
-          <div class="tags"><span v-for="tag in race.distanceLabels" :key="tag">{{ tag }}</span></div>
+          <div class="tags">
+            <span v-for="tag in race.distanceLabels" :key="tag">{{ tag }}</span>
+            <span v-if="!race.distanceLabels.length">{{ race.city }}</span>
+          </div>
           <div class="foot">
             <span class="cal">
               <svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2" /><path d="M8 3v4M16 3v4M4 10h16" /></svg>
@@ -125,8 +128,8 @@ const full = ref(false);
 const half = ref(false);
 const ten = ref(false);
 const kind = ref("road");
-const status = ref("open");
-const draftStatus = ref("open");
+const status = ref("upcoming");
+const draftStatus = ref("upcoming");
 const sheet = ref("");
 const barEl = ref(null);
 const dropTop = ref(180);
@@ -167,7 +170,7 @@ const channels = [
 ];
 
 const statusOptions = [
-  { label: "未开始", value: "soon" },
+  { label: "即将开赛", value: "upcoming" },
   { label: "报名中", value: "open" },
   { label: "待开赛", value: "wait" },
   { label: "比赛中", value: "live" },
@@ -186,7 +189,8 @@ const cats = [
   { label: "亲子", tone: "family", icon: icon("M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm8 1a2.2 2.2 0 1 0 0-4.4A2.2 2.2 0 0 0 16 11zM4 19c.6-2.4 2.2-3.6 4-3.6s3.4 1.2 4 3.6M12 19c.5-2 1.8-3 3.4-3S18.4 17 19 19"), run: () => setKind("family") },
   { label: "铁三", tone: "tri", icon: icon("M5 17l4-8 3 4 2-3 5 7H5"), run: () => setKind("tri") }
 ];
-const soonest = computed(() => races.value.find((race) => race.open) || null);
+const headRace = computed(() => races.value.find((race) => race.open) || races.value[0] || null);
+const gridRaces = computed(() => races.value.filter((race) => !headRace.value || race.id !== headRace.value.id));
 
 const cityNames = computed(() => places.find((item) => item.name === province.value)?.cities || []);
 const monthLabel = computed(() => (month.value ? month.value.replace("-", "年") + "月" : ""));

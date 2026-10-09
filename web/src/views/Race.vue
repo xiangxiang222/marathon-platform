@@ -1,7 +1,7 @@
 <template>
   <main>
     <router-link class="back" to="/">返回赛历</router-link>
-    <div v-if="race" class="detail-poster"><Poster :id="race.id" /></div>
+    <div v-if="race" class="detail-poster"><Poster :id="race.id" :name="race.name" :city="race.city" :date="race.raceDate" /></div>
     <div v-if="race" class="detail">
       <div class="reg" :class="{ off: !race.open }">{{ race.regStatus }}</div>
       <h1>{{ race.name }}</h1>
