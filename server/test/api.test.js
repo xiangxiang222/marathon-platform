@@ -557,3 +557,32 @@ test("upcoming official races show on the calendar without inventing a deadline"
   const hidden = await request(app).get("/marathon/api/races?status=open");
   assert.equal(hidden.body.races.some((race) => race.id === "caa-9100"), false);
 });
+
+test("admin signs in with a username and password", async () => {
+  process.env.ADMIN_USER = "admin";
+  process.env.ADMIN_PASSWORD = "test-pass-8";
+  const blank = await request(app).post("/marathon/api/admin/login").send({ username: "", password: "" });
+  assert.equal(blank.status, 400);
+  const bad = await request(app).post("/marathon/api/admin/login").send({ username: "admin", password: "wrong-pass" });
+  assert.equal(bad.status, 401);
+  assert.equal(bad.body.error, "用户名或密码不对");
+  const ok = await request(app).post("/marathon/api/admin/login").send({ username: "admin", password: "test-pass-8" });
+  assert.equal(ok.status, 200);
+  assert.equal(typeof ok.body.token, "string");
+  assert.notEqual(ok.body.token, "test-pass-8");
+  const list = await request(app).get("/marathon/api/admin/official").set("Authorization", "Bearer " + ok.body.token);
+  assert.equal(list.status, 200);
+  const changed = await request(app)
+    .post("/marathon/api/admin/password")
+    .set("Authorization", "Bearer " + ok.body.token)
+    .send({ current: "test-pass-8", next: "new-pass-9" });
+  assert.equal(changed.status, 200);
+  const old = await request(app).post("/marathon/api/admin/login").send({ username: "admin", password: "test-pass-8" });
+  assert.equal(old.status, 401);
+  const again = await request(app).post("/marathon/api/admin/login").send({ username: "admin", password: "new-pass-9" });
+  assert.equal(again.status, 200);
+  const out = await request(app).post("/marathon/api/admin/logout").set("Authorization", "Bearer " + again.body.token).send({});
+  assert.equal(out.status, 200);
+  const closed = await request(app).get("/marathon/api/admin/official").set("Authorization", "Bearer " + again.body.token);
+  assert.equal(closed.status, 401);
+});

@@ -3,9 +3,10 @@
     <router-link class="back" to="/">返回赛历</router-link>
     <div v-if="!authed" class="block">
       <h2>赛历后台</h2>
-      <p class="hint">口令写在服务器的 ADMIN_TOKEN，不放进页面。</p>
+      <p class="hint">用用户名和密码进入。</p>
       <form class="check-form" @submit.prevent="enter">
-        <input v-model="token" type="password" placeholder="后台口令" />
+        <input v-model="username" autocomplete="username" placeholder="用户名" />
+        <input v-model="password" type="password" autocomplete="current-password" placeholder="密码" />
         <button class="primary" type="submit">进入</button>
       </form>
       <p v-if="message" class="err">{{ message }}</p>
@@ -13,6 +14,7 @@
     <template v-else>
       <div class="block">
         <h2>官网赛历</h2>
+        <button class="undo" type="button" @click="logout">退出</button>
         <p class="hint">每一届单独存。中国马拉松官网这场一直有链接。赛事自己的网站，官网给了才记下；没给就空着，也不拿往年的网站来填。每天再对一次，名称、日期、主办、赛事网站有变会标出来。报名时间仍要另写来源，已经记下的截止时间不会被盖掉。</p>
         <form class="check-form" @submit.prevent="search">
           <input v-model="q" placeholder="向官网查名称，例如璧山" />
@@ -26,6 +28,11 @@
         </div>
         <p v-if="busy" class="hint">正在向官网要赛历。</p>
         <p v-if="message" :class="saved ? 'hint' : 'err'">{{ message }}</p>
+        <form class="check-form" @submit.prevent="changePassword">
+          <input v-model="currentPassword" type="password" autocomplete="current-password" placeholder="当前密码" />
+          <input v-model="nextPassword" type="password" autocomplete="new-password" placeholder="新密码，至少 8 位" />
+          <button class="undo" type="submit">修改密码</button>
+        </form>
       </div>
       <div v-for="row in rows" :key="row.officialId" class="block">
         <h2>{{ row.name }}</h2>
@@ -66,6 +73,10 @@ import { ref } from "vue";
 import { api } from "../api";
 
 const token = ref(sessionStorage.getItem("marathon_admin") || "");
+const username = ref("");
+const password = ref("");
+const currentPassword = ref("");
+const nextPassword = ref("");
 const authed = ref(false);
 const q = ref("");
 const filter = ref("pending");
@@ -93,12 +104,48 @@ function fail(err) {
 async function enter() {
   message.value = "";
   saved.value = false;
-  sessionStorage.setItem("marathon_admin", token.value);
   try {
+    const data = await api("/admin/login", {
+      method: "POST",
+      body: JSON.stringify({ username: username.value, password: password.value })
+    });
+    token.value = data.token;
+    password.value = "";
+    sessionStorage.setItem("marathon_admin", token.value);
     await load();
     authed.value = true;
   } catch (err) {
     authed.value = false;
+    fail(err);
+  }
+}
+
+async function logout() {
+  try {
+    await admin("/admin/logout", { method: "POST", body: "{}" });
+  } catch (err) {
+    /* 会话失效也离开页面 */
+  }
+  token.value = "";
+  sessionStorage.removeItem("marathon_admin");
+  authed.value = false;
+  message.value = "";
+  saved.value = false;
+}
+
+async function changePassword() {
+  message.value = "";
+  saved.value = false;
+  try {
+    await admin("/admin/password", {
+      method: "POST",
+      body: JSON.stringify({ current: currentPassword.value, next: nextPassword.value })
+    });
+    currentPassword.value = "";
+    nextPassword.value = "";
+    saved.value = true;
+    message.value = "密码已修改";
+  } catch (err) {
     fail(err);
   }
 }
@@ -197,7 +244,17 @@ async function saveNodes(row) {
   }
 }
 
-if (token.value) enter();
+if (token.value) {
+  load()
+    .then(() => {
+      authed.value = true;
+    })
+    .catch(() => {
+      token.value = "";
+      sessionStorage.removeItem("marathon_admin");
+      authed.value = false;
+    });
+}
 </script>
 
 <style scoped>

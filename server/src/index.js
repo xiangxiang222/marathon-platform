@@ -6,6 +6,7 @@ const { getDb } = require("./db");
 const { presentRace, summarizeMarks, cardTitle, shareText, reminderHits, fullConflicts, squadOf, nearbyOpen, alternativeNote, drawPoster } = require("./races");
 const { parseClock, decorateResults, careerOf, yearOf, bestRanks } = require("./career");
 const { syncOfficial, listOfficial, publishOfficial, openUpcoming, ignoreOfficial, applyOfficial } = require("./official");
+const { ensureAdmin, loginAdmin, adminSession, logoutAdmin, changeAdminPassword } = require("./admin-auth");
 
 function loadEnv() {
   const file = path.join(__dirname, "../../.env");
@@ -524,22 +525,49 @@ app.delete(BASE + "/api/clubs/:id/checkins", (req, res) => {
   res.json({ ok: true, ...checkinsOf(req.params.id, user.id) });
 });
 
-function requireAdmin(req, res) {
-  const expected = process.env.ADMIN_TOKEN || "";
-  if (!expected) {
-    res.status(404).json({ error: "后台还没打开" });
-    return false;
-  }
-  const header = req.get("authorization") || "";
-  const token = header.replace(/^Bearer\s+/i, "");
-  const left = Buffer.from(token);
-  const right = Buffer.from(expected);
-  if (left.length !== right.length || !crypto.timingSafeEqual(left, right)) {
-    res.status(401).json({ error: "后台口令不对" });
-    return false;
-  }
-  return true;
+function bearerToken(req) {
+  return (req.get("authorization") || "").replace(/^Bearer\s+/i, "");
 }
+
+function requireAdmin(req, res) {
+  const token = bearerToken(req);
+  const username = token ? adminSession(getDb(), token) : "";
+  if (username) {
+    req.adminUser = username;
+    return true;
+  }
+  const expected = process.env.ADMIN_TOKEN || "";
+  if (expected && token) {
+    const left = Buffer.from(token);
+    const right = Buffer.from(expected);
+    if (left.length === right.length && crypto.timingSafeEqual(left, right)) {
+      req.adminUser = "";
+      return true;
+    }
+  }
+  res.status(401).json({ error: "请重新登录" });
+  return false;
+}
+
+app.post(BASE + "/api/admin/login", (req, res) => {
+  const body = req.body || {};
+  const result = loginAdmin(getDb(), body.username, body.password);
+  if (result.error) return res.status(result.status).json({ error: result.error });
+  res.json({ token: result.token });
+});
+
+app.post(BASE + "/api/admin/logout", (req, res) => {
+  logoutAdmin(getDb(), bearerToken(req));
+  res.json({ ok: true });
+});
+
+app.post(BASE + "/api/admin/password", (req, res) => {
+  if (!requireAdmin(req, res)) return;
+  const body = req.body || {};
+  const result = changeAdminPassword(getDb(), req.adminUser, body.current, body.next);
+  if (result.error) return res.status(result.status).json({ error: result.error });
+  res.json({ ok: true });
+});
 
 app.get(BASE + "/api/admin/official", (req, res) => {
   if (!requireAdmin(req, res)) return;
@@ -642,6 +670,7 @@ if (require.main === module) {
   const port = Number(process.env.PORT || 3790);
   app.listen(port, () => {
     console.log(`marathon listening on ${port} base ${BASE}`);
+    ensureAdmin(getDb());
     const released = openUpcoming(getDb());
     console.log(`official released ${released}`);
     if (!process.env.ADMIN_TOKEN) return;
