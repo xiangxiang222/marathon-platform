@@ -145,7 +145,8 @@ onMounted(load);
 .week .end { color: #e23b3b; }
 .grid { padding: 0 2px 8px; }
 .cell {
-  min-height: 72px;
+  min-width: 0;
+  min-height: calc(72px * var(--s));
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -153,18 +154,18 @@ onMounted(load);
   padding: 4px 0 2px;
 }
 .num {
-  width: 28px;
-  height: 28px;
+  width: calc(28px * var(--s));
+  height: calc(28px * var(--s));
   border-radius: 50%;
   display: grid;
   place-items: center;
   background: #f3f4f6;
-  font-size: 15px;
+  font-size: calc(15px * var(--s));
 }
 .cell.out .num { background: transparent; color: #c8ccd3; }
 .cell.today .num { background: #fff; color: #e23b3b; box-shadow: inset 0 0 0 1.5px #e23b3b; }
 .cell.picked:not(.today) .num { background: #e23b3b; color: #fff; }
-.lunar, .count { font-size: 10px; line-height: 1.2; min-height: 13px; }
+.lunar, .count { font-size: clamp(9px, calc(10px * var(--s)), 11px); line-height: 1.2; min-height: 13px; max-width: 100%; overflow: hidden; white-space: nowrap; }
 .lunar { color: #b4b8c0; }
 .count { color: #e23b3b; }
 .day-races { border-top: 8px solid #f6f7f9; padding: 4px 16px 28px; }

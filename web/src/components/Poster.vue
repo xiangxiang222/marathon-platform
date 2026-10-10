@@ -84,9 +84,9 @@ const titleSize = computed(() => {
 </script>
 
 <style scoped>
-.poster { display: block; width: 100%; height: 148px; border-radius: 8px; }
-.poster.large { height: 168px; border-radius: 0; }
-.poster.cover { height: 220px; border-radius: 0; }
+.poster { display: block; width: 100%; height: auto; aspect-ratio: 6 / 5; border-radius: 8px; }
+.poster.large { aspect-ratio: 13 / 6; height: auto; border-radius: 0; }
+.poster.cover { aspect-ratio: 16 / 9; height: auto; border-radius: 0; }
 text { font-family: "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei", sans-serif; fill: #fff; }
 .year { font-size: 15px; letter-spacing: 2px; opacity: 0.8; }
 .city { font-size: 18px; letter-spacing: 3px; opacity: 0.92; }
