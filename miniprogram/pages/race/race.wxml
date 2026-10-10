@@ -1,150 +1,94 @@
-<view class="pad" wx:if="{{phase === 'loading'}}">
-  <view class="state">正在打开这场</view>
-</view>
-<view class="pad" wx:elif="{{phase === 'error'}}">
-  <view class="state">
-    <view class="err">{{message}}</view>
-    <button class="line" bindtap="retry">重试</button>
-  </view>
-</view>
-<view class="pad" wx:elif="{{race}}">
-  <view class="teal">{{race.regStatus}}</view>
-  <view class="hero">{{race.name}}</view>
-  <view class="meta">{{race.raceDate}} · {{place}}</view>
-  <view class="meta" wx:if="{{distanceText}}">{{distanceText}}</view>
-
-  <view class="callout {{callout.soon ? 'hot' : ''}}" wx:if="{{callout.label}}">
-    <view class="label">{{callout.label}}</view>
-    <view class="line">{{callout.line}}</view>
-  </view>
-
-  <view class="card" wx:if="{{conflicts.length}}">
-    <view wx:for="{{conflicts}}" wx:key="text" class="warn">{{item.text}}</view>
-  </view>
-
+<view class="pad" wx:if="{{race}}">
   <view class="card">
-    <view class="h2">我这场</view>
-    <block wx:if="{{showSignup}}">
-      <button class="btn" bindtap="copyUrl">去赛事网站报名</button>
-      <view class="help">报名在赛事网站完成。报完回到这里，标成已报名。小程序里先复制网址，到浏览器打开。</view>
-      <view wx:if="{{urlOk}}" class="ok">{{urlOk}}</view>
-    </block>
-    <view wx:if="{{missingUrl}}" class="help">这场没有记下报名网址。报完后在这里标状态。</view>
-
-    <view wx:if="{{!ready}}" class="stack">
-      <view class="kicker">你在团里的名字</view>
-      <input placeholder="例如 阿宁" value="{{draft}}" maxlength="20" bindinput="onDraft" />
-      <view class="help">同团的人会看到这个名字。1 到 20 个字。</view>
-      <button class="btn" disabled="{{saving}}" bindtap="enter">{{saving ? '正在记下…' : '记下名字'}}</button>
-    </view>
-    <view wx:else class="help">你在团里的名字：{{nickname}}</view>
-
-    <view class="help">{{hint}}</view>
-    <view wx:if="{{saving}}" class="help">正在记下…</view>
-    <view wx:for="{{statusGroups}}" wx:key="label" wx:for-item="group">
-      <view class="kicker">{{group.label}}</view>
-      <button
-        wx:for="{{group.items}}"
-        wx:for-item="name"
-        wx:key="*this"
-        class="ghost {{myStatus === name ? 'on' : ''}}"
-        data-status="{{name}}"
-        disabled="{{!ready || saving}}"
-        bindtap="mark"
-      >{{name}}</button>
-    </view>
-    <view class="help">状态由你自己标，同团可见。这里不代报名。</view>
-    <button wx:if="{{ready && myStatus}}" class="line" disabled="{{saving}}" bindtap="drop">不跑这场了</button>
-    <view wx:if="{{ok}}" class="ok">{{ok}}</view>
-    <view wx:if="{{message}}" class="err">{{message}}</view>
-  </view>
-
-  <view class="card" wx:for="{{cards}}" wx:key="clubId">
-    <view class="h2">{{item.club.name}}</view>
-    <view>{{item.summary}}</view>
-    <view wx:if="{{item.squadText}}" class="help">{{item.squadText}}</view>
-    <view wx:if="{{item.onlyMe}}" class="help">目前只有你标了这场。把卡片发到群里，别人就能跟着标。</view>
-    <view wx:if="{{item.unpaid.length}}" class="help">还没缴：{{item.unpaidText}}</view>
-    <view wx:for="{{item.marks}}" wx:for-item="mark" wx:key="nickname" class="row">
-      <text>{{mark.nickname}}</text><text>{{mark.status}}</text>
-    </view>
-    <view wx:if="{{!item.marks.length}}" class="help">团里还没人标这场</view>
-    <view class="share">{{item.text}}</view>
-    <button class="btn" data-clubid="{{item.clubId}}" bindtap="copyCard">复制发到群</button>
-    <button class="line" open-type="share" data-title="{{item.title}}" data-code="{{item.club.code}}" bindtap="armShare">转发这场</button>
-  </view>
-  <view wx:if="{{copyOk}}" class="ok">{{copyOk}}</view>
-  <view wx:if="{{copyError}}" class="err">{{copyError}}</view>
-
-  <view class="card" wx:if="{{card && !cards.length}}">
-    <view class="h2">{{card.club.name}}</view>
-    <view>{{card.summary}}</view>
-    <view wx:if="{{card.unpaid.length}}" class="help">还没缴：{{card.unpaidText}}</view>
-    <view class="share">{{card.text}}</view>
-    <button class="btn" data-clubid="{{card.clubId}}" bindtap="copyCard">复制发到群</button>
-    <button class="line" open-type="share" data-title="{{card.title}}" data-code="{{card.club.code}}" bindtap="armShare">转发这场</button>
-  </view>
-
-  <view class="card" wx:if="{{ready && !cards.length && !card}}">
-    <view class="h2">同团</view>
-    <view>你还没有跑团。加入之后，这里会显示谁和你报了同一场。</view>
-    <navigator class="link" url="/pages/clubs/clubs" open-type="switchTab">去跑团</navigator>
+    <view class="teal">{{race.regStatus}}</view>
+    <view class="title">{{race.name}}</view>
+    <view class="row"><text class="k">比赛日</text><text>{{race.raceDate}}</text></view>
+    <view class="row"><text class="k">地点</text><text>{{race.province === race.city ? race.city : race.province + ' · ' + race.city}}</text></view>
+    <view class="row"><text class="k">项目</text><text>{{distanceText}}</text></view>
+    <view class="row"><text class="k">{{race.deadlineName}}</text><text class="{{race.open && race.daysLeft <= 3 ? 'soon' : ''}}">{{race.deadlineLabel}}</text></view>
+    <view wx:if="{{race.gradeLabel}}" class="src">{{race.gradeLabel}}</view>
+    <view wx:if="{{race.organizer}}" class="src">主办 {{race.organizer}}</view>
+    <view wx:if="{{race.source}}" class="src">来源 {{race.source}}<text wx:if="{{race.updatedAt}}"> · 更新于 {{race.updatedAt}}</text></view>
+    <view wx:if="{{race.eventUrl}}" class="src">赛事网站 {{race.eventUrl}}</view>
+    <view wx:if="{{race.officialUrl}}" class="src">官网这场 {{race.officialUrl}}</view>
+    <view wx:for="{{conflicts}}" wx:key="text" class="warn">{{item.text}}</view>
   </view>
 
   <view class="card" wx:if="{{race.nodes.length}}">
     <view class="h2">时间节点</view>
     <view wx:for="{{race.nodes}}" wx:key="key" class="row">
       <text class="k">{{item.label}}</text>
-      <text class="{{item.soon ? 'soon' : ''}} {{item.past ? 'past' : ''}}">{{item.at}}<text wx:if="{{item.text}}"> · {{item.text}}</text></text>
+      <text class="{{item.soon ? 'soon' : ''}}">{{item.at}}<text wx:if="{{item.text}}"> · {{item.text}}</text></text>
     </view>
   </view>
 
+  <view class="card" wx:for="{{cards}}" wx:key="clubId">
+    <view class="h2">发到微信群 · {{item.club.name}}</view>
+    <view class="title">{{item.title}}</view>
+    <view class="sum">{{item.summary}}</view>
+    <view wx:if="{{item.unpaid.length}}" class="src">还没缴：{{item.unpaidText}}</view>
+    <button class="btn share" open-type="share" data-title="{{item.title}}" data-code="{{item.club.code}}" bindtap="armShare">发到微信群</button>
+  </view>
+  <view wx:if="{{card && !cards.length}}" class="card">
+    <view class="h2">{{card.club.name}}</view>
+    <view class="title">{{card.title}}</view>
+    <view class="sum">{{card.summary}}</view>
+    <view wx:if="{{card.unpaid.length}}" class="src">还没缴：{{card.unpaidText}}</view>
+    <button class="btn share" open-type="share" data-title="{{card.title}}" data-code="{{card.club.code}}" bindtap="armShare">发到微信群</button>
+  </view>
+
+  <view class="card">
+    <view class="h2">我这场</view>
+    <view wx:if="{{!ready}}" class="nick">
+      <view class="muted">起个昵称就能标。标完同团的人能看见。</view>
+      <view class="field">
+        <input placeholder="怎么称呼你" value="{{draft}}" bindinput="onDraft" />
+        <button class="btn" bindtap="enter">进入</button>
+      </view>
+    </view>
+    <view wx:else>
+      <button wx:for="{{statuses}}" wx:key="*this" class="ghost {{myStatus === item ? 'on' : ''}}" data-status="{{item}}" bindtap="mark">{{item}}</button>
+    </view>
+    <view wx:if="{{message}}" class="err">{{message}}</view>
+  </view>
+
+  <view class="card" wx:if="{{drawText}}">
+    <view class="h2">中签卡片</view>
+    <view class="sum draw">{{drawText}}</view>
+    <button class="btn" bindtap="copyDraw">复制卡片</button>
+    <view wx:if="{{drawError}}" class="err">{{drawError}}</view>
+  </view>
+
   <view class="card" wx:if="{{alternatives.length}}">
-    <view class="h2">日期相近，报名还开着</view>
-    <view class="help">{{alternativeNote}}</view>
+    <view class="h2">同期还开着</view>
+    <view class="src">{{alternativeNote}}</view>
     <navigator wx:for="{{alternatives}}" wx:key="id" class="row" url="/pages/race/race?id={{item.id}}">
       <text>{{item.name}}</text><text>{{item.deadlineLabel}}</text>
     </navigator>
   </view>
 
-  <view class="card" wx:if="{{drawText}}">
-    <view class="h2">中签了，可以发到群里</view>
-    <view class="share">{{drawText}}</view>
-    <button class="btn" bindtap="copyDraw">复制发到群</button>
-    <view wx:if="{{drawOk}}" class="ok">{{drawOk}}</view>
-    <view wx:if="{{drawError}}" class="err">{{drawError}}</view>
-  </view>
-
-  <view class="card" wx:if="{{ready}}">
+  <view class="card result" wx:if="{{ready}}">
     <view class="h2">成绩</view>
-    <view wx:if="{{myResult}}">{{myResult.distanceLabel}} {{myResult.clock}} · 配速 {{myResult.pace}}<text wx:if="{{myResult.pb}}"> PB</text></view>
-    <view wx:if="{{myResult.story}}" class="help">{{myResult.story}}</view>
-    <button wx:if="{{!resultOpen}}" class="line" bindtap="openResult">{{myResult ? '修改成绩' : '记下成绩'}}</button>
-    <block wx:else>
-      <view class="kicker">项目</view>
-      <button wx:for="{{distanceOptions}}" wx:key="key" class="ghost {{distance === item.key ? 'on' : ''}}" data-distance="{{item.key}}" bindtap="pickDistance">{{item.label}}</button>
-      <view class="stack">
-        <view class="kicker">成绩</view>
-        <input placeholder="例如 3:29:59" value="{{clock}}" bindinput="onClock" />
-      </view>
-      <view class="stack">
-        <view class="kicker">一句记录，可不填</view>
-        <input placeholder="例如 后程掉速了" value="{{story}}" maxlength="200" bindinput="onStory" />
-      </view>
-      <view class="help">本人填写，未核验。保存后这场状态会变成完赛。</view>
-      <button class="btn" disabled="{{savingResult}}" bindtap="saveResult">{{savingResult ? '正在保存…' : (myResult ? '保存修改' : '保存成绩')}}</button>
-    </block>
-    <view wx:if="{{resultOk}}" class="ok">{{resultOk}}</view>
+    <view wx:if="{{myResult}}" class="sum">{{myResult.distanceLabel}} {{myResult.clock}} · 配速 {{myResult.pace}}<text wx:if="{{myResult.pb}}"> · PB</text></view>
+    <view wx:if="{{myResult.story}}" class="src">{{myResult.story}}</view>
+    <button wx:for="{{distanceOptions}}" wx:key="key" class="ghost {{distance === item.key ? 'on' : ''}}" data-distance="{{item.key}}" bindtap="pickDistance">{{item.label}}</button>
+    <view class="field">
+      <input placeholder="3:29:59" value="{{clock}}" bindinput="onClock" />
+    </view>
+    <view class="field">
+      <input placeholder="这场想记的一句" value="{{story}}" maxlength="200" bindinput="onStory" />
+    </view>
+    <button class="btn" bindtap="saveResult">记下成绩</button>
     <view wx:if="{{resultMessage}}" class="err">{{resultMessage}}</view>
   </view>
 
-  <view class="card">
-    <view class="h2">资料</view>
-    <view wx:if="{{race.gradeLabel}}" class="src">{{race.gradeLabel}}</view>
-    <view wx:if="{{race.organizer}}" class="src">主办 {{race.organizer}}</view>
-    <view wx:if="{{race.source}}" class="src">来源 {{race.source}}<text wx:if="{{race.updatedAt}}"> · 更新于 {{race.updatedAt}}</text></view>
-    <view wx:if="{{!race.source && !race.organizer && !race.gradeLabel}}" class="src">这场还没有记下来源。</view>
-    <view wx:if="{{race.eventUrl}}" class="src">赛事网站 {{race.eventUrl}}</view>
-    <view wx:if="{{race.officialUrl}}" class="src">中国马拉松官网这场 {{race.officialUrl}}</view>
+  <view wx:for="{{clubs}}" wx:key="id" class="card">
+    <view class="h2">{{item.name}}</view>
+    <view wx:if="{{item.squadText}}" class="warn">{{item.squadText}}</view>
+    <view wx:if="{{!item.mates.length}}" class="muted">团里还没人标这场</view>
+    <view wx:for="{{item.mates}}" wx:for-item="mate" wx:key="nickname" class="row">
+      <text>{{mate.nickname}}</text><text>{{mate.status}}</text>
+    </view>
   </view>
 </view>
+<view wx:else class="empty">{{message || '正在打开这场'}}</view>

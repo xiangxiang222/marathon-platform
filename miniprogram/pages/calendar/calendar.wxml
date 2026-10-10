@@ -21,9 +21,7 @@
       <text class="count">{{item.countText}}</text>
     </view>
   </view>
-  <view wx:if="{{!ready && !message}}" class="empty">正在读取这个月</view>
   <view wx:if="{{message}}" class="err">{{message}}</view>
-  <button wx:if="{{message}}" class="line retry" bindtap="load">重试</button>
   <view class="list">
     <view class="picked">{{pickedLabel}}</view>
     <navigator wx:for="{{dayRaces}}" wx:key="id" url="/pages/race/race?id={{item.id}}" class="race">
