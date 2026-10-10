@@ -140,7 +140,7 @@ onMounted(async () => {
 </script>
 
 <style scoped>
-.block :deep(.poster) { height: 120px; border-radius: 8px; }
+.block :deep(.poster) { aspect-ratio: 5 / 2; height: auto; border-radius: 8px; }
 .share-text { margin: 8px 0 0; font: inherit; white-space: pre-wrap; line-height: 1.5; }
 .rank-label { margin: 8px 0 0; color: #8d949c; font-size: 12px; }
 .squad { margin: 8px 0 0; color: #9a5b12; font-size: 13px; }

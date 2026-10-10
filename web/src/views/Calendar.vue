@@ -128,12 +128,13 @@ onMounted(load);
 .month { display: flex; align-items: center; justify-content: center; gap: 28px; padding: 4px 0 2px; }
 .month b { font-size: 16px; font-weight: 600; }
 .month button { width: 32px; font-size: 22px; color: #666; }
-.week, .grid { display: grid; grid-template-columns: repeat(7, 1fr); }
+.week, .grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 0; padding: 0; }
 .week { padding: 8px 4px 2px; text-align: center; font-size: 13px; }
 .week .end { color: #e23b3b; }
 .grid { padding: 0 2px 8px; }
 .cell {
-  min-height: 74px;
+  min-width: 0;
+  min-height: calc(74px * var(--s));
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -142,20 +143,26 @@ onMounted(load);
 }
 .cell:disabled { cursor: default; }
 .num {
-  width: 28px;
-  height: 28px;
+  width: calc(28px * var(--s));
+  height: calc(28px * var(--s));
   border-radius: 50%;
   display: grid;
   place-items: center;
   background: #f2f3f5;
-  font-size: 15px;
+  font-size: calc(15px * var(--s));
   font-weight: 500;
 }
 .cell.out .num { background: #f7f8fa; color: #c8ccd3; }
 .cell.out .lunar { color: #e1e4e8; }
 .cell.today .num { background: #fff; color: #e23b3b; box-shadow: inset 0 0 0 1.5px #e23b3b; }
 .cell.picked:not(.today) .num { background: #e23b3b; color: #fff; }
-.lunar, .count { font-size: 10px; line-height: 1.2; min-height: 13px; }
+.lunar, .count {
+  font-size: clamp(8px, calc((100vw - 12px) / 7 / 5.2), 11px);
+  line-height: 1.2;
+  min-height: 13px;
+  overflow: hidden;
+  white-space: nowrap;
+}
 .lunar { color: #b4b8c0; }
 .count { color: #e23b3b; }
 .day-races { border-top: 8px solid #f6f7f9; padding: 4px 16px 28px; }

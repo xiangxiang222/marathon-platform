@@ -293,8 +293,8 @@ onMounted(load);
 .nick-form button { height: 32px; padding: 0 14px; border-radius: 16px; background: #00d1c7; color: #fff; }
 .err { color: #e35d5d; font-size: 12px; margin: 4px 0 0; }
 .shortcuts { display: flex; justify-content: space-between; padding: 16px 10px 8px; }
-.shortcuts a { width: 64px; text-align: center; font-size: 12px; color: #333; }
-.orb { width: 48px; height: 48px; margin: 0 auto 6px; border-radius: 50%; display: grid; place-items: center; }
+.shortcuts a { flex: 1; min-width: 0; text-align: center; font-size: calc(12px * var(--s)); color: #333; }
+.orb { width: calc(48px * var(--s)); height: calc(48px * var(--s)); margin: 0 auto 6px; border-radius: 50%; display: grid; place-items: center; }
 .orb svg { width: 22px; height: 22px; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .order { background: #e7f1ff; } .order svg { stroke: #5b8def; }
 .flag { background: #ffe8ea; } .flag svg { stroke: #ff5a6a; fill: #ff5a6a; }
@@ -330,7 +330,7 @@ onMounted(load);
 .head { display: flex; justify-content: space-between; align-items: center; }
 .head h3 { margin: 0; font-size: 16px; font-weight: 700; }
 .head h3 span, .link { color: #8d949c; font-size: 13px; font-weight: 400; }
-.week-grid { display: grid; grid-template-columns: minmax(0, 1fr) 118px; gap: 10px; align-items: end; margin-top: 8px; }
+.week-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(88px, 118px); gap: 10px; align-items: end; margin-top: 8px; }
 .label { color: #8d949c; font-size: 12px; }
 .big { font-size: 36px; font-weight: 650; line-height: 1.05; margin: 4px 0 8px; }
 .metrics { display: flex; justify-content: space-between; gap: 6px; }
