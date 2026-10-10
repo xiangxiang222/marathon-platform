@@ -15,14 +15,18 @@
     <view class="title">{{item.hit.reason}}</view>
     <view class="muted">{{item.race.name}}</view>
   </navigator>
-  <navigator wx:for="{{races}}" wx:key="id" class="card race" url="/pages/race/race?id={{item.id}}">
-    <view class="title"><text class="teal">{{item.regStatus}} </text>{{item.name}}</view>
-    <view class="tags">
-      <text wx:for="{{item.distanceLabels}}" wx:for-item="tag" wx:key="*this" class="chip">{{tag}}</text>
+  <navigator wx:for="{{races}}" wx:key="id" class="card race tone-{{item.tone}}" url="/pages/race/race?id={{item.id}}">
+    <view class="date">
+      <text class="mo">{{item.month}}月</text>
+      <text class="da">{{item.day}}</text>
     </view>
-    <view class="foot">
-      <text>{{item.raceDate}} · {{item.city}}</text>
-      <text class="{{item.soon ? 'soon' : ''}}">{{item.deadlineLabel}}</text>
+    <view class="body">
+      <view class="title">{{item.name}}</view>
+      <view class="status">{{item.regStatus}}</view>
+      <view class="foot">
+        <text>{{item.city}}</text>
+        <text class="{{item.soon ? 'soon' : ''}}">{{item.deadlineLabel}}</text>
+      </view>
     </view>
   </navigator>
   <view wx:if="{{loaded && !races.length}}" class="empty">这个范围还没有赛历</view>

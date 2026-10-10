@@ -1,15 +1,12 @@
 <template>
-  <header class="topbar">
-    <span></span>
-    <h1>看看</h1>
-    <span></span>
+  <header class="large">
+    <div>
+      <h1>看看</h1>
+      <p>正在报名的场次</p>
+    </div>
   </header>
-  <div v-if="races.length" class="feed">
-    <router-link v-for="race in races" :key="race.id" class="post" :to="'/races/' + race.id">
-      <b>{{ race.name }}</b>
-      <p><em>{{ race.regStatus }}</em>{{ race.city }}</p>
-      <p>{{ race.raceDate }} · <span :class="{ soon: race.open && race.daysLeft <= 7 }">{{ race.deadlineLabel }}</span></p>
-    </router-link>
+  <div v-if="races.length" class="stack">
+    <RaceCard v-for="race in races" :key="race.id" :race="race" />
   </div>
   <p v-else class="empty">还没有可看的赛历</p>
 </template>
@@ -17,6 +14,7 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import { api } from "../api";
+import RaceCard from "../components/RaceCard.vue";
 
 const races = ref([]);
 
@@ -25,4 +23,3 @@ onMounted(async () => {
   races.value = data.races;
 });
 </script>
-

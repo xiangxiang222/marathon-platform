@@ -5,9 +5,18 @@
       <h1>赛事</h1>
       <span></span>
     </header>
+    <div v-if="race" class="pass" :class="'tone-' + tone">
+      <div class="pass-date">
+        <b>{{ parts.day }}</b>
+        <span>{{ parts.month }}月</span>
+      </div>
+      <div class="pass-copy">
+        <span class="pass-pill">{{ race.regStatus }}</span>
+        <h1>{{ race.name }}</h1>
+        <p>{{ placeLine }}<template v-if="race.distanceLabels.length"> · {{ race.distanceLabels.join(" / ") }}</template></p>
+      </div>
+    </div>
     <div v-if="race" class="detail">
-      <div class="reg" :class="{ off: !race.open }">{{ race.regStatus }}</div>
-      <h1>{{ race.name }}</h1>
       <div class="row"><span>比赛日</span><b>{{ race.raceDate }}</b></div>
       <div class="row"><span>地点</span><b>{{ race.province === race.city ? race.city : race.province + " · " + race.city }}</b></div>
       <div class="row"><span>项目</span><b>{{ race.distanceLabels.join(" / ") }}</b></div>
@@ -94,12 +103,19 @@
 </template>
 
 <script setup>
-import { onMounted, ref, watch } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 import { useRoute } from "vue-router";
 import { api } from "../api";
 import { copyText } from "../copy";
+import { dateParts, toneOf } from "../tone";
 const route = useRoute();
 const race = ref(null);
+const tone = computed(() => toneOf(race.value));
+const parts = computed(() => dateParts(race.value && race.value.raceDate));
+const placeLine = computed(() => {
+  if (!race.value) return "";
+  return race.value.province === race.value.city ? race.value.city : race.value.province + " · " + race.value.city;
+});
 const statuses = ref([]);
 const myStatus = ref("");
 const clubs = ref([]);
@@ -210,7 +226,7 @@ onMounted(load);
 .detail-poster :deep(.poster) { aspect-ratio: 16 / 9; height: auto; border-radius: 0; }
 .share-text { margin: 0; font: inherit; white-space: pre-wrap; line-height: 1.5; }
 .src { margin: 8px 0 0; color: #8d949c; font-size: 12px; }
-.note { color: #1d9bf0; font-size: 13px; padding: 0 16px; }
+.note { color: #007aff; font-size: 13px; padding: 0 16px; }
 .warn { margin: 10px 0 0; color: #9a5b12; font-size: 13px; line-height: 1.45; }
 .copy-err { padding: 0 16px; }
 .primary { margin-top: 8px; }

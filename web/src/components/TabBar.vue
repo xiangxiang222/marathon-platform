@@ -21,7 +21,7 @@
     <router-link to="/mine" class="item" :class="{ on: route.path.startsWith('/mine'), mine: route.path.startsWith('/mine') }">
       <span class="glyph face">
         <svg v-if="route.path.startsWith('/mine')" viewBox="0 0 24 24">
-          <circle cx="12" cy="12" r="9" fill="#0f1419" stroke="none" />
+          <circle cx="12" cy="12" r="9" fill="#007aff" stroke="none" />
           <path d="M8.4 10.6h.01M15.6 10.6h.01M8.6 14.2c.9.8 2 1.2 3.4 1.2s2.5-.4 3.4-1.2" stroke="#fff" fill="none" />
         </svg>
         <svg v-else viewBox="0 0 24 24"><circle cx="12" cy="9" r="3.2" /><path d="M6.5 19.5c1-3 2.8-4.5 5.5-4.5s4.5 1.5 5.5 4.5" /></svg>
@@ -45,9 +45,9 @@ const route = useRoute();
   width: min(430px, 100%);
   height: calc(52px + env(safe-area-inset-bottom, 0px));
   padding-bottom: env(safe-area-inset-bottom, 0px);
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(12px);
-  border-top: 1px solid #eff3f4;
+  background: rgba(249, 249, 249, 0.94);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(60, 60, 67, 0.12);
   border-radius: 0;
   box-shadow: none;
   display: flex;
@@ -60,11 +60,11 @@ const route = useRoute();
   align-items: center;
   justify-content: center;
   gap: 1px;
-  color: #536471;
+  color: #8e8e93;
   font-size: calc(11px * var(--s));
   border-radius: 0;
 }
-.item.on { color: #0f1419; font-weight: 700; }
+.item.on { color: #007aff; font-weight: 600; }
 .glyph {
   width: calc(26px * var(--s));
   height: calc(26px * var(--s));
@@ -72,8 +72,8 @@ const route = useRoute();
   place-items: center;
 }
 .glyph svg { width: calc(22px * var(--s)); height: calc(22px * var(--s)); fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linejoin: round; stroke-linecap: round; }
-.item.on .glyph svg { stroke: #0f1419; }
-.item.home.on .glyph svg { fill: #0f1419; stroke: #0f1419; }
+.item.on .glyph svg { stroke: #007aff; }
+.item.home.on .glyph svg { fill: #007aff; stroke: #007aff; }
 .item.mine.on .glyph svg { stroke: none; }
 .item.mine .glyph { width: calc(28px * var(--s)); height: calc(28px * var(--s)); }
 .item.mine .glyph svg { stroke: none; }

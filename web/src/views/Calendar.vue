@@ -26,7 +26,7 @@
       >
         <span class="num">{{ cell.today ? "今" : cell.day }}</span>
         <span class="lunar">{{ cell.lunar }}</span>
-        <span class="count">{{ cell.count ? cell.count + "场赛事" : "" }}</span>
+        <span class="count">{{ cell.count || "" }}</span>
       </button>
     </div>
     <section class="day-races">
@@ -124,13 +124,13 @@ onMounted(load);
 </script>
 
 <style scoped>
-.calendar { background: #fff; min-height: 100vh; color: #1c1c1e; }
+.calendar { background: transparent; min-height: 100vh; color: #1c1c1e; }
 .month { display: flex; align-items: center; justify-content: center; gap: 28px; padding: 4px 0 2px; }
-.month b { font-size: 16px; font-weight: 600; }
-.month button { width: 32px; font-size: 22px; color: #666; }
+.month b { font-size: 20px; font-weight: 700; letter-spacing: -0.3px; }
+.month button { width: 36px; height: 36px; border-radius: 50%; background: #fff; font-size: 22px; color: #007aff; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); }
 .week, .grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 0; padding: 0; }
 .week { padding: 8px 4px 2px; text-align: center; font-size: 13px; }
-.week .end { color: #536471; }
+.week .end { color: #8e8e93; }
 .grid { padding: 0 2px 8px; }
 .cell {
   min-width: 0;
@@ -148,14 +148,15 @@ onMounted(load);
   border-radius: 50%;
   display: grid;
   place-items: center;
-  background: #f2f3f5;
+  background: transparent;
   font-size: calc(15px * var(--s));
   font-weight: 500;
 }
-.cell.out .num { background: #f7f8fa; color: #c8ccd3; }
+.cell.out .num { color: #c8ccd3; }
 .cell.out .lunar { color: #e1e4e8; }
-.cell.today .num { background: #fff; color: #0f1419; box-shadow: inset 0 0 0 1.5px #0f1419; font-weight: 800; }
-.cell.picked:not(.today) .num { background: #0f1419; color: #fff; }
+.cell.today .num { color: #ff3b30; font-weight: 700; }
+.cell.today.picked .num { background: #ff3b30; color: #fff; }
+.cell.picked:not(.today) .num { background: #007aff; color: #fff; }
 .lunar, .count {
   font-size: clamp(8px, calc((100vw - 12px) / 7 / 5.2), 11px);
   line-height: 1.2;
@@ -164,11 +165,12 @@ onMounted(load);
   white-space: nowrap;
 }
 .lunar { color: #b4b8c0; }
-.count { color: #1d9bf0; }
-.day-races { border-top: 1px solid #eff3f4; padding: 4px 16px 28px; }
-.day-races h2 { margin: 14px 0 4px; font-size: 15px; font-weight: 600; }
-.race { display: block; padding: 12px 0; border-bottom: 1px solid #f0f1f4; }
+.count { color: #007aff; font-weight: 650; }
+.day-races { padding: 4px 16px 28px; }
+.day-races h2 { margin: 14px 4px 4px; font-size: 15px; font-weight: 650; color: rgba(60, 60, 67, 0.6); }
+.race { display: block; margin-top: 8px; padding: 12px 14px; background: #fff; border-radius: 14px; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04); }
 .race b { display: block; font-size: 16px; font-weight: 650; line-height: 1.35; }
-.race span, .race em { display: block; margin-top: 4px; color: #8e949c; font-size: 12px; font-style: normal; }
+.race span, .race em { display: block; margin-top: 4px; color: #8e949c; font-size: 13px; font-style: normal; }
+.race em { color: #007aff; font-weight: 650; }
 .none { color: #8e949c; text-align: center; padding: 28px 0; }
 </style>
