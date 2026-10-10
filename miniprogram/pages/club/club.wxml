@@ -35,6 +35,15 @@
       </navigator>
     </view>
   </view>
+  <view class="card">
+    <view class="h2">活动</view>
+    <view class="src">每周训练在这里报名。满人数并且每人打卡够里程才记分。</view>
+    <navigator wx:for="{{activities}}" wx:key="id" class="row" url="/pages/activity/activity?club={{club.id}}&id={{item.id}}">
+      <text>{{item.title}}</text>
+      <text>{{item.signupCount}}人报名</text>
+    </navigator>
+    <view wx:if="{{!activities.length}}" class="src">还没有活动。</view>
+  </view>
   <view wx:if="{{!board.length && !ranks.length}}" class="empty">还没有人标比赛。打开一场，标上想跑或已报名。</view>
   <view wx:for="{{board}}" wx:key="key" class="card">
     <navigator url="/pages/race/race?id={{item.race.id}}&code={{club.code}}">
@@ -51,7 +60,7 @@
     <view wx:if="{{item.unpaid.length}}" class="src">还没缴：{{item.unpaidText}}</view>
     <button class="btn share" open-type="share" data-id="{{item.race.id}}" data-title="{{item.title}}" bindtap="armShare">发到微信群</button>
     <view wx:for="{{item.marks}}" wx:for-item="mark" wx:key="nickname" class="row">
-      <text>{{mark.nickname}}</text><text>{{mark.status}}</text>
+      <text>{{mark.nickname}}</text><text>{{mark.status}}{{mark.clock ? ' · ' + mark.clock : ''}}{{mark.pb ? ' PB' : ''}}</text>
     </view>
   </view>
 </view>

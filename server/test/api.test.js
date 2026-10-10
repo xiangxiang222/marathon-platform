@@ -636,3 +636,120 @@ test("today names who has not paid, and a plan can be removed", async () => {
   assert.equal(me.body.plans.some((plan) => plan.race.id === "songshanhu"), false);
   assert.equal(me.body.plans.some((plan) => plan.race.id === "bishan"), true);
 });
+
+test("club activity points need enough people and kilometres, then gifts spend them", async () => {
+  const leader = await session("活动团长");
+  const mate = await session("活动队友");
+  const third = await session("活动第三");
+  const auth = { Authorization: "Bearer " + leader };
+  const created = await request(app).post("/marathon/api/clubs").set(auth).send({ name: "活动跑团" });
+  const clubId = created.body.club.id;
+  await request(app).post("/marathon/api/clubs/join").set("Authorization", "Bearer " + mate).send({ code: created.body.club.code });
+  await request(app).post("/marathon/api/clubs/join").set("Authorization", "Bearer " + third).send({ code: created.body.club.code });
+
+  const denied = await request(app).post("/marathon/api/clubs/" + clubId + "/groups").set("Authorization", "Bearer " + mate).send({ name: "A组" });
+  assert.equal(denied.status, 403);
+  const group = await request(app).post("/marathon/api/clubs/" + clubId + "/groups").set(auth).send({ name: "A组", pace: "530", capacity: 1 });
+  assert.equal(group.status, 200);
+  const openGroup = await request(app).post("/marathon/api/clubs/" + clubId + "/groups").set(auth).send({ name: "B组", pace: "600", capacity: 0 });
+  assert.equal(openGroup.status, 200);
+
+  const activity = await request(app)
+    .post("/marathon/api/clubs/" + clubId + "/activities")
+    .set(auth)
+    .send({ title: "周日 LSD", place: "玉渊潭", startsAt: "2026-10-11 05:40", minKm: 5, minPeople: 3, points: 1 });
+  assert.equal(activity.status, 200);
+  assert.match(activity.body.activity.rule, /满 3 人/);
+  const aid = activity.body.activity.id;
+
+  const noGroup = await request(app).post("/marathon/api/clubs/" + clubId + "/activities/" + aid + "/signup").set(auth).send({});
+  assert.equal(noGroup.status, 400);
+  assert.equal((await request(app).post("/marathon/api/clubs/" + clubId + "/activities/" + aid + "/signup").set(auth).send({ groupId: group.body.group.id })).status, 200);
+  const full = await request(app)
+    .post("/marathon/api/clubs/" + clubId + "/activities/" + aid + "/signup")
+    .set("Authorization", "Bearer " + mate)
+    .send({ groupId: group.body.group.id });
+  assert.equal(full.status, 400);
+  assert.equal(
+    (await request(app).post("/marathon/api/clubs/" + clubId + "/activities/" + aid + "/signup").set("Authorization", "Bearer " + mate).send({ groupId: openGroup.body.group.id })).status,
+    200
+  );
+  assert.equal(
+    (await request(app).post("/marathon/api/clubs/" + clubId + "/activities/" + aid + "/signup").set("Authorization", "Bearer " + third).send({ groupId: openGroup.body.group.id })).status,
+    200
+  );
+
+  const early = await request(app).post("/marathon/api/clubs/" + clubId + "/activities/" + aid + "/check").set(auth).send({ km: 6 });
+  assert.equal(early.body.awarded, false);
+  assert.equal(early.body.myPoints, 0);
+  await request(app).post("/marathon/api/clubs/" + clubId + "/activities/" + aid + "/check").set("Authorization", "Bearer " + mate).send({ km: 4 });
+  const still = await request(app).post("/marathon/api/clubs/" + clubId + "/activities/" + aid + "/check").set("Authorization", "Bearer " + third).send({ km: 8 });
+  assert.equal(still.body.awarded, false);
+
+  const enough = await request(app).post("/marathon/api/clubs/" + clubId + "/activities/" + aid + "/check").set("Authorization", "Bearer " + mate).send({ km: 5.2 });
+  assert.equal(enough.body.awarded, true);
+  assert.equal(enough.body.myPoints, 1);
+  const leaderPoints = await request(app).get("/marathon/api/clubs/" + clubId).set(auth);
+  assert.equal(leaderPoints.body.myPoints, 1);
+  assert.equal(leaderPoints.body.members.find((item) => item.nickname === "活动第三").points, 1);
+  assert.equal(leaderPoints.body.activities[0].awarded, true);
+
+  const short = await request(app).post("/marathon/api/clubs/" + clubId + "/activities/" + aid + "/check").set("Authorization", "Bearer " + mate).send({ km: 3 });
+  assert.equal(short.body.awarded, false);
+  assert.equal(short.body.myPoints, 0);
+  const back = await request(app).post("/marathon/api/clubs/" + clubId + "/activities/" + aid + "/check").set("Authorization", "Bearer " + mate).send({ km: 5 });
+  assert.equal(back.body.myPoints, 1);
+
+  await request(app).put("/marathon/api/me/races/bishan").set(auth).send({ status: "完赛" });
+  await request(app).put("/marathon/api/me/races/bishan/result").set(auth).send({ distance: "full", time: "3:28:15", story: "" });
+  const raced = await request(app).get("/marathon/api/clubs/" + clubId).set(auth);
+  const bishan = raced.body.board.find((item) => item.race.id === "bishan");
+  assert.equal(bishan.tally["完赛"], 1);
+  assert.equal(bishan.pbCount, 1);
+  assert.equal(bishan.marks[0].pb, true);
+  assert.equal(bishan.marks[0].clock, "3:28:15");
+
+  const gift = await request(app).post("/marathon/api/clubs/" + clubId + "/gifts").set(auth).send({ name: "团袜", cost: 1, stock: 1 });
+  const redeemed = await request(app).post("/marathon/api/clubs/" + clubId + "/gifts/" + gift.body.gift.id + "/redeem").set(auth);
+  assert.equal(redeemed.status, 200);
+  assert.equal(redeemed.body.myPoints, 0);
+  const again = await request(app).post("/marathon/api/clubs/" + clubId + "/gifts/" + gift.body.gift.id + "/redeem").set("Authorization", "Bearer " + mate);
+  assert.equal(again.status, 400);
+
+  const jpeg = Buffer.from([0xff, 0xd8, 0xff, 0xd9]);
+  const photo = await request(app)
+    .post("/marathon/api/clubs/" + clubId + "/activities/" + aid + "/media")
+    .set(auth)
+    .attach("file", jpeg, { filename: "run.jpg", contentType: "image/jpeg" });
+  assert.equal(photo.status, 200);
+  assert.equal(photo.body.media.kind, "photo");
+  const seen = await request(app).get("/marathon/api/media/" + photo.body.media.id).set(auth);
+  assert.equal(seen.status, 200);
+  assert.equal(seen.headers["content-type"], "image/jpeg");
+  const outsider = await session("活动外人");
+  const hidden = await request(app).get("/marathon/api/media/" + photo.body.media.id).set("Authorization", "Bearer " + outsider);
+  assert.equal(hidden.status, 403);
+  const fake = await request(app)
+    .post("/marathon/api/clubs/" + clubId + "/activities/" + aid + "/media")
+    .set(auth)
+    .attach("file", Buffer.from("not a photo"), { filename: "x.jpg", contentType: "image/jpeg" });
+  assert.equal(fake.status, 400);
+
+  const video = Buffer.alloc(16);
+  video.write("ftyp", 4, "ascii");
+  video.write("isom", 8, "ascii");
+  const clip = await request(app)
+    .post("/marathon/api/clubs/" + clubId + "/activities/" + aid + "/media")
+    .set("Authorization", "Bearer " + mate)
+    .attach("file", video, { filename: "run.mp4", contentType: "video/mp4" });
+  assert.equal(clip.status, 200);
+  assert.equal(clip.body.media.kind, "video");
+  const part = await request(app).get("/marathon/api/media/" + clip.body.media.id).set(auth).set("Range", "bytes=0-3");
+  assert.equal(part.status, 206);
+  assert.match(part.headers["content-range"], /^bytes 0-3\//);
+
+  const detail = await request(app).get("/marathon/api/clubs/" + clubId + "/activities/" + aid).set(auth);
+  assert.equal(detail.body.signups.length, 3);
+  assert.equal(detail.body.media.length, 2);
+  assert.equal(detail.body.groups.find((item) => item.name === "A组").signed, 1);
+});
