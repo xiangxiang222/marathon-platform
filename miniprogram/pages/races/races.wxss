@@ -5,5 +5,40 @@
 .filters { margin: 8rpx 0 20rpx; }
 .remind { background: #fff6ea; }
 .remind .title { color: #9a5b12; }
-.race { display: block; }
+.race { display: flex; gap: 20rpx; align-items: center; }
+.date {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 24rpx;
+  background: #007aff;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+.mo { font-size: 20rpx; line-height: 1.2; }
+.da { font-size: 36rpx; font-weight: 700; line-height: 1.05; }
+.body { flex: 1; min-width: 0; }
+.status {
+  display: inline-block;
+  margin-top: 8rpx;
+  font-size: 22rpx;
+  font-weight: 650;
+  color: #007aff;
+  background: #e8f2ff;
+  border-radius: 999rpx;
+  padding: 2rpx 12rpx;
+}
+.tone-soon .date { background: #ff9500; }
+.tone-open .date { background: #34c759; }
+.tone-wait .date { background: #5856d6; }
+.tone-done .date { background: #8e8e93; }
+.tone-live .date { background: #ff2d55; }
+.tone-soon .status { color: #ff9500; background: #fff4e5; }
+.tone-open .status { color: #248a3d; background: #e8f8ec; }
+.tone-wait .status { color: #5856d6; background: #efedfb; }
+.tone-done .status { color: #8e8e93; background: #f2f2f7; }
+.tone-live .status { color: #ff2d55; background: #ffe8ee; }
 .tags { margin-top: 10rpx; }

@@ -1,10 +1,12 @@
 <template>
-  <div class="page-head">
-    <h1>运动</h1>
-    <p>跑团赛历：建团、发口令、看谁标了这场</p>
-  </div>
+  <header class="large">
+    <div>
+      <h1>运动</h1>
+      <p>建团、发口令、看谁标了这场</p>
+    </div>
+  </header>
   <section class="panel">
-    <h3>数据中心</h3>
+    <h3>我标过的</h3>
     <div class="stats3">
       <div><b>{{ plans.length }}</b><span>标过的场</span></div>
       <div><b>{{ paid }}</b><span>已缴费</span></div>

@@ -1,6 +1,6 @@
 page {
-  background: #fff;
-  color: #0f1419;
+  background: #f2f2f7;
+  color: #1c1c1e;
   font-family: "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", sans-serif;
   font-size: 28rpx;
   line-height: 1.45;
@@ -9,13 +9,13 @@ page {
 .pad { padding: 24rpx; }
 .card {
   background: #fff;
-  border-radius: 0;
-  border-bottom: 1rpx solid #eff3f4;
+  border-radius: 24rpx;
+  border: 0;
   padding: 24rpx;
   margin-bottom: 20rpx;
 }
 .muted { color: #8e949c; }
-.teal { color: #1d9bf0; }
+.teal { color: #007aff; }
 .title { font-size: 32rpx; font-weight: 650; line-height: 1.35; }
 .row {
   display: flex;
@@ -27,7 +27,7 @@ page {
 .row .k { color: #8d949c; flex: none; }
 .soon { color: #ff8a1a; }
 .err { color: #e35d5d; font-size: 24rpx; margin-top: 8rpx; }
-.note { color: #1d9bf0; font-size: 24rpx; margin-top: 8rpx; }
+.note { color: #007aff; font-size: 24rpx; margin-top: 8rpx; }
 .empty { color: #8d949c; text-align: center; padding: 48rpx 24rpx; }
 
 .field { display: flex; gap: 16rpx; align-items: center; }
@@ -40,9 +40,9 @@ page {
 }
 button.btn {
   margin: 0;
-  background: #0f1419;
+  background: #007aff;
   color: #fff;
-  border-radius: 32rpx;
+  border-radius: 16rpx;
   font-size: 28rpx;
   line-height: 72rpx;
   padding: 0 28rpx;
@@ -57,7 +57,7 @@ button.ghost {
   line-height: 64rpx;
   padding: 0 24rpx;
 }
-button.ghost.on { background: #0f1419; color: #fff; }
+button.ghost.on { background: #007aff; color: #fff; }
 button.ghost::after { border: 0; }
 
 .chip {

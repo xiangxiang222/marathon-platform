@@ -141,7 +141,7 @@ onMounted(async () => {
 .share-text { margin: 8px 0 0; font: inherit; white-space: pre-wrap; line-height: 1.5; }
 .rank-label { margin: 8px 0 0; color: #8d949c; font-size: 12px; }
 .squad { margin: 8px 0 0; color: #9a5b12; font-size: 13px; }
-.note { font-size: 12px; color: #1d9bf0; }
+.note { font-size: 12px; color: #007aff; }
 .primary { margin-top: 8px; }
 .check-form { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
 .check-form input { height: 36px; border: 1px solid #e6e8ec; border-radius: 8px; padding: 0 10px; background: #fff; }

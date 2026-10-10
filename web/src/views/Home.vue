@@ -1,8 +1,12 @@
 <template>
-  <header class="topbar">
-    <span></span>
-    <h1>赛历</h1>
-    <router-link to="/calendar" aria-label="日历">历</router-link>
+  <header class="large">
+    <div>
+      <h1>赛历</h1>
+      <p>{{ todayLabel }}</p>
+    </div>
+    <router-link class="icon-btn" to="/calendar" aria-label="日历">
+      <svg viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="16" rx="3" /><path d="M3.5 9.5h17M8 3v3M16 3v3" /><text x="12" y="17" text-anchor="middle">{{ todayDay }}</text></svg>
+    </router-link>
   </header>
   <form class="search" @submit.prevent="load">
     <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" /><path d="M20 20l-3.5-3.5" /></svg>
@@ -10,15 +14,22 @@
     <button type="submit">搜索</button>
   </form>
   <section class="sheet">
-    <router-link v-for="item in reminders" :key="item.race.id + item.hit.key" class="post" :to="'/races/' + item.race.id">
-      <b>{{ item.hit.reason }}</b>
-      <p>{{ item.race.name }}</p>
-    </router-link>
-    <div class="channels">
-      <button v-for="item in channels" :key="item.kind" type="button" :class="{ on: kind === item.kind }" @click="setKind(item.kind)">
-        {{ item.label }}
-      </button>
+    <div v-if="reminders.length" class="rail-wrap">
+      <h2 class="section-label">即将到来</h2>
+      <div class="rail">
+        <router-link v-for="item in reminders" :key="item.race.id + item.hit.key" class="soon-card" :class="'tone-' + remindTone(item.hit.reason)" :to="'/races/' + item.race.id">
+          <b>{{ item.hit.reason }}</b>
+          <span>{{ item.race.name }}</span>
+          <em>{{ item.race.city }}</em>
+        </router-link>
+      </div>
     </div>
+    <nav class="kinds">
+      <button v-for="item in channels" :key="item.kind" type="button" :class="{ on: kind === item.kind }" @click="setKind(item.kind)">
+        <span class="mark" :class="item.kind" v-html="item.icon"></span>
+        {{ item.short }}
+      </button>
+    </nav>
     <div class="filter-wrap" :class="{ open: sheet }">
       <div class="filter-bar" ref="barEl">
         <button type="button" :class="{ on: city }" @click="openSheet('city')">{{ city || "比赛地点" }} ▾</button>
@@ -62,12 +73,9 @@
           </div>
         </div>
       </div>
-    <div v-if="races.length" class="feed">
-      <router-link v-for="race in races" :key="race.id" class="post" :to="'/races/' + race.id">
-        <b>{{ race.name }}</b>
-        <p><em>{{ race.regStatus }}</em>{{ race.city }}<template v-if="race.distanceLabels.length"> · {{ race.distanceLabels.join(" / ") }}</template></p>
-        <p>{{ race.raceDate }} · <span :class="{ soon: race.open && race.daysLeft <= 7 }">{{ race.deadlineLabel }}</span></p>
-      </router-link>
+    <h2 class="section-label">全部赛历</h2>
+    <div v-if="races.length" class="stack">
+      <RaceCard v-for="race in races" :key="race.id" :race="race" />
     </div>
     <p v-else class="empty">这个分类还没有赛历</p>
   </section>
@@ -77,6 +85,8 @@
 import { computed, nextTick, onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import { api } from "../api";
+import RaceCard from "../components/RaceCard.vue";
+import { remindTone } from "../tone";
 
 const route = useRoute();
 const q = ref("");
@@ -120,12 +130,20 @@ const places = [
 ];
 
 const channels = [
-  { label: "路跑赛事", kind: "road" },
-  { label: "线上赛", kind: "online" },
-  { label: "线下赛", kind: "offline" },
-  { label: "越野赛事", kind: "trail" },
-  { label: "海外赛事", kind: "overseas" }
+  { short: "路跑", kind: "road", icon: '<svg viewBox="0 0 24 24"><path d="M4 16c2.5-4 5-6 8-6s5.5 2 8 6"/><circle cx="8" cy="8" r="1.4"/><path d="M13 9.5 15 7l2 1.2"/></svg>' },
+  { short: "线上", kind: "online", icon: '<svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="11" rx="2"/><path d="M8 20h8M12 16v4"/></svg>' },
+  { short: "线下", kind: "offline", icon: '<svg viewBox="0 0 24 24"><path d="M7 21V4M7 5h10l-2.2 3.2L17 11.5H7"/></svg>' },
+  { short: "越野", kind: "trail", icon: '<svg viewBox="0 0 24 24"><path d="M3 18 8 8l4 6 3-4 6 8z"/></svg>' },
+  { short: "海外", kind: "overseas", icon: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M4 12h16M12 4c2.5 2.4 2.5 13.6 0 16M12 4c-2.5 2.4-2.5 13.6 0 16"/></svg>' }
 ];
+
+const todayParts = computed(() => {
+  const shifted = new Date(Date.now() + 8 * 3600 * 1000);
+  const weeks = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+  return { month: shifted.getUTCMonth() + 1, day: shifted.getUTCDate(), week: weeks[shifted.getUTCDay()] };
+});
+const todayLabel = computed(() => todayParts.value.month + "月" + todayParts.value.day + "日 " + todayParts.value.week);
+const todayDay = computed(() => todayParts.value.day);
 
 const statusOptions = [
   { label: "即将开赛", value: "upcoming" },
