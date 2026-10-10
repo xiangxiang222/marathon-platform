@@ -44,7 +44,6 @@
     <p v-if="club && !board.length && !ranks.length" class="empty">还没有人标比赛。打开一场，标上想跑或已报名。</p>
     <div v-for="item in board" :key="item.race.id" class="block">
       <router-link :to="'/races/' + item.race.id" class="card">
-        <Poster :id="item.race.id" :name="item.race.name" :city="item.race.city" :date="item.race.raceDate" />
         <div class="copy">
           <p>{{ item.race.name }}</p>
           <div class="foot"><span>{{ item.race.raceDate }}</span><span>{{ item.race.deadlineLabel }}</span></div>
@@ -71,8 +70,6 @@ import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import { api } from "../api";
 import { copyText } from "../copy";
-import Poster from "../components/Poster.vue";
-
 const route = useRoute();
 const club = ref(null);
 const members = ref([]);
@@ -144,7 +141,7 @@ onMounted(async () => {
 .share-text { margin: 8px 0 0; font: inherit; white-space: pre-wrap; line-height: 1.5; }
 .rank-label { margin: 8px 0 0; color: #8d949c; font-size: 12px; }
 .squad { margin: 8px 0 0; color: #9a5b12; font-size: 13px; }
-.note { font-size: 12px; color: #00b7ae; }
+.note { font-size: 12px; color: #1d9bf0; }
 .primary { margin-top: 8px; }
 .check-form { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
 .check-form input { height: 36px; border: 1px solid #e6e8ec; border-radius: 8px; padding: 0 10px; background: #fff; }

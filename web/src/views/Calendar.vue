@@ -130,7 +130,7 @@ onMounted(load);
 .month button { width: 32px; font-size: 22px; color: #666; }
 .week, .grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 0; padding: 0; }
 .week { padding: 8px 4px 2px; text-align: center; font-size: 13px; }
-.week .end { color: #e23b3b; }
+.week .end { color: #536471; }
 .grid { padding: 0 2px 8px; }
 .cell {
   min-width: 0;
@@ -154,8 +154,8 @@ onMounted(load);
 }
 .cell.out .num { background: #f7f8fa; color: #c8ccd3; }
 .cell.out .lunar { color: #e1e4e8; }
-.cell.today .num { background: #fff; color: #e23b3b; box-shadow: inset 0 0 0 1.5px #e23b3b; }
-.cell.picked:not(.today) .num { background: #e23b3b; color: #fff; }
+.cell.today .num { background: #fff; color: #0f1419; box-shadow: inset 0 0 0 1.5px #0f1419; font-weight: 800; }
+.cell.picked:not(.today) .num { background: #0f1419; color: #fff; }
 .lunar, .count {
   font-size: clamp(8px, calc((100vw - 12px) / 7 / 5.2), 11px);
   line-height: 1.2;
@@ -164,8 +164,8 @@ onMounted(load);
   white-space: nowrap;
 }
 .lunar { color: #b4b8c0; }
-.count { color: #e23b3b; }
-.day-races { border-top: 8px solid #f6f7f9; padding: 4px 16px 28px; }
+.count { color: #1d9bf0; }
+.day-races { border-top: 1px solid #eff3f4; padding: 4px 16px 28px; }
 .day-races h2 { margin: 14px 0 4px; font-size: 15px; font-weight: 600; }
 .race { display: block; padding: 12px 0; border-bottom: 1px solid #f0f1f4; }
 .race b { display: block; font-size: 16px; font-weight: 650; line-height: 1.35; }
