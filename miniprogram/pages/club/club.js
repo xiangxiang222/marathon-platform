@@ -1,32 +1,7 @@
 const { request } = require("../../utils/request");
 
-function unpaidText(item) {
-  return (item.unpaid || [])
-    .map((mark) => (typeof mark === "string" ? mark : mark.nickname))
-    .filter(Boolean)
-    .join("、");
-}
-
 Page({
-  data: {
-    phase: "loading",
-    club: null,
-    members: [],
-    board: [],
-    ranks: [],
-    checkins: [],
-    checkedIn: false,
-    note: "",
-    checkBusy: false,
-    checkMessage: "",
-    checkOk: "",
-    message: "",
-    codeOk: "",
-    codeError: "",
-    copyOk: "",
-    copyError: "",
-    copiedId: ""
-  },
+  data: { club: null, members: [], board: [], ranks: [], checkins: [], checkedIn: false, note: "", checkMessage: "", message: "" },
   onLoad(query) {
     this.clubId = query.id;
     this.pending = null;
@@ -50,20 +25,17 @@ Page({
     };
   },
   load() {
-    this.setData({ phase: "loading", message: "" });
     request("/clubs/" + this.clubId)
       .then((data) => {
         const board = (data.board || []).map((item) => ({
           ...item,
           key: item.race.id,
-          unpaidText: unpaidText(item),
+          unpaidText: (item.unpaid || []).join("、"),
           squadText: item.squad ? item.squad.text : "",
-          soon: item.race.open && item.race.daysLeft <= 3,
           alternatives: item.alternatives || [],
           alternativeNote: item.alternativeNote || ""
         }));
         this.setData({
-          phase: "ready",
           club: data.club,
           members: data.members || [],
           board,
@@ -75,56 +47,19 @@ Page({
           message: ""
         });
       })
-      .catch((err) => this.setData({ phase: "error", message: err.message || "跑团没有打开" }));
+      .catch((err) => this.setData({ message: err.message }));
   },
   onNote(e) {
     this.setData({ note: e.detail.value });
   },
-  copyCode() {
-    const code = this.data.club ? this.data.club.code : "";
-    wx.setClipboardData({
-      data: code,
-      success: () => this.setData({ codeOk: "口令已复制。发到微信群即可。", codeError: "" }),
-      fail: () => this.setData({ codeError: "没有复制成功。选中上面的口令即可。", codeOk: "" })
-    });
-  },
-  copyCard(e) {
-    const id = e.currentTarget.dataset.id || "";
-    const item = (this.data.board || []).find((row) => row.race && row.race.id === id);
-    const text = (item && item.text) || "";
-    this.setData({ copiedId: id });
-    wx.setClipboardData({
-      data: text,
-      success: () => this.setData({ copyOk: "已复制。贴到微信群即可。", copyError: "" }),
-      fail: () => this.setData({ copyError: "没有复制成功。选中下面的文字即可。", copyOk: "" })
-    });
-  },
   checkIn() {
-    this.setData({ checkBusy: true, checkMessage: "", checkOk: "" });
-    request("/clubs/" + this.clubId + "/checkins", "POST", { note: (this.data.note || "").trim() })
-      .then((data) =>
-        this.setData({
-          checkins: data.checkins || [],
-          checkedIn: !!data.checkedIn,
-          note: data.myNote || "",
-          checkBusy: false,
-          checkOk: "已记下今天的签到。"
-        })
-      )
-      .catch((err) => this.setData({ checkBusy: false, checkMessage: err.message }));
+    request("/clubs/" + this.clubId + "/checkins", "POST", { note: this.data.note })
+      .then((data) => this.setData({ checkins: data.checkins || [], checkedIn: !!data.checkedIn, note: data.myNote || "", checkMessage: "" }))
+      .catch((err) => this.setData({ checkMessage: err.message }));
   },
   undoCheckin() {
-    this.setData({ checkBusy: true, checkMessage: "", checkOk: "" });
     request("/clubs/" + this.clubId + "/checkins", "DELETE")
-      .then((data) =>
-        this.setData({
-          checkins: data.checkins || [],
-          checkedIn: !!data.checkedIn,
-          note: data.myNote || "",
-          checkBusy: false,
-          checkOk: "已撤销今天的签到。"
-        })
-      )
-      .catch((err) => this.setData({ checkBusy: false, checkMessage: err.message }));
+      .then((data) => this.setData({ checkins: data.checkins || [], checkedIn: !!data.checkedIn, note: data.myNote || "", checkMessage: "" }))
+      .catch((err) => this.setData({ checkMessage: err.message }));
   }
 });

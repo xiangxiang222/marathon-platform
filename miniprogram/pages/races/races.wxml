@@ -1,62 +1,29 @@
 <view class="pad">
+  <navigator class="cal-entry" url="/pages/calendar/calendar">赛事日历</navigator>
   <view class="search">
     <input placeholder="搜索赛事名称" value="{{q}}" bindinput="onQ" bindconfirm="load" confirm-type="search" />
     <text class="go" bindtap="load">搜索</text>
   </view>
-
-  <view class="card remind" wx:if="{{tasks.length}}">
-    <view class="h2">要处理</view>
-    <navigator wx:for="{{tasks}}" wx:key="id" class="hit" url="{{item.url}}">
-      <view class="title">{{item.title}}</view>
-      <view class="muted">{{item.body}}</view>
-    </navigator>
-  </view>
-  <view class="card" wx:elif="{{signedIn}}">
-    <view class="h2">要处理</view>
-    <view class="help">你标过的场这几天没有节点，团里也没有人卡在缴费。</view>
-  </view>
-  <view class="card remind" wx:elif="{{reminders.length}}">
-    <view class="h2">{{reminderTitle}}</view>
-    <navigator wx:for="{{reminders}}" wx:key="key" class="hit" url="/pages/race/race?id={{item.race.id}}">
-      <view class="title">{{item.hit.reason}}</view>
-      <view class="muted">{{item.race.name}}</view>
-    </navigator>
-  </view>
-
-  <scroll-view class="filters" scroll-x>
-    <text wx:for="{{statuses}}" wx:key="value" class="chip {{status === item.value ? 'on' : ''}}" data-value="{{item.value}}" bindtap="setStatus">{{item.label}}</text>
-  </scroll-view>
-  <scroll-view class="filters" scroll-x>
-    <text wx:for="{{distances}}" wx:key="label" class="chip {{distance === item.value ? 'on' : ''}}" data-value="{{item.value}}" bindtap="setDistance">{{item.label}}</text>
-  </scroll-view>
   <view class="filters">
-    <text class="chip {{city || sheet === 'city' ? 'on' : ''}}" data-sheet="city" bindtap="toggleSheet">{{city || '地点'}}</text>
-    <text class="chip {{month || sheet === 'month' ? 'on' : ''}}" data-sheet="month" bindtap="toggleSheet">{{monthLabel || '月份'}}</text>
+    <button class="ghost {{status === 'upcoming' ? 'on' : ''}}" data-status="upcoming" bindtap="setStatus">即将开赛</button>
+    <button class="ghost {{status === 'open' ? 'on' : ''}}" data-status="open" bindtap="setStatus">报名中</button>
+    <button class="ghost {{status === 'all' ? 'on' : ''}}" data-status="all" bindtap="setStatus">全部</button>
+    <button class="ghost {{status === 'unannounced' ? 'on' : ''}}" data-status="unannounced" bindtap="setStatus">报名未公布</button>
   </view>
-
-  <view class="card" wx:if="{{sheet === 'city'}}">
-    <text class="chip {{city ? '' : 'on'}}" data-value="" bindtap="pickCity">不限</text>
-    <text wx:for="{{cities}}" wx:key="*this" class="chip {{city === item ? 'on' : ''}}" data-value="{{item}}" bindtap="pickCity">{{item}}</text>
-    <view wx:if="{{!cities.length}}" class="help">还没有地点。</view>
-  </view>
-  <view class="card" wx:if="{{sheet === 'month'}}">
-    <text class="chip {{month ? '' : 'on'}}" data-value="" bindtap="pickMonth">不限</text>
-    <text wx:for="{{months}}" wx:key="value" class="chip {{month === item.value ? 'on' : ''}}" data-value="{{item.value}}" bindtap="pickMonth">{{item.label}}</text>
-    <view wx:if="{{!months.length}}" class="help">还没有月份。</view>
-  </view>
-
-  <view wx:if="{{loading}}" class="state">正在读取赛历</view>
-  <view wx:elif="{{message}}" class="state">
-    <view class="err">{{message}}</view>
-    <button class="line" bindtap="load">重试</button>
-  </view>
-  <view wx:elif="{{!races.length}}" class="state">这个范围没有赛历。换个状态、地点或月份，或按比赛日查看。</view>
-  <block wx:else>
-    <navigator wx:for="{{races}}" wx:key="id" class="card race" url="/pages/race/race?id={{item.id}}">
-      <view class="title"><text class="teal">{{item.regStatus}} </text>{{item.name}}</view>
-      <view class="meta">{{item.meta}}</view>
-      <view class="foot"><text class="{{item.soon ? 'soon' : ''}}">{{item.deadlineLabel}}</text></view>
-    </navigator>
-  </block>
-  <navigator class="link" url="/pages/calendar/calendar">按比赛日查看</navigator>
+  <view wx:if="{{message}}" class="err">{{message}}</view>
+  <navigator wx:for="{{reminders}}" wx:key="key" class="card remind" url="/pages/race/race?id={{item.race.id}}">
+    <view class="title">{{item.hit.reason}}</view>
+    <view class="muted">{{item.race.name}}</view>
+  </navigator>
+  <navigator wx:for="{{races}}" wx:key="id" class="card race" url="/pages/race/race?id={{item.id}}">
+    <view class="title"><text class="teal">{{item.regStatus}} </text>{{item.name}}</view>
+    <view class="tags">
+      <text wx:for="{{item.distanceLabels}}" wx:for-item="tag" wx:key="*this" class="chip">{{tag}}</text>
+    </view>
+    <view class="foot">
+      <text>{{item.raceDate}} · {{item.city}}</text>
+      <text class="{{item.soon ? 'soon' : ''}}">{{item.deadlineLabel}}</text>
+    </view>
+  </navigator>
+  <view wx:if="{{loaded && !races.length}}" class="empty">这个范围还没有赛历</view>
 </view>
