@@ -1,0 +1,6 @@
+.h2 { font-size: 32rpx; font-weight: 650; }
+.src { color: #8d949c; font-size: 24rpx; margin-top: 8rpx; }
+.groups { margin: 12rpx 0; }
+.shot { margin-top: 16rpx; }
+.shot image, .shot video { width: 100%; height: 360rpx; border-radius: 16rpx; }
+input { height: 72rpx; background: #f2f2f7; border-radius: 12rpx; padding: 0 20rpx; margin-top: 12rpx; }

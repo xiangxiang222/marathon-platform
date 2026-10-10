@@ -7,6 +7,7 @@ const { presentRace, summarizeMarks, cardTitle, shareText, reminderHits, fullCon
 const { parseClock, decorateResults, careerOf, yearOf, bestRanks } = require("./career");
 const { syncOfficial, listOfficial, publishOfficial, openUpcoming, ignoreOfficial, applyOfficial } = require("./official");
 const { ensureAdmin, loginAdmin, adminSession, logoutAdmin, changeAdminPassword } = require("./admin-auth");
+const { mountClubLife, enrichBoard, clubLife } = require("./club-life");
 
 function loadEnv() {
   const file = path.join(__dirname, "../../.env");
@@ -514,17 +515,11 @@ app.get(BASE + "/api/clubs/:id", (req, res) => {
     .prepare("SELECT 1 FROM club_members WHERE club_id = ? AND user_id = ?")
     .get(req.params.id, user.id);
   if (!member) return res.status(403).json({ error: "你不在这个跑团里" });
-  const club = getDb().prepare("SELECT id, name, code FROM clubs WHERE id = ?").get(req.params.id);
-  const members = getDb()
-    .prepare(
-      `SELECT u.id, u.nickname FROM club_members m
-       JOIN users u ON u.id = m.user_id
-       WHERE m.club_id = ? ORDER BY m.joined_at`
-    )
-    .all(club.id);
+  const clubRow = getDb().prepare("SELECT id, name, code, owner_id FROM clubs WHERE id = ?").get(req.params.id);
+  const club = { id: clubRow.id, name: clubRow.name, code: clubRow.code };
   const plans = getDb()
     .prepare(
-      `SELECT u.nickname, p.status, r.* FROM plans p
+      `SELECT u.id AS user_id, u.nickname, p.status, r.* FROM plans p
        JOIN users u ON u.id = p.user_id
        JOIN races r ON r.id = p.race_id
        JOIN club_members m ON m.user_id = u.id AND m.club_id = ?
@@ -540,7 +535,7 @@ app.get(BASE + "/api/clubs/:id", (req, res) => {
       item = { race, marks: [] };
       board.push(item);
     }
-    item.marks.push({ nickname: row.nickname, status: row.status });
+    item.marks.push({ userId: row.user_id, nickname: row.nickname, status: row.status });
   }
   for (const item of board) {
     const counts = {};
@@ -573,7 +568,8 @@ app.get(BASE + "/api/clubs/:id", (req, res) => {
         race: { id: race.id, name: race.name, raceDate: race.raceDate }
       };
     });
-  res.json({ club, members, board, ranks: bestRanks(rankRows), ...checkinsOf(club.id, user.id) });
+  enrichBoard(getDb(), clubRow.id, board);
+  res.json({ ...clubLife(getDb(), clubRow, user.id), board, ranks: bestRanks(rankRows), ...checkinsOf(clubRow.id, user.id) });
 });
 
 app.post(BASE + "/api/clubs/:id/checkins", (req, res) => {
@@ -739,6 +735,8 @@ app.put(BASE + "/api/admin/races/:id", (req, res) => {
     .run(next[0], next[1], next[2], next[3], deadlineName || race.deadline_name || "报名截止", source, cstDay(), race.id);
   res.json({ ok: true, race: presentRace(getDb().prepare("SELECT * FROM races WHERE id = ?").get(race.id), new Date()) });
 });
+
+mountClubLife(app, { BASE, getDb, userFrom });
 
 const webDist = path.join(__dirname, "../../web/dist");
 if (fs.existsSync(webDist)) {

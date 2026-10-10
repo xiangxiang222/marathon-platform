@@ -4,5 +4,6 @@ const path = require("path");
 
 const dir = fs.mkdtempSync(path.join(os.tmpdir(), `marathon-ut-${process.pid}-`));
 process.env.MARATHON_DB = path.join(dir, "app.sqlite");
+process.env.MARATHON_MEDIA = path.join(dir, "media");
 process.env.BASE_PATH = "/marathon";
 process.env.PORT = "0";

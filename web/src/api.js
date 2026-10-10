@@ -20,3 +20,21 @@ export function api(path, options = {}) {
 export function savedName() {
   return localStorage.getItem("marathon_name") || "";
 }
+
+export function upload(path, file) {
+  const headers = {};
+  const token = localStorage.getItem("marathon_token");
+  if (token) headers.Authorization = "Bearer " + token;
+  const body = new FormData();
+  body.append("file", file);
+  return fetch(base + "/api" + path, { method: "POST", headers, body }).then(async (res) => {
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(data.error || "请求失败");
+    return data;
+  });
+}
+
+export function mediaSrc(id) {
+  const token = localStorage.getItem("marathon_token") || "";
+  return base + "/api/media/" + id + "?t=" + encodeURIComponent(token);
+}

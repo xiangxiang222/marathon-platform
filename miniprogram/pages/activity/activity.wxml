@@ -1,0 +1,37 @@
+<view class="pad" wx:if="{{activity}}">
+  <view class="card">
+    <view class="title">{{activity.title}}</view>
+    <view class="src">{{activity.startsAt}} {{activity.place}}</view>
+    <view class="src">{{activity.rule}}</view>
+  </view>
+  <view class="card">
+    <view class="h2">报名</view>
+    <view class="groups">
+      <button wx:for="{{groups}}" wx:key="id" class="ghost {{groupId === item.id ? 'on' : ''}}" data-id="{{item.id}}" bindtap="pickGroup">{{item.name}} {{item.signed}}人</button>
+    </view>
+    <button class="btn" bindtap="signup">{{activity.mine.signed ? '改组别' : '报名'}}</button>
+    <button wx:if="{{activity.mine.signed}}" class="ghost" bindtap="cancel">取消报名</button>
+    <view wx:for="{{signups}}" wx:key="userId" class="row">
+      <text>{{item.nickname}}</text><text>{{item.groupName || '未分组'}}</text>
+    </view>
+  </view>
+  <view class="card">
+    <view class="h2">打卡</view>
+    <input placeholder="公里数" value="{{km}}" bindinput="onKm" />
+    <button class="btn" bindtap="check">打卡</button>
+    <view wx:for="{{checks}}" wx:key="userId" class="row">
+      <text>{{item.nickname}}</text><text>{{item.km}} 公里</text>
+    </view>
+  </view>
+  <view class="card">
+    <view class="h2">相册</view>
+    <button class="btn" bindtap="choose">上传照片或视频</button>
+    <view wx:for="{{media}}" wx:key="id" class="shot">
+      <image wx:if="{{item.kind === 'photo'}}" src="{{item.src}}" mode="aspectFill" />
+      <video wx:else src="{{item.src}}" controls />
+      <view class="src">{{item.nickname}}</view>
+    </view>
+  </view>
+  <view wx:if="{{message}}" class="err">{{message}}</view>
+</view>
+<view wx:else class="empty">{{message || '正在打开活动'}}</view>

@@ -1,7 +1,7 @@
 const { request } = require("../../utils/request");
 
 Page({
-  data: { club: null, members: [], board: [], ranks: [], checkins: [], checkedIn: false, note: "", checkMessage: "", message: "" },
+  data: { club: null, members: [], board: [], ranks: [], activities: [], checkins: [], checkedIn: false, note: "", checkMessage: "", message: "" },
   onLoad(query) {
     this.clubId = query.id;
     this.pending = null;
@@ -40,6 +40,7 @@ Page({
           members: data.members || [],
           board,
           ranks: data.ranks || [],
+          activities: data.activities || [],
           checkins: data.checkins || [],
           checkedIn: !!data.checkedIn,
           note: data.myNote || "",

@@ -102,6 +102,73 @@ function open() {
       created_at TEXT NOT NULL,
       PRIMARY KEY (club_id, user_id, day)
     );
+    CREATE TABLE IF NOT EXISTS club_groups (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      club_id INTEGER NOT NULL,
+      name TEXT NOT NULL,
+      pace TEXT NOT NULL DEFAULT '',
+      capacity INTEGER NOT NULL DEFAULT 0,
+      sort INTEGER NOT NULL DEFAULT 0
+    );
+    CREATE TABLE IF NOT EXISTS activities (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      club_id INTEGER NOT NULL,
+      title TEXT NOT NULL,
+      place TEXT NOT NULL DEFAULT '',
+      starts_at TEXT NOT NULL,
+      note TEXT NOT NULL DEFAULT '',
+      min_km REAL NOT NULL DEFAULT 5,
+      min_people INTEGER NOT NULL DEFAULT 3,
+      points INTEGER NOT NULL DEFAULT 1,
+      created_at TEXT NOT NULL
+    );
+    CREATE TABLE IF NOT EXISTS activity_signups (
+      activity_id INTEGER NOT NULL,
+      user_id INTEGER NOT NULL,
+      group_id INTEGER NOT NULL DEFAULT 0,
+      created_at TEXT NOT NULL,
+      PRIMARY KEY (activity_id, user_id)
+    );
+    CREATE TABLE IF NOT EXISTS activity_checks (
+      activity_id INTEGER NOT NULL,
+      user_id INTEGER NOT NULL,
+      km REAL NOT NULL,
+      note TEXT NOT NULL DEFAULT '',
+      created_at TEXT NOT NULL,
+      PRIMARY KEY (activity_id, user_id)
+    );
+    CREATE TABLE IF NOT EXISTS point_entries (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      club_id INTEGER NOT NULL,
+      user_id INTEGER NOT NULL,
+      delta INTEGER NOT NULL,
+      reason TEXT NOT NULL,
+      ref_key TEXT NOT NULL DEFAULT '',
+      created_at TEXT NOT NULL
+    );
+    CREATE TABLE IF NOT EXISTS gifts (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      club_id INTEGER NOT NULL,
+      name TEXT NOT NULL,
+      cost INTEGER NOT NULL,
+      stock INTEGER NOT NULL,
+      created_at TEXT NOT NULL
+    );
+    CREATE TABLE IF NOT EXISTS redemptions (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      gift_id INTEGER NOT NULL,
+      user_id INTEGER NOT NULL,
+      cost INTEGER NOT NULL,
+      created_at TEXT NOT NULL
+    );
+    CREATE TABLE IF NOT EXISTS activity_media (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      activity_id INTEGER NOT NULL,
+      user_id INTEGER NOT NULL,
+      kind TEXT NOT NULL,
+      filename TEXT NOT NULL,
+      created_at TEXT NOT NULL
+    );
     CREATE TABLE IF NOT EXISTS admins (
       username TEXT PRIMARY KEY,
       password_hash TEXT NOT NULL,
@@ -113,6 +180,75 @@ function open() {
       username TEXT NOT NULL,
       expires_at TEXT NOT NULL
     );
+    CREATE TABLE IF NOT EXISTS club_groups (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      club_id INTEGER NOT NULL,
+      name TEXT NOT NULL,
+      pace TEXT NOT NULL DEFAULT '',
+      capacity INTEGER NOT NULL DEFAULT 0,
+      sort INTEGER NOT NULL DEFAULT 0
+    );
+    CREATE TABLE IF NOT EXISTS activities (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      club_id INTEGER NOT NULL,
+      title TEXT NOT NULL,
+      place TEXT NOT NULL DEFAULT '',
+      starts_at TEXT NOT NULL,
+      note TEXT NOT NULL DEFAULT '',
+      min_km REAL NOT NULL DEFAULT 5,
+      min_people INTEGER NOT NULL DEFAULT 3,
+      points INTEGER NOT NULL DEFAULT 1,
+      created_at TEXT NOT NULL
+    );
+    CREATE TABLE IF NOT EXISTS activity_signups (
+      activity_id INTEGER NOT NULL,
+      user_id INTEGER NOT NULL,
+      group_id INTEGER NOT NULL DEFAULT 0,
+      created_at TEXT NOT NULL,
+      PRIMARY KEY (activity_id, user_id)
+    );
+    CREATE TABLE IF NOT EXISTS activity_checks (
+      activity_id INTEGER NOT NULL,
+      user_id INTEGER NOT NULL,
+      km REAL NOT NULL,
+      note TEXT NOT NULL DEFAULT '',
+      created_at TEXT NOT NULL,
+      PRIMARY KEY (activity_id, user_id)
+    );
+    CREATE TABLE IF NOT EXISTS point_entries (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      club_id INTEGER NOT NULL,
+      user_id INTEGER NOT NULL,
+      delta INTEGER NOT NULL,
+      reason TEXT NOT NULL,
+      ref_key TEXT NOT NULL DEFAULT '',
+      created_at TEXT NOT NULL
+    );
+    CREATE TABLE IF NOT EXISTS gifts (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      club_id INTEGER NOT NULL,
+      name TEXT NOT NULL,
+      cost INTEGER NOT NULL,
+      stock INTEGER NOT NULL,
+      created_at TEXT NOT NULL
+    );
+    CREATE TABLE IF NOT EXISTS redemptions (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      gift_id INTEGER NOT NULL,
+      user_id INTEGER NOT NULL,
+      cost INTEGER NOT NULL,
+      created_at TEXT NOT NULL
+    );
+    CREATE TABLE IF NOT EXISTS activity_media (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      activity_id INTEGER NOT NULL,
+      user_id INTEGER NOT NULL,
+      kind TEXT NOT NULL,
+      filename TEXT NOT NULL,
+      mime TEXT NOT NULL,
+      created_at TEXT NOT NULL
+    );
+    CREATE UNIQUE INDEX IF NOT EXISTS point_ref_key ON point_entries(ref_key) WHERE ref_key != '';
   `);
   for (const [name, type] of [
     ["reg_start", "TEXT NOT NULL DEFAULT ''"],
