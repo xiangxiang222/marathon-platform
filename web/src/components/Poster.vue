@@ -1,5 +1,5 @@
 <template>
-  <svg class="poster" viewBox="0 0 360 240" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img">
+  <svg class="poster" :class="{ large, cover }" viewBox="0 0 360 240" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img">
     <defs>
       <linearGradient :id="gid + 'g'" x1="0" y1="0" x2="1" y2="1">
         <stop offset="0" :stop-color="theme.a" />
@@ -23,7 +23,9 @@ const props = defineProps({
   id: { type: String, required: true },
   name: { type: String, default: "" },
   city: { type: String, default: "" },
-  date: { type: String, default: "" }
+  date: { type: String, default: "" },
+  large: { type: Boolean, default: false },
+  cover: { type: Boolean, default: false }
 });
 
 const gid = computed(() => "p" + String(props.id).replace(/[^a-z0-9]/gi, ""));
@@ -83,6 +85,8 @@ const titleSize = computed(() => {
 
 <style scoped>
 .poster { display: block; width: 100%; height: auto; aspect-ratio: 6 / 5; border-radius: 8px; }
+.poster.large { aspect-ratio: 13 / 6; height: auto; border-radius: 0; }
+.poster.cover { aspect-ratio: 16 / 9; height: auto; border-radius: 0; }
 text { font-family: "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei", sans-serif; fill: #fff; }
 .year { font-size: 15px; letter-spacing: 2px; opacity: 0.8; }
 .city { font-size: 18px; letter-spacing: 3px; opacity: 0.92; }

@@ -22,6 +22,7 @@
 .lunar, .count { font-size: 20rpx; line-height: 1.2; min-height: 26rpx; }
 .lunar { color: #b4b8c0; }
 .count { color: #e23b3b; }
+.retry { margin: 24rpx 32rpx; }
 .list { border-top: 16rpx solid #f6f7f9; padding: 8rpx 32rpx 48rpx; }
 .picked { font-size: 30rpx; font-weight: 650; padding: 24rpx 0 8rpx; }
 .race { display: block; padding: 24rpx 0; border-bottom: 1rpx solid #f0f1f4; }
