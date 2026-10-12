@@ -51,7 +51,7 @@ function keep(next, current) {
   return next ? next : current || "";
 }
 
-function saveGuide(db, race, body) {
+function parseGuide(body) {
   const raceDateText = body.raceDate == null ? "" : String(body.raceDate).trim();
   if (raceDateText && !/^\d{4}-\d{2}-\d{2}$/.test(raceDateText)) return { status: 400, error: "比赛日写成 2026-11-01 这样" };
   const name = clip(body.name, 100);
@@ -69,8 +69,8 @@ function saveGuide(db, race, body) {
   if (startAt == null || (startAt && !/^([01]\d|2[0-3]):[0-5]\d$/.test(startAt))) return { status: 400, error: "起跑写成 07:00 这样" };
   const bibAt = clip(body.bibAt, 10);
   if (bibAt == null || (bibAt && !/^\d{4}-\d{2}-\d{2}$/.test(bibAt))) return { status: 400, error: "号码公布写成 2026-12-10 这样" };
-  const fee = clip(body.fee, 40);
-  const scale = clip(body.scale, 40);
+  const fee = clip(body.fee, 80);
+  const scale = clip(body.scale, 80);
   const phone = clip(body.phone, 40);
   if (fee == null || scale == null || phone == null) return { status: 400, error: "费用、规模或电话太长" };
   if (phone && !/^[\d+\-()（）/\s]{5,40}$/.test(phone)) return { status: 400, error: "电话只写号码" };
@@ -81,18 +81,56 @@ function saveGuide(db, race, body) {
   const urls = ["signupUrl", "drawUrl", "bibUrl", "resultUrl", "liveUrl", "eventUrl"].map((key) => httpsUrl(body[key]));
   const official = httpsUrl(body.officialUrl);
   if (urls.some((item) => item == null) || official == null) return { status: 400, error: "链接要以 https:// 开头" };
-  let organizer = race.organizer || "";
+  let organizer = "";
+  let organizerSet = false;
   if (body.organizer != null) {
     const text = clip(body.organizer, 80);
     if (text == null) return { status: 400, error: "主办太长" };
     organizer = text;
+    organizerSet = true;
   }
-  let grade = race.grade || "";
+  let grade = "";
+  let gradeSet = false;
   if (body.grade != null) {
     const text = String(body.grade).trim();
     if (text && !["A", "B", "C", "TEN"].includes(text)) return { status: 400, error: "类别只收 A、B、C 或系列赛" };
     grade = text;
+    gradeSet = true;
   }
+  return {
+    fields: {
+      name: name || "",
+      city: city || "",
+      province: province || "",
+      place: place || "",
+      distances,
+      kinds,
+      groups,
+      startAt: startAt || "",
+      bibAt: bibAt || "",
+      fee: fee || "",
+      scale: scale || "",
+      phone: phone || "",
+      route: route || "",
+      pickup: pickup || "",
+      pacers: pacers || "",
+      urls,
+      official: official || "",
+      organizer,
+      organizerSet,
+      grade,
+      gradeSet,
+      raceDateText
+    }
+  };
+}
+
+function saveGuide(db, race, body) {
+  const parsed = parseGuide(body);
+  if (parsed.error) return parsed;
+  const fields = parsed.fields;
+  const organizer = fields.organizerSet ? fields.organizer : race.organizer || "";
+  const grade = fields.gradeSet ? fields.grade : race.grade || "";
   const today = new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10);
   db.prepare(
     `UPDATE races SET
@@ -103,31 +141,31 @@ function saveGuide(db, race, body) {
        route = ?, pickup = ?, pacers = ?, updated_at = ?
      WHERE id = ?`
   ).run(
-    keep(name, race.name),
-    raceDateText || race.race_date,
-    keep(city, race.city),
-    keep(province, race.province),
-    keep(place, race.place),
-    distances.join(","),
-    kinds.join(","),
-    groups.join(","),
-    startAt,
-    bibAt,
-    fee,
-    scale,
-    phone,
-    urls[0],
-    urls[1],
-    urls[2],
-    urls[3],
-    urls[4],
-    urls[5] || race.event_url || "",
-    official || race.official_url || "",
+    keep(fields.name, race.name),
+    fields.raceDateText || race.race_date,
+    keep(fields.city, race.city),
+    keep(fields.province, race.province),
+    keep(fields.place, race.place),
+    fields.distances.join(","),
+    fields.kinds.join(","),
+    fields.groups.join(","),
+    fields.startAt,
+    fields.bibAt,
+    fields.fee,
+    fields.scale,
+    fields.phone,
+    fields.urls[0],
+    fields.urls[1],
+    fields.urls[2],
+    fields.urls[3],
+    fields.urls[4],
+    fields.urls[5] || race.event_url || "",
+    fields.official || race.official_url || "",
     organizer,
     grade,
-    route,
-    pickup,
-    pacers,
+    fields.route,
+    fields.pickup,
+    fields.pacers,
     today,
     race.id
   );
@@ -216,43 +254,56 @@ function listManaged(db, { q = "", when = "upcoming" } = {}) {
 }
 
 function createRace(db, body) {
-  const name = clip(body.name, 100);
-  if (name == null) return { status: 400, error: "名称太长" };
-  if (!name) return { status: 400, error: "先写赛事名称" };
-  const raceDate = String(body.raceDate || "").trim();
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(raceDate)) return { status: 400, error: "比赛日写成 2026-11-01 这样" };
-  const city = clip(body.city, 20);
-  const province = clip(body.province, 20);
-  const place = clip(body.place, 80);
-  if (city == null || province == null || place == null) return { status: 400, error: "地点太长" };
-  if (!city && !place) return { status: 400, error: "先写城市或地点" };
-  const distances = codes(body.distances, DISTANCES);
-  const kinds = codes(body.kinds, KINDS);
-  if (!distances || !kinds) return { status: 400, error: "项目里有不认识的类型" };
-  const groups = groupsOf(body.groups);
-  if (groups == null) return { status: 400, error: "其他组别最多 8 个，每个不超过 16 个字" };
-  if (!distances.length && !kinds.length && !groups.length) return { status: 400, error: "先标一个项目" };
-  const startAt = clip(body.startAt, 5);
-  if (startAt == null || (startAt && !/^([01]\d|2[0-3]):[0-5]\d$/.test(startAt))) return { status: 400, error: "起跑写成 07:00 这样" };
+  const parsed = parseGuide(body);
+  if (parsed.error) return parsed;
+  const fields = parsed.fields;
+  if (!fields.name) return { status: 400, error: "先写赛事名称" };
+  if (!fields.raceDateText) return { status: 400, error: "比赛日写成 2026-11-01 这样" };
+  if (!fields.city && !fields.place) return { status: 400, error: "先写城市或地点" };
   const id = "hand-" + crypto.randomBytes(4).toString("hex");
   db.prepare(
     `INSERT INTO races (
        id, name, city, province, distances, race_date, deadline, place,
-       source, updated_at, kinds, groups, start_at
-     ) VALUES (?, ?, ?, ?, ?, ?, '', ?, ?, ?, ?, ?, ?)`
+       source, updated_at, kinds, groups, start_at,
+       bib_at, fee, scale, phone,
+       signup_url, draw_url, bib_url, result_url, live_url, event_url, official_url,
+       organizer, grade, route, pickup, pacers
+     ) VALUES (
+       ?, ?, ?, ?, ?, ?, '', ?,
+       ?, ?, ?, ?, ?,
+       ?, ?, ?, ?,
+       ?, ?, ?, ?, ?, ?, ?,
+       ?, ?, ?, ?, ?
+     )`
   ).run(
     id,
-    name,
-    city || place,
-    province || "",
-    distances.join(","),
-    raceDate,
-    place || city,
+    fields.name,
+    fields.city || fields.place,
+    fields.province,
+    fields.distances.join(","),
+    fields.raceDateText,
+    fields.place || fields.city,
     "后台手工添加",
     cstToday(),
-    kinds.join(","),
-    groups.join(","),
-    startAt
+    fields.kinds.join(","),
+    fields.groups.join(","),
+    fields.startAt,
+    fields.bibAt,
+    fields.fee,
+    fields.scale,
+    fields.phone,
+    fields.urls[0],
+    fields.urls[1],
+    fields.urls[2],
+    fields.urls[3],
+    fields.urls[4],
+    fields.urls[5],
+    fields.official,
+    fields.organizer,
+    fields.grade,
+    fields.route,
+    fields.pickup,
+    fields.pacers
   );
   return { id };
 }
