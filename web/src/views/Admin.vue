@@ -1,11 +1,11 @@
 <template>
-  <main>
+  <main class="admin">
     <header class="topbar">
       <router-link to="/" aria-label="返回">‹</router-link>
       <h1>赛历后台</h1>
       <span></span>
     </header>
-    <div v-if="!authed" class="block">
+    <div v-if="!authed" class="block login">
       <h2>赛历后台</h2>
       <p class="hint">用用户名和密码进入。</p>
       <form class="check-form" @submit.prevent="enter">
@@ -16,11 +16,14 @@
       <p v-if="message" class="err">{{ message }}</p>
     </div>
     <template v-else>
+      <p v-if="message" class="banner" :class="{ ok: saved }">{{ message }}</p>
+      <div class="desk">
+      <div class="desk-main">
       <div class="block">
         <h2>官网赛历</h2>
         <button class="undo" type="button" @click="logout">退出</button>
         <p class="hint">每一届单独存。中国马拉松官网这场一直有链接。赛事自己的网站，官网给了才记下；没给就空着，也不拿往年的网站来填。每天再对一次，名称、日期、主办、赛事网站有变会标出来。报名时间仍要另写来源，已经记下的截止时间不会被盖掉。</p>
-        <form class="check-form" @submit.prevent="search">
+        <form class="check-form inline-form" @submit.prevent="search">
           <input v-model="q" placeholder="向官网查名称，例如璧山" />
           <button class="primary" type="submit">查官网</button>
         </form>
@@ -31,7 +34,6 @@
           </button>
         </div>
         <p v-if="busy" class="hint">正在向官网要赛历。</p>
-        <p v-if="message" :class="saved ? 'hint' : 'err'">{{ message }}</p>
         <form class="check-form" @submit.prevent="changePassword">
           <input v-model="currentPassword" type="password" autocomplete="current-password" placeholder="当前密码" />
           <input v-model="nextPassword" type="password" autocomplete="new-password" placeholder="新密码，至少 8 位" />
@@ -58,45 +60,47 @@
         <button v-if="row.status !== 'ignored'" class="undo" type="button" @click="ignore(row)">忽略</button>
         <button v-if="row.diffNote" class="undo" type="button" @click="apply(row)">采用官网这次的名称、日期和赛事网站</button>
         <router-link v-if="row.raceId" class="hint link" :to="'/races/' + row.raceId">打开赛历这场</router-link>
-        <form v-if="row.raceId" class="check-form" @submit.prevent="saveNodes(row)">
+        <form v-if="row.raceId" class="check-form node-form" @submit.prevent="saveNodes(row)">
           <input v-model="row.regStart" placeholder="报名开始 2026-09-07" />
           <input v-model="row.deadline" placeholder="报名截止 2026-10-28" />
           <input v-model="row.drawAt" placeholder="出签" />
           <input v-model="row.payDeadline" placeholder="缴费截止" />
-          <input v-model="row.nodeSource" placeholder="来源，例如最酷，2026-09-07" />
+          <input v-model="row.nodeSource" class="span" placeholder="来源，例如最酷，2026-09-07" />
           <button class="primary" type="submit">保存报名节点</button>
         </form>
       </div>
       <p v-if="ready && !rows.length" class="empty">这个范围还没有场。</p>
+      </div>
+      <aside class="desk-side">
       <div class="block">
         <h2>赛事手册</h2>
         <p class="hint">已经收入赛历的场留在这里改。名称、日期和报名截止空着不填，就不会盖掉自动拉到的内容。规程用组委会的原图，一页一张。报名、中签、号码、成绩和直播只记链接，站内不报名、不付款。</p>
-        <form class="check-form" @submit.prevent="findRaces">
+        <form class="check-form inline-form" @submit.prevent="findRaces">
           <input v-model="guideQuery" placeholder="搜赛历里的名称或城市" />
           <button class="primary" type="submit">找这场</button>
         </form>
         <button v-for="item in guideHits" :key="item.id" class="hit" type="button" @click="openGuide(item.id)">
           {{ item.raceDate }} · {{ item.name }}
         </button>
-        <form v-if="book" class="check-form" @submit.prevent="saveGuide">
-          <input v-model="book.name" placeholder="赛事名称" />
+        <form v-if="book" class="check-form guide-form" @submit.prevent="saveGuide">
+          <input v-model="book.name" class="span" placeholder="赛事名称" />
           <input v-model="book.province" placeholder="省份" />
           <input v-model="book.city" placeholder="城市" />
-          <input v-model="book.place" placeholder="地点，例如厦门国际会展中心" />
-          <p class="hint">计时项目</p>
+          <input v-model="book.place" class="span" placeholder="地点，例如厦门国际会展中心" />
+          <p class="hint span">计时项目</p>
           <div class="checks">
             <label v-for="item in distanceChoices" :key="item.key"><input v-model="book.distances" type="checkbox" :value="item.key" /> {{ item.label }}</label>
           </div>
-          <p class="hint">类型</p>
+          <p class="hint span">类型</p>
           <div class="checks">
             <label v-for="item in kindChoices" :key="item.key"><input v-model="book.kinds" type="checkbox" :value="item.key" /> {{ item.label }}</label>
           </div>
-          <input v-model="book.groups" placeholder="其他组别，用顿号分开，例如 25公里、50公里" />
+          <input v-model="book.groups" class="span" placeholder="其他组别，用顿号分开，例如 25公里、50公里" />
           <input v-model="book.startAt" placeholder="起跑 07:00" />
           <input v-model="book.bibAt" placeholder="号码公布 2026-12-10" />
           <input v-model="book.scale" placeholder="规模，例如全程 35000 人" />
           <input v-model="book.fee" placeholder="报名费，例如中国籍 200 元" />
-          <input v-model="book.phone" placeholder="咨询电话" />
+          <input v-model="book.phone" class="span" placeholder="咨询电话" />
           <input v-model="book.signupUrl" placeholder="报名链接 https://" />
           <input v-model="book.drawUrl" placeholder="查中签链接 https://" />
           <input v-model="book.bibUrl" placeholder="查号码链接 https://" />
@@ -111,9 +115,11 @@
         <template v-if="book">
           <p class="hint">竞赛规程</p>
           <input type="file" accept="image/jpeg,image/png,image/webp" @change="uploadSheet($event, 'guide')" />
+          <div class="sheets">
           <div v-for="sheet in book.guide" :key="sheet.id" class="sheet-row">
             <img :src="raceSheetSrc(sheet.id)" alt="规程" />
             <button class="undo" type="button" @click="removeSheet(sheet.id)">删除这一页</button>
+          </div>
           </div>
           <p class="hint">直播二维码，再传一张会换掉上一张</p>
           <input type="file" accept="image/jpeg,image/png,image/webp" @change="uploadSheet($event, 'live')" />
@@ -122,6 +128,8 @@
             <button class="undo" type="button" @click="removeSheet(book.liveSheet.id)">删除二维码</button>
           </div>
         </template>
+      </div>
+      </aside>
       </div>
     </template>
   </main>
@@ -468,4 +476,18 @@ if (token.value) {
 .statuses { margin-top: 8px; }
 .link { display: inline-block; }
 a { color: #007aff; }
+.banner { margin: 0 16px; padding: 10px 12px; border-radius: 12px; background: #fff; color: var(--red); font-size: 14px; }
+.banner.ok { color: #007aff; }
+@media (min-width: 900px) {
+  .login { max-width: 420px; margin: 64px auto; }
+  .desk { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(360px, 0.8fr); align-items: start; }
+  .desk-side { position: sticky; top: 64px; max-height: calc(100vh - 88px); overflow: auto; }
+  .inline-form { flex-direction: row; align-items: center; }
+  .inline-form input { flex: 1; }
+  .inline-form .primary { width: auto; margin-top: 0; padding: 0 16px; white-space: nowrap; }
+  .guide-form, .node-form { display: grid; grid-template-columns: 1fr 1fr; }
+  .guide-form .span, .guide-form .checks, .guide-form textarea, .guide-form .primary,
+  .node-form .span, .node-form .primary { grid-column: 1 / -1; }
+  .sheets { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+}
 </style>

@@ -21,6 +21,6 @@ export default createRouter({
     { path: "/clubs/:id", component: Club, meta: { hideTab: true } },
     { path: "/clubs/:id/activities/:aid", component: Activity, meta: { hideTab: true } },
     { path: "/mine", component: Mine },
-    { path: "/admin", component: Admin, meta: { hideTab: true } }
+    { path: "/admin", component: Admin, meta: { hideTab: true, wide: true } }
   ]
 });
