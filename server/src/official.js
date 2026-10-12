@@ -530,5 +530,6 @@ module.exports = {
   publishOfficial,
   openUpcoming,
   ignoreOfficial,
-  applyOfficial
+  applyOfficial,
+  compactName
 };

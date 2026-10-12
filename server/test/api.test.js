@@ -831,3 +831,58 @@ test("handbook adds links and regulation pages without replacing a pulled deadli
   const denied = await request(app).put("/marathon/api/admin/races/tmsk/guide").set("Authorization", "Bearer " + user).send({ distances: ["full"], kinds: [] });
   assert.equal(denied.status, 401);
 });
+
+test("admin lists pulled races and a delete stays deleted after the next pull", async () => {
+  process.env.ADMIN_TOKEN = "test-admin";
+  const admin = { Authorization: "Bearer test-admin" };
+  getDb()
+    .prepare(
+      `INSERT INTO races (id, name, city, province, distances, race_date, deadline, place)
+       VALUES ('drop-me', '删除测试马拉松', '北京', '北京', 'full', '2026-12-01', '2026-11-01T18:00:00+08:00', '北京')`
+    )
+    .run();
+  getDb()
+    .prepare(
+      `INSERT INTO official_races (
+         official_id, name, race_date, province, city, district, grade, distances, items, detail_url, seen_at, status, race_id
+       ) VALUES ('drop-me-src', '删除测试马拉松', '2026-12-01', '北京', '北京', '', '', 'full', '', 'https://www.runchina.org.cn/#/race/v/detail/drop-me', '2026-10-12T00:00:00.000Z', 'published', 'drop-me')`
+    )
+    .run();
+  const user = await session("删场的人");
+  const marked = await request(app).put("/marathon/api/me/races/drop-me").set("Authorization", "Bearer " + user).send({ status: "已报名" });
+  assert.equal(marked.status, 200);
+
+  const listed = await request(app).get("/marathon/api/admin/races?when=upcoming").set(admin);
+  assert.equal(listed.status, 200);
+  assert.ok(listed.body.races.some((race) => race.id === "drop-me"));
+  assert.equal(listed.body.races.some((race) => race.id === "closed-sample"), false);
+  const past = await request(app).get("/marathon/api/admin/races?when=all&q=" + encodeURIComponent("收官")).set(admin);
+  assert.equal(past.status, 200);
+  assert.ok(past.body.races.some((race) => race.id === "closed-sample"));
+
+  const moved = await request(app).put("/marathon/api/admin/races/drop-me/guide").set(admin).send({
+    raceDate: "2026-12-02",
+    distances: ["full"],
+    kinds: []
+  });
+  assert.equal(moved.status, 200);
+  assert.equal(moved.body.race.raceDate, "2026-12-02");
+  assert.equal(moved.body.race.deadline, "2026-11-01T18:00:00+08:00");
+  const keptDate = await request(app).put("/marathon/api/admin/races/drop-me/guide").set(admin).send({
+    raceDate: "",
+    distances: ["full"],
+    kinds: []
+  });
+  assert.equal(keptDate.body.race.raceDate, "2026-12-02");
+
+  const outsider = await request(app).delete("/marathon/api/admin/races/drop-me").set("Authorization", "Bearer " + user);
+  assert.equal(outsider.status, 401);
+  const removed = await request(app).delete("/marathon/api/admin/races/drop-me").set(admin);
+  assert.equal(removed.status, 200);
+  assert.equal((await request(app).get("/marathon/api/races/drop-me")).status, 404);
+  assert.equal(getDb().prepare("SELECT COUNT(*) AS n FROM plans WHERE race_id = 'drop-me'").get().n, 0);
+  assert.equal(getDb().prepare("SELECT status FROM official_races WHERE official_id = 'drop-me-src'").get().status, "ignored");
+  openUpcoming(getDb(), new Date("2026-10-12T04:00:00.000Z"));
+  assert.equal(getDb().prepare("SELECT id FROM races WHERE id = 'drop-me'").get(), undefined);
+  assert.equal(getDb().prepare("SELECT id FROM races WHERE name = '删除测试马拉松'").get(), undefined);
+});
