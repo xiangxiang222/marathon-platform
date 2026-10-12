@@ -21,7 +21,8 @@
       <div class="desk-main">
       <div class="block">
         <h2>赛历</h2>
-        <p class="hint">这些是已经收进赛历的场。自动拉取还在，新的场会补进来。删掉的场记到已忽略，不会马上又加回来。</p>
+        <p class="hint">这些是已经收进赛历的场。自动拉取还在，新的场会补进来。官网没有的，可以手动添加。删掉的场记到已忽略，不会马上又加回来。</p>
+        <button type="button" class="add" @click="startDraft">手动添加一场</button>
         <form class="check-form inline-form" @submit.prevent="loadCatalog">
           <input v-model="catalogQuery" placeholder="搜名称、城市" />
           <button class="primary" type="submit">筛选</button>
@@ -98,63 +99,118 @@
       </div>
       <aside class="desk-side">
       <div class="block">
-        <h2>编辑这场</h2>
-        <p v-if="!book" class="hint">点列表里的一场来改。名称和比赛日空着不填，就不会盖掉已经记下的。报名截止要单独保存，并写来源。规程用组委会的原图。站内不报名、不付款。</p>
-        <form v-if="book" class="check-form guide-form" @submit.prevent="saveGuide">
-          <input v-model="book.name" class="span" placeholder="赛事名称" />
-          <input v-model="book.raceDate" class="span" placeholder="比赛日 2026-11-01" />
-          <input v-model="book.province" placeholder="省份" />
-          <input v-model="book.city" placeholder="城市" />
-          <input v-model="book.place" class="span" placeholder="地点，例如厦门国际会展中心" />
-          <p class="hint span">计时项目</p>
-          <div class="checks">
-            <label v-for="item in distanceChoices" :key="item.key"><input v-model="book.distances" type="checkbox" :value="item.key" /> {{ item.label }}</label>
+        <h2>{{ draft ? "手动添加" : "编辑这场" }}</h2>
+        <p v-if="!book && !draft" class="hint">点列表里的一场来改，或手动添加官网没有的场。规程用组委会的原图。站内不报名、不付款。</p>
+        <form v-if="draft" class="check-form" @submit.prevent="createRace">
+          <p class="hint">先记下名称、比赛日和地点。报名时间、链接和规程创建后再补。</p>
+          <div class="pair">
+            <label class="field span"><span>赛事名称</span><input v-model="draft.name" placeholder="例如 2026 沂水 10 公里" /></label>
+            <label class="field"><span>比赛日</span><input v-model="draft.raceDate" placeholder="2026-11-15" /></label>
+            <label class="field"><span>起跑</span><input v-model="draft.startAt" placeholder="07:00，可以先空着" /></label>
+            <label class="field"><span>省份</span><input v-model="draft.province" placeholder="山东" /></label>
+            <label class="field"><span>城市</span><input v-model="draft.city" placeholder="临沂" /></label>
+            <label class="field span"><span>地点</span><input v-model="draft.place" placeholder="起点或景区" /></label>
           </div>
-          <p class="hint span">类型</p>
+          <p class="hint">计时项目</p>
           <div class="checks">
-            <label v-for="item in kindChoices" :key="item.key"><input v-model="book.kinds" type="checkbox" :value="item.key" /> {{ item.label }}</label>
+            <label v-for="item in distanceChoices" :key="item.key"><input v-model="draft.distances" type="checkbox" :value="item.key" /> {{ item.label }}</label>
           </div>
-          <input v-model="book.groups" class="span" placeholder="其他组别，用顿号分开，例如 25公里、50公里" />
-          <input v-model="book.startAt" placeholder="起跑 07:00" />
-          <input v-model="book.bibAt" placeholder="号码公布 2026-12-10" />
-          <input v-model="book.scale" placeholder="规模，例如全程 35000 人" />
-          <input v-model="book.fee" placeholder="报名费，例如中国籍 200 元" />
-          <input v-model="book.phone" class="span" placeholder="咨询电话" />
-          <input v-model="book.signupUrl" placeholder="报名链接 https://" />
-          <input v-model="book.drawUrl" placeholder="查中签链接 https://" />
-          <input v-model="book.bibUrl" placeholder="查号码链接 https://" />
-          <input v-model="book.resultUrl" placeholder="成绩或证书链接 https://" />
-          <input v-model="book.liveUrl" placeholder="直播链接 https://" />
-          <input v-model="book.eventUrl" placeholder="官网 https://，空着则保留已有网站" />
-          <textarea v-model="book.route" rows="3" placeholder="路线，写一句能看懂的"></textarea>
-          <textarea v-model="book.pickup" rows="3" placeholder="领物须知"></textarea>
-          <textarea v-model="book.pacers" rows="3" placeholder="配速员"></textarea>
-          <button class="primary" type="submit">保存这场</button>
-        </form>
-        <form v-if="book" class="check-form node-form" @submit.prevent="saveBookNodes">
-          <p class="hint span">报名节点。空着的日期保持原样，改了就要写来源。</p>
-          <input v-model="book.regStart" placeholder="报名开始 2026-09-07" />
-          <input v-model="book.deadline" placeholder="报名截止 2026-10-28" />
-          <input v-model="book.drawAt" placeholder="出签" />
-          <input v-model="book.payDeadline" placeholder="缴费截止" />
-          <input v-model="book.nodeSource" class="span" placeholder="来源，例如最酷，2026-09-07" />
-          <button class="primary" type="submit">保存报名节点</button>
+          <p class="hint">类型</p>
+          <div class="checks">
+            <label v-for="item in kindChoices" :key="item.key"><input v-model="draft.kinds" type="checkbox" :value="item.key" /> {{ item.label }}</label>
+          </div>
+          <label class="field"><span>其他组别</span><input v-model="draft.groups" placeholder="用顿号分开，例如 25公里、50公里" /></label>
+          <button class="primary" type="submit">加入赛历</button>
+          <button class="undo" type="button" @click="draft = null">取消</button>
         </form>
         <template v-if="book">
-          <p class="hint">竞赛规程</p>
-          <input type="file" accept="image/jpeg,image/png,image/webp" @change="uploadSheet($event, 'guide')" />
-          <div class="sheets">
-          <div v-for="sheet in book.guide" :key="sheet.id" class="sheet-row">
-            <img :src="raceSheetSrc(sheet.id)" alt="规程" />
-            <button class="undo" type="button" @click="removeSheet(sheet.id)">删除这一页</button>
-          </div>
-          </div>
-          <p class="hint">直播二维码，再传一张会换掉上一张</p>
-          <input type="file" accept="image/jpeg,image/png,image/webp" @change="uploadSheet($event, 'live')" />
-          <div v-if="book.liveSheet" class="sheet-row">
-            <img :src="raceSheetSrc(book.liveSheet.id)" alt="直播二维码" />
-            <button class="undo" type="button" @click="removeSheet(book.liveSheet.id)">删除二维码</button>
-          </div>
+          <p class="hint">来源 {{ book.source || "还没写" }}<template v-if="book.updatedAt"> · 更新于 {{ book.updatedAt }}</template></p>
+          <router-link class="hint link" :to="'/races/' + book.id">在赛历里打开</router-link>
+          <form class="check-form guide-form" @submit.prevent="saveGuide">
+            <section class="section">
+              <h3>基本信息</h3>
+              <div class="pair">
+                <label class="field span"><span>赛事名称</span><input v-model="book.name" /></label>
+                <label class="field"><span>比赛日</span><input v-model="book.raceDate" placeholder="2026-11-01" /></label>
+                <label class="field"><span>起跑</span><input v-model="book.startAt" placeholder="07:00" /></label>
+                <label class="field"><span>省份</span><input v-model="book.province" /></label>
+                <label class="field"><span>城市</span><input v-model="book.city" /></label>
+                <label class="field span"><span>地点</span><input v-model="book.place" placeholder="起点、会展中心或景区" /></label>
+                <label class="field span"><span>主办</span><input v-model="book.organizer" placeholder="组委会或公司" /></label>
+                <label class="field"><span>类别</span>
+                  <select v-model="book.grade">
+                    <option v-for="item in gradeChoices" :key="item.value" :value="item.value">{{ item.label }}</option>
+                  </select>
+                </label>
+              </div>
+            </section>
+            <section class="section">
+              <h3>项目、规模和费用</h3>
+              <p class="hint">计时项目</p>
+              <div class="checks">
+                <label v-for="item in distanceChoices" :key="item.key"><input v-model="book.distances" type="checkbox" :value="item.key" /> {{ item.label }}</label>
+              </div>
+              <p class="hint">类型</p>
+              <div class="checks">
+                <label v-for="item in kindChoices" :key="item.key"><input v-model="book.kinds" type="checkbox" :value="item.key" /> {{ item.label }}</label>
+              </div>
+              <div class="pair">
+                <label class="field span"><span>其他组别</span><input v-model="book.groups" placeholder="用顿号分开，例如 25公里、50公里" /></label>
+                <label class="field"><span>规模</span><input v-model="book.scale" placeholder="全程 35000 人" /></label>
+                <label class="field"><span>报名费</span><input v-model="book.fee" placeholder="中国籍 200 元" /></label>
+                <label class="field span"><span>咨询电话</span><input v-model="book.phone" placeholder="只写号码" /></label>
+              </div>
+            </section>
+            <section class="section">
+              <h3>报名和查询</h3>
+              <p class="hint">日期空着就保持原来的。改了报名时间，要写这次的来源。链接打开赛事自己的页面，这里不报名、不付款。官网和中国马拉松官网的链接空着保存，会留下原来的。</p>
+              <div class="pair">
+                <label class="field"><span>报名开始</span><input v-model="book.regStart" placeholder="2026-09-07" /></label>
+                <label class="field"><span>报名截止</span><input v-model="book.deadline" placeholder="2026-10-28" /></label>
+                <label class="field"><span>截止叫什么</span><input v-model="book.deadlineName" placeholder="报名截止" /></label>
+                <label class="field"><span>查询中签</span><input v-model="book.drawAt" placeholder="2026-10-22" /></label>
+                <label class="field"><span>缴费截止</span><input v-model="book.payDeadline" placeholder="2026-10-25" /></label>
+                <label class="field"><span>号码公布</span><input v-model="book.bibAt" placeholder="2026-12-10" /></label>
+                <label class="field span"><span>这次的来源</span><input v-model="book.nodeSource" placeholder="规程或官网，写上看到的日期" /></label>
+                <label class="field span"><span>报名</span><input v-model="book.signupUrl" placeholder="https://" /></label>
+                <label class="field"><span>查中签</span><input v-model="book.drawUrl" placeholder="https://" /></label>
+                <label class="field"><span>查号码</span><input v-model="book.bibUrl" placeholder="https://" /></label>
+                <label class="field"><span>查成绩或证书</span><input v-model="book.resultUrl" placeholder="https://" /></label>
+                <label class="field"><span>直播</span><input v-model="book.liveUrl" placeholder="https://" /></label>
+                <label class="field"><span>赛事官网</span><input v-model="book.eventUrl" placeholder="https://" /></label>
+                <label class="field span"><span>中国马拉松官网这场</span><input v-model="book.officialUrl" placeholder="https://" /></label>
+              </div>
+            </section>
+            <section class="section">
+              <h3>比赛日</h3>
+              <div class="pair">
+                <label class="field span"><span>路线</span><textarea v-model="book.route" rows="3" placeholder="写一句能看懂的"></textarea></label>
+                <label class="field span"><span>领物须知</span><textarea v-model="book.pickup" rows="3"></textarea></label>
+                <label class="field span"><span>配速员</span><textarea v-model="book.pacers" rows="3"></textarea></label>
+              </div>
+            </section>
+            <button class="primary" type="submit">保存这场</button>
+          </form>
+          <section class="section">
+            <h3>竞赛规程</h3>
+            <p class="hint">按组委会原图一页一张，最多 16 页。奖金和关门时间留在图里。</p>
+            <input type="file" accept="image/jpeg,image/png,image/webp" @change="uploadSheet($event, 'guide')" />
+            <div class="sheets">
+              <div v-for="sheet in book.guide" :key="sheet.id" class="sheet-row">
+                <img :src="raceSheetSrc(sheet.id)" alt="规程" />
+                <button class="undo" type="button" @click="removeSheet(sheet.id)">删除这一页</button>
+              </div>
+            </div>
+          </section>
+          <section class="section">
+            <h3>直播二维码</h3>
+            <p class="hint">再传一张会换掉上一张。</p>
+            <input type="file" accept="image/jpeg,image/png,image/webp" @change="uploadSheet($event, 'live')" />
+            <div v-if="book.liveSheet" class="sheet-row">
+              <img :src="raceSheetSrc(book.liveSheet.id)" alt="直播二维码" />
+              <button class="undo" type="button" @click="removeSheet(book.liveSheet.id)">删除二维码</button>
+            </div>
+          </section>
         </template>
       </div>
       </aside>
@@ -185,6 +241,8 @@ const catalogQuery = ref("");
 const catalogWhen = ref("upcoming");
 const catalogReady = ref(false);
 const book = ref(null);
+const draft = ref(null);
+const nodeOrigin = ref("");
 const distanceChoices = [
   { key: "full", label: "马拉松" },
   { key: "half", label: "半程" },
@@ -196,6 +254,13 @@ const kindChoices = [
   { key: "ultra", label: "超马" },
   { key: "family", label: "亲子跑" },
   { key: "fun", label: "欢乐跑" }
+];
+const gradeChoices = [
+  { value: "", label: "不标" },
+  { value: "A", label: "A 类" },
+  { value: "B", label: "B 类" },
+  { value: "C", label: "C 类" },
+  { value: "TEN", label: "系列赛" }
 ];
 const filters = [
   { label: "待确认", value: "pending" },
@@ -383,6 +448,11 @@ function blankBook(race) {
     resultUrl: (race.links.find((item) => item.key === "result") || {}).url || "",
     liveUrl: (race.links.find((item) => item.key === "live") || {}).url || "",
     eventUrl: race.eventUrl || "",
+    officialUrl: race.officialUrl || "",
+    organizer: race.organizer || "",
+    grade: ["A", "B", "C", "TEN"].includes(race.grade) ? race.grade : "",
+    source: race.source || "",
+    updatedAt: race.updatedAt || "",
     route: race.route || "",
     pickup: race.pickup || "",
     pacers: race.pacers || "",
@@ -392,8 +462,48 @@ function blankBook(race) {
     deadline: dayOf(race.deadline),
     drawAt: dayOf(race.drawAt),
     payDeadline: dayOf(race.payDeadline),
+    deadlineName: race.known && race.deadlineName && race.deadlineName !== "报名" ? race.deadlineName : "",
     nodeSource: ""
   };
+}
+
+function nodesKey(row) {
+  return [row.regStart, row.deadline, row.drawAt, row.payDeadline, row.deadlineName].join("|");
+}
+
+function startDraft() {
+  book.value = null;
+  draft.value = {
+    name: "",
+    raceDate: "",
+    startAt: "",
+    province: "",
+    city: "",
+    place: "",
+    distances: [],
+    kinds: [],
+    groups: ""
+  };
+}
+
+async function createRace() {
+  const row = draft.value;
+  message.value = "";
+  saved.value = false;
+  try {
+    const data = await admin("/admin/races", { method: "POST", body: JSON.stringify(row) });
+    draft.value = null;
+    catalogQuery.value = "";
+    catalogWhen.value = row.raceDate >= new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10) ? "upcoming" : "all";
+    await loadCatalog();
+    const opened = await api("/races/" + data.id);
+    book.value = blankBook(opened.race);
+    nodeOrigin.value = nodesKey(book.value);
+    saved.value = true;
+    message.value = "已加入赛历，可以继续补报名和规程";
+  } catch (err) {
+    fail(err);
+  }
 }
 
 async function loadCatalog() {
@@ -433,7 +543,9 @@ async function openGuide(id) {
   saved.value = false;
   try {
     const data = await api("/races/" + id);
+    draft.value = null;
     book.value = blankBook(data.race);
+    nodeOrigin.value = nodesKey(book.value);
   } catch (err) {
     fail(err);
   }
@@ -443,7 +555,29 @@ async function saveGuide() {
   message.value = "";
   saved.value = false;
   const row = book.value;
+  if (!row.name.trim()) return fail(new Error("先写赛事名称"));
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(row.raceDate.trim())) return fail(new Error("比赛日写成 2026-11-01 这样"));
+  if (!row.city.trim() && !row.place.trim()) return fail(new Error("先写城市或地点"));
+  if (!row.distances.length && !row.kinds.length && !row.groups.trim()) return fail(new Error("先标一个项目"));
+  const nodesTouched = nodesKey(row) !== nodeOrigin.value || row.nodeSource.trim();
+  if (nodesTouched && !row.nodeSource.trim()) return fail(new Error("改了报名时间，要写来源"));
+  if (nodesTouched && ![row.regStart, row.deadline, row.drawAt, row.payDeadline].some((item) => item.trim())) {
+    return fail(new Error("先填写要记的节点"));
+  }
   try {
+    if (nodesTouched) {
+      await admin("/admin/races/" + row.id, {
+        method: "PUT",
+        body: JSON.stringify({
+          regStart: row.regStart,
+          deadline: row.deadline,
+          drawAt: row.drawAt,
+          payDeadline: row.payDeadline,
+          deadlineName: row.deadlineName,
+          source: row.nodeSource
+        })
+      });
+    }
     const data = await admin("/admin/races/" + row.id + "/guide", {
       method: "PUT",
       body: JSON.stringify({
@@ -451,6 +585,8 @@ async function saveGuide() {
         province: row.province,
         city: row.city,
         place: row.place,
+        organizer: row.organizer,
+        grade: row.grade,
         distances: row.distances,
         kinds: row.kinds,
         groups: row.groups,
@@ -465,6 +601,7 @@ async function saveGuide() {
         resultUrl: row.resultUrl,
         liveUrl: row.liveUrl,
         eventUrl: row.eventUrl,
+        officialUrl: row.officialUrl,
         raceDate: row.raceDate,
         route: row.route,
         pickup: row.pickup,
@@ -472,32 +609,10 @@ async function saveGuide() {
       })
     });
     book.value = blankBook(data.race);
+    nodeOrigin.value = nodesKey(book.value);
     saved.value = true;
-    message.value = "这场已记下。报名截止没有改";
+    message.value = nodesTouched ? "这场和报名节点都记下了" : "这场已记下";
     await loadCatalog();
-  } catch (err) {
-    fail(err);
-  }
-}
-
-async function saveBookNodes() {
-  const row = book.value;
-  message.value = "";
-  saved.value = false;
-  try {
-    await admin("/admin/races/" + row.id, {
-      method: "PUT",
-      body: JSON.stringify({
-        regStart: row.regStart,
-        deadline: row.deadline,
-        drawAt: row.drawAt,
-        payDeadline: row.payDeadline,
-        source: row.nodeSource
-      })
-    });
-    await openGuide(row.id);
-    saved.value = true;
-    message.value = "报名节点已记下";
   } catch (err) {
     fail(err);
   }
@@ -547,8 +662,14 @@ if (token.value) {
 .hint { margin: 8px 0 0; color: #8d949c; font-size: 12px; }
 .warn { margin: 8px 0 0; color: #9a5b12; font-size: 13px; }
 .check-form { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
-.check-form input, .check-form textarea { width: 100%; border: 1px solid #e6e8ec; border-radius: 8px; padding: 8px 10px; background: #fff; font: inherit; }
-.check-form input { height: 36px; padding: 0 10px; }
+.check-form input, .check-form textarea, .check-form select { width: 100%; border: 1px solid #e6e8ec; border-radius: 8px; padding: 8px 10px; background: #fff; font: inherit; }
+.check-form input, .check-form select { height: 36px; padding: 0 10px; }
+.section { margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--line); }
+.section h3 { margin: 0 0 8px; font-size: 15px; font-weight: 650; }
+.pair { display: grid; grid-template-columns: 1fr; gap: 10px; }
+.field { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.field > span { font-size: 12px; color: var(--muted); }
+.add { margin-top: 8px; color: var(--accent); font-weight: 650; background: transparent; }
 .checks { display: flex; flex-wrap: wrap; gap: 8px 14px; font-size: 14px; }
 .checks label { display: flex; align-items: center; gap: 4px; }
 .race-list { max-height: 52vh; overflow: auto; margin-top: 4px; }
@@ -578,9 +699,8 @@ a { color: #007aff; }
   .inline-form { flex-direction: row; align-items: center; }
   .inline-form input { flex: 1; }
   .inline-form .primary { width: auto; margin-top: 0; padding: 0 16px; white-space: nowrap; }
-  .guide-form, .node-form { display: grid; grid-template-columns: 1fr 1fr; }
-  .guide-form .span, .guide-form .checks, .guide-form textarea, .guide-form .primary,
-  .node-form .span, .node-form .primary { grid-column: 1 / -1; }
+  .pair { grid-template-columns: 1fr 1fr; }
+  .pair .span { grid-column: 1 / -1; }
   .sheets { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 }
 </style>

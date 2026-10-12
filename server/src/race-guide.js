@@ -1,3 +1,4 @@
+const crypto = require("crypto");
 const fs = require("fs");
 const path = require("path");
 
@@ -78,13 +79,27 @@ function saveGuide(db, race, body) {
   const pacers = clip(body.pacers, 400);
   if (route == null || pickup == null || pacers == null) return { status: 400, error: "路线、领物或配速说明太长" };
   const urls = ["signupUrl", "drawUrl", "bibUrl", "resultUrl", "liveUrl", "eventUrl"].map((key) => httpsUrl(body[key]));
-  if (urls.some((item) => item == null)) return { status: 400, error: "链接要以 https:// 开头" };
+  const official = httpsUrl(body.officialUrl);
+  if (urls.some((item) => item == null) || official == null) return { status: 400, error: "链接要以 https:// 开头" };
+  let organizer = race.organizer || "";
+  if (body.organizer != null) {
+    const text = clip(body.organizer, 80);
+    if (text == null) return { status: 400, error: "主办太长" };
+    organizer = text;
+  }
+  let grade = race.grade || "";
+  if (body.grade != null) {
+    const text = String(body.grade).trim();
+    if (text && !["A", "B", "C", "TEN"].includes(text)) return { status: 400, error: "类别只收 A、B、C 或系列赛" };
+    grade = text;
+  }
   const today = new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10);
   db.prepare(
     `UPDATE races SET
        name = ?, race_date = ?, city = ?, province = ?, place = ?, distances = ?, kinds = ?, groups = ?,
        start_at = ?, bib_at = ?, fee = ?, scale = ?, phone = ?,
        signup_url = ?, draw_url = ?, bib_url = ?, result_url = ?, live_url = ?, event_url = ?,
+       official_url = ?, organizer = ?, grade = ?,
        route = ?, pickup = ?, pacers = ?, updated_at = ?
      WHERE id = ?`
   ).run(
@@ -107,6 +122,9 @@ function saveGuide(db, race, body) {
     urls[3],
     urls[4],
     urls[5] || race.event_url || "",
+    official || race.official_url || "",
+    organizer,
+    grade,
     route,
     pickup,
     pacers,
@@ -197,6 +215,48 @@ function listManaged(db, { q = "", when = "upcoming" } = {}) {
   return db.prepare(sql).all(...params);
 }
 
+function createRace(db, body) {
+  const name = clip(body.name, 100);
+  if (name == null) return { status: 400, error: "名称太长" };
+  if (!name) return { status: 400, error: "先写赛事名称" };
+  const raceDate = String(body.raceDate || "").trim();
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(raceDate)) return { status: 400, error: "比赛日写成 2026-11-01 这样" };
+  const city = clip(body.city, 20);
+  const province = clip(body.province, 20);
+  const place = clip(body.place, 80);
+  if (city == null || province == null || place == null) return { status: 400, error: "地点太长" };
+  if (!city && !place) return { status: 400, error: "先写城市或地点" };
+  const distances = codes(body.distances, DISTANCES);
+  const kinds = codes(body.kinds, KINDS);
+  if (!distances || !kinds) return { status: 400, error: "项目里有不认识的类型" };
+  const groups = groupsOf(body.groups);
+  if (groups == null) return { status: 400, error: "其他组别最多 8 个，每个不超过 16 个字" };
+  if (!distances.length && !kinds.length && !groups.length) return { status: 400, error: "先标一个项目" };
+  const startAt = clip(body.startAt, 5);
+  if (startAt == null || (startAt && !/^([01]\d|2[0-3]):[0-5]\d$/.test(startAt))) return { status: 400, error: "起跑写成 07:00 这样" };
+  const id = "hand-" + crypto.randomBytes(4).toString("hex");
+  db.prepare(
+    `INSERT INTO races (
+       id, name, city, province, distances, race_date, deadline, place,
+       source, updated_at, kinds, groups, start_at
+     ) VALUES (?, ?, ?, ?, ?, ?, '', ?, ?, ?, ?, ?, ?)`
+  ).run(
+    id,
+    name,
+    city || place,
+    province || "",
+    distances.join(","),
+    raceDate,
+    place || city,
+    "后台手工添加",
+    cstToday(),
+    kinds.join(","),
+    groups.join(","),
+    startAt
+  );
+  return { id };
+}
+
 function removeRace(db, id) {
   const race = db.prepare("SELECT id, name, race_date FROM races WHERE id = ?").get(id);
   if (!race) return { status: 404, error: "没有这场比赛" };
@@ -234,6 +294,13 @@ function mountRaceGuide(app, { BASE, getDb, requireAdmin }) {
         place: row.place
       }))
     });
+  });
+
+  app.post(BASE + "/api/admin/races", (req, res) => {
+    if (!requireAdmin(req, res)) return;
+    const created = createRace(getDb(), req.body || {});
+    if (created.error) return res.status(created.status).json({ error: created.error });
+    res.json({ id: created.id });
   });
 
   app.delete(BASE + "/api/admin/races/:id", (req, res) => {
