@@ -1,4 +1,5 @@
 const { request, setAuth, ready } = require("../../utils/request");
+const { baseUrl } = require("../../config");
 
 function withUnpaid(card) {
   if (!card) return card;
@@ -29,7 +30,11 @@ Page({
     distance: "",
     clock: "",
     story: "",
-    resultMessage: ""
+    resultMessage: "",
+    guide: [],
+    liveSheet: null,
+    kindText: "",
+    groupText: ""
   },
   onLoad(query) {
     this.raceId = query.id;
@@ -90,7 +95,11 @@ Page({
           message: "",
           myResult,
           distanceOptions,
-          resultMessage: ""
+          resultMessage: "",
+          guide: (race.guide || []).map((item) => ({ id: item.id, src: baseUrl + "/marathon/api/race-sheets/" + item.id })),
+          liveSheet: race.liveSheet ? { id: race.liveSheet.id, src: baseUrl + "/marathon/api/race-sheets/" + race.liveSheet.id } : null,
+          kindText: (race.kindLabels || []).join(" / "),
+          groupText: (race.groups || []).join("、")
         };
         if (myResult) {
           patch.distance = myResult.distance;
@@ -110,6 +119,15 @@ Page({
       );
     }
     return Promise.all(jobs).catch((err) => this.setData({ message: err.message }));
+  },
+  copyLink(e) {
+    wx.setClipboardData({ data: e.currentTarget.dataset.url || "" });
+  },
+  previewGuide(e) {
+    const current = e.currentTarget.dataset.src;
+    const urls = this.data.guide.map((item) => item.src);
+    if (this.data.liveSheet) urls.push(this.data.liveSheet.src);
+    wx.previewImage({ current, urls });
   },
   enter() {
     const nickname = (this.data.draft || "").trim();

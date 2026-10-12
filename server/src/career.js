@@ -1,6 +1,6 @@
 const { DISTANCE_LABEL } = require("./races");
 
-const KM = { full: 42.195, half: 21.0975, "10k": 10 };
+const KM = { full: 42.195, half: 21.0975, "10k": 10, "5k": 5 };
 const MAX_SECONDS = 12 * 3600;
 
 function yearOf(date) {

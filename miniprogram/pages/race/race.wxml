@@ -3,8 +3,10 @@
     <view class="teal">{{race.regStatus}}</view>
     <view class="title">{{race.name}}</view>
     <view class="row"><text class="k">比赛日</text><text>{{race.raceDate}}</text></view>
-    <view class="row"><text class="k">地点</text><text>{{race.province === race.city ? race.city : race.province + ' · ' + race.city}}</text></view>
+    <view class="row"><text class="k">地点</text><text>{{race.province === race.city ? race.city : race.province + ' · ' + race.city}}{{race.place && race.place !== race.city ? ' · ' + race.place : ''}}</text></view>
     <view class="row"><text class="k">项目</text><text>{{distanceText}}</text></view>
+    <view wx:if="{{race.startAt}}" class="row"><text class="k">起跑</text><text>{{race.startAt}}</text></view>
+    <view wx:if="{{race.phone}}" class="row"><text class="k">咨询</text><text>{{race.phone}}</text></view>
     <view class="row"><text class="k">{{race.deadlineName}}</text><text class="{{race.open && race.daysLeft <= 3 ? 'soon' : ''}}">{{race.deadlineLabel}}</text></view>
     <view wx:if="{{race.gradeLabel}}" class="src">{{race.gradeLabel}}</view>
     <view wx:if="{{race.organizer}}" class="src">主办 {{race.organizer}}</view>
@@ -20,6 +22,38 @@
       <text class="k">{{item.label}}</text>
       <text class="{{item.soon ? 'soon' : ''}}">{{item.at}}<text wx:if="{{item.text}}"> · {{item.text}}</text></text>
     </view>
+  </view>
+
+  <view class="card" wx:if="{{race.links.length}}">
+    <view class="h2">报名和查询</view>
+    <view class="src">复制后到浏览器打开。这里不报名、不付款。</view>
+    <button wx:for="{{race.links}}" wx:key="key" class="btn" data-url="{{item.url}}" bindtap="copyLink">{{item.label}}</button>
+  </view>
+
+  <view class="card" wx:if="{{race.fee || race.scale || race.kindLabels.length || race.groups.length}}">
+    <view class="h2">项目</view>
+    <view wx:if="{{race.fee}}" class="row"><text class="k">报名费</text><text>{{race.fee}}</text></view>
+    <view wx:if="{{race.scale}}" class="row"><text class="k">规模</text><text>{{race.scale}}</text></view>
+    <view wx:if="{{race.kindLabels.length}}" class="src">{{kindText}}</view>
+    <view wx:if="{{race.groups.length}}" class="src">{{groupText}}</view>
+  </view>
+
+  <view class="card" wx:if="{{guide.length}}">
+    <view class="h2">竞赛规程</view>
+    <view class="src">按组委会公布的原图往下看。</view>
+    <image wx:for="{{guide}}" wx:key="id" class="sheet" mode="widthFix" src="{{item.src}}" data-src="{{item.src}}" bindtap="previewGuide" />
+  </view>
+
+  <view class="card" wx:if="{{race.route || race.pickup || race.pacers}}">
+    <view class="h2">比赛日</view>
+    <view wx:if="{{race.route}}" class="src">路线 {{race.route}}</view>
+    <view wx:if="{{race.pickup}}" class="src">领物 {{race.pickup}}</view>
+    <view wx:if="{{race.pacers}}" class="src">配速员 {{race.pacers}}</view>
+  </view>
+
+  <view class="card" wx:if="{{liveSheet}}">
+    <view class="h2">直播</view>
+    <image class="sheet" mode="widthFix" src="{{liveSheet.src}}" data-src="{{liveSheet.src}}" bindtap="previewGuide" />
   </view>
 
   <view class="card" wx:for="{{cards}}" wx:key="clubId">

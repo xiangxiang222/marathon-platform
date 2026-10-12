@@ -34,6 +34,22 @@ export function upload(path, file) {
   });
 }
 
+export function raceSheetSrc(id) {
+  return base + "/api/race-sheets/" + id;
+}
+
+export function adminUpload(path, file, adminToken) {
+  const headers = {};
+  if (adminToken) headers.Authorization = "Bearer " + adminToken;
+  const body = new FormData();
+  body.append("file", file);
+  return fetch(base + "/api" + path, { method: "POST", headers, body }).then(async (res) => {
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(data.error || "请求失败");
+    return data;
+  });
+}
+
 export function mediaSrc(id) {
   const token = localStorage.getItem("marathon_token") || "";
   return base + "/api/media/" + id + "?t=" + encodeURIComponent(token);

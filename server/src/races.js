@@ -105,7 +105,8 @@ const RACES = [
   }
 ];
 
-const DISTANCE_LABEL = { full: "马拉松", half: "半程马拉松", "10k": "10公里组" };
+const DISTANCE_LABEL = { full: "马拉松", half: "半程马拉松", "10k": "10公里", "5k": "5公里" };
+const KIND_LABEL = { trail: "越野", ultra: "超马", family: "亲子跑", fun: "欢乐跑" };
 const TZ = 8 * 3600 * 1000;
 
 function dayIndex(ms) {
@@ -172,6 +173,7 @@ function buildNodes(row, now) {
     ["deadline", field(row, "deadlineName", "deadline_name") || "报名截止", row.deadline],
     ["draw", "出签", field(row, "drawAt", "draw_at")],
     ["pay", "缴费截止", field(row, "payDeadline", "pay_deadline")],
+    ["bib", "号码公布", field(row, "bibAt", "bib_at")],
     ["race", "比赛日", row.race_date || row.raceDate]
   ];
   return specs
@@ -323,9 +325,29 @@ function shareText(card) {
   return lines.join("\n");
 }
 
+function listed(value, labels) {
+  return String(value || "")
+    .split(/[,，、]/)
+    .map((item) => item.trim())
+    .filter((item) => (labels ? labels[item] : item));
+}
+
+function linksOf(row) {
+  return [
+    ["signup", "去报名", "signupUrl", "signup_url", true],
+    ["draw", "查中签", "drawUrl", "draw_url", false],
+    ["bib", "查号码", "bibUrl", "bib_url", false],
+    ["result", "查成绩", "resultUrl", "result_url", false],
+    ["live", "看直播", "liveUrl", "live_url", false]
+  ]
+    .map(([key, label, camel, snake, primary]) => ({ key, label, url: field(row, camel, snake), primary }))
+    .filter((item) => item.url);
+}
+
 function presentRace(row, now) {
   const meta = deadlineMeta(row.deadline, now);
   const distances = String(row.distances).split(",").filter(Boolean);
+  const kinds = listed(field(row, "kinds", "kinds"), KIND_LABEL);
   const nodes = buildNodes(row, now);
   const nextNode = nodes.find((node) => node.key !== "race" && !node.past) || null;
   return {
@@ -349,6 +371,18 @@ function presentRace(row, now) {
     officialUrl: field(row, "officialUrl", "official_url"),
     organizer: field(row, "organizer", "organizer"),
     eventUrl: field(row, "eventUrl", "event_url"),
+    kinds,
+    kindLabels: kinds.map((item) => KIND_LABEL[item] || item),
+    groups: listed(field(row, "groups", "groups")),
+    startAt: field(row, "startAt", "start_at"),
+    bibAt: field(row, "bibAt", "bib_at"),
+    fee: field(row, "fee", "fee"),
+    scale: field(row, "scale", "scale"),
+    phone: field(row, "phone", "phone"),
+    route: field(row, "route", "route"),
+    pickup: field(row, "pickup", "pickup"),
+    pacers: field(row, "pacers", "pacers"),
+    links: linksOf(row),
     nodes,
     nextNode,
     regStatus: phaseLabel(row.race_date || row.raceDate, meta, now),
