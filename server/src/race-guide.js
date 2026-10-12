@@ -51,6 +51,8 @@ function keep(next, current) {
 }
 
 function saveGuide(db, race, body) {
+  const raceDateText = body.raceDate == null ? "" : String(body.raceDate).trim();
+  if (raceDateText && !/^\d{4}-\d{2}-\d{2}$/.test(raceDateText)) return { status: 400, error: "比赛日写成 2026-11-01 这样" };
   const name = clip(body.name, 100);
   const city = clip(body.city, 20);
   const province = clip(body.province, 20);
@@ -80,13 +82,14 @@ function saveGuide(db, race, body) {
   const today = new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10);
   db.prepare(
     `UPDATE races SET
-       name = ?, city = ?, province = ?, place = ?, distances = ?, kinds = ?, groups = ?,
+       name = ?, race_date = ?, city = ?, province = ?, place = ?, distances = ?, kinds = ?, groups = ?,
        start_at = ?, bib_at = ?, fee = ?, scale = ?, phone = ?,
        signup_url = ?, draw_url = ?, bib_url = ?, result_url = ?, live_url = ?, event_url = ?,
        route = ?, pickup = ?, pacers = ?, updated_at = ?
      WHERE id = ?`
   ).run(
     keep(name, race.name),
+    raceDateText || race.race_date,
     keep(city, race.city),
     keep(province, race.province),
     keep(place, race.place),
@@ -178,20 +181,66 @@ function removeSheet(db, row) {
   if (fs.existsSync(file)) fs.unlinkSync(file);
 }
 
+function cstToday() {
+  return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10);
+}
+
+function listManaged(db, { q = "", when = "upcoming" } = {}) {
+  const params = [`%${q}%`, `%${q}%`, `%${q}%`, `%${q}%`];
+  let sql = `SELECT id, name, race_date, city, province, place FROM races
+    WHERE (name LIKE ? OR city LIKE ? OR place LIKE ? OR province LIKE ?)`;
+  if (when !== "all") {
+    sql += " AND race_date >= ?";
+    params.push(cstToday());
+  }
+  sql += " ORDER BY race_date, id LIMIT 400";
+  return db.prepare(sql).all(...params);
+}
+
+function removeRace(db, id) {
+  const race = db.prepare("SELECT id, name, race_date FROM races WHERE id = ?").get(id);
+  if (!race) return { status: 404, error: "没有这场比赛" };
+  const { compactName } = require("./official");
+  const name = compactName(race.name);
+  const officials = db.prepare("SELECT official_id, name, race_id, race_date FROM official_races WHERE status != 'ignored'").all();
+  const linked = officials
+    .filter((row) => row.race_id === race.id || (compactName(row.name) === name && row.race_date === race.race_date))
+    .map((row) => row.official_id);
+  const sheets = db.prepare("SELECT * FROM race_sheets WHERE race_id = ?").all(race.id);
+  db.transaction(() => {
+    for (const sheet of sheets) removeSheet(db, sheet);
+    db.prepare("DELETE FROM plans WHERE race_id = ?").run(race.id);
+    db.prepare("DELETE FROM results WHERE race_id = ?").run(race.id);
+    const ignore = db.prepare("UPDATE official_races SET status = 'ignored', race_id = '' WHERE official_id = ?");
+    for (const officialId of linked) ignore.run(officialId);
+    db.prepare("DELETE FROM races WHERE id = ?").run(race.id);
+  })();
+  return { ok: true };
+}
+
 function mountRaceGuide(app, { BASE, getDb, requireAdmin }) {
   app.get(BASE + "/api/admin/races", (req, res) => {
     if (!requireAdmin(req, res)) return;
     const q = String(req.query.q || "").trim();
-    const rows = getDb()
-      .prepare(
-        `SELECT id, name, race_date, city, place FROM races
-         WHERE name LIKE ? OR city LIKE ? OR place LIKE ?
-         ORDER BY race_date, id LIMIT 40`
-      )
-      .all(`%${q}%`, `%${q}%`, `%${q}%`);
+    const when = req.query.when === "all" ? "all" : "upcoming";
+    const rows = listManaged(getDb(), { q, when });
     res.json({
-      races: rows.map((row) => ({ id: row.id, name: row.name, raceDate: row.race_date, city: row.city, place: row.place }))
+      races: rows.map((row) => ({
+        id: row.id,
+        name: row.name,
+        raceDate: row.race_date,
+        city: row.city,
+        province: row.province,
+        place: row.place
+      }))
     });
+  });
+
+  app.delete(BASE + "/api/admin/races/:id", (req, res) => {
+    if (!requireAdmin(req, res)) return;
+    const removed = removeRace(getDb(), req.params.id);
+    if (removed.error) return res.status(removed.status).json({ error: removed.error });
+    res.json({ ok: true });
   });
 
   app.put(BASE + "/api/admin/races/:id/guide", (req, res) => {

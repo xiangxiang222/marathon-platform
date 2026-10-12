@@ -20,6 +20,31 @@
       <div class="desk">
       <div class="desk-main">
       <div class="block">
+        <h2>赛历</h2>
+        <p class="hint">这些是已经收进赛历的场。自动拉取还在，新的场会补进来。删掉的场记到已忽略，不会马上又加回来。</p>
+        <form class="check-form inline-form" @submit.prevent="loadCatalog">
+          <input v-model="catalogQuery" placeholder="搜名称、城市" />
+          <button class="primary" type="submit">筛选</button>
+        </form>
+        <div class="statuses">
+          <button type="button" class="status" :class="{ on: catalogWhen === 'upcoming' }" @click="setCatalogWhen('upcoming')">即将开赛</button>
+          <button type="button" class="status" :class="{ on: catalogWhen === 'all' }" @click="setCatalogWhen('all')">全部</button>
+        </div>
+        <p v-if="catalogReady" class="hint">{{ catalog.length }} 场</p>
+        <div class="race-list">
+          <div v-for="item in catalog" :key="item.id" class="race-row" :class="{ on: book && book.id === item.id }">
+            <button type="button" class="race-open" @click="openGuide(item.id)">
+              <strong>{{ item.raceDate }} · {{ item.city }}</strong>
+              <span>{{ item.name }}</span>
+            </button>
+            <button type="button" class="remove" @click="removeRace(item)">删除</button>
+          </div>
+        </div>
+        <p v-if="catalogReady && !catalog.length" class="empty">这个范围还没有场。</p>
+      </div>
+      </div>
+      <div class="desk-official">
+      <div class="block">
         <h2>官网赛历</h2>
         <button class="undo" type="button" @click="logout">退出</button>
         <p class="hint">每一届单独存。中国马拉松官网这场一直有链接。赛事自己的网站，官网给了才记下；没给就空着，也不拿往年的网站来填。每天再对一次，名称、日期、主办、赛事网站有变会标出来。报名时间仍要另写来源，已经记下的截止时间不会被盖掉。</p>
@@ -73,17 +98,11 @@
       </div>
       <aside class="desk-side">
       <div class="block">
-        <h2>赛事手册</h2>
-        <p class="hint">已经收入赛历的场留在这里改。名称、日期和报名截止空着不填，就不会盖掉自动拉到的内容。规程用组委会的原图，一页一张。报名、中签、号码、成绩和直播只记链接，站内不报名、不付款。</p>
-        <form class="check-form inline-form" @submit.prevent="findRaces">
-          <input v-model="guideQuery" placeholder="搜赛历里的名称或城市" />
-          <button class="primary" type="submit">找这场</button>
-        </form>
-        <button v-for="item in guideHits" :key="item.id" class="hit" type="button" @click="openGuide(item.id)">
-          {{ item.raceDate }} · {{ item.name }}
-        </button>
+        <h2>编辑这场</h2>
+        <p v-if="!book" class="hint">点列表里的一场来改。名称和比赛日空着不填，就不会盖掉已经记下的。报名截止要单独保存，并写来源。规程用组委会的原图。站内不报名、不付款。</p>
         <form v-if="book" class="check-form guide-form" @submit.prevent="saveGuide">
           <input v-model="book.name" class="span" placeholder="赛事名称" />
+          <input v-model="book.raceDate" class="span" placeholder="比赛日 2026-11-01" />
           <input v-model="book.province" placeholder="省份" />
           <input v-model="book.city" placeholder="城市" />
           <input v-model="book.place" class="span" placeholder="地点，例如厦门国际会展中心" />
@@ -110,7 +129,16 @@
           <textarea v-model="book.route" rows="3" placeholder="路线，写一句能看懂的"></textarea>
           <textarea v-model="book.pickup" rows="3" placeholder="领物须知"></textarea>
           <textarea v-model="book.pacers" rows="3" placeholder="配速员"></textarea>
-          <button class="primary" type="submit">保存手册</button>
+          <button class="primary" type="submit">保存这场</button>
+        </form>
+        <form v-if="book" class="check-form node-form" @submit.prevent="saveBookNodes">
+          <p class="hint span">报名节点。空着的日期保持原样，改了就要写来源。</p>
+          <input v-model="book.regStart" placeholder="报名开始 2026-09-07" />
+          <input v-model="book.deadline" placeholder="报名截止 2026-10-28" />
+          <input v-model="book.drawAt" placeholder="出签" />
+          <input v-model="book.payDeadline" placeholder="缴费截止" />
+          <input v-model="book.nodeSource" class="span" placeholder="来源，例如最酷，2026-09-07" />
+          <button class="primary" type="submit">保存报名节点</button>
         </form>
         <template v-if="book">
           <p class="hint">竞赛规程</p>
@@ -152,8 +180,10 @@ const message = ref("");
 const saved = ref(false);
 const busy = ref(false);
 const ready = ref(false);
-const guideQuery = ref("");
-const guideHits = ref([]);
+const catalog = ref([]);
+const catalogQuery = ref("");
+const catalogWhen = ref("upcoming");
+const catalogReady = ref(false);
 const book = ref(null);
 const distanceChoices = [
   { key: "full", label: "马拉松" },
@@ -194,7 +224,7 @@ async function enter() {
     token.value = data.token;
     password.value = "";
     sessionStorage.setItem("marathon_admin", token.value);
-    await load();
+    await Promise.all([load(), loadCatalog()]);
     authed.value = true;
   } catch (err) {
     authed.value = false;
@@ -277,7 +307,7 @@ async function publish(row) {
   saved.value = false;
   try {
     await admin("/admin/official/" + row.officialId + "/publish", { method: "POST", body: "{}" });
-    await load();
+    await Promise.all([load(), loadCatalog()]);
   } catch (err) {
     fail(err);
   }
@@ -326,10 +356,16 @@ async function saveNodes(row) {
   }
 }
 
+function dayOf(value) {
+  const text = String(value || "");
+  return /^\d{4}-\d{2}-\d{2}/.test(text) ? text.slice(0, 10) : "";
+}
+
 function blankBook(race) {
   return {
     id: race.id,
     name: race.name,
+    raceDate: race.raceDate || "",
     province: race.province,
     city: race.city,
     place: race.place,
@@ -351,20 +387,42 @@ function blankBook(race) {
     pickup: race.pickup || "",
     pacers: race.pacers || "",
     guide: race.guide || [],
-    liveSheet: race.liveSheet || null
+    liveSheet: race.liveSheet || null,
+    regStart: dayOf(race.regStart),
+    deadline: dayOf(race.deadline),
+    drawAt: dayOf(race.drawAt),
+    payDeadline: dayOf(race.payDeadline),
+    nodeSource: ""
   };
 }
 
-async function findRaces() {
+async function loadCatalog() {
+  const data = await admin(
+    "/admin/races?when=" + catalogWhen.value + (catalogQuery.value ? "&q=" + encodeURIComponent(catalogQuery.value) : "")
+  );
+  catalog.value = data.races || [];
+  catalogReady.value = true;
+}
+
+async function setCatalogWhen(value) {
+  catalogWhen.value = value;
+  try {
+    await loadCatalog();
+  } catch (err) {
+    fail(err);
+  }
+}
+
+async function removeRace(item) {
+  if (!window.confirm("从赛历去掉「" + item.name + "」？标过这场的记录也会去掉，之后不会自动加回来。")) return;
   message.value = "";
   saved.value = false;
   try {
-    const data = await admin("/admin/races?q=" + encodeURIComponent(guideQuery.value));
-    guideHits.value = data.races || [];
-    if (!guideHits.value.length) {
-      saved.value = false;
-      message.value = "赛历里没有这个名字";
-    }
+    await admin("/admin/races/" + item.id, { method: "DELETE" });
+    if (book.value && book.value.id === item.id) book.value = null;
+    saved.value = true;
+    message.value = "已从赛历去掉";
+    await loadCatalog();
   } catch (err) {
     fail(err);
   }
@@ -407,6 +465,7 @@ async function saveGuide() {
         resultUrl: row.resultUrl,
         liveUrl: row.liveUrl,
         eventUrl: row.eventUrl,
+        raceDate: row.raceDate,
         route: row.route,
         pickup: row.pickup,
         pacers: row.pacers
@@ -414,7 +473,31 @@ async function saveGuide() {
     });
     book.value = blankBook(data.race);
     saved.value = true;
-    message.value = "手册已记下，报名截止没有改";
+    message.value = "这场已记下。报名截止没有改";
+    await loadCatalog();
+  } catch (err) {
+    fail(err);
+  }
+}
+
+async function saveBookNodes() {
+  const row = book.value;
+  message.value = "";
+  saved.value = false;
+  try {
+    await admin("/admin/races/" + row.id, {
+      method: "PUT",
+      body: JSON.stringify({
+        regStart: row.regStart,
+        deadline: row.deadline,
+        drawAt: row.drawAt,
+        payDeadline: row.payDeadline,
+        source: row.nodeSource
+      })
+    });
+    await openGuide(row.id);
+    saved.value = true;
+    message.value = "报名节点已记下";
   } catch (err) {
     fail(err);
   }
@@ -448,7 +531,7 @@ async function removeSheet(id) {
 }
 
 if (token.value) {
-  load()
+  Promise.all([load(), loadCatalog()])
     .then(() => {
       authed.value = true;
     })
@@ -468,7 +551,13 @@ if (token.value) {
 .check-form input { height: 36px; padding: 0 10px; }
 .checks { display: flex; flex-wrap: wrap; gap: 8px 14px; font-size: 14px; }
 .checks label { display: flex; align-items: center; gap: 4px; }
-.hit { display: block; width: 100%; margin-top: 8px; padding: 8px 0; text-align: left; color: #007aff; }
+.race-list { max-height: 52vh; overflow: auto; margin-top: 4px; }
+.race-row { display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--line); }
+.race-row.on { background: rgba(0, 122, 255, 0.06); }
+.race-open { flex: 1; min-width: 0; text-align: left; padding: 10px 4px; background: transparent; }
+.race-open strong { display: block; color: var(--muted); font-size: 12px; font-weight: 600; }
+.race-open span { display: block; font-size: 15px; font-weight: 650; }
+.remove { flex: none; color: var(--red); font-size: 14px; padding: 8px; background: transparent; }
 .sheet-row { margin-top: 8px; }
 .sheet-row img { width: 100%; border-radius: 8px; }
 .primary { margin-top: 8px; }
@@ -478,9 +567,13 @@ if (token.value) {
 a { color: #007aff; }
 .banner { margin: 0 16px; padding: 10px 12px; border-radius: 12px; background: #fff; color: var(--red); font-size: 14px; }
 .banner.ok { color: #007aff; }
+.desk { display: flex; flex-direction: column; }
+.desk-side { order: 2; }
+.desk-official { order: 3; }
 @media (min-width: 900px) {
   .login { max-width: 420px; margin: 64px auto; }
   .desk { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(360px, 0.8fr); align-items: start; }
+  .desk-official { grid-column: 1 / -1; }
   .desk-side { position: sticky; top: 64px; max-height: calc(100vh - 88px); overflow: auto; }
   .inline-form { flex-direction: row; align-items: center; }
   .inline-form input { flex: 1; }
