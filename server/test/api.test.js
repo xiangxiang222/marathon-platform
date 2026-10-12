@@ -895,6 +895,15 @@ test("a race missing from the official calendar can be added by hand", async () 
   assert.equal(denied.status, 401);
   const missing = await request(app).post("/marathon/api/admin/races").set(admin).send({ name: "只有名字", raceDate: "2026-12-20" });
   assert.equal(missing.status, 400);
+  const badLink = await request(app).post("/marathon/api/admin/races").set(admin).send({
+    name: "坏链接不该写入",
+    raceDate: "2026-12-20",
+    city: "临沂",
+    distances: ["10k"],
+    kinds: [],
+    officialUrl: "javascript:alert(1)"
+  });
+  assert.equal(badLink.status, 400);
   const created = await request(app).post("/marathon/api/admin/races").set(admin).send({
     name: "2026手工添加测试赛",
     raceDate: "2026-12-20",
@@ -903,8 +912,17 @@ test("a race missing from the official calendar can be added by hand", async () 
     place: "沂水",
     startAt: "08:00",
     distances: ["10k"],
-    kinds: ["family"],
-    groups: "亲子 2 公里"
+    kinds: ["family", "trail"],
+    groups: "15公里、30公里",
+    organizer: "沂水组委会",
+    grade: "C",
+    fee: "10公里 80 元",
+    scale: "3000 人",
+    signupUrl: "https://example.com/hand-signup",
+    resultUrl: "https://example.com/hand-result",
+    route: "滨河公园",
+    pickup: "赛前一天领物",
+    pacers: "5 分配速"
   });
   assert.equal(created.status, 200);
   const race = await request(app).get("/marathon/api/races/" + created.body.id);
@@ -914,7 +932,13 @@ test("a race missing from the official calendar can be added by hand", async () 
   assert.equal(race.body.race.deadlineLabel, "报名时间未公布");
   assert.equal(race.body.race.source, "后台手工添加");
   assert.equal(race.body.race.startAt, "08:00");
-  assert.deepEqual(race.body.race.kindLabels, ["亲子跑"]);
+  assert.deepEqual(race.body.race.kindLabels, ["亲子跑", "越野"]);
+  assert.deepEqual(race.body.race.groups, ["15公里", "30公里"]);
+  assert.equal(race.body.race.organizer, "沂水组委会");
+  assert.equal(race.body.race.fee, "10公里 80 元");
+  assert.equal(race.body.race.route, "滨河公园");
+  assert.equal(race.body.race.pickup, "赛前一天领物");
+  assert.equal(race.body.race.links.find((item) => item.key === "signup").url, "https://example.com/hand-signup");
   const noted = await request(app).put("/marathon/api/admin/races/" + created.body.id + "/guide").set(admin).send({
     organizer: "沂水组委会",
     grade: "C",
