@@ -1,5 +1,5 @@
 <template>
-  <div class="stage">
+  <div class="stage" :class="{ wide: route.meta.wide }">
     <router-view />
     <TabBar v-if="!route.meta.hideTab" />
   </div>
