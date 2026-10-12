@@ -753,3 +753,81 @@ test("club activity points need enough people and kilometres, then gifts spend t
   assert.equal(detail.body.media.length, 2);
   assert.equal(detail.body.groups.find((item) => item.name === "A组").signed, 1);
 });
+
+test("handbook adds links and regulation pages without replacing a pulled deadline", async () => {
+  process.env.ADMIN_TOKEN = "test-admin";
+  const admin = { Authorization: "Bearer test-admin" };
+  const before = await request(app).get("/marathon/api/races/tmsk");
+  assert.equal(before.status, 200);
+  const saved = await request(app).put("/marathon/api/admin/races/tmsk/guide").set(admin).send({
+    name: "",
+    distances: ["full", "half"],
+    kinds: ["trail"],
+    groups: "25公里、50公里",
+    startAt: "10:00",
+    bibAt: "2026-10-28",
+    fee: "全程 120 元，半程 100 元",
+    scale: "全程 1000，半程 2000",
+    phone: "0592-5372205 / 0592-5372206",
+    signupUrl: "https://example.com/signup",
+    drawUrl: "https://example.com/draw",
+    bibUrl: "",
+    resultUrl: "https://example.com/result",
+    liveUrl: "",
+    eventUrl: "",
+    route: "永安湖环湖",
+    pickup: "起点按号段领取",
+    pacers: "配速组见规程"
+  });
+  assert.equal(saved.status, 200);
+  assert.equal(saved.body.race.name, "2026图木舒克马拉松");
+  assert.equal(saved.body.race.deadline, before.body.race.deadline);
+  assert.equal(saved.body.race.fee, "全程 120 元，半程 100 元");
+  assert.equal(saved.body.race.startAt, "10:00");
+  assert.deepEqual(saved.body.race.kindLabels, ["越野"]);
+  assert.deepEqual(saved.body.race.groups, ["25公里", "50公里"]);
+  assert.equal(saved.body.race.links[0].label, "去报名");
+  assert.ok(saved.body.race.nodes.some((node) => node.label === "号码公布"));
+
+  const bad = await request(app).put("/marathon/api/admin/races/tmsk/guide").set(admin).send({ signupUrl: "javascript:alert(1)", distances: ["full"], kinds: [] });
+  assert.equal(bad.status, 400);
+  const kept = await request(app).get("/marathon/api/races/tmsk");
+  assert.equal(kept.body.race.links[0].url, "https://example.com/signup");
+
+  getDb()
+    .prepare(
+      `INSERT INTO official_races (
+         official_id, name, race_date, province, city, district, grade, distances, items, detail_url, seen_at
+       ) VALUES ('tmsk-test', '2026图木舒克马拉松', '2026-11-01', '新疆', '图木舒克', '', 'A', 'full', '全程', 'https://www.runchina.org.cn/#/race/v/detail/tmsk-test', '2026-10-12T00:00:00.000Z')`
+    )
+    .run();
+  const published = await request(app).post("/marathon/api/admin/official/tmsk-test/publish").set(admin).send({});
+  assert.equal(published.status, 200);
+  assert.equal(published.body.linked, true);
+  const after = await request(app).get("/marathon/api/races/tmsk");
+  assert.equal(after.body.race.deadline, before.body.race.deadline);
+  assert.equal(after.body.race.fee, "全程 120 元，半程 100 元");
+  assert.equal(after.body.race.signupUrl || after.body.race.links[0].url, "https://example.com/signup");
+
+  const jpeg = Buffer.from([0xff, 0xd8, 0xff, 0xd9]);
+  const photo = await request(app)
+    .post("/marathon/api/admin/races/tmsk/sheets?kind=guide")
+    .set(admin)
+    .attach("file", jpeg, { filename: "guide.jpg", contentType: "image/jpeg" });
+  assert.equal(photo.status, 200);
+  const seen = await request(app).get("/marathon/api/race-sheets/" + photo.body.sheet.id);
+  assert.equal(seen.status, 200);
+  assert.equal(seen.headers["content-type"], "image/jpeg");
+  const detail = await request(app).get("/marathon/api/races/tmsk");
+  assert.equal(detail.body.race.guide.length, 1);
+  assert.equal(detail.body.race.deadline, before.body.race.deadline);
+
+  const fake = await request(app)
+    .post("/marathon/api/admin/races/tmsk/sheets?kind=guide")
+    .set(admin)
+    .attach("file", Buffer.from("not a photo"), { filename: "x.jpg", contentType: "image/jpeg" });
+  assert.equal(fake.status, 400);
+  const user = await session("手册外");
+  const denied = await request(app).put("/marathon/api/admin/races/tmsk/guide").set("Authorization", "Bearer " + user).send({ distances: ["full"], kinds: [] });
+  assert.equal(denied.status, 401);
+});

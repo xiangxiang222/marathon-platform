@@ -8,6 +8,7 @@ const { parseClock, decorateResults, careerOf, yearOf, bestRanks } = require("./
 const { syncOfficial, listOfficial, publishOfficial, openUpcoming, ignoreOfficial, applyOfficial } = require("./official");
 const { ensureAdmin, loginAdmin, adminSession, logoutAdmin, changeAdminPassword } = require("./admin-auth");
 const { mountClubLife, enrichBoard, clubLife } = require("./club-life");
+const { mountRaceGuide, attachGuide } = require("./race-guide");
 
 function loadEnv() {
   const file = path.join(__dirname, "../../.env");
@@ -222,7 +223,7 @@ app.get(BASE + "/api/races", (req, res) => {
 app.get(BASE + "/api/races/:id", (req, res) => {
   const row = getDb().prepare("SELECT * FROM races WHERE id = ?").get(req.params.id);
   if (!row) return res.status(404).json({ error: "没有这场比赛" });
-  const race = presentRace(row, new Date());
+  const race = attachGuide(getDb(), presentRace(row, new Date()));
   const user = userFrom(req);
   const mine = user
     ? getDb().prepare("SELECT status FROM plans WHERE user_id = ? AND race_id = ?").get(user.id, race.id)
@@ -737,6 +738,7 @@ app.put(BASE + "/api/admin/races/:id", (req, res) => {
 });
 
 mountClubLife(app, { BASE, getDb, userFrom });
+mountRaceGuide(app, { BASE, getDb, requireAdmin });
 
 const webDist = path.join(__dirname, "../../web/dist");
 if (fs.existsSync(webDist)) {

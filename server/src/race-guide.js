@@ -1,0 +1,264 @@
+const fs = require("fs");
+const path = require("path");
+
+const DISTANCES = ["full", "half", "10k", "5k"];
+const KINDS = ["trail", "ultra", "family", "fun"];
+const PHOTO_MAX = 8 * 1024 * 1024;
+const GUIDE_MAX = 16;
+
+function mediaRoot() {
+  return process.env.MARATHON_MEDIA || path.join(__dirname, "../data/media");
+}
+
+function clip(value, max) {
+  const text = String(value == null ? "" : value).trim();
+  if (text.length > max) return null;
+  return text;
+}
+
+function httpsUrl(value) {
+  const text = clip(value, 200);
+  if (text == null) return null;
+  if (!text) return "";
+  if (!/^https:\/\/\S+$/i.test(text)) return null;
+  return text;
+}
+
+function codes(value, allowed) {
+  const list = Array.isArray(value) ? value : String(value || "").split(",");
+  const picked = [];
+  for (const item of list) {
+    const code = String(item || "").trim();
+    if (!code) continue;
+    if (!allowed.includes(code) || picked.includes(code)) return null;
+    picked.push(code);
+  }
+  return picked;
+}
+
+function groupsOf(value) {
+  const parts = String(value || "")
+    .split(/[,，、]/)
+    .map((item) => item.trim())
+    .filter(Boolean);
+  if (parts.length > 8) return null;
+  if (parts.some((item) => item.length > 16)) return null;
+  return parts;
+}
+
+function keep(next, current) {
+  return next ? next : current || "";
+}
+
+function saveGuide(db, race, body) {
+  const name = clip(body.name, 100);
+  const city = clip(body.city, 20);
+  const province = clip(body.province, 20);
+  const place = clip(body.place, 80);
+  if (name == null || city == null || province == null || place == null) return { status: 400, error: "名称或地点太长" };
+  const distances = codes(body.distances, DISTANCES);
+  const kinds = codes(body.kinds, KINDS);
+  if (!distances || !kinds) return { status: 400, error: "项目里有不认识的类型" };
+  const groups = groupsOf(body.groups);
+  if (groups == null) return { status: 400, error: "其他组别最多 8 个，每个不超过 16 个字" };
+  if (!distances.length && !kinds.length && !groups.length) return { status: 400, error: "先标一个项目" };
+  const startAt = clip(body.startAt, 5);
+  if (startAt == null || (startAt && !/^([01]\d|2[0-3]):[0-5]\d$/.test(startAt))) return { status: 400, error: "起跑写成 07:00 这样" };
+  const bibAt = clip(body.bibAt, 10);
+  if (bibAt == null || (bibAt && !/^\d{4}-\d{2}-\d{2}$/.test(bibAt))) return { status: 400, error: "号码公布写成 2026-12-10 这样" };
+  const fee = clip(body.fee, 40);
+  const scale = clip(body.scale, 40);
+  const phone = clip(body.phone, 40);
+  if (fee == null || scale == null || phone == null) return { status: 400, error: "费用、规模或电话太长" };
+  if (phone && !/^[\d+\-()（）/\s]{5,40}$/.test(phone)) return { status: 400, error: "电话只写号码" };
+  const route = clip(body.route, 400);
+  const pickup = clip(body.pickup, 400);
+  const pacers = clip(body.pacers, 400);
+  if (route == null || pickup == null || pacers == null) return { status: 400, error: "路线、领物或配速说明太长" };
+  const urls = ["signupUrl", "drawUrl", "bibUrl", "resultUrl", "liveUrl", "eventUrl"].map((key) => httpsUrl(body[key]));
+  if (urls.some((item) => item == null)) return { status: 400, error: "链接要以 https:// 开头" };
+  const today = new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10);
+  db.prepare(
+    `UPDATE races SET
+       name = ?, city = ?, province = ?, place = ?, distances = ?, kinds = ?, groups = ?,
+       start_at = ?, bib_at = ?, fee = ?, scale = ?, phone = ?,
+       signup_url = ?, draw_url = ?, bib_url = ?, result_url = ?, live_url = ?, event_url = ?,
+       route = ?, pickup = ?, pacers = ?, updated_at = ?
+     WHERE id = ?`
+  ).run(
+    keep(name, race.name),
+    keep(city, race.city),
+    keep(province, race.province),
+    keep(place, race.place),
+    distances.join(","),
+    kinds.join(","),
+    groups.join(","),
+    startAt,
+    bibAt,
+    fee,
+    scale,
+    phone,
+    urls[0],
+    urls[1],
+    urls[2],
+    urls[3],
+    urls[4],
+    urls[5] || race.event_url || "",
+    route,
+    pickup,
+    pacers,
+    today,
+    race.id
+  );
+  return { ok: true };
+}
+
+function sheetsOf(db, raceId) {
+  return db
+    .prepare("SELECT id, kind FROM race_sheets WHERE race_id = ? AND filename != '' ORDER BY sort, id")
+    .all(raceId);
+}
+
+function attachGuide(db, race) {
+  const rows = sheetsOf(db, race.id);
+  race.guide = rows.filter((row) => row.kind === "guide").map((row) => ({ id: row.id }));
+  const live = rows.find((row) => row.kind === "live");
+  race.liveSheet = live ? { id: live.id } : null;
+  return race;
+}
+
+function sniffPhoto(buf) {
+  if (buf.length >= 3 && buf[0] === 0xff && buf[1] === 0xd8 && buf[2] === 0xff) return { ext: "jpg", mime: "image/jpeg" };
+  if (buf.length >= 8 && buf[0] === 0x89 && buf.toString("ascii", 1, 4) === "PNG") return { ext: "png", mime: "image/png" };
+  if (buf.length >= 12 && buf.toString("ascii", 0, 4) === "RIFF" && buf.toString("ascii", 8, 12) === "WEBP") return { ext: "webp", mime: "image/webp" };
+  return null;
+}
+
+function readBody(req, max) {
+  return new Promise((resolve, reject) => {
+    const chunks = [];
+    let size = 0;
+    req.on("data", (chunk) => {
+      size += chunk.length;
+      if (size > max) {
+        reject(Object.assign(new Error("文件太大"), { status: 413 }));
+        req.destroy();
+        return;
+      }
+      chunks.push(chunk);
+    });
+    req.on("error", reject);
+    req.on("end", () => resolve(Buffer.concat(chunks)));
+  });
+}
+
+function oneFile(buffer, header) {
+  const boundary = /boundary=(?:"([^"]+)"|([^;]+))/.exec(header || "");
+  if (!boundary) return null;
+  const token = "--" + (boundary[1] || boundary[2]).trim();
+  const marker = Buffer.from(token);
+  const start = buffer.indexOf(marker);
+  if (start < 0) return null;
+  let part = buffer.subarray(start + marker.length);
+  if (part[0] === 13 && part[1] === 10) part = part.subarray(2);
+  const headerEnd = part.indexOf("\r\n\r\n");
+  if (headerEnd < 0) return null;
+  const head = part.subarray(0, headerEnd).toString("utf8");
+  let body = part.subarray(headerEnd + 4);
+  const next = body.indexOf(Buffer.from("\r\n" + token));
+  if (next >= 0) body = body.subarray(0, next);
+  if (!/filename=/.test(head)) return null;
+  return body;
+}
+
+function removeSheet(db, row) {
+  db.prepare("DELETE FROM race_sheets WHERE id = ?").run(row.id);
+  if (!row.filename) return;
+  const file = path.join(mediaRoot(), "races", path.basename(row.filename));
+  if (fs.existsSync(file)) fs.unlinkSync(file);
+}
+
+function mountRaceGuide(app, { BASE, getDb, requireAdmin }) {
+  app.get(BASE + "/api/admin/races", (req, res) => {
+    if (!requireAdmin(req, res)) return;
+    const q = String(req.query.q || "").trim();
+    const rows = getDb()
+      .prepare(
+        `SELECT id, name, race_date, city, place FROM races
+         WHERE name LIKE ? OR city LIKE ? OR place LIKE ?
+         ORDER BY race_date, id LIMIT 40`
+      )
+      .all(`%${q}%`, `%${q}%`, `%${q}%`);
+    res.json({
+      races: rows.map((row) => ({ id: row.id, name: row.name, raceDate: row.race_date, city: row.city, place: row.place }))
+    });
+  });
+
+  app.put(BASE + "/api/admin/races/:id/guide", (req, res) => {
+    if (!requireAdmin(req, res)) return;
+    const race = getDb().prepare("SELECT * FROM races WHERE id = ?").get(req.params.id);
+    if (!race) return res.status(404).json({ error: "没有这场比赛" });
+    const saved = saveGuide(getDb(), race, req.body || {});
+    if (saved.error) return res.status(saved.status).json({ error: saved.error });
+    const { presentRace } = require("./races");
+    res.json({ ok: true, race: attachGuide(getDb(), presentRace(getDb().prepare("SELECT * FROM races WHERE id = ?").get(race.id), new Date())) });
+  });
+
+  app.post(BASE + "/api/admin/races/:id/sheets", async (req, res) => {
+    if (!requireAdmin(req, res)) return;
+    const race = getDb().prepare("SELECT id FROM races WHERE id = ?").get(req.params.id);
+    if (!race) return res.status(404).json({ error: "没有这场比赛" });
+    const kind = req.query.kind === "live" ? "live" : "guide";
+    if (kind === "guide") {
+      const count = getDb().prepare("SELECT COUNT(*) AS n FROM race_sheets WHERE race_id = ? AND kind = 'guide'").get(race.id);
+      if (count.n >= GUIDE_MAX) return res.status(400).json({ error: "规程最多 16 页" });
+    }
+    let buffer;
+    try {
+      buffer = oneFile(await readBody(req, PHOTO_MAX + 64 * 1024), req.get("content-type"));
+    } catch (err) {
+      return res.status(err.status || 400).json({ error: err.status === 413 ? "照片不超过 8MB" : "没有读到文件" });
+    }
+    if (!buffer || !buffer.length) return res.status(400).json({ error: "没有读到文件" });
+    const photo = sniffPhoto(buffer);
+    if (!photo) return res.status(400).json({ error: "只收 jpg、png、webp" });
+    if (buffer.length > PHOTO_MAX) return res.status(413).json({ error: "照片不超过 8MB" });
+    const db = getDb();
+    if (kind === "live") {
+      const old = db.prepare("SELECT * FROM race_sheets WHERE race_id = ? AND kind = 'live'").all(race.id);
+      for (const row of old) removeSheet(db, row);
+    }
+    const sortRow = db.prepare("SELECT COALESCE(MAX(sort), 0) AS n FROM race_sheets WHERE race_id = ? AND kind = ?").get(race.id, kind);
+    const info = db
+      .prepare("INSERT INTO race_sheets (race_id, kind, filename, sort, created_at) VALUES (?, ?, '', ?, ?)")
+      .run(race.id, kind, Number(sortRow.n) + 1, new Date().toISOString());
+    const id = Number(info.lastInsertRowid);
+    const filename = id + "." + photo.ext;
+    const dir = path.join(mediaRoot(), "races");
+    fs.mkdirSync(dir, { recursive: true });
+    fs.writeFileSync(path.join(dir, filename), buffer);
+    db.prepare("UPDATE race_sheets SET filename = ? WHERE id = ?").run(filename, id);
+    res.json({ sheet: { id, kind } });
+  });
+
+  app.delete(BASE + "/api/admin/races/:id/sheets/:sid", (req, res) => {
+    if (!requireAdmin(req, res)) return;
+    const row = getDb().prepare("SELECT * FROM race_sheets WHERE id = ? AND race_id = ?").get(req.params.sid, req.params.id);
+    if (!row) return res.status(404).json({ error: "没有这一页" });
+    removeSheet(getDb(), row);
+    res.json({ ok: true });
+  });
+
+  app.get(BASE + "/api/race-sheets/:sid", (req, res) => {
+    const row = getDb().prepare("SELECT filename FROM race_sheets WHERE id = ?").get(req.params.sid);
+    if (!row || !row.filename) return res.status(404).json({ error: "没有这一页" });
+    const file = path.join(mediaRoot(), "races", path.basename(row.filename));
+    if (!fs.existsSync(file)) return res.status(404).json({ error: "文件不在了" });
+    const mime = row.filename.endsWith(".png") ? "image/png" : row.filename.endsWith(".webp") ? "image/webp" : "image/jpeg";
+    res.set("Content-Type", mime);
+    res.set("Cache-Control", "public, max-age=86400");
+    res.sendFile(file);
+  });
+}
+
+module.exports = { mountRaceGuide, attachGuide, saveGuide };

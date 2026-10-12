@@ -169,6 +169,14 @@ function open() {
       filename TEXT NOT NULL,
       created_at TEXT NOT NULL
     );
+    CREATE TABLE IF NOT EXISTS race_sheets (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      race_id TEXT NOT NULL,
+      kind TEXT NOT NULL,
+      filename TEXT NOT NULL DEFAULT '',
+      sort INTEGER NOT NULL DEFAULT 0,
+      created_at TEXT NOT NULL
+    );
     CREATE TABLE IF NOT EXISTS admins (
       username TEXT PRIMARY KEY,
       password_hash TEXT NOT NULL,
@@ -260,7 +268,22 @@ function open() {
     ["grade", "TEXT NOT NULL DEFAULT ''"],
     ["official_url", "TEXT NOT NULL DEFAULT ''"],
     ["organizer", "TEXT NOT NULL DEFAULT ''"],
-    ["event_url", "TEXT NOT NULL DEFAULT ''"]
+    ["event_url", "TEXT NOT NULL DEFAULT ''"],
+    ["kinds", "TEXT NOT NULL DEFAULT ''"],
+    ["groups", "TEXT NOT NULL DEFAULT ''"],
+    ["start_at", "TEXT NOT NULL DEFAULT ''"],
+    ["bib_at", "TEXT NOT NULL DEFAULT ''"],
+    ["fee", "TEXT NOT NULL DEFAULT ''"],
+    ["scale", "TEXT NOT NULL DEFAULT ''"],
+    ["phone", "TEXT NOT NULL DEFAULT ''"],
+    ["signup_url", "TEXT NOT NULL DEFAULT ''"],
+    ["draw_url", "TEXT NOT NULL DEFAULT ''"],
+    ["bib_url", "TEXT NOT NULL DEFAULT ''"],
+    ["result_url", "TEXT NOT NULL DEFAULT ''"],
+    ["live_url", "TEXT NOT NULL DEFAULT ''"],
+    ["route", "TEXT NOT NULL DEFAULT ''"],
+    ["pickup", "TEXT NOT NULL DEFAULT ''"],
+    ["pacers", "TEXT NOT NULL DEFAULT ''"]
   ]) {
     const cols = handle.prepare("PRAGMA table_info(races)").all();
     if (!cols.some((col) => col.name === name)) handle.exec(`ALTER TABLE races ADD COLUMN ${name} ${type}`);
