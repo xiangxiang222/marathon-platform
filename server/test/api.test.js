@@ -886,3 +886,55 @@ test("admin lists pulled races and a delete stays deleted after the next pull", 
   assert.equal(getDb().prepare("SELECT id FROM races WHERE id = 'drop-me'").get(), undefined);
   assert.equal(getDb().prepare("SELECT id FROM races WHERE name = '删除测试马拉松'").get(), undefined);
 });
+
+test("a race missing from the official calendar can be added by hand", async () => {
+  process.env.ADMIN_TOKEN = "test-admin";
+  const admin = { Authorization: "Bearer test-admin" };
+  const user = await session("手工添加");
+  const denied = await request(app).post("/marathon/api/admin/races").set("Authorization", "Bearer " + user).send({ name: "不该写入", raceDate: "2026-12-20", city: "北京", distances: ["full"] });
+  assert.equal(denied.status, 401);
+  const missing = await request(app).post("/marathon/api/admin/races").set(admin).send({ name: "只有名字", raceDate: "2026-12-20" });
+  assert.equal(missing.status, 400);
+  const created = await request(app).post("/marathon/api/admin/races").set(admin).send({
+    name: "2026手工添加测试赛",
+    raceDate: "2026-12-20",
+    city: "临沂",
+    province: "山东",
+    place: "沂水",
+    startAt: "08:00",
+    distances: ["10k"],
+    kinds: ["family"],
+    groups: "亲子 2 公里"
+  });
+  assert.equal(created.status, 200);
+  const race = await request(app).get("/marathon/api/races/" + created.body.id);
+  assert.equal(race.status, 200);
+  assert.equal(race.body.race.name, "2026手工添加测试赛");
+  assert.equal(race.body.race.deadline, "");
+  assert.equal(race.body.race.deadlineLabel, "报名时间未公布");
+  assert.equal(race.body.race.source, "后台手工添加");
+  assert.equal(race.body.race.startAt, "08:00");
+  assert.deepEqual(race.body.race.kindLabels, ["亲子跑"]);
+  const noted = await request(app).put("/marathon/api/admin/races/" + created.body.id + "/guide").set(admin).send({
+    organizer: "沂水组委会",
+    grade: "C",
+    distances: ["10k"],
+    kinds: ["family"],
+    officialUrl: "javascript:alert(1)"
+  });
+  assert.equal(noted.status, 400);
+  const saved = await request(app).put("/marathon/api/admin/races/" + created.body.id + "/guide").set(admin).send({
+    organizer: "沂水组委会",
+    grade: "C",
+    distances: ["10k"],
+    kinds: ["family"]
+  });
+  assert.equal(saved.status, 200);
+  assert.equal(saved.body.race.organizer, "沂水组委会");
+  assert.equal(saved.body.race.grade, "C");
+  assert.equal(saved.body.race.deadline, "");
+  openUpcoming(getDb(), new Date("2026-10-12T04:00:00.000Z"));
+  const still = await request(app).get("/marathon/api/races/" + created.body.id);
+  assert.equal(still.body.race.name, "2026手工添加测试赛");
+  assert.equal(still.body.race.source, "后台手工添加");
+});
