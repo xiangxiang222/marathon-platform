@@ -43,7 +43,7 @@
         </div>
         <button v-if="section === 'races'" type="button" class="primary head-add" @click="startDraft">添加一场</button>
       </header>
-      <div v-show="section === 'races'" class="desk" :class="{ editing: !!book }">
+      <div v-show="section === 'races'" class="desk" :class="{ editing: !!book, dragging }" :style="splitStyle">
       <div class="desk-main">
       <div class="block">
         <form class="check-form inline-form" @submit.prevent="loadCatalog">
@@ -120,6 +120,7 @@
       </div>
       <p v-if="ready && !rows.length" class="empty">这个范围还没有场。</p>
       </div>
+      <div v-if="book" class="splitter" role="separator" aria-orientation="vertical" aria-label="拖动调整左右宽度" :aria-valuenow="Math.round(split)" aria-valuemin="22" aria-valuemax="70" tabindex="0" @pointerdown="startSplit" @keydown="nudgeSplit"></div>
       <aside v-if="book" class="desk-side">
       <div class="block editor">
         <h2>{{ book.id ? "编辑这场" : "添加这场" }}</h2>
@@ -269,7 +270,7 @@
       </div>
       </aside>
       </div>
-      <div v-if="section === 'users'" class="desk" :class="{ editing: !!person }">
+      <div v-if="section === 'users'" class="desk" :class="{ editing: !!person, dragging }" :style="splitStyle">
         <div class="desk-main">
           <div class="block">
             <form class="check-form inline-form" @submit.prevent="loadUsers">
@@ -288,6 +289,7 @@
             <p v-if="usersReady && !users.length" class="empty">没有这个昵称。</p>
           </div>
         </div>
+        <div v-if="person" class="splitter" role="separator" aria-orientation="vertical" aria-label="拖动调整左右宽度" :aria-valuenow="Math.round(split)" aria-valuemin="22" aria-valuemax="70" tabindex="0" @pointerdown="startSplit" @keydown="nudgeSplit"></div>
         <aside v-if="person" class="desk-side">
           <div class="block">
             <template v-if="person">
@@ -383,6 +385,18 @@ const runsReady = ref(false);
 const gifts = ref([]);
 const redemptions = ref([]);
 const shopReady = ref(false);
+function savedSplit() {
+  try {
+    const value = Number(localStorage.getItem("marathon_admin_split"));
+    return value >= 22 && value <= 70 ? value : 46;
+  } catch {
+    return 46;
+  }
+}
+
+const split = ref(savedSplit());
+const dragging = ref(false);
+const splitStyle = computed(() => ({ "--split": split.value + "%" }));
 const sectionLabel = computed(() => deskSections.find((item) => item.id === section.value)?.label || "后台");
 const sectionLead = computed(() => ({
   races: "已经收进赛历的场。自动拉取还在，删掉的场不会马上加回来。",
@@ -471,6 +485,52 @@ async function logout() {
   authed.value = false;
   message.value = "";
   saved.value = false;
+}
+
+function rememberSplit() {
+  try {
+    localStorage.setItem("marathon_admin_split", String(Math.round(split.value)));
+  } catch {
+    /* 浏览器关掉存储时，这次拖动只在当前页生效。 */
+  }
+}
+
+function moveSplit(clientX, desk) {
+  const bounds = desk.getBoundingClientRect();
+  const left = Math.min(Math.max(clientX - bounds.left, 260), bounds.width - 340);
+  split.value = (left / bounds.width) * 100;
+}
+
+function startSplit(event) {
+  if (window.innerWidth < 900) return;
+  event.preventDefault();
+  const desk = event.currentTarget.parentElement;
+  dragging.value = true;
+  document.body.style.cursor = "col-resize";
+  document.body.style.userSelect = "none";
+  moveSplit(event.clientX, desk);
+  function move(next) {
+    moveSplit(next.clientX, desk);
+  }
+  function stop() {
+    dragging.value = false;
+    document.body.style.cursor = "";
+    document.body.style.userSelect = "";
+    window.removeEventListener("pointermove", move);
+    window.removeEventListener("pointerup", stop);
+    window.removeEventListener("pointercancel", stop);
+    rememberSplit();
+  }
+  window.addEventListener("pointermove", move);
+  window.addEventListener("pointerup", stop);
+  window.addEventListener("pointercancel", stop);
+}
+
+function nudgeSplit(event) {
+  if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+  event.preventDefault();
+  split.value = Math.min(70, Math.max(22, split.value + (event.key === "ArrowRight" ? 2 : -2)));
+  rememberSplit();
 }
 
 function pickSection(id) {
@@ -1114,6 +1174,7 @@ a { color: #007aff; }
 .desk { display: flex; flex-direction: column; }
 .desk-side { order: 2; }
 .desk-official { order: 3; }
+.splitter { display: none; order: 1; }
 .gate {
   min-height: calc(100vh - 52px);
   display: flex;
@@ -1156,7 +1217,10 @@ a { color: #007aff; }
   .desk-head h2 { font-size: 34px; letter-spacing: -0.9px; }
   .race-list { max-height: calc(100vh - 280px); overflow: auto; }
   .line span { flex: none; text-align: right; }
-  .desk.editing { display: grid; grid-template-columns: minmax(340px, 0.92fr) minmax(480px, 1.08fr); align-items: start; gap: 8px; }
+  .desk.editing { display: grid; grid-template-columns: minmax(260px, var(--split, 46%)) 14px minmax(340px, 1fr); align-items: stretch; gap: 0 0; }
+  .splitter { display: flex; align-items: center; justify-content: center; min-height: 160px; cursor: col-resize; touch-action: none; }
+  .splitter::before { content: ""; width: 2px; height: 72px; border-radius: 999px; background: rgba(60, 60, 67, 0.22); }
+  .splitter:hover::before, .dragging .splitter::before { width: 3px; height: 100%; background: var(--accent); }
   .desk-official { grid-column: 1 / -1; }
   .desk-side { position: sticky; top: 24px; max-height: calc(100vh - 48px); overflow: auto; }
   .inline-form { flex-direction: row; align-items: center; }
