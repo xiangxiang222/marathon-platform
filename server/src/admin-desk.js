@@ -1,0 +1,166 @@
+const { DISTANCE_LABEL } = require("./races");
+const { formatClock } = require("./career");
+
+function when(value) {
+  return String(value || "").slice(0, 16).replace("T", " ");
+}
+
+function listUsers(db, q) {
+  const rows = db
+    .prepare(
+      `SELECT u.id, u.nickname, u.created_at,
+              (SELECT COUNT(*) FROM plans p WHERE p.user_id = u.id) AS plans,
+              (SELECT COUNT(*) FROM results r WHERE r.user_id = u.id) AS results,
+              (SELECT COUNT(*) FROM club_members m WHERE m.user_id = u.id) AS clubs
+       FROM users u
+       WHERE u.nickname LIKE ?
+       ORDER BY u.id DESC
+       LIMIT 200`
+    )
+    .all(`%${String(q || "").trim()}%`);
+  return rows.map((row) => ({
+    id: row.id,
+    nickname: row.nickname,
+    createdAt: when(row.created_at),
+    plans: row.plans,
+    results: row.results,
+    clubs: row.clubs
+  }));
+}
+
+function userDesk(db, id) {
+  const user = db.prepare("SELECT id, nickname, created_at FROM users WHERE id = ?").get(id);
+  if (!user) return null;
+  const clubs = db
+    .prepare(
+      `SELECT c.id, c.name, c.owner_id
+       FROM club_members m
+       JOIN clubs c ON c.id = m.club_id
+       WHERE m.user_id = ?
+       ORDER BY c.id`
+    )
+    .all(user.id);
+  const plans = db
+    .prepare(
+      `SELECT r.name, r.race_date, r.city, p.status
+       FROM plans p
+       JOIN races r ON r.id = p.race_id
+       WHERE p.user_id = ?
+       ORDER BY r.race_date DESC, r.name`
+    )
+    .all(user.id);
+  const results = db
+    .prepare(
+      `SELECT r.name, r.race_date, res.distance, res.seconds, res.story
+       FROM results res
+       JOIN races r ON r.id = res.race_id
+       WHERE res.user_id = ?
+       ORDER BY r.race_date DESC, r.name`
+    )
+    .all(user.id);
+  const points = db
+    .prepare(
+      `SELECT c.name AS club, COALESCE(SUM(p.delta), 0) AS points
+       FROM point_entries p
+       JOIN clubs c ON c.id = p.club_id
+       WHERE p.user_id = ?
+       GROUP BY p.club_id
+       ORDER BY c.name`
+    )
+    .all(user.id);
+  return {
+    user: { id: user.id, nickname: user.nickname, createdAt: when(user.created_at) },
+    clubs: clubs.map((row) => ({ id: row.id, name: row.name, owner: row.owner_id === user.id })),
+    plans: plans.map((row) => ({ name: row.name, raceDate: row.race_date, city: row.city, status: row.status })),
+    results: results.map((row) => ({
+      name: row.name,
+      raceDate: row.race_date,
+      distance: DISTANCE_LABEL[row.distance] || row.distance,
+      clock: formatClock(row.seconds),
+      story: row.story
+    })),
+    points: points.map((row) => ({ club: row.club, points: row.points }))
+  };
+}
+
+function listRuns(db) {
+  return db
+    .prepare(
+      `SELECT u.nickname, c.name AS club, a.title, k.km, k.note, k.created_at
+       FROM activity_checks k
+       JOIN users u ON u.id = k.user_id
+       JOIN activities a ON a.id = k.activity_id
+       JOIN clubs c ON c.id = a.club_id
+       ORDER BY k.created_at DESC, u.id DESC
+       LIMIT 200`
+    )
+    .all()
+    .map((row) => ({
+      nickname: row.nickname,
+      club: row.club,
+      title: row.title,
+      km: row.km,
+      note: row.note,
+      at: when(row.created_at)
+    }));
+}
+
+function shopDesk(db) {
+  const gifts = db
+    .prepare(
+      `SELECT g.id, c.name AS club, g.name, g.cost, g.stock
+       FROM gifts g
+       JOIN clubs c ON c.id = g.club_id
+       ORDER BY c.name, g.id DESC
+       LIMIT 200`
+    )
+    .all()
+    .map((row) => ({ id: row.id, club: row.club, name: row.name, cost: row.cost, stock: row.stock }));
+  const redemptions = db
+    .prepare(
+      `SELECT r.created_at, u.nickname, c.name AS club, g.name, r.cost
+       FROM redemptions r
+       JOIN gifts g ON g.id = r.gift_id
+       JOIN clubs c ON c.id = g.club_id
+       JOIN users u ON u.id = r.user_id
+       ORDER BY r.created_at DESC
+       LIMIT 100`
+    )
+    .all()
+    .map((row) => ({
+      at: when(row.created_at),
+      nickname: row.nickname,
+      club: row.club,
+      name: row.name,
+      cost: row.cost
+    }));
+  return { gifts, redemptions };
+}
+
+function mountAdminDesk(app, { BASE, getDb, requireAdmin }) {
+  app.get(BASE + "/api/admin/users", (req, res) => {
+    if (!requireAdmin(req, res)) return;
+    res.json({ users: listUsers(getDb(), req.query.q) });
+  });
+
+  app.get(BASE + "/api/admin/users/:id", (req, res) => {
+    if (!requireAdmin(req, res)) return;
+    const id = Number(req.params.id);
+    if (!Number.isInteger(id) || id < 1) return res.status(404).json({ error: "没有这个人" });
+    const desk = userDesk(getDb(), id);
+    if (!desk) return res.status(404).json({ error: "没有这个人" });
+    res.json(desk);
+  });
+
+  app.get(BASE + "/api/admin/runs", (req, res) => {
+    if (!requireAdmin(req, res)) return;
+    res.json({ runs: listRuns(getDb()) });
+  });
+
+  app.get(BASE + "/api/admin/shop", (req, res) => {
+    if (!requireAdmin(req, res)) return;
+    res.json(shopDesk(getDb()));
+  });
+}
+
+module.exports = { mountAdminDesk };

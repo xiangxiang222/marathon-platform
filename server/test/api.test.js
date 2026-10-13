@@ -993,3 +993,63 @@ test("a race missing from the official calendar can be added by hand", async () 
   assert.equal(still.body.race.name, "2026手工添加测试赛");
   assert.equal(still.body.race.source, "后台手工添加");
 });
+
+test("admin sees nicknames, self-reported runs, and club gifts", async () => {
+  process.env.ADMIN_TOKEN = "test-admin";
+  const admin = { Authorization: "Bearer test-admin" };
+  const user = await session("后台核对甲");
+  const denied = await request(app).get("/marathon/api/admin/users").set("Authorization", "Bearer " + user);
+  assert.equal(denied.status, 401);
+  await request(app).put("/marathon/api/me/races/bishan").set("Authorization", "Bearer " + user).send({ status: "想跑" });
+  await request(app).put("/marathon/api/me/races/bishan/result").set("Authorization", "Bearer " + user).send({ distance: "full", time: "3:29:59" });
+  const club = await request(app).post("/marathon/api/clubs").set("Authorization", "Bearer " + user).send({ name: "后台核对团" });
+  assert.equal(club.status, 200);
+  const activity = await request(app)
+    .post("/marathon/api/clubs/" + club.body.club.id + "/activities")
+    .set("Authorization", "Bearer " + user)
+    .send({ title: "周日滨河", place: "滨河", startsAt: "2026-10-18T06:30", minKm: 5, minPeople: 1, points: 0 });
+  assert.equal(activity.status, 200);
+  const aid = activity.body.activity.id;
+  await request(app).post("/marathon/api/clubs/" + club.body.club.id + "/activities/" + aid + "/signup").set("Authorization", "Bearer " + user).send({});
+  const checked = await request(app)
+    .post("/marathon/api/clubs/" + club.body.club.id + "/activities/" + aid + "/check")
+    .set("Authorization", "Bearer " + user)
+    .send({ km: 6.2, note: "沿河" });
+  assert.equal(checked.status, 200);
+  const gift = await request(app)
+    .post("/marathon/api/clubs/" + club.body.club.id + "/gifts")
+    .set("Authorization", "Bearer " + user)
+    .send({ name: "核对袜", cost: 1, stock: 3 });
+  assert.equal(gift.status, 200);
+
+  const listed = await request(app).get("/marathon/api/admin/users?q=" + encodeURIComponent("后台核对甲")).set(admin);
+  assert.equal(listed.status, 200);
+  assert.equal(listed.body.users.length, 1);
+  assert.equal(listed.body.users[0].plans, 1);
+  assert.equal(listed.body.users[0].clubs, 1);
+  assert.equal(JSON.stringify(listed.body).includes(user), false);
+  const detail = await request(app).get("/marathon/api/admin/users/" + listed.body.users[0].id).set(admin);
+  assert.equal(detail.status, 200);
+  assert.equal(detail.body.user.nickname, "后台核对甲");
+  assert.equal(detail.body.user.token, undefined);
+  assert.equal(detail.body.clubs[0].owner, true);
+  assert.equal(detail.body.plans[0].status, "完赛");
+  assert.equal(detail.body.results[0].clock, "3:29:59");
+  assert.equal((await request(app).get("/marathon/api/admin/users/999999").set(admin)).status, 404);
+
+  const runs = await request(app).get("/marathon/api/admin/runs").set(admin);
+  assert.equal(runs.status, 200);
+  const mine = runs.body.runs.find((row) => row.nickname === "后台核对甲");
+  assert.equal(mine.km, 6.2);
+  assert.equal(mine.club, "后台核对团");
+  assert.equal(mine.title, "周日滨河");
+  assert.equal(mine.note, "沿河");
+
+  const shop = await request(app).get("/marathon/api/admin/shop").set(admin);
+  assert.equal(shop.status, 200);
+  const sock = shop.body.gifts.find((row) => row.name === "核对袜");
+  assert.equal(sock.club, "后台核对团");
+  assert.equal(sock.cost, 1);
+  assert.equal(sock.stock, 3);
+  assert.equal(shop.body.redemptions.length, 0);
+});
