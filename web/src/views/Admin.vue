@@ -1,8 +1,8 @@
 <template>
   <main class="admin">
-    <header class="topbar">
+    <header v-if="!authed" class="topbar">
       <router-link to="/" aria-label="返回">‹</router-link>
-      <h1 v-if="authed">后台</h1>
+      <h1></h1>
       <span></span>
     </header>
     <div v-if="!authed" class="gate">
@@ -28,16 +28,24 @@
       <p v-if="message" class="banner" :class="{ ok: saved }">{{ message }}</p>
       <div class="admin-shell">
       <nav class="admin-nav">
+        <div class="brand">
+          <router-link to="/" class="back">‹ 赛历</router-link>
+          <strong>后台</strong>
+        </div>
         <button v-for="item in deskSections" :key="item.id" type="button" :class="{ on: section === item.id }" @click="pickSection(item.id)">{{ item.label }}</button>
         <button class="out" type="button" @click="logout">退出</button>
       </nav>
-      <div>
-      <div v-show="section === 'races'" class="desk">
+      <div class="desk-canvas">
+      <header class="desk-head">
+        <div>
+          <h2>{{ sectionLabel }}</h2>
+          <p>{{ sectionLead }}</p>
+        </div>
+        <button v-if="section === 'races'" type="button" class="primary head-add" @click="startDraft">添加一场</button>
+      </header>
+      <div v-show="section === 'races'" class="desk" :class="{ editing: !!book }">
       <div class="desk-main">
       <div class="block">
-        <h2>赛历</h2>
-        <p class="hint">这些是已经收进赛历的场。自动拉取还在，新的场会补进来。官网没有的，可以手动添加。删掉的场记到已忽略，不会马上又加回来。</p>
-        <button type="button" class="add" @click="startDraft">手动添加一场</button>
         <form class="check-form inline-form" @submit.prevent="loadCatalog">
           <input v-model="catalogQuery" placeholder="搜名称、城市" />
           <button class="primary" type="submit">筛选</button>
@@ -49,8 +57,9 @@
         <p v-if="catalogReady" class="hint">{{ catalog.length }} 场</p>
         <div class="race-list">
           <div v-for="item in catalog" :key="item.id" class="race-row" :class="{ on: book && book.id === item.id }">
-            <button type="button" class="race-open" @click="openGuide(item.id)">
-              <strong>{{ item.raceDate }} · {{ item.city }}</strong>
+            <button type="button" class="race-open catalog-open" @click="openGuide(item.id)">
+              <time>{{ item.raceDate }}</time>
+              <em>{{ item.city }}</em>
               <span>{{ item.name }}</span>
             </button>
             <button type="button" class="remove" @click="removeRace(item)">删除</button>
@@ -111,10 +120,9 @@
       </div>
       <p v-if="ready && !rows.length" class="empty">这个范围还没有场。</p>
       </div>
-      <aside class="desk-side">
+      <aside v-if="book" class="desk-side">
       <div class="block editor">
-        <h2>{{ book && book.id ? "编辑这场" : book ? "添加这场" : "赛事资料" }}</h2>
-        <p v-if="!book" class="hint">点列表里的一场来改，或添加官网没有的场。已经拉取的场留在列表里。</p>
+        <h2>{{ book.id ? "编辑这场" : "添加这场" }}</h2>
         <template v-if="book">
           <p v-if="book.id" class="hint">来源 {{ book.source || "还没写" }}<template v-if="book.updatedAt"> · 更新于 {{ book.updatedAt }}</template></p>
           <p v-else class="hint">一次写完。报名时间空着，赛历上显示「报名时间未公布」。站内不报名、不付款。</p>
@@ -261,11 +269,9 @@
       </div>
       </aside>
       </div>
-      <div v-if="section === 'users'" class="desk">
+      <div v-if="section === 'users'" class="desk" :class="{ editing: !!person }">
         <div class="desk-main">
           <div class="block">
-            <h2>用户</h2>
-            <p class="hint">这里只有昵称、跑团和标过的场。不收集手机号，也不收集身份证。</p>
             <form class="check-form inline-form" @submit.prevent="loadUsers">
               <input v-model="userQuery" placeholder="搜昵称" />
               <button class="primary" type="submit">筛选</button>
@@ -274,15 +280,15 @@
             <div class="race-list">
               <div v-for="item in users" :key="item.id" class="race-row" :class="{ on: person && person.user.id === item.id }">
                 <button type="button" class="race-open" @click="openUser(item.id)">
-                  <strong>{{ item.createdAt }} · {{ item.clubs }} 个团 · {{ item.plans }} 场</strong>
                   <span>{{ item.nickname }}</span>
+                  <strong>{{ item.createdAt }} · {{ item.clubs }} 个团 · {{ item.plans }} 场</strong>
                 </button>
               </div>
             </div>
             <p v-if="usersReady && !users.length" class="empty">没有这个昵称。</p>
           </div>
         </div>
-        <aside class="desk-side">
+        <aside v-if="person" class="desk-side">
           <div class="block">
             <template v-if="person">
               <h2>{{ person.user.nickname }}</h2>
@@ -308,16 +314,10 @@
                 <p v-if="!person.points.length" class="hint">还没有积分。</p>
               </section>
             </template>
-            <template v-else>
-              <h2>这个人</h2>
-              <p class="hint">点左边一个昵称，看他在哪些团、标了哪些场。</p>
-            </template>
           </div>
         </aside>
       </div>
       <div v-if="section === 'runs'" class="block">
-        <h2>跑步</h2>
-        <p class="hint">这些是团练里自己报的公里。还没接手表。每天「到没到」不记在这里，也不记公里。</p>
         <p v-if="runsReady" class="hint">{{ runs.length }} 条</p>
         <div class="race-list">
           <div v-for="(item, index) in runs" :key="index" class="line">
@@ -328,10 +328,6 @@
         <p v-if="runsReady && !runs.length" class="empty">还没有人报过公里。</p>
       </div>
       <div v-if="section === 'shop'">
-        <div class="block">
-          <h2>商城</h2>
-          <p class="hint">商城还没接，这里不收款、不发货。现在能看的是各跑团用积分换的礼品。以后若接商城，从这里进，不和赛事报名混在一起。</p>
-        </div>
         <div class="block">
           <h2>积分礼品</h2>
           <div v-for="item in gifts" :key="item.id" class="line"><b>{{ item.club }} · {{ item.name }}</b><span>{{ item.cost }} 分 · 剩 {{ item.stock }}</span></div>
@@ -387,6 +383,13 @@ const runsReady = ref(false);
 const gifts = ref([]);
 const redemptions = ref([]);
 const shopReady = ref(false);
+const sectionLabel = computed(() => deskSections.find((item) => item.id === section.value)?.label || "后台");
+const sectionLead = computed(() => ({
+  races: "已经收进赛历的场。自动拉取还在，删掉的场不会马上加回来。",
+  users: "只有昵称、跑团和标过的场。不收集手机号，也不收集身份证。",
+  runs: "团练里自己报的公里。还没接手表，每天到没到不记在这里。",
+  shop: "商城还没接，不收款、不发货。现在看的是各跑团的积分礼品。"
+}[section.value] || ""));
 const book = ref(null);
 const nodeOrigin = ref("");
 const guideQueue = ref([]);
@@ -1068,13 +1071,17 @@ if (token.value) {
 .file-pick { position: relative; display: flex; align-items: center; justify-content: center; min-height: 64px; margin-top: 12px; border-radius: 12px; border: 1px dashed rgba(0, 122, 255, 0.45); background: #fff; color: var(--accent); font-weight: 600; cursor: pointer; }
 .file-pick input { position: absolute; width: 1px; height: 1px; opacity: 0; }
 .add { margin-top: 8px; color: var(--accent); font-weight: 650; background: transparent; }
-.race-list { max-height: 52vh; overflow: auto; margin-top: 4px; }
+.race-list { margin-top: 8px; }
 .race-row { display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--line); }
 .race-row.on { background: rgba(0, 122, 255, 0.06); }
-.race-open { flex: 1; min-width: 0; text-align: left; padding: 10px 4px; background: transparent; }
+.race-open { flex: 1; min-width: 0; text-align: left; padding: 12px 4px; background: transparent; }
 .race-open strong { display: block; color: var(--muted); font-size: 12px; font-weight: 600; }
-.race-open span { display: block; font-size: 15px; font-weight: 650; }
-.remove { flex: none; color: var(--red); font-size: 14px; padding: 8px; background: transparent; }
+.race-open span { display: block; font-size: 16px; font-weight: 650; letter-spacing: -0.2px; }
+.catalog-open { display: grid; grid-template-columns: 108px minmax(64px, 96px) minmax(0, 1fr); gap: 8px 14px; align-items: center; }
+.catalog-open time, .catalog-open em { font-style: normal; color: var(--muted); font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.catalog-open span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.remove { flex: none; color: var(--muted); font-size: 13px; padding: 8px 10px; background: transparent; }
+.remove:hover { color: var(--red); }
 .sheets { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
 .sheet-row { margin-top: 0; }
 .sheet-row img { width: 100%; border-radius: 10px; background: #fff; }
@@ -1088,10 +1095,19 @@ if (token.value) {
 a { color: #007aff; }
 .banner { margin: 0 16px; padding: 10px 12px; border-radius: 12px; background: #fff; color: var(--red); font-size: 14px; }
 .banner.ok { color: #007aff; }
-.admin-nav { display: flex; gap: 8px; margin: 4px 16px 0; overflow: auto; }
-.admin-nav button { flex: none; height: 36px; padding: 0 14px; border-radius: 999px; background: #fff; color: var(--ink); font-weight: 650; }
-.admin-nav button.on { background: var(--accent); color: #fff; }
-.admin-nav .out { margin-left: auto; background: transparent; color: var(--muted); font-weight: 600; }
+.admin-shell { min-height: 100vh; background: #f5f5f7; }
+.admin-nav { display: flex; gap: 6px; align-items: center; margin: 0; padding: 12px 14px; overflow: auto; background: #1c1c1e; color: #fff; position: sticky; top: 0; z-index: 5; }
+.brand { display: flex; align-items: baseline; gap: 10px; margin-right: 4px; flex: none; }
+.brand strong { font-size: 16px; font-weight: 700; letter-spacing: -0.3px; }
+.brand .back { color: rgba(255, 255, 255, 0.55); font-size: 13px; }
+.admin-nav button { flex: none; height: 32px; padding: 0 12px; border-radius: 999px; background: transparent; color: rgba(255, 255, 255, 0.72); font-weight: 600; }
+.admin-nav button.on { background: #fff; color: #1c1c1e; }
+.admin-nav .out { margin-left: auto; color: rgba(255, 255, 255, 0.48); font-weight: 500; }
+.desk-canvas { min-width: 0; padding: 8px 4px 28px; }
+.desk-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; padding: 16px 16px 0; }
+.desk-head h2 { margin: 0; font-size: 28px; font-weight: 700; letter-spacing: -0.7px; }
+.desk-head p { margin: 6px 0 0; max-width: 42em; color: var(--muted); font-size: 14px; line-height: 1.45; }
+.head-add { height: 40px; margin: 0; padding: 0 16px; border-radius: 12px; white-space: nowrap; }
 .line { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 4px 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
 .line b { min-width: 0; font-size: 15px; font-weight: 650; }
 .line span { flex: 1 1 100%; color: var(--muted); font-size: 13px; }
@@ -1114,17 +1130,35 @@ a { color: #007aff; }
 .gate-form input { width: 100%; height: 48px; border: 0; border-radius: 12px; background: var(--bg); padding: 0 14px; font-size: 17px; }
 .gate-form .primary { height: 48px; margin-top: 4px; border-radius: 12px; font-size: 17px; font-weight: 650; }
 .gate-form .err { margin: 0; }
+@media (max-width: 899px) {
+  .brand strong { display: none; }
+  .admin-nav { padding: 10px 12px; gap: 2px; }
+  .admin-nav button { height: 32px; padding: 0 10px; font-size: 14px; }
+  .catalog-open { display: block; }
+  .catalog-open time, .catalog-open em { display: inline; }
+  .catalog-open time::after { content: " · "; }
+  .catalog-open span { white-space: normal; margin-top: 2px; }
+  .inline-form { flex-direction: row; align-items: center; }
+  .inline-form input { flex: 1; }
+  .inline-form .primary { width: auto; margin-top: 0; padding: 0 14px; }
+}
 @media (min-width: 900px) {
-  .gate { min-height: calc(100vh - 100px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, 420px); align-items: center; gap: 64px; padding: 48px 64px 72px; }
+  .gate { min-height: 100vh; display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, 420px); align-items: center; gap: 64px; padding: 48px 64px 72px; }
   .gate-copy h2 { font-size: 64px; letter-spacing: -1.8px; }
-  .admin-shell { display: grid; grid-template-columns: 148px minmax(0, 1fr); align-items: start; }
-  .admin-nav { flex-direction: column; margin: 16px 0 16px 16px; position: sticky; top: 16px; overflow: visible; }
-  .admin-nav button { text-align: left; border-radius: 12px; }
-  .admin-nav .out { margin: 12px 0 0; }
+  .admin-shell { display: grid; grid-template-columns: 220px minmax(0, 1fr); align-items: stretch; }
+  .admin-nav { flex-direction: column; align-items: stretch; gap: 4px; height: 100vh; padding: 28px 14px 18px; overflow: auto; }
+  .brand { display: block; padding: 0 12px 22px; margin: 0; }
+  .brand strong { display: block; margin-top: 8px; font-size: 26px; letter-spacing: -0.6px; }
+  .admin-nav button { text-align: left; height: 40px; border-radius: 10px; }
+  .admin-nav button.on { background: rgba(255, 255, 255, 0.14); color: #fff; }
+  .admin-nav .out { margin: auto 0 0; }
+  .desk-canvas { padding: 28px 36px 48px; }
+  .desk-head h2 { font-size: 34px; letter-spacing: -0.9px; }
+  .race-list { max-height: calc(100vh - 280px); overflow: auto; }
   .line span { flex: none; text-align: right; }
-  .desk { display: grid; grid-template-columns: minmax(280px, 0.72fr) minmax(460px, 1.28fr); align-items: start; }
+  .desk.editing { display: grid; grid-template-columns: minmax(340px, 0.92fr) minmax(480px, 1.08fr); align-items: start; gap: 8px; }
   .desk-official { grid-column: 1 / -1; }
-  .desk-side { position: sticky; top: 64px; max-height: calc(100vh - 88px); overflow: auto; }
+  .desk-side { position: sticky; top: 24px; max-height: calc(100vh - 48px); overflow: auto; }
   .inline-form { flex-direction: row; align-items: center; }
   .inline-form input { flex: 1; }
   .inline-form .primary { width: auto; margin-top: 0; padding: 0 16px; white-space: nowrap; }
