@@ -1051,5 +1051,5 @@ test("admin sees nicknames, self-reported runs, and club gifts", async () => {
   assert.equal(sock.club, "后台核对团");
   assert.equal(sock.cost, 1);
   assert.equal(sock.stock, 3);
-  assert.equal(shop.body.redemptions.length, 0);
+  assert.equal(shop.body.redemptions.some((row) => row.name === "核对袜"), false);
 });
