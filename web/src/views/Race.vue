@@ -50,18 +50,24 @@
       <div v-if="race.fee" class="row"><span>报名费</span><b>{{ race.fee }}</b></div>
       <div v-if="race.scale" class="row"><span>规模</span><b>{{ race.scale }}</b></div>
     </div>
-    <div v-if="race && race.guide.length" class="block">
+    <div v-if="race && (race.guideText || race.guide.length)" class="block">
       <h2>竞赛规程</h2>
-      <p class="src">按组委会公布的原图往下看。奖金、关门时间和参赛资格以这些图为准。</p>
+      <p v-if="race.guide.length" class="src">按组委会公布的原图往下看。奖金、关门时间和参赛资格以组委会原文为准。</p>
+      <pre v-if="race.guideText" class="guide-text">{{ race.guideText }}</pre>
       <button v-for="sheet in race.guide" :key="sheet.id" class="sheet" type="button" @click="openSheet(sheet.id)">
         <img :src="sheetSrc(sheet.id)" alt="竞赛规程" />
       </button>
     </div>
-    <div v-if="dayNotes.length" class="block">
+    <div v-if="dayNotes.length || (race && race.pacerSheets && race.pacerSheets.length)" class="block">
       <h2>比赛日</h2>
       <div v-for="item in dayNotes" :key="item.label" class="day-note">
         <h3>{{ item.label }}</h3>
         <p>{{ item.text }}</p>
+      </div>
+      <div v-if="race && race.pacerSheets && race.pacerSheets.length" class="pacer-photos">
+        <button v-for="sheet in race.pacerSheets" :key="sheet.id" class="sheet" type="button" @click="openSheet(sheet.id)">
+          <img :src="sheetSrc(sheet.id)" alt="配速员" />
+        </button>
       </div>
     </div>
     <div v-if="race && race.liveSheet" class="block">
@@ -309,6 +315,7 @@ onMounted(load);
 .day-note { margin-top: 12px; }
 .day-note h3 { margin: 0 0 4px; font-size: 13px; font-weight: 650; color: var(--muted); }
 .day-note p { margin: 0; font-size: 15px; line-height: 1.5; white-space: pre-wrap; }
+.guide-text { margin: 8px 0 0; white-space: pre-wrap; font: inherit; font-size: 15px; line-height: 1.55; }
 .viewer { position: fixed; inset: 0; z-index: 30; display: flex; align-items: center; justify-content: center; padding: 16px; background: rgba(0, 0, 0, 0.88); }
 .viewer img { max-width: 100%; max-height: 100%; }
 </style>

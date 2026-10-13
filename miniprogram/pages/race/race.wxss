@@ -9,3 +9,4 @@
 .result .btn { margin-top: 16rpx; }
 .draw { white-space: pre-wrap; }
 .sheet { width: 100%; margin-top: 16rpx; border-radius: 16rpx; }
+.guide-text { display: block; margin-top: 12rpx; white-space: pre-wrap; line-height: 1.5; font-size: 28rpx; }

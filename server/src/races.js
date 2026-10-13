@@ -382,6 +382,7 @@ function presentRace(row, now) {
     route: field(row, "route", "route"),
     pickup: field(row, "pickup", "pickup"),
     pacers: field(row, "pacers", "pacers"),
+    guideText: field(row, "guideText", "guide_text"),
     links: linksOf(row),
     nodes,
     nextNode,

@@ -6,6 +6,8 @@ const DISTANCES = ["full", "half", "10k", "5k"];
 const KINDS = ["trail", "ultra", "family", "fun"];
 const PHOTO_MAX = 8 * 1024 * 1024;
 const GUIDE_MAX = 16;
+const PACER_MAX = 8;
+const SHEET_LIMIT = { guide: GUIDE_MAX, pacer: PACER_MAX, live: 1 };
 
 function mediaRoot() {
   return process.env.MARATHON_MEDIA || path.join(__dirname, "../data/media");
@@ -65,7 +67,8 @@ function parseGuide(body) {
   const groups = groupsOf(body.groups);
   if (groups == null) return { status: 400, error: "其他组别最多 8 个，每个不超过 16 个字" };
   if (!distances.length && !kinds.length && !groups.length) return { status: 400, error: "先标一个项目" };
-  const startAt = clip(body.startAt, 5);
+  let startAt = clip(body.startAt, 8);
+  if (startAt && /^([01]\d|2[0-3]):[0-5]\d:[0-5]\d$/.test(startAt)) startAt = startAt.slice(0, 5);
   if (startAt == null || (startAt && !/^([01]\d|2[0-3]):[0-5]\d$/.test(startAt))) return { status: 400, error: "起跑写成 07:00 这样" };
   const bibAt = clip(body.bibAt, 10);
   if (bibAt == null || (bibAt && !/^\d{4}-\d{2}-\d{2}$/.test(bibAt))) return { status: 400, error: "号码公布写成 2026-12-10 这样" };
@@ -97,6 +100,14 @@ function parseGuide(body) {
     grade = text;
     gradeSet = true;
   }
+  let guideText = "";
+  let guideTextSet = false;
+  if (body.guideText != null) {
+    const text = clip(body.guideText, 8000);
+    if (text == null) return { status: 400, error: "规程文字最多 8000 字" };
+    guideText = text;
+    guideTextSet = true;
+  }
   return {
     fields: {
       name: name || "",
@@ -120,6 +131,8 @@ function parseGuide(body) {
       organizerSet,
       grade,
       gradeSet,
+      guideText,
+      guideTextSet,
       raceDateText
     }
   };
@@ -131,6 +144,7 @@ function saveGuide(db, race, body) {
   const fields = parsed.fields;
   const organizer = fields.organizerSet ? fields.organizer : race.organizer || "";
   const grade = fields.gradeSet ? fields.grade : race.grade || "";
+  const guideText = fields.guideTextSet ? fields.guideText : race.guide_text || "";
   const today = new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10);
   db.prepare(
     `UPDATE races SET
@@ -138,7 +152,7 @@ function saveGuide(db, race, body) {
        start_at = ?, bib_at = ?, fee = ?, scale = ?, phone = ?,
        signup_url = ?, draw_url = ?, bib_url = ?, result_url = ?, live_url = ?, event_url = ?,
        official_url = ?, organizer = ?, grade = ?,
-       route = ?, pickup = ?, pacers = ?, updated_at = ?
+       route = ?, pickup = ?, pacers = ?, guide_text = ?, updated_at = ?
      WHERE id = ?`
   ).run(
     keep(fields.name, race.name),
@@ -166,6 +180,7 @@ function saveGuide(db, race, body) {
     fields.route,
     fields.pickup,
     fields.pacers,
+    guideText,
     today,
     race.id
   );
@@ -181,6 +196,7 @@ function sheetsOf(db, raceId) {
 function attachGuide(db, race) {
   const rows = sheetsOf(db, race.id);
   race.guide = rows.filter((row) => row.kind === "guide").map((row) => ({ id: row.id }));
+  race.pacerSheets = rows.filter((row) => row.kind === "pacer").map((row) => ({ id: row.id }));
   const live = rows.find((row) => row.kind === "live");
   race.liveSheet = live ? { id: live.id } : null;
   return race;
@@ -267,13 +283,13 @@ function createRace(db, body) {
        source, updated_at, kinds, groups, start_at,
        bib_at, fee, scale, phone,
        signup_url, draw_url, bib_url, result_url, live_url, event_url, official_url,
-       organizer, grade, route, pickup, pacers
+       organizer, grade, route, pickup, pacers, guide_text
      ) VALUES (
        ?, ?, ?, ?, ?, ?, '', ?,
        ?, ?, ?, ?, ?,
        ?, ?, ?, ?,
        ?, ?, ?, ?, ?, ?, ?,
-       ?, ?, ?, ?, ?
+       ?, ?, ?, ?, ?, ?
      )`
   ).run(
     id,
@@ -303,7 +319,8 @@ function createRace(db, body) {
     fields.grade,
     fields.route,
     fields.pickup,
-    fields.pacers
+    fields.pacers,
+    fields.guideText
   );
   return { id };
 }
@@ -347,6 +364,14 @@ function mountRaceGuide(app, { BASE, getDb, requireAdmin }) {
     });
   });
 
+  app.get(BASE + "/api/admin/places", (req, res) => {
+    if (!requireAdmin(req, res)) return;
+    const rows = getDb().prepare("SELECT DISTINCT province, city, place FROM races WHERE place != '' ORDER BY province, city, place").all();
+    res.json({
+      spots: rows.map((row) => ({ province: row.province, city: row.city, place: row.place }))
+    });
+  });
+
   app.post(BASE + "/api/admin/races", (req, res) => {
     if (!requireAdmin(req, res)) return;
     const created = createRace(getDb(), req.body || {});
@@ -375,10 +400,11 @@ function mountRaceGuide(app, { BASE, getDb, requireAdmin }) {
     if (!requireAdmin(req, res)) return;
     const race = getDb().prepare("SELECT id FROM races WHERE id = ?").get(req.params.id);
     if (!race) return res.status(404).json({ error: "没有这场比赛" });
-    const kind = req.query.kind === "live" ? "live" : "guide";
-    if (kind === "guide") {
-      const count = getDb().prepare("SELECT COUNT(*) AS n FROM race_sheets WHERE race_id = ? AND kind = 'guide'").get(race.id);
-      if (count.n >= GUIDE_MAX) return res.status(400).json({ error: "规程最多 16 页" });
+    const kind = String(req.query.kind || "");
+    if (!SHEET_LIMIT[kind]) return res.status(400).json({ error: "不认识的图片类型" });
+    if (kind !== "live") {
+      const count = getDb().prepare("SELECT COUNT(*) AS n FROM race_sheets WHERE race_id = ? AND kind = ?").get(race.id, kind);
+      if (count.n >= SHEET_LIMIT[kind]) return res.status(400).json({ error: kind === "pacer" ? "配速员照片最多 8 张" : "规程最多 16 页" });
     }
     let buffer;
     try {
