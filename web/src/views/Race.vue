@@ -58,11 +58,16 @@
         <img :src="sheetSrc(sheet.id)" alt="竞赛规程" />
       </button>
     </div>
-    <div v-if="dayNotes.length || (race && race.pacerSheets && race.pacerSheets.length)" class="block">
+    <div v-if="dayNotes.length || routeSheets.length || (race && race.pacerSheets && race.pacerSheets.length)" class="block">
       <h2>比赛日</h2>
       <div v-for="item in dayNotes" :key="item.label" class="day-note">
         <h3>{{ item.label }}</h3>
-        <p>{{ item.text }}</p>
+        <p v-if="item.text">{{ item.text }}</p>
+        <div v-if="item.label === '路线' && routeSheets.length" class="pacer-photos">
+          <button v-for="sheet in routeSheets" :key="sheet.id" class="sheet" type="button" @click="openSheet(sheet.id)">
+            <img :src="sheetSrc(sheet.id)" alt="路线图" />
+          </button>
+        </div>
       </div>
       <div v-if="race && race.pacerSheets && race.pacerSheets.length" class="pacer-photos">
         <button v-for="sheet in race.pacerSheets" :key="sheet.id" class="sheet" type="button" @click="openSheet(sheet.id)">
@@ -175,13 +180,14 @@ const showFacts = computed(() => {
   if (!race.value) return false;
   return race.value.kindLabels.length || race.value.groups.length || race.value.fee || race.value.scale || race.value.startAt;
 });
+const routeSheets = computed(() => (race.value && race.value.routeSheets) || []);
 const dayNotes = computed(() => {
   if (!race.value) return [];
   return [
-    ["路线", race.value.route],
-    ["领物", race.value.pickup],
-    ["配速员", race.value.pacers]
-  ].filter((item) => item[1]).map(([label, text]) => ({ label, text }));
+    ["路线", race.value.route, routeSheets.value.length > 0],
+    ["领物", race.value.pickup, false],
+    ["配速员", race.value.pacers, false]
+  ].filter((item) => item[1] || item[2]).map(([label, text]) => ({ label, text }));
 });
 const viewer = ref("");
 function sheetSrc(id) {
@@ -310,7 +316,7 @@ onMounted(load);
 .jump.main { background: var(--accent); color: #fff; }
 .chips { display: flex; flex-wrap: wrap; gap: 8px; }
 .chip { padding: 6px 10px; border-radius: 8px; background: var(--chip); font-size: 13px; font-weight: 600; }
-.sheet { display: block; width: 100%; margin: 8px 0 0; padding: 0; border-radius: 12px; overflow: hidden; background: var(--bg); }
+.sheet { display: block; width: 100%; min-height: 0; margin: 8px 0 0; padding: 0; border-radius: 12px; overflow: hidden; background: var(--bg); }
 .sheet img { display: block; width: 100%; }
 .day-note { margin-top: 12px; }
 .day-note h3 { margin: 0 0 4px; font-size: 13px; font-weight: 650; color: var(--muted); }

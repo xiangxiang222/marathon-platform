@@ -45,9 +45,10 @@
     <image wx:for="{{guide}}" wx:key="id" class="sheet" mode="widthFix" src="{{item.src}}" data-src="{{item.src}}" bindtap="previewGuide" />
   </view>
 
-  <view class="card" wx:if="{{race.route || race.pickup || race.pacers || pacerSheets.length}}">
+  <view class="card" wx:if="{{race.route || routeSheets.length || race.pickup || race.pacers || pacerSheets.length}}">
     <view class="h2">比赛日</view>
     <view wx:if="{{race.route}}" class="src">路线 {{race.route}}</view>
+    <image wx:for="{{routeSheets}}" wx:key="id" class="sheet" mode="widthFix" src="{{item.src}}" data-src="{{item.src}}" bindtap="previewGuide" />
     <view wx:if="{{race.pickup}}" class="src">领物 {{race.pickup}}</view>
     <view wx:if="{{race.pacers}}" class="src">配速员 {{race.pacers}}</view>
     <image wx:for="{{pacerSheets}}" wx:key="id" class="sheet" mode="widthFix" src="{{item.src}}" data-src="{{item.src}}" bindtap="previewGuide" />

@@ -7,7 +7,13 @@ const KINDS = ["trail", "ultra", "family", "fun"];
 const PHOTO_MAX = 8 * 1024 * 1024;
 const GUIDE_MAX = 16;
 const PACER_MAX = 8;
-const SHEET_LIMIT = { guide: GUIDE_MAX, pacer: PACER_MAX, live: 1 };
+const ROUTE_MAX = 4;
+const SHEET_LIMIT = { guide: GUIDE_MAX, pacer: PACER_MAX, route: ROUTE_MAX, live: 1 };
+const SHEET_FULL = {
+  guide: "规程最多 16 页",
+  pacer: "配速员照片最多 8 张",
+  route: "路线图最多 4 张"
+};
 
 function mediaRoot() {
   return process.env.MARATHON_MEDIA || path.join(__dirname, "../data/media");
@@ -196,6 +202,7 @@ function sheetsOf(db, raceId) {
 function attachGuide(db, race) {
   const rows = sheetsOf(db, race.id);
   race.guide = rows.filter((row) => row.kind === "guide").map((row) => ({ id: row.id }));
+  race.routeSheets = rows.filter((row) => row.kind === "route").map((row) => ({ id: row.id }));
   race.pacerSheets = rows.filter((row) => row.kind === "pacer").map((row) => ({ id: row.id }));
   const live = rows.find((row) => row.kind === "live");
   race.liveSheet = live ? { id: live.id } : null;
@@ -404,7 +411,7 @@ function mountRaceGuide(app, { BASE, getDb, requireAdmin }) {
     if (!SHEET_LIMIT[kind]) return res.status(400).json({ error: "不认识的图片类型" });
     if (kind !== "live") {
       const count = getDb().prepare("SELECT COUNT(*) AS n FROM race_sheets WHERE race_id = ? AND kind = ?").get(race.id, kind);
-      if (count.n >= SHEET_LIMIT[kind]) return res.status(400).json({ error: kind === "pacer" ? "配速员照片最多 8 张" : "规程最多 16 页" });
+      if (count.n >= SHEET_LIMIT[kind]) return res.status(400).json({ error: SHEET_FULL[kind] });
     }
     let buffer;
     try {

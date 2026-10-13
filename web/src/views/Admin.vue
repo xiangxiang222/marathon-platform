@@ -213,9 +213,22 @@
             </section>
             <section id="edit-day" class="section">
               <h3>比赛日</h3>
-              <p class="lead">路线、领物写能看懂的一句。配速可以写文字，也可以传配速表或配速员照片，最多 8 张。</p>
+              <p class="lead">路线写能看懂的一句，也可以传路线图，最多 4 张。领物写一句。配速可以写文字，也可以传配速表或配速员照片，最多 8 张。</p>
               <div class="pair">
                 <label class="field span"><span>路线</span><textarea v-model="book.route" rows="3" placeholder="例如 永安湖环湖，起点在北门"></textarea></label>
+                <div class="span">
+                  <label class="file-pick">上传路线图<input type="file" accept="image/jpeg,image/png,image/webp" @change="onRouteFile" /></label>
+                  <div class="sheets">
+                    <div v-for="sheet in book.routeSheets" :key="sheet.id" class="sheet-row">
+                      <img :src="raceSheetSrc(sheet.id)" alt="路线图" />
+                      <button class="undo" type="button" @click="removeSheet(sheet.id)">删除这张</button>
+                    </div>
+                    <div v-for="(item, index) in routeQueue" :key="item.url" class="sheet-row">
+                      <img :src="item.url" alt="待上传的路线图" />
+                      <button class="undo" type="button" @click="dropQueuedRoute(index)">先不传这张</button>
+                    </div>
+                  </div>
+                </div>
                 <label class="field span"><span>领物须知</span><textarea v-model="book.pickup" rows="3" placeholder="例如 赛前一天 10:00–20:00，按号段领取"></textarea></label>
                 <label class="field span"><span>配速员</span><textarea v-model="book.pacers" rows="3" placeholder="例如 全马 4 小时到 6 小时，每 15 分钟一档"></textarea></label>
               </div>
@@ -407,6 +420,7 @@ const sectionLead = computed(() => ({
 const book = ref(null);
 const nodeOrigin = ref("");
 const guideQueue = ref([]);
+const routeQueue = ref([]);
 const pacerQueue = ref([]);
 const liveQueue = ref(null);
 const spots = ref([]);
@@ -735,6 +749,7 @@ function blankBook(race) {
     pacers: race.pacers || "",
     guideText: race.guideText || "",
     guide: race.guide || [],
+    routeSheets: race.routeSheets || [],
     pacerSheets: race.pacerSheets || [],
     liveSheet: race.liveSheet || null,
     regStart: dayOf(race.regStart),
@@ -782,6 +797,7 @@ function emptyBook() {
     pacers: "",
     guideText: "",
     guide: [],
+    routeSheets: [],
     pacerSheets: [],
     liveSheet: null,
     regStart: "",
@@ -795,9 +811,11 @@ function emptyBook() {
 
 function clearQueues() {
   for (const item of guideQueue.value) URL.revokeObjectURL(item.url);
+  for (const item of routeQueue.value) URL.revokeObjectURL(item.url);
   for (const item of pacerQueue.value) URL.revokeObjectURL(item.url);
   if (liveQueue.value) URL.revokeObjectURL(liveQueue.value.url);
   guideQueue.value = [];
+  routeQueue.value = [];
   pacerQueue.value = [];
   liveQueue.value = null;
 }
@@ -1001,6 +1019,9 @@ async function saveGuide() {
     for (const item of guideQueue.value) {
       await adminUpload("/admin/races/" + id + "/sheets?kind=guide", item.file, token.value);
     }
+    for (const item of routeQueue.value) {
+      await adminUpload("/admin/races/" + id + "/sheets?kind=route", item.file, token.value);
+    }
     for (const item of pacerQueue.value) {
       await adminUpload("/admin/races/" + id + "/sheets?kind=pacer", item.file, token.value);
     }
@@ -1030,6 +1051,15 @@ function onGuideFile(event) {
   guideQueue.value = [...guideQueue.value, { file, url: URL.createObjectURL(file) }];
 }
 
+function onRouteFile(event) {
+  const file = event.target.files && event.target.files[0];
+  event.target.value = "";
+  if (!file || !book.value) return;
+  if (book.value.routeSheets.length + routeQueue.value.length >= 4) return fail(new Error("路线图最多 4 张"));
+  if (book.value.id) return sendSheet(file, "route");
+  routeQueue.value = [...routeQueue.value, { file, url: URL.createObjectURL(file) }];
+}
+
 function onPacerFile(event) {
   const file = event.target.files && event.target.files[0];
   event.target.value = "";
@@ -1053,6 +1083,11 @@ function dropQueuedGuide(index) {
   if (item) URL.revokeObjectURL(item.url);
 }
 
+function dropQueuedRoute(index) {
+  const [item] = routeQueue.value.splice(index, 1);
+  if (item) URL.revokeObjectURL(item.url);
+}
+
 function dropQueuedPacer(index) {
   const [item] = pacerQueue.value.splice(index, 1);
   if (item) URL.revokeObjectURL(item.url);
@@ -1066,6 +1101,7 @@ function dropQueuedLive() {
 async function refreshSheets() {
   const data = await api("/races/" + book.value.id);
   book.value.guide = data.race.guide || [];
+  book.value.routeSheets = data.race.routeSheets || [];
   book.value.pacerSheets = data.race.pacerSheets || [];
   book.value.liveSheet = data.race.liveSheet || null;
 }
@@ -1077,7 +1113,7 @@ async function sendSheet(file, kind) {
     await adminUpload("/admin/races/" + book.value.id + "/sheets?kind=" + kind, file, token.value);
     await refreshSheets();
     saved.value = true;
-    message.value = kind === "live" ? "直播二维码已换上" : kind === "pacer" ? "配速员照片已加上" : "规程加了一页";
+    message.value = kind === "live" ? "直播二维码已换上" : kind === "route" ? "路线图已加上" : kind === "pacer" ? "配速员照片已加上" : "规程加了一页";
   } catch (err) {
     fail(err);
   }
