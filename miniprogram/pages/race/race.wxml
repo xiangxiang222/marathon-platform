@@ -38,17 +38,19 @@
     <view wx:if="{{race.groups.length}}" class="src">{{groupText}}</view>
   </view>
 
-  <view class="card" wx:if="{{guide.length}}">
+  <view class="card" wx:if="{{guide.length || race.guideText}}">
     <view class="h2">竞赛规程</view>
-    <view class="src">按组委会公布的原图往下看。</view>
+    <view wx:if="{{guide.length}}" class="src">按组委会公布的原图往下看。</view>
+    <text wx:if="{{race.guideText}}" class="guide-text">{{race.guideText}}</text>
     <image wx:for="{{guide}}" wx:key="id" class="sheet" mode="widthFix" src="{{item.src}}" data-src="{{item.src}}" bindtap="previewGuide" />
   </view>
 
-  <view class="card" wx:if="{{race.route || race.pickup || race.pacers}}">
+  <view class="card" wx:if="{{race.route || race.pickup || race.pacers || pacerSheets.length}}">
     <view class="h2">比赛日</view>
     <view wx:if="{{race.route}}" class="src">路线 {{race.route}}</view>
     <view wx:if="{{race.pickup}}" class="src">领物 {{race.pickup}}</view>
     <view wx:if="{{race.pacers}}" class="src">配速员 {{race.pacers}}</view>
+    <image wx:for="{{pacerSheets}}" wx:key="id" class="sheet" mode="widthFix" src="{{item.src}}" data-src="{{item.src}}" bindtap="previewGuide" />
   </view>
 
   <view class="card" wx:if="{{liveSheet}}">

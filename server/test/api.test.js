@@ -910,7 +910,7 @@ test("a race missing from the official calendar can be added by hand", async () 
     city: "临沂",
     province: "山东",
     place: "沂水",
-    startAt: "08:00",
+    startAt: "08:00:00",
     distances: ["10k"],
     kinds: ["family", "trail"],
     groups: "15公里、30公里",
@@ -922,7 +922,8 @@ test("a race missing from the official calendar can be added by hand", async () 
     resultUrl: "https://example.com/hand-result",
     route: "滨河公园",
     pickup: "赛前一天领物",
-    pacers: "5 分配速"
+    pacers: "5 分配速",
+    guideText: "参赛须知：沿滨河公园环湖。"
   });
   assert.equal(created.status, 200);
   const race = await request(app).get("/marathon/api/races/" + created.body.id);
@@ -938,7 +939,29 @@ test("a race missing from the official calendar can be added by hand", async () 
   assert.equal(race.body.race.fee, "10公里 80 元");
   assert.equal(race.body.race.route, "滨河公园");
   assert.equal(race.body.race.pickup, "赛前一天领物");
+  assert.equal(race.body.race.startAt, "08:00");
+  assert.equal(race.body.race.guideText, "参赛须知：沿滨河公园环湖。");
   assert.equal(race.body.race.links.find((item) => item.key === "signup").url, "https://example.com/hand-signup");
+  const places = await request(app).get("/marathon/api/admin/places").set(admin);
+  assert.equal(places.status, 200);
+  assert.ok(places.body.spots.some((item) => item.city === "临沂" && item.place === "沂水"));
+  const deniedPlaces = await request(app).get("/marathon/api/admin/places").set("Authorization", "Bearer " + user);
+  assert.equal(deniedPlaces.status, 401);
+  const jpeg = Buffer.from([0xff, 0xd8, 0xff, 0xd9]);
+  const pacer = await request(app)
+    .post("/marathon/api/admin/races/" + created.body.id + "/sheets?kind=pacer")
+    .set(admin)
+    .attach("file", jpeg, { filename: "pacer.jpg", contentType: "image/jpeg" });
+  assert.equal(pacer.status, 200);
+  assert.equal(pacer.body.sheet.kind, "pacer");
+  const unknown = await request(app)
+    .post("/marathon/api/admin/races/" + created.body.id + "/sheets?kind=poster")
+    .set(admin)
+    .attach("file", jpeg, { filename: "x.jpg", contentType: "image/jpeg" });
+  assert.equal(unknown.status, 400);
+  const withPhoto = await request(app).get("/marathon/api/races/" + created.body.id);
+  assert.equal(withPhoto.body.race.pacerSheets.length, 1);
+  assert.equal(withPhoto.body.race.guide.length, 0);
   const noted = await request(app).put("/marathon/api/admin/races/" + created.body.id + "/guide").set(admin).send({
     organizer: "沂水组委会",
     grade: "C",
@@ -957,6 +980,14 @@ test("a race missing from the official calendar can be added by hand", async () 
   assert.equal(saved.body.race.organizer, "沂水组委会");
   assert.equal(saved.body.race.grade, "C");
   assert.equal(saved.body.race.deadline, "");
+  assert.equal(saved.body.race.guideText, "参赛须知：沿滨河公园环湖。");
+  const tooLong = await request(app).put("/marathon/api/admin/races/" + created.body.id + "/guide").set(admin).send({
+    distances: ["10k"],
+    kinds: ["family"],
+    guideText: "规".repeat(8001)
+  });
+  assert.equal(tooLong.status, 400);
+  assert.equal((await request(app).get("/marathon/api/races/" + created.body.id)).body.race.guideText, "参赛须知：沿滨河公园环湖。");
   openUpcoming(getDb(), new Date("2026-10-12T04:00:00.000Z"));
   const still = await request(app).get("/marathon/api/races/" + created.body.id);
   assert.equal(still.body.race.name, "2026手工添加测试赛");

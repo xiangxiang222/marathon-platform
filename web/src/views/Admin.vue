@@ -87,10 +87,10 @@
         <button v-if="row.diffNote" class="undo" type="button" @click="apply(row)">采用官网这次的名称、日期和赛事网站</button>
         <router-link v-if="row.raceId" class="hint link" :to="'/races/' + row.raceId">打开赛历这场</router-link>
         <form v-if="row.raceId" class="check-form node-form" @submit.prevent="saveNodes(row)">
-          <input v-model="row.regStart" placeholder="报名开始 2026-09-07" />
-          <input v-model="row.deadline" placeholder="报名截止 2026-10-28" />
-          <input v-model="row.drawAt" placeholder="出签" />
-          <input v-model="row.payDeadline" placeholder="缴费截止" />
+          <input v-model="row.regStart" type="date" aria-label="报名开始" />
+          <input v-model="row.deadline" type="date" aria-label="报名截止" />
+          <input v-model="row.drawAt" type="date" aria-label="查询中签" />
+          <input v-model="row.payDeadline" type="date" aria-label="缴费截止" />
           <input v-model="row.nodeSource" class="span" placeholder="来源，例如最酷，2026-09-07" />
           <button class="primary" type="submit">保存报名节点</button>
         </form>
@@ -111,14 +111,32 @@
           <form class="check-form guide-form" @submit.prevent="saveGuide">
             <section id="edit-base" class="section">
               <h3>基本信息</h3>
-              <p class="lead">名称、比赛日和地点。类别按中国马拉松的 A、B、C 或系列赛来标，没有就不标。</p>
+              <p class="lead">名称和比赛日从日历里选。省份、城市从列表里选，名单里没有的城市可以手写。起点可以选这个城市已经用过的地点，也可以手写。</p>
               <div class="pair">
                 <label class="field span"><span>赛事名称</span><input v-model="book.name" placeholder="例如 2026 沂水 10 公里" /></label>
-                <label class="field"><span>比赛日</span><input v-model="book.raceDate" placeholder="2026-11-15" /></label>
-                <label class="field"><span>起跑</span><input v-model="book.startAt" placeholder="07:00，可以先空着" /></label>
-                <label class="field"><span>省份</span><input v-model="book.province" placeholder="山东" /></label>
-                <label class="field"><span>城市</span><input v-model="book.city" placeholder="临沂" /></label>
-                <label class="field span"><span>地点</span><input v-model="book.place" placeholder="起点、会展中心或景区" /></label>
+                <label class="field"><span>比赛日</span><input v-model="book.raceDate" type="date" /></label>
+                <label class="field"><span>起跑</span><input v-model="book.startAt" type="time" /></label>
+                <label class="field"><span>省份</span>
+                  <select v-model="book.province" @change="onProvinceChange">
+                    <option value="">选择省份</option>
+                    <option v-for="name in provinceOptions" :key="name" :value="name">{{ name }}</option>
+                  </select>
+                </label>
+                <label class="field"><span>城市</span>
+                  <select :value="cityMode === 'write' ? '__write__' : book.city" @change="pickCity">
+                    <option value="">选择城市</option>
+                    <option v-for="name in cityOptions" :key="name" :value="name">{{ name }}</option>
+                    <option value="__write__">手写城市</option>
+                  </select>
+                  <input v-if="cityMode === 'write'" v-model="book.city" placeholder="手写城市" />
+                </label>
+                <label class="field span"><span>地点</span>
+                  <select v-if="placeOptions.length" :value="placeOptions.includes(book.place) ? book.place : ''" @change="pickPlace">
+                    <option value="">选择已有地点</option>
+                    <option v-for="name in placeOptions" :key="name" :value="name">{{ name }}</option>
+                  </select>
+                  <input v-model="book.place" placeholder="起点、会展中心或景区" />
+                </label>
                 <label class="field"><span>主办</span><input v-model="book.organizer" placeholder="组委会或公司" /></label>
                 <label class="field"><span>类别</span>
                   <select v-model="book.grade">
@@ -149,12 +167,12 @@
               <h3>报名和查询</h3>
               <p class="lead">日期空着就保持原来的，新加的场会显示报名时间未公布。改了时间要写这次的来源。链接打开赛事自己的页面。</p>
               <div class="pair">
-                <label class="field"><span>开始报名</span><input v-model="book.regStart" placeholder="2026-09-07" /></label>
-                <label class="field"><span>截止报名</span><input v-model="book.deadline" placeholder="2026-10-28" /></label>
+                <label class="field"><span>开始报名</span><input v-model="book.regStart" type="date" /></label>
+                <label class="field"><span>截止报名</span><input v-model="book.deadline" type="date" /></label>
                 <label class="field"><span>截止叫什么</span><input v-model="book.deadlineName" placeholder="报名截止" /></label>
-                <label class="field"><span>查询中签</span><input v-model="book.drawAt" placeholder="2026-10-22" /></label>
-                <label class="field"><span>缴费截止</span><input v-model="book.payDeadline" placeholder="2026-10-25" /></label>
-                <label class="field"><span>号码公布</span><input v-model="book.bibAt" placeholder="2026-12-10" /></label>
+                <label class="field"><span>查询中签</span><input v-model="book.drawAt" type="date" /></label>
+                <label class="field"><span>缴费截止</span><input v-model="book.payDeadline" type="date" /></label>
+                <label class="field"><span>号码公布</span><input v-model="book.bibAt" type="date" /></label>
                 <label class="field span"><span>这次的来源</span><input v-model="book.nodeSource" placeholder="规程或官网，写上看到的日期" /></label>
                 <label class="field span"><span>报名</span><input v-model="book.signupUrl" placeholder="https://" /></label>
                 <label class="field"><span>查询中签</span><input v-model="book.drawUrl" placeholder="https://" /></label>
@@ -172,16 +190,28 @@
             </section>
             <section id="edit-day" class="section">
               <h3>比赛日</h3>
-              <p class="lead">路线、领物和配速写能看懂的一句。关门时间、医疗和保险留在规程图里。</p>
+              <p class="lead">路线、领物写能看懂的一句。配速可以写文字，也可以传配速表或配速员照片，最多 8 张。</p>
               <div class="pair">
                 <label class="field span"><span>路线</span><textarea v-model="book.route" rows="3" placeholder="例如 永安湖环湖，起点在北门"></textarea></label>
                 <label class="field span"><span>领物须知</span><textarea v-model="book.pickup" rows="3" placeholder="例如 赛前一天 10:00–20:00，按号段领取"></textarea></label>
                 <label class="field span"><span>配速员</span><textarea v-model="book.pacers" rows="3" placeholder="例如 全马 4 小时到 6 小时，每 15 分钟一档"></textarea></label>
               </div>
+              <label class="file-pick">上传配速员照片<input type="file" accept="image/jpeg,image/png,image/webp" @change="onPacerFile" /></label>
+              <div class="sheets">
+                <div v-for="sheet in book.pacerSheets" :key="sheet.id" class="sheet-row">
+                  <img :src="raceSheetSrc(sheet.id)" alt="配速员" />
+                  <button class="undo" type="button" @click="removeSheet(sheet.id)">删除这张</button>
+                </div>
+                <div v-for="(item, index) in pacerQueue" :key="item.url" class="sheet-row">
+                  <img :src="item.url" alt="待上传的配速员照片" />
+                  <button class="undo" type="button" @click="dropQueuedPacer(index)">先不传这张</button>
+                </div>
+              </div>
             </section>
             <section id="edit-guide" class="section">
               <h3>竞赛规程</h3>
-              <p class="lead">按组委会原图一页一张，最多 16 页。选手在赛事页里点开大图往下看。奖金、关门和资格以这些图为准。</p>
+              <p class="lead">可以粘贴规程正文，也可以按组委会原图一页一张上传，最多 16 页。选手在赛事页里先看文字，再点开大图。奖金、关门和资格以组委会原文为准。</p>
+              <label class="field"><span>规程正文</span><textarea v-model="book.guideText" rows="8" placeholder="把规程文字粘贴到这里"></textarea></label>
               <label class="file-pick">上传规程原图<input type="file" accept="image/jpeg,image/png,image/webp" @change="onGuideFile" /></label>
               <div class="sheets">
                 <div v-for="sheet in book.guide" :key="sheet.id" class="sheet-row">
@@ -222,8 +252,9 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import { adminUpload, api, raceSheetSrc } from "../api";
+import { regions } from "../regions";
 
 const token = ref(sessionStorage.getItem("marathon_admin") || "");
 const username = ref("");
@@ -245,7 +276,10 @@ const catalogReady = ref(false);
 const book = ref(null);
 const nodeOrigin = ref("");
 const guideQueue = ref([]);
+const pacerQueue = ref([]);
 const liveQueue = ref(null);
+const spots = ref([]);
+const cityMode = ref("list");
 const distanceChoices = [
   { key: "full", label: "全马" },
   { key: "half", label: "半马" },
@@ -301,7 +335,7 @@ async function enter() {
     token.value = data.token;
     password.value = "";
     sessionStorage.setItem("marathon_admin", token.value);
-    await Promise.all([load(), loadCatalog()]);
+    await Promise.all([load(), loadCatalog(), loadSpots()]);
     authed.value = true;
   } catch (err) {
     authed.value = false;
@@ -468,7 +502,9 @@ function blankBook(race) {
     route: race.route || "",
     pickup: race.pickup || "",
     pacers: race.pacers || "",
+    guideText: race.guideText || "",
     guide: race.guide || [],
+    pacerSheets: race.pacerSheets || [],
     liveSheet: race.liveSheet || null,
     regStart: dayOf(race.regStart),
     deadline: dayOf(race.deadline),
@@ -513,7 +549,9 @@ function emptyBook() {
     route: "",
     pickup: "",
     pacers: "",
+    guideText: "",
     guide: [],
+    pacerSheets: [],
     liveSheet: null,
     regStart: "",
     deadline: "",
@@ -526,9 +564,64 @@ function emptyBook() {
 
 function clearQueues() {
   for (const item of guideQueue.value) URL.revokeObjectURL(item.url);
+  for (const item of pacerQueue.value) URL.revokeObjectURL(item.url);
   if (liveQueue.value) URL.revokeObjectURL(liveQueue.value.url);
   guideQueue.value = [];
+  pacerQueue.value = [];
   liveQueue.value = null;
+}
+
+const provinceOptions = computed(() => {
+  const names = regions.map((item) => item.name);
+  if (book.value && book.value.province && !names.includes(book.value.province)) names.push(book.value.province);
+  return names;
+});
+
+const cityOptions = computed(() => {
+  if (!book.value) return [];
+  const row = regions.find((item) => item.name === book.value.province);
+  const names = row ? [...row.cities] : [];
+  if (book.value.city && cityMode.value !== "write" && !names.includes(book.value.city)) names.push(book.value.city);
+  return names;
+});
+
+const placeOptions = computed(() => {
+  if (!book.value || !book.value.city) return [];
+  const names = spots.value
+    .filter((item) => item.city === book.value.city && item.place && item.place !== item.city)
+    .map((item) => item.place);
+  return [...new Set(names)];
+});
+
+function applyCityMode() {
+  if (!book.value) return;
+  const row = regions.find((item) => item.name === book.value.province);
+  const known = row ? row.cities.includes(book.value.city) : false;
+  cityMode.value = book.value.city && !known ? "write" : "list";
+}
+
+function onProvinceChange() {
+  const row = regions.find((item) => item.name === book.value.province);
+  const names = row ? row.cities : [];
+  if (book.value.city && !names.includes(book.value.city)) {
+    book.value.city = "";
+    cityMode.value = "list";
+  }
+}
+
+function pickCity(event) {
+  const value = event.target.value;
+  if (value === "__write__") {
+    cityMode.value = "write";
+    if (cityOptions.value.includes(book.value.city)) book.value.city = "";
+    return;
+  }
+  cityMode.value = "list";
+  book.value.city = value;
+}
+
+function pickPlace(event) {
+  if (event.target.value) book.value.place = event.target.value;
 }
 
 function toggle(list, key) {
@@ -545,6 +638,7 @@ function jump(id) {
 function startDraft() {
   clearQueues();
   book.value = emptyBook();
+  cityMode.value = "list";
   nodeOrigin.value = nodesKey(book.value);
 }
 
@@ -559,6 +653,11 @@ async function loadCatalog() {
   );
   catalog.value = data.races || [];
   catalogReady.value = true;
+}
+
+async function loadSpots() {
+  const data = await admin("/admin/places");
+  spots.value = data.spots || [];
 }
 
 async function setCatalogWhen(value) {
@@ -593,6 +692,7 @@ async function openGuide(id) {
     clearQueues();
     book.value = blankBook(data.race);
     nodeOrigin.value = nodesKey(book.value);
+    applyCityMode();
   } catch (err) {
     fail(err);
   }
@@ -624,7 +724,8 @@ function guideBody(row) {
     raceDate: row.raceDate,
     route: row.route,
     pickup: row.pickup,
-    pacers: row.pacers
+    pacers: row.pacers,
+    guideText: row.guideText
   };
 }
 
@@ -669,6 +770,9 @@ async function saveGuide() {
     for (const item of guideQueue.value) {
       await adminUpload("/admin/races/" + id + "/sheets?kind=guide", item.file, token.value);
     }
+    for (const item of pacerQueue.value) {
+      await adminUpload("/admin/races/" + id + "/sheets?kind=pacer", item.file, token.value);
+    }
     if (liveQueue.value) {
       await adminUpload("/admin/races/" + id + "/sheets?kind=live", liveQueue.value.file, token.value);
     }
@@ -676,9 +780,10 @@ async function saveGuide() {
     clearQueues();
     book.value = blankBook(opened.race);
     nodeOrigin.value = nodesKey(book.value);
+    applyCityMode();
     saved.value = true;
     message.value = creating ? "已加入赛历" : nodesTouched ? "这场和报名节点都记下了" : "这场已记下";
-    await loadCatalog();
+    await Promise.all([loadCatalog(), loadSpots()]);
   } catch (err) {
     fail(err);
     if (creating && id) message.value = err.message + "。这场已经在赛历里，改完再保存一次";
@@ -692,6 +797,15 @@ function onGuideFile(event) {
   if (book.value.guide.length + guideQueue.value.length >= 16) return fail(new Error("规程最多 16 页"));
   if (book.value.id) return sendSheet(file, "guide");
   guideQueue.value = [...guideQueue.value, { file, url: URL.createObjectURL(file) }];
+}
+
+function onPacerFile(event) {
+  const file = event.target.files && event.target.files[0];
+  event.target.value = "";
+  if (!file || !book.value) return;
+  if (book.value.pacerSheets.length + pacerQueue.value.length >= 8) return fail(new Error("配速员照片最多 8 张"));
+  if (book.value.id) return sendSheet(file, "pacer");
+  pacerQueue.value = [...pacerQueue.value, { file, url: URL.createObjectURL(file) }];
 }
 
 function onLiveFile(event) {
@@ -708,6 +822,11 @@ function dropQueuedGuide(index) {
   if (item) URL.revokeObjectURL(item.url);
 }
 
+function dropQueuedPacer(index) {
+  const [item] = pacerQueue.value.splice(index, 1);
+  if (item) URL.revokeObjectURL(item.url);
+}
+
 function dropQueuedLive() {
   if (liveQueue.value) URL.revokeObjectURL(liveQueue.value.url);
   liveQueue.value = null;
@@ -716,6 +835,7 @@ function dropQueuedLive() {
 async function refreshSheets() {
   const data = await api("/races/" + book.value.id);
   book.value.guide = data.race.guide || [];
+  book.value.pacerSheets = data.race.pacerSheets || [];
   book.value.liveSheet = data.race.liveSheet || null;
 }
 
@@ -726,7 +846,7 @@ async function sendSheet(file, kind) {
     await adminUpload("/admin/races/" + book.value.id + "/sheets?kind=" + kind, file, token.value);
     await refreshSheets();
     saved.value = true;
-    message.value = kind === "live" ? "直播二维码已换上" : "规程加了一页";
+    message.value = kind === "live" ? "直播二维码已换上" : kind === "pacer" ? "配速员照片已加上" : "规程加了一页";
   } catch (err) {
     fail(err);
   }
@@ -744,7 +864,7 @@ async function removeSheet(id) {
 }
 
 if (token.value) {
-  Promise.all([load(), loadCatalog()])
+  Promise.all([load(), loadCatalog(), loadSpots()])
     .then(() => {
       authed.value = true;
     })
@@ -773,6 +893,7 @@ if (token.value) {
 .field { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
 .field > span { font-size: 12px; color: var(--muted); }
 .guide-form input, .guide-form textarea, .guide-form select { border: 0; border-radius: 10px; background: #fff; box-shadow: inset 0 0 0 1px var(--line); }
+.guide-form input[type="date"], .guide-form input[type="time"], .node-form input[type="date"] { min-height: 40px; }
 .picks { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
 .pick { height: 32px; padding: 0 12px; border-radius: 999px; background: #fff; color: var(--ink); font-size: 14px; box-shadow: inset 0 0 0 1px var(--line); }
 .pick.on { background: var(--accent); color: #fff; box-shadow: none; }
