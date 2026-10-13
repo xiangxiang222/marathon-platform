@@ -9,6 +9,7 @@ const { syncOfficial, listOfficial, publishOfficial, openUpcoming, ignoreOfficia
 const { ensureAdmin, loginAdmin, adminSession, logoutAdmin, changeAdminPassword } = require("./admin-auth");
 const { mountClubLife, enrichBoard, clubLife } = require("./club-life");
 const { mountRaceGuide, attachGuide } = require("./race-guide");
+const { mountAdminDesk } = require("./admin-desk");
 
 function loadEnv() {
   const file = path.join(__dirname, "../../.env");
@@ -739,6 +740,7 @@ app.put(BASE + "/api/admin/races/:id", (req, res) => {
 
 mountClubLife(app, { BASE, getDb, userFrom });
 mountRaceGuide(app, { BASE, getDb, requireAdmin });
+mountAdminDesk(app, { BASE, getDb, requireAdmin });
 
 const webDist = path.join(__dirname, "../../web/dist");
 if (fs.existsSync(webDist)) {

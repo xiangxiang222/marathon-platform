@@ -2,11 +2,11 @@
   <main class="admin">
     <header class="topbar">
       <router-link to="/" aria-label="返回">‹</router-link>
-      <h1>赛历后台</h1>
+      <h1>后台</h1>
       <span></span>
     </header>
     <div v-if="!authed" class="block login">
-      <h2>赛历后台</h2>
+      <h2>后台</h2>
       <p class="hint">用用户名和密码进入。</p>
       <form class="check-form" @submit.prevent="enter">
         <input v-model="username" autocomplete="username" placeholder="用户名" />
@@ -17,7 +17,13 @@
     </div>
     <template v-else>
       <p v-if="message" class="banner" :class="{ ok: saved }">{{ message }}</p>
-      <div class="desk">
+      <div class="admin-shell">
+      <nav class="admin-nav">
+        <button v-for="item in deskSections" :key="item.id" type="button" :class="{ on: section === item.id }" @click="pickSection(item.id)">{{ item.label }}</button>
+        <button class="out" type="button" @click="logout">退出</button>
+      </nav>
+      <div>
+      <div v-show="section === 'races'" class="desk">
       <div class="desk-main">
       <div class="block">
         <h2>赛历</h2>
@@ -47,7 +53,6 @@
       <div class="desk-official">
       <div class="block">
         <h2>官网赛历</h2>
-        <button class="undo" type="button" @click="logout">退出</button>
         <p class="hint">每一届单独存。中国马拉松官网这场一直有链接。赛事自己的网站，官网给了才记下；没给就空着，也不拿往年的网站来填。每天再对一次，名称、日期、主办、赛事网站有变会标出来。报名时间仍要另写来源，已经记下的截止时间不会被盖掉。</p>
         <form class="check-form inline-form" @submit.prevent="search">
           <input v-model="q" placeholder="向官网查名称，例如璧山" />
@@ -247,6 +252,90 @@
       </div>
       </aside>
       </div>
+      <div v-if="section === 'users'" class="desk">
+        <div class="desk-main">
+          <div class="block">
+            <h2>用户</h2>
+            <p class="hint">这里只有昵称、跑团和标过的场。不收集手机号，也不收集身份证。</p>
+            <form class="check-form inline-form" @submit.prevent="loadUsers">
+              <input v-model="userQuery" placeholder="搜昵称" />
+              <button class="primary" type="submit">筛选</button>
+            </form>
+            <p v-if="usersReady" class="hint">{{ users.length }} 人</p>
+            <div class="race-list">
+              <div v-for="item in users" :key="item.id" class="race-row" :class="{ on: person && person.user.id === item.id }">
+                <button type="button" class="race-open" @click="openUser(item.id)">
+                  <strong>{{ item.createdAt }} · {{ item.clubs }} 个团 · {{ item.plans }} 场</strong>
+                  <span>{{ item.nickname }}</span>
+                </button>
+              </div>
+            </div>
+            <p v-if="usersReady && !users.length" class="empty">没有这个昵称。</p>
+          </div>
+        </div>
+        <aside class="desk-side">
+          <div class="block">
+            <template v-if="person">
+              <h2>{{ person.user.nickname }}</h2>
+              <p class="hint">{{ person.user.createdAt }} 起用这个昵称。</p>
+              <section class="section">
+                <h3>跑团</h3>
+                <div v-for="club in person.clubs" :key="club.id" class="line"><b>{{ club.name }}</b><span>{{ club.owner ? "团长" : "成员" }}</span></div>
+                <p v-if="!person.clubs.length" class="hint">还没进跑团。</p>
+              </section>
+              <section class="section">
+                <h3>标过的场</h3>
+                <div v-for="item in person.plans" :key="item.name + item.raceDate" class="line"><b>{{ item.name }}</b><span>{{ item.raceDate }} · {{ item.status }}</span></div>
+                <p v-if="!person.plans.length" class="hint">还没标比赛。</p>
+              </section>
+              <section class="section">
+                <h3>自己记的成绩</h3>
+                <div v-for="item in person.results" :key="item.name + item.distance" class="line"><b>{{ item.name }}</b><span>{{ item.distance }} {{ item.clock }}</span></div>
+                <p v-if="!person.results.length" class="hint">还没记成绩。</p>
+              </section>
+              <section class="section">
+                <h3>跑团积分</h3>
+                <div v-for="item in person.points" :key="item.club" class="line"><b>{{ item.club }}</b><span>{{ item.points }} 分</span></div>
+                <p v-if="!person.points.length" class="hint">还没有积分。</p>
+              </section>
+            </template>
+            <template v-else>
+              <h2>这个人</h2>
+              <p class="hint">点左边一个昵称，看他在哪些团、标了哪些场。</p>
+            </template>
+          </div>
+        </aside>
+      </div>
+      <div v-if="section === 'runs'" class="block">
+        <h2>跑步</h2>
+        <p class="hint">这些是团练里自己报的公里。还没接手表。每天「到没到」不记在这里，也不记公里。</p>
+        <p v-if="runsReady" class="hint">{{ runs.length }} 条</p>
+        <div class="race-list">
+          <div v-for="(item, index) in runs" :key="index" class="line">
+            <b>{{ item.nickname }} · {{ item.km }} 公里</b>
+            <span>{{ item.at }} · {{ item.club }} · {{ item.title }}<template v-if="item.note"> · {{ item.note }}</template></span>
+          </div>
+        </div>
+        <p v-if="runsReady && !runs.length" class="empty">还没有人报过公里。</p>
+      </div>
+      <div v-if="section === 'shop'">
+        <div class="block">
+          <h2>商城</h2>
+          <p class="hint">商城还没接，这里不收款、不发货。现在能看的是各跑团用积分换的礼品。以后若接商城，从这里进，不和赛事报名混在一起。</p>
+        </div>
+        <div class="block">
+          <h2>积分礼品</h2>
+          <div v-for="item in gifts" :key="item.id" class="line"><b>{{ item.club }} · {{ item.name }}</b><span>{{ item.cost }} 分 · 剩 {{ item.stock }}</span></div>
+          <p v-if="shopReady && !gifts.length" class="empty">还没有跑团放礼品。</p>
+        </div>
+        <div class="block">
+          <h2>兑换记录</h2>
+          <div v-for="(item, index) in redemptions" :key="index" class="line"><b>{{ item.nickname }} · {{ item.name }}</b><span>{{ item.at }} · {{ item.club }} · {{ item.cost }} 分</span></div>
+          <p v-if="shopReady && !redemptions.length" class="empty">还没有人兑换。</p>
+        </div>
+      </div>
+      </div>
+      </div>
     </template>
   </main>
 </template>
@@ -273,6 +362,22 @@ const catalog = ref([]);
 const catalogQuery = ref("");
 const catalogWhen = ref("upcoming");
 const catalogReady = ref(false);
+const section = ref("races");
+const deskSections = [
+  { id: "races", label: "赛事" },
+  { id: "users", label: "用户" },
+  { id: "runs", label: "跑步" },
+  { id: "shop", label: "商城" }
+];
+const users = ref([]);
+const usersReady = ref(false);
+const userQuery = ref("");
+const person = ref(null);
+const runs = ref([]);
+const runsReady = ref(false);
+const gifts = ref([]);
+const redemptions = ref([]);
+const shopReady = ref(false);
 const book = ref(null);
 const nodeOrigin = ref("");
 const guideQueue = ref([]);
@@ -354,6 +459,60 @@ async function logout() {
   authed.value = false;
   message.value = "";
   saved.value = false;
+}
+
+function pickSection(id) {
+  section.value = id;
+  message.value = "";
+  saved.value = false;
+  if (id === "users") loadUsers();
+  if (id === "runs") loadRuns();
+  if (id === "shop") loadShop();
+}
+
+async function loadUsers() {
+  usersReady.value = false;
+  try {
+    const data = await admin("/admin/users?q=" + encodeURIComponent(userQuery.value));
+    users.value = data.users;
+    usersReady.value = true;
+    if (person.value && !users.value.some((item) => item.id === person.value.user.id)) person.value = null;
+  } catch (err) {
+    fail(err);
+  }
+}
+
+async function openUser(id) {
+  message.value = "";
+  saved.value = false;
+  try {
+    person.value = await admin("/admin/users/" + id);
+  } catch (err) {
+    fail(err);
+  }
+}
+
+async function loadRuns() {
+  runsReady.value = false;
+  try {
+    const data = await admin("/admin/runs");
+    runs.value = data.runs;
+    runsReady.value = true;
+  } catch (err) {
+    fail(err);
+  }
+}
+
+async function loadShop() {
+  shopReady.value = false;
+  try {
+    const data = await admin("/admin/shop");
+    gifts.value = data.gifts;
+    redemptions.value = data.redemptions;
+    shopReady.value = true;
+  } catch (err) {
+    fail(err);
+  }
 }
 
 async function changePassword() {
@@ -920,11 +1079,23 @@ if (token.value) {
 a { color: #007aff; }
 .banner { margin: 0 16px; padding: 10px 12px; border-radius: 12px; background: #fff; color: var(--red); font-size: 14px; }
 .banner.ok { color: #007aff; }
+.admin-nav { display: flex; gap: 8px; margin: 4px 16px 0; overflow: auto; }
+.admin-nav button { flex: none; height: 36px; padding: 0 14px; border-radius: 999px; background: #fff; color: var(--ink); font-weight: 650; }
+.admin-nav button.on { background: var(--accent); color: #fff; }
+.admin-nav .out { margin-left: auto; background: transparent; color: var(--muted); font-weight: 600; }
+.line { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 4px 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.line b { min-width: 0; font-size: 15px; font-weight: 650; }
+.line span { flex: 1 1 100%; color: var(--muted); font-size: 13px; }
 .desk { display: flex; flex-direction: column; }
 .desk-side { order: 2; }
 .desk-official { order: 3; }
 @media (min-width: 900px) {
   .login { max-width: 420px; margin: 64px auto; }
+  .admin-shell { display: grid; grid-template-columns: 148px minmax(0, 1fr); align-items: start; }
+  .admin-nav { flex-direction: column; margin: 16px 0 16px 16px; position: sticky; top: 16px; overflow: visible; }
+  .admin-nav button { text-align: left; border-radius: 12px; }
+  .admin-nav .out { margin: 12px 0 0; }
+  .line span { flex: none; text-align: right; }
   .desk { display: grid; grid-template-columns: minmax(280px, 0.72fr) minmax(460px, 1.28fr); align-items: start; }
   .desk-official { grid-column: 1 / -1; }
   .desk-side { position: sticky; top: 64px; max-height: calc(100vh - 88px); overflow: auto; }
