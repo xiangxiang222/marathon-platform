@@ -2,18 +2,27 @@
   <main class="admin">
     <header class="topbar">
       <router-link to="/" aria-label="返回">‹</router-link>
-      <h1>后台</h1>
+      <h1 v-if="authed">后台</h1>
       <span></span>
     </header>
-    <div v-if="!authed" class="block login">
-      <h2>后台</h2>
-      <p class="hint">用用户名和密码进入。</p>
-      <form class="check-form" @submit.prevent="enter">
-        <input v-model="username" autocomplete="username" placeholder="用户名" />
-        <input v-model="password" type="password" autocomplete="current-password" placeholder="密码" />
+    <div v-if="!authed" class="gate">
+      <div class="gate-copy">
+        <p class="kicker">赛历</p>
+        <h2>后台</h2>
+        <p>赛事、用户、团练公里和积分礼品。</p>
+      </div>
+      <form class="gate-form" @submit.prevent="enter">
+        <label>
+          <span>用户名</span>
+          <input v-model="username" autocomplete="username" placeholder="用户名" />
+        </label>
+        <label>
+          <span>密码</span>
+          <input v-model="password" type="password" autocomplete="current-password" placeholder="密码" />
+        </label>
         <button class="primary" type="submit">进入</button>
+        <p v-if="message" class="err">{{ message }}</p>
       </form>
-      <p v-if="message" class="err">{{ message }}</p>
     </div>
     <template v-else>
       <p v-if="message" class="banner" :class="{ ok: saved }">{{ message }}</p>
@@ -1089,8 +1098,25 @@ a { color: #007aff; }
 .desk { display: flex; flex-direction: column; }
 .desk-side { order: 2; }
 .desk-official { order: 3; }
+.gate {
+  min-height: calc(100vh - 52px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 28px;
+  padding: 28px 20px 48px;
+}
+.gate-copy h2 { margin: 8px 0 0; font-size: 40px; font-weight: 700; letter-spacing: -1.1px; line-height: 1; }
+.gate-copy p { margin: 12px 0 0; color: var(--muted); font-size: 16px; line-height: 1.5; }
+.kicker { margin: 0; color: var(--accent); font-size: 13px; font-weight: 650; letter-spacing: 0.12em; }
+.gate-form { display: flex; flex-direction: column; gap: 14px; padding: 22px 20px; border-radius: 20px; background: #fff; box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06); }
+.gate-form label span { display: block; margin-bottom: 6px; color: var(--muted); font-size: 13px; font-weight: 600; }
+.gate-form input { width: 100%; height: 48px; border: 0; border-radius: 12px; background: var(--bg); padding: 0 14px; font-size: 17px; }
+.gate-form .primary { height: 48px; margin-top: 4px; border-radius: 12px; font-size: 17px; font-weight: 650; }
+.gate-form .err { margin: 0; }
 @media (min-width: 900px) {
-  .login { max-width: 420px; margin: 64px auto; }
+  .gate { min-height: calc(100vh - 100px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, 420px); align-items: center; gap: 64px; padding: 48px 64px 72px; }
+  .gate-copy h2 { font-size: 64px; letter-spacing: -1.8px; }
   .admin-shell { display: grid; grid-template-columns: 148px minmax(0, 1fr); align-items: start; }
   .admin-nav { flex-direction: column; margin: 16px 0 16px 16px; position: sticky; top: 16px; overflow: visible; }
   .admin-nav button { text-align: left; border-radius: 12px; }

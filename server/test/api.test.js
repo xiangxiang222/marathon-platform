@@ -605,6 +605,24 @@ test("admin signs in with a username and password", async () => {
   assert.equal(closed.status, 401);
 });
 
+test("admin/admin is written once and a later password change stays", async () => {
+  const { ensureDeskLogin } = require("../src/admin-auth");
+  const db = getDb();
+  assert.equal(ensureDeskLogin(db), true);
+  const first = await request(app).post("/marathon/api/admin/login").send({ username: "admin", password: "admin" });
+  assert.equal(first.status, 200);
+  const changed = await request(app)
+    .post("/marathon/api/admin/password")
+    .set("Authorization", "Bearer " + first.body.token)
+    .send({ current: "admin", next: "kept-pass-8" });
+  assert.equal(changed.status, 200);
+  assert.equal(ensureDeskLogin(db), false);
+  const reset = await request(app).post("/marathon/api/admin/login").send({ username: "admin", password: "admin" });
+  assert.equal(reset.status, 401);
+  const kept = await request(app).post("/marathon/api/admin/login").send({ username: "admin", password: "kept-pass-8" });
+  assert.equal(kept.status, 200);
+});
+
 test("today names who has not paid, and a plan can be removed", async () => {
   const guest = await request(app).get("/marathon/api/today");
   assert.equal(guest.status, 200);

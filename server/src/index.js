@@ -6,7 +6,7 @@ const { getDb } = require("./db");
 const { presentRace, summarizeMarks, cardTitle, shareText, reminderHits, fullConflicts, squadOf, nearbyOpen, alternativeNote, drawPoster } = require("./races");
 const { parseClock, decorateResults, careerOf, yearOf, bestRanks } = require("./career");
 const { syncOfficial, listOfficial, publishOfficial, openUpcoming, ignoreOfficial, applyOfficial } = require("./official");
-const { ensureAdmin, loginAdmin, adminSession, logoutAdmin, changeAdminPassword } = require("./admin-auth");
+const { ensureAdmin, ensureDeskLogin, loginAdmin, adminSession, logoutAdmin, changeAdminPassword } = require("./admin-auth");
 const { mountClubLife, enrichBoard, clubLife } = require("./club-life");
 const { mountRaceGuide, attachGuide } = require("./race-guide");
 const { mountAdminDesk } = require("./admin-desk");
@@ -757,6 +757,7 @@ if (require.main === module) {
   app.listen(port, () => {
     console.log(`marathon listening on ${port} base ${BASE}`);
     ensureAdmin(getDb());
+    ensureDeskLogin(getDb());
     const released = openUpcoming(getDb());
     console.log(`official released ${released}`);
     if (!process.env.ADMIN_TOKEN) return;
