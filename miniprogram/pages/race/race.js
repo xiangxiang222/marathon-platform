@@ -32,6 +32,7 @@ Page({
     story: "",
     resultMessage: "",
     guide: [],
+    routeSheets: [],
     pacerSheets: [],
     liveSheet: null,
     kindText: "",
@@ -98,6 +99,7 @@ Page({
           distanceOptions,
           resultMessage: "",
           guide: (race.guide || []).map((item) => ({ id: item.id, src: baseUrl + "/marathon/api/race-sheets/" + item.id })),
+          routeSheets: (race.routeSheets || []).map((item) => ({ id: item.id, src: baseUrl + "/marathon/api/race-sheets/" + item.id })),
           pacerSheets: (race.pacerSheets || []).map((item) => ({ id: item.id, src: baseUrl + "/marathon/api/race-sheets/" + item.id })),
           liveSheet: race.liveSheet ? { id: race.liveSheet.id, src: baseUrl + "/marathon/api/race-sheets/" + race.liveSheet.id } : null,
           kindText: (race.kindLabels || []).join(" / "),
@@ -127,7 +129,7 @@ Page({
   },
   previewGuide(e) {
     const current = e.currentTarget.dataset.src;
-    const urls = this.data.guide.map((item) => item.src).concat(this.data.pacerSheets.map((item) => item.src));
+    const urls = this.data.guide.map((item) => item.src).concat(this.data.routeSheets.map((item) => item.src), this.data.pacerSheets.map((item) => item.src));
     if (this.data.liveSheet) urls.push(this.data.liveSheet.src);
     wx.previewImage({ current, urls });
   },

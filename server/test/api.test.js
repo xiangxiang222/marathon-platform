@@ -977,8 +977,27 @@ test("a race missing from the official calendar can be added by hand", async () 
     .set(admin)
     .attach("file", jpeg, { filename: "x.jpg", contentType: "image/jpeg" });
   assert.equal(unknown.status, 400);
+  const routeMap = await request(app)
+    .post("/marathon/api/admin/races/" + created.body.id + "/sheets?kind=route")
+    .set(admin)
+    .attach("file", jpeg, { filename: "route.jpg", contentType: "image/jpeg" });
+  assert.equal(routeMap.status, 200);
+  assert.equal(routeMap.body.sheet.kind, "route");
+  for (let i = 0; i < 3; i += 1) {
+    const extra = await request(app)
+      .post("/marathon/api/admin/races/" + created.body.id + "/sheets?kind=route")
+      .set(admin)
+      .attach("file", jpeg, { filename: "route.jpg", contentType: "image/jpeg" });
+    assert.equal(extra.status, 200);
+  }
+  const tooMany = await request(app)
+    .post("/marathon/api/admin/races/" + created.body.id + "/sheets?kind=route")
+    .set(admin)
+    .attach("file", jpeg, { filename: "route.jpg", contentType: "image/jpeg" });
+  assert.equal(tooMany.status, 400);
   const withPhoto = await request(app).get("/marathon/api/races/" + created.body.id);
   assert.equal(withPhoto.body.race.pacerSheets.length, 1);
+  assert.equal(withPhoto.body.race.routeSheets.length, 4);
   assert.equal(withPhoto.body.race.guide.length, 0);
   const noted = await request(app).put("/marathon/api/admin/races/" + created.body.id + "/guide").set(admin).send({
     organizer: "沂水组委会",
