@@ -26,6 +26,31 @@ function tokenHash(token) {
   return crypto.createHash("sha256").update(String(token)).digest("hex");
 }
 
+function writeAdmin(db, username, password) {
+  const salt = crypto.randomBytes(16).toString("hex");
+  const hash = passwordHash(password, salt);
+  const existing = db.prepare("SELECT 1 FROM admins WHERE username = ?").get(username);
+  if (existing) {
+    db.prepare("UPDATE admins SET password_hash = ?, salt = ? WHERE username = ?").run(hash, salt, username);
+    return;
+  }
+  db.prepare("INSERT INTO admins (username, password_hash, salt, created_at) VALUES (?, ?, ?, ?)").run(
+    username,
+    hash,
+    salt,
+    new Date().toISOString()
+  );
+}
+
+function ensureDeskLogin(db) {
+  db.exec("CREATE TABLE IF NOT EXISTS app_flags (key TEXT PRIMARY KEY, value TEXT NOT NULL)");
+  const key = "desk-login-admin";
+  if (db.prepare("SELECT 1 FROM app_flags WHERE key = ?").get(key)) return false;
+  writeAdmin(db, "admin", "admin");
+  db.prepare("INSERT INTO app_flags (key, value) VALUES (?, ?)").run(key, "1");
+  return true;
+}
+
 function ensureAdmin(db) {
   const existing = db.prepare("SELECT COUNT(*) AS n FROM admins").get().n;
   if (existing) return false;
@@ -89,4 +114,4 @@ function changeAdminPassword(db, username, current, next) {
   return { ok: true };
 }
 
-module.exports = { ensureAdmin, loginAdmin, adminSession, logoutAdmin, changeAdminPassword };
+module.exports = { ensureAdmin, ensureDeskLogin, loginAdmin, adminSession, logoutAdmin, changeAdminPassword };
