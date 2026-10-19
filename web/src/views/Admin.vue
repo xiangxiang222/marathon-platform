@@ -360,9 +360,25 @@
                 <p v-if="!person.clubs.length" class="hint">还没进跑团。</p>
               </section>
               <section class="section">
-                <h3>标过的场</h3>
-                <div v-for="item in person.plans" :key="item.name + item.raceDate" class="fact"><b>{{ item.name }}</b><span>{{ item.raceDate }} · {{ item.status }}</span></div>
-                <p v-if="!person.plans.length" class="hint">还没标比赛。</p>
+                <h3>参赛状态</h3>
+                <p class="lead">可按状态、赛事名称或城市筛选。</p>
+                <div v-if="person.plans.length" class="plan-filters">
+                  <label>
+                    <span>状态</span>
+                    <select v-model="planStatus">
+                      <option value="">全部</option>
+                      <option v-for="item in planStatusOptions" :key="item.status" :value="item.status">{{ item.status }}（{{ item.count }}）</option>
+                    </select>
+                  </label>
+                  <label>
+                    <span>赛事</span>
+                    <input v-model="planQuery" placeholder="名称或城市" />
+                  </label>
+                </div>
+                <p v-if="shownPlans.length" class="hint">{{ shownPlans.length }} 条</p>
+                <div v-for="item in shownPlans" :key="item.name + item.raceDate + item.status" class="fact"><b>{{ item.name }}</b><span>{{ item.raceDate }}<template v-if="item.city"> · {{ item.city }}</template> · {{ item.status }}</span></div>
+                <p v-if="!person.plans.length" class="hint">该用户尚未标记参赛状态。</p>
+                <p v-else-if="!shownPlans.length" class="hint">没有符合条件的记录。</p>
               </section>
               <section class="section">
                 <h3>自己记的成绩</h3>
@@ -702,12 +718,32 @@ async function loadUsers() {
 
 const loginPass = ref("");
 const confirmDelete = ref(false);
+const planStatus = ref("");
+const planQuery = ref("");
+const planStatusOrder = ["想跑", "已报名", "待抽签", "中签", "未中签", "已缴费", "已领物", "完赛", "未完赛", "弃赛"];
+const planStatusOptions = computed(() => {
+  const counts = {};
+  for (const item of person.value?.plans || []) counts[item.status] = (counts[item.status] || 0) + 1;
+  const known = planStatusOrder.filter((status) => counts[status]);
+  const extra = Object.keys(counts).filter((status) => !planStatusOrder.includes(status));
+  return [...known, ...extra].map((status) => ({ status, count: counts[status] }));
+});
+const shownPlans = computed(() => {
+  const query = planQuery.value.trim();
+  return (person.value?.plans || []).filter((item) => {
+    if (planStatus.value && item.status !== planStatus.value) return false;
+    if (!query) return true;
+    return item.name.includes(query) || (item.city || "").includes(query);
+  });
+});
 
 async function openUser(id) {
   message.value = "";
   saved.value = false;
   loginPass.value = "";
   confirmDelete.value = false;
+  planStatus.value = "";
+  planQuery.value = "";
   try {
     person.value = await admin("/admin/users/" + id);
   } catch (err) {
@@ -1550,6 +1586,10 @@ a { color: #007aff; }
 .roles button.on i { background: var(--accent); box-shadow: none; position: relative; }
 .role-note { margin: 0; padding: 4px 0 14px; color: var(--muted); font-size: 12px; line-height: 1.45; }
 .roles button.on i::after { content: ""; position: absolute; left: 7px; top: 4px; width: 5px; height: 9px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); }
+.plan-filters { display: flex; gap: 8px; margin-top: 12px; }
+.plan-filters label { flex: 1; min-width: 120px; display: flex; flex-direction: column; gap: 6px; }
+.plan-filters span { font-size: 12px; color: var(--muted); font-weight: 600; }
+.plan-filters select, .plan-filters input { width: 100%; height: 36px; border: 0; border-radius: 10px; padding: 0 10px; background: #fff; box-shadow: inset 0 0 0 1px var(--line); font: inherit; }
 .fact { display: flex; flex-direction: column; align-items: flex-start; gap: 3px; margin-top: 8px; padding: 12px 14px; border-radius: 12px; background: #fff; }
 .fact b { font-size: 15px; font-weight: 650; line-height: 1.35; }
 .fact span { color: var(--muted); font-size: 13px; }
