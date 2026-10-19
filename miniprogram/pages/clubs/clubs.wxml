@@ -10,9 +10,12 @@
   <block wx:else>
     <view class="card">
       <view class="h2">建一个团</view>
-      <view class="field">
+      <view wx:if="{{leader}}" class="muted">只有团长能提交。通过后你是团长，可以在这里管理成员、活动和组别。</view>
+      <view wx:else class="muted">只有团长可以建团。请跑团管理员先把你设为团长。</view>
+      <view wx:if="{{leader && application}}" class="foot"><text>{{application.name}}</text><text>等待审核</text></view>
+      <view wx:elif="{{leader}}" class="field">
         <input placeholder="跑团名称" value="{{name}}" bindinput="onName" />
-        <button class="btn" bindtap="create">创建</button>
+        <button class="btn" bindtap="create">提交</button>
       </view>
     </view>
     <view class="card">

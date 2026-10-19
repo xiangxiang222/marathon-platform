@@ -35,7 +35,9 @@ function userFrom(req) {
   const header = req.get("authorization") || "";
   const token = header.replace(/^Bearer\s+/i, "");
   if (!token || token === header) return null;
-  return getDb().prepare("SELECT id, nickname FROM users WHERE token = ?").get(token) || null;
+  const row = getDb().prepare("SELECT id, nickname, leader FROM users WHERE token = ?").get(token);
+  if (!row) return null;
+  return { id: row.id, nickname: row.nickname, leader: Boolean(row.leader) };
 }
 
 function marksOf(clubId, raceId) {
@@ -403,8 +405,13 @@ app.get(BASE + "/api/me", (req, res) => {
     .all(user.id);
   const reminders = remindable().filter((item) => plans.some((plan) => plan.race.id === item.race.id));
   const results = resultsFor(user.id);
+  const applications = getDb()
+    .prepare("SELECT id, name, status FROM club_applications WHERE user_id = ? AND status = 'pending' ORDER BY id DESC")
+    .all(user.id)
+    .map((row) => ({ id: row.id, name: row.name, status: row.status }));
   res.json({
-    user,
+    user: { id: user.id, nickname: user.nickname, leader: Boolean(user.leader) },
+    applications,
     plans,
     clubs,
     reminders,
@@ -489,14 +496,28 @@ app.delete(BASE + "/api/me/races/:id/result", (req, res) => {
 app.post(BASE + "/api/clubs", (req, res) => {
   const user = requireUser(req, res);
   if (!user) return;
+  if (!user.leader) return res.status(403).json({ error: "只有团长可以建团" });
   const name = String((req.body && req.body.name) || "").trim();
   if (!name || name.length > 20) return res.status(400).json({ error: "跑团名用 1 到 20 个字" });
-  const code = crypto.randomBytes(3).toString("hex").toUpperCase();
-  const now = new Date().toISOString();
-  const info = getDb().prepare("INSERT INTO clubs (name, code, owner_id, created_at) VALUES (?, ?, ?, ?)").run(name, code, user.id, now);
-  const id = Number(info.lastInsertRowid);
-  getDb().prepare("INSERT INTO club_members (club_id, user_id, joined_at, role) VALUES (?, ?, ?, 'owner')").run(id, user.id, now);
-  res.json({ club: { id, name, code } });
+  const db = getDb();
+  const pending = db.prepare("SELECT id, name, status FROM club_applications WHERE user_id = ? AND status = 'pending'").get(user.id);
+  if (pending) {
+    if (pending.name === name) return res.json({ pending: true, application: { id: pending.id, name: pending.name, status: pending.status } });
+    return res.status(400).json({ error: "先等上一个团审完" });
+  }
+  let id = 0;
+  try {
+    const info = db
+      .prepare("INSERT INTO club_applications (user_id, name, status, created_at) VALUES (?, ?, 'pending', ?)")
+      .run(user.id, name, new Date().toISOString());
+    id = Number(info.lastInsertRowid);
+  } catch (err) {
+    if (!/UNIQUE/i.test(String(err.message))) throw err;
+    const again = db.prepare("SELECT id, name, status FROM club_applications WHERE user_id = ? AND status = 'pending'").get(user.id);
+    if (!again) throw err;
+    return res.json({ pending: true, application: { id: again.id, name: again.name, status: again.status } });
+  }
+  res.json({ pending: true, application: { id, name, status: "pending" } });
 });
 
 function joinByCode(db, club, userId) {

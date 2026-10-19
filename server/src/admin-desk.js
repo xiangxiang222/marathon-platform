@@ -1,6 +1,6 @@
 const { DISTANCE_LABEL } = require("./races");
 const { formatClock } = require("./career");
-const { clubRoleLabel, setMemberRole, decideRequest, listPending } = require("./roles");
+const { clubRoleLabel, setMemberRole, decideRequest, listPending, listClubApplications, decideClubApplication } = require("./roles");
 
 function when(value) {
   return String(value || "").slice(0, 16).replace("T", " ");
@@ -30,7 +30,7 @@ function listUsers(db, q) {
 }
 
 function userDesk(db, id) {
-  const user = db.prepare("SELECT id, nickname, created_at FROM users WHERE id = ?").get(id);
+  const user = db.prepare("SELECT id, nickname, created_at, leader FROM users WHERE id = ?").get(id);
   if (!user) return null;
   const clubs = db
     .prepare(
@@ -70,7 +70,7 @@ function userDesk(db, id) {
     )
     .all(user.id);
   return {
-    user: { id: user.id, nickname: user.nickname, createdAt: when(user.created_at) },
+    user: { id: user.id, nickname: user.nickname, createdAt: when(user.created_at), leader: Boolean(user.leader) },
     clubs: clubs.map((row) => {
       const role = row.owner_id === user.id ? "owner" : row.role === "manager" ? "manager" : "member";
       return { id: row.id, name: row.name, owner: role === "owner", role, roleLabel: clubRoleLabel(role) };
@@ -168,6 +168,30 @@ function mountAdminDesk(app, { BASE, getDb, requireAdmin }) {
     const result = setMemberRole(getDb(), clubId, id, String((req.body && req.body.role) || ""));
     if (result.error) return res.status(result.status).json({ error: result.error });
     res.json({ ok: true });
+  });
+
+  app.put(BASE + "/api/admin/users/:id/leader", (req, res) => {
+    if (!desk(req, res)) return;
+    const id = Number(req.params.id);
+    if (!Number.isInteger(id) || id < 1) return res.status(404).json({ error: "没有这个人" });
+    const leader = req.body && req.body.leader;
+    if (typeof leader !== "boolean") return res.status(400).json({ error: "选择是不是团长" });
+    const updated = getDb().prepare("UPDATE users SET leader = ? WHERE id = ?").run(leader ? 1 : 0, id);
+    if (!updated.changes) return res.status(404).json({ error: "没有这个人" });
+    res.json({ ok: true, leader });
+  });
+
+  app.get(BASE + "/api/admin/club-applications", (req, res) => {
+    if (!desk(req, res)) return;
+    res.json({ applications: listClubApplications(getDb()) });
+  });
+
+  app.post(BASE + "/api/admin/club-applications/:id", (req, res) => {
+    if (!desk(req, res)) return;
+    const reviewer = req.adminUser ? "后台·" + req.adminUser : "后台";
+    const result = decideClubApplication(getDb(), req.params.id, String((req.body && req.body.decision) || ""), reviewer);
+    if (result.error) return res.status(result.status).json({ error: result.error });
+    res.json(result);
   });
 
   app.get(BASE + "/api/admin/club-requests", (req, res) => {

@@ -1,3 +1,5 @@
+const crypto = require("crypto");
+
 const CLUB_ROLES = [
   { id: "owner", label: "团长" },
   { id: "manager", label: "跑团管理" },
@@ -101,6 +103,59 @@ function listPending(db, clubId) {
     }));
 }
 
+function listClubApplications(db) {
+  return db
+    .prepare(
+      `SELECT a.id, a.name, a.created_at, a.user_id, u.nickname
+       FROM club_applications a
+       JOIN users u ON u.id = a.user_id
+       WHERE a.status = 'pending'
+       ORDER BY a.id DESC
+       LIMIT 200`
+    )
+    .all()
+    .map((row) => ({
+      id: row.id,
+      name: row.name,
+      nickname: row.nickname,
+      userId: row.user_id,
+      at: String(row.created_at).slice(0, 16).replace("T", " ")
+    }));
+}
+
+function decideClubApplication(db, applicationId, decision, reviewer) {
+  const id = Number(applicationId);
+  if (!Number.isInteger(id) || id < 1) return { error: "没有这条申请", status: 404 };
+  if (decision !== "approve" && decision !== "reject") return { error: "选择通过或拒绝", status: 400 };
+  const row = db.prepare("SELECT * FROM club_applications WHERE id = ?").get(id);
+  if (!row) return { error: "没有这条申请", status: 404 };
+  if (row.status !== "pending") return { error: "这条已经处理过", status: 400 };
+  const now = new Date().toISOString();
+  const who = String(reviewer || "").slice(0, 40);
+  if (decision === "reject") {
+    const updated = db
+      .prepare("UPDATE club_applications SET status = 'rejected', reviewed_at = ?, reviewer = ? WHERE id = ? AND status = 'pending'")
+      .run(now, who, id);
+    if (!updated.changes) return { error: "这条已经处理过", status: 400 };
+    return { ok: true };
+  }
+  const code = crypto.randomBytes(3).toString("hex").toUpperCase();
+  const club = db.transaction(() => {
+    const updated = db
+      .prepare("UPDATE club_applications SET status = 'approved', reviewed_at = ?, reviewer = ? WHERE id = ? AND status = 'pending'")
+      .run(now, who, id);
+    if (!updated.changes) return null;
+    const info = db.prepare("INSERT INTO clubs (name, code, owner_id, created_at) VALUES (?, ?, ?, ?)").run(row.name, code, row.user_id, now);
+    const clubId = Number(info.lastInsertRowid);
+    db.prepare("INSERT INTO club_members (club_id, user_id, joined_at, role) VALUES (?, ?, ?, 'owner')").run(clubId, row.user_id, now);
+    db.prepare("UPDATE club_applications SET club_id = ? WHERE id = ?").run(clubId, id);
+    db.prepare("UPDATE users SET leader = 1 WHERE id = ?").run(row.user_id);
+    return { id: clubId, name: row.name, code };
+  })();
+  if (!club) return { error: "这条已经处理过", status: 400 };
+  return { ok: true, club };
+}
+
 module.exports = {
   CLUB_ROLES,
   ADMIN_ROLES,
@@ -109,5 +164,7 @@ module.exports = {
   memberRole,
   setMemberRole,
   decideRequest,
-  listPending
+  listPending,
+  listClubApplications,
+  decideClubApplication
 };
