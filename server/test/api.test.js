@@ -1337,4 +1337,11 @@ test("a club can be found by its name, its leader, or a manager", async () => {
   assert.equal(wild.body.clubs.some((item) => item.id === clubId), false);
   const missing = await request(app).get("/marathon/api/clubs/directory?q=" + encodeURIComponent("没有这个团")).set(eyes);
   assert.equal(missing.body.clubs.length, 0);
+
+  const head = await createClub(leader, "中青跑团");
+  await createClub(leader, "北京中青");
+  const typed = await request(app).get("/marathon/api/clubs/directory?q=" + encodeURIComponent("中")).set(eyes);
+  const names = typed.body.clubs.map((item) => item.name).filter((name) => name === "中青跑团" || name === "北京中青");
+  assert.deepEqual(names, ["中青跑团", "北京中青"]);
+  assert.equal(typed.body.clubs.find((item) => item.id === head.body.club.id).code, undefined);
 });

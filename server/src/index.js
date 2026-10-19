@@ -536,7 +536,9 @@ app.get(BASE + "/api/clubs/directory", (req, res) => {
   const user = requireUser(req, res);
   if (!user) return;
   const q = String(req.query.q || "").trim().slice(0, 40);
-  const like = "%" + q.replace(/[\\%_]/g, (ch) => "\\" + ch) + "%";
+  const escaped = q.replace(/[\\%_]/g, (ch) => "\\" + ch);
+  const like = "%" + escaped + "%";
+  const prefix = escaped + "%";
   const clubs = getDb()
     .prepare(
       `SELECT c.id, c.name,
@@ -555,10 +557,17 @@ app.get(BASE + "/api/clubs/directory", (req, res) => {
             JOIN users u ON u.id = m.user_id
             WHERE m.club_id = c.id AND m.role = 'manager' AND m.user_id != c.owner_id AND u.nickname LIKE ? ESCAPE '\\'
           )
-       ORDER BY c.id DESC
+       ORDER BY
+         CASE
+           WHEN ? = '' THEN 0
+           WHEN c.name LIKE ? ESCAPE '\\' THEN 0
+           WHEN c.name LIKE ? ESCAPE '\\' THEN 1
+           ELSE 2
+         END,
+         c.id DESC
        LIMIT 200`
     )
-    .all(user.id, user.id, q, like, like, like)
+    .all(user.id, user.id, q, like, like, like, q, prefix, like)
     .map((row) => ({
       id: row.id,
       name: row.name,
