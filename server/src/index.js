@@ -528,7 +528,7 @@ app.delete(BASE + "/api/me/races/:id/result", (req, res) => {
 app.post(BASE + "/api/clubs", (req, res) => {
   const user = requireUser(req, res);
   if (!user) return;
-  if (!user.leader) return res.status(403).json({ error: "只有团长可以建团" });
+  if (!user.leader) return res.status(403).json({ error: "当前没有建团资格，无法申请创建跑团" });
   const name = String((req.body && req.body.name) || "").trim();
   if (!name || name.length > 20) return res.status(400).json({ error: "跑团名用 1 到 20 个字" });
   const db = getDb();

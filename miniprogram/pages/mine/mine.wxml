@@ -2,7 +2,7 @@
   <view class="card">
     <block wx:if="{{nickname}}">
       <view class="title">{{nickname}}</view>
-      <view wx:if="{{leader}}" class="teal">团长</view>
+      <view wx:if="{{leader}}" class="teal">建团资格</view>
       <navigator wx:for="{{clubs}}" wx:key="id" url="/pages/club/club?id={{item.id}}">{{item.name}} · {{item.roleLabel}}</navigator>
       <view class="quit" bindtap="logout">退出</view>
     </block>
