@@ -42,6 +42,7 @@
           <p>{{ sectionLead }}</p>
         </div>
         <button v-if="section === 'races'" type="button" class="primary head-add" @click="startDraft">添加一场</button>
+        <button v-if="section === 'users'" type="button" class="primary head-add" @click="startUser">添加用户</button>
       </header>
       <div v-show="section === 'races'" class="desk" :class="{ editing: !!book, dragging }" :style="splitStyle">
       <div class="desk-main">
@@ -299,7 +300,7 @@
       </div>
       </aside>
       </div>
-      <div v-if="section === 'users'" class="desk" :class="{ editing: !!person, dragging }" :style="splitStyle">
+      <div v-if="section === 'users'" class="desk" :class="{ editing: !!(person || adding), dragging }" :style="splitStyle">
         <div class="desk-main">
           <div class="block">
             <form class="check-form inline-form" @submit.prevent="loadUsers">
@@ -327,9 +328,22 @@
             <p v-if="usersReady && !users.length" class="empty">没有这个昵称。</p>
           </div>
         </div>
-        <div v-if="person" class="splitter" role="separator" aria-orientation="vertical" aria-label="拖动调整左右宽度" :aria-valuenow="Math.round(split)" aria-valuemin="22" aria-valuemax="70" tabindex="0" @pointerdown="startSplit" @keydown="nudgeSplit"></div>
-        <aside v-if="person" class="desk-side">
-          <div class="block person">
+        <div v-if="person || adding" class="splitter" role="separator" aria-orientation="vertical" aria-label="拖动调整左右宽度" :aria-valuenow="Math.round(split)" aria-valuemin="22" aria-valuemax="70" tabindex="0" @pointerdown="startSplit" @keydown="nudgeSplit"></div>
+        <aside v-if="adding || person" class="desk-side">
+          <div v-if="adding" class="block person">
+            <p class="edit-kicker">添加用户</p>
+            <h2>新账号</h2>
+            <p class="lead">填写昵称和登录密码。创建后，该用户可使用此昵称与密码登录。不收集手机号，也不收集身份证。</p>
+            <form class="user-form" @submit.prevent="createPerson">
+              <label class="field"><span>昵称</span><input v-model="newName" maxlength="20" autocomplete="off" placeholder="1–20 个字" /></label>
+              <label class="field"><span>登录密码</span><input v-model="newPass" type="password" autocomplete="new-password" placeholder="8–128 位" /></label>
+              <div class="form-actions">
+                <button class="save" type="submit">创建</button>
+                <button class="text-btn" type="button" @click="cancelUser">取消</button>
+              </div>
+            </form>
+          </div>
+          <div v-else class="block person">
             <template v-if="person">
               <div class="person-head">
                 <div class="person-face" aria-hidden="true">{{ person.user.nickname.slice(0, 1) }}</div>
@@ -542,6 +556,9 @@ const userQuery = ref("");
 const person = ref(null);
 const personMode = ref("view");
 const pendingDelete = ref(0);
+const adding = ref(false);
+const newName = ref("");
+const newPass = ref("");
 const runs = ref([]);
 const runsReady = ref(false);
 const gifts = ref([]);
@@ -569,7 +586,7 @@ const splitStyle = computed(() => ({ "--split": split.value + "%" }));
 const sectionLabel = computed(() => deskSections.value.find((item) => item.id === section.value)?.label || "后台");
 const sectionLead = computed(() => ({
   races: "已经收进赛历的场。自动拉取还在，删掉的场不会马上加回来。",
-  users: "点开一行查看参赛状态、跑团和成绩。编辑用于建团资格、登录密码和跑团角色。删除在列表中确认。关闭建团资格不影响其已担任的团长。不收集手机号，也不收集身份证。",
+  users: "可添加用户，填写昵称和登录密码后即可登录。点开一行查看参赛状态、跑团和成绩。编辑用于建团资格、登录密码和跑团角色。删除在列表中确认。关闭建团资格不影响其已担任的团长。不收集手机号，也不收集身份证。",
   joins: "建团和没口令的入团都在这里审。通过建团后，申请人成为该团团长。",
   runs: "团练里自己报的公里。还没接手表，每天到没到不记在这里。",
   shop: "商城还没接，不收款、不发货。现在看的是各跑团的积分礼品。",
@@ -775,9 +792,53 @@ const shownPlans = computed(() => {
   });
 });
 
+function startUser() {
+  message.value = "";
+  saved.value = false;
+  person.value = null;
+  pendingDelete.value = 0;
+  newName.value = "";
+  newPass.value = "";
+  adding.value = true;
+}
+
+function cancelUser() {
+  adding.value = false;
+  newName.value = "";
+  newPass.value = "";
+}
+
+async function createPerson() {
+  const nickname = newName.value.trim();
+  const password = newPass.value;
+  message.value = "";
+  saved.value = false;
+  if (!nickname || nickname.length > 20) {
+    fail(new Error("昵称须为 1 到 20 个字"));
+    return;
+  }
+  if (password.length < 8 || password.length > 128) {
+    fail(new Error("密码须为 8 到 128 位"));
+    return;
+  }
+  try {
+    const created = await admin("/admin/users", { method: "POST", body: JSON.stringify({ nickname, password }) });
+    adding.value = false;
+    newName.value = "";
+    newPass.value = "";
+    await loadUsers();
+    await openUser(created.id, "view");
+    saved.value = true;
+    message.value = "账号已创建";
+  } catch (err) {
+    fail(err);
+  }
+}
+
 async function openUser(id, mode) {
   message.value = "";
   saved.value = false;
+  adding.value = false;
   personMode.value = mode === "edit" ? "edit" : "view";
   pendingDelete.value = 0;
   if (person.value && person.value.user.id === id) return;
@@ -1602,6 +1663,11 @@ if (token.value) {
 .pass-form span { font-size: 12px; color: var(--muted); font-weight: 600; }
 .pass-form input { width: 100%; height: 40px; border: 0; border-radius: 10px; padding: 0 12px; background: #fff; box-shadow: inset 0 0 0 1px var(--line); font: inherit; }
 .pass-form .save { flex: none; height: 40px; padding: 0 18px; border-radius: 10px; background: var(--accent); color: #fff; font-weight: 650; }
+.user-form { display: flex; flex-direction: column; gap: 14px; margin-top: 16px; }
+.user-form .field input { flex: none; width: 100%; height: 48px; min-height: 48px; padding: 0 16px; border: 0; border-radius: 12px; background: #fff; box-shadow: inset 0 0 0 1px var(--line); font-size: 15px; line-height: 48px; }
+.user-form h2, .person > h2 { margin: 4px 0 0; font-size: 22px; }
+.form-actions { display: flex; align-items: center; gap: 12px; }
+.form-actions .save { height: 40px; padding: 0 18px; border-radius: 10px; background: var(--accent); color: #fff; font-weight: 650; }
 .danger-quiet { margin-top: 12px; height: 36px; padding: 0 14px; border-radius: 10px; background: #fff; color: var(--red); font-weight: 650; box-shadow: inset 0 0 0 1px rgba(255, 59, 48, 0.35); }
 .confirm-box { margin-top: 10px; }
 .danger { height: 36px; margin-top: 8px; padding: 0 14px; border-radius: 10px; background: #ff3b30; color: #fff; font-weight: 650; }
