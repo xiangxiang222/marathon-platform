@@ -78,7 +78,7 @@
     <view class="h2">我这场</view>
     <view wx:if="{{!ready}}" class="nick">
       <view class="muted">先到「我的」登录，再标状态。标完同团的人能看见。</view>
-      <navigator class="go" open-type="switchTab" url="/pages/mine/mine">去登录</navigator>
+      <navigator class="login-go" open-type="switchTab" url="/pages/mine/mine">去登录</navigator>
     </view>
     <view wx:else>
       <button wx:for="{{statuses}}" wx:key="*this" class="ghost {{myStatus === item ? 'on' : ''}}" data-status="{{item}}" bindtap="mark">{{item}}</button>
