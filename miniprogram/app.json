@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/races/races",
+    "pages/sport/sport",
     "pages/calendar/calendar",
     "pages/clubs/clubs",
     "pages/mine/mine",
@@ -21,9 +22,15 @@
     "list": [
       {
         "pagePath": "pages/races/races",
-        "text": "赛历",
+        "text": "首页",
         "iconPath": "images/races.png",
         "selectedIconPath": "images/races-on.png"
+      },
+      {
+        "pagePath": "pages/sport/sport",
+        "text": "运动",
+        "iconPath": "images/sport.png",
+        "selectedIconPath": "images/sport-on.png"
       },
       {
         "pagePath": "pages/clubs/clubs",
