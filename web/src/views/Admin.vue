@@ -324,19 +324,25 @@
               </section>
               <section class="section">
                 <h3>登录密码</h3>
-                <p class="lead">{{ person.user.hasPassword ? "已经可以登录。再保存会换成新密码。" : "还不能登录。设一个密码后，用这个昵称和密码就能回到这个人。" }}</p>
-                <form class="check-form" @submit.prevent="setLoginPassword">
-                  <input v-model="loginPass" type="password" autocomplete="new-password" placeholder="新密码，至少 8 位" />
-                  <button class="primary" type="submit">保存密码</button>
+                <p class="lead">{{ person.user.hasPassword ? "该账号已设置登录密码。保存后将替换为新密码。" : "该账号尚未设置登录密码。设置后，可使用此昵称与密码登录。" }}</p>
+                <form class="pass-form" @submit.prevent="setLoginPassword">
+                  <label>
+                    <span>新密码</span>
+                    <input v-model="loginPass" type="password" autocomplete="new-password" placeholder="8–128 位" />
+                  </label>
+                  <button class="save" type="submit">保存</button>
                 </form>
               </section>
               <section class="section">
-                <h3>删除</h3>
-                <p class="lead">删掉之后，这个昵称可以重新注册。他还是某个团的团长时删不掉，要先把团长交给别人。</p>
-                <button v-if="!confirmDelete" class="danger" type="button" @click="confirmDelete = true">删除这个人</button>
-                <div v-else class="confirm-row">
-                  <button class="danger" type="button" @click="removeUser">确认删除</button>
-                  <button class="undo" type="button" @click="confirmDelete = false">取消</button>
+                <h3>删除账号</h3>
+                <p class="lead">删除后，该昵称可重新注册，相关个人记录将一并清除。若该用户仍担任跑团团长，须先完成团长移交。</p>
+                <button v-if="!confirmDelete" class="danger-quiet" type="button" @click="confirmDelete = true">删除账号</button>
+                <div v-else class="confirm-box">
+                  <p class="lead">确认删除该账号？此操作不可恢复。</p>
+                  <div class="confirm-row">
+                    <button class="danger" type="button" @click="removeUser">确认删除</button>
+                    <button class="undo" type="button" @click="confirmDelete = false">取消</button>
+                  </div>
                 </div>
               </section>
               <section class="section">
@@ -515,7 +521,7 @@ const splitStyle = computed(() => ({ "--split": split.value + "%" }));
 const sectionLabel = computed(() => deskSections.value.find((item) => item.id === section.value)?.label || "后台");
 const sectionLead = computed(() => ({
   races: "已经收进赛历的场。自动拉取还在，删掉的场不会马上加回来。",
-  users: "点开一个人可以设登录密码，也可以删除。昵称冲突时，删掉多余的那一个。不收集手机号，也不收集身份证。",
+  users: "可为用户设置登录密码，或删除账号。昵称冲突时，删除多余账号即可。不收集手机号，也不收集身份证。",
   joins: "建团和没口令的入团都在这里审。通过建团后，申请人是团长。",
   runs: "团练里自己报的公里。还没接手表，每天到没到不记在这里。",
   shop: "商城还没接，不收款、不发货。现在看的是各跑团的积分礼品。",
@@ -722,7 +728,7 @@ async function setLoginPassword() {
     person.value = await admin("/admin/users/" + person.value.user.id);
     await loadUsers();
     saved.value = true;
-    message.value = "登录密码已设好，用这个昵称和密码就能登录";
+    message.value = "登录密码已更新";
   } catch (err) {
     fail(err);
   }
@@ -768,7 +774,7 @@ async function removeUser() {
     confirmDelete.value = false;
     await loadUsers();
     saved.value = true;
-    message.value = "已删除";
+    message.value = "账号已删除";
   } catch (err) {
     fail(err);
   }
@@ -1486,7 +1492,14 @@ if (token.value) {
 .editor-actions .primary, .editor-actions .undo { margin-top: 0; }
 .primary { margin-top: 8px; }
 .undo { margin-top: 8px; height: 32px; padding: 0 12px; background: transparent; color: #8d949c; }
-.danger { height: 40px; margin-top: 8px; padding: 0 16px; border-radius: 12px; background: #ff3b30; color: #fff; font-weight: 650; }
+.pass-form { display: flex; align-items: flex-end; gap: 8px; margin-top: 12px; }
+.pass-form label { flex: 1; min-width: 160px; display: flex; flex-direction: column; gap: 6px; }
+.pass-form span { font-size: 12px; color: var(--muted); font-weight: 600; }
+.pass-form input { width: 100%; height: 40px; border: 0; border-radius: 10px; padding: 0 12px; background: #fff; box-shadow: inset 0 0 0 1px var(--line); font: inherit; }
+.pass-form .save { flex: none; height: 40px; padding: 0 18px; border-radius: 10px; background: var(--accent); color: #fff; font-weight: 650; }
+.danger-quiet { margin-top: 12px; height: 36px; padding: 0 14px; border-radius: 10px; background: #fff; color: var(--red); font-weight: 650; box-shadow: inset 0 0 0 1px rgba(255, 59, 48, 0.35); }
+.confirm-box { margin-top: 10px; }
+.danger { height: 36px; margin-top: 8px; padding: 0 14px; border-radius: 10px; background: #ff3b30; color: #fff; font-weight: 650; }
 .confirm-row { display: flex; gap: 10px; align-items: center; }
 .confirm-row .danger, .confirm-row .undo { margin-top: 8px; }
 .statuses { margin-top: 8px; }
