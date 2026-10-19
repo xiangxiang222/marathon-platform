@@ -1,7 +1,45 @@
+const fs = require("fs");
+const path = require("path");
 const { DISTANCE_LABEL } = require("./races");
 const { formatClock } = require("./career");
 const { clubRoleLabel, setMemberRole, decideRequest, listPending, listClubApplications, decideClubApplication } = require("./roles");
 const { setUserPassword } = require("./user-auth");
+
+function mediaRoot() {
+  return process.env.MARATHON_MEDIA || path.join(__dirname, "../data/media");
+}
+
+function deleteUser(db, id) {
+  const row = db.prepare("SELECT id FROM users WHERE id = ?").get(id);
+  if (!row) return { error: "没有这个人", status: 404 };
+  const owned = db.prepare("SELECT name FROM clubs WHERE owner_id = ? LIMIT 1").get(id);
+  if (owned) return { error: "这个人还是「" + owned.name + "」的团长，先把团长交给别人再删除", status: 400 };
+  const files = db.prepare("SELECT filename, activity_id FROM activity_media WHERE user_id = ?").all(id);
+  db.transaction(() => {
+    for (const table of [
+      "plans",
+      "results",
+      "club_members",
+      "checkins",
+      "activity_signups",
+      "activity_checks",
+      "point_entries",
+      "redemptions",
+      "activity_media",
+      "club_requests",
+      "club_applications"
+    ]) {
+      db.prepare("DELETE FROM " + table + " WHERE user_id = ?").run(id);
+    }
+    db.prepare("DELETE FROM users WHERE id = ?").run(id);
+  })();
+  for (const file of files) {
+    if (!file.filename) continue;
+    const full = path.join(mediaRoot(), String(file.activity_id), file.filename);
+    if (fs.existsSync(full)) fs.unlinkSync(full);
+  }
+  return { ok: true };
+}
 
 function when(value) {
   return String(value || "").slice(0, 16).replace("T", " ");
@@ -182,6 +220,15 @@ function mountAdminDesk(app, { BASE, getDb, requireAdmin }) {
     const clubId = Number(req.params.clubId);
     if (!Number.isInteger(id) || id < 1 || !Number.isInteger(clubId) || clubId < 1) return res.status(404).json({ error: "没有这个人" });
     const result = setMemberRole(getDb(), clubId, id, String((req.body && req.body.role) || ""));
+    if (result.error) return res.status(result.status).json({ error: result.error });
+    res.json({ ok: true });
+  });
+
+  app.delete(BASE + "/api/admin/users/:id", (req, res) => {
+    if (!desk(req, res)) return;
+    const id = Number(req.params.id);
+    if (!Number.isInteger(id) || id < 1) return res.status(404).json({ error: "没有这个人" });
+    const result = deleteUser(getDb(), id);
     if (result.error) return res.status(result.status).json({ error: result.error });
     res.json({ ok: true });
   });

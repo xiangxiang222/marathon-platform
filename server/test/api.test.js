@@ -1421,6 +1421,7 @@ test("a nickname with a password logs back into the same person", async () => {
   await session("重名乙");
   const clash = await request(app).post("/marathon/api/auth/register").send({ nickname: "重名乙", password: "password-8" });
   assert.equal(clash.status, 400);
+  assert.equal(clash.body.error, "这个昵称有冲突，换一个");
   const open = await captchaCode();
   const unset = await request(app).post("/marathon/api/auth/login").send({
     nickname: "重名乙",
@@ -1429,7 +1430,7 @@ test("a nickname with a password logs back into the same person", async () => {
     captcha: open.code
   });
   assert.equal(unset.status, 400);
-  assert.match(unset.body.error, /还没设密码/);
+  assert.equal(unset.body.error, "这个昵称有冲突，换一个");
 
   const listed = await request(app).get("/marathon/api/admin/users?q=" + encodeURIComponent("重名乙")).set(admin);
   assert.equal(listed.body.users.length, 2);
@@ -1460,7 +1461,7 @@ test("a nickname with a password logs back into the same person", async () => {
     captcha: both.code
   });
   assert.equal(ambiguous.status, 400);
-  assert.match(ambiguous.body.error, /多个账号/);
+  assert.equal(ambiguous.body.error, "这个昵称有冲突");
 
   const changed = await request(app)
     .put("/marathon/api/me/password")
@@ -1483,4 +1484,38 @@ test("a nickname with a password logs back into the same person", async () => {
     captcha: next.code
   });
   assert.equal(updated.body.user.id, target);
+});
+
+test("an admin can delete a duplicate nickname but not a club owner", async () => {
+  process.env.ADMIN_TOKEN = "test-admin";
+  const admin = { Authorization: "Bearer test-admin" };
+  const first = await session("删重名");
+  const second = await session("删重名");
+  const blocked = await request(app).post("/marathon/api/auth/register").send({ nickname: "删重名", password: "password-8" });
+  assert.equal(blocked.status, 400);
+  assert.equal(blocked.body.error, "这个昵称有冲突，换一个");
+
+  const listed = await request(app).get("/marathon/api/admin/users?q=" + encodeURIComponent("删重名")).set(admin);
+  const ids = listed.body.users.map((item) => item.id);
+  assert.equal(ids.length, 2);
+  const me = await request(app).get("/marathon/api/me").set("Authorization", "Bearer " + second);
+  const drop = await request(app).delete("/marathon/api/admin/users/" + me.body.user.id).set(admin);
+  assert.equal(drop.status, 200);
+  assert.equal((await request(app).get("/marathon/api/me").set("Authorization", "Bearer " + second)).status, 401);
+
+  const kept = await request(app).get("/marathon/api/me").set("Authorization", "Bearer " + first);
+  assert.equal(kept.status, 200);
+  const claimed = await request(app).post("/marathon/api/auth/register").send({ nickname: "删重名", password: "password-8" });
+  assert.equal(claimed.status, 200);
+  assert.equal(claimed.body.user.id, kept.body.user.id);
+
+  const owner = await session("删不掉的团长");
+  const club = await createClub(owner, "不能删的团");
+  const ownerMe = await request(app).get("/marathon/api/me").set("Authorization", "Bearer " + owner);
+  const refused = await request(app).delete("/marathon/api/admin/users/" + ownerMe.body.user.id).set(admin);
+  assert.equal(refused.status, 400);
+  assert.match(refused.body.error, /团长/);
+  const still = await request(app).get("/marathon/api/admin/users/" + ownerMe.body.user.id).set(admin);
+  assert.equal(still.status, 200);
+  assert.equal(still.body.clubs[0].name, club.body.club.name);
 });
