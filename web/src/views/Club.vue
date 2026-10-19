@@ -73,11 +73,13 @@
         <input v-model="actTitle" maxlength="40" placeholder="例如 周日 LSD" />
         <input v-model="actPlace" maxlength="40" placeholder="集合地点" />
         <input v-model="actWhen" placeholder="2026-10-11 05:40" />
+        <input v-model="actNote" maxlength="500" placeholder="说明，例如配速和路线" />
         <div class="pair">
           <label>成团人数<input v-model.number="actPeople" type="number" min="1" max="500" /></label>
           <label>里程公里<input v-model.number="actKm" type="number" min="0.1" max="100" step="0.1" /></label>
+          <label>这场积分<input v-model.number="actPoints" type="number" min="0" max="100" /></label>
         </div>
-        <p class="rank-label">满这些人数，且每人打卡不少于这个里程，才各得 1 分。人数不够，这场不计分。</p>
+        <p class="rank-label">满这些人数，且每人打卡不少于这个里程，才各得这场积分。人数不够，这场不计分。</p>
         <button class="primary" type="submit">发出去</button>
       </form>
       <router-link v-for="item in activities" :key="item.id" class="block act" :to="'/clubs/' + club.id + '/activities/' + item.id">
@@ -154,8 +156,10 @@ const myPoints = ref(0);
 const actTitle = ref("");
 const actPlace = ref("");
 const actWhen = ref("");
+const actNote = ref("");
 const actPeople = ref(3);
 const actKm = ref(5);
+const actPoints = ref(1);
 const groupName = ref("");
 const groupPace = ref("");
 const groupCap = ref("0");
@@ -246,8 +250,10 @@ async function createActivity() {
         title: actTitle.value,
         place: actPlace.value,
         startsAt: actWhen.value,
+        note: actNote.value,
         minPeople: actPeople.value,
-        minKm: actKm.value
+        minKm: actKm.value,
+        points: actPoints.value
       })
     });
     router.push("/clubs/" + route.params.id + "/activities/" + data.activity.id);
