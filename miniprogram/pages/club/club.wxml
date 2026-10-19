@@ -44,6 +44,57 @@
     </navigator>
     <view wx:if="{{!activities.length}}" class="src">还没有活动。</view>
   </view>
+  <view class="card" wx:if="{{club.owner}}">
+    <view class="h2">发一场活动</view>
+    <view class="stack">
+      <input placeholder="例如 周日 LSD" value="{{actTitle}}" maxlength="40" data-key="actTitle" bindinput="onDraft" />
+      <input placeholder="集合地点" value="{{actPlace}}" maxlength="40" data-key="actPlace" bindinput="onDraft" />
+      <input placeholder="2026-10-11 05:40" value="{{actWhen}}" data-key="actWhen" bindinput="onDraft" />
+      <input placeholder="说明，例如配速和路线" value="{{actNote}}" maxlength="500" data-key="actNote" bindinput="onDraft" />
+      <input type="number" placeholder="成团人数" value="{{actPeople}}" data-key="actPeople" bindinput="onDraft" />
+      <input type="digit" placeholder="每人至少多少公里" value="{{actKm}}" data-key="actKm" bindinput="onDraft" />
+      <input type="number" placeholder="这场积分" value="{{actPoints}}" data-key="actPoints" bindinput="onDraft" />
+    </view>
+    <view class="src">满人数，且每人打卡不少于这个里程，才各得这场积分。人数不够，这场不计分。</view>
+    <button class="btn" bindtap="createActivity">发出去</button>
+  </view>
+  <view class="card">
+    <view class="h2">成员</view>
+    <view class="src">我的积分 {{myPoints}}</view>
+    <view wx:for="{{members}}" wx:key="id" class="row">
+      <text>{{item.nickname}}{{item.owner ? ' · 团长' : ''}}</text>
+      <view><text>{{item.points}} 分</text><text wx:if="{{club.owner && !item.owner}}" class="drop" data-id="{{item.id}}" data-name="{{item.nickname}}" bindtap="removeMember">移出</text></view>
+    </view>
+  </view>
+  <view class="card">
+    <view class="h2">组别</view>
+    <view wx:for="{{groups}}" wx:key="id" class="row">
+      <text>{{item.name}}{{item.pace ? ' · ' + item.pace : ''}}</text>
+      <text>{{item.capacity ? '限 ' + item.capacity + ' 人' : '不限'}}</text>
+    </view>
+    <view wx:if="{{!groups.length}}" class="src">还没有组别。</view>
+    <view class="stack" wx:if="{{club.owner}}">
+      <input placeholder="例如 A0" value="{{groupName}}" maxlength="20" data-key="groupName" bindinput="onDraft" />
+      <input placeholder="配速，例如 530" value="{{groupPace}}" maxlength="20" data-key="groupPace" bindinput="onDraft" />
+      <input type="number" placeholder="名额，0 表示不限" value="{{groupCap}}" data-key="groupCap" bindinput="onDraft" />
+    </view>
+    <button wx:if="{{club.owner}}" class="btn" bindtap="createGroup">加一组</button>
+  </view>
+  <view class="card">
+    <view class="h2">礼品</view>
+    <view class="src">用积分换，不付款。</view>
+    <view wx:for="{{gifts}}" wx:key="id" class="row">
+      <text>{{item.name}} · {{item.cost}} 分 · 剩 {{item.stock}}</text>
+      <button class="ghost" data-id="{{item.id}}" data-name="{{item.name}}" disabled="{{!item.stock}}" bindtap="redeem">兑换</button>
+    </view>
+    <view wx:if="{{!gifts.length && !club.owner}}" class="src">还没有礼品。</view>
+    <view class="stack" wx:if="{{club.owner}}">
+      <input placeholder="礼品名" value="{{giftName}}" maxlength="20" data-key="giftName" bindinput="onDraft" />
+      <input type="number" placeholder="所需积分" value="{{giftCost}}" data-key="giftCost" bindinput="onDraft" />
+      <input type="number" placeholder="库存" value="{{giftStock}}" data-key="giftStock" bindinput="onDraft" />
+    </view>
+    <button wx:if="{{club.owner}}" class="btn" bindtap="createGift">上架</button>
+  </view>
   <view wx:if="{{!board.length && !ranks.length}}" class="empty">还没有人标比赛。打开一场，标上想跑或已报名。</view>
   <view wx:for="{{board}}" wx:key="key" class="card">
     <navigator url="/pages/race/race?id={{item.race.id}}&code={{club.code}}">
@@ -63,5 +114,6 @@
       <text>{{mark.nickname}}</text><text>{{mark.status}}{{mark.clock ? ' · ' + mark.clock : ''}}{{mark.pb ? ' PB' : ''}}</text>
     </view>
   </view>
+  <view wx:if="{{message}}" class="err">{{message}}</view>
 </view>
 <view wx:else class="empty">{{message || '正在打开跑团'}}</view>

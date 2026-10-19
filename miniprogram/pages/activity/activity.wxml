@@ -2,6 +2,7 @@
   <view class="card">
     <view class="title">{{activity.title}}</view>
     <view class="src">{{activity.startsAt}} {{activity.place}}</view>
+    <view wx:if="{{activity.note}}" class="src">{{activity.note}}</view>
     <view class="src">{{activity.rule}}</view>
   </view>
   <view class="card">
