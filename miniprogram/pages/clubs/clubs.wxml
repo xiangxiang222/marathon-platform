@@ -38,7 +38,7 @@
     </view>
     <navigator wx:for="{{clubs}}" wx:key="id" class="card link" url="/pages/club/club?id={{item.id}}">
       <view class="title">{{item.name}}</view>
-      <view class="foot"><text>口令，发到微信群</text><text>{{item.code}}</text></view>
+      <view class="foot"><text>{{item.roleLabel}} · 口令</text><text>{{item.code}}</text></view>
     </navigator>
     <view wx:if="{{loaded && mode === 'search' && !query && !clubs.length && !openClubs.length}}" class="empty">还没有可加入的跑团。</view>
     <view class="card">

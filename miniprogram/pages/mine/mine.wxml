@@ -1,6 +1,8 @@
 <view class="pad">
   <view class="card">
     <view wx:if="{{nickname}}" class="title">{{nickname}}</view>
+    <view wx:if="{{leader}}" class="teal">团长</view>
+    <navigator wx:for="{{clubs}}" wx:key="id" url="/pages/club/club?id={{item.id}}">{{item.name}} · {{item.roleLabel}}</navigator>
     <view wx:else>
       <view class="muted">起个昵称，才能标报名状态。</view>
       <view class="field">

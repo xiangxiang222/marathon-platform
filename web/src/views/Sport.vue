@@ -43,7 +43,7 @@
   </div>
   <router-link v-for="club in clubs" :key="club.id" :to="'/clubs/' + club.id" class="block" style="display:block">
     <h2>{{ club.name }}</h2>
-    <div class="row"><span>口令</span><b>{{ club.code }}</b></div>
+    <div class="row"><span>{{ club.roleLabel }} · 口令</span><b>{{ club.code }}</b></div>
   </router-link>
   <p v-if="ready && mode === 'search' && !query.trim() && !clubs.length && !openClubs.length" class="empty">还没有可加入的跑团。</p>
   <p v-if="!ready" class="empty">先到「我的」里起个昵称。</p>

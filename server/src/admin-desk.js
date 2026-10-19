@@ -9,7 +9,7 @@ function when(value) {
 function listUsers(db, q) {
   const rows = db
     .prepare(
-      `SELECT u.id, u.nickname, u.created_at,
+      `SELECT u.id, u.nickname, u.created_at, u.leader,
               (SELECT COUNT(*) FROM plans p WHERE p.user_id = u.id) AS plans,
               (SELECT COUNT(*) FROM results r WHERE r.user_id = u.id) AS results,
               (SELECT COUNT(*) FROM club_members m WHERE m.user_id = u.id) AS clubs
@@ -22,6 +22,7 @@ function listUsers(db, q) {
   return rows.map((row) => ({
     id: row.id,
     nickname: row.nickname,
+    leader: Boolean(row.leader),
     createdAt: when(row.created_at),
     plans: row.plans,
     results: row.results,

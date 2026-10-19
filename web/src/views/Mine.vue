@@ -21,7 +21,11 @@
     <section class="who">
       <div class="face" aria-hidden="true">{{ nickname ? nickname.slice(0, 1) : "跑" }}</div>
       <div class="who-main">
-        <div v-if="nickname" class="nick">{{ nickname }}</div>
+        <template v-if="nickname">
+          <div class="nick">{{ nickname }}</div>
+          <p v-if="leader" class="role">团长</p>
+          <router-link v-for="club in clubs" :key="club.id" class="club-line" :to="'/clubs/' + club.id">{{ club.name }} · {{ club.roleLabel }}</router-link>
+        </template>
         <form v-else class="nick-form" @submit.prevent="enter">
           <input v-model="draft" placeholder="怎么称呼你" />
           <button type="submit">进入</button>
@@ -126,6 +130,8 @@ import { computed, onMounted, ref } from "vue";
 import { api } from "../api";
 
 const nickname = ref(localStorage.getItem("marathon_name") || "");
+const leader = ref(false);
+const clubs = ref([]);
 const draft = ref("");
 const plans = ref([]);
 const results = ref([]);
@@ -183,6 +189,8 @@ async function load() {
   if (!localStorage.getItem("marathon_token")) return;
   const data = await api("/me");
   nickname.value = data.user.nickname;
+  leader.value = Boolean(data.user.leader);
+  clubs.value = data.clubs || [];
   plans.value = data.plans;
   results.value = data.results || [];
   career.value = data.career || career.value;
@@ -224,6 +232,8 @@ onMounted(load);
 }
 .who-main { flex: 1; min-width: 0; }
 .nick { font-size: 18px; font-weight: 650; }
+.role { margin: 2px 0 0; color: var(--accent); font-size: 13px; font-weight: 650; }
+.club-line { display: block; margin-top: 4px; color: var(--muted); font-size: 13px; }
 .chev { margin-left: auto; stroke: #c5cad1; }
 .nick-form { display: flex; gap: 8px; }
 .nick-form input { height: 32px; border: 1px solid #e6e8ec; border-radius: 16px; padding: 0 12px; width: 140px; outline: none; }
