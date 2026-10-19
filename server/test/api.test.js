@@ -525,6 +525,9 @@ test("each edition keeps its own race website, and a later change stays out of t
   assert.equal(current.organizer, "测试组委会");
   assert.equal(current.priorWeb.webUrl, "https://example.com/2025");
   assert.match(current.webNote, /不沿用/);
+  const byCity = listOfficial(getDb(), { q: "杭州" });
+  assert.ok(byCity.some((row) => row.officialId === "9001"));
+  assert.equal(byCity.some((row) => row.officialId === "9002"), false);
   const none = listOfficial(getDb(), { q: "没有网站" }).find((row) => row.officialId === "9002");
   assert.equal(none.webUrl, "");
   assert.equal(none.priorWeb, null);
@@ -905,6 +908,11 @@ test("admin lists pulled races and a delete stays deleted after the next pull", 
   const past = await request(app).get("/marathon/api/admin/races?when=all&q=" + encodeURIComponent("收官")).set(admin);
   assert.equal(past.status, 200);
   assert.ok(past.body.races.some((race) => race.id === "closed-sample"));
+  const middle = await request(app).get("/marathon/api/admin/races?when=all&q=" + encodeURIComponent("试马")).set(admin);
+  assert.ok(middle.body.races.some((race) => race.id === "drop-me"));
+  assert.equal(middle.body.races.some((race) => race.id === "closed-sample"), false);
+  const spaced = await request(app).get("/marathon/api/admin/races?when=all&q=" + encodeURIComponent("删除 测试")).set(admin);
+  assert.ok(spaced.body.races.some((race) => race.id === "drop-me"));
 
   const moved = await request(app).put("/marathon/api/admin/races/drop-me/guide").set(admin).send({
     raceDate: "2026-12-02",
@@ -1090,6 +1098,9 @@ test("admin sees nicknames, self-reported runs, and club gifts", async () => {
   const listed = await request(app).get("/marathon/api/admin/users?q=" + encodeURIComponent("后台核对甲")).set(admin);
   assert.equal(listed.status, 200);
   assert.equal(listed.body.users.length, 1);
+  const fragment = await request(app).get("/marathon/api/admin/users?q=" + encodeURIComponent("核对")).set(admin);
+  assert.ok(fragment.body.users.some((user) => user.nickname === "后台核对甲"));
+  assert.ok(fragment.body.users.every((user) => user.nickname.includes("核对")));
   assert.equal(listed.body.users[0].plans, 1);
   assert.equal(listed.body.users[0].clubs, 1);
   assert.equal(listed.body.users[0].leader, true);
@@ -1566,6 +1577,10 @@ test("an admin can list clubs, assign the leader, and manage members", async () 
   const listed = await request(app).get("/marathon/api/admin/clubs?q=" + encodeURIComponent("后台管理团")).set(admin);
   assert.equal(listed.status, 200);
   assert.equal(listed.body.clubs.length, 1);
+  const byFragment = await request(app).get("/marathon/api/admin/clubs?q=" + encodeURIComponent("管理")).set(admin);
+  assert.ok(byFragment.body.clubs.some((item) => item.name === "后台管理团"));
+  const byOwner = await request(app).get("/marathon/api/admin/clubs?q=" + encodeURIComponent("团长甲")).set(admin);
+  assert.ok(byOwner.body.clubs.some((item) => item.name === "后台管理团"));
   assert.equal(listed.body.clubs[0].owner, "后台团长甲");
   assert.equal(listed.body.clubs[0].members, 1);
   const detail = await request(app).get("/marathon/api/admin/clubs/" + clubId).set(admin);
@@ -1631,4 +1646,27 @@ test("an admin can list clubs, assign the leader, and manage members", async () 
   const left = await request(app).get("/marathon/api/admin/clubs/" + clubId).set(admin);
   assert.equal(left.body.members.length, 1);
   assert.equal(left.body.club.owner, "后台团长甲");
+
+  const activity = await request(app)
+    .post("/marathon/api/clubs/" + clubId + "/activities")
+    .set("Authorization", "Bearer " + owner)
+    .send({ title: "待删活动", place: "河边", startsAt: "2026-10-20T06:30", minKm: 1, minPeople: 1, points: 1 });
+  assert.equal(activity.status, 200);
+  const gift = await request(app)
+    .post("/marathon/api/clubs/" + clubId + "/gifts")
+    .set("Authorization", "Bearer " + owner)
+    .send({ name: "待删礼", cost: 1, stock: 1 });
+  assert.equal(gift.status, 200);
+  const deniedDelete = await request(app).delete("/marathon/api/admin/clubs/" + clubId);
+  assert.equal(deniedDelete.status, 401);
+  const deleted = await request(app).delete("/marathon/api/admin/clubs/" + clubId).set(admin);
+  assert.equal(deleted.status, 200);
+  assert.equal((await request(app).get("/marathon/api/admin/clubs/" + clubId).set(admin)).status, 404);
+  assert.equal((await request(app).delete("/marathon/api/admin/clubs/" + clubId).set(admin)).status, 404);
+  const ownerStill = await request(app).get("/marathon/api/admin/users/" + detail.body.members[0].id).set(admin);
+  assert.equal(ownerStill.body.user.nickname, "后台团长甲");
+  assert.equal(ownerStill.body.user.leader, true);
+  assert.equal(ownerStill.body.clubs.length, 0);
+  const mateStill = await request(app).get("/marathon/api/me").set("Authorization", "Bearer " + mate);
+  assert.equal(mateStill.body.user.nickname, "后台团员甲");
 });
