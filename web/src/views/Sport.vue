@@ -2,7 +2,7 @@
   <header class="large">
     <div>
       <h1>跑团</h1>
-      <p>团长建团要审核。有口令直接进，没有就申请</p>
+      <p>有口令直接进，没有就申请。创建跑团在下面</p>
     </div>
   </header>
   <section class="panel">
@@ -13,16 +13,6 @@
       <div><b>{{ clubs.length }}</b><span>跑团</span></div>
     </div>
   </section>
-  <div class="block">
-    <h2>建一个团</h2>
-    <p v-if="leader" class="hint">只有团长能提交。通过后你是团长，可以在手机上管理成员、活动和组别。</p>
-    <p v-else class="hint">只有团长可以建团。请跑团管理员先把你设为团长。</p>
-    <div v-if="leader && application" class="row"><span>{{ application.name }}</span><b>等待审核</b></div>
-    <div v-else-if="leader" class="field">
-      <input v-model="name" placeholder="跑团名称" />
-      <button class="primary" type="button" @click="create">提交</button>
-    </div>
-  </div>
   <div class="block">
     <h2>加入跑团</h2>
     <p class="hint">有口令直接进。不填口令就申请，等团长或跑团管理通过。</p>
@@ -44,8 +34,18 @@
     <h2>{{ club.name }}</h2>
     <div class="row"><span>口令</span><b>{{ club.code }}</b></div>
   </router-link>
-  <p v-if="ready && !clubs.length && !openClubs.length" class="empty">还没有跑团。建一个，把口令发到微信群。别人也可以不填口令来申请。</p>
+  <p v-if="ready && !clubs.length && !openClubs.length" class="empty">还没有可加入的跑团。</p>
   <p v-if="!ready" class="empty">先到「我的」里起个昵称。</p>
+  <div class="block">
+    <h2>创建跑团</h2>
+    <p v-if="leader" class="hint">只有团长能提交。通过后你是团长，可以在手机上管理成员、活动和组别。</p>
+    <p v-else class="hint">只有团长可以建团。请跑团管理员先把你设为团长。</p>
+    <div v-if="leader && application" class="row"><span>{{ application.name }}</span><b>等待审核</b></div>
+    <div v-else-if="leader" class="field">
+      <input v-model="name" placeholder="跑团名称" />
+      <button class="primary" type="button" @click="create">提交</button>
+    </div>
+  </div>
 </template>
 
 <script setup>
