@@ -1,16 +1,43 @@
 <view class="pad">
   <view class="card">
-    <view wx:if="{{nickname}}" class="title">{{nickname}}</view>
-    <view wx:if="{{leader}}" class="teal">团长</view>
-    <navigator wx:for="{{clubs}}" wx:key="id" url="/pages/club/club?id={{item.id}}">{{item.name}} · {{item.roleLabel}}</navigator>
-    <view wx:else>
-      <view class="muted">起个昵称，才能标报名状态。</view>
-      <view class="field">
-        <input placeholder="怎么称呼你" value="{{draft}}" bindinput="onDraft" />
-        <button class="btn" bindtap="enter">进入</button>
+    <block wx:if="{{nickname}}">
+      <view class="title">{{nickname}}</view>
+      <view wx:if="{{leader}}" class="teal">团长</view>
+      <navigator wx:for="{{clubs}}" wx:key="id" url="/pages/club/club?id={{item.id}}">{{item.name}} · {{item.roleLabel}}</navigator>
+      <view class="quit" bindtap="logout">退出</view>
+    </block>
+    <block wx:else>
+      <view class="modes">
+        <view class="mode {{tab === 'login' ? 'on' : ''}}" data-tab="login" bindtap="setTab">登录</view>
+        <view class="mode {{tab === 'register' ? 'on' : ''}}" data-tab="register" bindtap="setTab">注册</view>
       </view>
+      <view class="muted">{{tab === 'login' ? '用昵称和密码。换手机也能回到同一个人。' : '第一次使用就注册。这个昵称以前只出现过一次、还没设密码的话，会设在原来那个人身上。'}}</view>
+      <view class="stack">
+        <input placeholder="昵称" value="{{draft}}" bindinput="onDraft" />
+        <input placeholder="密码，至少 8 位" password value="{{password}}" bindinput="onPassword" />
+        <input wx:if="{{tab === 'register'}}" placeholder="再输入一次密码" password value="{{password2}}" bindinput="onPassword2" />
+        <block wx:if="{{tab === 'login'}}">
+          <view class="captcha" bindtap="loadCaptcha">
+            <image wx:if="{{captchaImage}}" class="captcha-img" src="{{captchaImage}}" mode="aspectFit" />
+            <view wx:else class="muted">{{captchaLoading ? '加载中…' : '点击获取验证码'}}</view>
+          </view>
+          <input placeholder="上图字符" value="{{captcha}}" bindinput="onCaptcha" maxlength="4" />
+        </block>
+        <button class="btn block" bindtap="submitAuth">{{tab === 'login' ? '登录' : '注册'}}</button>
+      </view>
+    </block>
+    <view wx:if="{{message && !nickname}}" class="{{ok ? 'ok' : 'err'}}">{{message}}</view>
+  </view>
+  <view class="card" wx:if="{{nickname}}">
+    <view class="h2">{{hasPassword ? '改密码' : '设登录密码'}}</view>
+    <view class="muted">{{hasPassword ? '换手机时用昵称和这个密码登录。' : '设一个密码，换手机也能回到这个人。'}}</view>
+    <view class="stack">
+      <input wx:if="{{hasPassword}}" placeholder="当前密码" password value="{{currentPassword}}" bindinput="onCurrent" />
+      <input placeholder="新密码，至少 8 位" password value="{{nextPassword}}" bindinput="onNext" />
+      <input placeholder="再输入一次" password value="{{nextPassword2}}" bindinput="onNext2" />
+      <button class="btn block" bindtap="savePassword">保存</button>
     </view>
-    <view wx:if="{{message}}" class="err">{{message}}</view>
+    <view wx:if="{{message}}" class="{{ok ? 'ok' : 'err'}}">{{message}}</view>
   </view>
   <view class="card" wx:if="{{conflicts.length}}">
     <view class="h2">全马间隔</view>

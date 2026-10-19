@@ -326,6 +326,22 @@ function open() {
   ).run();
   const userCols = handle.prepare("PRAGMA table_info(users)").all();
   if (!userCols.some((col) => col.name === "leader")) handle.exec("ALTER TABLE users ADD COLUMN leader INTEGER NOT NULL DEFAULT 0");
+  for (const [name, type] of [
+    ["password_hash", "TEXT NOT NULL DEFAULT ''"],
+    ["salt", "TEXT NOT NULL DEFAULT ''"]
+  ]) {
+    const cols = handle.prepare("PRAGMA table_info(users)").all();
+    if (!cols.some((col) => col.name === name)) handle.exec(`ALTER TABLE users ADD COLUMN ${name} ${type}`);
+  }
+  handle.exec(`
+    CREATE TABLE IF NOT EXISTS captchas (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      token TEXT NOT NULL UNIQUE,
+      code TEXT NOT NULL,
+      used INTEGER NOT NULL DEFAULT 0,
+      expire_at TEXT NOT NULL
+    );
+  `);
   handle.exec(`
     CREATE TABLE IF NOT EXISTS club_applications (
       id INTEGER PRIMARY KEY AUTOINCREMENT,

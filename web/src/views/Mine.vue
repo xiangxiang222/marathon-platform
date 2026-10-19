@@ -18,20 +18,46 @@
       </router-link>
     </section>
 
-    <section class="who">
-      <div class="face" aria-hidden="true">{{ nickname ? nickname.slice(0, 1) : "跑" }}</div>
+    <section v-if="nickname" class="who">
+      <div class="face" aria-hidden="true">{{ nickname.slice(0, 1) }}</div>
       <div class="who-main">
-        <template v-if="nickname">
-          <div class="nick">{{ nickname }}</div>
-          <p v-if="leader" class="role">团长</p>
-          <router-link v-for="club in clubs" :key="club.id" class="club-line" :to="'/clubs/' + club.id">{{ club.name }} · {{ club.roleLabel }}</router-link>
-        </template>
-        <form v-else class="nick-form" @submit.prevent="enter">
-          <input v-model="draft" placeholder="怎么称呼你" />
-          <button type="submit">进入</button>
-        </form>
-        <p v-if="message" class="err">{{ message }}</p>
+        <div class="nick">{{ nickname }}</div>
+        <p v-if="leader" class="role">团长</p>
+        <router-link v-for="club in clubs" :key="club.id" class="club-line" :to="'/clubs/' + club.id">{{ club.name }} · {{ club.roleLabel }}</router-link>
+        <button type="button" class="quit" @click="logout">退出</button>
       </div>
+    </section>
+    <section v-else class="who auth">
+      <div class="modes">
+        <button type="button" :class="{ on: authTab === 'login' }" @click="setTab('login')">登录</button>
+        <button type="button" :class="{ on: authTab === 'register' }" @click="setTab('register')">注册</button>
+      </div>
+      <p class="hint">{{ authTab === "login" ? "用昵称和密码。换手机也能回到同一个人。" : "第一次使用就注册。这个昵称以前只出现过一次、还没设密码的话，会设在原来那个人身上。" }}</p>
+      <form class="auth-form" @submit.prevent="submitAuth">
+        <input v-model="draft" autocomplete="username" placeholder="昵称" />
+        <input v-model="password" type="password" :autocomplete="authTab === 'login' ? 'current-password' : 'new-password'" placeholder="密码，至少 8 位" />
+        <input v-if="authTab === 'register'" v-model="password2" type="password" autocomplete="new-password" placeholder="再输入一次密码" />
+        <template v-if="authTab === 'login'">
+          <button type="button" class="captcha" @click="loadCaptcha">
+            <img v-if="captchaImage" :src="captchaImage" alt="验证码" />
+            <span v-else>{{ captchaLoading ? "加载中…" : "点击获取验证码" }}</span>
+          </button>
+          <input v-model="captcha" autocomplete="off" maxlength="4" placeholder="上图字符" />
+        </template>
+        <button class="go" type="submit">{{ authTab === "login" ? "登录" : "注册" }}</button>
+      </form>
+      <p v-if="message" :class="ok ? 'ok' : 'err'">{{ message }}</p>
+    </section>
+    <section v-if="nickname" class="sheet">
+      <div class="head"><h3>{{ hasPassword ? "改密码" : "设登录密码" }}</h3></div>
+      <p class="hint">{{ hasPassword ? "换手机时用昵称和这个密码登录。" : "设一个密码，换手机也能回到这个人。" }}</p>
+      <form class="auth-form" @submit.prevent="savePassword">
+        <input v-if="hasPassword" v-model="currentPassword" type="password" autocomplete="current-password" placeholder="当前密码" />
+        <input v-model="nextPassword" type="password" autocomplete="new-password" placeholder="新密码，至少 8 位" />
+        <input v-model="nextPassword2" type="password" autocomplete="new-password" placeholder="再输入一次" />
+        <button class="go" type="submit">保存</button>
+      </form>
+      <p v-if="message" :class="ok ? 'ok' : 'err'">{{ message }}</p>
     </section>
 
     <div class="shortcuts">
@@ -132,7 +158,18 @@ import { api } from "../api";
 const nickname = ref(localStorage.getItem("marathon_name") || "");
 const leader = ref(false);
 const clubs = ref([]);
+const hasPassword = ref(false);
+const authTab = ref("login");
 const draft = ref("");
+const password = ref("");
+const password2 = ref("");
+const captcha = ref("");
+const captchaToken = ref("");
+const captchaImage = ref("");
+const captchaLoading = ref(false);
+const currentPassword = ref("");
+const nextPassword = ref("");
+const nextPassword2 = ref("");
 const plans = ref([]);
 const results = ref([]);
 const career = ref({ finished: 0, provinces: [], cities: [], pb: { full: "", half: "" }, yearKm: 0 });
@@ -140,6 +177,7 @@ const conflicts = ref([]);
 const reminders = ref([]);
 const finished = computed(() => career.value.finished);
 const message = ref("");
+const ok = ref(false);
 const tab = ref("honor");
 const mapYear = ref("");
 const kindFilter = ref("all");
@@ -186,26 +224,121 @@ async function load() {
   const meta = await api("/meta");
   company.value = meta.company;
   icp.value = meta.icp;
-  if (!localStorage.getItem("marathon_token")) return;
-  const data = await api("/me");
-  nickname.value = data.user.nickname;
-  leader.value = Boolean(data.user.leader);
-  clubs.value = data.clubs || [];
-  plans.value = data.plans;
-  results.value = data.results || [];
-  career.value = data.career || career.value;
-  conflicts.value = data.conflicts || [];
-  reminders.value = data.reminders || [];
+  if (!localStorage.getItem("marathon_token")) {
+    await loadCaptcha();
+    return;
+  }
+  try {
+    const data = await api("/me");
+    nickname.value = data.user.nickname;
+    leader.value = Boolean(data.user.leader);
+    hasPassword.value = Boolean(data.user.hasPassword);
+    clubs.value = data.clubs || [];
+    plans.value = data.plans;
+    results.value = data.results || [];
+    career.value = data.career || career.value;
+    conflicts.value = data.conflicts || [];
+    reminders.value = data.reminders || [];
+    localStorage.setItem("marathon_name", data.user.nickname);
+  } catch (err) {
+    if (err.status === 401) logout();
+    else message.value = err.message;
+  }
 }
 
-async function enter() {
+function setTab(next) {
+  authTab.value = next;
   message.value = "";
+  ok.value = false;
+  if (next === "login") loadCaptcha();
+}
+
+async function loadCaptcha() {
+  captchaLoading.value = true;
+  captchaImage.value = "";
   try {
-    const data = await api("/session", { method: "POST", body: JSON.stringify({ nickname: draft.value }) });
-    localStorage.setItem("marathon_token", data.token);
-    localStorage.setItem("marathon_name", data.user.nickname);
-    nickname.value = data.user.nickname;
+    const data = await api("/auth/captcha?t=" + Date.now());
+    captchaToken.value = data.token;
+    captchaImage.value = data.image;
+    captcha.value = "";
+  } catch (err) {
+    message.value = err.message;
+  } finally {
+    captchaLoading.value = false;
+  }
+}
+
+function saveSession(data) {
+  localStorage.setItem("marathon_token", data.token);
+  localStorage.setItem("marathon_name", data.user.nickname);
+  nickname.value = data.user.nickname;
+  password.value = "";
+  password2.value = "";
+  captcha.value = "";
+  message.value = "";
+}
+
+function logout() {
+  localStorage.removeItem("marathon_token");
+  localStorage.removeItem("marathon_name");
+  nickname.value = "";
+  leader.value = false;
+  hasPassword.value = false;
+  clubs.value = [];
+  plans.value = [];
+  results.value = [];
+  conflicts.value = [];
+  reminders.value = [];
+  currentPassword.value = "";
+  nextPassword.value = "";
+  nextPassword2.value = "";
+  message.value = "";
+  ok.value = false;
+  authTab.value = "login";
+  loadCaptcha();
+}
+
+async function submitAuth() {
+  message.value = "";
+  ok.value = false;
+  if (authTab.value === "register" && password.value !== password2.value) {
+    message.value = "两次密码不一致";
+    return;
+  }
+  try {
+    const path = authTab.value === "login" ? "/auth/login" : "/auth/register";
+    const body = { nickname: draft.value, password: password.value };
+    if (authTab.value === "login") {
+      body.captchaToken = captchaToken.value;
+      body.captcha = captcha.value;
+    }
+    const data = await api(path, { method: "POST", body: JSON.stringify(body) });
+    saveSession(data);
     await load();
+  } catch (err) {
+    message.value = err.message;
+    if (authTab.value === "login") loadCaptcha();
+  }
+}
+
+async function savePassword() {
+  message.value = "";
+  ok.value = false;
+  if (nextPassword.value !== nextPassword2.value) {
+    message.value = "两次密码不一致";
+    return;
+  }
+  try {
+    await api("/me/password", {
+      method: "PUT",
+      body: JSON.stringify({ current: currentPassword.value, password: nextPassword.value })
+    });
+    hasPassword.value = true;
+    currentPassword.value = "";
+    nextPassword.value = "";
+    nextPassword2.value = "";
+    ok.value = true;
+    message.value = "密码已保存";
   } catch (err) {
     message.value = err.message;
   }
@@ -235,10 +368,19 @@ onMounted(load);
 .role { margin: 2px 0 0; color: var(--accent); font-size: 13px; font-weight: 650; }
 .club-line { display: block; margin-top: 4px; color: var(--muted); font-size: 13px; }
 .chev { margin-left: auto; stroke: #c5cad1; }
-.nick-form { display: flex; gap: 8px; }
-.nick-form input { height: 32px; border: 1px solid #e6e8ec; border-radius: 16px; padding: 0 12px; width: 140px; outline: none; }
-.nick-form button { height: 32px; padding: 0 14px; border-radius: 999px; background: #007aff; color: #fff; font-weight: 650; }
+.quit { margin-top: 8px; color: var(--muted); font-size: 13px; }
+.who.auth, .sheet .auth-form { display: block; }
+.modes { display: flex; gap: 8px; }
+.modes button { height: 32px; padding: 0 14px; border-radius: 999px; background: rgba(118, 118, 128, 0.12); font-size: 14px; font-weight: 650; }
+.modes button.on { background: #007aff; color: #fff; }
+.auth-form { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
+.auth-form input { height: 40px; border: 0; border-radius: 10px; padding: 0 12px; background: rgba(118, 118, 128, 0.12); outline: none; }
+.captcha { height: 44px; border-radius: 10px; background: rgba(118, 118, 128, 0.12); color: var(--muted); }
+.captcha img { display: block; height: 44px; margin: 0 auto; }
+.go { height: 40px; border-radius: 12px; background: #007aff; color: #fff; font-weight: 650; }
+.hint { margin: 8px 0 0; color: var(--muted); font-size: 12px; line-height: 1.45; }
 .err { color: #e35d5d; font-size: 12px; margin: 4px 0 0; }
+.ok { color: #248a3d; font-size: 12px; margin: 4px 0 0; }
 .shortcuts { display: flex; justify-content: space-between; margin: 12px 16px 0; padding: 14px 8px 12px; border-radius: 16px; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04); }
 .shortcuts a { flex: 1; min-width: 0; text-align: center; font-size: calc(12px * var(--s)); color: #333; }
 .orb { width: calc(48px * var(--s)); height: calc(48px * var(--s)); margin: 0 auto 6px; border-radius: 50%; display: grid; place-items: center; }

@@ -295,7 +295,7 @@
               <div v-for="item in users" :key="item.id" class="race-row" :class="{ on: person && person.user.id === item.id }">
                 <button type="button" class="race-open" @click="openUser(item.id)">
                   <span class="who-name">{{ item.nickname }}<i v-if="item.leader">团长</i></span>
-                  <strong>{{ item.createdAt }} · {{ item.clubs }} 个团 · {{ item.plans }} 场</strong>
+                  <strong>{{ item.createdAt }} · {{ item.clubs }} 个团 · {{ item.plans }} 场<span v-if="item.hasPassword"> · 可登录</span></strong>
                 </button>
               </div>
             </div>
@@ -321,6 +321,14 @@
                   </div>
                   <button type="button" class="switch" :class="{ on: person.user.leader }" role="switch" :aria-checked="person.user.leader" aria-label="团长" @click="setLeader(!person.user.leader)"><i></i></button>
                 </div>
+              </section>
+              <section class="section">
+                <h3>登录密码</h3>
+                <p class="lead">{{ person.user.hasPassword ? "已经可以登录。再保存会换成新密码。同名的人要设不同的密码。" : "还不能登录。设一个密码后，用这个昵称和密码就能回到这个人。同名的人要设不同的密码。" }}</p>
+                <form class="check-form" @submit.prevent="setLoginPassword">
+                  <input v-model="loginPass" type="password" autocomplete="new-password" placeholder="至少 8 位" />
+                  <button class="primary" type="submit">保存密码</button>
+                </form>
               </section>
               <section class="section">
                 <h3>跑团</h3>
@@ -498,7 +506,7 @@ const splitStyle = computed(() => ({ "--split": split.value + "%" }));
 const sectionLabel = computed(() => deskSections.value.find((item) => item.id === section.value)?.label || "后台");
 const sectionLead = computed(() => ({
   races: "已经收进赛历的场。自动拉取还在，删掉的场不会马上加回来。",
-  users: "只有昵称、跑团和标过的场。不收集手机号，也不收集身份证。团里的角色可以改成团长、跑团管理或成员。",
+  users: "用昵称和密码登录。同名的人各自设密码，才能回到原来那一个。不收集手机号，也不收集身份证。",
   joins: "建团和没口令的入团都在这里审。通过建团后，申请人是团长。",
   runs: "团练里自己报的公里。还没接手表，每天到没到不记在这里。",
   shop: "商城还没接，不收款、不发货。现在看的是各跑团的积分礼品。",
@@ -677,11 +685,33 @@ async function loadUsers() {
   }
 }
 
+const loginPass = ref("");
+
 async function openUser(id) {
   message.value = "";
   saved.value = false;
+  loginPass.value = "";
   try {
     person.value = await admin("/admin/users/" + id);
+  } catch (err) {
+    fail(err);
+  }
+}
+
+async function setLoginPassword() {
+  if (!person.value) return;
+  message.value = "";
+  saved.value = false;
+  try {
+    await admin("/admin/users/" + person.value.user.id + "/password", {
+      method: "PUT",
+      body: JSON.stringify({ password: loginPass.value })
+    });
+    loginPass.value = "";
+    person.value = await admin("/admin/users/" + person.value.user.id);
+    await loadUsers();
+    saved.value = true;
+    message.value = "登录密码已设好，用这个昵称和密码就能登录";
   } catch (err) {
     fail(err);
   }

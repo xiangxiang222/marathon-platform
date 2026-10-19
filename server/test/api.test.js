@@ -1345,3 +1345,142 @@ test("a club can be found by its name, its leader, or a manager", async () => {
   assert.deepEqual(names, ["中青跑团", "北京中青"]);
   assert.equal(typed.body.clubs.find((item) => item.id === head.body.club.id).code, undefined);
 });
+
+async function captchaCode() {
+  const cap = await request(app).get("/marathon/api/auth/captcha");
+  assert.equal(cap.status, 200);
+  assert.match(cap.body.image, /^data:image\/png;base64,/);
+  const row = getDb().prepare("SELECT code FROM captchas WHERE token = ?").get(cap.body.token);
+  return { token: cap.body.token, code: row.code };
+}
+
+test("a nickname with a password logs back into the same person", async () => {
+  process.env.ADMIN_TOKEN = "test-admin";
+  const admin = { Authorization: "Bearer test-admin" };
+  const legacy = await request(app).post("/marathon/api/session").send({ nickname: "找回甲" });
+  assert.equal(legacy.status, 200);
+  const oldAuth = { Authorization: "Bearer " + legacy.body.token };
+  await request(app).put("/marathon/api/me/races/bishan").set(oldAuth).send({ status: "想跑" });
+
+  const claimed = await request(app).post("/marathon/api/auth/register").send({ nickname: "找回甲", password: "password-8" });
+  assert.equal(claimed.status, 200);
+  assert.equal(claimed.body.user.id, legacy.body.user.id);
+  const mine = await request(app).get("/marathon/api/me").set("Authorization", "Bearer " + claimed.body.token);
+  assert.equal(mine.status, 200);
+  assert.equal(mine.body.user.hasPassword, true);
+  assert.equal(mine.body.plans.length, 1);
+  assert.equal((await request(app).get("/marathon/api/me").set(oldAuth)).status, 401);
+
+  const again = await request(app).post("/marathon/api/auth/register").send({ nickname: "找回甲", password: "other-pass-8" });
+  assert.equal(again.status, 400);
+  assert.equal(again.body.error, "这个昵称已经注册，请登录");
+
+  const short = await request(app).post("/marathon/api/auth/register").send({ nickname: "短密码", password: "short" });
+  assert.equal(short.status, 400);
+
+  const created = await request(app).post("/marathon/api/auth/register").send({ nickname: "新注册", password: "password-8" });
+  assert.equal(created.status, 200);
+  assert.notEqual(created.body.user.id, legacy.body.user.id);
+
+  const stale = await captchaCode();
+  const wrong = await request(app).post("/marathon/api/auth/login").send({
+    nickname: "找回甲",
+    password: "password-8",
+    captchaToken: stale.token,
+    captcha: "ZZZZ"
+  });
+  assert.equal(wrong.status, 400);
+  assert.equal(wrong.body.error, "验证码错误或已过期");
+
+  const badPass = await captchaCode();
+  const missed = await request(app).post("/marathon/api/auth/login").send({
+    nickname: "找回甲",
+    password: "nope-nope",
+    captchaToken: badPass.token,
+    captcha: badPass.code.toLowerCase()
+  });
+  assert.equal(missed.status, 400);
+  assert.equal(missed.body.error, "昵称或密码错误");
+
+  const good = await captchaCode();
+  const back = await request(app).post("/marathon/api/auth/login").send({
+    nickname: "找回甲",
+    password: "password-8",
+    captchaToken: good.token,
+    captcha: good.code
+  });
+  assert.equal(back.status, 200);
+  assert.equal(back.body.user.id, legacy.body.user.id);
+  const still = await request(app).get("/marathon/api/me").set("Authorization", "Bearer " + back.body.token);
+  assert.equal(still.body.plans[0].status, "想跑");
+
+  const bare = await request(app).post("/marathon/api/auth/login").send({ nickname: "找回甲", password: "password-8" });
+  assert.equal(bare.status, 400);
+
+  await session("重名乙");
+  await session("重名乙");
+  const clash = await request(app).post("/marathon/api/auth/register").send({ nickname: "重名乙", password: "password-8" });
+  assert.equal(clash.status, 400);
+  const open = await captchaCode();
+  const unset = await request(app).post("/marathon/api/auth/login").send({
+    nickname: "重名乙",
+    password: "password-8",
+    captchaToken: open.token,
+    captcha: open.code
+  });
+  assert.equal(unset.status, 400);
+  assert.match(unset.body.error, /还没设密码/);
+
+  const listed = await request(app).get("/marathon/api/admin/users?q=" + encodeURIComponent("重名乙")).set(admin);
+  assert.equal(listed.body.users.length, 2);
+  assert.equal(listed.body.users.every((item) => item.hasPassword === false), true);
+  const target = listed.body.users[0].id;
+  const set = await request(app).put("/marathon/api/admin/users/" + target + "/password").set(admin).send({ password: "password-8" });
+  assert.equal(set.status, 200);
+  const detail = await request(app).get("/marathon/api/admin/users/" + target).set(admin);
+  assert.equal(detail.body.user.hasPassword, true);
+  assert.equal(detail.body.user.password_hash, undefined);
+  const picked = await captchaCode();
+  const chosen = await request(app).post("/marathon/api/auth/login").send({
+    nickname: "重名乙",
+    password: "password-8",
+    captchaToken: picked.token,
+    captcha: picked.code
+  });
+  assert.equal(chosen.status, 200);
+  assert.equal(chosen.body.user.id, target);
+
+  const same = await request(app).put("/marathon/api/admin/users/" + listed.body.users[1].id + "/password").set(admin).send({ password: "password-8" });
+  assert.equal(same.status, 200);
+  const both = await captchaCode();
+  const ambiguous = await request(app).post("/marathon/api/auth/login").send({
+    nickname: "重名乙",
+    password: "password-8",
+    captchaToken: both.token,
+    captcha: both.code
+  });
+  assert.equal(ambiguous.status, 400);
+  assert.match(ambiguous.body.error, /多个账号/);
+
+  const changed = await request(app)
+    .put("/marathon/api/me/password")
+    .set("Authorization", "Bearer " + chosen.body.token)
+    .send({ current: "password-8", password: "changed-pass-8" });
+  assert.equal(changed.status, 200);
+  const old = await captchaCode();
+  const rejected = await request(app).post("/marathon/api/auth/login").send({
+    nickname: "重名乙",
+    password: "password-8",
+    captchaToken: old.token,
+    captcha: old.code
+  });
+  assert.equal(rejected.body.user ? rejected.body.user.id : 0, listed.body.users[1].id);
+  const next = await captchaCode();
+  const updated = await request(app).post("/marathon/api/auth/login").send({
+    nickname: "重名乙",
+    password: "changed-pass-8",
+    captchaToken: next.token,
+    captcha: next.code
+  });
+  assert.equal(updated.body.user.id, target);
+});

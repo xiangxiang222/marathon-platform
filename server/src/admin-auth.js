@@ -183,5 +183,7 @@ module.exports = {
   changeAdminPassword,
   listAdmins,
   createAdmin,
-  setAdminRole
+  setAdminRole,
+  passwordHash,
+  verifyPassword
 };

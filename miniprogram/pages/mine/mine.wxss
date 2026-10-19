@@ -1,4 +1,13 @@
 .field { margin-top: 16rpx; }
+.modes { display: flex; gap: 16rpx; margin-bottom: 16rpx; }
+.mode { height: 64rpx; line-height: 64rpx; padding: 0 28rpx; border-radius: 999rpx; background: rgba(118, 118, 128, 0.12); font-size: 28rpx; font-weight: 600; }
+.mode.on { background: #007aff; color: #fff; }
+.stack input { display: block; width: 100%; height: 72rpx; margin-top: 16rpx; padding: 0 20rpx; box-sizing: border-box; background: #f2f2f7; border-radius: 12rpx; }
+.captcha { display: flex; align-items: center; justify-content: center; height: 88rpx; margin-top: 16rpx; border-radius: 12rpx; background: #f2f2f7; }
+.captcha-img { width: 100%; height: 88rpx; }
+button.btn.block { display: block; width: 100%; margin-top: 16rpx; }
+.quit { margin-top: 16rpx; color: #8e8e93; font-size: 26rpx; }
+.ok { color: #248a3d; font-size: 24rpx; margin-top: 8rpx; }
 .h2 { font-size: 30rpx; font-weight: 650; margin-bottom: 8rpx; }
 .plan { display: block; padding: 12rpx 0; }
 .legal { text-align: center; color: #c0c4c8; font-size: 22rpx; padding: 12rpx; }

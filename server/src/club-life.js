@@ -223,7 +223,7 @@ function mountClubLife(app, { BASE, getDb, userFrom }) {
   function gate(req, res) {
     const user = userFrom(req);
     if (!user) {
-      res.status(401).json({ error: "先起个昵称" });
+      res.status(401).json({ error: "请先登录" });
       return null;
     }
     const club = getDb().prepare("SELECT id, name, code, owner_id FROM clubs WHERE id = ?").get(req.params.id);
@@ -552,7 +552,7 @@ function mountClubLife(app, { BASE, getDb, userFrom }) {
     const header = req.get("authorization") || "";
     const token = header.replace(/^Bearer\s+/i, "") || String(req.query.t || "");
     const user = token ? getDb().prepare("SELECT id FROM users WHERE token = ?").get(token) : null;
-    if (!user) return res.status(401).json({ error: "先起个昵称" });
+    if (!user) return res.status(401).json({ error: "请先登录" });
     const row = getDb()
       .prepare(
         `SELECT m.filename, m.kind, m.activity_id, a.club_id
