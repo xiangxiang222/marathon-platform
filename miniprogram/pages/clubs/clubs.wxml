@@ -39,8 +39,8 @@
     <view wx:if="{{loaded && mode === 'search' && !query && !clubs.length && !openClubs.length}}" class="empty">还没有可加入的跑团。</view>
     <view class="card">
       <view class="h2">创建跑团</view>
-      <view wx:if="{{leader}}" class="muted">只有团长能提交。通过后你是团长，可以在这里管理成员、活动和组别。</view>
-      <view wx:else class="muted">只有团长可以建团。请跑团管理员先把你设为团长。</view>
+      <view wx:if="{{leader}}" class="muted">提交后等待审核。通过后，你是这个团的团长，可以在这里管理成员、活动和组别。</view>
+      <view wx:else class="muted">当前没有建团资格，无法申请创建跑团。请联系管理员开启。</view>
       <view wx:if="{{foundingMessage}}" class="err">{{foundingMessage}}</view>
       <view wx:if="{{leader && application}}" class="foot"><text>{{application.name}}</text><text>等待审核</text></view>
       <view wx:elif="{{leader}}" class="field">

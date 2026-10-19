@@ -22,7 +22,7 @@
       <div class="face" aria-hidden="true">{{ nickname.slice(0, 1) }}</div>
       <div class="who-main">
         <div class="nick">{{ nickname }}</div>
-        <p v-if="leader" class="role">团长</p>
+        <p v-if="leader" class="role">建团资格</p>
         <router-link v-for="club in clubs" :key="club.id" class="club-line" :to="'/clubs/' + club.id">{{ club.name }} · {{ club.roleLabel }}</router-link>
         <button type="button" class="quit" @click="logout">退出</button>
       </div>

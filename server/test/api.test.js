@@ -1258,7 +1258,7 @@ test("only a leader can apply to found a club, and the desk approves it", async 
   const auth = { Authorization: "Bearer " + founder };
   const blocked = await request(app).post("/marathon/api/clubs").set(auth).send({ name: "还没资格" });
   assert.equal(blocked.status, 403);
-  assert.equal(blocked.body.error, "只有团长可以建团");
+  assert.equal(blocked.body.error, "当前没有建团资格，无法申请创建跑团");
 
   const me = await request(app).get("/marathon/api/me").set(auth);
   assert.equal(me.body.user.leader, false);

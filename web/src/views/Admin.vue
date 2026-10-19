@@ -294,7 +294,7 @@
             <div class="race-list">
               <div v-for="item in users" :key="item.id" class="race-row" :class="{ on: person && person.user.id === item.id }">
                 <button type="button" class="race-open" @click="openUser(item.id)">
-                  <span class="who-name">{{ item.nickname }}<i v-if="item.leader">团长</i></span>
+                  <span class="who-name">{{ item.nickname }}<i v-if="item.leader">建团资格</i></span>
                   <strong>{{ item.createdAt }} · {{ item.clubs }} 个团 · {{ item.plans }} 场<span v-if="item.hasPassword"> · 可登录</span></strong>
                 </button>
               </div>
@@ -316,10 +316,10 @@
               <section class="section">
                 <div class="setting">
                   <div>
-                    <h3>团长</h3>
-                    <p class="lead">打开之后，这个人才能申请建团。</p>
+                    <h3>建团资格</h3>
+                    <p class="lead">开启后，该用户可申请创建跑团。关闭后不能再申请建团，已担任团长的跑团不受影响。</p>
                   </div>
-                  <button type="button" class="switch" :class="{ on: person.user.leader }" role="switch" :aria-checked="person.user.leader" aria-label="团长" @click="setLeader(!person.user.leader)"><i></i></button>
+                  <button type="button" class="switch" :class="{ on: person.user.leader }" role="switch" :aria-checked="person.user.leader" aria-label="建团资格" @click="setLeader(!person.user.leader)"><i></i></button>
                 </div>
               </section>
               <section class="section">
@@ -402,7 +402,7 @@
       </div>
       <div v-if="section === 'joins'" class="block">
         <h2>建团</h2>
-        <p class="hint">只有团长能提交。通过后这个人是团长，可以在手机上管理成员、活动和组别。</p>
+        <p class="hint">须具备建团资格才能提交。通过后，申请人成为该团团长，可以在手机上管理成员、活动和组别。</p>
         <p v-if="joinsReady" class="hint">{{ foundings.length }} 条待审核</p>
         <div v-for="item in foundings" :key="item.id" class="line">
           <b>{{ item.nickname }} · {{ item.name }}</b>
@@ -521,8 +521,8 @@ const splitStyle = computed(() => ({ "--split": split.value + "%" }));
 const sectionLabel = computed(() => deskSections.value.find((item) => item.id === section.value)?.label || "后台");
 const sectionLead = computed(() => ({
   races: "已经收进赛历的场。自动拉取还在，删掉的场不会马上加回来。",
-  users: "可为用户设置登录密码，或删除账号。昵称冲突时，删除多余账号即可。不收集手机号，也不收集身份证。",
-  joins: "建团和没口令的入团都在这里审。通过建团后，申请人是团长。",
+  users: "可为用户开启或关闭建团资格、设置登录密码，或删除账号。关闭建团资格不影响其已担任的团长。昵称冲突时，删除多余账号即可。不收集手机号，也不收集身份证。",
+  joins: "建团和没口令的入团都在这里审。通过建团后，申请人成为该团团长。",
   runs: "团练里自己报的公里。还没接手表，每天到没到不记在这里。",
   shop: "商城还没接，不收款、不发货。现在看的是各跑团的积分礼品。",
   accounts: "跑团管理员只审核入团，并可以改团里的角色。"
@@ -792,7 +792,7 @@ async function setLeader(leader) {
     person.value = await admin("/admin/users/" + person.value.user.id);
     await loadUsers();
     saved.value = true;
-    message.value = leader ? "已设为团长" : "已取消团长";
+    message.value = leader ? "已开启建团资格" : "已关闭建团资格";
   } catch (err) {
     fail(err);
     try {

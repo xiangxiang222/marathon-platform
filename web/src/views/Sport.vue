@@ -49,8 +49,8 @@
   <p v-if="!ready" class="empty">先到「我的」登录。</p>
   <div class="block">
     <h2>创建跑团</h2>
-    <p v-if="leader" class="hint">只有团长能提交。通过后你是团长，可以在手机上管理成员、活动和组别。</p>
-    <p v-else class="hint">只有团长可以建团。请跑团管理员先把你设为团长。</p>
+    <p v-if="leader" class="hint">提交后等待审核。通过后，你是这个团的团长，可以在手机上管理成员、活动和组别。</p>
+    <p v-else class="hint">当前没有建团资格，无法申请创建跑团。请联系管理员开启。</p>
     <p v-if="foundingMessage" class="err">{{ foundingMessage }}</p>
     <div v-if="leader && application" class="row"><span>{{ application.name }}</span><b>等待审核</b></div>
     <div v-else-if="leader" class="field">
