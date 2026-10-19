@@ -92,7 +92,7 @@
     <p v-if="race && ready && !cards.length" class="empty">建好跑团后，这里会生成能发到群里的卡片。</p>
     <div v-if="race" class="block">
       <h2>我这场</h2>
-      <p v-if="!ready" class="empty">先到「我的」里起个昵称，再标状态。标完同团的人能看见。</p>
+      <p v-if="!ready" class="empty">先到「我的」登录，再标状态。标完同团的人能看见。</p>
       <div v-else class="statuses">
         <button v-for="item in statuses" :key="item" type="button" class="status" :class="{ on: myStatus === item }" @click="mark(item)">
           {{ item }}

@@ -1,4 +1,4 @@
-const { request, setAuth, ready } = require("../../utils/request");
+const { request, ready } = require("../../utils/request");
 const { baseUrl } = require("../../config");
 
 function withUnpaid(card) {
@@ -23,7 +23,6 @@ Page({
     drawError: "",
     code: "",
     ready: false,
-    draft: "",
     message: "",
     myResult: null,
     distanceOptions: [],
@@ -47,9 +46,6 @@ Page({
   },
   onShow() {
     this.open();
-  },
-  onDraft(e) {
-    this.setData({ draft: e.detail.value });
   },
   armShare(e) {
     this.pending = e.currentTarget.dataset;
@@ -132,16 +128,6 @@ Page({
     const urls = this.data.guide.map((item) => item.src).concat(this.data.routeSheets.map((item) => item.src), this.data.pacerSheets.map((item) => item.src));
     if (this.data.liveSheet) urls.push(this.data.liveSheet.src);
     wx.previewImage({ current, urls });
-  },
-  enter() {
-    const nickname = (this.data.draft || "").trim();
-    request("/session", "POST", { nickname })
-      .then((data) => {
-        setAuth(data.token, data.user.nickname);
-        this.setData({ ready: true, draft: "" });
-        return this.open();
-      })
-      .catch((err) => this.setData({ message: err.message }));
   },
   mark(e) {
     const status = e.currentTarget.dataset.status;

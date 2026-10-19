@@ -1,11 +1,22 @@
-const { request, setAuth, ready } = require("../../utils/request");
+const { request, setAuth, clearAuth, ready } = require("../../utils/request");
+const { saveCaptchaFile } = require("../../utils/captcha");
 
 Page({
   data: {
     nickname: "",
     leader: false,
     clubs: [],
+    hasPassword: false,
+    tab: "login",
     draft: "",
+    password: "",
+    password2: "",
+    captcha: "",
+    captchaImage: "",
+    captchaLoading: false,
+    currentPassword: "",
+    nextPassword: "",
+    nextPassword2: "",
     plans: [],
     results: [],
     career: { finished: 0, provinces: [], cities: [], pb: { full: "", half: "" }, yearKm: 0 },
@@ -13,6 +24,7 @@ Page({
     reminders: [],
     loaded: false,
     message: "",
+    ok: false,
     company: "北京华创科技有限公司",
     icp: "京ICP备2026060284号-2"
   },
@@ -23,18 +35,88 @@ Page({
     const nickname = (getApp().globalData && getApp().globalData.nickname) || "";
     this.setData({ nickname, ready: ready() });
     if (ready()) this.load();
+    else if (this.data.tab === "login") this.loadCaptcha();
   },
-  onDraft(e) {
-    this.setData({ draft: e.detail.value });
+  onDraft(e) { this.setData({ draft: e.detail.value }); },
+  onPassword(e) { this.setData({ password: e.detail.value }); },
+  onPassword2(e) { this.setData({ password2: e.detail.value }); },
+  onCaptcha(e) { this.setData({ captcha: e.detail.value }); },
+  onCurrent(e) { this.setData({ currentPassword: e.detail.value }); },
+  onNext(e) { this.setData({ nextPassword: e.detail.value }); },
+  onNext2(e) { this.setData({ nextPassword2: e.detail.value }); },
+  setTab(e) {
+    const tab = e.currentTarget.dataset.tab === "register" ? "register" : "login";
+    this.setData({ tab, message: "", ok: false });
+    if (tab === "login") this.loadCaptcha();
   },
-  enter() {
-    request("/session", "POST", { nickname: (this.data.draft || "").trim() })
+  loadCaptcha() {
+    this.setData({ captchaLoading: true, captchaImage: "" });
+    request("/auth/captcha?t=" + Date.now())
+      .then((data) => saveCaptchaFile(data.image, this._captchaFile).then((filePath) => ({ data, filePath })))
+      .then(({ data, filePath }) => {
+        this._captchaFile = filePath;
+        this._captchaToken = data.token;
+        this.setData({ captchaImage: filePath, captcha: "", captchaLoading: false });
+      })
+      .catch((err) => this.setData({ captchaLoading: false, message: err.message, ok: false }));
+  },
+  submitAuth() {
+    const tab = this.data.tab;
+    if (tab === "register" && this.data.password !== this.data.password2) {
+      this.setData({ message: "两次密码不一致", ok: false });
+      return;
+    }
+    const body = { nickname: (this.data.draft || "").trim(), password: this.data.password };
+    if (tab === "login") {
+      body.captchaToken = this._captchaToken || "";
+      body.captcha = this.data.captcha;
+    }
+    request(tab === "login" ? "/auth/login" : "/auth/register", "POST", body)
       .then((data) => {
         setAuth(data.token, data.user.nickname);
-        this.setData({ nickname: data.user.nickname, draft: "", message: "" });
+        this.setData({ nickname: data.user.nickname, password: "", password2: "", captcha: "", message: "", ok: false });
         this.load();
       })
-      .catch((err) => this.setData({ message: err.message }));
+      .catch((err) => {
+        this.setData({ message: err.message, ok: false });
+        if (tab === "login") this.loadCaptcha();
+      });
+  },
+  savePassword() {
+    if (this.data.nextPassword !== this.data.nextPassword2) {
+      this.setData({ message: "两次密码不一致", ok: false });
+      return;
+    }
+    request("/me/password", "PUT", { current: this.data.currentPassword, password: this.data.nextPassword })
+      .then(() => {
+        this.setData({
+          hasPassword: true,
+          currentPassword: "",
+          nextPassword: "",
+          nextPassword2: "",
+          ok: true,
+          message: "密码已保存"
+        });
+      })
+      .catch((err) => this.setData({ message: err.message, ok: false }));
+  },
+  logout() {
+    clearAuth();
+    this.setData({
+      nickname: "",
+      leader: false,
+      clubs: [],
+      hasPassword: false,
+      plans: [],
+      results: [],
+      conflicts: [],
+      reminders: [],
+      loaded: false,
+      tab: "login",
+      message: "",
+      ok: false
+    });
+    this.loadCaptcha();
   },
   load() {
     request("/me")
@@ -42,6 +124,7 @@ Page({
         const plans = (data.plans || []).map((item) => ({ ...item, raceId: item.race.id }));
         const results = (data.results || []).map((item) => ({ ...item, raceId: item.race.id }));
         const reminders = (data.reminders || []).map((item) => ({ ...item, key: item.race.id + item.hit.key }));
+        setAuth((getApp().globalData && getApp().globalData.token) || "", data.user.nickname);
         this.setData({
           plans,
           results,
@@ -50,10 +133,14 @@ Page({
           conflicts: data.conflicts || [],
           nickname: data.user.nickname,
           leader: !!(data.user && data.user.leader),
+          hasPassword: !!(data.user && data.user.hasPassword),
           clubs: data.clubs || [],
           loaded: true
         });
       })
-      .catch((err) => this.setData({ loaded: true, message: err.message }));
+      .catch((err) => {
+        if (err.message === "请先登录") this.logout();
+        else this.setData({ loaded: true, message: err.message, ok: false });
+      });
   }
 });

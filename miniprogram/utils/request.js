@@ -44,9 +44,19 @@ function setAuth(token, nickname) {
   wx.setStorageSync("marathon_name", nickname);
 }
 
+function clearAuth() {
+  const app = getApp();
+  if (app && app.globalData) {
+    app.globalData.token = "";
+    app.globalData.nickname = "";
+  }
+  wx.removeStorageSync("marathon_token");
+  wx.removeStorageSync("marathon_name");
+}
+
 function ready() {
   const app = getApp();
   return !!(app && app.globalData && app.globalData.token);
 }
 
-module.exports = { request, setAuth, ready };
+module.exports = { request, setAuth, clearAuth, ready };

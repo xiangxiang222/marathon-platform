@@ -11,6 +11,7 @@ const { adminRoleLabel, clubRoleLabel } = require("./roles");
 const { mountClubLife, enrichBoard, clubLife } = require("./club-life");
 const { mountRaceGuide, attachGuide } = require("./race-guide");
 const { mountAdminDesk } = require("./admin-desk");
+const { issueCaptcha, registerUser, loginUser, changeOwnPassword } = require("./user-auth");
 
 function loadEnv() {
   const file = path.join(__dirname, "../../.env");
@@ -137,7 +138,7 @@ function remindable(now = new Date()) {
 function requireUser(req, res) {
   const user = userFrom(req);
   if (!user) {
-    res.status(401).json({ error: "先起个昵称" });
+    res.status(401).json({ error: "请先登录" });
     return null;
   }
   return user;
@@ -392,6 +393,24 @@ app.post(BASE + "/api/session", (req, res) => {
   res.json({ token, user: { id: Number(info.lastInsertRowid), nickname } });
 });
 
+app.get(BASE + "/api/auth/captcha", (_req, res) => {
+  const issued = issueCaptcha(getDb());
+  res.set("Cache-Control", "no-store");
+  res.json({ token: issued.token, image: issued.image });
+});
+
+app.post(BASE + "/api/auth/register", (req, res) => {
+  const result = registerUser(getDb(), req.body || {});
+  if (result.error) return res.status(result.status).json({ error: result.error });
+  res.json(result);
+});
+
+app.post(BASE + "/api/auth/login", (req, res) => {
+  const result = loginUser(getDb(), req.body || {});
+  if (result.error) return res.status(result.status).json({ error: result.error });
+  res.json(result);
+});
+
 app.get(BASE + "/api/me", (req, res) => {
   const user = requireUser(req, res);
   if (!user) return;
@@ -413,8 +432,9 @@ app.get(BASE + "/api/me", (req, res) => {
     .prepare("SELECT id, name, status FROM club_applications WHERE user_id = ? AND status = 'pending' ORDER BY id DESC")
     .all(user.id)
     .map((row) => ({ id: row.id, name: row.name, status: row.status }));
+  const account = getDb().prepare("SELECT password_hash FROM users WHERE id = ?").get(user.id);
   res.json({
-    user: { id: user.id, nickname: user.nickname, leader: Boolean(user.leader) },
+    user: { id: user.id, nickname: user.nickname, leader: Boolean(user.leader), hasPassword: Boolean(account && account.password_hash) },
     applications,
     plans,
     clubs,
@@ -424,6 +444,14 @@ app.get(BASE + "/api/me", (req, res) => {
     results,
     career: careerOf(results, yearOf(new Date()))
   });
+});
+
+app.put(BASE + "/api/me/password", (req, res) => {
+  const user = requireUser(req, res);
+  if (!user) return;
+  const result = changeOwnPassword(getDb(), user.id, req.body && req.body.current, req.body && req.body.password);
+  if (result.error) return res.status(result.status).json({ error: result.error });
+  res.json({ ok: true });
 });
 
 app.put(BASE + "/api/me/races/:id", (req, res) => {

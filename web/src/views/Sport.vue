@@ -46,7 +46,7 @@
     <div class="row"><span>{{ club.roleLabel }} · 口令</span><b>{{ club.code }}</b></div>
   </router-link>
   <p v-if="ready && mode === 'search' && !query.trim() && !clubs.length && !openClubs.length" class="empty">还没有可加入的跑团。</p>
-  <p v-if="!ready" class="empty">先到「我的」里起个昵称。</p>
+  <p v-if="!ready" class="empty">先到「我的」登录。</p>
   <div class="block">
     <h2>创建跑团</h2>
     <p v-if="leader" class="hint">只有团长能提交。通过后你是团长，可以在手机上管理成员、活动和组别。</p>

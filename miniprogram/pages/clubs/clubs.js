@@ -1,13 +1,10 @@
-const { request, setAuth, ready } = require("../../utils/request");
+const { request, ready } = require("../../utils/request");
 
 Page({
-  data: { ready: false, draft: "", name: "", leader: false, application: null, mode: "search", code: "", query: "", showAll: false, more: 0, clubs: [], openClubs: [], loaded: false, message: "", foundingMessage: "" },
+  data: { ready: false, name: "", leader: false, application: null, mode: "search", code: "", query: "", showAll: false, more: 0, clubs: [], openClubs: [], loaded: false, message: "", foundingMessage: "" },
   onShow() {
     this.setData({ ready: ready() });
     if (ready()) this.load();
-  },
-  onDraft(e) {
-    this.setData({ draft: e.detail.value });
   },
   onName(e) {
     this.setData({ name: e.detail.value });
@@ -29,15 +26,6 @@ Page({
     const mode = e.currentTarget.dataset.mode;
     const message = mode === "search" && (this.data.query || "").trim() && !this.data.openClubs.length ? "没有找到这个跑团" : "";
     this.setData({ mode, message });
-  },
-  enter() {
-    request("/session", "POST", { nickname: (this.data.draft || "").trim() })
-      .then((data) => {
-        setAuth(data.token, data.user.nickname);
-        this.setData({ ready: true, draft: "", message: "" });
-        this.load();
-      })
-      .catch((err) => this.setData({ message: err.message }));
   },
   load(query, showAll) {
     const q = String(query != null ? query : this.data.query || "").trim();

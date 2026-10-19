@@ -69,6 +69,17 @@ button.ghost::after { border: 0; }
   font-size: 22rpx;
   border-radius: 4rpx;
 }
+.go {
+  display: block;
+  margin-top: 16rpx;
+  height: 72rpx;
+  line-height: 72rpx;
+  text-align: center;
+  background: #007aff;
+  color: #fff;
+  border-radius: 16rpx;
+  font-weight: 650;
+}
 .foot {
   display: flex;
   justify-content: space-between;

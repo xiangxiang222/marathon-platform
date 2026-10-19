@@ -1,6 +1,7 @@
 const { DISTANCE_LABEL } = require("./races");
 const { formatClock } = require("./career");
 const { clubRoleLabel, setMemberRole, decideRequest, listPending, listClubApplications, decideClubApplication } = require("./roles");
+const { setUserPassword } = require("./user-auth");
 
 function when(value) {
   return String(value || "").slice(0, 16).replace("T", " ");
@@ -10,6 +11,7 @@ function listUsers(db, q) {
   const rows = db
     .prepare(
       `SELECT u.id, u.nickname, u.created_at, u.leader,
+              CASE WHEN u.password_hash != '' THEN 1 ELSE 0 END AS has_password,
               (SELECT COUNT(*) FROM plans p WHERE p.user_id = u.id) AS plans,
               (SELECT COUNT(*) FROM results r WHERE r.user_id = u.id) AS results,
               (SELECT COUNT(*) FROM club_members m WHERE m.user_id = u.id) AS clubs
@@ -23,6 +25,7 @@ function listUsers(db, q) {
     id: row.id,
     nickname: row.nickname,
     leader: Boolean(row.leader),
+    hasPassword: Boolean(row.has_password),
     createdAt: when(row.created_at),
     plans: row.plans,
     results: row.results,
@@ -31,7 +34,13 @@ function listUsers(db, q) {
 }
 
 function userDesk(db, id) {
-  const user = db.prepare("SELECT id, nickname, created_at, leader FROM users WHERE id = ?").get(id);
+  const user = db
+    .prepare(
+      `SELECT id, nickname, created_at, leader,
+              CASE WHEN password_hash != '' THEN 1 ELSE 0 END AS has_password
+       FROM users WHERE id = ?`
+    )
+    .get(id);
   if (!user) return null;
   const clubs = db
     .prepare(
@@ -71,7 +80,13 @@ function userDesk(db, id) {
     )
     .all(user.id);
   return {
-    user: { id: user.id, nickname: user.nickname, createdAt: when(user.created_at), leader: Boolean(user.leader) },
+    user: {
+      id: user.id,
+      nickname: user.nickname,
+      createdAt: when(user.created_at),
+      leader: Boolean(user.leader),
+      hasPassword: Boolean(user.has_password)
+    },
     clubs: clubs.map((row) => {
       const role = row.owner_id === user.id ? "owner" : row.role === "manager" ? "manager" : "member";
       return { id: row.id, name: row.name, owner: role === "owner", role, roleLabel: clubRoleLabel(role) };
@@ -167,6 +182,15 @@ function mountAdminDesk(app, { BASE, getDb, requireAdmin }) {
     const clubId = Number(req.params.clubId);
     if (!Number.isInteger(id) || id < 1 || !Number.isInteger(clubId) || clubId < 1) return res.status(404).json({ error: "没有这个人" });
     const result = setMemberRole(getDb(), clubId, id, String((req.body && req.body.role) || ""));
+    if (result.error) return res.status(result.status).json({ error: result.error });
+    res.json({ ok: true });
+  });
+
+  app.put(BASE + "/api/admin/users/:id/password", (req, res) => {
+    if (!desk(req, res)) return;
+    const id = Number(req.params.id);
+    if (!Number.isInteger(id) || id < 1) return res.status(404).json({ error: "没有这个人" });
+    const result = setUserPassword(getDb(), id, req.body && req.body.password);
     if (result.error) return res.status(result.status).json({ error: result.error });
     res.json({ ok: true });
   });
