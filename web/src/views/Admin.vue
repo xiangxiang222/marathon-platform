@@ -9,7 +9,7 @@
       <div class="gate-copy">
         <p class="kicker">赛历</p>
         <h2>后台</h2>
-        <p>赛事、用户、入团审核、团练公里和积分礼品。</p>
+        <p>赛事、用户、跑团、入团审核、团练公里和积分礼品。</p>
       </div>
       <form class="gate-form" @submit.prevent="enter">
         <label>
@@ -86,7 +86,10 @@
         <p v-if="busy" class="hint">正在向官网要赛历。</p>
         <form class="check-form" @submit.prevent="changePassword">
           <input v-model="currentPassword" type="password" autocomplete="current-password" placeholder="当前密码" />
-          <input v-model="nextPassword" type="password" autocomplete="new-password" placeholder="新密码，至少 8 位" />
+          <label class="field">
+            <input v-model="nextPassword" type="password" autocomplete="new-password" placeholder="新密码" />
+            <small>8 到 128 位</small>
+          </label>
           <button class="undo" type="submit">修改密码</button>
         </form>
       </div>
@@ -336,7 +339,11 @@
             <p class="lead">填写昵称和登录密码。创建后，该用户可使用此昵称与密码登录。不收集手机号，也不收集身份证。</p>
             <form class="user-form" @submit.prevent="createPerson">
               <label class="field"><span>昵称</span><input v-model="newName" maxlength="20" autocomplete="off" placeholder="1–20 个字" /></label>
-              <label class="field"><span>登录密码</span><input v-model="newPass" type="password" autocomplete="new-password" placeholder="8–128 位" /></label>
+              <label class="field">
+                <span>登录密码</span>
+                <input v-model="newPass" type="password" autocomplete="new-password" />
+                <small>8 到 128 位</small>
+              </label>
               <div class="form-actions">
                 <button class="save" type="submit">创建</button>
                 <button class="text-btn" type="button" @click="cancelUser">取消</button>
@@ -371,9 +378,10 @@
                   <form class="pass-form" @submit.prevent="setLoginPassword">
                     <label>
                       <span>新密码</span>
-                      <input v-model="loginPass" type="password" autocomplete="new-password" placeholder="8–128 位" />
+                      <input v-model="loginPass" type="password" autocomplete="new-password" />
                     </label>
                     <button class="save" type="submit">保存</button>
+                    <small>8 到 128 位</small>
                   </form>
                 </section>
                 <section class="section">
@@ -438,6 +446,75 @@
           </div>
         </aside>
       </div>
+      <div v-if="section === 'clubs'" class="desk" :class="{ editing: !!club, dragging }" :style="splitStyle">
+        <div class="desk-main">
+          <div class="block">
+            <form class="check-form inline-form" @submit.prevent="loadClubs">
+              <input v-model="clubQuery" placeholder="搜跑团或昵称" />
+              <button class="primary" type="submit">筛选</button>
+            </form>
+            <p v-if="clubsReady" class="hint">{{ clubs.length }} 个团</p>
+            <div class="race-list">
+              <div v-for="item in clubs" :key="item.id" class="race-row user-row" :class="{ on: club && club.club.id === item.id }">
+                <button type="button" class="race-open" @click="openClub(item.id)">
+                  <span class="who-name">{{ item.name }}</span>
+                  <strong>{{ item.createdAt }} · 团长 {{ item.owner }} · {{ item.members }} 人</strong>
+                </button>
+              </div>
+            </div>
+            <p v-if="clubsReady && !clubs.length" class="empty">没有符合条件的跑团。</p>
+          </div>
+        </div>
+        <div v-if="club" class="splitter" role="separator" aria-orientation="vertical" aria-label="拖动调整左右宽度" :aria-valuenow="Math.round(split)" aria-valuemin="22" aria-valuemax="70" tabindex="0" @pointerdown="startSplit" @keydown="nudgeSplit"></div>
+        <aside v-if="club" class="desk-side">
+          <div class="block person">
+            <div class="person-head">
+              <div class="person-face" aria-hidden="true">{{ club.club.name.slice(0, 1) }}</div>
+              <div class="person-id">
+                <p class="edit-kicker">跑团</p>
+                <h2>{{ club.club.name }}</h2>
+                <p>{{ club.club.createdAt }} 创建 · {{ club.club.members }} 人</p>
+              </div>
+            </div>
+            <section class="section">
+              <h3>团长与口令</h3>
+              <div class="fact"><b>团长</b><span>{{ club.club.owner }}</span></div>
+              <div class="fact"><b>口令</b><span>{{ club.club.code }}</span></div>
+              <p class="lead">口令可直接加入。指定其他成员为团长后，原团长改为跑团管理，新团长具备建团资格。</p>
+            </section>
+            <section class="section">
+              <h3>成员</h3>
+              <article v-for="member in club.members" :key="member.id" class="member-row">
+                <div class="member-head">
+                  <b>{{ member.nickname }}</b>
+                  <span>{{ member.joinedAt }}</span>
+                  <button v-if="member.role !== 'owner' && pendingMember !== member.id" class="remove" type="button" :aria-label="'移出 ' + member.nickname" @click="pendingMember = member.id">移出</button>
+                </div>
+                <div v-if="pendingMember === member.id" class="row-confirm">
+                  <p>确认将该成员移出跑团？此操作不删除其账号。</p>
+                  <button class="danger" type="button" @click="removeClubMember(member)">确认移出</button>
+                  <button class="undo" type="button" @click="pendingMember = 0">取消</button>
+                </div>
+                <div v-else class="roles" role="radiogroup" :aria-label="member.nickname + '的角色'">
+                  <button v-for="item in clubRoles" :key="item.id" type="button" role="radio" :aria-checked="member.role === item.id" :class="{ on: member.role === item.id }" :disabled="member.role === 'owner' && item.id !== 'owner'" @click="setClubMemberRole(member, item.id)">
+                    <span>{{ item.label }}</span>
+                    <i></i>
+                  </button>
+                </div>
+                <p v-if="member.role === 'owner'" class="role-note">现任团长的角色不能直接修改。请先将团长移交给本团其他成员，再进行变更。</p>
+              </article>
+              <p v-if="!club.members.length" class="hint">还没有成员。</p>
+              <form class="user-form" @submit.prevent="addClubMember">
+                <label class="field"><span>添加成员</span><input v-model="memberName" maxlength="20" autocomplete="off" placeholder="已有用户的昵称" /></label>
+                <div class="form-actions">
+                  <button class="save" type="submit">添加</button>
+                </div>
+              </form>
+              <p class="lead">按昵称加入，加入后为成员。昵称须唯一对应一个账号。</p>
+            </section>
+          </div>
+        </aside>
+      </div>
       <div v-if="section === 'runs'" class="block">
         <p v-if="runsReady" class="hint">{{ runs.length }} 条</p>
         <div class="race-list">
@@ -486,12 +563,15 @@
         <p v-if="joinsReady && !joins.length" class="empty">没有待审核的申请。</p>
         <form v-if="role === 'club'" class="check-form" @submit.prevent="changePassword">
           <input v-model="currentPassword" type="password" autocomplete="current-password" placeholder="当前密码" />
-          <input v-model="nextPassword" type="password" autocomplete="new-password" placeholder="新密码，至少 8 位" />
+          <label class="field">
+            <input v-model="nextPassword" type="password" autocomplete="new-password" placeholder="新密码" />
+            <small>8 到 128 位</small>
+          </label>
           <button class="undo" type="submit">修改密码</button>
         </form>
       </div>
       <div v-if="section === 'accounts'" class="block">
-        <p class="hint">后台角色是管理员和跑团管理员。团里的团长、跑团管理、成员，到用户页改。</p>
+        <p class="hint">后台角色是管理员和跑团管理员。团里的团长、跑团管理和成员，到跑团页改。</p>
         <div v-for="item in accounts" :key="item.username" class="line">
           <b>{{ item.username }}</b>
           <span>{{ item.roleLabel }}</span>
@@ -502,7 +582,10 @@
         </div>
         <form class="check-form" @submit.prevent="createAccount">
           <input v-model="accountName" placeholder="用户名" />
-          <input v-model="accountPass" type="password" autocomplete="new-password" placeholder="密码，至少 8 位" />
+          <label class="field">
+            <input v-model="accountPass" type="password" autocomplete="new-password" placeholder="密码" />
+            <small>8 到 128 位</small>
+          </label>
           <select v-model="accountRole">
             <option value="club">跑团管理员</option>
             <option value="admin">管理员</option>
@@ -544,6 +627,7 @@ const selfName = ref("");
 const allSections = [
   { id: "races", label: "赛事", roles: ["admin"] },
   { id: "users", label: "用户", roles: ["admin", "club"] },
+  { id: "clubs", label: "跑团", roles: ["admin", "club"] },
   { id: "joins", label: "入团", roles: ["admin", "club"] },
   { id: "runs", label: "跑步", roles: ["admin"] },
   { id: "shop", label: "商城", roles: ["admin"] },
@@ -559,6 +643,12 @@ const pendingDelete = ref(0);
 const adding = ref(false);
 const newName = ref("");
 const newPass = ref("");
+const clubs = ref([]);
+const clubsReady = ref(false);
+const clubQuery = ref("");
+const club = ref(null);
+const memberName = ref("");
+const pendingMember = ref(0);
 const runs = ref([]);
 const runsReady = ref(false);
 const gifts = ref([]);
@@ -587,10 +677,11 @@ const sectionLabel = computed(() => deskSections.value.find((item) => item.id ==
 const sectionLead = computed(() => ({
   races: "已经收进赛历的场。自动拉取还在，删掉的场不会马上加回来。",
   users: "可添加用户，填写昵称和登录密码后即可登录。点开一行查看参赛状态、跑团和成绩。编辑用于建团资格、登录密码和跑团角色。删除在列表中确认。关闭建团资格不影响其已担任的团长。不收集手机号，也不收集身份证。",
+  clubs: "点开一行管理该跑团的成员和团长。按昵称添加成员，移出成员不删除账号。指定团长后，原团长改为跑团管理。现任团长须先移交，才能修改角色或移出。",
   joins: "建团和没口令的入团都在这里审。通过建团后，申请人成为该团团长。",
   runs: "团练里自己报的公里。还没接手表，每天到没到不记在这里。",
   shop: "商城还没接，不收款、不发货。现在看的是各跑团的积分礼品。",
-  accounts: "跑团管理员只审核入团，并可以改团里的角色。"
+  accounts: "跑团管理员审核入团和建团，并可管理跑团成员与团长。"
 }[section.value] || ""));
 const book = ref(null);
 const editTab = ref("base");
@@ -663,6 +754,7 @@ async function enterDesk(data) {
   if (!deskSections.value.some((item) => item.id === section.value)) section.value = role.value === "club" ? "joins" : "races";
   if (section.value === "races") await Promise.all([load(), loadCatalog(), loadSpots()]);
   if (section.value === "users") await loadUsers();
+  if (section.value === "clubs") await loadClubs();
   if (section.value === "joins") await loadJoins();
   if (section.value === "runs") await loadRuns();
   if (section.value === "shop") await loadShop();
@@ -754,6 +846,7 @@ function pickSection(id) {
   message.value = "";
   saved.value = false;
   if (id === "users") loadUsers();
+  if (id === "clubs") loadClubs();
   if (id === "joins") loadJoins();
   if (id === "runs") loadRuns();
   if (id === "shop") loadShop();
@@ -769,6 +862,94 @@ async function loadUsers() {
     if (person.value && !users.value.some((item) => item.id === person.value.user.id)) person.value = null;
   } catch (err) {
     fail(err);
+  }
+}
+
+async function loadClubs() {
+  clubsReady.value = false;
+  try {
+    const data = await admin("/admin/clubs?q=" + encodeURIComponent(clubQuery.value));
+    clubs.value = data.clubs;
+    clubsReady.value = true;
+    if (club.value && !clubs.value.some((item) => item.id === club.value.club.id)) club.value = null;
+  } catch (err) {
+    fail(err);
+  }
+}
+
+async function openClub(id) {
+  message.value = "";
+  saved.value = false;
+  pendingMember.value = 0;
+  if (club.value && club.value.club.id === id) return;
+  memberName.value = "";
+  try {
+    club.value = await admin("/admin/clubs/" + id);
+  } catch (err) {
+    fail(err);
+  }
+}
+
+async function addClubMember() {
+  if (!club.value) return;
+  const nickname = memberName.value.trim();
+  message.value = "";
+  saved.value = false;
+  if (!nickname || nickname.length > 20) {
+    fail(new Error("昵称须为 1 到 20 个字"));
+    return;
+  }
+  const id = club.value.club.id;
+  try {
+    await admin("/admin/clubs/" + id + "/members", { method: "POST", body: JSON.stringify({ nickname }) });
+    memberName.value = "";
+    club.value = await admin("/admin/clubs/" + id);
+    await loadClubs();
+    saved.value = true;
+    message.value = "已加入跑团";
+  } catch (err) {
+    fail(err);
+  }
+}
+
+async function removeClubMember(member) {
+  if (!club.value || !member) return;
+  message.value = "";
+  saved.value = false;
+  const id = club.value.club.id;
+  try {
+    await admin("/admin/clubs/" + id + "/members/" + member.id, { method: "DELETE" });
+    pendingMember.value = 0;
+    club.value = await admin("/admin/clubs/" + id);
+    await loadClubs();
+    saved.value = true;
+    message.value = "已移出跑团";
+  } catch (err) {
+    fail(err);
+  }
+}
+
+async function setClubMemberRole(member, next) {
+  if (!club.value || next === member.role) return;
+  message.value = "";
+  saved.value = false;
+  const id = club.value.club.id;
+  try {
+    await admin("/admin/clubs/" + id + "/members/" + member.id, {
+      method: "PUT",
+      body: JSON.stringify({ role: next })
+    });
+    club.value = await admin("/admin/clubs/" + id);
+    await loadClubs();
+    saved.value = true;
+    message.value = next === "owner" ? "团长已移交" : "角色已更新";
+  } catch (err) {
+    fail(err);
+    try {
+      club.value = await admin("/admin/clubs/" + id);
+    } catch (again) {
+      fail(again);
+    }
   }
 }
 
@@ -1588,9 +1769,46 @@ if (token.value) {
 <style scoped>
 .hint { margin: 8px 0 0; color: #8d949c; font-size: 12px; }
 .warn { margin: 8px 0 0; color: #9a5b12; font-size: 13px; }
-.check-form { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
-.check-form input, .check-form textarea, .check-form select { width: 100%; border: 1px solid #e6e8ec; border-radius: 8px; padding: 8px 10px; background: #fff; font: inherit; }
-.check-form input, .check-form select { height: 36px; padding: 0 10px; }
+.check-form { display: flex; flex-direction: column; gap: 12px; margin-top: 12px; }
+.check-form input,
+.check-form textarea,
+.check-form select,
+.pass-form input,
+.plan-filters select,
+.plan-filters input,
+.role-pick {
+  flex: none;
+  width: 100%;
+  border: 0;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: inset 0 0 0 1px var(--line);
+  font-size: 15px;
+  font-family: inherit;
+}
+.check-form input,
+.check-form select,
+.pass-form input,
+.plan-filters select,
+.plan-filters input,
+.role-pick {
+  height: 48px;
+  min-height: 48px;
+  padding: 0 16px;
+}
+.check-form input:not([type="date"]):not([type="time"]):not([type="file"]),
+.pass-form input,
+.plan-filters input { line-height: 48px; }
+.check-form select,
+.plan-filters select,
+.role-pick,
+.check-form input[type="date"],
+.check-form input[type="time"] { line-height: normal; }
+.check-form textarea { min-height: 112px; height: auto; padding: 14px 16px; line-height: 1.65; resize: vertical; }
+.check-form .primary,
+.inline-form .primary,
+.pass-form .save,
+.form-actions .save { height: 48px; border-radius: 12px; }
 .edit-bar { margin: -14px -16px 0; padding: 16px 16px 12px; border-radius: 16px 16px 0 0; border-bottom: 1px solid var(--line); }
 .edit-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
 .edit-id { min-width: 0; }
@@ -1625,7 +1843,10 @@ if (token.value) {
 .guide-form .field input, .guide-form .field select, .guide-form .field textarea { flex: none; width: 100%; }
 .guide-form .field input, .guide-form .field select { height: 48px; min-height: 48px; padding: 0 16px; line-height: 48px; }
 .guide-form .field textarea { min-height: 112px; height: auto; padding: 14px 16px; line-height: 1.65; resize: vertical; }
-.guide-form input[type="date"], .guide-form input[type="time"], .node-form input[type="date"] { min-height: 48px; line-height: normal; }
+.guide-form input[type="date"],
+.guide-form input[type="time"],
+.node-form input[type="date"] { line-height: normal; }
+.role-pick { width: auto; min-width: 148px; }
 .picks { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
 .pick { height: 32px; padding: 0 12px; border-radius: 999px; background: #fff; color: var(--ink); font-size: 14px; box-shadow: inset 0 0 0 1px var(--line); }
 .pick.on { background: var(--accent); color: #fff; box-shadow: none; }
@@ -1635,6 +1856,11 @@ if (token.value) {
 .race-list { margin-top: 8px; }
 .race-row { display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--line); }
 .user-row { align-items: flex-start; }
+.member-row { padding: 12px 0 4px; border-top: 1px solid var(--line); }
+.member-head { display: flex; align-items: baseline; gap: 8px; }
+.member-head b { flex: 1; min-width: 0; font-size: 16px; }
+.member-head span { flex: none; color: var(--muted); font-size: 12px; }
+.member-row .row-confirm { padding-left: 0; padding-right: 0; }
 .user-row .race-open { padding-right: 0; }
 .row-actions { display: flex; flex: none; align-items: center; padding-top: 6px; }
 .row-edit { flex: none; padding: 8px 10px; background: transparent; color: var(--accent); font-size: 13px; font-weight: 650; }
@@ -1658,16 +1884,16 @@ if (token.value) {
 .editor-actions .primary, .editor-actions .undo { margin-top: 0; }
 .primary { margin-top: 8px; }
 .undo { margin-top: 8px; height: 32px; padding: 0 12px; background: transparent; color: #8d949c; }
-.pass-form { display: flex; align-items: flex-end; gap: 8px; margin-top: 12px; }
+.pass-form { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 8px; margin-top: 12px; }
+.pass-form small { flex: 1 1 100%; margin: 0; color: var(--muted); font-size: 12px; line-height: 1.4; }
 .pass-form label { flex: 1; min-width: 160px; display: flex; flex-direction: column; gap: 6px; }
 .pass-form span { font-size: 12px; color: var(--muted); font-weight: 600; }
-.pass-form input { width: 100%; height: 40px; border: 0; border-radius: 10px; padding: 0 12px; background: #fff; box-shadow: inset 0 0 0 1px var(--line); font: inherit; }
-.pass-form .save { flex: none; height: 40px; padding: 0 18px; border-radius: 10px; background: var(--accent); color: #fff; font-weight: 650; }
+.pass-form .save { flex: none; padding: 0 18px; background: var(--accent); color: #fff; font-weight: 650; }
 .user-form { display: flex; flex-direction: column; gap: 14px; margin-top: 16px; }
 .user-form .field input { flex: none; width: 100%; height: 48px; min-height: 48px; padding: 0 16px; border: 0; border-radius: 12px; background: #fff; box-shadow: inset 0 0 0 1px var(--line); font-size: 15px; line-height: 48px; }
 .user-form h2, .person > h2 { margin: 4px 0 0; font-size: 22px; }
 .form-actions { display: flex; align-items: center; gap: 12px; }
-.form-actions .save { height: 40px; padding: 0 18px; border-radius: 10px; background: var(--accent); color: #fff; font-weight: 650; }
+.form-actions .save { padding: 0 18px; background: var(--accent); color: #fff; font-weight: 650; }
 .danger-quiet { margin-top: 12px; height: 36px; padding: 0 14px; border-radius: 10px; background: #fff; color: var(--red); font-weight: 650; box-shadow: inset 0 0 0 1px rgba(255, 59, 48, 0.35); }
 .confirm-box { margin-top: 10px; }
 .danger { height: 36px; margin-top: 8px; padding: 0 14px; border-radius: 10px; background: #ff3b30; color: #fff; font-weight: 650; }
@@ -1691,11 +1917,10 @@ a { color: #007aff; }
 .desk-head h2 { margin: 0; font-size: 28px; font-weight: 700; letter-spacing: -0.7px; }
 .desk-head p { margin: 6px 0 0; max-width: 42em; color: var(--muted); font-size: 14px; line-height: 1.45; }
 .head-add { height: 40px; margin: 0; padding: 0 16px; border-radius: 12px; white-space: nowrap; }
-.line { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 4px 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.line { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
 .line b { min-width: 0; font-size: 15px; font-weight: 650; }
 .line span { flex: 1 1 100%; color: var(--muted); font-size: 13px; }
 .actions { display: flex; gap: 8px; flex: none; }
-.role-pick { height: 32px; border: 1px solid #e6e8ec; border-radius: 8px; padding: 0 8px; background: #fff; font: inherit; }
 .who-name { display: flex; align-items: center; gap: 8px; min-width: 0; }
 .who-name i { flex: none; height: 20px; padding: 0 7px; border-radius: 999px; background: rgba(0, 122, 255, 0.12); color: var(--accent); font-size: 11px; font-style: normal; font-weight: 650; line-height: 20px; }
 .person { padding-top: 18px; }
@@ -1726,7 +1951,6 @@ a { color: #007aff; }
 .plan-filters { display: flex; gap: 8px; margin-top: 12px; }
 .plan-filters label { flex: 1; min-width: 120px; display: flex; flex-direction: column; gap: 6px; }
 .plan-filters span { font-size: 12px; color: var(--muted); font-weight: 600; }
-.plan-filters select, .plan-filters input { width: 100%; height: 36px; border: 0; border-radius: 10px; padding: 0 10px; background: #fff; box-shadow: inset 0 0 0 1px var(--line); font: inherit; }
 .fact { display: flex; flex-direction: column; align-items: flex-start; gap: 3px; margin-top: 8px; padding: 12px 14px; border-radius: 12px; background: #fff; }
 .fact b { font-size: 15px; font-weight: 650; line-height: 1.35; }
 .fact span { color: var(--muted); font-size: 13px; }
@@ -1761,7 +1985,7 @@ a { color: #007aff; }
   .catalog-open time::after { content: " · "; }
   .catalog-open span { white-space: normal; margin-top: 2px; }
   .inline-form { flex-direction: row; align-items: center; }
-  .inline-form input { flex: 1; }
+  .inline-form input { flex: 1; width: auto; min-width: 0; }
   .inline-form .primary { width: auto; margin-top: 0; padding: 0 14px; }
 }
 @media (min-width: 900px) {
@@ -1784,7 +2008,7 @@ a { color: #007aff; }
   .splitter:hover::before, .dragging .splitter::before { width: 3px; height: 100%; background: var(--accent); }
   .desk-official { grid-column: 1 / -1; }
   .inline-form { flex-direction: row; align-items: center; }
-  .inline-form input { flex: 1; }
+  .inline-form input { flex: 1; width: auto; min-width: 0; }
   .inline-form .primary { width: auto; margin-top: 0; padding: 0 16px; white-space: nowrap; }
   .pair { grid-template-columns: 1fr 1fr; }
   .pair .span { grid-column: 1 / -1; }
