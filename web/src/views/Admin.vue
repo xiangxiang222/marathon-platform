@@ -310,6 +310,11 @@
               <p class="hint">{{ person.user.createdAt }} 起用这个昵称。</p>
               <section class="section">
                 <h3>跑团</h3>
+                <p class="hint">设为团长之后，这个人才能申请建团。</p>
+                <select class="role-pick" :value="person.user.leader ? '1' : '0'" @change="setLeader($event.target.value === '1')">
+                  <option value="0">不是团长</option>
+                  <option value="1">团长，可以建团</option>
+                </select>
                 <div v-for="club in person.clubs" :key="club.id" class="line">
                   <b>{{ club.name }}</b>
                   <span>{{ club.roleLabel }}</span>
@@ -363,6 +368,19 @@
         </div>
       </div>
       <div v-if="section === 'joins'" class="block">
+        <h2>建团</h2>
+        <p class="hint">只有团长能提交。通过后这个人是团长，可以在手机上管理成员、活动和组别。</p>
+        <p v-if="joinsReady" class="hint">{{ foundings.length }} 条待审核</p>
+        <div v-for="item in foundings" :key="item.id" class="line">
+          <b>{{ item.nickname }} · {{ item.name }}</b>
+          <span>{{ item.at }}</span>
+          <span class="actions">
+            <button class="primary" type="button" @click="decideFounding(item, 'approve')">通过</button>
+            <button class="undo" type="button" @click="decideFounding(item, 'reject')">拒绝</button>
+          </span>
+        </div>
+        <p v-if="joinsReady && !foundings.length" class="empty">没有待审核的建团。</p>
+        <h2>入团</h2>
         <p v-if="joinsReady" class="hint">{{ joins.length }} 条待审核</p>
         <div v-for="item in joins" :key="item.id" class="line">
           <b>{{ item.nickname }} · {{ item.club }}</b>
@@ -449,6 +467,7 @@ const gifts = ref([]);
 const redemptions = ref([]);
 const shopReady = ref(false);
 const joins = ref([]);
+const foundings = ref([]);
 const joinsReady = ref(false);
 const accounts = ref([]);
 const accountName = ref("");
@@ -470,7 +489,7 @@ const sectionLabel = computed(() => deskSections.value.find((item) => item.id ==
 const sectionLead = computed(() => ({
   races: "已经收进赛历的场。自动拉取还在，删掉的场不会马上加回来。",
   users: "只有昵称、跑团和标过的场。不收集手机号，也不收集身份证。团里的角色可以改成团长、跑团管理或成员。",
-  joins: "没填口令的入团申请。通过以后才进团。",
+  joins: "建团和没口令的入团都在这里审。通过建团后，申请人是团长。",
   runs: "团练里自己报的公里。还没接手表，每天到没到不记在这里。",
   shop: "商城还没接，不收款、不发货。现在看的是各跑团的积分礼品。",
   accounts: "跑团管理员只审核入团，并可以改团里的角色。"
@@ -682,12 +701,48 @@ async function setClubRole(club, next) {
   }
 }
 
+async function setLeader(leader) {
+  if (!person.value || leader === person.value.user.leader) return;
+  message.value = "";
+  saved.value = false;
+  try {
+    await admin("/admin/users/" + person.value.user.id + "/leader", {
+      method: "PUT",
+      body: JSON.stringify({ leader })
+    });
+    person.value = await admin("/admin/users/" + person.value.user.id);
+    saved.value = true;
+    message.value = leader ? "已设为团长" : "已取消团长";
+  } catch (err) {
+    fail(err);
+    try {
+      person.value = await admin("/admin/users/" + person.value.user.id);
+    } catch (again) {
+      fail(again);
+    }
+  }
+}
+
 async function loadJoins() {
   joinsReady.value = false;
   try {
-    const data = await admin("/admin/club-requests");
-    joins.value = data.requests;
+    const [requests, applications] = await Promise.all([admin("/admin/club-requests"), admin("/admin/club-applications")]);
+    joins.value = requests.requests;
+    foundings.value = applications.applications;
     joinsReady.value = true;
+  } catch (err) {
+    fail(err);
+  }
+}
+
+async function decideFounding(item, decision) {
+  message.value = "";
+  saved.value = false;
+  try {
+    await admin("/admin/club-applications/" + item.id, { method: "POST", body: JSON.stringify({ decision }) });
+    saved.value = true;
+    message.value = decision === "approve" ? "团已建好，团长可以在手机上管理" : "已拒绝";
+    await loadJoins();
   } catch (err) {
     fail(err);
   }

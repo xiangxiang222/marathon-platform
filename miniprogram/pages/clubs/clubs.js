@@ -1,7 +1,7 @@
 const { request, setAuth, ready } = require("../../utils/request");
 
 Page({
-  data: { ready: false, draft: "", name: "", code: "", clubs: [], openClubs: [], loaded: false, message: "" },
+  data: { ready: false, draft: "", name: "", leader: false, application: null, code: "", clubs: [], openClubs: [], loaded: false, message: "" },
   onShow() {
     this.setData({ ready: ready() });
     if (ready()) this.load();
@@ -28,6 +28,8 @@ Page({
     Promise.all([request("/me"), request("/clubs/directory")])
       .then(([data, directory]) => this.setData({
         clubs: data.clubs || [],
+        leader: !!(data.user && data.user.leader),
+        application: (data.applications && data.applications[0]) || null,
         openClubs: (directory.clubs || []).filter((item) => !item.joined),
         loaded: true
       }))
@@ -35,7 +37,14 @@ Page({
   },
   create() {
     request("/clubs", "POST", { name: (this.data.name || "").trim() })
-      .then((data) => wx.navigateTo({ url: "/pages/club/club?id=" + data.club.id }))
+      .then((data) => {
+        if (data.pending) {
+          this.setData({ name: "", message: "已提交，等跑团管理员通过" });
+          this.load();
+          return;
+        }
+        wx.navigateTo({ url: "/pages/club/club?id=" + data.club.id });
+      })
       .catch((err) => this.setData({ message: err.message }));
   },
   join() {

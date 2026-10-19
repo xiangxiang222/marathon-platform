@@ -2,7 +2,7 @@
   <header class="large">
     <div>
       <h1>跑团</h1>
-      <p>建团，用口令进，或申请后等审核</p>
+      <p>团长建团要审核。有口令直接进，没有就申请</p>
     </div>
   </header>
   <section class="panel">
@@ -15,9 +15,12 @@
   </section>
   <div class="block">
     <h2>建一个团</h2>
-    <div class="field">
+    <p v-if="leader" class="hint">只有团长能提交。通过后你是团长，可以在手机上管理成员、活动和组别。</p>
+    <p v-else class="hint">只有团长可以建团。请跑团管理员先把你设为团长。</p>
+    <div v-if="leader && application" class="row"><span>{{ application.name }}</span><b>等待审核</b></div>
+    <div v-else-if="leader" class="field">
       <input v-model="name" placeholder="跑团名称" />
-      <button class="primary" type="button" @click="create">创建</button>
+      <button class="primary" type="button" @click="create">提交</button>
     </div>
   </div>
   <div class="block">
@@ -52,6 +55,8 @@ import { api } from "../api";
 
 const router = useRouter();
 const name = ref("");
+const leader = ref(false);
+const application = ref(null);
 const code = ref("");
 const clubs = ref([]);
 const openClubs = ref([]);
@@ -65,6 +70,8 @@ async function load() {
   const [data, directory] = await Promise.all([api("/me"), api("/clubs/directory")]);
   clubs.value = data.clubs;
   plans.value = data.plans;
+  leader.value = Boolean(data.user && data.user.leader);
+  application.value = (data.applications && data.applications[0]) || null;
   openClubs.value = (directory.clubs || []).filter((item) => !item.joined);
 }
 
@@ -72,6 +79,12 @@ async function create() {
   message.value = "";
   try {
     const data = await api("/clubs", { method: "POST", body: JSON.stringify({ name: name.value }) });
+    if (data.pending) {
+      name.value = "";
+      message.value = "已提交，等跑团管理员通过";
+      await load();
+      return;
+    }
     router.push("/clubs/" + data.club.id);
   } catch (err) {
     message.value = err.message;
