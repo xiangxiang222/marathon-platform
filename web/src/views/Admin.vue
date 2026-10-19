@@ -308,11 +308,20 @@
             </form>
             <p v-if="usersReady" class="hint">{{ users.length }} 人</p>
             <div class="race-list">
-              <div v-for="item in users" :key="item.id" class="race-row" :class="{ on: person && person.user.id === item.id }">
-                <button type="button" class="race-open" @click="openUser(item.id)">
+              <div v-for="item in users" :key="item.id" class="race-row user-row" :class="{ on: person && person.user.id === item.id }">
+                <button type="button" class="race-open" @click="openUser(item.id, 'view')">
                   <span class="who-name">{{ item.nickname }}<i v-if="item.leader">建团资格</i></span>
                   <strong>{{ item.createdAt }} · {{ item.clubs }} 个团 · {{ item.plans }} 场<span v-if="item.hasPassword"> · 可登录</span></strong>
                 </button>
+                <div v-if="pendingDelete === item.id" class="row-confirm">
+                  <p>确认删除该账号？此操作不可恢复。若该用户仍担任跑团团长，须先完成团长移交。</p>
+                  <button class="danger" type="button" @click="removeUser(item)">确认删除</button>
+                  <button class="undo" type="button" @click="pendingDelete = 0">取消</button>
+                </div>
+                <div v-else class="row-actions">
+                  <button class="row-edit" type="button" :aria-label="'编辑 ' + item.nickname" @click="openUser(item.id, 'edit')">编辑</button>
+                  <button class="remove" type="button" :aria-label="'删除 ' + item.nickname" @click="pendingDelete = item.id">删除</button>
+                </div>
               </div>
             </div>
             <p v-if="usersReady && !users.length" class="empty">没有这个昵称。</p>
@@ -324,57 +333,62 @@
             <template v-if="person">
               <div class="person-head">
                 <div class="person-face" aria-hidden="true">{{ person.user.nickname.slice(0, 1) }}</div>
-                <div>
+                <div class="person-id">
+                  <p class="edit-kicker">{{ personMode === "edit" ? "编辑账号" : "用户详情" }}</p>
                   <h2>{{ person.user.nickname }}</h2>
                   <p>{{ person.user.createdAt }} 起用这个昵称</p>
                 </div>
+                <button v-if="personMode === 'view'" class="text-btn" type="button" @click="personMode = 'edit'">编辑</button>
+                <button v-else class="text-btn" type="button" @click="personMode = 'view'">查看详情</button>
               </div>
-              <section class="section">
-                <div class="setting">
-                  <div>
-                    <h3>建团资格</h3>
-                    <p class="lead">开启后，该用户可申请创建跑团。关闭后不能再申请建团，已担任团长的跑团不受影响。</p>
+              <template v-if="personMode === 'edit'">
+                <section class="section">
+                  <div class="setting">
+                    <div>
+                      <h3>建团资格</h3>
+                      <p class="lead">开启后，该用户可申请创建跑团。关闭后不能再申请建团，已担任团长的跑团不受影响。</p>
+                    </div>
+                    <button type="button" class="switch" :class="{ on: person.user.leader }" role="switch" :aria-checked="person.user.leader" aria-label="建团资格" @click="setLeader(!person.user.leader)"><i></i></button>
                   </div>
-                  <button type="button" class="switch" :class="{ on: person.user.leader }" role="switch" :aria-checked="person.user.leader" aria-label="建团资格" @click="setLeader(!person.user.leader)"><i></i></button>
-                </div>
-              </section>
-              <section class="section">
-                <h3>登录密码</h3>
-                <p class="lead">{{ person.user.hasPassword ? "该账号已设置登录密码。保存后将替换为新密码。" : "该账号尚未设置登录密码。设置后，可使用此昵称与密码登录。" }}</p>
-                <form class="pass-form" @submit.prevent="setLoginPassword">
-                  <label>
-                    <span>新密码</span>
-                    <input v-model="loginPass" type="password" autocomplete="new-password" placeholder="8–128 位" />
-                  </label>
-                  <button class="save" type="submit">保存</button>
-                </form>
-              </section>
-              <section class="section">
-                <h3>删除账号</h3>
-                <p class="lead">删除后，该昵称可重新注册，相关个人记录将一并清除。若该用户仍担任跑团团长，须先完成团长移交。</p>
-                <button v-if="!confirmDelete" class="danger-quiet" type="button" @click="confirmDelete = true">删除账号</button>
-                <div v-else class="confirm-box">
-                  <p class="lead">确认删除该账号？此操作不可恢复。</p>
-                  <div class="confirm-row">
-                    <button class="danger" type="button" @click="removeUser">确认删除</button>
-                    <button class="undo" type="button" @click="confirmDelete = false">取消</button>
-                  </div>
-                </div>
-              </section>
-              <section class="section">
-                <h3>跑团</h3>
-                <article v-for="club in person.clubs" :key="club.id" class="club-card">
-                  <b>{{ club.name }}</b>
-                  <div class="roles" role="radiogroup" :aria-label="club.name + '里的角色'">
-                    <button v-for="role in clubRoles" :key="role.id" type="button" role="radio" :aria-checked="club.role === role.id" :class="{ on: club.role === role.id }" :disabled="club.role === 'owner' && role.id !== 'owner'" @click="setClubRole(club, role.id)">
-                      <span>{{ role.label }}</span>
-                      <i></i>
-                    </button>
-                  </div>
-                  <p v-if="club.role === 'owner'" class="role-note">现任团长的角色不能直接修改。请先将团长移交给本团其他成员，再进行变更。</p>
-                </article>
-                <p v-if="!person.clubs.length" class="hint">还没进跑团。</p>
-              </section>
+                </section>
+                <section class="section">
+                  <h3>登录密码</h3>
+                  <p class="lead">{{ person.user.hasPassword ? "该账号已设置登录密码。保存后将替换为新密码。" : "该账号尚未设置登录密码。设置后，可使用此昵称与密码登录。" }}</p>
+                  <form class="pass-form" @submit.prevent="setLoginPassword">
+                    <label>
+                      <span>新密码</span>
+                      <input v-model="loginPass" type="password" autocomplete="new-password" placeholder="8–128 位" />
+                    </label>
+                    <button class="save" type="submit">保存</button>
+                  </form>
+                </section>
+                <section class="section">
+                  <h3>跑团</h3>
+                  <article v-for="club in person.clubs" :key="club.id" class="club-card">
+                    <b>{{ club.name }}</b>
+                    <div class="roles" role="radiogroup" :aria-label="club.name + '里的角色'">
+                      <button v-for="role in clubRoles" :key="role.id" type="button" role="radio" :aria-checked="club.role === role.id" :class="{ on: club.role === role.id }" :disabled="club.role === 'owner' && role.id !== 'owner'" @click="setClubRole(club, role.id)">
+                        <span>{{ role.label }}</span>
+                        <i></i>
+                      </button>
+                    </div>
+                    <p v-if="club.role === 'owner'" class="role-note">现任团长的角色不能直接修改。请先将团长移交给本团其他成员，再进行变更。</p>
+                  </article>
+                  <p v-if="!person.clubs.length" class="hint">尚未加入跑团。</p>
+                </section>
+              </template>
+              <template v-else>
+                <section class="section">
+                  <h3>账号</h3>
+                  <div class="fact"><b>建团资格</b><span>{{ person.user.leader ? "已开启" : "未开启" }}</span></div>
+                  <div class="fact"><b>登录</b><span>{{ person.user.hasPassword ? "已设置密码" : "尚未设置密码" }}</span></div>
+                </section>
+                <section class="section">
+                  <h3>跑团</h3>
+                  <div v-for="club in person.clubs" :key="club.id" class="fact"><b>{{ club.name }}</b><span>{{ roleNames[club.role] || club.role }}</span></div>
+                  <p v-if="!person.clubs.length" class="hint">尚未加入跑团。</p>
+                </section>
+              </template>
               <section class="section">
                 <h3>参赛状态</h3>
                 <p class="lead">可按状态、赛事名称或城市筛选。</p>
@@ -526,6 +540,8 @@ const users = ref([]);
 const usersReady = ref(false);
 const userQuery = ref("");
 const person = ref(null);
+const personMode = ref("view");
+const pendingDelete = ref(0);
 const runs = ref([]);
 const runsReady = ref(false);
 const gifts = ref([]);
@@ -553,7 +569,7 @@ const splitStyle = computed(() => ({ "--split": split.value + "%" }));
 const sectionLabel = computed(() => deskSections.value.find((item) => item.id === section.value)?.label || "后台");
 const sectionLead = computed(() => ({
   races: "已经收进赛历的场。自动拉取还在，删掉的场不会马上加回来。",
-  users: "可为用户开启或关闭建团资格、设置登录密码，或删除账号。关闭建团资格不影响其已担任的团长。昵称冲突时，删除多余账号即可。不收集手机号，也不收集身份证。",
+  users: "点开一行查看参赛状态、跑团和成绩。编辑用于建团资格、登录密码和跑团角色。删除在列表中确认。关闭建团资格不影响其已担任的团长。不收集手机号，也不收集身份证。",
   joins: "建团和没口令的入团都在这里审。通过建团后，申请人成为该团团长。",
   runs: "团练里自己报的公里。还没接手表，每天到没到不记在这里。",
   shop: "商城还没接，不收款、不发货。现在看的是各跑团的积分礼品。",
@@ -740,7 +756,6 @@ async function loadUsers() {
 }
 
 const loginPass = ref("");
-const confirmDelete = ref(false);
 const planStatus = ref("");
 const planQuery = ref("");
 const planStatusOrder = ["想跑", "已报名", "待抽签", "中签", "未中签", "已缴费", "已领物", "完赛", "未完赛", "弃赛"];
@@ -760,11 +775,13 @@ const shownPlans = computed(() => {
   });
 });
 
-async function openUser(id) {
+async function openUser(id, mode) {
   message.value = "";
   saved.value = false;
+  personMode.value = mode === "edit" ? "edit" : "view";
+  pendingDelete.value = 0;
+  if (person.value && person.value.user.id === id) return;
   loginPass.value = "";
-  confirmDelete.value = false;
   planStatus.value = "";
   planQuery.value = "";
   try {
@@ -822,15 +839,14 @@ async function setClubRole(club, next) {
   }
 }
 
-async function removeUser() {
-  if (!person.value) return;
-  const id = person.value.user.id;
+async function removeUser(item) {
+  if (!item) return;
   message.value = "";
   saved.value = false;
   try {
-    await admin("/admin/users/" + id, { method: "DELETE" });
-    person.value = null;
-    confirmDelete.value = false;
+    await admin("/admin/users/" + item.id, { method: "DELETE" });
+    if (person.value && person.value.user.id === item.id) person.value = null;
+    pendingDelete.value = 0;
     await loadUsers();
     saved.value = true;
     message.value = "账号已删除";
@@ -1557,6 +1573,13 @@ if (token.value) {
 .add { margin-top: 8px; color: var(--accent); font-weight: 650; background: transparent; }
 .race-list { margin-top: 8px; }
 .race-row { display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--line); }
+.user-row { align-items: flex-start; }
+.user-row .race-open { padding-right: 0; }
+.row-actions { display: flex; flex: none; align-items: center; padding-top: 6px; }
+.row-edit { flex: none; padding: 8px 10px; background: transparent; color: var(--accent); font-size: 13px; font-weight: 650; }
+.row-confirm { flex: 1 1 100%; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 0 4px 12px; }
+.row-confirm p { flex: 1 1 100%; margin: 0; color: var(--muted); font-size: 12px; line-height: 1.45; }
+.row-confirm .danger, .row-confirm .undo { margin-top: 0; }
 .race-row.on { background: rgba(0, 122, 255, 0.06); }
 .race-open { flex: 1; min-width: 0; text-align: left; padding: 12px 4px; background: transparent; }
 .race-open strong { display: block; color: var(--muted); font-size: 12px; font-weight: 600; }
@@ -1610,7 +1633,9 @@ a { color: #007aff; }
 .who-name { display: flex; align-items: center; gap: 8px; min-width: 0; }
 .who-name i { flex: none; height: 20px; padding: 0 7px; border-radius: 999px; background: rgba(0, 122, 255, 0.12); color: var(--accent); font-size: 11px; font-style: normal; font-weight: 650; line-height: 20px; }
 .person { padding-top: 18px; }
-.person-head { display: flex; align-items: center; gap: 14px; }
+.person-head { display: flex; align-items: flex-start; gap: 14px; }
+.person-id { flex: 1; min-width: 0; }
+.person-head .text-btn { flex: none; padding-top: 4px; }
 .person-face { width: 56px; height: 56px; flex: none; border-radius: 50%; display: grid; place-items: center; color: #fff; font-size: 24px; font-weight: 700; background: linear-gradient(145deg, #64d2ff, #007aff); }
 .person-head h2 { margin: 0; font-size: 22px; font-weight: 700; letter-spacing: -0.4px; }
 .person-head p { margin: 3px 0 0; color: var(--muted); font-size: 13px; }
