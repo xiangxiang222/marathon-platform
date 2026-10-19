@@ -14,7 +14,7 @@ Page({
   },
   onQuery(e) {
     const query = e.detail.value;
-    this.setData({ query, showAll: false, message: "" });
+    this.setData({ query, showAll: false, message: "", openClubs: [], more: 0 });
     clearTimeout(this.queryTimer);
     this.queryTimer = setTimeout(() => this.load(query, false), query.trim() ? 200 : 0);
   },

@@ -39,23 +39,23 @@
       <header class="desk-head">
         <div>
           <h2>{{ sectionLabel }}</h2>
-          <p>{{ sectionLead }}</p>
+          <p v-if="!listSearching">{{ sectionLead }}</p>
         </div>
-        <button v-if="section === 'races'" type="button" class="primary head-add" @click="startDraft">添加一场</button>
-        <button v-if="section === 'users'" type="button" class="primary head-add" @click="startUser">添加用户</button>
+        <button v-if="section === 'races' && !catalogQuery.trim() && !q.trim()" type="button" class="primary head-add" @click="startDraft">添加一场</button>
+        <button v-if="section === 'users' && !userQuery.trim()" type="button" class="primary head-add" @click="startUser">添加用户</button>
       </header>
-      <div v-show="section === 'races'" class="desk" :class="{ editing: !!book, dragging }" :style="splitStyle">
-      <div class="desk-main">
+      <div v-show="section === 'races'" class="desk" :class="{ editing: !!book && !catalogQuery.trim(), dragging }" :style="splitStyle">
+      <div v-show="!(q.trim() && !catalogQuery.trim())" class="desk-main">
       <div class="block">
         <form class="check-form inline-form" @submit.prevent="submitCatalog">
           <input v-model="catalogQuery" placeholder="搜名称、城市" @input="queueCatalog" />
           <button class="primary" type="submit">筛选</button>
         </form>
-        <div class="statuses">
+        <div v-if="!catalogQuery.trim()" class="statuses">
           <button type="button" class="status" :class="{ on: catalogWhen === 'upcoming' }" @click="setCatalogWhen('upcoming')">即将开赛</button>
           <button type="button" class="status" :class="{ on: catalogWhen === 'all' }" @click="setCatalogWhen('all')">全部</button>
         </div>
-        <p v-if="catalogReady" class="hint">{{ catalog.length }} 场</p>
+        <p v-if="catalogReady && !catalogQuery.trim()" class="hint">{{ catalog.length }} 场</p>
         <div class="race-list">
           <div v-for="item in catalog" :key="item.id" class="race-row" :class="{ on: book && book.id === item.id }">
             <button type="button" class="race-open catalog-open" @click="openGuide(item.id)">
@@ -66,25 +66,25 @@
             <button type="button" class="remove" @click="removeRace(item)">删除</button>
           </div>
         </div>
-        <p v-if="catalogReady && !catalog.length" class="empty">这个范围还没有场。</p>
+        <p v-if="catalogReady && !catalog.length" class="empty">{{ catalogQuery.trim() ? "没有找到这场赛事" : "这个范围还没有场。" }}</p>
       </div>
       </div>
-      <div class="desk-official">
+      <div v-if="!catalogQuery.trim()" class="desk-official">
       <div class="block">
-        <h2>官网赛历</h2>
-        <p class="hint">每一届单独存。中国马拉松官网这场一直有链接。赛事自己的网站，官网给了才记下；没给就空着，也不拿往年的网站来填。每天再对一次，名称、日期、主办、赛事网站有变会标出来。报名时间仍要另写来源，已经记下的截止时间不会被盖掉。</p>
+        <h2 v-if="!q.trim()">官网赛历</h2>
+        <p v-if="!q.trim()" class="hint">每一届单独存。中国马拉松官网这场一直有链接。赛事自己的网站，官网给了才记下；没给就空着，也不拿往年的网站来填。每天再对一次，名称、日期、主办、赛事网站有变会标出来。报名时间仍要另写来源，已经记下的截止时间不会被盖掉。</p>
         <form class="check-form inline-form" @submit.prevent="search">
           <input v-model="q" placeholder="搜名称或城市，例如璧山" @input="queueOfficial" />
           <button class="primary" type="submit">查官网</button>
         </form>
-        <button class="undo" type="button" @click="syncAll">拉取即将开赛的场</button>
-        <div class="statuses">
+        <button v-if="!q.trim()" class="undo" type="button" @click="syncAll">拉取即将开赛的场</button>
+        <div v-if="!q.trim()" class="statuses">
           <button v-for="item in filters" :key="item.value" type="button" class="status" :class="{ on: filter === item.value }" @click="setFilter(item.value)">
             {{ item.label }}
           </button>
         </div>
         <p v-if="busy" class="hint">正在向官网要赛历。</p>
-        <form class="check-form" @submit.prevent="changePassword">
+        <form v-if="!q.trim()" class="check-form" @submit.prevent="changePassword">
           <input v-model="currentPassword" type="password" autocomplete="current-password" placeholder="当前密码" />
           <label class="field">
             <input v-model="nextPassword" type="password" autocomplete="new-password" placeholder="新密码" />
@@ -93,7 +93,16 @@
           <button class="undo" type="submit">修改密码</button>
         </form>
       </div>
-      <div v-for="row in rows" :key="row.officialId" class="block">
+      <template v-for="row in rows" :key="row.officialId">
+      <div v-if="q.trim() && officialFocus !== row.officialId" class="race-row">
+        <button type="button" class="race-open" @click="officialFocus = row.officialId">
+          <time>{{ row.raceDate }}</time>
+          <em>{{ row.city }}</em>
+          <span>{{ row.name }}</span>
+        </button>
+      </div>
+      <div v-else class="block">
+        <button v-if="q.trim()" type="button" class="text-btn" @click="officialFocus = ''">收起</button>
         <h2>{{ row.name }}</h2>
         <p class="hint">{{ row.raceDate }} · {{ row.province }} {{ row.city }} · {{ row.gradeLabel || "未标类别" }} · {{ row.items || "项目未写" }}</p>
         <p v-if="row.organizer" class="hint">主办 {{ row.organizer }}</p>
@@ -122,7 +131,8 @@
           <button class="primary" type="submit">保存报名节点</button>
         </form>
       </div>
-      <p v-if="ready && !rows.length" class="empty">这个范围还没有场。</p>
+      </template>
+      <p v-if="ready && !rows.length" class="empty">{{ q.trim() ? "没有找到这场赛事" : "这个范围还没有场。" }}</p>
       </div>
       <div v-if="book" class="splitter" role="separator" aria-orientation="vertical" aria-label="拖动调整左右宽度" :aria-valuenow="Math.round(split)" aria-valuemin="22" aria-valuemax="70" tabindex="0" @pointerdown="startSplit" @keydown="nudgeSplit"></div>
       <aside v-if="book" class="desk-side">
@@ -619,6 +629,7 @@ const currentPassword = ref("");
 const nextPassword = ref("");
 const authed = ref(false);
 const q = ref("");
+const officialFocus = ref("");
 const filter = ref("pending");
 const rows = ref([]);
 const message = ref("");
@@ -683,6 +694,12 @@ const split = ref(savedSplit());
 const dragging = ref(false);
 const splitStyle = computed(() => ({ "--split": split.value + "%" }));
 const sectionLabel = computed(() => deskSections.value.find((item) => item.id === section.value)?.label || "后台");
+const listSearching = computed(() => {
+  if (section.value === "races") return !!catalogQuery.value.trim() || !!q.value.trim();
+  if (section.value === "users") return !!userQuery.value.trim();
+  if (section.value === "clubs") return !!clubQuery.value.trim();
+  return false;
+});
 const sectionLead = computed(() => ({
   races: "已经收进赛历的场。自动拉取还在，删掉的场不会马上加回来。",
   users: "可添加用户，填写昵称和登录密码后即可登录。点开一行查看参赛状态、跑团和成绩。编辑用于建团资格、登录密码和跑团角色。删除在列表中确认。关闭建团资格不影响其已担任的团长。不收集手机号，也不收集身份证。",
@@ -865,6 +882,10 @@ function pickSection(id) {
 let userTimer = 0;
 let userSeq = 0;
 function queueUsers() {
+  if (userQuery.value.trim()) {
+    person.value = null;
+    adding.value = false;
+  }
   clearTimeout(userTimer);
   userTimer = setTimeout(() => {
     loadUsers();
@@ -890,6 +911,7 @@ async function loadUsers() {
 let clubTimer = 0;
 let clubSeq = 0;
 function queueClubs() {
+  if (clubQuery.value.trim()) club.value = null;
   clearTimeout(clubTimer);
   clubTimer = setTimeout(() => {
     loadClubs();
@@ -1311,9 +1333,11 @@ function queueOfficial() {
 }
 async function load() {
   const seq = ++officialSeq;
-  const data = await admin("/admin/official?status=" + filter.value + (q.value ? "&q=" + encodeURIComponent(q.value) : ""));
+  const query = q.value.trim();
+  const data = await admin("/admin/official?status=" + (query ? "all" : filter.value) + (query ? "&q=" + encodeURIComponent(query) : ""));
   if (seq !== officialSeq) return;
   rows.value = (data.rows || []).map((row) => ({ ...row, regStart: "", deadline: "", drawAt: "", payDeadline: "", nodeSource: "" }));
+  if (!rows.value.some((row) => row.officialId === officialFocus.value)) officialFocus.value = "";
   ready.value = true;
 }
 
@@ -1594,6 +1618,7 @@ function closeEditor() {
 let catalogTimer = 0;
 let catalogSeq = 0;
 function queueCatalog() {
+  if (catalogQuery.value.trim()) closeEditor();
   clearTimeout(catalogTimer);
   catalogTimer = setTimeout(() => {
     loadCatalog().catch(fail);
@@ -1605,8 +1630,9 @@ function submitCatalog() {
 }
 async function loadCatalog() {
   const seq = ++catalogSeq;
+  const query = catalogQuery.value.trim();
   const data = await admin(
-    "/admin/races?when=" + catalogWhen.value + (catalogQuery.value ? "&q=" + encodeURIComponent(catalogQuery.value) : "")
+    "/admin/races?when=" + (query ? "all" : catalogWhen.value) + (query ? "&q=" + encodeURIComponent(query) : "")
   );
   if (seq !== catalogSeq) return;
   catalog.value = data.races || [];

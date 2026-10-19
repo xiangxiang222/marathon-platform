@@ -5,7 +5,7 @@
       <p>用口令进，或搜跑团名</p>
     </div>
   </header>
-  <section class="panel">
+  <section v-if="!query.trim()" class="panel">
     <h3>我标过的</h3>
     <div class="stats3">
       <div><b>{{ plans.length }}</b><span>标过的场</span></div>
@@ -14,14 +14,16 @@
     </div>
   </section>
   <div class="block">
-    <h2>加入跑团</h2>
-    <p class="hint">两种方式选一种。</p>
-    <div class="modes">
-      <button type="button" :class="{ on: mode === 'search' }" @click="pick('search')">搜跑团</button>
-      <button type="button" :class="{ on: mode === 'code' }" @click="pick('code')">用口令</button>
-    </div>
-    <p v-if="mode === 'code'" class="hint">填群里的口令，马上进团。</p>
-    <p v-else class="hint">边输入边列出来。跑团名以输入开头的排在前面，也可以搜团长或跑团管理。先显示 6 个。</p>
+    <template v-if="!(mode === 'search' && query.trim())">
+      <h2>加入跑团</h2>
+      <p class="hint">两种方式选一种。</p>
+      <div class="modes">
+        <button type="button" :class="{ on: mode === 'search' }" @click="pick('search')">搜跑团</button>
+        <button type="button" :class="{ on: mode === 'code' }" @click="pick('code')">用口令</button>
+      </div>
+      <p v-if="mode === 'code'" class="hint">填群里的口令，马上进团。</p>
+      <p v-else class="hint">边输入边列出来。跑团名以输入开头的排在前面，也可以搜团长或跑团管理。先显示 6 个。</p>
+    </template>
     <div v-if="mode === 'code'" class="field">
       <input v-model="code" placeholder="口令" @keyup.enter="join" />
       <button class="primary" type="button" @click="join">加入</button>
@@ -31,23 +33,25 @@
     </div>
     <p v-if="message" class="err">{{ message }}</p>
   </div>
-  <div v-for="club in shownClubs" v-show="mode === 'search'" :key="club.id" class="block">
-    <h2>{{ club.name }}</h2>
-    <div class="row">
-      <span>{{ club.members }} 人<span v-if="club.leader"> · 团长 {{ club.leader }}</span></span>
+  <div v-if="mode === 'search' && query.trim()" class="hits">
+    <div v-for="club in shownClubs" :key="club.id" class="hit">
+      <span>{{ club.name }}</span>
+      <em>{{ club.members }} 人<template v-if="club.leader"> · {{ club.leader }}</template></em>
       <router-link v-if="club.joined" :to="'/clubs/' + club.id">已加入</router-link>
       <b v-else-if="club.pending">等待审核</b>
-      <button v-else class="primary" type="button" @click="apply(club)">申请加入</button>
+      <button v-else type="button" @click="apply(club)">申请加入</button>
     </div>
   </div>
   <button v-if="mode === 'search' && moreCount" class="more" type="button" @click="showAll = true">还有 {{ moreCount }} 个，显示全部</button>
+  <template v-if="!query.trim()">
   <router-link v-for="club in clubs" :key="club.id" :to="'/clubs/' + club.id" class="block" style="display:block">
     <h2>{{ club.name }}</h2>
     <div class="row"><span>{{ club.roleLabel }} · 口令</span><b>{{ club.code }}</b></div>
   </router-link>
+  </template>
   <p v-if="ready && mode === 'search' && !query.trim() && !clubs.length && !openClubs.length" class="empty">还没有可加入的跑团。</p>
   <p v-if="!ready" class="empty">先到「我的」登录。</p>
-  <div class="block">
+  <div v-if="!query.trim()" class="block">
     <h2>创建跑团</h2>
     <p v-if="leader" class="hint">提交后等待审核。通过后，你是这个团的团长，可以在手机上管理成员、活动和组别。</p>
     <p v-else class="hint">当前没有建团资格，无法申请创建跑团。请联系管理员开启。</p>
@@ -76,12 +80,19 @@ const mode = ref("search");
 const foundingMessage = ref("");
 const clubs = ref([]);
 const openClubs = ref([]);
+const listedQuery = ref("");
 const plans = ref([]);
 const message = ref("");
 const ready = ref(!!localStorage.getItem("marathon_token"));
 const paid = computed(() => plans.value.filter((item) => item.status === "已缴费").length);
-const shownClubs = computed(() => (query.value.trim() && !showAll.value ? openClubs.value.slice(0, 6) : openClubs.value));
-const moreCount = computed(() => (query.value.trim() && !showAll.value ? Math.max(0, openClubs.value.length - 6) : 0));
+const shownClubs = computed(() => {
+  if (query.value.trim() !== listedQuery.value) return [];
+  return query.value.trim() && !showAll.value ? openClubs.value.slice(0, 6) : openClubs.value;
+});
+const moreCount = computed(() => {
+  if (query.value.trim() !== listedQuery.value) return 0;
+  return query.value.trim() && !showAll.value ? Math.max(0, openClubs.value.length - 6) : 0;
+});
 let queryTimer = 0;
 let loadSeq = 0;
 
@@ -91,6 +102,7 @@ async function load() {
   const seq = ++loadSeq;
   const [data, directory] = await Promise.all([api("/me"), api("/clubs/directory" + (q ? "?q=" + encodeURIComponent(q) : ""))]);
   if (seq !== loadSeq) return;
+  listedQuery.value = q;
   clubs.value = data.clubs;
   plans.value = data.plans;
   leader.value = Boolean(data.user && data.user.leader);

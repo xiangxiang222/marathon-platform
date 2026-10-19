@@ -82,6 +82,7 @@ function yearBlocks(selected) {
 Page({
   data: {
     q: "",
+    searching: false,
     city: "",
     month: "",
     full: false,
@@ -112,8 +113,11 @@ Page({
     this.load();
   },
   onQ(e) {
-    this.data.q = e.detail.value;
-    this.setData({ q: this.data.q });
+    const q = e.detail.value || "";
+    this.data.q = q;
+    this.setData({ q, searching: !!q.trim(), sheet: "", races: [], loaded: false });
+    clearTimeout(this.searchTimer);
+    this.searchTimer = setTimeout(() => this.load(), 200);
   },
   paint(extra) {
     const next = Object.assign({}, this.data, extra || {});
@@ -191,13 +195,18 @@ Page({
     this.load();
   },
   load() {
-    const params = ["status=" + (this.data.status || "upcoming"), "kind=" + (this.data.kind || "road")];
     const q = (this.data.q || "").trim();
-    if (q) params.push("q=" + encodeURIComponent(q));
-    if (this.data.city) params.push("city=" + encodeURIComponent(this.data.city));
-    if (this.data.month) params.push("month=" + encodeURIComponent(this.data.month));
-    if (this.data.full && !this.data.half) params.push("distance=full");
-    if (this.data.half && !this.data.full) params.push("distance=half");
+    const seq = (this.loadSeq = (this.loadSeq || 0) + 1);
+    const params = [];
+    if (q) {
+      params.push("q=" + encodeURIComponent(q), "status=all");
+    } else {
+      params.push("status=" + (this.data.status || "upcoming"), "kind=" + (this.data.kind || "road"));
+      if (this.data.city) params.push("city=" + encodeURIComponent(this.data.city));
+      if (this.data.month) params.push("month=" + encodeURIComponent(this.data.month));
+      if (this.data.full && !this.data.half) params.push("distance=full");
+      if (this.data.half && !this.data.full) params.push("distance=half");
+    }
     request("/reminders")
       .then((data) => {
         const reminders = (data.reminders || []).slice(0, 3).map((item) => ({
@@ -210,6 +219,7 @@ Page({
       .catch(() => {});
     request("/races?" + params.join("&"))
       .then((data) => {
+        if (seq !== this.loadSeq) return;
         const races = (data.races || []).map((race) => {
           const parts = String(race.raceDate || "").split("-");
           const labels = race.distanceLabels || [];
@@ -223,7 +233,7 @@ Page({
             soon: race.open && Number(race.daysLeft) <= 7
           };
         });
-        this.setData({ races, loaded: true, message: "" });
+        this.setData({ races, loaded: true, message: "", searching: !!q });
       })
       .catch((err) => this.setData({ loaded: true, message: err.message }));
   }

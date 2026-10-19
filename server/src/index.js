@@ -205,21 +205,25 @@ app.get(BASE + "/api/races", (req, res) => {
   const distance = String(req.query.distance || "").trim();
   const status = String(req.query.status || "open");
   const kind = String(req.query.kind || "").trim();
-  if (q) rows = rows.filter((r) => r.name.includes(q) || r.city.includes(q) || r.place.includes(q));
-  if (city) rows = rows.filter((r) => r.city === city || r.province === city);
-  if (month) rows = rows.filter((r) => r.raceDate.slice(0, 7) === month);
-  if (distance) rows = rows.filter((r) => r.distances.includes(distance));
-  if (kind) rows = rows.filter((r) => r.kind === kind);
-  if (status === "upcoming") {
+  const fold = (value) => String(value || "").replace(/\s+/g, "").toLowerCase();
+  if (q) {
+    const needle = fold(q);
+    rows = rows.filter((r) => [r.name, r.city, r.place, r.province].some((part) => fold(part).includes(needle)));
+  }
+  if (!q && city) rows = rows.filter((r) => r.city === city || r.province === city);
+  if (!q && month) rows = rows.filter((r) => r.raceDate.slice(0, 7) === month);
+  if (!q && distance) rows = rows.filter((r) => r.distances.includes(distance));
+  if (!q && kind) rows = rows.filter((r) => r.kind === kind);
+  if (!q && status === "upcoming") {
     const today = cstDay(now);
     rows = rows.filter((r) => r.raceDate >= today);
   }
-  if (status === "open") rows = rows.filter((r) => r.regStatus === "报名中");
-  if (status === "wait") rows = rows.filter((r) => r.regStatus === "待开赛");
-  if (status === "live") rows = rows.filter((r) => r.regStatus === "比赛中");
-  if (status === "soon") rows = rows.filter((r) => r.regStatus === "未开始");
-  if (status === "closed") rows = rows.filter((r) => r.regStatus === "已结束");
-  if (status === "unannounced") rows = rows.filter((r) => r.regStatus === "报名时间未公布");
+  if (!q && status === "open") rows = rows.filter((r) => r.regStatus === "报名中");
+  if (!q && status === "wait") rows = rows.filter((r) => r.regStatus === "待开赛");
+  if (!q && status === "live") rows = rows.filter((r) => r.regStatus === "比赛中");
+  if (!q && status === "soon") rows = rows.filter((r) => r.regStatus === "未开始");
+  if (!q && status === "closed") rows = rows.filter((r) => r.regStatus === "已结束");
+  if (!q && status === "unannounced") rows = rows.filter((r) => r.regStatus === "报名时间未公布");
   const cities = [...new Set(getDb().prepare("SELECT city FROM races ORDER BY city").all().map((r) => r.city))];
   const months = [...new Set(getDb().prepare("SELECT race_date FROM races ORDER BY race_date").all().map((r) => r.race_date.slice(0, 7)))];
   res.json({ races: rows, cities, months, statuses: STATUSES });
@@ -566,6 +570,7 @@ app.get(BASE + "/api/clubs/directory", (req, res) => {
   const q = String(req.query.q || "").trim().slice(0, 40);
   const escaped = q.replace(/[\\%_]/g, (ch) => "\\" + ch);
   const like = "%" + escaped + "%";
+  const folded = "%" + escaped.replace(/\s+/g, "") + "%";
   const prefix = escaped + "%";
   const clubs = getDb()
     .prepare(
@@ -585,6 +590,15 @@ app.get(BASE + "/api/clubs/directory", (req, res) => {
             JOIN users u ON u.id = m.user_id
             WHERE m.club_id = c.id AND m.role = 'manager' AND m.user_id != c.owner_id AND u.nickname LIKE ? ESCAPE '\\'
           )
+          OR REPLACE(c.name, ' ', '') LIKE ? ESCAPE '\\'
+          OR EXISTS (
+            SELECT 1 FROM users u WHERE u.id = c.owner_id AND REPLACE(u.nickname, ' ', '') LIKE ? ESCAPE '\\'
+          )
+          OR EXISTS (
+            SELECT 1 FROM club_members m
+            JOIN users u ON u.id = m.user_id
+            WHERE m.club_id = c.id AND m.role = 'manager' AND m.user_id != c.owner_id AND REPLACE(u.nickname, ' ', '') LIKE ? ESCAPE '\\'
+          )
        ORDER BY
          CASE
            WHEN ? = '' THEN 0
@@ -595,7 +609,7 @@ app.get(BASE + "/api/clubs/directory", (req, res) => {
          c.id DESC
        LIMIT 200`
     )
-    .all(user.id, user.id, q, like, like, like, q, prefix, like)
+    .all(user.id, user.id, q, like, like, like, folded, folded, folded, q, prefix, like)
     .map((row) => ({
       id: row.id,
       name: row.name,
