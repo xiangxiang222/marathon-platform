@@ -3,4 +3,5 @@
 .modes { display: flex; gap: 16rpx; margin-bottom: 16rpx; }
 .mode { height: 64rpx; line-height: 64rpx; padding: 0 28rpx; border-radius: 999rpx; background: rgba(118, 118, 128, 0.12); font-size: 28rpx; font-weight: 600; }
 .mode.on { background: #007aff; color: #fff; }
+.more { margin: 0 0 24rpx; padding: 24rpx; border-radius: 24rpx; background: #fff; color: #007aff; text-align: center; font-weight: 650; }
 .link { display: block; }

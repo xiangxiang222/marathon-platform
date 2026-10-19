@@ -21,18 +21,17 @@
       <button type="button" :class="{ on: mode === 'code' }" @click="pick('code')">用口令</button>
     </div>
     <p v-if="mode === 'code'" class="hint">填群里的口令，马上进团。</p>
-    <p v-else class="hint">按跑团名、团长或跑团管理找。找到后申请，等团里审核。</p>
+    <p v-else class="hint">边输入边列出来。跑团名以输入开头的排在前面，也可以搜团长或跑团管理。先显示 6 个。</p>
     <div v-if="mode === 'code'" class="field">
       <input v-model="code" placeholder="口令" @keyup.enter="join" />
       <button class="primary" type="button" @click="join">加入</button>
     </div>
     <div v-else class="field">
-      <input v-model="query" placeholder="跑团名、团长" @keyup.enter="search" />
-      <button class="primary" type="button" @click="search">搜索</button>
+      <input v-model="query" placeholder="跑团名、团长" @input="onQuery" @keyup.enter="search" />
     </div>
     <p v-if="message" class="err">{{ message }}</p>
   </div>
-  <div v-for="club in openClubs" v-show="mode === 'search'" :key="club.id" class="block">
+  <div v-for="club in shownClubs" v-show="mode === 'search'" :key="club.id" class="block">
     <h2>{{ club.name }}</h2>
     <div class="row">
       <span>{{ club.members }} 人<span v-if="club.leader"> · 团长 {{ club.leader }}</span></span>
@@ -41,6 +40,7 @@
       <button v-else class="primary" type="button" @click="apply(club)">申请加入</button>
     </div>
   </div>
+  <button v-if="mode === 'search' && moreCount" class="more" type="button" @click="showAll = true">还有 {{ moreCount }} 个，显示全部</button>
   <router-link v-for="club in clubs" :key="club.id" :to="'/clubs/' + club.id" class="block" style="display:block">
     <h2>{{ club.name }}</h2>
     <div class="row"><span>{{ club.roleLabel }} · 口令</span><b>{{ club.code }}</b></div>
@@ -71,6 +71,7 @@ const leader = ref(false);
 const application = ref(null);
 const code = ref("");
 const query = ref("");
+const showAll = ref(false);
 const mode = ref("search");
 const foundingMessage = ref("");
 const clubs = ref([]);
@@ -79,11 +80,17 @@ const plans = ref([]);
 const message = ref("");
 const ready = ref(!!localStorage.getItem("marathon_token"));
 const paid = computed(() => plans.value.filter((item) => item.status === "已缴费").length);
+const shownClubs = computed(() => (query.value.trim() && !showAll.value ? openClubs.value.slice(0, 6) : openClubs.value));
+const moreCount = computed(() => (query.value.trim() && !showAll.value ? Math.max(0, openClubs.value.length - 6) : 0));
+let queryTimer = 0;
+let loadSeq = 0;
 
 async function load() {
   if (!ready.value) return;
   const q = query.value.trim();
+  const seq = ++loadSeq;
   const [data, directory] = await Promise.all([api("/me"), api("/clubs/directory" + (q ? "?q=" + encodeURIComponent(q) : ""))]);
+  if (seq !== loadSeq) return;
   clubs.value = data.clubs;
   plans.value = data.plans;
   leader.value = Boolean(data.user && data.user.leader);
@@ -113,7 +120,15 @@ async function create() {
   }
 }
 
+function onQuery() {
+  showAll.value = false;
+  message.value = "";
+  clearTimeout(queryTimer);
+  queryTimer = setTimeout(search, query.value.trim() ? 200 : 0);
+}
+
 async function search() {
+  clearTimeout(queryTimer);
   message.value = "";
   try {
     await load();
@@ -167,4 +182,5 @@ onMounted(async () => {
 .modes button { height: 32px; padding: 0 14px; border-radius: 999px; background: var(--chip); color: var(--ink); font-size: 14px; font-weight: 600; }
 .modes button.on { background: var(--accent); color: #fff; }
 .row .primary { width: auto; }
+.more { display: block; width: calc(100% - 32px); margin: 0 16px 12px; height: 40px; border-radius: 12px; background: #fff; color: var(--accent); font-weight: 650; }
 </style>

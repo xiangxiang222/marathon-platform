@@ -1,7 +1,7 @@
 const { request, setAuth, ready } = require("../../utils/request");
 
 Page({
-  data: { ready: false, draft: "", name: "", leader: false, application: null, mode: "search", code: "", query: "", clubs: [], openClubs: [], loaded: false, message: "", foundingMessage: "" },
+  data: { ready: false, draft: "", name: "", leader: false, application: null, mode: "search", code: "", query: "", showAll: false, more: 0, clubs: [], openClubs: [], loaded: false, message: "", foundingMessage: "" },
   onShow() {
     this.setData({ ready: ready() });
     if (ready()) this.load();
@@ -16,7 +16,14 @@ Page({
     this.setData({ code: e.detail.value });
   },
   onQuery(e) {
-    this.setData({ query: e.detail.value });
+    const query = e.detail.value;
+    this.setData({ query, showAll: false, message: "" });
+    clearTimeout(this.queryTimer);
+    this.queryTimer = setTimeout(() => this.load(query, false), query.trim() ? 200 : 0);
+  },
+  showRest() {
+    this.setData({ showAll: true });
+    this.load(this.data.query, true);
   },
   pickMode(e) {
     const mode = e.currentTarget.dataset.mode;
@@ -32,22 +39,30 @@ Page({
       })
       .catch((err) => this.setData({ message: err.message }));
   },
-  load() {
-    const q = (this.data.query || "").trim();
+  load(query, showAll) {
+    const q = String(query != null ? query : this.data.query || "").trim();
+    const expand = showAll != null ? showAll : this.data.showAll;
+    const seq = (this.loadSeq = (this.loadSeq || 0) + 1);
     Promise.all([request("/me"), request("/clubs/directory" + (q ? "?q=" + encodeURIComponent(q) : ""))])
       .then(([data, directory]) => {
-        const found = directory.clubs || [];
+        if (seq !== this.loadSeq) return;
+        const found = (directory.clubs || []).filter((item) => q || !item.joined);
+        const openClubs = q && !expand ? found.slice(0, 6) : found;
         const patch = {
           clubs: data.clubs || [],
           leader: !!(data.user && data.user.leader),
           application: (data.applications && data.applications[0]) || null,
-          openClubs: found.filter((item) => q || !item.joined),
+          openClubs,
+          more: q && !expand ? found.length - openClubs.length : 0,
           loaded: true
         };
         if (q && this.data.mode === "search") patch.message = found.length ? "" : "没有找到这个跑团";
         this.setData(patch);
       })
-      .catch((err) => this.setData({ loaded: true, message: err.message }));
+      .catch((err) => {
+        if (seq !== this.loadSeq) return;
+        this.setData({ loaded: true, message: err.message });
+      });
   },
   search() {
     this.setData({ message: "" });

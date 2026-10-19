@@ -16,14 +16,13 @@
         <view class="mode {{mode === 'code' ? 'on' : ''}}" data-mode="code" bindtap="pickMode">用口令</view>
       </view>
       <view wx:if="{{mode === 'code'}}" class="muted">填群里的口令，马上进团。</view>
-      <view wx:else class="muted">按跑团名、团长或跑团管理找。找到后申请，等团里审核。</view>
+      <view wx:else class="muted">边输入边列出来。跑团名以输入开头的排在前面，也可以搜团长或跑团管理。先显示 6 个。</view>
       <view wx:if="{{mode === 'code'}}" class="field">
         <input placeholder="口令" value="{{code}}" bindinput="onCode" confirm-type="done" bindconfirm="join" />
         <button class="btn" bindtap="join">加入</button>
       </view>
       <view wx:else class="field">
         <input placeholder="跑团名、团长" value="{{query}}" bindinput="onQuery" confirm-type="search" bindconfirm="search" />
-        <button class="btn" bindtap="search">搜索</button>
       </view>
       <view wx:if="{{message}}" class="err">{{message}}</view>
     </view>
@@ -36,6 +35,7 @@
         <button wx:else class="ghost" data-id="{{item.id}}" bindtap="apply">申请加入</button>
       </view>
     </view>
+    <view wx:if="{{mode === 'search' && more}}" class="more" bindtap="showRest">还有 {{more}} 个，显示全部</view>
     <navigator wx:for="{{clubs}}" wx:key="id" class="card link" url="/pages/club/club?id={{item.id}}">
       <view class="title">{{item.name}}</view>
       <view class="foot"><text>{{item.roleLabel}} · 口令</text><text>{{item.code}}</text></view>
