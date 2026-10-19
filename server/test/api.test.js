@@ -1298,3 +1298,35 @@ test("only a leader can apply to found a club, and the desk approves it", async 
   const later = await request(app).post("/marathon/api/clubs").set(auth).send({ name: "再建一个" });
   assert.equal(later.status, 403);
 });
+
+test("a club can be found by its name, its leader, or a manager", async () => {
+  const leader = await session("搜索团长");
+  const manager = await session("搜索管理");
+  const member = await session("搜索成员");
+  const looker = await session("搜索的人");
+  const created = await createClub(leader, "搜索跑团");
+  const clubId = created.body.club.id;
+  const leaderAuth = { Authorization: "Bearer " + leader };
+  await request(app).post("/marathon/api/clubs/join").set("Authorization", "Bearer " + manager).send({ code: created.body.club.code });
+  await request(app).post("/marathon/api/clubs/join").set("Authorization", "Bearer " + member).send({ code: created.body.club.code });
+  const detail = await request(app).get("/marathon/api/clubs/" + clubId).set(leaderAuth);
+  const managerId = detail.body.members.find((item) => item.nickname === "搜索管理").id;
+  assert.equal((await request(app).put("/marathon/api/clubs/" + clubId + "/members/" + managerId).set(leaderAuth).send({ role: "manager" })).status, 200);
+
+  const eyes = { Authorization: "Bearer " + looker };
+  const byName = await request(app).get("/marathon/api/clubs/directory?q=" + encodeURIComponent("搜索跑")).set(eyes);
+  const named = byName.body.clubs.find((item) => item.id === clubId);
+  assert.equal(named.name, "搜索跑团");
+  assert.equal(named.leader, "搜索团长");
+  assert.equal(named.code, undefined);
+  const byLeader = await request(app).get("/marathon/api/clubs/directory?q=" + encodeURIComponent("搜索团长")).set(eyes);
+  assert.ok(byLeader.body.clubs.some((item) => item.id === clubId));
+  const byManager = await request(app).get("/marathon/api/clubs/directory?q=" + encodeURIComponent("搜索管理")).set(eyes);
+  assert.ok(byManager.body.clubs.some((item) => item.id === clubId));
+  const byMember = await request(app).get("/marathon/api/clubs/directory?q=" + encodeURIComponent("搜索成员")).set(eyes);
+  assert.equal(byMember.body.clubs.some((item) => item.id === clubId), false);
+  const wild = await request(app).get("/marathon/api/clubs/directory?q=" + encodeURIComponent("%")).set(eyes);
+  assert.equal(wild.body.clubs.some((item) => item.id === clubId), false);
+  const missing = await request(app).get("/marathon/api/clubs/directory?q=" + encodeURIComponent("没有这个团")).set(eyes);
+  assert.equal(missing.body.clubs.length, 0);
+});
