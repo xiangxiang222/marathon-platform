@@ -325,14 +325,12 @@
               <section class="section">
                 <h3>跑团</h3>
                 <article v-for="club in person.clubs" :key="club.id" class="club-card">
-                  <div class="club-name">
-                    <b>{{ club.name }}</b>
-                    <span>{{ club.roleLabel }}</span>
-                  </div>
-                  <div class="segment" role="group" :aria-label="club.name + '里的角色'">
-                    <button type="button" :class="{ on: club.role === 'member' }" @click="setClubRole(club, 'member')">成员</button>
-                    <button type="button" :class="{ on: club.role === 'manager' }" @click="setClubRole(club, 'manager')">跑团管理</button>
-                    <button type="button" :class="{ on: club.role === 'owner' }" @click="setClubRole(club, 'owner')">团长</button>
+                  <b>{{ club.name }}</b>
+                  <div class="roles" role="radiogroup" :aria-label="club.name + '里的角色'">
+                    <button v-for="role in clubRoles" :key="role.id" type="button" role="radio" :aria-checked="club.role === role.id" :class="{ on: club.role === role.id }" @click="setClubRole(club, role.id)">
+                      <span>{{ role.label }}</span>
+                      <i></i>
+                    </button>
                   </div>
                 </article>
                 <p v-if="!person.clubs.length" class="hint">还没进跑团。</p>
@@ -689,6 +687,11 @@ async function openUser(id) {
 }
 
 const roleNames = { owner: "团长", manager: "跑团管理", member: "成员", admin: "管理员", club: "跑团管理员" };
+const clubRoles = [
+  { id: "member", label: "成员" },
+  { id: "manager", label: "跑团管理" },
+  { id: "owner", label: "团长" }
+];
 
 async function setClubRole(club, next) {
   if (!person.value || next === club.role) return;
@@ -1461,15 +1464,14 @@ a { color: #007aff; }
 .switch i { display: block; width: 27px; height: 27px; border-radius: 50%; background: #fff; box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15), 0 1px 1px rgba(0, 0, 0, 0.06); transition: transform 0.2s ease; }
 .switch.on { background: #34c759; }
 .switch.on i { transform: translateX(20px); }
-.segment { display: grid; gap: 3px; margin-top: 12px; padding: 3px; border-radius: 12px; background: rgba(118, 118, 128, 0.12); }
-.club-card .segment { grid-template-columns: 1fr 1.2fr 0.85fr; margin-top: 10px; }
-.club-card .segment button { font-size: 13px; padding: 0 4px; }
-.segment button { height: 34px; border-radius: 9px; background: transparent; color: var(--ink); font-size: 14px; font-weight: 600; }
-.segment button.on { background: #fff; color: var(--accent); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), 0 0 0 0.5px rgba(0, 0, 0, 0.04); }
-.club-card { margin-top: 10px; padding: 12px; border-radius: 12px; background: #fff; }
-.club-name { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
-.club-name b { flex: 1; min-width: 0; font-size: 16px; font-weight: 650; line-height: 1.35; }
-.club-name span { flex: none; color: var(--accent); font-size: 13px; font-weight: 650; }
+.club-card { margin-top: 10px; padding: 14px 14px 0; border-radius: 12px; background: #fff; }
+.club-card > b { display: block; font-size: 16px; font-weight: 650; line-height: 1.35; }
+.roles { margin-top: 8px; }
+.roles button { display: flex; align-items: center; justify-content: space-between; width: 100%; height: 44px; padding: 0; background: transparent; border-top: 1px solid var(--line); color: var(--ink); font-size: 15px; font-weight: 500; }
+.roles button.on { color: var(--accent); font-weight: 650; }
+.roles i { display: block; flex: none; width: 22px; height: 22px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px rgba(60, 60, 67, 0.28); }
+.roles button.on i { background: var(--accent); box-shadow: none; position: relative; }
+.roles button.on i::after { content: ""; position: absolute; left: 7px; top: 4px; width: 5px; height: 9px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); }
 .fact { display: flex; flex-direction: column; align-items: flex-start; gap: 3px; margin-top: 8px; padding: 12px 14px; border-radius: 12px; background: #fff; }
 .fact b { font-size: 15px; font-weight: 650; line-height: 1.35; }
 .fact span { color: var(--muted); font-size: 13px; }
