@@ -48,7 +48,7 @@ function setMemberRole(db, clubId, userId, role) {
     })();
     return { ok: true };
   }
-  if (uid === club.owner_id) return { error: "团长先交给别人，再改角色", status: 400 };
+  if (uid === club.owner_id) return { error: "请先将团长移交给其他成员，再修改角色", status: 400 };
   db.prepare("UPDATE club_members SET role = ? WHERE club_id = ? AND user_id = ?").run(role, club.id, uid);
   return { ok: true };
 }
