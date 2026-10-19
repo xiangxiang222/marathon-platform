@@ -1,6 +1,6 @@
 <view class="pad">
   <view wx:if="{{!ready}}" class="card">
-    <view class="muted">先起个昵称，再建团或用口令加入。</view>
+    <view class="muted">先起个昵称。有口令直接进，没有就申请。</view>
     <view class="field">
       <input placeholder="怎么称呼你" value="{{draft}}" bindinput="onDraft" />
       <button class="btn" bindtap="enter">进入</button>
@@ -16,17 +16,26 @@
       </view>
     </view>
     <view class="card">
-      <view class="h2">用口令加入</view>
+      <view class="h2">加入跑团</view>
+      <view class="muted">有口令直接进。不填口令就申请，等团长或跑团管理通过。</view>
       <view class="field">
-        <input placeholder="6 位口令" value="{{code}}" bindinput="onCode" />
-        <button class="btn" bindtap="join">加入</button>
+        <input placeholder="口令，可空" value="{{code}}" bindinput="onCode" />
+        <button class="btn" bindtap="join">用口令加入</button>
       </view>
       <view wx:if="{{message}}" class="err">{{message}}</view>
+    </view>
+    <view wx:for="{{openClubs}}" wx:key="id" class="card">
+      <view class="title">{{item.name}}</view>
+      <view class="foot">
+        <text>{{item.members}} 人</text>
+        <text wx:if="{{item.pending}}">等待审核</text>
+        <button wx:else class="ghost" data-id="{{item.id}}" bindtap="apply">申请加入</button>
+      </view>
     </view>
     <navigator wx:for="{{clubs}}" wx:key="id" class="card link" url="/pages/club/club?id={{item.id}}">
       <view class="title">{{item.name}}</view>
       <view class="foot"><text>口令，发到微信群</text><text>{{item.code}}</text></view>
     </navigator>
-    <view wx:if="{{loaded && !clubs.length}}" class="empty">还没有跑团。建一个，把口令发到微信群。</view>
+    <view wx:if="{{loaded && !clubs.length && !openClubs.length}}" class="empty">还没有跑团。建一个，把口令发到微信群。别人也可以不填口令来申请。</view>
   </block>
 </view>

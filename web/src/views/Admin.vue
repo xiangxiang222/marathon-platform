@@ -9,7 +9,7 @@
       <div class="gate-copy">
         <p class="kicker">赛历</p>
         <h2>后台</h2>
-        <p>赛事、用户、团练公里和积分礼品。</p>
+        <p>赛事、用户、入团审核、团练公里和积分礼品。</p>
       </div>
       <form class="gate-form" @submit.prevent="enter">
         <label>
@@ -310,7 +310,15 @@
               <p class="hint">{{ person.user.createdAt }} 起用这个昵称。</p>
               <section class="section">
                 <h3>跑团</h3>
-                <div v-for="club in person.clubs" :key="club.id" class="line"><b>{{ club.name }}</b><span>{{ club.owner ? "团长" : "成员" }}</span></div>
+                <div v-for="club in person.clubs" :key="club.id" class="line">
+                  <b>{{ club.name }}</b>
+                  <span>{{ club.roleLabel }}</span>
+                  <select class="role-pick" :value="club.role" @change="setClubRole(club, $event.target.value)">
+                    <option value="member">成员</option>
+                    <option value="manager">跑团管理</option>
+                    <option value="owner">团长</option>
+                  </select>
+                </div>
                 <p v-if="!person.clubs.length" class="hint">还没进跑团。</p>
               </section>
               <section class="section">
@@ -354,6 +362,43 @@
           <p v-if="shopReady && !redemptions.length" class="empty">还没有人兑换。</p>
         </div>
       </div>
+      <div v-if="section === 'joins'" class="block">
+        <p v-if="joinsReady" class="hint">{{ joins.length }} 条待审核</p>
+        <div v-for="item in joins" :key="item.id" class="line">
+          <b>{{ item.nickname }} · {{ item.club }}</b>
+          <span>{{ item.at }}</span>
+          <span class="actions">
+            <button class="primary" type="button" @click="decideJoin(item, 'approve')">通过</button>
+            <button class="undo" type="button" @click="decideJoin(item, 'reject')">拒绝</button>
+          </span>
+        </div>
+        <p v-if="joinsReady && !joins.length" class="empty">没有待审核的申请。</p>
+        <form v-if="role === 'club'" class="check-form" @submit.prevent="changePassword">
+          <input v-model="currentPassword" type="password" autocomplete="current-password" placeholder="当前密码" />
+          <input v-model="nextPassword" type="password" autocomplete="new-password" placeholder="新密码，至少 8 位" />
+          <button class="undo" type="submit">修改密码</button>
+        </form>
+      </div>
+      <div v-if="section === 'accounts'" class="block">
+        <p class="hint">后台角色是管理员和跑团管理员。团里的团长、跑团管理、成员，到用户页改。</p>
+        <div v-for="item in accounts" :key="item.username" class="line">
+          <b>{{ item.username }}</b>
+          <span>{{ item.roleLabel }}</span>
+          <select v-if="item.username !== selfName" class="role-pick" :value="item.role" @change="setAccountRole(item, $event.target.value)">
+            <option value="admin">管理员</option>
+            <option value="club">跑团管理员</option>
+          </select>
+        </div>
+        <form class="check-form" @submit.prevent="createAccount">
+          <input v-model="accountName" placeholder="用户名" />
+          <input v-model="accountPass" type="password" autocomplete="new-password" placeholder="密码，至少 8 位" />
+          <select v-model="accountRole">
+            <option value="club">跑团管理员</option>
+            <option value="admin">管理员</option>
+          </select>
+          <button class="primary" type="submit">添加账号</button>
+        </form>
+      </div>
       </div>
       </div>
     </template>
@@ -383,12 +428,17 @@ const catalogQuery = ref("");
 const catalogWhen = ref("upcoming");
 const catalogReady = ref(false);
 const section = ref("races");
-const deskSections = [
-  { id: "races", label: "赛事" },
-  { id: "users", label: "用户" },
-  { id: "runs", label: "跑步" },
-  { id: "shop", label: "商城" }
+const role = ref("admin");
+const selfName = ref("");
+const allSections = [
+  { id: "races", label: "赛事", roles: ["admin"] },
+  { id: "users", label: "用户", roles: ["admin", "club"] },
+  { id: "joins", label: "入团", roles: ["admin", "club"] },
+  { id: "runs", label: "跑步", roles: ["admin"] },
+  { id: "shop", label: "商城", roles: ["admin"] },
+  { id: "accounts", label: "账号", roles: ["admin"] }
 ];
+const deskSections = computed(() => allSections.filter((item) => item.roles.includes(role.value || "admin")));
 const users = ref([]);
 const usersReady = ref(false);
 const userQuery = ref("");
@@ -398,6 +448,12 @@ const runsReady = ref(false);
 const gifts = ref([]);
 const redemptions = ref([]);
 const shopReady = ref(false);
+const joins = ref([]);
+const joinsReady = ref(false);
+const accounts = ref([]);
+const accountName = ref("");
+const accountPass = ref("");
+const accountRole = ref("club");
 function savedSplit() {
   try {
     const value = Number(localStorage.getItem("marathon_admin_split"));
@@ -410,12 +466,14 @@ function savedSplit() {
 const split = ref(savedSplit());
 const dragging = ref(false);
 const splitStyle = computed(() => ({ "--split": split.value + "%" }));
-const sectionLabel = computed(() => deskSections.find((item) => item.id === section.value)?.label || "后台");
+const sectionLabel = computed(() => deskSections.value.find((item) => item.id === section.value)?.label || "后台");
 const sectionLead = computed(() => ({
   races: "已经收进赛历的场。自动拉取还在，删掉的场不会马上加回来。",
-  users: "只有昵称、跑团和标过的场。不收集手机号，也不收集身份证。",
+  users: "只有昵称、跑团和标过的场。不收集手机号，也不收集身份证。团里的角色可以改成团长、跑团管理或成员。",
+  joins: "没填口令的入团申请。通过以后才进团。",
   runs: "团练里自己报的公里。还没接手表，每天到没到不记在这里。",
-  shop: "商城还没接，不收款、不发货。现在看的是各跑团的积分礼品。"
+  shop: "商城还没接，不收款、不发货。现在看的是各跑团的积分礼品。",
+  accounts: "跑团管理员只审核入团，并可以改团里的角色。"
 }[section.value] || ""));
 const book = ref(null);
 const nodeOrigin = ref("");
@@ -469,6 +527,25 @@ function fail(err) {
   message.value = err.message;
 }
 
+async function enterDesk(data) {
+  if (data) {
+    role.value = data.role || "admin";
+    selfName.value = data.username || "";
+  } else {
+    const me = await admin("/admin/session");
+    role.value = me.role || "admin";
+    selfName.value = me.username || "";
+  }
+  if (!deskSections.value.some((item) => item.id === section.value)) section.value = role.value === "club" ? "joins" : "races";
+  if (section.value === "races") await Promise.all([load(), loadCatalog(), loadSpots()]);
+  if (section.value === "users") await loadUsers();
+  if (section.value === "joins") await loadJoins();
+  if (section.value === "runs") await loadRuns();
+  if (section.value === "shop") await loadShop();
+  if (section.value === "accounts") await loadAccounts();
+  authed.value = true;
+}
+
 async function enter() {
   message.value = "";
   saved.value = false;
@@ -480,8 +557,7 @@ async function enter() {
     token.value = data.token;
     password.value = "";
     sessionStorage.setItem("marathon_admin", token.value);
-    await Promise.all([load(), loadCatalog(), loadSpots()]);
-    authed.value = true;
+    await enterDesk(data);
   } catch (err) {
     authed.value = false;
     fail(err);
@@ -495,6 +571,8 @@ async function logout() {
     /* 会话失效也离开页面 */
   }
   token.value = "";
+  role.value = "admin";
+  selfName.value = "";
   sessionStorage.removeItem("marathon_admin");
   authed.value = false;
   message.value = "";
@@ -552,8 +630,10 @@ function pickSection(id) {
   message.value = "";
   saved.value = false;
   if (id === "users") loadUsers();
+  if (id === "joins") loadJoins();
   if (id === "runs") loadRuns();
   if (id === "shop") loadShop();
+  if (id === "accounts") loadAccounts();
 }
 
 async function loadUsers() {
@@ -575,6 +655,99 @@ async function openUser(id) {
     person.value = await admin("/admin/users/" + id);
   } catch (err) {
     fail(err);
+  }
+}
+
+const roleNames = { owner: "团长", manager: "跑团管理", member: "成员", admin: "管理员", club: "跑团管理员" };
+
+async function setClubRole(club, next) {
+  if (!person.value || next === club.role) return;
+  message.value = "";
+  saved.value = false;
+  try {
+    await admin("/admin/users/" + person.value.user.id + "/clubs/" + club.id, {
+      method: "PUT",
+      body: JSON.stringify({ role: next })
+    });
+    person.value = await admin("/admin/users/" + person.value.user.id);
+    saved.value = true;
+    message.value = "角色已改成" + (roleNames[next] || next);
+  } catch (err) {
+    fail(err);
+    try {
+      person.value = await admin("/admin/users/" + person.value.user.id);
+    } catch (again) {
+      fail(again);
+    }
+  }
+}
+
+async function loadJoins() {
+  joinsReady.value = false;
+  try {
+    const data = await admin("/admin/club-requests");
+    joins.value = data.requests;
+    joinsReady.value = true;
+  } catch (err) {
+    fail(err);
+  }
+}
+
+async function decideJoin(item, decision) {
+  message.value = "";
+  saved.value = false;
+  try {
+    await admin("/admin/club-requests/" + item.id, { method: "POST", body: JSON.stringify({ decision }) });
+    saved.value = true;
+    message.value = decision === "approve" ? "已通过" : "已拒绝";
+    await loadJoins();
+  } catch (err) {
+    fail(err);
+  }
+}
+
+async function loadAccounts() {
+  try {
+    const data = await admin("/admin/accounts");
+    accounts.value = data.accounts;
+  } catch (err) {
+    fail(err);
+  }
+}
+
+async function createAccount() {
+  message.value = "";
+  saved.value = false;
+  try {
+    await admin("/admin/accounts", {
+      method: "POST",
+      body: JSON.stringify({ username: accountName.value, password: accountPass.value, role: accountRole.value })
+    });
+    accountName.value = "";
+    accountPass.value = "";
+    saved.value = true;
+    message.value = "账号已添加";
+    await loadAccounts();
+  } catch (err) {
+    fail(err);
+  }
+}
+
+async function setAccountRole(item, next) {
+  if (next === item.role) return;
+  message.value = "";
+  saved.value = false;
+  try {
+    await admin("/admin/accounts/" + encodeURIComponent(item.username), {
+      method: "PUT",
+      body: JSON.stringify({ role: next })
+    });
+    saved.value = true;
+    message.value = "角色已改成" + (roleNames[next] || next);
+    await loadAccounts();
+  } catch (err) {
+    fail(err);
+    await loadAccounts();
   }
 }
 
@@ -1131,12 +1304,10 @@ async function removeSheet(id) {
 }
 
 if (token.value) {
-  Promise.all([load(), loadCatalog(), loadSpots()])
-    .then(() => {
-      authed.value = true;
-    })
+  enterDesk()
     .catch(() => {
       token.value = "";
+      role.value = "admin";
       sessionStorage.removeItem("marathon_admin");
       authed.value = false;
     });
@@ -1207,6 +1378,8 @@ a { color: #007aff; }
 .line { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 4px 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
 .line b { min-width: 0; font-size: 15px; font-weight: 650; }
 .line span { flex: 1 1 100%; color: var(--muted); font-size: 13px; }
+.actions { display: flex; gap: 8px; flex: none; }
+.role-pick { height: 32px; border: 1px solid #e6e8ec; border-radius: 8px; padding: 0 8px; background: #fff; font: inherit; }
 .desk { display: flex; flex-direction: column; }
 .desk-side { order: 2; }
 .desk-official { order: 3; }

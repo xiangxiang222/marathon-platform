@@ -1090,3 +1090,134 @@ test("admin sees nicknames, self-reported runs, and club gifts", async () => {
   assert.equal(sock.stock, 3);
   assert.equal(shop.body.redemptions.some((row) => row.name === "核对袜"), false);
 });
+
+test("a club can be joined without a code, after a manager approves", async () => {
+  process.env.ADMIN_TOKEN = "test-admin";
+  const admin = { Authorization: "Bearer test-admin" };
+  const leader = await session("审核团长");
+  const mate = await session("没口令");
+  const helper = await session("跑团管理甲");
+  const auth = { Authorization: "Bearer " + leader };
+  const created = await request(app).post("/marathon/api/clubs").set(auth).send({ name: "审核跑团" });
+  const clubId = created.body.club.id;
+  assert.equal(created.status, 200);
+
+  const missing = await request(app).post("/marathon/api/clubs/join").set("Authorization", "Bearer " + mate).send({});
+  assert.equal(missing.status, 400);
+  const anon = await request(app).get("/marathon/api/clubs/directory");
+  assert.equal(anon.status, 401);
+
+  const applied = await request(app).post("/marathon/api/clubs/join").set("Authorization", "Bearer " + mate).send({ clubId });
+  assert.equal(applied.status, 200);
+  assert.equal(applied.body.pending, true);
+  assert.equal(applied.body.club.code, undefined);
+  const again = await request(app).post("/marathon/api/clubs/join").set("Authorization", "Bearer " + mate).send({ clubId });
+  assert.equal(again.body.pending, true);
+  assert.equal((await request(app).get("/marathon/api/clubs/" + clubId).set("Authorization", "Bearer " + mate)).status, 403);
+
+  const directory = await request(app).get("/marathon/api/clubs/directory").set("Authorization", "Bearer " + mate);
+  const listed = directory.body.clubs.find((item) => item.id === clubId);
+  assert.equal(listed.pending, true);
+  assert.equal(listed.code, undefined);
+
+  await request(app).post("/marathon/api/clubs/join").set("Authorization", "Bearer " + helper).send({ code: created.body.club.code });
+  const before = await request(app).get("/marathon/api/clubs/" + clubId).set(auth);
+  assert.equal(before.body.club.role, "owner");
+  assert.equal(before.body.club.staff, true);
+  assert.equal(before.body.requests.length, 1);
+  const requestId = before.body.requests[0].id;
+  const helperId = before.body.members.find((item) => item.nickname === "跑团管理甲").id;
+  assert.equal(
+    (await request(app).post("/marathon/api/clubs/" + clubId + "/requests/" + requestId).set("Authorization", "Bearer " + helper).send({ decision: "approve" })).status,
+    403
+  );
+  assert.equal(
+    (await request(app).put("/marathon/api/clubs/" + clubId + "/members/" + helperId).set("Authorization", "Bearer " + helper).send({ role: "manager" })).status,
+    403
+  );
+  const promoted = await request(app).put("/marathon/api/clubs/" + clubId + "/members/" + helperId).set(auth).send({ role: "manager" });
+  assert.equal(promoted.status, 200);
+  const managed = await request(app)
+    .post("/marathon/api/clubs/" + clubId + "/groups")
+    .set("Authorization", "Bearer " + helper)
+    .send({ name: "管理组" });
+  assert.equal(managed.status, 200);
+  const approved = await request(app)
+    .post("/marathon/api/clubs/" + clubId + "/requests/" + requestId)
+    .set("Authorization", "Bearer " + helper)
+    .send({ decision: "approve" });
+  assert.equal(approved.status, 200);
+  const inside = await request(app).get("/marathon/api/clubs/" + clubId).set("Authorization", "Bearer " + mate);
+  assert.equal(inside.status, 200);
+  assert.equal(inside.body.club.staff, false);
+  assert.equal(inside.body.requests.length, 0);
+  assert.equal(
+    (await request(app).post("/marathon/api/clubs/" + clubId + "/requests/" + requestId).set("Authorization", "Bearer " + helper).send({ decision: "approve" })).status,
+    400
+  );
+
+  const outsider = await session("被拒绝");
+  const asked = await request(app).post("/marathon/api/clubs/join").set("Authorization", "Bearer " + outsider).send({ clubId });
+  assert.equal(asked.body.pending, true);
+  const queue = await request(app).get("/marathon/api/clubs/" + clubId).set(auth);
+  const askedId = queue.body.requests.find((item) => item.nickname === "被拒绝").id;
+  assert.equal(
+    (await request(app).post("/marathon/api/clubs/" + clubId + "/requests/" + askedId).set(auth).send({ decision: "reject" })).status,
+    200
+  );
+  assert.equal((await request(app).get("/marathon/api/clubs/" + clubId).set("Authorization", "Bearer " + outsider)).status, 403);
+  const retried = await request(app).post("/marathon/api/clubs/join").set("Authorization", "Bearer " + outsider).send({ clubId });
+  assert.equal(retried.body.pending, true);
+
+  const handed = await request(app).put("/marathon/api/clubs/" + clubId + "/members/" + helperId).set(auth).send({ role: "owner" });
+  assert.equal(handed.status, 200);
+  const stepped = await request(app).get("/marathon/api/clubs/" + clubId).set(auth);
+  assert.equal(stepped.body.club.role, "manager");
+  assert.equal(stepped.body.members.find((item) => item.nickname === "跑团管理甲").role, "owner");
+  assert.equal(
+    (await request(app).put("/marathon/api/clubs/" + clubId + "/members/" + helperId).set("Authorization", "Bearer " + helper).send({ role: "member" })).status,
+    400
+  );
+
+  const third = await session("再申请");
+  await request(app).post("/marathon/api/clubs/join").set("Authorization", "Bearer " + third).send({ clubId });
+  const shortPass = await request(app).post("/marathon/api/admin/accounts").set(admin).send({ username: "clubdesk", password: "short", role: "club" });
+  assert.equal(shortPass.status, 400);
+  const made = await request(app).post("/marathon/api/admin/accounts").set(admin).send({ username: "clubdesk", password: "club-pass-8", role: "club" });
+  assert.equal(made.status, 200);
+  assert.equal(made.body.account.roleLabel, "跑团管理员");
+  const duplicate = await request(app).post("/marathon/api/admin/accounts").set(admin).send({ username: "clubdesk", password: "club-pass-8", role: "club" });
+  assert.equal(duplicate.status, 400);
+  const login = await request(app).post("/marathon/api/admin/login").send({ username: "clubdesk", password: "club-pass-8" });
+  assert.equal(login.status, 200);
+  assert.equal(login.body.role, "club");
+  const desk = { Authorization: "Bearer " + login.body.token };
+  assert.equal((await request(app).get("/marathon/api/admin/official").set(desk)).status, 403);
+  assert.equal((await request(app).get("/marathon/api/admin/accounts").set(desk)).status, 403);
+  const waiting = await request(app).get("/marathon/api/admin/club-requests").set(desk);
+  const hit = waiting.body.requests.find((item) => item.nickname === "再申请" && item.clubId === clubId);
+  assert.ok(hit);
+  assert.equal((await request(app).post("/marathon/api/admin/club-requests/" + hit.id).set(desk).send({ decision: "approve" })).status, 200);
+  assert.equal((await request(app).get("/marathon/api/clubs/" + clubId).set("Authorization", "Bearer " + third)).status, 200);
+
+  const coded = await request(app).post("/marathon/api/clubs/join").set("Authorization", "Bearer " + (await session("口令进"))).send({ code: created.body.club.code });
+  assert.equal(coded.status, 200);
+  assert.equal(coded.body.pending, undefined);
+  assert.equal(coded.body.club.code, created.body.club.code);
+  const found = await request(app).get("/marathon/api/admin/users?q=" + encodeURIComponent("口令进")).set(desk);
+  const personId = found.body.users[0].id;
+  assert.equal((await request(app).put("/marathon/api/admin/users/" + personId + "/clubs/" + clubId).set(desk).send({ role: "manager" })).status, 200);
+  const seen = await request(app).get("/marathon/api/admin/users/" + personId).set(desk);
+  assert.equal(seen.body.clubs[0].role, "manager");
+  assert.equal(seen.body.clubs[0].roleLabel, "跑团管理");
+
+  const other = await request(app).post("/marathon/api/admin/accounts").set(admin).send({ username: "otherdesk", password: "other-pass-8", role: "admin" });
+  assert.equal(other.status, 200);
+  const otherLogin = await request(app).post("/marathon/api/admin/login").send({ username: "otherdesk", password: "other-pass-8" });
+  const own = await request(app)
+    .put("/marathon/api/admin/accounts/otherdesk")
+    .set({ Authorization: "Bearer " + otherLogin.body.token })
+    .send({ role: "club" });
+  assert.equal(own.status, 400);
+  assert.equal(own.body.error, "不能改自己的角色");
+});

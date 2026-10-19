@@ -298,6 +298,32 @@ function open() {
     const cols = handle.prepare("PRAGMA table_info(official_races)").all();
     if (!cols.some((col) => col.name === name)) handle.exec(`ALTER TABLE official_races ADD COLUMN ${name} ${type}`);
   }
+  for (const [table, name, type] of [
+    ["club_members", "role", "TEXT NOT NULL DEFAULT 'member'"],
+    ["admins", "role", "TEXT NOT NULL DEFAULT 'admin'"]
+  ]) {
+    const cols = handle.prepare(`PRAGMA table_info(${table})`).all();
+    if (!cols.some((col) => col.name === name)) handle.exec(`ALTER TABLE ${table} ADD COLUMN ${name} ${type}`);
+  }
+  handle.exec(`
+    CREATE TABLE IF NOT EXISTS club_requests (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      club_id INTEGER NOT NULL,
+      user_id INTEGER NOT NULL,
+      status TEXT NOT NULL DEFAULT 'pending',
+      created_at TEXT NOT NULL,
+      reviewed_at TEXT NOT NULL DEFAULT '',
+      reviewer TEXT NOT NULL DEFAULT ''
+    );
+    CREATE UNIQUE INDEX IF NOT EXISTS club_request_pending ON club_requests(club_id, user_id) WHERE status = 'pending';
+  `);
+  handle.prepare(
+    `UPDATE club_members SET role = 'owner'
+     WHERE EXISTS (
+       SELECT 1 FROM clubs
+       WHERE clubs.id = club_members.club_id AND clubs.owner_id = club_members.user_id
+     )`
+  ).run();
   const upsert = handle.prepare(
     `INSERT INTO races (
        id, name, city, province, distances, race_date, deadline, place,
