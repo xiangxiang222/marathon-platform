@@ -8,13 +8,13 @@
       <svg viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="16" rx="3" /><path d="M3.5 9.5h17M8 3v3M16 3v3" /><text x="12" y="17" text-anchor="middle">{{ todayDay }}</text></svg>
     </router-link>
   </header>
-  <form class="search" @submit.prevent="load">
+  <form class="search" @submit.prevent="submitSearch">
     <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" /><path d="M20 20l-3.5-3.5" /></svg>
-    <input v-model="q" placeholder="搜索赛事名称" />
+    <input v-model="q" placeholder="搜名称或城市" @input="queueSearch" />
     <button type="submit">搜索</button>
   </form>
   <section class="sheet">
-    <div v-if="reminders.length" class="rail-wrap">
+    <div v-if="!searching && reminders.length" class="rail-wrap">
       <h2 class="section-label">即将到来</h2>
       <div class="rail">
         <router-link v-for="item in reminders" :key="item.race.id + item.hit.key" class="soon-card" :class="'tone-' + remindTone(item.hit.reason)" :to="'/races/' + item.race.id">
@@ -24,13 +24,13 @@
         </router-link>
       </div>
     </div>
-    <nav class="kinds">
+    <nav v-if="!searching" class="kinds">
       <button v-for="item in channels" :key="item.kind" type="button" :class="{ on: kind === item.kind }" @click="setKind(item.kind)">
         <span class="mark" :class="item.kind" v-html="item.icon"></span>
         {{ item.short }}
       </button>
     </nav>
-    <div class="filter-wrap" :class="{ open: sheet }">
+    <div v-if="!searching" class="filter-wrap" :class="{ open: sheet }">
       <div class="filter-bar" ref="barEl">
         <button type="button" :class="{ on: city }" @click="openSheet('city')">{{ city || "比赛地点" }} ▾</button>
         <button type="button" :class="{ on: month }" @click="openSheet('time')">{{ monthLabel || "比赛时间" }} ▾</button>
@@ -73,11 +73,23 @@
           </div>
         </div>
       </div>
-    <h2 class="section-label">全部赛历</h2>
-    <div v-if="races.length" class="stack">
-      <RaceCard v-for="race in races" :key="race.id" :race="race" />
-    </div>
-    <p v-else class="empty">这个分类还没有赛历</p>
+    <template v-if="searching">
+      <div v-if="shownQuery === q.trim() && races.length" class="hits">
+        <router-link v-for="race in races" :key="race.id" class="hit" :to="'/races/' + race.id">
+          <time>{{ race.raceDate }}</time>
+          <em>{{ race.city }}</em>
+          <span>{{ race.name }}</span>
+        </router-link>
+      </div>
+      <p v-else-if="shownQuery === q.trim()" class="empty">没有找到这场赛事</p>
+    </template>
+    <template v-else-if="shownQuery === q.trim()">
+      <h2 class="section-label">全部赛历</h2>
+      <div v-if="races.length" class="stack">
+        <RaceCard v-for="race in races" :key="race.id" :race="race" />
+      </div>
+      <p v-else class="empty">这个分类还没有赛历</p>
+    </template>
   </section>
 </template>
 
@@ -102,7 +114,11 @@ const sheet = ref("");
 const barEl = ref(null);
 const dropTop = ref(180);
 const races = ref([]);
+const shownQuery = ref("");
 const reminders = ref([]);
+const searching = computed(() => !!q.value.trim());
+let searchTimer = 0;
+let loadSeq = 0;
 const province = ref("河北");
 const years = [2025, 2026, 2027];
 
@@ -166,18 +182,36 @@ function distanceParam() {
   return picked.length === 1 ? picked[0] : "";
 }
 
+function queueSearch() {
+  if (q.value.trim()) sheet.value = "";
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(load, 200);
+}
+
+function submitSearch() {
+  clearTimeout(searchTimer);
+  return load();
+}
+
 async function load() {
+  const seq = ++loadSeq;
+  const query = q.value.trim();
   const params = new URLSearchParams();
-  if (q.value.trim()) params.set("q", q.value.trim());
-  if (city.value) params.set("city", city.value);
-  if (month.value) params.set("month", month.value);
-  const distance = distanceParam();
-  if (distance) params.set("distance", distance);
-  if (kind.value && kind.value !== "road") params.set("kind", kind.value);
-  if (kind.value === "road") params.set("kind", "road");
-  params.set("status", status.value || "all");
+  if (query) {
+    params.set("q", query);
+    params.set("status", "all");
+  } else {
+    if (city.value) params.set("city", city.value);
+    if (month.value) params.set("month", month.value);
+    const distance = distanceParam();
+    if (distance) params.set("distance", distance);
+    params.set("kind", kind.value || "road");
+    params.set("status", status.value || "all");
+  }
   const data = await api("/races?" + params.toString());
+  if (seq !== loadSeq) return;
   races.value = data.races;
+  shownQuery.value = query;
 }
 
 function setKind(next) {

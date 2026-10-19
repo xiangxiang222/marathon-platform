@@ -47,6 +47,11 @@ test("open races hide the finished sample and can filter city and distance", asy
   assert.equal(res.body.races.some((r) => r.id === "closed-sample"), false);
   const all = await request(app).get("/marathon/api/races?status=all");
   assert.ok(all.body.races.some((r) => r.id === "closed-sample" && r.regStatus === "已结束"));
+  const fuzzy = await request(app).get("/marathon/api/races?status=upcoming&kind=road&q=" + encodeURIComponent("收 官"));
+  assert.ok(fuzzy.body.races.some((r) => r.id === "closed-sample"));
+  assert.equal(fuzzy.body.races.some((r) => r.id === "bishan"), false);
+  const byProvince = await request(app).get("/marathon/api/races?kind=trail&q=" + encodeURIComponent("浙江"));
+  assert.ok(byProvince.body.races.some((r) => r.id === "closed-sample"));
   const future = all.body.races.find((r) => r.id === "huangyaguan");
   assert.equal(future.open, true);
   assert.match(future.deadlineLabel, /天后截止/);

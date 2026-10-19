@@ -179,6 +179,11 @@ a { color: inherit; text-decoration: none; }
 .kinds button.on { color: var(--ink); font-weight: 650; }
 .kinds button.on .mark { box-shadow: 0 8px 16px rgba(0, 0, 0, 0.14); }
 
+.hits { padding: 4px 16px 16px; }
+.hit { display: flex; align-items: baseline; gap: 10px; padding: 12px 0; border-bottom: 1px solid var(--line); color: inherit; }
+.hit time, .hit em { flex: none; color: var(--muted); font-size: 13px; font-style: normal; }
+.hit span { min-width: 0; font-weight: 650; }
+.hit > button, .hit > a, .hit > b { margin-left: auto; flex: none; border: 0; background: none; padding: 0; color: var(--accent); font-weight: 650; font-size: 14px; }
 .stack { display: flex; flex-direction: column; gap: 10px; padding: 0 16px 16px; }
 .race-card {
   display: flex;
