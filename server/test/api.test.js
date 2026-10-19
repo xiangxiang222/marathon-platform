@@ -1554,3 +1554,81 @@ test("an admin can delete a duplicate nickname but not a club owner", async () =
   assert.equal(still.status, 200);
   assert.equal(still.body.clubs[0].name, club.body.club.name);
 });
+
+test("an admin can list clubs, assign the leader, and manage members", async () => {
+  process.env.ADMIN_TOKEN = "test-admin";
+  const admin = { Authorization: "Bearer test-admin" };
+  const owner = await session("后台团长甲");
+  const created = await createClub(owner, "后台管理团");
+  const clubId = created.body.club.id;
+  const denied = await request(app).get("/marathon/api/admin/clubs");
+  assert.equal(denied.status, 401);
+  const listed = await request(app).get("/marathon/api/admin/clubs?q=" + encodeURIComponent("后台管理团")).set(admin);
+  assert.equal(listed.status, 200);
+  assert.equal(listed.body.clubs.length, 1);
+  assert.equal(listed.body.clubs[0].owner, "后台团长甲");
+  assert.equal(listed.body.clubs[0].members, 1);
+  const detail = await request(app).get("/marathon/api/admin/clubs/" + clubId).set(admin);
+  assert.equal(detail.status, 200);
+  assert.equal(detail.body.members[0].role, "owner");
+  assert.equal(typeof detail.body.club.code, "string");
+  assert.equal((await request(app).get("/marathon/api/admin/clubs/999999").set(admin)).status, 404);
+
+  const missing = await request(app).post("/marathon/api/admin/clubs/" + clubId + "/members").set(admin).send({ nickname: "没有的人" });
+  assert.equal(missing.status, 404);
+  assert.equal(missing.body.error, "没有这个用户");
+  await session("后台重名丙");
+  await session("后台重名丙");
+  const clash = await request(app).post("/marathon/api/admin/clubs/" + clubId + "/members").set(admin).send({ nickname: "后台重名丙" });
+  assert.equal(clash.status, 400);
+  assert.equal(clash.body.error, "该昵称存在多个账号，请先处理后再添加");
+
+  const mate = await session("后台团员甲");
+  const mateMe = await request(app).get("/marathon/api/me").set("Authorization", "Bearer " + mate);
+  const added = await request(app).post("/marathon/api/admin/clubs/" + clubId + "/members").set(admin).send({ nickname: "后台团员甲" });
+  assert.equal(added.status, 201);
+  assert.equal(added.body.userId, mateMe.body.user.id);
+  const again = await request(app).post("/marathon/api/admin/clubs/" + clubId + "/members").set(admin).send({ nickname: "后台团员甲" });
+  assert.equal(again.status, 400);
+  assert.equal(again.body.error, "该用户已在此跑团中");
+
+  const byMember = await request(app).get("/marathon/api/admin/clubs?q=" + encodeURIComponent("后台团员甲")).set(admin);
+  assert.equal(byMember.body.clubs.some((item) => item.id === clubId), true);
+  const promoted = await request(app)
+    .put("/marathon/api/admin/clubs/" + clubId + "/members/" + mateMe.body.user.id)
+    .set(admin)
+    .send({ role: "manager" });
+  assert.equal(promoted.status, 200);
+  const keepOwner = await request(app)
+    .put("/marathon/api/admin/clubs/" + clubId + "/members/" + detail.body.members[0].id)
+    .set(admin)
+    .send({ role: "member" });
+  assert.equal(keepOwner.status, 400);
+  assert.equal(keepOwner.body.error, "请先将团长移交给其他成员，再修改角色");
+  const blocked = await request(app).delete("/marathon/api/admin/clubs/" + clubId + "/members/" + detail.body.members[0].id).set(admin);
+  assert.equal(blocked.status, 400);
+  assert.equal(blocked.body.error, "该用户仍为团长，请先完成团长移交后再移出");
+
+  const handed = await request(app)
+    .put("/marathon/api/admin/clubs/" + clubId + "/members/" + mateMe.body.user.id)
+    .set(admin)
+    .send({ role: "owner" });
+  assert.equal(handed.status, 200);
+  const after = await request(app).get("/marathon/api/admin/clubs/" + clubId).set(admin);
+  assert.equal(after.body.club.owner, "后台团员甲");
+  assert.equal(after.body.members.find((item) => item.nickname === "后台团员甲").role, "owner");
+  assert.equal(after.body.members.find((item) => item.nickname === "后台团长甲").role, "manager");
+  const qualified = await request(app).get("/marathon/api/admin/users/" + mateMe.body.user.id).set(admin);
+  assert.equal(qualified.body.user.leader, true);
+
+  const returned = await request(app)
+    .put("/marathon/api/admin/clubs/" + clubId + "/members/" + detail.body.members[0].id)
+    .set(admin)
+    .send({ role: "owner" });
+  assert.equal(returned.status, 200);
+  const removed = await request(app).delete("/marathon/api/admin/clubs/" + clubId + "/members/" + mateMe.body.user.id).set(admin);
+  assert.equal(removed.status, 200);
+  const left = await request(app).get("/marathon/api/admin/clubs/" + clubId).set(admin);
+  assert.equal(left.body.members.length, 1);
+  assert.equal(left.body.club.owner, "后台团长甲");
+});

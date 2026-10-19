@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const { DISTANCE_LABEL } = require("./races");
 const { formatClock } = require("./career");
-const { clubRoleLabel, setMemberRole, decideRequest, listPending, listClubApplications, decideClubApplication } = require("./roles");
+const { clubRoleLabel, setMemberRole, addClubMember, removeClubMember, decideRequest, listPending, listClubApplications, decideClubApplication } = require("./roles");
 const { setUserPassword, createUser } = require("./user-auth");
 
 function mediaRoot() {
@@ -195,6 +195,77 @@ function shopDesk(db) {
   return { gifts, redemptions };
 }
 
+function listClubs(db, q) {
+  const like = `%${String(q || "").trim()}%`;
+  return db
+    .prepare(
+      `SELECT c.id, c.name, c.created_at, u.nickname AS owner,
+              (SELECT COUNT(*) FROM club_members m WHERE m.club_id = c.id) AS members
+       FROM clubs c
+       JOIN users u ON u.id = c.owner_id
+       WHERE c.name LIKE ?
+          OR u.nickname LIKE ?
+          OR EXISTS (
+            SELECT 1 FROM club_members m
+            JOIN users mu ON mu.id = m.user_id
+            WHERE m.club_id = c.id AND mu.nickname LIKE ?
+          )
+       ORDER BY c.id DESC
+       LIMIT 200`
+    )
+    .all(like, like, like)
+    .map((row) => ({
+      id: row.id,
+      name: row.name,
+      owner: row.owner,
+      members: row.members,
+      createdAt: when(row.created_at)
+    }));
+}
+
+function clubDesk(db, id) {
+  const club = db
+    .prepare(
+      `SELECT c.id, c.name, c.code, c.created_at, c.owner_id, u.nickname AS owner
+       FROM clubs c
+       JOIN users u ON u.id = c.owner_id
+       WHERE c.id = ?`
+    )
+    .get(id);
+  if (!club) return null;
+  const members = db
+    .prepare(
+      `SELECT u.id, u.nickname, m.role, m.joined_at
+       FROM club_members m
+       JOIN users u ON u.id = m.user_id
+       WHERE m.club_id = ?
+       ORDER BY CASE WHEN u.id = ? THEN 0 WHEN m.role = 'manager' THEN 1 ELSE 2 END, u.id`
+    )
+    .all(id, club.owner_id)
+    .map((row) => {
+      const role = row.id === club.owner_id ? "owner" : row.role === "manager" ? "manager" : "member";
+      return {
+        id: row.id,
+        nickname: row.nickname,
+        role,
+        roleLabel: clubRoleLabel(role),
+        joinedAt: when(row.joined_at)
+      };
+    });
+  return {
+    club: {
+      id: club.id,
+      name: club.name,
+      code: club.code,
+      owner: club.owner,
+      ownerId: club.owner_id,
+      createdAt: when(club.created_at),
+      members: members.length
+    },
+    members
+  };
+}
+
 function mountAdminDesk(app, { BASE, getDb, requireAdmin }) {
   function desk(req, res) {
     return requireAdmin(req, res, "desk");
@@ -258,6 +329,49 @@ function mountAdminDesk(app, { BASE, getDb, requireAdmin }) {
     const updated = getDb().prepare("UPDATE users SET leader = ? WHERE id = ?").run(leader ? 1 : 0, id);
     if (!updated.changes) return res.status(404).json({ error: "没有这个人" });
     res.json({ ok: true, leader });
+  });
+
+  app.get(BASE + "/api/admin/clubs", (req, res) => {
+    if (!desk(req, res)) return;
+    res.json({ clubs: listClubs(getDb(), req.query.q) });
+  });
+
+  app.get(BASE + "/api/admin/clubs/:id", (req, res) => {
+    if (!desk(req, res)) return;
+    const id = Number(req.params.id);
+    if (!Number.isInteger(id) || id < 1) return res.status(404).json({ error: "没有这个跑团" });
+    const detail = clubDesk(getDb(), id);
+    if (!detail) return res.status(404).json({ error: "没有这个跑团" });
+    res.json(detail);
+  });
+
+  app.post(BASE + "/api/admin/clubs/:id/members", (req, res) => {
+    if (!desk(req, res)) return;
+    const id = Number(req.params.id);
+    if (!Number.isInteger(id) || id < 1) return res.status(404).json({ error: "没有这个跑团" });
+    const result = addClubMember(getDb(), id, req.body && req.body.nickname);
+    if (result.error) return res.status(result.status).json({ error: result.error });
+    res.status(201).json({ ok: true, userId: result.userId });
+  });
+
+  app.put(BASE + "/api/admin/clubs/:id/members/:userId", (req, res) => {
+    if (!desk(req, res)) return;
+    const id = Number(req.params.id);
+    const userId = Number(req.params.userId);
+    if (!Number.isInteger(id) || id < 1 || !Number.isInteger(userId) || userId < 1) return res.status(404).json({ error: "团里没有这个人" });
+    const result = setMemberRole(getDb(), id, userId, String((req.body && req.body.role) || ""));
+    if (result.error) return res.status(result.status).json({ error: result.error });
+    res.json({ ok: true });
+  });
+
+  app.delete(BASE + "/api/admin/clubs/:id/members/:userId", (req, res) => {
+    if (!desk(req, res)) return;
+    const id = Number(req.params.id);
+    const userId = Number(req.params.userId);
+    if (!Number.isInteger(id) || id < 1) return res.status(404).json({ error: "没有这个跑团" });
+    const result = removeClubMember(getDb(), id, userId);
+    if (result.error) return res.status(result.status).json({ error: result.error });
+    res.json({ ok: true });
   });
 
   app.get(BASE + "/api/admin/club-applications", (req, res) => {

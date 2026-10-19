@@ -45,11 +45,42 @@ function setMemberRole(db, clubId, userId, role) {
       db.prepare("UPDATE club_members SET role = 'manager' WHERE club_id = ? AND user_id = ?").run(club.id, club.owner_id);
       db.prepare("UPDATE club_members SET role = 'owner' WHERE club_id = ? AND user_id = ?").run(club.id, uid);
       db.prepare("UPDATE clubs SET owner_id = ? WHERE id = ?").run(uid, club.id);
+      db.prepare("UPDATE users SET leader = 1 WHERE id = ?").run(uid);
     })();
     return { ok: true };
   }
   if (uid === club.owner_id) return { error: "请先将团长移交给其他成员，再修改角色", status: 400 };
   db.prepare("UPDATE club_members SET role = ? WHERE club_id = ? AND user_id = ?").run(role, club.id, uid);
+  return { ok: true };
+}
+
+function addClubMember(db, clubId, nickname) {
+  const name = String(nickname || "").trim();
+  if (!name || name.length > 20) return { error: "昵称须为 1 到 20 个字", status: 400 };
+  const club = db.prepare("SELECT id FROM clubs WHERE id = ?").get(clubId);
+  if (!club) return { error: "没有这个跑团", status: 404 };
+  const people = db.prepare("SELECT id FROM users WHERE nickname = ?").all(name);
+  if (!people.length) return { error: "没有这个用户", status: 404 };
+  if (people.length > 1) return { error: "该昵称存在多个账号，请先处理后再添加", status: 400 };
+  const userId = people[0].id;
+  const existing = db.prepare("SELECT 1 FROM club_members WHERE club_id = ? AND user_id = ?").get(club.id, userId);
+  if (existing) return { error: "该用户已在此跑团中", status: 400 };
+  const now = new Date().toISOString();
+  db.prepare("INSERT INTO club_members (club_id, user_id, joined_at, role) VALUES (?, ?, ?, 'member')").run(club.id, userId, now);
+  db.prepare(
+    "UPDATE club_requests SET status = 'approved', reviewed_at = ?, reviewer = '后台' WHERE club_id = ? AND user_id = ? AND status = 'pending'"
+  ).run(now, club.id, userId);
+  return { ok: true, userId };
+}
+
+function removeClubMember(db, clubId, userId) {
+  const uid = Number(userId);
+  if (!Number.isInteger(uid) || uid < 1) return { error: "团里没有这个人", status: 404 };
+  const club = db.prepare("SELECT id, owner_id FROM clubs WHERE id = ?").get(clubId);
+  if (!club) return { error: "没有这个跑团", status: 404 };
+  if (uid === club.owner_id) return { error: "该用户仍为团长，请先完成团长移交后再移出", status: 400 };
+  const gone = db.prepare("DELETE FROM club_members WHERE club_id = ? AND user_id = ?").run(club.id, uid);
+  if (!gone.changes) return { error: "团里没有这个人", status: 404 };
   return { ok: true };
 }
 
@@ -163,6 +194,8 @@ module.exports = {
   adminRoleLabel,
   memberRole,
   setMemberRole,
+  addClubMember,
+  removeClubMember,
   decideRequest,
   listPending,
   listClubApplications,
