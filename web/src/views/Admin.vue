@@ -86,7 +86,10 @@
         <p v-if="busy" class="hint">正在向官网要赛历。</p>
         <form class="check-form" @submit.prevent="changePassword">
           <input v-model="currentPassword" type="password" autocomplete="current-password" placeholder="当前密码" />
-          <input v-model="nextPassword" type="password" autocomplete="new-password" placeholder="新密码，至少 8 位" />
+          <label class="field">
+            <input v-model="nextPassword" type="password" autocomplete="new-password" placeholder="新密码" />
+            <small>8 到 128 位</small>
+          </label>
           <button class="undo" type="submit">修改密码</button>
         </form>
       </div>
@@ -336,7 +339,11 @@
             <p class="lead">填写昵称和登录密码。创建后，该用户可使用此昵称与密码登录。不收集手机号，也不收集身份证。</p>
             <form class="user-form" @submit.prevent="createPerson">
               <label class="field"><span>昵称</span><input v-model="newName" maxlength="20" autocomplete="off" placeholder="1–20 个字" /></label>
-              <label class="field"><span>登录密码</span><input v-model="newPass" type="password" autocomplete="new-password" placeholder="8–128 位" /></label>
+              <label class="field">
+                <span>登录密码</span>
+                <input v-model="newPass" type="password" autocomplete="new-password" />
+                <small>8 到 128 位</small>
+              </label>
               <div class="form-actions">
                 <button class="save" type="submit">创建</button>
                 <button class="text-btn" type="button" @click="cancelUser">取消</button>
@@ -371,9 +378,10 @@
                   <form class="pass-form" @submit.prevent="setLoginPassword">
                     <label>
                       <span>新密码</span>
-                      <input v-model="loginPass" type="password" autocomplete="new-password" placeholder="8–128 位" />
+                      <input v-model="loginPass" type="password" autocomplete="new-password" />
                     </label>
                     <button class="save" type="submit">保存</button>
+                    <small>8 到 128 位</small>
                   </form>
                 </section>
                 <section class="section">
@@ -555,7 +563,10 @@
         <p v-if="joinsReady && !joins.length" class="empty">没有待审核的申请。</p>
         <form v-if="role === 'club'" class="check-form" @submit.prevent="changePassword">
           <input v-model="currentPassword" type="password" autocomplete="current-password" placeholder="当前密码" />
-          <input v-model="nextPassword" type="password" autocomplete="new-password" placeholder="新密码，至少 8 位" />
+          <label class="field">
+            <input v-model="nextPassword" type="password" autocomplete="new-password" placeholder="新密码" />
+            <small>8 到 128 位</small>
+          </label>
           <button class="undo" type="submit">修改密码</button>
         </form>
       </div>
@@ -571,7 +582,10 @@
         </div>
         <form class="check-form" @submit.prevent="createAccount">
           <input v-model="accountName" placeholder="用户名" />
-          <input v-model="accountPass" type="password" autocomplete="new-password" placeholder="密码，至少 8 位" />
+          <label class="field">
+            <input v-model="accountPass" type="password" autocomplete="new-password" placeholder="密码" />
+            <small>8 到 128 位</small>
+          </label>
           <select v-model="accountRole">
             <option value="club">跑团管理员</option>
             <option value="admin">管理员</option>
@@ -1870,7 +1884,8 @@ if (token.value) {
 .editor-actions .primary, .editor-actions .undo { margin-top: 0; }
 .primary { margin-top: 8px; }
 .undo { margin-top: 8px; height: 32px; padding: 0 12px; background: transparent; color: #8d949c; }
-.pass-form { display: flex; align-items: flex-end; gap: 8px; margin-top: 12px; }
+.pass-form { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 8px; margin-top: 12px; }
+.pass-form small { flex: 1 1 100%; margin: 0; color: var(--muted); font-size: 12px; line-height: 1.4; }
 .pass-form label { flex: 1; min-width: 160px; display: flex; flex-direction: column; gap: 6px; }
 .pass-form span { font-size: 12px; color: var(--muted); font-weight: 600; }
 .pass-form .save { flex: none; padding: 0 18px; background: var(--accent); color: #fff; font-weight: 650; }
