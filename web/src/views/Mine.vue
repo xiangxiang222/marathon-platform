@@ -19,13 +19,32 @@
     </section>
 
     <section v-if="nickname" class="who">
-      <div class="face" aria-hidden="true">{{ nickname.slice(0, 1) }}</div>
-      <div class="who-main">
-        <div class="nick">{{ nickname }}</div>
-        <p v-if="leader" class="role">建团资格</p>
-        <router-link v-for="club in clubs" :key="club.id" class="club-line" :to="'/clubs/' + club.id">{{ club.name }} · {{ club.roleLabel }}</router-link>
-        <button type="button" class="quit" @click="logout">退出</button>
+      <div class="who-top">
+        <div class="face" aria-hidden="true">{{ nickname.slice(0, 1) }}</div>
+        <div class="who-main">
+          <div class="nick">{{ nickname }}</div>
+          <p v-if="leader" class="role">建团资格</p>
+          <router-link v-for="club in clubs" :key="club.id" class="club-line" :to="'/clubs/' + club.id">{{ club.name }} · {{ club.roleLabel }}</router-link>
+        </div>
       </div>
+      <button type="button" class="account-line" :aria-expanded="passwordOpen" @click="togglePassword">
+        <span>{{ hasPassword ? "修改密码" : "设置登录密码" }}</span>
+        <i class="chev" :class="{ open: passwordOpen }" aria-hidden="true"></i>
+      </button>
+      <form v-if="passwordOpen" class="auth-form" @submit.prevent="savePassword">
+        <p class="hint">{{ hasPassword ? "请填写当前密码和新密码。" : "设置后，可使用此昵称与密码在其他设备登录。" }}</p>
+        <input v-if="hasPassword" v-model="currentPassword" type="password" autocomplete="current-password" placeholder="当前密码" />
+        <div class="pass-field">
+          <input v-model="nextPassword" type="password" autocomplete="new-password" aria-label="新密码" placeholder="新密码" />
+          <small>8 到 128 位</small>
+        </div>
+        <input v-model="nextPassword2" type="password" autocomplete="new-password" placeholder="再输入一次" />
+        <button class="go" type="submit">保存</button>
+        <button class="cancel" type="button" @click="cancelPassword">取消</button>
+        <p v-if="message" :class="ok ? 'ok' : 'err'">{{ message }}</p>
+      </form>
+      <p v-else-if="message" :class="ok ? 'ok' : 'err'">{{ message }}</p>
+      <button type="button" class="quit" @click="logout">退出</button>
     </section>
     <section v-else class="who auth">
       <div class="modes">
@@ -48,18 +67,6 @@
       </form>
       <p v-if="message" :class="ok ? 'ok' : 'err'">{{ message }}</p>
     </section>
-    <section v-if="nickname" class="sheet">
-      <div class="head"><h3>{{ hasPassword ? "改密码" : "设登录密码" }}</h3></div>
-      <p class="hint">{{ hasPassword ? "换手机时用昵称和这个密码登录。" : "设一个密码，换手机也能回到这个人。" }}</p>
-      <form class="auth-form" @submit.prevent="savePassword">
-        <input v-if="hasPassword" v-model="currentPassword" type="password" autocomplete="current-password" placeholder="当前密码" />
-        <input v-model="nextPassword" type="password" autocomplete="new-password" placeholder="新密码，至少 8 位" />
-        <input v-model="nextPassword2" type="password" autocomplete="new-password" placeholder="再输入一次" />
-        <button class="go" type="submit">保存</button>
-      </form>
-      <p v-if="message" :class="ok ? 'ok' : 'err'">{{ message }}</p>
-    </section>
-
     <div class="shortcuts">
       <router-link to="/">
         <span class="orb order"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2" /><path d="M8 3v4M16 3v4M4 10h16" /></svg></span>
@@ -167,6 +174,7 @@ const captcha = ref("");
 const captchaToken = ref("");
 const captchaImage = ref("");
 const captchaLoading = ref(false);
+const passwordOpen = ref(false);
 const currentPassword = ref("");
 const nextPassword = ref("");
 const nextPassword2 = ref("");
@@ -289,6 +297,7 @@ function logout() {
   results.value = [];
   conflicts.value = [];
   reminders.value = [];
+  passwordOpen.value = false;
   currentPassword.value = "";
   nextPassword.value = "";
   nextPassword2.value = "";
@@ -321,11 +330,33 @@ async function submitAuth() {
   }
 }
 
+function togglePassword() {
+  if (passwordOpen.value) cancelPassword();
+  else {
+    passwordOpen.value = true;
+    message.value = "";
+    ok.value = false;
+  }
+}
+
+function cancelPassword() {
+  passwordOpen.value = false;
+  currentPassword.value = "";
+  nextPassword.value = "";
+  nextPassword2.value = "";
+  message.value = "";
+  ok.value = false;
+}
+
 async function savePassword() {
   message.value = "";
   ok.value = false;
+  if (nextPassword.value.length < 8 || nextPassword.value.length > 128) {
+    message.value = "密码须为 8 到 128 位";
+    return;
+  }
   if (nextPassword.value !== nextPassword2.value) {
-    message.value = "两次密码不一致";
+    message.value = "两次输入的密码不一致";
     return;
   }
   try {
@@ -337,8 +368,9 @@ async function savePassword() {
     currentPassword.value = "";
     nextPassword.value = "";
     nextPassword2.value = "";
+    passwordOpen.value = false;
     ok.value = true;
-    message.value = "密码已保存";
+    message.value = "密码已更新";
   } catch (err) {
     message.value = err.message;
   }
@@ -350,7 +382,14 @@ onMounted(load);
 <style scoped>
 .mine { background: transparent; color: #1c1c1e; padding-bottom: 8px; }
 .who, .shortcuts, .walls { background: #fff; }
-.who { display: flex; align-items: center; gap: 12px; margin: 8px 16px 0; padding: 14px 16px; border-radius: 16px; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04); }
+.who { display: flex; flex-direction: column; align-items: stretch; margin: 8px 16px 0; padding: 14px 16px; border-radius: 16px; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04); }
+.who-top { display: flex; align-items: center; gap: 12px; }
+.account-line { display: flex; align-items: center; justify-content: space-between; width: 100%; margin-top: 12px; padding-top: 12px; border-top: 1px solid #f0f1f3; color: #1c1c1e; font-size: 15px; text-align: left; }
+.account-line .chev { width: 7px; height: 7px; margin-right: 4px; border-right: 1.5px solid #c5cad1; border-bottom: 1.5px solid #c5cad1; transform: rotate(-45deg); }
+.account-line .chev.open { transform: rotate(45deg); }
+.pass-field { display: flex; flex-direction: column; gap: 4px; }
+.pass-field small { color: var(--muted); font-size: 12px; }
+.cancel { height: 36px; color: var(--muted); font-size: 14px; }
 .face {
   width: 58px;
   height: 58px;
@@ -368,7 +407,7 @@ onMounted(load);
 .role { margin: 2px 0 0; color: var(--accent); font-size: 13px; font-weight: 650; }
 .club-line { display: block; margin-top: 4px; color: var(--muted); font-size: 13px; }
 .chev { margin-left: auto; stroke: #c5cad1; }
-.quit { margin-top: 8px; color: var(--muted); font-size: 13px; }
+.quit { align-self: flex-start; margin-top: 10px; color: var(--muted); font-size: 13px; }
 .who.auth { display: block; }
 .modes { display: flex; gap: 8px; }
 .modes button { height: 32px; padding: 0 14px; border-radius: 999px; background: rgba(118, 118, 128, 0.12); font-size: 14px; font-weight: 650; }
