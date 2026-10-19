@@ -1755,9 +1755,46 @@ if (token.value) {
 <style scoped>
 .hint { margin: 8px 0 0; color: #8d949c; font-size: 12px; }
 .warn { margin: 8px 0 0; color: #9a5b12; font-size: 13px; }
-.check-form { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
-.check-form input, .check-form textarea, .check-form select { width: 100%; border: 1px solid #e6e8ec; border-radius: 8px; padding: 8px 10px; background: #fff; font: inherit; }
-.check-form input, .check-form select { height: 36px; padding: 0 10px; }
+.check-form { display: flex; flex-direction: column; gap: 12px; margin-top: 12px; }
+.check-form input,
+.check-form textarea,
+.check-form select,
+.pass-form input,
+.plan-filters select,
+.plan-filters input,
+.role-pick {
+  flex: none;
+  width: 100%;
+  border: 0;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: inset 0 0 0 1px var(--line);
+  font-size: 15px;
+  font-family: inherit;
+}
+.check-form input,
+.check-form select,
+.pass-form input,
+.plan-filters select,
+.plan-filters input,
+.role-pick {
+  height: 48px;
+  min-height: 48px;
+  padding: 0 16px;
+}
+.check-form input:not([type="date"]):not([type="time"]):not([type="file"]),
+.pass-form input,
+.plan-filters input { line-height: 48px; }
+.check-form select,
+.plan-filters select,
+.role-pick,
+.check-form input[type="date"],
+.check-form input[type="time"] { line-height: normal; }
+.check-form textarea { min-height: 112px; height: auto; padding: 14px 16px; line-height: 1.65; resize: vertical; }
+.check-form .primary,
+.inline-form .primary,
+.pass-form .save,
+.form-actions .save { height: 48px; border-radius: 12px; }
 .edit-bar { margin: -14px -16px 0; padding: 16px 16px 12px; border-radius: 16px 16px 0 0; border-bottom: 1px solid var(--line); }
 .edit-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
 .edit-id { min-width: 0; }
@@ -1792,7 +1829,10 @@ if (token.value) {
 .guide-form .field input, .guide-form .field select, .guide-form .field textarea { flex: none; width: 100%; }
 .guide-form .field input, .guide-form .field select { height: 48px; min-height: 48px; padding: 0 16px; line-height: 48px; }
 .guide-form .field textarea { min-height: 112px; height: auto; padding: 14px 16px; line-height: 1.65; resize: vertical; }
-.guide-form input[type="date"], .guide-form input[type="time"], .node-form input[type="date"] { min-height: 48px; line-height: normal; }
+.guide-form input[type="date"],
+.guide-form input[type="time"],
+.node-form input[type="date"] { line-height: normal; }
+.role-pick { width: auto; min-width: 148px; }
 .picks { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
 .pick { height: 32px; padding: 0 12px; border-radius: 999px; background: #fff; color: var(--ink); font-size: 14px; box-shadow: inset 0 0 0 1px var(--line); }
 .pick.on { background: var(--accent); color: #fff; box-shadow: none; }
@@ -1833,13 +1873,12 @@ if (token.value) {
 .pass-form { display: flex; align-items: flex-end; gap: 8px; margin-top: 12px; }
 .pass-form label { flex: 1; min-width: 160px; display: flex; flex-direction: column; gap: 6px; }
 .pass-form span { font-size: 12px; color: var(--muted); font-weight: 600; }
-.pass-form input { width: 100%; height: 40px; border: 0; border-radius: 10px; padding: 0 12px; background: #fff; box-shadow: inset 0 0 0 1px var(--line); font: inherit; }
-.pass-form .save { flex: none; height: 40px; padding: 0 18px; border-radius: 10px; background: var(--accent); color: #fff; font-weight: 650; }
+.pass-form .save { flex: none; padding: 0 18px; background: var(--accent); color: #fff; font-weight: 650; }
 .user-form { display: flex; flex-direction: column; gap: 14px; margin-top: 16px; }
 .user-form .field input { flex: none; width: 100%; height: 48px; min-height: 48px; padding: 0 16px; border: 0; border-radius: 12px; background: #fff; box-shadow: inset 0 0 0 1px var(--line); font-size: 15px; line-height: 48px; }
 .user-form h2, .person > h2 { margin: 4px 0 0; font-size: 22px; }
 .form-actions { display: flex; align-items: center; gap: 12px; }
-.form-actions .save { height: 40px; padding: 0 18px; border-radius: 10px; background: var(--accent); color: #fff; font-weight: 650; }
+.form-actions .save { padding: 0 18px; background: var(--accent); color: #fff; font-weight: 650; }
 .danger-quiet { margin-top: 12px; height: 36px; padding: 0 14px; border-radius: 10px; background: #fff; color: var(--red); font-weight: 650; box-shadow: inset 0 0 0 1px rgba(255, 59, 48, 0.35); }
 .confirm-box { margin-top: 10px; }
 .danger { height: 36px; margin-top: 8px; padding: 0 14px; border-radius: 10px; background: #ff3b30; color: #fff; font-weight: 650; }
@@ -1863,11 +1902,10 @@ a { color: #007aff; }
 .desk-head h2 { margin: 0; font-size: 28px; font-weight: 700; letter-spacing: -0.7px; }
 .desk-head p { margin: 6px 0 0; max-width: 42em; color: var(--muted); font-size: 14px; line-height: 1.45; }
 .head-add { height: 40px; margin: 0; padding: 0 16px; border-radius: 12px; white-space: nowrap; }
-.line { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 4px 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.line { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
 .line b { min-width: 0; font-size: 15px; font-weight: 650; }
 .line span { flex: 1 1 100%; color: var(--muted); font-size: 13px; }
 .actions { display: flex; gap: 8px; flex: none; }
-.role-pick { height: 32px; border: 1px solid #e6e8ec; border-radius: 8px; padding: 0 8px; background: #fff; font: inherit; }
 .who-name { display: flex; align-items: center; gap: 8px; min-width: 0; }
 .who-name i { flex: none; height: 20px; padding: 0 7px; border-radius: 999px; background: rgba(0, 122, 255, 0.12); color: var(--accent); font-size: 11px; font-style: normal; font-weight: 650; line-height: 20px; }
 .person { padding-top: 18px; }
@@ -1898,7 +1936,6 @@ a { color: #007aff; }
 .plan-filters { display: flex; gap: 8px; margin-top: 12px; }
 .plan-filters label { flex: 1; min-width: 120px; display: flex; flex-direction: column; gap: 6px; }
 .plan-filters span { font-size: 12px; color: var(--muted); font-weight: 600; }
-.plan-filters select, .plan-filters input { width: 100%; height: 36px; border: 0; border-radius: 10px; padding: 0 10px; background: #fff; box-shadow: inset 0 0 0 1px var(--line); font: inherit; }
 .fact { display: flex; flex-direction: column; align-items: flex-start; gap: 3px; margin-top: 8px; padding: 12px 14px; border-radius: 12px; background: #fff; }
 .fact b { font-size: 15px; font-weight: 650; line-height: 1.35; }
 .fact span { color: var(--muted); font-size: 13px; }
@@ -1933,7 +1970,7 @@ a { color: #007aff; }
   .catalog-open time::after { content: " · "; }
   .catalog-open span { white-space: normal; margin-top: 2px; }
   .inline-form { flex-direction: row; align-items: center; }
-  .inline-form input { flex: 1; }
+  .inline-form input { flex: 1; width: auto; min-width: 0; }
   .inline-form .primary { width: auto; margin-top: 0; padding: 0 14px; }
 }
 @media (min-width: 900px) {
@@ -1956,7 +1993,7 @@ a { color: #007aff; }
   .splitter:hover::before, .dragging .splitter::before { width: 3px; height: 100%; background: var(--accent); }
   .desk-official { grid-column: 1 / -1; }
   .inline-form { flex-direction: row; align-items: center; }
-  .inline-form input { flex: 1; }
+  .inline-form input { flex: 1; width: auto; min-width: 0; }
   .inline-form .primary { width: auto; margin-top: 0; padding: 0 16px; white-space: nowrap; }
   .pair { grid-template-columns: 1fr 1fr; }
   .pair .span { grid-column: 1 / -1; }
