@@ -327,11 +327,12 @@
                 <article v-for="club in person.clubs" :key="club.id" class="club-card">
                   <b>{{ club.name }}</b>
                   <div class="roles" role="radiogroup" :aria-label="club.name + '里的角色'">
-                    <button v-for="role in clubRoles" :key="role.id" type="button" role="radio" :aria-checked="club.role === role.id" :class="{ on: club.role === role.id }" @click="setClubRole(club, role.id)">
+                    <button v-for="role in clubRoles" :key="role.id" type="button" role="radio" :aria-checked="club.role === role.id" :class="{ on: club.role === role.id }" :disabled="club.role === 'owner' && role.id !== 'owner'" @click="setClubRole(club, role.id)">
                       <span>{{ role.label }}</span>
                       <i></i>
                     </button>
                   </div>
+                  <p v-if="club.role === 'owner'" class="role-note">他是这个团的团长，这里不能直接改。打开团里另一个人，把团长选给他，才能再改。</p>
                 </article>
                 <p v-if="!person.clubs.length" class="hint">还没进跑团。</p>
               </section>
@@ -1470,7 +1471,10 @@ a { color: #007aff; }
 .roles button { display: flex; align-items: center; justify-content: space-between; width: 100%; height: 44px; padding: 0; background: transparent; border-top: 1px solid var(--line); color: var(--ink); font-size: 15px; font-weight: 500; }
 .roles button.on { color: var(--accent); font-weight: 650; }
 .roles i { display: block; flex: none; width: 22px; height: 22px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px rgba(60, 60, 67, 0.28); }
+.roles button:disabled { color: #c7c7cc; }
+.roles button:disabled i { box-shadow: inset 0 0 0 1.5px rgba(60, 60, 67, 0.16); }
 .roles button.on i { background: var(--accent); box-shadow: none; position: relative; }
+.role-note { margin: 0; padding: 4px 0 14px; color: var(--muted); font-size: 12px; line-height: 1.45; }
 .roles button.on i::after { content: ""; position: absolute; left: 7px; top: 4px; width: 5px; height: 9px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); }
 .fact { display: flex; flex-direction: column; align-items: flex-start; gap: 3px; margin-top: 8px; padding: 12px 14px; border-radius: 12px; background: #fff; }
 .fact b { font-size: 15px; font-weight: 650; line-height: 1.35; }
