@@ -314,11 +314,12 @@
                 </div>
               </div>
               <section class="section">
-                <h3>建团资格</h3>
-                <p class="lead">设为团长之后，这个人才能申请建团。</p>
-                <div class="segment" role="group" aria-label="建团资格">
-                  <button type="button" :class="{ on: !person.user.leader }" @click="setLeader(false)">不是团长</button>
-                  <button type="button" :class="{ on: person.user.leader }" @click="setLeader(true)">团长</button>
+                <div class="setting">
+                  <div>
+                    <h3>团长</h3>
+                    <p class="lead">打开之后，这个人才能申请建团。</p>
+                  </div>
+                  <button type="button" class="switch" :class="{ on: person.user.leader }" role="switch" :aria-checked="person.user.leader" aria-label="团长" @click="setLeader(!person.user.leader)"><i></i></button>
                 </div>
               </section>
               <section class="section">
@@ -1453,8 +1454,14 @@ a { color: #007aff; }
 .person-face { width: 56px; height: 56px; flex: none; border-radius: 50%; display: grid; place-items: center; color: #fff; font-size: 24px; font-weight: 700; background: linear-gradient(145deg, #64d2ff, #007aff); }
 .person-head h2 { margin: 0; font-size: 22px; font-weight: 700; letter-spacing: -0.4px; }
 .person-head p { margin: 3px 0 0; color: var(--muted); font-size: 13px; }
+.setting { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.setting h3 { margin: 0; }
+.setting .lead { margin: 4px 0 0; }
+.switch { flex: none; width: 51px; height: 31px; padding: 2px; border-radius: 999px; background: rgba(120, 120, 128, 0.16); }
+.switch i { display: block; width: 27px; height: 27px; border-radius: 50%; background: #fff; box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15), 0 1px 1px rgba(0, 0, 0, 0.06); transition: transform 0.2s ease; }
+.switch.on { background: #34c759; }
+.switch.on i { transform: translateX(20px); }
 .segment { display: grid; gap: 3px; margin-top: 12px; padding: 3px; border-radius: 12px; background: rgba(118, 118, 128, 0.12); }
-.section > .segment { grid-template-columns: 1fr 1fr; }
 .club-card .segment { grid-template-columns: 1fr 1.2fr 0.85fr; margin-top: 10px; }
 .club-card .segment button { font-size: 13px; padding: 0 4px; }
 .segment button { height: 34px; border-radius: 9px; background: transparent; color: var(--ink); font-size: 14px; font-weight: 600; }
