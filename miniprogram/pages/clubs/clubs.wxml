@@ -10,18 +10,24 @@
   <block wx:else>
     <view class="card">
       <view class="h2">加入跑团</view>
-      <view class="muted">有口令直接进。也可以搜跑团名、团长或跑团管理，申请后等审核。</view>
-      <view class="field">
-        <input placeholder="口令" value="{{code}}" bindinput="onCode" />
-        <button class="btn" bindtap="join">用口令加入</button>
+      <view class="muted">两种方式选一种。</view>
+      <view class="modes">
+        <view class="mode {{mode === 'search' ? 'on' : ''}}" data-mode="search" bindtap="pickMode">搜跑团</view>
+        <view class="mode {{mode === 'code' ? 'on' : ''}}" data-mode="code" bindtap="pickMode">用口令</view>
       </view>
-      <view class="field">
+      <view wx:if="{{mode === 'code'}}" class="muted">填群里的口令，马上进团。</view>
+      <view wx:else class="muted">按跑团名、团长或跑团管理找。找到后申请，等团里审核。</view>
+      <view wx:if="{{mode === 'code'}}" class="field">
+        <input placeholder="口令" value="{{code}}" bindinput="onCode" confirm-type="done" bindconfirm="join" />
+        <button class="btn" bindtap="join">加入</button>
+      </view>
+      <view wx:else class="field">
         <input placeholder="跑团名、团长" value="{{query}}" bindinput="onQuery" confirm-type="search" bindconfirm="search" />
         <button class="btn" bindtap="search">搜索</button>
       </view>
       <view wx:if="{{message}}" class="err">{{message}}</view>
     </view>
-    <view wx:for="{{openClubs}}" wx:key="id" class="card">
+    <view wx:if="{{mode === 'search'}}" wx:for="{{openClubs}}" wx:key="id" class="card">
       <view class="title">{{item.name}}</view>
       <view class="foot">
         <text>{{item.members}} 人{{item.leader ? ' · 团长 ' + item.leader : ''}}</text>
@@ -34,11 +40,12 @@
       <view class="title">{{item.name}}</view>
       <view class="foot"><text>口令，发到微信群</text><text>{{item.code}}</text></view>
     </navigator>
-    <view wx:if="{{loaded && !query && !clubs.length && !openClubs.length}}" class="empty">还没有可加入的跑团。</view>
+    <view wx:if="{{loaded && mode === 'search' && !query && !clubs.length && !openClubs.length}}" class="empty">还没有可加入的跑团。</view>
     <view class="card">
       <view class="h2">创建跑团</view>
       <view wx:if="{{leader}}" class="muted">只有团长能提交。通过后你是团长，可以在这里管理成员、活动和组别。</view>
       <view wx:else class="muted">只有团长可以建团。请跑团管理员先把你设为团长。</view>
+      <view wx:if="{{foundingMessage}}" class="err">{{foundingMessage}}</view>
       <view wx:if="{{leader && application}}" class="foot"><text>{{application.name}}</text><text>等待审核</text></view>
       <view wx:elif="{{leader}}" class="field">
         <input placeholder="跑团名称" value="{{name}}" bindinput="onName" />
