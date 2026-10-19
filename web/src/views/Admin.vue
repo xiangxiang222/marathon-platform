@@ -324,11 +324,20 @@
               </section>
               <section class="section">
                 <h3>登录密码</h3>
-                <p class="lead">{{ person.user.hasPassword ? "已经可以登录。再保存会换成新密码。同名的人要设不同的密码。" : "还不能登录。设一个密码后，用这个昵称和密码就能回到这个人。同名的人要设不同的密码。" }}</p>
+                <p class="lead">{{ person.user.hasPassword ? "已经可以登录。再保存会换成新密码。" : "还不能登录。设一个密码后，用这个昵称和密码就能回到这个人。" }}</p>
                 <form class="check-form" @submit.prevent="setLoginPassword">
-                  <input v-model="loginPass" type="password" autocomplete="new-password" placeholder="至少 8 位" />
+                  <input v-model="loginPass" type="password" autocomplete="new-password" placeholder="新密码，至少 8 位" />
                   <button class="primary" type="submit">保存密码</button>
                 </form>
+              </section>
+              <section class="section">
+                <h3>删除</h3>
+                <p class="lead">删掉之后，这个昵称可以重新注册。他还是某个团的团长时删不掉，要先把团长交给别人。</p>
+                <button v-if="!confirmDelete" class="danger" type="button" @click="confirmDelete = true">删除这个人</button>
+                <div v-else class="confirm-row">
+                  <button class="danger" type="button" @click="removeUser">确认删除</button>
+                  <button class="undo" type="button" @click="confirmDelete = false">取消</button>
+                </div>
               </section>
               <section class="section">
                 <h3>跑团</h3>
@@ -506,7 +515,7 @@ const splitStyle = computed(() => ({ "--split": split.value + "%" }));
 const sectionLabel = computed(() => deskSections.value.find((item) => item.id === section.value)?.label || "后台");
 const sectionLead = computed(() => ({
   races: "已经收进赛历的场。自动拉取还在，删掉的场不会马上加回来。",
-  users: "用昵称和密码登录。同名的人各自设密码，才能回到原来那一个。不收集手机号，也不收集身份证。",
+  users: "点开一个人可以设登录密码，也可以删除。昵称冲突时，删掉多余的那一个。不收集手机号，也不收集身份证。",
   joins: "建团和没口令的入团都在这里审。通过建团后，申请人是团长。",
   runs: "团练里自己报的公里。还没接手表，每天到没到不记在这里。",
   shop: "商城还没接，不收款、不发货。现在看的是各跑团的积分礼品。",
@@ -686,11 +695,13 @@ async function loadUsers() {
 }
 
 const loginPass = ref("");
+const confirmDelete = ref(false);
 
 async function openUser(id) {
   message.value = "";
   saved.value = false;
   loginPass.value = "";
+  confirmDelete.value = false;
   try {
     person.value = await admin("/admin/users/" + id);
   } catch (err) {
@@ -743,6 +754,23 @@ async function setClubRole(club, next) {
     } catch (again) {
       fail(again);
     }
+  }
+}
+
+async function removeUser() {
+  if (!person.value) return;
+  const id = person.value.user.id;
+  message.value = "";
+  saved.value = false;
+  try {
+    await admin("/admin/users/" + id, { method: "DELETE" });
+    person.value = null;
+    confirmDelete.value = false;
+    await loadUsers();
+    saved.value = true;
+    message.value = "已删除";
+  } catch (err) {
+    fail(err);
   }
 }
 
@@ -1458,6 +1486,9 @@ if (token.value) {
 .editor-actions .primary, .editor-actions .undo { margin-top: 0; }
 .primary { margin-top: 8px; }
 .undo { margin-top: 8px; height: 32px; padding: 0 12px; background: transparent; color: #8d949c; }
+.danger { height: 40px; margin-top: 8px; padding: 0 16px; border-radius: 12px; background: #ff3b30; color: #fff; font-weight: 650; }
+.confirm-row { display: flex; gap: 10px; align-items: center; }
+.confirm-row .danger, .confirm-row .undo { margin-top: 8px; }
 .statuses { margin-top: 8px; }
 .link { display: inline-block; }
 a { color: #007aff; }
@@ -1530,6 +1561,8 @@ a { color: #007aff; }
 .gate-form .primary { height: 48px; margin-top: 4px; border-radius: 12px; font-size: 17px; font-weight: 650; }
 .gate-form .err { margin: 0; }
 @media (max-width: 899px) {
+  .admin { scroll-padding-top: 84px; }
+  .desk-canvas input, .desk-canvas button, .desk-canvas textarea, .desk-side .section { scroll-margin-top: 88px; }
   .brand strong { display: none; }
   .admin-nav { padding: 10px 12px; gap: 2px; }
   .admin-nav button { height: 32px; padding: 0 10px; font-size: 14px; }

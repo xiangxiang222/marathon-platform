@@ -53,9 +53,7 @@ function registerUser(db, body) {
   const armed = rows.filter((row) => row.password_hash);
   const open = rows.filter((row) => !row.password_hash);
   if (armed.length) return { error: "这个昵称已经注册，请登录", status: 400 };
-  if (open.length > 1) {
-    return { error: "有好几个叫这个名字的人。请管理员打开要找回的那一个，设好登录密码", status: 400 };
-  }
+  if (open.length > 1) return { error: "这个昵称有冲突，换一个", status: 400 };
   if (open.length === 1) {
     storePassword(db, open[0].id, password);
     return issueToken(db, open[0].id);
@@ -78,11 +76,12 @@ function loginUser(db, body) {
   const rows = db.prepare("SELECT id, password_hash, salt FROM users WHERE nickname = ?").all(nickname);
   const armed = rows.filter((row) => row.password_hash);
   if (!armed.length) {
-    if (rows.length) return { error: "这个昵称还没设密码。只有一个人用过的话去注册；有好几个同名，让管理员给要找回的那一个设密码", status: 400 };
+    if (rows.length > 1) return { error: "这个昵称有冲突，换一个", status: 400 };
+    if (rows.length) return { error: "这个昵称还没设密码，去注册", status: 400 };
     return { error: "昵称或密码错误", status: 400 };
   }
   const hits = armed.filter((row) => verifyPassword(password, row.salt, row.password_hash));
-  if (hits.length > 1) return { error: "有多个账号对上了这个密码，请给它们设不同的密码", status: 400 };
+  if (hits.length > 1) return { error: "这个昵称有冲突", status: 400 };
   if (!hits.length) return { error: "昵称或密码错误", status: 400 };
   return issueToken(db, hits[0].id);
 }
