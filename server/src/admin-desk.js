@@ -13,7 +13,7 @@ function deleteUser(db, id) {
   const row = db.prepare("SELECT id FROM users WHERE id = ?").get(id);
   if (!row) return { error: "没有这个人", status: 404 };
   const owned = db.prepare("SELECT name FROM clubs WHERE owner_id = ? LIMIT 1").get(id);
-  if (owned) return { error: "这个人还是「" + owned.name + "」的团长，先把团长交给别人再删除", status: 400 };
+  if (owned) return { error: "该用户仍为「" + owned.name + "」团长，请先完成团长移交后再删除", status: 400 };
   const files = db.prepare("SELECT filename, activity_id FROM activity_media WHERE user_id = ?").all(id);
   db.transaction(() => {
     for (const table of [
