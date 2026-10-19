@@ -369,15 +369,15 @@ onMounted(load);
 .club-line { display: block; margin-top: 4px; color: var(--muted); font-size: 13px; }
 .chev { margin-left: auto; stroke: #c5cad1; }
 .quit { margin-top: 8px; color: var(--muted); font-size: 13px; }
-.who.auth, .sheet .auth-form { display: block; }
+.who.auth { display: block; }
 .modes { display: flex; gap: 8px; }
 .modes button { height: 32px; padding: 0 14px; border-radius: 999px; background: rgba(118, 118, 128, 0.12); font-size: 14px; font-weight: 650; }
 .modes button.on { background: #007aff; color: #fff; }
 .auth-form { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
-.auth-form input { height: 40px; border: 0; border-radius: 10px; padding: 0 12px; background: rgba(118, 118, 128, 0.12); outline: none; }
+.auth-form input { display: block; width: 100%; height: 40px; border: 0; border-radius: 10px; padding: 0 12px; background: rgba(118, 118, 128, 0.12); outline: none; }
 .captcha { height: 44px; border-radius: 10px; background: rgba(118, 118, 128, 0.12); color: var(--muted); }
 .captcha img { display: block; height: 44px; margin: 0 auto; }
-.go { height: 40px; border-radius: 12px; background: #007aff; color: #fff; font-weight: 650; }
+.go { display: block; width: 100%; height: 40px; border-radius: 12px; background: #007aff; color: #fff; font-weight: 650; }
 .hint { margin: 8px 0 0; color: var(--muted); font-size: 12px; line-height: 1.45; }
 .err { color: #e35d5d; font-size: 12px; margin: 4px 0 0; }
 .ok { color: #248a3d; font-size: 12px; margin: 4px 0 0; }
