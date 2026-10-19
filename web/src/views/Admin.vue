@@ -1514,7 +1514,7 @@ if (token.value) {
 .check-form { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
 .check-form input, .check-form textarea, .check-form select { width: 100%; border: 1px solid #e6e8ec; border-radius: 8px; padding: 8px 10px; background: #fff; font: inherit; }
 .check-form input, .check-form select { height: 36px; padding: 0 10px; }
-.edit-bar { position: sticky; top: 0; z-index: 4; margin: -14px -16px 0; padding: 16px 16px 12px; border-radius: 16px 16px 0 0; background: rgba(255, 255, 255, 0.94); backdrop-filter: blur(16px); border-bottom: 1px solid var(--line); }
+.edit-bar { margin: -14px -16px 0; padding: 16px 16px 12px; border-radius: 16px 16px 0 0; border-bottom: 1px solid var(--line); }
 .edit-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
 .edit-id { min-width: 0; }
 .edit-kicker { margin: 0; color: var(--accent); font-size: 12px; font-weight: 650; }
@@ -1541,13 +1541,14 @@ if (token.value) {
 .section h3 { margin: 0; font-size: 16px; font-weight: 650; letter-spacing: -0.2px; }
 .lead, .pick-label { margin: 6px 0 0; color: var(--muted); font-size: 12px; line-height: 1.45; }
 .pick-label { margin-top: 12px; }
-.pair { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 12px; }
-.field { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
-.field > span { font-size: 12px; color: var(--muted); }
-.guide-form input, .guide-form textarea, .guide-form select { border: 0; border-radius: 10px; background: #fff; box-shadow: inset 0 0 0 1px var(--line); }
-.guide-form .field input, .guide-form .field select { height: 40px; }
-.guide-form .field textarea { line-height: 1.45; padding: 10px 12px; }
-.guide-form input[type="date"], .guide-form input[type="time"], .node-form input[type="date"] { min-height: 40px; }
+.pair { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 14px; }
+.field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.field > span { font-size: 13px; color: var(--muted); }
+.guide-form input, .guide-form textarea, .guide-form select { border: 0; border-radius: 12px; background: #fff; box-shadow: inset 0 0 0 1px var(--line); font-size: 15px; }
+.guide-form .field input, .guide-form .field select, .guide-form .field textarea { flex: none; width: 100%; }
+.guide-form .field input, .guide-form .field select { height: 48px; min-height: 48px; padding: 0 16px; line-height: 48px; }
+.guide-form .field textarea { min-height: 112px; height: auto; padding: 14px 16px; line-height: 1.65; resize: vertical; }
+.guide-form input[type="date"], .guide-form input[type="time"], .node-form input[type="date"] { min-height: 48px; line-height: normal; }
 .picks { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
 .pick { height: 32px; padding: 0 12px; border-radius: 999px; background: #fff; color: var(--ink); font-size: 14px; box-shadow: inset 0 0 0 1px var(--line); }
 .pick.on { background: var(--accent); color: #fff; box-shadow: none; }
@@ -1660,7 +1661,6 @@ a { color: #007aff; }
 .gate-form .err { margin: 0; }
 @media (max-width: 899px) {
   .admin { scroll-padding-top: 84px; }
-  .edit-bar { top: 68px; }
   .desk-canvas input, .desk-canvas button, .desk-canvas textarea, .desk-side .section { scroll-margin-top: 88px; }
   .brand strong { display: none; }
   .admin-nav { padding: 10px 12px; gap: 2px; }
@@ -1692,7 +1692,6 @@ a { color: #007aff; }
   .splitter::before { content: ""; width: 2px; height: 72px; border-radius: 999px; background: rgba(60, 60, 67, 0.22); }
   .splitter:hover::before, .dragging .splitter::before { width: 3px; height: 100%; background: var(--accent); }
   .desk-official { grid-column: 1 / -1; }
-  .desk-side { position: sticky; top: 24px; max-height: calc(100vh - 48px); overflow: auto; }
   .inline-form { flex-direction: row; align-items: center; }
   .inline-form input { flex: 1; }
   .inline-form .primary { width: auto; margin-top: 0; padding: 0 16px; white-space: nowrap; }
