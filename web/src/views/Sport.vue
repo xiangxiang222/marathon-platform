@@ -1,7 +1,7 @@
 <template>
   <header class="large">
     <div>
-      <h1>运动</h1>
+      <h1>跑团</h1>
       <p>建团、发口令、看谁标了这场</p>
     </div>
   </header>

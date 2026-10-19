@@ -6,17 +6,17 @@
       </span>
       <span>首页</span>
     </router-link>
-    <router-link to="/sport" class="item" :class="{ on: route.path.startsWith('/sport') || route.path.startsWith('/clubs') }">
+    <router-link to="/sport" class="item" :class="{ on: route.path.startsWith('/sport') }">
       <span class="glyph">
         <svg viewBox="0 0 24 24"><path d="M3 14c2-1 3.2-3 4.2-5.2.4-.8 1.6-.7 1.8.2L10 13l2.2-1.2c.7-.4 1.6.2 1.5 1L13 16h3.2c.8 0 1.3.8.9 1.5l-1.2 2c-.3.4-.7.5-1.2.5H8.2c-.4 0-.8-.2-1-.6L3.6 15.2C3.2 14.6 3 14.2 3 14z" /></svg>
       </span>
       <span>运动</span>
     </router-link>
-    <router-link to="/look" class="item" :class="{ on: route.path.startsWith('/look') }">
+    <router-link to="/clubs" class="item" :class="{ on: route.path.startsWith('/clubs') }">
       <span class="glyph">
-        <svg viewBox="0 0 24 24"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12z" /><circle cx="12" cy="12" r="3" /></svg>
+        <svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="2.2" /><circle cx="16" cy="9" r="1.8" /><path d="M4.8 18.5c.6-2.4 2.2-3.6 4.4-3.6s3.8 1.2 4.4 3.6" /><path d="M13.6 18.5c.4-1.7 1.5-2.7 3-2.7 1.4 0 2.5.8 3 2.3" /></svg>
       </span>
-      <span>看看</span>
+      <span>跑团</span>
     </router-link>
     <router-link to="/mine" class="item" :class="{ on: route.path.startsWith('/mine'), mine: route.path.startsWith('/mine') }">
       <span class="glyph face">
