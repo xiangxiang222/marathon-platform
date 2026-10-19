@@ -1,7 +1,7 @@
 const { request, setAuth, ready } = require("../../utils/request");
 
 Page({
-  data: { ready: false, draft: "", name: "", leader: false, application: null, code: "", query: "", clubs: [], openClubs: [], loaded: false, message: "" },
+  data: { ready: false, draft: "", name: "", leader: false, application: null, mode: "search", code: "", query: "", clubs: [], openClubs: [], loaded: false, message: "", foundingMessage: "" },
   onShow() {
     this.setData({ ready: ready() });
     if (ready()) this.load();
@@ -17,6 +17,11 @@ Page({
   },
   onQuery(e) {
     this.setData({ query: e.detail.value });
+  },
+  pickMode(e) {
+    const mode = e.currentTarget.dataset.mode;
+    const message = mode === "search" && (this.data.query || "").trim() && !this.data.openClubs.length ? "没有找到这个跑团" : "";
+    this.setData({ mode, message });
   },
   enter() {
     request("/session", "POST", { nickname: (this.data.draft || "").trim() })
@@ -39,7 +44,7 @@ Page({
           openClubs: found.filter((item) => q || !item.joined),
           loaded: true
         };
-        if (q) patch.message = found.length ? "" : "没有找到这个跑团";
+        if (q && this.data.mode === "search") patch.message = found.length ? "" : "没有找到这个跑团";
         this.setData(patch);
       })
       .catch((err) => this.setData({ loaded: true, message: err.message }));
@@ -52,18 +57,18 @@ Page({
     request("/clubs", "POST", { name: (this.data.name || "").trim() })
       .then((data) => {
         if (data.pending) {
-          this.setData({ name: "", message: "已提交，等跑团管理员通过" });
+          this.setData({ name: "", foundingMessage: "已提交，等跑团管理员通过" });
           this.load();
           return;
         }
         wx.navigateTo({ url: "/pages/club/club?id=" + data.club.id });
       })
-      .catch((err) => this.setData({ message: err.message }));
+      .catch((err) => this.setData({ foundingMessage: err.message }));
   },
   join() {
     const code = (this.data.code || "").trim();
     if (!code) {
-      this.setData({ message: "填口令，或在下面搜一个团申请" });
+      this.setData({ message: "填口令" });
       return;
     }
     request("/clubs/join", "POST", { code })

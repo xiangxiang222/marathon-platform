@@ -1,3 +1,6 @@
 .h2 { font-size: 30rpx; font-weight: 650; margin-bottom: 16rpx; }
 .field { margin-top: 16rpx; }
+.modes { display: flex; gap: 16rpx; margin-bottom: 16rpx; }
+.mode { height: 64rpx; line-height: 64rpx; padding: 0 28rpx; border-radius: 999rpx; background: rgba(118, 118, 128, 0.12); font-size: 28rpx; font-weight: 600; }
+.mode.on { background: #007aff; color: #fff; }
 .link { display: block; }
