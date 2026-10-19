@@ -6,6 +6,11 @@
 .captcha { display: flex; align-items: center; justify-content: center; height: 88rpx; margin-top: 16rpx; border-radius: 12rpx; background: #f2f2f7; }
 .captcha-img { width: 100%; height: 88rpx; }
 button.btn.block { display: block; width: 100%; margin-top: 16rpx; }
+.account-line { display: flex; align-items: center; justify-content: space-between; margin-top: 20rpx; padding-top: 20rpx; border-top: 1rpx solid #f0f1f3; font-size: 30rpx; }
+.chev { width: 14rpx; height: 14rpx; margin-right: 8rpx; border-right: 3rpx solid #c5cad1; border-bottom: 3rpx solid #c5cad1; transform: rotate(-45deg); }
+.chev.open { transform: rotate(45deg); }
+.req { margin-top: 8rpx; color: #8e8e93; font-size: 24rpx; }
+.cancel { margin-top: 12rpx; text-align: center; color: #8e8e93; font-size: 28rpx; }
 .quit { margin-top: 16rpx; color: #8e8e93; font-size: 26rpx; }
 .ok { color: #248a3d; font-size: 24rpx; margin-top: 8rpx; }
 .h2 { font-size: 30rpx; font-weight: 650; margin-bottom: 8rpx; }

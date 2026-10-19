@@ -4,6 +4,21 @@
       <view class="title">{{nickname}}</view>
       <view wx:if="{{leader}}" class="teal">建团资格</view>
       <navigator wx:for="{{clubs}}" wx:key="id" url="/pages/club/club?id={{item.id}}">{{item.name}} · {{item.roleLabel}}</navigator>
+      <view class="account-line" bindtap="togglePassword">
+        <text>{{hasPassword ? '修改密码' : '设置登录密码'}}</text>
+        <view class="chev {{passwordOpen ? 'open' : ''}}"></view>
+      </view>
+      <view wx:if="{{passwordOpen}}" class="stack">
+        <view class="muted">{{hasPassword ? '请填写当前密码和新密码。' : '设置后，可使用此昵称与密码在其他设备登录。'}}</view>
+        <input wx:if="{{hasPassword}}" placeholder="当前密码" password value="{{currentPassword}}" bindinput="onCurrent" />
+        <input placeholder="新密码" password value="{{nextPassword}}" bindinput="onNext" />
+        <view class="req">8 到 128 位</view>
+        <input placeholder="再输入一次" password value="{{nextPassword2}}" bindinput="onNext2" />
+        <button class="btn block" bindtap="savePassword">保存</button>
+        <view class="cancel" bindtap="cancelPassword">取消</view>
+        <view wx:if="{{message}}" class="{{ok ? 'ok' : 'err'}}">{{message}}</view>
+      </view>
+      <view wx:elif="{{message}}" class="{{ok ? 'ok' : 'err'}}">{{message}}</view>
       <view class="quit" bindtap="logout">退出</view>
     </block>
     <block wx:else>
@@ -27,17 +42,6 @@
       </view>
     </block>
     <view wx:if="{{message && !nickname}}" class="{{ok ? 'ok' : 'err'}}">{{message}}</view>
-  </view>
-  <view class="card" wx:if="{{nickname}}">
-    <view class="h2">{{hasPassword ? '改密码' : '设登录密码'}}</view>
-    <view class="muted">{{hasPassword ? '换手机时用昵称和这个密码登录。' : '设一个密码，换手机也能回到这个人。'}}</view>
-    <view class="stack">
-      <input wx:if="{{hasPassword}}" placeholder="当前密码" password value="{{currentPassword}}" bindinput="onCurrent" />
-      <input placeholder="新密码，至少 8 位" password value="{{nextPassword}}" bindinput="onNext" />
-      <input placeholder="再输入一次" password value="{{nextPassword2}}" bindinput="onNext2" />
-      <button class="btn block" bindtap="savePassword">保存</button>
-    </view>
-    <view wx:if="{{message}}" class="{{ok ? 'ok' : 'err'}}">{{message}}</view>
   </view>
   <view class="card" wx:if="{{conflicts.length}}">
     <view class="h2">全马间隔</view>

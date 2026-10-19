@@ -7,6 +7,7 @@ Page({
     leader: false,
     clubs: [],
     hasPassword: false,
+    passwordOpen: false,
     tab: "login",
     draft: "",
     password: "",
@@ -82,20 +83,40 @@ Page({
         if (tab === "login") this.loadCaptcha();
       });
   },
+  togglePassword() {
+    if (this.data.passwordOpen) this.cancelPassword();
+    else this.setData({ passwordOpen: true, message: "", ok: false });
+  },
+  cancelPassword() {
+    this.setData({
+      passwordOpen: false,
+      currentPassword: "",
+      nextPassword: "",
+      nextPassword2: "",
+      message: "",
+      ok: false
+    });
+  },
   savePassword() {
-    if (this.data.nextPassword !== this.data.nextPassword2) {
-      this.setData({ message: "两次密码不一致", ok: false });
+    const next = this.data.nextPassword || "";
+    if (next.length < 8 || next.length > 128) {
+      this.setData({ message: "密码须为 8 到 128 位", ok: false });
       return;
     }
-    request("/me/password", "PUT", { current: this.data.currentPassword, password: this.data.nextPassword })
+    if (next !== this.data.nextPassword2) {
+      this.setData({ message: "两次输入的密码不一致", ok: false });
+      return;
+    }
+    request("/me/password", "PUT", { current: this.data.currentPassword, password: next })
       .then(() => {
         this.setData({
           hasPassword: true,
+          passwordOpen: false,
           currentPassword: "",
           nextPassword: "",
           nextPassword2: "",
           ok: true,
-          message: "密码已保存"
+          message: "密码已更新"
         });
       })
       .catch((err) => this.setData({ message: err.message, ok: false }));
@@ -107,6 +128,10 @@ Page({
       leader: false,
       clubs: [],
       hasPassword: false,
+      passwordOpen: false,
+      currentPassword: "",
+      nextPassword: "",
+      nextPassword2: "",
       plans: [],
       results: [],
       conflicts: [],
