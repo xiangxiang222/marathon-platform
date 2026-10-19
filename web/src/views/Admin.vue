@@ -294,7 +294,7 @@
             <div class="race-list">
               <div v-for="item in users" :key="item.id" class="race-row" :class="{ on: person && person.user.id === item.id }">
                 <button type="button" class="race-open" @click="openUser(item.id)">
-                  <span>{{ item.nickname }}</span>
+                  <span class="who-name">{{ item.nickname }}<i v-if="item.leader">团长</i></span>
                   <strong>{{ item.createdAt }} · {{ item.clubs }} 个团 · {{ item.plans }} 场</strong>
                 </button>
               </div>
@@ -304,41 +304,51 @@
         </div>
         <div v-if="person" class="splitter" role="separator" aria-orientation="vertical" aria-label="拖动调整左右宽度" :aria-valuenow="Math.round(split)" aria-valuemin="22" aria-valuemax="70" tabindex="0" @pointerdown="startSplit" @keydown="nudgeSplit"></div>
         <aside v-if="person" class="desk-side">
-          <div class="block">
+          <div class="block person">
             <template v-if="person">
-              <h2>{{ person.user.nickname }}</h2>
-              <p class="hint">{{ person.user.createdAt }} 起用这个昵称。</p>
+              <div class="person-head">
+                <div class="person-face" aria-hidden="true">{{ person.user.nickname.slice(0, 1) }}</div>
+                <div>
+                  <h2>{{ person.user.nickname }}</h2>
+                  <p>{{ person.user.createdAt }} 起用这个昵称</p>
+                </div>
+              </div>
+              <section class="section">
+                <h3>建团资格</h3>
+                <p class="lead">设为团长之后，这个人才能申请建团。</p>
+                <div class="segment" role="group" aria-label="建团资格">
+                  <button type="button" :class="{ on: !person.user.leader }" @click="setLeader(false)">不是团长</button>
+                  <button type="button" :class="{ on: person.user.leader }" @click="setLeader(true)">团长</button>
+                </div>
+              </section>
               <section class="section">
                 <h3>跑团</h3>
-                <p class="hint">设为团长之后，这个人才能申请建团。</p>
-                <select class="role-pick" :value="person.user.leader ? '1' : '0'" @change="setLeader($event.target.value === '1')">
-                  <option value="0">不是团长</option>
-                  <option value="1">团长，可以建团</option>
-                </select>
-                <div v-for="club in person.clubs" :key="club.id" class="line">
-                  <b>{{ club.name }}</b>
-                  <span>{{ club.roleLabel }}</span>
-                  <select class="role-pick" :value="club.role" @change="setClubRole(club, $event.target.value)">
-                    <option value="member">成员</option>
-                    <option value="manager">跑团管理</option>
-                    <option value="owner">团长</option>
-                  </select>
-                </div>
+                <article v-for="club in person.clubs" :key="club.id" class="club-card">
+                  <div class="club-name">
+                    <b>{{ club.name }}</b>
+                    <span>{{ club.roleLabel }}</span>
+                  </div>
+                  <div class="segment" role="group" :aria-label="club.name + '里的角色'">
+                    <button type="button" :class="{ on: club.role === 'member' }" @click="setClubRole(club, 'member')">成员</button>
+                    <button type="button" :class="{ on: club.role === 'manager' }" @click="setClubRole(club, 'manager')">跑团管理</button>
+                    <button type="button" :class="{ on: club.role === 'owner' }" @click="setClubRole(club, 'owner')">团长</button>
+                  </div>
+                </article>
                 <p v-if="!person.clubs.length" class="hint">还没进跑团。</p>
               </section>
               <section class="section">
                 <h3>标过的场</h3>
-                <div v-for="item in person.plans" :key="item.name + item.raceDate" class="line"><b>{{ item.name }}</b><span>{{ item.raceDate }} · {{ item.status }}</span></div>
+                <div v-for="item in person.plans" :key="item.name + item.raceDate" class="fact"><b>{{ item.name }}</b><span>{{ item.raceDate }} · {{ item.status }}</span></div>
                 <p v-if="!person.plans.length" class="hint">还没标比赛。</p>
               </section>
               <section class="section">
                 <h3>自己记的成绩</h3>
-                <div v-for="item in person.results" :key="item.name + item.distance" class="line"><b>{{ item.name }}</b><span>{{ item.distance }} {{ item.clock }}</span></div>
+                <div v-for="item in person.results" :key="item.name + item.distance" class="fact"><b>{{ item.name }}</b><span>{{ item.distance }} {{ item.clock }}</span></div>
                 <p v-if="!person.results.length" class="hint">还没记成绩。</p>
               </section>
               <section class="section">
                 <h3>跑团积分</h3>
-                <div v-for="item in person.points" :key="item.club" class="line"><b>{{ item.club }}</b><span>{{ item.points }} 分</span></div>
+                <div v-for="item in person.points" :key="item.club" class="fact"><b>{{ item.club }}</b><span>{{ item.points }} 分</span></div>
                 <p v-if="!person.points.length" class="hint">还没有积分。</p>
               </section>
             </template>
@@ -711,6 +721,7 @@ async function setLeader(leader) {
       body: JSON.stringify({ leader })
     });
     person.value = await admin("/admin/users/" + person.value.user.id);
+    await loadUsers();
     saved.value = true;
     message.value = leader ? "已设为团长" : "已取消团长";
   } catch (err) {
@@ -1435,6 +1446,26 @@ a { color: #007aff; }
 .line span { flex: 1 1 100%; color: var(--muted); font-size: 13px; }
 .actions { display: flex; gap: 8px; flex: none; }
 .role-pick { height: 32px; border: 1px solid #e6e8ec; border-radius: 8px; padding: 0 8px; background: #fff; font: inherit; }
+.who-name { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.who-name i { flex: none; height: 20px; padding: 0 7px; border-radius: 999px; background: rgba(0, 122, 255, 0.12); color: var(--accent); font-size: 11px; font-style: normal; font-weight: 650; line-height: 20px; }
+.person { padding-top: 18px; }
+.person-head { display: flex; align-items: center; gap: 14px; }
+.person-face { width: 56px; height: 56px; flex: none; border-radius: 50%; display: grid; place-items: center; color: #fff; font-size: 24px; font-weight: 700; background: linear-gradient(145deg, #64d2ff, #007aff); }
+.person-head h2 { margin: 0; font-size: 22px; font-weight: 700; letter-spacing: -0.4px; }
+.person-head p { margin: 3px 0 0; color: var(--muted); font-size: 13px; }
+.segment { display: grid; gap: 3px; margin-top: 12px; padding: 3px; border-radius: 12px; background: rgba(118, 118, 128, 0.12); }
+.section > .segment { grid-template-columns: 1fr 1fr; }
+.club-card .segment { grid-template-columns: 1fr 1.2fr 0.85fr; margin-top: 10px; }
+.club-card .segment button { font-size: 13px; padding: 0 4px; }
+.segment button { height: 34px; border-radius: 9px; background: transparent; color: var(--ink); font-size: 14px; font-weight: 600; }
+.segment button.on { background: #fff; color: var(--accent); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), 0 0 0 0.5px rgba(0, 0, 0, 0.04); }
+.club-card { margin-top: 10px; padding: 12px; border-radius: 12px; background: #fff; }
+.club-name { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.club-name b { flex: 1; min-width: 0; font-size: 16px; font-weight: 650; line-height: 1.35; }
+.club-name span { flex: none; color: var(--accent); font-size: 13px; font-weight: 650; }
+.fact { display: flex; flex-direction: column; align-items: flex-start; gap: 3px; margin-top: 8px; padding: 12px 14px; border-radius: 12px; background: #fff; }
+.fact b { font-size: 15px; font-weight: 650; line-height: 1.35; }
+.fact span { color: var(--muted); font-size: 13px; }
 .desk { display: flex; flex-direction: column; }
 .desk-side { order: 2; }
 .desk-official { order: 3; }

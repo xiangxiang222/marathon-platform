@@ -7,7 +7,7 @@ const { presentRace, summarizeMarks, cardTitle, shareText, reminderHits, fullCon
 const { parseClock, decorateResults, careerOf, yearOf, bestRanks } = require("./career");
 const { syncOfficial, listOfficial, publishOfficial, openUpcoming, ignoreOfficial, applyOfficial } = require("./official");
 const { ensureAdmin, ensureDeskLogin, loginAdmin, adminSession, logoutAdmin, changeAdminPassword, listAdmins, createAdmin, setAdminRole } = require("./admin-auth");
-const { adminRoleLabel } = require("./roles");
+const { adminRoleLabel, clubRoleLabel } = require("./roles");
 const { mountClubLife, enrichBoard, clubLife } = require("./club-life");
 const { mountRaceGuide, attachGuide } = require("./race-guide");
 const { mountAdminDesk } = require("./admin-desk");
@@ -398,11 +398,15 @@ app.get(BASE + "/api/me", (req, res) => {
   const plans = plansFor(user.id);
   const clubs = getDb()
     .prepare(
-      `SELECT c.id, c.name, c.code FROM clubs c
+      `SELECT c.id, c.name, c.code, c.owner_id, m.role AS member_role FROM clubs c
        JOIN club_members m ON m.club_id = c.id
        WHERE m.user_id = ? ORDER BY c.id`
     )
-    .all(user.id);
+    .all(user.id)
+    .map((row) => {
+      const role = Number(row.owner_id) === Number(user.id) ? "owner" : row.member_role === "manager" ? "manager" : "member";
+      return { id: row.id, name: row.name, code: row.code, role, roleLabel: clubRoleLabel(role) };
+    });
   const reminders = remindable().filter((item) => plans.some((plan) => plan.race.id === item.race.id));
   const results = resultsFor(user.id);
   const applications = getDb()

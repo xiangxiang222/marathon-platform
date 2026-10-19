@@ -64,6 +64,13 @@ test("a club sees a teammate mark the same race", async () => {
   const code = created.body.club.code;
   const joined = await request(app).post("/marathon/api/clubs/join").set("Authorization", "Bearer " + mate).send({ code });
   assert.equal(joined.status, 200);
+  const mine = await request(app).get("/marathon/api/me").set("Authorization", "Bearer " + leader);
+  assert.equal(mine.body.user.leader, true);
+  assert.equal(mine.body.clubs[0].role, "owner");
+  assert.equal(mine.body.clubs[0].roleLabel, "团长");
+  const mateMe = await request(app).get("/marathon/api/me").set("Authorization", "Bearer " + mate);
+  assert.equal(mateMe.body.user.leader, false);
+  assert.equal(mateMe.body.clubs[0].roleLabel, "成员");
 
   const marked = await request(app)
     .put("/marathon/api/me/races/bishan")
@@ -1085,6 +1092,7 @@ test("admin sees nicknames, self-reported runs, and club gifts", async () => {
   assert.equal(listed.body.users.length, 1);
   assert.equal(listed.body.users[0].plans, 1);
   assert.equal(listed.body.users[0].clubs, 1);
+  assert.equal(listed.body.users[0].leader, true);
   assert.equal(JSON.stringify(listed.body).includes(user), false);
   const detail = await request(app).get("/marathon/api/admin/users/" + listed.body.users[0].id).set(admin);
   assert.equal(detail.status, 200);

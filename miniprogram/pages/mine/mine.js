@@ -3,6 +3,8 @@ const { request, setAuth, ready } = require("../../utils/request");
 Page({
   data: {
     nickname: "",
+    leader: false,
+    clubs: [],
     draft: "",
     plans: [],
     results: [],
@@ -47,6 +49,8 @@ Page({
           reminders,
           conflicts: data.conflicts || [],
           nickname: data.user.nickname,
+          leader: !!(data.user && data.user.leader),
+          clubs: data.clubs || [],
           loaded: true
         });
       })
