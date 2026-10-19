@@ -885,11 +885,11 @@ app.put(BASE + "/api/admin/races/:id", (req, res) => {
     if (!/^\d{4}-\d{2}-\d{2}$/.test(text)) return null;
     return text;
   });
-  if (dates.some((item) => item == null)) return res.status(400).json({ error: "日期写成 2026-10-28 这样" });
-  if (!dates.some(Boolean)) return res.status(400).json({ error: "先填写要记的节点" });
-  if (!source) return res.status(400).json({ error: "报名节点要写来源" });
-  if (source.length > 80) return res.status(400).json({ error: "来源最多 80 个字" });
-  if (deadlineName.length > 12) return res.status(400).json({ error: "节点名称太长" });
+  if (dates.some((item) => item == null)) return res.status(400).json({ error: "日期须为 2026-10-28 这种格式" });
+  if (!dates.some(Boolean)) return res.status(400).json({ error: "请填写需要记录的报名时间" });
+  if (!source) return res.status(400).json({ error: "修改报名时间须填写本次来源" });
+  if (source.length > 80) return res.status(400).json({ error: "来源不超过 80 个字" });
+  if (deadlineName.length > 12) return res.status(400).json({ error: "截止说明不超过 12 个字" });
   const current = [race.reg_start, race.deadline, race.draw_at, race.pay_deadline];
   const next = dates.map((value, index) => value || current[index]);
   getDb()
