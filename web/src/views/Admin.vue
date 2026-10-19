@@ -47,8 +47,8 @@
       <div v-show="section === 'races'" class="desk" :class="{ editing: !!book, dragging }" :style="splitStyle">
       <div class="desk-main">
       <div class="block">
-        <form class="check-form inline-form" @submit.prevent="loadCatalog">
-          <input v-model="catalogQuery" placeholder="搜名称、城市" />
+        <form class="check-form inline-form" @submit.prevent="submitCatalog">
+          <input v-model="catalogQuery" placeholder="搜名称、城市" @input="queueCatalog" />
           <button class="primary" type="submit">筛选</button>
         </form>
         <div class="statuses">
@@ -74,7 +74,7 @@
         <h2>官网赛历</h2>
         <p class="hint">每一届单独存。中国马拉松官网这场一直有链接。赛事自己的网站，官网给了才记下；没给就空着，也不拿往年的网站来填。每天再对一次，名称、日期、主办、赛事网站有变会标出来。报名时间仍要另写来源，已经记下的截止时间不会被盖掉。</p>
         <form class="check-form inline-form" @submit.prevent="search">
-          <input v-model="q" placeholder="向官网查名称，例如璧山" />
+          <input v-model="q" placeholder="搜名称或城市，例如璧山" @input="queueOfficial" />
           <button class="primary" type="submit">查官网</button>
         </form>
         <button class="undo" type="button" @click="syncAll">拉取即将开赛的场</button>
@@ -306,8 +306,8 @@
       <div v-if="section === 'users'" class="desk" :class="{ editing: !!(person || adding), dragging }" :style="splitStyle">
         <div class="desk-main">
           <div class="block">
-            <form class="check-form inline-form" @submit.prevent="loadUsers">
-              <input v-model="userQuery" placeholder="搜昵称" />
+            <form class="check-form inline-form" @submit.prevent="submitUsers">
+              <input v-model="userQuery" placeholder="搜昵称" @input="queueUsers" />
               <button class="primary" type="submit">筛选</button>
             </form>
             <p v-if="usersReady" class="hint">{{ users.length }} 人</p>
@@ -328,7 +328,7 @@
                 </div>
               </div>
             </div>
-            <p v-if="usersReady && !users.length" class="empty">没有这个昵称。</p>
+            <p v-if="usersReady && !users.length" class="empty">没有符合条件的用户。</p>
           </div>
         </div>
         <div v-if="person || adding" class="splitter" role="separator" aria-orientation="vertical" aria-label="拖动调整左右宽度" :aria-valuenow="Math.round(split)" aria-valuemin="22" aria-valuemax="70" tabindex="0" @pointerdown="startSplit" @keydown="nudgeSplit"></div>
@@ -449,8 +449,8 @@
       <div v-if="section === 'clubs'" class="desk" :class="{ editing: !!club, dragging }" :style="splitStyle">
         <div class="desk-main">
           <div class="block">
-            <form class="check-form inline-form" @submit.prevent="loadClubs">
-              <input v-model="clubQuery" placeholder="搜跑团或昵称" />
+            <form class="check-form inline-form" @submit.prevent="submitClubs">
+              <input v-model="clubQuery" placeholder="搜跑团或昵称" @input="queueClubs" />
               <button class="primary" type="submit">筛选</button>
             </form>
             <p v-if="clubsReady" class="hint">{{ clubs.length }} 个团</p>
@@ -460,6 +460,14 @@
                   <span class="who-name">{{ item.name }}</span>
                   <strong>{{ item.createdAt }} · 团长 {{ item.owner }} · {{ item.members }} 人</strong>
                 </button>
+                <div v-if="pendingClub === item.id" class="row-confirm">
+                  <p>确认删除该跑团？成员账号会保留。该团的活动、积分和礼品会一并删除，此操作不可恢复。</p>
+                  <button class="danger" type="button" @click="removeClub(item)">确认删除</button>
+                  <button class="undo" type="button" @click="pendingClub = 0">取消</button>
+                </div>
+                <div v-else class="row-actions">
+                  <button class="remove" type="button" :aria-label="'删除 ' + item.name" @click="pendingClub = item.id">删除</button>
+                </div>
               </div>
             </div>
             <p v-if="clubsReady && !clubs.length" class="empty">没有符合条件的跑团。</p>
@@ -649,6 +657,7 @@ const clubQuery = ref("");
 const club = ref(null);
 const memberName = ref("");
 const pendingMember = ref(0);
+const pendingClub = ref(0);
 const runs = ref([]);
 const runsReady = ref(false);
 const gifts = ref([]);
@@ -677,7 +686,7 @@ const sectionLabel = computed(() => deskSections.value.find((item) => item.id ==
 const sectionLead = computed(() => ({
   races: "已经收进赛历的场。自动拉取还在，删掉的场不会马上加回来。",
   users: "可添加用户，填写昵称和登录密码后即可登录。点开一行查看参赛状态、跑团和成绩。编辑用于建团资格、登录密码和跑团角色。删除在列表中确认。关闭建团资格不影响其已担任的团长。不收集手机号，也不收集身份证。",
-  clubs: "点开一行管理该跑团的成员和团长。按昵称添加成员，移出成员不删除账号。指定团长后，原团长改为跑团管理。现任团长须先移交，才能修改角色或移出。",
+  clubs: "点开一行管理该跑团的成员和团长。按昵称添加成员，移出成员不删除账号。指定团长后，原团长改为跑团管理。现任团长须先移交，才能修改角色或移出。删除跑团在列表中确认，成员账号会保留。",
   joins: "建团和没口令的入团都在这里审。通过建团后，申请人成为该团团长。",
   runs: "团练里自己报的公里。还没接手表，每天到没到不记在这里。",
   shop: "商城还没接，不收款、不发货。现在看的是各跑团的积分礼品。",
@@ -853,25 +862,67 @@ function pickSection(id) {
   if (id === "accounts") loadAccounts();
 }
 
+let userTimer = 0;
+let userSeq = 0;
+function queueUsers() {
+  clearTimeout(userTimer);
+  userTimer = setTimeout(() => {
+    loadUsers();
+  }, 200);
+}
+function submitUsers() {
+  clearTimeout(userTimer);
+  return loadUsers();
+}
 async function loadUsers() {
-  usersReady.value = false;
+  const seq = ++userSeq;
   try {
     const data = await admin("/admin/users?q=" + encodeURIComponent(userQuery.value));
+    if (seq !== userSeq) return;
     users.value = data.users;
     usersReady.value = true;
     if (person.value && !users.value.some((item) => item.id === person.value.user.id)) person.value = null;
   } catch (err) {
-    fail(err);
+    if (seq === userSeq) fail(err);
   }
 }
 
+let clubTimer = 0;
+let clubSeq = 0;
+function queueClubs() {
+  clearTimeout(clubTimer);
+  clubTimer = setTimeout(() => {
+    loadClubs();
+  }, 200);
+}
+function submitClubs() {
+  clearTimeout(clubTimer);
+  return loadClubs();
+}
 async function loadClubs() {
-  clubsReady.value = false;
+  const seq = ++clubSeq;
   try {
     const data = await admin("/admin/clubs?q=" + encodeURIComponent(clubQuery.value));
+    if (seq !== clubSeq) return;
     clubs.value = data.clubs;
     clubsReady.value = true;
     if (club.value && !clubs.value.some((item) => item.id === club.value.club.id)) club.value = null;
+  } catch (err) {
+    if (seq === clubSeq) fail(err);
+  }
+}
+
+async function removeClub(item) {
+  message.value = "";
+  saved.value = false;
+  try {
+    await admin("/admin/clubs/" + item.id, { method: "DELETE" });
+    if (club.value && club.value.club.id === item.id) club.value = null;
+    pendingClub.value = 0;
+    pendingMember.value = 0;
+    await loadClubs();
+    saved.value = true;
+    message.value = "跑团已删除";
   } catch (err) {
     fail(err);
   }
@@ -964,12 +1015,19 @@ const planStatusOptions = computed(() => {
   const extra = Object.keys(counts).filter((status) => !planStatusOrder.includes(status));
   return [...known, ...extra].map((status) => ({ status, count: counts[status] }));
 });
+function containsText(text, query) {
+  const raw = String(text || "");
+  if (raw.includes(query)) return true;
+  const fold = (value) => value.replace(/\s+/g, "");
+  return fold(raw).includes(fold(query));
+}
+
 const shownPlans = computed(() => {
   const query = planQuery.value.trim();
   return (person.value?.plans || []).filter((item) => {
     if (planStatus.value && item.status !== planStatus.value) return false;
     if (!query) return true;
-    return item.name.includes(query) || (item.city || "").includes(query);
+    return containsText(item.name, query) || containsText(item.city, query);
   });
 });
 
@@ -1243,8 +1301,18 @@ async function changePassword() {
   }
 }
 
+let officialTimer = 0;
+let officialSeq = 0;
+function queueOfficial() {
+  clearTimeout(officialTimer);
+  officialTimer = setTimeout(() => {
+    load().catch(fail);
+  }, 200);
+}
 async function load() {
+  const seq = ++officialSeq;
   const data = await admin("/admin/official?status=" + filter.value + (q.value ? "&q=" + encodeURIComponent(q.value) : ""));
+  if (seq !== officialSeq) return;
   rows.value = (data.rows || []).map((row) => ({ ...row, regStart: "", deadline: "", drawAt: "", payDeadline: "", nodeSource: "" }));
   ready.value = true;
 }
@@ -1261,11 +1329,14 @@ async function setFilter(value) {
 }
 
 async function search() {
+  clearTimeout(officialTimer);
+  const seq = ++officialSeq;
   message.value = "";
   saved.value = false;
   busy.value = true;
   try {
     const data = await admin("/admin/official/sync", { method: "POST", body: JSON.stringify({ name: q.value }) });
+    if (seq !== officialSeq) return;
     rows.value = (data.rows || []).map((row) => ({ ...row, regStart: "", deadline: "", drawAt: "", payDeadline: "", nodeSource: "" }));
     ready.value = true;
     saved.value = true;
@@ -1520,10 +1591,24 @@ function closeEditor() {
   book.value = null;
 }
 
+let catalogTimer = 0;
+let catalogSeq = 0;
+function queueCatalog() {
+  clearTimeout(catalogTimer);
+  catalogTimer = setTimeout(() => {
+    loadCatalog().catch(fail);
+  }, 200);
+}
+function submitCatalog() {
+  clearTimeout(catalogTimer);
+  return loadCatalog();
+}
 async function loadCatalog() {
+  const seq = ++catalogSeq;
   const data = await admin(
     "/admin/races?when=" + catalogWhen.value + (catalogQuery.value ? "&q=" + encodeURIComponent(catalogQuery.value) : "")
   );
+  if (seq !== catalogSeq) return;
   catalog.value = data.races || [];
   catalogReady.value = true;
 }

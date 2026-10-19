@@ -1,6 +1,7 @@
 const crypto = require("crypto");
 const fs = require("fs");
 const path = require("path");
+const { likeParams } = require("./search-like");
 
 const DISTANCES = ["full", "half", "10k", "5k"];
 const KINDS = ["trail", "ultra", "family", "fun"];
@@ -265,9 +266,10 @@ function cstToday() {
 }
 
 function listManaged(db, { q = "", when = "upcoming" } = {}) {
-  const params = [`%${q}%`, `%${q}%`, `%${q}%`, `%${q}%`];
+  const match = likeParams(q, ["name", "city", "place", "province"]);
+  const params = match.params;
   let sql = `SELECT id, name, race_date, city, province, place FROM races
-    WHERE (name LIKE ? OR city LIKE ? OR place LIKE ? OR province LIKE ?)`;
+    WHERE (${match.sql})`;
   if (when !== "all") {
     sql += " AND race_date >= ?";
     params.push(cstToday());

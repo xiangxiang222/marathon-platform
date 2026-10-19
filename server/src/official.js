@@ -1,3 +1,5 @@
+const { likeParams } = require("./search-like");
+
 const LIST_URL =
   "https://api-changzheng.chinaath.com/changzheng-content-center-api/api/homePage/official/searchCompetitionMls";
 const DETAIL_URL =
@@ -384,8 +386,9 @@ function listOfficial(db, { q = "", status = "", limit = 200, upcomingFrom = "",
     params.push(status);
   }
   if (q) {
-    sql += " AND name LIKE ?";
-    params.push("%" + q + "%");
+    const match = likeParams(q, ["name", "city", "province"]);
+    sql += ` AND (${match.sql})`;
+    params.push(...match.params);
   }
   if (upcomingFrom) {
     sql += " AND race_date >= ?";

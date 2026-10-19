@@ -4,6 +4,7 @@ const { DISTANCE_LABEL } = require("./races");
 const { formatClock } = require("./career");
 const { clubRoleLabel, setMemberRole, addClubMember, removeClubMember, decideRequest, listPending, listClubApplications, decideClubApplication } = require("./roles");
 const { setUserPassword, createUser } = require("./user-auth");
+const { likeParams } = require("./search-like");
 
 function mediaRoot() {
   return process.env.MARATHON_MEDIA || path.join(__dirname, "../data/media");
@@ -46,6 +47,7 @@ function when(value) {
 }
 
 function listUsers(db, q) {
+  const match = likeParams(q, ["u.nickname"]);
   const rows = db
     .prepare(
       `SELECT u.id, u.nickname, u.created_at, u.leader,
@@ -54,11 +56,11 @@ function listUsers(db, q) {
               (SELECT COUNT(*) FROM results r WHERE r.user_id = u.id) AS results,
               (SELECT COUNT(*) FROM club_members m WHERE m.user_id = u.id) AS clubs
        FROM users u
-       WHERE u.nickname LIKE ?
+       WHERE ${match.sql}
        ORDER BY u.id DESC
        LIMIT 200`
     )
-    .all(`%${String(q || "").trim()}%`);
+    .all(...match.params);
   return rows.map((row) => ({
     id: row.id,
     nickname: row.nickname,
@@ -195,25 +197,58 @@ function shopDesk(db) {
   return { gifts, redemptions };
 }
 
+function deleteClub(db, id) {
+  const club = db.prepare("SELECT id FROM clubs WHERE id = ?").get(id);
+  if (!club) return { error: "没有这个跑团", status: 404 };
+  const activities = db.prepare("SELECT id FROM activities WHERE club_id = ?").all(id).map((row) => row.id);
+  const files = activities.length
+    ? db.prepare(`SELECT filename, activity_id FROM activity_media WHERE activity_id IN (${activities.map(() => "?").join(",")})`).all(...activities)
+    : [];
+  const gifts = db.prepare("SELECT id FROM gifts WHERE club_id = ?").all(id).map((row) => row.id);
+  db.transaction(() => {
+    if (activities.length) {
+      const marks = activities.map(() => "?").join(",");
+      db.prepare(`DELETE FROM activity_media WHERE activity_id IN (${marks})`).run(...activities);
+      db.prepare(`DELETE FROM activity_signups WHERE activity_id IN (${marks})`).run(...activities);
+      db.prepare(`DELETE FROM activity_checks WHERE activity_id IN (${marks})`).run(...activities);
+    }
+    if (gifts.length) db.prepare(`DELETE FROM redemptions WHERE gift_id IN (${gifts.map(() => "?").join(",")})`).run(...gifts);
+    db.prepare("DELETE FROM activities WHERE club_id = ?").run(id);
+    db.prepare("DELETE FROM club_groups WHERE club_id = ?").run(id);
+    db.prepare("DELETE FROM checkins WHERE club_id = ?").run(id);
+    db.prepare("DELETE FROM point_entries WHERE club_id = ?").run(id);
+    db.prepare("DELETE FROM gifts WHERE club_id = ?").run(id);
+    db.prepare("DELETE FROM club_members WHERE club_id = ?").run(id);
+    db.prepare("DELETE FROM club_requests WHERE club_id = ?").run(id);
+    db.prepare("DELETE FROM clubs WHERE id = ?").run(id);
+  })();
+  for (const file of files) {
+    if (!file.filename) continue;
+    const full = path.join(mediaRoot(), String(file.activity_id), file.filename);
+    if (fs.existsSync(full)) fs.unlinkSync(full);
+  }
+  return { ok: true };
+}
+
 function listClubs(db, q) {
-  const like = `%${String(q || "").trim()}%`;
+  const match = likeParams(q, ["c.name", "u.nickname"]);
+  const member = likeParams(q, ["mu.nickname"]);
   return db
     .prepare(
       `SELECT c.id, c.name, c.created_at, u.nickname AS owner,
               (SELECT COUNT(*) FROM club_members m WHERE m.club_id = c.id) AS members
        FROM clubs c
        JOIN users u ON u.id = c.owner_id
-       WHERE c.name LIKE ?
-          OR u.nickname LIKE ?
+       WHERE ${match.sql}
           OR EXISTS (
             SELECT 1 FROM club_members m
             JOIN users mu ON mu.id = m.user_id
-            WHERE m.club_id = c.id AND mu.nickname LIKE ?
+            WHERE m.club_id = c.id AND (${member.sql})
           )
        ORDER BY c.id DESC
        LIMIT 200`
     )
-    .all(like, like, like)
+    .all(...match.params, ...member.params)
     .map((row) => ({
       id: row.id,
       name: row.name,
@@ -360,6 +395,15 @@ function mountAdminDesk(app, { BASE, getDb, requireAdmin }) {
     const userId = Number(req.params.userId);
     if (!Number.isInteger(id) || id < 1 || !Number.isInteger(userId) || userId < 1) return res.status(404).json({ error: "团里没有这个人" });
     const result = setMemberRole(getDb(), id, userId, String((req.body && req.body.role) || ""));
+    if (result.error) return res.status(result.status).json({ error: result.error });
+    res.json({ ok: true });
+  });
+
+  app.delete(BASE + "/api/admin/clubs/:id", (req, res) => {
+    if (!desk(req, res)) return;
+    const id = Number(req.params.id);
+    if (!Number.isInteger(id) || id < 1) return res.status(404).json({ error: "没有这个跑团" });
+    const result = deleteClub(getDb(), id);
     if (result.error) return res.status(result.status).json({ error: result.error });
     res.json({ ok: true });
   });
