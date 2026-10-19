@@ -3,7 +3,7 @@ const path = require("path");
 const { DISTANCE_LABEL } = require("./races");
 const { formatClock } = require("./career");
 const { clubRoleLabel, setMemberRole, decideRequest, listPending, listClubApplications, decideClubApplication } = require("./roles");
-const { setUserPassword } = require("./user-auth");
+const { setUserPassword, createUser } = require("./user-auth");
 
 function mediaRoot() {
   return process.env.MARATHON_MEDIA || path.join(__dirname, "../data/media");
@@ -203,6 +203,13 @@ function mountAdminDesk(app, { BASE, getDb, requireAdmin }) {
   app.get(BASE + "/api/admin/users", (req, res) => {
     if (!desk(req, res)) return;
     res.json({ users: listUsers(getDb(), req.query.q) });
+  });
+
+  app.post(BASE + "/api/admin/users", (req, res) => {
+    if (!desk(req, res)) return;
+    const result = createUser(getDb(), req.body || {});
+    if (result.error) return res.status(result.status).json({ error: result.error });
+    res.status(201).json({ id: result.id, nickname: result.nickname });
   });
 
   app.get(BASE + "/api/admin/users/:id", (req, res) => {

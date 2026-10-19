@@ -44,6 +44,21 @@ function consumeCaptcha(db, token, input) {
   return codesMatch(row.code, input);
 }
 
+function createUser(db, body) {
+  const nickname = nicknameOf(body && body.nickname);
+  const password = passwordOf(body && body.password);
+  if (!nickname) return { error: "昵称须为 1 到 20 个字", status: 400 };
+  if (!password) return { error: "密码须为 8 到 128 位", status: 400 };
+  const existing = db.prepare("SELECT id FROM users WHERE nickname = ? LIMIT 1").get(nickname);
+  if (existing) return { error: "该昵称已存在，请在列表中编辑该账号", status: 400 };
+  const token = crypto.randomBytes(24).toString("hex");
+  const salt = crypto.randomBytes(16).toString("hex");
+  const info = db
+    .prepare("INSERT INTO users (nickname, token, created_at, password_hash, salt) VALUES (?, ?, ?, ?, ?)")
+    .run(nickname, token, new Date().toISOString(), passwordHash(password, salt), salt);
+  return { id: Number(info.lastInsertRowid), nickname };
+}
+
 function registerUser(db, body) {
   const nickname = nicknameOf(body && body.nickname);
   const password = passwordOf(body && body.password);
@@ -108,4 +123,4 @@ function changeOwnPassword(db, userId, current, next) {
   return { ok: true };
 }
 
-module.exports = { issueCaptcha, registerUser, loginUser, setUserPassword, changeOwnPassword };
+module.exports = { issueCaptcha, registerUser, loginUser, setUserPassword, changeOwnPassword, createUser };

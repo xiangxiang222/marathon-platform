@@ -1486,6 +1486,41 @@ test("a nickname with a password logs back into the same person", async () => {
   assert.equal(updated.body.user.id, target);
 });
 
+test("an admin can add a user who then logs in with that nickname", async () => {
+  process.env.ADMIN_TOKEN = "test-admin";
+  const admin = { Authorization: "Bearer test-admin" };
+  const denied = await request(app).post("/marathon/api/admin/users").send({ nickname: "后台新建", password: "password-8" });
+  assert.equal(denied.status, 401);
+  const blank = await request(app).post("/marathon/api/admin/users").set(admin).send({ nickname: "  ", password: "password-8" });
+  assert.equal(blank.status, 400);
+  assert.equal(blank.body.error, "昵称须为 1 到 20 个字");
+  const short = await request(app).post("/marathon/api/admin/users").set(admin).send({ nickname: "后台新建", password: "short" });
+  assert.equal(short.status, 400);
+  assert.equal(short.body.error, "密码须为 8 到 128 位");
+  await session("旧昵称未设密");
+  const taken = await request(app).post("/marathon/api/admin/users").set(admin).send({ nickname: "旧昵称未设密", password: "password-8" });
+  assert.equal(taken.status, 400);
+  assert.equal(taken.body.error, "该昵称已存在，请在列表中编辑该账号");
+  const created = await request(app).post("/marathon/api/admin/users").set(admin).send({ nickname: "后台新建", password: "password-8" });
+  assert.equal(created.status, 201);
+  assert.equal(created.body.nickname, "后台新建");
+  const dup = await request(app).post("/marathon/api/admin/users").set(admin).send({ nickname: "后台新建", password: "other-pass" });
+  assert.equal(dup.status, 400);
+  assert.equal(dup.body.error, "该昵称已存在，请在列表中编辑该账号");
+  const cap = await captchaCode();
+  const logged = await request(app).post("/marathon/api/auth/login").send({
+    nickname: "后台新建",
+    password: "password-8",
+    captchaToken: cap.token,
+    captcha: cap.code
+  });
+  assert.equal(logged.status, 200);
+  assert.equal(logged.body.user.id, created.body.id);
+  const detail = await request(app).get("/marathon/api/admin/users/" + created.body.id).set(admin);
+  assert.equal(detail.body.user.hasPassword, true);
+  assert.equal(detail.body.user.leader, false);
+});
+
 test("an admin can delete a duplicate nickname but not a club owner", async () => {
   process.env.ADMIN_TOKEN = "test-admin";
   const admin = { Authorization: "Bearer test-admin" };
