@@ -68,7 +68,7 @@
       </div>
     </div>
     <template v-if="club && tab === 'act'">
-      <form v-if="club.owner" class="block" @submit.prevent="createActivity">
+      <form v-if="club.staff" class="block" @submit.prevent="createActivity">
         <h2>发一场活动</h2>
         <input v-model="actTitle" maxlength="40" placeholder="例如 周日 LSD" />
         <input v-model="actPlace" maxlength="40" placeholder="集合地点" />
@@ -91,15 +91,34 @@
       <p v-if="!activities.length" class="empty">还没有活动。每周团练的报名放在这里。</p>
     </template>
     <template v-if="club && tab === 'people'">
+      <div v-if="club.staff" class="block">
+        <h2>入团申请</h2>
+        <p v-if="!requests.length" class="rank-label">没有待审核的申请。没口令的人会出现在这里。</p>
+        <div v-for="item in requests" :key="item.id" class="mate">
+          <span>{{ item.nickname }}</span>
+          <b>
+            <button class="primary" type="button" @click="decide(item, 'approve')">通过</button>
+            <button class="undo" type="button" @click="decide(item, 'reject')">拒绝</button>
+          </b>
+        </div>
+      </div>
       <div class="block">
         <h2>成员</h2>
         <p class="rank-label">我的积分 {{ myPoints }}</p>
-        <div v-for="member in members" :key="member.id" class="mate">
-          <span>{{ member.nickname }}<template v-if="member.owner"> · 团长</template></span>
-          <b>{{ member.points }} 分<button v-if="club.owner && !member.owner" class="undo" type="button" @click="removeMember(member)">移出</button></b>
+        <div v-for="member in members" :key="member.id" class="mate member">
+          <div class="who">
+            <span>{{ member.nickname }}<template v-if="member.role !== 'member'"> · {{ member.roleLabel }}</template></span>
+            <b>{{ member.points }} 分</b>
+          </div>
+          <div v-if="club.staff && !member.owner" class="acts">
+            <button v-if="club.owner && !member.owner && member.role !== 'manager'" class="undo" type="button" @click="setRole(member, 'manager')">设为跑团管理</button>
+            <button v-if="club.owner && member.role === 'manager'" class="undo" type="button" @click="setRole(member, 'member')">改为成员</button>
+            <button v-if="club.owner && !member.owner" class="undo" type="button" @click="setRole(member, 'owner')">交给他当团长</button>
+            <button v-if="club.staff && !member.owner" class="undo" type="button" @click="removeMember(member)">移出</button>
+          </div>
         </div>
       </div>
-      <form v-if="club.owner" class="block" @submit.prevent="createGroup">
+      <form v-if="club.staff" class="block" @submit.prevent="createGroup">
         <h2>组别</h2>
         <div v-for="group in groups" :key="group.id" class="mate">
           <span>{{ group.name }}<template v-if="group.pace"> · {{ group.pace }}</template></span>
@@ -116,7 +135,7 @@
           <span>{{ group.name }}<template v-if="group.pace"> · {{ group.pace }}</template></span>
           <b>{{ group.capacity ? "限 " + group.capacity + " 人" : "不限" }}</b>
         </div>
-        <p v-if="!groups.length" class="rank-label">团长还没分小组。</p>
+        <p v-if="!groups.length" class="rank-label">还没有组别。</p>
       </div>
       <div class="block">
         <h2>礼品</h2>
@@ -125,13 +144,13 @@
           <span>{{ gift.name }} · {{ gift.cost }} 分 · 剩 {{ gift.stock }}</span>
           <button class="primary" type="button" :disabled="!gift.stock" @click="redeem(gift)">兑换</button>
         </div>
-        <form v-if="club.owner" @submit.prevent="createGift">
+        <form v-if="club.staff" @submit.prevent="createGift">
           <input v-model="giftName" maxlength="20" placeholder="礼品名" />
           <input v-model.number="giftCost" type="number" min="1" placeholder="所需积分" />
           <input v-model.number="giftStock" type="number" min="1" placeholder="库存" />
           <button class="primary" type="submit">上架</button>
         </form>
-        <p v-if="!gifts.length && !club.owner" class="rank-label">还没有礼品。</p>
+        <p v-if="!gifts.length && !club.staff" class="rank-label">还没有礼品。</p>
       </div>
     </template>
     <p v-if="note" class="note">{{ note }}</p>
@@ -152,6 +171,7 @@ const members = ref([]);
 const groups = ref([]);
 const activities = ref([]);
 const gifts = ref([]);
+const requests = ref([]);
 const myPoints = ref(0);
 const actTitle = ref("");
 const actPlace = ref("");
@@ -191,6 +211,7 @@ function applyClub(data) {
   groups.value = data.groups || [];
   activities.value = data.activities || [];
   gifts.value = data.gifts || [];
+  requests.value = data.requests || [];
   myPoints.value = data.myPoints || 0;
   board.value = data.board || [];
   ranks.value = data.ranks || [];
@@ -302,6 +323,33 @@ async function redeem(gift) {
   }
 }
 
+async function decide(item, decision) {
+  message.value = "";
+  try {
+    await api("/clubs/" + route.params.id + "/requests/" + item.id, {
+      method: "POST",
+      body: JSON.stringify({ decision })
+    });
+    await reload();
+  } catch (err) {
+    message.value = err.message;
+  }
+}
+
+async function setRole(member, role) {
+  message.value = "";
+  if (role === "owner" && !window.confirm("把团长交给 " + member.nickname + "？你自己会变成跑团管理。")) return;
+  try {
+    await api("/clubs/" + route.params.id + "/members/" + member.id, {
+      method: "PUT",
+      body: JSON.stringify({ role })
+    });
+    await reload();
+  } catch (err) {
+    message.value = err.message;
+  }
+}
+
 async function removeMember(member) {
   message.value = "";
   try {
@@ -328,6 +376,10 @@ onMounted(async () => {
 .squad { margin: 8px 0 0; color: #9a5b12; font-size: 13px; }
 .note { font-size: 12px; color: #007aff; }
 .primary { margin-top: 8px; }
+.member { display: block; }
+.who { display: flex; justify-content: space-between; gap: 12px; }
+.acts { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 4px 12px; margin-top: 4px; }
+.mate .primary, .mate .undo { width: auto; margin: 0; }
 .check-form { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
 .check-form input { height: 36px; border: 1px solid #e6e8ec; border-radius: 8px; padding: 0 10px; background: #fff; }
 .undo { margin-top: 8px; height: 32px; padding: 0 12px; background: transparent; color: #8d949c; }

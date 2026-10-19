@@ -44,7 +44,18 @@
     </navigator>
     <view wx:if="{{!activities.length}}" class="src">还没有活动。</view>
   </view>
-  <view class="card" wx:if="{{club.owner}}">
+  <view class="card" wx:if="{{club.staff}}">
+    <view class="h2">入团申请</view>
+    <view wx:if="{{!requests.length}}" class="src">没有待审核的申请。没口令的人会出现在这里。</view>
+    <view wx:for="{{requests}}" wx:key="id" class="row">
+      <text>{{item.nickname}}</text>
+      <view>
+        <text class="drop" data-id="{{item.id}}" data-decision="approve" bindtap="decide">通过</text>
+        <text class="drop" data-id="{{item.id}}" data-decision="reject" bindtap="decide">拒绝</text>
+      </view>
+    </view>
+  </view>
+  <view class="card" wx:if="{{club.staff}}">
     <view class="h2">发一场活动</view>
     <view class="stack">
       <input placeholder="例如 周日 LSD" value="{{actTitle}}" maxlength="40" data-key="actTitle" bindinput="onDraft" />
@@ -62,8 +73,14 @@
     <view class="h2">成员</view>
     <view class="src">我的积分 {{myPoints}}</view>
     <view wx:for="{{members}}" wx:key="id" class="row">
-      <text>{{item.nickname}}{{item.owner ? ' · 团长' : ''}}</text>
-      <view><text>{{item.points}} 分</text><text wx:if="{{club.owner && !item.owner}}" class="drop" data-id="{{item.id}}" data-name="{{item.nickname}}" bindtap="removeMember">移出</text></view>
+      <text>{{item.nickname}}{{item.role !== 'member' ? ' · ' + item.roleLabel : ''}}</text>
+      <view>
+        <text>{{item.points}} 分</text>
+        <text wx:if="{{club.owner && !item.owner && item.role !== 'manager'}}" class="drop" data-id="{{item.id}}" data-role="manager" data-name="{{item.nickname}}" bindtap="setRole">设为跑团管理</text>
+        <text wx:if="{{club.owner && item.role === 'manager'}}" class="drop" data-id="{{item.id}}" data-role="member" data-name="{{item.nickname}}" bindtap="setRole">改为成员</text>
+        <text wx:if="{{club.owner && !item.owner}}" class="drop" data-id="{{item.id}}" data-role="owner" data-name="{{item.nickname}}" bindtap="setRole">交给他当团长</text>
+        <text wx:if="{{club.staff && !item.owner}}" class="drop" data-id="{{item.id}}" data-name="{{item.nickname}}" bindtap="removeMember">移出</text>
+      </view>
     </view>
   </view>
   <view class="card">
@@ -73,12 +90,12 @@
       <text>{{item.capacity ? '限 ' + item.capacity + ' 人' : '不限'}}</text>
     </view>
     <view wx:if="{{!groups.length}}" class="src">还没有组别。</view>
-    <view class="stack" wx:if="{{club.owner}}">
+    <view class="stack" wx:if="{{club.staff}}">
       <input placeholder="例如 A0" value="{{groupName}}" maxlength="20" data-key="groupName" bindinput="onDraft" />
       <input placeholder="配速，例如 530" value="{{groupPace}}" maxlength="20" data-key="groupPace" bindinput="onDraft" />
       <input type="number" placeholder="名额，0 表示不限" value="{{groupCap}}" data-key="groupCap" bindinput="onDraft" />
     </view>
-    <button wx:if="{{club.owner}}" class="btn" bindtap="createGroup">加一组</button>
+    <button wx:if="{{club.staff}}" class="btn" bindtap="createGroup">加一组</button>
   </view>
   <view class="card">
     <view class="h2">礼品</view>
@@ -87,13 +104,13 @@
       <text>{{item.name}} · {{item.cost}} 分 · 剩 {{item.stock}}</text>
       <button class="ghost" data-id="{{item.id}}" data-name="{{item.name}}" disabled="{{!item.stock}}" bindtap="redeem">兑换</button>
     </view>
-    <view wx:if="{{!gifts.length && !club.owner}}" class="src">还没有礼品。</view>
-    <view class="stack" wx:if="{{club.owner}}">
+    <view wx:if="{{!gifts.length && !club.staff}}" class="src">还没有礼品。</view>
+    <view class="stack" wx:if="{{club.staff}}">
       <input placeholder="礼品名" value="{{giftName}}" maxlength="20" data-key="giftName" bindinput="onDraft" />
       <input type="number" placeholder="所需积分" value="{{giftCost}}" data-key="giftCost" bindinput="onDraft" />
       <input type="number" placeholder="库存" value="{{giftStock}}" data-key="giftStock" bindinput="onDraft" />
     </view>
-    <button wx:if="{{club.owner}}" class="btn" bindtap="createGift">上架</button>
+    <button wx:if="{{club.staff}}" class="btn" bindtap="createGift">上架</button>
   </view>
   <view wx:if="{{!board.length && !ranks.length}}" class="empty">还没有人标比赛。打开一场，标上想跑或已报名。</view>
   <view wx:for="{{board}}" wx:key="key" class="card">

@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const { DISTANCE_LABEL } = require("./races");
+const { clubRoleLabel, memberRole, setMemberRole, decideRequest, listPending } = require("./roles");
 const { formatClock } = require("./career");
 
 const PHOTO_MAX = 8 * 1024 * 1024;
@@ -133,21 +134,35 @@ function clubLife(db, club, userId) {
   const gifts = db
     .prepare("SELECT id, name, cost, stock FROM gifts WHERE club_id = ? ORDER BY id DESC")
     .all(club.id);
+  const mine = memberRole(db, club, userId);
   const members = db
     .prepare(
-      `SELECT u.id, u.nickname, COALESCE(SUM(p.delta), 0) AS points
+      `SELECT u.id, u.nickname, m.role, COALESCE(SUM(p.delta), 0) AS points
        FROM club_members m
        JOIN users u ON u.id = m.user_id
        LEFT JOIN point_entries p ON p.club_id = m.club_id AND p.user_id = m.user_id
        WHERE m.club_id = ?
-       GROUP BY u.id
+       GROUP BY u.id, m.role
        ORDER BY m.joined_at`
     )
     .all(club.id)
-    .map((row) => ({ id: row.id, nickname: row.nickname, points: row.points, owner: row.id === club.owner_id }));
+    .map((row) => {
+      const role = row.id === club.owner_id ? "owner" : row.role === "manager" ? "manager" : "member";
+      return { id: row.id, nickname: row.nickname, points: row.points, owner: role === "owner", role, roleLabel: clubRoleLabel(role) };
+    });
+  const staff = mine === "owner" || mine === "manager";
   return {
-    club: { id: club.id, name: club.name, code: club.code, owner: club.owner_id === userId },
+    club: {
+      id: club.id,
+      name: club.name,
+      code: club.code,
+      owner: mine === "owner",
+      staff,
+      role: mine,
+      roleLabel: clubRoleLabel(mine)
+    },
     members,
+    requests: staff ? listPending(db, club.id).map((row) => ({ id: row.id, nickname: row.nickname, at: row.at })) : [],
     groups,
     activities,
     gifts,
@@ -224,15 +239,22 @@ function mountClubLife(app, { BASE, getDb, userFrom }) {
     return { user, club, db: getDb() };
   }
 
-  function ownerOnly(ctx, res) {
-    if (ctx.club.owner_id === ctx.user.id) return true;
-    res.status(403).json({ error: "只有团长可以改" });
+  function staffOnly(ctx, res) {
+    const role = memberRole(ctx.db, ctx.club, ctx.user.id);
+    if (role === "owner" || role === "manager") return true;
+    res.status(403).json({ error: "只有团长或跑团管理可以改" });
+    return false;
+  }
+
+  function leaderOnly(ctx, res) {
+    if (memberRole(ctx.db, ctx.club, ctx.user.id) === "owner") return true;
+    res.status(403).json({ error: "只有团长可以改角色" });
     return false;
   }
 
   app.post(BASE + "/api/clubs/:id/groups", (req, res) => {
     const ctx = gate(req, res);
-    if (!ctx || !ownerOnly(ctx, res)) return;
+    if (!ctx || !staffOnly(ctx, res)) return;
     const name = String((req.body && req.body.name) || "").trim();
     const pace = String((req.body && req.body.pace) || "").trim();
     const capacity = Number((req.body && req.body.capacity) || 0);
@@ -247,7 +269,7 @@ function mountClubLife(app, { BASE, getDb, userFrom }) {
 
   app.delete(BASE + "/api/clubs/:id/groups/:gid", (req, res) => {
     const ctx = gate(req, res);
-    if (!ctx || !ownerOnly(ctx, res)) return;
+    if (!ctx || !staffOnly(ctx, res)) return;
     ctx.db.prepare("DELETE FROM club_groups WHERE id = ? AND club_id = ?").run(req.params.gid, ctx.club.id);
     ctx.db.prepare("UPDATE activity_signups SET group_id = 0 WHERE group_id = ?").run(req.params.gid);
     res.json({ ok: true });
@@ -255,17 +277,40 @@ function mountClubLife(app, { BASE, getDb, userFrom }) {
 
   app.delete(BASE + "/api/clubs/:id/members/:uid", (req, res) => {
     const ctx = gate(req, res);
-    if (!ctx || !ownerOnly(ctx, res)) return;
+    if (!ctx || !staffOnly(ctx, res)) return;
     const uid = Number(req.params.uid);
+    if (uid === ctx.user.id) return res.status(400).json({ error: "不能移出自己" });
     if (uid === ctx.club.owner_id) return res.status(400).json({ error: "团长还在团里" });
     const gone = ctx.db.prepare("DELETE FROM club_members WHERE club_id = ? AND user_id = ?").run(ctx.club.id, uid);
     if (!gone.changes) return res.status(404).json({ error: "团里没有这个人" });
     res.json({ ok: true });
   });
 
+  app.put(BASE + "/api/clubs/:id/members/:uid", (req, res) => {
+    const ctx = gate(req, res);
+    if (!ctx || !leaderOnly(ctx, res)) return;
+    const result = setMemberRole(ctx.db, ctx.club.id, req.params.uid, String((req.body && req.body.role) || ""));
+    if (result.error) return res.status(result.status).json({ error: result.error });
+    res.json({ ok: true });
+  });
+
+  app.post(BASE + "/api/clubs/:id/requests/:rid", (req, res) => {
+    const ctx = gate(req, res);
+    if (!ctx || !staffOnly(ctx, res)) return;
+    const result = decideRequest(
+      ctx.db,
+      req.params.rid,
+      String((req.body && req.body.decision) || ""),
+      ctx.user.nickname,
+      ctx.club.id
+    );
+    if (result.error) return res.status(result.status).json({ error: result.error });
+    res.json({ ok: true });
+  });
+
   app.post(BASE + "/api/clubs/:id/activities", (req, res) => {
     const ctx = gate(req, res);
-    if (!ctx || !ownerOnly(ctx, res)) return;
+    if (!ctx || !staffOnly(ctx, res)) return;
     const body = req.body || {};
     const title = String(body.title || "").trim();
     const place = String(body.place || "").trim();
@@ -419,7 +464,7 @@ function mountClubLife(app, { BASE, getDb, userFrom }) {
 
   app.post(BASE + "/api/clubs/:id/gifts", (req, res) => {
     const ctx = gate(req, res);
-    if (!ctx || !ownerOnly(ctx, res)) return;
+    if (!ctx || !staffOnly(ctx, res)) return;
     const name = String((req.body && req.body.name) || "").trim();
     const cost = Number(req.body && req.body.cost);
     const stock = Number(req.body && req.body.stock);

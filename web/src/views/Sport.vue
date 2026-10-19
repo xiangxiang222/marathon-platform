@@ -2,7 +2,7 @@
   <header class="large">
     <div>
       <h1>跑团</h1>
-      <p>建团、发口令、看谁标了这场</p>
+      <p>建团，用口令进，或申请后等审核</p>
     </div>
   </header>
   <section class="panel">
@@ -21,18 +21,27 @@
     </div>
   </div>
   <div class="block">
-    <h2>用口令加入</h2>
+    <h2>加入跑团</h2>
+    <p class="hint">有口令直接进。不填口令就申请，等团长或跑团管理通过。</p>
     <div class="field">
-      <input v-model="code" placeholder="6 位口令" />
-      <button class="primary" type="button" @click="join">加入</button>
+      <input v-model="code" placeholder="口令，可空" />
+      <button class="primary" type="button" @click="join">用口令加入</button>
     </div>
     <p v-if="message" class="err">{{ message }}</p>
+  </div>
+  <div v-for="club in openClubs" :key="club.id" class="block">
+    <h2>{{ club.name }}</h2>
+    <div class="row">
+      <span>{{ club.members }} 人</span>
+      <b v-if="club.pending">等待审核</b>
+      <button v-else class="primary" type="button" @click="apply(club)">申请加入</button>
+    </div>
   </div>
   <router-link v-for="club in clubs" :key="club.id" :to="'/clubs/' + club.id" class="block" style="display:block">
     <h2>{{ club.name }}</h2>
     <div class="row"><span>口令</span><b>{{ club.code }}</b></div>
   </router-link>
-  <p v-if="ready && !clubs.length" class="empty">还没有跑团。建一个，把口令发到微信群。</p>
+  <p v-if="ready && !clubs.length && !openClubs.length" class="empty">还没有跑团。建一个，把口令发到微信群。别人也可以不填口令来申请。</p>
   <p v-if="!ready" class="empty">先到「我的」里起个昵称。</p>
 </template>
 
@@ -45,6 +54,7 @@ const router = useRouter();
 const name = ref("");
 const code = ref("");
 const clubs = ref([]);
+const openClubs = ref([]);
 const plans = ref([]);
 const message = ref("");
 const ready = ref(!!localStorage.getItem("marathon_token"));
@@ -52,9 +62,10 @@ const paid = computed(() => plans.value.filter((item) => item.status === "已缴
 
 async function load() {
   if (!ready.value) return;
-  const data = await api("/me");
+  const [data, directory] = await Promise.all([api("/me"), api("/clubs/directory")]);
   clubs.value = data.clubs;
   plans.value = data.plans;
+  openClubs.value = (directory.clubs || []).filter((item) => !item.joined);
 }
 
 async function create() {
@@ -69,6 +80,10 @@ async function create() {
 
 async function join() {
   message.value = "";
+  if (!code.value.trim()) {
+    message.value = "填口令，或在下面选一个团申请";
+    return;
+  }
   try {
     const data = await api("/clubs/join", { method: "POST", body: JSON.stringify({ code: code.value }) });
     router.push("/clubs/" + data.club.id);
@@ -77,5 +92,31 @@ async function join() {
   }
 }
 
-onMounted(load);
+async function apply(club) {
+  message.value = "";
+  try {
+    const data = await api("/clubs/join", { method: "POST", body: JSON.stringify({ clubId: club.id }) });
+    if (data.pending) {
+      message.value = "已提交，等团长或跑团管理通过";
+      await load();
+      return;
+    }
+    router.push("/clubs/" + data.club.id);
+  } catch (err) {
+    message.value = err.message;
+  }
+}
+
+onMounted(async () => {
+  try {
+    await load();
+  } catch (err) {
+    message.value = err.message;
+  }
+});
 </script>
+
+<style scoped>
+.hint { margin: 0 0 8px; color: var(--muted); font-size: 13px; line-height: 1.45; }
+.row .primary { width: auto; }
+</style>

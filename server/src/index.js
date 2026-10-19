@@ -6,7 +6,8 @@ const { getDb } = require("./db");
 const { presentRace, summarizeMarks, cardTitle, shareText, reminderHits, fullConflicts, squadOf, nearbyOpen, alternativeNote, drawPoster } = require("./races");
 const { parseClock, decorateResults, careerOf, yearOf, bestRanks } = require("./career");
 const { syncOfficial, listOfficial, publishOfficial, openUpcoming, ignoreOfficial, applyOfficial } = require("./official");
-const { ensureAdmin, ensureDeskLogin, loginAdmin, adminSession, logoutAdmin, changeAdminPassword } = require("./admin-auth");
+const { ensureAdmin, ensureDeskLogin, loginAdmin, adminSession, logoutAdmin, changeAdminPassword, listAdmins, createAdmin, setAdminRole } = require("./admin-auth");
+const { adminRoleLabel } = require("./roles");
 const { mountClubLife, enrichBoard, clubLife } = require("./club-life");
 const { mountRaceGuide, attachGuide } = require("./race-guide");
 const { mountAdminDesk } = require("./admin-desk");
@@ -494,20 +495,73 @@ app.post(BASE + "/api/clubs", (req, res) => {
   const now = new Date().toISOString();
   const info = getDb().prepare("INSERT INTO clubs (name, code, owner_id, created_at) VALUES (?, ?, ?, ?)").run(name, code, user.id, now);
   const id = Number(info.lastInsertRowid);
-  getDb().prepare("INSERT INTO club_members (club_id, user_id, joined_at) VALUES (?, ?, ?)").run(id, user.id, now);
+  getDb().prepare("INSERT INTO club_members (club_id, user_id, joined_at, role) VALUES (?, ?, ?, 'owner')").run(id, user.id, now);
   res.json({ club: { id, name, code } });
+});
+
+function joinByCode(db, club, userId) {
+  const now = new Date().toISOString();
+  db.prepare("INSERT OR IGNORE INTO club_members (club_id, user_id, joined_at, role) VALUES (?, ?, ?, 'member')").run(club.id, userId, now);
+  db.prepare(
+    "UPDATE club_requests SET status = 'approved', reviewed_at = ?, reviewer = '口令' WHERE club_id = ? AND user_id = ? AND status = 'pending'"
+  ).run(now, club.id, userId);
+}
+
+app.get(BASE + "/api/clubs/directory", (req, res) => {
+  const user = requireUser(req, res);
+  if (!user) return;
+  const clubs = getDb()
+    .prepare(
+      `SELECT c.id, c.name,
+              (SELECT COUNT(*) FROM club_members m WHERE m.club_id = c.id) AS members,
+              EXISTS(SELECT 1 FROM club_members m WHERE m.club_id = c.id AND m.user_id = ?) AS joined,
+              EXISTS(SELECT 1 FROM club_requests r WHERE r.club_id = c.id AND r.user_id = ? AND r.status = 'pending') AS pending
+       FROM clubs c
+       ORDER BY c.id DESC
+       LIMIT 200`
+    )
+    .all(user.id, user.id)
+    .map((row) => ({
+      id: row.id,
+      name: row.name,
+      members: row.members,
+      joined: Boolean(row.joined),
+      pending: Boolean(row.pending)
+    }));
+  res.json({ clubs });
 });
 
 app.post(BASE + "/api/clubs/join", (req, res) => {
   const user = requireUser(req, res);
   if (!user) return;
-  const code = String((req.body && req.body.code) || "").trim().toUpperCase();
-  const club = getDb().prepare("SELECT id, name, code FROM clubs WHERE code = ?").get(code);
-  if (!club) return res.status(404).json({ error: "没有这个跑团口令" });
-  getDb()
-    .prepare("INSERT OR IGNORE INTO club_members (club_id, user_id, joined_at) VALUES (?, ?, ?)")
-    .run(club.id, user.id, new Date().toISOString());
-  res.json({ club });
+  const body = req.body || {};
+  const code = String(body.code || "").trim().toUpperCase();
+  const db = getDb();
+  if (code) {
+    const club = db.prepare("SELECT id, name, code FROM clubs WHERE code = ?").get(code);
+    if (!club) return res.status(404).json({ error: "没有这个跑团口令" });
+    joinByCode(db, club, user.id);
+    return res.json({ club });
+  }
+  const clubId = Number(body.clubId);
+  if (!Number.isInteger(clubId) || clubId < 1) return res.status(400).json({ error: "填口令，或选一个跑团申请" });
+  const club = db.prepare("SELECT id, name, code FROM clubs WHERE id = ?").get(clubId);
+  if (!club) return res.status(404).json({ error: "没有这个跑团" });
+  const member = db.prepare("SELECT 1 FROM club_members WHERE club_id = ? AND user_id = ?").get(club.id, user.id);
+  if (member) return res.json({ club });
+  const pending = db.prepare("SELECT id FROM club_requests WHERE club_id = ? AND user_id = ? AND status = 'pending'").get(club.id, user.id);
+  if (!pending) {
+    try {
+      db.prepare("INSERT INTO club_requests (club_id, user_id, status, created_at) VALUES (?, ?, 'pending', ?)").run(
+        club.id,
+        user.id,
+        new Date().toISOString()
+      );
+    } catch (err) {
+      if (!/UNIQUE/i.test(String(err.message))) throw err;
+    }
+  }
+  res.json({ pending: true, club: { id: club.id, name: club.name } });
 });
 
 app.get(BASE + "/api/clubs/:id", (req, res) => {
@@ -611,31 +665,40 @@ function bearerToken(req) {
   return (req.get("authorization") || "").replace(/^Bearer\s+/i, "");
 }
 
-function requireAdmin(req, res) {
+function requireAdmin(req, res, scope) {
   const token = bearerToken(req);
-  const username = token ? adminSession(getDb(), token) : "";
-  if (username) {
-    req.adminUser = username;
-    return true;
-  }
-  const expected = process.env.ADMIN_TOKEN || "";
-  if (expected && token) {
-    const left = Buffer.from(token);
-    const right = Buffer.from(expected);
-    if (left.length === right.length && crypto.timingSafeEqual(left, right)) {
-      req.adminUser = "";
-      return true;
+  const session = token ? adminSession(getDb(), token) : null;
+  if (session) {
+    req.adminUser = session.username;
+    req.adminRole = session.role || "admin";
+  } else {
+    const expected = process.env.ADMIN_TOKEN || "";
+    if (expected && token) {
+      const left = Buffer.from(token);
+      const right = Buffer.from(expected);
+      if (left.length === right.length && crypto.timingSafeEqual(left, right)) {
+        req.adminUser = "";
+        req.adminRole = "admin";
+      }
     }
   }
-  res.status(401).json({ error: "请重新登录" });
-  return false;
+  if (!req.adminRole) {
+    res.status(401).json({ error: "请重新登录" });
+    return false;
+  }
+  const allowed = scope === "desk" ? ["admin", "club"] : ["admin"];
+  if (!allowed.includes(req.adminRole)) {
+    res.status(403).json({ error: "只有管理员可以改" });
+    return false;
+  }
+  return true;
 }
 
 app.post(BASE + "/api/admin/login", (req, res) => {
   const body = req.body || {};
   const result = loginAdmin(getDb(), body.username, body.password);
   if (result.error) return res.status(result.status).json({ error: result.error });
-  res.json({ token: result.token });
+  res.json({ token: result.token, username: result.username, role: result.role, roleLabel: result.roleLabel });
 });
 
 app.post(BASE + "/api/admin/logout", (req, res) => {
@@ -643,8 +706,33 @@ app.post(BASE + "/api/admin/logout", (req, res) => {
   res.json({ ok: true });
 });
 
-app.post(BASE + "/api/admin/password", (req, res) => {
+app.get(BASE + "/api/admin/session", (req, res) => {
+  if (!requireAdmin(req, res, "desk")) return;
+  res.json({ username: req.adminUser, role: req.adminRole, roleLabel: adminRoleLabel(req.adminRole) });
+});
+
+app.get(BASE + "/api/admin/accounts", (req, res) => {
   if (!requireAdmin(req, res)) return;
+  res.json({ accounts: listAdmins(getDb()) });
+});
+
+app.post(BASE + "/api/admin/accounts", (req, res) => {
+  if (!requireAdmin(req, res)) return;
+  const body = req.body || {};
+  const result = createAdmin(getDb(), body.username, body.password, String(body.role || ""));
+  if (result.error) return res.status(result.status).json({ error: result.error });
+  res.json(result);
+});
+
+app.put(BASE + "/api/admin/accounts/:username", (req, res) => {
+  if (!requireAdmin(req, res)) return;
+  const result = setAdminRole(getDb(), req.adminUser, req.params.username, String((req.body && req.body.role) || ""));
+  if (result.error) return res.status(result.status).json({ error: result.error });
+  res.json(result);
+});
+
+app.post(BASE + "/api/admin/password", (req, res) => {
+  if (!requireAdmin(req, res, "desk")) return;
   const body = req.body || {};
   const result = changeAdminPassword(getDb(), req.adminUser, body.current, body.next);
   if (result.error) return res.status(result.status).json({ error: result.error });

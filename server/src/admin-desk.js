@@ -1,5 +1,6 @@
 const { DISTANCE_LABEL } = require("./races");
 const { formatClock } = require("./career");
+const { clubRoleLabel, setMemberRole, decideRequest, listPending } = require("./roles");
 
 function when(value) {
   return String(value || "").slice(0, 16).replace("T", " ");
@@ -33,7 +34,7 @@ function userDesk(db, id) {
   if (!user) return null;
   const clubs = db
     .prepare(
-      `SELECT c.id, c.name, c.owner_id
+      `SELECT c.id, c.name, c.owner_id, m.role
        FROM club_members m
        JOIN clubs c ON c.id = m.club_id
        WHERE m.user_id = ?
@@ -70,7 +71,10 @@ function userDesk(db, id) {
     .all(user.id);
   return {
     user: { id: user.id, nickname: user.nickname, createdAt: when(user.created_at) },
-    clubs: clubs.map((row) => ({ id: row.id, name: row.name, owner: row.owner_id === user.id })),
+    clubs: clubs.map((row) => {
+      const role = row.owner_id === user.id ? "owner" : row.role === "manager" ? "manager" : "member";
+      return { id: row.id, name: row.name, owner: role === "owner", role, roleLabel: clubRoleLabel(role) };
+    }),
     plans: plans.map((row) => ({ name: row.name, raceDate: row.race_date, city: row.city, status: row.status })),
     results: results.map((row) => ({
       name: row.name,
@@ -138,18 +142,45 @@ function shopDesk(db) {
 }
 
 function mountAdminDesk(app, { BASE, getDb, requireAdmin }) {
+  function desk(req, res) {
+    return requireAdmin(req, res, "desk");
+  }
+
   app.get(BASE + "/api/admin/users", (req, res) => {
-    if (!requireAdmin(req, res)) return;
+    if (!desk(req, res)) return;
     res.json({ users: listUsers(getDb(), req.query.q) });
   });
 
   app.get(BASE + "/api/admin/users/:id", (req, res) => {
-    if (!requireAdmin(req, res)) return;
+    if (!desk(req, res)) return;
     const id = Number(req.params.id);
     if (!Number.isInteger(id) || id < 1) return res.status(404).json({ error: "没有这个人" });
-    const desk = userDesk(getDb(), id);
-    if (!desk) return res.status(404).json({ error: "没有这个人" });
-    res.json(desk);
+    const detail = userDesk(getDb(), id);
+    if (!detail) return res.status(404).json({ error: "没有这个人" });
+    res.json(detail);
+  });
+
+  app.put(BASE + "/api/admin/users/:id/clubs/:clubId", (req, res) => {
+    if (!desk(req, res)) return;
+    const id = Number(req.params.id);
+    const clubId = Number(req.params.clubId);
+    if (!Number.isInteger(id) || id < 1 || !Number.isInteger(clubId) || clubId < 1) return res.status(404).json({ error: "没有这个人" });
+    const result = setMemberRole(getDb(), clubId, id, String((req.body && req.body.role) || ""));
+    if (result.error) return res.status(result.status).json({ error: result.error });
+    res.json({ ok: true });
+  });
+
+  app.get(BASE + "/api/admin/club-requests", (req, res) => {
+    if (!desk(req, res)) return;
+    res.json({ requests: listPending(getDb()) });
+  });
+
+  app.post(BASE + "/api/admin/club-requests/:id", (req, res) => {
+    if (!desk(req, res)) return;
+    const reviewer = req.adminUser ? "后台·" + req.adminUser : "后台";
+    const result = decideRequest(getDb(), req.params.id, String((req.body && req.body.decision) || ""), reviewer);
+    if (result.error) return res.status(result.status).json({ error: result.error });
+    res.json({ ok: true });
   });
 
   app.get(BASE + "/api/admin/runs", (req, res) => {

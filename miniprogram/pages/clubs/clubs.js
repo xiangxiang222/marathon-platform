@@ -1,7 +1,7 @@
 const { request, setAuth, ready } = require("../../utils/request");
 
 Page({
-  data: { ready: false, draft: "", name: "", code: "", clubs: [], loaded: false, message: "" },
+  data: { ready: false, draft: "", name: "", code: "", clubs: [], openClubs: [], loaded: false, message: "" },
   onShow() {
     this.setData({ ready: ready() });
     if (ready()) this.load();
@@ -25,8 +25,12 @@ Page({
       .catch((err) => this.setData({ message: err.message }));
   },
   load() {
-    request("/me")
-      .then((data) => this.setData({ clubs: data.clubs || [], loaded: true, message: "" }))
+    Promise.all([request("/me"), request("/clubs/directory")])
+      .then(([data, directory]) => this.setData({
+        clubs: data.clubs || [],
+        openClubs: (directory.clubs || []).filter((item) => !item.joined),
+        loaded: true
+      }))
       .catch((err) => this.setData({ loaded: true, message: err.message }));
   },
   create() {
@@ -35,8 +39,26 @@ Page({
       .catch((err) => this.setData({ message: err.message }));
   },
   join() {
-    request("/clubs/join", "POST", { code: (this.data.code || "").trim() })
+    const code = (this.data.code || "").trim();
+    if (!code) {
+      this.setData({ message: "填口令，或在下面选一个团申请" });
+      return;
+    }
+    request("/clubs/join", "POST", { code })
       .then((data) => wx.navigateTo({ url: "/pages/club/club?id=" + data.club.id }))
+      .catch((err) => this.setData({ message: err.message }));
+  },
+  apply(e) {
+    const id = Number(e.currentTarget.dataset.id);
+    request("/clubs/join", "POST", { clubId: id })
+      .then((data) => {
+        if (data.pending) {
+          this.setData({ message: "已提交，等团长或跑团管理通过" });
+          this.load();
+          return;
+        }
+        wx.navigateTo({ url: "/pages/club/club?id=" + data.club.id });
+      })
       .catch((err) => this.setData({ message: err.message }));
   }
 });

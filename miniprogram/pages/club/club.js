@@ -6,6 +6,7 @@ Page({
     members: [],
     groups: [],
     gifts: [],
+    requests: [],
     myPoints: 0,
     board: [],
     ranks: [],
@@ -70,6 +71,7 @@ Page({
           activities: data.activities || [],
           groups: data.groups || [],
           gifts: data.gifts || [],
+          requests: data.requests || [],
           myPoints: data.myPoints || 0,
           checkins: data.checkins || [],
           checkedIn: !!data.checkedIn,
@@ -144,6 +146,34 @@ Page({
         this.load();
       })
       .catch((err) => this.setData({ message: err.message }));
+  },
+  decide(e) {
+    const id = e.currentTarget.dataset.id;
+    const decision = e.currentTarget.dataset.decision;
+    request("/clubs/" + this.clubId + "/requests/" + id, "POST", { decision })
+      .then(() => this.load())
+      .catch((err) => this.setData({ message: err.message }));
+  },
+  setRole(e) {
+    const id = e.currentTarget.dataset.id;
+    const role = e.currentTarget.dataset.role;
+    const name = e.currentTarget.dataset.name;
+    const send = () => {
+      request("/clubs/" + this.clubId + "/members/" + id, "PUT", { role })
+        .then(() => this.load())
+        .catch((err) => this.setData({ message: err.message }));
+    };
+    if (role !== "owner") {
+      send();
+      return;
+    }
+    wx.showModal({
+      title: "把团长交给 " + name,
+      content: "你自己会变成跑团管理。",
+      success: (res) => {
+        if (res.confirm) send();
+      }
+    });
   },
   removeMember(e) {
     const id = e.currentTarget.dataset.id;
