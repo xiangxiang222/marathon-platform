@@ -349,7 +349,7 @@
                       <i></i>
                     </button>
                   </div>
-                  <p v-if="club.role === 'owner'" class="role-note">他是这个团的团长，这里不能直接改。打开团里另一个人，把团长选给他，才能再改。</p>
+                  <p v-if="club.role === 'owner'" class="role-note">现任团长的角色不能直接修改。请先将团长移交给本团其他成员，再进行变更。</p>
                 </article>
                 <p v-if="!person.clubs.length" class="hint">还没进跑团。</p>
               </section>
