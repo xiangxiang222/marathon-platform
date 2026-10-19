@@ -11,7 +11,7 @@ const ROUTE_MAX = 4;
 const SHEET_LIMIT = { guide: GUIDE_MAX, pacer: PACER_MAX, route: ROUTE_MAX, live: 1 };
 const SHEET_FULL = {
   guide: "规程最多 16 页",
-  pacer: "配速员照片最多 8 张",
+  pacer: "配速资料最多 8 张",
   route: "路线图最多 4 张"
 };
 
@@ -61,7 +61,7 @@ function keep(next, current) {
 
 function parseGuide(body) {
   const raceDateText = body.raceDate == null ? "" : String(body.raceDate).trim();
-  if (raceDateText && !/^\d{4}-\d{2}-\d{2}$/.test(raceDateText)) return { status: 400, error: "比赛日写成 2026-11-01 这样" };
+  if (raceDateText && !/^\d{4}-\d{2}-\d{2}$/.test(raceDateText)) return { status: 400, error: "比赛日期须为 2026-11-01 这种格式" };
   const name = clip(body.name, 100);
   const city = clip(body.city, 20);
   const province = clip(body.province, 20);
@@ -69,20 +69,20 @@ function parseGuide(body) {
   if (name == null || city == null || province == null || place == null) return { status: 400, error: "名称或地点太长" };
   const distances = codes(body.distances, DISTANCES);
   const kinds = codes(body.kinds, KINDS);
-  if (!distances || !kinds) return { status: 400, error: "项目里有不认识的类型" };
+  if (!distances || !kinds) return { status: 400, error: "包含不支持的项目类型" };
   const groups = groupsOf(body.groups);
   if (groups == null) return { status: 400, error: "其他组别最多 8 个，每个不超过 16 个字" };
-  if (!distances.length && !kinds.length && !groups.length) return { status: 400, error: "先标一个项目" };
+  if (!distances.length && !kinds.length && !groups.length) return { status: 400, error: "请至少选择一个项目" };
   let startAt = clip(body.startAt, 8);
   if (startAt && /^([01]\d|2[0-3]):[0-5]\d:[0-5]\d$/.test(startAt)) startAt = startAt.slice(0, 5);
-  if (startAt == null || (startAt && !/^([01]\d|2[0-3]):[0-5]\d$/.test(startAt))) return { status: 400, error: "起跑写成 07:00 这样" };
+  if (startAt == null || (startAt && !/^([01]\d|2[0-3]):[0-5]\d$/.test(startAt))) return { status: 400, error: "起跑时间须为 07:00 这种格式" };
   const bibAt = clip(body.bibAt, 10);
-  if (bibAt == null || (bibAt && !/^\d{4}-\d{2}-\d{2}$/.test(bibAt))) return { status: 400, error: "号码公布写成 2026-12-10 这样" };
+  if (bibAt == null || (bibAt && !/^\d{4}-\d{2}-\d{2}$/.test(bibAt))) return { status: 400, error: "号码公布日期须为 2026-12-10 这种格式" };
   const fee = clip(body.fee, 80);
   const scale = clip(body.scale, 80);
   const phone = clip(body.phone, 40);
   if (fee == null || scale == null || phone == null) return { status: 400, error: "费用、规模或电话太长" };
-  if (phone && !/^[\d+\-()（）/\s]{5,40}$/.test(phone)) return { status: 400, error: "电话只写号码" };
+  if (phone && !/^[\d+\-()（）/\s]{5,40}$/.test(phone)) return { status: 400, error: "咨询电话仅填写号码" };
   const route = clip(body.route, 400);
   const pickup = clip(body.pickup, 400);
   const pacers = clip(body.pacers, 400);
@@ -102,7 +102,7 @@ function parseGuide(body) {
   let gradeSet = false;
   if (body.grade != null) {
     const text = String(body.grade).trim();
-    if (text && !["A", "B", "C", "TEN"].includes(text)) return { status: 400, error: "类别只收 A、B、C 或系列赛" };
+    if (text && !["A", "B", "C", "TEN"].includes(text)) return { status: 400, error: "认证类别仅支持 A 类、B 类、C 类或系列赛" };
     grade = text;
     gradeSet = true;
   }
@@ -280,9 +280,9 @@ function createRace(db, body) {
   const parsed = parseGuide(body);
   if (parsed.error) return parsed;
   const fields = parsed.fields;
-  if (!fields.name) return { status: 400, error: "先写赛事名称" };
-  if (!fields.raceDateText) return { status: 400, error: "比赛日写成 2026-11-01 这样" };
-  if (!fields.city && !fields.place) return { status: 400, error: "先写城市或地点" };
+  if (!fields.name) return { status: 400, error: "请填写赛事名称" };
+  if (!fields.raceDateText) return { status: 400, error: "比赛日期须为 2026-11-01 这种格式" };
+  if (!fields.city && !fields.place) return { status: 400, error: "请填写城市或举办地点" };
   const id = "hand-" + crypto.randomBytes(4).toString("hex");
   db.prepare(
     `INSERT INTO races (
@@ -408,7 +408,7 @@ function mountRaceGuide(app, { BASE, getDb, requireAdmin }) {
     const race = getDb().prepare("SELECT id FROM races WHERE id = ?").get(req.params.id);
     if (!race) return res.status(404).json({ error: "没有这场比赛" });
     const kind = String(req.query.kind || "");
-    if (!SHEET_LIMIT[kind]) return res.status(400).json({ error: "不认识的图片类型" });
+    if (!SHEET_LIMIT[kind]) return res.status(400).json({ error: "不支持的图片类型" });
     if (kind !== "live") {
       const count = getDb().prepare("SELECT COUNT(*) AS n FROM race_sheets WHERE race_id = ? AND kind = ?").get(race.id, kind);
       if (count.n >= SHEET_LIMIT[kind]) return res.status(400).json({ error: SHEET_FULL[kind] });
@@ -421,7 +421,7 @@ function mountRaceGuide(app, { BASE, getDb, requireAdmin }) {
     }
     if (!buffer || !buffer.length) return res.status(400).json({ error: "没有读到文件" });
     const photo = sniffPhoto(buffer);
-    if (!photo) return res.status(400).json({ error: "只收 jpg、png、webp" });
+    if (!photo) return res.status(400).json({ error: "仅支持 jpg、png、webp" });
     if (buffer.length > PHOTO_MAX) return res.status(413).json({ error: "照片不超过 8MB" });
     const db = getDb();
     if (kind === "live") {
@@ -444,16 +444,16 @@ function mountRaceGuide(app, { BASE, getDb, requireAdmin }) {
   app.delete(BASE + "/api/admin/races/:id/sheets/:sid", (req, res) => {
     if (!requireAdmin(req, res)) return;
     const row = getDb().prepare("SELECT * FROM race_sheets WHERE id = ? AND race_id = ?").get(req.params.sid, req.params.id);
-    if (!row) return res.status(404).json({ error: "没有这一页" });
+    if (!row) return res.status(404).json({ error: "没有该图片" });
     removeSheet(getDb(), row);
     res.json({ ok: true });
   });
 
   app.get(BASE + "/api/race-sheets/:sid", (req, res) => {
     const row = getDb().prepare("SELECT filename FROM race_sheets WHERE id = ?").get(req.params.sid);
-    if (!row || !row.filename) return res.status(404).json({ error: "没有这一页" });
+    if (!row || !row.filename) return res.status(404).json({ error: "没有该图片" });
     const file = path.join(mediaRoot(), "races", path.basename(row.filename));
-    if (!fs.existsSync(file)) return res.status(404).json({ error: "文件不在了" });
+    if (!fs.existsSync(file)) return res.status(404).json({ error: "文件不存在" });
     const mime = row.filename.endsWith(".png") ? "image/png" : row.filename.endsWith(".webp") ? "image/webp" : "image/jpeg";
     res.set("Content-Type", mime);
     res.set("Cache-Control", "public, max-age=86400");
