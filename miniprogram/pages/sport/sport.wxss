@@ -1,0 +1,3 @@
+.page { padding: 16rpx 40rpx 0; }
+.lead { color: rgba(60, 60, 67, 0.6); font-size: 30rpx; }
+.empty { color: rgba(60, 60, 67, 0.6); text-align: center; padding: 56rpx 8rpx; font-size: 30rpx; line-height: 1.5; }
