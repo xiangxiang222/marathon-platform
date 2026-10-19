@@ -2,7 +2,7 @@
   <header class="large">
     <div>
       <h1>跑团</h1>
-      <p>有口令直接进，没有就申请。创建跑团在下面</p>
+      <p>有口令直接进，也可以搜跑团或团长</p>
     </div>
   </header>
   <section class="panel">
@@ -15,18 +15,23 @@
   </section>
   <div class="block">
     <h2>加入跑团</h2>
-    <p class="hint">有口令直接进。不填口令就申请，等团长或跑团管理通过。</p>
+    <p class="hint">有口令直接进。也可以搜跑团名、团长或跑团管理，申请后等审核。</p>
     <div class="field">
-      <input v-model="code" placeholder="口令，可空" />
+      <input v-model="code" placeholder="口令" />
       <button class="primary" type="button" @click="join">用口令加入</button>
+    </div>
+    <div class="field">
+      <input v-model="query" placeholder="跑团名、团长" @keyup.enter="search" />
+      <button class="primary" type="button" @click="search">搜索</button>
     </div>
     <p v-if="message" class="err">{{ message }}</p>
   </div>
   <div v-for="club in openClubs" :key="club.id" class="block">
     <h2>{{ club.name }}</h2>
     <div class="row">
-      <span>{{ club.members }} 人</span>
-      <b v-if="club.pending">等待审核</b>
+      <span>{{ club.members }} 人<span v-if="club.leader"> · 团长 {{ club.leader }}</span></span>
+      <router-link v-if="club.joined" :to="'/clubs/' + club.id">已加入</router-link>
+      <b v-else-if="club.pending">等待审核</b>
       <button v-else class="primary" type="button" @click="apply(club)">申请加入</button>
     </div>
   </div>
@@ -34,7 +39,7 @@
     <h2>{{ club.name }}</h2>
     <div class="row"><span>口令</span><b>{{ club.code }}</b></div>
   </router-link>
-  <p v-if="ready && !clubs.length && !openClubs.length" class="empty">还没有可加入的跑团。</p>
+  <p v-if="ready && !query.trim() && !clubs.length && !openClubs.length" class="empty">还没有可加入的跑团。</p>
   <p v-if="!ready" class="empty">先到「我的」里起个昵称。</p>
   <div class="block">
     <h2>创建跑团</h2>
@@ -58,6 +63,7 @@ const name = ref("");
 const leader = ref(false);
 const application = ref(null);
 const code = ref("");
+const query = ref("");
 const clubs = ref([]);
 const openClubs = ref([]);
 const plans = ref([]);
@@ -67,12 +73,13 @@ const paid = computed(() => plans.value.filter((item) => item.status === "已缴
 
 async function load() {
   if (!ready.value) return;
-  const [data, directory] = await Promise.all([api("/me"), api("/clubs/directory")]);
+  const q = query.value.trim();
+  const [data, directory] = await Promise.all([api("/me"), api("/clubs/directory" + (q ? "?q=" + encodeURIComponent(q) : ""))]);
   clubs.value = data.clubs;
   plans.value = data.plans;
   leader.value = Boolean(data.user && data.user.leader);
   application.value = (data.applications && data.applications[0]) || null;
-  openClubs.value = (directory.clubs || []).filter((item) => !item.joined);
+  openClubs.value = (directory.clubs || []).filter((item) => q || !item.joined);
 }
 
 async function create() {
@@ -91,10 +98,20 @@ async function create() {
   }
 }
 
+async function search() {
+  message.value = "";
+  try {
+    await load();
+    if (query.value.trim() && !openClubs.value.length) message.value = "没有找到这个跑团";
+  } catch (err) {
+    message.value = err.message;
+  }
+}
+
 async function join() {
   message.value = "";
   if (!code.value.trim()) {
-    message.value = "填口令，或在下面选一个团申请";
+    message.value = "填口令，或在下面搜一个团申请";
     return;
   }
   try {
@@ -131,5 +148,6 @@ onMounted(async () => {
 
 <style scoped>
 .hint { margin: 0 0 8px; color: var(--muted); font-size: 13px; line-height: 1.45; }
+.field + .field { margin-top: 8px; }
 .row .primary { width: auto; }
 </style>

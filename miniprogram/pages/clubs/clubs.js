@@ -1,7 +1,7 @@
 const { request, setAuth, ready } = require("../../utils/request");
 
 Page({
-  data: { ready: false, draft: "", name: "", leader: false, application: null, code: "", clubs: [], openClubs: [], loaded: false, message: "" },
+  data: { ready: false, draft: "", name: "", leader: false, application: null, code: "", query: "", clubs: [], openClubs: [], loaded: false, message: "" },
   onShow() {
     this.setData({ ready: ready() });
     if (ready()) this.load();
@@ -15,6 +15,9 @@ Page({
   onCode(e) {
     this.setData({ code: e.detail.value });
   },
+  onQuery(e) {
+    this.setData({ query: e.detail.value });
+  },
   enter() {
     request("/session", "POST", { nickname: (this.data.draft || "").trim() })
       .then((data) => {
@@ -25,15 +28,25 @@ Page({
       .catch((err) => this.setData({ message: err.message }));
   },
   load() {
-    Promise.all([request("/me"), request("/clubs/directory")])
-      .then(([data, directory]) => this.setData({
-        clubs: data.clubs || [],
-        leader: !!(data.user && data.user.leader),
-        application: (data.applications && data.applications[0]) || null,
-        openClubs: (directory.clubs || []).filter((item) => !item.joined),
-        loaded: true
-      }))
+    const q = (this.data.query || "").trim();
+    Promise.all([request("/me"), request("/clubs/directory" + (q ? "?q=" + encodeURIComponent(q) : ""))])
+      .then(([data, directory]) => {
+        const found = directory.clubs || [];
+        const patch = {
+          clubs: data.clubs || [],
+          leader: !!(data.user && data.user.leader),
+          application: (data.applications && data.applications[0]) || null,
+          openClubs: found.filter((item) => q || !item.joined),
+          loaded: true
+        };
+        if (q) patch.message = found.length ? "" : "没有找到这个跑团";
+        this.setData(patch);
+      })
       .catch((err) => this.setData({ loaded: true, message: err.message }));
+  },
+  search() {
+    this.setData({ message: "" });
+    this.load();
   },
   create() {
     request("/clubs", "POST", { name: (this.data.name || "").trim() })
@@ -50,7 +63,7 @@ Page({
   join() {
     const code = (this.data.code || "").trim();
     if (!code) {
-      this.setData({ message: "填口令，或在下面选一个团申请" });
+      this.setData({ message: "填口令，或在下面搜一个团申请" });
       return;
     }
     request("/clubs/join", "POST", { code })

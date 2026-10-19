@@ -531,20 +531,34 @@ function joinByCode(db, club, userId) {
 app.get(BASE + "/api/clubs/directory", (req, res) => {
   const user = requireUser(req, res);
   if (!user) return;
+  const q = String(req.query.q || "").trim().slice(0, 40);
+  const like = "%" + q.replace(/[\\%_]/g, (ch) => "\\" + ch) + "%";
   const clubs = getDb()
     .prepare(
       `SELECT c.id, c.name,
+              (SELECT u.nickname FROM users u WHERE u.id = c.owner_id) AS leader,
               (SELECT COUNT(*) FROM club_members m WHERE m.club_id = c.id) AS members,
               EXISTS(SELECT 1 FROM club_members m WHERE m.club_id = c.id AND m.user_id = ?) AS joined,
               EXISTS(SELECT 1 FROM club_requests r WHERE r.club_id = c.id AND r.user_id = ? AND r.status = 'pending') AS pending
        FROM clubs c
+       WHERE ? = ''
+          OR c.name LIKE ? ESCAPE '\\'
+          OR EXISTS (
+            SELECT 1 FROM users u WHERE u.id = c.owner_id AND u.nickname LIKE ? ESCAPE '\\'
+          )
+          OR EXISTS (
+            SELECT 1 FROM club_members m
+            JOIN users u ON u.id = m.user_id
+            WHERE m.club_id = c.id AND m.role = 'manager' AND m.user_id != c.owner_id AND u.nickname LIKE ? ESCAPE '\\'
+          )
        ORDER BY c.id DESC
        LIMIT 200`
     )
-    .all(user.id, user.id)
+    .all(user.id, user.id, q, like, like, like)
     .map((row) => ({
       id: row.id,
       name: row.name,
+      leader: row.leader || "",
       members: row.members,
       joined: Boolean(row.joined),
       pending: Boolean(row.pending)
