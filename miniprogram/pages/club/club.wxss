@@ -13,4 +13,5 @@
 .src { color: #8d949c; font-size: 24rpx; margin-top: 8rpx; }
 .share { margin-top: 16rpx; }
 .field { margin-top: 16rpx; }
+.qr { width: 320rpx; margin-top: 16rpx; }
 .card .btn { margin-top: 16rpx; }

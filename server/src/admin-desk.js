@@ -16,6 +16,7 @@ function deleteUser(db, id) {
   const owned = db.prepare("SELECT name FROM clubs WHERE owner_id = ? LIMIT 1").get(id);
   if (owned) return { error: "该用户仍为「" + owned.name + "」团长，请先完成团长移交后再删除", status: 400 };
   const files = db.prepare("SELECT filename, activity_id FROM activity_media WHERE user_id = ?").all(id);
+  const sheets = db.prepare("SELECT filename FROM result_call_rows WHERE user_id = ? AND filename != ''").all(id);
   db.transaction(() => {
     for (const table of [
       "plans",
@@ -28,7 +29,9 @@ function deleteUser(db, id) {
       "redemptions",
       "activity_media",
       "club_requests",
-      "club_applications"
+      "club_applications",
+      "fee_records",
+      "result_call_rows"
     ]) {
       db.prepare("DELETE FROM " + table + " WHERE user_id = ?").run(id);
     }
@@ -37,6 +40,10 @@ function deleteUser(db, id) {
   for (const file of files) {
     if (!file.filename) continue;
     const full = path.join(mediaRoot(), String(file.activity_id), file.filename);
+    if (fs.existsSync(full)) fs.unlinkSync(full);
+  }
+  for (const sheet of sheets) {
+    const full = path.join(mediaRoot(), "calls", sheet.filename);
     if (fs.existsSync(full)) fs.unlinkSync(full);
   }
   return { ok: true };
@@ -205,6 +212,11 @@ function deleteClub(db, id) {
     ? db.prepare(`SELECT filename, activity_id FROM activity_media WHERE activity_id IN (${activities.map(() => "?").join(",")})`).all(...activities)
     : [];
   const gifts = db.prepare("SELECT id FROM gifts WHERE club_id = ?").all(id).map((row) => row.id);
+  const periods = db.prepare("SELECT id, qr_filename FROM fee_periods WHERE club_id = ?").all(id);
+  const calls = db.prepare("SELECT id FROM result_calls WHERE club_id = ?").all(id).map((row) => row.id);
+  const sheets = calls.length
+    ? db.prepare(`SELECT id, filename FROM result_call_rows WHERE call_id IN (${calls.map(() => "?").join(",")}) AND filename != ''`).all(...calls)
+    : [];
   db.transaction(() => {
     if (activities.length) {
       const marks = activities.map(() => "?").join(",");
@@ -220,11 +232,30 @@ function deleteClub(db, id) {
     db.prepare("DELETE FROM gifts WHERE club_id = ?").run(id);
     db.prepare("DELETE FROM club_members WHERE club_id = ?").run(id);
     db.prepare("DELETE FROM club_requests WHERE club_id = ?").run(id);
+    if (periods.length) {
+      const marks = periods.map(() => "?").join(",");
+      db.prepare(`DELETE FROM fee_records WHERE period_id IN (${marks})`).run(...periods.map((row) => row.id));
+    }
+    db.prepare("DELETE FROM fee_periods WHERE club_id = ?").run(id);
+    if (calls.length) {
+      const marks = calls.map(() => "?").join(",");
+      db.prepare(`DELETE FROM result_call_rows WHERE call_id IN (${marks})`).run(...calls);
+    }
+    db.prepare("DELETE FROM result_calls WHERE club_id = ?").run(id);
     db.prepare("DELETE FROM clubs WHERE id = ?").run(id);
   })();
   for (const file of files) {
     if (!file.filename) continue;
     const full = path.join(mediaRoot(), String(file.activity_id), file.filename);
+    if (fs.existsSync(full)) fs.unlinkSync(full);
+  }
+  for (const period of periods) {
+    if (!period.qr_filename) continue;
+    const full = path.join(mediaRoot(), "fees", period.qr_filename);
+    if (fs.existsSync(full)) fs.unlinkSync(full);
+  }
+  for (const sheet of sheets) {
+    const full = path.join(mediaRoot(), "calls", sheet.filename);
     if (fs.existsSync(full)) fs.unlinkSync(full);
   }
   return { ok: true };

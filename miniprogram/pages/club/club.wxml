@@ -36,6 +36,31 @@
     </view>
   </view>
   <view class="card">
+    <view class="h2">成绩统计</view>
+    <view class="src">发到群里填写。填完后全团都能看。</view>
+    <navigator wx:for="{{calls}}" wx:key="id" class="row" url="/pages/call/call?club={{club.id}}&id={{item.id}}">
+      <text>{{item.title}}</text>
+      <text>{{item.filled}} 人 · {{item.closed ? '已截止' : item.deadlineLabel}}</text>
+    </navigator>
+    <view wx:if="{{!calls.length}}" class="src">还没有成绩统计。</view>
+    <view class="stack" wx:if="{{club.staff}}">
+      <input placeholder="从赛历搜一场" value="{{raceQuery}}" data-key="raceQuery" bindinput="onDraft" bindconfirm="searchRaces" />
+      <view wx:for="{{raceHits}}" wx:key="id" class="row" data-id="{{item.id}}" data-name="{{item.name}}" data-date="{{item.raceDate}}" data-distances="{{item.distanceText}}" bindtap="pickRace">
+        <text>{{item.raceDate}} {{item.name}}</text>
+      </view>
+      <input placeholder="比赛名称" value="{{callTitle}}" maxlength="80" data-key="callTitle" bindinput="onDraft" />
+      <input placeholder="比赛日 2026-11-15" value="{{callDate}}" data-key="callDate" bindinput="onDraft" />
+      <view class="src">距离：{{callDistanceText || '还没选'}}</view>
+      <button class="ghost" data-id="full" bindtap="toggleDistance">全马</button>
+      <button class="ghost" data-id="half" bindtap="toggleDistance">半马</button>
+      <button class="ghost" data-id="10k" bindtap="toggleDistance">10公里</button>
+      <button class="ghost" data-id="5k" bindtap="toggleDistance">5公里</button>
+      <input placeholder="其他距离，公里，可不填" value="{{callOther}}" data-key="callOther" bindinput="onDraft" />
+      <input placeholder="说明，例如填净计时" value="{{callNote}}" maxlength="100" data-key="callNote" bindinput="onDraft" />
+    </view>
+    <button wx:if="{{club.staff}}" class="btn" bindtap="createCall">发起</button>
+  </view>
+  <view class="card">
     <view class="h2">活动</view>
     <view class="src">每周训练在这里报名。满人数并且每人打卡够里程才记分。</view>
     <navigator wx:for="{{activities}}" wx:key="id" class="row" url="/pages/activity/activity?club={{club.id}}&id={{item.id}}">
@@ -68,6 +93,43 @@
     </view>
     <view class="src">满人数，且每人打卡不少于这个里程，才各得这场积分。人数不够，这场不计分。</view>
     <button class="btn" bindtap="createActivity">发出去</button>
+  </view>
+  <view class="card">
+    <view class="h2">{{feeShown.name || '会费'}}</view>
+    <view class="src">会费直接付给跑团。平台不经手，以团长确认为准。</view>
+    <block wx:if="{{feeShown.id}}">
+      <view class="src">{{feeShown.amount}} 元 · {{feeShown.startsOn}} 至 {{feeShown.endsOn}}</view>
+      <view wx:if="{{feeShown.note}}" class="src">{{feeShown.note}}</view>
+      <view class="src">我的状态：{{feeShown.mine.label}}</view>
+      <view wx:if="{{feeShown.blockSignup}}" class="src">未交和待确认的人不能报名活动。</view>
+      <image wx:if="{{feeShown.qrSrc}}" class="qr" src="{{feeShown.qrSrc}}" mode="widthFix" show-menu-by-longpress="true" />
+      <view wx:else class="src">团长还没有放收款码</view>
+      <button wx:if="{{feeShown.canClaim}}" class="btn" bindtap="claimFee">我已转账</button>
+      <view wx:for="{{feeShown.groups}}" wx:for-item="group" wx:key="status">
+        <view class="src">{{group.label}}</view>
+        <view wx:for="{{group.people}}" wx:for-item="person" wx:key="userId" class="row">
+          <text>{{person.nickname}}</text>
+          <view wx:if="{{club.staff}}">
+            <text class="drop" data-id="{{person.userId}}" data-status="paid" bindtap="markFee">已收到</text>
+            <text class="drop" data-id="{{person.userId}}" data-status="unpaid" bindtap="markFee">未收到</text>
+            <text class="drop" data-id="{{person.userId}}" data-status="waived" bindtap="markFee">免交</text>
+          </view>
+        </view>
+      </view>
+      <button class="btn" data-text="{{feeShown.copyText}}" bindtap="copyText">复制名单</button>
+    </block>
+    <view wx:else class="src">还没有会费。</view>
+    <view class="stack" wx:if="{{club.owner}}">
+      <input placeholder="例如 2026 年度会费" value="{{feeName}}" maxlength="20" data-key="feeName" bindinput="onDraft" />
+      <input type="number" placeholder="金额，整数元" value="{{feeAmount}}" data-key="feeAmount" bindinput="onDraft" />
+      <input placeholder="开始 2026-01-01" value="{{feeStart}}" data-key="feeStart" bindinput="onDraft" />
+      <input placeholder="结束 2026-12-31" value="{{feeEnd}}" data-key="feeEnd" bindinput="onDraft" />
+      <input placeholder="说明" value="{{feeNote}}" maxlength="200" data-key="feeNote" bindinput="onDraft" />
+      <text class="drop" bindtap="toggleFeeBlock">{{feeBlock ? '未交不能报名：开' : '未交不能报名：关'}}</text>
+    </view>
+    <button wx:if="{{club.owner}}" class="btn" bindtap="saveFee">{{feeCreating || !feeShown.id ? '开这一期' : '保存这一期'}}</button>
+    <button wx:if="{{club.owner && feeShown.id && !feeCreating}}" class="ghost" bindtap="newPeriod">再开一期</button>
+    <button wx:if="{{club.owner && feeShown.id}}" class="ghost" bindtap="chooseQr">上传收款码</button>
   </view>
   <view class="card">
     <view class="h2">成员</view>

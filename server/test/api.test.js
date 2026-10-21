@@ -1675,3 +1675,165 @@ test("an admin can list clubs, assign the leader, and manage members", async () 
   const mateStill = await request(app).get("/marathon/api/me").set("Authorization", "Bearer " + mate);
   assert.equal(mateStill.body.user.nickname, "后台团员甲");
 });
+
+function callRow(call, nickname, distance) {
+  const group = (call.groups || []).find((item) => item.distance === distance);
+  return group && group.rows.find((row) => row.nickname === nickname);
+}
+
+test("dues are recorded by the club and can block an activity signup", async () => {
+  const leader = await session("会费团长");
+  const mate = await session("会费成员");
+  const manager = await session("会费管理");
+  const created = await createClub(leader, "会费跑团");
+  const clubId = created.body.club.id;
+  const auth = { Authorization: "Bearer " + leader };
+  const mateAuth = { Authorization: "Bearer " + mate };
+  const managerAuth = { Authorization: "Bearer " + manager };
+  await request(app).post("/marathon/api/clubs/join").set(mateAuth).send({ code: created.body.club.code });
+  await request(app).post("/marathon/api/clubs/join").set(managerAuth).send({ code: created.body.club.code });
+  const managerId = (await request(app).get("/marathon/api/me").set(managerAuth)).body.user.id;
+  assert.equal((await request(app).put("/marathon/api/clubs/" + clubId + "/members/" + managerId).set(auth).send({ role: "manager" })).status, 200);
+
+  const body = { name: "2026 年度会费", amount: 200, startsOn: "2026-01-01", endsOn: "2026-12-31", note: "收据找团长", blockSignup: true };
+  assert.equal((await request(app).post("/marathon/api/clubs/" + clubId + "/fees").set(managerAuth).send(body)).status, 403);
+  const opened = await request(app).post("/marathon/api/clubs/" + clubId + "/fees").set(auth).send(body);
+  assert.equal(opened.status, 200);
+  const periodId = opened.body.period.id;
+  assert.equal(opened.body.period.canClaim, false);
+  assert.match(opened.body.period.copyText, /未交：/);
+
+  const early = await request(app).post("/marathon/api/clubs/" + clubId + "/fees/" + periodId + "/claim").set(mateAuth);
+  assert.equal(early.status, 400);
+  const jpeg = Buffer.from([0xff, 0xd8, 0xff, 0xd9]);
+  const qr = await request(app)
+    .post("/marathon/api/clubs/" + clubId + "/fees/" + periodId + "/qr")
+    .set(auth)
+    .attach("file", jpeg, { filename: "qr.jpg", contentType: "image/jpeg" });
+  assert.equal(qr.status, 200);
+  assert.equal(qr.body.period.hasQr, true);
+  const image = await request(app).get("/marathon/api/clubs/" + clubId + "/fees/" + periodId + "/qr").set(mateAuth);
+  assert.equal(image.status, 200);
+  assert.equal(image.headers["content-type"], "image/jpeg");
+
+  const claim = await request(app).post("/marathon/api/clubs/" + clubId + "/fees/" + periodId + "/claim").set(mateAuth);
+  assert.equal(claim.status, 200);
+  assert.equal(claim.body.period.mine.status, "pending");
+  assert.equal((await request(app).post("/marathon/api/clubs/" + clubId + "/fees/" + periodId + "/claim").set(mateAuth)).status, 400);
+
+  const activity = await request(app)
+    .post("/marathon/api/clubs/" + clubId + "/activities")
+    .set(auth)
+    .send({ title: "周日训练", place: "奥森", startsAt: "2026-10-25 07:00" });
+  const aid = activity.body.activity.id;
+  const blocked = await request(app).post("/marathon/api/clubs/" + clubId + "/activities/" + aid + "/signup").set(mateAuth).send({ groupId: 0 });
+  assert.equal(blocked.status, 400);
+  assert.match(blocked.body.error, /会费/);
+
+  const mateId = (await request(app).get("/marathon/api/me").set(mateAuth)).body.user.id;
+  assert.equal((await request(app).post("/marathon/api/clubs/" + clubId + "/fees/" + periodId + "/records").set(mateAuth).send({ userId: mateId, status: "paid" })).status, 403);
+  const paid = await request(app)
+    .post("/marathon/api/clubs/" + clubId + "/fees/" + periodId + "/records")
+    .set(managerAuth)
+    .send({ userId: mateId, status: "paid" });
+  assert.equal(paid.status, 200);
+  assert.match(paid.body.period.copyText, /已交：会费成员/);
+  assert.equal((await request(app).post("/marathon/api/clubs/" + clubId + "/activities/" + aid + "/signup").set(mateAuth).send({ groupId: 0 })).status, 200);
+
+  const outsider = await session("会费外人");
+  assert.equal((await request(app).get("/marathon/api/clubs/" + clubId + "/fees").set("Authorization", "Bearer " + outsider)).status, 403);
+
+  const next = await request(app).post("/marathon/api/clubs/" + clubId + "/fees").set(auth).send({ ...body, name: "2027 年度会费", blockSignup: false });
+  assert.equal(next.status, 200);
+  assert.equal(next.body.period.name, "2027 年度会费");
+  const list = await request(app).get("/marathon/api/clubs/" + clubId + "/fees").set(auth);
+  assert.equal(list.body.history.filter((item) => item.open).length, 1);
+  assert.equal((await request(app).post("/marathon/api/clubs/" + clubId + "/fees/" + periodId + "/claim").set(mateAuth)).status, 400);
+});
+
+test("a result call shows PB and writes a catalog result", async () => {
+  const leader = await session("成绩团长");
+  const mate = await session("成绩成员");
+  const created = await createClub(leader, "成绩跑团");
+  const clubId = created.body.club.id;
+  const auth = { Authorization: "Bearer " + leader };
+  const mateAuth = { Authorization: "Bearer " + mate };
+  await request(app).post("/marathon/api/clubs/join").set(mateAuth).send({ code: created.body.club.code });
+
+  const custom = await request(app).post("/marathon/api/clubs/" + clubId + "/calls").set(auth).send({
+    title: "公园10公里",
+    raceDate: "2026-10-18",
+    distances: ["10k"],
+    note: "填净计时"
+  });
+  assert.equal(custom.status, 200);
+  assert.equal(custom.body.call.deadline, "2026-10-25T22:00");
+  assert.match(custom.body.call.shareText, /成绩跑团 · 公园10公里成绩/);
+  assert.equal(custom.body.call.summary, "这次没有新的 PB");
+  const customId = custom.body.call.id;
+  const first = await request(app).post("/marathon/api/clubs/" + clubId + "/calls/" + customId + "/rows").set(mateAuth).send({ distance: "10k", time: "50:00" });
+  assert.equal(first.status, 200);
+  assert.equal(callRow(first.body.call, "成绩成员", "10k").tag, "首次");
+  const career = await request(app).get("/marathon/api/me").set(mateAuth);
+  assert.equal(career.body.results.some((item) => item.race.name === "公园10公里"), false);
+
+  const again = await request(app).post("/marathon/api/clubs/" + clubId + "/calls").set(auth).send({
+    title: "公园10公里第二场",
+    raceDate: "2026-10-20",
+    distances: ["10k"]
+  });
+  const faster = await request(app)
+    .post("/marathon/api/clubs/" + clubId + "/calls/" + again.body.call.id + "/rows")
+    .set(mateAuth)
+    .send({ distance: "10k", time: "45:00" });
+  assert.equal(callRow(faster.body.call, "成绩成员", "10k").tag, "PB");
+  assert.match(faster.body.call.summary, /这次 PB：成绩成员 10公里 45:00/);
+
+  const linked = await request(app).post("/marathon/api/clubs/" + clubId + "/calls").set(auth).send({ raceId: "bishan", distances: ["half"] });
+  assert.equal(linked.status, 200);
+  assert.equal(linked.body.call.deadline, "2026-11-22T22:00");
+  assert.equal(linked.body.call.title, "2026重庆璧山马拉松");
+  const linkedId = linked.body.call.id;
+  const half = await request(app).post("/marathon/api/clubs/" + clubId + "/calls/" + linkedId + "/rows").set(mateAuth).send({ distance: "half", time: "1:45:00" });
+  assert.equal(callRow(half.body.call, "成绩成员", "half").tag, "首次");
+  const saved = await request(app).get("/marathon/api/me").set(mateAuth);
+  const bishan = saved.body.results.find((item) => item.race.id === "bishan");
+  assert.equal(bishan.distance, "half");
+  assert.equal(bishan.clock, "1:45:00");
+
+  const mateId = saved.body.user.id;
+  const closed = await request(app).post("/marathon/api/clubs/" + clubId + "/calls").set(auth).send({
+    title: "已截止的比赛",
+    raceDate: "2020-01-01",
+    distances: ["5k"],
+    deadline: "2020-01-08 22:00"
+  });
+  const late = await request(app).post("/marathon/api/clubs/" + clubId + "/calls/" + closed.body.call.id + "/rows").set(mateAuth).send({ distance: "5k", time: "25:00" });
+  assert.equal(late.status, 400);
+  const filled = await request(app)
+    .post("/marathon/api/clubs/" + clubId + "/calls/" + closed.body.call.id + "/rows")
+    .set(auth)
+    .send({ userId: mateId, distance: "5k", time: "25:00" });
+  assert.equal(filled.status, 200);
+  assert.equal(callRow(filled.body.call, "成绩成员", "5k").staffFilled, true);
+
+  const other = await request(app).post("/marathon/api/clubs/" + clubId + "/calls").set(auth).send({
+    title: "绕湖",
+    raceDate: "2026-10-19",
+    otherKm: 12
+  });
+  assert.equal(other.status, 200);
+  const lake = await request(app).post("/marathon/api/clubs/" + clubId + "/calls/" + other.body.call.id + "/rows").set(mateAuth).send({ distance: "other", time: "1:05:00" });
+  assert.equal(callRow(lake.body.call, "成绩成员", "other").distanceLabel, "12公里");
+  const still = await request(app).get("/marathon/api/me").set(mateAuth);
+  assert.equal(still.body.results.filter((item) => item.race.id === "bishan").length, 1);
+
+  const row = callRow(half.body.call, "成绩成员", "half");
+  const removed = await request(app).delete("/marathon/api/clubs/" + clubId + "/calls/" + linkedId + "/rows/" + row.id).set(mateAuth);
+  assert.equal(removed.status, 200);
+  const after = await request(app).get("/marathon/api/me").set(mateAuth);
+  assert.equal(after.body.results.some((item) => item.race.id === "bishan"), false);
+
+  const outsider = await session("成绩外人");
+  assert.equal((await request(app).get("/marathon/api/clubs/" + clubId + "/calls/" + customId).set("Authorization", "Bearer " + outsider)).status, 403);
+});

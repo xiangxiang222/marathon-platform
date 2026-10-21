@@ -257,6 +257,52 @@ function open() {
       created_at TEXT NOT NULL
     );
     CREATE UNIQUE INDEX IF NOT EXISTS point_ref_key ON point_entries(ref_key) WHERE ref_key != '';
+    CREATE TABLE IF NOT EXISTS fee_periods (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      club_id INTEGER NOT NULL,
+      name TEXT NOT NULL,
+      amount INTEGER NOT NULL,
+      starts_on TEXT NOT NULL,
+      ends_on TEXT NOT NULL,
+      note TEXT NOT NULL DEFAULT '',
+      qr_filename TEXT NOT NULL DEFAULT '',
+      block_signup INTEGER NOT NULL DEFAULT 0,
+      open INTEGER NOT NULL DEFAULT 1,
+      created_at TEXT NOT NULL
+    );
+    CREATE UNIQUE INDEX IF NOT EXISTS fee_period_open ON fee_periods(club_id) WHERE open = 1;
+    CREATE TABLE IF NOT EXISTS fee_records (
+      period_id INTEGER NOT NULL,
+      user_id INTEGER NOT NULL,
+      status TEXT NOT NULL,
+      updated_at TEXT NOT NULL,
+      PRIMARY KEY (period_id, user_id)
+    );
+    CREATE TABLE IF NOT EXISTS result_calls (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      club_id INTEGER NOT NULL,
+      race_id TEXT NOT NULL DEFAULT '',
+      title TEXT NOT NULL,
+      race_date TEXT NOT NULL,
+      distances TEXT NOT NULL,
+      other_km REAL,
+      deadline TEXT NOT NULL,
+      note TEXT NOT NULL DEFAULT '',
+      created_at TEXT NOT NULL
+    );
+    CREATE TABLE IF NOT EXISTS result_call_rows (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      call_id INTEGER NOT NULL,
+      user_id INTEGER NOT NULL,
+      distance TEXT NOT NULL,
+      seconds INTEGER NOT NULL,
+      filename TEXT NOT NULL DEFAULT '',
+      staff_filled INTEGER NOT NULL DEFAULT 0,
+      debut INTEGER NOT NULL DEFAULT 1,
+      replaced_seconds INTEGER,
+      updated_at TEXT NOT NULL,
+      UNIQUE (call_id, user_id, distance)
+    );
   `);
   for (const [name, type] of [
     ["reg_start", "TEXT NOT NULL DEFAULT ''"],
@@ -359,6 +405,10 @@ function open() {
     `UPDATE users SET leader = 1
      WHERE EXISTS (SELECT 1 FROM clubs WHERE clubs.owner_id = users.id)`
   ).run();
+  const callCols = handle.prepare("PRAGMA table_info(result_call_rows)").all();
+  if (callCols.length && !callCols.some((col) => col.name === "debut")) {
+    handle.exec("ALTER TABLE result_call_rows ADD COLUMN debut INTEGER NOT NULL DEFAULT 1");
+  }
   const upsert = handle.prepare(
     `INSERT INTO races (
        id, name, city, province, distances, race_date, deadline, place,

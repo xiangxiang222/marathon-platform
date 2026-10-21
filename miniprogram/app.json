@@ -7,7 +7,8 @@
     "pages/mine/mine",
     "pages/race/race",
     "pages/club/club",
-    "pages/activity/activity"
+    "pages/activity/activity",
+    "pages/call/call"
   ],
   "window": {
     "navigationBarBackgroundColor": "#f2f2f7",
