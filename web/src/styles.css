@@ -384,6 +384,18 @@ a { color: inherit; text-decoration: none; }
 .row:last-child { border-bottom: 0; }
 .row span { color: var(--muted); flex: none; }
 .row b { min-width: 0; text-align: right; font-weight: 600; }
+.slot {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: baseline;
+  margin-top: 8px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(118, 118, 128, 0.08);
+  font-size: 14px;
+}
+.slot b { color: var(--muted); font-size: 13px; font-weight: 600; }
 .block .primary { display: block; width: 100%; }
 .statuses { display: flex; flex-wrap: wrap; gap: 8px; }
 .status {

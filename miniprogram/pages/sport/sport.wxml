@@ -52,6 +52,18 @@
     <button class="ghost" data-index="{{index}}" data-type="trail" bindtap="changeType">改成越野</button>
     <button class="ghost" data-index="{{index}}" bindtap="remove">删除这场</button>
   </view>
-  <view class="src">跑表尚未接入。顺序是高驰、佳明、华为。</view>
   <view wx:if="{{message}}" class="err">{{message}}</view>
+</view>
+<view class="pad">
+  <view class="card">
+    <view class="title">跑表</view>
+    <view class="slot"><text>高驰</text><text class="slot-state">尚未接入</text></view>
+    <view class="slot"><text>佳明</text><text class="slot-state">尚未接入</text></view>
+    <view class="slot"><text>华为</text><text class="slot-state">尚未接入</text></view>
+    <view class="src">手填可以继续用。顺序是高驰、佳明、华为。</view>
+  </view>
+  <view class="card">
+    <view class="title">训练计划</view>
+    <view class="slot"><text>按目标成绩排课</text><text class="slot-state">尚未开通</text></view>
+  </view>
 </view>

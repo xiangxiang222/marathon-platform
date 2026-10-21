@@ -46,8 +46,13 @@
     </div>
     <div v-if="race && race.links.length" class="block">
       <h2>报名和查询</h2>
-      <p class="src">这些都打开赛事自己的页面。这里不报名，也不付款。</p>
+      <p class="src">这些都打开赛事自己的页面。</p>
       <a v-for="link in race.links" :key="link.key" class="jump" :class="{ main: link.primary }" :href="link.url" target="_blank" rel="noopener">{{ link.label }}</a>
+    </div>
+    <div v-if="race" class="block">
+      <h2>站内报名</h2>
+      <div class="slot"><span>报名和付款</span><b>尚未开通</b></div>
+      <p class="src">合作赛事以后在这里报名。现在仍打开赛事自己的页面。不填写身份证。</p>
     </div>
     <div v-if="showFacts" class="block">
       <h2>项目</h2>
@@ -82,6 +87,11 @@
           <img :src="sheetSrc(sheet.id)" alt="配速员" />
         </button>
       </div>
+    </div>
+    <div v-if="race" class="block">
+      <h2>酒店</h2>
+      <div class="slot"><span>赛事周订房</span><b>尚未开通</b></div>
+      <p class="src">这里不显示房价，也不跳转。</p>
     </div>
     <div v-if="race && race.liveSheet" class="block">
       <h2>直播</h2>
@@ -128,7 +138,9 @@
     </div>
     <div v-if="ready && race" class="block">
       <h2>成绩</h2>
-      <p class="src">手记的成绩标为未核验。可以附一张证书或奖牌照片，这里不识别照片上的字。</p>
+      <p class="src">手记的成绩标为未核验。可以附一张证书或奖牌照片。</p>
+      <div class="slot"><span>识别证书</span><b>尚未开通</b></div>
+      <p class="src">照片可以留下，成绩仍由自己填写。</p>
       <p v-for="item in myResults" :key="item.distance" class="src">{{ item.distanceLabel }} {{ item.clock }} · 配速 {{ item.pace }}<template v-if="item.pb"> · PB</template> · {{ item.verifyLabel }}</p>
       <p v-if="myResult && myResult.story">{{ myResult.story }}</p>
       <img v-if="myResult && myResult.hasProof" class="proof" :src="proofSrc" alt="" />

@@ -7,6 +7,8 @@
     </header>
     <section class="block">
       <p class="hint">{{ note }}</p>
+      <div class="slot"><span>天气和赛道修正</span><b>尚未开通</b></div>
+      <p class="hint">对照仍用已记下的成绩和往届名次。</p>
       <p class="hint">性别、出生年月和省份自己填，用来对年龄组和本地籍。不收身份证。出生月份和比赛月相同的，按小一岁算。</p>
       <form class="stack" @submit.prevent="save">
         <div class="modes">

@@ -15,6 +15,17 @@ page {
   margin-bottom: 20rpx;
 }
 .muted { color: #8e949c; }
+.slot {
+  display: flex;
+  justify-content: space-between;
+  gap: 24rpx;
+  margin-top: 12rpx;
+  padding: 16rpx 20rpx;
+  border-radius: 16rpx;
+  background: #f2f2f7;
+  font-size: 28rpx;
+}
+.slot-state { color: #8e949c; }
 .teal { color: #007aff; }
 .title { font-size: 32rpx; font-weight: 650; line-height: 1.35; }
 .row {
