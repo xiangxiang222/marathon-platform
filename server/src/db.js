@@ -500,7 +500,8 @@ function open() {
     ["activity_signups", "pacer", "INTEGER NOT NULL DEFAULT 0"],
     ["activity_media", "status", "TEXT NOT NULL DEFAULT 'shown'"],
     ["results", "proof", "TEXT NOT NULL DEFAULT ''"],
-    ["results", "proof_kind", "TEXT NOT NULL DEFAULT ''"]
+    ["results", "proof_kind", "TEXT NOT NULL DEFAULT ''"],
+    ["plans", "sheet", "TEXT NOT NULL DEFAULT ''"]
   ]) {
     const cols = handle.prepare(`PRAGMA table_info(${table})`).all();
     if (cols.length && !cols.some((col) => col.name === name)) handle.exec(`ALTER TABLE ${table} ADD COLUMN ${name} ${type}`);

@@ -344,6 +344,8 @@ function removeRace(db, id) {
     .filter((row) => row.race_id === race.id || (compactName(row.name) === name && row.race_date === race.race_date))
     .map((row) => row.official_id);
   const sheets = db.prepare("SELECT * FROM race_sheets WHERE race_id = ?").all(race.id);
+  const signups = db.prepare("SELECT sheet FROM plans WHERE race_id = ? AND sheet != ''").all(race.id);
+  const proofs = db.prepare("SELECT proof FROM results WHERE race_id = ? AND proof != ''").all(race.id);
   db.transaction(() => {
     for (const sheet of sheets) removeSheet(db, sheet);
     db.prepare("DELETE FROM plans WHERE race_id = ?").run(race.id);
@@ -354,6 +356,14 @@ function removeRace(db, id) {
     for (const officialId of linked) ignore.run(officialId);
     db.prepare("DELETE FROM races WHERE id = ?").run(race.id);
   })();
+  for (const signup of signups) {
+    const full = path.join(mediaRoot(), "signups", path.basename(signup.sheet));
+    if (fs.existsSync(full)) fs.unlinkSync(full);
+  }
+  for (const proof of proofs) {
+    const full = path.join(mediaRoot(), "results", path.basename(proof.proof));
+    if (fs.existsSync(full)) fs.unlinkSync(full);
+  }
   return { ok: true };
 }
 

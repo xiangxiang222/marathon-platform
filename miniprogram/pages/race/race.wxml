@@ -27,7 +27,12 @@
   <view class="card" wx:if="{{race.links.length}}">
     <view class="h2">报名和查询</view>
     <view class="src">复制后到浏览器打开。</view>
-    <button wx:for="{{race.links}}" wx:key="key" class="btn" data-url="{{item.url}}" bindtap="copyLink">{{item.label}}</button>
+    <button wx:for="{{race.links}}" wx:key="key" class="btn" data-url="{{item.url}}" data-key="{{item.key}}" bindtap="copyLink">{{item.label}}</button>
+    <view wx:if="{{askSignup}}">
+      <view class="src">报上了吗</view>
+      <button class="btn" bindtap="confirmSigned">报上了</button>
+      <button class="ghost" bindtap="dismissAsk">还没有</button>
+    </view>
   </view>
 
   <view class="card">
@@ -94,6 +99,10 @@
     </view>
     <view wx:else>
       <button wx:for="{{statuses}}" wx:key="*this" class="ghost {{myStatus === item ? 'on' : ''}}" data-status="{{item}}" bindtap="mark">{{item}}</button>
+      <view wx:if="{{myStatus}}" class="src">可以附一张报名成功截图。这里不识别截图上的字。</view>
+      <image wx:if="{{sheetSrc}}" src="{{sheetSrc}}" mode="widthFix" />
+      <button wx:if="{{myStatus}}" class="ghost" bindtap="chooseSheet">报名截图</button>
+      <button wx:if="{{hasSheet}}" class="ghost" bindtap="removeSheet">去掉截图</button>
     </view>
     <view wx:if="{{message}}" class="err">{{message}}</view>
   </view>
@@ -147,6 +156,7 @@
     <button wx:if="{{myResult}}" class="ghost" data-kind="certificate" bindtap="chooseProof">证书照片</button>
     <button wx:if="{{myResult}}" class="ghost" data-kind="medal" bindtap="chooseProof">奖牌照片</button>
     <button wx:if="{{myResult.hasProof}}" class="ghost" bindtap="removeProof">去掉照片</button>
+    <button wx:if="{{myResult}}" class="ghost" bindtap="removeResult">去掉这项成绩</button>
     <view wx:if="{{resultMessage}}" class="err">{{resultMessage}}</view>
   </view>
 

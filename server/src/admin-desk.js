@@ -20,6 +20,7 @@ function deleteUser(db, id) {
   const meetPhotos = db.prepare("SELECT filename FROM meetup_photos WHERE user_id = ? AND filename != ''").all(id);
   const shots = db.prepare("SELECT shot FROM runs WHERE user_id = ? AND shot != ''").all(id);
   const proofs = db.prepare("SELECT proof FROM results WHERE user_id = ? AND proof != ''").all(id);
+  const signups = db.prepare("SELECT sheet FROM plans WHERE user_id = ? AND sheet != ''").all(id);
   db.transaction(() => {
     for (const table of [
       "plans",
@@ -73,6 +74,10 @@ function deleteUser(db, id) {
   }
   for (const proof of proofs) {
     const full = path.join(mediaRoot(), "results", path.basename(proof.proof));
+    if (fs.existsSync(full)) fs.unlinkSync(full);
+  }
+  for (const signup of signups) {
+    const full = path.join(mediaRoot(), "signups", path.basename(signup.sheet));
     if (fs.existsSync(full)) fs.unlinkSync(full);
   }
   return { ok: true };
