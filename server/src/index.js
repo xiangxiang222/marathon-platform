@@ -10,6 +10,7 @@ const { ensureAdmin, ensureDeskLogin, loginAdmin, adminSession, logoutAdmin, cha
 const { adminRoleLabel, clubRoleLabel } = require("./roles");
 const { mountClubLife, enrichBoard, clubLife } = require("./club-life");
 const { mountClubOps } = require("./club-ops");
+const { mountClubGather } = require("./club-gather");
 const { mountRaceGuide, attachGuide } = require("./race-guide");
 const { mountAdminDesk } = require("./admin-desk");
 const { issueCaptcha, registerUser, loginUser, changeOwnPassword } = require("./user-auth");
@@ -919,6 +920,7 @@ app.put(BASE + "/api/admin/races/:id", (req, res) => {
 
 mountClubLife(app, { BASE, getDb, userFrom });
 mountClubOps(app, { BASE, getDb, userFrom });
+mountClubGather(app, { BASE, getDb, userFrom });
 mountRaceGuide(app, { BASE, getDb, requireAdmin });
 mountAdminDesk(app, { BASE, getDb, requireAdmin });
 

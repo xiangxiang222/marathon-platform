@@ -1,0 +1,4 @@
+.src { color: #8d949c; font-size: 24rpx; margin-top: 8rpx; white-space: pre-wrap; }
+.sum { margin-top: 16rpx; font-weight: 650; }
+.qr { width: 100%; margin-top: 16rpx; border-radius: 12rpx; }
+.card .btn { margin-top: 16rpx; }

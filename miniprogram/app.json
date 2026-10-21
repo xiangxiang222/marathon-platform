@@ -8,7 +8,9 @@
     "pages/race/race",
     "pages/club/club",
     "pages/activity/activity",
-    "pages/call/call"
+    "pages/call/call",
+    "pages/meetup/meetup",
+    "pages/internal/internal"
   ],
   "window": {
     "navigationBarBackgroundColor": "#f2f2f7",

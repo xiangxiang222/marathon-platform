@@ -44,7 +44,16 @@ Page({
     feeEnd: "",
     feeNote: "",
     feeBlock: false,
-    feeCreating: false
+    feeCreating: false,
+    meetups: [],
+    meetDate: "",
+    meetPlace: "",
+    meetNote: "",
+    internals: [],
+    raceTitle: "",
+    raceWhen: "",
+    racePlace: "",
+    racePoints: "0"
   },
   onLoad(query) {
     this.clubId = query.id;
@@ -105,6 +114,12 @@ Page({
     const app = getApp();
     request("/clubs/" + this.clubId + "/calls")
       .then((data) => this.setData({ calls: data.calls || [] }))
+      .catch(() => {});
+    request("/clubs/" + this.clubId + "/meetups")
+      .then((data) => this.setData({ meetups: data.meetups || [] }))
+      .catch(() => {});
+    request("/clubs/" + this.clubId + "/internals")
+      .then((data) => this.setData({ internals: data.races || [] }))
       .catch(() => {});
     request("/clubs/" + this.clubId + "/fees")
       .then((data) => {
@@ -173,6 +188,34 @@ Page({
     selected[id] = !selected[id];
     this.selectedDistances = selected;
     this.setData({ callDistanceText: this.distanceText(selected) });
+  },
+  createMeetup() {
+    request("/clubs/" + this.clubId + "/meetups", "POST", {
+      date: this.data.meetDate,
+      place: this.data.meetPlace,
+      note: this.data.meetNote
+    })
+      .then((data) => {
+        wx.navigateTo({ url: "/pages/meetup/meetup?club=" + this.clubId + "&id=" + data.meetup.id });
+      })
+      .catch((err) => this.setData({ message: err.message }));
+  },
+  createInternal() {
+    request("/clubs/" + this.clubId + "/internals", "POST", {
+      title: this.data.raceTitle,
+      startsAt: this.data.raceWhen,
+      place: this.data.racePlace,
+      distance: "10k",
+      finishPoints: Number(this.data.racePoints || 0),
+      groups: [
+        { name: "男子组", capacity: 0 },
+        { name: "女子组", capacity: 0 }
+      ]
+    })
+      .then((data) => {
+        wx.navigateTo({ url: "/pages/internal/internal?club=" + this.clubId + "&id=" + data.race.id });
+      })
+      .catch((err) => this.setData({ message: err.message }));
   },
   createCall() {
     const distances = Object.keys(this.selectedDistances || {}).filter((id) => this.selectedDistances[id]);

@@ -1,0 +1,27 @@
+<view class="page" wx:if="{{meetup}}">
+  <view class="card">
+    <view class="h2">{{meetup.dateLabel}} {{meetup.place}}</view>
+    <view class="src">{{meetup.statusLabel}}</view>
+    <view wx:if="{{meetup.note}}" class="src">{{meetup.note}}</view>
+    <view class="sum">{{meetup.hint}}</view>
+    <view class="src">{{meetup.shareText}}</view>
+    <button class="btn" data-text="{{meetup.shareText}}" bindtap="copyText">复制到微信群</button>
+    <button wx:if="{{meetup.canJoin}}" class="btn" bindtap="join">算我一个</button>
+    <button wx:if="{{meetup.canLeave}}" class="ghost" bindtap="leave">不算我了</button>
+    <button wx:if="{{meetup.canCheck}}" class="btn" bindtap="check">打卡</button>
+    <button wx:if="{{meetup.canUncheck}}" class="ghost" bindtap="uncheck">撤销打卡</button>
+    <button wx:if="{{meetup.canPhoto}}" class="ghost" bindtap="choose">上传合影</button>
+    <button wx:if="{{meetup.canVoid}}" class="ghost" bindtap="voidRun">作废</button>
+  </view>
+  <view class="card">
+    <view class="h2">已打卡 {{meetup.checkCount}}</view>
+    <view wx:for="{{meetup.checks}}" wx:key="userId" class="row"><text>{{item.nickname}}{{item.mine ? ' · 我' : ''}}</text></view>
+    <view wx:if="{{!meetup.checks.length}}" class="src">还没有人打卡。</view>
+  </view>
+  <view class="card">
+    <view class="h2">合影</view>
+    <image wx:for="{{meetup.photos}}" wx:key="id" class="qr" src="{{item.src}}" mode="widthFix" />
+    <view wx:if="{{!meetup.photos.length}}" class="src">还没有合影。至少 1 张，最多 9 张。</view>
+  </view>
+  <view wx:if="{{message}}" class="src">{{message}}</view>
+</view>

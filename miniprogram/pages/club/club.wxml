@@ -69,6 +69,38 @@
     </navigator>
     <view wx:if="{{!activities.length}}" class="src">还没有活动。</view>
   </view>
+  <view class="card">
+    <view class="h2">约跑</view>
+    <view class="src">三人以上，当天打卡并上传合影才记积分。</view>
+    <navigator wx:for="{{meetups}}" wx:key="id" class="row" url="/pages/meetup/meetup?club={{club.id}}&id={{item.id}}">
+      <text>{{item.dateLabel}} {{item.place}}</text>
+      <text>{{item.checkCount}} 人 · {{item.statusLabel}}</text>
+    </navigator>
+    <view wx:if="{{!meetups.length}}" class="src">还没有约跑。</view>
+    <view class="stack">
+      <input placeholder="日期 2026-10-22" value="{{meetDate}}" data-key="meetDate" bindinput="onDraft" />
+      <input placeholder="地点" value="{{meetPlace}}" maxlength="40" data-key="meetPlace" bindinput="onDraft" />
+      <input placeholder="说明，可不填" value="{{meetNote}}" maxlength="100" data-key="meetNote" bindinput="onDraft" />
+    </view>
+    <button class="btn" bindtap="createMeetup">发起约跑</button>
+  </view>
+  <view class="card">
+    <view class="h2">队内赛</view>
+    <view class="src">和每周训练分开报名。成绩不进赛历。</view>
+    <navigator wx:for="{{internals}}" wx:key="id" class="row" url="/pages/internal/internal?club={{club.id}}&id={{item.id}}">
+      <text>{{item.title}}</text>
+      <text>{{item.signupCount}} 人 · {{item.statusLabel}}</text>
+    </navigator>
+    <view wx:if="{{!internals.length}}" class="src">还没有队内赛。</view>
+    <view class="stack" wx:if="{{club.staff}}">
+      <input placeholder="名称，例如 滨河10公里" value="{{raceTitle}}" maxlength="40" data-key="raceTitle" bindinput="onDraft" />
+      <input placeholder="开赛 2026-11-01 08:00" value="{{raceWhen}}" data-key="raceWhen" bindinput="onDraft" />
+      <input placeholder="地点" value="{{racePlace}}" maxlength="40" data-key="racePlace" bindinput="onDraft" />
+      <input type="number" placeholder="完赛积分，0 表示不记分" value="{{racePoints}}" data-key="racePoints" bindinput="onDraft" />
+    </view>
+    <view wx:if="{{club.staff}}" class="src">默认男子组和女子组，10 公里。要改组别和距离，用网页。</view>
+    <button wx:if="{{club.staff}}" class="btn" bindtap="createInternal">发起队内赛</button>
+  </view>
   <view class="card" wx:if="{{club.staff}}">
     <view class="h2">入团申请</view>
     <view wx:if="{{!requests.length}}" class="src">没有待审核的申请。没口令的人会出现在这里。</view>
@@ -101,7 +133,7 @@
       <view class="src">{{feeShown.amount}} 元 · {{feeShown.startsOn}} 至 {{feeShown.endsOn}}</view>
       <view wx:if="{{feeShown.note}}" class="src">{{feeShown.note}}</view>
       <view class="src">我的状态：{{feeShown.mine.label}}</view>
-      <view wx:if="{{feeShown.blockSignup}}" class="src">未交和待确认的人不能报名活动。</view>
+      <view wx:if="{{feeShown.blockSignup}}" class="src">未交和待确认的人不能报名活动和队内赛。</view>
       <image wx:if="{{feeShown.qrSrc}}" class="qr" src="{{feeShown.qrSrc}}" mode="widthFix" show-menu-by-longpress="true" />
       <view wx:else class="src">团长还没有放收款码</view>
       <button wx:if="{{feeShown.canClaim}}" class="btn" bindtap="claimFee">我已转账</button>

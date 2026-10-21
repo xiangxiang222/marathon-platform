@@ -1,0 +1,4 @@
+.src { color: #8d949c; font-size: 24rpx; margin-top: 8rpx; white-space: pre-wrap; }
+.stack input { width: 100%; height: 72rpx; margin-top: 16rpx; background: rgba(118, 118, 128, 0.12); border-radius: 12rpx; padding: 0 20rpx; box-sizing: border-box; }
+.card .btn { margin-top: 16rpx; }
+.mine { color: #007aff; }
