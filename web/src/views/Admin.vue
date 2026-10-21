@@ -72,7 +72,7 @@
       <div v-if="!catalogQuery.trim()" class="desk-official">
       <div v-if="!q.trim()" class="block">
         <h2>待审详情</h2>
-        <p class="hint">上传先停在这里，确定发布后才进赛历。已经发布的场，空着的报名时间和链接保持原样。打回要写原因，上传方按原因再传一次。</p>
+        <p class="hint">上传先停在这里，确定发布后才进赛历。同一场再传一次，会盖掉上一次待审的内容。已经发布的场，这次写上的字段会盖掉原值；空着的报名时间和链接保持原样。带上的奖项和历年中签按这一份整份替换。打回要写原因，上传方按原因再传一次。</p>
         <div class="statuses">
           <button type="button" class="status" :class="{ on: botStatus === 'pending' }" @click="setBotStatus('pending')">待审</button>
           <button type="button" class="status" :class="{ on: botStatus === 'returned' }" @click="setBotStatus('returned')">已打回</button>

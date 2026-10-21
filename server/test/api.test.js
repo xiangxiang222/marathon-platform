@@ -3177,7 +3177,9 @@ test("a bot upload waits for review and a return can be sent again", async () =>
       distances: ["full", "half"],
       source: "赛事网站，2026-10-21",
       fee: "150元",
-      signupUrl: "https://example.com/signup"
+      signupUrl: "https://example.com/signup",
+      prizes: [{ distance: "full", kind: "place", gender: "男", placeN: 1, amount: 500, tax: 20, stack: false, source: "规程，2026-10-21" }],
+      draws: [{ label: "2025", applicants: 1000, quota: 72, source: "规程，2026-10-21" }]
     }]
   });
   assert.equal(again.body.accepted[0].onCalendar, true);
@@ -3196,6 +3198,42 @@ test("a bot upload waits for review and a return can be sent again", async () =>
   assert.equal(after.body.race.fee, "150元");
   assert.equal(after.body.race.links.find((item) => item.key === "signup").url, "https://example.com/signup");
   assert.equal(after.body.race.eventUrl, "https://example.com/race");
+  const prizeRows = await request(app).get("/marathon/api/admin/races/" + published.body.raceId + "/prizes").set(admin);
+  assert.equal(prizeRows.body.prizes.length, 1);
+  assert.equal(prizeRows.body.prizes[0].amount, 500);
+  const drawRows = await request(app).get("/marathon/api/admin/races/" + published.body.raceId + "/draws").set(admin);
+  assert.equal(drawRows.body.rates[0].label, "2025");
+  assert.equal(drawRows.body.rates[0].quota, 72);
+
+  const overwritten = await request(app).post("/marathon/api/bot/races").set(bot).send({
+    races: [{
+      officialId: "bot4242",
+      name: "2026上传测试马拉松",
+      raceDate: "2026-12-20",
+      province: "浙江",
+      city: "杭州",
+      distances: ["full", "half"],
+      source: "规程修订，2026-10-22",
+      fee: "160元",
+      prizes: [{ distance: "half", kind: "place", gender: "女", placeN: 3, amount: 0, stack: false, source: "规程修订，2026-10-22" }],
+      draws: []
+    }]
+  });
+  assert.equal(overwritten.body.accepted[0].onCalendar, true);
+  const reviewAgain = await request(app).get("/marathon/api/admin/bot-races?status=pending").set(admin);
+  const thirdWait = reviewAgain.body.rows.find((row) => row.officialId === "bot4242");
+  assert.match(thirdWait.lines.join("\n"), /整份替换/);
+  const applied = await request(app).post("/marathon/api/admin/bot-races/" + thirdWait.id + "/publish").set(admin).send({});
+  assert.equal(applied.status, 200);
+  const covered = await request(app).get("/marathon/api/races/" + published.body.raceId);
+  assert.equal(covered.body.race.fee, "160元");
+  assert.equal(covered.body.race.deadline, "2026-12-01");
+  const nextPrizes = await request(app).get("/marathon/api/admin/races/" + published.body.raceId + "/prizes").set(admin);
+  assert.equal(nextPrizes.body.prizes.length, 1);
+  assert.equal(nextPrizes.body.prizes[0].distance, "half");
+  assert.equal(nextPrizes.body.prizes[0].amount, 0);
+  const nextDraws = await request(app).get("/marathon/api/admin/races/" + published.body.raceId + "/draws").set(admin);
+  assert.equal(nextDraws.body.rates.length, 0);
 
   const third = await request(app).post("/marathon/api/bot/races").set(bot).send({
     races: [{
