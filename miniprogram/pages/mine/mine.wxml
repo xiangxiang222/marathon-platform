@@ -54,6 +54,11 @@
       <text> {{item.race.name}}</text>
     </navigator>
   </view>
+  <view class="card">
+    <view class="h2">微信提醒</view>
+    <view class="slot"><text>报名开启到比赛前一天</text><text class="slot-state">尚未开通</text></view>
+    <view class="src">报名开启、报名截止、出签、缴费截止、领物、比赛前一天。页面上的截止提醒仍然会列出。</view>
+  </view>
   <view class="card" wx:if="{{nickname}}">
     <view class="h2">赛事生涯</view>
     <view class="sum">完赛 {{career.finished}} 场 · 足迹 {{career.provinces.length}} 省 {{career.cities.length}} 市</view>
@@ -75,6 +80,11 @@
       <text> {{item.race.name}}</text>
     </navigator>
     <view wx:if="{{loaded && !plans.length}}" class="muted">还没有标记</view>
+  </view>
+  <view class="card">
+    <view class="h2">装备</view>
+    <view class="slot"><text>跑鞋、能量胶</text><text class="slot-state">尚未开通</text></view>
+    <view class="src">跳转以后再接。这里不卖货，也不收款。</view>
   </view>
   <view class="legal">{{company}} · {{icp}}</view>
 </view>

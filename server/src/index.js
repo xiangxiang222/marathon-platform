@@ -89,12 +89,12 @@ function gapDays() {
 function plansFor(userId, now = new Date()) {
   return getDb()
     .prepare(
-      `SELECT p.status, p.updated_at, r.* FROM plans p
+      `SELECT p.status, p.sheet, p.updated_at, r.* FROM plans p
        JOIN races r ON r.id = p.race_id
        WHERE p.user_id = ? ORDER BY r.race_date`
     )
     .all(userId)
-    .map((row) => ({ status: row.status, updatedAt: row.updated_at, race: presentRace(row, now) }));
+    .map((row) => ({ status: row.status, hasSheet: Boolean(row.sheet), updatedAt: row.updated_at, race: presentRace(row, now) }));
 }
 
 function resultsFor(userId, now = new Date()) {
@@ -244,7 +244,7 @@ app.get(BASE + "/api/races/:id", (req, res) => {
   const race = attachGuide(getDb(), presentRace(row, new Date()));
   const user = userFrom(req);
   const mine = user
-    ? getDb().prepare("SELECT status FROM plans WHERE user_id = ? AND race_id = ?").get(user.id, race.id)
+    ? getDb().prepare("SELECT status, sheet FROM plans WHERE user_id = ? AND race_id = ?").get(user.id, race.id)
     : null;
   const clubs = user
     ? getDb()
@@ -284,6 +284,7 @@ app.get(BASE + "/api/races/:id", (req, res) => {
   res.json({
     race,
     myStatus,
+    hasSheet: Boolean(mine && mine.sheet),
     myResult,
     myResults,
     clubs,
@@ -491,7 +492,9 @@ app.delete(BASE + "/api/me/races/:id", (req, res) => {
   if (!user) return;
   const race = getDb().prepare("SELECT id FROM races WHERE id = ?").get(req.params.id);
   if (!race) return res.status(404).json({ error: "没有这场比赛" });
+  const plan = getDb().prepare("SELECT sheet FROM plans WHERE user_id = ? AND race_id = ?").get(user.id, race.id);
   getDb().prepare("DELETE FROM plans WHERE user_id = ? AND race_id = ?").run(user.id, race.id);
+  if (plan) removeSignupFile(plan.sheet);
   res.json({ ok: true });
 });
 
@@ -536,8 +539,13 @@ app.delete(BASE + "/api/me/races/:id/result", (req, res) => {
   if (!user) return;
   const race = getDb().prepare("SELECT id FROM races WHERE id = ?").get(req.params.id);
   if (!race) return res.status(404).json({ error: "没有这场比赛" });
-  const existing = getDb().prepare("SELECT proof FROM results WHERE user_id = ? AND race_id = ?").all(user.id, race.id);
-  getDb().prepare("DELETE FROM results WHERE user_id = ? AND race_id = ?").run(user.id, race.id);
+  const distance = String(req.query.distance || "");
+  const existing = distance
+    ? getDb().prepare("SELECT proof FROM results WHERE user_id = ? AND race_id = ? AND distance = ?").all(user.id, race.id, distance)
+    : getDb().prepare("SELECT proof FROM results WHERE user_id = ? AND race_id = ?").all(user.id, race.id);
+  if (distance && !existing.length) return res.status(400).json({ error: "没有这项成绩" });
+  if (distance) getDb().prepare("DELETE FROM results WHERE user_id = ? AND race_id = ? AND distance = ?").run(user.id, race.id, distance);
+  else getDb().prepare("DELETE FROM results WHERE user_id = ? AND race_id = ?").run(user.id, race.id);
   for (const row of existing) removeProofFile(row.proof);
   const results = resultsFor(user.id);
   res.json({ ok: true, career: careerOf(results, yearOf(new Date())) });
@@ -548,6 +556,10 @@ const PROOF_MAX = 8 * 1024 * 1024;
 
 function proofRoot() {
   return path.join(process.env.MARATHON_MEDIA || path.join(__dirname, "../data/media"), "results");
+}
+
+function signupRoot() {
+  return path.join(process.env.MARATHON_MEDIA || path.join(__dirname, "../data/media"), "signups");
 }
 
 function sniffProof(buf) {
@@ -597,6 +609,12 @@ function oneUpload(buffer, header) {
 function removeProofFile(filename) {
   if (!filename) return;
   const file = path.join(proofRoot(), path.basename(filename));
+  if (fs.existsSync(file)) fs.unlinkSync(file);
+}
+
+function removeSignupFile(filename) {
+  if (!filename) return;
+  const file = path.join(signupRoot(), path.basename(filename));
   if (fs.existsSync(file)) fs.unlinkSync(file);
 }
 
@@ -678,6 +696,56 @@ app.get(BASE + "/api/me/races/:id/result/proof", (req, res) => {
   if (picked.error || !picked.row.proof) return res.status(404).json({ error: "没有这张照片" });
   const file = path.join(proofRoot(), path.basename(picked.row.proof));
   if (!fs.existsSync(file)) return res.status(404).json({ error: "没有这张照片" });
+  const photo = sniffProof(fs.readFileSync(file));
+  res.set("Content-Type", photo ? photo.mime : "application/octet-stream");
+  res.set("Cache-Control", "private, no-cache");
+  fs.createReadStream(file).pipe(res);
+});
+
+app.post(BASE + "/api/me/races/:id/sheet", async (req, res) => {
+  const user = requireUser(req, res);
+  if (!user) return;
+  const race = getDb().prepare("SELECT id FROM races WHERE id = ?").get(req.params.id);
+  if (!race) return res.status(404).json({ error: "没有这场比赛" });
+  const plan = getDb().prepare("SELECT sheet FROM plans WHERE user_id = ? AND race_id = ?").get(user.id, race.id);
+  if (!plan) return res.status(400).json({ error: "先标状态，再上传截图" });
+  let buffer;
+  try {
+    buffer = oneUpload(await readUpload(req, PROOF_MAX + 64 * 1024), req.get("content-type"));
+  } catch (err) {
+    return res.status(err.status || 400).json({ error: err.status === 413 ? "照片不超过 8MB" : "没有读到文件" });
+  }
+  if (!buffer || !buffer.length) return res.status(400).json({ error: "没有读到文件" });
+  const photo = sniffProof(buffer);
+  if (!photo) return res.status(400).json({ error: "只收 jpg、png、webp" });
+  if (buffer.length > PROOF_MAX) return res.status(413).json({ error: "照片不超过 8MB" });
+  const filename = user.id + "-" + String(race.id).replace(/[^A-Za-z0-9_-]/g, "") + "." + photo.ext;
+  fs.mkdirSync(signupRoot(), { recursive: true });
+  fs.writeFileSync(path.join(signupRoot(), filename), buffer);
+  if (plan.sheet && plan.sheet !== filename) removeSignupFile(plan.sheet);
+  getDb().prepare("UPDATE plans SET sheet = ? WHERE user_id = ? AND race_id = ?").run(filename, user.id, race.id);
+  res.json({ ok: true, hasSheet: true });
+});
+
+app.delete(BASE + "/api/me/races/:id/sheet", (req, res) => {
+  const user = requireUser(req, res);
+  if (!user) return;
+  const race = getDb().prepare("SELECT id FROM races WHERE id = ?").get(req.params.id);
+  if (!race) return res.status(404).json({ error: "没有这场比赛" });
+  const plan = getDb().prepare("SELECT sheet FROM plans WHERE user_id = ? AND race_id = ?").get(user.id, race.id);
+  if (!plan || !plan.sheet) return res.status(400).json({ error: "还没有截图" });
+  getDb().prepare("UPDATE plans SET sheet = '' WHERE user_id = ? AND race_id = ?").run(user.id, race.id);
+  removeSignupFile(plan.sheet);
+  res.json({ ok: true, hasSheet: false });
+});
+
+app.get(BASE + "/api/me/races/:id/sheet", (req, res) => {
+  const user = userByToken(req);
+  if (!user) return res.status(401).json({ error: "请先登录" });
+  const plan = getDb().prepare("SELECT sheet FROM plans WHERE user_id = ? AND race_id = ?").get(user.id, req.params.id);
+  if (!plan || !plan.sheet) return res.status(404).json({ error: "没有这张截图" });
+  const file = path.join(signupRoot(), path.basename(plan.sheet));
+  if (!fs.existsSync(file)) return res.status(404).json({ error: "没有这张截图" });
   const photo = sniffProof(fs.readFileSync(file));
   res.set("Content-Type", photo ? photo.mime : "application/octet-stream");
   res.set("Cache-Control", "private, no-cache");

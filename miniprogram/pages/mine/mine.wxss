@@ -14,6 +14,7 @@ button.btn.block { display: block; width: 100%; margin-top: 16rpx; }
 .quit { margin-top: 16rpx; color: #8e8e93; font-size: 26rpx; }
 .ok { color: #248a3d; font-size: 24rpx; margin-top: 8rpx; }
 .h2 { font-size: 30rpx; font-weight: 650; margin-bottom: 8rpx; }
+.src { color: #8d949c; font-size: 24rpx; margin-top: 8rpx; line-height: 1.45; }
 .plan { display: block; padding: 12rpx 0; }
 .plan image { width: 160rpx; height: 120rpx; border-radius: 12rpx; }
 .legal { text-align: center; color: #c0c4c8; font-size: 22rpx; padding: 12rpx; }

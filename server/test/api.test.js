@@ -3009,8 +3009,80 @@ test("a handwritten result can carry an unverified certificate or medal photo", 
   assert.equal(keptRows.length, 2);
   assert.equal(keptRows.find((item) => item.distance === "full").hasProof, true);
   assert.equal(keptRows.find((item) => item.distance === "half").clock, "1:40:00");
+  const dropHalf = await request(app).delete("/marathon/api/me/races/bishan/result?distance=half").set(auth);
+  assert.equal(dropHalf.status, 200);
+  const left = await request(app).get("/marathon/api/me").set(auth);
+  const leftRows = left.body.results.filter((item) => item.race.id === "bishan");
+  assert.equal(leftRows.length, 1);
+  assert.equal(leftRows[0].distance, "full");
+  assert.equal(leftRows[0].hasProof, true);
+  assert.equal(fs.existsSync(storedFile), true);
+  const missing = await request(app).delete("/marathon/api/me/races/bishan/result?distance=10k").set(auth);
+  assert.equal(missing.status, 400);
+  assert.match(missing.body.error, /没有这项成绩/);
   const removed = await request(app).delete("/marathon/api/me/races/bishan/result").set(auth);
   assert.equal(removed.status, 200);
   assert.equal(fs.existsSync(storedFile), false);
+  assert.equal(getDb().prepare("SELECT COUNT(*) AS n FROM point_entries").get().n, pointsBefore);
+});
+
+test("a marked race can keep a private signup screenshot", async () => {
+  const fs = require("fs");
+  const path = require("path");
+  const jpeg = Buffer.from([0xff, 0xd8, 0xff, 0xd9]);
+  const token = await session("报名截图");
+  const auth = { Authorization: "Bearer " + token };
+  const pointsBefore = getDb().prepare("SELECT COUNT(*) AS n FROM point_entries").get().n;
+  const early = await request(app)
+    .post("/marathon/api/me/races/bishan/sheet")
+    .set(auth)
+    .attach("file", jpeg, { filename: "signup.jpg", contentType: "image/jpeg" });
+  assert.equal(early.status, 400);
+  assert.match(early.body.error, /先标状态/);
+  const marked = await request(app).put("/marathon/api/me/races/bishan").set(auth).send({ status: "想跑" });
+  assert.equal(marked.status, 200);
+  const bad = await request(app)
+    .post("/marathon/api/me/races/bishan/sheet")
+    .set(auth)
+    .attach("file", Buffer.from("nope"), { filename: "a.txt", contentType: "text/plain" });
+  assert.equal(bad.status, 400);
+  assert.match(bad.body.error, /jpg/);
+  const dir = path.join(process.env.MARATHON_MEDIA, "signups");
+  const before = new Set(fs.existsSync(dir) ? fs.readdirSync(dir) : []);
+  const uploaded = await request(app)
+    .post("/marathon/api/me/races/bishan/sheet")
+    .set(auth)
+    .attach("file", jpeg, { filename: "signup.jpg", contentType: "image/jpeg" });
+  assert.equal(uploaded.status, 200);
+  assert.equal(uploaded.body.hasSheet, true);
+  const detail = await request(app).get("/marathon/api/races/bishan").set(auth);
+  assert.equal(detail.body.myStatus, "想跑");
+  assert.equal(detail.body.hasSheet, true);
+  const image = await request(app).get("/marathon/api/me/races/bishan/sheet").set(auth);
+  assert.equal(image.status, 200);
+  assert.equal(image.headers["content-type"], "image/jpeg");
+  const stranger = await request(app).get("/marathon/api/me/races/bishan/sheet").set("Authorization", "Bearer " + (await session("截图旁人")));
+  assert.equal(stranger.status, 404);
+  const moved = await request(app).put("/marathon/api/me/races/bishan").set(auth).send({ status: "已报名" });
+  assert.equal(moved.status, 200);
+  const still = await request(app).get("/marathon/api/races/bishan").set(auth);
+  assert.equal(still.body.myStatus, "已报名");
+  assert.equal(still.body.hasSheet, true);
+  const added = fs.readdirSync(dir).filter((name) => !before.has(name));
+  assert.equal(added.length, 1);
+  const file = path.join(dir, added[0]);
+  assert.equal(fs.existsSync(file), true);
+  const cleared = await request(app).delete("/marathon/api/me/races/bishan/sheet").set(auth);
+  assert.equal(cleared.status, 200);
+  assert.equal(cleared.body.hasSheet, false);
+  assert.equal(fs.existsSync(file), false);
+  const again = await request(app)
+    .post("/marathon/api/me/races/bishan/sheet")
+    .set(auth)
+    .attach("file", jpeg, { filename: "signup.jpg", contentType: "image/jpeg" });
+  assert.equal(again.status, 200);
+  const dropped = await request(app).delete("/marathon/api/me/races/bishan").set(auth);
+  assert.equal(dropped.status, 200);
+  assert.equal(fs.existsSync(file), false);
   assert.equal(getDb().prepare("SELECT COUNT(*) AS n FROM point_entries").get().n, pointsBefore);
 });

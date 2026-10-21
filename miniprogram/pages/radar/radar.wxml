@@ -2,6 +2,8 @@
   <view class="card">
     <view class="title">拿奖雷达</view>
     <view class="src">{{note}}</view>
+    <view class="slot"><text>天气和赛道修正</text><text class="slot-state">尚未开通</text></view>
+    <view class="src">对照仍用已记下的成绩和往届名次。</view>
     <view class="src">性别、出生年月和省份自己填。不收身份证。出生月份和比赛月相同的，按小一岁算。</view>
     <view class="row">
       <button class="ghost {{gender === '' ? 'on' : ''}}" data-gender="" bindtap="setGender">不填</button>

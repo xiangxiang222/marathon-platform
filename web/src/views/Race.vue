@@ -46,8 +46,21 @@
     </div>
     <div v-if="race && race.links.length" class="block">
       <h2>报名和查询</h2>
-      <p class="src">这些都打开赛事自己的页面。这里不报名，也不付款。</p>
-      <a v-for="link in race.links" :key="link.key" class="jump" :class="{ main: link.primary }" :href="link.url" target="_blank" rel="noopener">{{ link.label }}</a>
+      <p class="src">这些都打开赛事自己的页面。</p>
+      <template v-for="link in race.links" :key="link.key">
+        <button v-if="link.key === 'signup'" type="button" class="jump" :class="{ main: link.primary }" @click="openSignup(link.url)">{{ link.label }}</button>
+        <a v-else class="jump" :class="{ main: link.primary }" :href="link.url" target="_blank" rel="noopener">{{ link.label }}</a>
+      </template>
+      <div v-if="askSignup" class="ask">
+        <p>报上了吗</p>
+        <button class="primary" type="button" @click="confirmSigned">报上了</button>
+        <button class="undo" type="button" @click="askSignup = false">还没有</button>
+      </div>
+    </div>
+    <div v-if="race" class="block">
+      <h2>站内报名</h2>
+      <div class="slot"><span>报名和付款</span><b>尚未开通</b></div>
+      <p class="src">合作赛事以后在这里报名。现在仍打开赛事自己的页面。不填写身份证。</p>
     </div>
     <div v-if="showFacts" class="block">
       <h2>项目</h2>
@@ -83,6 +96,11 @@
         </button>
       </div>
     </div>
+    <div v-if="race" class="block">
+      <h2>酒店</h2>
+      <div class="slot"><span>赛事周订房</span><b>尚未开通</b></div>
+      <p class="src">这里不显示房价，也不跳转。</p>
+    </div>
     <div v-if="race && race.liveSheet" class="block">
       <h2>直播</h2>
       <p class="src">扫组委会的二维码。</p>
@@ -106,6 +124,14 @@
           {{ item }}
         </button>
       </div>
+      <template v-if="ready && myStatus">
+        <p class="src">可以附一张报名成功截图。这里不识别截图上的字。</p>
+        <img v-if="hasSheet" class="proof" :src="signupSrc" alt="" />
+        <div class="proof-actions">
+          <label>报名截图<input type="file" accept="image/jpeg,image/png,image/webp" @change="onSignup" /></label>
+          <button v-if="hasSheet" class="undo" type="button" @click="removeSignup">去掉截图</button>
+        </div>
+      </template>
       <p v-if="message" class="err">{{ message }}</p>
     </div>
     <div v-if="drawText" class="block">
@@ -128,7 +154,9 @@
     </div>
     <div v-if="ready && race" class="block">
       <h2>成绩</h2>
-      <p class="src">手记的成绩标为未核验。可以附一张证书或奖牌照片，这里不识别照片上的字。</p>
+      <p class="src">手记的成绩标为未核验。可以附一张证书或奖牌照片。</p>
+      <div class="slot"><span>识别证书</span><b>尚未开通</b></div>
+      <p class="src">照片可以留下，成绩仍由自己填写。</p>
       <p v-for="item in myResults" :key="item.distance" class="src">{{ item.distanceLabel }} {{ item.clock }} · 配速 {{ item.pace }}<template v-if="item.pb"> · PB</template> · {{ item.verifyLabel }}</p>
       <p v-if="myResult && myResult.story">{{ myResult.story }}</p>
       <img v-if="myResult && myResult.hasProof" class="proof" :src="proofSrc" alt="" />
@@ -154,6 +182,7 @@
         <label>证书照片<input type="file" accept="image/jpeg,image/png,image/webp" @change="onProof('certificate', $event)" /></label>
         <label>奖牌照片<input type="file" accept="image/jpeg,image/png,image/webp" @change="onProof('medal', $event)" /></label>
         <button v-if="myResult.hasProof" class="undo" type="button" @click="removeProof">去掉照片</button>
+        <button class="undo" type="button" @click="removeResult">去掉这项成绩</button>
       </div>
       <p v-if="resultMessage" class="err">{{ resultMessage }}</p>
     </div>
@@ -174,7 +203,7 @@
 <script setup>
 import { computed, onMounted, ref, watch } from "vue";
 import { useRoute } from "vue-router";
-import { api, raceSheetSrc, resultProofSrc, upload } from "../api";
+import { api, raceSheetSrc, resultProofSrc, signupSheetSrc, upload } from "../api";
 import { copyText } from "../copy";
 import { dateParts, toneOf } from "../tone";
 const route = useRoute();
@@ -217,6 +246,8 @@ function openSheet(id) {
 }
 const statuses = ref([]);
 const myStatus = ref("");
+const hasSheet = ref(false);
+const askSignup = ref(false);
 const clubs = ref([]);
 const cards = ref([]);
 const conflicts = ref([]);
@@ -242,6 +273,7 @@ async function load() {
   race.value = data.race;
   statuses.value = data.statuses;
   myStatus.value = data.myStatus;
+  hasSheet.value = Boolean(data.hasSheet);
   clubs.value = data.clubs;
   cards.value = data.cards || [];
   conflicts.value = data.conflicts || [];
@@ -269,6 +301,65 @@ function pickDistance(next) {
 }
 
 const proofSrc = computed(() => (race.value && myResult.value && myResult.value.hasProof ? resultProofSrc(race.value.id, myResult.value.distance) : ""));
+const signupSrc = computed(() => (race.value && hasSheet.value ? signupSheetSrc(race.value.id) : ""));
+
+function openSignup(url) {
+  askSignup.value = true;
+  window.open(url, "_blank", "noopener");
+}
+
+async function confirmSigned() {
+  if (!ready.value) {
+    message.value = "先到「我的」登录";
+    return;
+  }
+  if (myStatus.value && myStatus.value !== "想跑") {
+    message.value = "这场已经标成「" + myStatus.value + "」";
+    askSignup.value = false;
+    return;
+  }
+  const saved = await mark("已报名");
+  if (!saved) return;
+  askSignup.value = false;
+  message.value = "已标成已报名";
+}
+
+async function onSignup(event) {
+  const file = event.target.files && event.target.files[0];
+  event.target.value = "";
+  if (!file) return;
+  message.value = "";
+  try {
+    await upload("/me/races/" + route.params.id + "/sheet", file);
+    message.value = "报名截图已上传";
+    await load();
+  } catch (err) {
+    message.value = err.message;
+  }
+}
+
+async function removeSignup() {
+  message.value = "";
+  try {
+    await api("/me/races/" + route.params.id + "/sheet", { method: "DELETE" });
+    await load();
+  } catch (err) {
+    message.value = err.message;
+  }
+}
+
+async function removeResult() {
+  if (!myResult.value) return;
+  if (!window.confirm("去掉这项成绩？同一场的其他项目还留着。")) return;
+  resultMessage.value = "";
+  try {
+    await api("/me/races/" + route.params.id + "/result?distance=" + encodeURIComponent(distance.value), { method: "DELETE" });
+    distance.value = "";
+    await load();
+  } catch (err) {
+    resultMessage.value = err.message;
+  }
+}
 
 async function onProof(kind, event) {
   const file = event.target.files && event.target.files[0];
@@ -367,8 +458,10 @@ async function mark(status) {
     await api("/me/races/" + route.params.id, { method: "PUT", body: JSON.stringify({ status }) });
     myStatus.value = status;
     await load();
+    return true;
   } catch (err) {
     message.value = err.message;
+    return false;
   }
 }
 
@@ -401,6 +494,9 @@ onMounted(load);
 .result-form { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
 .result-form input { height: 36px; border: 1px solid #e6e8ec; border-radius: 8px; padding: 0 10px; background: #fff; }
 .proof { display: block; width: 100%; margin-top: 8px; border-radius: 12px; }
+.ask { margin-top: 12px; }
+.ask p { margin: 0 0 8px; font-weight: 650; }
+.ask .undo { margin-left: 8px; height: 40px; padding: 0 16px; color: var(--muted); }
 .proof-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
 .proof-actions label { position: relative; overflow: hidden; height: 36px; padding: 0 12px; border-radius: 10px; background: var(--chip); color: var(--accent); font-size: 14px; font-weight: 650; line-height: 36px; }
 .proof-actions input { position: absolute; inset: 0; opacity: 0; }

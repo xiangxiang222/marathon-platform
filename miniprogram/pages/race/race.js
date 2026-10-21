@@ -33,6 +33,9 @@ Page({
     story: "",
     resultMessage: "",
     proofSrc: "",
+    askSignup: false,
+    hasSheet: false,
+    sheetSrc: "",
     drawLines: [],
     drawNote: "",
     guide: [],
@@ -101,6 +104,10 @@ Page({
           proofSrc: myResult && myResult.hasProof
             ? baseUrl + "/marathon/api/me/races/" + this.raceId + "/result/proof?t=" + encodeURIComponent((getApp().globalData && getApp().globalData.token) || "") + "&distance=" + encodeURIComponent(myResult.distance)
             : "",
+          hasSheet: Boolean(data.hasSheet),
+          sheetSrc: data.hasSheet
+            ? baseUrl + "/marathon/api/me/races/" + this.raceId + "/sheet?t=" + encodeURIComponent((getApp().globalData && getApp().globalData.token) || "")
+            : "",
           myResults,
           ready: ready(),
           message: "",
@@ -134,7 +141,79 @@ Page({
     return Promise.all(jobs).catch((err) => this.setData({ message: err.message }));
   },
   copyLink(e) {
-    wx.setClipboardData({ data: e.currentTarget.dataset.url || "" });
+    const key = e.currentTarget.dataset.key || "";
+    wx.setClipboardData({
+      data: e.currentTarget.dataset.url || "",
+      success: () => {
+        if (key === "signup") this.setData({ askSignup: true });
+      }
+    });
+  },
+  dismissAsk() {
+    this.setData({ askSignup: false });
+  },
+  confirmSigned() {
+    if (!this.data.ready) {
+      this.setData({ message: "先到「我的」登录" });
+      return;
+    }
+    if (this.data.myStatus && this.data.myStatus !== "想跑") {
+      this.setData({ askSignup: false, message: "这场已经标成「" + this.data.myStatus + "」" });
+      return;
+    }
+    request("/me/races/" + this.raceId, "PUT", { status: "已报名" })
+      .then(() => this.load())
+      .then(() => this.setData({ askSignup: false, message: "已标成已报名" }))
+      .catch((err) => this.setData({ message: err.message }));
+  },
+  chooseSheet() {
+    wx.chooseMedia({
+      count: 1,
+      mediaType: ["image"],
+      success: (res) => {
+        const file = (res.tempFiles || [])[0];
+        if (!file) return;
+        const app = getApp();
+        wx.uploadFile({
+          url: app.globalData.baseUrl + "/marathon/api/me/races/" + this.raceId + "/sheet",
+          filePath: file.tempFilePath,
+          name: "file",
+          header: { Authorization: app.globalData.token ? "Bearer " + app.globalData.token : "" },
+          success: (upload) => {
+            if (upload.statusCode >= 200 && upload.statusCode < 300) this.load().then(() => this.setData({ message: "报名截图已上传" }));
+            else {
+              let message = "没有传上去";
+              try {
+                message = JSON.parse(upload.data).error || message;
+              } catch (err) {}
+              this.setData({ message });
+            }
+          },
+          fail: () => this.setData({ message: "没有传上去" })
+        });
+      }
+    });
+  },
+  removeSheet() {
+    request("/me/races/" + this.raceId + "/sheet", "DELETE")
+      .then(() => this.load())
+      .catch((err) => this.setData({ message: err.message }));
+  },
+  removeResult() {
+    if (!this.data.myResult) return;
+    wx.showModal({
+      title: "去掉这项成绩",
+      content: "同一场的其他项目还留着。",
+      success: (res) => {
+        if (!res.confirm) return;
+        request("/me/races/" + this.raceId + "/result?distance=" + encodeURIComponent(this.data.distance), "DELETE")
+          .then(() => {
+            this.setData({ distance: "" });
+            return this.load();
+          })
+          .catch((err) => this.setData({ resultMessage: err.message }));
+      }
+    });
   },
   previewGuide(e) {
     const current = e.currentTarget.dataset.src;

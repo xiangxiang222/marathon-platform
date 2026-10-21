@@ -26,8 +26,19 @@
 
   <view class="card" wx:if="{{race.links.length}}">
     <view class="h2">报名和查询</view>
-    <view class="src">复制后到浏览器打开。这里不报名、不付款。</view>
-    <button wx:for="{{race.links}}" wx:key="key" class="btn" data-url="{{item.url}}" bindtap="copyLink">{{item.label}}</button>
+    <view class="src">复制后到浏览器打开。</view>
+    <button wx:for="{{race.links}}" wx:key="key" class="btn" data-url="{{item.url}}" data-key="{{item.key}}" bindtap="copyLink">{{item.label}}</button>
+    <view wx:if="{{askSignup}}">
+      <view class="src">报上了吗</view>
+      <button class="btn" bindtap="confirmSigned">报上了</button>
+      <button class="ghost" bindtap="dismissAsk">还没有</button>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="h2">站内报名</view>
+    <view class="slot"><text>报名和付款</text><text class="slot-state">尚未开通</text></view>
+    <view class="src">合作赛事以后在这里报名。现在仍打开赛事自己的页面。不填写身份证。</view>
   </view>
 
   <view class="card" wx:if="{{race.fee || race.scale || race.kindLabels.length || race.groups.length}}">
@@ -52,6 +63,12 @@
     <view wx:if="{{race.pickup}}" class="src">领物 {{race.pickup}}</view>
     <view wx:if="{{race.pacers}}" class="src">配速员 {{race.pacers}}</view>
     <image wx:for="{{pacerSheets}}" wx:key="id" class="sheet" mode="widthFix" src="{{item.src}}" data-src="{{item.src}}" bindtap="previewGuide" />
+  </view>
+
+  <view class="card">
+    <view class="h2">酒店</view>
+    <view class="slot"><text>赛事周订房</text><text class="slot-state">尚未开通</text></view>
+    <view class="src">这里不显示房价，也不跳转。</view>
   </view>
 
   <view class="card" wx:if="{{liveSheet}}">
@@ -82,6 +99,10 @@
     </view>
     <view wx:else>
       <button wx:for="{{statuses}}" wx:key="*this" class="ghost {{myStatus === item ? 'on' : ''}}" data-status="{{item}}" bindtap="mark">{{item}}</button>
+      <view wx:if="{{myStatus}}" class="src">可以附一张报名成功截图。这里不识别截图上的字。</view>
+      <image wx:if="{{sheetSrc}}" src="{{sheetSrc}}" mode="widthFix" />
+      <button wx:if="{{myStatus}}" class="ghost" bindtap="chooseSheet">报名截图</button>
+      <button wx:if="{{hasSheet}}" class="ghost" bindtap="removeSheet">去掉截图</button>
     </view>
     <view wx:if="{{message}}" class="err">{{message}}</view>
   </view>
@@ -117,7 +138,9 @@
 
   <view class="card result" wx:if="{{ready}}">
     <view class="h2">成绩</view>
-    <view class="src">手记的成绩标为未核验。可以附一张证书或奖牌照片，这里不识别照片上的字。</view>
+    <view class="src">手记的成绩标为未核验。可以附一张证书或奖牌照片。</view>
+    <view class="slot"><text>识别证书</text><text class="slot-state">尚未开通</text></view>
+    <view class="src">照片可以留下，成绩仍由自己填写。</view>
     <view wx:for="{{myResults}}" wx:key="distance" class="sum">{{item.distanceLabel}} {{item.clock}} · 配速 {{item.pace}}<text wx:if="{{item.pb}}"> · PB</text> · {{item.verifyLabel}}</view>
     <view wx:if="{{myResult.story}}" class="src">{{myResult.story}}</view>
     <image wx:if="{{proofSrc}}" src="{{proofSrc}}" mode="widthFix" />
@@ -133,6 +156,7 @@
     <button wx:if="{{myResult}}" class="ghost" data-kind="certificate" bindtap="chooseProof">证书照片</button>
     <button wx:if="{{myResult}}" class="ghost" data-kind="medal" bindtap="chooseProof">奖牌照片</button>
     <button wx:if="{{myResult.hasProof}}" class="ghost" bindtap="removeProof">去掉照片</button>
+    <button wx:if="{{myResult}}" class="ghost" bindtap="removeResult">去掉这项成绩</button>
     <view wx:if="{{resultMessage}}" class="err">{{resultMessage}}</view>
   </view>
 

@@ -17,6 +17,11 @@
         <b>{{ item.hit.reason }}</b> {{ item.race.name }}
       </router-link>
     </section>
+    <section class="sheet">
+      <div class="head"><h3>微信提醒</h3></div>
+      <div class="slot"><span>报名开启到比赛前一天</span><b>尚未开通</b></div>
+      <p class="hint">报名开启、报名截止、出签、缴费截止、领物、比赛前一天。页面上的截止提醒仍然会列出。</p>
+    </section>
 
     <section v-if="nickname" class="who">
       <div class="who-top">
@@ -164,6 +169,11 @@
         </div>
       </div>
       <p v-if="career.finished" class="footline">足迹 {{ career.provinces.length }} 个省、{{ career.cities.length }} 个市 · 本年比赛 {{ career.yearKm }} 公里</p>
+    </section>
+    <section class="sheet">
+      <div class="head"><h3>装备</h3></div>
+      <div class="slot"><span>跑鞋、能量胶</span><b>尚未开通</b></div>
+      <p class="hint">跳转以后再接。这里不卖货，也不收款。</p>
     </section>
     <footer class="legal">{{ company }} · {{ icp }}</footer>
   </div>

@@ -2,7 +2,7 @@
   <header class="large">
     <div>
       <h1>运动</h1>
-      <p>跑步和越野。跑表尚未接入。</p>
+      <p>跑步和越野。</p>
     </div>
   </header>
   <p v-if="!ready" class="empty">先到「我的」登录。</p>
@@ -83,8 +83,18 @@
       <button class="undo" type="button" @click="remove(item)">删除这场</button>
     </article>
     <p v-if="data.runs && !data.runs.length" class="empty">这个月还没有记录。</p>
-    <p class="hint watch">跑表尚未接入。顺序是高驰、佳明、华为。</p>
   </template>
+  <section class="block">
+    <h2>跑表</h2>
+    <div class="slot"><span>高驰</span><b>尚未接入</b></div>
+    <div class="slot"><span>佳明</span><b>尚未接入</b></div>
+    <div class="slot"><span>华为</span><b>尚未接入</b></div>
+    <p class="hint">手填可以继续用。顺序是高驰、佳明、华为。</p>
+  </section>
+  <section class="block">
+    <h2>训练计划</h2>
+    <div class="slot"><span>按目标成绩排课</span><b>尚未开通</b></div>
+  </section>
   <p v-if="message" class="err">{{ message }}</p>
 </template>
 
@@ -192,6 +202,5 @@ onMounted(() => {
 .file { position: relative; overflow: hidden; color: var(--muted); font-size: 13px; }
 .file input { position: absolute; inset: 0; opacity: 0; }
 .shot { width: 100%; margin-top: 8px; border-radius: 12px; }
-.watch { margin: 8px 16px 24px; }
 .field button { height: 40px; padding: 0 12px; border-radius: 12px; background: #fff; }
 </style>
