@@ -46,6 +46,7 @@ function deleteUser(db, id) {
     db.prepare("DELETE FROM runs WHERE user_id = ?").run(id);
     db.prepare("DELETE FROM mileage_flags WHERE user_id = ?").run(id);
     db.prepare("DELETE FROM user_mileage WHERE user_id = ?").run(id);
+    db.prepare("DELETE FROM supply_claims WHERE user_id = ?").run(id);
     db.prepare("DELETE FROM users WHERE id = ?").run(id);
   })();
   for (const file of files) {
@@ -257,6 +258,9 @@ function deleteClub(db, id) {
     db.prepare("DELETE FROM mileage_counts WHERE club_id = ?").run(id);
     db.prepare("DELETE FROM mileage_groups WHERE club_id = ?").run(id);
     db.prepare("DELETE FROM mileage_rules WHERE club_id = ?").run(id);
+    db.prepare("DELETE FROM supply_claims WHERE club_id = ?").run(id);
+    db.prepare("DELETE FROM split_notes WHERE club_id = ?").run(id);
+    db.prepare("DELETE FROM league_joins WHERE club_id = ?").run(id);
     db.prepare("DELETE FROM gifts WHERE club_id = ?").run(id);
     db.prepare("DELETE FROM club_members WHERE club_id = ?").run(id);
     db.prepare("DELETE FROM club_requests WHERE club_id = ?").run(id);

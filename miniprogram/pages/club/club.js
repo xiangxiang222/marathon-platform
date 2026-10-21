@@ -14,6 +14,7 @@ Page({
     albums: [],
     attendance: { rows: [], me: { placeLabel: "未上榜", count: 0 }, label: "本月" },
     mileage: { totalKm: 0, totalCount: 0, mineKm: 0 },
+    partnerGrade: "",
     checkins: [],
     checkedIn: false,
     note: "",
@@ -133,6 +134,9 @@ Page({
       .catch(() => {});
     request("/clubs/" + this.clubId + "/attendance?range=month")
       .then((data) => this.setData({ attendance: data }))
+      .catch(() => {});
+    request("/clubs/" + this.clubId + "/partner")
+      .then((data) => this.setData({ partnerGrade: (data.grade && data.grade.label) || "" }))
       .catch(() => {});
     request("/clubs/" + this.clubId + "/mileage?range=month")
       .then((data) => {

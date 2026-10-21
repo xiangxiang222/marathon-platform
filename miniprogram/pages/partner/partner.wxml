@@ -1,0 +1,45 @@
+<view class="pad" wx:if="{{view}}">
+  <view class="card">
+    <view class="title">认证 {{view.grade.label}}</view>
+    <view class="src">{{view.grade.note}}</view>
+    <view class="src">{{view.grade.rights}}</view>
+    <view wx:for="{{view.grade.lines}}" wx:key="label" class="row">
+      <text>{{item.label}} · {{item.text}}</text>
+      <text>{{item.met ? '已达到' : '未达到'}}</text>
+    </view>
+  </view>
+  <view class="card">
+    <view class="title">物资</view>
+    <view class="src">用户不付钱。认证按额度领，核心额度乘二。</view>
+    <view wx:for="{{view.supplies}}" wx:key="id">
+      <view class="src">{{item.brand}} · {{item.name}} · {{item.month}}</view>
+      <view class="src">签到至少 {{item.needChecks}} 天，跑量至少 {{item.needKm}} 公里。本团 {{item.clubUsed}}/{{item.cap}}</view>
+      <view class="src" wx:if="{{item.reason}}">{{item.reason}}</view>
+      <button wx:if="{{item.ready}}" class="ghost" data-id="{{item.id}}" bindtap="claim">领取</button>
+      <button wx:if="{{item.mine && item.mine.status === 'pending'}}" class="ghost" data-sid="{{item.id}}" data-cid="{{item.mine.id}}" bindtap="cancel">撤回</button>
+    </view>
+    <view wx:if="{{!view.supplies.length}}" class="src">还没有可领的物资。</view>
+    <view wx:for="{{view.claims}}" wx:key="id" class="row">
+      <text>{{item.nickname}} · {{item.name}} · {{item.statusLabel}}</text>
+      <button wx:if="{{view.staff && item.status === 'pending'}}" class="ghost" data-sid="{{item.supplyId}}" data-cid="{{item.id}}" bindtap="give">标成已发放</button>
+    </view>
+  </view>
+  <view class="card">
+    <view class="title">联赛</view>
+    <view class="src">免费参加。奖品是物资，不发现金。</view>
+    <block wx:if="{{view.league}}">
+      <view class="src">{{view.league.title}} {{view.league.sponsor}} {{view.league.closed ? '已结束' : ''}}</view>
+      <view class="src" wx:if="{{view.league.prize}}">奖品 {{view.league.prize}}</view>
+      <button wx:if="{{view.league.canJoin}}" class="btn" bindtap="joinLeague">参加</button>
+      <button wx:if="{{view.league.canLeave}}" class="ghost" bindtap="leaveLeague">退出</button>
+      <view wx:for="{{view.league.rows}}" wx:key="clubId" class="src">{{item.place}} {{item.name}} {{item.core ? '优先' : ''}} {{item.km}} 公里 · 出勤 {{item.attend}} · 完赛 {{item.finishers}}</view>
+    </block>
+    <view wx:else class="src">这个月还没有联赛。</view>
+  </view>
+  <view class="card">
+    <view class="title">分账</view>
+    <view class="src">{{view.ledgerNote}}</view>
+    <view wx:for="{{view.ledger}}" wx:key="id" class="src">{{item.month}} · {{item.kindLabel}} · {{item.yuan}} 元 · {{item.settledLabel}}</view>
+  </view>
+  <view wx:if="{{message}}" class="err">{{message}}</view>
+</view>

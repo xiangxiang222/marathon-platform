@@ -576,6 +576,53 @@ function open() {
       user_id INTEGER PRIMARY KEY,
       gender TEXT NOT NULL DEFAULT ''
     );
+    CREATE TABLE IF NOT EXISTS supplies (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      brand TEXT NOT NULL,
+      name TEXT NOT NULL,
+      total INTEGER NOT NULL,
+      quota INTEGER NOT NULL,
+      month TEXT NOT NULL,
+      need_checks INTEGER NOT NULL DEFAULT 0,
+      need_km REAL NOT NULL DEFAULT 0,
+      note TEXT NOT NULL DEFAULT '',
+      opened INTEGER NOT NULL DEFAULT 1,
+      created_at TEXT NOT NULL
+    );
+    CREATE TABLE IF NOT EXISTS supply_claims (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      supply_id INTEGER NOT NULL,
+      club_id INTEGER NOT NULL,
+      user_id INTEGER NOT NULL,
+      status TEXT NOT NULL DEFAULT 'pending',
+      created_at TEXT NOT NULL,
+      given_at TEXT NOT NULL DEFAULT '',
+      UNIQUE (supply_id, user_id)
+    );
+    CREATE TABLE IF NOT EXISTS leagues (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      month TEXT NOT NULL UNIQUE,
+      title TEXT NOT NULL,
+      sponsor TEXT NOT NULL DEFAULT '',
+      prize TEXT NOT NULL DEFAULT '',
+      created_at TEXT NOT NULL
+    );
+    CREATE TABLE IF NOT EXISTS league_joins (
+      league_id INTEGER NOT NULL,
+      club_id INTEGER NOT NULL,
+      joined_at TEXT NOT NULL,
+      PRIMARY KEY (league_id, club_id)
+    );
+    CREATE TABLE IF NOT EXISTS split_notes (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      club_id INTEGER NOT NULL,
+      month TEXT NOT NULL,
+      kind TEXT NOT NULL,
+      yuan INTEGER NOT NULL,
+      settled INTEGER NOT NULL DEFAULT 0,
+      note TEXT NOT NULL DEFAULT '',
+      created_at TEXT NOT NULL
+    );
   `);
   const upsert = handle.prepare(
     `INSERT INTO races (
