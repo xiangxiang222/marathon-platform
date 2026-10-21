@@ -15,6 +15,7 @@
     <div v-if="club" class="seg">
       <button type="button" :class="{ on: tab === 'race' }" @click="tab = 'race'">比赛</button>
       <button type="button" :class="{ on: tab === 'act' }" @click="tab = 'act'">活动</button>
+      <button type="button" :class="{ on: tab === 'album' }" @click="tab = 'album'">相册</button>
       <button type="button" :class="{ on: tab === 'people' }" @click="tab = 'people'">成员</button>
     </div>
     <div v-if="club && tab === 'race'" class="block">
@@ -91,27 +92,101 @@
       </div>
     </div>
     <template v-if="club && tab === 'act'">
+      <div class="block">
+        <input v-model="actQuery" placeholder="搜活动标题" />
+        <div class="checks">
+          <button type="button" class="undo" :class="{ on: !actStatus }" @click="actStatus = ''">全部</button>
+          <button v-for="item in statusFilters" :key="item.id" type="button" class="undo" :class="{ on: actStatus === item.id }" @click="actStatus = item.id">{{ item.label }}</button>
+        </div>
+        <div class="checks">
+          <button type="button" class="undo" :class="{ on: !actDay }" @click="actDay = ''">全部日期</button>
+          <button v-for="day in dayStrip" :key="day.date" type="button" class="undo" :class="{ on: actDay === day.date }" @click="actDay = day.date">{{ day.label }}</button>
+        </div>
+        <button type="button" class="undo" @click="showMonth = !showMonth">{{ showMonth ? "收起月历" : "月历" }}</button>
+        <div v-if="showMonth" class="month">
+          <div class="checks">
+            <button type="button" class="undo" @click="shiftMonth(-1)">上个月</button>
+            <span>{{ monthCursor }}</span>
+            <button type="button" class="undo" @click="shiftMonth(1)">下个月</button>
+          </div>
+          <div class="month-grid">
+            <span v-for="name in weekNames" :key="name" class="dow">{{ name }}</span>
+            <button v-for="(cell, index) in monthCells" :key="index" type="button" class="day" :class="{ mark: cell && cell.marked, on: cell && actDay === cell.date }" :disabled="!cell" @click="cell && (actDay = cell.date)">{{ cell ? cell.day : "" }}</button>
+          </div>
+        </div>
+      </div>
+      <div v-for="item in shownActivities" :key="item.id" class="block act">
+        <label v-if="sharing" class="rank-label"><input v-model="shareIds" type="checkbox" :value="item.id" /> 选这场</label>
+        <router-link :to="'/clubs/' + club.id + '/activities/' + item.id">
+          <h2>{{ item.dateLabel }} {{ item.title }}</h2>
+          <p class="rank-label">{{ item.clockLabel }}<template v-if="item.place"> · {{ item.place }}</template><template v-if="item.plannedKm"> · {{ item.plannedKm }} 公里</template></p>
+          <p class="rank-label">{{ item.signupCount }} 人<template v-if="item.capacity"> / {{ item.capacity }}</template> · {{ item.statusLabel }}</p>
+        </router-link>
+      </div>
+      <p v-if="!shownActivities.length" class="empty">还没有活动。每周团练的报名放在这里。</p>
+      <div class="block">
+        <button type="button" class="undo" @click="sharing = !sharing">{{ sharing ? "完成" : "分享" }}</button>
+        <template v-if="sharing">
+          <div class="checks">
+            <button type="button" class="undo" @click="selectVisible">全选</button>
+            <button type="button" class="undo" @click="selectRecent(3)">最近 3 场</button>
+            <button type="button" class="undo" @click="selectRecent(5)">最近 5 场</button>
+            <button type="button" class="undo" @click="selectDays(3)">近 3 天</button>
+            <button type="button" class="undo" @click="selectDays(7)">近 7 天</button>
+          </div>
+          <button type="button" class="primary" @click="copyShare">文字分享</button>
+          <button type="button" class="primary" @click="pictureShare">图片分享</button>
+        </template>
+      </div>
+      <div v-if="attendance" class="block">
+        <h2>出勤榜</h2>
+        <p class="rank-label">按已打卡的活动次数。只报名、没打卡不加。</p>
+        <div class="checks">
+          <button v-for="item in attendRanges" :key="item.id" type="button" class="undo" :class="{ on: attendRange === item.id }" @click="openAttend(item.id)">{{ item.label }}</button>
+        </div>
+        <p v-if="attendance.me" class="rank-label">我 {{ attendance.me.placeLabel }} · {{ attendance.me.count }} 次</p>
+        <div v-for="row in attendance.rows.filter((item) => item.count > 0).slice(0, 10)" :key="row.userId" class="mate">
+          <span>{{ row.place }} {{ row.nickname }}</span>
+          <b>{{ row.count }} 次</b>
+        </div>
+        <button type="button" class="primary" @click="exportAttend">导出图片</button>
+      </div>
       <form v-if="club.staff" class="block" @submit.prevent="createActivity">
         <h2>发一场活动</h2>
         <input v-model="actTitle" maxlength="40" placeholder="例如 周日 LSD" />
-        <input v-model="actPlace" maxlength="40" placeholder="集合地点" />
-        <input v-model="actWhen" placeholder="2026-10-11 05:40" />
-        <input v-model="actNote" maxlength="500" placeholder="说明，例如配速和路线" />
+        <input v-model="actIssue" maxlength="40" placeholder="期次，可不填" />
+        <input v-model="actWhen" placeholder="开始 2026-10-14 05:00" />
+        <input v-model="actEnds" placeholder="结束 2026-10-14 06:30，可不填" />
+        <input v-model="actGatherAt" maxlength="40" placeholder="集合时间，可不填" />
+        <input v-model="actGather" maxlength="40" placeholder="集合点" />
+        <input v-model="actPlace" maxlength="40" placeholder="地点" />
+        <input v-model="actPlanned" inputmode="decimal" placeholder="计划里程，公里，可不填" />
+        <input v-model="actRoute" maxlength="200" placeholder="路线，可不填" />
+        <input v-model="actCancel" placeholder="取消报名截止，可不填" />
+        <input v-model="actNote" maxlength="2000" placeholder="说明，例如配速和路线" />
         <div class="pair">
           <label>成团人数<input v-model.number="actPeople" type="number" min="1" max="500" /></label>
           <label>里程公里<input v-model.number="actKm" type="number" min="0.1" max="100" step="0.1" /></label>
           <label>这场积分<input v-model.number="actPoints" type="number" min="0" max="100" /></label>
         </div>
         <p class="rank-label">满这些人数，且每人打卡不少于这个里程，才各得这场积分。人数不够，这场不计分。</p>
+        <p class="rank-label">组别留空时，用成员页里的组别。写了就只属于这场。</p>
+        <div v-for="(group, index) in actGroups" :key="index" class="pair">
+          <label>组别<input v-model="group.name" maxlength="20" placeholder="A1" /></label>
+          <label>种类
+            <select v-model="group.kind">
+              <option value="pace">配速组</option>
+              <option value="finish">完赛组</option>
+              <option value="volunteer">志愿者</option>
+              <option value="other">非训练</option>
+            </select>
+          </label>
+          <label>目标<input v-model="group.pace" maxlength="40" placeholder="配速或目标" /></label>
+          <label>名额<input v-model.number="group.capacity" type="number" min="0" max="500" /></label>
+        </div>
+        <button class="undo" type="button" @click="actGroups.push({ name: '', kind: 'pace', pace: '', capacity: 0 })">加一组</button>
         <button class="primary" type="submit">发出去</button>
       </form>
-      <router-link v-for="item in activities" :key="item.id" class="block act" :to="'/clubs/' + club.id + '/activities/' + item.id">
-        <h2>{{ item.title }}</h2>
-        <p class="rank-label">{{ item.startsAt.replace("T", " ") }}<template v-if="item.place"> · {{ item.place }}</template></p>
-        <p class="rank-label">{{ item.signupCount }} 人报名 · {{ item.checkCount }} 人打卡<template v-if="item.awarded"> · 已记分</template></p>
-        <p class="rank-label">{{ item.rule }}</p>
-      </router-link>
-      <p v-if="!activities.length" class="empty">还没有活动。每周团练的报名放在这里。</p>
       <div class="block">
         <h2>约跑</h2>
         <p class="rank-label">三人以上，当天打卡并上传合影才记积分。团练签到不加分。</p>
@@ -163,6 +238,20 @@
         </form>
       </div>
     </template>
+    <template v-if="club && tab === 'album'">
+      <router-link v-for="item in albums" :key="item.id" class="block album-card" :to="'/clubs/' + club.id + '/activities/' + item.id + '/album'">
+        <img v-if="item.coverId" :src="photo(item.coverId)" alt="" />
+        <div>
+          <h2>{{ item.title }}</h2>
+          <p class="rank-label">{{ item.dateLabel }}<template v-if="item.place"> · {{ item.place }}</template></p>
+          <p class="rank-label">{{ item.photoCount }} 张照片 · {{ item.videoCount }} 个视频</p>
+        </div>
+      </router-link>
+      <p v-if="!albums.length" class="empty">还没有活动照片。</p>
+    </template>
+    <div v-if="shareImage" class="viewer" @click="shareImage = ''">
+      <img :src="shareImage" alt="分享图片" />
+    </div>
     <template v-if="club && tab === 'people'">
       <div class="block">
         <h2>{{ feeShown ? feeShown.name : "会费" }}</h2>
@@ -276,10 +365,11 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import { api, feeQrSrc, upload } from "../api";
+import { api, feeQrSrc, mediaSrc, upload } from "../api";
 import { copyText } from "../copy";
+import { textCard } from "../share-card";
 const route = useRoute();
 const router = useRouter();
 const tab = ref("race");
@@ -293,10 +383,45 @@ const myPoints = ref(0);
 const actTitle = ref("");
 const actPlace = ref("");
 const actWhen = ref("");
+const actEnds = ref("");
+const actIssue = ref("");
+const actPlanned = ref("");
+const actGather = ref("");
+const actGatherAt = ref("");
+const actRoute = ref("");
+const actCancel = ref("");
 const actNote = ref("");
 const actPeople = ref(3);
 const actKm = ref(5);
 const actPoints = ref(1);
+const actGroups = ref([{ name: "", kind: "pace", pace: "", capacity: 0 }]);
+const actQuery = ref("");
+const actStatus = ref("");
+const actDay = ref("");
+const showMonth = ref(false);
+const monthCursor = ref(new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 7));
+const sharing = ref(false);
+const shareIds = ref([]);
+const shareImage = ref("");
+const albums = ref([]);
+const attendance = ref(null);
+const attendRange = ref("month");
+const statusFilters = [
+  { id: "open", label: "报名中" },
+  { id: "live", label: "进行中" },
+  { id: "ended", label: "已结束" },
+  { id: "cancelled", label: "已取消" }
+];
+const attendRanges = [
+  { id: "today", label: "今日" },
+  { id: "week", label: "本周" },
+  { id: "month", label: "本月" },
+  { id: "lastMonth", label: "上月" },
+  { id: "season", label: "本季" },
+  { id: "year", label: "今年" },
+  { id: "all", label: "入团之后" }
+];
+const weekNames = ["一", "二", "三", "四", "五", "六", "日"];
 const groupName = ref("");
 const groupPace = ref("");
 const groupCap = ref("0");
@@ -358,6 +483,119 @@ const raceGroups = ref([
 ]);
 const feeFile = ref(null);
 let raceTimer = 0;
+
+function beijingToday() {
+  return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10);
+}
+
+function addDays(iso, days) {
+  const [year, month, day] = iso.split("-").map(Number);
+  return new Date(Date.UTC(year, month - 1, day + days)).toISOString().slice(0, 10);
+}
+
+const dayStrip = computed(() => {
+  const today = beijingToday();
+  const names = ["日", "一", "二", "三", "四", "五", "六"];
+  return Array.from({ length: 7 }, (_, index) => {
+    const date = addDays(today, index);
+    return { date, label: Number(date.slice(8)) + " 周" + names[new Date(date + "T00:00:00Z").getUTCDay()] };
+  });
+});
+
+const shownActivities = computed(() => {
+  const query = actQuery.value.trim();
+  return activities.value.filter((item) => {
+    if (actStatus.value && item.status !== actStatus.value) return false;
+    if (actDay.value && item.date !== actDay.value) return false;
+    if (query && !item.title.includes(query)) return false;
+    return true;
+  });
+});
+
+const monthCells = computed(() => {
+  const [year, month] = monthCursor.value.split("-").map(Number);
+  const first = new Date(Date.UTC(year, month - 1, 1));
+  const pad = (first.getUTCDay() + 6) % 7;
+  const days = new Date(Date.UTC(year, month, 0)).getUTCDate();
+  const marks = new Set(activities.value.map((item) => item.date));
+  const cells = Array.from({ length: pad }, () => null);
+  for (let day = 1; day <= days; day += 1) {
+    const date = year + "-" + String(month).padStart(2, "0") + "-" + String(day).padStart(2, "0");
+    cells.push({ date, day, marked: marks.has(date) });
+  }
+  return cells;
+});
+
+function shiftMonth(delta) {
+  const [year, month] = monthCursor.value.split("-").map(Number);
+  monthCursor.value = new Date(Date.UTC(year, month - 1 + delta, 1)).toISOString().slice(0, 7);
+}
+
+function photo(id) {
+  return mediaSrc(id);
+}
+
+function selectVisible() {
+  shareIds.value = shownActivities.value.map((item) => item.id);
+}
+
+function selectRecent(count) {
+  shareIds.value = [...activities.value].sort((a, b) => (a.startsAt < b.startsAt ? 1 : -1)).slice(0, count).map((item) => item.id);
+}
+
+function selectDays(count) {
+  const today = beijingToday();
+  const from = addDays(today, 1 - count);
+  const to = addDays(today, count - 1);
+  shareIds.value = activities.value.filter((item) => item.date >= from && item.date <= to).map((item) => item.id);
+}
+
+async function sharePayload() {
+  if (!shareIds.value.length) throw new Error("先勾选活动");
+  return api("/clubs/" + route.params.id + "/activities/share", {
+    method: "POST",
+    body: JSON.stringify({ ids: shareIds.value })
+  });
+}
+
+async function copyShare() {
+  note.value = "";
+  message.value = "";
+  try {
+    const data = await sharePayload();
+    await copyText(data.text);
+    note.value = "已复制，可以贴到微信群";
+  } catch (err) {
+    message.value = err.message;
+  }
+}
+
+async function pictureShare() {
+  message.value = "";
+  try {
+    const data = await sharePayload();
+    shareImage.value = textCard(data.text.split("\n"));
+  } catch (err) {
+    message.value = err.message;
+  }
+}
+
+async function openAttend(range) {
+  attendRange.value = range;
+  try {
+    attendance.value = await api("/clubs/" + route.params.id + "/attendance?range=" + range);
+  } catch (err) {
+    message.value = err.message;
+  }
+}
+
+function exportAttend() {
+  if (!attendance.value) return;
+  const lines = [(club.value ? club.value.name : "跑团") + " 出勤 · " + attendance.value.label];
+  if (attendance.value.me) lines.push("我 " + attendance.value.me.placeLabel + " " + attendance.value.me.count + " 次");
+  for (const row of attendance.value.rows.filter((item) => item.count > 0)) lines.push(row.place + " " + row.nickname + " " + row.count + " 次");
+  shareImage.value = textCard(lines);
+}
 
 function tallyLine(item) {
   const tally = item.tally || {};
@@ -453,6 +691,9 @@ async function reload() {
   if (!tierDraft.value.length) tierDraft.value = (gathered.tiers || []).map((tier) => ({ minPeople: tier.minPeople, points: tier.points }));
   const races = await api("/clubs/" + route.params.id + "/internals");
   internals.value = races.races || [];
+  const album = await api("/clubs/" + route.params.id + "/albums");
+  albums.value = album.albums || [];
+  attendance.value = await api("/clubs/" + route.params.id + "/attendance?range=" + attendRange.value);
 }
 
 function searchRaces() {
@@ -647,10 +888,20 @@ async function createActivity() {
         title: actTitle.value,
         place: actPlace.value,
         startsAt: actWhen.value,
+        endsAt: actEnds.value,
+        issue: actIssue.value,
+        plannedKm: actPlanned.value,
+        gatherPlace: actGather.value,
+        gatherAt: actGatherAt.value,
+        route: actRoute.value,
+        cancelUntil: actCancel.value,
         note: actNote.value,
         minPeople: actPeople.value,
         minKm: actKm.value,
-        points: actPoints.value
+        points: actPoints.value,
+        groups: actGroups.value
+          .filter((group) => group.name.trim())
+          .map((group) => ({ name: group.name.trim(), kind: group.kind, pace: group.pace, capacity: Number(group.capacity) || 0 }))
       })
     });
     router.push("/clubs/" + route.params.id + "/activities/" + data.activity.id);
@@ -760,7 +1011,18 @@ onMounted(async () => {
 .check-form input { height: 36px; border: 1px solid #e6e8ec; border-radius: 8px; padding: 0 10px; background: #fff; }
 .undo { margin-top: 8px; height: 32px; padding: 0 12px; background: transparent; color: #8d949c; }
 .seg { display: flex; gap: 8px; margin: 0 16px; }
-.seg button { flex: 1; height: 34px; border-radius: 10px; background: #fff; color: #8e8e93; font-weight: 650; }
+.seg button { flex: 1; height: 34px; border-radius: 10px; background: #fff; color: #8e8e93; font-weight: 650; font-size: 13px; }
+.undo.on { color: #007aff; }
+.month-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-top: 8px; }
+.dow, .day { text-align: center; font-size: 12px; }
+.day { height: 32px; border-radius: 8px; background: transparent; }
+.day.mark { background: #e8f2ff; color: #007aff; }
+.day.on { background: #007aff; color: #fff; }
+.album-card { display: flex; gap: 12px; align-items: center; text-decoration: none; color: inherit; }
+.album-card img { width: 72px; height: 72px; object-fit: cover; border-radius: 12px; }
+.viewer { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.86); z-index: 40; display: grid; place-items: center; padding: 24px; }
+.viewer img { max-width: min(430px, 100%); max-height: 80vh; border-radius: 12px; }
+.act select, .pair select { width: 100%; height: 36px; margin-top: 4px; border: 0; border-radius: 8px; background: rgba(118, 118, 128, 0.12); }
 .seg button.on { background: #007aff; color: #fff; }
 .act { display: block; }
 .block input { width: 100%; height: 40px; margin-top: 8px; border: 0; border-radius: 10px; padding: 0 12px; background: rgba(118, 118, 128, 0.12); }

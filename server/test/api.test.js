@@ -711,7 +711,7 @@ test("club activity points need enough people and kilometres, then gifts spend t
   const activity = await request(app)
     .post("/marathon/api/clubs/" + clubId + "/activities")
     .set(auth)
-    .send({ title: "周日 LSD", place: "玉渊潭", startsAt: "2026-10-11 05:40", minKm: 5, minPeople: 3, points: 1 });
+    .send({ title: "周日 LSD", place: "玉渊潭", startsAt: "2099-10-11 05:40", minKm: 5, minPeople: 3, points: 1 });
   assert.equal(activity.status, 200);
   assert.match(activity.body.activity.rule, /满 3 人/);
   const aid = activity.body.activity.id;
@@ -1085,7 +1085,7 @@ test("admin sees nicknames, self-reported runs, and club gifts", async () => {
   const activity = await request(app)
     .post("/marathon/api/clubs/" + club.body.club.id + "/activities")
     .set("Authorization", "Bearer " + user)
-    .send({ title: "周日滨河", place: "滨河", startsAt: "2026-10-18T06:30", minKm: 5, minPeople: 1, points: 0 });
+    .send({ title: "周日滨河", place: "滨河", startsAt: "2099-10-18T06:30", minKm: 5, minPeople: 1, points: 0 });
   assert.equal(activity.status, 200);
   const aid = activity.body.activity.id;
   await request(app).post("/marathon/api/clubs/" + club.body.club.id + "/activities/" + aid + "/signup").set("Authorization", "Bearer " + user).send({});
@@ -2023,4 +2023,238 @@ test("an internal race ranks inside the club and does not write the career", asy
   assert.equal(back.body.myPoints, 0);
   const outsider = await session("队内外人");
   assert.equal((await request(app).get("/marathon/api/clubs/" + club.id + "/internals/" + raceId).set("Authorization", "Bearer " + outsider)).status, 403);
+});
+
+test("an activity keeps its own groups, and the album can hide a photo until it is approved", async () => {
+  const leader = await session("报名团长");
+  const mate = await session("报名甲");
+  const second = await session("报名乙");
+  const third = await session("报名丙");
+  const auth = { Authorization: "Bearer " + leader };
+  const mateAuth = { Authorization: "Bearer " + mate };
+  const secondAuth = { Authorization: "Bearer " + second };
+  const thirdAuth = { Authorization: "Bearer " + third };
+  const created = await createClub(auth, "报名跑团");
+  const clubId = created.body.club.id;
+  await request(app).post("/marathon/api/clubs/join").set(mateAuth).send({ code: created.body.club.code });
+  await request(app).post("/marathon/api/clubs/join").set(secondAuth).send({ code: created.body.club.code });
+  await request(app).post("/marathon/api/clubs/join").set(thirdAuth).send({ code: created.body.club.code });
+  const mateId = (await request(app).get("/marathon/api/me").set(mateAuth)).body.user.id;
+  assert.equal((await request(app).put("/marathon/api/clubs/" + clubId + "/members/" + mateId).set(auth).send({ role: "manager" })).status, 200);
+
+  assert.equal(
+    (await request(app).post("/marathon/api/clubs/" + clubId + "/activities").set(secondAuth).send({ title: "不行", startsAt: "2099-04-01 06:00" })).status,
+    403
+  );
+  const earlyEnd = await request(app)
+    .post("/marathon/api/clubs/" + clubId + "/activities")
+    .set(auth)
+    .send({ title: "早结束", startsAt: "2099-04-02 07:00", endsAt: "2099-04-02 06:00" });
+  assert.equal(earlyEnd.status, 400);
+  const lateCancel = await request(app)
+    .post("/marathon/api/clubs/" + clubId + "/activities")
+    .set(auth)
+    .send({ title: "晚取消", startsAt: "2099-04-02 07:00", cancelUntil: "2099-04-02 08:00" });
+  assert.equal(lateCancel.status, 400);
+  const duplicated = await request(app)
+    .post("/marathon/api/clubs/" + clubId + "/activities")
+    .set(auth)
+    .send({
+      title: "间歇跑",
+      startsAt: "2099-04-14 05:00",
+      groups: [
+        { name: "A1", kind: "pace", capacity: 1 },
+        { name: "A1", kind: "pace", capacity: 2 }
+      ]
+    });
+  assert.equal(duplicated.status, 400);
+
+  const made = await request(app)
+    .post("/marathon/api/clubs/" + clubId + "/activities")
+    .set(auth)
+    .send({
+      title: "间歇跑",
+      place: "水科院大厦",
+      gatherPlace: "木樨地地铁E口",
+      gatherAt: "04:50",
+      route: "1.5公里小环",
+      issue: "第 41 期",
+      plannedKm: 8,
+      startsAt: "2099-04-14 05:00",
+      endsAt: "2099-04-14 06:30",
+      cancelUntil: "2099-04-14 04:40",
+      note: "间歇。请按自己的情况来。",
+      minPeople: 2,
+      points: 1,
+      groups: [
+        { name: "A1", kind: "pace", pace: "马拉松 3 小时内", capacity: 1 },
+        { name: "志愿者", kind: "volunteer", capacity: 0 }
+      ]
+    });
+  assert.equal(made.status, 200);
+  assert.equal(made.body.activity.statusLabel, "报名中");
+  assert.equal(made.body.activity.issue, "第 41 期");
+  assert.equal(made.body.activity.plannedKm, 8);
+  assert.equal(made.body.activity.action.label, "报名");
+  const aid = made.body.activity.id;
+  const pace = made.body.activity.groups.find((group) => group.name === "A1").id;
+  const volunteers = made.body.activity.groups.find((group) => group.name === "志愿者").id;
+
+  const missed = await request(app).post("/marathon/api/clubs/" + clubId + "/activities/" + aid + "/signup").set(auth).send({});
+  assert.equal(missed.status, 400);
+  const signed = await request(app)
+    .post("/marathon/api/clubs/" + clubId + "/activities/" + aid + "/signup")
+    .set(auth)
+    .send({ groupId: pace, gender: "男", level: "进阶" });
+  assert.equal(signed.status, 200);
+  assert.equal(signed.body.activity.action.label, "取消报名");
+  const repeat = await request(app)
+    .post("/marathon/api/clubs/" + clubId + "/activities/" + aid + "/signup")
+    .set(auth)
+    .send({ groupId: volunteers, gender: "男", level: "进阶" });
+  assert.match(repeat.body.error, /要换组先取消/);
+  const full = await request(app)
+    .post("/marathon/api/clubs/" + clubId + "/activities/" + aid + "/signup")
+    .set(secondAuth)
+    .send({ groupId: pace, gender: "女", level: "萌新" });
+  assert.equal(full.status, 400);
+  assert.equal(
+    (await request(app).post("/marathon/api/clubs/" + clubId + "/activities/" + aid + "/signup").set(secondAuth).send({ groupId: volunteers, gender: "女" })).status,
+    200
+  );
+  assert.equal(
+    (await request(app).post("/marathon/api/clubs/" + clubId + "/activities/" + aid + "/signup").set(thirdAuth).send({ groupId: volunteers })).status,
+    200
+  );
+  assert.equal(
+    (await request(app).post("/marathon/api/clubs/" + clubId + "/activities/" + aid + "/signup").set(mateAuth).send({ groupId: volunteers })).status,
+    200
+  );
+
+  assert.equal((await request(app).post("/marathon/api/clubs/" + clubId + "/activities/" + aid + "/pacer").set(secondAuth).send({})).status, 200);
+  assert.equal((await request(app).post("/marathon/api/clubs/" + clubId + "/activities/" + aid + "/pacer").set(thirdAuth).send({})).status, 200);
+  const tooMany = await request(app).post("/marathon/api/clubs/" + clubId + "/activities/" + aid + "/pacer").set(mateAuth).send({});
+  assert.equal(tooMany.status, 400);
+  assert.match(tooMany.body.error, /2 名领跑/);
+  const marked = await request(app)
+    .post("/marathon/api/clubs/" + clubId + "/activities/" + aid + "/pacer")
+    .set(auth)
+    .send({ userId: mateId, on: true });
+  assert.equal(marked.status, 400);
+
+  await request(app).post("/marathon/api/clubs/" + clubId + "/activities/" + aid + "/check").set(auth).send({ km: 6 });
+  await request(app).post("/marathon/api/clubs/" + clubId + "/activities/" + aid + "/check").set(secondAuth).send({ km: 6 });
+  const detail = await request(app).get("/marathon/api/clubs/" + clubId + "/activities/" + aid).set(auth);
+  assert.equal(detail.body.activity.gatherPlace, "木樨地地铁E口");
+  assert.equal(detail.body.activity.men, 1);
+  assert.equal(detail.body.activity.women, 1);
+  assert.equal(detail.body.groups.find((group) => group.name === "A1").signed, 1);
+  assert.equal(detail.body.groups.find((group) => group.name === "志愿者").people.filter((person) => person.pacer).length, 2);
+  assert.equal(detail.body.signups.find((row) => row.nickname === "报名乙").together, 1);
+  assert.equal(detail.body.signups.find((row) => row.nickname === "报名丙").together, 0);
+  assert.equal(detail.body.levels[1].id, "入门");
+  assert.match(detail.body.activity.cancelHint, /前可取消/);
+
+  const shared = await request(app).post("/marathon/api/clubs/" + clubId + "/activities/share").set(secondAuth).send({ ids: [aid] });
+  assert.equal(shared.status, 200);
+  assert.match(shared.body.text, /报名跑团/);
+  assert.match(shared.body.text, /集合 木樨地地铁E口/);
+  assert.match(shared.body.text, /A1 剩 0/);
+  assert.match(shared.body.text, /志愿者 不限/);
+
+  const today = new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10);
+  getDb().prepare("UPDATE activities SET starts_at = ?, cancel_until = '' WHERE id = ?").run(today + "T05:00", aid);
+  const board = await request(app).get("/marathon/api/clubs/" + clubId + "/attendance?range=today").set(auth);
+  assert.equal(board.body.me.count, 1);
+  assert.equal(board.body.rows.find((row) => row.nickname === "报名甲").count, 0);
+  assert.equal(board.body.rows.find((row) => row.nickname === "报名丙").placeLabel, "未上榜");
+
+  const jpeg = Buffer.from([0xff, 0xd8, 0xff, 0xd9]);
+  const photo = await request(app)
+    .post("/marathon/api/clubs/" + clubId + "/activities/" + aid + "/media")
+    .set(thirdAuth)
+    .attach("file", jpeg, { filename: "run.jpg", contentType: "image/jpeg" });
+  assert.equal(photo.status, 200);
+  const albums = await request(app).get("/marathon/api/clubs/" + clubId + "/albums").set(secondAuth);
+  assert.equal(albums.body.albums[0].title, "间歇跑");
+  assert.equal(albums.body.albums[0].coverId, photo.body.media.id);
+  assert.equal(albums.body.albums[0].photoCount, 1);
+
+  assert.equal((await request(app).put("/marathon/api/clubs/" + clubId + "/activities/" + aid).set(auth).send({ review: true })).status, 200);
+  const waiting = await request(app)
+    .post("/marathon/api/clubs/" + clubId + "/activities/" + aid + "/media")
+    .set(secondAuth)
+    .attach("file", jpeg, { filename: "wait.jpg", contentType: "image/jpeg" });
+  assert.equal(waiting.body.media.pending, true);
+  const hidden = await request(app).get("/marathon/api/clubs/" + clubId + "/activities/" + aid + "/album").set(thirdAuth);
+  assert.equal(hidden.body.items.some((item) => item.id === waiting.body.media.id), false);
+  const own = await request(app).get("/marathon/api/clubs/" + clubId + "/activities/" + aid + "/album").set(secondAuth);
+  assert.equal(own.body.items.some((item) => item.pending), true);
+  const blockedCover = await request(app)
+    .post("/marathon/api/clubs/" + clubId + "/activities/" + aid + "/cover")
+    .set(auth)
+    .send({ mediaId: waiting.body.media.id });
+  assert.equal(blockedCover.status, 400);
+  assert.equal(
+    (await request(app).get("/marathon/api/media/" + waiting.body.media.id).set(thirdAuth)).status,
+    404
+  );
+  assert.equal(
+    (await request(app).post("/marathon/api/clubs/" + clubId + "/activities/" + aid + "/media/" + waiting.body.media.id + "/approve").set(mateAuth).send({})).status,
+    200
+  );
+  const shown = await request(app).get("/marathon/api/clubs/" + clubId + "/activities/" + aid + "/album").set(thirdAuth);
+  assert.equal(shown.body.items.some((item) => item.id === waiting.body.media.id), true);
+  const cover = await request(app)
+    .post("/marathon/api/clubs/" + clubId + "/activities/" + aid + "/cover")
+    .set(mateAuth)
+    .send({ mediaId: waiting.body.media.id });
+  assert.equal(cover.body.coverId, waiting.body.media.id);
+  assert.equal(
+    (await request(app).delete("/marathon/api/clubs/" + clubId + "/activities/" + aid + "/media/" + waiting.body.media.id).set(mateAuth)).status,
+    200
+  );
+
+  const stopped = await request(app).post("/marathon/api/clubs/" + clubId + "/activities/" + aid + "/cancel").set(auth).send({});
+  assert.equal(stopped.body.activity.statusLabel, "已取消");
+  const latecomer = await session("报名后来");
+  await request(app).post("/marathon/api/clubs/join").set("Authorization", "Bearer " + latecomer).send({ code: created.body.club.code });
+  const afterCancel = await request(app)
+    .post("/marathon/api/clubs/" + clubId + "/activities/" + aid + "/signup")
+    .set("Authorization", "Bearer " + latecomer)
+    .send({ groupId: volunteers });
+  assert.match(afterCancel.body.error, /已经取消/);
+  const still = await request(app)
+    .post("/marathon/api/clubs/" + clubId + "/activities/" + aid + "/media")
+    .set(secondAuth)
+    .attach("file", jpeg, { filename: "after.jpg", contentType: "image/jpeg" });
+  assert.equal(still.status, 200);
+
+  getDb().prepare("UPDATE activities SET cancel_until = ? WHERE id = ?").run("2020-01-01T00:00", aid);
+  const late = await request(app).delete("/marathon/api/clubs/" + clubId + "/activities/" + aid + "/signup").set(thirdAuth);
+  assert.equal(late.status, 400);
+  assert.match(late.body.error, /取消时间/);
+
+  const fresh = await request(app)
+    .post("/marathon/api/clubs/" + clubId + "/activities")
+    .set(auth)
+    .send({ title: "再来一场", startsAt: "2099-05-01 06:00", endsAt: "2099-05-01 07:00" });
+  const ended = await request(app).post("/marathon/api/clubs/" + clubId + "/activities/" + fresh.body.activity.id + "/end").set(auth).send({});
+  assert.equal(ended.body.activity.statusLabel, "已结束");
+  const closed = await request(app)
+    .post("/marathon/api/clubs/" + clubId + "/activities/" + fresh.body.activity.id + "/signup")
+    .set(secondAuth)
+    .send({});
+  assert.match(closed.body.error, /已经结束/);
+  const insert = getDb().prepare("INSERT INTO activity_media (activity_id, user_id, kind, filename, status, created_at) VALUES (?, ?, 'photo', '', 'shown', ?)");
+  for (let i = 0; i < 400; i += 1) insert.run(fresh.body.activity.id, mateId, new Date().toISOString());
+  const overflow = await request(app)
+    .post("/marathon/api/clubs/" + clubId + "/activities/" + fresh.body.activity.id + "/media")
+    .set(auth)
+    .attach("file", jpeg, { filename: "full.jpg", contentType: "image/jpeg" });
+  assert.equal(overflow.status, 400);
+  assert.match(overflow.body.error, /还剩 0 张/);
+
+  const outsider = await session("报名外人");
+  assert.equal((await request(app).get("/marathon/api/clubs/" + clubId + "/albums").set("Authorization", "Bearer " + outsider)).status, 403);
 });

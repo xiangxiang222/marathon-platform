@@ -1,0 +1,20 @@
+<view class="pad" wx:if="{{activity}}">
+  <view class="card">
+    <view class="title">{{activity.title}}</view>
+    <view class="src">{{viewerName}}</view>
+    <view class="src">昵称用当前登录的，不在这里改。</view>
+    <view class="src">性别</view>
+    <button class="ghost" data-id="男" bindtap="pickGender">{{gender === '男' ? '男 · 已选' : '男'}}</button>
+    <button class="ghost" data-id="女" bindtap="pickGender">{{gender === '女' ? '女 · 已选' : '女'}}</button>
+    <button class="ghost" data-id="" bindtap="pickGender">{{gender === '' ? '不填 · 已选' : '不填'}}</button>
+    <view class="src">级别，可不选</view>
+    <view wx:for="{{levels}}" wx:key="id" class="src" data-id="{{item.id}}" bindtap="pickLevel">{{level === item.id ? '已选 ' : ''}}{{item.id}} {{item.text}}</view>
+    <view class="src">组别</view>
+    <button wx:for="{{groups}}" wx:key="id" class="ghost" data-id="{{item.id}}" data-full="{{item.full ? 1 : 0}}" bindtap="pickGroup">{{groupId === item.id ? '已选 ' : ''}}{{item.name}} {{item.signed}}{{item.capacity ? '/' + item.capacity : ' 不限'}}{{item.full ? ' 已满' : ''}}</button>
+    <view wx:if="{{activity.cancelHint}}" class="src">{{activity.cancelHint}}。没有退款。</view>
+    <button class="btn" bindtap="submit">提交报名</button>
+    <view class="src">请按自己的情况选择组别。</view>
+  </view>
+  <view wx:if="{{message}}" class="err">{{message}}</view>
+</view>
+<view wx:else class="pad">{{message || '正在打开报名'}}</view>

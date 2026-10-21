@@ -4,16 +4,18 @@ Page({
   data: {
     activity: null,
     groups: [],
-    signups: [],
     checks: [],
-    media: [],
-    groupId: 0,
+    album: { photoCount: 0, videoCount: 0 },
+    staff: false,
     km: "",
-    message: ""
+    message: "",
+    clubId: "",
+    activityId: ""
   },
   onLoad(query) {
     this.clubId = query.club;
     this.activityId = query.id;
+    this.setData({ clubId: query.club, activityId: query.id });
   },
   onShow() {
     this.load();
@@ -21,38 +23,29 @@ Page({
   load() {
     request("/clubs/" + this.clubId + "/activities/" + this.activityId)
       .then((data) => {
-        const token = getApp().globalData.token || "";
-        const base = getApp().globalData.baseUrl;
-        const media = (data.media || []).map((item) => ({
-          ...item,
-          src: base + "/marathon/api/media/" + item.id + "?t=" + encodeURIComponent(token)
-        }));
         this.setData({
           activity: data.activity,
           groups: data.groups || [],
-          signups: data.signups || [],
           checks: data.checks || [],
-          media,
-          groupId: (data.activity.mine && data.activity.mine.groupId) || (data.groups[0] && data.groups[0].id) || 0,
+          album: data.album || { photoCount: 0, videoCount: 0 },
+          staff: !!data.staff,
           km: data.activity.mine && data.activity.mine.km != null ? String(data.activity.mine.km) : this.data.km,
           message: ""
         });
       })
       .catch((err) => this.setData({ message: err.message }));
   },
-  pickGroup(e) {
-    this.setData({ groupId: Number(e.currentTarget.dataset.id) });
-  },
   onKm(e) {
     this.setData({ km: e.detail.value });
   },
-  signup() {
-    request("/clubs/" + this.clubId + "/activities/" + this.activityId + "/signup", "POST", { groupId: this.data.groupId })
+  cancel() {
+    request("/clubs/" + this.clubId + "/activities/" + this.activityId + "/signup", "DELETE")
       .then(() => this.load())
       .catch((err) => this.setData({ message: err.message }));
   },
-  cancel() {
-    request("/clubs/" + this.clubId + "/activities/" + this.activityId + "/signup", "DELETE")
+  pacer() {
+    const on = !(this.data.activity.mine && this.data.activity.mine.pacer);
+    request("/clubs/" + this.clubId + "/activities/" + this.activityId + "/pacer", "POST", { on })
       .then(() => this.load())
       .catch((err) => this.setData({ message: err.message }));
   },
@@ -64,26 +57,14 @@ Page({
       })
       .catch((err) => this.setData({ message: err.message }));
   },
-  choose() {
-    wx.chooseMedia({
-      count: 1,
-      mediaType: ["image", "video"],
-      success: (res) => {
-        const file = res.tempFiles && res.tempFiles[0];
-        if (!file) return;
-        const app = getApp();
-        wx.uploadFile({
-          url: app.globalData.baseUrl + "/marathon/api/clubs/" + this.clubId + "/activities/" + this.activityId + "/media",
-          filePath: file.tempFilePath,
-          name: "file",
-          header: { Authorization: app.globalData.token ? "Bearer " + app.globalData.token : "" },
-          success: (upload) => {
-            if (upload.statusCode >= 200 && upload.statusCode < 300) this.load();
-            else this.setData({ message: "没有传上去" });
-          },
-          fail: () => this.setData({ message: "没有传上去" })
-        });
-      }
-    });
+  endActivity() {
+    request("/clubs/" + this.clubId + "/activities/" + this.activityId + "/end", "POST", {})
+      .then(() => this.load())
+      .catch((err) => this.setData({ message: err.message }));
+  },
+  cancelActivity() {
+    request("/clubs/" + this.clubId + "/activities/" + this.activityId + "/cancel", "POST", {})
+      .then(() => this.load())
+      .catch((err) => this.setData({ message: err.message }));
   }
 });

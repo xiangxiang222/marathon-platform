@@ -6,6 +6,8 @@ import Exercise from "./views/Exercise.vue";
 import Look from "./views/Look.vue";
 import Club from "./views/Club.vue";
 import Activity from "./views/Activity.vue";
+import Signup from "./views/Signup.vue";
+import Album from "./views/Album.vue";
 import Call from "./views/Call.vue";
 import Meetup from "./views/Meetup.vue";
 import Internal from "./views/Internal.vue";
@@ -24,6 +26,8 @@ export default createRouter({
     { path: "/clubs", component: Sport },
     { path: "/clubs/:id", component: Club, meta: { hideTab: true } },
     { path: "/clubs/:id/activities/:aid", component: Activity, meta: { hideTab: true } },
+    { path: "/clubs/:id/activities/:aid/signup", component: Signup, meta: { hideTab: true } },
+    { path: "/clubs/:id/activities/:aid/album", component: Album, meta: { hideTab: true } },
     { path: "/clubs/:id/calls/:cid", component: Call, meta: { hideTab: true } },
     { path: "/clubs/:id/meetups/:mid", component: Meetup, meta: { hideTab: true } },
     { path: "/clubs/:id/internals/:rid", component: Internal, meta: { hideTab: true } },

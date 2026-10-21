@@ -482,6 +482,36 @@ function open() {
   if (callCols.length && !callCols.some((col) => col.name === "debut")) {
     handle.exec("ALTER TABLE result_call_rows ADD COLUMN debut INTEGER NOT NULL DEFAULT 1");
   }
+  for (const [table, name, type] of [
+    ["activities", "ends_at", "TEXT NOT NULL DEFAULT ''"],
+    ["activities", "issue", "TEXT NOT NULL DEFAULT ''"],
+    ["activities", "planned_km", "REAL"],
+    ["activities", "gather_place", "TEXT NOT NULL DEFAULT ''"],
+    ["activities", "route", "TEXT NOT NULL DEFAULT ''"],
+    ["activities", "gather_at", "TEXT NOT NULL DEFAULT ''"],
+    ["activities", "cancel_until", "TEXT NOT NULL DEFAULT ''"],
+    ["activities", "cancelled_at", "TEXT NOT NULL DEFAULT ''"],
+    ["activities", "review", "INTEGER NOT NULL DEFAULT 0"],
+    ["activities", "cover_id", "INTEGER NOT NULL DEFAULT 0"],
+    ["activity_signups", "gender", "TEXT NOT NULL DEFAULT ''"],
+    ["activity_signups", "level", "TEXT NOT NULL DEFAULT ''"],
+    ["activity_signups", "pacer", "INTEGER NOT NULL DEFAULT 0"],
+    ["activity_media", "status", "TEXT NOT NULL DEFAULT 'shown'"]
+  ]) {
+    const cols = handle.prepare(`PRAGMA table_info(${table})`).all();
+    if (cols.length && !cols.some((col) => col.name === name)) handle.exec(`ALTER TABLE ${table} ADD COLUMN ${name} ${type}`);
+  }
+  handle.exec(`
+    CREATE TABLE IF NOT EXISTS activity_groups (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      activity_id INTEGER NOT NULL,
+      name TEXT NOT NULL,
+      kind TEXT NOT NULL DEFAULT 'pace',
+      pace TEXT NOT NULL DEFAULT '',
+      capacity INTEGER NOT NULL DEFAULT 0,
+      sort INTEGER NOT NULL DEFAULT 0
+    );
+  `);
   const upsert = handle.prepare(
     `INSERT INTO races (
        id, name, city, province, distances, race_date, deadline, place,
