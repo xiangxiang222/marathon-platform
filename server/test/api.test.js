@@ -2823,3 +2823,110 @@ test("the prize radar compares a sourced cutoff and does not invent a probabilit
   }
   assert.equal((await request(app).delete("/marathon/api/admin/races/closed-sample/prizes/" + past.body.id).set(admin)).status, 200);
 });
+
+test("club posts stay inside the club and do not write points", async () => {
+  const pointsBefore = getDb().prepare("SELECT COUNT(*) AS n FROM point_entries").get().n;
+  const leader = await session("动态甲");
+  const mate = await session("动态乙");
+  const outsider = await session("动态丙");
+  const owner = { Authorization: "Bearer " + leader };
+  const member = { Authorization: "Bearer " + mate };
+  const other = { Authorization: "Bearer " + outsider };
+  const created = await createClub(leader, "动态团");
+  const clubId = created.body.club.id;
+  const joined = await request(app).post("/marathon/api/clubs/join").set(member).send({ code: created.body.club.code });
+  assert.equal(joined.status, 200);
+
+  const locked = await request(app).get("/marathon/api/clubs/" + clubId + "/posts").set(other);
+  assert.equal(locked.status, 403);
+  assert.match(locked.body.error, /不在这个跑团里/);
+  const empty = await request(app).post("/marathon/api/clubs/" + clubId + "/posts").set(member).send({ body: "  " });
+  assert.equal(empty.status, 400);
+  assert.match(empty.body.error, /写 1 到 200 个字/);
+
+  const posted = await request(app).post("/marathon/api/clubs/" + clubId + "/posts").set(member).send({ body: "周日晨跑见" });
+  assert.equal(posted.status, 200);
+  const postId = posted.body.id;
+  assert.equal(posted.body.posts[0].body, "周日晨跑见");
+  assert.equal(posted.body.posts[0].canDelete, true);
+  const commented = await request(app)
+    .post("/marathon/api/clubs/" + clubId + "/posts/" + postId + "/comments")
+    .set(owner)
+    .send({ body: "几点集合" });
+  assert.equal(commented.status, 200);
+  assert.equal(commented.body.posts[0].comments[0].body, "几点集合");
+  const liked = await request(app).post("/marathon/api/clubs/" + clubId + "/posts/" + postId + "/like").set(owner);
+  assert.equal(liked.status, 200);
+  assert.equal(liked.body.posts[0].likes, 1);
+  assert.equal(liked.body.posts[0].liked, true);
+  const again = await request(app).post("/marathon/api/clubs/" + clubId + "/posts/" + postId + "/like").set(owner);
+  assert.equal(again.status, 400);
+  assert.match(again.body.error, /已经赞过/);
+  const ownerPost = await request(app).post("/marathon/api/clubs/" + clubId + "/posts").set(owner).send({ body: "团长一句" });
+  const ownOnly = await request(app).delete("/marathon/api/clubs/" + clubId + "/posts/" + ownerPost.body.id).set(member);
+  assert.equal(ownOnly.status, 403);
+  assert.match(ownOnly.body.error, /只能删自己的/);
+  const blocked = await request(app).delete("/marathon/api/clubs/" + clubId + "/posts/" + postId).set(owner);
+  assert.equal(blocked.status, 200);
+  const matePost = await request(app).post("/marathon/api/clubs/" + clubId + "/posts").set(member).send({ body: "再约一次" });
+  const denied = await request(app).delete("/marathon/api/clubs/" + clubId + "/posts/" + matePost.body.id).set(other);
+  assert.equal(denied.status, 403);
+  const removed = await request(app).delete("/marathon/api/clubs/" + clubId + "/posts/" + matePost.body.id).set(member);
+  assert.equal(removed.status, 200);
+  assert.equal(removed.body.posts.length, 1);
+  assert.equal(removed.body.posts[0].body, "团长一句");
+  assert.equal(getDb().prepare("SELECT COUNT(*) AS n FROM point_entries").get().n, pointsBefore);
+});
+
+test("a sourced draw rate is shown as a calculated percent and stays off the poster", async () => {
+  process.env.ADMIN_TOKEN = process.env.ADMIN_TOKEN || "test-admin";
+  const admin = { Authorization: "Bearer " + process.env.ADMIN_TOKEN };
+  const missing = await request(app).post("/marathon/api/admin/races/bishan/draws").set(admin).send({
+    label: "2025",
+    applicants: 1000,
+    quota: 72,
+    source: ""
+  });
+  assert.equal(missing.status, 400);
+  assert.match(missing.body.error, /来源写成/);
+  const over = await request(app).post("/marathon/api/admin/races/bishan/draws").set(admin).send({
+    label: "2025",
+    applicants: 1000,
+    quota: 1001,
+    source: "验收公告"
+  });
+  assert.equal(over.status, 400);
+  assert.match(over.body.error, /名额不能多于报名人数/);
+  const created = await request(app).post("/marathon/api/admin/races/bishan/draws").set(admin).send({
+    label: "2025",
+    applicants: 1000,
+    quota: 72,
+    source: "验收公告"
+  });
+  assert.equal(created.status, 200);
+  assert.equal(created.body.rates[0].rateText, "7.2%");
+  const duplicate = await request(app).post("/marathon/api/admin/races/bishan/draws").set(admin).send({
+    label: "2025",
+    applicants: 800,
+    quota: 40,
+    source: "另一份公告"
+  });
+  assert.equal(duplicate.status, 400);
+  assert.match(duplicate.body.error, /这一届已经记过/);
+
+  const token = await session("中签甲");
+  const auth = { Authorization: "Bearer " + token };
+  const marked = await request(app).put("/marathon/api/me/races/bishan").set(auth).send({ status: "中签" });
+  assert.equal(marked.status, 200);
+  const detail = await request(app).get("/marathon/api/races/bishan").set(auth);
+  assert.equal(detail.status, 200);
+  assert.equal(detail.body.drawRates[0].rateText, "7.2%");
+  assert.equal(detail.body.drawRates[0].source, "验收公告");
+  assert.match(detail.body.drawText, /中签了/);
+  assert.equal(/中签率|官方|保证/.test(detail.body.drawText), false);
+  const plain = await request(app).get("/marathon/api/races/yuxi");
+  assert.equal(plain.body.drawRates.length, 0);
+  assert.equal((await request(app).delete("/marathon/api/admin/races/bishan/draws/" + created.body.id).set(admin)).status, 200);
+  const gone = await request(app).get("/marathon/api/races/bishan");
+  assert.equal(gone.body.drawRates.length, 0);
+});

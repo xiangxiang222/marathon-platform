@@ -1,0 +1,22 @@
+<view class="pad">
+  <view class="card">
+    <view class="title">动态</view>
+    <view class="src">{{note}}</view>
+    <input placeholder="写给本团的一句" maxlength="200" value="{{body}}" bindinput="onBody" />
+    <button class="btn" bindtap="publish">发出</button>
+    <view wx:if="{{message}}" class="err">{{message}}</view>
+  </view>
+  <view wx:if="{{!posts.length}}" class="card"><view class="src">还没有动态。</view></view>
+  <view class="card" wx:for="{{posts}}" wx:key="id">
+    <view class="src">{{item.nickname}} {{item.at}}</view>
+    <view>{{item.body}}</view>
+    <button class="ghost" data-id="{{item.id}}" data-liked="{{item.liked}}" bindtap="like">{{item.liked ? '取消赞' : '赞'}} {{item.likes}}</button>
+    <button wx:if="{{item.canDelete}}" class="ghost" data-id="{{item.id}}" bindtap="removePost">删除</button>
+    <view wx:for="{{item.comments}}" wx:for-item="comment" wx:key="id" class="src">
+      {{comment.nickname}}：{{comment.body}}
+      <text wx:if="{{comment.canDelete}}" data-pid="{{item.id}}" data-cid="{{comment.id}}" bindtap="removeComment"> 删除</text>
+    </view>
+    <input placeholder="评论" maxlength="80" data-id="{{item.id}}" value="{{drafts[item.id]}}" bindinput="onDraft" />
+    <button class="ghost" data-id="{{item.id}}" bindtap="comment">评论</button>
+  </view>
+</view>

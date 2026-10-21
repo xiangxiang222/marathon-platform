@@ -48,6 +48,9 @@ function deleteUser(db, id) {
     db.prepare("DELETE FROM user_mileage WHERE user_id = ?").run(id);
     db.prepare("DELETE FROM supply_claims WHERE user_id = ?").run(id);
     db.prepare("DELETE FROM radar_profiles WHERE user_id = ?").run(id);
+    db.prepare("DELETE FROM club_likes WHERE user_id = ? OR post_id IN (SELECT id FROM club_posts WHERE user_id = ?)").run(id, id);
+    db.prepare("DELETE FROM club_comments WHERE user_id = ? OR post_id IN (SELECT id FROM club_posts WHERE user_id = ?)").run(id, id);
+    db.prepare("DELETE FROM club_posts WHERE user_id = ?").run(id);
     db.prepare("DELETE FROM users WHERE id = ?").run(id);
   })();
   for (const file of files) {
@@ -262,6 +265,13 @@ function deleteClub(db, id) {
     db.prepare("DELETE FROM supply_claims WHERE club_id = ?").run(id);
     db.prepare("DELETE FROM split_notes WHERE club_id = ?").run(id);
     db.prepare("DELETE FROM league_joins WHERE club_id = ?").run(id);
+    const postIds = db.prepare("SELECT id FROM club_posts WHERE club_id = ?").all(id).map((row) => row.id);
+    if (postIds.length) {
+      const marks = postIds.map(() => "?").join(",");
+      db.prepare(`DELETE FROM club_likes WHERE post_id IN (${marks})`).run(...postIds);
+      db.prepare(`DELETE FROM club_comments WHERE post_id IN (${marks})`).run(...postIds);
+    }
+    db.prepare("DELETE FROM club_posts WHERE club_id = ?").run(id);
     db.prepare("DELETE FROM gifts WHERE club_id = ?").run(id);
     db.prepare("DELETE FROM club_members WHERE club_id = ?").run(id);
     db.prepare("DELETE FROM club_requests WHERE club_id = ?").run(id);

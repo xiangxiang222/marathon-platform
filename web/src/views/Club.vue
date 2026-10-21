@@ -14,6 +14,7 @@
     </div>
     <div v-if="club" class="seg">
       <button type="button" :class="{ on: tab === 'race' }" @click="tab = 'race'">比赛</button>
+      <button type="button" :class="{ on: tab === 'feed' }" @click="tab = 'feed'">动态</button>
       <button type="button" :class="{ on: tab === 'act' }" @click="tab = 'act'">活动</button>
       <button type="button" :class="{ on: tab === 'album' }" @click="tab = 'album'">相册</button>
       <button type="button" :class="{ on: tab === 'km' }" @click="tab = 'km'">跑量</button>
@@ -251,6 +252,34 @@
       </router-link>
       <p v-if="!albums.length" class="empty">还没有活动照片。</p>
     </template>
+    <template v-if="club && tab === 'feed'">
+      <div class="block">
+        <h2>动态</h2>
+        <p class="rank-label">只有本团能看。点赞和评论不加积分。</p>
+        <form class="check-form" @submit.prevent="publishPost">
+          <input v-model="postBody" maxlength="200" placeholder="写给本团的一句" />
+          <button class="primary" type="submit">发出</button>
+        </form>
+        <p v-if="postMessage" class="err">{{ postMessage }}</p>
+        <p v-if="!posts.length" class="empty">还没有动态。</p>
+        <article v-for="item in posts" :key="item.id">
+          <p><b>{{ item.nickname }}</b> <span class="src">{{ item.at }}</span></p>
+          <p>{{ item.body }}</p>
+          <p>
+            <button class="undo" type="button" @click="toggleLike(item)">{{ item.liked ? "取消赞" : "赞" }} {{ item.likes }}</button>
+            <button v-if="item.canDelete" class="undo" type="button" @click="removePost(item)">删除</button>
+          </p>
+          <p v-for="comment in item.comments" :key="comment.id">
+            {{ comment.nickname }}：{{ comment.body }}
+            <button v-if="comment.canDelete" class="undo" type="button" @click="removeComment(item, comment)">删除</button>
+          </p>
+          <form class="check-form" @submit.prevent="publishComment(item)">
+            <input v-model="commentDrafts[item.id]" maxlength="80" placeholder="评论" />
+            <button class="primary" type="submit">评论</button>
+          </form>
+        </article>
+      </div>
+    </template>
     <MileageBoard v-if="club && tab === 'km'" :club-id="club.id" />
     <PartnerBoard v-if="club && tab === 'partner'" :club-id="club.id" />
     <div v-if="shareImage" class="viewer" @click="shareImage = ''">
@@ -369,7 +398,7 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref } from "vue";
+import { computed, onMounted, reactive, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { api, feeQrSrc, mediaSrc, upload } from "../api";
 import { copyText } from "../copy";
@@ -379,6 +408,10 @@ import PartnerBoard from "../components/PartnerBoard.vue";
 const route = useRoute();
 const router = useRouter();
 const tab = ref("race");
+const posts = ref([]);
+const postBody = ref("");
+const postMessage = ref("");
+const commentDrafts = reactive({});
 const club = ref(null);
 const members = ref([]);
 const groups = ref([]);
@@ -680,6 +713,66 @@ function fillFee(period) {
   feeBlock.value = period.blockSignup;
 }
 
+async function publishPost() {
+  postMessage.value = "";
+  try {
+    const data = await api("/clubs/" + route.params.id + "/posts", {
+      method: "POST",
+      body: JSON.stringify({ body: postBody.value })
+    });
+    postBody.value = "";
+    posts.value = data.posts || [];
+  } catch (err) {
+    postMessage.value = err.message;
+  }
+}
+
+async function publishComment(item) {
+  postMessage.value = "";
+  try {
+    const data = await api("/clubs/" + route.params.id + "/posts/" + item.id + "/comments", {
+      method: "POST",
+      body: JSON.stringify({ body: commentDrafts[item.id] || "" })
+    });
+    commentDrafts[item.id] = "";
+    posts.value = data.posts || [];
+  } catch (err) {
+    postMessage.value = err.message;
+  }
+}
+
+async function toggleLike(item) {
+  postMessage.value = "";
+  try {
+    const data = await api("/clubs/" + route.params.id + "/posts/" + item.id + "/like", {
+      method: item.liked ? "DELETE" : "POST"
+    });
+    posts.value = data.posts || [];
+  } catch (err) {
+    postMessage.value = err.message;
+  }
+}
+
+async function removePost(item) {
+  postMessage.value = "";
+  try {
+    const data = await api("/clubs/" + route.params.id + "/posts/" + item.id, { method: "DELETE" });
+    posts.value = data.posts || [];
+  } catch (err) {
+    postMessage.value = err.message;
+  }
+}
+
+async function removeComment(item, comment) {
+  postMessage.value = "";
+  try {
+    const data = await api("/clubs/" + route.params.id + "/posts/" + item.id + "/comments/" + comment.id, { method: "DELETE" });
+    posts.value = data.posts || [];
+  } catch (err) {
+    postMessage.value = err.message;
+  }
+}
+
 async function reload() {
   applyClub(await api("/clubs/" + route.params.id));
   const fees = await api("/clubs/" + route.params.id + "/fees");
@@ -699,6 +792,8 @@ async function reload() {
   internals.value = races.races || [];
   const album = await api("/clubs/" + route.params.id + "/albums");
   albums.value = album.albums || [];
+  const feed = await api("/clubs/" + route.params.id + "/posts");
+  posts.value = feed.posts || [];
   attendance.value = await api("/clubs/" + route.params.id + "/attendance?range=" + attendRange.value);
 }
 
@@ -1016,8 +1111,8 @@ onMounted(async () => {
 .check-form { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
 .check-form input { height: 36px; border: 1px solid #e6e8ec; border-radius: 8px; padding: 0 10px; background: #fff; }
 .undo { margin-top: 8px; height: 32px; padding: 0 12px; background: transparent; color: #8d949c; }
-.seg { display: flex; gap: 4px; margin: 0 16px; }
-.seg button { flex: 1; height: 34px; border-radius: 10px; background: #fff; color: #8e8e93; font-weight: 650; font-size: 12px; padding: 0; white-space: nowrap; }
+.seg { display: flex; flex-wrap: wrap; gap: 4px; margin: 0 16px; }
+.seg button { flex: 1 1 22%; height: 34px; border-radius: 10px; background: #fff; color: #8e8e93; font-weight: 650; font-size: 12px; padding: 0; white-space: nowrap; }
 .undo.on { color: #007aff; }
 .month-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-top: 8px; }
 .dow, .day { text-align: center; font-size: 12px; }

@@ -642,6 +642,35 @@ function open() {
       cutoff_source TEXT NOT NULL DEFAULT '',
       note TEXT NOT NULL DEFAULT ''
     );
+    CREATE TABLE IF NOT EXISTS club_posts (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      club_id INTEGER NOT NULL,
+      user_id INTEGER NOT NULL,
+      body TEXT NOT NULL,
+      created_at TEXT NOT NULL
+    );
+    CREATE TABLE IF NOT EXISTS club_comments (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      post_id INTEGER NOT NULL,
+      user_id INTEGER NOT NULL,
+      body TEXT NOT NULL,
+      created_at TEXT NOT NULL
+    );
+    CREATE TABLE IF NOT EXISTS club_likes (
+      post_id INTEGER NOT NULL,
+      user_id INTEGER NOT NULL,
+      created_at TEXT NOT NULL,
+      PRIMARY KEY (post_id, user_id)
+    );
+    CREATE TABLE IF NOT EXISTS draw_rates (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      race_id TEXT NOT NULL,
+      label TEXT NOT NULL,
+      applicants INTEGER NOT NULL,
+      quota INTEGER NOT NULL,
+      source TEXT NOT NULL
+    );
+    CREATE UNIQUE INDEX IF NOT EXISTS draw_rates_race_label ON draw_rates(race_id, label);
     CREATE TABLE IF NOT EXISTS split_notes (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       club_id INTEGER NOT NULL,

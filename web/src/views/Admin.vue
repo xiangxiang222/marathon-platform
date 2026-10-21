@@ -225,6 +225,23 @@
                 <label class="field"><span>号码查询</span><input v-model="book.bibUrl" inputmode="url" placeholder="https://" /></label>
                 <label class="field span"><span>成绩与证书</span><input v-model="book.resultUrl" inputmode="url" placeholder="https://" /></label>
               </div>
+              <h4 class="group-title">历年中签</h4>
+              <p class="note">按公布的报名人数和名额填写，并写上来源。页面用这两个数算比例。没有录入就不显示。</p>
+              <p v-if="!book.id" class="note">先保存这场比赛，再记历年中签。</p>
+              <template v-else>
+                <div v-for="item in draws" :key="item.id" class="line">
+                  <b>{{ item.label }} · 报名 {{ item.applicants }} · 名额 {{ item.quota }} · {{ item.rateText }}</b>
+                  <span>{{ item.source }}</span>
+                  <button class="undo" type="button" @click="removeDraw(item)">删除</button>
+                </div>
+                <div class="check-form">
+                  <input v-model="drawLabel" maxlength="20" placeholder="届次，例如 2025" />
+                  <input v-model.number="drawApplicants" type="number" min="1" placeholder="报名人数" />
+                  <input v-model.number="drawQuota" type="number" min="1" placeholder="名额" />
+                  <input v-model="drawSource" maxlength="80" placeholder="来源" />
+                  <button class="primary" type="button" @click="createDraw">记下这一届</button>
+                </div>
+              </template>
             </section>
             <section v-show="editTab === 'site'" class="section">
               <h3>官网</h3>
@@ -799,6 +816,11 @@ const splitKind = ref("commission");
 const splitYuan = ref("");
 const splitNote = ref("");
 const prizes = ref([]);
+const draws = ref([]);
+const drawLabel = ref("");
+const drawApplicants = ref("");
+const drawQuota = ref("");
+const drawSource = ref("");
 const prizeDistance = ref("full");
 const prizeKind = ref("age");
 const prizeGender = ref("");
@@ -1871,6 +1893,7 @@ function startDraft() {
   editTab.value = "base";
   book.value = emptyBook();
   prizes.value = [];
+  draws.value = [];
   cityMode.value = "list";
   nodeOrigin.value = nodesKey(book.value);
 }
@@ -1879,6 +1902,51 @@ function closeEditor() {
   clearQueues();
   book.value = null;
   prizes.value = [];
+  draws.value = [];
+}
+
+async function loadDraws(id) {
+  if (!id) {
+    draws.value = [];
+    return;
+  }
+  const data = await admin("/admin/races/" + id + "/draws");
+  draws.value = data.rates || [];
+}
+
+async function createDraw() {
+  if (!book.value || !book.value.id) return;
+  message.value = "";
+  saved.value = false;
+  try {
+    await admin("/admin/races/" + book.value.id + "/draws", {
+      method: "POST",
+      body: JSON.stringify({
+        label: drawLabel.value,
+        applicants: drawApplicants.value,
+        quota: drawQuota.value,
+        source: drawSource.value
+      })
+    });
+    drawLabel.value = "";
+    drawApplicants.value = "";
+    drawQuota.value = "";
+    drawSource.value = "";
+    saved.value = true;
+    await loadDraws(book.value.id);
+  } catch (err) {
+    fail(err);
+  }
+}
+
+async function removeDraw(item) {
+  message.value = "";
+  try {
+    await admin("/admin/races/" + book.value.id + "/draws/" + item.id, { method: "DELETE" });
+    await loadDraws(book.value.id);
+  } catch (err) {
+    fail(err);
+  }
 }
 
 async function loadPrizes(id) {
@@ -1996,6 +2064,7 @@ async function openGuide(id) {
     editTab.value = "base";
     book.value = blankBook(data.race);
     await loadPrizes(data.race.id);
+    await loadDraws(data.race.id);
     nodeOrigin.value = nodesKey(book.value);
     applyCityMode();
   } catch (err) {
@@ -2088,6 +2157,7 @@ async function saveGuide() {
     clearQueues();
     book.value = blankBook(opened.race);
     await loadPrizes(opened.race.id);
+    await loadDraws(opened.race.id);
     nodeOrigin.value = nodesKey(book.value);
     applyCityMode();
     saved.value = true;
