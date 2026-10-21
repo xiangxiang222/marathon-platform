@@ -13,6 +13,7 @@
     <input v-model="q" placeholder="搜名称或城市" @input="queueSearch" />
     <button type="submit">搜索</button>
   </form>
+  <router-link class="radar-link" to="/radar">拿奖雷达</router-link>
   <section class="sheet">
     <div v-if="!searching && reminders.length" class="rail-wrap">
       <h2 class="section-label">即将到来</h2>

@@ -613,6 +613,35 @@ function open() {
       joined_at TEXT NOT NULL,
       PRIMARY KEY (league_id, club_id)
     );
+    CREATE TABLE IF NOT EXISTS radar_profiles (
+      user_id INTEGER PRIMARY KEY,
+      gender TEXT NOT NULL DEFAULT '',
+      birth TEXT NOT NULL DEFAULT '',
+      province TEXT NOT NULL DEFAULT '',
+      target_full INTEGER NOT NULL DEFAULT 0,
+      target_half INTEGER NOT NULL DEFAULT 0,
+      target_10k INTEGER NOT NULL DEFAULT 0,
+      target_5k INTEGER NOT NULL DEFAULT 0
+    );
+    CREATE TABLE IF NOT EXISTS prize_rules (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      race_id TEXT NOT NULL,
+      distance TEXT NOT NULL,
+      kind TEXT NOT NULL,
+      gender TEXT NOT NULL DEFAULT '',
+      age_min INTEGER NOT NULL DEFAULT 0,
+      age_max INTEGER NOT NULL DEFAULT 0,
+      province TEXT NOT NULL DEFAULT '',
+      place_n INTEGER NOT NULL DEFAULT 0,
+      break_sec INTEGER NOT NULL DEFAULT 0,
+      amount INTEGER NOT NULL DEFAULT 0,
+      tax INTEGER NOT NULL DEFAULT 0,
+      stack INTEGER NOT NULL DEFAULT 0,
+      source TEXT NOT NULL,
+      cutoff_sec INTEGER NOT NULL DEFAULT 0,
+      cutoff_source TEXT NOT NULL DEFAULT '',
+      note TEXT NOT NULL DEFAULT ''
+    );
     CREATE TABLE IF NOT EXISTS split_notes (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       club_id INTEGER NOT NULL,

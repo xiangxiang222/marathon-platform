@@ -47,6 +47,7 @@ function deleteUser(db, id) {
     db.prepare("DELETE FROM mileage_flags WHERE user_id = ?").run(id);
     db.prepare("DELETE FROM user_mileage WHERE user_id = ?").run(id);
     db.prepare("DELETE FROM supply_claims WHERE user_id = ?").run(id);
+    db.prepare("DELETE FROM radar_profiles WHERE user_id = ?").run(id);
     db.prepare("DELETE FROM users WHERE id = ?").run(id);
   })();
   for (const file of files) {
