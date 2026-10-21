@@ -17,6 +17,7 @@ const { mountDraws, ratesOf } = require("./draws");
 const { mountClubOps } = require("./club-ops");
 const { mountClubGather } = require("./club-gather");
 const { mountRaceGuide, attachGuide } = require("./race-guide");
+const { mountBotRaces } = require("./bot-races");
 const { mountAdminDesk } = require("./admin-desk");
 const { issueCaptcha, registerUser, loginUser, changeOwnPassword } = require("./user-auth");
 
@@ -1108,6 +1109,8 @@ app.post(BASE + "/api/admin/official/:id/apply", (req, res) => {
   if (result.error) return res.status(result.status).json({ error: result.error });
   res.json(result);
 });
+
+mountBotRaces(app, { BASE, getDb, requireAdmin });
 
 app.put(BASE + "/api/admin/races/:id", (req, res) => {
   if (!requireAdmin(req, res)) return;
