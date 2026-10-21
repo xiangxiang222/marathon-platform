@@ -1,7 +1,7 @@
 const { request } = require("../../utils/request");
 
 Page({
-  data: { meetup: null, message: "" },
+  data: { meetup: null, members: [], forUser: "", forName: "", message: "" },
   onLoad(query) {
     this.clubId = query.club;
     this.meetupId = query.id;
@@ -11,15 +11,18 @@ Page({
   },
   load() {
     const app = getApp();
-    request("/clubs/" + this.clubId + "/meetups/" + this.meetupId)
-      .then((data) => {
+    Promise.all([
+      request("/clubs/" + this.clubId + "/meetups/" + this.meetupId),
+      request("/clubs/" + this.clubId)
+    ])
+      .then(([data, club]) => {
         const meetup = data.meetup;
         const token = app.globalData.token || "";
         meetup.photos = (meetup.photos || []).map((photo) => ({
           ...photo,
           src: app.globalData.baseUrl + "/marathon/api/clubs/" + this.clubId + "/meetups/" + this.meetupId + "/photos/" + photo.id + "?t=" + encodeURIComponent(token)
         }));
-        this.setData({ meetup, message: "" });
+        this.setData({ meetup, members: club.members || [], message: "" });
       })
       .catch((err) => this.setData({ message: err.message }));
   },
@@ -33,6 +36,20 @@ Page({
   check() { this.post("/check"); },
   uncheck() { this.post("/check", "DELETE"); },
   voidRun() { this.post("/void"); },
+  pickMember(e) {
+    this.setData({ forUser: e.currentTarget.dataset.id, forName: e.currentTarget.dataset.name });
+  },
+  staffCheck() {
+    request("/clubs/" + this.clubId + "/meetups/" + this.meetupId + "/check", "POST", { userId: Number(this.data.forUser) })
+      .then(() => {
+        this.setData({ message: "已补打卡" });
+        this.load();
+      })
+      .catch((err) => this.setData({ message: err.message }));
+  },
+  resettle() {
+    this.post("/resettle");
+  },
   copyText(e) {
     wx.setClipboardData({ data: e.currentTarget.dataset.text || "" });
   },

@@ -66,7 +66,7 @@ function open() {
       proof TEXT NOT NULL DEFAULT '',
       proof_kind TEXT NOT NULL DEFAULT '',
       updated_at TEXT NOT NULL,
-      PRIMARY KEY (user_id, race_id)
+      PRIMARY KEY (user_id, race_id, distance)
     );
     CREATE TABLE IF NOT EXISTS official_races (
       official_id TEXT PRIMARY KEY,
@@ -504,6 +504,31 @@ function open() {
   ]) {
     const cols = handle.prepare(`PRAGMA table_info(${table})`).all();
     if (cols.length && !cols.some((col) => col.name === name)) handle.exec(`ALTER TABLE ${table} ADD COLUMN ${name} ${type}`);
+  }
+  const resultCols = handle.prepare("PRAGMA table_info(results)").all();
+  const resultPk = resultCols
+    .filter((col) => col.pk)
+    .sort((a, b) => a.pk - b.pk)
+    .map((col) => col.name)
+    .join(",");
+  if (resultCols.length && resultPk !== "user_id,race_id,distance") {
+    handle.exec(`
+      CREATE TABLE results_next (
+        user_id INTEGER NOT NULL,
+        race_id TEXT NOT NULL,
+        distance TEXT NOT NULL,
+        seconds INTEGER NOT NULL,
+        story TEXT NOT NULL DEFAULT '',
+        proof TEXT NOT NULL DEFAULT '',
+        proof_kind TEXT NOT NULL DEFAULT '',
+        updated_at TEXT NOT NULL,
+        PRIMARY KEY (user_id, race_id, distance)
+      );
+      INSERT INTO results_next (user_id, race_id, distance, seconds, story, proof, proof_kind, updated_at)
+      SELECT user_id, race_id, distance, seconds, story, COALESCE(proof, ''), COALESCE(proof_kind, ''), updated_at FROM results;
+      DROP TABLE results;
+      ALTER TABLE results_next RENAME TO results;
+    `);
   }
   const memberCols = handle.prepare("PRAGMA table_info(club_members)").all();
   if (memberCols.length && !memberCols.some((col) => col.name === "mileage_group_id")) {

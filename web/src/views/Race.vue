@@ -129,7 +129,7 @@
     <div v-if="ready && race" class="block">
       <h2>成绩</h2>
       <p class="src">手记的成绩标为未核验。可以附一张证书或奖牌照片，这里不识别照片上的字。</p>
-      <p v-if="myResult" class="src">{{ myResult.distanceLabel }} {{ myResult.clock }} · 配速 {{ myResult.pace }}<template v-if="myResult.pb"> · PB</template> · {{ myResult.verifyLabel }}</p>
+      <p v-for="item in myResults" :key="item.distance" class="src">{{ item.distanceLabel }} {{ item.clock }} · 配速 {{ item.pace }}<template v-if="item.pb"> · PB</template> · {{ item.verifyLabel }}</p>
       <p v-if="myResult && myResult.story">{{ myResult.story }}</p>
       <img v-if="myResult && myResult.hasProof" class="proof" :src="proofSrc" alt="" />
       <p v-if="myResult && myResult.proofLabel" class="src">{{ myResult.proofLabel }} · 未核验</p>
@@ -140,7 +140,7 @@
           type="button"
           class="status"
           :class="{ on: distance === race.distances[i] }"
-          @click="distance = race.distances[i]"
+          @click="pickDistance(race.distances[i])"
         >
           {{ label }}
         </button>
@@ -227,6 +227,7 @@ const drawRates = ref([]);
 const drawNote = ref("");
 const drawError = ref("");
 const myResult = ref(null);
+const myResults = ref([]);
 const distance = ref("");
 const clock = ref("");
 const story = ref("");
@@ -248,17 +249,26 @@ async function load() {
   alternativeNote.value = data.alternativeNote || "";
   drawText.value = data.drawText || "";
   drawRates.value = data.drawRates || [];
-  myResult.value = data.myResult || null;
-  if (data.myResult) {
-    distance.value = data.myResult.distance;
-    clock.value = data.myResult.clock;
-    story.value = data.myResult.story || "";
-  } else if (!distance.value && data.race.distances.length) {
-    distance.value = data.race.distances[0];
+  myResults.value = data.myResults || [];
+  if (!distance.value) {
+    const first = myResults.value[0];
+    if (first) distance.value = first.distance;
+    else if (data.race.distances.length) distance.value = data.race.distances[0];
+  }
+  pickDistance(distance.value);
+}
+
+function pickDistance(next) {
+  distance.value = next;
+  const found = myResults.value.find((item) => item.distance === next) || null;
+  myResult.value = found;
+  if (found) {
+    clock.value = found.clock;
+    story.value = found.story || "";
   }
 }
 
-const proofSrc = computed(() => (race.value ? resultProofSrc(race.value.id) : ""));
+const proofSrc = computed(() => (race.value && myResult.value && myResult.value.hasProof ? resultProofSrc(race.value.id, myResult.value.distance) : ""));
 
 async function onProof(kind, event) {
   const file = event.target.files && event.target.files[0];
@@ -266,9 +276,9 @@ async function onProof(kind, event) {
   if (!file) return;
   resultMessage.value = "";
   try {
-    const data = await upload("/me/races/" + route.params.id + "/result/proof/" + kind, file);
-    myResult.value = data.result;
+    await upload("/me/races/" + route.params.id + "/result/proof/" + kind + "?distance=" + encodeURIComponent(distance.value), file);
     resultMessage.value = kind === "medal" ? "奖牌照片已上传" : "证书照片已上传";
+    await load();
   } catch (err) {
     resultMessage.value = err.message;
   }
@@ -277,8 +287,8 @@ async function onProof(kind, event) {
 async function removeProof() {
   resultMessage.value = "";
   try {
-    const data = await api("/me/races/" + route.params.id + "/result/proof", { method: "DELETE" });
-    myResult.value = data.result;
+    await api("/me/races/" + route.params.id + "/result/proof?distance=" + encodeURIComponent(distance.value), { method: "DELETE" });
+    await load();
   } catch (err) {
     resultMessage.value = err.message;
   }

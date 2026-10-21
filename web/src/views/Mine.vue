@@ -111,7 +111,7 @@
         <span v-for="name in litPlaces" :key="name" class="lit">{{ name }}</span>
       </div>
       <div v-if="litCards.length" class="scroll">
-        <router-link v-for="item in litCards" :key="item.race.id" :to="'/races/' + item.race.id">
+        <router-link v-for="item in litCards" :key="item.race.id + item.distance" :to="'/races/' + item.race.id">
           <b>{{ item.clock }}</b>
           <span>{{ item.race.city }} · {{ item.race.raceDate }}</span>
           {{ item.race.name }}
@@ -119,15 +119,15 @@
       </div>
       <div v-for="group in honorGroups" :key="group.year" class="marks">
         <p class="year">{{ group.year }}</p>
-        <router-link v-for="item in group.items" :key="item.race.id" :to="'/races/' + item.race.id">
+        <router-link v-for="item in group.items" :key="item.race.id + item.distance" :to="'/races/' + item.race.id">
           <b>{{ item.clock }}</b>{{ item.race.name }}<span v-if="item.pb" class="pb"> PB</span>
         </router-link>
       </div>
       <p v-if="!results.length" class="quiet">在赛事页记下成绩后，会出现在这里</p>
     </div>
     <div v-else-if="tab === 'photo'" class="career">
-      <router-link v-for="item in proofResults" :key="item.race.id" class="proof-card" :to="'/races/' + item.race.id">
-        <img :src="proofSrc(item.race.id)" alt="" />
+      <router-link v-for="item in proofResults" :key="item.race.id + item.distance" class="proof-card" :to="'/races/' + item.race.id">
+        <img :src="proofSrc(item.race.id, item.distance)" alt="" />
         <b>{{ item.proofLabel }} · 未核验</b>
         <span>{{ item.race.name }}</span>
       </router-link>
@@ -141,7 +141,7 @@
         <button type="button" :class="{ on: kindFilter === 'other' }" @click="kindFilter = 'other'">其他</button>
       </div>
       <div class="marks">
-        <router-link v-for="item in timeline" :key="item.race.id" :to="'/races/' + item.race.id">
+        <router-link v-for="item in timeline" :key="item.race.id + item.distance" :to="'/races/' + item.race.id">
           <b>{{ item.race.raceDate }}</b>{{ item.race.name }} {{ item.clock }}<span v-if="item.pb" class="pb"> PB</span>
         </router-link>
         <p v-if="!timeline.length" class="quiet">还没有成绩</p>
@@ -220,8 +220,8 @@ const litPlaces = computed(() => {
   return names;
 });
 const proofResults = computed(() => results.value.filter((item) => item.hasProof));
-function proofSrc(id) {
-  return resultProofSrc(id);
+function proofSrc(id, distance) {
+  return resultProofSrc(id, distance);
 }
 const honorGroups = computed(() => {
   const map = new Map();

@@ -151,8 +151,8 @@ Page({
         const base = (getApp().globalData && getApp().globalData.baseUrl) || "";
         const results = (data.results || []).map((item) => ({
           ...item,
-          raceId: item.race.id,
-          proofSrc: item.hasProof ? base + "/marathon/api/me/races/" + item.race.id + "/result/proof?t=" + encodeURIComponent(token) : ""
+          raceId: item.race.id + item.distance,
+          proofSrc: item.hasProof ? base + "/marathon/api/me/races/" + item.race.id + "/result/proof?t=" + encodeURIComponent(token) + "&distance=" + encodeURIComponent(item.distance) : ""
         }));
         const reminders = (data.reminders || []).map((item) => ({ ...item, key: item.race.id + item.hit.key }));
         setAuth((getApp().globalData && getApp().globalData.token) || "", data.user.nickname);

@@ -291,27 +291,36 @@ function syncCareer(db, call, userId, removed) {
     )
     .all(call.id, userId)
     .filter((row) => allowed.has(row.distance));
-  if (!rows.length) {
-    if (!removed) return;
-    const existing = db.prepare("SELECT distance, seconds FROM results WHERE user_id = ? AND race_id = ?").get(userId, call.race_id);
-    if (existing && existing.distance === removed.distance && existing.seconds === removed.seconds) {
-      db.prepare("DELETE FROM results WHERE user_id = ? AND race_id = ?").run(userId, call.race_id);
-    }
-    return;
+  const latest = new Map();
+  for (const row of rows) {
+    if (!latest.has(row.distance)) latest.set(row.distance, row);
   }
-  const top = rows[0];
   const now = new Date().toISOString();
-  db.prepare(
-    `INSERT INTO results (user_id, race_id, distance, seconds, story, updated_at) VALUES (?, ?, ?, ?, '', ?)
-     ON CONFLICT(user_id, race_id) DO UPDATE SET
-       distance = excluded.distance,
-       seconds = excluded.seconds,
-       updated_at = excluded.updated_at`
-  ).run(userId, call.race_id, top.distance, top.seconds, now);
-  db.prepare(
-    `INSERT INTO plans (user_id, race_id, status, updated_at) VALUES (?, ?, '完赛', ?)
-     ON CONFLICT(user_id, race_id) DO UPDATE SET status = '完赛', updated_at = excluded.updated_at`
-  ).run(userId, call.race_id, now);
+  if (latest.size) {
+    const upsert = db.prepare(
+      `INSERT INTO results (user_id, race_id, distance, seconds, story, updated_at) VALUES (?, ?, ?, ?, '', ?)
+       ON CONFLICT(user_id, race_id, distance) DO UPDATE SET
+         seconds = excluded.seconds,
+         updated_at = excluded.updated_at`
+    );
+    for (const row of latest.values()) upsert.run(userId, call.race_id, row.distance, row.seconds, now);
+    db.prepare(
+      `INSERT INTO plans (user_id, race_id, status, updated_at) VALUES (?, ?, '完赛', ?)
+       ON CONFLICT(user_id, race_id) DO UPDATE SET status = '完赛', updated_at = excluded.updated_at`
+    ).run(userId, call.race_id, now);
+  }
+  if (removed && !latest.has(removed.distance)) {
+    const existing = db
+      .prepare("SELECT seconds, proof FROM results WHERE user_id = ? AND race_id = ? AND distance = ?")
+      .get(userId, call.race_id, removed.distance);
+    if (existing && existing.seconds === removed.seconds) {
+      db.prepare("DELETE FROM results WHERE user_id = ? AND race_id = ? AND distance = ?").run(userId, call.race_id, removed.distance);
+      if (existing.proof) {
+        const file = path.join(mediaRoot(), "results", path.basename(existing.proof));
+        if (fs.existsSync(file)) fs.unlinkSync(file);
+      }
+    }
+  }
 }
 
 function presentCall(db, call, userId) {
@@ -663,7 +672,7 @@ function mountClubOps(app, { BASE, getDb, userFrom }) {
     const now = new Date().toISOString();
     ctx.db.transaction(() => {
       const existingResult = call.race_id
-        ? ctx.db.prepare("SELECT distance, seconds FROM results WHERE user_id = ? AND race_id = ?").get(userId, call.race_id)
+        ? ctx.db.prepare("SELECT distance, seconds FROM results WHERE user_id = ? AND race_id = ? AND distance = ?").get(userId, call.race_id, distance)
         : null;
       const current = ctx.db
         .prepare("SELECT replaced_seconds FROM result_call_rows WHERE call_id = ? AND user_id = ? AND distance = ?")

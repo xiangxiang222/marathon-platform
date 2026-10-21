@@ -8,6 +8,13 @@ Page({
     album: { photoCount: 0, videoCount: 0 },
     staff: false,
     km: "",
+    editing: false,
+    draft: null,
+    groupName: "",
+    groupKind: "pace",
+    groupKindLabel: "配速组",
+    groupPace: "",
+    groupCap: "0",
     message: "",
     clubId: "",
     activityId: ""
@@ -65,6 +72,65 @@ Page({
   cancelActivity() {
     request("/clubs/" + this.clubId + "/activities/" + this.activityId + "/cancel", "POST", {})
       .then(() => this.load())
+      .catch((err) => this.setData({ message: err.message }));
+  },
+  toggleEdit() {
+    const row = this.data.activity;
+    this.setData({
+      editing: !this.data.editing,
+      draft: {
+        title: row.title,
+        issue: row.issue || "",
+        startsAt: String(row.startsAt || "").replace("T", " "),
+        endsAt: row.endsAt ? String(row.endsAt).replace("T", " ") : "",
+        gatherAt: row.gatherAt || "",
+        gatherPlace: row.gatherPlace || "",
+        place: row.place || "",
+        plannedKm: row.plannedKm == null ? "" : String(row.plannedKm),
+        route: row.route || "",
+        cancelUntil: row.cancelUntil ? String(row.cancelUntil).replace("T", " ") : "",
+        note: row.note || "",
+        minPeople: String(row.minPeople),
+        minKm: String(row.minKm),
+        points: String(row.points)
+      }
+    });
+  },
+  onDraft(e) {
+    this.setData({ ["draft." + e.currentTarget.dataset.key]: e.detail.value });
+  },
+  pickKind(e) {
+    this.setData({ groupKind: e.currentTarget.dataset.kind, groupKindLabel: e.currentTarget.dataset.label });
+  },
+  onGroup(e) {
+    this.setData({ [e.currentTarget.dataset.key]: e.detail.value });
+  },
+  saveActivity() {
+    const draft = this.data.draft;
+    request("/clubs/" + this.clubId + "/activities/" + this.activityId, "PUT", {
+      ...draft,
+      minPeople: Number(draft.minPeople),
+      minKm: Number(draft.minKm),
+      points: Number(draft.points),
+      plannedKm: draft.plannedKm === "" ? "" : Number(draft.plannedKm)
+    })
+      .then(() => {
+        this.setData({ editing: false });
+        this.load();
+      })
+      .catch((err) => this.setData({ message: err.message }));
+  },
+  addGroup() {
+    request("/clubs/" + this.clubId + "/activities/" + this.activityId + "/groups", "POST", {
+      name: this.data.groupName,
+      kind: this.data.groupKind,
+      pace: this.data.groupPace,
+      capacity: Number(this.data.groupCap) || 0
+    })
+      .then(() => {
+        this.setData({ groupName: "", groupPace: "" });
+        this.load();
+      })
       .catch((err) => this.setData({ message: err.message }));
   }
 });

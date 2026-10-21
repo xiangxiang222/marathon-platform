@@ -271,7 +271,8 @@ app.get(BASE + "/api/races/:id", (req, res) => {
   const conflicts = user
     ? fullConflicts(plansFor(user.id), gapDays()).filter((item) => item.races.some((r) => r.id === race.id))
     : [];
-  const myResult = user ? resultsFor(user.id, new Date()).find((item) => item.race.id === race.id) || null : null;
+  const myResults = user ? resultsFor(user.id, new Date()).filter((item) => item.race.id === race.id) : [];
+  const myResult = myResults[0] || null;
   const myStatus = mine ? mine.status : "";
   const missed = [];
   for (const club of clubs) {
@@ -284,6 +285,7 @@ app.get(BASE + "/api/races/:id", (req, res) => {
     race,
     myStatus,
     myResult,
+    myResults,
     clubs,
     cards,
     conflicts,
@@ -510,8 +512,7 @@ app.put(BASE + "/api/me/races/:id/result", (req, res) => {
   db.transaction(() => {
     db.prepare(
       `INSERT INTO results (user_id, race_id, distance, seconds, story, updated_at) VALUES (?, ?, ?, ?, ?, ?)
-       ON CONFLICT(user_id, race_id) DO UPDATE SET
-         distance = excluded.distance,
+       ON CONFLICT(user_id, race_id, distance) DO UPDATE SET
          seconds = excluded.seconds,
          story = excluded.story,
          updated_at = excluded.updated_at`
@@ -524,7 +525,8 @@ app.put(BASE + "/api/me/races/:id/result", (req, res) => {
   const results = resultsFor(user.id);
   res.json({
     ok: true,
-    result: results.find((item) => item.race.id === race.id) || null,
+    result: results.find((item) => item.race.id === race.id && item.distance === distance) || null,
+    results: results.filter((item) => item.race.id === race.id),
     career: careerOf(results, yearOf(new Date()))
   });
 });
@@ -534,9 +536,9 @@ app.delete(BASE + "/api/me/races/:id/result", (req, res) => {
   if (!user) return;
   const race = getDb().prepare("SELECT id FROM races WHERE id = ?").get(req.params.id);
   if (!race) return res.status(404).json({ error: "没有这场比赛" });
-  const existing = getDb().prepare("SELECT proof FROM results WHERE user_id = ? AND race_id = ?").get(user.id, race.id);
+  const existing = getDb().prepare("SELECT proof FROM results WHERE user_id = ? AND race_id = ?").all(user.id, race.id);
   getDb().prepare("DELETE FROM results WHERE user_id = ? AND race_id = ?").run(user.id, race.id);
-  if (existing && existing.proof) removeProofFile(existing.proof);
+  for (const row of existing) removeProofFile(row.proof);
   const results = resultsFor(user.id);
   res.json({ ok: true, career: careerOf(results, yearOf(new Date())) });
 });
@@ -608,14 +610,32 @@ function userByToken(req) {
   return { id: row.id, nickname: row.nickname, leader: Boolean(row.leader) };
 }
 
+function proofTarget(userId, raceId, distance) {
+  const rows = getDb()
+    .prepare("SELECT distance, proof FROM results WHERE user_id = ? AND race_id = ? ORDER BY distance")
+    .all(userId, raceId);
+  if (distance) {
+    const row = rows.find((item) => item.distance === distance);
+    return row ? { row } : { error: "先记下成绩，再上传照片", status: 400 };
+  }
+  if (!rows.length) return { error: "先记下成绩，再上传照片", status: 400 };
+  if (rows.length > 1) return { error: "先选项目", status: 400 };
+  return { row: rows[0] };
+}
+
+function proofAnswer(userId, raceId, distance) {
+  const results = resultsFor(userId);
+  return results.find((item) => item.race.id === raceId && item.distance === distance) || null;
+}
+
 app.post(BASE + "/api/me/races/:id/result/proof/:kind", async (req, res) => {
   const user = requireUser(req, res);
   if (!user) return;
   if (!PROOF_KINDS[req.params.kind]) return res.status(400).json({ error: "照片选证书或奖牌" });
   const race = getDb().prepare("SELECT id FROM races WHERE id = ?").get(req.params.id);
   if (!race) return res.status(404).json({ error: "没有这场比赛" });
-  const existing = getDb().prepare("SELECT proof FROM results WHERE user_id = ? AND race_id = ?").get(user.id, race.id);
-  if (!existing) return res.status(400).json({ error: "先记下成绩，再上传照片" });
+  const picked = proofTarget(user.id, race.id, String(req.query.distance || ""));
+  if (picked.error) return res.status(picked.status).json({ error: picked.error });
   let buffer;
   try {
     buffer = oneUpload(await readUpload(req, PROOF_MAX + 64 * 1024), req.get("content-type"));
@@ -626,13 +646,14 @@ app.post(BASE + "/api/me/races/:id/result/proof/:kind", async (req, res) => {
   const photo = sniffProof(buffer);
   if (!photo) return res.status(400).json({ error: "只收 jpg、png、webp" });
   if (buffer.length > PROOF_MAX) return res.status(413).json({ error: "照片不超过 8MB" });
-  const filename = user.id + "-" + String(race.id).replace(/[^A-Za-z0-9_-]/g, "") + "." + photo.ext;
+  const filename = user.id + "-" + String(race.id).replace(/[^A-Za-z0-9_-]/g, "") + "-" + picked.row.distance + "." + photo.ext;
   fs.mkdirSync(proofRoot(), { recursive: true });
   fs.writeFileSync(path.join(proofRoot(), filename), buffer);
-  if (existing.proof && existing.proof !== filename) removeProofFile(existing.proof);
-  getDb().prepare("UPDATE results SET proof = ?, proof_kind = ? WHERE user_id = ? AND race_id = ?").run(filename, req.params.kind, user.id, race.id);
-  const results = resultsFor(user.id);
-  res.json({ ok: true, result: results.find((item) => item.race.id === race.id) || null });
+  if (picked.row.proof && picked.row.proof !== filename) removeProofFile(picked.row.proof);
+  getDb()
+    .prepare("UPDATE results SET proof = ?, proof_kind = ? WHERE user_id = ? AND race_id = ? AND distance = ?")
+    .run(filename, req.params.kind, user.id, race.id, picked.row.distance);
+  res.json({ ok: true, result: proofAnswer(user.id, race.id, picked.row.distance) });
 });
 
 app.delete(BASE + "/api/me/races/:id/result/proof", (req, res) => {
@@ -640,20 +661,22 @@ app.delete(BASE + "/api/me/races/:id/result/proof", (req, res) => {
   if (!user) return;
   const race = getDb().prepare("SELECT id FROM races WHERE id = ?").get(req.params.id);
   if (!race) return res.status(404).json({ error: "没有这场比赛" });
-  const existing = getDb().prepare("SELECT proof FROM results WHERE user_id = ? AND race_id = ?").get(user.id, race.id);
-  if (!existing || !existing.proof) return res.status(400).json({ error: "还没有照片" });
-  getDb().prepare("UPDATE results SET proof = '', proof_kind = '' WHERE user_id = ? AND race_id = ?").run(user.id, race.id);
-  removeProofFile(existing.proof);
-  const results = resultsFor(user.id);
-  res.json({ ok: true, result: results.find((item) => item.race.id === race.id) || null });
+  const picked = proofTarget(user.id, race.id, String(req.query.distance || ""));
+  if (picked.error) return res.status(picked.status).json({ error: picked.error === "先记下成绩，再上传照片" ? "还没有照片" : picked.error });
+  if (!picked.row.proof) return res.status(400).json({ error: "还没有照片" });
+  getDb()
+    .prepare("UPDATE results SET proof = '', proof_kind = '' WHERE user_id = ? AND race_id = ? AND distance = ?")
+    .run(user.id, race.id, picked.row.distance);
+  removeProofFile(picked.row.proof);
+  res.json({ ok: true, result: proofAnswer(user.id, race.id, picked.row.distance) });
 });
 
 app.get(BASE + "/api/me/races/:id/result/proof", (req, res) => {
   const user = userByToken(req);
   if (!user) return res.status(401).json({ error: "请先登录" });
-  const row = getDb().prepare("SELECT proof FROM results WHERE user_id = ? AND race_id = ?").get(user.id, req.params.id);
-  if (!row || !row.proof) return res.status(404).json({ error: "没有这张照片" });
-  const file = path.join(proofRoot(), path.basename(row.proof));
+  const picked = proofTarget(user.id, req.params.id, String(req.query.distance || ""));
+  if (picked.error || !picked.row.proof) return res.status(404).json({ error: "没有这张照片" });
+  const file = path.join(proofRoot(), path.basename(picked.row.proof));
   if (!fs.existsSync(file)) return res.status(404).json({ error: "没有这张照片" });
   const photo = sniffProof(fs.readFileSync(file));
   res.set("Content-Type", photo ? photo.mime : "application/octet-stream");

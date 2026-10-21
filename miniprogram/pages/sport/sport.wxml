@@ -36,6 +36,7 @@
     <input placeholder="用时 0:50:00" value="{{duration}}" data-key="duration" bindinput="onField" />
     <input placeholder="爬升，米" value="{{climb}}" data-key="climb" bindinput="onField" />
     <input placeholder="城市，可不填" value="{{city}}" data-key="city" bindinput="onField" />
+    <button class="ghost" bindtap="chooseShot">{{shotName || '截图，可不传'}}</button>
     <button class="btn" bindtap="create">记下</button>
   </view>
   <view class="card" wx:for="{{summary.runs}}" wx:key="id" wx:for-index="index">
@@ -43,6 +44,10 @@
     <view class="src">里程 {{item.distanceKm}} · 跑量 {{item.volumeKm}} · {{item.durationLabel}} · 爬升 {{item.climb}} 米</view>
     <view class="src" wx:if="{{item.note}}">{{item.note}}</view>
     <view class="src" wx:for="{{item.clubs}}" wx:for-item="club" wx:key="name">{{club.counted ? '计入' : '未计入'}} {{club.name}}</view>
+    <image wx:if="{{item.shotSrc}}" src="{{item.shotSrc}}" mode="widthFix" />
+    <input placeholder="城市" value="{{item.city}}" data-index="{{index}}" bindinput="onCity" />
+    <button class="ghost" data-index="{{index}}" bindtap="saveRow">保存城市和类型</button>
+    <button class="ghost" data-index="{{index}}" bindtap="addShot">{{item.shot ? '换截图' : '补截图'}}</button>
     <button class="ghost" data-index="{{index}}" data-type="run" bindtap="changeType">改成跑步</button>
     <button class="ghost" data-index="{{index}}" data-type="trail" bindtap="changeType">改成越野</button>
     <button class="ghost" data-index="{{index}}" bindtap="remove">删除这场</button>

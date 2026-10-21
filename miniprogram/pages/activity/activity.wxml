@@ -39,6 +39,33 @@
     </view>
   </view>
   <view wx:if="{{staff}}" class="card">
+    <button class="ghost" bindtap="toggleEdit">{{editing ? '收起' : '改这场'}}</button>
+    <block wx:if="{{editing && draft}}">
+      <input data-key="title" placeholder="标题" value="{{draft.title}}" bindinput="onDraft" />
+      <input data-key="issue" placeholder="期次，可不填" value="{{draft.issue}}" bindinput="onDraft" />
+      <input data-key="startsAt" placeholder="开始 2026-10-14 05:00" value="{{draft.startsAt}}" bindinput="onDraft" />
+      <input data-key="endsAt" placeholder="结束，可不填" value="{{draft.endsAt}}" bindinput="onDraft" />
+      <input data-key="gatherAt" placeholder="集合时间，可不填" value="{{draft.gatherAt}}" bindinput="onDraft" />
+      <input data-key="gatherPlace" placeholder="集合点" value="{{draft.gatherPlace}}" bindinput="onDraft" />
+      <input data-key="place" placeholder="地点" value="{{draft.place}}" bindinput="onDraft" />
+      <input data-key="plannedKm" placeholder="计划里程，可不填" value="{{draft.plannedKm}}" bindinput="onDraft" />
+      <input data-key="route" placeholder="路线" value="{{draft.route}}" bindinput="onDraft" />
+      <input data-key="cancelUntil" placeholder="取消报名截止，可不填" value="{{draft.cancelUntil}}" bindinput="onDraft" />
+      <input data-key="note" placeholder="说明" value="{{draft.note}}" bindinput="onDraft" />
+      <input data-key="minPeople" placeholder="成团人数" value="{{draft.minPeople}}" bindinput="onDraft" />
+      <input data-key="minKm" placeholder="里程公里" value="{{draft.minKm}}" bindinput="onDraft" />
+      <input data-key="points" placeholder="这场积分" value="{{draft.points}}" bindinput="onDraft" />
+      <button class="btn" bindtap="saveActivity">保存</button>
+    </block>
+    <view class="src">加一组。当前种类：{{groupKindLabel}}</view>
+    <button class="ghost" data-kind="pace" data-label="配速组" bindtap="pickKind">配速组</button>
+    <button class="ghost" data-kind="finish" data-label="完赛组" bindtap="pickKind">完赛组</button>
+    <button class="ghost" data-kind="volunteer" data-label="志愿者" bindtap="pickKind">志愿者</button>
+    <button class="ghost" data-kind="other" data-label="非训练" bindtap="pickKind">非训练</button>
+    <input data-key="groupName" placeholder="组名，例如 A2" value="{{groupName}}" bindinput="onGroup" />
+    <input data-key="groupPace" placeholder="配速或目标，可不填" value="{{groupPace}}" bindinput="onGroup" />
+    <input data-key="groupCap" placeholder="名额，0 表示不限" value="{{groupCap}}" bindinput="onGroup" />
+    <button class="btn" bindtap="addGroup">加一组</button>
     <button class="ghost" bindtap="endActivity">结束这场</button>
     <button class="ghost" bindtap="cancelActivity">取消这场</button>
   </view>
