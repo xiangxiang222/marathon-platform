@@ -353,4 +353,4 @@ function mountRadar(app, { BASE, getDb, userFrom, requireAdmin }) {
   });
 }
 
-module.exports = { mountRadar, ageOn };
+module.exports = { mountRadar, ageOn, readRule };

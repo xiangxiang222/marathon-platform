@@ -1,10 +1,12 @@
 const crypto = require("crypto");
 const { compactName } = require("./official");
+const { readRule } = require("./radar");
 
 const DISTANCES = ["full", "half", "10k", "5k"];
 const DISTANCE_LABEL = { full: "全马", half: "半马", "10k": "10公里", "5k": "5公里" };
 const KINDS = ["trail", "ultra", "family", "fun"];
 const KIND_LABEL = { trail: "越野", ultra: "超马", family: "亲子", fun: "欢乐跑" };
+const PRIZE_KIND = { place: "名次", age: "年龄组", local: "本地籍", break: "破时", club: "跑团" };
 const URL_FIELDS = [
   ["signupUrl", "报名"],
   ["drawUrl", "抽签"],
@@ -163,10 +165,15 @@ function parseRace(body, now) {
   if (deadlineName.error) return deadlineName;
   const urls = {};
   for (const [key] of URL_FIELDS) {
-    const parsed = httpsUrl(source[key]);
+    const raw = key === "detailUrl" ? source.officialUrl || source.detailUrl : source[key];
+    const parsed = httpsUrl(raw);
     if (parsed.error) return parsed;
     urls[key] = parsed.text;
   }
+  const prizes = readPrizes(source.prizes);
+  if (prizes.error) return prizes;
+  const draws = readDraws(source.draws);
+  if (draws.error) return draws;
   const organizer = limited(source.organizer, 80, "主办");
   if (organizer.error) return organizer;
   const scale = limited(source.scale, 80, "规模");
@@ -218,9 +225,58 @@ function parseRace(body, now) {
       route: route.text,
       pickup: pickup.text,
       pacers: pacers.text,
-      guideText: guideText.text
+      guideText: guideText.text,
+      prizes: prizes.rows,
+      prizesSet: prizes.set,
+      draws: draws.rows,
+      drawsSet: draws.set
     }
   };
+}
+
+function readPrizes(value) {
+  if (value == null) return { set: false, rows: [] };
+  if (!Array.isArray(value)) return { error: "奖项要写成一组" };
+  if (value.length > 40) return { error: "一场奖项最多 40 条" };
+  const rows = [];
+  for (const item of value) {
+    const rule = readRule({ ...(item || {}), stack: Boolean(item && item.stack) });
+    if (rule.error) return { error: rule.error };
+    rows.push(rule);
+  }
+  return { set: true, rows };
+}
+
+function readDraws(value) {
+  if (value == null) return { set: false, rows: [] };
+  if (!Array.isArray(value)) return { error: "历年中签要写成一组" };
+  if (value.length > 20) return { error: "一场最多记 20 届" };
+  const rows = [];
+  const seen = new Set();
+  for (const item of value) {
+    const label = String((item && item.label) || "").trim();
+    if ([...label].length < 1 || [...label].length > 20) return { error: "届次写成 1 到 20 个字" };
+    if (seen.has(label)) return { error: "这一届已经记过" };
+    seen.add(label);
+    const applicants = whole(item && item.applicants, 1, 9999999);
+    if (applicants == null) return { error: "报名人数写成 1 到 9999999 的整数" };
+    const quota = whole(item && item.quota, 1, 9999999);
+    if (quota == null) return { error: "名额写成 1 到 9999999 的整数" };
+    if (quota > applicants) return { error: "名额不能多于报名人数" };
+    const source = String((item && item.source) || "").trim();
+    if ([...source].length < 1 || [...source].length > 80) return { error: "来源写成 1 到 80 个字" };
+    rows.push({ label, applicants, quota, source });
+  }
+  return { set: true, rows };
+}
+
+function whole(value, min, max) {
+  if (typeof value === "string") {
+    if (!/^\d+$/.test(value.trim())) return null;
+    value = Number(value);
+  }
+  if (typeof value === "boolean" || value == null || !Number.isInteger(value) || value < min || value > max) return null;
+  return value;
 }
 
 function keep(next, current) {
@@ -271,8 +327,21 @@ function linesOf(payload) {
   if (payload.pickup) lines.push("领物 " + payload.pickup);
   if (payload.pacers) lines.push("配速 " + payload.pacers);
   if (payload.guideText) lines.push("规程 " + payload.guideText.slice(0, 120));
+  if (payload.prizesSet) {
+    lines.push("奖项 " + payload.prizes.length + " 条" + (payload.prizes.length ? "，发布后整份替换" : "，发布后清掉原来的奖项"));
+    payload.prizes.slice(0, 8).forEach((rule) => lines.push(prizeLine(rule)));
+  }
+  if (payload.drawsSet) {
+    lines.push("历年中签 " + payload.draws.length + " 届" + (payload.draws.length ? "，发布后整份替换" : "，发布后清掉原来的中签"));
+    payload.draws.slice(0, 8).forEach((row) => lines.push(row.label + " 报名 " + row.applicants + " 名额 " + row.quota + " · " + row.source));
+  }
   lines.push("读取 " + payload.source);
   return lines;
+}
+
+function prizeLine(rule) {
+  const money = rule.amount ? (rule.tax ? "税前 " + rule.amount + " 元，税率 " + rule.tax : "税前 " + rule.amount + " 元") : "非现金";
+  return (DISTANCE_LABEL[rule.distance] || rule.distance) + " " + (PRIZE_KIND[rule.kind] || rule.kind) + " " + (rule.gender || "不限") + " " + money + " · " + rule.source;
 }
 
 function changesOf(race, payload) {
@@ -299,6 +368,8 @@ function changesOf(race, payload) {
   pair("报名入口", race.signup_url, payload.signupUrl);
   pair("赛事网站", race.event_url, payload.eventUrl);
   pair("官网", race.official_url, payload.detailUrl);
+  if (payload.prizesSet) notes.push("奖项：这次上传 " + payload.prizes.length + " 条，发布后整份替换");
+  if (payload.drawsSet) notes.push("历年中签：这次上传 " + payload.draws.length + " 届，发布后整份替换");
   return notes.slice(0, 12);
 }
 
@@ -577,6 +648,43 @@ function upsertOfficial(db, payload, raceId) {
   );
 }
 
+function replaceExtras(db, raceId, payload) {
+  if (payload.prizesSet) {
+    db.prepare("DELETE FROM prize_rules WHERE race_id = ?").run(raceId);
+    const insert = db.prepare(
+      `INSERT INTO prize_rules (
+         race_id, distance, kind, gender, age_min, age_max, province, place_n, break_sec,
+         amount, tax, stack, source, cutoff_sec, cutoff_source, note
+       ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+    );
+    for (const rule of payload.prizes) {
+      insert.run(
+        raceId,
+        rule.distance,
+        rule.kind,
+        rule.gender,
+        rule.ageMin,
+        rule.ageMax,
+        rule.province,
+        rule.placeN,
+        rule.breakSec,
+        rule.amount,
+        rule.tax,
+        rule.stack,
+        rule.source,
+        rule.cutoffSec,
+        rule.cutoffSource,
+        rule.note
+      );
+    }
+  }
+  if (payload.drawsSet) {
+    db.prepare("DELETE FROM draw_rates WHERE race_id = ?").run(raceId);
+    const insert = db.prepare("INSERT INTO draw_rates (race_id, label, applicants, quota, source) VALUES (?, ?, ?, ?, ?)");
+    for (const row of payload.draws) insert.run(raceId, row.label, row.applicants, row.quota, row.source);
+  }
+}
+
 function publishSubmission(db, id) {
   const row = db.prepare("SELECT * FROM bot_submissions WHERE id = ?").get(id);
   if (!row) return { error: "没有这场待审", status: 404 };
@@ -586,6 +694,7 @@ function publishSubmission(db, id) {
   const raceId = existing ? existing.id : "caa-" + payload.officialId;
   db.transaction(() => {
     writeRace(db, existing, payload, raceId);
+    replaceExtras(db, raceId, payload);
     upsertOfficial(db, payload, raceId);
     db.prepare("UPDATE bot_submissions SET status = 'published', race_id = ?, note = '', updated_at = ? WHERE id = ?").run(
       raceId,
