@@ -69,3 +69,26 @@ export function callSheetSrc(rowId) {
   const token = localStorage.getItem("marathon_token") || "";
   return base + "/api/call-sheets/" + rowId + "?t=" + encodeURIComponent(token);
 }
+
+export function runShotSrc(id) {
+  const token = localStorage.getItem("marathon_token") || "";
+  return base + "/api/runs/" + id + "/shot?t=" + encodeURIComponent(token);
+}
+
+export async function download(path, filename) {
+  const headers = {};
+  const token = localStorage.getItem("marathon_token");
+  if (token) headers.Authorization = "Bearer " + token;
+  const res = await fetch(base + "/api" + path, { headers });
+  if (!res.ok) {
+    const data = await res.json().catch(() => ({}));
+    throw new Error(data.error || "请求失败");
+  }
+  const blob = await res.blob();
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = filename;
+  link.click();
+  URL.revokeObjectURL(url);
+}

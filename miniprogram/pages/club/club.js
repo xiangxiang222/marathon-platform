@@ -13,6 +13,7 @@ Page({
     activities: [],
     albums: [],
     attendance: { rows: [], me: { placeLabel: "未上榜", count: 0 }, label: "本月" },
+    mileage: { totalKm: 0, totalCount: 0, mineKm: 0 },
     checkins: [],
     checkedIn: false,
     note: "",
@@ -132,6 +133,14 @@ Page({
       .catch(() => {});
     request("/clubs/" + this.clubId + "/attendance?range=month")
       .then((data) => this.setData({ attendance: data }))
+      .catch(() => {});
+    request("/clubs/" + this.clubId + "/mileage?range=month")
+      .then((data) => {
+        const mine = (data.rank || []).find((row) => row.mine);
+        this.setData({
+          mileage: { totalKm: data.totalKm || 0, totalCount: data.totalCount || 0, mineKm: mine ? mine.km : 0 }
+        });
+      })
       .catch(() => {});
     request("/clubs/" + this.clubId + "/fees")
       .then((data) => {

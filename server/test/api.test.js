@@ -2258,3 +2258,171 @@ test("an activity keeps its own groups, and the album can hide a photo until it 
   const outsider = await session("报名外人");
   assert.equal((await request(app).get("/marathon/api/clubs/" + clubId + "/albums").set("Authorization", "Bearer " + outsider)).status, 403);
 });
+
+test("handwritten mileage stays off the points ledger and follows each club's rules", async () => {
+  const leader = await session("跑量团长");
+  const mate = await session("跑量甲");
+  const manager = await session("跑量管理");
+  const stranger = await session("跑量外");
+  const auth = { Authorization: "Bearer " + leader };
+  const mateAuth = { Authorization: "Bearer " + mate };
+  const managerAuth = { Authorization: "Bearer " + manager };
+  const created = await createClub(leader, "跑量跑团");
+  const clubId = created.body.club.id;
+  const code = created.body.club.code;
+  assert.equal((await request(app).post("/marathon/api/clubs/join").set(mateAuth).send({ code })).status, 200);
+  assert.equal((await request(app).post("/marathon/api/clubs/join").set(managerAuth).send({ code })).status, 200);
+  const mateId = (await request(app).get("/marathon/api/me").set(mateAuth)).body.user.id;
+  const managerId = (await request(app).get("/marathon/api/me").set(managerAuth)).body.user.id;
+  assert.equal(
+    (await request(app).put("/marathon/api/clubs/" + clubId + "/members/" + managerId).set(auth).send({ role: "manager" })).status,
+    200
+  );
+  const pointsBefore = getDb().prepare("SELECT COUNT(*) AS n FROM point_entries").get().n;
+  const stamp = (minutes) => new Date(Date.now() + 8 * 3600 * 1000 + minutes * 60000).toISOString().slice(0, 16).replace("T", " ");
+  const today = new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10);
+  const tomorrow = new Date(Date.parse(today + "T00:00:00Z") + 86400000).toISOString().slice(0, 10);
+  const yesterday = new Date(Date.parse(today + "T00:00:00Z") - 86400000).toISOString().slice(0, 10);
+
+  async function log(token, body) {
+    return request(app)
+      .post("/marathon/api/runs")
+      .set("Authorization", "Bearer " + token)
+      .send(body);
+  }
+
+  const counted = await log(leader, { type: "run", startedAt: stamp(2), distanceKm: 10, duration: "0:50:00", climb: 0, city: "北京" });
+  assert.equal(counted.status, 200);
+  assert.equal(counted.body.run.paceLabel, "5:00");
+  assert.equal(counted.body.run.clubs[0].counted, true);
+  assert.equal(counted.body.note, "");
+  const short = await log(leader, { type: "run", startedAt: stamp(70), distanceKm: 0.5, duration: "0:05:00", climb: 0 });
+  assert.equal(short.status, 200);
+  assert.equal(short.body.run.clubs[0].counted, false);
+  const fast = await log(leader, { type: "run", startedAt: stamp(90), distanceKm: 10, duration: "0:20:00", climb: 0 });
+  assert.equal(fast.body.run.clubs[0].counted, false);
+  const overlap = await log(leader, { type: "run", startedAt: stamp(10), distanceKm: 5, duration: "0:20:00", climb: 0 });
+  assert.equal(overlap.status, 200);
+  assert.match(overlap.body.note, /时间叠上了/);
+  assert.equal(overlap.body.run.clubs[0].counted, false);
+  const early = await log(leader, { type: "run", startedAt: yesterday + " 08:00", distanceKm: 8, duration: "0:40:00", climb: 0 });
+  assert.equal(early.body.run.clubs[0].counted, false);
+  const oldTrail = await log(leader, { type: "trail", startedAt: stamp(120), distanceKm: 8, duration: "1:00:00", climb: 200 });
+  assert.equal(oldTrail.body.run.clubs[0].counted, false);
+
+  const board = await request(app).get("/marathon/api/clubs/" + clubId + "/mileage?range=all").set(auth);
+  assert.equal(board.status, 200);
+  assert.equal(board.body.totalKm, 10);
+  assert.equal(board.body.owner, true);
+  const rules = { ...board.body.rules, trailOn: true, trailClimbAdd: true };
+  const opened = await request(app).put("/marathon/api/clubs/" + clubId + "/mileage/rules").set(auth).send(rules);
+  assert.equal(opened.status, 200);
+  assert.match(opened.body.rules.note, /不重算/);
+  const still = await request(app).get("/marathon/api/runs?month=" + today.slice(0, 7)).set(auth);
+  const kept = still.body.runs.find((item) => item.id === oldTrail.body.run.id);
+  assert.equal(kept.clubs[0].counted, false);
+  const trail = await log(leader, { type: "trail", startedAt: stamp(200), distanceKm: 10, duration: "1:20:00", climb: 150 });
+  assert.equal(trail.body.run.clubs[0].counted, true);
+  assert.equal(trail.body.run.volumeKm, 10);
+  const afterTrail = await request(app).get("/marathon/api/clubs/" + clubId + "/mileage?range=all").set(auth);
+  const trailRow = afterTrail.body.feed.find((item) => item.id === trail.body.run.id);
+  assert.equal(trailRow.volumeKm, 11.5);
+  assert.equal(afterTrail.body.totalKm, 21.5);
+  assert.equal(afterTrail.body.totalCount, 2);
+  const otherSport = await log(leader, { type: "swim", startedAt: stamp(300), distanceKm: 1, duration: "0:30:00", climb: 0 });
+  assert.equal(otherSport.status, 400);
+  assert.match(otherSport.body.error, /跑步或越野/);
+
+  const manualOff = { ...opened.body.rules, manualOk: false };
+  assert.equal((await request(app).put("/marathon/api/clubs/" + clubId + "/mileage/rules").set(auth).send(manualOff)).status, 200);
+  const blocked = await log(leader, { type: "run", startedAt: stamp(360), distanceKm: 6, duration: "0:36:00", climb: 0 });
+  assert.equal(blocked.body.run.clubs[0].counted, false);
+  const stillCounted = await request(app).get("/marathon/api/clubs/" + clubId + "/mileage?range=all").set(auth);
+  assert.equal(stillCounted.body.totalKm, 21.5);
+  assert.equal((await request(app).put("/marathon/api/clubs/" + clubId + "/mileage/rules").set(managerAuth).send(opened.body.rules)).status, 403);
+  assert.equal((await request(app).put("/marathon/api/clubs/" + clubId + "/mileage/rules").set(auth).send(opened.body.rules)).status, 200);
+
+  const challenged = await request(app)
+    .post("/marathon/api/clubs/" + clubId + "/mileage/runs/" + counted.body.run.id + "/challenge")
+    .set(mateAuth)
+    .send({ reason: "配速看着不像" });
+  assert.equal(challenged.status, 200);
+  const dropped = await request(app)
+    .post("/marathon/api/clubs/" + clubId + "/mileage/runs/" + counted.body.run.id + "/decision")
+    .set(managerAuth)
+    .send({ counted: false });
+  assert.equal(dropped.status, 200);
+  const afterDrop = await request(app).get("/marathon/api/clubs/" + clubId + "/mileage?range=all").set(auth);
+  assert.equal(afterDrop.body.totalKm, 11.5);
+  assert.equal(afterDrop.body.feed.some((item) => item.id === counted.body.run.id), false);
+  const personal = await request(app).get("/marathon/api/runs?month=" + today.slice(0, 7)).set(auth);
+  assert.ok(personal.body.runs.some((item) => item.id === counted.body.run.id));
+
+  const low = await request(app).put("/marathon/api/runs-flag").set(auth).send({ month: today.slice(0, 7), targetKm: 5, gender: "" });
+  assert.equal(low.status, 400);
+  assert.match(low.body.error, /不能低于 10/);
+  assert.equal((await request(app).put("/marathon/api/runs-flag").set(auth).send({ month: today.slice(0, 7), targetKm: 12, gender: "" })).status, 200);
+  const gendered = { ...opened.body.rules, flagFemale: 20, flagMale: 8 };
+  assert.equal((await request(app).put("/marathon/api/clubs/" + clubId + "/mileage/rules").set(auth).send(gendered)).status, 200);
+  const blank = await request(app).put("/marathon/api/runs-flag").set(auth).send({ month: today.slice(0, 7), targetKm: 12, gender: "" });
+  assert.equal(blank.status, 400);
+  assert.match(blank.body.error, /不能低于 20/);
+  assert.equal((await request(app).put("/marathon/api/runs-flag").set(auth).send({ month: today.slice(0, 7), targetKm: 12, gender: "男" })).status, 200);
+
+  const mateRun = await log(mate, { type: "run", startedAt: stamp(420), distanceKm: 5, duration: "0:30:00", climb: 0 });
+  assert.equal(mateRun.body.run.clubs[0].counted, true);
+  const report = await request(app).get("/marathon/api/clubs/" + clubId + "/mileage/report?kind=month&at=" + today.slice(0, 7)).set(auth);
+  const mateRow = report.body.rows.find((row) => row.nickname === "跑量甲");
+  assert.equal(mateRow.flag, "观摩");
+  assert.equal(mateRow.km, 5);
+  assert.equal(mateRow.paceLabel, "6:00");
+  assert.equal(report.body.total.flag, "-");
+
+  const other = await createClub(mate, "高标跑团");
+  const highRules = (await request(app).get("/marathon/api/clubs/" + other.body.club.id + "/mileage?range=all").set(mateAuth)).body.rules;
+  highRules.flagMale = 30;
+  assert.equal((await request(app).put("/marathon/api/clubs/" + other.body.club.id + "/mileage/rules").set(mateAuth).send(highRules)).status, 200);
+  assert.equal((await request(app).post("/marathon/api/clubs/join").set(auth).send({ code: other.body.club.code })).status, 200);
+  const raised = await request(app).put("/marathon/api/runs-flag").set(auth).send({ month: today.slice(0, 7), targetKm: 12, gender: "男" });
+  assert.equal(raised.status, 400);
+  assert.match(raised.body.error, /不能低于 30/);
+
+  const group = await request(app).post("/marathon/api/clubs/" + clubId + "/mileage/groups").set(auth).send({ name: "A组", capacity: 1, sort: 1 });
+  assert.equal(group.status, 200);
+  assert.equal(
+    (await request(app).put("/marathon/api/clubs/" + clubId + "/mileage/members/" + mateId).set(auth).send({ groupId: group.body.group.id })).status,
+    200
+  );
+  assert.equal(
+    (await request(app).put("/marathon/api/clubs/" + clubId + "/mileage/members/" + managerId).set(auth).send({ groupId: group.body.group.id })).status,
+    400
+  );
+  const grouped = await request(app).get("/marathon/api/clubs/" + clubId + "/mileage?range=all&q=" + encodeURIComponent("跑量甲")).set(auth);
+  assert.equal(grouped.body.rank.length, 1);
+  assert.equal(grouped.body.rank[0].group, "A组");
+  assert.equal(grouped.body.groups.find((item) => item.name === "A组").km, 5);
+
+  const exported = await request(app).get("/marathon/api/clubs/" + clubId + "/mileage/export?kind=month&at=" + today.slice(0, 7)).set(auth);
+  assert.equal(exported.status, 200);
+  assert.match(exported.text, /跑量甲/);
+  assert.match(exported.text, /观摩/);
+  assert.equal((await request(app).get("/marathon/api/clubs/" + clubId + "/mileage/export?kind=month").set(managerAuth)).status, 403);
+  assert.equal((await request(app).get("/marathon/api/clubs/" + clubId + "/mileage").set("Authorization", "Bearer " + stranger)).status, 403);
+
+  const jpeg = Buffer.from([0xff, 0xd8, 0xff, 0xd9]);
+  const shot = await request(app)
+    .post("/marathon/api/runs/" + trail.body.run.id + "/shot")
+    .set(auth)
+    .attach("file", jpeg, { filename: "shot.jpg", contentType: "image/jpeg" });
+  assert.equal(shot.status, 200);
+  const seen = await request(app).get("/marathon/api/runs/" + trail.body.run.id + "/shot").set(mateAuth);
+  assert.equal(seen.status, 200);
+  assert.equal((await request(app).get("/marathon/api/runs/" + trail.body.run.id + "/shot").set("Authorization", "Bearer " + stranger)).status, 404);
+
+  const removed = await request(app).delete("/marathon/api/runs/" + trail.body.run.id).set(auth);
+  assert.equal(removed.status, 200);
+  const left = await request(app).get("/marathon/api/clubs/" + clubId + "/mileage?range=all").set(auth);
+  assert.equal(left.body.totalKm, 5);
+  assert.equal(getDb().prepare("SELECT COUNT(*) AS n FROM point_entries").get().n, pointsBefore);
+  assert.equal(personal.body.watches, "尚未接入");
+});

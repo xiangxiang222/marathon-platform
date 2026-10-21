@@ -1,4 +1,52 @@
-<view class="page">
-  <view class="lead">跑步记录以后放在这里</view>
-  <view class="empty">还没接手表，也不记公里。团练打卡仍在跑团里。</view>
+<view class="pad" wx:if="{{!ready}}">
+  <view class="empty">先到「我的」登录。</view>
+</view>
+<view class="pad" wx:if="{{ready && summary}}">
+  <view class="card">
+    <view class="title">今年 {{summary.year.km}} 公里</view>
+    <view class="src">{{summary.year.days}} 天 · {{summary.year.count}} 次</view>
+    <view class="src">累计 {{summary.total.km}} 公里，{{summary.total.count}} 次</view>
+  </view>
+  <view class="card">
+    <view class="title">{{summary.month.id}}</view>
+    <input placeholder="月份 2026-10" value="{{month}}" bindinput="onMonth" />
+    <view class="src">{{summary.month.km}} 公里 · {{summary.month.days}}/{{summary.month.count}} · 配速 {{summary.month.paceLabel || '—'}}</view>
+    <view class="src">用时 {{summary.month.durationLabel}}</view>
+    <view class="src" wx:if="{{summary.month.target}}">目标 {{summary.month.target}} 公里<template wx:if="{{summary.month.percent != null}}">，完成 {{summary.month.percent}}%</template><template wx:if="{{summary.month.observe}}">。本月观摩</template><template wx:elif="{{summary.month.short}}">。未达标</template></view>
+    <view class="src" wx:else>还没有本月目标。下限 {{summary.month.floor}} 公里。</view>
+    <block wx:if="{{summary.month.canFlag}}">
+      <view class="row">
+        <button class="ghost {{gender === '男' ? 'on' : ''}}" data-gender="男" bindtap="pickGender">男</button>
+        <button class="ghost {{gender === '女' ? 'on' : ''}}" data-gender="女" bindtap="pickGender">女</button>
+        <button class="ghost {{gender === '' ? 'on' : ''}}" data-gender="" bindtap="pickGender">不填</button>
+      </view>
+      <input placeholder="本月目标，公里" value="{{target}}" data-key="target" bindinput="onField" />
+      <button class="btn" bindtap="saveFlag">设立目标</button>
+    </block>
+  </view>
+  <view class="card">
+    <view class="title">记一场</view>
+    <view class="src">类型只有跑步和越野。</view>
+    <view class="row">
+      <button class="ghost {{type === 'run' ? 'on' : ''}}" data-type="run" bindtap="pickType">跑步</button>
+      <button class="ghost {{type === 'trail' ? 'on' : ''}}" data-type="trail" bindtap="pickType">越野</button>
+    </view>
+    <input placeholder="开始 2026-10-21 06:00" value="{{startedAt}}" data-key="startedAt" bindinput="onField" />
+    <input placeholder="里程，公里" value="{{distanceKm}}" data-key="distanceKm" bindinput="onField" />
+    <input placeholder="用时 0:50:00" value="{{duration}}" data-key="duration" bindinput="onField" />
+    <input placeholder="爬升，米" value="{{climb}}" data-key="climb" bindinput="onField" />
+    <input placeholder="城市，可不填" value="{{city}}" data-key="city" bindinput="onField" />
+    <button class="btn" bindtap="create">记下</button>
+  </view>
+  <view class="card" wx:for="{{summary.runs}}" wx:key="id" wx:for-index="index">
+    <view class="title">{{item.typeLabel}} · {{item.startedAt}}</view>
+    <view class="src">里程 {{item.distanceKm}} · 跑量 {{item.volumeKm}} · {{item.durationLabel}} · 爬升 {{item.climb}} 米</view>
+    <view class="src" wx:if="{{item.note}}">{{item.note}}</view>
+    <view class="src" wx:for="{{item.clubs}}" wx:for-item="club" wx:key="name">{{club.counted ? '计入' : '未计入'}} {{club.name}}</view>
+    <button class="ghost" data-index="{{index}}" data-type="run" bindtap="changeType">改成跑步</button>
+    <button class="ghost" data-index="{{index}}" data-type="trail" bindtap="changeType">改成越野</button>
+    <button class="ghost" data-index="{{index}}" bindtap="remove">删除这场</button>
+  </view>
+  <view class="src">跑表尚未接入。顺序是高驰、佳明、华为。</view>
+  <view wx:if="{{message}}" class="err">{{message}}</view>
 </view>

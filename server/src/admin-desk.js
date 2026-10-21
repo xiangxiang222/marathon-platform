@@ -18,6 +18,7 @@ function deleteUser(db, id) {
   const files = db.prepare("SELECT filename, activity_id FROM activity_media WHERE user_id = ?").all(id);
   const sheets = db.prepare("SELECT filename FROM result_call_rows WHERE user_id = ? AND filename != ''").all(id);
   const meetPhotos = db.prepare("SELECT filename FROM meetup_photos WHERE user_id = ? AND filename != ''").all(id);
+  const shots = db.prepare("SELECT shot FROM runs WHERE user_id = ? AND shot != ''").all(id);
   db.transaction(() => {
     for (const table of [
       "plans",
@@ -41,6 +42,10 @@ function deleteUser(db, id) {
     ]) {
       db.prepare("DELETE FROM " + table + " WHERE user_id = ?").run(id);
     }
+    db.prepare("DELETE FROM mileage_counts WHERE run_id IN (SELECT id FROM runs WHERE user_id = ?)").run(id);
+    db.prepare("DELETE FROM runs WHERE user_id = ?").run(id);
+    db.prepare("DELETE FROM mileage_flags WHERE user_id = ?").run(id);
+    db.prepare("DELETE FROM user_mileage WHERE user_id = ?").run(id);
     db.prepare("DELETE FROM users WHERE id = ?").run(id);
   })();
   for (const file of files) {
@@ -54,6 +59,10 @@ function deleteUser(db, id) {
   }
   for (const photo of meetPhotos) {
     const full = path.join(mediaRoot(), "meetups", photo.filename);
+    if (fs.existsSync(full)) fs.unlinkSync(full);
+  }
+  for (const shot of shots) {
+    const full = path.join(mediaRoot(), "runs", path.basename(shot.shot));
     if (fs.existsSync(full)) fs.unlinkSync(full);
   }
   return { ok: true };
@@ -245,6 +254,9 @@ function deleteClub(db, id) {
     db.prepare("DELETE FROM club_groups WHERE club_id = ?").run(id);
     db.prepare("DELETE FROM checkins WHERE club_id = ?").run(id);
     db.prepare("DELETE FROM point_entries WHERE club_id = ?").run(id);
+    db.prepare("DELETE FROM mileage_counts WHERE club_id = ?").run(id);
+    db.prepare("DELETE FROM mileage_groups WHERE club_id = ?").run(id);
+    db.prepare("DELETE FROM mileage_rules WHERE club_id = ?").run(id);
     db.prepare("DELETE FROM gifts WHERE club_id = ?").run(id);
     db.prepare("DELETE FROM club_members WHERE club_id = ?").run(id);
     db.prepare("DELETE FROM club_requests WHERE club_id = ?").run(id);
