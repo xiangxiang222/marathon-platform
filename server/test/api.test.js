@@ -3001,6 +3001,14 @@ test("a handwritten result can carry an unverified certificate or medal photo", 
   assert.equal(again.status, 200);
   const stored = getDb().prepare("SELECT proof FROM results WHERE race_id = 'bishan' AND proof != ''").get();
   const storedFile = path.join(process.env.MARATHON_MEDIA, "results", stored.proof);
+  const half = await request(app).put("/marathon/api/me/races/bishan/result").set(auth).send({ distance: "half", time: "1:40:00" });
+  assert.equal(half.status, 200);
+  assert.equal(half.body.result.distance, "half");
+  const both = await request(app).get("/marathon/api/me").set(auth);
+  const keptRows = both.body.results.filter((item) => item.race.id === "bishan");
+  assert.equal(keptRows.length, 2);
+  assert.equal(keptRows.find((item) => item.distance === "full").hasProof, true);
+  assert.equal(keptRows.find((item) => item.distance === "half").clock, "1:40:00");
   const removed = await request(app).delete("/marathon/api/me/races/bishan/result").set(auth);
   assert.equal(removed.status, 200);
   assert.equal(fs.existsSync(storedFile), false);

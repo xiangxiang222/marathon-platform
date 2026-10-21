@@ -26,6 +26,7 @@ Page({
     ready: false,
     message: "",
     myResult: null,
+    myResults: [],
     distanceOptions: [],
     distance: "",
     clock: "",
@@ -77,7 +78,8 @@ Page({
           key,
           label: (race.distanceLabels || [])[i] || key
         }));
-        const myResult = data.myResult || null;
+        const myResults = data.myResults || [];
+        const myResult = myResults.find((item) => item.distance === this.data.distance) || myResults[0] || null;
         const patch = {
           race,
           distanceText: (race.distanceLabels || []).join(" / "),
@@ -97,8 +99,9 @@ Page({
           drawError: "",
           drawNote: "",
           proofSrc: myResult && myResult.hasProof
-            ? baseUrl + "/marathon/api/me/races/" + this.raceId + "/result/proof?t=" + encodeURIComponent((getApp().globalData && getApp().globalData.token) || "")
+            ? baseUrl + "/marathon/api/me/races/" + this.raceId + "/result/proof?t=" + encodeURIComponent((getApp().globalData && getApp().globalData.token) || "") + "&distance=" + encodeURIComponent(myResult.distance)
             : "",
+          myResults,
           ready: ready(),
           message: "",
           myResult,
@@ -146,7 +149,18 @@ Page({
       .catch((err) => this.setData({ message: err.message }));
   },
   pickDistance(e) {
-    this.setData({ distance: e.currentTarget.dataset.distance });
+    const distance = e.currentTarget.dataset.distance;
+    const found = (this.data.myResults || []).find((item) => item.distance === distance) || null;
+    const token = (getApp().globalData && getApp().globalData.token) || "";
+    this.setData({
+      distance,
+      myResult: found,
+      clock: found ? found.clock : "",
+      story: found ? found.story || "" : "",
+      proofSrc: found && found.hasProof
+        ? baseUrl + "/marathon/api/me/races/" + this.raceId + "/result/proof?t=" + encodeURIComponent(token) + "&distance=" + encodeURIComponent(distance)
+        : ""
+    });
   },
   onClock(e) {
     this.setData({ clock: e.detail.value });
@@ -196,7 +210,7 @@ Page({
         if (!file) return;
         const app = getApp();
         wx.uploadFile({
-          url: app.globalData.baseUrl + "/marathon/api/me/races/" + this.raceId + "/result/proof/" + kind,
+          url: app.globalData.baseUrl + "/marathon/api/me/races/" + this.raceId + "/result/proof/" + kind + "?distance=" + encodeURIComponent(this.data.distance),
           filePath: file.tempFilePath,
           name: "file",
           header: { Authorization: app.globalData.token ? "Bearer " + app.globalData.token : "" },
@@ -216,7 +230,7 @@ Page({
     });
   },
   removeProof() {
-    request("/me/races/" + this.raceId + "/result/proof", "DELETE")
+    request("/me/races/" + this.raceId + "/result/proof?distance=" + encodeURIComponent(this.data.distance), "DELETE")
       .then(() => this.load())
       .catch((err) => this.setData({ resultMessage: err.message }));
   },

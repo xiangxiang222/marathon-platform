@@ -61,7 +61,16 @@ Page({
     raceTitle: "",
     raceWhen: "",
     racePlace: "",
-    racePoints: "0"
+    racePoints: "0",
+    raceDistance: "10k",
+    raceDistanceLabel: "10公里",
+    raceOther: "",
+    raceDeadline: "",
+    raceNote: "",
+    raceGroups: [
+      { id: 1, name: "男子组", capacity: "0" },
+      { id: 2, name: "女子组", capacity: "0" }
+    ]
   },
   onLoad(query) {
     this.clubId = query.id;
@@ -225,17 +234,33 @@ Page({
       })
       .catch((err) => this.setData({ message: err.message }));
   },
+  pickRaceDistance(e) {
+    this.setData({ raceDistance: e.currentTarget.dataset.id, raceDistanceLabel: e.currentTarget.dataset.label, raceOther: "" });
+  },
+  onRaceGroup(e) {
+    const index = Number(e.currentTarget.dataset.index);
+    const key = e.currentTarget.dataset.key;
+    this.setData({ ["raceGroups[" + index + "]." + key]: e.detail.value });
+  },
+  addRaceGroup() {
+    const groups = this.data.raceGroups.concat([{ id: Date.now(), name: "", capacity: "0" }]);
+    this.setData({ raceGroups: groups });
+  },
   createInternal() {
+    const groups = this.data.raceGroups
+      .filter((group) => group.name && String(group.name).trim())
+      .map((group) => ({ name: String(group.name).trim(), capacity: Number(group.capacity) || 0 }));
+    const distance = this.data.raceOther ? "other" : this.data.raceDistance;
     request("/clubs/" + this.clubId + "/internals", "POST", {
       title: this.data.raceTitle,
       startsAt: this.data.raceWhen,
       place: this.data.racePlace,
-      distance: "10k",
+      distance,
+      otherKm: this.data.raceOther,
+      deadline: this.data.raceDeadline,
+      note: this.data.raceNote,
       finishPoints: Number(this.data.racePoints || 0),
-      groups: [
-        { name: "男子组", capacity: 0 },
-        { name: "女子组", capacity: 0 }
-      ]
+      groups
     })
       .then((data) => {
         wx.navigateTo({ url: "/pages/internal/internal?club=" + this.clubId + "&id=" + data.race.id });

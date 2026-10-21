@@ -69,5 +69,24 @@
     <button class="ghost {{rules.observe ? 'on' : ''}}" data-key="observe" bindtap="toggleRule">当月入团自动观摩</button>
     <button class="btn" bindtap="saveRules">保存规则</button>
   </view>
+  <view class="card" wx:if="{{board.owner}}">
+    <view class="title">跑量分组</view>
+    <view class="src">和活动报名的组别分开。一个人在团里只有一个。</view>
+    <input data-key="groupName" placeholder="分组名，最多 10 个汉字" value="{{groupName}}" bindinput="onGroup" />
+    <input data-key="groupCap" placeholder="人数，0 不限" value="{{groupCap}}" bindinput="onGroup" />
+    <input data-key="groupSort" placeholder="编号" value="{{groupSort}}" bindinput="onGroup" />
+    <button class="btn" bindtap="addGroup">加一组</button>
+    <view wx:for="{{board.manageGroups}}" wx:key="id" class="row">
+      <text>{{item.name}} · {{item.members}} 人</text>
+      <text class="drop" data-id="{{item.id}}" bindtap="removeGroup">删除</text>
+    </view>
+    <view class="src">放入：{{assignName || '还没选'}} · {{assignGroupName}}</view>
+    <button wx:for="{{board.people}}" wx:key="id" class="ghost" data-id="{{item.id}}" data-name="{{item.nickname}}" bindtap="pickPerson">{{item.nickname}} · {{item.groupLabel}}</button>
+    <button class="ghost" data-id="0" data-name="不分组" bindtap="pickAssignGroup">不分组</button>
+    <button wx:for="{{board.manageGroups}}" wx:key="id" class="ghost" data-id="{{item.id}}" data-name="{{item.name}}" bindtap="pickAssignGroup">分到 {{item.name}}</button>
+    <button class="btn" bindtap="assign">放入</button>
+    <button class="ghost {{includeEmpty ? 'on' : ''}}" bindtap="toggleEmpty">没有记录的成员也导出</button>
+    <button class="btn" bindtap="exportSheet">复制这个范围的表格</button>
+  </view>
   <view wx:if="{{message}}" class="err">{{message}}</view>
 </view>

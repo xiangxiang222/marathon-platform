@@ -23,5 +23,13 @@
     <image wx:for="{{meetup.photos}}" wx:key="id" class="qr" src="{{item.src}}" mode="widthFix" />
     <view wx:if="{{!meetup.photos.length}}" class="src">还没有合影。至少 1 张，最多 9 张。</view>
   </view>
+  <view class="card" wx:if="{{meetup.canStaff}}">
+    <view class="h2">管理</view>
+    <view class="src">7 天内可以补打卡、补合影，再重算。作废会把已经发出的积分扣回。</view>
+    <view class="src">当前：{{forName || '还没选'}}</view>
+    <button wx:for="{{members}}" wx:key="id" class="ghost" data-id="{{item.id}}" data-name="{{item.nickname}}" bindtap="pickMember">{{item.nickname}}</button>
+    <button class="btn" bindtap="staffCheck">补打卡</button>
+    <button class="ghost" bindtap="resettle">重算</button>
+  </view>
   <view wx:if="{{message}}" class="src">{{message}}</view>
 </view>

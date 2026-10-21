@@ -109,9 +109,21 @@
       <input placeholder="名称，例如 滨河10公里" value="{{raceTitle}}" maxlength="40" data-key="raceTitle" bindinput="onDraft" />
       <input placeholder="开赛 2026-11-01 08:00" value="{{raceWhen}}" data-key="raceWhen" bindinput="onDraft" />
       <input placeholder="地点" value="{{racePlace}}" maxlength="40" data-key="racePlace" bindinput="onDraft" />
+      <view class="src">距离：{{raceOther ? raceOther + '公里' : raceDistanceLabel}}</view>
+      <button class="ghost {{raceDistance === 'full' && !raceOther ? 'on' : ''}}" data-id="full" data-label="全马" bindtap="pickRaceDistance">全马</button>
+      <button class="ghost {{raceDistance === 'half' && !raceOther ? 'on' : ''}}" data-id="half" data-label="半马" bindtap="pickRaceDistance">半马</button>
+      <button class="ghost {{raceDistance === '10k' && !raceOther ? 'on' : ''}}" data-id="10k" data-label="10公里" bindtap="pickRaceDistance">10公里</button>
+      <button class="ghost {{raceDistance === '5k' && !raceOther ? 'on' : ''}}" data-id="5k" data-label="5公里" bindtap="pickRaceDistance">5公里</button>
+      <input placeholder="其他距离，公里。选了上面的就留空" value="{{raceOther}}" data-key="raceOther" bindinput="onDraft" />
+      <input placeholder="报名截止，可空，默认开赛时间" value="{{raceDeadline}}" data-key="raceDeadline" bindinput="onDraft" />
+      <input placeholder="说明，可不填" value="{{raceNote}}" maxlength="500" data-key="raceNote" bindinput="onDraft" />
       <input type="number" placeholder="完赛积分，0 表示不记分" value="{{racePoints}}" data-key="racePoints" bindinput="onDraft" />
+      <view wx:for="{{raceGroups}}" wx:for-index="index" wx:key="id">
+        <input placeholder="组别" value="{{item.name}}" data-index="{{index}}" data-key="name" bindinput="onRaceGroup" />
+        <input placeholder="人数上限，0 不限" value="{{item.capacity}}" data-index="{{index}}" data-key="capacity" bindinput="onRaceGroup" />
+      </view>
+      <button class="ghost" bindtap="addRaceGroup">加一组</button>
     </view>
-    <view wx:if="{{club.staff}}" class="src">默认男子组和女子组，10 公里。要改组别和距离，用网页。</view>
     <button wx:if="{{club.staff}}" class="btn" bindtap="createInternal">发起队内赛</button>
   </view>
   <view class="card" wx:if="{{club.staff}}">
