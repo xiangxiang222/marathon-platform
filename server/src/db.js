@@ -437,6 +437,16 @@ function open() {
       reviewer TEXT NOT NULL DEFAULT ''
     );
     CREATE UNIQUE INDEX IF NOT EXISTS club_request_pending ON club_requests(club_id, user_id) WHERE status = 'pending';
+    CREATE TABLE IF NOT EXISTS bot_submissions (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      official_id TEXT NOT NULL,
+      status TEXT NOT NULL DEFAULT 'pending',
+      payload TEXT NOT NULL,
+      note TEXT NOT NULL DEFAULT '',
+      race_id TEXT NOT NULL DEFAULT '',
+      created_at TEXT NOT NULL,
+      updated_at TEXT NOT NULL
+    );
   `);
   handle.prepare(
     `UPDATE club_members SET role = 'owner'

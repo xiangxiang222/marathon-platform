@@ -3086,3 +3086,152 @@ test("a marked race can keep a private signup screenshot", async () => {
   assert.equal(fs.existsSync(file), false);
   assert.equal(getDb().prepare("SELECT COUNT(*) AS n FROM point_entries").get().n, pointsBefore);
 });
+
+test("a bot upload waits for review and a return can be sent again", async () => {
+  process.env.ADMIN_TOKEN = "test-admin";
+  process.env.GROK_BOT_TOKEN = "bot-test";
+  const admin = { Authorization: "Bearer test-admin" };
+  const bot = { Authorization: "Bearer bot-test" };
+  const closed = await request(app).post("/marathon/api/bot/races").send({ races: [] });
+  assert.equal(closed.status, 401);
+  const missing = await request(app).post("/marathon/api/bot/races").set(bot).send({});
+  assert.equal(missing.status, 400);
+  assert.match(missing.body.error, /请带上比赛/);
+  const past = await request(app).post("/marathon/api/bot/races").set(bot).send({
+    races: [{ officialId: "botpast", name: "过去的比赛", raceDate: "2020-01-01", province: "浙江", city: "杭州", distances: ["full"], source: "中国马拉松官网" }]
+  });
+  assert.equal(past.status, 200);
+  assert.match(past.body.errors[0].error, /只收还没开赛的比赛/);
+  const badLink = await request(app).post("/marathon/api/bot/races").set(bot).send({
+    races: [{
+      officialId: "botlink",
+      name: "链接不对马拉松",
+      raceDate: "2026-12-20",
+      province: "浙江",
+      city: "杭州",
+      distances: ["full"],
+      source: "中国马拉松官网",
+      signupUrl: "javascript:alert(1)"
+    }]
+  });
+  assert.match(badLink.body.errors[0].error, /https/);
+  const bareDate = await request(app).post("/marathon/api/bot/races").set(bot).send({
+    races: [{
+      officialId: "botdate",
+      name: "没写来源马拉松",
+      raceDate: "2026-12-20",
+      province: "浙江",
+      city: "杭州",
+      distances: ["half"],
+      source: "中国马拉松官网",
+      deadline: "2026-11-01"
+    }]
+  });
+  assert.match(bareDate.body.errors[0].error, /报名时间要写来源/);
+
+  const uploaded = await request(app).post("/marathon/api/bot/races").set(bot).send({
+    races: [{
+      officialId: "bot4242",
+      name: "2026上传测试马拉松",
+      raceDate: "2026-12-20",
+      province: "浙江",
+      city: "杭州",
+      place: "西湖",
+      distances: ["full", "half"],
+      source: "中国马拉松官网，2026-10-21",
+      organizer: "测试组委会",
+      eventUrl: "https://example.com/race"
+    }]
+  });
+  assert.equal(uploaded.status, 200);
+  assert.equal(uploaded.body.accepted.length, 1);
+  assert.equal(uploaded.body.accepted[0].onCalendar, false);
+  assert.equal(uploaded.body.errors.length, 0);
+  const hidden = await request(app).get("/marathon/api/races/caa-bot4242");
+  assert.equal(hidden.status, 404);
+  const queue = await request(app).get("/marathon/api/admin/bot-races?status=pending").set(admin);
+  assert.equal(queue.status, 200);
+  const waiting = queue.body.rows.find((row) => row.officialId === "bot4242");
+  assert.equal(waiting.name, "2026上传测试马拉松");
+  assert.match(waiting.lines.join("\n"), /测试组委会/);
+  const stranger = await request(app).post("/marathon/api/admin/bot-races/" + waiting.id + "/publish").set("Authorization", "Bearer " + (await session("上传旁人"))).send({});
+  assert.equal(stranger.status, 401);
+  const published = await request(app).post("/marathon/api/admin/bot-races/" + waiting.id + "/publish").set(admin).send({});
+  assert.equal(published.status, 200);
+  assert.equal(published.body.created, true);
+  const opened = await request(app).get("/marathon/api/races/" + published.body.raceId);
+  assert.equal(opened.body.race.regStatus, "报名时间未公布");
+  assert.equal(opened.body.race.source, "中国马拉松官网赛历");
+  assert.equal(opened.body.race.organizer, "测试组委会");
+  assert.equal(opened.body.race.eventUrl, "https://example.com/race");
+
+  const dated = await request(app).put("/marathon/api/admin/races/" + published.body.raceId).set(admin).send({ deadline: "2026-12-01", source: "规程，2026-10-21" });
+  assert.equal(dated.status, 200);
+  const again = await request(app).post("/marathon/api/bot/races").set(bot).send({
+    races: [{
+      officialId: "bot4242",
+      name: "2026上传测试马拉松",
+      raceDate: "2026-12-20",
+      province: "浙江",
+      city: "杭州",
+      distances: ["full", "half"],
+      source: "赛事网站，2026-10-21",
+      fee: "150元",
+      signupUrl: "https://example.com/signup"
+    }]
+  });
+  assert.equal(again.body.accepted[0].onCalendar, true);
+  const before = await request(app).get("/marathon/api/races/" + published.body.raceId);
+  assert.equal(before.body.race.deadline, "2026-12-01");
+  assert.equal(before.body.race.fee, "");
+  const review = await request(app).get("/marathon/api/admin/bot-races?status=pending").set(admin);
+  const second = review.body.rows.find((row) => row.officialId === "bot4242");
+  assert.ok(second.changes.some((line) => line.includes("费用")));
+  const kept = await request(app).post("/marathon/api/admin/bot-races/" + second.id + "/publish").set(admin).send({});
+  assert.equal(kept.status, 200);
+  assert.equal(kept.body.created, false);
+  const after = await request(app).get("/marathon/api/races/" + published.body.raceId);
+  assert.equal(after.body.race.deadline, "2026-12-01");
+  assert.equal(after.body.race.source, "规程，2026-10-21");
+  assert.equal(after.body.race.fee, "150元");
+  assert.equal(after.body.race.links.find((item) => item.key === "signup").url, "https://example.com/signup");
+  assert.equal(after.body.race.eventUrl, "https://example.com/race");
+
+  const third = await request(app).post("/marathon/api/bot/races").set(bot).send({
+    races: [{
+      officialId: "bot4242",
+      name: "2026上传测试马拉松",
+      raceDate: "2026-12-20",
+      province: "浙江",
+      city: "杭州",
+      distances: ["full", "half"],
+      source: "中国马拉松官网，2026-10-22"
+    }]
+  });
+  const blank = await request(app).post("/marathon/api/admin/bot-races/" + third.body.accepted[0].id + "/return").set(admin).send({});
+  assert.equal(blank.status, 400);
+  assert.match(blank.body.error, /打回要写原因/);
+  const sent = await request(app).post("/marathon/api/admin/bot-races/" + third.body.accepted[0].id + "/return").set(admin).send({ note: "报名入口打不开" });
+  assert.equal(sent.status, 200);
+  const stuck = await request(app).post("/marathon/api/admin/bot-races/" + third.body.accepted[0].id + "/publish").set(admin).send({});
+  assert.equal(stuck.status, 400);
+  const returned = await request(app).get("/marathon/api/bot/races").set(bot);
+  const reason = returned.body.returned.find((row) => row.officialId === "bot4242");
+  assert.equal(reason.note, "报名入口打不开");
+  const fixed = await request(app).post("/marathon/api/bot/races").set(bot).send({
+    races: [{
+      officialId: "bot4242",
+      name: "2026上传测试马拉松",
+      raceDate: "2026-12-20",
+      province: "浙江",
+      city: "杭州",
+      distances: ["full", "half"],
+      source: "赛事网站，2026-10-22",
+      signupUrl: "https://example.com/signup-fixed"
+    }]
+  });
+  assert.equal(fixed.body.accepted[0].id, third.body.accepted[0].id);
+  assert.equal(fixed.body.accepted[0].status, "pending");
+  const quiet = await request(app).get("/marathon/api/bot/races").set(bot);
+  assert.equal(quiet.body.returned.some((row) => row.officialId === "bot4242"), false);
+});

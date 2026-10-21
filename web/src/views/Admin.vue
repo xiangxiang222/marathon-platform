@@ -70,6 +70,29 @@
       </div>
       </div>
       <div v-if="!catalogQuery.trim()" class="desk-official">
+      <div v-if="!q.trim()" class="block">
+        <h2>待审详情</h2>
+        <p class="hint">上传先停在这里，确定发布后才进赛历。已经发布的场，空着的报名时间和链接保持原样。打回要写原因，上传方按原因再传一次。</p>
+        <div class="statuses">
+          <button type="button" class="status" :class="{ on: botStatus === 'pending' }" @click="setBotStatus('pending')">待审</button>
+          <button type="button" class="status" :class="{ on: botStatus === 'returned' }" @click="setBotStatus('returned')">已打回</button>
+          <button type="button" class="status" :class="{ on: botStatus === 'published' }" @click="setBotStatus('published')">已发布</button>
+        </div>
+        <div v-for="item in botRows" :key="item.id" class="block">
+          <h2>{{ item.name }}</h2>
+          <p class="hint">{{ item.raceDate }} · {{ item.city }} · {{ item.onCalendar ? "已在赛历" : "新场" }}</p>
+          <p v-if="item.note" class="warn">打回原因：{{ item.note }}</p>
+          <p v-for="(line, index) in item.lines" :key="item.id + '-' + index" class="hint">{{ line }}</p>
+          <p v-for="(change, index) in item.changes" :key="item.id + '-c-' + index" class="warn">{{ change }}</p>
+          <p v-if="item.onCalendar && !item.changes.length" class="hint">和赛历里记下的一样</p>
+          <template v-if="item.status === 'pending'">
+            <input v-model="item.returnNote" placeholder="打回原因" />
+            <button class="primary" type="button" @click="publishBot(item)">确定发布</button>
+            <button class="undo" type="button" @click="returnBot(item)">打回</button>
+          </template>
+        </div>
+        <p v-if="!botRows.length" class="empty">{{ botStatus === "pending" ? "还没有待审的比赛" : "这里还没有场" }}</p>
+      </div>
       <div class="block">
         <h2 v-if="!q.trim()">官网赛历</h2>
         <p v-if="!q.trim()" class="hint">每一届单独存。中国马拉松官网这场一直有链接。赛事自己的网站，官网给了才记下；没给就空着，也不拿往年的网站来填。每天再对一次，名称、日期、主办、赛事网站有变会标出来。报名时间仍要另写来源，已经记下的截止时间不会被盖掉。</p>
@@ -754,6 +777,8 @@ const q = ref("");
 const officialFocus = ref("");
 const filter = ref("pending");
 const rows = ref([]);
+const botRows = ref([]);
+const botStatus = ref("pending");
 const message = ref("");
 const saved = ref(false);
 const busy = ref(false);
@@ -942,7 +967,7 @@ async function enterDesk(data) {
     selfName.value = me.username || "";
   }
   if (!deskSections.value.some((item) => item.id === section.value)) section.value = role.value === "club" ? "joins" : "races";
-  if (section.value === "races") await Promise.all([load(), loadCatalog(), loadSpots()]);
+  if (section.value === "races") await Promise.all([load(), loadCatalog(), loadSpots(), loadBotReviews()]);
   if (section.value === "users") await loadUsers();
   if (section.value === "clubs") await loadClubs();
   if (section.value === "joins") await loadJoins();
@@ -1036,6 +1061,7 @@ function pickSection(id) {
   section.value = id;
   message.value = "";
   saved.value = false;
+  if (id === "races") loadBotReviews().catch(fail);
   if (id === "users") loadUsers();
   if (id === "clubs") loadClubs();
   if (id === "joins") loadJoins();
@@ -1662,6 +1688,46 @@ async function syncAll() {
   q.value = "";
   filter.value = "pending";
   await search();
+}
+
+async function loadBotReviews() {
+  const data = await admin("/admin/bot-races?status=" + botStatus.value);
+  botRows.value = (data.rows || []).map((row) => ({ ...row, returnNote: "" }));
+}
+
+async function setBotStatus(status) {
+  botStatus.value = status;
+  try {
+    await loadBotReviews();
+  } catch (err) {
+    fail(err);
+  }
+}
+
+async function publishBot(item) {
+  message.value = "";
+  saved.value = false;
+  try {
+    await admin("/admin/bot-races/" + item.id + "/publish", { method: "POST", body: "{}" });
+    saved.value = true;
+    message.value = "已发布";
+    await Promise.all([loadBotReviews(), load(), loadCatalog()]);
+  } catch (err) {
+    fail(err);
+  }
+}
+
+async function returnBot(item) {
+  message.value = "";
+  saved.value = false;
+  try {
+    await admin("/admin/bot-races/" + item.id + "/return", { method: "POST", body: JSON.stringify({ note: item.returnNote }) });
+    saved.value = true;
+    message.value = "已打回";
+    await loadBotReviews();
+  } catch (err) {
+    fail(err);
+  }
 }
 
 async function publish(row) {
