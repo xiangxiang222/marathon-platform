@@ -1,20 +1,34 @@
 <view class="pad" wx:if="{{activity}}">
   <view class="card">
     <view class="title">{{activity.title}}</view>
-    <view class="src">{{activity.startsAt}} {{activity.place}}</view>
+    <view wx:if="{{activity.issue}}" class="src">{{activity.issue}}</view>
+    <view class="src">{{activity.statusLabel}} · {{activity.timeLabel}}</view>
+    <view wx:if="{{activity.gatherAt}}" class="src">集合时间 {{activity.gatherAt}}</view>
+    <view wx:if="{{activity.gatherPlace}}" class="src">集合点 {{activity.gatherPlace}}</view>
+    <view wx:if="{{activity.place}}" class="src">地点 {{activity.place}}</view>
+    <view wx:if="{{activity.plannedKm}}" class="src">计划里程 {{activity.plannedKm}} 公里</view>
+    <view wx:if="{{activity.route}}" class="src">路线 {{activity.route}}</view>
+    <view class="src">{{activity.signupCount}} 人报名{{activity.gendered ? ' · 男 ' + activity.men + ' · 女 ' + activity.women : ''}}</view>
     <view wx:if="{{activity.note}}" class="src">{{activity.note}}</view>
     <view class="src">{{activity.rule}}</view>
   </view>
+  <view wx:for="{{groups}}" wx:key="id" class="card">
+    <view class="h2">{{item.name}} {{item.pace}}</view>
+    <view class="src">{{item.kindLabel}} · {{item.signed}}{{item.capacity ? '/' + item.capacity : ' · 不限'}}</view>
+    <view wx:for="{{item.people}}" wx:for-item="person" wx:key="userId" class="row">
+      <text>{{person.pacer ? '领跑 ' : ''}}{{person.nickname}}</text>
+      <text>{{person.level}} {{person.gender}}{{person.together ? ' 一起玩过 ' + person.together + ' 次' : ''}}</text>
+    </view>
+  </view>
   <view class="card">
-    <view class="h2">报名</view>
-    <view class="groups">
-      <button wx:for="{{groups}}" wx:key="id" class="ghost {{groupId === item.id ? 'on' : ''}}" data-id="{{item.id}}" bindtap="pickGroup">{{item.name}} {{item.signed}}人</button>
-    </view>
-    <button class="btn" bindtap="signup">{{activity.mine.signed ? '改组别' : '报名'}}</button>
-    <button wx:if="{{activity.mine.signed}}" class="ghost" bindtap="cancel">取消报名</button>
-    <view wx:for="{{signups}}" wx:key="userId" class="row">
-      <text>{{item.nickname}}</text><text>{{item.groupName || '未分组'}}</text>
-    </view>
+    <navigator wx:if="{{activity.action.enabled && activity.action.kind === 'signup'}}" class="btn" url="/pages/signup/signup?club={{clubId}}&id={{activityId}}">报名</navigator>
+    <button wx:elif="{{activity.action.enabled}}" class="btn" bindtap="cancel">取消报名</button>
+    <button wx:else class="btn" disabled>{{activity.action.label}}</button>
+    <button wx:if="{{activity.mine.signed && activity.mine.groupId}}" class="ghost" bindtap="pacer">{{activity.mine.pacer ? '不领跑了' : '我来领跑'}}</button>
+  </view>
+  <view class="card">
+    <navigator url="/pages/album/album?club={{clubId}}&id={{activityId}}">查看相册</navigator>
+    <view class="src">{{album.photoCount}} 张照片 · {{album.videoCount}} 个视频</view>
   </view>
   <view class="card">
     <view class="h2">打卡</view>
@@ -24,14 +38,9 @@
       <text>{{item.nickname}}</text><text>{{item.km}} 公里</text>
     </view>
   </view>
-  <view class="card">
-    <view class="h2">相册</view>
-    <button class="btn" bindtap="choose">上传照片或视频</button>
-    <view wx:for="{{media}}" wx:key="id" class="shot">
-      <image wx:if="{{item.kind === 'photo'}}" src="{{item.src}}" mode="aspectFill" />
-      <video wx:else src="{{item.src}}" controls />
-      <view class="src">{{item.nickname}}</view>
-    </view>
+  <view wx:if="{{staff}}" class="card">
+    <button class="ghost" bindtap="endActivity">结束这场</button>
+    <button class="ghost" bindtap="cancelActivity">取消这场</button>
   </view>
   <view wx:if="{{message}}" class="err">{{message}}</view>
 </view>

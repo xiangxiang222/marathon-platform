@@ -1,0 +1,24 @@
+<view class="pad" wx:if="{{activity}}">
+  <view class="card">
+    <view class="title">{{activity.title}}</view>
+    <view class="src">{{activity.dateLabel}} {{activity.place}}</view>
+    <view class="src">{{photoCount}} 张照片 · {{videoCount}} 个视频</view>
+    <button class="ghost" bindtap="showPhotos">照片</button>
+    <button class="ghost" bindtap="showVideos">视频</button>
+    <button wx:if="{{staff}}" class="ghost" bindtap="toggleReview">{{review ? '审核已开' : '审核关闭'}}</button>
+    <view wx:if="{{review}}" class="src">新上传的先待审核。别人看不到，上传的人自己能看到。</view>
+    <view wx:if="{{tab === 'photo' && !photos.length}}" class="src">还没有照片。团员可以上传。</view>
+    <view wx:for="{{tab === 'photo' ? photos : videos}}" wx:key="id" class="shot">
+      <image wx:if="{{item.kind === 'photo'}}" src="{{item.src}}" mode="aspectFill" />
+      <video wx:else src="{{item.src}}" controls />
+      <view class="src">{{item.nickname}} {{item.at}}{{item.pending ? ' 待审核' : ''}}</view>
+      <text wx:if="{{item.mine || staff}}" class="drop" data-id="{{item.id}}" bindtap="remove">删除</text>
+      <text wx:if="{{staff && item.pending}}" class="drop" data-id="{{item.id}}" bindtap="approve">通过</text>
+      <text wx:if="{{staff && item.kind === 'photo' && !item.pending}}" class="drop" data-id="{{item.id}}" bindtap="cover">设为封面</text>
+    </view>
+    <button class="btn" bindtap="choose">上传照片或视频</button>
+    <view class="src">还剩 {{photoLeft}} 张照片、{{videoLeft}} 个视频。</view>
+  </view>
+  <view wx:if="{{message}}" class="err">{{message}}</view>
+</view>
+<view wx:else class="pad">{{message || '正在打开相册'}}</view>

@@ -64,10 +64,11 @@
     <view class="h2">活动</view>
     <view class="src">每周训练在这里报名。满人数并且每人打卡够里程才记分。</view>
     <navigator wx:for="{{activities}}" wx:key="id" class="row" url="/pages/activity/activity?club={{club.id}}&id={{item.id}}">
-      <text>{{item.title}}</text>
-      <text>{{item.signupCount}}人报名</text>
+      <text>{{item.dateLabel}} {{item.title}}</text>
+      <text>{{item.signupCount}}人 · {{item.statusLabel}}</text>
     </navigator>
     <view wx:if="{{!activities.length}}" class="src">还没有活动。</view>
+    <button class="ghost" bindtap="shareRecent">分享最近 3 场</button>
   </view>
   <view class="card">
     <view class="h2">约跑</view>
@@ -112,12 +113,32 @@
       </view>
     </view>
   </view>
+  <view class="card">
+    <view class="h2">相册</view>
+    <navigator wx:for="{{albums}}" wx:key="id" class="row" url="/pages/album/album?club={{club.id}}&id={{item.id}}">
+      <text>{{item.title}}</text>
+      <text>{{item.photoCount}} 张 · {{item.videoCount}} 个视频</text>
+    </navigator>
+    <view wx:if="{{!albums.length}}" class="src">还没有活动照片。</view>
+  </view>
+  <view class="card" wx:if="{{attendance.rows}}">
+    <view class="h2">出勤榜 · {{attendance.label}}</view>
+    <view class="src">我 {{attendance.me.placeLabel}} · {{attendance.me.count}} 次</view>
+    <view wx:for="{{attendance.rows}}" wx:key="userId" class="row" wx:if="{{item.count}}">
+      <text>{{item.place}} {{item.nickname}}</text>
+      <text>{{item.count}} 次</text>
+    </view>
+  </view>
   <view class="card" wx:if="{{club.staff}}">
     <view class="h2">发一场活动</view>
     <view class="stack">
       <input placeholder="例如 周日 LSD" value="{{actTitle}}" maxlength="40" data-key="actTitle" bindinput="onDraft" />
       <input placeholder="集合地点" value="{{actPlace}}" maxlength="40" data-key="actPlace" bindinput="onDraft" />
-      <input placeholder="2026-10-11 05:40" value="{{actWhen}}" data-key="actWhen" bindinput="onDraft" />
+      <input placeholder="开始 2026-10-14 05:00" value="{{actWhen}}" data-key="actWhen" bindinput="onDraft" />
+      <input placeholder="结束时间，可不填" value="{{actEnds}}" data-key="actEnds" bindinput="onDraft" />
+      <input placeholder="期次，可不填" value="{{actIssue}}" maxlength="40" data-key="actIssue" bindinput="onDraft" />
+      <input placeholder="集合点" value="{{actGather}}" maxlength="40" data-key="actGather" bindinput="onDraft" />
+      <input placeholder="计划里程，可不填" value="{{actPlanned}}" data-key="actPlanned" bindinput="onDraft" />
       <input placeholder="说明，例如配速和路线" value="{{actNote}}" maxlength="500" data-key="actNote" bindinput="onDraft" />
       <input type="number" placeholder="成团人数" value="{{actPeople}}" data-key="actPeople" bindinput="onDraft" />
       <input type="digit" placeholder="每人至少多少公里" value="{{actKm}}" data-key="actKm" bindinput="onDraft" />

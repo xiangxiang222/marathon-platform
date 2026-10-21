@@ -11,6 +11,8 @@ Page({
     board: [],
     ranks: [],
     activities: [],
+    albums: [],
+    attendance: { rows: [], me: { placeLabel: "未上榜", count: 0 }, label: "本月" },
     checkins: [],
     checkedIn: false,
     note: "",
@@ -19,6 +21,10 @@ Page({
     actTitle: "",
     actPlace: "",
     actWhen: "",
+    actEnds: "",
+    actIssue: "",
+    actGather: "",
+    actPlanned: "",
     actNote: "",
     actPeople: "3",
     actKm: "5",
@@ -120,6 +126,12 @@ Page({
       .catch(() => {});
     request("/clubs/" + this.clubId + "/internals")
       .then((data) => this.setData({ internals: data.races || [] }))
+      .catch(() => {});
+    request("/clubs/" + this.clubId + "/albums")
+      .then((data) => this.setData({ albums: data.albums || [] }))
+      .catch(() => {});
+    request("/clubs/" + this.clubId + "/attendance?range=month")
+      .then((data) => this.setData({ attendance: data }))
       .catch(() => {});
     request("/clubs/" + this.clubId + "/fees")
       .then((data) => {
@@ -339,6 +351,10 @@ Page({
       title: this.data.actTitle,
       place: this.data.actPlace,
       startsAt: this.data.actWhen,
+      endsAt: this.data.actEnds,
+      issue: this.data.actIssue,
+      gatherPlace: this.data.actGather,
+      plannedKm: this.data.actPlanned,
       note: this.data.actNote,
       minPeople: Number(this.data.actPeople),
       minKm: Number(this.data.actKm),
@@ -346,6 +362,19 @@ Page({
     })
       .then((data) => {
         wx.navigateTo({ url: "/pages/activity/activity?club=" + this.clubId + "&id=" + data.activity.id });
+      })
+      .catch((err) => this.setData({ message: err.message }));
+  },
+  shareRecent() {
+    const ids = (this.data.activities || []).slice().sort((a, b) => (a.startsAt < b.startsAt ? 1 : -1)).slice(0, 3).map((item) => item.id);
+    if (!ids.length) {
+      this.setData({ message: "还没有活动" });
+      return;
+    }
+    request("/clubs/" + this.clubId + "/activities/share", "POST", { ids })
+      .then((data) => {
+        wx.setClipboardData({ data: data.text || "" });
+        this.setData({ message: "最近 3 场已复制" });
       })
       .catch((err) => this.setData({ message: err.message }));
   },
