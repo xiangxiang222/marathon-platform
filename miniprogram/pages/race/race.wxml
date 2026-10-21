@@ -86,6 +86,15 @@
     <view wx:if="{{message}}" class="err">{{message}}</view>
   </view>
 
+  <view class="card" wx:if="{{drawRates.length}}">
+    <view class="h2">历年中签</view>
+    <view class="src">按公布的报名人数和名额计算。</view>
+    <view wx:for="{{drawRates}}" wx:key="id">
+      <view class="src">{{item.label}} · 报名 {{item.applicants}} · 名额 {{item.quota}} · {{item.rateText}}</view>
+      <view class="src">来源 {{item.source}}</view>
+    </view>
+  </view>
+
   <view class="card" wx:if="{{drawText}}">
     <view class="h2">中签卡片</view>
     <view class="sum draw">{{drawText}}</view>

@@ -36,6 +36,14 @@
         <b :class="{ soon: node.soon }">{{ node.at }}<template v-if="node.text"> · {{ node.text }}</template></b>
       </div>
     </div>
+    <div v-if="drawRates.length" class="block">
+      <h2>历年中签</h2>
+      <p class="src">按公布的报名人数和名额计算。来源写在每一届下面。</p>
+      <div v-for="item in drawRates" :key="item.id" class="mate">
+        <span>{{ item.label }} · 报名 {{ item.applicants }} · 名额 {{ item.quota }} · {{ item.rateText }}</span>
+        <b>来源 {{ item.source }}</b>
+      </div>
+    </div>
     <div v-if="race && race.links.length" class="block">
       <h2>报名和查询</h2>
       <p class="src">这些都打开赛事自己的页面。这里不报名，也不付款。</p>
@@ -102,7 +110,10 @@
     </div>
     <div v-if="drawText" class="block">
       <h2>中签卡片</h2>
-      <pre class="share-text">{{ drawText }}</pre>
+      <div class="poster-card">
+        <p v-for="(line, index) in drawLines" :key="index">{{ line }}</p>
+      </div>
+      <button class="primary" type="button" @click="savePoster">保存图片</button>
       <button class="primary" type="button" @click="copyDraw">复制卡片</button>
       <p v-if="drawNote" class="note">{{ drawNote }}</p>
       <p v-if="drawError" class="err">{{ drawError }}</p>
@@ -204,6 +215,7 @@ const conflicts = ref([]);
 const alternatives = ref([]);
 const alternativeNote = ref("");
 const drawText = ref("");
+const drawRates = ref([]);
 const drawNote = ref("");
 const drawError = ref("");
 const myResult = ref(null);
@@ -227,6 +239,7 @@ async function load() {
   alternatives.value = data.alternatives || [];
   alternativeNote.value = data.alternativeNote || "";
   drawText.value = data.drawText || "";
+  drawRates.value = data.drawRates || [];
   myResult.value = data.myResult || null;
   if (data.myResult) {
     distance.value = data.myResult.distance;
@@ -253,6 +266,33 @@ async function saveResult() {
 function squadLine(club) {
   const card = cards.value.find((item) => item.club && item.club.id === club.id);
   return card && card.squad ? card.squad.text : "";
+}
+
+const drawLines = computed(() => drawText.value.split("\n").filter(Boolean));
+
+function savePoster() {
+  drawNote.value = "";
+  drawError.value = "";
+  const lines = drawLines.value;
+  const canvas = document.createElement("canvas");
+  canvas.width = 750;
+  canvas.height = 1000;
+  const ctx = canvas.getContext("2d");
+  ctx.fillStyle = "#007aff";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "#ffffff";
+  ctx.textAlign = "left";
+  let y = 180;
+  lines.forEach((line, index) => {
+    ctx.font = index === 0 ? "700 64px sans-serif" : "500 36px sans-serif";
+    ctx.fillText(line, 64, y, 622);
+    y += index === 0 ? 120 : 72;
+  });
+  const link = document.createElement("a");
+  link.href = canvas.toDataURL("image/png");
+  link.download = "中签.png";
+  link.click();
+  drawNote.value = "图片已保存";
 }
 
 async function copyDraw() {
@@ -305,6 +345,10 @@ onMounted(load);
 <style scoped>
 .detail-poster :deep(.poster) { aspect-ratio: 16 / 9; height: auto; border-radius: 0; }
 .share-text { margin: 0; font: inherit; white-space: pre-wrap; line-height: 1.5; }
+.poster-card { margin-top: 8px; padding: 28px 20px; border-radius: 16px; background: #007aff; color: #fff; }
+.poster-card p { margin: 0; font-size: 16px; line-height: 1.45; }
+.poster-card p:first-child { font-size: 28px; font-weight: 700; }
+.poster-card p + p { margin-top: 10px; }
 .src { margin: 8px 0 0; color: #8d949c; font-size: 12px; }
 .note { color: #007aff; font-size: 13px; padding: 0 16px; }
 .warn { margin: 10px 0 0; color: #9a5b12; font-size: 13px; line-height: 1.45; }

@@ -10,6 +10,10 @@
     <view class="title">跑量</view>
     <view class="src">已计入 {{mileage.totalKm}} 公里，{{mileage.totalCount}} 次。我本月 {{mileage.mineKm}} 公里。</view>
   </navigator>
+  <navigator class="card" url="/pages/feed/feed?id={{club.id}}">
+    <view class="title">动态</view>
+    <view class="src">只有本团能看。点赞和评论不加积分。</view>
+  </navigator>
   <navigator class="card" url="/pages/partner/partner?id={{club.id}}">
     <view class="title">合作</view>
     <view class="src">{{partnerGrade}}。会费仍由跑团自己收。</view>

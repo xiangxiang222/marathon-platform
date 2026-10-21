@@ -12,6 +12,8 @@ const { mountClubLife, enrichBoard, clubLife } = require("./club-life");
 const { mountMileage } = require("./mileage");
 const { mountPartner } = require("./partner");
 const { mountRadar } = require("./radar");
+const { mountFeed } = require("./feed");
+const { mountDraws, ratesOf } = require("./draws");
 const { mountClubOps } = require("./club-ops");
 const { mountClubGather } = require("./club-gather");
 const { mountRaceGuide, attachGuide } = require("./race-guide");
@@ -287,7 +289,8 @@ app.get(BASE + "/api/races/:id", (req, res) => {
     alternatives,
     missed,
     alternativeNote: alternativeNote(myStatus, missed, alternatives),
-    drawText: user && myStatus === "中签" ? drawPoster(user.nickname, race) : ""
+    drawText: user && myStatus === "中签" ? drawPoster(user.nickname, race) : "",
+    drawRates: ratesOf(getDb(), race.id)
   });
 });
 
@@ -925,6 +928,8 @@ mountClubLife(app, { BASE, getDb, userFrom });
 mountMileage(app, { BASE, getDb, userFrom });
 mountPartner(app, { BASE, getDb, userFrom, requireAdmin });
 mountRadar(app, { BASE, getDb, userFrom, requireAdmin });
+mountFeed(app, { BASE, getDb, userFrom });
+mountDraws(app, { BASE, getDb, requireAdmin });
 mountClubOps(app, { BASE, getDb, userFrom });
 mountClubGather(app, { BASE, getDb, userFrom });
 mountRaceGuide(app, { BASE, getDb, requireAdmin });
