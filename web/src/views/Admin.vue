@@ -9,7 +9,7 @@
       <div class="gate-copy">
         <p class="kicker">赛历</p>
         <h2>后台</h2>
-        <p>赛事、用户、跑团、入团审核、团练公里和积分礼品。</p>
+        <p>赛事、用户、跑团、入团审核、团练公里、积分礼品和合作。</p>
       </div>
       <form class="gate-form" @submit.prevent="enter">
         <label>
@@ -543,6 +543,63 @@
         </div>
         <p v-if="runsReady && !runs.length" class="empty">还没有人报过公里。</p>
       </div>
+      <div v-if="section === 'partner'" class="block">
+        <h2>物资</h2>
+        <p class="hint">用户不付钱。认证跑团按额度领，核心跑团额度乘二。</p>
+        <div v-for="item in partner.supplies" :key="item.id" class="line">
+          <b>{{ item.brand }} · {{ item.name }}</b>
+          <span>{{ item.month }} · 总量 {{ item.total }} · 额度 {{ item.quota }} · 已领 {{ item.claimed }} · 签到 {{ item.needChecks }} · 跑量 {{ item.needKm }} · {{ item.open ? "开放" : "结束" }}</span>
+          <span class="actions">
+            <button class="undo" type="button" @click="toggleSupply(item)">{{ item.open ? "结束" : "开放" }}</button>
+            <button class="undo" type="button" @click="removeSupply(item)">删除</button>
+          </span>
+        </div>
+        <form class="check-form" @submit.prevent="createSupply">
+          <input v-model="supplyBrand" maxlength="20" placeholder="品牌" />
+          <input v-model="supplyName" maxlength="40" placeholder="物资名" />
+          <input v-model.number="supplyTotal" type="number" min="1" placeholder="总量" />
+          <input v-model.number="supplyQuota" type="number" min="1" placeholder="每团额度" />
+          <input v-model="supplyMonth" placeholder="月份 2026-10" />
+          <input v-model.number="supplyChecks" type="number" min="0" placeholder="签到天数，0 表示不卡" />
+          <input v-model.number="supplyKm" type="number" min="0" step="0.1" placeholder="计入跑量，0 表示不卡" />
+          <input v-model="supplyNote" maxlength="100" placeholder="说明" />
+          <button class="primary" type="submit">投放</button>
+        </form>
+        <h2>联赛</h2>
+        <div v-for="item in partner.leagues" :key="item.id" class="line">
+          <b>{{ item.month }} · {{ item.title }}</b>
+          <span>{{ item.sponsor }} · {{ item.prize }} · {{ item.clubs }} 个团</span>
+        </div>
+        <form class="check-form" @submit.prevent="createLeague">
+          <input v-model="leagueMonth" placeholder="月份 2026-10" />
+          <input v-model="leagueTitle" maxlength="40" placeholder="联赛名称" />
+          <input v-model="leagueSponsor" maxlength="40" placeholder="冠名，可不填" />
+          <input v-model="leaguePrize" maxlength="80" placeholder="奖品，可不填" />
+          <button class="primary" type="submit">开这一月</button>
+        </form>
+        <h2>分账</h2>
+        <p class="hint">金额是线下账。这里不付款，也不代收会费。</p>
+        <div v-for="item in partner.splits" :key="item.id" class="line">
+          <b>{{ item.club }} · {{ item.kindLabel }}</b>
+          <span>{{ item.month }} · {{ item.yuan }} 元 · {{ item.settledLabel }}</span>
+          <span class="actions">
+            <button class="undo" type="button" @click="settleSplit(item)">{{ item.settled ? "改回未结" : "标成已结" }}</button>
+            <button class="undo" type="button" @click="removeSplit(item)">删除</button>
+          </span>
+        </div>
+        <form class="check-form" @submit.prevent="createSplit">
+          <input v-model.number="splitClub" type="number" min="1" placeholder="跑团编号" />
+          <input v-model="splitMonth" placeholder="月份 2026-10" />
+          <select v-model="splitKind">
+            <option value="fee">服务费</option>
+            <option value="commission">分佣</option>
+            <option value="title">冠名</option>
+          </select>
+          <input v-model.number="splitYuan" type="number" min="1" placeholder="整数元" />
+          <input v-model="splitNote" maxlength="80" placeholder="备注" />
+          <button class="primary" type="submit">记一笔</button>
+        </form>
+      </div>
       <div v-if="section === 'shop'">
         <div class="block">
           <h2>积分礼品</h2>
@@ -650,6 +707,7 @@ const allSections = [
   { id: "joins", label: "入团", roles: ["admin", "club"] },
   { id: "runs", label: "跑步", roles: ["admin"] },
   { id: "shop", label: "商城", roles: ["admin"] },
+  { id: "partner", label: "合作", roles: ["admin"] },
   { id: "accounts", label: "账号", roles: ["admin"] }
 ];
 const deskSections = computed(() => allSections.filter((item) => item.roles.includes(role.value || "admin")));
@@ -674,6 +732,24 @@ const runsReady = ref(false);
 const gifts = ref([]);
 const redemptions = ref([]);
 const shopReady = ref(false);
+const partner = ref({ supplies: [], leagues: [], splits: [] });
+const supplyBrand = ref("");
+const supplyName = ref("");
+const supplyTotal = ref(1);
+const supplyQuota = ref(1);
+const supplyMonth = ref("");
+const supplyChecks = ref(0);
+const supplyKm = ref(0);
+const supplyNote = ref("");
+const leagueMonth = ref("");
+const leagueTitle = ref("");
+const leagueSponsor = ref("");
+const leaguePrize = ref("");
+const splitClub = ref("");
+const splitMonth = ref("");
+const splitKind = ref("commission");
+const splitYuan = ref("");
+const splitNote = ref("");
 const joins = ref([]);
 const foundings = ref([]);
 const joinsReady = ref(false);
@@ -707,6 +783,7 @@ const sectionLead = computed(() => ({
   joins: "建团和没口令的入团都在这里审。通过建团后，申请人成为该团团长。",
   runs: "团练里自己报的公里。还没接手表，每天到没到不记在这里。",
   shop: "商城还没接，不收款、不发货。现在看的是各跑团的积分礼品。",
+  partner: "认证按人数和出勤算，不收身份证。物资达标领取，用户不付钱。分账只记线下账，会费仍由跑团自己收。联赛按月排名，奖品不发现金。",
   accounts: "跑团管理员审核入团和建团，并可管理跑团成员与团长。"
 }[section.value] || ""));
 const book = ref(null);
@@ -784,6 +861,7 @@ async function enterDesk(data) {
   if (section.value === "joins") await loadJoins();
   if (section.value === "runs") await loadRuns();
   if (section.value === "shop") await loadShop();
+  if (section.value === "partner") await loadPartner();
   if (section.value === "accounts") await loadAccounts();
   authed.value = true;
 }
@@ -876,6 +954,7 @@ function pickSection(id) {
   if (id === "joins") loadJoins();
   if (id === "runs") loadRuns();
   if (id === "shop") loadShop();
+  if (id === "partner") loadPartner();
   if (id === "accounts") loadAccounts();
 }
 
@@ -1289,6 +1368,126 @@ async function loadRuns() {
     const data = await admin("/admin/runs");
     runs.value = data.runs;
     runsReady.value = true;
+  } catch (err) {
+    fail(err);
+  }
+}
+
+async function loadPartner() {
+  try {
+    partner.value = await admin("/admin/partner");
+  } catch (err) {
+    fail(err);
+  }
+}
+
+async function createSupply() {
+  message.value = "";
+  saved.value = false;
+  try {
+    await admin("/admin/supplies", {
+      method: "POST",
+      body: JSON.stringify({
+        brand: supplyBrand.value,
+        name: supplyName.value,
+        total: supplyTotal.value,
+        quota: supplyQuota.value,
+        month: supplyMonth.value,
+        needChecks: supplyChecks.value,
+        needKm: supplyKm.value,
+        note: supplyNote.value
+      })
+    });
+    supplyBrand.value = "";
+    supplyName.value = "";
+    supplyNote.value = "";
+    saved.value = true;
+    await loadPartner();
+  } catch (err) {
+    fail(err);
+  }
+}
+
+async function toggleSupply(item) {
+  message.value = "";
+  try {
+    await admin("/admin/supplies/" + item.id, { method: "PUT", body: JSON.stringify({ open: !item.open }) });
+    await loadPartner();
+  } catch (err) {
+    fail(err);
+  }
+}
+
+async function removeSupply(item) {
+  message.value = "";
+  try {
+    await admin("/admin/supplies/" + item.id, { method: "DELETE" });
+    await loadPartner();
+  } catch (err) {
+    fail(err);
+  }
+}
+
+async function createLeague() {
+  message.value = "";
+  saved.value = false;
+  try {
+    await admin("/admin/leagues", {
+      method: "POST",
+      body: JSON.stringify({
+        month: leagueMonth.value,
+        title: leagueTitle.value,
+        sponsor: leagueSponsor.value,
+        prize: leaguePrize.value
+      })
+    });
+    leagueTitle.value = "";
+    leagueSponsor.value = "";
+    leaguePrize.value = "";
+    saved.value = true;
+    await loadPartner();
+  } catch (err) {
+    fail(err);
+  }
+}
+
+async function createSplit() {
+  message.value = "";
+  saved.value = false;
+  try {
+    await admin("/admin/splits", {
+      method: "POST",
+      body: JSON.stringify({
+        clubId: splitClub.value,
+        month: splitMonth.value,
+        kind: splitKind.value,
+        yuan: splitYuan.value,
+        note: splitNote.value
+      })
+    });
+    splitNote.value = "";
+    saved.value = true;
+    await loadPartner();
+  } catch (err) {
+    fail(err);
+  }
+}
+
+async function settleSplit(item) {
+  message.value = "";
+  try {
+    await admin("/admin/splits/" + item.id, { method: "PUT", body: JSON.stringify({ settled: !item.settled }) });
+    await loadPartner();
+  } catch (err) {
+    fail(err);
+  }
+}
+
+async function removeSplit(item) {
+  message.value = "";
+  try {
+    await admin("/admin/splits/" + item.id, { method: "DELETE" });
+    await loadPartner();
   } catch (err) {
     fail(err);
   }

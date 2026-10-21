@@ -17,6 +17,7 @@
       <button type="button" :class="{ on: tab === 'act' }" @click="tab = 'act'">活动</button>
       <button type="button" :class="{ on: tab === 'album' }" @click="tab = 'album'">相册</button>
       <button type="button" :class="{ on: tab === 'km' }" @click="tab = 'km'">跑量</button>
+      <button type="button" :class="{ on: tab === 'partner' }" @click="tab = 'partner'">合作</button>
       <button type="button" :class="{ on: tab === 'people' }" @click="tab = 'people'">成员</button>
     </div>
     <div v-if="club && tab === 'race'" class="block">
@@ -251,6 +252,7 @@
       <p v-if="!albums.length" class="empty">还没有活动照片。</p>
     </template>
     <MileageBoard v-if="club && tab === 'km'" :club-id="club.id" />
+    <PartnerBoard v-if="club && tab === 'partner'" :club-id="club.id" />
     <div v-if="shareImage" class="viewer" @click="shareImage = ''">
       <img :src="shareImage" alt="分享图片" />
     </div>
@@ -373,6 +375,7 @@ import { api, feeQrSrc, mediaSrc, upload } from "../api";
 import { copyText } from "../copy";
 import { textCard } from "../share-card";
 import MileageBoard from "../components/MileageBoard.vue";
+import PartnerBoard from "../components/PartnerBoard.vue";
 const route = useRoute();
 const router = useRouter();
 const tab = ref("race");
@@ -1013,8 +1016,8 @@ onMounted(async () => {
 .check-form { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
 .check-form input { height: 36px; border: 1px solid #e6e8ec; border-radius: 8px; padding: 0 10px; background: #fff; }
 .undo { margin-top: 8px; height: 32px; padding: 0 12px; background: transparent; color: #8d949c; }
-.seg { display: flex; gap: 8px; margin: 0 16px; }
-.seg button { flex: 1; height: 34px; border-radius: 10px; background: #fff; color: #8e8e93; font-weight: 650; font-size: 13px; }
+.seg { display: flex; gap: 4px; margin: 0 16px; }
+.seg button { flex: 1; height: 34px; border-radius: 10px; background: #fff; color: #8e8e93; font-weight: 650; font-size: 12px; padding: 0; white-space: nowrap; }
 .undo.on { color: #007aff; }
 .month-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-top: 8px; }
 .dow, .day { text-align: center; font-size: 12px; }

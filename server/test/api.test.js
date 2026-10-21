@@ -2426,3 +2426,262 @@ test("handwritten mileage stays off the points ledger and follows each club's ru
   assert.equal(getDb().prepare("SELECT COUNT(*) AS n FROM point_entries").get().n, pointsBefore);
   assert.equal(personal.body.watches, "尚未接入");
 });
+
+test("club grade, supplies, offline splits and the monthly league stay off the points ledger", async () => {
+  const pointsBefore = getDb().prepare("SELECT COUNT(*) AS n FROM point_entries").get().n;
+  const today = new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10);
+  const month = today.slice(0, 7);
+  function dayShift(count) {
+    const [year, part, date] = today.split("-").map(Number);
+    return new Date(Date.UTC(year, part - 1, date + count)).toISOString().slice(0, 10);
+  }
+  function monthShift(count) {
+    const [year, part] = month.split("-").map(Number);
+    return new Date(Date.UTC(year, part - 1 + count, 1)).toISOString().slice(0, 7);
+  }
+  function auth(token) {
+    return { Authorization: "Bearer " + token };
+  }
+  function fillMembers(clubId, count, mark) {
+    const db = getDb();
+    const now = new Date().toISOString();
+    const addUser = db.prepare("INSERT INTO users (nickname, token, created_at) VALUES (?, ?, ?)");
+    const addMember = db.prepare("INSERT INTO club_members (club_id, user_id, joined_at, role) VALUES (?, ?, ?, 'member')");
+    db.transaction(() => {
+      for (let i = 0; i < count; i += 1) {
+        const info = addUser.run(mark + i, mark + "-" + i + "-" + now, now);
+        addMember.run(clubId, Number(info.lastInsertRowid), now);
+      }
+    })();
+  }
+  function check(clubId, userId, day) {
+    getDb().prepare("INSERT INTO checkins (club_id, user_id, day, note, created_at) VALUES (?, ?, ?, '', ?)").run(clubId, userId, day, new Date().toISOString());
+  }
+  async function userIdOf(token) {
+    const me = await request(app).get("/marathon/api/me").set(auth(token));
+    assert.equal(me.status, 200);
+    return me.body.user.id;
+  }
+
+  const leader = await session("合作团长");
+  const mate = await session("合作甲");
+  const manager = await session("合作管理");
+  const outsider = await session("合作外");
+  const created = await createClub(leader, "合作跑团");
+  const clubId = created.body.club.id;
+  const code = created.body.club.code;
+  const admin = { Authorization: "Bearer " + process.env.ADMIN_TOKEN };
+  for (const token of [mate, manager]) {
+    const joined = await request(app).post("/marathon/api/clubs/join").set(auth(token)).send({ code });
+    assert.equal(joined.status, 200);
+  }
+  const managerId = await userIdOf(manager);
+  const leaderId = await userIdOf(leader);
+  const setRole = await request(app).put("/marathon/api/clubs/" + clubId + "/members/" + managerId).set(auth(leader)).send({ role: "manager" });
+  assert.equal(setRole.status, 200);
+
+  const madeDesk = await request(app).post("/marathon/api/admin/accounts").set(admin).send({ username: "partnerdesk", password: "partner-pass-8", role: "club" });
+  assert.equal(madeDesk.status, 200);
+  const deskLogin = await request(app).post("/marathon/api/admin/login").send({ username: "partnerdesk", password: "partner-pass-8" });
+  assert.equal(deskLogin.status, 200);
+  const deskDenied = await request(app)
+    .post("/marathon/api/admin/supplies")
+    .set(auth(deskLogin.body.token))
+    .send({ brand: "补给牌", name: "能量胶", total: 5, quota: 1, month, needChecks: 0, needKm: 0, note: "" });
+  assert.equal(deskDenied.status, 403);
+
+  const past = await request(app)
+    .post("/marathon/api/admin/supplies")
+    .set(admin)
+    .send({ brand: "补给牌", name: "能量胶", total: 5, quota: 1, month: "2020-01", needChecks: 0, needKm: 0, note: "" });
+  assert.equal(past.status, 400);
+  assert.match(past.body.error, /不能补开已经过去的月份/);
+
+  const supply = await request(app)
+    .post("/marathon/api/admin/supplies")
+    .set(admin)
+    .send({ brand: "补给牌", name: "能量胶", total: 5, quota: 1, month, needChecks: 0, needKm: 0, note: "到团可领" });
+  assert.equal(supply.status, 200);
+  const supplyId = supply.body.id;
+
+  const opened = await request(app).get("/marathon/api/clubs/" + clubId + "/partner").set(auth(leader));
+  assert.equal(opened.status, 200);
+  assert.equal(opened.body.grade.id, "open");
+  assert.equal(opened.body.grade.members, 3);
+  assert.match(opened.body.grade.note, /不收身份证/);
+  assert.equal(opened.body.supplies[0].reason, "认证后可以领");
+  const early = await request(app).post("/marathon/api/clubs/" + clubId + "/supplies/" + supplyId + "/claim").set(auth(leader));
+  assert.equal(early.status, 400);
+  assert.match(early.body.error, /认证后可以领/);
+
+  fillMembers(clubId, 7, "pa" + clubId + "a");
+  const base = await request(app).get("/marathon/api/clubs/" + clubId + "/partner").set(auth(leader));
+  assert.equal(base.body.grade.id, "base");
+  assert.equal(base.body.grade.members, 10);
+
+  fillMembers(clubId, 20, "pa" + clubId + "b");
+  const almost = await request(app).get("/marathon/api/clubs/" + clubId + "/partner").set(auth(leader));
+  assert.equal(almost.body.grade.id, "base");
+  assert.equal(almost.body.grade.members, 30);
+  assert.equal(almost.body.grade.lines[1].met, false);
+
+  for (let i = 0; i < 4; i += 1) check(clubId, leaderId, dayShift(-i));
+  const certified = await request(app).get("/marathon/api/clubs/" + clubId + "/partner").set(auth(leader));
+  assert.equal(certified.body.grade.id, "certified");
+  assert.ok(certified.body.grade.recentDays >= 4);
+
+  const claimed = await request(app).post("/marathon/api/clubs/" + clubId + "/supplies/" + supplyId + "/claim").set(auth(leader));
+  assert.equal(claimed.status, 200);
+  const again = await request(app).post("/marathon/api/clubs/" + clubId + "/supplies/" + supplyId + "/claim").set(auth(leader));
+  assert.equal(again.status, 400);
+  assert.match(again.body.error, /你已经领过/);
+  const mateFull = await request(app).post("/marathon/api/clubs/" + clubId + "/supplies/" + supplyId + "/claim").set(auth(mate));
+  assert.equal(mateFull.status, 400);
+  assert.match(mateFull.body.error, /这个团的额度满了/);
+
+  const coreLeader = await session("核心团长");
+  const coreMate = await session("核心乙");
+  const coreThird = await session("核心丙");
+  const coreClub = await createClub(coreLeader, "核心跑团");
+  const coreId = coreClub.body.club.id;
+  for (const token of [coreMate, coreThird]) {
+    const joined = await request(app).post("/marathon/api/clubs/join").set(auth(token)).send({ code: coreClub.body.club.code });
+    assert.equal(joined.status, 200);
+  }
+  fillMembers(coreId, 97, "pb" + coreId + "c");
+  const coreLeaderId = await userIdOf(coreLeader);
+  const coreMateId = await userIdOf(coreMate);
+  const now = new Date().toISOString();
+  check(coreId, coreLeaderId, today);
+  check(coreId, coreLeaderId, monthShift(-1) + "-15");
+  check(coreId, coreLeaderId, monthShift(-2) + "-15");
+  getDb().prepare("INSERT INTO plans (user_id, race_id, status, updated_at) VALUES (?, 'bishan', '想跑', ?)").run(coreLeaderId, now);
+  getDb().prepare("INSERT INTO plans (user_id, race_id, status, updated_at) VALUES (?, 'bishan', '想跑', ?)").run(coreMateId, now);
+  const coreView = await request(app).get("/marathon/api/clubs/" + coreId + "/partner").set(auth(coreLeader));
+  assert.equal(coreView.body.grade.id, "core");
+  assert.equal(coreView.body.grade.members, 100);
+  assert.equal(coreView.body.grade.collective, true);
+
+  assert.equal((await request(app).post("/marathon/api/clubs/" + coreId + "/supplies/" + supplyId + "/claim").set(auth(coreLeader))).status, 200);
+  assert.equal((await request(app).post("/marathon/api/clubs/" + coreId + "/supplies/" + supplyId + "/claim").set(auth(coreMate))).status, 200);
+  const coreFull = await request(app).post("/marathon/api/clubs/" + coreId + "/supplies/" + supplyId + "/claim").set(auth(coreThird));
+  assert.equal(coreFull.status, 400);
+  assert.match(coreFull.body.error, /这个团的额度满了/);
+
+  const tooSmall = await request(app).put("/marathon/api/admin/supplies/" + supplyId).set(admin).send({ total: 2 });
+  assert.equal(tooSmall.status, 400);
+  assert.match(tooSmall.body.error, /总量不能少于已领/);
+  const locked = await request(app).put("/marathon/api/admin/supplies/" + supplyId).set(admin).send({ needChecks: 4 });
+  assert.equal(locked.status, 400);
+  assert.match(locked.body.error, /条件不能改/);
+
+  const wider = await request(app)
+    .post("/marathon/api/admin/supplies")
+    .set(admin)
+    .send({ brand: "补给牌", name: "盐丸", total: 5, quota: 2, month, needChecks: 0, needKm: 0, note: "" });
+  assert.equal(wider.status, 200);
+  assert.equal((await request(app).post("/marathon/api/clubs/" + clubId + "/supplies/" + wider.body.id + "/claim").set(auth(leader))).status, 200);
+  assert.equal((await request(app).post("/marathon/api/clubs/" + clubId + "/supplies/" + wider.body.id + "/claim").set(auth(mate))).status, 200);
+  const shrink = await request(app).put("/marathon/api/admin/supplies/" + wider.body.id).set(admin).send({ quota: 1 });
+  assert.equal(shrink.status, 400);
+  assert.match(shrink.body.error, /额度不能少于已领/);
+
+  const badKind = await request(app).post("/marathon/api/admin/splits").set(admin).send({ clubId, month, kind: "swim", yuan: 1, note: "" });
+  assert.equal(badKind.status, 400);
+  assert.match(badKind.body.error, /服务费、分佣或冠名/);
+  const split = await request(app).post("/marathon/api/admin/splits").set(admin).send({ clubId, month, kind: "commission", yuan: 864213, note: "线下" });
+  assert.equal(split.status, 200);
+  const mateView = await request(app).get("/marathon/api/clubs/" + clubId + "/partner").set(auth(mate));
+  assert.equal(mateView.body.ledger, null);
+  assert.match(mateView.body.ledgerNote, /会费仍由跑团自己收/);
+  assert.equal(JSON.stringify(mateView.body).includes("864213"), false);
+  const ownerView = await request(app).get("/marathon/api/clubs/" + clubId + "/partner").set(auth(leader));
+  assert.equal(ownerView.body.ledger[0].yuan, 864213);
+  assert.equal(ownerView.body.ledger[0].kindLabel, "分佣");
+  assert.equal(ownerView.body.ledger[0].settled, false);
+  const settled = await request(app).put("/marathon/api/admin/splits/" + split.body.id).set(admin).send({ settled: true });
+  assert.equal(settled.status, 200);
+  const kept = await request(app).delete("/marathon/api/admin/splits/" + split.body.id).set(admin);
+  assert.equal(kept.status, 400);
+  assert.match(kept.body.error, /已经结清的账不能删/);
+
+  const league = await request(app).post("/marathon/api/admin/leagues").set(admin).send({ month, title: "十月联赛", sponsor: "补给牌", prize: "能量胶" });
+  assert.equal(league.status, 200);
+  const duplicate = await request(app).post("/marathon/api/admin/leagues").set(admin).send({ month, title: "又一场", sponsor: "", prize: "" });
+  assert.equal(duplicate.status, 400);
+  assert.match(duplicate.body.error, /这个月已经有联赛/);
+  const managerJoin = await request(app).post("/marathon/api/clubs/" + clubId + "/league/join").set(auth(manager));
+  assert.equal(managerJoin.status, 403);
+  assert.match(managerJoin.body.error, /只有团长可以参加联赛/);
+  assert.equal((await request(app).post("/marathon/api/clubs/" + clubId + "/league/join").set(auth(leader))).status, 200);
+  assert.equal((await request(app).post("/marathon/api/clubs/" + coreId + "/league/join").set(auth(coreLeader))).status, 200);
+  assert.equal((await request(app).get("/marathon/api/clubs/" + clubId + "/partner").set(auth(outsider))).status, 403);
+
+  const race = getDb().prepare("SELECT id FROM races WHERE substr(race_date, 1, 7) = ? LIMIT 1").get(month);
+  if (race) {
+    getDb().prepare("INSERT OR REPLACE INTO results (user_id, race_id, distance, seconds, story, updated_at) VALUES (?, ?, '10k', 2400, '', ?)").run(leaderId, race.id, now);
+  }
+  const board = await request(app).get("/marathon/api/clubs/" + clubId + "/partner").set(auth(leader));
+  assert.equal(board.body.league.title, "十月联赛");
+  assert.equal(board.body.league.rows.length, 2);
+  assert.equal(board.body.league.rows[0].place, 1);
+  const mine = board.body.league.rows.find((row) => row.mine);
+  const coreRow = board.body.league.rows.find((row) => row.core);
+  assert.equal(mine.km, 0);
+  assert.ok(coreRow);
+  assert.equal(coreRow.km, 0);
+  if (race) {
+    assert.equal(mine.finishers, 1);
+    assert.equal(mine.finishRate, "3%");
+  }
+
+  getDb().prepare("UPDATE leagues SET month = '2020-01' WHERE id = ?").run(league.body.id);
+  const closed = await request(app).delete("/marathon/api/clubs/" + clubId + "/league/join").set(auth(leader));
+  assert.equal(closed.status, 400);
+  assert.match(closed.body.error, /这个月已经结束/);
+  const closedView = await request(app).get("/marathon/api/clubs/" + clubId + "/partner").set(auth(leader));
+  assert.equal(closedView.body.league.closed, true);
+  assert.equal(closedView.body.league.canLeave, false);
+
+  const conditional = await request(app)
+    .post("/marathon/api/admin/supplies")
+    .set(admin)
+    .send({ brand: "补给牌", name: "补给", total: 5, quota: 5, month, needChecks: 2, needKm: 0, note: "" });
+  assert.equal(conditional.status, 200);
+  const hopeful = await session("条件甲");
+  const hopefulJoin = await request(app).post("/marathon/api/clubs/join").set(auth(hopeful)).send({ code });
+  assert.equal(hopefulJoin.status, 200);
+  const short = await request(app).post("/marathon/api/clubs/" + clubId + "/supplies/" + conditional.body.id + "/claim").set(auth(hopeful));
+  assert.equal(short.status, 400);
+  assert.match(short.body.error, /还没达到领取条件/);
+  const hopefulId = await userIdOf(hopeful);
+  check(clubId, hopefulId, today);
+  check(clubId, hopefulId, dayShift(-1));
+  const met = await request(app).post("/marathon/api/clubs/" + clubId + "/supplies/" + conditional.body.id + "/claim").set(auth(hopeful));
+  assert.equal(met.status, 200);
+  const hopefulView = await request(app).get("/marathon/api/clubs/" + clubId + "/partner").set(auth(hopeful));
+  const mineClaim = hopefulView.body.supplies.find((item) => item.id === conditional.body.id).mine;
+  assert.equal(mineClaim.status, "pending");
+  const strangerGive = await request(app)
+    .post("/marathon/api/clubs/" + clubId + "/supplies/" + conditional.body.id + "/claims/" + mineClaim.id + "/give")
+    .set(auth(mate));
+  assert.equal(strangerGive.status, 403);
+  const withdrawn = await request(app)
+    .delete("/marathon/api/clubs/" + clubId + "/supplies/" + conditional.body.id + "/claims/" + mineClaim.id)
+    .set(auth(hopeful));
+  assert.equal(withdrawn.status, 200);
+  assert.equal((await request(app).post("/marathon/api/clubs/" + clubId + "/supplies/" + conditional.body.id + "/claim").set(auth(hopeful))).status, 200);
+  const renewed = await request(app).get("/marathon/api/clubs/" + clubId + "/partner").set(auth(hopeful));
+  const renewedId = renewed.body.supplies.find((item) => item.id === conditional.body.id).mine.id;
+  const given = await request(app)
+    .post("/marathon/api/clubs/" + clubId + "/supplies/" + conditional.body.id + "/claims/" + renewedId + "/give")
+    .set(auth(manager));
+  assert.equal(given.status, 200);
+  const stuck = await request(app)
+    .delete("/marathon/api/clubs/" + clubId + "/supplies/" + conditional.body.id + "/claims/" + renewedId)
+    .set(auth(hopeful));
+  assert.equal(stuck.status, 400);
+  assert.match(stuck.body.error, /已经发放，不能撤回/);
+
+  assert.equal(getDb().prepare("SELECT COUNT(*) AS n FROM point_entries").get().n, pointsBefore);
+});
