@@ -7,6 +7,8 @@
 .result .field { margin-top: 16rpx; }
 .result .field input { background: #f4f5f7; }
 .result .btn { margin-top: 16rpx; }
-.draw { white-space: pre-wrap; }
+.poster { margin: 12rpx 0; padding: 36rpx 28rpx; border-radius: 16rpx; background: #007aff; color: #fff; font-size: 32rpx; font-weight: 650; line-height: 1.6; }
+.poster-canvas { position: fixed; left: -2000px; top: 0; width: 750px; height: 1000px; }
+image { width: 100%; margin-top: 12rpx; border-radius: 16rpx; }
 .sheet { width: 100%; margin-top: 16rpx; border-radius: 16rpx; }
 .guide-text { display: block; margin-top: 12rpx; white-space: pre-wrap; line-height: 1.5; font-size: 28rpx; }

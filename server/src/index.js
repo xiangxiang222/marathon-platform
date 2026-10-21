@@ -100,7 +100,7 @@ function plansFor(userId, now = new Date()) {
 function resultsFor(userId, now = new Date()) {
   const rows = getDb()
     .prepare(
-      `SELECT res.distance AS result_distance, res.seconds, res.story, r.*
+      `SELECT res.distance AS result_distance, res.seconds, res.story, res.proof, res.proof_kind, r.*
        FROM results res
        JOIN races r ON r.id = res.race_id
        WHERE res.user_id = ?
@@ -114,6 +114,8 @@ function resultsFor(userId, now = new Date()) {
         distance: row.result_distance,
         seconds: row.seconds,
         story: row.story,
+        proof: row.proof || "",
+        proofKind: row.proof_kind || "",
         race: {
           id: race.id,
           name: race.name,
@@ -532,9 +534,131 @@ app.delete(BASE + "/api/me/races/:id/result", (req, res) => {
   if (!user) return;
   const race = getDb().prepare("SELECT id FROM races WHERE id = ?").get(req.params.id);
   if (!race) return res.status(404).json({ error: "没有这场比赛" });
+  const existing = getDb().prepare("SELECT proof FROM results WHERE user_id = ? AND race_id = ?").get(user.id, race.id);
   getDb().prepare("DELETE FROM results WHERE user_id = ? AND race_id = ?").run(user.id, race.id);
+  if (existing && existing.proof) removeProofFile(existing.proof);
   const results = resultsFor(user.id);
   res.json({ ok: true, career: careerOf(results, yearOf(new Date())) });
+});
+
+const PROOF_KINDS = { certificate: "证书", medal: "奖牌" };
+const PROOF_MAX = 8 * 1024 * 1024;
+
+function proofRoot() {
+  return path.join(process.env.MARATHON_MEDIA || path.join(__dirname, "../data/media"), "results");
+}
+
+function sniffProof(buf) {
+  if (buf.length >= 3 && buf[0] === 0xff && buf[1] === 0xd8 && buf[2] === 0xff) return { ext: "jpg", mime: "image/jpeg" };
+  if (buf.length >= 8 && buf[0] === 0x89 && buf.toString("ascii", 1, 4) === "PNG") return { ext: "png", mime: "image/png" };
+  if (buf.length >= 12 && buf.toString("ascii", 0, 4) === "RIFF" && buf.toString("ascii", 8, 12) === "WEBP") return { ext: "webp", mime: "image/webp" };
+  return null;
+}
+
+function readUpload(req, max) {
+  return new Promise((resolve, reject) => {
+    const chunks = [];
+    let size = 0;
+    req.on("data", (chunk) => {
+      size += chunk.length;
+      if (size > max) {
+        reject(Object.assign(new Error("文件太大"), { status: 413 }));
+        req.destroy();
+        return;
+      }
+      chunks.push(chunk);
+    });
+    req.on("error", reject);
+    req.on("end", () => resolve(Buffer.concat(chunks)));
+  });
+}
+
+function oneUpload(buffer, header) {
+  const boundary = /boundary=(?:"([^"]+)"|([^;]+))/.exec(header || "");
+  if (!boundary) return null;
+  const token = "--" + (boundary[1] || boundary[2]).trim();
+  const marker = Buffer.from(token);
+  const start = buffer.indexOf(marker);
+  if (start < 0) return null;
+  let part = buffer.subarray(start + marker.length);
+  if (part[0] === 13 && part[1] === 10) part = part.subarray(2);
+  const headerEnd = part.indexOf("\r\n\r\n");
+  if (headerEnd < 0) return null;
+  const head = part.subarray(0, headerEnd).toString("utf8");
+  let body = part.subarray(headerEnd + 4);
+  const next = body.indexOf(Buffer.from("\r\n" + token));
+  if (next >= 0) body = body.subarray(0, next);
+  if (!/filename=/.test(head)) return null;
+  return body;
+}
+
+function removeProofFile(filename) {
+  if (!filename) return;
+  const file = path.join(proofRoot(), path.basename(filename));
+  if (fs.existsSync(file)) fs.unlinkSync(file);
+}
+
+function userByToken(req) {
+  const direct = userFrom(req);
+  if (direct) return direct;
+  const token = String(req.query.t || "");
+  if (!token) return null;
+  const row = getDb().prepare("SELECT id, nickname, leader FROM users WHERE token = ?").get(token);
+  if (!row) return null;
+  return { id: row.id, nickname: row.nickname, leader: Boolean(row.leader) };
+}
+
+app.post(BASE + "/api/me/races/:id/result/proof/:kind", async (req, res) => {
+  const user = requireUser(req, res);
+  if (!user) return;
+  if (!PROOF_KINDS[req.params.kind]) return res.status(400).json({ error: "照片选证书或奖牌" });
+  const race = getDb().prepare("SELECT id FROM races WHERE id = ?").get(req.params.id);
+  if (!race) return res.status(404).json({ error: "没有这场比赛" });
+  const existing = getDb().prepare("SELECT proof FROM results WHERE user_id = ? AND race_id = ?").get(user.id, race.id);
+  if (!existing) return res.status(400).json({ error: "先记下成绩，再上传照片" });
+  let buffer;
+  try {
+    buffer = oneUpload(await readUpload(req, PROOF_MAX + 64 * 1024), req.get("content-type"));
+  } catch (err) {
+    return res.status(err.status || 400).json({ error: err.status === 413 ? "照片不超过 8MB" : "没有读到文件" });
+  }
+  if (!buffer || !buffer.length) return res.status(400).json({ error: "没有读到文件" });
+  const photo = sniffProof(buffer);
+  if (!photo) return res.status(400).json({ error: "只收 jpg、png、webp" });
+  if (buffer.length > PROOF_MAX) return res.status(413).json({ error: "照片不超过 8MB" });
+  const filename = user.id + "-" + String(race.id).replace(/[^A-Za-z0-9_-]/g, "") + "." + photo.ext;
+  fs.mkdirSync(proofRoot(), { recursive: true });
+  fs.writeFileSync(path.join(proofRoot(), filename), buffer);
+  if (existing.proof && existing.proof !== filename) removeProofFile(existing.proof);
+  getDb().prepare("UPDATE results SET proof = ?, proof_kind = ? WHERE user_id = ? AND race_id = ?").run(filename, req.params.kind, user.id, race.id);
+  const results = resultsFor(user.id);
+  res.json({ ok: true, result: results.find((item) => item.race.id === race.id) || null });
+});
+
+app.delete(BASE + "/api/me/races/:id/result/proof", (req, res) => {
+  const user = requireUser(req, res);
+  if (!user) return;
+  const race = getDb().prepare("SELECT id FROM races WHERE id = ?").get(req.params.id);
+  if (!race) return res.status(404).json({ error: "没有这场比赛" });
+  const existing = getDb().prepare("SELECT proof FROM results WHERE user_id = ? AND race_id = ?").get(user.id, race.id);
+  if (!existing || !existing.proof) return res.status(400).json({ error: "还没有照片" });
+  getDb().prepare("UPDATE results SET proof = '', proof_kind = '' WHERE user_id = ? AND race_id = ?").run(user.id, race.id);
+  removeProofFile(existing.proof);
+  const results = resultsFor(user.id);
+  res.json({ ok: true, result: results.find((item) => item.race.id === race.id) || null });
+});
+
+app.get(BASE + "/api/me/races/:id/result/proof", (req, res) => {
+  const user = userByToken(req);
+  if (!user) return res.status(401).json({ error: "请先登录" });
+  const row = getDb().prepare("SELECT proof FROM results WHERE user_id = ? AND race_id = ?").get(user.id, req.params.id);
+  if (!row || !row.proof) return res.status(404).json({ error: "没有这张照片" });
+  const file = path.join(proofRoot(), path.basename(row.proof));
+  if (!fs.existsSync(file)) return res.status(404).json({ error: "没有这张照片" });
+  const photo = sniffProof(fs.readFileSync(file));
+  res.set("Content-Type", photo ? photo.mime : "application/octet-stream");
+  res.set("Cache-Control", "private, no-cache");
+  fs.createReadStream(file).pipe(res);
 });
 
 app.post(BASE + "/api/clubs", (req, res) => {

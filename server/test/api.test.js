@@ -2930,3 +2930,79 @@ test("a sourced draw rate is shown as a calculated percent and stays off the pos
   const gone = await request(app).get("/marathon/api/races/bishan");
   assert.equal(gone.body.drawRates.length, 0);
 });
+
+test("a handwritten result can carry an unverified certificate or medal photo", async () => {
+  const fs = require("fs");
+  const path = require("path");
+  const jpeg = Buffer.from([0xff, 0xd8, 0xff, 0xd9]);
+  const token = await session("成绩照");
+  const auth = { Authorization: "Bearer " + token };
+  const pointsBefore = getDb().prepare("SELECT COUNT(*) AS n FROM point_entries").get().n;
+  const early = await request(app)
+    .post("/marathon/api/me/races/jinjiang/result/proof/certificate")
+    .set(auth)
+    .attach("file", jpeg, { filename: "cert.jpg", contentType: "image/jpeg" });
+  assert.equal(early.status, 400);
+  assert.match(early.body.error, /先记下成绩/);
+  const badKind = await request(app)
+    .post("/marathon/api/me/races/bishan/result/proof/ocr")
+    .set(auth)
+    .attach("file", jpeg, { filename: "cert.jpg", contentType: "image/jpeg" });
+  assert.equal(badKind.status, 400);
+  assert.match(badKind.body.error, /证书或奖牌/);
+
+  const saved = await request(app).put("/marathon/api/me/races/bishan/result").set(auth).send({ distance: "full", time: "3:30:00" });
+  assert.equal(saved.status, 200);
+  assert.equal(saved.body.result.verifyLabel, "未核验");
+  assert.equal(saved.body.result.hasProof, false);
+
+  const certificate = await request(app)
+    .post("/marathon/api/me/races/bishan/result/proof/certificate")
+    .set(auth)
+    .attach("file", jpeg, { filename: "cert.jpg", contentType: "image/jpeg" });
+  assert.equal(certificate.status, 200);
+  assert.equal(certificate.body.result.hasProof, true);
+  assert.equal(certificate.body.result.proofLabel, "证书");
+  assert.equal(certificate.body.result.verifyLabel, "未核验");
+  assert.equal(certificate.body.result.proof, undefined);
+  const image = await request(app).get("/marathon/api/me/races/bishan/result/proof").set(auth);
+  assert.equal(image.status, 200);
+  assert.equal(image.headers["content-type"], "image/jpeg");
+  const byQuery = await request(app).get("/marathon/api/me/races/bishan/result/proof?t=" + encodeURIComponent(token));
+  assert.equal(byQuery.status, 200);
+  const stranger = await request(app).get("/marathon/api/me/races/bishan/result/proof").set("Authorization", "Bearer " + (await session("成绩旁人")));
+  assert.equal(stranger.status, 404);
+
+  const kept = await request(app).put("/marathon/api/me/races/bishan/result").set(auth).send({ distance: "full", time: "3:29:00" });
+  assert.equal(kept.status, 200);
+  assert.equal(kept.body.result.hasProof, true);
+  assert.equal(kept.body.result.proofLabel, "证书");
+
+  const medal = await request(app)
+    .post("/marathon/api/me/races/bishan/result/proof/medal")
+    .set(auth)
+    .attach("file", jpeg, { filename: "medal.jpg", contentType: "image/jpeg" });
+  assert.equal(medal.status, 200);
+  assert.equal(medal.body.result.proofLabel, "奖牌");
+  const row = getDb().prepare("SELECT proof FROM results WHERE race_id = 'bishan' AND proof != ''").get();
+  assert.ok(row && row.proof);
+  const file = path.join(process.env.MARATHON_MEDIA, "results", row.proof);
+  assert.equal(fs.existsSync(file), true);
+
+  const cleared = await request(app).delete("/marathon/api/me/races/bishan/result/proof").set(auth);
+  assert.equal(cleared.status, 200);
+  assert.equal(cleared.body.result.hasProof, false);
+  assert.equal(fs.existsSync(file), false);
+
+  const again = await request(app)
+    .post("/marathon/api/me/races/bishan/result/proof/certificate")
+    .set(auth)
+    .attach("file", jpeg, { filename: "cert.jpg", contentType: "image/jpeg" });
+  assert.equal(again.status, 200);
+  const stored = getDb().prepare("SELECT proof FROM results WHERE race_id = 'bishan' AND proof != ''").get();
+  const storedFile = path.join(process.env.MARATHON_MEDIA, "results", stored.proof);
+  const removed = await request(app).delete("/marathon/api/me/races/bishan/result").set(auth);
+  assert.equal(removed.status, 200);
+  assert.equal(fs.existsSync(storedFile), false);
+  assert.equal(getDb().prepare("SELECT COUNT(*) AS n FROM point_entries").get().n, pointsBefore);
+});

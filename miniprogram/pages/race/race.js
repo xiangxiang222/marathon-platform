@@ -31,6 +31,9 @@ Page({
     clock: "",
     story: "",
     resultMessage: "",
+    proofSrc: "",
+    drawLines: [],
+    drawNote: "",
     guide: [],
     routeSheets: [],
     pacerSheets: [],
@@ -89,8 +92,13 @@ Page({
           alternatives: data.alternatives || [],
           alternativeNote: data.alternativeNote || "",
           drawText: data.drawText || "",
+          drawLines: String(data.drawText || "").split("\n").filter(Boolean),
           drawRates: data.drawRates || [],
           drawError: "",
+          drawNote: "",
+          proofSrc: myResult && myResult.hasProof
+            ? baseUrl + "/marathon/api/me/races/" + this.raceId + "/result/proof?t=" + encodeURIComponent((getApp().globalData && getApp().globalData.token) || "")
+            : "",
           ready: ready(),
           message: "",
           myResult,
@@ -151,6 +159,66 @@ Page({
       data: this.data.drawText || "",
       fail: () => this.setData({ drawError: "没有复制成功，可以直接选中上面的文字" })
     });
+  },
+  savePoster() {
+    const lines = this.data.drawLines || [];
+    const ctx = wx.createCanvasContext("poster", this);
+    ctx.setFillStyle("#007aff");
+    ctx.fillRect(0, 0, 750, 1000);
+    ctx.setFillStyle("#ffffff");
+    ctx.setFontSize(48);
+    lines.forEach((line, index) => ctx.fillText(line, 60, 220 + index * 80));
+    ctx.draw(false, () => {
+      wx.canvasToTempFilePath({
+        canvasId: "poster",
+        success: (res) => {
+          wx.saveImageToPhotosAlbum({
+            filePath: res.tempFilePath,
+            success: () => this.setData({ drawNote: "图片已保存", drawError: "" }),
+            fail: () => this.setData({ drawError: "没有保存成功，可以复制上面的文字" })
+          });
+        },
+        fail: () => this.setData({ drawError: "没有保存成功，可以复制上面的文字" })
+      }, this);
+    });
+  },
+  chooseProof(e) {
+    if (!this.data.myResult) {
+      this.setData({ resultMessage: "先记下成绩，再上传照片" });
+      return;
+    }
+    const kind = e.currentTarget.dataset.kind;
+    wx.chooseMedia({
+      count: 1,
+      mediaType: ["image"],
+      success: (res) => {
+        const file = (res.tempFiles || [])[0];
+        if (!file) return;
+        const app = getApp();
+        wx.uploadFile({
+          url: app.globalData.baseUrl + "/marathon/api/me/races/" + this.raceId + "/result/proof/" + kind,
+          filePath: file.tempFilePath,
+          name: "file",
+          header: { Authorization: app.globalData.token ? "Bearer " + app.globalData.token : "" },
+          success: (upload) => {
+            if (upload.statusCode >= 200 && upload.statusCode < 300) this.load();
+            else {
+              let message = "没有传上去";
+              try {
+                message = JSON.parse(upload.data).error || message;
+              } catch (err) {}
+              this.setData({ resultMessage: message });
+            }
+          },
+          fail: () => this.setData({ resultMessage: "没有传上去" })
+        });
+      }
+    });
+  },
+  removeProof() {
+    request("/me/races/" + this.raceId + "/result/proof", "DELETE")
+      .then(() => this.load())
+      .catch((err) => this.setData({ resultMessage: err.message }));
   },
   saveResult() {
     request("/me/races/" + this.raceId + "/result", "PUT", {

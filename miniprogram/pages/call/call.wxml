@@ -16,14 +16,30 @@
       <input placeholder="1:32:10 或 45:30" value="{{time}}" bindinput="onTime" />
     </view>
     <button class="btn" bindtap="submitOwn">提交</button>
+    <button class="ghost" bindtap="chooseSheet">证书或截图</button>
+    <view class="src">先提交这条距离的成绩，再上传截图。</view>
   </view>
-  <view wx:else class="card"><view class="src">已经截止。</view></view>
+  <view wx:else class="card"><view class="src">已经截止。要改自己的成绩，请让团长把截止延后。</view></view>
   <view wx:for="{{call.groups}}" wx:for-item="group" wx:key="distance" class="card">
     <view class="h2">{{group.label}}</view>
-    <view wx:for="{{group.rows}}" wx:for-item="row" wx:key="id" class="row">
-      <text>{{row.place}} {{row.nickname}}{{row.mine ? ' · 我' : ''}}{{row.staffFilled ? ' · 管理员补录' : ''}}</text>
-      <text>{{row.clock}} {{row.tag}}</text>
+    <view wx:for="{{group.rows}}" wx:for-item="row" wx:key="id">
+      <view class="row">
+        <text>{{row.place}} {{row.nickname}}{{row.mine ? ' · 我' : ''}}{{row.staffFilled ? ' · 管理员补录' : ''}}</text>
+        <text>{{row.clock}} {{row.tag}}</text>
+      </view>
+      <image wx:if="{{row.sheetSrc}}" src="{{row.sheetSrc}}" mode="widthFix" />
+      <text wx:if="{{staff || (row.mine && !call.closed)}}" class="drop" data-id="{{row.id}}" bindtap="removeRow">删除</text>
     </view>
+  </view>
+  <view class="card" wx:if="{{staff}}">
+    <view class="h2">管理</view>
+    <input placeholder="截止 2026-11-22 22:00" value="{{deadline}}" bindinput="onDeadline" />
+    <button class="btn" bindtap="saveDeadline">改截止</button>
+    <view class="src">给不会操作的成员补一条。当前：{{forName || '还没选'}} · {{forLabel || '距离'}}</view>
+    <button wx:for="{{members}}" wx:key="id" class="ghost" data-id="{{item.id}}" data-name="{{item.nickname}}" bindtap="pickMember">{{item.nickname}}</button>
+    <button wx:for="{{options}}" wx:key="id" class="ghost" data-id="{{item.id}}" data-label="{{item.label}}" bindtap="pickForDistance">补 {{item.label}}</button>
+    <input placeholder="成绩" value="{{forTime}}" bindinput="onForTime" />
+    <button class="btn" bindtap="fillFor">补录</button>
   </view>
   <view wx:if="{{!call.groups.length}}" class="empty">还没有人填写。</view>
   <view wx:if="{{message}}" class="err">{{message}}</view>

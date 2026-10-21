@@ -128,8 +128,11 @@
     </div>
     <div v-if="ready && race" class="block">
       <h2>成绩</h2>
-      <p v-if="myResult" class="src">{{ myResult.distanceLabel }} {{ myResult.clock }} · 配速 {{ myResult.pace }}<template v-if="myResult.pb"> · PB</template></p>
+      <p class="src">手记的成绩标为未核验。可以附一张证书或奖牌照片，这里不识别照片上的字。</p>
+      <p v-if="myResult" class="src">{{ myResult.distanceLabel }} {{ myResult.clock }} · 配速 {{ myResult.pace }}<template v-if="myResult.pb"> · PB</template> · {{ myResult.verifyLabel }}</p>
       <p v-if="myResult && myResult.story">{{ myResult.story }}</p>
+      <img v-if="myResult && myResult.hasProof" class="proof" :src="proofSrc" alt="" />
+      <p v-if="myResult && myResult.proofLabel" class="src">{{ myResult.proofLabel }} · 未核验</p>
       <div class="statuses">
         <button
           v-for="(label, i) in race.distanceLabels"
@@ -147,6 +150,11 @@
         <input v-model="story" maxlength="200" placeholder="这场想记的一句" />
         <button class="primary" type="submit">记下成绩</button>
       </form>
+      <div v-if="myResult" class="proof-actions">
+        <label>证书照片<input type="file" accept="image/jpeg,image/png,image/webp" @change="onProof('certificate', $event)" /></label>
+        <label>奖牌照片<input type="file" accept="image/jpeg,image/png,image/webp" @change="onProof('medal', $event)" /></label>
+        <button v-if="myResult.hasProof" class="undo" type="button" @click="removeProof">去掉照片</button>
+      </div>
       <p v-if="resultMessage" class="err">{{ resultMessage }}</p>
     </div>
     <div v-for="club in clubs" :key="club.id" class="block">
@@ -166,7 +174,7 @@
 <script setup>
 import { computed, onMounted, ref, watch } from "vue";
 import { useRoute } from "vue-router";
-import { api, raceSheetSrc } from "../api";
+import { api, raceSheetSrc, resultProofSrc, upload } from "../api";
 import { copyText } from "../copy";
 import { dateParts, toneOf } from "../tone";
 const route = useRoute();
@@ -247,6 +255,32 @@ async function load() {
     story.value = data.myResult.story || "";
   } else if (!distance.value && data.race.distances.length) {
     distance.value = data.race.distances[0];
+  }
+}
+
+const proofSrc = computed(() => (race.value ? resultProofSrc(race.value.id) : ""));
+
+async function onProof(kind, event) {
+  const file = event.target.files && event.target.files[0];
+  event.target.value = "";
+  if (!file) return;
+  resultMessage.value = "";
+  try {
+    const data = await upload("/me/races/" + route.params.id + "/result/proof/" + kind, file);
+    myResult.value = data.result;
+    resultMessage.value = kind === "medal" ? "奖牌照片已上传" : "证书照片已上传";
+  } catch (err) {
+    resultMessage.value = err.message;
+  }
+}
+
+async function removeProof() {
+  resultMessage.value = "";
+  try {
+    const data = await api("/me/races/" + route.params.id + "/result/proof", { method: "DELETE" });
+    myResult.value = data.result;
+  } catch (err) {
+    resultMessage.value = err.message;
   }
 }
 
@@ -356,6 +390,10 @@ onMounted(load);
 .primary { margin-top: 8px; }
 .result-form { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
 .result-form input { height: 36px; border: 1px solid #e6e8ec; border-radius: 8px; padding: 0 10px; background: #fff; }
+.proof { display: block; width: 100%; margin-top: 8px; border-radius: 12px; }
+.proof-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.proof-actions label { position: relative; overflow: hidden; height: 36px; padding: 0 12px; border-radius: 10px; background: var(--chip); color: var(--accent); font-size: 14px; font-weight: 650; line-height: 36px; }
+.proof-actions input { position: absolute; inset: 0; opacity: 0; }
 .jump { display: block; margin-top: 8px; height: 44px; border-radius: 12px; background: var(--chip); color: var(--accent); font-weight: 600; font-size: 16px; line-height: 44px; text-align: center; }
 .jump.main { background: var(--accent); color: #fff; }
 .chips { display: flex; flex-wrap: wrap; gap: 8px; }

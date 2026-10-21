@@ -13,6 +13,7 @@ Page({
     videoLeft: 20,
     staff: false,
     review: false,
+    layout: "grid",
     message: ""
   },
   onLoad(query) {
@@ -53,6 +54,9 @@ Page({
   },
   showVideos() {
     this.setData({ tab: "video" });
+  },
+  toggleLayout() {
+    this.setData({ layout: this.data.layout === "grid" ? "fall" : "grid" });
   },
   choose() {
     wx.chooseMedia({

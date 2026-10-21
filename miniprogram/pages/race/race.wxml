@@ -97,9 +97,14 @@
 
   <view class="card" wx:if="{{drawText}}">
     <view class="h2">中签卡片</view>
-    <view class="sum draw">{{drawText}}</view>
+    <view class="poster">
+      <view wx:for="{{drawLines}}" wx:key="*this">{{item}}</view>
+    </view>
     <button class="btn" bindtap="copyDraw">复制卡片</button>
+    <button class="ghost" bindtap="savePoster">保存图片</button>
+    <view wx:if="{{drawNote}}" class="src">{{drawNote}}</view>
     <view wx:if="{{drawError}}" class="err">{{drawError}}</view>
+    <canvas canvas-id="poster" class="poster-canvas" />
   </view>
 
   <view class="card" wx:if="{{alternatives.length}}">
@@ -112,8 +117,11 @@
 
   <view class="card result" wx:if="{{ready}}">
     <view class="h2">成绩</view>
-    <view wx:if="{{myResult}}" class="sum">{{myResult.distanceLabel}} {{myResult.clock}} · 配速 {{myResult.pace}}<text wx:if="{{myResult.pb}}"> · PB</text></view>
+    <view class="src">手记的成绩标为未核验。可以附一张证书或奖牌照片，这里不识别照片上的字。</view>
+    <view wx:if="{{myResult}}" class="sum">{{myResult.distanceLabel}} {{myResult.clock}} · 配速 {{myResult.pace}}<text wx:if="{{myResult.pb}}"> · PB</text> · {{myResult.verifyLabel}}</view>
     <view wx:if="{{myResult.story}}" class="src">{{myResult.story}}</view>
+    <image wx:if="{{proofSrc}}" src="{{proofSrc}}" mode="widthFix" />
+    <view wx:if="{{myResult.proofLabel}}" class="src">{{myResult.proofLabel}} · 未核验</view>
     <button wx:for="{{distanceOptions}}" wx:key="key" class="ghost {{distance === item.key ? 'on' : ''}}" data-distance="{{item.key}}" bindtap="pickDistance">{{item.label}}</button>
     <view class="field">
       <input placeholder="3:29:59" value="{{clock}}" bindinput="onClock" />
@@ -122,6 +130,9 @@
       <input placeholder="这场想记的一句" value="{{story}}" maxlength="200" bindinput="onStory" />
     </view>
     <button class="btn" bindtap="saveResult">记下成绩</button>
+    <button wx:if="{{myResult}}" class="ghost" data-kind="certificate" bindtap="chooseProof">证书照片</button>
+    <button wx:if="{{myResult}}" class="ghost" data-kind="medal" bindtap="chooseProof">奖牌照片</button>
+    <button wx:if="{{myResult.hasProof}}" class="ghost" bindtap="removeProof">去掉照片</button>
     <view wx:if="{{resultMessage}}" class="err">{{resultMessage}}</view>
   </view>
 

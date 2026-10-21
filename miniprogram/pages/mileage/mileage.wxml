@@ -50,5 +50,24 @@
     <view wx:for="{{report.rows}}" wx:key="userId" class="src">{{item.place}} {{item.nickname}} {{item.km}} 公里 {{item.dayText}} {{item.durationLabel}} {{item.paceLabel}} {{item.flag}}</view>
     <view class="src">合计 {{report.total.km}} 公里 · {{report.total.dayText}} 次 · {{report.total.durationLabel}}</view>
   </view>
+  <view class="card" wx:if="{{board.owner && rules}}">
+    <view class="title">本团规则</view>
+    <view class="src">{{rules.note}}</view>
+    <input data-key="effectiveOn" placeholder="生效日 2026-10-01" value="{{rules.effectiveOn}}" bindinput="onRule" />
+    <button class="ghost {{rules.manualOk ? 'on' : ''}}" data-key="manualOk" bindtap="toggleRule">允许手填</button>
+    <button class="ghost {{rules.runOn ? 'on' : ''}}" data-key="runOn" bindtap="toggleRule">跑步计入</button>
+    <input data-key="runMin" placeholder="跑步最短公里" value="{{rules.runMin}}" bindinput="onRule" />
+    <input data-key="runMax" placeholder="跑步最长公里" value="{{rules.runMax}}" bindinput="onRule" />
+    <input data-key="paceFast" placeholder="最快配速 3:00" value="{{rules.paceFast}}" bindinput="onRule" />
+    <input data-key="paceSlow" placeholder="最慢配速 15:00" value="{{rules.paceSlow}}" bindinput="onRule" />
+    <button class="ghost {{rules.trailOn ? 'on' : ''}}" data-key="trailOn" bindtap="toggleRule">越野计入</button>
+    <button class="ghost {{rules.trailClimbAdd ? 'on' : ''}}" data-key="trailClimbAdd" bindtap="toggleRule">越野每 100 米爬升加 1 公里</button>
+    <input data-key="trailMin" placeholder="越野最短公里" value="{{rules.trailMin}}" bindinput="onRule" />
+    <input data-key="trailClimb" placeholder="最低爬升米" value="{{rules.trailClimb}}" bindinput="onRule" />
+    <input data-key="flagFemale" placeholder="女生月度下限" value="{{rules.flagFemale}}" bindinput="onRule" />
+    <input data-key="flagMale" placeholder="男生月度下限" value="{{rules.flagMale}}" bindinput="onRule" />
+    <button class="ghost {{rules.observe ? 'on' : ''}}" data-key="observe" bindtap="toggleRule">当月入团自动观摩</button>
+    <button class="btn" bindtap="saveRules">保存规则</button>
+  </view>
   <view wx:if="{{message}}" class="err">{{message}}</view>
 </view>
