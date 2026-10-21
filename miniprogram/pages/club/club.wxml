@@ -6,6 +6,10 @@
       <text wx:for="{{members}}" wx:key="id" class="chip">{{item.nickname}}</text>
     </view>
   </view>
+  <navigator class="card" url="/pages/mileage/mileage?id={{club.id}}">
+    <view class="title">跑量</view>
+    <view class="src">已计入 {{mileage.totalKm}} 公里，{{mileage.totalCount}} 次。我本月 {{mileage.mineKm}} 公里。</view>
+  </navigator>
   <view class="card">
     <view class="h2">团练签到</view>
     <view class="src">只记今天谁到了，不记公里。</view>

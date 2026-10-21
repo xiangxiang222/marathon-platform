@@ -501,6 +501,10 @@ function open() {
     const cols = handle.prepare(`PRAGMA table_info(${table})`).all();
     if (cols.length && !cols.some((col) => col.name === name)) handle.exec(`ALTER TABLE ${table} ADD COLUMN ${name} ${type}`);
   }
+  const memberCols = handle.prepare("PRAGMA table_info(club_members)").all();
+  if (memberCols.length && !memberCols.some((col) => col.name === "mileage_group_id")) {
+    handle.exec("ALTER TABLE club_members ADD COLUMN mileage_group_id INTEGER NOT NULL DEFAULT 0");
+  }
   handle.exec(`
     CREATE TABLE IF NOT EXISTS activity_groups (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -510,6 +514,67 @@ function open() {
       pace TEXT NOT NULL DEFAULT '',
       capacity INTEGER NOT NULL DEFAULT 0,
       sort INTEGER NOT NULL DEFAULT 0
+    );
+    CREATE TABLE IF NOT EXISTS runs (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      user_id INTEGER NOT NULL,
+      type TEXT NOT NULL,
+      started_at TEXT NOT NULL,
+      distance_km REAL NOT NULL DEFAULT 0,
+      duration_sec INTEGER NOT NULL,
+      climb_m INTEGER NOT NULL DEFAULT 0,
+      pace_sec INTEGER NOT NULL DEFAULT 0,
+      volume_km REAL NOT NULL DEFAULT 0,
+      city TEXT NOT NULL DEFAULT '',
+      source TEXT NOT NULL DEFAULT 'manual',
+      shot TEXT NOT NULL DEFAULT '',
+      overlap INTEGER NOT NULL DEFAULT 0,
+      created_at TEXT NOT NULL
+    );
+    CREATE INDEX IF NOT EXISTS runs_user_started ON runs(user_id, started_at);
+    CREATE TABLE IF NOT EXISTS mileage_rules (
+      club_id INTEGER PRIMARY KEY,
+      effective_on TEXT NOT NULL,
+      manual_ok INTEGER NOT NULL DEFAULT 1,
+      run_on INTEGER NOT NULL DEFAULT 1,
+      run_min REAL NOT NULL DEFAULT 1,
+      run_max REAL NOT NULL DEFAULT 128,
+      pace_fast INTEGER NOT NULL DEFAULT 180,
+      pace_slow INTEGER NOT NULL DEFAULT 900,
+      trail_on INTEGER NOT NULL DEFAULT 0,
+      trail_min REAL NOT NULL DEFAULT 5,
+      trail_climb INTEGER NOT NULL DEFAULT 100,
+      trail_climb_add INTEGER NOT NULL DEFAULT 0,
+      flag_female REAL NOT NULL DEFAULT 10,
+      flag_male REAL NOT NULL DEFAULT 10,
+      observe INTEGER NOT NULL DEFAULT 1
+    );
+    CREATE TABLE IF NOT EXISTS mileage_groups (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      club_id INTEGER NOT NULL,
+      name TEXT NOT NULL,
+      capacity INTEGER NOT NULL DEFAULT 0,
+      sort INTEGER NOT NULL DEFAULT 0
+    );
+    CREATE TABLE IF NOT EXISTS mileage_counts (
+      run_id INTEGER NOT NULL,
+      club_id INTEGER NOT NULL,
+      counted INTEGER NOT NULL DEFAULT 0,
+      volume_km REAL NOT NULL DEFAULT 0,
+      manual INTEGER NOT NULL DEFAULT 0,
+      challenge TEXT NOT NULL DEFAULT '',
+      decision TEXT NOT NULL DEFAULT '',
+      PRIMARY KEY (run_id, club_id)
+    );
+    CREATE TABLE IF NOT EXISTS mileage_flags (
+      user_id INTEGER NOT NULL,
+      month TEXT NOT NULL,
+      target_km REAL NOT NULL,
+      PRIMARY KEY (user_id, month)
+    );
+    CREATE TABLE IF NOT EXISTS user_mileage (
+      user_id INTEGER PRIMARY KEY,
+      gender TEXT NOT NULL DEFAULT ''
     );
   `);
   const upsert = handle.prepare(

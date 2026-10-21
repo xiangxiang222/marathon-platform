@@ -16,6 +16,7 @@
       <button type="button" :class="{ on: tab === 'race' }" @click="tab = 'race'">比赛</button>
       <button type="button" :class="{ on: tab === 'act' }" @click="tab = 'act'">活动</button>
       <button type="button" :class="{ on: tab === 'album' }" @click="tab = 'album'">相册</button>
+      <button type="button" :class="{ on: tab === 'km' }" @click="tab = 'km'">跑量</button>
       <button type="button" :class="{ on: tab === 'people' }" @click="tab = 'people'">成员</button>
     </div>
     <div v-if="club && tab === 'race'" class="block">
@@ -249,6 +250,7 @@
       </router-link>
       <p v-if="!albums.length" class="empty">还没有活动照片。</p>
     </template>
+    <MileageBoard v-if="club && tab === 'km'" :club-id="club.id" />
     <div v-if="shareImage" class="viewer" @click="shareImage = ''">
       <img :src="shareImage" alt="分享图片" />
     </div>
@@ -370,6 +372,7 @@ import { useRoute, useRouter } from "vue-router";
 import { api, feeQrSrc, mediaSrc, upload } from "../api";
 import { copyText } from "../copy";
 import { textCard } from "../share-card";
+import MileageBoard from "../components/MileageBoard.vue";
 const route = useRoute();
 const router = useRouter();
 const tab = ref("race");

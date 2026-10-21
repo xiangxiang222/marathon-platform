@@ -1,0 +1,54 @@
+<view class="pad" wx:if="{{board}}">
+  <view class="card">
+    <view class="title">跑量</view>
+    <view class="src">只记跑步和越野。{{board.members}} 人 · 已计入 {{board.totalKm}} 公里 · {{board.totalCount}} 次</view>
+    <view class="row">
+      <button class="ghost {{range === 'today' ? 'on' : ''}}" data-range="today" bindtap="pickRange">今日</button>
+      <button class="ghost {{range === 'week' ? 'on' : ''}}" data-range="week" bindtap="pickRange">本周</button>
+      <button class="ghost {{range === 'month' ? 'on' : ''}}" data-range="month" bindtap="pickRange">本月</button>
+      <button class="ghost {{range === 'year' ? 'on' : ''}}" data-range="year" bindtap="pickRange">今年</button>
+      <button class="ghost {{range === 'all' ? 'on' : ''}}" data-range="all" bindtap="pickRange">累计</button>
+    </view>
+    <input placeholder="搜昵称" value="{{query}}" bindinput="onQuery" />
+  </view>
+  <view class="card">
+    <view class="title">排行榜</view>
+    <view wx:if="{{!board.rank.length}}" class="src">这段还没有计入的跑量。</view>
+    <view wx:for="{{board.rank}}" wx:key="userId" class="row">
+      <text>{{item.place}} {{item.nickname}} · {{item.group}}</text>
+      <text>{{item.km}} 公里</text>
+    </view>
+  </view>
+  <view class="card">
+    <view class="title">分组榜</view>
+    <view wx:for="{{board.groups}}" wx:key="name" class="row">
+      <text>{{item.name}}</text>
+      <text>{{item.km}} 公里</text>
+    </view>
+  </view>
+  <view class="card">
+    <view class="title">动态</view>
+    <view wx:for="{{board.feed}}" wx:key="id">
+      <view class="src">{{item.nickname}} · {{item.typeLabel}} · {{item.startedAt}}</view>
+      <view class="src">跑量 {{item.volumeKm}} 公里 · {{item.durationLabel}} · 爬升 {{item.climb}} 米</view>
+      <view class="src" wx:if="{{item.challenge}}">质疑：{{item.challenge}}</view>
+      <input wx:if="{{!item.mine}}" placeholder="写一句质疑" bindinput="onReason" />
+      <button wx:if="{{!item.mine}}" class="ghost" data-id="{{item.id}}" bindtap="challenge">质疑</button>
+      <view wx:if="{{board.staff}}">
+        <button class="ghost" data-id="{{item.id}}" data-keep="0" bindtap="decide">不计入</button>
+        <button class="ghost" data-id="{{item.id}}" data-keep="1" bindtap="decide">继续计入</button>
+      </view>
+    </view>
+  </view>
+  <view class="card" wx:if="{{report}}">
+    <view class="title">报表 {{report.title}}</view>
+    <view class="row">
+      <button class="ghost {{kind === 'week' ? 'on' : ''}}" data-kind="week" bindtap="pickKind">周报</button>
+      <button class="ghost {{kind === 'month' ? 'on' : ''}}" data-kind="month" bindtap="pickKind">月报</button>
+      <button class="ghost {{kind === 'year' ? 'on' : ''}}" data-kind="year" bindtap="pickKind">年报</button>
+    </view>
+    <view wx:for="{{report.rows}}" wx:key="userId" class="src">{{item.place}} {{item.nickname}} {{item.km}} 公里 {{item.dayText}} {{item.durationLabel}} {{item.paceLabel}} {{item.flag}}</view>
+    <view class="src">合计 {{report.total.km}} 公里 · {{report.total.dayText}} 次 · {{report.total.durationLabel}}</view>
+  </view>
+  <view wx:if="{{message}}" class="err">{{message}}</view>
+</view>
