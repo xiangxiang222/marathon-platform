@@ -54,3 +54,13 @@ export function mediaSrc(id) {
   const token = localStorage.getItem("marathon_token") || "";
   return base + "/api/media/" + id + "?t=" + encodeURIComponent(token);
 }
+
+export function feeQrSrc(clubId, periodId) {
+  const token = localStorage.getItem("marathon_token") || "";
+  return base + "/api/clubs/" + clubId + "/fees/" + periodId + "/qr?t=" + encodeURIComponent(token);
+}
+
+export function callSheetSrc(rowId) {
+  const token = localStorage.getItem("marathon_token") || "";
+  return base + "/api/call-sheets/" + rowId + "?t=" + encodeURIComponent(token);
+}

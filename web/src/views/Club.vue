@@ -46,6 +46,29 @@
         </router-link>
       </div>
     </div>
+    <div v-if="club && tab === 'race'" class="block">
+      <h2>成绩统计</h2>
+      <p class="rank-label">发到群里填写。填完后全团都能看。</p>
+      <router-link v-for="item in resultCalls" :key="item.id" class="mate" :to="'/clubs/' + club.id + '/calls/' + item.id">
+        <span>{{ item.title }}</span>
+        <b>{{ item.filled }} 人 · {{ item.closed ? "已截止" : item.deadlineLabel }}</b>
+      </router-link>
+      <p v-if="!resultCalls.length" class="rank-label">还没有成绩统计。</p>
+      <form v-if="club.staff" class="check-form" @submit.prevent="createCall">
+        <input v-model="raceQuery" placeholder="从赛历搜一场，例如璧山" @input="searchRaces" />
+        <button v-for="race in raceHits" :key="race.id" class="undo pick" type="button" @click="pickRace(race)">{{ race.raceDate }} {{ race.name }}</button>
+        <p v-if="pickedRace" class="rank-label">已选 {{ pickedRace.name }} <button class="undo inline" type="button" @click="clearRace">改成手写</button></p>
+        <input v-model="callTitle" maxlength="80" :disabled="!!pickedRace" placeholder="没有这场时，写比赛名称" />
+        <input v-model="callDate" placeholder="比赛日 2026-11-15" />
+        <div class="checks">
+          <label v-for="opt in distanceOptions" :key="opt.id"><input v-model="callDistances" type="checkbox" :value="opt.id" /> {{ opt.label }}</label>
+        </div>
+        <input v-model="callOther" inputmode="decimal" placeholder="其他距离，公里，可不填" />
+        <input v-model="callDeadline" placeholder="截止 2026-11-22 22:00，可空" />
+        <input v-model="callNote" maxlength="100" placeholder="说明，例如填净计时" />
+        <button class="primary" type="submit">发起</button>
+      </form>
+    </div>
     <p v-if="club && tab === 'race' && !board.length && !ranks.length" class="empty">还没有人标比赛。打开一场，标上想跑或已报名。</p>
     <div v-for="item in board" v-show="tab === 'race'" :key="item.race.id" class="block">
       <router-link :to="'/races/' + item.race.id" class="card">
@@ -91,6 +114,50 @@
       <p v-if="!activities.length" class="empty">还没有活动。每周团练的报名放在这里。</p>
     </template>
     <template v-if="club && tab === 'people'">
+      <div class="block">
+        <h2>{{ feeShown ? feeShown.name : "会费" }}</h2>
+        <p class="rank-label">会费直接付给跑团。平台不经手，以团长确认为准。</p>
+        <template v-if="feeShown">
+          <p class="rank-label">{{ feeShown.amount }} 元 · {{ feeShown.startsOn }} 至 {{ feeShown.endsOn }}</p>
+          <p v-if="feeShown.note" class="rank-label">{{ feeShown.note }}</p>
+          <p class="rank-label">我的状态：{{ feeShown.mine.label }}</p>
+          <p v-if="feeShown.blockSignup" class="rank-label">未交和待确认的人不能报名活动。</p>
+          <img v-if="feeShown.hasQr" class="qr" :src="feeQr(feeShown.id)" alt="收款码" />
+          <p v-else class="rank-label">团长还没有放收款码</p>
+          <p v-if="feeShown.hasQr" class="rank-label">长按图片可以保存。</p>
+          <button v-if="feeShown.canClaim" class="primary" type="button" @click="claimFee">我已转账</button>
+          <div v-for="group in feeShown.groups" :key="group.status">
+            <p class="rank-label">{{ group.label }}</p>
+            <div v-for="person in group.people" :key="group.status + person.userId" class="mate member">
+              <span>{{ person.nickname }}</span>
+              <b v-if="club.staff" class="acts">
+                <button class="undo" type="button" @click="markFee(person, 'paid')">已收到</button>
+                <button class="undo" type="button" @click="markFee(person, 'unpaid')">未收到</button>
+                <button class="undo" type="button" @click="markFee(person, 'waived')">免交</button>
+              </b>
+            </div>
+            <p v-if="!group.people.length" class="rank-label">无</p>
+          </div>
+          <button class="primary" type="button" @click="copyFee">复制名单</button>
+        </template>
+        <p v-else class="rank-label">还没有会费。</p>
+        <div v-if="feeHistory.length > 1" class="checks">
+          <button v-for="item in feeHistory" :key="item.id" class="undo" type="button" @click="openFee(item)">{{ item.name }}</button>
+        </div>
+        <form v-if="club.owner" class="check-form" @submit.prevent="saveFee">
+          <p class="rank-label">{{ feeMode === 'new' ? "再开一期" : "这一期" }}</p>
+          <input v-model="feeName" maxlength="20" placeholder="例如 2026 年度会费" />
+          <input v-model.number="feeAmount" type="number" min="1" max="10000" placeholder="金额，整数元" />
+          <input v-model="feeStart" placeholder="开始 2026-01-01" />
+          <input v-model="feeEnd" placeholder="结束 2026-12-31" />
+          <input v-model="feeNote" maxlength="200" placeholder="说明，例如收据怎么开" />
+          <label class="rank-label"><input v-model="feeBlock" type="checkbox" /> 未交会费不能报名</label>
+          <label class="file-pick">收款码<input type="file" accept="image/jpeg,image/png,image/webp" @change="onFeeFile" /></label>
+          <button class="primary" type="submit">{{ feeMode === 'new' ? "开这一期" : "保存" }}</button>
+          <button v-if="feeCurrent && feeMode === 'edit'" class="undo" type="button" @click="feeMode = 'new'">再开一期</button>
+          <button v-if="feeMode === 'new' && feeCurrent" class="undo" type="button" @click="feeMode = 'edit'">取消</button>
+        </form>
+      </div>
       <div v-if="club.staff" class="block">
         <h2>入团申请</h2>
         <p v-if="!requests.length" class="rank-label">没有待审核的申请。没口令的人会出现在这里。</p>
@@ -161,7 +228,7 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import { api } from "../api";
+import { api, feeQrSrc, upload } from "../api";
 import { copyText } from "../copy";
 const route = useRoute();
 const router = useRouter();
@@ -194,6 +261,34 @@ const checkNote = ref("");
 const checkMessage = ref("");
 const message = ref("");
 const note = ref("");
+const resultCalls = ref([]);
+const raceQuery = ref("");
+const raceHits = ref([]);
+const pickedRace = ref(null);
+const callTitle = ref("");
+const callDate = ref("");
+const callDistances = ref([]);
+const callOther = ref("");
+const callDeadline = ref("");
+const callNote = ref("");
+const distanceOptions = [
+  { id: "full", label: "全马" },
+  { id: "half", label: "半马" },
+  { id: "10k", label: "10公里" },
+  { id: "5k", label: "5公里" }
+];
+const feeCurrent = ref(null);
+const feeShown = ref(null);
+const feeHistory = ref([]);
+const feeMode = ref("edit");
+const feeName = ref("");
+const feeAmount = ref("");
+const feeStart = ref("");
+const feeEnd = ref("");
+const feeNote = ref("");
+const feeBlock = ref(false);
+const feeFile = ref(null);
+let raceTimer = 0;
 
 function tallyLine(item) {
   const tally = item.tally || {};
@@ -258,8 +353,163 @@ async function copyCard(card) {
   }
 }
 
+function feeQr(periodId) {
+  return feeQrSrc(route.params.id, periodId);
+}
+
+function fillFee(period) {
+  if (!period) return;
+  feeName.value = period.name;
+  feeAmount.value = period.amount;
+  feeStart.value = period.startsOn;
+  feeEnd.value = period.endsOn;
+  feeNote.value = period.note;
+  feeBlock.value = period.blockSignup;
+}
+
 async function reload() {
   applyClub(await api("/clubs/" + route.params.id));
+  const fees = await api("/clubs/" + route.params.id + "/fees");
+  feeCurrent.value = fees.current;
+  feeHistory.value = fees.history || [];
+  if (!feeShown.value || feeShown.value.open) {
+    feeShown.value = fees.current;
+    if (feeMode.value === "edit") fillFee(fees.current);
+  }
+  const calls = await api("/clubs/" + route.params.id + "/calls");
+  resultCalls.value = calls.calls || [];
+}
+
+function searchRaces() {
+  clearTimeout(raceTimer);
+  raceTimer = setTimeout(async () => {
+    const q = raceQuery.value.trim();
+    if (q.length < 1) {
+      raceHits.value = [];
+      return;
+    }
+    try {
+      const data = await api("/races?q=" + encodeURIComponent(q));
+      raceHits.value = (data.races || []).slice(0, 6);
+    } catch (err) {
+      message.value = err.message;
+    }
+  }, 250);
+}
+
+function pickRace(race) {
+  pickedRace.value = race;
+  callTitle.value = race.name;
+  callDate.value = race.raceDate;
+  callDistances.value = (race.distances || []).filter((item) => distanceOptions.some((opt) => opt.id === item));
+  raceHits.value = [];
+  raceQuery.value = "";
+}
+
+function clearRace() {
+  pickedRace.value = null;
+  callTitle.value = "";
+  callDistances.value = [];
+}
+
+async function createCall() {
+  message.value = "";
+  try {
+    const data = await api("/clubs/" + route.params.id + "/calls", {
+      method: "POST",
+      body: JSON.stringify({
+        raceId: pickedRace.value ? pickedRace.value.id : "",
+        title: callTitle.value,
+        raceDate: callDate.value,
+        distances: callDistances.value,
+        otherKm: callOther.value,
+        deadline: callDeadline.value,
+        note: callNote.value
+      })
+    });
+    router.push("/clubs/" + route.params.id + "/calls/" + data.call.id);
+  } catch (err) {
+    message.value = err.message;
+  }
+}
+
+async function openFee(item) {
+  message.value = "";
+  try {
+    const data = await api("/clubs/" + route.params.id + "/fees/" + item.id);
+    feeShown.value = data.period;
+    if (data.period.open) {
+      feeMode.value = "edit";
+      fillFee(data.period);
+    }
+  } catch (err) {
+    message.value = err.message;
+  }
+}
+
+function onFeeFile(event) {
+  feeFile.value = event.target.files && event.target.files[0];
+}
+
+async function saveFee() {
+  message.value = "";
+  const body = {
+    name: feeName.value,
+    amount: Number(feeAmount.value),
+    startsOn: feeStart.value,
+    endsOn: feeEnd.value,
+    note: feeNote.value,
+    blockSignup: feeBlock.value
+  };
+  try {
+    const creating = feeMode.value === "new" || !feeCurrent.value;
+    const data = creating
+      ? await api("/clubs/" + route.params.id + "/fees", { method: "POST", body: JSON.stringify(body) })
+      : await api("/clubs/" + route.params.id + "/fees/" + feeCurrent.value.id, { method: "PUT", body: JSON.stringify(body) });
+    if (feeFile.value) await upload("/clubs/" + route.params.id + "/fees/" + data.period.id + "/qr", feeFile.value);
+    feeFile.value = null;
+    feeMode.value = "edit";
+    note.value = creating ? "已开这一期" : "会费已保存";
+    await reload();
+    feeShown.value = feeCurrent.value;
+  } catch (err) {
+    message.value = err.message;
+  }
+}
+
+async function claimFee() {
+  message.value = "";
+  try {
+    const data = await api("/clubs/" + route.params.id + "/fees/" + feeShown.value.id + "/claim", { method: "POST", body: "{}" });
+    feeShown.value = data.period;
+    note.value = "已登记，等团长确认";
+  } catch (err) {
+    message.value = err.message;
+  }
+}
+
+async function markFee(person, status) {
+  message.value = "";
+  try {
+    const data = await api("/clubs/" + route.params.id + "/fees/" + feeShown.value.id + "/records", {
+      method: "POST",
+      body: JSON.stringify({ userId: person.userId, status })
+    });
+    feeShown.value = data.period;
+  } catch (err) {
+    message.value = err.message;
+  }
+}
+
+async function copyFee() {
+  note.value = "";
+  message.value = "";
+  try {
+    await copyText(feeShown.value.copyText);
+    note.value = "名单已复制，可以贴到微信群";
+  } catch (err) {
+    message.value = "没有复制成功，可以直接选中名单";
+  }
 }
 
 async function createActivity() {
@@ -388,6 +638,12 @@ onMounted(async () => {
 .seg button.on { background: #007aff; color: #fff; }
 .act { display: block; }
 .block input { width: 100%; height: 40px; margin-top: 8px; border: 0; border-radius: 10px; padding: 0 12px; background: rgba(118, 118, 128, 0.12); }
+.checks { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 8px; }
+.checks label { font-size: 14px; }
+.qr { width: 180px; margin-top: 8px; border-radius: 8px; }
+.pick, .inline { width: auto; margin: 4px 8px 0 0; }
+.file-pick { display: inline-block; margin-top: 8px; color: #007aff; font-size: 14px; }
+.file-pick input { display: none; }
 .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .pair label { font-size: 12px; color: #8d949c; }
 .pair input { width: 100%; }

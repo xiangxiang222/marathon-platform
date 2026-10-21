@@ -3,6 +3,7 @@ const path = require("path");
 const { DISTANCE_LABEL } = require("./races");
 const { clubRoleLabel, memberRole, setMemberRole, decideRequest, listPending } = require("./roles");
 const { formatClock } = require("./career");
+const { feeBlocksSignup } = require("./club-ops");
 
 const PHOTO_MAX = 8 * 1024 * 1024;
 const VIDEO_MAX = 40 * 1024 * 1024;
@@ -389,6 +390,8 @@ function mountClubLife(app, { BASE, getDb, userFrom }) {
     if (!ctx) return;
     const activity = ctx.db.prepare("SELECT * FROM activities WHERE id = ? AND club_id = ?").get(req.params.aid, ctx.club.id);
     if (!activity) return res.status(404).json({ error: "没有这场活动" });
+    const blocked = feeBlocksSignup(ctx.db, ctx.club.id, ctx.user.id);
+    if (blocked) return res.status(400).json({ error: blocked });
     const groupId = Number((req.body && req.body.groupId) || 0);
     const groups = ctx.db.prepare("SELECT id, capacity FROM club_groups WHERE club_id = ?").all(ctx.club.id);
     if (groups.length && !groups.some((group) => group.id === groupId)) return res.status(400).json({ error: "先选一个组别" });

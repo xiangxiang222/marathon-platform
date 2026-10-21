@@ -1,0 +1,31 @@
+<view class="pad" wx:if="{{call}}">
+  <view class="card">
+    <view class="h2">{{call.title}}</view>
+    <view class="src">{{call.raceDate}} · 截止 {{call.deadlineLabel}}{{call.closed ? ' · 已截止' : ''}}</view>
+    <view wx:if="{{call.note}}" class="src">{{call.note}}</view>
+    <view class="sum">{{call.summary}}</view>
+    <view class="src">{{call.shareText}}</view>
+    <button class="btn" open-type="share">发到微信群</button>
+    <button class="ghost" data-text="{{call.boardText}}" bindtap="copyText">复制成绩榜</button>
+  </view>
+  <view class="card" wx:if="{{!call.closed}}">
+    <view class="h2">填写</view>
+    <view class="src">距离：{{distanceLabel || '还没选'}}</view>
+    <button wx:for="{{options}}" wx:key="id" class="ghost" data-id="{{item.id}}" data-label="{{item.label}}" bindtap="pickDistance">{{item.label}}</button>
+    <view class="stack">
+      <input placeholder="1:32:10 或 45:30" value="{{time}}" bindinput="onTime" />
+    </view>
+    <button class="btn" bindtap="submitOwn">提交</button>
+  </view>
+  <view wx:else class="card"><view class="src">已经截止。</view></view>
+  <view wx:for="{{call.groups}}" wx:for-item="group" wx:key="distance" class="card">
+    <view class="h2">{{group.label}}</view>
+    <view wx:for="{{group.rows}}" wx:for-item="row" wx:key="id" class="row">
+      <text>{{row.place}} {{row.nickname}}{{row.mine ? ' · 我' : ''}}{{row.staffFilled ? ' · 管理员补录' : ''}}</text>
+      <text>{{row.clock}} {{row.tag}}</text>
+    </view>
+  </view>
+  <view wx:if="{{!call.groups.length}}" class="empty">还没有人填写。</view>
+  <view wx:if="{{message}}" class="err">{{message}}</view>
+</view>
+<view wx:else class="empty">{{message || '正在打开'}}</view>
