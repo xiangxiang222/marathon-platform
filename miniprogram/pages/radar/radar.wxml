@@ -1,0 +1,30 @@
+<view class="pad">
+  <view class="card">
+    <view class="title">拿奖雷达</view>
+    <view class="src">{{note}}</view>
+    <view class="src">性别、出生年月和省份自己填。不收身份证。出生月份和比赛月相同的，按小一岁算。</view>
+    <view class="row">
+      <button class="ghost {{gender === '' ? 'on' : ''}}" data-gender="" bindtap="setGender">不填</button>
+      <button class="ghost {{gender === '男' ? 'on' : ''}}" data-gender="男" bindtap="setGender">男</button>
+      <button class="ghost {{gender === '女' ? 'on' : ''}}" data-gender="女" bindtap="setGender">女</button>
+    </view>
+    <input placeholder="出生年月 1986-06，可空" value="{{birth}}" bindinput="onBirth" />
+    <input placeholder="省份，例如 河南，可空" value="{{province}}" bindinput="onProvince" />
+    <input placeholder="全马目标 3:30:00，空则用 PB" value="{{full}}" bindinput="onFull" />
+    <input placeholder="半马目标，可空" value="{{half}}" bindinput="onHalf" />
+    <input placeholder="10 公里目标，可空" value="{{ten}}" bindinput="onTen" />
+    <input placeholder="5 公里目标，可空" value="{{five}}" bindinput="onFive" />
+    <button class="btn" bindtap="save">保存</button>
+    <view wx:if="{{message}}" class="err">{{message}}</view>
+  </view>
+  <view class="card">
+    <view class="title">对得上的奖</view>
+    <view wx:if="{{!rows.length}}" class="src">还没有对得上的奖。奖项要在后台按规程录入。</view>
+    <navigator wx:for="{{rows}}" wx:key="ruleId" url="/pages/race/race?id={{item.race.id}}">
+      <view class="src">{{item.race.raceDate}} {{item.race.name}}</view>
+      <view class="src">{{item.kindLabel}} · {{item.title}} · {{item.amountText}}</view>
+      <view class="src">{{item.reason}}</view>
+      <view class="src">来源 {{item.source}}</view>
+    </navigator>
+  </view>
+</view>

@@ -13,6 +13,7 @@
     <input placeholder="搜名称或城市" value="{{q}}" bindinput="onQ" bindconfirm="load" confirm-type="search" />
     <text class="find" bindtap="load">搜索</text>
   </view>
+  <navigator class="radar" url="/pages/radar/radar">拿奖雷达</navigator>
 
   <block wx:if="{{!searching}}">
   <view wx:if="{{reminders.length}}" class="section">即将到来</view>

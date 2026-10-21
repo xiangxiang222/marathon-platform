@@ -308,6 +308,54 @@
                 <label class="file-pick">{{ book.liveSheet || liveQueue ? "替换二维码" : "添加二维码" }}<input type="file" accept="image/jpeg,image/png,image/webp" @change="onLiveFile" /></label>
               </div>
             </section>
+            <section v-show="editTab === 'prize'" class="section">
+              <h3>奖项</h3>
+              <p class="note">按规程填写，并写上来源。没有往届名次成绩时，页面不估算概率。</p>
+              <p v-if="!book.id" class="note">先保存这场比赛，再添加奖项。</p>
+              <template v-else>
+                <div v-for="item in prizes" :key="item.id" class="line">
+                  <b>{{ item.distanceLabel }} · {{ item.title }}</b>
+                  <span>{{ item.amountText }} · {{ item.source }}</span>
+                  <button class="undo" type="button" @click="removePrize(item)">删除</button>
+                </div>
+                <div class="check-form">
+                  <select v-model="prizeDistance">
+                    <option value="full">全马</option>
+                    <option value="half">半马</option>
+                    <option value="10k">10公里</option>
+                    <option value="5k">5公里</option>
+                  </select>
+                  <select v-model="prizeKind">
+                    <option value="place">名次</option>
+                    <option value="age">年龄组</option>
+                    <option value="local">本地籍</option>
+                    <option value="break">破时</option>
+                    <option value="club">跑团</option>
+                  </select>
+                  <select v-model="prizeGender">
+                    <option value="">性别不限</option>
+                    <option value="男">男</option>
+                    <option value="女">女</option>
+                  </select>
+                  <input v-model.number="prizeAgeMin" type="number" min="0" placeholder="年龄起，0 表示不限" />
+                  <input v-model.number="prizeAgeMax" type="number" min="0" placeholder="年龄止，0 表示不限" />
+                  <select v-model="prizeProvince">
+                    <option value="">省份，仅本地籍</option>
+                    <option v-for="item in regions" :key="item.name" :value="item.name">{{ item.name }}</option>
+                  </select>
+                  <input v-model.number="prizePlace" type="number" min="0" placeholder="前几名，破时填 0" />
+                  <input v-model="prizeBreak" placeholder="破时成绩 3:00:00" />
+                  <input v-model.number="prizeAmount" type="number" min="0" placeholder="税前金额，0 表示非现金" />
+                  <input v-model.number="prizeTax" type="number" min="0" placeholder="税率，例如 20" />
+                  <label class="note"><input v-model="prizeStack" type="checkbox" /> 可与其他奖叠加</label>
+                  <input v-model="prizeSource" maxlength="80" placeholder="奖项来源" />
+                  <input v-model="prizeCutoff" placeholder="往届第 N 名 3:40:00，可空" />
+                  <input v-model="prizeCutoffSource" maxlength="80" placeholder="往届成绩来源" />
+                  <input v-model="prizeNote" maxlength="40" placeholder="说明" />
+                  <button class="primary" type="button" @click="createPrize">添加奖项</button>
+                </div>
+              </template>
+            </section>
           </form>
         </template>
       </div>
@@ -750,6 +798,22 @@ const splitMonth = ref("");
 const splitKind = ref("commission");
 const splitYuan = ref("");
 const splitNote = ref("");
+const prizes = ref([]);
+const prizeDistance = ref("full");
+const prizeKind = ref("age");
+const prizeGender = ref("");
+const prizeAgeMin = ref(0);
+const prizeAgeMax = ref(0);
+const prizeProvince = ref("");
+const prizePlace = ref(8);
+const prizeBreak = ref("");
+const prizeAmount = ref(0);
+const prizeTax = ref(0);
+const prizeStack = ref(false);
+const prizeSource = ref("");
+const prizeCutoff = ref("");
+const prizeCutoffSource = ref("");
+const prizeNote = ref("");
 const joins = ref([]);
 const foundings = ref([]);
 const joinsReady = ref(false);
@@ -814,7 +878,8 @@ const sections = [
   { id: "site", label: "官网" },
   { id: "day", label: "比赛日" },
   { id: "guide", label: "规程" },
-  { id: "live", label: "直播" }
+  { id: "live", label: "直播" },
+  { id: "prize", label: "奖项" }
 ];
 const gradeChoices = [
   { value: "", label: "未标注" },
@@ -1805,6 +1870,7 @@ function startDraft() {
   clearQueues();
   editTab.value = "base";
   book.value = emptyBook();
+  prizes.value = [];
   cityMode.value = "list";
   nodeOrigin.value = nodesKey(book.value);
 }
@@ -1812,6 +1878,60 @@ function startDraft() {
 function closeEditor() {
   clearQueues();
   book.value = null;
+  prizes.value = [];
+}
+
+async function loadPrizes(id) {
+  if (!id) {
+    prizes.value = [];
+    return;
+  }
+  const data = await admin("/admin/races/" + id + "/prizes");
+  prizes.value = data.prizes;
+}
+
+async function createPrize() {
+  if (!book.value || !book.value.id) return;
+  message.value = "";
+  saved.value = false;
+  try {
+    await admin("/admin/races/" + book.value.id + "/prizes", {
+      method: "POST",
+      body: JSON.stringify({
+        distance: prizeDistance.value,
+        kind: prizeKind.value,
+        gender: prizeGender.value,
+        ageMin: prizeAgeMin.value || 0,
+        ageMax: prizeAgeMax.value || 0,
+        province: prizeKind.value === "local" ? prizeProvince.value : "",
+        placeN: prizePlace.value || 0,
+        breakClock: prizeBreak.value,
+        amount: prizeAmount.value || 0,
+        tax: prizeTax.value || 0,
+        stack: prizeStack.value,
+        source: prizeSource.value,
+        cutoffClock: prizeCutoff.value,
+        cutoffSource: prizeCutoffSource.value,
+        note: prizeNote.value
+      })
+    });
+    prizeSource.value = "";
+    prizeNote.value = "";
+    saved.value = true;
+    await loadPrizes(book.value.id);
+  } catch (err) {
+    fail(err);
+  }
+}
+
+async function removePrize(item) {
+  message.value = "";
+  try {
+    await admin("/admin/races/" + book.value.id + "/prizes/" + item.id, { method: "DELETE" });
+    await loadPrizes(book.value.id);
+  } catch (err) {
+    fail(err);
+  }
 }
 
 let catalogTimer = 0;
@@ -1875,6 +1995,7 @@ async function openGuide(id) {
     clearQueues();
     editTab.value = "base";
     book.value = blankBook(data.race);
+    await loadPrizes(data.race.id);
     nodeOrigin.value = nodesKey(book.value);
     applyCityMode();
   } catch (err) {
@@ -1966,6 +2087,7 @@ async function saveGuide() {
     const opened = await api("/races/" + id);
     clearQueues();
     book.value = blankBook(opened.race);
+    await loadPrizes(opened.race.id);
     nodeOrigin.value = nodesKey(book.value);
     applyCityMode();
     saved.value = true;

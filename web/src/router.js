@@ -14,12 +14,14 @@ import Internal from "./views/Internal.vue";
 import Mine from "./views/Mine.vue";
 import Admin from "./views/Admin.vue";
 import Calendar from "./views/Calendar.vue";
+import Radar from "./views/Radar.vue";
 
 export default createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     { path: "/", component: Home },
     { path: "/calendar", component: Calendar, meta: { hideTab: true } },
+    { path: "/radar", component: Radar, meta: { hideTab: true } },
     { path: "/races/:id", component: Race, meta: { hideTab: true } },
     { path: "/sport", component: Exercise },
     { path: "/look", component: Look },

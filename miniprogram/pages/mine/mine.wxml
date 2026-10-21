@@ -65,6 +65,7 @@
       <text> {{item.race.name}}</text>
     </navigator>
     <view wx:if="{{loaded && !results.length}}" class="muted">在赛事页记下成绩后，会出现在这里</view>
+    <navigator url="/pages/radar/radar">拿奖雷达</navigator>
   </view>
   <view class="card" wx:if="{{nickname}}">
     <view class="h2">我标过的场</view>

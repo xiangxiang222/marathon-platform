@@ -2685,3 +2685,141 @@ test("club grade, supplies, offline splits and the monthly league stay off the p
 
   assert.equal(getDb().prepare("SELECT COUNT(*) AS n FROM point_entries").get().n, pointsBefore);
 });
+
+test("the prize radar compares a sourced cutoff and does not invent a probability", async () => {
+  process.env.ADMIN_TOKEN = process.env.ADMIN_TOKEN || "test-admin";
+  const admin = { Authorization: "Bearer " + process.env.ADMIN_TOKEN };
+  const token = await session("雷达甲");
+  const auth = { Authorization: "Bearer " + token };
+  const empty = await request(app).get("/marathon/api/radar").set(auth);
+  assert.equal(empty.status, 200);
+  assert.match(empty.body.note, /仅供参考/);
+  assert.match(empty.body.note, /不估算概率/);
+  assert.equal(empty.body.rows.length, 0);
+
+  const missing = await request(app).post("/marathon/api/admin/races/bishan/prizes").set(admin).send({
+    distance: "full",
+    kind: "age",
+    gender: "男",
+    ageMin: 40,
+    ageMax: 49,
+    placeN: 8,
+    amount: 500,
+    tax: 20,
+    stack: false,
+    source: ""
+  });
+  assert.equal(missing.status, 400);
+  assert.match(missing.body.error, /来源写成/);
+
+  const age = await request(app).post("/marathon/api/admin/races/bishan/prizes").set(admin).send({
+    distance: "full",
+    kind: "age",
+    gender: "男",
+    ageMin: 40,
+    ageMax: 49,
+    placeN: 8,
+    amount: 500,
+    tax: 20,
+    stack: false,
+    source: "规程第 3 页",
+    cutoffClock: "3:40:00",
+    cutoffSource: "往届秩序册"
+  });
+  assert.equal(age.status, 200);
+  const open = await request(app).post("/marathon/api/admin/races/bishan/prizes").set(admin).send({
+    distance: "half",
+    kind: "place",
+    gender: "男",
+    placeN: 3,
+    amount: 0,
+    tax: 0,
+    stack: false,
+    source: "半马规程"
+  });
+  assert.equal(open.status, 200);
+  const local = await request(app).post("/marathon/api/admin/races/bishan/prizes").set(admin).send({
+    distance: "full",
+    kind: "local",
+    gender: "",
+    province: "重庆",
+    placeN: 5,
+    amount: 200,
+    tax: 0,
+    stack: true,
+    source: "本地籍规程"
+  });
+  assert.equal(local.status, 200);
+  const club = await request(app).post("/marathon/api/admin/races/bishan/prizes").set(admin).send({
+    distance: "full",
+    kind: "club",
+    placeN: 3,
+    amount: 1000,
+    tax: 0,
+    stack: false,
+    source: "跑团规程"
+  });
+  assert.equal(club.status, 200);
+  const past = await request(app).post("/marathon/api/admin/races/closed-sample/prizes").set(admin).send({
+    distance: "full",
+    kind: "place",
+    placeN: 1,
+    amount: 100,
+    tax: 0,
+    stack: false,
+    source: "已结束的规程"
+  });
+  assert.equal(past.status, 200);
+
+  const recorded = await request(app).put("/marathon/api/me/races/closed-sample/result").set(auth).send({ distance: "full", time: "3:36:00" });
+  assert.equal(recorded.status, 200);
+  const saved = await request(app).put("/marathon/api/me/radar").set(auth).send({
+    gender: "男",
+    birth: "1986-10",
+    province: "重庆",
+    targets: {}
+  });
+  assert.equal(saved.status, 200);
+  const hit = await request(app).get("/marathon/api/radar").set(auth);
+  assert.equal(hit.status, 200);
+  assert.equal(hit.body.rows.some((row) => row.race.id === "closed-sample"), false);
+  const ageRow = hit.body.rows.find((row) => row.ruleId === age.body.id);
+  assert.equal(ageRow.ahead, true);
+  assert.equal(ageRow.amountText, "税后 400 元");
+  assert.match(ageRow.reason, /40–49 岁男子组，前 8 名/);
+  assert.match(ageRow.reason, /快约 4 分钟/);
+  assert.equal(ageRow.clockLabel, "PB 3:36:00");
+  assert.equal(JSON.stringify(ageRow).includes("保证"), false);
+  assert.equal(ageRow.probability, undefined);
+  const halfRow = hit.body.rows.find((row) => row.ruleId === open.body.id);
+  assert.match(halfRow.reason, /不估算概率|还没有这场距离的成绩/);
+  assert.match(halfRow.reason, /还没有这场距离的成绩/);
+  const localRow = hit.body.rows.find((row) => row.ruleId === local.body.id);
+  assert.ok(localRow);
+  const clubRow = hit.body.rows.find((row) => row.ruleId === club.body.id);
+  assert.match(clubRow.reason, /跑团奖/);
+  assert.ok(hit.body.rows.findIndex((row) => row.ruleId === age.body.id) < hit.body.rows.findIndex((row) => row.ruleId === club.body.id));
+
+  const young = await request(app).put("/marathon/api/me/radar").set(auth).send({ gender: "男", birth: "1986-11", province: "重庆", targets: {} });
+  assert.equal(young.status, 200);
+  const younger = await request(app).get("/marathon/api/radar").set(auth);
+  assert.equal(younger.body.rows.some((row) => row.ruleId === age.body.id), false);
+
+  const other = await request(app).put("/marathon/api/me/radar").set(auth).send({ gender: "女", birth: "1986-10", province: "北京", targets: {} });
+  assert.equal(other.status, 200);
+  const hers = await request(app).get("/marathon/api/radar").set(auth);
+  assert.equal(hers.body.rows.some((row) => row.ruleId === age.body.id), false);
+  assert.equal(hers.body.rows.some((row) => row.ruleId === local.body.id), false);
+
+  const future = await request(app).put("/marathon/api/me/radar").set(auth).send({ gender: "男", birth: "2027-01", province: "", targets: {} });
+  assert.equal(future.status, 400);
+  assert.match(future.body.error, /不能晚于本月/);
+  const alien = await request(app).put("/marathon/api/me/radar").set(auth).send({ gender: "男", birth: "", province: "火星", targets: {} });
+  assert.equal(alien.status, 400);
+  assert.match(alien.body.error, /省份不在名单里/);
+
+  for (const id of [age.body.id, open.body.id, local.body.id, club.body.id]) {
+    assert.equal((await request(app).delete("/marathon/api/admin/races/bishan/prizes/" + id).set(admin)).status, 200);
+  }
+  assert.equal((await request(app).delete("/marathon/api/admin/races/closed-sample/prizes/" + past.body.id).set(admin)).status, 200);
+});

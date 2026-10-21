@@ -107,6 +107,7 @@ a { color: inherit; text-decoration: none; }
 }
 .search input::placeholder { color: rgba(60, 60, 67, 0.45); }
 .search button { color: var(--accent); font-size: 16px; font-weight: 600; flex: none; }
+.radar-link { display: block; margin: -4px 16px 12px; color: var(--accent); font-weight: 650; text-decoration: none; }
 
 .rail-wrap { padding-top: 6px; }
 .section-label {

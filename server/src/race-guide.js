@@ -347,6 +347,7 @@ function removeRace(db, id) {
   db.transaction(() => {
     for (const sheet of sheets) removeSheet(db, sheet);
     db.prepare("DELETE FROM plans WHERE race_id = ?").run(race.id);
+    db.prepare("DELETE FROM prize_rules WHERE race_id = ?").run(race.id);
     db.prepare("DELETE FROM results WHERE race_id = ?").run(race.id);
     const ignore = db.prepare("UPDATE official_races SET status = 'ignored', race_id = '' WHERE official_id = ?");
     for (const officialId of linked) ignore.run(officialId);

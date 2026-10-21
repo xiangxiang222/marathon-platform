@@ -88,6 +88,10 @@
         <span class="orb score"><svg viewBox="0 0 24 24"><circle cx="12" cy="14" r="5" /><path d="M9 4l3 6 3-6" /></svg></span>
         成绩
       </a>
+      <router-link to="/radar">
+        <span class="orb flag"><svg viewBox="0 0 24 24"><path d="M7 4v16M7 5h9l-2 3 2 3H7" /></svg></span>
+        雷达
+      </router-link>
     </div>
 
     <div id="wall" class="walls">
