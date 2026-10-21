@@ -8,6 +8,7 @@ Page({
     kind: "month",
     query: "",
     reason: "",
+    rules: null,
     message: ""
   },
   onLoad(query) {
@@ -19,7 +20,7 @@ Page({
   load() {
     const q = this.data.query ? "&q=" + encodeURIComponent(this.data.query) : "";
     request("/clubs/" + this.clubId + "/mileage?range=" + this.data.range + q)
-      .then((data) => this.setData({ board: data, message: "" }))
+      .then((data) => this.setData({ board: data, rules: data.rules || null, message: "" }))
       .catch((err) => this.setData({ message: err.message }));
     request("/clubs/" + this.clubId + "/mileage/report?kind=" + this.data.kind)
       .then((data) => this.setData({ report: data }))
@@ -43,6 +44,23 @@ Page({
   challenge(e) {
     request("/clubs/" + this.clubId + "/mileage/runs/" + e.currentTarget.dataset.id + "/challenge", "POST", { reason: this.data.reason })
       .then(() => this.load())
+      .catch((err) => this.setData({ message: err.message }));
+  },
+  onRule(e) {
+    const rules = Object.assign({}, this.data.rules);
+    rules[e.currentTarget.dataset.key] = e.detail.value;
+    this.setData({ rules });
+  },
+  toggleRule(e) {
+    const rules = Object.assign({}, this.data.rules);
+    const key = e.currentTarget.dataset.key;
+    rules[key] = !rules[key];
+    this.setData({ rules });
+  },
+  saveRules() {
+    const rules = Object.assign({}, this.data.rules, { trailClimb: Math.round(Number(this.data.rules.trailClimb)) });
+    request("/clubs/" + this.clubId + "/mileage/rules", "PUT", rules)
+      .then((data) => this.setData({ rules: data.rules, message: data.rules.note }))
       .catch((err) => this.setData({ message: err.message }));
   },
   decide(e) {

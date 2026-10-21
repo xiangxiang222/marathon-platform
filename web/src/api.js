@@ -65,6 +65,11 @@ export function feeQrSrc(clubId, periodId) {
   return base + "/api/clubs/" + clubId + "/fees/" + periodId + "/qr?t=" + encodeURIComponent(token);
 }
 
+export function resultProofSrc(raceId) {
+  const token = localStorage.getItem("marathon_token") || "";
+  return base + "/api/me/races/" + raceId + "/result/proof?t=" + encodeURIComponent(token);
+}
+
 export function callSheetSrc(rowId) {
   const token = localStorage.getItem("marathon_token") || "";
   return base + "/api/call-sheets/" + rowId + "?t=" + encodeURIComponent(token);

@@ -125,7 +125,14 @@
       </div>
       <p v-if="!results.length" class="quiet">在赛事页记下成绩后，会出现在这里</p>
     </div>
-    <p v-else-if="tab === 'photo'" class="quiet">还没有影像</p>
+    <div v-else-if="tab === 'photo'" class="career">
+      <router-link v-for="item in proofResults" :key="item.race.id" class="proof-card" :to="'/races/' + item.race.id">
+        <img :src="proofSrc(item.race.id)" alt="" />
+        <b>{{ item.proofLabel }} · 未核验</b>
+        <span>{{ item.race.name }}</span>
+      </router-link>
+      <p v-if="!proofResults.length" class="quiet">还没有影像。在赛事页记下成绩后，可以附证书或奖牌照片。</p>
+    </div>
     <div v-else-if="tab === 'time'" class="career">
       <div class="chips">
         <button type="button" :class="{ on: kindFilter === 'all' }" @click="kindFilter = 'all'">全部</button>
@@ -164,7 +171,7 @@
 
 <script setup>
 import { computed, onMounted, ref } from "vue";
-import { api } from "../api";
+import { api, resultProofSrc } from "../api";
 
 const nickname = ref(localStorage.getItem("marathon_name") || "");
 const leader = ref(false);
@@ -212,6 +219,10 @@ const litPlaces = computed(() => {
   }
   return names;
 });
+const proofResults = computed(() => results.value.filter((item) => item.hasProof));
+function proofSrc(id) {
+  return resultProofSrc(id);
+}
 const honorGroups = computed(() => {
   const map = new Map();
   for (const item of litCards.value) {
@@ -490,4 +501,8 @@ onMounted(load);
 .warn p { color: #9a5b12; }
 .remind-line { display: block; color: #333; }
 .remind-line b { color: #9a5b12; margin-right: 6px; }
+.proof-card { display: block; margin: 0 16px 12px; color: inherit; text-decoration: none; }
+.proof-card img { display: block; width: 100%; border-radius: 12px; }
+.proof-card b, .proof-card span { display: block; margin-top: 4px; }
+.proof-card span { color: #8d949c; font-size: 13px; }
 </style>

@@ -60,9 +60,10 @@
     <view class="sum">半程 {{career.pb.half || '--'}} · 全程 {{career.pb.full || '--'}}</view>
     <view class="sum">本年比赛 {{career.yearKm}} 公里</view>
     <navigator wx:for="{{results}}" wx:key="raceId" class="plan" url="/pages/race/race?id={{item.race.id}}">
+      <image wx:if="{{item.proofSrc}}" src="{{item.proofSrc}}" mode="aspectFill" />
       <text class="teal">{{item.clock}}</text>
       <text wx:if="{{item.pb}}"> PB</text>
-      <text> {{item.race.name}}</text>
+      <text> {{item.race.name}} · 未核验</text>
     </navigator>
     <view wx:if="{{loaded && !results.length}}" class="muted">在赛事页记下成绩后，会出现在这里</view>
     <navigator url="/pages/radar/radar">拿奖雷达</navigator>

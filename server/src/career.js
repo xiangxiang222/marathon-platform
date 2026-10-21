@@ -51,6 +51,9 @@ function decorateResults(items) {
       pace: paceOf(item.distance, seconds),
       story: item.story || "",
       pb: seconds === best[item.distance],
+      hasProof: Boolean(item.proof),
+      proofLabel: item.proofKind === "medal" ? "奖牌" : item.proofKind === "certificate" ? "证书" : "",
+      verifyLabel: "未核验",
       race: item.race
     };
   });
