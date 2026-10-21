@@ -1,0 +1,37 @@
+<view class="page" wx:if="{{race}}">
+  <view class="card">
+    <view class="h2">{{race.title}}</view>
+    <view class="src">{{race.startsLabel}}{{race.place ? ' · ' + race.place : ''}} · {{race.distanceLabel}}</view>
+    <view class="src">{{race.statusLabel}} · 报名截止 {{race.deadlineLabel}}</view>
+    <view wx:if="{{race.note}}" class="src">{{race.note}}</view>
+    <view class="src">{{race.shareText}}</view>
+    <button class="btn" data-text="{{race.shareText}}" bindtap="copyText">复制到微信群</button>
+  </view>
+  <view class="card" wx:if="{{race.canSignup || race.canCancel}}">
+    <view class="h2">报名</view>
+    <button wx:for="{{race.groups}}" wx:key="id" class="ghost {{groupId == item.id ? 'on' : ''}}" data-id="{{item.id}}" bindtap="pickGroup" disabled="{{item.full && groupId != item.id}}">{{item.name}} {{item.capacity ? item.taken + '/' + item.capacity : '不限'}}</button>
+    <button wx:if="{{race.canSignup}}" class="btn" bindtap="signup">报名</button>
+    <button wx:if="{{race.canCancel}}" class="ghost" bindtap="cancel">取消报名</button>
+  </view>
+  <view class="card" wx:if="{{race.canResult}}">
+    <view class="h2">完赛用时</view>
+    <view class="stack">
+      <input placeholder="45:30 或 3:29:59" value="{{time}}" bindinput="onTime" />
+    </view>
+    <button class="btn" bindtap="save">提交</button>
+    <button class="ghost" bindtap="dnf">未完赛</button>
+  </view>
+  <view class="card" wx:for="{{race.groups}}" wx:key="id">
+    <view class="h2">{{item.name}}</view>
+    <view wx:for="{{item.rows}}" wx:for-item="row" wx:key="userId" class="row">
+      <text class="{{row.mine ? 'mine' : ''}}">{{row.place}} {{row.nickname}}{{row.mine ? ' · 我' : ''}}</text>
+      <text>{{row.clock || row.outcomeLabel}} {{row.tag}}</text>
+    </view>
+    <view wx:if="{{!item.rows.length}}" class="src">还没有人报名。</view>
+  </view>
+  <view class="card" wx:if="{{race.canEnd || race.canCancelRace}}">
+    <button wx:if="{{race.canEnd}}" class="btn" bindtap="endRace">结束并记分</button>
+    <button wx:if="{{race.canCancelRace}}" class="ghost" bindtap="cancelRace">取消这场</button>
+  </view>
+  <view wx:if="{{message}}" class="src">{{message}}</view>
+</view>

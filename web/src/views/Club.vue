@@ -112,6 +112,56 @@
         <p class="rank-label">{{ item.rule }}</p>
       </router-link>
       <p v-if="!activities.length" class="empty">还没有活动。每周团练的报名放在这里。</p>
+      <div class="block">
+        <h2>约跑</h2>
+        <p class="rank-label">三人以上，当天打卡并上传合影才记积分。团练签到不加分。</p>
+        <router-link v-for="item in meetups" :key="item.id" class="mate" :to="'/clubs/' + club.id + '/meetups/' + item.id">
+          <span>{{ item.dateLabel }} {{ item.place }}</span>
+          <b>{{ item.checkCount }} 人 · {{ item.statusLabel }}</b>
+        </router-link>
+        <p v-if="!meetups.length" class="rank-label">还没有约跑。</p>
+        <form class="check-form" @submit.prevent="createMeetup">
+          <input v-model="meetDate" placeholder="日期 2026-10-22" />
+          <input v-model="meetPlace" maxlength="40" placeholder="地点" />
+          <input v-model="meetNote" maxlength="100" placeholder="说明，可不填" />
+          <button class="primary" type="submit">发起约跑</button>
+        </form>
+        <form v-if="club.owner" class="check-form" @submit.prevent="saveTiers">
+          <p class="rank-label">约跑积分。第一档不能少于 3 人，0 分只留记录。</p>
+          <div v-for="(tier, index) in tierDraft" :key="index" class="pair">
+            <label>人数<input v-model.number="tier.minPeople" type="number" min="3" max="500" /></label>
+            <label>积分<input v-model.number="tier.points" type="number" min="0" max="20" /></label>
+          </div>
+          <button class="primary" type="submit">保存档位</button>
+        </form>
+      </div>
+      <div class="block">
+        <h2>队内赛</h2>
+        <p class="rank-label">和每周训练分开报名。成绩不进赛历。</p>
+        <router-link v-for="item in internals" :key="item.id" class="mate" :to="'/clubs/' + club.id + '/internals/' + item.id">
+          <span>{{ item.title }}</span>
+          <b>{{ item.signupCount }} 人 · {{ item.statusLabel }}</b>
+        </router-link>
+        <p v-if="!internals.length" class="rank-label">还没有队内赛。</p>
+        <form v-if="club.staff" class="check-form" @submit.prevent="createInternal">
+          <input v-model="raceTitle" maxlength="40" placeholder="名称，例如 滨河10公里" />
+          <input v-model="raceWhen" placeholder="开赛 2026-11-01 08:00" />
+          <input v-model="racePlace" maxlength="40" placeholder="地点" />
+          <div class="checks">
+            <label v-for="opt in distanceOptions" :key="opt.id"><input v-model="raceDistance" type="radio" name="raceDistance" :value="opt.id" /> {{ opt.label }}</label>
+          </div>
+          <input v-model="raceOther" inputmode="decimal" placeholder="其他距离，公里。选了上面的距离就留空" />
+          <input v-model="raceDeadline" placeholder="报名截止，可空，默认开赛时间" />
+          <input v-model="raceNote" maxlength="500" placeholder="说明，可不填" />
+          <label>完赛积分<input v-model.number="racePoints" type="number" min="0" max="20" /></label>
+          <div v-for="(group, index) in raceGroups" :key="index" class="pair">
+            <label>组别<input v-model="group.name" maxlength="20" placeholder="男子组" /></label>
+            <label>人数上限<input v-model.number="group.capacity" type="number" min="0" max="500" /></label>
+          </div>
+          <button class="undo" type="button" @click="raceGroups.push({ name: '', capacity: 0 })">加一组</button>
+          <button class="primary" type="submit">发起队内赛</button>
+        </form>
+      </div>
     </template>
     <template v-if="club && tab === 'people'">
       <div class="block">
@@ -121,7 +171,7 @@
           <p class="rank-label">{{ feeShown.amount }} 元 · {{ feeShown.startsOn }} 至 {{ feeShown.endsOn }}</p>
           <p v-if="feeShown.note" class="rank-label">{{ feeShown.note }}</p>
           <p class="rank-label">我的状态：{{ feeShown.mine.label }}</p>
-          <p v-if="feeShown.blockSignup" class="rank-label">未交和待确认的人不能报名活动。</p>
+          <p v-if="feeShown.blockSignup" class="rank-label">未交和待确认的人不能报名活动和队内赛。</p>
           <img v-if="feeShown.hasQr" class="qr" :src="feeQr(feeShown.id)" alt="收款码" />
           <p v-else class="rank-label">团长还没有放收款码</p>
           <p v-if="feeShown.hasQr" class="rank-label">长按图片可以保存。</p>
@@ -287,6 +337,25 @@ const feeStart = ref("");
 const feeEnd = ref("");
 const feeNote = ref("");
 const feeBlock = ref(false);
+const meetups = ref([]);
+const meetupTiers = ref([]);
+const tierDraft = ref([]);
+const meetDate = ref("");
+const meetPlace = ref("");
+const meetNote = ref("");
+const internals = ref([]);
+const raceTitle = ref("");
+const raceWhen = ref("");
+const racePlace = ref("");
+const raceDistance = ref("10k");
+const raceOther = ref("");
+const raceDeadline = ref("");
+const raceNote = ref("");
+const racePoints = ref(0);
+const raceGroups = ref([
+  { name: "男子组", capacity: 0 },
+  { name: "女子组", capacity: 0 }
+]);
 const feeFile = ref(null);
 let raceTimer = 0;
 
@@ -378,6 +447,12 @@ async function reload() {
   }
   const calls = await api("/clubs/" + route.params.id + "/calls");
   resultCalls.value = calls.calls || [];
+  const gathered = await api("/clubs/" + route.params.id + "/meetups");
+  meetups.value = gathered.meetups || [];
+  meetupTiers.value = gathered.tiers || [];
+  if (!tierDraft.value.length) tierDraft.value = (gathered.tiers || []).map((tier) => ({ minPeople: tier.minPeople, points: tier.points }));
+  const races = await api("/clubs/" + route.params.id + "/internals");
+  internals.value = races.races || [];
 }
 
 function searchRaces() {
@@ -428,6 +503,57 @@ async function createCall() {
       })
     });
     router.push("/clubs/" + route.params.id + "/calls/" + data.call.id);
+  } catch (err) {
+    message.value = err.message;
+  }
+}
+
+async function createMeetup() {
+  message.value = "";
+  try {
+    const data = await api("/clubs/" + route.params.id + "/meetups", {
+      method: "POST",
+      body: JSON.stringify({ date: meetDate.value, place: meetPlace.value, note: meetNote.value })
+    });
+    router.push("/clubs/" + route.params.id + "/meetups/" + data.meetup.id);
+  } catch (err) {
+    message.value = err.message;
+  }
+}
+
+async function saveTiers() {
+  message.value = "";
+  try {
+    const data = await api("/clubs/" + route.params.id + "/meetup-tiers", {
+      method: "PUT",
+      body: JSON.stringify({ tiers: tierDraft.value })
+    });
+    tierDraft.value = (data.tiers || []).map((tier) => ({ minPeople: tier.minPeople, points: tier.points }));
+    note.value = "约跑积分已保存";
+  } catch (err) {
+    message.value = err.message;
+  }
+}
+
+async function createInternal() {
+  message.value = "";
+  const distance = raceOther.value ? "other" : raceDistance.value;
+  try {
+    const data = await api("/clubs/" + route.params.id + "/internals", {
+      method: "POST",
+      body: JSON.stringify({
+        title: raceTitle.value,
+        startsAt: raceWhen.value,
+        place: racePlace.value,
+        distance,
+        otherKm: raceOther.value,
+        deadline: raceDeadline.value,
+        note: raceNote.value,
+        finishPoints: racePoints.value,
+        groups: raceGroups.value.filter((group) => group.name && group.name.trim())
+      })
+    });
+    router.push("/clubs/" + route.params.id + "/internals/" + data.race.id);
   } catch (err) {
     message.value = err.message;
   }

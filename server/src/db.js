@@ -303,6 +303,79 @@ function open() {
       updated_at TEXT NOT NULL,
       UNIQUE (call_id, user_id, distance)
     );
+    CREATE TABLE IF NOT EXISTS meetup_tiers (
+      club_id INTEGER NOT NULL,
+      min_people INTEGER NOT NULL,
+      points INTEGER NOT NULL,
+      sort INTEGER NOT NULL,
+      PRIMARY KEY (club_id, sort)
+    );
+    CREATE TABLE IF NOT EXISTS meetups (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      club_id INTEGER NOT NULL,
+      run_on TEXT NOT NULL,
+      place TEXT NOT NULL,
+      note TEXT NOT NULL DEFAULT '',
+      status TEXT NOT NULL DEFAULT 'open',
+      award INTEGER NOT NULL DEFAULT 0,
+      created_at TEXT NOT NULL
+    );
+    CREATE TABLE IF NOT EXISTS meetup_joins (
+      meetup_id INTEGER NOT NULL,
+      user_id INTEGER NOT NULL,
+      created_at TEXT NOT NULL,
+      PRIMARY KEY (meetup_id, user_id)
+    );
+    CREATE TABLE IF NOT EXISTS meetup_checks (
+      meetup_id INTEGER NOT NULL,
+      user_id INTEGER NOT NULL,
+      created_at TEXT NOT NULL,
+      PRIMARY KEY (meetup_id, user_id)
+    );
+    CREATE TABLE IF NOT EXISTS meetup_photos (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      meetup_id INTEGER NOT NULL,
+      user_id INTEGER NOT NULL,
+      filename TEXT NOT NULL DEFAULT '',
+      created_at TEXT NOT NULL
+    );
+    CREATE TABLE IF NOT EXISTS internal_races (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      club_id INTEGER NOT NULL,
+      title TEXT NOT NULL,
+      place TEXT NOT NULL DEFAULT '',
+      starts_at TEXT NOT NULL,
+      deadline TEXT NOT NULL,
+      distance TEXT NOT NULL,
+      other_km REAL,
+      note TEXT NOT NULL DEFAULT '',
+      finish_points INTEGER NOT NULL DEFAULT 0,
+      ended_at TEXT NOT NULL DEFAULT '',
+      cancelled_at TEXT NOT NULL DEFAULT '',
+      created_at TEXT NOT NULL
+    );
+    CREATE TABLE IF NOT EXISTS internal_groups (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      race_id INTEGER NOT NULL,
+      name TEXT NOT NULL,
+      capacity INTEGER NOT NULL DEFAULT 0,
+      sort INTEGER NOT NULL DEFAULT 0
+    );
+    CREATE TABLE IF NOT EXISTS internal_signups (
+      race_id INTEGER NOT NULL,
+      user_id INTEGER NOT NULL,
+      group_id INTEGER NOT NULL,
+      created_at TEXT NOT NULL,
+      PRIMARY KEY (race_id, user_id)
+    );
+    CREATE TABLE IF NOT EXISTS internal_results (
+      race_id INTEGER NOT NULL,
+      user_id INTEGER NOT NULL,
+      outcome TEXT NOT NULL,
+      seconds INTEGER,
+      updated_at TEXT NOT NULL,
+      PRIMARY KEY (race_id, user_id)
+    );
   `);
   for (const [name, type] of [
     ["reg_start", "TEXT NOT NULL DEFAULT ''"],

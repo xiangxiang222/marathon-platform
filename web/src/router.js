@@ -7,6 +7,8 @@ import Look from "./views/Look.vue";
 import Club from "./views/Club.vue";
 import Activity from "./views/Activity.vue";
 import Call from "./views/Call.vue";
+import Meetup from "./views/Meetup.vue";
+import Internal from "./views/Internal.vue";
 import Mine from "./views/Mine.vue";
 import Admin from "./views/Admin.vue";
 import Calendar from "./views/Calendar.vue";
@@ -23,6 +25,8 @@ export default createRouter({
     { path: "/clubs/:id", component: Club, meta: { hideTab: true } },
     { path: "/clubs/:id/activities/:aid", component: Activity, meta: { hideTab: true } },
     { path: "/clubs/:id/calls/:cid", component: Call, meta: { hideTab: true } },
+    { path: "/clubs/:id/meetups/:mid", component: Meetup, meta: { hideTab: true } },
+    { path: "/clubs/:id/internals/:rid", component: Internal, meta: { hideTab: true } },
     { path: "/mine", component: Mine },
     { path: "/admin", component: Admin, meta: { hideTab: true, wide: true } }
   ]

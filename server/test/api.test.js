@@ -1837,3 +1837,190 @@ test("a result call shows PB and writes a catalog result", async () => {
   const outsider = await session("成绩外人");
   assert.equal((await request(app).get("/marathon/api/clubs/" + clubId + "/calls/" + customId).set("Authorization", "Bearer " + outsider)).status, 403);
 });
+
+function beijingDate(days) {
+  return new Date(Date.now() + 8 * 3600 * 1000 + days * 86400000).toISOString().slice(0, 10);
+}
+
+test("a meetup scores the photo check-in and a same-day tie goes to the larger one", async () => {
+  const jpeg = Buffer.from([0xff, 0xd8, 0xff, 0xd9]);
+  const owner = await session("约跑团长");
+  const ownerAuth = { Authorization: "Bearer " + owner };
+  const mates = [];
+  for (const name of ["约跑甲", "约跑乙", "约跑丙"]) mates.push(await session(name));
+  const created = await createClub(owner, "约跑跑团");
+  const club = created.body.club;
+  for (const token of mates) {
+    const joined = await request(app).post("/marathon/api/clubs/join").set("Authorization", "Bearer " + token).send({ code: club.code });
+    assert.equal(joined.status, 200);
+  }
+  const yesterday = await request(app).post("/marathon/api/clubs/" + club.id + "/meetups").set(ownerAuth).send({ date: beijingDate(-1), place: "河边" });
+  assert.equal(yesterday.status, 400);
+  const made = await request(app).post("/marathon/api/clubs/" + club.id + "/meetups").set(ownerAuth).send({ date: beijingDate(0), place: "河边", note: "轻松" });
+  assert.equal(made.status, 200);
+  assert.match(made.body.meetup.shareText, /约跑跑团 · /);
+  const joinedOnly = await request(app).post("/marathon/api/clubs/" + club.id + "/meetups/" + made.body.meetup.id + "/join").set(ownerAuth).send({});
+  assert.equal(joinedOnly.status, 200);
+  const still = await request(app).get("/marathon/api/clubs/" + club.id).set(ownerAuth);
+  assert.equal(still.body.myPoints, 0);
+
+  const firstId = made.body.meetup.id;
+  for (const token of [owner, mates[0], mates[1]]) {
+    const checked = await request(app).post("/marathon/api/clubs/" + club.id + "/meetups/" + firstId + "/check").set("Authorization", "Bearer " + token).send({});
+    assert.equal(checked.status, 200);
+  }
+  getDb().prepare("UPDATE meetups SET run_on = ? WHERE id = ?").run(beijingDate(-1), firstId);
+  const latePhoto = await request(app)
+    .post("/marathon/api/clubs/" + club.id + "/meetups/" + firstId + "/photos")
+    .set("Authorization", "Bearer " + mates[0])
+    .attach("file", jpeg, { filename: "run.jpg", contentType: "image/jpeg" });
+  assert.equal(latePhoto.status, 400);
+  const missing = await request(app).get("/marathon/api/clubs/" + club.id + "/meetups/" + firstId).set(ownerAuth);
+  assert.equal(missing.body.meetup.statusLabel, "缺合影");
+  const photo = await request(app)
+    .post("/marathon/api/clubs/" + club.id + "/meetups/" + firstId + "/photos")
+    .set(ownerAuth)
+    .attach("file", jpeg, { filename: "run.jpg", contentType: "image/jpeg" });
+  assert.equal(photo.status, 200);
+  assert.equal(photo.body.meetup.statusLabel, "已记分");
+  assert.equal(photo.body.meetup.award, 1);
+  const seen = await request(app).get("/marathon/api/clubs/" + club.id + "/meetups/" + firstId + "/photos/" + photo.body.meetup.photos[0].id).set("Authorization", "Bearer " + mates[0]);
+  assert.equal(seen.status, 200);
+  assert.equal(seen.headers["content-type"], "image/jpeg");
+
+  const second = await request(app).post("/marathon/api/clubs/" + club.id + "/meetups").set(ownerAuth).send({ date: beijingDate(0), place: "公园" });
+  assert.equal(second.status, 200);
+  const secondId = second.body.meetup.id;
+  for (const token of [owner, ...mates]) {
+    const checked = await request(app).post("/marathon/api/clubs/" + club.id + "/meetups/" + secondId + "/check").set("Authorization", "Bearer " + token).send({});
+    assert.equal(checked.status, 200);
+  }
+  getDb().prepare("UPDATE meetups SET run_on = ? WHERE id = ?").run(beijingDate(-1), secondId);
+  const cover = await request(app)
+    .post("/marathon/api/clubs/" + club.id + "/meetups/" + secondId + "/photos")
+    .set(ownerAuth)
+    .attach("file", jpeg, { filename: "park.jpg", contentType: "image/jpeg" });
+  assert.equal(cover.status, 200);
+  assert.equal(cover.body.meetup.statusLabel, "已记分");
+  const held = await request(app).get("/marathon/api/clubs/" + club.id + "/meetups/" + firstId).set(ownerAuth);
+  assert.equal(held.body.meetup.statusLabel, "当天已在另一场记过");
+  const ownerId = (await request(app).get("/marathon/api/me").set(ownerAuth)).body.user.id;
+  const zeroed = getDb().prepare("SELECT delta, reason FROM point_entries WHERE user_id = ? AND ref_key LIKE ?").get(ownerId, "meet:" + firstId + ":%");
+  assert.equal(zeroed.reason, "当天已在另一场记过");
+  assert.equal(zeroed.delta, 0);
+
+  const voided = await request(app).post("/marathon/api/clubs/" + club.id + "/meetups/" + secondId + "/void").set(ownerAuth).send({});
+  assert.equal(voided.status, 200);
+  assert.equal(voided.body.meetup.statusLabel, "已作废");
+  const restored = await request(app).get("/marathon/api/clubs/" + club.id + "/meetups/" + firstId).set(ownerAuth);
+  assert.equal(restored.body.meetup.statusLabel, "已记分");
+  const gift = await request(app).post("/marathon/api/clubs/" + club.id + "/gifts").set(ownerAuth).send({ name: "约跑袜", cost: 1, stock: 2 });
+  const spent = await request(app).post("/marathon/api/clubs/" + club.id + "/gifts/" + gift.body.gift.id + "/redeem").set(ownerAuth);
+  assert.equal(spent.status, 200);
+  assert.equal(spent.body.myPoints, 0);
+  const undone = await request(app).post("/marathon/api/clubs/" + club.id + "/meetups/" + firstId + "/void").set(ownerAuth).send({});
+  assert.equal(undone.status, 200);
+  const claw = getDb().prepare("SELECT SUM(delta) AS points FROM point_entries WHERE club_id = ? AND user_id = ? AND reason = '约跑作废'").get(club.id, ownerId);
+  assert.ok(claw.points < 0);
+  const broke = await request(app).post("/marathon/api/clubs/" + club.id + "/gifts/" + gift.body.gift.id + "/redeem").set(ownerAuth);
+  assert.equal(broke.status, 400);
+  const outsider = await session("约跑外人");
+  assert.equal((await request(app).get("/marathon/api/clubs/" + club.id + "/meetups").set("Authorization", "Bearer " + outsider)).status, 403);
+});
+
+test("an internal race ranks inside the club and does not write the career", async () => {
+  const owner = await session("队内团长");
+  const ownerAuth = { Authorization: "Bearer " + owner };
+  const first = await session("队内甲");
+  const second = await session("队内乙");
+  const firstAuth = { Authorization: "Bearer " + first };
+  const secondAuth = { Authorization: "Bearer " + second };
+  const created = await createClub(owner, "队内跑团");
+  const club = created.body.club;
+  for (const token of [first, second]) {
+    assert.equal((await request(app).post("/marathon/api/clubs/join").set("Authorization", "Bearer " + token).send({ code: club.code })).status, 200);
+  }
+  const denied = await request(app).post("/marathon/api/clubs/" + club.id + "/internals").set(firstAuth).send({ title: "队内10公里", startsAt: "2026-12-01 08:00", distance: "10k", groups: [{ name: "欢乐组", capacity: 0 }] });
+  assert.equal(denied.status, 403);
+  const late = await request(app).post("/marathon/api/clubs/" + club.id + "/internals").set(ownerAuth).send({
+    title: "队内10公里",
+    startsAt: "2099-12-01 08:00",
+    deadline: "2099-12-01 09:00",
+    distance: "10k",
+    groups: [{ name: "男子组", capacity: 1 }, { name: "女子组", capacity: 0 }]
+  });
+  assert.equal(late.status, 400);
+  const made = await request(app).post("/marathon/api/clubs/" + club.id + "/internals").set(ownerAuth).send({
+    title: "队内10公里",
+    startsAt: "2099-12-01 08:00",
+    place: "河边",
+    distance: "10k",
+    finishPoints: 2,
+    groups: [{ name: "男子组", capacity: 1 }, { name: "女子组", capacity: 0 }]
+  });
+  assert.equal(made.status, 200);
+  assert.match(made.body.race.shareText, /队内跑团 · 队内10公里/);
+  assert.match(made.body.race.shareText, /男子组 剩 1/);
+  const raceId = made.body.race.id;
+  const men = made.body.race.groups.find((group) => group.name === "男子组").id;
+  const women = made.body.race.groups.find((group) => group.name === "女子组").id;
+  await request(app).post("/marathon/api/clubs/" + club.id + "/fees").set(ownerAuth).send({
+    name: "2026 年度会费",
+    amount: 100,
+    startsOn: "2026-01-01",
+    endsOn: "2026-12-31",
+    blockSignup: true
+  });
+  const blocked = await request(app).post("/marathon/api/clubs/" + club.id + "/internals/" + raceId + "/signup").set(firstAuth).send({ groupId: men });
+  assert.equal(blocked.status, 400);
+  assert.match(blocked.body.error, /会费/);
+  const roster = await request(app).get("/marathon/api/clubs/" + club.id + "/fees").set(ownerAuth);
+  const periodId = roster.body.current.id;
+  for (const token of [first, second]) {
+    const me = await request(app).get("/marathon/api/me").set("Authorization", "Bearer " + token);
+    const marked = await request(app).post("/marathon/api/clubs/" + club.id + "/fees/" + periodId + "/records").set(ownerAuth).send({ userId: me.body.user.id, status: "paid" });
+    assert.equal(marked.status, 200);
+  }
+  const signed = await request(app).post("/marathon/api/clubs/" + club.id + "/internals/" + raceId + "/signup").set(firstAuth).send({ groupId: men });
+  assert.equal(signed.status, 200);
+  const full = await request(app).post("/marathon/api/clubs/" + club.id + "/internals/" + raceId + "/signup").set(secondAuth).send({ groupId: men });
+  assert.equal(full.status, 400);
+  const other = await request(app).post("/marathon/api/clubs/" + club.id + "/internals/" + raceId + "/signup").set(secondAuth).send({ groupId: women });
+  assert.equal(other.status, 200);
+  const early = await request(app).post("/marathon/api/clubs/" + club.id + "/internals/" + raceId + "/results").set(firstAuth).send({ time: "50:00" });
+  assert.equal(early.status, 400);
+  const before = await request(app).get("/marathon/api/me").set(firstAuth);
+  getDb().prepare("UPDATE internal_races SET starts_at = ?, deadline = ? WHERE id = ?").run("2020-01-01T08:00", "2020-01-01T07:00", raceId);
+  const finish = await request(app).post("/marathon/api/clubs/" + club.id + "/internals/" + raceId + "/results").set(firstAuth).send({ time: "50:00" });
+  assert.equal(finish.status, 200);
+  assert.equal(finish.body.race.groups.find((group) => group.name === "男子组").rows[0].clock, "50:00");
+  assert.equal(finish.body.race.groups.find((group) => group.name === "男子组").rows[0].tag, "");
+  const dnf = await request(app).post("/marathon/api/clubs/" + club.id + "/internals/" + raceId + "/results").set(secondAuth).send({ outcome: "dnf" });
+  assert.equal(dnf.status, 200);
+  const ended = await request(app).post("/marathon/api/clubs/" + club.id + "/internals/" + raceId + "/end").set(ownerAuth).send({});
+  assert.equal(ended.status, 200);
+  assert.equal(ended.body.race.statusLabel, "已结束");
+  const mine = await request(app).get("/marathon/api/clubs/" + club.id).set(firstAuth);
+  assert.equal(mine.body.myPoints, 2);
+  const after = await request(app).get("/marathon/api/me").set(firstAuth);
+  assert.equal(after.body.results.length, before.body.results.length);
+  const again = await request(app).post("/marathon/api/clubs/" + club.id + "/internals").set(ownerAuth).send({
+    title: "队内10公里第二场",
+    startsAt: "2099-12-08 08:00",
+    distance: "10k",
+    groups: [{ name: "男子组", capacity: 0 }]
+  });
+  const nextId = again.body.race.id;
+  const nextGroup = again.body.race.groups[0].id;
+  assert.equal((await request(app).post("/marathon/api/clubs/" + club.id + "/internals/" + nextId + "/signup").set(firstAuth).send({ groupId: nextGroup })).status, 200);
+  getDb().prepare("UPDATE internal_races SET starts_at = ?, deadline = ? WHERE id = ?").run("2020-06-01T08:00", "2020-06-01T07:00", nextId);
+  const faster = await request(app).post("/marathon/api/clubs/" + club.id + "/internals/" + nextId + "/results").set(firstAuth).send({ time: "45:00" });
+  assert.equal(faster.body.race.groups[0].rows[0].tag, "个人最好");
+  const cancelled = await request(app).post("/marathon/api/clubs/" + club.id + "/internals/" + raceId + "/cancel").set(ownerAuth).send({});
+  assert.equal(cancelled.status, 200);
+  assert.equal(cancelled.body.race.statusLabel, "已取消");
+  const back = await request(app).get("/marathon/api/clubs/" + club.id).set(firstAuth);
+  assert.equal(back.body.myPoints, 0);
+  const outsider = await session("队内外人");
+  assert.equal((await request(app).get("/marathon/api/clubs/" + club.id + "/internals/" + raceId).set("Authorization", "Bearer " + outsider)).status, 403);
+});

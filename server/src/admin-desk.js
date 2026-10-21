@@ -17,6 +17,7 @@ function deleteUser(db, id) {
   if (owned) return { error: "该用户仍为「" + owned.name + "」团长，请先完成团长移交后再删除", status: 400 };
   const files = db.prepare("SELECT filename, activity_id FROM activity_media WHERE user_id = ?").all(id);
   const sheets = db.prepare("SELECT filename FROM result_call_rows WHERE user_id = ? AND filename != ''").all(id);
+  const meetPhotos = db.prepare("SELECT filename FROM meetup_photos WHERE user_id = ? AND filename != ''").all(id);
   db.transaction(() => {
     for (const table of [
       "plans",
@@ -31,7 +32,12 @@ function deleteUser(db, id) {
       "club_requests",
       "club_applications",
       "fee_records",
-      "result_call_rows"
+      "result_call_rows",
+      "meetup_joins",
+      "meetup_checks",
+      "meetup_photos",
+      "internal_signups",
+      "internal_results"
     ]) {
       db.prepare("DELETE FROM " + table + " WHERE user_id = ?").run(id);
     }
@@ -44,6 +50,10 @@ function deleteUser(db, id) {
   }
   for (const sheet of sheets) {
     const full = path.join(mediaRoot(), "calls", sheet.filename);
+    if (fs.existsSync(full)) fs.unlinkSync(full);
+  }
+  for (const photo of meetPhotos) {
+    const full = path.join(mediaRoot(), "meetups", photo.filename);
     if (fs.existsSync(full)) fs.unlinkSync(full);
   }
   return { ok: true };
@@ -217,6 +227,11 @@ function deleteClub(db, id) {
   const sheets = calls.length
     ? db.prepare(`SELECT id, filename FROM result_call_rows WHERE call_id IN (${calls.map(() => "?").join(",")}) AND filename != ''`).all(...calls)
     : [];
+  const meetups = db.prepare("SELECT id FROM meetups WHERE club_id = ?").all(id).map((row) => row.id);
+  const meetPhotos = meetups.length
+    ? db.prepare(`SELECT filename FROM meetup_photos WHERE meetup_id IN (${meetups.map(() => "?").join(",")}) AND filename != ''`).all(...meetups)
+    : [];
+  const races = db.prepare("SELECT id FROM internal_races WHERE club_id = ?").all(id).map((row) => row.id);
   db.transaction(() => {
     if (activities.length) {
       const marks = activities.map(() => "?").join(",");
@@ -242,6 +257,21 @@ function deleteClub(db, id) {
       db.prepare(`DELETE FROM result_call_rows WHERE call_id IN (${marks})`).run(...calls);
     }
     db.prepare("DELETE FROM result_calls WHERE club_id = ?").run(id);
+    if (meetups.length) {
+      const marks = meetups.map(() => "?").join(",");
+      db.prepare(`DELETE FROM meetup_photos WHERE meetup_id IN (${marks})`).run(...meetups);
+      db.prepare(`DELETE FROM meetup_checks WHERE meetup_id IN (${marks})`).run(...meetups);
+      db.prepare(`DELETE FROM meetup_joins WHERE meetup_id IN (${marks})`).run(...meetups);
+    }
+    db.prepare("DELETE FROM meetups WHERE club_id = ?").run(id);
+    db.prepare("DELETE FROM meetup_tiers WHERE club_id = ?").run(id);
+    if (races.length) {
+      const marks = races.map(() => "?").join(",");
+      db.prepare(`DELETE FROM internal_results WHERE race_id IN (${marks})`).run(...races);
+      db.prepare(`DELETE FROM internal_signups WHERE race_id IN (${marks})`).run(...races);
+      db.prepare(`DELETE FROM internal_groups WHERE race_id IN (${marks})`).run(...races);
+    }
+    db.prepare("DELETE FROM internal_races WHERE club_id = ?").run(id);
     db.prepare("DELETE FROM clubs WHERE id = ?").run(id);
   })();
   for (const file of files) {
@@ -256,6 +286,10 @@ function deleteClub(db, id) {
   }
   for (const sheet of sheets) {
     const full = path.join(mediaRoot(), "calls", sheet.filename);
+    if (fs.existsSync(full)) fs.unlinkSync(full);
+  }
+  for (const photo of meetPhotos) {
+    const full = path.join(mediaRoot(), "meetups", photo.filename);
     if (fs.existsSync(full)) fs.unlinkSync(full);
   }
   return { ok: true };
