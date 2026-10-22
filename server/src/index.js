@@ -20,6 +20,8 @@ const { mountRaceGuide, attachGuide } = require("./race-guide");
 const { mountBotRaces } = require("./bot-races");
 const { mountAdminDesk } = require("./admin-desk");
 const { issueCaptcha, registerUser, loginUser, changeOwnPassword } = require("./user-auth");
+const { signupTarget } = require("./signup-channel");
+const QRCode = require("qrcode");
 
 function loadEnv() {
   const file = path.join(__dirname, "../../.env");
@@ -237,6 +239,21 @@ app.get(BASE + "/api/races", (req, res) => {
   const cities = [...new Set(getDb().prepare("SELECT city FROM races ORDER BY city").all().map((r) => r.city))];
   const months = [...new Set(getDb().prepare("SELECT race_date FROM races ORDER BY race_date").all().map((r) => r.race_date.slice(0, 7)))];
   res.json({ races: rows, cities, months, statuses: STATUSES });
+});
+
+app.get(BASE + "/api/races/:id/signup-qr", async (req, res) => {
+  const row = getDb().prepare("SELECT signup_url FROM races WHERE id = ?").get(req.params.id);
+  if (!row) return res.status(404).json({ error: "没有这场比赛" });
+  const target = signupTarget(row.signup_url);
+  if (!target) return res.status(404).json({ error: "这场还没有报名页" });
+  try {
+    const png = await QRCode.toBuffer(target.url, { width: 360, margin: 1, errorCorrectionLevel: "M" });
+    res.set("Content-Type", "image/png");
+    res.set("Cache-Control", "private, max-age=300");
+    res.send(png);
+  } catch (err) {
+    res.status(500).json({ error: "报名二维码没有生成" });
+  }
 });
 
 app.get(BASE + "/api/races/:id", (req, res) => {

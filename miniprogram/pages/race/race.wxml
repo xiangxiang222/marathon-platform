@@ -5,14 +5,9 @@
     <view class="row"><text class="k">比赛日</text><text>{{race.raceDate}}</text></view>
     <view class="row"><text class="k">地点</text><text>{{race.province === race.city ? race.city : race.province + ' · ' + race.city}}{{race.place && race.place !== race.city ? ' · ' + race.place : ''}}</text></view>
     <view class="row"><text class="k">项目</text><text>{{distanceText}}</text></view>
-    <view wx:if="{{race.startAt}}" class="row"><text class="k">起跑</text><text>{{race.startAt}}</text></view>
     <view wx:if="{{race.phone}}" class="row"><text class="k">咨询</text><text>{{race.phone}}</text></view>
     <view class="row"><text class="k">{{race.deadlineName}}</text><text class="{{race.open && race.daysLeft <= 3 ? 'soon' : ''}}">{{race.deadlineLabel}}</text></view>
     <view wx:if="{{race.gradeLabel}}" class="src">{{race.gradeLabel}}</view>
-    <view wx:if="{{race.organizer}}" class="src">主办 {{race.organizer}}</view>
-    <view wx:if="{{race.source}}" class="src">来源 {{race.source}}<text wx:if="{{race.updatedAt}}"> · 更新于 {{race.updatedAt}}</text></view>
-    <view wx:if="{{race.eventUrl}}" class="src">赛事网站 {{race.eventUrl}}</view>
-    <view wx:if="{{race.officialUrl}}" class="src">官网这场 {{race.officialUrl}}</view>
     <view wx:for="{{conflicts}}" wx:key="text" class="warn">{{item.text}}</view>
   </view>
 
@@ -20,16 +15,20 @@
     <view wx:for="{{tabs}}" wx:key="id" class="tab {{tab === item.id ? 'on' : ''}}" data-id="{{item.id}}" bindtap="pickTab">{{item.label}}</view>
   </view>
 
-  <block wx:if="{{tab === 'overview'}}">
+  <block wx:if="{{tab === 'signup'}}">
     <view class="card" wx:if="{{race.nodes.length}}">
-      <view class="h2">时间节点</view>
-      <view wx:for="{{race.nodes}}" wx:key="key" class="row">
-        <text class="k">{{item.label}}</text>
-        <text class="{{item.soon ? 'soon' : ''}}">{{item.at}}<text wx:if="{{item.text}}"> · {{item.text}}</text></text>
+      <view class="timeline">
+        <view wx:for="{{race.nodes}}" wx:key="key" class="tl">
+          <view class="dot"></view>
+          <text class="tl-at">{{item.at}}</text>
+          <text class="tl-label">{{item.label}}</text>
+        </view>
       </view>
+      <view wx:for="{{race.nodes}}" wx:key="key" wx:if="{{item.text}}" class="src">{{item.label}} {{item.text}}</view>
     </view>
-    <view class="card" wx:if="{{race.fee || race.scale || race.kindLabels.length || race.groups.length}}">
+    <view class="card" wx:if="{{race.fee || race.scale || race.startAt || race.kindLabels.length || race.groups.length}}">
       <view class="h2">项目</view>
+      <view wx:if="{{race.startAt}}" class="row"><text class="k">起跑</text><text>{{race.startAt}}</text></view>
       <view wx:if="{{race.fee}}" class="row"><text class="k">报名费</text><text>{{race.fee}}</text></view>
       <view wx:if="{{race.scale}}" class="row"><text class="k">规模</text><text>{{race.scale}}</text></view>
       <view wx:if="{{race.kindLabels.length}}" class="src">{{kindText}}</view>
@@ -43,35 +42,18 @@
         <view class="src">来源 {{item.source}}</view>
       </view>
     </view>
-    <view class="card" wx:if="{{alternatives.length}}">
-      <view class="h2">同期还开着</view>
-      <view class="src">{{alternativeNote}}</view>
-      <navigator wx:for="{{alternatives}}" wx:key="id" class="row" url="/pages/race/race?id={{item.id}}">
-        <text>{{item.name}}</text><text>{{item.deadlineLabel}}</text>
-      </navigator>
-    </view>
     <view class="card">
-      <view class="h2">酒店</view>
-      <view class="slot"><text>赛事周订房</text><text class="slot-state">尚未开通</text></view>
-      <view class="src">这里不显示房价，也不跳转。</view>
-    </view>
-  </block>
-
-  <block wx:if="{{tab === 'signup'}}">
-    <view class="card" wx:if="{{race.links.length}}">
-      <view class="h2">报名和查询</view>
-      <view class="src">复制后到浏览器打开。</view>
-      <button wx:for="{{race.links}}" wx:key="key" class="btn" data-url="{{item.url}}" data-key="{{item.key}}" bindtap="copyLink">{{item.label}}</button>
+      <view class="h2">报名页</view>
+      <view class="src">{{signupHint}}</view>
+      <image wx:if="{{signupQr}}" class="qr" src="{{signupQr}}" mode="aspectFit" show-menu-by-longpress="{{true}}" />
+      <button wx:if="{{signupQr}}" class="btn" data-url="{{signupUrl}}" data-key="signup" bindtap="copyLink">复制报名链接</button>
       <view wx:if="{{askSignup}}">
         <view class="src">报上了吗</view>
         <button class="btn" bindtap="confirmSigned">报上了</button>
         <button class="ghost" bindtap="dismissAsk">还没有</button>
       </view>
-    </view>
-    <view class="card">
-      <view class="h2">站内报名</view>
-      <view class="slot"><text>报名和付款</text><text class="slot-state">尚未开通</text></view>
-      <view class="src">合作赛事以后在这里报名。现在仍打开赛事自己的页面。不填写身份证。</view>
+      <view class="slot"><text>站内报名</text><text class="slot-state">尚未开通</text></view>
+      <view class="src">不在这里填写资料，也不在这里付款。</view>
     </view>
     <view class="card" wx:for="{{cards}}" wx:key="clubId">
       <view class="h2">发到微信群 · {{item.club.name}}</view>
@@ -115,16 +97,27 @@
   <block wx:if="{{tab === 'guide'}}">
     <view class="card">
       <view class="h2">竞赛规程</view>
-      <view wx:if="{{guide.length}}" class="src">按组委会公布的原图往下看。</view>
+      <view wx:if="{{guideBlocks.length}}" class="src">按标题阅读。奖金、关门时间和参赛资格以组委会原文为准。</view>
       <view wx:for="{{guideBlocks}}" wx:key="i" class="md md-{{item.kind}}">
         <text wx:if="{{item.mark}}" class="md-mark">{{item.mark}}</text>
         <text wx:for="{{item.runs}}" wx:for-item="run" wx:key="j" class="{{run.strong ? 'md-strong' : ''}}">{{run.text}}</text>
       </view>
+      <view wx:if="{{guide.length}}" class="h2 page-title">原页</view>
+      <view wx:if="{{guide.length && guideBlocks.length}}" class="src">正文在上面。原页留着对照。</view>
+      <view wx:if="{{guide.length && !guideBlocks.length}}" class="src">正文还没整理，下面是组委会公布的原页。</view>
       <image wx:for="{{guide}}" wx:key="id" class="sheet" mode="widthFix" src="{{item.src}}" data-src="{{item.src}}" bindtap="previewGuide" />
     </view>
   </block>
 
-  <block wx:if="{{tab === 'day'}}">
+  <block wx:if="{{tab === 'news'}}">
+    <view class="card" wx:if="{{race.organizer || race.source || race.eventUrl || race.officialUrl || queryLinks.length}}">
+      <view class="h2">这场的页面</view>
+      <view wx:if="{{race.organizer}}" class="src">主办 {{race.organizer}}</view>
+      <view wx:if="{{race.source}}" class="src">来源 {{race.source}}<text wx:if="{{race.updatedAt}}"> · 更新于 {{race.updatedAt}}</text></view>
+      <view wx:if="{{race.eventUrl}}" class="src">赛事网站 {{race.eventUrl}}</view>
+      <view wx:if="{{race.officialUrl}}" class="src">官网这场 {{race.officialUrl}}</view>
+      <button wx:for="{{queryLinks}}" wx:key="key" class="btn" data-url="{{item.url}}" data-key="{{item.key}}" bindtap="copyLink">{{item.label}}</button>
+    </view>
     <view class="card" wx:if="{{race.route || routeSheets.length || race.pickup || race.pacers || pacerSheets.length}}">
       <view class="h2">比赛日</view>
       <view wx:if="{{race.route}}" class="src">路线 {{race.route}}</view>
@@ -135,7 +128,20 @@
     </view>
     <view class="card" wx:if="{{liveSheet}}">
       <view class="h2">直播</view>
+      <view class="src">扫组委会的二维码。</view>
       <image class="sheet" mode="widthFix" src="{{liveSheet.src}}" data-src="{{liveSheet.src}}" bindtap="previewGuide" />
+    </view>
+    <view class="card" wx:if="{{alternatives.length}}">
+      <view class="h2">同期还开着</view>
+      <view class="src">{{alternativeNote}}</view>
+      <navigator wx:for="{{alternatives}}" wx:key="id" class="row" url="/pages/race/race?id={{item.id}}">
+        <text>{{item.name}}</text><text>{{item.deadlineLabel}}</text>
+      </navigator>
+    </view>
+    <view class="card">
+      <view class="h2">酒店</view>
+      <view class="slot"><text>赛事周订房</text><text class="slot-state">尚未开通</text></view>
+      <view class="src">这里不显示房价，也不跳转。</view>
     </view>
   </block>
 
