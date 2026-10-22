@@ -1,3 +1,5 @@
+const { signupTarget } = require("./signup-channel");
+
 const RACES = [
   {
     id: "caa-10k",
@@ -350,6 +352,8 @@ function presentRace(row, now) {
   const kinds = listed(field(row, "kinds", "kinds"), KIND_LABEL);
   const nodes = buildNodes(row, now);
   const nextNode = nodes.find((node) => node.key !== "race" && !node.past) || null;
+  const links = linksOf(row);
+  const signup = signupTarget((links.find((item) => item.key === "signup") || {}).url);
   return {
     id: row.id,
     name: row.name,
@@ -383,7 +387,9 @@ function presentRace(row, now) {
     pickup: field(row, "pickup", "pickup"),
     pacers: field(row, "pacers", "pacers"),
     guideText: field(row, "guideText", "guide_text"),
-    links: linksOf(row),
+    links,
+    signupChannel: signup ? signup.name : "",
+    signupHost: signup ? signup.host : "",
     nodes,
     nextNode,
     regStatus: phaseLabel(row.race_date || row.raceDate, meta, now),

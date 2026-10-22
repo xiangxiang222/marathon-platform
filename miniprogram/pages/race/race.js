@@ -1,5 +1,20 @@
 const { request, ready } = require("../../utils/request");
 const { baseUrl } = require("../../config");
+const { parseGuide } = require("../../utils/guide-md");
+
+function raceTabs(race, extra) {
+  const tabs = [{ id: "signup", label: "报名" }];
+  if ((extra.guide && extra.guide.length) || (race && race.guideText)) tabs.push({ id: "guide", label: "竞赛规程" });
+  tabs.push({ id: "news", label: "资讯" });
+  if (extra.ready || extra.drawText) tabs.push({ id: "result", label: "成绩" });
+  return tabs;
+}
+
+function signupHint(race) {
+  if (!race || !race.signupHost) return "这场还没有报名链接。这里不报名，也不收款。";
+  const where = race.signupChannel ? race.signupChannel + "的报名页" : race.signupHost + " 上的报名页";
+  return "长按识别二维码，打开" + where + "。这里不报名，也不收款。";
+}
 
 function withUnpaid(card) {
   if (!card) return card;
@@ -43,13 +58,23 @@ Page({
     pacerSheets: [],
     liveSheet: null,
     kindText: "",
-    groupText: ""
+    groupText: "",
+    tabs: [
+      { id: "signup", label: "报名" },
+      { id: "news", label: "资讯" }
+    ],
+    tab: "signup",
+    guideBlocks: [],
+    signupUrl: "",
+    signupQr: "",
+    signupHint: "",
+    queryLinks: []
   },
   onLoad(query) {
     this.raceId = query.id;
     const code = String(query.code || "").toUpperCase();
     this.pending = null;
-    this.setData({ code, ready: ready() });
+    this.setData({ code, ready: ready(), tab: "signup" });
     wx.showShareMenu({ menus: ["shareAppMessage"] });
   },
   onShow() {
@@ -119,8 +144,18 @@ Page({
           pacerSheets: (race.pacerSheets || []).map((item) => ({ id: item.id, src: baseUrl + "/marathon/api/race-sheets/" + item.id })),
           liveSheet: race.liveSheet ? { id: race.liveSheet.id, src: baseUrl + "/marathon/api/race-sheets/" + race.liveSheet.id } : null,
           kindText: (race.kindLabels || []).join(" / "),
-          groupText: (race.groups || []).join("、")
+          groupText: (race.groups || []).join("、"),
+          guideBlocks: parseGuide(race.guideText),
+          signupUrl: ((race.links || []).find((item) => item.key === "signup") || {}).url || "",
+          signupQr: (race.links || []).some((item) => item.key === "signup") && race.signupHost
+            ? baseUrl + "/marathon/api/races/" + this.raceId + "/signup-qr"
+            : "",
+          signupHint: signupHint(race),
+          queryLinks: (race.links || []).filter((item) => item.key !== "signup" && String(item.url || "").startsWith("https://"))
         };
+        const tabs = raceTabs(race, patch);
+        patch.tabs = tabs;
+        patch.tab = tabs.some((item) => item.id === this.data.tab) ? this.data.tab : "signup";
         if (myResult) {
           patch.distance = myResult.distance;
           patch.clock = myResult.clock;
@@ -139,6 +174,12 @@ Page({
       );
     }
     return Promise.all(jobs).catch((err) => this.setData({ message: err.message }));
+  },
+  pickTab(e) {
+    const tab = e.currentTarget.dataset.id;
+    if (!tab || tab === this.data.tab) return;
+    this.setData({ tab });
+    wx.pageScrollTo({ scrollTop: 0, duration: 0 });
   },
   copyLink(e) {
     const key = e.currentTarget.dataset.key || "";
