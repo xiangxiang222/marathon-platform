@@ -1700,26 +1700,11 @@ test("dues are recorded by the club and can block an activity signup", async () 
   const opened = await request(app).post("/marathon/api/clubs/" + clubId + "/fees").set(auth).send(body);
   assert.equal(opened.status, 200);
   const periodId = opened.body.period.id;
-  assert.equal(opened.body.period.canClaim, false);
+  assert.equal(opened.body.period.hasQr, undefined);
+  assert.equal(opened.body.period.canClaim, undefined);
   assert.match(opened.body.period.copyText, /未交：/);
-
-  const early = await request(app).post("/marathon/api/clubs/" + clubId + "/fees/" + periodId + "/claim").set(mateAuth);
-  assert.equal(early.status, 400);
-  const jpeg = Buffer.from([0xff, 0xd8, 0xff, 0xd9]);
-  const qr = await request(app)
-    .post("/marathon/api/clubs/" + clubId + "/fees/" + periodId + "/qr")
-    .set(auth)
-    .attach("file", jpeg, { filename: "qr.jpg", contentType: "image/jpeg" });
-  assert.equal(qr.status, 200);
-  assert.equal(qr.body.period.hasQr, true);
-  const image = await request(app).get("/marathon/api/clubs/" + clubId + "/fees/" + periodId + "/qr").set(mateAuth);
-  assert.equal(image.status, 200);
-  assert.equal(image.headers["content-type"], "image/jpeg");
-
-  const claim = await request(app).post("/marathon/api/clubs/" + clubId + "/fees/" + periodId + "/claim").set(mateAuth);
-  assert.equal(claim.status, 200);
-  assert.equal(claim.body.period.mine.status, "pending");
-  assert.equal((await request(app).post("/marathon/api/clubs/" + clubId + "/fees/" + periodId + "/claim").set(mateAuth)).status, 400);
+  assert.equal((await request(app).post("/marathon/api/clubs/" + clubId + "/fees/" + periodId + "/claim").set(mateAuth)).status, 404);
+  assert.equal((await request(app).get("/marathon/api/clubs/" + clubId + "/fees/" + periodId + "/qr").set(mateAuth)).status, 404);
 
   const activity = await request(app)
     .post("/marathon/api/clubs/" + clubId + "/activities")
@@ -1748,7 +1733,7 @@ test("dues are recorded by the club and can block an activity signup", async () 
   assert.equal(next.body.period.name, "2027 年度会费");
   const list = await request(app).get("/marathon/api/clubs/" + clubId + "/fees").set(auth);
   assert.equal(list.body.history.filter((item) => item.open).length, 1);
-  assert.equal((await request(app).post("/marathon/api/clubs/" + clubId + "/fees/" + periodId + "/claim").set(mateAuth)).status, 400);
+  assert.equal((await request(app).post("/marathon/api/clubs/" + clubId + "/fees/" + periodId + "/claim").set(mateAuth)).status, 404);
 });
 
 test("a result call shows PB and writes a catalog result", async () => {

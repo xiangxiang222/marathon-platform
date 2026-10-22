@@ -13,10 +13,6 @@ function mediaRoot() {
   return process.env.MARATHON_MEDIA || path.join(__dirname, "../data/media");
 }
 
-function beijingToday() {
-  return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10);
-}
-
 function validDay(text) {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(text)) return false;
   const [year, month, day] = text.split("-").map(Number);
@@ -167,9 +163,6 @@ function presentPeriod(db, clubId, period, userId) {
   const people = feePeople(db, clubId, period.id);
   const mineRow = people.find((person) => person.userId === userId);
   const mineStatus = mineRow ? mineRow.status : "unpaid";
-  const today = beijingToday();
-  const hasQr = Boolean(period.qr_filename);
-  const inDates = today >= period.starts_on && today <= period.ends_on;
   const groups = FEE_ORDER.map((status) => ({
     status,
     label: FEE_LABEL[status],
@@ -187,11 +180,9 @@ function presentPeriod(db, clubId, period, userId) {
     note: period.note,
     blockSignup: Boolean(period.block_signup),
     open: Boolean(period.open),
-    hasQr,
     mine: { status: mineStatus, label: FEE_LABEL[mineStatus] || "未交" },
     groups,
-    copyText: feeCopy(people),
-    canClaim: Boolean(period.open) && hasQr && inDates && mineStatus === "unpaid"
+    copyText: feeCopy(people)
   };
 }
 
@@ -476,70 +467,6 @@ function mountClubOps(app, { BASE, getDb, userFrom }) {
     ctx.db
       .prepare("UPDATE fee_periods SET name = ?, amount = ?, starts_on = ?, ends_on = ?, note = ?, block_signup = ? WHERE id = ?")
       .run(input.name, input.amount, input.startsOn, input.endsOn, input.note, input.blockSignup ? 1 : 0, period.id);
-    const next = ctx.db.prepare("SELECT * FROM fee_periods WHERE id = ?").get(period.id);
-    res.json({ period: presentPeriod(ctx.db, ctx.club.id, next, ctx.user.id) });
-  });
-
-  app.post(BASE + "/api/clubs/:id/fees/:pid/qr", async (req, res) => {
-    const ctx = gate(req, res, userFrom, getDb);
-    if (!ctx) return;
-    if (!isOwner(ctx)) return res.status(403).json({ error: "只有团长可以改会费" });
-    const period = ctx.db.prepare("SELECT * FROM fee_periods WHERE id = ? AND club_id = ?").get(req.params.pid, ctx.club.id);
-    if (!period) return res.status(404).json({ error: "没有这一期会费" });
-    if (!period.open) return res.status(400).json({ error: "这一期已经结束" });
-    let buffer;
-    try {
-      buffer = oneFile(await readBody(req, PHOTO_MAX + 64 * 1024), req.get("content-type"));
-    } catch (err) {
-      return res.status(err.status || 400).json({ error: err.status === 413 ? "照片不超过 8MB" : "没有读到文件" });
-    }
-    if (!buffer || !buffer.length) return res.status(400).json({ error: "没有读到文件" });
-    const photo = sniffPhoto(buffer);
-    if (!photo) return res.status(400).json({ error: "只收 jpg、png、webp" });
-    if (buffer.length > PHOTO_MAX) return res.status(413).json({ error: "照片不超过 8MB" });
-    const filename = period.id + "." + photo.ext;
-    const dir = path.join(mediaRoot(), "fees");
-    fs.mkdirSync(dir, { recursive: true });
-    fs.writeFileSync(path.join(dir, filename), buffer);
-    if (period.qr_filename && period.qr_filename !== filename) {
-      const old = path.join(dir, period.qr_filename);
-      if (fs.existsSync(old)) fs.unlinkSync(old);
-    }
-    ctx.db.prepare("UPDATE fee_periods SET qr_filename = ? WHERE id = ?").run(filename, period.id);
-    const next = ctx.db.prepare("SELECT * FROM fee_periods WHERE id = ?").get(period.id);
-    res.json({ period: presentPeriod(ctx.db, ctx.club.id, next, ctx.user.id) });
-  });
-
-  app.get(BASE + "/api/clubs/:id/fees/:pid/qr", (req, res) => {
-    const ctx = gate(req, res, userFrom, getDb);
-    if (!ctx) return;
-    const period = ctx.db.prepare("SELECT * FROM fee_periods WHERE id = ? AND club_id = ?").get(req.params.pid, ctx.club.id);
-    if (!period || !period.qr_filename) return res.status(404).json({ error: "还没有收款码" });
-    const file = path.join(mediaRoot(), "fees", path.basename(period.qr_filename));
-    if (!fs.existsSync(file)) return res.status(404).json({ error: "还没有收款码" });
-    const photo = sniffPhoto(fs.readFileSync(file));
-    res.set("Content-Type", photo ? photo.mime : "application/octet-stream");
-    res.set("Cache-Control", "private, max-age=3600");
-    fs.createReadStream(file).pipe(res);
-  });
-
-  app.post(BASE + "/api/clubs/:id/fees/:pid/claim", (req, res) => {
-    const ctx = gate(req, res, userFrom, getDb);
-    if (!ctx) return;
-    const period = ctx.db.prepare("SELECT * FROM fee_periods WHERE id = ? AND club_id = ?").get(req.params.pid, ctx.club.id);
-    if (!period) return res.status(404).json({ error: "没有这一期会费" });
-    if (!period.open) return res.status(400).json({ error: "这一期已经结束" });
-    if (!period.qr_filename) return res.status(400).json({ error: "团长还没有放收款码" });
-    const today = beijingToday();
-    if (today < period.starts_on || today > period.ends_on) return res.status(400).json({ error: "不在收取日期里" });
-    const existing = ctx.db.prepare("SELECT status FROM fee_records WHERE period_id = ? AND user_id = ?").get(period.id, ctx.user.id);
-    if (existing && existing.status !== "unpaid") return res.status(400).json({ error: "你已经登记过了" });
-    ctx.db
-      .prepare(
-        `INSERT INTO fee_records (period_id, user_id, status, updated_at) VALUES (?, ?, 'pending', ?)
-         ON CONFLICT(period_id, user_id) DO UPDATE SET status = 'pending', updated_at = excluded.updated_at`
-      )
-      .run(period.id, ctx.user.id, new Date().toISOString());
     const next = ctx.db.prepare("SELECT * FROM fee_periods WHERE id = ?").get(period.id);
     res.json({ period: presentPeriod(ctx.db, ctx.club.id, next, ctx.user.id) });
   });

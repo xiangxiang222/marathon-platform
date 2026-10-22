@@ -173,15 +173,12 @@
   </view>
   <view class="card">
     <view class="h2">{{feeShown.name || '会费'}}</view>
-    <view class="src">会费直接付给跑团。平台不经手，以团长确认为准。</view>
+    <view class="src">会费在微信群里交给团长。这里只记名单，以团长标的为准。</view>
     <block wx:if="{{feeShown.id}}">
       <view class="src">{{feeShown.amount}} 元 · {{feeShown.startsOn}} 至 {{feeShown.endsOn}}</view>
       <view wx:if="{{feeShown.note}}" class="src">{{feeShown.note}}</view>
       <view class="src">我的状态：{{feeShown.mine.label}}</view>
       <view wx:if="{{feeShown.blockSignup}}" class="src">未交和待确认的人不能报名活动和队内赛。</view>
-      <image wx:if="{{feeShown.qrSrc}}" class="qr" src="{{feeShown.qrSrc}}" mode="widthFix" show-menu-by-longpress="true" />
-      <view wx:else class="src">团长还没有放收款码</view>
-      <button wx:if="{{feeShown.canClaim}}" class="btn" bindtap="claimFee">我已转账</button>
       <view wx:for="{{feeShown.groups}}" wx:for-item="group" wx:key="status">
         <view class="src">{{group.label}}</view>
         <view wx:for="{{group.people}}" wx:for-item="person" wx:key="userId" class="row">
@@ -206,7 +203,6 @@
     </view>
     <button wx:if="{{club.owner}}" class="btn" bindtap="saveFee">{{feeCreating || !feeShown.id ? '开这一期' : '保存这一期'}}</button>
     <button wx:if="{{club.owner && feeShown.id && !feeCreating}}" class="ghost" bindtap="newPeriod">再开一期</button>
-    <button wx:if="{{club.owner && feeShown.id}}" class="ghost" bindtap="chooseQr">上传收款码</button>
   </view>
   <view class="card">
     <view class="h2">成员</view>
