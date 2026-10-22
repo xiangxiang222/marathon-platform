@@ -6,6 +6,7 @@ const { likeParams } = require("./search-like");
 const DISTANCES = ["full", "half", "10k", "5k"];
 const KINDS = ["trail", "ultra", "family", "fun"];
 const PHOTO_MAX = 8 * 1024 * 1024;
+const GUIDE_TEXT_MAX = 40000;
 const GUIDE_MAX = 16;
 const PACER_MAX = 8;
 const ROUTE_MAX = 4;
@@ -79,6 +80,12 @@ function parseGuide(body) {
   const groups = groupsOf(body.groups);
   if (groups == null) return { status: 400, error: "其他组别最多 8 个，每个不超过 16 个字" };
   if (!distances.length && !kinds.length && !groups.length) return { status: 400, error: "请至少选择一个项目" };
+  let meet = null;
+  if (body.meet != null && String(body.meet).trim() !== "") {
+    const text = String(body.meet).trim();
+    if (text !== "offline" && text !== "online") return { status: 400, error: "举办方式选线下或线上" };
+    meet = text;
+  }
   let startAt = clip(body.startAt, 8);
   if (startAt && /^([01]\d|2[0-3]):[0-5]\d:[0-5]\d$/.test(startAt)) startAt = startAt.slice(0, 5);
   if (startAt == null || (startAt && !/^([01]\d|2[0-3]):[0-5]\d$/.test(startAt))) return { status: 400, error: "起跑时间须为 07:00 这种格式" };
@@ -115,8 +122,8 @@ function parseGuide(body) {
   let guideText = "";
   let guideTextSet = false;
   if (body.guideText != null) {
-    const text = clip(body.guideText, 8000);
-    if (text == null) return { status: 400, error: "规程文字最多 8000 字" };
+    const text = clip(body.guideText, GUIDE_TEXT_MAX);
+    if (text == null) return { status: 400, error: "规程文字最多 40000 字" };
     guideText = text;
     guideTextSet = true;
   }
@@ -130,6 +137,7 @@ function parseGuide(body) {
       distances,
       kinds,
       groups,
+      meet,
       startAt: startAt || "",
       bibAt: bibAt || "",
       fee: fee || "",
@@ -165,7 +173,7 @@ function saveGuide(db, race, body) {
        start_at = ?, bib_at = ?, fee = ?, scale = ?, phone = ?,
        signup_url = ?, draw_url = ?, bib_url = ?, result_url = ?, live_url = ?, event_url = ?,
        official_url = ?, organizer = ?, grade = ?,
-       route = ?, pickup = ?, pacers = ?, guide_text = ?, updated_at = ?
+       route = ?, pickup = ?, pacers = ?, guide_text = ?, meet = ?, updated_at = ?
      WHERE id = ?`
   ).run(
     keep(fields.name, race.name),
@@ -195,6 +203,7 @@ function saveGuide(db, race, body) {
     fields.pickup,
     fields.pacers,
     guideText,
+    fields.meet || race.meet || "offline",
     today,
     race.id
   );
@@ -299,13 +308,13 @@ function createRace(db, body) {
        source, updated_at, kinds, groups, start_at,
        bib_at, fee, scale, phone,
        signup_url, draw_url, bib_url, result_url, live_url, event_url, official_url,
-       organizer, grade, route, pickup, pacers, guide_text, district
+       organizer, grade, route, pickup, pacers, guide_text, district, meet
      ) VALUES (
        ?, ?, ?, ?, ?, ?, '', ?,
        ?, ?, ?, ?, ?,
        ?, ?, ?, ?,
        ?, ?, ?, ?, ?, ?, ?,
-       ?, ?, ?, ?, ?, ?, ?
+       ?, ?, ?, ?, ?, ?, ?, ?
      )`
   ).run(
     id,
@@ -337,7 +346,8 @@ function createRace(db, body) {
     fields.pickup,
     fields.pacers,
     fields.guideText,
-    fields.district || ""
+    fields.district || "",
+    fields.meet || "offline"
   );
   return { id };
 }

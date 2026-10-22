@@ -394,7 +394,8 @@ function presentRace(row, now) {
     nodes,
     nextNode,
     regStatus: phaseLabel(row.race_date || row.raceDate, meta, now),
-    kind: KIND[row.id] || "road",
+    kind: kinds.includes("trail") || KIND[row.id] === "trail" ? "trail" : "road",
+    meet: field(row, "meet", "meet") === "online" ? "online" : "offline",
     ...meta
   };
 }
@@ -405,6 +406,16 @@ function gradeLabel(grade) {
   if (grade === "A" || grade === "B" || grade === "C") return grade + " 类";
   if (grade === "TEN") return "系列赛";
   return grade || "";
+}
+
+function inChannel(race, channel) {
+  if (!channel) return true;
+  if (channel === "trail") return race.kind === "trail";
+  if (channel === "online") return race.meet === "online";
+  if (channel === "offline") return race.meet !== "online";
+  if (channel === "road") return race.kind !== "trail" && race.meet !== "online";
+  if (channel === "overseas") return false;
+  return false;
 }
 
 function phaseLabel(raceDate, meta, now) {
@@ -421,6 +432,7 @@ module.exports = {
   DISTANCE_LABEL,
   deadlineMeta,
   presentRace,
+  inChannel,
   summarizeMarks,
   squadOf,
   drawnNames,

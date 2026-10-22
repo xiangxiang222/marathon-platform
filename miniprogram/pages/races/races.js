@@ -223,12 +223,15 @@ Page({
         const races = (data.races || []).map((race) => {
           const parts = String(race.raceDate || "").split("-");
           const labels = race.distanceLabels || [];
+          const kinds = [...(race.kindLabels || [])];
+          if (race.kind === "trail" && !kinds.includes("越野")) kinds.unshift("越野");
+          const project = labels.length && kinds.length ? labels.join(" / ") + " · " + kinds.join(" / ") : labels.length ? labels.join(" / ") : kinds.join(" / ");
           return {
             ...race,
             tone: toneOf(race),
             monthText: (Number(parts[1]) || "") + "月",
             day: Number(parts[2]) || "",
-            distanceText: labels.length ? " · " + labels.join(" / ") : "",
+            distanceText: project ? " · " + project : "",
             showWhen: race.deadlineLabel && race.deadlineLabel !== race.regStatus,
             soon: race.open && Number(race.daysLeft) <= 7
           };
