@@ -1,0 +1,11 @@
+<view class="pad">
+  <view wx:if="{{message}}" class="err">{{message}}</view>
+  <view wx:if="{{item}}" class="card">
+    <view class="title">{{item.title}}</view>
+    <view class="meta">{{item.publishedAt}} · {{item.source}}</view>
+    <view class="sum">{{item.summary}}</view>
+    <view class="meta">原文在来源页面。这里只留摘要。</view>
+    <button class="btn" bindtap="copy">复制原文链接</button>
+    <navigator class="race-go" url="/pages/race/race?id={{item.raceId}}">{{item.raceName}}</navigator>
+  </view>
+</view>

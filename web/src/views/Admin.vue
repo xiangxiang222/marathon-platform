@@ -9,7 +9,7 @@
       <div class="gate-copy">
         <p class="kicker">赛历</p>
         <h2>后台</h2>
-        <p>赛事、用户、跑团、入团审核、团练公里、积分礼品和合作。</p>
+        <p>赛事、资讯、用户、跑团、入团审核、团练公里、积分礼品和合作。</p>
       </div>
       <form class="gate-form" @submit.prevent="enter">
         <label>
@@ -42,6 +42,7 @@
           <p v-if="!listSearching">{{ sectionLead }}</p>
         </div>
         <button v-if="section === 'races' && !catalogQuery.trim() && !q.trim()" type="button" class="primary head-add" @click="startDraft">添加一场</button>
+        <button v-if="section === 'news' && newsTab === 'published' && !newsQuery.trim()" type="button" class="primary head-add" @click="startNews">发布一条</button>
         <button v-if="section === 'users' && !userQuery.trim()" type="button" class="primary head-add" @click="startUser">添加用户</button>
       </header>
       <div v-show="section === 'races'" class="desk" :class="{ editing: deskOpen, dragging }" :style="splitStyle">
@@ -421,6 +422,113 @@
         </template>
       </div>
       </aside>
+      </div>
+      <div v-if="section === 'news'" class="desk" :class="{ editing: !!(newsItem || newsReview), dragging }" :style="splitStyle">
+        <div class="desk-main">
+          <div class="block">
+            <div class="statuses">
+              <button type="button" class="status" :class="{ on: newsTab === 'published' }" @click="showNewsPublished">已发布</button>
+              <button type="button" class="status" :class="{ on: newsTab === 'review' }" @click="showNewsReview">待审 {{ newsPendingCount }}</button>
+            </div>
+            <template v-if="newsTab === 'published'">
+              <form class="check-form inline-form" @submit.prevent="submitNews">
+                <input v-model="newsQuery" placeholder="搜标题或赛事" @input="queueNews" />
+                <button class="primary" type="submit">筛选</button>
+              </form>
+              <p v-if="newsReady" class="hint">{{ newsRows.length }} 条</p>
+              <div class="race-list">
+                <div v-for="item in newsRows" :key="item.id" class="race-row" :class="{ on: newsItem && newsItem.id === item.id }">
+                  <button type="button" class="race-open catalog-open news-open" @click="openNews(item)">
+                    <time>{{ item.publishedAt }}</time>
+                    <em>{{ item.city }}</em>
+                    <span>{{ item.title }}<strong>{{ item.raceName }}</strong></span>
+                  </button>
+                </div>
+              </div>
+              <p v-if="newsReady && !newsRows.length" class="empty">{{ newsQuery.trim() ? "没有找到这条资讯" : "还没有发布的资讯" }}</p>
+            </template>
+            <template v-else>
+              <div class="statuses">
+                <button type="button" class="status" :class="{ on: newsStatus === 'pending' }" @click="setNewsStatus('pending')">待审</button>
+                <button type="button" class="status" :class="{ on: newsStatus === 'returned' }" @click="setNewsStatus('returned')">已打回</button>
+              </div>
+              <p v-if="newsRows.length" class="hint">{{ newsRows.length }} 条</p>
+              <div class="race-list">
+                <div v-for="item in newsRows" :key="item.id" class="race-row" :class="{ on: newsReview && newsReview.id === item.id }">
+                  <button type="button" class="race-open catalog-open news-open" @click="openNewsReview(item)">
+                    <time>{{ item.publishedAt }}</time>
+                    <em>{{ item.city }}</em>
+                    <span>{{ item.title }}<strong>{{ item.raceName }}</strong></span>
+                  </button>
+                  <button v-if="item.status === 'pending'" class="primary row-pass" type="button" @click.stop="publishNews(item)">通过</button>
+                </div>
+              </div>
+              <p v-if="!newsRows.length" class="empty">{{ newsStatus === "pending" ? "还没有待审的资讯" : "还没有打回的资讯" }}</p>
+            </template>
+          </div>
+        </div>
+        <div v-if="newsItem || newsReview" class="splitter" role="separator" aria-orientation="vertical" aria-label="拖动调整左右宽度" :aria-valuenow="Math.round(split)" aria-valuemin="22" aria-valuemax="70" tabindex="0" @pointerdown="startSplit" @keydown="nudgeSplit"></div>
+        <aside v-if="newsReview" class="desk-side">
+          <div class="block editor">
+            <div class="edit-bar">
+              <header class="edit-head">
+                <div class="edit-id">
+                  <p class="edit-kicker">{{ newsReview.status === "returned" ? "已打回" : "待审" }}</p>
+                  <h2>{{ newsReview.title }}</h2>
+                  <p class="edit-meta">
+                    <span>{{ newsReview.publishedAt }}</span>
+                    <span>{{ newsReview.city }}</span>
+                  </p>
+                </div>
+                <div class="edit-tools">
+                  <button class="text-btn" type="button" @click="newsReview = null">收起</button>
+                  <button v-if="newsReview.status === 'pending'" class="save" type="button" @click="publishNews(newsReview)">通过</button>
+                </div>
+              </header>
+            </div>
+            <p v-if="newsReview.note" class="warn">打回原因：{{ newsReview.note }}</p>
+            <p v-for="(line, index) in newsReview.lines" :key="'news-line-' + index" class="hint">{{ line }}</p>
+            <form v-if="newsReview.status === 'pending'" class="check-form" @submit.prevent="returnNews(newsReview)">
+              <input v-model="newsReview.returnNote" maxlength="200" placeholder="打回原因" />
+              <button class="undo" type="submit">打回</button>
+            </form>
+          </div>
+        </aside>
+        <aside v-else-if="newsItem" class="desk-side">
+          <div class="block editor">
+            <div class="edit-bar">
+              <header class="edit-head">
+                <div class="edit-id">
+                  <p class="edit-kicker">{{ newsItem.id ? "编辑资讯" : "发布资讯" }}</p>
+                  <h2>{{ newsItem.title.trim() || "未填写标题" }}</h2>
+                  <p v-if="newsItem.raceName" class="edit-meta"><span>{{ newsItem.raceName }}</span></p>
+                </div>
+                <div class="edit-tools">
+                  <button class="text-btn" type="button" @click="closeNews">收起</button>
+                  <button class="save" type="submit" form="news-editor">{{ newsItem.id ? "保存" : "发布" }}</button>
+                </div>
+              </header>
+            </div>
+            <form id="news-editor" class="check-form guide-form" @submit.prevent="saveNews">
+              <label class="field"><span>赛事</span><input v-model="newsRaceQuery" placeholder="搜名称或城市" @input="queueNewsRaces" /></label>
+              <div v-if="newsRaceHits.length" class="race-list">
+                <button v-for="race in newsRaceHits" :key="race.id" type="button" class="race-open" @click="pickNewsRace(race)">
+                  <span>{{ race.name }}</span>
+                  <strong>{{ race.raceDate }} · {{ race.city }}</strong>
+                </button>
+              </div>
+              <p v-if="newsItem.raceId" class="hint">已选 {{ newsItem.raceName }}</p>
+              <label class="field"><span>标题</span><input v-model="newsItem.title" maxlength="80" /></label>
+              <label class="field"><span>发布时间</span><input v-model="newsItem.publishedAt" type="date" /></label>
+              <label class="field"><span>来源</span><input v-model="newsItem.source" maxlength="40" placeholder="例如 组委会" /></label>
+              <label class="field"><span>摘要</span><textarea v-model="newsItem.summary" maxlength="400" rows="4" placeholder="几句摘要，不转载全文"></textarea></label>
+              <label class="field"><span>原文链接</span><input v-model="newsItem.url" placeholder="https://" /></label>
+              <button v-if="newsItem.id && !newsDelete" class="undo" type="button" @click="newsDelete = true">删除</button>
+              <p v-if="newsDelete" class="warn">确认删掉这条资讯？</p>
+              <button v-if="newsDelete" class="undo" type="button" @click="removeNews">确认删除</button>
+            </form>
+          </div>
+        </aside>
       </div>
       <div v-if="section === 'users'" class="desk" :class="{ editing: !!(person || adding), dragging }" :style="splitStyle">
         <div class="desk-main">
@@ -813,6 +921,17 @@ const botStatus = ref("pending");
 const pendingCount = ref(0);
 const raceTab = ref("published");
 const review = ref(null);
+const newsTab = ref("published");
+const newsRows = ref([]);
+const newsPendingCount = ref(0);
+const newsStatus = ref("pending");
+const newsReview = ref(null);
+const newsItem = ref(null);
+const newsQuery = ref("");
+const newsReady = ref(false);
+const newsRaceQuery = ref("");
+const newsRaceHits = ref([]);
+const newsDelete = ref(false);
 const message = ref("");
 const saved = ref(false);
 const busy = ref(false);
@@ -826,6 +945,7 @@ const role = ref("admin");
 const selfName = ref("");
 const allSections = [
   { id: "races", label: "赛事", roles: ["admin"] },
+  { id: "news", label: "资讯", roles: ["admin"] },
   { id: "users", label: "用户", roles: ["admin", "club"] },
   { id: "clubs", label: "跑团", roles: ["admin", "club"] },
   { id: "joins", label: "入团", roles: ["admin", "club"] },
@@ -918,12 +1038,14 @@ const deskOpen = computed(() => (!!book.value && !catalogQuery.value.trim()) || 
 const sectionLabel = computed(() => deskSections.value.find((item) => item.id === section.value)?.label || "后台");
 const listSearching = computed(() => {
   if (section.value === "races") return !!catalogQuery.value.trim() || !!q.value.trim();
+  if (section.value === "news") return !!newsQuery.value.trim();
   if (section.value === "users") return !!userQuery.value.trim();
   if (section.value === "clubs") return !!clubQuery.value.trim();
   return false;
 });
 const sectionLead = computed(() => ({
   races: "已发布在赛历里。待审通过后才进去。删掉的场不会马上加回来。",
+  news: "已发布出现在这场的资讯里，也出现在首页的全部资讯。待审通过后才出现。一条绑一场，只留摘要和原文链接。",
   users: "可添加用户，填写昵称和登录密码后即可登录。点开一行查看参赛状态、跑团和成绩。编辑用于建团资格、登录密码和跑团角色。删除在列表中确认。关闭建团资格不影响其已担任的团长。不收集手机号，也不收集身份证。",
   clubs: "点开一行管理该跑团的成员和团长。按昵称添加成员，移出成员不删除账号。指定团长后，原团长改为跑团管理。现任团长须先移交，才能修改角色或移出。删除跑团在列表中确认，成员账号会保留。",
   joins: "建团和没口令的入团都在这里审。通过建团后，申请人成为该团团长。",
@@ -1002,6 +1124,7 @@ async function enterDesk(data) {
   }
   if (!deskSections.value.some((item) => item.id === section.value)) section.value = role.value === "club" ? "joins" : "races";
   if (section.value === "races") await Promise.all([load(), loadCatalog(), loadSpots(), loadBotReviews()]);
+  if (section.value === "news") await loadNews();
   if (section.value === "users") await loadUsers();
   if (section.value === "clubs") await loadClubs();
   if (section.value === "joins") await loadJoins();
@@ -1096,6 +1219,7 @@ function pickSection(id) {
   message.value = "";
   saved.value = false;
   if (id === "races") loadBotReviews().catch(fail);
+  if (id === "news") loadNews().catch(fail);
   if (id === "users") loadUsers();
   if (id === "clubs") loadClubs();
   if (id === "joins") loadJoins();
@@ -1749,6 +1873,210 @@ async function loadBotReviews() {
   if (botStatus.value === "pending") pendingCount.value = botRows.value.length;
   if (review.value && !botRows.value.some((row) => row.id === review.value.id)) review.value = null;
   else if (review.value) review.value = botRows.value.find((row) => row.id === review.value.id) || null;
+}
+
+function todayText() {
+  const now = new Date();
+  const month = String(now.getMonth() + 1).padStart(2, "0");
+  const day = String(now.getDate()).padStart(2, "0");
+  return now.getFullYear() + "-" + month + "-" + day;
+}
+
+function closeNews() {
+  newsItem.value = null;
+  newsReview.value = null;
+  newsRaceHits.value = [];
+  newsDelete.value = false;
+}
+
+function startNews() {
+  newsReview.value = null;
+  newsDelete.value = false;
+  newsTab.value = "published";
+  newsRaceHits.value = [];
+  newsRaceQuery.value = "";
+  newsItem.value = { id: 0, raceId: "", raceName: "", city: "", title: "", summary: "", source: "", url: "", publishedAt: todayText() };
+}
+
+function showNewsPublished() {
+  newsTab.value = "published";
+  newsReview.value = null;
+  newsRows.value = [];
+  newsReady.value = false;
+  loadNews().catch(fail);
+}
+
+function showNewsReview() {
+  newsTab.value = "review";
+  newsItem.value = null;
+  newsRaceHits.value = [];
+  newsDelete.value = false;
+  newsRows.value = [];
+  newsReady.value = false;
+  loadNews().catch(fail);
+}
+
+function openNews(item) {
+  newsReview.value = null;
+  newsDelete.value = false;
+  if (newsItem.value && newsItem.value.id === item.id) {
+    newsItem.value = null;
+    return;
+  }
+  newsItem.value = { ...item };
+  newsRaceQuery.value = item.raceName;
+  newsRaceHits.value = [];
+}
+
+function openNewsReview(item) {
+  newsItem.value = null;
+  newsRaceHits.value = [];
+  if (newsReview.value && newsReview.value.id === item.id) {
+    newsReview.value = null;
+    return;
+  }
+  newsReview.value = { ...item, returnNote: "" };
+}
+
+let newsTimer = 0;
+function queueNews() {
+  clearTimeout(newsTimer);
+  newsTimer = setTimeout(() => {
+    loadNews().catch(fail);
+  }, 200);
+}
+function submitNews() {
+  clearTimeout(newsTimer);
+  return loadNews().catch(fail);
+}
+
+async function loadNews() {
+  const status = newsTab.value === "review" ? newsStatus.value : "published";
+  const data = await admin("/admin/news?status=" + status + "&q=" + encodeURIComponent(newsQuery.value));
+  newsRows.value = data.rows || [];
+  newsPendingCount.value = data.pendingCount || 0;
+  newsReady.value = true;
+  if (newsReview.value) {
+    const next = newsRows.value.find((row) => row.id === newsReview.value.id);
+    newsReview.value = next ? { ...next, returnNote: newsReview.value.returnNote || "" } : null;
+  }
+  if (newsItem.value && newsItem.value.id && !newsQuery.value.trim() && newsTab.value === "published") {
+    if (!newsRows.value.some((row) => row.id === newsItem.value.id)) newsItem.value = null;
+  }
+}
+
+async function setNewsStatus(status) {
+  newsStatus.value = status;
+  newsReview.value = null;
+  newsRows.value = [];
+  newsReady.value = false;
+  try {
+    await loadNews();
+  } catch (err) {
+    fail(err);
+  }
+}
+
+let newsRaceTimer = 0;
+let newsRaceSeq = 0;
+function queueNewsRaces() {
+  if (newsItem.value) newsItem.value.raceId = "";
+  clearTimeout(newsRaceTimer);
+  const text = newsRaceQuery.value.trim();
+  if (!text) {
+    newsRaceHits.value = [];
+    return;
+  }
+  newsRaceTimer = setTimeout(async () => {
+    const seq = ++newsRaceSeq;
+    try {
+      const data = await admin("/admin/races?when=all&q=" + encodeURIComponent(text));
+      if (seq !== newsRaceSeq) return;
+      newsRaceHits.value = (data.races || []).slice(0, 8);
+    } catch (err) {
+      fail(err);
+    }
+  }, 200);
+}
+
+function pickNewsRace(race) {
+  if (!newsItem.value) return;
+  newsItem.value.raceId = race.id;
+  newsItem.value.raceName = race.name;
+  newsItem.value.city = race.city;
+  newsRaceQuery.value = race.name;
+  newsRaceHits.value = [];
+}
+
+async function saveNews() {
+  message.value = "";
+  saved.value = false;
+  if (!newsItem.value || !newsItem.value.raceId) {
+    fail(new Error("先选一场比赛"));
+    return;
+  }
+  const body = {
+    raceId: newsItem.value.raceId,
+    title: newsItem.value.title,
+    summary: newsItem.value.summary,
+    source: newsItem.value.source,
+    url: newsItem.value.url,
+    publishedAt: newsItem.value.publishedAt
+  };
+  try {
+    const path = newsItem.value.id ? "/admin/news/" + newsItem.value.id : "/admin/news";
+    const data = await admin(path, { method: newsItem.value.id ? "PUT" : "POST", body: JSON.stringify(body) });
+    newsItem.value = { ...data.news };
+    newsRaceQuery.value = data.news.raceName;
+    newsDelete.value = false;
+    saved.value = true;
+    message.value = "已发布";
+    await loadNews();
+  } catch (err) {
+    fail(err);
+  }
+}
+
+async function removeNews() {
+  if (!newsItem.value || !newsItem.value.id) return;
+  message.value = "";
+  saved.value = false;
+  try {
+    await admin("/admin/news/" + newsItem.value.id, { method: "DELETE" });
+    newsItem.value = null;
+    newsDelete.value = false;
+    saved.value = true;
+    message.value = "已删除";
+    await loadNews();
+  } catch (err) {
+    fail(err);
+  }
+}
+
+async function publishNews(item) {
+  message.value = "";
+  saved.value = false;
+  try {
+    await admin("/admin/news-submissions/" + item.id + "/publish", { method: "POST", body: "{}" });
+    saved.value = true;
+    message.value = "已发布";
+    await loadNews();
+  } catch (err) {
+    fail(err);
+  }
+}
+
+async function returnNews(item) {
+  message.value = "";
+  saved.value = false;
+  try {
+    await admin("/admin/news-submissions/" + item.id + "/return", { method: "POST", body: JSON.stringify({ note: item.returnNote }) });
+    saved.value = true;
+    message.value = "已打回";
+    await loadNews();
+  } catch (err) {
+    fail(err);
+  }
 }
 
 async function setBotStatus(status) {
@@ -2510,6 +2838,9 @@ if (token.value) {
 .catalog-open { display: grid; grid-template-columns: 108px minmax(64px, 96px) minmax(0, 1fr); gap: 8px 14px; align-items: center; }
 .catalog-open time, .catalog-open em { font-style: normal; color: var(--muted); font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; }
 .catalog-open span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.news-open { align-items: start; }
+.news-open span { white-space: normal; }
+.news-open span strong { display: block; margin-top: 2px; color: var(--muted); font-size: 12px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .block .row-pass { display: inline-flex; align-items: center; justify-content: center; flex: none; width: auto; height: 32px; margin: 0; padding: 0 12px; border-radius: 999px; font-size: 13px; }
 .remove { flex: none; color: var(--muted); font-size: 13px; padding: 8px 10px; background: transparent; }
 .remove:hover { color: var(--red); }

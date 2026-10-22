@@ -7,6 +7,8 @@
     "pages/mine/mine",
     "pages/radar/radar",
     "pages/race/race",
+    "pages/news/news",
+    "pages/news/detail",
     "pages/club/club",
     "pages/mileage/mileage",
     "pages/partner/partner",

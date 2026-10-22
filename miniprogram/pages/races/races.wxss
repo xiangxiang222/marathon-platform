@@ -1,5 +1,7 @@
 .page { padding: 8rpx 0 24rpx; }
 .radar { display: block; margin: 8rpx 32rpx 16rpx; color: #007aff; font-weight: 650; }
+.home-links { display: flex; gap: 32rpx; margin: 8rpx 32rpx 16rpx; }
+.home-links .radar { margin: 0; }
 .head { display: flex; align-items: center; justify-content: space-between; padding: 8rpx 32rpx 0; }
 .today { color: rgba(60, 60, 67, 0.6); font-size: 30rpx; }
 .icon-btn {

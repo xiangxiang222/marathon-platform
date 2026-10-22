@@ -360,6 +360,8 @@ function removeRace(db, id) {
     db.prepare("DELETE FROM prize_rules WHERE race_id = ?").run(race.id);
     db.prepare("DELETE FROM draw_rates WHERE race_id = ?").run(race.id);
     db.prepare("DELETE FROM results WHERE race_id = ?").run(race.id);
+    db.prepare("DELETE FROM news WHERE race_id = ?").run(race.id);
+    db.prepare("DELETE FROM news_submissions WHERE race_id = ?").run(race.id);
     const ignore = db.prepare("UPDATE official_races SET status = 'ignored', race_id = '' WHERE official_id = ?");
     for (const officialId of linked) ignore.run(officialId);
     db.prepare("DELETE FROM races WHERE id = ?").run(race.id);

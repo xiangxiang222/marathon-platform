@@ -110,6 +110,13 @@
   </block>
 
   <block wx:if="{{tab === 'news'}}">
+    <view class="card" wx:if="{{articles.length}}">
+      <view class="h2">相关资讯</view>
+      <navigator wx:for="{{articles}}" wx:key="id" class="news-item" url="/pages/news/detail?id={{item.id}}">
+        <view class="title">{{item.title}}</view>
+        <view class="src">{{item.publishedAt}} · {{item.source}}</view>
+      </navigator>
+    </view>
     <view class="card" wx:if="{{race.organizer || race.source || race.eventUrl || race.officialUrl || queryLinks.length}}">
       <view class="h2">这场的页面</view>
       <view wx:if="{{race.organizer}}" class="src">主办 {{race.organizer}}</view>

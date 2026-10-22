@@ -438,6 +438,34 @@ function open() {
       reviewer TEXT NOT NULL DEFAULT ''
     );
     CREATE UNIQUE INDEX IF NOT EXISTS club_request_pending ON club_requests(club_id, user_id) WHERE status = 'pending';
+    CREATE TABLE IF NOT EXISTS news (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      race_id TEXT NOT NULL,
+      title TEXT NOT NULL,
+      summary TEXT NOT NULL DEFAULT '',
+      source TEXT NOT NULL,
+      url TEXT NOT NULL,
+      published_at TEXT NOT NULL,
+      created_at TEXT NOT NULL,
+      updated_at TEXT NOT NULL
+    );
+    CREATE UNIQUE INDEX IF NOT EXISTS news_race_url ON news(race_id, url);
+    CREATE INDEX IF NOT EXISTS news_published ON news(published_at, id);
+    CREATE TABLE IF NOT EXISTS news_submissions (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      race_id TEXT NOT NULL,
+      title TEXT NOT NULL,
+      summary TEXT NOT NULL DEFAULT '',
+      source TEXT NOT NULL,
+      url TEXT NOT NULL,
+      published_at TEXT NOT NULL,
+      status TEXT NOT NULL DEFAULT 'pending',
+      note TEXT NOT NULL DEFAULT '',
+      news_id INTEGER NOT NULL DEFAULT 0,
+      created_at TEXT NOT NULL,
+      updated_at TEXT NOT NULL
+    );
+    CREATE INDEX IF NOT EXISTS news_sub_status ON news_submissions(status, id);
     CREATE TABLE IF NOT EXISTS bot_submissions (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       official_id TEXT NOT NULL,

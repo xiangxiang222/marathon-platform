@@ -1,0 +1,4 @@
+.meta { margin-top: 8rpx; color: #8e949c; font-size: 24rpx; }
+.sum { margin-top: 20rpx; font-size: 30rpx; line-height: 1.6; }
+button.btn { margin-top: 24rpx; }
+.race-go { display: block; margin-top: 24rpx; color: #007aff; font-weight: 650; }
