@@ -44,55 +44,60 @@
         <button v-if="section === 'races' && !catalogQuery.trim() && !q.trim()" type="button" class="primary head-add" @click="startDraft">添加一场</button>
         <button v-if="section === 'users' && !userQuery.trim()" type="button" class="primary head-add" @click="startUser">添加用户</button>
       </header>
-      <div v-show="section === 'races'" class="desk" :class="{ editing: !!book && !catalogQuery.trim(), dragging }" :style="splitStyle">
-      <div v-show="!(q.trim() && !catalogQuery.trim())" class="desk-main">
+      <div v-show="section === 'races'" class="desk" :class="{ editing: deskOpen, dragging }" :style="splitStyle">
+      <div v-show="raceTab === 'review' || !(q.trim() && !catalogQuery.trim())" class="desk-main">
       <div class="block">
-        <form class="check-form inline-form" @submit.prevent="submitCatalog">
-          <input v-model="catalogQuery" placeholder="搜名称、城市" @input="queueCatalog" />
-          <button class="primary" type="submit">筛选</button>
-        </form>
-        <div v-if="!catalogQuery.trim()" class="statuses">
-          <button type="button" class="status" :class="{ on: catalogWhen === 'upcoming' }" @click="setCatalogWhen('upcoming')">即将开赛</button>
-          <button type="button" class="status" :class="{ on: catalogWhen === 'all' }" @click="setCatalogWhen('all')">全部</button>
+        <div class="statuses">
+          <button type="button" class="status" :class="{ on: raceTab === 'published' }" @click="showPublished">已发布</button>
+          <button type="button" class="status" :class="{ on: raceTab === 'review' }" @click="showReview">待审 {{ pendingCount }}</button>
         </div>
-        <p v-if="catalogReady && !catalogQuery.trim()" class="hint">{{ catalog.length }} 场</p>
-        <div class="race-list">
-          <div v-for="item in catalog" :key="item.id" class="race-row" :class="{ on: book && book.id === item.id }">
-            <button type="button" class="race-open catalog-open" @click="openGuide(item.id)">
-              <time>{{ item.raceDate }}</time>
-              <em>{{ item.city }}</em>
-              <span>{{ item.name }}</span>
-            </button>
-            <button type="button" class="remove" @click="removeRace(item)">删除</button>
+        <template v-if="raceTab === 'published'">
+          <form class="check-form inline-form" @submit.prevent="submitCatalog">
+            <input v-model="catalogQuery" placeholder="搜名称、城市" @input="queueCatalog" />
+            <button class="primary" type="submit">筛选</button>
+          </form>
+          <div v-if="!catalogQuery.trim()" class="statuses">
+            <button type="button" class="status" :class="{ on: catalogWhen === 'upcoming' }" @click="setCatalogWhen('upcoming')">即将开赛</button>
+            <button type="button" class="status" :class="{ on: catalogWhen === 'all' }" @click="setCatalogWhen('all')">全部</button>
           </div>
-        </div>
-        <p v-if="catalogReady && !catalog.length" class="empty">{{ catalogQuery.trim() ? "没有找到这场赛事" : "这个范围还没有场。" }}</p>
+          <p v-if="catalogReady && !catalogQuery.trim()" class="hint">{{ catalog.length }} 场</p>
+          <div class="race-list">
+            <div v-for="item in catalog" :key="item.id" class="race-row" :class="{ on: book && book.id === item.id }">
+              <button type="button" class="race-open catalog-open" @click="openGuide(item.id)">
+                <time>{{ item.raceDate }}</time>
+                <em>{{ item.city }}</em>
+                <span>{{ item.name }}</span>
+              </button>
+              <button type="button" class="remove" @click="removeRace(item)">删除</button>
+            </div>
+          </div>
+          <p v-if="catalogReady && !catalog.length" class="empty">{{ catalogQuery.trim() ? "没有找到这场赛事" : "这个范围还没有场。" }}</p>
+        </template>
+        <template v-else>
+          <div class="statuses">
+            <button type="button" class="status" :class="{ on: botStatus === 'pending' }" @click="setBotStatus('pending')">待审</button>
+            <button type="button" class="status" :class="{ on: botStatus === 'returned' }" @click="setBotStatus('returned')">已打回</button>
+          </div>
+          <p v-if="botRows.length" class="hint">{{ botRows.length }} 场</p>
+          <div class="race-list">
+            <div v-for="item in botRows" :key="item.id" class="race-row" :class="{ on: review && review.id === item.id }">
+              <button type="button" class="race-open catalog-open review-open" @click="openReview(item)">
+                <span class="review-meta">
+                  <time>{{ item.raceDate }}</time>
+                  <em>{{ item.city }}</em>
+                  <i class="mark" :class="reviewKind(item)">{{ reviewMark(item) }}</i>
+                </span>
+                <b>{{ item.name }}</b>
+                <small v-if="item.note">打回原因：{{ item.note }}</small>
+              </button>
+              <button v-if="item.status === 'pending'" class="primary row-pass" type="button" @click.stop="publishBot(item)">通过</button>
+            </div>
+          </div>
+          <p v-if="!botRows.length" class="empty">{{ botStatus === "pending" ? "还没有待审的比赛" : "还没有打回的比赛" }}</p>
+        </template>
       </div>
       </div>
       <div v-if="!catalogQuery.trim()" class="desk-official">
-      <div v-if="!q.trim()" class="block">
-        <h2>待审详情</h2>
-        <p class="hint">上传先停在这里，确定发布后才进赛历。同一场再传一次，会盖掉上一次待审的内容。已经发布的场，这次写上的字段会盖掉原值；空着的报名时间和链接保持原样。带上的奖项和历年中签按这一份整份替换。打回要写原因，上传方按原因再传一次。</p>
-        <div class="statuses">
-          <button type="button" class="status" :class="{ on: botStatus === 'pending' }" @click="setBotStatus('pending')">待审</button>
-          <button type="button" class="status" :class="{ on: botStatus === 'returned' }" @click="setBotStatus('returned')">已打回</button>
-          <button type="button" class="status" :class="{ on: botStatus === 'published' }" @click="setBotStatus('published')">已发布</button>
-        </div>
-        <div v-for="item in botRows" :key="item.id" class="block">
-          <h2>{{ item.name }}</h2>
-          <p class="hint">{{ item.raceDate }} · {{ item.city }} · {{ item.onCalendar ? "已在赛历" : "新场" }}</p>
-          <p v-if="item.note" class="warn">打回原因：{{ item.note }}</p>
-          <p v-for="(line, index) in item.lines" :key="item.id + '-' + index" class="hint">{{ line }}</p>
-          <p v-for="(change, index) in item.changes" :key="item.id + '-c-' + index" class="warn">{{ change }}</p>
-          <p v-if="item.onCalendar && !item.changes.length" class="hint">和赛历里记下的一样</p>
-          <template v-if="item.status === 'pending'">
-            <input v-model="item.returnNote" placeholder="打回原因" />
-            <button class="primary" type="button" @click="publishBot(item)">确定发布</button>
-            <button class="undo" type="button" @click="returnBot(item)">打回</button>
-          </template>
-        </div>
-        <p v-if="!botRows.length" class="empty">{{ botStatus === "pending" ? "还没有待审的比赛" : "这里还没有场" }}</p>
-      </div>
       <div class="block">
         <h2 v-if="!q.trim()">官网赛历</h2>
         <p v-if="!q.trim()" class="hint">每一届单独存。中国马拉松官网这场一直有链接。赛事自己的网站，官网给了才记下；没给就空着，也不拿往年的网站来填。每天再对一次，名称、日期、主办、赛事网站有变会标出来。报名时间仍要另写来源，已经记下的截止时间不会被盖掉。</p>
@@ -107,14 +112,6 @@
           </button>
         </div>
         <p v-if="busy" class="hint">正在向官网要赛历。</p>
-        <form v-if="!q.trim()" class="check-form" @submit.prevent="changePassword">
-          <input v-model="currentPassword" type="password" autocomplete="current-password" placeholder="当前密码" />
-          <label class="field">
-            <input v-model="nextPassword" type="password" autocomplete="new-password" placeholder="新密码" />
-            <small>8 到 128 位</small>
-          </label>
-          <button class="undo" type="submit">修改密码</button>
-        </form>
       </div>
       <template v-for="row in rows" :key="row.officialId">
       <div v-if="q.trim() && officialFocus !== row.officialId" class="race-row">
@@ -157,8 +154,40 @@
       </template>
       <p v-if="ready && !rows.length" class="empty">{{ q.trim() ? "没有找到这场赛事" : "这个范围还没有场。" }}</p>
       </div>
-      <div v-if="book" class="splitter" role="separator" aria-orientation="vertical" aria-label="拖动调整左右宽度" :aria-valuenow="Math.round(split)" aria-valuemin="22" aria-valuemax="70" tabindex="0" @pointerdown="startSplit" @keydown="nudgeSplit"></div>
-      <aside v-if="book" class="desk-side">
+      <div v-if="book || review" class="splitter" role="separator" aria-orientation="vertical" aria-label="拖动调整左右宽度" :aria-valuenow="Math.round(split)" aria-valuemin="22" aria-valuemax="70" tabindex="0" @pointerdown="startSplit" @keydown="nudgeSplit"></div>
+      <aside v-if="review" class="desk-side">
+        <div class="block editor">
+          <div class="edit-bar">
+            <header class="edit-head">
+              <div class="edit-id">
+                <p class="edit-kicker">{{ review.status === "returned" ? "已打回" : "待审" }}</p>
+                <h2>{{ review.name }}</h2>
+                <p class="edit-meta">
+                  <span>{{ review.raceDate }}</span>
+                  <span>{{ review.city }}</span>
+                  <span>{{ reviewMark(review) }}</span>
+                </p>
+              </div>
+              <div class="edit-tools">
+                <button class="text-btn" type="button" @click="review = null">收起</button>
+                <button v-if="review.status === 'pending'" class="save" type="button" @click="publishBot(review)">通过</button>
+              </div>
+            </header>
+          </div>
+          <p v-if="review.note" class="warn">打回原因：{{ review.note }}</p>
+          <p v-if="review.status === 'returned'" class="hint">改完再传，会回到待审。</p>
+          <p v-else-if="review.onCalendar && review.changes.length" class="hint">通过后，这次写上的字段盖掉原来的。奖项和历年中签按这一份整份替换。空着的报名时间和链接保持原样。</p>
+          <p v-else-if="review.onCalendar" class="hint">和赛历里记下的一样。</p>
+          <p v-else class="hint">通过后写入赛历。</p>
+          <p v-for="(change, index) in review.changes" :key="'change-' + index" class="warn">{{ change }}</p>
+          <p v-for="(line, index) in review.lines" :key="'line-' + index" class="hint">{{ line }}</p>
+          <form v-if="review.status === 'pending'" class="check-form" @submit.prevent="returnBot(review)">
+            <input v-model="review.returnNote" maxlength="200" placeholder="打回原因" />
+            <button class="undo" type="submit">打回</button>
+          </form>
+        </div>
+      </aside>
+      <aside v-else-if="book" class="desk-side">
       <div class="block editor">
         <template v-if="book">
           <div class="edit-bar">
@@ -756,6 +785,15 @@
           </select>
           <button class="primary" type="submit">添加账号</button>
         </form>
+        <h2>修改密码</h2>
+        <form class="check-form" @submit.prevent="changePassword">
+          <input v-model="currentPassword" type="password" autocomplete="current-password" placeholder="当前密码" />
+          <label class="field">
+            <input v-model="nextPassword" type="password" autocomplete="new-password" placeholder="新密码" />
+            <small>8 到 128 位</small>
+          </label>
+          <button class="undo" type="submit">修改密码</button>
+        </form>
       </div>
       </div>
       </div>
@@ -780,6 +818,9 @@ const filter = ref("pending");
 const rows = ref([]);
 const botRows = ref([]);
 const botStatus = ref("pending");
+const pendingCount = ref(0);
+const raceTab = ref("published");
+const review = ref(null);
 const message = ref("");
 const saved = ref(false);
 const busy = ref(false);
@@ -881,6 +922,7 @@ function savedSplit() {
 const split = ref(savedSplit());
 const dragging = ref(false);
 const splitStyle = computed(() => ({ "--split": split.value + "%" }));
+const deskOpen = computed(() => (!!book.value && !catalogQuery.value.trim()) || !!review.value);
 const sectionLabel = computed(() => deskSections.value.find((item) => item.id === section.value)?.label || "后台");
 const listSearching = computed(() => {
   if (section.value === "races") return !!catalogQuery.value.trim() || !!q.value.trim();
@@ -889,7 +931,7 @@ const listSearching = computed(() => {
   return false;
 });
 const sectionLead = computed(() => ({
-  races: "已经收进赛历的场。自动拉取还在，删掉的场不会马上加回来。",
+  races: "已发布在赛历里。待审通过后才进去。删掉的场不会马上加回来。",
   users: "可添加用户，填写昵称和登录密码后即可登录。点开一行查看参赛状态、跑团和成绩。编辑用于建团资格、登录密码和跑团角色。删除在列表中确认。关闭建团资格不影响其已担任的团长。不收集手机号，也不收集身份证。",
   clubs: "点开一行管理该跑团的成员和团长。按昵称添加成员，移出成员不删除账号。指定团长后，原团长改为跑团管理。现任团长须先移交，才能修改角色或移出。删除跑团在列表中确认，成员账号会保留。",
   joins: "建团和没口令的入团都在这里审。通过建团后，申请人成为该团团长。",
@@ -1691,9 +1733,43 @@ async function syncAll() {
   await search();
 }
 
+function reviewMark(item) {
+  if (!item.onCalendar) return "新场";
+  if (item.changes.length) return "更新 · " + item.changes.length + " 处";
+  return "无变化";
+}
+
+function reviewKind(item) {
+  if (!item.onCalendar) return "fresh";
+  if (item.changes.length) return "changed";
+  return "same";
+}
+
+function showPublished() {
+  raceTab.value = "published";
+  review.value = null;
+}
+
+function showReview() {
+  raceTab.value = "review";
+  if (book.value) closeEditor();
+}
+
+function openReview(item) {
+  if (book.value) closeEditor();
+  if (review.value && review.value.id === item.id) {
+    review.value = null;
+    return;
+  }
+  review.value = item;
+}
+
 async function loadBotReviews() {
   const data = await admin("/admin/bot-races?status=" + botStatus.value);
   botRows.value = (data.rows || []).map((row) => ({ ...row, returnNote: "" }));
+  if (botStatus.value === "pending") pendingCount.value = botRows.value.length;
+  if (review.value && !botRows.value.some((row) => row.id === review.value.id)) review.value = null;
+  else if (review.value) review.value = botRows.value.find((row) => row.id === review.value.id) || null;
 }
 
 async function setBotStatus(status) {
@@ -1956,6 +2032,8 @@ function toggle(list, key) {
 }
 
 function startDraft() {
+  review.value = null;
+  raceTab.value = "published";
   clearQueues();
   editTab.value = "base";
   book.value = emptyBook();
@@ -2123,6 +2201,7 @@ async function removeRace(item) {
 }
 
 async function openGuide(id) {
+  review.value = null;
   if (book.value && book.value.id === id) {
     closeEditor();
     return;
@@ -2458,6 +2537,18 @@ if (token.value) {
 .catalog-open { display: grid; grid-template-columns: 108px minmax(64px, 96px) minmax(0, 1fr); gap: 8px 14px; align-items: center; }
 .catalog-open time, .catalog-open em { font-style: normal; color: var(--muted); font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; }
 .catalog-open span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.review-open { display: flex; flex-direction: column; align-items: stretch; gap: 2px; }
+.review-meta { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.review-open time { flex: none; width: auto; }
+.review-open em { flex: none; max-width: 96px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.review-meta .mark { margin-left: auto; }
+.review-open b { display: block; min-width: 0; font-weight: 650; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.review-open small { display: block; color: var(--muted); font-size: 12px; font-weight: 500; line-height: 1.4; white-space: normal; }
+.mark { justify-self: end; height: 22px; padding: 0 8px; border-radius: 999px; font-style: normal; font-size: 12px; font-weight: 650; line-height: 22px; white-space: nowrap; }
+.mark.fresh { background: rgba(0, 122, 255, 0.12); color: var(--accent); }
+.mark.changed { background: rgba(154, 91, 18, 0.12); color: #9a5b12; }
+.mark.same { background: rgba(60, 60, 67, 0.08); color: var(--muted); }
+.block .row-pass { display: inline-flex; align-items: center; justify-content: center; flex: none; width: auto; height: 32px; margin: 0; padding: 0 12px; border-radius: 999px; font-size: 13px; }
 .remove { flex: none; color: var(--muted); font-size: 13px; padding: 8px 10px; background: transparent; }
 .remove:hover { color: var(--red); }
 .sheets { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
@@ -2568,6 +2659,8 @@ a { color: #007aff; }
   .catalog-open time, .catalog-open em { display: inline; }
   .catalog-open time::after { content: " · "; }
   .catalog-open span { white-space: normal; margin-top: 2px; }
+  .review-open { display: flex; flex-direction: column; align-items: stretch; }
+  .review-open .mark { display: inline-block; margin-top: 0; }
   .inline-form { flex-direction: row; align-items: center; }
   .inline-form input { flex: 1; width: auto; min-width: 0; }
   .inline-form .primary { width: auto; margin-top: 0; padding: 0 14px; }
