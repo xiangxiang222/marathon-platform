@@ -222,15 +222,16 @@
                   </select>
                 </label>
                 <label class="field"><span>城市</span>
-                  <select v-if="cityMode !== 'write'" :value="book.city" @change="pickCity">
+                  <select v-model="book.city" @change="onCityChange">
                     <option value="">选择城市</option>
                     <option v-for="name in cityOptions" :key="name" :value="name">{{ name }}</option>
-                    <option value="__write__">手动填写</option>
                   </select>
-                  <template v-else>
-                    <input v-model="book.city" placeholder="填写城市名称" />
-                    <button class="back-list" type="button" @click="useCityList">从列表选择</button>
-                  </template>
+                </label>
+                <label class="field"><span>区县</span>
+                  <select v-model="book.district">
+                    <option value="">选择区县</option>
+                    <option v-for="name in districtOptions" :key="name" :value="name">{{ name }}</option>
+                  </select>
                 </label>
                 <label class="field span"><span>举办地点</span><input v-model="book.place" list="place-options" placeholder="起点、场馆或景区" /><datalist id="place-options"><option v-for="name in placeOptions" :key="name" :value="name" /></datalist></label>
                 <label class="field"><span>主办单位</span><input v-model="book.organizer" placeholder="组委会或主办机构" /></label>
@@ -804,6 +805,7 @@
 <script setup>
 import { computed, ref } from "vue";
 import { adminUpload, api, raceSheetSrc } from "../api";
+import { countiesOf, settleRegion } from "../areas";
 import { regions } from "../regions";
 
 const token = ref(sessionStorage.getItem("marathon_admin") || "");
@@ -948,7 +950,6 @@ const routeQueue = ref([]);
 const pacerQueue = ref([]);
 const liveQueue = ref(null);
 const spots = ref([]);
-const cityMode = ref("list");
 const distanceChoices = [
   { key: "full", label: "全马" },
   { key: "half", label: "半马" },
@@ -982,7 +983,7 @@ const editMeta = computed(() => {
   const row = book.value;
   if (!row) return "";
   const grade = gradeChoices.find((item) => item.value === row.grade);
-  return [row.raceDate, [row.province, row.city].filter(Boolean).join(" "), grade && grade.value ? grade.label : "", row.source ? "来源 " + row.source : "", row.updatedAt ? "更新于 " + row.updatedAt : ""].filter(Boolean);
+  return [row.raceDate, [row.province, row.city, row.district].filter(Boolean).join(" "), grade && grade.value ? grade.label : "", row.source ? "来源 " + row.source : "", row.updatedAt ? "更新于 " + row.updatedAt : ""].filter(Boolean);
 });
 const filters = [
   { label: "待确认", value: "pending" },
@@ -1873,6 +1874,7 @@ function blankBook(race) {
     raceDate: race.raceDate || "",
     province: race.province,
     city: race.city,
+    district: race.district || "",
     place: race.place,
     distances: [...race.distances],
     kinds: [...race.kinds],
@@ -1921,6 +1923,7 @@ function emptyBook() {
     raceDate: "",
     province: "",
     city: "",
+    district: "",
     place: "",
     distances: [],
     kinds: [],
@@ -1979,7 +1982,14 @@ const cityOptions = computed(() => {
   if (!book.value) return [];
   const row = regions.find((item) => item.name === book.value.province);
   const names = row ? [...row.cities] : [];
-  if (book.value.city && cityMode.value !== "write" && !names.includes(book.value.city)) names.push(book.value.city);
+  if (book.value.city && !names.includes(book.value.city)) names.push(book.value.city);
+  return names;
+});
+
+const districtOptions = computed(() => {
+  if (!book.value) return [];
+  const names = [...countiesOf(book.value.province, book.value.city)];
+  if (book.value.district && !names.includes(book.value.district)) names.push(book.value.district);
   return names;
 });
 
@@ -1991,38 +2001,24 @@ const placeOptions = computed(() => {
   return [...new Set(names)];
 });
 
-function applyCityMode() {
+function settlePlace() {
   if (!book.value) return;
-  const row = regions.find((item) => item.name === book.value.province);
-  const known = row ? row.cities.includes(book.value.city) : false;
-  cityMode.value = book.value.city && !known ? "write" : "list";
+  const next = settleRegion(book.value.province, book.value.city, book.value.district);
+  book.value.province = next.province;
+  book.value.city = next.city;
+  book.value.district = next.district;
 }
 
 function onProvinceChange() {
   const row = regions.find((item) => item.name === book.value.province);
   const names = row ? row.cities : [];
-  if (book.value.city && !names.includes(book.value.city)) {
-    book.value.city = "";
-    cityMode.value = "list";
-  }
+  if (book.value.city && !names.includes(book.value.city)) book.value.city = "";
+  onCityChange();
 }
 
-function pickCity(event) {
-  const value = event.target.value;
-  if (value === "__write__") {
-    cityMode.value = "write";
-    if (cityOptions.value.includes(book.value.city)) book.value.city = "";
-    return;
-  }
-  cityMode.value = "list";
-  book.value.city = value;
-}
-
-function useCityList() {
-  cityMode.value = "list";
-  const row = regions.find((item) => item.name === book.value.province);
-  const names = row ? row.cities : [];
-  if (!names.includes(book.value.city)) book.value.city = "";
+function onCityChange() {
+  const names = countiesOf(book.value.province, book.value.city);
+  if (book.value.district && !names.includes(book.value.district)) book.value.district = "";
 }
 
 function toggle(list, key) {
@@ -2039,7 +2035,6 @@ function startDraft() {
   book.value = emptyBook();
   prizes.value = [];
   draws.value = [];
-  cityMode.value = "list";
   nodeOrigin.value = nodesKey(book.value);
 }
 
@@ -2216,7 +2211,7 @@ async function openGuide(id) {
     await loadPrizes(data.race.id);
     await loadDraws(data.race.id);
     nodeOrigin.value = nodesKey(book.value);
-    applyCityMode();
+    settlePlace();
   } catch (err) {
     fail(err);
   }
@@ -2227,6 +2222,7 @@ function guideBody(row) {
     name: row.name,
     province: row.province,
     city: row.city,
+    district: row.district,
     place: row.place,
     organizer: row.organizer,
     grade: row.grade,
@@ -2309,7 +2305,7 @@ async function saveGuide() {
     await loadPrizes(opened.race.id);
     await loadDraws(opened.race.id);
     nodeOrigin.value = nodesKey(book.value);
-    applyCityMode();
+    settlePlace();
     saved.value = true;
     message.value = creating ? "已加入赛历" : nodesTouched ? "赛事资料与报名时间已保存" : "赛事资料已保存";
     await Promise.all([loadCatalog(), loadSpots()]);
@@ -2489,7 +2485,6 @@ if (token.value) {
 .group-title { margin: 16px 0 0; font-size: 13px; font-weight: 700; }
 .note { margin: 6px 0 0; color: var(--muted); font-size: 12px; line-height: 1.5; }
 .field small { color: var(--muted); font-size: 12px; line-height: 1.4; }
-.back-list { align-self: flex-start; margin-top: 4px; color: var(--accent); font-size: 12px; font-weight: 650; }
 .media { margin-top: 14px; }
 .media-head { display: flex; justify-content: space-between; align-items: baseline; }
 .media-head span, .media-head b { font-size: 12px; font-weight: 650; color: var(--muted); }

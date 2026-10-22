@@ -405,7 +405,8 @@ function open() {
     ["route", "TEXT NOT NULL DEFAULT ''"],
     ["pickup", "TEXT NOT NULL DEFAULT ''"],
     ["pacers", "TEXT NOT NULL DEFAULT ''"],
-    ["guide_text", "TEXT NOT NULL DEFAULT ''"]
+    ["guide_text", "TEXT NOT NULL DEFAULT ''"],
+    ["district", "TEXT NOT NULL DEFAULT ''"]
   ]) {
     const cols = handle.prepare("PRAGMA table_info(races)").all();
     if (!cols.some((col) => col.name === name)) handle.exec(`ALTER TABLE races ADD COLUMN ${name} ${type}`);
