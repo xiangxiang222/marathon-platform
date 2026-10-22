@@ -754,4 +754,4 @@ function mountBotRaces(app, { BASE, getDb, requireAdmin }) {
   });
 }
 
-module.exports = { mountBotRaces };
+module.exports = { mountBotRaces, botGate, httpsUrl };

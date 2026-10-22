@@ -15,6 +15,7 @@ import Mine from "./views/Mine.vue";
 import Admin from "./views/Admin.vue";
 import Calendar from "./views/Calendar.vue";
 import Radar from "./views/Radar.vue";
+import News from "./views/News.vue";
 
 export default createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -22,6 +23,8 @@ export default createRouter({
     { path: "/", component: Home },
     { path: "/calendar", component: Calendar, meta: { hideTab: true } },
     { path: "/radar", component: Radar, meta: { hideTab: true } },
+    { path: "/news", component: News, meta: { hideTab: true } },
+    { path: "/news/:id", component: News, meta: { hideTab: true } },
     { path: "/races/:id", component: Race, meta: { hideTab: true } },
     { path: "/sport", component: Exercise },
     { path: "/look", component: Look },

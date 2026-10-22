@@ -1,0 +1,8 @@
+<view class="pad">
+  <view wx:if="{{message}}" class="err">{{message}}</view>
+  <navigator wx:for="{{rows}}" wx:key="id" url="/pages/news/detail?id={{item.id}}" class="card">
+    <view class="title">{{item.title}}</view>
+    <view class="meta">{{item.publishedAt}} · {{item.raceName}} · {{item.source}}</view>
+  </navigator>
+  <view wx:if="{{ready && !rows.length}}" class="empty">还没有资讯</view>
+</view>

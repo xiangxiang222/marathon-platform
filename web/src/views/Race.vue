@@ -128,6 +128,13 @@
       </div>
     </template>
     <template v-if="race && tab === 'news'">
+      <div v-if="articles.length" class="block">
+        <h2>相关资讯</h2>
+        <router-link v-for="item in articles" :key="item.id" class="mate" :to="'/news/' + item.id">
+          <span>{{ item.title }}</span>
+          <b>{{ item.publishedAt }}</b>
+        </router-link>
+      </div>
       <div v-if="race.organizer || race.source || race.eventUrl || race.officialUrl || queryLinks.length" class="block">
         <h2>这场的页面</h2>
         <p v-if="race.organizer" class="src">主办 {{ race.organizer }}</p>
@@ -298,9 +305,14 @@ const message = ref("");
 const resultMessage = ref("");
 const note = ref("");
 const copyError = ref("");
+const articles = ref([]);
 
 async function load() {
-  const data = await api("/races/" + route.params.id);
+  const [data, news] = await Promise.all([
+    api("/races/" + route.params.id),
+    api("/races/" + route.params.id + "/news").catch(() => ({ news: [] }))
+  ]);
+  articles.value = news.news || [];
   race.value = data.race;
   statuses.value = data.statuses;
   myStatus.value = data.myStatus;

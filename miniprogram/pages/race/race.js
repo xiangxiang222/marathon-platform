@@ -68,7 +68,8 @@ Page({
     signupUrl: "",
     signupQr: "",
     signupHint: "",
-    queryLinks: []
+    queryLinks: [],
+    articles: []
   },
   onLoad(query) {
     this.raceId = query.id;
@@ -164,6 +165,9 @@ Page({
           patch.distance = distanceOptions[0].key;
         }
         this.setData(patch);
+      }),
+      request("/races/" + this.raceId + "/news").then((data) => {
+        this.setData({ articles: data.news || [] });
       })
     ];
     if (this.data.code) {
