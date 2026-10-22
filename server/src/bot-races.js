@@ -469,6 +469,7 @@ function writeRace(db, race, payload, raceId) {
     city: keep(payload.city, current.city),
     province: keep(payload.province, current.province),
     place: keep(payload.place, current.place || payload.city),
+    district: keep(payload.district, current.district),
     distances: payload.distances.join(","),
     kinds: payload.kindsSet ? payload.kinds.join(",") : current.kinds || "",
     groups: payload.groupsSet ? payload.groups.join(",") : current.groups || "",
@@ -501,7 +502,7 @@ function writeRace(db, race, payload, raceId) {
   if (race) {
     db.prepare(
       `UPDATE races SET
-         name = ?, race_date = ?, city = ?, province = ?, place = ?, distances = ?, kinds = ?, groups = ?,
+         name = ?, race_date = ?, city = ?, province = ?, district = ?, place = ?, distances = ?, kinds = ?, groups = ?,
          start_at = ?, bib_at = ?, fee = ?, scale = ?, phone = ?,
          signup_url = ?, draw_url = ?, bib_url = ?, result_url = ?, live_url = ?, event_url = ?,
          official_url = ?, organizer = ?, grade = ?,
@@ -513,6 +514,7 @@ function writeRace(db, race, payload, raceId) {
       values.raceDate,
       values.city,
       values.province,
+      values.district,
       values.place,
       values.distances,
       values.kinds,
@@ -551,8 +553,8 @@ function writeRace(db, race, payload, raceId) {
        id, name, city, province, distances, race_date, deadline, place,
        reg_start, draw_at, pay_deadline, source, updated_at, deadline_name, grade, official_url,
        organizer, event_url, kinds, groups, start_at, bib_at, fee, scale, phone,
-       signup_url, draw_url, bib_url, result_url, live_url, route, pickup, pacers, guide_text
-     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+       signup_url, draw_url, bib_url, result_url, live_url, route, pickup, pacers, guide_text, district
+     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
   ).run(
     raceId,
     values.name,
@@ -587,7 +589,8 @@ function writeRace(db, race, payload, raceId) {
     values.route,
     values.pickup,
     values.pacers,
-    values.guideText
+    values.guideText,
+    values.district
   );
   return raceId;
 }

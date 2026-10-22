@@ -359,6 +359,7 @@ function presentRace(row, now) {
     name: row.name,
     city: row.city,
     province: row.province,
+    district: field(row, "district", "district"),
     place: row.place,
     distances,
     distanceLabels: distances.map((d) => DISTANCE_LABEL[d] || d),

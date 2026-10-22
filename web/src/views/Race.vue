@@ -243,9 +243,12 @@ const placeLine = computed(() => {
 });
 const locationLine = computed(() => {
   if (!race.value) return "";
+  const parts = [];
+  if (placeLine.value) parts.push(placeLine.value);
+  if (race.value.district) parts.push(race.value.district);
   const spot = race.value.place;
-  if (!spot || spot === race.value.city || spot === race.value.province) return placeLine.value;
-  return placeLine.value + " · " + spot;
+  if (spot && spot !== race.value.city && spot !== race.value.province && spot !== race.value.district) parts.push(spot);
+  return parts.join(" · ");
 });
 const projectLabels = computed(() => {
   if (!race.value) return [];

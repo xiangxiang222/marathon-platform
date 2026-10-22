@@ -81,14 +81,10 @@
           <p v-if="botRows.length" class="hint">{{ botRows.length }} 场</p>
           <div class="race-list">
             <div v-for="item in botRows" :key="item.id" class="race-row" :class="{ on: review && review.id === item.id }">
-              <button type="button" class="race-open catalog-open review-open" @click="openReview(item)">
-                <span class="review-meta">
-                  <time>{{ item.raceDate }}</time>
-                  <em>{{ item.city }}</em>
-                  <i class="mark" :class="reviewKind(item)">{{ reviewMark(item) }}</i>
-                </span>
-                <b>{{ item.name }}</b>
-                <small v-if="item.note">打回原因：{{ item.note }}</small>
+              <button type="button" class="race-open catalog-open" @click="openReview(item)">
+                <time>{{ item.raceDate }}</time>
+                <em>{{ item.city }}</em>
+                <span>{{ item.name }}</span>
               </button>
               <button v-if="item.status === 'pending'" class="primary row-pass" type="button" @click.stop="publishBot(item)">通过</button>
             </div>
@@ -165,7 +161,6 @@
                 <p class="edit-meta">
                   <span>{{ review.raceDate }}</span>
                   <span>{{ review.city }}</span>
-                  <span>{{ reviewMark(review) }}</span>
                 </p>
               </div>
               <div class="edit-tools">
@@ -175,11 +170,6 @@
             </header>
           </div>
           <p v-if="review.note" class="warn">打回原因：{{ review.note }}</p>
-          <p v-if="review.status === 'returned'" class="hint">改完再传，会回到待审。</p>
-          <p v-else-if="review.onCalendar && review.changes.length" class="hint">通过后，这次写上的字段盖掉原来的。奖项和历年中签按这一份整份替换。空着的报名时间和链接保持原样。</p>
-          <p v-else-if="review.onCalendar" class="hint">和赛历里记下的一样。</p>
-          <p v-else class="hint">通过后写入赛历。</p>
-          <p v-for="(change, index) in review.changes" :key="'change-' + index" class="warn">{{ change }}</p>
           <p v-for="(line, index) in review.lines" :key="'line-' + index" class="hint">{{ line }}</p>
           <form v-if="review.status === 'pending'" class="check-form" @submit.prevent="returnBot(review)">
             <input v-model="review.returnNote" maxlength="200" placeholder="打回原因" />
@@ -222,15 +212,16 @@
                   </select>
                 </label>
                 <label class="field"><span>城市</span>
-                  <select v-if="cityMode !== 'write'" :value="book.city" @change="pickCity">
+                  <select v-model="book.city" @change="onCityChange">
                     <option value="">选择城市</option>
                     <option v-for="name in cityOptions" :key="name" :value="name">{{ name }}</option>
-                    <option value="__write__">手动填写</option>
                   </select>
-                  <template v-else>
-                    <input v-model="book.city" placeholder="填写城市名称" />
-                    <button class="back-list" type="button" @click="useCityList">从列表选择</button>
-                  </template>
+                </label>
+                <label class="field"><span>区县</span>
+                  <select v-model="book.district">
+                    <option value="">选择区县</option>
+                    <option v-for="name in districtOptions" :key="name" :value="name">{{ name }}</option>
+                  </select>
                 </label>
                 <label class="field span"><span>举办地点</span><input v-model="book.place" list="place-options" placeholder="起点、场馆或景区" /><datalist id="place-options"><option v-for="name in placeOptions" :key="name" :value="name" /></datalist></label>
                 <label class="field"><span>主办单位</span><input v-model="book.organizer" placeholder="组委会或主办机构" /></label>
@@ -804,6 +795,7 @@
 <script setup>
 import { computed, ref } from "vue";
 import { adminUpload, api, raceSheetSrc } from "../api";
+import { countiesOf, settleRegion } from "../areas";
 import { regions } from "../regions";
 
 const token = ref(sessionStorage.getItem("marathon_admin") || "");
@@ -948,7 +940,6 @@ const routeQueue = ref([]);
 const pacerQueue = ref([]);
 const liveQueue = ref(null);
 const spots = ref([]);
-const cityMode = ref("list");
 const distanceChoices = [
   { key: "full", label: "全马" },
   { key: "half", label: "半马" },
@@ -982,7 +973,7 @@ const editMeta = computed(() => {
   const row = book.value;
   if (!row) return "";
   const grade = gradeChoices.find((item) => item.value === row.grade);
-  return [row.raceDate, [row.province, row.city].filter(Boolean).join(" "), grade && grade.value ? grade.label : "", row.source ? "来源 " + row.source : "", row.updatedAt ? "更新于 " + row.updatedAt : ""].filter(Boolean);
+  return [row.raceDate, [row.province, row.city, row.district].filter(Boolean).join(" "), grade && grade.value ? grade.label : "", row.source ? "来源 " + row.source : "", row.updatedAt ? "更新于 " + row.updatedAt : ""].filter(Boolean);
 });
 const filters = [
   { label: "待确认", value: "pending" },
@@ -1733,18 +1724,6 @@ async function syncAll() {
   await search();
 }
 
-function reviewMark(item) {
-  if (!item.onCalendar) return "新场";
-  if (item.changes.length) return "更新 · " + item.changes.length + " 处";
-  return "无变化";
-}
-
-function reviewKind(item) {
-  if (!item.onCalendar) return "fresh";
-  if (item.changes.length) return "changed";
-  return "same";
-}
-
 function showPublished() {
   raceTab.value = "published";
   review.value = null;
@@ -1873,6 +1852,7 @@ function blankBook(race) {
     raceDate: race.raceDate || "",
     province: race.province,
     city: race.city,
+    district: race.district || "",
     place: race.place,
     distances: [...race.distances],
     kinds: [...race.kinds],
@@ -1921,6 +1901,7 @@ function emptyBook() {
     raceDate: "",
     province: "",
     city: "",
+    district: "",
     place: "",
     distances: [],
     kinds: [],
@@ -1979,7 +1960,14 @@ const cityOptions = computed(() => {
   if (!book.value) return [];
   const row = regions.find((item) => item.name === book.value.province);
   const names = row ? [...row.cities] : [];
-  if (book.value.city && cityMode.value !== "write" && !names.includes(book.value.city)) names.push(book.value.city);
+  if (book.value.city && !names.includes(book.value.city)) names.push(book.value.city);
+  return names;
+});
+
+const districtOptions = computed(() => {
+  if (!book.value) return [];
+  const names = [...countiesOf(book.value.province, book.value.city)];
+  if (book.value.district && !names.includes(book.value.district)) names.push(book.value.district);
   return names;
 });
 
@@ -1991,38 +1979,24 @@ const placeOptions = computed(() => {
   return [...new Set(names)];
 });
 
-function applyCityMode() {
+function settlePlace() {
   if (!book.value) return;
-  const row = regions.find((item) => item.name === book.value.province);
-  const known = row ? row.cities.includes(book.value.city) : false;
-  cityMode.value = book.value.city && !known ? "write" : "list";
+  const next = settleRegion(book.value.province, book.value.city, book.value.district);
+  book.value.province = next.province;
+  book.value.city = next.city;
+  book.value.district = next.district;
 }
 
 function onProvinceChange() {
   const row = regions.find((item) => item.name === book.value.province);
   const names = row ? row.cities : [];
-  if (book.value.city && !names.includes(book.value.city)) {
-    book.value.city = "";
-    cityMode.value = "list";
-  }
+  if (book.value.city && !names.includes(book.value.city)) book.value.city = "";
+  onCityChange();
 }
 
-function pickCity(event) {
-  const value = event.target.value;
-  if (value === "__write__") {
-    cityMode.value = "write";
-    if (cityOptions.value.includes(book.value.city)) book.value.city = "";
-    return;
-  }
-  cityMode.value = "list";
-  book.value.city = value;
-}
-
-function useCityList() {
-  cityMode.value = "list";
-  const row = regions.find((item) => item.name === book.value.province);
-  const names = row ? row.cities : [];
-  if (!names.includes(book.value.city)) book.value.city = "";
+function onCityChange() {
+  const names = countiesOf(book.value.province, book.value.city);
+  if (book.value.district && !names.includes(book.value.district)) book.value.district = "";
 }
 
 function toggle(list, key) {
@@ -2039,7 +2013,6 @@ function startDraft() {
   book.value = emptyBook();
   prizes.value = [];
   draws.value = [];
-  cityMode.value = "list";
   nodeOrigin.value = nodesKey(book.value);
 }
 
@@ -2216,7 +2189,7 @@ async function openGuide(id) {
     await loadPrizes(data.race.id);
     await loadDraws(data.race.id);
     nodeOrigin.value = nodesKey(book.value);
-    applyCityMode();
+    settlePlace();
   } catch (err) {
     fail(err);
   }
@@ -2227,6 +2200,7 @@ function guideBody(row) {
     name: row.name,
     province: row.province,
     city: row.city,
+    district: row.district,
     place: row.place,
     organizer: row.organizer,
     grade: row.grade,
@@ -2309,7 +2283,7 @@ async function saveGuide() {
     await loadPrizes(opened.race.id);
     await loadDraws(opened.race.id);
     nodeOrigin.value = nodesKey(book.value);
-    applyCityMode();
+    settlePlace();
     saved.value = true;
     message.value = creating ? "已加入赛历" : nodesTouched ? "赛事资料与报名时间已保存" : "赛事资料已保存";
     await Promise.all([loadCatalog(), loadSpots()]);
@@ -2489,7 +2463,6 @@ if (token.value) {
 .group-title { margin: 16px 0 0; font-size: 13px; font-weight: 700; }
 .note { margin: 6px 0 0; color: var(--muted); font-size: 12px; line-height: 1.5; }
 .field small { color: var(--muted); font-size: 12px; line-height: 1.4; }
-.back-list { align-self: flex-start; margin-top: 4px; color: var(--accent); font-size: 12px; font-weight: 650; }
 .media { margin-top: 14px; }
 .media-head { display: flex; justify-content: space-between; align-items: baseline; }
 .media-head span, .media-head b { font-size: 12px; font-weight: 650; color: var(--muted); }
@@ -2537,17 +2510,6 @@ if (token.value) {
 .catalog-open { display: grid; grid-template-columns: 108px minmax(64px, 96px) minmax(0, 1fr); gap: 8px 14px; align-items: center; }
 .catalog-open time, .catalog-open em { font-style: normal; color: var(--muted); font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; }
 .catalog-open span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.review-open { display: flex; flex-direction: column; align-items: stretch; gap: 2px; }
-.review-meta { display: flex; align-items: center; gap: 8px; min-width: 0; }
-.review-open time { flex: none; width: auto; }
-.review-open em { flex: none; max-width: 96px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.review-meta .mark { margin-left: auto; }
-.review-open b { display: block; min-width: 0; font-weight: 650; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.review-open small { display: block; color: var(--muted); font-size: 12px; font-weight: 500; line-height: 1.4; white-space: normal; }
-.mark { justify-self: end; height: 22px; padding: 0 8px; border-radius: 999px; font-style: normal; font-size: 12px; font-weight: 650; line-height: 22px; white-space: nowrap; }
-.mark.fresh { background: rgba(0, 122, 255, 0.12); color: var(--accent); }
-.mark.changed { background: rgba(154, 91, 18, 0.12); color: #9a5b12; }
-.mark.same { background: rgba(60, 60, 67, 0.08); color: var(--muted); }
 .block .row-pass { display: inline-flex; align-items: center; justify-content: center; flex: none; width: auto; height: 32px; margin: 0; padding: 0 12px; border-radius: 999px; font-size: 13px; }
 .remove { flex: none; color: var(--muted); font-size: 13px; padding: 8px 10px; background: transparent; }
 .remove:hover { color: var(--red); }
@@ -2659,8 +2621,6 @@ a { color: #007aff; }
   .catalog-open time, .catalog-open em { display: inline; }
   .catalog-open time::after { content: " · "; }
   .catalog-open span { white-space: normal; margin-top: 2px; }
-  .review-open { display: flex; flex-direction: column; align-items: stretch; }
-  .review-open .mark { display: inline-block; margin-top: 0; }
   .inline-form { flex-direction: row; align-items: center; }
   .inline-form input { flex: 1; width: auto; min-width: 0; }
   .inline-form .primary { width: auto; margin-top: 0; padding: 0 14px; }

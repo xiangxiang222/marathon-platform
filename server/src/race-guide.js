@@ -68,6 +68,11 @@ function parseGuide(body) {
   const province = clip(body.province, 20);
   const place = clip(body.place, 80);
   if (name == null || city == null || province == null || place == null) return { status: 400, error: "名称或地点太长" };
+  let district = null;
+  if (body.district != null) {
+    district = clip(body.district, 40);
+    if (district == null) return { status: 400, error: "区县太长" };
+  }
   const distances = codes(body.distances, DISTANCES);
   const kinds = codes(body.kinds, KINDS);
   if (!distances || !kinds) return { status: 400, error: "包含不支持的项目类型" };
@@ -120,6 +125,7 @@ function parseGuide(body) {
       name: name || "",
       city: city || "",
       province: province || "",
+      district,
       place: place || "",
       distances,
       kinds,
@@ -155,7 +161,7 @@ function saveGuide(db, race, body) {
   const today = new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10);
   db.prepare(
     `UPDATE races SET
-       name = ?, race_date = ?, city = ?, province = ?, place = ?, distances = ?, kinds = ?, groups = ?,
+       name = ?, race_date = ?, city = ?, province = ?, district = ?, place = ?, distances = ?, kinds = ?, groups = ?,
        start_at = ?, bib_at = ?, fee = ?, scale = ?, phone = ?,
        signup_url = ?, draw_url = ?, bib_url = ?, result_url = ?, live_url = ?, event_url = ?,
        official_url = ?, organizer = ?, grade = ?,
@@ -166,6 +172,7 @@ function saveGuide(db, race, body) {
     fields.raceDateText || race.race_date,
     keep(fields.city, race.city),
     keep(fields.province, race.province),
+    fields.district == null ? race.district || "" : fields.district,
     keep(fields.place, race.place),
     fields.distances.join(","),
     fields.kinds.join(","),
@@ -292,13 +299,13 @@ function createRace(db, body) {
        source, updated_at, kinds, groups, start_at,
        bib_at, fee, scale, phone,
        signup_url, draw_url, bib_url, result_url, live_url, event_url, official_url,
-       organizer, grade, route, pickup, pacers, guide_text
+       organizer, grade, route, pickup, pacers, guide_text, district
      ) VALUES (
        ?, ?, ?, ?, ?, ?, '', ?,
        ?, ?, ?, ?, ?,
        ?, ?, ?, ?,
        ?, ?, ?, ?, ?, ?, ?,
-       ?, ?, ?, ?, ?, ?
+       ?, ?, ?, ?, ?, ?, ?
      )`
   ).run(
     id,
@@ -329,7 +336,8 @@ function createRace(db, body) {
     fields.route,
     fields.pickup,
     fields.pacers,
-    fields.guideText
+    fields.guideText,
+    fields.district || ""
   );
   return { id };
 }
