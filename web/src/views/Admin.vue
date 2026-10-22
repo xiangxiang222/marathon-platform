@@ -388,7 +388,7 @@
                   <input v-model="prizeBreak" placeholder="破时成绩 3:00:00" />
                   <input v-model.number="prizeAmount" type="number" min="0" placeholder="税前金额，0 表示非现金" />
                   <input v-model.number="prizeTax" type="number" min="0" placeholder="税率，例如 20" />
-                  <label class="note"><input v-model="prizeStack" type="checkbox" /> 可与其他奖叠加</label>
+                  <label class="check-line"><input v-model="prizeStack" type="checkbox" /> 可与其他奖叠加</label>
                   <input v-model="prizeSource" maxlength="80" placeholder="奖项来源" />
                   <input v-model="prizeCutoff" placeholder="往届第 N 名 3:40:00，可空" />
                   <input v-model="prizeCutoffSource" maxlength="80" placeholder="往届成绩来源" />
@@ -2377,6 +2377,17 @@ if (token.value) {
 .role-pick,
 .check-form input[type="date"],
 .check-form input[type="time"] { line-height: normal; }
+.check-form input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  min-height: 18px;
+  margin: 0;
+  padding: 0;
+  line-height: normal;
+  box-shadow: none;
+  border-radius: 4px;
+}
+.check-line { display: flex; align-items: center; gap: 8px; min-height: 48px; font-size: 15px; }
 .check-form textarea { min-height: 112px; height: auto; padding: 14px 16px; line-height: 1.65; resize: vertical; }
 .check-form .primary,
 .inline-form .primary,
