@@ -169,6 +169,7 @@
                 <p v-if="editMeta.length" class="edit-meta"><span v-for="part in editMeta" :key="part">{{ part }}</span></p>
               </div>
               <div class="edit-tools">
+                <button v-if="book.id" class="text-btn" type="button" @click="closeEditor">收起</button>
                 <router-link v-if="book.id" class="text-btn" :to="'/races/' + book.id">查看赛历</router-link>
                 <button v-else class="text-btn" type="button" @click="closeEditor">取消</button>
                 <button class="save" type="submit" form="race-editor">保存</button>
@@ -2122,6 +2123,10 @@ async function removeRace(item) {
 }
 
 async function openGuide(id) {
+  if (book.value && book.value.id === id) {
+    closeEditor();
+    return;
+  }
   message.value = "";
   saved.value = false;
   try {
