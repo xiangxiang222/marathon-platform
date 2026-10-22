@@ -74,7 +74,15 @@
     <div v-if="race && (race.guideText || race.guide.length)" class="block">
       <h2>竞赛规程</h2>
       <p v-if="race.guide.length" class="src">按组委会公布的原图往下看。奖金、关门时间和参赛资格以组委会原文为准。</p>
-      <pre v-if="race.guideText" class="guide-text">{{ race.guideText }}</pre>
+      <div v-if="guideBlocks.length" class="guide-md">
+        <p v-for="block in guideBlocks" :key="block.i" :class="'md md-' + block.kind">
+          <span v-if="block.mark" class="md-mark">{{ block.mark }}</span>
+          <template v-for="run in block.runs" :key="run.j">
+            <strong v-if="run.strong">{{ run.text }}</strong>
+            <template v-else>{{ run.text }}</template>
+          </template>
+        </p>
+      </div>
       <button v-for="sheet in race.guide" :key="sheet.id" class="sheet" type="button" @click="openSheet(sheet.id)">
         <img :src="sheetSrc(sheet.id)" alt="竞赛规程" />
       </button>
@@ -206,6 +214,7 @@ import { useRoute } from "vue-router";
 import { api, raceSheetSrc, resultProofSrc, signupSheetSrc, upload } from "../api";
 import { copyText } from "../copy";
 import { dateParts, toneOf } from "../tone";
+import { parseGuide } from "../guide-md";
 const route = useRoute();
 const race = ref(null);
 const tone = computed(() => toneOf(race.value));
@@ -229,6 +238,7 @@ const showFacts = computed(() => {
   return race.value.kindLabels.length || race.value.groups.length || race.value.fee || race.value.scale || race.value.startAt;
 });
 const routeSheets = computed(() => (race.value && race.value.routeSheets) || []);
+const guideBlocks = computed(() => parseGuide(race.value && race.value.guideText));
 const dayNotes = computed(() => {
   if (!race.value) return [];
   return [
@@ -509,7 +519,12 @@ onMounted(load);
 .day-note { margin-top: 12px; }
 .day-note h3 { margin: 0 0 4px; font-size: 13px; font-weight: 650; color: var(--muted); }
 .day-note p { margin: 0; font-size: 15px; line-height: 1.5; white-space: pre-wrap; }
-.guide-text { margin: 8px 0 0; white-space: pre-wrap; font: inherit; font-size: 15px; line-height: 1.55; }
+.guide-md .md { margin: 10px 0 0; font-size: 15px; line-height: 1.6; }
+.guide-md .md-h1 { margin-top: 4px; font-size: 22px; font-weight: 700; line-height: 1.35; }
+.guide-md .md-h2 { margin-top: 18px; font-size: 18px; font-weight: 700; line-height: 1.35; }
+.guide-md .md-h3 { margin-top: 14px; font-size: 17px; font-weight: 650; line-height: 1.4; }
+.guide-md .md-h4 { margin-top: 12px; font-size: 16px; font-weight: 650; line-height: 1.4; }
+.guide-md .md-mark { margin-right: 6px; color: #8d949c; }
 .viewer { position: fixed; inset: 0; z-index: 30; display: flex; align-items: center; justify-content: center; padding: 16px; background: rgba(0, 0, 0, 0.88); }
 .viewer img { max-width: 100%; max-height: 100%; }
 </style>

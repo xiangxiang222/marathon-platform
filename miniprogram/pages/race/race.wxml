@@ -16,157 +16,164 @@
     <view wx:for="{{conflicts}}" wx:key="text" class="warn">{{item.text}}</view>
   </view>
 
-  <view class="card" wx:if="{{race.nodes.length}}">
-    <view class="h2">时间节点</view>
-    <view wx:for="{{race.nodes}}" wx:key="key" class="row">
-      <text class="k">{{item.label}}</text>
-      <text class="{{item.soon ? 'soon' : ''}}">{{item.at}}<text wx:if="{{item.text}}"> · {{item.text}}</text></text>
+  <view class="tabs">
+    <view wx:for="{{tabs}}" wx:key="id" class="tab {{tab === item.id ? 'on' : ''}}" data-id="{{item.id}}" bindtap="pickTab">{{item.label}}</view>
+  </view>
+
+  <block wx:if="{{tab === 'overview'}}">
+    <view class="card" wx:if="{{race.nodes.length}}">
+      <view class="h2">时间节点</view>
+      <view wx:for="{{race.nodes}}" wx:key="key" class="row">
+        <text class="k">{{item.label}}</text>
+        <text class="{{item.soon ? 'soon' : ''}}">{{item.at}}<text wx:if="{{item.text}}"> · {{item.text}}</text></text>
+      </view>
     </view>
-  </view>
-
-  <view class="card" wx:if="{{race.links.length}}">
-    <view class="h2">报名和查询</view>
-    <view class="src">复制后到浏览器打开。</view>
-    <button wx:for="{{race.links}}" wx:key="key" class="btn" data-url="{{item.url}}" data-key="{{item.key}}" bindtap="copyLink">{{item.label}}</button>
-    <view wx:if="{{askSignup}}">
-      <view class="src">报上了吗</view>
-      <button class="btn" bindtap="confirmSigned">报上了</button>
-      <button class="ghost" bindtap="dismissAsk">还没有</button>
+    <view class="card" wx:if="{{race.fee || race.scale || race.kindLabels.length || race.groups.length}}">
+      <view class="h2">项目</view>
+      <view wx:if="{{race.fee}}" class="row"><text class="k">报名费</text><text>{{race.fee}}</text></view>
+      <view wx:if="{{race.scale}}" class="row"><text class="k">规模</text><text>{{race.scale}}</text></view>
+      <view wx:if="{{race.kindLabels.length}}" class="src">{{kindText}}</view>
+      <view wx:if="{{race.groups.length}}" class="src">{{groupText}}</view>
     </view>
-  </view>
-
-  <view class="card">
-    <view class="h2">站内报名</view>
-    <view class="slot"><text>报名和付款</text><text class="slot-state">尚未开通</text></view>
-    <view class="src">合作赛事以后在这里报名。现在仍打开赛事自己的页面。不填写身份证。</view>
-  </view>
-
-  <view class="card" wx:if="{{race.fee || race.scale || race.kindLabels.length || race.groups.length}}">
-    <view class="h2">项目</view>
-    <view wx:if="{{race.fee}}" class="row"><text class="k">报名费</text><text>{{race.fee}}</text></view>
-    <view wx:if="{{race.scale}}" class="row"><text class="k">规模</text><text>{{race.scale}}</text></view>
-    <view wx:if="{{race.kindLabels.length}}" class="src">{{kindText}}</view>
-    <view wx:if="{{race.groups.length}}" class="src">{{groupText}}</view>
-  </view>
-
-  <view class="card" wx:if="{{guide.length || race.guideText}}">
-    <view class="h2">竞赛规程</view>
-    <view wx:if="{{guide.length}}" class="src">按组委会公布的原图往下看。</view>
-    <text wx:if="{{race.guideText}}" class="guide-text">{{race.guideText}}</text>
-    <image wx:for="{{guide}}" wx:key="id" class="sheet" mode="widthFix" src="{{item.src}}" data-src="{{item.src}}" bindtap="previewGuide" />
-  </view>
-
-  <view class="card" wx:if="{{race.route || routeSheets.length || race.pickup || race.pacers || pacerSheets.length}}">
-    <view class="h2">比赛日</view>
-    <view wx:if="{{race.route}}" class="src">路线 {{race.route}}</view>
-    <image wx:for="{{routeSheets}}" wx:key="id" class="sheet" mode="widthFix" src="{{item.src}}" data-src="{{item.src}}" bindtap="previewGuide" />
-    <view wx:if="{{race.pickup}}" class="src">领物 {{race.pickup}}</view>
-    <view wx:if="{{race.pacers}}" class="src">配速员 {{race.pacers}}</view>
-    <image wx:for="{{pacerSheets}}" wx:key="id" class="sheet" mode="widthFix" src="{{item.src}}" data-src="{{item.src}}" bindtap="previewGuide" />
-  </view>
-
-  <view class="card">
-    <view class="h2">酒店</view>
-    <view class="slot"><text>赛事周订房</text><text class="slot-state">尚未开通</text></view>
-    <view class="src">这里不显示房价，也不跳转。</view>
-  </view>
-
-  <view class="card" wx:if="{{liveSheet}}">
-    <view class="h2">直播</view>
-    <image class="sheet" mode="widthFix" src="{{liveSheet.src}}" data-src="{{liveSheet.src}}" bindtap="previewGuide" />
-  </view>
-
-  <view class="card" wx:for="{{cards}}" wx:key="clubId">
-    <view class="h2">发到微信群 · {{item.club.name}}</view>
-    <view class="title">{{item.title}}</view>
-    <view class="sum">{{item.summary}}</view>
-    <view wx:if="{{item.unpaid.length}}" class="src">还没缴：{{item.unpaidText}}</view>
-    <button class="btn share" open-type="share" data-title="{{item.title}}" data-code="{{item.club.code}}" bindtap="armShare">发到微信群</button>
-  </view>
-  <view wx:if="{{card && !cards.length}}" class="card">
-    <view class="h2">{{card.club.name}}</view>
-    <view class="title">{{card.title}}</view>
-    <view class="sum">{{card.summary}}</view>
-    <view wx:if="{{card.unpaid.length}}" class="src">还没缴：{{card.unpaidText}}</view>
-    <button class="btn share" open-type="share" data-title="{{card.title}}" data-code="{{card.club.code}}" bindtap="armShare">发到微信群</button>
-  </view>
-
-  <view class="card">
-    <view class="h2">我这场</view>
-    <view wx:if="{{!ready}}" class="nick">
-      <view class="muted">先到「我的」登录，再标状态。标完同团的人能看见。</view>
-      <navigator class="login-go" open-type="switchTab" url="/pages/mine/mine">去登录</navigator>
+    <view class="card" wx:if="{{drawRates.length}}">
+      <view class="h2">历年中签</view>
+      <view class="src">按公布的报名人数和名额计算。</view>
+      <view wx:for="{{drawRates}}" wx:key="id">
+        <view class="src">{{item.label}} · 报名 {{item.applicants}} · 名额 {{item.quota}} · {{item.rateText}}</view>
+        <view class="src">来源 {{item.source}}</view>
+      </view>
     </view>
-    <view wx:else>
-      <button wx:for="{{statuses}}" wx:key="*this" class="ghost {{myStatus === item ? 'on' : ''}}" data-status="{{item}}" bindtap="mark">{{item}}</button>
-      <view wx:if="{{myStatus}}" class="src">可以附一张报名成功截图。这里不识别截图上的字。</view>
-      <image wx:if="{{sheetSrc}}" src="{{sheetSrc}}" mode="widthFix" />
-      <button wx:if="{{myStatus}}" class="ghost" bindtap="chooseSheet">报名截图</button>
-      <button wx:if="{{hasSheet}}" class="ghost" bindtap="removeSheet">去掉截图</button>
+    <view class="card" wx:if="{{alternatives.length}}">
+      <view class="h2">同期还开着</view>
+      <view class="src">{{alternativeNote}}</view>
+      <navigator wx:for="{{alternatives}}" wx:key="id" class="row" url="/pages/race/race?id={{item.id}}">
+        <text>{{item.name}}</text><text>{{item.deadlineLabel}}</text>
+      </navigator>
     </view>
-    <view wx:if="{{message}}" class="err">{{message}}</view>
-  </view>
+    <view class="card">
+      <view class="h2">酒店</view>
+      <view class="slot"><text>赛事周订房</text><text class="slot-state">尚未开通</text></view>
+      <view class="src">这里不显示房价，也不跳转。</view>
+    </view>
+  </block>
 
-  <view class="card" wx:if="{{drawRates.length}}">
-    <view class="h2">历年中签</view>
-    <view class="src">按公布的报名人数和名额计算。</view>
-    <view wx:for="{{drawRates}}" wx:key="id">
-      <view class="src">{{item.label}} · 报名 {{item.applicants}} · 名额 {{item.quota}} · {{item.rateText}}</view>
-      <view class="src">来源 {{item.source}}</view>
+  <block wx:if="{{tab === 'signup'}}">
+    <view class="card" wx:if="{{race.links.length}}">
+      <view class="h2">报名和查询</view>
+      <view class="src">复制后到浏览器打开。</view>
+      <button wx:for="{{race.links}}" wx:key="key" class="btn" data-url="{{item.url}}" data-key="{{item.key}}" bindtap="copyLink">{{item.label}}</button>
+      <view wx:if="{{askSignup}}">
+        <view class="src">报上了吗</view>
+        <button class="btn" bindtap="confirmSigned">报上了</button>
+        <button class="ghost" bindtap="dismissAsk">还没有</button>
+      </view>
     </view>
-  </view>
+    <view class="card">
+      <view class="h2">站内报名</view>
+      <view class="slot"><text>报名和付款</text><text class="slot-state">尚未开通</text></view>
+      <view class="src">合作赛事以后在这里报名。现在仍打开赛事自己的页面。不填写身份证。</view>
+    </view>
+    <view class="card" wx:for="{{cards}}" wx:key="clubId">
+      <view class="h2">发到微信群 · {{item.club.name}}</view>
+      <view class="title">{{item.title}}</view>
+      <view class="sum">{{item.summary}}</view>
+      <view wx:if="{{item.unpaid.length}}" class="src">还没缴：{{item.unpaidText}}</view>
+      <button class="btn share" open-type="share" data-title="{{item.title}}" data-code="{{item.club.code}}" bindtap="armShare">发到微信群</button>
+    </view>
+    <view wx:if="{{card && !cards.length}}" class="card">
+      <view class="h2">{{card.club.name}}</view>
+      <view class="title">{{card.title}}</view>
+      <view class="sum">{{card.summary}}</view>
+      <view wx:if="{{card.unpaid.length}}" class="src">还没缴：{{card.unpaidText}}</view>
+      <button class="btn share" open-type="share" data-title="{{card.title}}" data-code="{{card.club.code}}" bindtap="armShare">发到微信群</button>
+    </view>
+    <view class="card">
+      <view class="h2">我这场</view>
+      <view wx:if="{{!ready}}" class="nick">
+        <view class="muted">先到「我的」登录，再标状态。标完同团的人能看见。</view>
+        <navigator class="login-go" open-type="switchTab" url="/pages/mine/mine">去登录</navigator>
+      </view>
+      <view wx:else>
+        <button wx:for="{{statuses}}" wx:key="*this" class="ghost {{myStatus === item ? 'on' : ''}}" data-status="{{item}}" bindtap="mark">{{item}}</button>
+        <view wx:if="{{myStatus}}" class="src">可以附一张报名成功截图。这里不识别截图上的字。</view>
+        <image wx:if="{{sheetSrc}}" src="{{sheetSrc}}" mode="widthFix" />
+        <button wx:if="{{myStatus}}" class="ghost" bindtap="chooseSheet">报名截图</button>
+        <button wx:if="{{hasSheet}}" class="ghost" bindtap="removeSheet">去掉截图</button>
+      </view>
+      <view wx:if="{{message}}" class="err">{{message}}</view>
+    </view>
+    <view wx:for="{{clubs}}" wx:key="id" class="card">
+      <view class="h2">{{item.name}}</view>
+      <view wx:if="{{item.squadText}}" class="warn">{{item.squadText}}</view>
+      <view wx:if="{{!item.mates.length}}" class="muted">团里还没人标这场</view>
+      <view wx:for="{{item.mates}}" wx:for-item="mate" wx:key="nickname" class="row">
+        <text>{{mate.nickname}}</text><text>{{mate.status}}</text>
+      </view>
+    </view>
+  </block>
 
-  <view class="card" wx:if="{{drawText}}">
-    <view class="h2">中签卡片</view>
-    <view class="poster">
-      <view wx:for="{{drawLines}}" wx:key="*this">{{item}}</view>
+  <block wx:if="{{tab === 'guide'}}">
+    <view class="card">
+      <view class="h2">竞赛规程</view>
+      <view wx:if="{{guide.length}}" class="src">按组委会公布的原图往下看。</view>
+      <view wx:for="{{guideBlocks}}" wx:key="i" class="md md-{{item.kind}}">
+        <text wx:if="{{item.mark}}" class="md-mark">{{item.mark}}</text>
+        <text wx:for="{{item.runs}}" wx:for-item="run" wx:key="j" class="{{run.strong ? 'md-strong' : ''}}">{{run.text}}</text>
+      </view>
+      <image wx:for="{{guide}}" wx:key="id" class="sheet" mode="widthFix" src="{{item.src}}" data-src="{{item.src}}" bindtap="previewGuide" />
     </view>
-    <button class="btn" bindtap="copyDraw">复制卡片</button>
-    <button class="ghost" bindtap="savePoster">保存图片</button>
-    <view wx:if="{{drawNote}}" class="src">{{drawNote}}</view>
-    <view wx:if="{{drawError}}" class="err">{{drawError}}</view>
-    <canvas canvas-id="poster" class="poster-canvas" />
-  </view>
+  </block>
 
-  <view class="card" wx:if="{{alternatives.length}}">
-    <view class="h2">同期还开着</view>
-    <view class="src">{{alternativeNote}}</view>
-    <navigator wx:for="{{alternatives}}" wx:key="id" class="row" url="/pages/race/race?id={{item.id}}">
-      <text>{{item.name}}</text><text>{{item.deadlineLabel}}</text>
-    </navigator>
-  </view>
+  <block wx:if="{{tab === 'day'}}">
+    <view class="card" wx:if="{{race.route || routeSheets.length || race.pickup || race.pacers || pacerSheets.length}}">
+      <view class="h2">比赛日</view>
+      <view wx:if="{{race.route}}" class="src">路线 {{race.route}}</view>
+      <image wx:for="{{routeSheets}}" wx:key="id" class="sheet" mode="widthFix" src="{{item.src}}" data-src="{{item.src}}" bindtap="previewGuide" />
+      <view wx:if="{{race.pickup}}" class="src">领物 {{race.pickup}}</view>
+      <view wx:if="{{race.pacers}}" class="src">配速员 {{race.pacers}}</view>
+      <image wx:for="{{pacerSheets}}" wx:key="id" class="sheet" mode="widthFix" src="{{item.src}}" data-src="{{item.src}}" bindtap="previewGuide" />
+    </view>
+    <view class="card" wx:if="{{liveSheet}}">
+      <view class="h2">直播</view>
+      <image class="sheet" mode="widthFix" src="{{liveSheet.src}}" data-src="{{liveSheet.src}}" bindtap="previewGuide" />
+    </view>
+  </block>
 
-  <view class="card result" wx:if="{{ready}}">
-    <view class="h2">成绩</view>
-    <view class="src">手记的成绩标为未核验。可以附一张证书或奖牌照片。</view>
-    <view class="slot"><text>识别证书</text><text class="slot-state">尚未开通</text></view>
-    <view class="src">照片可以留下，成绩仍由自己填写。</view>
-    <view wx:for="{{myResults}}" wx:key="distance" class="sum">{{item.distanceLabel}} {{item.clock}} · 配速 {{item.pace}}<text wx:if="{{item.pb}}"> · PB</text> · {{item.verifyLabel}}</view>
-    <view wx:if="{{myResult.story}}" class="src">{{myResult.story}}</view>
-    <image wx:if="{{proofSrc}}" src="{{proofSrc}}" mode="widthFix" />
-    <view wx:if="{{myResult.proofLabel}}" class="src">{{myResult.proofLabel}} · 未核验</view>
-    <button wx:for="{{distanceOptions}}" wx:key="key" class="ghost {{distance === item.key ? 'on' : ''}}" data-distance="{{item.key}}" bindtap="pickDistance">{{item.label}}</button>
-    <view class="field">
-      <input placeholder="3:29:59" value="{{clock}}" bindinput="onClock" />
+  <block wx:if="{{tab === 'result'}}">
+    <view class="card" wx:if="{{drawText}}">
+      <view class="h2">中签卡片</view>
+      <view class="poster">
+        <view wx:for="{{drawLines}}" wx:key="*this">{{item}}</view>
+      </view>
+      <button class="btn" bindtap="copyDraw">复制卡片</button>
+      <button class="ghost" bindtap="savePoster">保存图片</button>
+      <view wx:if="{{drawNote}}" class="src">{{drawNote}}</view>
+      <view wx:if="{{drawError}}" class="err">{{drawError}}</view>
+      <canvas canvas-id="poster" class="poster-canvas" />
     </view>
-    <view class="field">
-      <input placeholder="这场想记的一句" value="{{story}}" maxlength="200" bindinput="onStory" />
+    <view class="card result" wx:if="{{ready}}">
+      <view class="h2">成绩</view>
+      <view class="src">手记的成绩标为未核验。可以附一张证书或奖牌照片。</view>
+      <view class="slot"><text>识别证书</text><text class="slot-state">尚未开通</text></view>
+      <view class="src">照片可以留下，成绩仍由自己填写。</view>
+      <view wx:for="{{myResults}}" wx:key="distance" class="sum">{{item.distanceLabel}} {{item.clock}} · 配速 {{item.pace}}<text wx:if="{{item.pb}}"> · PB</text> · {{item.verifyLabel}}</view>
+      <view wx:if="{{myResult.story}}" class="src">{{myResult.story}}</view>
+      <image wx:if="{{proofSrc}}" src="{{proofSrc}}" mode="widthFix" />
+      <view wx:if="{{myResult.proofLabel}}" class="src">{{myResult.proofLabel}} · 未核验</view>
+      <button wx:for="{{distanceOptions}}" wx:key="key" class="ghost {{distance === item.key ? 'on' : ''}}" data-distance="{{item.key}}" bindtap="pickDistance">{{item.label}}</button>
+      <view class="field">
+        <input placeholder="3:29:59" value="{{clock}}" bindinput="onClock" />
+      </view>
+      <view class="field">
+        <input placeholder="这场想记的一句" value="{{story}}" maxlength="200" bindinput="onStory" />
+      </view>
+      <button class="btn" bindtap="saveResult">记下成绩</button>
+      <button wx:if="{{myResult}}" class="ghost" data-kind="certificate" bindtap="chooseProof">证书照片</button>
+      <button wx:if="{{myResult}}" class="ghost" data-kind="medal" bindtap="chooseProof">奖牌照片</button>
+      <button wx:if="{{myResult.hasProof}}" class="ghost" bindtap="removeProof">去掉照片</button>
+      <button wx:if="{{myResult}}" class="ghost" bindtap="removeResult">去掉这项成绩</button>
+      <view wx:if="{{resultMessage}}" class="err">{{resultMessage}}</view>
     </view>
-    <button class="btn" bindtap="saveResult">记下成绩</button>
-    <button wx:if="{{myResult}}" class="ghost" data-kind="certificate" bindtap="chooseProof">证书照片</button>
-    <button wx:if="{{myResult}}" class="ghost" data-kind="medal" bindtap="chooseProof">奖牌照片</button>
-    <button wx:if="{{myResult.hasProof}}" class="ghost" bindtap="removeProof">去掉照片</button>
-    <button wx:if="{{myResult}}" class="ghost" bindtap="removeResult">去掉这项成绩</button>
-    <view wx:if="{{resultMessage}}" class="err">{{resultMessage}}</view>
-  </view>
-
-  <view wx:for="{{clubs}}" wx:key="id" class="card">
-    <view class="h2">{{item.name}}</view>
-    <view wx:if="{{item.squadText}}" class="warn">{{item.squadText}}</view>
-    <view wx:if="{{!item.mates.length}}" class="muted">团里还没人标这场</view>
-    <view wx:for="{{item.mates}}" wx:for-item="mate" wx:key="nickname" class="row">
-      <text>{{mate.nickname}}</text><text>{{mate.status}}</text>
-    </view>
-  </view>
+  </block>
 </view>
 <view wx:else class="empty">{{message || '正在打开这场'}}</view>

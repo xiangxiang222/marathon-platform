@@ -315,7 +315,7 @@
             <section v-show="editTab === 'guide'" class="section">
               <h3>竞赛规程</h3>
               <p class="note">选手先阅读正文，再查看原页。奖金、关门时间与参赛资格以组委会原文为准。</p>
-              <label class="field"><span>规程正文</span><textarea v-model="book.guideText" rows="8" placeholder="粘贴规程正文"></textarea></label>
+              <label class="field"><span>规程正文</span><textarea v-model="book.guideText" rows="8" placeholder="可用 Markdown。# 一级标题，## 二级，### 三级，#### 四级"></textarea></label>
               <div class="media">
                 <div class="media-head"><span>规程原页</span><b>{{ book.guide.length + guideQueue.length }}/16</b></div>
                 <div v-if="book.guide.length || guideQueue.length" class="sheets">

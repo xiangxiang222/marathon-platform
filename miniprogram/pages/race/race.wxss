@@ -1,4 +1,24 @@
+.tabs { display: flex; gap: 12rpx; margin-bottom: 20rpx; }
+.tab {
+  flex: 1;
+  text-align: center;
+  background: #fff;
+  color: #8e8e93;
+  border-radius: 16rpx;
+  font-size: 26rpx;
+  line-height: 64rpx;
+  font-weight: 650;
+}
+.tab.on { background: #007aff; color: #fff; }
 .h2 { font-size: 30rpx; font-weight: 650; margin-bottom: 8rpx; }
+.md { display: flex; flex-wrap: wrap; margin-top: 16rpx; font-size: 28rpx; line-height: 1.6; }
+.md-h1 { margin-top: 8rpx; font-size: 40rpx; font-weight: 700; line-height: 1.35; }
+.md-h2 { margin-top: 28rpx; font-size: 36rpx; font-weight: 700; line-height: 1.35; }
+.md-h3 { margin-top: 22rpx; font-size: 32rpx; font-weight: 650; line-height: 1.4; }
+.md-h4 { margin-top: 18rpx; font-size: 30rpx; font-weight: 650; line-height: 1.4; }
+.md-li, .md-oli { padding-left: 8rpx; }
+.md-mark { margin-right: 8rpx; color: #8d949c; }
+.md-strong { font-weight: 700; }
 .sum { margin: 8rpx 0 16rpx; }
 .src { color: #8d949c; font-size: 24rpx; margin-top: 12rpx; }
 .warn { margin-top: 12rpx; color: #9a5b12; font-size: 26rpx; }

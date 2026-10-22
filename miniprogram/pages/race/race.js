@@ -1,5 +1,18 @@
 const { request, ready } = require("../../utils/request");
 const { baseUrl } = require("../../config");
+const { parseGuide } = require("../../utils/guide-md");
+
+function raceTabs(race, extra) {
+  const tabs = [
+    { id: "overview", label: "概况" },
+    { id: "signup", label: "报名" }
+  ];
+  if ((extra.guide && extra.guide.length) || (race && race.guideText)) tabs.push({ id: "guide", label: "规程" });
+  const day = race && (race.route || race.pickup || race.pacers || (extra.routeSheets && extra.routeSheets.length) || (extra.pacerSheets && extra.pacerSheets.length) || extra.liveSheet);
+  if (day) tabs.push({ id: "day", label: "比赛日" });
+  if (extra.ready || extra.drawText) tabs.push({ id: "result", label: "成绩" });
+  return tabs;
+}
 
 function withUnpaid(card) {
   if (!card) return card;
@@ -43,13 +56,19 @@ Page({
     pacerSheets: [],
     liveSheet: null,
     kindText: "",
-    groupText: ""
+    groupText: "",
+    tabs: [
+      { id: "overview", label: "概况" },
+      { id: "signup", label: "报名" }
+    ],
+    tab: "overview",
+    guideBlocks: []
   },
   onLoad(query) {
     this.raceId = query.id;
     const code = String(query.code || "").toUpperCase();
     this.pending = null;
-    this.setData({ code, ready: ready() });
+    this.setData({ code, ready: ready(), tab: "overview" });
     wx.showShareMenu({ menus: ["shareAppMessage"] });
   },
   onShow() {
@@ -119,8 +138,12 @@ Page({
           pacerSheets: (race.pacerSheets || []).map((item) => ({ id: item.id, src: baseUrl + "/marathon/api/race-sheets/" + item.id })),
           liveSheet: race.liveSheet ? { id: race.liveSheet.id, src: baseUrl + "/marathon/api/race-sheets/" + race.liveSheet.id } : null,
           kindText: (race.kindLabels || []).join(" / "),
-          groupText: (race.groups || []).join("、")
+          groupText: (race.groups || []).join("、"),
+          guideBlocks: parseGuide(race.guideText)
         };
+        const tabs = raceTabs(race, patch);
+        patch.tabs = tabs;
+        patch.tab = tabs.some((item) => item.id === this.data.tab) ? this.data.tab : "overview";
         if (myResult) {
           patch.distance = myResult.distance;
           patch.clock = myResult.clock;
@@ -139,6 +162,12 @@ Page({
       );
     }
     return Promise.all(jobs).catch((err) => this.setData({ message: err.message }));
+  },
+  pickTab(e) {
+    const tab = e.currentTarget.dataset.id;
+    if (!tab || tab === this.data.tab) return;
+    this.setData({ tab });
+    wx.pageScrollTo({ scrollTop: 0, duration: 0 });
   },
   copyLink(e) {
     const key = e.currentTarget.dataset.key || "";
