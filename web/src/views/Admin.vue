@@ -243,6 +243,12 @@
               <div class="picks">
                 <button v-for="item in kindChoices" :key="item.key" type="button" class="pick" :class="{ on: book.kinds.includes(item.key) }" :aria-pressed="book.kinds.includes(item.key)" @click="toggle(book.kinds, item.key)">{{ item.label }}</button>
               </div>
+              <p class="note">越野和超马可以不选计时项目，把 30 公里、50 公里写在其他组别。</p>
+              <p class="pick-label">举办</p>
+              <div class="picks">
+                <button type="button" class="pick" :class="{ on: book.meet !== 'online' }" :aria-pressed="book.meet !== 'online'" @click="book.meet = 'offline'">线下</button>
+                <button type="button" class="pick" :class="{ on: book.meet === 'online' }" :aria-pressed="book.meet === 'online'" @click="book.meet = 'online'">线上</button>
+              </div>
               <div class="pair">
                 <label class="field span"><span>其他组别</span><input v-model="book.groups" placeholder="15公里、30公里、50公里" /><small>多项以顿号分隔，最多 8 项。</small></label>
                 <label class="field"><span>规模</span><input v-model="book.scale" placeholder="例如全程 35000 人" /></label>
@@ -2184,6 +2190,7 @@ function blankBook(race) {
     place: race.place,
     distances: [...race.distances],
     kinds: [...race.kinds],
+    meet: race.meet === "online" ? "online" : "offline",
     groups: (race.groups || []).join("、"),
     startAt: race.startAt || "",
     bibAt: race.bibAt || "",
@@ -2233,6 +2240,7 @@ function emptyBook() {
     place: "",
     distances: [],
     kinds: [],
+    meet: "offline",
     groups: "",
     startAt: "",
     bibAt: "",
@@ -2534,6 +2542,7 @@ function guideBody(row) {
     grade: row.grade,
     distances: row.distances,
     kinds: row.kinds,
+    meet: row.meet === "online" ? "online" : "offline",
     groups: row.groups,
     startAt: row.startAt,
     bibAt: row.bibAt,

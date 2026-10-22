@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const express = require("express");
 const { getDb } = require("./db");
-const { presentRace, summarizeMarks, cardTitle, shareText, reminderHits, fullConflicts, squadOf, nearbyOpen, alternativeNote, drawPoster } = require("./races");
+const { presentRace, inChannel, summarizeMarks, cardTitle, shareText, reminderHits, fullConflicts, squadOf, nearbyOpen, alternativeNote, drawPoster } = require("./races");
 const { parseClock, decorateResults, careerOf, yearOf, bestRanks } = require("./career");
 const { syncOfficial, listOfficial, publishOfficial, openUpcoming, ignoreOfficial, applyOfficial } = require("./official");
 const { ensureAdmin, ensureDeskLogin, loginAdmin, adminSession, logoutAdmin, changeAdminPassword, listAdmins, createAdmin, setAdminRole } = require("./admin-auth");
@@ -41,7 +41,7 @@ const COMPANY = "北京华创科技有限公司";
 const ICP = "京ICP备2026060284号-2";
 
 const app = express();
-app.use(express.json());
+app.use(express.json({ limit: "8mb" }));
 
 function userFrom(req) {
   const header = req.get("authorization") || "";
@@ -226,7 +226,7 @@ app.get(BASE + "/api/races", (req, res) => {
   if (!q && city) rows = rows.filter((r) => r.city === city || r.province === city);
   if (!q && month) rows = rows.filter((r) => r.raceDate.slice(0, 7) === month);
   if (!q && distance) rows = rows.filter((r) => r.distances.includes(distance));
-  if (!q && kind) rows = rows.filter((r) => r.kind === kind);
+  if (!q && kind) rows = rows.filter((r) => inChannel(r, kind));
   if (!q && status === "upcoming") {
     const today = cstDay(now);
     rows = rows.filter((r) => r.raceDate >= today);

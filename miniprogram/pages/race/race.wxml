@@ -5,6 +5,7 @@
     <view class="row"><text class="k">比赛日</text><text>{{race.raceDate}}</text></view>
     <view class="row"><text class="k">地点</text><text>{{race.province === race.city ? race.city : race.province + ' · ' + race.city}}{{race.district ? ' · ' + race.district : ''}}{{race.place && race.place !== race.city && race.place !== race.district ? ' · ' + race.place : ''}}</text></view>
     <view class="row"><text class="k">项目</text><text>{{distanceText}}</text></view>
+    <view class="row"><text class="k">举办</text><text>{{meetText}}</text></view>
     <view wx:if="{{race.phone}}" class="row"><text class="k">咨询</text><text>{{race.phone}}</text></view>
     <view class="row"><text class="k">{{race.deadlineName}}</text><text class="{{race.open && race.daysLeft <= 3 ? 'soon' : ''}}">{{race.deadlineLabel}}</text></view>
     <view wx:if="{{race.gradeLabel}}" class="src">{{race.gradeLabel}}</view>

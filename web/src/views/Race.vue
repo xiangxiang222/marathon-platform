@@ -13,13 +13,14 @@
       <div class="pass-copy">
         <span class="pass-pill">{{ race.regStatus }}</span>
         <h1>{{ race.name }}</h1>
-        <p>{{ placeLine }}<template v-if="race.distanceLabels.length"> · {{ race.distanceLabels.join(" / ") }}</template></p>
+        <p>{{ placeLine }}<template v-if="projectLabels.length"> · {{ projectLabels.join(" / ") }}</template></p>
       </div>
     </div>
     <div v-if="race" class="detail">
       <div class="row"><span>比赛日</span><b>{{ race.raceDate }}</b></div>
       <div class="row"><span>地点</span><b>{{ locationLine }}</b></div>
-      <div class="row"><span>项目</span><b>{{ race.distanceLabels.join(" / ") }}</b></div>
+      <div class="row"><span>项目</span><b>{{ projectLabels.join(" / ") }}</b></div>
+      <div class="row"><span>举办</span><b>{{ race.meet === "online" ? "线上" : "线下" }}</b></div>
       <div class="row"><span>{{ race.deadlineName }}</span><b :class="{ soon: race.open && race.daysLeft <= 3 }">{{ race.deadlineLabel }}</b></div>
       <div v-if="race.phone" class="row"><span>咨询</span><b>{{ race.phone }}</b></div>
       <p v-if="race.gradeLabel" class="src">{{ race.gradeLabel }}</p>
@@ -259,7 +260,9 @@ const locationLine = computed(() => {
 });
 const projectLabels = computed(() => {
   if (!race.value) return [];
-  return [...race.value.distanceLabels, ...race.value.kindLabels, ...race.value.groups];
+  const kinds = [...race.value.kindLabels];
+  if (race.value.kind === "trail" && !kinds.includes("越野")) kinds.unshift("越野");
+  return [...race.value.distanceLabels, ...kinds, ...race.value.groups];
 });
 const showFacts = computed(() => {
   if (!race.value) return false;

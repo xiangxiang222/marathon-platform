@@ -7,6 +7,7 @@ const DISTANCE_LABEL = { full: "全马", half: "半马", "10k": "10公里", "5k"
 const KINDS = ["trail", "ultra", "family", "fun"];
 const KIND_LABEL = { trail: "越野", ultra: "超马", family: "亲子", fun: "欢乐跑" };
 const PRIZE_KIND = { place: "名次", age: "年龄组", local: "本地籍", break: "破时", club: "跑团" };
+const GUIDE_LIMIT = 40000;
 const URL_FIELDS = [
   ["signupUrl", "报名"],
   ["drawUrl", "抽签"],
@@ -113,17 +114,33 @@ function groupsOf(body) {
   for (const item of given) {
     const text = String(item || "").trim();
     if (!text) continue;
-    if (text.length > 8) return { error: "组别不超过 8 个字" };
+    if (text.length > 16) return { error: "组别不超过 16 个字" };
     if (picked.length >= 8) return { error: "组别最多 8 个" };
     picked.push(text);
   }
   return { groups: picked, groupsSet: picked.length > 0 };
 }
 
+function meetOf(value) {
+  if (value == null || String(value).trim() === "") return { meet: "", set: false };
+  const text = String(value).trim();
+  if (text === "offline" || text === "线下") return { meet: "offline", set: true };
+  if (text === "online" || text === "线上") return { meet: "online", set: true };
+  return { error: "举办方式选线下或线上" };
+}
+
+function isCaaId(officialId) {
+  return /^\d{1,12}$/.test(officialId);
+}
+
+function storedId(officialId) {
+  return isCaaId(officialId) ? "caa-" + officialId : officialId;
+}
+
 function parseRace(body, now) {
   const source = body && typeof body === "object" ? body : {};
   const officialId = clip(source.officialId, 40);
-  if (!/^[A-Za-z0-9_-]{1,40}$/.test(officialId)) return { error: "官网编号用 1 到 40 个字母或数字" };
+  if (!/^[A-Za-z0-9_-]{1,40}$/.test(officialId)) return { error: "编号用 1 到 40 个字母或数字" };
   const name = limited(source.name, 100, "名称");
   if (name.error) return name;
   if (!name.text) return { error: "请填写名称" };
@@ -139,16 +156,19 @@ function parseRace(body, now) {
   if (!city.text) return { error: "请填写城市" };
   const place = limited(source.place, 80, "地点");
   if (place.error) return place;
-  const district = limited(source.district, 20, "区县");
+  const district = limited(source.district, 40, "区县");
   if (district.error) return district;
   const readFrom = limited(source.source, 80, "来源");
   if (readFrom.error) return readFrom;
   if (!readFrom.text) return { error: "请填写这次读取的来源" };
   const distances = distancesFrom(source);
   if (distances.error) return distances;
-  if (!distances.distances.length) return { error: "项目选全马、半马、10公里或5公里" };
   const kinds = kindsOf(source);
   if (kinds.error) return kinds;
+  const meet = meetOf(source.meet);
+  if (meet.error) return meet;
+  const offRoad = kinds.kinds.includes("trail") || kinds.kinds.includes("ultra");
+  if (!distances.distances.length && !offRoad) return { error: "项目选全马、半马、10公里或5公里；越野和超马可以不选" };
   const groups = groupsOf(source);
   if (groups.error) return groups;
   const dates = {};
@@ -191,7 +211,7 @@ function parseRace(body, now) {
   if (pickup.error) return pickup;
   const pacers = limited(source.pacers, 400, "配速");
   if (pacers.error) return pacers;
-  const guideText = limited(source.guideText, 8000, "规程");
+  const guideText = limited(source.guideText, GUIDE_LIMIT, "规程");
   if (guideText.error) return guideText;
   const items = limited(Array.isArray(source.items) ? source.items.join("、") : source.items, 80, "项目说明");
   if (items.error) return items;
@@ -206,10 +226,12 @@ function parseRace(body, now) {
       place: place.text,
       source: readFrom.text,
       distances: distances.distances,
-      distancesSet: true,
+      distancesSet: distances.distancesSet,
       items: items.text,
       kinds: kinds.kinds,
       kindsSet: kinds.kindsSet,
+      meet: meet.meet,
+      meetSet: meet.set,
       groups: groups.groups,
       groupsSet: groups.groupsSet,
       grade: gradeOf(source.grade),
@@ -289,7 +311,7 @@ function findRace(db, payload) {
     const race = db.prepare("SELECT * FROM races WHERE id = ?").get(linked.race_id);
     if (race) return race;
   }
-  const direct = db.prepare("SELECT * FROM races WHERE id = ?").get("caa-" + payload.officialId);
+  const direct = db.prepare("SELECT * FROM races WHERE id = ?").get(storedId(payload.officialId));
   if (direct) return direct;
   const year = payload.raceDate.slice(0, 4);
   return (
@@ -304,8 +326,10 @@ function linesOf(payload) {
   const lines = [];
   const where = [payload.province, payload.city, payload.place].filter(Boolean).join(" ");
   if (where) lines.push(where);
+  lines.push(payload.meet === "online" ? "线上" : "线下");
   if (payload.distances.length) lines.push("项目 " + payload.distances.map((key) => DISTANCE_LABEL[key] || key).join("、"));
   if (payload.kinds.length) lines.push("类型 " + payload.kinds.map((key) => KIND_LABEL[key] || key).join("、"));
+  if (payload.groups && payload.groups.length) lines.push("组别 " + payload.groups.join("、"));
   if (payload.grade) lines.push("等级 " + (payload.grade === "TEN" ? "系列赛" : payload.grade + " 类"));
   if (payload.organizer) lines.push("主办 " + payload.organizer);
   if (payload.scale) lines.push("规模 " + payload.scale);
@@ -409,7 +433,7 @@ function acceptRaces(db, body, now = new Date()) {
         continue;
       }
       if (seen.has(parsed.payload.officialId)) {
-        errors.push({ officialId: parsed.payload.officialId, error: "同一批里官网编号重复" });
+        errors.push({ officialId: parsed.payload.officialId, error: "同一批里编号重复" });
         continue;
       }
       seen.add(parsed.payload.officialId);
@@ -470,9 +494,11 @@ function writeRace(db, race, payload, raceId) {
     province: keep(payload.province, current.province),
     place: keep(payload.place, current.place || payload.city),
     district: keep(payload.district, current.district),
-    distances: payload.distances.join(","),
+    distances:
+      payload.distancesSet || (payload.distances && payload.distances.length) ? payload.distances.join(",") : current.distances || "",
     kinds: payload.kindsSet ? payload.kinds.join(",") : current.kinds || "",
     groups: payload.groupsSet ? payload.groups.join(",") : current.groups || "",
+    meet: payload.meetSet ? payload.meet : current.meet || "offline",
     startAt: keep(payload.startAt, current.start_at),
     bibAt: keep(payload.bibAt, current.bib_at),
     fee: keep(payload.fee, current.fee),
@@ -484,7 +510,9 @@ function writeRace(db, race, payload, raceId) {
     resultUrl: keep(payload.resultUrl, current.result_url),
     liveUrl: keep(payload.liveUrl, current.live_url),
     eventUrl: keep(payload.eventUrl, current.event_url),
-    officialUrl: keep(payload.detailUrl, current.official_url) || "https://www.runchina.org.cn/#/race/v/detail/" + payload.officialId,
+    officialUrl:
+      keep(payload.detailUrl, current.official_url) ||
+      (isCaaId(payload.officialId) ? "https://www.runchina.org.cn/#/race/v/detail/" + payload.officialId : ""),
     organizer: keep(payload.organizer, current.organizer),
     grade: keep(payload.grade, current.grade),
     route: keep(payload.route, current.route),
@@ -496,7 +524,7 @@ function writeRace(db, race, payload, raceId) {
     drawAt: keep(payload.drawAt, current.draw_at),
     payDeadline: keep(payload.payDeadline, current.pay_deadline),
     deadlineName: keep(payload.deadlineName, current.deadline_name),
-    source: dated ? payload.nodeSource : current.source || "中国马拉松官网赛历",
+    source: dated ? payload.nodeSource : current.source || payload.source || "",
     updatedAt: cstDay()
   };
   if (race) {
@@ -507,7 +535,7 @@ function writeRace(db, race, payload, raceId) {
          signup_url = ?, draw_url = ?, bib_url = ?, result_url = ?, live_url = ?, event_url = ?,
          official_url = ?, organizer = ?, grade = ?,
          route = ?, pickup = ?, pacers = ?, guide_text = ?,
-         reg_start = ?, deadline = ?, draw_at = ?, pay_deadline = ?, deadline_name = ?, source = ?, updated_at = ?
+         reg_start = ?, deadline = ?, draw_at = ?, pay_deadline = ?, deadline_name = ?, source = ?, updated_at = ?, meet = ?
        WHERE id = ?`
     ).run(
       values.name,
@@ -544,6 +572,7 @@ function writeRace(db, race, payload, raceId) {
       values.deadlineName,
       values.source,
       values.updatedAt,
+      values.meet,
       race.id
     );
     return race.id;
@@ -553,8 +582,8 @@ function writeRace(db, race, payload, raceId) {
        id, name, city, province, distances, race_date, deadline, place,
        reg_start, draw_at, pay_deadline, source, updated_at, deadline_name, grade, official_url,
        organizer, event_url, kinds, groups, start_at, bib_at, fee, scale, phone,
-       signup_url, draw_url, bib_url, result_url, live_url, route, pickup, pacers, guide_text, district
-     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+       signup_url, draw_url, bib_url, result_url, live_url, route, pickup, pacers, guide_text, district, meet
+     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
   ).run(
     raceId,
     values.name,
@@ -590,7 +619,8 @@ function writeRace(db, race, payload, raceId) {
     values.pickup,
     values.pacers,
     values.guideText,
-    values.district
+    values.district,
+    values.meet
   );
   return raceId;
 }
@@ -694,11 +724,11 @@ function publishSubmission(db, id) {
   if (row.status !== "pending") return { error: "这场不在待审里", status: 400 };
   const payload = JSON.parse(row.payload);
   const existing = findRace(db, payload);
-  const raceId = existing ? existing.id : "caa-" + payload.officialId;
+  const raceId = existing ? existing.id : storedId(payload.officialId);
   db.transaction(() => {
     writeRace(db, existing, payload, raceId);
     replaceExtras(db, raceId, payload);
-    upsertOfficial(db, payload, raceId);
+    if (isCaaId(payload.officialId)) upsertOfficial(db, payload, raceId);
     db.prepare("UPDATE bot_submissions SET status = 'published', race_id = ?, note = '', updated_at = ? WHERE id = ?").run(
       raceId,
       new Date().toISOString(),

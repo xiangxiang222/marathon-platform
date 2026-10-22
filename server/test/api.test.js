@@ -1062,7 +1062,7 @@ test("a race missing from the official calendar can be added by hand", async () 
   const tooLong = await request(app).put("/marathon/api/admin/races/" + created.body.id + "/guide").set(admin).send({
     distances: ["10k"],
     kinds: ["family"],
-    guideText: "规".repeat(8001)
+    guideText: "规".repeat(40001)
   });
   assert.equal(tooLong.status, 400);
   assert.equal((await request(app).get("/marathon/api/races/" + created.body.id)).body.race.guideText, "参赛须知：沿滨河公园环湖。");
@@ -3146,7 +3146,10 @@ test("a bot upload waits for review and a return can be sent again", async () =>
   assert.equal(published.body.created, true);
   const opened = await request(app).get("/marathon/api/races/" + published.body.raceId);
   assert.equal(opened.body.race.regStatus, "报名时间未公布");
-  assert.equal(opened.body.race.source, "中国马拉松官网赛历");
+  assert.equal(opened.body.race.id, "bot4242");
+  assert.equal(opened.body.race.officialUrl, "");
+  assert.equal(opened.body.race.meet, "offline");
+  assert.equal(opened.body.race.source, "中国马拉松官网，2026-10-21");
   assert.equal(opened.body.race.organizer, "测试组委会");
   assert.equal(opened.body.race.eventUrl, "https://example.com/race");
 
@@ -3257,4 +3260,89 @@ test("a bot upload waits for review and a return can be sent again", async () =>
   assert.equal(fixed.body.accepted[0].status, "pending");
   const quiet = await request(app).get("/marathon/api/bot/races").set(bot);
   assert.equal(quiet.body.returned.some((row) => row.officialId === "bot4242"), false);
+});
+
+test("a trail upload stays offline and does not invent an official marathon page", async () => {
+  process.env.ADMIN_TOKEN = "test-admin";
+  process.env.GROK_BOT_TOKEN = "bot-test";
+  const admin = { Authorization: "Bearer test-admin" };
+  const bot = { Authorization: "Bearer bot-test" };
+  const road = await request(app).get("/marathon/api/races?kind=road&status=upcoming");
+  const offline = await request(app).get("/marathon/api/races?kind=offline&status=upcoming");
+  const online = await request(app).get("/marathon/api/races?kind=online&status=upcoming");
+  assert.ok(road.body.races.length);
+  assert.ok(offline.body.races.length >= road.body.races.length);
+  assert.ok(road.body.races.every((race) => offline.body.races.some((item) => item.id === race.id)));
+  assert.equal(online.body.races.length, 0);
+  assert.ok(offline.body.races.every((race) => race.meet === "offline"));
+
+  const bare = await request(app).post("/marathon/api/bot/races").set(bot).send({
+    races: [{
+      officialId: "zuiku-bare",
+      name: "2026没有距离越野",
+      raceDate: "2026-12-21",
+      province: "浙江",
+      city: "杭州",
+      source: "最酷，2026-10-22"
+    }]
+  });
+  assert.match(bare.body.errors[0].error, /越野和超马可以不选/);
+
+  const uploaded = await request(app).post("/marathon/api/bot/races").set(bot).send({
+    races: [{
+      officialId: "zuiku-trail1",
+      name: "2026南岳衡山越野",
+      raceDate: "2026-12-21",
+      province: "湖南",
+      city: "衡阳",
+      kinds: ["trail"],
+      groups: ["30公里", "50公里"],
+      meet: "offline",
+      source: "最酷，2026-10-22",
+      guideText: "规程正文"
+    }]
+  });
+  assert.equal(uploaded.status, 200);
+  assert.equal(uploaded.body.errors.length, 0);
+  const waiting = (await request(app).get("/marathon/api/admin/bot-races?status=pending").set(admin)).body.rows.find((row) => row.officialId === "zuiku-trail1");
+  assert.match(waiting.lines.join("\n"), /线下/);
+  assert.match(waiting.lines.join("\n"), /越野/);
+  const published = await request(app).post("/marathon/api/admin/bot-races/" + waiting.id + "/publish").set(admin).send({});
+  assert.equal(published.body.raceId, "zuiku-trail1");
+  const opened = await request(app).get("/marathon/api/races/zuiku-trail1");
+  assert.equal(opened.body.race.kind, "trail");
+  assert.equal(opened.body.race.meet, "offline");
+  assert.deepEqual(opened.body.race.distances, []);
+  assert.deepEqual(opened.body.race.groups, ["30公里", "50公里"]);
+  assert.equal(opened.body.race.officialUrl, "");
+  assert.equal(opened.body.race.source, "最酷，2026-10-22");
+  const trailList = await request(app).get("/marathon/api/races?kind=trail&status=upcoming");
+  assert.ok(trailList.body.races.some((race) => race.id === "zuiku-trail1"));
+  const roadAfter = await request(app).get("/marathon/api/races?kind=road&status=upcoming");
+  assert.equal(roadAfter.body.races.some((race) => race.id === "zuiku-trail1"), false);
+  const offlineAfter = await request(app).get("/marathon/api/races?kind=offline&status=upcoming");
+  assert.ok(offlineAfter.body.races.some((race) => race.id === "zuiku-trail1"));
+  assert.equal(getDb().prepare("SELECT official_id FROM official_races WHERE official_id = ?").get("zuiku-trail1"), undefined);
+
+  const caa = await request(app).post("/marathon/api/bot/races").set(bot).send({
+    races: [{
+      officialId: "424242",
+      name: "2026田协编号马拉松",
+      raceDate: "2026-12-22",
+      province: "浙江",
+      city: "杭州",
+      distances: ["full"],
+      source: "中国马拉松官网，2026-10-22"
+    }]
+  });
+  assert.equal(caa.body.errors.length, 0);
+  const caaRow = (await request(app).get("/marathon/api/admin/bot-races?status=pending").set(admin)).body.rows.find((row) => row.officialId === "424242");
+  const caaPub = await request(app).post("/marathon/api/admin/bot-races/" + caaRow.id + "/publish").set(admin).send({});
+  assert.equal(caaPub.body.raceId, "caa-424242");
+  const caaRace = await request(app).get("/marathon/api/races/caa-424242");
+  assert.equal(caaRace.body.race.officialUrl, "https://www.runchina.org.cn/#/race/v/detail/424242");
+  assert.equal(caaRace.body.race.kind, "road");
+  assert.equal(caaRace.body.race.meet, "offline");
+  const roadHasCaa = await request(app).get("/marathon/api/races?kind=road&status=upcoming");
+  assert.ok(roadHasCaa.body.races.some((race) => race.id === "caa-424242"));
 });

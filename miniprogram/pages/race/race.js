@@ -26,6 +26,7 @@ Page({
   data: {
     race: null,
     distanceText: "",
+    meetText: "线下",
     statuses: [],
     myStatus: "",
     clubs: [],
@@ -111,7 +112,8 @@ Page({
         const myResult = myResults.find((item) => item.distance === this.data.distance) || myResults[0] || null;
         const patch = {
           race,
-          distanceText: (race.distanceLabels || []).join(" / "),
+          distanceText: [...(race.distanceLabels || []), ...(race.kind === "trail" && !(race.kindLabels || []).includes("越野") ? ["越野"] : []), ...(race.kindLabels || []), ...(race.groups || [])].join(" / "),
+          meetText: race.meet === "online" ? "线上" : "线下",
           statuses: data.statuses || [],
           myStatus: data.myStatus || "",
           clubs: (data.clubs || []).map((club) => {
