@@ -288,16 +288,12 @@
     <template v-if="club && tab === 'people'">
       <div class="block">
         <h2>{{ feeShown ? feeShown.name : "会费" }}</h2>
-        <p class="rank-label">会费直接付给跑团。平台不经手，以团长确认为准。</p>
+        <p class="rank-label">会费在微信群里交给团长。这里只记名单，以团长标的为准。</p>
         <template v-if="feeShown">
           <p class="rank-label">{{ feeShown.amount }} 元 · {{ feeShown.startsOn }} 至 {{ feeShown.endsOn }}</p>
           <p v-if="feeShown.note" class="rank-label">{{ feeShown.note }}</p>
           <p class="rank-label">我的状态：{{ feeShown.mine.label }}</p>
           <p v-if="feeShown.blockSignup" class="rank-label">未交和待确认的人不能报名活动和队内赛。</p>
-          <img v-if="feeShown.hasQr" class="qr" :src="feeQr(feeShown.id)" alt="收款码" />
-          <p v-else class="rank-label">团长还没有放收款码</p>
-          <p v-if="feeShown.hasQr" class="rank-label">长按图片可以保存。</p>
-          <button v-if="feeShown.canClaim" class="primary" type="button" @click="claimFee">我已转账</button>
           <div v-for="group in feeShown.groups" :key="group.status">
             <p class="rank-label">{{ group.label }}</p>
             <div v-for="person in group.people" :key="group.status + person.userId" class="mate member">
@@ -324,7 +320,6 @@
           <input v-model="feeEnd" placeholder="结束 2026-12-31" />
           <input v-model="feeNote" maxlength="200" placeholder="说明，例如收据怎么开" />
           <label class="rank-label"><input v-model="feeBlock" type="checkbox" /> 未交会费不能报名</label>
-          <label class="file-pick">收款码<input type="file" accept="image/jpeg,image/png,image/webp" @change="onFeeFile" /></label>
           <button class="primary" type="submit">{{ feeMode === 'new' ? "开这一期" : "保存" }}</button>
           <button v-if="feeCurrent && feeMode === 'edit'" class="undo" type="button" @click="feeMode = 'new'">再开一期</button>
           <button v-if="feeMode === 'new' && feeCurrent" class="undo" type="button" @click="feeMode = 'edit'">取消</button>
@@ -400,7 +395,7 @@
 <script setup>
 import { computed, onMounted, reactive, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import { api, feeQrSrc, mediaSrc, upload } from "../api";
+import { api, mediaSrc } from "../api";
 import { copyText } from "../copy";
 import { textCard } from "../share-card";
 import MileageBoard from "../components/MileageBoard.vue";
@@ -520,7 +515,6 @@ const raceGroups = ref([
   { name: "男子组", capacity: 0 },
   { name: "女子组", capacity: 0 }
 ]);
-const feeFile = ref(null);
 let raceTimer = 0;
 
 function beijingToday() {
@@ -697,10 +691,6 @@ async function copyCard(card) {
   } catch (err) {
     message.value = "没有复制成功，可以直接选中上面的文字";
   }
-}
-
-function feeQr(periodId) {
-  return feeQrSrc(route.params.id, periodId);
 }
 
 function fillFee(period) {
@@ -915,10 +905,6 @@ async function openFee(item) {
   }
 }
 
-function onFeeFile(event) {
-  feeFile.value = event.target.files && event.target.files[0];
-}
-
 async function saveFee() {
   message.value = "";
   const body = {
@@ -934,23 +920,10 @@ async function saveFee() {
     const data = creating
       ? await api("/clubs/" + route.params.id + "/fees", { method: "POST", body: JSON.stringify(body) })
       : await api("/clubs/" + route.params.id + "/fees/" + feeCurrent.value.id, { method: "PUT", body: JSON.stringify(body) });
-    if (feeFile.value) await upload("/clubs/" + route.params.id + "/fees/" + data.period.id + "/qr", feeFile.value);
-    feeFile.value = null;
     feeMode.value = "edit";
     note.value = creating ? "已开这一期" : "会费已保存";
     await reload();
     feeShown.value = feeCurrent.value;
-  } catch (err) {
-    message.value = err.message;
-  }
-}
-
-async function claimFee() {
-  message.value = "";
-  try {
-    const data = await api("/clubs/" + route.params.id + "/fees/" + feeShown.value.id + "/claim", { method: "POST", body: "{}" });
-    feeShown.value = data.period;
-    note.value = "已登记，等团长确认";
   } catch (err) {
     message.value = err.message;
   }

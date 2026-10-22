@@ -128,7 +128,6 @@ Page({
       .catch((err) => this.setData({ message: err.message }));
   },
   loadExtra() {
-    const app = getApp();
     request("/clubs/" + this.clubId + "/calls")
       .then((data) => this.setData({ calls: data.calls || [] }))
       .catch(() => {});
@@ -162,10 +161,6 @@ Page({
           this.setData({ feeShown: {} });
           return;
         }
-        const token = app.globalData.token || "";
-        current.qrSrc = current.hasQr
-          ? app.globalData.baseUrl + "/marathon/api/clubs/" + this.clubId + "/fees/" + current.id + "/qr?t=" + encodeURIComponent(token)
-          : "";
         const patch = { feeShown: current };
         if (!this.data.feeCreating && !this.data.feeName) {
           patch.feeName = current.name;
@@ -314,44 +309,6 @@ Page({
       feeNote: "",
       feeBlock: false
     });
-  },
-  chooseQr() {
-    const periodId = this.data.feeShown && this.data.feeShown.id;
-    if (!periodId) {
-      this.setData({ message: "先保存这一期" });
-      return;
-    }
-    wx.chooseMedia({
-      count: 1,
-      mediaType: ["image"],
-      success: (res) => {
-        const file = res.tempFiles && res.tempFiles[0];
-        if (!file) return;
-        const app = getApp();
-        wx.uploadFile({
-          url: app.globalData.baseUrl + "/marathon/api/clubs/" + this.clubId + "/fees/" + periodId + "/qr",
-          filePath: file.tempFilePath,
-          name: "file",
-          header: { Authorization: app.globalData.token ? "Bearer " + app.globalData.token : "" },
-          success: (upload) => {
-            if (upload.statusCode >= 200 && upload.statusCode < 300) {
-              this.setData({ feeName: "" });
-              this.loadExtra();
-            } else this.setData({ message: "没有传上去" });
-          },
-          fail: () => this.setData({ message: "没有传上去" })
-        });
-      }
-    });
-  },
-  claimFee() {
-    const periodId = this.data.feeShown && this.data.feeShown.id;
-    request("/clubs/" + this.clubId + "/fees/" + periodId + "/claim", "POST", {})
-      .then((data) => {
-        this.setData({ message: "已登记，等团长确认", feeName: "" });
-        if (data.period) this.loadExtra();
-      })
-      .catch((err) => this.setData({ message: err.message }));
   },
   markFee(e) {
     const periodId = this.data.feeShown && this.data.feeShown.id;

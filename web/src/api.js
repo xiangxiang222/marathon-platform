@@ -60,11 +60,6 @@ export function meetupPhotoSrc(clubId, meetupId, photoId) {
   return base + "/api/clubs/" + clubId + "/meetups/" + meetupId + "/photos/" + photoId + "?t=" + encodeURIComponent(token);
 }
 
-export function feeQrSrc(clubId, periodId) {
-  const token = localStorage.getItem("marathon_token") || "";
-  return base + "/api/clubs/" + clubId + "/fees/" + periodId + "/qr?t=" + encodeURIComponent(token);
-}
-
 export function signupSheetSrc(raceId) {
   const token = localStorage.getItem("marathon_token") || "";
   return base + "/api/me/races/" + raceId + "/sheet?t=" + encodeURIComponent(token);
