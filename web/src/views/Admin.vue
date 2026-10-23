@@ -414,7 +414,7 @@
             </section>
             <section v-show="editTab === 'news'" class="section">
               <h3>资讯</h3>
-              <p class="note">一条资讯只绑这场。写下标题、发布时间、来源和几句摘要，原文用 https 链接，不转载全文。</p>
+              <p class="note">一条资讯只绑这场。写下标题、发布时间和来源，正文用 Markdown 贴进来。</p>
               <p v-if="!raceNewsId" class="note">这场还没进赛历，保存或通过后再挂资讯。</p>
               <template v-else>
                 <div v-for="item in raceNews" :key="'race-news-' + item.id" class="line" :class="{ on: raceNewsDraft.id === item.id }">
@@ -432,8 +432,7 @@
                   <label class="field"><span>标题</span><input v-model="raceNewsDraft.title" maxlength="80" @keydown.enter.prevent /></label>
                   <label class="field"><span>发布时间</span><input v-model="raceNewsDraft.publishedAt" type="date" @keydown.enter.prevent /></label>
                   <label class="field"><span>来源</span><input v-model="raceNewsDraft.source" maxlength="40" placeholder="例如 组委会" @keydown.enter.prevent /></label>
-                  <label class="field"><span>摘要</span><textarea v-model="raceNewsDraft.summary" maxlength="400" rows="4" placeholder="几句摘要，不转载全文"></textarea></label>
-                  <label class="field"><span>原文链接</span><input v-model="raceNewsDraft.url" placeholder="https://" @keydown.enter.prevent /></label>
+                  <label class="field"><span>正文</span><textarea v-model="raceNewsDraft.body" maxlength="20000" rows="12" placeholder="可用 Markdown。# 一级标题，## 二级，### 三级，#### 四级"></textarea></label>
                   <button class="primary" type="button" @click="saveRaceNews">{{ raceNewsDraft.id ? "保存这条" : "挂上这条" }}</button>
                   <button v-if="raceNewsDraft.id" class="undo" type="button" @click="raceNewsDraft = blankRaceNews()">取消</button>
                 </div>
@@ -511,6 +510,7 @@
             </div>
             <p v-if="newsReview.note" class="warn">打回原因：{{ newsReview.note }}</p>
             <p v-for="(line, index) in newsReview.lines" :key="'news-line-' + index" class="hint">{{ line }}</p>
+            <pre v-if="newsReview.body" class="md-raw">{{ newsReview.body }}</pre>
             <form v-if="newsReview.status === 'pending'" class="check-form" @submit.prevent="returnNews(newsReview)">
               <input v-model="newsReview.returnNote" maxlength="200" placeholder="打回原因" />
               <button class="undo" type="submit">打回</button>
@@ -544,8 +544,7 @@
               <label class="field"><span>标题</span><input v-model="newsItem.title" maxlength="80" /></label>
               <label class="field"><span>发布时间</span><input v-model="newsItem.publishedAt" type="date" /></label>
               <label class="field"><span>来源</span><input v-model="newsItem.source" maxlength="40" placeholder="例如 组委会" /></label>
-              <label class="field"><span>摘要</span><textarea v-model="newsItem.summary" maxlength="400" rows="4" placeholder="几句摘要，不转载全文"></textarea></label>
-              <label class="field"><span>原文链接</span><input v-model="newsItem.url" placeholder="https://" /></label>
+              <label class="field"><span>正文</span><textarea v-model="newsItem.body" maxlength="20000" rows="12" placeholder="可用 Markdown。# 一级标题，## 二级，### 三级，#### 四级"></textarea></label>
               <button v-if="newsItem.id && !newsDelete" class="undo" type="button" @click="newsDelete = true">删除</button>
               <p v-if="newsDelete" class="warn">确认删掉这条资讯？</p>
               <button v-if="newsDelete" class="undo" type="button" @click="removeNews">确认删除</button>
@@ -1124,7 +1123,7 @@ const listSearching = computed(() => {
 });
 const sectionLead = computed(() => ({
   races: "已发布在赛历里。待审点开就能改上报的内容，保存后仍停在待审，通过后才进去。删掉的场不会马上加回来。",
-  news: "已发布出现在这场的资讯里，也出现在首页的全部资讯。待审通过后才出现。一条绑一场，只留摘要和原文链接。",
+  news: "已发布出现在这场的资讯里，也出现在首页的全部资讯。待审通过后才出现。一条绑一场，正文用 Markdown。",
   users: "可添加用户，填写昵称和登录密码后即可登录。点开一行查看参赛状态、跑团和成绩。编辑用于建团资格、登录密码和跑团角色。删除在列表中确认。关闭建团资格不影响其已担任的团长。不收集手机号，也不收集身份证。",
   clubs: "点开一行管理该跑团的成员和团长。按昵称添加成员，移出成员不删除账号。指定团长后，原团长改为跑团管理。现任团长须先移交，才能修改角色或移出。删除跑团在列表中确认，成员账号会保留。",
   joins: "建团和没口令的入团都在这里审。通过建团后，申请人成为该团团长。",
@@ -2083,7 +2082,7 @@ function startNews() {
   newsTab.value = "published";
   newsRaceHits.value = [];
   newsRaceQuery.value = "";
-  newsItem.value = { id: 0, raceId: "", raceName: "", city: "", title: "", summary: "", source: "", url: "", publishedAt: todayText() };
+  newsItem.value = { id: 0, raceId: "", raceName: "", city: "", title: "", body: "", source: "", publishedAt: todayText() };
 }
 
 function showNewsPublished() {
@@ -2218,9 +2217,8 @@ async function saveNews() {
   const body = {
     raceId: newsItem.value.raceId,
     title: newsItem.value.title,
-    summary: newsItem.value.summary,
+    body: newsItem.value.body,
     source: newsItem.value.source,
-    url: newsItem.value.url,
     publishedAt: newsItem.value.publishedAt
   };
   try {
@@ -2661,7 +2659,7 @@ function startDraft() {
 }
 
 function blankRaceNews() {
-  return { id: 0, title: "", summary: "", source: "", url: "", publishedAt: todayText() };
+  return { id: 0, title: "", body: "", source: "", publishedAt: todayText() };
 }
 
 async function loadRaceNews(id) {
@@ -2680,9 +2678,8 @@ function editRaceNews(item) {
   raceNewsDraft.value = {
     id: item.id,
     title: item.title,
-    summary: item.summary,
+    body: item.body,
     source: item.source,
-    url: item.url,
     publishedAt: item.publishedAt
   };
 }
@@ -2694,16 +2691,14 @@ async function saveRaceNews() {
   if (!draft.title.trim()) return fail(new Error("标题要写"));
   if (!/^\d{4}-\d{2}-\d{2}$/.test(String(draft.publishedAt || ""))) return fail(new Error("发布时间要写"));
   if (!draft.source.trim()) return fail(new Error("来源要写"));
-  if (!draft.summary.trim()) return fail(new Error("摘要要写几句"));
-  if (!/^https:\/\/\S+$/i.test(draft.url.trim())) return fail(new Error("链接要以 https:// 开头"));
+  if (!draft.body.trim()) return fail(new Error("正文要写"));
   message.value = "";
   saved.value = false;
   const body = {
     raceId,
     title: draft.title.trim(),
-    summary: draft.summary.trim(),
+    body: draft.body.trim(),
     source: draft.source.trim(),
-    url: draft.url.trim(),
     publishedAt: draft.publishedAt
   };
   try {
@@ -3385,6 +3380,7 @@ if (token.value) {
 .edit-nav button.on { background: #1c1c1e; color: #fff; }
 .group-title { margin: 16px 0 0; font-size: 13px; font-weight: 700; }
 .note { margin: 6px 0 0; color: var(--muted); font-size: 12px; line-height: 1.5; }
+.md-raw { margin: 12px 0 0; white-space: pre-wrap; font: inherit; font-size: 14px; line-height: 1.6; }
 .field small { color: var(--muted); font-size: 12px; line-height: 1.4; }
 .media { margin-top: 14px; }
 .media-head { display: flex; justify-content: space-between; align-items: baseline; }

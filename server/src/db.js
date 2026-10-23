@@ -444,21 +444,24 @@ function open() {
       race_id TEXT NOT NULL,
       title TEXT NOT NULL,
       summary TEXT NOT NULL DEFAULT '',
+      body TEXT NOT NULL DEFAULT '',
       source TEXT NOT NULL,
-      url TEXT NOT NULL,
+      url TEXT NOT NULL DEFAULT '',
+      article_key TEXT NOT NULL DEFAULT '',
       published_at TEXT NOT NULL,
       created_at TEXT NOT NULL,
       updated_at TEXT NOT NULL
     );
-    CREATE UNIQUE INDEX IF NOT EXISTS news_race_url ON news(race_id, url);
     CREATE INDEX IF NOT EXISTS news_published ON news(published_at, id);
     CREATE TABLE IF NOT EXISTS news_submissions (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       race_id TEXT NOT NULL,
       title TEXT NOT NULL,
       summary TEXT NOT NULL DEFAULT '',
+      body TEXT NOT NULL DEFAULT '',
       source TEXT NOT NULL,
-      url TEXT NOT NULL,
+      url TEXT NOT NULL DEFAULT '',
+      article_key TEXT NOT NULL DEFAULT '',
       published_at TEXT NOT NULL,
       status TEXT NOT NULL DEFAULT 'pending',
       note TEXT NOT NULL DEFAULT '',
@@ -478,6 +481,17 @@ function open() {
       updated_at TEXT NOT NULL
     );
   `);
+  for (const table of ["news", "news_submissions"]) {
+    for (const [name, type] of [
+      ["body", "TEXT NOT NULL DEFAULT ''"],
+      ["article_key", "TEXT NOT NULL DEFAULT ''"]
+    ]) {
+      const cols = handle.prepare(`PRAGMA table_info(${table})`).all();
+      if (cols.length && !cols.some((col) => col.name === name)) handle.exec(`ALTER TABLE ${table} ADD COLUMN ${name} ${type}`);
+    }
+  }
+  handle.exec("DROP INDEX IF EXISTS news_race_url");
+  handle.exec("CREATE UNIQUE INDEX IF NOT EXISTS news_race_key ON news(race_id, article_key) WHERE article_key != ''");
   handle.prepare(
     `UPDATE club_members SET role = 'owner'
      WHERE EXISTS (

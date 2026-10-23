@@ -3,9 +3,10 @@
   <view wx:if="{{item}}" class="card">
     <view class="title">{{item.title}}</view>
     <view class="meta">{{item.publishedAt}} · {{item.source}}</view>
-    <view class="sum">{{item.summary}}</view>
-    <view class="meta">原文在来源页面。这里只留摘要。</view>
-    <button class="btn" bindtap="copy">复制原文链接</button>
+    <view wx:for="{{blocks}}" wx:key="i" class="md md-{{item.kind}}">
+      <text wx:if="{{item.mark}}" class="md-mark">{{item.mark}}</text>
+      <text wx:for="{{item.runs}}" wx:for-item="run" wx:key="j" class="{{run.strong ? 'md-strong' : ''}}">{{run.text}}</text>
+    </view>
     <navigator class="race-go" url="/pages/race/race?id={{item.raceId}}">{{item.raceName}}</navigator>
   </view>
 </view>

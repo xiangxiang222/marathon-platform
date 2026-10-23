@@ -1,4 +1,9 @@
 .meta { margin-top: 8rpx; color: #8e949c; font-size: 24rpx; }
-.sum { margin-top: 20rpx; font-size: 30rpx; line-height: 1.6; }
-button.btn { margin-top: 24rpx; }
+.md { display: flex; flex-wrap: wrap; margin-top: 16rpx; font-size: 30rpx; line-height: 1.6; }
+.md-h1 { margin-top: 8rpx; font-size: 40rpx; font-weight: 700; line-height: 1.35; }
+.md-h2 { margin-top: 28rpx; font-size: 36rpx; font-weight: 700; line-height: 1.35; }
+.md-h3 { margin-top: 22rpx; font-size: 32rpx; font-weight: 650; line-height: 1.4; }
+.md-h4 { margin-top: 18rpx; font-size: 30rpx; font-weight: 650; line-height: 1.4; }
+.md-mark { margin-right: 8rpx; color: #8d949c; }
+.md-strong { font-weight: 700; }
 .race-go { display: block; margin-top: 24rpx; color: #007aff; font-weight: 650; }

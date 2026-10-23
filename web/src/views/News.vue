@@ -9,9 +9,15 @@
     <article v-if="id && item" class="news-body">
       <h2>{{ item.title }}</h2>
       <p class="src">{{ item.publishedAt }} · {{ item.source }}</p>
-      <p class="sum">{{ item.summary }}</p>
-      <p class="src">原文在来源页面。这里只留摘要。</p>
-      <a class="go" :href="item.url" target="_blank" rel="noopener">原文</a>
+      <div v-if="blocks.length" class="guide-md">
+        <p v-for="block in blocks" :key="block.i" :class="'md md-' + block.kind">
+          <span v-if="block.mark" class="md-mark">{{ block.mark }}</span>
+          <template v-for="run in block.runs" :key="run.j">
+            <strong v-if="run.strong">{{ run.text }}</strong>
+            <template v-else>{{ run.text }}</template>
+          </template>
+        </p>
+      </div>
       <router-link class="go" :to="'/races/' + item.raceId">{{ item.raceName }}</router-link>
     </article>
     <template v-else-if="!id">
@@ -31,6 +37,7 @@ import { computed, ref, watch } from "vue";
 import { useRoute } from "vue-router";
 import { api } from "../api";
 import Pager from "../components/Pager.vue";
+import { parseGuide } from "../guide-md";
 
 const route = useRoute();
 const rows = ref([]);
@@ -41,6 +48,7 @@ const item = ref(null);
 const message = ref("");
 const ready = ref(false);
 const id = computed(() => route.params.id || "");
+const blocks = computed(() => parseGuide(item.value && item.value.body));
 
 async function load() {
   message.value = "";
