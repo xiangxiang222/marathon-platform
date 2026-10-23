@@ -198,6 +198,31 @@ function listAdmin(db, status, q, query) {
   };
 }
 
+function listForRace(db, raceId) {
+  const race = db.prepare("SELECT id FROM races WHERE id = ?").get(raceId);
+  if (!race) return { error: "没有这场比赛", status: 404 };
+  const published = db
+    .prepare(
+      `SELECT n.*, r.name AS race_name, r.race_date, r.city
+       FROM news n JOIN races r ON r.id = n.race_id
+       WHERE n.race_id = ?
+       ORDER BY n.published_at DESC, n.id DESC`
+    )
+    .all(raceId);
+  const waiting = db
+    .prepare(
+      `SELECT s.*, r.name AS race_name, r.race_date, r.city
+       FROM news_submissions s JOIN races r ON r.id = s.race_id
+       WHERE s.race_id = ? AND s.status IN ('pending', 'returned')
+       ORDER BY s.published_at DESC, s.id DESC`
+    )
+    .all(raceId);
+  return {
+    news: published.map((row) => present(row, { status: "published", note: "" })),
+    waiting: waiting.map((row) => present(row, { status: row.status, note: row.note || "" }))
+  };
+}
+
 function listPublic(db, raceId, query) {
   if (raceId) {
     const race = db.prepare("SELECT id FROM races WHERE id = ?").get(raceId);
@@ -359,6 +384,13 @@ function mountNews(app, { BASE, getDb, requireAdmin }) {
 
   app.get(BASE + "/api/races/:id/news", (req, res) => {
     const result = listPublic(getDb(), req.params.id);
+    if (result.error) return res.status(result.status).json({ error: result.error });
+    res.json(result);
+  });
+
+  app.get(BASE + "/api/admin/races/:id/news", (req, res) => {
+    if (!requireAdmin(req, res)) return;
+    const result = listForRace(getDb(), req.params.id);
     if (result.error) return res.status(result.status).json({ error: result.error });
     res.json(result);
   });

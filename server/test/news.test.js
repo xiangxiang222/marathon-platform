@@ -73,6 +73,18 @@ test("news stays on its race and off the public list until it is passed", async 
     assert.ok(listed.body.news.some((row) => row.id === created.body.news.id && row.raceName === "资讯接口马拉松"));
     const onRace = await request(app).get("/marathon/api/races/" + raceId + "/news");
     assert.equal(onRace.body.news.length, 1);
+    const desk = await request(app).get("/marathon/api/admin/races/" + raceId + "/news").set(admin);
+    assert.equal(desk.status, 200);
+    assert.equal(desk.body.news.length, 1);
+    assert.equal(desk.body.news[0].title, "组委会公布比赛日交通");
+    assert.equal(desk.body.waiting.length, 0);
+    const other = await request(app).get("/marathon/api/admin/races/caa-4242/news").set(admin);
+    assert.equal(other.body.news.length, 0);
+    assert.equal(other.body.waiting.length, 0);
+    const missingDesk = await request(app).get("/marathon/api/admin/races/missing-news/news").set(admin);
+    assert.equal(missingDesk.status, 404);
+    const stranger = await request(app).get("/marathon/api/admin/races/" + raceId + "/news").set("Authorization", "Bearer nope");
+    assert.equal(stranger.status, 401);
     const one = await request(app).get("/marathon/api/news/" + created.body.news.id);
     assert.equal(one.body.news.summary, "比赛日早晨封路，选手从指定路口进场。");
     const missingRace = await request(app).get("/marathon/api/races/missing-news/news");
@@ -86,6 +98,11 @@ test("news stays on its race and off the public list until it is passed", async 
     assert.equal(queued.body.accepted[0].status, "pending");
     const hidden = await request(app).get("/marathon/api/races/" + raceId + "/news");
     assert.equal(hidden.body.news.length, 1);
+    const waitingDesk = await request(app).get("/marathon/api/admin/races/" + raceId + "/news").set(admin);
+    assert.equal(waitingDesk.body.news.length, 1);
+    assert.equal(waitingDesk.body.waiting.length, 1);
+    assert.equal(waitingDesk.body.waiting[0].title, "直播平台定了");
+    assert.equal(waitingDesk.body.waiting[0].status, "pending");
 
     const pending = await request(app).get("/marathon/api/admin/news?status=pending").set(admin);
     assert.equal(pending.body.pendingCount, 1);

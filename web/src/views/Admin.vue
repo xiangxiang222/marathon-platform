@@ -412,6 +412,33 @@
                 </div>
               </template>
             </section>
+            <section v-show="editTab === 'news'" class="section">
+              <h3>资讯</h3>
+              <p class="note">一条资讯只绑这场。写下标题、发布时间、来源和几句摘要，原文用 https 链接，不转载全文。</p>
+              <p v-if="!raceNewsId" class="note">这场还没进赛历，保存或通过后再挂资讯。</p>
+              <template v-else>
+                <div v-for="item in raceNews" :key="'race-news-' + item.id" class="line" :class="{ on: raceNewsDraft.id === item.id }">
+                  <button type="button" class="text-btn" @click="editRaceNews(item)">{{ item.title }}</button>
+                  <span>{{ item.publishedAt }} · {{ item.source }}</span>
+                  <button class="undo" type="button" @click="removeRaceNews(item)">删除</button>
+                </div>
+                <p v-if="!raceNews.length" class="note">这场还没有已发布的资讯。</p>
+                <p v-if="raceNewsWaiting.length" class="note">还有上传的资讯停在待审，通过后才出现在上面。</p>
+                <div v-for="item in raceNewsWaiting" :key="'race-news-wait-' + item.id" class="line">
+                  <b>{{ item.title }}</b>
+                  <span>{{ item.status === "returned" ? "已打回" : "待审" }} · {{ item.publishedAt }} · {{ item.source }}</span>
+                </div>
+                <div class="check-form">
+                  <label class="field"><span>标题</span><input v-model="raceNewsDraft.title" maxlength="80" @keydown.enter.prevent /></label>
+                  <label class="field"><span>发布时间</span><input v-model="raceNewsDraft.publishedAt" type="date" @keydown.enter.prevent /></label>
+                  <label class="field"><span>来源</span><input v-model="raceNewsDraft.source" maxlength="40" placeholder="例如 组委会" @keydown.enter.prevent /></label>
+                  <label class="field"><span>摘要</span><textarea v-model="raceNewsDraft.summary" maxlength="400" rows="4" placeholder="几句摘要，不转载全文"></textarea></label>
+                  <label class="field"><span>原文链接</span><input v-model="raceNewsDraft.url" placeholder="https://" @keydown.enter.prevent /></label>
+                  <button class="primary" type="button" @click="saveRaceNews">{{ raceNewsDraft.id ? "保存这条" : "挂上这条" }}</button>
+                  <button v-if="raceNewsDraft.id" class="undo" type="button" @click="raceNewsDraft = blankRaceNews()">取消</button>
+                </div>
+              </template>
+            </section>
           </form>
         </template>
       </div>
@@ -1038,6 +1065,10 @@ const splitYuan = ref("");
 const splitNote = ref("");
 const prizes = ref([]);
 const draws = ref([]);
+const raceNews = ref([]);
+const raceNewsWaiting = ref([]);
+const raceNewsDraft = ref(blankRaceNews());
+const raceNewsId = computed(() => (book.value && (book.value.id || book.value.raceId)) || "");
 const drawLabel = ref("");
 const drawApplicants = ref("");
 const drawQuota = ref("");
@@ -1130,7 +1161,8 @@ const sections = [
   { id: "day", label: "比赛日" },
   { id: "guide", label: "规程" },
   { id: "live", label: "直播" },
-  { id: "prize", label: "奖项" }
+  { id: "prize", label: "奖项" },
+  { id: "news", label: "资讯" }
 ];
 const gradeChoices = [
   { value: "", label: "未标注" },
@@ -2010,6 +2042,7 @@ async function openReview(item) {
     draws.value = (row.draws || []).map((draw) => drawView(draw));
     settlePlace();
     nodeOrigin.value = nodesKey(book.value);
+    await loadRaceNews(row.raceId);
   } catch (err) {
     fail(err);
   }
@@ -2621,7 +2654,81 @@ function startDraft() {
   book.value = emptyBook();
   prizes.value = [];
   draws.value = [];
+  raceNews.value = [];
+  raceNewsWaiting.value = [];
+  raceNewsDraft.value = blankRaceNews();
   nodeOrigin.value = nodesKey(book.value);
+}
+
+function blankRaceNews() {
+  return { id: 0, title: "", summary: "", source: "", url: "", publishedAt: todayText() };
+}
+
+async function loadRaceNews(id) {
+  raceNewsDraft.value = blankRaceNews();
+  if (!id) {
+    raceNews.value = [];
+    raceNewsWaiting.value = [];
+    return;
+  }
+  const data = await admin("/admin/races/" + id + "/news");
+  raceNews.value = data.news || [];
+  raceNewsWaiting.value = data.waiting || [];
+}
+
+function editRaceNews(item) {
+  raceNewsDraft.value = {
+    id: item.id,
+    title: item.title,
+    summary: item.summary,
+    source: item.source,
+    url: item.url,
+    publishedAt: item.publishedAt
+  };
+}
+
+async function saveRaceNews() {
+  const raceId = raceNewsId.value;
+  const draft = raceNewsDraft.value;
+  if (!raceId) return fail(new Error("这场还没进赛历，保存或通过后再挂资讯"));
+  if (!draft.title.trim()) return fail(new Error("标题要写"));
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(String(draft.publishedAt || ""))) return fail(new Error("发布时间要写"));
+  if (!draft.source.trim()) return fail(new Error("来源要写"));
+  if (!draft.summary.trim()) return fail(new Error("摘要要写几句"));
+  if (!/^https:\/\/\S+$/i.test(draft.url.trim())) return fail(new Error("链接要以 https:// 开头"));
+  message.value = "";
+  saved.value = false;
+  const body = {
+    raceId,
+    title: draft.title.trim(),
+    summary: draft.summary.trim(),
+    source: draft.source.trim(),
+    url: draft.url.trim(),
+    publishedAt: draft.publishedAt
+  };
+  try {
+    const path = draft.id ? "/admin/news/" + draft.id : "/admin/news";
+    await admin(path, { method: draft.id ? "PUT" : "POST", body: JSON.stringify(body) });
+    saved.value = true;
+    message.value = "已挂在这场上";
+    await loadRaceNews(raceId);
+  } catch (err) {
+    fail(err);
+  }
+}
+
+async function removeRaceNews(item) {
+  if (!window.confirm("从这场去掉「" + item.title + "」？")) return;
+  message.value = "";
+  saved.value = false;
+  try {
+    await admin("/admin/news/" + item.id, { method: "DELETE" });
+    saved.value = true;
+    message.value = "已从这场去掉";
+    await loadRaceNews(raceNewsId.value);
+  } catch (err) {
+    fail(err);
+  }
 }
 
 function closeEditor() {
@@ -2629,6 +2736,9 @@ function closeEditor() {
   book.value = null;
   prizes.value = [];
   draws.value = [];
+  raceNews.value = [];
+  raceNewsWaiting.value = [];
+  raceNewsDraft.value = blankRaceNews();
 }
 
 async function loadDraws(id) {
@@ -2930,6 +3040,7 @@ async function openGuide(id) {
     book.value = blankBook(data.race);
     await loadPrizes(data.race.id);
     await loadDraws(data.race.id);
+    await loadRaceNews(data.race.id);
     nodeOrigin.value = nodesKey(book.value);
     settlePlace();
   } catch (err) {
@@ -3090,6 +3201,7 @@ async function saveGuide() {
     book.value = blankBook(opened.race);
     await loadPrizes(opened.race.id);
     await loadDraws(opened.race.id);
+    await loadRaceNews(opened.race.id);
     nodeOrigin.value = nodesKey(book.value);
     settlePlace();
     saved.value = true;
