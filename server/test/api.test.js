@@ -3346,3 +3346,60 @@ test("a trail upload stays offline and does not invent an official marathon page
   const roadHasCaa = await request(app).get("/marathon/api/races?kind=road&status=upcoming");
   assert.ok(roadHasCaa.body.races.some((race) => race.id === "caa-424242"));
 });
+
+test("a race list pages when asked and stays complete when page is omitted", async () => {
+  const all = await request(app).get("/marathon/api/races?status=all");
+  assert.equal(all.status, 200);
+  assert.equal(all.body.races.length, all.body.total);
+  const first = await request(app).get("/marathon/api/races?status=all&page=1&pageSize=2");
+  assert.equal(first.status, 200);
+  assert.equal(first.body.races.length, 2);
+  assert.ok(first.body.total > 2);
+  assert.ok(first.body.pages > 1);
+  const second = await request(app).get("/marathon/api/races?status=all&page=2&pageSize=2");
+  assert.equal(second.body.races.length, 2);
+  assert.notEqual(second.body.races[0].id, first.body.races[0].id);
+  assert.notEqual(second.body.races[1].id, first.body.races[1].id);
+});
+
+test("pending bot races page and the count is the whole queue", async () => {
+  process.env.ADMIN_TOKEN = process.env.ADMIN_TOKEN || "test-admin";
+  const admin = { Authorization: "Bearer " + process.env.ADMIN_TOKEN };
+  const db = getDb();
+  const stamp = new Date().toISOString();
+  const insert = db.prepare(
+    `INSERT INTO bot_submissions (official_id, status, payload, note, race_id, created_at, updated_at)
+     VALUES (?, 'pending', ?, '', '', ?, ?)`
+  );
+  for (let i = 0; i < 41; i += 1) {
+    const day = String((i % 27) + 1).padStart(2, "0");
+    insert.run(
+      "pagebot-" + i,
+      JSON.stringify({
+        officialId: "pagebot-" + i,
+        name: "分页待审" + i,
+        raceDate: "2028-06-" + day,
+        province: "浙江",
+        city: "杭州",
+        distances: [],
+        kinds: [],
+        groups: [],
+        meet: "offline",
+        source: "分页"
+      }),
+      stamp,
+      stamp
+    );
+  }
+  const page1 = await request(app).get("/marathon/api/admin/bot-races?status=pending&page=1").set(admin);
+  assert.equal(page1.status, 200);
+  assert.equal(page1.body.rows.length, 40);
+  assert.ok(page1.body.total >= 41);
+  assert.equal(page1.body.pendingCount, page1.body.total);
+  const page2 = await request(app).get("/marathon/api/admin/bot-races?status=pending&page=2").set(admin);
+  assert.equal(page2.body.rows.length, Math.min(40, page1.body.total - 40));
+  assert.notEqual(page2.body.rows[0].id, page1.body.rows[0].id);
+  const full = await request(app).get("/marathon/api/admin/bot-races?status=pending").set(admin);
+  assert.equal(full.body.rows.length, full.body.total);
+  assert.equal(full.body.pendingCount, full.body.total);
+});

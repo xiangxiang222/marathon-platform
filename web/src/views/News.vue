@@ -20,6 +20,8 @@
         <span>{{ row.publishedAt }} · {{ row.raceName }} · {{ row.source }}</span>
       </router-link>
       <p v-if="ready && !rows.length" class="empty">还没有资讯</p>
+      <p v-if="ready" class="hint">共 {{ total }} 条</p>
+      <Pager :page="page" :pages="pages" @update:page="turnPage" />
     </template>
   </main>
 </template>
@@ -28,9 +30,13 @@
 import { computed, ref, watch } from "vue";
 import { useRoute } from "vue-router";
 import { api } from "../api";
+import Pager from "../components/Pager.vue";
 
 const route = useRoute();
 const rows = ref([]);
+const page = ref(1);
+const pages = ref(1);
+const total = ref(0);
 const item = ref(null);
 const message = ref("");
 const ready = ref(false);
@@ -45,8 +51,11 @@ async function load() {
       const data = await api("/news/" + id.value);
       item.value = data.news;
     } else {
-      const data = await api("/news");
+      const data = await api("/news?page=" + page.value);
       rows.value = data.news || [];
+      total.value = data.total || 0;
+      pages.value = data.pages || 1;
+      page.value = data.page || 1;
     }
   } catch (err) {
     message.value = err.message;
@@ -55,5 +64,13 @@ async function load() {
   }
 }
 
-watch(id, load, { immediate: true });
+function turnPage(next) {
+  page.value = next;
+  return load();
+}
+
+watch(id, () => {
+  page.value = 1;
+  load();
+}, { immediate: true });
 </script>

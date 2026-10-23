@@ -1,4 +1,5 @@
 const { botGate, httpsUrl } = require("./bot-races");
+const { readPage, finishPage, pageFields, slicePage } = require("./page");
 const { likeParams } = require("./search-like");
 
 function cstDay(now = new Date()) {
@@ -153,40 +154,51 @@ function pendingCount(db) {
   return db.prepare("SELECT COUNT(*) AS n FROM news_submissions WHERE status = 'pending'").get().n;
 }
 
-function listAdmin(db, status, q) {
+function listAdmin(db, status, q, query) {
   const count = pendingCount(db);
   const wanted = status === "pending" || status === "returned" ? status : "published";
   const text = String(q || "").trim();
   if (wanted === "published") {
     const filter = text ? likeParams(text, ["n.title", "r.name", "r.city"]) : null;
+    const where = filter ? "WHERE " + filter.sql : "";
+    const params = filter ? filter.params : [];
+    const total = db.prepare(`SELECT COUNT(*) AS n FROM news n JOIN races r ON r.id = n.race_id ${where}`).get(...params).n;
+    const window = finishPage(total, readPage(query));
     const rows = db
       .prepare(
         `SELECT n.*, r.name AS race_name, r.race_date, r.city
          FROM news n JOIN races r ON r.id = n.race_id
-         ${filter ? "WHERE " + filter.sql : ""}
+         ${where}
          ORDER BY n.published_at DESC, n.id DESC
-         LIMIT 200`
+         LIMIT ? OFFSET ?`
       )
-      .all(...(filter ? filter.params : []));
-    return { rows: rows.map((row) => present(row, { status: "published", note: "" })), pendingCount: count };
+      .all(...params, window.limit, window.offset);
+    return { rows: rows.map((row) => present(row, { status: "published", note: "" })), pendingCount: count, ...pageFields(window) };
   }
   const filter = text ? likeParams(text, ["s.title", "r.name", "r.city"]) : null;
+  const params = [wanted, ...(filter ? filter.params : [])];
+  const where = `WHERE s.status = ? ${filter ? "AND (" + filter.sql + ")" : ""}`;
+  const total = db
+    .prepare(`SELECT COUNT(*) AS n FROM news_submissions s JOIN races r ON r.id = s.race_id ${where}`)
+    .get(...params).n;
+  const window = finishPage(total, readPage(query));
   const rows = db
     .prepare(
       `SELECT s.*, r.name AS race_name, r.race_date, r.city
        FROM news_submissions s JOIN races r ON r.id = s.race_id
-       WHERE s.status = ? ${filter ? "AND (" + filter.sql + ")" : ""}
+       ${where}
        ORDER BY s.published_at DESC, s.id DESC
-       LIMIT 200`
+       LIMIT ? OFFSET ?`
     )
-    .all(wanted, ...(filter ? filter.params : []));
+    .all(...params, window.limit, window.offset);
   return {
     rows: rows.map((row) => present(row, { status: row.status, note: row.note || "", lines: linesOf(row) })),
-    pendingCount: count
+    pendingCount: count,
+    ...pageFields(window)
   };
 }
 
-function listPublic(db, raceId) {
+function listPublic(db, raceId, query) {
   if (raceId) {
     const race = db.prepare("SELECT id FROM races WHERE id = ?").get(raceId);
     if (!race) return { error: "没有这场比赛", status: 404 };
@@ -196,11 +208,13 @@ function listPublic(db, raceId) {
       `SELECT n.*, r.name AS race_name, r.race_date, r.city
        FROM news n JOIN races r ON r.id = n.race_id
        ${raceId ? "WHERE n.race_id = ?" : ""}
-       ORDER BY n.published_at DESC, n.id DESC
-       LIMIT 200`
+       ORDER BY n.published_at DESC, n.id DESC`
     )
-    .all(...(raceId ? [raceId] : []));
-  return { news: rows.map((row) => present(row)) };
+    .all(...(raceId ? [raceId] : []))
+    .map((row) => present(row));
+  if (raceId) return { news: rows };
+  const paged = slicePage(rows, query);
+  return { news: paged.rows, total: paged.total, page: paged.page, pageSize: paged.pageSize, pages: paged.pages };
 }
 
 function getPublic(db, id) {
@@ -334,7 +348,7 @@ function returnSubmission(db, id, note) {
 
 function mountNews(app, { BASE, getDb, requireAdmin }) {
   app.get(BASE + "/api/news", (req, res) => {
-    res.json(listPublic(getDb(), ""));
+    res.json(listPublic(getDb(), "", req.query));
   });
 
   app.get(BASE + "/api/news/:id", (req, res) => {
@@ -351,7 +365,7 @@ function mountNews(app, { BASE, getDb, requireAdmin }) {
 
   app.get(BASE + "/api/admin/news", (req, res) => {
     if (!requireAdmin(req, res)) return;
-    res.json(listAdmin(getDb(), String(req.query.status || "published"), req.query.q));
+    res.json(listAdmin(getDb(), String(req.query.status || "published"), req.query.q, req.query));
   });
 
   app.post(BASE + "/api/admin/news", (req, res) => {

@@ -4,6 +4,7 @@ const path = require("path");
 const express = require("express");
 const { getDb } = require("./db");
 const { presentRace, inChannel, summarizeMarks, cardTitle, shareText, reminderHits, fullConflicts, squadOf, nearbyOpen, alternativeNote, drawPoster } = require("./races");
+const { slicePage } = require("./page");
 const { parseClock, decorateResults, careerOf, yearOf, bestRanks } = require("./career");
 const { syncOfficial, listOfficial, publishOfficial, openUpcoming, ignoreOfficial, applyOfficial } = require("./official");
 const { ensureAdmin, ensureDeskLogin, loginAdmin, adminSession, logoutAdmin, changeAdminPassword, listAdmins, createAdmin, setAdminRole } = require("./admin-auth");
@@ -239,7 +240,8 @@ app.get(BASE + "/api/races", (req, res) => {
   if (!q && status === "unannounced") rows = rows.filter((r) => r.regStatus === "报名时间未公布");
   const cities = [...new Set(getDb().prepare("SELECT city FROM races ORDER BY city").all().map((r) => r.city))];
   const months = [...new Set(getDb().prepare("SELECT race_date FROM races ORDER BY race_date").all().map((r) => r.race_date.slice(0, 7)))];
-  res.json({ races: rows, cities, months, statuses: STATUSES });
+  const paged = slicePage(rows, req.query);
+  res.json({ races: paged.rows, total: paged.total, page: paged.page, pageSize: paged.pageSize, pages: paged.pages, cities, months, statuses: STATUSES });
 });
 
 app.get(BASE + "/api/races/:id/signup-qr", async (req, res) => {
@@ -1076,14 +1078,17 @@ app.get(BASE + "/api/admin/official", (req, res) => {
   const q = String(req.query.q || "").trim();
   const status = String(req.query.status || "pending").trim();
   const changedOnly = status === "changed";
-  res.json({
-    rows: listOfficial(getDb(), {
+  const paged = slicePage(
+    listOfficial(getDb(), {
       q,
       status: changedOnly || status === "all" ? "" : status,
+      limit: 0,
       upcomingFrom: q ? "" : cstDay(),
       changedOnly
-    })
-  });
+    }),
+    req.query
+  );
+  res.json({ rows: paged.rows, total: paged.total, page: paged.page, pageSize: paged.pageSize, pages: paged.pages });
 });
 
 app.post(BASE + "/api/admin/official/sync", async (req, res) => {

@@ -94,6 +94,9 @@ Page({
     province: "河北",
     kinds: KINDS,
     races: [],
+    page: 1,
+    pages: 1,
+    total: 0,
     reminders: [],
     loaded: false,
     message: "",
@@ -115,7 +118,8 @@ Page({
   onQ(e) {
     const q = e.detail.value || "";
     this.data.q = q;
-    this.setData({ q, searching: !!q.trim(), sheet: "", races: [], loaded: false });
+    this.data.page = 1;
+    this.setData({ q, searching: !!q.trim(), sheet: "", races: [], loaded: false, page: 1 });
     clearTimeout(this.searchTimer);
     this.searchTimer = setTimeout(() => this.load(), 200);
   },
@@ -137,7 +141,8 @@ Page({
   setKind(e) {
     this.data.kind = e.currentTarget.dataset.kind;
     this.data.sheet = "";
-    this.setData({ kind: this.data.kind, sheet: "" });
+    this.data.page = 1;
+    this.setData({ kind: this.data.kind, sheet: "", page: 1 });
     this.load();
   },
   toggleDist(e) {
@@ -145,6 +150,8 @@ Page({
     this.data[which] = !this.data[which];
     const patch = {};
     patch[which] = this.data[which];
+    this.data.page = 1;
+    patch.page = 1;
     this.setData(patch);
     this.load();
   },
@@ -169,17 +176,20 @@ Page({
   pickCity(e) {
     const name = e.currentTarget.dataset.name;
     const city = this.data.city === name ? "" : name;
-    this.paint({ city, sheet: "" });
+    this.data.page = 1;
+    this.paint({ city, sheet: "", page: 1 });
     this.load();
   },
   pickMonth(e) {
     const value = e.currentTarget.dataset.value;
     const month = this.data.month === value ? "" : value;
-    this.paint({ month, sheet: "" });
+    this.data.page = 1;
+    this.paint({ month, sheet: "", page: 1 });
     this.load();
   },
   clearMonth() {
-    this.paint({ month: "", sheet: "" });
+    this.data.page = 1;
+    this.paint({ month: "", sheet: "", page: 1 });
     this.load();
   },
   pickStatus(e) {
@@ -191,7 +201,20 @@ Page({
   confirmStatus() {
     this.data.status = this.data.draftStatus;
     this.data.sheet = "";
-    this.setData({ status: this.data.status, sheet: "" });
+    this.data.page = 1;
+    this.setData({ status: this.data.status, sheet: "", page: 1 });
+    this.load();
+  },
+  prevPage() {
+    if (this.data.page <= 1) return;
+    this.data.page -= 1;
+    this.setData({ page: this.data.page });
+    this.load();
+  },
+  nextPage() {
+    if (this.data.page >= this.data.pages) return;
+    this.data.page += 1;
+    this.setData({ page: this.data.page });
     this.load();
   },
   load() {
@@ -207,6 +230,7 @@ Page({
       if (this.data.full && !this.data.half) params.push("distance=full");
       if (this.data.half && !this.data.full) params.push("distance=half");
     }
+    params.push("page=" + (this.data.page || 1));
     request("/reminders")
       .then((data) => {
         const reminders = (data.reminders || []).slice(0, 3).map((item) => ({
@@ -236,7 +260,15 @@ Page({
             soon: race.open && Number(race.daysLeft) <= 7
           };
         });
-        this.setData({ races, loaded: true, message: "", searching: !!q });
+        this.setData({
+          races,
+          loaded: true,
+          message: "",
+          searching: !!q,
+          page: data.page || 1,
+          pages: data.pages || 1,
+          total: data.total || 0
+        });
       })
       .catch((err) => this.setData({ loaded: true, message: err.message }));
   }

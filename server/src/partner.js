@@ -1,4 +1,5 @@
 const { memberRole } = require("./roles");
+const { slicePage } = require("./page");
 
 const KINDS = { fee: "服务费", commission: "分佣", title: "冠名" };
 const GRADES = {
@@ -499,7 +500,23 @@ function mountPartner(app, { BASE, getDb, userFrom, requireAdmin }) {
       )
       .all()
       .map(presentSplit);
-    res.json({ supplies, leagues, splits });
+    const supplyPage = slicePage(supplies, { page: req.query.supplyPage, pageSize: req.query.pageSize });
+    const leaguePage = slicePage(leagues, { page: req.query.leaguePage, pageSize: req.query.pageSize });
+    const splitPage = slicePage(splits, { page: req.query.splitPage, pageSize: req.query.pageSize });
+    res.json({
+      supplies: supplyPage.rows,
+      supplyTotal: supplyPage.total,
+      supplyPage: supplyPage.page,
+      supplyPages: supplyPage.pages,
+      leagues: leaguePage.rows,
+      leagueTotal: leaguePage.total,
+      leaguePage: leaguePage.page,
+      leaguePages: leaguePage.pages,
+      splits: splitPage.rows,
+      splitTotal: splitPage.total,
+      splitPage: splitPage.page,
+      splitPages: splitPage.pages
+    });
   });
 
   app.post(BASE + "/api/admin/supplies", (req, res) => {

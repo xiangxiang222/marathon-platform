@@ -1,4 +1,8 @@
 .page { padding: 8rpx 0 24rpx; }
+.total { margin: 16rpx 32rpx 0; color: rgba(60, 60, 67, 0.6); font-size: 26rpx; }
+.pager { display: flex; align-items: center; justify-content: space-between; margin: 20rpx 32rpx 8rpx; }
+.pager-btn { height: 64rpx; line-height: 64rpx; padding: 0 28rpx; border-radius: 32rpx; background: #fff; font-weight: 600; }
+.pager-btn.off { opacity: 0.35; }
 .radar { display: block; margin: 8rpx 32rpx 16rpx; color: #007aff; font-weight: 650; }
 .home-links { display: flex; gap: 32rpx; margin: 8rpx 32rpx 16rpx; }
 .home-links .radar { margin: 0; }

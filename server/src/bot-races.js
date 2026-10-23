@@ -1,5 +1,6 @@
 const crypto = require("crypto");
 const { compactName } = require("./official");
+const { readPage, finishPage, pageFields } = require("./page");
 const { readRule } = require("./radar");
 
 const DISTANCES = ["full", "half", "10k", "5k"];
@@ -475,13 +476,21 @@ function listForBot(db) {
   };
 }
 
-function listForAdmin(db, status) {
+function listForAdmin(db, status, query) {
   const wanted = ["pending", "returned", "published"].includes(status) ? status : "pending";
-  return db
-    .prepare("SELECT * FROM bot_submissions WHERE status = ? ORDER BY id DESC LIMIT 100")
-    .all(wanted)
-    .map((row) => presentRow(db, row))
-    .sort((a, b) => a.raceDate.localeCompare(b.raceDate) || a.id - b.id);
+  const total = db.prepare("SELECT COUNT(*) AS n FROM bot_submissions WHERE status = ?").get(wanted).n;
+  const pendingCount = db.prepare("SELECT COUNT(*) AS n FROM bot_submissions WHERE status = 'pending'").get().n;
+  const window = finishPage(total, readPage(query));
+  const rows = db
+    .prepare(
+      `SELECT * FROM bot_submissions
+       WHERE status = ?
+       ORDER BY json_extract(payload, '$.raceDate'), id
+       LIMIT ? OFFSET ?`
+    )
+    .all(wanted, window.limit, window.offset)
+    .map((row) => presentRow(db, row));
+  return { rows, pendingCount, ...pageFields(window) };
 }
 
 function writeRace(db, race, payload, raceId) {
@@ -766,7 +775,7 @@ function mountBotRaces(app, { BASE, getDb, requireAdmin }) {
 
   app.get(BASE + "/api/admin/bot-races", (req, res) => {
     if (!requireAdmin(req, res)) return;
-    res.json({ rows: listForAdmin(getDb(), String(req.query.status || "pending")) });
+    res.json(listForAdmin(getDb(), String(req.query.status || "pending"), req.query));
   });
 
   app.post(BASE + "/api/admin/bot-races/:id/publish", (req, res) => {

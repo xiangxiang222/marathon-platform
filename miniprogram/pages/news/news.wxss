@@ -1,1 +1,5 @@
 .meta { margin-top: 8rpx; color: #8e949c; font-size: 24rpx; }
+.total { margin: 16rpx 0 0; color: #8e949c; font-size: 26rpx; }
+.pager { display: flex; align-items: center; justify-content: space-between; margin-top: 20rpx; }
+.pager-btn { height: 64rpx; line-height: 64rpx; padding: 0 28rpx; border-radius: 32rpx; background: #fff; font-weight: 600; }
+.pager-btn.off { opacity: 0.35; }

@@ -394,8 +394,11 @@ function listOfficial(db, { q = "", status = "", limit = 200, upcomingFrom = "",
     sql += " AND race_date >= ?";
     params.push(upcomingFrom);
   }
-  sql += " ORDER BY race_date, name LIMIT ?";
-  params.push(limit);
+  sql += " ORDER BY race_date, name";
+  if (limit) {
+    sql += " LIMIT ?";
+    params.push(limit);
+  }
   const races = db.prepare("SELECT id, name, race_date, deadline, source, organizer, event_url FROM races").all();
   const sites = db.prepare("SELECT official_id, name, race_date, web_url FROM official_races WHERE web_url != ''").all();
   const stored = db.prepare(sql).all(...params);

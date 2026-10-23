@@ -184,7 +184,7 @@ Page({
       this.setData({ raceHits: [] });
       return;
     }
-    request("/races?q=" + encodeURIComponent(q)).then((data) => {
+    request("/races?q=" + encodeURIComponent(q) + "&page=1&pageSize=8").then((data) => {
       const hits = (data.races || []).slice(0, 6).map((race) => ({
         id: race.id,
         name: race.name,

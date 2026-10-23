@@ -94,6 +94,8 @@
       </div>
       <p v-else class="empty">这个分类还没有赛历</p>
     </template>
+    <p v-if="shownQuery === q.trim()" class="hint">共 {{ total }} 场</p>
+    <Pager v-if="shownQuery === q.trim()" :page="page" :pages="pages" @update:page="turnPage" />
   </section>
 </template>
 
@@ -102,10 +104,14 @@ import { computed, nextTick, onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import { api } from "../api";
 import RaceCard from "../components/RaceCard.vue";
+import Pager from "../components/Pager.vue";
 import { remindTone } from "../tone";
 
 const route = useRoute();
 const q = ref("");
+const page = ref(1);
+const pages = ref(1);
+const total = ref(0);
 const city = ref("");
 const month = ref("");
 const full = ref(false);
@@ -188,12 +194,19 @@ function distanceParam() {
 
 function queueSearch() {
   if (q.value.trim()) sheet.value = "";
+  page.value = 1;
   clearTimeout(searchTimer);
   searchTimer = setTimeout(load, 200);
 }
 
 function submitSearch() {
   clearTimeout(searchTimer);
+  page.value = 1;
+  return load();
+}
+
+function turnPage(next) {
+  page.value = next;
   return load();
 }
 
@@ -212,15 +225,20 @@ async function load() {
     params.set("kind", kind.value || "road");
     params.set("status", status.value || "all");
   }
+  params.set("page", String(page.value));
   const data = await api("/races?" + params.toString());
   if (seq !== loadSeq) return;
   races.value = data.races;
+  total.value = data.total || 0;
+  pages.value = data.pages || 1;
+  page.value = data.page || 1;
   shownQuery.value = query;
 }
 
 function setKind(next) {
   kind.value = next;
   sheet.value = "";
+  page.value = 1;
   load();
 }
 
@@ -228,6 +246,7 @@ function toggleDist(which) {
   if (which === "full") full.value = !full.value;
   if (which === "half") half.value = !half.value;
   if (full.value || half.value) ten.value = false;
+  page.value = 1;
   load();
 }
 
@@ -250,6 +269,7 @@ function openSheet(name) {
 function pickCity(name) {
   city.value = city.value === name ? "" : name;
   sheet.value = "";
+  page.value = 1;
   load();
 }
 
@@ -257,18 +277,21 @@ function pickMonth(year, m) {
   const value = ym(year, m);
   month.value = month.value === value ? "" : value;
   sheet.value = "";
+  page.value = 1;
   load();
 }
 
 function clearMonth() {
   month.value = "";
   sheet.value = "";
+  page.value = 1;
   load();
 }
 
 function confirmStatus() {
   status.value = draftStatus.value;
   sheet.value = "";
+  page.value = 1;
   load();
 }
 
