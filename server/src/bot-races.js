@@ -1,4 +1,5 @@
 const crypto = require("crypto");
+const { formatClock } = require("./career");
 const { compactName } = require("./official");
 const { readPage, finishPage, pageFields } = require("./page");
 const { readRule } = require("./radar");
@@ -138,7 +139,7 @@ function storedId(officialId) {
   return isCaaId(officialId) ? "caa-" + officialId : officialId;
 }
 
-function parseRace(body, now) {
+function parseRace(body, now, options) {
   const source = body && typeof body === "object" ? body : {};
   const officialId = clip(source.officialId, 40);
   if (!/^[A-Za-z0-9_-]{1,40}$/.test(officialId)) return { error: "编号用 1 到 40 个字母或数字" };
@@ -148,7 +149,7 @@ function parseRace(body, now) {
   const raceDate = day(source.raceDate);
   if (raceDate.error) return raceDate;
   if (!raceDate.text) return { error: "请填写比赛日期" };
-  if (raceDate.text < cstDay(now)) return { error: "只收还没开赛的比赛" };
+  if (!(options && options.allowPast) && raceDate.text < cstDay(now)) return { error: "只收还没开赛的比赛" };
   const province = limited(source.province, 20, "省份");
   if (province.error) return province;
   if (!province.text) return { error: "请填写省份" };
@@ -747,6 +748,116 @@ function publishSubmission(db, id) {
   return { ok: true, raceId, created: !existing };
 }
 
+function clockOf(sec) {
+  return sec ? formatClock(sec) : "";
+}
+
+function prizeForm(rule) {
+  return {
+    distance: rule.distance,
+    kind: rule.kind,
+    gender: rule.gender || "",
+    ageMin: rule.ageMin || 0,
+    ageMax: rule.ageMax || 0,
+    province: rule.province || "",
+    placeN: rule.placeN || 0,
+    breakClock: rule.breakClock || clockOf(rule.breakSec),
+    amount: rule.amount || 0,
+    tax: rule.tax || 0,
+    stack: Boolean(rule.stack),
+    source: rule.source || "",
+    cutoffClock: rule.cutoffClock || clockOf(rule.cutoffSec),
+    cutoffSource: rule.cutoffSource || "",
+    note: rule.note || ""
+  };
+}
+
+function submissionDetail(db, id) {
+  const row = db.prepare("SELECT * FROM bot_submissions WHERE id = ?").get(id);
+  if (!row) return null;
+  const payload = JSON.parse(row.payload);
+  const race = findRace(db, payload);
+  return {
+    id: row.id,
+    status: row.status,
+    note: row.note || "",
+    raceId: race ? race.id : "",
+    officialId: payload.officialId || row.official_id,
+    name: payload.name || "",
+    raceDate: payload.raceDate || "",
+    province: payload.province || "",
+    city: payload.city || "",
+    district: payload.district || "",
+    place: payload.place || "",
+    grade: payload.grade || "",
+    distances: payload.distances || [],
+    kinds: payload.kinds || [],
+    meet: payload.meet === "online" ? "online" : "offline",
+    groups: payload.groups || [],
+    source: payload.source || "",
+    regStart: payload.regStart || "",
+    deadline: payload.deadline || "",
+    drawAt: payload.drawAt || "",
+    payDeadline: payload.payDeadline || "",
+    bibAt: payload.bibAt || "",
+    nodeSource: payload.nodeSource || "",
+    deadlineName: payload.deadlineName || "",
+    signupUrl: payload.signupUrl || "",
+    drawUrl: payload.drawUrl || "",
+    bibUrl: payload.bibUrl || "",
+    resultUrl: payload.resultUrl || "",
+    liveUrl: payload.liveUrl || "",
+    eventUrl: payload.eventUrl || "",
+    officialUrl: payload.detailUrl || "",
+    organizer: payload.organizer || "",
+    scale: payload.scale || "",
+    fee: payload.fee || "",
+    phone: payload.phone || "",
+    startAt: payload.startAt || "",
+    route: payload.route || "",
+    pickup: payload.pickup || "",
+    pacers: payload.pacers || "",
+    guideText: payload.guideText || "",
+    prizesSet: Boolean(payload.prizesSet),
+    drawsSet: Boolean(payload.drawsSet),
+    prizes: (payload.prizes || []).map(prizeForm),
+    draws: payload.draws || [],
+    updatedAt: row.updated_at || ""
+  };
+}
+
+function reviseSubmission(db, id, body) {
+  const row = db.prepare("SELECT * FROM bot_submissions WHERE id = ?").get(id);
+  if (!row) return { error: "没有这场待审", status: 404 };
+  if (row.status !== "pending" && row.status !== "returned") return { error: "这场已经发布", status: 400 };
+  const current = JSON.parse(row.payload);
+  const given = body && typeof body === "object" ? body : {};
+  const input = { ...current, ...given, officialId: current.officialId, source: current.source, items: "" };
+  if (given.prizesSet) input.prizes = Array.isArray(given.prizes) ? given.prizes : [];
+  else delete input.prizes;
+  if (given.drawsSet) input.draws = Array.isArray(given.draws) ? given.draws : [];
+  else delete input.draws;
+  const parsed = parseRace(input, new Date(), { allowPast: true });
+  if (parsed.error) return { error: parsed.error, status: 400 };
+  const payload = parsed.payload;
+  payload.distancesSet = true;
+  payload.kindsSet = true;
+  payload.groupsSet = true;
+  if (payload.meet === "online" || payload.meet === "offline") payload.meetSet = true;
+  if (!given.prizesSet) {
+    payload.prizes = Array.isArray(current.prizes) ? current.prizes : [];
+    payload.prizesSet = Boolean(current.prizesSet);
+  }
+  if (!given.drawsSet) {
+    payload.draws = Array.isArray(current.draws) ? current.draws : [];
+    payload.drawsSet = Boolean(current.drawsSet);
+  }
+  payload.items = current.items || "";
+  db.prepare("UPDATE bot_submissions SET payload = ?, updated_at = ? WHERE id = ?").run(JSON.stringify(payload), new Date().toISOString(), row.id);
+  const next = db.prepare("SELECT * FROM bot_submissions WHERE id = ?").get(row.id);
+  return { ok: true, row: presentRow(db, next) };
+}
+
 function returnSubmission(db, id, note) {
   const text = String(note || "").trim();
   if (!text) return { error: "打回要写原因", status: 400 };
@@ -776,6 +887,20 @@ function mountBotRaces(app, { BASE, getDb, requireAdmin }) {
   app.get(BASE + "/api/admin/bot-races", (req, res) => {
     if (!requireAdmin(req, res)) return;
     res.json(listForAdmin(getDb(), String(req.query.status || "pending"), req.query));
+  });
+
+  app.get(BASE + "/api/admin/bot-races/:id", (req, res) => {
+    if (!requireAdmin(req, res)) return;
+    const detail = submissionDetail(getDb(), req.params.id);
+    if (!detail) return res.status(404).json({ error: "没有这场待审" });
+    res.json(detail);
+  });
+
+  app.put(BASE + "/api/admin/bot-races/:id", (req, res) => {
+    if (!requireAdmin(req, res)) return;
+    const result = reviseSubmission(getDb(), req.params.id, req.body || {});
+    if (result.error) return res.status(result.status).json({ error: result.error });
+    res.json(result.row);
   });
 
   app.post(BASE + "/api/admin/bot-races/:id/publish", (req, res) => {
