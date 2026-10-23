@@ -7,8 +7,8 @@
   <view wx:if="{{ready && !rows.length}}" class="empty">还没有资讯</view>
   <view wx:if="{{ready}}" class="total">共 {{total}} 条</view>
   <view wx:if="{{pages > 1}}" class="pager">
-    <view class="pager-btn {{page <= 1 ? 'off' : ''}}" bindtap="prevPage">上一页</view>
-    <text>{{page}} / {{pages}}</text>
-    <view class="pager-btn {{page >= pages ? 'off' : ''}}" bindtap="nextPage">下一页</view>
+    <view class="pager-step {{page <= 1 ? 'off' : ''}}" bindtap="prevPage">上一页</view>
+    <view wx:for="{{pageNumbers}}" wx:key="*this" class="pager-num {{page === item ? 'on' : ''}}" data-page="{{item}}" bindtap="goPage">{{item}}</view>
+    <view class="pager-step {{page >= pages ? 'off' : ''}}" bindtap="nextPage">下一页</view>
   </view>
 </view>
