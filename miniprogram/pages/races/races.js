@@ -1,5 +1,21 @@
 const { request } = require("../../utils/request");
 
+function pageNumbers(page, pages) {
+  const total = Math.max(1, Number(pages) || 1);
+  const current = Math.min(Math.max(1, Number(page) || 1), total);
+  const width = 10;
+  let start = 1;
+  let end = total;
+  if (total > width) {
+    start = Math.max(1, current - 4);
+    end = Math.min(total, start + width - 1);
+    start = Math.max(1, end - width + 1);
+  }
+  const list = [];
+  for (let n = start; n <= end; n += 1) list.push(n);
+  return list;
+}
+
 const PLACES = [
   { name: "北京", cities: ["北京"] },
   { name: "天津", cities: ["天津"] },
@@ -96,6 +112,7 @@ Page({
     races: [],
     page: 1,
     pages: 1,
+    pageNumbers: [],
     total: 0,
     reminders: [],
     loaded: false,
@@ -217,6 +234,13 @@ Page({
     this.setData({ page: this.data.page });
     this.load();
   },
+  goPage(e) {
+    const next = Number(e.currentTarget.dataset.page);
+    if (!next || next === this.data.page) return;
+    this.data.page = next;
+    this.setData({ page: next });
+    this.load();
+  },
   load() {
     const q = (this.data.q || "").trim();
     const seq = (this.loadSeq = (this.loadSeq || 0) + 1);
@@ -267,6 +291,7 @@ Page({
           searching: !!q,
           page: data.page || 1,
           pages: data.pages || 1,
+          pageNumbers: pageNumbers(data.page || 1, data.pages || 1),
           total: data.total || 0
         });
       })

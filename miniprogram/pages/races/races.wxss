@@ -1,8 +1,10 @@
 .page { padding: 8rpx 0 24rpx; }
 .total { margin: 16rpx 32rpx 0; color: rgba(60, 60, 67, 0.6); font-size: 26rpx; }
-.pager { display: flex; align-items: center; justify-content: space-between; margin: 20rpx 32rpx 8rpx; }
-.pager-btn { height: 64rpx; line-height: 64rpx; padding: 0 28rpx; border-radius: 32rpx; background: #fff; font-weight: 600; }
-.pager-btn.off { opacity: 0.35; }
+.pager { display: flex; align-items: center; flex-wrap: wrap; gap: 16rpx; margin: 20rpx 32rpx 8rpx; }
+.pager-step { height: 64rpx; line-height: 64rpx; padding: 0 8rpx; color: #007aff; font-size: 28rpx; font-weight: 650; }
+.pager-step.off { color: rgba(60, 60, 67, 0.28); }
+.pager-num { min-width: 64rpx; height: 64rpx; line-height: 64rpx; padding: 0 16rpx; border-radius: 999rpx; text-align: center; background: rgba(118, 118, 128, 0.12); color: #1c1c1e; font-size: 28rpx; font-weight: 650; }
+.pager-num.on { background: #007aff; color: #fff; }
 .radar { display: block; margin: 8rpx 32rpx 16rpx; color: #007aff; font-weight: 650; }
 .home-links { display: flex; gap: 32rpx; margin: 8rpx 32rpx 16rpx; }
 .home-links .radar { margin: 0; }
