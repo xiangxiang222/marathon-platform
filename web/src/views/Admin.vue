@@ -82,7 +82,7 @@
           </div>
           <p v-if="botReady" class="hint">{{ botTotal }} 场</p>
           <div class="race-list">
-            <div v-for="item in botRows" :key="item.id" class="race-row" :class="{ on: review && review.id === item.id }">
+            <div v-for="item in botRows" :key="item.id" class="race-row" :class="{ on: book && book.submissionId === item.id }">
               <button type="button" class="race-open catalog-open" @click="openReview(item)">
                 <time>{{ item.raceDate }}</time>
                 <em>{{ item.city }}</em>
@@ -155,47 +155,22 @@
       <p v-if="ready && !rows.length" class="empty">{{ q.trim() ? "没有找到这场赛事" : "这个范围还没有场。" }}</p>
       <Pager :page="officialPage" :pages="officialPages" @update:page="turnOfficial" />
       </div>
-      <div v-if="book || review" class="splitter" role="separator" aria-orientation="vertical" aria-label="拖动调整左右宽度" :aria-valuenow="Math.round(split)" aria-valuemin="22" aria-valuemax="70" tabindex="0" @pointerdown="startSplit" @keydown="nudgeSplit"></div>
-      <aside v-if="review" class="desk-side">
-        <div class="block editor">
-          <div class="edit-bar">
-            <header class="edit-head">
-              <div class="edit-id">
-                <p class="edit-kicker">{{ review.status === "returned" ? "已打回" : "待审" }}</p>
-                <h2>{{ review.name }}</h2>
-                <p class="edit-meta">
-                  <span>{{ review.raceDate }}</span>
-                  <span>{{ review.city }}</span>
-                </p>
-              </div>
-              <div class="edit-tools">
-                <button class="text-btn" type="button" @click="review = null">收起</button>
-                <button v-if="review.status === 'pending'" class="save" type="button" @click="publishBot(review)">通过</button>
-              </div>
-            </header>
-          </div>
-          <p v-if="review.note" class="warn">打回原因：{{ review.note }}</p>
-          <p v-for="(line, index) in review.lines" :key="'line-' + index" class="hint">{{ line }}</p>
-          <form v-if="review.status === 'pending'" class="check-form" @submit.prevent="returnBot(review)">
-            <input v-model="review.returnNote" maxlength="200" placeholder="打回原因" />
-            <button class="undo" type="submit">打回</button>
-          </form>
-        </div>
-      </aside>
-      <aside v-else-if="book" class="desk-side">
+      <div v-if="book" class="splitter" role="separator" aria-orientation="vertical" aria-label="拖动调整左右宽度" :aria-valuenow="Math.round(split)" aria-valuemin="22" aria-valuemax="70" tabindex="0" @pointerdown="startSplit" @keydown="nudgeSplit"></div>
+      <aside v-if="book" class="desk-side">
       <div class="block editor">
         <template v-if="book">
           <div class="edit-bar">
             <header class="edit-head">
               <div class="edit-id">
-                <p class="edit-kicker">{{ book.id ? "编辑赛事" : "新建赛事" }}</p>
+                <p class="edit-kicker">{{ book.submissionId ? (book.status === "returned" ? "已打回" : "待审") : book.id ? "编辑赛事" : "新建赛事" }}</p>
                 <h2>{{ book.name.trim() || "未填写名称" }}</h2>
                 <p v-if="editMeta.length" class="edit-meta"><span v-for="part in editMeta" :key="part">{{ part }}</span></p>
               </div>
               <div class="edit-tools">
-                <button v-if="book.id" class="text-btn" type="button" @click="closeEditor">收起</button>
-                <router-link v-if="book.id" class="text-btn" :to="'/races/' + book.id">查看赛历</router-link>
-                <button v-else class="text-btn" type="button" @click="closeEditor">取消</button>
+                <button v-if="book.id || book.submissionId" class="text-btn" type="button" @click="closeEditor">收起</button>
+                <router-link v-if="book.id || book.raceId" class="text-btn" :to="'/races/' + (book.id || book.raceId)">查看赛历</router-link>
+                <button v-if="!book.id && !book.submissionId" class="text-btn" type="button" @click="closeEditor">取消</button>
+                <button v-if="book.submissionId && book.status === 'pending'" class="save" type="button" @click="publishBot(book)">通过</button>
                 <button class="save" type="submit" form="race-editor">保存</button>
               </div>
             </header>
@@ -203,6 +178,11 @@
               <button v-for="item in sections" :key="item.id" type="button" role="tab" :aria-selected="editTab === item.id" :class="{ on: editTab === item.id }" @click="editTab = item.id">{{ item.label }}</button>
             </nav>
           </div>
+          <p v-if="book.submissionId && book.note" class="warn">打回原因：{{ book.note }}</p>
+          <form v-if="book.submissionId && book.status === 'pending'" class="check-form return-form" @submit.prevent="returnBot(book)">
+            <input v-model="book.returnNote" maxlength="200" placeholder="打回原因" />
+            <button class="undo" type="submit">打回</button>
+          </form>
           <form id="race-editor" class="check-form guide-form" @submit.prevent="saveGuide">
             <section v-show="editTab === 'base'" class="section">
               <h3>基本信息</h3>
@@ -262,7 +242,8 @@
             </section>
             <section v-show="editTab === 'signup'" class="section">
               <h3>报名与查询</h3>
-              <p class="note">日期留空则保持原值。新建赛事未填写时，赛历显示「报名时间未公布」。修改日期须填写本次来源。</p>
+              <p v-if="book.submissionId" class="note">改的是这场待审。保存后仍停在待审，点通过才写入赛历。日期和链接留空时，通过不会盖掉赛历里已经记下的。</p>
+              <p v-else class="note">日期留空则保持原值。新建赛事未填写时，赛历显示「报名时间未公布」。修改日期须填写本次来源。</p>
               <h4 class="group-title">时间节点</h4>
               <div class="pair">
                 <label class="field"><span>报名开始</span><input v-model="book.regStart" type="date" /></label>
@@ -282,7 +263,7 @@
               </div>
               <h4 class="group-title">历年中签</h4>
               <p class="note">按公布的报名人数和名额填写，并写上来源。页面用这两个数算比例。没有录入就不显示。</p>
-              <p v-if="!book.id" class="note">先保存这场比赛，再记历年中签。</p>
+              <p v-if="!book.id && !book.submissionId" class="note">先保存这场比赛，再记历年中签。</p>
               <template v-else>
                 <div v-for="item in draws" :key="item.id" class="line">
                   <b>{{ item.label }} · 报名 {{ item.applicants }} · 名额 {{ item.quota }} · {{ item.rateText }}</b>
@@ -308,10 +289,11 @@
             </section>
             <section v-show="editTab === 'day'" class="section">
               <h3>比赛日安排</h3>
+              <p v-if="book.submissionId" class="note">路线图和配速表在通过后再传。</p>
               <div class="pair">
                 <label class="field span"><span>路线说明</span><textarea v-model="book.route" rows="3" placeholder="例如永安湖环湖，起点在北门"></textarea></label>
               </div>
-              <div class="media">
+              <div v-if="!book.submissionId" class="media">
                 <div class="media-head"><span>路线图</span><b>{{ book.routeSheets.length + routeQueue.length }}/4</b></div>
                 <div v-if="book.routeSheets.length || routeQueue.length" class="sheets">
                   <div v-for="sheet in book.routeSheets" :key="sheet.id" class="sheet-row">
@@ -329,7 +311,7 @@
                 <label class="field span"><span>领物须知</span><textarea v-model="book.pickup" rows="3" placeholder="例如赛前一天 10:00–20:00，按号段领取"></textarea></label>
                 <label class="field span"><span>配速安排</span><textarea v-model="book.pacers" rows="3" placeholder="例如全马 4 小时至 6 小时，每 15 分钟一档"></textarea></label>
               </div>
-              <div class="media">
+              <div v-if="!book.submissionId" class="media">
                 <div class="media-head"><span>配速资料</span><b>{{ book.pacerSheets.length + pacerQueue.length }}/8</b></div>
                 <div v-if="book.pacerSheets.length || pacerQueue.length" class="sheets">
                   <div v-for="sheet in book.pacerSheets" :key="sheet.id" class="sheet-row">
@@ -346,9 +328,10 @@
             </section>
             <section v-show="editTab === 'guide'" class="section">
               <h3>竞赛规程</h3>
+              <p v-if="book.submissionId" class="note">规程原页在通过后再传。正文可以现在改。</p>
               <p class="note">选手先阅读正文，再查看原页。奖金、关门时间与参赛资格以组委会原文为准。</p>
               <label class="field"><span>规程正文</span><textarea v-model="book.guideText" rows="8" placeholder="可用 Markdown。# 一级标题，## 二级，### 三级，#### 四级"></textarea></label>
-              <div class="media">
+              <div v-if="!book.submissionId" class="media">
                 <div class="media-head"><span>规程原页</span><b>{{ book.guide.length + guideQueue.length }}/16</b></div>
                 <div v-if="book.guide.length || guideQueue.length" class="sheets">
                   <div v-for="sheet in book.guide" :key="sheet.id" class="sheet-row">
@@ -365,9 +348,10 @@
             </section>
             <section v-show="editTab === 'live'" class="section">
               <h3>直播</h3>
+              <p v-if="book.submissionId" class="note">直播二维码在通过后再传。直播地址可以现在改。</p>
               <p class="note">再次上传将替换当前二维码。</p>
               <label class="field"><span>直播地址</span><input v-model="book.liveUrl" inputmode="url" placeholder="https://" /></label>
-              <div class="media">
+              <div v-if="!book.submissionId" class="media">
                 <div class="media-head"><span>直播二维码</span><b>{{ book.liveSheet || liveQueue ? 1 : 0 }}/1</b></div>
                 <div v-if="book.liveSheet" class="sheet-row live-preview">
                   <img :src="raceSheetSrc(book.liveSheet.id)" alt="直播二维码" />
@@ -383,7 +367,7 @@
             <section v-show="editTab === 'prize'" class="section">
               <h3>奖项</h3>
               <p class="note">按规程填写，并写上来源。没有往届名次成绩时，页面不估算概率。</p>
-              <p v-if="!book.id" class="note">先保存这场比赛，再添加奖项。</p>
+              <p v-if="!book.id && !book.submissionId" class="note">先保存这场比赛，再添加奖项。</p>
               <template v-else>
                 <div v-for="item in prizes" :key="item.id" class="line">
                   <b>{{ item.distanceLabel }} · {{ item.title }}</b>
@@ -952,7 +936,6 @@ const botPages = ref(1);
 const botTotal = ref(0);
 const pendingCount = ref(0);
 const raceTab = ref("published");
-const review = ref(null);
 const newsTab = ref("published");
 const newsRows = ref([]);
 const newsPendingCount = ref(0);
@@ -1099,7 +1082,7 @@ function savedSplit() {
 const split = ref(savedSplit());
 const dragging = ref(false);
 const splitStyle = computed(() => ({ "--split": split.value + "%" }));
-const deskOpen = computed(() => (!!book.value && !catalogQuery.value.trim()) || !!review.value);
+const deskOpen = computed(() => !!book.value && (!catalogQuery.value.trim() || !!book.value.submissionId));
 const sectionLabel = computed(() => deskSections.value.find((item) => item.id === section.value)?.label || "后台");
 const listSearching = computed(() => {
   if (section.value === "races") return !!catalogQuery.value.trim() || !!q.value.trim();
@@ -1109,7 +1092,7 @@ const listSearching = computed(() => {
   return false;
 });
 const sectionLead = computed(() => ({
-  races: "已发布在赛历里。待审通过后才进去。删掉的场不会马上加回来。",
+  races: "已发布在赛历里。待审点开就能改上报的内容，保存后仍停在待审，通过后才进去。删掉的场不会马上加回来。",
   news: "已发布出现在这场的资讯里，也出现在首页的全部资讯。待审通过后才出现。一条绑一场，只留摘要和原文链接。",
   users: "可添加用户，填写昵称和登录密码后即可登录。点开一行查看参赛状态、跑团和成绩。编辑用于建团资格、登录密码和跑团角色。删除在列表中确认。关闭建团资格不影响其已担任的团长。不收集手机号，也不收集身份证。",
   clubs: "点开一行管理该跑团的成员和团长。按昵称添加成员，移出成员不删除账号。指定团长后，原团长改为跑团管理。现任团长须先移交，才能修改角色或移出。删除跑团在列表中确认，成员账号会保留。",
@@ -2003,21 +1986,33 @@ async function syncAll() {
 
 function showPublished() {
   raceTab.value = "published";
-  review.value = null;
+  if (book.value && book.value.submissionId) closeEditor();
 }
 
 function showReview() {
   raceTab.value = "review";
-  if (book.value) closeEditor();
+  if (book.value && !book.value.submissionId) closeEditor();
 }
 
-function openReview(item) {
-  if (book.value) closeEditor();
-  if (review.value && review.value.id === item.id) {
-    review.value = null;
+async function openReview(item) {
+  if (book.value && book.value.submissionId === item.id) {
+    closeEditor();
     return;
   }
-  review.value = item;
+  message.value = "";
+  saved.value = false;
+  try {
+    const row = await admin("/admin/bot-races/" + item.id);
+    clearQueues();
+    editTab.value = "base";
+    book.value = bookFromSubmission(row);
+    prizes.value = (row.prizes || []).map((prize) => prizeView(prize));
+    draws.value = (row.draws || []).map((draw) => drawView(draw));
+    settlePlace();
+    nodeOrigin.value = nodesKey(book.value);
+  } catch (err) {
+    fail(err);
+  }
 }
 
 function turnBot(page) {
@@ -2032,8 +2027,7 @@ async function loadBotReviews() {
   botPage.value = data.page || 1;
   pendingCount.value = data.pendingCount || 0;
   botReady.value = true;
-  if (review.value && !botRows.value.some((row) => row.id === review.value.id)) review.value = null;
-  else if (review.value) review.value = botRows.value.find((row) => row.id === review.value.id) || null;
+  if (book.value && book.value.submissionId && !botRows.value.some((row) => row.id === book.value.submissionId)) closeEditor();
 }
 
 function todayText() {
@@ -2262,11 +2256,21 @@ async function setBotStatus(status) {
   }
 }
 
+function submissionKey(item) {
+  return item && (item.submissionId || item.id);
+}
+
 async function publishBot(item) {
+  const id = submissionKey(item);
   message.value = "";
   saved.value = false;
   try {
-    await admin("/admin/bot-races/" + item.id + "/publish", { method: "POST", body: "{}" });
+    if (book.value && book.value.submissionId === id) {
+      const ok = await saveSubmission(true);
+      if (!ok) return;
+    }
+    await admin("/admin/bot-races/" + id + "/publish", { method: "POST", body: "{}" });
+    if (book.value && book.value.submissionId === id) closeEditor();
     saved.value = true;
     message.value = "已发布";
     await Promise.all([loadBotReviews(), load(), loadCatalog()]);
@@ -2276,10 +2280,11 @@ async function publishBot(item) {
 }
 
 async function returnBot(item) {
+  const id = submissionKey(item);
   message.value = "";
   saved.value = false;
   try {
-    await admin("/admin/bot-races/" + item.id + "/return", { method: "POST", body: JSON.stringify({ note: item.returnNote }) });
+    await admin("/admin/bot-races/" + id + "/return", { method: "POST", body: JSON.stringify({ note: item.returnNote }) });
     saved.value = true;
     message.value = "已打回";
     await loadBotReviews();
@@ -2397,6 +2402,106 @@ function nodesKey(row) {
   return [row.regStart, row.deadline, row.drawAt, row.payDeadline, row.deadlineName].join("|");
 }
 
+function bookFromSubmission(row) {
+  const next = emptyBook();
+  next.submissionId = row.id;
+  next.status = row.status;
+  next.note = row.note || "";
+  next.returnNote = "";
+  next.raceId = row.raceId || "";
+  next.prizesSet = Boolean(row.prizesSet);
+  next.drawsSet = Boolean(row.drawsSet);
+  next.name = row.name || "";
+  next.raceDate = row.raceDate || "";
+  next.province = row.province || "";
+  next.city = row.city || "";
+  next.district = row.district || "";
+  next.place = row.place || "";
+  next.distances = Array.isArray(row.distances) ? [...row.distances] : [];
+  next.kinds = Array.isArray(row.kinds) ? [...row.kinds] : [];
+  next.meet = row.meet === "online" ? "online" : "offline";
+  next.groups = Array.isArray(row.groups) ? row.groups.join("、") : "";
+  next.startAt = row.startAt || "";
+  next.bibAt = row.bibAt || "";
+  next.scale = row.scale || "";
+  next.fee = row.fee || "";
+  next.phone = row.phone || "";
+  next.signupUrl = row.signupUrl || "";
+  next.drawUrl = row.drawUrl || "";
+  next.bibUrl = row.bibUrl || "";
+  next.resultUrl = row.resultUrl || "";
+  next.liveUrl = row.liveUrl || "";
+  next.eventUrl = row.eventUrl || "";
+  next.officialUrl = row.officialUrl || "";
+  next.organizer = row.organizer || "";
+  next.grade = ["A", "B", "C", "TEN"].includes(row.grade) ? row.grade : "";
+  next.source = row.source || "";
+  next.updatedAt = row.updatedAt ? String(row.updatedAt).slice(0, 10) : "";
+  next.route = row.route || "";
+  next.pickup = row.pickup || "";
+  next.pacers = row.pacers || "";
+  next.guideText = row.guideText || "";
+  next.regStart = row.regStart || "";
+  next.deadline = row.deadline || "";
+  next.drawAt = row.drawAt || "";
+  next.payDeadline = row.payDeadline || "";
+  next.deadlineName = row.deadlineName || "";
+  next.nodeSource = row.nodeSource || "";
+  return next;
+}
+
+let localExtraId = 1;
+
+function prizeView(rule) {
+  const labels = { full: "全马", half: "半马", "10k": "10公里", "5k": "5公里" };
+  const kinds = { place: "名次", age: "年龄组", local: "本地籍", break: "破时", club: "跑团" };
+  const kind = kinds[rule.kind] || rule.kind || "";
+  let title = kind;
+  if (rule.gender) title += " · " + rule.gender;
+  if (rule.kind === "break" && rule.breakClock) title += " · " + rule.breakClock;
+  else if (rule.placeN) title += " · 前 " + rule.placeN;
+  const amountText = rule.amount ? "税前 " + rule.amount + " 元" : "非现金";
+  return {
+    ...rule,
+    id: "prize-" + localExtraId++,
+    stack: Boolean(rule.stack),
+    distanceLabel: labels[rule.distance] || rule.distance,
+    title,
+    amountText
+  };
+}
+
+function drawView(rule) {
+  const applicants = Number(rule.applicants);
+  const quota = Number(rule.quota);
+  const rate = applicants ? Math.round((quota / applicants) * 1000) / 10 : null;
+  return {
+    ...rule,
+    id: "draw-" + localExtraId++,
+    rateText: rate == null ? "还没公布" : "约 " + rate + "%"
+  };
+}
+
+function prizeInput(item) {
+  return {
+    distance: item.distance,
+    kind: item.kind,
+    gender: item.gender || "",
+    ageMin: item.ageMin || 0,
+    ageMax: item.ageMax || 0,
+    province: item.province || "",
+    placeN: item.placeN || 0,
+    breakClock: item.breakClock || "",
+    amount: item.amount || 0,
+    tax: item.tax || 0,
+    stack: Boolean(item.stack),
+    source: item.source || "",
+    cutoffClock: item.cutoffClock || "",
+    cutoffSource: item.cutoffSource || "",
+    note: item.note || ""
+  };
+}
+
 function emptyBook() {
   return {
     id: "",
@@ -2510,7 +2615,6 @@ function toggle(list, key) {
 }
 
 function startDraft() {
-  review.value = null;
   raceTab.value = "published";
   clearQueues();
   editTab.value = "base";
@@ -2536,8 +2640,110 @@ async function loadDraws(id) {
   draws.value = data.rates || [];
 }
 
+function clockSeconds(text) {
+  const raw = String(text || "").trim();
+  if (!raw) return 0;
+  const hms = raw.match(/^(\d{1,2}):([0-5]\d):([0-5]\d)$/);
+  const ms = raw.match(/^(\d{1,2}):([0-5]\d)$/);
+  let sec = null;
+  if (hms) sec = Number(hms[1]) * 3600 + Number(hms[2]) * 60 + Number(hms[3]);
+  else if (ms) sec = Number(ms[1]) * 60 + Number(ms[2]);
+  if (sec == null || sec <= 0 || sec > 12 * 3600) return null;
+  return sec;
+}
+
+function prizeError(body) {
+  if (!["full", "half", "10k", "5k"].includes(body.distance)) return "项目选全马、半马、10 公里或 5 公里";
+  if (!["place", "age", "local", "break", "club"].includes(body.kind)) return "类型选名次、年龄组、本地籍、破时或跑团";
+  if (body.gender && body.gender !== "男" && body.gender !== "女") return "性别选男、女，或留空";
+  const ageMin = Number(body.ageMin || 0);
+  const ageMax = Number(body.ageMax || 0);
+  if (!Number.isInteger(ageMin) || !Number.isInteger(ageMax) || ageMin < 0 || ageMax > 120 || (ageMin === 0) !== (ageMax === 0) || (ageMin && ageMin > ageMax)) {
+    return "年龄写成 18 到 65 这种";
+  }
+  if (body.kind === "local") {
+    if (!regions.some((item) => item.name === body.province)) return "省份不在名单里";
+  } else if (body.province) return "只有本地籍填写省份";
+  const placeN = Number(body.placeN || 0);
+  if (!Number.isInteger(placeN) || placeN < 0 || placeN > 100) return "名次写成 1 到 100";
+  const breakSec = clockSeconds(body.breakClock);
+  if (breakSec == null) return "成绩写成 3:30:00";
+  if (body.kind === "break") {
+    if (!breakSec) return "成绩写成 3:30:00";
+    if (placeN) return "破时不填名次";
+  } else if (!placeN) return "名次写成 1 到 100";
+  else if (breakSec) return "只有破时填写成绩线";
+  const amount = Number(body.amount || 0);
+  const tax = Number(body.tax || 0);
+  if (!Number.isInteger(amount) || amount < 0 || amount > 999999) return "金额写成 0 到 999999 的整数元，0 表示非现金";
+  if (!Number.isInteger(tax) || tax < 0 || tax > 50) return "税率写成 0 到 50";
+  const source = String(body.source || "").trim();
+  if ([...source].length < 1 || [...source].length > 80) return "来源写成 1 到 80 个字";
+  const cutoff = clockSeconds(body.cutoffClock);
+  if (cutoff == null) return "成绩写成 3:30:00";
+  const cutoffSource = String(body.cutoffSource || "").trim();
+  if (cutoff && ([...cutoffSource].length < 1 || [...cutoffSource].length > 80)) return "往届成绩要写来源";
+  if (!cutoff && cutoffSource) return "没有往届成绩就不用写来源";
+  if ([...String(body.note || "")].length > 40) return "说明最多 40 个字";
+  return "";
+}
+
+function drawError(body) {
+  const label = String(body.label || "").trim();
+  if ([...label].length < 1 || [...label].length > 20) return "届次写成 1 到 20 个字";
+  const applicants = Number(body.applicants);
+  const quota = Number(body.quota);
+  if (!Number.isInteger(applicants) || applicants < 1 || applicants > 9999999) return "报名人数写成 1 到 9999999 的整数";
+  if (!Number.isInteger(quota) || quota < 1 || quota > 9999999) return "名额写成 1 到 9999999 的整数";
+  if (quota > applicants) return "名额不能多于报名人数";
+  const source = String(body.source || "").trim();
+  if ([...source].length < 1 || [...source].length > 80) return "来源写成 1 到 80 个字";
+  if (draws.value.some((item) => item.label === label)) return "这一届已经记过";
+  return "";
+}
+
+function draftPrize() {
+  return {
+    distance: prizeDistance.value,
+    kind: prizeKind.value,
+    gender: prizeGender.value,
+    ageMin: prizeAgeMin.value || 0,
+    ageMax: prizeAgeMax.value || 0,
+    province: prizeKind.value === "local" ? prizeProvince.value : "",
+    placeN: prizePlace.value || 0,
+    breakClock: String(prizeBreak.value || "").trim(),
+    amount: prizeAmount.value || 0,
+    tax: prizeTax.value || 0,
+    stack: prizeStack.value,
+    source: String(prizeSource.value || "").trim(),
+    cutoffClock: String(prizeCutoff.value || "").trim(),
+    cutoffSource: String(prizeCutoffSource.value || "").trim(),
+    note: String(prizeNote.value || "").trim()
+  };
+}
+
 async function createDraw() {
-  if (!book.value || !book.value.id) return;
+  if (!book.value) return;
+  if (book.value.submissionId) {
+    const rule = {
+      label: String(drawLabel.value || "").trim(),
+      applicants: drawApplicants.value,
+      quota: drawQuota.value,
+      source: String(drawSource.value || "").trim()
+    };
+    const error = drawError(rule);
+    if (error) return fail(new Error(error));
+    draws.value = draws.value.concat([drawView(rule)]);
+    book.value.drawsSet = true;
+    drawLabel.value = "";
+    drawApplicants.value = "";
+    drawQuota.value = "";
+    drawSource.value = "";
+    saved.value = false;
+    message.value = "";
+    return;
+  }
+  if (!book.value.id) return;
   message.value = "";
   saved.value = false;
   try {
@@ -2562,6 +2768,11 @@ async function createDraw() {
 }
 
 async function removeDraw(item) {
+  if (book.value && book.value.submissionId) {
+    draws.value = draws.value.filter((row) => row.id !== item.id);
+    book.value.drawsSet = true;
+    return;
+  }
   message.value = "";
   try {
     await admin("/admin/races/" + book.value.id + "/draws/" + item.id, { method: "DELETE" });
@@ -2581,7 +2792,20 @@ async function loadPrizes(id) {
 }
 
 async function createPrize() {
-  if (!book.value || !book.value.id) return;
+  if (!book.value) return;
+  if (book.value.submissionId) {
+    const rule = draftPrize();
+    const error = prizeError(rule);
+    if (error) return fail(new Error(error));
+    prizes.value = prizes.value.concat([prizeView(rule)]);
+    book.value.prizesSet = true;
+    prizeSource.value = "";
+    prizeNote.value = "";
+    saved.value = false;
+    message.value = "";
+    return;
+  }
+  if (!book.value.id) return;
   message.value = "";
   saved.value = false;
   try {
@@ -2615,6 +2839,11 @@ async function createPrize() {
 }
 
 async function removePrize(item) {
+  if (book.value && book.value.submissionId) {
+    prizes.value = prizes.value.filter((row) => row.id !== item.id);
+    book.value.prizesSet = true;
+    return;
+  }
   message.value = "";
   try {
     await admin("/admin/races/" + book.value.id + "/prizes/" + item.id, { method: "DELETE" });
@@ -2688,8 +2917,7 @@ async function removeRace(item) {
 }
 
 async function openGuide(id) {
-  review.value = null;
-  if (book.value && book.value.id === id) {
+  if (book.value && book.value.id === id && !book.value.submissionId) {
     closeEditor();
     return;
   }
@@ -2742,7 +2970,72 @@ function guideBody(row) {
   };
 }
 
+function submissionBody(row) {
+  const prizesSet = Boolean(row.prizesSet) || prizes.value.length > 0;
+  const drawsSet = Boolean(row.drawsSet) || draws.value.length > 0;
+  return {
+    ...guideBody(row),
+    regStart: row.regStart,
+    deadline: row.deadline,
+    drawAt: row.drawAt,
+    payDeadline: row.payDeadline,
+    deadlineName: row.deadlineName,
+    nodeSource: row.nodeSource,
+    prizesSet,
+    drawsSet,
+    prizes: prizesSet ? prizes.value.map(prizeInput) : undefined,
+    draws: drawsSet
+      ? draws.value.map((item) => ({
+          label: item.label,
+          applicants: item.applicants,
+          quota: item.quota,
+          source: item.source
+        }))
+      : undefined
+  };
+}
+
+async function saveSubmission(quiet) {
+  const row = book.value;
+  if (!row || !row.submissionId) return false;
+  message.value = "";
+  saved.value = false;
+  if (!row.name.trim()) {
+    fail(new Error("请填写赛事名称"));
+    return false;
+  }
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(String(row.raceDate || "").trim())) {
+    fail(new Error("比赛日期须为 2026-11-01 这种格式"));
+    return false;
+  }
+  if (!String(row.province || "").trim() || !String(row.city || "").trim()) {
+    fail(new Error("请填写省份和城市"));
+    return false;
+  }
+  if (!row.distances.length && !row.kinds.length && !String(row.groups || "").trim()) {
+    fail(new Error("请至少选择一个项目"));
+    return false;
+  }
+  const dated = [row.regStart, row.deadline, row.drawAt, row.payDeadline, row.bibAt].some((item) => String(item || "").trim());
+  if (dated && !String(row.nodeSource || "").trim()) {
+    fail(new Error("报名时间要写来源"));
+    return false;
+  }
+  try {
+    await admin("/admin/bot-races/" + row.submissionId, { method: "PUT", body: JSON.stringify(submissionBody(row)) });
+    saved.value = true;
+    if (!quiet) message.value = "已改在待审里";
+    nodeOrigin.value = nodesKey(row);
+    await loadBotReviews();
+    return true;
+  } catch (err) {
+    fail(err);
+    return false;
+  }
+}
+
 async function saveGuide() {
+  if (book.value && book.value.submissionId) return saveSubmission();
   message.value = "";
   saved.value = false;
   const row = book.value;
@@ -2911,6 +3204,9 @@ if (token.value) {
 .hint { margin: 8px 0 0; color: #8d949c; font-size: 12px; }
 .warn { margin: 8px 0 0; color: #9a5b12; font-size: 13px; }
 .check-form { display: flex; flex-direction: column; gap: 12px; margin-top: 12px; }
+.return-form { flex-direction: row; align-items: center; }
+.return-form input { flex: 1; width: auto; min-width: 0; }
+.return-form .undo { width: auto; margin-top: 0; }
 .check-form input,
 .check-form textarea,
 .check-form select,
