@@ -120,8 +120,7 @@ function listPending(db, clubId) {
        JOIN users u ON u.id = r.user_id
        JOIN clubs c ON c.id = r.club_id
        WHERE r.status = 'pending' ${scoped ? "AND r.club_id = ?" : ""}
-       ORDER BY r.id DESC
-       LIMIT 200`
+       ORDER BY r.id DESC`
     )
     .all(...(scoped ? [clubId] : []))
     .map((row) => ({
@@ -141,8 +140,7 @@ function listClubApplications(db) {
        FROM club_applications a
        JOIN users u ON u.id = a.user_id
        WHERE a.status = 'pending'
-       ORDER BY a.id DESC
-       LIMIT 200`
+       ORDER BY a.id DESC`
     )
     .all()
     .map((row) => ({

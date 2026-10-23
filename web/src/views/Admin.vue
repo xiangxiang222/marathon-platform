@@ -61,7 +61,7 @@
             <button type="button" class="status" :class="{ on: catalogWhen === 'upcoming' }" @click="setCatalogWhen('upcoming')">即将开赛</button>
             <button type="button" class="status" :class="{ on: catalogWhen === 'all' }" @click="setCatalogWhen('all')">全部</button>
           </div>
-          <p v-if="catalogReady && !catalogQuery.trim()" class="hint">{{ catalog.length }} 场</p>
+          <p v-if="catalogReady" class="hint">{{ catalogTotal }} 场</p>
           <div class="race-list">
             <div v-for="item in catalog" :key="item.id" class="race-row" :class="{ on: book && book.id === item.id }">
               <button type="button" class="race-open catalog-open" @click="openGuide(item.id)">
@@ -73,13 +73,14 @@
             </div>
           </div>
           <p v-if="catalogReady && !catalog.length" class="empty">{{ catalogQuery.trim() ? "没有找到这场赛事" : "这个范围还没有场。" }}</p>
+          <Pager :page="catalogPage" :pages="catalogPages" @update:page="turnCatalog" />
         </template>
         <template v-else>
           <div class="statuses">
             <button type="button" class="status" :class="{ on: botStatus === 'pending' }" @click="setBotStatus('pending')">待审</button>
             <button type="button" class="status" :class="{ on: botStatus === 'returned' }" @click="setBotStatus('returned')">已打回</button>
           </div>
-          <p v-if="botRows.length" class="hint">{{ botRows.length }} 场</p>
+          <p v-if="botReady" class="hint">{{ botTotal }} 场</p>
           <div class="race-list">
             <div v-for="item in botRows" :key="item.id" class="race-row" :class="{ on: review && review.id === item.id }">
               <button type="button" class="race-open catalog-open" @click="openReview(item)">
@@ -90,7 +91,8 @@
               <button v-if="item.status === 'pending'" class="primary row-pass" type="button" @click.stop="publishBot(item)">通过</button>
             </div>
           </div>
-          <p v-if="!botRows.length" class="empty">{{ botStatus === "pending" ? "还没有待审的比赛" : "还没有打回的比赛" }}</p>
+          <p v-if="botReady && !botRows.length" class="empty">{{ botStatus === "pending" ? "还没有待审的比赛" : "还没有打回的比赛" }}</p>
+          <Pager :page="botPage" :pages="botPages" @update:page="turnBot" />
         </template>
       </div>
       </div>
@@ -149,7 +151,9 @@
         </form>
       </div>
       </template>
+      <p v-if="ready" class="hint">{{ officialTotal }} 场</p>
       <p v-if="ready && !rows.length" class="empty">{{ q.trim() ? "没有找到这场赛事" : "这个范围还没有场。" }}</p>
+      <Pager :page="officialPage" :pages="officialPages" @update:page="turnOfficial" />
       </div>
       <div v-if="book || review" class="splitter" role="separator" aria-orientation="vertical" aria-label="拖动调整左右宽度" :aria-valuenow="Math.round(split)" aria-valuemin="22" aria-valuemax="70" tabindex="0" @pointerdown="startSplit" @keydown="nudgeSplit"></div>
       <aside v-if="review" class="desk-side">
@@ -441,7 +445,7 @@
                 <input v-model="newsQuery" placeholder="搜标题或赛事" @input="queueNews" />
                 <button class="primary" type="submit">筛选</button>
               </form>
-              <p v-if="newsReady" class="hint">{{ newsRows.length }} 条</p>
+              <p v-if="newsReady" class="hint">{{ newsTotal }} 条</p>
               <div class="race-list">
                 <div v-for="item in newsRows" :key="item.id" class="race-row" :class="{ on: newsItem && newsItem.id === item.id }">
                   <button type="button" class="race-open catalog-open news-open" @click="openNews(item)">
@@ -452,13 +456,14 @@
                 </div>
               </div>
               <p v-if="newsReady && !newsRows.length" class="empty">{{ newsQuery.trim() ? "没有找到这条资讯" : "还没有发布的资讯" }}</p>
+              <Pager :page="newsPage" :pages="newsPages" @update:page="turnNews" />
             </template>
             <template v-else>
               <div class="statuses">
                 <button type="button" class="status" :class="{ on: newsStatus === 'pending' }" @click="setNewsStatus('pending')">待审</button>
                 <button type="button" class="status" :class="{ on: newsStatus === 'returned' }" @click="setNewsStatus('returned')">已打回</button>
               </div>
-              <p v-if="newsRows.length" class="hint">{{ newsRows.length }} 条</p>
+              <p v-if="newsReady" class="hint">{{ newsTotal }} 条</p>
               <div class="race-list">
                 <div v-for="item in newsRows" :key="item.id" class="race-row" :class="{ on: newsReview && newsReview.id === item.id }">
                   <button type="button" class="race-open catalog-open news-open" @click="openNewsReview(item)">
@@ -469,7 +474,8 @@
                   <button v-if="item.status === 'pending'" class="primary row-pass" type="button" @click.stop="publishNews(item)">通过</button>
                 </div>
               </div>
-              <p v-if="!newsRows.length" class="empty">{{ newsStatus === "pending" ? "还没有待审的资讯" : "还没有打回的资讯" }}</p>
+              <p v-if="newsReady && !newsRows.length" class="empty">{{ newsStatus === "pending" ? "还没有待审的资讯" : "还没有打回的资讯" }}</p>
+              <Pager :page="newsPage" :pages="newsPages" @update:page="turnNews" />
             </template>
           </div>
         </div>
@@ -543,7 +549,7 @@
               <input v-model="userQuery" placeholder="搜昵称" @input="queueUsers" />
               <button class="primary" type="submit">筛选</button>
             </form>
-            <p v-if="usersReady" class="hint">{{ users.length }} 人</p>
+            <p v-if="usersReady" class="hint">{{ userTotal }} 人</p>
             <div class="race-list">
               <div v-for="item in users" :key="item.id" class="race-row user-row" :class="{ on: person && person.user.id === item.id }">
                 <button type="button" class="race-open" @click="openUser(item.id, 'view')">
@@ -562,6 +568,7 @@
               </div>
             </div>
             <p v-if="usersReady && !users.length" class="empty">没有符合条件的用户。</p>
+            <Pager :page="userPage" :pages="userPages" @update:page="turnUsers" />
           </div>
         </div>
         <div v-if="person || adding" class="splitter" role="separator" aria-orientation="vertical" aria-label="拖动调整左右宽度" :aria-valuenow="Math.round(split)" aria-valuemin="22" aria-valuemax="70" tabindex="0" @pointerdown="startSplit" @keydown="nudgeSplit"></div>
@@ -686,7 +693,7 @@
               <input v-model="clubQuery" placeholder="搜跑团或昵称" @input="queueClubs" />
               <button class="primary" type="submit">筛选</button>
             </form>
-            <p v-if="clubsReady" class="hint">{{ clubs.length }} 个团</p>
+            <p v-if="clubsReady" class="hint">{{ clubTotal }} 个团</p>
             <div class="race-list">
               <div v-for="item in clubs" :key="item.id" class="race-row user-row" :class="{ on: club && club.club.id === item.id }">
                 <button type="button" class="race-open" @click="openClub(item.id)">
@@ -704,6 +711,7 @@
               </div>
             </div>
             <p v-if="clubsReady && !clubs.length" class="empty">没有符合条件的跑团。</p>
+            <Pager :page="clubPage" :pages="clubPages" @update:page="turnClubs" />
           </div>
         </div>
         <div v-if="club" class="splitter" role="separator" aria-orientation="vertical" aria-label="拖动调整左右宽度" :aria-valuenow="Math.round(split)" aria-valuemin="22" aria-valuemax="70" tabindex="0" @pointerdown="startSplit" @keydown="nudgeSplit"></div>
@@ -757,7 +765,7 @@
         </aside>
       </div>
       <div v-if="section === 'runs'" class="block">
-        <p v-if="runsReady" class="hint">{{ runs.length }} 条</p>
+        <p v-if="runsReady" class="hint">{{ runTotal }} 条</p>
         <div class="race-list">
           <div v-for="(item, index) in runs" :key="index" class="line">
             <b>{{ item.nickname }} · {{ item.km }} 公里</b>
@@ -765,6 +773,7 @@
           </div>
         </div>
         <p v-if="runsReady && !runs.length" class="empty">还没有人报过公里。</p>
+        <Pager :page="runPage" :pages="runPages" @update:page="turnRuns" />
       </div>
       <div v-if="section === 'partner'" class="block">
         <h2>物资</h2>
@@ -777,6 +786,7 @@
             <button class="undo" type="button" @click="removeSupply(item)">删除</button>
           </span>
         </div>
+        <Pager :page="supplyPage" :pages="supplyPages" @update:page="turnSupply" />
         <form class="check-form" @submit.prevent="createSupply">
           <input v-model="supplyBrand" maxlength="20" placeholder="品牌" />
           <input v-model="supplyName" maxlength="40" placeholder="物资名" />
@@ -793,6 +803,7 @@
           <b>{{ item.month }} · {{ item.title }}</b>
           <span>{{ item.sponsor }} · {{ item.prize }} · {{ item.clubs }} 个团</span>
         </div>
+        <Pager :page="leaguePage" :pages="leaguePages" @update:page="turnLeague" />
         <form class="check-form" @submit.prevent="createLeague">
           <input v-model="leagueMonth" placeholder="月份 2026-10" />
           <input v-model="leagueTitle" maxlength="40" placeholder="联赛名称" />
@@ -810,6 +821,7 @@
             <button class="undo" type="button" @click="removeSplit(item)">删除</button>
           </span>
         </div>
+        <Pager :page="splitPage" :pages="splitPages" @update:page="turnSplit" />
         <form class="check-form" @submit.prevent="createSplit">
           <input v-model.number="splitClub" type="number" min="1" placeholder="跑团编号" />
           <input v-model="splitMonth" placeholder="月份 2026-10" />
@@ -826,19 +838,23 @@
       <div v-if="section === 'shop'">
         <div class="block">
           <h2>积分礼品</h2>
+          <p v-if="shopReady" class="hint">{{ giftTotal }} 件</p>
           <div v-for="item in gifts" :key="item.id" class="line"><b>{{ item.club }} · {{ item.name }}</b><span>{{ item.cost }} 分 · 剩 {{ item.stock }}</span></div>
           <p v-if="shopReady && !gifts.length" class="empty">还没有跑团放礼品。</p>
+          <Pager :page="giftPage" :pages="giftPages" @update:page="turnGifts" />
         </div>
         <div class="block">
           <h2>兑换记录</h2>
+          <p v-if="shopReady" class="hint">{{ redemptionTotal }} 条</p>
           <div v-for="(item, index) in redemptions" :key="index" class="line"><b>{{ item.nickname }} · {{ item.name }}</b><span>{{ item.at }} · {{ item.club }} · {{ item.cost }} 分</span></div>
           <p v-if="shopReady && !redemptions.length" class="empty">还没有人兑换。</p>
+          <Pager :page="redemptionPage" :pages="redemptionPages" @update:page="turnRedemptions" />
         </div>
       </div>
       <div v-if="section === 'joins'" class="block">
         <h2>建团</h2>
         <p class="hint">须具备建团资格才能提交。通过后，申请人成为该团团长，可以在手机上管理成员、活动和组别。</p>
-        <p v-if="joinsReady" class="hint">{{ foundings.length }} 条待审核</p>
+        <p v-if="joinsReady" class="hint">{{ foundingTotal }} 条待审核</p>
         <div v-for="item in foundings" :key="item.id" class="line">
           <b>{{ item.nickname }} · {{ item.name }}</b>
           <span>{{ item.at }}</span>
@@ -848,8 +864,9 @@
           </span>
         </div>
         <p v-if="joinsReady && !foundings.length" class="empty">没有待审核的建团。</p>
+        <Pager :page="foundingPage" :pages="foundingPages" @update:page="turnFoundings" />
         <h2>入团</h2>
-        <p v-if="joinsReady" class="hint">{{ joins.length }} 条待审核</p>
+        <p v-if="joinsReady" class="hint">{{ joinTotal }} 条待审核</p>
         <div v-for="item in joins" :key="item.id" class="line">
           <b>{{ item.nickname }} · {{ item.club }}</b>
           <span>{{ item.at }}</span>
@@ -859,6 +876,7 @@
           </span>
         </div>
         <p v-if="joinsReady && !joins.length" class="empty">没有待审核的申请。</p>
+        <Pager :page="joinPage" :pages="joinPages" @update:page="turnJoins" />
         <form v-if="role === 'club'" class="check-form" @submit.prevent="changePassword">
           <input v-model="currentPassword" type="password" autocomplete="current-password" placeholder="当前密码" />
           <label class="field">
@@ -909,6 +927,7 @@
 <script setup>
 import { computed, ref } from "vue";
 import { adminUpload, api, raceSheetSrc } from "../api";
+import Pager from "../components/Pager.vue";
 import { countiesOf, settleRegion } from "../areas";
 import { regions } from "../regions";
 
@@ -922,8 +941,15 @@ const q = ref("");
 const officialFocus = ref("");
 const filter = ref("pending");
 const rows = ref([]);
+const officialPage = ref(1);
+const officialPages = ref(1);
+const officialTotal = ref(0);
 const botRows = ref([]);
 const botStatus = ref("pending");
+const botReady = ref(false);
+const botPage = ref(1);
+const botPages = ref(1);
+const botTotal = ref(0);
 const pendingCount = ref(0);
 const raceTab = ref("published");
 const review = ref(null);
@@ -935,6 +961,9 @@ const newsReview = ref(null);
 const newsItem = ref(null);
 const newsQuery = ref("");
 const newsReady = ref(false);
+const newsPage = ref(1);
+const newsPages = ref(1);
+const newsTotal = ref(0);
 const newsRaceQuery = ref("");
 const newsRaceHits = ref([]);
 const newsDelete = ref(false);
@@ -946,6 +975,9 @@ const catalog = ref([]);
 const catalogQuery = ref("");
 const catalogWhen = ref("upcoming");
 const catalogReady = ref(false);
+const catalogPage = ref(1);
+const catalogPages = ref(1);
+const catalogTotal = ref(0);
 const section = ref("races");
 const role = ref("admin");
 const selfName = ref("");
@@ -963,6 +995,9 @@ const allSections = [
 const deskSections = computed(() => allSections.filter((item) => item.roles.includes(role.value || "admin")));
 const users = ref([]);
 const usersReady = ref(false);
+const userPage = ref(1);
+const userPages = ref(1);
+const userTotal = ref(0);
 const userQuery = ref("");
 const person = ref(null);
 const personMode = ref("view");
@@ -972,6 +1007,9 @@ const newName = ref("");
 const newPass = ref("");
 const clubs = ref([]);
 const clubsReady = ref(false);
+const clubPage = ref(1);
+const clubPages = ref(1);
+const clubTotal = ref(0);
 const clubQuery = ref("");
 const club = ref(null);
 const memberName = ref("");
@@ -979,9 +1017,24 @@ const pendingMember = ref(0);
 const pendingClub = ref(0);
 const runs = ref([]);
 const runsReady = ref(false);
+const runPage = ref(1);
+const runPages = ref(1);
+const runTotal = ref(0);
 const gifts = ref([]);
+const giftPage = ref(1);
+const giftPages = ref(1);
+const giftTotal = ref(0);
 const redemptions = ref([]);
+const redemptionPage = ref(1);
+const redemptionPages = ref(1);
+const redemptionTotal = ref(0);
 const shopReady = ref(false);
+const supplyPage = ref(1);
+const supplyPages = ref(1);
+const leaguePage = ref(1);
+const leaguePages = ref(1);
+const splitPage = ref(1);
+const splitPages = ref(1);
 const partner = ref({ supplies: [], leagues: [], splits: [] });
 const supplyBrand = ref("");
 const supplyName = ref("");
@@ -1023,6 +1076,12 @@ const prizeCutoffSource = ref("");
 const prizeNote = ref("");
 const joins = ref([]);
 const foundings = ref([]);
+const foundingPage = ref(1);
+const foundingPages = ref(1);
+const foundingTotal = ref(0);
+const joinPage = ref(1);
+const joinPages = ref(1);
+const joinTotal = ref(0);
 const joinsReady = ref(false);
 const accounts = ref([]);
 const accountName = ref("");
@@ -1242,6 +1301,7 @@ function queueUsers() {
     person.value = null;
     adding.value = false;
   }
+  userPage.value = 1;
   clearTimeout(userTimer);
   userTimer = setTimeout(() => {
     loadUsers();
@@ -1249,14 +1309,22 @@ function queueUsers() {
 }
 function submitUsers() {
   clearTimeout(userTimer);
+  userPage.value = 1;
+  return loadUsers();
+}
+function turnUsers(page) {
+  userPage.value = page;
   return loadUsers();
 }
 async function loadUsers() {
   const seq = ++userSeq;
   try {
-    const data = await admin("/admin/users?q=" + encodeURIComponent(userQuery.value));
+    const data = await admin("/admin/users?q=" + encodeURIComponent(userQuery.value) + "&page=" + userPage.value);
     if (seq !== userSeq) return;
     users.value = data.users;
+    userTotal.value = data.total || 0;
+    userPages.value = data.pages || 1;
+    userPage.value = data.page || 1;
     usersReady.value = true;
     if (person.value && !users.value.some((item) => item.id === person.value.user.id)) person.value = null;
   } catch (err) {
@@ -1268,6 +1336,7 @@ let clubTimer = 0;
 let clubSeq = 0;
 function queueClubs() {
   if (clubQuery.value.trim()) club.value = null;
+  clubPage.value = 1;
   clearTimeout(clubTimer);
   clubTimer = setTimeout(() => {
     loadClubs();
@@ -1275,14 +1344,22 @@ function queueClubs() {
 }
 function submitClubs() {
   clearTimeout(clubTimer);
+  clubPage.value = 1;
+  return loadClubs();
+}
+function turnClubs(page) {
+  clubPage.value = page;
   return loadClubs();
 }
 async function loadClubs() {
   const seq = ++clubSeq;
   try {
-    const data = await admin("/admin/clubs?q=" + encodeURIComponent(clubQuery.value));
+    const data = await admin("/admin/clubs?q=" + encodeURIComponent(clubQuery.value) + "&page=" + clubPage.value);
     if (seq !== clubSeq) return;
     clubs.value = data.clubs;
+    clubTotal.value = data.total || 0;
+    clubPages.value = data.pages || 1;
+    clubPage.value = data.page || 1;
     clubsReady.value = true;
     if (club.value && !clubs.value.some((item) => item.id === club.value.club.id)) club.value = null;
   } catch (err) {
@@ -1559,9 +1636,18 @@ async function setLeader(leader) {
 async function loadJoins() {
   joinsReady.value = false;
   try {
-    const [requests, applications] = await Promise.all([admin("/admin/club-requests"), admin("/admin/club-applications")]);
+    const [requests, applications] = await Promise.all([
+      admin("/admin/club-requests?page=" + joinPage.value),
+      admin("/admin/club-applications?page=" + foundingPage.value)
+    ]);
     joins.value = requests.requests;
+    joinTotal.value = requests.total || 0;
+    joinPages.value = requests.pages || 1;
+    joinPage.value = requests.page || 1;
     foundings.value = applications.applications;
+    foundingTotal.value = applications.total || 0;
+    foundingPages.value = applications.pages || 1;
+    foundingPage.value = applications.page || 1;
     joinsReady.value = true;
   } catch (err) {
     fail(err);
@@ -1639,20 +1725,56 @@ async function setAccountRole(item, next) {
   }
 }
 
+function turnRuns(page) {
+  runPage.value = page;
+  return loadRuns();
+}
+function turnFoundings(page) {
+  foundingPage.value = page;
+  return loadJoins();
+}
+function turnJoins(page) {
+  joinPage.value = page;
+  return loadJoins();
+}
 async function loadRuns() {
   runsReady.value = false;
   try {
-    const data = await admin("/admin/runs");
+    const data = await admin("/admin/runs?page=" + runPage.value);
     runs.value = data.runs;
+    runTotal.value = data.total || 0;
+    runPages.value = data.pages || 1;
+    runPage.value = data.page || 1;
     runsReady.value = true;
   } catch (err) {
     fail(err);
   }
 }
 
+function turnSupply(page) {
+  supplyPage.value = page;
+  return loadPartner();
+}
+function turnLeague(page) {
+  leaguePage.value = page;
+  return loadPartner();
+}
+function turnSplit(page) {
+  splitPage.value = page;
+  return loadPartner();
+}
 async function loadPartner() {
   try {
-    partner.value = await admin("/admin/partner");
+    const data = await admin(
+      "/admin/partner?supplyPage=" + supplyPage.value + "&leaguePage=" + leaguePage.value + "&splitPage=" + splitPage.value
+    );
+    partner.value = data;
+    supplyPage.value = data.supplyPage || 1;
+    supplyPages.value = data.supplyPages || 1;
+    leaguePage.value = data.leaguePage || 1;
+    leaguePages.value = data.leaguePages || 1;
+    splitPage.value = data.splitPage || 1;
+    splitPages.value = data.splitPages || 1;
   } catch (err) {
     fail(err);
   }
@@ -1770,12 +1892,26 @@ async function removeSplit(item) {
   }
 }
 
+function turnGifts(page) {
+  giftPage.value = page;
+  return loadShop();
+}
+function turnRedemptions(page) {
+  redemptionPage.value = page;
+  return loadShop();
+}
 async function loadShop() {
   shopReady.value = false;
   try {
-    const data = await admin("/admin/shop");
+    const data = await admin("/admin/shop?giftPage=" + giftPage.value + "&redemptionPage=" + redemptionPage.value);
     gifts.value = data.gifts;
+    giftTotal.value = data.giftTotal || 0;
+    giftPages.value = data.giftPages || 1;
+    giftPage.value = data.giftPage || 1;
     redemptions.value = data.redemptions;
+    redemptionTotal.value = data.redemptionTotal || 0;
+    redemptionPages.value = data.redemptionPages || 1;
+    redemptionPage.value = data.redemptionPage || 1;
     shopReady.value = true;
   } catch (err) {
     fail(err);
@@ -1802,23 +1938,34 @@ async function changePassword() {
 let officialTimer = 0;
 let officialSeq = 0;
 function queueOfficial() {
+  officialPage.value = 1;
   clearTimeout(officialTimer);
   officialTimer = setTimeout(() => {
     load().catch(fail);
   }, 200);
 }
+function turnOfficial(page) {
+  officialPage.value = page;
+  return load().catch(fail);
+}
 async function load() {
   const seq = ++officialSeq;
   const query = q.value.trim();
-  const data = await admin("/admin/official?status=" + (query ? "all" : filter.value) + (query ? "&q=" + encodeURIComponent(query) : ""));
+  const data = await admin(
+    "/admin/official?status=" + (query ? "all" : filter.value) + (query ? "&q=" + encodeURIComponent(query) : "") + "&page=" + officialPage.value
+  );
   if (seq !== officialSeq) return;
   rows.value = (data.rows || []).map((row) => ({ ...row, regStart: "", deadline: "", drawAt: "", payDeadline: "", nodeSource: "" }));
+  officialTotal.value = data.total || 0;
+  officialPages.value = data.pages || 1;
+  officialPage.value = data.page || 1;
   if (!rows.value.some((row) => row.officialId === officialFocus.value)) officialFocus.value = "";
   ready.value = true;
 }
 
 async function setFilter(value) {
   filter.value = value;
+  officialPage.value = 1;
   message.value = "";
   saved.value = false;
   try {
@@ -1837,10 +1984,10 @@ async function search() {
   try {
     const data = await admin("/admin/official/sync", { method: "POST", body: JSON.stringify({ name: q.value }) });
     if (seq !== officialSeq) return;
-    rows.value = (data.rows || []).map((row) => ({ ...row, regStart: "", deadline: "", drawAt: "", payDeadline: "", nodeSource: "" }));
-    ready.value = true;
     saved.value = true;
     message.value = data.changed ? "官网有 " + data.changed + " 场和上次记下的不一样" : "已向官网对过，没有新的变化";
+    officialPage.value = 1;
+    await load();
   } catch (err) {
     fail(err);
   } finally {
@@ -1873,10 +2020,18 @@ function openReview(item) {
   review.value = item;
 }
 
+function turnBot(page) {
+  botPage.value = page;
+  return loadBotReviews();
+}
 async function loadBotReviews() {
-  const data = await admin("/admin/bot-races?status=" + botStatus.value);
+  const data = await admin("/admin/bot-races?status=" + botStatus.value + "&page=" + botPage.value);
   botRows.value = (data.rows || []).map((row) => ({ ...row, returnNote: "" }));
-  if (botStatus.value === "pending") pendingCount.value = botRows.value.length;
+  botTotal.value = data.total || 0;
+  botPages.value = data.pages || 1;
+  botPage.value = data.page || 1;
+  pendingCount.value = data.pendingCount || 0;
+  botReady.value = true;
   if (review.value && !botRows.value.some((row) => row.id === review.value.id)) review.value = null;
   else if (review.value) review.value = botRows.value.find((row) => row.id === review.value.id) || null;
 }
@@ -1908,12 +2063,14 @@ function showNewsPublished() {
   newsTab.value = "published";
   newsReview.value = null;
   newsRows.value = [];
+  newsPage.value = 1;
   newsReady.value = false;
   loadNews().catch(fail);
 }
 
 function showNewsReview() {
   newsTab.value = "review";
+  newsPage.value = 1;
   newsItem.value = null;
   newsRaceHits.value = [];
   newsDelete.value = false;
@@ -1946,20 +2103,29 @@ function openNewsReview(item) {
 
 let newsTimer = 0;
 function queueNews() {
+  newsPage.value = 1;
   clearTimeout(newsTimer);
   newsTimer = setTimeout(() => {
     loadNews().catch(fail);
   }, 200);
 }
+function turnNews(page) {
+  newsPage.value = page;
+  return loadNews().catch(fail);
+}
 function submitNews() {
   clearTimeout(newsTimer);
+  newsPage.value = 1;
   return loadNews().catch(fail);
 }
 
 async function loadNews() {
   const status = newsTab.value === "review" ? newsStatus.value : "published";
-  const data = await admin("/admin/news?status=" + status + "&q=" + encodeURIComponent(newsQuery.value));
+  const data = await admin("/admin/news?status=" + status + "&q=" + encodeURIComponent(newsQuery.value) + "&page=" + newsPage.value);
   newsRows.value = data.rows || [];
+  newsTotal.value = data.total || 0;
+  newsPages.value = data.pages || 1;
+  newsPage.value = data.page || 1;
   newsPendingCount.value = data.pendingCount || 0;
   newsReady.value = true;
   if (newsReview.value) {
@@ -1975,6 +2141,7 @@ async function setNewsStatus(status) {
   newsStatus.value = status;
   newsReview.value = null;
   newsRows.value = [];
+  newsPage.value = 1;
   newsReady.value = false;
   try {
     await loadNews();
@@ -1996,9 +2163,9 @@ function queueNewsRaces() {
   newsRaceTimer = setTimeout(async () => {
     const seq = ++newsRaceSeq;
     try {
-      const data = await admin("/admin/races?when=all&q=" + encodeURIComponent(text));
+      const data = await admin("/admin/races?when=all&q=" + encodeURIComponent(text) + "&page=1&pageSize=8");
       if (seq !== newsRaceSeq) return;
-      newsRaceHits.value = (data.races || []).slice(0, 8);
+      newsRaceHits.value = data.races || [];
     } catch (err) {
       fail(err);
     }
@@ -2087,6 +2254,7 @@ async function returnNews(item) {
 
 async function setBotStatus(status) {
   botStatus.value = status;
+  botPage.value = 1;
   try {
     await loadBotReviews();
   } catch (err) {
@@ -2460,6 +2628,7 @@ let catalogTimer = 0;
 let catalogSeq = 0;
 function queueCatalog() {
   if (catalogQuery.value.trim()) closeEditor();
+  catalogPage.value = 1;
   clearTimeout(catalogTimer);
   catalogTimer = setTimeout(() => {
     loadCatalog().catch(fail);
@@ -2467,16 +2636,24 @@ function queueCatalog() {
 }
 function submitCatalog() {
   clearTimeout(catalogTimer);
+  catalogPage.value = 1;
   return loadCatalog();
+}
+function turnCatalog(page) {
+  catalogPage.value = page;
+  return loadCatalog().catch(fail);
 }
 async function loadCatalog() {
   const seq = ++catalogSeq;
   const query = catalogQuery.value.trim();
   const data = await admin(
-    "/admin/races?when=" + (query ? "all" : catalogWhen.value) + (query ? "&q=" + encodeURIComponent(query) : "")
+    "/admin/races?when=" + (query ? "all" : catalogWhen.value) + (query ? "&q=" + encodeURIComponent(query) : "") + "&page=" + catalogPage.value
   );
   if (seq !== catalogSeq) return;
   catalog.value = data.races || [];
+  catalogTotal.value = data.total || 0;
+  catalogPages.value = data.pages || 1;
+  catalogPage.value = data.page || 1;
   catalogReady.value = true;
 }
 
@@ -2487,6 +2664,7 @@ async function loadSpots() {
 
 async function setCatalogWhen(value) {
   catalogWhen.value = value;
+  catalogPage.value = 1;
   try {
     await loadCatalog();
   } catch (err) {

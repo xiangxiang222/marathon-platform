@@ -5,6 +5,7 @@ const { formatClock } = require("./career");
 const { clubRoleLabel, setMemberRole, addClubMember, removeClubMember, decideRequest, listPending, listClubApplications, decideClubApplication } = require("./roles");
 const { setUserPassword, createUser } = require("./user-auth");
 const { likeParams } = require("./search-like");
+const { readPage, finishPage, pageFields, slicePage } = require("./page");
 
 function mediaRoot() {
   return process.env.MARATHON_MEDIA || path.join(__dirname, "../data/media");
@@ -87,8 +88,11 @@ function when(value) {
   return String(value || "").slice(0, 16).replace("T", " ");
 }
 
-function listUsers(db, q) {
+function listUsers(db, q, pageQuery) {
   const match = likeParams(q, ["u.nickname"]);
+  const where = `WHERE ${match.sql}`;
+  const total = db.prepare(`SELECT COUNT(*) AS n FROM users u ${where}`).get(...match.params).n;
+  const window = finishPage(total, readPage(pageQuery));
   const rows = db
     .prepare(
       `SELECT u.id, u.nickname, u.created_at, u.leader,
@@ -97,21 +101,24 @@ function listUsers(db, q) {
               (SELECT COUNT(*) FROM results r WHERE r.user_id = u.id) AS results,
               (SELECT COUNT(*) FROM club_members m WHERE m.user_id = u.id) AS clubs
        FROM users u
-       WHERE ${match.sql}
+       ${where}
        ORDER BY u.id DESC
-       LIMIT 200`
+       LIMIT ? OFFSET ?`
     )
-    .all(...match.params);
-  return rows.map((row) => ({
-    id: row.id,
-    nickname: row.nickname,
-    leader: Boolean(row.leader),
-    hasPassword: Boolean(row.has_password),
-    createdAt: when(row.created_at),
-    plans: row.plans,
-    results: row.results,
-    clubs: row.clubs
-  }));
+    .all(...match.params, window.limit, window.offset);
+  return {
+    users: rows.map((row) => ({
+      id: row.id,
+      nickname: row.nickname,
+      leader: Boolean(row.leader),
+      hasPassword: Boolean(row.has_password),
+      createdAt: when(row.created_at),
+      plans: row.plans,
+      results: row.results,
+      clubs: row.clubs
+    })),
+    ...pageFields(window)
+  };
 }
 
 function userDesk(db, id) {
@@ -184,8 +191,18 @@ function userDesk(db, id) {
   };
 }
 
-function listRuns(db) {
-  return db
+function listRuns(db, pageQuery) {
+  const total = db
+    .prepare(
+      `SELECT COUNT(*) AS n
+       FROM activity_checks k
+       JOIN users u ON u.id = k.user_id
+       JOIN activities a ON a.id = k.activity_id
+       JOIN clubs c ON c.id = a.club_id`
+    )
+    .get().n;
+  const window = finishPage(total, readPage(pageQuery));
+  const runs = db
     .prepare(
       `SELECT u.nickname, c.name AS club, a.title, k.km, k.note, k.created_at
        FROM activity_checks k
@@ -193,9 +210,9 @@ function listRuns(db) {
        JOIN activities a ON a.id = k.activity_id
        JOIN clubs c ON c.id = a.club_id
        ORDER BY k.created_at DESC, u.id DESC
-       LIMIT 200`
+       LIMIT ? OFFSET ?`
     )
-    .all()
+    .all(window.limit, window.offset)
     .map((row) => ({
       nickname: row.nickname,
       club: row.club,
@@ -204,16 +221,16 @@ function listRuns(db) {
       note: row.note,
       at: when(row.created_at)
     }));
+  return { runs, ...pageFields(window) };
 }
 
-function shopDesk(db) {
+function shopDesk(db, query) {
   const gifts = db
     .prepare(
       `SELECT g.id, c.name AS club, g.name, g.cost, g.stock
        FROM gifts g
        JOIN clubs c ON c.id = g.club_id
-       ORDER BY c.name, g.id DESC
-       LIMIT 200`
+       ORDER BY c.name, g.id DESC`
     )
     .all()
     .map((row) => ({ id: row.id, club: row.club, name: row.name, cost: row.cost, stock: row.stock }));
@@ -224,8 +241,7 @@ function shopDesk(db) {
        JOIN gifts g ON g.id = r.gift_id
        JOIN clubs c ON c.id = g.club_id
        JOIN users u ON u.id = r.user_id
-       ORDER BY r.created_at DESC
-       LIMIT 100`
+       ORDER BY r.created_at DESC`
     )
     .all()
     .map((row) => ({
@@ -235,7 +251,18 @@ function shopDesk(db) {
       name: row.name,
       cost: row.cost
     }));
-  return { gifts, redemptions };
+  const giftPage = slicePage(gifts, { page: query && query.giftPage, pageSize: query && query.pageSize });
+  const redemptionPage = slicePage(redemptions, { page: query && query.redemptionPage, pageSize: query && query.pageSize });
+  return {
+    gifts: giftPage.rows,
+    giftTotal: giftPage.total,
+    giftPage: giftPage.page,
+    giftPages: giftPage.pages,
+    redemptions: redemptionPage.rows,
+    redemptionTotal: redemptionPage.total,
+    redemptionPage: redemptionPage.page,
+    redemptionPages: redemptionPage.pages
+  };
 }
 
 function deleteClub(db, id) {
@@ -333,25 +360,29 @@ function deleteClub(db, id) {
   return { ok: true };
 }
 
-function listClubs(db, q) {
+function listClubs(db, q, pageQuery) {
   const match = likeParams(q, ["c.name", "u.nickname"]);
   const member = likeParams(q, ["mu.nickname"]);
-  return db
+  const where = `WHERE ${match.sql}
+          OR EXISTS (
+            SELECT 1 FROM club_members m
+            JOIN users mu ON mu.id = m.user_id
+            WHERE m.club_id = c.id AND (${member.sql})
+          )`;
+  const params = [...match.params, ...member.params];
+  const total = db.prepare(`SELECT COUNT(*) AS n FROM clubs c JOIN users u ON u.id = c.owner_id ${where}`).get(...params).n;
+  const window = finishPage(total, readPage(pageQuery));
+  const clubs = db
     .prepare(
       `SELECT c.id, c.name, c.created_at, u.nickname AS owner,
               (SELECT COUNT(*) FROM club_members m WHERE m.club_id = c.id) AS members
        FROM clubs c
        JOIN users u ON u.id = c.owner_id
-       WHERE ${match.sql}
-          OR EXISTS (
-            SELECT 1 FROM club_members m
-            JOIN users mu ON mu.id = m.user_id
-            WHERE m.club_id = c.id AND (${member.sql})
-          )
+       ${where}
        ORDER BY c.id DESC
-       LIMIT 200`
+       LIMIT ? OFFSET ?`
     )
-    .all(...match.params, ...member.params)
+    .all(...params, window.limit, window.offset)
     .map((row) => ({
       id: row.id,
       name: row.name,
@@ -359,6 +390,7 @@ function listClubs(db, q) {
       members: row.members,
       createdAt: when(row.created_at)
     }));
+  return { clubs, ...pageFields(window) };
 }
 
 function clubDesk(db, id) {
@@ -411,7 +443,7 @@ function mountAdminDesk(app, { BASE, getDb, requireAdmin }) {
 
   app.get(BASE + "/api/admin/users", (req, res) => {
     if (!desk(req, res)) return;
-    res.json({ users: listUsers(getDb(), req.query.q) });
+    res.json(listUsers(getDb(), req.query.q, req.query));
   });
 
   app.post(BASE + "/api/admin/users", (req, res) => {
@@ -471,7 +503,7 @@ function mountAdminDesk(app, { BASE, getDb, requireAdmin }) {
 
   app.get(BASE + "/api/admin/clubs", (req, res) => {
     if (!desk(req, res)) return;
-    res.json({ clubs: listClubs(getDb(), req.query.q) });
+    res.json(listClubs(getDb(), req.query.q, req.query));
   });
 
   app.get(BASE + "/api/admin/clubs/:id", (req, res) => {
@@ -523,7 +555,8 @@ function mountAdminDesk(app, { BASE, getDb, requireAdmin }) {
 
   app.get(BASE + "/api/admin/club-applications", (req, res) => {
     if (!desk(req, res)) return;
-    res.json({ applications: listClubApplications(getDb()) });
+    const applications = slicePage(listClubApplications(getDb()), req.query);
+    res.json({ applications: applications.rows, total: applications.total, page: applications.page, pageSize: applications.pageSize, pages: applications.pages });
   });
 
   app.post(BASE + "/api/admin/club-applications/:id", (req, res) => {
@@ -536,7 +569,8 @@ function mountAdminDesk(app, { BASE, getDb, requireAdmin }) {
 
   app.get(BASE + "/api/admin/club-requests", (req, res) => {
     if (!desk(req, res)) return;
-    res.json({ requests: listPending(getDb()) });
+    const requests = slicePage(listPending(getDb()), req.query);
+    res.json({ requests: requests.rows, total: requests.total, page: requests.page, pageSize: requests.pageSize, pages: requests.pages });
   });
 
   app.post(BASE + "/api/admin/club-requests/:id", (req, res) => {
@@ -549,12 +583,12 @@ function mountAdminDesk(app, { BASE, getDb, requireAdmin }) {
 
   app.get(BASE + "/api/admin/runs", (req, res) => {
     if (!requireAdmin(req, res)) return;
-    res.json({ runs: listRuns(getDb()) });
+    res.json(listRuns(getDb(), req.query));
   });
 
   app.get(BASE + "/api/admin/shop", (req, res) => {
     if (!requireAdmin(req, res)) return;
-    res.json(shopDesk(getDb()));
+    res.json(shopDesk(getDb(), req.query));
   });
 }
 

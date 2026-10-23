@@ -796,7 +796,7 @@ function searchRaces() {
       return;
     }
     try {
-      const data = await api("/races?q=" + encodeURIComponent(q));
+      const data = await api("/races?q=" + encodeURIComponent(q) + "&page=1&pageSize=8");
       raceHits.value = (data.races || []).slice(0, 6);
     } catch (err) {
       message.value = err.message;

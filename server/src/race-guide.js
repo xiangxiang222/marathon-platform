@@ -2,6 +2,7 @@ const crypto = require("crypto");
 const fs = require("fs");
 const path = require("path");
 const { likeParams } = require("./search-like");
+const { readPage, finishPage, pageFields } = require("./page");
 
 const DISTANCES = ["full", "half", "10k", "5k"];
 const KINDS = ["trail", "ultra", "family", "fun"];
@@ -281,17 +282,20 @@ function cstToday() {
   return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10);
 }
 
-function listManaged(db, { q = "", when = "upcoming" } = {}) {
+function listManaged(db, { q = "", when = "upcoming", pageQuery } = {}) {
   const match = likeParams(q, ["name", "city", "place", "province"]);
-  const params = match.params;
-  let sql = `SELECT id, name, race_date, city, province, place FROM races
-    WHERE (${match.sql})`;
+  const params = [...match.params];
+  let where = `WHERE (${match.sql})`;
   if (when !== "all") {
-    sql += " AND race_date >= ?";
+    where += " AND race_date >= ?";
     params.push(cstToday());
   }
-  sql += " ORDER BY race_date, id LIMIT 400";
-  return db.prepare(sql).all(...params);
+  const total = db.prepare(`SELECT COUNT(*) AS n FROM races ${where}`).get(...params).n;
+  const window = finishPage(total, readPage(pageQuery));
+  const rows = db
+    .prepare(`SELECT id, name, race_date, city, province, place FROM races ${where} ORDER BY race_date, id LIMIT ? OFFSET ?`)
+    .all(...params, window.limit, window.offset);
+  return { rows, ...pageFields(window) };
 }
 
 function createRace(db, body) {
@@ -392,16 +396,20 @@ function mountRaceGuide(app, { BASE, getDb, requireAdmin }) {
     if (!requireAdmin(req, res)) return;
     const q = String(req.query.q || "").trim();
     const when = req.query.when === "all" ? "all" : "upcoming";
-    const rows = listManaged(getDb(), { q, when });
+    const listed = listManaged(getDb(), { q, when, pageQuery: req.query });
     res.json({
-      races: rows.map((row) => ({
+      races: listed.rows.map((row) => ({
         id: row.id,
         name: row.name,
         raceDate: row.race_date,
         city: row.city,
         province: row.province,
         place: row.place
-      }))
+      })),
+      total: listed.total,
+      page: listed.page,
+      pageSize: listed.pageSize,
+      pages: listed.pages
     });
   });
 

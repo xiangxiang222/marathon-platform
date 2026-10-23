@@ -68,6 +68,12 @@
   </navigator>
   <view wx:if="{{loaded && !races.length}}" class="empty">这个分类还没有赛历</view>
   </block>
+  <view wx:if="{{loaded}}" class="total">共 {{total}} 场</view>
+  <view wx:if="{{pages > 1}}" class="pager">
+    <view class="pager-btn {{page <= 1 ? 'off' : ''}}" bindtap="prevPage">上一页</view>
+    <text>{{page}} / {{pages}}</text>
+    <view class="pager-btn {{page >= pages ? 'off' : ''}}" bindtap="nextPage">下一页</view>
+  </view>
 </view>
 
 <view wx:if="{{sheet}}" class="dim" bindtap="closeSheet" catchtouchmove="noop"></view>
