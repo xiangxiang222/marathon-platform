@@ -12,9 +12,9 @@ function item(extra) {
     raceId: extra.raceId,
     officialId: extra.officialId,
     title: extra.title || "组委会公布比赛日交通",
-    summary: extra.summary || "比赛日早晨封路，选手从指定路口进场。",
+    body: extra.body != null ? extra.body : "## 封路\n\n比赛日早晨封路，选手从指定路口进场。",
     source: extra.source || "组委会",
-    url: extra.url || "https://example.com/news/traffic",
+    key: extra.key,
     publishedAt: extra.publishedAt || "2026-10-22"
   };
 }
@@ -53,20 +53,24 @@ test("news stays on its race and off the public list until it is passed", async 
     assert.equal(denied.status, 401);
     assert.equal(denied.body.error, "口令不对");
 
-    const bad = await request(app).post("/marathon/api/admin/news").set(admin).send(item({ raceId, url: "http://example.com/a" }));
+    const bad = await request(app).post("/marathon/api/admin/news").set(admin).send(item({ raceId, body: "  " }));
     assert.equal(bad.status, 400);
-    assert.equal(bad.body.error, "链接要以 https:// 开头");
-    const script = await request(app).post("/marathon/api/admin/news").set(admin).send(item({ raceId, url: "javascript:alert(1)" }));
-    assert.equal(script.status, 400);
+    assert.equal(bad.body.error, "正文要写");
+    const huge = await request(app).post("/marathon/api/admin/news").set(admin).send(item({ raceId, body: "文".repeat(20001) }));
+    assert.equal(huge.status, 400);
+    assert.equal(huge.body.error, "正文不超过 20000 个字");
 
     const created = await request(app).post("/marathon/api/admin/news").set(admin).send(item({ raceId }));
     assert.equal(created.status, 200);
     assert.equal(created.body.news.raceId, raceId);
     assert.equal(created.body.news.title, "组委会公布比赛日交通");
+    assert.equal(created.body.news.body, "## 封路\n\n比赛日早晨封路，选手从指定路口进场。");
+    assert.equal(created.body.news.url, undefined);
 
     const again = await request(app).post("/marathon/api/admin/news").set(admin).send(item({ raceId }));
-    assert.equal(again.status, 400);
-    assert.equal(again.body.error, "这场已经有这条链接");
+    assert.equal(again.status, 200);
+    assert.notEqual(again.body.news.id, created.body.news.id);
+    await request(app).delete("/marathon/api/admin/news/" + again.body.news.id).set(admin);
 
     const listed = await request(app).get("/marathon/api/news");
     assert.equal(listed.status, 200);
@@ -86,14 +90,15 @@ test("news stays on its race and off the public list until it is passed", async 
     const stranger = await request(app).get("/marathon/api/admin/races/" + raceId + "/news").set("Authorization", "Bearer nope");
     assert.equal(stranger.status, 401);
     const one = await request(app).get("/marathon/api/news/" + created.body.news.id);
-    assert.equal(one.body.news.summary, "比赛日早晨封路，选手从指定路口进场。");
+    assert.match(one.body.news.body, /比赛日早晨封路/);
+    assert.equal(one.body.news.url, undefined);
     const missingRace = await request(app).get("/marathon/api/races/missing-news/news");
     assert.equal(missingRace.status, 404);
 
     const queued = await request(app)
       .post("/marathon/api/bot/news")
       .set(bot)
-      .send({ news: [item({ raceId, url: "https://example.com/news/live", title: "直播平台定了", summary: "比赛日上午在指定平台直播。" })] });
+      .send({ news: [item({ raceId, key: "live", title: "直播平台定了", body: "比赛日上午在指定平台直播。" })] });
     assert.equal(queued.status, 200);
     assert.equal(queued.body.accepted[0].status, "pending");
     const hidden = await request(app).get("/marathon/api/races/" + raceId + "/news");
@@ -118,9 +123,9 @@ test("news stays on its race and off the public list until it is passed", async 
 
     const resend = await request(app).post("/marathon/api/bot/news").set(bot).send(item({
       raceId,
-      url: "https://example.com/news/live",
+      key: "live",
       title: "直播平台改到上午",
-      summary: "直播改到比赛日上午八点。"
+      body: "直播改到比赛日上午八点。"
     }));
     assert.equal(resend.status, 200);
     assert.equal(resend.body.accepted[0].id, pending.body.rows[0].id);
@@ -137,9 +142,9 @@ test("news stays on its race and off the public list until it is passed", async 
 
     const same = await request(app).post("/marathon/api/bot/news").set(bot).send(item({
       raceId,
-      url: "https://example.com/news/live",
+      key: "live",
       title: "直播平台改到上午",
-      summary: "直播改到比赛日上午八点。",
+      body: "直播改到比赛日上午八点。",
       publishedAt: "2026-10-22"
     }));
     assert.equal(same.body.accepted[0].status, "published");
@@ -148,23 +153,22 @@ test("news stays on its race and off the public list until it is passed", async 
 
     const changed = await request(app).post("/marathon/api/bot/news").set(bot).send(item({
       officialId: "news-oid",
-      url: "https://example.com/news/live",
+      key: "live",
       title: "直播平台再改到九点",
-      summary: "直播改到比赛日上午九点。"
+      body: "直播改到比赛日上午九点。"
     }));
     assert.equal(changed.body.accepted[0].status, "pending");
     const publicStill = await request(app).get("/marathon/api/races/" + raceId + "/news");
-    assert.equal(publicStill.body.news.find((row) => row.url === "https://example.com/news/live").title, "直播平台改到上午");
+    assert.equal(publicStill.body.news.find((row) => row.key === "live").title, "直播平台改到上午");
     await request(app).post("/marathon/api/admin/news-submissions/" + changed.body.accepted[0].id + "/publish").set(admin).send({});
     const replaced = await request(app).get("/marathon/api/races/" + raceId + "/news");
-    assert.equal(replaced.body.news.filter((row) => row.url === "https://example.com/news/live").length, 1);
-    assert.equal(replaced.body.news.find((row) => row.url === "https://example.com/news/live").title, "直播平台再改到九点");
+    assert.equal(replaced.body.news.filter((row) => row.key === "live").length, 1);
+    assert.equal(replaced.body.news.find((row) => row.key === "live").title, "直播平台再改到九点");
 
     const byCode = await request(app).post("/marathon/api/bot/news").set(bot).send(item({
       officialId: "4242",
-      url: "https://example.com/news/code",
       title: "编号这场的资讯",
-      summary: "按官网编号对上这场。"
+      body: "按官网编号对上这场。"
     }));
     assert.equal(byCode.body.accepted[0].raceId, "caa-4242");
     assert.equal(byCode.body.accepted[0].status, "pending");

@@ -1,4 +1,4 @@
-const { botGate, httpsUrl } = require("./bot-races");
+const { botGate } = require("./bot-races");
 const { readPage, finishPage, pageFields, slicePage } = require("./page");
 const { likeParams } = require("./search-like");
 
@@ -23,26 +23,33 @@ function day(value) {
   return { text };
 }
 
+function parseKey(value) {
+  const text = String(value == null ? "" : value).trim();
+  if (!text) return { text: "" };
+  if (!/^[A-Za-z0-9_-]{1,40}$/.test(text)) return { error: "编号用 1 到 40 个字母或数字" };
+  return { text };
+}
+
 function parseItem(body, { requireDate, now }) {
   const title = limited(body.title, 80, "标题");
   if (title.error) return title;
   if (!title.text) return { error: "标题要写" };
-  const summary = limited(body.summary, 400, "摘要");
-  if (summary.error) return summary;
-  if (!summary.text) return { error: "摘要要写几句" };
   const source = limited(body.source, 40, "来源");
   if (source.error) return source;
   if (!source.text) return { error: "来源要写" };
-  const url = httpsUrl(body.url);
-  if (url.error) return url;
-  if (!url.text) return { error: "链接要以 https:// 开头" };
+  const article = limited(body.body != null ? body.body : body.markdown, 20000, "正文");
+  if (article.error) return article;
+  if (!article.text) return { error: "正文要写" };
+  const key = parseKey(body.key);
+  if (key.error) return key;
   const published = day(body.publishedAt);
   if (published.error) return published;
+  const item = { title: title.text, body: article.text, source: source.text, key: key.text, publishedAt: published.text };
   if (!published.text) {
     if (requireDate) return { error: "发布时间要写" };
-    return { title: title.text, summary: summary.text, source: source.text, url: url.text, publishedAt: cstDay(now) };
+    item.publishedAt = cstDay(now);
   }
-  return { title: title.text, summary: summary.text, source: source.text, url: url.text, publishedAt: published.text };
+  return item;
 }
 
 function resolveRace(db, body) {
@@ -63,46 +70,51 @@ function resolveRace(db, body) {
   return { race };
 }
 
-function present(row, extra) {
-  return {
+function articleText(row) {
+  return String((row && (row.body || row.summary)) || "");
+}
+
+function present(row, extra, options) {
+  const item = {
     id: row.id,
     raceId: row.race_id,
     raceName: row.race_name,
     raceDate: row.race_date,
     city: row.city,
     title: row.title,
-    summary: row.summary,
     source: row.source,
-    url: row.url,
     publishedAt: row.published_at,
     ...extra
   };
+  if (row.article_key) item.key = row.article_key;
+  if (!options || options.withBody !== false) item.body = articleText(row);
+  return item;
 }
 
 function linesOf(row) {
-  return ["赛事 " + row.race_name, "来源 " + row.source, "原文 " + row.url, row.summary];
+  return ["赛事 " + row.race_name, "来源 " + row.source];
 }
 
 function sameText(row, item) {
-  return row.title === item.title && row.summary === item.summary && row.source === item.source && row.published_at === item.publishedAt && row.url === item.url;
+  return row.title === item.title && articleText(row) === item.body && row.source === item.source && row.published_at === item.publishedAt;
 }
 
 function writePublished(db, existingId, raceId, item, stamp) {
   try {
     if (existingId) {
       db.prepare(
-        "UPDATE news SET race_id = ?, title = ?, summary = ?, source = ?, url = ?, published_at = ?, updated_at = ? WHERE id = ?"
-      ).run(raceId, item.title, item.summary, item.source, item.url, item.publishedAt, stamp, existingId);
+        "UPDATE news SET race_id = ?, title = ?, summary = '', body = ?, source = ?, url = '', article_key = ?, published_at = ?, updated_at = ? WHERE id = ?"
+      ).run(raceId, item.title, item.body, item.source, item.key || "", item.publishedAt, stamp, existingId);
       return { id: existingId };
     }
     const inserted = db
       .prepare(
-        "INSERT INTO news (race_id, title, summary, source, url, published_at, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
+        "INSERT INTO news (race_id, title, summary, body, source, url, article_key, published_at, created_at, updated_at) VALUES (?, ?, '', ?, ?, '', ?, ?, ?, ?)"
       )
-      .run(raceId, item.title, item.summary, item.source, item.url, item.publishedAt, stamp, stamp);
+      .run(raceId, item.title, item.body, item.source, item.key || "", item.publishedAt, stamp, stamp);
     return { id: Number(inserted.lastInsertRowid) };
   } catch (err) {
-    if (/UNIQUE constraint failed/.test(String(err && err.message))) return { error: "这场已经有这条链接", status: 400 };
+    if (/UNIQUE constraint failed/.test(String(err && err.message))) return { error: "这场已经有这条", status: 400 };
     throw err;
   }
 }
@@ -129,10 +141,11 @@ function createNews(db, body) {
 }
 
 function updateNews(db, id, body) {
-  const current = db.prepare("SELECT id FROM news WHERE id = ?").get(id);
+  const current = db.prepare("SELECT id, article_key FROM news WHERE id = ?").get(id);
   if (!current) return { error: "没有这条资讯", status: 404 };
   const item = parseItem(body || {}, { requireDate: true, now: new Date() });
   if (item.error) return { error: item.error, status: 400 };
+  if (!item.key) item.key = current.article_key || "";
   const found = resolveRace(db, body || {});
   if (found.error) return found;
   const written = writePublished(db, current.id, found.race.id, item, new Date().toISOString());
@@ -141,10 +154,14 @@ function updateNews(db, id, body) {
 }
 
 function removeNews(db, id) {
-  const row = db.prepare("SELECT id, race_id, url FROM news WHERE id = ?").get(id);
+  const row = db.prepare("SELECT id, race_id, title, article_key FROM news WHERE id = ?").get(id);
   if (!row) return { error: "没有这条资讯", status: 404 };
   db.transaction(() => {
-    db.prepare("DELETE FROM news_submissions WHERE news_id = ? OR (race_id = ? AND url = ?)").run(row.id, row.race_id, row.url);
+    if (row.article_key) {
+      db.prepare("DELETE FROM news_submissions WHERE news_id = ? OR (race_id = ? AND article_key = ?)").run(row.id, row.race_id, row.article_key);
+    } else {
+      db.prepare("DELETE FROM news_submissions WHERE news_id = ? OR (race_id = ? AND article_key = '' AND title = ?)").run(row.id, row.race_id, row.title);
+    }
     db.prepare("DELETE FROM news WHERE id = ?").run(row.id);
   })();
   return { ok: true };
@@ -236,7 +253,7 @@ function listPublic(db, raceId, query) {
        ORDER BY n.published_at DESC, n.id DESC`
     )
     .all(...(raceId ? [raceId] : []))
-    .map((row) => present(row));
+    .map((row) => present(row, {}, { withBody: false }));
   if (raceId) return { news: rows };
   const paged = slicePage(rows, query);
   return { news: paged.rows, total: paged.total, page: paged.page, pageSize: paged.pageSize, pages: paged.pages };
@@ -248,8 +265,24 @@ function getPublic(db, id) {
   return { news: present(row) };
 }
 
+function findPublished(db, raceId, item) {
+  if (item.key) return db.prepare("SELECT * FROM news WHERE race_id = ? AND article_key = ?").get(raceId, item.key);
+  return db.prepare("SELECT * FROM news WHERE race_id = ? AND article_key = '' AND title = ? ORDER BY id DESC LIMIT 1").get(raceId, item.title);
+}
+
+function findOpen(db, raceId, item) {
+  if (item.key) {
+    return db
+      .prepare("SELECT id FROM news_submissions WHERE race_id = ? AND article_key = ? AND status IN ('pending', 'returned') ORDER BY id DESC LIMIT 1")
+      .get(raceId, item.key);
+  }
+  return db
+    .prepare("SELECT id FROM news_submissions WHERE race_id = ? AND article_key = '' AND title = ? AND status IN ('pending', 'returned') ORDER BY id DESC LIMIT 1")
+    .get(raceId, item.title);
+}
+
 function acceptNews(db, body, now = new Date()) {
-  const list = Array.isArray(body && body.news) ? body.news : body && (body.title || body.url || body.raceId || body.officialId) ? [body] : null;
+  const list = Array.isArray(body && body.news) ? body.news : body && (body.title || body.body || body.markdown || body.raceId || body.officialId) ? [body] : null;
   if (!list || !list.length) return { error: "请带上资讯", status: 400 };
   if (list.length > 40) return { error: "一次最多 40 条", status: 400 };
   const accepted = [];
@@ -257,36 +290,34 @@ function acceptNews(db, body, now = new Date()) {
   const seen = new Set();
   const stamp = now.toISOString();
   const prepared = [];
-  for (const item of list) {
-    const parsed = parseItem(item || {}, { requireDate: false, now });
+  for (const raw of list) {
+    const parsed = parseItem(raw || {}, { requireDate: false, now });
     if (parsed.error) {
-      errors.push({ url: String((item && item.url) || ""), error: parsed.error });
+      errors.push({ title: String((raw && raw.title) || "").trim(), error: parsed.error });
       continue;
     }
-    const found = resolveRace(db, item || {});
+    const found = resolveRace(db, raw || {});
     if (found.error) {
-      errors.push({ url: parsed.url, error: found.error });
+      errors.push({ title: parsed.title, error: found.error });
       continue;
     }
-    const key = found.race.id + "\n" + parsed.url;
-    if (seen.has(key)) {
-      errors.push({ url: parsed.url, error: "同一批里链接重复" });
+    const identity = found.race.id + "\n" + (parsed.key || "title:" + parsed.title);
+    if (seen.has(identity)) {
+      errors.push({ title: parsed.title, error: "同一批里重复" });
       continue;
     }
-    seen.add(key);
+    seen.add(identity);
     prepared.push({ race: found.race, item: parsed });
   }
   const save = db.transaction(() => {
     for (const entry of prepared) {
-      const published = db.prepare("SELECT * FROM news WHERE race_id = ? AND url = ?").get(entry.race.id, entry.item.url);
-      const open = db
-        .prepare("SELECT id FROM news_submissions WHERE race_id = ? AND url = ? AND status IN ('pending', 'returned') ORDER BY id DESC LIMIT 1")
-        .get(entry.race.id, entry.item.url);
+      const published = findPublished(db, entry.race.id, entry.item);
+      const open = findOpen(db, entry.race.id, entry.item);
       if (published && sameText(published, entry.item)) {
         if (open) {
           db.prepare(
-            "UPDATE news_submissions SET title = ?, summary = ?, source = ?, published_at = ?, status = 'published', note = '', news_id = ?, updated_at = ? WHERE id = ?"
-          ).run(entry.item.title, entry.item.summary, entry.item.source, entry.item.publishedAt, published.id, stamp, open.id);
+            "UPDATE news_submissions SET title = ?, summary = '', body = ?, source = ?, article_key = ?, published_at = ?, status = 'published', note = '', news_id = ?, updated_at = ? WHERE id = ?"
+          ).run(entry.item.title, entry.item.body, entry.item.source, entry.item.key, entry.item.publishedAt, published.id, stamp, open.id);
         }
         accepted.push({ id: published.id, raceId: entry.race.id, title: entry.item.title, status: "published" });
         continue;
@@ -295,15 +326,15 @@ function acceptNews(db, body, now = new Date()) {
       let id = open && open.id;
       if (open) {
         db.prepare(
-          "UPDATE news_submissions SET title = ?, summary = ?, source = ?, published_at = ?, status = 'pending', note = '', news_id = ?, updated_at = ? WHERE id = ?"
-        ).run(entry.item.title, entry.item.summary, entry.item.source, entry.item.publishedAt, newsId, stamp, open.id);
+          "UPDATE news_submissions SET title = ?, summary = '', body = ?, source = ?, article_key = ?, published_at = ?, status = 'pending', note = '', news_id = ?, updated_at = ? WHERE id = ?"
+        ).run(entry.item.title, entry.item.body, entry.item.source, entry.item.key, entry.item.publishedAt, newsId, stamp, open.id);
       } else {
         const inserted = db
           .prepare(
-            `INSERT INTO news_submissions (race_id, title, summary, source, url, published_at, status, note, news_id, created_at, updated_at)
-             VALUES (?, ?, ?, ?, ?, ?, 'pending', '', ?, ?, ?)`
+            `INSERT INTO news_submissions (race_id, title, summary, body, source, url, article_key, published_at, status, note, news_id, created_at, updated_at)
+             VALUES (?, ?, '', ?, ?, '', ?, ?, 'pending', '', ?, ?, ?)`
           )
-          .run(entry.race.id, entry.item.title, entry.item.summary, entry.item.source, entry.item.url, entry.item.publishedAt, newsId, stamp, stamp);
+          .run(entry.race.id, entry.item.title, entry.item.body, entry.item.source, entry.item.key, entry.item.publishedAt, newsId, stamp, stamp);
         id = Number(inserted.lastInsertRowid);
       }
       accepted.push({ id, raceId: entry.race.id, title: entry.item.title, status: "pending" });
@@ -335,10 +366,10 @@ function publishSubmission(db, id) {
   if (row.status !== "pending") return { error: "这条不在待审里", status: 400 };
   const race = db.prepare("SELECT id FROM races WHERE id = ?").get(row.race_id);
   if (!race) return { error: "赛历里没有这场", status: 404 };
-  const item = { title: row.title, summary: row.summary, source: row.source, url: row.url, publishedAt: row.published_at };
+  const item = { title: row.title, body: articleText(row), source: row.source, key: row.article_key || "", publishedAt: row.published_at };
   const linked = row.news_id ? db.prepare("SELECT id FROM news WHERE id = ?").get(row.news_id) : null;
-  const byUrl = db.prepare("SELECT id FROM news WHERE race_id = ? AND url = ?").get(row.race_id, row.url);
-  const existingId = (linked && linked.id) || (byUrl && byUrl.id) || 0;
+  const matched = findPublished(db, row.race_id, item);
+  const existingId = (linked && linked.id) || (matched && matched.id) || 0;
   const stamp = new Date().toISOString();
   let newsId = 0;
   try {
