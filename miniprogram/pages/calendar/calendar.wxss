@@ -27,3 +27,38 @@
 .race { display: block; padding: 24rpx 0; border-bottom: 1rpx solid #f0f1f4; }
 .name { font-size: 32rpx; font-weight: 650; }
 .meta { margin-top: 8rpx; color: #8e949c; font-size: 24rpx; }
+.poster-btn {
+  display: flex;
+  align-items: center;
+  margin: 8rpx 32rpx 8rpx;
+  padding: 28rpx 32rpx 28rpx 36rpx;
+  border-radius: 36rpx;
+  color: #f3efe6;
+  background: linear-gradient(155deg, #1b2632, #101418 58%);
+}
+.poster-day { min-width: 72rpx; font-size: 64rpx; font-weight: 300; line-height: 1; }
+.poster-copy { flex: 1; margin-left: 24rpx; }
+.poster-title, .poster-sub { display: block; }
+.poster-title { font-size: 32rpx; font-weight: 650; }
+.poster-sub { margin-top: 6rpx; color: #d7c4a3; font-size: 24rpx; }
+.poster-go { font-size: 40rpx; color: rgba(243, 239, 230, 0.72); }
+.poster-canvas { position: fixed; left: -9999px; width: 2px; height: 2px; }
+.poster-mask {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  background: #0c1016;
+}
+.poster-scroll { flex: 1; height: 0; padding: 24rpx 40rpx 8rpx; box-sizing: border-box; }
+.poster-img { width: 100%; border-radius: 24rpx; }
+.poster-hint { text-align: center; color: rgba(243, 239, 230, 0.46); font-size: 24rpx; padding: 8rpx 0; }
+.poster-bar { display: flex; gap: 24rpx; padding: 12rpx 32rpx 48rpx; }
+.poster-bar button { flex: 1; margin: 0; height: 96rpx; line-height: 96rpx; border-radius: 999rpx; font-size: 32rpx; font-weight: 650; }
+.poster-bar button::after { border: 0; }
+.ghost { background: transparent; color: rgba(243, 239, 230, 0.82); }
+.save { background: #f3efe6; color: #101418; }

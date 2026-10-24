@@ -29,6 +29,14 @@
         <span class="count">{{ cell.count || "" }}</span>
       </button>
     </div>
+    <button v-if="ready && dayRaces.length" class="poster-btn" type="button" @click="openPoster">
+      <span class="poster-day">{{ dayNum }}</span>
+      <span class="poster-copy">
+        <b>生成当天长图</b>
+        <small>{{ weekday }} · {{ dayRaces.length }} 场</small>
+      </span>
+      <span class="poster-go" aria-hidden="true">›</span>
+    </button>
     <section class="day-races">
       <h2>{{ pickedTitle }}</h2>
       <router-link v-for="race in dayRaces" :key="race.id" class="race" :to="'/races/' + race.id">
@@ -38,6 +46,16 @@
       </router-link>
       <p v-if="ready && !dayRaces.length" class="none">这一天没有赛事</p>
     </section>
+    <div v-if="posterUrl" class="poster-layer" @click.self="closePoster">
+      <div class="poster-scroll">
+        <img :src="posterUrl" alt="当天赛事长图" />
+      </div>
+      <p class="poster-hint">长按图片可以保存</p>
+      <div class="poster-bar">
+        <button type="button" class="ghost" @click="closePoster">关闭</button>
+        <button type="button" class="save" @click="downloadPoster">保存图片</button>
+      </div>
+    </div>
   </main>
 </template>
 
@@ -45,6 +63,7 @@
 import { computed, onMounted, ref } from "vue";
 import { api } from "../api";
 import { lunarLabel } from "../lunar";
+import { renderDayPoster } from "../day-poster";
 
 const weeks = ["日", "一", "二", "三", "四", "五", "六"];
 const today = cstParts();
@@ -53,6 +72,7 @@ const month = ref(today.m);
 const picked = ref(iso(today));
 const races = ref([]);
 const ready = ref(false);
+const posterUrl = ref("");
 
 const cells = computed(() => {
   const first = new Date(Date.UTC(year.value, month.value - 1, 1));
@@ -83,6 +103,8 @@ const cells = computed(() => {
 });
 
 const dayRaces = computed(() => races.value.filter((race) => race.raceDate === picked.value));
+const dayNum = computed(() => String(Number(picked.value.slice(8))));
+const weekday = computed(() => ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"][new Date(picked.value + "T00:00:00Z").getUTCDay()]);
 const pickedTitle = computed(() => {
   const [, m, d] = picked.value.split("-");
   const count = dayRaces.value.length;
@@ -109,6 +131,34 @@ async function load() {
   if (key !== monthKey()) return;
   races.value = data.races || [];
   ready.value = true;
+}
+
+function pickedParts() {
+  const [y, m, d] = picked.value.split("-").map(Number);
+  return { y, m, d };
+}
+
+function openPoster() {
+  if (!dayRaces.value.length) return;
+  const parts = pickedParts();
+  const canvas = document.createElement("canvas");
+  renderDayPoster(canvas, {
+    date: picked.value,
+    lunar: lunarLabel(parts.y, parts.m, parts.d),
+    races: dayRaces.value
+  });
+  posterUrl.value = canvas.toDataURL("image/png");
+}
+
+function closePoster() {
+  posterUrl.value = "";
+}
+
+function downloadPoster() {
+  const link = document.createElement("a");
+  link.href = posterUrl.value;
+  link.download = "赛历-" + picked.value + ".png";
+  link.click();
 }
 
 function shift(delta) {
@@ -173,4 +223,39 @@ onMounted(load);
 .race span, .race em { display: block; margin-top: 4px; color: #8e949c; font-size: 13px; font-style: normal; }
 .race em { color: #007aff; font-weight: 650; }
 .none { color: #8e949c; text-align: center; padding: 28px 0; }
+.poster-btn {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: calc(100% - 32px);
+  margin: 12px 16px 0;
+  padding: 14px 16px 14px 18px;
+  border-radius: 18px;
+  text-align: left;
+  color: #f3efe6;
+  background:
+    radial-gradient(140px 90px at 100% 0%, rgba(215, 196, 163, 0.32), transparent 70%),
+    linear-gradient(155deg, #1b2632, #101418 58%);
+  box-shadow: 0 12px 28px rgba(16, 20, 24, 0.16);
+}
+.poster-day { min-width: 44px; font-size: 36px; font-weight: 300; letter-spacing: -1px; line-height: 1; }
+.poster-copy { flex: 1; min-width: 0; }
+.poster-copy b { display: block; font-size: 16px; font-weight: 650; letter-spacing: 0.02em; }
+.poster-copy small { display: block; margin-top: 3px; color: #d7c4a3; font-size: 12px; }
+.poster-go { font-size: 22px; color: rgba(243, 239, 230, 0.72); }
+.poster-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  background: #0c1016;
+}
+.poster-scroll { flex: 1; overflow: auto; padding: 16px 22px 8px; }
+.poster-scroll img { display: block; width: 100%; height: auto; border-radius: 18px; box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35); }
+.poster-hint { margin: 0; padding: 4px 0 2px; text-align: center; color: rgba(243, 239, 230, 0.46); font-size: 12px; }
+.poster-bar { display: flex; gap: 12px; padding: 10px 20px calc(16px + env(safe-area-inset-bottom, 0px)); }
+.poster-bar button { flex: 1; height: 48px; border-radius: 999px; font-size: 16px; font-weight: 650; }
+.poster-bar .ghost { color: rgba(243, 239, 230, 0.82); }
+.poster-bar .save { background: #f3efe6; color: #101418; }
 </style>
