@@ -46,15 +46,11 @@
       </router-link>
       <p v-if="ready && !dayRaces.length" class="none">这一天没有赛事</p>
     </section>
-    <div v-if="posterUrl" class="poster-layer" @click.self="closePoster">
+    <div v-if="posterUrl" class="poster-layer" @click="closePoster">
       <div class="poster-scroll">
-        <img :src="posterUrl" alt="当天赛事长图" />
+        <img :src="posterUrl" alt="当天赛事长图" @click.stop />
       </div>
       <p class="poster-hint">长按图片可以保存</p>
-      <div class="poster-bar">
-        <button type="button" class="ghost" @click="closePoster">关闭</button>
-        <button type="button" class="save" @click="downloadPoster">保存图片</button>
-      </div>
     </div>
   </main>
 </template>
@@ -154,13 +150,6 @@ function closePoster() {
   posterUrl.value = "";
 }
 
-function downloadPoster() {
-  const link = document.createElement("a");
-  link.href = posterUrl.value;
-  link.download = "赛历-" + picked.value + ".png";
-  link.click();
-}
-
 function shift(delta) {
   const next = new Date(Date.UTC(year.value, month.value - 1 + delta, 1));
   year.value = next.getUTCFullYear();
@@ -253,9 +242,5 @@ onMounted(load);
 }
 .poster-scroll { flex: 1; overflow: auto; padding: 16px 22px 8px; }
 .poster-scroll img { display: block; width: 100%; height: auto; border-radius: 18px; box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45); }
-.poster-hint { margin: 0; padding: 4px 0 2px; text-align: center; color: rgba(231, 244, 255, 0.46); font-size: 12px; }
-.poster-bar { display: flex; gap: 12px; padding: 10px 20px calc(16px + env(safe-area-inset-bottom, 0px)); }
-.poster-bar button { flex: 1; height: 48px; border-radius: 999px; font-size: 16px; font-weight: 650; }
-.poster-bar .ghost { color: rgba(231, 244, 255, 0.82); }
-.poster-bar .save { background: #d8f6ff; color: #061018; }
+.poster-hint { margin: 0; padding: 8px 0 calc(16px + env(safe-area-inset-bottom, 0px)); text-align: center; color: rgba(231, 244, 255, 0.46); font-size: 12px; }
 </style>

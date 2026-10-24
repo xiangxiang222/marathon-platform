@@ -57,9 +57,4 @@
 }
 .poster-scroll { flex: 1; height: 0; padding: 24rpx 40rpx 8rpx; box-sizing: border-box; }
 .poster-img { width: 100%; border-radius: 24rpx; }
-.poster-hint { text-align: center; color: rgba(231, 244, 255, 0.46); font-size: 24rpx; padding: 8rpx 0; }
-.poster-bar { display: flex; gap: 24rpx; padding: 12rpx 32rpx 48rpx; }
-.poster-bar button { flex: 1; margin: 0; height: 96rpx; line-height: 96rpx; border-radius: 999rpx; font-size: 32rpx; font-weight: 650; }
-.poster-bar button::after { border: 0; }
-.ghost { background: transparent; color: rgba(231, 244, 255, 0.82); }
-.save { background: #d8f6ff; color: #061018; }
+.poster-hint { text-align: center; color: rgba(231, 244, 255, 0.46); font-size: 24rpx; padding: 16rpx 0 calc(24rpx + env(safe-area-inset-bottom)); }

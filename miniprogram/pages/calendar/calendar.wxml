@@ -39,14 +39,10 @@
     <view wx:if="{{ready && !dayRaces.length}}" class="empty">这一天没有赛事</view>
   </view>
   <canvas type="2d" id="day-poster" class="poster-canvas" />
-  <view wx:if="{{posterPath}}" class="poster-mask">
-    <scroll-view scroll-y class="poster-scroll">
-      <image class="poster-img" src="{{posterPath}}" mode="widthFix" show-menu-by-longpress />
+  <view wx:if="{{posterPath}}" class="poster-mask" bindtap="closePoster">
+    <scroll-view scroll-y class="poster-scroll" bindtap="closePoster">
+      <image class="poster-img" src="{{posterPath}}" mode="widthFix" show-menu-by-longpress catchtap="keepPoster" />
     </scroll-view>
     <view class="poster-hint">长按图片可以保存</view>
-    <view class="poster-bar">
-      <button class="ghost" bindtap="closePoster">关闭</button>
-      <button class="save" bindtap="savePoster">保存图片</button>
-    </view>
   </view>
 </view>

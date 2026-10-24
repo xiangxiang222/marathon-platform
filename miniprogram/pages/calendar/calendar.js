@@ -141,13 +141,5 @@ Page({
   closePoster() {
     this.setData({ posterPath: "" });
   },
-  savePoster() {
-    const path = this.data.posterPath;
-    if (!path) return;
-    wx.saveImageToPhotosAlbum({
-      filePath: path,
-      success: () => wx.showToast({ title: "已保存到相册", icon: "none" }),
-      fail: () => wx.showToast({ title: "长按图片可以保存", icon: "none" })
-    });
-  }
+  keepPoster() {}
 });
