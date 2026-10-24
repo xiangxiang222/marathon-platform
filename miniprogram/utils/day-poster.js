@@ -24,7 +24,6 @@ function raceLine(race) {
   if (race && race.city) bits.push(race.city);
   const distances = race && race.distanceLabels && race.distanceLabels.length ? race.distanceLabels : race && race.kindLabels;
   if (distances && distances.length) bits.push(distances.join(" / "));
-  if (race && race.regStatus) bits.push(race.regStatus);
   return bits.join("  ·  ");
 }
 
