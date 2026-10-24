@@ -22,6 +22,14 @@
     </view>
   </view>
   <view wx:if="{{message}}" class="err">{{message}}</view>
+  <view wx:if="{{ready && dayRaces.length}}" class="poster-btn" bindtap="makePoster">
+    <text class="poster-day">{{dayNum}}</text>
+    <view class="poster-copy">
+      <text class="poster-title">生成当天长图</text>
+      <text class="poster-sub">{{weekday}} · {{dayRaces.length}} 场</text>
+    </view>
+    <text class="poster-go">›</text>
+  </view>
   <view class="list">
     <view class="picked">{{pickedLabel}}</view>
     <navigator wx:for="{{dayRaces}}" wx:key="id" url="/pages/race/race?id={{item.id}}" class="race">
@@ -29,5 +37,16 @@
       <view class="meta">{{item.meta}}</view>
     </navigator>
     <view wx:if="{{ready && !dayRaces.length}}" class="empty">这一天没有赛事</view>
+  </view>
+  <canvas type="2d" id="day-poster" class="poster-canvas" />
+  <view wx:if="{{posterPath}}" class="poster-mask">
+    <scroll-view scroll-y class="poster-scroll">
+      <image class="poster-img" src="{{posterPath}}" mode="widthFix" show-menu-by-longpress />
+    </scroll-view>
+    <view class="poster-hint">长按图片可以保存</view>
+    <view class="poster-bar">
+      <button class="ghost" bindtap="closePoster">关闭</button>
+      <button class="save" bindtap="savePoster">保存图片</button>
+    </view>
   </view>
 </view>

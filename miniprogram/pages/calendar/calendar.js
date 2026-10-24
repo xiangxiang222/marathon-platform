@@ -1,5 +1,6 @@
 const { request } = require("../../utils/request");
 const { lunarLabel } = require("../../lunar");
+const { renderDayPoster, posterFacts } = require("../../utils/day-poster");
 
 const WEEKS = ["日", "一", "二", "三", "四", "五", "六"];
 
@@ -20,8 +21,11 @@ Page({
     cells: [],
     dayRaces: [],
     pickedLabel: "",
+    dayNum: "",
+    weekday: "",
     ready: false,
-    message: ""
+    message: "",
+    posterPath: ""
   },
   onLoad() {
     const now = cstParts();
@@ -101,11 +105,49 @@ Page({
         meta: race.city + (race.distanceLabels && race.distanceLabels.length ? " · " + race.distanceLabels.join(" / ") : "") + " · " + race.regStatus
       }));
     const parts = this.picked.split("-");
+    const facts = posterFacts(this.picked);
     this.setData({
       cells,
       dayRaces,
       ready: true,
+      dayNum: facts.day,
+      weekday: facts.weekday,
       pickedLabel: Number(parts[1]) + "月" + Number(parts[2]) + "日 · " + dayRaces.length + "场"
+    });
+  },
+  makePoster() {
+    const races = (this.races || []).filter((race) => race.raceDate === this.picked);
+    if (!races.length) return;
+    const parts = this.picked.split("-").map(Number);
+    const lunar = lunarLabel(parts[0], parts[1], parts[2]);
+    this.createSelectorQuery()
+      .select("#day-poster")
+      .fields({ node: true })
+      .exec((res) => {
+        const canvas = res && res[0] && res[0].node;
+        if (!canvas) {
+          this.setData({ message: "这张图没有生成" });
+          return;
+        }
+        renderDayPoster(canvas, { date: this.picked, lunar, races });
+        wx.canvasToTempFilePath({
+          canvas,
+          fileType: "png",
+          success: (file) => this.setData({ posterPath: file.tempFilePath, message: "" }),
+          fail: () => this.setData({ message: "这张图没有生成" })
+        });
+      });
+  },
+  closePoster() {
+    this.setData({ posterPath: "" });
+  },
+  savePoster() {
+    const path = this.data.posterPath;
+    if (!path) return;
+    wx.saveImageToPhotosAlbum({
+      filePath: path,
+      success: () => wx.showToast({ title: "已保存到相册", icon: "none" }),
+      fail: () => wx.showToast({ title: "长按图片可以保存", icon: "none" })
     });
   }
 });
