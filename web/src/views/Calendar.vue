@@ -232,30 +232,30 @@ onMounted(load);
   padding: 14px 16px 14px 18px;
   border-radius: 18px;
   text-align: left;
-  color: #f3efe6;
+  color: #e7f4ff;
   background:
-    radial-gradient(140px 90px at 100% 0%, rgba(215, 196, 163, 0.32), transparent 70%),
-    linear-gradient(155deg, #1b2632, #101418 58%);
-  box-shadow: 0 12px 28px rgba(16, 20, 24, 0.16);
+    radial-gradient(160px 90px at 100% 0%, rgba(126, 231, 255, 0.42), transparent 68%),
+    linear-gradient(160deg, #14325a, #070b14 64%);
+  box-shadow: 0 14px 32px rgba(6, 16, 32, 0.2), inset 0 0 0 1px rgba(126, 231, 255, 0.32);
 }
 .poster-day { min-width: 44px; font-size: 36px; font-weight: 300; letter-spacing: -1px; line-height: 1; }
 .poster-copy { flex: 1; min-width: 0; }
 .poster-copy b { display: block; font-size: 16px; font-weight: 650; letter-spacing: 0.02em; }
-.poster-copy small { display: block; margin-top: 3px; color: #d7c4a3; font-size: 12px; }
-.poster-go { font-size: 22px; color: rgba(243, 239, 230, 0.72); }
+.poster-copy small { display: block; margin-top: 3px; color: #7ee7ff; font-size: 12px; }
+.poster-go { font-size: 22px; color: rgba(231, 244, 255, 0.72); }
 .poster-layer {
   position: fixed;
   inset: 0;
   z-index: 40;
   display: flex;
   flex-direction: column;
-  background: #0c1016;
+  background: #05070e;
 }
 .poster-scroll { flex: 1; overflow: auto; padding: 16px 22px 8px; }
-.poster-scroll img { display: block; width: 100%; height: auto; border-radius: 18px; box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35); }
-.poster-hint { margin: 0; padding: 4px 0 2px; text-align: center; color: rgba(243, 239, 230, 0.46); font-size: 12px; }
+.poster-scroll img { display: block; width: 100%; height: auto; border-radius: 18px; box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45); }
+.poster-hint { margin: 0; padding: 4px 0 2px; text-align: center; color: rgba(231, 244, 255, 0.46); font-size: 12px; }
 .poster-bar { display: flex; gap: 12px; padding: 10px 20px calc(16px + env(safe-area-inset-bottom, 0px)); }
 .poster-bar button { flex: 1; height: 48px; border-radius: 999px; font-size: 16px; font-weight: 650; }
-.poster-bar .ghost { color: rgba(243, 239, 230, 0.82); }
-.poster-bar .save { background: #f3efe6; color: #101418; }
+.poster-bar .ghost { color: rgba(231, 244, 255, 0.82); }
+.poster-bar .save { background: #d8f6ff; color: #061018; }
 </style>
