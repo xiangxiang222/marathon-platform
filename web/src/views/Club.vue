@@ -5,23 +5,65 @@
       <h1>跑团</h1>
       <span></span>
     </header>
-    <div v-if="club" class="detail">
-      <div class="hero-name">{{ club.name }}</div>
-      <div class="row"><span>口令，发到微信群</span><b>{{ club.code }}</b></div>
-      <div class="tags" style="margin-top:8px">
-        <span v-for="member in members" :key="member.id">{{ member.nickname }}</span>
+    <section v-if="club" class="club-hero">
+      <div class="club-identity">
+        <span class="club-letter" aria-hidden="true">{{ club.name.slice(0, 1) }}</span>
+        <div class="club-identity-copy"><h2>{{ club.name }}</h2><p class="club-leader">团长 {{ leaderName }} · {{ members.length }} 位成员</p></div>
+        <span class="role-badge">{{ club.roleLabel }}</span>
       </div>
-    </div>
+      <div class="club-avatars">
+        <span v-for="member in members.slice(0, 6)" :key="member.id" class="club-avatar">
+          <img v-if="member.avatar" :src="member.avatar" :alt="member.nickname" />
+          <template v-else>{{ member.nickname.slice(0, 1) }}</template>
+        </span>
+        <span v-if="members.length > 6" class="club-avatar avatar-more">+{{ members.length - 6 }}</span>
+        <button v-if="club.staff && requests.length" type="button" class="pending-badge" @click="tab = 'people'">{{ requests.length }} 个待审核</button>
+      </div>
+      <div class="club-hero-actions">
+        <button type="button" class="hero-share" @click="copyInvite">邀请加入</button>
+      </div>
+    </section>
     <div v-if="club" class="seg">
-      <button type="button" :class="{ on: tab === 'race' }" @click="tab = 'race'">比赛</button>
-      <button type="button" :class="{ on: tab === 'feed' }" @click="tab = 'feed'">动态</button>
-      <button type="button" :class="{ on: tab === 'act' }" @click="tab = 'act'">活动</button>
-      <button type="button" :class="{ on: tab === 'album' }" @click="tab = 'album'">相册</button>
-      <button type="button" :class="{ on: tab === 'km' }" @click="tab = 'km'">跑量</button>
-      <button type="button" :class="{ on: tab === 'partner' }" @click="tab = 'partner'">合作</button>
+      <button type="button" :class="{ on: tab === 'overview' }" @click="tab = 'overview'">概览</button>
+      <button type="button" :class="{ on: tab === 'race' }" @click="tab = 'race'">赛事</button>
+      <button type="button" :class="{ on: tab === 'act' }" @click="tab = 'act'">训练</button>
+      <button type="button" :class="{ on: mileageArea }" @click="tab = 'km'">跑量</button>
       <button type="button" :class="{ on: tab === 'people' }" @click="tab = 'people'">成员</button>
     </div>
-    <div v-if="club && tab === 'race'" class="block">
+    <div v-if="club && mileageArea" class="seg club-subnav">
+      <button type="button" :class="{ on: tab === 'km' }" @click="tab = 'km'">跑量榜</button>
+      <button type="button" :class="{ on: tab === 'album' }" @click="tab = 'album'">活动相册</button>
+      <button type="button" :class="{ on: tab === 'feed' }" @click="tab = 'feed'">团内动态</button>
+      <button type="button" :class="{ on: tab === 'partner' }" @click="tab = 'partner'">合作权益</button>
+    </div>
+    <section v-if="club && tab === 'overview'" class="overview">
+      <div class="overview-stats">
+        <button type="button" @click="tab = 'race'"><b>{{ board.length }}</b><span>团内赛事</span></button>
+        <button type="button" @click="tab = 'act'"><b>{{ upcomingActivityCount }}</b><span>近期活动</span></button>
+        <button type="button" @click="tab = 'people'"><b>{{ members.length }}</b><span>跑团成员</span></button>
+      </div>
+      <div class="section-head"><h2>近期赛事</h2><button type="button" @click="tab = 'race'">全部 {{ board.length }} 场 ›</button></div>
+      <router-link v-if="nextRace" class="overview-row" :to="'/races/' + nextRace.race.id">
+        <b class="overview-date">{{ nextRace.race.raceDate }}</b>
+        <span><strong>{{ nextRace.race.name }}</strong><small>{{ nextRace.marks.length }} 位团友已标记参赛</small></span>
+        <i>›</i>
+      </router-link>
+      <p v-else class="overview-empty">暂无即将开赛的团内赛事。</p>
+      <div class="section-head"><h2>下一场训练</h2><button type="button" @click="tab = 'act'">全部活动 ›</button></div>
+      <router-link v-if="nextActivity" class="overview-row" :to="'/clubs/' + club.id + '/activities/' + nextActivity.id">
+        <b class="overview-date">{{ nextActivity.dateLabel }}</b>
+        <span><strong>{{ nextActivity.title }}</strong><small>{{ nextActivity.place }} · {{ nextActivity.signupCount }} 人报名</small></span>
+        <i>›</i>
+      </router-link>
+      <p v-else class="overview-empty">暂无即将开始的训练。</p>
+      <div class="section-head"><h2>跑团空间</h2><button type="button" @click="tab = 'people'">管理跑团 ›</button></div>
+      <div class="overview-links">
+        <button type="button" @click="tab = 'km'"><b>跑量排行</b><small>分组与周期榜</small><i>›</i></button>
+        <button type="button" @click="tab = 'feed'"><b>跑团动态</b><small>成员交流</small><i>›</i></button>
+        <button type="button" @click="tab = 'partner'"><b>合作权益</b><small>跑团认证与权益</small><i>›</i></button>
+      </div>
+    </section>
+    <div v-if="club && tab === 'act'" class="block">
       <h2>团练签到</h2>
       <p class="rank-label">只记今天谁到了，不记公里。</p>
       <form class="check-form" @submit.prevent="checkIn">
@@ -38,6 +80,28 @@
         </div>
       </div>
       <p v-if="checkMessage" class="err">{{ checkMessage }}</p>
+    </div>
+    <div v-if="club && tab === 'race'" class="section-head club-section-head"><h2>跑团比赛名单</h2><span>{{ board.length }} 场比赛</span></div>
+    <p v-if="club && tab === 'race' && !board.length" class="empty">还没有人标比赛。打开一场，标上想跑或已报名。</p>
+    <div v-for="item in board" v-show="tab === 'race'" :key="item.race.id" class="block">
+      <router-link :to="'/races/' + item.race.id" class="card">
+        <div class="copy">
+          <p>{{ item.race.name }}</p>
+          <div class="foot"><span>{{ item.race.raceDate }}</span><span>{{ item.race.deadlineLabel }}</span></div>
+        </div>
+      </router-link>
+      <p v-if="tallyLine(item)" class="rank-label">{{ tallyLine(item) }}</p>
+      <p v-if="item.squad && item.squad.text" class="squad">{{ item.squad.text }}</p>
+      <p v-if="item.alternativeNote" class="squad">{{ item.alternativeNote }}</p>
+      <router-link v-for="alt in item.alternatives || []" :key="alt.id" class="mate" :to="'/races/' + alt.id">
+        <span>{{ alt.name }}</span><b>{{ alt.deadlineLabel }}</b>
+      </router-link>
+      <pre class="share-text">{{ item.text }}</pre>
+      <button class="primary" type="button" @click="copyCard(item)">复制卡片</button>
+      <div v-for="mark in item.marks" :key="mark.nickname + mark.status" class="mate">
+        <span>{{ mark.nickname }}</span>
+        <b>{{ mark.status }}<template v-if="mark.clock"> · {{ mark.clock }}<template v-if="mark.pb"> PB</template></template></b>
+      </div>
     </div>
     <div v-if="tab === 'race' && ranks.length" class="block">
       <h2>团内成绩</h2>
@@ -58,7 +122,8 @@
         <b>{{ item.filled }} 人 · {{ item.closed ? "已截止" : item.deadlineLabel }}</b>
       </router-link>
       <p v-if="!resultCalls.length" class="rank-label">还没有成绩统计。</p>
-      <form v-if="club.staff" class="check-form" @submit.prevent="createCall">
+      <button v-if="club.staff" class="manage-toggle" type="button" :aria-expanded="!!expanded.call" @click="expanded.call = !expanded.call"><span>{{ expanded.call ? '收起' : '发起成绩接龙' }}</span><i>{{ expanded.call ? '−' : '+' }}</i></button>
+        <form v-if="club.staff && expanded.call" class="check-form" @submit.prevent="createCall">
         <input v-model="raceQuery" placeholder="从赛历搜一场，例如璧山" @input="searchRaces" />
         <button v-for="race in raceHits" :key="race.id" class="undo pick" type="button" @click="pickRace(race)">{{ race.raceDate }} {{ race.name }}</button>
         <p v-if="pickedRace" class="rank-label">已选 {{ pickedRace.name }} <button class="undo inline" type="button" @click="clearRace">改成手写</button></p>
@@ -72,27 +137,6 @@
         <input v-model="callNote" maxlength="100" placeholder="说明，例如填净计时" />
         <button class="primary" type="submit">发起</button>
       </form>
-    </div>
-    <p v-if="club && tab === 'race' && !board.length && !ranks.length" class="empty">还没有人标比赛。打开一场，标上想跑或已报名。</p>
-    <div v-for="item in board" v-show="tab === 'race'" :key="item.race.id" class="block">
-      <router-link :to="'/races/' + item.race.id" class="card">
-        <div class="copy">
-          <p>{{ item.race.name }}</p>
-          <div class="foot"><span>{{ item.race.raceDate }}</span><span>{{ item.race.deadlineLabel }}</span></div>
-        </div>
-      </router-link>
-      <p v-if="tallyLine(item)" class="rank-label">{{ tallyLine(item) }}</p>
-      <p v-if="item.squad && item.squad.text" class="squad">{{ item.squad.text }}</p>
-      <p v-if="item.alternativeNote" class="squad">{{ item.alternativeNote }}</p>
-      <router-link v-for="alt in item.alternatives || []" :key="alt.id" class="mate" :to="'/races/' + alt.id">
-        <span>{{ alt.name }}</span><b>{{ alt.deadlineLabel }}</b>
-      </router-link>
-      <pre class="share-text">{{ item.text }}</pre>
-      <button class="primary" type="button" @click="copyCard(item)">复制卡片</button>
-      <div v-for="mark in item.marks" :key="mark.nickname + mark.status" class="mate">
-        <span>{{ mark.nickname }}</span>
-        <b>{{ mark.status }}<template v-if="mark.clock"> · {{ mark.clock }}<template v-if="mark.pb"> PB</template></template></b>
-      </div>
     </div>
     <template v-if="club && tab === 'act'">
       <div class="block">
@@ -154,8 +198,9 @@
         </div>
         <button type="button" class="primary" @click="exportAttend">导出图片</button>
       </div>
-      <form v-if="club.staff" class="block" @submit.prevent="createActivity">
-        <h2>发一场活动</h2>
+      <div v-if="club.staff" class="block">
+        <button class="manage-toggle" type="button" :aria-expanded="!!expanded.activity" @click="expanded.activity = !expanded.activity"><span>{{ expanded.activity ? '收起' : '发布训练' }}</span><i>{{ expanded.activity ? '−' : '+' }}</i></button>
+        <form v-if="expanded.activity" class="check-form" @submit.prevent="createActivity">
         <input v-model="actTitle" maxlength="40" placeholder="例如 周日 LSD" />
         <input v-model="actIssue" maxlength="40" placeholder="期次，可不填" />
         <input v-model="actWhen" placeholder="开始 2026-10-14 05:00" />
@@ -190,6 +235,7 @@
         <button class="undo" type="button" @click="actGroups.push({ name: '', kind: 'pace', pace: '', capacity: 0 })">加一组</button>
         <button class="primary" type="submit">发出去</button>
       </form>
+      </div>
       <div class="block">
         <h2>约跑</h2>
         <p class="rank-label">三人以上，当天打卡并上传合影才记积分。团练签到不加分。</p>
@@ -198,13 +244,15 @@
           <b>{{ item.checkCount }} 人 · {{ item.statusLabel }}</b>
         </router-link>
         <p v-if="!meetups.length" class="rank-label">还没有约跑。</p>
-        <form class="check-form" @submit.prevent="createMeetup">
+        <button class="manage-toggle" type="button" :aria-expanded="!!expanded.meetup" @click="expanded.meetup = !expanded.meetup"><span>{{ expanded.meetup ? '收起' : '发起约跑' }}</span><i>{{ expanded.meetup ? '−' : '+' }}</i></button>
+        <form v-if="expanded.meetup" class="check-form" @submit.prevent="createMeetup">
           <input v-model="meetDate" placeholder="日期 2026-10-22" />
           <input v-model="meetPlace" maxlength="40" placeholder="地点" />
           <input v-model="meetNote" maxlength="100" placeholder="说明，可不填" />
           <button class="primary" type="submit">发起约跑</button>
         </form>
-        <form v-if="club.owner" class="check-form" @submit.prevent="saveTiers">
+        <button v-if="club.owner" class="manage-toggle" type="button" :aria-expanded="!!expanded.tiers" @click="expanded.tiers = !expanded.tiers"><span>{{ expanded.tiers ? '收起' : '约跑积分设置' }}</span><i>{{ expanded.tiers ? '−' : '+' }}</i></button>
+        <form v-if="club.owner && expanded.tiers" class="check-form" @submit.prevent="saveTiers">
           <p class="rank-label">约跑积分。第一档不能少于 3 人，0 分只留记录。</p>
           <div v-for="(tier, index) in tierDraft" :key="index" class="pair">
             <label>人数<input v-model.number="tier.minPeople" type="number" min="3" max="500" /></label>
@@ -221,7 +269,8 @@
           <b>{{ item.signupCount }} 人 · {{ item.statusLabel }}</b>
         </router-link>
         <p v-if="!internals.length" class="rank-label">还没有队内赛。</p>
-        <form v-if="club.staff" class="check-form" @submit.prevent="createInternal">
+        <button v-if="club.staff" class="manage-toggle" type="button" :aria-expanded="!!expanded.internal" @click="expanded.internal = !expanded.internal"><span>{{ expanded.internal ? '收起' : '发起队内赛' }}</span><i>{{ expanded.internal ? '−' : '+' }}</i></button>
+        <form v-if="club.staff && expanded.internal" class="check-form" @submit.prevent="createInternal">
           <input v-model="raceTitle" maxlength="40" placeholder="名称，例如 滨河10公里" />
           <input v-model="raceWhen" placeholder="开赛 2026-11-01 08:00" />
           <input v-model="racePlace" maxlength="40" placeholder="地点" />
@@ -287,6 +336,37 @@
     </div>
     <template v-if="club && tab === 'people'">
       <div class="block">
+        <h2>成员</h2>
+        <p class="rank-label">我的积分 {{ myPoints }}</p>
+        <div v-for="member in members" :key="member.id" class="mate member">
+          <div class="who">
+            <span class="member-identity">
+              <img v-if="member.avatar" :src="member.avatar" :alt="member.nickname" />
+              <i v-else aria-hidden="true">{{ member.nickname.slice(0, 1) }}</i>
+              <span>{{ member.nickname }}<template v-if="member.role !== 'member'"> · {{ member.roleLabel }}</template></span>
+            </span>
+            <b>{{ member.points }} 分</b>
+          </div>
+          <div v-if="club.staff && !member.owner" class="acts">
+            <button v-if="club.owner && !member.owner && member.role !== 'manager'" class="undo" type="button" @click="setRole(member, 'manager')">设为跑团管理</button>
+            <button v-if="club.owner && member.role === 'manager'" class="undo" type="button" @click="setRole(member, 'member')">改为成员</button>
+            <button v-if="club.owner && !member.owner" class="undo" type="button" @click="setRole(member, 'owner')">交给他当团长</button>
+            <button v-if="club.staff && !member.owner" class="undo" type="button" @click="removeMember(member)">移出</button>
+          </div>
+        </div>
+      </div>
+      <div v-if="club.staff" class="block">
+        <h2>入团申请</h2>
+        <p v-if="!requests.length" class="rank-label">没有待审核的申请。</p>
+        <div v-for="item in requests" :key="item.id" class="mate">
+          <span>{{ item.nickname }}</span>
+          <b>
+            <button class="primary" type="button" @click="decide(item, 'approve')">通过</button>
+            <button class="undo" type="button" @click="decide(item, 'reject')">拒绝</button>
+          </b>
+        </div>
+      </div>
+      <div class="block">
         <h2>{{ feeShown ? feeShown.name : "会费" }}</h2>
         <p class="rank-label">会费在微信群里交给团长。这里只记名单，以团长标的为准。</p>
         <template v-if="feeShown">
@@ -312,7 +392,8 @@
         <div v-if="feeHistory.length > 1" class="checks">
           <button v-for="item in feeHistory" :key="item.id" class="undo" type="button" @click="openFee(item)">{{ item.name }}</button>
         </div>
-        <form v-if="club.owner" class="check-form" @submit.prevent="saveFee">
+        <button v-if="club.owner" class="manage-toggle" type="button" :aria-expanded="!!expanded.fee" @click="expanded.fee = !expanded.fee"><span>{{ expanded.fee ? '收起' : '管理会费' }}</span><i>{{ expanded.fee ? '−' : '+' }}</i></button>
+        <form v-if="club.owner && expanded.fee" class="check-form" @submit.prevent="saveFee">
           <p class="rank-label">{{ feeMode === 'new' ? "再开一期" : "这一期" }}</p>
           <input v-model="feeName" maxlength="20" placeholder="例如 2026 年度会费" />
           <input v-model.number="feeAmount" type="number" min="1" max="10000" placeholder="金额，整数元" />
@@ -326,43 +407,20 @@
         </form>
       </div>
       <div v-if="club.staff" class="block">
-        <h2>入团申请</h2>
-        <p v-if="!requests.length" class="rank-label">没有待审核的申请。没口令的人会出现在这里。</p>
-        <div v-for="item in requests" :key="item.id" class="mate">
-          <span>{{ item.nickname }}</span>
-          <b>
-            <button class="primary" type="button" @click="decide(item, 'approve')">通过</button>
-            <button class="undo" type="button" @click="decide(item, 'reject')">拒绝</button>
-          </b>
-        </div>
-      </div>
-      <div class="block">
-        <h2>成员</h2>
-        <p class="rank-label">我的积分 {{ myPoints }}</p>
-        <div v-for="member in members" :key="member.id" class="mate member">
-          <div class="who">
-            <span>{{ member.nickname }}<template v-if="member.role !== 'member'"> · {{ member.roleLabel }}</template></span>
-            <b>{{ member.points }} 分</b>
-          </div>
-          <div v-if="club.staff && !member.owner" class="acts">
-            <button v-if="club.owner && !member.owner && member.role !== 'manager'" class="undo" type="button" @click="setRole(member, 'manager')">设为跑团管理</button>
-            <button v-if="club.owner && member.role === 'manager'" class="undo" type="button" @click="setRole(member, 'member')">改为成员</button>
-            <button v-if="club.owner && !member.owner" class="undo" type="button" @click="setRole(member, 'owner')">交给他当团长</button>
-            <button v-if="club.staff && !member.owner" class="undo" type="button" @click="removeMember(member)">移出</button>
-          </div>
-        </div>
-      </div>
-      <form v-if="club.staff" class="block" @submit.prevent="createGroup">
         <h2>组别</h2>
         <div v-for="group in groups" :key="group.id" class="mate">
           <span>{{ group.name }}<template v-if="group.pace"> · {{ group.pace }}</template></span>
           <b>{{ group.capacity ? "限 " + group.capacity + " 人" : "不限" }}</b>
         </div>
+        <p v-if="!groups.length" class="rank-label">还没有组别。</p>
+        <button class="manage-toggle" type="button" :aria-expanded="!!expanded.group" @click="expanded.group = !expanded.group"><span>{{ expanded.group ? '收起' : '新增组别' }}</span><i>{{ expanded.group ? '−' : '+' }}</i></button>
+        <form v-if="expanded.group" class="check-form" @submit.prevent="createGroup">
         <input v-model="groupName" maxlength="20" placeholder="例如 A0" />
         <input v-model="groupPace" maxlength="20" placeholder="配速，例如 530" />
         <input v-model.number="groupCap" type="number" min="0" placeholder="名额，0 表示不限" />
         <button class="primary" type="submit">加一组</button>
-      </form>
+              </form>
+      </div>
       <div v-else class="block">
         <h2>组别</h2>
         <div v-for="group in groups" :key="group.id" class="mate">
@@ -378,7 +436,8 @@
           <span>{{ gift.name }} · {{ gift.cost }} 分 · 剩 {{ gift.stock }}</span>
           <button class="primary" type="button" :disabled="!gift.stock" @click="redeem(gift)">兑换</button>
         </div>
-        <form v-if="club.staff" @submit.prevent="createGift">
+        <button v-if="club.staff" class="manage-toggle" type="button" :aria-expanded="!!expanded.gift" @click="expanded.gift = !expanded.gift"><span>{{ expanded.gift ? '收起' : '上架积分礼品' }}</span><i>{{ expanded.gift ? '−' : '+' }}</i></button>
+        <form v-if="club.staff && expanded.gift" @submit.prevent="createGift">
           <input v-model="giftName" maxlength="20" placeholder="礼品名" />
           <input v-model.number="giftCost" type="number" min="1" placeholder="所需积分" />
           <input v-model.number="giftStock" type="number" min="1" placeholder="库存" />
@@ -393,7 +452,7 @@
 </template>
 
 <script setup>
-import { computed, onMounted, reactive, ref } from "vue";
+import { computed, reactive, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { api, mediaSrc } from "../api";
 import { copyText } from "../copy";
@@ -402,7 +461,8 @@ import MileageBoard from "../components/MileageBoard.vue";
 import PartnerBoard from "../components/PartnerBoard.vue";
 const route = useRoute();
 const router = useRouter();
-const tab = ref("race");
+const tab = ref("overview");
+const expanded = reactive({ call: false, activity: false, meetup: false, tiers: false, internal: false, fee: false, group: false, gift: false });
 const posts = ref([]);
 const postBody = ref("");
 const postMessage = ref("");
@@ -516,6 +576,21 @@ const raceGroups = ref([
   { name: "女子组", capacity: 0 }
 ]);
 let raceTimer = 0;
+
+const mileageArea = computed(() => ["km", "album", "feed", "partner"].includes(tab.value));
+const leaderName = computed(() => (members.value.find((member) => member.owner) || {}).nickname || "");
+const nextRace = computed(() => board.value
+  .filter((item) => item.race.raceDate >= beijingToday())
+  .slice().sort((a, b) => a.race.raceDate.localeCompare(b.race.raceDate))[0] || null);
+const upcomingActivities = computed(() => {
+  const now = new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 16);
+  return activities.value.filter((item) => !["ended", "cancelled"].includes(item.status) && item.startsAt >= now)
+    .slice().sort((a, b) => a.startsAt.localeCompare(b.startsAt));
+});
+const nextActivity = computed(() => upcomingActivities.value[0] || null);
+const upcomingActivityCount = computed(() => upcomingActivities.value.length + meetups.value
+  .filter((item) => item.date >= beijingToday() && !["ended", "cancelled"].includes(item.status)).length);
+
 
 function beijingToday() {
   return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10);
@@ -693,6 +768,18 @@ async function copyCard(card) {
   }
 }
 
+async function copyInvite() {
+  message.value = "";
+  try {
+    const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+    const url = window.location.origin + base + "/clubs/invite/" + encodeURIComponent(club.value.code);
+    await copyText(url);
+    note.value = "邀请链接已复制";
+  } catch (err) {
+    message.value = "复制失败，请从浏览器地址栏复制邀请链接";
+  }
+}
+
 function fillFee(period) {
   if (!period) return;
   feeName.value = period.name;
@@ -763,28 +850,42 @@ async function removeComment(item, comment) {
   }
 }
 
+let loadVersion = 0;
 async function reload() {
-  applyClub(await api("/clubs/" + route.params.id));
-  const fees = await api("/clubs/" + route.params.id + "/fees");
+  const id = route.params.id;
+  const version = ++loadVersion;
+  const current = () => version === loadVersion && id === route.params.id;
+  const path = "/clubs/" + id;
+  const data = await api(path);
+  if (!current()) return;
+  applyClub(data);
+  const fees = await api(path + "/fees");
+  if (!current()) return;
   feeCurrent.value = fees.current;
   feeHistory.value = fees.history || [];
   if (!feeShown.value || feeShown.value.open) {
     feeShown.value = fees.current;
     if (feeMode.value === "edit") fillFee(fees.current);
   }
-  const calls = await api("/clubs/" + route.params.id + "/calls");
+  const calls = await api(path + "/calls");
+  if (!current()) return;
   resultCalls.value = calls.calls || [];
-  const gathered = await api("/clubs/" + route.params.id + "/meetups");
+  const gathered = await api(path + "/meetups");
+  if (!current()) return;
   meetups.value = gathered.meetups || [];
   meetupTiers.value = gathered.tiers || [];
   if (!tierDraft.value.length) tierDraft.value = (gathered.tiers || []).map((tier) => ({ minPeople: tier.minPeople, points: tier.points }));
-  const races = await api("/clubs/" + route.params.id + "/internals");
+  const races = await api(path + "/internals");
+  if (!current()) return;
   internals.value = races.races || [];
-  const album = await api("/clubs/" + route.params.id + "/albums");
+  const album = await api(path + "/albums");
+  if (!current()) return;
   albums.value = album.albums || [];
-  const feed = await api("/clubs/" + route.params.id + "/posts");
+  const feed = await api(path + "/posts");
+  if (!current()) return;
   posts.value = feed.posts || [];
-  attendance.value = await api("/clubs/" + route.params.id + "/attendance?range=" + attendRange.value);
+  const nextAttendance = await api(path + "/attendance?range=" + attendRange.value);
+  if (current()) attendance.value = nextAttendance;
 }
 
 function searchRaces() {
@@ -1061,52 +1162,151 @@ async function removeMember(member) {
   }
 }
 
-onMounted(async () => {
+function resetClubPage() {
+  club.value = null;
+  tab.value = "overview";
+  Object.keys(expanded).forEach((key) => { expanded[key] = false; });
+  [members, groups, activities, gifts, requests, board, ranks, checkins, resultCalls, meetups, meetupTiers,
+    tierDraft, internals, albums, posts, raceHits, callDistances, shareIds, feeHistory].forEach((state) => { state.value = []; });
+  [actTitle, actPlace, actWhen, actEnds, actIssue, actPlanned, actGather, actGatherAt, actRoute, actCancel,
+    actNote, actQuery, actStatus, actDay, groupName, groupPace, giftName, raceQuery, callTitle, callDate,
+    callOther, callDeadline, callNote, feeName, feeAmount, feeStart, feeEnd, feeNote, meetDate, meetPlace,
+    meetNote, raceTitle, raceWhen, racePlace, raceOther, raceDeadline, raceNote, postBody, postMessage,
+    checkNote, checkMessage, message, note, shareImage].forEach((state) => { state.value = ""; });
+  myPoints.value = 0;
+  checkedIn.value = false;
+  actPeople.value = 3;
+  actKm.value = 5;
+  actPoints.value = 1;
+  actGroups.value = [{ name: "", kind: "pace", pace: "", capacity: 0 }];
+  groupCap.value = "0";
+  giftCost.value = "1";
+  giftStock.value = "1";
+  feeCurrent.value = null;
+  feeShown.value = null;
+  feeMode.value = "edit";
+  feeBlock.value = false;
+  pickedRace.value = null;
+  raceDistance.value = "10k";
+  racePoints.value = 0;
+  raceGroups.value = [{ name: "男子组", capacity: 0 }, { name: "女子组", capacity: 0 }];
+  sharing.value = false;
+  showMonth.value = false;
+  attendance.value = null;
+  attendRange.value = "month";
+  Object.keys(commentDrafts).forEach((key) => { delete commentDrafts[key]; });
+  clearTimeout(raceTimer);
+}
+
+watch(() => route.params.id, async (id) => {
+  resetClubPage();
   try {
     await reload();
   } catch (err) {
+    if (id !== route.params.id) return;
+    if (err.status === 401 || err.status === 403) {
+      await router.replace("/clubs/" + id + "/public");
+      return;
+    }
     message.value = err.message;
   }
-});
+}, { immediate: true });
 </script>
 
 <style scoped>
-.block :deep(.poster) { aspect-ratio: 5 / 2; height: auto; border-radius: 8px; }
+.block :deep(.poster) { aspect-ratio: 5 / 2; height: auto; border-radius: 12px; }
+.club-hero { margin: 12px 16px; padding: 16px; color: var(--ink); background: #fff; border-radius: 12px; }
+.club-hero h2 { margin: 0; color: var(--ink); font-size: 20px; font-weight: 600; line-height: 1.4; overflow-wrap: anywhere; }
+.club-leader { margin: 6px 0 0; color: var(--muted); font-size: 12px; }
+.club-avatars { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 0; min-height: 36px; margin-top: 16px; }
+.club-avatar { display: grid; flex: none; place-items: center; width: 38px; height: 38px; margin-right: -8px; overflow: hidden; border: 2px solid #fff; border-radius: 50%; color: var(--ink); background: var(--chip); font-size: 14px; font-weight: 600; }
+.club-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.avatar-more { color: var(--muted); background: var(--chip); font-size: 11px; }
+.pending-badge { flex: none; margin-left: auto; padding: 7px 10px; border-radius: 6px; color: var(--indigo); background: #f4f0ff; font-size: 12px; white-space: nowrap; }
+.club-hero-actions { display: flex; gap: 8px; margin-top: 12px; }
+.club-hero-actions button { min-height: 40px; padding: 0 16px; border-radius: 8px; font-size: 14px; font-weight: 600; }
+.hero-share { color: var(--ink); background: var(--chip); }
+.overview { padding: 0 16px; }
+.overview-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0 0 16px; border-radius: 12px; overflow: hidden; background: #fff; }
+.overview-stats button { display: flex; min-width: 0; flex-direction: column; align-items: center; padding: 12px 5px; border-right: 1px solid var(--line); }
+.overview-stats button:last-child { border-right: 0; }
+.overview-stats b { color: var(--accent); font-weight: 600; font-size: 22px; line-height: 1.2; }
+.overview-stats span { margin-top: 4px; color: var(--muted); font-size: 12px; }
+.section-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 18px 2px 8px; }
+.section-head h2 { margin: 0; color: var(--ink); font-size: 16px; }
+.section-head button { flex: none; color: var(--accent); font-size: 12px; }
+.overview-row { display: flex; align-items: center; gap: 10px; min-height: 72px; padding: 14px 12px; border-radius: 12px; background: #fff; }
+.overview-date { flex: none; width: 82px; color: var(--accent); font-size: 12px; }
+.overview-row > span { display: flex; flex: 1; min-width: 0; flex-direction: column; }
+.overview-row strong { overflow: hidden; color: var(--ink); font-size: 16px; font-weight: 600; text-overflow: ellipsis; white-space: nowrap; }
+.overview-row small { margin-top: 5px; color: var(--muted); font-size: 12px; }
+.overview-row i { color: var(--muted); font-size: 22px; font-style: normal; }
+.overview-empty { margin: 0; padding: 14px 2px; color: var(--muted); font-size: 12px; }
+.overview-links { overflow: hidden; border-radius: 12px; background: #fff; }
+.overview-links button { display: grid; grid-template-columns: 1fr auto; width: 100%; min-height: 56px; padding: 10px 12px; border-bottom: 1px solid var(--line); text-align: left; }
+.overview-links button:last-child { border-bottom: 0; }
+.overview-links b, .overview-links small { grid-column: 1; }
+.overview-links b { color: var(--ink); font-size: 15px; }
+.overview-links small { margin-top: 3px; color: var(--muted); font-size: 12px; }
+.overview-links i { grid-column: 2; grid-row: 1 / span 2; align-self: center; color: var(--muted); font-size: 20px; font-style: normal; }
 .share-text { margin: 8px 0 0; font: inherit; white-space: pre-wrap; line-height: 1.5; }
-.rank-label { margin: 8px 0 0; color: #8d949c; font-size: 12px; }
+.rank-label { margin: 8px 0 0; color: var(--muted); font-size: 12px; }
 .squad { margin: 8px 0 0; color: #9a5b12; font-size: 13px; }
-.note { font-size: 12px; color: #007aff; }
+.note { font-size: 12px; color: var(--accent); }
 .primary { margin-top: 8px; }
 .member { display: block; }
 .who { display: flex; justify-content: space-between; gap: 12px; }
 .acts { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 4px 12px; margin-top: 4px; }
 .mate .primary, .mate .undo { width: auto; margin: 0; }
 .check-form { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
-.check-form input { height: 36px; border: 1px solid #e6e8ec; border-radius: 8px; padding: 0 10px; background: #fff; }
-.undo { margin-top: 8px; height: 32px; padding: 0 12px; background: transparent; color: #8d949c; }
-.seg { display: flex; flex-wrap: wrap; gap: 4px; margin: 0 16px; }
-.seg button { flex: 1 1 22%; height: 34px; border-radius: 10px; background: #fff; color: #8e8e93; font-weight: 650; font-size: 12px; padding: 0; white-space: nowrap; }
-.undo.on { color: #007aff; }
+.check-form input { flex: none; min-height: 40px; height: 40px; border: 1px solid var(--line); border-radius: 8px; padding: 0 10px; background: #fff; }
+.undo { margin-top: 8px; height: 32px; padding: 0 12px; background: transparent; color: var(--muted); }
+.seg { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px; margin: 0 16px 10px; }
+.seg button { position: relative; min-width: 0; height: 42px; border-radius: 0; background: transparent; color: var(--ink); font-weight: 600; font-size: 14px; padding: 0 2px; white-space: nowrap; }
+.club-subnav { display: flex; overflow-x: auto; padding-bottom: 2px; }
+.club-subnav button { flex: none; padding: 0 12px; }
+.undo.on { color: var(--accent); }
 .month-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-top: 8px; }
 .dow, .day { text-align: center; font-size: 12px; }
 .day { height: 32px; border-radius: 8px; background: transparent; }
-.day.mark { background: #e8f2ff; color: #007aff; }
-.day.on { background: #007aff; color: #fff; }
+.day.mark { background: var(--accent-soft); color: var(--accent); }
+.day.on { background: var(--accent); color: #fff; }
 .album-card { display: flex; gap: 12px; align-items: center; text-decoration: none; color: inherit; }
 .album-card img { width: 72px; height: 72px; object-fit: cover; border-radius: 12px; }
 .viewer { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.86); z-index: 40; display: grid; place-items: center; padding: 24px; }
 .viewer img { max-width: min(430px, 100%); max-height: 80vh; border-radius: 12px; }
-.act select, .pair select { width: 100%; height: 36px; margin-top: 4px; border: 0; border-radius: 8px; background: rgba(118, 118, 128, 0.12); }
-.seg button.on { background: #007aff; color: #fff; }
+.act select, .pair select { width: 100%; height: 36px; margin-top: 4px; border: 0; border-radius: 8px; background: var(--bg); }
+.seg button.on { color: var(--accent); font-weight: 700; }
+.seg > button.on::after { content: ""; position: absolute; bottom: 0; left: calc(50% - 10px); width: 20px; height: 3px; background: var(--accent); }
+.club-subnav button { height: 32px; border-radius: 8px; background: var(--chip); font-size: 12px; }
+.club-subnav button.on { background: var(--accent-soft); }
+.club-subnav > button.on::after { display: none; }
 .act { display: block; }
-.block input { width: 100%; height: 40px; margin-top: 8px; border: 0; border-radius: 10px; padding: 0 12px; background: rgba(118, 118, 128, 0.12); }
+.block input:not([type="checkbox"]):not([type="radio"]) { width: 100%; height: 40px; margin-top: 8px; border: 0; border-radius: 10px; padding: 0 12px; background: var(--bg); }
 .checks { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 8px; }
 .checks label { font-size: 14px; }
 .qr { width: 180px; margin-top: 8px; border-radius: 8px; }
 .pick, .inline { width: auto; margin: 4px 8px 0 0; }
-.file-pick { display: inline-block; margin-top: 8px; color: #007aff; font-size: 14px; }
+.file-pick { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 14px; }
 .file-pick input { display: none; }
 .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-.pair label { font-size: 12px; color: #8d949c; }
+.pair label { font-size: 12px; color: var(--muted); }
+.member-identity { display: inline-flex; align-items: center; gap: 8px; min-width: 0; }
+.member-identity img, .member-identity i { display: grid; place-items: center; width: 32px; height: 32px; flex: none; overflow: hidden; border-radius: 50%; color: var(--ink); background: var(--chip); object-fit: cover; font-size: 12px; font-style: normal; }
 .pair input { width: 100%; }
+.block input[type="checkbox"], .block input[type="radio"] { flex: none; width: 16px; height: 16px; min-height: 0; margin: 0 4px 0 0; padding: 0; vertical-align: middle; }
+
+.club-identity { display: flex; align-items: center; gap: 12px; }
+.club-identity-copy { flex: 1; min-width: 0; }
+.club-letter { display: grid; place-items: center; flex: none; width: 46px; height: 46px; border-radius: 12px; color: var(--accent); background: var(--accent-soft, #fff0f3); font-size: 22px; font-weight: 600; }
+.role-badge { flex: none; align-self: flex-start; padding: 3px 6px; border-radius: 5px; color: var(--accent); background: var(--accent-soft, #fff0f3); font-size: 11px; font-weight: 400; }
+.club-section-head { margin: 16px 18px 12px; }
+.club-section-head > span { color: var(--muted); font-size: 12px; }
+.block h2 { font-size: 16px; font-weight: 600; }
+.block > .card { margin: 0; padding: 0; background: transparent; }
+.copy p { margin: 0; color: var(--ink); font-size: 16px; font-weight: 600; line-height: 1.45; }
+.copy .foot { margin-top: 6px; font-size: 12px; }
+.manage-toggle { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; min-height: 42px; margin-top: 12px; padding: 0 12px; border-radius: 8px; color: var(--accent); background: var(--accent-soft, #fff0f3); text-align: left; font-size: 14px; font-weight: 600; }
+.manage-toggle:first-child { margin-top: 0; }
+.manage-toggle i { flex: none; font-size: 20px; font-weight: 400; font-style: normal; }
 </style>

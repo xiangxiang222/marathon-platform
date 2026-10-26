@@ -1,90 +1,45 @@
-<view class="pad">
-  <view class="card">
-    <block wx:if="{{nickname}}">
-      <view class="title">{{nickname}}</view>
-      <view wx:if="{{leader}}" class="teal">建团资格</view>
-      <navigator wx:for="{{clubs}}" wx:key="id" url="/pages/club/club?id={{item.id}}">{{item.name}} · {{item.roleLabel}}</navigator>
-      <view class="account-line" bindtap="togglePassword">
-        <text>{{hasPassword ? '修改密码' : '设置登录密码'}}</text>
-        <view class="chev {{passwordOpen ? 'open' : ''}}"></view>
-      </view>
-      <view wx:if="{{passwordOpen}}" class="stack">
-        <view class="muted">{{hasPassword ? '请填写当前密码和新密码。' : '设置后，可使用此昵称与密码在其他设备登录。'}}</view>
-        <input wx:if="{{hasPassword}}" placeholder="当前密码" password value="{{currentPassword}}" bindinput="onCurrent" />
-        <input placeholder="新密码" password value="{{nextPassword}}" bindinput="onNext" />
-        <view class="req">8 到 128 位</view>
-        <input placeholder="再输入一次" password value="{{nextPassword2}}" bindinput="onNext2" />
-        <button class="btn block" bindtap="savePassword">保存</button>
-        <view class="cancel" bindtap="cancelPassword">取消</view>
-        <view wx:if="{{message}}" class="{{ok ? 'ok' : 'err'}}">{{message}}</view>
-      </view>
-      <view wx:elif="{{message}}" class="{{ok ? 'ok' : 'err'}}">{{message}}</view>
-      <view class="quit" bindtap="logout">退出</view>
-    </block>
-    <block wx:else>
-      <view class="modes">
-        <view class="mode {{tab === 'login' ? 'on' : ''}}" data-tab="login" bindtap="setTab">登录</view>
-        <view class="mode {{tab === 'register' ? 'on' : ''}}" data-tab="register" bindtap="setTab">注册</view>
-      </view>
-      <view class="muted">{{tab === 'login' ? '用昵称和密码。换手机也能回到同一个人。' : '第一次使用就注册。这个昵称以前只出现过一次、还没设密码的话，会设在原来那个人身上。'}}</view>
-      <view class="stack">
-        <input placeholder="昵称" value="{{draft}}" bindinput="onDraft" />
-        <input placeholder="密码，至少 8 位" password value="{{password}}" bindinput="onPassword" />
-        <input wx:if="{{tab === 'register'}}" placeholder="再输入一次密码" password value="{{password2}}" bindinput="onPassword2" />
-        <block wx:if="{{tab === 'login'}}">
-          <view class="captcha" bindtap="loadCaptcha">
-            <image wx:if="{{captchaImage}}" class="captcha-img" src="{{captchaImage}}" mode="aspectFit" />
-            <view wx:else class="muted">{{captchaLoading ? '加载中…' : '点击获取验证码'}}</view>
-          </view>
-          <input placeholder="上图字符" value="{{captcha}}" bindinput="onCaptcha" maxlength="4" />
-        </block>
-        <button class="btn block" bindtap="submitAuth">{{tab === 'login' ? '登录' : '注册'}}</button>
-      </view>
-    </block>
-    <view wx:if="{{message && !nickname}}" class="{{ok ? 'ok' : 'err'}}">{{message}}</view>
+<page-header title="我的" subtitle="每一程，都有记录" />
+<view class="mine-page">
+  <view wx:if="{{nickname}}" class="surface account-hero">
+    <view class="hero-line"><image wx:if="{{avatar}}" class="hero-avatar" src="{{avatar}}" mode="aspectFill"/><view wx:else class="hero-avatar avatar-empty">{{nickname[0]}}</view><view class="hero-copy"><view class="nickname">{{nickname}}</view><view class="subtitle">{{clubs.length ? clubs[0].name : '和志同道合的人一起跑'}}<text wx:if="{{clubs.length > 1}}"> 等 {{clubs.length}} 个跑团</text></view><text wx:if="{{leader}}" class="role-tag">建团资格</text></view><view class="hero-arrow" data-tab="profile" bindtap="pickMainTab">›</view></view>
+    <view class="account-stats"><view data-tab="plans" bindtap="pickMainTab"><text class="stat-value">{{plans.length}}</text><text class="stat-label">已标记赛事</text></view><view data-tab="results" bindtap="pickMainTab"><text class="stat-value">{{career.finished}}</text><text class="stat-label">已完赛</text></view><navigator open-type="switchTab" url="/pages/clubs/clubs"><text class="stat-value">{{clubs.length}}</text><text class="stat-label">已加入跑团</text></navigator></view>
   </view>
-  <view class="card" wx:if="{{conflicts.length}}">
-    <view class="h2">全马间隔</view>
-    <view wx:for="{{conflicts}}" wx:key="text" class="warn">{{item.text}}</view>
+  <view wx:else class="surface guest-hero">
+    <view class="hero-line"><view class="hero-avatar avatar-empty">跑</view><view class="hero-copy"><view class="guest-title">跑过的每一步，都值得记录</view><view class="subtitle">收藏赛事、记录成绩，和跑团一起出发</view></view></view>
+    <button wx:if="{{!wechatRegistrationRequired}}" class="primary" loading="{{wxLoading}}" disabled="{{wxLoading}}" bindtap="wechatLogin">{{wxLoading ? '正在登录' : '微信登录'}}</button>
+    <view class="hint account-guidance">已有账号请先用昵称和密码登录，再绑定微信，以保留原有赛事与跑团记录。</view>
+    <view wx:if="{{wechatRegistrationRequired}}" class="wechat-choice">
+      <view class="section-title">这个微信尚未绑定账号</view><view class="hint">请选择已有账号，或创建一个数据独立的新账号。</view>
+      <button class="primary" disabled="{{wxLoading}}" bindtap="useExistingAccount">登录旧账号并绑定微信</button>
+      <button class="secondary" loading="{{wxLoading}}" disabled="{{wxLoading}}" bindtap="createWechatAccount">确认创建独立新账号</button>
+    </view>
+    <view class="auth-toggle" bindtap="toggleAuth">{{authOpen ? '收起账号登录' : '账号密码登录 / 注册'}}</view><view wx:if="{{message && !authOpen}}" class="message">{{message}}</view>
   </view>
-  <view class="card" wx:if="{{reminders.length}}">
-    <view class="h2">截止提醒</view>
-    <navigator wx:for="{{reminders}}" wx:key="key" class="plan" url="/pages/race/race?id={{item.race.id}}">
-      <text class="warn">{{item.hit.reason}}</text>
-      <text> {{item.race.name}}</text>
-    </navigator>
+  <view wx:if="{{!nickname && authOpen}}" class="surface auth-panel"><view class="auth-tabs"><view class="{{tab === 'login' ? 'on' : ''}}" data-tab="login" bindtap="setTab">账号登录</view><view class="{{tab === 'register' ? 'on' : ''}}" data-tab="register" bindtap="setTab">注册账号</view></view><view class="hint">{{tab === 'login' ? (bindAfterLogin ? '登录成功后将绑定当前微信，并保留原账号记录。' : '使用已注册的昵称和密码登录。') : '首次使用请设置昵称和密码。旧账号请使用原密码登录。'}}</view><view class="stack"><input placeholder="昵称" value="{{draft}}" bindinput="onDraft"/><input placeholder="密码，至少 8 位" password value="{{password}}" bindinput="onPassword"/><input wx:if="{{tab === 'register'}}" placeholder="再输入一次密码" password value="{{password2}}" bindinput="onPassword2"/><block wx:if="{{tab === 'login'}}"><view class="captcha" bindtap="loadCaptcha"><image wx:if="{{captchaImage}}" src="{{captchaImage}}" mode="aspectFit"/><text wx:else>{{captchaLoading ? '加载中…' : '点击获取验证码'}}</text></view><input placeholder="上图字符" maxlength="4" value="{{captcha}}" bindinput="onCaptcha"/></block><button class="primary" bindtap="submitAuth">{{tab === 'login' ? '登录' : '注册'}}</button></view><view wx:if="{{message}}" class="message">{{message}}</view></view>
+  <view class="surface quick-links"><navigator wx:for="{{quickLinks}}" wx:key="url" url="{{item.url}}" open-type="{{item.tab ? 'switchTab' : 'navigate'}}"><image src="{{item.icon}}" mode="aspectFit"/><text>{{item.label}}</text></navigator></view>
+  <view class="main-tabs"><view class="{{mainTab === 'plans' ? 'on' : ''}}" data-tab="plans" bindtap="pickMainTab">我的赛事</view><view class="{{mainTab === 'results' ? 'on' : ''}}" data-tab="results" bindtap="pickMainTab">完赛记录</view><view class="{{mainTab === 'profile' ? 'on' : ''}}" data-tab="profile" bindtap="pickMainTab">个人资料</view></view>
+  <block wx:if="{{mainTab === 'plans'}}">
+    <view wx:if="{{conflicts.length}}" class="surface"><view class="section-title">比赛安排提醒</view><view wx:for="{{conflicts}}" wx:key="text" class="message">{{item.text}}</view></view>
+    <view wx:if="{{reminders.length}}" class="surface"><view class="section-title">截止提醒</view><navigator wx:for="{{reminders}}" wx:key="key" class="reminder-row" url="/pages/race/race?id={{item.race.id}}"><text class="accent">{{item.hit.reason}}</text><text class="reminder-name">{{item.race.name}}</text><text class="arrow">›</text></navigator></view>
+    <view wx:if="{{plans.length}}" class="surface plan-list"><navigator wx:for="{{plans}}" wx:key="raceId" class="plan-row" url="/pages/race/race?id={{item.race.id}}"><view class="row-copy"><text class="state-tag">{{item.status}}</text><view class="race-name">{{item.race.name}}</view><view class="subtitle">{{item.race.raceDate}}<text wx:if="{{item.race.city}}"> · {{item.race.city}}</text></view></view><text class="arrow">›</text></navigator></view>
+    <view wx:else class="surface empty-state"><view class="section-title">{{nickname ? '下一场，想去哪里跑？' : '把想跑的比赛放进这里'}}</view><view class="hint">{{nickname ? '在赛事详情页标记报名或中签状态，随时查看参赛安排。' : '登录后，你标记的比赛会自动汇总在这里。'}}</view><navigator class="text-action" open-type="switchTab" url="/pages/races/races">去看赛事 ›</navigator></view>
+  </block>
+  <block wx:elif="{{mainTab === 'results'}}"><view class="surface career-summary"><view><text class="stat-label">完赛场数</text><text class="career-number">{{nickname ? career.finished : '—'}}<text class="unit"> 场</text></text></view><view><text class="stat-label">半马最好成绩</text><text class="career-clock">{{career.pb.half || '—'}}</text></view><view><text class="stat-label">全马最好成绩</text><text class="career-clock">{{career.pb.full || '—'}}</text></view></view><view wx:if="{{career.finished}}" class="career-note">跑过 {{career.provinces.length}} 个省、{{career.cities.length}} 个城市 · 本年比赛 {{career.yearKm}} 公里</view><view class="surface"><navigator wx:for="{{results}}" wx:key="raceId" class="result-row" url="/pages/race/race?id={{item.race.id}}"><view class="result-clock">{{item.clock}}<text wx:if="{{item.pb}}" class="pb"> PB</text></view><view class="race-name">{{item.race.name}}</view><view class="subtitle">{{item.race.raceDate}} · 成绩未核验</view><image wx:if="{{item.proofSrc}}" class="proof-image" src="{{item.proofSrc}}" mode="widthFix"/></navigator><view wx:if="{{!results.length}}" class="hint empty-copy">在赛事详情页记下完赛成绩，留住你的每次突破。</view></view></block>
+  <view wx:elif="{{nickname}}" class="surface settings">
+    <view class="setting-row" bindtap="toggleProfile"><text>修改头像与昵称</text><text class="arrow">{{profileOpen ? '⌄' : '›'}}</text></view>
+    <view wx:if="{{profileOpen}}" class="profile-form">
+      <view class="profile-edit"><button class="avatar-picker" open-type="chooseAvatar" disabled="{{avatarSaving}}" bindchooseavatar="chooseAvatar"><image wx:if="{{avatarPreview || avatar}}" class="profile-avatar" src="{{avatarPreview || avatar}}" mode="aspectFill"/><view wx:else class="profile-avatar avatar-empty">{{nickname[0]}}</view></button><view class="profile-fields"><text class="field-label">昵称</text><input type="nickname" placeholder="设置昵称" value="{{nicknameDraft}}" bindinput="onNickname"/></view></view>
+      <view class="hint">头像与昵称由你选择，保存后团友可见。</view><button class="primary" loading="{{avatarSaving}}" disabled="{{avatarSaving}}" bindtap="saveProfile">保存个人资料</button>
+    </view>
+    <view class="setting-row" bindtap="togglePassword"><text>{{hasPassword ? '修改密码' : '设置登录密码'}}</text><text class="arrow">{{passwordOpen ? '⌄' : '›'}}</text></view>
+    <view wx:if="{{passwordOpen}}" class="stack password-form"><view class="hint">{{hasPassword ? '请填写当前密码和新密码。' : '设置后，可使用昵称与密码在其他设备登录。'}}</view><input wx:if="{{hasPassword}}" placeholder="当前密码" password value="{{currentPassword}}" bindinput="onCurrent"/><input placeholder="新密码，8 到 128 位" password value="{{nextPassword}}" bindinput="onNext"/><input placeholder="再输入一次" password value="{{nextPassword2}}" bindinput="onNext2"/><button class="primary" bindtap="savePassword">保存密码</button><button class="secondary" bindtap="cancelPassword">取消</button></view>
+    <view wx:if="{{message}}" class="message">{{message}}</view>
+    <view class="setting-row"><view class="row-copy"><view>微信登录</view><view class="subtitle">{{hasWechatLogin ? '微信账号已绑定' : '绑定后可用微信登录当前账号'}}</view></view><button wx:if="{{!hasWechatLogin}}" class="bind-button" loading="{{wxLoading}}" disabled="{{wxLoading}}" bindtap="bindWechat">绑定</button><button wx:else class="bind-button" disabled="{{unbindLoading}}" bindtap="toggleUnbind">{{unbindOpen ? '收起' : '解绑'}}</button></view>
+    <view wx:if="{{hasWechatLogin && !hasPassword}}" class="hint">解绑微信前，请先设置登录密码，确保能继续登录当前账号。</view>
+    <view wx:if="{{unbindOpen}}" class="stack password-form"><view class="hint">验证当前密码后解绑微信，赛事与跑团记录仍保留在当前账号。</view><input placeholder="当前登录密码" password value="{{unbindPassword}}" bindinput="onUnbindPassword"/><button class="primary" loading="{{unbindLoading}}" disabled="{{unbindLoading}}" bindtap="unbindWechat">验证密码并解绑</button><button class="secondary" disabled="{{unbindLoading}}" bindtap="toggleUnbind">取消</button><view wx:if="{{unbindMessage}}" class="message">{{unbindMessage}}</view></view>
+    <view wx:if="{{profileMessage}}" class="hint">{{profileMessage}}</view>
+    <navigator wx:for="{{clubs}}" wx:key="id" class="setting-row" url="/pages/club/club?id={{item.id}}"><view class="row-copy"><view>{{item.name}}</view><view class="subtitle">{{item.roleLabel}}</view></view><text class="arrow">›</text></navigator><button class="logout" bindtap="logout">退出登录</button>
   </view>
-  <view class="card">
-    <view class="h2">微信提醒</view>
-    <view class="slot"><text>报名开启到比赛前一天</text><text class="slot-state">尚未开通</text></view>
-    <view class="src">报名开启、报名截止、出签、缴费截止、领物、比赛前一天。页面上的截止提醒仍然会列出。</view>
-  </view>
-  <view class="card" wx:if="{{nickname}}">
-    <view class="h2">赛事生涯</view>
-    <view class="sum">完赛 {{career.finished}} 场 · 足迹 {{career.provinces.length}} 省 {{career.cities.length}} 市</view>
-    <view class="sum">半程 {{career.pb.half || '--'}} · 全程 {{career.pb.full || '--'}}</view>
-    <view class="sum">本年比赛 {{career.yearKm}} 公里</view>
-    <navigator wx:for="{{results}}" wx:key="raceId" class="plan" url="/pages/race/race?id={{item.race.id}}">
-      <image wx:if="{{item.proofSrc}}" src="{{item.proofSrc}}" mode="aspectFill" />
-      <text class="teal">{{item.clock}}</text>
-      <text wx:if="{{item.pb}}"> PB</text>
-      <text> {{item.race.name}} · 未核验</text>
-    </navigator>
-    <view wx:if="{{loaded && !results.length}}" class="muted">在赛事页记下成绩后，会出现在这里</view>
-    <navigator url="/pages/radar/radar">拿奖雷达</navigator>
-  </view>
-  <view class="card" wx:if="{{nickname}}">
-    <view class="h2">我标过的场</view>
-    <navigator wx:for="{{plans}}" wx:key="raceId" class="plan" url="/pages/race/race?id={{item.race.id}}">
-      <text class="teal">{{item.status}}</text>
-      <text> {{item.race.name}}</text>
-    </navigator>
-    <view wx:if="{{loaded && !plans.length}}" class="muted">还没有标记</view>
-  </view>
-  <view class="card">
-    <view class="h2">装备</view>
-    <view class="slot"><text>跑鞋、能量胶</text><text class="slot-state">尚未开通</text></view>
-    <view class="src">跳转以后再接。这里不卖货，也不收款。</view>
-  </view>
+  <view wx:else class="surface empty-state"><view class="section-title">你的资料，由你管理</view><view class="hint">登录后设置头像、昵称和账号密码。</view></view>
   <view class="legal">{{company}} · {{icp}}</view>
 </view>

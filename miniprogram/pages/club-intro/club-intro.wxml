@@ -1,0 +1,17 @@
+<view class="intro-page">
+  <view wx:if="{{loading}}" class="state">正在打开跑团…</view>
+  <view wx:elif="{{club}}" class="intro-content">
+    <view class="identity"><view class="club-mark">{{clubInitial}}</view><view class="identity-copy"><view class="club-name">{{club.name}}</view><view class="club-owner">团长 {{club.leader || '跑团管理员'}}</view></view></view>
+    <view class="club-count"><text class="count">{{club.memberCount}}</text> 位成员</view>
+    <view class="divider"></view>
+    <view class="access-note">跑团赛事、训练安排、成员参赛信息和跑量榜仅对已加入成员开放。</view>
+    <view wx:if="{{club.joined}}" class="status status-in">你已加入这个跑团</view>
+    <view wx:elif="{{club.pending}}" class="status status-pending">申请已提交，等待团长或管理员审核</view>
+    <button wx:if="{{club.joined}}" class="action" bindtap="enterClub">进入跑团</button>
+    <button wx:elif="{{!club.pending}}" class="action" loading="{{applying}}" disabled="{{applying}}" bindtap="apply">{{applying ? '正在提交' : '申请加入'}}</button>
+    <button wx:else class="action pending-action" disabled>等待审核</button>
+    <view class="secondary-note">申请通过后即可查看跑团成员与团内活动。</view>
+    <view wx:if="{{error}}" class="error">{{error}}</view>
+  </view>
+  <view wx:else class="state">{{error || '没有找到这个跑团'}}</view>
+</view>

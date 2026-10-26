@@ -2,13 +2,21 @@ const { request } = require("../../utils/request");
 
 Page({
   data: {
+    activeTab: "overview",
+    expanded: { call: false, training: false, meetup: false, internal: false, gift: false, group: false, fee: false },
     club: null,
+    clubInitial: "团",
+    leaderName: "",
+    membersMore: "",
     members: [],
     groups: [],
     gifts: [],
     requests: [],
     myPoints: 0,
     board: [],
+    nextRace: null,
+    nextActivity: null,
+    upcomingActivityCount: 0,
     ranks: [],
     activities: [],
     albums: [],
@@ -75,6 +83,7 @@ Page({
   onLoad(query) {
     this.clubId = query.id;
     this.pending = null;
+    this.setData({ activeTab: query.tab || "overview" });
     this.pickedRaceId = "";
     this.selectedDistances = { full: false, half: false, "10k": false, "5k": false };
     wx.showShareMenu({ menus: ["shareAppMessage"] });
@@ -86,19 +95,27 @@ Page({
     this.pending = e.currentTarget.dataset;
   },
   onShareAppMessage() {
-    const pending = this.pending || {};
-    const first = (this.data.board && this.data.board[0]) || {};
-    const id = pending.id || (first.race && first.race.id) || "";
-    const title = pending.title || first.title || (this.data.club && this.data.club.name) || "跑团赛历";
-    const code = this.data.club ? this.data.club.code : "";
+    const name = (this.data.club && this.data.club.name) || "跑团";
     return {
-      title,
-      path: "/pages/race/race?id=" + id + (code ? "&code=" + code : "")
+      title: name + " · 跑团介绍",
+      path: "/pages/club-intro/club-intro?id=" + this.clubId
     };
+  },
+  changeSection(e) {
+    this.setData({ activeTab: e.currentTarget.dataset.tab });
+  },
+  toggleForm(e) {
+    const form = e.currentTarget.dataset.form;
+    if (!Object.prototype.hasOwnProperty.call(this.data.expanded, form)) return;
+    this.setData({ expanded: { ...this.data.expanded, [form]: !this.data.expanded[form] } });
   },
   load() {
     request("/clubs/" + this.clubId)
       .then((data) => {
+        const members = (data.members || []).map((member) => ({
+          ...member,
+          avatarInitial: String(member.nickname || "跑").slice(0, 1)
+        }));
         const board = (data.board || []).map((item) => ({
           ...item,
           key: item.race.id,
@@ -109,8 +126,15 @@ Page({
         }));
         this.setData({
           club: data.club,
-          members: data.members || [],
+          clubInitial: String(data.club.name || "团").slice(0, 1),
+          members,
+          membersMore: members.length > 6 ? "+" + (members.length - 6) : "",
+          leaderName: (members.find((member) => member.owner) || {}).nickname || "",
           board,
+          nextRace: board.filter((item) => item.race.raceDate >= new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10))
+            .sort((a, b) => a.race.raceDate.localeCompare(b.race.raceDate))[0] || null,
+          nextActivity: this.upcomingActivities(data.activities || [])[0] || null,
+          upcomingActivityCount: this.upcomingActivities(data.activities || []).length,
           ranks: data.ranks || [],
           activities: data.activities || [],
           groups: data.groups || [],
@@ -127,12 +151,22 @@ Page({
       })
       .catch((err) => this.setData({ message: err.message }));
   },
+  upcomingActivities(activities) {
+    const now = new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 16);
+    return activities.filter((item) => !["ended", "cancelled"].includes(item.status) && item.startsAt >= now)
+      .slice().sort((a, b) => a.startsAt.localeCompare(b.startsAt));
+  },
   loadExtra() {
     request("/clubs/" + this.clubId + "/calls")
       .then((data) => this.setData({ calls: data.calls || [] }))
       .catch(() => {});
     request("/clubs/" + this.clubId + "/meetups")
-      .then((data) => this.setData({ meetups: data.meetups || [] }))
+      .then((data) => {
+        const meetups = data.meetups || [];
+        const today = new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10);
+        this.setData({ meetups, upcomingActivityCount: this.upcomingActivities(this.data.activities).length
+          + meetups.filter((item) => item.date >= today && !["ended", "cancelled"].includes(item.status)).length });
+      })
       .catch(() => {});
     request("/clubs/" + this.clubId + "/internals")
       .then((data) => this.setData({ internals: data.races || [] }))

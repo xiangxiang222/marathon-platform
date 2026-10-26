@@ -1,3 +1,4 @@
+const { avatarUrlOf } = require("./avatars");
 const fs = require("fs");
 const path = require("path");
 const { DISTANCE_LABEL } = require("./races");
@@ -518,7 +519,7 @@ function clubLife(db, club, userId) {
   const mine = memberRole(db, club, userId);
   const members = db
     .prepare(
-      `SELECT u.id, u.nickname, m.role, COALESCE(SUM(p.delta), 0) AS points
+      `SELECT u.id, u.nickname, u.avatar, m.role, COALESCE(SUM(p.delta), 0) AS points
        FROM club_members m
        JOIN users u ON u.id = m.user_id
        LEFT JOIN point_entries p ON p.club_id = m.club_id AND p.user_id = m.user_id
@@ -529,7 +530,7 @@ function clubLife(db, club, userId) {
     .all(club.id)
     .map((row) => {
       const role = row.id === club.owner_id ? "owner" : row.role === "manager" ? "manager" : "member";
-      return { id: row.id, nickname: row.nickname, points: row.points, owner: role === "owner", role, roleLabel: clubRoleLabel(role) };
+      return { id: row.id, nickname: row.nickname, avatar: avatarUrlOf(row.id, row.avatar), points: row.points, owner: role === "owner", role, roleLabel: clubRoleLabel(role) };
     });
   const staff = mine === "owner" || mine === "manager";
   return {

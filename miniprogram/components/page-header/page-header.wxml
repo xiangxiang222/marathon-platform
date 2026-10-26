@@ -1,0 +1,7 @@
+<view class="page-header">
+  <view style="height: {{statusBarHeight}}px;"></view>
+  <view class="header-main" style="min-height: {{navHeight}}px; padding-right: {{headerRight}}px;">
+    <view class="header-title">{{title}}</view>
+  </view>
+  <view wx:if="{{subtitle}}" class="header-subtitle">{{subtitle}}</view>
+</view>

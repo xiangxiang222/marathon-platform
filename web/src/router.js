@@ -5,6 +5,7 @@ import Sport from "./views/Sport.vue";
 import Exercise from "./views/Exercise.vue";
 import Look from "./views/Look.vue";
 import Club from "./views/Club.vue";
+import ClubIntro from "./views/ClubIntro.vue";
 import Activity from "./views/Activity.vue";
 import Signup from "./views/Signup.vue";
 import Album from "./views/Album.vue";
@@ -29,6 +30,8 @@ export default createRouter({
     { path: "/sport", component: Exercise },
     { path: "/look", component: Look },
     { path: "/clubs", component: Sport },
+    { path: "/clubs/invite/:code", component: ClubIntro, meta: { hideTab: true } },
+    { path: "/clubs/:id/public", component: ClubIntro, meta: { hideTab: true } },
     { path: "/clubs/:id", component: Club, meta: { hideTab: true } },
     { path: "/clubs/:id/activities/:aid", component: Activity, meta: { hideTab: true } },
     { path: "/clubs/:id/activities/:aid/signup", component: Signup, meta: { hideTab: true } },

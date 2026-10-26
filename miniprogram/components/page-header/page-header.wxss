@@ -1,0 +1,6 @@
+:host { display: block; }
+.page-header { background: linear-gradient(180deg, #fff1f3, #f5f6fa); color: #1f2026; }
+.header-main { display: flex; align-items: center; padding-left: 24rpx; box-sizing: border-box; }
+.header-title { overflow: hidden; font-size: 48rpx; line-height: 1.25; font-weight: 700; white-space: nowrap; text-overflow: ellipsis; }
+.header-subtitle { padding: 0 24rpx 20rpx; color: #8a8e99; font-size: 24rpx; line-height: 1.5; }
+@media (max-width: 350px) { .header-title { font-size: 24px; } .header-subtitle { font-size: 12px; } }

@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const Database = require("better-sqlite3");
 const { RACES } = require("./races");
+const { migrateLegacyAvatars } = require("./avatars");
 
 let db;
 
@@ -35,7 +36,9 @@ function open() {
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       nickname TEXT NOT NULL,
       token TEXT NOT NULL UNIQUE,
-      created_at TEXT NOT NULL
+      created_at TEXT NOT NULL,
+      openid TEXT NOT NULL DEFAULT '',
+      avatar TEXT NOT NULL DEFAULT ''
     );
     CREATE TABLE IF NOT EXISTS plans (
       user_id INTEGER NOT NULL,
@@ -503,11 +506,14 @@ function open() {
   if (!userCols.some((col) => col.name === "leader")) handle.exec("ALTER TABLE users ADD COLUMN leader INTEGER NOT NULL DEFAULT 0");
   for (const [name, type] of [
     ["password_hash", "TEXT NOT NULL DEFAULT ''"],
-    ["salt", "TEXT NOT NULL DEFAULT ''"]
+    ["salt", "TEXT NOT NULL DEFAULT ''"],
+    ["openid", "TEXT NOT NULL DEFAULT ''"],
+    ["avatar", "TEXT NOT NULL DEFAULT ''"]
   ]) {
     const cols = handle.prepare("PRAGMA table_info(users)").all();
     if (!cols.some((col) => col.name === name)) handle.exec(`ALTER TABLE users ADD COLUMN ${name} ${type}`);
   }
+  handle.exec("CREATE UNIQUE INDEX IF NOT EXISTS users_openid ON users(openid) WHERE openid != ''");
   handle.exec(`
     CREATE TABLE IF NOT EXISTS captchas (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -803,6 +809,7 @@ function open() {
     }
   });
   tx(RACES);
+  migrateLegacyAvatars(handle);
   return handle;
 }
 

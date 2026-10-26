@@ -1,189 +1,84 @@
 <template>
-  <div class="mine">
-    <header class="large">
-      <div>
-        <h1>我的</h1>
-        <p>成绩、提醒和跑过的场</p>
-      </div>
-    </header>
-
-    <section v-if="conflicts.length" class="sheet warn">
-      <div class="head"><h3>全马间隔</h3></div>
-      <p v-for="item in conflicts" :key="item.text">{{ item.text }}</p>
-    </section>
-    <section v-if="reminders.length" class="sheet">
-      <div class="head"><h3>截止提醒</h3></div>
-      <router-link v-for="item in reminders" :key="item.race.id + item.hit.key" class="remind-line" :to="'/races/' + item.race.id">
-        <b>{{ item.hit.reason }}</b> {{ item.race.name }}
-      </router-link>
-    </section>
-    <section class="sheet">
-      <div class="head"><h3>微信提醒</h3></div>
-      <div class="slot"><span>报名开启到比赛前一天</span><b>尚未开通</b></div>
-      <p class="hint">报名开启、报名截止、出签、缴费截止、领物、比赛前一天。页面上的截止提醒仍然会列出。</p>
-    </section>
-
-    <section v-if="nickname" class="who">
+  <main class="mine">
+    <PageHeader title="我的" subtitle="每一程，都有记录" />
+    <section v-if="nickname" class="account-hero">
       <div class="who-top">
-        <div class="face" aria-hidden="true">{{ nickname.slice(0, 1) }}</div>
-        <div class="who-main">
-          <div class="nick">{{ nickname }}</div>
-          <p v-if="leader" class="role">建团资格</p>
-          <router-link v-for="club in clubs" :key="club.id" class="club-line" :to="'/clubs/' + club.id">{{ club.name }} · {{ club.roleLabel }}</router-link>
-        </div>
+        <img v-if="avatar" class="face" :src="avatar" :alt="nickname + ' 的头像'" />
+        <span v-else class="face" aria-hidden="true">{{ nickname.slice(0, 1) }}</span>
+        <div class="who-main"><h2 class="nick">{{ nickname }}</h2><p class="club-line">{{ clubs.length ? clubs.map(item => item.name).join(' · ') : '和志同道合的人一起跑' }}</p><span v-if="leader" class="role">建团资格</span></div>
+        <button class="hero-settings" type="button" aria-label="查看个人资料" @click="section = 'profile'">›</button>
       </div>
-      <button type="button" class="account-line" :aria-expanded="passwordOpen" @click="togglePassword">
-        <span>{{ hasPassword ? "修改密码" : "设置登录密码" }}</span>
-        <i class="chev" :class="{ open: passwordOpen }" aria-hidden="true"></i>
-      </button>
-      <form v-if="passwordOpen" class="auth-form" @submit.prevent="savePassword">
-        <p class="hint">{{ hasPassword ? "请填写当前密码和新密码。" : "设置后，可使用此昵称与密码在其他设备登录。" }}</p>
-        <input v-if="hasPassword" v-model="currentPassword" type="password" autocomplete="current-password" placeholder="当前密码" />
-        <div class="pass-field">
-          <input v-model="nextPassword" type="password" autocomplete="new-password" aria-label="新密码" placeholder="新密码" />
-          <small>8 到 128 位</small>
-        </div>
-        <input v-model="nextPassword2" type="password" autocomplete="new-password" placeholder="再输入一次" />
-        <button class="go" type="submit">保存</button>
-        <button class="cancel" type="button" @click="cancelPassword">取消</button>
-        <p v-if="message" :class="ok ? 'ok' : 'err'">{{ message }}</p>
-      </form>
-      <p v-else-if="message" :class="ok ? 'ok' : 'err'">{{ message }}</p>
-      <button type="button" class="quit" @click="logout">退出</button>
+      <div class="account-stats"><button type="button" @click="section = 'plans'"><b>{{ plans.length }}</b><span>已标记赛事</span></button><button type="button" @click="section = 'results'"><b>{{ finished }}</b><span>已完赛</span></button><router-link to="/clubs"><b>{{ clubs.length }}</b><span>已加入跑团</span></router-link></div>
     </section>
-    <section v-else class="who auth">
-      <div class="modes">
-        <button type="button" :class="{ on: authTab === 'login' }" @click="setTab('login')">登录</button>
-        <button type="button" :class="{ on: authTab === 'register' }" @click="setTab('register')">注册</button>
-      </div>
-      <p class="hint">{{ authTab === "login" ? "用昵称和密码。换手机也能回到同一个人。" : "第一次使用就注册。这个昵称以前只出现过一次、还没设密码的话，会设在原来那个人身上。" }}</p>
+    <section v-else class="account-hero guest-hero">
+      <div class="who-top"><span class="face guest-face" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M5 21v-2a7 7 0 0 1 14 0v2"/></svg></span><div class="who-main"><h2>跑过的每一步，都值得记录</h2><p>登录后收藏赛事、记录成绩，加入跑团</p></div></div>
+      <button class="primary hero-login" type="button" :aria-expanded="authOpen" @click="openAuth">{{ authOpen ? '收起登录' : '登录 / 注册' }}</button>
+    </section>
+    <section v-if="!nickname && authOpen" class="sheet auth">
+      <nav class="subtabs"><button type="button" :class="{ on: authTab === 'login' }" @click="setTab('login')">账号登录</button><button type="button" :class="{ on: authTab === 'register' }" @click="setTab('register')">注册账号</button></nav>
+      <p class="hint">{{ authTab === 'login' ? '使用已注册的昵称和密码登录。' : '首次使用请设置昵称和密码。旧账号请使用原密码登录。' }}</p>
       <form class="auth-form" @submit.prevent="submitAuth">
-        <input v-model="draft" autocomplete="username" placeholder="昵称" />
+        <input v-model="draft" autocomplete="username" placeholder="昵称" aria-label="昵称" />
         <input v-model="password" type="password" :autocomplete="authTab === 'login' ? 'current-password' : 'new-password'" placeholder="密码，至少 8 位" />
         <input v-if="authTab === 'register'" v-model="password2" type="password" autocomplete="new-password" placeholder="再输入一次密码" />
-        <template v-if="authTab === 'login'">
-          <button type="button" class="captcha" @click="loadCaptcha">
-            <img v-if="captchaImage" :src="captchaImage" alt="验证码" />
-            <span v-else>{{ captchaLoading ? "加载中…" : "点击获取验证码" }}</span>
-          </button>
-          <input v-model="captcha" autocomplete="off" maxlength="4" placeholder="上图字符" />
-        </template>
-        <button class="go" type="submit">{{ authTab === "login" ? "登录" : "注册" }}</button>
-      </form>
-      <p v-if="message" :class="ok ? 'ok' : 'err'">{{ message }}</p>
+        <template v-if="authTab === 'login'"><button type="button" class="captcha" @click="loadCaptcha"><img v-if="captchaImage" :src="captchaImage" alt="验证码" /><span v-else>{{ captchaLoading ? '加载中…' : '点击获取验证码' }}</span></button><input v-model="captcha" autocomplete="off" maxlength="4" placeholder="上图字符" /></template>
+        <button class="primary" type="submit">{{ authTab === 'login' ? '登录' : '注册' }}</button>
+      </form><p v-if="authTab === 'login'" class="hint">旧账号未设置密码或无法登录？请联系平台管理员核验身份后恢复账号。</p><p v-if="message" :class="ok ? 'success' : 'err'">{{ message }}</p>
     </section>
-    <div class="shortcuts">
-      <router-link to="/">
-        <span class="orb order"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2" /><path d="M8 3v4M16 3v4M4 10h16" /></svg></span>
-        赛历
-      </router-link>
-      <router-link to="/?kind=offline">
-        <span class="orb flag"><svg viewBox="0 0 24 24"><path d="M7 4v16M7 5h9l-2 3 2 3H7" /></svg></span>
-        线下赛
-      </router-link>
-      <router-link to="/?kind=online">
-        <span class="orb cup"><svg viewBox="0 0 24 24"><path d="M8 4h8v6a4 4 0 0 1-8 0V4zM8 6H5v2a3 3 0 0 0 3 3M16 6h3v2a3 3 0 0 1-3 3M12 14v3M9 20h6" /></svg></span>
-        线上赛
-      </router-link>
-      <router-link to="/look">
-        <span class="orb person"><svg viewBox="0 0 24 24"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12z" /><circle cx="12" cy="12" r="3" /></svg></span>
-        报名中
-      </router-link>
-      <a href="#wall">
-        <span class="orb score"><svg viewBox="0 0 24 24"><circle cx="12" cy="14" r="5" /><path d="M9 4l3 6 3-6" /></svg></span>
-        成绩
-      </a>
-      <router-link to="/radar">
-        <span class="orb flag"><svg viewBox="0 0 24 24"><path d="M7 4v16M7 5h9l-2 3 2 3H7" /></svg></span>
-        雷达
-      </router-link>
-    </div>
-
-    <div id="wall" class="walls">
-      <button type="button" :class="{ on: tab === 'honor' }" @click="tab = 'honor'">荣誉墙<svg viewBox="0 0 16 16"><path d="M8 1.2l4.2 4.2L8 14.8 3.8 5.4z" /></svg></button>
-      <i></i>
-      <button type="button" :class="{ on: tab === 'photo' }" @click="tab = 'photo'">影像墙<svg viewBox="0 0 16 16"><path d="M3 4.5h2l1-1.5h4l1 1.5h2v8H3z" /><circle cx="8" cy="8.5" r="2" /></svg></button>
-      <i></i>
-      <button type="button" :class="{ on: tab === 'time' }" @click="tab = 'time'">时光轴<svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="5.5" /><path d="M8 5v3.2L10.2 10" /></svg></button>
-    </div>
-
-    <div v-if="tab === 'honor'" class="career">
-      <div v-if="years.length" class="chips">
-        <button type="button" :class="{ on: mapYear === '' }" @click="mapYear = ''">全部</button>
-        <button v-for="year in years" :key="year" type="button" :class="{ on: mapYear === year }" @click="mapYear = year">{{ year }}</button>
-      </div>
-      <div v-if="litPlaces.length" class="chips">
-        <span v-for="name in litPlaces" :key="name" class="lit">{{ name }}</span>
-      </div>
-      <div v-if="litCards.length" class="scroll">
-        <router-link v-for="item in litCards" :key="item.race.id + item.distance" :to="'/races/' + item.race.id">
-          <b>{{ item.clock }}</b>
-          <span>{{ item.race.city }} · {{ item.race.raceDate }}</span>
-          {{ item.race.name }}
-        </router-link>
-      </div>
-      <div v-for="group in honorGroups" :key="group.year" class="marks">
-        <p class="year">{{ group.year }}</p>
-        <router-link v-for="item in group.items" :key="item.race.id + item.distance" :to="'/races/' + item.race.id">
-          <b>{{ item.clock }}</b>{{ item.race.name }}<span v-if="item.pb" class="pb"> PB</span>
-        </router-link>
-      </div>
-      <p v-if="!results.length" class="quiet">在赛事页记下成绩后，会出现在这里</p>
-    </div>
-    <div v-else-if="tab === 'photo'" class="career">
-      <router-link v-for="item in proofResults" :key="item.race.id + item.distance" class="proof-card" :to="'/races/' + item.race.id">
-        <img :src="proofSrc(item.race.id, item.distance)" alt="" />
-        <b>{{ item.proofLabel }} · 未核验</b>
-        <span>{{ item.race.name }}</span>
-      </router-link>
-      <p v-if="!proofResults.length" class="quiet">还没有影像。在赛事页记下成绩后，可以附证书或奖牌照片。</p>
-    </div>
-    <div v-else-if="tab === 'time'" class="career">
-      <div class="chips">
-        <button type="button" :class="{ on: kindFilter === 'all' }" @click="kindFilter = 'all'">全部</button>
-        <button type="button" :class="{ on: kindFilter === 'road' }" @click="kindFilter = 'road'">路跑</button>
-        <button type="button" :class="{ on: kindFilter === 'trail' }" @click="kindFilter = 'trail'">越野</button>
-        <button type="button" :class="{ on: kindFilter === 'other' }" @click="kindFilter = 'other'">其他</button>
-      </div>
-      <div class="marks">
-        <router-link v-for="item in timeline" :key="item.race.id + item.distance" :to="'/races/' + item.race.id">
-          <b>{{ item.race.raceDate }}</b>{{ item.race.name }} {{ item.clock }}<span v-if="item.pb" class="pb"> PB</span>
-        </router-link>
-        <p v-if="!timeline.length" class="quiet">还没有成绩</p>
-      </div>
-    </div>
-
-    <section id="road" class="sheet">
-      <div class="head"><h3>路跑赛事</h3><router-link class="link" to="/">查看 ›</router-link></div>
-      <div class="pair">
-        <div>
-          <span class="medal"><svg viewBox="0 0 24 24"><circle cx="12" cy="14" r="5" /><path d="M9 4l3 6 3-6" /></svg></span>
-          <div class="k">完赛场数</div>
-          <div class="v">{{ finished }}<small> 场</small></div>
-        </div>
-        <div>
-          <span class="medal bib"><svg viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="14" rx="2" /><path d="M9 8h6M12 17v4" /></svg></span>
-          <div class="k">最好成绩</div>
-          <div class="line"><span>半程</span><b>{{ career.pb.half || "--" }}</b></div>
-          <div class="line"><span>全程</span><b>{{ career.pb.full || "--" }}</b></div>
-        </div>
-      </div>
-      <p v-if="career.finished" class="footline">足迹 {{ career.provinces.length }} 个省、{{ career.cities.length }} 个市 · 本年比赛 {{ career.yearKm }} 公里</p>
+    <nav class="quick-links" aria-label="常用功能"><router-link v-for="item in quickLinks" :key="item.to" :to="item.to"><img :src="item.icon" alt="" /><span>{{ item.label }}</span></router-link></nav>
+    <nav class="main-tabs" aria-label="个人中心"><button type="button" :class="{ on: section === 'plans' }" @click="section = 'plans'">我的赛事</button><button type="button" :class="{ on: section === 'results' }" @click="section = 'results'">完赛记录</button><button type="button" :class="{ on: section === 'profile' }" @click="section = 'profile'">个人资料</button></nav>
+    <template v-if="section === 'plans'">
+      <section v-if="conflicts.length" class="sheet"><h3>比赛安排提醒</h3><p v-for="item in conflicts" :key="item.text" class="notice">{{ item.text }}</p></section>
+      <section v-if="reminders.length" class="sheet"><h3>截止提醒</h3><router-link v-for="item in reminders" :key="item.race.id + item.hit.key" class="remind-line" :to="'/races/' + item.race.id"><b>{{ item.hit.reason }}</b><span>{{ item.race.name }}</span><i>›</i></router-link></section>
+      <section v-if="plans.length" class="sheet plan-list"><router-link v-for="item in plans" :key="item.race.id" class="plan-row" :to="'/races/' + item.race.id"><div><span class="plan-state">{{ item.status }}</span><h3>{{ item.race.name }}</h3><p>{{ item.race.raceDate }}<template v-if="item.race.city"> · {{ item.race.city }}</template></p></div><i>›</i></router-link></section>
+      <section v-else class="sheet empty-state"><h3>{{ nickname ? '下一场，想去哪里跑？' : '把想跑的比赛放进这里' }}</h3><p>{{ nickname ? '在赛事详情页标记报名或中签状态，随时查看参赛安排。' : '登录后，你标记的比赛会自动汇总在这里。' }}</p><router-link to="/">去看赛事 ›</router-link></section>
+    </template>
+    <template v-else-if="section === 'results'">
+      <section class="sheet career-summary"><div><span>完赛场数</span><b>{{ nickname ? finished : '—' }}<small> 场</small></b></div><div><span>半马最好成绩</span><b class="clock">{{ career.pb.half || '—' }}</b></div><div><span>全马最好成绩</span><b class="clock">{{ career.pb.full || '—' }}</b></div></section>
+      <nav class="subtabs result-tabs"><button type="button" :class="{ on: tab === 'honor' }" @click="tab = 'honor'">成绩</button><button type="button" :class="{ on: tab === 'photo' }" @click="tab = 'photo'">证书影像</button><button type="button" :class="{ on: tab === 'time' }" @click="tab = 'time'">赛事足迹</button></nav>
+      <section v-if="tab === 'honor'" class="sheet">
+        <div v-if="years.length" class="chips"><button type="button" :class="{ on: mapYear === '' }" @click="mapYear = ''">全部</button><button v-for="year in years" :key="year" type="button" :class="{ on: mapYear === year }" @click="mapYear = year">{{ year }}</button></div>
+        <div v-for="group in honorGroups" :key="group.year" class="result-group"><h3>{{ group.year }}</h3><router-link v-for="item in group.items" :key="item.race.id + item.distance" class="result-row" :to="'/races/' + item.race.id"><b>{{ item.clock }}<small v-if="item.pb"> PB</small></b><span>{{ item.race.name }}</span><p>{{ item.race.raceDate }}</p></router-link></div>
+        <p v-if="!results.length" class="empty-copy">在赛事详情页记下完赛成绩，留住你的每次突破。</p>
+      </section>
+      <section v-else-if="tab === 'photo'" class="sheet"><router-link v-for="item in proofResults" :key="item.race.id + item.distance" class="proof-card" :to="'/races/' + item.race.id"><img :src="proofSrc(item.race.id, item.distance)" :alt="item.race.name + ' 成绩影像'"/><b>{{ item.proofLabel }} · 未核验</b><span>{{ item.race.name }}</span></router-link><p v-if="!proofResults.length" class="empty-copy">在赛事详情页上传证书或奖牌照片，建立自己的完赛相册。</p></section>
+      <section v-else class="sheet"><p v-if="career.finished" class="hint">跑过 {{ career.provinces.length }} 个省、{{ career.cities.length }} 个城市 · 本年比赛 {{ career.yearKm }} 公里</p><div class="chips"><button v-for="item in [{id:'all',label:'全部'},{id:'road',label:'路跑'},{id:'trail',label:'越野'},{id:'other',label:'其他'}]" :key="item.id" type="button" :class="{ on: kindFilter === item.id }" @click="kindFilter = item.id">{{ item.label }}</button></div><router-link v-for="item in timeline" :key="item.race.id + item.distance" class="result-row" :to="'/races/' + item.race.id"><p>{{ item.race.raceDate }}</p><span>{{ item.race.name }}</span><b>{{ item.clock }}</b></router-link><p v-if="!timeline.length" class="empty-copy">你的赛事足迹，从第一条完赛记录开始。</p></section>
+    </template>
+    <section v-else-if="nickname" class="sheet settings">
+      <button class="setting-row" type="button" :aria-expanded="profileOpen" @click="profileOpen = !profileOpen"><span>修改头像与昵称</span><i>{{ profileOpen ? '⌄' : '›' }}</i></button>
+      <form v-if="profileOpen" class="auth-form profile-form" @submit.prevent="saveProfile"><label>昵称<input v-model="nicknameEdit" maxlength="20" autocomplete="nickname" /></label><div class="avatar-edit"><img v-if="avatarEdit" :src="avatarEdit" alt="头像预览" /><span v-else class="avatar-empty">{{ nicknameEdit.slice(0, 1) || '跑' }}</span><label class="avatar-choice">选择头像<input type="file" accept="image/jpeg,image/png,image/webp" @change="chooseAvatar" /></label></div><button class="primary" type="submit">保存资料</button><p v-if="profileMessage" :class="profileSaved ? 'success' : 'err'">{{ profileMessage }}</p></form>
+      <button class="setting-row" type="button" :aria-expanded="passwordOpen" @click="togglePassword"><span>{{ hasPassword ? '修改密码' : '设置登录密码' }}</span><i>{{ passwordOpen ? '⌄' : '›' }}</i></button>
+      <form v-if="passwordOpen" class="auth-form" @submit.prevent="savePassword"><p class="hint">{{ hasPassword ? '请填写当前密码和新密码。' : '设置后，可使用昵称与密码在其他设备登录。' }}</p><input v-if="hasPassword" v-model="currentPassword" type="password" autocomplete="current-password" placeholder="当前密码" /><input v-model="nextPassword" type="password" autocomplete="new-password" placeholder="新密码，8 到 128 位" /><input v-model="nextPassword2" type="password" autocomplete="new-password" placeholder="再输入一次" /><button class="primary" type="submit">保存密码</button><button class="secondary" type="button" @click="cancelPassword">取消</button></form>
+      <p v-if="message" :class="ok ? 'success' : 'err'">{{ message }}</p><router-link v-for="club in clubs" :key="club.id" class="setting-row club-setting" :to="'/clubs/' + club.id"><span>{{ club.name }}<small>{{ club.roleLabel }}</small></span><i>›</i></router-link><button type="button" class="logout" @click="logout">退出登录</button>
     </section>
-    <section class="sheet">
-      <div class="head"><h3>装备</h3></div>
-      <div class="slot"><span>跑鞋、能量胶</span><b>尚未开通</b></div>
-      <p class="hint">跳转以后再接。这里不卖货，也不收款。</p>
-    </section>
+    <section v-else class="sheet empty-state"><h3>你的资料，由你管理</h3><p>登录后设置头像、昵称和账号密码。</p><button class="text-action" type="button" @click="openAuth">去登录 ›</button></section>
     <footer class="legal">{{ company }} · {{ icp }}</footer>
-  </div>
+  </main>
 </template>
 
 <script setup>
-import { computed, onMounted, ref } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
+import { useRouter } from "vue-router";
 import { api, resultProofSrc } from "../api";
+import PageHeader from "../components/PageHeader.vue";
 
-const nickname = ref(localStorage.getItem("marathon_name") || "");
+import calendarIcon from "../assets/quick/calendar.svg";
+import radarIcon from "../assets/quick/radar.svg";
+import clubsIcon from "../assets/quick/clubs.svg";
+import newsIcon from "../assets/quick/news.svg";
+const router = useRouter();
+const section = ref("plans");
+const authOpen = ref(Boolean(localStorage.getItem("marathon_return_after_login")));
+const quickLinks = [{to:"/calendar",label:"赛事日历",icon:calendarIcon},{to:"/radar",label:"拿奖雷达",icon:radarIcon},{to:"/clubs",label:"发现跑团",icon:clubsIcon},{to:"/news",label:"赛事资讯",icon:newsIcon}];
+function openAuth() { authOpen.value = !authOpen.value; if (authOpen.value && authTab.value === "login" && !captchaImage.value) loadCaptcha(); }
+watch(section, next => { if (next !== "profile") { profileOpen.value = false; cancelPassword(); } });
+const nickname = ref(localStorage.getItem("marathon_token") ? localStorage.getItem("marathon_name") || "" : "");
+const avatar = ref("");
+const avatarEdit = ref("");
+const nicknameEdit = ref("");
+const profileOpen = ref(false);
+const profileMessage = ref("");
+const profileSaved = ref(false);
 const leader = ref(false);
 const clubs = ref([]);
 const hasPassword = ref(false);
@@ -258,16 +153,22 @@ async function load() {
   company.value = meta.company;
   icp.value = meta.icp;
   if (!localStorage.getItem("marathon_token")) {
-    await loadCaptcha();
+    nickname.value = "";
+    avatar.value = "";
+    localStorage.removeItem("marathon_name");
+    if (authOpen.value) await loadCaptcha();
     return;
   }
   try {
     const data = await api("/me");
     nickname.value = data.user.nickname;
+    nicknameEdit.value = data.user.nickname;
+    avatar.value = data.user.avatar || "";
+    avatarEdit.value = data.user.avatar || "";
     leader.value = Boolean(data.user.leader);
     hasPassword.value = Boolean(data.user.hasPassword);
     clubs.value = data.clubs || [];
-    plans.value = data.plans;
+    plans.value = data.plans || [];
     results.value = data.results || [];
     career.value = data.career || career.value;
     conflicts.value = data.conflicts || [];
@@ -302,8 +203,10 @@ async function loadCaptcha() {
 }
 
 function saveSession(data) {
+  authOpen.value = false;
   localStorage.setItem("marathon_token", data.token);
   localStorage.setItem("marathon_name", data.user.nickname);
+  avatar.value = data.user.avatar || "";
   nickname.value = data.user.nickname;
   password.value = "";
   password2.value = "";
@@ -315,6 +218,10 @@ function logout() {
   localStorage.removeItem("marathon_token");
   localStorage.removeItem("marathon_name");
   nickname.value = "";
+  avatar.value = "";
+  avatarEdit.value = "";
+  nicknameEdit.value = "";
+  profileOpen.value = false;
   leader.value = false;
   hasPassword.value = false;
   clubs.value = [];
@@ -329,7 +236,9 @@ function logout() {
   message.value = "";
   ok.value = false;
   authTab.value = "login";
-  loadCaptcha();
+  authOpen.value = false;
+  section.value = "plans";
+  career.value = { finished: 0, provinces: [], cities: [], pb: { full: "", half: "" }, yearKm: 0 };
 }
 
 async function submitAuth() {
@@ -349,9 +258,73 @@ async function submitAuth() {
     const data = await api(path, { method: "POST", body: JSON.stringify(body) });
     saveSession(data);
     await load();
+    const returnPath = localStorage.getItem("marathon_return_after_login") || "";
+    if (returnPath.startsWith("/clubs/") || (returnPath === "/radar" || returnPath === "/sport" || /^\/races\/[^/?#]+(?:\?plan=1)?$/.test(returnPath))) {
+      localStorage.removeItem("marathon_return_after_login");
+      await router.replace(returnPath);
+    }
   } catch (err) {
     message.value = err.message;
     if (authTab.value === "login") loadCaptcha();
+  }
+}
+
+function chooseAvatar(event) {
+  const file = event.target.files && event.target.files[0];
+  if (!file) return;
+  profileMessage.value = "";
+  if (!/^image\/(jpeg|png|webp)$/.test(file.type)) {
+    profileMessage.value = "请选择 JPG、PNG 或 WebP 图片";
+    event.target.value = "";
+    return;
+  }
+  const source = URL.createObjectURL(file);
+  const image = new Image();
+  image.onload = () => {
+    const scale = Math.min(1, 240 / Math.max(image.width, image.height));
+    const canvas = document.createElement("canvas");
+    canvas.width = Math.max(1, Math.round(image.width * scale));
+    canvas.height = Math.max(1, Math.round(image.height * scale));
+    canvas.getContext("2d").drawImage(image, 0, 0, canvas.width, canvas.height);
+    URL.revokeObjectURL(source);
+    let quality = 0.78;
+    let data = canvas.toDataURL("image/jpeg", quality);
+    while (data.length > 58000 && quality > 0.35) {
+      quality -= 0.1;
+      data = canvas.toDataURL("image/jpeg", quality);
+    }
+    if (data.length > 58000) {
+      profileMessage.value = "图片仍然过大，请换一张头像";
+      return;
+    }
+    avatarEdit.value = data;
+    profileMessage.value = "头像已选择，保存后团友可见";
+  };
+  image.onerror = () => {
+    URL.revokeObjectURL(source);
+    profileMessage.value = "无法读取这张图片";
+  };
+  image.src = source;
+  event.target.value = "";
+}
+
+async function saveProfile() {
+  profileMessage.value = "";
+  profileSaved.value = false;
+  try {
+    const data = await api("/me/profile", {
+      method: "PUT",
+      body: JSON.stringify({ nickname: nicknameEdit.value.trim(), avatar: avatarEdit.value })
+    });
+    nickname.value = data.user.nickname;
+    nicknameEdit.value = data.user.nickname;
+    avatar.value = data.user.avatar || "";
+    avatarEdit.value = data.user.avatar || "";
+    localStorage.setItem("marathon_name", data.user.nickname);
+    profileSaved.value = true;
+    profileMessage.value = "个人资料已保存";
+  } catch (err) {
+    profileMessage.value = err.message;
   }
 }
 
@@ -405,114 +378,12 @@ onMounted(load);
 </script>
 
 <style scoped>
-.mine { background: transparent; color: #1c1c1e; padding-bottom: 8px; }
-.who, .shortcuts, .walls { background: #fff; }
-.who { display: flex; flex-direction: column; align-items: stretch; margin: 8px 16px 0; padding: 14px 16px; border-radius: 16px; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04); }
-.who-top { display: flex; align-items: center; gap: 12px; }
-.account-line { display: flex; align-items: center; justify-content: space-between; width: 100%; margin-top: 12px; padding-top: 12px; border-top: 1px solid #f0f1f3; color: #1c1c1e; font-size: 15px; text-align: left; }
-.account-line .chev { width: 7px; height: 7px; margin-right: 4px; border-right: 1.5px solid #c5cad1; border-bottom: 1.5px solid #c5cad1; transform: rotate(-45deg); }
-.account-line .chev.open { transform: rotate(45deg); }
-.pass-field { display: flex; flex-direction: column; gap: 4px; }
-.pass-field small { color: var(--muted); font-size: 12px; }
-.cancel { height: 36px; color: var(--muted); font-size: 14px; }
-.face {
-  width: 58px;
-  height: 58px;
-  flex: none;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  color: #fff;
-  font-size: 24px;
-  font-weight: 700;
-  background: linear-gradient(145deg, #64d2ff, #007aff);
-}
-.who-main { flex: 1; min-width: 0; }
-.nick { font-size: 18px; font-weight: 650; }
-.role { margin: 2px 0 0; color: var(--accent); font-size: 13px; font-weight: 650; }
-.club-line { display: block; margin-top: 4px; color: var(--muted); font-size: 13px; }
-.chev { margin-left: auto; stroke: #c5cad1; }
-.quit { align-self: flex-start; margin-top: 10px; color: var(--muted); font-size: 13px; }
-.who.auth { display: block; }
-.modes { display: flex; gap: 8px; }
-.modes button { height: 32px; padding: 0 14px; border-radius: 999px; background: rgba(118, 118, 128, 0.12); font-size: 14px; font-weight: 650; }
-.modes button.on { background: #007aff; color: #fff; }
-.auth-form { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
-.auth-form input { display: block; width: 100%; height: 40px; border: 0; border-radius: 10px; padding: 0 12px; background: rgba(118, 118, 128, 0.12); outline: none; }
-.captcha { height: 44px; border-radius: 10px; background: rgba(118, 118, 128, 0.12); color: var(--muted); }
-.captcha img { display: block; height: 44px; margin: 0 auto; }
-.go { display: block; width: 100%; height: 40px; border-radius: 12px; background: #007aff; color: #fff; font-weight: 650; }
-.hint { margin: 8px 0 0; color: var(--muted); font-size: 12px; line-height: 1.45; }
-.err { color: #e35d5d; font-size: 12px; margin: 4px 0 0; }
-.ok { color: #248a3d; font-size: 12px; margin: 4px 0 0; }
-.shortcuts { display: flex; justify-content: space-between; margin: 12px 16px 0; padding: 14px 8px 12px; border-radius: 16px; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04); }
-.shortcuts a { flex: 1; min-width: 0; text-align: center; font-size: calc(12px * var(--s)); color: #333; }
-.orb { width: calc(48px * var(--s)); height: calc(48px * var(--s)); margin: 0 auto 6px; border-radius: 50%; display: grid; place-items: center; }
-.orb svg { width: 22px; height: 22px; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-.order { background: #e7f1ff; } .order svg { stroke: #5b8def; }
-.flag { background: #ffe8ea; } .flag svg { stroke: #ff5a6a; fill: #ff5a6a; }
-.cup { background: #e5f8ea; } .cup svg { stroke: #3dbe6e; }
-.person { background: #fff1e4; } .person svg { stroke: #ff9a3c; }
-.score { background: #eee8ff; } .score svg { stroke: #8b7cf7; }
-.walls { display: flex; align-items: center; justify-content: space-around; margin: 12px 16px 0; padding: 12px 0; border-radius: 16px; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04); }
-.walls button { display: inline-flex; align-items: center; gap: 4px; font-size: 15px; color: #222; font-weight: 650; }
-.walls svg { width: 14px; height: 14px; }
-.walls button:nth-child(1) svg { fill: #7c6cf0; stroke: none; }
-.walls button:nth-child(3) svg { fill: none; stroke: #ff8a3d; stroke-width: 1.4; }
-.walls button:nth-child(5) svg { fill: none; stroke: #5b8def; stroke-width: 1.4; }
-.walls i { width: 1px; height: 14px; background: #e6e8ec; }
-.career { padding-bottom: 8px; }
-.chips { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 16px 8px; }
-.chips button, .lit { font-size: 12px; padding: 2px 8px; border-radius: 10px; background: #f4f5f7; color: #666; }
-.chips button.on { background: #007aff; color: #fff; }
-.scroll { display: flex; gap: 8px; overflow-x: auto; padding: 0 16px 8px; }
-.scroll a { flex: none; width: 168px; background: #f7f8fa; border-radius: 10px; padding: 8px 10px; font-size: 12px; color: #333; }
-.scroll b { display: block; font-size: 16px; }
-.scroll span { display: block; color: #8d949c; margin: 2px 0 4px; }
-.year { margin: 4px 0 0; font-size: 12px; color: #8d949c; }
-.pb { color: #f0a04b; font-size: 12px; margin-left: 4px; }
-.footline { margin: 10px 0 0; color: #8d949c; font-size: 12px; }
-.marks { padding: 0 16px 8px; }
-.marks a { display: block; font-size: 13px; padding: 6px 0; color: #333; }
-.marks b { color: #007aff; font-weight: 650; margin-right: 6px; }
-.quiet { text-align: center; color: #8d949c; font-size: 13px; margin: 0 0 8px; }
-.promo { margin: 8px 12px 12px; border-radius: 12px; overflow: hidden; height: 92px; }
-.promo svg { width: 100%; height: 92px; display: block; }
-.promo text { font-family: "PingFang SC", "Microsoft YaHei", sans-serif; }
-.sheet { margin: 12px 16px; background: #fff; border-radius: 16px; padding: 14px 12px; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04); }
-.head { display: flex; justify-content: space-between; align-items: center; }
-.head h3 { margin: 0; font-size: 16px; font-weight: 700; }
-.head h3 span, .link { color: #8d949c; font-size: 13px; font-weight: 400; }
-.week-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(88px, 118px); gap: 10px; align-items: end; margin-top: 8px; }
-.label { color: #8d949c; font-size: 12px; }
-.big { font-size: 36px; font-weight: 650; line-height: 1.05; margin: 4px 0 8px; }
-.metrics { display: flex; justify-content: space-between; gap: 6px; }
-.metrics b { display: block; font-size: 15px; }
-.metrics span, .center span, .k, .line span { color: #8d949c; font-size: 10px; white-space: nowrap; }
-.chart { display: flex; flex-direction: column; justify-content: flex-end; }
-.cols { height: 72px; display: flex; align-items: flex-end; justify-content: space-between; }
-.cols i { width: 9px; height: 58px; border-radius: 5px; background: #e4e7ec; }
-.days { display: flex; justify-content: space-between; margin-top: 4px; color: #b0b6be; font-size: 10px; }
-.days span { width: 12px; text-align: center; }
-.center { display: grid; grid-template-columns: repeat(3, 1fr); text-align: center; padding: 14px 0 4px; }
-.center b { display: block; font-size: 26px; font-weight: 650; }
-.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
-.pair > div { position: relative; background: #f2f2f7; border-radius: 12px; min-height: 78px; padding: 10px 12px; }
-.medal { position: absolute; right: 10px; top: 10px; width: 28px; height: 28px; border-radius: 50%; background: #fff4e5; display: grid; place-items: center; }
-.medal svg { width: 16px; height: 16px; fill: none; stroke: #f0a04b; stroke-width: 1.6; }
-.bib { background: #eef2ff; }
-.bib svg { stroke: #7d8cff; }
-.k { font-size: 13px; color: #666; }
-.v { margin-top: 8px; font-size: 22px; font-weight: 700; }
-.v small { font-size: 13px; font-weight: 500; }
-.line { display: flex; justify-content: space-between; margin-top: 6px; font-size: 13px; }
-.legal { text-align: center; color: #c5cad1; font-size: 11px; padding: 4px 12px 8px; }
-.warn p, .remind-line { margin: 8px 0 0; font-size: 13px; line-height: 1.45; }
-.warn p { color: #9a5b12; }
-.remind-line { display: block; color: #333; }
-.remind-line b { color: #9a5b12; margin-right: 6px; }
-.proof-card { display: block; margin: 0 16px 12px; color: inherit; text-decoration: none; }
-.proof-card img { display: block; width: 100%; border-radius: 12px; }
-.proof-card b, .proof-card span { display: block; margin-top: 4px; }
-.proof-card span { color: #8d949c; font-size: 13px; }
+.mine { padding: 0 12px 16px; color: #1f2026; }
+:deep(.page-header) { margin: 0 -12px; }
+.account-hero, .sheet, .quick-links { margin: 0 0 12px; padding: 16px; border-radius: 12px; background: #fff; box-shadow: none; }.who-top { display: flex; align-items: center; gap: 12px; }.face { display: grid; place-items: center; width: 58px; height: 58px; flex: none; border-radius: 50%; background: #fff0f3; color: #ff0a30; font-size: 24px; font-weight: 600; object-fit: cover; }.who-main { flex: 1; min-width: 0; }.nick { margin: 0; font-size: 20px; line-height: 28px; font-weight: 600; overflow-wrap: anywhere; }.club-line, .guest-hero p { margin: 5px 0 0; color: #8a8e99; font-size: 12px; line-height: 18px; }.role { display: inline-block; margin-top: 5px; padding: 1px 5px; background: #fff0f3; color: #ff0a30; border-radius: 4px; font-size: 11px; }.hero-settings { align-self: center; color: #b9bdc7; font-size: 26px; }.account-stats { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); margin-top: 20px; }.account-stats button, .account-stats a { display: flex; flex-direction: column; align-items: center; gap: 5px; min-width: 0; }.account-stats b { font-size: 24px; line-height: 30px; font-weight: 700; }.account-stats span { color: #8a8e99; font-size: 12px; }.guest-hero h2 { margin: 0; font-size: 18px; line-height: 26px; font-weight: 600; }.guest-face svg { width: 28px; height: 28px; fill: none; stroke: currentColor; stroke-width: 1.6; }.hero-login { width: 100%; margin-top: 16px; }
+.quick-links { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); padding: 14px 6px; }.quick-links a { display: flex; flex-direction: column; align-items: center; gap: 5px; min-width: 0; font-size: 12px; }.quick-links img { width: 36px; height: 36px; }.main-tabs { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); margin: 0 0 12px; border-bottom: 1px solid #e9ebf1; }.main-tabs button { position: relative; min-height: 46px; color: #8a8e99; font-size: 16px; font-weight: 600; }.main-tabs button.on { color: #ff0a30; }.main-tabs button.on::after { content: ''; position: absolute; left: calc(50% - 12px); bottom: 0; width: 24px; height: 3px; background: #ff0a30; border-radius: 2px; }
+h3 { margin: 0; font-size: 16px; line-height: 24px; font-weight: 600; }.hint, .empty-copy { margin: 8px 0; color: #8a8e99; font-size: 12px; line-height: 20px; }.notice { margin: 8px 0 0; color: #ff0a30; font-size: 12px; line-height: 20px; }.remind-line { display: flex; align-items: center; gap: 8px; padding: 12px 0; border-bottom: 1px solid #f0f1f5; font-size: 13px; }.remind-line:last-child { border: 0; padding-bottom: 0; }.remind-line b { flex: none; color: #ff0a30; font-weight: 500; }.remind-line span { flex: 1; min-width: 0; }.remind-line i, .plan-row i, .setting-row i { flex: none; color: #b9bdc7; font-size: 22px; font-style: normal; }.plan-list { padding-top: 0; padding-bottom: 0; }.plan-row { display: flex; align-items: center; gap: 12px; padding: 16px 0; border-bottom: 1px solid #f0f1f5; }.plan-row:last-child { border: 0; }.plan-row > div { flex: 1; min-width: 0; }.plan-row h3 { margin: 6px 0; }.plan-row p, .result-row p { margin: 4px 0 0; color: #8a8e99; font-size: 12px; }.plan-state { display: inline-block; padding: 2px 6px; border-radius: 4px; background: #fff0f3; color: #ff0a30; font-size: 11px; }.empty-state { padding: 28px 20px; text-align: center; }.empty-state p { margin: 8px 0 16px; color: #8a8e99; font-size: 12px; line-height: 20px; }.empty-state a, .text-action { color: #ff0a30; font-size: 14px; }
+.career-summary { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 8px; }.career-summary span { display: block; color: #8a8e99; font-size: 11px; }.career-summary b { display: block; margin-top: 8px; font-size: 24px; font-weight: 600; }.career-summary small { font-size: 11px; font-weight: 400; }.career-summary .clock { padding-top: 6px; font-size: 16px; }.subtabs { display: flex; align-items: center; gap: 20px; }.subtabs button { min-height: 40px; color: #8a8e99; font-size: 14px; }.subtabs button.on { color: #ff0a30; font-weight: 600; }.result-tabs { margin: -4px 12px 8px; }.chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 12px; }.chips button { min-height: 30px; padding: 0 10px; border-radius: 6px; background: #f0f1f6; color: #8a8e99; font-size: 12px; }.chips button.on { background: #fff0f3; color: #ff0a30; }.result-group + .result-group { margin-top: 20px; }.result-group h3 { font-size: 14px; }.result-row { display: flex; flex-direction: column; gap: 6px; padding: 14px 0; border-bottom: 1px solid #f0f1f5; }.result-row:last-child { border: 0; }.result-row b { color: #ff0a30; font-size: 18px; font-weight: 600; }.result-row small { font-size: 11px; }.result-row span { font-size: 14px; line-height: 22px; }.proof-card { display: block; margin-bottom: 16px; }.proof-card img { display: block; width: 100%; border-radius: 8px; }.proof-card b, .proof-card span { display: block; margin-top: 6px; font-size: 13px; }.proof-card span { color: #8a8e99; }
+.settings { padding-top: 0; }.setting-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; min-height: 56px; border-bottom: 1px solid #f0f1f5; text-align: left; font-size: 15px; }.setting-row span { min-width: 0; overflow-wrap: anywhere; }.setting-row small { display: block; margin-top: 3px; color: #8a8e99; font-size: 12px; }.logout { width: 100%; min-height: 44px; margin-top: 12px; color: #8a8e99; font-size: 14px; }.auth-form { display: flex; flex-direction: column; gap: 10px; padding: 12px 0; }.auth-form input { display: block; width: 100%; min-width: 0; height: 44px; padding: 0 12px; border: 0; border-radius: 8px; background: #f5f6fa; font-size: 15px; outline: none; }.auth-form > label { color: #8a8e99; font-size: 12px; }.auth-form > label input { margin-top: 6px; }.primary { min-height: 44px; padding: 0 16px; border-radius: 8px; background: #ff0a30; color: #fff; font-size: 15px; font-weight: 600; }.secondary { min-height: 40px; border-radius: 8px; background: #f0f1f6; font-size: 14px; }.captcha { display: grid; place-items: center; min-height: 48px; background: #f5f6fa; border-radius: 8px; color: #8a8e99; font-size: 12px; }.captcha img { height: 44px; max-width: 100%; }.avatar-edit { display: flex; align-items: center; gap: 12px; }.avatar-edit img, .avatar-empty { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 50%; object-fit: cover; color: #ff0a30; background: #fff0f3; font-size: 20px; }.avatar-choice { padding: 10px 12px; border-radius: 8px; background: #f0f1f6; font-size: 13px; cursor: pointer; }.avatar-choice input { position: absolute; width: 1px; height: 1px; opacity: 0; overflow: hidden; }.success, .err { margin: 8px 0 0; font-size: 12px; line-height: 20px; }.success { color: #1f2026; }.err { color: #ff0a30; }.legal { padding: 10px 4px; color: #a5a9b2; font-size: 10px; }
+@media(max-width:350px) { .account-hero, .sheet { padding: 14px; }.settings { padding-top: 0; }.guest-hero h2 { font-size: 16px; }.face { width: 50px; height: 50px; }.quick-links { padding: 12px 2px; }.quick-links a { font-size: 11px; }.main-tabs button { font-size: 15px; }.career-summary .clock { font-size: 14px; } }
 </style>

@@ -41,10 +41,9 @@ const PLACES = [
 
 const KINDS = [
   { short: "路跑", kind: "road" },
-  { short: "线上", kind: "online" },
-  { short: "线下", kind: "offline" },
-  { short: "越野", kind: "trail" },
-  { short: "海外", kind: "overseas" }
+  { short: "越野赛", kind: "trail" },
+  { short: "线上赛", kind: "online" },
+  { short: "线下赛", kind: "offline" }
 ];
 
 const STATUSES = [
@@ -56,30 +55,35 @@ const STATUSES = [
   { label: "报名未公布", value: "unannounced" }
 ];
 
-function toneOf(race) {
-  const status = race.regStatus || "";
-  if (status === "已结束" || status === "比赛结束") return "done";
-  if (status === "比赛中") return "live";
-  if (race.open && Number(race.daysLeft) <= 7) return "soon";
-  if (status === "报名中") return "open";
-  if (status === "报名时间未公布") return "wait";
-  return "next";
-}
-
-function remindTone(reason) {
-  const text = reason || "";
-  if (text.includes("比赛")) return "live";
-  if (text.includes("截止") || text.includes("缴费") || text.includes("出签")) return "soon";
-  return "next";
+function navigationMetrics() {
+  let info = {};
+  try {
+    info = typeof wx.getWindowInfo === "function" ? wx.getWindowInfo() : wx.getSystemInfoSync();
+  } catch (err) {
+    try {
+      info = wx.getSystemInfoSync();
+    } catch (fallbackError) {}
+  }
+  const statusBarHeight = Number(info.statusBarHeight) || 20;
+  const windowWidth = Number(info.windowWidth) || 375;
+  let capsule = null;
+  try {
+    capsule = wx.getMenuButtonBoundingClientRect();
+  } catch (err) {}
+  if (!capsule || !capsule.width || !capsule.height || capsule.top < statusBarHeight) {
+    return { statusBarHeight, navHeight: 44, headerRight: 108 };
+  }
+  return {
+    statusBarHeight,
+    navHeight: Math.max(44, capsule.height + (capsule.top - statusBarHeight) * 2),
+    headerRight: capsule.width + Math.max(0, windowWidth - capsule.right) + 12
+  };
 }
 
 function todayInfo() {
   const shifted = new Date(Date.now() + 8 * 3600 * 1000);
   const weeks = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
-  return {
-    todayLabel: shifted.getUTCMonth() + 1 + "月" + shifted.getUTCDate() + "日 " + weeks[shifted.getUTCDay()],
-    todayDay: String(shifted.getUTCDate())
-  };
+  return { todayLabel: shifted.getUTCMonth() + 1 + "月" + shifted.getUTCDate() + "日 " + weeks[shifted.getUTCDay()] };
 }
 
 function yearBlocks(selected) {
@@ -117,14 +121,19 @@ Page({
     reminders: [],
     loaded: false,
     message: "",
+    statusBarHeight: 20,
+    navHeight: 44,
+    headerRight: 108,
     todayLabel: "",
-    todayDay: "",
     cityLabel: "比赛地点",
     monthLabel: "比赛时间",
     provinces: [],
     cities: [],
     yearBlocks: [],
     statusOptions: []
+  },
+  onLoad() {
+    this.setData(navigationMetrics());
   },
   onShow() {
     const today = todayInfo();
@@ -259,8 +268,7 @@ Page({
       .then((data) => {
         const reminders = (data.reminders || []).slice(0, 3).map((item) => ({
           ...item,
-          key: item.race.id + item.hit.key,
-          tone: remindTone(item.hit.reason)
+          key: item.race.id + item.hit.key
         }));
         this.setData({ reminders });
       })
@@ -276,7 +284,8 @@ Page({
           const project = labels.length && kinds.length ? labels.join(" / ") + " · " + kinds.join(" / ") : labels.length ? labels.join(" / ") : kinds.join(" / ");
           return {
             ...race,
-            tone: toneOf(race),
+            displayStatus: race.regStatus || "报名未公布",
+            statusMuted: !["报名中", "未开始", "比赛中"].includes(race.regStatus),
             monthText: (Number(parts[1]) || "") + "月",
             day: Number(parts[2]) || "",
             distanceText: project ? " · " + project : "",

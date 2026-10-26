@@ -1,1 +1,4 @@
-{ "navigationBarTitleText": "赛历" }
+{
+  "navigationBarTitleText": "赛历",
+  "navigationStyle": "custom"
+}

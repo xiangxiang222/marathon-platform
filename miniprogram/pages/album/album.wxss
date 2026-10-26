@@ -1,4 +1,4 @@
-.src { color: #8d949c; font-size: 24rpx; margin-top: 8rpx; }
+.src { color: #8a8e99; font-size: 26rpx; margin-top: 8rpx; }
 .title { font-size: 36rpx; font-weight: 650; }
 .album.grid { display: flex; flex-wrap: wrap; }
 .album.grid .shot { width: 31%; margin: 16rpx 2% 0 0; }
@@ -6,4 +6,4 @@
 .shot image, .shot video { width: 100%; border-radius: 16rpx; }
 .album.grid .shot image, .album.grid .shot video { height: 200rpx; }
 .album.fall .shot image, .album.fall .shot video { height: 360rpx; }
-.drop { color: #007aff; margin-right: 16rpx; }
+.drop { color: #ff0a30; margin-right: 16rpx; }

@@ -12,6 +12,21 @@
     <view wx:for="{{conflicts}}" wx:key="text" class="warn">{{item.text}}</view>
   </view>
 
+  <view class="card race-plan">
+    <view class="plan-heading"><view class="h2">我的参赛计划</view><text class="plan-status">{{myStatus || '未标记'}}</text></view>
+    <view class="src">记录想跑、报名和中签状态，已加入的跑团可同步查看。</view>
+    <button wx:if="{{!ready}}" class="plan-action" bindtap="loginForPlan"><text>登录后标记</text><text class="arrow">›</text></button>
+    <button wx:else class="plan-action" bindtap="togglePlan"><text>{{myStatus ? '修改参赛状态' : '标记参赛状态'}}</text><text class="arrow">{{planOpen ? '⌃' : '›'}}</text></button>
+    <view wx:if="{{ready && planOpen}}" class="plan-editor">
+      <view class="plan-statuses"><button wx:for="{{statuses}}" wx:key="*this" class="ghost {{myStatus === item ? 'on' : ''}}" data-status="{{item}}" bindtap="mark">{{item}}</button></view>
+      <view wx:if="{{myStatus}}" class="src">可附报名成功截图，供自己与跑团留存。</view>
+      <image wx:if="{{sheetSrc}}" src="{{sheetSrc}}" mode="widthFix" />
+      <button wx:if="{{myStatus}}" class="ghost" bindtap="chooseSheet">上传报名截图</button>
+      <button wx:if="{{hasSheet}}" class="ghost" bindtap="removeSheet">移除截图</button>
+    </view>
+    <view wx:if="{{message}}" class="err">{{message}}</view>
+  </view>
+
   <view class="tabs">
     <view wx:for="{{tabs}}" wx:key="id" class="tab {{tab === item.id ? 'on' : ''}}" data-id="{{item.id}}" bindtap="pickTab">{{item.label}}</view>
   </view>
@@ -44,7 +59,7 @@
       </view>
     </view>
     <view class="card">
-      <view class="h2">报名页</view>
+      <view class="h2">官方报名信息</view>
       <view class="src">{{signupHint}}</view>
       <image wx:if="{{signupQr}}" class="qr" src="{{signupQr}}" mode="aspectFit" show-menu-by-longpress="{{true}}" />
       <button wx:if="{{signupQr}}" class="btn" data-url="{{signupUrl}}" data-key="signup" bindtap="copyLink">复制报名链接</button>
@@ -53,9 +68,12 @@
         <button class="btn" bindtap="confirmSigned">报上了</button>
         <button class="ghost" bindtap="dismissAsk">还没有</button>
       </view>
-      <view class="slot"><text>站内报名</text><text class="slot-state">尚未开通</text></view>
-      <view class="src">不在这里填写资料，也不在这里付款。</view>
+      <view class="src">报名和缴费请以组委会官方页面为准。</view>
     </view>
+    <view wx:if="{{cards.length || card}}" class="card">
+      <button class="plan-action" bindtap="toggleShare"><text>跑团赛事卡片</text><text class="arrow">{{shareOpen ? '⌃' : '›'}}</text></button>
+    </view>
+    <block wx:if="{{shareOpen}}">
     <view class="card" wx:for="{{cards}}" wx:key="clubId">
       <view class="h2">发到微信群 · {{item.club.name}}</view>
       <view class="title">{{item.title}}</view>
@@ -70,21 +88,7 @@
       <view wx:if="{{card.unpaid.length}}" class="src">还没缴：{{card.unpaidText}}</view>
       <button class="btn share" open-type="share" data-title="{{card.title}}" data-code="{{card.club.code}}" bindtap="armShare">发到微信群</button>
     </view>
-    <view class="card">
-      <view class="h2">我这场</view>
-      <view wx:if="{{!ready}}" class="nick">
-        <view class="muted">先到「我的」登录，再标状态。标完同团的人能看见。</view>
-        <navigator class="login-go" open-type="switchTab" url="/pages/mine/mine">去登录</navigator>
-      </view>
-      <view wx:else>
-        <button wx:for="{{statuses}}" wx:key="*this" class="ghost {{myStatus === item ? 'on' : ''}}" data-status="{{item}}" bindtap="mark">{{item}}</button>
-        <view wx:if="{{myStatus}}" class="src">可以附一张报名成功截图。这里不识别截图上的字。</view>
-        <image wx:if="{{sheetSrc}}" src="{{sheetSrc}}" mode="widthFix" />
-        <button wx:if="{{myStatus}}" class="ghost" bindtap="chooseSheet">报名截图</button>
-        <button wx:if="{{hasSheet}}" class="ghost" bindtap="removeSheet">去掉截图</button>
-      </view>
-      <view wx:if="{{message}}" class="err">{{message}}</view>
-    </view>
+    </block>
     <view wx:for="{{clubs}}" wx:key="id" class="card">
       <view class="h2">{{item.name}}</view>
       <view wx:if="{{item.squadText}}" class="warn">{{item.squadText}}</view>
@@ -146,11 +150,6 @@
         <text>{{item.name}}</text><text>{{item.deadlineLabel}}</text>
       </navigator>
     </view>
-    <view class="card">
-      <view class="h2">酒店</view>
-      <view class="slot"><text>赛事周订房</text><text class="slot-state">尚未开通</text></view>
-      <view class="src">这里不显示房价，也不跳转。</view>
-    </view>
   </block>
 
   <block wx:if="{{tab === 'result'}}">
@@ -168,8 +167,7 @@
     <view class="card result" wx:if="{{ready}}">
       <view class="h2">成绩</view>
       <view class="src">手记的成绩标为未核验。可以附一张证书或奖牌照片。</view>
-      <view class="slot"><text>识别证书</text><text class="slot-state">尚未开通</text></view>
-      <view class="src">照片可以留下，成绩仍由自己填写。</view>
+
       <view wx:for="{{myResults}}" wx:key="distance" class="sum">{{item.distanceLabel}} {{item.clock}} · 配速 {{item.pace}}<text wx:if="{{item.pb}}"> · PB</text> · {{item.verifyLabel}}</view>
       <view wx:if="{{myResult.story}}" class="src">{{myResult.story}}</view>
       <image wx:if="{{proofSrc}}" src="{{proofSrc}}" mode="widthFix" />

@@ -5,7 +5,12 @@
       <h1>拿奖雷达</h1>
       <span></span>
     </header>
-    <section class="block">
+    <section v-if="!signedIn" class="block radar-login">
+      <h2>找到适合你的拿奖赛事</h2>
+      <p class="hint">登录后，结合个人目标成绩与赛事奖项，查看适合你的比赛。</p>
+      <button class="primary" type="button" @click="login">登录后使用</button>
+    </section>
+    <section v-else class="block">
       <p class="hint">{{ note }}</p>
       <div class="slot"><span>天气和赛道修正</span><b>尚未开通</b></div>
       <p class="hint">对照仍用已记下的成绩和往届名次。</p>
@@ -29,7 +34,7 @@
       </form>
       <p v-if="message" class="err">{{ message }}</p>
     </section>
-    <section class="block">
+    <section v-if="signedIn" class="block">
       <h2>对得上的奖</h2>
       <article v-for="item in rows" :key="item.ruleId" class="run">
         <p><router-link :to="'/races/' + item.race.id">{{ item.race.raceDate }} {{ item.race.name }}</router-link></p>
@@ -46,7 +51,15 @@
 <script setup>
 import { onMounted, reactive, ref } from "vue";
 import { api } from "../api";
+import { useRouter } from "vue-router";
 import { regions } from "../regions";
+
+const router = useRouter();
+const signedIn = ref(Boolean(localStorage.getItem("marathon_token")));
+function login() {
+  localStorage.setItem("marathon_return_after_login", "/radar");
+  router.push("/mine");
+}
 
 const note = ref("仅供参考。没有往届名次成绩时，不估算概率。");
 const gender = ref("");
@@ -68,6 +81,7 @@ function apply(profile) {
 }
 
 async function load() {
+  if (!signedIn.value) return;
   const data = await api("/radar");
   note.value = data.note;
   apply(data.profile);
@@ -77,6 +91,7 @@ async function load() {
 }
 
 async function save() {
+  if (!signedIn.value) { login(); return; }
   message.value = "";
   try {
     await api("/me/radar", {
@@ -96,6 +111,12 @@ async function save() {
 
 onMounted(() => {
   load().catch((err) => {
+    if (err.status === 401) {
+      signedIn.value = false;
+      localStorage.removeItem("marathon_token");
+      localStorage.removeItem("marathon_name");
+      return;
+    }
     message.value = err.message;
   });
 });
@@ -105,11 +126,14 @@ onMounted(() => {
 .hint { margin: 8px 0 0; color: var(--muted); font-size: 13px; line-height: 1.45; }
 .stack { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
 .stack input, .stack select { height: 40px; border: 0; border-radius: 12px; padding: 0 12px; background: var(--chip); }
-.modes { display: flex; gap: 8px; }
-.modes button { height: 32px; padding: 0 12px; border-radius: 999px; background: var(--chip); font-weight: 650; }
-.modes button.on { background: var(--accent); color: #fff; }
-.primary { height: 40px; border-radius: 12px; background: var(--accent); color: #fff; font-weight: 650; }
-.run { padding: 8px 0; border-bottom: 1px solid #eef0f3; }
+.modes { display: flex; gap: 24px; border-bottom: 1px solid var(--line); }
+.modes button { position: relative; height: 42px; padding: 0 2px; background: transparent; color: var(--muted); font-weight: 600; }
+.modes button.on { color: var(--accent); }
+.modes button.on::after { content: ""; position: absolute; right: 0; bottom: 0; left: 0; height: 3px; border-radius: 2px; background: var(--accent); }
+.primary { height: 40px; border-radius: 12px; background: var(--accent); color: #fff; font-weight: 600; }
+.radar-login h2 { margin-bottom: 8px; }
+.radar-login .primary { width: 100%; margin-top: 20px; }
+.run { padding: 8px 0; border-bottom: 1px solid var(--line); }
 .run a { color: inherit; }
-.err { color: #e35d5d; }
+.err { color: var(--red); }
 </style>

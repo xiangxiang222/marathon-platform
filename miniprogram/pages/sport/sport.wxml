@@ -1,69 +1,13 @@
-<view class="pad" wx:if="{{!ready}}">
-  <view class="empty">先到「我的」登录。</view>
-</view>
-<view class="pad" wx:if="{{ready && summary}}">
-  <view class="card">
-    <view class="title">今年 {{summary.year.km}} 公里</view>
-    <view class="src">{{summary.year.days}} 天 · {{summary.year.count}} 次</view>
-    <view class="src">累计 {{summary.total.km}} 公里，{{summary.total.count}} 次</view>
-  </view>
-  <view class="card">
-    <view class="title">{{summary.month.id}}</view>
-    <input placeholder="月份 2026-10" value="{{month}}" bindinput="onMonth" />
-    <view class="src">{{summary.month.km}} 公里 · {{summary.month.days}}/{{summary.month.count}} · 配速 {{summary.month.paceLabel || '—'}}</view>
-    <view class="src">用时 {{summary.month.durationLabel}}</view>
-    <view class="src" wx:if="{{summary.month.target}}">目标 {{summary.month.target}} 公里<template wx:if="{{summary.month.percent != null}}">，完成 {{summary.month.percent}}%</template><template wx:if="{{summary.month.observe}}">。本月观摩</template><template wx:elif="{{summary.month.short}}">。未达标</template></view>
-    <view class="src" wx:else>还没有本月目标。下限 {{summary.month.floor}} 公里。</view>
-    <block wx:if="{{summary.month.canFlag}}">
-      <view class="row">
-        <button class="ghost {{gender === '男' ? 'on' : ''}}" data-gender="男" bindtap="pickGender">男</button>
-        <button class="ghost {{gender === '女' ? 'on' : ''}}" data-gender="女" bindtap="pickGender">女</button>
-        <button class="ghost {{gender === '' ? 'on' : ''}}" data-gender="" bindtap="pickGender">不填</button>
-      </view>
-      <input placeholder="本月目标，公里" value="{{target}}" data-key="target" bindinput="onField" />
-      <button class="btn" bindtap="saveFlag">设立目标</button>
-    </block>
-  </view>
-  <view class="card">
-    <view class="title">记一场</view>
-    <view class="src">类型只有跑步和越野。</view>
-    <view class="row">
-      <button class="ghost {{type === 'run' ? 'on' : ''}}" data-type="run" bindtap="pickType">跑步</button>
-      <button class="ghost {{type === 'trail' ? 'on' : ''}}" data-type="trail" bindtap="pickType">越野</button>
-    </view>
-    <input placeholder="开始 2026-10-21 06:00" value="{{startedAt}}" data-key="startedAt" bindinput="onField" />
-    <input placeholder="里程，公里" value="{{distanceKm}}" data-key="distanceKm" bindinput="onField" />
-    <input placeholder="用时 0:50:00" value="{{duration}}" data-key="duration" bindinput="onField" />
-    <input placeholder="爬升，米" value="{{climb}}" data-key="climb" bindinput="onField" />
-    <input placeholder="城市，可不填" value="{{city}}" data-key="city" bindinput="onField" />
-    <button class="ghost" bindtap="chooseShot">{{shotName || '截图，可不传'}}</button>
-    <button class="btn" bindtap="create">记下</button>
-  </view>
-  <view class="card" wx:for="{{summary.runs}}" wx:key="id" wx:for-index="index">
-    <view class="title">{{item.typeLabel}} · {{item.startedAt}}</view>
-    <view class="src">里程 {{item.distanceKm}} · 跑量 {{item.volumeKm}} · {{item.durationLabel}} · 爬升 {{item.climb}} 米</view>
-    <view class="src" wx:if="{{item.note}}">{{item.note}}</view>
-    <view class="src" wx:for="{{item.clubs}}" wx:for-item="club" wx:key="name">{{club.counted ? '计入' : '未计入'}} {{club.name}}</view>
-    <image wx:if="{{item.shotSrc}}" src="{{item.shotSrc}}" mode="widthFix" />
-    <input placeholder="城市" value="{{item.city}}" data-index="{{index}}" bindinput="onCity" />
-    <button class="ghost" data-index="{{index}}" bindtap="saveRow">保存城市和类型</button>
-    <button class="ghost" data-index="{{index}}" bindtap="addShot">{{item.shot ? '换截图' : '补截图'}}</button>
-    <button class="ghost" data-index="{{index}}" data-type="run" bindtap="changeType">改成跑步</button>
-    <button class="ghost" data-index="{{index}}" data-type="trail" bindtap="changeType">改成越野</button>
-    <button class="ghost" data-index="{{index}}" bindtap="remove">删除这场</button>
-  </view>
-  <view wx:if="{{message}}" class="err">{{message}}</view>
-</view>
-<view class="pad">
-  <view class="card">
-    <view class="title">跑表</view>
-    <view class="slot"><text>高驰</text><text class="slot-state">尚未接入</text></view>
-    <view class="slot"><text>佳明</text><text class="slot-state">尚未接入</text></view>
-    <view class="slot"><text>华为</text><text class="slot-state">尚未接入</text></view>
-    <view class="src">手填可以继续用。顺序是高驰、佳明、华为。</view>
-  </view>
-  <view class="card">
-    <view class="title">训练计划</view>
-    <view class="slot"><text>按目标成绩排课</text><text class="slot-state">尚未开通</text></view>
-  </view>
+<page-header title="运动" subtitle="记录每一步进步" />
+<view class="sport-page">
+  <view wx:if="{{!ready}}" class="surface guest-state"><view class="guest-mark">＋</view><view class="guest-title">每一次出发，都算数</view><view class="hint">登录后记录跑步，查看自己的跑量与进步。</view><button class="primary" bindtap="login">登录后记录</button></view>
+  <block wx:elif="{{summary}}">
+    <view class="surface mileage-hero"><view class="hero-top"><picker mode="date" fields="month" value="{{month}}" bindchange="onMonth"><view class="field-label">本月跑量</view><view class="month-value">{{summary.month.id}} <text>⌄</text></view></picker><view wx:if="{{summary.month.canFlag}}" class="text-button" bindtap="toggleTarget">{{summary.month.target ? '修改目标' : '设置目标'}} ›</view></view><view class="mileage-value"><text class="mileage-number">{{summary.month.km}}</text><text class="mileage-unit">公里</text></view><view wx:if="{{summary.month.target}}" class="target-summary"><view class="progress-track"><view class="progress-value" style="width: {{targetProgress}}%;"></view></view><view class="target-caption"><text>目标 {{summary.month.target}} 公里</text><text class="accent">已完成 {{targetPercent}}%</text></view></view><view wx:else class="no-target">为这个月定个目标，按自己的节奏跑。</view><view class="run-metrics"><view><text class="metric-value">{{summary.month.count}}</text><text class="metric-label">跑步次数</text></view><view><text class="metric-value">{{summary.month.days}}</text><text class="metric-label">运动天数</text></view><view><text class="metric-value">{{summary.month.paceLabel || '—'}}</text><text class="metric-label">平均配速</text></view></view><view wx:if="{{summary.month.observe}}" class="hint">本月观摩，不标记目标是否达成。</view></view>
+    <view wx:if="{{targetOpen && summary.month.canFlag}}" class="surface editor"><view class="section-heading"><view class="section-title">本月目标</view><view class="close-button" bindtap="toggleTarget">收起</view></view><view class="stack"><view class="field-label">目标跑量</view><input placeholder="本月目标，公里" type="digit" value="{{target}}" data-key="target" bindinput="onField"/><view class="field-label">性别</view><view class="choices"><button class="{{gender === '男' ? 'on' : ''}}" data-gender="男" bindtap="pickGender">男</button><button class="{{gender === '女' ? 'on' : ''}}" data-gender="女" bindtap="pickGender">女</button><button class="{{gender === '' ? 'on' : ''}}" data-gender="" bindtap="pickGender">不填</button></view><view class="hint">不填性别时，按本团下限里较高的一项计算。</view><button class="primary" bindtap="saveFlag">保存目标</button></view></view>
+    <button class="primary record-button" bindtap="toggleRecord">{{recordOpen ? '收起记录' : '＋ 记录跑步'}}</button><view class="manual-note">当前支持手动记录，尚不支持跑表自动同步</view>
+    <view wx:if="{{recordOpen}}" class="surface editor"><view class="section-title">记录一次跑步</view><view class="stack"><view class="choices"><button class="{{type === 'run' ? 'on' : ''}}" data-type="run" bindtap="pickType">跑步</button><button class="{{type === 'trail' ? 'on' : ''}}" data-type="trail" bindtap="pickType">越野</button></view><view class="field-label">开始时间</view><input placeholder="例如 2026-10-27 06:30" value="{{startedAt}}" data-key="startedAt" bindinput="onField"/><view class="field-pair"><view><view class="field-label">距离（公里）</view><input placeholder="例如 10" type="digit" value="{{distanceKm}}" data-key="distanceKm" bindinput="onField"/></view><view><view class="field-label">用时</view><input placeholder="例如 0:50:00" value="{{duration}}" data-key="duration" bindinput="onField"/></view></view><view class="field-pair"><view><view class="field-label">爬升（米）</view><input placeholder="可填 0" type="number" value="{{climb}}" data-key="climb" bindinput="onField"/></view><view><view class="field-label">城市</view><input placeholder="选填" maxlength="20" value="{{city}}" data-key="city" bindinput="onField"/></view></view><button class="secondary" bindtap="chooseShot">{{shotName || '添加运动截图（选填）'}}</button><button class="primary" bindtap="create">保存记录</button></view></view>
+    <view class="section-heading records-heading"><view class="records-title">运动记录</view><text class="field-label">{{summary.runs.length}} 条</text></view>
+    <view wx:for="{{summary.runs}}" wx:key="id" wx:for-index="index" class="surface run-record"><view class="section-heading"><view class="section-title">{{item.typeLabel}}</view><view class="text-button" data-id="{{item.id}}" bindtap="toggleRun">{{expandedRunId === item.id ? '收起' : '编辑记录'}}</view></view><view class="run-date">{{item.startedAt}}<text wx:if="{{item.city}}"> · {{item.city}}</text></view><view class="record-data"><view><text class="record-number">{{item.distanceKm}}</text><text class="record-unit">公里</text></view><view><text class="record-number">{{item.durationLabel}}</text><text class="record-unit">用时</text></view><view><text class="record-number">{{item.paceLabel || '—'}}</text><text class="record-unit">配速</text></view></view><view class="hint">{{item.sourceLabel}} · 跑量 {{item.volumeKm}} 公里 · 爬升 {{item.climb}} 米</view><view wx:if="{{item.note}}" class="hint">{{item.note}}</view><view wx:for="{{item.clubs}}" wx:for-item="club" wx:key="name" class="hint">{{club.counted ? '计入' : '未计入'}} {{club.name}}</view><image wx:if="{{item.shotSrc}}" class="shot" src="{{item.shotSrc}}" mode="widthFix"/><view wx:if="{{expandedRunId === item.id}}" class="stack record-editor"><view class="field-pair"><view><view class="field-label">运动类型</view><picker range="{{runTypeOptions}}" value="{{item.typeIndex}}" data-index="{{index}}" bindchange="onRunType"><view class="picker-value">{{item.type === 'trail' ? '越野' : '跑步'}} ⌄</view></picker></view><view><view class="field-label">城市</view><input placeholder="城市" value="{{item.city}}" data-index="{{index}}" bindinput="onCity"/></view></view><button class="primary" data-index="{{index}}" bindtap="saveRow">保存修改</button><button class="secondary" data-index="{{index}}" bindtap="addShot">{{item.shot ? '更换运动截图' : '添加运动截图'}}</button><button class="delete-button" data-index="{{index}}" bindtap="remove">删除这条记录</button></view></view>
+    <view wx:if="{{!summary.runs.length}}" class="surface empty-state"><view class="section-title">从今天的一次跑步开始</view><view class="hint">点击“记录跑步”，保存距离、用时和路线城市。</view></view><view class="year-note">今年 {{summary.year.km}} 公里 · 累计 {{summary.total.km}} 公里，{{summary.total.count}} 次</view>
+  </block><view wx:else class="loading-copy">正在读取运动记录…</view><view wx:if="{{message}}" class="message">{{message}}</view>
 </view>

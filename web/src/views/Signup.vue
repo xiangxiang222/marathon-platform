@@ -87,14 +87,14 @@ onMounted(load);
 </script>
 
 <style scoped>
-.hint { margin: 8px 0 0; color: #8d949c; font-size: 13px; line-height: 1.45; }
-.label { margin: 14px 0 8px; font-size: 13px; color: #8d949c; }
+.hint { margin: 8px 0 0; color: var(--muted); font-size: 13px; line-height: 1.45; }
+.label { margin: 14px 0 8px; font-size: 13px; color: var(--muted); }
 .groups { display: flex; gap: 8px; }
-.level, .choice { display: flex; width: 100%; text-align: left; gap: 8px; margin-top: 8px; padding: 10px 12px; border-radius: 12px; background: rgba(118, 118, 128, 0.12); }
+.level, .choice { display: flex; width: 100%; text-align: left; gap: 8px; margin-top: 8px; padding: 10px 12px; border-radius: 12px; background: var(--chip); }
 .level { flex-direction: column; }
-.level b, .choice span { font-weight: 650; }
-.level span, .choice b { color: #8d949c; font-weight: 500; font-size: 13px; }
-.level.on, .choice:has(input:checked) { background: #e8f2ff; }
+.level b, .choice span { font-weight: 600; }
+.level span, .choice b { color: var(--muted); font-weight: 500; font-size: 13px; }
+.level.on, .choice:has(input:checked) { color: var(--accent); background: var(--accent-soft); }
 .choice.off { opacity: 0.55; }
 .choice input { margin-top: 3px; }
 .primary { margin-top: 16px; }

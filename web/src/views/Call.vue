@@ -201,16 +201,16 @@ onMounted(async () => {
 </script>
 
 <style scoped>
-.rank-label { margin: 8px 0 0; color: #8d949c; font-size: 12px; }
-.sum { margin: 10px 0 0; font-weight: 650; }
+.rank-label { margin: 8px 0 0; color: var(--muted); font-size: 12px; }
+.sum { margin: 10px 0 0; font-weight: 600; }
 .share-text { margin: 8px 0 0; font: inherit; white-space: pre-wrap; line-height: 1.5; }
 .primary { margin-top: 8px; }
-.undo { width: auto; margin: 8px 0 0; height: 32px; padding: 0 12px; background: transparent; color: #8d949c; }
-.note { font-size: 12px; color: #007aff; padding: 0 16px; }
+.undo { width: auto; margin: 8px 0 0; height: 32px; padding: 0 12px; background: transparent; color: var(--muted); }
+.note { font-size: 12px; color: var(--accent); padding: 0 16px; }
 .checks { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 8px; }
-.block input, .block select { width: 100%; height: 40px; margin-top: 8px; border: 0; border-radius: 10px; padding: 0 12px; background: rgba(118, 118, 128, 0.12); }
-.mine { background: #e8f2ff; border-radius: 8px; padding-left: 8px; padding-right: 8px; }
+.block input, .block select { width: 100%; height: 40px; margin-top: 8px; border: 0; border-radius: 10px; padding: 0 12px; background: var(--chip); }
+.mine { background: var(--accent-soft); border-radius: 8px; padding-left: 8px; padding-right: 8px; }
 .sheet { width: 100%; margin-top: 8px; border-radius: 8px; }
-.file-pick { display: inline-block; margin-top: 8px; color: #007aff; }
+.file-pick { display: inline-block; margin-top: 8px; color: var(--accent); }
 .file-pick input { display: none; }
 </style>

@@ -121,9 +121,10 @@ onMounted(() => {
 <style scoped>
 .hint { margin: 8px 0 0; color: var(--muted); font-size: 13px; line-height: 1.45; }
 .modes { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
-.modes button, .line button { height: 32px; padding: 0 12px; border-radius: 999px; background: var(--chip); font-weight: 650; }
-.line { display: flex; justify-content: space-between; gap: 8px; align-items: center; padding: 8px 0; border-bottom: 1px solid #eef0f3; }
-.line em { font-style: normal; font-weight: 650; }
-.run { padding: 8px 0; border-bottom: 1px solid #eef0f3; }
-.err { color: #e35d5d; padding: 0 16px; }
+.modes button, .line button { height: 34px; padding: 0 12px; border-radius: 8px; background: var(--chip); color: var(--ink); font-weight: 600; }
+.modes button:first-child { background: var(--accent); color: #fff; }
+.line { display: flex; justify-content: space-between; gap: 8px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--line); }
+.line em { font-style: normal; font-weight: 600; }
+.run { padding: 8px 0; border-bottom: 1px solid var(--line); }
+.err { color: var(--red); padding: 0 16px; }
 </style>

@@ -1,0 +1,131 @@
+{
+  "generatedAt": "2026-10-26T18:12:02.446Z",
+  "scope": "本轮微信账号分流、头像路径化与安全解绑客户端最终验证",
+  "sideEffects": "VM 的 wx.request、wx.login、文件与存储均为内存模拟；浏览器所有 API 均被 page.route 内存 fixture 拦截，没有向开发库发送任何写请求。",
+  "native": {
+    "passed": true,
+    "js": 29,
+    "json": 25,
+    "references": [],
+    "compile": [
+      {
+        "tool": "wcc",
+        "files": 21,
+        "exit": 0,
+        "signal": null,
+        "output": "",
+        "includesPageHeader": true
+      },
+      {
+        "tool": "wcsc",
+        "files": 22,
+        "exit": 0,
+        "signal": null,
+        "output": "",
+        "includesPageHeader": true
+      }
+    ]
+  },
+  "mini": {
+    "kind": "Real miniprogram Mine/request/avatar modules in VM; all network, storage and image operations are in-memory mocks",
+    "checks": [
+      {
+        "name": "unknown WeChat 409 preserves guest auth and pending club without resuming",
+        "passed": true
+      },
+      {
+        "name": "explicit create gets a fresh wx.login code and createAccount true before restoring pending club",
+        "passed": true
+      },
+      {
+        "name": "existing password account binds a fresh WeChat identity then restores pending club",
+        "passed": true
+      },
+      {
+        "name": "failed post-login binding retains the pending invitation",
+        "passed": true
+      },
+      {
+        "name": "temporary avatar preview survives compression failure with PNG MIME and upload precedes nickname-only profile",
+        "passed": true
+      },
+      {
+        "name": "oversized or unsupported avatar files do not reach upload or profile endpoints",
+        "passed": true
+      },
+      {
+        "name": "request normalizes nested short avatar URLs and preserves error.status and error.code",
+        "passed": true
+      },
+      {
+        "name": "unlink prompts for an account password first, rejects missing or wrong proof, then clears the binding",
+        "passed": true
+      }
+    ],
+    "passed": true,
+    "generatedAt": "2026-10-26T18:10:06.019Z",
+    "script": "/private/tmp/marathon-mini-client-auth-check.cjs",
+    "contract": "小程序使用 POST /me/avatar 上传图片，随后 PUT /me/profile 只提交昵称；API 短头像路径归一化为 baseURL 完整 URL。"
+  },
+  "web": {
+    "kind": "Real Web Mine in Playwright with every API request fulfilled from in-memory fixtures",
+    "passed": true,
+    "checks": [
+      {
+        "name": "short URL avatar renders, local preview works, compatibility PUT returns a short avatar URL",
+        "passed": true
+      },
+      {
+        "name": "later nickname change sends the current short URL instead of image Base64",
+        "passed": true
+      },
+      {
+        "name": "profile layout 390",
+        "passed": true,
+        "width": 390,
+        "scrollWidth": 390,
+        "brokenImages": []
+      },
+      {
+        "name": "profile layout 320",
+        "passed": true,
+        "width": 320,
+        "scrollWidth": 320,
+        "brokenImages": []
+      }
+    ],
+    "errors": [],
+    "console": [],
+    "unexpected": [],
+    "writes": [
+      {
+        "method": "PUT",
+        "path": "/me/profile",
+        "bodyKeys": [
+          "nickname",
+          "avatar"
+        ],
+        "avatarFormat": "image data URI (compatibility upload)",
+        "avatarChars": 2071
+      },
+      {
+        "method": "PUT",
+        "path": "/me/profile",
+        "bodyKeys": [
+          "nickname",
+          "avatar"
+        ],
+        "avatarFormat": "existing short avatar URL",
+        "avatarChars": 93
+      }
+    ],
+    "script": "/private/tmp/marathon-web-mine-avatar-check.cjs",
+    "contract": "Web 保留 PUT /me/profile 的图片兼容上传；保存后使用 API 返回的短 URL，再次改昵称仅携带既有短 URL。",
+    "screenshots": [
+      "/private/tmp/marathon-web-mine-avatar-check/web-mine-avatar-390.png",
+      "/private/tmp/marathon-web-mine-avatar-check/web-mine-avatar-320.png"
+    ]
+  },
+  "limitations": "原生编译器完成离线 WXML/WXSS 编译；VM 和浏览器验证不等同于微信客户端或真机微信授权流程。",
+  "passed": true
+}

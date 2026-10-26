@@ -1,48 +1,47 @@
 <template>
-  <header class="large">
-    <div>
-      <h1>赛历</h1>
-      <p>{{ todayLabel }}</p>
-    </div>
-    <router-link class="icon-btn" to="/calendar" aria-label="日历">
-      <svg viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="16" rx="3" /><path d="M3.5 9.5h17M8 3v3M16 3v3" /><text x="12" y="17" text-anchor="middle">{{ todayDay }}</text></svg>
-    </router-link>
-  </header>
-  <form class="search" @submit.prevent="submitSearch">
-    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" /><path d="M20 20l-3.5-3.5" /></svg>
-    <input v-model="q" placeholder="搜名称或城市" @input="queueSearch" />
-    <button type="submit">搜索</button>
-  </form>
-  <div class="home-links">
-    <router-link to="/radar">拿奖雷达</router-link>
-    <router-link to="/news">资讯</router-link>
-  </div>
-  <section class="sheet">
-    <div v-if="!searching && reminders.length" class="rail-wrap">
-      <h2 class="section-label">即将到来</h2>
-      <div class="rail">
-        <router-link v-for="item in reminders" :key="item.race.id + item.hit.key" class="soon-card" :class="'tone-' + remindTone(item.hit.reason)" :to="'/races/' + item.race.id">
-          <b>{{ item.hit.reason }}</b>
-          <span>{{ item.race.name }}</span>
-          <em>{{ item.race.city }}</em>
+  <main class="home-page">
+    <section class="home-top">
+      <header class="home-heading">
+        <h1>赛历</h1>
+        <span>{{ todayLabel }}</span>
+      </header>
+      <form class="home-search" role="search" @submit.prevent="submitSearch">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="7" /><path d="m16 16 4.5 4.5" /></svg>
+        <input v-model="q" aria-label="搜索赛事名称或城市" placeholder="搜索赛事名称 / 城市" @input="queueSearch" />
+        <button type="submit">搜索</button>
+      </form>
+      <nav v-if="!searching" class="race-categories" aria-label="赛事分类">
+        <button v-for="item in channels" :key="item.kind" type="button" :class="{ on: kind === item.kind }" :aria-pressed="kind === item.kind" @click="setKind(item.kind)">{{ item.short }}</button>
+      </nav>
+      <p v-if="!searching" class="category-note">类型：路跑 / 越野 · 方式：线上 / 线下</p>
+      <nav v-if="!searching" class="home-shortcuts" aria-label="常用功能">
+        <router-link v-for="item in quickLinks" :key="item.to" :to="item.to">
+          <img :src="item.icon" alt="" />
+          <span>{{ item.label }}</span>
         </router-link>
-      </div>
-    </div>
-    <nav v-if="!searching" class="kinds">
-      <button v-for="item in channels" :key="item.kind" type="button" :class="{ on: kind === item.kind }" @click="setKind(item.kind)">
-        <span class="mark" :class="item.kind" v-html="item.icon"></span>
-        {{ item.short }}
+      </nav>
+    </section>
+    <div v-if="!searching && currentReminder" class="deadline-banner">
+      <span class="deadline-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" /><path d="M12 7v5l3 2M8 2h8" /></svg></span>
+      <router-link class="deadline-copy" :to="'/races/' + currentReminder.race.id">
+        <span>{{ currentReminder.hit.reason }}</span>
+        <strong>{{ currentReminder.race.name }}</strong>
+      </router-link>
+      <button type="button" class="deadline-next" :aria-label="reminders.length > 1 ? '查看下一条提醒' : '赛事提醒'" @click="nextReminder">
+        <small v-if="reminders.length > 1">{{ reminderIndex % reminders.length + 1 }}/{{ reminders.length }}</small><span>›</span>
       </button>
-    </nav>
-    <div v-if="!searching" class="filter-wrap" :class="{ open: sheet }">
-      <div class="filter-bar" ref="barEl">
-        <button type="button" :class="{ on: city }" @click="openSheet('city')">{{ city || "比赛地点" }} ▾</button>
-        <button type="button" :class="{ on: month }" @click="openSheet('time')">{{ monthLabel || "比赛时间" }} ▾</button>
-        <button type="button" :class="{ on: full }" @click="toggleDist('full')">马拉松</button>
-        <button type="button" :class="{ on: half }" @click="toggleDist('half')">半程马拉松</button>
-        <button type="button" :class="{ on: sheet === 'status' }" @click="openSheet('status')">筛选</button>
-      </div>
     </div>
+    <section class="home-results">
+      <div class="results-heading"><h2>{{ searching ? '搜索结果' : '全部赛事' }}</h2><span>共 {{ total }} 场</span></div>
+      <div v-if="!searching" class="filter-wrap home-filters" :class="{ open: sheet }">
+        <div class="filter-bar" ref="barEl">
+          <button type="button" :class="{ on: city }" @click="openSheet('city')">{{ city || "比赛地点" }}<i></i></button>
+          <button type="button" :class="{ on: month }" @click="openSheet('time')">{{ monthLabel || "比赛时间" }}<i></i></button>
+          <button type="button" :class="{ on: full }" @click="toggleDist('full')">马拉松</button>
+          <button type="button" :class="{ on: half }" @click="toggleDist('half')">半程马拉松</button>
+          <button type="button" :class="{ on: sheet === 'status' }" @click="openSheet('status')">筛选<i></i></button>
+        </div>
+      </div>
     <div v-if="sheet" class="dim" @click="sheet = ''"></div>
     <div v-if="sheet" class="drop" :style="{ top: dropTop + 'px', maxHeight: 'calc(100vh - ' + dropTop + 'px - 12px)' }" @click.stop>
         <div v-if="sheet === 'city'" class="loc">
@@ -77,35 +76,26 @@
           </div>
         </div>
       </div>
-    <template v-if="searching">
-      <div v-if="shownQuery === q.trim() && races.length" class="hits">
-        <router-link v-for="race in races" :key="race.id" class="hit" :to="'/races/' + race.id">
-          <time>{{ race.raceDate }}</time>
-          <em>{{ race.city }}</em>
-          <span>{{ race.name }}</span>
-        </router-link>
-      </div>
-      <p v-else-if="shownQuery === q.trim()" class="empty">没有找到这场赛事</p>
-    </template>
-    <template v-else-if="shownQuery === q.trim()">
-      <h2 class="section-label">全部赛历</h2>
-      <div v-if="races.length" class="stack">
+
+      <div v-if="shownQuery === q.trim() && races.length" class="stack home-race-list">
         <RaceCard v-for="race in races" :key="race.id" :race="race" />
       </div>
-      <p v-else class="empty">这个分类还没有赛历</p>
-    </template>
-    <p v-if="shownQuery === q.trim()" class="hint">共 {{ total }} 场</p>
-    <Pager v-if="shownQuery === q.trim()" :page="page" :pages="pages" @update:page="turnPage" />
-  </section>
+      <p v-else-if="shownQuery === q.trim()" class="empty">{{ searching ? '没有找到这场赛事' : '这个分类还没有赛历' }}</p>
+      <Pager v-if="shownQuery === q.trim()" :page="page" :pages="pages" @update:page="turnPage" />
+    </section>
+  </main>
 </template>
 
 <script setup>
-import { computed, nextTick, onMounted, ref } from "vue";
+import { computed, nextTick, onMounted, onUnmounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import { api } from "../api";
 import RaceCard from "../components/RaceCard.vue";
 import Pager from "../components/Pager.vue";
-import { remindTone } from "../tone";
+import calendarIcon from "../assets/quick/calendar.svg";
+import radarIcon from "../assets/quick/radar.svg";
+import clubsIcon from "../assets/quick/clubs.svg";
+import newsIcon from "../assets/quick/news.svg";
 
 const route = useRoute();
 const q = ref("");
@@ -126,6 +116,18 @@ const dropTop = ref(180);
 const races = ref([]);
 const shownQuery = ref("");
 const reminders = ref([]);
+const reminderIndex = ref(0);
+const currentReminder = computed(() => reminders.value[reminderIndex.value % reminders.value.length] || null);
+const quickLinks = [
+  { to: "/calendar", label: "赛事日历", icon: calendarIcon },
+  { to: "/radar", label: "拿奖雷达", icon: radarIcon },
+  { to: "/clubs", label: "发现跑团", icon: clubsIcon },
+  { to: "/news", label: "赛事资讯", icon: newsIcon }
+];
+function nextReminder() { reminderIndex.value = (reminderIndex.value + 1) % Math.max(1, reminders.value.length); }
+let reminderTimer;
+onMounted(() => { reminderTimer = window.setInterval(nextReminder, 5000); });
+onUnmounted(() => { window.clearInterval(reminderTimer); clearTimeout(searchTimer); });
 const searching = computed(() => !!q.value.trim());
 let searchTimer = 0;
 let loadSeq = 0;
@@ -156,11 +158,10 @@ const places = [
 ];
 
 const channels = [
-  { short: "路跑", kind: "road", icon: '<svg viewBox="0 0 24 24"><path d="M4 16c2.5-4 5-6 8-6s5.5 2 8 6"/><circle cx="8" cy="8" r="1.4"/><path d="M13 9.5 15 7l2 1.2"/></svg>' },
-  { short: "线上", kind: "online", icon: '<svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="11" rx="2"/><path d="M8 20h8M12 16v4"/></svg>' },
-  { short: "线下", kind: "offline", icon: '<svg viewBox="0 0 24 24"><path d="M7 21V4M7 5h10l-2.2 3.2L17 11.5H7"/></svg>' },
-  { short: "越野", kind: "trail", icon: '<svg viewBox="0 0 24 24"><path d="M3 18 8 8l4 6 3-4 6 8z"/></svg>' },
-  { short: "海外", kind: "overseas", icon: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M4 12h16M12 4c2.5 2.4 2.5 13.6 0 16M12 4c-2.5 2.4-2.5 13.6 0 16"/></svg>' }
+  { short: "路跑", kind: "road" },
+  { short: "越野赛", kind: "trail" },
+  { short: "线上赛", kind: "online" },
+  { short: "线下赛", kind: "offline" }
 ];
 
 const todayParts = computed(() => {
@@ -169,7 +170,6 @@ const todayParts = computed(() => {
   return { month: shifted.getUTCMonth() + 1, day: shifted.getUTCDate(), week: weeks[shifted.getUTCDay()] };
 });
 const todayLabel = computed(() => todayParts.value.month + "月" + todayParts.value.day + "日 " + todayParts.value.week);
-const todayDay = computed(() => todayParts.value.day);
 
 const statusOptions = [
   { label: "即将开赛", value: "upcoming" },
@@ -296,10 +296,56 @@ function confirmStatus() {
 }
 
 onMounted(() => {
-  if (typeof route.query.kind === "string" && route.query.kind) kind.value = route.query.kind;
+  if (channels.some((item) => item.kind === route.query.kind)) kind.value = route.query.kind;
   load();
   api("/reminders").then((data) => {
     reminders.value = (data.reminders || []).slice(0, 3);
   }).catch(() => {});
 });
 </script>
+
+<style scoped>
+.home-page { padding-bottom: 12px; }
+.home-top { background: linear-gradient(180deg, #fff1f3 0, #fff 75%); padding-bottom: 8px; }
+.home-heading { display: flex; align-items: center; gap: 12px; min-height: 56px; padding: 8px 16px 4px; }
+.home-heading h1 { margin: 0; font-size: 26px; line-height: 1.2; font-weight: 700; letter-spacing: -.6px; }
+.home-heading > span { color: #777b85; font-size: 12px; line-height: 1.3; }
+.home-search { display: flex; align-items: center; height: 40px; margin: 4px 12px 3px; padding: 0 12px; border: 1px solid var(--accent); border-radius: 10px; background: #fff; }
+.home-search > svg { width: 18px; height: 18px; flex: none; fill: none; stroke: #a3a6af; stroke-width: 1.6; stroke-linecap: round; }
+.home-search input { width: 0; min-width: 0; flex: 1; height: 36px; margin-left: 8px; padding: 0; border: 0; border-radius: 0; background: transparent; font-size: 14px; font-weight: 400; outline: none; }
+.home-search button { flex: none; padding-left: 12px; color: var(--accent); font-size: 15px; font-weight: 600; }
+.race-categories { display: flex; align-items: stretch; padding: 0 12px; height: 44px; }
+.race-categories button { position: relative; flex: 1; min-width: 0; color: var(--ink); font-size: 16px; font-weight: 500; white-space: nowrap; }
+.race-categories button.on { color: var(--accent); font-weight: 700; }
+.race-categories button.on::after { position: absolute; bottom: 1px; left: calc(50% - 10px); width: 20px; height: 3px; background: var(--accent); content: ""; border-radius: 2px; }
+.category-note { margin: 4px 12px 0; color: var(--muted); font-size: 12px; line-height: 18px; }
+.home-shortcuts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); padding: 9px 12px 3px; }
+.home-shortcuts a { display: flex; min-width: 0; flex-direction: column; align-items: center; gap: 4px; color: var(--ink); font-size: 12px; line-height: 20px; font-weight: 400; }
+.home-shortcuts img { display: block; width: 34px; height: 34px; }
+.deadline-banner { display: flex; align-items: center; gap: 10px; min-height: 52px; margin: 10px 12px 0; padding: 8px 10px; border-radius: 8px; background: #fff0f3; }
+.deadline-icon { flex: none; width: 26px; height: 26px; color: var(--accent); }
+.deadline-icon svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.deadline-copy { flex: 1; min-width: 0; line-height: 1.4; }
+.deadline-copy > span { display: block; color: var(--accent); font-size: 11px; font-weight: 600; }
+.deadline-copy strong { display: block; overflow: hidden; color: var(--ink); font-size: 13px; font-weight: 400; white-space: nowrap; text-overflow: ellipsis; }
+.deadline-next { display: flex; align-items: center; flex: none; gap: 6px; min-height: 32px; color: var(--accent); }
+.deadline-next small { font-size: 10px; font-weight: 400; opacity: .65; }
+.deadline-next > span { font-size: 22px; line-height: 1; }
+.results-heading { display: flex; align-items: center; justify-content: space-between; min-height: 46px; padding: 12px 14px 7px; }
+.results-heading h2 { margin: 0; font-size: 18px; font-weight: 700; line-height: 1.5; }
+.results-heading > span { color: var(--muted); font-size: 12px; }
+.home-filters { top: 0; }
+.home-filters .filter-bar { gap: 6px; padding: 0 12px 10px; }
+.home-filters .filter-bar > button { display: flex; align-items: center; justify-content: center; gap: 7px; height: 30px; padding: 0 10px; border-radius: 6px; background: #fff; font-size: 12px; font-weight: 400; }
+.home-filters .filter-bar > button.on { color: var(--accent); background: var(--accent-soft); }
+.home-filters i { width: 5px; height: 5px; margin-top: -3px; border-right: 1px solid #777b85; border-bottom: 1px solid #777b85; transform: rotate(45deg); }
+.home-race-list { gap: 8px; padding: 0 12px 8px; }
+.home-race-list :deep(.race-card) { min-height: 96px; }
+@media (max-width: 350px) {
+  .home-heading { padding-left: 12px; gap: 8px; }
+  .home-heading h1 { font-size: 24px; }
+  .home-heading > span { font-size: 11px; }
+  .race-categories button { font-size: 14px; }
+  .home-shortcuts a { font-size: 11px; }
+}
+</style>
