@@ -410,11 +410,11 @@ function gradeLabel(grade) {
 
 function inChannel(race, channel) {
   if (!channel) return true;
+  // Track type and participation format are separate, overlapping dimensions.
+  if (channel === "road") return race.kind === "road";
   if (channel === "trail") return race.kind === "trail";
   if (channel === "online") return race.meet === "online";
-  if (channel === "offline") return race.meet !== "online";
-  if (channel === "road") return race.kind !== "trail" && race.meet !== "online";
-  if (channel === "overseas") return false;
+  if (channel === "offline") return race.meet === "offline";
   return false;
 }
 

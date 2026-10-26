@@ -1,6 +1,11 @@
 <view class="pad">
   <view class="card">
     <view class="title">拿奖雷达</view>
+    <block wx:if="{{!loggedIn}}">
+      <view class="src login-description">登录后，结合个人目标成绩与赛事奖项查看适合你的比赛</view>
+      <navigator class="btn" open-type="switchTab" url="/pages/mine/mine">登录后使用</navigator>
+    </block>
+    <block wx:else>
     <view class="src">{{note}}</view>
     <view class="slot"><text>天气和赛道修正</text><text class="slot-state">尚未开通</text></view>
     <view class="src">对照仍用已记下的成绩和往届名次。</view>
@@ -18,8 +23,9 @@
     <input placeholder="5 公里目标，可空" value="{{five}}" bindinput="onFive" />
     <button class="btn" bindtap="save">保存</button>
     <view wx:if="{{message}}" class="err">{{message}}</view>
+    </block>
   </view>
-  <view class="card">
+  <view wx:if="{{loggedIn}}" class="card">
     <view class="title">对得上的奖</view>
     <view wx:if="{{!rows.length}}" class="src">还没有对得上的奖。奖项要在后台按规程录入。</view>
     <navigator wx:for="{{rows}}" wx:key="ruleId" url="/pages/race/race?id={{item.race.id}}">

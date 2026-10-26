@@ -238,7 +238,7 @@ onMounted(load);
 </script>
 
 <style scoped>
-.hint { margin: 0 0 8px; color: #8d949c; font-size: 13px; line-height: 1.45; }
+.hint { margin: 0 0 8px; color: var(--muted); font-size: 13px; line-height: 1.45; }
 .tools { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0; }
 .file { display: grid; place-items: center; position: relative; overflow: hidden; margin-top: 12px; }
 .file input { position: absolute; inset: 0; opacity: 0; }
@@ -246,16 +246,16 @@ onMounted(load);
 .album.fall { display: block; column-count: 2; column-gap: 8px; }
 .album.fall .shot { width: 100%; margin: 0 0 8px; break-inside: avoid; aspect-ratio: auto; }
 .album.fall .shot img { height: auto; }
-.shot { position: relative; aspect-ratio: 1; border-radius: 12px; overflow: hidden; background: #e8f2ff; }
-.shot img, .play { width: 100%; height: 100%; object-fit: cover; display: grid; place-items: center; color: #007aff; font-weight: 700; }
+.shot { position: relative; aspect-ratio: 1; border-radius: 12px; overflow: hidden; background: var(--accent-soft); }
+.shot img, .play { width: 100%; height: 100%; object-fit: cover; display: grid; place-items: center; color: var(--accent); font-weight: 700; }
 .shot em, .shot i { position: absolute; left: 6px; bottom: 4px; font-style: normal; color: #fff; font-size: 11px; }
 .shot i { right: 6px; left: auto; }
-.undo { color: #8d949c; }
+.undo { color: var(--muted); }
 .viewer { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.86); z-index: 40; display: grid; place-items: center; padding: 24px; }
 .viewer img, .viewer video { max-width: min(430px, 100%); max-height: 70vh; border-radius: 12px; }
 .viewer p { color: #fff; text-align: center; }
 .light { color: #fff; }
-.nav { position: absolute; top: 45%; width: 40px; height: 40px; border-radius: 20px; background: rgba(255, 255, 255, 0.16); color: #fff; font-size: 24px; }
+.nav { position: absolute; top: 45%; width: 40px; height: 40px; border-radius: 12px; background: rgba(255, 255, 255, 0.16); color: #fff; font-size: 24px; }
 .prev { left: 8px; }
 .next { right: 8px; }
 </style>

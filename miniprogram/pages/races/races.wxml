@@ -1,78 +1,92 @@
 <view class="page">
-  <view class="head">
-    <text class="today">{{todayLabel}}</text>
-    <navigator class="icon-btn" url="/pages/calendar/calendar">
-      <view class="cal-glyph">
-        <view class="cal-bar"></view>
-        <text>{{todayDay}}</text>
+  <view class="home-navigation">
+    <view style="height: {{statusBarHeight}}px;"></view>
+    <view class="home-nav" style="height: {{navHeight}}px; padding-right: {{headerRight}}px;">
+      <text class="home-title">赛历</text>
+      <text class="today">{{todayLabel}}</text>
+    </view>
+  </view>
+  <view class="home-header">
+    <view class="search">
+      <view class="lens"></view>
+      <input class="search-input" placeholder-class="search-placeholder" placeholder="搜赛事名称或城市" value="{{q}}" bindinput="onQ" bindconfirm="load" confirm-type="search" />
+      <text class="find" bindtap="load">搜索</text>
+    </view>
+    <block wx:if="{{!searching}}">
+      <view class="kind-tabs">
+        <view wx:for="{{kinds}}" wx:key="kind" class="kind-tab {{kind === item.kind ? 'on' : ''}}" data-kind="{{item.kind}}" bindtap="setKind">{{item.short}}</view>
+      </view>
+      <view style="margin: 4rpx 24rpx 0; color: #8a8e99; font-size: 12px; line-height: 18px;">类型：路跑 / 越野 · 方式：线上 / 线下</view>
+      <view class="quick-entries">
+        <navigator class="quick-entry" url="/pages/calendar/calendar">
+          <image class="quick-icon" src="/images/quick-calendar.png" mode="aspectFit" />
+          <text>赛事日历</text>
+        </navigator>
+        <navigator class="quick-entry" url="/pages/radar/radar">
+          <image class="quick-icon" src="/images/quick-radar.png" mode="aspectFit" />
+          <text>拿奖雷达</text>
+        </navigator>
+        <navigator class="quick-entry" open-type="switchTab" url="/pages/clubs/clubs">
+          <image class="quick-icon" src="/images/quick-clubs.png" mode="aspectFit" />
+          <text>发现跑团</text>
+        </navigator>
+        <navigator class="quick-entry" url="/pages/news/news">
+          <image class="quick-icon" src="/images/quick-news.png" mode="aspectFit" />
+          <text>赛事资讯</text>
+        </navigator>
+      </view>
+    </block>
+  </view>
+
+  <view wx:if="{{!searching && reminders.length}}" class="reminder">
+    <swiper class="reminder-swiper" autoplay="{{reminders.length > 1}}" interval="{{5000}}" duration="{{350}}" circular="{{true}}">
+      <swiper-item wx:for="{{reminders}}" wx:key="key">
+        <navigator class="reminder-item" url="/pages/race/race?id={{item.race.id}}">
+          <view class="reminder-clock"></view>
+          <view class="reminder-copy">
+            <view class="reminder-reason">{{item.hit.reason}}</view>
+            <view class="reminder-name">{{item.race.name}}</view>
+          </view>
+          <text class="reminder-arrow">›</text>
+        </navigator>
+      </swiper-item>
+    </swiper>
+  </view>
+
+  <view class="results">
+    <view class="results-head">
+      <text class="results-title">{{searching ? '搜索结果' : '全部赛事'}}</text>
+      <text wx:if="{{loaded}}" class="total">共 {{total}} 场</text>
+    </view>
+    <scroll-view wx:if="{{!searching}}" class="filters" scroll-x enable-flex show-scrollbar="{{false}}">
+      <view class="filter-chip {{city ? 'on' : ''}}" data-sheet="city" bindtap="openSheet">{{cityLabel}} ▾</view>
+      <view class="filter-chip {{month ? 'on' : ''}}" data-sheet="time" bindtap="openSheet">{{monthLabel}} ▾</view>
+      <view class="filter-chip {{full ? 'on' : ''}}" data-which="full" bindtap="toggleDist">马拉松</view>
+      <view class="filter-chip {{half ? 'on' : ''}}" data-which="half" bindtap="toggleDist">半程马拉松</view>
+      <view class="filter-chip {{sheet === 'status' ? 'on' : ''}}" data-sheet="status" bindtap="openSheet">筛选</view>
+    </scroll-view>
+    <view wx:if="{{message}}" class="page-error">{{message}}</view>
+    <view wx:if="{{!loaded && !message}}" class="empty">正在加载赛事…</view>
+    <navigator wx:for="{{races}}" wx:key="id" class="race" url="/pages/race/race?id={{item.id}}">
+      <view class="date">
+        <text class="mo">{{item.monthText}}</text>
+        <text class="da">{{item.day}}</text>
+      </view>
+      <view class="race-body">
+        <view class="race-name">{{item.name}}</view>
+        <view class="race-meta">{{item.city}}{{item.distanceText}}</view>
+        <view class="race-footer">
+          <text class="status-pill {{item.statusMuted ? 'muted-status' : ''}}">{{item.displayStatus}}</text>
+          <text wx:if="{{item.showWhen}}" class="deadline {{item.soon ? 'hot' : ''}}">{{item.deadlineLabel}}</text>
+        </view>
       </view>
     </navigator>
-  </view>
-  <view class="search">
-    <view class="lens"></view>
-    <input placeholder="搜名称或城市" value="{{q}}" bindinput="onQ" bindconfirm="load" confirm-type="search" />
-    <text class="find" bindtap="load">搜索</text>
-  </view>
-  <view class="home-links">
-    <navigator class="radar" url="/pages/radar/radar">拿奖雷达</navigator>
-    <navigator class="radar" url="/pages/news/news">资讯</navigator>
-  </view>
-
-  <block wx:if="{{!searching}}">
-  <view wx:if="{{reminders.length}}" class="section">即将到来</view>
-  <scroll-view wx:if="{{reminders.length}}" class="rail" scroll-x enable-flex show-scrollbar="{{false}}">
-    <navigator wx:for="{{reminders}}" wx:key="key" class="soon tone-{{item.tone}}" url="/pages/race/race?id={{item.race.id}}">
-      <text class="soon-b">{{item.hit.reason}}</text>
-      <text class="soon-name">{{item.race.name}}</text>
-      <text class="soon-city">{{item.race.city}}</text>
-    </navigator>
-  </scroll-view>
-
-  <view class="kinds">
-    <view wx:for="{{kinds}}" wx:key="kind" class="kind {{kind === item.kind ? 'on' : ''}}" data-kind="{{item.kind}}" bindtap="setKind">
-      <view class="mark {{item.kind}}"></view>
-      <text>{{item.short}}</text>
+    <view wx:if="{{loaded && !races.length && !message}}" class="empty">{{searching ? '没有找到这场赛事' : '这个分类还没有赛事'}}</view>
+    <view wx:if="{{pages > 1}}" class="pager">
+      <view class="pager-step {{page <= 1 ? 'off' : ''}}" bindtap="prevPage">上一页</view>
+      <view wx:for="{{pageNumbers}}" wx:key="*this" class="pager-num {{page === item ? 'on' : ''}}" data-page="{{item}}" bindtap="goPage">{{item}}</view>
+      <view class="pager-step {{page >= pages ? 'off' : ''}}" bindtap="nextPage">下一页</view>
     </view>
-  </view>
-
-  <scroll-view class="filters" scroll-x enable-flex show-scrollbar="{{false}}">
-    <view class="chip {{city ? 'on' : ''}}" data-sheet="city" bindtap="openSheet">{{cityLabel}} ▾</view>
-    <view class="chip {{month ? 'on' : ''}}" data-sheet="time" bindtap="openSheet">{{monthLabel}} ▾</view>
-    <view class="chip {{full ? 'on' : ''}}" data-which="full" bindtap="toggleDist">马拉松</view>
-    <view class="chip {{half ? 'on' : ''}}" data-which="half" bindtap="toggleDist">半程马拉松</view>
-    <view class="chip {{sheet === 'status' ? 'on' : ''}}" data-sheet="status" bindtap="openSheet">筛选</view>
-  </scroll-view>
-
-  </block>
-  <view wx:if="{{message}}" class="err">{{message}}</view>
-  <block wx:if="{{searching}}">
-    <navigator wx:for="{{races}}" wx:key="id" class="hit" url="/pages/race/race?id={{item.id}}">
-      <text class="hit-date">{{item.raceDate}}</text>
-      <text class="hit-city">{{item.city}}</text>
-      <text class="hit-name">{{item.name}}</text>
-    </navigator>
-    <view wx:if="{{loaded && !races.length}}" class="empty">没有找到这场赛事</view>
-  </block>
-  <block wx:else>
-  <view class="section">全部赛历</view>
-  <navigator wx:for="{{races}}" wx:key="id" class="race tone-{{item.tone}}" url="/pages/race/race?id={{item.id}}">
-    <view class="date">
-      <text class="mo">{{item.monthText}}</text>
-      <text class="da">{{item.day}}</text>
-    </view>
-    <view class="body">
-      <view class="title">{{item.name}}</view>
-      <view class="meta"><text class="pill">{{item.regStatus}}</text>{{item.city}}{{item.distanceText}}</view>
-      <view wx:if="{{item.showWhen}}" class="when {{item.soon ? 'hot' : ''}}">{{item.deadlineLabel}}</view>
-    </view>
-  </navigator>
-  <view wx:if="{{loaded && !races.length}}" class="empty">这个分类还没有赛历</view>
-  </block>
-  <view wx:if="{{loaded}}" class="total">共 {{total}} 场</view>
-  <view wx:if="{{pages > 1}}" class="pager">
-    <view class="pager-step {{page <= 1 ? 'off' : ''}}" bindtap="prevPage">上一页</view>
-    <view wx:for="{{pageNumbers}}" wx:key="*this" class="pager-num {{page === item ? 'on' : ''}}" data-page="{{item}}" bindtap="goPage">{{item}}</view>
-    <view class="pager-step {{page >= pages ? 'off' : ''}}" bindtap="nextPage">下一页</view>
   </view>
 </view>
 

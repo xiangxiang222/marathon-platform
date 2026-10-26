@@ -1,56 +1,58 @@
-<view class="pad">
-  <view wx:if="{{!ready}}" class="card">
-    <view class="muted">先到「我的」登录。登录之后才能加入跑团。</view>
-    <navigator class="login-go" open-type="switchTab" url="/pages/mine/mine">去登录</navigator>
+<page-header title="跑团" subtitle="找到同频的跑友" />
+<view class="clubs-page">
+  <view class="section-heading"><text class="section-title">我的跑团</text><text wx:if="{{ready && clubs.length}}" class="section-count">{{clubs.length}} 个</text></view>
+  <view wx:if="{{!ready}}" class="surface login-card">
+    <view class="club-letter">团</view>
+    <view class="login-copy"><view class="club-name">和跑友一起出发</view><view class="meta">登录后加入跑团，查看团内赛事和训练</view></view>
+    <navigator class="small-action" open-type="switchTab" url="/pages/mine/mine">去登录</navigator>
   </view>
   <block wx:else>
-    <view class="card">
-      <block wx:if="{{!(mode === 'search' && query)}}">
-        <view class="h2">加入跑团</view>
-        <view class="muted">两种方式选一种。</view>
-        <view class="modes">
-          <view class="mode {{mode === 'search' ? 'on' : ''}}" data-mode="search" bindtap="pickMode">搜跑团</view>
-          <view class="mode {{mode === 'code' ? 'on' : ''}}" data-mode="code" bindtap="pickMode">用口令</view>
-        </view>
-        <view wx:if="{{mode === 'code'}}" class="muted">填群里的口令，马上进团。</view>
-        <view wx:else class="muted">边输入边列出来。跑团名以输入开头的排在前面，也可以搜团长或跑团管理。先显示 6 个。</view>
-      </block>
-      <view wx:if="{{mode === 'code'}}" class="field">
-        <input placeholder="口令" value="{{code}}" bindinput="onCode" confirm-type="done" bindconfirm="join" />
-        <button class="btn" bindtap="join">加入</button>
-      </view>
-      <view wx:else class="field">
-        <input placeholder="跑团名、团长" value="{{query}}" bindinput="onQuery" confirm-type="search" bindconfirm="search" />
-      </view>
-      <view wx:if="{{message}}" class="err">{{message}}</view>
-    </view>
-    <block wx:if="{{mode === 'search' && query}}">
-      <view wx:for="{{openClubs}}" wx:key="id" class="hit">
-        <text class="hit-name">{{item.name}}</text>
-        <text class="hit-meta">{{item.members}} 人{{item.leader ? ' · ' + item.leader : ''}}</text>
-        <navigator wx:if="{{item.joined}}" url="/pages/club/club?id={{item.id}}">已加入</navigator>
-        <text wx:elif="{{item.pending}}" class="hit-wait">等待审核</text>
-        <button wx:else class="hit-go" data-id="{{item.id}}" bindtap="apply">申请加入</button>
-      </view>
-      <view wx:if="{{more}}" class="more" bindtap="showRest">还有 {{more}} 个，显示全部</view>
-    </block>
-    <block wx:if="{{!query}}">
-    <navigator wx:for="{{clubs}}" wx:key="id" class="card link" url="/pages/club/club?id={{item.id}}">
-      <view class="title">{{item.name}}</view>
-      <view class="foot"><text>{{item.roleLabel}} · 口令</text><text>{{item.code}}</text></view>
+    <navigator wx:for="{{clubs}}" wx:key="id" class="surface my-club" url="/pages/club/club?id={{item.id}}">
+      <view class="club-letter">团</view>
+      <view class="club-copy"><view class="club-name">{{item.name}}</view><view class="my-meta"><text class="role-badge">{{item.roleLabel}}</text><text wx:if="{{item.memberCount != null}}">{{item.memberCount}} 位成员</text></view></view>
+      <view class="enter">进入 <text>›</text></view>
     </navigator>
-    </block>
-    <view wx:if="{{loaded && mode === 'search' && !query && !clubs.length && !openClubs.length}}" class="empty">还没有可加入的跑团。</view>
-    <view wx:if="{{!query}}" class="card">
-      <view class="h2">创建跑团</view>
-      <view wx:if="{{leader}}" class="muted">提交后等待审核。通过后，你是这个团的团长，可以在这里管理成员、活动和组别。</view>
-      <view wx:else class="muted">当前没有建团资格，无法申请创建跑团。请联系管理员开启。</view>
-      <view wx:if="{{foundingMessage}}" class="err">{{foundingMessage}}</view>
-      <view wx:if="{{leader && application}}" class="foot"><text>{{application.name}}</text><text>等待审核</text></view>
-      <view wx:elif="{{leader}}" class="field">
-        <input placeholder="跑团名称" value="{{name}}" bindinput="onName" />
-        <button class="btn" bindtap="create">提交</button>
-      </view>
-    </view>
+    <view wx:if="{{!clubs.length}}" class="surface no-clubs">{{loaded ? '还没有加入跑团，在下方找到你的跑友' : '正在加载跑团…'}}</view>
   </block>
+
+  <view class="section-heading"><text class="section-title">找跑团</text><text class="section-count">遇见同频的跑友</text></view>
+  <view class="surface discover">
+    <view class="modes">
+      <button class="mode {{mode === 'search' ? 'on' : ''}}" data-mode="search" bindtap="pickMode">搜索跑团</button>
+      <button class="mode {{mode === 'code' ? 'on' : ''}}" data-mode="code" bindtap="pickMode">口令加入</button>
+    </view>
+    <view wx:if="{{mode === 'search'}}" class="search-field">
+      <view class="search-icon"></view>
+      <input placeholder="搜索跑团名称、团长" value="{{query}}" bindinput="onQuery" confirm-type="search" bindconfirm="search" />
+      <button class="search-action" bindtap="search">搜索</button>
+    </view>
+    <view wx:else class="search-field">
+      <input placeholder="输入跑团口令" value="{{code}}" bindinput="onCode" confirm-type="done" bindconfirm="join" />
+      <button class="search-action" bindtap="join">查看跑团</button>
+    </view>
+    <view wx:if="{{mode === 'code'}}" class="helper">先查看跑团介绍，再申请加入</view>
+    <view wx:if="{{message}}" class="message">{{message}}</view>
+    <block wx:if="{{ready && mode === 'search'}}">
+      <view wx:for="{{openClubs}}" wx:key="id" class="result-row">
+        <view class="result-avatar">{{item.initial}}</view>
+        <view class="club-copy"><view class="club-name">{{item.name}}</view><view class="meta">{{item.members}} 位成员{{item.leader ? ' · 团长 ' + item.leader : ''}}</view></view>
+        <navigator wx:if="{{item.joined}}" class="result-action joined" url="/pages/club/club?id={{item.id}}">已加入</navigator>
+        <text wx:elif="{{item.pending}}" class="pending-badge">待审核</text>
+        <button wx:else class="result-action" data-id="{{item.id}}" bindtap="openClub">查看</button>
+      </view>
+      <button wx:if="{{more}}" class="show-more" bindtap="showRest">查看其余 {{more}} 个跑团 ›</button>
+      <view wx:if="{{loaded && !query && !openClubs.length}}" class="helper">暂时没有更多跑团，试试搜索或口令加入</view>
+    </block>
+  </view>
+
+  <view wx:if="{{ready}}" class="surface create-card">
+    <button class="create-entry" bindtap="toggleCreate"><view><view class="club-name">创建跑团</view><view class="meta">让同频的跑友聚在一起</view></view><text class="create-toggle">{{createOpen ? '收起 −' : '展开 +'}}</text></button>
+    <view wx:if="{{createOpen}}" class="create-form">
+      <view wx:if="{{leader}}" class="helper">提交申请，通过审核后即可管理跑团</view>
+      <view wx:else class="helper">创建资格需由平台开通，可联系平台管理员</view>
+      <view wx:if="{{foundingMessage}}" class="message">{{foundingMessage}}</view>
+      <view wx:if="{{leader && application}}" class="application"><text>{{application.name}}</text><text class="pending-badge">待审核</text></view>
+      <view wx:elif="{{leader}}" class="create-field"><input placeholder="跑团名称" value="{{name}}" bindinput="onName" /><button class="submit" bindtap="create">提交申请</button></view>
+    </view>
+  </view>
 </view>

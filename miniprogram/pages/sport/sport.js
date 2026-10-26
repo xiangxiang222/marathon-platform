@@ -8,6 +8,12 @@ function thisMonth() {
 Page({
   data: {
     ready: false,
+    recordOpen: false,
+    targetOpen: false,
+    expandedRunId: null,
+    targetPercent: 0,
+    targetProgress: 0,
+    runTypeOptions: ["跑步", "越野"],
     summary: null,
     month: "",
     gender: "",
@@ -28,21 +34,36 @@ Page({
     if (ready) this.load();
   },
   load() {
-    request("/runs?month=" + encodeURIComponent(this.data.month))
+    return request("/runs?month=" + encodeURIComponent(this.data.month))
       .then((data) => {
         const token = (getApp().globalData && getApp().globalData.token) || "";
         data.runs = (data.runs || []).map((item) => ({
           ...item,
+          typeIndex: item.type === "trail" ? 1 : 0,
           shotSrc: item.shot ? baseUrl + "/marathon/api/runs/" + item.id + "/shot?t=" + encodeURIComponent(token) : ""
         }));
+        const percent = Number(data.month.target) > 0 ? (data.month.percent != null ? Number(data.month.percent) : Math.round(Number(data.month.km) / Number(data.month.target) * 100)) : 0;
         this.setData({
+          targetPercent: Number.isFinite(percent) ? percent : 0,
+          targetProgress: Math.max(0, Math.min(100, Number.isFinite(percent) ? percent : 0)),
           summary: data,
           gender: data.month.gender || "",
           target: data.month.target ? String(data.month.target) : "",
           message: ""
         });
       })
-      .catch((err) => this.setData({ message: err.message }));
+      .catch((err) => {
+        if (err.message === "请先登录") this.setData({ ready: false, summary: null });
+        else this.setData({ message: err.message });
+      });
+  },
+  login() { wx.setStorageSync("marathon_return_after_login", "/pages/sport/sport"); wx.switchTab({ url: "/pages/mine/mine" }); },
+  toggleRecord() { this.setData({ recordOpen: !this.data.recordOpen }); },
+  toggleTarget() { this.setData({ targetOpen: !this.data.targetOpen }); },
+  toggleRun(e) { const id = e.currentTarget.dataset.id; this.setData({ expandedRunId: this.data.expandedRunId === id ? null : id }); },
+  onRunType(e) {
+    const index = Number(e.currentTarget.dataset.index), typeIndex = Number(e.detail.value);
+    this.setData({ ["summary.runs[" + index + "].type"]: typeIndex === 1 ? "trail" : "run", ["summary.runs[" + index + "].typeIndex"]: typeIndex });
   },
   onMonth(e) {
     this.setData({ month: e.detail.value });
@@ -63,7 +84,7 @@ Page({
       targetKm: Number(this.data.target),
       gender: this.data.gender
     })
-      .then(() => this.load())
+      .then(() => { this.setData({ targetOpen: false }); return this.load(); })
       .catch((err) => this.setData({ message: err.message }));
   },
   chooseShot() {
@@ -121,6 +142,7 @@ Page({
           climb: "0",
           city: "",
           shotName: "",
+          recordOpen: false,
           month: data.run.startedAt.slice(0, 7),
           message: data.note || ""
         });

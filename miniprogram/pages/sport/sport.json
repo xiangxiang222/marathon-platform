@@ -1,1 +1,7 @@
-{ "navigationBarTitleText": "运动" }
+{
+  "navigationBarTitleText": "运动",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "page-header": "/components/page-header/page-header"
+  }
+}

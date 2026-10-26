@@ -1,3 +1,3 @@
-.src { color: #8d949c; font-size: 24rpx; margin-top: 8rpx; }
-input { width: 100%; height: 72rpx; margin-top: 16rpx; background: rgba(118, 118, 128, 0.12); border-radius: 12rpx; padding: 0 20rpx; box-sizing: border-box; }
+.src { color: #8a8e99; font-size: 26rpx; margin-top: 8rpx; }
+input { width: 100%; height: 80rpx; margin-top: 16rpx; background: #f5f6fa; border-radius: 16rpx; padding: 0 20rpx; box-sizing: border-box; }
 .card .btn, .ghost { margin-top: 16rpx; }

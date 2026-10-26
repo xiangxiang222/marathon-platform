@@ -10,6 +10,7 @@
     "pages/news/news",
     "pages/news/detail",
     "pages/club/club",
+    "pages/club-intro/club-intro",
     "pages/mileage/mileage",
     "pages/partner/partner",
     "pages/feed/feed",
@@ -21,33 +22,33 @@
     "pages/internal/internal"
   ],
   "window": {
-    "navigationBarBackgroundColor": "#f2f2f7",
+    "navigationBarBackgroundColor": "#f5f6fa",
     "navigationBarTitleText": "赛历",
     "navigationBarTextStyle": "black",
-    "backgroundColor": "#f2f2f7"
+    "backgroundColor": "#f5f6fa"
   },
   "tabBar": {
-    "color": "#8e8e93",
-    "selectedColor": "#007AFF",
-    "backgroundColor": "#f9f9f9",
+    "color": "#1f2026",
+    "selectedColor": "#ff0a30",
+    "backgroundColor": "#ffffff",
     "list": [
       {
         "pagePath": "pages/races/races",
-        "text": "首页",
+        "text": "赛事",
         "iconPath": "images/races.png",
         "selectedIconPath": "images/races-on.png"
-      },
-      {
-        "pagePath": "pages/sport/sport",
-        "text": "运动",
-        "iconPath": "images/sport.png",
-        "selectedIconPath": "images/sport-on.png"
       },
       {
         "pagePath": "pages/clubs/clubs",
         "text": "跑团",
         "iconPath": "images/clubs.png",
         "selectedIconPath": "images/clubs-on.png"
+      },
+      {
+        "pagePath": "pages/sport/sport",
+        "text": "运动",
+        "iconPath": "images/sport.png",
+        "selectedIconPath": "images/sport-on.png"
       },
       {
         "pagePath": "pages/mine/mine",

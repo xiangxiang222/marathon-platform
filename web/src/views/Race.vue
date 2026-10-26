@@ -26,6 +26,26 @@
       <p v-if="race.gradeLabel" class="src">{{ race.gradeLabel }}</p>
       <p v-for="item in conflicts" :key="item.text" class="warn">{{ item.text }}</p>
     </div>
+    <section v-if="race" class="block race-plan">
+      <div class="plan-heading"><h2>我的参赛计划</h2><span class="plan-status">{{ myStatus || '未标记' }}</span></div>
+      <p class="src">记录想跑、报名和中签状态，已加入的跑团可同步查看。</p>
+      <button v-if="!ready" class="plan-action" type="button" @click="loginForPlan">登录后标记 <span>›</span></button>
+      <button v-else class="plan-action" type="button" :aria-expanded="planOpen" @click="planOpen = !planOpen">{{ myStatus ? '修改参赛状态' : '标记参赛状态' }} <span>{{ planOpen ? '⌃' : '›' }}</span></button>
+      <div v-if="ready && planOpen" class="plan-editor">
+        <div class="statuses">
+          <button v-for="item in statuses" :key="item" type="button" class="status" :class="{ on: myStatus === item }" @click="choosePlan(item)">{{ item }}</button>
+        </div>
+        <template v-if="myStatus">
+          <p class="src">可附报名成功截图，供自己与跑团留存。</p>
+          <img v-if="hasSheet" class="proof" :src="signupSrc" alt="报名截图" />
+          <div class="proof-actions">
+            <label>上传报名截图<input type="file" accept="image/jpeg,image/png,image/webp" @change="onSignup" /></label>
+            <button v-if="hasSheet" class="undo" type="button" @click="removeSignup">移除截图</button>
+          </div>
+        </template>
+      </div>
+      <p v-if="message" class="err">{{ message }}</p>
+    </section>
     <div v-if="tabs.length" class="tabs" role="tablist">
       <button v-for="item in tabs" :key="item.id" type="button" class="tab" :class="{ on: tab === item.id }" @click="pickTab(item.id)">{{ item.label }}</button>
     </div>
@@ -58,7 +78,7 @@
         </div>
       </div>
       <div class="block">
-        <h2>报名页</h2>
+        <h2>官方报名信息</h2>
         <p class="src">{{ signupHint }}</p>
         <img v-if="signupQr" class="signup-qr" :src="signupQr" alt="报名页二维码" />
         <button v-if="signupQr && signupLink" type="button" class="jump main" @click="openSignup(signupLink.url)">打开报名页</button>
@@ -67,35 +87,20 @@
           <button class="primary" type="button" @click="confirmSigned">报上了</button>
           <button class="undo" type="button" @click="askSignup = false">还没有</button>
         </div>
-        <div class="slot"><span>站内报名</span><b>尚未开通</b></div>
-        <p class="src">不在这里填写资料，也不在这里付款。</p>
+        <p class="src">报名和缴费请以组委会官方页面为准。</p>
       </div>
-      <div v-for="card in cards" :key="card.club.id" class="block">
-        <h2>发到微信群 · {{ card.club.name }}</h2>
-        <pre class="share-text">{{ card.text }}</pre>
-        <button class="primary" type="button" @click="copyCard(card)">复制卡片</button>
-      </div>
-      <p v-if="note" class="note">{{ note }}</p>
-      <p v-if="copyError" class="err copy-err">{{ copyError }}</p>
-      <p v-if="ready && !cards.length" class="empty">建好跑团后，这里会生成能发到群里的卡片。</p>
-      <div class="block">
-        <h2>我这场</h2>
-        <p v-if="!ready" class="empty">先到「我的」登录，再标状态。标完同团的人能看见。</p>
-        <div v-else class="statuses">
-          <button v-for="item in statuses" :key="item" type="button" class="status" :class="{ on: myStatus === item }" @click="mark(item)">
-            {{ item }}
-          </button>
-        </div>
-        <template v-if="ready && myStatus">
-          <p class="src">可以附一张报名成功截图。这里不识别截图上的字。</p>
-          <img v-if="hasSheet" class="proof" :src="signupSrc" alt="" />
-          <div class="proof-actions">
-            <label>报名截图<input type="file" accept="image/jpeg,image/png,image/webp" @change="onSignup" /></label>
-            <button v-if="hasSheet" class="undo" type="button" @click="removeSignup">去掉截图</button>
+      <section v-if="cards.length" class="block">
+        <button class="plan-action" type="button" :aria-expanded="shareOpen" @click="shareOpen = !shareOpen">跑团赛事卡片 <span>{{ shareOpen ? '⌃' : '›' }}</span></button>
+        <div v-if="shareOpen">
+          <div v-for="card in cards" :key="card.club.id" class="club-share">
+            <h3>{{ card.club.name }}</h3>
+            <pre class="share-text">{{ card.text }}</pre>
+            <button class="primary" type="button" @click="copyCard(card)">复制到微信群</button>
           </div>
-        </template>
-        <p v-if="message" class="err">{{ message }}</p>
-      </div>
+          <p v-if="note" class="note">{{ note }}</p>
+          <p v-if="copyError" class="err">{{ copyError }}</p>
+        </div>
+      </section>
       <div v-for="club in clubs" :key="club.id" class="block">
         <h2>{{ club.name }}</h2>
         <p v-if="squadLine(club)" class="warn">{{ squadLine(club) }}</p>
@@ -176,11 +181,6 @@
           <b>{{ item.deadlineLabel }}</b>
         </router-link>
       </div>
-      <div class="block">
-        <h2>酒店</h2>
-        <div class="slot"><span>赛事周订房</span><b>尚未开通</b></div>
-        <p class="src">这里不显示房价，也不跳转。</p>
-      </div>
     </template>
     <template v-if="race && tab === 'result'">
       <div v-if="drawText" class="block">
@@ -196,8 +196,7 @@
       <div v-if="ready" class="block">
         <h2>成绩</h2>
         <p class="src">手记的成绩标为未核验。可以附一张证书或奖牌照片。</p>
-        <div class="slot"><span>识别证书</span><b>尚未开通</b></div>
-        <p class="src">照片可以留下，成绩仍由自己填写。</p>
+
         <p v-for="item in myResults" :key="item.distance" class="src">{{ item.distanceLabel }} {{ item.clock }} · 配速 {{ item.pace }}<template v-if="item.pb"> · PB</template> · {{ item.verifyLabel }}</p>
         <p v-if="myResult && myResult.story">{{ myResult.story }}</p>
         <img v-if="myResult && myResult.hasProof" class="proof" :src="proofSrc" alt="" />
@@ -236,12 +235,22 @@
 
 <script setup>
 import { computed, onMounted, ref, watch } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { api, raceSheetSrc, resultProofSrc, signupSheetSrc, upload } from "../api";
 import { copyText } from "../copy";
 import { dateParts, toneOf } from "../tone";
 import { parseGuide } from "../guide-md";
 const route = useRoute();
+const router = useRouter();
+const planOpen = ref(route.query.plan === "1");
+const shareOpen = ref(false);
+function loginForPlan() {
+  localStorage.setItem("marathon_return_after_login", "/races/" + encodeURIComponent(route.params.id) + "?plan=1");
+  router.push("/mine");
+}
+async function choosePlan(status) {
+  if (await mark(status)) message.value = "已标记为「" + status + "」";
+}
 const race = ref(null);
 const tone = computed(() => toneOf(race.value));
 const parts = computed(() => dateParts(race.value && race.value.raceDate));
@@ -359,10 +368,10 @@ const signupHint = computed(() => {
 });
 const tabs = computed(() => {
   if (!race.value) return [];
-  const list = [{ id: "signup", label: "报名" }];
+  const list = [{ id: "signup", label: "赛事信息" }];
   if (race.value.guideText || (race.value.guide && race.value.guide.length)) list.push({ id: "guide", label: "竞赛规程" });
-  list.push({ id: "news", label: "资讯" });
-  if (ready.value || drawText.value) list.push({ id: "result", label: "成绩" });
+  list.push({ id: "news", label: "赛事资讯" });
+  if (ready.value || drawText.value) list.push({ id: "result", label: "我的成绩" });
   return list;
 });
 
@@ -485,7 +494,7 @@ function savePoster() {
   canvas.width = 750;
   canvas.height = 1000;
   const ctx = canvas.getContext("2d");
-  ctx.fillStyle = "#007aff";
+  ctx.fillStyle = "#ff0a30";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = "#ffffff";
   ctx.textAlign = "left";
@@ -545,33 +554,49 @@ watch(
     clock.value = "";
     story.value = "";
     tab.value = "signup";
-    load();
+    planOpen.value = route.query.plan === "1";
+    shareOpen.value = false;
+    load().catch((err) => { message.value = err.message; });
   }
 );
 
-onMounted(load);
+onMounted(() => load().catch((err) => { message.value = err.message; }));
 </script>
 
 <style scoped>
+.pass { align-items: flex-start; padding: 20px 16px; }
+.pass-date { padding: 12px 8px; border-radius: 12px; background: var(--chip); }
+.pass h1 { font-size: 22px; line-height: 1.4; }
+.pass-pill { background: var(--accent-soft); color: var(--accent); }
+.plan-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.plan-heading h2 { margin: 0; font-size: 18px; }
+.plan-status { flex: none; padding: 4px 8px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); font-size: 12px; }
+.plan-action { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; padding: 12px 0 0; background: transparent; color: var(--ink); text-align: left; font-size: 15px; font-weight: 600; }
+.plan-action span { color: var(--muted); font-size: 22px; font-weight: 400; line-height: 1; }
+.plan-editor { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); }
+.club-share { margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--line); }
+.club-share h3 { margin: 0 0 8px; font-size: 15px; }
+.race-plan .src { font-size: 13px; line-height: 1.6; }
+
 .detail-poster :deep(.poster) { aspect-ratio: 16 / 9; height: auto; border-radius: 0; }
 .share-text { margin: 0; font: inherit; white-space: pre-wrap; line-height: 1.5; }
-.poster-card { margin-top: 8px; padding: 28px 20px; border-radius: 16px; background: #007aff; color: #fff; }
+.poster-card { margin-top: 8px; padding: 24px 20px; border-radius: 12px; background: var(--accent-soft); color: var(--ink); }
 .poster-card p { margin: 0; font-size: 16px; line-height: 1.45; }
-.poster-card p:first-child { font-size: 28px; font-weight: 700; }
+.poster-card p:first-child { font-size: 28px; font-weight: 700; color: var(--accent); }
 .poster-card p + p { margin-top: 10px; }
-.src { margin: 8px 0 0; color: #8d949c; font-size: 12px; }
-.note { color: #007aff; font-size: 13px; padding: 0 16px; }
-.warn { margin: 10px 0 0; color: #9a5b12; font-size: 13px; line-height: 1.45; }
+.src { margin: 8px 0 0; color: var(--muted); font-size: 12px; }
+.note { color: var(--accent); font-size: 13px; padding: 0 16px; }
+.warn { margin: 10px 0 0; color: var(--orange); font-size: 13px; line-height: 1.45; }
 .copy-err { padding: 0 16px; }
 .primary { margin-top: 8px; }
 .result-form { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
-.result-form input { height: 36px; border: 1px solid #e6e8ec; border-radius: 8px; padding: 0 10px; background: #fff; }
+.result-form input { height: 40px; border: 0; border-radius: 10px; padding: 0 12px; background: var(--chip); }
 .proof { display: block; width: 100%; margin-top: 8px; border-radius: 12px; }
 .ask { margin-top: 12px; }
-.ask p { margin: 0 0 8px; font-weight: 650; }
+.ask p { margin: 0 0 8px; font-weight: 600; }
 .ask .undo { margin-left: 8px; height: 40px; padding: 0 16px; color: var(--muted); }
 .proof-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
-.proof-actions label { position: relative; overflow: hidden; height: 36px; padding: 0 12px; border-radius: 10px; background: var(--chip); color: var(--accent); font-size: 14px; font-weight: 650; line-height: 36px; }
+.proof-actions label { position: relative; overflow: hidden; height: 36px; padding: 0 12px; border-radius: 10px; background: var(--chip); color: var(--accent); font-size: 14px; font-weight: 600; line-height: 36px; }
 .proof-actions input { position: absolute; inset: 0; opacity: 0; }
 .jump { display: block; margin-top: 8px; height: 44px; border-radius: 12px; background: var(--chip); color: var(--accent); font-weight: 600; font-size: 16px; line-height: 44px; text-align: center; }
 .jump.main { background: var(--accent); color: #fff; }
@@ -580,24 +605,25 @@ onMounted(load);
 .sheet { display: block; width: 100%; min-height: 0; margin: 8px 0 0; padding: 0; border-radius: 12px; overflow: hidden; background: var(--bg); }
 .sheet img { display: block; width: 100%; }
 .day-note { margin-top: 12px; }
-.tabs { display: flex; gap: 8px; margin: 12px 16px 0; }
-.tab { flex: 1; height: 36px; border: 0; border-radius: 10px; background: #fff; color: #8e8e93; font-size: 13px; font-weight: 650; white-space: nowrap; }
-.tab.on { background: #007aff; color: #fff; }
+.tabs { display: flex; gap: 12px; margin: 12px 16px 0; padding: 0 12px; border-radius: 12px; background: #fff; }
+.tab { position: relative; flex: 1; height: 46px; border: 0; background: transparent; color: var(--muted); font-size: 14px; font-weight: 600; white-space: nowrap; }
+.tab.on { color: var(--accent); }
+.tab.on::after { content: ""; position: absolute; right: 12px; bottom: 0; left: 12px; height: 3px; border-radius: 2px; background: var(--accent); }
 .timeline { display: flex; gap: 8px; overflow-x: auto; }
 .tl { flex: 1; min-width: 92px; text-align: center; }
-.tl .dot { display: block; width: 8px; height: 8px; margin: 0 auto 8px; border-radius: 50%; background: #007aff; }
+.tl .dot { display: block; width: 8px; height: 8px; margin: 0 auto 8px; border-radius: 50%; background: var(--accent); }
 .tl b, .tl span { display: block; }
 .tl b { font-size: 13px; }
-.tl span { margin-top: 4px; color: #8d949c; font-size: 12px; }
+.tl span { margin-top: 4px; color: var(--muted); font-size: 12px; }
 .signup-qr { display: block; width: 180px; height: 180px; margin: 12px auto 0; background: #fff; }
-.day-note h3 { margin: 0 0 4px; font-size: 13px; font-weight: 650; color: var(--muted); }
+.day-note h3 { margin: 0 0 4px; font-size: 13px; font-weight: 600; color: var(--muted); }
 .day-note p { margin: 0; font-size: 15px; line-height: 1.5; white-space: pre-wrap; }
 .guide-md .md { margin: 10px 0 0; font-size: 15px; line-height: 1.6; }
 .guide-md .md-h1 { margin-top: 4px; font-size: 22px; font-weight: 700; line-height: 1.35; }
 .guide-md .md-h2 { margin-top: 18px; font-size: 18px; font-weight: 700; line-height: 1.35; }
-.guide-md .md-h3 { margin-top: 14px; font-size: 17px; font-weight: 650; line-height: 1.4; }
-.guide-md .md-h4 { margin-top: 12px; font-size: 16px; font-weight: 650; line-height: 1.4; }
-.guide-md .md-mark { margin-right: 6px; color: #8d949c; }
+.guide-md .md-h3 { margin-top: 14px; font-size: 17px; font-weight: 600; line-height: 1.4; }
+.guide-md .md-h4 { margin-top: 12px; font-size: 16px; font-weight: 600; line-height: 1.4; }
+.guide-md .md-mark { margin-right: 6px; color: var(--muted); }
 .viewer { position: fixed; inset: 0; z-index: 30; display: flex; align-items: center; justify-content: center; padding: 16px; background: rgba(0, 0, 0, 0.88); }
 .viewer img { max-width: 100%; max-height: 100%; }
 </style>

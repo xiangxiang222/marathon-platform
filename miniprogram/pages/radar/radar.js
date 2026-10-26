@@ -1,7 +1,8 @@
-const { request } = require("../../utils/request");
+const { request, ready } = require("../../utils/request");
 
 Page({
   data: {
+    loggedIn: false,
     note: "仅供参考。没有往届名次成绩时，不估算概率。",
     gender: "",
     birth: "",
@@ -14,11 +15,21 @@ Page({
     message: ""
   },
   onShow() {
+    if (!ready()) {
+      this.setData({ loggedIn: false, rows: [], message: "" });
+      return;
+    }
     this.load();
   },
   load() {
+    if (!ready()) {
+      this.setData({ loggedIn: false, rows: [], message: "" });
+      return;
+    }
+    this.setData({ loggedIn: true });
     request("/radar")
       .then((data) => {
+        if (!ready()) return;
         const targets = (data.profile && data.profile.targets) || {};
         this.setData({
           note: data.note,
@@ -57,6 +68,10 @@ Page({
     this.setData({ five: e.detail.value });
   },
   save() {
+    if (!ready()) {
+      this.setData({ loggedIn: false, rows: [], message: "" });
+      return;
+    }
     request("/me/radar", "PUT", {
       gender: this.data.gender,
       birth: this.data.birth,

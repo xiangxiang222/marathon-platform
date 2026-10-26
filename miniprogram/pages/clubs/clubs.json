@@ -1,1 +1,5 @@
-{ "navigationBarTitleText": "跑团" }
+{
+  "navigationBarTitleText": "跑团",
+  "navigationStyle": "custom",
+  "usingComponents": { "page-header": "/components/page-header/page-header" }
+}

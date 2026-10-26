@@ -3,10 +3,10 @@ const { baseUrl } = require("../../config");
 const { parseGuide } = require("../../utils/guide-md");
 
 function raceTabs(race, extra) {
-  const tabs = [{ id: "signup", label: "报名" }];
+  const tabs = [{ id: "signup", label: "赛事信息" }];
   if ((extra.guide && extra.guide.length) || (race && race.guideText)) tabs.push({ id: "guide", label: "竞赛规程" });
-  tabs.push({ id: "news", label: "资讯" });
-  if (extra.ready || extra.drawText) tabs.push({ id: "result", label: "成绩" });
+  tabs.push({ id: "news", label: "赛事资讯" });
+  if (extra.ready || extra.drawText) tabs.push({ id: "result", label: "我的成绩" });
   return tabs;
 }
 
@@ -29,6 +29,8 @@ Page({
     meetText: "线下",
     statuses: [],
     myStatus: "",
+    planOpen: false,
+    shareOpen: false,
     clubs: [],
     cards: [],
     card: null,
@@ -61,8 +63,8 @@ Page({
     kindText: "",
     groupText: "",
     tabs: [
-      { id: "signup", label: "报名" },
-      { id: "news", label: "资讯" }
+      { id: "signup", label: "赛事信息" },
+      { id: "news", label: "赛事资讯" }
     ],
     tab: "signup",
     guideBlocks: [],
@@ -76,29 +78,55 @@ Page({
     this.raceId = query.id;
     const code = String(query.code || "").toUpperCase();
     this.pending = null;
-    this.setData({ code, ready: ready(), tab: "signup" });
+    this.inviteRedirect = !!code;
+    this.setData({ code: "", ready: ready(), tab: "signup", planOpen: query.plan === "1" });
+    if (code) {
+      wx.redirectTo({ url: "/pages/club-intro/club-intro?code=" + encodeURIComponent(code) });
+      return;
+    }
     wx.showShareMenu({ menus: ["shareAppMessage"] });
   },
   onShow() {
     this.open();
+  },
+  togglePlan() {
+    this.setData({ planOpen: !this.data.planOpen });
+  },
+  toggleShare() {
+    this.setData({ shareOpen: !this.data.shareOpen });
+  },
+  loginForPlan() {
+    wx.setStorageSync("marathon_return_after_login", "/pages/race/race?id=" + encodeURIComponent(this.raceId) + "&plan=1");
+    wx.switchTab({ url: "/pages/mine/mine" });
   },
   armShare(e) {
     this.pending = e.currentTarget.dataset;
   },
   onShareAppMessage() {
     const pending = this.pending || {};
-    const card = (this.data.cards && this.data.cards[0]) || this.data.card;
+    const cards = this.data.cards || [];
+    const cardForCode = pending.code
+      ? cards.find((item) => item.club && item.club.code === pending.code) ||
+        (this.data.card && this.data.card.club && this.data.card.club.code === pending.code ? this.data.card : null)
+      : null;
+    const card = cardForCode || cards[0] || this.data.card;
     const title = pending.title || (card && card.title) || (this.data.race && this.data.race.name) || "赛历";
     const code = pending.code || this.data.code;
+    const club = (cardForCode && cardForCode.club) || null;
+    if (code && club) {
+      return {
+        title: club.name + " · 邀你加入",
+        path: "/pages/club-intro/club-intro?id=" + club.id
+      };
+    }
     return {
       title,
       path: "/pages/race/race?id=" + this.raceId + (code ? "&code=" + code : "")
     };
   },
   open() {
-    const code = this.data.code;
-    const join = ready() && code ? request("/clubs/join", "POST", { code }).catch(() => {}) : Promise.resolve();
-    join.then(() => this.load()).catch((err) => this.setData({ message: err.message }));
+    if (this.inviteRedirect) return;
+    this.load().catch((err) => this.setData({ message: err.message }));
   },
   load() {
     const jobs = [
@@ -272,6 +300,7 @@ Page({
     const status = e.currentTarget.dataset.status;
     request("/me/races/" + this.raceId, "PUT", { status })
       .then(() => this.load())
+      .then(() => this.setData({ message: "已标记为「" + status + "」" }))
       .catch((err) => this.setData({ message: err.message }));
   },
   pickDistance(e) {
@@ -303,7 +332,7 @@ Page({
   savePoster() {
     const lines = this.data.drawLines || [];
     const ctx = wx.createCanvasContext("poster", this);
-    ctx.setFillStyle("#007aff");
+    ctx.setFillStyle("#ff0a30");
     ctx.fillRect(0, 0, 750, 1000);
     ctx.setFillStyle("#ffffff");
     ctx.setFontSize(48);

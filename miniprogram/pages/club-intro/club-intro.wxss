@@ -1,0 +1,30 @@
+.intro-page { min-height: 100vh; padding: 24rpx; box-sizing: border-box; background: #f5f6fa; color: #1f2026; font-weight: 400; }
+.intro-content { padding: 28rpx 24rpx; background: #fff; border-radius: 24rpx; }
+.identity { display: flex; align-items: center; gap: 20rpx; }
+.identity-copy { flex: 1; min-width: 0; }
+.club-mark { display: flex; flex: none; align-items: center; justify-content: center; width: 88rpx; height: 88rpx; border-radius: 20rpx; background: #fff0f3; color: #ff0a30; font-size: 38rpx; font-weight: 600; }
+.club-name { color: #1f2026; font-size: 36rpx; line-height: 48rpx; font-weight: 600; overflow-wrap: anywhere; }
+.club-owner { margin-top: 8rpx; color: #8a8e99; font-size: 24rpx; line-height: 34rpx; }
+.club-count { margin-top: 28rpx; color: #8a8e99; font-size: 24rpx; }
+.count { margin-right: 8rpx; color: #1f2026; font-size: 40rpx; font-weight: 700; font-variant-numeric: tabular-nums; }
+.divider { height: 1rpx; margin-top: 24rpx; background: #f0f1f5; }
+.access-note { margin-top: 24rpx; color: #8a8e99; font-size: 24rpx; line-height: 38rpx; }
+.status { display: inline-block; margin-top: 24rpx; padding: 6rpx 12rpx; border-radius: 8rpx; font-size: 24rpx; line-height: 34rpx; }
+.status-in { color: #ff0a30; background: #fff0f3; }
+.status-pending { color: #7962ce; background: #f4f0ff; }
+.action { width: 100%; height: 80rpx; margin-top: 28rpx; color: #fff; background: #ff0a30; border-radius: 16rpx; font-size: 30rpx; font-weight: 600; line-height: 80rpx; }
+.action::after { border: 0; }
+.pending-action { color: #8a8e99; background: #f0f1f6; }
+.secondary-note { margin-top: 16rpx; color: #8a8e99; text-align: center; font-size: 24rpx; line-height: 36rpx; }
+.state { padding-top: 140rpx; color: #8a8e99; text-align: center; font-size: 26rpx; }
+.error { margin-top: 18rpx; color: #c73540; font-size: 24rpx; }
+
+@media (max-width: 350px) {
+  .club-name { font-size: 18px; line-height: 1.4; }
+  .club-mark { font-size: 20px; }
+  .club-owner, .club-count, .access-note, .status, .secondary-note, .error { font-size: 12px; line-height: 1.6; }
+  .count { font-size: 20px; }
+  .status { max-width: 100%; box-sizing: border-box; }
+  .action { height: 42px; min-height: 42px; font-size: 15px; line-height: 42px; }
+  .state { font-size: 15px; line-height: 1.6; }
+}

@@ -1,6 +1,7 @@
 const crypto = require("crypto");
 const { createCaptcha, codesMatch } = require("./captcha");
 const { passwordHash, verifyPassword } = require("./admin-auth");
+const { avatarUrlOf } = require("./avatars");
 
 function nicknameOf(raw) {
   const nickname = String(raw || "").trim();
@@ -17,8 +18,8 @@ function passwordOf(raw) {
 function issueToken(db, id) {
   const token = crypto.randomBytes(24).toString("hex");
   db.prepare("UPDATE users SET token = ? WHERE id = ?").run(token, id);
-  const row = db.prepare("SELECT id, nickname FROM users WHERE id = ?").get(id);
-  return { token, user: { id: row.id, nickname: row.nickname } };
+  const row = db.prepare("SELECT id, nickname, avatar FROM users WHERE id = ?").get(id);
+  return { token, user: { id: row.id, nickname: row.nickname, avatar: avatarUrlOf(row.id, row.avatar) } };
 }
 
 function storePassword(db, id, password) {
@@ -66,19 +67,75 @@ function registerUser(db, body) {
   if (!password) return { error: "密码用 8 到 128 位", status: 400 };
   const rows = db.prepare("SELECT id, password_hash FROM users WHERE nickname = ?").all(nickname);
   const armed = rows.filter((row) => row.password_hash);
-  const open = rows.filter((row) => !row.password_hash);
+  if (rows.length > 1 && !armed.length) return { error: "这个昵称有冲突，换一个", status: 400 };
   if (armed.length) return { error: "这个昵称已经注册，请登录", status: 400 };
-  if (open.length > 1) return { error: "这个昵称有冲突，换一个", status: 400 };
-  if (open.length === 1) {
-    storePassword(db, open[0].id, password);
-    return issueToken(db, open[0].id);
-  }
+  if (rows.length) return { error: "这个昵称已被使用，请联系平台管理员核验身份后重置密码", status: 400 };
   const token = crypto.randomBytes(24).toString("hex");
   const salt = crypto.randomBytes(16).toString("hex");
   const info = db
     .prepare("INSERT INTO users (nickname, token, created_at, password_hash, salt) VALUES (?, ?, ?, ?, ?)")
     .run(nickname, token, new Date().toISOString(), passwordHash(password, salt), salt);
   return { token, user: { id: Number(info.lastInsertRowid), nickname } };
+}
+
+async function verifyWechatCode(code, credentials, exchangeCode = exchangeWechatCode) {
+  const loginCode = String(code || "").trim();
+  if (!loginCode || loginCode.length > 256) return { error: "微信登录凭证无效，请重试", status: 400 };
+  if (!credentials || !credentials.appId || !credentials.secret) return { error: "微信登录暂未配置", status: 503 };
+
+  let identity;
+  try {
+    identity = await exchangeCode(loginCode, credentials);
+  } catch (err) {
+    return { error: "微信登录暂时不可用，请稍后重试", status: 502 };
+  }
+  if (!identity || !identity.openid || String(identity.openid).length > 200) return { error: "微信登录失败，请重试", status: 401 };
+  return { openid: String(identity.openid) };
+}
+
+async function loginWechat(db, code, credentials, exchangeCode = exchangeWechatCode, options = {}) {
+  const identity = await verifyWechatCode(code, credentials, exchangeCode);
+  if (identity.error) return identity;
+
+  let user = db.prepare("SELECT id FROM users WHERE openid = ?").get(identity.openid);
+  if (!user) {
+    if (!options || options.createAccount !== true) {
+      return {
+        status: 409,
+        code: "WECHAT_REGISTRATION_REQUIRED",
+        error: "该微信尚未关联账号，请登录已有账号后绑定，或选择创建新账号"
+      };
+    }
+    const nickname = "跑者" + crypto.randomBytes(4).toString("hex");
+    try {
+      db.prepare("INSERT INTO users (nickname, token, created_at, openid) VALUES (?, ?, ?, ?)").run(
+        nickname,
+        crypto.randomBytes(24).toString("hex"),
+        new Date().toISOString(),
+        identity.openid
+      );
+    } catch (err) {
+      if (!/UNIQUE/i.test(String(err.message))) throw err;
+    }
+    user = db.prepare("SELECT id FROM users WHERE openid = ?").get(identity.openid);
+  }
+  return issueToken(db, user.id);
+}
+
+async function exchangeWechatCode(code, credentials) {
+  const query = new URLSearchParams({
+    appid: credentials.appId,
+    secret: credentials.secret,
+    js_code: code,
+    grant_type: "authorization_code"
+  });
+  const response = await fetch("https://api.weixin.qq.com/sns/jscode2session?" + query.toString(), {
+    signal: AbortSignal.timeout(8000)
+  });
+  if (!response.ok) throw new Error("WeChat identity service unavailable");
+  const body = await response.json();
+  if (body.errcode || !body.openid) throw new Error("WeChat login rejected");
+  return { openid: body.openid };
 }
 
 function loginUser(db, body) {
@@ -92,7 +149,7 @@ function loginUser(db, body) {
   const armed = rows.filter((row) => row.password_hash);
   if (!armed.length) {
     if (rows.length > 1) return { error: "这个昵称有冲突，换一个", status: 400 };
-    if (rows.length) return { error: "这个昵称还没设密码，去注册", status: 400 };
+    if (rows.length) return { error: "旧账号尚未设置密码，请联系平台管理员核验身份后重置密码", status: 400 };
     return { error: "昵称或密码错误", status: 400 };
   }
   const hits = armed.filter((row) => verifyPassword(password, row.salt, row.password_hash));
@@ -123,4 +180,14 @@ function changeOwnPassword(db, userId, current, next) {
   return { ok: true };
 }
 
-module.exports = { issueCaptcha, registerUser, loginUser, setUserPassword, changeOwnPassword, createUser };
+function unbindWechat(db, userId, password) {
+  const row = db.prepare("SELECT password_hash, salt FROM users WHERE id = ?").get(userId);
+  if (!row) return { error: "没有这个人", status: 404 };
+  if (!row.password_hash) return { error: "请先设置账号密码，再解绑微信", status: 400 };
+  if (!String(password || "")) return { error: "填写当前密码", status: 400 };
+  if (!verifyPassword(String(password), row.salt, row.password_hash)) return { error: "当前密码不对", status: 400 };
+  db.prepare("UPDATE users SET openid = '' WHERE id = ?").run(userId);
+  return { ok: true };
+}
+
+module.exports = { issueCaptcha, registerUser, loginUser, loginWechat, verifyWechatCode, unbindWechat, setUserPassword, changeOwnPassword, createUser };

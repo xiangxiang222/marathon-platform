@@ -7,3 +7,4 @@ process.env.MARATHON_DB = path.join(dir, "app.sqlite");
 process.env.MARATHON_MEDIA = path.join(dir, "media");
 process.env.BASE_PATH = "/marathon";
 process.env.PORT = "0";
+process.env.NODE_ENV = "test";

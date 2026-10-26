@@ -272,17 +272,17 @@ onMounted(load);
 </script>
 
 <style scoped>
-.hint { margin: 0 0 8px; color: #8d949c; font-size: 13px; line-height: 1.45; }
-.award { color: #248a3d; }
+.hint { margin: 0 0 8px; color: var(--muted); font-size: 13px; line-height: 1.45; }
+.award { color: var(--green); }
 .note-text { margin: 0 0 8px; white-space: pre-wrap; line-height: 1.5; }
 .check-form { display: flex; flex-direction: column; gap: 8px; }
-.check-form input, .check-form textarea, .check-form select { width: 100%; border: 0; border-radius: 10px; padding: 10px 12px; background: rgba(118, 118, 128, 0.12); }
+.check-form input, .check-form textarea, .check-form select { width: 100%; border: 0; border-radius: 10px; padding: 10px 12px; background: var(--chip); }
 .check-form textarea { min-height: 96px; }
 .link { display: grid; place-items: center; text-decoration: none; }
-.undo { margin-top: 8px; color: #8d949c; }
+.undo { margin-top: 8px; color: var(--muted); }
 .album-link { display: flex; gap: 12px; align-items: center; text-decoration: none; color: inherit; }
 .album-link img { width: 72px; height: 72px; object-fit: cover; border-radius: 12px; }
 .pair { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
-.pair label { font-size: 12px; color: #8d949c; }
+.pair label { font-size: 12px; color: var(--muted); }
 button.primary:disabled { opacity: 0.45; }
 </style>

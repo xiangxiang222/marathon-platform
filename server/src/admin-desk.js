@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const { removeAvatar } = require("./avatars");
 const { DISTANCE_LABEL } = require("./races");
 const { formatClock } = require("./career");
 const { clubRoleLabel, setMemberRole, addClubMember, removeClubMember, decideRequest, listPending, listClubApplications, decideClubApplication } = require("./roles");
@@ -12,7 +13,7 @@ function mediaRoot() {
 }
 
 function deleteUser(db, id) {
-  const row = db.prepare("SELECT id FROM users WHERE id = ?").get(id);
+  const row = db.prepare("SELECT id, avatar FROM users WHERE id = ?").get(id);
   if (!row) return { error: "没有这个人", status: 404 };
   const owned = db.prepare("SELECT name FROM clubs WHERE owner_id = ? LIMIT 1").get(id);
   if (owned) return { error: "该用户仍为「" + owned.name + "」团长，请先完成团长移交后再删除", status: 400 };
@@ -56,6 +57,7 @@ function deleteUser(db, id) {
     db.prepare("DELETE FROM club_posts WHERE user_id = ?").run(id);
     db.prepare("DELETE FROM users WHERE id = ?").run(id);
   })();
+  removeAvatar(row.avatar);
   for (const file of files) {
     if (!file.filename) continue;
     const full = path.join(mediaRoot(), String(file.activity_id), file.filename);

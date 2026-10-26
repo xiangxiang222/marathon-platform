@@ -296,22 +296,22 @@ onMounted(() => {
 <style scoped>
 .hint { margin: 8px 0 0; color: var(--muted); font-size: 13px; line-height: 1.45; }
 .modes { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
-.modes button { height: 32px; padding: 0 12px; border-radius: 999px; background: var(--chip); font-weight: 650; }
-.modes button.on { background: var(--accent); color: #fff; }
+.modes button { height: 34px; padding: 0 12px; border-radius: 8px; background: var(--chip); color: var(--ink); font-weight: 600; }
+.modes button.on { background: var(--accent-soft); color: var(--accent); }
 .stack { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
 .stack input, .field input, .field select, section > input { height: 40px; border: 0; border-radius: 12px; padding: 0 12px; background: var(--chip); }
 section > input { width: 100%; margin-top: 10px; box-sizing: border-box; }
 .field { display: flex; gap: 8px; margin-top: 8px; }
 .field input, .field select { flex: 1; min-width: 0; }
-.field button, .line button { height: 36px; padding: 0 12px; border-radius: 12px; background: #fff; }
-.line { display: flex; justify-content: space-between; gap: 8px; align-items: center; padding: 8px 0; border-bottom: 1px solid #eef0f3; }
+.field button:not(.primary), .line button { height: 36px; padding: 0 12px; border-radius: 10px; background: var(--chip); color: var(--ink); }
+.line { display: flex; justify-content: space-between; gap: 8px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--line); }
 .line.top b { color: var(--accent); }
 .line b { width: 24px; }
-.line em { font-style: normal; font-weight: 650; }
+.line em { font-style: normal; font-weight: 600; }
 .table .line { font-size: 12px; }
 .table .head { color: var(--muted); }
-.run { padding: 8px 0; border-bottom: 1px solid #eef0f3; }
+.run { padding: 8px 0; border-bottom: 1px solid var(--line); }
 .shot { width: 100%; margin-top: 8px; border-radius: 12px; }
 .check { display: flex; gap: 8px; align-items: center; font-size: 14px; }
-.err { color: #e35d5d; padding: 0 16px; }
+.err { color: var(--red); padding: 0 16px; }
 </style>
