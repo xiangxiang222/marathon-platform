@@ -15,11 +15,13 @@
     "pages/partner/partner",
     "pages/feed/feed",
     "pages/activity/activity",
+    "pages/activity-create/activity-create",
     "pages/signup/signup",
     "pages/album/album",
     "pages/call/call",
     "pages/meetup/meetup",
-    "pages/internal/internal"
+    "pages/internal/internal",
+    "pages/privacy/privacy"
   ],
   "window": {
     "navigationBarBackgroundColor": "#f5f6fa",
@@ -59,5 +61,6 @@
     ]
   },
   "style": "v2",
+  "__usePrivacyCheck__": true,
   "sitemapLocation": "sitemap.json"
 }

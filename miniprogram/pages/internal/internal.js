@@ -1,7 +1,7 @@
 const { request } = require("../../utils/request");
 
 Page({
-  data: { race: null, groupId: 0, time: "", message: "" },
+  data: { race: null, groupId: 0, time: "", message: "", loading: true },
   onLoad(query) {
     this.clubId = query.club;
     this.raceId = query.id;
@@ -10,8 +10,11 @@ Page({
     this.load();
   },
   load() {
-    request("/clubs/" + this.clubId + "/internals/" + this.raceId)
+    const sequence = this._loadSequence = (this._loadSequence || 0) + 1;
+    this.setData({ loading: true, message: "" });
+    return request("/clubs/" + this.clubId + "/internals/" + this.raceId)
       .then((data) => {
+        if (sequence !== this._loadSequence) return;
         const race = data.race;
         const open = (race.groups || []).find((group) => !group.full) || (race.groups || [])[0];
         this.setData({
@@ -21,7 +24,13 @@ Page({
           message: ""
         });
       })
-      .catch((err) => this.setData({ message: err.message }));
+      .catch((err) => {
+        if (sequence === this._loadSequence) this.setData({ race: null, message: err.message || "队内赛暂时无法加载，请重试" });
+      })
+      .finally(() => { if (sequence === this._loadSequence) this.setData({ loading: false }); });
+  },
+  onUnload() {
+    this._loadSequence = (this._loadSequence || 0) + 1;
   },
   pickGroup(e) {
     this.setData({ groupId: Number(e.currentTarget.dataset.id) });

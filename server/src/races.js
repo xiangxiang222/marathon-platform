@@ -255,13 +255,15 @@ function alternativeNote(myStatus, missed, alternatives) {
 }
 
 function summarizeMarks(counts) {
-  const entered = ENTERED.reduce((sum, key) => sum + (counts[key] || 0), 0);
+  const outcomes = ["完赛", "未完赛", "弃赛"];
+  const entered = ENTERED.filter((key) => !outcomes.includes(key)).reduce((sum, key) => sum + (counts[key] || 0), 0);
   const unpaid = counts["中签"] || 0;
   const want = counts["想跑"] || 0;
   const parts = [];
   if (entered) parts.push(`${entered} 人已报名`);
   if (unpaid) parts.push(`${unpaid} 人还没缴`);
-  if (!entered && want) parts.push(`${want} 人想跑`);
+  for (const status of outcomes) if (counts[status]) parts.push(`${counts[status]} 人${status}`);
+  if (!parts.length && want) parts.push(`${want} 人想跑`);
   if (!parts.length) return "还没有人标这场";
   return parts.join("，");
 }

@@ -14,6 +14,8 @@
         <pre class="share-text">{{ call.shareText }}</pre>
         <button class="primary" type="button" @click="copy(call.shareText, '文字已复制，可以贴到微信群')">复制到微信群</button>
         <button class="undo" type="button" @click="copy(call.boardText, '成绩榜已复制')">复制成绩榜</button>
+        <button class="undo" type="button" @click="makePoster">生成成绩长图</button>
+        <button class="undo" type="button" @click="downloadCsv">导出完整 CSV</button>
       </div>
       <form v-if="!call.closed" class="block" @submit.prevent="submitOwn">
         <h2>填写</h2>
@@ -57,8 +59,15 @@
         <button class="primary" type="submit">补录</button>
       </form>
     </template>
+    <section v-else class="block detail-state" aria-live="polite">
+      <p v-if="loading">正在打开成绩接龙…</p>
+      <div v-else role="alert"><p>{{ message || '成绩接龙暂时无法打开' }}</p><button class="primary" type="button" @click="retry">重新加载</button></div>
+    </section>
     <p v-if="note" class="note">{{ note }}</p>
-    <p v-if="message" class="err">{{ message }}</p>
+    <p v-if="call && message" class="err">{{ message }}</p>
+    <div v-if="posterUrl" class="poster-overlay" @click="posterUrl = ''">
+      <div class="poster-preview" @click.stop><img :src="posterUrl" alt="成绩接龙长图" /><p>长按图片保存</p></div>
+    </div>
   </main>
 </template>
 
@@ -67,10 +76,12 @@ import { computed, onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import { api, callSheetSrc, upload } from "../api";
 import { copyText } from "../copy";
+import { callCsv, renderResultPoster } from "../result-poster";
 
 const route = useRoute();
 const clubId = route.params.id;
 const call = ref(null);
+const loading = ref(true);
 const staff = ref(false);
 const distance = ref("");
 const time = ref("");
@@ -80,6 +91,7 @@ const forDistance = ref("");
 const forTime = ref("");
 const message = ref("");
 const note = ref("");
+const posterUrl = ref("");
 
 const labels = { full: "全马", half: "半马", "10k": "10公里", "5k": "5公里" };
 
@@ -191,13 +203,38 @@ async function copy(text, ok) {
   }
 }
 
-onMounted(async () => {
+function makePoster() {
+  try {
+    posterUrl.value = renderResultPoster(call.value);
+    message.value = "";
+  } catch (err) {
+    message.value = "长图没有生成，请稍后重试";
+  }
+}
+
+function downloadCsv() {
+  const blob = new Blob([callCsv(call.value)], { type: "text/csv;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "跑团成绩接龙.csv";
+  link.click();
+  window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+async function retry() {
+  loading.value = true;
+  message.value = "";
   try {
     await load();
   } catch (err) {
+    call.value = null;
     message.value = err.message;
+  } finally {
+    loading.value = false;
   }
-});
+}
+onMounted(retry);
 </script>
 
 <style scoped>
@@ -213,4 +250,8 @@ onMounted(async () => {
 .sheet { width: 100%; margin-top: 8px; border-radius: 8px; }
 .file-pick { display: inline-block; margin-top: 8px; color: var(--accent); }
 .file-pick input { display: none; }
+.poster-overlay { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; padding: 20px; background: rgba(20, 22, 28, .72); }
+.poster-preview { max-width: min(100%, 520px); max-height: 100%; overflow: auto; text-align: center; }
+.poster-preview img { display: block; width: min(100%, 480px); margin: auto; }
+.poster-preview p { color: #fff; font-size: 13px; }
 </style>

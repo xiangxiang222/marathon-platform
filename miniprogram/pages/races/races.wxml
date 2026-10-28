@@ -16,7 +16,9 @@
       <view class="kind-tabs">
         <view wx:for="{{kinds}}" wx:key="kind" class="kind-tab {{kind === item.kind ? 'on' : ''}}" data-kind="{{item.kind}}" bindtap="setKind">{{item.short}}</view>
       </view>
-      <view style="margin: 4rpx 24rpx 0; color: #8a8e99; font-size: 12px; line-height: 18px;">类型：路跑 / 越野 · 方式：线上 / 线下</view>
+      <view class="kind-tabs meet-tabs">
+        <view wx:for="{{meets}}" wx:key="meet" class="kind-tab {{meet === item.meet ? 'on' : ''}}" data-meet="{{item.meet}}" bindtap="setMeet">{{item.short}}</view>
+      </view>
       <view class="quick-entries">
         <navigator class="quick-entry" url="/pages/calendar/calendar">
           <image class="quick-icon" src="/images/quick-calendar.png" mode="aspectFit" />
@@ -65,7 +67,7 @@
       <view class="filter-chip {{half ? 'on' : ''}}" data-which="half" bindtap="toggleDist">半程马拉松</view>
       <view class="filter-chip {{sheet === 'status' ? 'on' : ''}}" data-sheet="status" bindtap="openSheet">筛选</view>
     </scroll-view>
-    <view wx:if="{{message}}" class="page-error">{{message}}</view>
+    <view wx:if="{{message}}" class="page-error"><text>{{message}}</text><text class="retry" bindtap="load">重试</text></view>
     <view wx:if="{{!loaded && !message}}" class="empty">正在加载赛事…</view>
     <navigator wx:for="{{races}}" wx:key="id" class="race" url="/pages/race/race?id={{item.id}}">
       <view class="date">

@@ -131,45 +131,46 @@ function feeBlocksSignup(db, clubId, userId) {
   return "会费还没确认，暂时不能报名";
 }
 
-function feePeople(db, clubId, periodId) {
+function feePeople(db, clubId, period) {
+  const memberSource = period.open
+    ? "SELECT user_id FROM club_members WHERE club_id = @clubId"
+    : "SELECT user_id FROM fee_records WHERE period_id = @periodId";
   return db
     .prepare(
-      `SELECT u.id AS userId, u.nickname, COALESCE(r.status, 'unpaid') AS status
-       FROM (
-         SELECT user_id FROM club_members WHERE club_id = ?
-         UNION
-         SELECT user_id FROM fee_records WHERE period_id = ?
-       ) ids
+      `SELECT u.id AS userId, u.nickname, COALESCE(r.status, 'unpaid') AS status,
+              CASE WHEN @open THEN 0 ELSE COALESCE(r.departed, 0) END AS departed
+       FROM (${memberSource}) ids
        JOIN users u ON u.id = ids.user_id
-       LEFT JOIN fee_records r ON r.period_id = ? AND r.user_id = u.id
+       LEFT JOIN fee_records r ON r.period_id = @periodId AND r.user_id = u.id
        ORDER BY u.nickname`
     )
-    .all(clubId, periodId, periodId);
+    .all({ clubId, periodId: period.id, open: period.open ? 1 : 0 });
 }
 
 function feeCopy(people) {
   const paid = [];
   const unpaid = [];
   for (const person of people) {
-    if (person.status === "paid") paid.push(person.nickname);
-    else if (person.status === "waived") paid.push(person.nickname + "（免交）");
-    else if (person.status === "pending") unpaid.push(person.nickname + "（待确认）");
-    else unpaid.push(person.nickname);
+    const name = person.nickname + (person.departed ? "（已离团）" : "");
+    if (person.status === "paid") paid.push(name);
+    else if (person.status === "waived") paid.push(name + "（免交）");
+    else if (person.status === "pending") unpaid.push(name + "（待确认）");
+    else unpaid.push(name);
   }
   return "已交：" + (paid.join("、") || "无") + "\n未交：" + (unpaid.join("、") || "无");
 }
 
 function presentPeriod(db, clubId, period, userId) {
-  const people = feePeople(db, clubId, period.id);
+  const people = feePeople(db, clubId, period);
   const mineRow = people.find((person) => person.userId === userId);
-  const mineStatus = mineRow ? mineRow.status : "unpaid";
+  const mineStatus = mineRow ? mineRow.status : period.open ? "unpaid" : "";
   const groups = FEE_ORDER.map((status) => ({
     status,
     label: FEE_LABEL[status],
     people: people
       .filter((person) => person.status === status)
       .sort((a, b) => a.nickname.localeCompare(b.nickname, "zh"))
-      .map((person) => ({ userId: person.userId, nickname: person.nickname }))
+      .map((person) => ({ userId: person.userId, nickname: person.nickname, departed: Boolean(person.departed) }))
   }));
   return {
     id: period.id,
@@ -180,7 +181,7 @@ function presentPeriod(db, clubId, period, userId) {
     note: period.note,
     blockSignup: Boolean(period.block_signup),
     open: Boolean(period.open),
-    mine: { status: mineStatus, label: FEE_LABEL[mineStatus] || "未交" },
+    mine: { status: mineStatus, label: mineRow ? FEE_LABEL[mineStatus] || "未交" : period.open ? "未交" : "未列入本期" },
     groups,
     copyText: feeCopy(people)
   };
@@ -316,6 +317,9 @@ function syncCareer(db, call, userId, removed) {
 
 function presentCall(db, call, userId) {
   const distances = callDistances(call);
+  const club = db.prepare("SELECT id, owner_id FROM clubs WHERE id = ?").get(call.club_id);
+  const role = club ? memberRole(db, club, userId) : "";
+  const staff = role === "owner" || role === "manager";
   const rows = db
     .prepare(
       `SELECT r.id, r.user_id AS userId, u.nickname, r.distance, r.seconds, r.filename, r.staff_filled AS staffFilled,
@@ -326,15 +330,18 @@ function presentCall(db, call, userId) {
        ORDER BY r.seconds, u.nickname`
     )
     .all(call.id);
-  const tagged = rows.map((row) => ({
-    ...row,
-    clock: formatClock(row.seconds),
-    distanceLabel: distanceLabel(row.distance, call.other_km),
-    tag: rowTag(db, call, row),
-    staffFilled: Boolean(row.staffFilled),
-    hasSheet: Boolean(row.filename),
-    mine: row.userId === userId
-  }));
+  const tagged = rows.map((row) => {
+    const { filename, ...visibleRow } = row;
+    return {
+      ...visibleRow,
+      clock: formatClock(row.seconds),
+      distanceLabel: distanceLabel(row.distance, call.other_km),
+      tag: rowTag(db, call, row),
+      staffFilled: Boolean(row.staffFilled),
+      hasSheet: Boolean(filename) && (staff || row.userId === userId),
+      mine: row.userId === userId
+    };
+  });
   const pbs = tagged
     .filter((row) => row.tag === "PB")
     .sort(
@@ -443,6 +450,20 @@ function mountClubOps(app, { BASE, getDb, userFrom }) {
     if (input.error) return res.status(400).json({ error: input.error });
     const now = new Date().toISOString();
     const info = ctx.db.transaction(() => {
+      const current = ctx.db.prepare("SELECT id FROM fee_periods WHERE club_id = ? AND open = 1").get(ctx.club.id);
+      if (current) {
+        ctx.db.prepare(
+          `INSERT OR IGNORE INTO fee_records (period_id, user_id, status, updated_at)
+           SELECT ?, user_id, 'unpaid', ? FROM club_members WHERE club_id = ?`
+        ).run(current.id, now, ctx.club.id);
+        ctx.db.prepare(
+          `UPDATE fee_records
+           SET departed = CASE WHEN EXISTS (
+             SELECT 1 FROM club_members m WHERE m.club_id = ? AND m.user_id = fee_records.user_id
+           ) THEN 0 ELSE 1 END
+           WHERE period_id = ?`
+        ).run(ctx.club.id, current.id);
+      }
       ctx.db.prepare("UPDATE fee_periods SET open = 0 WHERE club_id = ? AND open = 1").run(ctx.club.id);
       return ctx.db
         .prepare(
@@ -477,6 +498,7 @@ function mountClubOps(app, { BASE, getDb, userFrom }) {
     if (!isStaff(ctx)) return res.status(403).json({ error: "只有团长或跑团管理可以改" });
     const period = ctx.db.prepare("SELECT * FROM fee_periods WHERE id = ? AND club_id = ?").get(req.params.pid, ctx.club.id);
     if (!period) return res.status(404).json({ error: "没有这一期会费" });
+    if (!period.open) return res.status(400).json({ error: "这一期已经结束" });
     const userId = Number(req.body && req.body.userId);
     const status = String((req.body && req.body.status) || "");
     const allowed = { paid: "paid", unpaid: "unpaid", waived: "waived" };
@@ -685,15 +707,17 @@ function mountClubOps(app, { BASE, getDb, userFrom }) {
     if (!user) return res.status(401).json({ error: "请先登录" });
     const row = getDb()
       .prepare(
-        `SELECT r.filename, c.club_id
+        `SELECT r.filename, r.user_id, club.id AS club_id, club.owner_id
          FROM result_call_rows r
-         JOIN result_calls c ON c.id = r.call_id
+         JOIN result_calls call ON call.id = r.call_id
+         JOIN clubs club ON club.id = call.club_id
          WHERE r.id = ?`
       )
       .get(req.params.rid);
     if (!row || !row.filename) return res.status(404).json({ error: "没有这张截图" });
-    const member = getDb().prepare("SELECT 1 FROM club_members WHERE club_id = ? AND user_id = ?").get(row.club_id, user.id);
-    if (!member) return res.status(403).json({ error: "你不在这个跑团里" });
+    const role = memberRole(getDb(), { id: row.club_id, owner_id: row.owner_id }, user.id);
+    if (!role) return res.status(403).json({ error: "你不在这个跑团里" });
+    if (row.user_id !== user.id && role !== "owner" && role !== "manager") return res.status(403).json({ error: "成绩截图只对本人和跑团管理开放" });
     const file = path.join(mediaRoot(), "calls", path.basename(row.filename));
     if (!fs.existsSync(file)) return res.status(404).json({ error: "没有这张截图" });
     const photo = sniffPhoto(fs.readFileSync(file));

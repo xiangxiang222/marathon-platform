@@ -7,7 +7,7 @@ const { presentRace, inChannel, summarizeMarks, cardTitle, shareText, reminderHi
 const { slicePage } = require("./page");
 const { parseClock, decorateResults, careerOf, yearOf, bestRanks } = require("./career");
 const { syncOfficial, listOfficial, publishOfficial, openUpcoming, ignoreOfficial, applyOfficial } = require("./official");
-const { ensureAdmin, ensureDeskLogin, loginAdmin, adminSession, logoutAdmin, changeAdminPassword, listAdmins, createAdmin, setAdminRole } = require("./admin-auth");
+const { ensureAdmin, loginAdmin, adminSession, logoutAdmin, changeAdminPassword, listAdmins, createAdmin, setAdminRole } = require("./admin-auth");
 const { adminRoleLabel, clubRoleLabel } = require("./roles");
 const { mountClubLife, enrichBoard, clubLife } = require("./club-life");
 const { mountMileage } = require("./mileage");
@@ -220,6 +220,7 @@ app.get(BASE + "/api/races", (req, res) => {
   const distance = String(req.query.distance || "").trim();
   const status = String(req.query.status || "open");
   const kind = String(req.query.kind || "").trim();
+  const meet = String(req.query.meet || "").trim();
   const fold = (value) => String(value || "").replace(/\s+/g, "").toLowerCase();
   if (q) {
     const needle = fold(q);
@@ -229,6 +230,7 @@ app.get(BASE + "/api/races", (req, res) => {
   if (!q && month) rows = rows.filter((r) => r.raceDate.slice(0, 7) === month);
   if (!q && distance) rows = rows.filter((r) => r.distances.includes(distance));
   if (!q && kind) rows = rows.filter((r) => inChannel(r, kind));
+  if (!q && meet) rows = rows.filter((r) => r.meet === meet);
   if (!q && status === "upcoming") {
     const today = cstDay(now);
     rows = rows.filter((r) => r.raceDate >= today);
@@ -939,8 +941,7 @@ function requestClubMembership(db, club, userId) {
 }
 
 app.get(BASE + "/api/clubs/directory", (req, res) => {
-  const user = requireUser(req, res);
-  if (!user) return;
+  const user = userFrom(req);
   const q = String(req.query.q || "").trim().slice(0, 40);
   const escaped = q.replace(/[\\%_]/g, (ch) => "\\" + ch);
   const like = "%" + escaped + "%";
@@ -983,7 +984,7 @@ app.get(BASE + "/api/clubs/directory", (req, res) => {
          c.id DESC
        LIMIT 200`
     )
-    .all(user.id, user.id, q, like, like, like, folded, folded, folded, q, prefix, like)
+    .all(user ? user.id : 0, user ? user.id : 0, q, like, like, like, folded, folded, folded, q, prefix, like)
     .map((row) => ({
       id: row.id,
       name: row.name,
@@ -1059,6 +1060,25 @@ app.get(BASE + "/api/clubs/:id", (req, res) => {
     }
     item.marks.push({ userId: row.user_id, nickname: row.nickname, status: row.status });
   }
+  const finished = getDb().prepare(
+    `SELECT DISTINCT u.id AS user_id, u.nickname, r.* FROM results res
+     JOIN users u ON u.id = res.user_id
+     JOIN races r ON r.id = res.race_id
+     JOIN club_members m ON m.user_id = u.id AND m.club_id = ?
+     ORDER BY r.race_date, u.id`
+  ).all(club.id);
+  for (const row of finished) {
+    const race = presentRace(row, new Date());
+    let item = board.find((entry) => entry.race.id === race.id);
+    if (!item) {
+      item = { race, marks: [] };
+      board.push(item);
+    }
+    if (!item.marks.some((mark) => mark.userId === row.user_id)) {
+      item.marks.push({ userId: row.user_id, nickname: row.nickname, status: "完赛" });
+    }
+  }
+  board.sort((left, right) => String(left.race.raceDate).localeCompare(String(right.race.raceDate)));
   for (const item of board) {
     const counts = {};
     for (const status of STATUSES) counts[status] = 0;
@@ -1324,7 +1344,6 @@ if (require.main === module) {
   app.listen(port, () => {
     console.log(`marathon listening on ${port} base ${BASE}`);
     ensureAdmin(getDb());
-    ensureDeskLogin(getDb());
     const released = openUpcoming(getDb());
     console.log(`official released ${released}`);
     if (!process.env.ADMIN_TOKEN) return;

@@ -5,6 +5,10 @@
       <h1>约跑</h1>
       <span></span>
     </header>
+    <section v-if="loading && !meetup" class="recovery-state" role="status">正在加载约跑…</section>
+    <section v-else-if="loadError" class="recovery-state" role="alert">
+      <p>{{ loadError }}</p><button type="button" class="primary" :disabled="loading" @click="retryLoad">{{ loading ? '正在重试…' : '重新加载' }}</button>
+    </section>
     <template v-if="meetup">
       <div class="block">
         <h2>{{ meetup.dateLabel }} {{ meetup.place }}</h2>
@@ -58,7 +62,7 @@
       </div>
     </template>
     <p v-if="note" class="note">{{ note }}</p>
-    <p v-if="message" class="err">{{ message }}</p>
+    <p v-if="message && message !== loadError" class="err">{{ message }}</p>
   </main>
 </template>
 
@@ -75,16 +79,38 @@ const members = ref([]);
 const forUser = ref("");
 const message = ref("");
 const note = ref("");
+const loading = ref(false);
+const loadError = ref("");
 
 function photoSrc(id) {
   return meetupPhotoSrc(clubId, route.params.mid, id);
 }
 
 async function load() {
-  const data = await api("/clubs/" + clubId + "/meetups/" + route.params.mid);
-  meetup.value = data.meetup;
-  const club = await api("/clubs/" + clubId);
-  members.value = club.members || [];
+  loading.value = true;
+  loadError.value = "";
+  try {
+    const [data, club] = await Promise.all([
+      api("/clubs/" + clubId + "/meetups/" + route.params.mid),
+      api("/clubs/" + clubId)
+    ]);
+    meetup.value = data.meetup;
+    members.value = club.members || [];
+  } catch (err) {
+    loadError.value = err.message;
+    throw err;
+  } finally {
+    loading.value = false;
+  }
+}
+
+async function retryLoad() {
+  message.value = "";
+  try {
+    await load();
+  } catch (err) {
+    message.value = err.message;
+  }
 }
 
 async function act(path, method) {
@@ -147,17 +173,13 @@ async function copy(text) {
   }
 }
 
-onMounted(async () => {
-  try {
-    await load();
-  } catch (err) {
-    message.value = err.message;
-  }
-});
+onMounted(retryLoad);
 </script>
 
 <style scoped>
 .rank-label { margin: 8px 0 0; color: var(--muted); font-size: 12px; }
+.recovery-state { margin: 16px; padding: 24px 16px; border-radius: 12px; background: #fff; color: var(--muted); text-align: center; font-size: 14px; }
+.recovery-state p { margin: 0 0 12px; overflow-wrap: anywhere; }
 .sum { margin: 10px 0 0; font-weight: 600; }
 .share-text { margin: 8px 0 0; font: inherit; white-space: pre-wrap; line-height: 1.5; }
 .primary { margin-top: 8px; }

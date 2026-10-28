@@ -1,5 +1,6 @@
 const { request } = require("../../utils/request");
 const { baseUrl } = require("../../config");
+const { renderCallPoster } = require("../../utils/call-poster");
 
 const LABELS = { full: "全马", half: "半马", "10k": "10公里", "5k": "5公里" };
 
@@ -18,6 +19,7 @@ Page({
     forDistance: "",
     forLabel: "",
     forTime: "",
+    posterPath: "",
     message: ""
   },
   onLoad(query) {
@@ -166,5 +168,31 @@ Page({
   },
   copyText(e) {
     wx.setClipboardData({ data: e.currentTarget.dataset.text || "" });
+  },
+  noop() {},
+  closePoster() {
+    this.setData({ posterPath: "" });
+  },
+  exportPoster() {
+    if (!this.data.call) return;
+    this.createSelectorQuery()
+      .select("#call-poster")
+      .fields({ node: true })
+      .exec((res) => {
+        const canvas = res && res[0] && res[0].node;
+        if (!canvas) {
+          this.setData({ message: "成绩长图没有生成" });
+          return;
+        }
+        const size = renderCallPoster(canvas, this.data.call);
+        wx.canvasToTempFilePath({
+          canvas,
+          destWidth: size.width,
+          destHeight: size.height,
+          fileType: "png",
+          success: (file) => this.setData({ posterPath: file.tempFilePath, message: "" }),
+          fail: () => this.setData({ message: "成绩长图没有生成" })
+        });
+      });
   }
 });

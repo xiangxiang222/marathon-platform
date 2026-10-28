@@ -48,6 +48,7 @@ a { color: inherit; text-decoration: none; }
   box-shadow: none;
   padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
 }
+.stage.wide { width: 100%; padding-bottom: 0; }
 @media (min-width: 900px) {
   .stage.wide {
     width: 100%;
@@ -481,3 +482,7 @@ a { color: inherit; text-decoration: none; }
 .pager button.on { background: var(--accent); color: #fff; }
 .pager button.step { min-width: 0; padding: 0 4px; background: transparent; color: var(--accent); }
 .pager button.step:disabled { color: #c9ccd3; cursor: default; }
+.load-error { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 14px 0; padding: 12px 14px; border-radius: 8px; background: #fff0f3; color: #9d2939; }
+.load-error button { flex: none; padding: 8px 12px; border-radius: 6px; background: #ff0a30; color: #fff; }
+.detail-state { color: var(--muted); line-height: 1.7; }
+.detail-state [role="alert"] > p { color: #9d2939; }

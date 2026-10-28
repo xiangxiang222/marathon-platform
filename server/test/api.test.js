@@ -132,6 +132,217 @@ test("marking a race requires a nickname and a known status", async () => {
   assert.equal(me.body.plans[0].race.id, "bishan");
 });
 
+test("a member can leave only their own club, cancel upcoming signups, and apply again", async () => {
+  const owner = await session("自主退团团长");
+  const member = await session("自主退团队友");
+  const outsider = await session("自主退团旁人");
+  const ownerAuth = { Authorization: "Bearer " + owner };
+  const memberAuth = { Authorization: "Bearer " + member };
+  const created = await createClub(ownerAuth, "自主退团测试团");
+  const club = created.body.club;
+  await joinWithCode(member, club.code);
+  const db = getDb();
+  const memberId = db.prepare("SELECT id FROM users WHERE token = ?").get(member).id;
+  const ownerId = db.prepare("SELECT id FROM users WHERE token = ?").get(owner).id;
+  const now = new Date().toISOString();
+  const today = new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10);
+  const tomorrow = new Date(Date.now() + 8 * 3600 * 1000 + 24 * 3600 * 1000).toISOString().slice(0, 10);
+  const activity = db.prepare("INSERT INTO activities (club_id, title, starts_at, created_at) VALUES (?, ?, ?, ?)");
+  const pastActivity = Number(activity.run(club.id, "历史团练", "2001-01-01T06:00", now).lastInsertRowid);
+  const nextActivity = Number(activity.run(club.id, "未来团练", "2099-01-01T06:00", now).lastInsertRowid);
+  const signup = db.prepare("INSERT INTO activity_signups (activity_id, user_id, created_at) VALUES (?, ?, ?)");
+  signup.run(pastActivity, memberId, now);
+  signup.run(nextActivity, memberId, now);
+  signup.run(nextActivity, ownerId, now);
+  db.prepare("INSERT INTO activity_checks (activity_id, user_id, km, created_at) VALUES (?, ?, 10, ?)").run(pastActivity, memberId, now);
+  const earlyCheck = await request(app).post("/marathon/api/clubs/" + club.id + "/activities/" + nextActivity + "/check").set(memberAuth).send({ km: 10 });
+  assert.equal(earlyCheck.status, 400);
+  assert.match(earlyCheck.body.error, /还未开始/);
+  assert.equal(db.prepare("SELECT COUNT(*) AS n FROM activity_checks WHERE activity_id = ? AND user_id = ?").get(nextActivity, memberId).n, 0);
+  const meetup = db.prepare("INSERT INTO meetups (club_id, run_on, place, created_at) VALUES (?, ?, '奥森', ?)");
+  const pastMeetup = Number(meetup.run(club.id, "2001-01-01", now).lastInsertRowid);
+  const nextMeetup = Number(meetup.run(club.id, tomorrow, now).lastInsertRowid);
+  const todayMeetup = Number(meetup.run(club.id, today, now).lastInsertRowid);
+  const checkedMeetup = Number(meetup.run(club.id, today, now).lastInsertRowid);
+  const join = db.prepare("INSERT INTO meetup_joins (meetup_id, user_id, created_at) VALUES (?, ?, ?)");
+  for (const mid of [pastMeetup, nextMeetup, todayMeetup, checkedMeetup]) join.run(mid, memberId, now);
+  db.prepare("INSERT INTO meetup_checks (meetup_id, user_id, created_at) VALUES (?, ?, ?)").run(checkedMeetup, memberId, now);
+  const internal = db.prepare("INSERT INTO internal_races (club_id, title, starts_at, deadline, distance, created_at) VALUES (?, '队内赛', ?, ?, '10k', ?)");
+  const pastRace = Number(internal.run(club.id, "2001-01-01T06:00", "2001-01-01T05:00", now).lastInsertRowid);
+  const nextRace = Number(internal.run(club.id, "2099-01-01T06:00", "2099-01-01T05:00", now).lastInsertRowid);
+  const internalSignup = db.prepare("INSERT INTO internal_signups (race_id, user_id, group_id, created_at) VALUES (?, ?, 0, ?)");
+  internalSignup.run(pastRace, memberId, now);
+  internalSignup.run(nextRace, memberId, now);
+  db.prepare("INSERT INTO internal_results (race_id, user_id, outcome, seconds, updated_at) VALUES (?, ?, 'finished', 3000, ?)").run(pastRace, memberId, now);
+  db.prepare("INSERT INTO point_entries (club_id, user_id, delta, reason, created_at) VALUES (?, ?, 2, '历史出勤', ?)").run(club.id, memberId, now);
+  await request(app).put("/marathon/api/me/races/bishan/result").set(memberAuth).send({ distance: "full", time: "3:30:00" });
+  const approvedRequest = db.prepare("SELECT id FROM club_requests WHERE club_id = ? AND user_id = ? AND status = 'approved'").get(club.id, memberId);
+  // Even a stale pending request must not resurrect membership after leaving.
+  db.prepare("INSERT INTO club_requests (club_id, user_id, status, created_at) VALUES (?, ?, 'pending', ?)").run(club.id, memberId, now);
+
+  assert.equal((await request(app).post("/marathon/api/clubs/" + club.id + "/leave")).status, 401);
+  assert.equal((await request(app).post("/marathon/api/clubs/" + club.id + "/leave").set("Authorization", "Bearer " + outsider)).status, 403);
+  const another = await request(app).post("/marathon/api/clubs/" + club.id + "/leave").set(memberAuth).send({ userId: ownerId });
+  assert.equal(another.status, 400);
+  assert.ok(db.prepare("SELECT 1 FROM club_members WHERE club_id = ? AND user_id = ?").get(club.id, memberId));
+  const noOwner = await request(app).post("/marathon/api/clubs/" + club.id + "/leave").set(ownerAuth);
+  assert.equal(noOwner.status, 400);
+  assert.match(noOwner.body.error, /移交/);
+
+  const left = await request(app).post("/marathon/api/clubs/" + club.id + "/leave").set(memberAuth);
+  assert.equal(left.status, 200);
+  assert.deepEqual(left.body.removedSignups, { activities: 1, meetups: 1, internalRaces: 1 });
+  assert.equal((await request(app).get("/marathon/api/clubs/" + club.id).set(memberAuth)).status, 403);
+  assert.equal((await request(app).post("/marathon/api/clubs/" + club.id + "/leave").set(memberAuth)).status, 403);
+  assert.ok(db.prepare("SELECT 1 FROM activity_signups WHERE activity_id = ? AND user_id = ?").get(pastActivity, memberId));
+  assert.ok(db.prepare("SELECT 1 FROM activity_checks WHERE activity_id = ? AND user_id = ?").get(pastActivity, memberId));
+  assert.ok(db.prepare("SELECT 1 FROM activity_signups WHERE activity_id = ? AND user_id = ?").get(nextActivity, ownerId));
+  assert.ok(db.prepare("SELECT 1 FROM meetup_joins WHERE meetup_id = ? AND user_id = ?").get(pastMeetup, memberId));
+  assert.ok(db.prepare("SELECT 1 FROM meetup_joins WHERE meetup_id = ? AND user_id = ?").get(todayMeetup, memberId));
+  assert.ok(db.prepare("SELECT 1 FROM meetup_joins WHERE meetup_id = ? AND user_id = ?").get(checkedMeetup, memberId));
+  assert.ok(db.prepare("SELECT 1 FROM internal_signups WHERE race_id = ? AND user_id = ?").get(pastRace, memberId));
+  assert.ok(db.prepare("SELECT 1 FROM internal_results WHERE race_id = ? AND user_id = ?").get(pastRace, memberId));
+  assert.equal(db.prepare("SELECT SUM(delta) AS n FROM point_entries WHERE club_id = ? AND user_id = ?").get(club.id, memberId).n, 2);
+  assert.ok(db.prepare("SELECT 1 FROM results WHERE user_id = ? AND race_id = 'bishan'").get(memberId));
+  assert.ok(db.prepare("SELECT 1 FROM plans WHERE user_id = ? AND race_id = 'bishan'").get(memberId));
+  assert.equal(db.prepare("SELECT status FROM club_requests WHERE id = ?").get(approvedRequest.id).status, "approved");
+  assert.equal(db.prepare("SELECT COUNT(*) AS n FROM club_requests WHERE club_id = ? AND user_id = ? AND status = 'pending'").get(club.id, memberId).n, 0);
+
+  const applied = await request(app).post("/marathon/api/clubs/join").set(memberAuth).send({ clubId: club.id });
+  assert.equal(applied.status, 200);
+  assert.equal(applied.body.pending, true);
+  const pending = db.prepare("SELECT id FROM club_requests WHERE club_id = ? AND user_id = ? AND status = 'pending'").get(club.id, memberId);
+  assert.notEqual(pending.id, approvedRequest.id);
+  assert.equal((await request(app).get("/marathon/api/clubs/" + club.id).set(memberAuth)).status, 403);
+  assert.equal((await request(app).post("/marathon/api/clubs/" + club.id + "/requests/" + pending.id).set(ownerAuth).send({ decision: "approve" })).status, 200);
+  assert.equal((await request(app).get("/marathon/api/clubs/" + club.id).set(memberAuth)).status, 200);
+  assert.equal(db.prepare("SELECT COUNT(*) AS n FROM activity_signups WHERE activity_id = ? AND user_id = ?").get(nextActivity, memberId).n, 0);
+});
+
+test("club and platform admins remove members and their future signups in one transaction", async () => {
+  const owner = await session("移出清理团长");
+  const manager = await session("移出清理管理员");
+  const clubMember = await session("团内接口移出对象");
+  const deskMember = await session("后台接口移出对象");
+  const ownerAuth = { Authorization: "Bearer " + owner };
+  const managerAuth = { Authorization: "Bearer " + manager };
+  const created = await createClub(ownerAuth, "移出报名清理团");
+  const clubId = created.body.club.id;
+  await joinWithCode(manager, created.body.club.code);
+  await joinWithCode(clubMember, created.body.club.code);
+  await joinWithCode(deskMember, created.body.club.code);
+  const db = getDb();
+  const uid = (token) => db.prepare("SELECT id FROM users WHERE token = ?").get(token).id;
+  const managerId = uid(manager);
+  const clubMemberId = uid(clubMember);
+  const deskMemberId = uid(deskMember);
+  const ownerId = uid(owner);
+  assert.equal((await request(app).put("/marathon/api/clubs/" + clubId + "/members/" + managerId).set(ownerAuth).send({ role: "manager" })).status, 200);
+
+  const now = new Date().toISOString();
+  const yesterday = new Date(Date.now() + 8 * 3600 * 1000 - 24 * 3600 * 1000).toISOString().slice(0, 10);
+  const today = new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10);
+  const tomorrow = new Date(Date.now() + 8 * 3600 * 1000 + 24 * 3600 * 1000).toISOString().slice(0, 10);
+  const activityInsert = db.prepare("INSERT INTO activities (club_id, title, starts_at, created_at) VALUES (?, ?, ?, ?)");
+  const meetupInsert = db.prepare("INSERT INTO meetups (club_id, run_on, place, created_at) VALUES (?, ?, '奥森', ?)");
+  const raceInsert = db.prepare("INSERT INTO internal_races (club_id, title, starts_at, deadline, distance, created_at) VALUES (?, ?, ?, ?, '10k', ?)");
+  const signup = db.prepare("INSERT INTO activity_signups (activity_id, user_id, created_at) VALUES (?, ?, ?)");
+  const meetupJoin = db.prepare("INSERT INTO meetup_joins (meetup_id, user_id, created_at) VALUES (?, ?, ?)");
+  const raceSignup = db.prepare("INSERT INTO internal_signups (race_id, user_id, group_id, created_at) VALUES (?, ?, 0, ?)");
+  const records = new Map();
+  for (const [label, targetId] of [["club", clubMemberId], ["desk", deskMemberId]]) {
+    const pastActivity = Number(activityInsert.run(clubId, label + " 历史训练", "2001-01-01T06:00", now).lastInsertRowid);
+    const futureActivity = Number(activityInsert.run(clubId, label + " 未来训练", "2099-01-01T06:00", now).lastInsertRowid);
+    signup.run(pastActivity, targetId, now);
+    signup.run(futureActivity, targetId, now);
+    signup.run(futureActivity, ownerId, now);
+    const groupId = Number(db.prepare("INSERT INTO activity_groups (activity_id, name, capacity) VALUES (?, '限额组', 2)").run(futureActivity).lastInsertRowid);
+    db.prepare("UPDATE activity_signups SET group_id = ? WHERE activity_id = ?").run(groupId, futureActivity);
+    db.prepare("INSERT INTO activity_checks (activity_id, user_id, km, created_at) VALUES (?, ?, 10, ?)").run(futureActivity, targetId, now);
+    db.prepare("INSERT INTO point_entries (club_id, user_id, delta, reason, ref_key, created_at) VALUES (?, ?, 2, '已记积分', ?, ?)").run(clubId, targetId, "act:" + futureActivity + ":" + targetId, now);
+    const fullBeforeRemoval = await request(app).post("/marathon/api/clubs/" + clubId + "/activities/" + futureActivity + "/signup").set(managerAuth).send({ groupId });
+    assert.equal(fullBeforeRemoval.status, 400);
+    assert.match(fullBeforeRemoval.body.error, /满了/);
+
+    const pastMeetup = Number(meetupInsert.run(clubId, yesterday, now).lastInsertRowid);
+    const todayMeetup = Number(meetupInsert.run(clubId, today, now).lastInsertRowid);
+    const futureMeetup = Number(meetupInsert.run(clubId, tomorrow, now).lastInsertRowid);
+    const checkedFutureMeetup = Number(meetupInsert.run(clubId, "2099-01-01", now).lastInsertRowid);
+    for (const meetupId of [pastMeetup, todayMeetup, futureMeetup, checkedFutureMeetup]) meetupJoin.run(meetupId, targetId, now);
+    db.prepare("INSERT INTO meetup_checks (meetup_id, user_id, created_at) VALUES (?, ?, ?)").run(checkedFutureMeetup, targetId, now);
+
+    const pastRace = Number(raceInsert.run(clubId, label + " 历史队内赛", "2001-01-01T06:00", "2001-01-01T05:00", now).lastInsertRowid);
+    const futureRace = Number(raceInsert.run(clubId, label + " 未来队内赛", "2099-01-01T06:00", "2099-01-01T05:00", now).lastInsertRowid);
+    const resultRace = Number(raceInsert.run(clubId, label + " 有成绩队内赛", "2099-01-02T06:00", "2099-01-02T05:00", now).lastInsertRowid);
+    raceSignup.run(pastRace, targetId, now);
+    raceSignup.run(futureRace, targetId, now);
+    raceSignup.run(resultRace, targetId, now);
+    db.prepare("INSERT INTO internal_results (race_id, user_id, outcome, seconds, updated_at) VALUES (?, ?, 'finished', 3000, ?)").run(resultRace, targetId, now);
+    db.prepare("INSERT INTO club_requests (club_id, user_id, status, created_at) VALUES (?, ?, 'pending', ?)").run(clubId, targetId, now);
+    records.set(label, { targetId, groupId, pastActivity, futureActivity, pastMeetup, todayMeetup, futureMeetup, checkedFutureMeetup, pastRace, futureRace, resultRace });
+  }
+
+  const adminAuth = { Authorization: "Bearer " + process.env.ADMIN_TOKEN };
+  const removedInClub = await request(app).delete("/marathon/api/clubs/" + clubId + "/members/" + clubMemberId).set(managerAuth);
+  const removedInDesk = await request(app).delete("/marathon/api/admin/clubs/" + clubId + "/members/" + deskMemberId).set(adminAuth);
+  for (const [response, label, token] of [[removedInClub, "club", clubMember], [removedInDesk, "desk", deskMember]]) {
+    assert.equal(response.status, 200);
+    assert.deepEqual(response.body.removedSignups, { activities: 1, meetups: 1, internalRaces: 1 });
+    const row = records.get(label);
+    assert.equal(db.prepare("SELECT COUNT(*) AS n FROM club_members WHERE club_id = ? AND user_id = ?").get(clubId, row.targetId).n, 0);
+    assert.ok(db.prepare("SELECT 1 FROM activity_signups WHERE activity_id = ? AND user_id = ?").get(row.pastActivity, row.targetId));
+    assert.equal(db.prepare("SELECT COUNT(*) AS n FROM activity_signups WHERE activity_id = ? AND user_id = ?").get(row.futureActivity, row.targetId).n, 0);
+    assert.ok(db.prepare("SELECT 1 FROM activity_signups WHERE activity_id = ? AND user_id = ?").get(row.futureActivity, ownerId));
+    assert.ok(db.prepare("SELECT 1 FROM activity_checks WHERE activity_id = ? AND user_id = ?").get(row.futureActivity, row.targetId));
+    assert.ok(db.prepare("SELECT 1 FROM meetup_joins WHERE meetup_id = ? AND user_id = ?").get(row.pastMeetup, row.targetId));
+    assert.ok(db.prepare("SELECT 1 FROM meetup_joins WHERE meetup_id = ? AND user_id = ?").get(row.todayMeetup, row.targetId));
+    assert.equal(db.prepare("SELECT COUNT(*) AS n FROM meetup_joins WHERE meetup_id = ? AND user_id = ?").get(row.futureMeetup, row.targetId).n, 0);
+    assert.ok(db.prepare("SELECT 1 FROM meetup_joins WHERE meetup_id = ? AND user_id = ?").get(row.checkedFutureMeetup, row.targetId));
+    assert.ok(db.prepare("SELECT 1 FROM internal_signups WHERE race_id = ? AND user_id = ?").get(row.pastRace, row.targetId));
+    assert.equal(db.prepare("SELECT COUNT(*) AS n FROM internal_signups WHERE race_id = ? AND user_id = ?").get(row.futureRace, row.targetId).n, 0);
+    assert.ok(db.prepare("SELECT 1 FROM internal_signups WHERE race_id = ? AND user_id = ?").get(row.resultRace, row.targetId));
+    assert.ok(db.prepare("SELECT 1 FROM internal_results WHERE race_id = ? AND user_id = ?").get(row.resultRace, row.targetId));
+    assert.equal(db.prepare("SELECT SUM(delta) AS n FROM point_entries WHERE club_id = ? AND user_id = ?").get(clubId, row.targetId).n, 2);
+    assert.equal(db.prepare("SELECT COUNT(*) AS n FROM club_requests WHERE club_id = ? AND user_id = ? AND status = 'pending'").get(clubId, row.targetId).n, 0);
+    assert.equal((await request(app).get("/marathon/api/clubs/" + clubId).set("Authorization", "Bearer " + token)).status, 403);
+    const roster = await request(app).get("/marathon/api/clubs/" + clubId + "/activities/" + row.futureActivity).set(ownerAuth);
+    assert.equal(roster.body.signups.some((person) => person.userId === row.targetId), false);
+    assert.equal(roster.body.checks.find((person) => person.userId === row.targetId).historical, true);
+    assert.equal(roster.body.groups[0].signed, 1);
+    const refill = await request(app).post("/marathon/api/clubs/" + clubId + "/activities/" + row.futureActivity + "/signup").set(managerAuth).send({ groupId: row.groupId });
+    assert.equal(refill.status, 200);
+    assert.equal(refill.body.activity.groups[0].left, 0);
+    // A later settlement must not revoke points attached to a preserved legacy check.
+    assert.equal((await request(app).delete("/marathon/api/clubs/" + clubId + "/activities/" + row.futureActivity + "/signup").set(managerAuth)).status, 200);
+    assert.equal(db.prepare("SELECT SUM(delta) AS n FROM point_entries WHERE club_id = ? AND user_id = ?").get(clubId, row.targetId).n, 2);
+  }
+  assert.equal((await request(app).delete("/marathon/api/clubs/" + clubId + "/members/" + clubMemberId).set(managerAuth)).status, 404);
+  assert.equal((await request(app).delete("/marathon/api/admin/clubs/" + clubId + "/members/" + deskMemberId).set(adminAuth)).status, 404);
+});
+
+test("club race boards retain results even after the personal plan is removed", async () => {
+  const owner = await session("纯成绩团长");
+  const member = await session("纯成绩队友");
+  const auth = { Authorization: "Bearer " + owner };
+  const memberAuth = { Authorization: "Bearer " + member };
+  const created = await createClub(auth, "纯成绩测试团");
+  await joinWithCode(member, created.body.club.code);
+  assert.equal((await request(app).put("/marathon/api/me/races/bishan/result").set(memberAuth).send({ distance: "full", time: "3:26:00" })).status, 200);
+  assert.equal((await request(app).delete("/marathon/api/me/races/bishan").set(memberAuth)).status, 200);
+  const initial = await request(app).get("/marathon/api/clubs/" + created.body.club.id).set(auth);
+  const race = initial.body.board.find((item) => item.race.id === "bishan");
+  assert.ok(race);
+  assert.equal(race.marks.length, 1);
+  assert.equal(race.marks[0].nickname, "纯成绩队友");
+  assert.equal(race.marks[0].status, "完赛");
+  assert.equal(race.marks[0].clock, "3:26:00");
+  assert.equal(race.results.length, 1);
+  assert.equal(race.summary, "1 人完赛");
+  await request(app).put("/marathon/api/me/races/bishan").set(auth).send({ status: "想跑" });
+  const shared = await request(app).get("/marathon/api/clubs/" + created.body.club.id).set(auth);
+  assert.equal(shared.body.board.find((item) => item.race.id === "bishan").marks.length, 2);
+});
+
 test("a club card names who has not paid", async () => {
   const leader = await session("团长");
   const mate = await session("队友");
@@ -667,22 +878,15 @@ test("admin signs in with a username and password", async () => {
   assert.equal(closed.status, 401);
 });
 
-test("admin/admin is written once and a later password change stays", async () => {
-  const { ensureDeskLogin } = require("../src/admin-auth");
-  const db = getDb();
-  assert.equal(ensureDeskLogin(db), true);
+test("a legacy admin/admin record is disabled when an existing database is upgraded", async () => {
+  process.env.ADMIN_USER = "";
+  process.env.ADMIN_PASSWORD = "";
+  const salt = "0123456789abcdef0123456789abcdef";
+  const hash = require("crypto").scryptSync("admin", salt, 32).toString("hex");
+  getDb().prepare("INSERT OR REPLACE INTO admins (username, password_hash, salt, role, created_at) VALUES ('admin', ?, ?, 'admin', ?)").run(hash, salt, new Date().toISOString());
   const first = await request(app).post("/marathon/api/admin/login").send({ username: "admin", password: "admin" });
-  assert.equal(first.status, 200);
-  const changed = await request(app)
-    .post("/marathon/api/admin/password")
-    .set("Authorization", "Bearer " + first.body.token)
-    .send({ current: "admin", next: "kept-pass-8" });
-  assert.equal(changed.status, 200);
-  assert.equal(ensureDeskLogin(db), false);
-  const reset = await request(app).post("/marathon/api/admin/login").send({ username: "admin", password: "admin" });
-  assert.equal(reset.status, 401);
-  const kept = await request(app).post("/marathon/api/admin/login").send({ username: "admin", password: "kept-pass-8" });
-  assert.equal(kept.status, 200);
+  assert.equal(first.status, 401);
+  assert.equal(getDb().prepare("SELECT 1 FROM admins WHERE username = 'admin'").get(), undefined);
 });
 
 test("today names who has not paid, and a plan can be removed", async () => {
@@ -759,6 +963,10 @@ test("club activity points need enough people and kilometres, then gifts spend t
     200
   );
 
+  const startedAt = new Date(Date.now() + 8 * 3600 * 1000 - 60 * 1000).toISOString().slice(0, 16);
+  const endsAt = new Date(Date.now() + 8 * 3600 * 1000 + 60 * 60 * 1000).toISOString().slice(0, 16);
+  getDb().prepare("UPDATE activities SET starts_at = ?, ends_at = ? WHERE id = ?").run(startedAt, endsAt, aid);
+  assert.equal((await request(app).get("/marathon/api/clubs/" + clubId + "/activities/" + aid).set(auth)).body.activity.checkAvailable, true);
   const early = await request(app).post("/marathon/api/clubs/" + clubId + "/activities/" + aid + "/check").set(auth).send({ km: 6 });
   assert.equal(early.body.awarded, false);
   assert.equal(early.body.myPoints, 0);
@@ -1115,6 +1323,9 @@ test("admin sees nicknames, self-reported runs, and club gifts", async () => {
   assert.equal(activity.status, 200);
   const aid = activity.body.activity.id;
   await request(app).post("/marathon/api/clubs/" + club.body.club.id + "/activities/" + aid + "/signup").set("Authorization", "Bearer " + user).send({});
+  const startedAt = new Date(Date.now() + 8 * 3600 * 1000 - 60 * 1000).toISOString().slice(0, 16);
+  const endsAt = new Date(Date.now() + 8 * 3600 * 1000 + 60 * 60 * 1000).toISOString().slice(0, 16);
+  getDb().prepare("UPDATE activities SET starts_at = ?, ends_at = ? WHERE id = ?").run(startedAt, endsAt, aid);
   const checked = await request(app)
     .post("/marathon/api/clubs/" + club.body.club.id + "/activities/" + aid + "/check")
     .set("Authorization", "Bearer " + user)
@@ -1176,7 +1387,8 @@ test("a club can be joined without a code, after a manager approves", async () =
   const missing = await request(app).post("/marathon/api/clubs/join").set("Authorization", "Bearer " + mate).send({});
   assert.equal(missing.status, 400);
   const anon = await request(app).get("/marathon/api/clubs/directory");
-  assert.equal(anon.status, 401);
+  assert.equal(anon.status, 200);
+  assert.ok(anon.body.clubs.some((item) => item.id === clubId));
 
   const applied = await request(app).post("/marathon/api/clubs/join").set("Authorization", "Bearer " + mate).send({ clubId });
   assert.equal(applied.status, 200);
@@ -1923,6 +2135,21 @@ test("a result call shows PB and writes a catalog result", async () => {
   const linkedId = linked.body.call.id;
   const half = await request(app).post("/marathon/api/clubs/" + clubId + "/calls/" + linkedId + "/rows").set(mateAuth).send({ distance: "half", time: "1:45:00" });
   assert.equal(callRow(half.body.call, "成绩成员", "half").tag, "首次");
+  const mateIdForSheet = getDb().prepare("SELECT id FROM users WHERE token = ?").get(mate).id;
+  const sheetRow = getDb().prepare("SELECT id FROM result_call_rows WHERE call_id = ? AND user_id = ? AND distance = 'half'").get(linkedId, mateIdForSheet);
+  const jpeg = Buffer.from([0xff, 0xd8, 0xff, 0xd9]);
+  const sheetUpload = await request(app)
+    .post("/marathon/api/clubs/" + clubId + "/calls/" + linkedId + "/rows/" + sheetRow.id + "/sheet")
+    .set(mateAuth)
+    .attach("file", jpeg, { filename: "result.jpg", contentType: "image/jpeg" });
+  assert.equal(sheetUpload.status, 200);
+  assert.equal((await request(app).get("/marathon/api/call-sheets/" + sheetRow.id).set(mateAuth)).status, 200);
+  assert.equal((await request(app).get("/marathon/api/call-sheets/" + sheetRow.id).set(auth)).status, 200);
+  const another = await session("截图同团成员");
+  await joinWithCode(another, created.body.club.code);
+  assert.equal((await request(app).get("/marathon/api/call-sheets/" + sheetRow.id).set("Authorization", "Bearer " + another)).status, 403);
+  const outside = await session("截图团外成员");
+  assert.equal((await request(app).get("/marathon/api/call-sheets/" + sheetRow.id).set("Authorization", "Bearer " + outside)).status, 403);
   const saved = await request(app).get("/marathon/api/me").set(mateAuth);
   const bishan = saved.body.results.find((item) => item.race.id === "bishan");
   assert.equal(bishan.distance, "half");
@@ -2112,6 +2339,15 @@ test("an internal race ranks inside the club and does not write the career", asy
   assert.equal(signed.status, 200);
   const full = await request(app).post("/marathon/api/clubs/" + club.id + "/internals/" + raceId + "/signup").set(secondAuth).send({ groupId: men });
   assert.equal(full.status, 400);
+  const raceForContention = await request(app).post("/marathon/api/clubs/" + club.id + "/internals").set(ownerAuth).send({
+    title: "队内最后名额", startsAt: "2099-12-02 08:00", distance: "10k", groups: [{ name: "唯一组", capacity: 1 }]
+  });
+  const contentionGroup = raceForContention.body.race.groups[0].id;
+  const contention = await Promise.all([firstAuth, secondAuth].map((headers) => request(app)
+    .post("/marathon/api/clubs/" + club.id + "/internals/" + raceForContention.body.race.id + "/signup")
+    .set(headers).send({ groupId: contentionGroup })));
+  assert.equal(contention.filter((response) => response.status === 200).length, 1);
+  assert.equal(getDb().prepare("SELECT COUNT(*) AS n FROM internal_signups WHERE race_id = ? AND group_id = ?").get(raceForContention.body.race.id, contentionGroup).n, 1);
   const other = await request(app).post("/marathon/api/clubs/" + club.id + "/internals/" + raceId + "/signup").set(secondAuth).send({ groupId: women });
   assert.equal(other.status, 200);
   const early = await request(app).post("/marathon/api/clubs/" + club.id + "/internals/" + raceId + "/results").set(firstAuth).send({ time: "50:00" });
@@ -2183,6 +2419,12 @@ test("an activity keeps its own groups, and the album can hide a photo until it 
     .set(auth)
     .send({ title: "晚取消", startsAt: "2099-04-02 07:00", cancelUntil: "2099-04-02 08:00" });
   assert.equal(lateCancel.status, 400);
+  const invalidDate = await request(app)
+    .post("/marathon/api/clubs/" + clubId + "/activities")
+    .set(auth)
+    .send({ title: "无效日期", startsAt: "2099-02-30T07:00" });
+  assert.equal(invalidDate.status, 400);
+  const beforeInvalidGroups = getDb().prepare("SELECT COUNT(*) AS n FROM activities WHERE club_id = ?").get(clubId).n;
   const duplicated = await request(app)
     .post("/marathon/api/clubs/" + clubId + "/activities")
     .set(auth)
@@ -2195,6 +2437,7 @@ test("an activity keeps its own groups, and the album can hide a photo until it 
       ]
     });
   assert.equal(duplicated.status, 400);
+  assert.equal(getDb().prepare("SELECT COUNT(*) AS n FROM activities WHERE club_id = ?").get(clubId).n, beforeInvalidGroups);
 
   const made = await request(app)
     .post("/marathon/api/clubs/" + clubId + "/activities")
@@ -2210,6 +2453,10 @@ test("an activity keeps its own groups, and the album can hide a photo until it 
       startsAt: "2099-04-14 05:00",
       endsAt: "2099-04-14 06:30",
       cancelUntil: "2099-04-14 04:40",
+      signupUntil: "2099-04-14 04:35",
+      trainingType: "interval",
+      workout: "2 km 热身\n6 × 800 m @ 4:20/km\n慢跑放松",
+      notice: "请自备饮水，按身体状态调整强度。",
       note: "间歇。请按自己的情况来。",
       minPeople: 2,
       points: 1,
@@ -2223,6 +2470,11 @@ test("an activity keeps its own groups, and the album can hide a photo until it 
   assert.equal(made.body.activity.issue, "第 41 期");
   assert.equal(made.body.activity.plannedKm, 8);
   assert.equal(made.body.activity.action.label, "报名");
+  assert.equal(made.body.activity.trainingType, "interval");
+  assert.equal(made.body.activity.signupUntil, "2099-04-14T04:35");
+  assert.match(made.body.activity.workout, /800 m/);
+  assert.match(made.body.activity.notice, /饮水/);
+  assert.equal(made.body.activity.men, 0);
   const aid = made.body.activity.id;
   const pace = made.body.activity.groups.find((group) => group.name === "A1").id;
   const volunteers = made.body.activity.groups.find((group) => group.name === "志愿者").id;
@@ -2258,6 +2510,9 @@ test("an activity keeps its own groups, and the album can hide a photo until it 
     200
   );
 
+  const startedAt = new Date(Date.now() + 8 * 3600 * 1000 - 60 * 1000).toISOString().slice(0, 16);
+  const endsAt = new Date(Date.now() + 8 * 3600 * 1000 + 60 * 60 * 1000).toISOString().slice(0, 16);
+  getDb().prepare("UPDATE activities SET starts_at = ?, ends_at = ? WHERE id = ?").run(startedAt, endsAt, aid);
   assert.equal((await request(app).post("/marathon/api/clubs/" + clubId + "/activities/" + aid + "/pacer").set(secondAuth).send({})).status, 200);
   assert.equal((await request(app).post("/marathon/api/clubs/" + clubId + "/activities/" + aid + "/pacer").set(thirdAuth).send({})).status, 200);
   const tooMany = await request(app).post("/marathon/api/clubs/" + clubId + "/activities/" + aid + "/pacer").set(mateAuth).send({});
@@ -2273,6 +2528,7 @@ test("an activity keeps its own groups, and the album can hide a photo until it 
   await request(app).post("/marathon/api/clubs/" + clubId + "/activities/" + aid + "/check").set(secondAuth).send({ km: 6 });
   const detail = await request(app).get("/marathon/api/clubs/" + clubId + "/activities/" + aid).set(auth);
   assert.equal(detail.body.activity.gatherPlace, "木樨地地铁E口");
+  assert.equal(detail.body.club.name, "报名跑团");
   assert.equal(detail.body.activity.men, 1);
   assert.equal(detail.body.activity.women, 1);
   assert.equal(detail.body.groups.find((group) => group.name === "A1").signed, 1);
@@ -2281,6 +2537,87 @@ test("an activity keeps its own groups, and the album can hide a photo until it 
   assert.equal(detail.body.signups.find((row) => row.nickname === "报名丙").together, 0);
   assert.equal(detail.body.levels[1].id, "入门");
   assert.match(detail.body.activity.cancelHint, /前可取消/);
+  assert.ok(detail.body.signups.every((row) => typeof row.avatar === "string" && !row.avatar.startsWith("data:")));
+
+  const memberDetail = await request(app).get("/marathon/api/clubs/" + clubId + "/activities/" + aid).set(secondAuth);
+  assert.ok(memberDetail.body.signups.find((row) => row.nickname === "报名甲").gender === undefined);
+  assert.ok(memberDetail.body.signups.find((row) => row.nickname === "报名甲").level === undefined);
+  assert.equal(memberDetail.body.signups.find((row) => row.nickname === "报名乙").gender, "女");
+  assert.equal(memberDetail.body.activity.gendered, undefined);
+  assert.equal(memberDetail.body.groups[0].men, undefined);
+  const memberClub = await request(app).get("/marathon/api/clubs/" + clubId).set(secondAuth);
+  assert.equal(memberClub.body.activities.find((item) => item.id === aid).men, undefined);
+  assert.equal(memberClub.body.activities.find((item) => item.id === aid).gendered, undefined);
+  const memberAlbum = await request(app).get("/marathon/api/clubs/" + clubId + "/activities/" + aid + "/album").set(secondAuth);
+  assert.equal(memberAlbum.body.activity.men, undefined);
+  assert.equal(memberAlbum.body.activity.women, undefined);
+  assert.equal(memberAlbum.body.activity.checkAvailable, true);
+
+  const privacyActivity = await request(app).post("/marathon/api/clubs/" + clubId + "/activities").set(auth).send({
+    title: "名单隐私检查", startsAt: "2099-04-16T07:00", groups: []
+  });
+  const privacyId = privacyActivity.body.activity.id;
+  const privacySignupOne = await request(app).post("/marathon/api/clubs/" + clubId + "/activities/" + privacyId + "/signup").set(thirdAuth).send({ gender: "男", level: "进阶" });
+  assert.equal(privacySignupOne.status, 200);
+  assert.equal(privacySignupOne.body.activity.men, undefined);
+  const privacySignupTwo = await request(app).post("/marathon/api/clubs/" + clubId + "/activities/" + privacyId + "/signup").set(secondAuth).send({ gender: "女", level: "萌新" });
+  assert.equal(privacySignupTwo.status, 200);
+  assert.equal(privacySignupTwo.body.activity.checkAvailable, false);
+  assert.equal(privacySignupTwo.body.activity.women, undefined);
+  assert.equal(privacySignupTwo.body.activity.mine.gender, "女");
+  const privacyStartedAt = new Date(Date.now() + 8 * 3600 * 1000 - 60 * 1000).toISOString().slice(0, 16);
+  const privacyEndsAt = new Date(Date.now() + 8 * 3600 * 1000 + 60 * 60 * 1000).toISOString().slice(0, 16);
+  getDb().prepare("UPDATE activities SET starts_at = ?, ends_at = ? WHERE id = ?").run(privacyStartedAt, privacyEndsAt, privacyId);
+  const privacyCheck = await request(app).post("/marathon/api/clubs/" + clubId + "/activities/" + privacyId + "/check").set(thirdAuth).send({ km: 6 });
+  assert.equal(privacyCheck.status, 200);
+  assert.equal(privacyCheck.body.activity.gendered, undefined);
+  const privacyCheckDelete = await request(app).delete("/marathon/api/clubs/" + clubId + "/activities/" + privacyId + "/check").set(secondAuth);
+  assert.equal(privacyCheckDelete.status, 200);
+  assert.equal(privacyCheckDelete.body.activity.men, undefined);
+  getDb().prepare("UPDATE activities SET starts_at = '2099-04-16T07:00', ends_at = '' WHERE id = ?").run(privacyId);
+  const privacySignupDelete = await request(app).delete("/marathon/api/clubs/" + clubId + "/activities/" + privacyId + "/signup").set(secondAuth);
+  assert.equal(privacySignupDelete.status, 200);
+  assert.equal(privacySignupDelete.body.activity.women, undefined);
+  const staffClub = await request(app).get("/marathon/api/clubs/" + clubId).set(auth);
+  assert.equal(staffClub.body.activities.find((item) => item.id === privacyId).men, 1);
+  assert.equal(staffClub.body.activities.find((item) => item.id === privacyId).women, 0);
+
+  const lastSlotActivity = await request(app).post("/marathon/api/clubs/" + clubId + "/activities").set(auth).send({
+    title: "最后一个名额", startsAt: "2099-04-17T07:00", groups: [{ name: "唯一名额", capacity: 1 }]
+  });
+  const lastSlotGroup = lastSlotActivity.body.activity.groups[0].id;
+  const slotResults = await Promise.all([auth, mateAuth, secondAuth, thirdAuth].map((headers) => request(app)
+    .post("/marathon/api/clubs/" + clubId + "/activities/" + lastSlotActivity.body.activity.id + "/signup")
+    .set(headers)
+    .send({ groupId: lastSlotGroup })));
+  assert.equal(slotResults.filter((result) => result.status === 200).length, 1);
+  assert.equal(getDb().prepare("SELECT COUNT(*) AS n FROM activity_signups WHERE activity_id = ? AND group_id = ?").get(lastSlotActivity.body.activity.id, lastSlotGroup).n, 1);
+
+  const moveCheckedIntoFuture = await request(app).put("/marathon/api/clubs/" + clubId + "/activities/" + aid).set(auth).send({
+    startsAt: "2099-04-14 07:00", endsAt: "2099-04-14 08:00", signupUntil: "", cancelUntil: ""
+  });
+  assert.equal(moveCheckedIntoFuture.status, 400);
+  assert.match(moveCheckedIntoFuture.body.error, /已有打卡记录/);
+
+  // Return to the upcoming phase before testing edits that retain its original deadlines.
+  getDb().prepare("UPDATE activities SET starts_at = '2099-04-14T05:00', ends_at = '2099-04-14T06:30' WHERE id = ?").run(aid);
+  const editNewFields = await request(app).put("/marathon/api/clubs/" + clubId + "/activities/" + aid).set(auth).send({ note: "管理员补充说明" });
+  assert.equal(editNewFields.status, 200);
+  assert.equal(editNewFields.body.activity.trainingType, "interval");
+  assert.equal(editNewFields.body.activity.signupUntil, "2099-04-14T04:35");
+  assert.match(editNewFields.body.activity.workout, /800 m/);
+  assert.match(editNewFields.body.activity.notice, /饮水/);
+  assert.equal(editNewFields.body.activity.note, "管理员补充说明");
+  const nowCutoff = new Date(Date.now() + 8 * 3600 * 1000 - 5 * 60 * 1000).toISOString().slice(0, 16);
+  const closedSignup = await request(app).post("/marathon/api/clubs/" + clubId + "/activities").set(auth).send({
+    title: "已截止的晨跑", startsAt: "2099-04-15T07:00", signupUntil: nowCutoff, groups: []
+  });
+  assert.equal(closedSignup.status, 200);
+  assert.equal(closedSignup.body.activity.action.label, "报名已截止");
+  assert.equal(closedSignup.body.activity.statusLabel, "报名已截止");
+  const cutoffPost = await request(app).post("/marathon/api/clubs/" + clubId + "/activities/" + closedSignup.body.activity.id + "/signup").set(secondAuth).send({});
+  assert.equal(cutoffPost.status, 400);
+  assert.match(cutoffPost.body.error, /报名已截止/);
 
   const shared = await request(app).post("/marathon/api/clubs/" + clubId + "/activities/share").set(secondAuth).send({ ids: [aid] });
   assert.equal(shared.status, 200);
@@ -2290,7 +2627,7 @@ test("an activity keeps its own groups, and the album can hide a photo until it 
   assert.match(shared.body.text, /志愿者 不限/);
 
   const today = new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10);
-  getDb().prepare("UPDATE activities SET starts_at = ?, cancel_until = '' WHERE id = ?").run(today + "T05:00", aid);
+  getDb().prepare("UPDATE activities SET starts_at = ?, cancel_until = '', signup_until = '' WHERE id = ?").run(today + "T05:00", aid);
   const board = await request(app).get("/marathon/api/clubs/" + clubId + "/attendance?range=today").set(auth);
   assert.equal(board.body.me.count, 1);
   assert.equal(board.body.rows.find((row) => row.nickname === "报名甲").count, 0);
@@ -2344,6 +2681,10 @@ test("an activity keeps its own groups, and the album can hide a photo until it 
 
   const stopped = await request(app).post("/marathon/api/clubs/" + clubId + "/activities/" + aid + "/cancel").set(auth).send({});
   assert.equal(stopped.body.activity.statusLabel, "已取消");
+  assert.equal(stopped.body.activity.checkAvailable, false);
+  const checkCancelled = await request(app).post("/marathon/api/clubs/" + clubId + "/activities/" + aid + "/check").set(thirdAuth).send({ km: 6 });
+  assert.equal(checkCancelled.status, 400);
+  assert.match(checkCancelled.body.error, /已取消/);
   const latecomer = await session("报名后来");
   await joinWithCode(latecomer, created.body.club.code);
   const afterCancel = await request(app)

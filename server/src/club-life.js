@@ -2,7 +2,7 @@ const { avatarUrlOf } = require("./avatars");
 const fs = require("fs");
 const path = require("path");
 const { DISTANCE_LABEL } = require("./races");
-const { clubRoleLabel, memberRole, setMemberRole, decideRequest, listPending } = require("./roles");
+const { clubRoleLabel, memberRole, setMemberRole, decideRequest, listPending, clearClubMemberFutureSignups } = require("./roles");
 const { formatClock } = require("./career");
 const { feeBlocksSignup } = require("./club-ops");
 
@@ -11,12 +11,13 @@ const VIDEO_MAX = 40 * 1024 * 1024;
 const PHOTO_LIMIT = 400;
 const VIDEO_LIMIT = 20;
 const LEVELS = [
-  { id: "萌新", text: "没参加过，或参加少于 3 次，不了解规则，想体验" },
-  { id: "入门", text: "参加过，了解规则，能跟着完成，以娱乐或拍照为主" },
-  { id: "进阶", text: "参加过 10 场以上，熟悉规则和基本动作，想提高" },
-  { id: "专业", text: "有多年经历，曾是省市、职业俱乐部或高校队成员，参加过市级以上专业赛事" }
+  { id: "萌新", text: "刚开始跑步，或首次参加跑团活动，希望熟悉集合与跟跑流程" },
+  { id: "入门", text: "有规律跑步的习惯，能按自己的节奏完成日常训练" },
+  { id: "进阶", text: "参加过系统训练或路跑赛事，希望通过分组训练提升表现" },
+  { id: "专业", text: "有长期系统训练与比赛经历，熟悉训练强度和配速管理" }
 ];
 const KINDS = { pace: "配速组", finish: "完赛组", volunteer: "志愿者", other: "非训练" };
+const TRAINING_TYPES = new Set(["easy", "long", "interval", "tempo", "social", "custom"]);
 const STATUS_LABEL = { open: "报名中", live: "进行中", ended: "已结束", cancelled: "已取消" };
 const RANGE_LABEL = {
   today: "今日",
@@ -41,7 +42,8 @@ function beijingInstant(text) {
   const match = /^(\d{4}-\d{2}-\d{2})T(\d{2}:\d{2})$/.exec(String(text || ""));
   if (!match) return null;
   const ms = Date.parse(match[1] + "T" + match[2] + ":00+08:00");
-  return Number.isNaN(ms) ? null : ms;
+  // Date.parse normalizes dates such as February 30; reject those on input.
+  return Number.isNaN(ms) || beijingStamp(ms) !== text ? null : ms;
 }
 
 function beijingStamp(now = Date.now()) {
@@ -96,6 +98,11 @@ function cancelClosed(row, now = Date.now()) {
   return at != null && now > at;
 }
 
+function signupClosed(row, now = Date.now()) {
+  const at = beijingInstant(row.signup_until) ?? beijingInstant(row.starts_at);
+  return at != null && now >= at;
+}
+
 function signupGroups(db, activity) {
   const own = db
     .prepare("SELECT id, name, kind, pace, capacity FROM activity_groups WHERE activity_id = ? ORDER BY sort, id")
@@ -113,14 +120,15 @@ function capOf(groups) {
 }
 
 function signupAction(activity, mine, groups, now = Date.now()) {
+  const status = statusOf(activity, now);
+  if (status === "cancelled") return { label: "这场已经取消", enabled: false, kind: "signup" };
   if (mine.signed) {
     if (cancelClosed(activity, now)) return { label: "已经过了取消时间", enabled: false, kind: "cancel" };
     return { label: "取消报名", enabled: true, kind: "cancel" };
   }
-  const status = statusOf(activity, now);
-  if (status === "cancelled") return { label: "这场已经取消", enabled: false, kind: "signup" };
   if (status === "ended") return { label: "这场已经结束", enabled: false, kind: "signup" };
   if (status === "live") return { label: "已经开始了", enabled: false, kind: "signup" };
+  if (signupClosed(activity, now)) return { label: "报名已截止", enabled: false, kind: "signup" };
   if (groups.length && groups.every((group) => group.capacity > 0 && group.signed >= group.capacity)) {
     return { label: "名额满了", enabled: false, kind: "signup" };
   }
@@ -140,6 +148,10 @@ function presentActivity(row, extra) {
     gatherPlace: row.gather_place || "",
     gatherAt: row.gather_at || "",
     route: row.route || "",
+    trainingType: row.training_type || "custom",
+    signupUntil: row.signup_until || "",
+    workout: row.workout || "",
+    notice: row.notice || "",
     note: row.note,
     minKm: row.min_km,
     minPeople: row.min_people,
@@ -148,7 +160,8 @@ function presentActivity(row, extra) {
     cancelUntil: row.cancel_until || "",
     review: !!row.review,
     status,
-    statusLabel: STATUS_LABEL[status],
+    statusLabel: status === "open" && signupClosed(row) ? "报名已截止" : STATUS_LABEL[status],
+    checkAvailable: !row.cancelled_at && String(row.starts_at || "") <= beijingStamp(),
     date: String(row.starts_at || "").slice(0, 10),
     dateLabel: dateLabel(row.starts_at),
     clockLabel: clockSpan(row),
@@ -164,6 +177,7 @@ function balanceOf(db, clubId, userId) {
 
 function settle(db, activity) {
   const checks = db.prepare("SELECT user_id, km FROM activity_checks WHERE activity_id = ?").all(activity.id);
+  const checked = new Set(checks.map((row) => row.user_id));
   const signed = new Set(db.prepare("SELECT user_id FROM activity_signups WHERE activity_id = ?").all(activity.id).map((row) => row.user_id));
   const qualified = checks.filter((row) => signed.has(row.user_id) && row.km + 1e-9 >= activity.min_km);
   const open = activity.points > 0 && qualified.length >= activity.min_people;
@@ -173,6 +187,8 @@ function settle(db, activity) {
   const have = new Set();
   for (const row of existing) {
     const userId = Number(row.ref_key.slice(prefix.length));
+    // Leaving clears future signups, but a legacy check and its earned points remain history.
+    if (!signed.has(userId) && checked.has(userId)) continue;
     if (!want.has(userId)) db.prepare("DELETE FROM point_entries WHERE id = ?").run(row.id);
     else have.add(userId);
   }
@@ -188,7 +204,7 @@ function settle(db, activity) {
   return { qualified: qualified.length, awarded: true };
 }
 
-function activityStats(db, activity, userId) {
+function activityStats(db, activity, userId, includePrivateStats = false) {
   const signups = db.prepare("SELECT user_id, group_id, gender, level, pacer FROM activity_signups WHERE activity_id = ?").all(activity.id);
   const checks = db.prepare("SELECT user_id, km, note FROM activity_checks WHERE activity_id = ?").all(activity.id);
   const signed = new Set(signups.map((row) => row.user_id));
@@ -229,10 +245,9 @@ function activityStats(db, activity, userId) {
     mine,
     groups,
     capacity: capOf(groups),
-    men,
-    women,
-    gendered: men + women > 0,
+    ...(includePrivateStats ? { men, women, gendered: men + women > 0 } : {}),
     action: signupAction(activity, mine, groups),
+    signupHint: activity.signup_until ? dateLabel(activity.signup_until) + " " + String(activity.signup_until).slice(11, 16) + " 报名截止" : "活动开始前可报名",
     cancelHint: activity.cancel_until ? dateLabel(activity.cancel_until) + " " + String(activity.cancel_until).slice(11, 16) + " 前可取消" : ""
   };
 }
@@ -240,7 +255,7 @@ function activityStats(db, activity, userId) {
 function cleanWhen(value, required, emptyLabel, badLabel) {
   const text = String(value || "").trim().replace(" ", "T");
   if (!text) return required ? { error: emptyLabel } : { text: "" };
-  if (!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/.test(text)) return { error: badLabel };
+  if (beijingInstant(text) == null) return { error: badLabel };
   return { text };
 }
 
@@ -253,12 +268,17 @@ function readActivityBody(body, base) {
   const gatherPlace = String(source.gatherPlace != null ? source.gatherPlace : base.gather_place || "").trim();
   const gatherAt = String(source.gatherAt != null ? source.gatherAt : base.gather_at || "").trim();
   const route = String(source.route != null ? source.route : base.route || "").trim();
+  const trainingType = String(source.trainingType != null ? source.trainingType : base.training_type || "custom");
+  const workout = String(source.workout != null ? source.workout : base.workout || "").trim();
+  const notice = String(source.notice != null ? source.notice : base.notice || "").trim();
   const starts = cleanWhen(source.startsAt != null ? source.startsAt : base.starts_at, true, "时间写成 2026-10-11 05:40", "时间写成 2026-10-11 05:40");
   if (starts.error) return starts;
   const ends = cleanWhen(source.endsAt != null ? source.endsAt : base.ends_at, false, "", "结束时间写成 2026-10-11 06:30");
   if (ends.error) return ends;
   const cancel = cleanWhen(source.cancelUntil != null ? source.cancelUntil : base.cancel_until, false, "", "取消报名的时间写成 2026-10-11 05:00");
   if (cancel.error) return cancel;
+  const signup = cleanWhen(source.signupUntil != null ? source.signupUntil : base.signup_until, false, "", "报名截止时间请选择有效的日期和时间");
+  if (signup.error) return signup;
   const minKm = source.minKm == null || source.minKm === "" ? (base.min_km != null ? base.min_km : 5) : Number(source.minKm);
   const minPeople = source.minPeople == null || source.minPeople === "" ? (base.min_people != null ? base.min_people : 3) : Number(source.minPeople);
   const points = source.points == null || source.points === "" ? (base.points != null ? base.points : 1) : Number(source.points);
@@ -272,12 +292,16 @@ function readActivityBody(body, base) {
   if (gatherPlace.length > 40) return { error: "集合点最多 40 个字" };
   if (gatherAt.length > 40) return { error: "集合时间最多 40 个字" };
   if (route.length > 200) return { error: "路线最多 200 个字" };
+  if (!TRAINING_TYPES.has(trainingType)) return { error: "请选择有效的训练类型" };
+  if (workout.length > 2000) return { error: "训练安排最多 2000 个字" };
+  if (notice.length > 1000) return { error: "参与须知最多 1000 个字" };
   if (!Number.isFinite(minKm) || minKm < 0.1 || minKm > 100) return { error: "里程门槛在 0.1 到 100 公里" };
   if (!Number.isInteger(minPeople) || minPeople < 1 || minPeople > 500) return { error: "成团人数在 1 到 500" };
   if (!Number.isInteger(points) || points < 0 || points > 100) return { error: "积分写成 0 到 100" };
   if (planned != null && (!Number.isFinite(planned) || planned < 0.1 || planned > 200)) return { error: "计划里程在 0.1 到 200 公里" };
   if (ends.text && beijingInstant(ends.text) < beijingInstant(starts.text)) return { error: "结束时间不能早于开始" };
   if (cancel.text && beijingInstant(cancel.text) > beijingInstant(starts.text)) return { error: "取消报名的时间不能晚于开始" };
+  if (signup.text && beijingInstant(signup.text) > beijingInstant(starts.text)) return { error: "报名截止时间不能晚于开始" };
   return {
     value: {
       title,
@@ -289,6 +313,10 @@ function readActivityBody(body, base) {
       gatherPlace,
       gatherAt,
       route,
+      trainingType,
+      signupUntil: signup.text,
+      workout,
+      notice,
       cancelUntil: cancel.text,
       minKm,
       minPeople,
@@ -506,17 +534,19 @@ function enrichBoard(db, clubId, board) {
 }
 
 function clubLife(db, club, userId) {
+  const role = memberRole(db, club, userId);
+  const staff = role === "owner" || role === "manager";
   const groups = db
     .prepare("SELECT id, name, pace, capacity FROM club_groups WHERE club_id = ? ORDER BY sort, id")
     .all(club.id);
   const activities = db
     .prepare("SELECT * FROM activities WHERE club_id = ? ORDER BY starts_at, id")
     .all(club.id)
-    .map((row) => presentActivity(row, activityStats(db, row, userId)));
+    .map((row) => presentActivity(row, activityStats(db, row, userId, staff)));
   const gifts = db
     .prepare("SELECT id, name, cost, stock FROM gifts WHERE club_id = ? ORDER BY id DESC")
     .all(club.id);
-  const mine = memberRole(db, club, userId);
+  const mine = role;
   const members = db
     .prepare(
       `SELECT u.id, u.nickname, u.avatar, m.role, COALESCE(SUM(p.delta), 0) AS points
@@ -532,7 +562,6 @@ function clubLife(db, club, userId) {
       const role = row.id === club.owner_id ? "owner" : row.role === "manager" ? "manager" : "member";
       return { id: row.id, nickname: row.nickname, avatar: avatarUrlOf(row.id, row.avatar), points: row.points, owner: role === "owner", role, roleLabel: clubRoleLabel(role) };
     });
-  const staff = mine === "owner" || mine === "manager";
   return {
     club: {
       id: club.id,
@@ -634,6 +663,30 @@ function mountClubLife(app, { BASE, getDb, userFrom }) {
     return false;
   }
 
+  app.post(BASE + "/api/clubs/:id/leave", (req, res) => {
+    const ctx = gate(req, res);
+    if (!ctx) return;
+    const target = req.body && req.body.userId;
+    if (target != null && Number(target) !== Number(ctx.user.id)) {
+      return res.status(400).json({ error: "只能退出自己加入的跑团" });
+    }
+    const outcome = ctx.db.transaction(() => {
+      // Recheck ownership under the same write lock as membership removal.
+      const club = ctx.db.prepare("SELECT owner_id FROM clubs WHERE id = ?").get(ctx.club.id);
+      if (club.owner_id === ctx.user.id) return { error: "请先将团长移交给其他成员，再退出跑团" };
+      if (!ctx.db.prepare("SELECT 1 FROM club_members WHERE club_id = ? AND user_id = ?").get(ctx.club.id, ctx.user.id)) {
+        return { error: "你不在这个跑团里" };
+      }
+      const removedSignups = clearClubMemberFutureSignups(ctx.db, ctx.club.id, ctx.user.id);
+      // Preserve reviewed requests as history; a fresh application must be reviewed again.
+      ctx.db.prepare("DELETE FROM club_requests WHERE club_id = ? AND user_id = ? AND status = 'pending'").run(ctx.club.id, ctx.user.id);
+      ctx.db.prepare("DELETE FROM club_members WHERE club_id = ? AND user_id = ?").run(ctx.club.id, ctx.user.id);
+      return { ok: true, removedSignups };
+    }).immediate();
+    if (outcome.error) return res.status(400).json({ error: outcome.error });
+    res.json(outcome);
+  });
+
   app.post(BASE + "/api/clubs/:id/groups", (req, res) => {
     const ctx = gate(req, res);
     if (!ctx || !staffOnly(ctx, res)) return;
@@ -662,10 +715,21 @@ function mountClubLife(app, { BASE, getDb, userFrom }) {
     if (!ctx || !staffOnly(ctx, res)) return;
     const uid = Number(req.params.uid);
     if (uid === ctx.user.id) return res.status(400).json({ error: "不能移出自己" });
-    if (uid === ctx.club.owner_id) return res.status(400).json({ error: "团长还在团里" });
-    const gone = ctx.db.prepare("DELETE FROM club_members WHERE club_id = ? AND user_id = ?").run(ctx.club.id, uid);
-    if (!gone.changes) return res.status(404).json({ error: "团里没有这个人" });
-    res.json({ ok: true });
+    const outcome = ctx.db.transaction(() => {
+      const club = ctx.db.prepare("SELECT id, owner_id FROM clubs WHERE id = ?").get(ctx.club.id);
+      if (!club) return { error: "没有这个跑团", status: 404 };
+      const role = memberRole(ctx.db, club, ctx.user.id);
+      if (role !== "owner" && role !== "manager") return { error: "只有团长或跑团管理可以改", status: 403 };
+      if (uid === club.owner_id) return { error: "团长还在团里", status: 400 };
+      const member = ctx.db.prepare("SELECT 1 FROM club_members WHERE club_id = ? AND user_id = ?").get(club.id, uid);
+      if (!member) return { error: "团里没有这个人", status: 404 };
+      const removedSignups = clearClubMemberFutureSignups(ctx.db, club.id, uid);
+      ctx.db.prepare("DELETE FROM club_requests WHERE club_id = ? AND user_id = ? AND status = 'pending'").run(club.id, uid);
+      ctx.db.prepare("DELETE FROM club_members WHERE club_id = ? AND user_id = ?").run(club.id, uid);
+      return { ok: true, removedSignups };
+    }).immediate();
+    if (outcome.error) return res.status(outcome.status || 400).json({ error: outcome.error });
+    res.json(outcome);
   });
 
   app.put(BASE + "/api/clubs/:id/members/:uid", (req, res) => {
@@ -711,12 +775,14 @@ function mountClubLife(app, { BASE, getDb, userFrom }) {
     const groups = readGroupList(req.body && req.body.groups);
     if (groups.error) return res.status(400).json({ error: groups.error });
     const value = parsed.value;
-    const info = ctx.db
+    const id = ctx.db.transaction(() => {
+      const info = ctx.db
       .prepare(
         `INSERT INTO activities (
            club_id, title, place, starts_at, note, min_km, min_people, points, created_at,
-           ends_at, issue, planned_km, gather_place, route, gather_at, cancel_until
-         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+           ends_at, issue, planned_km, gather_place, route, gather_at, cancel_until,
+           training_type, signup_until, workout, notice, review
+         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
       )
       .run(
         ctx.club.id,
@@ -734,12 +800,19 @@ function mountClubLife(app, { BASE, getDb, userFrom }) {
         value.gatherPlace,
         value.route,
         value.gatherAt,
-        value.cancelUntil
+        value.cancelUntil,
+        value.trainingType,
+        value.signupUntil,
+        value.workout,
+        value.notice,
+        value.review
       );
-    const id = Number(info.lastInsertRowid);
-    if (groups.groups.length) insertGroups(ctx.db, id, groups.groups);
+      const createdId = Number(info.lastInsertRowid);
+      if (groups.groups.length) insertGroups(ctx.db, createdId, groups.groups);
+      return createdId;
+    })();
     const row = ctx.db.prepare("SELECT * FROM activities WHERE id = ?").get(id);
-    res.json({ activity: presentActivity(row, activityStats(ctx.db, row, ctx.user.id)) });
+    res.json({ activity: presentActivity(row, activityStats(ctx.db, row, ctx.user.id, true)) });
   });
 
   app.put(BASE + "/api/clubs/:id/activities/:aid", (req, res) => {
@@ -751,10 +824,15 @@ function mountClubLife(app, { BASE, getDb, userFrom }) {
     const parsed = readActivityBody(req.body || {}, activity);
     if (parsed.error) return res.status(400).json({ error: parsed.error });
     const value = parsed.value;
+    const now = beijingStamp();
+    if (activity.starts_at <= now && value.startsAt > now && ctx.db.prepare("SELECT 1 FROM activity_checks WHERE activity_id = ? LIMIT 1").get(activity.id)) {
+      return res.status(400).json({ error: "已有打卡记录，不能把活动时间改到未来" });
+    }
     ctx.db
       .prepare(
         `UPDATE activities SET title = ?, place = ?, starts_at = ?, note = ?, min_km = ?, min_people = ?, points = ?,
-         ends_at = ?, issue = ?, planned_km = ?, gather_place = ?, route = ?, gather_at = ?, cancel_until = ?, review = ?
+         ends_at = ?, issue = ?, planned_km = ?, gather_place = ?, route = ?, gather_at = ?, cancel_until = ?, review = ?,
+         training_type = ?, signup_until = ?, workout = ?, notice = ?
          WHERE id = ?`
       )
       .run(
@@ -773,10 +851,14 @@ function mountClubLife(app, { BASE, getDb, userFrom }) {
         value.gatherAt,
         value.cancelUntil,
         value.review,
+        value.trainingType,
+        value.signupUntil,
+        value.workout,
+        value.notice,
         activity.id
       );
     const row = ctx.db.prepare("SELECT * FROM activities WHERE id = ?").get(activity.id);
-    res.json({ activity: presentActivity(row, activityStats(ctx.db, row, ctx.user.id)) });
+    res.json({ activity: presentActivity(row, activityStats(ctx.db, row, ctx.user.id, true)) });
   });
 
   app.post(BASE + "/api/clubs/:id/activities/share", (req, res) => {
@@ -827,7 +909,7 @@ function mountClubLife(app, { BASE, getDb, userFrom }) {
     const groups = signupGroups(ctx.db, activity);
     const signups = ctx.db
       .prepare(
-        `SELECT u.id AS userId, u.nickname, s.group_id AS groupId, s.gender, s.level, s.pacer, s.created_at AS createdAt
+        `SELECT u.id AS userId, u.nickname, u.avatar, s.group_id AS groupId, s.gender, s.level, s.pacer, s.created_at AS createdAt
          FROM activity_signups s
          JOIN users u ON u.id = s.user_id
          WHERE s.activity_id = ?
@@ -837,17 +919,20 @@ function mountClubLife(app, { BASE, getDb, userFrom }) {
     const names = {};
     for (const group of groups) names[group.id] = group.name;
     const together = togetherMap(ctx.db, ctx.club.id, ctx.user.id);
-    const roster = signups.map((row) => ({
-      userId: row.userId,
-      nickname: row.nickname,
-      groupId: row.groupId,
-      groupName: names[row.groupId] || "",
-      gender: row.gender || "",
-      level: row.level || "",
-      pacer: !!row.pacer,
-      together: together[row.userId] || 0,
-      mine: row.userId === ctx.user.id
-    }));
+    const roster = signups.map((row) => {
+      const mine = row.userId === ctx.user.id;
+      return {
+        userId: row.userId,
+        nickname: row.nickname,
+        avatar: avatarUrlOf(row.userId, row.avatar),
+        groupId: row.groupId,
+        groupName: names[row.groupId] || "",
+        ...(staff || mine ? { gender: row.gender || "", level: row.level || "" } : {}),
+        pacer: !!row.pacer,
+        together: together[row.userId] || 0,
+        mine
+      };
+    });
     const checks = ctx.db
       .prepare(
         `SELECT u.nickname, c.user_id AS userId, c.km, c.note
@@ -857,7 +942,11 @@ function mountClubLife(app, { BASE, getDb, userFrom }) {
          ORDER BY c.created_at`
       )
       .all(activity.id)
-      .map((row) => ({ ...row, counts: row.km + 1e-9 >= activity.min_km }));
+      .map((row) => ({
+        ...row,
+        counts: row.km + 1e-9 >= activity.min_km,
+        historical: !signups.some((signup) => signup.userId === row.userId)
+      }));
     const media = ctx.db
       .prepare(
         `SELECT m.id, m.kind, m.status, m.created_at AS createdAt, u.nickname, m.user_id AS userId
@@ -889,14 +978,18 @@ function mountClubLife(app, { BASE, getDb, userFrom }) {
         pace: group.pace || "",
         capacity: group.capacity,
         signed: people.length,
-        men: people.filter((row) => row.gender === "男").length,
-        women: people.filter((row) => row.gender === "女").length,
+        ...(staff ? {
+          men: people.filter((row) => signups.some((signup) => signup.userId === row.userId && signup.gender === "男")).length,
+          women: people.filter((row) => signups.some((signup) => signup.userId === row.userId && signup.gender === "女")).length
+        } : {}),
         full: group.capacity > 0 && people.length >= group.capacity,
         people
       };
     });
+    const activityView = presentActivity(activity, activityStats(ctx.db, activity, ctx.user.id, staff));
     res.json({
-      activity: presentActivity(activity, activityStats(ctx.db, activity, ctx.user.id)),
+      club: { id: ctx.club.id, name: ctx.club.name },
+      activity: activityView,
       groups: rich,
       signups: roster,
       checks,
@@ -949,7 +1042,7 @@ function mountClubLife(app, { BASE, getDb, userFrom }) {
         ? shownPhotos.slice().sort((a, b) => a.id - b.id)[0].id
         : 0;
     res.json({
-      activity: presentActivity(activity, activityStats(ctx.db, activity, ctx.user.id)),
+      activity: presentActivity(activity, activityStats(ctx.db, activity, ctx.user.id, staff)),
       items: rows,
       photoCount: rows.filter((row) => row.kind === "photo" && !row.pending).length,
       videoCount: rows.filter((row) => row.kind === "video" && !row.pending).length,
@@ -964,35 +1057,41 @@ function mountClubLife(app, { BASE, getDb, userFrom }) {
   app.post(BASE + "/api/clubs/:id/activities/:aid/signup", (req, res) => {
     const ctx = gate(req, res);
     if (!ctx) return;
-    const activity = ctx.db.prepare("SELECT * FROM activities WHERE id = ? AND club_id = ?").get(req.params.aid, ctx.club.id);
-    if (!activity) return res.status(404).json({ error: "没有这场活动" });
-    const blocked = feeBlocksSignup(ctx.db, ctx.club.id, ctx.user.id);
-    if (blocked) return res.status(400).json({ error: blocked });
-    const existing = ctx.db.prepare("SELECT 1 FROM activity_signups WHERE activity_id = ? AND user_id = ?").get(activity.id, ctx.user.id);
-    if (existing) return res.status(400).json({ error: "你已经报过了，要换组先取消" });
-    const status = statusOf(activity);
-    if (status === "cancelled") return res.status(400).json({ error: "这场已经取消" });
-    if (status === "ended") return res.status(400).json({ error: "这场已经结束" });
-    if (status === "live") return res.status(400).json({ error: "已经开始了" });
     const gender = String((req.body && req.body.gender) || "");
     const level = String((req.body && req.body.level) || "");
     if (gender && gender !== "男" && gender !== "女") return res.status(400).json({ error: "性别选男、女，或留空" });
     if (level && !LEVELS.some((item) => item.id === level)) return res.status(400).json({ error: "级别选萌新、入门、进阶或专业" });
     const groupId = Number((req.body && req.body.groupId) || 0);
-    const groups = signupGroups(ctx.db, activity);
-    if (groups.length && !groups.some((group) => group.id === groupId)) return res.status(400).json({ error: "先选一个组别" });
-    if (groupId) {
-      const group = groups.find((item) => item.id === groupId);
-      if (!group) return res.status(400).json({ error: "没有这个组别" });
-      if (group.capacity > 0) {
-        const used = ctx.db.prepare("SELECT COUNT(*) AS n FROM activity_signups WHERE activity_id = ? AND group_id = ?").get(activity.id, groupId);
-        if (used.n >= group.capacity) return res.status(400).json({ error: "这个组别满了" });
+    const result = ctx.db.transaction(() => {
+      const activity = ctx.db.prepare("SELECT * FROM activities WHERE id = ? AND club_id = ?").get(req.params.aid, ctx.club.id);
+      if (!activity) return { status: 404, error: "没有这场活动" };
+      const blocked = feeBlocksSignup(ctx.db, ctx.club.id, ctx.user.id);
+      if (blocked) return { status: 400, error: blocked };
+      const existing = ctx.db.prepare("SELECT 1 FROM activity_signups WHERE activity_id = ? AND user_id = ?").get(activity.id, ctx.user.id);
+      if (existing) return { status: 400, error: "你已经报过了，要换组先取消" };
+      const status = statusOf(activity);
+      if (status === "cancelled") return { status: 400, error: "这场已经取消" };
+      if (status === "ended") return { status: 400, error: "这场已经结束" };
+      if (status === "live") return { status: 400, error: "已经开始了" };
+      if (signupClosed(activity)) return { status: 400, error: "报名已截止" };
+      const groups = signupGroups(ctx.db, activity);
+      if (groups.length && !groups.some((group) => group.id === groupId)) return { status: 400, error: "先选一个组别" };
+      if (groupId) {
+        const group = groups.find((group) => group.id === groupId);
+        if (!group) return { status: 400, error: "没有这个组别" };
+        if (group.capacity > 0) {
+          const used = ctx.db.prepare("SELECT COUNT(*) AS n FROM activity_signups WHERE activity_id = ? AND group_id = ?").get(activity.id, groupId);
+          if (used.n >= group.capacity) return { status: 400, error: "这个组别满了" };
+        }
       }
-    }
-    ctx.db
-      .prepare("INSERT INTO activity_signups (activity_id, user_id, group_id, gender, level, created_at) VALUES (?, ?, ?, ?, ?, ?)")
-      .run(activity.id, ctx.user.id, groupId, gender, level, new Date().toISOString());
-    res.json({ ok: true, activity: presentActivity(activity, activityStats(ctx.db, activity, ctx.user.id)) });
+      ctx.db
+        .prepare("INSERT INTO activity_signups (activity_id, user_id, group_id, gender, level, created_at) VALUES (?, ?, ?, ?, ?, ?)")
+        .run(activity.id, ctx.user.id, groupId, gender, level, new Date().toISOString());
+      return { activity };
+    }).immediate();
+    if (result.error) return res.status(result.status).json({ error: result.error });
+    const staff = memberRole(ctx.db, ctx.club, ctx.user.id) === "owner" || memberRole(ctx.db, ctx.club, ctx.user.id) === "manager";
+    res.json({ ok: true, activity: presentActivity(result.activity, activityStats(ctx.db, result.activity, ctx.user.id, staff)) });
   });
 
   app.delete(BASE + "/api/clubs/:id/activities/:aid/signup", (req, res) => {
@@ -1004,7 +1103,8 @@ function mountClubLife(app, { BASE, getDb, userFrom }) {
     ctx.db.prepare("DELETE FROM activity_signups WHERE activity_id = ? AND user_id = ?").run(activity.id, ctx.user.id);
     ctx.db.prepare("DELETE FROM activity_checks WHERE activity_id = ? AND user_id = ?").run(activity.id, ctx.user.id);
     settle(ctx.db, activity);
-    res.json({ ok: true, activity: presentActivity(activity, activityStats(ctx.db, activity, ctx.user.id)) });
+    const staff = memberRole(ctx.db, ctx.club, ctx.user.id) === "owner" || memberRole(ctx.db, ctx.club, ctx.user.id) === "manager";
+    res.json({ ok: true, activity: presentActivity(activity, activityStats(ctx.db, activity, ctx.user.id, staff)) });
   });
 
   app.post(BASE + "/api/clubs/:id/activities/:aid/pacer", (req, res) => {
@@ -1053,7 +1153,7 @@ function mountClubLife(app, { BASE, getDb, userFrom }) {
     if (activity.cancelled_at) return res.status(400).json({ error: "这场已经取消" });
     ctx.db.prepare("UPDATE activities SET ends_at = ? WHERE id = ?").run(beijingStamp(), activity.id);
     const row = ctx.db.prepare("SELECT * FROM activities WHERE id = ?").get(activity.id);
-    res.json({ activity: presentActivity(row, activityStats(ctx.db, row, ctx.user.id)) });
+    res.json({ activity: presentActivity(row, activityStats(ctx.db, row, ctx.user.id, true)) });
   });
 
   app.post(BASE + "/api/clubs/:id/activities/:aid/cancel", (req, res) => {
@@ -1064,7 +1164,7 @@ function mountClubLife(app, { BASE, getDb, userFrom }) {
     if (activity.cancelled_at) return res.status(400).json({ error: "这场已经取消" });
     ctx.db.prepare("UPDATE activities SET cancelled_at = ? WHERE id = ?").run(new Date().toISOString(), activity.id);
     const row = ctx.db.prepare("SELECT * FROM activities WHERE id = ?").get(activity.id);
-    res.json({ activity: presentActivity(row, activityStats(ctx.db, row, ctx.user.id)) });
+    res.json({ activity: presentActivity(row, activityStats(ctx.db, row, ctx.user.id, true)) });
   });
 
   app.post(BASE + "/api/clubs/:id/activities/:aid/cover", (req, res) => {
@@ -1085,6 +1185,8 @@ function mountClubLife(app, { BASE, getDb, userFrom }) {
     if (!ctx) return;
     const activity = ctx.db.prepare("SELECT * FROM activities WHERE id = ? AND club_id = ?").get(req.params.aid, ctx.club.id);
     if (!activity) return res.status(404).json({ error: "没有这场活动" });
+    if (activity.cancelled_at) return res.status(400).json({ error: "这场活动已取消，不能打卡" });
+    if (activity.starts_at > beijingStamp()) return res.status(400).json({ error: "活动还未开始" });
     const signed = ctx.db.prepare("SELECT 1 FROM activity_signups WHERE activity_id = ? AND user_id = ?").get(activity.id, ctx.user.id);
     if (!signed) return res.status(400).json({ error: "先报名，再打卡" });
     const km = Number(req.body && req.body.km);
@@ -1098,10 +1200,11 @@ function mountClubLife(app, { BASE, getDb, userFrom }) {
       )
       .run(activity.id, ctx.user.id, Math.round(km * 100) / 100, note, new Date().toISOString());
     const settled = settle(ctx.db, activity);
+    const staff = memberRole(ctx.db, ctx.club, ctx.user.id) === "owner" || memberRole(ctx.db, ctx.club, ctx.user.id) === "manager";
     res.json({
       ok: true,
       awarded: settled.awarded,
-      activity: presentActivity(activity, activityStats(ctx.db, activity, ctx.user.id)),
+      activity: presentActivity(activity, activityStats(ctx.db, activity, ctx.user.id, staff)),
       myPoints: balanceOf(ctx.db, ctx.club.id, ctx.user.id)
     });
   });
@@ -1113,9 +1216,10 @@ function mountClubLife(app, { BASE, getDb, userFrom }) {
     if (!activity) return res.status(404).json({ error: "没有这场活动" });
     ctx.db.prepare("DELETE FROM activity_checks WHERE activity_id = ? AND user_id = ?").run(activity.id, ctx.user.id);
     settle(ctx.db, activity);
+    const staff = memberRole(ctx.db, ctx.club, ctx.user.id) === "owner" || memberRole(ctx.db, ctx.club, ctx.user.id) === "manager";
     res.json({
       ok: true,
-      activity: presentActivity(activity, activityStats(ctx.db, activity, ctx.user.id)),
+      activity: presentActivity(activity, activityStats(ctx.db, activity, ctx.user.id, staff)),
       myPoints: balanceOf(ctx.db, ctx.club.id, ctx.user.id)
     });
   });

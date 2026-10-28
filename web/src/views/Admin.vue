@@ -1,60 +1,28 @@
 <template>
   <main class="admin">
-    <header v-if="!authed" class="topbar">
-      <router-link to="/" aria-label="返回">‹</router-link>
-      <h1></h1>
-      <span></span>
-    </header>
-    <div v-if="!authed" class="gate">
-      <div class="gate-copy">
-        <p class="kicker">赛历</p>
-        <h2>后台</h2>
-        <p>赛事、资讯、用户、跑团、入团审核、团练公里、积分礼品和合作。</p>
-      </div>
-      <form class="gate-form" @submit.prevent="enter">
-        <label>
-          <span>用户名</span>
-          <input v-model="username" autocomplete="username" placeholder="用户名" />
-        </label>
-        <label>
-          <span>密码</span>
-          <input v-model="password" type="password" autocomplete="current-password" placeholder="密码" />
-        </label>
-        <button class="primary" type="submit">进入</button>
-        <p v-if="message" class="err">{{ message }}</p>
-      </form>
+    <div v-if="!authed" class="login-page">
+      <header class="login-brand"><span class="login-logo"><AdminIcon name="races" /></span><router-link to="/">赛历<span>赛事与跑团运营中心</span></router-link></header>
+      <div class="gate">
+        <section class="gate-copy"><p class="kicker">为热爱奔跑的人，做好每一站</p><h1>下一场出发，<br />从可靠的信息开始。</h1><p>汇集赛事，连接跑团。让报名节点、竞赛规程与参赛记录井然有序。</p><div class="login-features"><span><AdminIcon name="races" />赛事内容运营</span><span><AdminIcon name="clubs" />跑团服务管理</span><span><AdminIcon name="check" />来源与审核</span></div><div class="login-track" aria-hidden="true"><i></i><i></i><i></i><span>START</span></div></section>
+        <form class="gate-form" @submit.prevent="enter"><span class="login-eyebrow">运营工作台</span><h2>欢迎回来</h2><p class="login-caption">使用你的后台账号登录</p><label><span>账号</span><input v-model="username" autocomplete="username" placeholder="请输入后台用户名" required /></label><label><span>密码</span><input v-model="password" type="password" autocomplete="current-password" placeholder="请输入登录密码" required /></label><button class="primary" type="submit" :disabled="loginBusy">{{ loginBusy ? '正在登录…' : '登录工作台' }}<AdminIcon name="arrow" /></button><p v-if="message" class="err" role="alert">{{ message }}</p><p class="login-help">账号由平台管理员开通，按角色分配运营权限。</p><router-link class="login-back" to="/">返回赛事前台 <AdminIcon name="arrow" /></router-link></form>
+      </div><footer class="login-footer">赛历 · 让每一次出发都有准备</footer>
     </div>
-    <template v-else>
-      <p v-if="message" class="banner" :class="{ ok: saved }">{{ message }}</p>
-      <div class="admin-shell">
-      <nav class="admin-nav">
-        <div class="brand">
-          <router-link to="/" class="back">‹ 赛历</router-link>
-          <strong>后台</strong>
-        </div>
-        <button v-for="item in deskSections" :key="item.id" type="button" :class="{ on: section === item.id }" @click="pickSection(item.id)">{{ item.label }}</button>
-        <button class="out" type="button" @click="logout">退出</button>
-      </nav>
-      <div class="desk-canvas">
-      <header class="desk-head">
-        <div>
-          <h2>{{ sectionLabel }}</h2>
-          <p v-if="!listSearching">{{ sectionLead }}</p>
-        </div>
-        <button v-if="section === 'races' && !catalogQuery.trim() && !q.trim()" type="button" class="primary head-add" @click="startDraft">添加一场</button>
-        <button v-if="section === 'news' && newsTab === 'published' && !newsQuery.trim()" type="button" class="primary head-add" @click="startNews">发布一条</button>
-        <button v-if="section === 'users' && !userQuery.trim()" type="button" class="primary head-add" @click="startUser">添加用户</button>
-      </header>
-      <div v-show="section === 'races'" class="desk" :class="{ editing: deskOpen, dragging }" :style="splitStyle">
-      <div v-show="raceTab === 'review' || !(q.trim() && !catalogQuery.trim())" class="desk-main">
+    <AdminShell v-else :sections="deskSections" :active="section" :operator="selfName" :role-label="role === 'club' ? '跑团管理员' : '平台管理员'" :page-title="sectionLabel" :page-lead="sectionLead" @navigate="pickSection" @logout="logout" @refresh="refreshSection">
+      <template #header-actions>
+        <button v-if="section === 'races'" type="button" class="primary head-add" @click="startDraft"><AdminIcon name="plus" />新建赛事</button>
+        <button v-if="section === 'news'" type="button" class="primary head-add" @click="startNews"><AdminIcon name="plus" />发布资讯</button>
+        <button v-if="section === 'users'" type="button" class="primary head-add" @click="startUser"><AdminIcon name="plus" />添加跑者</button>
+      </template>
+      <p v-if="message" class="banner" :class="{ ok: saved }" role="status">{{ message }}</p>
+      <AdminDashboard v-if="section === 'overview'" :data="overview" :role="role" :loading="overviewLoading" :error="overviewError" @action="handleOverviewAction" @retry="loadOverview" />
+      <div v-if="section === 'races'" class="workspace-tabs" role="tablist" aria-label="赛事工作区"><button v-for="item in raceWorkspaces" :key="item.id" type="button" role="tab" :aria-selected="raceWorkspace === item.id" :class="{ on: raceWorkspace === item.id }" @click="pickRaceWorkspace(item.id)"><AdminIcon :name="item.icon" />{{ item.label }}<span v-if="item.id === 'review' && pendingCount">{{ pendingCount }}</span></button></div>
+      <div v-if="section === 'races'" class="desk race-desk" :class="{ editing: deskOpen, dragging }" :style="splitStyle">
+      <div v-show="raceWorkspace !== 'official'" class="desk-main">
       <div class="block">
-        <div class="statuses">
-          <button type="button" class="status" :class="{ on: raceTab === 'published' }" @click="showPublished">已发布</button>
-          <button type="button" class="status" :class="{ on: raceTab === 'review' }" @click="showReview">待审 {{ pendingCount }}</button>
-        </div>
+        <div class="panel-heading"><div><h3>{{ raceWorkspace === 'review' ? '赛事内容审核' : '已发布赛事' }}</h3><p>{{ raceWorkspace === 'review' ? '核对赛事来源与报名节点，审核后再进入前台。' : '维护跑者看到的每一场比赛，优先核准临近开赛的信息。' }}</p></div><span class="panel-count">{{ raceWorkspace === 'review' ? botTotal : catalogTotal }} 场</span></div>
         <template v-if="raceTab === 'published'">
           <form class="check-form inline-form" @submit.prevent="submitCatalog">
-            <input v-model="catalogQuery" placeholder="搜名称、城市" @input="queueCatalog" />
+            <input v-model="catalogQuery" placeholder="搜索赛事名称 / 城市" @input="queueCatalog" />
             <button class="primary" type="submit">筛选</button>
           </form>
           <div v-if="!catalogQuery.trim()" class="statuses">
@@ -62,14 +30,16 @@
             <button type="button" class="status" :class="{ on: catalogWhen === 'all' }" @click="setCatalogWhen('all')">全部</button>
           </div>
           <p v-if="catalogReady" class="hint">{{ catalogTotal }} 场</p>
+          <div class="list-columns"><span>赛事 / 地点与项目</span><span>比赛日期</span><span>报名状态</span><span>操作</span></div>
           <div class="race-list">
-            <div v-for="item in catalog" :key="item.id" class="race-row" :class="{ on: book && book.id === item.id }">
+            <div v-for="item in catalog" :key="item.id" class="race-row catalog-row" :class="{ on: book && book.id === item.id }">
               <button type="button" class="race-open catalog-open" @click="openGuide(item.id)">
+                <span class="catalog-identity">{{ item.name }}<small>{{ item.city }}<template v-if="item.distanceLabels?.length"> · {{ item.distanceLabels.join(' / ') }}</template></small></span>
                 <time>{{ item.raceDate }}</time>
-                <em>{{ item.city }}</em>
-                <span>{{ item.name }}</span>
+                <em class="table-state">{{ item.regStatus || '已发布' }}</em>
+                <span class="row-open-label">编辑 <AdminIcon name="arrow" /></span>
               </button>
-              <button type="button" class="remove" @click="removeRace(item)">删除</button>
+              <button type="button" class="remove" :aria-label="'删除 ' + item.name" @click="removeRace(item)">删除</button>
             </div>
           </div>
           <p v-if="catalogReady && !catalog.length" class="empty">{{ catalogQuery.trim() ? "没有找到这场赛事" : "这个范围还没有场。" }}</p>
@@ -81,14 +51,15 @@
             <button type="button" class="status" :class="{ on: botStatus === 'returned' }" @click="setBotStatus('returned')">已打回</button>
           </div>
           <p v-if="botReady" class="hint">{{ botTotal }} 场</p>
+          <div class="list-columns review-columns"><span>待核对赛事</span><span>比赛日期</span><span>地点</span><span>操作</span></div>
           <div class="race-list">
-            <div v-for="item in botRows" :key="item.id" class="race-row" :class="{ on: book && book.submissionId === item.id }">
+            <div v-for="item in botRows" :key="item.id" class="race-row review-row" :class="{ on: book && book.submissionId === item.id }">
               <button type="button" class="race-open catalog-open" @click="openReview(item)">
+                <span class="catalog-identity">{{ item.name }}<small>{{ item.status === 'returned' ? '已打回 · 等待补充' : '待核实 · 未发布到前台' }}</small></span>
                 <time>{{ item.raceDate }}</time>
                 <em>{{ item.city }}</em>
-                <span>{{ item.name }}</span>
               </button>
-              <button v-if="item.status === 'pending'" class="primary row-pass" type="button" @click.stop="publishBot(item)">通过</button>
+              <button class="row-review" type="button" @click.stop="openReview(item)">{{ item.status === 'pending' ? '审核' : '查看' }} <AdminIcon name="arrow" /></button>
             </div>
           </div>
           <p v-if="botReady && !botRows.length" class="empty">{{ botStatus === "pending" ? "还没有待审的比赛" : "还没有打回的比赛" }}</p>
@@ -96,10 +67,10 @@
         </template>
       </div>
       </div>
-      <div v-if="!catalogQuery.trim()" class="desk-official">
+      <div v-show="raceWorkspace === 'official'" class="desk-official">
       <div class="block">
-        <h2 v-if="!q.trim()">官网赛历</h2>
-        <p v-if="!q.trim()" class="hint">每一届单独存。中国马拉松官网这场一直有链接。赛事自己的网站，官网给了才记下；没给就空着，也不拿往年的网站来填。每天再对一次，名称、日期、主办、赛事网站有变会标出来。报名时间仍要另写来源，已经记下的截止时间不会被盖掉。</p>
+        <div class="panel-heading"><div><h3>官网赛事同步</h3><p>核对中国马拉松官网的新赛事与资料变更，再决定是否收入赛历。</p></div><span class="source-label">中国马拉松官网</span></div>
+        <details class="source-explainer"><summary>同步范围与数据保护规则</summary><p>每一届独立存储，赛事网站只采用当届官方提供的地址。同步会标记名称、日期、主办与网站的变化；已记录的报名截止时间保留，报名节点仍需填写可核对的来源。</p></details>
         <form class="check-form inline-form" @submit.prevent="search">
           <input v-model="q" placeholder="搜名称或城市，例如璧山" @input="queueOfficial" />
           <button class="primary" type="submit">查官网</button>
@@ -113,15 +84,16 @@
         <p v-if="busy" class="hint">正在向官网要赛历。</p>
       </div>
       <template v-for="row in rows" :key="row.officialId">
-      <div v-if="q.trim() && officialFocus !== row.officialId" class="race-row">
+      <div v-if="officialFocus !== row.officialId" class="race-row">
         <button type="button" class="race-open" @click="officialFocus = row.officialId">
           <time>{{ row.raceDate }}</time>
           <em>{{ row.city }}</em>
-          <span>{{ row.name }}</span>
+          <span>{{ row.name }}<small>{{ row.gradeLabel || '待核实' }}<template v-if="row.diffNote"> · 资料有变化</template></small></span>
+        <AdminIcon name="arrow" />
         </button>
       </div>
       <div v-else class="block">
-        <button v-if="q.trim()" type="button" class="text-btn" @click="officialFocus = ''">收起</button>
+        <button type="button" class="text-btn" @click="officialFocus = ''">收起详情</button>
         <h2>{{ row.name }}</h2>
         <p class="hint">{{ row.raceDate }} · {{ row.province }} {{ row.city }} · {{ row.gradeLabel || "未标类别" }} · {{ row.items || "项目未写" }}</p>
         <p v-if="row.organizer" class="hint">主办 {{ row.organizer }}</p>
@@ -443,7 +415,7 @@
       </div>
       </aside>
       </div>
-      <div v-if="section === 'news'" class="desk" :class="{ editing: !!(newsItem || newsReview), dragging }" :style="splitStyle">
+      <div v-if="section === 'news'" class="desk news-desk" :class="{ editing: !!(newsItem || newsReview), dragging }" :style="splitStyle">
         <div class="desk-main">
           <div class="block">
             <div class="statuses">
@@ -552,9 +524,10 @@
           </div>
         </aside>
       </div>
-      <div v-if="section === 'users'" class="desk" :class="{ editing: !!(person || adding), dragging }" :style="splitStyle">
+      <div v-if="section === 'users'" class="desk users-desk" :class="{ editing: !!(person || adding), dragging }" :style="splitStyle">
         <div class="desk-main">
           <div class="block">
+            <div class="panel-heading"><div><h3>跑者档案</h3><p>按昵称找到跑者，查看赛事计划、成绩与团内身份。</p></div><span class="panel-count">{{ userTotal }} 人</span></div>
             <form class="check-form inline-form" @submit.prevent="submitUsers">
               <input v-model="userQuery" placeholder="搜昵称" @input="queueUsers" />
               <button class="primary" type="submit">筛选</button>
@@ -696,9 +669,10 @@
           </div>
         </aside>
       </div>
-      <div v-if="section === 'clubs'" class="desk" :class="{ editing: !!club, dragging }" :style="splitStyle">
+      <div v-if="section === 'clubs'" class="desk clubs-desk" :class="{ editing: !!club, dragging }" :style="splitStyle">
         <div class="desk-main">
           <div class="block">
+            <div class="panel-heading"><div><h3>跑团名录</h3><p>管理成员与团长，申请审核和成员管理分别处理。</p></div><span class="panel-count">{{ clubTotal }} 个</span></div>
             <form class="check-form inline-form" @submit.prevent="submitClubs">
               <input v-model="clubQuery" placeholder="搜跑团或昵称" @input="queueClubs" />
               <button class="primary" type="submit">筛选</button>
@@ -750,7 +724,7 @@
                   <button v-if="member.role !== 'owner' && pendingMember !== member.id" class="remove" type="button" :aria-label="'移出 ' + member.nickname" @click="pendingMember = member.id">移出</button>
                 </div>
                 <div v-if="pendingMember === member.id" class="row-confirm">
-                  <p>确认将该成员移出跑团？此操作不删除其账号。</p>
+                  <p>确认移出该成员？未来团练、未出成绩的未来队内赛和明日及之后未打卡的约跑报名会取消；历史成绩、积分和已打卡记录保留，不删除账号。</p>
                   <button class="danger" type="button" @click="removeClubMember(member)">确认移出</button>
                   <button class="undo" type="button" @click="pendingMember = 0">取消</button>
                 </div>
@@ -785,8 +759,8 @@
         <p v-if="runsReady && !runs.length" class="empty">还没有人报过公里。</p>
         <Pager :page="runPage" :pages="runPages" @update:page="turnRuns" />
       </div>
-      <div v-if="section === 'partner'" class="block">
-        <h2>物资</h2>
+      <div v-if="section === 'partner'" class="partner-workspace">
+        <section class="block"><div class="panel-heading"><div><h3>品牌物资</h3><p>团内领取条件、库存与开放状态</p></div></div>
         <p class="hint">用户不付钱。认证跑团按额度领，核心跑团额度乘二。</p>
         <div v-for="item in partner.supplies" :key="item.id" class="line">
           <b>{{ item.brand }} · {{ item.name }}</b>
@@ -797,7 +771,7 @@
           </span>
         </div>
         <Pager :page="supplyPage" :pages="supplyPages" @update:page="turnSupply" />
-        <form class="check-form" @submit.prevent="createSupply">
+        <details class="admin-disclosure"><summary><AdminIcon name="plus" />投放新物资</summary><form class="check-form" @submit.prevent="createSupply">
           <input v-model="supplyBrand" maxlength="20" placeholder="品牌" />
           <input v-model="supplyName" maxlength="40" placeholder="物资名" />
           <input v-model.number="supplyTotal" type="number" min="1" placeholder="总量" />
@@ -807,21 +781,21 @@
           <input v-model.number="supplyKm" type="number" min="0" step="0.1" placeholder="计入跑量，0 表示不卡" />
           <input v-model="supplyNote" maxlength="100" placeholder="说明" />
           <button class="primary" type="submit">投放</button>
-        </form>
-        <h2>联赛</h2>
+        </form></details>
+        </section><section class="block"><div class="panel-heading"><div><h3>月度联赛</h3><p>组织跑团挑战，记录冠名与奖品</p></div></div>
         <div v-for="item in partner.leagues" :key="item.id" class="line">
           <b>{{ item.month }} · {{ item.title }}</b>
           <span>{{ item.sponsor }} · {{ item.prize }} · {{ item.clubs }} 个团</span>
         </div>
         <Pager :page="leaguePage" :pages="leaguePages" @update:page="turnLeague" />
-        <form class="check-form" @submit.prevent="createLeague">
+        <details class="admin-disclosure"><summary><AdminIcon name="plus" />创建月度联赛</summary><form class="check-form" @submit.prevent="createLeague">
           <input v-model="leagueMonth" placeholder="月份 2026-10" />
           <input v-model="leagueTitle" maxlength="40" placeholder="联赛名称" />
           <input v-model="leagueSponsor" maxlength="40" placeholder="冠名，可不填" />
           <input v-model="leaguePrize" maxlength="80" placeholder="奖品，可不填" />
           <button class="primary" type="submit">开这一月</button>
-        </form>
-        <h2>分账</h2>
+        </form></details>
+        </section><section class="block"><div class="panel-heading"><div><h3>合作账目</h3><p>线下结算记录与处理状态</p></div></div>
         <p class="hint">金额是线下账。这里不付款，也不代收会费。</p>
         <div v-for="item in partner.splits" :key="item.id" class="line">
           <b>{{ item.club }} · {{ item.kindLabel }}</b>
@@ -832,7 +806,7 @@
           </span>
         </div>
         <Pager :page="splitPage" :pages="splitPages" @update:page="turnSplit" />
-        <form class="check-form" @submit.prevent="createSplit">
+        <details class="admin-disclosure"><summary><AdminIcon name="plus" />记录合作账目</summary><form class="check-form" @submit.prevent="createSplit">
           <input v-model.number="splitClub" type="number" min="1" placeholder="跑团编号" />
           <input v-model="splitMonth" placeholder="月份 2026-10" />
           <select v-model="splitKind">
@@ -843,9 +817,10 @@
           <input v-model.number="splitYuan" type="number" min="1" placeholder="整数元" />
           <input v-model="splitNote" maxlength="80" placeholder="备注" />
           <button class="primary" type="submit">记一笔</button>
-        </form>
+        </form></details>
+        </section>
       </div>
-      <div v-if="section === 'shop'">
+      <div v-if="section === 'shop'" class="shop-workspace">
         <div class="block">
           <h2>积分礼品</h2>
           <p v-if="shopReady" class="hint">{{ giftTotal }} 件</p>
@@ -861,8 +836,12 @@
           <Pager :page="redemptionPage" :pages="redemptionPages" @update:page="turnRedemptions" />
         </div>
       </div>
-      <div v-if="section === 'joins'" class="block">
-        <h2>建团</h2>
+      <div v-if="section === 'joins'" class="approval-workspace">
+        <div class="approval-tabs" role="tablist" aria-label="申请类型">
+          <button type="button" role="tab" :aria-selected="joinTab === 'foundings'" :class="{ on: joinTab === 'foundings' }" @click="joinTab = 'foundings'">建团申请 <span>{{ foundingTotal }}</span></button>
+          <button type="button" role="tab" :aria-selected="joinTab === 'joins'" :class="{ on: joinTab === 'joins' }" @click="joinTab = 'joins'">入团申请 <span>{{ joinTotal }}</span></button>
+        </div>
+        <section v-if="joinTab === 'foundings'" id="founding-requests" class="block"><div class="panel-heading"><div><h3>建团申请</h3><p>确认团名与申请人，审核后开通跑团</p></div><span class="panel-count">{{ foundingTotal }} 条</span></div>
         <p class="hint">须具备建团资格才能提交。通过后，申请人成为该团团长，可以在手机上管理成员、活动和组别。</p>
         <p v-if="joinsReady" class="hint">{{ foundingTotal }} 条待审核</p>
         <div v-for="item in foundings" :key="item.id" class="line">
@@ -875,7 +854,7 @@
         </div>
         <p v-if="joinsReady && !foundings.length" class="empty">没有待审核的建团。</p>
         <Pager :page="foundingPage" :pages="foundingPages" @update:page="turnFoundings" />
-        <h2>入团</h2>
+        </section><section v-if="joinTab === 'joins'" id="member-requests" class="block"><div class="panel-heading"><div><h3>入团申请</h3><p>口令不绕过审核，确认后加入跑团</p></div><span class="panel-count">{{ joinTotal }} 条</span></div>
         <p v-if="joinsReady" class="hint">{{ joinTotal }} 条待审核</p>
         <div v-for="item in joins" :key="item.id" class="line">
           <b>{{ item.nickname }} · {{ item.club }}</b>
@@ -887,16 +866,16 @@
         </div>
         <p v-if="joinsReady && !joins.length" class="empty">没有待审核的申请。</p>
         <Pager :page="joinPage" :pages="joinPages" @update:page="turnJoins" />
-        <form v-if="role === 'club'" class="check-form" @submit.prevent="changePassword">
-          <input v-model="currentPassword" type="password" autocomplete="current-password" placeholder="当前密码" />
-          <label class="field">
-            <input v-model="nextPassword" type="password" autocomplete="new-password" placeholder="新密码" />
-            <small>8 到 128 位</small>
-          </label>
+        </section>
+      </div>
+      <div v-if="section === 'accounts' && role === 'club'" class="block accounts-panel"><div class="panel-heading"><div><h3>账号安全</h3><p>修改当前跑团管理员账号的登录密码。</p></div></div>
+        <form class="check-form" @submit.prevent="changePassword">
+          <input v-model="currentPassword" type="password" autocomplete="current-password" placeholder="当前密码" required />
+          <label class="field"><input v-model="nextPassword" type="password" autocomplete="new-password" placeholder="新密码" required /><small>8 到 128 位</small></label>
           <button class="undo" type="submit">修改密码</button>
         </form>
       </div>
-      <div v-if="section === 'accounts'" class="block">
+      <div v-if="section === 'accounts' && role === 'admin'" class="block accounts-panel"><div class="panel-heading"><div><h3>运营账号</h3><p>按岗位分配权限，账号角色与跑团内角色分别管理。</p></div></div>
         <p class="hint">后台角色是管理员和跑团管理员。团里的团长、跑团管理和成员，到跑团页改。</p>
         <div v-for="item in accounts" :key="item.username" class="line">
           <b>{{ item.username }}</b>
@@ -906,7 +885,7 @@
             <option value="club">跑团管理员</option>
           </select>
         </div>
-        <form class="check-form" @submit.prevent="createAccount">
+        <details class="admin-disclosure"><summary><AdminIcon name="plus" />开通运营账号</summary><form class="check-form" @submit.prevent="createAccount">
           <input v-model="accountName" placeholder="用户名" />
           <label class="field">
             <input v-model="accountPass" type="password" autocomplete="new-password" placeholder="密码" />
@@ -917,7 +896,7 @@
             <option value="admin">管理员</option>
           </select>
           <button class="primary" type="submit">添加账号</button>
-        </form>
+        </form></details>
         <h2>修改密码</h2>
         <form class="check-form" @submit.prevent="changePassword">
           <input v-model="currentPassword" type="password" autocomplete="current-password" placeholder="当前密码" />
@@ -928,16 +907,17 @@
           <button class="undo" type="submit">修改密码</button>
         </form>
       </div>
-      </div>
-      </div>
-    </template>
+    </AdminShell>
   </main>
 </template>
 
 <script setup>
-import { computed, ref } from "vue";
+import { computed, nextTick, ref } from "vue";
 import { adminUpload, api, raceSheetSrc } from "../api";
 import Pager from "../components/Pager.vue";
+import AdminShell from "../components/admin/AdminShell.vue";
+import AdminDashboard from "../components/admin/AdminDashboard.vue";
+import AdminIcon from "../components/admin/AdminIcon.vue";
 import { countiesOf, settleRegion } from "../areas";
 import { regions } from "../regions";
 
@@ -987,21 +967,28 @@ const catalogReady = ref(false);
 const catalogPage = ref(1);
 const catalogPages = ref(1);
 const catalogTotal = ref(0);
-const section = ref("races");
+const section = ref("overview");
+const loginBusy = ref(false);
+const overview = ref(null);
+const overviewLoading = ref(false);
+const overviewError = ref("");
+const raceWorkspace = ref("catalog");
+const raceWorkspaces = [{id:"catalog",label:"赛事库",icon:"races"},{id:"review",label:"内容审核",icon:"check"},{id:"official",label:"官网同步",icon:"sync"}];
 const role = ref("admin");
 const selfName = ref("");
 const allSections = [
-  { id: "races", label: "赛事", roles: ["admin"] },
-  { id: "news", label: "资讯", roles: ["admin"] },
-  { id: "users", label: "用户", roles: ["admin", "club"] },
-  { id: "clubs", label: "跑团", roles: ["admin", "club"] },
-  { id: "joins", label: "入团", roles: ["admin", "club"] },
-  { id: "runs", label: "跑步", roles: ["admin"] },
-  { id: "shop", label: "商城", roles: ["admin"] },
-  { id: "partner", label: "合作", roles: ["admin"] },
-  { id: "accounts", label: "账号", roles: ["admin"] }
+  { id: "overview", label: "运营总览", group: "工作台", icon: "overview", roles: ["admin", "club"] },
+  { id: "races", label: "赛事管理", group: "内容运营", icon: "races", roles: ["admin"] },
+  { id: "news", label: "赛事资讯", group: "内容运营", icon: "news", roles: ["admin"] },
+  { id: "users", label: "跑者管理", group: "跑团与跑者", icon: "users", roles: ["admin", "club"] },
+  { id: "clubs", label: "跑团管理", group: "跑团与跑者", icon: "clubs", roles: ["admin", "club"] },
+  { id: "joins", label: "申请审核", group: "跑团与跑者", icon: "joins", roles: ["admin", "club"] },
+  { id: "runs", label: "运动记录", group: "跑团与跑者", icon: "runs", roles: ["admin"] },
+  { id: "shop", label: "积分礼品", group: "权益与合作", icon: "shop", roles: ["admin"] },
+  { id: "partner", label: "合作与物资", group: "权益与合作", icon: "partner", roles: ["admin"] },
+  { id: "accounts", label: "账号与权限", group: "平台管理", icon: "accounts", roles: ["admin", "club"] }
 ];
-const deskSections = computed(() => allSections.filter((item) => item.roles.includes(role.value || "admin")));
+const deskSections = computed(() => allSections.filter((item) => item.roles.includes(role.value || "admin")).map(item => ({...item,badge:item.id === "races" ? overview.value?.counts?.pendingRaces : item.id === "news" ? overview.value?.counts?.pendingNews : item.id === "joins" ? Number(overview.value?.counts?.pendingFoundings || 0)+Number(overview.value?.counts?.pendingJoins || 0) : 0})));
 const users = ref([]);
 const usersReady = ref(false);
 const userPage = ref(1);
@@ -1095,6 +1082,7 @@ const foundingTotal = ref(0);
 const joinPage = ref(1);
 const joinPages = ref(1);
 const joinTotal = ref(0);
+const joinTab = ref("foundings");
 const joinsReady = ref(false);
 const accounts = ref([]);
 const accountName = ref("");
@@ -1112,25 +1100,19 @@ function savedSplit() {
 const split = ref(savedSplit());
 const dragging = ref(false);
 const splitStyle = computed(() => ({ "--split": split.value + "%" }));
-const deskOpen = computed(() => !!book.value && (!catalogQuery.value.trim() || !!book.value.submissionId));
+const deskOpen = computed(() => !!book.value);
 const sectionLabel = computed(() => deskSections.value.find((item) => item.id === section.value)?.label || "后台");
-const listSearching = computed(() => {
-  if (section.value === "races") return !!catalogQuery.value.trim() || !!q.value.trim();
-  if (section.value === "news") return !!newsQuery.value.trim();
-  if (section.value === "users") return !!userQuery.value.trim();
-  if (section.value === "clubs") return !!clubQuery.value.trim();
-  return false;
-});
 const sectionLead = computed(() => ({
-  races: "已发布在赛历里。待审点开就能改上报的内容，保存后仍停在待审，通过后才进去。删掉的场不会马上加回来。",
-  news: "已发布出现在这场的资讯里，也出现在首页的全部资讯。待审通过后才出现。一条绑一场，正文用 Markdown。",
-  users: "可添加用户，填写昵称和登录密码后即可登录。点开一行查看参赛状态、跑团和成绩。编辑用于建团资格、登录密码和跑团角色。删除在列表中确认。关闭建团资格不影响其已担任的团长。不收集手机号，也不收集身份证。",
-  clubs: "点开一行管理该跑团的成员和团长。按昵称添加成员，移出成员不删除账号。指定团长后，原团长改为跑团管理。现任团长须先移交，才能修改角色或移出。删除跑团在列表中确认，成员账号会保留。",
-  joins: "建团申请和入团申请都在这里审核，口令不绕过入团审核。通过建团后，申请人成为该团团长。",
-  runs: "团练里自己报的公里。还没接手表，每天到没到不记在这里。",
-  shop: "商城还没接，不收款、不发货。现在看的是各跑团的积分礼品。",
-  partner: "认证按人数和出勤算，不收身份证。物资达标领取，用户不付钱。分账只记线下账，会费仍由跑团自己收。联赛按月排名，奖品不发现金。",
-  accounts: "跑团管理员审核入团和建团，并可管理跑团成员与团长。"
+  overview: "把待办、近期赛事与信息质量放在一处，先处理影响跑者决策的事。",
+  races: "从采集核实到正式发布，维护每一场比赛的时间、项目、规程与来源。",
+  news: "发布与审核赛事资讯，确保每条内容关联准确的赛事。",
+  users: "查看跑者的参赛计划、成绩与跑团，按需管理账号和建团资格。",
+  clubs: "管理跑团成员、角色与团长移交，成员账号和跑团分开维护。",
+  joins: "集中处理建团与入团申请。口令定位跑团，申请仍需审核。",
+  runs: "查看跑者手动记录的运动数据及跑团归属。跑表自动同步尚未接入。",
+  shop: "查看跑团积分礼品与兑换记录，支持团内激励。",
+  partner: "管理物资、月度联赛与线下合作账目。",
+  accounts: role.value === "club" ? "维护当前跑团管理员账号的登录安全。" : "分配后台角色和操作权限，管理运营账号。"
 }[section.value] || ""));
 const book = ref(null);
 const editTab = ref("base");
@@ -1201,8 +1183,9 @@ async function enterDesk(data) {
     role.value = me.role || "admin";
     selfName.value = me.username || "";
   }
-  if (!deskSections.value.some((item) => item.id === section.value)) section.value = role.value === "club" ? "joins" : "races";
-  if (section.value === "races") await Promise.all([load(), loadCatalog(), loadSpots(), loadBotReviews()]);
+  if (!deskSections.value.some((item) => item.id === section.value)) section.value = "overview";
+  if (section.value === "overview") await loadOverview();
+  if (section.value === "races") await Promise.all([loadCatalog(), loadSpots(), loadBotReviews()]);
   if (section.value === "news") await loadNews();
   if (section.value === "users") await loadUsers();
   if (section.value === "clubs") await loadClubs();
@@ -1210,11 +1193,13 @@ async function enterDesk(data) {
   if (section.value === "runs") await loadRuns();
   if (section.value === "shop") await loadShop();
   if (section.value === "partner") await loadPartner();
-  if (section.value === "accounts") await loadAccounts();
+  if (section.value === "accounts" && role.value === "admin") await loadAccounts();
   authed.value = true;
 }
 
 async function enter() {
+  if (loginBusy.value) return;
+  loginBusy.value = true;
   message.value = "";
   saved.value = false;
   try {
@@ -1229,7 +1214,7 @@ async function enter() {
   } catch (err) {
     authed.value = false;
     fail(err);
-  }
+  } finally { loginBusy.value = false; }
 }
 
 async function logout() {
@@ -1241,6 +1226,8 @@ async function logout() {
   token.value = "";
   role.value = "admin";
   selfName.value = "";
+  overview.value = null;
+  section.value = "overview";
   sessionStorage.removeItem("marathon_admin");
   authed.value = false;
   message.value = "";
@@ -1293,19 +1280,62 @@ function nudgeSplit(event) {
   rememberSplit();
 }
 
-function pickSection(id) {
+async function loadOverview() {
+  overviewLoading.value = true;
+  overviewError.value = "";
+  try {
+    overview.value = await admin("/admin/overview");
+    if (role.value === "admin") { pendingCount.value = overview.value.counts.pendingRaces; newsPendingCount.value = overview.value.counts.pendingNews; }
+  } catch (err) {
+    if (err.status === 401) throw err;
+    overviewError.value = err.message;
+  } finally { overviewLoading.value = false; }
+}
+async function refreshSection() {
+  try {
+    if (section.value === "overview") return await loadOverview();
+    if (section.value === "races") return await Promise.all([raceWorkspace.value === "official" ? load() : raceWorkspace.value === "review" ? loadBotReviews() : loadCatalog(), loadSpots()]);
+    const jobs = {news:loadNews,users:loadUsers,clubs:loadClubs,joins:loadJoins,runs:loadRuns,shop:loadShop,partner:loadPartner};
+    if (role.value === "admin") jobs.accounts = loadAccounts;
+    if (jobs[section.value]) await jobs[section.value]();
+  } catch (err) { fail(err); }
+}
+async function pickSection(id) {
+  if (!deskSections.value.some(item => item.id === id)) return;
   section.value = id;
   message.value = "";
   saved.value = false;
-  if (id === "races") loadBotReviews().catch(fail);
-  if (id === "news") loadNews().catch(fail);
-  if (id === "users") loadUsers();
-  if (id === "clubs") loadClubs();
-  if (id === "joins") loadJoins();
-  if (id === "runs") loadRuns();
-  if (id === "shop") loadShop();
-  if (id === "partner") loadPartner();
-  if (id === "accounts") loadAccounts();
+  await refreshSection();
+}
+async function pickRaceWorkspace(id) {
+  if (!raceWorkspaces.some(item => item.id === id)) return;
+  if (id !== raceWorkspace.value) closeEditor();
+  raceWorkspace.value = id;
+  if (id === "catalog") showPublished();
+  if (id === "review") showReview();
+  await refreshSection();
+}
+async function handleOverviewAction(target) {
+  if (!target || !deskSections.value.some(item=>item.id === target.section)) return;
+  if (target.section === "races") {
+    closeEditor();
+    raceWorkspace.value = target.raceId ? "catalog" : target.tab === "review" ? "review" : target.tab === "official" ? "official" : "catalog";
+    if (raceWorkspace.value === "catalog") raceTab.value = "published";
+    if (raceWorkspace.value === "review") {
+      raceTab.value = "review";
+      botStatus.value = target.filter === "returned" ? "returned" : "pending";
+      botPage.value = 1;
+    }
+  }
+  if (target.section === "joins" && ["foundings", "joins"].includes(target.tab)) joinTab.value = target.tab;
+  await pickSection(target.section);
+  if (target.section === "news" && target.tab === "review") await showNewsReview();
+  if (target.action === "create") {
+    if (target.section === "races") startDraft();
+    if (target.section === "news") startNews();
+    if (target.section === "users") startUser();
+  }
+  if (target.raceId && target.section === "races") { await pickRaceWorkspace("catalog"); await openGuide(target.raceId); }
 }
 
 let userTimer = 0;
@@ -1438,12 +1468,13 @@ async function removeClubMember(member) {
   saved.value = false;
   const id = club.value.club.id;
   try {
-    await admin("/admin/clubs/" + id + "/members/" + member.id, { method: "DELETE" });
+    const result = await admin("/admin/clubs/" + id + "/members/" + member.id, { method: "DELETE" });
     pendingMember.value = 0;
     club.value = await admin("/admin/clubs/" + id);
     await loadClubs();
     saved.value = true;
-    message.value = "已移出跑团";
+    const removed = result.removedSignups || {};
+    message.value = "已移出跑团，取消未来报名 " + (removed.activities || 0) + " 场训练、" + (removed.meetups || 0) + " 场约跑、" + (removed.internalRaces || 0) + " 场队内赛";
   } catch (err) {
     fail(err);
   }
@@ -2016,11 +2047,13 @@ async function syncAll() {
 }
 
 function showPublished() {
+  raceWorkspace.value = "catalog";
   raceTab.value = "published";
   if (book.value && book.value.submissionId) closeEditor();
 }
 
 function showReview() {
+  raceWorkspace.value = "review";
   raceTab.value = "review";
   if (book.value && !book.value.submissionId) closeEditor();
 }
@@ -2646,6 +2679,8 @@ function toggle(list, key) {
 }
 
 function startDraft() {
+  raceWorkspace.value = "catalog";
+  raceTab.value = "published";
   raceTab.value = "published";
   clearQueues();
   editTab.value = "base";
@@ -3307,272 +3342,4 @@ if (token.value) {
 }
 </script>
 
-<style scoped>
-.hint { margin: 8px 0 0; color: var(--muted); font-size: 12px; }
-.warn { margin: 8px 0 0; color: var(--orange); font-size: 13px; }
-.check-form { display: flex; flex-direction: column; gap: 12px; margin-top: 12px; }
-.return-form { flex-direction: row; align-items: center; }
-.return-form input { flex: 1; width: auto; min-width: 0; }
-.return-form .undo { width: auto; margin-top: 0; }
-.check-form input,
-.check-form textarea,
-.check-form select,
-.pass-form input,
-.plan-filters select,
-.plan-filters input,
-.role-pick {
-  flex: none;
-  width: 100%;
-  border: 0;
-  border-radius: 12px;
-  background: var(--chip);
-  box-shadow: none;
-  font-size: 15px;
-  font-family: inherit;
-}
-.check-form input,
-.check-form select,
-.pass-form input,
-.plan-filters select,
-.plan-filters input,
-.role-pick {
-  height: 48px;
-  min-height: 48px;
-  padding: 0 16px;
-}
-.check-form input:not([type="date"]):not([type="time"]):not([type="file"]),
-.pass-form input,
-.plan-filters input { line-height: 48px; }
-.check-form select,
-.plan-filters select,
-.role-pick,
-.check-form input[type="date"],
-.check-form input[type="time"] { line-height: normal; }
-.check-form input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-  min-height: 18px;
-  margin: 0;
-  padding: 0;
-  line-height: normal;
-  box-shadow: none;
-  border-radius: 4px;
-}
-.check-line { display: flex; align-items: center; gap: 8px; min-height: 48px; font-size: 15px; }
-.check-form textarea { min-height: 112px; height: auto; padding: 14px 16px; line-height: 1.65; resize: vertical; }
-.check-form .primary,
-.inline-form .primary,
-.pass-form .save,
-.form-actions .save { height: 48px; border-radius: 12px; }
-.edit-bar { margin: -14px -16px 0; padding: 16px 16px 12px; border-radius: 12px 12px 0 0; border-bottom: 1px solid var(--line); }
-.edit-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
-.edit-id { min-width: 0; }
-.edit-kicker { margin: 0; color: var(--accent); font-size: 12px; font-weight: 600; }
-.edit-id h2 { margin: 2px 0 0; font-size: 22px; font-weight: 700; letter-spacing: -0.4px; line-height: 1.25; }
-.edit-meta { display: flex; flex-wrap: wrap; margin: 4px 0 0; color: var(--muted); font-size: 12px; line-height: 1.45; }
-.edit-meta span { white-space: nowrap; }
-.edit-meta span:not(:last-child)::after { content: " · "; }
-.edit-tools { display: flex; align-items: center; gap: 10px; flex: none; }
-.edit-tools .save { height: 36px; padding: 0 16px; border-radius: 10px; background: var(--accent); color: #fff; font-weight: 600; }
-.text-btn { color: var(--accent); font-size: 14px; font-weight: 600; }
-.edit-nav { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 14px; }
-.edit-nav button { position: relative; flex: none; height: 36px; padding: 0 2px; background: transparent; color: var(--muted); font-size: 13px; font-weight: 600; }
-.edit-nav button.on { color: var(--accent); }
-.edit-nav button.on::after { content: ""; position: absolute; right: 0; bottom: 0; left: 0; height: 3px; border-radius: 2px; background: var(--accent); }
-.group-title { margin: 16px 0 0; font-size: 13px; font-weight: 700; }
-.note { margin: 6px 0 0; color: var(--muted); font-size: 12px; line-height: 1.5; }
-.md-raw { margin: 12px 0 0; white-space: pre-wrap; font: inherit; font-size: 14px; line-height: 1.6; }
-.field small { color: var(--muted); font-size: 12px; line-height: 1.4; }
-.media { margin-top: 14px; }
-.media-head { display: flex; justify-content: space-between; align-items: baseline; }
-.media-head span, .media-head b { font-size: 12px; font-weight: 600; color: var(--muted); }
-.media .file-pick { margin-top: 8px; }
-.sheet-row .undo { margin-top: 6px; height: 28px; padding: 0; font-size: 12px; }
-.section { margin-top: 12px; padding: 14px; border-radius: 12px; background: var(--bg); }
-.section h3 { margin: 0; font-size: 16px; font-weight: 600; letter-spacing: -0.2px; }
-.lead, .pick-label { margin: 6px 0 0; color: var(--muted); font-size: 12px; line-height: 1.45; }
-.pick-label { margin-top: 12px; }
-.pair { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 14px; }
-.field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
-.field > span { font-size: 13px; color: var(--muted); }
-.guide-form input, .guide-form textarea, .guide-form select { border: 0; border-radius: 10px; background: var(--chip); box-shadow: none; font-size: 15px; }
-.guide-form .field input, .guide-form .field select, .guide-form .field textarea { flex: none; width: 100%; }
-.guide-form .field input, .guide-form .field select { height: 48px; min-height: 48px; padding: 0 16px; line-height: 48px; }
-.guide-form .field textarea { min-height: 112px; height: auto; padding: 14px 16px; line-height: 1.65; resize: vertical; }
-.guide-form input[type="date"],
-.guide-form input[type="time"],
-.node-form input[type="date"] { line-height: normal; }
-.role-pick { width: auto; min-width: 148px; }
-.picks { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
-.pick { height: 32px; padding: 0 12px; border-radius: 8px; background: var(--chip); color: var(--ink); font-size: 14px; }
-.pick.on { background: var(--accent-soft); color: var(--accent); }
-.file-pick { position: relative; display: flex; align-items: center; justify-content: center; min-height: 64px; margin-top: 12px; border-radius: 10px; border: 1px dashed var(--line); background: var(--chip); color: var(--accent); font-weight: 600; cursor: pointer; }
-.file-pick input { position: absolute; width: 1px; height: 1px; opacity: 0; }
-.add { margin-top: 8px; color: var(--accent); font-weight: 600; background: transparent; }
-.race-list { margin-top: 8px; }
-.race-row { display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--line); }
-.user-row { align-items: flex-start; }
-.member-row { padding: 12px 0 4px; border-top: 1px solid var(--line); }
-.member-head { display: flex; align-items: baseline; gap: 8px; }
-.member-head b { flex: 1; min-width: 0; font-size: 16px; }
-.member-head span { flex: none; color: var(--muted); font-size: 12px; }
-.member-row .row-confirm { padding-left: 0; padding-right: 0; }
-.user-row .race-open { padding-right: 0; }
-.row-actions { display: flex; flex: none; align-items: center; padding-top: 6px; }
-.row-edit { flex: none; padding: 8px 10px; background: transparent; color: var(--accent); font-size: 13px; font-weight: 600; }
-.row-confirm { flex: 1 1 100%; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 0 4px 12px; }
-.row-confirm p { flex: 1 1 100%; margin: 0; color: var(--muted); font-size: 12px; line-height: 1.45; }
-.row-confirm .danger, .row-confirm .undo { margin-top: 0; }
-.race-row.on { background: var(--accent-soft); }
-.race-open { flex: 1; min-width: 0; text-align: left; padding: 12px 4px; background: transparent; }
-.race-open strong { display: block; color: var(--muted); font-size: 12px; font-weight: 600; }
-.race-open span { display: block; font-size: 16px; font-weight: 600; letter-spacing: -0.2px; }
-.catalog-open { display: grid; grid-template-columns: 108px minmax(64px, 96px) minmax(0, 1fr); gap: 8px 14px; align-items: center; }
-.catalog-open time, .catalog-open em { font-style: normal; color: var(--muted); font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; }
-.catalog-open span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.news-open { align-items: start; }
-.news-open span { white-space: normal; }
-.news-open span strong { display: block; margin-top: 2px; color: var(--muted); font-size: 12px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.block .row-pass { display: inline-flex; align-items: center; justify-content: center; flex: none; width: auto; height: 32px; margin: 0; padding: 0 12px; border-radius: 8px; font-size: 13px; }
-.remove { flex: none; color: var(--muted); font-size: 13px; padding: 8px 10px; background: transparent; }
-.remove:hover { color: var(--red); }
-.sheets { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
-.sheet-row { margin-top: 0; }
-.sheet-row img { width: 100%; border-radius: 10px; background: #fff; }
-.live-preview { max-width: 180px; margin-top: 8px; }
-.editor-actions { position: sticky; bottom: 0; display: flex; flex-direction: column; gap: 8px; margin-top: 12px; padding-top: 12px; background: linear-gradient(rgba(255, 255, 255, 0), #fff 12px); }
-.editor-actions .primary, .editor-actions .undo { margin-top: 0; }
-.primary { margin-top: 8px; }
-.undo { margin-top: 8px; height: 32px; padding: 0 12px; background: transparent; color: var(--muted); }
-.pass-form { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 8px; margin-top: 12px; }
-.pass-form small { flex: 1 1 100%; margin: 0; color: var(--muted); font-size: 12px; line-height: 1.4; }
-.pass-form label { flex: 1; min-width: 160px; display: flex; flex-direction: column; gap: 6px; }
-.pass-form span { font-size: 12px; color: var(--muted); font-weight: 600; }
-.pass-form .save { flex: none; padding: 0 18px; background: var(--accent); color: #fff; font-weight: 600; }
-.user-form { display: flex; flex-direction: column; gap: 14px; margin-top: 16px; }
-.user-form .field input { flex: none; width: 100%; height: 48px; min-height: 48px; padding: 0 16px; border: 0; border-radius: 10px; background: var(--chip); font-size: 15px; line-height: 48px; }
-.user-form h2, .person > h2 { margin: 4px 0 0; font-size: 22px; }
-.form-actions { display: flex; align-items: center; gap: 12px; }
-.form-actions .save { padding: 0 18px; background: var(--accent); color: #fff; font-weight: 600; }
-.danger-quiet { margin-top: 12px; height: 36px; padding: 0 14px; border-radius: 10px; background: #fff; color: var(--red); font-weight: 600; box-shadow: inset 0 0 0 1px var(--accent-soft); }
-.confirm-box { margin-top: 10px; }
-.danger { height: 36px; margin-top: 8px; padding: 0 14px; border-radius: 10px; background: var(--accent); color: #fff; font-weight: 600; }
-.confirm-row { display: flex; gap: 10px; align-items: center; }
-.confirm-row .danger, .confirm-row .undo { margin-top: 8px; }
-.statuses { margin-top: 8px; }
-.link { display: inline-block; }
-a { color: var(--accent); }
-.banner { margin: 0 16px; padding: 10px 12px; border-radius: 12px; background: #fff; color: var(--red); font-size: 14px; }
-.banner.ok { color: var(--green); }
-.admin-shell { min-height: 100vh; background: var(--bg); }
-.admin-nav { display: flex; gap: 6px; align-items: center; margin: 0; padding: 12px 14px; overflow: auto; background: #fff; color: var(--ink); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 5; }
-.brand { display: flex; align-items: baseline; gap: 10px; margin-right: 4px; flex: none; }
-.brand strong { font-size: 16px; font-weight: 700; letter-spacing: -0.3px; }
-.brand .back { color: var(--muted); font-size: 13px; }
-.admin-nav button { position: relative; flex: none; height: 36px; padding: 0 12px; background: transparent; color: var(--muted); font-weight: 600; }
-.admin-nav button.on { color: var(--accent); }
-.admin-nav button.on::after { content: ""; position: absolute; right: 12px; bottom: -4px; left: 12px; height: 3px; border-radius: 2px; background: var(--accent); }
-.admin-nav .out { margin-left: auto; color: var(--muted); font-weight: 500; }
-.desk-canvas { min-width: 0; padding: 8px 4px 28px; }
-.desk-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; padding: 16px 16px 0; }
-.desk-head h2 { margin: 0; font-size: 28px; font-weight: 700; letter-spacing: -0.7px; }
-.desk-head p { margin: 6px 0 0; max-width: 42em; color: var(--muted); font-size: 14px; line-height: 1.45; }
-.head-add { height: 40px; margin: 0; padding: 0 16px; border-radius: 12px; white-space: nowrap; }
-.line { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
-.line b { min-width: 0; font-size: 15px; font-weight: 600; }
-.line span { flex: 1 1 100%; color: var(--muted); font-size: 13px; }
-.actions { display: flex; gap: 8px; flex: none; }
-.who-name { display: flex; align-items: center; gap: 8px; min-width: 0; }
-.who-name i { flex: none; height: 20px; padding: 0 7px; border-radius: 5px; background: var(--accent-soft); color: var(--accent); font-size: 11px; font-style: normal; font-weight: 600; line-height: 20px; }
-.person { padding-top: 18px; }
-.person-head { display: flex; align-items: flex-start; gap: 14px; }
-.person-id { flex: 1; min-width: 0; }
-.person-head .text-btn { flex: none; padding-top: 4px; }
-.person-face { width: 56px; height: 56px; flex: none; border-radius: 50%; display: grid; place-items: center; color: var(--accent); font-size: 24px; font-weight: 700; background: var(--accent-soft); }
-.person-head h2 { margin: 0; font-size: 22px; font-weight: 700; letter-spacing: -0.4px; }
-.person-head p { margin: 3px 0 0; color: var(--muted); font-size: 13px; }
-.setting { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-.setting h3 { margin: 0; }
-.setting .lead { margin: 4px 0 0; }
-.switch { flex: none; width: 51px; height: 31px; padding: 2px; border-radius: 999px; background: rgba(120, 120, 128, 0.16); }
-.switch i { display: block; width: 27px; height: 27px; border-radius: 50%; background: #fff; box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15), 0 1px 1px rgba(0, 0, 0, 0.06); transition: transform 0.2s ease; }
-.switch.on { background: var(--accent); }
-.switch.on i { transform: translateX(20px); }
-.club-card { margin-top: 10px; padding: 14px 14px 0; border-radius: 12px; background: #fff; }
-.club-card > b { display: block; font-size: 16px; font-weight: 600; line-height: 1.35; }
-.roles { margin-top: 8px; }
-.roles button { display: flex; align-items: center; justify-content: space-between; width: 100%; height: 44px; padding: 0; background: transparent; border-top: 1px solid var(--line); color: var(--ink); font-size: 15px; font-weight: 500; }
-.roles button.on { color: var(--accent); font-weight: 600; }
-.roles i { display: block; flex: none; width: 22px; height: 22px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px rgba(60, 60, 67, 0.28); }
-.roles button:disabled { color: #c7c7cc; }
-.roles button:disabled i { box-shadow: inset 0 0 0 1.5px rgba(60, 60, 67, 0.16); }
-.roles button.on i { background: var(--accent); box-shadow: none; position: relative; }
-.role-note { margin: 0; padding: 4px 0 14px; color: var(--muted); font-size: 12px; line-height: 1.45; }
-.roles button.on i::after { content: ""; position: absolute; left: 7px; top: 4px; width: 5px; height: 9px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); }
-.plan-filters { display: flex; gap: 8px; margin-top: 12px; }
-.plan-filters label { flex: 1; min-width: 120px; display: flex; flex-direction: column; gap: 6px; }
-.plan-filters span { font-size: 12px; color: var(--muted); font-weight: 600; }
-.fact { display: flex; flex-direction: column; align-items: flex-start; gap: 3px; margin-top: 8px; padding: 12px 14px; border-radius: 12px; background: #fff; }
-.fact b { font-size: 15px; font-weight: 600; line-height: 1.35; }
-.fact span { color: var(--muted); font-size: 13px; }
-.desk { display: flex; flex-direction: column; }
-.desk-side { order: 2; }
-.desk-official { order: 3; }
-.splitter { display: none; order: 1; }
-.gate {
-  min-height: calc(100vh - 52px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 28px;
-  padding: 28px 20px 48px;
-}
-.gate-copy h2 { margin: 8px 0 0; font-size: 40px; font-weight: 700; letter-spacing: -1.1px; line-height: 1; }
-.gate-copy p { margin: 12px 0 0; color: var(--muted); font-size: 16px; line-height: 1.5; }
-.kicker { margin: 0; color: var(--accent); font-size: 13px; font-weight: 600; letter-spacing: 0.12em; }
-.gate-form { display: flex; flex-direction: column; gap: 14px; padding: 22px 20px; border-radius: 12px; background: #fff; }
-.gate-form label span { display: block; margin-bottom: 6px; color: var(--muted); font-size: 13px; font-weight: 600; }
-.gate-form input { width: 100%; height: 48px; border: 0; border-radius: 12px; background: var(--bg); padding: 0 14px; font-size: 17px; }
-.gate-form .primary { height: 48px; margin-top: 4px; border-radius: 12px; font-size: 17px; font-weight: 600; }
-.gate-form .err { margin: 0; }
-@media (max-width: 899px) {
-  .admin { scroll-padding-top: 84px; }
-  .desk-canvas input, .desk-canvas button, .desk-canvas textarea, .desk-side .section { scroll-margin-top: 88px; }
-  .brand strong { display: none; }
-  .admin-nav { padding: 10px 12px; gap: 2px; }
-  .admin-nav button { height: 32px; padding: 0 10px; font-size: 14px; }
-  .catalog-open { display: block; }
-  .catalog-open time, .catalog-open em { display: inline; }
-  .catalog-open time::after { content: " · "; }
-  .catalog-open span { white-space: normal; margin-top: 2px; }
-  .inline-form { flex-direction: row; align-items: center; }
-  .inline-form input { flex: 1; width: auto; min-width: 0; }
-  .inline-form .primary { width: auto; margin-top: 0; padding: 0 14px; }
-}
-@media (min-width: 900px) {
-  .gate { min-height: 100vh; display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, 420px); align-items: center; gap: 64px; padding: 48px 64px 72px; }
-  .gate-copy h2 { font-size: 64px; letter-spacing: -1.8px; }
-  .admin-shell { display: grid; grid-template-columns: 220px minmax(0, 1fr); align-items: stretch; }
-  .admin-nav { flex-direction: column; align-items: stretch; gap: 4px; height: 100vh; padding: 28px 14px 18px; overflow: auto; border-right: 1px solid var(--line); border-bottom: 0; }
-  .brand { display: block; padding: 0 12px 22px; margin: 0; }
-  .brand strong { display: block; margin-top: 8px; font-size: 26px; letter-spacing: -0.6px; }
-  .admin-nav button { text-align: left; height: 40px; border-radius: 10px; }
-  .admin-nav button.on { background: var(--accent-soft); color: var(--accent); }
-  .admin-nav button.on::after { top: 11px; right: auto; bottom: 11px; left: 0; width: 3px; height: auto; }
-  .admin-nav .out { margin: auto 0 0; }
-  .desk-canvas { padding: 28px 36px 48px; }
-  .desk-head h2 { font-size: 34px; letter-spacing: -0.9px; }
-  .race-list { max-height: calc(100vh - 280px); overflow: auto; }
-  .line span { flex: none; text-align: right; }
-  .desk.editing { display: grid; grid-template-columns: minmax(260px, var(--split, 46%)) 14px minmax(340px, 1fr); align-items: stretch; gap: 0 0; }
-  .splitter { display: flex; align-items: center; justify-content: center; min-height: 160px; cursor: col-resize; touch-action: none; }
-  .splitter::before { content: ""; width: 2px; height: 72px; border-radius: 999px; background: rgba(60, 60, 67, 0.22); }
-  .splitter:hover::before, .dragging .splitter::before { width: 3px; height: 100%; background: var(--accent); }
-  .desk-official { grid-column: 1 / -1; }
-  .inline-form { flex-direction: row; align-items: center; }
-  .inline-form input { flex: 1; width: auto; min-width: 0; }
-  .inline-form .primary { width: auto; margin-top: 0; padding: 0 16px; white-space: nowrap; }
-  .pair { grid-template-columns: 1fr 1fr; }
-  .pair .span { grid-column: 1 / -1; }
-}
-</style>
+<style scoped src="../styles/admin.css"></style>

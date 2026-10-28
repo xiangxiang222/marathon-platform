@@ -1,22 +1,23 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "./views/Home.vue";
-import Race from "./views/Race.vue";
-import Sport from "./views/Sport.vue";
-import Exercise from "./views/Exercise.vue";
-import Look from "./views/Look.vue";
-import Club from "./views/Club.vue";
-import ClubIntro from "./views/ClubIntro.vue";
-import Activity from "./views/Activity.vue";
-import Signup from "./views/Signup.vue";
-import Album from "./views/Album.vue";
-import Call from "./views/Call.vue";
-import Meetup from "./views/Meetup.vue";
-import Internal from "./views/Internal.vue";
-import Mine from "./views/Mine.vue";
-import Admin from "./views/Admin.vue";
-import Calendar from "./views/Calendar.vue";
-import Radar from "./views/Radar.vue";
-import News from "./views/News.vue";
+const Race = () => import("./views/Race.vue");
+const Sport = () => import("./views/Sport.vue");
+const Exercise = () => import("./views/Exercise.vue");
+const Look = () => import("./views/Look.vue");
+const Club = () => import("./views/Club.vue");
+const ClubIntro = () => import("./views/ClubIntro.vue");
+const Activity = () => import("./views/Activity.vue");
+const ActivityCreate = () => import("./views/ActivityCreate.vue");
+const Signup = () => import("./views/Signup.vue");
+const Album = () => import("./views/Album.vue");
+const Call = () => import("./views/Call.vue");
+const Meetup = () => import("./views/Meetup.vue");
+const Internal = () => import("./views/Internal.vue");
+const Mine = () => import("./views/Mine.vue");
+const Admin = () => import("./views/Admin.vue");
+const Calendar = () => import("./views/Calendar.vue");
+const Radar = () => import("./views/Radar.vue");
+const News = () => import("./views/News.vue");
 
 export default createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -33,6 +34,7 @@ export default createRouter({
     { path: "/clubs/invite/:code", component: ClubIntro, meta: { hideTab: true } },
     { path: "/clubs/:id/public", component: ClubIntro, meta: { hideTab: true } },
     { path: "/clubs/:id", component: Club, meta: { hideTab: true } },
+    { path: "/clubs/:id/activities/new", component: ActivityCreate, meta: { hideTab: true } },
     { path: "/clubs/:id/activities/:aid", component: Activity, meta: { hideTab: true } },
     { path: "/clubs/:id/activities/:aid/signup", component: Signup, meta: { hideTab: true } },
     { path: "/clubs/:id/activities/:aid/album", component: Album, meta: { hideTab: true } },
@@ -40,6 +42,7 @@ export default createRouter({
     { path: "/clubs/:id/meetups/:mid", component: Meetup, meta: { hideTab: true } },
     { path: "/clubs/:id/internals/:rid", component: Internal, meta: { hideTab: true } },
     { path: "/mine", component: Mine },
-    { path: "/admin", component: Admin, meta: { hideTab: true, wide: true } }
+    { path: "/admin", component: Admin, meta: { hideTab: true, wide: true } },
+    { path: "/:pathMatch(.*)*", component: () => import("./views/NotFound.vue"), meta: { hideTab: true } }
   ]
 });

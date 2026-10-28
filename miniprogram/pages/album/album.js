@@ -14,6 +14,7 @@ Page({
     staff: false,
     review: false,
     layout: "grid",
+    loading: true,
     message: ""
   },
   onLoad(query) {
@@ -25,8 +26,11 @@ Page({
   },
   load() {
     const app = getApp();
-    request("/clubs/" + this.clubId + "/activities/" + this.activityId + "/album")
+    const sequence = this._loadSequence = (this._loadSequence || 0) + 1;
+    this.setData({ loading: true, message: "" });
+    return request("/clubs/" + this.clubId + "/activities/" + this.activityId + "/album")
       .then((data) => {
+        if (sequence !== this._loadSequence) return;
         const token = app.globalData.token || "";
         const base = app.globalData.baseUrl;
         const items = (data.items || []).map((item) => ({
@@ -47,7 +51,13 @@ Page({
           message: ""
         });
       })
-      .catch((err) => this.setData({ message: err.message }));
+      .catch((err) => {
+        if (sequence === this._loadSequence) this.setData({ activity: null, message: err.message || "相册暂时无法加载，请重试" });
+      })
+      .finally(() => { if (sequence === this._loadSequence) this.setData({ loading: false }); });
+  },
+  onUnload() {
+    this._loadSequence = (this._loadSequence || 0) + 1;
   },
   showPhotos() {
     this.setData({ tab: "photo" });

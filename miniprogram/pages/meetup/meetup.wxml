@@ -5,13 +5,19 @@
     <view wx:if="{{meetup.note}}" class="src">{{meetup.note}}</view>
     <view class="sum">{{meetup.hint}}</view>
     <view class="src">{{meetup.shareText}}</view>
-    <button class="btn" data-text="{{meetup.shareText}}" bindtap="copyText">复制到微信群</button>
+    <button class="btn" open-type="share">发到微信群</button>
+    <button class="ghost" data-text="{{meetup.shareText}}" bindtap="copyText">复制约跑信息</button>
     <button wx:if="{{meetup.canJoin}}" class="btn" bindtap="join">算我一个</button>
     <button wx:if="{{meetup.canLeave}}" class="ghost" bindtap="leave">不算我了</button>
     <button wx:if="{{meetup.canCheck}}" class="btn" bindtap="check">打卡</button>
     <button wx:if="{{meetup.canUncheck}}" class="ghost" bindtap="uncheck">撤销打卡</button>
     <button wx:if="{{meetup.canPhoto}}" class="ghost" bindtap="choose">上传合影</button>
     <button wx:if="{{meetup.canVoid}}" class="ghost" bindtap="voidRun">作废</button>
+  </view>
+  <view class="card">
+    <view class="h2">算我一个 {{meetup.joins.length}}</view>
+    <view wx:for="{{meetup.joins}}" wx:key="userId" class="row"><text>{{item.nickname}}{{item.mine ? ' · 我' : ''}}</text></view>
+    <view wx:if="{{!meetup.joins.length}}" class="src">还没有人预报，邀请跑友一起出发。</view>
   </view>
   <view class="card">
     <view class="h2">已打卡 {{meetup.checkCount}}</view>
@@ -32,4 +38,9 @@
     <button class="ghost" bindtap="resettle">重算</button>
   </view>
   <view wx:if="{{message}}" class="src">{{message}}</view>
+</view>
+<view wx:else class="meetup-state">
+  <view class="state-title">{{loading ? '正在加载约跑…' : '暂时无法打开约跑'}}</view>
+  <view wx:if="{{!loading}}" class="src">{{message || '没有找到这场约跑'}}</view>
+  <button wx:if="{{!loading}}" class="btn" bindtap="load">重新加载</button>
 </view>

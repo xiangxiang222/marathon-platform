@@ -7,6 +7,7 @@ const { clubRoleLabel, setMemberRole, addClubMember, removeClubMember, decideReq
 const { setUserPassword, createUser } = require("./user-auth");
 const { likeParams } = require("./search-like");
 const { readPage, finishPage, pageFields, slicePage } = require("./page");
+const { adminOverview } = require("./admin-overview");
 
 function mediaRoot() {
   return process.env.MARATHON_MEDIA || path.join(__dirname, "../data/media");
@@ -443,6 +444,12 @@ function mountAdminDesk(app, { BASE, getDb, requireAdmin }) {
     return requireAdmin(req, res, "desk");
   }
 
+  app.get(BASE + "/api/admin/overview", (req, res) => {
+    if (!desk(req, res)) return;
+    res.set("Cache-Control", "no-store");
+    res.json(adminOverview(getDb(), req.adminRole));
+  });
+
   app.get(BASE + "/api/admin/users", (req, res) => {
     if (!desk(req, res)) return;
     res.json(listUsers(getDb(), req.query.q, req.query));
@@ -552,7 +559,7 @@ function mountAdminDesk(app, { BASE, getDb, requireAdmin }) {
     if (!Number.isInteger(id) || id < 1) return res.status(404).json({ error: "没有这个跑团" });
     const result = removeClubMember(getDb(), id, userId);
     if (result.error) return res.status(result.status).json({ error: result.error });
-    res.json({ ok: true });
+    res.json(result);
   });
 
   app.get(BASE + "/api/admin/club-applications", (req, res) => {

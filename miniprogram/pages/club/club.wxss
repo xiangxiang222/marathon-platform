@@ -66,6 +66,9 @@
 .form-hint { margin: 10rpx 0; color: #8a8e99; font-size: 22rpx; }
 .choice-row { display: flex; flex-wrap: wrap; gap: 10rpx; margin: 10rpx 0; }
 .choice { margin: 0; padding: 0 16rpx; height: 80rpx; line-height: 80rpx; color: #1f2026; background: #f0f1f6; border-radius: 16rpx; font-size: 26rpx; }
+.fee-history { margin-top: 16rpx; }
+.fee-history-section { margin-top: 16rpx; }
+.fee-history .choice-selected { color: #fff; background: #ff0a30; }
 .choice::after { border: 0; }
 .primary-btn, .secondary-btn { display: block; width: 100%; height: 80rpx; margin-top: 16rpx; line-height: 80rpx; border-radius: 16rpx; font-size: 28rpx; }
 .primary-btn { color: #fff; background: #ff0a30; }
@@ -138,3 +141,15 @@
   .approval-actions { max-width: 100%; flex-wrap: wrap; }
   .mileage-total { font-size: 28px; }
 }
+
+.activity-copy {display:block;padding:4rpx 8rpx 18rpx;color:#ff0a30;font-size:23rpx;text-align:right}
+.activity-publish {display:flex;align-items:center;justify-content:space-between;gap:14rpx;margin-top:20rpx;padding:26rpx;background:#fff;border:1rpx solid #eceef2;border-left:5rpx solid #ff0a30;border-radius:12rpx}
+.activity-publish>text {color:#ff0a30;font-size:34rpx}
+.club-poster-canvas { position: fixed; left: -2000px; top: 0; width: 1px; height: 1px; pointer-events: none; }
+.poster-layer { position: fixed; inset: 0; z-index: 50; display: flex; align-items: center; justify-content: center; padding: 24rpx; box-sizing: border-box; background: rgba(20, 22, 28, .76); }
+.poster-frame { width: 100%; max-width: 680rpx; max-height: 92vh; overflow-y: auto; text-align: center; }
+.poster-image { display: block; width: 100%; border-radius: 12rpx; }
+.poster-hint { padding: 18rpx 0; color: #fff; font-size: 24rpx; }
+.text-action { border: 0; padding: 0; margin: 0; background: transparent; color: #ff0a30; font-size: 24rpx; line-height: 1.4; }
+.text-action::after { border: 0; }
+.leave-button { color: #c73540; }
