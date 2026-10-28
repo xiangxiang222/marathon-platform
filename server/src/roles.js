@@ -68,20 +68,60 @@ function addClubMember(db, clubId, nickname) {
   const now = new Date().toISOString();
   db.prepare("INSERT INTO club_members (club_id, user_id, joined_at, role) VALUES (?, ?, ?, 'member')").run(club.id, userId, now);
   db.prepare(
+    "UPDATE fee_records SET departed = 0 WHERE user_id = ? AND period_id IN (SELECT id FROM fee_periods WHERE club_id = ? AND open = 1)"
+  ).run(userId, club.id);
+  db.prepare(
     "UPDATE club_requests SET status = 'approved', reviewed_at = ?, reviewer = '后台' WHERE club_id = ? AND user_id = ? AND status = 'pending'"
   ).run(now, club.id, userId);
   return { ok: true, userId };
 }
 
+function clearClubMemberFutureSignups(db, clubId, userId, now = Date.now()) {
+  const stamp = new Date(now + 8 * 3600 * 1000).toISOString().slice(0, 16);
+  const today = stamp.slice(0, 10);
+  const changedAt = new Date(now).toISOString();
+  db.prepare(
+    `INSERT OR IGNORE INTO fee_records (period_id, user_id, status, updated_at, departed)
+     SELECT id, ?, 'unpaid', ?, 1 FROM fee_periods WHERE club_id = ? AND open = 1`
+  ).run(userId, changedAt, clubId);
+  db.prepare(
+    "UPDATE fee_records SET departed = 1 WHERE user_id = ? AND period_id IN (SELECT id FROM fee_periods WHERE club_id = ? AND open = 1)"
+  ).run(userId, clubId);
+  const activities = db.prepare(
+    `DELETE FROM activity_signups WHERE user_id = ? AND activity_id IN (
+       SELECT id FROM activities WHERE club_id = ? AND starts_at > ?
+     )`
+  ).run(userId, clubId, stamp).changes;
+  // Meetups have a date but no start time, so keep today's joins conservatively.
+  const meetups = db.prepare(
+    `DELETE FROM meetup_joins WHERE user_id = ? AND meetup_id IN (
+       SELECT m.id FROM meetups m WHERE m.club_id = ? AND m.run_on > ?
+         AND NOT EXISTS (SELECT 1 FROM meetup_checks c WHERE c.meetup_id = m.id AND c.user_id = ?)
+     )`
+  ).run(userId, clubId, today, userId).changes;
+  const internalRaces = db.prepare(
+    `DELETE FROM internal_signups WHERE user_id = ? AND race_id IN (
+       SELECT r.id FROM internal_races r WHERE r.club_id = ? AND r.starts_at > ?
+         AND NOT EXISTS (SELECT 1 FROM internal_results x WHERE x.race_id = r.id AND x.user_id = ?)
+     )`
+  ).run(userId, clubId, stamp, userId).changes;
+  return { activities, meetups, internalRaces };
+}
+
 function removeClubMember(db, clubId, userId) {
   const uid = Number(userId);
   if (!Number.isInteger(uid) || uid < 1) return { error: "团里没有这个人", status: 404 };
-  const club = db.prepare("SELECT id, owner_id FROM clubs WHERE id = ?").get(clubId);
-  if (!club) return { error: "没有这个跑团", status: 404 };
-  if (uid === club.owner_id) return { error: "该用户仍为团长，请先完成团长移交后再移出", status: 400 };
-  const gone = db.prepare("DELETE FROM club_members WHERE club_id = ? AND user_id = ?").run(club.id, uid);
-  if (!gone.changes) return { error: "团里没有这个人", status: 404 };
-  return { ok: true };
+  return db.transaction(() => {
+    const club = db.prepare("SELECT id, owner_id FROM clubs WHERE id = ?").get(clubId);
+    if (!club) return { error: "没有这个跑团", status: 404 };
+    if (uid === club.owner_id) return { error: "该用户仍为团长，请先完成团长移交后再移出", status: 400 };
+    const member = db.prepare("SELECT 1 FROM club_members WHERE club_id = ? AND user_id = ?").get(club.id, uid);
+    if (!member) return { error: "团里没有这个人", status: 404 };
+    const removedSignups = clearClubMemberFutureSignups(db, club.id, uid);
+    db.prepare("DELETE FROM club_requests WHERE club_id = ? AND user_id = ? AND status = 'pending'").run(club.id, uid);
+    db.prepare("DELETE FROM club_members WHERE club_id = ? AND user_id = ?").run(club.id, uid);
+    return { ok: true, removedSignups };
+  }).immediate();
 }
 
 function decideRequest(db, requestId, decision, reviewer, clubId) {
@@ -104,6 +144,9 @@ function decideRequest(db, requestId, decision, reviewer, clubId) {
         row.user_id,
         now
       );
+      db.prepare(
+        "UPDATE fee_records SET departed = 0 WHERE user_id = ? AND period_id IN (SELECT id FROM fee_periods WHERE club_id = ? AND open = 1)"
+      ).run(row.user_id, row.club_id);
     }
     return updated.changes;
   })();
@@ -193,6 +236,7 @@ module.exports = {
   memberRole,
   setMemberRole,
   addClubMember,
+  clearClubMemberFutureSignups,
   removeClubMember,
   decideRequest,
   listPending,

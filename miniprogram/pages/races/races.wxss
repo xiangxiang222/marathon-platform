@@ -16,6 +16,11 @@
 .kind-tab { position: relative; display: flex; flex: 1; min-width: 0; align-items: center; justify-content: center; height: 80rpx; color: #1f2026; font-size: 32rpx; font-weight: 600; white-space: nowrap; }
 .kind-tab.on { color: #ff0a30; }
 .kind-tab.on::after { position: absolute; bottom: 6rpx; left: 50%; width: 36rpx; height: 5rpx; border-radius: 3rpx; background: #ff0a30; transform: translateX(-50%); content: ''; }
+.meet-tabs { height: 64rpx; }
+.meet-tabs .kind-tab { height: 64rpx; color: #8a8e99; font-size: 26rpx; font-weight: 500; }
+.meet-tabs .kind-tab.on { color: #ff0a30; }
+.meet-tabs .kind-tab.on::after { bottom: 2rpx; width: 28rpx; }
+.meet-tabs .kind-tab:first-child { flex: 1.4; }
 .quick-entries { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 8rpx 24rpx 0; }
 .quick-entry { display: flex; min-width: 0; flex-direction: column; align-items: center; gap: 8rpx; color: #1f2026; font-size: 24rpx; line-height: 32rpx; white-space: nowrap; }
 .quick-icon { display: block; width: 64rpx; height: 64rpx; margin: 0; border: 0; background: transparent; }
@@ -53,6 +58,7 @@
 .deadline { flex: 1; min-width: 0; overflow: hidden; color: #8a8e99; font-size: 22rpx; line-height: 30rpx; text-overflow: ellipsis; white-space: nowrap; }
 .deadline.hot { color: #ff0a30; }
 .page-error { margin: 16rpx 24rpx; color: #c73540; font-size: 26rpx; }
+.page-error .retry { margin-left: 16rpx; color: #ff0a30; font-weight: 600; }
 .empty { padding: 48rpx 24rpx; color: #8a8e99; font-size: 28rpx; text-align: center; }
 .pager { display: flex; align-items: center; flex-wrap: wrap; gap: 12rpx; margin: 20rpx 24rpx 8rpx; }
 .pager-step { height: 64rpx; padding: 0 8rpx; color: #ff0a30; font-size: 26rpx; font-weight: 600; line-height: 64rpx; }

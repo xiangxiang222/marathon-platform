@@ -20,7 +20,10 @@
       <section v-if="!data.runs.length" class="surface empty-state"><h3>从今天的一次跑步开始</h3><p>点击“记录跑步”，保存距离、用时和路线城市。</p></section>
       <p class="year-note">今年 {{ data.year.km }} 公里 · 累计 {{ data.total.km }} 公里，{{ data.total.count }} 次</p>
     </template>
-    <p v-else class="loading-copy">正在读取运动记录…</p><p v-if="message" class="message">{{ message }}</p>
+    <section v-else-if="loadError && !loading" class="surface" role="alert"><p>{{ loadError }}</p><button class="primary" type="button" @click="load">重新加载</button></section>
+    <p v-else class="loading-copy">正在读取运动记录…</p>
+    <div v-if="data && loadError" class="load-error" role="alert"><span>{{ loadError }}</span><button type="button" @click="load">重新加载</button></div>
+    <p v-if="message" class="message">{{ message }}</p>
   </main>
 </template>
 
@@ -44,6 +47,9 @@ function login() { localStorage.setItem("marathon_return_after_login", "/sport")
 
 const ready = ref(!!localStorage.getItem("marathon_token"));
 const data = ref(null);
+const loading = ref(false);
+const loadError = ref("");
+let loadSequence = 0;
 const message = ref("");
 const month = ref(new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 7));
 const gender = ref("");
@@ -57,18 +63,27 @@ function shotSrc(id) {
 
 async function load() {
   if (!ready.value) return;
+  const sequence = ++loadSequence;
+  const selectedMonth = month.value;
+  loading.value = true;
+  loadError.value = "";
   message.value = "";
   try {
-    data.value = await api("/runs?month=" + encodeURIComponent(month.value));
+    const loaded = await api("/runs?month=" + encodeURIComponent(selectedMonth));
+    if (sequence !== loadSequence) return;
+    data.value = loaded;
     gender.value = data.value.month.gender || "";
     target.value = data.value.month.target ? String(data.value.month.target) : "";
   } catch (err) {
+    if (sequence !== loadSequence) return;
     if (err.status === 401) {
       localStorage.removeItem("marathon_token");
       localStorage.removeItem("marathon_name");
       ready.value = false;
       data.value = null;
-    } else message.value = err.message;
+    } else loadError.value = err.message;
+  } finally {
+    if (sequence === loadSequence) loading.value = false;
   }
 }
 

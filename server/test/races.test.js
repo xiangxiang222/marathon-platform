@@ -1,6 +1,12 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-const { inChannel, presentRace } = require("../src/races");
+const { inChannel, presentRace, summarizeMarks } = require("../src/races");
+
+test("race summaries describe finish outcomes separately from pending participation", () => {
+  assert.equal(summarizeMarks({ 完赛: 2 }), "2 人完赛");
+  assert.equal(summarizeMarks({ 已报名: 1, 完赛: 2, 未完赛: 1, 弃赛: 1 }), "1 人已报名，2 人完赛，1 人未完赛，1 人弃赛");
+  assert.equal(summarizeMarks({ 想跑: 2 }), "2 人想跑");
+});
 
 test("race track type and participation format are independent browsing dimensions", () => {
   const cases = [

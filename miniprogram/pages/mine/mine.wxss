@@ -19,3 +19,4 @@
   .stack input,.profile-fields input { height: 44px; font-size: 15px; }
   .setting-row { min-height: 52px; }
 }
+.legal-link { display: inline-block; margin-left: 6px; color: #8a8e99; text-decoration: underline; }

@@ -43,16 +43,12 @@ function writeAdmin(db, username, password) {
   );
 }
 
-function ensureDeskLogin(db) {
-  db.exec("CREATE TABLE IF NOT EXISTS app_flags (key TEXT PRIMARY KEY, value TEXT NOT NULL)");
-  const key = "desk-login-admin";
-  if (db.prepare("SELECT 1 FROM app_flags WHERE key = ?").get(key)) return false;
-  writeAdmin(db, "admin", "admin");
-  db.prepare("INSERT INTO app_flags (key, value) VALUES (?, ?)").run(key, "1");
-  return true;
-}
-
 function ensureAdmin(db) {
+  const legacy = db.prepare("SELECT salt, password_hash FROM admins WHERE username = 'admin'").get();
+  if (legacy && verifyPassword("admin", legacy.salt, legacy.password_hash)) {
+    db.prepare("DELETE FROM admin_sessions WHERE username = 'admin'").run();
+    db.prepare("DELETE FROM admins WHERE username = 'admin'").run();
+  }
   const existing = db.prepare("SELECT COUNT(*) AS n FROM admins").get().n;
   if (existing) return false;
   const username = String(process.env.ADMIN_USER || "").trim();
@@ -176,7 +172,6 @@ function changeAdminPassword(db, username, current, next) {
 
 module.exports = {
   ensureAdmin,
-  ensureDeskLogin,
   loginAdmin,
   adminSession,
   logoutAdmin,

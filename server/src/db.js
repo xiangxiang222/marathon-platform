@@ -281,6 +281,7 @@ function open() {
       user_id INTEGER NOT NULL,
       status TEXT NOT NULL,
       updated_at TEXT NOT NULL,
+      departed INTEGER NOT NULL DEFAULT 0,
       PRIMARY KEY (period_id, user_id)
     );
     CREATE TABLE IF NOT EXISTS result_calls (
@@ -552,6 +553,10 @@ function open() {
     ["activities", "route", "TEXT NOT NULL DEFAULT ''"],
     ["activities", "gather_at", "TEXT NOT NULL DEFAULT ''"],
     ["activities", "cancel_until", "TEXT NOT NULL DEFAULT ''"],
+    ["activities", "training_type", "TEXT NOT NULL DEFAULT 'custom'"],
+    ["activities", "signup_until", "TEXT NOT NULL DEFAULT ''"],
+    ["activities", "workout", "TEXT NOT NULL DEFAULT ''"],
+    ["activities", "notice", "TEXT NOT NULL DEFAULT ''"],
     ["activities", "cancelled_at", "TEXT NOT NULL DEFAULT ''"],
     ["activities", "review", "INTEGER NOT NULL DEFAULT 0"],
     ["activities", "cover_id", "INTEGER NOT NULL DEFAULT 0"],
@@ -565,6 +570,19 @@ function open() {
   ]) {
     const cols = handle.prepare(`PRAGMA table_info(${table})`).all();
     if (cols.length && !cols.some((col) => col.name === name)) handle.exec(`ALTER TABLE ${table} ADD COLUMN ${name} ${type}`);
+  }
+  const feeRecordCols = handle.prepare("PRAGMA table_info(fee_records)").all();
+  if (feeRecordCols.length && !feeRecordCols.some((col) => col.name === "departed")) {
+    handle.exec("ALTER TABLE fee_records ADD COLUMN departed INTEGER NOT NULL DEFAULT 0");
+    handle.exec(
+      `UPDATE fee_records SET departed = 1
+       WHERE EXISTS (SELECT 1 FROM fee_periods p WHERE p.id = fee_records.period_id AND p.open = 0)
+         AND NOT EXISTS (
+           SELECT 1 FROM fee_periods p
+           JOIN club_members m ON m.club_id = p.club_id AND m.user_id = fee_records.user_id
+           WHERE p.id = fee_records.period_id
+         )`
+    );
   }
   const resultCols = handle.prepare("PRAGMA table_info(results)").all();
   const resultPk = resultCols

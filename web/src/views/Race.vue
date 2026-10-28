@@ -5,6 +5,11 @@
       <h1>赛事</h1>
       <span></span>
     </header>
+    <section v-if="!race" class="race-state" :class="{ 'race-state-error': loadError }" :role="loadError ? 'alert' : 'status'">
+      <p>{{ loading ? '正在加载赛事…' : (loadError || '没有找到这场赛事') }}</p>
+      <button v-if="!loading" type="button" class="retry-button" @click="retryLoad">重新加载</button>
+      <router-link v-if="!loading" to="/">返回赛事列表</router-link>
+    </section>
     <div v-if="race" class="pass" :class="'tone-' + tone">
       <div class="pass-date">
         <b>{{ parts.day }}</b>
@@ -318,31 +323,54 @@ const resultMessage = ref("");
 const note = ref("");
 const copyError = ref("");
 const articles = ref([]);
+const loading = ref(true);
+const loadError = ref("");
+let loadSequence = 0;
 
 async function load() {
-  const [data, news] = await Promise.all([
-    api("/races/" + route.params.id),
-    api("/races/" + route.params.id + "/news").catch(() => ({ news: [] }))
-  ]);
-  articles.value = news.news || [];
-  race.value = data.race;
-  statuses.value = data.statuses;
-  myStatus.value = data.myStatus;
-  hasSheet.value = Boolean(data.hasSheet);
-  clubs.value = data.clubs;
-  cards.value = data.cards || [];
-  conflicts.value = data.conflicts || [];
-  alternatives.value = data.alternatives || [];
-  alternativeNote.value = data.alternativeNote || "";
-  drawText.value = data.drawText || "";
-  drawRates.value = data.drawRates || [];
-  myResults.value = data.myResults || [];
-  if (!distance.value) {
-    const first = myResults.value[0];
-    if (first) distance.value = first.distance;
-    else if (data.race.distances.length) distance.value = data.race.distances[0];
+  const id = String(route.params.id || "");
+  const sequence = ++loadSequence;
+  loading.value = true;
+  loadError.value = "";
+  try {
+    const [data, news] = await Promise.all([
+      api("/races/" + id),
+      api("/races/" + id + "/news").catch(() => ({ news: [] }))
+    ]);
+    if (sequence !== loadSequence || id !== String(route.params.id || "")) return;
+    articles.value = news.news || [];
+    race.value = data.race;
+    statuses.value = data.statuses;
+    myStatus.value = data.myStatus;
+    hasSheet.value = Boolean(data.hasSheet);
+    clubs.value = data.clubs;
+    cards.value = data.cards || [];
+    conflicts.value = data.conflicts || [];
+    alternatives.value = data.alternatives || [];
+    alternativeNote.value = data.alternativeNote || "";
+    drawText.value = data.drawText || "";
+    drawRates.value = data.drawRates || [];
+    myResults.value = data.myResults || [];
+    if (!distance.value) {
+      const first = myResults.value[0];
+      if (first) distance.value = first.distance;
+      else if (data.race.distances.length) distance.value = data.race.distances[0];
+    }
+    pickDistance(distance.value);
+  } catch (error) {
+    if (sequence !== loadSequence || id !== String(route.params.id || "")) return;
+    if (!race.value) loadError.value = error.message || "赛事暂时无法加载，请重试";
+    throw error;
+  } finally {
+    if (sequence === loadSequence && id === String(route.params.id || "")) loading.value = false;
   }
-  pickDistance(distance.value);
+}
+
+function retryLoad() {
+  const id = String(route.params.id || "");
+  load().catch((error) => {
+    if (id === String(route.params.id || "") && race.value) message.value = error.message;
+  });
 }
 
 function pickDistance(next) {
@@ -550,20 +578,30 @@ watch(
   () => route.params.id,
   (id, prev) => {
     if (!prev || id === prev) return;
+    race.value = null;
+    message.value = "";
     distance.value = "";
     clock.value = "";
     story.value = "";
     tab.value = "signup";
     planOpen.value = route.query.plan === "1";
     shareOpen.value = false;
-    load().catch((err) => { message.value = err.message; });
+    load().catch((err) => { if (String(id) === String(route.params.id || "")) message.value = err.message; });
   }
 );
 
-onMounted(() => load().catch((err) => { message.value = err.message; }));
+onMounted(() => {
+  const id = String(route.params.id || "");
+  load().catch((err) => { if (id === String(route.params.id || "")) message.value = err.message; });
+});
 </script>
 
 <style scoped>
+.race-state { display: grid; justify-items: center; gap: 12px; margin: 20px 16px; padding: 32px 20px; border-radius: 12px; background: #fff; color: var(--muted); text-align: center; font-size: 14px; }
+.race-state p { margin: 0; line-height: 1.6; }
+.race-state-error p { color: #b42336; }
+.retry-button { min-height: 40px; padding: 0 20px; border-radius: 8px; background: var(--accent); color: #fff; font-weight: 600; }
+.race-state a { color: var(--muted); font-size: 12px; }
 .pass { align-items: flex-start; padding: 20px 16px; }
 .pass-date { padding: 12px 8px; border-radius: 12px; background: var(--chip); }
 .pass h1 { font-size: 22px; line-height: 1.4; }

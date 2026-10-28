@@ -1,0 +1,11 @@
+.privacy-page { min-height: 100vh; padding: 32rpx 24rpx; box-sizing: border-box; background: #f5f6fa; color: #1f2026; }
+.privacy-card { padding: 32rpx; border-radius: 20rpx; background: #fff; }
+.privacy-title { margin-bottom: 24rpx; font-size: 36rpx; font-weight: 700; line-height: 52rpx; }
+.privacy-copy { margin: 20rpx 0; color: #555a66; font-size: 28rpx; line-height: 46rpx; }
+.contract { margin-top: 28rpx; padding: 0; background: transparent; color: #e20b2f; font-size: 26rpx; text-align: left; }
+.contract::after,.agree::after,.decline::after { border: 0; }
+.reason { margin-top: 24rpx; color: #8a8e99; font-size: 24rpx; line-height: 38rpx; }
+.agree,.decline { width: 100%; height: 88rpx; margin-top: 24rpx; border-radius: 12rpx; font-size: 30rpx; line-height: 88rpx; }
+.agree { background: #ff0a30; color: #fff; font-weight: 600; }
+.decline { background: #f0f1f6; color: #555a66; }
+.message { margin-top: 18rpx; color: #c73540; font-size: 24rpx; line-height: 38rpx; }

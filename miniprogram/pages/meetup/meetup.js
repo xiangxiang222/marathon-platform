@@ -1,22 +1,40 @@
 const { request } = require("../../utils/request");
 
 Page({
-  data: { meetup: null, members: [], forUser: "", forName: "", message: "" },
+  data: { meetup: null, members: [], forUser: "", forName: "", message: "", loading: true },
   onLoad(query) {
     this.clubId = query.club;
     this.meetupId = query.id;
+  },
+  onShareAppMessage() {
+    const meetup = this.data.meetup || {};
+    return {
+      title: meetup.shareText || "约跑邀请",
+      path: "/pages/meetup/meetup?club=" + encodeURIComponent(this.clubId) + "&id=" + encodeURIComponent(this.meetupId)
+    };
+  },
+  onShareTimeline() {
+    const meetup = this.data.meetup || {};
+    return {
+      title: meetup.shareText || "约跑邀请",
+      query: "club=" + encodeURIComponent(this.clubId) + "&id=" + encodeURIComponent(this.meetupId)
+    };
   },
   onShow() {
     this.load();
   },
   load() {
     const app = getApp();
-    Promise.all([
+    const sequence = this._loadSequence = (this._loadSequence || 0) + 1;
+    this.setData({ loading: true, message: "" });
+    return Promise.all([
       request("/clubs/" + this.clubId + "/meetups/" + this.meetupId),
       request("/clubs/" + this.clubId)
     ])
       .then(([data, club]) => {
+        if (sequence !== this._loadSequence) return;
         const meetup = data.meetup;
+        meetup.joins = meetup.joins || [];
         const token = app.globalData.token || "";
         meetup.photos = (meetup.photos || []).map((photo) => ({
           ...photo,
@@ -24,7 +42,8 @@ Page({
         }));
         this.setData({ meetup, members: club.members || [], message: "" });
       })
-      .catch((err) => this.setData({ message: err.message }));
+      .catch((err) => { if (sequence === this._loadSequence) this.setData({ message: err.message || "约跑暂时无法加载，请重试" }); })
+      .finally(() => { if (sequence === this._loadSequence) this.setData({ loading: false }); });
   },
   post(path, method) {
     request("/clubs/" + this.clubId + "/meetups/" + this.meetupId + path, method || "POST", {})

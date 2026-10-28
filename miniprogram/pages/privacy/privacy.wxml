@@ -1,0 +1,13 @@
+<view class="privacy-page">
+  <view class="privacy-card">
+    <view class="privacy-title">{{contractName}}</view>
+    <view class="privacy-copy">本平台使用你提供的微信登录凭证、昵称和头像来识别账号；保存你主动标记的赛事、成绩，以及你提交到跑团活动中的信息和图片，用于赛事管理、跑团协作与个人记录。</view>
+    <view class="privacy-copy">头像、昵称和成绩资料会按页面说明展示给跑团成员或活动管理者。平台不要求手机号、精确位置或健康档案。你可以在个人资料中修改头像与昵称，也可以通过平台联系渠道申请处理账号资料。</view>
+    <view class="privacy-copy">使用图片选择、微信登录等隐私相关能力前，请阅读微信展示的隐私保护指引。具体收集项目、保存期限、处理方式和联系渠道以小程序管理后台发布的指引为准。</view>
+    <button class="contract" bindtap="openContract">查看{{contractName}}</button>
+    <view wx:if="{{pending}}" class="reason">请阅读隐私指引后选择是否同意。不同意时，当前需要隐私能力的操作将无法继续。</view>
+    <button id="privacy-agree-btn" class="agree" open-type="agreePrivacyAuthorization" bindagreeprivacyauthorization="agreePrivacyAuthorization">阅读并同意</button>
+    <button wx:if="{{pending}}" class="decline" bindtap="decline">暂不同意</button>
+    <view wx:if="{{message}}" class="message">{{message}}</view>
+  </view>
+</view>

@@ -5,6 +5,10 @@
       <h1>相册</h1>
       <span></span>
     </header>
+    <section v-if="loading && !activity" class="recovery-state" role="status">正在加载相册…</section>
+    <section v-else-if="loadError" class="recovery-state" role="alert">
+      <p>{{ loadError }}</p><button type="button" class="primary" :disabled="loading" @click="retryLoad">{{ loading ? '正在重试…' : '重新加载' }}</button>
+    </section>
     <div v-if="activity" class="block">
       <h2>{{ activity.title }}</h2>
       <p class="hint">{{ activity.dateLabel }}<template v-if="activity.place"> · {{ activity.place }}</template></p>
@@ -12,7 +16,7 @@
       <div class="tools">
         <button type="button" class="status" :class="{ on: tab === 'photo' }" @click="tab = 'photo'">照片</button>
         <button type="button" class="status" :class="{ on: tab === 'video' }" @click="tab = 'video'">视频</button>
-        <button type="button" class="undo" @click="flipOrder">{{ order === "new" ? "从新到旧" : "从早到晚" }}</button>
+        <button type="button" class="undo" :disabled="loading" @click="flipOrder">{{ order === "new" ? "从新到旧" : "从早到晚" }}</button>
         <button type="button" class="undo" @click="layout = layout === 'grid' ? 'fall' : 'grid'">{{ layout === "grid" ? "宫格" : "瀑布流" }}</button>
       </div>
       <div class="tools">
@@ -55,7 +59,7 @@
     <div v-if="card" class="viewer" @click="card = ''">
       <img :src="card" alt="相册分享" />
     </div>
-    <p v-if="message" class="err" style="padding:0 16px">{{ message }}</p>
+    <p v-if="message && message !== loadError" class="err" style="padding:0 16px">{{ message }}</p>
   </main>
 </template>
 
@@ -85,6 +89,8 @@ const picked = ref({});
 const viewer = ref(null);
 const card = ref("");
 const message = ref("");
+const loading = ref(false);
+const loadError = ref("");
 
 const visible = computed(() => items.value.filter((item) => item.kind === tab.value));
 const viewerIndex = computed(() => visible.value.findIndex((item) => viewer.value && item.id === viewer.value.id));
@@ -94,21 +100,45 @@ function src(id) {
 }
 
 async function flipOrder() {
+  const previous = order.value;
   order.value = order.value === "new" ? "old" : "new";
-  await load();
+  try {
+    await load();
+  } catch (err) {
+    order.value = previous;
+    message.value = err.message;
+  }
 }
 
 async function load() {
-  const data = await api("/clubs/" + clubId + "/activities/" + activityId + "/album?order=" + (order.value === "old" ? "old" : "new"));
-  activity.value = data.activity;
-  items.value = data.items || [];
-  photoCount.value = data.photoCount || 0;
-  videoCount.value = data.videoCount || 0;
-  photoLeft.value = data.photoLeft;
-  videoLeft.value = data.videoLeft;
-  coverId.value = data.coverId || 0;
-  review.value = !!data.review;
-  staff.value = !!data.staff;
+  loading.value = true;
+  loadError.value = "";
+  try {
+    const data = await api("/clubs/" + clubId + "/activities/" + activityId + "/album?order=" + (order.value === "old" ? "old" : "new"));
+    activity.value = data.activity;
+    items.value = data.items || [];
+    photoCount.value = data.photoCount || 0;
+    videoCount.value = data.videoCount || 0;
+    photoLeft.value = data.photoLeft;
+    videoLeft.value = data.videoLeft;
+    coverId.value = data.coverId || 0;
+    review.value = !!data.review;
+    staff.value = !!data.staff;
+  } catch (err) {
+    loadError.value = err.message;
+    throw err;
+  } finally {
+    loading.value = false;
+  }
+}
+
+async function retryLoad() {
+  message.value = "";
+  try {
+    await load();
+  } catch (err) {
+    message.value = err.message;
+  }
 }
 
 function openItem(item) {
@@ -137,7 +167,11 @@ async function onFiles(event) {
       break;
     }
   }
-  await load();
+  try {
+    await load();
+  } catch (err) {
+    message.value = err.message;
+  }
 }
 
 async function removeOne(item) {
@@ -187,7 +221,11 @@ async function removePicked() {
     }
   }
   picked.value = {};
-  await load();
+  try {
+    await load();
+  } catch (err) {
+    message.value = err.message;
+  }
 }
 
 async function approvePicked() {
@@ -203,7 +241,11 @@ async function approvePicked() {
     }
   }
   picked.value = {};
-  await load();
+  try {
+    await load();
+  } catch (err) {
+    message.value = err.message;
+  }
 }
 
 async function toggleReview() {
@@ -234,11 +276,13 @@ async function makeCard() {
   }
 }
 
-onMounted(load);
+onMounted(retryLoad);
 </script>
 
 <style scoped>
 .hint { margin: 0 0 8px; color: var(--muted); font-size: 13px; line-height: 1.45; }
+.recovery-state { margin: 16px; padding: 24px 16px; border-radius: 12px; background: #fff; color: var(--muted); text-align: center; font-size: 14px; }
+.recovery-state p { margin: 0 0 12px; overflow-wrap: anywhere; }
 .tools { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0; }
 .file { display: grid; place-items: center; position: relative; overflow: hidden; margin-top: 12px; }
 .file input { position: absolute; inset: 0; opacity: 0; }

@@ -35,7 +35,7 @@
       </div>
       <p class="hint">{{ mode === 'code' ? '先查看跑团介绍，再申请加入。' : '找到跑团后，申请由团长或跑团管理审核。' }}</p>
       <p v-if="message" class="err">{{ message }}</p>
-      <div v-if="ready && mode === 'search'" class="club-results">
+      <div v-if="mode === 'search'" class="club-results">
         <div v-for="club in shownClubs" :key="club.id" class="club-hit">
           <router-link class="result-identity" :to="club.joined ? '/clubs/' + club.id : '/clubs/' + club.id + '/public'">
             <span class="club-letter result-letter" aria-hidden="true">{{ club.name.slice(0, 1) }}</span>
@@ -97,18 +97,19 @@ let queryTimer = 0;
 let loadSeq = 0;
 
 async function load() {
-  if (!ready.value) return;
   const q = query.value.trim();
   const seq = ++loadSeq;
-  const [data, directory] = await Promise.all([api("/me"), api("/clubs/directory" + (q ? "?q=" + encodeURIComponent(q) : ""))]);
+  const requests = [api("/clubs/directory" + (q ? "?q=" + encodeURIComponent(q) : ""))];
+  if (ready.value) requests.push(api("/me"));
+  const [directory, data] = await Promise.all(requests);
   if (seq !== loadSeq) return;
   listedQuery.value = q;
-  clubs.value = (data.clubs || []).map((club) => ({
+  clubs.value = (data?.clubs || []).map((club) => ({
     ...club,
     members: (directory.clubs || []).find((item) => item.id === club.id)?.members ?? clubs.value.find((item) => item.id === club.id)?.members
   }));
-  leader.value = Boolean(data.user && data.user.leader);
-  application.value = (data.applications && data.applications[0]) || null;
+  leader.value = Boolean(data?.user && data.user.leader);
+  application.value = (data?.applications && data.applications[0]) || null;
   openClubs.value = (directory.clubs || []).filter((item) => q || !item.joined);
 }
 
@@ -144,10 +145,6 @@ function onQuery() {
 async function search() {
   clearTimeout(queryTimer);
   message.value = "";
-  if (!ready.value) {
-    message.value = "登录后可以搜索跑团";
-    return;
-  }
   try {
     await load();
     if (query.value.trim() && !openClubs.value.length) message.value = "没有找到这个跑团";

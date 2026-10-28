@@ -1,0 +1,56 @@
+<view class="page">
+  <view wx:if="{{loading}}" class="loading">正在载入跑团信息…</view>
+  <view wx:elif="{{!club}}" class="error-panel">{{message || '暂时无法打开发布页'}}<button class="retry" bindtap="load">重试</button></view>
+  <block wx:else>
+    <view wx:if="{{!club.staff}}" class="error-panel">只有跑团管理员可以发布活动</view>
+    <block wx:else>
+    <view class="topline"><text class="eyebrow">{{club.name}}</text><text wx:if="{{copying}}" class="copy-tag">复制活动 · 重新安排时间</text></view>
+    <view class="heading">发布活动</view><view class="subtle">以下活动时间均为北京时间</view>
+    <view class="steps"><view class="step {{step === 1 ? 'current' : (step > 1 ? 'done' : '')}}"><text>01</text><text>时间与地点</text></view><view class="step-line"></view><view class="step {{step === 2 ? 'current' : (step > 2 ? 'done' : '')}}"><text>02</text><text>分组与安排</text></view><view class="step-line"></view><view class="step {{step === 3 ? 'current' : ''}}"><text>03</text><text>确认发布</text></view></view>
+
+    <view wx:if="{{savedDraft}}" class="restore-line"><view><view class="restore-title">有一份未发布的草稿</view><view class="subtle">保存于 {{savedAt}}</view></view><button class="restore-btn" bindtap="restoreDraft">恢复</button><button class="discard-btn" bindtap="discardDraft">删除</button></view>
+
+    <view wx:if="{{step === 1}}" class="form-area">
+      <view class="section-kicker">01 / SESSION</view><view class="section-title">先定下这一场</view>
+      <view class="type-row"><view wx:for="{{templates}}" wx:key="id" class="type-option {{draft.trainingType === item.id ? 'type-selected' : ''}}" data-id="{{item.id}}" bindtap="chooseTemplate"><text>{{item.name}}</text><text class="type-tag">{{item.tag}}</text></view></view>
+      <view class="label">活动名称 <text class="required">必填</text></view><input class="field" maxlength="40" placeholder="{{titlePlaceholder}}" value="{{draft.title}}" data-key="title" bindinput="input" />
+      <view class="two-col"><view class="col"><view class="label">活动日期 <text class="required">必填</text></view><picker mode="date" value="{{draft.startDate}}" data-key="startDate" bindchange="pickDate"><view class="picker-field {{!draft.startDate ? 'placeholder' : ''}}">{{draft.startDate || '选择日期'}}</view></picker></view><view class="col"><view class="label">开始时间 <text class="required">必填</text></view><picker mode="time" value="{{draft.startTime}}" data-key="startTime" bindchange="pickTime"><view class="picker-field {{!draft.startTime ? 'placeholder' : ''}}">{{draft.startTime || '选择时间'}}</view></picker></view></view>
+      <view class="two-col"><view class="col"><view class="label">结束日期 <text class="optional">可选</text></view><picker mode="date" value="{{draft.endDate}}" data-key="endDate" bindchange="pickDate"><view class="picker-field">{{draft.endDate || '选择日期'}}</view></picker></view><view class="col"><view class="label">结束时间 <text class="optional">可选</text></view><view class="time-clear"><picker mode="time" value="{{draft.endTime}}" data-key="endTime" bindchange="pickTime"><view class="picker-field">{{draft.endTime || '选择时间'}}</view></picker><text wx:if="{{draft.endDate || draft.endTime}}" class="clear" data-key="end" bindtap="clearTime">清空</text></view></view></view>
+      <view class="label">地点 <text class="required">必填</text></view><input class="field" maxlength="40" placeholder="公园、跑道或区域" value="{{draft.place}}" data-key="place" bindinput="input" />
+      <view class="label">具体集合点 <text class="required">必填</text></view><input class="field" maxlength="40" placeholder="例如：东门地铁口 A 出口" value="{{draft.gatherPlace}}" data-key="gatherPlace" bindinput="input" />
+      <view class="label">集合时间 <text class="optional">可选</text></view><picker mode="time" value="{{draft.gatherAt}}" data-key="gatherAt" bindchange="pickTime"><view class="picker-field">{{draft.gatherAt || '和活动开始时间一致'}}</view></picker>
+      <view class="two-col"><view class="col"><view class="label">计划里程 <text class="optional">公里</text></view><input class="field" type="digit" placeholder="例如 10" value="{{draft.plannedKm}}" data-key="plannedKm" bindinput="input" /></view><view class="col"><view class="label">期次 <text class="optional">可选</text></view><input class="field" maxlength="40" placeholder="例如第 12 期" value="{{draft.issue}}" data-key="issue" bindinput="input" /></view></view>
+      <view class="label">路线说明 <text class="optional">可选</text></view><input class="field" maxlength="200" placeholder="路线、补水点或交通提示" value="{{draft.route}}" data-key="route" bindinput="input" />
+      <view class="section-kicker spaced">02 / RSVP</view><view class="section-title small-title">报名时间</view>
+      <view class="two-col"><view class="col"><view class="label">报名截止日期</view><picker mode="date" value="{{draft.signupDate}}" data-key="signupDate" bindchange="pickDate"><view class="picker-field">{{draft.signupDate || '活动开始前'}}</view></picker></view><view class="col"><view class="label">截止时间</view><view class="time-clear"><picker mode="time" value="{{draft.signupTime}}" data-key="signupTime" bindchange="pickTime"><view class="picker-field">{{draft.signupTime || '不单独设置'}}</view></picker><text wx:if="{{draft.signupDate || draft.signupTime}}" class="clear" data-key="signup" bindtap="clearTime">清空</text></view></view></view>
+      <view class="two-col"><view class="col"><view class="label">取消截止日期</view><picker mode="date" value="{{draft.cancelDate}}" data-key="cancelDate" bindchange="pickDate"><view class="picker-field">{{draft.cancelDate || '开始时间前'}}</view></picker></view><view class="col"><view class="label">取消截止时间</view><view class="time-clear"><picker mode="time" value="{{draft.cancelTime}}" data-key="cancelTime" bindchange="pickTime"><view class="picker-field">{{draft.cancelTime || '不单独设置'}}</view></picker><text wx:if="{{draft.cancelDate || draft.cancelTime}}" class="clear" data-key="cancel" bindtap="clearTime">清空</text></view></view></view>
+    </view>
+
+      <view wx:if="{{step === 2}}" class="form-area">
+      <view class="section-kicker">02 / RUN OF SHOW</view><view class="section-title">让大家知道怎么跑</view>
+      <view class="label">报名组别 <text class="optional">至少保留一组</text></view>
+      <view wx:if="{{!groups.length}}" class="empty-groups">这个跑团暂时没有常用训练组，请新增活动组别。</view>
+      <view wx:for="{{groups}}" wx:key="key" class="group-line {{!item.enabled ? 'group-muted' : ''}}"><switch class="group-switch" checked="{{item.enabled}}" color="#ff0a30" data-index="{{index}}" bindchange="toggleGroup"/><view class="group-fields"><input class="field" maxlength="20" placeholder="组别名称" value="{{item.name}}" data-index="{{index}}" data-key="name" bindinput="groupInput"/><input class="field" maxlength="40" placeholder="配速或目标" value="{{item.pace}}" data-index="{{index}}" data-key="pace" bindinput="groupInput"/></view><view class="capacity"><text class="subtle">名额</text><input class="field" type="number" value="{{item.capacity}}" data-index="{{index}}" data-key="capacity" bindinput="groupInput"/><text class="subtle">0 为不限</text></view><picker mode="selector" range="{{kindNames}}" value="{{item.kindIndex}}" data-index="{{index}}" bindchange="groupKind"><view class="kind-picker">{{kindNames[item.kindIndex]}}⌄</view></picker></view>
+      <button class="add-group" disabled="{{groups.length >= 12}}" bindtap="addGroup">{{groups.length >= 12 ? '已达 12 组上限' : '＋ 添加活动组'}}</button>
+      <view class="two-col metrics"><view class="col"><view class="label">成团人数</view><input class="field" type="number" value="{{draft.minPeople}}" data-key="minPeople" bindinput="input"/></view><view class="col"><view class="label">积分门槛公里</view><input class="field" type="digit" value="{{draft.minKm}}" data-key="minKm" bindinput="input"/></view><view class="col"><view class="label">活动积分</view><input class="field" type="number" value="{{draft.points}}" data-key="points" bindinput="input"/></view></view>
+      <view class="label">训练安排 <text class="optional">最多 2000 字</text></view><textarea class="textarea" maxlength="2000" placeholder="热身、主课、配速和放松安排" value="{{draft.workout}}" data-key="workout" bindinput="input"/>
+      <view class="label">参与须知 <text class="optional">最多 1000 字</text></view><textarea class="textarea short" maxlength="1000" placeholder="补水、装备或天气提醒" value="{{draft.notice}}" data-key="notice" bindinput="input"/>
+      <view class="label">补充说明 <text class="optional">可选</text></view><textarea class="textarea short" maxlength="2000" placeholder="其他想告诉团友的事项" value="{{draft.note}}" data-key="note" bindinput="input"/>
+      <view class="review-row"><view><view class="label">相册内容需审核</view><view class="subtle">活动照片上传后先由管理员确认</view></view><switch checked="{{draft.review}}" color="#ff0a30" bindchange="toggleReview"/></view>
+    </view>
+
+    <view wx:if="{{step === 3}}" class="preview">
+      <view class="section-kicker">03 / READY TO GO</view><view class="section-title">发布前确认</view>
+      <view class="preview-hero"><view class="preview-type">{{typeName}} · {{club.name}}</view><view class="preview-title">{{draft.title || '未命名活动'}}</view><view class="distance">{{draft.plannedKm || '—'}}<text> km</text></view><view class="preview-date">{{previewTime || '尚未选择活动时间'}}</view><view class="preview-place">{{draft.place}} · {{draft.gatherPlace}}</view></view>
+      <view class="preview-section"><view class="preview-label">训练安排</view><view class="preview-copy">{{draft.workout || '未填写训练安排'}}</view></view>
+      <view class="preview-section"><view class="preview-label">报名组别</view><block wx:for="{{groups}}" wx:key="key"><view wx:if="{{item.enabled}}" class="preview-group"><text>{{item.name}}</text><text>{{item.pace || kindNames[item.kindIndex]}}</text><text>{{item.capacity || '不限'}} 名额</text></view></block></view>
+      <view class="preview-section"><view class="preview-label">参与须知</view><view class="preview-copy">{{draft.notice || '暂无特别须知'}}</view></view>
+      <view class="review-row"><view><view class="label">相册审核</view><view class="subtle">{{draft.review ? '照片需管理员审核后展示' : '照片提交后可直接展示'}}</view></view></view>
+      <view class="preview-foot">活动仅对跑团成员开放</view>
+    </view>
+
+    <view wx:if="{{message}}" class="message">{{message}}</view>
+    <view class="bottom-actions"><button class="save-action" bindtap="saveDraft">保存草稿</button><button wx:if="{{step > 1}}" class="back-action" bindtap="back">上一步</button><button wx:if="{{step < 3}}" class="next-action" bindtap="next">继续 <text>›</text></button><button wx:else class="next-action" loading="{{busy}}" disabled="{{busy}}" bindtap="publish">{{busy ? '正在发布' : '确认发布'}}</button></view>
+    </block>
+  </block>
+</view>

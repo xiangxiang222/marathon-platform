@@ -10,10 +10,12 @@
         <input v-model="q" aria-label="搜索赛事名称或城市" placeholder="搜索赛事名称 / 城市" @input="queueSearch" />
         <button type="submit">搜索</button>
       </form>
-      <nav v-if="!searching" class="race-categories" aria-label="赛事分类">
-        <button v-for="item in channels" :key="item.kind" type="button" :class="{ on: kind === item.kind }" :aria-pressed="kind === item.kind" @click="setKind(item.kind)">{{ item.short }}</button>
+      <nav v-if="!searching" class="race-categories" aria-label="赛事类型">
+        <button v-for="item in trackKinds" :key="item.kind" type="button" :class="{ on: trackKind === item.kind }" :aria-pressed="trackKind === item.kind" @click="setTrackKind(item.kind)">{{ item.short }}</button>
       </nav>
-      <p v-if="!searching" class="category-note">类型：路跑 / 越野 · 方式：线上 / 线下</p>
+      <nav v-if="!searching" class="race-categories race-meet-categories" aria-label="赛事形式">
+        <button v-for="item in meetKinds" :key="item.kind" type="button" :class="{ on: meetKind === item.kind }" :aria-pressed="meetKind === item.kind" @click="setMeetKind(item.kind)">{{ item.short }}</button>
+      </nav>
       <nav v-if="!searching" class="home-shortcuts" aria-label="常用功能">
         <router-link v-for="item in quickLinks" :key="item.to" :to="item.to">
           <img :src="item.icon" alt="" />
@@ -33,6 +35,8 @@
     </div>
     <section class="home-results">
       <div class="results-heading"><h2>{{ searching ? '搜索结果' : '全部赛事' }}</h2><span>共 {{ total }} 场</span></div>
+      <div v-if="loadError" class="load-error" role="alert"><span>{{ loadError }}</span><button type="button" @click="load">重试</button></div>
+      <p v-else-if="loading" class="empty">正在加载赛历…</p>
       <div v-if="!searching" class="filter-wrap home-filters" :class="{ open: sheet }">
         <div class="filter-bar" ref="barEl">
           <button type="button" :class="{ on: city }" @click="openSheet('city')">{{ city || "比赛地点" }}<i></i></button>
@@ -77,11 +81,11 @@
         </div>
       </div>
 
-      <div v-if="shownQuery === q.trim() && races.length" class="stack home-race-list">
+      <div v-if="!loading && !loadError && shownQuery === q.trim() && races.length" class="stack home-race-list">
         <RaceCard v-for="race in races" :key="race.id" :race="race" />
       </div>
-      <p v-else-if="shownQuery === q.trim()" class="empty">{{ searching ? '没有找到这场赛事' : '这个分类还没有赛历' }}</p>
-      <Pager v-if="shownQuery === q.trim()" :page="page" :pages="pages" @update:page="turnPage" />
+      <p v-else-if="!loading && !loadError && shownQuery === q.trim()" class="empty">{{ searching ? '没有找到这场赛事' : '这个分类还没有赛历' }}</p>
+      <Pager v-if="!loading && !loadError && shownQuery === q.trim()" :page="page" :pages="pages" @update:page="turnPage" />
     </section>
   </main>
 </template>
@@ -107,7 +111,8 @@ const month = ref("");
 const full = ref(false);
 const half = ref(false);
 const ten = ref(false);
-const kind = ref("road");
+const trackKind = ref("");
+const meetKind = ref("");
 const status = ref("upcoming");
 const draftStatus = ref("upcoming");
 const sheet = ref("");
@@ -115,6 +120,8 @@ const barEl = ref(null);
 const dropTop = ref(180);
 const races = ref([]);
 const shownQuery = ref("");
+const loadError = ref("");
+const loading = ref(false);
 const reminders = ref([]);
 const reminderIndex = ref(0);
 const currentReminder = computed(() => reminders.value[reminderIndex.value % reminders.value.length] || null);
@@ -132,7 +139,8 @@ const searching = computed(() => !!q.value.trim());
 let searchTimer = 0;
 let loadSeq = 0;
 const province = ref("河北");
-const years = [2025, 2026, 2027];
+const currentYear = new Date(Date.now() + 8 * 3600 * 1000).getUTCFullYear();
+const years = [currentYear - 1, currentYear, currentYear + 1, currentYear + 2];
 
 const places = [
   { name: "北京", cities: ["北京"] },
@@ -157,12 +165,12 @@ const places = [
   { name: "新疆", cities: ["乌鲁木齐", "图木舒克"] }
 ];
 
-const channels = [
+const trackKinds = [
+  { short: "全部赛事", kind: "" },
   { short: "路跑", kind: "road" },
-  { short: "越野赛", kind: "trail" },
-  { short: "线上赛", kind: "online" },
-  { short: "线下赛", kind: "offline" }
+  { short: "越野赛", kind: "trail" }
 ];
+const meetKinds = [{ short: "全部形式", kind: "" }, { short: "线上赛", kind: "online" }, { short: "线下赛", kind: "offline" }];
 
 const todayParts = computed(() => {
   const shifted = new Date(Date.now() + 8 * 3600 * 1000);
@@ -212,6 +220,8 @@ function turnPage(next) {
 
 async function load() {
   const seq = ++loadSeq;
+  loading.value = true;
+  loadError.value = "";
   const query = q.value.trim();
   const params = new URLSearchParams();
   if (query) {
@@ -222,25 +232,36 @@ async function load() {
     if (month.value) params.set("month", month.value);
     const distance = distanceParam();
     if (distance) params.set("distance", distance);
-    params.set("kind", kind.value || "road");
+    if (trackKind.value) params.set("kind", trackKind.value);
+    if (meetKind.value) params.set("meet", meetKind.value);
     params.set("status", status.value || "all");
   }
   params.set("page", String(page.value));
-  const data = await api("/races?" + params.toString());
-  if (seq !== loadSeq) return;
-  races.value = data.races;
-  total.value = data.total || 0;
-  pages.value = data.pages || 1;
-  page.value = data.page || 1;
-  shownQuery.value = query;
+  try {
+    const data = await api("/races?" + params.toString());
+    if (seq !== loadSeq) return;
+    races.value = data.races;
+    total.value = data.total || 0;
+    pages.value = data.pages || 1;
+    page.value = data.page || 1;
+    shownQuery.value = query;
+  } catch (err) {
+    if (seq !== loadSeq) return;
+    races.value = [];
+    shownQuery.value = query;
+    loadError.value = err.message || "赛历加载失败";
+  } finally {
+    if (seq === loadSeq) loading.value = false;
+  }
 }
 
-function setKind(next) {
-  kind.value = next;
+function setTrackKind(next) {
+  trackKind.value = next;
   sheet.value = "";
   page.value = 1;
   load();
 }
+function setMeetKind(next) { meetKind.value = next; page.value = 1; load(); }
 
 function toggleDist(which) {
   if (which === "full") full.value = !full.value;
@@ -296,7 +317,7 @@ function confirmStatus() {
 }
 
 onMounted(() => {
-  if (channels.some((item) => item.kind === route.query.kind)) kind.value = route.query.kind;
+  if (trackKinds.some((item) => item.kind === route.query.kind)) trackKind.value = route.query.kind;
   load();
   api("/reminders").then((data) => {
     reminders.value = (data.reminders || []).slice(0, 3);

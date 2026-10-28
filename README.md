@@ -19,6 +19,8 @@ npm run dev
 
 浏览器打开 <http://127.0.0.1:5174/marathon/> 。接口在 `3790`。
 
+本轮本地验收可运行 `npm run test:all`，依次执行服务端隔离数据库测试、客户端模拟接口回归、小程序原生离线编译和 Web 构建。客户端脚本会在需要时启动本地 Vite；默认使用本机 Chrome，可通过 `CHROME_PATH` 指定浏览器。小程序编译需要安装微信开发者工具，可用 `WECHAT_COMPILER_PATH` 指定 `wcc-exec` 目录。真实微信授权、上传与长按保存仍需真机验证。范围、结果与未完成能力见 [本轮验收与产品缺口](design/本轮验收与产品缺口.md)。
+
 微信原生小程序放在 `miniprogram/`，用微信开发者工具打开该目录，打同一套接口。本地联调时在 `miniprogram/config.js` 把 `USE_LOCAL_API` 改为 `true`，并关闭「校验合法域名」。AppID 单独申请，不要用同行者众的。密钥只放服务器上的 `.env`。
 
 微信登录需要在服务器 `.env` 配置 `WECHAT_MINIPROGRAM_APP_ID` 和 `WECHAT_MINIPROGRAM_APP_SECRET`。旧昵称密码账号可以登录后绑定微信；分享入团需团长或跑团管理审核。跑团分区和微信接入约束见 [跑团产品设计与微信接入规范](跑团产品设计与微信接入规范.md)。

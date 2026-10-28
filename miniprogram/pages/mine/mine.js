@@ -71,6 +71,9 @@ Page({
     }
     if (ready()) this.resumePendingClub();
   },
+  openPrivacy() {
+    wx.navigateTo({ url: "/pages/privacy/privacy" });
+  },
   pickMainTab(e) {
     const mainTab = e.currentTarget.dataset.tab;
     if (!["plans", "results", "profile"].includes(mainTab)) return;

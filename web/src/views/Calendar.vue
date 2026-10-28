@@ -10,6 +10,8 @@
       <b>{{ year }}年{{ month }}月</b>
       <button type="button" aria-label="下个月" @click="shift(1)">›</button>
     </div>
+    <div v-if="loadError" class="load-error" role="alert"><span>{{ loadError }}</span><button type="button" @click="load">重试</button></div>
+    <p v-else-if="!ready" class="none">正在加载赛事…</p>
     <div class="week">
       <span v-for="name in weeks" :key="name" :class="{ end: name === '日' || name === '六' }">{{ name }}</span>
     </div>
@@ -44,7 +46,7 @@
         <span>{{ race.city }}{{ race.distanceLabels.length ? " · " + race.distanceLabels.join(" / ") : "" }}</span>
         <em>{{ race.regStatus }}</em>
       </router-link>
-      <p v-if="ready && !dayRaces.length" class="none">这一天没有赛事</p>
+      <p v-if="ready && !loadError && !dayRaces.length" class="none">这一天没有赛事</p>
     </section>
     <div v-if="posterUrl" class="poster-layer" @click="closePoster">
       <div class="poster-scroll">
@@ -68,6 +70,8 @@ const month = ref(today.m);
 const picked = ref(iso(today));
 const races = ref([]);
 const ready = ref(false);
+const loadError = ref("");
+let loadSeq = 0;
 const posterUrl = ref("");
 
 const cells = computed(() => {
@@ -122,11 +126,18 @@ function monthKey() {
 
 async function load() {
   const key = monthKey();
+  const seq = ++loadSeq;
   ready.value = false;
-  const data = await api("/races?status=all&month=" + key);
-  if (key !== monthKey()) return;
-  races.value = data.races || [];
-  ready.value = true;
+  loadError.value = "";
+  try {
+    const data = await api("/races?status=all&month=" + key);
+    if (seq !== loadSeq || key !== monthKey()) return;
+    races.value = data.races || [];
+    ready.value = true;
+  } catch (err) {
+    if (seq !== loadSeq) return;
+    loadError.value = err.message || "赛事加载失败";
+  }
 }
 
 function pickedParts() {

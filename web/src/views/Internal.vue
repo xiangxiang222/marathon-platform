@@ -55,8 +55,12 @@
         <button v-if="race.canCancelRace" class="undo" type="button" @click="cancelRace">取消这场</button>
       </form>
     </template>
+    <section v-else class="block detail-state" aria-live="polite">
+      <p v-if="loading">正在打开队内赛…</p>
+      <div v-else role="alert"><p>{{ message || '队内赛暂时无法打开' }}</p><button class="primary" type="button" @click="retry">重新加载</button></div>
+    </section>
     <p v-if="note" class="note">{{ note }}</p>
-    <p v-if="message" class="err">{{ message }}</p>
+    <p v-if="race && message" class="err">{{ message }}</p>
   </main>
 </template>
 
@@ -69,6 +73,7 @@ import { copyText } from "../copy";
 const route = useRoute();
 const clubId = route.params.id;
 const race = ref(null);
+const loading = ref(true);
 const groupId = ref(0);
 const time = ref("");
 const forUser = ref("");
@@ -200,13 +205,19 @@ async function copy(text) {
   }
 }
 
-onMounted(async () => {
+async function retry() {
+  loading.value = true;
+  message.value = "";
   try {
     await load();
   } catch (err) {
+    race.value = null;
     message.value = err.message;
+  } finally {
+    loading.value = false;
   }
-});
+}
+onMounted(retry);
 </script>
 
 <style scoped>

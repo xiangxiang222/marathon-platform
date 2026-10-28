@@ -1,74 +1,147 @@
-<view class="pad" wx:if="{{activity}}">
-  <view class="card">
-    <view class="title">{{activity.title}}</view>
-    <view wx:if="{{activity.issue}}" class="src">{{activity.issue}}</view>
-    <view class="src">{{activity.statusLabel}} · {{activity.timeLabel}}</view>
-    <view wx:if="{{activity.gatherAt}}" class="src">集合时间 {{activity.gatherAt}}</view>
-    <view wx:if="{{activity.gatherPlace}}" class="src">集合点 {{activity.gatherPlace}}</view>
-    <view wx:if="{{activity.place}}" class="src">地点 {{activity.place}}</view>
-    <view wx:if="{{activity.plannedKm}}" class="src">计划里程 {{activity.plannedKm}} 公里</view>
-    <view wx:if="{{activity.route}}" class="src">路线 {{activity.route}}</view>
-    <view class="src">{{activity.signupCount}} 人报名{{activity.gendered ? ' · 男 ' + activity.men + ' · 女 ' + activity.women : ''}}</view>
-    <view wx:if="{{activity.note}}" class="src">{{activity.note}}</view>
-    <view class="src">{{activity.rule}}</view>
+<view class="activity-page" wx:if="{{activity}}">
+  <view class="hero">
+    <view class="hero-top"><text class="type-label">{{activity.trainingTypeLabel}}</text><text class="status-label">{{activity.statusLabel}}</text><button class="activity-share" open-type="share">分享</button></view>
+    <view wx:if="{{activity.issue}}" class="issue">{{activity.issue}}</view>
+    <view class="hero-title">{{activity.title}}</view>
+    <view class="hero-distance"><text class="distance-value">{{activity.plannedKm || '—'}}</text><text class="distance-unit">公里计划</text></view>
+    <view class="hero-facts">
+      <view class="hero-fact"><text class="fact-label">时间</text><text class="fact-value">{{activity.timeLabel || '待定'}}</text></view>
+      <view class="hero-fact"><text class="fact-label">地点</text><text class="fact-value">{{activity.gatherPlace || activity.place || '待定'}}</text></view>
+    </view>
+    <view wx:if="{{activity.gatherAt && activity.gatherAt !== activity.clockLabel}}" class="gather-at">集合 {{activity.gatherAt}}</view>
   </view>
-  <view wx:for="{{groups}}" wx:key="id" class="card">
-    <view class="h2">{{item.name}} {{item.pace}}</view>
-    <view class="src">{{item.kindLabel}} · {{item.signed}}{{item.capacity ? '/' + item.capacity : ' · 不限'}}</view>
-    <view wx:for="{{item.people}}" wx:for-item="person" wx:key="userId" class="row">
-      <text>{{person.pacer ? '领跑 ' : ''}}{{person.nickname}}</text>
-      <text>{{person.level}} {{person.gender}}{{person.together ? ' 一起玩过 ' + person.together + ' 次' : ''}}</text>
+
+  <view class="tabs">
+    <view class="tab {{activeTab === 'overview' ? 'tab-on' : ''}}" data-tab="overview" bindtap="selectTab">概览</view>
+    <view class="tab {{activeTab === 'groups' ? 'tab-on' : ''}}" data-tab="groups" bindtap="selectTab">分组 <text class="tab-count">{{activity.signupCount}}</text></view>
+    <view class="tab {{activeTab === 'plan' ? 'tab-on' : ''}}" data-tab="plan" bindtap="selectTab">训练计划</view>
+  </view>
+
+  <view wx:if="{{activeTab === 'overview'}}" class="tab-body">
+    <view class="section-heading"><text class="section-title">活动信息</text><text class="section-meta">{{activity.signupCount}} 人报名</text></view>
+    <view class="info-list">
+      <view class="info-row"><text class="info-label">开始时间</text><text class="info-value">{{activity.timeLabel || '待定'}}</text></view>
+      <view wx:if="{{activity.gatherAt}}" class="info-row"><text class="info-label">集合时间</text><text class="info-value">{{activity.gatherAt}}</text></view>
+      <view wx:if="{{activity.gatherPlace}}" class="info-row"><text class="info-label">集合地点</text><text class="info-value">{{activity.gatherPlace}}</text></view>
+      <view wx:if="{{activity.place}}" class="info-row"><text class="info-label">活动地点</text><text class="info-value">{{activity.place}}</text></view>
+      <view wx:if="{{activity.plannedKm}}" class="info-row"><text class="info-label">计划里程</text><text class="info-value">{{activity.plannedKm}} 公里</text></view>
+      <view wx:if="{{activity.route}}" class="info-row"><text class="info-label">路线</text><text class="info-value">{{activity.route}}</text></view>
+      <view wx:if="{{activity.signupUntil}}" class="info-row"><text class="info-label">报名截止</text><text class="info-value">{{activity.signupHint}}</text></view>
+      <view wx:if="{{activity.cancelHint}}" class="info-row"><text class="info-label">取消报名</text><text class="info-value">{{activity.cancelHint}}</text></view>
+    </view>
+    <view wx:if="{{activity.note}}" class="plain-note">{{activity.note}}</view>
+    <view class="album-row">
+      <view class="album-copy"><text class="album-title">活动相册</text><text class="album-count">{{album.photoCount}} 张照片 · {{album.videoCount}} 个视频</text></view>
+      <navigator class="album-link" url="/pages/album/album?club={{clubId}}&id={{activityId}}">查看相册</navigator>
+    </view>
+
+    <view wx:if="{{activity.mine.signed || checks.length}}" class="check-section">
+      <view class="section-heading"><text class="section-title">训练打卡</text><text class="section-meta">{{checks.length}} 人已打卡</text></view>
+      <view wx:if="{{activity.mine.signed && activity.checkAvailable}}" class="check-form"><input class="km-input" type="digit" placeholder="实际公里数" value="{{km}}" bindinput="onKm"/><button class="check-button" loading="{{actionBusy}}" disabled="{{actionBusy}}" bindtap="check">{{activity.mine.km != null ? '更新打卡' : '打卡'}}</button></view>
+      <view wx:elif="{{activity.mine.signed && activity.status === 'cancelled'}}" class="check-hint">活动已取消，不能打卡</view>
+      <view wx:elif="{{activity.mine.signed}}" class="check-hint"><text>活动开始后可打卡</text><button class="check-refresh" disabled="{{loading || actionBusy}}" bindtap="retry">刷新状态</button></view>
+      <view wx:for="{{checks}}" wx:key="userId" class="check-row"><view class="check-person"><text>{{item.nickname}}</text><text wx:if="{{item.historical}}" class="history-label">历史记录</text></view><text>{{item.km}} 公里</text></view>
+    </view>
+
+    <view wx:if="{{staff}}" class="staff-section">
+      <view class="section-heading"><text class="section-title">活动管理</text><button class="text-action" bindtap="toggleEdit">{{editing ? '收起编辑' : '编辑活动'}}</button></view>
+      <block wx:if="{{editing && draft}}"><view class="field-label">以下活动时间均为北京时间</view>
+        <input class="staff-input" data-key="title" placeholder="活动标题" value="{{draft.title}}" bindinput="onDraft" />
+        <input class="staff-input" data-key="issue" placeholder="期次，可不填" value="{{draft.issue}}" bindinput="onDraft" />
+        <view class="field-label">训练类型</view>
+        <view class="type-options">
+          <view class="type-option {{draft.trainingType === 'easy' ? 'type-option-on' : ''}}" data-id="easy" bindtap="pickTrainingType">轻松跑</view>
+          <view class="type-option {{draft.trainingType === 'long' ? 'type-option-on' : ''}}" data-id="long" bindtap="pickTrainingType">长距离</view>
+          <view class="type-option {{draft.trainingType === 'interval' ? 'type-option-on' : ''}}" data-id="interval" bindtap="pickTrainingType">间歇</view>
+          <view class="type-option {{draft.trainingType === 'tempo' ? 'type-option-on' : ''}}" data-id="tempo" bindtap="pickTrainingType">节奏跑</view>
+          <view class="type-option {{draft.trainingType === 'social' ? 'type-option-on' : ''}}" data-id="social" bindtap="pickTrainingType">社交跑</view>
+          <view class="type-option {{draft.trainingType === 'custom' ? 'type-option-on' : ''}}" data-id="custom" bindtap="pickTrainingType">自由安排</view>
+        </view>
+        <input class="staff-input" data-key="startsAt" placeholder="开始时间 YYYY-MM-DD HH:mm" value="{{draft.startsAt}}" bindinput="onDraft" />
+        <input class="staff-input" data-key="endsAt" placeholder="结束时间，可不填" value="{{draft.endsAt}}" bindinput="onDraft" />
+        <input class="staff-input" data-key="signupUntil" placeholder="报名截止，可不填" value="{{draft.signupUntil}}" bindinput="onDraft" />
+        <input class="staff-input" data-key="gatherAt" placeholder="集合时间，可不填" value="{{draft.gatherAt}}" bindinput="onDraft" />
+        <input class="staff-input" data-key="gatherPlace" placeholder="集合点" value="{{draft.gatherPlace}}" bindinput="onDraft" />
+        <input class="staff-input" data-key="place" placeholder="活动地点" value="{{draft.place}}" bindinput="onDraft" />
+        <input class="staff-input" data-key="plannedKm" placeholder="计划里程，可不填" value="{{draft.plannedKm}}" bindinput="onDraft" />
+        <input class="staff-input" data-key="route" placeholder="路线" value="{{draft.route}}" bindinput="onDraft" />
+        <input class="staff-input" data-key="cancelUntil" placeholder="取消报名截止，可不填" value="{{draft.cancelUntil}}" bindinput="onDraft" />
+        <textarea class="staff-textarea" data-key="workout" placeholder="训练安排" value="{{draft.workout}}" bindinput="onDraft" />
+        <textarea class="staff-textarea short" data-key="notice" placeholder="参与须知" value="{{draft.notice}}" bindinput="onDraft" />
+        <textarea class="staff-textarea short" data-key="note" placeholder="补充说明" value="{{draft.note}}" bindinput="onDraft" />
+        <input class="staff-input" data-key="minPeople" type="number" placeholder="成团人数" value="{{draft.minPeople}}" bindinput="onDraft" />
+        <input class="staff-input" data-key="minKm" type="digit" placeholder="计分公里" value="{{draft.minKm}}" bindinput="onDraft" />
+        <input class="staff-input" data-key="points" type="number" placeholder="活动积分" value="{{draft.points}}" bindinput="onDraft" />
+        <view class="review-setting"><text>活动相册内容需要管理员审核</text><switch color="#ff0a30" checked="{{draft.review}}" bindchange="toggleReview"/></view>
+        <button class="staff-primary" loading="{{actionBusy}}" bindtap="saveActivity">保存活动</button>
+      </block>
+      <view class="group-add">
+        <view class="field-label">新增分组 · {{groupKindLabel}}</view>
+        <view class="type-options">
+          <view class="type-option {{groupKind === 'pace' ? 'type-option-on' : ''}}" data-kind="pace" data-label="配速组" bindtap="pickKind">配速组</view>
+          <view class="type-option {{groupKind === 'finish' ? 'type-option-on' : ''}}" data-kind="finish" data-label="完赛组" bindtap="pickKind">完赛组</view>
+          <view class="type-option {{groupKind === 'volunteer' ? 'type-option-on' : ''}}" data-kind="volunteer" data-label="志愿者" bindtap="pickKind">志愿者</view>
+          <view class="type-option {{groupKind === 'other' ? 'type-option-on' : ''}}" data-kind="other" data-label="非训练" bindtap="pickKind">非训练</view>
+        </view>
+        <input class="staff-input" data-key="groupName" placeholder="组名，例如 A2" value="{{groupName}}" bindinput="onGroup" />
+        <input class="staff-input" data-key="groupPace" placeholder="配速或目标，可不填" value="{{groupPace}}" bindinput="onGroup" />
+        <input class="staff-input" data-key="groupCap" type="number" placeholder="名额，0 表示不限" value="{{groupCap}}" bindinput="onGroup" />
+        <button class="staff-secondary" loading="{{actionBusy}}" bindtap="addGroup">添加分组</button>
+      </view>
+      <view class="staff-actions">
+        <button class="staff-secondary" loading="{{actionBusy}}" bindtap="endActivity">结束这场活动</button>
+        <button class="staff-danger" loading="{{actionBusy}}" bindtap="cancelActivity">取消这场活动</button>
+      </view>
     </view>
   </view>
-  <view class="card">
-    <navigator wx:if="{{activity.action.enabled && activity.action.kind === 'signup'}}" class="btn" url="/pages/signup/signup?club={{clubId}}&id={{activityId}}">报名</navigator>
-    <button wx:elif="{{activity.action.enabled}}" class="btn" bindtap="cancel">取消报名</button>
-    <button wx:else class="btn" disabled>{{activity.action.label}}</button>
-    <button wx:if="{{activity.mine.signed && activity.mine.groupId}}" class="ghost" bindtap="pacer">{{activity.mine.pacer ? '不领跑了' : '我来领跑'}}</button>
-  </view>
-  <view class="card">
-    <navigator url="/pages/album/album?club={{clubId}}&id={{activityId}}">查看相册</navigator>
-    <view class="src">{{album.photoCount}} 张照片 · {{album.videoCount}} 个视频</view>
-  </view>
-  <view class="card">
-    <view class="h2">打卡</view>
-    <input placeholder="公里数" value="{{km}}" bindinput="onKm" />
-    <button class="btn" bindtap="check">打卡</button>
-    <view wx:for="{{checks}}" wx:key="userId" class="row">
-      <text>{{item.nickname}}</text><text>{{item.km}} 公里</text>
+
+  <view wx:if="{{activeTab === 'groups'}}" class="tab-body">
+    <view class="section-heading"><text class="section-title">训练分组</text><text class="section-meta">{{groups.length}} 组 · {{activity.signupCount}} 人</text></view>
+    <view wx:if="{{groups.length}}" class="group-list">
+      <view wx:for="{{groups}}" wx:key="id" class="group-row">
+        <view class="group-main"><view class="group-name">{{item.name}}<text wx:if="{{item.pace}}" class="group-pace">{{item.pace}}</text></view><view class="group-kind">{{item.kindLabel}}</view></view>
+        <view class="group-capacity"><text class="group-count">{{item.signed}}</text><text class="group-limit">{{item.capacity ? '/' + item.capacity : ' 人'}}</text></view>
+      </view>
     </view>
+    <view wx:else class="empty-state">暂未设置分组</view>
+    <view class="roster-heading"><text class="section-title">报名成员</text><text class="section-meta">共 {{signups.length}} 人</text></view>
+    <view wx:if="{{visibleSignups.length}}" class="roster-list">
+      <view wx:for="{{visibleSignups}}" wx:key="userId" class="roster-row">
+        <view class="avatar-wrap"><image wx:if="{{item.avatar}}" class="avatar" src="{{item.avatar}}" mode="aspectFill" data-id="{{item.userId}}" binderror="avatarError"/><view wx:else class="avatar-fallback">{{item.avatarText}}</view></view>
+        <view class="person-copy"><view class="person-name">{{item.nickname}}<text wx:if="{{item.mine}}" class="person-mine">我</text><text wx:if="{{item.pacer}}" class="person-pacer">领跑</text></view><view class="person-group">{{item.groupName || '未分组'}}<text wx:if="{{staff && item.level}}"> · {{item.level}}</text><text wx:if="{{staff && item.gender}}"> · {{item.gender}}</text></view></view>
+        <view wx:if="{{item.together}}" class="together-count">一起跑过 {{item.together}} 次</view>
+      </view>
+      <button wx:if="{{signups.length > 5}}" class="expand-roster" bindtap="toggleRoster">{{rosterExpanded ? '收起成员' : '展开全部 ' + signups.length + ' 位成员'}}</button>
+    </view>
+    <view wx:else class="empty-state">还没有人报名</view>
   </view>
-  <view wx:if="{{staff}}" class="card">
-    <button class="ghost" bindtap="toggleEdit">{{editing ? '收起' : '改这场'}}</button>
-    <block wx:if="{{editing && draft}}">
-      <input data-key="title" placeholder="标题" value="{{draft.title}}" bindinput="onDraft" />
-      <input data-key="issue" placeholder="期次，可不填" value="{{draft.issue}}" bindinput="onDraft" />
-      <input data-key="startsAt" placeholder="开始 2026-10-14 05:00" value="{{draft.startsAt}}" bindinput="onDraft" />
-      <input data-key="endsAt" placeholder="结束，可不填" value="{{draft.endsAt}}" bindinput="onDraft" />
-      <input data-key="gatherAt" placeholder="集合时间，可不填" value="{{draft.gatherAt}}" bindinput="onDraft" />
-      <input data-key="gatherPlace" placeholder="集合点" value="{{draft.gatherPlace}}" bindinput="onDraft" />
-      <input data-key="place" placeholder="地点" value="{{draft.place}}" bindinput="onDraft" />
-      <input data-key="plannedKm" placeholder="计划里程，可不填" value="{{draft.plannedKm}}" bindinput="onDraft" />
-      <input data-key="route" placeholder="路线" value="{{draft.route}}" bindinput="onDraft" />
-      <input data-key="cancelUntil" placeholder="取消报名截止，可不填" value="{{draft.cancelUntil}}" bindinput="onDraft" />
-      <input data-key="note" placeholder="说明" value="{{draft.note}}" bindinput="onDraft" />
-      <input data-key="minPeople" placeholder="成团人数" value="{{draft.minPeople}}" bindinput="onDraft" />
-      <input data-key="minKm" placeholder="里程公里" value="{{draft.minKm}}" bindinput="onDraft" />
-      <input data-key="points" placeholder="这场积分" value="{{draft.points}}" bindinput="onDraft" />
-      <button class="btn" bindtap="saveActivity">保存</button>
-    </block>
-    <view class="src">加一组。当前种类：{{groupKindLabel}}</view>
-    <button class="ghost" data-kind="pace" data-label="配速组" bindtap="pickKind">配速组</button>
-    <button class="ghost" data-kind="finish" data-label="完赛组" bindtap="pickKind">完赛组</button>
-    <button class="ghost" data-kind="volunteer" data-label="志愿者" bindtap="pickKind">志愿者</button>
-    <button class="ghost" data-kind="other" data-label="非训练" bindtap="pickKind">非训练</button>
-    <input data-key="groupName" placeholder="组名，例如 A2" value="{{groupName}}" bindinput="onGroup" />
-    <input data-key="groupPace" placeholder="配速或目标，可不填" value="{{groupPace}}" bindinput="onGroup" />
-    <input data-key="groupCap" placeholder="名额，0 表示不限" value="{{groupCap}}" bindinput="onGroup" />
-    <button class="btn" bindtap="addGroup">加一组</button>
-    <button class="ghost" bindtap="endActivity">结束这场</button>
-    <button class="ghost" bindtap="cancelActivity">取消这场</button>
+
+  <view wx:if="{{activeTab === 'plan'}}" class="tab-body plan-body">
+    <view class="plan-block">
+      <view class="plan-kicker">SESSION</view>
+      <view class="plan-title">训练安排</view>
+      <view wx:if="{{activity.workout}}" class="plan-copy">{{activity.workout}}</view>
+      <view wx:else class="plan-empty">训练安排暂未公布</view>
+    </view>
+    <view class="plan-block notice-block">
+      <view class="plan-kicker">BEFORE YOU GO</view>
+      <view class="plan-title">参与须知</view>
+      <view wx:if="{{activity.notice}}" class="plan-copy">{{activity.notice}}</view>
+      <view wx:else class="plan-empty">暂无特别须知</view>
+    </view>
+    <view wx:if="{{activity.rule}}" class="rule-note">{{activity.rule}}</view>
   </view>
-  <view wx:if="{{message}}" class="err">{{message}}</view>
+
+  <view wx:if="{{message}}" class="message-line">{{message}}</view>
 </view>
-<view wx:else class="empty">{{message || '正在打开活动'}}</view>
+
+<view wx:elif="{{loading}}" class="load-state"><view class="load-mark">MP</view><text>正在加载活动</text></view>
+<view wx:else class="load-state"><view class="load-mark">!</view><text>{{message || '活动暂时无法打开'}}</text><button class="retry-button" bindtap="retry">重新加载</button></view>
+
+<view wx:if="{{activity}}" class="bottom-bar">
+  <view class="bottom-meta"><text class="bottom-count">{{activity.signupCount}}</text><text class="bottom-caption">人已报名</text></view>
+  <navigator wx:if="{{activity.action.enabled && activity.action.kind === 'signup'}}" class="bottom-primary" url="/pages/signup/signup?club={{clubId}}&id={{activityId}}">{{activity.action.label}}</navigator>
+  <button wx:elif="{{activity.action.enabled && activity.action.kind === 'cancel'}}" class="bottom-primary" loading="{{actionBusy}}" disabled="{{actionBusy}}" bindtap="cancel">{{activity.action.label}}</button>
+  <button wx:else class="bottom-primary disabled" disabled>{{activity.action.label}}</button>
+  <button wx:if="{{activity.mine.signed && activity.mine.groupId}}" class="pacer-button" disabled="{{actionBusy}}" bindtap="pacer">{{activity.mine.pacer ? '不领跑' : '我领跑'}}</button>
+</view>

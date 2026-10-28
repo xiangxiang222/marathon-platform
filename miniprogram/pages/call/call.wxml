@@ -7,6 +7,7 @@
     <view class="src">{{call.shareText}}</view>
     <button class="btn" open-type="share">发到微信群</button>
     <button class="ghost" data-text="{{call.boardText}}" bindtap="copyText">复制成绩榜</button>
+    <button class="ghost" bindtap="exportPoster">生成成绩长图</button>
   </view>
   <view class="card" wx:if="{{!call.closed}}">
     <view class="h2">填写</view>
@@ -45,3 +46,10 @@
   <view wx:if="{{message}}" class="err">{{message}}</view>
 </view>
 <view wx:else class="empty">{{message || '正在打开'}}</view>
+<canvas type="2d" id="call-poster" class="call-poster-canvas"></canvas>
+<view wx:if="{{posterPath}}" class="poster-layer" bindtap="closePoster" catchtouchmove="noop">
+  <view class="poster-frame" catchtap="noop">
+    <image class="poster-image" src="{{posterPath}}" mode="widthFix" show-menu-by-longpress="{{true}}" />
+    <view class="poster-hint">长按图片保存到相册 · 点击空白处关闭</view>
+  </view>
+</view>

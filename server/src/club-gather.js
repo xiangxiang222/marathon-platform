@@ -842,22 +842,26 @@ function mountClubGather(app, { BASE, getDb, userFrom }) {
   app.post(BASE + "/api/clubs/:id/internals/:rid/signup", (req, res) => {
     const ctx = open(req, res);
     if (!ctx) return;
-    const race = loadRace(ctx, res);
-    if (!race) return;
-    if (raceStatus(race) !== "open") return res.status(400).json({ error: race.cancelled_at ? "这场已经取消" : "报名已经截止" });
-    const blocked = feeBlocksSignup(ctx.db, ctx.club.id, ctx.user.id);
-    if (blocked) return res.status(400).json({ error: blocked });
-    const existing = ctx.db.prepare("SELECT 1 FROM internal_signups WHERE race_id = ? AND user_id = ?").get(race.id, ctx.user.id);
-    if (existing) return res.status(400).json({ error: "你已经报过了，要换组先取消" });
-    const groupId = Number(req.body && req.body.groupId);
-    const group = ctx.db.prepare("SELECT * FROM internal_groups WHERE id = ? AND race_id = ?").get(groupId, race.id);
-    if (!group) return res.status(400).json({ error: "先选一个组别" });
-    if (group.capacity > 0) {
-      const taken = ctx.db.prepare("SELECT COUNT(*) AS n FROM internal_signups WHERE race_id = ? AND group_id = ?").get(race.id, group.id).n;
-      if (taken >= group.capacity) return res.status(400).json({ error: "这一组满了" });
-    }
-    ctx.db.prepare("INSERT INTO internal_signups (race_id, user_id, group_id, created_at) VALUES (?, ?, ?, ?)").run(race.id, ctx.user.id, group.id, new Date().toISOString());
-    res.json({ race: presentInternal(ctx.db, ctx.club, race, ctx.user.id, isStaff(ctx)) });
+    const result = ctx.db.transaction(() => {
+      const race = ctx.db.prepare("SELECT * FROM internal_races WHERE id = ? AND club_id = ?").get(req.params.rid, ctx.club.id);
+      if (!race) return { status: 404, error: "没有这场队内赛" };
+      if (raceStatus(race) !== "open") return { status: 400, error: race.cancelled_at ? "这场已经取消" : "报名已经截止" };
+      const blocked = feeBlocksSignup(ctx.db, ctx.club.id, ctx.user.id);
+      if (blocked) return { status: 400, error: blocked };
+      const existing = ctx.db.prepare("SELECT 1 FROM internal_signups WHERE race_id = ? AND user_id = ?").get(race.id, ctx.user.id);
+      if (existing) return { status: 400, error: "你已经报过了，要换组先取消" };
+      const groupId = Number(req.body && req.body.groupId);
+      const group = ctx.db.prepare("SELECT * FROM internal_groups WHERE id = ? AND race_id = ?").get(groupId, race.id);
+      if (!group) return { status: 400, error: "先选一个组别" };
+      if (group.capacity > 0) {
+        const taken = ctx.db.prepare("SELECT COUNT(*) AS n FROM internal_signups WHERE race_id = ? AND group_id = ?").get(race.id, group.id).n;
+        if (taken >= group.capacity) return { status: 400, error: "这一组满了" };
+      }
+      ctx.db.prepare("INSERT INTO internal_signups (race_id, user_id, group_id, created_at) VALUES (?, ?, ?, ?)").run(race.id, ctx.user.id, group.id, new Date().toISOString());
+      return { race };
+    }).immediate();
+    if (result.error) return res.status(result.status).json({ error: result.error });
+    res.json({ race: presentInternal(ctx.db, ctx.club, result.race, ctx.user.id, isStaff(ctx)) });
   });
 
   app.delete(BASE + "/api/clubs/:id/internals/:rid/signup", (req, res) => {

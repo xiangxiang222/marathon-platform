@@ -1,20 +1,47 @@
-<view class="pad" wx:if="{{activity}}">
-  <view class="card">
-    <view class="title">{{activity.title}}</view>
-    <view class="src">{{viewerName}}</view>
-    <view class="src">昵称用当前登录的，不在这里改。</view>
-    <view class="src">性别</view>
-    <button class="ghost" data-id="男" bindtap="pickGender">{{gender === '男' ? '男 · 已选' : '男'}}</button>
-    <button class="ghost" data-id="女" bindtap="pickGender">{{gender === '女' ? '女 · 已选' : '女'}}</button>
-    <button class="ghost" data-id="" bindtap="pickGender">{{gender === '' ? '不填 · 已选' : '不填'}}</button>
-    <view class="src">级别，可不选</view>
-    <view wx:for="{{levels}}" wx:key="id" class="src" data-id="{{item.id}}" bindtap="pickLevel">{{level === item.id ? '已选 ' : ''}}{{item.id}} {{item.text}}</view>
-    <view class="src">组别</view>
-    <button wx:for="{{groups}}" wx:key="id" class="ghost" data-id="{{item.id}}" data-full="{{item.full ? 1 : 0}}" bindtap="pickGroup">{{groupId === item.id ? '已选 ' : ''}}{{item.name}} {{item.signed}}{{item.capacity ? '/' + item.capacity : ' 不限'}}{{item.full ? ' 已满' : ''}}</button>
-    <view wx:if="{{activity.cancelHint}}" class="src">{{activity.cancelHint}}。没有退款。</view>
-    <button class="btn" bindtap="submit">提交报名</button>
-    <view class="src">请按自己的情况选择组别。</view>
+<view wx:if="{{activity}}" class="signup-page">
+  <view class="signup-hero">
+    <view class="hero-label">报名活动</view>
+    <view class="signup-title">{{activity.title}}</view>
+    <view class="signup-time">{{activity.timeLabel || '时间待定'}}</view>
+    <view class="signup-place">{{activity.gatherPlace || activity.place || '地点待定'}}<text wx:if="{{activity.plannedKm}}"> · {{activity.plannedKm}} 公里</text></view>
+    <view class="signup-by">以 {{viewerName}} 的身份报名</view>
   </view>
-  <view wx:if="{{message}}" class="err">{{message}}</view>
+
+  <view class="selection-section">
+    <view class="section-heading"><text class="section-title">选择组别</text><text class="required-mark">{{groups.length ? '必选' : '无需分组'}}</text></view>
+    <view wx:if="{{groups.length}}" class="group-options">
+      <view wx:for="{{groups}}" wx:key="id" class="group-option {{groupId === item.id ? 'group-option-on' : ''}} {{item.full ? 'group-option-full' : ''}}" data-id="{{item.id}}" data-full="{{item.full ? 1 : 0}}" bindtap="pickGroup">
+        <view class="group-option-main"><view class="group-option-name">{{item.name}}<text wx:if="{{item.pace}}" class="group-option-pace">{{item.pace}}</text></view><view class="group-option-sub">{{item.kindLabel}} · {{item.signed}}{{item.capacity ? '/' + item.capacity : ' 人'}}已报名</view></view>
+        <view class="group-state">{{item.full ? '已满' : (groupId === item.id ? '已选' : '选择')}}</view>
+      </view>
+    </view>
+    <view wx:else class="no-groups">本次活动无需分组</view>
+    <view wx:if="{{activity.signupUntil}}" class="signup-deadline">{{activity.signupHint}}</view>
+  </view>
+
+  <view class="optional-section">
+    <view class="optional-toggle" bindtap="toggleOptional"><view><text class="optional-title">其他信息</text><text class="optional-caption">性别和跑步水平可不填，仅活动组织者可见，用于现场协调</text></view><text class="optional-arrow">{{optionalOpen ? '收起' : '填写'}}</text></view>
+    <view wx:if="{{optionalOpen}}" class="optional-fields">
+      <view class="field-label">性别</view>
+      <view class="choice-row">
+        <view class="choice {{gender === '男' ? 'choice-on' : ''}}" data-id="男" bindtap="pickGender">男</view>
+        <view class="choice {{gender === '女' ? 'choice-on' : ''}}" data-id="女" bindtap="pickGender">女</view>
+        <view class="choice {{gender === '' ? 'choice-on' : ''}}" data-id="" bindtap="pickGender">不填写</view>
+      </view>
+      <view class="field-label level-label">跑步级别</view>
+      <view class="level-list">
+        <view wx:for="{{levels}}" wx:key="id" class="level-option {{level === item.id ? 'level-option-on' : ''}}" data-id="{{item.id}}" bindtap="pickLevel"><view class="level-name">{{item.id}}</view><view class="level-description">{{item.text}}</view><text class="level-check">{{level === item.id ? '已选' : ''}}</text></view>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{message}}" class="error-line">{{message}}</view>
+  <view wx:if="{{!activity.action.enabled}}" class="action-hint">{{activity.action.label}}</view>
+  <view class="bottom-space"></view>
+  <view class="submit-bar">
+    <view class="submit-count"><text class="count-number">{{activity.signupCount}}</text><text class="count-label">人已报名</text></view>
+    <button class="submit-button" loading="{{submitting}}" disabled="{{submitting || loading || !activity.action.enabled || activity.action.kind !== 'signup' || (groups.length > 0 && !groupId)}}" bindtap="submit">{{submitting ? '提交中' : '确认报名'}}</button>
+  </view>
 </view>
-<view wx:else class="pad">{{message || '正在打开报名'}}</view>
+<view wx:elif="{{loading}}" class="load-state"><view class="load-mark">MP</view><text>正在读取报名信息</text></view>
+<view wx:else class="load-state"><view class="load-mark">!</view><text>{{message || '报名信息暂时无法打开'}}</text><button class="retry-button" bindtap="retry">重新加载</button></view>

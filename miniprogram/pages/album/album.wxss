@@ -7,3 +7,7 @@
 .album.grid .shot image, .album.grid .shot video { height: 200rpx; }
 .album.fall .shot image, .album.fall .shot video { height: 360rpx; }
 .drop { color: #ff0a30; margin-right: 16rpx; }
+.detail-state { margin: 32rpx; padding: 40rpx 28rpx; border-radius: 20rpx; background: #fff; text-align: center; }
+.state-title { color: #1f2026; font-size: 30rpx; font-weight: 600; }
+.detail-state .src { margin-top: 16rpx; overflow-wrap: anywhere; }
+.detail-state .btn { margin-top: 28rpx; }

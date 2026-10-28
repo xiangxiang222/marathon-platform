@@ -1,4 +1,5 @@
 const { request } = require("../../utils/request");
+const { renderCallPoster, clubRaceRows } = require("../../utils/call-poster");
 
 Page({
   data: {
@@ -23,22 +24,13 @@ Page({
     attendance: { rows: [], me: { placeLabel: "未上榜", count: 0 }, label: "本月" },
     mileage: { totalKm: 0, totalCount: 0, mineKm: 0 },
     partnerGrade: "",
+    posterPath: "",
+    leaving: false,
     checkins: [],
     checkedIn: false,
     note: "",
     checkMessage: "",
     message: "",
-    actTitle: "",
-    actPlace: "",
-    actWhen: "",
-    actEnds: "",
-    actIssue: "",
-    actGather: "",
-    actPlanned: "",
-    actNote: "",
-    actPeople: "3",
-    actKm: "5",
-    actPoints: "1",
     groupName: "",
     groupPace: "",
     groupCap: "0",
@@ -53,7 +45,9 @@ Page({
     callOther: "",
     callNote: "",
     callDistanceText: "",
+    feeCurrent: {},
     feeShown: {},
+    feeHistory: [],
     feeName: "",
     feeAmount: "",
     feeStart: "",
@@ -104,6 +98,59 @@ Page({
   changeSection(e) {
     this.setData({ activeTab: e.currentTarget.dataset.tab });
   },
+  exportBoard() {
+    const lines = ["跑团赛事汇总", "比赛\t日期\t城市\t项目\t成员\t状态\t成绩"];
+    (this.data.board || []).forEach((item) => {
+      const race = item.race || {};
+      const project = (race.distanceLabels || []).join("/");
+      const rows = clubRaceRows(item);
+      if (!rows.length) {
+        lines.push([race.name, race.raceDate, race.city, project, "", "", ""].join("\t"));
+        return;
+      }
+      const cell = (value) => {
+        const text = String(value == null ? "" : value).replace(/[\t\r\n]/g, " ");
+        return /^\s*[=+\-@]/.test(text) ? "'" + text : text;
+      };
+      rows.forEach((mark) => lines.push([
+        race.name, race.raceDate, race.city, mark.distance || project, mark.nickname, mark.status,
+        [mark.clock, mark.pb ? "PB" : ""].filter(Boolean).join(" ")
+      ].map(cell).join("\t")));
+    });
+    wx.setClipboardData({ data: lines.join("\n"), success: () => this.setData({ message: "赛事表格已复制，可粘贴到表格软件" }) });
+  },
+  exportRacePoster(e) {
+    const item = (this.data.board || [])[Number(e.currentTarget.dataset.index)];
+    if (!item) return;
+    const groups = clubRaceRows(item).reduce((out, mark) => {
+      const label = mark.status || "团友";
+      let group = out.find((entry) => entry.label === label);
+      if (!group) {
+        group = { label, rows: [] };
+        out.push(group);
+      }
+      group.rows.push({ place: group.rows.length + 1, nickname: mark.nickname, clock: mark.clock, status: mark.status, tag: mark.pb ? "PB" : "" });
+      return out;
+    }, []);
+    this.createSelectorQuery().select("#club-poster").fields({ node: true }).exec((res) => {
+      const canvas = res && res[0] && res[0].node;
+      if (!canvas) {
+        this.setData({ message: "赛事画像没有生成" });
+        return;
+      }
+      const size = renderCallPoster(canvas, { title: item.race.name, raceDate: item.race.raceDate, eyebrow: "跑团赛事画像", countLabel: " 条参赛记录", summary: item.summary, groups });
+      wx.canvasToTempFilePath({
+        canvas,
+        destWidth: size.width,
+        destHeight: size.height,
+        fileType: "png",
+        success: (file) => this.setData({ posterPath: file.tempFilePath, message: "" }),
+        fail: () => this.setData({ message: "赛事画像没有生成" })
+      });
+    });
+  },
+  closePoster() { this.setData({ posterPath: "" }); },
+  noop() {},
   toggleForm(e) {
     const form = e.currentTarget.dataset.form;
     if (!Object.prototype.hasOwnProperty.call(this.data.expanded, form)) return;
@@ -191,11 +238,17 @@ Page({
     request("/clubs/" + this.clubId + "/fees")
       .then((data) => {
         const current = data.current;
-        if (!current) {
-          this.setData({ feeShown: {} });
+        const history = data.history || [];
+        const shown = this.data.feeShown || {};
+        if (shown.id && !shown.open) {
+          this.setData({ feeCurrent: current || {}, feeHistory: history });
           return;
         }
-        const patch = { feeShown: current };
+        if (!current) {
+          this.setData({ feeCurrent: {}, feeShown: {}, feeHistory: history });
+          return;
+        }
+        const patch = { feeCurrent: current, feeShown: current, feeHistory: history };
         if (!this.data.feeCreating && !this.data.feeName) {
           patch.feeName = current.name;
           patch.feeAmount = String(current.amount);
@@ -207,6 +260,25 @@ Page({
         this.setData(patch);
       })
       .catch(() => {});
+  },
+  openFee(e) {
+    const periodId = Number(e.currentTarget.dataset.id);
+    if (!periodId) return;
+    request("/clubs/" + this.clubId + "/fees/" + periodId)
+      .then((data) => {
+        const period = data.period;
+        const patch = { feeCurrent: period.open ? period : this.data.feeCurrent, feeShown: period, message: "" };
+        if (period.open && !this.data.feeCreating) {
+          patch.feeName = period.name;
+          patch.feeAmount = String(period.amount);
+          patch.feeStart = period.startsOn;
+          patch.feeEnd = period.endsOn;
+          patch.feeNote = period.note || "";
+          patch.feeBlock = !!period.blockSignup;
+        }
+        this.setData(patch);
+      })
+      .catch((err) => this.setData({ message: err.message }));
   },
   distanceText(selected) {
     const labels = { full: "全马", half: "半马", "10k": "10公里", "5k": "5公里" };
@@ -320,12 +392,12 @@ Page({
       note: this.data.feeNote,
       blockSignup: !!this.data.feeBlock
     };
-    const current = this.data.feeShown && this.data.feeShown.id;
+    const current = this.data.feeCurrent && this.data.feeCurrent.id;
     const creating = this.data.feeCreating || !current;
     const path = creating ? "/clubs/" + this.clubId + "/fees" : "/clubs/" + this.clubId + "/fees/" + current;
     request(path, creating ? "POST" : "PUT", body)
-      .then(() => {
-        this.setData({ message: creating ? "已开这一期" : "会费已保存", feeName: "", feeCreating: false });
+      .then((data) => {
+        this.setData({ message: creating ? "已开这一期" : "会费已保存", feeName: "", feeCreating: false, feeShown: data.period || this.data.feeShown, feeCurrent: data.period || this.data.feeCurrent });
         this.loadExtra();
       })
       .catch((err) => this.setData({ message: err.message }));
@@ -336,6 +408,7 @@ Page({
   newPeriod() {
     this.setData({
       feeCreating: true,
+      feeShown: this.data.feeCurrent || {},
       feeName: "",
       feeAmount: "",
       feeStart: "",
@@ -374,25 +447,6 @@ Page({
   },
   onDraft(e) {
     this.setData({ [e.currentTarget.dataset.key]: e.detail.value });
-  },
-  createActivity() {
-    request("/clubs/" + this.clubId + "/activities", "POST", {
-      title: this.data.actTitle,
-      place: this.data.actPlace,
-      startsAt: this.data.actWhen,
-      endsAt: this.data.actEnds,
-      issue: this.data.actIssue,
-      gatherPlace: this.data.actGather,
-      plannedKm: this.data.actPlanned,
-      note: this.data.actNote,
-      minPeople: Number(this.data.actPeople),
-      minKm: Number(this.data.actKm),
-      points: Number(this.data.actPoints)
-    })
-      .then((data) => {
-        wx.navigateTo({ url: "/pages/activity/activity?club=" + this.clubId + "&id=" + data.activity.id });
-      })
-      .catch((err) => this.setData({ message: err.message }));
   },
   shareRecent() {
     const ids = (this.data.activities || []).slice().sort((a, b) => (a.startsAt < b.startsAt ? 1 : -1)).slice(0, 3).map((item) => item.id);
@@ -474,12 +528,29 @@ Page({
     const name = e.currentTarget.dataset.name;
     wx.showModal({
       title: "移出 " + name,
-      content: "移出后这个人看不到团里的赛历。",
+      content: "未来团练、未出成绩的未来队内赛和明日及之后未打卡的约跑报名会取消；成绩、积分和已打卡记录保留。",
       success: (res) => {
         if (!res.confirm) return;
         request("/clubs/" + this.clubId + "/members/" + id, "DELETE")
           .then(() => this.load())
           .catch((err) => this.setData({ message: err.message }));
+      }
+    });
+  },
+  leaveClub() {
+    if (this.data.leaving || !this.data.club || this.data.club.owner) return;
+    wx.showModal({
+      title: "退出" + this.data.club.name,
+      content: "未来团练、未出成绩的未来队内赛和明日及之后未打卡的约跑报名会取消；个人赛事、成绩、积分和已打卡记录保留，再入团需要审核。",
+      confirmText: "退出跑团",
+      confirmColor: "#c73540",
+      success: (res) => {
+        if (!res.confirm) return;
+        this.setData({ leaving: true, message: "" });
+        request("/clubs/" + this.clubId + "/leave", "POST", {})
+          .then(() => wx.switchTab({ url: "/pages/clubs/clubs" }))
+          .catch((err) => this.setData({ message: err.message }))
+          .finally(() => this.setData({ leaving: false }));
       }
     });
   }

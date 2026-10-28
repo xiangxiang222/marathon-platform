@@ -40,10 +40,14 @@ const PLACES = [
 ];
 
 const KINDS = [
+  { short: "全部赛事", kind: "" },
   { short: "路跑", kind: "road" },
-  { short: "越野赛", kind: "trail" },
-  { short: "线上赛", kind: "online" },
-  { short: "线下赛", kind: "offline" }
+  { short: "越野赛", kind: "trail" }
+];
+const MEETS = [
+  { short: "全部形式", meet: "" },
+  { short: "线上赛", meet: "online" },
+  { short: "线下赛", meet: "offline" }
 ];
 
 const STATUSES = [
@@ -88,7 +92,8 @@ function todayInfo() {
 
 function yearBlocks(selected) {
   const blocks = [];
-  for (let year = 2025; year <= 2027; year += 1) {
+  const yearNow = new Date(Date.now() + 8 * 3600 * 1000).getUTCFullYear();
+  for (let year = yearNow - 1; year <= yearNow + 2; year += 1) {
     const months = [];
     for (let m = 1; m <= 12; m += 1) {
       const value = year + "-" + String(m).padStart(2, "0");
@@ -107,12 +112,14 @@ Page({
     month: "",
     full: false,
     half: false,
-    kind: "road",
+    kind: "",
+    meet: "",
     status: "upcoming",
     draftStatus: "upcoming",
     sheet: "",
     province: "河北",
     kinds: KINDS,
+    meets: MEETS,
     races: [],
     page: 1,
     pages: 1,
@@ -169,6 +176,12 @@ Page({
     this.data.sheet = "";
     this.data.page = 1;
     this.setData({ kind: this.data.kind, sheet: "", page: 1 });
+    this.load();
+  },
+  setMeet(e) {
+    this.data.meet = e.currentTarget.dataset.meet || "";
+    this.data.page = 1;
+    this.setData({ meet: this.data.meet, page: 1 });
     this.load();
   },
   toggleDist(e) {
@@ -257,7 +270,9 @@ Page({
     if (q) {
       params.push("q=" + encodeURIComponent(q), "status=all");
     } else {
-      params.push("status=" + (this.data.status || "upcoming"), "kind=" + (this.data.kind || "road"));
+      params.push("status=" + (this.data.status || "upcoming"));
+      if (this.data.kind) params.push("kind=" + encodeURIComponent(this.data.kind));
+      if (this.data.meet) params.push("meet=" + encodeURIComponent(this.data.meet));
       if (this.data.city) params.push("city=" + encodeURIComponent(this.data.city));
       if (this.data.month) params.push("month=" + encodeURIComponent(this.data.month));
       if (this.data.full && !this.data.half) params.push("distance=full");
@@ -304,6 +319,9 @@ Page({
           total: data.total || 0
         });
       })
-      .catch((err) => this.setData({ loaded: true, message: err.message }));
+      .catch((err) => {
+        if (seq !== this.loadSeq) return;
+        this.setData({ loaded: true, message: err.message });
+      });
   }
 });

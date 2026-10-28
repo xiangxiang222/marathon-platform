@@ -41,5 +41,5 @@
     <navigator wx:for="{{clubs}}" wx:key="id" class="setting-row" url="/pages/club/club?id={{item.id}}"><view class="row-copy"><view>{{item.name}}</view><view class="subtitle">{{item.roleLabel}}</view></view><text class="arrow">›</text></navigator><button class="logout" bindtap="logout">退出登录</button>
   </view>
   <view wx:else class="surface empty-state"><view class="section-title">你的资料，由你管理</view><view class="hint">登录后设置头像、昵称和账号密码。</view></view>
-  <view class="legal">{{company}} · {{icp}}</view>
+  <view class="legal"><text>{{company}} · {{icp}}</text><text class="legal-link" bindtap="openPrivacy">隐私保护指引</text></view>
 </view>
