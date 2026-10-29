@@ -609,6 +609,25 @@ function open() {
       ALTER TABLE results_next RENAME TO results;
     `);
   }
+  // Old call-synced results have no reliable provenance; preserve them as personal
+  // records rather than inferring ownership from matching finish times.
+  if (!handle.prepare("PRAGMA table_info(results)").all().some((col) => col.name === "source_call_id")) {
+    handle.exec("ALTER TABLE results ADD COLUMN source_call_id INTEGER NOT NULL DEFAULT 0");
+  }
+  handle.exec(`
+    CREATE TABLE IF NOT EXISTS runner_media (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      user_id INTEGER NOT NULL,
+      race_id TEXT NOT NULL,
+      distance TEXT NOT NULL,
+      kind TEXT NOT NULL CHECK(kind IN ('certificate', 'medal', 'photo', 'video')),
+      filename TEXT NOT NULL UNIQUE,
+      mime TEXT NOT NULL,
+      size INTEGER NOT NULL,
+      created_at TEXT NOT NULL
+    );
+    CREATE INDEX IF NOT EXISTS runner_media_owner ON runner_media(user_id, race_id, distance);
+  `);
   const memberCols = handle.prepare("PRAGMA table_info(club_members)").all();
   if (memberCols.length && !memberCols.some((col) => col.name === "mileage_group_id")) {
     handle.exec("ALTER TABLE club_members ADD COLUMN mileage_group_id INTEGER NOT NULL DEFAULT 0");

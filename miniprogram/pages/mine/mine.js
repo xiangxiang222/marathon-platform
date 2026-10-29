@@ -1,6 +1,7 @@
 const { request, setAuth, clearAuth, ready } = require("../../utils/request");
 const { saveCaptchaFile } = require("../../utils/captcha");
 const { networkAvatar, prepareAvatar } = require("../../utils/avatar");
+const { VIEWS, decorate, careerSummary } = require("../../utils/runner-center");
 
 function wechatCode() {
   return new Promise((resolve, reject) => {
@@ -13,7 +14,13 @@ function wechatCode() {
 
 Page({
   data: {
-    mainTab: "plans",
+    mainTab: "overview",
+    runnerViews: VIEWS,
+    runner: null,
+    runnerLoading: false,
+    runnerError: "",
+    helpOpen: false,
+    nextRace: null,
     authOpen: false,
     profileOpen: false,
     quickLinks: [{ url: "/pages/calendar/calendar", label: "赛事日历", icon: "/images/quick-calendar.png" }, { url: "/pages/radar/radar", label: "拿奖雷达", icon: "/images/quick-radar.png" }, { url: "/pages/clubs/clubs", label: "发现跑团", icon: "/images/quick-clubs.png", tab: true }, { url: "/pages/news/news", label: "赛事资讯", icon: "/images/quick-news.png" }],
@@ -62,10 +69,15 @@ Page({
       .catch(() => {});
     const nickname = (getApp().globalData && getApp().globalData.nickname) || "";
     const avatar = networkAvatar(getApp().globalData && getApp().globalData.avatar, getApp().globalData && getApp().globalData.baseUrl);
+    const token = (getApp().globalData && getApp().globalData.token) || "";
+    if (token !== this._lastToken) {
+      this._lastToken = token;
+      this.setData({ runner: null, plans: [], results: [], clubs: [], nextRace: null, conflicts: [], reminders: [], career: { finished: 0, provinces: [], cities: [], pb: { full: "", half: "" }, yearKm: 0 } });
+    }
     this.setData({ nickname, nicknameDraft: nickname, avatar, ready: ready() });
     if (ready()) this.load();
     else if (this.data.authOpen && this.data.tab === "login") this.loadCaptcha();
-    if (!ready() && (wx.getStorageSync("marathon_pending_club_id") || wx.getStorageSync("marathon_return_after_login"))) {
+    if (!ready() && (wx.getStorageSync("marathon_pending_club_id") || wx.getStorageSync("marathon_return_after_login") || wx.getStorageSync("marathon_runner_return"))) {
       this.setData({ authOpen: true });
       if (this.data.tab === "login" && !this.data.captchaImage) this.loadCaptcha();
     }
@@ -74,9 +86,10 @@ Page({
   openPrivacy() {
     wx.navigateTo({ url: "/pages/privacy/privacy" });
   },
+  toggleHelp() { this.setData({ helpOpen: !this.data.helpOpen }); },
   pickMainTab(e) {
     const mainTab = e.currentTarget.dataset.tab;
-    if (!["plans", "results", "profile"].includes(mainTab)) return;
+    if (!["overview", "plans", "results", "profile"].includes(mainTab)) return;
     this.setData({ mainTab, profileOpen: false, passwordOpen: false, unbindOpen: false, unbindPassword: "", unbindMessage: "" });
   },
   toggleAuth() {
@@ -109,7 +122,46 @@ Page({
     } else if (returnPath === "/pages/sport/sport") {
       wx.removeStorageSync("marathon_return_after_login");
       wx.switchTab({ url: returnPath });
+    } else {
+      const runnerView = wx.getStorageSync("marathon_runner_return");
+      if (VIEWS.some((item) => item.key === runnerView)) {
+        wx.removeStorageSync("marathon_runner_return");
+        wx.navigateTo({ url: "/pages/runner/runner?view=" + runnerView });
+      }
     }
+  },
+  openRunner(event) {
+    const view = event.currentTarget.dataset.view;
+    if (!VIEWS.some((item) => item.key === view)) return;
+    if (!ready()) {
+      wx.setStorageSync("marathon_runner_return", view);
+      this.setData({ authOpen: true, message: "登录后查看你的跑者档案" });
+      if (this.data.tab === "login" && !this.data.captchaImage) this.loadCaptcha();
+      return;
+    }
+    wx.navigateTo({ url: "/pages/runner/runner?view=" + view });
+  },
+  loadRunner() {
+    if (!ready()) return Promise.resolve();
+    const token = getApp().globalData.token;
+    const sequence = this._runnerSequence = (this._runnerSequence || 0) + 1;
+    this.setData({ runnerLoading: true, runnerError: "" });
+    return request("/me/runner?period=week&offset=0")
+      .then((data) => {
+        if (sequence !== this._runnerSequence || token !== getApp().globalData.token) return;
+        this._runnerToken = token;
+        this.setData({ runner: decorate(data), runnerLoading: false });
+        this.applyRunnerCareer();
+      })
+      .catch((error) => {
+        if (sequence === this._runnerSequence && token === getApp().globalData.token) this.setData({ runnerLoading: false, runnerError: error.message || "运动摘要暂时无法加载" });
+      });
+  },
+  applyRunnerCareer() {
+    const runner = this.data.runner;
+    if (!runner || this._runnerToken !== getApp().globalData.token) return;
+    const flags = new Map(runner.results.map((item) => [String(item.race.id) + ":" + item.distance, item.pb]));
+    this.setData({ career: careerSummary(runner), results: this.data.results.map((item) => ({ ...item, pb: Boolean(flags.get(String(item.race.id) + ":" + item.distance)) })) });
   },
   setTab(e) {
     const tab = e.currentTarget.dataset.tab === "register" ? "register" : "login";
@@ -289,6 +341,9 @@ Page({
       .catch((err) => this.setData({ message: err.message, ok: false }));
   },
   logout() {
+    this._runnerSequence = (this._runnerSequence || 0) + 1;
+    this._mineSequence = (this._mineSequence || 0) + 1;
+    this._runnerToken = "";
     this._avatarPath = "";
     clearAuth();
     this.setData({
@@ -318,7 +373,12 @@ Page({
       ready: false,
       authOpen: false,
       profileOpen: false,
-      mainTab: "plans",
+      mainTab: "overview",
+      runner: null,
+      runnerError: "",
+      helpOpen: false,
+      runnerLoading: false,
+      nextRace: null,
       career: { finished: 0, provinces: [], cities: [], pb: { full: "", half: "" }, yearKm: 0 },
       tab: "login",
       message: "",
@@ -326,9 +386,16 @@ Page({
     });
   },
   load() {
+    const tokenBefore = (getApp().globalData && getApp().globalData.token) || "";
+    const sequence = this._mineSequence = (this._mineSequence || 0) + 1;
+    this.loadRunner();
     return request("/me")
       .then((data) => {
+        if (sequence !== this._mineSequence || tokenBefore !== getApp().globalData.token) return;
         const plans = (data.plans || []).map((item) => ({ ...item, raceId: item.race.id }));
+        const today = new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10);
+        const upcoming = plans.filter((item) => item.race.raceDate >= today && !["完赛", "未完赛", "弃赛", "未中签"].includes(item.status)).sort((a, b) => a.race.raceDate.localeCompare(b.race.raceDate));
+        const nextRace = upcoming.length ? { ...upcoming[0], days: Math.max(0, Math.round((Date.parse(upcoming[0].race.raceDate + "T00:00:00Z") - Date.parse(today + "T00:00:00Z")) / 86400000)) } : null;
         const token = (getApp().globalData && getApp().globalData.token) || "";
         const base = (getApp().globalData && getApp().globalData.baseUrl) || "";
         const results = (data.results || []).map((item) => ({
@@ -340,6 +407,7 @@ Page({
         setAuth((getApp().globalData && getApp().globalData.token) || "", data.user.nickname, data.user.avatar);
         this.setData({
           plans,
+          nextRace,
           results,
           career: data.career || this.data.career,
           reminders,
@@ -353,8 +421,10 @@ Page({
           clubs: data.clubs || [],
           loaded: true
         });
+        this.applyRunnerCareer();
       })
       .catch((err) => {
+        if (sequence !== this._mineSequence || tokenBefore !== getApp().globalData.token) return;
         if (err.message === "请先登录") this.logout();
         else this.setData({ loaded: true, message: err.message, ok: false });
       });

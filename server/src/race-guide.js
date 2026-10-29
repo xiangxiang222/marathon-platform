@@ -368,12 +368,14 @@ function removeRace(db, id) {
   const sheets = db.prepare("SELECT * FROM race_sheets WHERE race_id = ?").all(race.id);
   const signups = db.prepare("SELECT sheet FROM plans WHERE race_id = ? AND sheet != ''").all(race.id);
   const proofs = db.prepare("SELECT proof FROM results WHERE race_id = ? AND proof != ''").all(race.id);
+  const collections = db.prepare("SELECT filename FROM runner_media WHERE race_id = ?").all(race.id);
   db.transaction(() => {
     for (const sheet of sheets) removeSheet(db, sheet);
     db.prepare("DELETE FROM plans WHERE race_id = ?").run(race.id);
     db.prepare("DELETE FROM prize_rules WHERE race_id = ?").run(race.id);
     db.prepare("DELETE FROM draw_rates WHERE race_id = ?").run(race.id);
     db.prepare("DELETE FROM results WHERE race_id = ?").run(race.id);
+    db.prepare("DELETE FROM runner_media WHERE race_id = ?").run(race.id);
     db.prepare("DELETE FROM news WHERE race_id = ?").run(race.id);
     db.prepare("DELETE FROM news_submissions WHERE race_id = ?").run(race.id);
     const ignore = db.prepare("UPDATE official_races SET status = 'ignored', race_id = '' WHERE official_id = ?");
@@ -386,6 +388,10 @@ function removeRace(db, id) {
   }
   for (const proof of proofs) {
     const full = path.join(mediaRoot(), "results", path.basename(proof.proof));
+    if (fs.existsSync(full)) fs.unlinkSync(full);
+  }
+  for (const collection of collections) {
+    const full = path.join(mediaRoot(), "runner", path.basename(collection.filename));
     if (fs.existsSync(full)) fs.unlinkSync(full);
   }
   return { ok: true };

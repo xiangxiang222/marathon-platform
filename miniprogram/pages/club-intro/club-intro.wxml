@@ -1,17 +1,62 @@
 <view class="intro-page">
   <view wx:if="{{loading}}" class="state">正在打开跑团…</view>
-  <view wx:elif="{{club}}" class="intro-content">
-    <view class="identity"><view class="club-mark">{{clubInitial}}</view><view class="identity-copy"><view class="club-name">{{club.name}}</view><view class="club-owner">团长 {{club.leader || '跑团管理员'}}</view></view></view>
-    <view class="club-count"><text class="count">{{club.memberCount}}</text> 位成员</view>
-    <view class="divider"></view>
-    <view class="access-note">跑团赛事、训练安排、成员参赛信息和跑量榜仅对已加入成员开放。</view>
-    <view wx:if="{{club.joined}}" class="status status-in">你已加入这个跑团</view>
-    <view wx:elif="{{club.pending}}" class="status status-pending">申请已提交，等待团长或管理员审核</view>
-    <button wx:if="{{club.joined}}" class="action" bindtap="enterClub">进入跑团</button>
-    <button wx:elif="{{!club.pending}}" class="action" loading="{{applying}}" disabled="{{applying}}" bindtap="apply">{{applying ? '正在提交' : '申请加入'}}</button>
-    <button wx:else class="action pending-action" disabled>等待审核</button>
-    <view class="secondary-note">申请通过后即可查看跑团成员与团内活动。</view>
-    <view wx:if="{{error}}" class="error">{{error}}</view>
-  </view>
-  <view wx:else class="state">{{error || '没有找到这个跑团'}}</view>
+  <block wx:elif="{{club}}">
+    <view class="intro-content">
+      <view class="intro-card">
+        <view class="track-art" aria-hidden="true"><view class="track-line track-line-two"></view><view class="track-line track-line-three"></view></view>
+        <view class="card-eyebrow">跑团名片</view>
+        <view class="club-mark" aria-hidden="true">{{clubInitial}}</view>
+        <view class="club-name">{{club.name}}</view>
+        <view class="card-tagline">和跑友一起，跑得更远</view>
+        <view class="club-facts">
+          <view class="club-owner"><text class="fact-label">团长</text><text class="fact-value">{{club.leader || '跑团管理员'}}</text></view>
+          <view class="club-count"><text class="count">{{club.memberCount}}</text><text class="count-label">位成员</text></view>
+        </view>
+      </view>
+
+      <view class="intro-benefits">
+        <view class="section-title">加入后，一起开跑</view>
+        <view class="benefit-list">
+          <view class="benefit"><view class="benefit-icon icon-route" aria-hidden="true"><view></view></view><view class="benefit-title">团练约跑</view><view class="benefit-copy">训练有伴</view></view>
+          <view class="benefit"><view class="benefit-icon icon-flag" aria-hidden="true"><view></view></view><view class="benefit-title">赛事同行</view><view class="benefit-copy">为彼此加油</view></view>
+          <view class="benefit"><view class="benefit-icon icon-rank" aria-hidden="true"><view></view><view></view><view></view></view><view class="benefit-title">跑量排行</view><view class="benefit-copy">记录每次进步</view></view>
+        </view>
+        <view class="access-note">审核通过后开放团内赛事、训练安排与成员信息。</view>
+      </view>
+
+      <view wx:if="{{club.joined}}" class="status status-in"><view class="status-dot"></view><view><view class="status-title">你已加入这个跑团</view><view class="status-copy">进入跑团，看看跑友们的新动态。</view></view></view>
+      <view wx:elif="{{club.pending}}" class="status status-pending"><view class="status-dot"></view><view><view class="status-title">申请已提交</view><view class="status-copy">等待团长或管理员审核，通过后即可进入跑团。</view></view></view>
+      <view wx:if="{{error}}" class="error">{{error}}</view>
+      <view class="secondary-note">分享这张名片，邀请跑友一起来。</view>
+    </view>
+
+    <view class="intro-dock">
+      <button class="share-action" bindtap="openShare"><view class="share-glyph" aria-hidden="true"></view><text>分享跑团</text></button>
+      <button wx:if="{{club.joined}}" class="action" bindtap="enterClub">进入跑团</button>
+      <button wx:elif="{{club.pending}}" class="action pending-action" disabled>等待审核</button>
+      <button wx:else class="action" loading="{{applying}}" disabled="{{applying}}" bindtap="apply">{{applying ? '正在提交' : ready ? '申请加入' : '登录并申请加入'}}</button>
+    </view>
+
+    <view wx:if="{{shareOpen}}" class="share-mask" bindtap="closeShare">
+      <view class="share-sheet" catchtap="stopTap">
+        <view class="sheet-handle"></view>
+        <view class="sheet-header"><view class="sheet-title">分享跑团</view><button class="sheet-close" bindtap="closeShare" aria-label="关闭分享">×</button></view>
+        <view class="share-preview"><view class="preview-mark">{{clubInitial}}</view><view class="preview-copy"><view class="preview-name">{{club.name}}</view><view class="preview-note">跑团名片 · 好友打开后可申请加入</view></view></view>
+        <button class="share-choice friend-choice" open-type="share">发给好友 / 微信群<text class="choice-arrow">›</text></button>
+        <button class="share-choice timeline-choice" bindtap="showTimelineGuide">分享到朋友圈<text class="choice-arrow">›</text></button>
+        <view class="share-foot">分享无需登录，好友加入仍需审核。</view>
+      </view>
+    </view>
+
+    <view wx:if="{{timelineGuide}}" class="timeline-mask" bindtap="closeTimelineGuide">
+      <view class="timeline-guide" catchtap="stopTap">
+        <view class="guide-pointer" aria-hidden="true"></view>
+        <view class="guide-menu" aria-hidden="true">···</view>
+        <view class="guide-title">让更多跑友看见</view>
+        <view class="guide-copy"><view>点右上角「···」</view><view>选择「分享到朋友圈」</view></view>
+        <button class="guide-dismiss" bindtap="closeTimelineGuide">我知道了</button>
+      </view>
+    </view>
+  </block>
+  <view wx:else class="state"><view>{{error || '没有找到这个跑团'}}</view><button class="retry-action" bindtap="load">重新加载</button></view>
 </view>

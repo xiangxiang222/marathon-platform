@@ -14,6 +14,7 @@ const Call = () => import("./views/Call.vue");
 const Meetup = () => import("./views/Meetup.vue");
 const Internal = () => import("./views/Internal.vue");
 const Mine = () => import("./views/Mine.vue");
+const Runner = () => import("./views/Runner.vue");
 const Admin = () => import("./views/Admin.vue");
 const Calendar = () => import("./views/Calendar.vue");
 const Radar = () => import("./views/Radar.vue");
@@ -31,8 +32,8 @@ export default createRouter({
     { path: "/sport", component: Exercise },
     { path: "/look", component: Look },
     { path: "/clubs", component: Sport },
-    { path: "/clubs/invite/:code", component: ClubIntro, meta: { hideTab: true } },
-    { path: "/clubs/:id/public", component: ClubIntro, meta: { hideTab: true } },
+    { path: "/clubs/invite/:code", component: ClubIntro, meta: { hideTab: true, viewKey: "club-intro" } },
+    { path: "/clubs/:id/public", component: ClubIntro, meta: { hideTab: true, viewKey: "club-intro" } },
     { path: "/clubs/:id", component: Club, meta: { hideTab: true } },
     { path: "/clubs/:id/activities/new", component: ActivityCreate, meta: { hideTab: true } },
     { path: "/clubs/:id/activities/:aid", component: Activity, meta: { hideTab: true } },
@@ -42,6 +43,7 @@ export default createRouter({
     { path: "/clubs/:id/meetups/:mid", component: Meetup, meta: { hideTab: true } },
     { path: "/clubs/:id/internals/:rid", component: Internal, meta: { hideTab: true } },
     { path: "/mine", component: Mine },
+    { path: "/runner", component: Runner, meta: { hideTab: true } },
     { path: "/admin", component: Admin, meta: { hideTab: true, wide: true } },
     { path: "/:pathMatch(.*)*", component: () => import("./views/NotFound.vue"), meta: { hideTab: true } }
   ]

@@ -25,9 +25,11 @@
         <button class="primary" type="submit">{{ authTab === 'login' ? '登录' : '注册' }}</button>
       </form><p v-if="authTab === 'login'" class="hint">旧账号未设置密码或无法登录？请联系平台管理员核验身份后恢复账号。</p><p v-if="message" :class="ok ? 'success' : 'err'">{{ message }}</p>
     </section>
-    <nav class="quick-links" aria-label="常用功能"><router-link v-for="item in quickLinks" :key="item.to" :to="item.to"><img :src="item.icon" alt="" /><span>{{ item.label }}</span></router-link></nav>
-    <nav class="main-tabs" aria-label="个人中心"><button type="button" :class="{ on: section === 'plans' }" @click="section = 'plans'">我的赛事</button><button type="button" :class="{ on: section === 'results' }" @click="section = 'results'">完赛记录</button><button type="button" :class="{ on: section === 'profile' }" @click="section = 'profile'">个人资料</button></nav>
-    <template v-if="section === 'plans'">
+    <nav v-if="section !== 'overview'" class="quick-links" aria-label="常用功能"><router-link v-for="item in quickLinks" :key="item.to" :to="item.to"><img :src="item.icon" alt="" /><span>{{ item.label }}</span></router-link></nav>
+    <nav class="main-tabs" aria-label="个人中心"><button type="button" :class="{ on: section === 'overview' }" @click="section = 'overview'">总览</button><button type="button" :class="{ on: section === 'plans' }" @click="section = 'plans'">我的赛事</button><button type="button" :class="{ on: section === 'results' }" @click="section = 'results'">完赛记录</button><button type="button" :class="{ on: section === 'profile' }" @click="section = 'profile'">个人资料</button></nav>
+    <RunnerDashboard v-if="section === 'overview' && nickname" :data="runnerData" :plans="plans" :loading="runnerLoading" :error="runnerError" @retry="loadRunner"/>
+    <section v-else-if="section === 'overview'" class="sheet empty-state"><h3>积累每一公里，珍藏每次完赛</h3><p>运动趋势、赛事生涯、城市护照和荣誉收藏，都从一次出发开始。</p><router-link to="/">去发现下一场比赛 ›</router-link></section>
+    <template v-else-if="section === 'plans'">
       <section v-if="conflicts.length" class="sheet"><h3>比赛安排提醒</h3><p v-for="item in conflicts" :key="item.text" class="notice">{{ item.text }}</p></section>
       <section v-if="reminders.length" class="sheet"><h3>截止提醒</h3><router-link v-for="item in reminders" :key="item.race.id + item.hit.key" class="remind-line" :to="'/races/' + item.race.id"><b>{{ item.hit.reason }}</b><span>{{ item.race.name }}</span><i>›</i></router-link></section>
       <section v-if="plans.length" class="sheet plan-list"><router-link v-for="item in plans" :key="item.race.id" class="plan-row" :to="'/races/' + item.race.id"><div><span class="plan-state">{{ item.status }}</span><h3>{{ item.race.name }}</h3><p>{{ item.race.raceDate }}<template v-if="item.race.city"> · {{ item.race.city }}</template></p></div><i>›</i></router-link></section>
@@ -57,17 +59,37 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref, watch } from "vue";
+import { computed, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import { useRouter } from "vue-router";
 import { api, resultProofSrc } from "../api";
 import PageHeader from "../components/PageHeader.vue";
+import RunnerDashboard from "../components/RunnerDashboard.vue";
 
 import calendarIcon from "../assets/quick/calendar.svg";
 import radarIcon from "../assets/quick/radar.svg";
 import clubsIcon from "../assets/quick/clubs.svg";
 import newsIcon from "../assets/quick/news.svg";
 const router = useRouter();
-const section = ref("plans");
+const section = ref("overview");
+const runnerData = ref(null), runnerLoading = ref(Boolean(localStorage.getItem("marathon_token"))), runnerError = ref("");
+let runnerRequest = 0, accountRequest = 0;
+async function loadRunner() {
+  if (!localStorage.getItem("marathon_token")) return;
+  const id = ++runnerRequest;
+  runnerLoading.value = true;
+  runnerError.value = "";
+  try { const data = await api("/me/runner"); if (id === runnerRequest) { runnerData.value = data; applyRunnerCareer(); } }
+  catch (err) { if (id === runnerRequest) { if (err.status === 401) logout(); else runnerError.value = err.message; } }
+  finally { if (id === runnerRequest) runnerLoading.value = false; }
+}
+onBeforeUnmount(() => { runnerRequest++; accountRequest++; });
+function applyRunnerCareer() {
+  const data = runnerData.value;
+  if (!data) return;
+  const summary = data.career;
+  career.value = { finished: summary.finished, provinces: summary.provinces || [], cities: summary.cities || [], pb: { full: summary.pb?.find(item => item.distance === 'full')?.clock || '', half: summary.pb?.find(item => item.distance === 'half')?.clock || '' }, yearKm: summary.trends?.find(item => String(item.year) === data.asOf.slice(0, 4))?.km || 0 };
+  results.value = results.value.map(item => ({ ...item, pb: item.race.kind === 'road' && (data.results.find(next => next.race.id === item.race.id && next.distance === item.distance)?.race.meet !== 'online') && item.race.raceDate <= data.asOf && summary.pb.some(best => best.distance === item.distance && best.seconds === item.seconds) }));
+}
 const authOpen = ref(Boolean(localStorage.getItem("marathon_return_after_login")));
 const quickLinks = [{to:"/calendar",label:"赛事日历",icon:calendarIcon},{to:"/radar",label:"拿奖雷达",icon:radarIcon},{to:"/clubs",label:"发现跑团",icon:clubsIcon},{to:"/news",label:"赛事资讯",icon:newsIcon}];
 function openAuth() { authOpen.value = !authOpen.value; if (authOpen.value && authTab.value === "login" && !captchaImage.value) loadCaptcha(); }
@@ -149,9 +171,9 @@ const timeline = computed(() =>
 const company = ref("北京华创科技有限公司");
 const icp = ref("京ICP备2026060284号-2");
 async function load() {
-  const meta = await api("/meta");
-  company.value = meta.company;
-  icp.value = meta.icp;
+  const accountId = ++accountRequest;
+  const sessionToken = localStorage.getItem("marathon_token");
+  api("/meta").then(meta => { company.value = meta.company; icp.value = meta.icp; }).catch(() => {});
   if (!localStorage.getItem("marathon_token")) {
     nickname.value = "";
     avatar.value = "";
@@ -161,6 +183,7 @@ async function load() {
   }
   try {
     const data = await api("/me");
+    if (accountId !== accountRequest || sessionToken !== localStorage.getItem("marathon_token")) return;
     nickname.value = data.user.nickname;
     nicknameEdit.value = data.user.nickname;
     avatar.value = data.user.avatar || "";
@@ -171,12 +194,15 @@ async function load() {
     plans.value = data.plans || [];
     results.value = data.results || [];
     career.value = data.career || career.value;
+    applyRunnerCareer();
     conflicts.value = data.conflicts || [];
     reminders.value = data.reminders || [];
     localStorage.setItem("marathon_name", data.user.nickname);
+    loadRunner();
   } catch (err) {
+    if (accountId !== accountRequest || sessionToken !== localStorage.getItem("marathon_token")) return;
     if (err.status === 401) logout();
-    else message.value = err.message;
+    else { message.value = err.message; runnerLoading.value = false; runnerError.value = err.message; }
   }
 }
 
@@ -215,6 +241,11 @@ function saveSession(data) {
 }
 
 function logout() {
+  accountRequest++;
+  runnerRequest++;
+  runnerData.value = null;
+  runnerLoading.value = false;
+  runnerError.value = "";
   localStorage.removeItem("marathon_token");
   localStorage.removeItem("marathon_name");
   nickname.value = "";
@@ -237,7 +268,7 @@ function logout() {
   ok.value = false;
   authTab.value = "login";
   authOpen.value = false;
-  section.value = "plans";
+  section.value = "overview";
   career.value = { finished: 0, provinces: [], cities: [], pb: { full: "", half: "" }, yearKm: 0 };
 }
 
@@ -259,7 +290,7 @@ async function submitAuth() {
     saveSession(data);
     await load();
     const returnPath = localStorage.getItem("marathon_return_after_login") || "";
-    if (returnPath.startsWith("/clubs/") || (returnPath === "/radar" || returnPath === "/sport" || /^\/races\/[^/?#]+(?:\?plan=1)?$/.test(returnPath))) {
+    if (returnPath.startsWith("/clubs/") || /^\/runner(?:\?view=(?:stats|career|footprints|honors|media|devices|help))?$/.test(returnPath) || (returnPath === "/radar" || returnPath === "/sport" || /^\/races\/[^/?#]+(?:\?plan=1)?$/.test(returnPath))) {
       localStorage.removeItem("marathon_return_after_login");
       await router.replace(returnPath);
     }
@@ -380,10 +411,11 @@ onMounted(load);
 <style scoped>
 .mine { padding: 0 12px 16px; color: #1f2026; }
 :deep(.page-header) { margin: 0 -12px; }
-.account-hero, .sheet, .quick-links { margin: 0 0 12px; padding: 16px; border-radius: 12px; background: #fff; box-shadow: none; }.who-top { display: flex; align-items: center; gap: 12px; }.face { display: grid; place-items: center; width: 58px; height: 58px; flex: none; border-radius: 50%; background: #fff0f3; color: #ff0a30; font-size: 24px; font-weight: 600; object-fit: cover; }.who-main { flex: 1; min-width: 0; }.nick { margin: 0; font-size: 20px; line-height: 28px; font-weight: 600; overflow-wrap: anywhere; }.club-line, .guest-hero p { margin: 5px 0 0; color: #8a8e99; font-size: 12px; line-height: 18px; }.role { display: inline-block; margin-top: 5px; padding: 1px 5px; background: #fff0f3; color: #ff0a30; border-radius: 4px; font-size: 11px; }.hero-settings { align-self: center; color: #b9bdc7; font-size: 26px; }.account-stats { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); margin-top: 20px; }.account-stats button, .account-stats a { display: flex; flex-direction: column; align-items: center; gap: 5px; min-width: 0; }.account-stats b { font-size: 24px; line-height: 30px; font-weight: 700; }.account-stats span { color: #8a8e99; font-size: 12px; }.guest-hero h2 { margin: 0; font-size: 18px; line-height: 26px; font-weight: 600; }.guest-face svg { width: 28px; height: 28px; fill: none; stroke: currentColor; stroke-width: 1.6; }.hero-login { width: 100%; margin-top: 16px; }
-.quick-links { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); padding: 14px 6px; }.quick-links a { display: flex; flex-direction: column; align-items: center; gap: 5px; min-width: 0; font-size: 12px; }.quick-links img { width: 36px; height: 36px; }.main-tabs { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); margin: 0 0 12px; border-bottom: 1px solid #e9ebf1; }.main-tabs button { position: relative; min-height: 46px; color: #8a8e99; font-size: 16px; font-weight: 600; }.main-tabs button.on { color: #ff0a30; }.main-tabs button.on::after { content: ''; position: absolute; left: calc(50% - 12px); bottom: 0; width: 24px; height: 3px; background: #ff0a30; border-radius: 2px; }
+.account-hero { border:1px solid #fff; background:linear-gradient(150deg,#fff,#fff7f9); }
+.account-hero, .sheet, .quick-links { margin: 0 0 12px; padding: 18px; border-radius: 18px; background: #fff; box-shadow: none; }.who-top { display: flex; align-items: center; gap: 12px; }.face { display: grid; place-items: center; width: 58px; height: 58px; flex: none; border-radius: 50%; background: #fff0f3; color: #ff0a30; font-size: 24px; font-weight: 600; object-fit: cover; }.who-main { flex: 1; min-width: 0; }.nick { margin: 0; font-size: 20px; line-height: 28px; font-weight: 600; overflow-wrap: anywhere; }.club-line, .guest-hero p { margin: 5px 0 0; color: #8a8e99; font-size: 12px; line-height: 18px; }.role { display: inline-block; margin-top: 5px; padding: 1px 5px; background: #fff0f3; color: #ff0a30; border-radius: 4px; font-size: 11px; }.hero-settings { align-self: center; color: #b9bdc7; font-size: 26px; }.account-stats { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); margin-top: 20px; }.account-stats button, .account-stats a { display: flex; flex-direction: column; align-items: center; gap: 5px; min-width: 0; }.account-stats b { font-size: 24px; line-height: 30px; font-weight: 700; }.account-stats span { color: #8a8e99; font-size: 12px; }.guest-hero h2 { margin: 0; font-size: 18px; line-height: 26px; font-weight: 600; }.guest-face svg { width: 28px; height: 28px; fill: none; stroke: currentColor; stroke-width: 1.6; }.hero-login { width: 100%; margin-top: 16px; }
+.quick-links { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); padding: 14px 6px; }.quick-links a { display: flex; flex-direction: column; align-items: center; gap: 5px; min-width: 0; font-size: 12px; }.quick-links img { width: 36px; height: 36px; }.main-tabs { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); margin: 0 0 16px; border-bottom: 1px solid #e9ebf1; }.main-tabs button { position: relative; min-height: 46px; color: #8a8e99; font-size: 14px; font-weight: 600; }.main-tabs button.on { color: #ff0a30; }.main-tabs button.on::after { content: ''; position: absolute; left: calc(50% - 12px); bottom: 0; width: 24px; height: 3px; background: #ff0a30; border-radius: 2px; }
 h3 { margin: 0; font-size: 16px; line-height: 24px; font-weight: 600; }.hint, .empty-copy { margin: 8px 0; color: #8a8e99; font-size: 12px; line-height: 20px; }.notice { margin: 8px 0 0; color: #ff0a30; font-size: 12px; line-height: 20px; }.remind-line { display: flex; align-items: center; gap: 8px; padding: 12px 0; border-bottom: 1px solid #f0f1f5; font-size: 13px; }.remind-line:last-child { border: 0; padding-bottom: 0; }.remind-line b { flex: none; color: #ff0a30; font-weight: 500; }.remind-line span { flex: 1; min-width: 0; }.remind-line i, .plan-row i, .setting-row i { flex: none; color: #b9bdc7; font-size: 22px; font-style: normal; }.plan-list { padding-top: 0; padding-bottom: 0; }.plan-row { display: flex; align-items: center; gap: 12px; padding: 16px 0; border-bottom: 1px solid #f0f1f5; }.plan-row:last-child { border: 0; }.plan-row > div { flex: 1; min-width: 0; }.plan-row h3 { margin: 6px 0; }.plan-row p, .result-row p { margin: 4px 0 0; color: #8a8e99; font-size: 12px; }.plan-state { display: inline-block; padding: 2px 6px; border-radius: 4px; background: #fff0f3; color: #ff0a30; font-size: 11px; }.empty-state { padding: 28px 20px; text-align: center; }.empty-state p { margin: 8px 0 16px; color: #8a8e99; font-size: 12px; line-height: 20px; }.empty-state a, .text-action { color: #ff0a30; font-size: 14px; }
 .career-summary { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 8px; }.career-summary span { display: block; color: #8a8e99; font-size: 11px; }.career-summary b { display: block; margin-top: 8px; font-size: 24px; font-weight: 600; }.career-summary small { font-size: 11px; font-weight: 400; }.career-summary .clock { padding-top: 6px; font-size: 16px; }.subtabs { display: flex; align-items: center; gap: 20px; }.subtabs button { min-height: 40px; color: #8a8e99; font-size: 14px; }.subtabs button.on { color: #ff0a30; font-weight: 600; }.result-tabs { margin: -4px 12px 8px; }.chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 12px; }.chips button { min-height: 30px; padding: 0 10px; border-radius: 6px; background: #f0f1f6; color: #8a8e99; font-size: 12px; }.chips button.on { background: #fff0f3; color: #ff0a30; }.result-group + .result-group { margin-top: 20px; }.result-group h3 { font-size: 14px; }.result-row { display: flex; flex-direction: column; gap: 6px; padding: 14px 0; border-bottom: 1px solid #f0f1f5; }.result-row:last-child { border: 0; }.result-row b { color: #ff0a30; font-size: 18px; font-weight: 600; }.result-row small { font-size: 11px; }.result-row span { font-size: 14px; line-height: 22px; }.proof-card { display: block; margin-bottom: 16px; }.proof-card img { display: block; width: 100%; border-radius: 8px; }.proof-card b, .proof-card span { display: block; margin-top: 6px; font-size: 13px; }.proof-card span { color: #8a8e99; }
 .settings { padding-top: 0; }.setting-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; min-height: 56px; border-bottom: 1px solid #f0f1f5; text-align: left; font-size: 15px; }.setting-row span { min-width: 0; overflow-wrap: anywhere; }.setting-row small { display: block; margin-top: 3px; color: #8a8e99; font-size: 12px; }.logout { width: 100%; min-height: 44px; margin-top: 12px; color: #8a8e99; font-size: 14px; }.auth-form { display: flex; flex-direction: column; gap: 10px; padding: 12px 0; }.auth-form input { display: block; width: 100%; min-width: 0; height: 44px; padding: 0 12px; border: 0; border-radius: 8px; background: #f5f6fa; font-size: 15px; outline: none; }.auth-form > label { color: #8a8e99; font-size: 12px; }.auth-form > label input { margin-top: 6px; }.primary { min-height: 44px; padding: 0 16px; border-radius: 8px; background: #ff0a30; color: #fff; font-size: 15px; font-weight: 600; }.secondary { min-height: 40px; border-radius: 8px; background: #f0f1f6; font-size: 14px; }.captcha { display: grid; place-items: center; min-height: 48px; background: #f5f6fa; border-radius: 8px; color: #8a8e99; font-size: 12px; }.captcha img { height: 44px; max-width: 100%; }.avatar-edit { display: flex; align-items: center; gap: 12px; }.avatar-edit img, .avatar-empty { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 50%; object-fit: cover; color: #ff0a30; background: #fff0f3; font-size: 20px; }.avatar-choice { padding: 10px 12px; border-radius: 8px; background: #f0f1f6; font-size: 13px; cursor: pointer; }.avatar-choice input { position: absolute; width: 1px; height: 1px; opacity: 0; overflow: hidden; }.success, .err { margin: 8px 0 0; font-size: 12px; line-height: 20px; }.success { color: #1f2026; }.err { color: #ff0a30; }.legal { padding: 10px 4px; color: #a5a9b2; font-size: 10px; }
-@media(max-width:350px) { .account-hero, .sheet { padding: 14px; }.settings { padding-top: 0; }.guest-hero h2 { font-size: 16px; }.face { width: 50px; height: 50px; }.quick-links { padding: 12px 2px; }.quick-links a { font-size: 11px; }.main-tabs button { font-size: 15px; }.career-summary .clock { font-size: 14px; } }
+@media(max-width:350px) { .account-hero, .sheet { padding: 14px; }.settings { padding-top: 0; }.guest-hero h2 { font-size: 16px; }.face { width: 50px; height: 50px; }.quick-links { padding: 12px 2px; }.quick-links a { font-size: 11px; }.main-tabs button { font-size: 13px; }.career-summary .clock { font-size: 14px; } }
 </style>

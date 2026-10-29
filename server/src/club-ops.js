@@ -290,12 +290,13 @@ function syncCareer(db, call, userId, removed) {
   const now = new Date().toISOString();
   if (latest.size) {
     const upsert = db.prepare(
-      `INSERT INTO results (user_id, race_id, distance, seconds, story, updated_at) VALUES (?, ?, ?, ?, '', ?)
+      `INSERT INTO results (user_id, race_id, distance, seconds, story, updated_at, source_call_id) VALUES (?, ?, ?, ?, '', ?, ?)
        ON CONFLICT(user_id, race_id, distance) DO UPDATE SET
          seconds = excluded.seconds,
-         updated_at = excluded.updated_at`
+         updated_at = excluded.updated_at
+       WHERE results.source_call_id = excluded.source_call_id`
     );
-    for (const row of latest.values()) upsert.run(userId, call.race_id, row.distance, row.seconds, now);
+    for (const row of latest.values()) upsert.run(userId, call.race_id, row.distance, row.seconds, now, call.id);
     db.prepare(
       `INSERT INTO plans (user_id, race_id, status, updated_at) VALUES (?, ?, '完赛', ?)
        ON CONFLICT(user_id, race_id) DO UPDATE SET status = '完赛', updated_at = excluded.updated_at`
@@ -303,13 +304,22 @@ function syncCareer(db, call, userId, removed) {
   }
   if (removed && !latest.has(removed.distance)) {
     const existing = db
-      .prepare("SELECT seconds, proof FROM results WHERE user_id = ? AND race_id = ? AND distance = ?")
+      .prepare("SELECT source_call_id, proof, story FROM results WHERE user_id = ? AND race_id = ? AND distance = ?")
       .get(userId, call.race_id, removed.distance);
-    if (existing && existing.seconds === removed.seconds) {
-      db.prepare("DELETE FROM results WHERE user_id = ? AND race_id = ? AND distance = ?").run(userId, call.race_id, removed.distance);
-      if (existing.proof) {
-        const file = path.join(mediaRoot(), "results", path.basename(existing.proof));
-        if (fs.existsSync(file)) fs.unlinkSync(file);
+    if (existing && existing.source_call_id === call.id) {
+      if (existing.proof || existing.story) {
+        // A personally added proof or story turns the imported result into a
+        // personal record. Club operations cannot remove those private assets.
+        db.prepare("UPDATE results SET source_call_id = 0 WHERE user_id = ? AND race_id = ? AND distance = ?").run(userId, call.race_id, removed.distance);
+      } else {
+        const fallback = db.prepare(
+          `SELECT rr.seconds, rr.call_id FROM result_call_rows rr
+           JOIN result_calls c ON c.id = rr.call_id
+           WHERE rr.user_id = ? AND c.race_id = ? AND rr.distance = ?
+           ORDER BY rr.updated_at DESC, rr.id DESC LIMIT 1`
+        ).get(userId, call.race_id, removed.distance);
+        if (fallback) db.prepare("UPDATE results SET seconds = ?, source_call_id = ?, updated_at = ? WHERE user_id = ? AND race_id = ? AND distance = ?").run(fallback.seconds, fallback.call_id, now, userId, call.race_id, removed.distance);
+        else db.prepare("DELETE FROM results WHERE user_id = ? AND race_id = ? AND distance = ?").run(userId, call.race_id, removed.distance);
       }
     }
   }

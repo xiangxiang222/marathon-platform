@@ -11,6 +11,7 @@ const { ensureAdmin, loginAdmin, adminSession, logoutAdmin, changeAdminPassword,
 const { adminRoleLabel, clubRoleLabel } = require("./roles");
 const { mountClubLife, enrichBoard, clubLife } = require("./club-life");
 const { mountMileage } = require("./mileage");
+const { mountRunnerCenter } = require("./runner-center");
 const { mountPartner } = require("./partner");
 const { mountRadar } = require("./radar");
 const { mountFeed } = require("./feed");
@@ -642,6 +643,7 @@ app.put(BASE + "/api/me/races/:id/result", (req, res) => {
        ON CONFLICT(user_id, race_id, distance) DO UPDATE SET
          seconds = excluded.seconds,
          story = excluded.story,
+         source_call_id = 0,
          updated_at = excluded.updated_at`
     ).run(user.id, race.id, distance, seconds, story, now);
     db.prepare(
@@ -793,7 +795,7 @@ app.post(BASE + "/api/me/races/:id/result/proof/:kind", async (req, res) => {
   fs.writeFileSync(path.join(proofRoot(), filename), buffer);
   if (picked.row.proof && picked.row.proof !== filename) removeProofFile(picked.row.proof);
   getDb()
-    .prepare("UPDATE results SET proof = ?, proof_kind = ? WHERE user_id = ? AND race_id = ? AND distance = ?")
+    .prepare("UPDATE results SET proof = ?, proof_kind = ?, source_call_id = 0 WHERE user_id = ? AND race_id = ? AND distance = ?")
     .run(filename, req.params.kind, user.id, race.id, picked.row.distance);
   res.json({ ok: true, result: proofAnswer(user.id, race.id, picked.row.distance) });
 });
@@ -1320,6 +1322,7 @@ app.put(BASE + "/api/admin/races/:id", (req, res) => {
 
 mountClubLife(app, { BASE, getDb, userFrom });
 mountMileage(app, { BASE, getDb, userFrom });
+mountRunnerCenter(app, { BASE, getDb, userFrom, resultsFor, oneUpload });
 mountPartner(app, { BASE, getDb, userFrom, requireAdmin });
 mountRadar(app, { BASE, getDb, userFrom, requireAdmin });
 mountFeed(app, { BASE, getDb, userFrom });

@@ -16,9 +16,6 @@
       <view class="kind-tabs">
         <view wx:for="{{kinds}}" wx:key="kind" class="kind-tab {{kind === item.kind ? 'on' : ''}}" data-kind="{{item.kind}}" bindtap="setKind">{{item.short}}</view>
       </view>
-      <view class="kind-tabs meet-tabs">
-        <view wx:for="{{meets}}" wx:key="meet" class="kind-tab {{meet === item.meet ? 'on' : ''}}" data-meet="{{item.meet}}" bindtap="setMeet">{{item.short}}</view>
-      </view>
       <view class="quick-entries">
         <navigator class="quick-entry" url="/pages/calendar/calendar">
           <image class="quick-icon" src="/images/quick-calendar.png" mode="aspectFit" />
@@ -59,6 +56,12 @@
     <view class="results-head">
       <text class="results-title">{{searching ? '搜索结果' : '全部赛事'}}</text>
       <text wx:if="{{loaded}}" class="total">共 {{total}} 场</text>
+    </view>
+    <view wx:if="{{!searching}}" class="race-format-filter">
+      <text class="format-label">赛事形式</text>
+      <view class="meet-tabs" role="group" aria-label="赛事形式">
+        <view wx:for="{{meets}}" wx:key="meet" class="kind-tab {{meet === item.meet ? 'on' : ''}}" role="button" aria-role="button" aria-label="{{item.short}}" data-meet="{{item.meet}}" bindtap="setMeet">{{item.short}}</view>
+      </view>
     </view>
     <scroll-view wx:if="{{!searching}}" class="filters" scroll-x enable-flex show-scrollbar="{{false}}">
       <view class="filter-chip {{city ? 'on' : ''}}" data-sheet="city" bindtap="openSheet">{{cityLabel}} ▾</view>
