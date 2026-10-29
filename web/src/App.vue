@@ -1,6 +1,6 @@
 <template>
   <div class="stage" :class="{ wide: route.meta.wide }">
-    <router-view :key="route.path" />
+    <router-view :key="route.meta.viewKey || route.path" />
     <TabBar v-if="!route.meta.hideTab" />
   </div>
 </template>

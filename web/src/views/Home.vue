@@ -13,9 +13,6 @@
       <nav v-if="!searching" class="race-categories" aria-label="赛事类型">
         <button v-for="item in trackKinds" :key="item.kind" type="button" :class="{ on: trackKind === item.kind }" :aria-pressed="trackKind === item.kind" @click="setTrackKind(item.kind)">{{ item.short }}</button>
       </nav>
-      <nav v-if="!searching" class="race-categories race-meet-categories" aria-label="赛事形式">
-        <button v-for="item in meetKinds" :key="item.kind" type="button" :class="{ on: meetKind === item.kind }" :aria-pressed="meetKind === item.kind" @click="setMeetKind(item.kind)">{{ item.short }}</button>
-      </nav>
       <nav v-if="!searching" class="home-shortcuts" aria-label="常用功能">
         <router-link v-for="item in quickLinks" :key="item.to" :to="item.to">
           <img :src="item.icon" alt="" />
@@ -35,6 +32,12 @@
     </div>
     <section class="home-results">
       <div class="results-heading"><h2>{{ searching ? '搜索结果' : '全部赛事' }}</h2><span>共 {{ total }} 场</span></div>
+      <div v-if="!searching" class="race-format-filter">
+        <span class="format-label">赛事形式</span>
+        <nav class="race-meet-categories" aria-label="赛事形式">
+          <button v-for="item in meetKinds" :key="item.kind" type="button" :class="{ on: meetKind === item.kind }" :aria-pressed="meetKind === item.kind" @click="setMeetKind(item.kind)">{{ item.short }}</button>
+        </nav>
+      </div>
       <div v-if="loadError" class="load-error" role="alert"><span>{{ loadError }}</span><button type="button" @click="load">重试</button></div>
       <p v-else-if="loading" class="empty">正在加载赛历…</p>
       <div v-if="!searching" class="filter-wrap home-filters" :class="{ open: sheet }">
@@ -327,7 +330,7 @@ onMounted(() => {
 
 <style scoped>
 .home-page { padding-bottom: 12px; }
-.home-top { background: linear-gradient(180deg, #fff1f3 0, #fff 75%); padding-bottom: 8px; }
+.home-top { background: linear-gradient(180deg, #fff1f3 0, #fff 75%); padding-bottom: 4px; }
 .home-heading { display: flex; align-items: center; gap: 12px; min-height: 56px; padding: 8px 16px 4px; }
 .home-heading h1 { margin: 0; font-size: 26px; line-height: 1.2; font-weight: 700; letter-spacing: -.6px; }
 .home-heading > span { color: #777b85; font-size: 12px; line-height: 1.3; }
@@ -335,14 +338,13 @@ onMounted(() => {
 .home-search > svg { width: 18px; height: 18px; flex: none; fill: none; stroke: #a3a6af; stroke-width: 1.6; stroke-linecap: round; }
 .home-search input { width: 0; min-width: 0; flex: 1; height: 36px; margin-left: 8px; padding: 0; border: 0; border-radius: 0; background: transparent; font-size: 14px; font-weight: 400; outline: none; }
 .home-search button { flex: none; padding-left: 12px; color: var(--accent); font-size: 15px; font-weight: 600; }
-.race-categories { display: flex; align-items: stretch; padding: 0 12px; height: 44px; }
-.race-categories button { position: relative; flex: 1; min-width: 0; color: var(--ink); font-size: 16px; font-weight: 500; white-space: nowrap; }
-.race-categories button.on { color: var(--accent); font-weight: 700; }
-.race-categories button.on::after { position: absolute; bottom: 1px; left: calc(50% - 10px); width: 20px; height: 3px; background: var(--accent); content: ""; border-radius: 2px; }
-.category-note { margin: 4px 12px 0; color: var(--muted); font-size: 12px; line-height: 18px; }
-.home-shortcuts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); padding: 9px 12px 3px; }
-.home-shortcuts a { display: flex; min-width: 0; flex-direction: column; align-items: center; gap: 4px; color: var(--ink); font-size: 12px; line-height: 20px; font-weight: 400; }
-.home-shortcuts img { display: block; width: 34px; height: 34px; }
+.race-categories { display: flex; align-items: stretch; gap: 24px; height: 56px; padding: 0 16px; }
+.race-categories button { position: relative; flex: none; min-width: 0; color: #595d67; font-size: 18px; font-weight: 500; white-space: nowrap; }
+.race-categories button.on { color: var(--accent); font-size: 20px; font-weight: 700; }
+.race-categories button.on::after { position: absolute; bottom: 6px; left: calc(50% - 10px); width: 20px; height: 3px; background: var(--accent); content: ""; border-radius: 2px; }
+.home-shortcuts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); padding: 12px 12px 16px; }
+.home-shortcuts a { display: flex; min-width: 0; min-height: 58px; flex-direction: column; align-items: center; gap: 6px; color: #595d67; font-size: 12px; line-height: 20px; font-weight: 400; }
+.home-shortcuts img { display: block; width: 32px; height: 32px; }
 .deadline-banner { display: flex; align-items: center; gap: 10px; min-height: 52px; margin: 10px 12px 0; padding: 8px 10px; border-radius: 8px; background: #fff0f3; }
 .deadline-icon { flex: none; width: 26px; height: 26px; color: var(--accent); }
 .deadline-icon svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
@@ -355,6 +357,12 @@ onMounted(() => {
 .results-heading { display: flex; align-items: center; justify-content: space-between; min-height: 46px; padding: 12px 14px 7px; }
 .results-heading h2 { margin: 0; font-size: 18px; font-weight: 700; line-height: 1.5; }
 .results-heading > span { color: var(--muted); font-size: 12px; }
+.race-format-filter { display: flex; align-items: center; gap: 12px; margin: 0 12px 12px; }
+.format-label { flex: none; color: var(--muted); font-size: 12px; line-height: 20px; }
+.race-meet-categories { display: grid; flex: 1; grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 280px; padding: 3px; border-radius: 10px; background: #edeef2; }
+.race-meet-categories button { min-width: 0; min-height: 36px; padding: 0 7px; border-radius: 7px; color: #777b85; font-size: 12px; line-height: 20px; font-weight: 400; white-space: nowrap; }
+.race-meet-categories button.on { color: var(--ink); background: #fff; box-shadow: 0 1px 3px rgba(31,32,38,.06); font-weight: 600; }
+.race-meet-categories button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
 .home-filters { top: 0; }
 .home-filters .filter-bar { gap: 6px; padding: 0 12px 10px; }
 .home-filters .filter-bar > button { display: flex; align-items: center; justify-content: center; gap: 7px; height: 30px; padding: 0 10px; border-radius: 6px; background: #fff; font-size: 12px; font-weight: 400; }
@@ -366,7 +374,11 @@ onMounted(() => {
   .home-heading { padding-left: 12px; gap: 8px; }
   .home-heading h1 { font-size: 24px; }
   .home-heading > span { font-size: 11px; }
-  .race-categories button { font-size: 14px; }
-  .home-shortcuts a { font-size: 11px; }
+  .race-categories { gap: 22px; padding-left: 12px; }
+  .race-categories button { font-size: 17px; }
+  .race-categories button.on { font-size: 19px; }
+  .home-shortcuts a { font-size: 12px; }
+  .race-format-filter { gap: 10px; }
+  .race-meet-categories button { padding: 0 4px; }
 }
 </style>

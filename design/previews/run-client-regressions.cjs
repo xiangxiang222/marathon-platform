@@ -3,7 +3,7 @@ const path = require("node:path");
 const { spawn } = require("node:child_process");
 const root = path.resolve(__dirname, "../..");
 const previewUrl = process.env.MARATHON_PREVIEW_URL || "http://127.0.0.1:5174/marathon";
-const tasks = ["activity-browser-regression.cjs", "product-browser-regression.cjs", "membership-browser-regression.cjs", "detail-recovery-browser-regression.cjs", "navigation-browser-regression.cjs", "admin-browser-regression.cjs", "product-helper-regression.cjs", "mini-membership-regression.cjs", "mini-detail-recovery-regression.cjs", "mini-checkin-regression.cjs", "web-result-export-regression.mjs"];
+const tasks = ["runner-browser-regression.cjs", "runner-mini-regression.cjs", "activity-browser-regression.cjs", "product-browser-regression.cjs", "membership-browser-regression.cjs", "club-intro-share-regression.cjs", "detail-recovery-browser-regression.cjs", "navigation-browser-regression.cjs", "admin-browser-regression.cjs", "product-helper-regression.cjs", "mini-membership-regression.cjs", "mini-detail-recovery-regression.cjs", "mini-checkin-regression.cjs", "web-result-export-regression.mjs"];
 const report = { startedAt: new Date().toISOString(), kind: "Local mocked client regression suite; no business database writes", results: [] };
 let vite;
 function available() {
