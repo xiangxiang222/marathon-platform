@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main class="club-detail-page">
     <header class="topbar">
       <router-link :to="'/clubs/' + clubId" aria-label="返回">‹</router-link>
       <h1>约跑</h1>
@@ -10,15 +10,16 @@
       <p>{{ loadError }}</p><button type="button" class="primary" :disabled="loading" @click="retryLoad">{{ loading ? '正在重试…' : '重新加载' }}</button>
     </section>
     <template v-if="meetup">
-      <div class="block">
+      <div class="block detail-hero">
+        <span class="detail-kicker">一起出发 · 约跑</span>
         <h2>{{ meetup.dateLabel }} {{ meetup.place }}</h2>
         <p class="rank-label">{{ meetup.statusLabel }}</p>
         <p v-if="meetup.note" class="rank-label">{{ meetup.note }}</p>
         <p class="sum">{{ meetup.hint }}</p>
-        <pre class="share-text">{{ meetup.shareText }}</pre>
-        <button class="primary" type="button" @click="copy(meetup.shareText)">复制到微信群</button>
+        <details class="share-fold"><summary>邀请跑友 · 查看接龙文字</summary><pre class="share-text">{{ meetup.shareText }}</pre><button class="undo" type="button" @click="copy(meetup.shareText)">复制到微信群</button></details>
       </div>
-      <div class="block">
+      <div v-if="meetup.canJoin || meetup.canLeave || meetup.canCheck || meetup.canUncheck || meetup.canPhoto" class="block">
+        <h2>我的参与</h2>
         <button v-if="meetup.canJoin" class="primary" type="button" @click="act('join', 'POST')">算我一个</button>
         <button v-if="meetup.canLeave" class="undo" type="button" @click="act('join', 'DELETE')">不算我了</button>
         <button v-if="meetup.canCheck" class="primary" type="button" @click="act('check', 'POST')">打卡</button>
@@ -47,8 +48,8 @@
           <button v-if="photo.mine || meetup.canStaff" class="undo" type="button" @click="removePhoto(photo)">删除</button>
         </div>
       </div>
-      <div v-if="meetup.canStaff || meetup.canVoid" class="block">
-        <h2>管理</h2>
+      <details v-if="meetup.canStaff || meetup.canVoid" class="block management-fold">
+        <summary>约跑管理</summary>
         <p class="rank-label">7 天内可以补打卡、补合影，再重算。作废会把已经发出的积分扣回。</p>
         <form v-if="meetup.canStaff" class="check-form" @submit.prevent="staffCheck">
           <select v-model="forUser">
@@ -59,7 +60,7 @@
         </form>
         <button v-if="meetup.canStaff" class="undo" type="button" @click="act('resettle', 'POST')">重算</button>
         <button v-if="meetup.canVoid" class="undo" type="button" @click="act('void', 'POST')">作废</button>
-      </div>
+      </details>
     </template>
     <p v-if="note" class="note">{{ note }}</p>
     <p v-if="message && message !== loadError" class="err">{{ message }}</p>
@@ -71,6 +72,7 @@ import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import { api, meetupPhotoSrc, upload } from "../api";
 import { copyText } from "../copy";
+import "../club-detail.css";
 
 const route = useRoute();
 const clubId = route.params.id;
@@ -97,6 +99,7 @@ async function load() {
     meetup.value = data.meetup;
     members.value = club.members || [];
   } catch (err) {
+    if ([401, 403].includes(err.status)) meetup.value = null;
     loadError.value = err.message;
     throw err;
   } finally {

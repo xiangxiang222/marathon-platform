@@ -3,6 +3,7 @@
     <template v-if="name === 'overview' || name === 'dashboard'"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></template>
     <template v-else-if="name === 'races' || name === 'flag'"><path d="M5 21V3m0 1h14l-3.5 4 3.5 4H5"/><path d="M9 4v4h4V4m0 4v4h4V8"/></template>
     <template v-else-if="name === 'news'"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M7 8h4v4H7zm8 0h2m-2 4h2M7 16h10"/></template>
+    <template v-else-if="name === 'feedback'"><path d="M7 18H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2h-7l-5 4zM7 8h10M7 12h6"/></template>
     <template v-else-if="name === 'users'"><circle cx="12" cy="7.5" r="3.5"/><path d="M5 21v-2a7 7 0 0 1 14 0v2"/></template>
     <template v-else-if="name === 'clubs'"><circle cx="9" cy="7" r="3"/><path d="M3 20v-2a6 6 0 0 1 12 0v2m2-16a3 3 0 0 1 0 6m1 4a5 5 0 0 1 3 4v2"/></template>
     <template v-else-if="name === 'joins' || name === 'review'"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V2h6v2M9 12l2 2 4-4m-6 7h6"/></template>

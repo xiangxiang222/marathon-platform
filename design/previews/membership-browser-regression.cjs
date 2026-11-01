@@ -52,6 +52,7 @@ async function setup(context, owner) {
     else if (endpoint === "/clubs/44/posts") data = { posts: [] };
     else if (endpoint === "/clubs/44/attendance") data = { rows: [], total: 0, label: "本月", me: { placeLabel: "未上榜", count: 0 } };
     else if (endpoint === "/clubs/directory") data = { clubs: [] };
+    else if (endpoint === "/me/feedback/summary") data = { total: 0, unread: 0 };
     else if (endpoint === "/me") data = { user: { id: 2, nickname: "测试跑友", leader: false }, clubs: state.left ? [] : [{ id: 44, name: "奥森晨跑团", roleLabel: "成员" }], applications: [] };
     if (!data) {
       report.unexpected.push({ method, endpoint });

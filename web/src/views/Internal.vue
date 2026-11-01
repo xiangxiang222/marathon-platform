@@ -1,22 +1,22 @@
 <template>
-  <main>
+  <main class="club-detail-page">
     <header class="topbar">
       <router-link :to="'/clubs/' + clubId" aria-label="返回">‹</router-link>
       <h1>队内赛</h1>
       <span></span>
     </header>
     <template v-if="race">
-      <div class="block">
+      <div class="block detail-hero">
+        <span class="detail-kicker">跑出状态 · 队内赛</span>
         <h2>{{ race.title }}</h2>
         <p class="rank-label">{{ race.startsLabel }}<template v-if="race.place"> · {{ race.place }}</template> · {{ race.distanceLabel }}</p>
         <p class="rank-label">{{ race.statusLabel }} · 报名截止 {{ race.deadlineLabel }}</p>
         <p v-if="race.note" class="rank-label">{{ race.note }}</p>
         <p class="rank-label">{{ race.finishPoints ? "完赛每人 " + race.finishPoints + " 分" : "这场完赛不记分" }}</p>
-        <pre class="share-text">{{ race.shareText }}</pre>
-        <button class="primary" type="button" @click="copy(race.shareText)">复制到微信群</button>
+        <details class="share-fold"><summary>邀请跑友 · 查看报名文字</summary><pre class="share-text">{{ race.shareText }}</pre><button class="undo" type="button" @click="copy(race.shareText)">复制到微信群</button></details>
       </div>
       <form v-if="race.canSignup || race.canCancel" class="block" @submit.prevent="signup">
-        <h2>报名</h2>
+        <h2>选择组别，加入比赛</h2>
         <p class="rank-label">{{ nickname }}</p>
         <div class="checks">
           <label v-for="group in race.groups" :key="group.id">
@@ -41,8 +41,8 @@
           <b>{{ row.clock || row.outcomeLabel }}<template v-if="row.tag"> {{ row.tag }}</template></b>
         </div>
       </div>
-      <form v-if="race.canStaffResult" class="block" @submit.prevent="saveStaff">
-        <h2>管理</h2>
+      <details v-if="race.canStaffResult || race.canEnd || race.canCancelRace" class="block management-fold">
+        <summary>队内赛管理</summary><form v-if="race.canStaffResult" @submit.prevent="saveStaff">
         <select v-model="forUser">
           <option value="">选已报名的人</option>
           <option v-for="row in signed" :key="row.userId" :value="row.userId">{{ row.nickname }}</option>
@@ -51,9 +51,9 @@
         <button class="primary" type="submit">改正成绩</button>
         <button class="undo" type="button" @click="staffMark('dnf')">未完赛</button>
         <button class="undo" type="button" @click="staffMark('dns')">未出发</button>
-        <button v-if="race.canEnd" class="primary" type="button" @click="endRace">结束并记分</button>
+        </form><button v-if="race.canEnd" class="primary" type="button" @click="endRace">结束并记分</button>
         <button v-if="race.canCancelRace" class="undo" type="button" @click="cancelRace">取消这场</button>
-      </form>
+      </details>
     </template>
     <section v-else class="block detail-state" aria-live="polite">
       <p v-if="loading">正在打开队内赛…</p>
@@ -69,6 +69,7 @@ import { computed, onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import { api, savedName } from "../api";
 import { copyText } from "../copy";
+import "../club-detail.css";
 
 const route = useRoute();
 const clubId = route.params.id;
@@ -227,6 +228,6 @@ onMounted(retry);
 .undo { width: auto; margin: 8px 8px 0 0; height: 32px; padding: 0 12px; background: transparent; color: var(--muted); }
 .note { font-size: 12px; color: var(--accent); padding: 0 16px; }
 .checks { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 8px; }
-.block input, .block select { width: 100%; height: 40px; margin-top: 8px; border: 0; border-radius: 10px; padding: 0 12px; background: var(--chip); }
+.block input:not([type="radio"]):not([type="file"]), .block select { width: 100%; height: 40px; margin-top: 8px; border: 0; border-radius: 10px; padding: 0 12px; background: var(--chip); }
 .mine { background: var(--accent-soft); border-radius: 8px; padding-left: 8px; padding-right: 8px; }
 </style>

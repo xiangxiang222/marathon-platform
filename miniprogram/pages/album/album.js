@@ -65,6 +65,11 @@ Page({
   showVideos() {
     this.setData({ tab: "video" });
   },
+  previewPhoto(e) {
+    const urls = (this.data.photos || []).map((item) => item.src);
+    const photo = (this.data.photos || []).find((item) => String(item.id) === String(e.currentTarget.dataset.id));
+    if (photo) wx.previewImage({ current: photo.src, urls });
+  },
   toggleLayout() {
     this.setData({ layout: this.data.layout === "grid" ? "fall" : "grid" });
   },
@@ -94,13 +99,11 @@ Page({
           try {
             message = JSON.parse(upload.data).error || message;
           } catch (err) {}
-          this.setData({ message });
-          this.load();
+          this.load().then(() => this.setData({ message }));
         }
       },
       fail: () => {
-        this.setData({ message: "没有传上去" });
-        this.load();
+        this.load().then(() => this.setData({ message: "没有传上去，请重试" }));
       }
     });
   },

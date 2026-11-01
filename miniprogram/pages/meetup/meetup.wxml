@@ -1,18 +1,17 @@
-<view class="page" wx:if="{{meetup}}">
-  <view class="card">
+<view class="page club-detail" wx:if="{{meetup}}">
+  <view class="card detail-hero"><view class="detail-kicker">一起出发 · 约跑</view>
     <view class="h2">{{meetup.dateLabel}} {{meetup.place}}</view>
     <view class="src">{{meetup.statusLabel}}</view>
     <view wx:if="{{meetup.note}}" class="src">{{meetup.note}}</view>
     <view class="sum">{{meetup.hint}}</view>
-    <view class="src">{{meetup.shareText}}</view>
-    <button class="btn" open-type="share">发到微信群</button>
-    <button class="ghost" data-text="{{meetup.shareText}}" bindtap="copyText">复制约跑信息</button>
+    <button class="fold-toggle" data-key="shareExpanded" bindtap="toggleDetailSection"><text>查看邀请文字</text><text>{{shareExpanded ? "−" : "+"}}</text></button><view wx:if="{{shareExpanded}}" class="share-copy">{{meetup.shareText}}</view>
+
     <button wx:if="{{meetup.canJoin}}" class="btn" bindtap="join">算我一个</button>
     <button wx:if="{{meetup.canLeave}}" class="ghost" bindtap="leave">不算我了</button>
     <button wx:if="{{meetup.canCheck}}" class="btn" bindtap="check">打卡</button>
     <button wx:if="{{meetup.canUncheck}}" class="ghost" bindtap="uncheck">撤销打卡</button>
     <button wx:if="{{meetup.canPhoto}}" class="ghost" bindtap="choose">上传合影</button>
-    <button wx:if="{{meetup.canVoid}}" class="ghost" bindtap="voidRun">作废</button>
+    <view class="detail-actions"><button class="ghost" open-type="share">邀请跑友</button><button class="ghost" data-text="{{meetup.shareText}}" bindtap="copyText">复制约跑信息</button></view>
   </view>
   <view class="card">
     <view class="h2">算我一个 {{meetup.joins.length}}</view>
@@ -29,13 +28,12 @@
     <image wx:for="{{meetup.photos}}" wx:key="id" class="qr" src="{{item.src}}" mode="widthFix" />
     <view wx:if="{{!meetup.photos.length}}" class="src">还没有合影。至少 1 张，最多 9 张。</view>
   </view>
-  <view class="card" wx:if="{{meetup.canStaff}}">
-    <view class="h2">管理</view>
+  <view class="card management-card" wx:if="{{meetup.canStaff || meetup.canVoid}}"><button class="fold-toggle" data-key="managerExpanded" bindtap="toggleDetailSection"><text>约跑管理</text><text>{{managerExpanded ? "−" : "+"}}</text></button><view wx:if="{{managerExpanded}}"><view wx:if="{{meetup.canStaff}}">
     <view class="src">7 天内可以补打卡、补合影，再重算。作废会把已经发出的积分扣回。</view>
     <view class="src">当前：{{forName || '还没选'}}</view>
-    <button wx:for="{{members}}" wx:key="id" class="ghost" data-id="{{item.id}}" data-name="{{item.nickname}}" bindtap="pickMember">{{item.nickname}}</button>
+    <picker mode="selector" range="{{members}}" range-key="nickname" bindchange="selectDetailMember"><view class="detail-select">{{forName || "选择跑团成员"}}<text>⌄</text></view></picker>
     <button class="btn" bindtap="staffCheck">补打卡</button>
-    <button class="ghost" bindtap="resettle">重算</button>
+    <button class="ghost" bindtap="resettle">重算</button></view><button wx:if="{{meetup.canVoid}}" class="ghost" bindtap="voidRun">作废</button></view>
   </view>
   <view wx:if="{{message}}" class="src">{{message}}</view>
 </view>

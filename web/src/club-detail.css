@@ -1,0 +1,34 @@
+.club-detail-page { min-height: 100vh; padding-bottom: calc(32px + env(safe-area-inset-bottom, 0px)); }
+.club-detail-page .topbar { border-bottom: 1px solid #eef0f4; }
+.club-detail-page .topbar a { display: flex; align-items: center; justify-content: center; min-height: 48px; }
+.club-detail-page .block { margin: 14px 16px; padding: 20px; border: 1px solid #edf0f3; border-radius: 18px; }
+.club-detail-page .detail-hero { padding: 24px 20px; background: linear-gradient(140deg, #fff 62%, #fff4f6); }
+.club-detail-page .detail-hero h2 { margin: 8px 0 12px; font-size: 25px; line-height: 1.35; letter-spacing: -.5px; overflow-wrap: anywhere; }
+.club-detail-page .detail-kicker { color: #ff0a30; font-size: 11px; font-weight: 700; letter-spacing: 1.2px; }
+.club-detail-page .rank-label, .club-detail-page .hint { color: #777d89; font-size: 13px; line-height: 1.65; overflow-wrap: anywhere; }
+.club-detail-page .sum { margin: 16px 0 0; padding: 12px 14px; border-radius: 10px; background: #f7f8fa; color: #464b56; font-size: 13px; line-height: 1.6; }
+.club-detail-page button.primary, .club-detail-page label.primary, .club-detail-page .undo, .club-detail-page .file-pick, .club-detail-page .status { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 44px; height: auto; padding: 10px 14px; line-height: 1.35; text-align: center; }
+.club-detail-page .block > .primary, .club-detail-page .block > form > .primary { display: flex; width: 100%; }
+.club-detail-page .undo { margin: 8px 8px 0 0; border: 1px solid #eceef2; border-radius: 10px; background: #f7f8fa; color: #555d69; font-size: 13px; }
+.club-detail-page .file-pick { width: 100%; border: 1px dashed #e0e3e9; border-radius: 10px; color: #555d69; font-size: 13px; }
+.club-detail-page .mate { align-items: center; gap: 10px; padding: 14px 0; font-size: 14px; }
+.club-detail-page .mate > span { min-width: 0; overflow-wrap: anywhere; }
+.club-detail-page .mate > b { flex: none; max-width: 52%; text-align: right; font-variant-numeric: tabular-nums; }
+.club-detail-page .checks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 14px 0; }
+.club-detail-page .checks label { display: flex; align-items: center; gap: 7px; min-height: 48px; padding: 10px; border: 1px solid #eceef2; border-radius: 10px; font-size: 13px; }
+.club-detail-page .checks label:has(input:checked) { border-color: #ffb7c3; background: #fff3f6; }
+.club-detail-page .checks input[type=radio] { flex: none; width: 16px; height: 16px; margin: 0; padding: 0; }
+.club-detail-page .block input:not([type=radio]):not([type=file]), .club-detail-page .block select { min-height: 46px; height: 46px; margin-top: 12px; border: 1px solid #eceef2; border-radius: 10px; background: #f7f8fa; }
+.club-detail-page .share-fold { margin-top: 18px; padding-top: 8px; border-top: 1px solid #f0f1f5; }
+.club-detail-page .share-fold summary, .club-detail-page .management-fold > summary { display: flex; align-items: center; justify-content: space-between; min-height: 44px; color: #777d89; font-size: 13px; cursor: pointer; list-style: none; }
+.club-detail-page summary::-webkit-details-marker { display: none; }
+.club-detail-page .share-fold summary::after, .club-detail-page .management-fold > summary::after { content: "+"; color: #a4a9b2; font-size: 20px; }
+.club-detail-page details[open] > summary::after { content: "−"; }
+.club-detail-page .share-text { max-height: 260px; padding: 14px; overflow: auto; border-radius: 10px; background: #f7f8fa; color: #646b77; font-size: 13px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.club-detail-page .management-fold > summary { color: #333944; font-weight: 600; font-size: 15px; }
+.club-detail-page .note, .club-detail-page > .err { margin: 14px 16px; padding: 12px 14px; border-radius: 10px; background: #fff0f3; font-size: 13px; overflow-wrap: anywhere; }
+.club-detail-page .detail-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.club-detail-page .detail-actions .undo { flex: 1 1 calc(50% - 8px); margin: 0; }
+.club-detail-page .detail-actions .primary { flex: 1 1 100%; margin: 0; }
+.club-detail-page .empty { font-size: 13px; }
+@media (max-width: 350px) { .club-detail-page .block { margin-right: 12px; margin-left: 12px; padding: 16px; } .club-detail-page .detail-hero h2 { font-size: 22px; } }

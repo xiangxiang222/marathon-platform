@@ -154,6 +154,33 @@ test("runner summary requires login, isolates accounts and uses measured distanc
   assert.equal((await request(app).get(API + "/me/runner?period=month&offset=-1").set(owner.auth)).status, 200);
 });
 
+test("runner motion details preserve imported running modes and their shared labels", async () => {
+  const owner = await user("跑者中心运动类型");
+  const modes = [
+    ["unknown", "跑步·待确认"], ["treadmill", "跑步机"], ["indoor", "室内跑"],
+    ["track", "操场跑"], ["virtual", "虚拟跑"], ["road", "户外跑"], ["trail", "越野"]
+  ];
+  const ids = new Map();
+  for (const [mode] of modes) {
+    const info = run(owner.id, "2025-01-01T08:00:00", 10, 3600, mode === "trail" ? "trail" : "run");
+    const id = Number(info.lastInsertRowid);
+    getDb().prepare("UPDATE runs SET run_mode = ?, source = 'file' WHERE id = ?").run(mode, id);
+    ids.set(mode, id);
+  }
+  const answer = await request(app).get(API + "/me/runner?period=all").set(owner.auth);
+  assert.equal(answer.status, 200);
+  assert.equal(answer.body.training.runs.length, modes.length);
+  assert.equal(answer.body.overview.totalKm, 70);
+  for (const [mode, label] of modes) {
+    const row = answer.body.training.runs.find((item) => item.id === ids.get(mode));
+    assert.ok(row, mode);
+    assert.equal(row.runMode, mode, mode);
+    assert.equal(row.typeLabel, label, mode);
+    assert.equal(row.type, mode === "trail" ? "trail" : "run", mode);
+    assert.equal(row.distanceKm, 10, mode);
+  }
+});
+
 test("private collections support multiple image types per result without replacing old proof", async () => {
   const owner = await user("跑者收藏甲"), other = await user("跑者收藏乙");
   const raceId = "runner-gallery";

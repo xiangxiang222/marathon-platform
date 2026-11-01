@@ -8,6 +8,7 @@ const { setUserPassword, createUser } = require("./user-auth");
 const { likeParams } = require("./search-like");
 const { readPage, finishPage, pageFields, slicePage } = require("./page");
 const { adminOverview } = require("./admin-overview");
+const { deleteFeedbackUser, removeFeedbackFile } = require("./feedback");
 
 function mediaRoot() {
   return process.env.MARATHON_MEDIA || path.join(__dirname, "../data/media");
@@ -25,7 +26,9 @@ function deleteUser(db, id) {
   const proofs = db.prepare("SELECT proof FROM results WHERE user_id = ? AND proof != ''").all(id);
   const collections = db.prepare("SELECT filename FROM runner_media WHERE user_id = ?").all(id);
   const signups = db.prepare("SELECT sheet FROM plans WHERE user_id = ? AND sheet != ''").all(id);
+  const feedbackImages = db.prepare("SELECT filename FROM feedback_images WHERE feedback_id IN (SELECT id FROM feedback WHERE user_id = ?)").all(id);
   db.transaction(() => {
+    deleteFeedbackUser(db, id);
     for (const table of [
       "plans",
       "results",
@@ -50,6 +53,9 @@ function deleteUser(db, id) {
       db.prepare("DELETE FROM " + table + " WHERE user_id = ?").run(id);
     }
     db.prepare("DELETE FROM mileage_counts WHERE run_id IN (SELECT id FROM runs WHERE user_id = ?)").run(id);
+    db.prepare("DELETE FROM wearable_activities WHERE connection_id IN (SELECT id FROM wearable_connections WHERE user_id = ?)").run(id);
+    db.prepare("DELETE FROM wearable_oauth_states WHERE user_id = ?").run(id);
+    db.prepare("DELETE FROM wearable_connections WHERE user_id = ?").run(id);
     db.prepare("DELETE FROM runs WHERE user_id = ?").run(id);
     db.prepare("DELETE FROM mileage_flags WHERE user_id = ?").run(id);
     db.prepare("DELETE FROM user_mileage WHERE user_id = ?").run(id);
@@ -61,6 +67,7 @@ function deleteUser(db, id) {
     db.prepare("DELETE FROM users WHERE id = ?").run(id);
   })();
   removeAvatar(row.avatar);
+  for (const image of feedbackImages) removeFeedbackFile(image.filename);
   for (const file of files) {
     if (!file.filename) continue;
     const full = path.join(mediaRoot(), String(file.activity_id), file.filename);

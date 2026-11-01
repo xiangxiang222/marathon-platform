@@ -2,6 +2,8 @@ const crypto = require("crypto");
 const fs = require("fs");
 const path = require("path");
 const { KM } = require("./career");
+const { PROVIDERS, providerStatus } = require("./wearable");
+const { runMode, typeLabel } = require("./mileage");
 
 const DAY = 86400000;
 const IMAGE_MAX = 8 * 1024 * 1024;
@@ -89,7 +91,7 @@ function trainingOf(runs, period, offset, now) {
     }
   }
   return { period, offset, ...bounds, ...stats, previousKm, changePercent: bounds.previous && previousKm > 0 ? Math.round((stats.km - previousKm) / previousKm * 100) : null, comparisonLabel: offset === 0 ? "较上期同期" : "较上一期", bars, truncated: selected.length > 100,
-    runs: selected.slice(0, 100).map((row) => ({ id: row.id, type: row.type, startedAt: row.started_at, distanceKm: round2(row.distance_km), durationSec: row.duration_sec, paceLabel: pace(row.duration_sec, row.distance_km), city: row.city, source: row.source })) };
+    runs: selected.slice(0, 100).map((row) => ({ id: row.id, type: row.type, runMode: runMode(row), typeLabel: typeLabel(row), startedAt: row.started_at, distanceKm: round2(row.distance_km), durationSec: row.duration_sec, paceLabel: pace(row.duration_sec, row.distance_km), city: row.city, source: row.source })) };
 }
 
 function completedRace(item, today) {
@@ -180,14 +182,6 @@ function boundedUpload(req, limit) {
   });
 }
 
-const DEVICES = [
-  { id: "garmin", name: "Garmin 佳明", status: "unavailable", reason: "厂商数据接入尚未开通，可先手动记录运动。" },
-  { id: "coros", name: "COROS 高驰", status: "unavailable", reason: "厂商数据接入尚未开通，可先手动记录运动。" },
-  { id: "huawei", name: "华为运动健康", status: "unavailable", reason: "厂商数据接入尚未开通，可先手动记录运动。" },
-  { id: "suunto", name: "Suunto 颂拓", status: "unavailable", reason: "厂商数据接入尚未开通，可先手动记录运动。" },
-  { id: "apple", name: "Apple 健康", status: "unavailable", reason: "网页与微信小程序无法直接读取 Apple 健康数据，目前可手动记录运动。" }
-];
-
 function mountRunnerCenter(app, { BASE, getDb, userFrom, resultsFor, oneUpload }) {
   function login(req, res, allowQuery = false) {
     let user = userFrom(req);
@@ -212,7 +206,7 @@ function mountRunnerCenter(app, { BASE, getDb, userFrom, resultsFor, oneUpload }
     const shiftedNow = now.getTime() + 8 * 3600000;
     const today = dayOf(shiftedNow);
     const db = getDb();
-    const runs = db.prepare("SELECT id, type, started_at, distance_km, duration_sec, city, source FROM runs WHERE user_id = ? AND type IN ('run', 'trail') ORDER BY started_at DESC, id DESC").all(user.id).filter((row) => row.distance_km > 0 && row.duration_sec > 0 && validStartedAt(row.started_at, shiftedNow));
+    const runs = db.prepare("SELECT id, type, run_mode, started_at, distance_km, duration_sec, city, source FROM runs WHERE user_id = ? AND type IN ('run', 'trail') ORDER BY started_at DESC, id DESC").all(user.id).filter((row) => row.distance_km > 0 && row.duration_sec > 0 && validStartedAt(row.started_at, shiftedNow));
     const raceFormats = new Map(db.prepare("SELECT DISTINCT r.id, r.meet FROM races r JOIN results res ON res.race_id = r.id WHERE res.user_id = ?").all(user.id).map((row) => [row.id, row.meet]));
     let results = resultsFor(user.id, now).map((result) => {
       return { ...result, race: { ...result.race, meet: raceFormats.get(result.race.id) === "online" ? "online" : "offline" } };
@@ -223,7 +217,7 @@ function mountRunnerCenter(app, { BASE, getDb, userFrom, resultsFor, oneUpload }
     const month = trainingOf(runs, "month", 0, now);
     const total = statsOf(runs);
     const media = db.prepare(MEDIA_SELECT + " WHERE m.user_id = ? ORDER BY m.created_at DESC, m.id DESC").all(user.id).map(mediaRow);
-    res.set("Cache-Control", "private, no-store").json({ asOf: today, overview: { weekKm: week.km, weekCount: week.count, weekDurationSec: week.durationSec, monthKm: month.km, totalKm: total.km, totalCount: total.count }, training: period === "week" && offset === 0 ? week : period === "month" && offset === 0 ? month : trainingOf(runs, period, offset, now), career, results, media, devices: DEVICES });
+    res.set("Cache-Control", "private, no-store").json({ asOf: today, overview: { weekKm: week.km, weekCount: week.count, weekDurationSec: week.durationSec, monthKm: month.km, totalKm: total.km, totalCount: total.count }, training: period === "week" && offset === 0 ? week : period === "month" && offset === 0 ? month : trainingOf(runs, period, offset, now), career, results, media, devices: Object.keys(PROVIDERS).map((provider) => providerStatus(db, user.id, provider)) });
   });
 
   app.post(BASE + "/api/me/runner/media", async (req, res) => {

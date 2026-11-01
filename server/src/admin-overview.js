@@ -36,7 +36,9 @@ function adminOverview(db, role, now = new Date()) {
     pendingRaces: count(db, "SELECT COUNT(*) AS n FROM bot_submissions WHERE status = 'pending'"),
     returnedRaces: count(db, "SELECT COUNT(*) AS n FROM bot_submissions WHERE status = 'returned'"),
     publishedNews: count(db, "SELECT COUNT(*) AS n FROM news"),
-    pendingNews: count(db, "SELECT COUNT(*) AS n FROM news_submissions WHERE status = 'pending'")
+    pendingNews: count(db, "SELECT COUNT(*) AS n FROM news_submissions WHERE status = 'pending'"),
+    pendingFeedback: count(db, "SELECT COUNT(*) AS n FROM feedback WHERE status = 'pending'"),
+    rewardsPending: count(db, "SELECT COUNT(*) AS n FROM feedback_rewards WHERE status = 'claimed'")
   });
   const quality = db.prepare(`
     SELECT COUNT(*) AS total,
@@ -56,7 +58,9 @@ function adminOverview(db, role, now = new Date()) {
   result.attention.unshift(
     { id: "races", label: "赛事待审核", count: counts.pendingRaces, section: "races", tab: "review", description: "核对采集信息及来源，审核后发布到赛历。" },
     { id: "returnedRaces", label: "已打回赛事", count: counts.returnedRaces, section: "races", tab: "review", filter: "returned", description: "查看打回原因与待补充的赛事资料。" },
-    { id: "news", label: "资讯待审核", count: counts.pendingNews, section: "news", tab: "review", description: "核对内容、来源和关联赛事后发布。" }
+    { id: "news", label: "资讯待审核", count: counts.pendingNews, section: "news", tab: "review", description: "核对内容、来源和关联赛事后发布。" },
+    { id: "feedback", label: "建议待审核", count: counts.pendingFeedback, section: "feedback", filter: "pending", description: "审核跑者提出的功能和 UI 建议，公示后开放投票。" },
+    { id: "feedbackRewards", label: "采纳奖励待寄出", count: counts.rewardsPending, section: "feedback", filter: "rewards", description: "本人已填写收件信息，核实奖品后安排寄送。" }
   );
   return result;
 }

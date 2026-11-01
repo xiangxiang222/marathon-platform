@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "共创建议",
+  "navigationBarBackgroundColor": "#f5f6fa",
+  "navigationBarTextStyle": "black",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark"
+}

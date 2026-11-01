@@ -60,3 +60,8 @@
   .level-option { gap: 8rpx; padding-right: 10rpx; padding-left: 10rpx; }
   .level-description { font-size: 18rpx; }
 }
+
+/* Use layout centering instead of inherited native button line heights. */
+.signup-page button { display: flex; align-items: center; justify-content: center; line-height: 1.35; box-sizing: border-box; }
+
+.signup-hero { margin: 24rpx 0 0; border-radius: 28rpx; }

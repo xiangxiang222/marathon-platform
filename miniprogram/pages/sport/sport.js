@@ -1,5 +1,6 @@
 const { request } = require("../../utils/request");
 const { baseUrl } = require("../../config");
+const RUN_MODES = ["unknown", "road", "trail", "treadmill", "indoor", "track", "virtual"];
 
 function thisMonth() {
   return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 7);
@@ -13,7 +14,7 @@ Page({
     expandedRunId: null,
     targetPercent: 0,
     targetProgress: 0,
-    runTypeOptions: ["跑步", "越野"],
+    runTypeOptions: ["跑步·待确认", "户外跑", "越野", "跑步机", "室内跑", "操场跑", "虚拟跑"],
     summary: null,
     month: "",
     gender: "",
@@ -39,7 +40,10 @@ Page({
         const token = (getApp().globalData && getApp().globalData.token) || "";
         data.runs = (data.runs || []).map((item) => ({
           ...item,
-          typeIndex: item.type === "trail" ? 1 : 0,
+          editRunMode: item.runMode || (item.type === "trail" ? "trail" : "road"),
+          typeIndex: Math.max(0, RUN_MODES.indexOf(item.runMode || (item.type === "trail" ? "trail" : "road"))),
+          editClimb: item.climb == null ? "" : String(item.climb),
+          climbLabel: item.climb == null ? "未提供" : item.climb + " 米",
           shotSrc: item.shot ? baseUrl + "/marathon/api/runs/" + item.id + "/shot?t=" + encodeURIComponent(token) : ""
         }));
         const percent = Number(data.month.target) > 0 ? (data.month.percent != null ? Number(data.month.percent) : Math.round(Number(data.month.km) / Number(data.month.target) * 100)) : 0;
@@ -58,12 +62,14 @@ Page({
       });
   },
   login() { wx.setStorageSync("marathon_return_after_login", "/pages/sport/sport"); wx.switchTab({ url: "/pages/mine/mine" }); },
+  goImport() { wx.navigateTo({ url: "/pages/runner/runner?view=devices" }); },
   toggleRecord() { this.setData({ recordOpen: !this.data.recordOpen }); },
   toggleTarget() { this.setData({ targetOpen: !this.data.targetOpen }); },
   toggleRun(e) { const id = e.currentTarget.dataset.id; this.setData({ expandedRunId: this.data.expandedRunId === id ? null : id }); },
   onRunType(e) {
     const index = Number(e.currentTarget.dataset.index), typeIndex = Number(e.detail.value);
-    this.setData({ ["summary.runs[" + index + "].type"]: typeIndex === 1 ? "trail" : "run", ["summary.runs[" + index + "].typeIndex"]: typeIndex });
+    if (!RUN_MODES[typeIndex]) return;
+    this.setData({ ["summary.runs[" + index + "].editRunMode"]: RUN_MODES[typeIndex], ["summary.runs[" + index + "].typeIndex"]: typeIndex });
   },
   onMonth(e) {
     this.setData({ month: e.detail.value });
@@ -154,14 +160,22 @@ Page({
     const index = Number(e.currentTarget.dataset.index);
     this.setData({ ["summary.runs[" + index + "].city"]: e.detail.value });
   },
+  onClimb(e) {
+    const index = Number(e.currentTarget.dataset.index);
+    this.setData({ ["summary.runs[" + index + "].editClimb"]: e.detail.value });
+  },
   saveRow(e) {
     const item = this.data.summary.runs[e.currentTarget.dataset.index];
-    request("/runs/" + item.id, "PUT", { type: item.type, city: item.city })
+    const changes = { city: item.city };
+    if (item.editRunMode && item.editRunMode !== (item.runMode || (item.type === "trail" ? "trail" : "road"))) changes.runMode = item.editRunMode;
+    if (item.editClimb != null && String(item.editClimb).trim() !== "" && (item.climb == null || Number(item.editClimb) !== Number(item.climb))) changes.climb = item.editClimb;
+    request("/runs/" + item.id, "PUT", changes)
       .then(() => this.load())
       .catch((err) => this.setData({ message: err.message }));
   },
   addShot(e) {
-    const item = this.data.summary.runs[e.currentTarget.dataset.index];
+    const item = this.data.summary && this.data.summary.runs[e.currentTarget.dataset.index];
+    if (!item || item.source !== "manual") return;
     wx.chooseMedia({
       count: 1,
       mediaType: ["image"],

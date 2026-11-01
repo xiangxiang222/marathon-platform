@@ -15,6 +15,7 @@
       </template>
       <p v-if="message" class="banner" :class="{ ok: saved }" role="status">{{ message }}</p>
       <AdminDashboard v-if="section === 'overview'" :data="overview" :role="role" :loading="overviewLoading" :error="overviewError" @action="handleOverviewAction" @retry="loadOverview" />
+      <FeedbackAdmin v-if="section === 'feedback' && role === 'admin'" :request="admin" :refresh-key="feedbackRefresh" :initial-filter="feedbackFilter" @changed="loadOverview" />
       <div v-if="section === 'races'" class="workspace-tabs" role="tablist" aria-label="赛事工作区"><button v-for="item in raceWorkspaces" :key="item.id" type="button" role="tab" :aria-selected="raceWorkspace === item.id" :class="{ on: raceWorkspace === item.id }" @click="pickRaceWorkspace(item.id)"><AdminIcon :name="item.icon" />{{ item.label }}<span v-if="item.id === 'review' && pendingCount">{{ pendingCount }}</span></button></div>
       <div v-if="section === 'races'" class="desk race-desk" :class="{ editing: deskOpen, dragging }" :style="splitStyle">
       <div v-show="raceWorkspace !== 'official'" class="desk-main">
@@ -917,6 +918,7 @@ import { adminUpload, api, raceSheetSrc } from "../api";
 import Pager from "../components/Pager.vue";
 import AdminShell from "../components/admin/AdminShell.vue";
 import AdminDashboard from "../components/admin/AdminDashboard.vue";
+import FeedbackAdmin from "../components/admin/FeedbackAdmin.vue";
 import AdminIcon from "../components/admin/AdminIcon.vue";
 import { countiesOf, settleRegion } from "../areas";
 import { regions } from "../regions";
@@ -968,6 +970,8 @@ const catalogPage = ref(1);
 const catalogPages = ref(1);
 const catalogTotal = ref(0);
 const section = ref("overview");
+const feedbackRefresh = ref(0);
+const feedbackFilter = ref("pending");
 const loginBusy = ref(false);
 const overview = ref(null);
 const overviewLoading = ref(false);
@@ -980,6 +984,7 @@ const allSections = [
   { id: "overview", label: "运营总览", group: "工作台", icon: "overview", roles: ["admin", "club"] },
   { id: "races", label: "赛事管理", group: "内容运营", icon: "races", roles: ["admin"] },
   { id: "news", label: "赛事资讯", group: "内容运营", icon: "news", roles: ["admin"] },
+  { id: "feedback", label: "共创建议", group: "内容运营", icon: "feedback", roles: ["admin"] },
   { id: "users", label: "跑者管理", group: "跑团与跑者", icon: "users", roles: ["admin", "club"] },
   { id: "clubs", label: "跑团管理", group: "跑团与跑者", icon: "clubs", roles: ["admin", "club"] },
   { id: "joins", label: "申请审核", group: "跑团与跑者", icon: "joins", roles: ["admin", "club"] },
@@ -988,7 +993,7 @@ const allSections = [
   { id: "partner", label: "合作与物资", group: "权益与合作", icon: "partner", roles: ["admin"] },
   { id: "accounts", label: "账号与权限", group: "平台管理", icon: "accounts", roles: ["admin", "club"] }
 ];
-const deskSections = computed(() => allSections.filter((item) => item.roles.includes(role.value || "admin")).map(item => ({...item,badge:item.id === "races" ? overview.value?.counts?.pendingRaces : item.id === "news" ? overview.value?.counts?.pendingNews : item.id === "joins" ? Number(overview.value?.counts?.pendingFoundings || 0)+Number(overview.value?.counts?.pendingJoins || 0) : 0})));
+const deskSections = computed(() => allSections.filter((item) => item.roles.includes(role.value || "admin")).map(item => ({...item,badge:item.id === "races" ? overview.value?.counts?.pendingRaces : item.id === "news" ? overview.value?.counts?.pendingNews : item.id === "feedback" ? overview.value?.counts?.pendingFeedback : item.id === "joins" ? Number(overview.value?.counts?.pendingFoundings || 0)+Number(overview.value?.counts?.pendingJoins || 0) : 0})));
 const users = ref([]);
 const usersReady = ref(false);
 const userPage = ref(1);
@@ -1106,6 +1111,7 @@ const sectionLead = computed(() => ({
   overview: "把待办、近期赛事与信息质量放在一处，先处理影响跑者决策的事。",
   races: "从采集核实到正式发布，维护每一场比赛的时间、项目、规程与来源。",
   news: "发布与审核赛事资讯，确保每条内容关联准确的赛事。",
+  feedback: "听见跑者的功能与 UI 想法，公示投票、答复进度，并兑现采纳奖励。",
   users: "查看跑者的参赛计划、成绩与跑团，按需管理账号和建团资格。",
   clubs: "管理跑团成员、角色与团长移交，成员账号和跑团分开维护。",
   joins: "集中处理建团与入团申请。口令定位跑团，申请仍需审核。",
@@ -1294,6 +1300,7 @@ async function loadOverview() {
 async function refreshSection() {
   try {
     if (section.value === "overview") return await loadOverview();
+    if (section.value === "feedback") { feedbackRefresh.value++; return; }
     if (section.value === "races") return await Promise.all([raceWorkspace.value === "official" ? load() : raceWorkspace.value === "review" ? loadBotReviews() : loadCatalog(), loadSpots()]);
     const jobs = {news:loadNews,users:loadUsers,clubs:loadClubs,joins:loadJoins,runs:loadRuns,shop:loadShop,partner:loadPartner};
     if (role.value === "admin") jobs.accounts = loadAccounts;
@@ -1317,6 +1324,7 @@ async function pickRaceWorkspace(id) {
 }
 async function handleOverviewAction(target) {
   if (!target || !deskSections.value.some(item=>item.id === target.section)) return;
+  if (target.section === "feedback") feedbackFilter.value = target.filter === "rewards" ? "rewards" : "pending";
   if (target.section === "races") {
     closeEditor();
     raceWorkspace.value = target.raceId ? "catalog" : target.tab === "review" ? "review" : target.tab === "official" ? "official" : "catalog";

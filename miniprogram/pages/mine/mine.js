@@ -19,6 +19,7 @@ Page({
     runner: null,
     runnerLoading: false,
     runnerError: "",
+    feedbackUnread: 0,
     helpOpen: false,
     nextRace: null,
     authOpen: false,
@@ -72,7 +73,7 @@ Page({
     const token = (getApp().globalData && getApp().globalData.token) || "";
     if (token !== this._lastToken) {
       this._lastToken = token;
-      this.setData({ runner: null, plans: [], results: [], clubs: [], nextRace: null, conflicts: [], reminders: [], career: { finished: 0, provinces: [], cities: [], pb: { full: "", half: "" }, yearKm: 0 } });
+      this.setData({ runner: null, plans: [], results: [], clubs: [], nextRace: null, conflicts: [], reminders: [], feedbackUnread: 0, career: { finished: 0, provinces: [], cities: [], pb: { full: "", half: "" }, yearKm: 0 } });
     }
     this.setData({ nickname, nicknameDraft: nickname, avatar, ready: ready() });
     if (ready()) this.load();
@@ -87,6 +88,16 @@ Page({
     wx.navigateTo({ url: "/pages/privacy/privacy" });
   },
   toggleHelp() { this.setData({ helpOpen: !this.data.helpOpen }); },
+  loadFeedbackSummary() {
+    if (!ready()) { this.setData({ feedbackUnread: 0 }); return Promise.resolve(); }
+    const token = getApp().globalData.token;
+    const sequence = this._feedbackSequence = (this._feedbackSequence || 0) + 1;
+    return request("/me/feedback/summary").then((data) => {
+      if (sequence === this._feedbackSequence && token === getApp().globalData.token) this.setData({ feedbackUnread: Math.max(0, Math.floor(Number(data.unread) || 0)) });
+    }).catch(() => {
+      if (sequence === this._feedbackSequence && token === getApp().globalData.token) this.setData({ feedbackUnread: 0 });
+    });
+  },
   pickMainTab(e) {
     const mainTab = e.currentTarget.dataset.tab;
     if (!["overview", "plans", "results", "profile"].includes(mainTab)) return;
@@ -116,7 +127,7 @@ Page({
       return;
     }
     const returnPath = wx.getStorageSync("marathon_return_after_login");
-    if (returnPath === "/pages/radar/radar" || /^\/pages\/race\/race\?id=[^&#]+(?:&plan=1)?$/.test(returnPath)) {
+    if (returnPath === "/pages/radar/radar" || /^\/pages\/race\/race\?id=[^&#]+(?:&plan=1)?$/.test(returnPath) || /^\/pages\/feedback\/feedback(?:\?(?:id=\d+|compose=1|mine=1))?$/.test(returnPath)) {
       wx.removeStorageSync("marathon_return_after_login");
       wx.navigateTo({ url: returnPath });
     } else if (returnPath === "/pages/sport/sport") {
@@ -341,6 +352,7 @@ Page({
       .catch((err) => this.setData({ message: err.message, ok: false }));
   },
   logout() {
+    this._feedbackSequence = (this._feedbackSequence || 0) + 1;
     this._runnerSequence = (this._runnerSequence || 0) + 1;
     this._mineSequence = (this._mineSequence || 0) + 1;
     this._runnerToken = "";
@@ -376,6 +388,7 @@ Page({
       mainTab: "overview",
       runner: null,
       runnerError: "",
+      feedbackUnread: 0,
       helpOpen: false,
       runnerLoading: false,
       nextRace: null,
@@ -388,6 +401,7 @@ Page({
   load() {
     const tokenBefore = (getApp().globalData && getApp().globalData.token) || "";
     const sequence = this._mineSequence = (this._mineSequence || 0) + 1;
+    this.loadFeedbackSummary();
     this.loadRunner();
     return request("/me")
       .then((data) => {

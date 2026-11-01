@@ -1,10 +1,17 @@
 const { request } = require("../../utils/request");
 
 Page({
-  data: { race: null, groupId: 0, time: "", message: "", loading: true },
+  data: { shareExpanded: false, managerExpanded: false, race: null, signedRows: [], forUser: "", forName: "", staffTime: "", groupId: 0, time: "", message: "", loading: true },
+  toggleDetailSection(e) {
+    const key = e.currentTarget.dataset.key;
+    if (key === "shareExpanded" || key === "managerExpanded") this.setData({ [key]: !this.data[key] });
+  },
   onLoad(query) {
     this.clubId = query.club;
     this.raceId = query.id;
+  },
+  onShareAppMessage() {
+    return { title: (this.data.race || {}).title || "跑团队内赛", path: "/pages/internal/internal?club=" + encodeURIComponent(this.clubId) + "&id=" + encodeURIComponent(this.raceId) };
   },
   onShow() {
     this.load();
@@ -19,6 +26,7 @@ Page({
         const open = (race.groups || []).find((group) => !group.full) || (race.groups || [])[0];
         this.setData({
           race,
+          signedRows: (race.groups || []).flatMap((group) => group.rows || []),
           groupId: (race.mine && race.mine.groupId) || (open && open.id) || 0,
           time: (race.mine && race.mine.clock) || this.data.time,
           message: ""
@@ -55,6 +63,20 @@ Page({
   },
   dnf() {
     request("/clubs/" + this.clubId + "/internals/" + this.raceId + "/results", "POST", { outcome: "dnf" })
+      .then(() => this.load())
+      .catch((err) => this.setData({ message: err.message }));
+  },
+  selectResultMember(e) {
+    const member = this.data.signedRows[Number(e.detail.value)];
+    if (member) this.setData({ forUser: member.userId, forName: member.nickname });
+  },
+  onStaffTime(e) { this.setData({ staffTime: e.detail.value }); },
+  saveStaffResult(e) {
+    if (!this.data.forUser) { this.setData({ message: "请先选择已报名的成员" }); return; }
+    const outcome = e && e.currentTarget && e.currentTarget.dataset.outcome;
+    const body = { userId: Number(this.data.forUser) };
+    if (outcome) body.outcome = outcome; else body.time = this.data.staffTime;
+    return request("/clubs/" + this.clubId + "/internals/" + this.raceId + "/results", "POST", body)
       .then(() => this.load())
       .catch((err) => this.setData({ message: err.message }));
   },

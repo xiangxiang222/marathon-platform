@@ -15,6 +15,7 @@ const Meetup = () => import("./views/Meetup.vue");
 const Internal = () => import("./views/Internal.vue");
 const Mine = () => import("./views/Mine.vue");
 const Runner = () => import("./views/Runner.vue");
+const Feedback = () => import("./views/Feedback.vue");
 const Admin = () => import("./views/Admin.vue");
 const Calendar = () => import("./views/Calendar.vue");
 const Radar = () => import("./views/Radar.vue");
@@ -44,6 +45,8 @@ export default createRouter({
     { path: "/clubs/:id/internals/:rid", component: Internal, meta: { hideTab: true } },
     { path: "/mine", component: Mine },
     { path: "/runner", component: Runner, meta: { hideTab: true } },
+    { path: "/feedback", component: Feedback, meta: { hideTab: true } },
+    { path: "/feedback/:id", component: Feedback, meta: { hideTab: true } },
     { path: "/admin", component: Admin, meta: { hideTab: true, wide: true } },
     { path: "/:pathMatch(.*)*", component: () => import("./views/NotFound.vue"), meta: { hideTab: true } }
   ]

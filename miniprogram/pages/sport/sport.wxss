@@ -15,3 +15,5 @@
   .stack input,.picker-value { height: 44px; font-size: 15px; line-height: 44px; }
   .target-caption { flex-wrap: wrap; }
 }
+
+.record-actions { display: flex; gap: 20rpx; }.record-actions > button { flex: 1; min-width: 0; }.import-button { display: block; min-height: 88rpx; margin: 0; padding: 0 16rpx; border: 1rpx solid #ffd6de; border-radius: 16rpx; background: #fff; color: #ff0a30; font-size: 28rpx; font-weight: 600; line-height: 88rpx; }.import-button::after { border: 0; }

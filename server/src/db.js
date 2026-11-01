@@ -40,6 +40,58 @@ function open() {
       openid TEXT NOT NULL DEFAULT '',
       avatar TEXT NOT NULL DEFAULT ''
     );
+    CREATE TABLE IF NOT EXISTS feedback (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      user_id INTEGER NOT NULL,
+      title TEXT NOT NULL,
+      body TEXT NOT NULL,
+      category TEXT NOT NULL,
+      module TEXT NOT NULL DEFAULT 'other',
+      status TEXT NOT NULL DEFAULT 'pending',
+      reply TEXT NOT NULL DEFAULT '',
+      published_at TEXT NOT NULL DEFAULT '',
+      created_at TEXT NOT NULL,
+      updated_at TEXT NOT NULL,
+      version INTEGER NOT NULL DEFAULT 1,
+      read_version INTEGER NOT NULL DEFAULT 1
+    );
+    CREATE INDEX IF NOT EXISTS feedback_user_created ON feedback(user_id, created_at);
+    CREATE INDEX IF NOT EXISTS feedback_status ON feedback(status, published_at);
+    CREATE TABLE IF NOT EXISTS feedback_votes (
+      feedback_id INTEGER NOT NULL,
+      user_id INTEGER NOT NULL,
+      created_at TEXT NOT NULL,
+      PRIMARY KEY (feedback_id, user_id)
+    );
+    CREATE TABLE IF NOT EXISTS feedback_events (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      feedback_id INTEGER NOT NULL,
+      status TEXT NOT NULL,
+      reply TEXT NOT NULL DEFAULT '',
+      created_at TEXT NOT NULL
+    );
+    CREATE INDEX IF NOT EXISTS feedback_events_feedback ON feedback_events(feedback_id, id);
+    CREATE TABLE IF NOT EXISTS feedback_images (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      feedback_id INTEGER NOT NULL,
+      filename TEXT NOT NULL UNIQUE,
+      mime TEXT NOT NULL,
+      size INTEGER NOT NULL,
+      created_at TEXT NOT NULL
+    );
+    CREATE INDEX IF NOT EXISTS feedback_images_feedback ON feedback_images(feedback_id);
+    CREATE TABLE IF NOT EXISTS feedback_rewards (
+      feedback_id INTEGER PRIMARY KEY,
+      name TEXT NOT NULL,
+      status TEXT NOT NULL DEFAULT 'unclaimed',
+      receiver TEXT NOT NULL DEFAULT '',
+      phone TEXT NOT NULL DEFAULT '',
+      address TEXT NOT NULL DEFAULT '',
+      carrier TEXT NOT NULL DEFAULT '',
+      tracking TEXT NOT NULL DEFAULT '',
+      consent_at TEXT NOT NULL DEFAULT '',
+      updated_at TEXT NOT NULL
+    );
     CREATE TABLE IF NOT EXISTS plans (
       user_id INTEGER NOT NULL,
       race_id TEXT NOT NULL,
@@ -647,6 +699,11 @@ function open() {
       user_id INTEGER NOT NULL,
       type TEXT NOT NULL,
       started_at TEXT NOT NULL,
+      ended_at TEXT NOT NULL DEFAULT '',
+      run_mode TEXT NOT NULL DEFAULT '',
+      climb_known INTEGER NOT NULL DEFAULT 1,
+      import_quality INTEGER NOT NULL DEFAULT 0,
+      import_edits TEXT NOT NULL DEFAULT '[]',
       distance_km REAL NOT NULL DEFAULT 0,
       duration_sec INTEGER NOT NULL,
       climb_m INTEGER NOT NULL DEFAULT 0,
@@ -659,6 +716,46 @@ function open() {
       created_at TEXT NOT NULL
     );
     CREATE INDEX IF NOT EXISTS runs_user_started ON runs(user_id, started_at);
+    CREATE TABLE IF NOT EXISTS wearable_connections (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      user_id INTEGER NOT NULL,
+      provider TEXT NOT NULL,
+      external_account_id TEXT NOT NULL DEFAULT '',
+      access_token TEXT NOT NULL DEFAULT '',
+      refresh_token TEXT NOT NULL DEFAULT '',
+      expires_at TEXT NOT NULL DEFAULT '',
+      scopes TEXT NOT NULL DEFAULT '',
+      status TEXT NOT NULL DEFAULT 'connected',
+      last_sync_at TEXT NOT NULL DEFAULT '',
+      error TEXT NOT NULL DEFAULT '',
+      created_at TEXT NOT NULL,
+      updated_at TEXT NOT NULL,
+      UNIQUE (user_id, provider)
+    );
+    CREATE INDEX IF NOT EXISTS wearable_connection_account ON wearable_connections(provider, external_account_id);
+    CREATE TABLE IF NOT EXISTS wearable_activities (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      connection_id INTEGER NOT NULL,
+      provider TEXT NOT NULL,
+      external_account_id TEXT NOT NULL,
+      external_id TEXT NOT NULL,
+      run_id INTEGER,
+      status TEXT NOT NULL DEFAULT 'imported',
+      payload_json TEXT NOT NULL DEFAULT '',
+      created_at TEXT NOT NULL,
+      updated_at TEXT NOT NULL,
+      UNIQUE (provider, external_account_id, external_id)
+    );
+    CREATE INDEX IF NOT EXISTS wearable_activity_run ON wearable_activities(run_id);
+    CREATE TABLE IF NOT EXISTS wearable_oauth_states (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      provider TEXT NOT NULL,
+      user_id INTEGER NOT NULL,
+      state_hash TEXT NOT NULL UNIQUE,
+      expires_at TEXT NOT NULL,
+      used_at TEXT NOT NULL DEFAULT '',
+      created_at TEXT NOT NULL
+    );
     CREATE TABLE IF NOT EXISTS mileage_rules (
       club_id INTEGER PRIMARY KEY,
       effective_on TEXT NOT NULL,
@@ -809,6 +906,34 @@ function open() {
       created_at TEXT NOT NULL
     );
   `);
+  handle.transaction(() => {
+    const runCols = handle.prepare("PRAGMA table_info(runs)").all();
+    if (!runCols.some((col) => col.name === "ended_at")) {
+      handle.exec("ALTER TABLE runs ADD COLUMN ended_at TEXT NOT NULL DEFAULT ''");
+    }
+    const migratingFileTypes = !runCols.some((col) => col.name === "run_mode");
+    for (const [name, spec] of [["run_mode", "TEXT NOT NULL DEFAULT ''"], ["climb_known", "INTEGER NOT NULL DEFAULT 1"], ["import_quality", "INTEGER NOT NULL DEFAULT 0"], ["import_edits", "TEXT NOT NULL DEFAULT '[]'"]]) {
+      if (!runCols.some((col) => col.name === name)) handle.exec("ALTER TABLE runs ADD COLUMN " + name + " " + spec);
+    }
+    if (migratingFileTypes) {
+      // Old imports did not distinguish missing type/ascent from road/zero.
+      // Keep a trail classification conservatively, but do not silently certify
+      // old generic running imports or discard an existing admin decision.
+      handle.exec(`
+        UPDATE runs SET run_mode = CASE WHEN type = 'trail' THEN 'trail' ELSE 'unknown' END,
+          climb_known = CASE WHEN climb_m > 0 THEN 1 ELSE 0 END,
+          import_edits = CASE WHEN type = 'trail' THEN '["mode"]' ELSE '[]' END
+          WHERE source = 'file';
+        UPDATE mileage_counts SET counted = 0, volume_km = 0 WHERE manual = 0 AND run_id IN
+          (SELECT id FROM runs WHERE source = 'file' AND (run_mode = 'unknown' OR (type = 'trail' AND climb_known = 0)));
+      `);
+    }
+    const wearableCols = handle.prepare("PRAGMA table_info(wearable_activities)").all();
+    if (!wearableCols.some((col) => col.name === "start_key")) {
+      handle.exec("ALTER TABLE wearable_activities ADD COLUMN start_key TEXT NOT NULL DEFAULT ''");
+    }
+    handle.exec("CREATE INDEX IF NOT EXISTS wearable_activity_start ON wearable_activities(provider, external_account_id, start_key)");
+  }).immediate();
   const upsert = handle.prepare(
     `INSERT INTO races (
        id, name, city, province, distances, race_date, deadline, place,

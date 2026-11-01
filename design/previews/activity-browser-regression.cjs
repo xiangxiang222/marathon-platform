@@ -74,6 +74,8 @@ async function mock(page) {
       data = { activity: { id: 2 } };
     } else if (pathname === "/clubs/999") {
       data = { club: { id: 999, name: "奥森晨跑团", staff: true }, groups: [{ id: 11, name: "A 组", pace: "5'30–6'00 /km", capacity: 6 }] };
+    } else if (pathname === "/me/feedback/summary") {
+      data = { total: 0, unread: 0 };
     } else if (pathname === "/me") {
       data = { user: { id: 7, nickname: "奥森小鹿" } };
     } else {
