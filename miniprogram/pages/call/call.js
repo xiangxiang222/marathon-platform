@@ -6,7 +6,9 @@ const LABELS = { full: "全马", half: "半马", "10k": "10公里", "5k": "5公�
 
 Page({
   data: {
+    shareExpanded: false, managerExpanded: false,
     call: null,
+    loading: true,
     staff: false,
     options: [],
     distance: "",
@@ -21,6 +23,14 @@ Page({
     forTime: "",
     posterPath: "",
     message: ""
+  },
+  selectDetailMember(e) {
+    const member = this.data.members[Number(e.detail.value)];
+    if (member) this.setData({ forUser: member.id, forName: member.nickname });
+  },
+  toggleDetailSection(e) {
+    const key = e.currentTarget.dataset.key;
+    if (key === "shareExpanded" || key === "managerExpanded") this.setData({ [key]: !this.data[key] });
   },
   onLoad(query) {
     this.clubId = query.club;
@@ -51,8 +61,11 @@ Page({
     };
   },
   load() {
-    Promise.all([request("/clubs/" + this.clubId + "/calls/" + this.callId), request("/clubs/" + this.clubId)])
+    const sequence = this._loadSequence = (this._loadSequence || 0) + 1;
+    this.setData({ loading: true, message: "" });
+    return Promise.all([request("/clubs/" + this.clubId + "/calls/" + this.callId), request("/clubs/" + this.clubId)])
       .then(([data, club]) => {
+        if (sequence !== this._loadSequence) return;
         const call = this.withSheets(data.call);
         const options = (call.distances || []).map((id) => ({
           id,
@@ -75,7 +88,11 @@ Page({
           message: ""
         });
       })
-      .catch((err) => this.setData({ message: err.message, call: null }));
+      .catch((err) => { if (sequence === this._loadSequence) this.setData({ message: err.message || "接龙暂时无法打开，请重试", call: null, staff: false, members: [] }); })
+      .finally(() => { if (sequence === this._loadSequence) this.setData({ loading: false }); });
+  },
+  onUnload() {
+    this._loadSequence = (this._loadSequence || 0) + 1;
   },
   pickDistance(e) {
     this.setData({ distance: e.currentTarget.dataset.id, distanceLabel: e.currentTarget.dataset.label });

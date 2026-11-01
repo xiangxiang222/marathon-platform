@@ -1,24 +1,25 @@
 <template>
-  <main>
+  <main class="club-detail-page">
     <header class="topbar">
       <router-link :to="'/clubs/' + clubId" aria-label="返回">‹</router-link>
       <h1>成绩统计</h1>
       <span></span>
     </header>
     <template v-if="call">
-      <div class="block">
+      <div class="block detail-hero">
+        <span class="detail-kicker">每一份努力，值得记录</span>
         <h2>{{ call.title }}</h2>
         <p class="rank-label">{{ call.raceDate }} · 截止 {{ call.deadlineLabel }}<template v-if="call.closed"> · 已截止</template></p>
         <p v-if="call.note" class="rank-label">{{ call.note }}</p>
         <p class="sum">{{ call.summary }}</p>
-        <pre class="share-text">{{ call.shareText }}</pre>
-        <button class="primary" type="button" @click="copy(call.shareText, '文字已复制，可以贴到微信群')">复制到微信群</button>
+        <details class="share-fold"><summary>查看成绩接龙文字</summary><pre class="share-text">{{ call.shareText }}</pre></details>
+        <div class="detail-actions"><button class="undo" type="button" @click="copy(call.shareText, '文字已复制，可以贴到微信群')">复制到微信群</button>
         <button class="undo" type="button" @click="copy(call.boardText, '成绩榜已复制')">复制成绩榜</button>
         <button class="undo" type="button" @click="makePoster">生成成绩长图</button>
-        <button class="undo" type="button" @click="downloadCsv">导出完整 CSV</button>
+        <button class="undo" type="button" @click="downloadCsv">导出完整 CSV</button></div>
       </div>
       <form v-if="!call.closed" class="block" @submit.prevent="submitOwn">
-        <h2>填写</h2>
+        <h2>记录我的成绩</h2>
         <div class="checks">
           <label v-for="opt in options" :key="opt.id"><input v-model="distance" type="radio" name="distance" :value="opt.id" /> {{ opt.label }}</label>
         </div>
@@ -41,12 +42,11 @@
         </p>
       </div>
       <p v-if="!call.groups.length" class="empty">还没有人填写。</p>
-      <form v-if="staff" class="block" @submit.prevent="saveDeadline">
-        <h2>管理</h2>
+      <details v-if="staff" class="block management-fold"><summary>接龙管理 · 截止与补录</summary><form @submit.prevent="saveDeadline">
         <input v-model="deadline" placeholder="截止 2026-11-22 22:00" />
         <button class="primary" type="submit">改截止</button>
       </form>
-      <form v-if="staff" class="block" @submit.prevent="fillFor">
+      <form @submit.prevent="fillFor">
         <p class="rank-label">给不会操作的成员补一条。</p>
         <select v-model="forUser">
           <option value="">选成员</option>
@@ -57,7 +57,7 @@
         </div>
         <input v-model="forTime" placeholder="成绩" />
         <button class="primary" type="submit">补录</button>
-      </form>
+      </form></details>
     </template>
     <section v-else class="block detail-state" aria-live="polite">
       <p v-if="loading">正在打开成绩接龙…</p>
@@ -76,6 +76,7 @@ import { computed, onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import { api, callSheetSrc, upload } from "../api";
 import { copyText } from "../copy";
+import "../club-detail.css";
 import { callCsv, renderResultPoster } from "../result-poster";
 
 const route = useRoute();
@@ -245,7 +246,7 @@ onMounted(retry);
 .undo { width: auto; margin: 8px 0 0; height: 32px; padding: 0 12px; background: transparent; color: var(--muted); }
 .note { font-size: 12px; color: var(--accent); padding: 0 16px; }
 .checks { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 8px; }
-.block input, .block select { width: 100%; height: 40px; margin-top: 8px; border: 0; border-radius: 10px; padding: 0 12px; background: var(--chip); }
+.block input:not([type="radio"]):not([type="file"]), .block select { width: 100%; height: 40px; margin-top: 8px; border: 0; border-radius: 10px; padding: 0 12px; background: var(--chip); }
 .mine { background: var(--accent-soft); border-radius: 8px; padding-left: 8px; padding-right: 8px; }
 .sheet { width: 100%; margin-top: 8px; border-radius: 8px; }
 .file-pick { display: inline-block; margin-top: 8px; color: var(--accent); }

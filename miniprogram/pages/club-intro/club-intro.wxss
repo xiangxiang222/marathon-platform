@@ -92,3 +92,10 @@
   .share-choice, .preview-name, .guide-copy { font-size: 14px; }
   .share-choice { min-height: 46px; }
 }
+
+/* Match the club workspace button baseline on every public sharing surface. */
+.intro-page button { display:flex; align-items:center; justify-content:center; box-sizing:border-box; min-height:88rpx; line-height:1.25; }
+.intro-page button::after { border:0; }
+.intro-page .sheet-close { min-height:88rpx; }
+.intro-page .share-choice { justify-content:space-between; }
+.intro-page .guide-dismiss { width:100%; padding:20rpx; }

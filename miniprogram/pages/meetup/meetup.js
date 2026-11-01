@@ -1,7 +1,15 @@
 const { request } = require("../../utils/request");
 
 Page({
-  data: { meetup: null, members: [], forUser: "", forName: "", message: "", loading: true },
+  data: { shareExpanded: false, managerExpanded: false, meetup: null, members: [], forUser: "", forName: "", message: "", loading: true },
+  selectDetailMember(e) {
+    const member = this.data.members[Number(e.detail.value)];
+    if (member) this.setData({ forUser: member.id, forName: member.nickname });
+  },
+  toggleDetailSection(e) {
+    const key = e.currentTarget.dataset.key;
+    if (key === "shareExpanded" || key === "managerExpanded") this.setData({ [key]: !this.data[key] });
+  },
   onLoad(query) {
     this.clubId = query.club;
     this.meetupId = query.id;
@@ -42,8 +50,11 @@ Page({
         }));
         this.setData({ meetup, members: club.members || [], message: "" });
       })
-      .catch((err) => { if (sequence === this._loadSequence) this.setData({ message: err.message || "约跑暂时无法加载，请重试" }); })
+      .catch((err) => { if (sequence === this._loadSequence) this.setData({ meetup: null, members: [], message: err.message || "约跑暂时无法加载，请重试" }); })
       .finally(() => { if (sequence === this._loadSequence) this.setData({ loading: false }); });
+  },
+  onUnload() {
+    this._loadSequence = (this._loadSequence || 0) + 1;
   },
   post(path, method) {
     request("/clubs/" + this.clubId + "/meetups/" + this.meetupId + path, method || "POST", {})

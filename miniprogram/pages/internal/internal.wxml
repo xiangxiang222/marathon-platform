@@ -1,15 +1,15 @@
-<view class="page" wx:if="{{race}}">
-  <view class="card">
+<view class="page club-detail" wx:if="{{race}}">
+  <view class="card detail-hero"><view class="detail-kicker">跑出状态 · 队内赛</view>
     <view class="h2">{{race.title}}</view>
     <view class="src">{{race.startsLabel}}{{race.place ? ' · ' + race.place : ''}} · {{race.distanceLabel}}</view>
     <view class="src">{{race.statusLabel}} · 报名截止 {{race.deadlineLabel}}</view>
     <view wx:if="{{race.note}}" class="src">{{race.note}}</view>
-    <view class="src">{{race.shareText}}</view>
-    <button class="btn" data-text="{{race.shareText}}" bindtap="copyText">复制到微信群</button>
+    <button class="fold-toggle" data-key="shareExpanded" bindtap="toggleDetailSection"><text>查看邀请文字</text><text>{{shareExpanded ? "−" : "+"}}</text></button><view wx:if="{{shareExpanded}}" class="share-copy">{{race.shareText}}</view>
+    <view class="detail-actions"><button class="ghost" open-type="share">邀请参赛</button><button class="ghost" data-text="{{race.shareText}}" bindtap="copyText">复制报名信息</button></view>
   </view>
   <view class="card" wx:if="{{race.canSignup || race.canCancel}}">
-    <view class="h2">报名</view>
-    <button wx:for="{{race.groups}}" wx:key="id" class="ghost {{groupId == item.id ? 'on' : ''}}" data-id="{{item.id}}" bindtap="pickGroup" disabled="{{item.full && groupId != item.id}}">{{item.name}} {{item.capacity ? item.taken + '/' + item.capacity : '不限'}}</button>
+    <view class="h2">选择组别，加入比赛</view>
+    <view class="detail-options"><button wx:for="{{race.groups}}" wx:key="id" class="ghost {{groupId == item.id ? 'on' : ''}}" data-id="{{item.id}}" bindtap="pickGroup" disabled="{{item.full && groupId != item.id}}">{{item.name}} {{item.capacity ? item.taken + '/' + item.capacity : '不限'}}</button></view>
     <button wx:if="{{race.canSignup}}" class="btn" bindtap="signup">报名</button>
     <button wx:if="{{race.canCancel}}" class="ghost" bindtap="cancel">取消报名</button>
   </view>
@@ -29,9 +29,10 @@
     </view>
     <view wx:if="{{!item.rows.length}}" class="src">还没有人报名。</view>
   </view>
-  <view class="card" wx:if="{{race.canEnd || race.canCancelRace}}">
+  <view class="card management-card" wx:if="{{race.canStaffResult || race.canEnd || race.canCancelRace}}"><button class="fold-toggle" data-key="managerExpanded" bindtap="toggleDetailSection"><text>队内赛管理</text><text>{{managerExpanded ? "−" : "+"}}</text></button><view wx:if="{{managerExpanded}}">
+    <view wx:if="{{race.canStaffResult}}"><view class="src">为已报名的成员补录或更正成绩。</view><picker mode="selector" range="{{signedRows}}" range-key="nickname" bindchange="selectResultMember"><view class="detail-select">{{forName || "选择已报名成员"}}<text>⌄</text></view></picker><input placeholder="成绩，如 45:30 或 3:29:59" value="{{staffTime}}" bindinput="onStaffTime" /><button class="btn" bindtap="saveStaffResult">保存成员成绩</button><view class="detail-actions"><button class="ghost" data-outcome="dnf" bindtap="saveStaffResult">未完赛</button><button class="ghost" data-outcome="dns" bindtap="saveStaffResult">未出发</button></view></view>
     <button wx:if="{{race.canEnd}}" class="btn" bindtap="endRace">结束并记分</button>
-    <button wx:if="{{race.canCancelRace}}" class="ghost" bindtap="cancelRace">取消这场</button>
+    <button wx:if="{{race.canCancelRace}}" class="ghost" bindtap="cancelRace">取消这场</button></view>
   </view>
   <view wx:if="{{message}}" class="src">{{message}}</view>
 </view>

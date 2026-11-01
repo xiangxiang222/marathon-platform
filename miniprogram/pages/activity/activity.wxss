@@ -135,3 +135,8 @@
 
 .activity-share {flex:none;margin:0;padding:5rpx 14rpx;min-height:0;background:#ffffff16;border:1rpx solid #ffffff33;color:#fff;font-size:21rpx;line-height:1.6;border-radius:8rpx}
 .review-setting {display:flex;justify-content:space-between;align-items:center;gap:16rpx;margin-top:20rpx;color:#686c75;font-size:22rpx}
+
+/* Use layout centering instead of inherited native button line heights. */
+.activity-page button { display: flex; align-items: center; justify-content: center; line-height: 1.35; box-sizing: border-box; }
+
+.hero { margin: 24rpx 0 0; border-radius: 28rpx; }

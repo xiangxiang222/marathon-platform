@@ -13,8 +13,10 @@
     "test": "npm test --prefix server",
     "test:client": "node design/previews/run-client-regressions.cjs",
     "test:mini": "node design/previews/mini-native-check.cjs",
-    "test:all": "npm test && npm run test:client && npm run test:mini && npm run build",
-    "seed": "node server/src/seed.js"
+    "test:clubs": "node design/previews/club-live-acceptance.cjs && node design/previews/club-navigation-regression.cjs && node design/previews/mini-club-redesign-regression.cjs",
+    "test:all": "npm test && npm run test:client && npm run test:mini && npm run test:feedback && npm run build",
+    "seed": "node server/src/seed.js",
+    "test:feedback": "node design/previews/feedback-live-acceptance.cjs"
   },
   "devDependencies": {
     "concurrently": "^9.1.2",

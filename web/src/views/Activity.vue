@@ -91,7 +91,7 @@
 
     <footer v-if="activity" class="sticky-join">
       <div class="join-count"><b>{{ activity.signupCount }}</b><span>人已报名</span></div>
-      <router-link v-if="activity.action.enabled && activity.action.kind === 'signup'" class="action-button" :to="'/clubs/' + clubId + '/activities/' + activityId + '/signup'">选择分组报名 <span>→</span></router-link>
+      <router-link v-if="activity.action.enabled && activity.action.kind === 'signup'" class="action-button" :to="'/clubs/' + clubId + '/activities/' + activityId + '/signup'">{{ groups.length ? "选择分组报名" : "报名参加" }} <span>→</span></router-link>
       <button v-else-if="activity.action.enabled" class="action-button secondary" :disabled="busy" @click="cancel">取消我的报名</button>
       <button v-else class="action-button disabled" disabled>{{ activity.action.label }}</button>
     </footer>
@@ -151,7 +151,7 @@ watch(() => [route.params.id, route.params.aid], () => { activity.value = null; 
 .activity-nav small{display:block;font-size:10px;color:var(--muted);line-height:1.2}
 .activity-nav h1{font-size:16px;margin:2px 0;font-weight:700}
 .activity-content{max-width:780px;margin:0 auto;padding:18px 18px 30px}
-.event-hero{position:relative;overflow:hidden;isolation:isolate;min-height:318px;padding:28px 30px 24px;color:#fff;background:linear-gradient(122deg,#17191f 0%,#252832 57%,#3a1c26 100%);border-radius:5px}
+.event-hero{position:relative;overflow:hidden;isolation:isolate;min-height:318px;padding:28px 30px 24px;color:#fff;background:linear-gradient(122deg,#17191f 0%,#252832 57%,#3a1c26 100%);border-radius:18px}
 .hero-track{position:absolute;z-index:-1;inset:0 0 0 38%;overflow:hidden;opacity:.58;transform:skewX(-23deg)}
 .hero-track i{position:absolute;inset:-45% 6%;border:1px solid #ff7488;border-radius:50%;transform:rotate(-16deg)}
 .hero-track i:nth-child(2){inset:-26% 14%}
@@ -176,7 +176,7 @@ watch(() => [route.params.id, route.params.aid], () => { activity.value = null; 
 .detail-tabs button{display:flex;align-items:center;gap:6px;border:0;border-bottom:2px solid transparent;background:transparent;padding:13px 2px;color:#777c88;font-size:13px}
 .detail-tabs button.selected{border-color:var(--red);color:var(--ink);font-weight:700}
 .detail-tabs small{font-size:10px;color:var(--red)}
-.detail-panel,.utility-panel{margin-top:14px;padding:22px;background:#fff;border:1px solid #ececf0;border-radius:4px}
+.detail-panel,.utility-panel{margin-top:14px;padding:22px;background:#fff;border:1px solid #ececf0;border-radius:16px}
 .panel-heading{display:flex;justify-content:space-between;align-items:center;gap:12px}
 .eyebrow{display:block;color:var(--red);font-size:9px;font-weight:800;letter-spacing:1px}
 .panel-heading h2{margin:4px 0 0;font-size:20px;letter-spacing:0}
@@ -239,7 +239,7 @@ watch(() => [route.params.id, route.params.aid], () => { activity.value = null; 
 .staff-tools summary{color:#60636d;font-size:12px;cursor:pointer}
 .admin-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:12px}
 .admin-form textarea{grid-column:1/-1;min-height:64px}
-.action-button{display:flex;justify-content:center;align-items:center;gap:18px;min-height:46px;padding:0 22px;border:0;border-radius:3px;background:var(--red);color:#fff;text-decoration:none;font-weight:700;font-size:14px}
+.action-button{display:flex;justify-content:center;align-items:center;gap:18px;min-height:46px;padding:0 22px;border:0;border-radius:12px;background:var(--red);color:#fff;text-decoration:none;font-weight:700;font-size:14px}
 .action-button:disabled{opacity:.6}
 .action-button.secondary{background:#fff;color:var(--red);border:1px solid #ffc4cd}
 .action-button.disabled{background:#d6d7dc;color:#767984}
@@ -290,4 +290,6 @@ watch(() => [route.params.id, route.params.aid], () => { activity.value = null; 
 
 .admin-form .check-setting input{flex:none;width:auto}
 
+.activity-nav>a,.activity-nav>button{display:flex;align-items:center;justify-content:center;min-height:44px;line-height:1.2}
+.quickfacts{border-radius:16px;overflow:hidden}
 </style>

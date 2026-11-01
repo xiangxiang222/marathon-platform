@@ -22,7 +22,8 @@
     "pages/call/call",
     "pages/meetup/meetup",
     "pages/internal/internal",
-    "pages/privacy/privacy"
+    "pages/privacy/privacy",
+    "pages/feedback/feedback"
   ],
   "window": {
     "navigationBarBackgroundColor": "#f5f6fa",

@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main class="club-detail-page">
     <header class="topbar">
       <router-link :to="'/clubs/' + clubId + '/activities/' + activityId" aria-label="返回">‹</router-link>
       <h1>相册</h1>
@@ -10,6 +10,7 @@
       <p>{{ loadError }}</p><button type="button" class="primary" :disabled="loading" @click="retryLoad">{{ loading ? '正在重试…' : '重新加载' }}</button>
     </section>
     <div v-if="activity" class="block">
+      <span class="detail-kicker">留住一起奔跑的瞬间</span>
       <h2>{{ activity.title }}</h2>
       <p class="hint">{{ activity.dateLabel }}<template v-if="activity.place"> · {{ activity.place }}</template></p>
       <p class="hint">{{ photoCount }} 张照片 · {{ videoCount }} 个视频</p>
@@ -33,7 +34,7 @@
           <i v-if="managing">{{ picked[item.id] ? "已选" : "选" }}</i>
         </button>
       </div>
-      <p v-else class="hint">还没有照片。团员可以上传。</p>
+      <p v-else class="hint">{{ tab === "video" ? "还没有视频，记录一次并肩出发。" : "还没有照片，留下第一张跑团合影吧。" }}</p>
       <div v-if="managing" class="tools">
         <button type="button" class="undo" @click="removePicked">删除所选</button>
         <button type="button" class="undo" @click="approvePicked">通过所选</button>
@@ -68,6 +69,7 @@ import { computed, onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import { api, mediaSrc, upload } from "../api";
 import { albumCard } from "../share-card";
+import "../club-detail.css";
 
 const route = useRoute();
 const clubId = route.params.id;
@@ -125,6 +127,7 @@ async function load() {
     review.value = !!data.review;
     staff.value = !!data.staff;
   } catch (err) {
+    if ([401, 403].includes(err.status)) activity.value = null;
     loadError.value = err.message;
     throw err;
   } finally {

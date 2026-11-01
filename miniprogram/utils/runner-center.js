@@ -91,7 +91,7 @@ function decorate(data) {
   return {
     ...data,
     overview: { ...overview, weekKmLabel: shortKm(overview.weekKm), monthKmLabel: shortKm(overview.monthKm), totalKmLabel: shortKm(overview.totalKm), weekMinutes: Math.round((overview.weekDurationSec || 0) / 60) },
-    training: { ...training, comparisonText: trainingComparison(training), isCurrentWeek: training.period === "week" && Number(training.offset || 0) === 0, kmLabel: shortKm(training.km), durationLabel: training.durationLabel || clock(training.durationSec), bars: barsOf(training.bars), runs: (training.runs || []).map((item) => ({ ...item, kmLabel: shortKm(item.distanceKm), dateLabel: String(item.startedAt || "").replace("T", " ").slice(0, 16), durationLabel: clock(item.durationSec), typeLabel: item.type === "trail" ? "越野跑" : "跑步" })) },
+    training: { ...training, comparisonText: trainingComparison(training), isCurrentWeek: training.period === "week" && Number(training.offset || 0) === 0, kmLabel: shortKm(training.km), durationLabel: training.durationLabel || clock(training.durationSec), bars: barsOf(training.bars), runs: (training.runs || []).map((item) => ({ ...item, kmLabel: shortKm(item.distanceKm), dateLabel: String(item.startedAt || "").replace("T", " ").slice(0, 16), durationLabel: clock(item.durationSec), typeLabel: item.typeLabel || ({ road: "户外跑", trail: "越野", treadmill: "跑步机", indoor: "室内跑", track: "操场跑", virtual: "虚拟跑", unknown: "跑步·待确认" })[item.runMode] || (item.type === "trail" ? "越野跑" : "跑步") })) },
     career: { ...career, kmLabel: shortKm(career.totalKm), totalTime: career.totalTime || clock(career.totalSeconds), pb: career.pb || [], years: career.years || [] },
     results,
     media,

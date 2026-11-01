@@ -26,6 +26,8 @@ function fixture(t) {
     CREATE TABLE bot_submissions (id INTEGER PRIMARY KEY, status TEXT);
     CREATE TABLE news (id INTEGER PRIMARY KEY);
     CREATE TABLE news_submissions (id INTEGER PRIMARY KEY, status TEXT);
+    CREATE TABLE feedback (id INTEGER PRIMARY KEY, status TEXT);
+    CREATE TABLE feedback_rewards (feedback_id INTEGER PRIMARY KEY, status TEXT);
   `);
   return db;
 }
@@ -43,6 +45,8 @@ test("overview counts the complete published and review collections while limiti
   insertMany(db, "club_requests", 18, "pending"); insertMany(db, "club_requests", 3, "rejected");
   insertMany(db, "bot_submissions", 37, "pending"); insertMany(db, "bot_submissions", 3, "returned"); insertMany(db, "bot_submissions", 1, "published");
   insertMany(db, "news", 29); insertMany(db, "news_submissions", 31, "pending"); insertMany(db, "news_submissions", 4, "returned");
+  insertMany(db, "feedback", 5, "pending"); insertMany(db, "feedback", 3, "published");
+  insertMany(db, "feedback_rewards", 2, "claimed"); insertMany(db, "feedback_rewards", 1, "unclaimed");
   for (const [id, date] of [["past", "2026-10-26"], ["g", "2026-11-03"], ["f", "2026-11-02"], ["e", "2026-11-01"], ["d", "2026-10-30"], ["c", "2026-10-29"], ["b", "2026-10-28"], ["a", "2026-10-27"]]) {
     db.prepare("INSERT INTO races(id,race_date) VALUES(?,?)").run(id, date);
   }
@@ -53,7 +57,7 @@ test("overview counts the complete published and review collections while limiti
   db.prepare("UPDATE races SET bib_at='2026-10-31' WHERE id='e'").run();
   const result = adminOverview(db, "admin", new Date("2026-10-26T16:30:00Z"));
   assert.equal(result.today, "2026-10-27");
-  assert.deepEqual(result.counts, { users: 43, clubs: 27, pendingFoundings: 15, pendingJoins: 18, publishedRaces: 8, upcomingRaces: 7, pendingRaces: 37, returnedRaces: 3, publishedNews: 29, pendingNews: 31 });
+  assert.deepEqual(result.counts, { users: 43, clubs: 27, pendingFoundings: 15, pendingJoins: 18, publishedRaces: 8, upcomingRaces: 7, pendingRaces: 37, returnedRaces: 3, publishedNews: 29, pendingNews: 31, pendingFeedback: 5, rewardsPending: 2 });
   assert.deepEqual(result.upcoming.map((race) => race.id), ["a", "b", "c", "d", "e", "f"]);
   assert.equal(result.upcoming[0].raceDate, result.today);
   assert.deepEqual(result.upcoming[0].distanceLabels, ["马拉松"]);
@@ -61,6 +65,8 @@ test("overview counts the complete published and review collections while limiti
   assert.equal(result.attention.find((item) => item.id === "races").count, 37);
   assert.equal(result.attention.find((item) => item.id === "returnedRaces").filter, "returned");
   assert.equal(result.attention.find((item) => item.id === "news").section, "news");
+  assert.equal(result.attention.find((item) => item.id === "feedback").count, 5);
+  assert.equal(result.attention.find((item) => item.id === "feedbackRewards").filter, "rewards");
 });
 
 test("empty upcoming content has zero quality gaps rather than null sums", (t) => {

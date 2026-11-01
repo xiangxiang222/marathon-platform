@@ -1,5 +1,6 @@
-<page-header title="跑团" subtitle="找到同频的跑友" />
+<page-header title="跑团" subtitle="有人同行，热爱更长久" />
 <view class="clubs-page">
+  <view class="clubs-welcome"><view class="welcome-eyebrow">YOUR RUNNING CREW</view><view class="welcome-title"><view>把一个人的坚持，</view><view>跑成一群人的日常。</view></view><view class="welcome-copy">团练、参赛、约跑，和熟悉的团友随时碰面。</view></view>
   <view class="section-heading"><text class="section-title">我的跑团</text><text wx:if="{{ready && clubs.length}}" class="section-count">{{clubs.length}} 个</text></view>
   <view wx:if="{{!ready}}" class="surface login-card">
     <view class="club-letter">团</view>
@@ -7,11 +8,12 @@
     <navigator class="small-action" open-type="switchTab" url="/pages/mine/mine">去登录</navigator>
   </view>
   <block wx:else>
-    <navigator wx:for="{{clubs}}" wx:key="id" class="surface my-club" url="/pages/club/club?id={{item.id}}">
-      <view class="club-letter">团</view>
-      <view class="club-copy"><view class="club-name">{{item.name}}</view><view class="my-meta"><text class="role-badge">{{item.roleLabel}}</text><text wx:if="{{item.memberCount != null}}">{{item.memberCount}} 位成员</text></view></view>
-      <view class="enter">进入 <text>›</text></view>
-    </navigator>
+    <view wx:if="{{clubs.length > 3}}" class="mine-search"><view class="search-icon"></view><input placeholder="快速找到已加入的跑团" value="{{mineQuery}}" bindinput="onMineQuery" confirm-type="search" /></view>
+    <view wx:for="{{shownClubs}}" wx:key="id" class="surface my-club">
+      <navigator class="club-main" url="/pages/club/club?id={{item.id}}"><view class="club-letter">{{item.initial}}</view><view class="club-copy"><view class="club-name">{{item.name}}</view><view class="my-meta"><text class="role-badge">{{item.roleLabel}}</text><text wx:if="{{item.memberCount != null}}">{{item.memberCount}} 位成员</text></view></view><view class="enter">›</view></navigator>
+      <view class="club-quick-actions"><navigator url="/pages/club/club?id={{item.id}}&tab=training"><text>活动报名</text><text>↗</text></navigator><navigator url="/pages/club/club?id={{item.id}}&tab=matches"><text>赛事名单</text><text>↗</text></navigator></view>
+    </view>
+    <view wx:if="{{clubs.length && !shownClubs.length}}" class="surface no-clubs">没有找到这个跑团，试试其他名称。</view>
     <view wx:if="{{!clubs.length}}" class="surface no-clubs">{{loaded ? '还没有加入跑团，在下方找到你的跑友' : '正在加载跑团…'}}</view>
   </block>
 
@@ -19,7 +21,7 @@
   <view class="surface discover">
     <view class="modes">
       <button class="mode {{mode === 'search' ? 'on' : ''}}" data-mode="search" bindtap="pickMode">搜索跑团</button>
-      <button class="mode {{mode === 'code' ? 'on' : ''}}" data-mode="code" bindtap="pickMode">口令加入</button>
+      <button class="mode {{mode === 'code' ? 'on' : ''}}" data-mode="code" bindtap="pickMode">跑团口令</button>
     </view>
     <view wx:if="{{mode === 'search'}}" class="search-field">
       <view class="search-icon"></view>

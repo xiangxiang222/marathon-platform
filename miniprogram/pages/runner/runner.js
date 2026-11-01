@@ -43,9 +43,14 @@ Page({
     uploadIndex: 0,
     uploading: false,
     uploadMessage: "",
-    deleting: 0
+    deleting: 0,
+    deviceBusy: "",
+    deviceMessage: "",
+    deviceFailed: false,
+    deviceGuideOpen: false
   },
   onLoad(options) {
+    this._unloaded = false;
     const view = VIEWS.find((item) => item.key === options.view) || VIEWS[0];
     this.setData({ view: view.key, currentView: view, galleryKind: view.key === "media" ? "photo" : "certificate" });
     wx.setNavigationBarTitle({ title: view.title });
@@ -54,13 +59,13 @@ Page({
     const token = getApp().globalData.token || "";
     if (token !== this._lastToken) {
       this._lastToken = token;
-      this.setData({ payload: null, filteredResults: [], gallery: [], cities: [], selectedCityKey: "", selectedCity: null, uploadOpen: false, uploadMessage: "", uploading: false, error: "" });
+      this.setData({ payload: null, filteredResults: [], gallery: [], cities: [], selectedCityKey: "", selectedCity: null, uploadOpen: false, uploadMessage: "", uploading: false, error: "", deviceBusy: "", deviceMessage: "", deviceFailed: false });
     }
     this.setData({ ready: ready() });
     if (ready()) return this.load();
     this.setData({ payload: null, loading: false, error: "", filteredResults: [], gallery: [], cities: [], selectedCityKey: "", selectedCity: null });
   },
-  onUnload() { this._sequence = (this._sequence || 0) + 1; },
+  onUnload() { this._unloaded = true; this._sequence = (this._sequence || 0) + 1; },
   onPullDownRefresh() {
     return this.load().finally(() => wx.stopPullDownRefresh());
   },
@@ -84,6 +89,7 @@ Page({
       .then((data) => {
         if (sequence !== this._sequence || token !== getApp().globalData.token) return;
         const payload = decorate(data);
+        payload.devices = (payload.devices || []).map((item) => ({ ...item, statusLabel: ({ available: "可连接", connected: "已连接", error: "同步异常", revoked: "已解除" })[item.status] || "待开通", syncLabel: this.deviceSyncTime(item.lastSyncedAt) }));
         this.setData({ ready: true, payload, loading: false });
         this.filter();
       })
@@ -250,6 +256,86 @@ Page({
           .then(() => this.load())
           .catch((error) => wx.showToast({ title: error.message || "删除失败，请重试", icon: "none" }))
           .finally(() => this.setData({ deleting: 0 }));
+      }
+    });
+  },
+  deviceSyncTime(value) {
+    if (!value) return "";
+    const raw = String(value);
+    if (!/(Z|[+-]\d{2}:?\d{2})$/.test(raw)) return raw.replace("T", " ").slice(0, 16);
+    const ms = Date.parse(raw);
+    return Number.isFinite(ms) ? new Date(ms + 8 * 3600000).toISOString().slice(0, 16).replace("T", " ") + " 北京时间" : "";
+  },
+  toggleDeviceGuide() { this.setData({ deviceGuideOpen: !this.data.deviceGuideOpen }); },
+  deviceSession(token) { return !this._unloaded && token === getApp().globalData.token; },
+  chooseActivityFile() {
+    if (this.data.deviceBusy) return;
+    if (!ready()) { this.login(); return; }
+    if (!wx.chooseMessageFile) { this.setData({ deviceMessage: "当前微信版本无法选择文件，请更新微信或使用网页版导入。", deviceFailed: true }); return; }
+    const token = getApp().globalData.token;
+    wx.chooseMessageFile({
+      count: 1, type: "file", extension: ["fit", "tcx"],
+      success: (reply) => {
+        if (!this.deviceSession(token)) return;
+        const file = reply.tempFiles && reply.tempFiles[0];
+        if (!file || !file.path) return;
+        if (!/\.(fit|tcx)$/i.test(file.name || "")) { this.setData({ deviceMessage: "请选择 FIT 或 TCX 运动文件", deviceFailed: true }); return; }
+        if (file.size > 5 * 1024 * 1024) { this.setData({ deviceMessage: "运动文件不能超过 5 MB", deviceFailed: true }); return; }
+        if (!file.size) { this.setData({ deviceMessage: "文件内容为空，请重新导出", deviceFailed: true }); return; }
+        this.importActivityFile(file);
+      },
+      fail: (error) => { if (this.deviceSession(token) && !/cancel/i.test(String(error.errMsg || ""))) this.setData({ deviceMessage: "无法读取文件。可先将运动文件发送到文件传输助手，再重新选择。", deviceFailed: true }); }
+    });
+  },
+  importActivityFile(file) {
+    if (this.data.deviceBusy) return;
+    const globals = getApp().globalData;
+    const token = globals.token;
+    this.setData({ deviceBusy: "import", deviceMessage: "", deviceFailed: false });
+    wx.uploadFile({
+      url: globals.baseUrl + "/marathon/api/me/devices/import", filePath: file.path, name: "file", formData: { filename: file.name }, header: { Authorization: "Bearer " + token },
+      success: (response) => {
+        if (!this.deviceSession(token)) return;
+        let result = {};
+        try { result = JSON.parse(response.data); } catch (_) { /* A network error page is not a valid response. */ }
+        if (response.statusCode < 200 || response.statusCode >= 300) { this.setData({ deviceMessage: result.error || "导入失败，请重新选择文件", deviceFailed: true }); return; }
+        this.setData({ deviceMessage: result.note || (result.updated ? "已补全这场运动，数据已更新。" : result.imported ? "已导入 1 场运动，数据已更新。" : result.duplicates ? "这场运动已经记录过了，没有重复计入。" : "没有可导入的跑步或越野记录。"), deviceFailed: !result.imported && !result.duplicates && !result.updated });
+        this.load();
+      },
+      fail: () => { if (this.deviceSession(token)) this.setData({ deviceMessage: "导入中断，请检查网络后重试", deviceFailed: true }); },
+      complete: () => { if (this.deviceSession(token)) this.setData({ deviceBusy: "" }); }
+    });
+  },
+  deviceAuthorizationInfo() {
+    wx.showModal({ title: "首次授权请使用网页版", content: "请在本平台网页版的数据来源页面，登录同一个账号后前往厂商官方页面授权。连接完成后可回到小程序查看与同步。", showCancel: false, confirmText: "知道了" });
+  },
+  syncDevice(event) {
+    if (this.data.deviceBusy) return;
+    const provider = event.currentTarget.dataset.provider;
+    const device = this.data.payload && this.data.payload.devices.find((item) => item.id === provider);
+    if (!device || !["connected", "error"].includes(device.status)) return;
+    const token = getApp().globalData.token;
+    this.setData({ deviceBusy: provider, deviceMessage: "", deviceFailed: false });
+    return request("/me/devices/" + encodeURIComponent(provider) + "/sync", "POST")
+      .then((reply) => { if (!this.deviceSession(token)) return; this.setData({ deviceMessage: reply.imported ? "已同步 " + reply.imported + " 场运动，数据已更新。" : "同步完成，暂时没有新的运动记录。", deviceFailed: false }); return this.load(); })
+      .catch((error) => { if (!this.deviceSession(token)) return; this.setData({ deviceMessage: error.message || "同步失败，请稍后重试", deviceFailed: true }); return this.load(); })
+      .finally(() => { if (this.deviceSession(token)) this.setData({ deviceBusy: "" }); });
+  },
+  disconnectDevice(event) {
+    if (this.data.deviceBusy) return;
+    const provider = event.currentTarget.dataset.provider;
+    const device = this.data.payload && this.data.payload.devices.find((item) => item.id === provider);
+    if (!device || (!["connected", "error"].includes(device.status) && !device.canDisconnect)) return;
+    const token = getApp().globalData.token;
+    wx.showModal({
+      title: device.status === "unavailable" ? "清除旧连接？" : "解除设备连接？", content: (device.status === "unavailable" ? "厂商接入尚未开通，将清除之前保留的连接凭据。" : "解除 " + device.name + " 后停止接收新的运动数据，") + "已保存的运动记录继续保留。", confirmText: device.status === "unavailable" ? "清除" : "解除连接", confirmColor: "#ff0a30",
+      success: (answer) => {
+        if (!answer.confirm || !this.deviceSession(token) || this.data.deviceBusy) return;
+        this.setData({ deviceBusy: provider, deviceMessage: "", deviceFailed: false });
+        request("/me/devices/" + encodeURIComponent(provider), "DELETE")
+          .then(() => { if (!this.deviceSession(token)) return; this.setData({ deviceMessage: device.status === "unavailable" ? "已清除旧连接，已保存的运动记录继续保留。" : "已解除连接，已保存的运动记录继续保留。", deviceFailed: false }); return this.load(); })
+          .catch((error) => { if (this.deviceSession(token)) this.setData({ deviceMessage: error.message || "暂时无法解除连接", deviceFailed: true }); })
+          .finally(() => { if (this.deviceSession(token)) this.setData({ deviceBusy: "" }); });
       }
     });
   },

@@ -1,3 +1,4 @@
+@import "../../utils/club-detail.wxss";
 .src { color: #8a8e99; font-size: 26rpx; margin-top: 8rpx; }
 .title { font-size: 36rpx; font-weight: 650; }
 .album.grid { display: flex; flex-wrap: wrap; }
@@ -11,3 +12,7 @@
 .state-title { color: #1f2026; font-size: 30rpx; font-weight: 600; }
 .detail-state .src { margin-top: 16rpx; overflow-wrap: anywhere; }
 .detail-state .btn { margin-top: 28rpx; }
+
+.club-detail .title { margin: 16rpx 0; font-size: 38rpx; font-weight: 700; line-height: 1.35; overflow-wrap: anywhere; }
+.club-detail .drop { display: inline-flex; align-items: center; min-height: 80rpx; font-size: 24rpx; }
+.club-detail .shot .src { font-size: 21rpx; }

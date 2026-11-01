@@ -1,3 +1,4 @@
+@import "../../utils/club-detail.wxss";
 .src { color: #8a8e99; font-size: 26rpx; margin-top: 8rpx; white-space: pre-wrap; }
 .stack input { width: 100%; height: 80rpx; margin-top: 16rpx; background: #f5f6fa; border-radius: 16rpx; padding: 0 20rpx; box-sizing: border-box; }
 .card .btn { margin-top: 16rpx; }

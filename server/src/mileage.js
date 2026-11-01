@@ -6,6 +6,10 @@ const TYPES = {
   run: "跑步",
   trail: "越野"
 };
+const RUN_MODES = { road: "户外跑", trail: "越野", treadmill: "跑步机", indoor: "室内跑", track: "操场跑", virtual: "虚拟跑", unknown: "跑步·待确认" };
+function runMode(row) { return row.run_mode || (row.type === "trail" ? "trail" : "road"); }
+function typeLabel(row) { return RUN_MODES[runMode(row)] || TYPES[row.type] || row.type; }
+function editLocks(row) { try { const locks = JSON.parse(row.import_edits); return new Set(Array.isArray(locks) ? locks : []); } catch (_) { return new Set(); } }
 const SHOT_MAX = 8 * 1024 * 1024;
 
 function mediaRoot() {
@@ -201,11 +205,13 @@ function clubVolume(rule, run) {
 
 function eligible(rule, member, run) {
   if (run.overlap) return false;
+  if (!["road", "trail"].includes(runMode(run))) return false;
+  if (run.type === "trail" && run.climb_known === 0) return false;
   const start = Date.parse(run.started_at + ":00+08:00");
   const joined = Date.parse(member.joined_at);
   if (!Number.isFinite(start) || !Number.isFinite(joined) || start < joined) return false;
   if (run.started_at.slice(0, 10) < rule.effective_on) return false;
-  if (run.source === "manual" && !rule.manual_ok) return false;
+  if ((run.source === "manual" || run.source === "file") && !rule.manual_ok) return false;
   if (run.type === "run") {
     if (!rule.run_on) return false;
     if (run.distance_km < rule.run_min || run.distance_km > rule.run_max) return false;
@@ -220,16 +226,66 @@ function eligible(rule, member, run) {
   return false;
 }
 
-function overlaps(db, userId, startedAt, durationSec, exceptId) {
+function overlaps(db, userId, startedAt, durationSec, exceptId, endedAt = "") {
   const start = Date.parse(startedAt + ":00+08:00");
-  const end = start + durationSec * 1000;
+  const explicitEnd = endedAt ? Date.parse(endedAt + (endedAt.length === 16 ? ":00" : "") + "+08:00") : NaN;
+  const end = Number.isFinite(explicitEnd) ? explicitEnd : start + durationSec * 1000;
+  // A run can span midnight. Imported recordings can include pauses, so use
+  // their actual ending instant while pace and duration retain timer time.
+  // Completed file recordings are limited to seven days of elapsed time.
+  // Restrict by the indexed
+  // start window, rather than assuming both runs began on the same calendar day.
+  const from = new Date(start - 7 * 86400000 + 8 * 3600000).toISOString().slice(0, 16);
+  const to = new Date(end + 8 * 3600000).toISOString().slice(0, 16);
   const rows = db
-    .prepare("SELECT id, started_at, duration_sec FROM runs WHERE user_id = ? AND substr(started_at, 1, 10) = ? AND id != ?")
-    .all(userId, startedAt.slice(0, 10), exceptId || 0);
+    .prepare("SELECT id, started_at, ended_at, duration_sec FROM runs WHERE user_id = ? AND started_at >= ? AND started_at <= ? AND id != ?")
+    .all(userId, from, to, exceptId || 0);
   return rows.some((row) => {
     const other = Date.parse(row.started_at + ":00+08:00");
-    return start < other + row.duration_sec * 1000 && other < end;
+    const otherEnd = row.ended_at ? Date.parse(row.ended_at + (row.ended_at.length === 16 ? ":00" : "") + "+08:00") : NaN;
+    return start < (Number.isFinite(otherEnd) ? otherEnd : other + row.duration_sec * 1000) && other < end;
   });
+}
+
+// Device adapters call this after validating the provider payload. It deliberately
+// shares the same overlap and club-judging rules as a manually entered run.
+// The caller owns the surrounding transaction so the provider activity tombstone
+// can be committed atomically with the run and its mileage counts.
+function insertExternalRun(db, userId, value, source) {
+  const overlap = overlaps(db, userId, value.startedAt, value.duration, 0, value.endedAt || "");
+  const info = db.prepare(
+    `INSERT INTO runs (
+       user_id, type, started_at, ended_at, run_mode, climb_known, import_quality, distance_km, duration_sec, climb_m, pace_sec, volume_km, city, source, shot, overlap, created_at
+     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, '', ?, ?)`
+  ).run(userId, value.type, value.startedAt, value.endedAt || "", value.runMode || (value.type === "trail" ? "trail" : "road"), value.climbKnown === false ? 0 : 1, value.importQuality || 0, value.distance, value.duration, value.climb || 0,
+    value.distance > 0 ? Math.round(value.duration / value.distance) : 0, value.distance, value.city || "", source, overlap ? 1 : 0, new Date().toISOString());
+  const stored = db.prepare("SELECT * FROM runs WHERE id = ?").get(Number(info.lastInsertRowid));
+  judge(db, stored);
+  return stored;
+}
+
+// Called inside the same immediate transaction as identity/tombstone writes.
+// Enrichment is restricted to file-owned summaries and never changes a hand
+// entry or a field the runner explicitly confirmed in the editor.
+function enrichExternalRun(db, row, value) {
+  if (row.source !== "file" || !value.importQuality) return { run: row, updated: false };
+  const higher = value.importQuality > row.import_quality;
+  const locks = editLocks(row);
+  let mode = runMode(row), climb = row.climb_m, known = row.climb_known;
+  if (!locks.has("mode") && value.runMode !== "unknown" && (mode === "unknown" || higher)) mode = value.runMode;
+  if (!locks.has("climb") && value.climbKnown && (!known || higher)) { climb = value.climb; known = 1; }
+  const distance = higher ? value.distance : row.distance_km;
+  const duration = higher ? value.duration : row.duration_sec;
+  const start = higher ? value.startedAt : row.started_at;
+  const end = higher ? value.endedAt : row.ended_at;
+  const quality = Math.max(row.import_quality, value.importQuality);
+  const updated = mode !== runMode(row) || climb !== row.climb_m || known !== row.climb_known || distance !== row.distance_km || duration !== row.duration_sec || start !== row.started_at || end !== row.ended_at || quality !== row.import_quality;
+  if (!updated) return { run: row, updated: false };
+  const overlap = overlaps(db, row.user_id, start, duration, row.id, end);
+  db.prepare("UPDATE runs SET type = ?, run_mode = ?, climb_m = ?, climb_known = ?, distance_km = ?, duration_sec = ?, started_at = ?, ended_at = ?, import_quality = ?, volume_km = ?, pace_sec = ?, overlap = ? WHERE id = ?").run(mode === "trail" ? "trail" : "run", mode, climb, known, distance, duration, start, end, quality, personalVolume(mode, distance), Math.round(duration / distance), overlap ? 1 : 0, row.id);
+  const run = db.prepare("SELECT * FROM runs WHERE id = ?").get(row.id);
+  rejudge(db, run);
+  return { run, updated: true };
 }
 
 function judge(db, run) {
@@ -259,7 +315,7 @@ function rejudge(db, run) {
     if (!member) continue;
     const rule = ensureRules(db, row.club_id);
     const counted = eligible(rule, { joined_at: member.joined_at }, run);
-    update.run(counted ? 1 : 0, counted ? clubVolume(rule, run) : row.volume_km, run.id, row.club_id);
+    update.run(counted ? 1 : 0, counted ? clubVolume(rule, run) : 0, run.id, row.club_id);
   }
 }
 
@@ -267,19 +323,22 @@ function presentRun(row) {
   return {
     id: row.id,
     type: row.type,
-    typeLabel: TYPES[row.type] || row.type,
+    typeLabel: typeLabel(row),
+    runMode: runMode(row),
+    needsTypeConfirmation: runMode(row) === "unknown",
+    climbKnown: row.climb_known !== 0,
     startedAt: row.started_at.replace("T", " "),
     distanceKm: row.distance_km,
     volumeKm: row.volume_km,
     paceLabel: paceLabel(row.pace_sec),
     durationLabel: durationLabel(row.duration_sec),
-    climb: row.climb_m,
+    climb: row.climb_known === 0 ? null : row.climb_m,
     city: row.city,
     source: row.source,
-    sourceLabel: row.source === "manual" ? "手填" : row.source,
+    sourceLabel: ({ manual: "手填", file: "文件导入", coros: "COROS 同步", garmin: "Garmin 同步", suunto: "Suunto 同步", huawei: "华为同步" })[row.source] || row.source,
     shot: !!row.shot,
     overlap: !!row.overlap,
-    note: row.overlap ? "这一天已经有一场，时间叠上了，所以不进跑团" : ""
+    note: row.overlap ? "已有运动记录与这场时间重叠，所以不进跑团" : runMode(row) === "unknown" ? "运动类型待确认，暂不计入跑团 PK；可在编辑记录中补充" : row.type === "trail" && row.climb_known === 0 ? "越野爬升未提供，暂不计入跑团 PK；可补填爬升或导入更完整的 FIT" : !["road", "trail"].includes(runMode(row)) ? "这类运动仅计入个人运动，当前跑团 PK 规则不支持此类型" : ""
   };
 }
 
@@ -621,15 +680,25 @@ function mountMileage(app, { BASE, getDb, userFrom }) {
     const db = getDb();
     const row = db.prepare("SELECT * FROM runs WHERE id = ?").get(req.params.rid);
     if (!row || row.user_id !== user.id) return res.status(404).json({ error: "没有这场记录" });
-    const type = req.body && req.body.type != null ? String(req.body.type) : row.type;
-    if (!TYPES[type]) return res.status(400).json({ error: "类型选跑步或越野" });
-    const city = req.body && req.body.city != null ? String(req.body.city).trim() : row.city;
+    const body = req.body || {};
+    const mode = body.runMode != null ? String(body.runMode) : body.type != null ? ({ run: "road", trail: "trail" })[String(body.type)] : runMode(row);
+    if (!Object.hasOwn(RUN_MODES, mode)) return res.status(400).json({ error: "请选择有效的运动类型" });
+    const city = body.city != null ? String(body.city).trim() : row.city;
     if (city.length > 20) return res.status(400).json({ error: "城市最多 20 个字" });
-    const volume = personalVolume(type, row.distance_km);
-    const pace = row.distance_km > 0 ? Math.round(row.duration_sec / row.distance_km) : 0;
-    db.prepare("UPDATE runs SET type = ?, city = ?, volume_km = ?, pace_sec = ? WHERE id = ?").run(type, city, volume, pace, row.id);
-    const stored = db.prepare("SELECT * FROM runs WHERE id = ?").get(row.id);
-    rejudge(db, stored);
+    const providedClimb = body.climb != null && String(body.climb).trim() !== "";
+    const climb = providedClimb ? Number(body.climb) : row.climb_m;
+    if (providedClimb && (!["number", "string"].includes(typeof body.climb) || !Number.isFinite(climb) || climb < 0 || climb > 20000)) return res.status(400).json({ error: "累计爬升填写 0 到 20000 米；未提供时留空" });
+    const locks = editLocks(row);
+    if (mode !== runMode(row)) {
+      if (mode === "unknown") locks.delete("mode"); else locks.add("mode");
+    }
+    if (providedClimb && (row.climb_known === 0 || climb !== row.climb_m)) locks.add("climb");
+    const stored = db.transaction(() => {
+      db.prepare("UPDATE runs SET type = ?, run_mode = ?, city = ?, climb_m = ?, climb_known = ?, import_edits = ? WHERE id = ?").run(mode === "trail" ? "trail" : "run", mode, city, Math.round(climb), providedClimb ? 1 : row.climb_known, JSON.stringify([...locks]), row.id);
+      const current = db.prepare("SELECT * FROM runs WHERE id = ?").get(row.id);
+      rejudge(db, current);
+      return current;
+    }).immediate();
     const [presented] = attachClubs(db, [stored]);
     res.json({ run: presented });
   });
@@ -642,6 +711,9 @@ function mountMileage(app, { BASE, getDb, userFrom }) {
     if (!row || row.user_id !== user.id) return res.status(404).json({ error: "没有这场记录" });
     db.transaction(() => {
       db.prepare("DELETE FROM mileage_counts WHERE run_id = ?").run(row.id);
+      // Keep the provider activity tombstone so the next sync cannot resurrect
+      // a run that the runner deliberately removed.
+      db.prepare("UPDATE wearable_activities SET run_id = NULL, status = 'ignored', updated_at = ? WHERE run_id = ?").run(new Date().toISOString(), row.id);
       db.prepare("DELETE FROM runs WHERE id = ?").run(row.id);
     })();
     if (row.shot) {
@@ -1067,4 +1139,4 @@ function mountMileage(app, { BASE, getDb, userFrom }) {
   });
 }
 
-module.exports = { mountMileage };
+module.exports = { mountMileage, insertExternalRun, enrichExternalRun, runMode, typeLabel };

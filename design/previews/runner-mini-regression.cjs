@@ -35,7 +35,7 @@ function fixture(file = "runner") {
     setStorageSync(key, value) { storage[key] = value; }, getStorageSync(key) { return storage[key]; }, removeStorageSync(key) { delete storage[key]; },
     navigateTo(data) { calls.push({ type: "navigate", ...data }); }, switchTab(data) { calls.push({ type: "switch", ...data }); },
     showToast(data) { calls.push({ type: "toast", ...data }); }, stopPullDownRefresh() {},
-    chooseMedia(options) { choose = options; }, uploadFile(options) { upload = options; },
+    chooseMedia(options) { choose = options; }, chooseMessageFile(options) { choose = options; }, uploadFile(options) { upload = options; },
     showModal(options) { calls.push({ type: "modal", title: options.title, content: options.content }); options.success({ confirm: true }); }, previewImage(options) { calls.push({ type: "preview", ...options }); }
   };
   const helpers = { exports: {} };
@@ -43,9 +43,9 @@ function fixture(file = "runner") {
   const request = { ready: () => !!globalData.token, request(endpoint, method = "GET", body = {}) { calls.push({ type: "request", endpoint, method, body }); return reply(endpoint, method, body); }, setAuth(token, nickname, avatar) { Object.assign(globalData, { token, nickname, avatar }); }, clearAuth() { Object.assign(globalData, { token: "", nickname: "", avatar: "" }); } };
   vm.runInNewContext(fs.readFileSync(path.join(mini, "pages/" + file + "/" + file + ".js"), "utf8"), {
     Page(page) { definition = page; }, wx, getApp: () => app,
-    require(name) { if (name === "../../utils/request") return request; if (name === "../../utils/runner-center") return helpers.exports; if (name === "../../utils/captcha") return { saveCaptchaFile: () => Promise.resolve("local-captcha") }; if (name === "../../utils/avatar") return { networkAvatar: (url) => url || "", prepareAvatar: () => Promise.resolve("avatar") }; throw Error("Unexpected module " + name); }
+    require(name) { if (name === "../../utils/request") return request; if (name === "../../config") return { baseUrl: globalData.baseUrl }; if (name === "../../utils/runner-center") return helpers.exports; if (name === "../../utils/captcha") return { saveCaptchaFile: () => Promise.resolve("local-captcha") }; if (name === "../../utils/avatar") return { networkAvatar: (url) => url || "", prepareAvatar: () => Promise.resolve("avatar") }; throw Error("Unexpected module " + name); }
   }, { filename: file + ".js" });
-  const page = { ...definition, data: copy(definition.data), setData(patch) { Object.assign(this.data, patch); } };
+  const page = { ...definition, data: copy(definition.data), setData(patch) { for (const [key, value] of Object.entries(patch)) { const parts = key.replace(/\[(\d+)\]/g, '.$1').split('.'); let target = this.data; for (const part of parts.slice(0, -1)) target = target[part]; target[parts.at(-1)] = value; } } };
   return { page, app, calls, storage, helper: helpers.exports, setReply(fn) { reply = fn; }, chosen() { return choose; }, uploaded() { return upload; } };
 }
 async function check(name, fn) { await fn(); report.checks.push({ name, passed: true }); }
@@ -53,6 +53,8 @@ async function main() {
   await check("Private data decoration uses authenticated URLs and recalculates PB from eligible records", async () => {
     const f = fixture(); const data = f.helper.decorate(copy(base));
     assert.equal(data.training.bars[0].height, 0); assert.equal(data.training.bars[1].height, 100);
+    const imported = copy(base); imported.training.runs = [{ type: "run", runMode: "unknown" }, { type: "run", runMode: "treadmill" }];
+    assert.deepEqual(Array.from(f.helper.decorate(imported).training.runs, (item) => item.typeLabel), ["跑步·待确认", "跑步机"]);
     assert.equal(data.overview.weekKmLabel, "16.2"); assert.equal(data.overview.weekMinutes, 81);
     assert.match(data.media[0].src, /\/me\/runner\/media\/4\/file\?t=owner-token$/);
     assert.match(data.collection[0].src, /result\/proof\?distance=full&t=owner-token$/);
@@ -151,6 +153,119 @@ async function main() {
     f.page.deleteMedia({ currentTarget: { dataset: { id: 4 } } }); await tick();
     assert.ok(f.calls.some((item) => item.type === "request" && item.endpoint === "/me/runner/media/4" && item.method === "DELETE"));
   });
+  await check("Device file import validates format and size before upload, preserves original filename and handles duplicates", async () => {
+    const f = fixture(); await f.page.onShow();
+    const choose = (file) => { f.page.chooseActivityFile(); f.chosen().success({ tempFiles: [file] }); };
+    choose({ name: "photo.jpg", path: "wxfile://temp", size: 200 });
+    assert.match(f.page.data.deviceMessage, /FIT 或 TCX/); assert.equal(f.uploaded(), undefined);
+    choose({ name: "oversized.fit", path: "wxfile://temp", size: 5 * 1024 * 1024 + 1 });
+    assert.match(f.page.data.deviceMessage, /5 MB/); assert.equal(f.uploaded(), undefined);
+    choose({ name: "empty.fit", path: "wxfile://temp", size: 0 });
+    assert.match(f.page.data.deviceMessage, /内容为空/); assert.equal(f.uploaded(), undefined);
+    choose({ name: "COROS Morning Run.FIT", path: "wxfile://temporary-without-extension", size: 2048 });
+    const upload = f.uploaded();
+    assert.match(upload.url, /\/me\/devices\/import$/); assert.equal(upload.name, "file");
+    assert.equal(upload.header.Authorization, "Bearer owner-token");
+    assert.equal(upload.formData.filename, "COROS Morning Run.FIT");
+    assert.equal(f.page.data.deviceBusy, "import");
+    upload.success({ statusCode: 200, data: JSON.stringify({ imported: 1, duplicates: 0, rejected: 0, source: "file", runId: 17 }) }); upload.complete(); await tick();
+    assert.match(f.page.data.deviceMessage, /已导入 1 场/); assert.equal(f.page.data.deviceBusy, ""); assert.equal(f.page.data.deviceFailed, false);
+    choose({ name: "same.fit", path: "wxfile://again", size: 2048 });
+    f.uploaded().success({ statusCode: 200, data: JSON.stringify({ imported: 0, duplicates: 1, rejected: 0, source: "file", runId: 17 }) }); f.uploaded().complete(); await tick();
+    assert.match(f.page.data.deviceMessage, /没有重复计入/); assert.equal(f.page.data.deviceFailed, false);
+    choose({ name: "deleted.fit", path: "wxfile://deleted", size: 2048 });
+    f.uploaded().success({ statusCode: 200, data: JSON.stringify({ imported: 0, duplicates: 1, note: "这条运动曾被你删除，重复导入不会恢复", source: "file" }) }); f.uploaded().complete(); await tick();
+    assert.equal(f.page.data.deviceMessage, "这条运动曾被你删除，重复导入不会恢复");
+  });
+  await check("FIT enrichment is successful and retains the server confirmation guidance", async () => {
+    const f = fixture(); await f.page.onShow();
+    f.page.chooseActivityFile(); f.chosen().success({ tempFiles: [{ name: "trail.fit", path: "wxfile://trail", size: 2048 }] });
+    f.uploaded().success({ statusCode: 200, data: JSON.stringify({ imported: 0, duplicates: 0, updated: 1, needsConfirmation: false, note: "已补全这场运动的越野类型与爬升", runId: 17 }) }); f.uploaded().complete(); await tick();
+    assert.equal(f.page.data.deviceFailed, false); assert.equal(f.page.data.deviceMessage, "已补全这场运动的越野类型与爬升");
+    f.page.chooseActivityFile(); f.chosen().success({ tempFiles: [{ name: "unknown.tcx", path: "wxfile://unknown", size: 2048 }] });
+    f.uploaded().success({ statusCode: 200, data: JSON.stringify({ imported: 1, needsConfirmation: true, note: "已导入，请在运动记录中确认类型" }) }); f.uploaded().complete(); await tick();
+    assert.equal(f.page.data.deviceFailed, false); assert.match(f.page.data.deviceMessage, /确认类型/);
+  });
+  await check("Workout edit preserves unknowns, sends only explicit mode/ascent changes, and links directly to import", async () => {
+    const f = fixture("sport");
+    const payload = { month: { target: 0 }, year: {}, total: {}, runs: [
+      { id: 21, type: "run", runMode: "unknown", typeLabel: "跑步·待确认", climb: null, city: "北京" },
+      { id: 22, type: "run", runMode: "treadmill", typeLabel: "跑步机", climb: 0, city: "" }
+    ] };
+    f.setReply(() => Promise.resolve(copy(payload))); await f.page.load();
+    assert.equal(f.page.data.summary.runs[0].typeIndex, 0); assert.equal(f.page.data.summary.runs[0].editClimb, ""); assert.equal(f.page.data.summary.runs[0].climbLabel, "未提供");
+    assert.equal(f.page.data.summary.runs[1].editRunMode, "treadmill"); assert.equal(f.page.data.summary.runs[1].climbLabel, "0 米");
+    f.page.onCity({ currentTarget: { dataset: { index: 0 } }, detail: { value: "杭州" } });
+    f.page.saveRow({ currentTarget: { dataset: { index: 0 } } }); await tick();
+    let saved = f.calls.filter((item) => item.method === "PUT").at(-1);
+    assert.equal(saved.body.city, "杭州"); assert.equal(Object.hasOwn(saved.body, "runMode"), false); assert.equal(Object.hasOwn(saved.body, "climb"), false);
+    f.page.onRunType({ currentTarget: { dataset: { index: 0 } }, detail: { value: "2" } });
+    f.page.onClimb({ currentTarget: { dataset: { index: 0 } }, detail: { value: "0" } });
+    f.page.saveRow({ currentTarget: { dataset: { index: 0 } } }); await tick();
+    saved = f.calls.filter((item) => item.method === "PUT").at(-1);
+    assert.equal(saved.body.runMode, "trail"); assert.equal(saved.body.climb, "0");
+    f.page.goImport(); assert.equal(f.calls.at(-1).url, "/pages/runner/runner?view=devices");
+  });
+  await check("Device upload errors remain recoverable and stale callbacks cannot leak another account's import", async () => {
+    const f = fixture(); await f.page.onShow();
+    f.page.chooseActivityFile(); f.chosen().success({ tempFiles: [{ name: "run.tcx", path: "wxfile://one", size: 200 }] });
+    f.uploaded().success({ statusCode: 400, data: JSON.stringify({ error: "每个文件只能包含一场活动" }) }); f.uploaded().complete();
+    assert.equal(f.page.data.deviceMessage, "每个文件只能包含一场活动"); assert.equal(f.page.data.deviceFailed, true); assert.equal(f.page.data.deviceBusy, "");
+    f.page.chooseActivityFile(); f.chosen().success({ tempFiles: [{ name: "run.tcx", path: "wxfile://two", size: 200 }] });
+    const stale = f.uploaded(); f.app.globalData.token = "new-token"; await f.page.onShow();
+    const reads = f.calls.filter((item) => item.type === "request").length;
+    stale.success({ statusCode: 200, data: JSON.stringify({ imported: 1, source: "file" }) }); stale.complete(); await tick();
+    assert.equal(f.page.data.deviceMessage, ""); assert.equal(f.page.data.deviceBusy, "");
+    assert.equal(f.calls.filter((item) => item.type === "request").length, reads);
+  });
+  await check("Only connected devices can sync or disconnect; disconnect retains saved workouts", async () => {
+    const f = fixture(); const payload = copy(base);
+    payload.devices = [{ id: "coros", name: "COROS 高驰", status: "unavailable", reason: "厂商待开通" }];
+    f.setReply(() => Promise.resolve(copy(payload))); await f.page.onShow();
+    const tap = { currentTarget: { dataset: { provider: "coros" } } }; const before = f.calls.length;
+    await f.page.syncDevice(tap); f.page.disconnectDevice(tap); assert.equal(f.calls.length, before);
+    payload.devices[0].status = "connected";
+    f.setReply((endpoint, method) => {
+      if (endpoint.endsWith("/sync")) return Promise.resolve({ imported: 2, duplicates: 1, rejected: 0 });
+      if (method === "DELETE") { payload.devices[0].status = "revoked"; return Promise.resolve({ ok: true }); }
+      return Promise.resolve(copy(payload));
+    });
+    await f.page.load(); assert.equal(f.page.data.payload.devices[0].statusLabel, "已连接");
+    await f.page.syncDevice(tap); assert.match(f.page.data.deviceMessage, /已同步 2 场/);
+    assert.ok(f.calls.some((item) => item.endpoint === "/me/devices/coros/sync" && item.method === "POST"));
+    f.page.disconnectDevice(tap); await tick(); await tick();
+    assert.ok(f.calls.some((item) => item.endpoint === "/me/devices/coros" && item.method === "DELETE"));
+    assert.match(f.calls.filter((item) => item.type === "modal").at(-1).content, /已保存的运动记录继续保留/);
+    assert.equal(f.page.data.payload.devices[0].statusLabel, "已解除");
+    payload.devices[0].status = "unavailable"; payload.devices[0].canDisconnect = true;
+    await f.page.load(); const syncCount = f.calls.filter((item) => item.endpoint && item.endpoint.endsWith("/sync")).length;
+    await f.page.syncDevice(tap); assert.equal(f.calls.filter((item) => item.endpoint && item.endpoint.endsWith("/sync")).length, syncCount);
+    f.page.disconnectDevice(tap); await tick(); await tick();
+    assert.match(f.calls.filter((item) => item.type === "modal").at(-1).content, /清除之前保留的连接凭据/);
+    assert.match(f.page.data.deviceMessage, /已清除旧连接/);
+    assert.equal(f.page.deviceSyncTime("2026-10-29T06:00:00Z"), "2026-10-29 14:00 北京时间");
+    const markup = fs.readFileSync(path.join(mini, "pages/runner/runner.wxml"), "utf8");
+    assert.match(markup, /文件导入按跑团的手填规则计入 PK/);
+    assert.match(markup, /item.status === 'available' \|\| item.status === 'revoked'/);
+    assert.doesNotMatch(markup, /bindtap="[^"]*"[^>]*>绑定设备</);
+  });
+  await check("Existing imported workouts cannot open screenshot upload while manual records retain it", async () => {
+    const f = fixture("sport");
+    const runs = [{ id: 11, source: "file" }, { id: 12, source: "coros" }, { id: 13 }, { id: 14, source: "manual" }];
+    f.page.data.summary = { month: { target: 0 }, runs };
+    f.setReply(() => Promise.resolve({ month: { target: 0 }, runs: copy(runs) }));
+    for (const index of [0, 1, 2, 99]) f.page.addShot({ currentTarget: { dataset: { index } } });
+    assert.equal(f.chosen(), undefined); assert.equal(f.uploaded(), undefined);
+    f.page.addShot({ currentTarget: { dataset: { index: 3 } } });
+    assert.ok(f.chosen()); f.chosen().success({ tempFiles: [{ tempFilePath: "wxfile://manual-shot" }] });
+    assert.match(f.uploaded().url, /\/runs\/14\/shot$/);
+    f.uploaded().success({ statusCode: 200 }); await tick();
+    const markup = fs.readFileSync(path.join(mini, "pages/sport/sport.wxml"), "utf8");
+    assert.match(markup, /<button wx:if="\{\{item.source === 'manual'\}\}"[^>]+bindtap="addShot"/);
+    const web = fs.readFileSync(path.join(root, "web/src/views/Exercise.vue"), "utf8");
+    const existingRecord = web.slice(web.indexOf('<article v-for="item in data.runs"'), web.indexOf('</article>') + 10);
+    assert.ok(existingRecord.includes('record-editor')); assert.doesNotMatch(existingRecord, /type="file"|pickShot|uploadShot/);
+  });
   await check("Mine dashboard preserves safe return paths, profile tabs and logout cleanup", async () => {
     const f = fixture("mine");
     f.setReply((endpoint) => endpoint.startsWith("/me/runner") ? Promise.resolve(copy(base)) : Promise.resolve({ user: { nickname: "跑者", avatar: "", hasPassword: true }, plans: [], results: [], clubs: [], career: { finished: 0, provinces: [], cities: [], pb: {} } }));
@@ -223,7 +338,7 @@ async function main() {
     assert.doesNotMatch(mineMarkup, /\{\{item\.mark\}\}/);
   });
   const markup = fs.readFileSync(path.join(mini, "pages/runner/runner.wxml"), "utf8");
-  assert.match(markup, /仅自己可见/); assert.match(markup, /厂商接入/); assert.match(markup, /小程序暂不支持直接读取/);
+  assert.match(markup, /仅自己可见/); assert.match(markup, /厂商自动同步需正式开通/); assert.match(markup, /小程序暂不支持直接读取/);
   assert.match(markup, /payload\.training\.truncated/);
   report.passed = true;
 }

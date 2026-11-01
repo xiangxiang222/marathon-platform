@@ -171,11 +171,11 @@ watch(() => `${route.params.id || ""}:${route.params.aid || ""}`, load, { immedi
 .state p { margin: 0 0 12px; }
 .quiet-button { min-height: 36px; padding: 0 12px; color: #1f2026; background: #f0f1f5; }
 .signup-form { padding: 0 16px; }
-.event-heading { margin: 4px 0 18px; padding: 22px 20px; color: #fff; background: #1f2026; border-left: 5px solid #ff0a30; }
+.event-heading { margin: 4px 0 18px; padding: 22px 20px; color: #fff; border-radius: 16px; background: #1f2026; border-left: 5px solid #ff0a30; }
 .eyebrow { margin: 0 0 7px; color: #ff7188; font-size: 12px; font-weight: 700; }
 .event-heading h2 { margin: 0; font-size: 25px; line-height: 1.24; overflow-wrap: anywhere; }
 .event-meta { margin: 10px 0 0; color: #d0d1d6; font-size: 13px; }
-.form-section { margin-top: 18px; padding: 18px; background: #fff; }
+.form-section { margin-top: 18px; padding: 18px; border-radius: 16px; background: #fff; }
 .section-title { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin-bottom: 12px; }
 .section-title h3 { margin: 0; font-size: 16px; }
 .section-title span { color: #8a8e99; font-size: 12px; }
@@ -236,4 +236,5 @@ watch(() => `${route.params.id || ""}:${route.params.aid || ""}`, load, { immedi
   .submit-dock { position: static; grid-column: 1 / -1; margin-top: 18px; padding: 0; border: 0; background: transparent; }
   .success-panel { margin: 20px auto; max-width: 560px; padding: 30px; }
 }
+.signup-page button.primary, .signup-page .summary-link { display: flex; align-items: center; justify-content: center; line-height: 1.35; }
 </style>

@@ -8,8 +8,10 @@
     "test": "node --test --test-concurrency=1 --require ./test/setup-env.js test/*.test.js"
   },
   "dependencies": {
+    "@garmin/fitsdk": "^21.218.0",
     "better-sqlite3": "^11.8.1",
     "express": "^4.21.2",
+    "fast-xml-parser": "^5.11.2",
     "qrcode": "^1.5.4"
   },
   "devDependencies": {

@@ -54,6 +54,7 @@
       <p v-if="message" :class="ok ? 'success' : 'err'">{{ message }}</p><router-link v-for="club in clubs" :key="club.id" class="setting-row club-setting" :to="'/clubs/' + club.id"><span>{{ club.name }}<small>{{ club.roleLabel }}</small></span><i>›</i></router-link><button type="button" class="logout" @click="logout">退出登录</button>
     </section>
     <section v-else class="sheet empty-state"><h3>你的资料，由你管理</h3><p>登录后设置头像、昵称和账号密码。</p><button class="text-action" type="button" @click="openAuth">去登录 ›</button></section>
+    <router-link v-if="section === 'overview'" class="feedback-entry" :to="feedbackUnread ? '/feedback?mine=1' : '/feedback'"><span class="feedback-entry-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 1-8 8H5l-3 3v-9a10 10 0 0 1 10-10h1M17 3v8m-4-4h8"/></svg></span><span><b>共创建议<span v-if="feedbackUnread" class="feedback-entry-unread">{{ feedbackUnread > 99 ? '99+' : feedbackUnread }} 条新进度</span></b><small>提建议 · 为好想法投票 · 查看采纳进度</small></span><i aria-hidden="true">↗</i></router-link>
     <footer class="legal">{{ company }} · {{ icp }}</footer>
   </main>
 </template>
@@ -71,6 +72,7 @@ import clubsIcon from "../assets/quick/clubs.svg";
 import newsIcon from "../assets/quick/news.svg";
 const router = useRouter();
 const section = ref("overview");
+const feedbackUnread = ref(0);
 const runnerData = ref(null), runnerLoading = ref(Boolean(localStorage.getItem("marathon_token"))), runnerError = ref("");
 let runnerRequest = 0, accountRequest = 0;
 async function loadRunner() {
@@ -175,6 +177,7 @@ async function load() {
   const sessionToken = localStorage.getItem("marathon_token");
   api("/meta").then(meta => { company.value = meta.company; icp.value = meta.icp; }).catch(() => {});
   if (!localStorage.getItem("marathon_token")) {
+    feedbackUnread.value = 0;
     nickname.value = "";
     avatar.value = "";
     localStorage.removeItem("marathon_name");
@@ -199,6 +202,7 @@ async function load() {
     reminders.value = data.reminders || [];
     localStorage.setItem("marathon_name", data.user.nickname);
     loadRunner();
+    api("/me/feedback/summary").then(summary => { if (accountId === accountRequest && sessionToken === localStorage.getItem("marathon_token")) feedbackUnread.value = Number(summary.unread) || 0; }).catch(() => {});
   } catch (err) {
     if (accountId !== accountRequest || sessionToken !== localStorage.getItem("marathon_token")) return;
     if (err.status === 401) logout();
@@ -244,6 +248,7 @@ function logout() {
   accountRequest++;
   runnerRequest++;
   runnerData.value = null;
+  feedbackUnread.value = 0;
   runnerLoading.value = false;
   runnerError.value = "";
   localStorage.removeItem("marathon_token");
@@ -290,7 +295,7 @@ async function submitAuth() {
     saveSession(data);
     await load();
     const returnPath = localStorage.getItem("marathon_return_after_login") || "";
-    if (returnPath.startsWith("/clubs/") || /^\/runner(?:\?view=(?:stats|career|footprints|honors|media|devices|help))?$/.test(returnPath) || (returnPath === "/radar" || returnPath === "/sport" || /^\/races\/[^/?#]+(?:\?plan=1)?$/.test(returnPath))) {
+    if (returnPath.startsWith("/clubs/") || /^\/runner(?:\?view=(?:stats|career|footprints|honors|media|devices|help))?$/.test(returnPath) || /^\/feedback(?:\/\d+)?(?:\?(?:compose|mine)=1)?$/.test(returnPath) || (returnPath === "/radar" || returnPath === "/sport" || /^\/races\/[^/?#]+(?:\?plan=1)?$/.test(returnPath))) {
       localStorage.removeItem("marathon_return_after_login");
       await router.replace(returnPath);
     }
@@ -410,6 +415,8 @@ onMounted(load);
 
 <style scoped>
 .mine { padding: 0 12px 16px; color: #1f2026; }
+.feedback-entry-unread{display:inline-block;margin-left:6px;padding:1px 5px;vertical-align:middle;border-radius:5px;background:#ff0a30;color:white;font-size:10px;font-weight:500;line-height:1.7}.feedback-entry b{display:flex!important;align-items:center;gap:3px;flex-wrap:wrap}.feedback-entry small{color:#737987!important;font-size:11px!important}
+.feedback-entry{display:flex;align-items:center;gap:12px;margin:16px 0 12px;padding:18px;border:1px solid #fff;border-radius:17px;background:linear-gradient(120deg,#fff,#fff3f6);color:#3f3540}.feedback-entry-icon{display:grid;place-items:center;width:35px;height:37px;border-radius:11px;background:#ffe9ef;color:#e66b89;flex:none}.feedback-entry-icon svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}.feedback-entry>span:nth-child(2){flex:1;min-width:0}.feedback-entry b{display:block;font-size:14px;font-weight:600;line-height:1.7}.feedback-entry small{display:block;font-size:10px;line-height:1.9;color:#ac98a3;margin-top:3px}.feedback-entry i{font-size:22px;color:#d77b94;font-style:normal;flex:none}
 :deep(.page-header) { margin: 0 -12px; }
 .account-hero { border:1px solid #fff; background:linear-gradient(150deg,#fff,#fff7f9); }
 .account-hero, .sheet, .quick-links { margin: 0 0 12px; padding: 18px; border-radius: 18px; background: #fff; box-shadow: none; }.who-top { display: flex; align-items: center; gap: 12px; }.face { display: grid; place-items: center; width: 58px; height: 58px; flex: none; border-radius: 50%; background: #fff0f3; color: #ff0a30; font-size: 24px; font-weight: 600; object-fit: cover; }.who-main { flex: 1; min-width: 0; }.nick { margin: 0; font-size: 20px; line-height: 28px; font-weight: 600; overflow-wrap: anywhere; }.club-line, .guest-hero p { margin: 5px 0 0; color: #8a8e99; font-size: 12px; line-height: 18px; }.role { display: inline-block; margin-top: 5px; padding: 1px 5px; background: #fff0f3; color: #ff0a30; border-radius: 4px; font-size: 11px; }.hero-settings { align-self: center; color: #b9bdc7; font-size: 26px; }.account-stats { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); margin-top: 20px; }.account-stats button, .account-stats a { display: flex; flex-direction: column; align-items: center; gap: 5px; min-width: 0; }.account-stats b { font-size: 24px; line-height: 30px; font-weight: 700; }.account-stats span { color: #8a8e99; font-size: 12px; }.guest-hero h2 { margin: 0; font-size: 18px; line-height: 26px; font-weight: 600; }.guest-face svg { width: 28px; height: 28px; fill: none; stroke: currentColor; stroke-width: 1.6; }.hero-login { width: 100%; margin-top: 16px; }

@@ -12,6 +12,8 @@ const { adminRoleLabel, clubRoleLabel } = require("./roles");
 const { mountClubLife, enrichBoard, clubLife } = require("./club-life");
 const { mountMileage } = require("./mileage");
 const { mountRunnerCenter } = require("./runner-center");
+const { mountWearable } = require("./wearable");
+const { mountActivityFiles } = require("./activity-file");
 const { mountPartner } = require("./partner");
 const { mountRadar } = require("./radar");
 const { mountFeed } = require("./feed");
@@ -22,6 +24,7 @@ const { mountRaceGuide, attachGuide } = require("./race-guide");
 const { mountBotRaces } = require("./bot-races");
 const { mountNews } = require("./news");
 const { mountAdminDesk } = require("./admin-desk");
+const { mountFeedback } = require("./feedback");
 const { issueCaptcha, registerUser, loginUser, loginWechat, verifyWechatCode, changeOwnPassword, unbindWechat } = require("./user-auth");
 const { avatarRoot, avatarUrlOf, saveAvatar, removeAvatar } = require("./avatars");
 const { signupTarget } = require("./signup-channel");
@@ -1323,6 +1326,8 @@ app.put(BASE + "/api/admin/races/:id", (req, res) => {
 mountClubLife(app, { BASE, getDb, userFrom });
 mountMileage(app, { BASE, getDb, userFrom });
 mountRunnerCenter(app, { BASE, getDb, userFrom, resultsFor, oneUpload });
+mountWearable(app, { BASE, getDb, userFrom });
+mountActivityFiles(app, { BASE, getDb, userFrom });
 mountPartner(app, { BASE, getDb, userFrom, requireAdmin });
 mountRadar(app, { BASE, getDb, userFrom, requireAdmin });
 mountFeed(app, { BASE, getDb, userFrom });
@@ -1331,6 +1336,7 @@ mountClubOps(app, { BASE, getDb, userFrom });
 mountClubGather(app, { BASE, getDb, userFrom });
 mountRaceGuide(app, { BASE, getDb, requireAdmin });
 mountAdminDesk(app, { BASE, getDb, requireAdmin });
+mountFeedback(app, { BASE, getDb, userFrom, requireAdmin, oneUpload });
 
 const webDist = path.join(__dirname, "../../web/dist");
 if (fs.existsSync(webDist)) {

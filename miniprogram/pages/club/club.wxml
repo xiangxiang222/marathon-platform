@@ -1,63 +1,94 @@
 <view class="club-page" wx:if="{{club}}">
   <view class="club-hero">
-    <view class="club-identity">
-      <view class="club-letter">{{clubInitial}}</view>
-      <view class="club-identity-copy"><view class="club-title">{{club.name}}</view><view class="club-subtitle">团长 {{leaderName}}<text class="dot">·</text>{{members.length}} 位成员</view></view>
-      <text class="role">{{club.roleLabel}}</text>
-    </view>
-    <view class="avatar-line">
-      <block wx:for="{{members}}" wx:key="id" wx:if="{{index < 6}}">
-        <image wx:if="{{item.avatar}}" class="avatar" src="{{item.avatar}}" mode="aspectFill" />
-        <view wx:else class="avatar avatar-fallback">{{item.avatarInitial}}</view>
-      </block>
-      <view wx:if="{{membersMore}}" class="avatar-count">{{membersMore}}</view>
-      <view wx:if="{{club.staff && requests.length}}" class="pending-pill" data-tab="members" bindtap="changeSection">{{requests.length}} 个待审核</view>
-    </view>
-    <view class="hero-actions">
-      <button class="hero-main" bindtap="changeSection" data-tab="matches">看团内赛事</button>
-      <button class="hero-share" open-type="share">分享跑团</button>
-    </view>
+    <view class="hero-topline"><text class="eyebrow">一起跑，更远一点</text><navigator class="switch-club" open-type="switchTab" url="/pages/clubs/clubs">切换跑团 ⇄</navigator></view>
+    <view class="club-identity"><view class="club-letter">{{clubInitial}}</view><view class="club-identity-copy"><view class="club-title">{{club.name}}</view><view class="club-subtitle"><text class="role">{{club.roleLabel}}</text><text>{{members.length}} 位成员 · 团长 {{leaderName}}</text></view></view></view>
+    <view class="hero-bottom"><view class="avatar-line"><block wx:for="{{members}}" wx:key="id" wx:if="{{index < 5}}"><image wx:if="{{item.avatar}}" class="avatar" src="{{item.avatar}}" mode="aspectFill" /><view wx:else class="avatar avatar-fallback">{{item.avatarInitial}}</view></block><text class="avatar-caption">同频的跑友，都在这里</text></view><button class="hero-share" open-type="share">邀请跑友 ↗</button></view>
   </view>
-
-  <scroll-view class="club-tabs" scroll-x enable-flex show-scrollbar="{{false}}">
-    <view class="club-tab {{activeTab === 'overview' ? 'selected' : ''}}" data-tab="overview" bindtap="changeSection">概览</view>
+  <view wx:if="{{club.staff && requests.length}}" class="approval-banner" data-area="requests" bindtap="openService"><view><text class="notice-dot"></text>{{requests.length}} 位跑友申请加入</view><text>去审核 ›</text></view>
+  <view class="club-tabs">
+    <view class="club-tab {{activeTab === 'overview' ? 'selected' : ''}}" data-tab="overview" bindtap="changeSection">今日</view>
+    <view class="club-tab {{activeTab === 'training' ? 'selected' : ''}}" data-tab="training" bindtap="changeSection">活动</view>
     <view class="club-tab {{activeTab === 'matches' ? 'selected' : ''}}" data-tab="matches" bindtap="changeSection">赛事</view>
-    <view class="club-tab {{activeTab === 'training' ? 'selected' : ''}}" data-tab="training" bindtap="changeSection">训练</view>
     <view class="club-tab {{activeTab === 'mileage' ? 'selected' : ''}}" data-tab="mileage" bindtap="changeSection">跑量</view>
     <view class="club-tab {{activeTab === 'members' ? 'selected' : ''}}" data-tab="members" bindtap="changeSection">成员</view>
-  </scroll-view>
-
-  <block wx:if="{{activeTab === 'overview'}}">
-    <view class="overview-stats">
-      <view class="stat" data-tab="matches" bindtap="changeSection"><text class="stat-value">{{board.length}}</text><text class="stat-label">团内赛事</text></view>
-      <view class="stat" data-tab="training" bindtap="changeSection"><text class="stat-value">{{upcomingActivityCount}}</text><text class="stat-label">近期活动</text></view>
-      <view class="stat" data-tab="mileage" bindtap="changeSection"><text class="stat-value">{{mileage.mineKm}}</text><text class="stat-label">我本月跑量</text></view>
+  </view>
+  <block wx:if="{{activeTab === 'overview' && !serviceArea}}">
+    <view class="section-head"><view class="section-title">下一次，一起跑</view><text class="section-link" data-tab="training" bindtap="changeSection">全部活动 ›</text></view>
+    <navigator wx:if="{{nextActivity}}" class="next-activity" url="/pages/activity/activity?club={{club.id}}&id={{nextActivity.id}}"><view class="next-top"><text class="next-label">下一场团练</text><text class="signup-state {{nextActivity.mine.signed ? 'signed' : ''}}">{{nextActivity.mine.signed ? '我已报名' : nextActivity.action.label || '查看报名'}}</text></view><view class="next-title">{{nextActivity.title}}</view><view class="next-meta">{{nextActivity.dateLabel}} {{nextActivity.clockLabel}} · {{nextActivity.place}}</view><view class="next-bottom"><text>{{nextActivity.signupCount}} 位团友同行</text><text class="next-cta">{{nextActivity.mine.signed ? '查看集合信息' : '查看活动'}} →</text></view></navigator>
+    <view wx:else class="empty-card next-empty"><view class="empty-title">把下一次相聚，安排上</view><view class="muted">约上团友，轻松跑一场。</view><navigator wx:if="{{club.staff}}" class="empty-action" url="/pages/activity-create/activity-create?club={{club.id}}">发布团练 →</navigator><button wx:else class="empty-action" data-tab="training" data-kind="meetup" bindtap="changeSection">看看团友的约跑 →</button></view>
+    <view class="quick-grid">
+      <view class="quick-entry" data-tab="training" bindtap="changeSection"><image src="/images/quick-calendar.png"/><text>活动报名</text></view><view class="quick-entry" data-tab="matches" bindtap="changeSection"><image src="/images/runner/honors.png"/><text>赛事名单</text></view><view class="quick-entry" data-tab="mileage" bindtap="changeSection"><image src="/images/runner/stats.png"/><text>跑量排行</text></view><view class="quick-entry" data-tab="members" bindtap="changeSection"><image src="/images/quick-clubs.png"/><text>跑团成员</text></view>
     </view>
-
-    <view class="section-head"><view class="section-title">近期赛事</view><text class="section-link" data-tab="matches" bindtap="changeSection">全部 {{board.length}} 场 ›</text></view>
-    <navigator wx:if="{{nextRace}}" class="preview-row" url="/pages/race/race?id={{nextRace.race.id}}">
-      <view class="preview-date">{{nextRace.race.raceDate}}</view>
-      <view class="preview-body"><view class="preview-title">{{nextRace.race.name}}</view><view class="muted">{{nextRace.marks.length}} 位团友已标记参赛</view></view>
-      <view class="preview-arrow">›</view>
-    </navigator>
-    <view wx:else class="empty-row">暂无即将开赛的团内赛事。</view>
-
-    <view class="section-head"><view class="section-title">下一场训练</view><text class="section-link" data-tab="training" bindtap="changeSection">全部活动 ›</text></view>
-    <navigator wx:if="{{nextActivity}}" class="preview-row" url="/pages/activity/activity?club={{club.id}}&id={{nextActivity.id}}">
-      <view class="preview-date">{{nextActivity.dateLabel}}</view>
-      <view class="preview-body"><view class="preview-title">{{nextActivity.title}}</view><view class="muted">{{nextActivity.place}} · {{nextActivity.signupCount}} 人报名</view></view>
-      <view class="preview-arrow">›</view>
-    </navigator>
-    <view wx:else class="empty-row">暂无即将开始的训练。</view>
-
-    <view class="section-head"><view class="section-title">跑团空间</view><text class="section-link" data-tab="members" bindtap="changeSection">管理跑团 ›</text></view>
-    <view class="link-list">
-      <navigator class="link-row" url="/pages/mileage/mileage?id={{club.id}}"><view><view class="link-title">跑量排行</view><view class="muted">分组、周月年榜</view></view><text class="preview-arrow">›</text></navigator>
-      <navigator class="link-row" url="/pages/feed/feed?id={{club.id}}"><view><view class="link-title">跑团动态</view><view class="muted">仅跑团成员可见</view></view><text class="preview-arrow">›</text></navigator>
-      <navigator class="link-row" url="/pages/partner/partner?id={{club.id}}"><view><view class="link-title">跑团合作</view><view class="muted">{{partnerGrade || '跑团权益与认证'}}</view></view><text class="preview-arrow">›</text></navigator>
+    <view class="my-summary"><button class="my-summary-card" bindtap="showMine"><view class="my-summary-label">我的待参加</view><view class="my-summary-value">{{myUpcomingCount}}<text> 场团练</text></view><view class="my-summary-hint">报名后的集合信息 ›</view></button><button class="my-summary-card" data-area="fees" bindtap="openService"><view class="my-summary-label">本期会费</view><view class="my-summary-status">{{feeCurrent.id ? feeCurrent.mine.label || '查看名单' : '暂未开设'}}</view><view class="my-summary-hint">缴费记录与历史期次 ›</view></button></view>
+    <navigator wx:if="{{club.staff && nextActivity}}" class="publish-shortcut" url="/pages/activity-create/activity-create?club={{club.id}}"><view><view class="link-title">发布新的团练</view><view class="muted">安排时间、地点与分组</view></view><text>＋</text></navigator>
+    <view class="checkin-card"><button class="checkin-entry" bindtap="toggleCheckin"><view><view class="link-title">{{checkedIn ? '今天已签到' : '日常到场签到'}}</view><view class="muted">{{checkedIn ? '今天也和团友一起进步了' : '记录一起流汗的日子'}}</view></view><text class="checkin-status">{{checkinOpen ? '收起 −' : checkedIn ? '已签到 ✓' : '去签到 ＋'}}</text></button>
+    <view wx:if="{{checkinOpen}}" class="checkin-details">
+      <view class="form-hint">日常到场记录；活动报名后的打卡请进入对应活动。</view>
+      <input class="field" placeholder="今天的训练感受，可不填" value="{{note}}" maxlength="40" bindinput="onNote" />
+      <button class="primary-btn" bindtap="checkIn">{{checkedIn ? '更新签到' : '今天签到'}}</button>
+      <button wx:if="{{checkedIn}}" class="secondary-btn" bindtap="undoCheckin">撤销签到</button>
+      <view wx:if="{{!checkins.length}}" class="empty-row">今天还没有人签到。</view>
+      <view wx:for="{{checkins}}" wx:for-item="day" wx:key="date" class="checkin-day"><view class="rank-label">{{day.label}}</view><view wx:for="{{day.rows}}" wx:for-item="row" wx:key="userId" class="plain-row"><text>{{row.nickname}}</text><text>{{row.note}}</text></view></view>
+      <view wx:if="{{checkMessage}}" class="error">{{checkMessage}}</view>
     </view>
+    </view>
+    <view class="section-head"><view class="section-title">赛道上，见</view><text class="section-link" data-tab="matches" bindtap="changeSection">赛事名单 ›</text></view>
+    <navigator wx:if="{{nextRace}}" class="preview-row" url="/pages/race/race?id={{nextRace.race.id}}"><view class="race-date-tag">{{nextRace.race.raceDate}}</view><view class="preview-body"><view class="preview-title">{{nextRace.race.name}}</view><view class="muted">{{nextRace.marks.length}} 位团友已标记参赛</view></view><text class="preview-arrow">›</text></navigator><view wx:else class="empty-card compact-empty">标记想跑或已报名的赛事，和团友在赛道相见。</view>
+    <view class="section-head"><view class="section-title">更多跑团服务</view></view>
+    <view class="service-grid"><view class="service-entry" data-area="albums" bindtap="openService"><text>活动相册</text><text>留住精彩瞬间 ›</text></view><navigator class="service-entry" url="/pages/feed/feed?id={{club.id}}"><text>跑团动态</text><text>团友交流分享 ›</text></navigator><view class="service-entry" data-area="fees" bindtap="openService"><text>跑团会费</text><text>名单与历史期次 ›</text></view><view class="service-entry" data-area="gifts" bindtap="openService"><text>积分礼品</text><text>我有 {{myPoints}} 积分 ›</text></view><navigator class="service-entry" url="/pages/partner/partner?id={{club.id}}"><text>跑团合作</text><text>{{partnerGrade || '认证与权益'}} ›</text></navigator><view class="service-entry" data-area="groups" bindtap="openService"><text>训练组别</text><text>配速与人数安排 ›</text></view></view>
   </block>
+  <block wx:if="{{activeTab === 'overview' && serviceArea}}"><button class="service-back" bindtap="closeService">‹ 返回今日</button><block wx:if="{{serviceArea === 'albums'}}">    <view class="section-head"><view class="section-title">活动相册</view><text class="section-link">查看活动照片</text></view>
+    <navigator wx:for="{{albums}}" wx:key="id" class="plain-row" url="/pages/album/album?club={{club.id}}&id={{item.id}}"><text>{{item.title}}</text><text>{{item.photoCount}} 张 · {{item.videoCount}} 个视频</text></navigator>
+    <view wx:if="{{!albums.length}}" class="empty-row">还没有活动照片。</view>
+</block><block wx:if="{{serviceArea === 'gifts'}}">    <view class="form-section">
+      <view class="section-title">积分礼品</view><view class="muted">用积分兑换，不付款。</view>
+      <view wx:for="{{gifts}}" wx:key="id" class="plain-row"><text>{{item.name}} · {{item.cost}} 分 · 剩 {{item.stock}}</text><button class="text-action" data-id="{{item.id}}" data-name="{{item.name}}" disabled="{{!item.stock}}" bindtap="redeem">兑换</button></view>
+      <view wx:if="{{!gifts.length}}" class="empty-row">暂无可兑换的礼品。</view>
+      <view wx:if="{{club.staff}}" class="manage-inline"><button class="disclosure" data-form="gift" bindtap="toggleForm"><text>上架积分礼品</text><text class="disclosure-state">{{expanded.gift ? '收起 −' : '展开 +'}}</text></button><block wx:if="{{expanded.gift}}"><input class="field" placeholder="礼品名称" value="{{giftName}}" maxlength="20" data-key="giftName" bindinput="onDraft" /><view class="form-grid"><input class="field" type="number" placeholder="所需积分" value="{{giftCost}}" data-key="giftCost" bindinput="onDraft" /><input class="field" type="number" placeholder="库存" value="{{giftStock}}" data-key="giftStock" bindinput="onDraft" /></view><button class="secondary-btn" bindtap="createGift">上架礼品</button></block></view>
+    </view>
+</block></block>
+  <block wx:if="{{activeTab === 'training'}}"><view class="section-head"><view class="section-title">和团友一起出发</view><text class="muted">报名 · 集合 · 打卡</text></view><view class="sub-tabs"><button class="sub-tab {{activityKind === 'training' ? 'active' : ''}}" data-kind="training" bindtap="pickActivity">团练</button><button class="sub-tab {{activityKind === 'meetup' ? 'active' : ''}}" data-kind="meetup" bindtap="pickActivity">约跑</button><button class="sub-tab {{activityKind === 'internal' ? 'active' : ''}}" data-kind="internal" bindtap="pickActivity">队内赛</button></view><block wx:if="{{activityKind === 'training'}}">    <view class="section-head"><view class="section-title">团练活动</view><text class="section-link">报名与集合信息</text></view>
+    <view class="activity-filters"><button class="activity-filter {{!onlyMine ? 'active' : ''}}" data-mine="0" bindtap="toggleMine">全部团练</button><button class="activity-filter {{onlyMine ? 'active' : ''}}" data-mine="1" bindtap="toggleMine">我的待参加<text class="filter-count">{{myUpcomingCount}}</text></button></view>
+    <view wx:for="{{visibleActivities}}" wx:key="id" class="training-item"><navigator class="plain-row" url="/pages/activity/activity?club={{club.id}}&id={{item.id}}"><view><view class="link-title">{{item.title}}</view><view class="muted">{{item.dateLabel}} {{item.clockLabel}} · {{item.place}}</view></view><text>{{item.signupCount}} 人 · {{item.statusLabel}}</text></navigator><navigator wx:if="{{club.staff}}" class="activity-copy" url="/pages/activity-create/activity-create?club={{club.id}}&copy={{item.id}}">复制这场 ›</navigator></view>
+    <view wx:if="{{!visibleActivities.length}}" class="empty-row">{{onlyMine ? '还没有待参加的团练，看看全部活动，约上团友一起跑。' : '还没有训练计划。'}}</view>
+    <button class="secondary-btn" bindtap="shareRecent">复制最近 3 场训练</button>
+    <navigator wx:if="{{club.staff}}" class="activity-publish" url="/pages/activity-create/activity-create?club={{club.id}}"><view><view class="link-title">＋ 发布训练活动</view><view class="muted">时间、地点与分组，一次安排清楚</view></view><text>›</text></navigator>
 
+</block><block wx:if="{{activityKind === 'meetup'}}">    <view class="section-head"><view class="section-title">约跑</view><text class="section-link">团友可加入</text></view>
+    <navigator wx:for="{{meetups}}" wx:key="id" class="plain-row" url="/pages/meetup/meetup?club={{club.id}}&id={{item.id}}"><view><view class="link-title">{{item.place}}</view><view class="muted">{{item.dateLabel}}</view></view><text>{{item.checkCount}} 人 · {{item.statusLabel}}</text></navigator>
+    <view wx:if="{{!meetups.length}}" class="empty-row">约好时间和地点，邀团友一起出发。</view>
+    <view class="form-section">
+      <button class="disclosure" data-form="meetup" bindtap="toggleForm"><text>发起约跑</text><text class="disclosure-state">{{expanded.meetup ? '收起 −' : '展开 +'}}</text></button>
+      <block wx:if="{{expanded.meetup}}">
+      <input class="field" placeholder="日期 2026-10-22" value="{{meetDate}}" data-key="meetDate" bindinput="onDraft" />
+      <input class="field" placeholder="集合地点" value="{{meetPlace}}" maxlength="40" data-key="meetPlace" bindinput="onDraft" />
+      <input class="field" placeholder="路线、距离和配速说明" value="{{meetNote}}" maxlength="100" data-key="meetNote" bindinput="onDraft" />
+      <button class="primary-btn" bindtap="createMeetup">发布约跑</button>
+      </block>
+    </view>
+
+</block><block wx:if="{{activityKind === 'internal'}}">    <view class="section-head"><view class="section-title">队内赛</view><text class="section-link">独立报名与成绩</text></view>
+    <navigator wx:for="{{internals}}" wx:key="id" class="plain-row" url="/pages/internal/internal?club={{club.id}}&id={{item.id}}"><text>{{item.title}}</text><text>{{item.signupCount}} 人 · {{item.statusLabel}}</text></navigator>
+    <view wx:if="{{!internals.length}}" class="empty-row">暂无队内赛。</view>
+    <view wx:if="{{club.staff}}" class="form-section">
+      <button class="disclosure" data-form="internal" bindtap="toggleForm"><text>发起队内赛</text><text class="disclosure-state">{{expanded.internal ? '收起 −' : '展开 +'}}</text></button>
+      <block wx:if="{{expanded.internal}}">
+      <input class="field" placeholder="赛事名称" value="{{raceTitle}}" maxlength="40" data-key="raceTitle" bindinput="onDraft" />
+      <input class="field" placeholder="开始时间 2026-11-01 08:00" value="{{raceWhen}}" data-key="raceWhen" bindinput="onDraft" />
+      <input class="field" placeholder="地点" value="{{racePlace}}" maxlength="40" data-key="racePlace" bindinput="onDraft" />
+      <view class="form-label">距离：{{raceOther ? raceOther + ' 公里' : raceDistanceLabel}}</view>
+      <view class="choice-row"><button class="choice" data-id="full" data-label="全马" bindtap="pickRaceDistance">全马</button><button class="choice" data-id="half" data-label="半马" bindtap="pickRaceDistance">半马</button><button class="choice" data-id="10k" data-label="10 公里" bindtap="pickRaceDistance">10 公里</button><button class="choice" data-id="5k" data-label="5 公里" bindtap="pickRaceDistance">5 公里</button></view>
+      <input class="field" placeholder="其他距离，公里" value="{{raceOther}}" data-key="raceOther" bindinput="onDraft" />
+      <input class="field" placeholder="报名截止，可不填" value="{{raceDeadline}}" data-key="raceDeadline" bindinput="onDraft" />
+      <input class="field" placeholder="比赛说明" value="{{raceNote}}" maxlength="500" data-key="raceNote" bindinput="onDraft" />
+      <input class="field" type="number" placeholder="完赛积分，0 不计分" value="{{racePoints}}" data-key="racePoints" bindinput="onDraft" />
+      <view wx:for="{{raceGroups}}" wx:for-index="index" wx:key="id" class="form-grid"><input class="field" placeholder="组别" value="{{item.name}}" data-index="{{index}}" data-key="name" bindinput="onRaceGroup" /><input class="field" type="number" placeholder="人数上限" value="{{item.capacity}}" data-index="{{index}}" data-key="capacity" bindinput="onRaceGroup" /></view>
+      <button class="secondary-btn" bindtap="addRaceGroup">添加组别</button>
+      <button class="primary-btn" bindtap="createInternal">发布队内赛</button>
+      </block>
+    </view>
+
+</block></block>
   <block wx:if="{{activeTab === 'matches'}}">
     <view class="section-head"><view class="section-title">跑团赛事</view><button class="text-action" bindtap="exportBoard">复制全团赛事表格</button></view>
     <view wx:if="{{!board.length}}" class="empty-row">打开赛事并标记“想跑”或“已报名”，团友就能一起查看。</view>
@@ -72,7 +103,8 @@
       <view wx:if="{{item.alternativeNote}}" class="match-note">{{item.alternativeNote}}</view>
       <navigator wx:for="{{item.alternatives}}" wx:for-item="alt" wx:key="id" class="related-race" url="/pages/race/race?id={{alt.id}}"><text>{{alt.name}}</text><text>{{alt.deadlineLabel}}</text></navigator>
       <view wx:if="{{item.unpaid.length}}" class="unpaid-note">中签后待缴费：{{item.unpaidText}}</view>
-      <view wx:for="{{item.marks}}" wx:for-item="mark" wx:key="nickname" class="member-mark"><text>{{mark.nickname}}</text><text>{{mark.status}}{{mark.clock ? ' · ' + mark.clock : ''}}{{mark.pb ? ' PB' : ''}}</text></view>
+      <button class="roster-toggle" data-key="{{item.key}}" bindtap="toggleRace"><text>{{raceExpanded[item.key] ? '收起团友名单' : '查看团友名单'}}</text><text>{{item.marks.length}} 人 {{raceExpanded[item.key] ? '−' : '＋'}}</text></button>
+      <block wx:if="{{raceExpanded[item.key]}}"><view wx:for="{{item.marks}}" wx:for-item="mark" wx:key="nickname" class="member-mark"><text>{{mark.nickname}}</text><text>{{mark.status}}{{mark.clock ? ' · ' + mark.clock : ''}}{{mark.pb ? ' PB' : ''}}</text></view></block>
       <button class="secondary-btn" data-index="{{index}}" bindtap="exportRacePoster">生成本场赛事画像</button>
     </view>
     <view wx:if="{{ranks.length}}" class="section-head"><view class="section-title">团内最好成绩</view><text class="section-link">按距离排名</text></view>
@@ -99,103 +131,35 @@
     </view>
   </block>
 
-  <block wx:if="{{activeTab === 'training'}}">
-    <view class="section-head"><view class="section-title">本周训练</view><text class="section-link">报名与集合信息</text></view>
-    <view wx:for="{{activities}}" wx:key="id" class="training-item"><navigator class="plain-row" url="/pages/activity/activity?club={{club.id}}&id={{item.id}}"><view><view class="link-title">{{item.title}}</view><view class="muted">{{item.dateLabel}} · {{item.place}}</view></view><text>{{item.signupCount}} 人 · {{item.statusLabel}}</text></navigator><navigator wx:if="{{club.staff}}" class="activity-copy" url="/pages/activity-create/activity-create?club={{club.id}}&copy={{item.id}}">复制这场 ›</navigator></view>
-    <view wx:if="{{!activities.length}}" class="empty-row">还没有训练计划。</view>
-    <button class="secondary-btn" bindtap="shareRecent">复制最近 3 场训练</button>
-    <navigator wx:if="{{club.staff}}" class="activity-publish" url="/pages/activity-create/activity-create?club={{club.id}}"><view><view class="link-title">＋ 发布训练活动</view><view class="muted">选模板、安排分组，再预览发布</view></view><text>›</text></navigator>
-
-    <view class="section-head"><view class="section-title">约跑</view><text class="section-link">团友可加入</text></view>
-    <navigator wx:for="{{meetups}}" wx:key="id" class="plain-row" url="/pages/meetup/meetup?club={{club.id}}&id={{item.id}}"><view><view class="link-title">{{item.place}}</view><view class="muted">{{item.dateLabel}}</view></view><text>{{item.checkCount}} 人 · {{item.statusLabel}}</text></navigator>
-    <view wx:if="{{!meetups.length}}" class="empty-row">约好时间和地点，邀团友一起出发。</view>
-    <view class="form-section">
-      <button class="disclosure" data-form="meetup" bindtap="toggleForm"><text>发起约跑</text><text class="disclosure-state">{{expanded.meetup ? '收起 −' : '展开 +'}}</text></button>
-      <block wx:if="{{expanded.meetup}}">
-      <input class="field" placeholder="日期 2026-10-22" value="{{meetDate}}" data-key="meetDate" bindinput="onDraft" />
-      <input class="field" placeholder="集合地点" value="{{meetPlace}}" maxlength="40" data-key="meetPlace" bindinput="onDraft" />
-      <input class="field" placeholder="路线、距离和配速说明" value="{{meetNote}}" maxlength="100" data-key="meetNote" bindinput="onDraft" />
-      <button class="primary-btn" bindtap="createMeetup">发布约跑</button>
-      </block>
-    </view>
-
-    <view class="section-head"><view class="section-title">队内赛</view><text class="section-link">独立报名与成绩</text></view>
-    <navigator wx:for="{{internals}}" wx:key="id" class="plain-row" url="/pages/internal/internal?club={{club.id}}&id={{item.id}}"><text>{{item.title}}</text><text>{{item.signupCount}} 人 · {{item.statusLabel}}</text></navigator>
-    <view wx:if="{{!internals.length}}" class="empty-row">暂无队内赛。</view>
-    <view wx:if="{{club.staff}}" class="form-section">
-      <button class="disclosure" data-form="internal" bindtap="toggleForm"><text>发起队内赛</text><text class="disclosure-state">{{expanded.internal ? '收起 −' : '展开 +'}}</text></button>
-      <block wx:if="{{expanded.internal}}">
-      <input class="field" placeholder="赛事名称" value="{{raceTitle}}" maxlength="40" data-key="raceTitle" bindinput="onDraft" />
-      <input class="field" placeholder="开始时间 2026-11-01 08:00" value="{{raceWhen}}" data-key="raceWhen" bindinput="onDraft" />
-      <input class="field" placeholder="地点" value="{{racePlace}}" maxlength="40" data-key="racePlace" bindinput="onDraft" />
-      <view class="form-label">距离：{{raceOther ? raceOther + ' 公里' : raceDistanceLabel}}</view>
-      <view class="choice-row"><button class="choice" data-id="full" data-label="全马" bindtap="pickRaceDistance">全马</button><button class="choice" data-id="half" data-label="半马" bindtap="pickRaceDistance">半马</button><button class="choice" data-id="10k" data-label="10 公里" bindtap="pickRaceDistance">10 公里</button><button class="choice" data-id="5k" data-label="5 公里" bindtap="pickRaceDistance">5 公里</button></view>
-      <input class="field" placeholder="其他距离，公里" value="{{raceOther}}" data-key="raceOther" bindinput="onDraft" />
-      <input class="field" placeholder="报名截止，可不填" value="{{raceDeadline}}" data-key="raceDeadline" bindinput="onDraft" />
-      <input class="field" placeholder="比赛说明" value="{{raceNote}}" maxlength="500" data-key="raceNote" bindinput="onDraft" />
-      <input class="field" type="number" placeholder="完赛积分，0 不计分" value="{{racePoints}}" data-key="racePoints" bindinput="onDraft" />
-      <view wx:for="{{raceGroups}}" wx:for-index="index" wx:key="id" class="form-grid"><input class="field" placeholder="组别" value="{{item.name}}" data-index="{{index}}" data-key="name" bindinput="onRaceGroup" /><input class="field" type="number" placeholder="人数上限" value="{{item.capacity}}" data-index="{{index}}" data-key="capacity" bindinput="onRaceGroup" /></view>
-      <button class="secondary-btn" bindtap="addRaceGroup">添加组别</button>
-      <button class="primary-btn" bindtap="createInternal">发布队内赛</button>
-      </block>
-    </view>
-
-    <view class="form-section">
-      <view class="section-head"><view class="section-title">团练签到</view><text class="muted">只记录到场</text></view>
-      <input class="field" placeholder="今天的训练感受，可不填" value="{{note}}" maxlength="40" bindinput="onNote" />
-      <button class="primary-btn" bindtap="checkIn">{{checkedIn ? '更新签到' : '今天签到'}}</button>
-      <button wx:if="{{checkedIn}}" class="secondary-btn" bindtap="undoCheckin">撤销签到</button>
-      <view wx:if="{{!checkins.length}}" class="empty-row">今天还没有人签到。</view>
-      <view wx:for="{{checkins}}" wx:for-item="day" wx:key="date" class="checkin-day"><view class="rank-label">{{day.label}}</view><view wx:for="{{day.rows}}" wx:for-item="row" wx:key="userId" class="plain-row"><text>{{row.nickname}}</text><text>{{row.note}}</text></view></view>
-      <view wx:if="{{checkMessage}}" class="error">{{checkMessage}}</view>
-    </view>
-  </block>
-
-  <block wx:if="{{activeTab === 'mileage'}}">
-    <navigator class="mileage-panel" url="/pages/mileage/mileage?id={{club.id}}">
+  <block wx:if="{{activeTab === 'mileage'}}">    <navigator class="mileage-panel" url="/pages/mileage/mileage?id={{club.id}}">
       <view class="section-head"><view class="section-title">跑量排行</view><text class="section-link">查看日周月年 ›</text></view>
       <view class="mileage-total">{{mileage.mineKm}} <text>km</text></view>
       <view class="muted">我本月跑量 · 跑团共 {{mileage.totalKm}} 公里 · {{mileage.totalCount}} 次记录</view>
     </navigator>
     <view wx:if="{{attendance.rows}}" class="form-section"><view class="section-head"><view class="section-title">团练出勤 · {{attendance.label}}</view><text class="muted">我 {{attendance.me.placeLabel}} · {{attendance.me.count}} 次</text></view><view wx:for="{{attendance.rows}}" wx:key="userId" wx:if="{{item.count}}" class="plain-row"><text>{{item.place}}　{{item.nickname}}</text><text>{{item.count}} 次</text></view></view>
-    <view class="section-head"><view class="section-title">活动相册</view><text class="section-link">查看活动照片</text></view>
-    <navigator wx:for="{{albums}}" wx:key="id" class="plain-row" url="/pages/album/album?club={{club.id}}&id={{item.id}}"><text>{{item.title}}</text><text>{{item.photoCount}} 张 · {{item.videoCount}} 个视频</text></navigator>
-    <view wx:if="{{!albums.length}}" class="empty-row">还没有活动照片。</view>
-    <view class="form-section">
-      <view class="section-title">积分礼品</view><view class="muted">用积分兑换，不付款。</view>
-      <view wx:for="{{gifts}}" wx:key="id" class="plain-row"><text>{{item.name}} · {{item.cost}} 分 · 剩 {{item.stock}}</text><button class="text-action" data-id="{{item.id}}" data-name="{{item.name}}" disabled="{{!item.stock}}" bindtap="redeem">兑换</button></view>
-      <view wx:if="{{!gifts.length}}" class="empty-row">暂无可兑换的礼品。</view>
-      <view wx:if="{{club.staff}}" class="manage-inline"><button class="disclosure" data-form="gift" bindtap="toggleForm"><text>上架积分礼品</text><text class="disclosure-state">{{expanded.gift ? '收起 −' : '展开 +'}}</text></button><block wx:if="{{expanded.gift}}"><input class="field" placeholder="礼品名称" value="{{giftName}}" maxlength="20" data-key="giftName" bindinput="onDraft" /><view class="form-grid"><input class="field" type="number" placeholder="所需积分" value="{{giftCost}}" data-key="giftCost" bindinput="onDraft" /><input class="field" type="number" placeholder="库存" value="{{giftStock}}" data-key="giftStock" bindinput="onDraft" /></view><button class="secondary-btn" bindtap="createGift">上架礼品</button></block></view>
-    </view>
-    <navigator class="plain-row" url="/pages/feed/feed?id={{club.id}}"><text>跑团动态</text><text>成员交流 ›</text></navigator>
-    <navigator class="plain-row" url="/pages/partner/partner?id={{club.id}}"><text>跑团合作与认证</text><text>{{partnerGrade || '查看详情'}} ›</text></navigator>
-  </block>
-
-  <block wx:if="{{activeTab === 'members'}}">
-    <view wx:if="{{club.staff}}" class="form-section">
+</block>
+  <block wx:if="{{activeTab === 'members'}}"><view class="member-areas"><button class="member-area {{memberArea === 'all' ? 'active' : ''}}" data-area="all" bindtap="pickMemberArea">成员</button><button class="member-area {{memberArea === 'fees' ? 'active' : ''}}" data-area="fees" bindtap="pickMemberArea">会费名单</button><button class="member-area {{memberArea === 'manage' ? 'active' : ''}}" data-area="manage" bindtap="pickMemberArea">服务与设置</button></view><block wx:if="{{memberArea === 'all'}}">    <view wx:if="{{club.staff && requests.length}}" class="form-section">
       <view class="section-head"><view class="section-title">入团申请</view><text class="pending-pill">{{requests.length}} 项待审核</text></view>
       <view wx:if="{{!requests.length}}" class="empty-row">暂无待审核申请。</view>
       <view wx:for="{{requests}}" wx:key="id" class="approval-row"><text>{{item.nickname}}</text><view class="approval-actions"><text class="approve" data-id="{{item.id}}" data-decision="approve" bindtap="decide">通过</text><text class="reject" data-id="{{item.id}}" data-decision="reject" bindtap="decide">拒绝</text></view></view>
     </view>
     <view class="section-head"><view class="section-title">跑团成员</view><text class="section-link">{{members.length}} 人</text></view>
-    <view wx:for="{{members}}" wx:key="id" class="member-row">
+    <view class="member-search"><view class="search-glass"></view><input value="{{memberQuery}}" bindinput="onMemberQuery" placeholder="搜索团友昵称" confirm-type="search" /></view>
+    <view class="member-filters"><button class="member-filter {{memberFilter === 'all' ? 'is-active' : ''}}" data-filter="all" bindtap="pickMemberFilter">全部成员</button><button class="member-filter {{memberFilter === 'staff' ? 'is-active' : ''}}" data-filter="staff" bindtap="pickMemberFilter">团长与管理</button><text class="muted">{{shownMembers.length}} 人</text></view>
+    <view wx:for="{{shownMembers}}" wx:key="id" class="member-row">
       <image wx:if="{{item.avatar}}" class="member-avatar" src="{{item.avatar}}" mode="aspectFill" />
       <view wx:else class="member-avatar avatar-fallback">{{item.avatarInitial}}</view>
       <view class="member-info"><view class="member-name">{{item.nickname}}</view><view class="muted">{{item.roleLabel}} · {{item.points}} 积分</view></view>
-      <view class="member-tools">
-        <text wx:if="{{club.owner && !item.owner && item.role !== 'manager'}}" class="text-action" data-id="{{item.id}}" data-role="manager" data-name="{{item.nickname}}" bindtap="setRole">设为管理员</text>
-        <text wx:if="{{club.owner && item.role === 'manager'}}" class="text-action" data-id="{{item.id}}" data-role="member" data-name="{{item.nickname}}" bindtap="setRole">取消管理员</text>
-        <text wx:if="{{club.owner && !item.owner}}" class="text-action" data-id="{{item.id}}" data-role="owner" data-name="{{item.nickname}}" bindtap="setRole">转让团长</text>
-        <text wx:if="{{club.staff && !item.owner}}" class="text-action danger" data-id="{{item.id}}" data-name="{{item.nickname}}" bindtap="removeMember">移出</text>
-      </view>
+      <button wx:if="{{club.staff && !item.owner}}" class="member-manage" data-id="{{item.id}}" bindtap="manageMember">管理</button>
     </view>
-    <view class="form-section">
+    <view wx:if="{{!shownMembers.length}}" class="empty-card">没有找到符合条件的团友，试试其他昵称。</view>
+</block><block wx:if="{{memberArea === 'manage'}}">    <view class="form-section">
       <view class="section-title">训练组别</view>
       <view wx:for="{{groups}}" wx:key="id" class="plain-row"><text>{{item.name}}{{item.pace ? ' · ' + item.pace : ''}}</text><text>{{item.capacity ? '限 ' + item.capacity + ' 人' : '不限'}}</text></view>
       <view wx:if="{{!groups.length}}" class="empty-row">还没有训练组别。</view>
       <view wx:if="{{club.staff}}" class="manage-inline"><button class="disclosure" data-form="group" bindtap="toggleForm"><text>添加训练组别</text><text class="disclosure-state">{{expanded.group ? '收起 −' : '展开 +'}}</text></button><block wx:if="{{expanded.group}}"><view class="form-grid"><input class="field" placeholder="组别名称" value="{{groupName}}" maxlength="20" data-key="groupName" bindinput="onDraft" /><input class="field" placeholder="配速说明" value="{{groupPace}}" maxlength="20" data-key="groupPace" bindinput="onDraft" /><input class="field" type="number" placeholder="人数上限，0 不限" value="{{groupCap}}" data-key="groupCap" bindinput="onDraft" /></view><button class="secondary-btn" bindtap="createGroup">添加训练组别</button></block></view>
     </view>
-    <view class="form-section">
+</block><block wx:if="{{memberArea === 'fees'}}">    <view class="form-section">
       <view class="section-title">{{feeShown.name || '跑团会费'}}</view>
       <view class="muted">会费由跑团自行收取，此处只记录名单。</view>
       <block wx:if="{{feeShown.id}}"><view class="plain-row"><text>{{feeShown.amount}} 元</text><text>{{feeShown.startsOn}} 至 {{feeShown.endsOn}}</text></view><view wx:if="{{feeShown.note}}" class="form-hint">{{feeShown.note}}</view><view class="form-hint">我的状态：{{feeShown.mine.label}}</view><view wx:if="{{feeShown.blockSignup}}" class="form-hint">未缴费或待确认成员不能报名活动和队内赛。</view>
@@ -206,18 +170,18 @@
       <view wx:else class="empty-row">还没有会费记录。</view>
       <view wx:if="{{feeHistory.length > 1 || (!feeShown.id && feeHistory.length > 0)}}" class="fee-history-section"><view class="form-hint">会费期次</view><view class="choice-row fee-history"><button wx:for="{{feeHistory}}" wx:key="id" class="choice {{item.id === feeShown.id ? 'choice-selected' : ''}}" data-id="{{item.id}}" bindtap="openFee">{{item.name}}</button></view></view>
       <view wx:if="{{club.owner}}" class="manage-inline"><button class="disclosure" data-form="fee" bindtap="toggleForm"><text>会费设置</text><text class="disclosure-state">{{expanded.fee ? '收起 −' : '展开 +'}}</text></button><block wx:if="{{expanded.fee}}"><view wx:if="{{feeShown.id && !feeShown.open && !feeCreating}}" class="form-hint">当前查看的是已结束期次，历史记录不可编辑。可切回当前期次，或开设新期次。</view><block wx:if="{{feeCreating || !feeCurrent.id || feeShown.open}}"><view class="form-grid"><input class="field" placeholder="会费名称" value="{{feeName}}" maxlength="20" data-key="feeName" bindinput="onDraft" /><input class="field" type="number" placeholder="金额，元" value="{{feeAmount}}" data-key="feeAmount" bindinput="onDraft" /><input class="field" placeholder="开始日期 2026-01-01" value="{{feeStart}}" data-key="feeStart" bindinput="onDraft" /><input class="field" placeholder="结束日期 2026-12-31" value="{{feeEnd}}" data-key="feeEnd" bindinput="onDraft" /></view><input class="field" placeholder="说明" value="{{feeNote}}" maxlength="200" data-key="feeNote" bindinput="onDraft" /><view class="toggle-line" bindtap="toggleFeeBlock">未缴费成员限制活动报名 <text>{{feeBlock ? '已开启' : '已关闭'}}</text></view><button class="primary-btn" bindtap="saveFee">{{feeCreating || !feeCurrent.id ? '开设会费期次' : '保存会费设置'}}</button></block><button wx:if="{{feeCurrent.id && !feeCreating}}" class="secondary-btn" bindtap="newPeriod">开设新期次</button></block></view>
-    </view>
-  </block>
-
-  <view wx:if="{{activeTab === 'members'}}" class="form-section">
-    <view class="section-title">跑团关系</view>
+    </view></block>  <view class="form-section relationship-card">
+    <button class="disclosure" bindtap="toggleRelationship"><text>跑团关系</text><text class="disclosure-state">{{relationshipOpen ? '收起 −' : club.owner ? '团长移交 ›' : '退出与记录 ›'}}</text></button>
+    <block wx:if="{{relationshipOpen}}">
     <view class="form-hint">退出后将无法查看团内详情。未来团练、未出成绩的未来队内赛和明日及之后未打卡的约跑报名会取消；个人赛事、成绩、积分和已打卡记录保留。再次加入需要重新申请。</view>
     <view wx:if="{{club.owner}}" class="form-hint">团长请先在成员列表中转让跑团，再退出。</view>
     <button wx:else class="secondary-btn leave-button" loading="{{leaving}}" disabled="{{leaving}}" bindtap="leaveClub">退出跑团</button>
+    </block>
   </view>
+</block>
   <view wx:if="{{message}}" class="error">{{message}}</view>
 </view>
-<view wx:else class="loading">{{message || '正在打开跑团'}}</view>
+<view wx:else class="loading"><view class="loading-title">{{loading ? '正在打开跑团' : '暂时无法打开跑团'}}</view><view wx:if="{{message}}" class="loading-message">{{message}}</view><button wx:if="{{!loading}}" class="retry-button" bindtap="load">重新加载</button><navigator wx:if="{{!loading}}" class="loading-back" open-type="switchTab" url="/pages/clubs/clubs">返回我的跑团</navigator></view>
 <canvas type="2d" id="club-poster" class="club-poster-canvas"></canvas>
 <view wx:if="{{posterPath}}" class="poster-layer" bindtap="closePoster" catchtouchmove="noop">
   <view class="poster-frame" catchtap="noop"><image class="poster-image" src="{{posterPath}}" mode="widthFix" show-menu-by-longpress="{{true}}" /><view class="poster-hint">长按图片保存到相册 · 点击空白处关闭</view></view>

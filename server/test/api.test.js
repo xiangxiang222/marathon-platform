@@ -2035,7 +2035,8 @@ function callRow(call, nickname, distance) {
   return group && group.rows.find((row) => row.nickname === nickname);
 }
 
-test("dues are recorded by the club and can block an activity signup", async () => {
+test("dues are recorded by the club and can block an activity signup", async (t) => {
+  t.mock.timers.enable({ apis: ["Date"], now: new Date("2026-10-31T20:00:00+08:00") });
   const leader = await session("会费团长");
   const mate = await session("会费成员");
   const manager = await session("会费管理");
@@ -2727,7 +2728,8 @@ test("an activity keeps its own groups, and the album can hide a photo until it 
   assert.equal((await request(app).get("/marathon/api/clubs/" + clubId + "/albums").set("Authorization", "Bearer " + outsider)).status, 403);
 });
 
-test("handwritten mileage stays off the points ledger and follows each club's rules", async () => {
+test("handwritten mileage stays off the points ledger and follows each club's rules", async (t) => {
+  t.mock.timers.enable({ apis: ["Date"], now: new Date("2026-10-31T20:00:00+08:00") });
   const leader = await session("跑量团长");
   const mate = await session("跑量甲");
   const manager = await session("跑量管理");
@@ -2837,7 +2839,7 @@ test("handwritten mileage stays off the points ledger and follows each club's ru
   assert.match(blank.body.error, /不能低于 20/);
   assert.equal((await request(app).put("/marathon/api/runs-flag").set(auth).send({ month: today.slice(0, 7), targetKm: 12, gender: "男" })).status, 200);
 
-  const mateRun = await log(mate, { type: "run", startedAt: stamp(420), distanceKm: 5, duration: "0:30:00", climb: 0 });
+  const mateRun = await log(mate, { type: "run", startedAt: stamp(2), distanceKm: 5, duration: "0:30:00", climb: 0 });
   assert.equal(mateRun.body.run.clubs[0].counted, true);
   const report = await request(app).get("/marathon/api/clubs/" + clubId + "/mileage/report?kind=month&at=" + today.slice(0, 7)).set(auth);
   const mateRow = report.body.rows.find((row) => row.nickname === "跑量甲");
@@ -2895,7 +2897,8 @@ test("handwritten mileage stays off the points ledger and follows each club's ru
   assert.equal(personal.body.watches, "尚未接入");
 });
 
-test("club grade, supplies, offline splits and the monthly league stay off the points ledger", async () => {
+test("club grade, supplies, offline splits and the monthly league stay off the points ledger", async (t) => {
+  t.mock.timers.enable({ apis: ["Date"], now: new Date("2026-10-31T20:00:00+08:00") });
   const pointsBefore = getDb().prepare("SELECT COUNT(*) AS n FROM point_entries").get().n;
   const today = new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10);
   const month = today.slice(0, 7);
