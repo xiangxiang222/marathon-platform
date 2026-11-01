@@ -21,8 +21,8 @@ export function savedName() {
   return localStorage.getItem("marathon_name") || "";
 }
 
-export function upload(path, file) {
-  const headers = {};
+export function upload(path, file, options = {}) {
+  const headers = { ...(options.headers || {}) };
   const token = localStorage.getItem("marathon_token");
   if (token) headers.Authorization = "Bearer " + token;
   const body = new FormData();

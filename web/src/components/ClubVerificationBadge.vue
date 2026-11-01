@@ -1,0 +1,17 @@
+<template>
+  <button v-if="club?.verified" ref="opener" type="button" class="identity-badge" @click.prevent.stop="open">✓ 身份已核验</button>
+  <Teleport to="body"><div v-if="shown" class="identity-modal" @click.self="close" @keydown="keydown"><section ref="panel" class="identity-sheet" role="dialog" aria-modal="true" aria-labelledby="identity-explanation-title" tabindex="-1"><header><h2 id="identity-explanation-title">组织管理关系已核验</h2><button type="button" aria-label="关闭核验说明" @click="close">×</button></header><p class="identity-org">{{ club.organization || club.name }}</p><dl><dt>授权范围</dt><dd>{{ club.verificationScope || club.city || '以本跑团为范围' }}</dd><dt>公开团号</dt><dd>#{{ club.id }}</dd><dt>核验日期</dt><dd>{{ identityDate(club.verifiedAt) }}</dd></dl><p>本页面由已核对组织管理授权的负责人管理。</p><p class="identity-boundary">核验不授予名称独占权，也不代表平台对活动安全、赛事成绩或商业服务的背书。其他同名组织可以独立存在。</p><button class="identity-done" type="button" @click="close">明白了</button></section></div></Teleport>
+</template>
+<script setup>
+import { nextTick, onBeforeUnmount, ref, watch } from 'vue';
+import { identityDate } from '../club-identity';
+const props = defineProps({ club: { type: Object, required: true } });
+const shown = ref(false), panel = ref(null), opener = ref(null); let overflow = '';
+async function open() { overflow = document.body.style.overflow; document.body.style.overflow = 'hidden'; shown.value = true; await nextTick(); panel.value?.focus(); }
+function close() { if (!shown.value) return; shown.value = false; document.body.style.overflow = overflow; opener.value?.focus(); }
+function keydown(event) { if (event.key === 'Escape') close(); if (event.key !== 'Tab') return; const items = panel.value?.querySelectorAll('button'); if (!items?.length) return; const first = items[0], last = items[items.length - 1]; if (event.shiftKey && [first, panel.value].includes(document.activeElement)) { event.preventDefault(); last.focus(); } else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); } }
+watch(() => [props.club?.id, props.club?.verified], close); onBeforeUnmount(close);
+</script>
+<style scoped>
+.identity-badge{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:3px 7px;color:#526175;background:transparent;font-size:11px;font-weight:550;white-space:nowrap}.identity-modal{position:fixed;z-index:1600;inset:0;display:flex;align-items:flex-end;justify-content:center;padding:14px;background:#171c2766}.identity-sheet{box-sizing:border-box;width:min(460px,100%);max-height:90dvh;overflow:auto;border-radius:22px;background:white;padding:24px;color:#343b48;outline:none}.identity-sheet header{display:flex;align-items:center;justify-content:space-between;gap:12px}.identity-sheet h2{margin:0;font-size:19px}.identity-sheet header button{flex:none;width:44px;height:44px;border:0;background:#f5f6f8;border-radius:50%;color:#6d7481;font-size:25px}.identity-sheet p{font-size:13px;line-height:1.85;overflow-wrap:anywhere}.identity-org{font-weight:600}.identity-sheet dl{display:grid;grid-template-columns:68px minmax(0,1fr);gap:12px;padding:17px;border-radius:12px;background:#f7f8fa;font-size:12px;line-height:1.7}.identity-sheet dt{color:#8b93a0}.identity-sheet dd{margin:0;overflow-wrap:anywhere}.identity-boundary{color:#818997}.identity-done{min-height:46px;width:100%;border-radius:11px;background:#f0f2f6;color:#434c5d;font-weight:600}.identity-badge:focus-visible,.identity-sheet button:focus-visible{outline:2px solid #ff163f;outline-offset:2px}
+</style>

@@ -5,6 +5,7 @@ const crypto = require("node:crypto");
 const { app } = require("../src/index");
 const { getDb } = require("../src/db");
 
+const LEGAL_VERSION = require("../../shared/legal-documents.json").version;
 const API = "/marathon/api";
 const START = "2025-10-11T06:00:17Z";
 let sequence = 0;
@@ -38,7 +39,7 @@ function club(owner, { climb = 100, add = true } = {}) {
 }
 
 function upload(owner, bytes, name = "export.tcx") {
-  return request(app).post(API + "/me/devices/import").set(owner.auth).attach("file", bytes, name);
+  return request(app).post(API + "/me/devices/import").set(owner.auth).set("X-Activity-Data-Consent", LEGAL_VERSION).attach("file", bytes, name);
 }
 function stored(id) { return getDb().prepare("SELECT * FROM runs WHERE id = ?").get(id); }
 function runCount(owner) { return getDb().prepare("SELECT COUNT(*) AS n FROM runs WHERE user_id = ?").get(owner.id).n; }

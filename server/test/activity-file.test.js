@@ -5,6 +5,7 @@ const { app } = require("../src/index");
 const { getDb } = require("../src/db");
 const { parseActivityFile, mountActivityFiles } = require("../src/activity-file");
 
+const LEGAL_VERSION = require("../../shared/legal-documents.json").version;
 const API = "/marathon/api";
 const START = "2025-10-11T06:00:00Z";
 function tcx({ start = START, sport = "Running", distance = 10000, duration = 3600, laps, extra = "" } = {}) {
@@ -22,7 +23,26 @@ async function user(name) {
   assert.equal(response.status, 200);
   return { ...response.body.user, auth: { Authorization: "Bearer " + response.body.token } };
 }
-function upload(owner, buffer, filename = "from-coros.tcx") { return request(app).post(API + "/me/devices/import").set(owner.auth).attach("file", buffer, filename); }
+function upload(owner, buffer, filename = "from-coros.tcx") { return request(app).post(API + "/me/devices/import").set(owner.auth).set("X-Activity-Data-Consent", LEGAL_VERSION).attach("file", buffer, filename); }
+
+test("file consent is versioned and checked before any upload body is read", async () => {
+  const owner = await user("未授权文件解析"), db = getDb();
+  const isolated = require("express")();
+  let uploadReads = 0;
+  isolated.use((req, _res, next) => {
+    const on = req.on;
+    req.on = function (event, ...args) { if (event === "data") uploadReads++; return on.call(this, event, ...args); };
+    next();
+  });
+  mountActivityFiles(isolated, { BASE: "", getDb: () => { throw new Error("consent must be checked before reading database or body"); }, userFrom: () => owner });
+  const missing = await request(isolated).post("/api/me/devices/import").attach("file", tcx(), "private-file.tcx");
+  assert.equal(missing.status, 428);
+  const stale = await request(isolated).post("/api/me/devices/import").set("X-Activity-Data-Consent", "outdated").attach("file", tcx(), "private-file.tcx");
+  assert.equal(stale.status, 409);
+  assert.equal(uploadReads, 0);
+  assert.equal(db.prepare("SELECT COUNT(*) n FROM runs WHERE user_id=?").get(owner.id).n, 0);
+  assert.equal(db.prepare("SELECT COUNT(*) n FROM legal_acceptances WHERE user_id=?").get(owner.id).n, 0);
+});
 
 test("official FIT decoder validates CRC and reads a running summary in documented metres/seconds", async () => {
   const buffer = await fit({ subSport: "trail" });
@@ -73,20 +93,26 @@ test("untrusted XML, routes, missing fields, unknown dates and future activities
 test("file import requires login and authentic multipart; checks actual file content and upload limits", async () => {
   const owner = await user("设备文件边界");
   assert.equal((await request(app).post(API + "/me/devices/import").attach("file", tcx(), "a.tcx")).status, 401);
-  assert.equal((await request(app).post(API + "/me/devices/import").set(owner.auth).send({ activity: {} })).status, 400);
+  assert.equal((await request(app).post(API + "/me/devices/import").set(owner.auth).set("X-Activity-Data-Consent", LEGAL_VERSION).send({ activity: {} })).status, 400);
   assert.equal((await upload(owner, Buffer.from("fake content"), "running.fit")).status, 400);
   assert.equal((await upload(owner, Buffer.alloc(5 * 1024 * 1024 + 1), "too-big.fit")).status, 413);
-  assert.equal((await request(app).post(API + "/me/devices/import").set(owner.auth).attach("file", tcx(), "one.tcx").attach("file", tcx(), "two.tcx")).status, 400);
+  assert.equal((await request(app).post(API + "/me/devices/import").set(owner.auth).set("X-Activity-Data-Consent", LEGAL_VERSION).attach("file", tcx(), "one.tcx").attach("file", tcx(), "two.tcx")).status, 400);
 });
 
 test("imports enter original-distance statistics, use Beijing time, omit raw GPS/heart-rate and isolate accounts", async () => {
   const owner = await user("高驰导入甲"), other = await user("高驰导入乙");
+  require("../src/legal").recordAcceptance(getDb(), owner.id, { version: LEGAL_VERSION, accepted: true }, "register");
   const answer = await upload(owner, tcx());
   assert.equal(answer.status, 200, JSON.stringify(answer.body)); assert.equal(answer.body.imported, 1); assert.equal(answer.body.source, "file");
   const stored = getDb().prepare("SELECT * FROM runs WHERE id = ?").get(answer.body.runId);
   assert.equal(stored.source, "file"); assert.equal(stored.started_at, "2025-10-11T14:00"); assert.equal(stored.distance_km, 10); assert.equal(stored.volume_km, 10);
   const mapping = getDb().prepare("SELECT * FROM wearable_activities WHERE run_id = ?").get(stored.id);
   assert.doesNotMatch(mapping.payload_json, /Latitude|Longitude|HeartRate|144/);
+  const receipts = getDb().prepare("SELECT * FROM legal_acceptances WHERE user_id=? ORDER BY scope").all(owner.id);
+  assert.deepEqual(receipts.map((row) => row.scope), ["activity-file", "terms"]);
+  assert.equal(receipts.find((row) => row.scope === "terms").source, "register");
+  assert.equal(receipts.find((row) => row.scope === "activity-file").source, "activity-file");
+  assert.doesNotMatch(JSON.stringify(receipts), /from-coros|Latitude|Longitude|HeartRate|GPS/);
   const center = await request(app).get(API + "/me/runner?period=all").set(owner.auth);
   assert.equal(center.body.overview.totalKm, 10); assert.equal(center.body.overview.totalCount, 1); assert.equal(center.body.training.runs[0].source, "file");
   assert.equal((await request(app).get(API + "/me/runner?period=all").set(other.auth)).body.overview.totalKm, 0);
@@ -98,7 +124,7 @@ test("file parsing rechecks a revoked session before creating any workout or imp
   const isolated = require("express")();
   let authorizationReads = 0;
   mountActivityFiles(isolated, { BASE: "", getDb: () => db, userFrom: () => ++authorizationReads === 1 ? owner : null });
-  const answer = await request(isolated).post("/api/me/devices/import").attach("file", tcx(), "from-coros.tcx");
+  const answer = await request(isolated).post("/api/me/devices/import").set("X-Activity-Data-Consent", LEGAL_VERSION).attach("file", tcx(), "from-coros.tcx");
   assert.equal(answer.status, 401); assert.match(answer.body.error, /登录/);
   assert.equal(db.prepare("SELECT COUNT(*) AS n FROM runs WHERE user_id = ?").get(owner.id).n, 0);
   assert.equal(db.prepare("SELECT COUNT(*) AS n FROM wearable_connections WHERE user_id = ?").get(owner.id).n, 0);

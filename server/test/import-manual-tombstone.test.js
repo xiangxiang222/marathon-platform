@@ -4,6 +4,7 @@ const request = require("supertest");
 const { app } = require("../src/index");
 const { getDb } = require("../src/db");
 
+const LEGAL_VERSION = require("../../shared/legal-documents.json").version;
 const API = "/marathon/api";
 const START = "2025-10-11T06:01:00Z";
 let sequence = 0;
@@ -36,7 +37,7 @@ async function manual(owner, start = "2025-10-11 14:01", extra = {}) {
   assert.equal(reply.status, 200, JSON.stringify(reply.body));
   return reply.body.run.id;
 }
-const upload = (owner, bytes, name = "activity.tcx") => request(app).post(API + "/me/devices/import").set(owner.auth).attach("file", bytes, name);
+const upload = (owner, bytes, name = "activity.tcx") => request(app).post(API + "/me/devices/import").set(owner.auth).set("X-Activity-Data-Consent", LEGAL_VERSION).attach("file", bytes, name);
 const stored = id => getDb().prepare("SELECT * FROM runs WHERE id = ?").get(id);
 const rows = owner => getDb().prepare("SELECT * FROM runs WHERE user_id = ? ORDER BY id").all(owner.id);
 const aliases = owner => getDb().prepare("SELECT * FROM wearable_activities WHERE external_account_id = ? ORDER BY id").all("user:" + owner.id);

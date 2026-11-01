@@ -1,4 +1,5 @@
 const { request, ready } = require("../../utils/request");
+const { shareTitle, showVerification } = require("../../utils/club-identity");
 
 function accountKey() {
   const app = typeof getApp === "function" ? getApp() : null;
@@ -6,7 +7,7 @@ function accountKey() {
 }
 
 Page({
-  data: { club: null, clubInitial: "团", ready: false, loading: true, applying: false, error: "", shareOpen: false, timelineGuide: false },
+  data: { club: null, clubInitial: "团", restricted: false, ready: false, loading: true, applying: false, error: "", shareOpen: false, timelineGuide: false },
   onLoad(query = {}) {
     this.disposed = false;
     this.hidden = false;
@@ -42,9 +43,11 @@ Page({
       .then((data) => {
         if (this.disposed || this.hidden || token !== accountKey() || version !== this.loadVersion) return;
         this.clubId = String(data.club.id);
-        this.setData({ club: data.club, clubInitial: String(data.club.name || "团").slice(0, 1), loading: false, error: "" });
-        this.setSharing(true);
-        if (this.applyAfterLogin && ready()) {
+        const restricted = !!data.club.restricted || data.club.publicStatus === "restricted";
+        if (restricted) this.applyAfterLogin = false;
+        this.setData({ club: data.club, clubInitial: String(data.club.name || "团").slice(0, 1), restricted, loading: false, error: "", ...(restricted ? { shareOpen: false, timelineGuide: false } : {}) });
+        this.setSharing(!restricted);
+        if (this.applyAfterLogin && ready() && !restricted) {
           this.applyAfterLogin = false;
           this.submitApplication();
         }
@@ -56,7 +59,7 @@ Page({
       });
   },
   apply() {
-    if (!this.data.club) return;
+    if (!this.data.club || this.data.restricted) return;
     if (!ready()) {
       wx.setStorageSync("marathon_pending_club_id", String(this.data.club.id));
       wx.switchTab({ url: "/pages/mine/mine" });
@@ -65,7 +68,7 @@ Page({
     this.submitApplication();
   },
   submitApplication() {
-    if (this.disposed || this.data.applying || !this.data.club || this.data.club.pending) return;
+    if (this.disposed || this.hidden || this.data.restricted || this.data.applying || !this.data.club || this.data.club.pending) return;
     if (this.data.club.joined) {
       wx.redirectTo({ url: "/pages/club/club?id=" + this.data.club.id });
       return;
@@ -89,22 +92,26 @@ Page({
       });
   },
   enterClub() {
-    if (!this.data.club) return;
+    if (this.disposed || this.hidden || !ready() || this.account !== accountKey() || !this.data.club || !this.data.club.joined) return;
     wx.navigateTo({ url: "/pages/club/club?id=" + this.data.club.id });
   },
   setSharing(enabled) {
     if (enabled && wx.showShareMenu) wx.showShareMenu({ menus: ["shareAppMessage", "shareTimeline"] });
     if (!enabled && wx.hideShareMenu) wx.hideShareMenu({ menus: ["shareAppMessage", "shareTimeline"] });
   },
+  verifiedInfo() { showVerification(this.data.club); },
+  reportIdentity() {
+    if (this.data.club) wx.navigateTo({ url: "/pages/club-report/club-report?id=" + this.data.club.id });
+  },
   openShare() {
-    if (!this.data.club || this.data.loading) return;
+    if (!this.data.club || this.data.loading || this.data.restricted) return;
     this.setData({ shareOpen: true });
   },
   closeShare() {
     this.setData({ shareOpen: false });
   },
   showTimelineGuide() {
-    if (!this.data.club) return;
+    if (!this.data.club || this.data.restricted) return;
     this.setData({ shareOpen: false, timelineGuide: true });
   },
   closeTimelineGuide() {
@@ -112,6 +119,7 @@ Page({
   },
   stopTap() {},
   shareQuery() {
+    if (this.data.restricted) return "";
     const club = this.data.club || {};
     const id = club.id || this.clubId;
     if (id) return "id=" + encodeURIComponent(id);
@@ -119,17 +127,19 @@ Page({
     return "";
   },
   onShareAppMessage() {
+    if (this.data.restricted) return { title: "跑团", path: "/pages/clubs/clubs" };
     const club = this.data.club || {};
     const query = this.shareQuery();
     this.setData({ shareOpen: false });
     return {
-      title: (club.name || "跑团") + " · 一起开跑",
+      title: shareTitle(club),
       path: query ? "/pages/club-intro/club-intro?" + query : "/pages/clubs/clubs"
     };
   },
   onShareTimeline() {
+    if (this.data.restricted) return { title: "跑团", query: "" };
     const club = this.data.club || {};
     this.setData({ timelineGuide: false });
-    return { title: (club.name || "跑团") + " · 一起开跑", query: this.shareQuery() };
+    return { title: shareTitle(club), query: this.shareQuery() };
   }
 });

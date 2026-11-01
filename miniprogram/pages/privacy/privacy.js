@@ -24,6 +24,7 @@ Page({
       fail: () => this.setData({ message: "隐私指引暂时无法打开，请稍后重试" })
     });
   },
+  openFullPolicy(e) { wx.navigateTo({ url: "/pages/legal/legal?doc=" + encodeURIComponent(e.currentTarget.dataset.doc || "privacy") }); },
   agreePrivacyAuthorization() {
     const app = getApp();
     const pending = app.globalData.privacyResolvers || [];

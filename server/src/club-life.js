@@ -1,3 +1,4 @@
+const { publicIdentity } = require("./club-identity");
 const { avatarUrlOf } = require("./avatars");
 const fs = require("fs");
 const path = require("path");
@@ -566,6 +567,8 @@ function clubLife(db, club, userId) {
     club: {
       id: club.id,
       name: club.name,
+      ...publicIdentity(db, club),
+      leader: (db.prepare("SELECT nickname FROM users WHERE id=?").get(club.owner_id) || {}).nickname || "",
       code: club.code,
       owner: mine === "owner",
       staff,
@@ -637,7 +640,7 @@ function mountClubLife(app, { BASE, getDb, userFrom }) {
       res.status(401).json({ error: "请先登录" });
       return null;
     }
-    const club = getDb().prepare("SELECT id, name, code, owner_id FROM clubs WHERE id = ?").get(req.params.id);
+    const club = getDb().prepare("SELECT * FROM clubs WHERE id = ?").get(req.params.id);
     if (!club) {
       res.status(404).json({ error: "没有这个跑团" });
       return null;

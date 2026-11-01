@@ -1,5 +1,6 @@
 <view class="intro-page">
   <view wx:if="{{loading}}" class="state">正在打开跑团…</view>
+  <view wx:elif="{{club && restricted}}" class="state restricted-state"><view class="section-title">暂时无法公开查看这个跑团</view><view class="status-copy">{{club.statusMessage || '该跑团目前暂停公开展示与招募。团内记录保留，暂不能分享或申请加入。'}}</view><view class="status-copy">团号 #{{club.id}}</view><button wx:if="{{club.joined}}" class="retry-action" bindtap="enterClub">进入已加入的跑团</button><button class="report-link" bindtap="reportIdentity">提交私密说明或申诉 ›</button><navigator class="report-link" open-type="switchTab" url="/pages/clubs/clubs">返回跑团</navigator></view>
   <block wx:elif="{{club}}">
     <view class="intro-content">
       <view class="intro-card">
@@ -7,10 +8,12 @@
         <view class="card-eyebrow">跑团名片</view>
         <view class="club-mark" aria-hidden="true">{{clubInitial}}</view>
         <view class="club-name">{{club.name}}</view>
-        <view class="card-tagline">和跑友一起，跑得更远</view>
+        <button wx:if="{{club.verified}}" class="verified-mark" bindtap="verifiedInfo">✓ 身份已核验 · 查看范围</button>
+        <view class="card-tagline">{{club.city || '城市待补充'}} · 团号 #{{club.id}}</view>
+        <view class="card-tagline">{{club.intro || '和跑友一起，跑得更远'}}</view>
         <view class="club-facts">
-          <view class="club-owner"><text class="fact-label">团长</text><text class="fact-value">{{club.leader || '跑团管理员'}}</text></view>
-          <view class="club-count"><text class="count">{{club.memberCount}}</text><text class="count-label">位成员</text></view>
+          <view class="club-owner"><text class="fact-label">公开负责人</text><text class="fact-value">{{club.leader || '跑团管理员'}}</text></view>
+          <view class="club-count"><text class="count">{{club.memberCount || 0}}</text><text class="count-label">位成员</text></view>
         </view>
       </view>
 
@@ -28,6 +31,8 @@
       <view wx:elif="{{club.pending}}" class="status status-pending"><view class="status-dot"></view><view><view class="status-title">申请已提交</view><view class="status-copy">等待团长或管理员审核，通过后即可进入跑团。</view></view></view>
       <view wx:if="{{error}}" class="error">{{error}}</view>
       <view class="secondary-note">分享这张名片，邀请跑友一起来。</view>
+      <view class="join-identity">申请加入的是：{{club.name}} · {{club.city || '城市待补充'}} · 负责人 {{club.leader || '跑团管理员'}} · #{{club.id}}</view>
+      <button class="report-link" bindtap="reportIdentity">名称或身份被冒用？私密反馈 ›</button>
     </view>
 
     <view class="intro-dock">
@@ -41,7 +46,7 @@
       <view class="share-sheet" catchtap="stopTap">
         <view class="sheet-handle"></view>
         <view class="sheet-header"><view class="sheet-title">分享跑团</view><button class="sheet-close" bindtap="closeShare" aria-label="关闭分享">×</button></view>
-        <view class="share-preview"><view class="preview-mark">{{clubInitial}}</view><view class="preview-copy"><view class="preview-name">{{club.name}}</view><view class="preview-note">跑团名片 · 好友打开后可申请加入</view></view></view>
+        <view class="share-preview"><view class="preview-mark">{{clubInitial}}</view><view class="preview-copy"><view class="preview-name">{{club.name}}</view><view class="preview-note">{{club.city || '城市待补充'}} · 负责人 {{club.leader || '跑团管理员'}} · #{{club.id}}</view><view class="preview-note">好友打开后可申请加入</view></view></view>
         <button class="share-choice friend-choice" open-type="share">发给好友 / 微信群<text class="choice-arrow">›</text></button>
         <button class="share-choice timeline-choice" bindtap="showTimelineGuide">分享到朋友圈<text class="choice-arrow">›</text></button>
         <view class="share-foot">分享无需登录，好友加入仍需审核。</view>

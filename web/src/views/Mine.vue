@@ -22,6 +22,7 @@
         <input v-model="password" type="password" :autocomplete="authTab === 'login' ? 'current-password' : 'new-password'" placeholder="密码，至少 8 位" />
         <input v-if="authTab === 'register'" v-model="password2" type="password" autocomplete="new-password" placeholder="再输入一次密码" />
         <template v-if="authTab === 'login'"><button type="button" class="captcha" @click="loadCaptcha"><img v-if="captchaImage" :src="captchaImage" alt="验证码" /><span v-else>{{ captchaLoading ? '加载中…' : '点击获取验证码' }}</span></button><input v-model="captcha" autocomplete="off" maxlength="4" placeholder="上图字符" /></template>
+        <div class="auth-legal"><label><input v-model="legalAccepted" type="checkbox" /><span>我已阅读并同意用户协议，并已阅读隐私政策</span></label><p><router-link to="/legal/terms" target="_blank" rel="noopener noreferrer">《用户协议》</router-link><router-link to="/legal/privacy" target="_blank" rel="noopener noreferrer">《隐私政策》</router-link></p><small>账号服务暂面向已满14周岁的用户。运动资料、文件与领奖地址等可选信息，将在使用对应功能时另行说明。</small></div>
         <button class="primary" type="submit">{{ authTab === 'login' ? '登录' : '注册' }}</button>
       </form><p v-if="authTab === 'login'" class="hint">旧账号未设置密码或无法登录？请联系平台管理员核验身份后恢复账号。</p><p v-if="message" :class="ok ? 'success' : 'err'">{{ message }}</p>
     </section>
@@ -55,7 +56,7 @@
     </section>
     <section v-else class="sheet empty-state"><h3>你的资料，由你管理</h3><p>登录后设置头像、昵称和账号密码。</p><button class="text-action" type="button" @click="openAuth">去登录 ›</button></section>
     <router-link v-if="section === 'overview'" class="feedback-entry" :to="feedbackUnread ? '/feedback?mine=1' : '/feedback'"><span class="feedback-entry-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 1-8 8H5l-3 3v-9a10 10 0 0 1 10-10h1M17 3v8m-4-4h8"/></svg></span><span><b>共创建议<span v-if="feedbackUnread" class="feedback-entry-unread">{{ feedbackUnread > 99 ? '99+' : feedbackUnread }} 条新进度</span></b><small>提建议 · 为好想法投票 · 查看采纳进度</small></span><i aria-hidden="true">↗</i></router-link>
-    <footer class="legal">{{ company }} · {{ icp }}</footer>
+    <footer class="legal"><nav aria-label="协议与隐私"><router-link to="/legal/terms">用户协议</router-link><router-link to="/legal/privacy">隐私政策</router-link><router-link to="/legal/collection">个人信息收集清单</router-link><router-link to="/legal/sharing">第三方信息共享清单</router-link><router-link to="/legal/rights">个人信息权利</router-link></nav><p>{{ company }} · {{ icp }}</p></footer>
   </main>
 </template>
 
@@ -110,6 +111,8 @@ const authTab = ref("login");
 const draft = ref("");
 const password = ref("");
 const password2 = ref("");
+const legalAccepted = ref(false), legalVersion = ref("2026-11-01.1");
+async function loadLegalVersion() { try { const data = await api('/legal'); if (data.version && data.version !== legalVersion.value) { legalVersion.value = data.version; legalAccepted.value = false; } } catch (_) {} }
 const captcha = ref("");
 const captchaToken = ref("");
 const captchaImage = ref("");
@@ -245,6 +248,7 @@ function saveSession(data) {
 }
 
 function logout() {
+  legalAccepted.value = false;
   accountRequest++;
   runnerRequest++;
   runnerData.value = null;
@@ -280,13 +284,14 @@ function logout() {
 async function submitAuth() {
   message.value = "";
   ok.value = false;
+  if (!legalAccepted.value) { message.value = "请先阅读用户协议与隐私政策，自主勾选后继续。"; return; }
   if (authTab.value === "register" && password.value !== password2.value) {
     message.value = "两次密码不一致";
     return;
   }
   try {
     const path = authTab.value === "login" ? "/auth/login" : "/auth/register";
-    const body = { nickname: draft.value, password: password.value };
+    const body = { nickname: draft.value, password: password.value, legalConsent: { version: legalVersion.value, accepted: true } };
     if (authTab.value === "login") {
       body.captchaToken = captchaToken.value;
       body.captcha = captcha.value;
@@ -295,7 +300,7 @@ async function submitAuth() {
     saveSession(data);
     await load();
     const returnPath = localStorage.getItem("marathon_return_after_login") || "";
-    if (returnPath.startsWith("/clubs/") || /^\/runner(?:\?view=(?:stats|career|footprints|honors|media|devices|help))?$/.test(returnPath) || /^\/feedback(?:\/\d+)?(?:\?(?:compose|mine)=1)?$/.test(returnPath) || (returnPath === "/radar" || returnPath === "/sport" || /^\/races\/[^/?#]+(?:\?plan=1)?$/.test(returnPath))) {
+    if (returnPath === "/legal/rights" || returnPath.startsWith("/clubs/") || /^\/runner(?:\?view=(?:stats|career|footprints|honors|media|devices|help))?$/.test(returnPath) || /^\/feedback(?:\/\d+)?(?:\?(?:compose|mine)=1)?$/.test(returnPath) || (returnPath === "/radar" || returnPath === "/sport" || /^\/races\/[^/?#]+(?:\?plan=1)?$/.test(returnPath))) {
       localStorage.removeItem("marathon_return_after_login");
       await router.replace(returnPath);
     }
@@ -410,10 +415,11 @@ async function savePassword() {
   }
 }
 
-onMounted(load);
+onMounted(() => { load(); loadLegalVersion(); });
 </script>
 
 <style scoped>
+.auth-form .auth-legal{padding:5px 0 9px}.auth-form .auth-legal label{display:flex;align-items:flex-start;gap:9px;color:#687385;font-size:11px;line-height:1.9;cursor:pointer}.auth-form .auth-legal input[type=checkbox]{width:17px;height:17px;min-height:17px;flex:none;margin:3px 0 0;accent-color:#ff0a30}.auth-legal p{display:flex;flex-wrap:wrap;gap:10px;margin:7px 0 6px;padding-left:26px;font-size:11px;line-height:1.9}.auth-legal a{color:#b34364;text-decoration:underline;text-underline-offset:3px}.auth-legal small{display:block;padding-left:26px;color:#949daa;font-size:10px;line-height:1.9}.legal nav{display:flex;flex-wrap:wrap;gap:2px 15px}.legal nav a{min-height:36px;display:flex;align-items:center;color:#8c8a9b;font-size:11px}.legal p{margin:8px 0;line-height:1.8}
 .mine { padding: 0 12px 16px; color: #1f2026; }
 .feedback-entry-unread{display:inline-block;margin-left:6px;padding:1px 5px;vertical-align:middle;border-radius:5px;background:#ff0a30;color:white;font-size:10px;font-weight:500;line-height:1.7}.feedback-entry b{display:flex!important;align-items:center;gap:3px;flex-wrap:wrap}.feedback-entry small{color:#737987!important;font-size:11px!important}
 .feedback-entry{display:flex;align-items:center;gap:12px;margin:16px 0 12px;padding:18px;border:1px solid #fff;border-radius:17px;background:linear-gradient(120deg,#fff,#fff3f6);color:#3f3540}.feedback-entry-icon{display:grid;place-items:center;width:35px;height:37px;border-radius:11px;background:#ffe9ef;color:#e66b89;flex:none}.feedback-entry-icon svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}.feedback-entry>span:nth-child(2){flex:1;min-width:0}.feedback-entry b{display:block;font-size:14px;font-weight:600;line-height:1.7}.feedback-entry small{display:block;font-size:10px;line-height:1.9;color:#ac98a3;margin-top:3px}.feedback-entry i{font-size:22px;color:#d77b94;font-style:normal;flex:none}

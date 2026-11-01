@@ -59,6 +59,7 @@ async function run() {
       await page.route("**/marathon/api/**", async route => {
         const url = new URL(route.request().url());
         const endpoint = url.pathname.replace("/marathon/api", "");
+    if (endpoint === '/legal') return route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(require('../../shared/legal-documents.json')) });
         const match = /^\/clubs\/(44|45)(.*)$/.exec(endpoint);
         let data;
         if (endpoint === "/me/feedback/summary") data = { total: 0, unread: 0 };

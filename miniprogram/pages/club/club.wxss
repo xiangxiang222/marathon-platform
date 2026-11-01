@@ -183,3 +183,16 @@ text.text-action { display:inline-flex; align-items:center; min-height:72rpx; bo
 .loading .retry-button { display:flex; align-items:center; justify-content:center; width:280rpx; min-height:88rpx; margin:38rpx auto 24rpx; border-radius:44rpx; color:#fff; background:#ff0a30; font-size:28rpx; line-height:1.2; }
 .loading .retry-button::after { border:0; }
 .loading-back { padding:22rpx; color:#7d8592; font-size:25rpx; }
+
+.public-identity-line { margin:-8rpx 0 18rpx 112rpx; color:#808692; font-size:23rpx; line-height:1.7; overflow-wrap:anywhere; }
+.club-page .verified-mark { justify-content:flex-start; min-height:88rpx; padding:12rpx 0; color:#5d686b; background:transparent; font-size:23rpx; }
+.created-guide { margin-top:20rpx; padding:28rpx; border-radius:24rpx; background:#fff; border:1rpx solid #ffe0e6; }
+.created-guide .muted { margin-top:12rpx; }
+.created-actions { display:flex; flex-direction:column; gap:12rpx; margin-top:24rpx; }
+.first-activity { display:flex; align-items:center; justify-content:center; min-height:88rpx; padding:16rpx; box-sizing:border-box; border-radius:14rpx; color:#747d89; background:#f4f5f8; font-size:26rpx; }
+.club-page .identity-secondary { width:100%; min-height:88rpx; margin-top:12rpx; padding:16rpx 0; color:#969ca6; background:transparent; font-size:23rpx; }
+.club-page .identity-setting { justify-content:space-between; width:100%; min-height:120rpx; padding:26rpx; color:#303743; background:#fff; text-align:left; }
+.identity-setting>view { flex:1; min-width:0; }
+.identity-setting .section-title { font-size:29rpx; }
+
+@media (max-width:350px) { .club-page .verified-mark,.club-page .identity-secondary,.first-activity { min-height:44px; } }

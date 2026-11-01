@@ -2,6 +2,7 @@ const { request, setAuth, clearAuth, ready } = require("../../utils/request");
 const { saveCaptchaFile } = require("../../utils/captcha");
 const { networkAvatar, prepareAvatar } = require("../../utils/avatar");
 const { VIEWS, decorate, careerSummary } = require("../../utils/runner-center");
+let legalVersion = require("../../utils/legal-documents").version;
 
 function wechatCode() {
   return new Promise((resolve, reject) => {
@@ -61,10 +62,12 @@ Page({
     unbindLoading: false,
     unbindMessage: "",
     ok: false,
+    legalAccepted: false,
     company: "北京华创科技有限公司",
     icp: "京ICP备2026060284号-2"
   },
   onShow() {
+    request("/legal").then(data => { if (data.version && data.version !== legalVersion) { legalVersion = data.version; this.setData({ legalAccepted: false }); } }).catch(() => {});
     request("/meta")
       .then((meta) => this.setData({ company: meta.company, icp: meta.icp }))
       .catch(() => {});
@@ -87,6 +90,8 @@ Page({
   openPrivacy() {
     wx.navigateTo({ url: "/pages/privacy/privacy" });
   },
+  openLegal(e) { const doc = e.currentTarget.dataset.doc || "privacy"; wx.navigateTo({ url: "/pages/legal/legal?doc=" + encodeURIComponent(doc) }); },
+  onLegalConsent(e) { this.setData({ legalAccepted: Boolean(e.detail.value && e.detail.value.includes("accepted")), message: "" }); },
   toggleHelp() { this.setData({ helpOpen: !this.data.helpOpen }); },
   loadFeedbackSummary() {
     if (!ready()) { this.setData({ feedbackUnread: 0 }); return Promise.resolve(); }
@@ -127,7 +132,7 @@ Page({
       return;
     }
     const returnPath = wx.getStorageSync("marathon_return_after_login");
-    if (returnPath === "/pages/radar/radar" || /^\/pages\/race\/race\?id=[^&#]+(?:&plan=1)?$/.test(returnPath) || /^\/pages\/feedback\/feedback(?:\?(?:id=\d+|compose=1|mine=1))?$/.test(returnPath)) {
+    if (returnPath === "/pages/legal/legal?doc=rights" || returnPath === "/pages/radar/radar" || /^\/pages\/race\/race\?id=[^&#]+(?:&plan=1)?$/.test(returnPath) || /^\/pages\/feedback\/feedback(?:\?(?:id=\d+|compose=1|mine=1))?$/.test(returnPath)) {
       wx.removeStorageSync("marathon_return_after_login");
       wx.navigateTo({ url: returnPath });
     } else if (returnPath === "/pages/sport/sport") {
@@ -216,9 +221,10 @@ Page({
   },
   startWechatLogin(createAccount) {
     if (this.data.wxLoading) return;
+    if (!this.data.legalAccepted) { this.setData({ message: "请先阅读用户协议与隐私政策，自主勾选后继续。" }); return; }
     this.setData({ wxLoading: true, bindAfterLogin: false, message: "" });
     return wechatCode()
-      .then((code) => request("/auth/wechat", "POST", createAccount ? { code, createAccount: true } : { code }))
+      .then((code) => request("/auth/wechat", "POST", { code, ...(createAccount ? { createAccount: true } : {}), legalConsent: { version: legalVersion, accepted: true } }))
       .then((data) => this.acceptSession(data))
       .catch((err) => {
         if (err.status === 409 && err.code === "WECHAT_REGISTRATION_REQUIRED") {
@@ -296,12 +302,13 @@ Page({
       .finally(() => this.setData({ avatarSaving: false }));
   },
   submitAuth() {
+    if (!this.data.legalAccepted) { this.setData({ message: "请先阅读用户协议与隐私政策，自主勾选后继续。", ok: false }); return; }
     const tab = this.data.tab;
     if (tab === "register" && this.data.password !== this.data.password2) {
       this.setData({ message: "两次密码不一致", ok: false });
       return;
     }
-    const body = { nickname: (this.data.draft || "").trim(), password: this.data.password };
+    const body = { nickname: (this.data.draft || "").trim(), password: this.data.password, legalConsent: { version: legalVersion, accepted: true } };
     if (tab === "login") {
       body.captchaToken = this._captchaToken || "";
       body.captcha = this.data.captcha;
@@ -352,6 +359,7 @@ Page({
       .catch((err) => this.setData({ message: err.message, ok: false }));
   },
   logout() {
+    this.setData({ legalAccepted: false });
     this._feedbackSequence = (this._feedbackSequence || 0) + 1;
     this._runnerSequence = (this._runnerSequence || 0) + 1;
     this._mineSequence = (this._mineSequence || 0) + 1;

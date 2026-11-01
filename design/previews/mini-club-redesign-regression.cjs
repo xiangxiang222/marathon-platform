@@ -19,6 +19,7 @@ function fixture(name) {
     require(moduleName) {
       if (moduleName === "../../utils/request") return { ready: () => loggedIn, request: (...args) => { requests.push(args); return handler(...args); } };
       if (moduleName === "../../utils/call-poster") return {};
+      if (moduleName === "../../utils/club-identity") return require(path.join(root, "miniprogram/utils/club-identity.js"));
       throw new Error("Unexpected import " + moduleName);
     },
     Page: (page) => { definition = page; },
@@ -169,7 +170,7 @@ async function main() {
   });
   {
     const { page, setHandler } = fixture("clubs");
-    setHandler((url) => Promise.resolve(url === "/me" ? { user: {}, clubs: [{ id: 1, name: "奥森晨跑", roleLabel: "成员" }, { id: 2, name: "城市跑团", roleLabel: "团长" }] } : { clubs: [{ id: 1, name: "奥森晨跑", members: 28, joined: true }] }));
+    setHandler((url) => Promise.resolve(url === "/me" ? { user: {}, clubs: [{ id: 1, name: "奥森晨跑", roleLabel: "成员", memberCount: 28 }, { id: 2, name: "城市跑团", roleLabel: "团长" }] } : { clubs: [{ id: 1, name: "奥森晨跑", members: 28, joined: true }] }));
     page.load();
     await settle();
     assert.equal(page.data.clubs.length, 2);

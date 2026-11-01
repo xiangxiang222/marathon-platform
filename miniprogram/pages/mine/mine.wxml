@@ -6,6 +6,7 @@
   </view>
   <view wx:else class="surface guest-hero">
     <view class="hero-line"><view class="hero-avatar avatar-empty">跑</view><view class="hero-copy"><view class="guest-title">跑过的每一步，都值得记录</view><view class="subtitle">收藏赛事、记录成绩，和跑团一起出发</view></view></view>
+    <view class="auth-legal"><checkbox-group bindchange="onLegalConsent"><label><checkbox value="accepted" checked="{{legalAccepted}}" color="#ff0a30"/><text>我已阅读并同意用户协议，并已阅读隐私政策</text></label></checkbox-group><view class="auth-legal-links"><text data-doc="terms" bindtap="openLegal">《用户协议》</text><text data-doc="privacy" bindtap="openLegal">《隐私政策》</text></view><view class="auth-legal-note">账号服务暂面向已满14周岁的用户。运动资料、文件与领奖地址等可选信息，将在使用对应功能时另行说明。</view></view>
     <button wx:if="{{!wechatRegistrationRequired}}" class="primary" loading="{{wxLoading}}" disabled="{{wxLoading}}" bindtap="wechatLogin">{{wxLoading ? '正在登录' : '微信登录'}}</button>
     <view class="hint account-guidance">已有账号请先用昵称和密码登录，再绑定微信，以保留原有赛事与跑团记录。</view>
     <view wx:if="{{wechatRegistrationRequired}}" class="wechat-choice">
@@ -57,5 +58,5 @@
     <navigator wx:for="{{clubs}}" wx:key="id" class="setting-row" url="/pages/club/club?id={{item.id}}"><view class="row-copy"><view>{{item.name}}</view><view class="subtitle">{{item.roleLabel}}</view></view><text class="arrow">›</text></navigator><button class="logout" bindtap="logout">退出登录</button>
   </view>
   <view wx:else class="surface empty-state"><view class="section-title">你的资料，由你管理</view><view class="hint">登录后设置头像、昵称和账号密码。</view></view>
-  <view class="legal"><text>{{company}} · {{icp}}</text><text class="legal-link" bindtap="openPrivacy">隐私保护指引</text></view>
+  <view class="legal"><view class="legal-links"><text data-doc="terms" bindtap="openLegal">用户协议</text><text data-doc="privacy" bindtap="openLegal">隐私政策</text><text data-doc="collection" bindtap="openLegal">个人信息收集清单</text><text data-doc="sharing" bindtap="openLegal">第三方信息共享清单</text><text data-doc="rights" bindtap="openLegal">个人信息权利</text><text class="legal-link" bindtap="openPrivacy">微信隐私保护指引</text></view><text>{{company}} · {{icp}}</text></view>
 </view>

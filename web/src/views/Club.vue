@@ -3,13 +3,13 @@
     <header class="topbar club-topbar">
       <router-link to="/clubs" class="club-back" aria-label="返回我的跑团"><RunnerIcon name="back" /></router-link>
       <router-link to="/clubs" class="club-switch">我的跑团 <span>切换跑团⌄</span></router-link>
-      <button v-if="club" type="button" class="top-invite" :disabled="inviting" @click="copyInvite">邀请跑友</button><span v-else></span>
+      <button v-if="club && club.publicStatus !== 'restricted'" type="button" class="top-invite" :disabled="inviting" @click="copyInvite">邀请跑友</button><span v-else></span>
     </header>
     <div v-if="loading && !club" class="club-loading" role="status"><span class="loading-ring"></span><b>正在打开跑团</b><p>准备活动与团友信息</p></div>
     <section v-if="club" class="club-hero">
       <div class="club-identity">
         <span class="club-letter" aria-hidden="true">{{ club.name.slice(0, 1) }}</span>
-        <div class="club-identity-copy"><p class="club-eyebrow">RUN TOGETHER · 一起跑，更远一点</p><h1>{{ club.name }}</h1><p class="club-leader">团长 {{ leaderName }}<span class="role-badge">{{ club.roleLabel }}</span></p></div>
+        <div class="club-identity-copy"><p class="club-eyebrow">RUN TOGETHER · 一起跑，更远一点</p><h1>{{ club.name }}</h1><ClubVerificationBadge :club="club" /><p class="club-leader">{{ club.city || "城市待补充" }} · 团号 #{{ club.id }}</p><p class="club-leader">团长 {{ leaderName }}<span class="role-badge">{{ club.roleLabel }}</span></p></div>
       </div>
       <div class="hero-bottom">
         <button class="club-avatars" type="button" @click="go('people')" aria-label="查看跑团成员">
@@ -20,6 +20,7 @@
         <button v-else class="hero-publish secondary" type="button" @click="go('act')">找一场活动 <span>→</span></button>
       </div>
     </section>
+    <section v-if="club && club.publicStatus !== 'restricted' && route.query.created === '1'" class="block created-welcome"><p>你的跑团，今天开始</p><h2>先邀请第一位跑友</h2><p>{{ club.city || "城市待补充" }} · 负责人 {{ leaderName }} · 团号 #{{ club.id }}</p><button class="primary" type="button" :disabled="inviting" @click="copyInvite">邀请第一位跑友</button><router-link :to="'/clubs/' + club.id + '/activities/new'">发布第一次约跑 →</router-link><router-link :to="'/clubs/' + club.id + '/identity'">已有线下跑团？核验组织身份 ›</router-link></section>
     <nav v-if="club" class="seg primary-tabs" aria-label="跑团导航">
       <button v-for="item in mainTabs" :key="item.id" type="button" :class="{ on: activeMainTab === item.id }" :aria-current="activeMainTab === item.id ? 'page' : undefined" @click="go(item.id)">{{ item.label }}<span v-if="item.id === 'people' && club.staff && requests.length" class="tab-dot"></span></button>
     </nav>
@@ -297,7 +298,7 @@
         </div>
       </div>
       <div v-if="peopleView === 'members'" class="block member-directory">
-        <div class="section-head"><h2>成员 <small>{{ visibleMembers.length }}/{{ members.length }}</small></h2><button type="button" @click="copyInvite">邀请跑友 ›</button></div>
+        <div class="section-head"><h2>成员 <small>{{ visibleMembers.length }}/{{ members.length }}</small></h2><button v-if="club.publicStatus !== 'restricted'" type="button" @click="copyInvite">邀请跑友 ›</button></div>
         <input v-model="memberQuery" aria-label="搜索跑团成员" placeholder="搜索跑友昵称" />
         <div class="checks member-filters"><button v-for="item in memberFilters" :key="item.id" type="button" class="undo" :class="{ on: memberRole === item.id }" @click="memberRole = item.id">{{ item.label }}</button></div>
         <p v-if="!visibleMembers.length" class="rank-label">没有找到这位跑友，试试其他昵称。</p>
@@ -357,6 +358,7 @@
           <button v-if="feeMode === 'new' && feeCurrent" class="undo" type="button" @click="feeMode = 'edit'">取消</button>
         </form>
       </div>
+      <section v-if="club.owner && peopleView === 'manage'" class="block identity-manage-entry"><h2>跑团身份与公开名片</h2><p class="rank-label">补充城市与简介，或自愿核验组织管理关系。基础功能照常使用。</p><router-link :to="'/clubs/' + club.id + '/identity'">管理公开资料与组织核验 →</router-link></section>
       <div v-if="club.staff && peopleView === 'manage'" id="club-groups" class="block">
         <h2>组别</h2>
         <div v-for="group in groups" :key="group.id" class="mate">
@@ -416,22 +418,32 @@ import { copyText } from "../copy";
 import { textCard } from "../share-card";
 import { clubRaceCsv, clubRaceRows, renderResultPoster } from "../result-poster";
 import RunnerIcon from "../components/RunnerIcon.vue";
+import ClubVerificationBadge from "../components/ClubVerificationBadge.vue";
+import { clubIdentity } from "../club-identity";
 import MileageBoard from "../components/MileageBoard.vue";
 import PartnerBoard from "../components/PartnerBoard.vue";
 const route = useRoute();
 const router = useRouter();
 let clubScope = 0;
 let disposed = false;
+let visibleAccount = localStorage.getItem("marathon_token");
+function syncClubAccount() { const next = localStorage.getItem("marathon_token"); if (visibleAccount === next) return false; visibleAccount = next; resetClubPage(); return true; }
+function onClubAccount() { if (syncClubAccount()) loadPage(); }
+window.addEventListener("storage", onClubAccount); window.addEventListener("focus", onClubAccount);
 // A late response from a previous club must never overwrite the club now on screen.
 async function api(path, options) {
+  if (syncClubAccount()) { loadPage(); throw Object.assign(new Error("账号已切换"), { clubChanged: true }); }
   const clubId = route.params.id;
+  const accountToken = localStorage.getItem("marathon_token");
   const scope = clubScope;
   try {
     const data = await requestApi(path, options);
-    if (disposed || scope !== clubScope || clubId !== route.params.id) throw Object.assign(new Error("跑团已切换"), { clubChanged: true });
+    if (syncClubAccount()) loadPage();
+    if (disposed || scope !== clubScope || clubId !== route.params.id || accountToken !== localStorage.getItem("marathon_token")) throw Object.assign(new Error("跑团已切换"), { clubChanged: true });
     return data;
   } catch (err) {
-    if (disposed || scope !== clubScope || clubId !== route.params.id) err.clubChanged = true;
+    if (syncClubAccount()) loadPage();
+    if (disposed || scope !== clubScope || clubId !== route.params.id || accountToken !== localStorage.getItem("marathon_token")) err.clubChanged = true;
     throw err;
   }
 }
@@ -851,7 +863,7 @@ async function copyCard(card) {
 }
 
 async function copyInvite() {
-  if (!club.value || inviting.value) return;
+  if (!club.value || club.value.publicStatus === "restricted" || inviting.value) return;
   const scope = clubScope;
   const sharedClub = club.value;
   message.value = ""; note.value = ""; inviting.value = true;
@@ -860,7 +872,7 @@ async function copyInvite() {
   try {
     if (typeof navigator.share === "function") {
       try {
-        await navigator.share({ title: sharedClub.name + " · 跑团名片", text: sharedClub.name + "，一起开跑。查看跑团介绍，申请加入。", url });
+        await navigator.share({ title: clubIdentity(sharedClub), text: clubIdentity(sharedClub) + " · 负责人 " + leaderName.value + "，查看介绍后申请加入。", url });
         return;
       } catch (err) { if (err?.name === "AbortError") return; }
     }
@@ -1356,7 +1368,7 @@ async function loadPage() {
 }
 watch(() => route.params.id, () => { resetClubPage(); applyNavigation(); loadPage(); }, { immediate: true });
 watch(() => route.query, applyNavigation);
-onBeforeUnmount(() => { disposed = true; clubScope++; loadVersion++; clearTimeout(raceTimer); });
+onBeforeUnmount(() => { window.removeEventListener("storage", onClubAccount); window.removeEventListener("focus", onClubAccount); disposed = true; clubScope++; loadVersion++; clearTimeout(raceTimer); });
 </script>
 
 <style scoped>
@@ -1605,4 +1617,5 @@ article { margin-top: 22px; padding-top: 15px; border-top: 1px solid #f0f1f5; fo
 .fee-panel .member > .acts { max-width: none; margin: 0; gap: 5px; }
 .club-page .fee-panel .acts .undo { min-height: 38px; padding: 0 8px; font-size: 11px; }
 .club-page .fee-panel .acts .undo.on { color: #b95369; background: #fff0f3; }
+.created-welcome{background:linear-gradient(130deg,#fff,#fff2f6);border:1px solid #f6dfe7}.created-welcome>p{font-size:12px;color:#9c7e8d;line-height:1.9}.created-welcome>a,.identity-manage-entry>a{display:flex;align-items:center;min-height:44px;color:#a86a80;font-size:12px}.created-welcome .primary{min-height:46px;width:100%;margin:8px 0}.created-welcome h2{font-size:20px}
 </style>

@@ -40,7 +40,7 @@ const metrics = computed(()=>{const c=props.data?.counts || {};return isAdmin.va
  {id:"clubs",label:"跑团",value:c.clubs,unit:"个",note:"成员与角色管理",icon:"clubs",target:{section:"clubs"}},
  {id:"users",label:"跑者",value:c.users,unit:"人",note:"账号、计划与成绩",icon:"users",target:{section:"users"}}
 ] : [
- {id:"founding",label:"建团待审核",value:c.pendingFoundings,unit:"条",note:"审核后开通跑团",icon:"clubs",target:{section:"joins",tab:"foundings"}},
+ {id:"founding",label:"旧建团申请待确认",value:c.pendingFoundings,unit:"条",note:"由申请人补城市后继续",icon:"clubs",target:{section:"joins",tab:"foundings"}},
  {id:"joins",label:"入团待审核",value:c.pendingJoins,unit:"条",note:"核实申请者身份",icon:"joins",target:{section:"joins",tab:"joins"}},
  {id:"clubs",label:"跑团",value:c.clubs,unit:"个",note:"成员与角色管理",icon:"clubs",target:{section:"clubs"}},
  {id:"users",label:"跑者",value:c.users,unit:"人",note:"账号与参赛记录",icon:"users",target:{section:"users"}}
@@ -49,9 +49,9 @@ const shortcuts = computed(()=>isAdmin.value ? [
  {label:"审核赛事",note:"检查采集内容",icon:"check",target:{section:"races",tab:"review"}},
  {label:"发布资讯",note:"关联具体赛事",icon:"news",target:{section:"news",action:"create"}},
  {label:"官网同步",note:"核对赛事变更",icon:"sync",target:{section:"races",tab:"official"}},
- {label:"跑团申请",note:"建团与入团审核",icon:"clubs",target:{section:"joins"}}
+ {label:"跑团申请",note:"入团审核与旧申请记录",icon:"clubs",target:{section:"joins"}}
 ] : [
- {label:"申请审核",note:"建团与入团",icon:"joins",target:{section:"joins"}},
+ {label:"申请审核",note:"入团审核与旧申请记录",icon:"joins",target:{section:"joins"}},
  {label:"跑团管理",note:"管理成员与团长",icon:"clubs",target:{section:"clubs"}},
  {label:"跑者管理",note:"查看计划与成绩",icon:"users",target:{section:"users"}},
  {label:"添加跑者",note:"创建可登录账号",icon:"plus",target:{section:"users",action:"create"}}

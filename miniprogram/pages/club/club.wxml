@@ -2,8 +2,10 @@
   <view class="club-hero">
     <view class="hero-topline"><text class="eyebrow">一起跑，更远一点</text><navigator class="switch-club" open-type="switchTab" url="/pages/clubs/clubs">切换跑团 ⇄</navigator></view>
     <view class="club-identity"><view class="club-letter">{{clubInitial}}</view><view class="club-identity-copy"><view class="club-title">{{club.name}}</view><view class="club-subtitle"><text class="role">{{club.roleLabel}}</text><text>{{members.length}} 位成员 · 团长 {{leaderName}}</text></view></view></view>
-    <view class="hero-bottom"><view class="avatar-line"><block wx:for="{{members}}" wx:key="id" wx:if="{{index < 5}}"><image wx:if="{{item.avatar}}" class="avatar" src="{{item.avatar}}" mode="aspectFill" /><view wx:else class="avatar avatar-fallback">{{item.avatarInitial}}</view></block><text class="avatar-caption">同频的跑友，都在这里</text></view><button class="hero-share" open-type="share">邀请跑友 ↗</button></view>
+    <view class="public-identity-line">{{club.city || '城市待补充'}} · 团号 #{{club.id}}</view><button wx:if="{{club.verified}}" class="verified-mark" bindtap="verifiedInfo">✓ 身份已核验 · 查看范围</button>
+    <view class="hero-bottom"><view class="avatar-line"><block wx:for="{{members}}" wx:key="id" wx:if="{{index < 5}}"><image wx:if="{{item.avatar}}" class="avatar" src="{{item.avatar}}" mode="aspectFill" /><view wx:else class="avatar avatar-fallback">{{item.avatarInitial}}</view></block><text class="avatar-caption">同频的跑友，都在这里</text></view><button class="hero-share" open-type="share" disabled="{{club.publicStatus === 'restricted'}}">邀请跑友 ↗</button></view>
   </view>
+  <view wx:if="{{createdNow && club.owner}}" class="created-guide"><view class="section-title">你的跑团，今天开始</view><view class="muted">{{club.city || '城市待补充'}} · 负责人 {{leaderName || '跑团管理员'}} · 团号 #{{club.id}}</view><view class="created-actions"><button class="primary-btn" open-type="share" disabled="{{club.publicStatus === 'restricted'}}">邀请第一位跑友</button><navigator class="first-activity" url="/pages/activity-create/activity-create?club={{club.id}}">发布第一次约跑 →</navigator></view><button class="identity-secondary" bindtap="openIdentity">已有线下跑团？核验组织身份 ›</button></view>
   <view wx:if="{{club.staff && requests.length}}" class="approval-banner" data-area="requests" bindtap="openService"><view><text class="notice-dot"></text>{{requests.length}} 位跑友申请加入</view><text>去审核 ›</text></view>
   <view class="club-tabs">
     <view class="club-tab {{activeTab === 'overview' ? 'selected' : ''}}" data-tab="overview" bindtap="changeSection">今日</view>
@@ -153,7 +155,7 @@
       <button wx:if="{{club.staff && !item.owner}}" class="member-manage" data-id="{{item.id}}" bindtap="manageMember">管理</button>
     </view>
     <view wx:if="{{!shownMembers.length}}" class="empty-card">没有找到符合条件的团友，试试其他昵称。</view>
-</block><block wx:if="{{memberArea === 'manage'}}">    <view class="form-section">
+</block><block wx:if="{{memberArea === 'manage'}}"><button wx:if="{{club.owner}}" class="identity-setting" bindtap="openIdentity"><view><view class="section-title">跑团身份与公开名片</view><view class="muted">完善城市、简介；按需核验组织授权</view></view><text>›</text></button>    <view class="form-section">
       <view class="section-title">训练组别</view>
       <view wx:for="{{groups}}" wx:key="id" class="plain-row"><text>{{item.name}}{{item.pace ? ' · ' + item.pace : ''}}</text><text>{{item.capacity ? '限 ' + item.capacity + ' 人' : '不限'}}</text></view>
       <view wx:if="{{!groups.length}}" class="empty-row">还没有训练组别。</view>

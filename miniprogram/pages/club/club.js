@@ -1,5 +1,6 @@
 const { request } = require("../../utils/request");
 const { renderCallPoster, clubRaceRows } = require("../../utils/call-poster");
+const { shareTitle, showVerification } = require("../../utils/club-identity");
 
 function accountKey() {
   const app = typeof getApp === "function" ? getApp() : null;
@@ -12,7 +13,7 @@ function activityMillis(value) {
   return Number.isFinite(ms) && new Date(ms + 8 * 3600000).toISOString().slice(0, text.length) === text ? ms : NaN;
 }
 const PRIVATE_EMPTY = {
-  memberQuery: "", memberFilter: "all", raceExpanded: {}, checkinOpen: false, relationshipOpen: false,
+  memberQuery: "", memberFilter: "all", raceExpanded: {}, checkinOpen: false, relationshipOpen: false, createdNow: false,
   expanded: { call: false, training: false, meetup: false, internal: false, gift: false, group: false, fee: false },
   club: null, clubInitial: "团", leaderName: "", membersMore: "", members: [], shownMembers: [], groups: [], gifts: [], requests: [],
   myPoints: 0, board: [], nextRace: null, nextActivity: null, upcomingActivityCount: 0, myUpcomingCount: 0, ranks: [], activities: [], visibleActivities: [],
@@ -40,6 +41,7 @@ Page({
     raceExpanded: {},
     checkinOpen: false,
     relationshipOpen: false,
+    createdNow: false,
     expanded: { call: false, training: false, meetup: false, internal: false, gift: false, group: false, fee: false },
     club: null,
     clubInitial: "团",
@@ -125,6 +127,7 @@ Page({
       onlyMine: query.mine === "1",
       memberArea: section === "fees" ? "fees" : section === "groups" ? "manage" : "all",
       relationshipOpen: section === "relationship",
+      createdNow: query.created === "1",
       serviceArea: ["albums", "gifts"].includes(query.section) ? query.section : ""
     });
     this.pickedRaceId = "";
@@ -166,11 +169,15 @@ Page({
     this.pending = e.currentTarget.dataset;
   },
   onShareAppMessage() {
-    const name = (this.data.club && this.data.club.name) || "跑团";
+    if (this.data.club && this.data.club.publicStatus === "restricted") return { title: "跑团", path: "/pages/clubs/clubs" };
     return {
-      title: name + " · 跑团介绍",
+      title: shareTitle(this.data.club || {}),
       path: "/pages/club-intro/club-intro?id=" + this.clubId
     };
+  },
+  verifiedInfo() { showVerification(this.data.club); },
+  openIdentity() {
+    if (this.data.club && this.data.club.owner) wx.navigateTo({ url: "/pages/club-identity/club-identity?id=" + this.clubId });
   },
   changeSection(e) {
     const tab = e.currentTarget.dataset.tab;
@@ -364,6 +371,9 @@ Page({
           checkMessage: "",
           message: ""
         });
+        if (data.club.publicStatus === "restricted") {
+          if (wx.hideShareMenu) wx.hideShareMenu({ menus: ["shareAppMessage"] });
+        } else if (wx.showShareMenu) wx.showShareMenu({ menus: ["shareAppMessage"] });
         this.filterMembers();
         this.filterActivities();
         return this.loadExtra();

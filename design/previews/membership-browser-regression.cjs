@@ -29,6 +29,7 @@ async function setup(context, owner) {
     const request = route.request();
     const url = new URL(request.url());
     const endpoint = url.pathname.replace("/marathon/api", "");
+    if (endpoint === '/legal') return route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(require('../../shared/legal-documents.json')) });
     const method = request.method();
     let data;
     let status = 200;

@@ -589,10 +589,7 @@ function open() {
     );
     CREATE UNIQUE INDEX IF NOT EXISTS club_application_pending ON club_applications(user_id) WHERE status = 'pending';
   `);
-  handle.prepare(
-    `UPDATE users SET leader = 1
-     WHERE EXISTS (SELECT 1 FROM clubs WHERE clubs.owner_id = users.id)`
-  ).run();
+  require("./club-identity").installClubIdentity(handle);
   const callCols = handle.prepare("PRAGMA table_info(result_call_rows)").all();
   if (callCols.length && !callCols.some((col) => col.name === "debut")) {
     handle.exec("ALTER TABLE result_call_rows ADD COLUMN debut INTEGER NOT NULL DEFAULT 1");
@@ -971,6 +968,7 @@ function open() {
     }
   });
   tx(RACES);
+  require("./legal").installLegal(handle);
   migrateLegacyAvatars(handle);
   return handle;
 }

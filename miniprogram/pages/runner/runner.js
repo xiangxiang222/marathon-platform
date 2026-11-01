@@ -1,5 +1,6 @@
 const { request, ready } = require("../../utils/request");
 const { VIEWS, decorate, shortKm, barsOf } = require("../../utils/runner-center");
+const activityConsentVersion = require("../../utils/legal-documents").version;
 
 const METRICS = [
   { key: "count", label: "完赛场数", unit: "场" },
@@ -46,26 +47,32 @@ Page({
     deleting: 0,
     deviceBusy: "",
     deviceMessage: "",
+    deviceErrorDetail: "",
     deviceFailed: false,
     deviceGuideOpen: false
   },
   onLoad(options) {
     this._unloaded = false;
+    this._hidden = false;
     const view = VIEWS.find((item) => item.key === options.view) || VIEWS[0];
     this.setData({ view: view.key, currentView: view, galleryKind: view.key === "media" ? "photo" : "certificate" });
     wx.setNavigationBarTitle({ title: view.title });
   },
   onShow() {
+    this._hidden = false;
     const token = getApp().globalData.token || "";
     if (token !== this._lastToken) {
       this._lastToken = token;
-      this.setData({ payload: null, filteredResults: [], gallery: [], cities: [], selectedCityKey: "", selectedCity: null, uploadOpen: false, uploadMessage: "", uploading: false, error: "", deviceBusy: "", deviceMessage: "", deviceFailed: false });
+      this._fileSequence = (this._fileSequence || 0) + 1;
+      this._activityConsentPending = false;
+      this.setData({ payload: null, filteredResults: [], gallery: [], cities: [], selectedCityKey: "", selectedCity: null, uploadOpen: false, uploadMessage: "", uploading: false, error: "", deviceBusy: "", deviceMessage: "", deviceErrorDetail: "", deviceFailed: false });
     }
     this.setData({ ready: ready() });
     if (ready()) return this.load();
     this.setData({ payload: null, loading: false, error: "", filteredResults: [], gallery: [], cities: [], selectedCityKey: "", selectedCity: null });
   },
-  onUnload() { this._unloaded = true; this._sequence = (this._sequence || 0) + 1; },
+  onHide() { this._hidden = true; this._fileSequence = (this._fileSequence || 0) + 1; this._activityConsentPending = false; this.setData({ deviceBusy: "" }); },
+  onUnload() { this._unloaded = true; this._fileSequence = (this._fileSequence || 0) + 1; this._activityConsentPending = false; this._sequence = (this._sequence || 0) + 1; },
   onPullDownRefresh() {
     return this.load().finally(() => wx.stopPullDownRefresh());
   },
@@ -76,6 +83,9 @@ Page({
   pickView(event) {
     const view = VIEWS.find((item) => item.key === event.currentTarget.dataset.view);
     if (!view) return;
+    this._fileSequence = (this._fileSequence || 0) + 1;
+    this._activityConsentPending = false;
+    if (["choose", "consent"].includes(this.data.deviceBusy)) this.setData({ deviceBusy: "" });
     this.setData({ view: view.key, currentView: view, uploadOpen: false, uploadMessage: "", galleryKind: view.key === "media" ? "photo" : "certificate" });
     wx.setNavigationBarTitle({ title: view.title });
     this.filter();
@@ -267,33 +277,81 @@ Page({
     return Number.isFinite(ms) ? new Date(ms + 8 * 3600000).toISOString().slice(0, 16).replace("T", " ") + " 北京时间" : "";
   },
   toggleDeviceGuide() { this.setData({ deviceGuideOpen: !this.data.deviceGuideOpen }); },
-  deviceSession(token) { return !this._unloaded && token === getApp().globalData.token; },
+  deviceSession(token) { return !this._unloaded && !this._hidden && token === getApp().globalData.token; },
+  openDeviceLegal(event) { const doc = event.currentTarget.dataset.doc; if (["privacy", "permissions"].includes(doc)) wx.navigateTo({ url: "/pages/legal/legal?doc=" + doc }); },
+  activityFileSelectionFailed(token, error) {
+    if (!this.deviceSession(token)) return;
+    const raw = String((error && (error.errMsg || error.message)) || "");
+    const errno = error && error.errno;
+    this.setData({ deviceBusy: "" });
+    if (/cancel/i.test(raw)) return;
+    let message = "微信未能选取文件，请重试。可先将运动文件重新发送到文件传输助手，或使用网页版导入。";
+    if (Number(errno) === 112 || /api scope.*not.*declared|appid privacy api banned/i.test(raw)) {
+      message = "小程序尚未开通文件选择，请联系管理员更新隐私保护指引。你可以先使用网页版导入。";
+    } else if ([103, 104].includes(Number(errno)) || /privacy|auth.*deny|auth.*denied|authorize|disagree/i.test(raw)) {
+      message = "选择运动文件需要先同意隐私保护指引，请重新点击导入并完成授权。";
+    }
+    this.setData({
+      deviceMessage: message,
+      deviceFailed: true,
+      deviceErrorDetail: "wx.chooseMessageFile\n" + (errno == null ? "" : "errno: " + errno + "\n") + (raw || "未返回具体错误")
+    });
+  },
+  copyDeviceError() {
+    if (this.data.deviceErrorDetail) wx.setClipboardData({ data: this.data.deviceErrorDetail });
+  },
+  copyDeviceImportUrl() {
+    wx.setClipboardData({ data: getApp().globalData.baseUrl.replace(/\/$/, "") + "/marathon/runner?view=devices" });
+  },
   chooseActivityFile() {
-    if (this.data.deviceBusy) return;
+    if (this.data.deviceBusy || this._activityConsentPending) return;
     if (!ready()) { this.login(); return; }
-    if (!wx.chooseMessageFile) { this.setData({ deviceMessage: "当前微信版本无法选择文件，请更新微信或使用网页版导入。", deviceFailed: true }); return; }
+    this.setData({ deviceMessage: "", deviceFailed: false, deviceErrorDetail: "" });
+    if (typeof wx.chooseMessageFile !== "function") { this.setData({ deviceMessage: "当前微信版本无法选择文件，请更新微信或使用网页版导入。", deviceFailed: true }); return; }
     const token = getApp().globalData.token;
-    wx.chooseMessageFile({
+    const selection = this._fileSequence = (this._fileSequence || 0) + 1;
+    this.setData({ deviceBusy: "choose" });
+    const options = {
       count: 1, type: "file", extension: ["fit", "tcx"],
       success: (reply) => {
-        if (!this.deviceSession(token)) return;
+        if (!this.deviceSession(token) || selection !== this._fileSequence) return;
+        this.setData({ deviceBusy: "" });
         const file = reply.tempFiles && reply.tempFiles[0];
-        if (!file || !file.path) return;
+        if (!file || !file.path) { this.setData({ deviceMessage: "未取得可读取的文件，请将 FIT 或 TCX 文件发送到文件传输助手后重新选择。", deviceFailed: true }); return; }
         if (!/\.(fit|tcx)$/i.test(file.name || "")) { this.setData({ deviceMessage: "请选择 FIT 或 TCX 运动文件", deviceFailed: true }); return; }
         if (file.size > 5 * 1024 * 1024) { this.setData({ deviceMessage: "运动文件不能超过 5 MB", deviceFailed: true }); return; }
         if (!file.size) { this.setData({ deviceMessage: "文件内容为空，请重新导出", deviceFailed: true }); return; }
-        this.importActivityFile(file);
+        this.confirmActivityFile(file, token, selection);
       },
-      fail: (error) => { if (this.deviceSession(token) && !/cancel/i.test(String(error.errMsg || ""))) this.setData({ deviceMessage: "无法读取文件。可先将运动文件发送到文件传输助手，再重新选择。", deviceFailed: true }); }
-    });
+      fail: (error) => { if (selection === this._fileSequence) this.activityFileSelectionFailed(token, error); },
+      complete: () => { if (selection === this._fileSequence && this.deviceSession(token) && this.data.deviceBusy === "choose") this.setData({ deviceBusy: "" }); }
+    };
+    try { wx.chooseMessageFile(options); }
+    catch (error) { this.activityFileSelectionFailed(token, error); }
   },
-  importActivityFile(file) {
-    if (this.data.deviceBusy) return;
+  confirmActivityFile(file, token, selection) {
+    if (!this.deviceSession(token) || selection !== this._fileSequence) return;
+    this._activityConsentPending = true;
+    const options = {
+      title: "导入运动数据前确认",
+      content: "完整运动文件可能包含 GPS 轨迹、心率等敏感个人信息。你同意本次临时上传并解析该文件，仅保存运动摘要与去重信息，不保留原文件、GPS 轨迹和心率。跑量及相关截图按你所在跑团的规则展示。取消不会上传，也不影响基本浏览。可在数据来源页阅读隐私政策与权限说明。",
+      confirmText: "同意导入", cancelText: "取消", confirmColor: "#ff0a30",
+      success: (answer) => {
+        if (!this.deviceSession(token) || selection !== this._fileSequence) return;
+        this._activityConsentPending = false;
+        if (answer.confirm) this.importActivityFile(file, token, activityConsentVersion);
+      },
+      fail: () => { if (this.deviceSession(token) && selection === this._fileSequence) this._activityConsentPending = false; }
+    };
+    try { wx.showModal(options); }
+    catch (_) { if (this.deviceSession(token) && selection === this._fileSequence) { this._activityConsentPending = false; this.setData({ deviceBusy: "", deviceMessage: "未能打开运动数据确认，请重新选择文件后再试。", deviceFailed: true }); } }
+  },
+  importActivityFile(file, token, consentVersion) {
+    if (this.data.deviceBusy || !this.deviceSession(token) || consentVersion !== activityConsentVersion) return;
     const globals = getApp().globalData;
-    const token = globals.token;
     this.setData({ deviceBusy: "import", deviceMessage: "", deviceFailed: false });
     wx.uploadFile({
-      url: globals.baseUrl + "/marathon/api/me/devices/import", filePath: file.path, name: "file", formData: { filename: file.name }, header: { Authorization: "Bearer " + token },
+      url: globals.baseUrl + "/marathon/api/me/devices/import", filePath: file.path, name: "file", formData: { filename: file.name }, header: { Authorization: "Bearer " + token, "X-Activity-Data-Consent": consentVersion },
       success: (response) => {
         if (!this.deviceSession(token)) return;
         let result = {};

@@ -2,12 +2,13 @@
   <main class="intro-page">
     <header class="topbar"><router-link to="/clubs" aria-label="返回跑团">‹</router-link><h1>跑团介绍</h1><span></span></header>
     <section v-if="loading" class="intro-state" role="status">正在打开跑团…</section>
+    <section v-else-if="club && (club.publicStatus === 'restricted' || club.restricted)" class="intro-content"><div class="intro-card"><div class="intro-eyebrow">跑团公开状态</div><h2>{{ club.name }}</h2><p class="intro-tagline">{{ club.city || "城市待补充" }} · 团号 #{{ club.id }}</p><h3>暂时停止公开展示与招募</h3><p class="intro-access">{{ club.statusMessage || "团内成员和历史记录保留。团长可在跑团身份页补充说明或申请复核。" }}</p><template v-if="club.joined"><p class="intro-access" role="status">你已加入这个跑团，仍可进入查看团内记录。</p><button class="intro-primary restricted-enter" type="button" @click="enterClub">进入已加入的跑团</button></template><router-link v-if="club.canManageIdentity === true" class="intro-report-entry" :to="'/clubs/' + club.id + '/identity'" @click.capture="checkIdentityAccess">我是团长，查看说明与补充途径 ›</router-link><router-link class="intro-report-entry" :to="'/clubs/' + club.id + '/report?type=management'">向平台补充说明 ›</router-link></div></section>
     <div v-else-if="club" class="intro-content">
       <section class="intro-card" aria-label="跑团名片">
         <div class="intro-track" aria-hidden="true"></div>
         <div class="intro-eyebrow"><span></span>跑团名片</div>
         <span class="club-letter" aria-hidden="true">{{ club.name.slice(0, 1) }}</span>
-        <h2>{{ club.name }}</h2><p class="intro-tagline">和跑友一起，跑得更远</p>
+        <h2>{{ club.name }}</h2><ClubVerificationBadge :club="club" /><p class="intro-tagline">{{ club.city || "城市待补充" }} · 团号 #{{ club.id }}</p><p v-if="club.intro" class="intro-tagline">{{ club.intro }}</p>
         <div class="intro-facts"><div><span>团长</span><strong>{{ club.leader || "跑团管理员" }}</strong></div><div class="intro-count"><strong>{{ club.memberCount }}</strong><span>位成员</span></div></div>
       </section>
       <section class="intro-benefits">
@@ -22,10 +23,10 @@
       <div v-if="club.joined" class="intro-status joined" role="status"><span class="status-dot"></span><div><strong>你已加入这个跑团</strong><p>去看看跑友们的最新动态。</p></div></div>
       <div v-else-if="club.pending" class="intro-status pending" role="status"><span class="status-dot"></span><div><strong>申请已提交，等待审核</strong><p>团长或管理员审核通过后，即可进入跑团。</p></div></div>
       <p v-if="message" class="intro-error" role="alert">{{ message }}</p>
-      <p class="intro-foot">每一次出发，都有人同行</p>
+      <p class="intro-join-identity">你将申请加入：{{ club.name }} · {{ club.city || "城市待补充" }} · #{{ club.id }}<br>负责人 {{ club.leader || "待补充" }}</p><router-link class="intro-report-entry" :to="'/clubs/' + club.id + '/report'">名称或身份被冒用？向平台私密反馈 ›</router-link><p class="intro-foot">每一次出发，都有人同行</p>
       <footer class="intro-dock">
         <button ref="shareButton" class="intro-share" type="button" :disabled="sharing" @click="shareInvite"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6m0-6L10 14M10 5H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2v-4"/></svg>分享跑团</button>
-        <button v-if="club.joined" class="intro-primary" type="button" @click="router.push('/clubs/' + club.id)">进入跑团</button>
+        <button v-if="club.joined" class="intro-primary" type="button" @click="enterClub">进入跑团</button>
         <button v-else-if="club.pending" class="intro-primary waiting" type="button" disabled>等待审核</button>
         <button v-else class="intro-primary" type="button" :disabled="applying" @click="apply">{{ applying ? "正在提交" : ready ? "申请加入" : "登录并申请加入" }}</button>
       </footer>
@@ -44,7 +45,7 @@
           </template>
           <template v-else>
             <div class="share-dialog-heading"><h2 id="intro-share-title">分享跑团</h2><button class="share-close" type="button" aria-label="关闭分享" @click="closeShare">×</button></div>
-            <div class="share-preview"><span class="share-letter" aria-hidden="true">{{ club.name.slice(0, 1) }}</span><div><strong>{{ club.name }}</strong><p>跑团名片 · 先了解，再申请</p></div></div>
+            <div class="share-preview"><span class="share-letter" aria-hidden="true">{{ club.name.slice(0, 1) }}</span><div><strong>{{ club.name }}</strong><p>{{ club.city || "城市待补充" }} · 负责人 {{ club.leader || "待补充" }} · #{{ club.id }}</p></div></div>
             <p class="share-description">{{ shareHint || '当前浏览器暂不支持直接转发。可复制链接，发给微信好友或微信群。' }}</p>
             <button class="share-copy" type="button" @click="copyInvite">{{ copied ? '链接已复制' : '复制链接' }}</button>
             <p class="share-feedback" role="status">{{ shareFeedback }}</p>
@@ -59,8 +60,10 @@
 <script setup>
 import { computed, nextTick, onBeforeUnmount, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import { api } from "../api";
+import { api as requestApi } from "../api";
 import { copyText } from "../copy";
+import { clubIdentity } from "../club-identity";
+import ClubVerificationBadge from "../components/ClubVerificationBadge.vue";
 const route = useRoute();
 const router = useRouter();
 const club = ref(null), loading = ref(true), applying = ref(false), message = ref("");
@@ -70,7 +73,12 @@ const isWeChat = /MicroMessenger/i.test(navigator.userAgent);
 let loadVersion = 0, previousOverflow = "", scrollLocked = false;
 let disposed = false, canonicalRoute = "";
 const previousTitle = document.title;
-const ready = computed(() => Boolean(localStorage.getItem("marathon_token")));
+const ready = ref(Boolean(localStorage.getItem("marathon_token")));
+let accountToken = localStorage.getItem("marathon_token");
+function syncAccount() { const next = localStorage.getItem("marathon_token"); if (next === accountToken) return false; accountToken = next; loadVersion++; club.value = null; applying.value = false; sharing.value = false; message.value = ""; ready.value = Boolean(next); closeShare(); return true; }
+async function api(path, options) { if (syncAccount()) throw Object.assign(new Error("账号已切换"), { stale: true }); const account = localStorage.getItem("marathon_token"); try { const data = await requestApi(path, options); if (account !== localStorage.getItem("marathon_token")) { syncAccount(); throw Object.assign(new Error("账号已切换"), { stale: true }); } return data; } catch (err) { if (account !== localStorage.getItem("marathon_token")) { syncAccount(); err.stale = true; } throw err; } }
+function onAccountEvent() { if (syncAccount()) load(); }
+window.addEventListener("storage", onAccountEvent); window.addEventListener("focus", onAccountEvent);
 function invitePath() {
   if (route.params.code) return "/clubs/invite/" + encodeURIComponent(route.params.code);
   return "/clubs/" + encodeURIComponent(route.params.id) + "/public";
@@ -81,8 +89,9 @@ function publicUrl() {
 }
 function publicPath() { return "/clubs/" + encodeURIComponent(club.value.id) + "/public"; }
 async function load() {
+  syncAccount();
   const version = ++loadVersion;
-  closeShare(); club.value = null; message.value = ""; loading.value = true;
+  closeShare(); club.value = null; applying.value = false; message.value = ""; loading.value = true;
   const path = route.params.code ? "/clubs/invite/" + encodeURIComponent(route.params.code) : "/clubs/" + encodeURIComponent(route.params.id) + "/public";
   try {
     const data = await api(path);
@@ -90,7 +99,7 @@ async function load() {
     club.value = data.club;
     if (route.query.apply === "1" && ready.value) await submitApplication();
     if (version !== loadVersion || disposed) return;
-    document.title = club.value.name + " · 跑团名片";
+    document.title = clubIdentity(club.value);
     // 微信菜单分享使用当前地址，先去掉登录回跳的申请参数。
     if (route.fullPath !== publicPath()) {
       // 这是当前名片的地址规范化，保留已加载的数据，避免再请求一次。
@@ -108,8 +117,17 @@ async function apply() {
   }
   await submitApplication();
 }
+function enterClub() {
+  if (syncAccount()) { load(); return; }
+  if (disposed || loading.value || !club.value?.joined) return;
+  router.push('/clubs/' + club.value.id);
+}
+function checkIdentityAccess(event) {
+  if (syncAccount()) { event.preventDefault(); load(); return; }
+  if (disposed || loading.value || club.value?.canManageIdentity !== true) event.preventDefault();
+}
 async function submitApplication() {
-  if (!club.value || club.value.pending || club.value.joined || applying.value) return;
+  if (!club.value || club.value.publicStatus === "restricted" || club.value.restricted || club.value.pending || club.value.joined || applying.value) return;
   const version = loadVersion;
   const clubId = Number(club.value.id);
   const returnPath = publicPath() + "?apply=1";
@@ -130,13 +148,13 @@ async function submitApplication() {
   } finally { if (!disposed && version === loadVersion) applying.value = false; }
 }
 async function shareInvite() {
-  if (!club.value || loading.value || sharing.value) return;
+  if (!club.value || club.value.publicStatus === "restricted" || club.value.restricted || loading.value || sharing.value) return;
   const version = loadVersion;
   shareHint.value = ""; shareFeedback.value = ""; copied.value = false;
   if (!isWeChat && typeof navigator.share === "function") {
     sharing.value = true;
     try {
-      await navigator.share({ title: club.value.name + " · 跑团名片", text: club.value.name + "，一起开跑。查看跑团介绍，申请加入。", url: publicUrl() });
+      await navigator.share({ title: clubIdentity(club.value), text: clubIdentity(club.value) + " · 负责人 " + (club.value.leader || "待补充") + "，查看介绍后申请加入。", url: publicUrl() });
       return;
     } catch (err) {
       if (err?.name === "AbortError") return;
@@ -167,7 +185,7 @@ async function copyInvite() {
   try { await copyText(publicUrl()); copied.value = true; shareFeedback.value = "链接已复制，可粘贴到微信发给跑友。"; }
   catch (err) { copied.value = false; shareFeedback.value = "复制未成功，请从浏览器地址栏复制链接。"; }
 }
-onBeforeUnmount(() => { disposed = true; loadVersion++; closeShare(); document.title = previousTitle; });
+onBeforeUnmount(() => { window.removeEventListener("storage", onAccountEvent); window.removeEventListener("focus", onAccountEvent); disposed = true; loadVersion++; closeShare(); document.title = previousTitle; });
 watch(() => [route.params.id, route.params.code, route.query.apply], () => {
   if (canonicalRoute && route.fullPath === canonicalRoute) return;
   load();
@@ -210,6 +228,7 @@ watch(() => [route.params.id, route.params.code, route.query.apply], () => {
 .intro-primary { flex: 1; min-width: 0; padding: 0 12px; color: #fff; background: var(--accent); }
 .intro-primary:disabled { opacity: .68; }
 .intro-primary.waiting { color: var(--muted); background: var(--chip); opacity: 1; }
+.restricted-enter { width: 100%; margin-top: 18px; }
 .intro-share { display: flex; align-items: center; justify-content: center; gap: 7px; flex: none; padding: 0 16px; color: var(--ink); background: #f5f6fa; }
 .intro-share svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 .intro-state { padding: 100px 24px; color: var(--muted); text-align: center; font-size: 15px; }
@@ -253,4 +272,5 @@ watch(() => [route.params.id, route.params.code, route.query.apply], () => {
   .intro-dock { gap: 10px; padding-right: 12px; padding-left: 12px; }
   .intro-share-dialog { padding-right: 20px; padding-left: 20px; }
 }
+.intro-join-identity{text-align:center;font-size:11px;color:#9c8b95;line-height:1.9;overflow-wrap:anywhere;margin:18px 0 4px}.intro-report-entry{display:flex;align-items:center;justify-content:center;min-height:44px;font-size:11px;color:#a896a0}
 </style>

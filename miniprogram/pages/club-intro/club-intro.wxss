@@ -99,3 +99,7 @@
 .intro-page .sheet-close { min-height:88rpx; }
 .intro-page .share-choice { justify-content:space-between; }
 .intro-page .guide-dismiss { width:100%; padding:20rpx; }
+.intro-page .verified-mark { justify-content:flex-start; min-height:88rpx; padding:12rpx 0; color:#566669; background:transparent; font-size:24rpx; }
+.join-identity { margin-top:22rpx; padding:20rpx; border:1rpx solid #e9e9ee; border-radius:16rpx; color:#797f8b; background:#fff; font-size:23rpx; line-height:1.8; overflow-wrap:anywhere; }
+.intro-page .report-link { width:100%; min-height:88rpx; margin-top:12rpx; padding:20rpx 0; color:#969ba6; background:transparent; font-size:23rpx; }
+.restricted-state .report-link { display:flex; align-items:center; justify-content:center; box-sizing:border-box; }
