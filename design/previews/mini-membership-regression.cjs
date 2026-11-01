@@ -18,6 +18,7 @@ function makeFixture(owner = false) {
     require(name) {
       if (name === "../../utils/request") return { request: (...args) => { requests.push(args); return requestHandler(...args); } };
       if (name === "../../utils/call-poster") return {};
+      if (name === "../../utils/club-identity") return require(path.join(root, "miniprogram/utils/club-identity.js"));
       throw new Error("Unexpected module " + name);
     },
     Page: (page) => { definition = page; },

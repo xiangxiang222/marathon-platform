@@ -28,6 +28,7 @@ async function main() {
     await page.route("**/marathon/api/**", async (route) => {
       const url = new URL(route.request().url());
       const pathName = url.pathname.replace("/marathon/api", "");
+    if (pathName === '/legal') return route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(require('../../shared/legal-documents.json')) });
       if (pathName === "/races") {
         queries.push(url.searchParams.toString());
         if (!url.searchParams.has("q") && firstHomeFailure) {
@@ -95,6 +96,7 @@ async function main() {
     await page.route("**/marathon/api/**", async (route) => {
       const url = new URL(route.request().url());
       const pathName = url.pathname.replace("/marathon/api", "");
+    if (pathName === '/legal') return route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(require('../../shared/legal-documents.json')) });
       if (pathName === "/clubs/55/calls/8") {
         await route.fulfill({ contentType: "application/json", body: JSON.stringify({ call: { id: 8, title: "杭州马拉松", raceDate: "2026-11-18", deadline: "2026-11-20T22:00", deadlineLabel: "11月20日", closed: true, note: "净计时", summary: "这次 PB：小鹿 半马 1:42:00", shareText: "奥森跑团 · 杭马接龙", boardText: "杭州马拉松\n1 小鹿 1:42:00", distances: ["half"], otherKm: "", members: [], groups: [{ distance: "half", label: "半马", rows: [{ id: 1, place: 1, nickname: "小鹿", clock: "1:42:00", tag: "PB", mine: false, hasSheet: false }] }] } }) });
       } else if (pathName === "/clubs/55") {

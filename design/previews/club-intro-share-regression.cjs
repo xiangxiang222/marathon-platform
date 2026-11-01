@@ -20,6 +20,7 @@ function miniFixture({ authenticated = false, query = { code: "友好邀请/口�
   vm.runInNewContext(fs.readFileSync(path.join(root, "miniprogram/pages/club-intro/club-intro.js"), "utf8"), {
     require(name) {
       if (name === "../../utils/request") return { request: (...args) => { requests.push(args); return handler(...args); }, ready: () => authenticated };
+      if (name === "../../utils/club-identity") return require(path.join(root, "miniprogram/utils/club-identity.js"));
       throw new Error("Unexpected Mini dependency " + name);
     },
     Page(page) { definition = page; },
@@ -164,6 +165,7 @@ async function browserFixture(browser, { width = 390, height = 844, native = fal
   await page.route("**/marathon/api/**", async (route) => {
     const request = route.request();
     const endpoint = new URL(request.url()).pathname.replace("/marathon/api", "");
+    if (endpoint === '/legal') return route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(require('../../shared/legal-documents.json')) });
     const method = request.method();
     state.requests.push({ method, endpoint, ...(request.postData() ? { body: request.postDataJSON() } : {}) });
     let data;
@@ -234,7 +236,8 @@ async function browserChecks(browser) {
     assert.deepEqual(Object.keys(payload).sort(), ["text", "title", "url"]);
     assert.ok(payload.title.includes(clubName));
     assert.equal(payload.url, canonicalUrl);
-    assert.doesNotMatch(JSON.stringify(payload), /SHARE-ONLY|private-|do-not-share|apply=1|团长小林|memberCount/);
+    assert.doesNotMatch(JSON.stringify(payload), /SHARE-ONLY|private-|do-not-share|apply=1|memberCount/);
+    assert.ok(payload.text.includes("团长小林"), "public invitation includes its publicly named leader for same-name identification");
     assert.equal(await page.getByRole("dialog").count(), 0);
     await page.evaluate(() => { window.__shareOutcome = "AbortError"; });
     await share.click();

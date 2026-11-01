@@ -9,3 +9,4 @@
 .agree { background: #ff0a30; color: #fff; font-weight: 600; }
 .decline { background: #f0f1f6; color: #555a66; }
 .message { margin-top: 18rpx; color: #c73540; font-size: 24rpx; line-height: 38rpx; }
+.full-policy{padding:25rpx;margin-top:25rpx;background:#f8f9fb;border-radius:15rpx}.full-policy>view{font-size:23rpx;color:#8b94a3;line-height:1.9;margin-bottom:10rpx}.full-policy button{background:none;margin:0;padding:15rpx 0;text-align:left;font-size:24rpx;line-height:1.8;min-height:74rpx;color:#a96882}.full-policy button::after{border:0}

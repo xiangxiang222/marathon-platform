@@ -66,3 +66,24 @@
  .result-row { gap:14rpx; }
  .result-avatar { width:64rpx; height:64rpx; }
 }
+
+.city-filter { margin-top:14rpx; }
+.city-filter input,.create-input { width:100%; height:88rpx; padding:0 20rpx; font-size:26rpx; }
+.field-label { display:flex; flex-wrap:wrap; gap:12rpx; margin:26rpx 0 12rpx; color:#333945; font-size:26rpx; font-weight:600; }
+.field-label text { color:#989ca6; font-size:22rpx; font-weight:400; }
+.city-choices { display:flex; gap:14rpx; margin-top:8rpx; }
+.clubs-page .city-choices button { min-width:116rpx; min-height:88rpx; padding:12rpx 20rpx; color:#737985; background:transparent; font-size:24rpx; }
+.create-intro { width:100%; min-height:132rpx; padding:20rpx; font-size:26rpx; line-height:1.6; }
+.name-notice,.legacy-application { margin-top:22rpx; padding:20rpx; border-radius:16rpx; background:#f7f6f8; }
+.notice-title { font-size:26rpx; font-weight:600; }
+.name-notice .helper,.legacy-application .helper { margin-top:8rpx; }
+.duplicate-row { display:flex; align-items:center; gap:16rpx; padding:20rpx 0; border-bottom:1rpx solid #e9e8ec; }
+.duplicate-row:last-child { padding-bottom:0; border-bottom:0; }
+.clubs-page .verified-mark { display:inline-flex; justify-content:flex-start; min-height:88rpx; padding:8rpx 0; color:#5e686b; background:transparent; font-size:22rpx; }
+.clubs-page .create-submit { width:100%; margin-top:24rpx; min-height:96rpx; }
+.clubs-page .secondary-action { width:100%; margin-top:16rpx; color:#67707c; background:#fff; }
+.private-reports-link { display:flex; align-items:center; justify-content:center; min-height:88rpx; padding:12rpx 20rpx; color:#8a8e99; font-size:23rpx; }
+.result-action,.small-action,.club-quick-actions navigator { min-height:88rpx; }
+@media (max-width:350px) { .result-row { flex-wrap:wrap; } .result-row .club-copy { min-width:340rpx; } .result-row .result-action,.result-row .pending-badge { margin-left:78rpx; } }
+
+@media (max-width:350px) { .clubs-page button,.clubs-page .result-action,.clubs-page .small-action,.clubs-page .club-quick-actions navigator,.private-reports-link { min-height:44px; } }

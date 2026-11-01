@@ -2,6 +2,7 @@ const crypto = require("crypto");
 const { createCaptcha, codesMatch } = require("./captcha");
 const { passwordHash, verifyPassword } = require("./admin-auth");
 const { avatarUrlOf } = require("./avatars");
+const { consentError, recordAcceptance } = require("./legal");
 
 function nicknameOf(raw) {
   const nickname = String(raw || "").trim();
@@ -70,12 +71,18 @@ function registerUser(db, body) {
   if (rows.length > 1 && !armed.length) return { error: "这个昵称有冲突，换一个", status: 400 };
   if (armed.length) return { error: "这个昵称已经注册，请登录", status: 400 };
   if (rows.length) return { error: "这个昵称已被使用，请联系平台管理员核验身份后重置密码", status: 400 };
+  const agreement = consentError(body && body.legalConsent, true);
+  if (agreement) return agreement;
   const token = crypto.randomBytes(24).toString("hex");
   const salt = crypto.randomBytes(16).toString("hex");
-  const info = db
-    .prepare("INSERT INTO users (nickname, token, created_at, password_hash, salt) VALUES (?, ?, ?, ?, ?)")
-    .run(nickname, token, new Date().toISOString(), passwordHash(password, salt), salt);
-  return { token, user: { id: Number(info.lastInsertRowid), nickname } };
+  return db.transaction(() => {
+    const info = db
+      .prepare("INSERT INTO users (nickname, token, created_at, password_hash, salt) VALUES (?, ?, ?, ?, ?)")
+      .run(nickname, token, new Date().toISOString(), passwordHash(password, salt), salt);
+    const id = Number(info.lastInsertRowid);
+    recordAcceptance(db, id, body.legalConsent, "register");
+    return { token, user: { id, nickname } };
+  }).immediate();
 }
 
 async function verifyWechatCode(code, credentials, exchangeCode = exchangeWechatCode) {
@@ -94,32 +101,32 @@ async function verifyWechatCode(code, credentials, exchangeCode = exchangeWechat
 }
 
 async function loginWechat(db, code, credentials, exchangeCode = exchangeWechatCode, options = {}) {
+  const consent = options ? options.legalConsent : undefined;
+  const optionalAgreement = consentError(consent);
+  if (optionalAgreement) return optionalAgreement;
   const identity = await verifyWechatCode(code, credentials, exchangeCode);
   if (identity.error) return identity;
 
-  let user = db.prepare("SELECT id FROM users WHERE openid = ?").get(identity.openid);
-  if (!user) {
-    if (!options || options.createAccount !== true) {
-      return {
-        status: 409,
-        code: "WECHAT_REGISTRATION_REQUIRED",
-        error: "该微信尚未关联账号，请登录已有账号后绑定，或选择创建新账号"
-      };
-    }
-    const nickname = "跑者" + crypto.randomBytes(4).toString("hex");
-    try {
-      db.prepare("INSERT INTO users (nickname, token, created_at, openid) VALUES (?, ?, ?, ?)").run(
-        nickname,
-        crypto.randomBytes(24).toString("hex"),
-        new Date().toISOString(),
-        identity.openid
+  return db.transaction(() => {
+    let user = db.prepare("SELECT id FROM users WHERE openid = ?").get(identity.openid);
+    if (!user) {
+      if (!options || options.createAccount !== true) {
+        return {
+          status: 409,
+          code: "WECHAT_REGISTRATION_REQUIRED",
+          error: "该微信尚未关联账号，请登录已有账号后绑定，或选择创建新账号"
+        };
+      }
+      const agreement = consentError(consent, true);
+      if (agreement) return agreement;
+      const info = db.prepare("INSERT INTO users (nickname, token, created_at, openid) VALUES (?, ?, ?, ?)").run(
+        "跑者" + crypto.randomBytes(4).toString("hex"), crypto.randomBytes(24).toString("hex"), new Date().toISOString(), identity.openid
       );
-    } catch (err) {
-      if (!/UNIQUE/i.test(String(err.message))) throw err;
+      user = { id: Number(info.lastInsertRowid) };
     }
-    user = db.prepare("SELECT id FROM users WHERE openid = ?").get(identity.openid);
-  }
-  return issueToken(db, user.id);
+    recordAcceptance(db, user.id, consent, "wechat");
+    return issueToken(db, user.id);
+  }).immediate();
 }
 
 async function exchangeWechatCode(code, credentials) {
@@ -139,6 +146,8 @@ async function exchangeWechatCode(code, credentials) {
 }
 
 function loginUser(db, body) {
+  const agreement = consentError(body && body.legalConsent);
+  if (agreement) return agreement;
   if (!consumeCaptcha(db, body && body.captchaToken, body && body.captcha)) {
     return { error: "验证码错误或已过期", status: 400 };
   }
@@ -155,7 +164,10 @@ function loginUser(db, body) {
   const hits = armed.filter((row) => verifyPassword(password, row.salt, row.password_hash));
   if (hits.length > 1) return { error: "这个昵称有冲突", status: 400 };
   if (!hits.length) return { error: "昵称或密码错误", status: 400 };
-  return issueToken(db, hits[0].id);
+  return db.transaction(() => {
+    recordAcceptance(db, hits[0].id, body && body.legalConsent, "login");
+    return issueToken(db, hits[0].id);
+  }).immediate();
 }
 
 function setUserPassword(db, id, password) {

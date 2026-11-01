@@ -25,6 +25,8 @@ const { mountBotRaces } = require("./bot-races");
 const { mountNews } = require("./news");
 const { mountAdminDesk } = require("./admin-desk");
 const { mountFeedback } = require("./feedback");
+const { mountLegal } = require("./legal");
+const { publicIdentity, createClub, directory, mountClubIdentity } = require("./club-identity");
 const { issueCaptcha, registerUser, loginUser, loginWechat, verifyWechatCode, changeOwnPassword, unbindWechat } = require("./user-auth");
 const { avatarRoot, avatarUrlOf, saveAvatar, removeAvatar } = require("./avatars");
 const { signupTarget } = require("./signup-channel");
@@ -466,7 +468,7 @@ app.post(BASE + "/api/auth/wechat", async (req, res) => {
   const result = await loginWechat(getDb(), req.body && req.body.code, {
     appId: process.env.WECHAT_MINIPROGRAM_APP_ID || "",
     secret: process.env.WECHAT_MINIPROGRAM_APP_SECRET || ""
-  }, app.locals.wechatCodeExchange, { createAccount: req.body && req.body.createAccount === true });
+  }, app.locals.wechatCodeExchange, { createAccount: req.body && req.body.createAccount === true, legalConsent: req.body && req.body.legalConsent });
   if (result.error) return res.status(result.status).json({ error: result.error, ...(result.code ? { code: result.code } : {}) });
   res.json(result);
 });
@@ -477,14 +479,15 @@ app.get(BASE + "/api/me", (req, res) => {
   const plans = plansFor(user.id);
   const clubs = getDb()
     .prepare(
-      `SELECT c.id, c.name, c.code, c.owner_id, m.role AS member_role FROM clubs c
+      `SELECT c.*, (SELECT nickname FROM users WHERE id=c.owner_id) AS owner_nickname,
+              (SELECT COUNT(*) FROM club_members cm WHERE cm.club_id=c.id) AS member_count, m.role AS member_role FROM clubs c
        JOIN club_members m ON m.club_id = c.id
        WHERE m.user_id = ? ORDER BY c.id`
     )
     .all(user.id)
     .map((row) => {
       const role = Number(row.owner_id) === Number(user.id) ? "owner" : row.member_role === "manager" ? "manager" : "member";
-      return { id: row.id, name: row.name, code: row.code, role, roleLabel: clubRoleLabel(role) };
+      return { id: row.id, name: row.name, code: row.code, leader: row.owner_nickname || "", members: row.member_count, memberCount: row.member_count, ...publicIdentity(getDb(), row), role, roleLabel: clubRoleLabel(role) };
     });
   const reminders = remindable().filter((item) => plans.some((plan) => plan.race.id === item.race.id));
   const results = resultsFor(user.id);
@@ -884,45 +887,30 @@ app.get(BASE + "/api/me/races/:id/sheet", (req, res) => {
 app.post(BASE + "/api/clubs", (req, res) => {
   const user = requireUser(req, res);
   if (!user) return;
-  if (!user.leader) return res.status(403).json({ error: "当前没有建团资格，无法申请创建跑团" });
-  const name = String((req.body && req.body.name) || "").trim();
-  if (!name || name.length > 20) return res.status(400).json({ error: "跑团名用 1 到 20 个字" });
-  const db = getDb();
-  const pending = db.prepare("SELECT id, name, status FROM club_applications WHERE user_id = ? AND status = 'pending'").get(user.id);
-  if (pending) {
-    if (pending.name === name) return res.json({ pending: true, application: { id: pending.id, name: pending.name, status: pending.status } });
-    return res.status(400).json({ error: "先等上一个团审完" });
-  }
-  let id = 0;
-  try {
-    const info = db
-      .prepare("INSERT INTO club_applications (user_id, name, status, created_at) VALUES (?, ?, 'pending', ?)")
-      .run(user.id, name, new Date().toISOString());
-    id = Number(info.lastInsertRowid);
-  } catch (err) {
-    if (!/UNIQUE/i.test(String(err.message))) throw err;
-    const again = db.prepare("SELECT id, name, status FROM club_applications WHERE user_id = ? AND status = 'pending'").get(user.id);
-    if (!again) throw err;
-    return res.json({ pending: true, application: { id: again.id, name: again.name, status: again.status } });
-  }
-  res.json({ pending: true, application: { id, name, status: "pending" } });
+  const result = createClub(getDb(), user, req.body || {});
+  if (result.error) return res.status(result.status).json({ error: result.error });
+  res.json(result);
 });
 
 function clubSummary(db, club, userId) {
-  const owner = db.prepare("SELECT nickname FROM users WHERE id = ?").get(club.owner_id);
-  const members = db.prepare("SELECT COUNT(*) AS count FROM club_members WHERE club_id = ?").get(club.id);
+  const canManageIdentity = Boolean(userId && userId === club.owner_id);
   const isMember = userId
     ? db.prepare("SELECT 1 FROM club_members WHERE club_id = ? AND user_id = ?").get(club.id, userId)
     : null;
+  if (club.public_status === "restricted") return { id: club.id, name: club.name, city: club.city || "", intro: "", leader: "", memberCount: 0, joined: Boolean(isMember), canManageIdentity, pending: false, verified: false, verifiedAt: "", verificationScope: "", organization: "", publicStatus: "restricted", restricted: true, statusMessage: "该跑团目前暂停公开展示与招募。团内记录保留，已有成员可进入跑团，团长可在跑团身份页补充说明。" };
+  const owner = db.prepare("SELECT nickname FROM users WHERE id = ?").get(club.owner_id);
+  const members = db.prepare("SELECT COUNT(*) AS count FROM club_members WHERE club_id = ?").get(club.id);
   const pending = userId
     ? db.prepare("SELECT 1 FROM club_requests WHERE club_id = ? AND user_id = ? AND status = 'pending'").get(club.id, userId)
     : null;
   return {
     id: club.id,
     name: club.name,
+    ...publicIdentity(db, club),
     leader: owner ? owner.nickname : "",
     memberCount: members.count,
     joined: Boolean(isMember),
+    canManageIdentity,
     pending: Boolean(pending)
   };
 }
@@ -930,6 +918,7 @@ function clubSummary(db, club, userId) {
 function requestClubMembership(db, club, userId) {
   const member = db.prepare("SELECT 1 FROM club_members WHERE club_id = ? AND user_id = ?").get(club.id, userId);
   if (member) return { joined: true };
+  if (club.public_status === "restricted") return { error: "该跑团目前暂停公开招募，团长可在跑团身份页补充说明", status: 403 };
   const pending = db.prepare("SELECT id FROM club_requests WHERE club_id = ? AND user_id = ? AND status = 'pending'").get(club.id, userId);
   if (!pending) {
     try {
@@ -947,70 +936,21 @@ function requestClubMembership(db, club, userId) {
 
 app.get(BASE + "/api/clubs/directory", (req, res) => {
   const user = userFrom(req);
-  const q = String(req.query.q || "").trim().slice(0, 40);
-  const escaped = q.replace(/[\\%_]/g, (ch) => "\\" + ch);
-  const like = "%" + escaped + "%";
-  const folded = "%" + escaped.replace(/\s+/g, "") + "%";
-  const prefix = escaped + "%";
-  const clubs = getDb()
-    .prepare(
-      `SELECT c.id, c.name,
-              (SELECT u.nickname FROM users u WHERE u.id = c.owner_id) AS leader,
-              (SELECT COUNT(*) FROM club_members m WHERE m.club_id = c.id) AS members,
-              EXISTS(SELECT 1 FROM club_members m WHERE m.club_id = c.id AND m.user_id = ?) AS joined,
-              EXISTS(SELECT 1 FROM club_requests r WHERE r.club_id = c.id AND r.user_id = ? AND r.status = 'pending') AS pending
-       FROM clubs c
-       WHERE ? = ''
-          OR c.name LIKE ? ESCAPE '\\'
-          OR EXISTS (
-            SELECT 1 FROM users u WHERE u.id = c.owner_id AND u.nickname LIKE ? ESCAPE '\\'
-          )
-          OR EXISTS (
-            SELECT 1 FROM club_members m
-            JOIN users u ON u.id = m.user_id
-            WHERE m.club_id = c.id AND m.role = 'manager' AND m.user_id != c.owner_id AND u.nickname LIKE ? ESCAPE '\\'
-          )
-          OR REPLACE(c.name, ' ', '') LIKE ? ESCAPE '\\'
-          OR EXISTS (
-            SELECT 1 FROM users u WHERE u.id = c.owner_id AND REPLACE(u.nickname, ' ', '') LIKE ? ESCAPE '\\'
-          )
-          OR EXISTS (
-            SELECT 1 FROM club_members m
-            JOIN users u ON u.id = m.user_id
-            WHERE m.club_id = c.id AND m.role = 'manager' AND m.user_id != c.owner_id AND REPLACE(u.nickname, ' ', '') LIKE ? ESCAPE '\\'
-          )
-       ORDER BY
-         CASE
-           WHEN ? = '' THEN 0
-           WHEN c.name LIKE ? ESCAPE '\\' THEN 0
-           WHEN c.name LIKE ? ESCAPE '\\' THEN 1
-           ELSE 2
-         END,
-         c.id DESC
-       LIMIT 200`
-    )
-    .all(user ? user.id : 0, user ? user.id : 0, q, like, like, like, folded, folded, folded, q, prefix, like)
-    .map((row) => ({
-      id: row.id,
-      name: row.name,
-      leader: row.leader || "",
-      members: row.members,
-      joined: Boolean(row.joined),
-      pending: Boolean(row.pending)
-    }));
-  res.json({ clubs });
+  res.json(directory(getDb(), req.query, user ? user.id : 0));
 });
 
 app.get(BASE + "/api/clubs/invite/:code", (req, res) => {
+  res.set("Cache-Control", "private, no-store");
   const code = String(req.params.code || "").trim().toUpperCase();
-  const club = getDb().prepare("SELECT id, name, owner_id FROM clubs WHERE code = ?").get(code);
+  const club = getDb().prepare("SELECT * FROM clubs WHERE code = ?").get(code);
   if (!club) return res.status(404).json({ error: "没有找到这个跑团" });
   const user = userFrom(req);
   res.json({ club: clubSummary(getDb(), club, user && user.id) });
 });
 
 app.get(BASE + "/api/clubs/:id/public", (req, res) => {
-  const club = getDb().prepare("SELECT id, name, owner_id FROM clubs WHERE id = ?").get(req.params.id);
+  res.set("Cache-Control", "private, no-store");
+  const club = getDb().prepare("SELECT * FROM clubs WHERE id = ?").get(req.params.id);
   if (!club) return res.status(404).json({ error: "没有找到这个跑团" });
   const user = userFrom(req);
   res.json({ club: clubSummary(getDb(), club, user && user.id) });
@@ -1023,16 +963,18 @@ app.post(BASE + "/api/clubs/join", (req, res) => {
   const code = String(body.code || "").trim().toUpperCase();
   const db = getDb();
   if (code) {
-    const club = db.prepare("SELECT id, name, owner_id FROM clubs WHERE code = ?").get(code);
+    const club = db.prepare("SELECT * FROM clubs WHERE code = ?").get(code);
     if (!club) return res.status(404).json({ error: "没有这个跑团口令" });
     const status = requestClubMembership(db, club, user.id);
+    if (status.error) return res.status(status.status).json({ error: status.error });
     return res.json({ ...status, club: { id: club.id, name: club.name } });
   }
   const clubId = Number(body.clubId);
   if (!Number.isInteger(clubId) || clubId < 1) return res.status(400).json({ error: "填口令，或选一个跑团申请" });
-  const club = db.prepare("SELECT id, name, owner_id FROM clubs WHERE id = ?").get(clubId);
+  const club = db.prepare("SELECT * FROM clubs WHERE id = ?").get(clubId);
   if (!club) return res.status(404).json({ error: "没有这个跑团" });
   const status = requestClubMembership(db, club, user.id);
+  if (status.error) return res.status(status.status).json({ error: status.error });
   res.json({ ...status, club: { id: club.id, name: club.name } });
 });
 
@@ -1043,7 +985,7 @@ app.get(BASE + "/api/clubs/:id", (req, res) => {
     .prepare("SELECT 1 FROM club_members WHERE club_id = ? AND user_id = ?")
     .get(req.params.id, user.id);
   if (!member) return res.status(403).json({ error: "你不在这个跑团里" });
-  const clubRow = getDb().prepare("SELECT id, name, code, owner_id FROM clubs WHERE id = ?").get(req.params.id);
+  const clubRow = getDb().prepare("SELECT * FROM clubs WHERE id = ?").get(req.params.id);
   const club = { id: clubRow.id, name: clubRow.name, code: clubRow.code };
   const plans = getDb()
     .prepare(
@@ -1323,6 +1265,8 @@ app.put(BASE + "/api/admin/races/:id", (req, res) => {
   res.json({ ok: true, race: presentRace(getDb().prepare("SELECT * FROM races WHERE id = ?").get(race.id), new Date()) });
 });
 
+mountLegal(app, { BASE, getDb, userFrom, requireAdmin });
+mountClubIdentity(app, { BASE, getDb, userFrom, requireAdmin });
 mountClubLife(app, { BASE, getDb, userFrom });
 mountMileage(app, { BASE, getDb, userFrom });
 mountRunnerCenter(app, { BASE, getDb, userFrom, resultsFor, oneUpload });

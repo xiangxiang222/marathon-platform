@@ -5,6 +5,9 @@ const { passwordHash } = require("../src/admin-auth");
 const { avatarUrlOf } = require("../src/avatars");
 const { loginWechat, unbindWechat, registerUser, loginUser } = require("../src/user-auth");
 
+const { installLegal } = require("../src/legal");
+const legalConsent = { version: require("../../shared/legal-documents.json").version, accepted: true };
+
 const credentials = { appId: "fixture-app", secret: "fixture-secret" };
 const exchangeCode = async () => ({ openid: "fixture-openid" });
 
@@ -30,6 +33,7 @@ function database(t) {
       expire_at TEXT NOT NULL
     );
   `);
+  installLegal(db);
   t.after(() => db.close());
   return db;
 }
@@ -84,7 +88,7 @@ test("only the boolean createAccount true permits WeChat registration", async (t
   assert.equal(changes(db), 0);
   assert.deepEqual(userRows(db), []);
 
-  const result = await loginWechat(db, "fixture-code", credentials, exchangeCode, { createAccount: true });
+  const result = await loginWechat(db, "fixture-code", credentials, exchangeCode, { createAccount: true, legalConsent });
   const rows = userRows(db);
   assert.equal(rows.length, 1);
   assert.equal(rows[0].openid, "fixture-openid");
@@ -117,7 +121,7 @@ test("a linked WeChat identity logs into its original account and serializes the
 
 test("an invalid WeChat exchange cannot register an account even with explicit consent", async (t) => {
   const db = database(t);
-  const result = await loginWechat(db, "fixture-code", credentials, async () => ({ openid: "" }), { createAccount: true });
+  const result = await loginWechat(db, "fixture-code", credentials, async () => ({ openid: "" }), { createAccount: true, legalConsent });
   assert.equal(result.status, 401);
   assert.equal(changes(db), 0);
   assert.deepEqual(userRows(db), []);

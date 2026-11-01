@@ -11,10 +11,12 @@
       <template #header-actions>
         <button v-if="section === 'races'" type="button" class="primary head-add" @click="startDraft"><AdminIcon name="plus" />新建赛事</button>
         <button v-if="section === 'news'" type="button" class="primary head-add" @click="startNews"><AdminIcon name="plus" />发布资讯</button>
-        <button v-if="section === 'users'" type="button" class="primary head-add" @click="startUser"><AdminIcon name="plus" />添加跑者</button>
+        <button v-if="section === 'users' && canManageAccounts" type="button" class="primary head-add" @click="startUser"><AdminIcon name="plus" />添加跑者</button>
       </template>
       <p v-if="message" class="banner" :class="{ ok: saved }" role="status">{{ message }}</p>
       <AdminDashboard v-if="section === 'overview'" :data="overview" :role="role" :loading="overviewLoading" :error="overviewError" @action="handleOverviewAction" @retry="loadOverview" />
+      <ClubIdentityAdmin v-if="section === 'club-identity' && role === 'admin'" :key="token" :session-token="token" :request="admin" :refresh-key="identityRefresh" />
+      <PrivacyRequestsAdmin v-if="section === 'privacy-requests' && role === 'admin'" :key="token" :session-token="token" :request="admin" :refresh-key="privacyRefresh" />
       <FeedbackAdmin v-if="section === 'feedback' && role === 'admin'" :request="admin" :refresh-key="feedbackRefresh" :initial-filter="feedbackFilter" @changed="loadOverview" />
       <div v-if="section === 'races'" class="workspace-tabs" role="tablist" aria-label="赛事工作区"><button v-for="item in raceWorkspaces" :key="item.id" type="button" role="tab" :aria-selected="raceWorkspace === item.id" :class="{ on: raceWorkspace === item.id }" @click="pickRaceWorkspace(item.id)"><AdminIcon :name="item.icon" />{{ item.label }}<span v-if="item.id === 'review' && pendingCount">{{ pendingCount }}</span></button></div>
       <div v-if="section === 'races'" class="desk race-desk" :class="{ editing: deskOpen, dragging }" :style="splitStyle">
@@ -537,17 +539,17 @@
             <div class="race-list">
               <div v-for="item in users" :key="item.id" class="race-row user-row" :class="{ on: person && person.user.id === item.id }">
                 <button type="button" class="race-open" @click="openUser(item.id, 'view')">
-                  <span class="who-name">{{ item.nickname }}<i v-if="item.leader">建团资格</i></span>
+                  <span class="who-name">{{ item.nickname }}</span>
                   <strong>{{ item.createdAt }} · {{ item.clubs }} 个团 · {{ item.plans }} 场<span v-if="item.hasPassword"> · 可登录</span></strong>
                 </button>
-                <div v-if="pendingDelete === item.id" class="row-confirm">
+                <div v-if="canManageAccounts && pendingDelete === item.id" class="row-confirm">
                   <p>确认删除该账号？此操作不可恢复。若该用户仍担任跑团团长，须先完成团长移交。</p>
                   <button class="danger" type="button" @click="removeUser(item)">确认删除</button>
                   <button class="undo" type="button" @click="pendingDelete = 0">取消</button>
                 </div>
                 <div v-else class="row-actions">
                   <button class="row-edit" type="button" :aria-label="'编辑 ' + item.nickname" @click="openUser(item.id, 'edit')">编辑</button>
-                  <button class="remove" type="button" :aria-label="'删除 ' + item.nickname" @click="pendingDelete = item.id">删除</button>
+                  <button v-if="canManageAccounts" class="remove" type="button" :aria-label="'删除 ' + item.nickname" @click="pendingDelete = item.id">删除</button>
                 </div>
               </div>
             </div>
@@ -557,7 +559,7 @@
         </div>
         <div v-if="person || adding" class="splitter" role="separator" aria-orientation="vertical" aria-label="拖动调整左右宽度" :aria-valuenow="Math.round(split)" aria-valuemin="22" aria-valuemax="70" tabindex="0" @pointerdown="startSplit" @keydown="nudgeSplit"></div>
         <aside v-if="adding || person" class="desk-side">
-          <div v-if="adding" class="block person">
+          <div v-if="adding && canManageAccounts" class="block person">
             <p class="edit-kicker">添加用户</p>
             <h2>新账号</h2>
             <p class="lead">填写昵称和登录密码。创建后，该用户可使用此昵称与密码登录。不收集手机号，也不收集身份证。</p>
@@ -579,7 +581,7 @@
               <div class="person-head">
                 <div class="person-face" aria-hidden="true">{{ person.user.nickname.slice(0, 1) }}</div>
                 <div class="person-id">
-                  <p class="edit-kicker">{{ personMode === "edit" ? "编辑账号" : "用户详情" }}</p>
+                  <p class="edit-kicker">{{ personMode === "edit" ? canManageAccounts ? "编辑账号" : "管理团内角色" : "用户详情" }}</p>
                   <h2>{{ person.user.nickname }}</h2>
                   <p>{{ person.user.createdAt }} 起用这个昵称</p>
                 </div>
@@ -587,16 +589,8 @@
                 <button v-else class="text-btn" type="button" @click="personMode = 'view'">查看详情</button>
               </div>
               <template v-if="personMode === 'edit'">
-                <section class="section">
-                  <div class="setting">
-                    <div>
-                      <h3>建团资格</h3>
-                      <p class="lead">开启后，该用户可申请创建跑团。关闭后不能再申请建团，已担任团长的跑团不受影响。</p>
-                    </div>
-                    <button type="button" class="switch" :class="{ on: person.user.leader }" role="switch" :aria-checked="person.user.leader" aria-label="建团资格" @click="setLeader(!person.user.leader)"><i></i></button>
-                  </div>
-                </section>
-                <section class="section">
+                <section class="section"><h3>跑团创建</h3><p class="lead">所有登录用户均可直接创建跑团，无需授予资格。身份核验与异常创建按实际事实独立处理。</p></section>
+                <section v-if="canManageAccounts" class="section">
                   <h3>登录密码</h3>
                   <p class="lead">{{ person.user.hasPassword ? "该账号已设置登录密码。保存后将替换为新密码。" : "该账号尚未设置登录密码。设置后，可使用此昵称与密码登录。" }}</p>
                   <form class="pass-form" @submit.prevent="setLoginPassword">
@@ -626,7 +620,7 @@
               <template v-else>
                 <section class="section">
                   <h3>账号</h3>
-                  <div class="fact"><b>建团资格</b><span>{{ person.user.leader ? "已开启" : "未开启" }}</span></div>
+                  <div class="fact"><b>跑团创建</b><span>向所有登录用户开放</span></div>
                   <div class="fact"><b>登录</b><span>{{ person.user.hasPassword ? "已设置密码" : "尚未设置密码" }}</span></div>
                 </section>
                 <section class="section">
@@ -714,7 +708,7 @@
               <h3>团长与口令</h3>
               <div class="fact"><b>团长</b><span>{{ club.club.owner }}</span></div>
               <div class="fact"><b>口令</b><span>{{ club.club.code }}</span></div>
-              <p class="lead">口令用于打开跑团介绍，申请加入后须由团长或跑团管理审核。指定其他成员为团长后，原团长改为跑团管理，新团长具备建团资格。</p>
+              <p class="lead">口令用于打开跑团介绍，申请加入后须由团长或跑团管理审核。指定其他成员为团长后，原团长改为跑团管理，本团管理权随移交变更。所有登录用户均可直接创建跑团。</p>
             </section>
             <section class="section">
               <h3>成员</h3>
@@ -839,21 +833,20 @@
       </div>
       <div v-if="section === 'joins'" class="approval-workspace">
         <div class="approval-tabs" role="tablist" aria-label="申请类型">
-          <button type="button" role="tab" :aria-selected="joinTab === 'foundings'" :class="{ on: joinTab === 'foundings' }" @click="joinTab = 'foundings'">建团申请 <span>{{ foundingTotal }}</span></button>
+          <button type="button" role="tab" :aria-selected="joinTab === 'foundings'" :class="{ on: joinTab === 'foundings' }" @click="joinTab = 'foundings'">旧建团记录 <span>{{ foundingTotal }}</span></button>
           <button type="button" role="tab" :aria-selected="joinTab === 'joins'" :class="{ on: joinTab === 'joins' }" @click="joinTab = 'joins'">入团申请 <span>{{ joinTotal }}</span></button>
         </div>
-        <section v-if="joinTab === 'foundings'" id="founding-requests" class="block"><div class="panel-heading"><div><h3>建团申请</h3><p>确认团名与申请人，审核后开通跑团</p></div><span class="panel-count">{{ foundingTotal }} 条</span></div>
-        <p class="hint">须具备建团资格才能提交。通过后，申请人成为该团团长，可以在手机上管理成员、活动和组别。</p>
-        <p v-if="joinsReady" class="hint">{{ foundingTotal }} 条待审核</p>
+        <section v-if="joinTab === 'foundings'" id="founding-requests" class="block"><div class="panel-heading"><div><h3>旧建团申请记录</h3><p>保留历史，等待本人确认后继续创建</p></div><span class="panel-count">{{ foundingTotal }} 条</span></div>
+        <p class="hint">跑团已开放直接创建。旧待审申请由申请人在创建页确认名称与城市后继续，不再由后台批量开通。</p>
+        <p v-if="joinsReady" class="hint">{{ foundingTotal }} 条旧待处理记录</p>
         <div v-for="item in foundings" :key="item.id" class="line">
           <b>{{ item.nickname }} · {{ item.name }}</b>
           <span>{{ item.at }}</span>
           <span class="actions">
-            <button class="primary" type="button" @click="decideFounding(item, 'approve')">通过</button>
-            <button class="undo" type="button" @click="decideFounding(item, 'reject')">拒绝</button>
+            <span class="hint">{{ item.status === "approved" ? "已按旧流程开通" : item.status === "rejected" ? "旧申请未通过" : item.status === "activated" ? "已由本人继续创建" : "等待本人确认" }}</span>
           </span>
         </div>
-        <p v-if="joinsReady && !foundings.length" class="empty">没有待审核的建团。</p>
+        <p v-if="joinsReady && !foundings.length" class="empty">没有旧待处理建团申请。</p>
         <Pager :page="foundingPage" :pages="foundingPages" @update:page="turnFoundings" />
         </section><section v-if="joinTab === 'joins'" id="member-requests" class="block"><div class="panel-heading"><div><h3>入团申请</h3><p>口令不绕过审核，确认后加入跑团</p></div><span class="panel-count">{{ joinTotal }} 条</span></div>
         <p v-if="joinsReady" class="hint">{{ joinTotal }} 条待审核</p>
@@ -919,6 +912,8 @@ import Pager from "../components/Pager.vue";
 import AdminShell from "../components/admin/AdminShell.vue";
 import AdminDashboard from "../components/admin/AdminDashboard.vue";
 import FeedbackAdmin from "../components/admin/FeedbackAdmin.vue";
+import ClubIdentityAdmin from "../components/admin/ClubIdentityAdmin.vue";
+import PrivacyRequestsAdmin from "../components/admin/PrivacyRequestsAdmin.vue";
 import AdminIcon from "../components/admin/AdminIcon.vue";
 import { countiesOf, settleRegion } from "../areas";
 import { regions } from "../regions";
@@ -971,6 +966,8 @@ const catalogPages = ref(1);
 const catalogTotal = ref(0);
 const section = ref("overview");
 const feedbackRefresh = ref(0);
+const identityRefresh = ref(0);
+const privacyRefresh = ref(0);
 const feedbackFilter = ref("pending");
 const loginBusy = ref(false);
 const overview = ref(null);
@@ -979,6 +976,7 @@ const overviewError = ref("");
 const raceWorkspace = ref("catalog");
 const raceWorkspaces = [{id:"catalog",label:"赛事库",icon:"races"},{id:"review",label:"内容审核",icon:"check"},{id:"official",label:"官网同步",icon:"sync"}];
 const role = ref("admin");
+const canManageAccounts = computed(() => role.value === "admin");
 const selfName = ref("");
 const allSections = [
   { id: "overview", label: "运营总览", group: "工作台", icon: "overview", roles: ["admin", "club"] },
@@ -987,6 +985,8 @@ const allSections = [
   { id: "feedback", label: "共创建议", group: "内容运营", icon: "feedback", roles: ["admin"] },
   { id: "users", label: "跑者管理", group: "跑团与跑者", icon: "users", roles: ["admin", "club"] },
   { id: "clubs", label: "跑团管理", group: "跑团与跑者", icon: "clubs", roles: ["admin", "club"] },
+  { id: "club-identity", label: "跑团身份", group: "跑团与跑者", icon: "clubs", roles: ["admin"] },
+  { id: "privacy-requests", label: "个人信息权利", group: "平台管理", icon: "accounts", roles: ["admin"] },
   { id: "joins", label: "申请审核", group: "跑团与跑者", icon: "joins", roles: ["admin", "club"] },
   { id: "runs", label: "运动记录", group: "跑团与跑者", icon: "runs", roles: ["admin"] },
   { id: "shop", label: "积分礼品", group: "权益与合作", icon: "shop", roles: ["admin"] },
@@ -1087,7 +1087,7 @@ const foundingTotal = ref(0);
 const joinPage = ref(1);
 const joinPages = ref(1);
 const joinTotal = ref(0);
-const joinTab = ref("foundings");
+const joinTab = ref("joins");
 const joinsReady = ref(false);
 const accounts = ref([]);
 const accountName = ref("");
@@ -1112,9 +1112,11 @@ const sectionLead = computed(() => ({
   races: "从采集核实到正式发布，维护每一场比赛的时间、项目、规程与来源。",
   news: "发布与审核赛事资讯，确保每条内容关联准确的赛事。",
   feedback: "听见跑者的功能与 UI 想法，公示投票、答复进度，并兑现采纳奖励。",
-  users: "查看跑者的参赛计划、成绩与跑团，按需管理账号和建团资格。",
+  users: "查看跑者的参赛计划、成绩与跑团，按需管理账号。跑团向所有登录用户开放创建。",
   clubs: "管理跑团成员、角色与团长移交，成员账号和跑团分开维护。",
-  joins: "集中处理建团与入团申请。口令定位跑团，申请仍需审核。",
+  "club-identity": "私密核验组织管理关系，依据事实处理名称混淆与身份冒用。",
+  "privacy-requests": "核对用户的查阅、更正、删除、撤回同意与注销申请，记录实际处理情况。",
+  joins: "处理入团申请，并保留旧建团审批记录。新跑团由登录跑友直接创建。",
   runs: "查看跑者手动记录的运动数据及跑团归属。跑表自动同步尚未接入。",
   shop: "查看跑团积分礼品与兑换记录，支持团内激励。",
   partner: "管理物资、月度联赛与线下合作账目。",
@@ -1301,6 +1303,8 @@ async function refreshSection() {
   try {
     if (section.value === "overview") return await loadOverview();
     if (section.value === "feedback") { feedbackRefresh.value++; return; }
+    if (section.value === "club-identity") { identityRefresh.value++; return; }
+    if (section.value === "privacy-requests") { privacyRefresh.value++; return; }
     if (section.value === "races") return await Promise.all([raceWorkspace.value === "official" ? load() : raceWorkspace.value === "review" ? loadBotReviews() : loadCatalog(), loadSpots()]);
     const jobs = {news:loadNews,users:loadUsers,clubs:loadClubs,joins:loadJoins,runs:loadRuns,shop:loadShop,partner:loadPartner};
     if (role.value === "admin") jobs.accounts = loadAccounts;
@@ -1540,6 +1544,7 @@ const shownPlans = computed(() => {
 });
 
 function startUser() {
+  if (!canManageAccounts.value) return;
   message.value = "";
   saved.value = false;
   person.value = null;
@@ -1556,6 +1561,7 @@ function cancelUser() {
 }
 
 async function createPerson() {
+  if (!canManageAccounts.value) return;
   const nickname = newName.value.trim();
   const password = newPass.value;
   message.value = "";
@@ -1600,7 +1606,7 @@ async function openUser(id, mode) {
 }
 
 async function setLoginPassword() {
-  if (!person.value) return;
+  if (!canManageAccounts.value || !person.value) return;
   message.value = "";
   saved.value = false;
   try {
@@ -1648,7 +1654,7 @@ async function setClubRole(club, next) {
 }
 
 async function removeUser(item) {
-  if (!item) return;
+  if (!canManageAccounts.value || !item) return;
   message.value = "";
   saved.value = false;
   try {
@@ -1660,29 +1666,6 @@ async function removeUser(item) {
     message.value = "账号已删除";
   } catch (err) {
     fail(err);
-  }
-}
-
-async function setLeader(leader) {
-  if (!person.value || leader === person.value.user.leader) return;
-  message.value = "";
-  saved.value = false;
-  try {
-    await admin("/admin/users/" + person.value.user.id + "/leader", {
-      method: "PUT",
-      body: JSON.stringify({ leader })
-    });
-    person.value = await admin("/admin/users/" + person.value.user.id);
-    await loadUsers();
-    saved.value = true;
-    message.value = leader ? "已开启建团资格" : "已关闭建团资格";
-  } catch (err) {
-    fail(err);
-    try {
-      person.value = await admin("/admin/users/" + person.value.user.id);
-    } catch (again) {
-      fail(again);
-    }
   }
 }
 

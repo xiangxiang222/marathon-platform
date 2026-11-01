@@ -1,6 +1,7 @@
 const crypto = require("crypto");
 const { Worker, isMainThread, parentPort, workerData } = require("worker_threads");
 const { XMLParser, XMLValidator } = require("fast-xml-parser");
+const { consentError, recordAcceptance } = require("./legal");
 
 const MAX_FILE = 5 * 1024 * 1024;
 const fail = (message) => { throw Object.assign(new Error(message), { status: 400 }); };
@@ -157,6 +158,10 @@ function mountActivityFiles(app, { BASE, getDb, userFrom }) {
     const user = userFrom(req);
     if (!user) return res.status(401).json({ error: "请先登录" });
     res.set("Cache-Control", "private, no-store");
+    const version = req.get("X-Activity-Data-Consent");
+    const consent = version === undefined ? undefined : { version, accepted: true };
+    const agreement = consentError(consent, true);
+    if (agreement) return res.status(agreement.status).json({ error: agreement.status === 428 ? "请先确认运动文件中个人信息的临时解析与摘要保存说明" : agreement.error });
     if (!/^multipart\/form-data\s*;/i.test(req.get("content-type") || "")) return res.status(400).json({ error: "请选择 FIT 或 TCX 文件上传" });
     try {
       const bytes = singleFile(await readUpload(req), req.get("content-type"));
@@ -173,6 +178,7 @@ function mountActivityFiles(app, { BASE, getDb, userFrom }) {
         const connection = db.prepare("SELECT * FROM wearable_connections WHERE user_id = ? AND provider = 'file'").get(user.id);
         const answer = ingestActivity(db, connection, activity);
         if (answer.status === "rejected") throw Object.assign(new Error(answer.error), { status: answer.httpStatus || 400 });
+        recordAcceptance(db, user.id, consent, "activity-file", "activity-file");
         db.prepare("UPDATE wearable_connections SET last_sync_at = ?, updated_at = ? WHERE id = ?").run(now, now, connection.id);
         return answer;
       }).immediate();

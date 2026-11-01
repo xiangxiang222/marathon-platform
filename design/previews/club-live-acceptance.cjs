@@ -54,16 +54,16 @@ async function check(name, fn, kind = 'api') {
   catch (error) { report[kind].push({ name, status: 'fail', error: error.message }); process.stderr.write('FAIL ' + name + ': ' + error.message + '\n'); if (kind === 'browser') process.exitCode = 1; else throw error; }
 }
 async function register(key, nickname) {
-  const created = await api('POST', '/auth/register', null, { nickname, password: 'Live-club-2026!' });
+  const created = await api('POST', '/auth/register', null, { nickname, password: 'Live-club-2026!', legalConsent: { accepted: true, version: require('../../shared/legal-documents.json').version } });
   actor[key] = { ...created.user, token: created.token };
   report.accountCount++;
   return actor[key];
 }
 async function createClub(who, name) {
-  await api('PUT', '/admin/users/' + who.id + '/leader', process.env.ADMIN_TOKEN, { leader: true });
-  const created = await api('POST', '/clubs', who, { name });
-  assert.equal(created.pending, true);
-  return (await api('POST', '/admin/club-applications/' + created.application.id, process.env.ADMIN_TOKEN, { decision: 'approve' })).club;
+  const created = await api('POST', '/clubs', who, { name, city: '北京', requestId: crypto.randomUUID() });
+  assert.equal(created.pending, false);
+  assert.ok(created.club.id);
+  return created.club;
 }
 async function join(club, who, decision = 'approve') {
   const applied = await api('POST', '/clubs/join', who, { code: club.code });
@@ -90,7 +90,7 @@ async function main() {
       if (valid) { assert.equal(result.user.id, actor.a.id); actor.a.token = result.token; }
     }
   });
-  await check('CLUB-01 两个跑团通过实际建团审核流程创建', async () => {
+  await check('CLUB-01 两个普通账号无需资格或审批即可创建跑团', async () => {
     club = await createClub(actor.owner, '晨光城市马拉松跑团'); other = await createClub(actor.outsider, '山野独立跑团');
     assert.notEqual(club.id, other.id);
   });
@@ -341,7 +341,7 @@ async function main() {
 
 async function browserChecks(fixture) {
   const { createServer } = await import(pathToFileURL(path.join(ROOT, 'web/node_modules/vite/dist/node/index.js')).href);
-  vite = await createServer({ root: path.join(ROOT, 'web'), configFile: path.join(ROOT, 'web/vite.config.js'), server: { host: '127.0.0.1', port: Number(process.env.MARATHON_LIVE_PREVIEW_PORT || 5175), strictPort: true, proxy: { '/marathon/api': { target: origin, changeOrigin: true } } } });
+  vite = await createServer({ root: path.join(ROOT, 'web'), cacheDir: path.join(temp, 'vite-cache'), configFile: path.join(ROOT, 'web/vite.config.js'), server: { host: '127.0.0.1', port: Number(process.env.MARATHON_LIVE_PREVIEW_PORT || 5175), strictPort: true, proxy: { '/marathon/api': { target: origin, changeOrigin: true } } } });
   await vite.listen();
   const { chromium } = require(path.join(ROOT, 'node_modules/playwright-core'));
   browser = await chromium.launch({ executablePath: process.env.CHROME_PATH || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', headless: true });
@@ -559,6 +559,7 @@ async function browserJourneys(fixture, base) {
     await guest.locator('.captcha img').waitFor();
     const captcha = db.prepare('SELECT code FROM captchas WHERE used = 0 ORDER BY id DESC LIMIT 1').get(); assert.ok(captcha);
     await guest.getByPlaceholder('上图字符').fill(captcha.code);
+    await guest.getByRole('checkbox').check();
     await guest.getByRole('button', { name: '登录', exact: true }).click();
     await guest.waitForURL(/\/clubs\/\d+\/public$/);
     await guest.getByRole('button', { name: '等待审核', exact: true }).waitFor();

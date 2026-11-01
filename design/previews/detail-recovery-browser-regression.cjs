@@ -44,6 +44,7 @@ async function run() {
           const request = route.request();
           const url = new URL(request.url());
           const apiPath = url.pathname.replace("/marathon/api", "");
+    if (apiPath === '/legal') return route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(require('../../shared/legal-documents.json')) });
           report.requests.push({ kind, width, method: request.method(), path: apiPath + url.search, source: "in-memory fixture" });
           const reply = (status, data) => route.fulfill({ status, contentType: "application/json", body: JSON.stringify(data) });
           if (apiPath === endpoint && request.method() === "GET") {

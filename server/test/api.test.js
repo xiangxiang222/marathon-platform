@@ -3,6 +3,7 @@ const assert = require("node:assert");
 const request = require("supertest");
 const { app } = require("../src/index");
 const { getDb } = require("../src/db");
+const legalConsent = { version: require("../../shared/legal-documents.json").version, accepted: true };
 const { syncOfficial, listOfficial, openUpcoming } = require("../src/official");
 const { RACES, presentRace, reminderHits, nearbyOpen } = require("../src/races");
 
@@ -15,22 +16,10 @@ async function session(nickname) {
 async function createClub(auth, name) {
   process.env.ADMIN_TOKEN = process.env.ADMIN_TOKEN || "test-admin";
   const headers = typeof auth === "string" ? { Authorization: "Bearer " + auth } : auth;
-  const admin = { Authorization: "Bearer " + process.env.ADMIN_TOKEN };
-  const me = await request(app).get("/marathon/api/me").set(headers);
-  assert.equal(me.status, 200);
-  if (!me.body.user.leader) {
-    const set = await request(app).put("/marathon/api/admin/users/" + me.body.user.id + "/leader").set(admin).send({ leader: true });
-    assert.equal(set.status, 200);
-  }
-  const applied = await request(app).post("/marathon/api/clubs").set(headers).send({ name });
-  assert.equal(applied.status, 200);
-  assert.equal(applied.body.pending, true);
-  const approved = await request(app)
-    .post("/marathon/api/admin/club-applications/" + applied.body.application.id)
-    .set(admin)
-    .send({ decision: "approve" });
-  assert.equal(approved.status, 200);
-  return { status: 200, body: { club: approved.body.club } };
+  const created = await request(app).post("/marathon/api/clubs").set(headers).send({ name, city: "北京", requestId: require("crypto").randomUUID() });
+  assert.equal(created.status, 200, JSON.stringify(created.body));
+  assert.equal(created.body.pending, false);
+  return created;
 }
 
 async function joinWithCode(token, code) {
@@ -85,7 +74,7 @@ test("a club sees a teammate mark the same race", async () => {
   const joined = await joinWithCode(mate, code);
   assert.equal(joined.status, 200);
   const mine = await request(app).get("/marathon/api/me").set("Authorization", "Bearer " + leader);
-  assert.equal(mine.body.user.leader, true);
+  assert.equal(mine.body.user.leader, false);
   assert.equal(mine.body.clubs[0].role, "owner");
   assert.equal(mine.body.clubs[0].roleLabel, "团长");
   const mateMe = await request(app).get("/marathon/api/me").set("Authorization", "Bearer " + mate);
@@ -1345,7 +1334,7 @@ test("admin sees nicknames, self-reported runs, and club gifts", async () => {
   assert.ok(fragment.body.users.every((user) => user.nickname.includes("核对")));
   assert.equal(listed.body.users[0].plans, 1);
   assert.equal(listed.body.users[0].clubs, 1);
-  assert.equal(listed.body.users[0].leader, true);
+  assert.equal(listed.body.users[0].leader, false);
   assert.equal(JSON.stringify(listed.body).includes(user), false);
   const detail = await request(app).get("/marathon/api/admin/users/" + listed.body.users[0].id).set(admin);
   assert.equal(detail.status, 200);
@@ -1511,60 +1500,28 @@ test("a club can be joined without a code, after a manager approves", async () =
   assert.equal(own.body.error, "不能改自己的角色");
 });
 
-test("only a leader can apply to found a club, and the desk approves it", async () => {
+test("ordinary accounts create immediately, and legacy pending applications require owner confirmation", async () => {
   process.env.ADMIN_TOKEN = "test-admin";
-  const admin = { Authorization: "Bearer test-admin" };
-  const founder = await session("建团人");
-  const auth = { Authorization: "Bearer " + founder };
-  const blocked = await request(app).post("/marathon/api/clubs").set(auth).send({ name: "还没资格" });
-  assert.equal(blocked.status, 403);
-  assert.equal(blocked.body.error, "当前没有建团资格，无法申请创建跑团");
-
+  const founder = await session("建团人"), auth = { Authorization: "Bearer " + founder };
   const me = await request(app).get("/marathon/api/me").set(auth);
   assert.equal(me.body.user.leader, false);
-  const granted = await request(app).put("/marathon/api/admin/users/" + me.body.user.id + "/leader").set(admin).send({ leader: true });
-  assert.equal(granted.status, 200);
-  const empty = await request(app).post("/marathon/api/clubs").set(auth).send({ name: "" });
+  const empty = await request(app).post("/marathon/api/clubs").set(auth).send({ name: "", city: "北京" });
   assert.equal(empty.status, 400);
-
-  const applied = await request(app).post("/marathon/api/clubs").set(auth).send({ name: "待审跑团" });
-  assert.equal(applied.status, 200);
-  assert.equal(applied.body.pending, true);
-  assert.equal(applied.body.club, undefined);
-  const again = await request(app).post("/marathon/api/clubs").set(auth).send({ name: "待审跑团" });
-  assert.equal(again.body.application.id, applied.body.application.id);
-  const otherName = await request(app).post("/marathon/api/clubs").set(auth).send({ name: "另一个团" });
-  assert.equal(otherName.status, 400);
-
-  const directory = await request(app).get("/marathon/api/clubs/directory").set(auth);
-  assert.equal(directory.body.clubs.some((item) => item.name === "待审跑团"), false);
-  const mine = await request(app).get("/marathon/api/me").set(auth);
-  assert.equal(mine.body.applications[0].name, "待审跑团");
-
-  const deskUser = await request(app).post("/marathon/api/admin/accounts").set(admin).send({ username: "founddesk", password: "found-pass-8", role: "club" });
-  assert.equal(deskUser.status, 200);
-  const login = await request(app).post("/marathon/api/admin/login").send({ username: "founddesk", password: "found-pass-8" });
-  const desk = { Authorization: "Bearer " + login.body.token };
-  const queue = await request(app).get("/marathon/api/admin/club-applications").set(desk);
-  const hit = queue.body.applications.find((item) => item.name === "待审跑团");
-  assert.ok(hit);
-  const rejected = await request(app).post("/marathon/api/admin/club-applications/" + hit.id).set(desk).send({ decision: "reject" });
-  assert.equal(rejected.status, 200);
-  const retried = await request(app).post("/marathon/api/clubs").set(auth).send({ name: "待审跑团" });
-  assert.equal(retried.status, 200);
-  const approved = await request(app).post("/marathon/api/admin/club-applications/" + retried.body.application.id).set(desk).send({ decision: "approve" });
-  assert.equal(approved.status, 200);
-  assert.equal(approved.body.club.name, "待审跑团");
-  const opened = await request(app).get("/marathon/api/clubs/" + approved.body.club.id).set(auth);
-  assert.equal(opened.status, 200);
+  const applicationId = Number(getDb().prepare("INSERT INTO club_applications(user_id,name,status,created_at) VALUES(?,?,'pending',?)").run(me.body.user.id, "待审跑团", new Date().toISOString()).lastInsertRowid);
+  const pending = await request(app).get("/marathon/api/me").set(auth);
+  assert.equal(pending.body.applications[0].id, applicationId);
+  const before = await request(app).get("/marathon/api/clubs/directory?q=" + encodeURIComponent("待审跑团"));
+  assert.equal(before.body.clubs.length, 0);
+  const created = await request(app).post("/marathon/api/clubs").set(auth).send({ name: "待审跑团", city: "北京", applicationId, requestId: "legacy-confirmation" });
+  assert.equal(created.status, 200);
+  assert.equal(created.body.pending, false);
+  const opened = await request(app).get("/marathon/api/clubs/" + created.body.club.id).set(auth);
   assert.equal(opened.body.club.role, "owner");
   assert.equal(opened.body.club.staff, true);
-  const group = await request(app).post("/marathon/api/clubs/" + approved.body.club.id + "/groups").set(auth).send({ name: "手机组" });
+  assert.equal((await request(app).get("/marathon/api/me").set(auth)).body.user.leader, false);
+  assert.equal(getDb().prepare("SELECT status FROM club_applications WHERE id=?").get(applicationId).status, "approved");
+  const group = await request(app).post("/marathon/api/clubs/" + created.body.club.id + "/groups").set(auth).send({ name: "手机组" });
   assert.equal(group.status, 200);
-  const removed = await request(app).put("/marathon/api/admin/users/" + me.body.user.id + "/leader").set(admin).send({ leader: false });
-  assert.equal(removed.status, 200);
-  const later = await request(app).post("/marathon/api/clubs").set(auth).send({ name: "再建一个" });
-  assert.equal(later.status, 403);
 });
 
 test("a club can be found by its name, its leader, or a manager", async () => {
@@ -1598,8 +1555,8 @@ test("a club can be found by its name, its leader, or a manager", async () => {
   const missing = await request(app).get("/marathon/api/clubs/directory?q=" + encodeURIComponent("没有这个团")).set(eyes);
   assert.equal(missing.body.clubs.length, 0);
 
-  const head = await createClub(leader, "中青跑团");
-  await createClub(leader, "北京中青");
+  const head = await createClub(await session("前缀搜索团长"), "中青跑团");
+  await createClub(await session("包含搜索团长"), "北京中青");
   const typed = await request(app).get("/marathon/api/clubs/directory?q=" + encodeURIComponent("中")).set(eyes);
   const names = typed.body.clubs.map((item) => item.name).filter((name) => name === "中青跑团" || name === "北京中青");
   assert.deepEqual(names, ["中青跑团", "北京中青"]);
@@ -1632,7 +1589,7 @@ test("wechat login binds OpenID and only exposes the owner's chosen avatar to cl
     assert.equal(unknown.status, 409);
     assert.equal(unknown.body.code, "WECHAT_REGISTRATION_REQUIRED");
     assert.equal(getDb().prepare("SELECT COUNT(*) AS n FROM users").get().n, before);
-    const first = await request(app).post("/marathon/api/auth/wechat").send({ code: "fresh-valid-code", createAccount: true });
+    const first = await request(app).post("/marathon/api/auth/wechat").send({ code: "fresh-valid-code", createAccount: true, legalConsent });
     assert.equal(first.status, 200);
     assert.match(first.body.user.nickname, /^跑者/);
     assert.equal(first.body.user.openid, undefined);
@@ -1688,14 +1645,14 @@ test("wechat login binds OpenID and only exposes the owner's chosen avatar to cl
     assert.equal(rejected.status, 502);
     assert.equal(rejected.body.error.includes("openid"), false);
 
-    const legacyAccount = await request(app).post("/marathon/api/auth/register").send({ nickname: "迁移账号", password: "password-8" });
+    const legacyAccount = await request(app).post("/marathon/api/auth/register").send({ nickname: "迁移账号", password: "password-8", legalConsent });
     assert.equal(legacyAccount.status, 200);
     const linked = await request(app).post("/marathon/api/me/wechat").set("Authorization", "Bearer " + legacyAccount.body.token).send({ code: "legacy-identity" });
     assert.equal(linked.status, 200);
     const migrated = await request(app).post("/marathon/api/auth/wechat").send({ code: "legacy-identity" });
     assert.equal(migrated.status, 200);
     assert.equal(migrated.body.user.id, legacyAccount.body.user.id);
-    const duplicateAccount = await request(app).post("/marathon/api/auth/register").send({ nickname: "重复绑定", password: "password-8" });
+    const duplicateAccount = await request(app).post("/marathon/api/auth/register").send({ nickname: "重复绑定", password: "password-8", legalConsent });
     assert.equal(duplicateAccount.status, 200);
     const duplicateLink = await request(app).post("/marathon/api/me/wechat").set("Authorization", "Bearer " + duplicateAccount.body.token).send({ code: "legacy-identity" });
     assert.equal(duplicateLink.status, 409);
@@ -1746,7 +1703,7 @@ test("a nickname cannot claim a legacy account and password login stays availabl
   const short = await request(app).post("/marathon/api/auth/register").send({ nickname: "短密码", password: "short" });
   assert.equal(short.status, 400);
 
-  const created = await request(app).post("/marathon/api/auth/register").send({ nickname: "新注册", password: "password-8" });
+  const created = await request(app).post("/marathon/api/auth/register").send({ nickname: "新注册", password: "password-8", legalConsent });
   assert.equal(created.status, 200);
   assert.notEqual(created.body.user.id, legacy.body.user.id);
   await request(app).put("/marathon/api/me/races/bishan").set("Authorization", "Bearer " + created.body.token).send({ status: "想跑" });
@@ -1783,7 +1740,7 @@ test("a nickname cannot claim a legacy account and password login stays availabl
   const still = await request(app).get("/marathon/api/me").set("Authorization", "Bearer " + back.body.token);
   assert.equal(still.body.plans[0].status, "想跑");
 
-  const bare = await request(app).post("/marathon/api/auth/login").send({ nickname: "新注册", password: "password-8" });
+  const bare = await request(app).post("/marathon/api/auth/login").send({ nickname: "新注册", password: "password-8", legalConsent });
   assert.equal(bare.status, 400);
 
   await session("重名乙");
@@ -1993,7 +1950,7 @@ test("an admin can list clubs, assign the leader, and manage members", async () 
   assert.equal(after.body.members.find((item) => item.nickname === "后台团员甲").role, "owner");
   assert.equal(after.body.members.find((item) => item.nickname === "后台团长甲").role, "manager");
   const qualified = await request(app).get("/marathon/api/admin/users/" + mateMe.body.user.id).set(admin);
-  assert.equal(qualified.body.user.leader, true);
+  assert.equal(qualified.body.user.leader, false);
 
   const returned = await request(app)
     .put("/marathon/api/admin/clubs/" + clubId + "/members/" + detail.body.members[0].id)
@@ -2024,7 +1981,7 @@ test("an admin can list clubs, assign the leader, and manage members", async () 
   assert.equal((await request(app).delete("/marathon/api/admin/clubs/" + clubId).set(admin)).status, 404);
   const ownerStill = await request(app).get("/marathon/api/admin/users/" + detail.body.members[0].id).set(admin);
   assert.equal(ownerStill.body.user.nickname, "后台团长甲");
-  assert.equal(ownerStill.body.user.leader, true);
+  assert.equal(ownerStill.body.user.leader, false);
   assert.equal(ownerStill.body.clubs.length, 0);
   const mateStill = await request(app).get("/marathon/api/me").set("Authorization", "Bearer " + mate);
   assert.equal(mateStill.body.user.nickname, "后台团员甲");

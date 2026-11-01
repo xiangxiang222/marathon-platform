@@ -1,0 +1,59 @@
+<template>
+  <main class="legal-page">
+    <header class="legal-topbar"><router-link to="/mine" aria-label="返回我的">‹</router-link><span>协议与隐私中心</span><span aria-hidden="true">赛历</span></header>
+    <div class="legal-wrap">
+      <header class="legal-hero"><p class="legal-eyebrow">LEGAL &amp; PRIVACY</p><h1>服务规则与<br>个人信息保护</h1><p>了解我们提供的服务、如何处理个人信息，以及你可以行使的权利。</p><div v-if="catalog" class="legal-version"><span>版本 {{ catalog.version }}</span><span>更新日期 {{ catalog.updatedAt }}</span><span>生效日期 {{ catalog.effectiveDate || '待公布' }}</span></div></header>
+      <p v-if="loading && !catalog" class="legal-state" role="status">正在读取协议文件…</p>
+      <div v-if="error" class="legal-notice" role="alert"><p>{{ error }}</p><button type="button" @click="load" :disabled="loading">重新读取</button></div>
+      <template v-if="catalog">
+        <p v-if="catalog.ready === false" class="legal-notice legal-draft">当前显示工作区草案，尚未发布生效。请以核实并正式发布后的版本及生效日期为准。</p>
+        <section class="operator-card" aria-label="运营者与联系信息"><h2>运营者与联系信息</h2><dl><div><dt>运营主体</dt><dd>{{ catalog.operator?.name || '待核实' }}</dd></div><div><dt>联系邮箱</dt><dd>{{ catalog.operator?.contactEmail || '待核实' }}</dd></div><div><dt>联系地址</dt><dd>{{ catalog.operator?.address || '待核实' }}</dd></div><div><dt>托管服务商</dt><dd>{{ catalog.operator?.hostingProvider || '待核实' }}</dd></div><div><dt>数据存储地区</dt><dd>{{ catalog.operator?.storageRegion || '待核实' }}</dd></div></dl></section>
+        <div class="legal-layout">
+          <aside class="legal-directory"><nav aria-label="协议文件"><router-link v-for="item in catalog.documents" :key="item.id" :to="'/legal/' + item.id" :class="{ active: selected?.id === item.id }" :aria-current="selected?.id === item.id ? 'page' : undefined"><span>{{ item.title }}</span><span aria-hidden="true">↗</span></router-link></nav><p>所有文件均可在登录前阅读。授权或撤回某项权限，不影响与该权限无关的服务。</p></aside>
+          <article v-if="selected" class="legal-document" :aria-label="selected.title">
+            <header class="legal-document-head"><span class="legal-document-label">{{ selected.id === 'privacy' ? '个人信息保护' : selected.id === 'terms' ? '服务规则' : '透明说明' }}</span><h2>{{ selected.title }}</h2><p>{{ selected.summary }}</p><p class="legal-operator">运营主体：{{ catalog.operator?.name || '待确认' }}</p></header>
+            <nav v-if="selected.sections?.length > 3" class="legal-toc" aria-label="本文件目录"><b>本文件目录</b><a v-for="(section, index) in selected.sections" :key="section.id || index" :href="'#legal-section-' + index" @click.prevent="jump(index)">{{ section.title }}</a></nav>
+            <section v-for="(section, index) in selected.sections" :id="'legal-section-' + index" :key="section.id || index" class="legal-section" :class="{ important: section.important }">
+              <h3>{{ section.title }}</h3>
+              <p v-for="(paragraph, pIndex) in section.paragraphs || []" :key="pIndex"><LegalText :text="paragraph" /></p>
+              <ul v-if="section.items?.length"><li v-for="(item, iIndex) in section.items" :key="iIndex"><LegalText :text="item" /></li></ul>
+              <div v-if="section.table?.columns?.length" class="legal-table-wrap"><table class="legal-table"><caption class="sr-only">{{ section.title }}</caption><thead><tr><th v-for="column in section.table.columns" :key="column" scope="col">{{ column }}</th></tr></thead><tbody><tr v-for="(row, rIndex) in section.table.rows || []" :key="rIndex"><td v-for="(cell, cIndex) in row" :key="cIndex" :data-label="section.table.columns[cIndex]"><LegalText :text="String(cell ?? '')" /></td></tr></tbody></table></div>
+            </section>
+            <footer class="legal-document-foot"><p>如需访问、更正、复制、删除个人信息，或提出投诉与建议，请查看<router-link to="/legal/rights">《个人信息权利与账号注销指引》</router-link>。</p><button type="button" @click="top">回到顶部 ↑</button></footer>
+            <PrivacyRights v-if="selected.id === 'rights'" />
+          </article>
+          <div v-else class="legal-document legal-state"><h2>暂未找到这份文件</h2><p>请从文件目录中选择需要阅读的内容。</p><router-link to="/legal/privacy">阅读隐私政策</router-link></div>
+        </div>
+      </template>
+    </div>
+  </main>
+</template>
+
+<script setup>
+import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue';
+import { useRoute } from 'vue-router';
+import { api } from '../api';
+import LegalText from '../components/LegalText.vue';
+import PrivacyRights from '../components/PrivacyRights.vue';
+import bundled from '../../../shared/legal-documents.json';
+const route = useRoute(), catalog = ref(bundled), loading = ref(false), error = ref('');
+let usingBundled = true;
+let disposed = false, version = 0;
+const selected = computed(() => catalog.value?.documents?.find(item => item.id === (route.params.document || 'privacy')));
+async function load() {
+  const requestVersion = ++version; loading.value = true; error.value = '';
+  try { const data = await api('/legal'); if (disposed || version !== requestVersion) return; if (!Array.isArray(data.documents) || !data.documents.length) throw new Error('协议文件暂不可用，请稍后重试。'); catalog.value = data; usingBundled = false; }
+  catch (_) { if (!disposed && version === requestVersion) error.value = '暂时无法读取在线版本，当前显示' + (usingBundled ? '内置版本' : '已加载版本') + '，可继续阅读全部文件。'; }
+  finally { if (!disposed && version === requestVersion) loading.value = false; }
+}
+function jump(index) { document.getElementById('legal-section-' + index)?.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+function top() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+watch(() => route.params.document, top);
+onMounted(load); onBeforeUnmount(() => { disposed = true; version++; });
+</script>
+
+<style scoped>
+.operator-card{background:#fff;border:1px solid #e9ecf1;border-radius:14px;padding:22px 25px;margin-bottom:23px}.operator-card h2{font-size:15px;margin:0 0 17px}.operator-card dl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 25px;margin:0}.operator-card dl>div{display:grid;grid-template-columns:100px minmax(0,1fr);gap:10px;font-size:12px;line-height:1.85}.operator-card dt{color:#9299a6}.operator-card dd{margin:0;color:#657082;overflow-wrap:anywhere}@media(max-width:650px){.operator-card{padding:20px}.operator-card dl{grid-template-columns:1fr}.operator-card dl>div{grid-template-columns:88px minmax(0,1fr);font-size:11px}}
+.legal-page{min-height:100vh;background:#f5f6fa;color:#262a34;padding-bottom:50px}.legal-page *{box-sizing:border-box}.legal-topbar{height:66px;display:flex;align-items:center;justify-content:space-between;gap:15px;padding:0 24px;border-bottom:1px solid #eceef2;background:white;font-size:15px;font-weight:600}.legal-topbar>a{display:grid;place-items:center;width:44px;height:44px;font-size:30px;font-weight:400}.legal-topbar>span:last-child{color:#9a9fac;font-size:12px;font-weight:400}.legal-wrap{max-width:1160px;margin:auto;padding:42px 24px 0}.legal-eyebrow{font-size:10px;letter-spacing:2px;color:#ba7d8d;margin:0 0 20px}.legal-hero h1{font-size:40px;line-height:1.4;letter-spacing:1px;margin:0;font-weight:650}.legal-hero>p:not(.legal-eyebrow){color:#6e7583;font-size:14px;line-height:1.9;max-width:610px;margin:18px 0}.legal-version{display:flex;flex-wrap:wrap;gap:8px 23px;font-size:11px;color:#858c9b;line-height:1.9;margin:23px 0 32px}.legal-layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:27px;align-items:start}.legal-directory{position:sticky;top:22px}.legal-directory nav{display:grid;background:white;border:1px solid #e9ecf1;border-radius:15px;padding:9px}.legal-directory nav a{display:flex;justify-content:space-between;align-items:center;gap:10px;min-height:48px;padding:12px;font-size:12px;line-height:1.6;color:#788192;border-radius:9px}.legal-directory nav a.active{background:#fff0f4;color:#c73559;font-weight:600}.legal-directory nav a>span:last-child{color:#b6a5ad;font-weight:400}.legal-directory>p{font-size:11px;line-height:1.9;color:#8d95a3;padding:0 11px}.legal-document{background:#fff;border:1px solid #e9ecf1;border-radius:17px;min-width:0;padding:36px 39px}.legal-document-head{border-bottom:1px solid #eceff3;padding-bottom:25px}.legal-document-label{font-size:10px;letter-spacing:1px;color:#b68a98}.legal-document-head h2{font-size:28px;line-height:1.55;margin:14px 0 17px;overflow-wrap:anywhere}.legal-document-head>p{font-size:13px;color:#6d7686;line-height:1.95;margin:12px 0}.legal-document-head .legal-operator{color:#8f96a3;font-size:11px}.legal-toc{display:grid;gap:10px;padding:20px 23px;margin-top:25px;border-radius:11px;background:#f7f8fa;font-size:12px;line-height:1.8}.legal-toc>b{font-size:12px;color:#5b6474;font-weight:600;margin-bottom:4px}.legal-toc>a{color:#7c8494}.legal-section{padding-top:29px;scroll-margin-top:20px;overflow-wrap:anywhere}.legal-section h3{font-size:17px;line-height:1.7;margin:0 0 15px;font-weight:600}.legal-section p,.legal-section li{font-size:13px;line-height:2.05;color:#626d7e;white-space:pre-line;margin:12px 0}.legal-section ul{padding-left:20px}.legal-section.important{background:#fffbfc;border:1px solid #f3e2e8;padding:23px;margin-top:29px;border-radius:11px}.legal-table{border-collapse:collapse;font-size:11px;line-height:1.95;width:100%;table-layout:fixed;margin:18px 0}.legal-table th,.legal-table td{border:1px solid #e7ebf0;padding:12px 10px;vertical-align:top;text-align:left;overflow-wrap:anywhere;color:#707a8a;white-space:pre-line;font-weight:400}.legal-table th{background:#f6f7fa;color:#434d5d;font-weight:600}.legal-document-foot{display:flex;flex-wrap:wrap;align-items:center;gap:15px;border-top:1px solid #eceff3;padding-top:22px;margin-top:35px}.legal-document-foot p{font-size:11px;color:#8d95a3;line-height:1.95;margin:0;flex:1;min-width:170px}.legal-document-foot a,.legal-state a{color:#bd4f70;text-decoration:underline;text-underline-offset:3px}.legal-document-foot button{font-size:11px;color:#a48492;min-height:44px}.legal-state{font-size:13px;color:#8d95a3;line-height:1.9;padding:35px}.legal-notice{background:#fff5f7;color:#9e6176;border:1px solid #f3dfe5;border-radius:12px;padding:16px 20px;font-size:12px;line-height:1.9;margin:0 0 22px}.legal-notice p{margin:0}.legal-notice button{min-height:44px;color:#b54768;font-size:12px;margin-top:6px;text-decoration:underline}.legal-draft{background:#fffaf3;border-color:#f0e5d6;color:#967755}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}.legal-page a:focus-visible,.legal-page button:focus-visible{outline:2px solid #ee6b8d;outline-offset:3px}
+@media(max-width:700px){.legal-topbar{height:58px;padding:0 12px}.legal-wrap{padding:30px 14px 0}.legal-hero h1{font-size:31px}.legal-hero>p:not(.legal-eyebrow){font-size:12px}.legal-version{gap:4px 17px;font-size:10px;margin-bottom:24px}.legal-layout{display:block}.legal-directory{position:static}.legal-directory nav{grid-template-columns:repeat(2,minmax(0,1fr));gap:2px;padding:7px}.legal-directory nav a{font-size:11px;min-height:46px;padding:10px}.legal-directory>p{margin:12px 0 21px}.legal-document{padding:25px 20px;border-radius:14px}.legal-document-head h2{font-size:24px}.legal-document-head>p{font-size:12px}.legal-section h3{font-size:16px}.legal-section p,.legal-section li{font-size:12px;line-height:2.05}.legal-toc{padding:17px;font-size:11px}.legal-table thead{display:none}.legal-table,.legal-table tbody,.legal-table tr,.legal-table td{display:block;width:100%}.legal-table tr{border:1px solid #e7ebf0;border-radius:9px;margin:12px 0;overflow:hidden}.legal-table td{border:0;border-bottom:1px solid #edf0f4;padding:11px 13px}.legal-table td:last-child{border-bottom:0}.legal-table td::before{content:attr(data-label);display:block;font-size:10px;color:#9b8490;margin-bottom:5px}.legal-table td:first-child{background:#faf8f9;color:#4e5563}.legal-document-foot{margin-top:28px}.legal-section.important{padding:18px}}
+</style>

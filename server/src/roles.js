@@ -1,4 +1,4 @@
-const crypto = require("crypto");
+const { invalidateVerification } = require("./club-identity");
 
 const CLUB_ROLES = [
   { id: "owner", label: "团长" },
@@ -44,8 +44,8 @@ function setMemberRole(db, clubId, userId, role) {
     db.transaction(() => {
       db.prepare("UPDATE club_members SET role = 'manager' WHERE club_id = ? AND user_id = ?").run(club.id, club.owner_id);
       db.prepare("UPDATE club_members SET role = 'owner' WHERE club_id = ? AND user_id = ?").run(club.id, uid);
-      db.prepare("UPDATE clubs SET owner_id = ? WHERE id = ?").run(uid, club.id);
-      db.prepare("UPDATE users SET leader = 1 WHERE id = ?").run(uid);
+      invalidateVerification(db, club.id, "团长已移交，请由现任负责人重新提交管理授权", "owner-transfer");
+      db.prepare("UPDATE clubs SET owner_id = ?, moderation_note = ? WHERE id = ?").run(uid, "团长已移交，请由现任负责人重新提交管理授权", club.id);
     })();
     return { ok: true };
   }
@@ -57,25 +57,27 @@ function setMemberRole(db, clubId, userId, role) {
 function addClubMember(db, clubId, nickname) {
   const name = String(nickname || "").trim();
   if (!name || name.length > 20) return { error: "昵称须为 1 到 20 个字", status: 400 };
-  const club = db.prepare("SELECT id FROM clubs WHERE id = ?").get(clubId);
-  if (!club) return { error: "没有这个跑团", status: 404 };
-  const people = db.prepare("SELECT id FROM users WHERE nickname = ?").all(name);
-  if (!people.length) return { error: "没有这个用户", status: 404 };
-  if (people.length > 1) return { error: "该昵称存在多个账号，请先处理后再添加", status: 400 };
-  const userId = people[0].id;
-  const existing = db.prepare("SELECT 1 FROM club_members WHERE club_id = ? AND user_id = ?").get(club.id, userId);
-  if (existing) return { error: "该用户已在此跑团中", status: 400 };
-  const now = new Date().toISOString();
-  db.prepare("INSERT INTO club_members (club_id, user_id, joined_at, role) VALUES (?, ?, ?, 'member')").run(club.id, userId, now);
-  db.prepare(
-    "UPDATE fee_records SET departed = 0 WHERE user_id = ? AND period_id IN (SELECT id FROM fee_periods WHERE club_id = ? AND open = 1)"
-  ).run(userId, club.id);
-  db.prepare(
-    "UPDATE club_requests SET status = 'approved', reviewed_at = ?, reviewer = '后台' WHERE club_id = ? AND user_id = ? AND status = 'pending'"
-  ).run(now, club.id, userId);
-  return { ok: true, userId };
+  return db.transaction(() => {
+    const club = db.prepare("SELECT id, public_status FROM clubs WHERE id = ?").get(clubId);
+    if (club && club.public_status === "restricted") return { error: "该跑团目前暂停公开招募，请先完成身份复核并恢复展示", status: 403 };
+    if (!club) return { error: "没有这个跑团", status: 404 };
+    const people = db.prepare("SELECT id FROM users WHERE nickname = ?").all(name);
+    if (!people.length) return { error: "没有这个用户", status: 404 };
+    if (people.length > 1) return { error: "该昵称存在多个账号，请先处理后再添加", status: 400 };
+    const userId = people[0].id;
+    const existing = db.prepare("SELECT 1 FROM club_members WHERE club_id = ? AND user_id = ?").get(club.id, userId);
+    if (existing) return { error: "该用户已在此跑团中", status: 400 };
+    const now = new Date().toISOString();
+    db.prepare("INSERT INTO club_members (club_id, user_id, joined_at, role) VALUES (?, ?, ?, 'member')").run(club.id, userId, now);
+    db.prepare(
+      "UPDATE fee_records SET departed = 0 WHERE user_id = ? AND period_id IN (SELECT id FROM fee_periods WHERE club_id = ? AND open = 1)"
+    ).run(userId, club.id);
+    db.prepare(
+      "UPDATE club_requests SET status = 'approved', reviewed_at = ?, reviewer = '后台' WHERE club_id = ? AND user_id = ? AND status = 'pending'"
+    ).run(now, club.id, userId);
+    return { ok: true, userId };
+  }).immediate();
 }
-
 function clearClubMemberFutureSignups(db, clubId, userId, now = Date.now()) {
   const stamp = new Date(now + 8 * 3600 * 1000).toISOString().slice(0, 16);
   const today = stamp.slice(0, 10);
@@ -128,30 +130,27 @@ function decideRequest(db, requestId, decision, reviewer, clubId) {
   const id = Number(requestId);
   if (!Number.isInteger(id) || id < 1) return { error: "没有这条申请", status: 404 };
   if (decision !== "approve" && decision !== "reject") return { error: "选择通过或拒绝", status: 400 };
-  const row = db.prepare("SELECT * FROM club_requests WHERE id = ?").get(id);
-  if (!row || (clubId != null && Number(row.club_id) !== Number(clubId))) return { error: "没有这条申请", status: 404 };
-  if (row.status !== "pending") return { error: "这条已经处理过", status: 400 };
-  const now = new Date().toISOString();
-  const status = decision === "approve" ? "approved" : "rejected";
-  const changed = db.transaction(() => {
-    const updated = db
-      .prepare("UPDATE club_requests SET status = ?, reviewed_at = ?, reviewer = ? WHERE id = ? AND status = 'pending'")
-      .run(status, now, String(reviewer || "").slice(0, 40), id);
-    if (!updated.changes) return 0;
+  return db.transaction(() => {
+    const row = db.prepare("SELECT * FROM club_requests WHERE id = ?").get(id);
+    if (!row || (clubId != null && Number(row.club_id) !== Number(clubId))) return { error: "没有这条申请", status: 404 };
+    if (row.status !== "pending") return { error: "这条已经处理过", status: 400 };
+    const club = db.prepare("SELECT id, public_status FROM clubs WHERE id = ?").get(row.club_id);
+    if (!club) return { error: "没有这个跑团", status: 404 };
+    const existing = db.prepare("SELECT 1 FROM club_members WHERE club_id=? AND user_id=?").get(row.club_id, row.user_id);
+    if (decision === "approve" && club.public_status === "restricted" && !existing) {
+      return { error: "该跑团目前暂停公开招募，请先完成身份复核并恢复展示", status: 403 };
+    }
+    const now = new Date().toISOString();
+    const status = decision === "approve" ? "approved" : "rejected";
+    db.prepare("UPDATE club_requests SET status = ?, reviewed_at = ?, reviewer = ? WHERE id = ?").run(status, now, String(reviewer || "").slice(0, 40), id);
     if (decision === "approve") {
-      db.prepare("INSERT OR IGNORE INTO club_members (club_id, user_id, joined_at, role) VALUES (?, ?, ?, 'member')").run(
-        row.club_id,
-        row.user_id,
-        now
-      );
+      db.prepare("INSERT OR IGNORE INTO club_members (club_id, user_id, joined_at, role) VALUES (?, ?, ?, 'member')").run(row.club_id, row.user_id, now);
       db.prepare(
         "UPDATE fee_records SET departed = 0 WHERE user_id = ? AND period_id IN (SELECT id FROM fee_periods WHERE club_id = ? AND open = 1)"
       ).run(row.user_id, row.club_id);
     }
-    return updated.changes;
-  })();
-  if (!changed) return { error: "这条已经处理过", status: 400 };
-  return { ok: true };
+    return { ok: true };
+  }).immediate();
 }
 
 function listPending(db, clubId) {
@@ -195,37 +194,10 @@ function listClubApplications(db) {
     }));
 }
 
-function decideClubApplication(db, applicationId, decision, reviewer) {
-  const id = Number(applicationId);
-  if (!Number.isInteger(id) || id < 1) return { error: "没有这条申请", status: 404 };
-  if (decision !== "approve" && decision !== "reject") return { error: "选择通过或拒绝", status: 400 };
-  const row = db.prepare("SELECT * FROM club_applications WHERE id = ?").get(id);
-  if (!row) return { error: "没有这条申请", status: 404 };
-  if (row.status !== "pending") return { error: "这条已经处理过", status: 400 };
-  const now = new Date().toISOString();
-  const who = String(reviewer || "").slice(0, 40);
-  if (decision === "reject") {
-    const updated = db
-      .prepare("UPDATE club_applications SET status = 'rejected', reviewed_at = ?, reviewer = ? WHERE id = ? AND status = 'pending'")
-      .run(now, who, id);
-    if (!updated.changes) return { error: "这条已经处理过", status: 400 };
-    return { ok: true };
-  }
-  const code = crypto.randomBytes(3).toString("hex").toUpperCase();
-  const club = db.transaction(() => {
-    const updated = db
-      .prepare("UPDATE club_applications SET status = 'approved', reviewed_at = ?, reviewer = ? WHERE id = ? AND status = 'pending'")
-      .run(now, who, id);
-    if (!updated.changes) return null;
-    const info = db.prepare("INSERT INTO clubs (name, code, owner_id, created_at) VALUES (?, ?, ?, ?)").run(row.name, code, row.user_id, now);
-    const clubId = Number(info.lastInsertRowid);
-    db.prepare("INSERT INTO club_members (club_id, user_id, joined_at, role) VALUES (?, ?, ?, 'owner')").run(clubId, row.user_id, now);
-    db.prepare("UPDATE club_applications SET club_id = ? WHERE id = ?").run(clubId, id);
-    db.prepare("UPDATE users SET leader = 1 WHERE id = ?").run(row.user_id);
-    return { id: clubId, name: row.name, code };
-  })();
-  if (!club) return { error: "这条已经处理过", status: 400 };
-  return { ok: true, club };
+function decideClubApplication() {
+  // Historical applications stay readable. Only their applicant may activate one
+  // through createClub, with a city and the same quotas as every new creation.
+  return { error: "旧建团申请已改为本人确认，请申请人登录后补充活动城市并继续创建", status: 410 };
 }
 
 module.exports = {

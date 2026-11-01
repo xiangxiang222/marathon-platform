@@ -9,6 +9,7 @@ const { likeParams } = require("./search-like");
 const { readPage, finishPage, pageFields, slicePage } = require("./page");
 const { adminOverview } = require("./admin-overview");
 const { deleteFeedbackUser, removeFeedbackFile } = require("./feedback");
+const { deleteLegalUser } = require("./legal");
 
 function mediaRoot() {
   return process.env.MARATHON_MEDIA || path.join(__dirname, "../data/media");
@@ -28,6 +29,7 @@ function deleteUser(db, id) {
   const signups = db.prepare("SELECT sheet FROM plans WHERE user_id = ? AND sheet != ''").all(id);
   const feedbackImages = db.prepare("SELECT filename FROM feedback_images WHERE feedback_id IN (SELECT id FROM feedback WHERE user_id = ?)").all(id);
   db.transaction(() => {
+    deleteLegalUser(db, id);
     deleteFeedbackUser(db, id);
     for (const table of [
       "plans",
@@ -64,6 +66,8 @@ function deleteUser(db, id) {
     db.prepare("DELETE FROM club_likes WHERE user_id = ? OR post_id IN (SELECT id FROM club_posts WHERE user_id = ?)").run(id, id);
     db.prepare("DELETE FROM club_comments WHERE user_id = ? OR post_id IN (SELECT id FROM club_posts WHERE user_id = ?)").run(id, id);
     db.prepare("DELETE FROM club_posts WHERE user_id = ?").run(id);
+    db.prepare("DELETE FROM club_identity_reports WHERE user_id = ?").run(id);
+    db.prepare("DELETE FROM club_verifications WHERE owner_id = ?").run(id);
     db.prepare("DELETE FROM users WHERE id = ?").run(id);
   })();
   removeAvatar(row.avatar);
@@ -353,6 +357,9 @@ function deleteClub(db, id) {
       db.prepare(`DELETE FROM internal_groups WHERE race_id IN (${marks})`).run(...races);
     }
     db.prepare("DELETE FROM internal_races WHERE club_id = ?").run(id);
+    db.prepare("DELETE FROM club_identity_events WHERE club_id = ?").run(id);
+    db.prepare("DELETE FROM club_verifications WHERE club_id = ?").run(id);
+    db.prepare("DELETE FROM club_identity_reports WHERE club_id = ?").run(id);
     db.prepare("DELETE FROM clubs WHERE id = ?").run(id);
   })();
   for (const file of files) {
@@ -469,7 +476,7 @@ function mountAdminDesk(app, { BASE, getDb, requireAdmin }) {
   });
 
   app.post(BASE + "/api/admin/users", (req, res) => {
-    if (!desk(req, res)) return;
+    if (!requireAdmin(req, res)) return;
     const result = createUser(getDb(), req.body || {});
     if (result.error) return res.status(result.status).json({ error: result.error });
     res.status(201).json({ id: result.id, nickname: result.nickname });
@@ -495,7 +502,7 @@ function mountAdminDesk(app, { BASE, getDb, requireAdmin }) {
   });
 
   app.delete(BASE + "/api/admin/users/:id", (req, res) => {
-    if (!desk(req, res)) return;
+    if (!requireAdmin(req, res)) return;
     const id = Number(req.params.id);
     if (!Number.isInteger(id) || id < 1) return res.status(404).json({ error: "没有这个人" });
     const result = deleteUser(getDb(), id);
@@ -504,7 +511,7 @@ function mountAdminDesk(app, { BASE, getDb, requireAdmin }) {
   });
 
   app.put(BASE + "/api/admin/users/:id/password", (req, res) => {
-    if (!desk(req, res)) return;
+    if (!requireAdmin(req, res)) return;
     const id = Number(req.params.id);
     if (!Number.isInteger(id) || id < 1) return res.status(404).json({ error: "没有这个人" });
     const result = setUserPassword(getDb(), id, req.body && req.body.password);
@@ -513,7 +520,7 @@ function mountAdminDesk(app, { BASE, getDb, requireAdmin }) {
   });
 
   app.put(BASE + "/api/admin/users/:id/leader", (req, res) => {
-    if (!desk(req, res)) return;
+    if (!requireAdmin(req, res)) return;
     const id = Number(req.params.id);
     if (!Number.isInteger(id) || id < 1) return res.status(404).json({ error: "没有这个人" });
     const leader = req.body && req.body.leader;

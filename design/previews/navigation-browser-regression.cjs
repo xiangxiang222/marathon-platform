@@ -16,6 +16,7 @@ async function main() {
       const failures = new Set(["/clubs/7/internals/9", "/clubs/7/calls/8", "/runs"]);
       await page.route("**/marathon/api/**", async (route) => {
         const apiPath = new URL(route.request().url()).pathname.replace("/marathon/api", "");
+    if (apiPath === '/legal') return route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(require('../../shared/legal-documents.json')) });
         const reply = (status, data) => route.fulfill({ status, contentType: "application/json", body: JSON.stringify(data) });
         if (failures.delete(apiPath)) return reply(503, { error: "测试服务暂不可用" });
         if (apiPath.startsWith("/clubs/7/internals/")) {

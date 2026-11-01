@@ -23,7 +23,10 @@
     "pages/meetup/meetup",
     "pages/internal/internal",
     "pages/privacy/privacy",
-    "pages/feedback/feedback"
+    "pages/legal/legal",
+    "pages/feedback/feedback",
+    "pages/club-identity/club-identity",
+    "pages/club-report/club-report"
   ],
   "window": {
     "navigationBarBackgroundColor": "#f5f6fa",

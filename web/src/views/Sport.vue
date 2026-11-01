@@ -1,6 +1,6 @@
 <template>
   <main class="clubs-page">
-    <header class="clubs-header"><div><p class="page-eyebrow">BETTER TOGETHER</p><h1>跑团<span>与同频的人，一起跑</span></h1></div><button type="button" class="find-shortcut" @click="focusDiscover"><RunnerIcon name="add" />找跑团</button></header>
+    <header class="clubs-header"><div><p class="page-eyebrow">BETTER TOGETHER</p><h1>跑团<span>与同频的人，一起跑</span></h1></div><router-link to="/clubs/new" class="find-shortcut"><RunnerIcon name="add" />创建跑团</router-link></header>
 
     <section class="my-clubs">
       <div class="section-heading"><h2>我的跑团</h2><span v-if="ready">{{ clubs.length }} 个跑团 · 随时切换</span></div>
@@ -12,7 +12,7 @@
       </div>
       <router-link v-for="club in clubs" :key="club.id" :to="'/clubs/' + club.id" class="club-panel my-club">
         <span class="club-letter" aria-hidden="true">{{ club.name.slice(0, 1) }}</span>
-        <div class="club-copy"><h3>{{ club.name }}</h3><p><span class="role-badge">{{ club.roleLabel }}</span><span v-if="club.members !== undefined">{{ club.members }} 位成员</span><span v-else>查看活动与跑友</span></p></div>
+        <div class="club-copy"><h3>{{ club.name }}</h3><small>{{ club.city || "城市待补充" }} · 负责人 {{ club.leader || "待补充" }} · #{{ club.id }}</small><p><span class="role-badge">{{ club.roleLabel }}</span><span v-if="club.members !== undefined">{{ club.members }} 位成员</span><span v-else>查看活动与跑友</span></p></div>
         <span class="enter-club" aria-hidden="true"><RunnerIcon name="arrow" /></span>
       </router-link>
       <div v-if="ready && !loading && !clubs.length && !loadFailed" class="club-panel no-club"><h3>还没有加入跑团</h3><p>搜一搜熟悉的跑团，或填写朋友分享的口令。</p></div>
@@ -32,158 +32,70 @@
       </div>
       <div v-else class="club-search">
         <span class="search-glyph" aria-hidden="true"></span>
-        <input v-model="query" aria-label="搜索跑团" placeholder="搜索跑团名称、团长" @input="onQuery" @keyup.enter="search" />
+        <input v-model="query" aria-label="搜索跑团" placeholder="搜索名称、团长或团号" @input="onQuery" @keyup.enter="search" />
         <button type="button" @click="search">搜索</button>
       </div>
+      <label v-if="mode === 'search'" class="city-filter">活动城市<input v-model="city" aria-label="筛选活动城市" maxlength="30" placeholder="全部城市" @input="onQuery" @keyup.enter="search" /></label>
       <p class="hint">{{ mode === 'code' ? '先查看跑团介绍，再申请加入。' : '找到跑团后，申请由团长或跑团管理审核。' }}</p>
       <div v-if="message" class="directory-message" :class="{ error: loadFailed }" role="status"><p>{{ message }}</p><button v-if="loadFailed" type="button" @click="search">重新加载</button></div>
       <div v-if="mode === 'search'" class="club-results">
         <div v-for="club in shownClubs" :key="club.id" class="club-hit">
           <router-link class="result-identity" :to="club.joined ? '/clubs/' + club.id : '/clubs/' + club.id + '/public'">
             <span class="club-letter result-letter" aria-hidden="true">{{ club.name.slice(0, 1) }}</span>
-            <span class="club-copy"><strong>{{ club.name }}</strong><small>{{ club.members }} 位成员<template v-if="club.leader"> · 团长 {{ club.leader }}</template></small></span>
+            <span class="club-copy"><strong>{{ club.name }}</strong><small>{{ club.city || "城市待补充" }} · 负责人 {{ club.leader || "待补充" }}</small><small>团号 #{{ club.id }}<template v-if="club.members !== undefined"> · {{ club.members }} 位成员</template></small><small v-if="club.intro">{{ club.intro }}</small></span>
           </router-link>
+          <ClubVerificationBadge :club="club" />
           <router-link class="result-action" :class="{ pending: club.pending && !club.joined }" :to="club.joined ? '/clubs/' + club.id : '/clubs/' + club.id + '/public'">{{ club.joined ? '进入' : club.pending ? '待审核' : '查看介绍' }}</router-link>
         </div>
         <p v-if="!loading && !loadFailed && !query.trim() && !openClubs.length" class="hint empty-directory">暂时没有其他跑团，试试朋友分享的口令。</p>
       </div>
-      <button v-if="mode === 'search' && moreCount" class="more" type="button" @click="showAll = true">查看其余 {{ moreCount }} 个跑团</button>
+      <button v-if="mode === 'search' && (moreCount || page < pages)" class="more" type="button" :disabled="loading" @click="more">{{ loading ? "正在加载…" : moreCount ? "查看其余 " + moreCount + " 个跑团" : "加载更多跑团" }}</button>
     </section>
 
-    <section class="create-club club-panel">
-      <button class="create-toggle" type="button" :aria-expanded="creating" @click="creating = !creating"><span><b>创建跑团</b><small>让同频的跑友在这里集合</small></span><i>{{ creating ? '−' : '+' }}</i></button>
-      <div v-if="creating" class="create-content">
-        <p v-if="!ready" class="hint">登录后查看建团申请。<router-link to="/mine">去登录</router-link></p>
-        <p v-else-if="!leader" class="hint">暂未开放建团申请。如需创建跑团，请联系平台管理员。</p>
-        <template v-else>
-          <p class="hint">提交申请，通过后即可管理成员、活动和组别。</p>
-          <div v-if="application" class="application"><span>{{ application.name }}</span><b class="pending-label">待审核</b></div>
-          <form v-else class="create-form" @submit.prevent="create"><input v-model="name" aria-label="跑团名称" placeholder="填写跑团名称" /><button class="club-primary" type="submit">提交申请</button></form>
-        </template>
-        <p v-if="foundingMessage" class="err">{{ foundingMessage }}</p>
-      </div>
-    </section>
+    <section class="create-club club-panel open-create"><div><h2>和同频的跑友，在这里集合</h2><p>任何已登录跑友都能创建。名称可以重复，团号始终属于这个跑团。</p><p v-if="application">之前申请的「{{ application.name }}」可由你确认后继续创建。</p></div><router-link class="club-primary" to="/clubs/new">{{ application ? '继续创建' : '创建跑团' }} →</router-link></section>
+    <router-link v-if="ready" class="my-reports-link" to="/clubs/reports">我的身份反馈与申诉 ›</router-link>
   </main>
 </template>
 
 <script setup>
-import { computed, nextTick, onMounted, onUnmounted, ref } from "vue";
+import { computed, onBeforeUnmount, ref, watch } from "vue";
 import { useRouter } from "vue-router";
-import { api } from "../api";
+import { useClubSession } from "../useClubSession";
 import RunnerIcon from "../components/RunnerIcon.vue";
-
+import ClubVerificationBadge from "../components/ClubVerificationBadge.vue";
 const router = useRouter();
-const name = ref("");
-const loading = ref(false);
-const loadFailed = ref(false);
-const leader = ref(false);
-const creating = ref(false);
-const application = ref(null);
-const code = ref("");
-const query = ref("");
-const showAll = ref(false);
-const mode = ref("search");
-const foundingMessage = ref("");
-const clubs = ref([]);
-const openClubs = ref([]);
-const listedQuery = ref("");
-const message = ref("");
-const ready = ref(!!localStorage.getItem("marathon_token"));
-const pendingClubs = computed(() => openClubs.value.filter((club) => club.pending && !club.joined));
-async function focusDiscover() { await nextTick(); document.getElementById("discover-clubs")?.scrollIntoView({ behavior: "smooth", block: "start" }); }
-const shownClubs = computed(() => {
-  if (query.value.trim() !== listedQuery.value) return [];
-  return !showAll.value ? openClubs.value.slice(0, 6) : openClubs.value;
-});
-const moreCount = computed(() => {
-  if (query.value.trim() !== listedQuery.value) return 0;
-  return !showAll.value ? Math.max(0, openClubs.value.length - 6) : 0;
-});
-let queryTimer = 0;
-let loadSeq = 0;
-
-async function load() {
-  const q = query.value.trim();
-  const seq = ++loadSeq;
-  loading.value = true;
-  loadFailed.value = false;
+const loading = ref(false), loadFailed = ref(false), application = ref(null), code = ref(""), query = ref(""), city = ref(""), showAll = ref(false), mode = ref("search"), clubs = ref([]), openClubs = ref([]), listedQuery = ref(""), listedCity = ref(""), message = ref(""), page = ref(1), pages = ref(1);
+let queryTimer, loadSeq = 0;
+function reset() { loadSeq++; code.value = ""; clubs.value = []; openClubs.value = []; application.value = null; message.value = ""; loading.value = false; loadFailed.value = false; }
+const { token, request, capture, current } = useClubSession(reset);
+const ready = computed(() => Boolean(token.value));
+const pendingClubs = computed(() => openClubs.value.filter(club => club.pending && !club.joined));
+const shownClubs = computed(() => query.value.trim() !== listedQuery.value || city.value.trim() !== listedCity.value ? [] : showAll.value ? openClubs.value : openClubs.value.slice(0, 6));
+const moreCount = computed(() => showAll.value ? 0 : Math.max(0, openClubs.value.length - 6));
+async function load(append = false) {
+  const seq = ++loadSeq, stamp = capture(), q = query.value.trim(), location = city.value.trim(), nextPage = append ? page.value + 1 : 1;
+  loading.value = true; loadFailed.value = false;
   try {
-    const requests = [api("/clubs/directory" + (q ? "?q=" + encodeURIComponent(q) : ""))];
-    if (ready.value) requests.push(api("/me"));
-    const [directory, data] = await Promise.all(requests);
-    if (seq !== loadSeq) return;
-    listedQuery.value = q;
-    clubs.value = (data?.clubs || []).map((club) => ({
-      ...club,
-      members: (directory.clubs || []).find((item) => item.id === club.id)?.members ?? clubs.value.find((item) => item.id === club.id)?.members
-    }));
-    leader.value = Boolean(data?.user && data.user.leader);
-    application.value = (data?.applications && data.applications[0]) || null;
-    openClubs.value = (directory.clubs || []).filter((item) => q || !item.joined);
-  } catch (err) {
-    if (seq !== loadSeq) return;
-    loadFailed.value = true;
-    throw err;
-  } finally { if (seq === loadSeq) loading.value = false; }
+    const jobs = [request('/clubs/directory?' + new URLSearchParams({ q, city: location, page: String(nextPage), pageSize: '20' }))];
+    if (ready.value && !append) jobs.push(request('/me'));
+    const [directory, me] = await Promise.all(jobs);
+    if (seq !== loadSeq || !current(stamp)) return;
+    listedQuery.value = q; listedCity.value = location;
+    if (me) { clubs.value = (me.clubs || []).map(club => ({ ...club, members: directory.clubs?.find(item => item.id === club.id)?.members })); application.value = me.applications?.[0] || null; }
+    if (!ready.value) clubs.value = [];
+    openClubs.value = append ? [...openClubs.value, ...(directory.clubs || [])].filter((club, index, rows) => rows.findIndex(item => item.id === club.id) === index) : directory.clubs || [];
+    page.value = directory.page || 1; pages.value = directory.pages || 1;
+    if (!openClubs.value.length && q) message.value = '没有找到这个跑团';
+  } catch (err) { if (!err.stale && seq === loadSeq && current(stamp)) { loadFailed.value = true; message.value = err.message; } }
+  finally { if (seq === loadSeq && current(stamp)) loading.value = false; }
 }
-
-function pick(next) {
-  mode.value = next;
-  message.value = "";
-  if (next === "search" && query.value.trim() && !openClubs.value.length) message.value = "没有找到这个跑团";
-}
-
-async function create() {
-  foundingMessage.value = "";
-  try {
-    const data = await api("/clubs", { method: "POST", body: JSON.stringify({ name: name.value }) });
-    if (data.pending) {
-      name.value = "";
-      foundingMessage.value = "已提交，等跑团管理员通过";
-      await load();
-      return;
-    }
-    router.push("/clubs/" + data.club.id);
-  } catch (err) {
-    foundingMessage.value = err.message;
-  }
-}
-
-function onQuery() {
-  showAll.value = false;
-  message.value = "";
-  clearTimeout(queryTimer);
-  queryTimer = setTimeout(search, query.value.trim() ? 200 : 0);
-}
-
-async function search() {
-  clearTimeout(queryTimer);
-  message.value = "";
-  try {
-    await load();
-    if (query.value.trim() && !openClubs.value.length) message.value = "没有找到这个跑团";
-  } catch (err) {
-    message.value = err.message;
-  }
-}
-
-async function join() {
-  message.value = "";
-  if (!code.value.trim()) {
-    message.value = "填写群里的跑团口令";
-    return;
-  }
-  router.push("/clubs/invite/" + encodeURIComponent(code.value.trim()));
-}
-
-onUnmounted(() => { clearTimeout(queryTimer); loadSeq++; });
-onMounted(async () => {
-  try {
-    await load();
-  } catch (err) {
-    message.value = err.message;
-  }
-});
+function pick(next) { mode.value = next; message.value = ""; }
+function onQuery() { showAll.value = false; message.value = ""; loadSeq++; clearTimeout(queryTimer); queryTimer = setTimeout(search, query.value.trim() ? 250 : 0); }
+function search() { clearTimeout(queryTimer); message.value = ""; showAll.value = false; return load(); }
+function more() { if (moreCount.value) { showAll.value = true; return; } if (!loading.value && page.value < pages.value) { showAll.value = true; load(true); } }
+function join() { message.value = ""; if (!code.value.trim()) { message.value = '填写群里的跑团口令'; return; } router.push('/clubs/invite/' + encodeURIComponent(code.value.trim())); }
+watch(token, () => load(), { immediate: true });
+onBeforeUnmount(() => { clearTimeout(queryTimer); loadSeq++; });
 </script>
 
 <style scoped>
@@ -193,7 +105,7 @@ onMounted(async () => {
 .page-eyebrow { margin: 0 0 7px; color: #ad7e88; font-size: 9px; font-weight: 600; letter-spacing: 2px; }
 .clubs-header h1 { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px; margin: 0; color: #222630; font-size: 28px; font-weight: 750; line-height: 1.3; }
 .clubs-header h1 span { color: #9a9198; font-size: 10px; font-weight: 450; }
-.find-shortcut { flex: none; gap: 4px; padding: 0 12px; border: 1px solid #f1d5db; border-radius: 11px; background: #fff; color: var(--accent); font-size: 12px; font-weight: 600; }
+.find-shortcut { display:inline-flex;align-items:center;justify-content:center;min-height:44px; flex: none; gap: 4px; padding: 0 12px; border: 1px solid #f1d5db; border-radius: 11px; background: #fff; color: var(--accent); font-size: 12px; font-weight: 600; }
 .find-shortcut svg { width: 16px; height: 16px; }
 .my-clubs, .pending-clubs { margin: 0 16px 24px; }
 .section-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 0 1px 12px; }
@@ -260,4 +172,5 @@ onMounted(async () => {
 .directory-message.error { color: #c2546b; }
 .directory-message button { color: var(--accent); font-size: 12px; }
 @media (max-width: 350px) { .clubs-header { padding: 24px 15px 20px; } .clubs-header h1 span { display: block; width: 100%; margin-top: 3px; font-size: 10px; } .find-shortcut { padding: 0 10px; } .club-panel { padding: 14px; } .my-clubs,.pending-clubs { margin-right: 12px; margin-left: 12px; } .discover,.create-club { margin-right: 12px; margin-left: 12px; } .club-copy h3 { font-size: 15px; } .my-club { gap: 10px; } .club-search input { font-size: 11px; } }
+.city-filter{display:flex;align-items:center;gap:12px;margin-top:12px;color:#8e95a2;font-size:12px}.city-filter input{flex:1;min-width:0;min-height:44px;padding:9px 12px;border:1px solid #eceef2;border-radius:9px;background:#fafbfc;font-size:12px}.open-create h2{font-size:16px;margin:0 0 9px}.open-create p{font-size:12px;line-height:1.85;color:#929aa7;margin:0 0 12px}.open-create .club-primary{width:100%;margin-top:5px}.my-reports-link{display:flex;justify-content:center;align-items:center;min-height:44px;font-size:12px;color:#929aa7}.club-hit:has(.identity-badge){flex-wrap:wrap;gap:2px 9px;padding:12px 0}.club-hit:has(.identity-badge) .result-identity{flex-basis:calc(100% - 85px)}
 </style>
