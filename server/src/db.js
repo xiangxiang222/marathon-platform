@@ -969,6 +969,7 @@ function open() {
   });
   tx(RACES);
   require("./legal").installLegal(handle);
+  require("./race-history").installRaceHistory(handle);
   migrateLegacyAvatars(handle);
   return handle;
 }

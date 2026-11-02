@@ -3,6 +3,7 @@
     <view class="view-tabs"><view wx:for="{{views}}" wx:key="key" class="view-tab {{view === item.key ? 'on' : ''}}" data-view="{{item.key}}" bindtap="pickView" role="button" aria-label="{{item.title}}">{{item.title}}</view></view>
   </scroll-view>
   <view class="page-heading"><view class="eyebrow">MY RUNNING JOURNEY</view><view class="page-title">{{currentView.title}}</view><view class="page-subtitle">{{currentView.caption}}</view><image class="heading-icon" src="{{currentView.icon}}" mode="aspectFit"/></view>
+  <navigator wx:if="{{view === 'career'}}" class="surface history-entry" url="/pages/history/history"><view class="section-title">我的跑史 ›</view><view class="muted">找回旧比赛，看看这一场与过去有什么不同。</view></navigator>
 
   <view wx:if="{{!ready}}" class="surface empty-state">
     <view class="empty-mark"><image src="/images/runner/stats.png" mode="aspectFit"/></view><view class="section-title">你的坚持，值得被记住</view><view class="muted">{{error || '登录后查看专属运动数据、赛事足迹和私密收藏。'}}</view><button class="primary" bindtap="login">登录，开启跑者档案</button>

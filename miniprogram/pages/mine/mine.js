@@ -132,7 +132,7 @@ Page({
       return;
     }
     const returnPath = wx.getStorageSync("marathon_return_after_login");
-    if (returnPath === "/pages/legal/legal?doc=rights" || returnPath === "/pages/radar/radar" || /^\/pages\/race\/race\?id=[^&#]+(?:&plan=1)?$/.test(returnPath) || /^\/pages\/feedback\/feedback(?:\?(?:id=\d+|compose=1|mine=1))?$/.test(returnPath)) {
+    if (returnPath === "/pages/legal/legal?doc=rights" || returnPath === "/pages/radar/radar" || returnPath === "/pages/history/history" || /^\/pages\/race\/race\?id=[^&#]+(?:&plan=1)?$/.test(returnPath) || /^\/pages\/feedback\/feedback(?:\?(?:id=\d+|compose=1|mine=1))?$/.test(returnPath)) {
       wx.removeStorageSync("marathon_return_after_login");
       wx.navigateTo({ url: returnPath });
     } else if (returnPath === "/pages/sport/sport") {

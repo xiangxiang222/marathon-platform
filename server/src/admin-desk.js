@@ -26,6 +26,7 @@ function deleteUser(db, id) {
   const shots = db.prepare("SELECT shot FROM runs WHERE user_id = ? AND shot != ''").all(id);
   const proofs = db.prepare("SELECT proof FROM results WHERE user_id = ? AND proof != ''").all(id);
   const collections = db.prepare("SELECT filename FROM runner_media WHERE user_id = ?").all(id);
+  const historyFiles = db.prepare("SELECT filename FROM race_history_media WHERE user_id = ?").all(id);
   const signups = db.prepare("SELECT sheet FROM plans WHERE user_id = ? AND sheet != ''").all(id);
   const feedbackImages = db.prepare("SELECT filename FROM feedback_images WHERE feedback_id IN (SELECT id FROM feedback WHERE user_id = ?)").all(id);
   db.transaction(() => {
@@ -35,6 +36,9 @@ function deleteUser(db, id) {
       "plans",
       "results",
       "runner_media",
+      "race_history_entries",
+      "race_history_media",
+      "race_history_tombstones",
       "club_members",
       "checkins",
       "activity_signups",
@@ -95,6 +99,10 @@ function deleteUser(db, id) {
   }
   for (const collection of collections) {
     const full = path.join(mediaRoot(), "runner", path.basename(collection.filename));
+    if (fs.existsSync(full)) fs.unlinkSync(full);
+  }
+  for (const file of historyFiles) {
+    const full = path.join(mediaRoot(), "history", path.basename(file.filename));
     if (fs.existsSync(full)) fs.unlinkSync(full);
   }
   for (const signup of signups) {

@@ -50,6 +50,7 @@ export default createRouter({
     { path: "/mine", component: Mine },
     { path: "/legal/:document?", component: () => import("./views/Legal.vue"), meta: { hideTab: true, wide: true } },
     { path: "/runner", component: Runner, meta: { hideTab: true } },
+    { path: "/history", component: () => import("./views/RaceHistory.vue"), meta: { hideTab: true } },
     { path: "/feedback", component: Feedback, meta: { hideTab: true } },
     { path: "/feedback/:id", component: Feedback, meta: { hideTab: true } },
     { path: "/admin", component: Admin, meta: { hideTab: true, wide: true } },

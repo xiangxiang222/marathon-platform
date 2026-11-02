@@ -15,12 +15,14 @@
     "test:mini": "node design/previews/mini-native-check.cjs",
     "test:clubs": "node design/previews/club-live-acceptance.cjs && node design/previews/club-navigation-regression.cjs && node design/previews/mini-club-redesign-regression.cjs && npm run test:club-identity",
     "test:club-identity": "node design/previews/club-open-creation-live.cjs && node design/previews/mini-club-open-creation-regression.cjs",
-    "test:all": "npm test && npm run test:client && npm run test:mini && npm run test:feedback && npm run test:club-identity && npm run test:legal && npm run build",
+    "test:all": "npm test && npm run test:client && npm run test:mini && npm run test:feedback && npm run test:club-identity && npm run test:legal && npm run test:history:client && npm run build",
     "seed": "node server/src/seed.js",
     "test:feedback": "node design/previews/feedback-live-acceptance.cjs",
     "legal:generate": "node scripts/generate-legal.cjs",
     "legal:check": "node scripts/generate-legal.cjs --check",
-    "test:legal": "npm run legal:check && node design/previews/legal-live-acceptance.cjs && node design/previews/mini-legal-regression.cjs"
+    "test:legal": "npm run legal:check && node design/previews/legal-live-acceptance.cjs && node design/previews/mini-legal-regression.cjs",
+    "test:history": "node --test --test-concurrency=1 --require ./server/test/setup-env.js server/test/race-history.test.js server/test/history-ocr.test.js && npm run test:history:client",
+    "test:history:client": "node design/previews/race-history-web-acceptance.cjs && node design/previews/race-history-mini-regression.cjs"
   },
   "devDependencies": {
     "concurrently": "^9.1.2",
