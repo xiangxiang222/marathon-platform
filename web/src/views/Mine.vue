@@ -300,7 +300,7 @@ async function submitAuth() {
     saveSession(data);
     await load();
     const returnPath = localStorage.getItem("marathon_return_after_login") || "";
-    if (returnPath === "/legal/rights" || returnPath.startsWith("/clubs/") || /^\/runner(?:\?view=(?:stats|career|footprints|honors|media|devices|help))?$/.test(returnPath) || /^\/feedback(?:\/\d+)?(?:\?(?:compose|mine)=1)?$/.test(returnPath) || (returnPath === "/radar" || returnPath === "/sport" || /^\/races\/[^/?#]+(?:\?plan=1)?$/.test(returnPath))) {
+    if (returnPath === "/legal/rights" || returnPath === "/history" || returnPath.startsWith("/clubs/") || /^\/runner(?:\?view=(?:stats|career|footprints|honors|media|devices|help))?$/.test(returnPath) || /^\/feedback(?:\/\d+)?(?:\?(?:compose|mine)=1)?$/.test(returnPath) || (returnPath === "/radar" || returnPath === "/sport" || /^\/races\/[^/?#]+(?:\?plan=1)?$/.test(returnPath))) {
       localStorage.removeItem("marathon_return_after_login");
       await router.replace(returnPath);
     }
