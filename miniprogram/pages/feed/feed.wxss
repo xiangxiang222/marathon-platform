@@ -3,10 +3,8 @@ input { width: 100%; height: 80rpx; margin-top: 16rpx; padding: 0 20rpx; box-siz
 .card .btn, .ghost { margin-top: 16rpx;  }
 
 /* Route geometry: surfaces, controls and compact labels have distinct roles. */
-.mini-feed-feed .card { border-radius: 36rpx; }
+.mini-feed-feed .card { border-radius: 24rpx; }
 .mini-feed-feed .btn, .mini-feed-feed .ghost { border-radius: 24rpx; }
-
-/* Page composition and interaction hierarchy. */
 .mini-feed-feed { color: var(--text); background: transparent; }
 .mini-feed-feed button { font-weight: 500; border-radius: 24rpx; }
 
@@ -18,8 +16,6 @@ input { min-height: 44px; border: 1px solid var(--border); border-radius: 24rpx;
 /* Primary actions read at 14px, secondary actions at 13px; compact filters stay at 12px. */
 .mini-feed-feed .btn { font-size: 14px; font-weight: 500; }
 .mini-feed-feed .ghost { font-size: 13px; font-weight: 500; }
-
-/* Existing semantic sections receive distinct light color surfaces. */
-.mini-feed-feed > .card:first-child { background: #ffffff; box-shadow: var(--card-shadow); }
+.mini-feed-feed > .card:first-child { background: #ffffff; box-shadow: none; }
 .mini-feed-feed > .card:nth-child(even) { background: #ffffff; }
-.mini-feed-feed > .card { box-shadow: var(--card-shadow); background: #ffffff; }
+.mini-feed-feed > .card { box-shadow: none; background: #ffffff; }

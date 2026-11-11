@@ -1,11 +1,11 @@
-const { request } = require("../../utils/request");
-const { parseGuide } = require("../../utils/guide-md");
-
+const { request } = require('../../utils/request');
+const { parseGuide } = require('../../utils/guide-md');
+const { safeUrl, officialUrl, openSource, evidenceText, categoryName } = require('../../utils/content');
 Page({
-  data: { item: null, blocks: [], message: "" },
-  onLoad(query) {
-    request("/news/" + query.id)
-      .then((data) => this.setData({ item: data.news, blocks: parseGuide(data.news && data.news.body), message: "" }))
-      .catch((err) => this.setData({ message: err.message }));
-  }
+  data:{item:null,blocks:[],message:'',ready:false,isProfile:false,isRace:false,sources:[],evidence:[],highlights:[],rankingNote:'',dateLabel:'',categoryLabel:'',backUrl:'/pages/news/news'},
+  onLoad(q){this._id=q.id||'';this._type=q.type==='profile'?'profile':q.type==='article'?'article':'race';this._seq=0;this._disposed=false;this.setData({isProfile:this._type==='profile',isRace:this._type==='race'});this.load();},
+  onUnload(){this._disposed=true;this._seq++;},
+  load(){const seq=++this._seq;this.setData({message:'',ready:false,item:null});const path=this._type==='race'?'/news/':'/content/'+(this._type==='profile'?'profiles/':'articles/');return request(path+encodeURIComponent(this._id)).then(d=>{if(this._disposed||seq!==this._seq)return;const item=d.profile||d.article||d.news,meta=d.meta||{};let raw=this._type==='profile'?item.sources||[]:item.sourceUrl?[{title:item.source||'阅读原文',url:item.sourceUrl}]:[];const sources=raw.filter(s=>safeUrl(s.url)).map(s=>({...s,label:officialUrl(s.url)?'阅读公众号原文':s.title||s.name||'查看来源',isOfficial:officialUrl(s.url)}));const evidence=Array.isArray(item.pacingEvidence)?item.pacingEvidence:item.pacingEvidence?[item.pacingEvidence]:[];this.setData({item,ready:true,blocks:parseGuide(item.body),dateLabel:String(item.publishedAt||'').slice(0,10),categoryLabel:categoryName(item.category),sources,evidence:evidence.map(e=>({text:evidenceText(e),url:safeUrl(e.url||e.sourceUrl)?e.url||e.sourceUrl:''})),highlights:item.careerHighlights||[],rankingNote:item.type==='pacer'?(meta.rankingNote||meta.rankingNotice||'按公开带跑经历收录，展示顺序不代表全国排名。'):(meta.rankingNotice||meta.rankingBasis||'成绩以收录的榜单快照为准，非实时世界积分排名。'),backUrl:this._type==='profile'?'/pages/news/news?tab='+(item.type||'athlete'):item.clubId?'/pages/news/news?club='+item.clubId:'/pages/news/news'});wx.setNavigationBarTitle({title:item.name||item.title||'跑圈资讯'});}).catch(e=>{if(!this._disposed&&seq===this._seq)this.setData({message:'请稍后重试，或返回资讯列表浏览其他内容。',ready:true});});},
+  openSource(e){openSource(e.currentTarget.dataset.url);},
+  onShareAppMessage(){return {title:this.data.item&&(this.data.item.name||this.data.item.title)||'跑圈资讯',path:'/pages/news/detail?type='+this._type+'&id='+encodeURIComponent(this._id)};}
 });

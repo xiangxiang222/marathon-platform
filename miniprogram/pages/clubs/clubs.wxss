@@ -1,124 +1,99 @@
-.clubs-page { min-height:100vh; box-sizing:border-box; color:var(--text); background: transparent; font-size: 14px; line-height:1.5; }
-.clubs-page button { display:flex; align-items:center; justify-content:center; min-height:44px; margin:0; padding:16rpx 22rpx; box-sizing:border-box; border-radius:14rpx; font-size: 12px; font-weight:500; line-height:1.25; }
+.clubs-page { position:relative; margin-top:-28rpx; padding:0 24rpx 36rpx; box-sizing:border-box; color:var(--text); background:transparent; font-size:14px; line-height:1.5; }
+.clubs-page button { display:flex; align-items:center; justify-content:center; min-height:44px; margin:0; box-sizing:border-box; border:0; border-radius:8px; font-size:13px; font-weight:500; line-height:1.25; }
 .clubs-page button::after { border:0; }
-.clubs-welcome {  margin-bottom: 30rpx; background: linear-gradient(135deg,#eaf4ff,#ffffff); border-color: #dbeaf1; box-shadow: var(--card-shadow); }
-.welcome-eyebrow { color: var(--brand); font-size: 12px; font-weight: 600; letter-spacing: 2rpx; }
-.welcome-title { margin-top:14rpx; color:var(--text); line-height: 1.45; letter-spacing:-1rpx; }
-.welcome-copy { margin-top: 20rpx; color: var(--text-secondary); }
-.welcome-small { margin-top: 12rpx; color: var(--text-secondary); font-size: 14px; line-height: 1.6; font-weight: 400; letter-spacing: 0; }
-.section-heading { display:flex; align-items:center; justify-content:space-between; gap:20rpx; margin:24rpx 4rpx 16rpx; }
-.section-title { color:var(--text); font-size: 20px; font-weight:700; }
-.section-count { color:var(--text-secondary); font-size: 12px; }
-.surface { margin-bottom:18rpx;  background: #ffffff; box-shadow: var(--card-shadow); }
-.my-club { overflow:hidden; border: 1rpx solid #fff; box-shadow: var(--card-shadow); background: #ffffff; border-color: #f6e4da; }
-.club-main { display:flex; align-items:center; gap: 24rpx; padding: 30rpx; }
-.club-letter { display:flex; flex:none; align-items:center; justify-content:center; width:84rpx; height:84rpx; color: #fff; background: var(--brand); border-radius: 24rpx; font-size: 18px; font-weight:600; }
-.club-copy,.login-copy { flex:1; min-width:0; }
-.club-name { font-size: 17px; font-weight:600; line-height:1.5; overflow-wrap:anywhere; }
-.my-meta { display:flex; flex-wrap:wrap; align-items:center; gap:8rpx 14rpx; margin-top:10rpx; color:var(--text-secondary); font-size: 12px; }
-.role-badge { padding: 4rpx 14rpx; color: var(--brand); background: var(--sun-soft);  font-size: 12px; }
-.enter { flex:none; color:var(--text-secondary); font-size: 20px; font-weight:400; }
-.club-quick-actions { display:flex; gap:20rpx; margin:0 26rpx; padding:10rpx 0; border-top:1rpx solid var(--page-bg); }
-.club-quick-actions navigator { display:flex; flex:1; align-items:center; justify-content:space-between; min-height:44px; padding:0 8rpx; box-sizing:border-box; color:var(--text-secondary); font-size: 12px; }
-.club-quick-actions navigator+ navigator { border-left:1rpx solid var(--page-bg); padding-left:24rpx; }
-.club-quick-actions navigator>text:last-child { color:var(--border); }
-.mine-search { display:flex; align-items:center; gap:18rpx; min-height:44px; margin-bottom:18rpx; padding:0 24rpx; border:1rpx solid var(--border);  background:#fff; }
-.mine-search input { flex:1; min-width:0; height:44px; padding:0; border:0;  background:transparent; font-size:14px; }
-.login-card { display:flex; align-items:center; gap:18rpx; padding:26rpx; }
-.meta { margin-top:6rpx; color:var(--text-secondary); font-size: 12px; line-height:1.6; overflow-wrap:anywhere; }
-.small-action { display:flex; flex:none; align-items:center; justify-content:center; min-height:44px; padding:0 18rpx;  color:var(--brand); background:var(--brand-soft); font-size: 12px; }
-.no-clubs { padding:30rpx 26rpx; color:var(--text-secondary); font-size: 12px; line-height:1.8; }
-.discover { padding:22rpx 24rpx; }
-.modes { display:flex; margin-bottom:20rpx; }
-.clubs-page .mode { flex:1; color:var(--text-secondary); background:transparent;  }
-.clubs-page .mode.on { font-weight:600;  }
-.search-field { display:flex; align-items:center; gap: 16rpx; padding: 4px 6px 4px 14px; min-height:52px; box-sizing:border-box; border:1rpx solid var(--border);  background: var(--page-bg); }
-.search-field input { flex:1; min-width:0; min-height:44px; height:44px; padding:0; border:0;  background:transparent; font-size:14px; }
-.search-icon { position:relative; flex:none; width:22rpx; height:22rpx; margin-right:4rpx; border:3rpx solid var(--text-secondary); border-radius:50%; }
-.search-icon::after { position:absolute; right:-9rpx; bottom:-6rpx; content:''; width:12rpx; height:3rpx; background:var(--text-secondary); transform:rotate(45deg); }
-.clubs-page .search-action { flex:none; min-height: 44px; padding: 0 20rpx; color: #fff; background: var(--brand);  line-height: 44px; }
-.helper { margin-top:18rpx; color:var(--text-secondary); font-size: 12px; line-height:1.7; }
-.message { margin-top:20rpx; padding:16rpx; border-radius:10rpx; color:var(--brand); background:var(--brand-soft); font-size: 12px; }
-.result-row { display:flex; align-items:center; gap:18rpx; min-height:122rpx; padding:22rpx 0; border-bottom:1rpx solid var(--border); box-sizing:border-box; }
+.clubs-header-create { display:flex; align-items:center; justify-content:center; min-height:40px; margin:0 0 0 12rpx; padding:0 18rpx; border:1px solid rgba(255,255,255,.48); border-radius:9px; box-sizing:border-box; background:rgba(255,255,255,.1); color:#fff; font-size:12px; font-weight:500; line-height:1.2; white-space:nowrap; }
+.clubs-header-create::after { border:0; }
+.my-clubs { margin-bottom:36rpx; padding:26rpx; border-radius:14px; background:#fff; }
+.section-heading { display:flex; align-items:center; gap:14rpx; min-height:46rpx; margin-bottom:20rpx; }
+.section-title { color:var(--text); font-size:18px; font-weight:600; line-height:1.3; }
+.section-count { color:var(--text-secondary); font-size:12px; }
+.login-card { display:flex; align-items:center; gap:20rpx; }
+.club-letter { display:flex; flex:none; align-items:center; justify-content:center; width:76rpx; height:76rpx; border-radius:10px; background:var(--brand-soft); color:var(--brand); font-size:18px; font-weight:600; }
+.login-copy,.club-copy { flex:1; min-width:0; }
+.club-name { overflow:hidden; color:var(--text); font-size:14px; font-weight:600; line-height:1.4; white-space:nowrap; text-overflow:ellipsis; }
+.meta { margin-top:5rpx; overflow:hidden; color:var(--text-secondary); font-size:12px; line-height:1.4; white-space:nowrap; text-overflow:ellipsis; }
+.small-action { display:flex; flex:none; align-items:center; justify-content:center; min-width:56px; min-height:44px; padding:0 20rpx; border-radius:8px; background:var(--brand); color:#fff; font-size:13px; font-weight:600; }
+.mine-search { display:flex; align-items:center; gap:18rpx; min-height:44px; margin-bottom:18rpx; padding:0 22rpx; border:1px solid var(--border); border-radius:8px; background:var(--page-bg); }
+.mine-search input { flex:1; min-width:0; height:44px; background:transparent; font-size:13px; }
+.my-club-rail { display:flex; width:calc(100% + 52rpx); margin:0 -26rpx; padding:0 26rpx 2rpx; box-sizing:border-box; white-space:nowrap; }
+.my-club { display:inline-flex; flex:0 0 535rpx; flex-direction:column; width:535rpx; min-height:208rpx; margin-right:18rpx; padding:20rpx; border:1px solid var(--border); border-radius:10px; box-sizing:border-box; background:#fff; vertical-align:top; white-space:normal; }
+.my-club.single { flex-basis:100%; width:100%; }
+.my-club:last-child { margin-right:0; }
+.club-main { display:flex; align-items:center; gap:18rpx; }
+.club-main > .club-letter { width:68rpx; height:68rpx; border-radius:9px; font-size:16px; }
+.enter { display:flex; align-items:center; justify-content:center; width:48rpx; height:48rpx; border-radius:50%; color:var(--text-secondary); background:var(--page-bg); font-size:19px; }
+.my-club .club-copy { margin:0; }
+.my-club .club-name { font-size:15px; }
+.club-quick-actions { display:flex; gap:14rpx; margin-top:auto; padding-top:18rpx; }
+.club-quick-actions navigator { display:flex; flex:1; align-items:center; justify-content:center; min-height:44px; border-radius:7px; background:var(--page-bg); color:var(--text-secondary); font-size:12px; }
+.no-clubs { padding:4rpx 0; color:var(--text-secondary); font-size:12px; }
+.no-club-title { color:var(--text); font-size:14px; font-weight:600; }
+.discover-feature { display:flex; align-items:center; justify-content:space-between; gap:12rpx; min-height:108px; margin-bottom:36rpx; padding:24rpx 28rpx; overflow:hidden; box-sizing:border-box; border:1px solid #f4e4e5; border-radius:12px; background:linear-gradient(110deg,#fff5f5,#fffaf7); color:var(--text); }
+.club-artwork { display:block; flex:none; width:80px; height:80px; }
+.feature-copy { display:flex; flex:1; min-width:0; flex-direction:column; align-items:flex-start; gap:10rpx; }
+.feature-title { color:var(--text); font-size:17px; font-weight:600; line-height:1.3; }
+.feature-meta { color:var(--text-secondary); font-size:12px; line-height:1.4; }
+.feature-action { margin-top:4rpx; color:var(--brand); font-size:12px; font-weight:600; }
+.discover { margin-bottom:32rpx; }
+.directory-heading { display:flex; align-items:flex-end; justify-content:space-between; margin:0 4rpx 22rpx; }
+.directory-tools { padding:0 24rpx; border:1px solid var(--border); border-radius:12px; background:#fff; }
+.modes { display:flex; gap:38rpx; border-bottom:1px solid var(--border); }
+.clubs-page .mode { position:relative; min-height:44px; padding:0 4rpx; border-radius:0; color:var(--text-secondary); background:transparent; font-size:13px; }
+.clubs-page .mode.on { color:var(--text); font-weight:600; }
+.mode.on::after { position:absolute; right:0; bottom:-1px; left:0; height:2px; border-radius:2px; content:''; background:var(--brand); }
+.search-row { display:flex; gap:14rpx; margin-top:22rpx; }
+.search-field { display:flex; flex:1; align-items:center; gap:14rpx; min-width:0; min-height:44px; padding:0 16rpx; box-sizing:border-box; border:1px solid var(--border); border-radius:8px; background:var(--page-bg); }
+.search-field input { flex:1; min-width:0; height:40px; padding:0; border:0; background:transparent; font-size:13px; }
+.search-icon { position:relative; flex:none; width:22rpx; height:22rpx; margin-right:2rpx; border:3rpx solid #8b9099; border-radius:50%; }
+.search-icon::after { position:absolute; right:-8rpx; bottom:-5rpx; width:10rpx; height:3rpx; border-radius:1px; background:#8b9099; content:''; transform:rotate(45deg); }
+.clubs-page .search-action { flex:none; min-height:34px; padding:0 16rpx; border-radius:7px; color:#fff; background:var(--brand); font-size:12px; font-weight:600; }
+.city-filter { display:flex; flex:none; align-items:center; gap:8rpx; width:144rpx; min-height:44px; padding:0 10rpx; box-sizing:border-box; border:1px solid var(--border); border-radius:8px; background:var(--page-bg); color:var(--text-secondary); font-size:12px; }
+.city-filter > text { flex:none; white-space:nowrap; }
+.city-filter input { flex:1; min-width:0; height:40px; padding:0; background:transparent; color:var(--text); font-size:12px; }
+.code-field { margin-top:22rpx; }
+.helper { margin:16rpx 0; color:var(--text-secondary); font-size:12px; line-height:1.6; }
+.message { margin:16rpx 0; padding:14rpx 16rpx; border-radius:8px; color:var(--brand); background:var(--brand-soft); font-size:12px; line-height:1.5; }
+.result-row { display:flex; align-items:center; gap:16rpx; min-height:124rpx; padding:14rpx 0; box-sizing:border-box; border-bottom:1px solid var(--border); }
 .result-row:last-child { border-bottom:0; }
-.result-avatar { display:flex; flex:none; align-items:center; justify-content:center; width:68rpx; height:68rpx; border-radius:18rpx; color:var(--text-secondary); background: var(--sky-soft); font-size: 14px; font-weight:600; }
-.result-row .club-name { font-size: 17px; }
-.result-row .meta { font-size: 12px; }
-.clubs-page .result-action,.result-action { display:flex; flex:none; align-items:center; justify-content:center; min-height:44px; padding:12rpx 16rpx; box-sizing:border-box; color:var(--brand); background:var(--brand-soft);  font-size: 12px; }
-.result-action.joined { color:var(--text-secondary); background:var(--page-bg);  }
-.pending-badge { flex:none; color:var(--brand); font-size: 12px;  }
-.clubs-page .show-more { width:100%; min-height:44px; padding:16rpx 0; color:var(--text-secondary); background:transparent; font-size: 12px; }
-.create-card { margin-top:24rpx; overflow:hidden; }
-.clubs-page .create-entry { justify-content:space-between; gap:20rpx; width:100%; color:#333333; background: #ffffff; text-align:left;  }
-.create-entry .club-name { font-size: 17px;  }
-.create-toggle { flex:none; color:var(--text-secondary); font-size: 12px; }
-.create-form { padding:0 24rpx 24rpx; border-top:1rpx solid var(--page-bg); }
-.application { display:flex; justify-content:space-between; align-items:center; gap:20rpx; margin-top:18rpx; font-size: 12px; }
-.create-field { display:flex; gap:16rpx; margin-top:18rpx; }
-.create-field input { flex:1; min-width:0; height:88rpx; padding:0 18rpx; border-radius:14rpx; background:var(--page-bg); font-size: 14px; }
-.clubs-page .submit { flex:none; color:#fff; background:var(--brand); font-size: 12px;  }
-@media (max-width:350px) {
- .clubs-page { padding-left:20rpx; padding-right:20rpx; background: transparent; }
- .welcome-title {  line-height: 1.45;}
- .welcome-copy { font-size: 12px;  color: var(--text-secondary); margin-top: 20rpx;}
- .login-card { flex-wrap:wrap; }
- .login-copy { min-width:300rpx; }
- .small-action { width:100%;  }
+.result-avatar { display:flex; flex:none; align-items:center; justify-content:center; width:64rpx; height:64rpx; border-radius:9px; color:var(--brand); background:var(--page-bg); font-size:15px; font-weight:600; }
+.result-row .club-name { font-size:14px; }
+.result-row .meta { font-size:12px; }
+.clubs-page .result-action,.result-action { display:flex; flex:none; align-items:center; justify-content:center; min-width:44px; min-height:44px; padding:0 16rpx; border-radius:7px; box-sizing:border-box; color:var(--brand); background:var(--brand-soft); font-size:12px; font-weight:600; }
+.result-action.joined { background:var(--brand-soft); }
+.pending-badge { display:flex; flex:none; align-items:center; justify-content:center; min-width:48px; min-height:32px; border-radius:7px; color:#a47733; background:#f5f2eb; font-size:12px; }
+.clubs-page .verified-mark { justify-content:flex-start; min-height:28px; padding:0; background:transparent; color:var(--text-secondary); font-size:12px; }
+.clubs-page .show-more { width:100%; min-height:44px; padding:0; border-top:1px solid var(--border); border-radius:0; color:var(--brand); background:transparent; font-size:12px; }
+.create-card { overflow:hidden; border:1px solid var(--border); border-radius:10px; background:#fff; }
+.clubs-page .create-entry { width:100%; gap:20rpx; min-height:64px; padding:20rpx 24rpx; border-radius:0; color:var(--text); background:#fff; text-align:left; }
+.create-mark { display:flex; flex:none; align-items:center; justify-content:center; width:64rpx; height:64rpx; border-radius:9px; background:var(--brand-soft); color:var(--brand); font-size:20px; }
+.create-copy { flex:1; min-width:0; }
+.create-toggle { flex:none; color:var(--text-secondary); font-size:20px; font-weight:400; }
+.create-form { padding:0 24rpx 24rpx; border-top:1px solid var(--border); }
+.field-label { display:flex; align-items:center; flex-wrap:wrap; gap:12rpx; margin:24rpx 0 12rpx; color:var(--text); font-size:13px; font-weight:600; }
+.field-label text { color:var(--text-secondary); font-size:12px; font-weight:400; }
+.create-input,.create-intro { width:100%; min-height:44px; padding:18rpx 20rpx; box-sizing:border-box; border:1px solid var(--border); border-radius:8px; background:var(--page-bg); color:var(--text); font-size:14px; }
+.create-intro { min-height:100px; line-height:1.5; }
+.city-choices { display:flex; gap:14rpx; margin-top:12rpx; }
+.clubs-page .city-choices button { min-width:60px; min-height:36px; padding:0 18rpx; border:1px solid var(--border); color:var(--text-secondary); background:#fff; font-size:12px; }
+.name-notice,.legacy-application { margin-top:22rpx; padding:20rpx; border-radius:9px; background:var(--page-bg); }
+.notice-title { color:var(--text); font-size:13px; font-weight:600; }
+.duplicate-row { display:flex; align-items:center; gap:18rpx; padding:20rpx 0; border-bottom:1px solid var(--border); }
+.duplicate-row .club-copy { min-width:0; }
+.duplicate-row:last-child { border-bottom:0; }
+.clubs-page .secondary-action { width:100%; margin-top:14rpx; border:1px solid var(--border); color:var(--text-secondary); background:#fff; font-size:13px; }
+.clubs-page .submit { width:100%; margin-top:24rpx; padding:0 20rpx; color:#fff; background:var(--brand); font-size:14px; font-weight:600; }
+.private-reports-link { display:flex; align-items:center; justify-content:center; min-height:44px; color:var(--text-secondary); font-size:12px; }
+@media(max-width:350px) {
+ .clubs-page { padding-right:20rpx; padding-left:20rpx; }
+ .my-clubs { padding-right:22rpx; padding-left:22rpx; }
+ .my-club-rail { width:calc(100% + 44rpx); margin-right:-22rpx; margin-left:-22rpx; padding-right:22rpx; padding-left:22rpx; }
+ .my-club { flex-basis:535rpx; width:535rpx; }
+ .discover-feature { min-height:104px; padding:24rpx; }
+ .club-artwork { width:72px; height:72px; }
+ .directory-tools { padding-right:20rpx; padding-left:20rpx; }
+ .search-row { gap:12rpx; }
+ .search-field { gap:12rpx; padding-right:12rpx; padding-left:14rpx; }
+ .search-field input { font-size:12px; }
+ .city-filter { width:168rpx; gap:8rpx; padding:0 12rpx; }
  .result-row { gap:14rpx; }
- .result-avatar { width:64rpx; height:64rpx; background: var(--sky-soft); }
 }
-
-.city-filter { margin-top:14rpx; }
-.city-filter input,.create-input { width:100%; height:88rpx; padding:0 20rpx; font-size: 14px;  }
-.field-label { display:flex; flex-wrap:wrap; gap:12rpx; margin:26rpx 0 12rpx; color:var(--text-secondary); font-size: 12px; font-weight:600; }
-.field-label text { color:var(--text-secondary); font-size: 12px; font-weight:400; }
-.city-choices { display:flex; gap:14rpx; margin-top:8rpx; }
-.clubs-page .city-choices button { min-width:116rpx; min-height:44px; padding:12rpx 20rpx; color:var(--text-secondary); background:transparent; font-size: 12px; }
-.create-intro { width:100%; min-height:132rpx; padding:20rpx; font-size: 12px; line-height:1.6;  }
-.name-notice { margin-top:22rpx; padding:20rpx;  background: var(--peach-soft); }
-.legacy-application { margin-top:22rpx; padding:20rpx;  background: var(--sun-soft); }
-.notice-title { font-size: 12px; font-weight:600; }
-.name-notice .helper,.legacy-application .helper { margin-top:8rpx;  }
-.duplicate-row { display:flex; align-items:center; gap:16rpx; padding:20rpx 0; border-bottom:1rpx solid var(--border); }
-.duplicate-row:last-child { padding-bottom:0; border-bottom:0; }
-.clubs-page .verified-mark { display:inline-flex; justify-content:flex-start; min-height:44px; padding:8rpx 0; color:var(--text-secondary); background:transparent; font-size: 12px; }
-.clubs-page .create-submit { width:100%; margin-top:24rpx; min-height:44px; }
-.clubs-page .secondary-action { width:100%; margin-top:16rpx; color:var(--text-secondary); background:#fff; }
-.private-reports-link { display:flex; align-items:center; justify-content:center; min-height:44px; padding:12rpx 20rpx; color:var(--text-secondary); font-size: 12px; }
-.result-action,.small-action,.club-quick-actions navigator { min-height:44px;  }
-@media (max-width:350px) { .result-row { flex-wrap:wrap; } .result-row .result-action,.result-row .pending-badge { margin-left:78rpx;  } }
-
-@media (max-width:350px) { .clubs-page button,.clubs-page .result-action,.clubs-page .small-action,.clubs-page .club-quick-actions navigator,.private-reports-link { min-height:44px;  } }
-
-/* Route geometry: surfaces, controls and compact labels have distinct roles. */
-.mini-clubs-clubs .clubs-welcome, .mini-clubs-clubs .surface, .mini-clubs-clubs .name-notice, .mini-clubs-clubs .legacy-application { border-radius: 36rpx; }
-.mini-clubs-clubs .search-field, .mini-clubs-clubs .search-action, .mini-clubs-clubs .mine-search, .mini-clubs-clubs .create-input, .mini-clubs-clubs .create-intro, .mini-clubs-clubs .submit, .mini-clubs-clubs .result-action, .mini-clubs-clubs .small-action, .mini-clubs-clubs .create-entry { border-radius: 24rpx; }
-.mini-clubs-clubs .role-badge, .mini-clubs-clubs .mode, .mini-clubs-clubs .pending-badge { border-radius: 14rpx; }
-
-/* Page composition and interaction hierarchy. */
-.mini-clubs-clubs { color: var(--text); }
-.mini-clubs-clubs button { font-weight: 500; border-radius: 24rpx; }
-
-.clubs-page { padding: 20rpx 28rpx 48rpx; background: transparent; }
-.clubs-welcome { padding: 32rpx; border: 1px solid var(--border); background: linear-gradient(135deg,#eaf4ff,#ffffff); border-color: #dbeaf1; box-shadow: var(--card-shadow); }
-.welcome-title { font-size: 26px; font-weight: 600; }
-.welcome-copy { font-size: 13px; line-height: 1.7; }
-.surface { border: 1px solid var(--border); box-shadow: var(--card-shadow); background: #ffffff; }
-.modes { gap: 24rpx; padding: 0; border-bottom: 1px solid var(--border); border-radius: 0; background: transparent; }
-.clubs-page .mode { position: relative; min-height: 44px; padding: 8rpx 0; border-radius: 0; font-size: 14px; }
-.clubs-page .mode.on { background: transparent; color: var(--text); box-shadow: inset 0 -2px var(--brand); }
-.mine-search,.search-field { border-radius: 24rpx; border-color: var(--border); background: #fff; }
-.mine-search input,.search-field input { border-radius: 0; }
-.clubs-page .search-action { border-radius: 24rpx; font-size: 12px; }
-.clubs-page .create-entry { padding: 28rpx; min-height: 104rpx; border-radius: 36rpx; background: #ffffff; }
-.club-name { color: var(--text); }
-.my-meta { font-size: 11px; }
-.meta { font-size: 11px; }
-.role-badge { font-size: 11px; background: var(--sun-soft); }
-.pending-badge { font-size: 11px; }
-.create-field input,.city-filter input,.create-input,.create-intro { border: 1px solid var(--border); border-radius: 24rpx; background: var(--page-bg); font-size: 14px; }
-@media(max-width:350px) { .welcome-title { font-size: 24px; } .result-row .club-copy { min-width: 0; } }
-
-/* Primary actions read at 14px, secondary actions at 13px; compact filters stay at 12px. */
-.mini-clubs-clubs .submit, .mini-clubs-clubs .search-action { font-size: 14px; font-weight: 500; }
-.mini-clubs-clubs .result-action, .mini-clubs-clubs .small-action, .mini-clubs-clubs .secondary-action { font-size: 13px; font-weight: 500; }

@@ -1,10 +1,21 @@
 @import "../../utils/mileage-pages.wxss";
 .tg-card { margin-bottom:20rpx; padding:28rpx; border-radius:26rpx; }
 .tg-card-top { display:flex; align-items:center; gap:20rpx; }
-.tg-mark { display:flex; align-items:center; justify-content:center; flex:none; width:76rpx; height:76rpx; border-radius:20rpx; background:rgba(255,255,255,.72); font-size:24px; font-weight:700; }
-.tg-main { flex:1; min-width:0; }.tg-name { color:#303e37; font-size:17px; font-weight:650; overflow-wrap:anywhere; }.tg-pace { color:#7e9186; font-size:11px; margin-top:8rpx; overflow-wrap:anywhere; }
-.tg-size { flex:none; font-size:20px; color:#3a5144; font-weight:600; }.tg-size>text { font-size:10px; color:#91a094; font-weight:400; }
-.tg-description { margin-top:20rpx; color:#7b8d81; font-size:12px; line-height:1.7; white-space:pre-wrap; overflow-wrap:anywhere; }
-.tg-actions { display:flex; align-items:center; justify-content:space-between; margin-top:16rpx; border-top:1rpx solid rgba(110,140,118,.12); }.tg-delete { min-height:44px; font-size:11px; color:#9fa8a0; }
-.tg-members { padding:20rpx 26rpx; }.tg-member { display:flex; gap:14rpx; align-items:center; justify-content:space-between; border-bottom:1rpx solid #f1f4f2; min-height:76px; }.tg-member:last-child { border-bottom:0; }
-.mp-page .tg-member-link { display:flex; flex:1; min-width:0; gap:16rpx; align-items:center; text-align:left; min-height:56px; }.tg-member-link>text { flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:13px; font-weight:550; }.tg-assignment { display:flex; gap:12rpx; align-items:center; min-height:44px; max-width:230rpx; color:#599172; font-size:12px; overflow-wrap:anywhere; }
+.tg-mark { display:flex; align-items:center; justify-content:center; flex:none; width:76rpx; height:76rpx; border-radius:20rpx; background:rgba(255,255,255,.72); font-size:24px; font-weight:600; }
+.tg-main { flex:1; min-width:0; }.tg-name { color:var(--text); font-size:18px; font-weight:600; overflow-wrap:anywhere; }.tg-pace { color:var(--text-secondary); font-size:12px; margin-top:8rpx; overflow-wrap:anywhere; }
+.tg-size { flex:none; font-size:20px; color:var(--text); font-weight:600; }.tg-size>text { font-size:12px; color:var(--text-secondary); font-weight:400; }
+.tg-description { margin-top:20rpx; color:var(--text-secondary); font-size:12px; line-height:1.7; white-space:pre-wrap; overflow-wrap:anywhere; }
+.tg-actions { display:flex; align-items:center; justify-content:space-between; margin-top:16rpx; border-top:1rpx solid rgba(110,140,118,.12); }.tg-delete { min-height:44px; font-size:12px; color:var(--text-secondary); }
+.tg-members { padding:20rpx 26rpx; }.tg-member { display:flex; gap:14rpx; align-items:center; justify-content:space-between; border-bottom:1rpx solid var(--border); min-height:76px; }.tg-member:last-child { border-bottom:0; }
+.mp-page .tg-member-link { display:flex; flex:1; min-width:0; gap:16rpx; align-items:center; text-align:left; min-height:56px; }.tg-member-link>text { flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:14px; font-weight:500; }.tg-assignment { display:flex; gap:12rpx; align-items:center; min-height:44px; max-width:230rpx; color:var(--text-secondary); font-size:12px; overflow-wrap:anywhere; }
+
+.tg-card { border:1rpx solid var(--border); border-radius:24rpx; background:var(--card,#fff); color:var(--text); }
+.tg-mark { border-radius:16rpx; background:var(--page-bg); color:var(--text-secondary); font-size:20px; font-weight:500; }
+.tg-name { color:var(--text); font-size:16px; font-weight:500; }
+.tg-pace,.tg-description,.tg-size>text { color:var(--text-secondary); font-size:12px; }
+.tg-size { color:var(--text); font-size:20px; font-weight:500; }
+.tg-actions,.tg-member { border-color:var(--border); }
+.tg-delete { min-height:44px; color:var(--text-secondary); font-size:12px; }
+.mp-page .tg-member-link { min-height:56px; }
+.tg-member-link>text { font-size:14px; font-weight:500; }
+.tg-assignment { min-height:44px; color:var(--brand); font-size:12px; }

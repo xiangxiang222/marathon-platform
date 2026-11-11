@@ -1,13 +1,13 @@
 .intro-page { min-height: 100vh; box-sizing: border-box; font-weight: 400; background: transparent; }
 .intro-content { padding: 24rpx 28rpx 184rpx; padding-bottom: calc(184rpx + env(safe-area-inset-bottom)); }
-.intro-card { position: relative; overflow: hidden; padding: 36rpx; border: 1rpx solid #fff;  background: linear-gradient(135deg,#eaf4ff,#ffffff); border-color: #dceaf3; box-shadow: var(--card-shadow); }
+.intro-card { position: relative; overflow: hidden; padding: 36rpx; border: 1rpx solid var(--border);  background: var(--card,#fff); border-color: var(--border); box-shadow: none; }
 .intro-card > view:not(.track-art) { position: relative;  }
-.card-eyebrow { color: var(--brand); font-size: 12px; line-height: 32rpx; letter-spacing: 4rpx; }
+.card-eyebrow { color: var(--brand); font-size: 12px; line-height: 32rpx; letter-spacing: normal; }
 .track-art { position: absolute; right: -160rpx; top: -102rpx; width: 392rpx; height: 392rpx; box-sizing: border-box; border: 2rpx solid var(--border); border-radius: 50%; transform: rotate(-20deg); }
 .track-line { position: absolute; border: 2rpx solid var(--border); border-radius: 50%; }
 .track-line-two { inset: 28rpx; }
 .track-line-three { inset: 56rpx; }
-.club-mark { display: flex; align-items: center; justify-content: center; width: 100rpx; height: 100rpx; margin-top: 40rpx; border-radius:32rpx; color: #fff; background: var(--brand); font-size: 22px; font-weight: 600; box-shadow: 0 10rpx 22rpx rgba(255, 10, 48, .13); }
+.club-mark { display: flex; align-items: center; justify-content: center; width: 100rpx; height: 100rpx; margin-top: 40rpx; border-radius:32rpx; color: #fff; background: var(--brand); font-size: 22px; font-weight: 600; box-shadow: none; }
 .club-name { margin-top: 26rpx; color: var(--text); line-height: 1.4; overflow-wrap: anywhere; word-break: break-all; }
 .card-tagline { margin-top: 12rpx; color: var(--text-secondary); font-size: 12px; line-height: 40rpx; }
 .club-facts { display: flex; align-items: center; justify-content: space-between; gap: 24rpx; margin-top: 40rpx; padding-top: 28rpx; border-top: 1rpx solid var(--border); }
@@ -15,9 +15,9 @@
 .fact-label { display: block; color: var(--text-secondary); font-size: 12px; }
 .fact-value { display: block; margin-top: 4rpx; overflow-wrap: anywhere; word-break: break-all; }
 .club-count { display: flex; flex: none; align-items: baseline; gap: 8rpx; }
-.count { color: var(--text); font-size: 22px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.count { color: var(--text); font-size: 22px; font-weight: 600; font-variant-numeric: tabular-nums; }
 .count-label { color: var(--text-secondary); font-size: 12px; }
-.intro-benefits { margin-top: 24rpx; padding: 32rpx 28rpx 24rpx;  background: #ffffff; }
+.intro-benefits { margin-top: 24rpx; padding: 32rpx 28rpx 24rpx;  background: var(--card,#fff); }
 .section-title { font-size: 20px; font-weight: 600; line-height: 44rpx; }
 .benefit-list { display: flex; gap: 12rpx; margin-top: 28rpx; }
 .benefit { flex: 1; min-width: 0; text-align: center; }
@@ -42,7 +42,7 @@
 .status-copy { margin-top: 6rpx; color: var(--text-secondary); font-size: 12px; line-height: 38rpx; }
 .status-pending .status-dot { background: var(--brand); }
 .secondary-note { margin-top: 28rpx; color: var(--text-secondary); text-align: center; font-size: 12px; line-height: 36rpx; }
-.intro-dock { position: fixed; z-index: 8; display: flex; align-items: center; gap: 20rpx; left: 0; right: 0; bottom: 0; padding: 20rpx 28rpx 24rpx; padding-bottom: calc(24rpx + env(safe-area-inset-bottom)); border-top: 1rpx solid var(--border); background: #fff; }
+.intro-dock { position: fixed; z-index: 8; display: flex; align-items: center; gap: 20rpx; left: 0; right: 0; bottom: 0; padding: 20rpx 28rpx 24rpx; padding-bottom: calc(24rpx + env(safe-area-inset-bottom)); border-top: 1rpx solid var(--border); background: var(--card,#fff); }
 .intro-dock button { display: flex; align-items: center; justify-content: center; min-height:44px; padding: 0 16rpx; margin: 0; border-radius: 20rpx; font-size: 14px; font-weight: 600; line-height: 1.4; }
 .share-action { flex: 0 0 34%; gap: 12rpx; box-sizing: border-box; color: var(--text); background: var(--page-bg);  }
 .share-glyph { position: relative; width: 26rpx; height: 26rpx; margin-top: 6rpx; border: 3rpx solid var(--text); border-top-color: transparent; border-radius: 5rpx; }
@@ -51,16 +51,16 @@
 .action { flex: 1; color: #fff; background: var(--brand);  }
 .intro-dock button.pending-action { color: var(--text-secondary); background: var(--page-bg); }
 .state { padding: 140rpx 40rpx 40rpx; color: var(--text-secondary); text-align: center; font-size: 12px; line-height: 42rpx; }
-.retry-action { width: 220rpx; margin: 28rpx auto 0; padding: 12rpx; min-height:44px; background: #fff; font-size: 12px;  }
+.retry-action { width: 220rpx; margin: 28rpx auto 0; padding: 12rpx; min-height:44px; background: var(--card,#fff); font-size: 12px;  }
 .error { margin-top: 20rpx; color: var(--brand); font-size: 12px; line-height: 38rpx; }
 .share-mask, .timeline-mask { position: fixed; z-index: 20; inset: 0; background: rgba(20, 23, 32, .46); }
-.share-sheet { position: absolute; left: 0; right: 0; bottom: 0; padding: 16rpx 32rpx 36rpx; padding-bottom: calc(36rpx + env(safe-area-inset-bottom)); border-radius: 36rpx 36rpx 0 0; background: #fff; }
+.share-sheet { position: absolute; left: 0; right: 0; bottom: 0; padding: 16rpx 32rpx 36rpx; padding-bottom: calc(36rpx + env(safe-area-inset-bottom)); border-radius: 32rpx 32rpx 0 0; background: var(--card,#fff); }
 .share-sheet { max-height: calc(100vh - 48rpx); overflow-y: auto; box-sizing: border-box; }
 .sheet-handle { width: 64rpx; height: 7rpx; margin: 0 auto; border-radius: 8rpx; background: var(--border); }
 .sheet-header { display: flex; align-items: center; justify-content: space-between; gap: 20rpx; margin-top: 16rpx; }
 .sheet-title { font-size: 24px; font-weight: 600; line-height: 52rpx; }
 .sheet-close { display: flex; align-items: center; justify-content: center; flex: none; width: 80rpx; min-height:44px; margin-right: -16rpx; padding: 0; color: var(--text-secondary); background: transparent; font-size: 22px; font-weight: 400; line-height: 1; }
-.share-preview { display: flex; align-items: center; gap: 18rpx; margin-top: 12rpx; padding: 22rpx; border: 1rpx solid var(--border); border-radius: 20rpx; background: linear-gradient(135deg,#eaf4ff,#f2edff); }
+.share-preview { display: flex; align-items: center; gap: 18rpx; margin-top: 12rpx; padding: 22rpx; border: 1rpx solid var(--border); border-radius: 20rpx; background: var(--card,#fff); }
 .preview-mark { display: flex; align-items: center; justify-content: center; flex: none; width: 76rpx; height: 76rpx; border-radius: 20rpx; color: #fff; background: var(--brand); font-size: 18px; font-weight: 600; }
 .preview-copy { flex: 1; min-width: 0; }
 .preview-name { font-size: 14px; font-weight: 600; line-height: 40rpx; overflow-wrap: anywhere; word-break: break-all; }
@@ -71,19 +71,19 @@
 .choice-arrow { font-size: 20px; font-weight: 400; }
 .share-foot { margin-top: 24rpx; color: var(--text-secondary); text-align: center; font-size: 12px; line-height: 36rpx; }
 .timeline-mask { z-index: 21; }
-.timeline-guide { position: absolute; right: 28rpx; top: 46rpx; left: 76rpx; max-width: 580rpx; padding: 32rpx;  background: #fff; }
+.timeline-guide { position: absolute; right: 28rpx; top: 46rpx; left: 76rpx; max-width: 580rpx; padding: 32rpx;  background: var(--card,#fff); }
 .timeline-guide { max-height: calc(100vh - 100rpx); overflow-y: auto; box-sizing: border-box;  }
-.guide-pointer { position: absolute; top: -14rpx; right: 70rpx; width: 30rpx; height: 30rpx; border-radius: 4rpx; background: #fff; transform: rotate(45deg); }
-.guide-menu { display: flex; align-items: center; justify-content: center; width: 76rpx; height: 44rpx; border: 2rpx solid var(--border); border-radius:32rpx; font-size: 20px; font-weight: 700; line-height: 1; }
+.guide-pointer { position: absolute; top: -14rpx; right: 70rpx; width: 30rpx; height: 30rpx; border-radius: 4rpx; background: var(--card,#fff); transform: rotate(45deg); }
+.guide-menu { display: flex; align-items: center; justify-content: center; width: 76rpx; height: 44rpx; border: 2rpx solid var(--border); border-radius:32rpx; font-size: 20px; font-weight: 600; line-height: 1; }
 .guide-title { margin-top: 24rpx; font-size: 18px; font-weight: 600; line-height: 48rpx; }
 .guide-copy { margin-top: 14rpx; color: var(--text-secondary); font-size: 14px; line-height: 46rpx; }
 .guide-dismiss { min-height:44px; margin-top: 28rpx;  color: #fff; background: var(--brand); font-size: 14px; line-height: 80rpx; }
 
 @media (max-width: 350px) {
   .intro-content { padding-left: 12px; padding-right: 12px; }
-  .intro-card { padding: 18px; background: linear-gradient(135deg,#eaf4ff,#ffffff); border-color: #dceaf3; box-shadow: var(--card-shadow); }
-  .club-name { font-size: 26px; }
-  .club-owner, .card-tagline, .benefit-title, .status-copy { font-size: 13px; line-height: 1.6; }
+  .intro-card { padding: 18px; background: var(--card,#fff); border-color: var(--border); box-shadow: none; }
+  .club-name { font-size: 24px; }
+  .club-owner, .card-tagline, .benefit-title, .status-copy { font-size: 14px; line-height: 1.6; }
   .card-eyebrow, .fact-label, .count-label, .benefit-copy, .access-note, .secondary-note, .share-foot, .preview-note { font-size: 12px; line-height: 1.6; }
   .intro-dock { gap: 8px; padding-left: 12px; padding-right: 12px; }
   .intro-dock button { min-height: 46px; font-size: 14px; }
@@ -105,7 +105,7 @@
 .restricted-state .report-link { display:flex; align-items:center; justify-content:center; box-sizing:border-box; }
 
 /* Route geometry: surfaces, controls and compact labels have distinct roles. */
-.mini-club-intro-club-intro .intro-card, .mini-club-intro-club-intro .intro-benefits, .mini-club-intro-club-intro .status, .mini-club-intro-club-intro .timeline-guide { border-radius: 36rpx; }
+.mini-club-intro-club-intro .intro-card, .mini-club-intro-club-intro .intro-benefits, .mini-club-intro-club-intro .status, .mini-club-intro-club-intro .timeline-guide { border-radius: 32rpx; }
 .mini-club-intro-club-intro .action, .mini-club-intro-club-intro .share-action, .mini-club-intro-club-intro .retry-action, .mini-club-intro-club-intro .share-choice, .mini-club-intro-club-intro .guide-dismiss { border-radius: 24rpx; }
 .mini-club-intro-club-intro .join-identity { border-radius: 14rpx; }
 
@@ -114,18 +114,28 @@
 .mini-club-intro-club-intro button { font-weight: 500; border-radius: 24rpx; }
 
 .intro-page { color: var(--text); background: transparent; }
-.intro-card { border: 1px solid var(--border); background: linear-gradient(135deg,#eaf4ff,#ffffff); border-color: #dceaf3; box-shadow: var(--card-shadow); }
-.intro-benefits { border: 1px solid var(--border); background: #ffffff; }
+.intro-card { border: 1px solid var(--border); background: var(--card,#fff); border-color: var(--border); box-shadow: none; }
+.intro-benefits { border: 1px solid var(--border); background: var(--card,#fff); }
 .status { border: 1px solid var(--border); background: var(--mint-soft); }
-.club-name { font-size: 26px; font-weight: 600; }
+.club-name { font-size: 24px; font-weight: 600; }
 .card-tagline,.benefit-copy { font-size: 14px; line-height: 1.8; }
-.benefit-title { font-size: 15px; font-weight: 600; }
+.benefit-title { font-size: 14px; font-weight: 600; }
 .intro-dock button,.share-sheet button { border-radius: 24rpx; font-size: 12px; }
 .intro-dock .action { background: var(--brand); color: #fff; }
-.intro-dock .share-action { border: 1px solid var(--border); background: #fff; color: var(--text); }
-.share-choice { border: 1px solid var(--border); border-radius: 24rpx; background: #fff; }
+.intro-dock .share-action { border: 1px solid var(--border); background: var(--card,#fff); color: var(--text); }
+.share-choice { border: 1px solid var(--border); border-radius: 24rpx; background: var(--card,#fff); }
 
 /* Primary actions read at 14px, secondary actions at 13px; compact filters stay at 12px. */
 .mini-club-intro-club-intro .action { font-size: 14px; font-weight: 500; }
-.mini-club-intro-club-intro .share-action, .mini-club-intro-club-intro .retry-action { font-size: 13px; font-weight: 500; }
-.intro-dock .action { font-size: 14px; } .intro-dock .share-action { font-size: 13px; }
+.mini-club-intro-club-intro .share-action, .mini-club-intro-club-intro .retry-action { font-size: 14px; font-weight: 500; }
+.intro-dock .action { font-size: 14px; } .intro-dock .share-action { font-size: 14px; }
+
+.intro-page { color:var(--text); font-size:14px; background:var(--page-bg); }
+.intro-card,.intro-benefits { background:var(--card,#fff); border:1rpx solid var(--border); border-radius:24rpx; box-shadow:none; }
+.track-art { display:none; }
+.club-mark { border-radius:24rpx; background:var(--brand); color:#fff; box-shadow:none; }
+.club-name { color:var(--text); font-size:24px; font-weight:600; letter-spacing:normal; }
+.section-title { color:var(--text); font-size:18px; font-weight:600; line-height:1.5; }
+.card-eyebrow,.card-tagline,.count-label,.benefit-label,.status-copy { font-size:12px; color:var(--text-secondary); letter-spacing:normal; }
+.benefit-icon { background:var(--brand-soft); color:var(--brand); border-radius:20rpx; }
+.intro-page button,.intro-page .primary,.intro-page .secondary { min-height:44px; border-radius:20rpx; font-size:14px; font-weight:500; }

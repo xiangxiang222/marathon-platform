@@ -40,6 +40,8 @@ Page({
     this.setData({ shownClubs: this.data.clubs.filter((club) => !query || String(club.name || "").toLowerCase().includes(query)) });
   },
   toggleCreate() { this.setData({ createOpen: !this.data.createOpen }); },
+  openCreate() { this.setData({ createOpen: true }); wx.pageScrollTo({ selector: "#create-club", duration: 250 }); },
+  openDiscover() { wx.pageScrollTo({ selector: "#discover-clubs", duration: 250 }); },
   openClub(e) {
     const id = Number(e.currentTarget.dataset.id);
     if (id) wx.navigateTo({ url: "/pages/club-intro/club-intro?id=" + id });

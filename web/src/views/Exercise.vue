@@ -3,11 +3,42 @@
     <PageHeader title="运动" subtitle="记录每一步进步" />
     <section v-if="!ready" class="surface guest-state"><span class="guest-mark" aria-hidden="true">＋</span><h2>每一次出发，都算数</h2><p>登录后记录跑步，查看自己的跑量与进步。</p><button class="primary" type="button" @click="login">登录后记录</button></section>
     <template v-else-if="data">
-      <section class="surface mileage-hero">
-        <div class="hero-top"><label class="month-select"><span>本月跑量</span><input v-model="month" type="month" aria-label="查看月份" @change="load" /></label><button v-if="data.month.canFlag" class="text-button" type="button" :aria-expanded="targetOpen" @click="targetOpen = !targetOpen">{{ data.month.target ? '修改目标' : '设置目标' }} ›</button></div>
-        <div class="mileage-value"><strong>{{ data.month.km }}</strong><span>公里</span></div>
-        <div v-if="data.month.target" class="target-summary"><div class="progress" role="progressbar" :aria-valuenow="progressPercent" aria-valuemin="0" aria-valuemax="100" aria-label="跑量目标进度"><i :style="{ width: progressPercent + '%' }"></i></div><p><span>目标 {{ data.month.target }} 公里</span><b>已完成 {{ targetPercent }}%</b></p></div>
-        <p v-else class="no-target">为这个月定个目标，按自己的节奏跑。</p>
+      <section class="surface mileage-hero" :aria-busy="loading">
+        <div class="hero-top">
+          <div class="month-block">
+            <span class="month-caption">月度跑量</span>
+            <div class="month-control">
+              <button class="month-step" type="button" aria-label="上一个月" @click="shiftMonth(-1)">‹</button>
+              <label class="month-select"><span>{{ monthLabel }}</span><input v-model="month" type="month" aria-label="选择月份" @change="load" /></label>
+              <button class="month-step" type="button" aria-label="下一个月" @click="shiftMonth(1)">›</button>
+            </div>
+          </div>
+          <button v-if="data.month.canFlag" class="target-link" type="button" :aria-label="data.month.target ? '修改目标 ›' : '设置目标 ›'" :aria-expanded="targetOpen" @click="targetOpen = !targetOpen">{{ data.month.target ? '修改目标' : '设置目标' }}</button>
+        </div>
+        <div class="hero-overview">
+          <div class="mileage-copy">
+            <span class="hero-kicker">本月累计</span>
+            <div class="mileage-value"><strong>{{ data.month.km }}</strong><span>km</span></div>
+            <span class="mileage-footnote">累计跑量 · {{ data.month.count }} 次跑步</span>
+          </div>
+          <div class="runner-strip">
+            <img class="runner-photo" :src="runSceneSrc" alt="跑鞋插画" />
+            <strong>跑向下一程</strong>
+            <span class="strip-detail">按你的节奏</span>
+          </div>
+        </div>
+        <div class="weekly-chart" role="img" :aria-label="weeklyChartLabel">
+          <div class="chart-heading"><h2>分周跑量</h2><span>{{ monthLabel }} · km</span></div>
+          <div class="chart-bars" :style="{ gridTemplateColumns: `repeat(${weeklyRuns.length}, minmax(0, 1fr))` }" aria-hidden="true">
+            <div v-for="week in weeklyRuns" :key="week.label" class="chart-column">
+              <span class="bar-value">{{ week.kmLabel }}</span>
+              <div class="bar-track"><i :class="{ peak: week.peak }" :style="{ height: week.height + '%' }"></i></div>
+              <span class="bar-label">{{ week.label }}</span>
+            </div>
+          </div>
+        </div>
+        <div v-if="data.month.target" class="target-summary"><div class="target-copy"><span>本月目标 <b>{{ data.month.target }} km</b></span><strong>{{ targetPercent }}%</strong></div><div class="progress" role="progressbar" :aria-valuenow="progressPercent" aria-valuemin="0" aria-valuemax="100" aria-label="跑量目标进度"><i :style="{ width: progressPercent + '%' }"></i></div><p><span>已完成 {{ data.month.km }} km</span><span>还差 {{ Math.max(0, Number(data.month.target) - Number(data.month.km)).toFixed(1) }} km</span></p></div>
+        <button v-else-if="data.month.canFlag" class="target-prompt" type="button" :aria-expanded="targetOpen" @click="targetOpen = !targetOpen"><span class="target-mark">＋</span><span><strong>给这个月定个目标</strong><small>按自己的节奏，一步步完成</small></span><b>设置 ›</b></button>
         <div class="run-metrics"><div><b>{{ data.month.count }}</b><span>跑步次数</span></div><div><b>{{ data.month.days }}</b><span>运动天数</span></div><div><b>{{ data.month.paceLabel || '—' }}</b><span>平均配速</span></div></div>
         <p v-if="data.month.observe" class="hint">本月观摩，不标记目标是否达成。</p>
       </section>
@@ -37,6 +68,34 @@ const runModes = [{ value: 'unknown', label: '跑步·待确认' }, { value: 'ro
 const recordOpen = ref(false);
 const targetOpen = ref(false);
 const expandedRun = ref(null);
+const runSceneSrc = import.meta.env.BASE_URL + 'images/art-shoe.png';
+const monthLabel = computed(() => {
+  const [year, selectedMonth] = month.value.split('-');
+  return `${year}年${Number(selectedMonth)}月`;
+});
+const weeklyRuns = computed(() => {
+  const [year, selectedMonth] = month.value.split('-').map(Number);
+  const daysInMonth = new Date(year, selectedMonth, 0).getDate();
+  const weeks = Array.from({ length: Math.ceil(daysInMonth / 7) }, (_, index) => ({
+    label: `${index * 7 + 1}–${Math.min((index + 1) * 7, daysInMonth)}`,
+    km: 0
+  }));
+  for (const run of data.value?.runs || []) {
+    if (run.type && !['run', 'trail'].includes(run.type)) continue;
+    const day = Number(String(run.startedAt).slice(8, 10));
+    const week = weeks[Math.floor((day - 1) / 7)];
+    if (week) week.km += Number(run.volumeKm || 0);
+  }
+  const max = Math.max(...weeks.map((week) => week.km), 0);
+  const peak = max > 0 ? weeks.findIndex((week) => week.km === max) : -1;
+  return weeks.map((week, index) => ({
+    ...week,
+    kmLabel: week.km.toFixed(1),
+    height: week.km > 0 && max > 0 ? Math.max(8, Math.round(week.km / max * 100)) : 0,
+    peak: index === peak
+  }));
+});
+const weeklyChartLabel = computed(() => `每周跑量：${weeklyRuns.value.map((week) => `${week.label} ${week.kmLabel} 公里`).join('，')}`);
 const targetPercent = computed(() => {
   const value = data.value && data.value.month;
   if (!value || !Number(value.target)) return 0;
@@ -62,8 +121,20 @@ function shotSrc(id) {
   return runShotSrc(id);
 }
 
+function shiftMonth(offset) {
+  const [year, selectedMonth] = month.value.split('-').map(Number);
+  const shifted = new Date(Date.UTC(year, selectedMonth - 1 + offset, 1));
+  month.value = shifted.toISOString().slice(0, 7);
+  load();
+}
+
 async function load() {
   if (!ready.value) return;
+  if (!/^\d{4}-(0[1-9]|1[0-2])$/.test(month.value)) {
+    month.value = data.value?.month.id || new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 7);
+    message.value = '请选择要查看的月份';
+    return;
+  }
   const sequence = ++loadSequence;
   const selectedMonth = month.value;
   loading.value = true;
@@ -164,17 +235,101 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.record-actions { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 10px; }.import-button { display: grid; place-items: center; min-height: 44px; border: 1px solid #ffd6de; border-radius: 12px; background: #fff; color: var(--ink-secondary); font-size: 14px; font-weight: 600;  border-color: var(--line);}
 :deep(.page-header) { margin: 0 -12px; }
-.exercise { padding: 0 12px 20px; color: var(--ink); }.surface { padding: 18px; margin-bottom: 12px; border-radius: 18px; background: #fff;  border: 1px solid var(--line);}.hero-top,.section-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; }.month-select { display: flex; flex-direction: column; gap: 5px; color: var(--muted); font-size: 12px; }.month-select input { max-width: 150px; padding: 0; border: 0; background: transparent; color: var(--ink); font-size: 14px; }.text-button { min-height: 32px; flex: none; color: var(--accent); font-size: 12px; }.mileage-value { display: flex; align-items: baseline; gap: 8px; margin: 16px 0; }.mileage-value strong { font-size: 48px; line-height: 1.15; letter-spacing: -1px; font-weight: 700; }.mileage-value > span { color: var(--muted); font-size: 14px; }.progress { height: 6px; border-radius: 4px; overflow: hidden; background: var(--chip); }.progress i { display: block; height: 100%; border-radius: inherit; background: var(--accent); }.target-summary p { display: flex; justify-content: space-between; gap: 8px; margin: 8px 0 0; color: var(--muted); font-size: 12px; }.target-summary b { color: var(--accent); font-weight: 400; }.no-target { margin: 0; color: var(--muted); font-size: 12px; line-height: 20px; }.run-metrics { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); padding-top: 20px; margin-top: 18px; border-top: 1px solid var(--line); }.run-metrics div { text-align: center; }.run-metrics div:first-child { text-align: left; }.run-metrics div:last-child { text-align: right; }.run-metrics b { display: block; font-size: 20px; line-height: 28px; font-weight: 600; }.run-metrics span { display: block; margin-top: 4px; color: var(--muted); font-size: 12px; }.primary { min-height: 44px; padding: 0 16px; border-radius: 8px; background: var(--accent); color: #fff; font-size: 15px; font-weight: 600; }.record-button { width: 100%; }.manual-note { margin: 8px 0 20px; text-align: center; color: var(--muted); font-size: 12px; line-height: 18px; }.section-heading h2,.section-heading h3 { margin: 0; font-size: 16px; line-height: 24px; font-weight: 600; }.section-heading > span { color: var(--muted); font-size: 12px; }.records-heading { margin: 20px 4px 12px; }.records-heading h2 { font-size: 18px; }.run-date { margin: 6px 0 14px; color: var(--muted); font-size: 12px; line-height: 18px; }.record-data { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; }.record-data b { display: block; font-size: 18px; font-weight: 600; line-height: 26px; }.record-data span { display: block; margin-top: 3px; color: var(--muted); font-size: 12px; }.hint { margin: 10px 0 0; color: var(--muted); font-size: 12px; line-height: 19px; }.stack { display: flex; flex-direction: column; gap: 12px; margin-top: 14px; }.stack label,.field-label { min-width: 0; color: var(--muted); font-size: 12px; }.stack input,.stack select { width: 100%; min-width: 0; height: 44px; margin-top: 6px; padding: 0 12px; border: 0; border-radius: 8px; background: var(--bg); color: var(--ink); font-size: 15px; }.field-pair { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 10px; }.choices { display: flex; gap: 8px; }.choices button { min-width: 62px; min-height: 36px; padding: 0 12px; border-radius: 8px; background: var(--chip); color: var(--ink); font-size: 13px;  border: 1px solid var(--line);}.choices button.on { color: var(--accent); background: var(--accent-soft); }.close-button { min-height: 32px; color: var(--muted); font-size: 12px; }.stack .file-pick { position: relative; display: grid; place-items: center; min-height: 44px; overflow: hidden; border-radius: 8px; color: var(--ink); background: var(--chip); font-size: 13px; }.file-pick input { position: absolute; width: 1px; height: 1px; overflow: hidden; opacity: 0; }.record-editor { margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--line); }.delete-button { min-height: 40px; color: var(--muted); font-size: 13px; }.shot { display: block; width: 100%; margin-top: 12px; border-radius: 8px; }.guest-state,.empty-state { padding: 28px 20px; text-align: center; }.guest-state h2 { margin: 12px 0 0; font-size: 20px; line-height: 28px; font-weight: 600; }.guest-state p,.empty-state p { margin: 8px 0 20px; color: var(--muted); font-size: 12px; line-height: 20px; }.guest-state .primary { width: 100%; }.guest-mark { display: grid; place-items: center; width: 56px; height: 56px; margin: auto; border-radius: 16px; background: var(--accent-soft); color: var(--accent); font-size: 30px; }.empty-state h3 { margin: 0; font-size: 16px; }.year-note,.loading-copy { margin: 16px 4px; color: var(--muted); font-size: 12px; line-height: 20px; }.message { margin: 12px 4px; color: var(--accent); font-size: 12px; line-height: 20px; }
-@media(max-width:350px){.surface {padding: 18px; border: 1px solid var(--line);}.mileage-value strong{font-size:44px}.record-data{gap:8px}.record-data b{font-size:16px}.target-summary p{font-size:12px}.field-pair{gap:8px}}
-
-
-/* Mint and sky keep daily mileage fresh and separate it from race results. */
-.exercise { background:transparent; }
-.mileage-hero { background:linear-gradient(130deg,#ebf8f0,#f6fcf9 65%,#fff);border-color:#d1e8dc;box-shadow:var(--card-shadow,0 7px 24px #40796113); }
-.mileage-value strong { color:#246d59; }.mileage-value>span { color:#47766b; }.progress { background:#cfe7df; }.progress i { background:linear-gradient(90deg,#32a47b,#6dbbb1); }
-.run-metrics { border-color:#cfe5dc; }.run-metrics b { color:#2e685c; }
-.record-button { background:#fff;border-color:#f0d9c5; }.year-note { background:#fff;border-color:#e1daf4; }.guest-state { background:linear-gradient(130deg,#eef8f2,#fff);border-color:#d6e8e1; }
-.record-data { background:#fff; }.run-date { color:#387269; }.import-button { background:var(--sky-soft,#eaf4ff);border-color:#d7e7f7; }
+/* Monthly training summary. The shared PageHeader remains owned by the shell. */
+.exercise { padding: 0 12px 24px; color: var(--ink); }
+.exercise > .surface:first-of-type { margin-top: 0; }
+.surface { padding: 16px; margin-bottom: 12px; border: 1px solid var(--line); border-radius: 12px; background: #fff; }
+.mileage-hero { padding: 16px 14px 14px; }
+.hero-top,.section-heading { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.month-block { min-width: 0; }
+.month-caption,.hero-kicker { display: block; color: var(--muted); font-size: 12px; font-weight: 500; line-height: 18px; }
+.month-control { display: flex; align-items: center; gap: 4px; margin-top: 2px; }
+.month-step { display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--ink-secondary); font-size: 23px; line-height: 1; }
+.month-select { position: relative; display: grid; place-items: center; min-width: 90px; height: 44px; padding: 0 4px; border-radius: 8px; background: var(--bg); color: var(--ink); font-size: 14px; font-weight: 600; }
+.month-select input { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; border: 0; opacity: 0; }
+.target-link { display: flex; align-items: center; justify-content: center; min-width: 68px; min-height: 44px; padding: 0 6px; border: 1px solid #ffe0e3; border-radius: 8px; background: #fff6f7; color: var(--accent); font-size: 14px; line-height: 20px; white-space: nowrap; }
+.target-link b { font-weight: 600; }
+.hero-overview { display: grid; grid-template-columns: minmax(0,1fr) 104px; gap: 12px; align-items: center; margin-top: 16px; }
+.mileage-copy { min-width: 0; }
+.hero-kicker { color: #999; font-size: 12px; font-weight: 600; }
+.mileage-value { display: flex; align-items: baseline; gap: 6px; margin: 6px 0 0; white-space: nowrap; }
+.mileage-value strong { color: var(--ink); font-size: 40px; line-height: 1.05; font-variant-numeric: tabular-nums; font-weight: 600; }
+.mileage-value > span { color: var(--muted); font-size: 14px; font-weight: 600; }
+.mileage-footnote { display: block; margin-top: 7px; color: var(--muted); font-size: 12px; line-height: 17px; }
+.runner-strip { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; min-width: 0; height: 128px; overflow: hidden; padding: 8px; border-radius: 10px; background: #fff5f5; color: var(--ink); }
+.runner-photo { display: block; width: 76px; height: 76px; margin: -3px auto 0; object-fit: contain; }
+.strip-label { margin-bottom: 3px; color: #ffffffd9; font-size: 12px; font-weight: 600; }
+.runner-strip strong { font-size: 14px; line-height: 19px; white-space: nowrap; }
+.strip-detail { margin-top: 2px; color: var(--muted); font-size: 12px; line-height: 15px; }
+.weekly-chart { margin-top: 18px; padding: 12px 12px 8px; border-radius: 10px; background: #f7f7f8; }
+.chart-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+.chart-heading h2 { margin: 0; font-size: 14px; font-weight: 600; line-height: 20px; }
+.chart-heading > span { color: var(--muted); font-size: 12px; }
+.chart-bars { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); gap: 10px; height: 94px; margin-top: 8px; }
+.chart-column { display: grid; grid-template-rows: 17px minmax(0,1fr) 16px; justify-items: center; min-width: 0; }
+.bar-value,.bar-label { color: var(--muted); font-size: 12px; line-height: 14px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.bar-track { display: flex; align-items: flex-end; width: 100%; max-width: 26px; height: 100%; overflow: hidden; border-radius: 6px; background: #ececee; }
+.bar-track i { display: block; width: 100%; min-height: 0; border-radius: 6px; background: #f5a3ad; transition: height .2s ease; }
+.bar-track i.peak { background: var(--accent); }
+.target-summary { padding: 12px; margin-top: 14px; border: 1px solid #ffe2e5; border-radius: 10px; background: #fff8f8; }
+.target-copy,.target-summary p { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.target-copy { margin-bottom: 9px; color: var(--ink-secondary); font-size: 12px; }
+.target-copy b { color: var(--ink); font-weight: 600; }
+.target-copy strong { color: var(--accent); font-size: 14px; font-weight: 600; }
+.progress { height: 5px; overflow: hidden; border-radius: 99px; background: #f2dfe1; }
+.progress i { display: block; height: 100%; border-radius: inherit; background: var(--accent); }
+.target-summary p { margin: 7px 0 0; color: var(--muted); font-size: 12px; line-height: 16px; }
+.target-prompt { display: flex; align-items: center; gap: 9px; width: 100%; min-height: 58px; padding: 8px 10px; margin-top: 14px; border: 1px solid #f2e7e8; border-radius: 10px; background: #fff9fa; text-align: left; }
+.target-mark { display: grid; place-items: center; width: 30px; height: 30px; flex: none; border-radius: 8px; background: #ffe8eb; color: var(--accent); font-size: 19px; }
+.target-prompt > span:nth-child(2) { display: flex; flex-direction: column; min-width: 0; gap: 2px; }
+.target-prompt strong { color: var(--ink); font-size: 13px; font-weight: 600; }
+.target-prompt small { color: var(--muted); font-size: 12px; }
+.target-prompt > b { margin-left: auto; color: var(--accent); font-size: 12px; font-weight: 600; white-space: nowrap; }
+.run-metrics { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); padding-top: 13px; margin-top: 13px; border-top: 1px solid var(--line); }
+.run-metrics div { text-align: center; }
+.run-metrics div:first-child { text-align: left; }
+.run-metrics div:last-child { text-align: right; }
+.run-metrics b { display: block; font-size: 18px; line-height: 22px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.run-metrics span { display: block; margin-top: 3px; color: var(--muted); font-size: 12px; }
+.record-actions { display: grid; grid-template-columns: minmax(0,1.2fr) minmax(0,1fr); gap: 8px; margin-top: 12px; }
+.primary,.import-button,.choices button,.close-button,.delete-button,.text-button,.stack .file-pick { min-height: 44px; border-radius: 10px; font-size: 14px; }
+.primary { padding: 0 14px; background: var(--accent); color: #fff; font-weight: 600; }
+.record-button { width: 100%; }
+.import-button { display: grid; place-items: center; padding: 0 8px; border: 1px solid var(--line); background: #fff; color: var(--ink-secondary); font-weight: 500; text-align: center; }
+.manual-note { margin: 6px 2px 18px; color: var(--muted); font-size: 12px; line-height: 17px; }
+.section-heading h2,.section-heading h3 { margin: 0; font-size: 16px; line-height: 24px; font-weight: 600; }
+.section-heading > span { color: var(--muted); font-size: 12px; }
+.records-heading { margin: 20px 4px 10px; }
+.records-heading h2 { font-size: 18px; }
+.run-record { padding: 14px; }
+.run-record .section-heading h3 { font-size: 15px; }
+.text-button { padding: 0 8px; color: var(--accent); font-size: 12px; }
+.run-date { margin: 5px 0 12px; color: var(--muted); font-size: 12px; line-height: 18px; }
+.record-data { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 8px; }
+.record-data b { display: block; font-size: 18px; font-weight: 600; line-height: 24px; font-variant-numeric: tabular-nums; }
+.record-data span { display: block; margin-top: 3px; color: var(--muted); font-size: 12px; }
+.stack { display: flex; flex-direction: column; gap: 12px; margin-top: 14px; }
+.stack label,.field-label { min-width: 0; color: var(--muted); font-size: 12px; }
+.stack input,.stack select { width: 100%; min-width: 0; height: 44px; margin-top: 6px; padding: 0 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); color: var(--ink); font-size: 14px; }
+.field-pair { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 10px; }
+.choices { display: flex; gap: 8px; }
+.choices button { min-width: 62px; min-height: 36px; padding: 0 12px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--ink); font-size: 13px; }
+.choices button.on { border-color: var(--accent); background: #fff4f5; color: var(--accent); }
+.close-button { padding: 0 8px; color: var(--muted); font-size: 12px; }
+.stack .file-pick { position: relative; display: grid; place-items: center; min-height: 44px; overflow: hidden; background: #f7f7f8; color: var(--ink-secondary); font-size: 13px; }
+.file-pick input { position: absolute; width: 1px; height: 1px; overflow: hidden; opacity: 0; }
+.record-editor { padding-top: 12px; margin-top: 14px; border-top: 1px solid var(--line); }
+.delete-button { color: var(--muted); font-size: 13px; }
+.shot { display: block; width: 100%; margin-top: 12px; border-radius: 8px; }
+.guest-state,.empty-state { padding: 28px 20px; text-align: center; }
+.guest-state h2 { margin: 12px 0 0; font-size: 18px; line-height: 28px; font-weight: 600; }
+.guest-state p,.empty-state p { margin: 8px 0 18px; color: var(--muted); font-size: 14px; line-height: 1.65; }
+.guest-state .primary { width: 100%; }
+.guest-mark { display: grid; place-items: center; width: 48px; height: 48px; margin: auto; border-radius: 12px; background: #fff0f2; color: var(--accent); font-size: 22px; }
+.empty-state h3 { margin: 0; font-size: 16px; }
+.year-note,.loading-copy { margin: 14px 4px; color: var(--muted); font-size: 12px; line-height: 20px; }
+.message { margin: 12px 4px; color: var(--accent); font-size: 12px; line-height: 20px; }
+.editor { margin-top: 8px; }
+@media(max-width:350px){.surface{padding:14px}.hero-overview{grid-template-columns:minmax(0,1fr) 88px;gap:8px}.runner-strip{height:120px;padding:7px}.runner-photo{width:68px;height:68px}.mileage-value strong{font-size:38px}.weekly-chart{padding-right:8px;padding-left:8px}.chart-bars{gap:6px}.record-actions{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
 </style>

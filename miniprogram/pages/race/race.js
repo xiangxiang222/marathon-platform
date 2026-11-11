@@ -31,6 +31,9 @@ Page({
     myStatus: "",
     planOpen: false,
     shareOpen: false,
+    shareChoices: [],
+    selectedShareKey: "",
+    selectedShare: null,
     clubs: [],
     cards: [],
     card: null,
@@ -94,6 +97,19 @@ Page({
   },
   toggleShare() {
     this.setData({ shareOpen: !this.data.shareOpen });
+  },
+  syncShareChoices(cards, legacyCard) {
+    const shareChoices = (cards && cards.length ? cards : legacyCard ? [legacyCard] : []).filter(item => item && item.club).map(item => ({ ...item, selectionKey: String(item.club.id || item.club.code) }));
+    const selectedShare = shareChoices.find(item => item.selectionKey === this.data.selectedShareKey) || shareChoices[0] || null;
+    this.pending = null;
+    this.setData({ shareChoices, selectedShare, selectedShareKey: selectedShare ? selectedShare.selectionKey : "" });
+  },
+  selectShare(event) {
+    const key = String(event.currentTarget.dataset.key || "");
+    const selectedShare = this.data.shareChoices.find(item => item.selectionKey === key);
+    if (!selectedShare) return;
+    this.pending = null;
+    this.setData({ selectedShareKey: key, selectedShare });
   },
   loginForPlan() {
     wx.setStorageSync("marathon_return_after_login", "/pages/race/race?id=" + encodeURIComponent(this.raceId) + "&plan=1");
@@ -195,6 +211,7 @@ Page({
           patch.distance = distanceOptions[0].key;
         }
         this.setData(patch);
+        this.syncShareChoices(patch.cards, this.data.card);
       }),
       request("/races/" + this.raceId + "/news").then((data) => {
         this.setData({ articles: data.news || [] });
@@ -204,6 +221,7 @@ Page({
       jobs.push(
         request("/races/" + this.raceId + "/card?code=" + encodeURIComponent(this.data.code)).then((card) => {
           this.setData({ card: withUnpaid(card) });
+          this.syncShareChoices(this.data.cards, this.data.card);
         })
       );
     }

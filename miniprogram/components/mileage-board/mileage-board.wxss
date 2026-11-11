@@ -1,91 +1,79 @@
 :host { display:block; }
-.mileage-board { color:#20272d; font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif; }
+.mileage-board { color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif; font-size:14px; line-height:1.6; }
 .mileage-board view,.mileage-board button,.mileage-board input { box-sizing:border-box; }
-.mileage-board button { margin:0; padding:0; border:0; border-radius:0; background:transparent; font-size:14px; font-weight:500; line-height:1.4; color:inherit; }
+.mileage-board button { margin:0; padding:0; min-height:44px; border:0; border-radius:0; background:transparent; font-size:14px; font-weight:400; line-height:1.4; color:inherit; }
 .mileage-board button::after { border:0; }
 .mb-heading,.mb-section-heading,.mb-summary-top,.mb-group-top,.mb-table-head,.mb-mine { display:flex; align-items:center; justify-content:space-between; gap:16rpx; }
-.mb-heading { padding:28rpx 4rpx 24rpx; }
-.mb-kicker { font-size:10px; letter-spacing:3rpx; color:#87958f; font-weight:600; }
-.mb-title { margin-top:10rpx; font-size:25px; font-weight:700; letter-spacing:-1rpx; }
-.mb-title-dot { color:#f06c43; }
-.mileage-board .mb-link { flex:none; min-height:44px; padding:8rpx 0 8rpx 16rpx; color:#5d6c66; font-size:12px; }
-.mb-link>text { padding-left:8rpx; font-size:17px; }
-.mb-ranges { display:flex; gap:6rpx; padding:8rpx; border-radius:22rpx; background:#eaeef0; }
-.mileage-board .mb-range { flex:1; min-height:42px; border-radius:16rpx; font-size:14px; color:#7c858b; }
-.mileage-board .mb-range.is-active { background:#fff; color:#20272d; font-weight:700; box-shadow:0 3rpx 10rpx rgba(38,55,46,.06); }
-.mb-period { display:flex; align-items:center; justify-content:center; gap:28rpx; min-height:60px; color:#77817e; font-size:12px; }
-.mileage-board .mb-period-arrow { width:44px; height:44px; font-size:24px; color:#6d7b76; }
-.mileage-board .mb-period-arrow[disabled] { opacity:.25; }
+.mb-heading { padding:24rpx 0; }
+.mb-kicker { font-size:12px; color:var(--text-secondary); font-weight:400; }
+.mb-title { font-size:22px; font-weight:600; line-height:1.4; }
+.mb-title-dot { color:var(--brand); }
+.mileage-board .mb-link { flex:none; min-height:44px; padding:0; color:var(--brand); font-size:12px; font-weight:500; }
+.mb-link>text { padding-left:8rpx; font-size:16px; }
+.mb-ranges { display:flex; gap:0; padding:0; border-bottom:1rpx solid var(--border); background:transparent; }
+.mileage-board .mb-range { flex:1; min-height:44px; border-radius:0; font-size:14px; color:var(--text-secondary); }
+.mileage-board .mb-range.is-active { background:transparent; color:var(--brand); font-weight:500; box-shadow:inset 0 -2px var(--brand); }
+.mb-period { display:flex; align-items:center; justify-content:center; gap:20rpx; min-height:56px; color:var(--text-secondary); font-size:14px; }
+.mileage-board .mb-period-arrow { width:44px; height:44px; font-size:24px; color:var(--text-secondary); }
+.mileage-board .mb-period-arrow[disabled] { opacity:.3; }
 .mb-period-label { min-width:220rpx; min-height:44px; display:flex; align-items:center; justify-content:center; gap:12rpx; }
-.mb-all-period { font-size:11px; }
-.mb-loading,.mb-error { padding:40rpx 16rpx; font-size:13px; color:#788580; line-height:1.7; }
-.mb-error { display:flex; align-items:center; justify-content:space-between; background:#fff5f0; border-radius:24rpx; color:#b55c38; }
-.mb-summary { padding:32rpx; overflow:hidden; border-radius:30rpx; background:linear-gradient(120deg,#e3f5ed,#f0faf6 65%,#e9f1fb); }
-.mb-summary-label { font-size:13px; color:#537566; font-weight:500; }
-.mb-summary-badge { padding:7rpx 14rpx; border-radius:10rpx; background:rgba(255,255,255,.65); color:#6f8f80; font-size:10px; }
-.mb-total { margin:18rpx 0 28rpx; font-size:46px; line-height:1.15; font-weight:700; letter-spacing:-3rpx; font-variant-numeric:tabular-nums; }
-.mb-total>text { margin-left:10rpx; color:#5d7c6d; font-size:14px; font-weight:400; letter-spacing:0; }
-.mb-stats { display:flex; gap:12rpx; padding-top:24rpx; border-top:1rpx solid rgba(96,142,119,.14); }
+.mb-all-period { font-size:12px; }
+.mb-loading,.mb-error { padding:32rpx 20rpx; font-size:14px; color:var(--text-secondary); line-height:1.7; }
+.mb-error { display:flex; align-items:center; justify-content:space-between; background:var(--brand-soft); border-radius:20rpx; color:var(--brand); }
+.mb-summary { padding:32rpx; overflow:hidden; border:1rpx solid var(--border); border-radius:24rpx; background:var(--card,#fff); }
+.mb-summary-label { font-size:14px; color:var(--text-secondary); font-weight:400; }
+.mb-summary-badge { padding:6rpx 12rpx; border-radius:8rpx; background:var(--page-bg); color:var(--text-secondary); font-size:12px; }
+.mb-total { margin:18rpx 0 28rpx; color:var(--text); font-size:40px; line-height:1.2; font-weight:600; letter-spacing:normal; font-variant-numeric:tabular-nums; }
+.mb-total>text { margin-left:12rpx; color:var(--text-secondary); font-size:14px; font-weight:400; }
+.mb-stats { display:flex; gap:12rpx; padding-top:24rpx; border-top:1rpx solid var(--border); }
 .mb-stats>view { flex:1; min-width:0; display:flex; flex-direction:column; gap:8rpx; }
-.mb-stat-number { font-size:18px; font-weight:650; font-variant-numeric:tabular-nums; }
-.mb-stat-unit { color:#749082; font-size:10px; font-weight:400; }
-.mb-stat-label { color:#7a9084; font-size:10px; }
-.mb-section-heading { margin:26rpx 4rpx 14rpx; min-height:44px; }
-.mb-section-title { font-size:17px; font-weight:650; letter-spacing:-.4rpx; }
+.mb-stat-number { color:var(--text); font-size:20px; font-weight:600; font-variant-numeric:tabular-nums; }
+.mb-stat-unit,.mb-stat-label { color:var(--text-secondary); font-size:12px; font-weight:400; }
+.mb-section-heading { margin:24rpx 0 16rpx; min-height:44px; }
+.mb-section-title { font-size:18px; font-weight:600; color:var(--text); line-height:1.5; }
 .mb-group-scroll { width:100%; }
-.mb-group-cards { display:flex; gap:16rpx; padding:2rpx 1rpx 8rpx; }
-.mileage-board .mb-group-card { display:block; flex:none; width:252rpx; min-height:228rpx; padding:24rpx; border-radius:24rpx; text-align:left; border:2rpx solid transparent; }
-.mileage-board .mb-group-card.tone-mint { background:#e9f6f0; }
-.mileage-board .mb-group-card.tone-blue { background:#ebf2ff; }
-.mileage-board .mb-group-card.tone-apricot { background:#fff1e6; }
-.mileage-board .mb-group-card.tone-violet { background:#f1edfb; }
-.mileage-board .mb-group-card.tone-rose { background:#fceef0; }
-.mileage-board .mb-group-card.tone-lime { background:#f1f5e5; }
-.mileage-board .group-selected { border-color:#4f9980; }
-.tone-mint { background:#e9f6f0; color:#34866c; }
-.tone-blue { background:#ebf2ff; color:#5783bb; }
-.tone-apricot { background:#fff1e6; color:#cb8b53; }
-.tone-violet { background:#f1edfb; color:#8a76b0; }
-.tone-rose { background:#fceef0; color:#bb7886; }
-.tone-lime { background:#f1f5e5; color:#8b9b51; }
-.mb-group-mark { display:flex; align-items:center; justify-content:center; width:44rpx; height:44rpx; border-radius:12rpx; background:rgba(255,255,255,.72); font-size:14px; font-weight:700; }
-.mb-group-members { font-size:10px; color:#82908b; }
-.mb-group-name { margin-top:18rpx; font-size:14px; font-weight:650; color:#35443d; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-.mb-group-pace { margin-top:6rpx; font-size:10px; color:#84908a; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-.mb-group-km { margin-top:18rpx; font-size:24px; font-weight:650; font-variant-numeric:tabular-nums; color:#35443d; }
-.mb-group-km>text { color:#84908a; font-size:10px; font-weight:400; }
-.mb-rank-card { margin-top:24rpx; padding:8rpx 28rpx 12rpx; border-radius:30rpx; background:#fff; }
-.mb-rank-card .mb-section-heading { margin:14rpx 0 20rpx; }
-.mb-caption { margin-top:8rpx; font-size:10px; color:#9ca5a1; }
-.mb-count { color:#8e9893; font-size:11px; }
+.mb-group-cards { display:flex; gap:20rpx; padding:2rpx 1rpx 8rpx; }
+.mileage-board .mb-group-card { display:block; flex:none; width:278rpx; min-height:216rpx; padding:24rpx; border-radius:24rpx; text-align:left; border:1rpx solid var(--border); background:var(--card,#fff); color:var(--text); }
+.mileage-board .mb-group-card.group-selected { border-color:var(--brand); background:var(--brand-soft); }
+.mb-group-mark { display:flex; align-items:center; justify-content:center; width:44rpx; height:44rpx; border-radius:8rpx; background:var(--page-bg); color:var(--text-secondary); font-size:14px; font-weight:500; }
+.mb-group-members { font-size:12px; color:var(--text-secondary); }
+.mb-group-name { margin-top:14rpx; font-size:14px; font-weight:500; color:var(--text); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.mb-group-pace { margin-top:6rpx; font-size:12px; color:var(--text-secondary); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.mb-group-km { margin-top:14rpx; font-size:24px; font-weight:600; font-variant-numeric:tabular-nums; color:var(--text); }
+.mb-group-km>text { color:var(--text-secondary); font-size:12px; font-weight:400; }
+.mb-rank-card { margin-top:24rpx; padding:8rpx 28rpx 16rpx; border:1rpx solid var(--border); border-radius:24rpx; background:var(--card,#fff); }
+.mb-rank-card .mb-section-heading { margin:12rpx 0 16rpx; }
+.mb-caption { margin-top:8rpx; font-size:12px; color:var(--text-secondary); }
+.mb-count { color:var(--text-secondary); font-size:12px; }
 .mb-filters { display:flex; gap:12rpx; white-space:nowrap; padding-bottom:10rpx; }
-.mileage-board .mb-filter { flex:none; min-height:36px; padding:12rpx 24rpx; border-radius:12rpx; color:#85918b; background:#f4f6f5; font-size:12px; }
-.mileage-board .mb-filter.filter-selected { background:#eaf6ef; color:#3d8867; font-weight:600; }
-.mb-search { display:flex; align-items:center; gap:12rpx; height:42px; margin:16rpx 0 20rpx; padding:0 20rpx; border-radius:14rpx; background:#f7f8f9; color:#9ba7a0; }
-.mb-search>text { font-size:23px; }
-.mb-search input { flex:1; min-width:0; height:42px; font-size:12px; border:0; padding:0; margin:0; background:transparent; }
-.mb-mine { padding:18rpx 20rpx; border-radius:14rpx; color:#4a8270; background:#f1f8f4; font-size:11px; }
-.mb-mine-place { margin-left:14rpx; color:#83a496; }
-.mb-mine>text:last-child { font-size:17px; font-weight:600; }
-.mb-mine-unit { font-size:10px; font-weight:400; }
-.mb-table-head { margin-top:14rpx; padding:14rpx 0; color:#a0aaa5; font-size:10px; }
-.mileage-board .mb-person { display:flex; align-items:center; gap:16rpx; width:100%; min-height:80px; padding:22rpx 0; text-align:left; border-bottom:1rpx solid #f2f4f3; }
+.mileage-board .mb-filter { flex:none; min-height:44px; padding:12rpx 24rpx; border:1rpx solid var(--border); border-radius:20rpx; color:var(--text-secondary); background:var(--card,#fff); font-size:12px; }
+.mileage-board .mb-filter.filter-selected { border-color:var(--brand); background:var(--brand-soft); color:var(--brand); font-weight:500; }
+.mb-search { display:flex; align-items:center; gap:12rpx; min-height:44px; margin:16rpx 0 20rpx; padding:0 20rpx; border-radius:20rpx; background:var(--page-bg); color:var(--text-secondary); }
+.mb-search>text { font-size:22px; }
+.mb-search input { flex:1; min-width:0; height:44px; font-size:14px; border:0; padding:0; margin:0; background:transparent; color:var(--text); }
+.mb-mine { padding:20rpx; border-radius:16rpx; color:var(--text); background:var(--page-bg); font-size:12px; }
+.mb-mine-place { margin-left:14rpx; color:var(--text-secondary); }
+.mb-mine>text:last-child { font-size:18px; font-weight:500; }
+.mb-mine-unit { font-size:12px; font-weight:400; }
+.mb-table-head { margin-top:14rpx; padding:14rpx 0; color:var(--text-secondary); font-size:12px; }
+.mileage-board .mb-person { display:flex; align-items:center; gap:16rpx; width:100%; min-height:76px; padding:22rpx 0; text-align:left; border-bottom:1rpx solid var(--border); }
 .mb-person:last-child { border-bottom:0; }
-.mb-place { flex:none; width:32rpx; text-align:center; font-size:15px; font-weight:600; color:#b2bab5; }
-.place-1 { color:#d6a04c; }.place-2 { color:#8a9daa; }.place-3 { color:#c39a88; }
+.mb-place { flex:none; width:32rpx; text-align:center; font-size:14px; font-weight:500; color:var(--text-secondary); }
+.place-1,.place-2,.place-3 { color:var(--brand); }
 .mb-avatar { flex:none; width:70rpx; height:70rpx; border-radius:50%; }
-.mb-initial { display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:600; }
+.mb-initial { display:flex; align-items:center; justify-content:center; background:var(--page-bg); color:var(--text-secondary); font-size:14px; font-weight:500; }
 .mb-person-copy { flex:1; min-width:0; }
-.mb-person-name { font-size:13px; color:#33403a; font-weight:600; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
-.mb-me-tag { margin-left:8rpx; color:#4d9c7b; font-size:10px; font-weight:400; }
-.mb-person-meta { margin-top:10rpx; color:#a1aaa5; font-size:10px; }
-.mb-person-distance { flex:none; min-width:120rpx; text-align:right; font-size:19px; font-weight:650; font-variant-numeric:tabular-nums; }
-.mb-person-chevron { margin-left:14rpx; color:#b4bdb7; font-size:17px; font-weight:400; }
-.mb-progress-track { width:104rpx; height:5rpx; border-radius:5rpx; margin:12rpx 28rpx 0 auto; background:#f1f4f2; overflow:hidden; }
-.mb-progress { height:100%; border-radius:5rpx; background:#a4d5bb; }
-.mb-empty-groups { padding:30rpx; border:1rpx dashed #cbded4; border-radius:24rpx; color:#95a399; font-size:11px; line-height:1.7; }
-.mb-empty-title { margin-bottom:10rpx; color:#657e6d; font-size:14px; font-weight:600; }
-.mileage-board .mb-outline { min-height:44px; width:100%; margin-top:18rpx; border:1rpx solid #cbded4; border-radius:16rpx; color:#5d886e; }
-.mb-empty-rank { padding:40rpx 0; color:#9aa69d; font-size:12px; line-height:1.8; text-align:center; }
-.mb-bottom-note { padding:26rpx 0 20rpx; font-size:10px; color:#a4ada7; text-align:center; }
-.mileage-board .mb-tools { width:100%; min-height:48px; padding:0 8rpx; display:flex; align-items:center; justify-content:space-between; color:#8e9c94; font-size:12px; }
+.mb-person-name { font-size:14px; color:var(--text); font-weight:500; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
+.mb-me-tag { margin-left:8rpx; color:var(--brand); font-size:12px; font-weight:400; }
+.mb-person-meta { margin-top:10rpx; color:var(--text-secondary); font-size:12px; }
+.mb-person-distance { flex:none; min-width:112rpx; text-align:right; font-size:20px; font-weight:600; color:var(--text); font-variant-numeric:tabular-nums; }
+.mb-person-chevron { margin-left:12rpx; color:var(--text-secondary); font-size:16px; font-weight:400; }
+.mb-progress-track { width:104rpx; height:5rpx; border-radius:5rpx; margin:12rpx 24rpx 0 auto; background:var(--page-bg); overflow:hidden; }
+.mb-progress { height:100%; border-radius:5rpx; background:var(--brand); }
+.mb-empty-groups { padding:28rpx; border:1rpx solid var(--border); border-radius:24rpx; color:var(--text-secondary); background:var(--card,#fff); font-size:14px; line-height:1.7; }
+.mb-empty-title { margin-bottom:10rpx; color:var(--text); font-size:16px; font-weight:500; }
+.mileage-board .mb-outline { min-height:44px; width:100%; margin-top:18rpx; border:1rpx solid var(--border); border-radius:20rpx; color:var(--text); background:var(--card,#fff); }
+.mb-empty-rank { padding:32rpx 0; color:var(--text-secondary); font-size:14px; line-height:1.7; text-align:center; }
+.mb-bottom-note { padding:24rpx 0 16rpx; font-size:12px; color:var(--text-secondary); text-align:center; line-height:1.7; }
+.mileage-board .mb-tools { width:100%; min-height:48px; padding:0; display:flex; align-items:center; justify-content:space-between; color:var(--text); font-size:14px; border-top:1rpx solid var(--border); }
+@media(max-width:350px) { .mb-total { font-size:36px; }.mb-summary { padding:28rpx; }.mb-stat-number { font-size:18px; }.mb-person-distance { font-size:18px; min-width:100rpx; }.mb-person-name { font-size:14px; } }

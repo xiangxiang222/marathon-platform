@@ -1,5 +1,5 @@
 <view class="history-page mini-history-history">
-  <view class="page-heading"><view class="eyebrow">我的跑史</view><view class="page-title">每一步，都有来处。</view><view class="subtitle">跑过的城市，和那些成为自己的时刻。</view></view>
+  <view wx:if="{{section === 'history'}}" class="page-heading"><view class="page-title">我的参赛记录</view><view class="subtitle">成绩、城市与回忆，按自己的节奏整理。</view></view>
   <view wx:if="{{!ready}}" class="card empty"><view class="section-title">把你的比赛，慢慢找回来</view><view class="muted">{{error || '登录后整理自己的参赛经历、成绩与回忆。新跑史和资料仅自己可见。'}}</view><button class="primary" bindtap="login">登录，打开我的跑史</button></view>
   <block wx:else>
     <view wx:if="{{section !== 'history'}}" class="back" bindtap="backHistory">‹ 我的跑史</view>
@@ -62,8 +62,15 @@
     </block>
 
     <block wx:elif="{{section === 'import'}}">
-      <view class="section-title form-heading">旧比赛，重新相遇。</view><view class="muted form-intro">先整理资料，再核对比赛。截图原图只临时识别，不会自动放进收藏。</view>
-      <view class="card import-card"><view class="import-actions"><button class="secondary" disabled="{{!!busy}}" bindtap="chooseScreenshots">选择成绩截图</button><button class="secondary" disabled="{{!!busy}}" bindtap="chooseTextFile">选择文字表格</button></view><view class="field"><text>比赛文字 / CSV / JSON</text><textarea class="import-text" value="{{importText}}" bindinput="onImportText" maxlength="160000" placeholder="粘贴证书文字或表格。可用表头：赛事名称、比赛日期、项目、净计时、枪声成绩、城市。" aria-label="粘贴证书文字或表格。可用表头：赛事名称、比赛日期、项目、净计时、枪声成绩、城市。"/></view><view class="muted">一次最多选择 5 张截图；文字表格需为 UTF-8 编码。识别有误时可先修改文字。</view><button class="primary" disabled="{{!!busy || !importText}}" loading="{{busy === 'parse'}}" bindtap="previewImport">整理比赛</button></view>
+      <view class="section-title form-heading">找回旧比赛</view><view class="muted form-intro">导入已有成绩，核对后加入你的跑史。</view>
+      <view class="card import-card">
+        <view class="import-step"><text>01</text><view class="section-title">添加成绩资料</view><view class="step-note">核对后保存</view></view>
+        <view class="import-actions"><button class="secondary import-choice" disabled="{{!!busy}}" bindtap="chooseScreenshots"><text class="choice-icon">＋</text><view><text class="choice-title">截图识别</text><text class="choice-note">成绩截图 / 完赛证书</text></view></button><button class="secondary import-choice" disabled="{{!!busy}}" bindtap="chooseTextFile"><text class="choice-icon">↑</text><view><text class="choice-title">导入文件</text><text class="choice-note">CSV / JSON / TXT</text></view></button></view>
+        <view class="file-hint">一次最多 5 张截图，单张不超过 8 MB。</view>
+        <view class="field"><text>成绩文字或表格</text><textarea class="import-text" value="{{importText}}" bindinput="onImportText" maxlength="160000" placeholder="也可以直接粘贴成绩文字或表格，包含赛事、日期、项目与用时。" aria-label="成绩文字或表格"/></view>
+        <button class="primary" disabled="{{!!busy || !importText}}" loading="{{busy === 'parse'}}" bindtap="previewImport">识别并核对比赛</button>
+        <view class="import-privacy">原图仅临时识别，不会自动收藏。比赛资料仅自己可见。</view>
+      </view>
       <view wx:if="{{busy}}" class="notice">{{busy === 'consent' || busy === 'choose' ? '正在选择资料…' : busy === 'parse' ? '正在整理比赛…' : busy === 'confirm' ? '正在加入跑史…' : busy}}</view>
       <view wx:if="{{importError}}" class="error-strip">{{importError}}</view><view wx:if="{{importSuccess}}" class="success-strip">{{importSuccess}}</view><view wx:for="{{warnings}}" wx:key="*this" class="notice">{{item}}</view>
       <view wx:if="{{candidates.length}}" class="list-heading"><view class="section-title">核对要留下的比赛</view><text class="muted">{{candidates.length}} 条候选</text></view>

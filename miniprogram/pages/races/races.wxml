@@ -2,16 +2,17 @@
   <view class="home-navigation">
     <view style="height: {{statusBarHeight}}px;"></view>
     <view class="home-nav" style="height: {{navHeight}}px; padding-right: {{headerRight}}px;">
-      <text class="home-title">赛历</text>
+      <text class="home-title">赛事</text>
       <text class="today">{{todayLabel}}</text>
     </view>
   </view>
   <view class="home-header">
-    <view class="home-intro"><view class="intro-title">下一场，跑向热爱</view><view class="intro-caption">找赛事、看赛期，和跑友一起出发</view></view>
+    <view class="home-search-area">
     <view class="search">
       <view class="lens"></view>
       <input class="search-input" placeholder-class="search-placeholder" placeholder="搜赛事名称或城市" value="{{q}}" bindinput="onQ" bindconfirm="load" confirm-type="search" aria-label="搜赛事名称或城市" />
       <button class="find" bindtap="load" aria-label="搜索赛事">搜索</button>
+    </view>
     </view>
     <block wx:if="{{!searching}}">
       <view class="kind-tabs">
@@ -32,10 +33,21 @@
         </navigator>
         <navigator class="quick-entry" url="/pages/news/news">
           <image class="quick-icon" src="/images/quick-news.png" mode="aspectFit" />
-          <text>赛事资讯</text>
+          <text>跑圈资讯</text>
         </navigator>
       </view>
     </block>
+  </view>
+
+  <view wx:if="{{!searching}}" class="home-discover">
+    <navigator url="/pages/calendar/calendar" class="discover-calendar">
+      <view class="discover-copy"><text class="discover-kicker">赛事日历</text><text class="discover-title">下一站，起跑线</text><text class="discover-sub">查看赛历 ›</text></view>
+      <image src="/images/art-calendar.png" class="discover-main-art" mode="aspectFit" />
+    </navigator>
+    <view class="discover-side">
+      <navigator url="/pages/news/news?tab=athlete" class="discover-person"><view><text class="discover-card-title">见证中国速度</text><text class="discover-card-sub">运动员人物档案</text></view><image src="/images/art-medal.png" mode="aspectFit" /></navigator>
+      <navigator url="/pages/news/news" class="discover-news"><view><text class="discover-card-title">跑圈新鲜事</text><text class="discover-card-sub">业界 · 私兔 · 跑团</text></view><image src="/images/art-news.png" mode="aspectFit" /></navigator>
+    </view>
   </view>
 
   <view wx:if="{{!searching && reminders.length}}" class="reminder">
@@ -64,13 +76,12 @@
         <view wx:for="{{meets}}" wx:key="meet" class="kind-tab {{meet === item.meet ? 'on' : ''}}" role="button" aria-role="button" aria-label="{{item.short}}" data-meet="{{item.meet}}" bindtap="setMeet">{{item.short}}</view>
       </view>
     </view>
-    <scroll-view wx:if="{{!searching}}" class="filters" scroll-x enable-flex show-scrollbar="{{false}}">
+    <view wx:if="{{!searching}}" class="filter-row"><scroll-view class="filters" scroll-x enable-flex show-scrollbar="{{false}}">
       <view class="filter-chip {{city ? 'on' : ''}}" data-sheet="city" bindtap="openSheet">{{cityLabel}} ▾</view>
       <view class="filter-chip {{month ? 'on' : ''}}" data-sheet="time" bindtap="openSheet">{{monthLabel}} ▾</view>
       <view class="filter-chip {{full ? 'on' : ''}}" data-which="full" bindtap="toggleDist">马拉松</view>
       <view class="filter-chip {{half ? 'on' : ''}}" data-which="half" bindtap="toggleDist">半程马拉松</view>
-      <view class="filter-chip {{sheet === 'status' ? 'on' : ''}}" data-sheet="status" bindtap="openSheet">筛选</view>
-    </scroll-view>
+    </scroll-view><view class="filter-fixed {{sheet === 'status' ? 'on' : ''}}" data-sheet="status" bindtap="openSheet" role="button">筛选 ▾</view></view>
     <view wx:if="{{message}}" class="page-error"><text>{{message}}</text><text class="retry" bindtap="load">重试</text></view>
     <view wx:if="{{!loaded && !message}}" class="empty">正在加载赛事…</view>
     <navigator wx:for="{{races}}" wx:key="id" class="race" url="/pages/race/race?id={{item.id}}">

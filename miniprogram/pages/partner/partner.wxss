@@ -2,7 +2,7 @@
 .card .btn, .ghost { margin-top: 16rpx;  }
 
 /* Route geometry: surfaces, controls and compact labels have distinct roles. */
-.mini-partner-partner .card { border-radius: 36rpx; }
+.mini-partner-partner .card { border-radius: 32rpx; }
 .mini-partner-partner .btn, .mini-partner-partner .ghost { border-radius: 24rpx; }
 
 /* Page composition and interaction hierarchy. */
@@ -12,15 +12,21 @@
 .card { border: 1px solid var(--border); }
 .title { font-size: 24px; font-weight: 600; }
 input { width: 100%; min-height: 44px; margin-top: 18rpx; padding: 0 22rpx; border: 1px solid var(--border); border-radius: 24rpx; background: var(--page-bg); font-size: 14px; box-sizing: border-box; }
-.src { color: var(--text-secondary); font-size: 13px; line-height: 1.8; }
+.src { color: var(--text-secondary); font-size: 14px; line-height: 1.8; }
 .row { gap: 20rpx; padding: 24rpx 0; font-size: 14px; }
 
 /* Primary actions read at 14px, secondary actions at 13px; compact filters stay at 12px. */
 .mini-partner-partner .btn { font-size: 14px; font-weight: 500; }
-.mini-partner-partner .ghost { font-size: 13px; font-weight: 500; }
+.mini-partner-partner .ghost { font-size: 14px; font-weight: 500; }
 .card .title { font-size: 18px; } .card:first-child .title { font-size: 24px; }
 
 /* Existing semantic sections receive distinct light color surfaces. */
-.mini-partner-partner > .card:first-child { background: linear-gradient(135deg,#fff4d7,#ffffff); box-shadow: var(--card-shadow); }
-.mini-partner-partner > .card:nth-child(2) { background: #ffffff; }
-.mini-partner-partner > .card:nth-child(3) { background: #ffffff; }
+.mini-partner-partner > .card:first-child { background: var(--card,#fff); box-shadow: none; }
+.mini-partner-partner > .card:nth-child(2) { background: var(--card,#fff); }
+.mini-partner-partner > .card:nth-child(3) { background: var(--card,#fff); }
+
+.mini-partner-partner { color:var(--text); font-size:14px; }
+.mini-partner-partner>.card:first-child,.mini-partner-partner .card { border:1rpx solid var(--border); border-radius:24rpx; background:var(--card,#fff); box-shadow:none; }
+.card .title,.card:first-child .title { color:var(--text); font-size:18px; font-weight:600; }
+.mini-partner-partner .btn,.mini-partner-partner .ghost { min-height:44px; border-radius:20rpx; font-size:14px; font-weight:500; }
+.mini-partner-partner input { min-height:44px; border-radius:20rpx; font-size:14px; color:var(--text); background:var(--page-bg); }

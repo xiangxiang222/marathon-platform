@@ -13,7 +13,7 @@
       <details class="tools-panel" :open="toolsOpen" @toggle="openTools"><summary><span>近期明细、报表与规则</span><i>⌄</i></summary><template v-if="toolsOpen"><p v-if="toolsError" class="inline-error">{{ toolsError }} <button type="button" @click="loadTools">重试</button></p><template v-if="legacy"><p class="tools-note">{{ legacy.rules?.note || '只记跑步与越野；活动签到不折算公里。' }}</p><details class="nested-tool"><summary>全团近期运动明细 <span>{{ legacy.feed?.length || 0 }} 条</span></summary><article v-for="item in legacy.feed || []" :key="item.id" class="run-record"><div><b>{{ item.nickname }}</b><span>{{ item.typeLabel }} · {{ item.startedAt }}</span></div><strong>{{ number(item.volumeKm) }}<small> 公里</small></strong><p>{{ item.durationLabel }}<template v-if="item.paceLabel"> · {{ item.paceLabel }} /km</template></p><p v-if="item.challenge">质疑：{{ item.challenge }}</p><img v-if="item.shot" :src="runShotSrc(item.id)" alt="运动凭证" /><details v-if="!item.mine || legacy.staff" class="record-review"><summary>记录反馈与审核</summary><form v-if="!item.mine" class="inline-form" @submit.prevent="challenge(item)"><input v-model="reasons[item.id]" maxlength="80" placeholder="质疑原因" aria-label="质疑原因" /><button type="submit">提交质疑</button></form><div v-if="legacy.staff" class="review-actions"><button type="button" @click="decide(item, false)">不计入</button><button type="button" @click="decide(item, true)">继续计入</button></div></details></article><p v-if="!legacy.feed?.length" class="quiet-empty">这段时间没有计入的记录。</p></details><details class="nested-tool" :open="route.query.tools === '1'"><summary>当前周期报表与导出</summary><nav class="tool-tabs"><button v-for="item in kinds" :key="item.id" type="button" :class="{ on: kind === item.id }" @click="pickKind(item.id)">{{ item.label }}</button></nav><p v-if="report" class="tools-note">{{ report.title }} · {{ report.total?.km || 0 }} 公里 · {{ report.total?.durationLabel }}</p><div class="report-scroll"><table v-if="report"><thead><tr><th>成员</th><th>公里</th><th>天 / 次</th><th>时长</th><th>配速</th><th v-if="kind === 'month'">Flag</th></tr></thead><tbody><tr v-for="row in report.rows" :key="row.userId"><td><router-link :to="reportMemberLink(row.userId)" class="report-member-link">{{ row.nickname }} <span>›</span></router-link></td><td>{{ row.km }}</td><td>{{ row.dayText }}</td><td>{{ row.durationLabel }}</td><td>{{ row.paceLabel || '—' }}</td><td v-if="kind === 'month'">{{ row.flag }}</td></tr></tbody><tfoot><tr><td>合计</td><td>{{ report.total.km }}</td><td>{{ report.total.dayText }}</td><td>{{ report.total.durationLabel }}</td><td>{{ report.total.paceLabel || '—' }}</td><td v-if="kind === 'month'">—</td></tr></tfoot></table></div><label v-if="legacy.owner" class="check-line"><input v-model="includeEmpty" type="checkbox" />导出包含没有记录的成员</label><button v-if="legacy.owner" type="button" class="outline-action" @click="exportFile">导出 CSV</button></details><details v-if="legacy.rules" class="nested-tool"><summary>本团计入规则 <span>{{ legacy.owner ? '可编辑' : '只读' }}</span></summary><form class="rules-form" @submit.prevent="saveRules"><label>生效日期<input v-model="legacy.rules.effectiveOn" type="date" :disabled="!legacy.owner" /></label><label v-for="field in ruleChecks" :key="field.key" class="check-line"><input v-model="legacy.rules[field.key]" :disabled="!legacy.owner" type="checkbox" />{{ field.label }}</label><div class="rule-fields"><label v-for="field in ruleFields" :key="field.key">{{ field.label }}<input v-model="legacy.rules[field.key]" :disabled="!legacy.owner" :type="field.type || 'number'" :step="field.step || 'any'" /></label></div><button v-if="legacy.owner" type="submit" class="save-action" :disabled="busy">保存规则</button></form></details></template></template></details>
     </template>
     <p v-if="notice" class="board-notice" role="status">{{ notice }}</p>
-    <Teleport to="body"><div v-if="groupsOpen" class="training-overlay" @click.self="closeGroups" @keydown.esc="closeGroups"><section class="training-sheet" role="dialog" aria-modal="true" aria-labelledby="training-group-title"><header><div><span>CLUB TRAINING</span><h2 id="training-group-title">常设训练组</h2></div><button type="button" aria-label="关闭训练组管理" @click="closeGroups">×</button></header><p class="sheet-intro">为团友设置日常训练组，统一配速与成员归属。发布团练时也可直接选用。</p><p v-if="manageError" class="inline-error" role="alert">{{ manageError }} <button type="button" @click="loadGroups">重新加载</button></p><p v-if="manageLoading" class="tools-note" role="status">正在读取训练组…</p><template v-if="management"><div class="manage-section-heading"><h3>训练组 <small>{{ management.groups.length }}</small></h3><button type="button" class="text-action" @click="editGroup()">+ 新建训练组</button></div><form v-if="groupDraft" class="group-form" @submit.prevent="saveGroup"><h3>{{ groupDraft.id ? '编辑训练组' : '新建训练组' }}</h3><label>组名<input v-model.trim="groupDraft.name" maxlength="20" required placeholder="例：A 组" /></label><label>常用配速<input v-model.trim="groupDraft.pace" maxlength="40" placeholder="例：5′00″–5′30″ /km" /></label><label>训练组介绍<textarea v-model.trim="groupDraft.description" maxlength="300" rows="2" placeholder="填写训练目标或适合的成员" /></label><div class="rule-fields"><label>人数上限<input v-model.number="groupDraft.capacity" type="number" min="0" max="500" placeholder="0 不限" /></label><label>显示顺序<input v-model.number="groupDraft.sort" type="number" min="0" max="999" /></label></div><div class="form-actions"><button type="button" class="outline-action" :disabled="busy" @click="groupDraft = null">取消</button><button type="submit" class="save-action" :disabled="busy">{{ busy ? '正在保存…' : '保存训练组' }}</button></div></form><article v-for="group in management.groups" :key="group.id" class="managed-group"><div><b>{{ group.name }}</b><span>{{ group.pace || '配速待设置' }} · {{ group.memberCount }} 人<template v-if="group.capacity"> / {{ group.capacity }} 上限</template></span><p v-if="group.description">{{ group.description }}</p></div><button type="button" :disabled="busy" @click="editGroup(group)">编辑</button><button type="button" class="delete-group" :disabled="busy" @click="removeGroup(group)">删除</button></article><p v-if="!management.groups.length && !groupDraft" class="quiet-empty">还没有常设组，新建 A / B / C 组开始安排。</p><div class="manage-section-heading"><h3>成员归组</h3><span>每人一个常设组</span></div><input v-model="manageQuery" class="manage-search" placeholder="搜索成员昵称" aria-label="搜索训练组成员" /><div v-for="person in managementMembers" :key="person.id" class="assign-row"><router-link :to="memberLink(person.id)" class="manage-member-link">{{ person.nickname }}</router-link><select :value="person.groupId || 0" :aria-label="person.nickname + '的训练组'" :disabled="busy" @change="assign(person, $event.target.value)"><option value="0">未分组</option><option v-for="group in management.groups" :key="group.id" :value="group.id">{{ group.name }}</option></select></div></template></section></div></Teleport>
+    <Teleport to="body"><div v-if="groupsOpen" class="training-overlay" @click.self="closeGroups" @keydown.esc="closeGroups"><section class="training-sheet" role="dialog" aria-modal="true" aria-labelledby="training-group-title"><header><div><h2 id="training-group-title">常设训练组</h2></div><button type="button" aria-label="关闭训练组管理" @click="closeGroups">×</button></header><p class="sheet-intro">为团友设置日常训练组，统一配速与成员归属。发布团练时也可直接选用。</p><p v-if="manageError" class="inline-error" role="alert">{{ manageError }} <button type="button" @click="loadGroups">重新加载</button></p><p v-if="manageLoading" class="tools-note" role="status">正在读取训练组…</p><template v-if="management"><div class="manage-section-heading"><h3>训练组 <small>{{ management.groups.length }}</small></h3><button type="button" class="text-action" @click="editGroup()">+ 新建训练组</button></div><form v-if="groupDraft" class="group-form" @submit.prevent="saveGroup"><h3>{{ groupDraft.id ? '编辑训练组' : '新建训练组' }}</h3><label>组名<input v-model.trim="groupDraft.name" maxlength="20" required placeholder="例：A 组" /></label><label>常用配速<input v-model.trim="groupDraft.pace" maxlength="40" placeholder="例：5′00″–5′30″ /km" /></label><label>训练组介绍<textarea v-model.trim="groupDraft.description" maxlength="300" rows="2" placeholder="填写训练目标或适合的成员" /></label><div class="rule-fields"><label>人数上限<input v-model.number="groupDraft.capacity" type="number" min="0" max="500" placeholder="0 不限" /></label><label>显示顺序<input v-model.number="groupDraft.sort" type="number" min="0" max="999" /></label></div><div class="form-actions"><button type="button" class="outline-action" :disabled="busy" @click="groupDraft = null">取消</button><button type="submit" class="save-action" :disabled="busy">{{ busy ? '正在保存…' : '保存训练组' }}</button></div></form><article v-for="group in management.groups" :key="group.id" class="managed-group"><div><b>{{ group.name }}</b><span>{{ group.pace || '配速待设置' }} · {{ group.memberCount }} 人<template v-if="group.capacity"> / {{ group.capacity }} 上限</template></span><p v-if="group.description">{{ group.description }}</p></div><button type="button" :disabled="busy" @click="editGroup(group)">编辑</button><button type="button" class="delete-group" :disabled="busy" @click="removeGroup(group)">删除</button></article><p v-if="!management.groups.length && !groupDraft" class="quiet-empty">还没有常设组，新建 A / B / C 组开始安排。</p><div class="manage-section-heading"><h3>成员归组</h3><span>每人一个常设组</span></div><input v-model="manageQuery" class="manage-search" placeholder="搜索成员昵称" aria-label="搜索训练组成员" /><div v-for="person in managementMembers" :key="person.id" class="assign-row"><router-link :to="memberLink(person.id)" class="manage-member-link">{{ person.nickname }}</router-link><select :value="person.groupId || 0" :aria-label="person.nickname + '的训练组'" :disabled="busy" @change="assign(person, $event.target.value)"><option value="0">未分组</option><option v-for="group in management.groups" :key="group.id" :value="group.id">{{ group.name }}</option></select></div></template></section></div></Teleport>
   </section>
 </template>
 
@@ -82,95 +82,95 @@ onBeforeUnmount(() => { version++; toolsVersion++; groupsVersion++; reportVersio
 <style scoped>
 .mileage-board{padding:24px 16px 20px;color:var(--ink);font-size:14px}
 .board-heading,.panel-title,.manage-section-heading{display:flex;align-items:center;justify-content:space-between;gap:10px}
-.board-heading h2{font-size:23px;letter-spacing:-.5px;margin:0;font-weight:650}
+.board-heading h2{font-size:22px;letter-spacing:normal;margin:0;font-weight:600}
 .board-heading p{font-size:12px;color:var(--muted);margin:7px 0 0;line-height:1.7}
 .mileage-board .text-action,.training-sheet .text-action{width:auto;min-height:38px;padding:0;color:var(--accent);font-size:12px;white-space:nowrap}
-.range-tabs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;padding:4px;background:#fff;border-radius:11px;margin:22px 0 12px}
+.range-tabs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;padding:4px;background:var(--card);border-radius:11px;margin:22px 0 12px}
 .mileage-board .range-tabs button{min-height:38px;border-radius:8px;font-size:14px;color:var(--muted)}
 .mileage-board .range-tabs button.on{background:var(--accent-soft);color:var(--accent);font-weight:600}
 .period-control{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 3px 13px}
-.mileage-board .period-control>button{width:32px;min-height:36px;font-size:23px;color:var(--muted)}
+.mileage-board .period-control>button{width:32px;min-height:36px;font-size:22px;color:var(--muted)}
 button:disabled{opacity:.4}
 .period-control label{position:relative;overflow:hidden;display:grid;place-items:center;flex:1;min-width:0;min-height:36px;font-size:12px;color:var(--ink-secondary);text-align:center;line-height:1.5}
 .period-control input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}
 .group-tabs{display:flex;gap:8px;overflow:auto;padding:0 0 13px;scrollbar-width:thin}
-.mileage-board .group-tabs button{flex:none;min-height:34px;padding:0 13px;border:1px solid #e9e9ed;border-radius:8px;background:#fff;color:var(--muted);font-size:12px}
-.mileage-board .group-tabs button.on{color:var(--ink);border-color:#adb5ba;background:#f6f9fa;font-weight:550}
-.volume-card{background:linear-gradient(125deg,#f0f8f5,#fff 78%);border-radius:18px;padding:20px 21px;margin:0 0 23px;overflow:hidden}
-.volume-label{display:flex;align-items:center;justify-content:space-between;color:#678278;font-size:12px}
-.volume-symbol{display:grid;place-items:center;width:29px;height:29px;border-radius:9px;color:#7fa697;background:#e4f1eb}
+.mileage-board .group-tabs button{flex:none;min-height:34px;padding:0 13px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--muted);font-size:12px}
+.mileage-board .group-tabs button.on{color:var(--ink);border-color:var(--line);background:var(--field-bg);font-weight:500}
+.volume-card{background:var(--card);border-radius:16px;padding:20px 21px;margin:0 0 23px;overflow:hidden}
+.volume-label{display:flex;align-items:center;justify-content:space-between;color:var(--muted);font-size:12px}
+.volume-symbol{display:grid;place-items:center;width:29px;height:29px;border-radius:9px;color:var(--muted);background:var(--field-bg)}
 .volume-symbol svg{width:18px;height:18px}
-.volume-number{font-size:49px;font-weight:650;letter-spacing:-1.8px;font-variant-numeric:tabular-nums;line-height:1.25;margin:10px 0 21px;overflow-wrap:anywhere}
-.volume-number>small{font-size:12px;font-weight:400;color:var(--muted);letter-spacing:0;margin-left:9px}
-.volume-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;padding-top:17px;border-top:1px solid #e4ece7}
+.volume-number{font-size:40px;font-weight:600;letter-spacing:normal;font-variant-numeric:tabular-nums;line-height:1.25;margin:10px 0 21px;overflow-wrap:anywhere}
+.volume-number>small{font-size:12px;font-weight:400;color:var(--muted);letter-spacing:normal;margin-left:9px}
+.volume-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;padding-top:17px;border-top:1px solid var(--line)}
 .volume-metrics>div{display:grid;gap:6px}
-.volume-metrics b{font-size:18px;font-weight:550;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+.volume-metrics b{font-size:18px;font-weight:500;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
 .volume-metrics b small{font-size:12px;font-weight:400;color:var(--muted)}
-.volume-metrics span{color:var(--muted);font-size:11px}
+.volume-metrics span{color:var(--muted);font-size:12px}
 .panel-title h3,.manage-section-heading h3{font-size:16px;font-weight:600;margin:0}
-.panel-title>span,.manage-section-heading>span{font-size:11px;color:var(--muted)}
+.panel-title>span,.manage-section-heading>span{font-size:12px;color:var(--muted)}
 .group-overview{margin-bottom:23px}
 .group-cards{display:flex;gap:10px;overflow:auto;margin:12px -1px 0;padding-bottom:5px;scrollbar-width:thin}
-.mileage-board .group-card{flex:0 0 150px;display:flex;align-items:stretch;justify-content:flex-start;flex-direction:column;gap:7px;min-width:0;padding:14px;border-radius:13px;background:#fff;text-align:left}
+.mileage-board .group-card{flex:0 0 150px;display:flex;align-items:stretch;justify-content:flex-start;flex-direction:column;gap:7px;min-width:0;padding:14px;border-radius:13px;background:var(--card);text-align:left}
 .group-card-top{display:flex;justify-content:space-between;align-items:center;gap:5px}
-.group-card-top b{font-size:13px;font-weight:550;overflow-wrap:anywhere}
-.group-card-top i{font-size:17px;font-style:normal;color:#a0a0aa}
-.group-card strong{font-size:23px;letter-spacing:-.5px;font-weight:600;margin:3px 0 0}
-.group-card strong small{font-size:11px;color:var(--muted);font-weight:400;letter-spacing:0}
-.group-card>span:not(.group-card-top),.group-pace{font-size:11px;color:var(--muted);line-height:1.6;overflow-wrap:anywhere}
-.group-card.tone-0 .group-card-top b{color:#3b8b70}
-.group-card.tone-1 .group-card-top b{color:#4e7ba4}
-.group-card.tone-2 .group-card-top b{color:#9a7942}
-.rank-panel{padding:18px 16px 12px;border-radius:17px;background:#fff}
-.rank-search{display:flex;align-items:center;gap:8px;margin:16px 0 4px;padding:0 10px;background:#f6f7f9;border-radius:9px}
-.rank-search svg{width:16px;height:16px;flex:none;color:#9b9da4}
+.group-card-top b{font-size:14px;font-weight:500;overflow-wrap:anywhere}
+.group-card-top i{font-size:18px;font-style:normal;color:var(--muted)}
+.group-card strong{font-size:22px;letter-spacing:normal;font-weight:600;margin:3px 0 0}
+.group-card strong small{font-size:12px;color:var(--muted);font-weight:400;letter-spacing:normal}
+.group-card>span:not(.group-card-top),.group-pace{font-size:12px;color:var(--muted);line-height:1.6;overflow-wrap:anywhere}
+.group-card.tone-0 .group-card-top b{color:var(--muted)}
+.group-card.tone-1 .group-card-top b{color:var(--muted)}
+.group-card.tone-2 .group-card-top b{color:var(--muted)}
+.rank-panel{padding:18px 16px 12px;border-radius:16px;background:var(--card)}
+.rank-search{display:flex;align-items:center;gap:8px;margin:16px 0 4px;padding:0 10px;background:var(--field-bg);border-radius:9px}
+.rank-search svg{width:16px;height:16px;flex:none;color:var(--muted)}
 .rank-search input{width:100%;min-width:0;height:38px;background:transparent;border:0;padding:0;color:var(--ink);font-size:12px;outline:none}
-.mileage-board .rank-search button{min-height:32px;width:20px;font-size:19px;color:var(--muted)}
-.rank-columns{display:flex;justify-content:space-between;font-size:11px;color:#97979e;padding:15px 0 8px}
-.rank-row{display:flex;align-items:center;gap:9px;min-height:76px;border-top:1px solid #f1f1f4;color:var(--ink)}
-.rank-place{flex:none;width:19px;font-size:13px;font-weight:500;color:#9999a1;font-variant-numeric:tabular-nums}
-.rank-place.medal{color:#bf8a3c;font-weight:650}
-.rank-avatar{display:grid;place-items:center;flex:none;width:34px;height:34px;overflow:hidden;border-radius:12px;background:#f0f3f7;color:#8895a5;font-size:13px}
+.mileage-board .rank-search button{min-height:32px;width:20px;font-size:18px;color:var(--muted)}
+.rank-columns{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);padding:15px 0 8px}
+.rank-row{display:flex;align-items:center;gap:9px;min-height:76px;border-top:1px solid var(--line);color:var(--ink)}
+.rank-place{flex:none;width:19px;font-size:14px;font-weight:500;color:var(--muted);font-variant-numeric:tabular-nums}
+.rank-place.medal{color:var(--muted);font-weight:600}
+.rank-avatar{display:grid;place-items:center;flex:none;width:34px;height:34px;overflow:hidden;border-radius:12px;background:var(--field-bg);color:var(--muted);font-size:14px}
 .rank-avatar img{width:100%;height:100%;object-fit:cover}
 .rank-person{display:grid;flex:1;min-width:0;gap:7px}
-.rank-person>b{display:flex;align-items:center;flex-wrap:wrap;gap:5px;font-size:13px;font-weight:550;overflow-wrap:anywhere;line-height:1.5}
-.rank-person>b small{font-size:11px;font-weight:400;background:var(--accent-soft);color:var(--accent);border-radius:4px;padding:1px 4px}
-.rank-person>span{font-size:11px;color:var(--muted);line-height:1.5;overflow-wrap:anywhere}
+.rank-person>b{display:flex;align-items:center;flex-wrap:wrap;gap:5px;font-size:14px;font-weight:500;overflow-wrap:anywhere;line-height:1.5}
+.rank-person>b small{font-size:12px;font-weight:400;background:var(--accent-soft);color:var(--accent);border-radius:4px;padding:1px 4px}
+.rank-person>span{font-size:12px;color:var(--muted);line-height:1.5;overflow-wrap:anywhere}
 .rank-distance{display:grid;gap:6px;text-align:right;flex:none;max-width:36%}
-.rank-distance>b{font-size:21px;line-height:1.2;font-weight:600;letter-spacing:-.5px;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
-.rank-distance>small{font-size:11px;color:var(--muted)}
-.rank-chevron{color:#c3c3ca;font-size:16px;font-style:normal}
+.rank-distance>b{font-size:22px;line-height:1.2;font-weight:600;letter-spacing:normal;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.rank-distance>small{font-size:12px;color:var(--muted)}
+.rank-chevron{color:var(--muted);font-size:16px;font-style:normal}
 .rank-row.mine .rank-person>b{color:var(--accent)}
-.rank-footnote{margin:12px 0 0;padding-top:13px;border-top:1px solid #f1f1f4;color:#92929a;font-size:11px;line-height:1.8}
+.rank-footnote{margin:12px 0 0;padding-top:13px;border-top:1px solid var(--line);color:var(--muted);font-size:12px;line-height:1.8}
 .quiet-empty{text-align:center;padding:25px 0;color:var(--muted);font-size:12px;line-height:1.8}
-.board-error,.board-notice{display:flex;align-items:center;gap:10px;justify-content:space-between;padding:13px;margin:0 0 12px;background:#fff2f0;color:var(--accent);border-radius:10px;font-size:12px;line-height:1.8}
+.board-error,.board-notice{display:flex;align-items:center;gap:10px;justify-content:space-between;padding:13px;margin:0 0 12px;background:var(--field-bg);color:var(--accent);border-radius:10px;font-size:12px;line-height:1.8}
 .board-error button{flex:none;color:var(--accent);font-size:12px}
-.board-loading{padding:60px 0;text-align:center;color:var(--muted);font-size:13px}
+.board-loading{padding:60px 0;text-align:center;color:var(--muted);font-size:14px}
 .board-notice{margin-top:12px}
-.tools-panel{margin-top:14px;padding:0 16px;background:#fff;border-radius:15px}
+.tools-panel{margin-top:14px;padding:0 16px;background:var(--card);border-radius:15px}
 summary{list-style:none;cursor:pointer}
 summary::-webkit-details-marker{display:none}
-.tools-panel>summary,.nested-tool>summary{display:flex;justify-content:space-between;align-items:center;min-height:57px;gap:8px;font-size:13px}
-.tools-panel>summary i{font-style:normal;color:#aaa}
+.tools-panel>summary,.nested-tool>summary{display:flex;justify-content:space-between;align-items:center;min-height:57px;gap:8px;font-size:14px}
+.tools-panel>summary i{font-style:normal;color:var(--muted)}
 .tools-note{font-size:12px;color:var(--muted);line-height:1.8}
 .nested-tool{border-top:1px solid var(--line)}
-.nested-tool summary span{color:var(--muted);font-size:11px}
+.nested-tool summary span{color:var(--muted);font-size:12px}
 .run-record{position:relative;border-top:1px solid var(--line);padding:13px 0;font-size:12px}
 .run-record>div{display:grid;gap:5px}
-.run-record>div span,.run-record>p{color:var(--muted);font-size:11px;line-height:1.8}
+.run-record>div span,.run-record>p{color:var(--muted);font-size:12px;line-height:1.8}
 .run-record>strong{display:block;margin-top:10px;font-size:18px}
-.run-record>strong small{font-size:11px;font-weight:400}
+.run-record>strong small{font-size:12px;font-weight:400}
 .run-record>img{max-width:100%;max-height:220px;border-radius:9px}
-.record-review summary{color:var(--muted);font-size:11px;min-height:35px}
+.record-review summary{color:var(--muted);font-size:12px;min-height:35px}
 .inline-form{display:flex;gap:7px}
 .inline-form input{flex:1;min-width:0}
 .review-actions{display:flex;gap:10px}
-.review-actions button{font-size:11px;color:var(--accent)}
+.review-actions button{font-size:12px;color:var(--accent)}
 .tool-tabs{display:flex;gap:8px}
-.tool-tabs button{flex:1;padding:9px;border-radius:7px;background:#f7f7f9;color:var(--muted);font-size:12px}
+.tool-tabs button{flex:1;padding:9px;border-radius:7px;background:var(--field-bg);color:var(--muted);font-size:12px}
 .tool-tabs button.on{color:var(--accent);background:var(--accent-soft)}
 .report-scroll{overflow:auto}
-table{width:100%;border-collapse:collapse;text-align:left;font-size:11px;white-space:nowrap}
+table{width:100%;border-collapse:collapse;text-align:left;font-size:12px;white-space:nowrap}
 th{font-weight:400;color:var(--muted)}
 td,th{padding:12px 9px;border-bottom:1px solid var(--line)}
 .rules-form{padding:5px 0 16px;display:grid;gap:12px}
@@ -178,56 +178,115 @@ td,th{padding:12px 9px;border-bottom:1px solid var(--line)}
 .rule-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 .check-line{display:flex!important;align-items:center;gap:8px!important;font-size:12px;color:var(--muted);line-height:1.7;margin:12px 0}
 .check-line input{width:15px;height:15px;accent-color:var(--accent)}
-.rules-form input:not([type=checkbox]),.inline-form input,.group-form input,.group-form textarea,.assign-row select,.manage-search{width:100%;min-width:0;box-sizing:border-box;min-height:42px;padding:10px 11px;border:1px solid var(--line);border-radius:8px;background:#fafafb;font:inherit;color:var(--ink);font-size:13px}
+.rules-form input:not([type=checkbox]),.inline-form input,.group-form input,.group-form textarea,.assign-row select,.manage-search{width:100%;min-width:0;box-sizing:border-box;min-height:42px;padding:10px 11px;border:1px solid var(--line);border-radius:8px;background:var(--card);font:inherit;color:var(--ink);font-size:14px}
 .rules-form input:disabled{opacity:.65}
 .mileage-board .save-action,.training-sheet .save-action{min-height:42px;padding:0 16px;width:auto;background:var(--accent);color:#fff;border:1px solid var(--accent);border-radius:9px;font-size:12px}
-.mileage-board .outline-action,.training-sheet .outline-action{min-height:42px;padding:0 14px;width:auto;color:var(--muted);border:1px solid var(--line);border-radius:9px;font-size:12px;background:#fff}
+.mileage-board .outline-action,.training-sheet .outline-action{min-height:42px;padding:0 14px;width:auto;color:var(--muted);border:1px solid var(--line);border-radius:9px;font-size:12px;background:var(--card)}
 .outline-action{margin-bottom:12px}
 .inline-error{font-size:12px;color:var(--accent);line-height:1.8}
 .inline-error button{color:var(--accent);text-decoration:underline;font-size:12px}
 .training-overlay{position:fixed;z-index:80;inset:0;display:flex;justify-content:flex-end;background:#25293655;backdrop-filter:blur(3px)}
-.training-sheet{box-sizing:border-box;width:min(480px,100%);height:100dvh;overflow:auto;padding:25px 23px 40px;background:#fff;color:var(--ink);font-family:inherit}
+.training-sheet{box-sizing:border-box;width:min(480px,100%);height:100dvh;overflow:auto;padding:25px 23px 40px;background:var(--card);color:var(--ink);font-family:inherit}
 .training-sheet>header{display:flex;align-items:center;justify-content:space-between;gap:14px}
-.training-sheet>header span{color:#9b9da5;font-size:11px;letter-spacing:1.7px}
-.training-sheet h2{font-size:23px;margin:8px 0 0;letter-spacing:-.5px}
-.training-sheet>header button{width:35px;min-height:40px;color:var(--muted);font-size:27px}
+.training-sheet>header span{color:var(--muted);font-size:12px;letter-spacing:normal}
+.training-sheet h2{font-size:22px;margin:8px 0 0;letter-spacing:normal}
+.training-sheet>header button{width:35px;min-height:40px;color:var(--muted);font-size:24px}
 .sheet-intro{font-size:12px;color:var(--muted);line-height:1.9;margin:18px 0 20px}
 .manage-section-heading{border-top:1px solid var(--line);padding-top:20px;margin:20px 0 14px}
 .manage-section-heading h3 small{color:var(--muted);font-size:12px;margin-left:5px;font-weight:400}
-.group-form{display:grid;gap:13px;padding:16px;border:1px solid #f1ded9;border-radius:12px;background:#fffaf8;margin-bottom:15px}
-.group-form h3{font-size:15px;margin:0}
+.group-form{display:grid;gap:13px;padding:16px;border:1px solid var(--line);border-radius:12px;background:var(--card);margin-bottom:15px}
+.group-form h3{font-size:14px;margin:0}
 .group-form textarea{resize:vertical}
 .form-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:4px}
 .form-actions button{margin:0}
 .managed-group{display:flex;align-items:center;gap:10px;padding:17px 0;border-top:1px solid var(--line)}
 .managed-group>div{flex:1;min-width:0}
-.managed-group b{font-size:14px;font-weight:550;overflow-wrap:anywhere}
-.managed-group span{display:block;color:var(--muted);font-size:11px;margin-top:6px;line-height:1.7}
-.managed-group p{color:var(--muted);font-size:11px;line-height:1.8;margin:6px 0 0;overflow-wrap:anywhere}
-.managed-group>button{flex:none;width:auto;min-height:36px;font-size:11px;color:var(--muted)}
-.managed-group>button.delete-group{color:#bb6057}
+.managed-group b{font-size:14px;font-weight:500;overflow-wrap:anywhere}
+.managed-group span{display:block;color:var(--muted);font-size:12px;margin-top:6px;line-height:1.7}
+.managed-group p{color:var(--muted);font-size:12px;line-height:1.8;margin:6px 0 0;overflow-wrap:anywhere}
+.managed-group>button{flex:none;width:auto;min-height:36px;font-size:12px;color:var(--muted)}
+.managed-group>button.delete-group{color:var(--accent)}
 .assign-row{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:12px 0;border-bottom:1px solid var(--line)}
-.assign-row>span,.assign-row>.manage-member-link{flex:1;min-width:0;overflow-wrap:anywhere;font-size:13px}
+.assign-row>span,.assign-row>.manage-member-link{flex:1;min-width:0;overflow-wrap:anywhere;font-size:14px}
 .assign-row select{width:125px;flex:none;font-size:12px}
 .manage-search{margin-bottom:7px}
 @media(max-width:350px){.mileage-board{padding:21px 12px}
-.board-heading h2{font-size:21px}
-.board-heading p{font-size:11px}
-.mileage-board .text-action{font-size:11px}
+.board-heading h2{font-size:22px}
+.board-heading p{font-size:12px}
+.mileage-board .text-action{font-size:12px}
 .volume-card{padding:18px}
-.volume-number{font-size:44px}
+.volume-number{font-size:40px}
 .volume-metrics{gap:5px}
-.volume-metrics b{font-size:17px}
-.volume-metrics span{font-size:11px}
+.volume-metrics b{font-size:18px}
+.volume-metrics span{font-size:12px}
 .rank-panel{padding:17px 12px 12px}
 .rank-row{gap:6px}
 .rank-place{width:15px}
 .rank-avatar{width:29px;height:29px;border-radius:10px}
 .rank-person>b{font-size:12px}
-.rank-distance>b{font-size:19px}
+.rank-distance>b{font-size:18px}
 .rank-chevron{display:none}
 .training-sheet{padding:22px 17px 35px}
 }
 
-.report-member-link{display:inline-flex;align-items:center;gap:7px;min-height:28px;color:var(--ink);text-decoration:none}.report-member-link span{color:#b3b4bd;font-size:14px}.report-member-link:hover{color:var(--accent)}
+.report-member-link{display:inline-flex;align-items:center;gap:7px;min-height:28px;color:var(--ink);text-decoration:none}.report-member-link span{color:var(--muted);font-size:14px}.report-member-link:hover{color:var(--accent)}
+
+/* Shared typography and controls for club services. */
+
+.mileage-board { padding:20px 16px; color:var(--ink); font-size:14px; }
+.board-heading h2 { font-size:22px; font-weight:600; line-height:1.4; }
+.board-heading p { font-size:12px; line-height:1.6; }
+.mileage-board .text-action,.training-sheet .text-action { min-height:44px; font-size:12px; font-weight:500; }
+.range-tabs { margin-top:16px; padding:0; gap:0; border-radius:0; border-bottom:1px solid var(--line); background:transparent; }
+.mileage-board .range-tabs button { min-height:44px; background:transparent; border-radius:0; font-size:14px; font-weight:400; }
+.mileage-board .range-tabs button.on { color:var(--accent); background:transparent; box-shadow:inset 0 -2px var(--accent); font-weight:500; }
+.mileage-board .period-control>button { width:44px; min-height:44px; }
+.period-control label { min-height:44px; font-size:14px; }
+.mileage-board .group-tabs button { min-height:44px; border-radius:10px; padding:0 13px; font-size:12px; }
+.mileage-board .group-tabs button.on { border-color:var(--accent); color:var(--accent); background:var(--accent-soft); }
+.volume-card { padding:18px; border:1px solid var(--line); border-radius:12px; background:var(--card); margin-bottom:20px; }
+.volume-label { color:var(--muted); font-size:14px; }
+.volume-symbol { color:var(--accent); background:var(--accent-soft); border-radius:8px; }
+.volume-number { color:var(--ink); font-size:40px; font-weight:600; letter-spacing:normal; margin:10px 0 18px; line-height:1.2; }
+.volume-number>small { font-size:14px; }
+.volume-metrics { border-color:var(--line); padding-top:16px; gap:10px; }
+.volume-metrics b { color:var(--ink); font-size:20px; font-weight:600; }
+.volume-metrics span,.volume-metrics b small { font-size:12px; color:var(--muted); }
+.panel-title h3,.manage-section-heading h3 { font-size:18px; font-weight:600; }
+.mileage-board .group-card { flex-basis:150px; padding:14px; border:1px solid var(--line); border-radius:12px; background:var(--card); color:var(--ink); }
+.group-card.tone-0 .group-card-top b,.group-card.tone-1 .group-card-top b,.group-card.tone-2 .group-card-top b { color:var(--ink); font-size:14px; font-weight:500; }
+.group-card strong { font-size:24px; font-weight:600; color:var(--ink); }
+.group-card strong small,.group-card>span:not(.group-card-top),.group-pace { font-size:12px; color:var(--muted); }
+.rank-panel,.tools-panel { border:1px solid var(--line); border-radius:12px; background:var(--card); }
+.rank-search { min-height:44px; border-radius:10px; background:var(--field-bg); }
+.rank-search input { min-height:44px; font-size:14px; }
+.mileage-board .rank-search button { min-width:44px; min-height:44px; }
+.rank-person>b { font-size:14px; font-weight:500; }
+.rank-distance>b { font-size:20px; font-weight:600; }
+.rank-person>span,.rank-distance>small,.rank-footnote,.rank-columns { font-size:12px; }
+.rank-place.medal { color:var(--accent); font-weight:500; }
+.tools-panel>summary,.nested-tool>summary { min-height:48px; font-size:14px; font-weight:500; color:var(--ink); }
+.run-record>div span,.run-record>p { font-size:12px; color:var(--muted); }
+.record-review summary { display:flex; align-items:center; min-height:44px; font-size:12px; }
+.review-actions button,.inline-error button { min-height:44px; font-size:12px; }
+.tool-tabs button { min-height:44px; border-radius:10px; font-size:14px; }
+.rules-form input:not([type=checkbox]),.rules-form select,.group-form input,.group-form textarea,.manage-search,.assign-row select,.inline-form input { min-height:44px; border:1px solid var(--line); border-radius:10px; padding:10px 12px; background:var(--field-bg); color:var(--ink); font-size:14px; }
+.rules-form label,.group-form label { color:var(--ink); font-size:14px; font-weight:400; }
+.check-line { min-height:44px; font-size:14px; }
+.outline-action,.save-action { min-height:44px; border-radius:10px; font-size:14px; font-weight:500; }
+.outline-action { color:var(--ink); background:var(--card); border:1px solid var(--line); }
+.save-action { color:#fff; background:var(--accent); border:1px solid var(--accent); }
+.training-sheet { padding:20px 20px 32px; background:var(--card); color:var(--ink); }
+.training-sheet h2 { margin-top:4px; font-size:22px; font-weight:600; }
+.training-sheet>header span { font-size:12px; color:var(--muted); letter-spacing:normal; }
+.training-sheet>header button { min-width:44px; min-height:44px; }
+.sheet-intro { font-size:14px; line-height:1.7; margin:16px 0; }
+.group-form { background:var(--field-bg); border-color:var(--line); border-radius:12px; padding:16px; }
+.group-form h3 { font-size:18px; font-weight:500; }
+.managed-group span,.managed-group p { font-size:12px; }
+.managed-group>button { min-height:44px; font-size:12px; color:var(--accent); }
+.managed-group>button.delete-group { color:var(--muted); }
+.assign-row>.manage-member-link { min-height:44px; display:flex; align-items:center; font-size:14px; }
+@media(max-width:350px) { .mileage-board { padding:18px 12px; }.board-heading h2 { font-size:22px; }.volume-number { font-size:36px; }.rank-distance>b { font-size:18px; }.training-sheet { padding:18px 16px 28px; } }
+
 </style>

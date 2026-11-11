@@ -34,10 +34,22 @@ function cancelEdit() { if (saving.value) return; editingReportId.value = null; 
 async function submit() { if (saving.value || !club.value) return; const stamp = capture(); if (!current(stamp)) return; saving.value = true; error.value = ''; notice.value = ''; try { const data = await request('/clubs/' + route.params.id + '/reports', { method: 'POST', body: JSON.stringify(form) }); if (!current(stamp)) return; notice.value = data.outcome === 'updated' ? `工单 #${data.report.id} 的说明、公共来源和联系方式已更新，已进入待处理。` : data.outcome === 'unchanged' ? `工单 #${data.report.id} 已收到相同内容，无需重复提交。处理进度可在下方查看。` : `反馈已私密提交，工单 #${data.report.id}。处理结果会显示在下方。`; editingReportId.value = null; form.detail = ''; form.sourceUrl = ''; form.contact = ''; await load(false); } catch (err) { if (!err.stale && current(stamp)) error.value = err.message; } finally { if (current(stamp)) saving.value = false; } }
 watch(() => [token.value, route.fullPath], () => { reset(); load(); }, { immediate: true });
 </script>
-<style scoped>.reports-progress{margin-top:28px}.reports-progress>h2{display:flex;justify-content:space-between;align-items:center;font-size:17px}.reports-progress>h2 button{min-height:44px;color:var(--muted);font-size:12px}.club-form-panel h2{margin-top:14px;overflow-wrap:anywhere}.club-record h3{margin-top:13px}.club-record .club-form-link{margin-right:12px}.club-form-panel { border-color:var(--line); border-radius:18px; }
+<style scoped>.reports-progress{margin-top:28px}.reports-progress>h2{display:flex;justify-content:space-between;align-items:center;font-size:18px}.reports-progress>h2 button{min-height:44px;color:var(--muted);font-size:12px}.club-form-panel h2{margin-top:14px;overflow-wrap:anywhere}.club-record h3{margin-top:13px}.club-record .club-form-link{margin-right:12px}.club-form-panel { border-color:var(--line); border-radius:16px; }
 .club-form-panel h2 { font-size:20px; line-height:1.5; }
-.club-form-title { font-size:26px; }
+.club-form-title { font-size:24px; }
 
 
-.club-form-page { background:transparent; }.club-form-page>.topbar { background:transparent; }.club-form-eyebrow { color:#7c669c; }.club-form-panel { background:#fff;border-color:#e4deed;box-shadow:var(--card-shadow,0 6px 20px #7162940a); }.club-private-tag { background:var(--lilac-soft,#f2edff);color:#776197;border-color:#e1d7ed; }.club-form-note { background:var(--sky-soft,#eaf4ff);border-color:#dce7f5; }.club-record { background:#fff;border-color:#e7dfef; }
+.club-form-page { background:transparent; }.club-form-page>.topbar { background:transparent; }.club-form-eyebrow { color:var(--muted); }.club-form-panel { background:var(--card);border-color:var(--line);box-shadow:none; }.club-private-tag { background:var(--lilac-soft,var(--field-bg));color:var(--muted);border-color:var(--line); }.club-form-note { background:var(--sky-soft,var(--field-bg));border-color:var(--line); }.club-record { background:var(--card);border-color:var(--line); }
+
+/* Shared typography and controls for club services. */
+
+.club-form-page { color:var(--ink); background:var(--bg); }
+.club-form-title { font-size:24px; font-weight:600; letter-spacing:normal; }
+.club-form-eyebrow { color:var(--muted); font-size:12px; letter-spacing:normal; }
+.club-form-panel,.preview-card { border:1px solid var(--line); border-radius:12px; background:var(--card); box-shadow:none; }
+.club-form-panel h2 { font-size:18px; font-weight:600; }
+.club-form-note,.club-private-tag,.same-name { border-color:var(--line); background:var(--field-bg); color:var(--muted); }
+.preview-track { display:none; }
+.preview-card h3 { font-size:22px; font-weight:600; }
+
 </style>

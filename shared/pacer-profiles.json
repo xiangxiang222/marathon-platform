@@ -1,0 +1,428 @@
+{
+  "version": 1,
+  "asOf": "2026-11-11",
+  "rankingBasis": "按公开来源收录私人带跑人物，不作能力、收费或全国名次排名。",
+  "rankingNotice": "未找到权威全国私兔排名。现有10份有来源档案：6位公开姓名、4位明确采访化名；化名案例真实身份未核实，不能视为10位已识别实名人物、全国前十或平台认证。",
+  "coverage": {
+    "requested": 10,
+    "collected": 10,
+    "publicNamed": 6,
+    "pseudonymous": 4,
+    "remainingPublicNamed": 4,
+    "withConcreteRaceEvidence": 7,
+    "interviewStatementsOnly": 3
+  },
+  "sources": [
+    {
+      "title": "私兔真的是一门好生意吗？",
+      "url": "https://zjtyol.zjol.com.cn/zhzx/202504/t20250414_30936773.shtml",
+      "publisher": "浙江在线 / 体坛报",
+      "publishedAt": "2025-04-14"
+    },
+    {
+      "title": "马拉松赛场上的“私兔”什么来头？",
+      "url": "https://news.e23.cn/wanxiang/2025-03-27/2025032700050.html",
+      "publisher": "舜网 / 济南时报（据封面新闻）",
+      "publishedAt": "2025-03-27"
+    },
+    {
+      "title": "马拉松“私兔”突然爆火！杭州90后小伙已经做了8年“私兔”",
+      "url": "https://news.qq.com/rain/a/20250412A06VES00",
+      "publisher": "潮新闻（腾讯新闻官方账号）",
+      "publishedAt": "2025-04-12"
+    },
+    {
+      "title": "月入四万的“私兔”，成为马拉松里的职业破风者",
+      "url": "https://news.qq.com/rain/a/20250423A08JBU00",
+      "publisher": "NEXT趋势（腾讯新闻）",
+      "publishedAt": "2025-04-23"
+    },
+    {
+      "title": "马拉松赛场上的“私兔”啥来头？",
+      "url": "https://finance.sina.com.cn/jjxw/2025-04-14/doc-inetanuz8666994.shtml",
+      "publisher": "成都日报锦观新闻（新浪转载）",
+      "publishedAt": "2025-04-14"
+    },
+    {
+      "title": "马拉松热催生“陪跑”生意：“私兔”单场五千 “破三”七千起",
+      "url": "https://news.sina.com.cn/o/2025-04-01/doc-inerscvh7260641.shtml",
+      "publisher": "新京报贝壳财经（新浪转载）",
+      "publishedAt": "2025-04-01"
+    }
+  ],
+  "profiles": [
+    {
+      "id": "pacer-wu-xiangdong",
+      "type": "pacer",
+      "name": "吴向东",
+      "gender": "men",
+      "role": "精英运动员 · 有私人带跑经历",
+      "personalBest": "2:07:55",
+      "bio": "中国男子马拉松运动员；公开报道记载他曾为张德顺带跑。PB及个人比赛资料来自世界田联，与运动员档案互相链接。",
+      "pacingExperience": [
+        {
+          "event": "2024厦门马拉松",
+          "date": "2024-01-07",
+          "athlete": "张德顺",
+          "description": "体坛报2025年专题回顾了吴向东在2024厦门马拉松为张德顺担任私兔的经历。",
+          "sourceUrl": "https://zjtyol.zjol.com.cn/zhzx/202504/t20250414_30936773.shtml"
+        }
+      ],
+      "pacingEvidence": [
+        {
+          "event": "2024厦门马拉松",
+          "date": "2024-01-07",
+          "athlete": "张德顺",
+          "description": "体坛报2025年专题回顾了吴向东在2024厦门马拉松为张德顺担任私兔的经历。",
+          "sourceUrl": "https://zjtyol.zjol.com.cn/zhzx/202504/t20250414_30936773.shtml"
+        }
+      ],
+      "sources": [
+        {
+          "title": "私兔真的是一门好生意吗？",
+          "url": "https://zjtyol.zjol.com.cn/zhzx/202504/t20250414_30936773.shtml",
+          "publisher": "浙江在线 / 体坛报",
+          "publishedAt": "2025-04-14"
+        },
+        {
+          "title": "World Athletics — 中国男子马拉松历史最佳成绩",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "title": "World Athletics — Xiangdong WU 个人资料",
+          "url": "https://worldathletics.org/athletes/athlete=14430085"
+        }
+      ],
+      "verificationStatus": "verified",
+      "verificationNote": "",
+      "verifiedAt": "2026-11-11",
+      "identityStatus": "public_name",
+      "linkedAthleteId": "athlete-men-5",
+      "personalBestSource": "World Athletics",
+      "personalBestDate": "2026-09-27"
+    },
+    {
+      "id": "pacer-zhang-yang",
+      "type": "pacer",
+      "name": "张杨",
+      "gender": "men",
+      "role": "职业私人配速员",
+      "personalBest": "",
+      "bio": "公开采访中的职业陪跑者，报道时已有约十年跑步经历、约两年职业陪跑经历；服务含备赛指导、比赛控速及赛后恢复。",
+      "pacingExperience": [
+        {
+          "event": "2025无锡马拉松",
+          "date": "2025-03-23",
+          "athlete": "受访客户（未公开姓名）",
+          "description": "记者报道他为同一位客户第三次提供私兔服务，完成该场带跑。",
+          "sourceUrl": "https://news.e23.cn/wanxiang/2025-03-27/2025032700050.html"
+        }
+      ],
+      "pacingEvidence": [
+        {
+          "event": "2025无锡马拉松",
+          "date": "2025-03-23",
+          "athlete": "受访客户（未公开姓名）",
+          "description": "记者报道他为同一位客户第三次提供私兔服务，完成该场带跑。",
+          "sourceUrl": "https://news.e23.cn/wanxiang/2025-03-27/2025032700050.html"
+        }
+      ],
+      "sources": [
+        {
+          "title": "马拉松赛场上的“私兔”什么来头？",
+          "url": "https://news.e23.cn/wanxiang/2025-03-27/2025032700050.html",
+          "publisher": "舜网 / 济南时报（据封面新闻）",
+          "publishedAt": "2025-03-27"
+        }
+      ],
+      "verificationStatus": "partial",
+      "verificationNote": "带跑经历有媒体采访支撑；未找到可交叉核验的官方PB、完整赛事清单与公开资格证书，不推断当前执业或接单状态。",
+      "verifiedAt": "2026-11-11",
+      "identityStatus": "public_name"
+    },
+    {
+      "id": "pacer-zhu-xiaolong",
+      "type": "pacer",
+      "name": "朱晓龙",
+      "gender": "men",
+      "role": "跑步教练 · 兼职私兔",
+      "personalBest": "",
+      "bio": "报道时为杭州松果体育全职跑步教练，自2017年开始陪跑；受访称曾陪二十多人参加马拉松。报道列明国家二级运动员与急救证信息。",
+      "pacingExperience": [
+        {
+          "event": "香港马拉松（报道回顾2024年）",
+          "date": "2024",
+          "athlete": "未公开姓名的跑友",
+          "description": "据本人接受潮新闻采访，陪同跑友在香港马拉松跑进3小时30分。",
+          "sourceUrl": "https://news.qq.com/rain/a/20250412A06VES00"
+        }
+      ],
+      "pacingEvidence": [
+        {
+          "event": "香港马拉松（报道回顾2024年）",
+          "date": "2024",
+          "athlete": "未公开姓名的跑友",
+          "description": "据本人接受潮新闻采访，陪同跑友在香港马拉松跑进3小时30分。",
+          "sourceUrl": "https://news.qq.com/rain/a/20250412A06VES00"
+        }
+      ],
+      "sources": [
+        {
+          "title": "马拉松“私兔”突然爆火！杭州90后小伙已经做了8年“私兔”",
+          "url": "https://news.qq.com/rain/a/20250412A06VES00",
+          "publisher": "潮新闻（腾讯新闻官方账号）",
+          "publishedAt": "2025-04-12"
+        },
+        {
+          "title": "私兔真的是一门好生意吗？",
+          "url": "https://zjtyol.zjol.com.cn/zhzx/202504/t20250414_30936773.shtml",
+          "publisher": "浙江在线 / 体坛报",
+          "publishedAt": "2025-04-14"
+        }
+      ],
+      "verificationStatus": "partial",
+      "verificationNote": "2小时52分为2025年4月采访所述、仅精确到分钟的个人最好成绩；资格与经历为受访陈述，当前PB和资格待补官方记录。",
+      "verifiedAt": "2026-11-11",
+      "identityStatus": "public_name",
+      "personalBestPrecision": "minute",
+      "personalBestDisplay": "约2小时52分",
+      "personalBestAsOf": "2025-04-12"
+    },
+    {
+      "id": "pacer-he-bingxuan",
+      "type": "pacer",
+      "name": "何炳炫",
+      "gender": "men",
+      "role": "跑步教练 · 私兔服务",
+      "personalBest": "",
+      "bio": "资深跑步教练，接受媒体采访介绍其按目标成绩提供的个性化私兔服务；与赛事统一招募的官方配速员有区别。",
+      "pacingExperience": [],
+      "pacingEvidence": [],
+      "sources": [
+        {
+          "title": "马拉松赛场上的“私兔”什么来头？",
+          "url": "https://news.e23.cn/wanxiang/2025-03-27/2025032700050.html",
+          "publisher": "舜网 / 济南时报（据封面新闻）",
+          "publishedAt": "2025-03-27"
+        }
+      ],
+      "verificationStatus": "partial",
+      "verificationNote": "媒体可核实姓名、教练及私兔服务陈述，但报道未公开具体带跑比赛、服务对象或官方PB；逐场履历待补。",
+      "verifiedAt": "2026-11-11",
+      "identityStatus": "public_name"
+    },
+    {
+      "id": "pacer-he-yuhang",
+      "type": "pacer",
+      "name": "何禹杭",
+      "gender": "men",
+      "role": "跑友互助 · 私人带跑",
+      "personalBest": "",
+      "bio": "报道时为浙江传媒学院学生跑者；体坛报采访记述其无偿为朋友提供个性化半马带跑的经历。",
+      "pacingExperience": [
+        {
+          "event": "杭州梦想小镇半程马拉松",
+          "date": "2025-03-30",
+          "athlete": "单一轩",
+          "description": "报道记述两人以约1小时37分完赛；原目标约1小时30分，未达目标也如实保留。",
+          "sourceUrl": "https://zjtyol.zjol.com.cn/zhzx/202504/t20250414_30936773.shtml"
+        }
+      ],
+      "pacingEvidence": [
+        {
+          "event": "杭州梦想小镇半程马拉松",
+          "date": "2025-03-30",
+          "athlete": "单一轩",
+          "description": "报道记述两人以约1小时37分完赛；原目标约1小时30分，未达目标也如实保留。",
+          "sourceUrl": "https://zjtyol.zjol.com.cn/zhzx/202504/t20250414_30936773.shtml"
+        }
+      ],
+      "sources": [
+        {
+          "title": "私兔真的是一门好生意吗？",
+          "url": "https://zjtyol.zjol.com.cn/zhzx/202504/t20250414_30936773.shtml",
+          "publisher": "浙江在线 / 体坛报",
+          "publishedAt": "2025-04-14"
+        }
+      ],
+      "verificationStatus": "partial",
+      "verificationNote": "已核实媒体明确的半马私人带跑案例；国家二级水准来自报道，未获取官方PB、成绩证书，不外推全马带跑能力。",
+      "verifiedAt": "2026-11-11",
+      "identityStatus": "public_name"
+    },
+    {
+      "id": "pacer-ji-changshu",
+      "type": "pacer",
+      "name": "季长树",
+      "gender": "men",
+      "role": "跑步爱好者 · 私兔服务",
+      "personalBest": "",
+      "bio": "体坛报采访中的跑者，报道时有约七年跑步经历、百余场全马参赛经验；此前无偿陪跑，受访时开始发布有偿私兔服务。",
+      "pacingExperience": [],
+      "pacingEvidence": [],
+      "sources": [
+        {
+          "title": "私兔真的是一门好生意吗？",
+          "url": "https://zjtyol.zjol.com.cn/zhzx/202504/t20250414_30936773.shtml",
+          "publisher": "浙江在线 / 体坛报",
+          "publishedAt": "2025-04-14"
+        }
+      ],
+      "verificationStatus": "partial",
+      "verificationNote": "参赛数量、跑量与急救员证为受访陈述；媒体未公开可逐场核对的私兔比赛、客户或官方PB，仍需补证。",
+      "verifiedAt": "2026-11-11",
+      "identityStatus": "public_name"
+    },
+    {
+      "id": "pacer-interview-sun-yang",
+      "type": "pacer",
+      "name": "孙阳（采访化名）",
+      "gender": "men",
+      "role": "私兔采访案例 · 真实身份未核实",
+      "personalBest": "",
+      "bio": "【采访化名，真实身份未核实】报道中的内蒙古跑步爱好者，受访时称有16年跑龄，考取跑步教练后开始兼职私人带跑；报道明确记述2025北京半程马拉松陪同一位客户约1小时46分完赛。",
+      "pacingExperience": [
+        {
+          "event": "2025北京半程马拉松",
+          "date": "2025-04-20",
+          "athlete": "未公开姓名的客户",
+          "description": "报道记述这是双方第二次合作；同一人前一天担任亦庄半马官兔，此次是为个人服务的私兔。",
+          "sourceUrl": "https://news.qq.com/rain/a/20250423A08JBU00"
+        }
+      ],
+      "pacingEvidence": [
+        {
+          "event": "2025北京半程马拉松",
+          "date": "2025-04-20",
+          "athlete": "未公开姓名的客户",
+          "description": "报道记述这是双方第二次合作；同一人前一天担任亦庄半马官兔，此次是为个人服务的私兔。",
+          "sourceUrl": "https://news.qq.com/rain/a/20250423A08JBU00"
+        }
+      ],
+      "sources": [
+        {
+          "title": "月入四万的“私兔”，成为马拉松里的职业破风者",
+          "url": "https://news.qq.com/rain/a/20250423A08JBU00",
+          "publisher": "NEXT趋势（腾讯新闻）",
+          "publishedAt": "2025-04-23"
+        }
+      ],
+      "verificationStatus": "partial",
+      "verificationNote": "原文明确使用化名；仅作为有来源的私兔采访案例，不对应现实同名人物，不计入已识别实名人物，不提供预约或平台认证。官方PB、资质证书及逐场成绩未核实。",
+      "verifiedAt": "2026-11-11",
+      "identityStatus": "pseudonym",
+      "identityLabel": "采访化名 · 真实身份未核实",
+      "profileKind": "interview_case"
+    },
+    {
+      "id": "pacer-interview-shao-ming",
+      "type": "pacer",
+      "name": "邵明（采访化名）",
+      "gender": "men",
+      "role": "私兔采访案例 · 真实身份未核实",
+      "personalBest": "",
+      "bio": "【采访化名，真实身份未核实】报道中的杭州材料公司工程师、业余跑者；受访时称跑龄约七年，2024年4月在青岛马拉松首次接受有偿私人带跑，此后把陪跑作为副业。",
+      "pacingExperience": [
+        {
+          "event": "青岛马拉松（报道回顾2024年4月）",
+          "date": "2024-04",
+          "athlete": "未公开姓名的女性跑友",
+          "description": "报道回顾其首次有偿私人带跑的比赛；没有公开实际完赛时间，不补写成绩。",
+          "sourceUrl": "https://news.qq.com/rain/a/20250423A08JBU00"
+        }
+      ],
+      "pacingEvidence": [
+        {
+          "event": "青岛马拉松（报道回顾2024年4月）",
+          "date": "2024-04",
+          "athlete": "未公开姓名的女性跑友",
+          "description": "报道回顾其首次有偿私人带跑的比赛；没有公开实际完赛时间，不补写成绩。",
+          "sourceUrl": "https://news.qq.com/rain/a/20250423A08JBU00"
+        }
+      ],
+      "sources": [
+        {
+          "title": "月入四万的“私兔”，成为马拉松里的职业破风者",
+          "url": "https://news.qq.com/rain/a/20250423A08JBU00",
+          "publisher": "NEXT趋势（腾讯新闻）",
+          "publishedAt": "2025-04-23"
+        }
+      ],
+      "verificationStatus": "partial",
+      "verificationNote": "原文明确使用化名；仅作为有来源的私兔采访案例，不对应现实同名人物，不计入已识别实名人物，不提供预约或平台认证。官方PB、资质证书及逐场成绩未核实。",
+      "verifiedAt": "2026-11-11",
+      "identityStatus": "pseudonym",
+      "identityLabel": "采访化名 · 真实身份未核实",
+      "profileKind": "interview_case"
+    },
+    {
+      "id": "pacer-interview-yang-xu",
+      "type": "pacer",
+      "name": "杨旭（采访化名）",
+      "gender": "men",
+      "role": "私兔采访案例 · 真实身份未核实",
+      "personalBest": "",
+      "bio": "【采访化名，真实身份未核实】成都日报采访中自2017年开始提供私兔服务的跑者，所述全马最好成绩为2小时34分；具体PB赛事和秒数未公开。报道记述由朋友互助逐渐转向有偿服务。",
+      "pacingExperience": [],
+      "pacingEvidence": [],
+      "sources": [
+        {
+          "title": "马拉松赛场上的“私兔”啥来头？",
+          "url": "https://finance.sina.com.cn/jjxw/2025-04-14/doc-inetanuz8666994.shtml",
+          "publisher": "成都日报锦观新闻（新浪转载）",
+          "publishedAt": "2025-04-14"
+        }
+      ],
+      "verificationStatus": "partial",
+      "verificationNote": "原文明确使用化名；仅作为有来源的私兔采访案例，不对应现实同名人物，不计入已识别实名人物，不提供预约或平台认证。官方PB、资质证书及逐场成绩未核实。",
+      "verifiedAt": "2026-11-11",
+      "identityStatus": "pseudonym",
+      "identityLabel": "采访化名 · 真实身份未核实",
+      "profileKind": "interview_case",
+      "personalBestDisplay": "约2小时34分（受访自述）",
+      "personalBestPrecision": "minute",
+      "personalBestAsOf": "2025-04-14"
+    },
+    {
+      "id": "pacer-interview-li-yang",
+      "type": "pacer",
+      "name": "李阳（采访化名）",
+      "gender": "women",
+      "role": "私兔采访案例 · 真实身份未核实",
+      "personalBest": "",
+      "bio": "【采访化名，真实身份未核实】新京报采访中的女性职业私兔；报道记述其在2025宁波马拉松为一位客户提供训练规划、稳定配速与赛道陪伴。此处保存的是媒体化名案例。",
+      "pacingExperience": [
+        {
+          "event": "2025宁波马拉松",
+          "date": "2025-03-23",
+          "athlete": "未公开姓名的客户",
+          "description": "记者报道其在该场全马为客户进行个人带跑；未公开实际完赛时间与个人PB。",
+          "sourceUrl": "https://news.sina.com.cn/o/2025-04-01/doc-inerscvh7260641.shtml"
+        }
+      ],
+      "pacingEvidence": [
+        {
+          "event": "2025宁波马拉松",
+          "date": "2025-03-23",
+          "athlete": "未公开姓名的客户",
+          "description": "记者报道其在该场全马为客户进行个人带跑；未公开实际完赛时间与个人PB。",
+          "sourceUrl": "https://news.sina.com.cn/o/2025-04-01/doc-inerscvh7260641.shtml"
+        }
+      ],
+      "sources": [
+        {
+          "title": "马拉松热催生“陪跑”生意：“私兔”单场五千 “破三”七千起",
+          "url": "https://news.sina.com.cn/o/2025-04-01/doc-inerscvh7260641.shtml",
+          "publisher": "新京报贝壳财经（新浪转载）",
+          "publishedAt": "2025-04-01"
+        }
+      ],
+      "verificationStatus": "partial",
+      "verificationNote": "原文明确使用化名；仅作为有来源的私兔采访案例，不对应现实同名人物，不计入已识别实名人物，不提供预约或平台认证。官方PB、资质证书及逐场成绩未核实。",
+      "verifiedAt": "2026-11-11",
+      "identityStatus": "pseudonym",
+      "identityLabel": "采访化名 · 真实身份未核实",
+      "profileKind": "interview_case"
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 <view class="mileage-board">
-  <view class="mb-heading"><view><view class="mb-kicker">CLUB RUNNING</view><view class="mb-title">每一步，都算数<text class="mb-title-dot">.</text></view></view><button class="mb-link" bindtap="openGroups">训练组 <text>↗</text></button></view>
+  <view class="mb-heading"><view><view class="mb-title">跑量看板</view></view><button class="mb-link" bindtap="openGroups">训练组 <text>↗</text></button></view>
   <view class="mb-ranges"><button wx:for="{{ranges}}" wx:key="id" class="mb-range {{range === item.id ? 'is-active' : ''}}" data-range="{{item.id}}" bindtap="pickRange">{{item.name}}</button></view>
   <view class="mb-period" wx:if="{{range !== 'all'}}"><button class="mb-period-arrow" data-direction="-1" bindtap="changePeriod" aria-label="上一周期">‹</button><picker mode="date" value="{{date}}" end="{{today}}" bindchange="pickDate"><view class="mb-period-label">{{(board && board.period && board.period.label) || date}} <text>⌄</text></view></picker><button class="mb-period-arrow" data-direction="1" bindtap="changePeriod" disabled="{{!canNext}}" aria-label="下一周期">›</button></view>
   <view class="mb-period mb-all-period" wx:else>从加入跑团开始，记录每一次坚持</view>

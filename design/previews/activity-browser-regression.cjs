@@ -62,6 +62,8 @@ async function mock(page) {
           album: { photoCount: 0, videoCount: 0 }
         };
       }
+    } else if (pathname === "/clubs/999/training-groups" && method === "GET") {
+      data = { groups: [], members: [], staff: true };
     } else if (pathname === "/clubs/999/activity-templates" && method === "GET") {
       data = { templates: [] };
     } else if (pathname === "/clubs/999/activities/1" || pathname === "/clubs/999/activities/2") {

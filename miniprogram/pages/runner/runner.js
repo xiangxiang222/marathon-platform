@@ -1,3 +1,4 @@
+const { normalizeResults } = require("../../utils/achievement-model");
 const { request, ready } = require("../../utils/request");
 const { VIEWS, decorate, shortKm, barsOf } = require("../../utils/runner-center");
 const activityConsentVersion = require("../../utils/legal-documents").version;
@@ -17,7 +18,7 @@ Page({
     ready: false,
     loading: false,
     error: "",
-    payload: null,
+    payload: null, posterAvailable: false,
     period: "week",
     offset: 0,
     periods: [{ key: "week", label: "周" }, { key: "month", label: "月" }, { key: "year", label: "年" }, { key: "all", label: "累计" }],
@@ -65,11 +66,11 @@ Page({
       this._lastToken = token;
       this._fileSequence = (this._fileSequence || 0) + 1;
       this._activityConsentPending = false;
-      this.setData({ payload: null, filteredResults: [], gallery: [], cities: [], selectedCityKey: "", selectedCity: null, uploadOpen: false, uploadMessage: "", uploading: false, error: "", deviceBusy: "", deviceMessage: "", deviceErrorDetail: "", deviceFailed: false });
+      this.setData({ payload: null, posterAvailable: false, filteredResults: [], gallery: [], cities: [], selectedCityKey: "", selectedCity: null, uploadOpen: false, uploadMessage: "", uploading: false, error: "", deviceBusy: "", deviceMessage: "", deviceErrorDetail: "", deviceFailed: false });
     }
     this.setData({ ready: ready() });
     if (ready()) return this.load();
-    this.setData({ payload: null, loading: false, error: "", filteredResults: [], gallery: [], cities: [], selectedCityKey: "", selectedCity: null });
+    this.setData({ payload: null, posterAvailable: false, loading: false, error: "", filteredResults: [], gallery: [], cities: [], selectedCityKey: "", selectedCity: null });
   },
   onHide() { this._hidden = true; this._fileSequence = (this._fileSequence || 0) + 1; this._activityConsentPending = false; this.setData({ deviceBusy: "" }); },
   onUnload() { this._unloaded = true; this._fileSequence = (this._fileSequence || 0) + 1; this._activityConsentPending = false; this._sequence = (this._sequence || 0) + 1; },
@@ -82,7 +83,12 @@ Page({
   },
   openAchievementPoster(event) {
     if (!ready() || this._lastToken !== getApp().globalData.token) return;
-    wx.navigateTo({ url: "/pages/achievement-poster/achievement-poster?mode=" + (event.currentTarget.dataset.mode === "results" ? "results" : "pb") });
+    if (!normalizeResults(this.data.payload).length) {
+      wx.showToast({ title: "先在赛事详情页记录完赛成绩", icon: "none" });
+      wx.switchTab({ url: "/pages/races/races" });
+      return;
+    }
+    wx.navigateTo({ url: "/pages/achievement-poster/achievement-poster?mode=results" });
   },
   pickView(event) {
     const view = VIEWS.find((item) => item.key === event.currentTarget.dataset.view);
@@ -104,12 +110,12 @@ Page({
         if (sequence !== this._sequence || token !== getApp().globalData.token) return;
         const payload = decorate(data);
         payload.devices = (payload.devices || []).map((item) => ({ ...item, statusLabel: ({ available: "可连接", connected: "已连接", error: "同步异常", revoked: "已解除" })[item.status] || "待开通", syncLabel: this.deviceSyncTime(item.lastSyncedAt) }));
-        this.setData({ ready: true, payload, loading: false });
+        this.setData({ ready: true, payload, posterAvailable: normalizeResults(payload).length > 0, loading: false });
         this.filter();
       })
       .catch((error) => {
         if (sequence !== this._sequence || token !== getApp().globalData.token) return;
-        if (error.status === 401) this.setData({ ready: false, payload: null, filteredResults: [], gallery: [], cities: [], selectedCityKey: "", selectedCity: null, loading: false, error: "登录已过期，请重新登录" });
+        if (error.status === 401) this.setData({ ready: false, payload: null, posterAvailable: false, filteredResults: [], gallery: [], cities: [], selectedCityKey: "", selectedCity: null, loading: false, error: "登录已过期，请重新登录" });
         else this.setData({ loading: false, error: error.message || "暂时无法加载，请重试", ...(this.data.payload ? { period: this.data.payload.training.period, offset: this.data.payload.training.offset } : {}) });
       });
   },

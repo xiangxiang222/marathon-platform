@@ -140,9 +140,9 @@ onMounted(() => {
 
 /* A sunny discovery area, with matching awards separated on pale blue cards. */
 .radar-page { background:transparent; }.radar-page>.topbar { background:transparent; }
-.radar-page>.block:first-of-type { background:linear-gradient(130deg,#fff7e2,#fff);border-color:#eadbb8;box-shadow:var(--card-shadow,0 6px 22px #9a793b10); }
-.radar-page .slot { background:#ffffffb5;border-color:#eaddbd;border-radius:10px;padding:12px; }.radar-page .slot b { color:#94702b; }
-.radar-page .stack input,.radar-page .stack select { background:#ffffffd9;border-color:#e9dfcb; }
-.radar-page .run { padding:15px;border:1px solid #dce7f4;border-radius:14px;background:#fff;margin-top:12px; }.radar-page .run:nth-of-type(2n) { background:#fff;border-color:#daeadf; }
-.radar-login h2 { color:#6f501f; }
+.radar-page>.block:first-of-type { background:var(--card);border-color:var(--line);box-shadow:none; }
+.radar-page .slot { background:#ffffffb5;border-color:var(--line);border-radius:10px;padding:12px; }.radar-page .slot b { color:var(--muted); }
+.radar-page .stack input,.radar-page .stack select { background:#ffffffd9;border-color:var(--line); }
+.radar-page .run { padding:15px;border:1px solid var(--line);border-radius:12px;background:#fff;margin-top:12px; }.radar-page .run:nth-of-type(2n) { background:#fff;border-color:var(--line); }
+.radar-login h2 { color:var(--muted); }
 </style>

@@ -1,14 +1,14 @@
 .signup-page { box-sizing: border-box; min-height: 100vh; padding: 0 24rpx 180rpx; background: transparent; }
-.signup-hero { position: relative; overflow: hidden; color: var(--text); background: linear-gradient(135deg,#fff0e7,#ffffff); border-color: #f3dfcf; box-shadow: var(--card-shadow); }
+.signup-hero { position: relative; overflow: hidden; color: var(--text); background: var(--surface); border-color: var(--border); box-shadow: none; }
 .signup-hero::before { position: absolute; top: 0; right: 0; width: 12rpx; height: 100%; background: var(--brand); content: "";  }
-.hero-label { color: var(--brand); font-size: 12px; font-weight: 700; }
+.hero-label { color: var(--brand); font-size: 12px; font-weight: 600; }
 .signup-title { margin-top: 18rpx; overflow-wrap: anywhere; }
 .signup-time { margin-top: 24rpx; font-size: 14px; line-height: 1.45; }
 .signup-place { margin-top: 8rpx; color: var(--text-secondary); font-size: 12px; line-height: 1.45; overflow-wrap: anywhere; }
 .signup-by { margin-top: 22rpx; padding-top: 16rpx; border-top: 1rpx solid var(--border); color: var(--text-secondary); font-size: 12px; }
 .selection-section { margin-top: 28rpx; }
 .section-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 16rpx; margin: 0 2rpx 14rpx; }
-.section-title { font-size: 18px; line-height: 1.4; font-weight: 650; }
+.section-title { font-size: 18px; line-height: 1.4; font-weight: 600; }
 .required-mark { color: var(--brand); font-size: 12px; }
 .group-options { display: flex; flex-direction: column; gap: 10rpx; }
 .group-option { display: flex; align-items: center; justify-content: space-between; gap: 16rpx; min-height: 100rpx; box-sizing: border-box; background: #ffffff; }
@@ -44,12 +44,12 @@
 .bottom-space { height: 20rpx; }
 .submit-bar { position: fixed; z-index: 20; right: 0; bottom: 0; left: 0; display: flex; align-items: center; gap: 18rpx; box-sizing: border-box; min-height: 116rpx; padding: 16rpx 24rpx; padding-bottom: calc(16rpx + env(safe-area-inset-bottom)); border-top: 1rpx solid var(--border); background: rgba(255,255,255,.98); }
 .submit-count { display: flex; align-items: baseline; gap: 6rpx; flex: 1; min-width: 0; }
-.count-number { font-size: 18px; font-weight: 700; }
+.count-number { font-size: 18px; font-weight: 600; }
 .count-label { color: var(--text-secondary); font-size: 12px; white-space: nowrap; }
 .submit-button { flex: none; width: 360rpx; height: 82rpx; min-height:44px; margin: 0; padding: 0 16rpx;  background: var(--brand); color: #fff; font-size: 12px; line-height: 82rpx; }
 .submit-button[disabled] { background: var(--border); color: var(--text-secondary);  }
 .load-state { display: flex; align-items: center; flex-direction: column; justify-content: center; min-height: 70vh; padding: 40rpx; color: var(--text-secondary); font-size: 12px; text-align: center; }
-.load-mark { display: flex; align-items: center; justify-content: center; width: 92rpx; height: 92rpx; margin-bottom: 20rpx; border-radius: 50%; background: var(--brand-soft); color: var(--brand); font-size: 12px; font-weight: 700; }
+.load-mark { display: flex; align-items: center; justify-content: center; width: 92rpx; height: 92rpx; margin-bottom: 20rpx; border-radius: 50%; background: var(--brand-soft); color: var(--brand); font-size: 12px; font-weight: 600; }
 .retry-button { min-height:44px; margin-top: 24rpx; padding: 0 28rpx;  background: var(--brand); color: #fff; font-size: 12px; line-height: 72rpx; }
 
 @media (max-width: 350px) {
@@ -63,24 +63,22 @@
 /* Use layout centering instead of inherited native button line heights. */
 .signup-page button { display: flex; align-items: center; justify-content: center; line-height: 1.35; box-sizing: border-box; }
 
-.signup-hero { margin: 24rpx 0 0; background: linear-gradient(135deg,#fff0e7,#ffffff); border-color: #f3dfcf; box-shadow: var(--card-shadow); }
+.signup-hero { margin: 24rpx 0 0; background: var(--surface); border-color: var(--border); box-shadow: none; }
 
 /* Route geometry: surfaces, controls and compact labels have distinct roles. */
-.mini-signup-signup .signup-hero, .mini-signup-signup .group-option, .mini-signup-signup .optional-section, .mini-signup-signup .no-groups { border-radius: 36rpx; }
+.mini-signup-signup .signup-hero, .mini-signup-signup .group-option, .mini-signup-signup .optional-section, .mini-signup-signup .no-groups { border-radius: 24rpx; }
 .mini-signup-signup .submit-button, .mini-signup-signup .retry-button { border-radius: 24rpx; }
 .mini-signup-signup .choice { border-radius: 14rpx; }
-
-/* Page composition and interaction hierarchy. */
 .mini-signup-signup { color: var(--text); }
 .mini-signup-signup button { font-weight: 500; border-radius: 24rpx; }
 
 .signup-page { background: transparent; color: var(--text); }
-.signup-hero { padding: 30rpx; border: 1px solid var(--border); background: linear-gradient(135deg,#fff0e7,#ffffff); border-color: #f3dfcf; box-shadow: var(--card-shadow); }
+.signup-hero { padding: 30rpx; border: 1px solid var(--border); background: var(--surface); border-color: var(--border); box-shadow: none; }
 .signup-title { font-size: 24px; font-weight: 600; line-height: 1.45; }
-.hero-label,.signup-by,.group-option-sub { font-size: 11px; }
+.hero-label,.signup-by,.group-option-sub { font-size: 12px; }
 .signup-time,.signup-place { font-size: 13px; }
 .group-option { padding: 28rpx; border: 1px solid var(--border); background: #ffffff; }
-.group-option-on { border-color: var(--brand); background: linear-gradient(120deg,#ffe8df,#fff4e9); }
+.group-option-on { border-color: var(--brand); background: var(--surface); }
 .group-option-name { font-size: 15px; }
 .group-state { color: var(--brand); font-size: 12px; }
 .optional-section { border: 1px solid var(--border); background: #ffffff; }

@@ -972,6 +972,7 @@ function open() {
   require("./race-history").installRaceHistory(handle);
   require("./activity-templates").installActivityTemplates(handle);
   require("./training-groups").installTrainingGroups(handle);
+  require("./content").installContent(handle);
   migrateLegacyAvatars(handle);
   return handle;
 }

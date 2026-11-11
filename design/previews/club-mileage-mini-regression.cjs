@@ -53,7 +53,7 @@ async function main(){
     x.setReply(()=>Promise.reject(Object.assign(Error('服务暂不可用'),{status:503})));await x.instance.load();assert.equal(x.instance.data.board,null);assert.match(x.instance.data.message,/服务暂不可用/);
   });
   await check('ranking member and permanent-group entries keep club/date/range context',async()=>{
-    const x=boardComponent();await x.lifecycle('attached');await f.tick();x.instance.setData({range:'week',date:'2026-12-31'});x.instance.openMember(f.event({id:2}));assert.equal(x.navigation.at(-1),'/pages/member-profile/member-profile?club=44&user=2&range=week&date=2026-12-31');x.instance.openGroups();assert.equal(x.navigation.at(-1),'/pages/training-groups/training-groups?club=44');
+    const x=boardComponent();await x.lifecycle('attached');await f.tick();x.instance.setData({range:'week',date:'2026-12-31'});x.instance.openMember(f.event({id:2}));assert.equal(x.navigation.at(-1),'/pages/member-profile/member-profile?club=44&user=2&tab=mileage&range=week&date=2026-12-31');x.instance.openGroups();assert.equal(x.navigation.at(-1),'/pages/training-groups/training-groups?club=44');
   });
   await check('other member profile reads only scoped aggregate/summary and cannot edit introduction',async()=>{
     const x=await profilePage();assert.equal(x.instance.data.profile.user.id,2);assert.equal(x.instance.data.profile.recentRuns.length,2);assert.equal(x.instance.data.profile.stats.kmLabel,'64.8');x.instance.editIntroduction();await x.instance.saveIntroduction();assert.equal(x.instance.data.editing,false);assert.ok(x.requests.every(row=>row[0].startsWith('/clubs/44/members/2/profile')));

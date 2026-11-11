@@ -1,5 +1,5 @@
 const { inspectUiPalette } = require('../../scripts/ui-palette-metrics.cjs');
-const expectedAccent = (process.env.UI_EXPECTED_ACCENT || '#e1251b').toLowerCase();
+const expectedAccent = (process.env.UI_EXPECTED_ACCENT || '#ff1838').toLowerCase();
 const {chromium}=require(process.env.PLAYWRIGHT_MODULE || 'playwright-core');
 const fs=require('node:fs'),assert=require('node:assert/strict');const {createState,setup}=require('./admin-api-fixture.cjs');
 const auditPath=require('node:path'),auditRoot=auditPath.resolve(__dirname,'../..');const out=process.env.UI_AUDIT_OUT?auditPath.resolve(auditRoot,process.env.UI_AUDIT_OUT):__dirname;const reportFile=process.env.UI_AUDIT_REPORT?auditPath.resolve(auditRoot,process.env.UI_AUDIT_REPORT):auditPath.join(out,'admin-browser-report.json');fs.mkdirSync(out,{recursive:true});const report={kind:'Admin browser regression; every API GET and write fulfilled from in-memory fixtures',startedAt:new Date().toISOString(),expectedAccent,checks:[],errors:[],console:[],screenshots:[],states:[]};

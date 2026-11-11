@@ -10,8 +10,9 @@ defineProps({ title: { type: String, required: true }, subtitle: { type: String,
 </script>
 
 <style scoped>
-.page-header { padding: 26px 18px 20px; background: var(--bg); }
-.page-header-main { display: flex; align-items: center; justify-content: space-between; min-height: 34px; gap: 12px; }
-.page-header h1 { margin: 0; color: var(--ink); font-size: 26px; font-weight:600; line-height: 1.3; letter-spacing: -.6px; }
-.page-header p { margin: 7px 0 0; color: var(--muted); font-size: 13px; line-height: 1.6; }
+.page-header { position: relative; padding: 12px 16px 18px; background: var(--brand-header); margin-bottom: 0; color: #fff; overflow: hidden; }
+.page-header-main { display: flex; align-items: center; justify-content: space-between; min-height: 44px; gap: 12px; }
+.page-header h1 { margin: 0; color: #fff; font-size: 24px; font-weight:600; line-height: 1.3; letter-spacing: normal; }
+.page-header p { margin: 2px 0 0; color: #ffffffcf; font-size: 12px; line-height: 1.5; }
+.page-header :deep(button) { color: #fff; }
 </style>

@@ -6,7 +6,7 @@
   border: 1px solid transparent;
   border-radius: var(--radius-control);
   background: var(--action-fill);
-  box-shadow: 0 4px 12px rgba(225, 37, 27, .14);
+  box-shadow: none;
   color: #fff;
   font-size: 14px;
   font-weight: 600;
@@ -49,8 +49,8 @@
 }
 .stage[data-ui="jd"] :is(.auth-form, .editor, .history-fields, .create-form, .form-grid, .result-form, .signup-form) label {
   color: var(--ink-secondary);
-  font-size: 13px;
-  line-height: 1.7;
+  font-size: 14px;
+  line-height: 1.6;
 }
 .stage[data-ui="jd"] :is(.sheet, .surface, .panel, .block, .club-panel, .history-card, .dash-card, .runner-card, .card) {
   border-radius: var(--radius-card);
@@ -71,7 +71,7 @@
 .stage[data-ui="jd"] :is(.chips, .choices, .statuses, .tag-picker) button.on {
   color: var(--accent);
   background: var(--accent-soft);
-  border-color: #f5c4bf;
+  border-color: var(--accent);
 }
 .stage[data-ui="jd"] :is(.hint, .footnote, .subtle, .field-note, .muted, .empty-copy) {
   color: var(--muted);
@@ -89,21 +89,21 @@
   border-radius: 12px;
   background: var(--accent-soft);
   color: #a82c24;
-  font-size: 13px;
-  line-height: 1.7;
+  font-size: 14px;
+  line-height: 1.6;
 }
 .stage[data-ui="jd"] :is(dialog:not(.poster-dialog):not(.preview-dialog)) {
   max-width: min(430px, calc(100vw - 28px));
   max-height: calc(100dvh - 40px);
   padding: 22px;
   border: 0;
-  border-radius: 18px;
+  border-radius: 12px;
   color: var(--ink);
   background: #fff;
   overscroll-behavior: contain;
 }
 .stage[data-ui="jd"] dialog::backdrop { background: rgba(0, 0, 0, .4); }
-.stage[data-ui="jd"] :is(dialog h2, .section-heading h2) { font-size: 19px; line-height: 1.5; }
+.stage[data-ui="jd"] :is(dialog h2, .section-heading h2) { font-size: 18px; line-height: 1.5; }
 .stage[data-ui="jd"] dialog p { font-size: 13px; line-height: 1.85; }
 .stage[data-ui="jd"] :is(.detail-back, .back-link, .club-back) { min-height: 44px; display: inline-flex; align-items: center; font-size: 14px; }
 .stage[data-ui="jd"] :is(.bottom-actions, .fixed-actions, .signup-footer) { padding-bottom: max(12px, env(safe-area-inset-bottom, 0px)); }
@@ -117,12 +117,7 @@
 
 .stage[data-ui="jd"] button small { font-size: 12px; }
 
-/* A small family of light surfaces gives data, community and training a
-   consistent colour rhythm while long text stays on white. */
-.stage[data-ui="jd"] .surface-sky { background: linear-gradient(135deg, #f8fcff, var(--sky-soft)); border-color: #d9e9fb; }
-.stage[data-ui="jd"] .surface-mint { background: linear-gradient(135deg, #fbfffd, var(--mint-soft)); border-color: #d5eee4; }
-.stage[data-ui="jd"] .surface-lilac { background: linear-gradient(135deg, #fdfbff, var(--lilac-soft)); border-color: #e4d9f7; }
-.stage[data-ui="jd"] .surface-sun { background: linear-gradient(135deg, #fffdf7, var(--sun-soft)); border-color: #f3e4b8; }
-.stage[data-ui="jd"] .surface-peach { background: linear-gradient(135deg, #fffaf7, var(--peach-soft)); border-color: #f6dcd0; }
-.stage[data-ui="jd"] :is(.detail-back, .back-link, .club-back) { color: #505c73; }
-.stage[data-ui="jd"] :is(.bottom-actions, .fixed-actions, .signup-footer) { border-top-color: #e4e9f2; box-shadow: 0 -6px 28px rgba(43, 61, 103, .035); }
+/* Legacy surface names share the same neutral treatment across destinations. */
+.stage[data-ui="jd"] :is(.surface-sky, .surface-mint, .surface-lilac, .surface-sun, .surface-peach) { background: var(--card); border-color: var(--line); }
+.stage[data-ui="jd"] :is(.detail-back, .back-link, .club-back) { color: var(--ink-secondary); }
+.stage[data-ui="jd"] :is(.bottom-actions, .fixed-actions, .signup-footer) { border-top-color: var(--line); box-shadow: none; }

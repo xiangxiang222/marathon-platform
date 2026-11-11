@@ -75,6 +75,10 @@ test("news stays on its race and off the public list until it is passed", async 
     const listed = await request(app).get("/marathon/api/news");
     assert.equal(listed.status, 200);
     assert.ok(listed.body.news.some((row) => row.id === created.body.news.id && row.raceName === "资讯接口马拉松"));
+    const searched = await request(app).get("/marathon/api/news").query({ q: "比赛日交通" });
+    assert.ok(searched.body.news.some((row) => row.id === created.body.news.id));
+    const unmatched = await request(app).get("/marathon/api/news").query({ q: "完全不匹配的资讯标题" });
+    assert.equal(unmatched.body.total, 0);
     const onRace = await request(app).get("/marathon/api/races/" + raceId + "/news");
     assert.equal(onRace.body.news.length, 1);
     const desk = await request(app).get("/marathon/api/admin/races/" + raceId + "/news").set(admin);

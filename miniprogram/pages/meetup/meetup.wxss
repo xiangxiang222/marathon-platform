@@ -1,6 +1,6 @@
 @import "../../utils/club-detail.wxss";
 .src { color: var(--text-secondary); font-size: 12px; margin-top: 8rpx; white-space: pre-wrap; }
-.sum { margin-top: 16rpx; font-weight: 650; }
+.sum { margin-top: 16rpx; font-weight: 600; }
 .qr { width: 100%; margin-top: 16rpx; border-radius: 12rpx; }
 .card .btn { margin-top: 16rpx;  }
 .meetup-state { margin: 32rpx; padding: 48rpx 32rpx;  background: var(--mint-soft); text-align: center; }
@@ -8,10 +8,8 @@
 .meetup-state .btn { margin-top: 28rpx;  }
 
 /* Route geometry: surfaces, controls and compact labels have distinct roles. */
-.mini-meetup-meetup .card, .mini-meetup-meetup .meetup-state { border-radius: 36rpx; }
+.mini-meetup-meetup .card, .mini-meetup-meetup .meetup-state { border-radius: 24rpx; }
 .mini-meetup-meetup .btn, .mini-meetup-meetup .ghost, .mini-meetup-meetup .fold-toggle { border-radius: 24rpx; }
-
-/* Page composition and interaction hierarchy. */
 .mini-meetup-meetup { color: var(--text); background: transparent; }
 .mini-meetup-meetup button { font-weight: 500; border-radius: 24rpx; }
 
@@ -24,7 +22,5 @@ input,textarea { width: 100%; min-height: 44px; padding: 18rpx 22rpx; border: 1p
 /* Primary actions read at 14px, secondary actions at 13px; compact filters stay at 12px. */
 .mini-meetup-meetup .btn { font-size: 14px; font-weight: 500; }
 .mini-meetup-meetup .ghost, .mini-meetup-meetup .fold-toggle { font-size: 13px; font-weight: 500; }
-
-/* Existing semantic sections receive distinct light color surfaces. */
-.detail-hero { background: linear-gradient(135deg,#e9f7f2,#ffffff); box-shadow: var(--card-shadow); }
+.detail-hero { background: var(--surface); box-shadow: none; }
 .mini-meetup-meetup > .card:nth-child(2) { background: #ffffff; }

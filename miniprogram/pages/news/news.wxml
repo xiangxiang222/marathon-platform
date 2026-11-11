@@ -1,14 +1,28 @@
-<view class="pad mini-news-news">
-  <view wx:if="{{message}}" class="err">{{message}}</view>
-  <navigator wx:for="{{rows}}" wx:key="id" url="/pages/news/detail?id={{item.id}}" class="card">
-    <view class="title">{{item.title}}</view>
-    <view class="meta">{{item.publishedAt}} · {{item.raceName}} · {{item.source}}</view>
-  </navigator>
-  <view wx:if="{{ready && !rows.length}}" class="empty">还没有资讯</view>
-  <view wx:if="{{ready}}" class="total">共 {{total}} 条</view>
-  <view wx:if="{{pages > 1}}" class="pager">
-    <view class="pager-step {{page <= 1 ? 'off' : ''}}" bindtap="prevPage">上一页</view>
-    <view wx:for="{{pageNumbers}}" wx:key="*this" class="pager-num {{page === item ? 'on' : ''}}" data-page="{{item}}" bindtap="goPage">{{item}}</view>
-    <view class="pager-step {{page >= pages ? 'off' : ''}}" bindtap="nextPage">下一页</view>
+<view class="journal-page">
+  <view class="journal-intro">
+    <view class="journal-heading">{{clubId ? (clubName || '跑团资讯') : '跑圈动态'}}</view>
+    <view class="journal-subtitle">{{clubId ? '团练记录、赛事回顾和团友的故事' : '关注赛道上的人，也关注跑圈新鲜事'}}</view>
+    <navigator wx:if="{{clubId && canManage}}" class="publish-link" url="/pages/news/editor?club={{clubId}}">发布资讯 ＋</navigator>
+    <view class="journal-search"><view class="search-icon"></view><input value="{{query}}" placeholder="{{isProfile ? '搜索人物姓名' : '搜索资讯、赛事和跑团故事'}}" maxlength="80" bindinput="onQuery" confirm-type="search" bindconfirm="search" aria-label="搜索资讯或人物"/><button bindtap="search">搜索</button></view>
+  </view>
+  <view class="journal-content">
+    <scroll-view wx:if="{{!clubId}}" class="journal-tabs" scroll-x="true"><view wx:for="{{tabs}}" wx:key="id" class="journal-tab {{tab === item.id ? 'selected' : ''}}" data-tab="{{item.id}}" bindtap="switchTab">{{item.label}}</view></scroll-view>
+    <view wx:if="{{!clubId && tab === 'all'}}" class="journal-shortcuts">
+      <button data-tab="athlete" bindtap="switchTab"><view class="shortcut-title">运动员档案</view><image class="shortcut-art" src="/images/art-medal.png" mode="aspectFit" aria-label="奖牌小插画" /><text class="shortcut-subtitle">中国男女全马 PB</text></button>
+      <button data-tab="pacer" bindtap="switchTab"><view class="shortcut-title">认识私兔</view><image class="shortcut-art" src="/images/art-shoe.png" mode="aspectFit" aria-label="跑鞋小插画" /><text class="shortcut-subtitle">带跑经历与故事</text></button>
+    </view>
+    <view class="section-caption"><text class="caption-title">{{heading}}</text><text wx:if="{{ready && !message && total}}">{{total}} {{isProfile ? '位人物' : '篇内容'}}</text></view>
+    <view wx:if="{{tab === 'athlete'}}" class="gender-tabs"><button class="{{gender === 'men' ? 'on' : ''}}" data-gender="men" bindtap="setGender">男子</button><button class="{{gender === 'women' ? 'on' : ''}}" data-gender="women" bindtap="setGender">女子</button><text>全马 · 个人最佳</text></view>
+    <view wx:if="{{isProfile && ready && !message && rows.length && rankingNote}}" class="ranking-note">{{rankingNote}}</view>
+    <view wx:if="{{message}}" class="journal-state"><view class="state-icon">!</view><view class="state-title">内容暂时无法加载</view><view>{{message}}</view><button bindtap="load">重新加载</button></view>
+    <view wx:elif="{{!ready}}" class="journal-state"><view class="loading-dot"></view>正在加载内容…</view>
+    <block wx:else>
+      <navigator wx:for="{{rows}}" wx:key="id" class="journal-row {{isProfile ? 'person-row' : ''}}" url="/pages/news/detail?type={{isProfile ? 'profile' : tab === 'race' ? 'race' : 'article'}}&id={{item.id}}">
+        <block wx:if="{{isProfile}}"><text class="person-number {{tab === 'pacer' ? 'pacer-avatar' : ''}}">{{tab === 'pacer' ? item.avatarLabel : item.number}}</text><view class="person-copy"><view class="row-kicker">{{tab === 'pacer' ? '私兔档案' : (item.gender === 'women' ? '女子' : '男子')+' · 中国马拉松'}}</view><view class="person-name">{{item.name}}</view><view class="row-summary">{{item.eventName || item.role || item.bio || '公开比赛与带跑经历'}}</view></view><view class="person-time"><view>{{item.personalBestDisplay || item.personalBest || '查看档案'}}</view><text>{{item.personalBestDisplay || item.personalBest ? '全马 PB' : '公开履历'}}</text></view><text class="row-arrow">›</text></block>
+        <block wx:else><view class="article-copy"><view class="row-kicker">{{item.raceName ? '赛事资讯' : item.categoryLabel}} <text wx:if="{{item.featured}}" class="featured-tag">精选</text></view><view class="article-title">{{item.title}}</view><view wx:if="{{item.summary}}" class="row-summary">{{item.summary}}</view><view class="row-meta"><text>{{item.source || item.clubName || '跑圈资讯'}}</text><text>{{item.dateLabel}}</text></view></view><view class="article-cover"><view>{{item.raceName ? '赛事' : item.category === 'club' ? '跑团' : '跑圈'}}</view><text></text><text></text><text></text></view></block>
+      </navigator>
+      <view wx:if="{{!rows.length}}" class="journal-state"><view class="state-icon">＋</view><view class="state-title">{{query ? '还没找到相关内容' : clubId ? '还没有发布跑团资讯' : isProfile ? '人物资料正在整理' : '这个栏目还没有新内容'}}</view><view>{{query ? '换一个关键词试试。' : clubId ? '分享团练心得、赛事回顾或公众号好文。' : '稍后再来看看，或先逛逛其他栏目。'}}</view><navigator wx:if="{{clubId && canManage}}" url="/pages/news/editor?club={{clubId}}">发布第一篇</navigator><button wx:elif="{{!isProfile && !clubId}}" data-tab="athlete" bindtap="switchTab">浏览运动员档案</button></view>
+      <view wx:if="{{pages > 1}}" class="journal-pager"><button disabled="{{page <= 1}}" bindtap="prevPage">上一页</button><text>{{page}} / {{pages}}</text><button disabled="{{page >= pages}}" bindtap="nextPage">下一页</button></view>
+    </block>
   </view>
 </view>

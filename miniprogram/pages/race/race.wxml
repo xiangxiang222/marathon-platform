@@ -70,25 +70,16 @@
       </view>
       <view class="src">报名和缴费请以组委会官方页面为准。</view>
     </view>
-    <view wx:if="{{cards.length || card}}" class="card">
-      <button class="plan-action" bindtap="toggleShare"><text>跑团赛事卡片</text><text class="arrow">{{shareOpen ? '⌃' : '›'}}</text></button>
+    <view wx:if="{{shareChoices.length}}" class="card race-share">
+      <button class="share-toggle" bindtap="toggleShare" aria-expanded="{{shareOpen}}"><text>分享赛事到跑团</text><text class="arrow">{{shareOpen ? '⌃' : '›'}}</text></button>
+      <view class="src">选择跑团，分享这场比赛与跑团参赛动态。</view>
+      <view wx:if="{{shareOpen}}" class="share-content">
+        <view class="share-options" role="radiogroup" aria-label="选择分享跑团">
+          <button wx:for="{{shareChoices}}" wx:key="selectionKey" class="share-option {{selectedShareKey === item.selectionKey ? 'is-selected' : ''}}" role="radio" aria-checked="{{selectedShareKey === item.selectionKey}}" data-key="{{item.selectionKey}}" bindtap="selectShare"><view class="share-radio"></view><view class="share-option-copy"><view>{{item.club.name}}</view><text>{{item.summary || '分享这场赛事与跑团参赛动态'}}</text></view></button>
+        </view>
+        <button wx:if="{{selectedShare}}" class="btn share-submit" open-type="share" data-title="{{selectedShare.title}}" data-code="{{selectedShare.club.code}}" bindtap="armShare">发到微信群</button>
+      </view>
     </view>
-    <block wx:if="{{shareOpen}}">
-    <view class="card" wx:for="{{cards}}" wx:key="clubId">
-      <view class="h2">发到微信群 · {{item.club.name}}</view>
-      <view class="title">{{item.title}}</view>
-      <view class="sum">{{item.summary}}</view>
-      <view wx:if="{{item.unpaid.length}}" class="src">还没缴：{{item.unpaidText}}</view>
-      <button class="btn share" open-type="share" data-title="{{item.title}}" data-code="{{item.club.code}}" bindtap="armShare">发到微信群</button>
-    </view>
-    <view wx:if="{{card && !cards.length}}" class="card">
-      <view class="h2">{{card.club.name}}</view>
-      <view class="title">{{card.title}}</view>
-      <view class="sum">{{card.summary}}</view>
-      <view wx:if="{{card.unpaid.length}}" class="src">还没缴：{{card.unpaidText}}</view>
-      <button class="btn share" open-type="share" data-title="{{card.title}}" data-code="{{card.club.code}}" bindtap="armShare">发到微信群</button>
-    </view>
-    </block>
     <view wx:for="{{clubs}}" wx:key="id" class="card">
       <view class="h2">{{item.name}}</view>
       <view wx:if="{{item.squadText}}" class="warn">{{item.squadText}}</view>

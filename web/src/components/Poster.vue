@@ -55,7 +55,7 @@ text { font-family: inherit; fill: var(--ink); }
 .accent { fill: var(--accent); }
 .year { fill: var(--muted); font-size: 15px; }
 .city { font-size: 18px; font-weight: 600; }
-.title { font-weight: 700; }
+.title { font-weight: 600; }
 .rule { fill: none; stroke: var(--line, #eff0f4); }
 .label { fill: var(--accent); font-size: 13px; font-weight: 600; }
 </style>

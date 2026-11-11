@@ -4,7 +4,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const root = path.resolve(__dirname, '../..');
 const mini = path.join(root, 'miniprogram');
-const expectedAccent = (process.env.UI_EXPECTED_ACCENT || '#e1251b').toLowerCase();
+const expectedAccent = (process.env.UI_EXPECTED_ACCENT || '#ff1838').toLowerCase();
 if (!/^#[0-9a-f]{6}$/.test(expectedAccent)) throw new Error('UI_EXPECTED_ACCENT must be a six-digit hex color');
 const out = path.resolve(root, process.env.UI_AUDIT_OUT || 'design/previews/activity-templates-20261110');
 const reportFile = process.env.UI_AUDIT_REPORT ? path.resolve(root, process.env.UI_AUDIT_REPORT) : path.join(out, 'mini-mirror-report.json');
