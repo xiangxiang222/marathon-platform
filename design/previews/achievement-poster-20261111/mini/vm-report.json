@@ -1,0 +1,62 @@
+{
+  "kind": "Actual native Page logic, isolated wx/request/Canvas bridge mocks; no network or uploads",
+  "checks": [
+    {
+      "name": "only own identity and runner APIs are requested; default lifetime PB produces 1080px PNG",
+      "passed": true
+    },
+    {
+      "name": "results over twenty retain every row and expose all three pages for individual saving",
+      "passed": true
+    },
+    {
+      "name": "year filter, selection clear/all and PB mode use lifetime records rather than selected year",
+      "passed": true
+    },
+    {
+      "name": "theme/quote and all four privacy flags reach the generated model with hidden values removed",
+      "passed": true
+    },
+    {
+      "name": "failed Canvas export has a clear retry and no bogus image path",
+      "passed": true
+    },
+    {
+      "name": "rapid generation is serialized and only the last style wins",
+      "passed": true
+    },
+    {
+      "name": "late native PNG callback is discarded and unlinked after settings changed",
+      "passed": true
+    },
+    {
+      "name": "album authorization is requested only on explicit save; denied scope never repeats prompts",
+      "passed": true
+    },
+    {
+      "name": "first save denial and storage failure are recoverable without claiming success",
+      "passed": true
+    },
+    {
+      "name": "preview opens the actual local PNG without uploads or a fabricated URL",
+      "passed": true
+    },
+    {
+      "name": "hide/unload delete sensitive temporary PNG; show regenerates, unload cannot resurface it",
+      "passed": true
+    },
+    {
+      "name": "account switch immediately clears old PNG before preview/save and ignores old responses",
+      "passed": true
+    },
+    {
+      "name": "empty and invalid records create an intentional zero-state; guests never request private APIs",
+      "passed": true
+    },
+    {
+      "name": "existing entry handlers permit only the current runner and personal member profile",
+      "passed": true
+    }
+  ],
+  "passed": true
+}

@@ -28,3 +28,7 @@ jobs:
         run: |
           npm ci --prefix server
           npm test
+      - name: Verify achievement model and shared canvas sources
+        run: |
+          node --test scripts/achievement-model.test.cjs
+          node scripts/sync-achievement-poster.cjs --check

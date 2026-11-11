@@ -28,6 +28,7 @@
     </section>
     <nav v-if="section !== 'overview'" class="quick-links" aria-label="常用功能"><router-link v-for="item in quickLinks" :key="item.to" :to="item.to"><img :src="item.icon" alt="" /><span>{{ item.label }}</span></router-link></nav>
     <nav class="main-tabs" aria-label="个人中心"><button type="button" :class="{ on: section === 'overview' }" @click="section = 'overview'">总览</button><button type="button" :class="{ on: section === 'plans' }" @click="section = 'plans'">我的赛事</button><button type="button" :class="{ on: section === 'results' }" @click="section = 'results'">完赛记录</button><button type="button" :class="{ on: section === 'profile' }" @click="section = 'profile'">个人资料</button></nav>
+    <router-link v-if="nickname && section === 'overview'" class="achievement-entry" :to="{ path: '/achievement-poster', query: { returnTo: '/mine' } }"><span><b>把努力，晒成高光。</b><small>生涯 PB · 完赛履历 · 我的成绩海报</small></span><i>↗</i></router-link>
     <RunnerDashboard v-if="section === 'overview' && nickname" :data="runnerData" :plans="plans" :loading="runnerLoading" :error="runnerError" @retry="loadRunner"/>
     <section v-else-if="section === 'overview'" class="sheet empty-state"><h3>积累每一公里，珍藏每次完赛</h3><p>运动趋势、赛事生涯、城市护照和荣誉收藏，都从一次出发开始。</p><router-link to="/">去发现下一场比赛 ›</router-link></section>
     <template v-else-if="section === 'plans'">
@@ -37,6 +38,7 @@
       <section v-else class="sheet empty-state"><h3>{{ nickname ? '下一场，想去哪里跑？' : '把想跑的比赛放进这里' }}</h3><p>{{ nickname ? '在赛事详情页标记报名或中签状态，随时查看参赛安排。' : '登录后，你标记的比赛会自动汇总在这里。' }}</p><router-link to="/">去看赛事 ›</router-link></section>
     </template>
     <template v-else-if="section === 'results'">
+      <router-link v-if="nickname" class="achievement-entry" :to="{ path: '/achievement-poster', query: { returnTo: '/mine' } }"><span><b>生成我的成绩海报</b><small>选择 PB 或完赛履历，保存高清图片</small></span><i>↗</i></router-link>
       <section class="sheet career-summary"><div><span>完赛场数</span><b>{{ nickname ? finished : '—' }}<small> 场</small></b></div><div><span>半马最好成绩</span><b class="clock">{{ career.pb.half || '—' }}</b></div><div><span>全马最好成绩</span><b class="clock">{{ career.pb.full || '—' }}</b></div></section>
       <nav class="subtabs result-tabs"><button type="button" :class="{ on: tab === 'honor' }" @click="tab = 'honor'">成绩</button><button type="button" :class="{ on: tab === 'photo' }" @click="tab = 'photo'">证书影像</button><button type="button" :class="{ on: tab === 'time' }" @click="tab = 'time'">赛事足迹</button></nav>
       <section v-if="tab === 'honor'" class="sheet">
@@ -444,4 +446,8 @@ h3 { margin: 0; font-size: 16px; line-height: 24px; font-weight: 600; }.hint, .e
 :deep(.week-card) { background:#fff;border-color:#d4e6df;box-shadow:var(--card-shadow,0 6px 20px #4079610a); }
 :deep(.week-number) { color:#2b7560; }:deep(.career-card) { background:#fff;border-color:#eddfcb; }:deep(.next-race) { background:#fff;border-color:#dce6f4; }:deep(.history-entry) { background:#fff;border-color:#e1d8f0; }
 :deep(.entry-icon.footprints) { background:var(--sky-soft,#eaf4ff);color:#3d79a9; }:deep(.entry-icon.honors) { background:var(--sun-soft,#fff4d7);color:#a47825; }:deep(.entry-icon.media) { background:var(--lilac-soft,#f2edff);color:#8062a6; }:deep(.entry-icon.devices) { background:var(--mint-soft,#e9f7f2);color:#367f65; }
+</style>
+
+<style scoped>
+.achievement-entry{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:19px 20px;margin:15px 16px;background:linear-gradient(120deg,#fff8e9,#fff 85%);border-radius:15px;color:var(--ink)}.achievement-entry>span{display:grid;gap:7px;min-width:0}.achievement-entry b{font-size:15px;font-weight:550;line-height:1.6}.achievement-entry small{font-size:11px;color:#a18f72;line-height:1.7}.achievement-entry i{font-size:23px;color:#b89b70;font-style:normal}
 </style>

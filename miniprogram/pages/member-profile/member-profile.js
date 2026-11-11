@@ -37,6 +37,10 @@ Page({
   previewPhoto(e) { const photos = (this.data.profile || {}).photos || [], photo = photos.find(p => String(p.id) === String(e.currentTarget.dataset.id)); if (photo) wx.previewImage({ current: photo.src, urls: photos.map(p => p.src) }); },
   openAlbum(e) { wx.navigateTo({ url: "/pages/album/album?club=" + encodeURIComponent(this.clubId) + "&id=" + encodeURIComponent(e.currentTarget.dataset.id) }); },
   openGroups() { wx.navigateTo({ url: "/pages/training-groups/training-groups?club=" + encodeURIComponent(this.clubId) }); },
+  openAchievementPoster() {
+    if (!this.data.profile || !this.data.profile.mine || this._account !== token() || !this._alive) return;
+    wx.navigateTo({ url: "/pages/achievement-poster/achievement-poster?mode=pb" });
+  },
   editIntroduction() { if (this.data.profile && this.data.profile.mine) this.setData({ editing: true, editMessage: "" }); },
   inputIntroduction(e) { this.setData({ introduction: e.detail.value }); },
   cancelEdit() { if (!this.data.saving) this.setData({ editing: false, introduction: this.data.profile.user.introduction || "", editMessage: "" }); },

@@ -1,0 +1,34 @@
+{
+  "passed": 5,
+  "checks": [
+    {
+      "name": "1 PB items, long Chinese title and city",
+      "passed": true,
+      "width": 1080,
+      "height": 1440
+    },
+    {
+      "name": "2 PB items, long Chinese title and city",
+      "passed": true,
+      "width": 1080,
+      "height": 1440
+    },
+    {
+      "name": "3 PB items, long Chinese title and city",
+      "passed": true,
+      "width": 1080,
+      "height": 1440
+    },
+    {
+      "name": "4 PB items, long Chinese title and city",
+      "passed": true,
+      "width": 1080,
+      "height": 1440
+    },
+    {
+      "name": "hidden fields are absent from actual Canvas text; empty selection rejected",
+      "passed": true
+    }
+  ],
+  "scope": "Real Chromium Canvas, synthetic local records, no API requests; not WeChat device rendering"
+}

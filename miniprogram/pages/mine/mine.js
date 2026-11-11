@@ -157,6 +157,10 @@ Page({
     }
     wx.navigateTo({ url: "/pages/runner/runner?view=" + view });
   },
+  openAchievementPoster(event) {
+    if (!ready()) return;
+    wx.navigateTo({ url: "/pages/achievement-poster/achievement-poster?mode=" + (event.currentTarget.dataset.mode === "results" ? "results" : "pb") });
+  },
   loadRunner() {
     if (!ready()) return Promise.resolve();
     const token = getApp().globalData.token;

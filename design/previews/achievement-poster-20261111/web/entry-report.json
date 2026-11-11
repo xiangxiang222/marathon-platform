@@ -1,0 +1,14 @@
+{
+  "checks": [
+    "Mine overview -> self poster",
+    "Mine results -> self poster",
+    "Runner career -> self poster",
+    "Runner return restores career",
+    "Own member results -> personal API poster",
+    "Member return restores results and period",
+    "Other member has no poster entry"
+  ],
+  "errors": [],
+  "unexpected": [],
+  "passed": true
+}

@@ -1,0 +1,29 @@
+{
+  "kind": "Independent account/PNG lifecycle and album recovery checks; synthetic GET-only transport; not a WeChat device test",
+  "checks": [
+    {
+      "name": "Mini account change while native PNG callback is pending removes old file and regenerates only new account",
+      "passed": true
+    },
+    {
+      "name": "Mini album settings hide/show invalidates old PNG; restored permission permits explicit regenerated save",
+      "passed": true
+    },
+    {
+      "name": "Web pending old-account toBlob never installs or creates a new old-account object URL",
+      "passed": true
+    },
+    {
+      "name": "Web all 44 rows remain selected and paginated as 20+20+4",
+      "passed": true
+    },
+    {
+      "name": "Web account switch during batch toBlob stops every not-yet-issued download",
+      "passed": true
+    }
+  ],
+  "networkWrites": [],
+  "pageErrors": [],
+  "passed": true,
+  "finishedAt": "2026-11-11T09:15:04.799Z"
+}

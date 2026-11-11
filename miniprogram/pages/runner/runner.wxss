@@ -70,3 +70,6 @@
 /* Primary actions read at 14px, secondary actions at 13px; compact filters stay at 12px. */
 .mini-runner-runner .primary, .mini-runner-runner .device-action-primary { font-size: 14px; font-weight: 500; }
 .mini-runner-runner .soft-button, .mini-runner-runner .upload-button, .mini-runner-runner .device-action-secondary { font-size: 13px; font-weight: 500; }
+
+/* A private poster studio, opened only from the current runner account. */
+.achievement-poster-entry{display:flex;align-items:center;justify-content:space-between;gap:20rpx;width:100%;box-sizing:border-box;margin:0 0 24rpx;padding:26rpx 28rpx;border:1rpx solid #eee4cf;border-radius:28rpx;background:linear-gradient(110deg,#fff7e7,#fffdfa);color:#8d6f40;text-align:left;line-height:1.6}.achievement-poster-entry::after{border:0}.achievement-poster-entry>view{flex:1;min-width:0}.achievement-poster-entry>view>view{font-size:14px;font-weight:600;color:#65563e}.achievement-poster-entry>view>text{display:block;margin-top:6rpx;font-size:11px;font-weight:400;color:#a99a80}.achievement-poster-entry>text{flex:none;font-size:12px;font-weight:500;white-space:nowrap}
