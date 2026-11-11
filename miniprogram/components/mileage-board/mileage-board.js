@@ -51,7 +51,7 @@ Component({
     resetDate() { this.setData({ date: today() }); this.load(); },
     onQuery(e) { this.setData({ query: e.detail.value }); this.filterRank(); },
     filterRank() { const q = this.data.query.trim().toLowerCase(); this.setData({ shownRank: ((this.data.board || {}).rank || []).filter(r => !q || String(r.nickname).toLowerCase().includes(q)) }); },
-    openMember(e) { wx.navigateTo({ url: "/pages/member-profile/member-profile?club=" + encodeURIComponent(this.properties.clubId) + "&user=" + encodeURIComponent(e.currentTarget.dataset.id) + "&range=" + this.data.range + "&date=" + this.data.date }); },
+    openMember(e) { wx.navigateTo({ url: "/pages/member-profile/member-profile?club=" + encodeURIComponent(this.properties.clubId) + "&user=" + encodeURIComponent(e.currentTarget.dataset.id) + "&tab=mileage&range=" + this.data.range + "&date=" + this.data.date }); },
     openGroups() { wx.navigateTo({ url: "/pages/training-groups/training-groups?club=" + encodeURIComponent(this.properties.clubId) }); },
     openTools() { wx.navigateTo({ url: "/pages/mileage/mileage?id=" + encodeURIComponent(this.properties.clubId) + "&tools=1" }); }
   }

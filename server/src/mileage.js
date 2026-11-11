@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const { memberRole } = require("./roles");
+const { avatarUrlOf } = require("./avatars");
 const { saveGroup, removeGroup } = require("./training-groups");
 
 const TYPES = {
@@ -465,7 +466,7 @@ function aggregate(db, clubId, from, to) {
   }
   const people = db
     .prepare(
-      `SELECT u.id AS user_id, u.nickname, m.joined_at, g.name AS group_name,
+      `SELECT u.id AS user_id, u.nickname, u.avatar, m.joined_at, g.name AS group_name,
               SUM(CASE WHEN r.type IN ('run', 'trail') THEN c.volume_km ELSE 0 END) AS km,
               COUNT(*) AS times,
               COUNT(DISTINCT substr(r.started_at, 1, 10)) AS days,
@@ -485,6 +486,7 @@ function aggregate(db, clubId, from, to) {
   return people.map((row) => ({
     userId: row.user_id,
     nickname: row.nickname,
+    avatar: avatarUrlOf(row.user_id, row.avatar),
     joinedAt: row.joined_at,
     group: row.group_name || "",
     km: round2(row.km || 0),
@@ -514,6 +516,7 @@ function reportRows(db, clubId, from, to, month) {
       place: row.place,
       userId: row.userId,
       nickname: row.nickname,
+      avatar: row.avatar,
       km: row.km,
       days: row.days,
       times: row.times,
@@ -825,6 +828,7 @@ function mountMileage(app, { BASE, getDb, userFrom }) {
         place: row.place,
         userId: row.userId,
         nickname: row.nickname,
+        avatar: row.avatar,
         km: row.km,
         group: row.group || "其他",
         mine: row.userId === ctx.user.id
@@ -1042,6 +1046,12 @@ function mountMileage(app, { BASE, getDb, userFrom }) {
   function reportOf(ctx, query) {
     const kind = String(query.kind || "month");
     const today = beijingToday();
+    if (query.date != null && !validDay(query.date)) return { error: "请选择有效的报表日期" };
+    // Date pickers can send one Beijing calendar day for every report type;
+    // preserve the historical `at` week-day / month / year request formats.
+    if ((query.at == null || query.at === "") && query.date != null) {
+      query = { ...query, at: kind === "month" ? query.date.slice(0, 7) : kind === "year" ? query.date.slice(0, 4) : query.date };
+    }
     let from = "";
     let to = "";
     let title = "";
@@ -1097,6 +1107,8 @@ function mountMileage(app, { BASE, getDb, userFrom }) {
       title,
       kind,
       month,
+      date: query.date || (kind === "week" ? from.slice(0, 10) : kind === "month" ? month + "-01" : kind === "year" ? from.slice(0, 10) : today),
+      period: { from: from.slice(0, 10), to: to.slice(0, 10), label: title },
       rows: rows.map(({ durationSec, runSec, runKm, ...row }) => row),
       total: {
         km: round2(total.km),

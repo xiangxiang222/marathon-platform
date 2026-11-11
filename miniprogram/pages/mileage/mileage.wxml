@@ -2,6 +2,18 @@
   <mileage-board id="mileage-board" club-id="{{clubId}}" />
   <button class="mileage-tools-toggle" bindtap="toggleTools"><text>跑步动态、报表与计入规则</text><text>{{toolsOpen ? '收起 −' : '展开 ＋'}}</text></button>
   <block wx:if="{{toolsOpen && board}}">
+  <view class="card mileage-report-card">
+    <view class="report-eyebrow">THE CLUB JOURNAL</view><view class="report-heading">一起跑过的这一程<text>.</text></view>
+    <view class="report-kinds"><button wx:for="{{['week', 'month', 'year']}}" wx:key="*this" class="report-kind {{kind === item ? 'selected' : ''}}" data-kind="{{item}}" bindtap="pickKind">{{item === 'week' ? '周报' : item === 'month' ? '月报' : '年报'}}</button></view>
+    <picker mode="date" value="{{reportDate}}" end="{{today}}" bindchange="pickReportDate"><view class="report-date">{{report ? report.title : reportDate}}<text>选择日期 ⌄</text></view></picker>
+    <view wx:if="{{reportError}}" class="err">{{reportError}}<button class="ghost" bindtap="load">重试</button></view>
+    <block wx:if="{{report}}"><view class="report-summary"><view><text>{{report.total.km}}</text><text>全团跑量 · km</text></view><view><text>{{report.rows.length}}</text><text>本期出发的团友</text></view></view>
+      <view class="report-list-note">点击团友，查看这一期的跑量档案 <text>↗</text></view>
+      <button wx:for="{{report.rows}}" wx:key="userId" class="report-person" data-id="{{item.userId}}" bindtap="openReportMember"><text class="report-place {{item.place <= 3 ? 'leading' : ''}}">{{item.place}}</text><image wx:if="{{item.avatar}}" class="report-avatar" src="{{item.avatar}}" mode="aspectFill"/><view wx:else class="report-avatar report-fallback">{{item.initial}}</view><view class="report-person-copy"><view class="report-person-top"><text>{{item.nickname}}</text><view>{{item.kmLabel}}<text> km</text></view></view><view class="report-person-meta"><text>{{item.dayText}} 天 / 次</text><text>{{item.durationLabel}}</text><text>{{item.paceLabel || '—'}} / km</text></view><view wx:if="{{item.flag && item.flag !== '-'}}" class="report-person-flag">Flag {{item.flag}}</view></view><text class="report-chevron">›</text></button>
+      <view wx:if="{{!report.rows.length}}" class="report-empty">这一期还没有跑量，下一次出发会被认真记录。</view>
+      <view class="report-footer">统计以本团计入规则为准 · 北京时间</view>
+    </block>
+  </view>
   <view class="tools-range-label">跑步动态 · 选择周期</view><view class="range-filters"><button wx:for="{{toolRanges}}" wx:key="id" class="ghost {{range === item.id ? 'on' : ''}}" data-range="{{item.id}}" bindtap="pickRange">{{item.name}}</button></view>
   <view class="card">
     <view class="title">动态</view>
@@ -16,16 +28,6 @@
         <button class="ghost" data-id="{{item.id}}" data-keep="1" bindtap="decide">继续计入</button>
       </view>
     </view>
-  </view>
-  <view class="card" wx:if="{{report}}">
-    <view class="title">报表 {{report.title}}</view>
-    <view class="row">
-      <button class="ghost {{kind === 'week' ? 'on' : ''}}" data-kind="week" bindtap="pickKind">周报</button>
-      <button class="ghost {{kind === 'month' ? 'on' : ''}}" data-kind="month" bindtap="pickKind">月报</button>
-      <button class="ghost {{kind === 'year' ? 'on' : ''}}" data-kind="year" bindtap="pickKind">年报</button>
-    </view>
-    <view wx:for="{{report.rows}}" wx:key="userId" class="src">{{item.place}} {{item.nickname}} {{item.km}} 公里 {{item.dayText}} {{item.durationLabel}} {{item.paceLabel}} {{item.flag}}</view>
-    <view class="src">合计 {{report.total.km}} 公里 · {{report.total.dayText}} 次 · {{report.total.durationLabel}}</view>
   </view>
   <view class="card" wx:if="{{board.owner && rules}}">
     <view class="title">本团规则</view>

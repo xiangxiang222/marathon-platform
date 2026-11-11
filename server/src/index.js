@@ -1048,7 +1048,7 @@ app.get(BASE + "/api/clubs/:id", (req, res) => {
   }
   const rankRows = getDb()
     .prepare(
-      `SELECT u.nickname, res.distance AS result_distance, res.seconds, r.*
+      `SELECT u.id AS result_user_id, u.nickname, u.avatar, res.distance AS result_distance, res.seconds, r.*
        FROM results res
        JOIN users u ON u.id = res.user_id
        JOIN races r ON r.id = res.race_id
@@ -1059,6 +1059,8 @@ app.get(BASE + "/api/clubs/:id", (req, res) => {
       const race = presentRace(row, new Date());
       return {
         nickname: row.nickname,
+        userId: row.result_user_id,
+        avatar: avatarUrlOf(row.result_user_id, row.avatar),
         distance: row.result_distance,
         seconds: row.seconds,
         race: { id: race.id, name: race.name, raceDate: race.raceDate }

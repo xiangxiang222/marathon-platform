@@ -156,7 +156,7 @@ test("member profile exposes same-club safe period summaries and 20 recent count
   assert.equal(r.body.stats.km, 44); assert.equal(r.body.recentRuns.length, 20);
   assert.equal(r.body.recentRuns[0].startedAt, "2026-01-22T07:00");
   assert.deepEqual(Object.keys(r.body.recentRuns[0]).sort(), ["id", "startedAt", "typeLabel", "distanceKm", "km", "durationSec", "durationLabel", "paceLabel"].sort());
-  for (const key of ["token", "openid", "shot", "private-proof", "私人住址", "coros", "access_token", "results"]) assert.ok(!JSON.stringify(r.body).includes(key), key);
+  for (const key of ["token", "openid", "shot", "private-proof", "私人住址", "coros", "access_token", "race_history"]) assert.ok(!JSON.stringify(r.body).includes(key), key);
   assert.equal((await request(app).get(f.base + "/members/" + f.member.id + "/profile").set(f.outsider.auth)).status, 403);
   assert.equal((await request(app).get(f.base + "/members/" + f.outsider.id + "/profile").set(f.member.auth)).status, 404);
   assert.equal((await request(app).get(f.base + "/members/" + f.member.id + "/profile").set(f.member.auth)).body.mine, true);

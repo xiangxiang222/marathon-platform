@@ -50,7 +50,7 @@
       <div v-for="day in checkins" :key="day.date">
         <p class="rank-label">{{ day.label }}</p>
         <div v-for="row in day.rows" :key="day.date + '-' + row.userId" class="mate">
-          <span>{{ row.nickname }}</span>
+          <router-link :to="memberLink(row.userId)" class="member-name-link">{{ row.nickname }}</router-link>
           <b>{{ row.note }}</b>
         </div>
       </div>
@@ -78,7 +78,7 @@
         <span>{{ alt.name }}</span><b>{{ alt.deadlineLabel }}</b>
       </router-link>
       <details class="race-roster"><summary><span>参赛名单 <b>{{ item.marks.length }} 人</b></span><i>展开名单⌄</i></summary><pre class="share-text">{{ item.text }}</pre>
-      <div v-for="mark in item.marks" :key="mark.nickname + mark.status" class="mate"><span>{{ mark.nickname }}</span><b>{{ mark.status }}<template v-if="mark.clock"> · {{ mark.clock }}<template v-if="mark.pb"> PB</template></template></b></div></details>
+      <div v-for="mark in item.marks" :key="mark.nickname + mark.status" class="mate"><router-link v-if="mark.userId" :to="memberLink(mark.userId, 'races')" class="member-name-link">{{ mark.nickname }}</router-link><span v-else>{{ mark.nickname }}</span><b>{{ mark.status }}<template v-if="mark.clock"> · {{ mark.clock }}<template v-if="mark.pb"> PB</template></template></b></div></details>
       <button class="primary" type="button" @click="copyCard(item)">复制卡片</button>
       <button class="undo" type="button" @click="exportRacePoster(item)">生成本场赛事画像</button>
 
@@ -88,10 +88,7 @@
       <p class="rank-label">每人每项只留最好的一场。</p>
       <div v-for="group in ranks" :key="group.distance">
         <p class="rank-label">{{ group.label }}</p>
-        <router-link v-for="row in group.rows" :key="group.distance + row.nickname" class="mate" :to="'/races/' + row.raceId">
-          <span>{{ row.place }} {{ row.nickname }}</span>
-          <b>{{ row.clock }}</b>
-        </router-link>
+        <div v-for="row in group.rows" :key="group.distance + (row.userId || row.nickname)" class="mate"><router-link v-if="row.userId" :to="memberLink(row.userId, 'results')" class="member-name-link">{{ row.place }} {{ row.nickname }}</router-link><span v-else>{{ row.place }} {{ row.nickname }}</span><router-link :to="'/races/' + row.raceId" class="result-race-link">{{ row.clock }} ›</router-link></div>
       </div>
     </div>
     <div v-if="club && tab === 'race'" class="block">
@@ -177,7 +174,7 @@
         </div>
         <p v-if="attendance.me" class="rank-label">我 {{ attendance.me.placeLabel }} · {{ attendance.me.count }} 次</p>
         <div v-for="row in attendance.rows.filter((item) => item.count > 0).slice(0, 10)" :key="row.userId" class="mate">
-          <span>{{ row.place }} {{ row.nickname }}</span>
+          <router-link :to="memberLink(row.userId)" class="member-name-link">{{ row.place }} {{ row.nickname }}</router-link>
           <b>{{ row.count }} 次</b>
         </div>
         <button type="button" class="primary" @click="exportAttend">导出图片</button>
@@ -302,7 +299,7 @@
         <p v-if="!visibleMembers.length" class="rank-label">没有找到这位跑友，试试其他昵称。</p>
         <div v-for="member in visibleMembers" :key="member.id" class="mate member">
           <div class="who">
-            <router-link class="member-identity" :to="'/clubs/' + club.id + '/members/' + member.id">
+            <router-link class="member-identity" :to="memberLink(member.id)">
               <img v-if="member.avatar" :src="member.avatar" :alt="member.nickname" />
               <i v-else aria-hidden="true">{{ member.nickname.slice(0, 1) }}</i>
               <span class="member-copy"><b>{{ member.nickname }}</b><small><template v-if="member.role !== 'member'">{{ member.roleLabel }} · </template>{{ member.points }} 积分</small></span>
@@ -330,7 +327,7 @@
           <div v-for="group in feeShown.groups" :key="group.status">
             <p class="rank-label">{{ group.label }}</p>
             <div v-for="person in group.people" :key="group.status + person.userId" class="mate member">
-              <span>{{ person.nickname }}<small v-if="person.departed" class="departed-member">已离团</small></span>
+              <span><router-link v-if="!person.departed" :to="memberLink(person.userId)" class="member-name-link">{{ person.nickname }}</router-link><template v-else>{{ person.nickname }}</template><small v-if="person.departed" class="departed-member">已离团</small></span>
               <b v-if="club.staff && feeShown.open && !person.departed" class="acts">
                 <button class="undo" :class="{ on: group.status === 'paid' }" type="button" @click="markFee(person, 'paid')">已收到</button>
                 <button class="undo" :class="{ on: group.status === 'unpaid' }" type="button" @click="markFee(person, 'unpaid')">未收到</button>
@@ -415,12 +412,19 @@ import { api as requestApi, mediaSrc } from "../api";
 import { copyText } from "../copy";
 import { textCard } from "../share-card";
 import { clubRaceCsv, clubRaceRows, renderResultPoster } from "../result-poster";
+import { memberProfileLink } from "../member-profile-navigation";
 import RunnerIcon from "../components/RunnerIcon.vue";
 import ClubVerificationBadge from "../components/ClubVerificationBadge.vue";
 import { clubIdentity } from "../club-identity";
 import MileageBoard from "../components/MileageBoard.vue";
 import PartnerBoard from "../components/PartnerBoard.vue";
 const route = useRoute();
+function memberLink(uid, targetTab = "info") {
+  const query = { ...route.query };
+  if (tab.value === 'people' && peopleView.value === 'members') { query.mq = memberQuery.value; query.mrole = memberRole.value; }
+  const returnTo = route.path + '?' + new URLSearchParams(Object.entries(query).filter(([, value]) => value != null).map(([name, value]) => [name, String(value)]));
+  return memberProfileLink(route.params.id, uid, { tab: targetTab, returnTo });
+}
 const router = useRouter();
 let clubScope = 0;
 let disposed = false;
@@ -464,6 +468,8 @@ function applyNavigation() {
   tab.value = valid.includes(route.query.tab) ? route.query.tab : "overview";
   activityView.value = activityTabs.some((item) => item.id === route.query.view) ? route.query.view : "training";
   peopleView.value = ["members", "fees", "manage"].includes(route.query.view) ? route.query.view : "members";
+  if (typeof route.query.mq === 'string') memberQuery.value = route.query.mq;
+  if (['', 'staff', 'member'].includes(route.query.mrole)) memberRole.value = route.query.mrole;
   mineOnly.value = tab.value === "act" && activityView.value === "training" && route.query.mine === "1";
 }
 async function go(next, view = "", section = "", onlyMine = false) {
@@ -471,6 +477,7 @@ async function go(next, view = "", section = "", onlyMine = false) {
   if (next === "act") activityView.value = view || "training";
   if (next === "people") peopleView.value = view || "members";
   const query = { ...route.query, tab: next };
+  if (next === 'people' && (view || 'members') === 'members') { delete query.mq; delete query.mrole; }
   if (view) query.view = view; else delete query.view;
   if (section) query.section = section; else delete query.section;
   if (next === "act" && (view || "training") === "training" && onlyMine) query.mine = "1"; else delete query.mine;
@@ -1663,4 +1670,5 @@ article { margin-top: 22px; padding-top: 15px; border-top: 1px solid var(--line)
 .quick-actions>button:nth-child(4) .quick-icon { background:var(--sky-soft,#eaf4ff);color:#356fa9; }
 .service-grid button:nth-child(3n+1) svg { color:#c44635; }.service-grid button:nth-child(3n+2) svg { color:#347ca5; }.service-grid button:nth-child(3n) svg { color:#3b8c71; }
 .fee-panel { background:#fff; }.requests-block { background:#fff; }
+.member-name-link{min-width:0;color:var(--ink);overflow-wrap:anywhere;text-decoration:none}.member-name-link:hover{color:var(--accent)}.result-race-link{flex:none;color:var(--muted);font-size:12px;white-space:nowrap}
 </style>

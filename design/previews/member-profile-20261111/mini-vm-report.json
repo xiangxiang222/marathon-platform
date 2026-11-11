@@ -1,0 +1,165 @@
+{
+  "kind": "Actual Mini Page JS VM/navigation with isolated synthetic responses. Not a WeChat device interaction test.",
+  "clock": "2026-12-31T16:30:00.000Z",
+  "productionRequests": 0,
+  "checks": [
+    {
+      "name": "Five tabs and full safe profile response decorate correctly",
+      "passed": true
+    },
+    {
+      "name": "Tab profile uses local state and preserves loaded data",
+      "passed": true
+    },
+    {
+      "name": "Tab mileage uses local state and preserves loaded data",
+      "passed": true
+    },
+    {
+      "name": "Tab races uses local state and preserves loaded data",
+      "passed": true
+    },
+    {
+      "name": "Tab results uses local state and preserves loaded data",
+      "passed": true
+    },
+    {
+      "name": "Tab albums uses local state and preserves loaded data",
+      "passed": true
+    },
+    {
+      "name": "Empty profile response remains complete and usable",
+      "passed": true
+    },
+    {
+      "name": "Empty mileage response remains complete and usable",
+      "passed": true
+    },
+    {
+      "name": "Empty races response remains complete and usable",
+      "passed": true
+    },
+    {
+      "name": "Empty results response remains complete and usable",
+      "passed": true
+    },
+    {
+      "name": "Empty albums response remains complete and usable",
+      "passed": true
+    },
+    {
+      "name": "Unknown tabs and race filters are ignored",
+      "passed": true
+    },
+    {
+      "name": "Race filter all matches existing mark semantics",
+      "passed": true
+    },
+    {
+      "name": "Race filter wish matches existing mark semantics",
+      "passed": true
+    },
+    {
+      "name": "Race filter upcoming matches existing mark semantics",
+      "passed": true
+    },
+    {
+      "name": "Race filter finished matches existing mark semantics",
+      "passed": true
+    },
+    {
+      "name": "Unsuccessful draw remains visible in all but is neither wish nor upcoming",
+      "passed": true
+    },
+    {
+      "name": "Past registration, abandoned race and future completion avoid incorrect upcoming/finished filters",
+      "passed": true
+    },
+    {
+      "name": "Today successful draw remains an upcoming race using Beijing date",
+      "passed": true
+    },
+    {
+      "name": "Current Beijing period blocks advance and future date selection",
+      "passed": true
+    },
+    {
+      "name": "Historical month navigates across year then blocks future month",
+      "passed": true
+    },
+    {
+      "name": "Daily/week/year/all switches request correct range; all has no period advance",
+      "passed": true
+    },
+    {
+      "name": "Future or unknown deep-link options fall back safely",
+      "passed": true
+    },
+    {
+      "name": "Authenticated photo preview contains only current visible photo items",
+      "passed": true
+    },
+    {
+      "name": "Race, album and training-group actions preserve stable identifiers",
+      "passed": true
+    },
+    {
+      "name": "Other member cannot open editor or submit introduction",
+      "passed": true
+    },
+    {
+      "name": "Own introduction saves trimmed text using safe self endpoint",
+      "passed": true
+    },
+    {
+      "name": "Introduction limit counts Unicode codepoints and blocks >300",
+      "passed": true
+    },
+    {
+      "name": "Unsent introduction survives statistics refresh, cancel restores saved introduction",
+      "passed": true
+    },
+    {
+      "name": "Saving locks date/range changes and cancel, and prevents duplicate PUT",
+      "passed": true
+    },
+    {
+      "name": "Save failure preserves draft and allows retry",
+      "passed": true
+    },
+    {
+      "name": "Latest successful request wins over stale success",
+      "passed": true
+    },
+    {
+      "name": "Latest successful request wins over stale error",
+      "passed": true
+    },
+    {
+      "name": "Hide/unload invalidates in-flight response",
+      "passed": true
+    },
+    {
+      "name": "Account switch clears old profile/draft and ignores old success",
+      "passed": true
+    },
+    {
+      "name": "Error response clears old media and retry restores profile",
+      "passed": true
+    },
+    {
+      "name": "Mileage board member navigation carries selected period and mileage tab",
+      "passed": true
+    },
+    {
+      "name": "Historical report rows and export preserve date and stable userId",
+      "passed": true
+    },
+    {
+      "name": "Club member and attendance navigation uses userId rather than nickname",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "finishedAt": "2026-11-11T08:01:55.409Z"
+}

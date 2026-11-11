@@ -1,4 +1,5 @@
 const { request } = require("../../utils/request");
+const { today, number } = require("../../utils/mileage-board");
 
 Page({
   data: {
@@ -7,6 +8,7 @@ Page({
     report: null,
     range: "month",
     kind: "month",
+    reportDate: today(), today: today(), reportError: "",
     query: "",
     reason: "",
     rules: null,
@@ -58,9 +60,9 @@ Page({
         this.setData({ board: { ...data, people }, rules: data.rules || null, message: "" });
       })
       .catch((err) => { if (!err.stale) this.setData({ message: err.message }); });
-    this.safeRequest("/clubs/" + this.clubId + "/mileage/report?kind=" + this.data.kind)
-      .then((data) => this.setData({ report: data }))
-      .catch(() => {});
+    this.safeRequest("/clubs/" + this.clubId + "/mileage/report?kind=" + this.data.kind + "&date=" + this.data.reportDate)
+      .then((data) => this.setData({ report: { ...data, rows: (data.rows || []).map(row => ({ ...row, initial: String(row.nickname || "跑").slice(0, 1), kmLabel: number(row.km) })) }, reportError: "" }))
+      .catch((err) => { if (!err.stale) this.setData({ report: null, reportError: err.message }); });
   },
   pickRange(e) {
     this.setData({ range: e.currentTarget.dataset.range });
@@ -69,6 +71,16 @@ Page({
   pickKind(e) {
     this.setData({ kind: e.currentTarget.dataset.kind });
     this.load();
+  },
+  pickReportDate(e) {
+    const date = e.detail.value;
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(date) || date > today()) return;
+    this.setData({ reportDate: date }); this.load();
+  },
+  openReportMember(e) {
+    const userId = e.currentTarget.dataset.id;
+    if (!userId) return;
+    wx.navigateTo({ url: "/pages/member-profile/member-profile?club=" + encodeURIComponent(this.clubId) + "&user=" + encodeURIComponent(userId) + "&tab=mileage&range=" + this.data.kind + "&date=" + this.data.reportDate });
   },
   onQuery(e) {
     this.setData({ query: e.detail.value });
@@ -133,7 +145,7 @@ Page({
   },
   exportSheet() {
     const empty = this.data.includeEmpty ? "&empty=1" : "";
-    this.safeRequest("/clubs/" + this.clubId + "/mileage/export?kind=" + this.data.kind + "&json=1" + empty)
+    this.safeRequest("/clubs/" + this.clubId + "/mileage/export?kind=" + this.data.kind + "&date=" + this.data.reportDate + "&json=1" + empty)
       .then((data) => {
         wx.setClipboardData({
           data: data.text || "",

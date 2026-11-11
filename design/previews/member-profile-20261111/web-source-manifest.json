@@ -1,0 +1,45 @@
+{
+  "scope": "Final Web source hashes after upcoming excludes wish; Mini source/native hashes remain separately recorded in mini-source-manifest.json",
+  "hashAlgorithm": "sha256",
+  "files": [
+    {
+      "file": "web/src/views/ClubMember.vue",
+      "sha256": "e17550c1ccfa802a1eaca03f98ab118af0ab66d5ba0f5e115bb8a91183439626"
+    },
+    {
+      "file": "web/src/member-profile-navigation.js",
+      "sha256": "26fa4f603f165086ad4b68e25ac41f1d46b63d6124cde9c5dc4efb43d8fcec6c"
+    },
+    {
+      "file": "web/src/components/MileageBoard.vue",
+      "sha256": "655fd8fec21f749fc20f15a81bcdbb7b78565c2c71cf486e414a9799115e700b"
+    },
+    {
+      "file": "web/src/views/Club.vue",
+      "sha256": "973ddac28965f2e8a3b6c9e088d313ff7e154a21d1629021625ad800a98e76d6"
+    },
+    {
+      "file": "web/src/views/Activity.vue",
+      "sha256": "7ff87998e5f83c7d9edd4666dcffa732466a5cdb31429e338eb02fb63662900f"
+    },
+    {
+      "file": "web/src/views/Meetup.vue",
+      "sha256": "8103c27d9f48596354bace244cba74959c0bd31a8ac3868fc5db3c452f3a6bde"
+    },
+    {
+      "file": "web/src/views/Internal.vue",
+      "sha256": "5f24c004e151ffc893ecd8ebfd8925e4516dfa4ff83ff75370d00d323397b33b"
+    },
+    {
+      "file": "web/src/views/Call.vue",
+      "sha256": "62d63412babd34f20dcb424e7d5545bb1868d35fdbc0dddce12bba50ebfefd2b"
+    }
+  ],
+  "build": "npm run build PASS; build output recorded in /tmp/member-profile-web-build-20261111.log",
+  "targetedRefresh": "web-gallery/races-refresh-report.json",
+  "otherWebChecks": [
+    "web-gallery/report.json",
+    "web-smoke/report.json",
+    "independent-web/report.json"
+  ]
+}

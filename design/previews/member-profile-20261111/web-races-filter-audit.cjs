@@ -1,0 +1,28 @@
+// Isolated actual-Vue screenshot capture. No request reaches any business API.
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),{spawn}=require('node:child_process');
+const root=process.cwd(),{chromium}=require(path.join(root,'node_modules/playwright-core')),f=require(path.join(root,'design/previews/member-profile-20261111/fixture.cjs'));
+const out=path.join(root,'design/previews/member-profile-20261111/web-gallery');fs.mkdirSync(out,{recursive:true});
+const report={kind:'Actual Vue UI with isolated memory transport; all activity pictures are synthetic illustrations',checks:[],screenshots:[],errors:[],unexpected:[]};let vite,browser;const pause=ms=>new Promise(r=>setTimeout(r,ms));
+const tabs=[['info','资料'],['mileage','跑量'],['races','赛事'],['results','成绩'],['album','相册']];
+async function shot(page,name,width){await page.waitForTimeout(140);await page.evaluate(()=>{document.documentElement.style.scrollBehavior='auto';window.scrollTo({top:0,left:0,behavior:'instant'});});await page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));const size=await page.evaluate(()=>({width:innerWidth,scroll:document.documentElement.scrollWidth}));assert.ok(size.scroll<=size.width+1,JSON.stringify(size));const file=name+'-'+width+'.png';await page.screenshot({path:path.join(out,file),fullPage:true});report.screenshots.push(file);}
+(async()=>{try{
+ vite=spawn(process.execPath,[path.join(root,'web/node_modules/vite/bin/vite.js'),'--host','127.0.0.1','--port','5193','--strictPort'],{cwd:path.join(root,'web'),stdio:'ignore'});const base='http://127.0.0.1:5193/marathon';let ready;for(let i=0;i<60;i++){try{ready=(await fetch(base+'/')).ok;}catch{}if(ready)break;await pause(100);}assert.ok(ready);browser=await chromium.launch({executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',headless:true,args:['--no-sandbox']});
+ for(const width of [320,390]){
+  const context=await browser.newContext({viewport:{width,height:900},timezoneId:'America/New_York'});await context.addInitScript(()=>{Date.now=()=>Date.parse('2026-12-31T16:30:00Z');localStorage.setItem('marathon_token','isolated-gallery-only');});const page=await context.newPage(),state={empty:false,error:false,long:false};page.on('pageerror',e=>report.errors.push(e.message));
+  await page.route('**/*',async route=>{const u=new URL(route.request().url());if(!u.pathname.startsWith('/marathon/api/'))return u.origin==='http://127.0.0.1:5193'?route.continue():route.abort();const endpoint=u.pathname.replace('/marathon/api',''),q=Object.fromEntries(u.searchParams),send=(data,status=200)=>route.fulfill({status,contentType:'application/json',body:JSON.stringify(data)});
+   if(endpoint==='/legal')return send(require(path.join(root,'shared/legal-documents.json')));if(endpoint==='/me')return send({user:{id:1,nickname:'【模拟】晨光团长'},clubs:[{id:44,name:'【模拟】晨光跑团'}]});if(endpoint==='/me/feedback/summary')return send({total:0,unread:0});
+   if(/^\/media\//.test(endpoint)){const id=Number(endpoint.split('/').at(-1));return route.fulfill({status:200,contentType:'image/svg+xml',body:Buffer.from(f.art(id%2?'#dcefe5':'#d9eafb').split(',')[1],'base64')});}
+   if(/^\/clubs\/44\/members\/\d+\/profile$/.test(endpoint)){if(state.error)return send({error:'成员暂时无法查看，请重新加载'},503);const p=f.profile({...q,empty:state.empty,long:state.long,mine:endpoint.includes('/members/1/')});p.user.nickname='【模拟】'+p.user.nickname;return send(p);}
+   if(endpoint==='/clubs/44')return send(f.clubFixture(44));if(endpoint==='/clubs/44/mileage/board')return send(f.boardFixture(q));
+   if(endpoint==='/clubs/44/mileage')return send({rank:[],groups:[],feed:[],members:6,totalKm:12000,totalCount:1200,staff:true,owner:true});
+   if(endpoint==='/clubs/44/mileage/report'){const board=f.boardFixture({range:q.kind,date:q.date});return send({title:board.period.label+({week:'周报',month:'月报',year:'年报'}[q.kind]),rows:board.rank.map(r=>({...r,nickname:'【模拟】'+r.nickname,dayText:r.days+' / '+r.times,durationLabel:'12:00:00',flag:'达标'})),total:{km:board.summary.km,dayText:'—',durationLabel:'72:00:00',paceLabel:'6:00'}});}
+   if(endpoint==='/clubs/44/fees')return send({current:null,history:[]});if(/\/attendance$/.test(endpoint))return send({rows:[],me:{count:0}});if(/\/(calls|meetups|internals|posts|albums)$/.test(endpoint))return send({calls:[],meetups:[],races:[],posts:[],albums:[]});
+   report.unexpected.push(endpoint);return send({error:'Unmocked '+endpoint},500);
+  });
+  await page.goto(base+'/clubs/44/members/2?profileTab=races');await page.locator('.profile-tabs').waitFor();assert.equal(await page.locator('.profile-race-card').count(),5);await shot(page,'races',width);
+  const filters=page.getByRole('navigation',{name:'成员赛事筛选'});await filters.getByRole('button',{name:'待参赛',exact:true}).click();assert.equal(await page.locator('.profile-race-card').count(),1);assert.match(await page.locator('.profile-race-card').innerText(),/中签/);await shot(page,'races-upcoming',width);
+  await filters.getByRole('button',{name:'想跑',exact:true}).click();assert.equal(await page.locator('.profile-race-card').count(),1);assert.match(await page.locator('.profile-race-card').innerText(),/想跑/);await shot(page,'races-wish',width);report.checks.push(width+' wish and upcoming are disjoint; all races retain five records');
+  await context.close();
+ }
+ assert.deepEqual(report.errors,[]);assert.deepEqual(report.unexpected,[]);report.passed=true;
+}catch(e){report.passed=false;report.error=e.stack;process.exitCode=1;}finally{fs.writeFileSync(path.join(out,'races-refresh-report.json'),JSON.stringify(report,null,2));await browser?.close();vite?.kill('SIGTERM');console.log(JSON.stringify(report,null,2));}})();

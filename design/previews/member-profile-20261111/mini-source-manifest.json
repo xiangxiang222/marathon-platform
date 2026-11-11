@@ -1,0 +1,81 @@
+{
+  "createdAt": "2026-11-11T08:02:04.234Z",
+  "files": [
+    {
+      "file": "miniprogram/pages/member-profile/member-profile.js",
+      "sha256": "e6c18b4ac7420d1c5c22f8f6a39c4aabf5c1885e9b10dba46887534640eab900"
+    },
+    {
+      "file": "miniprogram/pages/member-profile/member-profile.wxml",
+      "sha256": "f382a18db899f70886dae92181328fc81a0b257097d7c31ff944ccd2a3b617d5"
+    },
+    {
+      "file": "miniprogram/pages/member-profile/member-profile.wxss",
+      "sha256": "d4615db4ab8873d9ceb3a8a75da8d27c67f2fc5e809e154f906cb0697aa14ce8"
+    },
+    {
+      "file": "miniprogram/pages/member-profile/member-profile.json",
+      "sha256": "39c5bfdb8f4f1367ad103519b7bd0d181e56ee52acb92ebdc91ff3a42bd9159c"
+    },
+    {
+      "file": "miniprogram/pages/mileage/mileage.js",
+      "sha256": "ffd12e63e7d01c5744269266905385b2c77de0f9355086ed4e3179f496261507"
+    },
+    {
+      "file": "miniprogram/pages/mileage/mileage.wxml",
+      "sha256": "c4dbc0206d873829b1f33dedd239d6477361cb604e304565ea6a9fac83019af5"
+    },
+    {
+      "file": "miniprogram/pages/mileage/mileage.wxss",
+      "sha256": "286ca1d0d7a93452a050c79453bb86dc9f0dc3f4549bcd9aa9171ce3e7669cb9"
+    },
+    {
+      "file": "miniprogram/pages/mileage/mileage.json",
+      "sha256": "0431a1a6a17347db167fcb6a73a66fecc4955e1175a7628e49dd7a6255a7d223"
+    },
+    {
+      "file": "miniprogram/pages/club/club.js",
+      "sha256": "5f765b7d10b03d3cfac45e0d7f1ae918db5f29a428d96743532a328dfe9c57ef"
+    },
+    {
+      "file": "miniprogram/pages/club/club.wxml",
+      "sha256": "b581b98ffc6876187e16fcc2b58eadc15a85083767d41ef9e438759ec41eba3c"
+    },
+    {
+      "file": "miniprogram/pages/club/club.wxss",
+      "sha256": "a6fabbfda0ee882794550032651b7eb98242bdcd94d6d72ffa269e231d29f3d9"
+    },
+    {
+      "file": "miniprogram/pages/club/club.json",
+      "sha256": "8136ae9ae39acbe53ea6af77e6a2c43ddf134768ba7984a72ef98c269bb87776"
+    },
+    {
+      "file": "miniprogram/components/mileage-board/mileage-board.js",
+      "sha256": "0b6222b9bb3e4be7d9ab975f507f545ca4525b6d41a3d5d19a64051af35eb316"
+    },
+    {
+      "file": "miniprogram/components/mileage-board/mileage-board.wxml",
+      "sha256": "0ead2ab5ff0e9e43fa7da4acaa6f36313c3ade75e6dc36c2681381dbe4865c9b"
+    },
+    {
+      "file": "miniprogram/components/mileage-board/mileage-board.wxss",
+      "sha256": "f888b39329b5b40d51bf4b963e7801807ca88e028706e226b206ca1f900856a2"
+    },
+    {
+      "file": "miniprogram/components/mileage-board/mileage-board.json",
+      "sha256": "e7b657f5a4b032a68e9e084639b3a5564ce552896d269c3f8c4463bf7a7fa3b5"
+    },
+    {
+      "file": "miniprogram/utils/member-profile.js",
+      "sha256": "9017cc5809c3aac62e692e9877eb7c543f830e2be851aea6fa5837d37f0cc667"
+    },
+    {
+      "file": "miniprogram/utils/mileage-board.js",
+      "sha256": "ccbf63f2595941f4bad0a29bce65c226d669de3cf780b70e2e91490ad2afc047"
+    },
+    {
+      "file": "miniprogram/utils/mileage-pages.wxss",
+      "sha256": "2528a249d34ba0fa03dc990aa5b21b9aeca68720a99733305533a59e06e55575"
+    }
+  ]
+}
