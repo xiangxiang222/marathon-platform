@@ -3,45 +3,41 @@
     <header class="topbar club-topbar">
       <router-link to="/clubs" class="club-back" aria-label="返回我的跑团"><RunnerIcon name="back" /></router-link>
       <router-link to="/clubs" class="club-switch">我的跑团 <span>切换跑团⌄</span></router-link>
-      <span class="topbar-end" aria-hidden="true"></span>
+      <button v-if="club && club.publicStatus !== 'restricted'" type="button" class="top-invite hero-invite" :disabled="inviting" @click="copyInvite">邀请 <span>+</span></button><span v-else class="topbar-end" aria-hidden="true"></span>
     </header>
     <div v-if="loading && !club" class="club-loading" role="status"><span class="loading-ring"></span><b>正在打开跑团</b><p>准备活动与团友信息</p></div>
     <section v-if="club" class="club-hero">
-      <div class="hero-topline"><p class="club-eyebrow">一起跑，更远一点</p><router-link to="/clubs" class="hero-switch">切换跑团 <span>⇄</span></router-link></div>
-      <svg class="hero-track" viewBox="0 0 180 210" fill="none" aria-hidden="true"><rect x="18" y="-25" width="142" height="260" rx="71"/><rect x="34" y="-9" width="110" height="228" rx="55"/><rect x="50" y="7" width="78" height="196" rx="39"/></svg>
       <div class="club-identity">
         <span class="club-letter" aria-hidden="true">{{ club.name.slice(0, 1) }}</span>
-        <div class="club-identity-copy"><div class="club-name-line"><h1>{{ club.name }}</h1><span class="role-badge">{{ club.roleLabel }}</span></div><ClubVerificationBadge :club="club" /><p class="club-leader">{{ members.length }} 位成员<span class="meta-divider">·</span>团长 {{ leaderName }}</p></div>
+        <div class="club-identity-copy"><h1>{{ club.name }}</h1><p class="club-location"><span>{{ club.city || "城市待补充" }}</span><span class="meta-divider">·</span><span class="club-number">团号 #{{ club.id }}</span></p><p class="club-leader"><span class="role-badge">{{ club.roleLabel }}</span><span>负责人 {{ leaderName || '待补充' }}</span></p><ClubVerificationBadge :club="club" /></div>
       </div>
-      <p class="club-location"><RunnerIcon name="footprints" /><span>{{ club.city || "城市待补充" }}</span><span class="meta-divider">/</span><span class="club-number">团号 #{{ club.id }}</span></p>
       <div class="hero-bottom">
-        <button class="club-avatars" type="button" @click="go('people')" aria-label="查看跑团成员">
-          <span v-for="member in members.slice(0, 4)" :key="member.id" class="club-avatar"><img v-if="member.avatar" :src="member.avatar" :alt="member.nickname" /><template v-else>{{ member.nickname.slice(0, 1) }}</template></span>
-          <span class="avatar-caption">同频，一起跑 <i>›</i></span>
+        <button class="club-avatars" type="button" @click="openMembers" :aria-label="'查看全部 ' + members.length + ' 位跑团成员'">
+          <span class="avatar-stack" aria-hidden="true"><span v-for="member in members.slice(0, 4)" :key="member.id" class="club-avatar"><img v-if="member.avatar" :src="member.avatar" alt="" /><template v-else>{{ member.nickname.slice(0, 1) }}</template></span></span>
+          <span class="avatar-caption"><b>{{ members.length }}</b> 位成员</span><span class="member-entry-label">查看全部 <i>›</i></span>
         </button>
-        <button v-if="club.publicStatus !== 'restricted'" type="button" class="top-invite hero-invite" :disabled="inviting" @click="copyInvite">邀请跑友 <span>↗</span></button>
       </div>
     </section>
     <section v-if="club && club.publicStatus !== 'restricted' && route.query.created === '1'" class="block created-welcome"><p>你的跑团，今天开始</p><h2>先邀请第一位跑友</h2><p>{{ club.city || "城市待补充" }} · 负责人 {{ leaderName }} · 团号 #{{ club.id }}</p><button class="primary" type="button" :disabled="inviting" @click="copyInvite">邀请第一位跑友</button><router-link :to="'/clubs/' + club.id + '/activities/new'">发布第一次约跑 →</router-link><router-link :to="'/clubs/' + club.id + '/identity'">已有线下跑团？核验组织身份 ›</router-link></section>
     <nav v-if="club" class="seg primary-tabs" aria-label="跑团导航">
       <button v-for="item in mainTabs" :key="item.id" type="button" :class="{ on: activeMainTab === item.id }" :aria-current="activeMainTab === item.id ? 'page' : undefined" @click="go(item.id)">{{ item.label }}<span v-if="item.id === 'people' && club.staff && requests.length" class="tab-dot"></span></button>
     </nav>
-    <div v-if="club && ['album', 'feed', 'partner'].includes(tab)" class="service-heading"><button type="button" @click="go('overview')"><RunnerIcon name="back" />返回今日</button><h2>{{ serviceTitle }}</h2></div>
+    <div v-if="club && ['album', 'feed', 'partner'].includes(tab)" class="service-heading"><button type="button" @click="go('overview')"><RunnerIcon name="back" />返回概览</button><h2>{{ serviceTitle }}</h2></div>
     <section v-if="club && tab === 'overview'" class="overview">
       <button v-if="club.staff && requests.length" class="review-reminder" type="button" @click="go('people')"><span class="reminder-dot"></span><b>{{ requests.length }} 位跑友等你审核</b><span>去处理 ›</span></button>
-      <div class="section-head"><div><p class="section-eyebrow">即将开始</p><h2>下一场，一起跑</h2></div><button type="button" @click="go('act')">全部活动 <span>›</span></button></div>
+      <div class="section-head"><h2>团练安排</h2><button type="button" @click="go('act')">全部活动 <span>›</span></button></div>
       <router-link v-if="nextActivity" class="next-activity" :to="'/clubs/' + club.id + '/activities/' + nextActivity.id">
-        <div class="next-topline"><span class="activity-kind">团练</span><span class="activity-status" :class="{ signed: nextActivity.mine && nextActivity.mine.signed }">{{ nextActivity.mine && nextActivity.mine.signed ? '我已报名' : nextActivity.statusLabel }}</span></div>
-        <h3>{{ nextActivity.title }}</h3><p class="next-time">{{ nextActivity.dateLabel }} <b>{{ nextActivity.clockLabel }}</b></p>
+        <div class="next-topline"><span class="activity-kind" :class="{ live: nextActivityIsLive }"><i v-if="nextActivityIsLive" aria-hidden="true"></i>{{ nextActivityIsLive ? '正在进行' : '下一场团练' }}</span><span class="activity-status">{{ nextActivity.statusLabel }}</span></div>
+        <h3>{{ nextActivity.title }}</h3><div class="next-detail"><RunnerIcon name="calendar" /><p class="next-time">{{ nextActivity.dateLabel }} <b>{{ nextActivity.clockLabel }}</b></p></div>
         <p class="next-place"><RunnerIcon name="footprints" />{{ nextActivity.place || '集合地点待定' }}<span v-if="nextActivity.plannedKm"> · {{ nextActivity.plannedKm }} 公里</span></p>
         <div class="next-footer"><span>{{ nextActivity.signupCount }} 位跑友已报名<template v-if="nextActivity.capacity"> · 上限 {{ nextActivity.capacity }} 人</template></span><b>{{ nextActivity.mine && nextActivity.mine.signed ? '查看报名' : '查看活动' }} <i>→</i></b></div>
       </router-link>
-      <div v-else class="next-empty"><svg class="empty-track" viewBox="0 0 124 180" fill="none" aria-hidden="true"><rect x="7" y="7" width="110" height="166" rx="55"/><rect x="22" y="22" width="80" height="136" rx="40"/><rect x="37" y="37" width="50" height="106" rx="25"/><path d="M65 128h51"/></svg><div class="next-empty-copy"><span class="next-kicker">NEXT RUN</span><h3>下一次相聚，<br/>从这里开始。</h3><p>{{ club.staff ? '约上团友，把一起跑变成日常。' : '和同频的跑友，找到下一次集合。' }}</p></div><router-link v-if="club.staff" :to="'/clubs/' + club.id + '/activities/new'">发布活动 <span>↗</span></router-link><button v-else type="button" @click="go('act', 'meetup')">看看约跑 <span>↗</span></button></div>
+      <div v-else class="next-empty"><span class="empty-icon"><RunnerIcon name="calendar" /></span><div class="next-empty-copy"><h3>暂无团练安排</h3><p>{{ club.staff ? '发布下一场团练，召集团友一起跑。' : '新的团练会显示在这里，也可以看看团内约跑。' }}</p><router-link v-if="club.staff" :to="'/clubs/' + club.id + '/activities/new'">发布活动 <span>+</span></router-link><button v-else type="button" @click="go('act', 'meetup')">看看约跑 <span>›</span></button></div></div>
       <div class="quick-actions" aria-label="常用功能">
         <button type="button" @click="go('act')"><span class="quick-icon"><RunnerIcon name="calendar" /></span><b>活动报名</b></button>
         <button type="button" @click="go('race')"><span class="quick-icon"><RunnerIcon name="career" /></span><b>赛事名单</b></button>
         <button type="button" @click="go('km')"><span class="quick-icon"><RunnerIcon name="stats" /></span><b>跑量排行</b></button>
-        <button type="button" @click="go('people')"><span class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="9" cy="8" r="3"/><path d="M3 20v-2a6 6 0 0 1 12 0v2m1-15a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 4v2"/></svg></span><b>跑团成员</b></button>
+        <button type="button" @click="openMembers"><span class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="9" cy="8" r="3"/><path d="M3 20v-2a6 6 0 0 1 12 0v2m1-15a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 4v2"/></svg></span><b>跑团成员</b></button>
       </div>
       <div class="club-moments"><div class="my-club-status"><button type="button" @click="openMyActivities"><span>我的待参加</span><b>{{ myUpcomingActivities.length }}<small>场团练</small></b></button><button type="button" @click="go('people', 'fees')"><span>本期会费</span><b class="status-word">{{ feeCurrent ? (feeCurrent.mine?.label || '待确认') : '暂未开设' }}<small>查看详情 ›</small></b></button></div>
       <details class="daily-card"><summary><span class="daily-icon"><RunnerIcon name="calendar" /></span><span><b>{{ checkedIn ? '今天已签到' : '日常到场签到' }}</b><small>{{ checkedIn ? '今天也和团友一起进步了' : '记录一起流汗的日子' }} · {{ todayCheckCount }} 位已到</small></span><i>{{ checkedIn ? '修改' : '签到' }} ›</i></summary>
@@ -457,7 +453,7 @@ const inviting = ref(false);
 const peopleView = ref("members");
 const memberQuery = ref("");
 const memberRole = ref("");
-const mainTabs = [{ id: "overview", label: "今日" }, { id: "act", label: "活动" }, { id: "race", label: "赛事" }, { id: "km", label: "跑量" }, { id: "people", label: "成员" }];
+const mainTabs = [{ id: "overview", label: "概览" }, { id: "act", label: "活动" }, { id: "race", label: "赛事" }, { id: "km", label: "跑量" }, { id: "people", label: "成员" }];
 const activityTabs = [{ id: "training", label: "团练" }, { id: "meetup", label: "约跑" }, { id: "internal", label: "队内赛" }];
 const memberFilters = [{ id: "", label: "全部" }, { id: "staff", label: "团长与管理" }, { id: "member", label: "成员" }];
 const activeMainTab = computed(() => ["album", "feed", "partner"].includes(tab.value) ? "overview" : tab.value);
@@ -480,6 +476,11 @@ async function go(next, view = "", section = "", onlyMine = false) {
   if (next === "act" && (view || "training") === "training" && onlyMine) query.mine = "1"; else delete query.mine;
   await router.replace({ path: route.path, query });
   if (section) { await nextTick(); document.getElementById("club-" + section)?.scrollIntoView({ behavior: "smooth", block: "start" }); }
+}
+function openMembers() {
+  memberQuery.value = "";
+  memberRole.value = "";
+  return go("people", "members");
 }
 const expanded = reactive({ call: false, activity: false, meetup: false, tiers: false, internal: false, fee: false, group: false, gift: false });
 const posts = ref([]);
@@ -628,6 +629,7 @@ function isAwaitingActivity(item, now = Date.now()) {
 const awaitingActivities = computed(() => activities.value.filter((item) => isAwaitingActivity(item)).slice().sort((a, b) => activityInstant(a.startsAt) - activityInstant(b.startsAt)));
 const upcomingActivities = computed(() => awaitingActivities.value.filter((item) => activityInstant(item.startsAt) >= Date.now()));
 const nextActivity = computed(() => awaitingActivities.value[0] || null);
+const nextActivityIsLive = computed(() => Boolean(nextActivity.value && activityInstant(nextActivity.value.startsAt) <= Date.now()));
 const myUpcomingActivities = computed(() => awaitingActivities.value.filter((item) => item.mine?.signed));
 function openMyActivities() {
   actQuery.value = ""; actStatus.value = ""; actDay.value = "";
@@ -1378,97 +1380,96 @@ onBeforeUnmount(() => { window.removeEventListener("storage", onClubAccount); wi
 .club-page button, .club-page .primary, .club-page .undo, .club-page .small-primary { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 44px; line-height: 1.2; font-size: 14px; }
 .club-page button:disabled { opacity: .48; }
 .club-page svg { width: 22px; height: 22px; flex: none; }
-.club-topbar { grid-template-columns: 36px 1fr auto; gap: 4px; min-height: 64px; padding: 8px 16px; background: var(--bg); border: 0; }
+.club-topbar { grid-template-columns: 36px 1fr auto; gap: 4px; min-height: 64px; padding: 8px 16px; background: #fff; border: 0; }
 .club-topbar .club-back { display: flex; align-items: center; justify-content: flex-start; min-height: 44px; }
 .club-topbar .club-switch { display: flex; align-items: center; gap: 9px; text-align: left; font-size: 15px; font-weight: 600; line-height: 1.4; }
 .club-switch span { padding-left: 9px; border-left: 1px solid var(--line); color: var(--club-muted); font-size: 12px; font-weight: 400; }
 .club-topbar .top-invite { padding: 0 10px; color: var(--accent); font-size: 13px; font-weight: 600; }
-.club-hero { position: relative; overflow: hidden; margin: 4px 16px 0; padding: 18px 20px 0; border: 1px solid var(--line); border-radius: 18px; background: #fff;  border-color: var(--line);}
-.hero-topline { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 22px; }
-.club-eyebrow { display: flex; align-items: center; gap: 7px; margin: 0; color: var(--muted); font-size: 12px; letter-spacing: .7px; line-height: 1.5; }
-.club-eyebrow::before { content: ''; width: 14px; height: 2px; border-radius: 2px; background: var(--accent); }
-.hero-switch { display: inline-flex; align-items: center; gap: 5px; min-height: 44px; color: var(--muted); font-size: 12px; }
-.hero-switch span { font-size: 17px; }
-.club-page .hero-track { position: absolute; top: 23px; right: -93px; width: 180px; height: 210px; stroke: #ffe4e0; stroke-width: 1; transform: rotate(28deg); pointer-events: none; }
-.club-identity { position: relative; display: flex; align-items: center; gap: 14px; z-index: 1; }
-.club-letter { display: grid; place-items: center; width: 64px; height: 64px; flex: none; border-radius: 14px; background: var(--accent); color: #fff; box-shadow: none; font-size: 30px; font-weight: 700; }
+/* The organization profile stays part of the white page header. */
+.club-hero { margin: 0; padding: 12px 20px 0; border: 0; border-radius: 0; background: #fff; }
+.club-identity { display: flex; align-items: flex-start; gap: 13px; }
+.club-letter { display: grid; place-items: center; width: 56px; height: 56px; flex: none; margin-top: 2px; border-radius: 16px; background: var(--accent); color: #fff; font-size: 25px; font-weight: 650; }
 .club-identity-copy { min-width: 0; flex: 1; }
-.club-name-line { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-.club-hero h1 { margin: 0; color: var(--ink); font-size: 26px; font-weight:600; line-height: 1.3; letter-spacing: -.8px; overflow-wrap: anywhere; }
-.club-leader { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; margin: 9px 0 0; color: var(--muted); font-size: 12px; line-height: 1.6; }
-.role-badge { display: inline-flex; align-items: center; min-height: 20px; padding: 2px 5px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); font-size: 12px; font-weight: 550; line-height: 1.2; }
-.club-location { position: relative; display: flex; align-items: center; gap: 6px; margin: 14px 0 18px 78px; color: var(--muted); font-size: 12px; line-height: 1.6; }
-.club-page .club-location svg { width: 13px; height: 13px; }
-.meta-divider { color: var(--muted); }
+.club-hero h1 { margin: 0; color: var(--ink); font-size: 25px; font-weight: 650; line-height: 1.3; letter-spacing: -.6px; overflow-wrap: anywhere; }
+.club-location { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; margin: 7px 0 0; color: var(--muted); font-size: 12px; line-height: 1.5; }
+.club-leader { display: flex; align-items: center; flex-wrap: wrap; gap: 7px; margin: 7px 0 0; color: var(--muted); font-size: 12px; line-height: 1.6; overflow-wrap: anywhere; }
+.role-badge { display: inline-flex; align-items: center; min-height: 19px; padding: 1px 5px; border-radius: 5px; background: var(--accent-soft); color: var(--accent); font-size: 11px; font-weight: 500; line-height: 1.4; }
+.meta-divider { color: #c4c4c8; }
 .club-number { font-variant-numeric: tabular-nums; }
-.hero-bottom { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 72px; border-top: 1px solid var(--line); }
-.club-page .club-avatars { justify-content: flex-start; gap: 0; min-width: 0; min-height: 44px; }
-.club-avatar { display: grid; flex: none; place-items: center; width: 27px; height: 27px; margin-right: -9px; overflow: hidden; border: 2px solid #fff; border-radius: 50%; color: #737373; background: #fff2f0; font-size: 12px; font-weight: 600; }
-.club-avatar:nth-child(even) { background: #f3f3f5; color: var(--muted); }
+.hero-bottom { margin-top: 17px; border-top: 1px solid #f2f2f4; }
+.club-page .club-avatars { justify-content: flex-start; width: 100%; min-width: 0; min-height: 56px; gap: 0; padding: 0; border: 0; border-radius: 0; background: transparent; text-align: left; }
+.avatar-stack { display: flex; align-items: center; padding-right: 8px; }
+.club-avatar { display: grid; flex: none; place-items: center; width: 28px; height: 28px; margin-right: -8px; overflow: hidden; border: 2px solid #fff; border-radius: 50%; color: #9b5b51; background: #fff2f0; font-size: 11px; font-weight: 550; }
+.club-avatar:nth-child(even) { background: #eef3f9; color: #6c7d91; }
 .club-avatar img { width: 100%; height: 100%; object-fit: cover; }
-.avatar-caption { margin-left: 15px; color: var(--muted); font-size: 12px; white-space: nowrap; }
-.avatar-caption i { margin-left: 3px; font-style: normal; }
-.club-page .hero-invite { flex: none; width: auto; min-height: 44px; padding: 0 14px; border-radius:12px; background: var(--accent); color: #fff; font-size: 12px; font-weight: 600; white-space: nowrap; }
-.hero-invite span { font-size: 17px; }
-.seg { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); margin: 0 16px; padding: 0 1px; background: transparent; border-bottom: 1px solid var(--line); }
-.club-page .seg button { position: relative; min-width: 0; min-height: 62px; padding: 0 5px; color: var(--ink-secondary); font-size: 15px; font-weight: 550; }
+.avatar-caption { margin-left: 11px; color: var(--muted); font-size: 12px; white-space: nowrap; }
+.avatar-caption b { color: var(--ink); font-weight: 600; }
+.member-entry-label { margin-left: auto; color: var(--muted); font-size: 12px; white-space: nowrap; }
+.member-entry-label i { margin-left: 4px; color: #9a9aa0; font-size: 19px; font-style: normal; vertical-align: -1px; }
+.club-page .hero-invite { flex: none; width: auto; min-height: 34px; margin: 0; padding: 0 10px; border: 1px solid #f0d1ce; border-radius: 9px; background: #fff; color: var(--accent); font-size: 12px; font-weight: 500; white-space: nowrap; }
+.hero-invite span { font-size: 16px; font-weight: 400; }
+.seg { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); margin: 0; padding: 0 16px; background: #fff; border-bottom: 1px solid #eeeef1; }
+.club-page .seg button { position: relative; min-width: 0; min-height: 54px; padding: 0 5px; color: var(--ink-secondary); font-size: 15px; font-weight: 550; }
 .club-page .seg button.on { color: #262626; font-weight: 700; }
 .seg button.on::after { content: ''; position: absolute; bottom: 0; left: calc(50% - 9px); width: 18px; height: 2px; border-radius: 4px; background: var(--accent); }
 .tab-dot { position: absolute; top: 9px; right: 13px; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
 .overview { padding: 0 16px 8px; }
 .section-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 23px 1px 12px; }
 .section-head h2 { margin: 0; color: var(--club-text); font-size: 18px; font-weight:600; line-height: 1.35; }
-.section-eyebrow { margin: 0 0 5px; color: var(--ink-secondary); font-size: 12px; font-weight: 600; letter-spacing: 1.8px; }
+.section-eyebrow { margin: 0 0 5px; color: var(--ink-secondary); font-size: 12px; font-weight: 600; letter-spacing: .4px; }
 .club-page .section-head button { min-height: 44px; color: var(--club-muted); font-size: 12px; }
 .section-head > button span { font-size: 19px; }
 .review-reminder { width: 100%; justify-content: flex-start!important; margin-top: 14px; padding: 8px 12px; border: 1px solid #ffe1dd; border-radius: 10px; background: #fff2f0; color: #b35b20; }
 .review-reminder b { font-size: 12px; font-weight: 550; }
 .review-reminder > span:last-child { margin-left: auto; font-size: 12px; }
 .reminder-dot { width: 6px; height: 6px; border-radius: 50%; background: #c87825; }
-.next-activity { position: relative; display: block; overflow: hidden; padding: 17px 18px 0; border: 1px solid var(--line); border-radius: 18px; background: var(--card); box-shadow: none;  border-color: var(--line);}
-.next-activity::after { content: ''; position: absolute; top: -18px; right: -58px; width: 150px; height: 150px; border: 1px solid #fae5e9; border-radius: 50%; box-shadow: 0 0 0 17px rgba(225,37,27,.018),0 0 0 34px rgba(225,37,27,.012); pointer-events: none; }
-.next-topline { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 8px; z-index: 1; }
-.activity-kind { padding: 3px 6px; border-radius: 5px; color: var(--accent); background: var(--accent-soft); font-size: 12px; font-weight: 600; }
-.activity-status { color: #c87825; font-size: 12px; font-weight: 500; }
+.next-activity { display: block; overflow: hidden; padding: 18px 18px 0; border: 0; border-radius: 16px; background: #fff; }
+.next-topline { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.activity-kind { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); font-size: 12px; font-weight: 500; }
+.activity-kind.live { color: #258062; }
+.activity-kind i { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+.activity-status { color: var(--muted); font-size: 12px; font-weight: 400; }
 .activity-status.signed, .act-topline b.signed { color: #258062; }
-.next-activity h3 { position: relative; margin: 13px 0 9px; color: var(--club-text); font-size: 21px; font-weight:600; line-height: 1.4; z-index: 1; overflow-wrap: anywhere; }
-.next-time { margin: 0; color: var(--ink); font-size: 14px; }
-.next-time b { margin-left: 7px; font-weight: 550; }
-.next-place { display: flex; align-items: center; flex-wrap: wrap; gap: 3px; margin: 8px 0 16px; color: var(--club-muted); font-size: 12px; }
-.next-place svg { width: 14px; height: 14px; }
-.next-footer { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 0 -18px; padding: 13px 17px; border-top: 1px solid #f7ebed; background: #fff; }
-.next-footer > span { color: var(--club-muted); font-size: 12px; line-height: 1.5; }
-.next-footer > b { flex: none; color: var(--accent); font-size: 12px; font-weight: 600; }
+.next-activity h3 { margin: 12px 0 15px; color: var(--ink); font-size: 21px; font-weight: 600; line-height: 1.4; letter-spacing: -.3px; overflow-wrap: anywhere; }
+.next-detail, .next-place { display: flex; align-items: flex-start; gap: 8px; }
+.club-page .next-detail svg, .club-page .next-place svg { width: 16px; height: 16px; margin-top: 2px; color: #96969e; }
+.next-time { margin: 0; color: var(--ink-secondary); font-size: 13px; line-height: 1.6; }
+.next-time b { margin-left: 6px; color: var(--ink); font-weight: 550; }
+.next-place { flex-wrap: wrap; gap: 3px 8px; margin: 9px 0 17px; color: var(--muted); font-size: 12px; line-height: 1.7; }
+.next-place > span { margin-left: -4px; }
+.next-footer { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 13px 0 14px; border-top: 1px solid #f2f2f4; }
+.next-footer > span { color: var(--muted); font-size: 12px; line-height: 1.5; }
+.next-footer > b { flex: none; color: var(--accent); font-size: 12px; font-weight: 500; }
 .next-footer i { margin-left: 4px; font-style: normal; }
-.next-empty { position: relative; display: grid; grid-template-columns: minmax(0,1fr); justify-items: start; gap: 18px; min-height: 220px; overflow: hidden; padding: 23px; border: 1px solid var(--line); border-radius: 18px; background: #fff8f7;  border-color: #ffe1dd;}
-.club-page .empty-track { position: absolute; right: -14px; top: 22px; width: 124px; height: 180px; stroke: #ffdcd6; stroke-width: 1; transform: rotate(23deg); pointer-events: none; }
-.next-empty-copy { position: relative; z-index: 1; }
-.next-kicker { display: block; margin-bottom: 10px; color: var(--accent); font-size: 12px; font-weight: 600; letter-spacing: 2.4px; }
-.next-empty h3 { margin: 0 0 9px; color: var(--ink); font-size: 23px; font-weight:600; line-height: 1.45; letter-spacing: -.5px; }
-.next-empty p { max-width: 230px; margin: 0; color: var(--muted); font-size: 13px; line-height: 1.7; }
-.next-empty > a, .club-page .next-empty > button { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 16px; width: auto; min-height: 44px; padding: 0 16px; border-radius:12px; color: #fff; background: var(--accent); font-size: 12px; font-weight: 600; }
-.next-empty > a span, .next-empty > button span { font-size: 17px; }
-.quick-actions { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); margin: 14px 0; padding: 19px 4px 16px; border: 1px solid var(--line); border-radius: 18px; background: #fff;  border-color: var(--line);}
-.club-page .quick-actions button { flex-direction: column; gap: 10px; min-width: 0; padding: 0 2px; }
-.quick-icon { display: grid; place-items: center; width: 30px; height: 30px; color: var(--accent); }
-.club-page .quick-icon svg { width: 25px; height: 25px; stroke-width: 1.5; }
-.quick-actions b { color: var(--ink-secondary); font-size: 12px; font-weight: 550; line-height: 1.5; }
-.club-moments { overflow: hidden; border: 1px solid var(--line); border-radius: 18px; background: #fff;  border-color: var(--line);}
-.my-club-status { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); padding: 20px 0; }
-.club-page .my-club-status button { align-items: flex-start; flex-direction: column; gap: 10px; padding: 0 20px; text-align: left; }
-.my-club-status button+button { border-left: 1px solid var(--line); }
+.next-empty { display: flex; align-items: flex-start; gap: 12px; padding: 22px 18px 17px; border: 0; border-radius: 16px; background: #fff; }
+.empty-icon { display: grid; place-items: center; flex: none; width: 38px; height: 38px; border-radius: 11px; color: #8c9daf; background: #f0f4f9; }
+.club-page .empty-icon svg { width: 21px; height: 21px; }
+.next-empty-copy { min-width: 0; }
+.next-empty h3 { margin: 0 0 6px; color: var(--ink); font-size: 16px; font-weight: 550; line-height: 1.5; }
+.next-empty p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.8; }
+.next-empty-copy > a, .club-page .next-empty-copy > button { display: inline-flex; align-items: center; gap: 7px; width: auto; min-height: 38px; margin-top: 5px; padding: 0; border-radius: 0; color: var(--accent); background: transparent; font-size: 12px; font-weight: 500; }
+.next-empty-copy > a span, .next-empty-copy > button span { font-size: 17px; }
+.quick-actions { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); margin: 12px 0; padding: 17px 4px 15px; border: 0; border-radius: 16px; background: #fff; }
+.club-page .quick-actions button { flex-direction: column; gap: 8px; min-width: 0; padding: 0 2px; }
+.quick-icon { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 11px; color: var(--accent); }
+.club-page .quick-icon svg { width: 22px; height: 22px; stroke-width: 1.5; }
+.quick-actions b { color: var(--ink-secondary); font-size: 12px; font-weight: 500; line-height: 1.5; }
+.club-moments { overflow: hidden; border: 0; border-radius: 16px; background: #fff; }
+.my-club-status { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); padding: 18px 0; }
+.club-page .my-club-status button { align-items: flex-start; flex-direction: column; gap: 8px; min-width: 0; padding: 0 18px; text-align: left; }
+.my-club-status button+button { border-left: 1px solid #f0f0f3; }
 .my-club-status span { color: var(--muted); font-size: 12px; }
-.my-club-status b { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px; color: var(--ink); font-size: 29px; font-weight: 600; font-variant-numeric: tabular-nums; line-height: 1.2; }
+.my-club-status b { display: flex; align-items: baseline; flex-wrap: wrap; gap: 5px; color: var(--ink); font-size: 25px; font-weight: 600; font-variant-numeric: tabular-nums; line-height: 1.2; }
 .my-club-status small { color: var(--muted); font-size: 12px; font-weight: 400; }
-.my-club-status b.status-word { font-size: 16px; line-height: 1.7; }
-.daily-card { margin: 0 18px; padding: 0; border-top: 1px solid var(--line); background: transparent; }
+.my-club-status b.status-word { font-size: 16px; line-height: 1.6; }
+.daily-card { margin: 0 18px; padding: 0; border-top: 1px solid #f0f0f3; background: transparent; }
 summary { list-style: none; cursor: pointer; }
 summary::-webkit-details-marker { display: none; }
-.daily-card summary { display: flex; align-items: center; gap: 11px; min-height: 79px; }
-.daily-icon { display: grid; place-items: center; width: 30px; height: 34px; color: var(--muted); }
-.daily-icon svg { width: 22px; height: 22px; }
+.daily-card summary { display: flex; align-items: center; gap: 10px; min-height: 76px; }
+.daily-icon { display: grid; place-items: center; width: 28px; height: 32px; color: #8f9d91; }
+.daily-icon svg { width: 21px; height: 21px; }
 .daily-card summary > span:nth-child(2) { display: grid; gap: 5px; flex: 1; min-width: 0; }
-.daily-card summary b { color: var(--ink); font-size: 13px; font-weight: 600; }
+.daily-card summary b { color: var(--ink); font-size: 13px; font-weight: 550; }
 .daily-card summary small { color: var(--muted); font-size: 12px; line-height: 1.5; }
 .daily-card summary i { color: var(--accent); font-size: 12px; font-style: normal; white-space: nowrap; }
 .daily-card[open] { padding-bottom: 16px; }
@@ -1610,7 +1611,30 @@ article { margin-top: 22px; padding-top: 15px; border-top: 1px solid var(--line)
 .loading-ring { width: 25px; height: 25px; margin-bottom: 18px; border: 2px solid var(--line); border-top-color: var(--accent); border-radius: 50%; animation: club-spin .8s linear infinite; }
 @keyframes club-spin { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce) { .loading-ring { animation: none; } }
-@media (max-width: 350px) { .club-topbar { padding-right: 10px; padding-left: 10px; } .club-switch span { display: none; } .club-hero { margin-right: 12px; margin-left: 12px; padding: 16px 16px 0;  border-radius: 18px; border-color: var(--line);} .club-eyebrow { font-size: 12px; letter-spacing: .3px; } .club-letter { width: 54px; height: 54px; border-radius: 14px; font-size: 27px;  box-shadow: none;} .club-hero h1 { font-size: 26px;  color: var(--ink);} .club-identity { gap: 11px; } .club-name-line { gap: 6px; } .club-location { margin-left: 65px; } .club-name-line .role-badge { font-size: 12px;  border-radius: 6px; color: var(--accent); background: var(--accent-soft);} .club-page .hero-invite { padding: 0 11px; } .hero-topline { margin-bottom: 18px; } .next-empty { padding: 21px;  border-radius: 18px; background: #fff8f7; border-color: #ffe1dd;} .next-empty h3 { font-size: 22px;  color: var(--ink);} .seg { margin-right: 12px; margin-left: 12px; } .club-avatar { width: 24px; height: 24px; margin-right: -9px; } .avatar-caption { margin-left: 13px; font-size: 12px; } .hero-bottom { gap: 7px; } .hero-publish { padding: 0 10px; font-size: 12px; } .overview { padding-right: 12px; padding-left: 12px; } .club-page .block { margin-right: 12px; margin-left: 12px; padding: 14px; } .quick-actions b { font-size: 12px;  color: var(--ink-secondary);} .section-head h2 { font-size: 17px; } .next-activity h3 { font-size: 19px; } .activity-heading { margin-right: 14px; margin-left: 14px; } .activity-heading p { max-width: 160px; } .club-page .secondary-tabs button { padding: 0 0; font-size: 12px;  border-bottom: 2px solid transparent;} .next-footer > span { max-width: 65%; } }
+@media (max-width: 350px) {
+  .club-topbar { padding-right: 12px; padding-left: 12px; }
+  .club-switch span { display: none; }
+  .club-hero { padding: 10px 16px 0; }
+  .club-letter { width: 44px; height: 44px; border-radius: 12px; font-size: 22px; }
+  .club-identity { gap: 10px; }
+  .club-hero h1 { font-size: 23px; }
+  .club-page .hero-invite { padding: 0 8px; }
+  .club-avatar { width: 25px; height: 25px; }
+  .avatar-caption { margin-left: 9px; }
+  .seg { padding-right: 12px; padding-left: 12px; }
+  .overview { padding-right: 12px; padding-left: 12px; }
+  .club-page .block { margin-right: 12px; margin-left: 12px; padding: 14px; }
+  .section-head h2 { font-size: 17px; }
+  .next-activity { padding-right: 16px; padding-left: 16px; }
+  .next-activity h3 { font-size: 19px; }
+  .next-empty { padding-right: 16px; padding-left: 16px; }
+  .next-footer > span { max-width: 65%; }
+  .club-page .my-club-status button { padding-right: 14px; padding-left: 14px; }
+  .daily-card { margin-right: 14px; margin-left: 14px; }
+  .activity-heading { margin-right: 14px; margin-left: 14px; }
+  .activity-heading p { max-width: 160px; }
+  .club-page .secondary-tabs button { font-size: 12px; }
+}
 
 .club-page .activities-share { padding: 6px 15px; }
 .share-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 44px; }
@@ -1632,23 +1656,11 @@ article { margin-top: 22px; padding-top: 15px; border-top: 1px solid var(--line)
 .created-welcome{background:linear-gradient(130deg,#fff,var(--accent-soft));border:1px solid var(--line)}.created-welcome>p{font-size:12px;color:var(--muted);line-height:1.9}.created-welcome>a,.identity-manage-entry>a{display:flex;align-items:center;min-height:44px;color:var(--accent);font-size:12px}.created-welcome .primary{min-height:46px;width:100%;margin:8px 0}.created-welcome h2{font-size:20px}
 
 
-/* A club card in peach, followed by cool, easy-to-scan service sections. */
-.club-page,.club-topbar { background:transparent; }
-.club-hero { background:linear-gradient(130deg,#fff4e9,#fffaf6 64%,#fff);border-color:#f0d9cb;box-shadow:var(--card-shadow,0 8px 26px #79533410); }
-.club-page .hero-track { stroke:#eebea3;opacity:.65; }
-.club-letter { background:linear-gradient(140deg,#f05a3d,#e1251b);box-shadow:0 5px 14px #e1251b1c; }
-.hero-bottom { border-color:#eddbce; }
-.role-badge { background:#ffffffb3;border:1px solid #f3ccbf; }
-.next-activity { background:#fff;border-color:#d4e8dd;box-shadow:var(--card-shadow,0 5px 20px #467b6310); }
-.next-empty { background:linear-gradient(125deg,#fff6eb,#fff);border-color:#efddc9; }
-.empty-track { stroke:#dfbd99;opacity:.65; }
-.quick-actions { background:#fff;border-color:#e4eaf1;box-shadow:var(--card-shadow,0 4px 16px #454c7008); }
+/* Small icon accents keep the content surfaces quiet. */
 .quick-actions>button:nth-child(1) .quick-icon { background:var(--peach-soft,#fff0e7);color:#c74531; }
 .quick-actions>button:nth-child(2) .quick-icon { background:var(--sun-soft,#fff4d7);color:#98681b; }
 .quick-actions>button:nth-child(3) .quick-icon { background:var(--mint-soft,#e9f7f2);color:#267b63; }
 .quick-actions>button:nth-child(4) .quick-icon { background:var(--sky-soft,#eaf4ff);color:#356fa9; }
-.overview-row { background:#fff;border-color:#e8e1f3; }
-.daily-card { background:#fff;border-color:#e7eaf0; }
 .service-grid button:nth-child(3n+1) svg { color:#c44635; }.service-grid button:nth-child(3n+2) svg { color:#347ca5; }.service-grid button:nth-child(3n) svg { color:#3b8c71; }
 .fee-panel { background:#fff; }.requests-block { background:#fff; }
 </style>

@@ -1,0 +1,197 @@
+{
+  "kind": "Mocked club navigation browser regression; no business database writes",
+  "checks": [
+    {
+      "width": 320,
+      "name": "current and future signed activities only; invalid/past/cancelled excluded; mine URL survives refresh",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "name": "header avatars/count always opens all members and clears dirty search, staff filter, fees/manage, legacy section/mine",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "name": "overview activity semantics: live",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "name": "overview activity semantics: future",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "name": "overview activity semantics: expired",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "name": "overview activity semantics: empty",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "name": "long club name, real/fallback avatars and full member entry fit viewport",
+      "passed": true,
+      "layout": {
+        "document": 320,
+        "hero": {
+          "left": 0,
+          "right": 320
+        },
+        "members": {
+          "left": 16,
+          "right": 304
+        },
+        "avatars": 4,
+        "loaded": true
+      }
+    },
+    {
+      "width": 320,
+      "name": "activity/member subnavigation, history return and missing fee mine field remain usable",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "name": "native public-card sharing, silent cancellation and real copy fallback",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "name": "late previous-club fee response cannot overwrite switched club or expose old data; no horizontal overflow",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "name": "current and future signed activities only; invalid/past/cancelled excluded; mine URL survives refresh",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "name": "header avatars/count always opens all members and clears dirty search, staff filter, fees/manage, legacy section/mine",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "name": "overview activity semantics: live",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "name": "overview activity semantics: future",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "name": "overview activity semantics: expired",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "name": "overview activity semantics: empty",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "name": "long club name, real/fallback avatars and full member entry fit viewport",
+      "passed": true,
+      "layout": {
+        "document": 390,
+        "hero": {
+          "left": 0,
+          "right": 390
+        },
+        "members": {
+          "left": 20,
+          "right": 370
+        },
+        "avatars": 4,
+        "loaded": true
+      }
+    },
+    {
+      "width": 390,
+      "name": "activity/member subnavigation, history return and missing fee mine field remain usable",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "name": "native public-card sharing, silent cancellation and real copy fallback",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "name": "late previous-club fee response cannot overwrite switched club or expose old data; no horizontal overflow",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "name": "current and future signed activities only; invalid/past/cancelled excluded; mine URL survives refresh",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "name": "header avatars/count always opens all members and clears dirty search, staff filter, fees/manage, legacy section/mine",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "name": "overview activity semantics: live",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "name": "overview activity semantics: future",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "name": "overview activity semantics: expired",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "name": "overview activity semantics: empty",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "name": "long club name, real/fallback avatars and full member entry fit viewport",
+      "passed": true,
+      "layout": {
+        "document": 1440,
+        "hero": {
+          "left": 505,
+          "right": 935
+        },
+        "members": {
+          "left": 525,
+          "right": 915
+        },
+        "avatars": 4,
+        "loaded": true
+      }
+    },
+    {
+      "width": 1440,
+      "name": "activity/member subnavigation, history return and missing fee mine field remain usable",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "name": "native public-card sharing, silent cancellation and real copy fallback",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "name": "late previous-club fee response cannot overwrite switched club or expose old data; no horizontal overflow",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "unexpected": [],
+  "passed": true
+}

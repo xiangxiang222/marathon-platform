@@ -5,27 +5,20 @@ const path = require("node:path");
 const { spawn } = require("node:child_process");
 const { chromium } = require("playwright-core");
 const ROOT = path.resolve(__dirname, "../..");
+const overviewFixture = require('./club-overview-fixture.cjs');
+const output = path.resolve(ROOT, process.env.CLUB_AUDIT_OUT || 'design/previews/club-overview-20261111');
+fs.mkdirSync(output, { recursive: true });
 const base = (process.env.MARATHON_PREVIEW_URL || "http://127.0.0.1:5174/marathon").replace(/\/$/, "");
-const now = Date.parse("2026-10-30T00:00:00Z"); // 08:00 Beijing; browser intentionally uses New York.
+const now = overviewFixture.now; // 08:00 Beijing; browser intentionally uses New York.
 const report = { kind: "Mocked club navigation browser regression; no business database writes", checks: [], errors: [], unexpected: [] };
 let vite;
-const activity = (id, title, startsAt, status, endsAt = "", signed = true) => ({ id, title, startsAt, endsAt, status, mine: { signed }, date: startsAt.slice(0, 10), dateLabel: startsAt.slice(0, 10), clockLabel: startsAt.slice(11), signupCount: 1, capacity: 0, place: "南门", plannedKm: 10, statusLabel: status === "live" ? "进行中" : "报名中" });
-const activities = [
-  activity(101, "明天已报名", "2026-10-31 07:00", "open"),
-  activity(102, "今天正在进行", "2026-10-30 07:00", "live", "2026-10-30 09:00"),
-  activity(103, "多年以前未结束", "2024-10-30 07:00", "live"),
-  activity(104, "已取消的未来场", "2026-11-01 07:00", "cancelled"),
-  activity(105, "结束场", "2026-11-01 07:00", "ended"),
-  activity(106, "无效日历日期", "2026-02-30 07:00", "live"),
-  activity(107, "当天未填结束时间", "2026-10-30 06:00", "live"),
-  activity(108, "未来无效结束时间", "2026-11-02 07:00", "open", "bad-date"),
-  activity(109, "未报名的明天", "2026-11-01 07:00", "open", "", false)
-];
+let activities = overviewFixture.activities;
+let longName = false;
 const period = (id, name, open = true) => ({ id, name, amount: 100, startsOn: "2026-01-01", endsOn: "2026-12-31", open, groups: [] }); // missing mine is deliberate
 function fixture(id) {
   return {
-    club: { id, name: id === 44 ? "晨光跑团" : "河岸跑团", code: "DO-NOT-SHARE", owner: true, staff: true, role: "owner", roleLabel: "团长" },
-    members: [{ id: 1, nickname: "晨光团长", owner: true, role: "owner", roleLabel: "团长", points: 1 }],
+    club: { id, name: id === 44 ? (longName ? overviewFixture.longName : "晨光跑团") : "河岸跑团", city: '杭州', code: "DO-NOT-SHARE", owner: true, staff: true, role: "owner", roleLabel: "团长" },
+    members: overviewFixture.members,
     board: [], ranks: [], groups: [], activities: id === 44 ? activities : [], gifts: [], requests: [], checkins: [], checkedIn: false, myPoints: 1
   };
 }
@@ -53,6 +46,7 @@ async function run() {
         Object.defineProperty(navigator, "clipboard", { configurable: true, value: { writeText: async text => { window.copied.push(text); } } });
       }, { now });
       const page = await context.newPage();
+      activities = overviewFixture.activities; longName = false;
       page.on("pageerror", error => report.errors.push(error.message));
       let releaseOldFee;
       let delayOldFee = false;
@@ -86,15 +80,81 @@ async function run() {
       await page.goto(base + "/clubs/44");
       await page.getByRole("heading", { name: "晨光跑团", exact: true }).waitFor();
       await page.getByText("待确认", { exact: false }).waitFor();
+      assert.equal(await page.locator('.primary-tabs').getByRole('button', { name: '概览', exact: true }).count(), 1);
+      assert.equal(await page.locator('.primary-tabs').getByRole('button', { name: '今日', exact: true }).count(), 0);
       assert.match(await page.locator(".my-club-status button").first().innerText(), /3\s*场团练/);
-      assert.match(await page.locator(".next-activity").innerText(), /当天未填结束时间/);
+      assert.match(await page.locator(".next-activity").innerText(), /周三轻松跑 · 一起稳稳向前/);
+      assert.equal(await page.locator('.activity-kind').innerText(), '正在进行');
+      assert.equal(await page.locator('.activity-kind.live').count(), 1);
+      await page.screenshot({ path: path.join(output, `web-overview-${width}.png`), fullPage: true });
       await page.locator(".my-club-status button").first().click();
       assert.equal(new URL(page.url()).searchParams.get("mine"), "1");
-      assert.deepEqual(await page.locator(".block.act h2").allTextContents(), ["当天未填结束时间", "今天正在进行", "明天已报名"]);
+      assert.deepEqual(await page.locator(".block.act h2").allTextContents(), ["周三轻松跑 · 一起稳稳向前", "晨间节奏跑 · 找到自己的节奏", "周末长距离 · 沿河一起跑"]);
       await page.reload();
       await page.locator(".mine-filter[aria-pressed=true]").waitFor();
       assert.equal(await page.locator(".block.act").count(), 3);
       report.checks.push({ width, name: "current and future signed activities only; invalid/past/cancelled excluded; mine URL survives refresh", passed: true });
+
+      // Keep the component alive while dirty member state survives navigation away.
+      for (const destination of ['overview', 'fees', 'manage']) {
+        await page.locator('.club-avatars').click();
+        await page.getByRole('textbox', { name: '搜索跑团成员' }).fill('不存在的旧搜索');
+        await page.locator('.member-filters').getByRole('button', { name: '团长与管理', exact: true }).click();
+        assert.equal(await page.locator('.member-directory .member').count(), 0);
+        if (destination === 'overview') await page.locator('.primary-tabs').getByRole('button', { name: '概览', exact: true }).click();
+        else await page.locator('.secondary-tabs').getByRole('button', { name: destination === 'fees' ? '会费名单' : '管理与服务', exact: true }).click();
+        await page.locator('.club-avatars').click();
+        await page.waitForFunction(() => new URL(location.href).searchParams.get('view') === 'members');
+        assert.equal(await page.getByRole('textbox', { name: '搜索跑团成员' }).inputValue(), '');
+        assert.equal(await page.locator('.member-filters button.on').innerText(), '全部');
+        assert.equal(await page.locator('.member-directory .member').count(), overviewFixture.members.length);
+        assert.equal(new URL(page.url()).searchParams.has('section'), false);
+        assert.equal(new URL(page.url()).searchParams.has('mine'), false);
+      }
+      // Explicit legacy section/mine query is stripped by the same entry.
+      await page.goto(base + '/clubs/44?tab=people&view=manage&section=gifts&mine=1');
+      await page.locator('.club-avatars').click();
+      await page.waitForFunction(() => new URL(location.href).searchParams.get('view') === 'members');
+      assert.equal(new URL(page.url()).searchParams.has('section'), false);
+      assert.equal(new URL(page.url()).searchParams.has('mine'), false);
+      assert.equal(await page.locator('.member-directory .member').count(), overviewFixture.members.length);
+      await page.screenshot({ path: path.join(output, `web-members-${width}.png`), fullPage: true });
+      report.checks.push({ width, name: 'header avatars/count always opens all members and clears dirty search, staff filter, fees/manage, legacy section/mine', passed: true });
+
+      for (const [scenario, expectedTitle, expectedLabel] of [
+        ['live', '晨间节奏跑 · 找到自己的节奏', '正在进行'], ['future', '周末长距离 · 沿河一起跑', '下一场团练'], ['expired', null, null], ['empty', null, null]
+      ]) {
+        activities = overviewFixture.scenarios[scenario];
+        await page.goto(base + '/clubs/44');
+        await page.getByRole('heading', { name: '晨光跑团', exact: true }).waitFor();
+        if (expectedTitle) {
+          assert.equal(await page.locator('.next-activity h3').innerText(), expectedTitle);
+          assert.equal(await page.locator('.activity-kind').innerText(), expectedLabel);
+          assert.equal(await page.locator('.activity-kind.live').count(), scenario === 'live' ? 1 : 0);
+        } else {
+          assert.equal(await page.locator('.next-activity').count(), 0);
+          await page.getByRole('heading', { name: '暂无团练安排', exact: true }).waitFor();
+          assert.equal(await page.locator('.overview').getByText('下一场团练', { exact: true }).count(), 0);
+        }
+        await page.screenshot({ path: path.join(output, `web-${scenario}-${width}.png`), fullPage: true });
+        report.checks.push({ width, name: 'overview activity semantics: ' + scenario, passed: true });
+      }
+      longName = true; activities = overviewFixture.scenarios.future;
+      await page.goto(base + '/clubs/44');
+      await page.getByRole('heading', { name: overviewFixture.longName, exact: true }).waitFor();
+      const headerLayout = await page.evaluate(() => {
+        const hero = document.querySelector('.club-hero').getBoundingClientRect();
+        const members = document.querySelector('.club-avatars').getBoundingClientRect();
+        return { document: document.documentElement.scrollWidth, hero: { left: hero.left, right: hero.right }, members: { left: members.left, right: members.right }, avatars: document.querySelectorAll('.avatar-stack .club-avatar').length, loaded: [...document.querySelectorAll('.avatar-stack img')].every(image => image.complete && image.naturalWidth > 0) };
+      });
+      assert.ok(headerLayout.document <= width + 1, JSON.stringify(headerLayout));
+      assert.ok(headerLayout.members.left >= headerLayout.hero.left && headerLayout.members.right <= headerLayout.hero.right + 1);
+      assert.equal(headerLayout.avatars, 4); assert.ok(headerLayout.loaded);
+      await page.screenshot({ path: path.join(output, `web-long-name-${width}.png`), fullPage: true });
+      report.checks.push({ width, name: 'long club name, real/fallback avatars and full member entry fit viewport', passed: true, layout: headerLayout });
+      longName = false; activities = overviewFixture.activities;
+      await page.goto(base + '/clubs/44?tab=act&view=training&mine=1');
+      await page.locator('.mine-filter[aria-pressed=true]').waitFor();
 
       await page.getByRole("button", { name: "约跑 1", exact: true }).click();
       assert.equal(new URL(page.url()).searchParams.get("view"), "meetup");
@@ -146,6 +206,6 @@ async function run() {
 }
 run().catch(error => { report.passed = false; report.error = error.stack || String(error); process.exitCode = 1; }).finally(() => {
   if (vite) vite.kill("SIGTERM");
-  fs.writeFileSync(path.join(__dirname, "club-navigation-regression-report.json"), JSON.stringify(report, null, 2));
+  fs.writeFileSync(path.join(output, "web-report.json"), JSON.stringify(report, null, 2));
   console.log(JSON.stringify(report, null, 2));
 });

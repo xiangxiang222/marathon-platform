@@ -1,18 +1,6 @@
-.club-page { min-height:100vh; padding:28rpx; padding-bottom:calc(64rpx + env(safe-area-inset-bottom)); box-sizing:border-box; font-size: 14px; line-height:1.5; background: transparent; }
 .club-page button { display:flex; align-items:center; justify-content:center; box-sizing:border-box; min-height:44px; margin:0; padding:16rpx 24rpx; line-height:1.25; font-size: 14px; font-weight:500; border-radius:16rpx; }
 .club-page button::after { border:0; }
 .club-page button[disabled] { opacity:.45; }
-.club-hero { position:relative; overflow:hidden; padding:32rpx 36rpx 24rpx;  box-shadow: var(--card-shadow); background: linear-gradient(135deg,#eaf4ff,#ffffff); border-color: #dceaf5; }
-.hero-track { position:absolute; top:-156rpx; right:-160rpx; width:440rpx; height:440rpx; pointer-events:none; transform:rotate(-28deg); opacity:.45; }
-.hero-track>view { position:absolute; inset:0; border:1rpx solid var(--border); border-radius:42%; }
-.hero-track>view:nth-child(2) { inset:28rpx; }
-.hero-track>view:nth-child(3) { inset:56rpx; }
-.hero-topline,.club-identity,.hero-bottom { position:relative; }
-.hero-topline { display:flex; align-items:center; justify-content:space-between; gap:16rpx;  }
-.hero-bottom { display:flex; align-items:center; justify-content:space-between; gap:16rpx;  }
-.club-identity { display:flex; align-items:center; justify-content:space-between; gap:16rpx;  }
-.club-subtitle { display:flex; align-items:center; justify-content:space-between; gap:16rpx;  }
-.avatar-line { display:flex; align-items:center; justify-content:space-between; gap:16rpx;  }
 .section-head { display:flex; align-items:center; justify-content:space-between; gap:16rpx;  }
 .preview-row { display:flex; align-items:center; justify-content:space-between; gap:16rpx; background: #ffffff; }
 .match-head { display:flex; align-items:center; justify-content:space-between; gap:16rpx;  }
@@ -22,87 +10,32 @@
 .approval-actions { display:flex; align-items:center; justify-content:space-between; gap:16rpx;  }
 .rank-row { display:flex; align-items:center; justify-content:space-between; gap:16rpx;  }
 .toggle-line { display:flex; align-items:center; justify-content:space-between; gap:16rpx;  }
-.next-top { display:flex; align-items:center; justify-content:space-between; gap:16rpx;  }
-.next-bottom { display:flex; align-items:center; justify-content:space-between; gap:16rpx;  }
 .publish-shortcut { display:flex; align-items:center; justify-content:space-between; gap:16rpx;  }
 .approval-banner { display:flex; align-items:center; justify-content:space-between; gap:16rpx;  }
 .member-filters { display:flex; align-items:center; justify-content:space-between; gap:16rpx;  }
 .eyebrow { display:flex; align-items:center; gap:12rpx; font-size:12px; letter-spacing:1rpx; color:var(--text-secondary); }
 .eyebrow-line { width:24rpx; height:4rpx; background:var(--brand); border-radius:4rpx; }
-.switch-club { display:flex; align-items:center; gap:12rpx; min-height:44px; color:var(--text-secondary); font-size:12px; white-space:nowrap; }
-.switch-club>text { color:var(--brand); font-size:16px; }
-.club-identity { justify-content:flex-start; align-items:flex-start; gap:24rpx; margin:22rpx 0 30rpx; }
-.club-letter { position:relative; display:flex; flex:none; align-items:center; justify-content:center; width:116rpx; height:124rpx; padding-bottom:6rpx; background:var(--brand); color:#fff; border-radius:24rpx 24rpx 32rpx 8rpx; font-size:28px; font-weight:700; }
-.club-letter-line { position:absolute; left:32rpx; right:32rpx; bottom:22rpx; height:3rpx; background:#fff; opacity:.5; transform:skew(-28deg); }
-.club-identity-copy { flex:1; min-width:0; }
-.club-title { color:var(--text); overflow-wrap:anywhere; letter-spacing:-1.5rpx; }
-.club-subtitle { flex-wrap:wrap; justify-content:flex-start; gap:8rpx 12rpx; margin-top:14rpx; color:var(--text-secondary); font-size:12px; }
 .role { flex:none; padding:3rpx 9rpx; color:var(--brand); background: var(--sun-soft);  font-size:12px; font-weight:500; }
-.hero-bottom { padding-top:22rpx; border-top:1rpx solid var(--border); gap:12rpx; }
-.club-community { display:flex; min-width:0; align-items:center; gap:14rpx; }
-.avatar-line { min-width:0; justify-content:flex-start; gap:0; }
-.avatar { width:46rpx; height:46rpx; flex:none; margin-right:-12rpx; border:3rpx solid #fff; box-sizing:border-box; border-radius:50%; background:var(--page-bg); }
-.avatar-fallback { display:flex; align-items:center; justify-content:center; color:var(--text-secondary); background:var(--page-bg); font-size: 12px; font-weight:600; }
-.avatar-line .avatar:last-child { margin-right:0; }
-.avatar-line .avatar-fallback { background:var(--page-bg); color:var(--text-secondary); font-size:11px; }
-.avatar-line .avatar:nth-child(2) { background:var(--page-bg); color:var(--text-secondary); }
-.avatar-line .avatar:nth-child(3) { background:var(--page-bg); color:var(--text-secondary); }
-.avatar-line .avatar:nth-child(4) { background:var(--page-bg); color:var(--text-secondary); }
-.avatar-caption { margin-left:0; color:var(--text-secondary); font-size:12px; white-space:nowrap; }
-.community-count { color:var(--text); font-weight:650; font-variant-numeric:tabular-nums; }
-.club-page .hero-share { flex:none; width:auto; gap:18rpx; font-weight:600; }
-.hero-share>text { font-size:17px; font-weight:400;  }
 .approval-banner { margin:16rpx 0 0; padding:20rpx 24rpx; border-radius:16rpx; color:var(--brand); background:var(--brand-soft); font-size: 12px; }
 .approval-banner>view { display:flex; align-items:center; gap:12rpx; min-width:0; }
 .approval-banner>text { flex:none; }
 .notice-dot { width:10rpx; height:10rpx; background:var(--brand); border-radius:50%; }
-.club-tabs { position:sticky; top:0; z-index:5; display:flex; margin:14rpx 0 0; padding:0; border-bottom:1rpx solid var(--border); background: rgba(247,248,252,.96); }
-.club-tab { position:relative; display:flex; flex:1; align-items:center; justify-content:center; min-height:56px; color:var(--text-secondary); font-size:14px; font-weight:500; }
-.club-tab.selected { color:var(--text); }
-.club-tab.selected::after { position:absolute; bottom:-1rpx; width:32rpx; content:''; }
-.club-tab.selected { font-weight:700; }
 .section-head { min-height:44px; margin:24rpx 2rpx 14rpx; flex-wrap:wrap; gap:6rpx 12rpx; }
 .section-title { min-width:0; font-size: 18px; font-weight:700; line-height:1.4; letter-spacing:-.5rpx; }
 .section-link { color:var(--text-secondary); font-size: 12px; }
-.overview-section-head { margin:26rpx 0 16rpx; }
-.overview-section-head .section-title { font-size: 18px; letter-spacing:-1rpx; }
-.overview-section-head .section-link { display:flex; align-items:center; min-height:44px; }
 .section-period { color:var(--brand); padding-left:4rpx; }
 .link-chevron { padding-left:8rpx; font-size:16px; }
 .muted { color:var(--text-secondary); font-size: 12px; font-weight:400; line-height:1.55; overflow-wrap:anywhere; }
-.next-activity { display:block; position:relative; overflow:hidden; padding:32rpx; background: #ffffff; border:1rpx solid var(--border); border-top:5rpx solid var(--brand); border-color: #f4ddd0; box-shadow: var(--card-shadow); }
-.next-top { gap:12rpx; }
-.next-label { color:var(--brand); font-size: 12px; font-weight:600; letter-spacing:1rpx; }
-.signup-state { flex:none; max-width:48%; padding:5rpx 12rpx;  color:var(--text-secondary); background:var(--page-bg); font-size: 12px; }
-.signup-state.signed { color:#16875c; background: #dff5e9;  }
-.next-title { margin-top:20rpx; font-size: 22px; font-weight:700; line-height:1.45; overflow-wrap:anywhere; }
-.next-meta { margin-top:12rpx; color:var(--text-secondary); font-size: 12px; }
-.next-bottom { margin-top:24rpx; padding-top:20rpx; border-top:1rpx solid var(--border); color:var(--text-secondary); font-size: 12px; }
-.next-cta { color:var(--brand); font-weight:600; white-space:nowrap; }
 .empty-card { padding:28rpx; color:var(--text-secondary); font-size: 12px; background:#fff;  line-height:1.65; }
 .empty-title { margin-bottom:8rpx; color:#333333; }
-.next-empty { position:relative; overflow:hidden; min-height:340rpx; padding:32rpx; border:1rpx solid var(--border); border-radius:24rpx; background: #ffffff; border-color: #f4ddd0; }
-.empty-content { position:relative; z-index:1; }
 .next-kicker { display:flex; align-items:center; gap:10rpx; color:var(--brand); font-size:12px; font-weight:500; letter-spacing:1rpx; }
 .kicker-dot { width:8rpx; height:8rpx; border-radius:50%; background:var(--brand); }
-.next-empty .empty-title { margin:16rpx 0 10rpx; color:var(--text); font-size:22px; line-height:1.4; font-weight:700; letter-spacing:-1rpx; }
-.next-empty .muted { color:var(--text-secondary); }
-.empty-track { position:absolute; right:-42rpx; bottom:-90rpx; width:280rpx; height:380rpx; transform:rotate(30deg); pointer-events:none; }
-.empty-track-lane { position:absolute; inset:0; border:2rpx solid var(--border); border-radius:130rpx; }
-.empty-track-lane.lane-two { inset:20rpx; }
-.empty-track-lane.lane-three { inset:40rpx; }
-.track-start { position:absolute; top:90rpx; left:0; width:56rpx; height:3rpx; background:var(--brand); }
 .empty-card .empty-action { display:inline-flex; align-items:center; justify-content:center; gap:28rpx; width:auto; min-height:44px; margin-top:24rpx; padding:18rpx 26rpx; color:#fff; background:var(--brand);  font-size:12px; font-weight:600; }
 .empty-action>text { font-size:17px; font-weight:400; }
 .compact-empty { padding:24rpx; border:1rpx solid var(--border); border-radius:24rpx; font-size:12px; }
-.quick-grid { display:flex; padding:26rpx 6rpx; margin:20rpx 0 24rpx; border:1rpx solid var(--border);  background: #ffffff; box-shadow: var(--card-shadow); }
-.quick-entry { display:flex; flex:1; min-width:0; min-height:100rpx; flex-direction:column; align-items:center; justify-content:center; gap:12rpx; padding:4rpx 0; color:var(--text); font-size:12px; font-weight:500; }
-.quick-icon { display:flex; align-items:center; justify-content:center; width:56rpx; height:56rpx; }
-.quick-entry image { width:46rpx; height:46rpx; }
 .publish-shortcut { margin:0; padding:22rpx 0; border:0; border-top:1rpx solid var(--border); border-radius:0; background:#fff; }
 .publish-shortcut>text { color:var(--brand); font-size: 20px; font-weight:400; }
 .checkin-card { margin:0; overflow:hidden; border-top:1rpx solid var(--border); border-radius:0; background: #ffffff; }
-.club-page .checkin-entry { justify-content:space-between; gap:12rpx; width:100%; min-height:136rpx; padding:24rpx 0; border-radius:0; text-align:left; background: #ffffff; }
 .checkin-copy { display:flex; align-items:center; gap:18rpx; min-width:0; }
 .checkin-copy>view:last-child { min-width:0; }
 .checkin-copy .link-title { font-size:14px; }
@@ -206,42 +139,15 @@ text.text-action { display:inline-flex; align-items:center; min-height:44px; box
 .poster-image { display:block; width:100%; border-radius:12rpx; }
 .poster-hint { padding:18rpx 0; color:#fff; font-size: 12px; }
 @media (max-width:350px) {
-  .club-page { padding:24rpx; padding-bottom:calc(64rpx + env(safe-area-inset-bottom)); background: transparent; }
-  .club-tabs { margin-left:0; margin-right:0; padding:0; background: rgba(247,248,252,.96); }
-  .club-hero { padding:24rpx 28rpx 20rpx; background: linear-gradient(135deg,#eaf4ff,#ffffff); border-color: #dceaf5; box-shadow: var(--card-shadow); }
-  .club-title { font-size: 26px; }
-  .club-letter { width:104rpx; height:116rpx; }
-  .club-identity { gap:20rpx; }
-  .avatar { width:42rpx; height:42rpx; margin-right:-14rpx; }
-  .club-community { gap:12rpx; }
-  .club-page .hero-share { gap:12rpx; padding:16rpx 22rpx;  }
-  .club-subtitle { font-size: 12px; }
   .section-head { gap:8rpx; }
   .section-link { font-size: 12px; }
   .section-title { font-size: 18px; }
-  .next-title { font-size: 22px; }
-  .next-bottom { flex-wrap:wrap; }
-  .quick-entry { font-size: 12px; }
   .member-areas { gap:2rpx; }
   .club-page .member-area { font-size: 12px; padding-left:4rpx; padding-right:4rpx;  }
   .plain-row { gap:12rpx; }
   .plain-row>text:last-child { max-width:42%; }
   .approval-actions { gap:4rpx; }
 }
-
-.today-panel { margin:24rpx 0 30rpx; padding:26rpx 30rpx 0; background: #ffffff; border:1rpx solid var(--border);  }
-.today-panel-heading { display:flex; justify-content:space-between; align-items:center; gap:12rpx; }
-.today-panel-label { color:var(--text); font-size:14px; font-weight:650; }
-.today-panel-note { color:var(--text-secondary); font-size:12px; }
-.my-summary { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0; margin:26rpx 0 20rpx; }
-.club-page .my-summary-card { display:flex; flex-direction:column; align-items:flex-start; justify-content:flex-start; gap:12rpx; width:100%; min-width:0; min-height:162rpx; margin:0; padding:0 26rpx 0 0; border-radius:0; background:transparent; text-align:left; font-weight:400; }
-.club-page .my-summary-card+.my-summary-card { padding:0 0 0 26rpx; border-left:1rpx solid var(--border); }
-.my-summary-label { display:flex; justify-content:space-between; width:100%; gap:8rpx; color:var(--text-secondary); font-size:12px; }
-.summary-arrow { color:var(--text-secondary); font-size:14px; }
-.my-summary-value { color:var(--text); font-size:30px; font-weight:650; font-variant-numeric:tabular-nums; line-height:1.2; letter-spacing:-1rpx; }
-.my-summary-value text { font-size:12px; font-weight:400; color:var(--text-secondary); }
-.my-summary-status { display:flex; align-items:center; min-height:36px; color:var(--text); font-size:17px; font-weight:600; line-height:1.4; }
-.my-summary-hint { color:var(--text-secondary); font-size:12px; line-height:1.5; }
 .activity-filters { display:flex; flex-wrap:wrap; gap:14rpx; margin:0 0 20rpx; }
 .club-page .activity-filter { flex:none; min-height:44px; width:auto; padding:14rpx 22rpx;  color:var(--text-secondary); background:var(--border); font-size: 12px; font-weight:500; }
 .club-page .activity-filter.active { color:var(--brand); background:var(--brand-soft);  }
@@ -251,9 +157,6 @@ text.text-action { display:inline-flex; align-items:center; min-height:44px; box
 .loading .retry-button { display:flex; align-items:center; justify-content:center; width:280rpx; min-height:44px; margin:38rpx auto 24rpx;  color:#fff; background:var(--brand); font-size: 14px; line-height:1.2; }
 .loading .retry-button::after { border:0;  }
 .loading-back { padding:22rpx; color:var(--text-secondary); font-size: 12px; }
-
-.public-identity-line { display:flex; flex-wrap:wrap; align-items:center; gap:12rpx; margin:10rpx 0 0; color:var(--text-secondary); font-size:12px; line-height:1.7; overflow-wrap:anywhere; }
-.meta-divider { color:var(--border); }
 .club-page .verified-mark { justify-content:flex-start; min-height:44px; padding:12rpx 0; color:var(--text-secondary); background:transparent; font-size: 12px; }
 .created-guide { margin-top:20rpx; padding:28rpx;  background: #ffffff; border:1rpx solid var(--border); }
 .created-guide .muted { margin-top:12rpx;  }
@@ -269,30 +172,18 @@ text.text-action { display:inline-flex; align-items:center; min-height:44px; box
 .first-activity { min-height:44px; background: var(--sun-soft); } }
 
 /* Route geometry: surfaces, controls and compact labels have distinct roles. */
-.mini-club-club .club-hero, .mini-club-club .next-activity, .mini-club-club .empty-card, .mini-club-club .quick-grid, .mini-club-club .today-panel, .mini-club-club .service-grid, .mini-club-club .preview-row, .mini-club-club .training-item, .mini-club-club .match-row, .mini-club-club .rank-group, .mini-club-club .form-section, .mini-club-club .mileage-panel, .mini-club-club .created-guide { border-radius: 36rpx; }
-.mini-club-club .primary-btn, .mini-club-club .secondary-btn, .mini-club-club .hero-share, .mini-club-club .member-manage, .mini-club-club .retry-button, .mini-club-club .field, .mini-club-club .first-activity { border-radius: 24rpx; }
-.mini-club-club .activity-filter, .mini-club-club .member-filter, .mini-club-club .choice, .mini-club-club .role, .mini-club-club .signup-state, .mini-club-club .sub-tab, .mini-club-club .member-area { border-radius: 14rpx; }
+.mini-club-club .empty-card, .mini-club-club .service-grid, .mini-club-club .preview-row, .mini-club-club .training-item, .mini-club-club .match-row, .mini-club-club .rank-group, .mini-club-club .form-section, .mini-club-club .mileage-panel, .mini-club-club .created-guide { border-radius: 36rpx; }
+.mini-club-club .primary-btn, .mini-club-club .secondary-btn, .mini-club-club .member-manage, .mini-club-club .retry-button, .mini-club-club .field, .mini-club-club .first-activity { border-radius: 24rpx; }
+.mini-club-club .activity-filter, .mini-club-club .member-filter, .mini-club-club .choice, .mini-club-club .role, .mini-club-club .sub-tab, .mini-club-club .member-area { border-radius: 14rpx; }
 
 /* Page composition and interaction hierarchy. */
 .mini-club-club { color: var(--text); }
 .mini-club-club button { font-weight: 500; border-radius: 24rpx; }
-
-.club-page { color: var(--text); background: transparent; }
-.club-hero { border: 1px solid var(--border); background: linear-gradient(135deg,#eaf4ff,#ffffff); border-color: #dceaf5; box-shadow: var(--card-shadow); }
-.club-title { font-size: 26px; font-weight: 600; line-height: 1.4; }
-.club-page .hero-share { border: 1px solid var(--brand); border-radius: 24rpx; background: var(--brand); color: #fff; padding: 0 22rpx; min-height: 44px; font-size: 12px; }
 .role { border: 1px solid var(--border); background: var(--sun-soft); color: var(--text-secondary); font-size: 11px; }
-.signup-state { border: 1px solid var(--border); background: var(--page-bg); color: var(--text-secondary); font-size: 11px; }
-.club-tab.selected::after { height: 2px; border-radius: 0; background: var(--brand); }
-.next-empty { border: 1px solid var(--border); background: #ffffff; border-color: #f4ddd0; }
-.next-activity { border: 1px solid var(--border); background: #ffffff; border-color: #f4ddd0; box-shadow: var(--card-shadow); }
-.quick-grid { border: 1px solid var(--border); background: #ffffff; box-shadow: var(--card-shadow); }
-.today-panel { border: 1px solid var(--border); background: #ffffff; }
 .service-grid { border: 1px solid var(--border); background: #ffffff; }
 .form-section { border: 1px solid var(--border); background: #ffffff; }
 .rank-group { border: 1px solid var(--border); background: #ffffff; }
 .mileage-panel { border: 1px solid var(--border); background: #ffffff; }
-.next-empty { background: #ffffff; border-color: #f4ddd0; }
 .empty-title { font-size: 24px; font-weight: 600; }
 .club-page .empty-action,.activity-publish { border-radius: 24rpx; background: var(--brand); color: #fff; font-size: 12px; }
 .sub-tabs,.member-areas { gap: 18rpx; border-bottom: 1px solid var(--border); border-radius: 0; background: transparent; }
@@ -308,6 +199,87 @@ text.text-action { display:inline-flex; align-items:center; min-height:44px; box
 .match-row { border-color: var(--border); }
 
 /* Primary actions read at 14px, secondary actions at 13px; compact filters stay at 12px. */
-.mini-club-club .primary-btn, .mini-club-club .activity-publish, .mini-club-club .hero-share, .mini-club-club .empty-action { font-size: 14px; font-weight: 500; }
+.mini-club-club .primary-btn, .mini-club-club .activity-publish, .mini-club-club .empty-action { font-size: 14px; font-weight: 500; }
 .mini-club-club .secondary-btn { font-size: 13px; font-weight: 500; }
 .club-page .member-filter.is-active,.club-page .choice.choice-selected { border-color: var(--brand); color: var(--brand); background: var(--brand-soft); }
+
+/* Club profile and overview: quiet surfaces, clear actions, factual status. */
+.club-page { min-height:100vh; padding:0 32rpx calc(64rpx + env(safe-area-inset-bottom)); box-sizing:border-box; color:var(--text); background:var(--page-bg); font-size:14px; line-height:1.5; }
+.mini-club-club .club-hero { margin:0 -32rpx; padding:0 36rpx 8rpx; border:0; border-radius:0; background:#fff; box-shadow:none; }
+.hero-topline { display:flex; align-items:center; justify-content:space-between; gap:20rpx; }
+.club-eyebrow { color:var(--text-secondary); font-size:12px; letter-spacing:1rpx; }
+.switch-club { display:flex; align-items:center; gap:8rpx; min-height:44px; color:var(--text-secondary); font-size:12px; }
+.switch-club > text { color:#8c929c; font-size:16px; }
+.club-identity { display:flex; align-items:flex-start; gap:28rpx; margin:12rpx 0 28rpx; }
+.club-letter { display:flex; flex:none; align-items:center; justify-content:center; width:56px; height:56px; border-radius:16px; color:#fff; background:var(--brand); font-size:27px; font-weight:600; box-shadow:0 4px 10px rgba(225,37,27,.1); }
+.club-identity-copy { flex:1; min-width:0; }
+.club-title { color:var(--text); font-size:25px; font-weight:600; line-height:1.35; letter-spacing:-.5px; overflow-wrap:anywhere; }
+.public-identity-line { display:flex; flex-wrap:wrap; align-items:center; gap:12rpx; margin-top:12rpx; color:var(--text-secondary); font-size:12px; line-height:1.6; }
+.meta-divider { color:#b6bbc3; }
+.club-subtitle { display:flex; flex-wrap:wrap; align-items:center; gap:12rpx; margin-top:10rpx; color:var(--text-secondary); font-size:12px; line-height:1.6; }
+.club-subtitle .role { padding:1rpx 9rpx; border:0; border-radius:6rpx; background:#f3f4f6; color:#626975; font-size:11px; font-weight:500; }
+.hero-bottom { display:flex; align-items:center; gap:20rpx; border-top:1rpx solid #f0f1f4; }
+.club-page .club-community { display:flex; flex:1; align-items:center; justify-content:flex-start; gap:20rpx; min-width:0; min-height:68px; margin:0; padding:8rpx 0; border:0; border-radius:0; background:transparent; text-align:left; box-shadow:none; }
+.avatar-line { display:flex; flex:none; align-items:center; min-width:0; }
+.avatar-line .avatar { display:flex; flex:none; align-items:center; justify-content:center; width:28px; height:28px; margin-right:-9px; box-sizing:border-box; border:2px solid #fff; border-radius:50%; background:#edf3fa; color:#66809d; font-size:11px; font-weight:500; }
+.avatar-line .avatar:last-child { margin-right:0; }
+.avatar-line .avatar:nth-child(2) { background:#f5efe3; color:#957b4d; }
+.avatar-line .avatar:nth-child(3) { background:#eaf3ee; color:#5f8977; }
+.avatar-line .avatar:nth-child(4) { background:#f0edf8; color:#84719d; }
+.avatar-caption { min-width:0; }
+.community-count { color:#454b55; font-size:12px; font-weight:500; white-space:nowrap; }
+.community-hint { margin-top:4rpx; color:#6e7681; font-size:12px; font-weight:400; }
+.community-chevron { margin-left:0; color:#a1a6af; font-size:19px; font-weight:400; }
+.mini-club-club .hero-share { flex:none; gap:6rpx; min-height:40px; margin:0; padding:0 22rpx; border:1rpx solid #e4e7ec; border-radius:12px; background:#fff; color:#454b55; font-size:13px; font-weight:500; box-shadow:none; }
+.hero-share > text { color:var(--brand); font-size:17px; font-weight:400; }
+.club-tabs { position:sticky; top:0; z-index:5; display:flex; margin:0 -32rpx 4rpx; padding:0 24rpx; border-bottom:1rpx solid #edf0f3; background:#fff; }
+.club-tab { position:relative; display:flex; flex:1; align-items:center; justify-content:center; min-height:52px; color:#6e7681; font-size:14px; font-weight:400; }
+.club-tab.selected { color:var(--text); font-weight:600; }
+.club-tab.selected::after { position:absolute; bottom:0; width:22px; height:3px; border-radius:2px; background:var(--brand); content:''; }
+.overview-section-head { margin:30rpx 0 14rpx; }
+.overview-section-head .section-title { font-size:18px; font-weight:600; letter-spacing:-.3px; }
+.overview-section-head .section-link { display:flex; align-items:center; min-height:44px; color:var(--text-secondary); font-size:12px; }
+.mini-club-club .next-activity { display:block; overflow:hidden; padding:32rpx; border:0; border-radius:20px; background:#fff; box-shadow:0 3px 14px rgba(32,47,70,.035); }
+.next-top { display:flex; align-items:center; justify-content:space-between; gap:16rpx; }
+.next-label { display:flex; align-items:center; gap:10rpx; color:var(--brand); font-size:12px; font-weight:500; }
+.activity-state-dot { width:5px; height:5px; border-radius:50%; background:currentColor; }
+.activity-live .next-label { color:#34856b; }
+.mini-club-club .signup-state { flex:none; max-width:50%; padding:4rpx 10rpx; border:0; border-radius:6px; background:#f5f6f8; color:#6e7681; font-size:11px; font-weight:400; }
+.signup-state.signed { color:#34856b; background:#edf7f2; }
+.next-title { margin:24rpx 0 0; color:var(--text); font-size:21px; font-weight:600; line-height:1.45; letter-spacing:-.3px; overflow-wrap:anywhere; }
+.next-meta { display:flex; flex-wrap:wrap; align-items:baseline; gap:16rpx; margin-top:20rpx; color:#505762; font-size:13px; }
+.next-clock { color:var(--text); font-variant-numeric:tabular-nums; font-weight:600; }
+.next-location { margin-top:8rpx; color:#6e7681; font-size:12px; line-height:1.6; overflow-wrap:anywhere; }
+.next-bottom { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:16rpx; margin-top:26rpx; padding-top:22rpx; border-top:1rpx solid #f0f1f4; color:#6e7681; font-size:12px; }
+.next-cta { color:#4d555f; font-weight:500; white-space:nowrap; }
+.next-cta > text { padding-left:8rpx; color:var(--brand); }
+.mini-club-club .next-empty { min-height:0; padding:32rpx; border:0; border-radius:20px; background:#fff; }
+.empty-content { position:relative; }
+.next-empty .empty-title { margin:0 0 12rpx; color:var(--text); font-size:19px; line-height:1.45; font-weight:600; letter-spacing:0; }
+.next-empty .empty-action { margin-top:24rpx; min-height:40px; padding:0 24rpx; border:0; border-radius:12px; font-size:13px; }
+.mini-club-club .quick-grid { display:flex; margin:20rpx 0 24rpx; padding:24rpx 4rpx; border:0; border-radius:20px; background:#fff; box-shadow:none; }
+.quick-entry { display:flex; flex:1; min-width:0; min-height:60px; flex-direction:column; align-items:center; justify-content:center; gap:12rpx; color:#4d535c; font-size:12px; font-weight:400; }
+.quick-icon { display:flex; align-items:center; justify-content:center; width:32px; height:32px; }
+.quick-entry image { display:block; width:29px; height:29px; }
+.mini-club-club .today-panel { margin:24rpx 0 30rpx; padding:30rpx 32rpx 0; border:0; border-radius:20px; background:#fff; }
+.today-panel-heading { display:flex; align-items:center; justify-content:space-between; }
+.today-panel-label { color:var(--text); font-size:15px; font-weight:600; }
+.my-summary { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0; margin:28rpx 0 28rpx; }
+.club-page .my-summary-card { display:flex; flex-direction:column; align-items:flex-start; justify-content:flex-start; gap:10rpx; width:100%; min-width:0; min-height:92px; margin:0; padding:0 24rpx 0 0; border:0; border-radius:0; background:transparent; text-align:left; font-weight:400; box-shadow:none; }
+.club-page .my-summary-card + .my-summary-card { padding:0 0 0 28rpx; border-left:1rpx solid #edf0f3; }
+.my-summary-label { display:flex; justify-content:space-between; width:100%; gap:8rpx; color:#6e7681; font-size:12px; }
+.summary-arrow { color:#a1a6af; font-size:14px; }
+.my-summary-value { color:var(--text); font-size:29px; font-weight:600; font-variant-numeric:tabular-nums; line-height:1.25; }
+.my-summary-value text { color:#6e7681; font-size:12px; font-weight:400; }
+.my-summary-status { display:flex; align-items:center; min-height:36px; color:var(--text); font-size:19px; font-weight:600; line-height:1.4; }
+.my-summary-hint { color:#6e7681; font-size:12px; line-height:1.5; }
+.club-page .checkin-entry { justify-content:space-between; gap:16rpx; width:100%; min-height:76px; padding:24rpx 0; border:0; border-radius:0; background:transparent; text-align:left; box-shadow:none; }
+@media (max-width:350px) {
+  .club-identity { gap:24rpx; }
+  .club-title { font-size:23px; }
+  .club-page .club-community { gap:14rpx; }
+  .avatar-line .avatar { width:25px; height:25px; margin-right:-10px; }
+  .avatar-line .avatar:last-child { margin-right:0; }
+  .mini-club-club .hero-share { padding:0 18rpx; }
+  .next-title { font-size:20px; }
+}

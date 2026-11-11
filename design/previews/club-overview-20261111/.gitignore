@@ -1,0 +1,17 @@
+# Keep all generated scenes locally; commit only the eight reviewed representatives.
+*
+!/.gitignore
+!/index.html
+!/web-report.json
+!/mini-vm-report.json
+!/native-report.json
+!/web-overview-390.png
+!/web-long-name-320.png
+!/web-members-390.png
+!/web-future-390.png
+!/mini/
+!/mini/report.json
+!/mini/pages-club-club-390.png
+!/mini/pages-club-club-long-name-320.png
+!/mini/pages-club-club-members-390.png
+!/mini/pages-club-club-empty-390.png
