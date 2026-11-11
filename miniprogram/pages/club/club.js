@@ -182,9 +182,14 @@ Page({
   changeSection(e) {
     const tab = e.currentTarget.dataset.tab;
     if (!["overview", "training", "matches", "mileage", "members"].includes(tab)) return;
+    if (tab === "members") return this.openMembers();
     const kind = e.currentTarget.dataset.kind;
     this.setData({ activeTab: tab, serviceArea: "", memberArea: "all", onlyMine: false, ...(kind && ["training", "meetup", "internal"].includes(kind) ? { activityKind: kind } : {}) });
     this.filterActivities();
+  },
+  openMembers() {
+    this.setData({ activeTab: "members", memberArea: "all", serviceArea: "", memberQuery: "", memberFilter: "all", relationshipOpen: false, onlyMine: false });
+    this.filterMembers();
   },
   showMine() {
     this.setData({ activeTab: "training", activityKind: "training", onlyMine: true, serviceArea: "" });
@@ -195,8 +200,11 @@ Page({
     this.filterActivities();
   },
   filterActivities() {
-    const upcoming = this.upcomingActivities(this.data.activities || []);
+    const now = Date.now();
+    const upcoming = this.upcomingActivities(this.data.activities || [], now);
+    const next = upcoming[0];
     this.setData({
+      nextActivity: next ? { ...next, overviewLabel: activityMillis(next.startsAt) <= now ? "正在进行" : "下一场团练" } : null,
       myUpcomingCount: upcoming.filter((item) => item.mine && item.mine.signed).length,
       visibleActivities: this.data.onlyMine ? upcoming.filter((item) => item.mine && item.mine.signed) : (this.data.activities || [])
     });
@@ -357,7 +365,6 @@ Page({
           board,
           nextRace: board.filter((item) => item.race.raceDate >= new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10))
             .sort((a, b) => a.race.raceDate.localeCompare(b.race.raceDate))[0] || null,
-          nextActivity: this.upcomingActivities(data.activities || [])[0] || null,
           upcomingActivityCount: this.upcomingActivities(data.activities || []).length,
           ranks: data.ranks || [],
           activities: data.activities || [],
@@ -381,8 +388,7 @@ Page({
       .catch((err) => { if (!err.stale && sequence === this._loadSequence) this.setData({ message: err.message }); })
       .finally(() => { if (sequence === this._loadSequence && this.scopeCurrent(scope)) this.setData({ loading: false }); });
   },
-  upcomingActivities(activities) {
-    const now = Date.now();
+  upcomingActivities(activities, now = Date.now()) {
     const today = new Date(now + 8 * 3600000).toISOString().slice(0, 10);
     return activities.filter((item) => {
       if (["ended", "cancelled"].includes(item.status)) return false;

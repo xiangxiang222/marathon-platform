@@ -2,13 +2,14 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
 const vm = require("node:vm");
+const overviewFixture = require('./club-overview-fixture.cjs');
 
 const root = path.resolve(__dirname, "../..");
 const report = { kind: "Mini-program club redesign Page VM acceptance; mocked transport and native UI, not simulator or device testing", checks: [] };
 const event = (dataset) => ({ currentTarget: { dataset } });
 const input = (value) => ({ detail: { value } });
 
-function fixture(name) {
+function fixture(name, options = {}) {
   let definition;
   const requests = [], sheets = [], modals = [], navigation = [];
   let handler = () => Promise.resolve({});
@@ -24,6 +25,7 @@ function fixture(name) {
     },
     Page: (page) => { definition = page; },
     getApp: () => app,
+    Date: options.now == null ? Date : class extends Date { constructor(...args) { super(...(args.length ? args : [options.now])); } static now() { return options.now; } },
     setTimeout, clearTimeout,
     wx: {
       showShareMenu() {},
@@ -47,7 +49,7 @@ const clubData = (id = 44, name = "奥森晨跑") => ({ club: { id, name }, memb
 async function checkAsync(name, run) { await run(); report.checks.push({ name, passed: true }); }
 
 async function main() {
-  check("invalid deep links return to today and only supported activity views are accepted", () => {
+  check("invalid deep links return to overview and only supported activity views are accepted", () => {
     const { page } = fixture("club");
     page.onLoad({ id: "44", tab: "unknown", view: "unknown" });
     assert.equal(page.data.activeTab, "overview");
@@ -125,6 +127,44 @@ async function main() {
     assert.equal(page.data.shownMembers.length, 2);
     page.pickMemberFilter(event({ filter: "all" }));
     assert.equal(page.data.shownMembers.length, 3);
+  });
+  check("header member entry clears old fee/management, service, relationship, search and role filters", () => {
+    const { page } = fixture('club');
+    page.onLoad({ id: '44' });
+    for (const area of ['all', 'fees', 'manage']) for (const tab of ['overview', 'members']) {
+      page.setData({ activeTab: tab, memberArea: area, serviceArea: 'gifts', relationshipOpen: true, memberQuery: '不存在的旧搜索', memberFilter: 'staff', members: overviewFixture.members, shownMembers: [] });
+      page.openMembers();
+      assert.equal(page.data.activeTab, 'members');
+      assert.equal(page.data.memberArea, 'all');
+      assert.equal(page.data.serviceArea, '');
+      assert.equal(page.data.memberQuery, '');
+      assert.equal(page.data.memberFilter, 'all');
+      assert.equal(page.data.relationshipOpen, false);
+      assert.deepEqual(Array.from(page.data.shownMembers, member => member.id), overviewFixture.members.map(member => member.id));
+    }
+  });
+  check("overview label and header member access remain bound to real Page handlers", () => {
+    const source = fs.readFileSync(path.join(root, 'miniprogram/pages/club/club.wxml'), 'utf8');
+    assert.match(source, /data-tab="overview"[^>]*>概览<\/view>/);
+    assert.match(source, /bindtap="openMembers"/);
+    assert.match(source, /{{nextActivity.overviewLabel}}/);
+    assert.match(source, /nextActivity\.statusLabel/);
+    assert.doesNotMatch(source.match(/class="next-activity[\s\S]*?<\/navigator>/)[0], /nextActivity\.action\.label/);
+    assert.doesNotMatch(source, />返回今日</);
+  });
+  for (const [scenario, expectedId, label] of [
+    ['mixed', 107, 'live'], ['live', 102, 'live'], ['future', 101, 'open'], ['expired', null, null], ['empty', null, null]
+  ]) await checkAsync('overview card uses only valid current/future activity: ' + scenario, async () => {
+    const f = fixture('club', { now: overviewFixture.now });
+    f.page.onLoad({ id: '44' });
+    f.setHandler(url => Promise.resolve(url === '/clubs/44' ? { ...clubData(), members: overviewFixture.members, activities: overviewFixture.scenarios[scenario] } : {}));
+    await f.page.load();
+    assert.equal(f.page.data.nextActivity?.id ?? null, expectedId);
+    if (label) {
+      assert.equal(f.page.data.nextActivity.status, label);
+      assert.equal(f.page.data.nextActivity.overviewLabel, label === 'live' ? '正在进行' : '下一场团练');
+    }
+    assert.equal(f.page.data.myUpcomingCount, ({ mixed: 3, live: 1, future: 1, expired: 0, empty: 0 })[scenario]);
   });
   check("member native menu excludes owners and ordinary members and preserves role confirmation", () => {
     const { page, sheets, modals, requests } = fixture("club");
@@ -333,6 +373,8 @@ async function main() {
 }
 main().catch((error) => { report.passed = false; report.error = error.stack || String(error); process.exitCode = 1; }).finally(() => {
   report.total = report.checks.length;
-  fs.writeFileSync(path.join(__dirname, "mini-club-redesign-report.json"), JSON.stringify(report, null, 2));
+  const output = process.env.CLUB_AUDIT_OUT ? path.resolve(root, process.env.CLUB_AUDIT_OUT, 'mini-vm-report.json') : path.join(__dirname, 'mini-club-redesign-report.json');
+  fs.mkdirSync(path.dirname(output), { recursive: true });
+  fs.writeFileSync(output, JSON.stringify(report, null, 2));
   console.log(JSON.stringify(report, null, 2));
 });

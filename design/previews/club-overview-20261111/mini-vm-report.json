@@ -1,0 +1,131 @@
+{
+  "kind": "Mini-program club redesign Page VM acceptance; mocked transport and native UI, not simulator or device testing",
+  "checks": [
+    {
+      "name": "invalid deep links return to overview and only supported activity views are accepted",
+      "passed": true
+    },
+    {
+      "name": "fee, group, relationship, album and gift deep links open the appropriate visible area",
+      "passed": true
+    },
+    {
+      "name": "all five common shortcuts select a real tab and clear subordinate views",
+      "passed": true
+    },
+    {
+      "name": "activity subtabs preserve drafts and ignore invalid kinds",
+      "passed": true
+    },
+    {
+      "name": "today services route to albums, gifts, fees, groups and pending applications",
+      "passed": true
+    },
+    {
+      "name": "member search and real role filters compose, reset, and show empty matches",
+      "passed": true
+    },
+    {
+      "name": "header member entry clears old fee/management, service, relationship, search and role filters",
+      "passed": true
+    },
+    {
+      "name": "overview label and header member access remain bound to real Page handlers",
+      "passed": true
+    },
+    {
+      "name": "overview card uses only valid current/future activity: mixed",
+      "passed": true
+    },
+    {
+      "name": "overview card uses only valid current/future activity: live",
+      "passed": true
+    },
+    {
+      "name": "overview card uses only valid current/future activity: future",
+      "passed": true
+    },
+    {
+      "name": "overview card uses only valid current/future activity: expired",
+      "passed": true
+    },
+    {
+      "name": "overview card uses only valid current/future activity: empty",
+      "passed": true
+    },
+    {
+      "name": "member native menu excludes owners and ordinary members and preserves role confirmation",
+      "passed": true
+    },
+    {
+      "name": "manager menu offers removal only and keeps the cleanup confirmation",
+      "passed": true
+    },
+    {
+      "name": "race roster expansion, compact checkin and relationship disclosure are independently reversible",
+      "passed": true
+    },
+    {
+      "name": "multi-club loading and local search use real membership data and do not invent counts",
+      "passed": true
+    },
+    {
+      "name": "club code keeps the introduction-before-application flow",
+      "passed": true
+    },
+    {
+      "name": "templates keep public sharing, direct activity/race shortcuts, history fees and relation entry",
+      "passed": true
+    },
+    {
+      "name": "future signed and valid ongoing training are included; stale live, ended, cancelled, invalid and unsigned are excluded from my list",
+      "passed": true
+    },
+    {
+      "name": "a late main response cannot overwrite the newer reload or switch clubs",
+      "passed": true
+    },
+    {
+      "name": "account changes clear private details immediately and discard delayed old account responses",
+      "passed": true
+    },
+    {
+      "name": "hiding or unloading a club page ignores outstanding extra data and user actions",
+      "passed": true
+    },
+    {
+      "name": "401/403 in the main load clears every private section and offers a recoverable error",
+      "passed": true
+    },
+    {
+      "name": "an extra endpoint authorization failure clears the page and blocks concurrent successful old data",
+      "passed": true
+    },
+    {
+      "name": "fee switching preserves the latest selection when both older periods and background refresh return late",
+      "passed": true
+    },
+    {
+      "name": "multi-club list cannot reveal old membership across account switches, logout or page hiding",
+      "passed": true
+    },
+    {
+      "name": "native member menus and confirmations never apply after the account or club scope changes",
+      "passed": true
+    },
+    {
+      "name": "successful leave invalidates concurrent roster and fee responses before returning to the club list",
+      "passed": true
+    },
+    {
+      "name": "public introduction rejects delayed account-specific pending status and ignores hidden-page responses",
+      "passed": true
+    },
+    {
+      "name": "member navigation stays at three areas; current relationship, my upcoming and retry remain visible",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "total": 31
+}
