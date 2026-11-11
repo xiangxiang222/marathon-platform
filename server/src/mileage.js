@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const { memberRole } = require("./roles");
+const { saveGroup, removeGroup } = require("./training-groups");
 
 const TYPES = {
   run: "跑步",
@@ -972,8 +973,8 @@ function mountMileage(app, { BASE, getDb, userFrom }) {
     if (count >= 30) return res.status(400).json({ error: "分组最多 30 个" });
     const same = ctx.db.prepare("SELECT 1 FROM mileage_groups WHERE club_id = ? AND name = ?").get(ctx.club.id, name);
     if (same) return res.status(400).json({ error: "分组名不能重复" });
-    const info = ctx.db.prepare("INSERT INTO mileage_groups (club_id, name, capacity, sort) VALUES (?, ?, ?, ?)").run(ctx.club.id, name, capacity, sort);
-    res.json({ group: { id: Number(info.lastInsertRowid), name, capacity, sort } });
+    try { res.json({ group: saveGroup(ctx.db, ctx.club.id, { name, capacity, sort }) }); }
+    catch (e) { if (!e.status) throw e; res.status(e.status).json({ error: e.message }); }
   });
 
   app.delete(BASE + "/api/clubs/:id/mileage/groups/:gid", (req, res) => {
@@ -982,10 +983,7 @@ function mountMileage(app, { BASE, getDb, userFrom }) {
     if (!ctx.owner) return res.status(403).json({ error: "只有团长可以改跑量分组" });
     const group = ctx.db.prepare("SELECT id FROM mileage_groups WHERE id = ? AND club_id = ?").get(req.params.gid, ctx.club.id);
     if (!group) return res.status(404).json({ error: "没有这个分组" });
-    ctx.db.transaction(() => {
-      ctx.db.prepare("UPDATE club_members SET mileage_group_id = 0 WHERE club_id = ? AND mileage_group_id = ?").run(ctx.club.id, group.id);
-      ctx.db.prepare("DELETE FROM mileage_groups WHERE id = ?").run(group.id);
-    })();
+    removeGroup(ctx.db, ctx.club.id, group.id);
     res.json({ ok: true });
   });
 

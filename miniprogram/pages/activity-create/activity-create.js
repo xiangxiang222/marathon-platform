@@ -16,10 +16,10 @@ function stamp(draft, key) {
 }
 function groupDraft(group, index) {
   const kind = KIND_IDS.includes(group.kind) ? group.kind : "pace";
-  return { key: "g" + index, name: String(group.name || ""), pace: String(group.pace || ""), capacity: String(group.capacity || 0), kind, kindIndex: KIND_IDS.indexOf(kind), enabled: true };
+  return { key: "g" + index, name: String(group.name || ""), pace: String(group.pace || ""), capacity: String(group.capacity || 0), kind, kindIndex: KIND_IDS.indexOf(kind), enabled: true, ...(Number(group.trainingGroupId) > 0 ? { trainingGroupId: Number(group.trainingGroupId) } : {}) };
 }
 Page({
-  data: { loading: true, club: null, step: 1, templates: TYPES, presets: PRESETS, kindNames: KIND_NAMES, draft: emptyDraft(), groups: [], savedDraft: null, savedAt: "", message: "", busy: false, copying: false, typeName: "自由安排", titlePlaceholder: TYPES[3].titleHint, previewTime: "", today: new Date(Date.now() + 8 * 3600000).toISOString().slice(0, 10), clubTemplates: [], templatesLoading: false, templatesError: "", templateMode: false, editingTemplateId: 0, editingTemplateVersion: 0, selectedTemplateId: "", templateName: "", templateSheetOpen: false, templateBusy: false, templateMessage: "", templateTiming: { durationMinutes: "", signupLeadMinutes: "", cancelLeadMinutes: "" }, extraOpen: false, detailsOpen: false, successMessage: "" },
+  data: { loading: true, club: null, step: 1, templates: TYPES, presets: PRESETS, kindNames: KIND_NAMES, draft: emptyDraft(), groups: [], savedDraft: null, savedAt: "", message: "", busy: false, copying: false, typeName: "自由安排", titlePlaceholder: TYPES[3].titleHint, previewTime: "", today: new Date(Date.now() + 8 * 3600000).toISOString().slice(0, 10), clubTemplates: [], trainingGroups: [], trainingOptions: [], trainingGroupError: "", templatesLoading: false, templatesError: "", templateMode: false, editingTemplateId: 0, editingTemplateVersion: 0, selectedTemplateId: "", templateName: "", templateSheetOpen: false, templateBusy: false, templateMessage: "", templateTiming: { durationMinutes: "", signupLeadMinutes: "", cancelLeadMinutes: "" }, extraOpen: false, detailsOpen: false, successMessage: "" },
   onLoad(query) {
     this.disposed = false;
     this.clubId = String(query.club || "");
@@ -29,18 +29,21 @@ Page({
   },
   onShow() {
     if (this.accountToken && getApp().globalData.token !== this.accountToken) this.invalidateAccount();
+    else if (this.data.club && this.data.club.staff) this.loadTrainingGroups();
   },
   onUnload() { this.disposed = true; this.requestTicket = (this.requestTicket || 0) + 1; this.templateTicket = (this.templateTicket || 0) + 1; },
   invalidateAccount() {
+    this.trainingGroupIds = null;
     this.requestTicket = (this.requestTicket || 0) + 1;
     this.templateTicket = (this.templateTicket || 0) + 1;
     this.activitySnapshot = null;
     this.formDirty = false;
-    this.setData({ club: null, groups: [], draft: emptyDraft(), clubTemplates: [], savedDraft: null, savedAt: "", step: 1, templateMode: false, editingTemplateId: 0, editingTemplateVersion: 0, selectedTemplateId: "", templateTiming: { durationMinutes: "", signupLeadMinutes: "", cancelLeadMinutes: "" }, successMessage: "", templateMessage: "", templatesLoading: false, templatesError: "", copying: false, templateName: "", templateSheetOpen: false, templateBusy: false, busy: false, message: "登录账号已变化，请重新打开发布页" });
+    this.setData({ club: null, groups: [], draft: emptyDraft(), clubTemplates: [], trainingGroups: [], trainingOptions: [], trainingGroupError: "", savedDraft: null, savedAt: "", step: 1, templateMode: false, editingTemplateId: 0, editingTemplateVersion: 0, selectedTemplateId: "", templateTiming: { durationMinutes: "", signupLeadMinutes: "", cancelLeadMinutes: "" }, successMessage: "", templateMessage: "", templatesLoading: false, templatesError: "", copying: false, templateName: "", templateSheetOpen: false, templateBusy: false, busy: false, message: "登录账号已变化，请重新打开发布页" });
   },
   operationScope() { return { ticket: this.requestTicket, token: this.accountToken, clubId: this.clubId }; },
   currentScope(scope) { return !this.disposed && scope.ticket === this.requestTicket && scope.token === getApp().globalData.token && scope.clubId === this.clubId; },
   async load() {
+    this.trainingGroupIds = null;
     const ticket = this.requestTicket = (this.requestTicket || 0) + 1;
     const token = getApp().globalData.token || "";
     this.accountToken = token;
@@ -49,7 +52,7 @@ Page({
     this.templateTicket = (this.templateTicket || 0) + 1;
     this.activitySnapshot = null;
     this.formDirty = false;
-    this.setData({ loading: true, club: null, draft: emptyDraft(), clubTemplates: [], groups: [], savedDraft: null, savedAt: "", step: 1, templateMode: false, editingTemplateId: 0, editingTemplateVersion: 0, selectedTemplateId: "", templateTiming: { durationMinutes: "", signupLeadMinutes: "", cancelLeadMinutes: "" }, successMessage: "", templateMessage: "", templatesLoading: false, templatesError: "", copying: false, templateName: "", templateSheetOpen: false, templateBusy: false, busy: false, extraOpen: false, detailsOpen: false, message: "" });
+    this.setData({ loading: true, club: null, draft: emptyDraft(), clubTemplates: [], trainingGroups: [], trainingOptions: [], trainingGroupError: "", groups: [], savedDraft: null, savedAt: "", step: 1, templateMode: false, editingTemplateId: 0, editingTemplateVersion: 0, selectedTemplateId: "", templateTiming: { durationMinutes: "", signupLeadMinutes: "", cancelLeadMinutes: "" }, successMessage: "", templateMessage: "", templatesLoading: false, templatesError: "", copying: false, templateName: "", templateSheetOpen: false, templateBusy: false, busy: false, extraOpen: false, detailsOpen: false, message: "" });
     this.updatePreview();
     try {
       const [me, data] = await Promise.all([request("/me"), request("/clubs/" + this.clubId)]);
@@ -60,10 +63,11 @@ Page({
       }
       this.accountId = me.user.id;
       this.storageKey = "activity-draft:v1:" + this.accountId + ":" + this.clubId;
-      this.defaultGroups = (data.groups && data.groups.length ? data.groups : [GROUP]).map(groupDraft);
+      this.defaultGroups = [groupDraft(GROUP, 0)];
       this.setData({ club: data.club, groups: this.defaultGroups });
       if (!data.club.staff) return;
       this.loadTemplates();
+      this.loadTrainingGroups();
       const saved = wx.getStorageSync(this.storageKey);
       if (saved && saved.version === 1 && saved.draft && Array.isArray(saved.groups)) {
         this.setData({ savedDraft: saved, savedAt: saved.savedAt || "" });
@@ -103,6 +107,47 @@ Page({
       if (this.currentScope(scope) && ticket === this.templateTicket) this.setData({ templatesLoading: false });
     }
   },
+  async loadTrainingGroups() {
+    if (!this.sameAccount()) return;
+    const scope = this.operationScope();
+    const ticket = this.trainingGroupTicket = (this.trainingGroupTicket || 0) + 1;
+    try {
+      const data = await request("/clubs/" + scope.clubId + "/training-groups");
+      if (!this.currentScope(scope) || ticket !== this.trainingGroupTicket) return;
+      this.setData({ trainingGroups: data.groups || [], trainingGroupError: "" });
+      const ids = new Set((data.groups || []).map(g => Number(g.id)));
+      this.trainingGroupIds = ids;
+      const link = g => {
+        if (g.trainingGroupId && !ids.has(Number(g.trainingGroupId))) { const { trainingGroupId, ...snapshot } = g; return snapshot; }
+        const linked = (data.groups || []).find(row => Number(row.clubGroupId) === Number(g.defaultClubGroupId));
+        if (!g.trainingGroupId && linked) return { ...g, trainingGroupId: linked.id };
+        return g;
+      };
+      const groups = this.data.groups.map(link);
+      this.defaultGroups = (this.defaultGroups || []).map(link);
+      this.setData({ groups }); this.updateTrainingOptions();
+    } catch (err) { if (this.currentScope(scope) && ticket === this.trainingGroupTicket) this.setData({ trainingGroupError: "训练组暂时无法载入，可继续手动安排", trainingOptions: [] }); }
+  },
+  updateTrainingOptions() {
+    this.setData({ enabledGroupCount: this.data.groups.filter(g => g.enabled).length, trainingOptions: (this.data.trainingGroups || []).map(g => ({ ...g, selected: this.data.groups.some(row => Number(row.trainingGroupId) === Number(g.id) && row.enabled) })) });
+  },
+  chooseTrainingGroup(e) {
+    if (!this.sameAccount()) return;
+    const g = (this.data.trainingGroups || []).find(r => String(r.id) === String(e.currentTarget.dataset.id));
+    if (!g) return;
+    const found = this.data.groups.findIndex(r => Number(r.trainingGroupId) === Number(g.id));
+    let groups = this.data.groups.slice();
+    if (found >= 0) { groups[found] = { ...groups[found], enabled: !groups[found].enabled }; }
+    else {
+      if (groups.length === 1 && groups[0].name === GROUP.name && !groups[0].pace && !groups[0].trainingGroupId) groups = [];
+      groups = groups.filter(row => row.enabled);
+      if (groups.length >= 12) return this.setData({ message: "一场活动最多启用 12 个组别" });
+      if (groups.some(row => row.name.trim() === g.name.trim())) return this.setData({ message: "已有同名分组，可先修改或停用原分组" });
+      groups.push(groupDraft({ ...g, trainingGroupId: g.id, kind: "pace" }, "training-" + g.id));
+    }
+    this.setData({ groups, message: "" }); this.formDirty = true; this.updateTrainingOptions();
+  },
+  openTrainingGroups() { wx.navigateTo({ url: "/pages/training-groups/training-groups?club=" + encodeURIComponent(this.clubId) }); },
   useTemplate(e) {
     if (!this.sameAccount() || this.data.templateBusy) return;
     const id = String(e.currentTarget.dataset.id);
@@ -247,6 +292,7 @@ Page({
   },
   toggleReview(e) { this.setData({ "draft.review": e.detail.value }); this.formDirty = true; },
   updatePreview() {
+    this.updateTrainingOptions();
     const names = { easy: "轻松跑", long: "长距离", interval: "间歇训练", tempo: "节奏跑", social: "社交跑", custom: "自由安排" };
     const item = TYPES.find((row) => row.id === this.data.draft.trainingType) || TYPES[3];
     this.setData({ typeName: names[this.data.draft.trainingType] || "自由安排", titlePlaceholder: item.titleHint, previewTime: stamp(this.data.draft, "start").replace("T", " ") });
@@ -275,12 +321,15 @@ Page({
       return;
     }
     this.setData({ ["groups[" + index + "].enabled"]: enabled, message: "" });
+    this.updateTrainingOptions();
     this.formDirty = true;
   },
   addGroup() {
-    if (this.data.groups.length >= 12) return this.setData({ message: "最多添加 12 个组别" });
-    const groups = this.data.groups.concat(groupDraft({}, Date.now()));
+    const enabled = this.data.groups.filter(g => g.enabled);
+    if (enabled.length >= 12) return this.setData({ message: "最多启用 12 个组别" });
+    const groups = enabled.concat(groupDraft({}, Date.now()));
     this.setData({ groups, message: "" });
+    this.updateTrainingOptions();
     this.formDirty = true;
   },
   validateStep(step, forTemplate) {
@@ -298,8 +347,8 @@ Page({
       }
     }
     if (step === 2) {
-      if (this.data.groups.length > 12) return "一场活动最多设置 12 个组别";
       const groups = this.data.groups.filter((g) => g.enabled);
+      if (groups.length > 12) return "一场活动最多启用 12 个组别";
       if (!groups.length) return "请至少启用一个组别";
       const names = new Set();
       for (const group of groups) {
@@ -372,8 +421,8 @@ Page({
       place: d.place.trim(), gatherPlace: d.gatherPlace.trim(), gatherAt: d.gatherAt.trim(),
       route: d.route.trim(), workout: d.workout.trim(), notice: d.notice.trim(), note: d.note.trim(),
       minPeople: Number(d.minPeople), minKm: Number(d.minKm), points: Number(d.points), review: d.review,
-      groups: this.data.groups.filter((group) => group.enabled).map(({ name, pace, capacity, kind }) => ({
-        name: name.trim(), pace: pace.trim(), capacity: Number(capacity), kind
+      groups: this.data.groups.filter((group) => group.enabled).map(({ name, pace, capacity, kind, trainingGroupId }) => ({
+        name: name.trim(), pace: pace.trim(), capacity: Number(capacity), kind, ...(Number(trainingGroupId) > 0 && (!this.trainingGroupIds || this.trainingGroupIds.has(Number(trainingGroupId))) ? { trainingGroupId: Number(trainingGroupId) } : {})
       }))
     };
     try {

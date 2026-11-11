@@ -1,0 +1,143 @@
+{
+  "kind": "Real Vue mileage/group/profile/activity flows with isolated memory transport and fixed Beijing clock; no business writes",
+  "checks": [
+    {
+      "width": 320,
+      "name": "five ranges use current-period summary, never legacy cumulative total; Beijing default survives New York timezone",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "name": "all/current/unassigned/empty training groups filter exact IDs and expose zero runners; member search composes",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "name": "deleted selected permanent group falls back once to all members",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "name": "stale period response cannot overwrite latest period",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "name": "ranking opens scoped member profile with current date/range; other member has no self-edit or private runner tools",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "name": "own introduction can be edited; long nickname profile stays readable",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "name": "member/profile error and mileage retry stay usable",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "name": "training group create/edit/member assignment/delete is linked to board and responsive sheet",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "name": "activity explicitly selects permanent training groups, permits per-event edits and serializes stable association",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "name": "five ranges use current-period summary, never legacy cumulative total; Beijing default survives New York timezone",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "name": "all/current/unassigned/empty training groups filter exact IDs and expose zero runners; member search composes",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "name": "deleted selected permanent group falls back once to all members",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "name": "stale period response cannot overwrite latest period",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "name": "ranking opens scoped member profile with current date/range; other member has no self-edit or private runner tools",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "name": "own introduction can be edited; long nickname profile stays readable",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "name": "member/profile error and mileage retry stay usable",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "name": "training group create/edit/member assignment/delete is linked to board and responsive sheet",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "name": "activity explicitly selects permanent training groups, permits per-event edits and serializes stable association",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "name": "five ranges use current-period summary, never legacy cumulative total; Beijing default survives New York timezone",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "name": "all/current/unassigned/empty training groups filter exact IDs and expose zero runners; member search composes",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "name": "deleted selected permanent group falls back once to all members",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "name": "stale period response cannot overwrite latest period",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "name": "ranking opens scoped member profile with current date/range; other member has no self-edit or private runner tools",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "name": "own introduction can be edited; long nickname profile stays readable",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "name": "member/profile error and mileage retry stay usable",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "name": "training group create/edit/member assignment/delete is linked to board and responsive sheet",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "name": "activity explicitly selects permanent training groups, permits per-event edits and serializes stable association",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "unexpected": [],
+  "passed": true
+}

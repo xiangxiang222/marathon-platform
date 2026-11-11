@@ -1,31 +1,8 @@
-<view class="pad mini-mileage-mileage" wx:if="{{board}}">
-  <view class="card">
-    <view class="title">跑量</view>
-    <view class="src">只记跑步和越野。{{board.members}} 人 · 已计入 {{board.totalKm}} 公里 · {{board.totalCount}} 次</view>
-    <view class="range-filters">
-      <button class="ghost {{range === 'today' ? 'on' : ''}}" data-range="today" bindtap="pickRange">今日</button>
-      <button class="ghost {{range === 'week' ? 'on' : ''}}" data-range="week" bindtap="pickRange">本周</button>
-      <button class="ghost {{range === 'month' ? 'on' : ''}}" data-range="month" bindtap="pickRange">本月</button>
-      <button class="ghost {{range === 'year' ? 'on' : ''}}" data-range="year" bindtap="pickRange">今年</button>
-      <button class="ghost {{range === 'all' ? 'on' : ''}}" data-range="all" bindtap="pickRange">累计</button>
-    </view>
-    <input placeholder="搜昵称" value="{{query}}" bindinput="onQuery" aria-label="搜昵称" />
-  </view>
-  <view class="card">
-    <view class="title">排行榜</view>
-    <view wx:if="{{!board.rank.length}}" class="src">这段还没有计入的跑量。</view>
-    <view wx:for="{{board.rank}}" wx:key="userId" class="row">
-      <text>{{item.place}} {{item.nickname}} · {{item.group}}</text>
-      <text>{{item.km}} 公里</text>
-    </view>
-  </view>
-  <view class="card">
-    <view class="title">分组榜</view>
-    <view wx:for="{{board.groups}}" wx:key="name" class="row">
-      <text>{{item.name}}</text>
-      <text>{{item.km}} 公里</text>
-    </view>
-  </view>
+<view class="pad mini-mileage-mileage">
+  <mileage-board id="mileage-board" club-id="{{clubId}}" />
+  <button class="mileage-tools-toggle" bindtap="toggleTools"><text>跑步动态、报表与计入规则</text><text>{{toolsOpen ? '收起 −' : '展开 ＋'}}</text></button>
+  <block wx:if="{{toolsOpen && board}}">
+  <view class="tools-range-label">跑步动态 · 选择周期</view><view class="range-filters"><button wx:for="{{toolRanges}}" wx:key="id" class="ghost {{range === item.id ? 'on' : ''}}" data-range="{{item.id}}" bindtap="pickRange">{{item.name}}</button></view>
   <view class="card">
     <view class="title">动态</view>
     <view wx:for="{{board.feed}}" wx:key="id">
@@ -69,24 +46,7 @@
     <button class="ghost {{rules.observe ? 'on' : ''}}" data-key="observe" bindtap="toggleRule">当月入团自动观摩</button>
     <button class="btn" bindtap="saveRules">保存规则</button>
   </view>
-  <view class="card" wx:if="{{board.owner}}">
-    <view class="title">跑量分组</view>
-    <view class="src">和活动报名的组别分开。一个人在团里只有一个。</view>
-    <input data-key="groupName" placeholder="分组名，最多 10 个汉字" value="{{groupName}}" bindinput="onGroup" aria-label="分组名，最多 10 个汉字" />
-    <input data-key="groupCap" placeholder="人数，0 不限" value="{{groupCap}}" bindinput="onGroup" aria-label="人数，0 不限" />
-    <input data-key="groupSort" placeholder="编号" value="{{groupSort}}" bindinput="onGroup" aria-label="编号" />
-    <button class="btn" bindtap="addGroup">加一组</button>
-    <view wx:for="{{board.manageGroups}}" wx:key="id" class="row">
-      <text>{{item.name}} · {{item.members}} 人</text>
-      <text class="drop" data-id="{{item.id}}" bindtap="removeGroup">删除</text>
-    </view>
-    <view class="src">放入：{{assignName || '还没选'}} · {{assignGroupName}}</view>
-    <button wx:for="{{board.people}}" wx:key="id" class="ghost" data-id="{{item.id}}" data-name="{{item.nickname}}" bindtap="pickPerson">{{item.nickname}} · {{item.groupLabel}}</button>
-    <button class="ghost" data-id="0" data-name="不分组" bindtap="pickAssignGroup">不分组</button>
-    <button wx:for="{{board.manageGroups}}" wx:key="id" class="ghost" data-id="{{item.id}}" data-name="{{item.name}}" bindtap="pickAssignGroup">分到 {{item.name}}</button>
-    <button class="btn" bindtap="assign">放入</button>
-    <button class="ghost {{includeEmpty ? 'on' : ''}}" bindtap="toggleEmpty">没有记录的成员也导出</button>
-    <button class="btn" bindtap="exportSheet">复制这个范围的表格</button>
-  </view>
-  <view wx:if="{{message}}" class="err">{{message}}</view>
+
+  <view class="card" wx:if="{{board.owner}}"><view class="title">导出跑量报表</view><button class="ghost {{includeEmpty ? 'on' : ''}}" bindtap="toggleEmpty">没有记录的成员也导出</button><button class="btn" bindtap="exportSheet">复制{{kind === 'week' ? '周' : kind === 'year' ? '年' : '月'}}报表</button></view>
+  </block><view wx:if="{{toolsOpen && message}}" class="err">{{message}}</view>
 </view>

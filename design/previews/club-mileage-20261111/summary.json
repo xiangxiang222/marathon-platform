@@ -1,0 +1,66 @@
+{
+  "passed": true,
+  "data": 9,
+  "web": 27,
+  "miniVm": 14,
+  "miniMirrors": 30,
+  "compatibilityMini": 18,
+  "compatibilityWeb": 24,
+  "native": {
+    "js": 47,
+    "json": 36,
+    "strictWxss": 35,
+    "syntaxFixtures": 10,
+    "moduleReferences": 58,
+    "compile": [
+      {
+        "tool": "wcc",
+        "files": 32,
+        "pageFileCount": null,
+        "artifactBytes": 700203,
+        "ok": true
+      },
+      {
+        "tool": "wcsc",
+        "files": 35,
+        "pageFileCount": 35,
+        "artifactBytes": 380117,
+        "ok": true
+      }
+    ]
+  },
+  "screenshots": [
+    {
+      "title": "Mini 源码镜像 · 跑量看板 / 390",
+      "file": "mini/pages-club-club-390.png"
+    },
+    {
+      "title": "Mini 源码镜像 · 常设训练组 / 390",
+      "file": "mini/pages-training-groups-training-groups-390.png"
+    },
+    {
+      "title": "Mini 源码镜像 · 团内成员主页 / 390",
+      "file": "mini/pages-member-profile-member-profile-390.png"
+    },
+    {
+      "title": "Mini 源码镜像 · 活动选用训练组 / 390",
+      "file": "mini/pages-activity-create-activity-create-390.png"
+    },
+    {
+      "title": "Web · 跑量看板 / 390",
+      "file": "web-mileage-390.png"
+    },
+    {
+      "title": "Web · 训练组管理 / 390",
+      "file": "web-groups-390.png"
+    },
+    {
+      "title": "Web · 团内成员主页 / 390",
+      "file": "web-member-390.png"
+    },
+    {
+      "title": "Web · 长昵称 / 320",
+      "file": "web-member-long-320.png"
+    }
+  ]
+}

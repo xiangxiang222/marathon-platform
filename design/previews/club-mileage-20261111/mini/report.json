@@ -1,0 +1,4487 @@
+{
+  "kind": "Current WXML/WXSS browser source mirrors. Synthetic display fixtures. Not WeChat simulator/device. Selected routes and applicable branches at 320/390; default covers every registered route.",
+  "date": "2026-11-11T07:13:37.024Z",
+  "output": "/Users/mengxiangxiang/Documents/work/dev/marathon-platform/design/previews/club-mileage-20261111/mini",
+  "expectedAccent": "#e1251b",
+  "routeCount": 5,
+  "sceneCount": 15,
+  "dataErrors": [],
+  "limitations": [
+    "Source layout mirror with synthetic fixtures; no lifecycle/API/device interaction",
+    "Native pickers, textareas, scroll areas and custom header are approximated in browser",
+    "Contact sheets crop the top of each page; individual PNGs show the complete rendered page"
+  ],
+  "passed": true,
+  "results": [
+    {
+      "route": "pages/club/club",
+      "scenario": "base",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 1830,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#e1251b",
+        "background": "#f5f6f8",
+        "surface": "#ffffff",
+        "ink": "#262626",
+        "secondary": "#737373",
+        "border": "#eaedf1",
+        "sky": "#eaf4ff",
+        "mint": "#e9f7f2",
+        "lilac": "#f2edff",
+        "sun": "#fff4d7",
+        "peach": "#fff0e7"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "mint",
+          "sky",
+          "apricot-gold"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "DIV",
+            "class": "mb-summary",
+            "area": 51926,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(120deg, rgb(227, 245, 237), rgb(240, 250, 246) 65%, rgb(233, 241, 251))",
+            "families": [
+              "mint",
+              "sky"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "mb-group-card tone-mint ",
+            "area": 13581,
+            "background": "rgb(233, 246, 240)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "mb-group-card tone-blue ",
+            "area": 13581,
+            "background": "rgb(235, 242, 255)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "mb-group-card tone-apricot ",
+            "area": 9762,
+            "background": "rgb(255, 241, 230)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-km",
+            "area": 2857,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-km",
+            "area": 2857,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-km",
+            "area": 2219,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-name",
+            "area": 1666,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-name",
+            "area": 1666,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-top",
+            "area": 1596,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-top",
+            "area": 1596,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-name",
+            "area": 1294,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-top",
+            "area": 1239,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-pace",
+            "area": 1191,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-pace",
+            "area": 1191,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-pace",
+            "area": 925,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "avatar avatar-fallback",
+            "area": 625,
+            "background": "rgb(245, 239, 227)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "avatar avatar-fallback",
+            "area": 625,
+            "background": "rgb(240, 237, 248)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#e1251b",
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/mileage/mileage",
+      "scenario": "base",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 1517,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#e1251b",
+        "background": "#f5f6f8",
+        "surface": "#ffffff",
+        "ink": "#262626",
+        "secondary": "#737373",
+        "border": "#eaedf1",
+        "sky": "#eaf4ff",
+        "mint": "#e9f7f2",
+        "lilac": "#f2edff",
+        "sun": "#fff4d7",
+        "peach": "#fff0e7"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "mint",
+          "sky",
+          "apricot-gold"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "DIV",
+            "class": "mb-summary",
+            "area": 53459,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(120deg, rgb(227, 245, 237), rgb(240, 250, 246) 65%, rgb(233, 241, 251))",
+            "families": [
+              "mint",
+              "sky"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "mb-group-card tone-mint ",
+            "area": 13581,
+            "background": "rgb(233, 246, 240)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "mb-group-card tone-blue ",
+            "area": 13581,
+            "background": "rgb(235, 242, 255)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "mb-group-card tone-apricot ",
+            "area": 9716,
+            "background": "rgb(255, 241, 230)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-km",
+            "area": 2857,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-km",
+            "area": 2857,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-km",
+            "area": 2207,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-name",
+            "area": 1666,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-name",
+            "area": 1666,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "mb-filter filter-selected",
+            "area": 1601,
+            "background": "rgb(234, 246, 239)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-top",
+            "area": 1596,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-top",
+            "area": 1596,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-name",
+            "area": 1287,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-top",
+            "area": 1233,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-pace",
+            "area": 1191,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-pace",
+            "area": 1191,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-pace",
+            "area": 920,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#e1251b",
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/activity-create/activity-create",
+      "scenario": "base",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 1564,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#e1251b",
+        "background": "#f5f6f8",
+        "surface": "#ffffff",
+        "ink": "#262626",
+        "secondary": "#737373",
+        "border": "#eaedf1",
+        "sky": "#eaf4ff",
+        "mint": "#e9f7f2",
+        "lilac": "#f2edff",
+        "sun": "#fff4d7",
+        "peach": "#fff0e7"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "apricot-gold",
+          "mint"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "DIV",
+            "class": "page mini-activity-create-activity-create",
+            "area": 288000,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(165deg, rgb(255, 244, 237) 0px, rgba(255, 255, 255, 0.4) 85.3333px, rgba(0, 0, 0, 0) 162.133px)",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "training-library-option is-selected",
+            "area": 10034,
+            "background": "rgb(234, 246, 238)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "training-library-option is-selected",
+            "area": 10034,
+            "background": "rgb(234, 246, 238)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "",
+            "area": 1485,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "",
+            "area": 1485,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#e1251b",
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/training-groups/training-groups",
+      "scenario": "base",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 1351,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#e1251b",
+        "background": "#f5f6f8",
+        "surface": "#ffffff",
+        "ink": "#262626",
+        "secondary": "#737373",
+        "border": "#eaedf1",
+        "sky": "#eaf4ff",
+        "mint": "#e9f7f2",
+        "lilac": "#f2edff",
+        "sun": "#fff4d7",
+        "peach": "#fff0e7"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "mint",
+          "sky",
+          "apricot-gold"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "DIV",
+            "class": "tg-card tone-mint",
+            "area": 45663,
+            "background": "rgb(233, 246, 240)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-card tone-blue",
+            "area": 45663,
+            "background": "rgb(235, 242, 255)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-card tone-apricot",
+            "area": 45663,
+            "background": "rgb(255, 241, 230)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-card-top",
+            "area": 13502,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-card-top",
+            "area": 13502,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-card-top",
+            "area": 13502,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-actions",
+            "area": 12251,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-actions",
+            "area": 12251,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-actions",
+            "area": 12251,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-main",
+            "area": 8374,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-main",
+            "area": 8348,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-main",
+            "area": 8334,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-description",
+            "area": 5551,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-description",
+            "area": 5551,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-description",
+            "area": 5551,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-name",
+            "area": 4736,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-name",
+            "area": 4721,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-name",
+            "area": 4713,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-pace",
+            "area": 3063,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-pace",
+            "area": 3054,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-pace",
+            "area": 3048,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "mp-text-action",
+            "area": 2666,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "mp-text-action",
+            "area": 2666,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "mp-text-action",
+            "area": 2666,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#e1251b",
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/member-profile/member-profile",
+      "scenario": "base",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 1096,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#e1251b",
+        "background": "#f5f6f8",
+        "surface": "#ffffff",
+        "ink": "#262626",
+        "secondary": "#737373",
+        "border": "#eaedf1",
+        "sky": "#eaf4ff",
+        "mint": "#e9f7f2",
+        "lilac": "#f2edff",
+        "sun": "#fff4d7",
+        "peach": "#fff0e7"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "sky",
+          "mint"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "DIV",
+            "class": "person-hero",
+            "area": 72180,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(120deg, rgb(234, 244, 255), rgb(242, 249, 255) 60%, rgb(234, 248, 240))",
+            "families": [
+              "sky",
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "person-avatar person-fallback",
+            "area": 2799,
+            "background": "rgb(224, 236, 246)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#e1251b",
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/club/club",
+      "scenario": "mileage-group",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 1590,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#e1251b",
+        "background": "#f5f6f8",
+        "surface": "#ffffff",
+        "ink": "#262626",
+        "secondary": "#737373",
+        "border": "#eaedf1",
+        "sky": "#eaf4ff",
+        "mint": "#e9f7f2",
+        "lilac": "#f2edff",
+        "sun": "#fff4d7",
+        "peach": "#fff0e7"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "mint",
+          "sky",
+          "apricot-gold"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "DIV",
+            "class": "mb-summary",
+            "area": 51926,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(120deg, rgb(227, 245, 237), rgb(240, 250, 246) 65%, rgb(233, 241, 251))",
+            "families": [
+              "mint",
+              "sky"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "mb-group-card tone-mint group-selected",
+            "area": 13581,
+            "background": "rgb(233, 246, 240)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "mb-group-card tone-blue ",
+            "area": 13581,
+            "background": "rgb(235, 242, 255)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "mb-group-card tone-apricot ",
+            "area": 9762,
+            "background": "rgb(255, 241, 230)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-km",
+            "area": 2857,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-km",
+            "area": 2857,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-km",
+            "area": 2219,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-name",
+            "area": 1666,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-name",
+            "area": 1666,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-top",
+            "area": 1596,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-top",
+            "area": 1596,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-name",
+            "area": 1294,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-top",
+            "area": 1239,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-pace",
+            "area": 1191,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-pace",
+            "area": 1191,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-pace",
+            "area": 925,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "avatar avatar-fallback",
+            "area": 625,
+            "background": "rgb(245, 239, 227)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "avatar avatar-fallback",
+            "area": 625,
+            "background": "rgb(240, 237, 248)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#e1251b",
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/club/club",
+      "scenario": "mileage-empty",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 1359,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#e1251b",
+        "background": "#f5f6f8",
+        "surface": "#ffffff",
+        "ink": "#262626",
+        "secondary": "#737373",
+        "border": "#eaedf1",
+        "sky": "#eaf4ff",
+        "mint": "#e9f7f2",
+        "lilac": "#f2edff",
+        "sun": "#fff4d7",
+        "peach": "#fff0e7"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "mint",
+          "sky",
+          "apricot-gold"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "DIV",
+            "class": "mb-summary",
+            "area": 51926,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(120deg, rgb(227, 245, 237), rgb(240, 250, 246) 65%, rgb(233, 241, 251))",
+            "families": [
+              "mint",
+              "sky"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "mb-group-card tone-mint ",
+            "area": 13581,
+            "background": "rgb(233, 246, 240)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "mb-group-card tone-blue ",
+            "area": 13581,
+            "background": "rgb(235, 242, 255)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "mb-group-card tone-apricot group-selected",
+            "area": 9762,
+            "background": "rgb(255, 241, 230)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-km",
+            "area": 2857,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-km",
+            "area": 2857,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-km",
+            "area": 2219,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-name",
+            "area": 1666,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-name",
+            "area": 1666,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-top",
+            "area": 1596,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-top",
+            "area": 1596,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-name",
+            "area": 1294,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-top",
+            "area": 1239,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-pace",
+            "area": 1191,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-pace",
+            "area": 1191,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-pace",
+            "area": 925,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "avatar avatar-fallback",
+            "area": 625,
+            "background": "rgb(245, 239, 227)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "avatar avatar-fallback",
+            "area": 625,
+            "background": "rgb(240, 237, 248)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#e1251b",
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/club/club",
+      "scenario": "mileage-error",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 970,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#e1251b",
+        "background": "#f5f6f8",
+        "surface": "#ffffff",
+        "ink": "#262626",
+        "secondary": "#737373",
+        "border": "#eaedf1",
+        "sky": "#eaf4ff",
+        "mint": "#e9f7f2",
+        "lilac": "#f2edff",
+        "sun": "#fff4d7",
+        "peach": "#fff0e7"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "apricot-gold",
+          "sky"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "DIV",
+            "class": "mb-error",
+            "area": 22869,
+            "background": "rgb(255, 245, 240)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "mb-link",
+            "area": 1936,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "avatar avatar-fallback",
+            "area": 625,
+            "background": "rgb(245, 239, 227)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "avatar avatar-fallback",
+            "area": 625,
+            "background": "rgb(240, 237, 248)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#e1251b",
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/training-groups/training-groups",
+      "scenario": "readonly",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 1195,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#e1251b",
+        "background": "#f5f6f8",
+        "surface": "#ffffff",
+        "ink": "#262626",
+        "secondary": "#737373",
+        "border": "#eaedf1",
+        "sky": "#eaf4ff",
+        "mint": "#e9f7f2",
+        "lilac": "#f2edff",
+        "sun": "#fff4d7",
+        "peach": "#fff0e7"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "mint",
+          "sky",
+          "apricot-gold"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "DIV",
+            "class": "tg-card tone-mint",
+            "area": 30320,
+            "background": "rgb(233, 246, 240)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-card tone-blue",
+            "area": 30320,
+            "background": "rgb(235, 242, 255)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-card tone-apricot",
+            "area": 30320,
+            "background": "rgb(255, 241, 230)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-card-top",
+            "area": 13502,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-card-top",
+            "area": 13502,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-card-top",
+            "area": 13502,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-main",
+            "area": 8374,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-main",
+            "area": 8348,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-main",
+            "area": 8334,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-description",
+            "area": 5551,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-description",
+            "area": 5551,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-description",
+            "area": 5551,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-name",
+            "area": 4736,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-name",
+            "area": 4721,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-name",
+            "area": 4713,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-pace",
+            "area": 3063,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-pace",
+            "area": 3054,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-pace",
+            "area": 3048,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-size",
+            "area": 1806,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-size",
+            "area": 1796,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-size",
+            "area": 1779,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#e1251b",
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/training-groups/training-groups",
+      "scenario": "empty",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 1033,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#e1251b",
+        "background": "#f5f6f8",
+        "surface": "#ffffff",
+        "ink": "#262626",
+        "secondary": "#737373",
+        "border": "#eaedf1",
+        "sky": "#eaf4ff",
+        "mint": "#e9f7f2",
+        "lilac": "#f2edff",
+        "sun": "#fff4d7",
+        "peach": "#fff0e7"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [],
+        "coloredSurfaces": []
+      },
+      "primaryColor": "#e1251b",
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/training-groups/training-groups",
+      "scenario": "sheet",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 1351,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#e1251b",
+        "background": "#f5f6f8",
+        "surface": "#ffffff",
+        "ink": "#262626",
+        "secondary": "#737373",
+        "border": "#eaedf1",
+        "sky": "#eaf4ff",
+        "mint": "#e9f7f2",
+        "lilac": "#f2edff",
+        "sun": "#fff4d7",
+        "peach": "#fff0e7"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "mint",
+          "sky",
+          "apricot-gold"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "DIV",
+            "class": "tg-card tone-mint",
+            "area": 45663,
+            "background": "rgb(233, 246, 240)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-card tone-blue",
+            "area": 45663,
+            "background": "rgb(235, 242, 255)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-card tone-apricot",
+            "area": 45663,
+            "background": "rgb(255, 241, 230)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-card-top",
+            "area": 13502,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-card-top",
+            "area": 13502,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-card-top",
+            "area": 13502,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-actions",
+            "area": 12251,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-actions",
+            "area": 12251,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-actions",
+            "area": 12251,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-main",
+            "area": 8374,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-main",
+            "area": 8348,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-main",
+            "area": 8334,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-description",
+            "area": 5551,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-description",
+            "area": 5551,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-description",
+            "area": 5551,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-name",
+            "area": 4736,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-name",
+            "area": 4721,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-name",
+            "area": 4713,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-pace",
+            "area": 3063,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-pace",
+            "area": 3054,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-pace",
+            "area": 3048,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "mp-text-action",
+            "area": 2666,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "mp-text-action",
+            "area": 2666,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "mp-text-action",
+            "area": 2666,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#e1251b",
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/member-profile/member-profile",
+      "scenario": "own",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 1094,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#e1251b",
+        "background": "#f5f6f8",
+        "surface": "#ffffff",
+        "ink": "#262626",
+        "secondary": "#737373",
+        "border": "#eaedf1",
+        "sky": "#eaf4ff",
+        "mint": "#e9f7f2",
+        "lilac": "#f2edff",
+        "sun": "#fff4d7",
+        "peach": "#fff0e7"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "sky",
+          "mint"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "DIV",
+            "class": "person-hero",
+            "area": 72180,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(120deg, rgb(234, 244, 255), rgb(242, 249, 255) 60%, rgb(234, 248, 240))",
+            "families": [
+              "sky",
+              "mint"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#e1251b",
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/member-profile/member-profile",
+      "scenario": "empty",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 1009,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#e1251b",
+        "background": "#f5f6f8",
+        "surface": "#ffffff",
+        "ink": "#262626",
+        "secondary": "#737373",
+        "border": "#eaedf1",
+        "sky": "#eaf4ff",
+        "mint": "#e9f7f2",
+        "lilac": "#f2edff",
+        "sun": "#fff4d7",
+        "peach": "#fff0e7"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "sky",
+          "mint"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "DIV",
+            "class": "person-hero",
+            "area": 72180,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(120deg, rgb(234, 244, 255), rgb(242, 249, 255) 60%, rgb(234, 248, 240))",
+            "families": [
+              "sky",
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "person-avatar person-fallback",
+            "area": 2799,
+            "background": "rgb(224, 236, 246)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#e1251b",
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/member-profile/member-profile",
+      "scenario": "error",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 169,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#e1251b",
+        "background": "#f5f6f8",
+        "surface": "#ffffff",
+        "ink": "#262626",
+        "secondary": "#737373",
+        "border": "#eaedf1",
+        "sky": "#eaf4ff",
+        "mint": "#e9f7f2",
+        "lilac": "#f2edff",
+        "sun": "#fff4d7",
+        "peach": "#fff0e7"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "apricot-gold"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "DIV",
+            "class": "mp-error",
+            "area": 17573,
+            "background": "rgb(255, 241, 234)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "mp-text-action",
+            "area": 1056,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#e1251b",
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/member-profile/member-profile",
+      "scenario": "long-name",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 1132,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#e1251b",
+        "background": "#f5f6f8",
+        "surface": "#ffffff",
+        "ink": "#262626",
+        "secondary": "#737373",
+        "border": "#eaedf1",
+        "sky": "#eaf4ff",
+        "mint": "#e9f7f2",
+        "lilac": "#f2edff",
+        "sun": "#fff4d7",
+        "peach": "#fff0e7"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "sky",
+          "mint"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "DIV",
+            "class": "person-hero",
+            "area": 83415,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(120deg, rgb(234, 244, 255), rgb(242, 249, 255) 60%, rgb(234, 248, 240))",
+            "families": [
+              "sky",
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "person-avatar person-fallback",
+            "area": 2799,
+            "background": "rgb(224, 236, 246)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#e1251b",
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/club/club",
+      "scenario": "base",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 1920,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#e1251b",
+        "background": "#f5f6f8",
+        "surface": "#ffffff",
+        "ink": "#262626",
+        "secondary": "#737373",
+        "border": "#eaedf1",
+        "sky": "#eaf4ff",
+        "mint": "#e9f7f2",
+        "lilac": "#f2edff",
+        "sun": "#fff4d7",
+        "peach": "#fff0e7"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "mint",
+          "sky",
+          "apricot-gold"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "DIV",
+            "class": "mb-summary",
+            "area": 68468,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(120deg, rgb(227, 245, 237), rgb(240, 250, 246) 65%, rgb(233, 241, 251))",
+            "families": [
+              "mint",
+              "sky"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "mb-group-card tone-mint ",
+            "area": 18191,
+            "background": "rgb(233, 246, 240)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "mb-group-card tone-blue ",
+            "area": 18191,
+            "background": "rgb(235, 242, 255)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "mb-group-card tone-apricot ",
+            "area": 13074,
+            "background": "rgb(255, 241, 230)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-km",
+            "area": 3497,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-km",
+            "area": 3497,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-km",
+            "area": 2711,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-top",
+            "area": 2381,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-top",
+            "area": 2381,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-name",
+            "area": 2040,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-name",
+            "area": 2040,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-top",
+            "area": 1846,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-name",
+            "area": 1581,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-pace",
+            "area": 1457,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-pace",
+            "area": 1457,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-pace",
+            "area": 1130,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "avatar avatar-fallback",
+            "area": 784,
+            "background": "rgb(245, 239, 227)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "avatar avatar-fallback",
+            "area": 784,
+            "background": "rgb(240, 237, 248)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#e1251b",
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/mileage/mileage",
+      "scenario": "base",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 1592,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#e1251b",
+        "background": "#f5f6f8",
+        "surface": "#ffffff",
+        "ink": "#262626",
+        "secondary": "#737373",
+        "border": "#eaedf1",
+        "sky": "#eaf4ff",
+        "mint": "#e9f7f2",
+        "lilac": "#f2edff",
+        "sun": "#fff4d7",
+        "peach": "#fff0e7"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "mint",
+          "sky",
+          "apricot-gold"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "DIV",
+            "class": "mb-summary",
+            "area": 70497,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(120deg, rgb(227, 245, 237), rgb(240, 250, 246) 65%, rgb(233, 241, 251))",
+            "families": [
+              "mint",
+              "sky"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "mb-group-card tone-mint ",
+            "area": 18191,
+            "background": "rgb(233, 246, 240)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "mb-group-card tone-blue ",
+            "area": 18191,
+            "background": "rgb(235, 242, 255)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "mb-group-card tone-apricot ",
+            "area": 13074,
+            "background": "rgb(255, 241, 230)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-km",
+            "area": 3497,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-km",
+            "area": 3497,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-km",
+            "area": 2711,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-top",
+            "area": 2381,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-top",
+            "area": 2381,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-name",
+            "area": 2040,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-name",
+            "area": 2040,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-top",
+            "area": 1846,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "mb-filter filter-selected",
+            "area": 1762,
+            "background": "rgb(234, 246, 239)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-name",
+            "area": 1581,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-pace",
+            "area": 1457,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-pace",
+            "area": 1457,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-pace",
+            "area": 1130,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#e1251b",
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/activity-create/activity-create",
+      "scenario": "base",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 1667,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#e1251b",
+        "background": "#f5f6f8",
+        "surface": "#ffffff",
+        "ink": "#262626",
+        "secondary": "#737373",
+        "border": "#eaedf1",
+        "sky": "#eaf4ff",
+        "mint": "#e9f7f2",
+        "lilac": "#f2edff",
+        "sun": "#fff4d7",
+        "peach": "#fff0e7"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "apricot-gold",
+          "mint"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "DIV",
+            "class": "page mini-activity-create-activity-create",
+            "area": 351000,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(165deg, rgb(255, 244, 237) 0px, rgba(255, 255, 255, 0.4) 104px, rgba(0, 0, 0, 0) 197.6px)",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "training-library-option is-selected",
+            "area": 12230,
+            "background": "rgb(234, 246, 238)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "training-library-option is-selected",
+            "area": 12230,
+            "background": "rgb(234, 246, 238)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "",
+            "area": 1817,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "",
+            "area": 1817,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#e1251b",
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/training-groups/training-groups",
+      "scenario": "base",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 1407,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#e1251b",
+        "background": "#f5f6f8",
+        "surface": "#ffffff",
+        "ink": "#262626",
+        "secondary": "#737373",
+        "border": "#eaedf1",
+        "sky": "#eaf4ff",
+        "mint": "#e9f7f2",
+        "lilac": "#f2edff",
+        "sun": "#fff4d7",
+        "peach": "#fff0e7"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "mint",
+          "sky",
+          "apricot-gold"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "DIV",
+            "class": "tg-card tone-mint",
+            "area": 59019,
+            "background": "rgb(233, 246, 240)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-card tone-blue",
+            "area": 59019,
+            "background": "rgb(235, 242, 255)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-card tone-apricot",
+            "area": 59019,
+            "background": "rgb(255, 241, 230)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-card-top",
+            "area": 16705,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-card-top",
+            "area": 16705,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-card-top",
+            "area": 16705,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-actions",
+            "area": 14932,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-actions",
+            "area": 14932,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-actions",
+            "area": 14932,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-main",
+            "area": 10954,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-main",
+            "area": 10929,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-main",
+            "area": 10914,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-description",
+            "area": 6766,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-description",
+            "area": 6766,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-description",
+            "area": 6766,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-name",
+            "area": 6103,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-name",
+            "area": 6088,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-name",
+            "area": 6080,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-pace",
+            "area": 3947,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-pace",
+            "area": 3938,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-pace",
+            "area": 3933,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "mp-text-action",
+            "area": 2666,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "mp-text-action",
+            "area": 2666,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "mp-text-action",
+            "area": 2666,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#e1251b",
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/member-profile/member-profile",
+      "scenario": "base",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 1168,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#e1251b",
+        "background": "#f5f6f8",
+        "surface": "#ffffff",
+        "ink": "#262626",
+        "secondary": "#737373",
+        "border": "#eaedf1",
+        "sky": "#eaf4ff",
+        "mint": "#e9f7f2",
+        "lilac": "#f2edff",
+        "sun": "#fff4d7",
+        "peach": "#fff0e7"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "sky",
+          "mint"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "DIV",
+            "class": "person-hero",
+            "area": 93892,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(120deg, rgb(234, 244, 255), rgb(242, 249, 255) 60%, rgb(234, 248, 240))",
+            "families": [
+              "sky",
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "person-avatar person-fallback",
+            "area": 4156,
+            "background": "rgb(224, 236, 246)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#e1251b",
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/club/club",
+      "scenario": "mileage-group",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 1680,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#e1251b",
+        "background": "#f5f6f8",
+        "surface": "#ffffff",
+        "ink": "#262626",
+        "secondary": "#737373",
+        "border": "#eaedf1",
+        "sky": "#eaf4ff",
+        "mint": "#e9f7f2",
+        "lilac": "#f2edff",
+        "sun": "#fff4d7",
+        "peach": "#fff0e7"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "mint",
+          "sky",
+          "apricot-gold"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "DIV",
+            "class": "mb-summary",
+            "area": 68468,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(120deg, rgb(227, 245, 237), rgb(240, 250, 246) 65%, rgb(233, 241, 251))",
+            "families": [
+              "mint",
+              "sky"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "mb-group-card tone-mint group-selected",
+            "area": 18191,
+            "background": "rgb(233, 246, 240)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "mb-group-card tone-blue ",
+            "area": 18191,
+            "background": "rgb(235, 242, 255)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "mb-group-card tone-apricot ",
+            "area": 13074,
+            "background": "rgb(255, 241, 230)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-km",
+            "area": 3497,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-km",
+            "area": 3497,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-km",
+            "area": 2711,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-top",
+            "area": 2381,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-top",
+            "area": 2381,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-name",
+            "area": 2040,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-name",
+            "area": 2040,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-top",
+            "area": 1846,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-name",
+            "area": 1581,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-pace",
+            "area": 1457,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-pace",
+            "area": 1457,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-pace",
+            "area": 1130,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "avatar avatar-fallback",
+            "area": 784,
+            "background": "rgb(245, 239, 227)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "avatar avatar-fallback",
+            "area": 784,
+            "background": "rgb(240, 237, 248)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#e1251b",
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/club/club",
+      "scenario": "mileage-empty",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 1452,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#e1251b",
+        "background": "#f5f6f8",
+        "surface": "#ffffff",
+        "ink": "#262626",
+        "secondary": "#737373",
+        "border": "#eaedf1",
+        "sky": "#eaf4ff",
+        "mint": "#e9f7f2",
+        "lilac": "#f2edff",
+        "sun": "#fff4d7",
+        "peach": "#fff0e7"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "mint",
+          "sky",
+          "apricot-gold"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "DIV",
+            "class": "mb-summary",
+            "area": 68468,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(120deg, rgb(227, 245, 237), rgb(240, 250, 246) 65%, rgb(233, 241, 251))",
+            "families": [
+              "mint",
+              "sky"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "mb-group-card tone-mint ",
+            "area": 18191,
+            "background": "rgb(233, 246, 240)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "mb-group-card tone-blue ",
+            "area": 18191,
+            "background": "rgb(235, 242, 255)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "mb-group-card tone-apricot group-selected",
+            "area": 13074,
+            "background": "rgb(255, 241, 230)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-km",
+            "area": 3497,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-km",
+            "area": 3497,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-km",
+            "area": 2711,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-top",
+            "area": 2381,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-top",
+            "area": 2381,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-name",
+            "area": 2040,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-name",
+            "area": 2040,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-top",
+            "area": 1846,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-name",
+            "area": 1581,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-pace",
+            "area": 1457,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-pace",
+            "area": 1457,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "mb-group-pace",
+            "area": 1130,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "avatar avatar-fallback",
+            "area": 784,
+            "background": "rgb(245, 239, 227)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "avatar avatar-fallback",
+            "area": 784,
+            "background": "rgb(240, 237, 248)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#e1251b",
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/club/club",
+      "scenario": "mileage-error",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 970,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#e1251b",
+        "background": "#f5f6f8",
+        "surface": "#ffffff",
+        "ink": "#262626",
+        "secondary": "#737373",
+        "border": "#eaedf1",
+        "sky": "#eaf4ff",
+        "mint": "#e9f7f2",
+        "lilac": "#f2edff",
+        "sun": "#fff4d7",
+        "peach": "#fff0e7"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "apricot-gold",
+          "sky"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "DIV",
+            "class": "mb-error",
+            "area": 30536,
+            "background": "rgb(255, 245, 240)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "mb-link",
+            "area": 2002,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "avatar avatar-fallback",
+            "area": 784,
+            "background": "rgb(245, 239, 227)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "avatar avatar-fallback",
+            "area": 784,
+            "background": "rgb(240, 237, 248)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#e1251b",
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/training-groups/training-groups",
+      "scenario": "readonly",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 1248,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#e1251b",
+        "background": "#f5f6f8",
+        "surface": "#ffffff",
+        "ink": "#262626",
+        "secondary": "#737373",
+        "border": "#eaedf1",
+        "sky": "#eaf4ff",
+        "mint": "#e9f7f2",
+        "lilac": "#f2edff",
+        "sun": "#fff4d7",
+        "peach": "#fff0e7"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "mint",
+          "sky",
+          "apricot-gold"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "DIV",
+            "class": "tg-card tone-mint",
+            "area": 39779,
+            "background": "rgb(233, 246, 240)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-card tone-blue",
+            "area": 39779,
+            "background": "rgb(235, 242, 255)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-card tone-apricot",
+            "area": 39779,
+            "background": "rgb(255, 241, 230)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-card-top",
+            "area": 16705,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-card-top",
+            "area": 16705,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-card-top",
+            "area": 16705,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-main",
+            "area": 10954,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-main",
+            "area": 10929,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-main",
+            "area": 10914,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-description",
+            "area": 6766,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-description",
+            "area": 6766,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-description",
+            "area": 6766,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-name",
+            "area": 6103,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-name",
+            "area": 6088,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-name",
+            "area": 6080,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-pace",
+            "area": 3947,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-pace",
+            "area": 3938,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-pace",
+            "area": 3933,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-size",
+            "area": 1806,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-size",
+            "area": 1796,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-size",
+            "area": 1779,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#e1251b",
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/training-groups/training-groups",
+      "scenario": "empty",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 1068,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#e1251b",
+        "background": "#f5f6f8",
+        "surface": "#ffffff",
+        "ink": "#262626",
+        "secondary": "#737373",
+        "border": "#eaedf1",
+        "sky": "#eaf4ff",
+        "mint": "#e9f7f2",
+        "lilac": "#f2edff",
+        "sun": "#fff4d7",
+        "peach": "#fff0e7"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [],
+        "coloredSurfaces": []
+      },
+      "primaryColor": "#e1251b",
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/training-groups/training-groups",
+      "scenario": "sheet",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 1407,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#e1251b",
+        "background": "#f5f6f8",
+        "surface": "#ffffff",
+        "ink": "#262626",
+        "secondary": "#737373",
+        "border": "#eaedf1",
+        "sky": "#eaf4ff",
+        "mint": "#e9f7f2",
+        "lilac": "#f2edff",
+        "sun": "#fff4d7",
+        "peach": "#fff0e7"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "mint",
+          "sky",
+          "apricot-gold"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "DIV",
+            "class": "tg-card tone-mint",
+            "area": 59019,
+            "background": "rgb(233, 246, 240)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-card tone-blue",
+            "area": 59019,
+            "background": "rgb(235, 242, 255)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-card tone-apricot",
+            "area": 59019,
+            "background": "rgb(255, 241, 230)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-card-top",
+            "area": 16705,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-card-top",
+            "area": 16705,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-card-top",
+            "area": 16705,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-actions",
+            "area": 14932,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-actions",
+            "area": 14932,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-actions",
+            "area": 14932,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-main",
+            "area": 10954,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-main",
+            "area": 10929,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-main",
+            "area": 10914,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-description",
+            "area": 6766,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-description",
+            "area": 6766,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-description",
+            "area": 6766,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-name",
+            "area": 6103,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-name",
+            "area": 6088,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-name",
+            "area": 6080,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-pace",
+            "area": 3947,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-pace",
+            "area": 3938,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "tg-pace",
+            "area": 3933,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "mp-text-action",
+            "area": 2666,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "mint"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "mp-text-action",
+            "area": 2666,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "mp-text-action",
+            "area": 2666,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#e1251b",
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/member-profile/member-profile",
+      "scenario": "own",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 1166,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#e1251b",
+        "background": "#f5f6f8",
+        "surface": "#ffffff",
+        "ink": "#262626",
+        "secondary": "#737373",
+        "border": "#eaedf1",
+        "sky": "#eaf4ff",
+        "mint": "#e9f7f2",
+        "lilac": "#f2edff",
+        "sun": "#fff4d7",
+        "peach": "#fff0e7"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "sky",
+          "mint"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "DIV",
+            "class": "person-hero",
+            "area": 93892,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(120deg, rgb(234, 244, 255), rgb(242, 249, 255) 60%, rgb(234, 248, 240))",
+            "families": [
+              "sky",
+              "mint"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#e1251b",
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/member-profile/member-profile",
+      "scenario": "empty",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 1075,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#e1251b",
+        "background": "#f5f6f8",
+        "surface": "#ffffff",
+        "ink": "#262626",
+        "secondary": "#737373",
+        "border": "#eaedf1",
+        "sky": "#eaf4ff",
+        "mint": "#e9f7f2",
+        "lilac": "#f2edff",
+        "sun": "#fff4d7",
+        "peach": "#fff0e7"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "sky",
+          "mint"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "DIV",
+            "class": "person-hero",
+            "area": 93892,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(120deg, rgb(234, 244, 255), rgb(242, 249, 255) 60%, rgb(234, 248, 240))",
+            "families": [
+              "sky",
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "person-avatar person-fallback",
+            "area": 4156,
+            "background": "rgb(224, 236, 246)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#e1251b",
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/member-profile/member-profile",
+      "scenario": "error",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 182,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#e1251b",
+        "background": "#f5f6f8",
+        "surface": "#ffffff",
+        "ink": "#262626",
+        "secondary": "#737373",
+        "border": "#eaedf1",
+        "sky": "#eaf4ff",
+        "mint": "#e9f7f2",
+        "lilac": "#f2edff",
+        "sun": "#fff4d7",
+        "peach": "#fff0e7"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "apricot-gold"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "DIV",
+            "class": "mp-error",
+            "area": 22636,
+            "background": "rgb(255, 241, 234)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "mp-text-action",
+            "area": 1056,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#e1251b",
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/member-profile/member-profile",
+      "scenario": "long-name",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 1204,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#e1251b",
+        "background": "#f5f6f8",
+        "surface": "#ffffff",
+        "ink": "#262626",
+        "secondary": "#737373",
+        "border": "#eaedf1",
+        "sky": "#eaf4ff",
+        "mint": "#e9f7f2",
+        "lilac": "#f2edff",
+        "sun": "#fff4d7",
+        "peach": "#fff0e7"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "sky",
+          "mint"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "DIV",
+            "class": "person-hero",
+            "area": 107584,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(120deg, rgb(234, 244, 255), rgb(242, 249, 255) 60%, rgb(234, 248, 240))",
+            "families": [
+              "sky",
+              "mint"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "person-avatar person-fallback",
+            "area": 4156,
+            "background": "rgb(224, 236, 246)",
+            "gradient": "none",
+            "families": [
+              "sky"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#e1251b",
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    }
+  ]
+}

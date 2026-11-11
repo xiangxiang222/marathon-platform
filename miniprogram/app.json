@@ -27,7 +27,9 @@
     "pages/legal/legal",
     "pages/feedback/feedback",
     "pages/club-identity/club-identity",
-    "pages/club-report/club-report"
+    "pages/club-report/club-report",
+    "pages/training-groups/training-groups",
+    "pages/member-profile/member-profile"
   ],
   "window": {
     "navigationBarBackgroundColor": "#f5f6f8",

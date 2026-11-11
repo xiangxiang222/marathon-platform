@@ -1,0 +1,1194 @@
+{
+  "kind": "Strict source syntax plus WeChat native offline compilation; this is not a device test",
+  "startedAt": "2026-11-11T07:13:33.464Z",
+  "validationContract": "Native compiler exit 0 alone is insufficient: every WXSS must pass strict PostCSS parsing; wcsc receives -pc for every input page; native tools must finish without diagnostics and create nonempty artifacts.",
+  "js": [
+    {
+      "file": "miniprogram/app.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "miniprogram/components/mileage-board/mileage-board.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "miniprogram/components/page-header/page-header.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "miniprogram/config.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "miniprogram/lunar.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "miniprogram/pages/activity/activity.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "miniprogram/pages/activity-create/activity-create.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "miniprogram/pages/album/album.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "miniprogram/pages/calendar/calendar.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "miniprogram/pages/call/call.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "miniprogram/pages/club/club.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "miniprogram/pages/club-identity/club-identity.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "miniprogram/pages/club-intro/club-intro.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "miniprogram/pages/club-report/club-report.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "miniprogram/pages/clubs/clubs.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "miniprogram/pages/feed/feed.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "miniprogram/pages/feedback/feedback.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "miniprogram/pages/history/history.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "miniprogram/pages/internal/internal.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "miniprogram/pages/legal/legal.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "miniprogram/pages/meetup/meetup.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "miniprogram/pages/member-profile/member-profile.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "miniprogram/pages/mileage/mileage.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "miniprogram/pages/mine/mine.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "miniprogram/pages/news/detail.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "miniprogram/pages/news/news.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "miniprogram/pages/partner/partner.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "miniprogram/pages/privacy/privacy.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "miniprogram/pages/race/race.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "miniprogram/pages/races/races.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "miniprogram/pages/radar/radar.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "miniprogram/pages/runner/runner.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "miniprogram/pages/signup/signup.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "miniprogram/pages/sport/sport.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "miniprogram/pages/training-groups/training-groups.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "miniprogram/utils/activity-templates.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "miniprogram/utils/avatar.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "miniprogram/utils/call-poster.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "miniprogram/utils/captcha.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "miniprogram/utils/club-identity.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "miniprogram/utils/day-poster.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "miniprogram/utils/guide-md.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "miniprogram/utils/legal-documents.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "miniprogram/utils/mileage-board.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "miniprogram/utils/race-history.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "miniprogram/utils/request.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "miniprogram/utils/runner-center.js",
+      "exit": 0,
+      "error": ""
+    }
+  ],
+  "json": [
+    {
+      "file": "miniprogram/app.json",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/components/mileage-board/mileage-board.json",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/components/page-header/page-header.json",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/activity/activity.json",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/activity-create/activity-create.json",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/album/album.json",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/calendar/calendar.json",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/call/call.json",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/club/club.json",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/club-identity/club-identity.json",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/club-intro/club-intro.json",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/club-report/club-report.json",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/clubs/clubs.json",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/feed/feed.json",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/feedback/feedback.json",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/history/history.json",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/internal/internal.json",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/legal/legal.json",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/meetup/meetup.json",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/member-profile/member-profile.json",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/mileage/mileage.json",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/mine/mine.json",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/news/detail.json",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/news/news.json",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/partner/partner.json",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/privacy/privacy.json",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/race/race.json",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/races/races.json",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/radar/radar.json",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/runner/runner.json",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/signup/signup.json",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/sport/sport.json",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/training-groups/training-groups.json",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/project.config.json",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/project.private.config.json",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/sitemap.json",
+      "ok": true
+    }
+  ],
+  "wxss": [
+    {
+      "file": "miniprogram/app.wxss",
+      "ok": true,
+      "declarations": 203
+    },
+    {
+      "file": "miniprogram/components/mileage-board/mileage-board.wxss",
+      "ok": true,
+      "declarations": 337
+    },
+    {
+      "file": "miniprogram/components/page-header/page-header.wxss",
+      "ok": true,
+      "declarations": 22
+    },
+    {
+      "file": "miniprogram/pages/activity/activity.wxss",
+      "ok": true,
+      "declarations": 635
+    },
+    {
+      "file": "miniprogram/pages/activity-create/activity-create.wxss",
+      "ok": true,
+      "declarations": 760
+    },
+    {
+      "file": "miniprogram/pages/album/album.wxss",
+      "ok": true,
+      "declarations": 69
+    },
+    {
+      "file": "miniprogram/pages/calendar/calendar.wxss",
+      "ok": true,
+      "declarations": 145
+    },
+    {
+      "file": "miniprogram/pages/call/call.wxss",
+      "ok": true,
+      "declarations": 98
+    },
+    {
+      "file": "miniprogram/pages/club/club.wxss",
+      "ok": true,
+      "declarations": 1123
+    },
+    {
+      "file": "miniprogram/pages/club-identity/club-identity.wxss",
+      "ok": true,
+      "declarations": 114
+    },
+    {
+      "file": "miniprogram/pages/club-intro/club-intro.wxss",
+      "ok": true,
+      "declarations": 484
+    },
+    {
+      "file": "miniprogram/pages/club-report/club-report.wxss",
+      "ok": true,
+      "declarations": 55
+    },
+    {
+      "file": "miniprogram/pages/clubs/clubs.wxss",
+      "ok": true,
+      "declarations": 419
+    },
+    {
+      "file": "miniprogram/pages/feed/feed.wxss",
+      "ok": true,
+      "declarations": 33
+    },
+    {
+      "file": "miniprogram/pages/feedback/feedback.wxss",
+      "ok": true,
+      "declarations": 726
+    },
+    {
+      "file": "miniprogram/pages/history/history.wxss",
+      "ok": true,
+      "declarations": 484
+    },
+    {
+      "file": "miniprogram/pages/internal/internal.wxss",
+      "ok": true,
+      "declarations": 51
+    },
+    {
+      "file": "miniprogram/pages/legal/legal.wxss",
+      "ok": true,
+      "declarations": 309
+    },
+    {
+      "file": "miniprogram/pages/meetup/meetup.wxss",
+      "ok": true,
+      "declarations": 48
+    },
+    {
+      "file": "miniprogram/pages/member-profile/member-profile.wxss",
+      "ok": true,
+      "declarations": 162
+    },
+    {
+      "file": "miniprogram/pages/mileage/mileage.wxss",
+      "ok": true,
+      "declarations": 70
+    },
+    {
+      "file": "miniprogram/pages/mine/mine.wxss",
+      "ok": true,
+      "declarations": 778
+    },
+    {
+      "file": "miniprogram/pages/news/detail.wxss",
+      "ok": true,
+      "declarations": 57
+    },
+    {
+      "file": "miniprogram/pages/news/news.wxss",
+      "ok": true,
+      "declarations": 45
+    },
+    {
+      "file": "miniprogram/pages/partner/partner.wxss",
+      "ok": true,
+      "declarations": 36
+    },
+    {
+      "file": "miniprogram/pages/privacy/privacy.wxss",
+      "ok": true,
+      "declarations": 75
+    },
+    {
+      "file": "miniprogram/pages/race/race.wxss",
+      "ok": true,
+      "declarations": 184
+    },
+    {
+      "file": "miniprogram/pages/races/races.wxss",
+      "ok": true,
+      "declarations": 487
+    },
+    {
+      "file": "miniprogram/pages/radar/radar.wxss",
+      "ok": true,
+      "declarations": 42
+    },
+    {
+      "file": "miniprogram/pages/runner/runner.wxss",
+      "ok": true,
+      "declarations": 1041
+    },
+    {
+      "file": "miniprogram/pages/signup/signup.wxss",
+      "ok": true,
+      "declarations": 283
+    },
+    {
+      "file": "miniprogram/pages/sport/sport.wxss",
+      "ok": true,
+      "declarations": 290
+    },
+    {
+      "file": "miniprogram/pages/training-groups/training-groups.wxss",
+      "ok": true,
+      "declarations": 77
+    },
+    {
+      "file": "miniprogram/utils/club-detail.wxss",
+      "ok": true,
+      "declarations": 119
+    },
+    {
+      "file": "miniprogram/utils/mileage-pages.wxss",
+      "ok": true,
+      "declarations": 176
+    }
+  ],
+  "wxssFixtureChecks": [
+    {
+      "name": "minified missing declaration semicolon rejected",
+      "expectedSyntaxOk": false,
+      "passed": true,
+      "actual": {
+        "ok": false,
+        "name": "CssSyntaxError",
+        "reason": "Missed semicolon",
+        "line": 1,
+        "column": 25
+      }
+    },
+    {
+      "name": "multiline missing declaration semicolon rejected",
+      "expectedSyntaxOk": false,
+      "passed": true,
+      "actual": {
+        "ok": false,
+        "name": "CssSyntaxError",
+        "reason": "Missed semicolon",
+        "line": 2,
+        "column": 20
+      }
+    },
+    {
+      "name": "rpx missing declaration semicolon rejected",
+      "expectedSyntaxOk": false,
+      "passed": true,
+      "actual": {
+        "ok": false,
+        "name": "CssSyntaxError",
+        "reason": "Missed semicolon",
+        "line": 1,
+        "column": 17
+      }
+    },
+    {
+      "name": "numeric missing declaration semicolon rejected",
+      "expectedSyntaxOk": false,
+      "passed": true,
+      "actual": {
+        "ok": false,
+        "name": "CssSyntaxError",
+        "reason": "Missed semicolon",
+        "line": 1,
+        "column": 19
+      }
+    },
+    {
+      "name": "unclosed rule rejected",
+      "expectedSyntaxOk": false,
+      "passed": true,
+      "actual": {
+        "ok": false,
+        "name": "CssSyntaxError",
+        "reason": "Unclosed block",
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "name": "malformed property rejected",
+      "expectedSyntaxOk": false,
+      "passed": true,
+      "actual": {
+        "ok": false,
+        "name": "CssSyntaxError",
+        "reason": "Unknown word color",
+        "line": 1,
+        "column": 4
+      }
+    },
+    {
+      "name": "optional last semicolon and rpx accepted",
+      "expectedSyntaxOk": true,
+      "passed": true,
+      "actual": {
+        "ok": true,
+        "declarations": 2
+      }
+    },
+    {
+      "name": "custom property token sequence accepted",
+      "expectedSyntaxOk": true,
+      "passed": true,
+      "actual": {
+        "ok": true,
+        "declarations": 2
+      }
+    },
+    {
+      "name": "quoted colons and data URLs accepted",
+      "expectedSyntaxOk": true,
+      "passed": true,
+      "actual": {
+        "ok": true,
+        "declarations": 2
+      }
+    },
+    {
+      "name": "media and pseudo selector accepted",
+      "expectedSyntaxOk": true,
+      "passed": true,
+      "actual": {
+        "ok": true,
+        "declarations": 2
+      }
+    }
+  ],
+  "nativeSyntaxProbe": {
+    "source": ".probe{box-sizing:border-box background:transparent;}",
+    "strictSyntax": {
+      "ok": false,
+      "name": "CssSyntaxError",
+      "reason": "Missed semicolon",
+      "line": 1,
+      "column": 29
+    },
+    "native": {
+      "tool": "wcsc",
+      "files": 1,
+      "pageFileCount": 1,
+      "exit": 0,
+      "signal": null,
+      "error": "",
+      "artifactBytes": 3822,
+      "output": "",
+      "ok": true
+    },
+    "nativeSilentlyAcceptedInvalidSyntax": true,
+    "passed": true,
+    "note": "The invalid fixture is rejected by the strict source gate regardless of native exit status; no product file was modified."
+  },
+  "nativeCoverageProbe": {
+    "legacy": {
+      "tool": "wcsc",
+      "files": 2,
+      "pageFileCount": null,
+      "exit": 0,
+      "signal": null,
+      "error": "",
+      "artifactBytes": 3196,
+      "output": "",
+      "ok": true,
+      "emitted": {
+        "first": true,
+        "second": false
+      }
+    },
+    "configured": {
+      "tool": "wcsc",
+      "files": 2,
+      "pageFileCount": 2,
+      "exit": 0,
+      "signal": null,
+      "error": "",
+      "artifactBytes": 3924,
+      "output": "",
+      "ok": true,
+      "emitted": {
+        "first": true,
+        "second": true
+      }
+    },
+    "passed": true,
+    "note": "Both independent source markers must occur in the generated artifact with -pc 2; temporary fixtures only."
+  },
+  "references": [],
+  "moduleReferences": [
+    {
+      "file": "miniprogram/app.js",
+      "request": "./utils/avatar",
+      "line": 2,
+      "target": "miniprogram/utils/avatar.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/app.js",
+      "request": "./config",
+      "line": 1,
+      "target": "miniprogram/config.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/components/mileage-board/mileage-board.js",
+      "request": "../../utils/mileage-board",
+      "line": 2,
+      "target": "miniprogram/utils/mileage-board.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/components/mileage-board/mileage-board.js",
+      "request": "../../utils/request",
+      "line": 1,
+      "target": "miniprogram/utils/request.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/activity/activity.js",
+      "request": "../../utils/request",
+      "line": 1,
+      "target": "miniprogram/utils/request.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/activity-create/activity-create.js",
+      "request": "../../utils/activity-templates",
+      "line": 2,
+      "target": "miniprogram/utils/activity-templates.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/activity-create/activity-create.js",
+      "request": "../../utils/request",
+      "line": 1,
+      "target": "miniprogram/utils/request.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/album/album.js",
+      "request": "../../utils/request",
+      "line": 1,
+      "target": "miniprogram/utils/request.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/calendar/calendar.js",
+      "request": "../../utils/day-poster",
+      "line": 3,
+      "target": "miniprogram/utils/day-poster.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/calendar/calendar.js",
+      "request": "../../lunar",
+      "line": 2,
+      "target": "miniprogram/lunar.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/calendar/calendar.js",
+      "request": "../../utils/request",
+      "line": 1,
+      "target": "miniprogram/utils/request.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/call/call.js",
+      "request": "../../utils/call-poster",
+      "line": 3,
+      "target": "miniprogram/utils/call-poster.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/call/call.js",
+      "request": "../../config",
+      "line": 2,
+      "target": "miniprogram/config.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/call/call.js",
+      "request": "../../utils/request",
+      "line": 1,
+      "target": "miniprogram/utils/request.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/club/club.js",
+      "request": "../../utils/club-identity",
+      "line": 3,
+      "target": "miniprogram/utils/club-identity.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/club/club.js",
+      "request": "../../utils/call-poster",
+      "line": 2,
+      "target": "miniprogram/utils/call-poster.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/club/club.js",
+      "request": "../../utils/request",
+      "line": 1,
+      "target": "miniprogram/utils/request.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/club-identity/club-identity.js",
+      "request": "../../utils/request",
+      "line": 1,
+      "target": "miniprogram/utils/request.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/club-intro/club-intro.js",
+      "request": "../../utils/club-identity",
+      "line": 2,
+      "target": "miniprogram/utils/club-identity.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/club-intro/club-intro.js",
+      "request": "../../utils/request",
+      "line": 1,
+      "target": "miniprogram/utils/request.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/club-report/club-report.js",
+      "request": "../../utils/request",
+      "line": 1,
+      "target": "miniprogram/utils/request.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/clubs/clubs.js",
+      "request": "../../utils/club-identity",
+      "line": 2,
+      "target": "miniprogram/utils/club-identity.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/clubs/clubs.js",
+      "request": "../../utils/request",
+      "line": 1,
+      "target": "miniprogram/utils/request.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/feed/feed.js",
+      "request": "../../utils/request",
+      "line": 1,
+      "target": "miniprogram/utils/request.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/feedback/feedback.js",
+      "request": "../../utils/request",
+      "line": 1,
+      "target": "miniprogram/utils/request.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/history/history.js",
+      "request": "../../utils/legal-documents",
+      "line": 3,
+      "target": "miniprogram/utils/legal-documents.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/history/history.js",
+      "request": "../../utils/race-history",
+      "line": 2,
+      "target": "miniprogram/utils/race-history.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/history/history.js",
+      "request": "../../utils/request",
+      "line": 1,
+      "target": "miniprogram/utils/request.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/internal/internal.js",
+      "request": "../../utils/request",
+      "line": 1,
+      "target": "miniprogram/utils/request.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/legal/legal.js",
+      "request": "../../utils/legal-documents",
+      "line": 2,
+      "target": "miniprogram/utils/legal-documents.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/legal/legal.js",
+      "request": "../../utils/request",
+      "line": 1,
+      "target": "miniprogram/utils/request.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/meetup/meetup.js",
+      "request": "../../utils/request",
+      "line": 1,
+      "target": "miniprogram/utils/request.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/member-profile/member-profile.js",
+      "request": "../../utils/mileage-board",
+      "line": 2,
+      "target": "miniprogram/utils/mileage-board.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/member-profile/member-profile.js",
+      "request": "../../utils/request",
+      "line": 1,
+      "target": "miniprogram/utils/request.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/mileage/mileage.js",
+      "request": "../../utils/request",
+      "line": 1,
+      "target": "miniprogram/utils/request.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/mine/mine.js",
+      "request": "../../utils/legal-documents",
+      "line": 5,
+      "target": "miniprogram/utils/legal-documents.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/mine/mine.js",
+      "request": "../../utils/runner-center",
+      "line": 4,
+      "target": "miniprogram/utils/runner-center.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/mine/mine.js",
+      "request": "../../utils/avatar",
+      "line": 3,
+      "target": "miniprogram/utils/avatar.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/mine/mine.js",
+      "request": "../../utils/captcha",
+      "line": 2,
+      "target": "miniprogram/utils/captcha.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/mine/mine.js",
+      "request": "../../utils/request",
+      "line": 1,
+      "target": "miniprogram/utils/request.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/news/detail.js",
+      "request": "../../utils/guide-md",
+      "line": 2,
+      "target": "miniprogram/utils/guide-md.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/news/detail.js",
+      "request": "../../utils/request",
+      "line": 1,
+      "target": "miniprogram/utils/request.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/news/news.js",
+      "request": "../../utils/request",
+      "line": 1,
+      "target": "miniprogram/utils/request.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/partner/partner.js",
+      "request": "../../utils/request",
+      "line": 1,
+      "target": "miniprogram/utils/request.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/race/race.js",
+      "request": "../../utils/guide-md",
+      "line": 3,
+      "target": "miniprogram/utils/guide-md.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/race/race.js",
+      "request": "../../config",
+      "line": 2,
+      "target": "miniprogram/config.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/race/race.js",
+      "request": "../../utils/request",
+      "line": 1,
+      "target": "miniprogram/utils/request.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/races/races.js",
+      "request": "../../utils/request",
+      "line": 1,
+      "target": "miniprogram/utils/request.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/radar/radar.js",
+      "request": "../../utils/request",
+      "line": 1,
+      "target": "miniprogram/utils/request.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/runner/runner.js",
+      "request": "../../utils/legal-documents",
+      "line": 3,
+      "target": "miniprogram/utils/legal-documents.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/runner/runner.js",
+      "request": "../../utils/runner-center",
+      "line": 2,
+      "target": "miniprogram/utils/runner-center.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/runner/runner.js",
+      "request": "../../utils/request",
+      "line": 1,
+      "target": "miniprogram/utils/request.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/signup/signup.js",
+      "request": "../../utils/request",
+      "line": 1,
+      "target": "miniprogram/utils/request.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/sport/sport.js",
+      "request": "../../config",
+      "line": 2,
+      "target": "miniprogram/config.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/sport/sport.js",
+      "request": "../../utils/request",
+      "line": 1,
+      "target": "miniprogram/utils/request.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/training-groups/training-groups.js",
+      "request": "../../utils/mileage-board",
+      "line": 2,
+      "target": "miniprogram/utils/mileage-board.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/pages/training-groups/training-groups.js",
+      "request": "../../utils/request",
+      "line": 1,
+      "target": "miniprogram/utils/request.js",
+      "ok": true
+    },
+    {
+      "file": "miniprogram/utils/request.js",
+      "request": "./avatar",
+      "line": 1,
+      "target": "miniprogram/utils/avatar.js",
+      "ok": true
+    }
+  ],
+  "moduleFixtureChecks": [
+    {
+      "name": "existing extensionless JS module",
+      "passed": true
+    },
+    {
+      "name": "existing explicit JS module",
+      "passed": true
+    },
+    {
+      "name": "JSON fallback hidden by catch is rejected",
+      "passed": true
+    },
+    {
+      "name": "relative path cannot leave the package",
+      "passed": true
+    },
+    {
+      "name": "missing JS dependency is rejected",
+      "passed": true
+    },
+    {
+      "name": "document strings and comments are not dependencies",
+      "passed": true
+    }
+  ],
+  "compile": [
+    {
+      "tool": "wcc",
+      "files": 32,
+      "pageFileCount": null,
+      "exit": 0,
+      "signal": null,
+      "error": "",
+      "artifactBytes": 700203,
+      "output": "",
+      "ok": true
+    },
+    {
+      "tool": "wcsc",
+      "files": 35,
+      "pageFileCount": 35,
+      "exit": 0,
+      "signal": null,
+      "error": "",
+      "artifactBytes": 380117,
+      "output": "",
+      "ok": true
+    }
+  ],
+  "passed": true,
+  "finishedAt": "2026-11-11T07:13:35.382Z"
+}

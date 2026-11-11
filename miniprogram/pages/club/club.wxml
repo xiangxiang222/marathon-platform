@@ -147,11 +147,7 @@
     </view>
   </block>
 
-  <block wx:if="{{activeTab === 'mileage'}}">    <navigator class="mileage-panel" url="/pages/mileage/mileage?id={{club.id}}">
-      <view class="section-head"><view class="section-title">跑量排行</view><text class="section-link">查看日周月年 ›</text></view>
-      <view class="mileage-total">{{mileage.mineKm}} <text>km</text></view>
-      <view class="muted">我本月跑量 · 跑团共 {{mileage.totalKm}} 公里 · {{mileage.totalCount}} 次记录</view>
-    </navigator>
+  <block wx:if="{{activeTab === 'mileage'}}"><mileage-board club-id="{{club.id + ''}}" embedded="{{true}}" />
     <view wx:if="{{attendance.rows}}" class="form-section"><view class="section-head"><view class="section-title">团练出勤 · {{attendance.label}}</view><text class="muted">我 {{attendance.me.placeLabel}} · {{attendance.me.count}} 次</text></view><view wx:for="{{attendance.rows}}" wx:key="userId" wx:if="{{item.count}}" class="plain-row"><text>{{item.place}}　{{item.nickname}}</text><text>{{item.count}} 次</text></view></view>
 </block>
   <block wx:if="{{activeTab === 'members'}}"><view class="member-areas"><button class="member-area {{memberArea === 'all' ? 'active' : ''}}" data-area="all" bindtap="pickMemberArea">成员</button><button class="member-area {{memberArea === 'fees' ? 'active' : ''}}" data-area="fees" bindtap="pickMemberArea">会费名单</button><button class="member-area {{memberArea === 'manage' ? 'active' : ''}}" data-area="manage" bindtap="pickMemberArea">服务与设置</button></view><block wx:if="{{memberArea === 'all'}}">    <view wx:if="{{club.staff && requests.length}}" class="form-section">
@@ -165,15 +161,12 @@
     <view wx:for="{{shownMembers}}" wx:key="id" class="member-row">
       <image wx:if="{{item.avatar}}" class="member-avatar" src="{{item.avatar}}" mode="aspectFill" />
       <view wx:else class="member-avatar avatar-fallback">{{item.avatarInitial}}</view>
-      <view class="member-info"><view class="member-name">{{item.nickname}}</view><view class="muted">{{item.roleLabel}} · {{item.points}} 积分</view></view>
+      <view class="member-info" data-id="{{item.id}}" bindtap="openMemberProfile"><view class="member-name">{{item.nickname}}</view><view class="muted">{{item.roleLabel}} · {{item.points}} 积分</view></view>
       <button wx:if="{{club.staff && !item.owner}}" class="member-manage" data-id="{{item.id}}" bindtap="manageMember">管理</button>
     </view>
     <view wx:if="{{!shownMembers.length}}" class="empty-card">没有找到符合条件的团友，试试其他昵称。</view>
 </block><block wx:if="{{memberArea === 'manage'}}"><button wx:if="{{club.owner}}" class="identity-setting" bindtap="openIdentity"><view><view class="section-title">跑团身份与公开名片</view><view class="muted">完善城市、简介；按需核验组织授权</view></view><text>›</text></button>    <view class="form-section">
-      <view class="section-title">训练组别</view>
-      <view wx:for="{{groups}}" wx:key="id" class="plain-row"><text>{{item.name}}{{item.pace ? ' · ' + item.pace : ''}}</text><text>{{item.capacity ? '限 ' + item.capacity + ' 人' : '不限'}}</text></view>
-      <view wx:if="{{!groups.length}}" class="empty-row">还没有训练组别。</view>
-      <view wx:if="{{club.staff}}" class="manage-inline"><button class="disclosure" data-form="group" bindtap="toggleForm"><text>添加训练组别</text><text class="disclosure-state">{{expanded.group ? '收起 −' : '展开 +'}}</text></button><block wx:if="{{expanded.group}}"><view class="form-grid"><input class="field" placeholder="组别名称" value="{{groupName}}" maxlength="20" data-key="groupName" bindinput="onDraft" aria-label="组别名称" /><input class="field" placeholder="配速说明" value="{{groupPace}}" maxlength="20" data-key="groupPace" bindinput="onDraft" aria-label="配速说明" /><input class="field" type="number" placeholder="人数上限，0 不限" value="{{groupCap}}" data-key="groupCap" bindinput="onDraft" aria-label="人数上限，0 不限" /></view><button class="secondary-btn" bindtap="createGroup">添加训练组别</button></block></view>
+      <navigator class="training-group-entry" url="/pages/training-groups/training-groups?club={{club.id}}"><view><view class="section-title">训练组别</view><view class="muted">成员分组、默认配速与活动安排</view></view><text>›</text></navigator>
     </view>
 </block><block wx:if="{{memberArea === 'fees'}}">    <view class="form-section">
       <view class="section-title">{{feeShown.name || '跑团会费'}}</view>

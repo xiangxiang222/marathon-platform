@@ -1,0 +1,62 @@
+{
+  "kind": "Mini mileage Component, member/group/activity Page VM acceptance; mocked transport/native UI, not WeChat device",
+  "checks": [
+    {
+      "name": "component defaults to Beijing month and five ranges send exact current period requests",
+      "passed": true
+    },
+    {
+      "name": "component supports all/zero/real/empty groups and case-insensitive composed local search",
+      "passed": true
+    },
+    {
+      "name": "natural week/year navigation can return to current period across year and Saturday anchor",
+      "passed": true
+    },
+    {
+      "name": "late period success and failure cannot overwrite latest board; detached and account/club changes invalidate responses",
+      "passed": true
+    },
+    {
+      "name": "deleted selected group falls back to all once, while ordinary errors remain retryable",
+      "passed": true
+    },
+    {
+      "name": "ranking member and permanent-group entries keep club/date/range context",
+      "passed": true
+    },
+    {
+      "name": "other member profile reads only scoped aggregate/summary and cannot edit introduction",
+      "passed": true
+    },
+    {
+      "name": "own introduction trim/save is scoped; changing period while editing preserves unsaved story",
+      "passed": true
+    },
+    {
+      "name": "profile ignores late response after account/member/route lifetime changes",
+      "passed": true
+    },
+    {
+      "name": "permanent group management creates/edits/removes with confirmation and maps picker option to stable ID",
+      "passed": true
+    },
+    {
+      "name": "ordinary member can browse groups/profile but cannot mutate roster or group definitions",
+      "passed": true
+    },
+    {
+      "name": "group late load/mutation is discarded after account change; failure supports manual activity creation",
+      "passed": true
+    },
+    {
+      "name": "activity explicit permanent choices replace untouched default; per-activity edits and custom group remain snapshots",
+      "passed": true
+    },
+    {
+      "name": "saving template strips stable group associations; deleted source does not erase copied training arrangement",
+      "passed": true
+    }
+  ],
+  "passed": true
+}

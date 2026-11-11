@@ -187,6 +187,7 @@ Page({
     this.setData({ activeTab: tab, serviceArea: "", memberArea: "all", onlyMine: false, ...(kind && ["training", "meetup", "internal"].includes(kind) ? { activityKind: kind } : {}) });
     this.filterActivities();
   },
+  openMemberProfile(e) { wx.navigateTo({ url: "/pages/member-profile/member-profile?club=" + encodeURIComponent(this.clubId) + "&user=" + encodeURIComponent(e.currentTarget.dataset.id) }); },
   openMembers() {
     this.setData({ activeTab: "members", memberArea: "all", serviceArea: "", memberQuery: "", memberFilter: "all", relationshipOpen: false, onlyMine: false });
     this.filterMembers();

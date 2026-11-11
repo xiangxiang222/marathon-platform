@@ -40,6 +40,7 @@ export default createRouter({
     { path: "/clubs/invite/:code", component: ClubIntro, meta: { hideTab: true, viewKey: "club-intro" } },
     { path: "/clubs/:id/public", component: ClubIntro, meta: { hideTab: true, viewKey: "club-intro" } },
     { path: "/clubs/:id", component: Club, meta: { hideTab: true } },
+    { path: "/clubs/:id/members/:uid", component: () => import("./views/ClubMember.vue"), meta: { hideTab: true } },
     { path: "/clubs/:id/activities/new", component: ActivityCreate, meta: { hideTab: true } },
     { path: "/clubs/:id/activities/:aid", component: Activity, meta: { hideTab: true } },
     { path: "/clubs/:id/activities/:aid/signup", component: Signup, meta: { hideTab: true } },

@@ -1,0 +1,42 @@
+{
+  "kind": "Actual mileage board SQL/window functions with independent in-memory SQLite fixtures; no app/network/business data",
+  "checks": [
+    {
+      "name": "Beijing default is Jan 1 while UTC and New York remain Dec 31",
+      "passed": true
+    },
+    {
+      "name": "Monday week spans Dec 28 to Jan 4 and excludes Sunday before start",
+      "passed": true
+    },
+    {
+      "name": "Day/month/year/all are independently aggregated; future starts and uncounted/other-club rows excluded",
+      "passed": true
+    },
+    {
+      "name": "Leap February end is exclusive and valid leap-day run is included",
+      "passed": true
+    },
+    {
+      "name": "Tied rankings are deterministic and retain zero-run current members",
+      "passed": true
+    },
+    {
+      "name": "Group rankings recompute places, expose empty groups, and use canonical counted volume",
+      "passed": true
+    },
+    {
+      "name": "Omitted group means all; zero means only ungrouped; empty real group remains explicit",
+      "passed": true
+    },
+    {
+      "name": "Invalid calendar dates/ranges/group IDs and foreign groups are rejected",
+      "passed": true
+    },
+    {
+      "name": "Activity association validates permanent IDs; custom group omits association and freezes current group values",
+      "passed": true
+    }
+  ],
+  "passed": true
+}
