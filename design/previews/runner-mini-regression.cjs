@@ -473,7 +473,7 @@ async function main() {
       assert.equal(png.readUInt32BE(16), 96); assert.equal(png.readUInt32BE(20), 96);
       const svg = fs.readFileSync(path.join(mini, "images/runner/" + entry.key + ".svg"), "utf8");
       assert.ok(svg.includes(shapes.get(entry.key)), "shared path for " + entry.key);
-      const color = entry.key === "honors" ? "#bf893b" : entry.key === "media" ? "#8a77b3" : entry.key === "devices" ? "#778699" : "#ff0a30";
+      const color = entry.key === "honors" ? "#bf893b" : entry.key === "media" ? "#8a77b3" : entry.key === "devices" ? "#778699" : (process.env.UI_EXPECTED_ACCENT || "#e1251b");
       assert.ok(svg.includes('stroke="' + color + '"'));
     }
     for (const file of ["pages/mine/mine.wxml", "pages/runner/runner.wxml"]) {

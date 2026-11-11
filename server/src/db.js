@@ -970,6 +970,7 @@ function open() {
   tx(RACES);
   require("./legal").installLegal(handle);
   require("./race-history").installRaceHistory(handle);
+  require("./activity-templates").installActivityTemplates(handle);
   migrateLegacyAvatars(handle);
   return handle;
 }

@@ -1,15 +1,15 @@
-<view class="pad" wx:if="{{board}}">
+<view class="pad mini-mileage-mileage" wx:if="{{board}}">
   <view class="card">
     <view class="title">跑量</view>
     <view class="src">只记跑步和越野。{{board.members}} 人 · 已计入 {{board.totalKm}} 公里 · {{board.totalCount}} 次</view>
-    <view class="row">
+    <view class="range-filters">
       <button class="ghost {{range === 'today' ? 'on' : ''}}" data-range="today" bindtap="pickRange">今日</button>
       <button class="ghost {{range === 'week' ? 'on' : ''}}" data-range="week" bindtap="pickRange">本周</button>
       <button class="ghost {{range === 'month' ? 'on' : ''}}" data-range="month" bindtap="pickRange">本月</button>
       <button class="ghost {{range === 'year' ? 'on' : ''}}" data-range="year" bindtap="pickRange">今年</button>
       <button class="ghost {{range === 'all' ? 'on' : ''}}" data-range="all" bindtap="pickRange">累计</button>
     </view>
-    <input placeholder="搜昵称" value="{{query}}" bindinput="onQuery" />
+    <input placeholder="搜昵称" value="{{query}}" bindinput="onQuery" aria-label="搜昵称" />
   </view>
   <view class="card">
     <view class="title">排行榜</view>
@@ -32,7 +32,7 @@
       <view class="src">{{item.nickname}} · {{item.typeLabel}} · {{item.startedAt}}</view>
       <view class="src">跑量 {{item.volumeKm}} 公里 · {{item.durationLabel}} · 爬升 {{item.climb}} 米</view>
       <view class="src" wx:if="{{item.challenge}}">质疑：{{item.challenge}}</view>
-      <input wx:if="{{!item.mine}}" placeholder="写一句质疑" bindinput="onReason" />
+      <input wx:if="{{!item.mine}}" placeholder="写一句质疑" bindinput="onReason" aria-label="写一句质疑" />
       <button wx:if="{{!item.mine}}" class="ghost" data-id="{{item.id}}" bindtap="challenge">质疑</button>
       <view wx:if="{{board.staff}}">
         <button class="ghost" data-id="{{item.id}}" data-keep="0" bindtap="decide">不计入</button>
@@ -53,28 +53,28 @@
   <view class="card" wx:if="{{board.owner && rules}}">
     <view class="title">本团规则</view>
     <view class="src">{{rules.note}}</view>
-    <input data-key="effectiveOn" placeholder="生效日 2026-10-01" value="{{rules.effectiveOn}}" bindinput="onRule" />
+    <input data-key="effectiveOn" placeholder="生效日 2026-10-01" value="{{rules.effectiveOn}}" bindinput="onRule" aria-label="生效日 2026-10-01" />
     <button class="ghost {{rules.manualOk ? 'on' : ''}}" data-key="manualOk" bindtap="toggleRule">允许手填</button>
     <button class="ghost {{rules.runOn ? 'on' : ''}}" data-key="runOn" bindtap="toggleRule">跑步计入</button>
-    <input data-key="runMin" placeholder="跑步最短公里" value="{{rules.runMin}}" bindinput="onRule" />
-    <input data-key="runMax" placeholder="跑步最长公里" value="{{rules.runMax}}" bindinput="onRule" />
-    <input data-key="paceFast" placeholder="最快配速 3:00" value="{{rules.paceFast}}" bindinput="onRule" />
-    <input data-key="paceSlow" placeholder="最慢配速 15:00" value="{{rules.paceSlow}}" bindinput="onRule" />
+    <input data-key="runMin" placeholder="跑步最短公里" value="{{rules.runMin}}" bindinput="onRule" aria-label="跑步最短公里" />
+    <input data-key="runMax" placeholder="跑步最长公里" value="{{rules.runMax}}" bindinput="onRule" aria-label="跑步最长公里" />
+    <input data-key="paceFast" placeholder="最快配速 3:00" value="{{rules.paceFast}}" bindinput="onRule" aria-label="最快配速 3:00" />
+    <input data-key="paceSlow" placeholder="最慢配速 15:00" value="{{rules.paceSlow}}" bindinput="onRule" aria-label="最慢配速 15:00" />
     <button class="ghost {{rules.trailOn ? 'on' : ''}}" data-key="trailOn" bindtap="toggleRule">越野计入</button>
     <button class="ghost {{rules.trailClimbAdd ? 'on' : ''}}" data-key="trailClimbAdd" bindtap="toggleRule">越野每 100 米爬升加 1 公里</button>
-    <input data-key="trailMin" placeholder="越野最短公里" value="{{rules.trailMin}}" bindinput="onRule" />
-    <input data-key="trailClimb" placeholder="最低爬升米" value="{{rules.trailClimb}}" bindinput="onRule" />
-    <input data-key="flagFemale" placeholder="女生月度下限" value="{{rules.flagFemale}}" bindinput="onRule" />
-    <input data-key="flagMale" placeholder="男生月度下限" value="{{rules.flagMale}}" bindinput="onRule" />
+    <input data-key="trailMin" placeholder="越野最短公里" value="{{rules.trailMin}}" bindinput="onRule" aria-label="越野最短公里" />
+    <input data-key="trailClimb" placeholder="最低爬升米" value="{{rules.trailClimb}}" bindinput="onRule" aria-label="最低爬升米" />
+    <input data-key="flagFemale" placeholder="女生月度下限" value="{{rules.flagFemale}}" bindinput="onRule" aria-label="女生月度下限" />
+    <input data-key="flagMale" placeholder="男生月度下限" value="{{rules.flagMale}}" bindinput="onRule" aria-label="男生月度下限" />
     <button class="ghost {{rules.observe ? 'on' : ''}}" data-key="observe" bindtap="toggleRule">当月入团自动观摩</button>
     <button class="btn" bindtap="saveRules">保存规则</button>
   </view>
   <view class="card" wx:if="{{board.owner}}">
     <view class="title">跑量分组</view>
     <view class="src">和活动报名的组别分开。一个人在团里只有一个。</view>
-    <input data-key="groupName" placeholder="分组名，最多 10 个汉字" value="{{groupName}}" bindinput="onGroup" />
-    <input data-key="groupCap" placeholder="人数，0 不限" value="{{groupCap}}" bindinput="onGroup" />
-    <input data-key="groupSort" placeholder="编号" value="{{groupSort}}" bindinput="onGroup" />
+    <input data-key="groupName" placeholder="分组名，最多 10 个汉字" value="{{groupName}}" bindinput="onGroup" aria-label="分组名，最多 10 个汉字" />
+    <input data-key="groupCap" placeholder="人数，0 不限" value="{{groupCap}}" bindinput="onGroup" aria-label="人数，0 不限" />
+    <input data-key="groupSort" placeholder="编号" value="{{groupSort}}" bindinput="onGroup" aria-label="编号" />
     <button class="btn" bindtap="addGroup">加一组</button>
     <view wx:for="{{board.manageGroups}}" wx:key="id" class="row">
       <text>{{item.name}} · {{item.members}} 人</text>

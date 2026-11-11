@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "赛事日历",
-  "navigationBarBackgroundColor": "#f5f6fa",
-  "navigationBarTextStyle": "black"
+  "navigationBarBackgroundColor": "#f5f5f5",
+  "navigationBarTextStyle": "black",
+  "backgroundColor": "#f5f5f5"
 }

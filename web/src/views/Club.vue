@@ -3,21 +3,23 @@
     <header class="topbar club-topbar">
       <router-link to="/clubs" class="club-back" aria-label="返回我的跑团"><RunnerIcon name="back" /></router-link>
       <router-link to="/clubs" class="club-switch">我的跑团 <span>切换跑团⌄</span></router-link>
-      <button v-if="club && club.publicStatus !== 'restricted'" type="button" class="top-invite" :disabled="inviting" @click="copyInvite">邀请跑友</button><span v-else></span>
+      <span class="topbar-end" aria-hidden="true"></span>
     </header>
     <div v-if="loading && !club" class="club-loading" role="status"><span class="loading-ring"></span><b>正在打开跑团</b><p>准备活动与团友信息</p></div>
     <section v-if="club" class="club-hero">
+      <div class="hero-topline"><p class="club-eyebrow">一起跑，更远一点</p><router-link to="/clubs" class="hero-switch">切换跑团 <span>⇄</span></router-link></div>
+      <svg class="hero-track" viewBox="0 0 180 210" fill="none" aria-hidden="true"><rect x="18" y="-25" width="142" height="260" rx="71"/><rect x="34" y="-9" width="110" height="228" rx="55"/><rect x="50" y="7" width="78" height="196" rx="39"/></svg>
       <div class="club-identity">
         <span class="club-letter" aria-hidden="true">{{ club.name.slice(0, 1) }}</span>
-        <div class="club-identity-copy"><p class="club-eyebrow">RUN TOGETHER · 一起跑，更远一点</p><h1>{{ club.name }}</h1><ClubVerificationBadge :club="club" /><p class="club-leader">{{ club.city || "城市待补充" }} · 团号 #{{ club.id }}</p><p class="club-leader">团长 {{ leaderName }}<span class="role-badge">{{ club.roleLabel }}</span></p></div>
+        <div class="club-identity-copy"><div class="club-name-line"><h1>{{ club.name }}</h1><span class="role-badge">{{ club.roleLabel }}</span></div><ClubVerificationBadge :club="club" /><p class="club-leader">{{ members.length }} 位成员<span class="meta-divider">·</span>团长 {{ leaderName }}</p></div>
       </div>
+      <p class="club-location"><RunnerIcon name="footprints" /><span>{{ club.city || "城市待补充" }}</span><span class="meta-divider">/</span><span class="club-number">团号 #{{ club.id }}</span></p>
       <div class="hero-bottom">
         <button class="club-avatars" type="button" @click="go('people')" aria-label="查看跑团成员">
           <span v-for="member in members.slice(0, 4)" :key="member.id" class="club-avatar"><img v-if="member.avatar" :src="member.avatar" :alt="member.nickname" /><template v-else>{{ member.nickname.slice(0, 1) }}</template></span>
-          <span class="avatar-caption">{{ members.length }} 位跑友 <i>›</i></span>
+          <span class="avatar-caption">同频，一起跑 <i>›</i></span>
         </button>
-        <router-link v-if="club.staff" class="hero-publish" :to="'/clubs/' + club.id + '/activities/new'"><RunnerIcon name="add" />发布活动</router-link>
-        <button v-else class="hero-publish secondary" type="button" @click="go('act')">找一场活动 <span>→</span></button>
+        <button v-if="club.publicStatus !== 'restricted'" type="button" class="top-invite hero-invite" :disabled="inviting" @click="copyInvite">邀请跑友 <span>↗</span></button>
       </div>
     </section>
     <section v-if="club && club.publicStatus !== 'restricted' && route.query.created === '1'" class="block created-welcome"><p>你的跑团，今天开始</p><h2>先邀请第一位跑友</h2><p>{{ club.city || "城市待补充" }} · 负责人 {{ leaderName }} · 团号 #{{ club.id }}</p><button class="primary" type="button" :disabled="inviting" @click="copyInvite">邀请第一位跑友</button><router-link :to="'/clubs/' + club.id + '/activities/new'">发布第一次约跑 →</router-link><router-link :to="'/clubs/' + club.id + '/identity'">已有线下跑团？核验组织身份 ›</router-link></section>
@@ -27,22 +29,22 @@
     <div v-if="club && ['album', 'feed', 'partner'].includes(tab)" class="service-heading"><button type="button" @click="go('overview')"><RunnerIcon name="back" />返回今日</button><h2>{{ serviceTitle }}</h2></div>
     <section v-if="club && tab === 'overview'" class="overview">
       <button v-if="club.staff && requests.length" class="review-reminder" type="button" @click="go('people')"><span class="reminder-dot"></span><b>{{ requests.length }} 位跑友等你审核</b><span>去处理 ›</span></button>
-      <div class="section-head"><div><p class="section-eyebrow">NEXT UP</p><h2>下一场，一起跑</h2></div><button type="button" @click="go('act')">全部活动 <span>›</span></button></div>
+      <div class="section-head"><div><p class="section-eyebrow">即将开始</p><h2>下一场，一起跑</h2></div><button type="button" @click="go('act')">全部活动 <span>›</span></button></div>
       <router-link v-if="nextActivity" class="next-activity" :to="'/clubs/' + club.id + '/activities/' + nextActivity.id">
         <div class="next-topline"><span class="activity-kind">团练</span><span class="activity-status" :class="{ signed: nextActivity.mine && nextActivity.mine.signed }">{{ nextActivity.mine && nextActivity.mine.signed ? '我已报名' : nextActivity.statusLabel }}</span></div>
         <h3>{{ nextActivity.title }}</h3><p class="next-time">{{ nextActivity.dateLabel }} <b>{{ nextActivity.clockLabel }}</b></p>
         <p class="next-place"><RunnerIcon name="footprints" />{{ nextActivity.place || '集合地点待定' }}<span v-if="nextActivity.plannedKm"> · {{ nextActivity.plannedKm }} 公里</span></p>
         <div class="next-footer"><span>{{ nextActivity.signupCount }} 位跑友已报名<template v-if="nextActivity.capacity"> · 上限 {{ nextActivity.capacity }} 人</template></span><b>{{ nextActivity.mine && nextActivity.mine.signed ? '查看报名' : '查看活动' }} <i>→</i></b></div>
       </router-link>
-      <div v-else class="next-empty"><span class="empty-track"><RunnerIcon name="calendar" /></span><div><h3>下一次集合，值得期待</h3><p>{{ club.staff ? '发布训练，让跑友提前安排时间。' : '活动发布后，在这里查看并报名。' }}</p></div><router-link v-if="club.staff" :to="'/clubs/' + club.id + '/activities/new'">发布活动 →</router-link><button v-else type="button" @click="go('act', 'meetup')">看看约跑 →</button></div>
+      <div v-else class="next-empty"><svg class="empty-track" viewBox="0 0 124 180" fill="none" aria-hidden="true"><rect x="7" y="7" width="110" height="166" rx="55"/><rect x="22" y="22" width="80" height="136" rx="40"/><rect x="37" y="37" width="50" height="106" rx="25"/><path d="M65 128h51"/></svg><div class="next-empty-copy"><span class="next-kicker">NEXT RUN</span><h3>下一次相聚，<br/>从这里开始。</h3><p>{{ club.staff ? '约上团友，把一起跑变成日常。' : '和同频的跑友，找到下一次集合。' }}</p></div><router-link v-if="club.staff" :to="'/clubs/' + club.id + '/activities/new'">发布活动 <span>↗</span></router-link><button v-else type="button" @click="go('act', 'meetup')">看看约跑 <span>↗</span></button></div>
       <div class="quick-actions" aria-label="常用功能">
         <button type="button" @click="go('act')"><span class="quick-icon"><RunnerIcon name="calendar" /></span><b>活动报名</b></button>
         <button type="button" @click="go('race')"><span class="quick-icon"><RunnerIcon name="career" /></span><b>赛事名单</b></button>
         <button type="button" @click="go('km')"><span class="quick-icon"><RunnerIcon name="stats" /></span><b>跑量排行</b></button>
         <button type="button" @click="go('people')"><span class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="9" cy="8" r="3"/><path d="M3 20v-2a6 6 0 0 1 12 0v2m1-15a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 4v2"/></svg></span><b>跑团成员</b></button>
       </div>
-      <div class="my-club-status"><button type="button" @click="openMyActivities"><span>我的待参加</span><b>{{ myUpcomingActivities.length }}<small>场团练</small></b></button><button type="button" @click="go('people', 'fees')"><span>本期会费</span><b class="status-word">{{ feeCurrent ? (feeCurrent.mine?.label || '待确认') : '暂未开设' }}<small>查看详情 ›</small></b></button></div>
-      <details class="daily-card"><summary><span class="daily-icon"><RunnerIcon name="calendar" /></span><span><b>{{ checkedIn ? '今天已签到' : '今天也一起出发' }}</b><small>团练签到 · {{ todayCheckCount }} 位跑友已到</small></span><i>{{ checkedIn ? '修改' : '签到' }} ›</i></summary>
+      <div class="club-moments"><div class="my-club-status"><button type="button" @click="openMyActivities"><span>我的待参加</span><b>{{ myUpcomingActivities.length }}<small>场团练</small></b></button><button type="button" @click="go('people', 'fees')"><span>本期会费</span><b class="status-word">{{ feeCurrent ? (feeCurrent.mine?.label || '待确认') : '暂未开设' }}<small>查看详情 ›</small></b></button></div>
+      <details class="daily-card"><summary><span class="daily-icon"><RunnerIcon name="calendar" /></span><span><b>{{ checkedIn ? '今天已签到' : '日常到场签到' }}</b><small>{{ checkedIn ? '今天也和团友一起进步了' : '记录一起流汗的日子' }} · {{ todayCheckCount }} 位已到</small></span><i>{{ checkedIn ? '修改' : '签到' }} ›</i></summary>
       <form class="check-form daily-form" @submit.prevent="checkIn">
         <input v-model="checkNote" maxlength="40" placeholder="可写一句，比如夜跑" />
         <button class="primary" type="submit">{{ checkedIn ? "改一句" : "签到" }}</button>
@@ -57,8 +59,8 @@
         </div>
       </div>
       <p v-if="checkMessage" class="err">{{ checkMessage }}</p>
-      </details>
-      <div class="section-head"><div><p class="section-eyebrow">RACE TOGETHER</p><h2>同场的跑友</h2></div><button type="button" @click="go('race')">赛事名单 ›</button></div>
+      </details></div>
+      <div class="section-head"><div><p class="section-eyebrow">一起参赛</p><h2>同场的跑友</h2></div><button type="button" @click="go('race')">赛事名单 ›</button></div>
       <router-link v-if="nextRace" class="overview-row" :to="'/races/' + nextRace.race.id"><span class="race-date"><b>{{ dateParts(nextRace.race.raceDate).day }}</b><small>{{ dateParts(nextRace.race.raceDate).month }}月</small></span><span><strong>{{ nextRace.race.name }}</strong><small>{{ nextRace.marks.length }} 位团友已标记参赛 · {{ nextRace.race.raceDate }}</small></span><i>›</i></router-link>
       <div v-else class="overview-empty"><p>还没有即将开赛的团内赛事</p><router-link to="/">去赛历标记参赛 →</router-link></div>
       <div class="section-head"><h2>更多服务</h2></div>
@@ -1372,153 +1374,163 @@ onBeforeUnmount(() => { window.removeEventListener("storage", onClubAccount); wi
 </script>
 
 <style scoped>
-.club-page { min-height: 100vh; padding-bottom: 28px; background: #f5f6f8; --club-text: #20232b; --club-muted: #777d89; }
+.club-page { min-height: 100vh; padding-bottom: 28px; background: var(--bg); --club-text: var(--ink); --club-muted: var(--muted); }
 .club-page button, .club-page .primary, .club-page .undo, .club-page .small-primary { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 44px; line-height: 1.2; font-size: 14px; }
 .club-page button:disabled { opacity: .48; }
 .club-page svg { width: 22px; height: 22px; flex: none; }
-.club-topbar { grid-template-columns: 36px 1fr auto; gap: 4px; min-height: 64px; padding: 8px 16px; background: #fff; border: 0; }
+.club-topbar { grid-template-columns: 36px 1fr auto; gap: 4px; min-height: 64px; padding: 8px 16px; background: var(--bg); border: 0; }
 .club-topbar .club-back { display: flex; align-items: center; justify-content: flex-start; min-height: 44px; }
-.club-topbar .club-switch { display: flex; align-items: center; gap: 9px; text-align: left; font-size: 15px; font-weight: 650; line-height: 1.4; }
-.club-switch span { padding-left: 9px; border-left: 1px solid #e7e8ed; color: var(--club-muted); font-size: 12px; font-weight: 400; }
+.club-topbar .club-switch { display: flex; align-items: center; gap: 9px; text-align: left; font-size: 15px; font-weight: 600; line-height: 1.4; }
+.club-switch span { padding-left: 9px; border-left: 1px solid var(--line); color: var(--club-muted); font-size: 12px; font-weight: 400; }
 .club-topbar .top-invite { padding: 0 10px; color: var(--accent); font-size: 13px; font-weight: 600; }
-.club-hero { position: relative; overflow: hidden; margin: 0; padding: 15px 20px 18px; background: linear-gradient(130deg, #fff 58%, #fff5f5); }
-.club-hero::after { content: ''; position: absolute; right: -35px; top: -55px; width: 145px; height: 145px; border: 20px solid rgba(255,10,48,.025); border-radius: 50%; pointer-events: none; }
-.club-identity { position: relative; display: flex; align-items: center; gap: 12px; z-index: 1; }
-.club-letter { display: grid; place-items: center; width: 56px; height: 56px; flex: none; border-radius: 18px 18px 18px 6px; background: #fff0f2; color: var(--accent); font-size: 26px; font-weight: 750; }
+.club-hero { position: relative; overflow: hidden; margin: 4px 16px 0; padding: 18px 20px 0; border: 1px solid var(--line); border-radius: 18px; background: #fff;  border-color: var(--line);}
+.hero-topline { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 22px; }
+.club-eyebrow { display: flex; align-items: center; gap: 7px; margin: 0; color: var(--muted); font-size: 12px; letter-spacing: .7px; line-height: 1.5; }
+.club-eyebrow::before { content: ''; width: 14px; height: 2px; border-radius: 2px; background: var(--accent); }
+.hero-switch { display: inline-flex; align-items: center; gap: 5px; min-height: 44px; color: var(--muted); font-size: 12px; }
+.hero-switch span { font-size: 17px; }
+.club-page .hero-track { position: absolute; top: 23px; right: -93px; width: 180px; height: 210px; stroke: #ffe4e0; stroke-width: 1; transform: rotate(28deg); pointer-events: none; }
+.club-identity { position: relative; display: flex; align-items: center; gap: 14px; z-index: 1; }
+.club-letter { display: grid; place-items: center; width: 64px; height: 64px; flex: none; border-radius: 14px; background: var(--accent); color: #fff; box-shadow: none; font-size: 30px; font-weight: 700; }
 .club-identity-copy { min-width: 0; flex: 1; }
-.club-eyebrow { margin: 0 0 4px; color: #9c6d76; font-size: 9px; letter-spacing: 1px; line-height: 1.5; }
-.club-hero h1 { margin: 0; color: var(--club-text); font-size: 22px; font-weight: 750; line-height: 1.35; letter-spacing: -.5px; overflow-wrap: anywhere; }
-.club-leader { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin: 7px 0 0; color: var(--club-muted); font-size: 12px; line-height: 1.5; }
-.role-badge { display: inline-flex; align-items: center; min-height: 21px; padding: 2px 6px; border: 1px solid #f0d4d9; border-radius: 5px; color: #a84152; font-size: 10px; line-height: 1.2; }
-.hero-bottom { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 17px; }
-.club-page .club-avatars { justify-content: flex-start; gap: 0; min-width: 0; min-height: 40px; }
-.club-avatar { display: grid; flex: none; place-items: center; width: 28px; height: 28px; margin-right: -8px; overflow: hidden; border: 2px solid #fff; border-radius: 50%; color: #8b7782; background: #eee9ed; font-size: 10px; font-weight: 650; }
-.club-avatar:nth-child(even) { background: #edf0f5; color: #76819b; }
+.club-name-line { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.club-hero h1 { margin: 0; color: var(--ink); font-size: 26px; font-weight:600; line-height: 1.3; letter-spacing: -.8px; overflow-wrap: anywhere; }
+.club-leader { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; margin: 9px 0 0; color: var(--muted); font-size: 12px; line-height: 1.6; }
+.role-badge { display: inline-flex; align-items: center; min-height: 20px; padding: 2px 5px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); font-size: 12px; font-weight: 550; line-height: 1.2; }
+.club-location { position: relative; display: flex; align-items: center; gap: 6px; margin: 14px 0 18px 78px; color: var(--muted); font-size: 12px; line-height: 1.6; }
+.club-page .club-location svg { width: 13px; height: 13px; }
+.meta-divider { color: var(--muted); }
+.club-number { font-variant-numeric: tabular-nums; }
+.hero-bottom { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 72px; border-top: 1px solid var(--line); }
+.club-page .club-avatars { justify-content: flex-start; gap: 0; min-width: 0; min-height: 44px; }
+.club-avatar { display: grid; flex: none; place-items: center; width: 27px; height: 27px; margin-right: -9px; overflow: hidden; border: 2px solid #fff; border-radius: 50%; color: #737373; background: #fff2f0; font-size: 12px; font-weight: 600; }
+.club-avatar:nth-child(even) { background: #f3f3f5; color: var(--muted); }
 .club-avatar img { width: 100%; height: 100%; object-fit: cover; }
-.avatar-caption { margin-left: 15px; color: var(--club-muted); font-size: 12px; white-space: nowrap; }
+.avatar-caption { margin-left: 15px; color: var(--muted); font-size: 12px; white-space: nowrap; }
 .avatar-caption i { margin-left: 3px; font-style: normal; }
-.hero-publish { display: inline-flex; align-items: center; justify-content: center; gap: 4px; min-height: 40px; padding: 0 13px; border-radius: 10px; background: var(--accent); color: #fff; font-size: 13px; font-weight: 650; line-height: 1.2; white-space: nowrap; }
-.hero-publish svg { width: 17px; height: 17px; }
-.club-page .hero-publish.secondary { min-height: 40px; color: var(--accent); background: #fff0f3; font-size: 12px; }
-.seg { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); margin: 0; padding: 0 12px; background: #fff; border-bottom: 1px solid #e9ebef; }
-.club-page .seg button { position: relative; min-width: 0; min-height: 51px; padding: 0 5px; color: #656a75; font-size: 15px; font-weight: 600; }
-.seg button.on { color: var(--accent); font-weight: 750; }
-.seg button.on::after { content: ''; position: absolute; bottom: 0; left: calc(50% - 11px); width: 22px; height: 3px; border-radius: 4px; background: var(--accent); }
+.club-page .hero-invite { flex: none; width: auto; min-height: 44px; padding: 0 14px; border-radius:12px; background: var(--accent); color: #fff; font-size: 12px; font-weight: 600; white-space: nowrap; }
+.hero-invite span { font-size: 17px; }
+.seg { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); margin: 0 16px; padding: 0 1px; background: transparent; border-bottom: 1px solid var(--line); }
+.club-page .seg button { position: relative; min-width: 0; min-height: 62px; padding: 0 5px; color: var(--ink-secondary); font-size: 15px; font-weight: 550; }
+.club-page .seg button.on { color: #262626; font-weight: 700; }
+.seg button.on::after { content: ''; position: absolute; bottom: 0; left: calc(50% - 9px); width: 18px; height: 2px; border-radius: 4px; background: var(--accent); }
 .tab-dot { position: absolute; top: 9px; right: 13px; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
 .overview { padding: 0 16px 8px; }
 .section-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 23px 1px 12px; }
-.section-head h2 { margin: 0; color: var(--club-text); font-size: 18px; font-weight: 700; line-height: 1.35; }
-.section-eyebrow { margin: 0 0 4px; color: #9c9fa8; font-size: 9px; font-weight: 600; letter-spacing: 1.8px; }
-.club-page .section-head button { min-height: 38px; color: var(--club-muted); font-size: 12px; }
+.section-head h2 { margin: 0; color: var(--club-text); font-size: 18px; font-weight:600; line-height: 1.35; }
+.section-eyebrow { margin: 0 0 5px; color: var(--ink-secondary); font-size: 12px; font-weight: 600; letter-spacing: 1.8px; }
+.club-page .section-head button { min-height: 44px; color: var(--club-muted); font-size: 12px; }
 .section-head > button span { font-size: 19px; }
-.review-reminder { width: 100%; justify-content: flex-start!important; margin-top: 14px; padding: 8px 12px; border: 1px solid #f8e2d2; border-radius: 10px; background: #fff8ee; color: #9e632b; }
+.review-reminder { width: 100%; justify-content: flex-start!important; margin-top: 14px; padding: 8px 12px; border: 1px solid #ffe1dd; border-radius: 10px; background: #fff2f0; color: #b35b20; }
 .review-reminder b { font-size: 12px; font-weight: 550; }
-.review-reminder > span:last-child { margin-left: auto; font-size: 11px; }
-.reminder-dot { width: 6px; height: 6px; border-radius: 50%; background: #d58a3c; }
-.next-activity { position: relative; display: block; overflow: hidden; padding: 17px 18px 0; border: 1px solid #f4e5e8; border-radius: 18px; background: linear-gradient(120deg,#fff 40%,#fff8f8); box-shadow: 0 5px 18px rgba(41,26,30,.025); }
-.next-activity::after { content: ''; position: absolute; top: -18px; right: -58px; width: 150px; height: 150px; border: 1px solid #fae5e9; border-radius: 50%; box-shadow: 0 0 0 17px rgba(255,10,48,.018),0 0 0 34px rgba(255,10,48,.012); pointer-events: none; }
+.review-reminder > span:last-child { margin-left: auto; font-size: 12px; }
+.reminder-dot { width: 6px; height: 6px; border-radius: 50%; background: #c87825; }
+.next-activity { position: relative; display: block; overflow: hidden; padding: 17px 18px 0; border: 1px solid var(--line); border-radius: 18px; background: var(--card); box-shadow: none;  border-color: var(--line);}
+.next-activity::after { content: ''; position: absolute; top: -18px; right: -58px; width: 150px; height: 150px; border: 1px solid #fae5e9; border-radius: 50%; box-shadow: 0 0 0 17px rgba(225,37,27,.018),0 0 0 34px rgba(225,37,27,.012); pointer-events: none; }
 .next-topline { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 8px; z-index: 1; }
-.activity-kind { padding: 3px 6px; border-radius: 5px; color: var(--accent); background: #fff0f2; font-size: 11px; font-weight: 650; }
-.activity-status { color: #a66b36; font-size: 11px; font-weight: 500; }
+.activity-kind { padding: 3px 6px; border-radius: 5px; color: var(--accent); background: var(--accent-soft); font-size: 12px; font-weight: 600; }
+.activity-status { color: #c87825; font-size: 12px; font-weight: 500; }
 .activity-status.signed, .act-topline b.signed { color: #258062; }
-.next-activity h3 { position: relative; margin: 13px 0 9px; color: var(--club-text); font-size: 21px; font-weight: 750; line-height: 1.4; z-index: 1; overflow-wrap: anywhere; }
-.next-time { margin: 0; color: #3f424c; font-size: 14px; }
+.next-activity h3 { position: relative; margin: 13px 0 9px; color: var(--club-text); font-size: 21px; font-weight:600; line-height: 1.4; z-index: 1; overflow-wrap: anywhere; }
+.next-time { margin: 0; color: var(--ink); font-size: 14px; }
 .next-time b { margin-left: 7px; font-weight: 550; }
 .next-place { display: flex; align-items: center; flex-wrap: wrap; gap: 3px; margin: 8px 0 16px; color: var(--club-muted); font-size: 12px; }
 .next-place svg { width: 14px; height: 14px; }
 .next-footer { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 0 -18px; padding: 13px 17px; border-top: 1px solid #f7ebed; background: #fff; }
-.next-footer > span { color: var(--club-muted); font-size: 11px; line-height: 1.5; }
-.next-footer > b { flex: none; color: var(--accent); font-size: 12px; font-weight: 650; }
+.next-footer > span { color: var(--club-muted); font-size: 12px; line-height: 1.5; }
+.next-footer > b { flex: none; color: var(--accent); font-size: 12px; font-weight: 600; }
 .next-footer i { margin-left: 4px; font-style: normal; }
-.next-empty { display: grid; grid-template-columns: 44px 1fr; align-items: center; gap: 10px 12px; padding: 22px 18px; border: 1px solid #ebecef; border-radius: 18px; background: #fff; }
-.empty-track { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 14px; color: var(--accent); background: #fff0f3; }
-.next-empty h3 { margin: 0 0 6px; color: var(--club-text); font-size: 16px; }
-.next-empty p { margin: 0; color: var(--club-muted); font-size: 12px; line-height: 1.6; }
-.next-empty > a, .next-empty > button { grid-column: 2; justify-self: start; min-height: 32px; color: var(--accent); font-size: 12px; font-weight: 600; }
-.quick-actions { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); margin: 14px 0; padding: 14px 2px 12px; border-radius: 16px; background: #fff; }
-.club-page .quick-actions button { flex-direction: column; gap: 9px; min-width: 0; padding: 0 2px; }
-.quick-icon { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 13px; color: #eb4e65; background: #fff1f3; }
-.quick-actions button:nth-child(2) .quick-icon { color: #bf8a3e; background: #fbf5eb; }
-.quick-actions button:nth-child(3) .quick-icon { color: #6584ab; background: #eef3fa; }
-.quick-actions button:nth-child(4) .quick-icon { color: #9274a6; background: #f4eff7; }
-.quick-actions b { color: var(--club-text); font-size: 12px; font-weight: 550; line-height: 1.5; }
-.my-club-status { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); padding: 15px 0; border-radius: 15px; background: #fff; }
-.club-page .my-club-status button { align-items: flex-start; flex-direction: column; gap: 8px; padding: 0 17px; text-align: left; }
-.my-club-status button+button { border-left: 1px solid #eceef2; }
-.my-club-status span { color: var(--club-muted); font-size: 11px; }
-.my-club-status b { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px; color: var(--club-text); font-size: 23px; font-weight: 650; font-variant-numeric: tabular-nums; }
-.my-club-status small { color: var(--club-muted); font-size: 10px; font-weight: 400; }
-.my-club-status b.status-word { font-size: 15px; }
-.daily-card { margin-top: 12px; padding: 0 14px; border-radius: 15px; background: #fff; }
+.next-empty { position: relative; display: grid; grid-template-columns: minmax(0,1fr); justify-items: start; gap: 18px; min-height: 220px; overflow: hidden; padding: 23px; border: 1px solid var(--line); border-radius: 18px; background: #fff8f7;  border-color: #ffe1dd;}
+.club-page .empty-track { position: absolute; right: -14px; top: 22px; width: 124px; height: 180px; stroke: #ffdcd6; stroke-width: 1; transform: rotate(23deg); pointer-events: none; }
+.next-empty-copy { position: relative; z-index: 1; }
+.next-kicker { display: block; margin-bottom: 10px; color: var(--accent); font-size: 12px; font-weight: 600; letter-spacing: 2.4px; }
+.next-empty h3 { margin: 0 0 9px; color: var(--ink); font-size: 23px; font-weight:600; line-height: 1.45; letter-spacing: -.5px; }
+.next-empty p { max-width: 230px; margin: 0; color: var(--muted); font-size: 13px; line-height: 1.7; }
+.next-empty > a, .club-page .next-empty > button { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 16px; width: auto; min-height: 44px; padding: 0 16px; border-radius:12px; color: #fff; background: var(--accent); font-size: 12px; font-weight: 600; }
+.next-empty > a span, .next-empty > button span { font-size: 17px; }
+.quick-actions { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); margin: 14px 0; padding: 19px 4px 16px; border: 1px solid var(--line); border-radius: 18px; background: #fff;  border-color: var(--line);}
+.club-page .quick-actions button { flex-direction: column; gap: 10px; min-width: 0; padding: 0 2px; }
+.quick-icon { display: grid; place-items: center; width: 30px; height: 30px; color: var(--accent); }
+.club-page .quick-icon svg { width: 25px; height: 25px; stroke-width: 1.5; }
+.quick-actions b { color: var(--ink-secondary); font-size: 12px; font-weight: 550; line-height: 1.5; }
+.club-moments { overflow: hidden; border: 1px solid var(--line); border-radius: 18px; background: #fff;  border-color: var(--line);}
+.my-club-status { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); padding: 20px 0; }
+.club-page .my-club-status button { align-items: flex-start; flex-direction: column; gap: 10px; padding: 0 20px; text-align: left; }
+.my-club-status button+button { border-left: 1px solid var(--line); }
+.my-club-status span { color: var(--muted); font-size: 12px; }
+.my-club-status b { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px; color: var(--ink); font-size: 29px; font-weight: 600; font-variant-numeric: tabular-nums; line-height: 1.2; }
+.my-club-status small { color: var(--muted); font-size: 12px; font-weight: 400; }
+.my-club-status b.status-word { font-size: 16px; line-height: 1.7; }
+.daily-card { margin: 0 18px; padding: 0; border-top: 1px solid var(--line); background: transparent; }
 summary { list-style: none; cursor: pointer; }
 summary::-webkit-details-marker { display: none; }
-.daily-card summary { display: flex; align-items: center; gap: 10px; min-height: 75px; }
-.daily-icon { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 11px; color: #88919c; background: #f3f5f8; }
-.daily-icon svg { width: 19px; height: 19px; }
+.daily-card summary { display: flex; align-items: center; gap: 11px; min-height: 79px; }
+.daily-icon { display: grid; place-items: center; width: 30px; height: 34px; color: var(--muted); }
+.daily-icon svg { width: 22px; height: 22px; }
 .daily-card summary > span:nth-child(2) { display: grid; gap: 5px; flex: 1; min-width: 0; }
-.daily-card summary b { font-size: 13px; font-weight: 600; }
-.daily-card summary small { color: var(--club-muted); font-size: 11px; }
+.daily-card summary b { color: var(--ink); font-size: 13px; font-weight: 600; }
+.daily-card summary small { color: var(--muted); font-size: 12px; line-height: 1.5; }
 .daily-card summary i { color: var(--accent); font-size: 12px; font-style: normal; white-space: nowrap; }
-.daily-card[open] { padding-bottom: 14px; }
+.daily-card[open] { padding-bottom: 16px; }
 .check-form { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
 .daily-form { flex-direction: row; align-items: center; gap: 8px; }
-.daily-form input { width: 0; flex: 1; min-height: 44px; padding: 0 10px; border: 1px solid #e9ebef; border-radius: 9px; background: #f7f8fa; font-size: 13px; }
+.daily-form input { width: 0; flex: 1; min-height: 44px; padding: 0 10px; border: 1px solid var(--line); border-radius: 9px; background: var(--field-bg); font-size: 13px; }
 .daily-form .primary { min-width: 64px; padding: 0 12px; }
 .overview-row { display: flex; align-items: center; gap: 12px; min-height: 90px; padding: 16px; border-radius: 15px; background: #fff; }
 .overview-row > span:not(.race-date) { display: flex; flex: 1; min-width: 0; flex-direction: column; gap: 7px; }
-.race-date { display: flex; flex-direction: column; align-items: center; justify-content: center; flex: none; width: 42px; height: 52px; border-radius: 10px; color: var(--accent); background: #fff1f3; }
+.race-date { display: flex; flex-direction: column; align-items: center; justify-content: center; flex: none; width: 42px; height: 52px; border-radius: 10px; color: var(--accent); background: var(--accent-soft); }
 .race-date b { font-size: 23px; font-weight: 700; line-height: 1.1; }
-.race-date small { margin-top: 3px; font-size: 10px; }
-.overview-row strong { color: var(--club-text); font-size: 14px; font-weight: 650; line-height: 1.5; }
-.overview-row > span > small { color: var(--club-muted); font-size: 10px; }
-.overview-row i, .service-grid i { color: #a5a9b2; font-size: 18px; font-style: normal; }
+.race-date small { margin-top: 3px; font-size: 12px; }
+.overview-row strong { color: var(--club-text); font-size: 14px; font-weight: 600; line-height: 1.5; }
+.overview-row > span > small { color: var(--club-muted); font-size: 12px; }
+.overview-row i, .service-grid i { color: var(--muted); font-size: 18px; font-style: normal; }
 .overview-empty { padding: 21px 16px; border-radius: 15px; background: #fff; }
 .overview-empty p { margin: 0 0 9px; color: var(--club-muted); font-size: 12px; }
 .overview-empty a { color: var(--accent); font-size: 12px; }
 .service-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); padding: 4px 14px; border-radius: 15px; background: #fff; }
-.club-page .service-grid button { justify-content: flex-start; min-height: 56px; gap: 9px; padding: 0 6px 0 0; color: #4d535f; font-size: 12px; }
+.club-page .service-grid button { justify-content: flex-start; min-height: 56px; gap: 9px; padding: 0 6px 0 0; color: var(--ink-secondary); font-size: 12px; }
 .service-grid button:nth-child(even) { padding-left: 11px; }
-.service-grid button:nth-child(n+3) { border-top: 1px solid #f1f2f5; }
-.service-grid svg { width: 18px; height: 18px; color: #8b919c; }
+.service-grid button:nth-child(n+3) { border-top: 1px solid var(--chip); }
+.service-grid svg { width: 18px; height: 18px; color: var(--muted); }
 .service-grid i { margin-left: auto; }
 .club-section-head { flex-wrap: wrap; margin: 22px 18px 12px; }
 .club-section-head > div { display: flex; align-items: center; gap: 10px; }
 .club-section-head > div > span { color: var(--club-muted); font-size: 12px; }
 .club-page .block { margin: 12px 16px; padding: 17px; border-radius: 16px; background: #fff; }
-.block h2 { margin: 0; color: var(--club-text); font-size: 17px; font-weight: 650; line-height: 1.45; }
+.block h2 { margin: 0; color: var(--club-text); font-size: 17px; font-weight: 600; line-height: 1.45; }
 .block > .card { margin: 0; padding: 0; background: transparent; }
-.copy p { margin: 0; color: var(--club-text); font-size: 16px; font-weight: 650; line-height: 1.5; }
-.copy .foot { margin-top: 7px; color: var(--club-muted); font-size: 11px; }
+.copy p { margin: 0; color: var(--club-text); font-size: 16px; font-weight: 600; line-height: 1.5; }
+.copy .foot { margin-top: 7px; color: var(--club-muted); font-size: 12px; }
 .copy .foot span+span { margin-left: 12px; }
 .rank-label { margin: 9px 0 0; color: var(--club-muted); font-size: 12px; line-height: 1.65; }
-.squad { margin: 9px 0 0; color: #a37643; font-size: 12px; line-height: 1.6; }
-.race-roster { margin-top: 12px; border-top: 1px solid #eff0f3; }
-.race-roster summary { display: flex; justify-content: space-between; align-items: center; gap: 8px; min-height: 44px; color: #4b515e; font-size: 12px; }
-.race-roster summary b { margin-left: 7px; color: #8b919c; font-size: 11px; font-weight: 400; }
-.race-roster summary i { color: var(--club-muted); font-size: 11px; font-style: normal; }
+.squad { margin: 9px 0 0; color: #737373; font-size: 12px; line-height: 1.6; }
+.race-roster { margin-top: 12px; border-top: 1px solid var(--line); }
+.race-roster summary { display: flex; justify-content: space-between; align-items: center; gap: 8px; min-height: 44px; color: var(--ink); font-size: 12px; }
+.race-roster summary b { margin-left: 7px; color: var(--muted); font-size: 12px; font-weight: 400; }
+.race-roster summary i { color: var(--club-muted); font-size: 12px; font-style: normal; }
 .race-roster[open] summary i { font-size: 0; }
-.race-roster[open] summary i::after { content: '收起名单⌃'; font-size: 11px; }
-.share-text { overflow-wrap: anywhere; white-space: pre-wrap; margin: 0 0 10px; padding: 12px; border-radius: 10px; background: #f8f9fb; color: #656c79; font: inherit; font-size: 12px; line-height: 1.8; }
+.race-roster[open] summary i::after { content: '收起名单⌃'; font-size: 12px; }
+.share-text { overflow-wrap: anywhere; white-space: pre-wrap; margin: 0 0 10px; padding: 12px; border-radius: 10px; background: #f8f9fb; color: var(--muted); font: inherit; font-size: 12px; line-height: 1.8; }
 .club-page .primary { margin-top: 10px; border-radius: 10px; }
 .club-page .block .primary { display: inline-flex; width: 100%; }
 .club-page .undo { min-height: 44px; height: auto; margin-top: 6px; padding: 0 10px; color: var(--club-muted); background: transparent; border-radius: 8px; }
-.club-page .undo.on { background: #fff0f3; color: var(--accent); font-weight: 650; }
-.club-page .danger { color: #bd4656; }
-.club-page .mate { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 13px 0; border-top: 1px solid #f0f1f5; font-size: 14px; line-height: 1.6; }
+.club-page .undo.on { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+.club-page .danger { color: var(--accent); }
+.club-page .mate { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 13px 0; border-top: 1px solid var(--line); font-size: 14px; line-height: 1.6; }
 .mate > span { min-width: 0; overflow-wrap: anywhere; }
-.mate > b { flex: none; max-width: 65%; color: #6e7582; text-align: right; font-size: 12px; font-weight: 450; }
+.mate > b { flex: none; max-width: 65%; color: var(--muted); text-align: right; font-size: 12px; font-weight: 450; }
 .club-page .mate .primary, .club-page .mate .undo { width: auto; margin: 0; }
 .activity-heading, .people-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 23px 18px 15px; }
-.activity-heading h2, .people-heading h2 { margin: 0; color: var(--club-text); font-size: 20px; font-weight: 700; }
-.activity-heading p, .people-heading p { margin: 5px 0 0; color: var(--club-muted); font-size: 11px; line-height: 1.7; }
+.activity-heading h2, .people-heading h2 { margin: 0; color: var(--club-text); font-size: 20px; font-weight:600; }
+.activity-heading p, .people-heading p { margin: 5px 0 0; color: var(--club-muted); font-size: 12px; line-height: 1.7; }
 .people-heading { display: block; }
-.people-heading p b { color: #424957; font-weight: 550; }
+.people-heading p b { color: var(--ink); font-weight: 550; }
 .small-primary { display: inline-flex; align-items: center; justify-content: center; min-height: 40px; padding: 0 11px; border-radius: 10px; background: var(--accent); color: #fff; font-size: 12px; font-weight: 600; line-height: 1.2; white-space: nowrap; }
-.secondary-tabs { display: flex; align-items: center; gap: 6px; margin: 0 16px 14px; padding: 4px; border: 1px solid #eceef2; border-radius: 12px; background: #eceef2; }
-.club-page .secondary-tabs button { flex: 1; min-height: 38px; padding: 0 6px; color: #777e8b; font-size: 13px; white-space: nowrap; }
-.secondary-tabs button.on { border-radius: 9px; background: #fff; color: #292f3a; box-shadow: 0 1px 5px rgba(31,36,44,.05); font-weight: 650; }
-.secondary-tabs small { color: #a0a5af; font-size: 10px; }
-.block input:not([type='checkbox']):not([type='radio']) { width: 100%; height: 44px; min-height: 44px; margin-top: 8px; padding: 0 12px; border: 1px solid #eef0f3; border-radius: 9px; background: #f7f8fa; color: var(--club-text); font-size: 13px; }
+.secondary-tabs { display: flex; align-items: center; gap: 16px; margin: 0 16px 14px; padding: 0; border: 0; border-radius: 0; background: transparent;  border-bottom: 1px solid var(--line);}
+.club-page .secondary-tabs button { flex: 1; min-height: 38px; padding: 0 0; color: var(--muted); font-size: 13px; white-space: nowrap;  border-bottom: 2px solid transparent;}
+.secondary-tabs button.on { border-radius: 0; background: transparent; color: var(--ink); box-shadow: 0 1px 5px rgba(31,36,44,.05); font-weight: 600;  border-bottom-color: var(--accent);}
+.secondary-tabs small { color: var(--muted); font-size: 12px; }
+.block input:not([type='checkbox']):not([type='radio']) { width: 100%; height: 44px; min-height: 44px; margin-top: 8px; padding: 0 12px; border: 1px solid var(--line); border-radius: 9px; background: var(--field-bg); color: var(--club-text); font-size: 13px; }
 .block input:focus, .daily-form input:focus { outline: 1px solid var(--accent); }
 .check-form input:not([type='checkbox']):not([type='radio']) { margin-top: 0; }
 .checks { display: flex; flex-wrap: wrap; align-items: center; gap: 5px 7px; margin-top: 9px; }
@@ -1527,51 +1539,51 @@ summary::-webkit-details-marker { display: none; }
 .activity-filter .checks { flex-wrap: nowrap; overflow-x: auto; margin-right: -4px; padding-bottom: 3px; scrollbar-width: none; }
 .activity-filter .checks button { flex: none; white-space: nowrap; }
 .activity-filter input { margin-top: 0!important; }
-.date-strip { padding-top: 7px; border-top: 1px solid #f1f2f5; }
-.act-topline { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 12px; color: #7e8591; font-size: 11px; }
-.act-topline b { flex: none; color: #ad783d; font-size: 11px; font-weight: 500; }
-.activity-count { display: flex; align-items: center; flex-wrap: wrap; gap: 5px; padding-top: 11px; border-top: 1px solid #f1f2f5; }
-.activity-count span { margin-left: auto; color: var(--accent); font-size: 11px; }
-.copy-activity { display: inline-flex; align-items: center; min-height: 36px; margin-top: 7px; padding: 0 9px; border: 1px solid #eceef2; border-radius: 8px; color: #8a909a; font-size: 11px; }
+.date-strip { padding-top: 7px; border-top: 1px solid var(--chip); }
+.act-topline { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 12px; color: var(--muted); font-size: 12px; }
+.act-topline b { flex: none; color: #737373; font-size: 12px; font-weight: 500; }
+.activity-count { display: flex; align-items: center; flex-wrap: wrap; gap: 5px; padding-top: 11px; border-top: 1px solid var(--chip); }
+.activity-count span { margin-left: auto; color: var(--accent); font-size: 12px; }
+.copy-activity { display: inline-flex; align-items: center; min-height: 36px; margin-top: 7px; padding: 0 9px; border: 1px solid var(--line); border-radius: 8px; color: var(--muted); font-size: 12px; }
 .activity-empty { text-align: center; padding: 28px 20px!important; }
-.activity-empty > svg { width: 36px; height: 36px; padding: 7px; border-radius: 12px; box-sizing: content-box; background: #fff1f3; color: var(--accent); }
+.activity-empty > svg { width: 36px; height: 36px; padding: 7px; border-radius: 12px; box-sizing: content-box; background: var(--accent-soft); color: var(--accent); }
 .activity-empty h3 { margin: 15px 0 7px; font-size: 15px; }
 .activity-empty p { margin: 0 0 16px; color: var(--club-muted); font-size: 12px; }
 .attendance-disclosure summary { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 26px; }
 .attendance-disclosure summary b { font-size: 15px; font-weight: 600; }
-.attendance-disclosure summary span { color: var(--club-muted); font-size: 11px; }
-.manage-toggle { justify-content: space-between!important; width: 100%; margin-top: 14px; padding: 0 12px; border-radius: 10px; color: #a94b5b; background: #fff1f3; text-align: left; font-weight: 550; }
+.attendance-disclosure summary span { color: var(--club-muted); font-size: 12px; }
+.manage-toggle { justify-content: space-between!important; width: 100%; margin-top: 14px; padding: 0 12px; border-radius: 10px; color: var(--accent); background: var(--accent-soft); text-align: left; font-weight: 550; }
 .manage-toggle i { font-size: 19px; font-style: normal; font-weight: 400; }
 .month-grid { display: grid; grid-template-columns: repeat(7,minmax(0,1fr)); gap: 4px; margin-top: 10px; }
 .dow { color: var(--club-muted); text-align: center; font-size: 12px; }
 .club-page .day { min-height: 34px; border-radius: 8px; font-size: 12px; }
-.day.mark { background: #fff1f3; color: var(--accent); }
+.day.mark { background: var(--accent-soft); color: var(--accent); }
 .day.on { background: var(--accent); color: #fff; }
 .club-page .member { display: block; }
 .member-directory .section-head { margin: 0 0 9px; }
-.member-directory h2 small { margin-left: 5px; color: #a0a5af; font-size: 11px; font-weight: 400; }
+.member-directory h2 small { margin-left: 5px; color: var(--muted); font-size: 12px; font-weight: 400; }
 .member-filters { margin-bottom: 10px; }
 .who { display: flex; justify-content: space-between; align-items: center; gap: 9px; }
-.who > b { color: #8e95a0; font-size: 11px; font-weight: 400; white-space: nowrap; }
+.who > b { color: var(--muted); font-size: 12px; font-weight: 400; white-space: nowrap; }
 .member-identity { display: flex; align-items: center; gap: 10px; min-width: 0; font-size: 14px; }
 .member-identity > span { min-width: 0; overflow-wrap: anywhere; }
-.member-identity img, .member-identity i { display: grid; place-items: center; flex: none; width: 36px; height: 36px; border-radius: 12px; background: #f1edf1; color: #8e7b8c; font-size: 13px; font-weight: 600; font-style: normal; object-fit: cover; }
-.member-actions summary { display: flex; align-items: center; justify-content: flex-end; gap: 6px; min-height: 35px; color: #969ca6; font-size: 11px; }
+.member-identity img, .member-identity i { display: grid; place-items: center; flex: none; width: 36px; height: 36px; border-radius: 12px; background: #f1edf1; color: var(--muted); font-size: 13px; font-weight: 600; font-style: normal; object-fit: cover; }
+.member-actions summary { display: flex; align-items: center; justify-content: flex-end; gap: 6px; min-height: 35px; color: var(--muted); font-size: 12px; }
 .member-actions[open] summary { color: var(--accent); }
 .acts { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 5px 9px; margin-top: 4px; }
-.club-page .acts .undo { min-height: 36px; padding: 0 8px; border-radius: 7px; background: #f7f8fa; font-size: 11px; }
+.club-page .acts .undo { min-height: 36px; padding: 0 8px; border-radius: 7px; background: var(--field-bg); font-size: 12px; }
 .requests-block .mate { margin-top: 8px; }
-.requests-block > h2::after { content: '待处理'; display: inline-block; margin-left: 8px; padding: 2px 5px; border-radius: 4px; color: #b98244; background: #fcf5eb; font-size: 10px; font-weight: 400; vertical-align: middle; }
+.requests-block > h2::after { content: '待处理'; display: inline-block; margin-left: 8px; padding: 2px 5px; border-radius: 4px; color: #b98244; background: #fff2f0; font-size: 12px; font-weight: 400; vertical-align: middle; }
 .requests-block .mate > b { display: flex; align-items: center; gap: 5px; }
 .fee-panel > .section-head { margin: 0 0 12px; }
-.fee-period-label { color: #9b6e78; font-size: 11px; }
-.fee-title { margin: 15px 0 10px; font-size: 17px; font-weight: 650; }
+.fee-period-label { color: var(--muted); font-size: 12px; }
+.fee-title { margin: 15px 0 10px; font-size: 17px; font-weight: 600; }
 .fee-periods { margin-bottom: 15px; }
-.fee-periods .undo { border: 1px solid #f0f1f4; }
-.departed-member { display: inline-block; margin-left: 6px; color: #a0a5ae; font-size: 10px; }
-.membership-settings { color: #7d8490; }
-.membership-settings .rank-label { font-size: 11px; line-height: 1.8; }
-.membership-settings h2 { color: #747c89; font-size: 14px; }
+.fee-periods .undo { border: 1px solid var(--line); }
+.departed-member { display: inline-block; margin-left: 6px; color: var(--muted); font-size: 12px; }
+.membership-settings { color: var(--muted); }
+.membership-settings .rank-label { font-size: 12px; line-height: 1.8; }
+.membership-settings h2 { color: var(--muted); font-size: 14px; }
 .pair { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; }
 .pair label { color: var(--club-muted); font-size: 12px; }
 .block input[type='checkbox'], .block input[type='radio'] { width: 16px; height: 16px; min-height: 0; flex: none; margin: 0 4px 0 0; padding: 0; vertical-align: middle; }
@@ -1583,39 +1595,60 @@ summary::-webkit-details-marker { display: none; }
 .club-page .service-heading button { color: var(--club-muted); font-size: 12px; }
 .service-heading svg { width: 14px; height: 14px; }
 .service-heading h2 { margin: 0; font-size: 19px; }
-article { margin-top: 22px; padding-top: 15px; border-top: 1px solid #f0f1f5; font-size: 14px; overflow-wrap: anywhere; }
+article { margin-top: 22px; padding-top: 15px; border-top: 1px solid var(--line); font-size: 14px; overflow-wrap: anywhere; }
 .viewer { position: fixed; inset: 0; z-index: 40; display: grid; place-items: center; padding: 24px; background: rgba(0,0,0,.86); }
 .viewer-frame { width: min(430px,100%); max-height: 88vh; overflow: auto; text-align: center; }
 .viewer img { display: block; width: 100%; border-radius: 12px; }
 .viewer p { color: #fff; font-size: 12px; }
 .feedback-toast { position: fixed; left: 50%; bottom: max(24px,env(safe-area-inset-bottom)); z-index: 50; display: flex; align-items: center; gap: 12px; width: max-content; max-width: min(390px,calc(100vw - 32px)); margin: 0; padding: 4px 8px 4px 16px; transform: translateX(-50%); border-radius: 12px; background: #313640; color: #fff; box-shadow: 0 5px 25px #0002; font-size: 12px; line-height: 1.7; }
 .club-page .feedback-toast button { flex: none; min-width: 32px; min-height: 38px; color: #cfd3da; font-size: 20px; }
-.club-error { margin: 16px; padding: 15px; border: 1px solid #f6d8de; border-radius: 13px; background: #fff2f4; color: #b95063; font-size: 13px; }
+.club-error { margin: 16px; padding: 15px; border: 1px solid var(--line); border-radius: 13px; background: #fff2f4; color: var(--accent); font-size: 13px; }
 .club-error p { margin: 0 0 8px; }
-.club-error > button:not(.small-primary) { min-height: 32px; color: #b95063; font-size: 12px; }
-.club-loading { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 330px; color: #606977; font-size: 14px; }
-.club-loading p { margin: 9px 0; color: #a1a7b1; font-size: 12px; }
-.loading-ring { width: 25px; height: 25px; margin-bottom: 18px; border: 2px solid #efd9de; border-top-color: var(--accent); border-radius: 50%; animation: club-spin .8s linear infinite; }
+.club-error > button:not(.small-primary) { min-height: 32px; color: var(--accent); font-size: 12px; }
+.club-loading { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 330px; color: var(--ink-secondary); font-size: 14px; }
+.club-loading p { margin: 9px 0; color: var(--muted); font-size: 12px; }
+.loading-ring { width: 25px; height: 25px; margin-bottom: 18px; border: 2px solid var(--line); border-top-color: var(--accent); border-radius: 50%; animation: club-spin .8s linear infinite; }
 @keyframes club-spin { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce) { .loading-ring { animation: none; } }
-@media (max-width: 350px) { .club-topbar { padding-right: 10px; padding-left: 10px; } .club-switch span { display: none; } .club-hero { padding: 13px 16px 16px; } .club-eyebrow { font-size: 8px; letter-spacing: .3px; } .club-letter { width: 48px; height: 48px; font-size: 23px; } .club-hero h1 { font-size: 20px; } .club-avatar { width: 24px; height: 24px; margin-right: -9px; } .avatar-caption { margin-left: 13px; font-size: 10px; } .hero-bottom { gap: 7px; } .hero-publish { padding: 0 10px; font-size: 12px; } .overview { padding-right: 12px; padding-left: 12px; } .club-page .block { margin-right: 12px; margin-left: 12px; padding: 14px; } .quick-actions b { font-size: 11px; } .section-head h2 { font-size: 17px; } .next-activity h3 { font-size: 19px; } .activity-heading { margin-right: 14px; margin-left: 14px; } .activity-heading p { max-width: 160px; } .club-page .secondary-tabs button { padding: 0 4px; font-size: 12px; } .next-footer > span { max-width: 65%; } }
+@media (max-width: 350px) { .club-topbar { padding-right: 10px; padding-left: 10px; } .club-switch span { display: none; } .club-hero { margin-right: 12px; margin-left: 12px; padding: 16px 16px 0;  border-radius: 18px; border-color: var(--line);} .club-eyebrow { font-size: 12px; letter-spacing: .3px; } .club-letter { width: 54px; height: 54px; border-radius: 14px; font-size: 27px;  box-shadow: none;} .club-hero h1 { font-size: 26px;  color: var(--ink);} .club-identity { gap: 11px; } .club-name-line { gap: 6px; } .club-location { margin-left: 65px; } .club-name-line .role-badge { font-size: 12px;  border-radius: 6px; color: var(--accent); background: var(--accent-soft);} .club-page .hero-invite { padding: 0 11px; } .hero-topline { margin-bottom: 18px; } .next-empty { padding: 21px;  border-radius: 18px; background: #fff8f7; border-color: #ffe1dd;} .next-empty h3 { font-size: 22px;  color: var(--ink);} .seg { margin-right: 12px; margin-left: 12px; } .club-avatar { width: 24px; height: 24px; margin-right: -9px; } .avatar-caption { margin-left: 13px; font-size: 12px; } .hero-bottom { gap: 7px; } .hero-publish { padding: 0 10px; font-size: 12px; } .overview { padding-right: 12px; padding-left: 12px; } .club-page .block { margin-right: 12px; margin-left: 12px; padding: 14px; } .quick-actions b { font-size: 12px;  color: var(--ink-secondary);} .section-head h2 { font-size: 17px; } .next-activity h3 { font-size: 19px; } .activity-heading { margin-right: 14px; margin-left: 14px; } .activity-heading p { max-width: 160px; } .club-page .secondary-tabs button { padding: 0 0; font-size: 12px;  border-bottom: 2px solid transparent;} .next-footer > span { max-width: 65%; } }
 
 .club-page .activities-share { padding: 6px 15px; }
 .share-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 44px; }
-.share-toolbar > span { color: #9299a4; font-size: 11px; }
-.club-page .share-toolbar .undo { margin: 0; color: #737c89; font-size: 12px; }
+.share-toolbar > span { color: var(--muted); font-size: 12px; }
+.club-page .share-toolbar .undo { margin: 0; color: var(--muted); font-size: 12px; }
 .share-toolbar i { font-size: 16px; font-style: normal; }
 .member-directory .member { position: relative; padding: 13px 0; }
 .member-directory .member:has(.member-actions) .who { padding-right: 76px; }
 .member-copy { display: grid; gap: 4px; }
 .member-copy b { font-size: 14px; font-weight: 550; }
-.member-copy small { color: #a0a6b0; font-size: 10px; line-height: 1.6; }
+.member-copy small { color: var(--muted); font-size: 12px; line-height: 1.6; }
 .member-actions summary { position: absolute; top: 17px; right: 0; min-height: 35px; }
-.member-actions .acts { margin-top: 12px; padding-top: 9px; border-top: 1px dashed #eff0f4; }
+.member-actions .acts { margin-top: 12px; padding-top: 9px; border-top: 1px dashed var(--line); }
 .fee-panel .member { display: flex; flex-wrap: wrap; align-items: center; gap: 9px; min-height: 68px; }
 .fee-panel .member > span { flex: 1; min-width: 65px; }
 .fee-panel .member > .acts { max-width: none; margin: 0; gap: 5px; }
-.club-page .fee-panel .acts .undo { min-height: 38px; padding: 0 8px; font-size: 11px; }
-.club-page .fee-panel .acts .undo.on { color: #b95369; background: #fff0f3; }
-.created-welcome{background:linear-gradient(130deg,#fff,#fff2f6);border:1px solid #f6dfe7}.created-welcome>p{font-size:12px;color:#9c7e8d;line-height:1.9}.created-welcome>a,.identity-manage-entry>a{display:flex;align-items:center;min-height:44px;color:#a86a80;font-size:12px}.created-welcome .primary{min-height:46px;width:100%;margin:8px 0}.created-welcome h2{font-size:20px}
+.club-page .fee-panel .acts .undo { min-height: 38px; padding: 0 8px; font-size: 12px; }
+.club-page .fee-panel .acts .undo.on { color: var(--accent); background: var(--accent-soft); }
+.created-welcome{background:linear-gradient(130deg,#fff,var(--accent-soft));border:1px solid var(--line)}.created-welcome>p{font-size:12px;color:var(--muted);line-height:1.9}.created-welcome>a,.identity-manage-entry>a{display:flex;align-items:center;min-height:44px;color:var(--accent);font-size:12px}.created-welcome .primary{min-height:46px;width:100%;margin:8px 0}.created-welcome h2{font-size:20px}
+
+
+/* A club card in peach, followed by cool, easy-to-scan service sections. */
+.club-page,.club-topbar { background:transparent; }
+.club-hero { background:linear-gradient(130deg,#fff4e9,#fffaf6 64%,#fff);border-color:#f0d9cb;box-shadow:var(--card-shadow,0 8px 26px #79533410); }
+.club-page .hero-track { stroke:#eebea3;opacity:.65; }
+.club-letter { background:linear-gradient(140deg,#f05a3d,#e1251b);box-shadow:0 5px 14px #e1251b1c; }
+.hero-bottom { border-color:#eddbce; }
+.role-badge { background:#ffffffb3;border:1px solid #f3ccbf; }
+.next-activity { background:#fff;border-color:#d4e8dd;box-shadow:var(--card-shadow,0 5px 20px #467b6310); }
+.next-empty { background:linear-gradient(125deg,#fff6eb,#fff);border-color:#efddc9; }
+.empty-track { stroke:#dfbd99;opacity:.65; }
+.quick-actions { background:#fff;border-color:#e4eaf1;box-shadow:var(--card-shadow,0 4px 16px #454c7008); }
+.quick-actions>button:nth-child(1) .quick-icon { background:var(--peach-soft,#fff0e7);color:#c74531; }
+.quick-actions>button:nth-child(2) .quick-icon { background:var(--sun-soft,#fff4d7);color:#98681b; }
+.quick-actions>button:nth-child(3) .quick-icon { background:var(--mint-soft,#e9f7f2);color:#267b63; }
+.quick-actions>button:nth-child(4) .quick-icon { background:var(--sky-soft,#eaf4ff);color:#356fa9; }
+.overview-row { background:#fff;border-color:#e8e1f3; }
+.daily-card { background:#fff;border-color:#e7eaf0; }
+.service-grid button:nth-child(3n+1) svg { color:#c44635; }.service-grid button:nth-child(3n+2) svg { color:#347ca5; }.service-grid button:nth-child(3n) svg { color:#3b8c71; }
+.fee-panel { background:#fff; }.requests-block { background:#fff; }
 </style>

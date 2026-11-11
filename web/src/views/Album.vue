@@ -1,5 +1,5 @@
 <template>
-  <main class="club-detail-page">
+  <main class="club-detail-page album-page">
     <header class="topbar">
       <router-link :to="'/clubs/' + clubId + '/activities/' + activityId" aria-label="返回">‹</router-link>
       <h1>相册</h1>
@@ -9,7 +9,7 @@
     <section v-else-if="loadError" class="recovery-state" role="alert">
       <p>{{ loadError }}</p><button type="button" class="primary" :disabled="loading" @click="retryLoad">{{ loading ? '正在重试…' : '重新加载' }}</button>
     </section>
-    <div v-if="activity" class="block">
+    <div v-if="activity" class="block album-hero">
       <span class="detail-kicker">留住一起奔跑的瞬间</span>
       <h2>{{ activity.title }}</h2>
       <p class="hint">{{ activity.dateLabel }}<template v-if="activity.place"> · {{ activity.place }}</template></p>
@@ -295,7 +295,7 @@ onMounted(retryLoad);
 .album.fall .shot img { height: auto; }
 .shot { position: relative; aspect-ratio: 1; border-radius: 12px; overflow: hidden; background: var(--accent-soft); }
 .shot img, .play { width: 100%; height: 100%; object-fit: cover; display: grid; place-items: center; color: var(--accent); font-weight: 700; }
-.shot em, .shot i { position: absolute; left: 6px; bottom: 4px; font-style: normal; color: #fff; font-size: 11px; }
+.shot em, .shot i { position: absolute; left: 6px; bottom: 4px; font-style: normal; color: #fff; font-size: 12px; }
 .shot i { right: 6px; left: auto; }
 .undo { color: var(--muted); }
 .viewer { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.86); z-index: 40; display: grid; place-items: center; padding: 24px; }
@@ -305,4 +305,10 @@ onMounted(retryLoad);
 .nav { position: absolute; top: 45%; width: 40px; height: 40px; border-radius: 12px; background: rgba(255, 255, 255, 0.16); color: #fff; font-size: 24px; }
 .prev { left: 8px; }
 .next { right: 8px; }
+.club-detail-page .block h2 { font-size:20px; line-height:1.45; }
+.club-detail-page .block h3 { font-size:16px; line-height:1.5; }
+.club-detail-page .block :is(input:not([type="radio"]):not([type="checkbox"]):not([type="file"]),textarea,select) { border:1px solid var(--line); border-radius:12px; background:var(--field-bg); font-size:14px; }
+
+
+.album-page { background:transparent; }.album-page>.topbar { background:transparent; }.album-hero { background:linear-gradient(#f7f3ff 0,#fff 180px);border-color:#e0d8ef;box-shadow:var(--card-shadow,0 6px 20px #71629410); }.tools .undo { background:#ffffffa1;border-color:#e0d8ef; }.shot { background:var(--sky-soft,#eaf4ff); }
 </style>

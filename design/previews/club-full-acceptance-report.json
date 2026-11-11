@@ -1,0 +1,322 @@
+{
+  "createdAt": "2026-11-05T12:18:15.915Z",
+  "isolated": true,
+  "accountCount": 36,
+  "api": [
+    {
+      "name": "AUTH-01 36 个账号均真实注册；逐个验证码登录；重复昵称与缺失同意拒绝",
+      "status": "pass",
+      "ms": 2054
+    },
+    {
+      "name": "AUTH-02 验证码登录恢复原账号与错误密码",
+      "status": "pass",
+      "ms": 59
+    },
+    {
+      "name": "CLUB-01 六位普通账号创建六个团，同名跨城市可区分，创建请求幂等",
+      "status": "pass",
+      "ms": 15
+    },
+    {
+      "name": "CLUB-02 公开介绍仅公开资料；游客与团外不能读团详情",
+      "status": "pass",
+      "ms": 2
+    },
+    {
+      "name": "CLUB-03 申请拒绝后可重新申请、审核后才读详情",
+      "status": "pass",
+      "ms": 13
+    },
+    {
+      "name": "ROLE-01 管理员任命与普通成员禁止管理",
+      "status": "pass",
+      "ms": 2
+    },
+    {
+      "name": "GROUP-01 管理员创建 A/B 配速组与人数上限校验",
+      "status": "pass",
+      "ms": 2
+    },
+    {
+      "name": "ACT-01 创建完整训练活动；非法日历日期拒绝",
+      "status": "pass",
+      "ms": 1
+    },
+    {
+      "name": "ACT-02 必选组别；并发竞争最后一个名额只成功一人",
+      "status": "pass",
+      "ms": 5
+    },
+    {
+      "name": "ACT-03 取消释放名额、重复报名拒绝、团外隔离",
+      "status": "pass",
+      "ms": 3
+    },
+    {
+      "name": "ACT-04 成员的团详情/活动/相册不泄露性别统计和他人水平",
+      "status": "pass",
+      "ms": 3
+    },
+    {
+      "name": "ACT-05 开始前无打卡入口且接口拒绝；服务端再核对截止",
+      "status": "pass",
+      "ms": 2
+    },
+    {
+      "name": "ACT-06 三人达标才发积分；更新里程重算且重复打卡不重复加分",
+      "status": "pass",
+      "ms": 3
+    },
+    {
+      "name": "ALBUM-01 成员图片待审核；本人/管理可见，其他成员待审批后可见",
+      "status": "pass",
+      "ms": 6
+    },
+    {
+      "name": "GIFT-01 积分兑换扣分库存只扣一次；库存耗尽拒绝",
+      "status": "pass",
+      "ms": 2
+    },
+    {
+      "name": "MEET-01 成员发约跑/加入/取消；未到日期禁止打卡",
+      "status": "pass",
+      "ms": 5
+    },
+    {
+      "name": "INTERNAL-01 管理员创建队内赛；普通成员不可创建；容量与重复报名",
+      "status": "pass",
+      "ms": 4
+    },
+    {
+      "name": "INTERNAL-02 开始后录成绩并结束；积分幂等、成员不可给他人录成绩",
+      "status": "pass",
+      "ms": 3
+    },
+    {
+      "name": "CALL-01 成绩接龙同步赛事名单、撤回不删先前个人成绩与证书",
+      "status": "pass",
+      "ms": 13
+    },
+    {
+      "name": "FEES-01 会费只记名单；普通成员不能标交费，管理员不能开新期",
+      "status": "pass",
+      "ms": 10
+    },
+    {
+      "name": "LEAVE-01 退出/管理员移出一致清理未来活动、队内赛、约跑，保留历史成绩",
+      "status": "pass",
+      "ms": 7
+    },
+    {
+      "name": "FEES-02 当前排除离团者；关闭期次快照再入团不改变历史",
+      "status": "pass",
+      "ms": 7
+    },
+    {
+      "name": "ROLE-02 团长先移交后退出；跨团 ID 不能读取活动/会费/成绩",
+      "status": "pass",
+      "ms": 3
+    },
+    {
+      "name": "DASH-01 多跑团列表、赛事标记、日常打卡取消与动态发布",
+      "status": "pass",
+      "ms": 6
+    },
+    {
+      "name": "FEES-03 未交费禁止活动/队内赛报名；收到会费即可报名",
+      "status": "pass",
+      "ms": 6
+    },
+    {
+      "name": "MEET-02 当天三人打卡上传合影；无效照片拒绝；成员不能作废",
+      "status": "pass",
+      "ms": 6
+    },
+    {
+      "name": "ACT-07 活动作废后不能报名、不能打卡",
+      "status": "pass",
+      "ms": 2
+    },
+    {
+      "name": "ALBUM-02 驳回删除待审图片；成员不能删除他人的图片",
+      "status": "pass",
+      "ms": 2
+    },
+    {
+      "name": "AUTH-03 过期 token 与空 token 均被团内数据服务端拒绝",
+      "status": "pass",
+      "ms": 3
+    },
+    {
+      "name": "BATCH-01 全部36跑者分配六团，多团身份与跨团权限矩阵",
+      "status": "pass",
+      "ms": 128
+    },
+    {
+      "name": "BATCH-02 六团各自真实创建活动/约跑/队内赛/动态，实体ID不串团",
+      "status": "pass",
+      "ms": 23
+    },
+    {
+      "name": "MILEAGE-01 真实跑步登记、个人归属、团长规则与跨团独立裁定",
+      "status": "pass",
+      "ms": 9
+    },
+    {
+      "name": "MILEAGE-02 无效公历日期与继承属性运动类型必须拒绝且不写库",
+      "status": "pass",
+      "ms": 2
+    },
+    {
+      "name": "IDENTITY-01 身份核验材料仅本人/平台读，公开标记不泄露私密联系方式",
+      "status": "pass",
+      "ms": 3
+    },
+    {
+      "name": "IDENTITY-02 暂停公开招募不移除已有成员；同名不自动判冒用",
+      "status": "pass",
+      "ms": 4
+    },
+    {
+      "name": "PARTNER-01 认证门槛、物资、月联赛与分账只记账不改积分",
+      "status": "pass",
+      "ms": 6
+    },
+    {
+      "name": "ADMIN-01 平台/跑团后台角色隔离，普通团长不能读取后台名单",
+      "status": "pass",
+      "ms": 58
+    }
+  ],
+  "notes": [
+    "Only time-dependent start/deadline boundaries use explicit SQL changes in the disposable database; no production database or .env was accessed.",
+    "36 accounts are created by /auth/register and each logs in with a real one-use local CAPTCHA. SQL reads inspect the disposable CAPTCHA answer, fixture ownership and assertions. Business setup, joins, decisions, uploads and writes use real HTTP. SQL writes only simulate time boundaries in this disposable test data.",
+    "认证达标后的物资实际领取/发放和离团事务回滚等更深边界由现有262项服务端回归覆盖；本批量旅程验证六团真实规模及主要权限/数据闭环，不声称任何生产或微信真机验收。"
+  ],
+  "httpRequests": 777,
+  "statusCounts": {
+    "200": 494,
+    "400": 69,
+    "401": 125,
+    "403": 56,
+    "404": 26,
+    "428": 1,
+    "429": 6
+  },
+  "endpoints": [
+    "DELETE /admin/splits/:id",
+    "DELETE /clubs/:id/activities/:id/media/:id",
+    "DELETE /clubs/:id/activities/:id/signup",
+    "DELETE /clubs/:id/calls/:id/rows/:id",
+    "DELETE /clubs/:id/checkins",
+    "DELETE /clubs/:id/league/join",
+    "DELETE /clubs/:id/meetups/:id/join",
+    "DELETE /clubs/:id/members/:id",
+    "DELETE /clubs/:id/mileage/groups/:id",
+    "DELETE /clubs/:id/posts/:id",
+    "DELETE /clubs/:id/posts/:id/like",
+    "DELETE /runs/:id",
+    "GET /admin/club-identity",
+    "GET /admin/clubs",
+    "GET /admin/overview",
+    "GET /admin/users",
+    "GET /auth/captcha",
+    "GET /clubs/:id",
+    "GET /clubs/:id/activities/:id",
+    "GET /clubs/:id/activities/:id/album",
+    "GET /clubs/:id/albums",
+    "GET /clubs/:id/calls",
+    "GET /clubs/:id/calls/:id",
+    "GET /clubs/:id/fees",
+    "GET /clubs/:id/fees/:id",
+    "GET /clubs/:id/identity",
+    "GET /clubs/:id/internals",
+    "GET /clubs/:id/internals/:id",
+    "GET /clubs/:id/meetups",
+    "GET /clubs/:id/meetups/:id",
+    "GET /clubs/:id/mileage",
+    "GET /clubs/:id/mileage/export",
+    "GET /clubs/:id/mileage/report",
+    "GET /clubs/:id/partner",
+    "GET /clubs/:id/posts",
+    "GET /clubs/:id/public",
+    "GET /clubs/directory",
+    "GET /me",
+    "GET /me/club-reports",
+    "GET /me/runner/media/:id/file",
+    "GET /media/:id",
+    "POST /admin/accounts",
+    "POST /admin/club-identity/report/:id/decision",
+    "POST /admin/club-identity/verification/:id/decision",
+    "POST /admin/leagues",
+    "POST /admin/login",
+    "POST /admin/splits",
+    "POST /admin/supplies",
+    "POST /auth/login",
+    "POST /auth/register",
+    "POST /clubs",
+    "POST /clubs/:id/activities",
+    "POST /clubs/:id/activities/:id/cancel",
+    "POST /clubs/:id/activities/:id/check",
+    "POST /clubs/:id/activities/:id/media",
+    "POST /clubs/:id/activities/:id/media/:id/approve",
+    "POST /clubs/:id/activities/:id/media/:id/reject",
+    "POST /clubs/:id/activities/:id/signup",
+    "POST /clubs/:id/calls",
+    "POST /clubs/:id/calls/:id/rows",
+    "POST /clubs/:id/checkins",
+    "POST /clubs/:id/fees",
+    "POST /clubs/:id/fees/:id/records",
+    "POST /clubs/:id/gifts",
+    "POST /clubs/:id/gifts/:id/redeem",
+    "POST /clubs/:id/groups",
+    "POST /clubs/:id/identity",
+    "POST /clubs/:id/internals",
+    "POST /clubs/:id/internals/:id/end",
+    "POST /clubs/:id/internals/:id/results",
+    "POST /clubs/:id/internals/:id/signup",
+    "POST /clubs/:id/league/join",
+    "POST /clubs/:id/leave",
+    "POST /clubs/:id/meetups",
+    "POST /clubs/:id/meetups/:id/check",
+    "POST /clubs/:id/meetups/:id/join",
+    "POST /clubs/:id/meetups/:id/photos",
+    "POST /clubs/:id/meetups/:id/void",
+    "POST /clubs/:id/mileage/groups",
+    "POST /clubs/:id/mileage/runs/:id/challenge",
+    "POST /clubs/:id/mileage/runs/:id/decision",
+    "POST /clubs/:id/posts",
+    "POST /clubs/:id/posts/:id/comments",
+    "POST /clubs/:id/posts/:id/like",
+    "POST /clubs/:id/reports",
+    "POST /clubs/:id/requests/:id",
+    "POST /clubs/:id/supplies/:id/claim",
+    "POST /clubs/join",
+    "POST /me/races/bishan/result/proof/certificate",
+    "POST /me/runner/media",
+    "POST /runs",
+    "PUT /admin/splits/:id",
+    "PUT /clubs/:id/fees/:id",
+    "PUT /clubs/:id/members/:id",
+    "PUT /clubs/:id/mileage/members/:id",
+    "PUT /clubs/:id/mileage/rules",
+    "PUT /me/races/bishan",
+    "PUT /me/races/bishan/result",
+    "PUT /runs/:id"
+  ],
+  "clubCount": 6,
+  "membershipCount": 37,
+  "endpointCount": 99,
+  "summary": {
+    "accounts": 36,
+    "clubs": 6,
+    "memberships": 37,
+    "scenariosPassed": 37,
+    "scenariosFailed": 0,
+    "httpRequests": 777,
+    "endpointCount": 99
+  },
+  "passed": true,
+  "finishedAt": "2026-11-05T12:18:18.408Z"
+}

@@ -1,4 +1,4 @@
-<view class="privacy-page">
+<view class="privacy-page mini-privacy-privacy">
   <view class="privacy-card">
     <view class="privacy-title">{{contractName}}</view>
     <view class="privacy-copy">本平台使用你提供的微信登录凭证、昵称和头像来识别账号；保存你主动标记的赛事、成绩，以及你提交到跑团活动中的信息和图片，用于赛事管理、跑团协作与个人记录。</view>

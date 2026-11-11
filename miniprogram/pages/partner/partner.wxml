@@ -1,4 +1,4 @@
-<view class="pad" wx:if="{{view}}">
+<view class="pad mini-partner-partner" wx:if="{{view}}">
   <view class="card">
     <view class="title">认证 {{view.grade.label}}</view>
     <view class="src">{{view.grade.note}}</view>

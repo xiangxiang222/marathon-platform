@@ -1,4 +1,4 @@
-<view class="pad club-detail" wx:if="{{call}}">
+<view class="pad club-detail mini-call-call" wx:if="{{call}}">
   <view class="card detail-hero"><view class="detail-kicker">每一份努力，值得记录</view>
     <view class="h2">{{call.title}}</view>
     <view class="src">{{call.raceDate}} · 截止 {{call.deadlineLabel}}{{call.closed ? ' · 已截止' : ''}}</view>
@@ -14,7 +14,7 @@
     <view class="src">距离：{{distanceLabel || '还没选'}}</view>
     <view class="detail-options"><button wx:for="{{options}}" wx:key="id" class="ghost {{distance === item.id ? 'on' : ''}}" data-id="{{item.id}}" data-label="{{item.label}}" bindtap="pickDistance">{{item.label}}</button></view>
     <view class="stack">
-      <input placeholder="1:32:10 或 45:30" value="{{time}}" bindinput="onTime" />
+      <input placeholder="1:32:10 或 45:30" value="{{time}}" bindinput="onTime" aria-label="1:32:10 或 45:30" />
     </view>
     <button class="btn" bindtap="submitOwn">提交</button>
     <button class="ghost" bindtap="chooseSheet">证书或截图</button>
@@ -33,12 +33,12 @@
     </view>
   </view>
   <view class="card management-card" wx:if="{{staff}}"><button class="fold-toggle" data-key="managerExpanded" bindtap="toggleDetailSection"><text>接龙管理 · 截止与补录</text><text>{{managerExpanded ? "−" : "+"}}</text></button><view wx:if="{{managerExpanded}}">
-    <input placeholder="截止 2026-11-22 22:00" value="{{deadline}}" bindinput="onDeadline" />
+    <input placeholder="截止 2026-11-22 22:00" value="{{deadline}}" bindinput="onDeadline" aria-label="截止 2026-11-22 22:00" />
     <button class="btn" bindtap="saveDeadline">改截止</button>
     <view class="src">给不会操作的成员补一条。当前：{{forName || '还没选'}} · {{forLabel || '距离'}}</view>
     <picker mode="selector" range="{{members}}" range-key="nickname" bindchange="selectDetailMember"><view class="detail-select">{{forName || "选择跑团成员"}}<text>⌄</text></view></picker>
     <view class="detail-options"><button wx:for="{{options}}" wx:key="id" class="ghost {{forDistance === item.id ? 'on' : ''}}" data-id="{{item.id}}" data-label="{{item.label}}" bindtap="pickForDistance">补 {{item.label}}</button></view>
-    <input placeholder="成绩" value="{{forTime}}" bindinput="onForTime" />
+    <input placeholder="成绩" value="{{forTime}}" bindinput="onForTime" aria-label="成绩" />
     <button class="btn" bindtap="fillFor">补录</button></view>
   </view>
   <view wx:if="{{!call.groups.length}}" class="empty">还没有人填写。</view>

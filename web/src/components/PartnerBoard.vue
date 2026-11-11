@@ -121,7 +121,7 @@ onMounted(() => {
 <style scoped>
 .hint { margin: 8px 0 0; color: var(--muted); font-size: 13px; line-height: 1.45; }
 .modes { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
-.modes button, .line button { height: 34px; padding: 0 12px; border-radius: 8px; background: var(--chip); color: var(--ink); font-weight: 600; }
+.modes button, .line button { height: 34px; padding: 0 12px; border-radius: 8px; background: var(--card); color: var(--ink); font-weight: 600;  border: 1px solid var(--line); font-size: 13px; min-height: 40px;}
 .modes button:first-child { background: var(--accent); color: #fff; }
 .line { display: flex; justify-content: space-between; gap: 8px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--line); }
 .line em { font-style: normal; font-weight: 600; }

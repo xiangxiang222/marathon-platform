@@ -38,3 +38,10 @@ const numbers = computed(() => {
   return list;
 });
 </script>
+
+<style scoped>
+.pager { gap:7px; flex-wrap:wrap; }
+.pager button { min-width:30px; min-height:36px; border:1px solid var(--line); border-radius:8px; background:var(--card); color:var(--muted); font-size:12px; }
+.pager button.on { border-color:#f5c4bf; background:var(--accent-soft); color:var(--accent); }
+.pager button.step { padding:0 7px; border-color:transparent; background:transparent; }
+</style>

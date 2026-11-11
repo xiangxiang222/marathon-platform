@@ -1399,4 +1399,4 @@ function mountClubLife(app, { BASE, getDb, userFrom }) {
   });
 }
 
-module.exports = { mountClubLife, enrichBoard, clubLife };
+module.exports = { mountClubLife, enrichBoard, clubLife, readActivityBody, readGroupList };

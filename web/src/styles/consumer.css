@@ -1,0 +1,128 @@
+/* Shared consumer controls. Page styles own layout; this layer keeps interactive
+   states, type and surfaces consistent across the complete route inventory. */
+.stage[data-ui="jd"] :is(.primary, .club-primary, .runner-primary, .action-primary, .login-go) {
+  min-height: 44px;
+  padding: 10px 20px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-control);
+  background: var(--action-fill);
+  box-shadow: 0 4px 12px rgba(225, 37, 27, .14);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: center;
+}
+.stage[data-ui="jd"] :is(.secondary, .club-secondary, .runner-secondary, .action-secondary) {
+  min-height: 44px;
+  padding: 10px 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  background: #fff;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+.stage[data-ui="jd"] :is(.primary, .club-primary, .runner-primary, .action-primary, .secondary, .club-secondary, .runner-secondary, .action-secondary):disabled {
+  border-color: var(--line);
+  background: var(--disabled-bg);
+  color: var(--disabled-ink);
+  opacity: 1;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+.stage[data-ui="jd"] :is(input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):not([type="range"]), select, textarea) {
+  min-width: 0;
+  max-width: 100%;
+  color: var(--ink);
+  font-size: 14px;
+  caret-color: var(--accent);
+}
+.stage[data-ui="jd"] :is(.auth-form, .editor, .history-fields, .create-form, .form-grid, .result-form, .signup-form, .filter-form) :is(input:not([type="checkbox"]):not([type="radio"]):not([type="file"]), select, textarea) {
+  min-height: 44px;
+  padding: 11px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  background: var(--field-bg);
+  box-shadow: none;
+}
+.stage[data-ui="jd"] :is(.auth-form, .editor, .history-fields, .create-form, .form-grid, .result-form, .signup-form) label {
+  color: var(--ink-secondary);
+  font-size: 13px;
+  line-height: 1.7;
+}
+.stage[data-ui="jd"] :is(.sheet, .surface, .panel, .block, .club-panel, .history-card, .dash-card, .runner-card, .card) {
+  border-radius: var(--radius-card);
+  box-shadow: var(--card-shadow);
+}
+.stage[data-ui="jd"] :is(.main-tabs, .club-tabs, .runner-tabs, .history-nav, .subtabs) button {
+  min-height: 44px;
+  font-size: 14px;
+}
+.stage[data-ui="jd"] :is(.chips, .choices, .statuses, .tag-picker) button {
+  min-height: 36px;
+  border:1px solid var(--line);
+  background:var(--card);
+  border-radius:8px;
+  padding: 7px 12px;
+  font-size: 13px;
+}
+.stage[data-ui="jd"] :is(.chips, .choices, .statuses, .tag-picker) button.on {
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-color: #f5c4bf;
+}
+.stage[data-ui="jd"] :is(.hint, .footnote, .subtle, .field-note, .muted, .empty-copy) {
+  color: var(--muted);
+  line-height: 1.75;
+}
+.stage[data-ui="jd"] :is(.empty-state, .guest-state) {
+  padding: 30px 22px;
+  text-align: center;
+}
+.stage[data-ui="jd"] :is(.empty-state, .guest-state) :is(h2, h3) { line-height: 1.5; }
+.stage[data-ui="jd"] :is(.empty-state, .guest-state) p { font-size: 13px; line-height: 1.85; }
+.stage[data-ui="jd"] :is(.load-error, .error-banner, .error-strip) {
+  padding: 13px 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--accent-soft);
+  color: #a82c24;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.stage[data-ui="jd"] :is(dialog:not(.poster-dialog):not(.preview-dialog)) {
+  max-width: min(430px, calc(100vw - 28px));
+  max-height: calc(100dvh - 40px);
+  padding: 22px;
+  border: 0;
+  border-radius: 18px;
+  color: var(--ink);
+  background: #fff;
+  overscroll-behavior: contain;
+}
+.stage[data-ui="jd"] dialog::backdrop { background: rgba(0, 0, 0, .4); }
+.stage[data-ui="jd"] :is(dialog h2, .section-heading h2) { font-size: 19px; line-height: 1.5; }
+.stage[data-ui="jd"] dialog p { font-size: 13px; line-height: 1.85; }
+.stage[data-ui="jd"] :is(.detail-back, .back-link, .club-back) { min-height: 44px; display: inline-flex; align-items: center; font-size: 14px; }
+.stage[data-ui="jd"] :is(.bottom-actions, .fixed-actions, .signup-footer) { padding-bottom: max(12px, env(safe-area-inset-bottom, 0px)); }
+@media (prefers-reduced-motion: reduce) {
+  .stage[data-ui="jd"] *, .stage[data-ui="jd"] *::before, .stage[data-ui="jd"] *::after {
+    animation-duration: .01ms;
+    transition-duration: .01ms;
+    scroll-behavior: auto;
+  }
+}
+
+.stage[data-ui="jd"] button small { font-size: 12px; }
+
+/* A small family of light surfaces gives data, community and training a
+   consistent colour rhythm while long text stays on white. */
+.stage[data-ui="jd"] .surface-sky { background: linear-gradient(135deg, #f8fcff, var(--sky-soft)); border-color: #d9e9fb; }
+.stage[data-ui="jd"] .surface-mint { background: linear-gradient(135deg, #fbfffd, var(--mint-soft)); border-color: #d5eee4; }
+.stage[data-ui="jd"] .surface-lilac { background: linear-gradient(135deg, #fdfbff, var(--lilac-soft)); border-color: #e4d9f7; }
+.stage[data-ui="jd"] .surface-sun { background: linear-gradient(135deg, #fffdf7, var(--sun-soft)); border-color: #f3e4b8; }
+.stage[data-ui="jd"] .surface-peach { background: linear-gradient(135deg, #fffaf7, var(--peach-soft)); border-color: #f6dcd0; }
+.stage[data-ui="jd"] :is(.detail-back, .back-link, .club-back) { color: #505c73; }
+.stage[data-ui="jd"] :is(.bottom-actions, .fixed-actions, .signup-footer) { border-top-color: #e4e9f2; box-shadow: 0 -6px 28px rgba(43, 61, 103, .035); }

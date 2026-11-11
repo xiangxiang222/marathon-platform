@@ -1,0 +1,103 @@
+{
+  "kind": "Mini-program activity-create Page VM tests with in-memory request mocks; no HTTP or database writes",
+  "checks": [
+    {
+      "name": "load captures token before requests and rejects a response after account switch",
+      "passed": true
+    },
+    {
+      "name": "copied activity retains gather time and normalizes unknown group kind",
+      "passed": true
+    },
+    {
+      "name": "training templates select only a type and title prompt",
+      "passed": true
+    },
+    {
+      "name": "publish is blocked when club data does not grant staff access",
+      "passed": true
+    },
+    {
+      "name": "kind picker ignores indexes outside supported options",
+      "passed": true
+    },
+    {
+      "name": "only 12 enabled groups are permitted and add action stops at 12",
+      "passed": true
+    },
+    {
+      "name": "validation rejects unsupported kind and pace over 40 characters",
+      "passed": true
+    },
+    {
+      "name": "publish is blocked if current token differs from page account",
+      "passed": true
+    },
+    {
+      "name": "publish sends meeting time and redirects only after mocked success",
+      "passed": true
+    }
+  ],
+  "requests": [
+    {
+      "route": "/me",
+      "method": "GET",
+      "source": "in-memory mock only"
+    },
+    {
+      "route": "/clubs/8",
+      "method": "GET",
+      "source": "in-memory mock only"
+    },
+    {
+      "route": "/me",
+      "method": "GET",
+      "source": "in-memory mock only"
+    },
+    {
+      "route": "/clubs/8",
+      "method": "GET",
+      "source": "in-memory mock only"
+    },
+    {
+      "route": "/clubs/8/activities/77",
+      "method": "GET",
+      "source": "in-memory mock only"
+    },
+    {
+      "route": "/clubs/8/activities",
+      "method": "POST",
+      "body": {
+        "title": "晨间训练",
+        "trainingType": "easy",
+        "issue": "",
+        "plannedKm": "",
+        "startsAt": "2030-01-02 06:00",
+        "endsAt": "",
+        "signupUntil": "",
+        "cancelUntil": "",
+        "place": "奥森公园",
+        "gatherPlace": "东门入口",
+        "gatherAt": "05:45",
+        "route": "",
+        "workout": "",
+        "notice": "",
+        "note": "",
+        "minPeople": 3,
+        "minKm": 5,
+        "points": 1,
+        "review": false,
+        "groups": [
+          {
+            "name": "轻松组",
+            "pace": "6'30–7'00 /km",
+            "capacity": 0,
+            "kind": "pace"
+          }
+        ]
+      },
+      "source": "in-memory mock only"
+    }
+  ],
+  "passed": true
+}

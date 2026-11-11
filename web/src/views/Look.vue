@@ -1,4 +1,5 @@
 <template>
+  <main class="look-page">
   <header class="large">
     <div>
       <h1>看看</h1>
@@ -13,6 +14,7 @@
   </div>
   <p v-else-if="ready && !loadError" class="empty">还没有可看的赛历</p>
   <Pager v-if="ready && !loadError" :page="page" :pages="pages" @update:page="turnPage" />
+  </main>
 </template>
 
 <script setup>
@@ -55,3 +57,16 @@ function turnPage(next) {
 
 onMounted(load);
 </script>
+
+<style scoped>
+.look-page { padding-bottom:24px; }
+.look-page .large { padding:26px 18px 8px; }
+.look-page .large h1 { font-size:26px; }
+.look-page > .hint { margin:8px 18px 18px; font-size:12px; color:var(--muted); }
+.look-page .stack { gap:12px; }
+.look-page .load-error { margin:16px; }
+.look-page .load-error button { color:var(--accent); margin-left:12px; min-height:36px; }
+
+
+.look-page { background:transparent; }.large { background:linear-gradient(120deg,#fff5e9,#fff);border-bottom:1px solid #eedfcc; }.large h1 { color:#a7492d; }.stack :deep(.race-card) { box-shadow:var(--card-shadow,0 4px 16px #454c7008); }
+</style>

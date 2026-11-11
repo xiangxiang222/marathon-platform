@@ -192,4 +192,10 @@ onMounted(retryLoad);
 .sheet { width: 100%; margin-top: 8px; border-radius: 8px; }
 .file-pick { display: inline-block; margin-top: 8px; color: var(--accent); }
 .file-pick input { display: none; }
+.club-detail-page .block h2 { font-size:20px; line-height:1.45; }
+.club-detail-page .block h3 { font-size:16px; line-height:1.5; }
+.club-detail-page .block :is(input:not([type="radio"]):not([type="checkbox"]):not([type="file"]),textarea,select) { border:1px solid var(--line); border-radius:12px; background:var(--field-bg); font-size:14px; }
+
+
+.club-detail-page { background:transparent; }.club-detail-page>.topbar { background:transparent; }.club-detail-page .detail-hero { background:linear-gradient(125deg,#eef8f2,#fff);border-color:#d5e8dd;box-shadow:var(--card-shadow,0 6px 20px #4c806710); }.club-detail-page .detail-kicker { color:#367d64; }.club-detail-page .detail-actions .undo { background:#ffffffa3;border-color:#d1e4d8; }
 </style>

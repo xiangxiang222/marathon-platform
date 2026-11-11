@@ -1,4 +1,4 @@
-<view class="page club-detail" wx:if="{{meetup}}">
+<view class="page club-detail mini-meetup-meetup" wx:if="{{meetup}}">
   <view class="card detail-hero"><view class="detail-kicker">一起出发 · 约跑</view>
     <view class="h2">{{meetup.dateLabel}} {{meetup.place}}</view>
     <view class="src">{{meetup.statusLabel}}</view>

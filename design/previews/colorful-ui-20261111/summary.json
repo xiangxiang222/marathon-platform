@@ -1,0 +1,60 @@
+{
+  "startedAt": "2026-11-11T04:52:48.560Z",
+  "kind": "Isolated UI system review; no production requests or writes",
+  "output": "/Users/mengxiangxiang/Documents/work/dev/marathon-platform/design/previews/colorful-ui-20261111",
+  "requestedModes": [
+    "web",
+    "mini"
+  ],
+  "expectedAccent": "#e1251b",
+  "scope": "Palette adjustment and small visual refinements of existing pages; no layout rewrite",
+  "runs": [
+    {
+      "script": "design/previews/admin-browser-regression.cjs",
+      "exit": 0,
+      "passed": true,
+      "report": "admin-browser-report.json",
+      "checks": 80,
+      "verifiedAt": "2026-11-11T04:47:01.672Z"
+    },
+    {
+      "script": "design/previews/admin-ui-full-audit.cjs",
+      "exit": 0,
+      "passed": true,
+      "report": "admin-ui-full-audit-report.json",
+      "checks": 138,
+      "verifiedAt": "2026-11-11T04:47:40.679Z"
+    },
+    {
+      "script": "scripts/ui-full-audit.cjs",
+      "exit": 0,
+      "passed": true,
+      "report": "web-report.json",
+      "checks": 198,
+      "verifiedAt": "2026-11-11T05:00:03.993Z",
+      "recheckReport": "web-primary-recheck-report.json"
+    },
+    {
+      "script": "design/previews/mini-ui-source-audit.cjs",
+      "exit": 0,
+      "passed": true,
+      "report": "mini-report.json",
+      "checks": 76,
+      "verifiedAt": "2026-11-11T04:55:23.566Z"
+    },
+    {
+      "script": "design/previews/activity-template-mini-mirror.cjs",
+      "exit": 0,
+      "passed": true,
+      "report": "mini-training-report.json",
+      "checks": 22,
+      "verifiedAt": "2026-11-11T04:55:29.896Z"
+    }
+  ],
+  "finishedAt": "2026-11-11T04:55:29.904Z",
+  "checkCount": 514,
+  "passed": true,
+  "comparisonCount": 12,
+  "finalizedAt": "2026-11-11T05:00:03.994Z",
+  "sourceFreeze": "Final consumer/Mini freeze, plus isolated primary color correction verified at all three Web widths"
+}

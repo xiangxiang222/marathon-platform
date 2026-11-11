@@ -25,7 +25,7 @@
         <div class="panel-heading"><div><h3>{{ raceWorkspace === 'review' ? '赛事内容审核' : '已发布赛事' }}</h3><p>{{ raceWorkspace === 'review' ? '核对赛事来源与报名节点，审核后再进入前台。' : '维护跑者看到的每一场比赛，优先核准临近开赛的信息。' }}</p></div><span class="panel-count">{{ raceWorkspace === 'review' ? botTotal : catalogTotal }} 场</span></div>
         <template v-if="raceTab === 'published'">
           <form class="check-form inline-form" @submit.prevent="submitCatalog">
-            <input v-model="catalogQuery" placeholder="搜索赛事名称 / 城市" @input="queueCatalog" />
+            <label class="field search-field"><span>搜索赛事</span><input v-model="catalogQuery" placeholder="搜索赛事名称 / 城市" @input="queueCatalog" /></label>
             <button class="primary" type="submit">筛选</button>
           </form>
           <div v-if="!catalogQuery.trim()" class="statuses">
@@ -75,7 +75,7 @@
         <div class="panel-heading"><div><h3>官网赛事同步</h3><p>核对中国马拉松官网的新赛事与资料变更，再决定是否收入赛历。</p></div><span class="source-label">中国马拉松官网</span></div>
         <details class="source-explainer"><summary>同步范围与数据保护规则</summary><p>每一届独立存储，赛事网站只采用当届官方提供的地址。同步会标记名称、日期、主办与网站的变化；已记录的报名截止时间保留，报名节点仍需填写可核对的来源。</p></details>
         <form class="check-form inline-form" @submit.prevent="search">
-          <input v-model="q" placeholder="搜名称或城市，例如璧山" @input="queueOfficial" />
+          <label class="field search-field"><span>搜索官网赛事</span><input v-model="q" placeholder="搜名称或城市，例如璧山" @input="queueOfficial" /></label>
           <button class="primary" type="submit">查官网</button>
         </form>
         <button v-if="!q.trim()" class="undo" type="button" @click="syncAll">拉取即将开赛的场</button>
@@ -117,11 +117,11 @@
         <button v-if="row.diffNote" class="undo" type="button" @click="apply(row)">采用官网这次的名称、日期和赛事网站</button>
         <router-link v-if="row.raceId" class="hint link" :to="'/races/' + row.raceId">打开赛历这场</router-link>
         <form v-if="row.raceId" class="check-form node-form" @submit.prevent="saveNodes(row)">
-          <input v-model="row.regStart" type="date" aria-label="报名开始" />
-          <input v-model="row.deadline" type="date" aria-label="报名截止" />
-          <input v-model="row.drawAt" type="date" aria-label="查询中签" />
-          <input v-model="row.payDeadline" type="date" aria-label="缴费截止" />
-          <input v-model="row.nodeSource" class="span" placeholder="来源，例如最酷，2026-09-07" />
+          <label class="field"><span>报名开始</span><input v-model="row.regStart" type="date" aria-label="报名开始" /></label>
+          <label class="field"><span>报名截止</span><input v-model="row.deadline" type="date" aria-label="报名截止" /></label>
+          <label class="field"><span>查询中签</span><input v-model="row.drawAt" type="date" aria-label="查询中签" /></label>
+          <label class="field"><span>缴费截止</span><input v-model="row.payDeadline" type="date" aria-label="缴费截止" /></label>
+          <label class="field span"><span>报名节点来源</span><input v-model="row.nodeSource" placeholder="来源，例如最酷，2026-09-07" /></label>
           <button class="primary" type="submit">保存报名节点</button>
         </form>
       </div>
@@ -155,7 +155,7 @@
           </div>
           <p v-if="book.submissionId && book.note" class="warn">打回原因：{{ book.note }}</p>
           <form v-if="book.submissionId && book.status === 'pending'" class="check-form return-form" @submit.prevent="returnBot(book)">
-            <input v-model="book.returnNote" maxlength="200" placeholder="打回原因" />
+            <label class="field"><span>打回原因</span><input v-model="book.returnNote" maxlength="200" placeholder="打回原因" /></label>
             <button class="undo" type="submit">打回</button>
           </form>
           <form id="race-editor" class="check-form guide-form" @submit.prevent="saveGuide">
@@ -246,10 +246,10 @@
                   <button class="undo" type="button" @click="removeDraw(item)">删除</button>
                 </div>
                 <div class="check-form">
-                  <input v-model="drawLabel" maxlength="20" placeholder="届次，例如 2025" />
-                  <input v-model.number="drawApplicants" type="number" min="1" placeholder="报名人数" />
-                  <input v-model.number="drawQuota" type="number" min="1" placeholder="名额" />
-                  <input v-model="drawSource" maxlength="80" placeholder="来源" />
+                  <label class="field"><span>赛事届次</span><input v-model="drawLabel" maxlength="20" placeholder="届次，例如 2025" /></label>
+                  <label class="field"><span>报名人数</span><input v-model.number="drawApplicants" type="number" min="1" placeholder="报名人数" /></label>
+                  <label class="field"><span>参赛名额</span><input v-model.number="drawQuota" type="number" min="1" placeholder="名额" /></label>
+                  <label class="field"><span>数据来源</span><input v-model="drawSource" maxlength="80" placeholder="来源" /></label>
                   <button class="primary" type="button" @click="createDraw">记下这一届</button>
                 </div>
               </template>
@@ -350,39 +350,39 @@
                   <button class="undo" type="button" @click="removePrize(item)">删除</button>
                 </div>
                 <div class="check-form">
-                  <select v-model="prizeDistance">
+                  <label class="field"><span>奖励项目</span><select v-model="prizeDistance">
                     <option value="full">全马</option>
                     <option value="half">半马</option>
                     <option value="10k">10公里</option>
                     <option value="5k">5公里</option>
-                  </select>
-                  <select v-model="prizeKind">
+                  </select></label>
+                  <label class="field"><span>奖项类型</span><select v-model="prizeKind">
                     <option value="place">名次</option>
                     <option value="age">年龄组</option>
                     <option value="local">本地籍</option>
                     <option value="break">破时</option>
                     <option value="club">跑团</option>
-                  </select>
-                  <select v-model="prizeGender">
+                  </select></label>
+                  <label class="field"><span>参赛性别</span><select v-model="prizeGender">
                     <option value="">性别不限</option>
                     <option value="男">男</option>
                     <option value="女">女</option>
-                  </select>
-                  <input v-model.number="prizeAgeMin" type="number" min="0" placeholder="年龄起，0 表示不限" />
-                  <input v-model.number="prizeAgeMax" type="number" min="0" placeholder="年龄止，0 表示不限" />
-                  <select v-model="prizeProvince">
+                  </select></label>
+                  <label class="field"><span>最低年龄</span><input v-model.number="prizeAgeMin" type="number" min="0" placeholder="年龄起，0 表示不限" /></label>
+                  <label class="field"><span>最高年龄</span><input v-model.number="prizeAgeMax" type="number" min="0" placeholder="年龄止，0 表示不限" /></label>
+                  <label class="field"><span>本地籍省份</span><select v-model="prizeProvince">
                     <option value="">省份，仅本地籍</option>
                     <option v-for="item in regions" :key="item.name" :value="item.name">{{ item.name }}</option>
-                  </select>
-                  <input v-model.number="prizePlace" type="number" min="0" placeholder="前几名，破时填 0" />
-                  <input v-model="prizeBreak" placeholder="破时成绩 3:00:00" />
-                  <input v-model.number="prizeAmount" type="number" min="0" placeholder="税前金额，0 表示非现金" />
-                  <input v-model.number="prizeTax" type="number" min="0" placeholder="税率，例如 20" />
+                  </select></label>
+                  <label class="field"><span>奖励名次</span><input v-model.number="prizePlace" type="number" min="0" placeholder="前几名，破时填 0" /></label>
+                  <label class="field"><span>破时目标</span><input v-model="prizeBreak" placeholder="破时成绩 3:00:00" /></label>
+                  <label class="field"><span>税前金额（元）</span><input v-model.number="prizeAmount" type="number" min="0" placeholder="税前金额，0 表示非现金" /></label>
+                  <label class="field"><span>税率（%）</span><input v-model.number="prizeTax" type="number" min="0" placeholder="税率，例如 20" /></label>
                   <label class="check-line"><input v-model="prizeStack" type="checkbox" /> 可与其他奖叠加</label>
-                  <input v-model="prizeSource" maxlength="80" placeholder="奖项来源" />
-                  <input v-model="prizeCutoff" placeholder="往届第 N 名 3:40:00，可空" />
-                  <input v-model="prizeCutoffSource" maxlength="80" placeholder="往届成绩来源" />
-                  <input v-model="prizeNote" maxlength="40" placeholder="说明" />
+                  <label class="field"><span>奖项来源</span><input v-model="prizeSource" maxlength="80" placeholder="奖项来源" /></label>
+                  <label class="field"><span>往届第 N 名成绩</span><input v-model="prizeCutoff" placeholder="往届第 N 名 3:40:00，可空" /></label>
+                  <label class="field"><span>往届成绩来源</span><input v-model="prizeCutoffSource" maxlength="80" placeholder="往届成绩来源" /></label>
+                  <label class="field"><span>奖项说明</span><input v-model="prizeNote" maxlength="40" placeholder="说明" /></label>
                   <button class="primary" type="button" @click="createPrize">添加奖项</button>
                 </div>
               </template>
@@ -427,7 +427,7 @@
             </div>
             <template v-if="newsTab === 'published'">
               <form class="check-form inline-form" @submit.prevent="submitNews">
-                <input v-model="newsQuery" placeholder="搜标题或赛事" @input="queueNews" />
+                <label class="field search-field"><span>搜索资讯</span><input v-model="newsQuery" placeholder="搜标题或赛事" @input="queueNews" /></label>
                 <button class="primary" type="submit">筛选</button>
               </form>
               <p v-if="newsReady" class="hint">{{ newsTotal }} 条</p>
@@ -487,7 +487,7 @@
             <p v-for="(line, index) in newsReview.lines" :key="'news-line-' + index" class="hint">{{ line }}</p>
             <pre v-if="newsReview.body" class="md-raw">{{ newsReview.body }}</pre>
             <form v-if="newsReview.status === 'pending'" class="check-form" @submit.prevent="returnNews(newsReview)">
-              <input v-model="newsReview.returnNote" maxlength="200" placeholder="打回原因" />
+              <label class="field"><span>打回原因</span><input v-model="newsReview.returnNote" maxlength="200" placeholder="打回原因" /></label>
               <button class="undo" type="submit">打回</button>
             </form>
           </div>
@@ -532,7 +532,7 @@
           <div class="block">
             <div class="panel-heading"><div><h3>跑者档案</h3><p>按昵称找到跑者，查看赛事计划、成绩与团内身份。</p></div><span class="panel-count">{{ userTotal }} 人</span></div>
             <form class="check-form inline-form" @submit.prevent="submitUsers">
-              <input v-model="userQuery" placeholder="搜昵称" @input="queueUsers" />
+              <label class="field search-field"><span>搜索跑者</span><input v-model="userQuery" placeholder="搜昵称" @input="queueUsers" /></label>
               <button class="primary" type="submit">筛选</button>
             </form>
             <p v-if="usersReady" class="hint">{{ userTotal }} 人</p>
@@ -669,7 +669,7 @@
           <div class="block">
             <div class="panel-heading"><div><h3>跑团名录</h3><p>管理成员与团长，申请审核和成员管理分别处理。</p></div><span class="panel-count">{{ clubTotal }} 个</span></div>
             <form class="check-form inline-form" @submit.prevent="submitClubs">
-              <input v-model="clubQuery" placeholder="搜跑团或昵称" @input="queueClubs" />
+              <label class="field search-field"><span>搜索跑团</span><input v-model="clubQuery" placeholder="搜跑团或昵称" @input="queueClubs" /></label>
               <button class="primary" type="submit">筛选</button>
             </form>
             <p v-if="clubsReady" class="hint">{{ clubTotal }} 个团</p>
@@ -767,14 +767,14 @@
         </div>
         <Pager :page="supplyPage" :pages="supplyPages" @update:page="turnSupply" />
         <details class="admin-disclosure"><summary><AdminIcon name="plus" />投放新物资</summary><form class="check-form" @submit.prevent="createSupply">
-          <input v-model="supplyBrand" maxlength="20" placeholder="品牌" />
-          <input v-model="supplyName" maxlength="40" placeholder="物资名" />
-          <input v-model.number="supplyTotal" type="number" min="1" placeholder="总量" />
-          <input v-model.number="supplyQuota" type="number" min="1" placeholder="每团额度" />
-          <input v-model="supplyMonth" placeholder="月份 2026-10" />
-          <input v-model.number="supplyChecks" type="number" min="0" placeholder="签到天数，0 表示不卡" />
-          <input v-model.number="supplyKm" type="number" min="0" step="0.1" placeholder="计入跑量，0 表示不卡" />
-          <input v-model="supplyNote" maxlength="100" placeholder="说明" />
+          <label class="field"><span>品牌</span><input v-model="supplyBrand" maxlength="20" placeholder="品牌" /></label>
+          <label class="field"><span>物资名称</span><input v-model="supplyName" maxlength="40" placeholder="物资名" /></label>
+          <label class="field"><span>总库存</span><input v-model.number="supplyTotal" type="number" min="1" placeholder="总量" /></label>
+          <label class="field"><span>每团领取额度</span><input v-model.number="supplyQuota" type="number" min="1" placeholder="每团额度" /></label>
+          <label class="field"><span>所属月份</span><input v-model="supplyMonth" placeholder="月份 2026-10" /></label>
+          <label class="field"><span>最低签到天数</span><input v-model.number="supplyChecks" type="number" min="0" placeholder="签到天数，0 表示不卡" /></label>
+          <label class="field"><span>最低计入跑量（公里）</span><input v-model.number="supplyKm" type="number" min="0" step="0.1" placeholder="计入跑量，0 表示不卡" /></label>
+          <label class="field"><span>物资说明</span><input v-model="supplyNote" maxlength="100" placeholder="说明" /></label>
           <button class="primary" type="submit">投放</button>
         </form></details>
         </section><section class="block"><div class="panel-heading"><div><h3>月度联赛</h3><p>组织跑团挑战，记录冠名与奖品</p></div></div>
@@ -784,10 +784,10 @@
         </div>
         <Pager :page="leaguePage" :pages="leaguePages" @update:page="turnLeague" />
         <details class="admin-disclosure"><summary><AdminIcon name="plus" />创建月度联赛</summary><form class="check-form" @submit.prevent="createLeague">
-          <input v-model="leagueMonth" placeholder="月份 2026-10" />
-          <input v-model="leagueTitle" maxlength="40" placeholder="联赛名称" />
-          <input v-model="leagueSponsor" maxlength="40" placeholder="冠名，可不填" />
-          <input v-model="leaguePrize" maxlength="80" placeholder="奖品，可不填" />
+          <label class="field"><span>联赛月份</span><input v-model="leagueMonth" placeholder="月份 2026-10" /></label>
+          <label class="field"><span>联赛名称</span><input v-model="leagueTitle" maxlength="40" placeholder="联赛名称" /></label>
+          <label class="field"><span>冠名品牌（选填）</span><input v-model="leagueSponsor" maxlength="40" placeholder="冠名，可不填" /></label>
+          <label class="field"><span>奖品说明（选填）</span><input v-model="leaguePrize" maxlength="80" placeholder="奖品，可不填" /></label>
           <button class="primary" type="submit">开这一月</button>
         </form></details>
         </section><section class="block"><div class="panel-heading"><div><h3>合作账目</h3><p>线下结算记录与处理状态</p></div></div>
@@ -802,15 +802,15 @@
         </div>
         <Pager :page="splitPage" :pages="splitPages" @update:page="turnSplit" />
         <details class="admin-disclosure"><summary><AdminIcon name="plus" />记录合作账目</summary><form class="check-form" @submit.prevent="createSplit">
-          <input v-model.number="splitClub" type="number" min="1" placeholder="跑团编号" />
-          <input v-model="splitMonth" placeholder="月份 2026-10" />
-          <select v-model="splitKind">
+          <label class="field"><span>跑团编号</span><input v-model.number="splitClub" type="number" min="1" placeholder="跑团编号" /></label>
+          <label class="field"><span>账目月份</span><input v-model="splitMonth" placeholder="月份 2026-10" /></label>
+          <label class="field"><span>账目类型</span><select v-model="splitKind">
             <option value="fee">服务费</option>
             <option value="commission">分佣</option>
             <option value="title">冠名</option>
-          </select>
-          <input v-model.number="splitYuan" type="number" min="1" placeholder="整数元" />
-          <input v-model="splitNote" maxlength="80" placeholder="备注" />
+          </select></label>
+          <label class="field"><span>金额（整数元）</span><input v-model.number="splitYuan" type="number" min="1" placeholder="整数元" /></label>
+          <label class="field"><span>账目备注</span><input v-model="splitNote" maxlength="80" placeholder="备注" /></label>
           <button class="primary" type="submit">记一笔</button>
         </form></details>
         </section>
@@ -864,8 +864,8 @@
       </div>
       <div v-if="section === 'accounts' && role === 'club'" class="block accounts-panel"><div class="panel-heading"><div><h3>账号安全</h3><p>修改当前跑团管理员账号的登录密码。</p></div></div>
         <form class="check-form" @submit.prevent="changePassword">
-          <input v-model="currentPassword" type="password" autocomplete="current-password" placeholder="当前密码" required />
-          <label class="field"><input v-model="nextPassword" type="password" autocomplete="new-password" placeholder="新密码" required /><small>8 到 128 位</small></label>
+          <label class="field"><span>当前密码</span><input v-model="currentPassword" type="password" autocomplete="current-password" placeholder="当前密码" required /></label>
+          <label class="field"><span>新密码</span><input v-model="nextPassword" type="password" autocomplete="new-password" placeholder="新密码" required /><small>8 到 128 位</small></label>
           <button class="undo" type="submit">修改密码</button>
         </form>
       </div>
@@ -874,28 +874,28 @@
         <div v-for="item in accounts" :key="item.username" class="line">
           <b>{{ item.username }}</b>
           <span>{{ item.roleLabel }}</span>
-          <select v-if="item.username !== selfName" class="role-pick" :value="item.role" @change="setAccountRole(item, $event.target.value)">
+          <select v-if="item.username !== selfName" class="role-pick" :aria-label="item.username + '的后台角色'" :value="item.role" @change="setAccountRole(item, $event.target.value)">
             <option value="admin">管理员</option>
             <option value="club">跑团管理员</option>
           </select>
         </div>
         <details class="admin-disclosure"><summary><AdminIcon name="plus" />开通运营账号</summary><form class="check-form" @submit.prevent="createAccount">
-          <input v-model="accountName" placeholder="用户名" />
+          <label class="field"><span>后台用户名</span><input v-model="accountName" placeholder="用户名" /></label>
           <label class="field">
-            <input v-model="accountPass" type="password" autocomplete="new-password" placeholder="密码" />
+            <span>初始密码</span><input v-model="accountPass" type="password" autocomplete="new-password" placeholder="密码" />
             <small>8 到 128 位</small>
           </label>
-          <select v-model="accountRole">
+          <label class="field"><span>后台角色</span><select v-model="accountRole">
             <option value="club">跑团管理员</option>
             <option value="admin">管理员</option>
-          </select>
+          </select></label>
           <button class="primary" type="submit">添加账号</button>
         </form></details>
         <h2>修改密码</h2>
         <form class="check-form" @submit.prevent="changePassword">
-          <input v-model="currentPassword" type="password" autocomplete="current-password" placeholder="当前密码" />
+          <label class="field"><span>当前密码</span><input v-model="currentPassword" type="password" autocomplete="current-password" placeholder="当前密码" /></label>
           <label class="field">
-            <input v-model="nextPassword" type="password" autocomplete="new-password" placeholder="新密码" />
+            <span>新密码</span><input v-model="nextPassword" type="password" autocomplete="new-password" placeholder="新密码" />
             <small>8 到 128 位</small>
           </label>
           <button class="undo" type="submit">修改密码</button>

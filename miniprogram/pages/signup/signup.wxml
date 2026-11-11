@@ -1,4 +1,4 @@
-<view wx:if="{{activity}}" class="signup-page">
+<view wx:if="{{activity}}" class="signup-page mini-signup-signup">
   <view class="signup-hero">
     <view class="hero-label">报名活动</view>
     <view class="signup-title">{{activity.title}}</view>
@@ -43,5 +43,5 @@
     <button class="submit-button" loading="{{submitting}}" disabled="{{submitting || loading || !activity.action.enabled || activity.action.kind !== 'signup' || (groups.length > 0 && !groupId)}}" bindtap="submit">{{submitting ? '提交中' : '确认报名'}}</button>
   </view>
 </view>
-<view wx:elif="{{loading}}" class="load-state"><view class="load-mark">MP</view><text>正在读取报名信息</text></view>
+<view wx:elif="{{loading}}" class="load-state"><view class="load-mark">跑</view><text>正在读取报名信息</text></view>
 <view wx:else class="load-state"><view class="load-mark">!</view><text>{{message || '报名信息暂时无法打开'}}</text><button class="retry-button" bindtap="retry">重新加载</button></view>

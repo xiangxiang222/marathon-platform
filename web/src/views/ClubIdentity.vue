@@ -1,6 +1,6 @@
 <template>
   <main class="club-form-page"><header class="topbar"><router-link :to="'/clubs/' + route.params.id" aria-label="返回跑团">‹</router-link><h1>跑团身份</h1><span></span></header>
-    <div class="club-form-wrap"><p class="club-form-eyebrow">TRUST BUILT ON REAL CONNECTIONS</p><h2 class="club-form-title">让跑友，认得出你们。</h2><p class="club-form-lead">核对的是组织与页面之间的管理授权关系。<br>核验可选，成员、约跑与团内记录照常使用。</p>
+    <div class="club-form-wrap"><p class="club-form-eyebrow">公开资料与组织关系</p><h2 class="club-form-title">让跑友，认得出你们。</h2><p class="club-form-lead">核对的是组织与页面之间的管理授权关系。<br>核验可选，成员、约跑与团内记录照常使用。</p>
       <div v-if="!token" class="club-form-panel"><p class="club-form-hint">请使用该跑团团长的账号登录后继续。</p><button class="club-form-primary" type="button" @click="login">登录</button></div>
       <p v-else-if="loading" class="club-form-hint" role="status">正在读取跑团身份资料…</p>
       <p v-if="error" class="club-form-error" role="alert">{{ error }}<button v-if="!club && token" type="button" @click="load">重新加载</button></p>
@@ -44,4 +44,10 @@ async function submit() { if (!club.value || saving.value || profileSaving.value
 async function saveProfile() { if (!club.value || profileSaving.value || saving.value) return; const stamp = capture(); if (!current(stamp)) return; profileSaving.value = true; error.value = ''; profileNotice.value = ''; try { await request('/clubs/' + route.params.id + '/profile', { method: 'PUT', body: JSON.stringify(profile) }); if (!current(stamp)) return; const result = await request('/clubs/' + route.params.id + '/identity'); club.value = result.club; verification.value = result.verification || null; profileNotice.value = '公开名片资料已更新。'; } catch (err) { if (!err.stale && current(stamp)) error.value = err.message; } finally { if (current(stamp)) profileSaving.value = false; } }
 watch(() => [token.value, route.params.id], load, { immediate: true });
 </script>
-<style scoped>.identity-application{margin-top:20px}.identity-application .club-form-note{margin-bottom:22px}.club-record p{margin:8px 0}.club-form-panel h2{overflow-wrap:anywhere}.club-form-panel h2 :deep(.identity-badge){vertical-align:middle}</style>
+<style scoped>.identity-application{margin-top:20px}.identity-application .club-form-note{margin-bottom:22px}.club-record p{margin:8px 0}.club-form-panel h2{overflow-wrap:anywhere}.club-form-panel h2 :deep(.identity-badge){vertical-align:middle}.club-form-panel { border-color:var(--line); border-radius:18px; }
+.club-form-panel h2 { font-size:20px; line-height:1.5; }
+.club-form-title { font-size:26px; }
+
+
+.club-form-page { background:transparent; }.club-form-page>.topbar { background:transparent; }.club-form-eyebrow { color:#4b7b8b; }.club-form-panel { background:#fff;border-color:#dce7f0;box-shadow:var(--card-shadow,0 6px 20px #526c8b0a); }.club-private-tag { background:var(--sky-soft,#eaf4ff);color:#426f96;border-color:#d5e4f3; }.club-form-note { background:var(--sun-soft,#fff4d7);border-color:#eddfbb; }
+</style>

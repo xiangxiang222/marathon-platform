@@ -1,4 +1,28 @@
-.src { color: #8a8e99; font-size: 26rpx; margin-top: 8rpx; }
-input { width: 100%; height: 80rpx; margin-top: 16rpx; background: #f5f6fa; border-radius: 16rpx; padding: 0 20rpx; box-sizing: border-box; }
-.card .btn, .ghost { margin-top: 16rpx; }
+.src { margin-top: 8rpx; }
+input { width: 100%; height: 80rpx; margin-top: 16rpx; padding: 0 20rpx; box-sizing: border-box; }
+.card .btn, .ghost { margin-top: 16rpx;  }
 .login-description { margin-top: 16rpx; line-height: 1.6; }
+
+/* Route geometry: surfaces, controls and compact labels have distinct roles. */
+.mini-radar-radar .card { border-radius: 36rpx; }
+.mini-radar-radar .btn, .mini-radar-radar .ghost { border-radius: 24rpx; }
+
+/* Page composition and interaction hierarchy. */
+.mini-radar-radar { color: var(--text); background: transparent; }
+.mini-radar-radar button { font-weight: 500; border-radius: 24rpx; }
+
+.card { border: 1px solid var(--border); }
+.title { font-size: 24px; font-weight: 600; }
+.src { color: var(--text-secondary); font-size: 13px; line-height: 1.8; }
+input { min-height: 44px; border: 1px solid var(--border); border-radius: 24rpx; background: var(--page-bg); font-size: 14px; }
+.slot { gap: 20rpx; padding: 24rpx; border: 1px solid var(--border); border-radius: 24rpx; background: var(--sky-soft); font-size: 14px; }
+
+/* Primary actions read at 14px, secondary actions at 13px; compact filters stay at 12px. */
+.mini-radar-radar .btn { font-size: 14px; font-weight: 500; }
+.mini-radar-radar .ghost { font-size: 13px; font-weight: 500; }
+.range-filters .ghost { font-size: 12px; }
+.card .title { font-size: 18px; } .card:first-child .title { font-size: 24px; }
+
+/* Existing semantic sections receive distinct light color surfaces. */
+.mini-radar-radar > .card:first-child { background: linear-gradient(135deg,#eaf4ff,#ffffff); box-shadow: var(--card-shadow); }
+.mini-radar-radar > .card:nth-child(2) { background: #ffffff; }

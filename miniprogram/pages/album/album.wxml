@@ -1,4 +1,4 @@
-<view class="pad club-detail" wx:if="{{activity}}">
+<view class="pad club-detail mini-album-album" wx:if="{{activity}}">
   <view class="card">
     <view class="detail-kicker">留住一起奔跑的瞬间</view><view class="title">{{activity.title}}</view>
     <view class="src">{{activity.dateLabel}} {{activity.place}}</view>

@@ -1,4 +1,4 @@
-<view class="pad">
+<view class="pad mini-news-news">
   <view wx:if="{{message}}" class="err">{{message}}</view>
   <navigator wx:for="{{rows}}" wx:key="id" url="/pages/news/detail?id={{item.id}}" class="card">
     <view class="title">{{item.title}}</view>

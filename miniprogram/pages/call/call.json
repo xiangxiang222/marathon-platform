@@ -1,3 +1,5 @@
 {
-  "navigationBarTitleText": "成绩统计"
+  "navigationBarTitleText": "成绩统计",
+  "navigationBarBackgroundColor": "#f5f5f5",
+  "backgroundColor": "#f5f5f5"
 }

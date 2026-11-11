@@ -1,6 +1,6 @@
 <template>
   <main class="club-form-page"><header class="topbar"><router-link :to="route.params.id ? '/clubs/' + route.params.id + '/public' : '/clubs'" aria-label="返回跑团">‹</router-link><h1>{{ route.params.id ? '名称与身份反馈' : '我的身份反馈与申诉' }}</h1><span></span></header>
-    <div class="club-form-wrap"><p class="club-form-eyebrow">CLEAR IDENTITY, FAIR COMMUNITY</p><h2 class="club-form-title">把事实说清，让跑友认准。</h2><p class="club-form-lead">同名跑团可以并存。若出现冒充组织、误导招募或管理授权争议，可以请平台私密核对。</p>
+    <div class="club-form-wrap"><p class="club-form-eyebrow">共同维护真实的跑团社区</p><h2 class="club-form-title">把事实说清，让跑友认准。</h2><p class="club-form-lead">同名跑团可以并存。若出现冒充组织、误导招募或管理授权争议，可以请平台私密核对。</p>
       <div v-if="!token" class="club-form-panel"><p class="club-form-hint">登录后可提交反馈、补充说明并查看处理进度，无需加入对方跑团。</p><button class="club-form-primary" type="button" @click="login">登录并继续</button></div>
       <p v-if="loading" class="club-form-hint" role="status">正在读取资料…</p><p v-if="error" class="club-form-error" role="alert">{{ error }}<button v-if="!saving" type="button" @click="load">重新读取</button></p>
       <form v-if="token && route.params.id && club" class="club-form-panel" @submit.prevent="submit"><span class="club-private-tag">私密工单 · 不会公开联系方式或材料</span><h2>{{ club.name }}</h2><p class="club-form-hint">{{ club.city || '城市待补充' }} · 负责人 {{ club.leader || '待补充' }} · 团号 #{{ club.id }}</p>
@@ -34,4 +34,10 @@ function cancelEdit() { if (saving.value) return; editingReportId.value = null; 
 async function submit() { if (saving.value || !club.value) return; const stamp = capture(); if (!current(stamp)) return; saving.value = true; error.value = ''; notice.value = ''; try { const data = await request('/clubs/' + route.params.id + '/reports', { method: 'POST', body: JSON.stringify(form) }); if (!current(stamp)) return; notice.value = data.outcome === 'updated' ? `工单 #${data.report.id} 的说明、公共来源和联系方式已更新，已进入待处理。` : data.outcome === 'unchanged' ? `工单 #${data.report.id} 已收到相同内容，无需重复提交。处理进度可在下方查看。` : `反馈已私密提交，工单 #${data.report.id}。处理结果会显示在下方。`; editingReportId.value = null; form.detail = ''; form.sourceUrl = ''; form.contact = ''; await load(false); } catch (err) { if (!err.stale && current(stamp)) error.value = err.message; } finally { if (current(stamp)) saving.value = false; } }
 watch(() => [token.value, route.fullPath], () => { reset(); load(); }, { immediate: true });
 </script>
-<style scoped>.reports-progress{margin-top:28px}.reports-progress>h2{display:flex;justify-content:space-between;align-items:center;font-size:17px}.reports-progress>h2 button{min-height:44px;color:#a77e8c;font-size:12px}.club-form-panel h2{margin-top:14px;overflow-wrap:anywhere}.club-record h3{margin-top:13px}.club-record .club-form-link{margin-right:12px}</style>
+<style scoped>.reports-progress{margin-top:28px}.reports-progress>h2{display:flex;justify-content:space-between;align-items:center;font-size:17px}.reports-progress>h2 button{min-height:44px;color:var(--muted);font-size:12px}.club-form-panel h2{margin-top:14px;overflow-wrap:anywhere}.club-record h3{margin-top:13px}.club-record .club-form-link{margin-right:12px}.club-form-panel { border-color:var(--line); border-radius:18px; }
+.club-form-panel h2 { font-size:20px; line-height:1.5; }
+.club-form-title { font-size:26px; }
+
+
+.club-form-page { background:transparent; }.club-form-page>.topbar { background:transparent; }.club-form-eyebrow { color:#7c669c; }.club-form-panel { background:#fff;border-color:#e4deed;box-shadow:var(--card-shadow,0 6px 20px #7162940a); }.club-private-tag { background:var(--lilac-soft,#f2edff);color:#776197;border-color:#e1d7ed; }.club-form-note { background:var(--sky-soft,#eaf4ff);border-color:#dce7f5; }.club-record { background:#fff;border-color:#e7dfef; }
+</style>

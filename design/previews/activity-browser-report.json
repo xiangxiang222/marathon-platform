@@ -1,0 +1,440 @@
+{
+  "pass": true,
+  "source": "Web pages in Chrome with in-memory API mocks; writes were intercepted",
+  "widths": [
+    320,
+    390
+  ],
+  "checks": [
+    {
+      "name": "web-activity-overview-320",
+      "width": 320,
+      "documentWidth": 320,
+      "bodyWidth": 320,
+      "overflow": [
+        {
+          "tag": "DIV",
+          "className": "hero-track",
+          "right": 366
+        },
+        {
+          "tag": "I",
+          "className": "",
+          "right": 336
+        }
+      ]
+    },
+    {
+      "name": "activity-roster-avatar-fallback-320",
+      "pass": true
+    },
+    {
+      "name": "web-activity-groups-320",
+      "width": 320,
+      "documentWidth": 320,
+      "bodyWidth": 320,
+      "overflow": [
+        {
+          "tag": "DIV",
+          "className": "hero-track",
+          "right": 366
+        },
+        {
+          "tag": "I",
+          "className": "",
+          "right": 336
+        }
+      ]
+    },
+    {
+      "name": "web-activity-signup-320",
+      "width": 320,
+      "documentWidth": 320,
+      "bodyWidth": 320,
+      "overflow": []
+    },
+    {
+      "name": "web-activity-check-future-320",
+      "width": 320,
+      "documentWidth": 320,
+      "bodyWidth": 320,
+      "overflow": [
+        {
+          "tag": "DIV",
+          "className": "hero-track",
+          "right": 366
+        },
+        {
+          "tag": "I",
+          "className": "",
+          "right": 336
+        }
+      ]
+    },
+    {
+      "name": "check-status-refresh-opens-check-in-after-start-320",
+      "pass": true
+    },
+    {
+      "name": "check-entry-future-320",
+      "pass": true
+    },
+    {
+      "name": "check-entry-live-320",
+      "pass": true
+    },
+    {
+      "name": "check-entry-ended-320",
+      "pass": true
+    },
+    {
+      "name": "check-entry-cancelled-320",
+      "pass": true
+    },
+    {
+      "name": "web-activity-check-history-320",
+      "width": 320,
+      "documentWidth": 320,
+      "bodyWidth": 320,
+      "overflow": [
+        {
+          "tag": "DIV",
+          "className": "hero-track",
+          "right": 366
+        },
+        {
+          "tag": "I",
+          "className": "",
+          "right": 336
+        }
+      ]
+    },
+    {
+      "name": "check-entry-unsigned-320",
+      "pass": true
+    },
+    {
+      "name": "blank-training-no-guessed-content-320",
+      "pass": true
+    },
+    {
+      "name": "web-activity-create-step1-320",
+      "width": 320,
+      "documentWidth": 320,
+      "bodyWidth": 320,
+      "overflow": [
+        {
+          "tag": "BUTTON",
+          "className": "template",
+          "right": 48
+        },
+        {
+          "tag": "SPAN",
+          "className": "template-icon",
+          "right": -25
+        },
+        {
+          "tag": "STRONG",
+          "className": "",
+          "right": -9
+        },
+        {
+          "tag": "SMALL",
+          "className": "",
+          "right": -3
+        }
+      ]
+    },
+    {
+      "name": "preset-training-framework-without-date-or-distance-320",
+      "pass": true
+    },
+    {
+      "name": "web-activity-create-step2-320",
+      "width": 320,
+      "documentWidth": 320,
+      "bodyWidth": 320,
+      "overflow": []
+    },
+    {
+      "name": "web-activity-create-step3-320",
+      "width": 320,
+      "documentWidth": 320,
+      "bodyWidth": 320,
+      "overflow": []
+    },
+    {
+      "name": "web-activity-overview-390",
+      "width": 390,
+      "documentWidth": 390,
+      "bodyWidth": 390,
+      "overflow": [
+        {
+          "tag": "DIV",
+          "className": "hero-track",
+          "right": 429
+        },
+        {
+          "tag": "I",
+          "className": "",
+          "right": 401
+        }
+      ]
+    },
+    {
+      "name": "activity-roster-avatar-fallback-390",
+      "pass": true
+    },
+    {
+      "name": "web-activity-groups-390",
+      "width": 390,
+      "documentWidth": 390,
+      "bodyWidth": 390,
+      "overflow": [
+        {
+          "tag": "DIV",
+          "className": "hero-track",
+          "right": 429
+        },
+        {
+          "tag": "I",
+          "className": "",
+          "right": 401
+        }
+      ]
+    },
+    {
+      "name": "web-activity-signup-390",
+      "width": 390,
+      "documentWidth": 390,
+      "bodyWidth": 390,
+      "overflow": []
+    },
+    {
+      "name": "web-activity-check-future-390",
+      "width": 390,
+      "documentWidth": 390,
+      "bodyWidth": 390,
+      "overflow": [
+        {
+          "tag": "DIV",
+          "className": "hero-track",
+          "right": 429
+        },
+        {
+          "tag": "I",
+          "className": "",
+          "right": 401
+        }
+      ]
+    },
+    {
+      "name": "check-status-refresh-opens-check-in-after-start-390",
+      "pass": true
+    },
+    {
+      "name": "check-entry-future-390",
+      "pass": true
+    },
+    {
+      "name": "check-entry-live-390",
+      "pass": true
+    },
+    {
+      "name": "check-entry-ended-390",
+      "pass": true
+    },
+    {
+      "name": "check-entry-cancelled-390",
+      "pass": true
+    },
+    {
+      "name": "web-activity-check-history-390",
+      "width": 390,
+      "documentWidth": 390,
+      "bodyWidth": 390,
+      "overflow": [
+        {
+          "tag": "DIV",
+          "className": "hero-track",
+          "right": 429
+        },
+        {
+          "tag": "I",
+          "className": "",
+          "right": 401
+        }
+      ]
+    },
+    {
+      "name": "check-entry-unsigned-390",
+      "pass": true
+    },
+    {
+      "name": "blank-training-no-guessed-content-390",
+      "pass": true
+    },
+    {
+      "name": "web-activity-create-step1-390",
+      "width": 390,
+      "documentWidth": 390,
+      "bodyWidth": 390,
+      "overflow": []
+    },
+    {
+      "name": "preset-training-framework-without-date-or-distance-390",
+      "pass": true
+    },
+    {
+      "name": "web-activity-create-step2-390",
+      "width": 390,
+      "documentWidth": 390,
+      "bodyWidth": 390,
+      "overflow": []
+    },
+    {
+      "name": "web-activity-create-step3-390",
+      "width": 390,
+      "documentWidth": 390,
+      "bodyWidth": 390,
+      "overflow": []
+    }
+  ],
+  "writes": [
+    {
+      "method": "POST",
+      "path": "/clubs/999/activities/1/signup",
+      "body": {
+        "groupId": 11,
+        "gender": "",
+        "level": ""
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/clubs/999/activities/check-live/check",
+      "body": {
+        "km": 8.5,
+        "note": "轻松完成"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/clubs/999/activities/check-ended/check",
+      "body": {
+        "km": 8.5,
+        "note": "轻松完成"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/clubs/999/activities",
+      "body": {
+        "trainingType": "interval",
+        "title": "奥森有氧跑",
+        "place": "奥林匹克森林公园",
+        "startsAt": "2026-11-08 06:30",
+        "endsAt": "",
+        "plannedKm": "",
+        "issue": "",
+        "gatherPlace": "南园南门地铁口",
+        "gatherAt": "",
+        "route": "",
+        "cancelUntil": "",
+        "signupUntil": "",
+        "workout": "热身：慢跑、动态活动与加速跑。\n主训练：填写本次间歇距离、组数及组间恢复。\n放松：慢跑与拉伸。",
+        "notice": "请根据训练计划与自身状态调整强度。",
+        "note": "",
+        "minPeople": 3,
+        "minKm": 5,
+        "points": 1,
+        "review": false,
+        "groups": [
+          {
+            "name": "间歇训练组",
+            "kind": "pace",
+            "pace": "按本组训练目标",
+            "capacity": 0
+          }
+        ]
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/clubs/999/activities/1/signup",
+      "body": {
+        "groupId": 11,
+        "gender": "",
+        "level": ""
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/clubs/999/activities/check-live/check",
+      "body": {
+        "km": 8.5,
+        "note": "轻松完成"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/clubs/999/activities/check-ended/check",
+      "body": {
+        "km": 8.5,
+        "note": "轻松完成"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/clubs/999/activities",
+      "body": {
+        "trainingType": "interval",
+        "title": "奥森有氧跑",
+        "place": "奥林匹克森林公园",
+        "startsAt": "2026-11-08 06:30",
+        "endsAt": "",
+        "plannedKm": "",
+        "issue": "",
+        "gatherPlace": "南园南门地铁口",
+        "gatherAt": "",
+        "route": "",
+        "cancelUntil": "",
+        "signupUntil": "",
+        "workout": "热身：慢跑、动态活动与加速跑。\n主训练：填写本次间歇距离、组数及组间恢复。\n放松：慢跑与拉伸。",
+        "notice": "请根据训练计划与自身状态调整强度。",
+        "note": "",
+        "minPeople": 3,
+        "minKm": 5,
+        "points": 1,
+        "review": false,
+        "groups": [
+          {
+            "name": "间歇训练组",
+            "kind": "pace",
+            "pace": "按本组训练目标",
+            "capacity": 0
+          }
+        ]
+      }
+    }
+  ],
+  "screenshots": [
+    "web-activity-overview-320.png",
+    "web-activity-groups-320.png",
+    "web-activity-signup-320.png",
+    "web-activity-check-future-320.png",
+    "web-activity-check-history-320.png",
+    "web-activity-create-step1-320.png",
+    "web-activity-create-step2-320.png",
+    "web-activity-create-step3-320.png",
+    "web-activity-overview-390.png",
+    "web-activity-groups-390.png",
+    "web-activity-signup-390.png",
+    "web-activity-check-future-390.png",
+    "web-activity-check-history-390.png",
+    "web-activity-create-step1-390.png",
+    "web-activity-create-step2-390.png",
+    "web-activity-create-step3-390.png"
+  ],
+  "errors": []
+}

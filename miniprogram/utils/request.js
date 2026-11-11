@@ -10,6 +10,20 @@ function failMessage(err, baseUrl) {
   return raw;
 }
 
+function responseMessage(res) {
+  const payload = res.data;
+  if (payload && typeof payload.error === "string" && payload.error.trim()) return payload.error;
+  const status = res.statusCode;
+  if (status === 401) return "登录已失效，请重新登录（HTTP 401）。";
+  if (status === 403) return "当前账号没有操作权限（HTTP 403）。";
+  if (status === 404) {
+    if (typeof payload === "string" && /^\s*</.test(payload)) return "此功能暂不可用（HTTP 404），请联系管理员确认服务已更新。";
+    return "请求的内容不存在或已删除（HTTP 404）。";
+  }
+  if (status >= 500) return "服务暂时不可用（HTTP " + status + "），请稍后重试。";
+  return "请求失败（HTTP " + status + "）。";
+}
+
 function request(path, method, data) {
   const app = getApp();
   if (!app || !app.globalData) return Promise.reject(new Error("应用还没准备好"));
@@ -29,7 +43,7 @@ function request(path, method, data) {
           resolve(normalizeAvatars(res.data, baseUrl));
           return;
         }
-        const error = new Error((res.data && res.data.error) || "请求失败");
+        const error = new Error(responseMessage(res));
         error.status = res.statusCode;
         if (res.data && res.data.code) error.code = res.data.code;
         reject(error);

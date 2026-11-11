@@ -1,4 +1,4 @@
-<view class="cal">
+<view class="cal mini-calendar-calendar">
   <view class="nav">
     <text bindtap="prev">‹</text>
     <text class="ym">{{year}}年{{month}}月</text>

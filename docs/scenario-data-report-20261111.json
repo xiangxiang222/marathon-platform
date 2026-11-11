@@ -1,0 +1,543 @@
+{
+  "batch": "normal-scenarios-20261111",
+  "completed": true,
+  "anchor": "2026-11-11T03:21:05.621Z",
+  "verifiedAt": "2026-11-11T03:39:10.309916+00:00",
+  "tableDeltas": {
+    "races": 9,
+    "plans": 1000,
+    "club_members": 10,
+    "checkins": 400,
+    "club_groups": 30,
+    "activities": 50,
+    "activity_signups": 320,
+    "activity_checks": 110,
+    "point_entries": 230,
+    "gifts": 30,
+    "redemptions": 20,
+    "activity_media": 30,
+    "club_requests": 30,
+    "fee_periods": 20,
+    "fee_records": 670,
+    "result_calls": 20,
+    "result_call_rows": 240,
+    "meetup_tiers": 24,
+    "meetups": 20,
+    "meetup_joins": 120,
+    "meetup_checks": 60,
+    "meetup_photos": 10,
+    "internal_races": 20,
+    "internal_groups": 40,
+    "internal_signups": 160,
+    "internal_results": 70,
+    "activity_groups": 100,
+    "runs": 3194,
+    "mileage_rules": 8,
+    "mileage_groups": 20,
+    "mileage_counts": 7659,
+    "mileage_flags": 200,
+    "user_mileage": 200,
+    "supplies": 4,
+    "supply_claims": 20,
+    "leagues": 2,
+    "league_joins": 10,
+    "radar_profiles": 200,
+    "prize_rules": 4,
+    "club_posts": 30,
+    "club_comments": 90,
+    "club_likes": 150,
+    "draw_rates": 1,
+    "results": 400,
+    "news": 8,
+    "runner_media": 20,
+    "feedback": 18,
+    "feedback_votes": 108,
+    "feedback_events": 46,
+    "feedback_images": 4,
+    "feedback_rewards": 5,
+    "race_history_entries": 600,
+    "race_history_media": 10,
+    "activity_templates": 30
+  },
+  "verification": {
+    "passed": true,
+    "checks": 4056,
+    "failed": 0,
+    "users": 200,
+    "clubs": 10,
+    "representatives": 20,
+    "mediaFiles": 70,
+    "mediaReadable": 70,
+    "userCoverage": {
+      "runs": 3194,
+      "futurePlans": 600,
+      "oldResults": 400,
+      "privateHistories": 200
+    },
+    "clubCoverage": {
+      "activities": 50,
+      "templates": 30,
+      "fees": 20,
+      "calls": 20,
+      "meetups": 20,
+      "internals": 20,
+      "posts": 30,
+      "points": 210
+    }
+  },
+  "binaryDownloads": [
+    {
+      "route": "/media/1",
+      "bytes": 45130,
+      "status": 200
+    },
+    {
+      "route": "/clubs/13/meetups/2/photos/1",
+      "bytes": 45130,
+      "status": 200
+    },
+    {
+      "route": "/me/runner/media/1/file",
+      "bytes": 45130,
+      "status": 200
+    },
+    {
+      "route": "/me/race-history/exp%3A63/media/1/file",
+      "bytes": 45130,
+      "status": 200
+    }
+  ],
+  "protectedExistingRowsPass": true,
+  "integrity": "ok",
+  "foreignKeyErrors": [],
+  "existingSyntheticMembershipUpdates": 480,
+  "historySetupCount": 372,
+  "clubs": [
+    {
+      "id": 13,
+      "name": "晨光跑团",
+      "counts": {
+        "activities": 5,
+        "templates": 3,
+        "fees": 2,
+        "calls": 2,
+        "meetups": 2,
+        "internals": 2,
+        "posts": 3,
+        "points": 21
+      },
+      "activityStates": {
+        "open": 2,
+        "live": 1,
+        "ended": 1,
+        "cancelled": 1
+      },
+      "mileage": {
+        "today": {
+          "totalKm": 404,
+          "ranks": 48,
+          "groups": 2
+        },
+        "week": {
+          "totalKm": 404,
+          "ranks": 48,
+          "groups": 2
+        },
+        "month": {
+          "totalKm": 404,
+          "ranks": 48,
+          "groups": 2
+        },
+        "all": {
+          "totalKm": 404,
+          "ranks": 48,
+          "groups": 2
+        }
+      }
+    },
+    {
+      "id": 14,
+      "name": "奥森悦跑团",
+      "counts": {
+        "activities": 5,
+        "templates": 3,
+        "fees": 2,
+        "calls": 2,
+        "meetups": 2,
+        "internals": 2,
+        "posts": 3,
+        "points": 21
+      },
+      "activityStates": {
+        "open": 2,
+        "live": 1,
+        "ended": 1,
+        "cancelled": 1
+      },
+      "mileage": {
+        "today": {
+          "totalKm": 406,
+          "ranks": 47,
+          "groups": 2
+        },
+        "week": {
+          "totalKm": 406,
+          "ranks": 47,
+          "groups": 2
+        },
+        "month": {
+          "totalKm": 406,
+          "ranks": 47,
+          "groups": 2
+        },
+        "all": {
+          "totalKm": 406,
+          "ranks": 47,
+          "groups": 2
+        }
+      }
+    },
+    {
+      "id": 15,
+      "name": "滨河跑团",
+      "counts": {
+        "activities": 5,
+        "templates": 3,
+        "fees": 2,
+        "calls": 2,
+        "meetups": 2,
+        "internals": 2,
+        "posts": 3,
+        "points": 21
+      },
+      "activityStates": {
+        "open": 2,
+        "live": 1,
+        "ended": 1,
+        "cancelled": 1
+      },
+      "mileage": {
+        "today": {
+          "totalKm": 392,
+          "ranks": 46,
+          "groups": 2
+        },
+        "week": {
+          "totalKm": 392,
+          "ranks": 46,
+          "groups": 2
+        },
+        "month": {
+          "totalKm": 392,
+          "ranks": 46,
+          "groups": 2
+        },
+        "all": {
+          "totalKm": 392,
+          "ranks": 46,
+          "groups": 2
+        }
+      }
+    },
+    {
+      "id": 16,
+      "name": "追风跑团",
+      "counts": {
+        "activities": 5,
+        "templates": 3,
+        "fees": 2,
+        "calls": 2,
+        "meetups": 2,
+        "internals": 2,
+        "posts": 3,
+        "points": 21
+      },
+      "activityStates": {
+        "open": 2,
+        "live": 1,
+        "ended": 1,
+        "cancelled": 1
+      },
+      "mileage": {
+        "today": {
+          "totalKm": 459,
+          "ranks": 54,
+          "groups": 2
+        },
+        "week": {
+          "totalKm": 459,
+          "ranks": 54,
+          "groups": 2
+        },
+        "month": {
+          "totalKm": 459,
+          "ranks": 54,
+          "groups": 2
+        },
+        "all": {
+          "totalKm": 459,
+          "ranks": 54,
+          "groups": 2
+        }
+      }
+    },
+    {
+      "id": 17,
+      "name": "城市夜跑团",
+      "counts": {
+        "activities": 5,
+        "templates": 3,
+        "fees": 2,
+        "calls": 2,
+        "meetups": 2,
+        "internals": 2,
+        "posts": 3,
+        "points": 21
+      },
+      "activityStates": {
+        "open": 2,
+        "live": 1,
+        "ended": 1,
+        "cancelled": 1
+      },
+      "mileage": {
+        "today": {
+          "totalKm": 426,
+          "ranks": 50,
+          "groups": 2
+        },
+        "week": {
+          "totalKm": 426,
+          "ranks": 50,
+          "groups": 2
+        },
+        "month": {
+          "totalKm": 426,
+          "ranks": 50,
+          "groups": 2
+        },
+        "all": {
+          "totalKm": 426,
+          "ranks": 50,
+          "groups": 2
+        }
+      }
+    },
+    {
+      "id": 18,
+      "name": "周末长跑团",
+      "counts": {
+        "activities": 5,
+        "templates": 3,
+        "fees": 2,
+        "calls": 2,
+        "meetups": 2,
+        "internals": 2,
+        "posts": 3,
+        "points": 21
+      },
+      "activityStates": {
+        "open": 2,
+        "live": 1,
+        "ended": 1,
+        "cancelled": 1
+      },
+      "mileage": {
+        "today": {
+          "totalKm": 318,
+          "ranks": 38,
+          "groups": 2
+        },
+        "week": {
+          "totalKm": 318,
+          "ranks": 38,
+          "groups": 2
+        },
+        "month": {
+          "totalKm": 318,
+          "ranks": 38,
+          "groups": 2
+        },
+        "all": {
+          "totalKm": 318,
+          "ranks": 38,
+          "groups": 2
+        }
+      }
+    },
+    {
+      "id": 19,
+      "name": "一起开跑团",
+      "counts": {
+        "activities": 5,
+        "templates": 3,
+        "fees": 2,
+        "calls": 2,
+        "meetups": 2,
+        "internals": 2,
+        "posts": 3,
+        "points": 21
+      },
+      "activityStates": {
+        "open": 2,
+        "live": 1,
+        "ended": 1,
+        "cancelled": 1
+      },
+      "mileage": {
+        "today": {
+          "totalKm": 480,
+          "ranks": 57,
+          "groups": 2
+        },
+        "week": {
+          "totalKm": 480,
+          "ranks": 57,
+          "groups": 2
+        },
+        "month": {
+          "totalKm": 480,
+          "ranks": 57,
+          "groups": 2
+        },
+        "all": {
+          "totalKm": 480,
+          "ranks": 57,
+          "groups": 2
+        }
+      }
+    },
+    {
+      "id": 20,
+      "name": "向阳跑团",
+      "counts": {
+        "activities": 5,
+        "templates": 3,
+        "fees": 2,
+        "calls": 2,
+        "meetups": 2,
+        "internals": 2,
+        "posts": 3,
+        "points": 21
+      },
+      "activityStates": {
+        "open": 2,
+        "live": 1,
+        "ended": 1,
+        "cancelled": 1
+      },
+      "mileage": {
+        "today": {
+          "totalKm": 436,
+          "ranks": 50,
+          "groups": 2
+        },
+        "week": {
+          "totalKm": 436,
+          "ranks": 50,
+          "groups": 2
+        },
+        "month": {
+          "totalKm": 436,
+          "ranks": 50,
+          "groups": 2
+        },
+        "all": {
+          "totalKm": 436,
+          "ranks": 50,
+          "groups": 2
+        }
+      }
+    },
+    {
+      "id": 21,
+      "name": "星火跑团",
+      "counts": {
+        "activities": 5,
+        "templates": 3,
+        "fees": 2,
+        "calls": 2,
+        "meetups": 2,
+        "internals": 2,
+        "posts": 3,
+        "points": 21
+      },
+      "activityStates": {
+        "open": 2,
+        "live": 1,
+        "ended": 1,
+        "cancelled": 1
+      },
+      "mileage": {
+        "today": {
+          "totalKm": 312,
+          "ranks": 36,
+          "groups": 2
+        },
+        "week": {
+          "totalKm": 312,
+          "ranks": 36,
+          "groups": 2
+        },
+        "month": {
+          "totalKm": 312,
+          "ranks": 36,
+          "groups": 2
+        },
+        "all": {
+          "totalKm": 312,
+          "ranks": 36,
+          "groups": 2
+        }
+      }
+    },
+    {
+      "id": 22,
+      "name": "欢乐跑团",
+      "counts": {
+        "activities": 5,
+        "templates": 3,
+        "fees": 2,
+        "calls": 2,
+        "meetups": 2,
+        "internals": 2,
+        "posts": 3,
+        "points": 21
+      },
+      "activityStates": {
+        "open": 2,
+        "live": 1,
+        "ended": 1,
+        "cancelled": 1
+      },
+      "mileage": {
+        "today": {
+          "totalKm": 368,
+          "ranks": 44,
+          "groups": 2
+        },
+        "week": {
+          "totalKm": 368,
+          "ranks": 44,
+          "groups": 2
+        },
+        "month": {
+          "totalKm": 368,
+          "ranks": 44,
+          "groups": 2
+        },
+        "all": {
+          "totalKm": 368,
+          "ranks": 44,
+          "groups": 2
+        }
+      }
+    }
+  ],
+  "exclusions": [
+    "真实支付和物流",
+    "微信及设备授权",
+    "官方认证与第三方同步",
+    "政策同意与隐私权利申请"
+  ]
+}

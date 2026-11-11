@@ -1,0 +1,1089 @@
+{
+  "kind": "Admin UI review with mock API fixtures; not production or live-backend verification",
+  "startedAt": "2026-11-05T12:30:20.912Z",
+  "checks": [
+    {
+      "label": "overview-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "heading": "运营总览",
+      "pass": true
+    },
+    {
+      "label": "navigation-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "heading": "运营总览",
+      "pass": true
+    },
+    {
+      "label": "navigation-focus-and-scroll-320",
+      "pass": true
+    },
+    {
+      "label": "editor-基本信息-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "heading": "赛事管理",
+      "pass": true
+    },
+    {
+      "label": "editor-项目-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "heading": "赛事管理",
+      "pass": true
+    },
+    {
+      "label": "editor-报名-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "heading": "赛事管理",
+      "pass": true
+    },
+    {
+      "label": "editor-官网-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "heading": "赛事管理",
+      "pass": true
+    },
+    {
+      "label": "editor-比赛日-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "heading": "赛事管理",
+      "pass": true
+    },
+    {
+      "label": "editor-规程-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "heading": "赛事管理",
+      "pass": true
+    },
+    {
+      "label": "editor-直播-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "heading": "赛事管理",
+      "pass": true
+    },
+    {
+      "label": "editor-奖项-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "heading": "赛事管理",
+      "pass": true
+    },
+    {
+      "label": "editor-资讯-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "heading": "赛事管理",
+      "pass": true
+    },
+    {
+      "label": "赛事资讯-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "heading": "赛事资讯",
+      "pass": true
+    },
+    {
+      "label": "跑者管理-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "heading": "跑者管理",
+      "pass": true
+    },
+    {
+      "label": "跑团管理-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "heading": "跑团管理",
+      "pass": true
+    },
+    {
+      "label": "申请审核-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "heading": "申请审核",
+      "pass": true
+    },
+    {
+      "label": "运动记录-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "heading": "运动记录",
+      "pass": true
+    },
+    {
+      "label": "积分礼品-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "heading": "积分礼品",
+      "pass": true
+    },
+    {
+      "label": "合作与物资-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "heading": "合作与物资",
+      "pass": true
+    },
+    {
+      "label": "账号与权限-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "heading": "账号与权限",
+      "pass": true
+    },
+    {
+      "label": "feedback-list-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "heading": "共创建议",
+      "pass": true
+    },
+    {
+      "label": "feedback-detail-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "heading": "共创建议",
+      "pass": true
+    },
+    {
+      "label": "feedback-focus-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "heading": "共创建议",
+      "pass": true
+    },
+    {
+      "label": "feedback-saving-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "heading": "共创建议",
+      "pass": true
+    },
+    {
+      "label": "feedback-focus-and-saving-320",
+      "pass": true
+    },
+    {
+      "label": "feedback-empty-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "heading": "共创建议",
+      "pass": true
+    },
+    {
+      "label": "feedback-error-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "heading": "共创建议",
+      "pass": true
+    },
+    {
+      "label": "identity-list-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "heading": "跑团身份",
+      "pass": true
+    },
+    {
+      "label": "identity-verification-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "heading": "跑团身份",
+      "pass": true
+    },
+    {
+      "label": "identity-rename-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "heading": "跑团身份",
+      "pass": true
+    },
+    {
+      "label": "identity-empty-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "heading": "跑团身份",
+      "pass": true
+    },
+    {
+      "label": "identity-error-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "heading": "跑团身份",
+      "pass": true
+    },
+    {
+      "label": "privacy-detail-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "heading": "个人信息权利",
+      "pass": true
+    },
+    {
+      "label": "privacy-empty-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "heading": "个人信息权利",
+      "pass": true
+    },
+    {
+      "label": "privacy-error-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "heading": "个人信息权利",
+      "pass": true
+    },
+    {
+      "label": "overview-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "heading": "运营总览",
+      "pass": true
+    },
+    {
+      "label": "navigation-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "heading": "运营总览",
+      "pass": true
+    },
+    {
+      "label": "navigation-focus-and-scroll-390",
+      "pass": true
+    },
+    {
+      "label": "editor-基本信息-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "heading": "赛事管理",
+      "pass": true
+    },
+    {
+      "label": "editor-项目-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "heading": "赛事管理",
+      "pass": true
+    },
+    {
+      "label": "editor-报名-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "heading": "赛事管理",
+      "pass": true
+    },
+    {
+      "label": "editor-官网-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "heading": "赛事管理",
+      "pass": true
+    },
+    {
+      "label": "editor-比赛日-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "heading": "赛事管理",
+      "pass": true
+    },
+    {
+      "label": "editor-规程-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "heading": "赛事管理",
+      "pass": true
+    },
+    {
+      "label": "editor-直播-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "heading": "赛事管理",
+      "pass": true
+    },
+    {
+      "label": "editor-奖项-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "heading": "赛事管理",
+      "pass": true
+    },
+    {
+      "label": "editor-资讯-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "heading": "赛事管理",
+      "pass": true
+    },
+    {
+      "label": "赛事资讯-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "heading": "赛事资讯",
+      "pass": true
+    },
+    {
+      "label": "跑者管理-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "heading": "跑者管理",
+      "pass": true
+    },
+    {
+      "label": "跑团管理-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "heading": "跑团管理",
+      "pass": true
+    },
+    {
+      "label": "申请审核-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "heading": "申请审核",
+      "pass": true
+    },
+    {
+      "label": "运动记录-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "heading": "运动记录",
+      "pass": true
+    },
+    {
+      "label": "积分礼品-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "heading": "积分礼品",
+      "pass": true
+    },
+    {
+      "label": "合作与物资-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "heading": "合作与物资",
+      "pass": true
+    },
+    {
+      "label": "账号与权限-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "heading": "账号与权限",
+      "pass": true
+    },
+    {
+      "label": "feedback-list-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "heading": "共创建议",
+      "pass": true
+    },
+    {
+      "label": "feedback-detail-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "heading": "共创建议",
+      "pass": true
+    },
+    {
+      "label": "feedback-focus-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "heading": "共创建议",
+      "pass": true
+    },
+    {
+      "label": "feedback-saving-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "heading": "共创建议",
+      "pass": true
+    },
+    {
+      "label": "feedback-focus-and-saving-390",
+      "pass": true
+    },
+    {
+      "label": "feedback-empty-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "heading": "共创建议",
+      "pass": true
+    },
+    {
+      "label": "feedback-error-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "heading": "共创建议",
+      "pass": true
+    },
+    {
+      "label": "identity-list-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "heading": "跑团身份",
+      "pass": true
+    },
+    {
+      "label": "identity-verification-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "heading": "跑团身份",
+      "pass": true
+    },
+    {
+      "label": "identity-rename-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "heading": "跑团身份",
+      "pass": true
+    },
+    {
+      "label": "identity-empty-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "heading": "跑团身份",
+      "pass": true
+    },
+    {
+      "label": "identity-error-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "heading": "跑团身份",
+      "pass": true
+    },
+    {
+      "label": "privacy-detail-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "heading": "个人信息权利",
+      "pass": true
+    },
+    {
+      "label": "privacy-empty-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "heading": "个人信息权利",
+      "pass": true
+    },
+    {
+      "label": "privacy-error-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "heading": "个人信息权利",
+      "pass": true
+    },
+    {
+      "label": "overview-1024",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "heading": "运营总览",
+      "pass": true
+    },
+    {
+      "label": "editor-基本信息-1024",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "heading": "赛事管理",
+      "pass": true
+    },
+    {
+      "label": "editor-项目-1024",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "heading": "赛事管理",
+      "pass": true
+    },
+    {
+      "label": "editor-报名-1024",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "heading": "赛事管理",
+      "pass": true
+    },
+    {
+      "label": "editor-官网-1024",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "heading": "赛事管理",
+      "pass": true
+    },
+    {
+      "label": "editor-比赛日-1024",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "heading": "赛事管理",
+      "pass": true
+    },
+    {
+      "label": "editor-规程-1024",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "heading": "赛事管理",
+      "pass": true
+    },
+    {
+      "label": "editor-直播-1024",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "heading": "赛事管理",
+      "pass": true
+    },
+    {
+      "label": "editor-奖项-1024",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "heading": "赛事管理",
+      "pass": true
+    },
+    {
+      "label": "editor-资讯-1024",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "heading": "赛事管理",
+      "pass": true
+    },
+    {
+      "label": "赛事资讯-1024",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "heading": "赛事资讯",
+      "pass": true
+    },
+    {
+      "label": "跑者管理-1024",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "heading": "跑者管理",
+      "pass": true
+    },
+    {
+      "label": "跑团管理-1024",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "heading": "跑团管理",
+      "pass": true
+    },
+    {
+      "label": "申请审核-1024",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "heading": "申请审核",
+      "pass": true
+    },
+    {
+      "label": "运动记录-1024",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "heading": "运动记录",
+      "pass": true
+    },
+    {
+      "label": "积分礼品-1024",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "heading": "积分礼品",
+      "pass": true
+    },
+    {
+      "label": "合作与物资-1024",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "heading": "合作与物资",
+      "pass": true
+    },
+    {
+      "label": "账号与权限-1024",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "heading": "账号与权限",
+      "pass": true
+    },
+    {
+      "label": "feedback-list-1024",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "heading": "共创建议",
+      "pass": true
+    },
+    {
+      "label": "feedback-detail-1024",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "heading": "共创建议",
+      "pass": true
+    },
+    {
+      "label": "feedback-focus-1024",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "heading": "共创建议",
+      "pass": true
+    },
+    {
+      "label": "feedback-saving-1024",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "heading": "共创建议",
+      "pass": true
+    },
+    {
+      "label": "feedback-focus-and-saving-1024",
+      "pass": true
+    },
+    {
+      "label": "feedback-empty-1024",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "heading": "共创建议",
+      "pass": true
+    },
+    {
+      "label": "feedback-error-1024",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "heading": "共创建议",
+      "pass": true
+    },
+    {
+      "label": "identity-list-1024",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "heading": "跑团身份",
+      "pass": true
+    },
+    {
+      "label": "identity-verification-1024",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "heading": "跑团身份",
+      "pass": true
+    },
+    {
+      "label": "identity-rename-1024",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "heading": "跑团身份",
+      "pass": true
+    },
+    {
+      "label": "identity-empty-1024",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "heading": "跑团身份",
+      "pass": true
+    },
+    {
+      "label": "identity-error-1024",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "heading": "跑团身份",
+      "pass": true
+    },
+    {
+      "label": "privacy-detail-1024",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "heading": "个人信息权利",
+      "pass": true
+    },
+    {
+      "label": "privacy-empty-1024",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "heading": "个人信息权利",
+      "pass": true
+    },
+    {
+      "label": "privacy-error-1024",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "heading": "个人信息权利",
+      "pass": true
+    },
+    {
+      "label": "overview-1440",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "heading": "运营总览",
+      "pass": true
+    },
+    {
+      "label": "editor-基本信息-1440",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "heading": "赛事管理",
+      "pass": true
+    },
+    {
+      "label": "editor-项目-1440",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "heading": "赛事管理",
+      "pass": true
+    },
+    {
+      "label": "editor-报名-1440",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "heading": "赛事管理",
+      "pass": true
+    },
+    {
+      "label": "editor-官网-1440",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "heading": "赛事管理",
+      "pass": true
+    },
+    {
+      "label": "editor-比赛日-1440",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "heading": "赛事管理",
+      "pass": true
+    },
+    {
+      "label": "editor-规程-1440",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "heading": "赛事管理",
+      "pass": true
+    },
+    {
+      "label": "editor-直播-1440",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "heading": "赛事管理",
+      "pass": true
+    },
+    {
+      "label": "editor-奖项-1440",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "heading": "赛事管理",
+      "pass": true
+    },
+    {
+      "label": "editor-资讯-1440",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "heading": "赛事管理",
+      "pass": true
+    },
+    {
+      "label": "赛事资讯-1440",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "heading": "赛事资讯",
+      "pass": true
+    },
+    {
+      "label": "跑者管理-1440",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "heading": "跑者管理",
+      "pass": true
+    },
+    {
+      "label": "跑团管理-1440",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "heading": "跑团管理",
+      "pass": true
+    },
+    {
+      "label": "申请审核-1440",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "heading": "申请审核",
+      "pass": true
+    },
+    {
+      "label": "运动记录-1440",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "heading": "运动记录",
+      "pass": true
+    },
+    {
+      "label": "积分礼品-1440",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "heading": "积分礼品",
+      "pass": true
+    },
+    {
+      "label": "合作与物资-1440",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "heading": "合作与物资",
+      "pass": true
+    },
+    {
+      "label": "账号与权限-1440",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "heading": "账号与权限",
+      "pass": true
+    },
+    {
+      "label": "feedback-list-1440",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "heading": "共创建议",
+      "pass": true
+    },
+    {
+      "label": "feedback-detail-1440",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "heading": "共创建议",
+      "pass": true
+    },
+    {
+      "label": "feedback-focus-1440",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "heading": "共创建议",
+      "pass": true
+    },
+    {
+      "label": "feedback-saving-1440",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "heading": "共创建议",
+      "pass": true
+    },
+    {
+      "label": "feedback-focus-and-saving-1440",
+      "pass": true
+    },
+    {
+      "label": "feedback-empty-1440",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "heading": "共创建议",
+      "pass": true
+    },
+    {
+      "label": "feedback-error-1440",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "heading": "共创建议",
+      "pass": true
+    },
+    {
+      "label": "identity-list-1440",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "heading": "跑团身份",
+      "pass": true
+    },
+    {
+      "label": "identity-verification-1440",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "heading": "跑团身份",
+      "pass": true
+    },
+    {
+      "label": "identity-rename-1440",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "heading": "跑团身份",
+      "pass": true
+    },
+    {
+      "label": "identity-empty-1440",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "heading": "跑团身份",
+      "pass": true
+    },
+    {
+      "label": "identity-error-1440",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "heading": "跑团身份",
+      "pass": true
+    },
+    {
+      "label": "privacy-detail-1440",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "heading": "个人信息权利",
+      "pass": true
+    },
+    {
+      "label": "privacy-empty-1440",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "heading": "个人信息权利",
+      "pass": true
+    },
+    {
+      "label": "privacy-error-1440",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "heading": "个人信息权利",
+      "pass": true
+    },
+    {
+      "label": "login-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "pass": true
+    },
+    {
+      "label": "login-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "pass": true
+    }
+  ],
+  "screenshots": [
+    "admin-ui-overview-320.png",
+    "admin-ui-navigation-320.png",
+    "admin-ui-editor-基本信息-320.png",
+    "admin-ui-editor-项目-320.png",
+    "admin-ui-editor-报名-320.png",
+    "admin-ui-editor-官网-320.png",
+    "admin-ui-editor-比赛日-320.png",
+    "admin-ui-editor-规程-320.png",
+    "admin-ui-editor-直播-320.png",
+    "admin-ui-editor-奖项-320.png",
+    "admin-ui-editor-资讯-320.png",
+    "admin-ui-赛事资讯-320.png",
+    "admin-ui-跑者管理-320.png",
+    "admin-ui-跑团管理-320.png",
+    "admin-ui-申请审核-320.png",
+    "admin-ui-运动记录-320.png",
+    "admin-ui-积分礼品-320.png",
+    "admin-ui-合作与物资-320.png",
+    "admin-ui-账号与权限-320.png",
+    "admin-ui-feedback-list-320.png",
+    "admin-ui-feedback-detail-320.png",
+    "admin-ui-feedback-focus-320.png",
+    "admin-ui-feedback-saving-320.png",
+    "admin-ui-feedback-empty-320.png",
+    "admin-ui-feedback-error-320.png",
+    "admin-ui-identity-list-320.png",
+    "admin-ui-identity-verification-320.png",
+    "admin-ui-identity-rename-320.png",
+    "admin-ui-identity-empty-320.png",
+    "admin-ui-identity-error-320.png",
+    "admin-ui-privacy-detail-320.png",
+    "admin-ui-privacy-empty-320.png",
+    "admin-ui-privacy-error-320.png",
+    "admin-ui-overview-390.png",
+    "admin-ui-navigation-390.png",
+    "admin-ui-editor-基本信息-390.png",
+    "admin-ui-editor-项目-390.png",
+    "admin-ui-editor-报名-390.png",
+    "admin-ui-editor-官网-390.png",
+    "admin-ui-editor-比赛日-390.png",
+    "admin-ui-editor-规程-390.png",
+    "admin-ui-editor-直播-390.png",
+    "admin-ui-editor-奖项-390.png",
+    "admin-ui-editor-资讯-390.png",
+    "admin-ui-赛事资讯-390.png",
+    "admin-ui-跑者管理-390.png",
+    "admin-ui-跑团管理-390.png",
+    "admin-ui-申请审核-390.png",
+    "admin-ui-运动记录-390.png",
+    "admin-ui-积分礼品-390.png",
+    "admin-ui-合作与物资-390.png",
+    "admin-ui-账号与权限-390.png",
+    "admin-ui-feedback-list-390.png",
+    "admin-ui-feedback-detail-390.png",
+    "admin-ui-feedback-focus-390.png",
+    "admin-ui-feedback-saving-390.png",
+    "admin-ui-feedback-empty-390.png",
+    "admin-ui-feedback-error-390.png",
+    "admin-ui-identity-list-390.png",
+    "admin-ui-identity-verification-390.png",
+    "admin-ui-identity-rename-390.png",
+    "admin-ui-identity-empty-390.png",
+    "admin-ui-identity-error-390.png",
+    "admin-ui-privacy-detail-390.png",
+    "admin-ui-privacy-empty-390.png",
+    "admin-ui-privacy-error-390.png",
+    "admin-ui-overview-1024.png",
+    "admin-ui-editor-基本信息-1024.png",
+    "admin-ui-editor-项目-1024.png",
+    "admin-ui-editor-报名-1024.png",
+    "admin-ui-editor-官网-1024.png",
+    "admin-ui-editor-比赛日-1024.png",
+    "admin-ui-editor-规程-1024.png",
+    "admin-ui-editor-直播-1024.png",
+    "admin-ui-editor-奖项-1024.png",
+    "admin-ui-editor-资讯-1024.png",
+    "admin-ui-赛事资讯-1024.png",
+    "admin-ui-跑者管理-1024.png",
+    "admin-ui-跑团管理-1024.png",
+    "admin-ui-申请审核-1024.png",
+    "admin-ui-运动记录-1024.png",
+    "admin-ui-积分礼品-1024.png",
+    "admin-ui-合作与物资-1024.png",
+    "admin-ui-账号与权限-1024.png",
+    "admin-ui-feedback-list-1024.png",
+    "admin-ui-feedback-detail-1024.png",
+    "admin-ui-feedback-focus-1024.png",
+    "admin-ui-feedback-saving-1024.png",
+    "admin-ui-feedback-empty-1024.png",
+    "admin-ui-feedback-error-1024.png",
+    "admin-ui-identity-list-1024.png",
+    "admin-ui-identity-verification-1024.png",
+    "admin-ui-identity-rename-1024.png",
+    "admin-ui-identity-empty-1024.png",
+    "admin-ui-identity-error-1024.png",
+    "admin-ui-privacy-detail-1024.png",
+    "admin-ui-privacy-empty-1024.png",
+    "admin-ui-privacy-error-1024.png",
+    "admin-ui-overview-1440.png",
+    "admin-ui-editor-基本信息-1440.png",
+    "admin-ui-editor-项目-1440.png",
+    "admin-ui-editor-报名-1440.png",
+    "admin-ui-editor-官网-1440.png",
+    "admin-ui-editor-比赛日-1440.png",
+    "admin-ui-editor-规程-1440.png",
+    "admin-ui-editor-直播-1440.png",
+    "admin-ui-editor-奖项-1440.png",
+    "admin-ui-editor-资讯-1440.png",
+    "admin-ui-赛事资讯-1440.png",
+    "admin-ui-跑者管理-1440.png",
+    "admin-ui-跑团管理-1440.png",
+    "admin-ui-申请审核-1440.png",
+    "admin-ui-运动记录-1440.png",
+    "admin-ui-积分礼品-1440.png",
+    "admin-ui-合作与物资-1440.png",
+    "admin-ui-账号与权限-1440.png",
+    "admin-ui-feedback-list-1440.png",
+    "admin-ui-feedback-detail-1440.png",
+    "admin-ui-feedback-focus-1440.png",
+    "admin-ui-feedback-saving-1440.png",
+    "admin-ui-feedback-empty-1440.png",
+    "admin-ui-feedback-error-1440.png",
+    "admin-ui-identity-list-1440.png",
+    "admin-ui-identity-verification-1440.png",
+    "admin-ui-identity-rename-1440.png",
+    "admin-ui-identity-empty-1440.png",
+    "admin-ui-identity-error-1440.png",
+    "admin-ui-privacy-detail-1440.png",
+    "admin-ui-privacy-empty-1440.png",
+    "admin-ui-privacy-error-1440.png",
+    "admin-ui-login-320.png",
+    "admin-ui-login-390.png"
+  ],
+  "errors": [],
+  "console": [],
+  "passed": true
+}

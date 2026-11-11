@@ -1,1 +1,5 @@
-{ "navigationBarTitleText": "资讯" }
+{
+  "navigationBarTitleText": "资讯",
+  "navigationBarBackgroundColor": "#f5f5f5",
+  "backgroundColor": "#f5f5f5"
+}

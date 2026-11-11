@@ -4,4 +4,4 @@ import { computed } from 'vue';
 const props = defineProps({ text: { type: [String, Number], default: '' } });
 const parts = computed(() => String(props.text ?? '').split(/(\*\*[^*]+\*\*|https?:\/\/[^\s<>\u3000-\u303f\uff00-\uffef]+|mailto:[^\s<>]+)/g).filter(Boolean).map(text => text.startsWith('**') && text.endsWith('**') ? { kind: 'bold', text: text.slice(2, -2) } : /^(?:https?:\/\/|mailto:)/.test(text) ? { kind: 'link', text } : { kind: 'text', text }));
 </script>
-<style scoped>strong{font-weight:650;color:#434b59}a{color:#b6486b;text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}</style>
+<style scoped>strong{font-weight:600;color: var(--ink)}a{color:var(--accent);text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}</style>
