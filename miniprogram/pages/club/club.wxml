@@ -148,7 +148,7 @@
   </block>
 
   <block wx:if="{{activeTab === 'mileage'}}"><mileage-board club-id="{{club.id + ''}}" embedded="{{true}}" />
-    <view wx:if="{{attendance.rows}}" class="form-section"><view class="section-head"><view class="section-title">团练出勤 · {{attendance.label}}</view><text class="muted">我 {{attendance.me.placeLabel}} · {{attendance.me.count}} 次</text></view><view wx:for="{{attendance.rows}}" wx:key="userId" wx:if="{{item.count}}" class="plain-row"><text>{{item.place}}　{{item.nickname}}</text><text>{{item.count}} 次</text></view></view>
+    <view wx:if="{{attendance.rows}}" class="form-section"><view class="section-head"><view class="section-title">团练出勤 · {{attendance.label}}</view><text class="muted">我 {{attendance.me.placeLabel}} · {{attendance.me.count}} 次</text></view><view wx:for="{{attendance.rows}}" wx:key="userId" wx:if="{{item.count}}" class="plain-row" data-id="{{item.userId}}" bindtap="openMemberProfile"><text>{{item.place}}　{{item.nickname}}</text><text>{{item.count}} 次</text></view></view>
 </block>
   <block wx:if="{{activeTab === 'members'}}"><view class="member-areas"><button class="member-area {{memberArea === 'all' ? 'active' : ''}}" data-area="all" bindtap="pickMemberArea">成员</button><button class="member-area {{memberArea === 'fees' ? 'active' : ''}}" data-area="fees" bindtap="pickMemberArea">会费名单</button><button class="member-area {{memberArea === 'manage' ? 'active' : ''}}" data-area="manage" bindtap="pickMemberArea">服务与设置</button></view><block wx:if="{{memberArea === 'all'}}">    <view wx:if="{{club.staff && requests.length}}" class="form-section">
       <view class="section-head"><view class="section-title">入团申请</view><text class="pending-pill">{{requests.length}} 项待审核</text></view>
@@ -159,8 +159,8 @@
     <view class="member-search"><view class="search-glass"></view><input value="{{memberQuery}}" bindinput="onMemberQuery" placeholder="搜索团友昵称" confirm-type="search" aria-label="搜索团友昵称" /></view>
     <view class="member-filters"><button class="member-filter {{memberFilter === 'all' ? 'is-active' : ''}}" data-filter="all" bindtap="pickMemberFilter">全部成员</button><button class="member-filter {{memberFilter === 'staff' ? 'is-active' : ''}}" data-filter="staff" bindtap="pickMemberFilter">团长与管理</button><text class="muted">{{shownMembers.length}} 人</text></view>
     <view wx:for="{{shownMembers}}" wx:key="id" class="member-row">
-      <image wx:if="{{item.avatar}}" class="member-avatar" src="{{item.avatar}}" mode="aspectFill" />
-      <view wx:else class="member-avatar avatar-fallback">{{item.avatarInitial}}</view>
+      <image wx:if="{{item.avatar}}" class="member-avatar" data-id="{{item.id}}" bindtap="openMemberProfile" src="{{item.avatar}}" mode="aspectFill" />
+      <view wx:else class="member-avatar avatar-fallback" data-id="{{item.id}}" bindtap="openMemberProfile">{{item.avatarInitial}}</view>
       <view class="member-info" data-id="{{item.id}}" bindtap="openMemberProfile"><view class="member-name">{{item.nickname}}</view><view class="muted">{{item.roleLabel}} · {{item.points}} 积分</view></view>
       <button wx:if="{{club.staff && !item.owner}}" class="member-manage" data-id="{{item.id}}" bindtap="manageMember">管理</button>
     </view>

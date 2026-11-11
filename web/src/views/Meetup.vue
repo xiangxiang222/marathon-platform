@@ -30,14 +30,14 @@
         <h2>已打卡 {{ meetup.checkCount }}</h2>
         <p v-if="!meetup.checks.length" class="rank-label">还没有人打卡。</p>
         <div v-for="person in meetup.checks" :key="person.userId" class="mate">
-          <span>{{ person.nickname }}<template v-if="person.mine"> · 我</template></span>
+          <router-link :to="memberLink(person.userId)" class="member-name-link">{{ person.nickname }}<template v-if="person.mine"> · 我</template></router-link>
         </div>
       </div>
       <div class="block">
         <h2>算我一个 {{ meetup.joins.length }}</h2>
         <p v-if="!meetup.joins.length" class="rank-label">还没有人预报。</p>
         <div v-for="person in meetup.joins" :key="person.userId" class="mate">
-          <span>{{ person.nickname }}</span>
+          <router-link :to="memberLink(person.userId)" class="member-name-link">{{ person.nickname }}</router-link>
         </div>
       </div>
       <div class="block">
@@ -68,6 +68,7 @@
 </template>
 
 <script setup>
+import { memberProfileLink } from "../member-profile-navigation";
 import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import { api, meetupPhotoSrc, upload } from "../api";
@@ -75,6 +76,7 @@ import { copyText } from "../copy";
 import "../club-detail.css";
 
 const route = useRoute();
+const memberLink = uid => memberProfileLink(route.params.id, uid, { returnTo: route.fullPath });
 const clubId = route.params.id;
 const meetup = ref(null);
 const members = ref([]);
@@ -198,4 +200,5 @@ onMounted(retryLoad);
 
 
 .club-detail-page { background:transparent; }.club-detail-page>.topbar { background:transparent; }.club-detail-page .detail-hero { background:linear-gradient(125deg,#eef8f2,#fff);border-color:#d5e8dd;box-shadow:var(--card-shadow,0 6px 20px #4c806710); }.club-detail-page .detail-kicker { color:#367d64; }.club-detail-page .detail-actions .undo { background:#ffffffa3;border-color:#d1e4d8; }
+.member-name-link{min-width:0;color:var(--ink);overflow-wrap:anywhere;text-decoration:none}.member-name-link:hover{color:var(--accent)}
 </style>

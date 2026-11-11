@@ -37,7 +37,7 @@
         <h2>{{ group.name }}</h2>
         <p v-if="!group.rows.length" class="rank-label">还没有人报名。</p>
         <div v-for="row in group.rows" :key="row.userId" class="mate" :class="{ mine: row.mine }">
-          <span>{{ row.place }} {{ row.nickname }}<template v-if="row.mine"> · 我</template></span>
+          <router-link :to="memberLink(row.userId)" class="member-name-link">{{ row.place }} {{ row.nickname }}<template v-if="row.mine"> · 我</template></router-link>
           <b>{{ row.clock || row.outcomeLabel }}<template v-if="row.tag"> {{ row.tag }}</template></b>
         </div>
       </div>
@@ -65,6 +65,7 @@
 </template>
 
 <script setup>
+import { memberProfileLink } from "../member-profile-navigation";
 import { computed, onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import { api, savedName } from "../api";
@@ -72,6 +73,7 @@ import { copyText } from "../copy";
 import "../club-detail.css";
 
 const route = useRoute();
+const memberLink = uid => memberProfileLink(route.params.id, uid, { returnTo: route.fullPath });
 const clubId = route.params.id;
 const race = ref(null);
 const loading = ref(true);
@@ -236,4 +238,5 @@ onMounted(retry);
 
 
 .club-detail-page { background:transparent; }.club-detail-page>.topbar { background:transparent; }.club-detail-page .detail-hero { background:linear-gradient(125deg,#fff5e6,#fff);border-color:#ebdac0;box-shadow:var(--card-shadow,0 6px 20px #986d3b10); }.club-detail-page .detail-kicker { color:#a37228; }.club-detail-page .detail-actions .undo { background:#fff9ed;border-color:#ebd8b5; }
+.member-name-link{min-width:0;color:var(--ink);overflow-wrap:anywhere;text-decoration:none}.member-name-link:hover{color:var(--accent)}
 </style>

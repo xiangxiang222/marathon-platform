@@ -88,8 +88,9 @@ function bestRanks(rows) {
     const best = new Map();
     for (const row of rows || []) {
       if (row.distance !== distance || !row.nickname) continue;
-      const prev = best.get(row.nickname);
-      if (!prev || Number(row.seconds) < prev.seconds) best.set(row.nickname, { ...row, seconds: Number(row.seconds) });
+      const key = row.userId == null ? row.nickname : row.userId;
+      const prev = best.get(key);
+      if (!prev || Number(row.seconds) < prev.seconds) best.set(key, { ...row, seconds: Number(row.seconds) });
     }
     const list = [...best.values()].sort(
       (a, b) => a.seconds - b.seconds || String(a.nickname).localeCompare(String(b.nickname), "zh")
@@ -101,6 +102,7 @@ function bestRanks(rows) {
       rows: list.map((row, index) => ({
         place: index + 1,
         nickname: row.nickname,
+        ...(row.userId != null ? { userId: row.userId, avatar: row.avatar || "" } : {}),
         clock: formatClock(row.seconds),
         raceId: row.race.id,
         raceName: row.race.name,

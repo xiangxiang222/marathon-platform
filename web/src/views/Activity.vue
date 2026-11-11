@@ -40,12 +40,12 @@
         </div>
         <div class="crew-preview">
           <div class="panel-heading"><div><span class="eyebrow">同行跑友</span><h2>一起出发的人</h2></div><button @click="activeTab = 'groups'">看分组 →</button></div>
-          <div class="avatar-stack"><template v-for="person in signups.slice(0, 8)" :key="person.userId"><img v-if="person.avatar" :src="person.avatar" :alt="person.nickname" @error="fallbackAvatar($event, person)"><span v-else class="avatar-letter">{{ person.nickname.slice(0, 1) }}</span></template></div>
+          <div class="avatar-stack"><router-link v-for="person in signups.slice(0, 8)" :key="person.userId" :to="memberLink(person.userId)" :aria-label="'查看' + person.nickname + '的主页'"><img v-if="person.avatar" :src="person.avatar" :alt="person.nickname" @error="fallbackAvatar($event, person)"><span v-else class="avatar-letter">{{ person.nickname.slice(0, 1) }}</span></router-link></div>
           <p>{{ activity.signupCount }} 位跑者报名<template v-if="activity.men || activity.women"> · 男 {{ activity.men }} / 女 {{ activity.women }}</template></p>
         </div>
         <div v-if="checks.length" class="check-list">
           <div class="panel-heading"><div><span class="eyebrow">训练记录</span><h2>训练打卡</h2></div><span class="group-total">{{ checks.length }} 人</span></div>
-          <div v-for="row in checks" :key="row.userId" class="runner-row"><span class="avatar-letter">{{ row.nickname.slice(0, 1) }}</span><b>{{ row.nickname }}</b><span class="runner-tags"><small v-if="row.historical" class="history-label">历史记录</small>{{ row.km }} km<template v-if="row.note"> · {{ row.note }}</template></span></div>
+          <div v-for="row in checks" :key="row.userId" class="runner-row"><span class="avatar-letter">{{ row.nickname.slice(0, 1) }}</span><router-link :to="memberLink(row.userId)" class="member-name-link">{{ row.nickname }}</router-link><span class="runner-tags"><small v-if="row.historical" class="history-label">历史记录</small>{{ row.km }} km<template v-if="row.note"> · {{ row.note }}</template></span></div>
         </div>
         <p v-if="activity.rule" class="integrity-note">{{ activity.rule }}</p>
       </section>
@@ -54,13 +54,13 @@
         <div class="panel-heading"><div><span class="eyebrow">分组与配速</span><h2>选择适合自己的节奏</h2></div><span class="group-total">{{ activity.signupCount }} 人</span></div>
         <div v-if="!groups.length && signups.length" class="pace-group">
           <div class="group-title"><div><span class="group-kind">活动成员</span><h3>已报名跑者</h3></div><b>{{ signups.length }}</b></div>
-          <div class="roster"><div v-for="person in signups" :key="person.userId" class="runner-row"><img v-if="person.avatar" :src="person.avatar" :alt="''" @error="fallbackAvatar($event, person)"/><span v-else class="avatar-letter">{{ person.nickname.slice(0, 1) }}</span><b>{{ person.nickname }}<small v-if="person.mine">我</small></b><span class="runner-tags">{{ person.pacer ? '领跑员' : '' }}</span></div></div>
+          <div class="roster"><div v-for="person in signups" :key="person.userId" class="runner-row"><img v-if="person.avatar" :src="person.avatar" :alt="''" @error="fallbackAvatar($event, person)"/><span v-else class="avatar-letter">{{ person.nickname.slice(0, 1) }}</span><router-link :to="memberLink(person.userId)" class="member-name-link">{{ person.nickname }}<small v-if="person.mine">我</small></router-link><span class="runner-tags">{{ person.pacer ? '领跑员' : '' }}</span></div></div>
         </div>
         <article v-for="group in groups" :key="group.id" class="pace-group">
           <div class="group-title"><div><span class="group-kind">{{ group.kindLabel }}</span><h3>{{ group.name }}</h3><p v-if="group.pace">{{ group.pace }}</p></div><b>{{ group.signed }}<small> / {{ group.capacity || '∞' }}</small></b></div>
           <div class="capacity-track"><i :style="{ width: group.capacity ? Math.min(100, group.signed / group.capacity * 100) + '%' : (group.signed ? '24%' : '0%') }"></i></div>
           <div v-if="group.people.length" class="roster">
-            <div v-for="person in visiblePeople(group)" :key="person.userId" class="runner-row"><img v-if="person.avatar" :src="person.avatar" :alt="''" @error="fallbackAvatar($event, person)"/><span v-else class="avatar-letter">{{ person.nickname.slice(0, 1) }}</span><b>{{ person.nickname }}<small v-if="person.mine">我</small></b><span class="runner-tags">{{ person.pacer ? '领跑员 · ' : '' }}<template v-if="staff">{{ person.level }} {{ person.gender }}</template></span></div>
+            <div v-for="person in visiblePeople(group)" :key="person.userId" class="runner-row"><img v-if="person.avatar" :src="person.avatar" :alt="''" @error="fallbackAvatar($event, person)"/><span v-else class="avatar-letter">{{ person.nickname.slice(0, 1) }}</span><router-link :to="memberLink(person.userId)" class="member-name-link">{{ person.nickname }}<small v-if="person.mine">我</small></router-link><span class="runner-tags">{{ person.pacer ? '领跑员 · ' : '' }}<template v-if="staff">{{ person.level }} {{ person.gender }}</template></span></div>
             <button v-if="group.people.length > 5" class="more-runners" @click="toggleRoster(group.id)">{{ expandedGroups.includes(group.id) ? '收起名单' : '查看另外 ' + (group.people.length - 5) + ' 人' }}</button>
           </div><p v-else class="empty-roster">还没有人加入这个组</p>
         </article>
@@ -99,16 +99,18 @@
 </template>
 
 <script setup>
+import { memberProfileLink } from "../member-profile-navigation";
 import { computed, onMounted, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { api } from '../api';
 
 const route = useRoute();
+const memberLink = uid => memberProfileLink(route.params.id, uid, { returnTo: route.path + '?' + new URLSearchParams({ ...route.query, view: activeTab.value, roster: expandedGroups.value.join(',') }) });
 const clubId = computed(() => String(route.params.id || ''));
 const activityId = computed(() => String(route.params.aid || ''));
 const activity = ref(null), groups = ref([]), signups = ref([]), checks = ref([]), album = ref(null);
-const clubName = ref(''), staff = ref(false), activeTab = ref('overview'), loading = ref(true), busy = ref(false), message = ref('');
-const expandedGroups = ref([]), showGroupForm = ref(false), groupName = ref(''), groupKind = ref('pace'), groupPace = ref(''), groupCap = ref(0);
+const clubName = ref(''), staff = ref(false), activeTab = ref(['overview', 'groups', 'plan'].includes(route.query.view) ? route.query.view : 'overview'), loading = ref(true), busy = ref(false), message = ref('');
+const expandedGroups = ref(String(route.query.roster || '').split(',').filter(value => /^\d+$/.test(value)).map(Number)), showGroupForm = ref(false), groupName = ref(''), groupKind = ref('pace'), groupPace = ref(''), groupCap = ref(0);
 const editing = ref(false), draft = ref(null), km = ref(''), checkNote = ref('');
 const tabs = [{ id: 'overview', label: '活动概览' }, { id: 'groups', label: '配速分组' }, { id: 'plan', label: '训练安排' }];
 const typeLabels = { easy: '轻松跑', long: '长距离', interval: '间歇训练', tempo: '节奏跑', social: '社交跑', custom: '跑团训练' };
@@ -140,7 +142,7 @@ function endActivity() { if (window.confirm('结束这场活动？')) mutate('/e
 function cancelActivity() { if (window.confirm('取消这场活动？已报名成员仍可查看活动说明。')) mutate('/cancel'); }
 async function share() { const text = [clubName.value, activity.value?.title, activity.value?.timeLabel, activity.value?.gatherPlace || activity.value?.place, activity.value?.plannedKm ? activity.value.plannedKm + ' km' : '', window.location.href].filter(Boolean).join(' · '); try { await navigator.clipboard.writeText(text); message.value = '活动信息与链接已复制'; } catch { message.value = text; } }
 onMounted(load);
-watch(() => [route.params.id, route.params.aid], () => { activity.value = null; activeTab.value = 'overview'; load(); });
+watch(() => [route.params.id, route.params.aid], () => { activity.value = null; activeTab.value = ['overview', 'groups', 'plan'].includes(route.query.view) ? route.query.view : 'overview'; load(); });
 </script>
 
 <style scoped>
@@ -315,4 +317,5 @@ watch(() => [route.params.id, route.params.aid], () => { activity.value = null; 
 .pace-group:nth-child(3n+1) { background:#fff; }.pace-group:nth-child(3n+2) { background:#fff; }.pace-group:nth-child(3n) { background:#fff; }
 .album-entry { background:#fff;border-color:#e4daf5; }.safety-note { background:#fff; }
 @media(max-width:350px) { .event-hero h2 { overflow-wrap:anywhere; }.quickfacts>div { min-width:0; }.quickfacts b { overflow-wrap:anywhere; } }
+.member-name-link{min-width:0;color:var(--ink);overflow-wrap:anywhere;text-decoration:none}.member-name-link:hover{color:var(--accent)} .runner-row>.member-name-link{font-size:13px;font-weight:550;line-height:1.6}.member-name-link small{margin-left:4px;padding:1px 4px;border-radius:4px;color:var(--accent);background:var(--accent-soft);font-size:10px;font-weight:400}.crew-preview .avatar-stack>a{display:flex;min-width:0;flex:none;margin-right:-9px}.crew-preview .avatar-stack>a>img,.crew-preview .avatar-stack>a>.avatar-letter{margin:0}
 </style>

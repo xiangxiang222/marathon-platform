@@ -1,0 +1,18 @@
+{
+  "kind": "Actual Vue UI with isolated memory transport; all activity pictures are synthetic illustrations",
+  "checks": [
+    "320 wish and upcoming are disjoint; all races retain five records",
+    "390 wish and upcoming are disjoint; all races retain five records"
+  ],
+  "screenshots": [
+    "races-320.png",
+    "races-upcoming-320.png",
+    "races-wish-320.png",
+    "races-390.png",
+    "races-upcoming-390.png",
+    "races-wish-390.png"
+  ],
+  "errors": [],
+  "unexpected": [],
+  "passed": true
+}

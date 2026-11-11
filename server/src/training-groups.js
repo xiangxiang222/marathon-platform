@@ -1,5 +1,6 @@
-const { memberRole } = require("./roles");
+const { memberRole, clubRoleLabel } = require("./roles");
 const { avatarUrlOf } = require("./avatars");
+const { memberSharedProfile } = require("./member-profile");
 const DAY = 86400000;
 const round = n => Math.round(Number(n || 0) * 100) / 100;
 const today = () => new Date(Date.now() + 8 * 3600000).toISOString().slice(0, 10);
@@ -196,7 +197,8 @@ function mountTrainingGroups(app, { BASE, getDb, userFrom }) {
       const sec = Math.round(r.duration_sec / (r.distance_km || 1)), pad = n => String(n).padStart(2, "0");
       return { id: r.id, startedAt: r.started_at, typeLabel: r.type === "trail" ? "越野" : "跑步", distanceKm: round(r.distance_km), km: round(r.volume_km), durationSec: r.duration_sec, durationLabel: pad(Math.floor(r.duration_sec / 3600)) + ":" + pad(Math.floor(r.duration_sec % 3600 / 60)) + ":" + pad(r.duration_sec % 60), paceLabel: r.distance_km > 0 ? Math.floor(sec / 60) + ":" + pad(sec % 60) : "" };
     });
-    res.json({ user: { id: user.id, nickname: user.nickname, avatar: avatarUrlOf(user.id, user.avatar), introduction: user.introduction, joinedAt: user.joined_at, groupId: user.group_name ? user.mileage_group_id : 0, groupName: user.group_name || "未分组" }, group: user.group_name ? { id: user.mileage_group_id, name: user.group_name, pace: user.pace, description: user.description } : null, mileage, range: selected.range, date: selected.date, period: selected.period, stats: selected.rank.find(r => r.userId === user.id), recentRuns, mine: user.id === ctx.user.id });
+    const role = memberRole(ctx.db, ctx.club, user.id), shared = memberSharedProfile(ctx.db, ctx.club.id, user.id, BASE);
+    res.json({ user: { id: user.id, nickname: user.nickname, avatar: avatarUrlOf(user.id, user.avatar), introduction: user.introduction, joinedAt: user.joined_at, groupId: user.group_name ? user.mileage_group_id : 0, groupName: user.group_name || "未分组", role, roleLabel: clubRoleLabel(role) }, group: user.group_name ? { id: user.mileage_group_id, name: user.group_name, pace: user.pace, description: user.description } : null, mileage, range: selected.range, date: selected.date, period: selected.period, stats: selected.rank.find(r => r.userId === user.id), recentRuns, mine: user.id === ctx.user.id, ...shared, overview: { totalKm: mileage.all.km, totalRuns: mileage.all.times, finished: shared.summary.finishedRaceCount } });
   }));
   app.put(BASE + "/api/me/introduction", wrap((req, res) => {
     const user = login(req, res); if (!user) return;

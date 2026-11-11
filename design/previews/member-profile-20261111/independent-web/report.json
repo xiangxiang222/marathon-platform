@@ -1,0 +1,128 @@
+{
+  "kind": "Independent real Vue / isolated API and media; New York timezone / Beijing fixture clock",
+  "checks": [
+    {
+      "width": 320,
+      "name": "default information; five complete tabs; other member cannot edit introduction",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "name": "five mileage periods, explicit profileTab refresh, no private runner endpoint",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "name": "public races filter wanted/upcoming/finished with meaningful dates",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "name": "four PB clocks and project filter remain readable at 320px",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "name": "album uses authenticated real-size synthetic photos; preview keyboard navigation and focus restoration",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "name": "ranking return context preserves historical period/group/search",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "name": "historical week/month/year report names open member mileage and preserve report return context",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "name": "empty races/results/albums/mileage have intentional content; no broken images",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "name": "untrusted returnTo cannot send member navigation outside this club",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "name": "error retry; old account response cannot reveal profile after account switch",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "name": "default information; five complete tabs; other member cannot edit introduction",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "name": "five mileage periods, explicit profileTab refresh, no private runner endpoint",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "name": "public races filter wanted/upcoming/finished with meaningful dates",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "name": "four PB clocks and project filter remain readable at 320px",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "name": "album uses authenticated real-size synthetic photos; preview keyboard navigation and focus restoration",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "name": "ranking return context preserves historical period/group/search",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "name": "historical week/month/year report names open member mileage and preserve report return context",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "name": "empty races/results/albums/mileage have intentional content; no broken images",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "name": "untrusted returnTo cannot send member navigation outside this club",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "name": "error retry; old account response cannot reveal profile after account switch",
+      "passed": true
+    }
+  ],
+  "screenshots": [
+    "info-320.png",
+    "mileage-320.png",
+    "races-320.png",
+    "results-320.png",
+    "album-320.png",
+    "album-preview-320.png",
+    "history-report-320.png",
+    "empty-album-320.png",
+    "error-320.png",
+    "info-390.png",
+    "mileage-390.png",
+    "races-390.png",
+    "results-390.png",
+    "album-390.png",
+    "album-preview-390.png",
+    "history-report-390.png",
+    "empty-album-390.png",
+    "error-390.png"
+  ],
+  "errors": [],
+  "unexpected": [],
+  "passed": true
+}

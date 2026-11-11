@@ -1,0 +1,20 @@
+{
+  "checks": [
+    "safe return destinations and query context",
+    "320 default info, five tabs and fixed lifetime summary",
+    "320 mileage week differs from lifetime and survives reload",
+    "320 races filter and result cards",
+    "320 album authenticated lightbox, keyboard close and focus return",
+    "320 intro self edit, long name, five columns without overflow",
+    "320 back to original board preserves date, group, query",
+    "390 default info, five tabs and fixed lifetime summary",
+    "390 mileage week differs from lifetime and survives reload",
+    "390 races filter and result cards",
+    "390 album authenticated lightbox, keyboard close and focus return",
+    "390 intro self edit, long name, five columns without overflow",
+    "390 back to original board preserves date, group, query"
+  ],
+  "pageErrors": [],
+  "unexpected": [],
+  "passed": true
+}

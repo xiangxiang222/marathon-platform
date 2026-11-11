@@ -1,0 +1,323 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><style>html,body{margin:0;padding:0}body{padding-bottom:70px}a{display:block;color:inherit;text-decoration:none}button{display:block;box-sizing:border-box;padding:0 14px;line-height:1.35}input,textarea{outline:none}input[type=checkbox]{min-height:0}img{display:inline-block;vertical-align:middle}*{box-sizing:border-box}.native-switch{display:inline-block;width:44px;height:26px;flex:none;border-radius:20px;background:#dedede;position:relative}.native-switch[checked=true]{background:#e1251b}.native-switch:after{content:"";display:block;position:absolute;top:2px;left:2px;width:22px;height:22px;border-radius:50%;background:white}.native-switch[checked=true]:after{left:20px}swiper-item{display:block}.audit-banner{font:10px system-ui;color:#767676;padding:5px 12px;text-align:center}.mirror-tabbar{position:fixed;z-index:50;left:0;right:0;bottom:0;display:flex;background:white;border-top:1px solid #eee;height:64px;padding:6px 0}.mirror-tabbar a{width:25%;font:11px system-ui;text-align:center}.mirror-tabbar img{display:block;margin:0 auto 3px;width:25px;height:25px}</style><style>body {
+  --brand: #e1251b;
+  --brand-soft: #fff2f0;
+  --page-bg: #f5f6f8;
+  --surface: #ffffff;
+  --text: #262626;
+  --text-secondary: #737373;
+  --border: #eaedf1;
+  --sky: #2767aa;
+  --sky-soft: #eaf4ff;
+  --mint: #23765f;
+  --mint-soft: #e9f7f2;
+  --lilac: #7753ae;
+  --lilac-soft: #f2edff;
+  --sun: #986614;
+  --sun-soft: #fff4d7;
+  --peach-soft: #fff0e7;
+  --card-shadow: 0 1.7066666666666668px 10.24px rgba(42, 61, 105, .025);
+  --action-fill: linear-gradient(120deg, #e1251b, #cf3025);
+  --control-radius: 10.24px;
+  --card-radius: 15.36px;
+  min-height: 100%;
+  background: var(--page-bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.65;
+}
+div, span, a, div, button, input, textarea, div { box-sizing: border-box; }
+button, input, textarea { font-family: inherit; color: var(--text); }
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 44px;
+  margin: 0;
+  padding: 12px 18px;
+  border: 0.4266666666666667px solid var(--border);
+  border-radius: var(--control-radius);
+  background: var(--surface);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+button::after { border: 0; }
+button[plain] { border: 0.4266666666666667px solid var(--border); background: var(--surface); }
+input, textarea {
+  min-width: 0;
+  border: 0.4266666666666667px solid var(--border);
+  border-radius: 8.533333333333333px;
+  background: #f8faff;
+  color: var(--text);
+  font-size: 14px;
+  caret-color: var(--brand);
+}
+input { min-height: 46px; padding: 0 10.24px; }
+textarea { min-height: 120px; padding: 10.24px; line-height: 1.75; }
+input::placeholder, textarea::placeholder { color: #999999; }
+.pad { padding: 13.653333333333334px 13.653333333333334px calc(20.48px + env(safe-area-inset-bottom)); }
+.card {
+  margin-bottom: 10.24px;
+  padding: 13.653333333333334px;
+  border: 0.4266666666666667px solid var(--border);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  box-shadow: var(--card-shadow);
+}
+.title { font-size: 18px; font-weight: 600; line-height: 1.4; letter-spacing: -0.128px; }
+.muted { color: var(--text-secondary); font-size: 12px; }
+.slot { display: flex; justify-content: space-between; gap: 10.24px; margin-top: 5.12px; padding: 7.68px 8.533333333333333px; border-radius: 6.826666666666667px; background: #f0f5fc; font-size: 14px; }
+.slot-state { color: var(--text-secondary); font-size: 12px; }
+.teal { color: var(--brand); }
+.row { display: flex; justify-content: space-between; gap: 10.24px; padding: 8.533333333333333px 0; border-bottom: 0.4266666666666667px solid var(--border); }
+.row:last-child { border-bottom: 0; }
+.row .k { flex: none; color: var(--text-secondary); }
+.soon { color: #c87825; }
+.err { margin-top: 5.12px; color: #b42318; font-size: 12px; line-height: 1.7; }
+.note { margin-top: 5.12px; color: var(--brand); font-size: 12px; line-height: 1.7; }
+.empty { padding: 23.893333333333334px 13.653333333333334px; color: var(--text-secondary); font-size: 13px; text-align: center; line-height: 1.8; }
+.field { display: flex; align-items: center; gap: 6.826666666666667px; }
+.field input { flex: 1; min-width: 0; height: 46px; padding: 0 10.24px; border-radius: 8.533333333333333px; background: #f8faff; }
+.btn, .login-go {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 46px;
+  margin: 0;
+  padding: 12px 20px;
+  border: 0.4266666666666667px solid transparent;
+  border-radius: var(--control-radius);
+  background: var(--action-fill);
+  box-shadow: 0 2.56px 8.533333333333333px rgba(225, 37, 27, .14);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
+}
+.login-go { margin-top: 10.24px; }
+button.ghost {
+  min-height: 44px;
+  margin: 6.826666666666667px 6.826666666666667px 0 0;
+  padding: 10px 16px;
+  border: 0.4266666666666667px solid var(--border);
+  border-radius: var(--control-radius);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+button.ghost.on { border-color: #f4bdb8; background: var(--brand-soft); color: var(--brand); }
+button[disabled], button.btn[disabled] { border-color: #eeeeef; background: #f2f2f2; color: #999999; opacity: 1; box-shadow: none; }
+.chip { display: inline-block; margin-right: 3.4133333333333336px; padding: 1.7066666666666668px 5.12px; border: 0.4266666666666667px solid #ebebed; border-radius: 5.12px; background: #f5f5f7; color: var(--text-secondary); font-size: 11px; font-weight: 400; line-height: 1.6; }
+.foot { display: flex; justify-content: space-between; gap: 8.533333333333333px; margin-top: 6.826666666666667px; color: var(--text-secondary); font-size: 12px; }
+.src { margin-top: 5.12px; color: var(--text-secondary); font-size: 12px; line-height: 1.75; overflow-wrap: anywhere; }
+.card > input, .card > textarea, .card > div { margin-top: 8.533333333333333px; }
+.card > input { width: 100%; }
+.card > .btn { margin-top: 10.24px; }
+.primary, .primary-btn, .primary-button, .submit-button, .save-action, .next-action, .bottom-primary, .staff-primary { border-radius: var(--control-radius); }
+.field-label, .form-label { line-height: 1.6; }
+.metric-value, .stat-value, .career-number, .record-number, .rank-time { font-variant-numeric: tabular-nums; }
+/* Shared control roles for new screens and gradual migrations. */
+.ui-control-text { width: auto; min-height: 44px; padding: 10px 8px; border: 0; border-radius: 5.12px; background: transparent; color: var(--brand); font-size: 13px; }
+.ui-control-danger { border-color: #f5d1cc; background: #fff5f3; color: #c52e24; }
+.ui-label { color: var(--text-secondary); font-size: 12px; font-weight: 400; }
+.surface-sky { background: linear-gradient(135deg, #f8fcff, var(--sky-soft)); border-color: #d9e9fb; }
+.surface-mint { background: linear-gradient(135deg, #fbfffd, var(--mint-soft)); border-color: #d5eee4; }
+.surface-lilac { background: linear-gradient(135deg, #fdfbff, var(--lilac-soft)); border-color: #e4d9f7; }
+.surface-sun { background: linear-gradient(135deg, #fffdf7, var(--sun-soft)); border-color: #f3e4b8; }
+.surface-peach { background: linear-gradient(135deg, #fffaf7, var(--peach-soft)); border-color: #f6dcd0; }
+@media (max-width: 350px) { .pad { padding-left: 14px; padding-right: 14px; } .card { padding: 16px; } }
+
+:host { display: block; }
+.page-header { background: transparent; color: #262626; }
+.header-main { display: flex; align-items: center; padding-left: 13.653333333333334px; box-sizing: border-box; }
+.header-title { min-width: 0; overflow: hidden; font-size: 24px; line-height: 1.3; font-weight: 600; letter-spacing: -0.21333333333333335px; white-space: nowrap; text-overflow: ellipsis; }
+.header-subtitle { padding: 0 13.653333333333334px 10.24px; color: #737373; font-size: 12px; line-height: 1.7; }
+@media (max-width: 350px) { .header-main { padding-left: 14px; } .header-subtitle { padding-left: 14px; padding-right: 14px; } }
+
+input { width: 100%; height: 34.13333333333333px; margin-top: 6.826666666666667px; padding: 0 8.533333333333333px; box-sizing: border-box; }
+.src { color: var(--text-secondary); font-size: 12px; margin-top: 3.4133333333333336px; }
+
+.range-filters { display: flex; flex-wrap: wrap; margin-top: 10.24px; }
+.range-filters .ghost { flex: 1; margin: 0; padding: 0 5.12px;  }
+
+/* Route geometry: surfaces, controls and compact labels have distinct roles. */
+.mini-mileage-mileage .card { border-radius: 15.36px; }
+.mini-mileage-mileage .btn, .mini-mileage-mileage .ghost { border-radius: 10.24px; }
+
+/* Page composition and interaction hierarchy. */
+.mini-mileage-mileage { color: var(--text); }
+.mini-mileage-mileage button { font-weight: 500; border-radius: 10.24px; }
+
+.card { border: 1px solid var(--border); }
+.title { font-size: 22px; font-weight: 600; line-height: 1.45; }
+.range-filters { gap: 5.12px; }
+.range-filters .ghost { min-height: 36px; min-width: 30.72px; border: 1px solid var(--border); border-radius: 5.973333333333334px; background: #fff; }
+.range-filters .ghost.on { border-color: var(--brand); background: var(--brand-soft); color: var(--brand); }
+input { min-height: 44px; border: 1px solid var(--border); border-radius: 10.24px; background: var(--page-bg); font-size: 14px; }
+.row { gap: 10.24px; padding: 10.24px 0; font-size: 14px; }
+.row > span:first-child { flex: 1; min-width: 0; }
+.row > span:last-child { flex: none; font-variant-numeric: tabular-nums; }
+
+/* Primary actions read at 14px, secondary actions at 13px; compact filters stay at 12px. */
+.mini-mileage-mileage .btn { font-size: 14px; font-weight: 500; }
+.mini-mileage-mileage .ghost { font-size: 13px; font-weight: 500; }
+.range-filters .ghost { font-size: 12px; }
+.card .title { font-size: 18px; } .card:first-child .title { font-size: 24px; }
+
+/* Color surfaces use existing semantic body elements; layout stays unchanged. */
+.mini-mileage-mileage > .card:first-child { background: linear-gradient(135deg,#e9f7f2,#ffffff); box-shadow: var(--card-shadow); }
+.mini-mileage-mileage .card:nth-child(3) { background: #ffffff; }
+
+.mini-mileage-mileage .mileage-tools-toggle { display:flex; align-items:center; justify-content:space-between; gap:6.826666666666667px; width:100%; min-height:52px; margin:10.24px 0; padding:0 5.12px; border:0; border-radius:0; background:transparent; color:#849589; font-size:12px; }
+.tools-range-label { margin-top:11.093333333333334px; font-size:12px; color:#8e9e92; }
+.mini-mileage-mileage .mileage-report-card{padding:11.946666666666667px;border:0;background:#fff;border-radius:11.946666666666667px}.report-eyebrow{color:#b3bba9;font-size:9px;letter-spacing:1.28px}.report-heading{margin:6.826666666666667px 0 10.24px;color:#3d5143;font-size:21px;font-weight:650}.report-heading>span{color:#e9a677}.report-kinds{display:flex;gap:3.4133333333333336px;padding:3.4133333333333336px;background:#f0f3f0;border-radius:8.533333333333333px}.mini-mileage-mileage .report-kind{flex:1;margin:0;border:0;min-height:42px;border-radius:5.973333333333334px;background:transparent;color:#9ca99e;font-size:13px}.mini-mileage-mileage .report-kind.selected{background:#fff;color:#4c785c;font-weight:600}.report-date{display:flex;align-items:center;justify-content:space-between;gap:6.826666666666667px;min-height:54px;color:#7c9481;font-size:12px}.report-date>span{color:#a4b1a8;font-size:10px;flex:none}.report-summary{display:flex;gap:8.533333333333333px;padding:11.093333333333334px;border-radius:8.533333333333333px;background:linear-gradient(120deg,#edf7ef,#f4f8f2)}.report-summary>div{flex:1;display:flex;flex-direction:column;gap:5.973333333333334px}.report-summary>div>span:first-child{font-size:25px;font-weight:650;letter-spacing:-0.4266666666666667px;color:#5d8969;font-variant-numeric:tabular-nums}.report-summary>div>span:last-child{font-size:10px;color:#a1b1a1}.report-list-note{display:flex;justify-content:space-between;margin-top:11.093333333333334px;color:#aab4ac;font-size:10px}.mini-mileage-mileage .report-person{display:flex;align-items:center;gap:7.68px;width:100%;margin:0;padding:11.946666666666667px 0;border:0;border-bottom:0.4266666666666667px solid #f0f3f0;border-radius:0;background:#fff;text-align:left;min-height:80px;line-height:1.5}.report-place{width:10.24px;flex:none;color:#b6beb7;font-size:12px}.report-place.leading{color:#c5a274}.report-avatar{width:28.16px;height:28.16px;border-radius:50%;flex:none}.report-fallback{display:flex;align-items:center;justify-content:center;background:#edf5ef;color:#90ac98;font-size:13px}.report-person-copy{flex:1;min-width:0}.report-person-top{display:flex;align-items:center;justify-content:space-between;gap:5.12px}.report-person-top>span{font-size:13px;color:#5c7163;overflow-wrap:anywhere}.report-person-top>div{flex:none;color:#76987f;font-size:19px;font-weight:600;letter-spacing:-0.256px}.report-person-top>div>span{font-size:9px;color:#abbcaf;font-weight:400}.report-person-meta{display:flex;flex-wrap:wrap;justify-content:space-between;gap:3.4133333333333336px;margin-top:5.12px;font-size:9px;color:#abb5ad}.report-person-flag{margin-top:3.4133333333333336px;font-size:9px;color:#b5aa8f}.report-chevron{color:#c0cbc2;font-size:16px;flex:none}.report-footer{margin-top:11.093333333333334px;text-align:center;font-size:9px;color:#b1bcb3}.report-empty{padding:15.36px 0;color:#a8b5aa;font-size:12px;line-height:1.8}
+
+:host { display:block; }
+.mileage-board { color:#20272d; font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif; }
+.mileage-board div,.mileage-board button,.mileage-board input { box-sizing:border-box; }
+.mileage-board button { margin:0; padding:0; border:0; border-radius:0; background:transparent; font-size:14px; font-weight:500; line-height:1.4; color:inherit; }
+.mileage-board button::after { border:0; }
+.mb-heading,.mb-section-heading,.mb-summary-top,.mb-group-top,.mb-table-head,.mb-mine { display:flex; align-items:center; justify-content:space-between; gap:6.826666666666667px; }
+.mb-heading { padding:11.946666666666667px 1.7066666666666668px 10.24px; }
+.mb-kicker { font-size:10px; letter-spacing:1.28px; color:#87958f; font-weight:600; }
+.mb-title { margin-top:4.266666666666667px; font-size:25px; font-weight:700; letter-spacing:-0.4266666666666667px; }
+.mb-title-dot { color:#f06c43; }
+.mileage-board .mb-link { flex:none; min-height:44px; padding:3.4133333333333336px 0 3.4133333333333336px 6.826666666666667px; color:#5d6c66; font-size:12px; }
+.mb-link>span { padding-left:3.4133333333333336px; font-size:17px; }
+.mb-ranges { display:flex; gap:2.56px; padding:3.4133333333333336px; border-radius:9.386666666666667px; background:#eaeef0; }
+.mileage-board .mb-range { flex:1; min-height:42px; border-radius:6.826666666666667px; font-size:14px; color:#7c858b; }
+.mileage-board .mb-range.is-active { background:#fff; color:#20272d; font-weight:700; box-shadow:0 1.28px 4.266666666666667px rgba(38,55,46,.06); }
+.mb-period { display:flex; align-items:center; justify-content:center; gap:11.946666666666667px; min-height:60px; color:#77817e; font-size:12px; }
+.mileage-board .mb-period-arrow { width:44px; height:44px; font-size:24px; color:#6d7b76; }
+.mileage-board .mb-period-arrow[disabled] { opacity:.25; }
+.mb-period-label { min-width:93.86666666666666px; min-height:44px; display:flex; align-items:center; justify-content:center; gap:5.12px; }
+.mb-all-period { font-size:11px; }
+.mb-loading,.mb-error { padding:17.066666666666666px 6.826666666666667px; font-size:13px; color:#788580; line-height:1.7; }
+.mb-error { display:flex; align-items:center; justify-content:space-between; background:#fff5f0; border-radius:10.24px; color:#b55c38; }
+.mb-summary { padding:13.653333333333334px; overflow:hidden; border-radius:12.8px; background:linear-gradient(120deg,#e3f5ed,#f0faf6 65%,#e9f1fb); }
+.mb-summary-label { font-size:13px; color:#537566; font-weight:500; }
+.mb-summary-badge { padding:2.986666666666667px 5.973333333333334px; border-radius:4.266666666666667px; background:rgba(255,255,255,.65); color:#6f8f80; font-size:10px; }
+.mb-total { margin:7.68px 0 11.946666666666667px; font-size:46px; line-height:1.15; font-weight:700; letter-spacing:-1.28px; font-variant-numeric:tabular-nums; }
+.mb-total>span { margin-left:4.266666666666667px; color:#5d7c6d; font-size:14px; font-weight:400; letter-spacing:0; }
+.mb-stats { display:flex; gap:5.12px; padding-top:10.24px; border-top:0.4266666666666667px solid rgba(96,142,119,.14); }
+.mb-stats>div { flex:1; min-width:0; display:flex; flex-direction:column; gap:3.4133333333333336px; }
+.mb-stat-number { font-size:18px; font-weight:650; font-variant-numeric:tabular-nums; }
+.mb-stat-unit { color:#749082; font-size:10px; font-weight:400; }
+.mb-stat-label { color:#7a9084; font-size:10px; }
+.mb-section-heading { margin:11.093333333333334px 1.7066666666666668px 5.973333333333334px; min-height:44px; }
+.mb-section-title { font-size:17px; font-weight:650; letter-spacing:-0.17066666666666666px; }
+.mb-group-scroll { width:100%; }
+.mb-group-cards { display:flex; gap:6.826666666666667px; padding:0.8533333333333334px 0.4266666666666667px 3.4133333333333336px; }
+.mileage-board .mb-group-card { display:block; flex:none; width:107.52px; min-height:97.28px; padding:10.24px; border-radius:10.24px; text-align:left; border:0.8533333333333334px solid transparent; }
+.mileage-board .mb-group-card.tone-mint { background:#e9f6f0; }
+.mileage-board .mb-group-card.tone-blue { background:#ebf2ff; }
+.mileage-board .mb-group-card.tone-apricot { background:#fff1e6; }
+.mileage-board .mb-group-card.tone-violet { background:#f1edfb; }
+.mileage-board .mb-group-card.tone-rose { background:#fceef0; }
+.mileage-board .mb-group-card.tone-lime { background:#f1f5e5; }
+.mileage-board .group-selected { border-color:#4f9980; }
+.tone-mint { background:#e9f6f0; color:#34866c; }
+.tone-blue { background:#ebf2ff; color:#5783bb; }
+.tone-apricot { background:#fff1e6; color:#cb8b53; }
+.tone-violet { background:#f1edfb; color:#8a76b0; }
+.tone-rose { background:#fceef0; color:#bb7886; }
+.tone-lime { background:#f1f5e5; color:#8b9b51; }
+.mb-group-mark { display:flex; align-items:center; justify-content:center; width:18.773333333333333px; height:18.773333333333333px; border-radius:5.12px; background:rgba(255,255,255,.72); font-size:14px; font-weight:700; }
+.mb-group-members { font-size:10px; color:#82908b; }
+.mb-group-name { margin-top:7.68px; font-size:14px; font-weight:650; color:#35443d; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.mb-group-pace { margin-top:2.56px; font-size:10px; color:#84908a; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.mb-group-km { margin-top:7.68px; font-size:24px; font-weight:650; font-variant-numeric:tabular-nums; color:#35443d; }
+.mb-group-km>span { color:#84908a; font-size:10px; font-weight:400; }
+.mb-rank-card { margin-top:10.24px; padding:3.4133333333333336px 11.946666666666667px 5.12px; border-radius:12.8px; background:#fff; }
+.mb-rank-card .mb-section-heading { margin:5.973333333333334px 0 8.533333333333333px; }
+.mb-caption { margin-top:3.4133333333333336px; font-size:10px; color:#9ca5a1; }
+.mb-count { color:#8e9893; font-size:11px; }
+.mb-filters { display:flex; gap:5.12px; white-space:nowrap; padding-bottom:4.266666666666667px; }
+.mileage-board .mb-filter { flex:none; min-height:36px; padding:5.12px 10.24px; border-radius:5.12px; color:#85918b; background:#f4f6f5; font-size:12px; }
+.mileage-board .mb-filter.filter-selected { background:#eaf6ef; color:#3d8867; font-weight:600; }
+.mb-search { display:flex; align-items:center; gap:5.12px; height:42px; margin:6.826666666666667px 0 8.533333333333333px; padding:0 8.533333333333333px; border-radius:5.973333333333334px; background:#f7f8f9; color:#9ba7a0; }
+.mb-search>span { font-size:23px; }
+.mb-search input { flex:1; min-width:0; height:42px; font-size:12px; border:0; padding:0; margin:0; background:transparent; }
+.mb-mine { padding:7.68px 8.533333333333333px; border-radius:5.973333333333334px; color:#4a8270; background:#f1f8f4; font-size:11px; }
+.mb-mine-place { margin-left:5.973333333333334px; color:#83a496; }
+.mb-mine>span:last-child { font-size:17px; font-weight:600; }
+.mb-mine-unit { font-size:10px; font-weight:400; }
+.mb-table-head { margin-top:5.973333333333334px; padding:5.973333333333334px 0; color:#a0aaa5; font-size:10px; }
+.mileage-board .mb-person { display:flex; align-items:center; gap:6.826666666666667px; width:100%; min-height:80px; padding:9.386666666666667px 0; text-align:left; border-bottom:0.4266666666666667px solid #f2f4f3; }
+.mb-person:last-child { border-bottom:0; }
+.mb-place { flex:none; width:13.653333333333334px; text-align:center; font-size:15px; font-weight:600; color:#b2bab5; }
+.place-1 { color:#d6a04c; }.place-2 { color:#8a9daa; }.place-3 { color:#c39a88; }
+.mb-avatar { flex:none; width:29.866666666666667px; height:29.866666666666667px; border-radius:50%; }
+.mb-initial { display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:600; }
+.mb-person-copy { flex:1; min-width:0; }
+.mb-person-name { font-size:13px; color:#33403a; font-weight:600; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
+.mb-me-tag { margin-left:3.4133333333333336px; color:#4d9c7b; font-size:10px; font-weight:400; }
+.mb-person-meta { margin-top:4.266666666666667px; color:#a1aaa5; font-size:10px; }
+.mb-person-distance { flex:none; min-width:51.2px; text-align:right; font-size:19px; font-weight:650; font-variant-numeric:tabular-nums; }
+.mb-person-chevron { margin-left:5.973333333333334px; color:#b4bdb7; font-size:17px; font-weight:400; }
+.mb-progress-track { width:44.373333333333335px; height:2.1333333333333333px; border-radius:2.1333333333333333px; margin:5.12px 11.946666666666667px 0 auto; background:#f1f4f2; overflow:hidden; }
+.mb-progress { height:100%; border-radius:2.1333333333333333px; background:#a4d5bb; }
+.mb-empty-groups { padding:12.8px; border:0.4266666666666667px dashed #cbded4; border-radius:10.24px; color:#95a399; font-size:11px; line-height:1.7; }
+.mb-empty-title { margin-bottom:4.266666666666667px; color:#657e6d; font-size:14px; font-weight:600; }
+.mileage-board .mb-outline { min-height:44px; width:100%; margin-top:7.68px; border:0.4266666666666667px solid #cbded4; border-radius:6.826666666666667px; color:#5d886e; }
+.mb-empty-rank { padding:17.066666666666666px 0; color:#9aa69d; font-size:12px; line-height:1.8; text-align:center; }
+.mb-bottom-note { padding:11.093333333333334px 0 8.533333333333333px; font-size:10px; color:#a4ada7; text-align:center; }
+.mileage-board .mb-tools { width:100%; min-height:48px; padding:0 3.4133333333333336px; display:flex; align-items:center; justify-content:space-between; color:#8e9c94; font-size:12px; }
+</style></head><body><div class="pad mini-mileage-mileage">
+  <div class="audit-component"><div class="mileage-board">
+  <div class="mb-heading"><div><div class="mb-kicker">CLUB RUNNING</div><div class="mb-title">每一步，都算数<span class="mb-title-dot">.</span></div></div><button class="mb-link">训练组 <span>↗</span></button></div>
+  <div class="mb-ranges"><button class="mb-range ">日</button><button class="mb-range ">周</button><button class="mb-range is-active">月</button><button class="mb-range ">年</button><button class="mb-range ">累计</button></div>
+  <div class="mb-period"><button class="mb-period-arrow" aria-label="上一周期">‹</button><div mode="date" value="2026-12-15" end="2027-01-01"><div class="mb-period-label">2026-12 <span>⌄</span></div></div><button class="mb-period-arrow" aria-label="下一周期">›</button></div>
+
+
+
+
+    <div class="mb-summary"><div class="mb-summary-top"><span class="mb-summary-label">全员总跑量</span><span class="mb-summary-badge">本期里程</span></div><div class="mb-total">720<span>km</span></div><div class="mb-stats"><div><span class="mb-stat-number">5<span class="mb-stat-unit"> / 6</span></span><span class="mb-stat-label">跑步成员</span></div><div><span class="mb-stat-number">60<span class="mb-stat-unit"> 次</span></span><span class="mb-stat-label">跑步记录</span></div><div><span class="mb-stat-number">120<span class="mb-stat-unit"> km</span></span><span class="mb-stat-label">成员人均</span></div></div></div>
+    <div class="mb-section-heading"><div class="mb-section-title">训练组跑量</div><button class="mb-link">查看组别 ›</button></div>
+    <div class="mb-group-scroll" data-mirror-scroll-x="true" enhanced="" show-scrollbar="false" style="overflow-x: auto; white-space: nowrap;"><div class="mb-group-cards"><button class="mb-group-card tone-mint "><div class="mb-group-top"><span class="mb-group-mark">晨</span><span class="mb-group-members">3 人</span></div><div class="mb-group-name">晨光轻松组</div><div class="mb-group-pace">6′00″–6′30″ /km</div><div class="mb-group-km">568.8<span> km</span></div></button><button class="mb-group-card tone-blue "><div class="mb-group-top"><span class="mb-group-mark">稳</span><span class="mb-group-members">2 人</span></div><div class="mb-group-name">稳步进阶组</div><div class="mb-group-pace">5′00″–5′30″ /km</div><div class="mb-group-km">91.2<span> km</span></div></button><button class="mb-group-card tone-apricot "><div class="mb-group-top"><span class="mb-group-mark">周</span><span class="mb-group-members">0 人</span></div><div class="mb-group-name">周末长距离训练组</div><div class="mb-group-pace">按当天状态</div><div class="mb-group-km">0<span> km</span></div></button></div></div>
+
+    <div class="mb-rank-card"><div class="mb-section-heading"><div><div class="mb-section-title">成员里程榜</div><div class="mb-caption">每份坚持，都值得被看见</div></div><span class="mb-count">6 人</span></div>
+      <div data-mirror-scroll-x="true" class="mb-filter-scroll" enhanced="" show-scrollbar="false" style="overflow-x: auto; white-space: nowrap;"><div class="mb-filters"><button class="mb-filter filter-selected">全员</button><button class="mb-filter ">晨光轻松组</button><button class="mb-filter ">稳步进阶组</button><button class="mb-filter ">周末长距离训练组</button><button class="mb-filter ">未分组</button></div></div>
+      <div class="mb-search"><span>⌕</span><input placeholder="找一位团友" maxlength="50" aria-label="搜索跑量榜成员" style=""></div>
+      <div class="mb-mine"><span>我的本期 <span class="mb-mine-place">第 1 名</span></span><span>220.8 <span class="mb-mine-unit">km</span></span></div>
+      <div class="mb-table-head"><span>排名 / 团友</span><span>跑量 · km</span></div>
+      <button class="mb-person" aria-label="查看晨光团长的成员主页"><span class="mb-place place-1">1</span><img class="mb-avatar" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDQ4IDQ4Ij48cmVjdCB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHJ4PSIyNCIgZmlsbD0iI2VhZjRmZiIvPjx0ZXh0IHg9IjI0IiB5PSIyNSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjMiIGZvbnQtd2VpZ2h0PSI2MDAiIGZpbGw9IiMzODdjYmQiPkE8L3RleHQ+PC9zdmc+" mode="aspectFill"><div class="mb-person-copy"><div class="mb-person-name">晨光团长<span class="mb-me-tag">我</span></div><div class="mb-person-meta">晨光轻松组 · 12 次</div></div><div class="mb-person-distance"><div>220.8<span class="mb-person-chevron">›</span></div><div class="mb-progress-track"><div class="mb-progress" style="width:100%;"></div></div></div></button><button class="mb-person" aria-label="查看河畔领跑员的成员主页"><span class="mb-place place-2">2</span><div class="mb-avatar mb-initial tone-blue">河</div><div class="mb-person-copy"><div class="mb-person-name">河畔领跑员</div><div class="mb-person-meta">晨光轻松组 · 12 次</div></div><div class="mb-person-distance"><div>194.4<span class="mb-person-chevron">›</span></div><div class="mb-progress-track"><div class="mb-progress" style="width:88%;"></div></div></div></button><button class="mb-person" aria-label="查看周末慢跑者的成员主页"><span class="mb-place place-3">3</span><img class="mb-avatar" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDQ4IDQ4Ij48cmVjdCB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHJ4PSIyNCIgZmlsbD0iI2U5ZjdmMiIvPjx0ZXh0IHg9IjI0IiB5PSIyNSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjMiIGZvbnQtd2VpZ2h0PSI2MDAiIGZpbGw9IiMyNTgwNjIiPkM8L3RleHQ+PC9zdmc+" mode="aspectFill"><div class="mb-person-copy"><div class="mb-person-name">周末慢跑者</div><div class="mb-person-meta">晨光轻松组 · 12 次</div></div><div class="mb-person-distance"><div>153.6<span class="mb-person-chevron">›</span></div><div class="mb-progress-track"><div class="mb-progress" style="width:70%;"></div></div></div></button><button class="mb-person" aria-label="查看清晨一起跑的成员主页"><span class="mb-place place-other">4</span><img class="mb-avatar" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDQ4IDQ4Ij48cmVjdCB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHJ4PSIyNCIgZmlsbD0iI2ZmZjBlNyIvPjx0ZXh0IHg9IjI0IiB5PSIyNSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjMiIGZvbnQtd2VpZ2h0PSI2MDAiIGZpbGw9IiNiOTZhMmMiPkU8L3RleHQ+PC9zdmc+" mode="aspectFill"><div class="mb-person-copy"><div class="mb-person-name">清晨一起跑</div><div class="mb-person-meta">稳步进阶组 · 12 次</div></div><div class="mb-person-distance"><div>91.2<span class="mb-person-chevron">›</span></div><div class="mb-progress-track"><div class="mb-progress" style="width:41%;"></div></div></div></button><button class="mb-person" aria-label="查看长昵称也按自己的节奏奔跑的朋友的成员主页"><span class="mb-place place-other">5</span><div class="mb-avatar mb-initial tone-rose">长</div><div class="mb-person-copy"><div class="mb-person-name">长昵称也按自己的节奏奔跑的朋友</div><div class="mb-person-meta">未分组 · 12 次</div></div><div class="mb-person-distance"><div>60<span class="mb-person-chevron">›</span></div><div class="mb-progress-track"><div class="mb-progress" style="width:27%;"></div></div></div></button><button class="mb-person" aria-label="查看稳定向前的成员主页"><span class="mb-place place-other">—</span><div class="mb-avatar mb-initial tone-lime">稳</div><div class="mb-person-copy"><div class="mb-person-name">稳定向前</div><div class="mb-person-meta">稳步进阶组 · 0 次</div></div><div class="mb-person-distance"><div>0<span class="mb-person-chevron">›</span></div><div class="mb-progress-track"><div class="mb-progress" style="width:0%;"></div></div></div></button>
+
+    </div>
+    <div class="mb-bottom-note">仅统计计入本团的跑量 · 按当前训练组汇总 · 北京时间</div>
+
+
+</div>
+</div>
+  <button class="mileage-tools-toggle"><span>跑步动态、报表与计入规则</span><span>收起 −</span></button>
+
+  <div class="card mileage-report-card">
+    <div class="report-eyebrow">THE CLUB JOURNAL</div><div class="report-heading">一起跑过的这一程<span>.</span></div>
+    <div class="report-kinds"><button class="report-kind ">周报</button><button class="report-kind selected">月报</button><button class="report-kind ">年报</button></div>
+    <div mode="date" value="2026-12-15" end="2027-01-01"><div class="report-date">2026 年 12 月跑量月报<span>选择日期 ⌄</span></div></div>
+
+    <div class="report-summary"><div><span>264.9</span><span>全团跑量 · km</span></div><div><span>6</span><span>本期出发的团友</span></div></div>
+      <div class="report-list-note">点击团友，查看这一期的跑量档案 <span>↗</span></div>
+      <button class="report-person"><span class="report-place leading">1</span><div class="report-avatar report-fallback">晨</div><div class="report-person-copy"><div class="report-person-top"><span>晨光团长</span><div>62.4<span> km</span></div></div><div class="report-person-meta"><span>12 天 / 次</span><span>06:24:00</span><span>5:42 / km</span></div><div class="report-person-flag">Flag 150 km</div></div><span class="report-chevron">›</span></button><button class="report-person"><span class="report-place leading">2</span><div class="report-avatar report-fallback">河</div><div class="report-person-copy"><div class="report-person-top"><span>河畔领跑员</span><div>55.1<span> km</span></div></div><div class="report-person-meta"><span>11 天 / 次</span><span>06:24:00</span><span>5:42 / km</span></div></div><span class="report-chevron">›</span></button><button class="report-person"><span class="report-place leading">3</span><div class="report-avatar report-fallback">周</div><div class="report-person-copy"><div class="report-person-top"><span>周末慢跑者</span><div>47.8<span> km</span></div></div><div class="report-person-meta"><span>10 天 / 次</span><span>06:24:00</span><span>5:42 / km</span></div></div><span class="report-chevron">›</span></button><button class="report-person"><span class="report-place ">4</span><div class="report-avatar report-fallback">稳</div><div class="report-person-copy"><div class="report-person-top"><span>稳定向前</span><div>40.5<span> km</span></div></div><div class="report-person-meta"><span>9 天 / 次</span><span>06:24:00</span><span>5:42 / km</span></div></div><span class="report-chevron">›</span></button><button class="report-person"><span class="report-place ">5</span><div class="report-avatar report-fallback">清</div><div class="report-person-copy"><div class="report-person-top"><span>清晨一起跑</span><div>33.2<span> km</span></div></div><div class="report-person-meta"><span>8 天 / 次</span><span>06:24:00</span><span>5:42 / km</span></div></div><span class="report-chevron">›</span></button><button class="report-person"><span class="report-place ">6</span><div class="report-avatar report-fallback">长</div><div class="report-person-copy"><div class="report-person-top"><span>长昵称也按自己的节奏奔跑的朋友</span><div>25.9<span> km</span></div></div><div class="report-person-meta"><span>7 天 / 次</span><span>06:24:00</span><span>5:42 / km</span></div></div><span class="report-chevron">›</span></button>
+
+      <div class="report-footer">统计以本团计入规则为准 · 北京时间</div>
+
+  </div>
+  <div class="tools-range-label">跑步动态 · 选择周期</div><div class="range-filters"><button class="ghost ">日</button><button class="ghost ">周</button><button class="ghost on">月</button><button class="ghost ">年</button><button class="ghost ">累计</button></div>
+  <div class="card">
+    <div class="title">动态</div>
+
+  </div>
+
+
+
+
+</div>
+</body></html>

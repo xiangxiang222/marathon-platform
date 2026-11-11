@@ -31,7 +31,7 @@
       <div v-for="group in call.groups" :key="group.distance" class="block">
         <h2>{{ group.label }}</h2>
         <div v-for="row in group.rows" :key="row.id" class="mate" :class="{ mine: row.mine }">
-          <span>{{ row.place }} {{ row.nickname }}<template v-if="row.mine"> · 我</template><template v-if="row.staffFilled"> · 管理员补录</template></span>
+          <span><router-link v-if="row.userId" :to="memberLink(row.userId)" class="member-name-link">{{ row.place }} {{ row.nickname }}</router-link><template v-else>{{ row.place }} {{ row.nickname }}</template><template v-if="row.mine"> · 我</template><template v-if="row.staffFilled"> · 管理员补录</template></span>
           <b>
             {{ row.clock }}<template v-if="row.tag"> {{ row.tag }}</template>
             <button v-if="staff || (row.mine && !call.closed)" class="undo" type="button" @click="remove(row)">删除</button>
@@ -72,6 +72,7 @@
 </template>
 
 <script setup>
+import { memberProfileLink } from "../member-profile-navigation";
 import { computed, onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import { api, callSheetSrc, upload } from "../api";
@@ -80,6 +81,7 @@ import "../club-detail.css";
 import { callCsv, renderResultPoster } from "../result-poster";
 
 const route = useRoute();
+const memberLink = uid => memberProfileLink(route.params.id, uid, { returnTo: route.fullPath });
 const clubId = route.params.id;
 const call = ref(null);
 const loading = ref(true);
@@ -261,4 +263,5 @@ onMounted(retry);
 
 
 .club-detail-page { background:transparent; }.club-detail-page>.topbar { background:transparent; }.club-detail-page .detail-hero { background:linear-gradient(125deg,#eef5ff,#fff);border-color:#dedff1;box-shadow:var(--card-shadow,0 6px 20px #67648e10); }.club-detail-page .detail-kicker { color:#6a64a4; }.club-detail-page .detail-actions .undo { background:#ffffffb5;border-color:#ded9ee; }.sum { color:#716097; }
+.member-name-link{min-width:0;color:var(--ink);overflow-wrap:anywhere;text-decoration:none}.member-name-link:hover{color:var(--accent)}
 </style>
