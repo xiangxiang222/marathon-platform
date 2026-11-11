@@ -1,0 +1,78 @@
+{
+  "kind": "Read-only release snapshot scope and independent rerun; no product edits or production access",
+  "branch": "codex/achievement-poster-ready-20261111",
+  "baseCommit": "ade0393f45ef31723f5f9e8a7374c60ec763491e",
+  "completedAt": "2026-11-11T09:16:53.913Z",
+  "checks": {
+    "model": {
+      "command": "node --test scripts/achievement-model.test.cjs",
+      "passed": 17,
+      "failed": 0
+    },
+    "session": {
+      "command": "node design/previews/achievement-poster-20261111/session-isolation-audit.cjs",
+      "passed": 5,
+      "failed": 0,
+      "networkWrites": [],
+      "pageErrors": []
+    }
+  },
+  "trackedChanges": [
+    "miniprogram/app.json",
+    "miniprogram/pages/member-profile/member-profile.js",
+    "miniprogram/pages/member-profile/member-profile.wxml",
+    "miniprogram/pages/member-profile/member-profile.wxss",
+    "miniprogram/pages/mine/mine.js",
+    "miniprogram/pages/mine/mine.wxml",
+    "miniprogram/pages/mine/mine.wxss",
+    "miniprogram/pages/runner/runner.js",
+    "miniprogram/pages/runner/runner.wxml",
+    "miniprogram/pages/runner/runner.wxss",
+    "web/src/router.js",
+    "web/src/views/ClubMember.vue",
+    "web/src/views/Mine.vue",
+    "web/src/views/Runner.vue"
+  ],
+  "unrelatedProductChanges": [],
+  "protectedProducts": [
+    {
+      "file": "server/src/index.js",
+      "exists": true,
+      "changed": false
+    },
+    {
+      "file": "server/src/db.js",
+      "exists": true,
+      "changed": false
+    },
+    {
+      "file": "server/src/content.js",
+      "exists": false,
+      "changed": false
+    },
+    {
+      "file": "web/src/views/News.vue",
+      "exists": true,
+      "changed": false
+    },
+    {
+      "file": "miniprogram/pages/news/news.js",
+      "exists": true,
+      "changed": false
+    }
+  ],
+  "excludeFromCommit": [
+    "node_modules",
+    "server/node_modules",
+    "web/node_modules"
+  ],
+  "sourceHashes": {
+    "miniprogram/utils/achievement-model.js": "1018a479a5eecb53e66ea9fff1ee23b013f27e6799b49159bdccffecf27d5da3",
+    "web/src/achievement-model.js": "73323bb7c491566c7d7d5497e5622a267ed71183e497deab2b26208636a78d38",
+    "miniprogram/utils/achievement-poster.js": "cc95ac054cdfc75f531c9093dcd7bcad9b9aa63bfbedaad751b2c93126b2b436",
+    "web/src/achievement-poster.js": "cfb1d27df40130d561e56a3af004d3aae138fe053226a3c93e33a2445614b0e5",
+    "web/src/views/AchievementPoster.vue": "b4659984c44908d62c50c1839b0071c5f9729f69fb5d509fa676167e2f9d3e62",
+    "miniprogram/pages/achievement-poster/achievement-poster.js": "1a87414d581b490a3a2ab2274a34accce9db67524ca15375e810abf02c6e7eb4"
+  },
+  "passed": true
+}

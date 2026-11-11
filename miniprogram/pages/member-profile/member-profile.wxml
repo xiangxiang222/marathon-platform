@@ -32,6 +32,7 @@
       <view wx:if="{{!shownRaces.length}}" class="person-tab-empty"><view class="person-empty-symbol">↗</view><view class="mp-section-title">下一场期待，还在路上</view><view>这里会记录想参加的比赛、中签和参赛进展。</view></view>
     </block>
     <block wx:if="{{activeTab === 'results'}}">
+      <button wx:if="{{profile.mine}}" class="achievement-poster-entry" bindtap="openAchievementPoster"><view><view>把高光，分享给朋友</view><text>用自己的 PB 与完赛成绩，做一张海报</text></view><text>制作海报 ↗</text></button>
       <view class="mp-section-head"><view><view class="mp-section-title">自己的最好成绩</view><view class="person-section-caption">用时间，记住每一次突破</view></view><text class="person-pb-tag">PERSONAL BEST</text></view>
       <view class="person-pb-grid"><view wx:for="{{profile.summary.pb}}" wx:key="key" class="person-pb-tile" data-id="{{item.race.id}}" bindtap="openRace"><view class="person-pb-top"><text>{{item.distanceLabel}}</text><text>PB</text></view><view class="person-pb-clock">{{item.clock}}</view><view class="person-pb-name">{{item.race.name}}</view><view class="person-pb-date">{{item.dateLabel}}</view></view></view>
       <view class="mp-section-head"><view class="mp-section-title">成绩履历</view><text class="mp-small-note">{{profile.summary.resultCount || 0}} 条成绩</text></view>

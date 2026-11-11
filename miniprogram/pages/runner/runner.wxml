@@ -12,6 +12,7 @@
   <view wx:elif="{{error && !payload}}" class="surface empty-state"><view class="empty-mark"><image src="/images/runner/help.png" mode="aspectFit"/></view><view class="section-title">档案暂时没有打开</view><view class="muted">{{error}}</view><button class="primary" bindtap="load">重新加载</button></view>
 
   <block wx:elif="{{payload}}">
+    <button wx:if="{{view === 'career' || view === 'honors'}}" class="achievement-poster-entry" bindtap="openAchievementPoster"><view><view>把高光，分享给朋友</view><text>用自己的 PB 与完赛成绩，做一张海报</text></view><text>制作海报 ↗</text></button>
     <view wx:if="{{error}}" class="retry-strip"><text>{{error}}</text><button bindtap="load">重试</button></view>
     <block wx:if="{{view === 'stats'}}">
       <view class="period-tabs"><view wx:for="{{periods}}" wx:key="key" class="{{period === item.key ? 'on' : ''}}" data-period="{{item.key}}" bindtap="pickPeriod">{{item.label}}</view></view>

@@ -80,6 +80,10 @@ Page({
     wx.setStorageSync("marathon_runner_return", this.data.view);
     wx.switchTab({ url: "/pages/mine/mine" });
   },
+  openAchievementPoster(event) {
+    if (!ready() || this._lastToken !== getApp().globalData.token) return;
+    wx.navigateTo({ url: "/pages/achievement-poster/achievement-poster?mode=" + (event.currentTarget.dataset.mode === "results" ? "results" : "pb") });
+  },
   pickView(event) {
     const view = VIEWS.find((item) => item.key === event.currentTarget.dataset.view);
     if (!view) return;

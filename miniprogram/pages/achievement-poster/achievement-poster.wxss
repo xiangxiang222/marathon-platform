@@ -1,0 +1,84 @@
+.achievement-studio{min-height:100vh;box-sizing:border-box;padding:32rpx 28rpx 290rpx;color:#30343a;background:#f5f6f8}
+.achievement-studio button{box-sizing:border-box;min-width:0;min-height:44px;margin:0;padding:0;border:0;border-radius:24rpx;font-size:14px;font-weight:500;line-height:1.45;background:transparent;color:inherit}
+.achievement-studio button::after{border:0}
+.achievement-studio button[disabled]{opacity:.4}
+.studio-heading{padding:8rpx 6rpx 34rpx}
+.studio-kicker{font-size:11px;letter-spacing:3rpx;color:#99958e}
+.studio-title{margin-top:15rpx;font-size:25px;font-weight:600;letter-spacing:-1rpx;line-height:1.4}
+.studio-title>text{margin-left:18rpx;color:#c79c5d;font-size:23px}
+.studio-subtitle{margin-top:12rpx;font-size:13px;color:#85858a;line-height:1.6}
+.studio-modes{display:flex;gap:8rpx;padding:8rpx;border-radius:26rpx;background:#e9ebef}
+.studio-modes>button{flex:1;min-height:43px;font-size:14px;color:#85858b}
+.studio-modes>button.selected{background:#fff;color:#343436;box-shadow:0 3rpx 9rpx rgba(40,45,56,.04)}
+.studio-preview-wrap{padding:30rpx 0 14rpx}
+.studio-preview-label{display:flex;justify-content:space-between;gap:16rpx;padding:0 4rpx 18rpx;color:#85858b;font-size:11px;line-height:1.6}
+.studio-preview-label>text:first-child{color:#55565c}
+.studio-preview{display:block;width:100%;border-radius:18rpx;box-shadow:0 12rpx 36rpx rgba(73,60,41,.08);background:#fff}
+.studio-preview-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20rpx;min-height:650rpx;padding:45rpx;box-sizing:border-box;text-align:center;font-size:13px;line-height:1.8;color:#93918c;border:2rpx dashed #e4e0d8;border-radius:22rpx;background:#fffcf6}
+.preview-spark{font-size:44px;color:#c7aa7d}
+.preview-empty-title{font-size:17px;font-weight:500;color:#605b54}
+.studio-preview-placeholder>.studio-outline{min-width:200rpx;margin-top:10rpx;padding:0 26rpx;background:#fff}
+.studio-preview-hint{text-align:center;margin-top:20rpx;font-size:11px;color:#97979e}
+.studio-pagination{display:flex;align-items:center;justify-content:center;gap:28rpx;margin-top:20rpx}
+.studio-pagination>button{width:78rpx;flex:none;background:#fff;font-size:24px;color:#787882}
+.studio-pagination>view{font-size:13px;text-align:center;line-height:1.8;color:#55565d}
+.studio-pagination>view>text{display:block;font-size:11px;color:#92939b}
+.studio-section{margin-top:26rpx;padding:28rpx 26rpx;border-radius:30rpx;background:#fff}
+.studio-section-heading{display:flex;align-items:center;justify-content:space-between;gap:14rpx;margin-bottom:24rpx;font-size:14px;font-weight:600}
+.studio-section-heading>text{font-size:11px;font-weight:400;color:#a0a0a7}
+.studio-themes{display:flex;gap:18rpx}
+.studio-themes>.studio-theme{display:block;flex:1;min-height:0;padding:10rpx;border:2rpx solid transparent;border-radius:19rpx;background:#f8f8fa}
+.studio-themes>.theme-selected{border-color:#bd9b6a;background:#fffbf4}
+.theme-paper{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:8rpx;min-height:128rpx;padding:16rpx 22rpx;box-sizing:border-box;border-radius:11rpx;background:#fff5de;color:#b68b4b}
+.theme-paper>text{font-size:22px;font-weight:600;letter-spacing:-1rpx}
+.theme-paper>view{height:4rpx;width:80%;background:currentColor;opacity:.35}
+.theme-paper>view:last-child{width:50%}
+.theme-mint .theme-paper{background:#eaf7ee;color:#48896c}
+.theme-coral .theme-paper{background:#ffede7;color:#d67b68}
+.studio-theme>view:last-child{display:flex;justify-content:space-between;align-items:center;gap:2rpx;min-height:34px;padding:4rpx 3rpx 0;font-size:11px;color:#71717a;white-space:nowrap}
+.studio-theme>view:last-child>text{color:#b68b4b;font-size:13px}
+.studio-controls{padding-bottom:6rpx}
+.studio-control-row{display:flex;align-items:center;justify-content:space-between;gap:18rpx;min-height:104rpx;width:100%;border-top:1rpx solid #f0f0f2;font-size:12px;line-height:1.6}
+.control-label{flex:none;color:#73737d;font-size:12px}
+.control-value{display:flex;align-items:center;justify-content:flex-end;gap:14rpx;text-align:right;font-size:12px;color:#45454c;min-width:0}
+.control-value>text,.control-expand>view>text:last-child{margin-left:14rpx;color:#a8a8af;font-size:13px}
+.pb-note>view{font-size:11px;color:#929299}
+.achievement-studio .control-expand{justify-content:space-between;min-height:104rpx;border-radius:0;text-align:left;font-size:12px}
+.control-expand>view{font-size:12px}
+.studio-selection{padding-bottom:18rpx}
+.selection-tools{display:flex;align-items:center;gap:18rpx;padding:12rpx 0 18rpx}
+.selection-tools>text{flex:1;min-width:0;font-size:11px;line-height:1.6;color:#a2a2a8}
+.selection-tools>button{flex:none;min-height:36px;font-size:12px;color:#9b6e40}
+.achievement-studio .selection-row{display:flex;align-items:center;gap:16rpx;min-height:124rpx;padding:18rpx 0;width:100%;border-radius:0;border-top:1rpx solid #f1f1f3;text-align:left}
+.selection-check{display:flex;align-items:center;justify-content:center;flex:none;width:34rpx;height:34rpx;border:2rpx solid #dfe1e6;border-radius:10rpx;font-size:11px;color:#fff;box-sizing:border-box}
+.is-selected .selection-check{background:#bd9966;border-color:#bd9966}
+.selection-copy{flex:1;min-width:0}
+.selection-copy>view{font-size:12px;font-weight:500;line-height:1.6;word-break:break-all}
+.selection-copy>text{display:block;margin-top:8rpx;font-size:11px;color:#a0a0a8}
+.selection-clock{flex:none;font-size:13px;font-weight:500;font-variant-numeric:tabular-nums;letter-spacing:-.3rpx}
+.selection-empty{padding:24rpx 0;color:#9999a1;font-size:12px;text-align:center}
+.studio-privacy{padding-top:0;padding-bottom:0}
+.studio-privacy>.studio-control-row{border:0}
+.privacy-mark{margin-right:12rpx;color:#a49b8c;font-size:17px}
+.privacy-options{padding-bottom:22rpx;border-top:1rpx solid #f0f0f2}
+.privacy-row{display:flex;align-items:center;justify-content:space-between;min-height:90rpx;color:#707079;font-size:12px}
+.privacy-row switch{transform:scale(.75);transform-origin:right center}
+.privacy-note{padding:8rpx 0 14rpx;font-size:11px;color:#a2a2aa;line-height:1.7}
+.studio-footnote{padding:28rpx 0;text-align:center;font-size:11px;color:#aaaab2;line-height:1.7}
+.studio-bottom{position:fixed;left:0;right:0;bottom:0;z-index:20;padding:20rpx 28rpx calc(16rpx + env(safe-area-inset-bottom));border-top:1rpx solid #ededf0;background:rgba(255,255,255,.98)}
+.studio-bottom-actions{display:flex;gap:18rpx}
+.studio-bottom-actions>button{min-height:48px;white-space:nowrap;font-size:14px}
+.achievement-studio .studio-primary{display:flex;align-items:center;justify-content:center;padding:0 28rpx;min-height:46px;background:#e1251b;color:#fff;border:1rpx solid #e1251b;border-radius:24rpx;font-size:14px}
+.achievement-studio .studio-outline{display:flex;align-items:center;justify-content:center;min-height:46px;padding:0 26rpx;border:1rpx solid #e4e5e9;border-radius:24rpx;background:#fff;font-size:13px;color:#74747c}
+.studio-bottom-actions>.studio-outline{flex:1}
+.studio-bottom-actions>.studio-primary{flex:1.6}
+.studio-save-caption{margin-top:14rpx;text-align:center;font-size:11px;color:#a5a5ad}
+.studio-save-message{display:flex;align-items:center;gap:12rpx;padding:0 2rpx 18rpx;font-size:11px;line-height:1.7;color:#85858c}
+.studio-save-message>button{flex:none;min-height:32px;font-size:12px;color:#c45f49}
+.studio-state{padding:68rpx 30rpx;display:flex;align-items:center;flex-direction:column;gap:24rpx;border-radius:30rpx;background:#fff;text-align:center;font-size:13px;line-height:1.8;color:#8c8c95}
+.studio-state>.studio-primary{margin-top:16rpx;min-width:260rpx}
+.state-symbol{font-size:32px;color:#c9ab7b}
+.state-title{font-size:18px;font-weight:600;color:#4e4c49}
+.studio-skeleton{height:280rpx;width:100%;border-radius:20rpx;background:#f4f3f1}
+.studio-canvas{position:fixed;left:-12000px;top:0;width:1080px;height:1800px;pointer-events:none}
+@media(max-width:350px){.achievement-studio{padding-right:24rpx;padding-left:24rpx}.studio-title{font-size:23px}.studio-section{padding-right:22rpx;padding-left:22rpx}.studio-themes{gap:12rpx}.theme-paper{padding-right:18rpx;padding-left:18rpx}.studio-theme>view:last-child{font-size:11px}.selection-clock{font-size:12px}.control-value{font-size:11px}.studio-bottom-actions>.studio-outline{font-size:13px}}

@@ -1,0 +1,44 @@
+{
+  "productFiles": [
+    "web/src/views/AchievementPoster.vue",
+    "web/src/router.js",
+    "web/src/views/Mine.vue",
+    "web/src/views/Runner.vue",
+    "web/src/views/ClubMember.vue"
+  ],
+  "dependencies": [
+    "web/src/achievement-model.js",
+    "web/src/achievement-poster.js",
+    "web/src/useClubSession.js",
+    "web/src/components/RunnerIcon.vue"
+  ],
+  "artifactFiles": [
+    "design/previews/achievement-poster-20261111/web-browser-audit.cjs",
+    "design/previews/achievement-poster-20261111/web-entry-audit.cjs",
+    "design/previews/achievement-poster-20261111/web-artifact-manifest.json",
+    "design/previews/achievement-poster-20261111/web/empty-390.png",
+    "design/previews/achievement-poster-20261111/web/entry-report.json",
+    "design/previews/achievement-poster-20261111/web/error-390.png",
+    "design/previews/achievement-poster-20261111/web/logged-out-390.png",
+    "design/previews/achievement-poster-20261111/web/pb-coral.png",
+    "design/previews/achievement-poster-20261111/web/pb-cream.png",
+    "design/previews/achievement-poster-20261111/web/pb-mint.png",
+    "design/previews/achievement-poster-20261111/web/pb-studio-1440.png",
+    "design/previews/achievement-poster-20261111/web/pb-studio-320.png",
+    "design/previews/achievement-poster-20261111/web/pb-studio-390.png",
+    "design/previews/achievement-poster-20261111/web/pb-three-items.png",
+    "design/previews/achievement-poster-20261111/web/report.json",
+    "design/previews/achievement-poster-20261111/web/results-page1.png",
+    "design/previews/achievement-poster-20261111/web/results-page3.png",
+    "design/previews/achievement-poster-20261111/web/results-studio-1440.png",
+    "design/previews/achievement-poster-20261111/web/results-studio-320.png",
+    "design/previews/achievement-poster-20261111/web/results-studio-390.png"
+  ],
+  "existingFixtureDependency": "design/previews/club-mileage-test-fixture.cjs (unchanged; entry audit only)",
+  "reproduce": [
+    "node design/previews/achievement-poster-20261111/web-browser-audit.cjs",
+    "node design/previews/achievement-poster-20261111/web-entry-audit.cjs"
+  ],
+  "commonToolsModified": [],
+  "scope": "No stage, commit, deployment or production business writes"
+}
