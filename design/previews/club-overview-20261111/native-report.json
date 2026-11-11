@@ -1,6 +1,6 @@
 {
   "kind": "Strict source syntax plus WeChat native offline compilation; this is not a device test",
-  "startedAt": "2026-11-11T06:04:00.189Z",
+  "startedAt": "2026-11-11T06:23:19.313Z",
   "validationContract": "Native compiler exit 0 alone is insufficient: every WXSS must pass strict PostCSS parsing; wcsc receives -pc for every input page; native tools must finish without diagnostics and create nonempty artifacts.",
   "js": [
     {
@@ -392,7 +392,7 @@
     {
       "file": "miniprogram/pages/club/club.wxss",
       "ok": true,
-      "declarations": 1109
+      "declarations": 1115
     },
     {
       "file": "miniprogram/pages/club-identity/club-identity.wxss",
@@ -1090,11 +1090,11 @@
       "exit": 0,
       "signal": null,
       "error": "",
-      "artifactBytes": 351967,
+      "artifactBytes": 352051,
       "output": "",
       "ok": true
     }
   ],
   "passed": true,
-  "finishedAt": "2026-11-11T06:04:02.070Z"
+  "finishedAt": "2026-11-11T06:23:20.991Z"
 }
