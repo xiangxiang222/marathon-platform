@@ -24,6 +24,7 @@ function createFixture(options = {}) {
   let handler = async (url, method = 'GET', body) => {
     if (url === '/me') return { user: { id: 7, nickname: '晨光团长' } };
     if (/^\/clubs\/\d+$/.test(url)) return { club: { id: Number(url.split('/')[2]), name: '奥森悦跑团', staff: options.staff !== false }, groups: [{ name: '常用组', pace: '轻松有氧', capacity: 0 }] };
+    if (/\/training-groups$/.test(url) && method === 'GET') return { groups: [], members: [], staff: options.staff !== false };
     if (/\/activity-templates$/.test(url) && method === 'GET') return { templates: clone(db.templates) };
     if (/\/activity-templates$/.test(url) && method === 'POST') {
       const template = { ...clone(body), id: 92 + db.templates.length, version: 1, createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() };

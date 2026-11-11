@@ -1,0 +1,343 @@
+{
+  "kind": "Existing template compatibility suites, current product with new training group API mocked; no business writes",
+  "passed": true,
+  "mini": {
+    "checks": [
+      {
+        "name": "relative Beijing timing crosses midnight and year boundaries without using host timezone",
+        "passed": true
+      },
+      {
+        "name": "reusable config strips occurrence, issue and participant state, preserves zero lead times and deep copies groups",
+        "passed": true
+      },
+      {
+        "name": "shared template loads, applies without old occurrence data, then recalculates from a newly selected date",
+        "passed": true
+      },
+      {
+        "name": "saving current training persists stable fields, reloads shared template, and never alters current occurrence or draft",
+        "passed": true
+      },
+      {
+        "name": "template edit and delete preserve unsaved activity, saved draft and published activity snapshots",
+        "passed": true
+      },
+      {
+        "name": "new generic template can be saved with no absolute date or location then returns to the activity",
+        "passed": true
+      },
+      {
+        "name": "invalid template name does not write and closing the sheet retains current form",
+        "passed": true
+      },
+      {
+        "name": "template load failure allows manual activity publication and can retry successfully",
+        "passed": true
+      },
+      {
+        "name": "version conflict keeps template editor open, preserves unsaved content and refreshes shared rows",
+        "passed": true
+      },
+      {
+        "name": "ordinary club member cannot load templates or mutate drafts, templates or activities",
+        "passed": true
+      },
+      {
+        "name": "account invalidation clears template editor identity, relative timing and old success text",
+        "passed": true
+      },
+      {
+        "name": "invalid relative minutes are rejected before JSON can coerce NaN into an empty setting",
+        "passed": true
+      },
+      {
+        "name": "stale template read cannot restore rows after account change",
+        "passed": true
+      },
+      {
+        "name": "stale template read cannot cross club navigation",
+        "passed": true
+      },
+      {
+        "name": "late template save after account change does not reveal its row or close a new account context",
+        "passed": true
+      },
+      {
+        "name": "older same-club template read cannot overwrite a newly saved template",
+        "passed": true
+      },
+      {
+        "name": "older same-club template read cannot resurrect a deleted template",
+        "passed": true
+      },
+      {
+        "name": "unloaded page ignores late shared template response",
+        "passed": true
+      }
+    ],
+    "total": 18
+  },
+  "web": {
+    "checks": [
+      {
+        "name": "step1-390",
+        "width": 390,
+        "scrollWidth": 390,
+        "footer": [
+          {
+            "text": "继续 →",
+            "width": 226,
+            "height": 46
+          }
+        ]
+      },
+      {
+        "name": "templates load and shared template starts a clean occurrence",
+        "passed": true
+      },
+      {
+        "name": "naming-sheet-390",
+        "width": 390,
+        "scrollWidth": 390,
+        "footer": [
+          {
+            "text": "继续 →",
+            "width": 238,
+            "height": 46
+          }
+        ]
+      },
+      {
+        "name": "save current training writes a portable shared template and leaves activity/draft intact",
+        "passed": true
+      },
+      {
+        "name": "draft-restore-390",
+        "width": 390,
+        "scrollWidth": 390,
+        "footer": [
+          {
+            "text": "继续 →",
+            "width": 226,
+            "height": 46
+          }
+        ]
+      },
+      {
+        "name": "footer geometry",
+        "top": 771,
+        "bottom": 844,
+        "height": 73,
+        "viewport": 844,
+        "buttons": [
+          {
+            "text": "继续 →",
+            "left": 148,
+            "right": 374,
+            "width": 226,
+            "height": 46,
+            "lines": [
+              799,
+              794,
+              797
+            ]
+          }
+        ]
+      },
+      {
+        "name": "draft-restore-320",
+        "width": 320,
+        "scrollWidth": 320,
+        "footer": [
+          {
+            "text": "继续 →",
+            "width": 168,
+            "height": 46
+          }
+        ]
+      },
+      {
+        "name": "footer geometry",
+        "top": 687,
+        "bottom": 760,
+        "height": 73,
+        "viewport": 760,
+        "buttons": [
+          {
+            "text": "继续 →",
+            "left": 140,
+            "right": 308,
+            "width": 168,
+            "height": 46,
+            "lines": [
+              715,
+              710,
+              713
+            ]
+          }
+        ]
+      },
+      {
+        "name": "reload reads server templates and restores account-scoped draft with horizontal controls",
+        "passed": true
+      },
+      {
+        "name": "step2-320",
+        "width": 320,
+        "scrollWidth": 320,
+        "footer": [
+          {
+            "text": "上一步",
+            "width": 144,
+            "height": 46
+          },
+          {
+            "text": "继续 →",
+            "width": 144,
+            "height": 46
+          }
+        ]
+      },
+      {
+        "name": "footer geometry",
+        "top": 687,
+        "bottom": 760,
+        "height": 73,
+        "viewport": 760,
+        "buttons": [
+          {
+            "text": "上一步",
+            "left": 12,
+            "right": 156,
+            "width": 144,
+            "height": 46,
+            "lines": [
+              715
+            ]
+          },
+          {
+            "text": "继续 →",
+            "left": 164,
+            "right": 308,
+            "width": 144,
+            "height": 46,
+            "lines": [
+              715,
+              710,
+              713
+            ]
+          }
+        ]
+      },
+      {
+        "name": "step2-390",
+        "width": 390,
+        "scrollWidth": 390,
+        "footer": [
+          {
+            "text": "上一步",
+            "width": 173,
+            "height": 46
+          },
+          {
+            "text": "继续 →",
+            "width": 173,
+            "height": 46
+          }
+        ]
+      },
+      {
+        "name": "footer geometry",
+        "top": 771,
+        "bottom": 844,
+        "height": 73,
+        "viewport": 844,
+        "buttons": [
+          {
+            "text": "上一步",
+            "left": 16,
+            "right": 189,
+            "width": 173,
+            "height": 46,
+            "lines": [
+              799
+            ]
+          },
+          {
+            "text": "继续 →",
+            "left": 201,
+            "right": 374,
+            "width": 173,
+            "height": 46,
+            "lines": [
+              799,
+              794,
+              797
+            ]
+          }
+        ]
+      },
+      {
+        "name": "group cards and fixed footer fit 320 and 390 without horizontal overflow or covered final field",
+        "passed": true
+      },
+      {
+        "name": "preview-390",
+        "width": 390,
+        "scrollWidth": 390,
+        "footer": [
+          {
+            "text": "上一步",
+            "width": 176,
+            "height": 46
+          },
+          {
+            "text": "确认发布训练",
+            "width": 170,
+            "height": 46
+          }
+        ]
+      },
+      {
+        "name": "publishing a reused template produces one independent occurrence with only stable group fields",
+        "passed": true
+      },
+      {
+        "name": "apply clears old occurrence; template edit returns original unsaved activity and cannot change published activity",
+        "passed": true
+      },
+      {
+        "name": "deleting shared template leaves current form, local draft and published occurrence intact",
+        "passed": true
+      },
+      {
+        "name": "custom template editor saves without dates or location and leaves activity snapshot intact",
+        "passed": true
+      },
+      {
+        "name": "ordinary member has no template library and cannot issue writes",
+        "passed": true
+      },
+      {
+        "name": "template load error can retry without blocking manual form",
+        "passed": true
+      },
+      {
+        "name": "late response from previous account cannot populate current editor",
+        "passed": true
+      },
+      {
+        "name": "club navigation ignores previous club delayed template list",
+        "passed": true
+      },
+      {
+        "name": "copy and account draft retain activity group association while shared templates detach it",
+        "passed": true
+      }
+    ],
+    "total": 24,
+    "errors": [],
+    "unexpected": []
+  }
+}

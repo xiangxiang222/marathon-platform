@@ -1,0 +1,20 @@
+# Keep the complete local audit; submit only eight reviewed representative PNGs.
+*
+!/.gitignore
+!/index.html
+!/summary.json
+!/data-report.json
+!/web-report.json
+!/mini-vm-report.json
+!/native-report.json
+!/compatibility-report.json
+!/web-mileage-390.png
+!/web-groups-390.png
+!/web-member-390.png
+!/web-member-long-320.png
+!/mini/
+!/mini/report.json
+!/mini/pages-club-club-390.png
+!/mini/pages-training-groups-training-groups-390.png
+!/mini/pages-member-profile-member-profile-390.png
+!/mini/pages-activity-create-activity-create-390.png

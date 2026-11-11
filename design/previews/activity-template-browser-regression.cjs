@@ -5,7 +5,7 @@ const ROOT = path.resolve(__dirname, '../..');
 const { chromium } = require(ROOT + '/node_modules/playwright-core');
 const { sampleConfig, clone } = require('./activity-template-fixture.cjs');
 const base = (process.env.MARATHON_PREVIEW_URL || 'http://127.0.0.1:5174/marathon').replace(/\/$/, '');
-const out = path.join(ROOT, 'design/previews/activity-templates-20261110');
+const out = path.resolve(ROOT, process.env.UI_AUDIT_OUT || 'design/previews/activity-templates-20261110');
 const report = { kind: 'Training templates browser acceptance. Real Vue UI, intercepted in-memory APIs; no business database writes.', checks: [], screenshots: [], errors: [], unexpected: [] };
 function state() { return { staff: true, templates: [{ id: 91, name: '周三间歇模板', config: sampleConfig(), version: 1 }], published: [], writes: [], failTemplates: false, delay: null }; }
 async function mock(context, db) {
@@ -17,6 +17,7 @@ async function mock(context, db) {
     else if(endpoint==='/me/feedback/summary')data={total:0,unread:0};
     else if(endpoint==='/me')data={user:{id:7,nickname:'晨光团长'}};
     else if(/^\/clubs\/\d+$/.test(endpoint)) data={club:{id:Number(endpoint.split('/')[2]),name:'奥森悦跑团',staff:db.staff},groups:[{name:'常用组',pace:'轻松有氧',kind:'pace',capacity:0}]};
+    else if(/\/training-groups$/.test(endpoint) && method==='GET') data={groups:[{id:301,name:'A 组',pace:'5:30–6:00 /km',capacity:20,sort:0,description:'常设组',memberCount:2}],members:[],staff:db.staff};
     else if(/\/activity-templates(?:\/\d+)?$/.test(endpoint)){
       const id=Number(endpoint.split('/').at(-1));
       if(method==='GET'){
@@ -37,7 +38,7 @@ async function mock(context, db) {
       }
     }
     else if(/\/activities$/.test(endpoint)&&method==='POST'){const body=req.postDataJSON();db.published.push(clone(body));db.writes.push({endpoint,method,body});data={activity:{id:101}};}
-    else if(/\/activities\/\d+$/.test(endpoint))data={club:{id:999,name:'奥森悦跑团'},activity:{...sampleConfig(),id:101,issue:'旧期次',startsAt:'2026-11-01T06:30',status:'open',statusLabel:'报名中',mine:{signed:false},action:{enabled:false}},groups:sampleConfig().groups,signups:[],checks:[],staff:true,album:{photoCount:0,videoCount:0}};
+    else if(/\/activities\/\d+$/.test(endpoint))data={club:{id:999,name:'奥森悦跑团'},activity:{...sampleConfig(),id:101,issue:'旧期次',startsAt:'2026-11-01T06:30',status:'open',statusLabel:'报名中',mine:{signed:false},action:{enabled:false}},groups:sampleConfig().groups.map(group=>({...group,trainingGroupId:301})),signups:[],checks:[],staff:true,album:{photoCount:0,videoCount:0}};
     else{report.unexpected.push(endpoint);status=404;data={error:'Unexpected fixture endpoint: '+endpoint};}
     await route.fulfill({status,contentType:'application/json',body:JSON.stringify(data)});
   });
@@ -50,6 +51,7 @@ async function shot(page,name){
   const file='web-'+name+'.png';await page.screenshot({path:path.join(out,file),fullPage:true});report.screenshots.push(file);report.checks.push({name,...metrics});
 }
 function ensurePortable(config){
+  for(const group of config.groups || []) assert.equal(Object.hasOwn(group,'trainingGroupId'),false,'shared template must detach mutable training-group links');
   for(const key of ['startsAt','endsAt','signupUntil','cancelUntil','startDate','endDate','issue','mine','signups','checks'])assert.equal(Object.prototype.hasOwnProperty.call(config,key),false,'saved template must omit '+key);
 }
 
@@ -171,6 +173,18 @@ async function main(){
       const clubs=state();let release;clubs.delayClub=999;clubs.delay=new Promise(resolve=>release=resolve);const{context:c,page:p}=await newCase(browser,clubs);await p.goto(createUrl(999));await p.getByText('正在读取跑团模板…',{exact:true}).waitFor();
       await p.evaluate(()=>document.querySelector('#app').__vue_app__.config.globalProperties.$router.push('/clubs/1000/activities/new'));
       await card(p,'周三间歇模板').waitFor();clubs.templates=[{id:200,name:'旧跑团迟到模板',config:{},version:1}];release();await p.waitForTimeout(100);assert.equal(await p.getByText('旧跑团迟到模板',{exact:true}).count(),0);await c.close();
+    });
+    await check('copy and account draft retain activity group association while shared templates detach it',async()=>{
+      const related=state();const {context:c,page:p}=await newCase(browser,related);await p.goto(createUrl(999)+'?copy=101');await card(p,'周三间歇模板').waitFor();
+      assert.equal(await p.locator('input[type="datetime-local"]').first().inputValue(),'');
+      await p.getByRole('button',{name:'存草稿',exact:true}).click();
+      const copiedDraft=await p.evaluate(()=>JSON.parse(localStorage.getItem('marathon_activity_draft:999:7')));
+      assert.equal(copiedDraft.form.groups[0].trainingGroupId,301);assert.equal(copiedDraft.form.issue,'');
+      await p.getByRole('button',{name:'将当前内容存为模板 ↗',exact:true}).click();await p.getByRole('dialog').locator('input').fill('常设组快照模板');await p.getByRole('button',{name:'保存到跑团模板',exact:true}).click();await p.getByRole('dialog').waitFor({state:'hidden'});
+      const saved=related.templates.find(t=>t.name==='常设组快照模板');ensurePortable(saved.config);assert.equal(saved.config.groups[0].pace,'5:30–6:00 /km');
+      await p.goto(createUrl(999));await p.locator('.restore-toast').getByRole('button',{name:'恢复',exact:true}).click();
+      await p.getByRole('button',{name:'存草稿',exact:true}).click();const restored=await p.evaluate(()=>JSON.parse(localStorage.getItem('marathon_activity_draft:999:7')));assert.equal(restored.form.groups[0].trainingGroupId,301);
+      await c.close();
     });
     assert.equal(report.errors.length,0,JSON.stringify(report.errors));assert.equal(report.unexpected.length,0,JSON.stringify(report.unexpected));report.passed=true;
   }finally{await browser.close();}

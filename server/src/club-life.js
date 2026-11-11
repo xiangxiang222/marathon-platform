@@ -4,6 +4,7 @@ const fs = require("fs");
 const path = require("path");
 const { DISTANCE_LABEL } = require("./races");
 const { clubRoleLabel, memberRole, setMemberRole, decideRequest, listPending, clearClubMemberFutureSignups } = require("./roles");
+const { saveGroup, removeGroup, activityTrainingGroups } = require("./training-groups");
 const { formatClock } = require("./career");
 const { feeBlocksSignup } = require("./club-ops");
 
@@ -106,11 +107,11 @@ function signupClosed(row, now = Date.now()) {
 
 function signupGroups(db, activity) {
   const own = db
-    .prepare("SELECT id, name, kind, pace, capacity FROM activity_groups WHERE activity_id = ? ORDER BY sort, id")
+    .prepare("SELECT id, name, kind, pace, capacity, training_group_id AS trainingGroupId FROM activity_groups WHERE activity_id = ? ORDER BY sort, id")
     .all(activity.id);
   if (own.length) return own;
   return db
-    .prepare("SELECT id, name, pace, capacity FROM club_groups WHERE club_id = ? ORDER BY sort, id")
+    .prepare("SELECT g.id, g.name, g.pace, g.capacity, t.id AS trainingGroupId FROM club_groups g LEFT JOIN mileage_groups t ON t.club_group_id=g.id AND t.club_id=g.club_id WHERE g.club_id = ? ORDER BY g.sort, g.id")
     .all(activity.club_id)
     .map((group) => ({ ...group, kind: "pace" }));
 }
@@ -222,7 +223,8 @@ function activityStats(db, activity, userId, includePrivateStats = false) {
       pace: group.pace || "",
       capacity: group.capacity,
       signed: used,
-      left: group.capacity > 0 ? Math.max(0, group.capacity - used) : null
+      left: group.capacity > 0 ? Math.max(0, group.capacity - used) : null,
+      trainingGroupId: group.trainingGroupId || 0
     };
   });
   const mine = mineSignup
@@ -354,12 +356,14 @@ function readOneGroup(item) {
   if (!KINDS[kind]) return { error: "组别种类选配速、完赛、志愿者或非训练" };
   if (pace.length > 40) return { error: "配速或目标最多 40 个字" };
   if (!Number.isInteger(capacity) || capacity < 0 || capacity > 500) return { error: "名额写成 0 到 500，0 表示不限" };
-  return { group: { name, kind, pace, capacity } };
+  const trainingGroupId = item && item.trainingGroupId != null ? Number(item.trainingGroupId) : 0;
+  if (!Number.isSafeInteger(trainingGroupId) || trainingGroupId < 0) return { error: "请选择有效的训练组" };
+  return { group: { name, kind, pace, capacity, ...(trainingGroupId ? { trainingGroupId } : {}) } };
 }
 
 function insertGroups(db, activityId, groups) {
-  const insert = db.prepare("INSERT INTO activity_groups (activity_id, name, kind, pace, capacity, sort) VALUES (?, ?, ?, ?, ?, ?)");
-  groups.forEach((group, index) => insert.run(activityId, group.name, group.kind, group.pace, group.capacity, index));
+  const insert = db.prepare("INSERT INTO activity_groups (activity_id, name, kind, pace, capacity, sort, training_group_id) VALUES (?, ?, ?, ?, ?, ?, ?)");
+  groups.forEach((group, index) => insert.run(activityId, group.name, group.kind, group.pace, group.capacity, index, group.trainingGroupId || 0));
 }
 
 function togetherMap(db, clubId, userId) {
@@ -699,17 +703,17 @@ function mountClubLife(app, { BASE, getDb, userFrom }) {
     if (!name || name.length > 20) return res.status(400).json({ error: "组别名用 1 到 20 个字" });
     if (pace.length > 20) return res.status(400).json({ error: "配速说明最多 20 个字" });
     if (!Number.isInteger(capacity) || capacity < 0 || capacity > 500) return res.status(400).json({ error: "名额写成 0 到 500，0 表示不限" });
-    const info = ctx.db
-      .prepare("INSERT INTO club_groups (club_id, name, pace, capacity, sort) VALUES (?, ?, ?, ?, ?)")
-      .run(ctx.club.id, name, pace, capacity, Date.now());
-    res.json({ group: { id: Number(info.lastInsertRowid), name, pace, capacity } });
+    try {
+      const group = saveGroup(ctx.db, ctx.club.id, { name, pace, capacity, sort: Date.now() });
+      res.json({ group: { ...group, id: group.clubGroupId, trainingGroupId: group.id } });
+    } catch (e) { if (!e.status) throw e; res.status(e.status).json({ error: e.message }); }
   });
 
   app.delete(BASE + "/api/clubs/:id/groups/:gid", (req, res) => {
     const ctx = gate(req, res);
     if (!ctx || !staffOnly(ctx, res)) return;
-    ctx.db.prepare("DELETE FROM club_groups WHERE id = ? AND club_id = ?").run(req.params.gid, ctx.club.id);
-    ctx.db.prepare("UPDATE activity_signups SET group_id = 0 WHERE group_id = ?").run(req.params.gid);
+    const group = ctx.db.prepare("SELECT id FROM mileage_groups WHERE club_group_id=? AND club_id=?").get(req.params.gid, ctx.club.id);
+    if (group) removeGroup(ctx.db, ctx.club.id, group.id);
     res.json({ ok: true });
   });
 
@@ -775,7 +779,9 @@ function mountClubLife(app, { BASE, getDb, userFrom }) {
     if (!ctx || !staffOnly(ctx, res)) return;
     const parsed = readActivityBody(req.body || {}, {});
     if (parsed.error) return res.status(400).json({ error: parsed.error });
-    const groups = readGroupList(req.body && req.body.groups);
+    const linked = activityTrainingGroups(ctx.db, ctx.club.id, req.body || {});
+    if (linked.error) return res.status(400).json({ error: linked.error });
+    const groups = readGroupList(linked.input);
     if (groups.error) return res.status(400).json({ error: groups.error });
     const value = parsed.value;
     const id = ctx.db.transaction(() => {
@@ -1140,11 +1146,13 @@ function mountClubLife(app, { BASE, getDb, userFrom }) {
     if (count.n >= 12) return res.status(400).json({ error: "一场活动最多 12 个组" });
     const one = readOneGroup(req.body || {});
     if (one.error) return res.status(400).json({ error: one.error });
+    const linked = activityTrainingGroups(ctx.db, ctx.club.id, { groups: [req.body || {}] });
+    if (linked.error) return res.status(400).json({ error: linked.error });
     const taken = ctx.db.prepare("SELECT 1 FROM activity_groups WHERE activity_id = ? AND name = ?").get(activity.id, one.group.name);
     if (taken) return res.status(400).json({ error: "组别名不能重复" });
     const info = ctx.db
-      .prepare("INSERT INTO activity_groups (activity_id, name, kind, pace, capacity, sort) VALUES (?, ?, ?, ?, ?, ?)")
-      .run(activity.id, one.group.name, one.group.kind, one.group.pace, one.group.capacity, count.n);
+      .prepare("INSERT INTO activity_groups (activity_id, name, kind, pace, capacity, sort, training_group_id) VALUES (?, ?, ?, ?, ?, ?, ?)")
+      .run(activity.id, one.group.name, one.group.kind, one.group.pace, one.group.capacity, count.n, one.group.trainingGroupId || 0);
     res.json({ group: { id: Number(info.lastInsertRowid), ...one.group } });
   });
 

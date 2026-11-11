@@ -283,3 +283,7 @@ text.text-action { display:inline-flex; align-items:center; min-height:44px; box
   .mini-club-club .hero-share { padding:0 18rpx; }
   .next-title { font-size:20px; }
 }
+
+.training-group-entry { display:flex; align-items:center; justify-content:space-between; gap:20rpx; min-height:60px; }
+.training-group-entry .muted { margin-top:10rpx; }
+.training-group-entry>text { color:#9aa69f; font-size:22px; }

@@ -302,11 +302,11 @@
         <p v-if="!visibleMembers.length" class="rank-label">没有找到这位跑友，试试其他昵称。</p>
         <div v-for="member in visibleMembers" :key="member.id" class="mate member">
           <div class="who">
-            <span class="member-identity">
+            <router-link class="member-identity" :to="'/clubs/' + club.id + '/members/' + member.id">
               <img v-if="member.avatar" :src="member.avatar" :alt="member.nickname" />
               <i v-else aria-hidden="true">{{ member.nickname.slice(0, 1) }}</i>
               <span class="member-copy"><b>{{ member.nickname }}</b><small><template v-if="member.role !== 'member'">{{ member.roleLabel }} · </template>{{ member.points }} 积分</small></span>
-            </span>
+            </router-link>
           </div>
           <details v-if="club.staff && !member.owner" class="member-actions"><summary>管理成员 <span>⌄</span></summary><div class="acts">
             <button v-if="club.owner && !member.owner && member.role !== 'manager'" class="undo" type="button" @click="setRole(member, 'manager')">设为跑团管理</button>

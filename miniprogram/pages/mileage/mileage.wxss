@@ -31,3 +31,6 @@ input { min-height: 44px; border: 1px solid var(--border); border-radius: 24rpx;
 /* Color surfaces use existing semantic page elements; layout stays unchanged. */
 .mini-mileage-mileage > .card:first-child { background: linear-gradient(135deg,#e9f7f2,#ffffff); box-shadow: var(--card-shadow); }
 .mini-mileage-mileage .card:nth-child(3) { background: #ffffff; }
+
+.mini-mileage-mileage .mileage-tools-toggle { display:flex; align-items:center; justify-content:space-between; gap:16rpx; width:100%; min-height:52px; margin:24rpx 0; padding:0 12rpx; border:0; border-radius:0; background:transparent; color:#849589; font-size:12px; }
+.tools-range-label { margin-top:26rpx; font-size:12px; color:#8e9e92; }

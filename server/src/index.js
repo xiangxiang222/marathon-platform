@@ -12,6 +12,7 @@ const { adminRoleLabel, clubRoleLabel } = require("./roles");
 const { mountClubLife, enrichBoard, clubLife } = require("./club-life");
 const { mountActivityTemplates } = require("./activity-templates");
 const { mountMileage } = require("./mileage");
+const { mountTrainingGroups } = require("./training-groups");
 const { mountRunnerCenter } = require("./runner-center");
 const { mountRaceHistory } = require("./race-history");
 const { mountHistoryOcr } = require("./history-ocr");
@@ -517,6 +518,8 @@ app.put(BASE + "/api/me/profile", (req, res) => {
   if (!user) return;
   const nickname = String((req.body && req.body.nickname) || "").trim();
   const avatarInput = req.body && req.body.avatar;
+  const introduction = req.body && req.body.introduction;
+  if (introduction !== undefined && (typeof introduction !== "string" || [...introduction].length > 300 || /[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/.test(introduction))) return res.status(400).json({ error: "个人介绍最多300字" });
   if (!nickname || nickname.length > 20 || /[\u0000-\u001f\u007f]/.test(nickname)) {
     return res.status(400).json({ error: "昵称须为 1 到 20 个字" });
   }
@@ -540,8 +543,9 @@ app.put(BASE + "/api/me/profile", (req, res) => {
     }
   }
   getDb().prepare("UPDATE users SET nickname = ?, avatar = ? WHERE id = ?").run(nickname, stored, user.id);
+  if (introduction !== undefined) getDb().prepare("UPDATE users SET introduction=? WHERE id=?").run(introduction.trim(), user.id);
   if (stored !== previous) removeAvatar(previous);
-  res.json({ user: { id: user.id, nickname, avatar: avatarUrlOf(user.id, stored) } });
+  res.json({ user: { id: user.id, nickname, avatar: avatarUrlOf(user.id, stored), introduction: getDb().prepare("SELECT introduction FROM users WHERE id=?").get(user.id).introduction } });
 });
 
 app.post(BASE + "/api/me/avatar", (req, res) => {
@@ -1273,6 +1277,7 @@ mountClubIdentity(app, { BASE, getDb, userFrom, requireAdmin });
 mountClubLife(app, { BASE, getDb, userFrom });
 mountActivityTemplates(app, { BASE, getDb, userFrom });
 mountMileage(app, { BASE, getDb, userFrom });
+mountTrainingGroups(app, { BASE, getDb, userFrom });
 mountRunnerCenter(app, { BASE, getDb, userFrom, resultsFor, oneUpload });
 mountRaceHistory(app, { BASE, getDb, userFrom, oneUpload });
 mountHistoryOcr(app, { BASE, getDb, userFrom });

@@ -65,11 +65,12 @@
 
         <section v-if="step === 1" class="step-panel">
           <div class="step-heading"><span>02 / 03 · 分组与安排</span><h2>让每个人找到合适的节奏</h2><p class="timezone-note">活动时间按北京时间填写</p></div>
-          <div class="group-heading"><div><b>训练分组</b><small>报名时由成员自己选择，不会自动分配</small></div>
+          <section class="permanent-groups"><div class="permanent-heading"><div><b>从常设训练组选用</b><p>带入组名与常用配速，本次活动可继续调整。</p></div><router-link :to="'/clubs/' + clubId + '?tab=km'">管理 ›</router-link></div><p v-if="trainingGroupsLoading" class="template-hint" role="status">正在读取常设训练组…</p><p v-else-if="trainingGroupsError" class="template-load-error">{{ trainingGroupsError }} <button type="button" @click="loadTrainingGroups">重试</button></p><div v-else-if="trainingGroups.length" class="permanent-group-list"><button v-for="group in trainingGroups" :key="group.id" type="button" :class="{ selected: hasTrainingGroup(group.id) }" :aria-pressed="hasTrainingGroup(group.id)" @click="selectTrainingGroup(group)"><span><b>{{ group.name }}</b><small>{{ group.pace || '配速待设置' }}</small></span><i>{{ hasTrainingGroup(group.id) ? '✓' : '+' }}</i></button></div><p v-else class="template-hint">跑团还没有常设组，也可以直接填写本次活动分组。</p></section>
+          <div class="group-heading"><div><b>本次活动分组</b><small>报名时由成员自己选择，不会改变常设组归属</small></div>
             <button class="add-group" type="button" :disabled="form.groups.length >= 12" @click="addGroup">＋ 添加分组</button></div>
           <div v-if="form.groups.length" class="group-list">
             <div v-for="(group, index) in form.groups" :key="index" class="group-editor">
-              <div class="group-card-heading"><span class="group-index">GROUP {{ String(index + 1).padStart(2, '0') }}</span><button class="remove-group" type="button" :aria-label="'删除' + (group.name || '第' + (index + 1) + '组')" @click="removeGroup(index)">删除 <span>×</span></button></div>
+              <div class="group-card-heading"><span class="group-index">{{ group.trainingGroupId ? '来自常设训练组' : 'GROUP ' + String(index + 1).padStart(2, '0') }}</span><button class="remove-group" type="button" :aria-label="'删除' + (group.name || '第' + (index + 1) + '组')" @click="removeGroup(index)">删除 <span>×</span></button></div>
               <div class="group-fields"><label class="field"><span>组名 <b>*</b></span><input v-model.trim="group.name" maxlength="20" placeholder="例：轻松跑组" /></label><label class="field"><span>分组类型</span><select v-model="group.kind"><option v-for="item in groupKinds" :key="item.id" :value="item.id">{{ item.label }}</option></select></label><label class="field"><span>配速或目标</span><input v-model.trim="group.pace" maxlength="40" placeholder="例：6′30″–7′00″ /km" /></label><label class="field"><span>名额 <small>0 为不限</small></span><input v-model.number="group.capacity" type="number" min="0" max="500" /></label></div>
             </div>
           </div>
@@ -160,6 +161,7 @@ const groupKinds = [
 const templates = trainingPresets;
 const templateStepLabels = ['模板内容', '分组安排', '预览保存'];
 const sharedTemplates = ref([]), templatesLoading = ref(false), templatesError = ref('');
+const trainingGroups = ref([]), trainingGroupsLoading = ref(false), trainingGroupsError = ref('');
 const templateMode = ref(false), editingTemplate = ref(null), templateName = ref('');
 const templateSaveOpen = ref(false), templateSaving = ref(false), templateActionError = ref('');
 const pendingDeleteTemplate = ref(null), templateMessage = ref(''), appliedTemplateKey = ref('');
@@ -171,7 +173,7 @@ function blankForm() {
     trainingType: "custom", title: "", place: "", startsAt: "", endsAt: "", plannedKm: "",
     issue: "", gatherPlace: "", gatherAt: "", route: "", cancelUntil: "", signupUntil: "",
     workout: "", notice: "", note: "", minPeople: 3, minKm: 5, points: 1, review: false,
-    groups: [{ name: '自由训练组', kind: 'other', pace: '', capacity: 0 }]
+    groups: [{ name: '全员组', kind: 'pace', pace: '', capacity: 0 }]
   };
 }
 
@@ -197,7 +199,8 @@ function setForm(value) {
   Object.keys(form).forEach((key) => { delete form[key]; });
   Object.assign(form, blankForm(), value);
   form.groups = (value.groups || []).map((group) => ({
-    name: group.name || "", kind: group.kind || "pace", pace: group.pace || "", capacity: Number(group.capacity) || 0
+    name: group.name || "", kind: group.kind || "pace", pace: group.pace || "", capacity: Number(group.capacity) || 0,
+    ...(group.trainingGroupId ? { trainingGroupId: Number(group.trainingGroupId) } : {})
   }));
   settingForm = false;
 }
@@ -219,7 +222,7 @@ function copyValues(activity, groups, fallbackGroups) {
     route: activity.route || "", workout: activity.workout || "", notice: activity.notice || "",
     note: activity.note || "", minPeople: activity.minPeople || 3, minKm: activity.minKm || 5,
     points: activity.points == null ? 1 : activity.points, review: !!activity.review,
-    groups: (groups?.length ? groups : (fallbackGroups?.length ? fallbackGroups : base.groups)).map((group) => ({ name: group.name || "", kind: group.kind || "pace", pace: group.pace || "", capacity: Number(group.capacity) || 0 }))
+    groups: (groups?.length ? groups : (fallbackGroups?.length ? fallbackGroups : base.groups)).map((group) => ({ name: group.name || "", kind: group.kind || "pace", pace: group.pace || "", capacity: Number(group.capacity) || 0, ...(group.trainingGroupId ? { trainingGroupId: Number(group.trainingGroupId) } : {}) }))
   };
 }
 
@@ -247,6 +250,7 @@ async function load() {
   club.value = null;
   accountToken = null;
   sharedTemplates.value = []; templatesError.value = ''; templatesVersion += 1;
+  trainingGroups.value = []; trainingGroupsError.value = ''; trainingGroupsLoading.value = false;
   templateMode.value = false; editingTemplate.value = null; templateSaveOpen.value = false;
   pendingDeleteTemplate.value = null; templateSaving.value = false; templateMessage.value = '';
   templateName.value = ''; appliedTemplateKey.value = ''; activitySnapshot = null;
@@ -262,9 +266,6 @@ async function load() {
     accountToken = token;
     draftKey.value = "marathon_activity_draft:" + id + ":" + me.user.id;
     setForm(blankForm());
-    if (clubData.groups?.length) {
-      form.groups = clubData.groups.map((group) => ({ name: group.name || "", kind: "pace", pace: group.pace || "", capacity: Number(group.capacity) || 0 }));
-    }
     if (route.query.copy) {
       const source = await api("/clubs/" + id + "/activities/" + encodeURIComponent(route.query.copy));
       if (version !== loadVersion || id !== clubId.value) return;
@@ -275,6 +276,7 @@ async function load() {
       checkDraft();
     }
     void loadTemplates();
+    void loadTrainingGroups();
   } catch (err) {
     if (version === loadVersion && id === clubId.value) {
       error.value = err.message;
@@ -339,6 +341,27 @@ function chooseTemplate(item) {
 
 function validScope(version, id, token) {
   return version === loadVersion && id === clubId.value && token === accountToken && token === currentToken();
+}
+async function loadTrainingGroups() {
+  if (!club.value || !sameAccount()) return;
+  const version = loadVersion, id = clubId.value, token = accountToken;
+  trainingGroupsLoading.value = true; trainingGroupsError.value = '';
+  try {
+    const data = await api('/clubs/' + id + '/training-groups');
+    if (validScope(version, id, token)) trainingGroups.value = data.groups || [];
+  } catch (err) {
+    if (validScope(version, id, token)) trainingGroupsError.value = err.message;
+  } finally { if (validScope(version, id, token)) trainingGroupsLoading.value = false; }
+}
+function hasTrainingGroup(id) { return form.groups.some(group => Number(group.trainingGroupId) === Number(id)); }
+function selectTrainingGroup(group) {
+  if (!sameAccount()) return;
+  if (hasTrainingGroup(group.id)) { form.groups = form.groups.filter(row => Number(row.trainingGroupId) !== Number(group.id)); return; }
+  if (form.groups.length === 1 && ['自由训练组', '全员组'].includes(form.groups[0].name) && ['other', 'pace'].includes(form.groups[0].kind) && !form.groups[0].pace && !form.groups[0].capacity) form.groups = [];
+  if (form.groups.length >= 12) { error.value = '一场活动最多设置 12 个组别'; return; }
+  if (form.groups.some(row => row.name.trim() === group.name.trim())) { error.value = '已有同名分组，请先修改或删除，再选用常设组'; return; }
+  form.groups.push({ name: group.name, kind: 'pace', pace: group.pace || '', capacity: Number(group.capacity) || 0, trainingGroupId: Number(group.id) });
+  error.value = '';
 }
 
 async function loadTemplates() {
@@ -786,4 +809,18 @@ onUnmounted(() => { loadVersion += 1; templatesVersion += 1; });
 .advanced { background:#f2f7fc;border-color:#dfe8f1; }.preview-hero { background:linear-gradient(125deg,#fff2e5,#fff);border-color:#f0d8c7; }
 .preview-facts { background:#fff; }.template-tip { background:var(--sun-soft,#fff4d7);border-color:#eedfb8; }
 @media(max-width:350px) { .step-heading { padding:16px; }.step-heading h2 { font-size:24px; }.group-card-heading { gap:8px; }.template-library-heading { gap:10px; } }
+
+.permanent-groups { padding: 17px; margin: 0 0 22px; border: 1px solid #e7edf0; border-radius: 13px; background: #f9fbfc; }
+.permanent-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.permanent-heading b { font-size: 14px; font-weight: 550; }
+.permanent-heading p { margin: 6px 0 0; color: var(--muted); font-size: 12px; line-height: 1.7; }
+.permanent-heading > a { flex: none; color: var(--accent); font-size: 12px; min-height: 36px; display: inline-flex; align-items: center; }
+.permanent-group-list { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; margin-top: 15px; }
+.activity-create .permanent-group-list button { display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%; min-width: 0; padding: 11px 12px; border: 1px solid var(--line); border-radius: 9px; background: #fff; text-align: left; }
+.permanent-group-list button.selected { border-color: #e9aaa2; background: #fff5f3; }
+.permanent-group-list button > span { min-width: 0; display: grid; gap: 6px; }
+.permanent-group-list b { font-size: 13px; font-weight: 550; overflow-wrap: anywhere; }
+.permanent-group-list small { font-size: 11px; color: var(--muted); line-height: 1.6; overflow-wrap: anywhere; }
+.permanent-group-list i { color: var(--accent); font-style: normal; font-size: 16px; }
+@media(max-width:350px) { .permanent-groups { padding: 14px; } .permanent-group-list { grid-template-columns: minmax(0,1fr); } }
 </style>
