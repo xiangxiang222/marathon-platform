@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main class="radar-page">
     <header class="topbar">
       <router-link to="/" aria-label="返回">‹</router-link>
       <h1>拿奖雷达</h1>
@@ -125,15 +125,24 @@ onMounted(() => {
 <style scoped>
 .hint { margin: 8px 0 0; color: var(--muted); font-size: 13px; line-height: 1.45; }
 .stack { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
-.stack input, .stack select { height: 40px; border: 0; border-radius: 12px; padding: 0 12px; background: var(--chip); }
+.stack input, .stack select { height: 40px; border: 1px solid var(--line); border-radius: 12px; padding: 0 12px; background: var(--field-bg);  min-height: 44px;}
 .modes { display: flex; gap: 24px; border-bottom: 1px solid var(--line); }
 .modes button { position: relative; height: 42px; padding: 0 2px; background: transparent; color: var(--muted); font-weight: 600; }
 .modes button.on { color: var(--accent); }
-.modes button.on::after { content: ""; position: absolute; right: 0; bottom: 0; left: 0; height: 3px; border-radius: 2px; background: var(--accent); }
+.modes button.on::after { content: ""; position: absolute; right: 0; bottom: 0; left: 0; height: 2px; border-radius: 2px; background: var(--accent); }
 .primary { height: 40px; border-radius: 12px; background: var(--accent); color: #fff; font-weight: 600; }
 .radar-login h2 { margin-bottom: 8px; }
 .radar-login .primary { width: 100%; margin-top: 20px; }
 .run { padding: 8px 0; border-bottom: 1px solid var(--line); }
 .run a { color: inherit; }
 .err { color: var(--red); }
+
+
+/* A sunny discovery area, with matching awards separated on pale blue cards. */
+.radar-page { background:transparent; }.radar-page>.topbar { background:transparent; }
+.radar-page>.block:first-of-type { background:linear-gradient(130deg,#fff7e2,#fff);border-color:#eadbb8;box-shadow:var(--card-shadow,0 6px 22px #9a793b10); }
+.radar-page .slot { background:#ffffffb5;border-color:#eaddbd;border-radius:10px;padding:12px; }.radar-page .slot b { color:#94702b; }
+.radar-page .stack input,.radar-page .stack select { background:#ffffffd9;border-color:#e9dfcb; }
+.radar-page .run { padding:15px;border:1px solid #dce7f4;border-radius:14px;background:#fff;margin-top:12px; }.radar-page .run:nth-of-type(2n) { background:#fff;border-color:#daeadf; }
+.radar-login h2 { color:#6f501f; }
 </style>

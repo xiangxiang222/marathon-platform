@@ -49,13 +49,13 @@ const titleSize = computed(() => {
 
 <style scoped>
 .poster { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; border-radius: 12px; }
-text { font-family: inherit; fill: var(--ink, #1f2026); }
-.canvas { fill: var(--bg, #f5f6fa); }
+text { font-family: inherit; fill: var(--ink); }
+.canvas { fill: var(--bg); }
 .paper { fill: var(--card, #fff); }
-.accent { fill: var(--accent, #ff0a30); }
-.year { fill: var(--muted, #8a8e99); font-size: 15px; }
+.accent { fill: var(--accent); }
+.year { fill: var(--muted); font-size: 15px; }
 .city { font-size: 18px; font-weight: 600; }
 .title { font-weight: 700; }
 .rule { fill: none; stroke: var(--line, #eff0f4); }
-.label { fill: var(--accent, #ff0a30); font-size: 13px; font-weight: 600; }
+.label { fill: var(--accent); font-size: 13px; font-weight: 600; }
 </style>

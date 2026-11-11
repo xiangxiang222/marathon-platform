@@ -1,0 +1,18 @@
+{
+  "kind": "Full checker negative control with original invalid feedback source supplied through a virtual readFileSync; product files and final success report unchanged",
+  "checkedAt": "2026-11-11T05:19:46.729Z",
+  "expectedPassed": false,
+  "actualPassed": false,
+  "checkerExitCode": 1,
+  "errors": [
+    {
+      "file": "miniprogram/pages/feedback/feedback.wxss",
+      "ok": false,
+      "name": "CssSyntaxError",
+      "reason": "Missed semicolon",
+      "line": 1,
+      "column": 480
+    }
+  ],
+  "negativeControlPassed": true
+}

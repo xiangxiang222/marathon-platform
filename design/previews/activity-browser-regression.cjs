@@ -62,7 +62,9 @@ async function mock(page) {
           album: { photoCount: 0, videoCount: 0 }
         };
       }
-    } else if (pathname === "/clubs/999/activities/1") {
+    } else if (pathname === "/clubs/999/activity-templates" && method === "GET") {
+      data = { templates: [] };
+    } else if (pathname === "/clubs/999/activities/1" || pathname === "/clubs/999/activities/2") {
       data = { club: { id: 999, name: "奥森晨跑团" }, activity: openActivity, groups, signups: [], checks: [], album: { photoCount: 0, videoCount: 0 }, levels: [], staff: true };
     } else if (pathname === "/clubs/999/activities/closed") {
       data = { club: { id: 999, name: "奥森晨跑团" }, activity: { ...openActivity, id: "closed", statusLabel: "报名已截止", action: { label: "报名已截止", enabled: false, kind: "signup" } }, groups, signups: [], checks: [], staff: false };
@@ -74,6 +76,8 @@ async function mock(page) {
       data = { activity: { id: 2 } };
     } else if (pathname === "/clubs/999") {
       data = { club: { id: 999, name: "奥森晨跑团", staff: true }, groups: [{ id: 11, name: "A 组", pace: "5'30–6'00 /km", capacity: 6 }] };
+    } else if (pathname === "/legal") {
+      data = require("../../shared/legal-documents.json");
     } else if (pathname === "/me/feedback/summary") {
       data = { total: 0, unread: 0 };
     } else if (pathname === "/me") {
@@ -89,6 +93,7 @@ async function mock(page) {
 }
 
 async function snapshot(page, name) {
+  await page.evaluate(() => { scrollTo(0, 0); return new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))); });
   const metrics = await page.evaluate(() => ({
     width: innerWidth,
     documentWidth: document.documentElement.scrollWidth,
@@ -108,6 +113,7 @@ async function snapshot(page, name) {
 
 async function main() {
   const browser = await chromium.launch({ executablePath: process.env.CHROME_PATH || "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome", headless: true, args: ["--no-sandbox", "--disable-dev-shm-usage"] });
+  try {
   for (const width of [320, 390]) {
     const context = await browser.newContext({ viewport: { width, height: 844 }, deviceScaleFactor: 1 });
     const page = await context.newPage();
@@ -173,24 +179,39 @@ async function main() {
 
     await page.goto(base + "/clubs/999/activities/new?copy=1");
     await page.getByRole("heading", { name: "这次跑什么？" }).waitFor();
+    await page.locator(".basic-options summary").click();
     assert.equal(await page.locator('.field:has-text("活动期次") input').inputValue(), "", "copied activity must not retain its issue");
     assert.equal(await page.locator('input[type="datetime-local"]').first().inputValue(), "", "copied activity must clear its start time");
 
     await page.goto(base + "/clubs/999/activities/new");
     await page.getByRole("heading", { name: "这次跑什么？" }).waitFor();
     assert.equal(await page.locator('input[type="datetime-local"]').first().inputValue(), "", "start time must not be guessed");
+    assert.equal(await page.locator('input[maxlength="40"]').first().inputValue(), "", "blank activity must not prefill a title");
+    assert.equal(await page.locator('input[type="number"]').first().inputValue(), "", "blank activity must not prefill planned distance");
+    async function fillOccurrence() {
+      await page.locator('input[maxlength="40"]').first().fill("奥森有氧跑");
+      await page.locator('input[placeholder="公园、操场或路线起点"]').fill("奥林匹克森林公园");
+      await page.getByPlaceholder("例：东门入口").fill("南园南门地铁口");
+      await page.locator('input[type="datetime-local"]').first().fill("2026-11-08T06:30");
+    }
+    await fillOccurrence();
+    await page.locator('.actions').getByRole("button", { name: /继续/ }).click();
+    await page.getByRole("heading", { name: "让每个人找到合适的节奏" }).waitFor();
+    assert.equal(await page.locator('textarea[placeholder^="热身、主训练内容"]').inputValue(), "", "blank activity must not generate workout content");
+    logs.checks.push({ name: "blank-training-no-guessed-content-" + width, pass: true });
+    await page.locator('.actions').getByRole("button", { name: "上一步", exact: true }).click();
     await page.getByRole("button", { name: /长距离/ }).click();
-    assert.equal(await page.locator('input[maxlength="40"]').first().inputValue(), "", "template must not prefill a workout title");
+    assert.equal(await page.locator('input[maxlength="40"]').first().inputValue(), "周末长距离", "preset supplies a reusable workout title");
     assert.equal(await page.locator('input[type="number"]').first().inputValue(), "", "template must not prefill planned distance");
+    assert.equal(await page.locator('input[type="datetime-local"]').first().inputValue(), "", "preset must not reuse an occurrence date");
     await page.getByRole("button", { name: /间歇跑/ }).click();
-    await page.getByPlaceholder("例：周三间歇跑").fill("奥森有氧跑");
-    await page.locator('input[placeholder="公园、操场或路线起点"]').fill("奥林匹克森林公园");
-    await page.getByPlaceholder("例：东门入口").fill("南园南门地铁口");
-    await page.locator('input[type="datetime-local"]').first().fill("2026-11-08T06:30");
+    assert.equal(await page.locator('input[maxlength="40"]').first().inputValue(), "跑团间歇训练");
+    await fillOccurrence();
     await snapshot(page, "web-activity-create-step1-" + width);
     await page.getByRole("button", { name: "继续" }).click();
     await page.getByRole("heading", { name: "让每个人找到合适的节奏" }).waitFor();
-    assert.equal(await page.locator('textarea[placeholder^="热身、主训练内容"]').inputValue(), "", "template must not generate workout content");
+    assert.match(await page.locator('textarea[placeholder^="热身、主训练内容"]').inputValue(), /热身[\s\S]*主训练[\s\S]*放松/, "preset supplies an editable training framework");
+    logs.checks.push({ name: "preset-training-framework-without-date-or-distance-" + width, pass: true });
     await snapshot(page, "web-activity-create-step2-" + width);
     await page.getByRole("button", { name: /继续/ }).click();
     await page.getByRole("heading", { name: "训练信息预览" }).waitFor();
@@ -199,10 +220,10 @@ async function main() {
     await page.waitForURL("**/clubs/999/activities/2");
     const published = logs.writes.at(-1).body;
     assert.equal(published.startsAt, "2026-11-08 06:30");
-    assert.equal(published.groups[0].name, "A 组");
+    assert.equal(published.groups[0].name, "间歇训练组");
     await context.close();
   }
-  await browser.close();
+  } finally { await browser.close(); }
   assert.deepEqual(logs.errors, [], "browser should have no runtime or API errors");
   fs.writeFileSync(path.join(output, "activity-browser-report.json"), JSON.stringify({ pass: true, source: "Web pages in Chrome with in-memory API mocks; writes were intercepted", widths: [320, 390], checks: logs.checks, writes: logs.writes, screenshots: logs.screenshots, errors: logs.errors }, null, 2));
   console.log(JSON.stringify({ pass: true, checks: logs.checks.length, writes: logs.writes.length, screenshots: logs.screenshots.length, errors: logs.errors }, null, 2));

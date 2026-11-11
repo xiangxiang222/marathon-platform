@@ -1,4 +1,4 @@
-<view class="intro-page">
+<view class="intro-page mini-club-intro-club-intro">
   <view wx:if="{{loading}}" class="state">正在打开跑团…</view>
   <view wx:elif="{{club && restricted}}" class="state restricted-state"><view class="section-title">暂时无法公开查看这个跑团</view><view class="status-copy">{{club.statusMessage || '该跑团目前暂停公开展示与招募。团内记录保留，暂不能分享或申请加入。'}}</view><view class="status-copy">团号 #{{club.id}}</view><button wx:if="{{club.joined}}" class="retry-action" bindtap="enterClub">进入已加入的跑团</button><button class="report-link" bindtap="reportIdentity">提交私密说明或申诉 ›</button><navigator class="report-link" open-type="switchTab" url="/pages/clubs/clubs">返回跑团</navigator></view>
   <block wx:elif="{{club}}">

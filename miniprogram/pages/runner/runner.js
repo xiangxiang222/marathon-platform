@@ -258,7 +258,7 @@ Page({
     const item = this.data.payload && this.data.payload.media.find((row) => row.id === id);
     if (!item || this.data.deleting) return;
     wx.showModal({
-      title: "删除这份收藏？", content: "只删除这份收藏文件，不影响比赛成绩。删除后无法恢复。", confirmText: "删除", confirmColor: "#ff0a30",
+      title: "删除这份收藏？", content: "只删除这份收藏文件，不影响比赛成绩。删除后无法恢复。", confirmText: "删除", confirmColor: "#e1251b",
       success: (answer) => {
         if (!answer.confirm) return;
         this.setData({ deleting: id });
@@ -335,7 +335,7 @@ Page({
     const options = {
       title: "导入运动数据前确认",
       content: "完整运动文件可能包含 GPS 轨迹、心率等敏感个人信息。你同意本次临时上传并解析该文件，仅保存运动摘要与去重信息，不保留原文件、GPS 轨迹和心率。跑量及相关截图按你所在跑团的规则展示。取消不会上传，也不影响基本浏览。可在数据来源页阅读隐私政策与权限说明。",
-      confirmText: "同意导入", cancelText: "取消", confirmColor: "#ff0a30",
+      confirmText: "同意导入", cancelText: "取消", confirmColor: "#e1251b",
       success: (answer) => {
         if (!this.deviceSession(token) || selection !== this._fileSequence) return;
         this._activityConsentPending = false;
@@ -386,7 +386,7 @@ Page({
     if (!device || (!["connected", "error"].includes(device.status) && !device.canDisconnect)) return;
     const token = getApp().globalData.token;
     wx.showModal({
-      title: device.status === "unavailable" ? "清除旧连接？" : "解除设备连接？", content: (device.status === "unavailable" ? "厂商接入尚未开通，将清除之前保留的连接凭据。" : "解除 " + device.name + " 后停止接收新的运动数据，") + "已保存的运动记录继续保留。", confirmText: device.status === "unavailable" ? "清除" : "解除连接", confirmColor: "#ff0a30",
+      title: device.status === "unavailable" ? "清除旧连接？" : "解除设备连接？", content: (device.status === "unavailable" ? "厂商接入尚未开通，将清除之前保留的连接凭据。" : "解除 " + device.name + " 后停止接收新的运动数据，") + "已保存的运动记录继续保留。", confirmText: device.status === "unavailable" ? "清除" : "解除连接", confirmColor: "#e1251b",
       success: (answer) => {
         if (!answer.confirm || !this.deviceSession(token) || this.data.deviceBusy) return;
         this.setData({ deviceBusy: provider, deviceMessage: "", deviceFailed: false });

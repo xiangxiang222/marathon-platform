@@ -296,10 +296,10 @@ onMounted(() => {
 <style scoped>
 .hint { margin: 8px 0 0; color: var(--muted); font-size: 13px; line-height: 1.45; }
 .modes { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
-.modes button { height: 34px; padding: 0 12px; border-radius: 8px; background: var(--chip); color: var(--ink); font-weight: 600; }
+.modes button { height: 34px; padding: 0 12px; border-radius: 7px; background: var(--card); color: var(--ink); font-weight: 500;  border: 1px solid var(--line); font-size: 13px;}
 .modes button.on { background: var(--accent-soft); color: var(--accent); }
 .stack { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
-.stack input, .field input, .field select, section > input { height: 40px; border: 0; border-radius: 12px; padding: 0 12px; background: var(--chip); }
+.stack input, .field input, .field select, section > input { height: 40px; border: 1px solid var(--line); border-radius: 12px; padding: 0 12px; background: var(--field-bg);  min-height: 44px; font-size: 14px;}
 section > input { width: 100%; margin-top: 10px; box-sizing: border-box; }
 .field { display: flex; gap: 8px; margin-top: 8px; }
 .field input, .field select { flex: 1; min-width: 0; }

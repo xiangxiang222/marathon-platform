@@ -12,6 +12,7 @@
     "build": "npm run build --prefix web",
     "test": "npm test --prefix server",
     "test:client": "node design/previews/run-client-regressions.cjs",
+    "test:admin:ui": "node design/previews/admin-browser-regression.cjs && node design/previews/admin-ui-full-audit.cjs",
     "test:mini": "node design/previews/mini-native-check.cjs",
     "test:clubs": "node design/previews/club-live-acceptance.cjs && node design/previews/club-navigation-regression.cjs && node design/previews/mini-club-redesign-regression.cjs && npm run test:club-identity",
     "test:club-identity": "node design/previews/club-open-creation-live.cjs && node design/previews/mini-club-open-creation-regression.cjs",
@@ -22,7 +23,9 @@
     "legal:check": "node scripts/generate-legal.cjs --check",
     "test:legal": "npm run legal:check && node design/previews/legal-live-acceptance.cjs && node design/previews/mini-legal-regression.cjs",
     "test:history": "node --test --test-concurrency=1 --require ./server/test/setup-env.js server/test/race-history.test.js server/test/history-ocr.test.js && npm run test:history:client",
-    "test:history:client": "node design/previews/race-history-web-acceptance.cjs && node design/previews/race-history-mini-regression.cjs"
+    "test:history:client": "node design/previews/race-history-web-acceptance.cjs && node design/previews/race-history-mini-regression.cjs",
+    "test:clubs:full": "node scripts/club-full-acceptance.cjs",
+    "test:ui": "node scripts/ui-full-audit.cjs"
   },
   "devDependencies": {
     "concurrently": "^9.1.2",

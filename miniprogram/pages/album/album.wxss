@@ -1,18 +1,44 @@
 @import "../../utils/club-detail.wxss";
-.src { color: #8a8e99; font-size: 26rpx; margin-top: 8rpx; }
-.title { font-size: 36rpx; font-weight: 650; }
-.album.grid { display: flex; flex-wrap: wrap; }
-.album.grid .shot { width: 31%; margin: 16rpx 2% 0 0; }
-.album.fall .shot { margin-top: 16rpx; }
-.shot image, .shot video { width: 100%; border-radius: 16rpx; }
-.album.grid .shot image, .album.grid .shot video { height: 200rpx; }
-.album.fall .shot image, .album.fall .shot video { height: 360rpx; }
-.drop { color: #ff0a30; margin-right: 16rpx; }
-.detail-state { margin: 32rpx; padding: 40rpx 28rpx; border-radius: 20rpx; background: #fff; text-align: center; }
-.state-title { color: #1f2026; font-size: 30rpx; font-weight: 600; }
-.detail-state .src { margin-top: 16rpx; overflow-wrap: anywhere; }
-.detail-state .btn { margin-top: 28rpx; }
+.src { color: var(--text-secondary); font-size: 12px; margin-top: 8rpx; }
+.title { font-size: 24px; font-weight: 650; }
+.album.grid { flex-wrap: wrap; }
+.album.fall .shot { margin-top: 16rpx;  }
+.shot image, .shot video { width: 100%;  }
+.album.grid .shot image, .album.grid .shot video { height: 200rpx;  }
+.album.fall .shot image, .album.fall .shot video { height: 360rpx;  }
+.drop { color: var(--brand); margin-right: 16rpx; }
+.detail-state { margin: 32rpx; padding: 40rpx 28rpx;  background: linear-gradient(130deg,#eaf4ff,#f2edff); text-align: center; }
+.state-title { color: var(--text); font-size: 18px; font-weight: 600; }
+.detail-state .src { margin-top: 16rpx; overflow-wrap: anywhere;  }
+.detail-state .btn { margin-top: 28rpx;  }
 
-.club-detail .title { margin: 16rpx 0; font-size: 38rpx; font-weight: 700; line-height: 1.35; overflow-wrap: anywhere; }
-.club-detail .drop { display: inline-flex; align-items: center; min-height: 80rpx; font-size: 24rpx; }
-.club-detail .shot .src { font-size: 21rpx; }
+.club-detail .title { margin: 16rpx 0; overflow-wrap: anywhere; }
+.club-detail .drop { display: inline-flex; align-items: center; min-height:44px; font-size: 12px; }
+.club-detail .shot .src { font-size: 12px;  }
+
+/* Route geometry: surfaces, controls and compact labels have distinct roles. */
+.mini-album-album .card, .mini-album-album .detail-state, .mini-album-album .shot { border-radius: 36rpx; }
+.mini-album-album .btn, .mini-album-album .ghost { border-radius: 24rpx; }
+
+/* Page composition and interaction hierarchy. */
+.mini-album-album { color: var(--text); }
+.mini-album-album button { font-weight: 500; border-radius: 24rpx; }
+
+.club-detail .card { border: 1px solid var(--border); }
+.club-detail .title { font-size: 24px; font-weight: 600; line-height: 1.45; }
+.detail-options { border-bottom: 1px solid var(--border); gap: 28rpx; }
+.detail-options .ghost { position: relative; margin: 0; padding: 0; border: 0; border-radius: 0; background: transparent; color: var(--text-secondary); font-size: 14px; }
+.detail-options .ghost.on { color: var(--text); background: transparent; box-shadow: inset 0 -2px var(--brand); }
+.album.grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 20rpx; margin-top: 20rpx; }
+.album.grid .shot { width: auto; margin: 0; }
+.shot { overflow: hidden; border: 1px solid var(--border); border-radius: 24rpx; }
+.shot image,.shot video { border-radius: 0; }
+.shot .src,.shot .drop { padding: 0 12rpx; }
+.album.grid .shot image,.album.grid .shot video { height: 240rpx; }
+
+/* Primary actions read at 14px, secondary actions at 13px; compact filters stay at 12px. */
+.mini-album-album .btn { font-size: 14px; font-weight: 500; }
+.mini-album-album .ghost { font-size: 13px; font-weight: 500; }
+
+/* Color surfaces use existing semantic page elements; layout stays unchanged. */
+.mini-album-album > .card:first-child { background: linear-gradient(135deg,#f2edff,#ffffff); box-shadow: var(--card-shadow); }

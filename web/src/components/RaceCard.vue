@@ -36,18 +36,18 @@ const projectText = computed(() => {
 </script>
 
 <style scoped>
-.race-card { position: relative; align-items: center; gap: 12px; min-height: 96px; padding: 12px; border-radius: 12px; background: #fff; }
-.race-card .date { display: flex; flex-direction: column; justify-content: center; align-items: center; width: 50px; height: 58px; flex: none; border-radius: 8px; background: #f5f6f8; color: var(--accent); }
-.race-card .date span { color: #777b85; font-size: 11px; font-weight: 400; line-height: 16px; }
-.race-card .date b { margin-top: 2px; font-size: 26px; font-weight: 700; line-height: 1; }
+.race-card { position: relative; align-items: center; gap: 14px; min-height: 112px; padding: 16px 14px; border-radius: var(--radius-card); background: #fff; border: 1px solid #edf0f3; box-shadow: var(--card-shadow); }
+.race-card .date { display: flex; flex-direction: column; justify-content: center; align-items: center; width: 52px; height: 66px; flex: none; border-radius: 12px; background: var(--tone-soft, var(--peach-soft)); color: var(--tone, var(--accent)); }
+.race-card .date span { color: var(--tone, var(--muted)); font-size: 12px; font-weight: 400; line-height: 16px; }
+.race-card .date b { margin-top: 3px; font-size: 29px; font-weight: 700; line-height: 1; }
 .race-card .body { flex: 1; min-width: 0; }
 .race-card strong { font-size: 16px; line-height: 1.4; font-weight: 600; letter-spacing: 0; }
-.race-card .meta { display: block; overflow: hidden; margin: 4px 0 0; font-size: 12px; line-height: 18px; font-weight: 400; color: var(--muted); white-space: nowrap; text-overflow: ellipsis; }
+.race-card .meta { display: block; overflow: hidden; margin: 6px 0 0; font-size: 12px; line-height: 19px; font-weight: 400; color: var(--muted); white-space: nowrap; text-overflow: ellipsis; }
 .race-card-foot { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 8px; margin-top: 5px; min-height: 18px; }
-.race-state { flex: none; padding: 1px 5px; border-radius: 4px; color: #777b85; background: #f3f4f7; font-size: 11px; font-style: normal; line-height: 16px; font-weight: 400; }
+.race-state { flex: none; padding: 2px 7px; border-radius: 6px; color: var(--tone, #666); background: var(--tone-soft, var(--bg)); font-size: 12px; font-style: normal; line-height: 17px; font-weight: 500; }
 .race-state.active { color: var(--accent); background: var(--accent-soft); }
-.deadline { overflow: hidden; color: var(--muted); font-size: 11px; line-height: 18px; text-overflow: ellipsis; white-space: nowrap; }
+.deadline { overflow: hidden; color: var(--muted); font-size: 12px; line-height: 18px; text-overflow: ellipsis; white-space: nowrap; }
 .deadline.urgent { color: var(--accent); }
-.race-chevron { flex: none; margin-left: -6px; color: #c3c6ce; font-size: 22px; line-height: 1; }
+.race-chevron { flex: none; margin-left: -6px; color: var(--muted); font-size: 22px; line-height: 1; }
 @media (max-width: 350px) { .race-card { gap: 10px; } .race-card strong { font-size: 15px; } .race-card .date { width: 46px; } }
 </style>

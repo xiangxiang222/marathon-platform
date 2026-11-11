@@ -22,44 +22,44 @@ function renderCallPoster(canvas, call) {
   canvas.width = WIDTH;
   canvas.height = height;
   const ctx = canvas.getContext("2d");
-  ctx.fillStyle = "#f5f6fa";
+  ctx.fillStyle = "#f5f5f5";
   ctx.fillRect(0, 0, WIDTH, height);
-  ctx.fillStyle = "#ff0a30";
+  ctx.fillStyle = "#e1251b";
   ctx.fillRect(0, 0, WIDTH, 12);
   ctx.fillStyle = "#ffffff";
   ctx.fillRect(32, 32, WIDTH - 64, 266);
-  ctx.fillStyle = "#ff0a30";
+  ctx.fillStyle = "#e1251b";
   ctx.font = "600 24px " + FONT;
   ctx.fillText(call.eyebrow || "跑团成绩接龙", 60, 78);
-  ctx.fillStyle = "#1f2026";
+  ctx.fillStyle = "#262626";
   ctx.font = "700 36px " + FONT;
   ctx.fillText(fit(ctx, call.title, WIDTH - 120), 60, 132);
-  ctx.fillStyle = "#8a8e99";
+  ctx.fillStyle = "#737373";
   ctx.font = "400 24px " + FONT;
   ctx.fillText(String(call.raceDate || "") + " · " + total + (call.countLabel || " 条成绩"), 60, 176);
-  ctx.fillStyle = "#1f2026";
+  ctx.fillStyle = "#262626";
   ctx.font = "500 23px " + FONT;
   ctx.fillText(fit(ctx, call.summary || "暂无成绩", WIDTH - 120), 60, 218);
   let y = 318;
   groups.forEach((group) => {
-    ctx.fillStyle = "#fff0f3";
+    ctx.fillStyle = "#fff2f0";
     ctx.fillRect(32, y, WIDTH - 64, 56);
-    ctx.fillStyle = "#ff0a30";
+    ctx.fillStyle = "#e1251b";
     ctx.font = "600 24px " + FONT;
     ctx.fillText(group.label, 54, y + 37);
     y += 56;
     group.rows.forEach((row) => {
-      ctx.fillStyle = "#ff0a30";
+      ctx.fillStyle = "#e1251b";
       ctx.font = "600 22px " + FONT;
       ctx.fillText(String(row.place).padStart(2, "0"), 54, y + 44);
-      ctx.fillStyle = "#1f2026";
+      ctx.fillStyle = "#262626";
       ctx.font = "600 25px " + FONT;
       ctx.fillText(fit(ctx, row.nickname + (row.staffFilled ? " · 管理员补录" : ""), 375), 112, y + 43);
       ctx.textAlign = "right";
       ctx.font = "600 24px " + FONT;
       ctx.fillText(fit(ctx, (row.clock || row.status || "") + (row.tag ? " " + row.tag : ""), 190), WIDTH - 54, y + 43);
       ctx.textAlign = "left";
-      ctx.strokeStyle = "#eff0f4";
+      ctx.strokeStyle = "#ebebed";
       ctx.lineWidth = 1;
       ctx.beginPath();
       ctx.moveTo(54, y + 74);
@@ -69,7 +69,7 @@ function renderCallPoster(canvas, call) {
     });
   });
   if (total > LIMIT) {
-    ctx.fillStyle = "#8a8e99";
+    ctx.fillStyle = "#737373";
     ctx.font = "400 22px " + FONT;
     ctx.fillText("长图展示前 " + LIMIT + " 条成绩", 54, y + 42);
   }

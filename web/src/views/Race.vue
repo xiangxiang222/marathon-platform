@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main class="race-page">
     <header class="topbar">
       <router-link to="/" aria-label="返回">‹</router-link>
       <h1>赛事</h1>
@@ -522,7 +522,7 @@ function savePoster() {
   canvas.width = 750;
   canvas.height = 1000;
   const ctx = canvas.getContext("2d");
-  ctx.fillStyle = "#ff0a30";
+  ctx.fillStyle = "#e1251b";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = "#ffffff";
   ctx.textAlign = "left";
@@ -599,12 +599,12 @@ onMounted(() => {
 <style scoped>
 .race-state { display: grid; justify-items: center; gap: 12px; margin: 20px 16px; padding: 32px 20px; border-radius: 12px; background: #fff; color: var(--muted); text-align: center; font-size: 14px; }
 .race-state p { margin: 0; line-height: 1.6; }
-.race-state-error p { color: #b42336; }
-.retry-button { min-height: 40px; padding: 0 20px; border-radius: 8px; background: var(--accent); color: #fff; font-weight: 600; }
+.race-state-error p { color: var(--accent); }
+.retry-button { min-height: 40px; padding: 0 20px; border-radius: 12px; background: var(--accent); color: #fff; font-weight: 600; }
 .race-state a { color: var(--muted); font-size: 12px; }
-.pass { align-items: flex-start; padding: 20px 16px; }
+.pass { align-items: flex-start; padding: 24px 18px; }
 .pass-date { padding: 12px 8px; border-radius: 12px; background: var(--chip); }
-.pass h1 { font-size: 22px; line-height: 1.4; }
+.pass h1 { font-size: 24px; line-height: 1.4; }
 .pass-pill { background: var(--accent-soft); color: var(--accent); }
 .plan-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .plan-heading h2 { margin: 0; font-size: 18px; }
@@ -618,7 +618,7 @@ onMounted(() => {
 
 .detail-poster :deep(.poster) { aspect-ratio: 16 / 9; height: auto; border-radius: 0; }
 .share-text { margin: 0; font: inherit; white-space: pre-wrap; line-height: 1.5; }
-.poster-card { margin-top: 8px; padding: 24px 20px; border-radius: 12px; background: var(--accent-soft); color: var(--ink); }
+.poster-card { margin-top: 8px; padding: 24px 20px; border-radius: 18px; background: var(--accent-soft); color: var(--ink);  border: 1px solid var(--line);}
 .poster-card p { margin: 0; font-size: 16px; line-height: 1.45; }
 .poster-card p:first-child { font-size: 28px; font-weight: 700; color: var(--accent); }
 .poster-card p + p { margin-top: 10px; }
@@ -636,7 +636,7 @@ onMounted(() => {
 .proof-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
 .proof-actions label { position: relative; overflow: hidden; height: 36px; padding: 0 12px; border-radius: 10px; background: var(--chip); color: var(--accent); font-size: 14px; font-weight: 600; line-height: 36px; }
 .proof-actions input { position: absolute; inset: 0; opacity: 0; }
-.jump { display: block; margin-top: 8px; height: 44px; border-radius: 12px; background: var(--chip); color: var(--accent); font-weight: 600; font-size: 16px; line-height: 44px; text-align: center; }
+.jump { display: block; margin-top: 8px; height: 44px; border-radius: 12px; background: var(--chip); color: var(--accent); font-weight: 600; font-size: 14px; line-height: 44px; text-align: center; }
 .jump.main { background: var(--accent); color: #fff; }
 .chips { display: flex; flex-wrap: wrap; gap: 8px; }
 .chip { padding: 6px 10px; border-radius: 8px; background: var(--chip); font-size: 13px; font-weight: 600; }
@@ -646,7 +646,7 @@ onMounted(() => {
 .tabs { display: flex; gap: 12px; margin: 12px 16px 0; padding: 0 12px; border-radius: 12px; background: #fff; }
 .tab { position: relative; flex: 1; height: 46px; border: 0; background: transparent; color: var(--muted); font-size: 14px; font-weight: 600; white-space: nowrap; }
 .tab.on { color: var(--accent); }
-.tab.on::after { content: ""; position: absolute; right: 12px; bottom: 0; left: 12px; height: 3px; border-radius: 2px; background: var(--accent); }
+.tab.on::after { content: ""; position: absolute; right: 12px; bottom: 0; left: 12px; height: 2px; border-radius: 2px; background: var(--accent); }
 .timeline { display: flex; gap: 8px; overflow-x: auto; }
 .tl { flex: 1; min-width: 92px; text-align: center; }
 .tl .dot { display: block; width: 8px; height: 8px; margin: 0 auto 8px; border-radius: 50%; background: var(--accent); }
@@ -664,4 +664,10 @@ onMounted(() => {
 .guide-md .md-mark { margin-right: 6px; color: var(--muted); }
 .viewer { position: fixed; inset: 0; z-index: 30; display: flex; align-items: center; justify-content: center; padding: 16px; background: rgba(0, 0, 0, 0.88); }
 .viewer img { max-width: 100%; max-height: 100%; }
+
+
+/* The race ticket is warm; reference information stays clear on white. */
+.race-page { background:transparent; }.race-page>.topbar { background:transparent; }
+.pass { background:linear-gradient(125deg,#fff2e4,#fff);border-color:#eed9c7;box-shadow:var(--card-shadow,0 7px 24px #92633d10); }.pass-date { background:#ffffffa3;border-color:#edcdb7; }.pass-date b { color:#bd4a30; }.pass-pill { color:#9e5e22;background:#fff6dc;border-color:#e9d4ab; }
+.race-plan { background:#fff;border-color:#d7e5f2; }.day-note { background:var(--mint-soft,#e9f7f2);border-color:#d4e7dc; }.warn { background:var(--sun-soft,#fff4d7);border-color:#eddfba; }
 </style>

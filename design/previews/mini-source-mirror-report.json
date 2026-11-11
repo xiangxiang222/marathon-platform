@@ -1,0 +1,333 @@
+{
+  "kind": "小程序源码浏览器渲染镜像，非微信模拟器或真机截图",
+  "fixtureNotice": "赛事、提醒和meta读取本地公开GET；我的、跑团与运动登录内容为内存示例数据，不是实际用户数据；禁止全部非GET请求",
+  "limitations": "WXML转Vue，真实WXSS按屏宽换算rpx，真实Page脚本在VM运行；page-header执行实际组件尺寸逻辑。状态栏、胶囊、底栏为单独模拟。字体/原生控件行为需微信工具及真机复核。",
+  "screens": [
+    {
+      "page": "races",
+      "scenario": "public real GET",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "file": "mini-races-public-390.png",
+      "calls": [
+        {
+          "path": "/reminders",
+          "source": "public real GET"
+        },
+        {
+          "path": "/races?status=upcoming&kind=road&page=1",
+          "source": "public real GET"
+        }
+      ],
+      "width": 390,
+      "scrollWidth": 390,
+      "title": "赛历",
+      "titleFont": "24.96px",
+      "titleRight": 62.390625,
+      "capsuleLeft": 296,
+      "capsuleOverlap": false,
+      "overflow": [],
+      "brokenImages": [],
+      "firstCardY": 397.71875,
+      "visibleInputs": [
+        "搜赛事名称或城市"
+      ],
+      "expanded": [],
+      "errors": [],
+      "blockedBrowserRequests": []
+    },
+    {
+      "page": "races",
+      "scenario": "public real GET",
+      "viewport": {
+        "width": 320,
+        "height": 760
+      },
+      "file": "mini-races-public-320.png",
+      "calls": [
+        {
+          "path": "/reminders",
+          "source": "public real GET"
+        },
+        {
+          "path": "/races?status=upcoming&kind=road&page=1",
+          "source": "public real GET"
+        }
+      ],
+      "width": 320,
+      "scrollWidth": 320,
+      "title": "赛历",
+      "titleFont": "24px",
+      "titleRight": 58.234375,
+      "capsuleLeft": 226,
+      "capsuleOverlap": false,
+      "overflow": [],
+      "brokenImages": [],
+      "firstCardY": 349.671875,
+      "visibleInputs": [
+        "搜赛事名称或城市"
+      ],
+      "expanded": [],
+      "errors": [],
+      "blockedBrowserRequests": []
+    },
+    {
+      "page": "clubs",
+      "scenario": "signed-in fixture",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "file": "mini-clubs-fixture-390.png",
+      "calls": [
+        {
+          "path": "/me",
+          "source": "in-memory fixture; no HTTP request"
+        },
+        {
+          "path": "/clubs/directory",
+          "source": "in-memory fixture; no HTTP request"
+        }
+      ],
+      "width": 390,
+      "scrollWidth": 390,
+      "title": "跑团",
+      "titleFont": "24.96px",
+      "titleRight": 62.390625,
+      "capsuleLeft": 296,
+      "capsuleOverlap": false,
+      "overflow": [],
+      "brokenImages": [],
+      "firstCardY": 165.84375,
+      "visibleInputs": [
+        "搜索跑团名称、团长"
+      ],
+      "expanded": [
+        {
+          "state": {
+            "createOpen": true
+          },
+          "scrollWidth": 390
+        }
+      ],
+      "errors": [],
+      "blockedBrowserRequests": []
+    },
+    {
+      "page": "clubs",
+      "scenario": "signed-in fixture",
+      "viewport": {
+        "width": 320,
+        "height": 760
+      },
+      "file": "mini-clubs-fixture-320.png",
+      "calls": [
+        {
+          "path": "/me",
+          "source": "in-memory fixture; no HTTP request"
+        },
+        {
+          "path": "/clubs/directory",
+          "source": "in-memory fixture; no HTTP request"
+        }
+      ],
+      "width": 320,
+      "scrollWidth": 320,
+      "title": "跑团",
+      "titleFont": "24px",
+      "titleRight": 58.234375,
+      "capsuleLeft": 226,
+      "capsuleOverlap": false,
+      "overflow": [],
+      "brokenImages": [],
+      "firstCardY": 161.46875,
+      "visibleInputs": [
+        "搜索跑团名称、团长"
+      ],
+      "expanded": [
+        {
+          "state": {
+            "createOpen": true
+          },
+          "scrollWidth": 320
+        }
+      ],
+      "errors": [],
+      "blockedBrowserRequests": []
+    },
+    {
+      "page": "sport",
+      "scenario": "signed-in fixture",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "file": "mini-sport-fixture-390.png",
+      "calls": [
+        {
+          "path": "/runs?month=2026-10",
+          "source": "in-memory fixture; no HTTP request"
+        }
+      ],
+      "width": 390,
+      "scrollWidth": 390,
+      "title": "运动",
+      "titleFont": "24.96px",
+      "titleRight": 62.390625,
+      "capsuleLeft": 296,
+      "capsuleOverlap": false,
+      "overflow": [],
+      "brokenImages": [],
+      "firstCardY": 120.109375,
+      "visibleInputs": [],
+      "expanded": [
+        {
+          "state": {
+            "recordOpen": true,
+            "targetOpen": true
+          },
+          "scrollWidth": 390
+        }
+      ],
+      "errors": [],
+      "blockedBrowserRequests": []
+    },
+    {
+      "page": "sport",
+      "scenario": "signed-in fixture",
+      "viewport": {
+        "width": 320,
+        "height": 760
+      },
+      "file": "mini-sport-fixture-320.png",
+      "calls": [
+        {
+          "path": "/runs?month=2026-10",
+          "source": "in-memory fixture; no HTTP request"
+        }
+      ],
+      "width": 320,
+      "scrollWidth": 320,
+      "title": "运动",
+      "titleFont": "24px",
+      "titleRight": 58.234375,
+      "capsuleLeft": 226,
+      "capsuleOverlap": false,
+      "overflow": [],
+      "brokenImages": [],
+      "firstCardY": 117.53125,
+      "visibleInputs": [],
+      "expanded": [
+        {
+          "state": {
+            "recordOpen": true,
+            "targetOpen": true
+          },
+          "scrollWidth": 320
+        }
+      ],
+      "errors": [],
+      "blockedBrowserRequests": []
+    },
+    {
+      "page": "mine",
+      "scenario": "signed-in fixture",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "file": "mini-mine-fixture-390.png",
+      "calls": [
+        {
+          "path": "/meta",
+          "source": "public real GET"
+        },
+        {
+          "path": "/me",
+          "source": "in-memory fixture; no HTTP request"
+        }
+      ],
+      "width": 390,
+      "scrollWidth": 390,
+      "title": "我的",
+      "titleFont": "24.96px",
+      "titleRight": 62.390625,
+      "capsuleLeft": 296,
+      "capsuleOverlap": false,
+      "overflow": [],
+      "brokenImages": [],
+      "firstCardY": 120.109375,
+      "visibleInputs": [],
+      "expanded": [
+        {
+          "state": {
+            "mainTab": "results"
+          },
+          "scrollWidth": 390
+        },
+        {
+          "state": {
+            "mainTab": "profile",
+            "profileOpen": true,
+            "passwordOpen": true
+          },
+          "scrollWidth": 390
+        }
+      ],
+      "errors": [],
+      "blockedBrowserRequests": []
+    },
+    {
+      "page": "mine",
+      "scenario": "signed-in fixture",
+      "viewport": {
+        "width": 320,
+        "height": 760
+      },
+      "file": "mini-mine-fixture-320.png",
+      "calls": [
+        {
+          "path": "/meta",
+          "source": "public real GET"
+        },
+        {
+          "path": "/me",
+          "source": "in-memory fixture; no HTTP request"
+        }
+      ],
+      "width": 320,
+      "scrollWidth": 320,
+      "title": "我的",
+      "titleFont": "24px",
+      "titleRight": 58.234375,
+      "capsuleLeft": 226,
+      "capsuleOverlap": false,
+      "overflow": [],
+      "brokenImages": [],
+      "firstCardY": 117.53125,
+      "visibleInputs": [],
+      "expanded": [
+        {
+          "state": {
+            "mainTab": "results"
+          },
+          "scrollWidth": 320
+        },
+        {
+          "state": {
+            "mainTab": "profile",
+            "profileOpen": true,
+            "passwordOpen": true
+          },
+          "scrollWidth": 320
+        }
+      ],
+      "errors": [],
+      "blockedBrowserRequests": []
+    }
+  ],
+  "passed": true,
+  "generatedAt": "2026-10-26T17:45:14.873Z"
+}

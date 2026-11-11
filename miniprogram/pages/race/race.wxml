@@ -1,4 +1,4 @@
-<view class="pad" wx:if="{{race}}">
+<view class="pad mini-race-race" wx:if="{{race}}">
   <view class="card">
     <view class="teal">{{race.regStatus}}</view>
     <view class="title">{{race.name}}</view>
@@ -174,10 +174,10 @@
       <view wx:if="{{myResult.proofLabel}}" class="src">{{myResult.proofLabel}} · 未核验</view>
       <button wx:for="{{distanceOptions}}" wx:key="key" class="ghost {{distance === item.key ? 'on' : ''}}" data-distance="{{item.key}}" bindtap="pickDistance">{{item.label}}</button>
       <view class="field">
-        <input placeholder="3:29:59" value="{{clock}}" bindinput="onClock" />
+        <input placeholder="3:29:59" value="{{clock}}" bindinput="onClock" aria-label="3:29:59" />
       </view>
       <view class="field">
-        <input placeholder="这场想记的一句" value="{{story}}" maxlength="200" bindinput="onStory" />
+        <input placeholder="这场想记的一句" value="{{story}}" maxlength="200" bindinput="onStory" aria-label="这场想记的一句" />
       </view>
       <button class="btn" bindtap="saveResult">记下成绩</button>
       <button wx:if="{{myResult}}" class="ghost" data-kind="certificate" bindtap="chooseProof">证书照片</button>

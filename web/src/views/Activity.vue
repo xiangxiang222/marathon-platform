@@ -3,7 +3,7 @@
     <header class="activity-nav">
       <router-link :to="'/clubs/' + clubId" aria-label="返回跑团">‹</router-link>
       <div><small>{{ clubName || '跑团活动' }}</small><h1>训练详情</h1></div>
-      <button type="button" title="分享活动" @click="share">↗</button>
+      <button class="activity-share" type="button" title="分享活动" @click="share"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5H5a1 1 0 0 0-1 1v13a1 1 0 0 0 1 1h13a1 1 0 0 0 1-1v-4M13 4h7v7M10 14 20 4"/></svg><span>分享</span></button>
     </header>
 
     <p v-if="loading" class="state">正在加载活动…</p>
@@ -29,7 +29,7 @@
       </nav>
 
       <section v-if="activeTab === 'overview'" class="detail-panel">
-        <div class="panel-heading"><div><span class="eyebrow">THE SESSION</span><h2>今天怎么跑</h2></div><span v-if="activity.plannedKm" class="distance">{{ activity.plannedKm }} km</span></div>
+        <div class="panel-heading"><div><span class="eyebrow">活动说明</span><h2>今天怎么跑</h2></div><span v-if="activity.plannedKm" class="distance">{{ activity.plannedKm }} km</span></div>
         <div class="run-facts">
           <div><span class="fact-icon">↗</span><div><small>路线</small><b>{{ activity.route || '集合后由领跑员说明' }}</b></div></div>
           <div><span class="fact-icon">◎</span><div><small>活动地点</small><b>{{ activity.place || '以集合点为准' }}</b></div></div>
@@ -39,19 +39,19 @@
           <h3>出发前看一眼</h3><p v-if="activity.notice">{{ activity.notice }}</p><p v-if="activity.note">{{ activity.note }}</p>
         </div>
         <div class="crew-preview">
-          <div class="panel-heading"><div><span class="eyebrow">YOUR CREW</span><h2>一起出发的人</h2></div><button @click="activeTab = 'groups'">看分组 →</button></div>
+          <div class="panel-heading"><div><span class="eyebrow">同行跑友</span><h2>一起出发的人</h2></div><button @click="activeTab = 'groups'">看分组 →</button></div>
           <div class="avatar-stack"><template v-for="person in signups.slice(0, 8)" :key="person.userId"><img v-if="person.avatar" :src="person.avatar" :alt="person.nickname" @error="fallbackAvatar($event, person)"><span v-else class="avatar-letter">{{ person.nickname.slice(0, 1) }}</span></template></div>
           <p>{{ activity.signupCount }} 位跑者报名<template v-if="activity.men || activity.women"> · 男 {{ activity.men }} / 女 {{ activity.women }}</template></p>
         </div>
         <div v-if="checks.length" class="check-list">
-          <div class="panel-heading"><div><span class="eyebrow">AFTER THE RUN</span><h2>训练打卡</h2></div><span class="group-total">{{ checks.length }} 人</span></div>
+          <div class="panel-heading"><div><span class="eyebrow">训练记录</span><h2>训练打卡</h2></div><span class="group-total">{{ checks.length }} 人</span></div>
           <div v-for="row in checks" :key="row.userId" class="runner-row"><span class="avatar-letter">{{ row.nickname.slice(0, 1) }}</span><b>{{ row.nickname }}</b><span class="runner-tags"><small v-if="row.historical" class="history-label">历史记录</small>{{ row.km }} km<template v-if="row.note"> · {{ row.note }}</template></span></div>
         </div>
         <p v-if="activity.rule" class="integrity-note">{{ activity.rule }}</p>
       </section>
 
       <section v-else-if="activeTab === 'groups'" class="detail-panel group-panel">
-        <div class="panel-heading"><div><span class="eyebrow">PACE & PEOPLE</span><h2>选择适合自己的节奏</h2></div><span class="group-total">{{ activity.signupCount }} 人</span></div>
+        <div class="panel-heading"><div><span class="eyebrow">分组与配速</span><h2>选择适合自己的节奏</h2></div><span class="group-total">{{ activity.signupCount }} 人</span></div>
         <div v-if="!groups.length && signups.length" class="pace-group">
           <div class="group-title"><div><span class="group-kind">活动成员</span><h3>已报名跑者</h3></div><b>{{ signups.length }}</b></div>
           <div class="roster"><div v-for="person in signups" :key="person.userId" class="runner-row"><img v-if="person.avatar" :src="person.avatar" :alt="''" @error="fallbackAvatar($event, person)"/><span v-else class="avatar-letter">{{ person.nickname.slice(0, 1) }}</span><b>{{ person.nickname }}<small v-if="person.mine">我</small></b><span class="runner-tags">{{ person.pacer ? '领跑员' : '' }}</span></div></div>
@@ -69,10 +69,10 @@
       </section>
 
       <section v-else class="detail-panel plan-panel">
-        <div class="panel-heading"><div><span class="eyebrow">TRAINING NOTES</span><h2>训练安排</h2></div><span class="plan-type">{{ typeLabel }}</span></div>
+        <div class="panel-heading"><div><span class="eyebrow">训练计划</span><h2>训练安排</h2></div><span class="plan-type">{{ typeLabel }}</span></div>
         <div v-if="activity.workout" class="workout-text">{{ activity.workout }}</div><div v-else class="empty-plan"><span>↗</span><b>训练安排还未补充</b><small>请留意跑团群里的集合通知</small></div>
         <div class="safety-note"><b>跑在能力范围内</b><p>感到不适时可以放慢或停止，和领跑员打声招呼。训练建议仅供参考，以当日状态为准。</p></div>
-        <router-link v-if="album" class="album-entry" :to="'/clubs/' + clubId + '/activities/' + activityId + '/album'"><div><span class="eyebrow">MEMORIES</span><b>活动相册</b><small>{{ album.photoCount }} 张照片 · {{ album.videoCount }} 个视频</small></div><span>→</span></router-link>
+        <router-link v-if="album" class="album-entry" :to="'/clubs/' + clubId + '/activities/' + activityId + '/album'"><div><span class="eyebrow">活动影像</span><b>活动相册</b><small>{{ album.photoCount }} 张照片 · {{ album.videoCount }} 个视频</small></div><span>→</span></router-link>
       </section>
 
       <section v-if="activity.mine.signed || staff" class="utility-panel">
@@ -144,132 +144,132 @@ watch(() => [route.params.id, route.params.aid], () => { activity.value = null; 
 </script>
 
 <style scoped>
-.activity-page{--red:#ff0a30;--ink:#1f2026;--muted:#858a98;--line:#e9eaf0;--paper:#f5f6fa;min-height:100vh;background:var(--paper);color:var(--ink);padding-bottom:96px}
-.activity-nav{height:64px;position:sticky;top:0;z-index:5;background:#fff;display:grid;grid-template-columns:48px 1fr 48px;align-items:center;padding:0 max(16px,calc((100% - 780px)/2));border-bottom:1px solid var(--line)}
+.activity-page{--red:var(--accent);--paper:var(--bg);min-height:100vh;background:var(--paper);color:var(--ink);padding-bottom:96px}
+.activity-nav {height:64px;position:sticky;top:0;z-index:5;background:#fff;display:grid;grid-template-columns: 40px 1fr auto;align-items:center;padding: 0 16px;border-bottom:1px solid var(--line)}
 .activity-nav>a,.activity-nav>button{border:0;background:transparent;color:var(--ink);font-size:26px;text-decoration:none;text-align:center}
 .activity-nav>div{text-align:center}
-.activity-nav small{display:block;font-size:10px;color:var(--muted);line-height:1.2}
-.activity-nav h1{font-size:16px;margin:2px 0;font-weight:700}
+.activity-nav small{display:block;font-size:12px;color:var(--muted);line-height:1.2}
+.activity-nav h1{font-size:16px;margin:2px 0;font-weight:600}
 .activity-content{max-width:780px;margin:0 auto;padding:18px 18px 30px}
-.event-hero{position:relative;overflow:hidden;isolation:isolate;min-height:318px;padding:28px 30px 24px;color:#fff;background:linear-gradient(122deg,#17191f 0%,#252832 57%,#3a1c26 100%);border-radius:18px}
-.hero-track{position:absolute;z-index:-1;inset:0 0 0 38%;overflow:hidden;opacity:.58;transform:skewX(-23deg)}
-.hero-track i{position:absolute;inset:-45% 6%;border:1px solid #ff7488;border-radius:50%;transform:rotate(-16deg)}
+.event-hero {position:relative;overflow:hidden;isolation:isolate;min-height: 248px;padding: 26px 24px;color: var(--ink);background: linear-gradient(120deg,#fff 52%,#fff8f7);border-radius:18px; border: 1px solid var(--line);}
+.hero-track {position:absolute;z-index:-1;inset:0 0 0 38%;overflow:hidden;opacity: 1;transform:skewX(-23deg)}
+.hero-track i {position:absolute;inset:-45% 6%;border: 1px solid #ffe3df;border-radius:50%;transform:rotate(-16deg)}
 .hero-track i:nth-child(2){inset:-26% 14%}
 .hero-track i:nth-child(3){inset:-8% 22%}
 .hero-track i:nth-child(4){inset:10% 30%}
-.event-hero:after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#17191f 2%,rgba(23,25,31,.86) 43%,rgba(23,25,31,.18))}
+.event-hero:after {content:'';position:absolute;inset:0;z-index:-1;background: none; display: none;}
 .hero-meta{display:flex;gap:8px;align-items:center}
-.hero-meta span{padding:5px 9px;border:1px solid #ffffff45;border-radius:2px;font-size:11px}
-.hero-meta .status{border-color:#ff0a30;background:#ff0a30}
-.hero-km{margin:20px 0 2px;color:#fff;font-size:76px;font-weight:800;line-height:1;letter-spacing:0}
-.hero-km small{margin-left:8px;font-size:14px;font-weight:600;letter-spacing:0}
-.event-hero h2{max-width:560px;margin:10px 0 7px;font-size:26px;line-height:1.25}
-.hero-date{margin:0;color:#d6d7df;font-size:14px}
-.hero-date b{color:#fff;margin-left:6px}
-.hero-issue{margin:12px 0 0;color:#bfc1cb;font-size:12px}
-.quickfacts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);margin-top:12px;border:1px solid var(--line)}
+.hero-meta span {padding: 4px 8px;border: 1px solid var(--line);border-radius: 6px;font-size:12px; background: #fff; color: var(--muted);}
+.hero-meta .status {height:auto; border-color: #ffd9d3;background: var(--accent-soft); color: var(--accent);}
+.hero-km {margin: 22px 0 2px;color: var(--accent);font-size: 58px;font-weight: 700;line-height:1;letter-spacing:0}
+.hero-km small {margin-left:8px;font-size:14px;font-weight:600;letter-spacing:0; color: var(--accent);}
+.event-hero h2 {max-width:560px;margin:10px 0 7px;font-size: 24px;line-height: 1.4; color: var(--ink);}
+.hero-date {margin:0;color: var(--muted);font-size:14px}
+.hero-date b {color: var(--ink);margin-left:6px}
+.hero-issue {margin:12px 0 0;color: var(--muted);font-size:12px}
+.quickfacts {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);margin-top:12px;border:1px solid var(--line); border-radius: 18px;}
 .quickfacts div{display:flex;flex-direction:column;gap:9px;min-height:84px;padding:15px 14px;background:#fff}
-.quickfacts span{font-size:11px;color:var(--muted)}
+.quickfacts span{font-size:12px;color:var(--muted)}
 .quickfacts b{font-size:14px;line-height:1.3}
-.quickfacts b small{font-size:11px;color:var(--muted);font-weight:500}
+.quickfacts b small{font-size:12px;color:var(--muted);font-weight:500}
 .detail-tabs{position:sticky;top:64px;z-index:4;display:flex;gap:28px;margin-top:18px;padding:0 8px;background:var(--paper);border-bottom:1px solid var(--line)}
-.detail-tabs button{display:flex;align-items:center;gap:6px;border:0;border-bottom:2px solid transparent;background:transparent;padding:13px 2px;color:#777c88;font-size:13px}
+.detail-tabs button {display:flex;align-items:center;gap:6px;border:0;border-bottom:2px solid transparent;background:transparent;padding: 14px 2px;color:var(--muted);font-size: 14px;}
 .detail-tabs button.selected{border-color:var(--red);color:var(--ink);font-weight:700}
-.detail-tabs small{font-size:10px;color:var(--red)}
-.detail-panel,.utility-panel{margin-top:14px;padding:22px;background:#fff;border:1px solid #ececf0;border-radius:16px}
+.detail-tabs small{font-size:12px;color:var(--red)}
+.detail-panel,.utility-panel {margin-top:14px;padding: 20px;background:#fff;border: 1px solid var(--line);border-radius: 18px;}
 .panel-heading{display:flex;justify-content:space-between;align-items:center;gap:12px}
-.eyebrow{display:block;color:var(--red);font-size:9px;font-weight:800;letter-spacing:1px}
+.eyebrow{display:block;color:var(--red);font-size:12px;font-weight:700;letter-spacing:1px}
 .panel-heading h2{margin:4px 0 0;font-size:20px;letter-spacing:0}
-.distance{font-size:22px;font-weight:800}
+.distance{font-size:22px;font-weight:700}
 .run-facts{margin-top:22px;border-top:1px solid var(--line)}
 .run-facts>div{display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}
-.fact-icon{display:grid;place-items:center;width:34px;height:34px;background:#fff0f2;color:var(--red);font-size:18px}
+.fact-icon {display:grid;place-items:center;width:34px;height:34px;background:var(--accent-soft);color:var(--red);font-size:18px; border-radius: 9px;}
 .run-facts small,.run-facts b{display:block}
-.run-facts small{margin-bottom:3px;color:var(--muted);font-size:10px}
+.run-facts small{margin-bottom:3px;color:var(--muted);font-size:12px}
 .run-facts b{font-size:13px}
-.briefing{margin-top:20px;padding:16px;background:#f7f7f9;border-left:2px solid var(--red)}
+.briefing {margin-top:20px;padding:16px;background:var(--field-bg);border-left:2px solid var(--red); border-radius: 0 12px 12px 0;}
 .briefing h3{margin:0 0 8px;font-size:14px}
-.briefing p,.workout-text{white-space:pre-wrap;margin:0 0 8px;color:#454955;font-size:13px;line-height:1.75}
+.briefing p,.workout-text{white-space:pre-wrap;margin:0 0 8px;color: var(--ink);font-size:13px;line-height:1.75}
 .briefing p:last-child{margin-bottom:0}
 .crew-preview{margin-top:24px;padding-top:18px;border-top:1px solid var(--line)}
 .crew-preview .panel-heading button{border:0;background:transparent;color:var(--red);font-size:12px}
 .avatar-stack{display:flex;margin-top:14px}
-.avatar-stack img,.avatar-letter{width:34px;height:34px;margin-right:-7px;border:2px solid white;border-radius:50%;object-fit:cover;background:#eceef2}
-.avatar-letter{display:grid;place-items:center;color:#6d7180;font-size:13px}
-.crew-preview>p{font-size:11px;color:var(--muted)}
-.integrity-note{margin:18px 0 0;padding-top:14px;border-top:1px solid var(--line);font-size:11px;color:var(--muted);line-height:1.5}
+.avatar-stack img,.avatar-letter{width:34px;height:34px;margin-right:-7px;border:2px solid white;border-radius:50%;object-fit:cover;background:var(--line)}
+.avatar-letter{display:grid;place-items:center;color: var(--muted);font-size:13px}
+.crew-preview>p{font-size:12px;color:var(--muted)}
+.integrity-note{margin:18px 0 0;padding-top:14px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);line-height:1.5}
 .group-total,.plan-type{font-size:12px;color:var(--muted)}
-.pace-group{margin-top:14px;padding:18px;border:1px solid var(--line);border-radius:3px}
+.pace-group {margin-top:14px;padding:18px;border:1px solid var(--line);border-radius: 12px;}
 .group-title{display:flex;justify-content:space-between;align-items:flex-start}
-.group-kind{font-size:10px;color:var(--red);font-weight:700}
+.group-kind{font-size:12px;color:var(--red);font-weight:700}
 .group-title h3{margin:3px 0;font-size:17px}
 .group-title p{margin:0;color:var(--muted);font-size:12px}
 .group-title>b{font-size:20px}
-.group-title>b small{font-size:11px;color:var(--muted);font-weight:500}
-.capacity-track{height:3px;margin:14px 0;background:#eceef2}
+.group-title>b small{font-size:12px;color:var(--muted);font-weight:500}
+.capacity-track{height:3px;margin:14px 0;background:var(--line)}
 .capacity-track i{display:block;height:100%;background:var(--red)}
 .runner-row{display:grid;grid-template-columns:28px minmax(80px,1fr) auto;gap:8px;align-items:center;padding:7px 0}
 .runner-row img,.runner-row .avatar-letter{width:26px;height:26px;margin:0}
 .runner-row b{overflow:hidden;text-overflow:ellipsis;font-size:12px;white-space:nowrap}
 .runner-row b small{margin-left:6px;color:var(--red);font-weight:500}
-.runner-tags{color:var(--muted);font-size:10px}
+.runner-tags{color:var(--muted);font-size:12px}
 .more-runners,.subtle-action{border:0;background:transparent;color:var(--red);font-size:12px;padding:8px 0}
 .empty-roster,.empty-plan{color:var(--muted);font-size:12px}
 .workout-text{margin-top:22px}
 .empty-plan{display:grid;justify-items:center;gap:8px;padding:44px 10px}
 .empty-plan>span{font-size:32px;color:var(--red)}
-.empty-plan small{color:#a0a3ad}
-.safety-note{margin:14px 0;padding:14px;background:#fff6f5}
+.empty-plan small{color:var(--muted)}
+.safety-note {margin:14px 0;padding:14px;background: var(--field-bg);}
 .safety-note b{font-size:12px}
-.safety-note p{margin:6px 0 0;color:#777b86;font-size:11px;line-height:1.5}
+.safety-note p{margin:6px 0 0;color:var(--muted);font-size:12px;line-height:1.5}
 .album-entry{display:flex;align-items:center;justify-content:space-between;padding:15px 0;border-top:1px solid var(--line);color:var(--ink);text-decoration:none}
 .album-entry b,.album-entry small{display:block;margin-top:4px}
 .album-entry b{font-size:14px}
-.album-entry small{color:var(--muted);font-size:11px}
+.album-entry small{color:var(--muted);font-size:12px}
 .utility-panel{padding:18px 20px}
 .utility-heading{display:flex;justify-content:space-between;align-items:center}
 .utility-heading b{font-size:13px}
-.utility-heading span{font-size:10px;color:var(--muted)}
+.utility-heading span {font-size: 12px;color:var(--muted); max-width: none; text-align: left;}
 .check-row,.utility-actions{display:flex;gap:8px;align-items:center;margin-top:12px}
-.check-hint{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:12px 0 0;padding:10px 12px;border-radius:3px;background:#f5f6fa;color:var(--muted);font-size:12px}
+.check-hint {display:flex;align-items:center;justify-content:space-between;gap:12px;margin:12px 0 0;padding:10px 12px;border-radius: 10px;background:var(--bg);color:var(--muted);font-size:12px}
 .check-hint button{flex:none;padding:2px 0;border:0;background:transparent;color:var(--red);font:inherit;cursor:pointer}
-.history-label{display:inline-block;margin-right:6px;padding:2px 5px;border-radius:3px;background:#f1f2f5;color:#777b86;font-size:10px;font-weight:500}
-.check-row input,.admin-form input,.admin-form select,.admin-form textarea{min-width:0;flex:1;border:1px solid var(--line);border-radius:3px;padding:10px;background:#fff;font:inherit;font-size:12px}
+.history-label {display:inline-block;margin-right:6px;padding:2px 5px;border-radius: 6px;background:var(--chip);color:var(--muted);font-size:12px;font-weight:500}
+.check-row input,.admin-form input,.admin-form select,.admin-form textarea {min-width:0;flex:1;border:1px solid var(--line);border-radius: 12px;padding: 11px 12px;background: var(--field-bg);font:inherit;font-size: 14px;}
 .staff-tools{margin-top:14px;border-top:1px solid var(--line);padding-top:12px}
-.staff-tools summary{color:#60636d;font-size:12px;cursor:pointer}
+.staff-tools summary {color: var(--ink);font-size: 14px;cursor:pointer; display: flex; align-items: center; justify-content: space-between; min-height: 44px; list-style: none; font-weight: 600;}
 .admin-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:12px}
 .admin-form textarea{grid-column:1/-1;min-height:64px}
 .action-button{display:flex;justify-content:center;align-items:center;gap:18px;min-height:46px;padding:0 22px;border:0;border-radius:12px;background:var(--red);color:#fff;text-decoration:none;font-weight:700;font-size:14px}
 .action-button:disabled{opacity:.6}
-.action-button.secondary{background:#fff;color:var(--red);border:1px solid #ffc4cd}
-.action-button.disabled{background:#d6d7dc;color:#767984}
-.danger{color:#c93345}
+.action-button.secondary{background:#fff;color:var(--red);border:1px solid #f5c4bf}
+.action-button.disabled{background:#d6d7dc;color:var(--muted)}
+.danger{color:var(--accent)}
 .sticky-join{position:fixed;z-index:6;bottom:0;left:50%;display:flex;align-items:center;justify-content:space-between;gap:15px;width:min(430px,100%);padding:12px max(18px,env(safe-area-inset-right)) calc(12px + env(safe-area-inset-bottom)) max(18px,env(safe-area-inset-left));transform:translateX(-50%);background:#fff;border-top:1px solid var(--line)}
 .join-count{display:flex;align-items:baseline;gap:5px;white-space:nowrap}
 .join-count b{font-size:20px}
-.join-count span{font-size:10px;color:var(--muted)}
+.join-count span{font-size:12px;color:var(--muted)}
 .sticky-join .action-button{flex:1;max-width:420px}
-.message,.state{max-width:780px;margin:28px auto;padding:18px;color:#6c7080;text-align:center}
+.message,.state{max-width:780px;margin:28px auto;padding:18px;color:var(--muted);text-align:center}
 .message{color:var(--red)}
 .error button{display:block;margin:12px auto;color:var(--red)}
 
 @media(max-width:560px){.activity-content{padding:12px 12px 24px}
-.event-hero{min-height:275px;padding:22px 20px}
-.hero-km{font-size:66px}
-.event-hero h2{font-size:22px}
-.quickfacts{grid-template-columns:repeat(2,minmax(0,1fr))}
+.event-hero {min-height: 248px;padding: 26px 24px; background: linear-gradient(120deg,#fff 52%,#fff8f7); color: var(--ink); border: 1px solid var(--line);}
+.hero-km {font-size: 58px; margin: 22px 0 2px; font-weight: 700; color: var(--accent);}
+.event-hero h2 {font-size: 24px; line-height: 1.4; color: var(--ink);}
+.quickfacts {grid-template-columns:repeat(2,minmax(0,1fr)); border-radius: 18px;}
 .quickfacts div{min-height:70px;padding:11px}
 .quickfacts b{font-size:12px}
 .detail-tabs{gap:22px;margin-top:14px}
 .detail-panel{padding:17px 15px}
 .panel-heading h2{font-size:18px}
-.pace-group{padding:14px 12px}
+.pace-group {padding:14px 12px; border-radius: 12px;}
 .runner-row{grid-template-columns:27px minmax(70px,1fr);}
 .runner-tags{grid-column:2;grid-row:2}
 .check-row{flex-wrap:wrap}
 .check-row input{flex-basis:calc(50% - 6px)}
-.check-row button{width:100%;text-align:center}
-.utility-heading span{max-width:145px;text-align:right}
+.check-row button {width: auto;text-align:center; margin-left: auto;}
+.utility-heading span {max-width: none;text-align: left;}
 .sticky-join{padding-right:14px;padding-left:14px}
 .join-count{display:none}
 .sticky-join .action-button{max-width:none}
@@ -280,7 +280,7 @@ watch(() => [route.params.id, route.params.aid], () => { activity.value = null; 
 
 .check-list{margin-top:24px;padding-top:18px;border-top:1px solid var(--line)}
 
-.admin-form>label{display:grid;gap:5px;color:#646874;font-size:11px}
+.admin-form>label{display:grid;gap:5px;color:var(--muted);font-size:12px}
 
 .admin-form label input,.admin-form label select,.admin-form label textarea{width:100%}
 
@@ -291,5 +291,28 @@ watch(() => [route.params.id, route.params.aid], () => { activity.value = null; 
 .admin-form .check-setting input{flex:none;width:auto}
 
 .activity-nav>a,.activity-nav>button{display:flex;align-items:center;justify-content:center;min-height:44px;line-height:1.2}
-.quickfacts{border-radius:16px;overflow:hidden}
+.quickfacts {border-radius: 18px;overflow:hidden}
+.activity-nav .activity-share { display:inline-flex; gap:5px; width:auto; min-height:36px; padding:6px 9px; border:1px solid var(--line); border-radius:8px; color:var(--ink-secondary); background:var(--card); font-size:12px; font-weight:500; }
+.activity-share svg { width:16px; height:16px; fill:none; stroke:currentColor; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; }
+.staff-tools summary::after { content:"+"; color:var(--muted); font-size:20px; font-weight:400; }
+.staff-tools[open] summary::after { content:"−"; }
+.staff-tools summary::-webkit-details-marker { display:none; }
+.utility-actions { flex-wrap:wrap; gap:8px 20px; }
+.utility-heading { align-items:flex-start; flex-direction:column; gap:4px; }
+@media(max-width:560px) { .activity-content { padding:14px 16px 24px; } .event-hero { min-height:248px; background: linear-gradient(120deg,#fff 52%,#fff8f7); color: var(--ink); border: 1px solid var(--line);} .hero-km { font-size:58px; color: var(--accent);} .event-hero h2 { font-size:24px; color: var(--ink);} .detail-panel,.utility-panel { padding:18px; } }
+
+
+/* Sunshine on the training card; the facts use quieter supporting colours. */
+.activity-page { background:transparent; }
+.activity-nav { background:#fffdfbdc;backdrop-filter:blur(16px);border-color:#ede5df; }
+.event-hero { background:linear-gradient(125deg,#fff1e2,#fff8f2 62%,#fff);border-color:#f0d7c8;box-shadow:var(--card-shadow,0 8px 26px #79533410); }
+.hero-track i { border-color:#e9bba5; }.hero-meta span { background:#ffffffab;border-color:#f2d8cb;color:#74574b; }.hero-meta .status { background:#fffaf1;border-color:#ebcba2;color:#9c591c; }
+.quickfacts { overflow:hidden;border-color:#e2e7ed;box-shadow:var(--card-shadow,0 5px 20px #454c7008); }
+.quickfacts>div { background:#fff; }
+.detail-tabs { background:#f7f8fce8;backdrop-filter:blur(14px); }
+.run-facts>div:nth-child(2) .fact-icon { background:var(--mint-soft,#e9f7f2);color:#287c64; }.run-facts>div:nth-child(3) .fact-icon { background:var(--sky-soft,#eaf4ff);color:#3978a8; }
+.briefing { background:#fffaf0;border-left-color:#d6a342; }
+.pace-group:nth-child(3n+1) { background:#fff; }.pace-group:nth-child(3n+2) { background:#fff; }.pace-group:nth-child(3n) { background:#fff; }
+.album-entry { background:#fff;border-color:#e4daf5; }.safety-note { background:#fff; }
+@media(max-width:350px) { .event-hero h2 { overflow-wrap:anywhere; }.quickfacts>div { min-width:0; }.quickfacts b { overflow-wrap:anywhere; } }
 </style>

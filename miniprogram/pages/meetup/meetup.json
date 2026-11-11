@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "约跑",
-  "enableShareTimeline": true
+  "enableShareTimeline": true,
+  "navigationBarBackgroundColor": "#f5f5f5",
+  "backgroundColor": "#f5f5f5"
 }

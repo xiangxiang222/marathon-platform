@@ -1,4 +1,4 @@
-<view class="page club-detail" wx:if="{{race}}">
+<view class="page club-detail mini-internal-internal" wx:if="{{race}}">
   <view class="card detail-hero"><view class="detail-kicker">跑出状态 · 队内赛</view>
     <view class="h2">{{race.title}}</view>
     <view class="src">{{race.startsLabel}}{{race.place ? ' · ' + race.place : ''}} · {{race.distanceLabel}}</view>
@@ -16,7 +16,7 @@
   <view class="card" wx:if="{{race.canResult}}">
     <view class="h2">完赛用时</view>
     <view class="stack">
-      <input placeholder="45:30 或 3:29:59" value="{{time}}" bindinput="onTime" />
+      <input placeholder="45:30 或 3:29:59" value="{{time}}" bindinput="onTime" aria-label="45:30 或 3:29:59" />
     </view>
     <button class="btn" bindtap="save">提交</button>
     <button class="ghost" bindtap="dnf">未完赛</button>
@@ -30,7 +30,7 @@
     <view wx:if="{{!item.rows.length}}" class="src">还没有人报名。</view>
   </view>
   <view class="card management-card" wx:if="{{race.canStaffResult || race.canEnd || race.canCancelRace}}"><button class="fold-toggle" data-key="managerExpanded" bindtap="toggleDetailSection"><text>队内赛管理</text><text>{{managerExpanded ? "−" : "+"}}</text></button><view wx:if="{{managerExpanded}}">
-    <view wx:if="{{race.canStaffResult}}"><view class="src">为已报名的成员补录或更正成绩。</view><picker mode="selector" range="{{signedRows}}" range-key="nickname" bindchange="selectResultMember"><view class="detail-select">{{forName || "选择已报名成员"}}<text>⌄</text></view></picker><input placeholder="成绩，如 45:30 或 3:29:59" value="{{staffTime}}" bindinput="onStaffTime" /><button class="btn" bindtap="saveStaffResult">保存成员成绩</button><view class="detail-actions"><button class="ghost" data-outcome="dnf" bindtap="saveStaffResult">未完赛</button><button class="ghost" data-outcome="dns" bindtap="saveStaffResult">未出发</button></view></view>
+    <view wx:if="{{race.canStaffResult}}"><view class="src">为已报名的成员补录或更正成绩。</view><picker mode="selector" range="{{signedRows}}" range-key="nickname" bindchange="selectResultMember"><view class="detail-select">{{forName || "选择已报名成员"}}<text>⌄</text></view></picker><input placeholder="成绩，如 45:30 或 3:29:59" value="{{staffTime}}" bindinput="onStaffTime" aria-label="成绩，如 45:30 或 3:29:59" /><button class="btn" bindtap="saveStaffResult">保存成员成绩</button><view class="detail-actions"><button class="ghost" data-outcome="dnf" bindtap="saveStaffResult">未完赛</button><button class="ghost" data-outcome="dns" bindtap="saveStaffResult">未出发</button></view></view>
     <button wx:if="{{race.canEnd}}" class="btn" bindtap="endRace">结束并记分</button>
     <button wx:if="{{race.canCancelRace}}" class="ghost" bindtap="cancelRace">取消这场</button></view>
   </view>

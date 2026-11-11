@@ -753,7 +753,7 @@ Page({
       title: "退出" + this.data.club.name,
       content: "未来团练、未出成绩的未来队内赛和明日及之后未打卡的约跑报名会取消；个人赛事、成绩、积分和已打卡记录保留，再入团需要审核。",
       confirmText: "退出跑团",
-      confirmColor: "#c73540",
+      confirmColor: "#b42318",
       success: (res) => {
         if (!res.confirm || !this.scopeCurrent(scope)) return;
         this.setData({ leaving: true, message: "" });

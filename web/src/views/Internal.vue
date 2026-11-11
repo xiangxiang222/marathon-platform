@@ -230,4 +230,10 @@ onMounted(retry);
 .checks { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 8px; }
 .block input:not([type="radio"]):not([type="file"]), .block select { width: 100%; height: 40px; margin-top: 8px; border: 0; border-radius: 10px; padding: 0 12px; background: var(--chip); }
 .mine { background: var(--accent-soft); border-radius: 8px; padding-left: 8px; padding-right: 8px; }
+.club-detail-page .block h2 { font-size:20px; line-height:1.45; }
+.club-detail-page .block h3 { font-size:16px; line-height:1.5; }
+.club-detail-page .block :is(input:not([type="radio"]):not([type="checkbox"]):not([type="file"]),textarea,select) { border:1px solid var(--line); border-radius:12px; background:var(--field-bg); font-size:14px; }
+
+
+.club-detail-page { background:transparent; }.club-detail-page>.topbar { background:transparent; }.club-detail-page .detail-hero { background:linear-gradient(125deg,#fff5e6,#fff);border-color:#ebdac0;box-shadow:var(--card-shadow,0 6px 20px #986d3b10); }.club-detail-page .detail-kicker { color:#a37228; }.club-detail-page .detail-actions .undo { background:#fff9ed;border-color:#ebd8b5; }
 </style>

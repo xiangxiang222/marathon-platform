@@ -122,7 +122,7 @@ Page({
   deleteEntry() {
     if (!this.data.selected || this.data.busy) return;
     const entry = this.data.selected, session = this.session();
-    wx.showModal({ title: "移除这场跑史？", content: entry.id.startsWith("result:") ? "这场将从新跑史隐藏，原有赛事成绩和收藏仍保留。" : "移除这场经历及其资料，无法撤销。", confirmText: "移除", confirmColor: "#ff0a30", success: answer => {
+    wx.showModal({ title: "移除这场跑史？", content: entry.id.startsWith("result:") ? "这场将从新跑史隐藏，原有赛事成绩和收藏仍保留。" : "移除这场经历及其资料，无法撤销。", confirmText: "移除", confirmColor: "#e1251b", success: answer => {
       if (!answer.confirm || !this.current(session) || this.data.busy) return;
       this.setData({ busy: "delete", message: "" });
       request(entryPath(entry.id), "DELETE").then(() => {
@@ -235,7 +235,7 @@ Page({
     if (!this.data.selected || this.data.busy) return;
     const id = this.data.selected.id, mediaId = event.currentTarget.dataset.id, session = this.session();
     if (this.data.selected.media.some(item => String(item.id) === String(mediaId) && item.inherited)) return;
-    wx.showModal({ title: "删除这份资料？", content: "只删除这份资料，不改变比赛成绩。", confirmText: "删除", confirmColor: "#ff0a30", success: answer => {
+    wx.showModal({ title: "删除这份资料？", content: "只删除这份资料，不改变比赛成绩。", confirmText: "删除", confirmColor: "#e1251b", success: answer => {
       if (!answer.confirm || !this.current(session) || this.data.busy) return;
       this.setData({ busy: "delete-media", message: "" });
       request(entryPath(id) + "/media/" + encodeURIComponent(mediaId), "DELETE").then(async () => { if (!this.current(session)) return; this.setData({ busy: "" }); await this.openEntryId(id); await this.load(); }).catch(error => { if (this.current(session)) { this.expire(error); this.setData({ message: messageOf(error) }); } }).finally(() => { if (this.current(session)) this.setData({ busy: "" }); });

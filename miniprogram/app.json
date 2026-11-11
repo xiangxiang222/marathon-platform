@@ -30,14 +30,14 @@
     "pages/club-report/club-report"
   ],
   "window": {
-    "navigationBarBackgroundColor": "#f5f6fa",
+    "navigationBarBackgroundColor": "#f5f6f8",
     "navigationBarTitleText": "赛历",
     "navigationBarTextStyle": "black",
-    "backgroundColor": "#f5f6fa"
+    "backgroundColor": "#f5f6f8"
   },
   "tabBar": {
-    "color": "#1f2026",
-    "selectedColor": "#ff0a30",
+    "color": "#737373",
+    "selectedColor": "#e1251b",
     "backgroundColor": "#ffffff",
     "list": [
       {

@@ -1,3 +1,5 @@
 {
-  "navigationBarTitleText": "队内赛"
+  "navigationBarTitleText": "队内赛",
+  "navigationBarBackgroundColor": "#f5f5f5",
+  "backgroundColor": "#f5f5f5"
 }

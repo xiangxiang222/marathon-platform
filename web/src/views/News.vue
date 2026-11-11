@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main class="news-page">
     <header class="topbar">
       <router-link :to="id ? '/news' : '/'" aria-label="返回">‹</router-link>
       <h1>资讯</h1>
@@ -82,3 +82,20 @@ watch(id, () => {
   load();
 }, { immediate: true });
 </script>
+
+<style scoped>
+.news-page { padding-bottom:28px; }
+.news-line { margin:12px 16px 0; padding:19px 18px; border:1px solid var(--line); border-radius:18px; background:var(--card); }
+.news-line b { font-size:16px; line-height:1.6; font-weight:600; }
+.news-line span { margin-top:9px; color:var(--muted); font-size:12px; line-height:1.8; }
+.news-body { margin:16px; padding:22px 20px; border:1px solid var(--line); border-radius:18px; background:var(--card); }
+.news-body h2 { margin-top:0; font-size:24px; line-height:1.5; }
+.news-body .src { padding-bottom:18px; border-bottom:1px solid var(--line); font-size:12px; line-height:1.8; }
+.news-body .guide-md .md { font-size:15px; line-height:1.9; }
+.news-body .go { margin-top:24px; padding-top:18px; border-top:1px solid var(--line); font-size:14px; }
+
+
+.news-page { background:transparent; }.news-page>.topbar { background:linear-gradient(115deg,#eff6ff,#fff);border-bottom:1px solid #dfe5f2; }
+.news-line { background:#fff;border-color:#e0e9f3;box-shadow:var(--card-shadow,0 4px 16px #454c7008); }.news-line:nth-of-type(2n) { background:#fff;border-color:#e8e0f3; }.news-line .src { color:#667a92; }
+.news-body { border-color:#e0e7f2; }.news-body h2 { padding-bottom:18px;border-bottom:2px solid #e7effb; }.go { background:var(--sky-soft,#eaf4ff);border-color:#dce8f5; }
+</style>

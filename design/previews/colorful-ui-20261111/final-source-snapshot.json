@@ -1,0 +1,691 @@
+{
+  "capturedAt": "2026-11-11T04:53:27.280Z",
+  "scope": "Frozen UI sources and visual assets only; no credentials or production access",
+  "files": [
+    {
+      "file": "web/src/App.vue",
+      "sha256": "9ee544828ba4f52aba4c3aeaffa12d2a378cf2ae98645f64dc929b7be6c881b3"
+    },
+    {
+      "file": "web/src/assets/navigation/clubs-on.svg",
+      "sha256": "ed8406d1baeb9881beea1071885a98c2c7ddaff29f3efad525d6555be9d20d9e"
+    },
+    {
+      "file": "web/src/assets/navigation/clubs.svg",
+      "sha256": "5d8bd6be5d174189d88b1f3bbad80338355472feac041faec38cc043a3a13af1"
+    },
+    {
+      "file": "web/src/assets/navigation/mine-on.svg",
+      "sha256": "aa5477b5eea4cea230ad28f78b78294235fd1581435d6c7f38e0394c0fcfcde4"
+    },
+    {
+      "file": "web/src/assets/navigation/mine.svg",
+      "sha256": "88457f75706eae2887f4a7a213872d58feeb3f68a4a4c0001fcf4f24fac10d6e"
+    },
+    {
+      "file": "web/src/assets/navigation/races-on.svg",
+      "sha256": "3a48fb9e64fe11073a3536ea50161b8148e6659d9a57364602cc4148c84207c7"
+    },
+    {
+      "file": "web/src/assets/navigation/races.svg",
+      "sha256": "b39419560b6972ea4cdf8ee9193f8c5299dc2c3c3eaee361d7b86b7c5c406226"
+    },
+    {
+      "file": "web/src/assets/navigation/sport-on.svg",
+      "sha256": "702f0949883f52372aeb54bf2f37eec1b5d9de66db1d9b517dd6a8ca9a01e9ae"
+    },
+    {
+      "file": "web/src/assets/navigation/sport.svg",
+      "sha256": "7493bc42213ee986ab2d7894b899d2fe4f9dc4b443b8d7e89b9426be7be8aa96"
+    },
+    {
+      "file": "web/src/assets/quick/calendar.svg",
+      "sha256": "f77f033a0bc4e82601e2a186e8ca0738cfba22e0c74feb1c438257c9fa9875ec"
+    },
+    {
+      "file": "web/src/assets/quick/clubs.svg",
+      "sha256": "f01955c6d6cce601be459461719d681c6b515bd10877d844aaf3522b792f8a5e"
+    },
+    {
+      "file": "web/src/assets/quick/news.svg",
+      "sha256": "5f3ecd35cbc486a5082ce3ca18bbe70765db9df5c60b62b7d37b4f4137a2fcb0"
+    },
+    {
+      "file": "web/src/assets/quick/radar.svg",
+      "sha256": "24cf38ea449b2d0c75098714c9e93779de6fc552659d1a816f1a684fab12323d"
+    },
+    {
+      "file": "web/src/club-detail.css",
+      "sha256": "876514fb1975e5cf8e3893bf259efe2029b8c182a4c99203f26560f24f7feb0e"
+    },
+    {
+      "file": "web/src/club-forms.css",
+      "sha256": "d675bf39bd39e060f35678ca7bc9bea25297c7a7696e784873681d9d26ff3b96"
+    },
+    {
+      "file": "web/src/components/ClubVerificationBadge.vue",
+      "sha256": "1bdb61ef2f11f45979ec49ba88d3a903103f4a1d1ad5db64c928108f69121005"
+    },
+    {
+      "file": "web/src/components/LegalText.vue",
+      "sha256": "bd49ecf3363838ccad0300fd06a9ece2abc59f8aec3a41563f351cf69b077b6a"
+    },
+    {
+      "file": "web/src/components/MileageBoard.vue",
+      "sha256": "198dbb9d265a243a5ecfd9bd98e7723b3b3ac420e05ad082b5fd81ec0ca66b76"
+    },
+    {
+      "file": "web/src/components/PageHeader.vue",
+      "sha256": "c9cc0575c14aef774c7934ff045b3c67a4c47401a77eb2f2d0375881bbb56623"
+    },
+    {
+      "file": "web/src/components/Pager.vue",
+      "sha256": "761c1af1ea88161264c441a0442db46ebfd143401730cd36633f2c92c74d0d57"
+    },
+    {
+      "file": "web/src/components/PartnerBoard.vue",
+      "sha256": "ffd0acf44fa5005f4db833fc53d3556b57402e1450133d37fd294c3ce3280957"
+    },
+    {
+      "file": "web/src/components/Poster.vue",
+      "sha256": "36f6c677b5109994bb808310a37e5ec2f50a75f42e0dce26cae8698d98b4c323"
+    },
+    {
+      "file": "web/src/components/PrivacyRights.vue",
+      "sha256": "0e26cd6e5592c8f29f17302f11de39d630bc2a93806a384eb3097d44d8c8f7ba"
+    },
+    {
+      "file": "web/src/components/RaceCard.vue",
+      "sha256": "4ba7f5491ea7da4e99030e7ba3b74bfe9bb632f1861af3e45c5c82ba5d89931f"
+    },
+    {
+      "file": "web/src/components/RaceHistoryFields.vue",
+      "sha256": "b3819d875ac6b54f79e10922bebe9843d83e85ad2f7dec229467b31848e54516"
+    },
+    {
+      "file": "web/src/components/RunnerBars.vue",
+      "sha256": "c2c248699e3b8110c170e214e0e01289486abb1f52994cf4b12c733ff7ec95b2"
+    },
+    {
+      "file": "web/src/components/RunnerDashboard.vue",
+      "sha256": "f2e064b270f1842e389bcae1789d86970014ddabaa001582ee4cc4954d687421"
+    },
+    {
+      "file": "web/src/components/RunnerIcon.vue",
+      "sha256": "35e13cb28683e43f549fcffcb637ec97c9c2f3d8498a6d8bc9ee88f4f55dd2fe"
+    },
+    {
+      "file": "web/src/components/TabBar.vue",
+      "sha256": "25f84454f58d47a3c32cf588a3de47f8197b392f2998cb3d78e016d547f7ff94"
+    },
+    {
+      "file": "web/src/components/admin/AdminDashboard.vue",
+      "sha256": "838668fb77c93d8141b5259b3917c4182277045bf717a440439f9dbd0183f118"
+    },
+    {
+      "file": "web/src/components/admin/AdminIcon.vue",
+      "sha256": "988fa326e32c164bc4b8cfff8febb99f5ad593c51afffa0071ea501918d89e3e"
+    },
+    {
+      "file": "web/src/components/admin/AdminShell.vue",
+      "sha256": "d49fa85ec72eda1304adfb159168620a8880316d92b06eb73d4c8f74b046c08f"
+    },
+    {
+      "file": "web/src/components/admin/ClubIdentityAdmin.vue",
+      "sha256": "fab03e32316270238ef12b65a76d26a66aa64c65de5abd5cc0713eea1ea0f028"
+    },
+    {
+      "file": "web/src/components/admin/FeedbackAdmin.vue",
+      "sha256": "1f49c522b7da0529471586e687a32fceb242537f276257e981ed4cfd15bbecaa"
+    },
+    {
+      "file": "web/src/components/admin/PrivacyRequestsAdmin.vue",
+      "sha256": "8804c37f7b052c76a0bda53e9a32eaafbefb5532e698b6b9783cf3cf7a04aeda"
+    },
+    {
+      "file": "web/src/styles/admin.css",
+      "sha256": "75e4ec46d213a503de0097c3fb098111fe041ee260f0d60b359a4dc4582b168d"
+    },
+    {
+      "file": "web/src/styles/consumer.css",
+      "sha256": "00043f9584a746a3767556a01cee0e2e83f90fa97a0ffe42ea31ff85634afd07"
+    },
+    {
+      "file": "web/src/styles.css",
+      "sha256": "cf318a863490f0620bd8c5b585229037659799561e3ce84d10791f7a181f0365"
+    },
+    {
+      "file": "web/src/views/Activity.vue",
+      "sha256": "7ba5fcfb57bd40bdeef0f6273bd757d615a9af12166b85501d9d11fb920dbcaa"
+    },
+    {
+      "file": "web/src/views/ActivityCreate.vue",
+      "sha256": "d708aba11e59b8b35127a48c3b47471d811c55f5af9453051735bddcd22c0834"
+    },
+    {
+      "file": "web/src/views/Admin.vue",
+      "sha256": "851e8f729ed7ff10595a2811a4015407d883b74ff43788b7bdc81c438dc34799"
+    },
+    {
+      "file": "web/src/views/Album.vue",
+      "sha256": "fc2e6abfa1312f1348e2813ec5f7f37a45a765c1f320b111965181d89bcd76fe"
+    },
+    {
+      "file": "web/src/views/Calendar.vue",
+      "sha256": "92b0b5ea161b75d20c60b8aa5f7d28fbd04f1c776c710d87485575dd9d353484"
+    },
+    {
+      "file": "web/src/views/Call.vue",
+      "sha256": "221fa0a60cea223e784e8e64fd27cffa50aa3f797e572584022315820cb9a9e2"
+    },
+    {
+      "file": "web/src/views/Club.vue",
+      "sha256": "9b09996fd2eedae7bc7c5cef4e666b187f4a087c3b202542a3c18c6e8b7e0c2d"
+    },
+    {
+      "file": "web/src/views/ClubCreate.vue",
+      "sha256": "1ea09db98e74e9c13f129f4fbba736c301e033e021728c6008cd2c6c33ce55aa"
+    },
+    {
+      "file": "web/src/views/ClubIdentity.vue",
+      "sha256": "4ab4252b1a8b7b8ade2adf01d564355ad5e12765369ac7896a1dd0af394338c3"
+    },
+    {
+      "file": "web/src/views/ClubIntro.vue",
+      "sha256": "b83fb814687baa092da19095fd69a4aa6bc94b8f896c763a4201504538f54bcc"
+    },
+    {
+      "file": "web/src/views/ClubReport.vue",
+      "sha256": "552afc63960040c2cebb959a1b629c2f33a4e0284041929bfafa90f20c4f56d9"
+    },
+    {
+      "file": "web/src/views/Exercise.vue",
+      "sha256": "a05ef016340baa10109dc17c8e0ae4a23704106b523fca3808773bb657c1573a"
+    },
+    {
+      "file": "web/src/views/Feedback.vue",
+      "sha256": "215105f145fd2b3a60b68e77ceb7591a8e6deb42d6a900b9c45cc0a5cd7da150"
+    },
+    {
+      "file": "web/src/views/Home.vue",
+      "sha256": "f8c7354903ecac8e030fdf7aa5a3bbf890389914b1436a488aba722cc69b6c32"
+    },
+    {
+      "file": "web/src/views/Internal.vue",
+      "sha256": "01dbbbd5a0a4ed4bc70dd11af9550a92bce25a2cbeab606dc65e49124f4d4cb7"
+    },
+    {
+      "file": "web/src/views/Legal.vue",
+      "sha256": "602b51bc7f1bf5e77aca798ab7c9458459cea36c1070591ccbf977404e0a80b9"
+    },
+    {
+      "file": "web/src/views/Look.vue",
+      "sha256": "2f3d9d5f6a1b9251ecb4a2514295f8d7eb8b2268fdde89442384fff2ab250bf9"
+    },
+    {
+      "file": "web/src/views/Meetup.vue",
+      "sha256": "31408ab834429a41616802dee594b111032ea38a3dc807f52710ea1299b0a874"
+    },
+    {
+      "file": "web/src/views/Mine.vue",
+      "sha256": "60a2894746595bc988aa0a0595f413bad5b3cdf550415859fac997f4dd366148"
+    },
+    {
+      "file": "web/src/views/News.vue",
+      "sha256": "1374dbc2ca7d7294c06875acd7a8c9c8ec57385f7594bafb7a0bd8955f00c253"
+    },
+    {
+      "file": "web/src/views/NotFound.vue",
+      "sha256": "9994d38d75d25a08b29e7feae0233209ce33034f700855242172e003531b5f0a"
+    },
+    {
+      "file": "web/src/views/Race.vue",
+      "sha256": "b2828d3b8699fc40fa8e681d3847daf2e4a9cf8b481f91793ff8a78a2c19e199"
+    },
+    {
+      "file": "web/src/views/RaceHistory.vue",
+      "sha256": "f4616717d69e834f7b45f2671b12eaf064f6a3f150e2c44169c2d26e3186ca6b"
+    },
+    {
+      "file": "web/src/views/Radar.vue",
+      "sha256": "13fd3154ce0adcc83c9555d01566cd73b84488fc70ebefcfe646b71723324224"
+    },
+    {
+      "file": "web/src/views/Runner.vue",
+      "sha256": "84cba10a0717b6b3d80533843d61aed7840ab7de8a4c583a0cfdffeda681bb75"
+    },
+    {
+      "file": "web/src/views/Signup.vue",
+      "sha256": "dd87baa7b842c226c4ed817d5a34bc38337fbd6b5ac4926651dd5b74d7ac9271"
+    },
+    {
+      "file": "web/src/views/Sport.vue",
+      "sha256": "6b36aa75dfc467d749ba593577650ea88ba0274d0f08a1e85d6a38b6b0b21de0"
+    },
+    {
+      "file": "miniprogram/app.wxss",
+      "sha256": "d8202340aedc9cfd81c3126815d3a64fc59c06188ba0970f9ae1becf9c69c915"
+    },
+    {
+      "file": "miniprogram/components/page-header/page-header.wxml",
+      "sha256": "85fe1585fe1c22c335d1c5f2bd8dbe063c1aca6ce21ba1c6f8e674b3b72e00e6"
+    },
+    {
+      "file": "miniprogram/components/page-header/page-header.wxss",
+      "sha256": "15c52070469024dff721c4d515c765108a7b759e4d120ae35f3b387658dfb2f7"
+    },
+    {
+      "file": "miniprogram/images/club/calendar.png",
+      "sha256": "2b102029c0fde1e2817263b7e56bf9379dad8ad7c19f814b9fbb1f48375b2dc9"
+    },
+    {
+      "file": "miniprogram/images/club/calendar.svg",
+      "sha256": "db5af9d0bd0498555c3ee342905724668b7bbd1514df529458388fbe74606645"
+    },
+    {
+      "file": "miniprogram/images/club/chart.png",
+      "sha256": "b1e44e2ae7d24080bd3d0c10741f82391a9fd84ec26eeb09adb2abc1959c8856"
+    },
+    {
+      "file": "miniprogram/images/club/chart.svg",
+      "sha256": "39b5f6f71316f75d92a450da819cd78277f89a404bfbf5eca3063a554dc4d451"
+    },
+    {
+      "file": "miniprogram/images/club/flag.png",
+      "sha256": "b651f80f1e0fcdbf761ca9cdab4fa6a2c80325bb630c8058262be00b7b0cc695"
+    },
+    {
+      "file": "miniprogram/images/club/flag.svg",
+      "sha256": "edee7ec11470c880a8c2c9371d1b99adba0a80cb8f197d109801ecd90a4d34c4"
+    },
+    {
+      "file": "miniprogram/images/club/members.png",
+      "sha256": "8bca4ffe2aa0d21769fb13f7e024c121d074e594d23e8a5cb03ec7566d0fc127"
+    },
+    {
+      "file": "miniprogram/images/club/members.svg",
+      "sha256": "a164e8c82b0b52e832fbcb1e75fd9d9189fcbd00f5900fbaa8920e216fe27721"
+    },
+    {
+      "file": "miniprogram/images/clubs-on.png",
+      "sha256": "27cede53856138024522a919b0d86b830a68469d0d69966b08512eebbd3e3cb4"
+    },
+    {
+      "file": "miniprogram/images/clubs.png",
+      "sha256": "ae227df4e3f7259124c5cfc236a347c7b05bced2ff1b6ab1ccaad686cd9a334f"
+    },
+    {
+      "file": "miniprogram/images/mine-on.png",
+      "sha256": "6550a0b0b9a5daaa2c079b1ea640208ebebe92ab5c06739484d7a7bfddeb4ddb"
+    },
+    {
+      "file": "miniprogram/images/mine.png",
+      "sha256": "f28a3b4f82cae56fd2f5ce53820a9efbe82e5efd48833d4c0a9b7a8dd99e4251"
+    },
+    {
+      "file": "miniprogram/images/quick-calendar.png",
+      "sha256": "cc3e5706b27892d9fab99d8675d61a3c76145e1b1b8e7a6336ccdf49f16eef30"
+    },
+    {
+      "file": "miniprogram/images/quick-clubs.png",
+      "sha256": "17a1001796ba2844f6de50caa71c8e94a2bc87b8a7827e25a5cedb609afe9ed3"
+    },
+    {
+      "file": "miniprogram/images/quick-news.png",
+      "sha256": "794871c79d2a5c12b651670d64a5b7d07d29884bb1c979f3ea34d0bfea4ff27c"
+    },
+    {
+      "file": "miniprogram/images/quick-radar.png",
+      "sha256": "6e4dd71e0ab13371ba932b75547cf65a9f7fbd0372eaeee0c3a388d06a7fcd61"
+    },
+    {
+      "file": "miniprogram/images/races-on.png",
+      "sha256": "69bf9a7f2f3c0b50d9381ee5b169cf7958dbfc0d834de9eb9dea34391dc4a2a9"
+    },
+    {
+      "file": "miniprogram/images/races.png",
+      "sha256": "82bc083c1f9d0fcdb4a941f216466e3328b8f9e84742aba80b8e6e61fe6ce467"
+    },
+    {
+      "file": "miniprogram/images/runner/add.png",
+      "sha256": "c00632d12d8b6c0f5e643c825854aed6a64526502e83e00b125fbfafe6672caf"
+    },
+    {
+      "file": "miniprogram/images/runner/add.svg",
+      "sha256": "5ee027ff773d8642903baef69ccc7e8fe80df93bd0bb5cec2e9d1ef7fa723deb"
+    },
+    {
+      "file": "miniprogram/images/runner/arrow.png",
+      "sha256": "e81f83deb8e88bbcbd1cf623455b4c6452da4318003cf79e63c84e79bfd1d78a"
+    },
+    {
+      "file": "miniprogram/images/runner/arrow.svg",
+      "sha256": "e455f144b1327547f351ccb5ad70b7671d422a2d7b675ecdedd625a2f2fbac14"
+    },
+    {
+      "file": "miniprogram/images/runner/back.png",
+      "sha256": "40f96f037667c3571cd6201f6f0e329dbb97b5019af6db5be04644fd8b86c8f2"
+    },
+    {
+      "file": "miniprogram/images/runner/back.svg",
+      "sha256": "b4de0240d21b734d6068a2513b0ed7281346f7390f8d274e58b97c169510992d"
+    },
+    {
+      "file": "miniprogram/images/runner/calendar.png",
+      "sha256": "9cb30a247af21350c1b7750d616f18f88e12dbd6565916889d1c6975a96b91b0"
+    },
+    {
+      "file": "miniprogram/images/runner/calendar.svg",
+      "sha256": "bbb2cbf36af994902d88305c4a2f7281a59cba951ebfd7b9a9285cf37ec05370"
+    },
+    {
+      "file": "miniprogram/images/runner/career.png",
+      "sha256": "32143c499b9408bef01dc75ba267869c6839cd7f125fc3b7409af23a5777d94c"
+    },
+    {
+      "file": "miniprogram/images/runner/career.svg",
+      "sha256": "c82a70a176c1b7de84ad0fa67bcfef5066ed710966faaf316080804e52e58d41"
+    },
+    {
+      "file": "miniprogram/images/runner/devices.png",
+      "sha256": "d0af207fe225cc9e7d4c9807d59c71901466983808f05e8282a56911bf2cf111"
+    },
+    {
+      "file": "miniprogram/images/runner/devices.svg",
+      "sha256": "dc506751333862690309ba55e6fcfd2b3d5aec7cd1878343804522c2d792e38a"
+    },
+    {
+      "file": "miniprogram/images/runner/footprints.png",
+      "sha256": "35a725d3f183e01ad8db9272f1588bd112fb816694424942051c58058ed4f4fa"
+    },
+    {
+      "file": "miniprogram/images/runner/footprints.svg",
+      "sha256": "f02e28d2e6e6670a35ff47369d56d194cc5e01eb702eb3bc2a608c18fac4a2b1"
+    },
+    {
+      "file": "miniprogram/images/runner/help.png",
+      "sha256": "38271c1d2bada921f5513dd905935ca267de7ea739baf9a7170365ccfe9ce482"
+    },
+    {
+      "file": "miniprogram/images/runner/help.svg",
+      "sha256": "995b2a28204e46459f800ece3213ff670770592f4076c820bb16f430562f5aeb"
+    },
+    {
+      "file": "miniprogram/images/runner/honors.png",
+      "sha256": "01e10a5d255f46d122ae0a42b67c44c3dfae2c6e9fb1a96c95344744de96e1c4"
+    },
+    {
+      "file": "miniprogram/images/runner/honors.svg",
+      "sha256": "30fe9a540b2803709890b608cb66d98b91e6591e9f37b2d62f960dba9f2d5662"
+    },
+    {
+      "file": "miniprogram/images/runner/lock.png",
+      "sha256": "c09f7e8a3f36511761cc04a83c3ff1b3cff0003ed96fc6155269c51cf24031da"
+    },
+    {
+      "file": "miniprogram/images/runner/lock.svg",
+      "sha256": "796ac0df4ae173696b12cd2b1c7c5d02dbb138b34e39aa94440a45d3a4251113"
+    },
+    {
+      "file": "miniprogram/images/runner/media.png",
+      "sha256": "bb9abf7fbdcef2b77a2b44c46e869a7b8a1823a00e27923eba385e9182c899a8"
+    },
+    {
+      "file": "miniprogram/images/runner/media.svg",
+      "sha256": "14f8330c4f086e99ea17256093114d90bd37dc86aec6c43fa91f636e440cc6a9"
+    },
+    {
+      "file": "miniprogram/images/runner/stats.png",
+      "sha256": "2f12d4e13253a697f18bda81385f6b6a121e6ff829b61bc8fbcfb38e44d08ebd"
+    },
+    {
+      "file": "miniprogram/images/runner/stats.svg",
+      "sha256": "951d7113c4f7a21b08f9be18e24659b1f5be3bd2c83929d56593346f1d68be3e"
+    },
+    {
+      "file": "miniprogram/images/sport-on.png",
+      "sha256": "919445e065190850053a4f2b6a347cec95d44c826fafbed2d03b7aaf68aacba1"
+    },
+    {
+      "file": "miniprogram/images/sport.png",
+      "sha256": "8ef7d7d113f51275f2e37a364599b4e1896b8619c438c7bc30466047853b6388"
+    },
+    {
+      "file": "miniprogram/pages/activity/activity.wxml",
+      "sha256": "a666979c36a7e62b67be99f7ede4dbfdaa6b8a4e66af704918a644a93653ffc0"
+    },
+    {
+      "file": "miniprogram/pages/activity/activity.wxss",
+      "sha256": "6fcf198b8ddb565b867822d07388011d96d1e19ff85bb19c77c467a492a2333b"
+    },
+    {
+      "file": "miniprogram/pages/activity-create/activity-create.wxml",
+      "sha256": "336904885411e9b371432d014f7488629826532c320477417f1213668515c7dc"
+    },
+    {
+      "file": "miniprogram/pages/activity-create/activity-create.wxss",
+      "sha256": "d6dcac56e88d1ef954b9ba57f3418ba0fb40ed7750b08af4d1bee4534939b113"
+    },
+    {
+      "file": "miniprogram/pages/album/album.wxml",
+      "sha256": "e08071ac0e7cbd59424b2538e0d3cc9050c2263ebe506727d5537c2b54d2b1ff"
+    },
+    {
+      "file": "miniprogram/pages/album/album.wxss",
+      "sha256": "c372840c59b67e83d91ec84c7bbec48525584e7eabc21fdbb5de45b44d02f094"
+    },
+    {
+      "file": "miniprogram/pages/calendar/calendar.wxml",
+      "sha256": "649be3c8a7d7611e3e5a3fd8bf759e54c91a035576b2c5dd0d41dcf509bc9a1f"
+    },
+    {
+      "file": "miniprogram/pages/calendar/calendar.wxss",
+      "sha256": "d7c867ae047c85ab61effbfef5eebe2ee465a43a1b613978a1c87aa4c7796697"
+    },
+    {
+      "file": "miniprogram/pages/call/call.wxml",
+      "sha256": "2b92a0a76c414898af352bcbec199bd9e315fe743f3b6e7f05b833afd9f42e8b"
+    },
+    {
+      "file": "miniprogram/pages/call/call.wxss",
+      "sha256": "602f760f26e5549d93dc03ec1f9f2f1029928add4e735f0fecd12a473732bc91"
+    },
+    {
+      "file": "miniprogram/pages/club/club.wxml",
+      "sha256": "15642498fb9246c28fe8feb4d28c8049cea4236c74ae235429b7419aebf8ddd8"
+    },
+    {
+      "file": "miniprogram/pages/club/club.wxss",
+      "sha256": "ae29fdaac1e53f74ff838f1f2ef061093558df3cdd3d15c96fb9c87985019ad7"
+    },
+    {
+      "file": "miniprogram/pages/club-identity/club-identity.wxml",
+      "sha256": "e07d8e68266ddadd6d6df3611f3f6cda3b896bd1c75c25d517b5ce823d071732"
+    },
+    {
+      "file": "miniprogram/pages/club-identity/club-identity.wxss",
+      "sha256": "4e384bc899d353d31dc606c7bf6c7b270cb245d95301c00aa2462159989181aa"
+    },
+    {
+      "file": "miniprogram/pages/club-intro/club-intro.wxml",
+      "sha256": "96310f71fc9ebb6de815d3174624597feaec78833de44db433164474ab2e9e7f"
+    },
+    {
+      "file": "miniprogram/pages/club-intro/club-intro.wxss",
+      "sha256": "4ef91c56a425f710b4ddb0b68cee4306738a70df668a06e746c9439fec16fffd"
+    },
+    {
+      "file": "miniprogram/pages/club-report/club-report.wxml",
+      "sha256": "ccbaedf2ba5a711e096708c75250af99e952dad02382d51901273a3bbf193aa5"
+    },
+    {
+      "file": "miniprogram/pages/club-report/club-report.wxss",
+      "sha256": "a6af812eb558e0bb3e1ed21476d7d7114280af82ae9084dfea348e2461fafebc"
+    },
+    {
+      "file": "miniprogram/pages/clubs/clubs.wxml",
+      "sha256": "6033eaf9414722b616303a068da0fac54cd6bac64470c20cd8ee986e5aeaa4e6"
+    },
+    {
+      "file": "miniprogram/pages/clubs/clubs.wxss",
+      "sha256": "87549816ac44a415e04975e8e5b0281a2323810afd9b0c7e4eefdb72477b4662"
+    },
+    {
+      "file": "miniprogram/pages/feed/feed.wxml",
+      "sha256": "e1e31ed3979fdb40d3515531a19f8a8e77c358c64305c43f21b2bd5da1ff4854"
+    },
+    {
+      "file": "miniprogram/pages/feed/feed.wxss",
+      "sha256": "b3ab2ff921020cfa96d9ab5ef49f4cdc16652813f0162696cf9d77631f364e19"
+    },
+    {
+      "file": "miniprogram/pages/feedback/feedback.wxml",
+      "sha256": "55a83036e17473aabfcc7c77be14ffb41ef2d8537dde1ed116d2b496bf786153"
+    },
+    {
+      "file": "miniprogram/pages/feedback/feedback.wxss",
+      "sha256": "c03708b7dd8992d2ba18985fa39f8be2813bce1905ba025016394e7473cc87ce"
+    },
+    {
+      "file": "miniprogram/pages/history/history.wxml",
+      "sha256": "c262b33c24c8fcc9ef3b40bc6785714682321f8216e57bc771467e601e8e479a"
+    },
+    {
+      "file": "miniprogram/pages/history/history.wxss",
+      "sha256": "e2a47cdcd93fc2e2a4773de9e587750e2ae136e5971ee327d46ec40bbd9a79e8"
+    },
+    {
+      "file": "miniprogram/pages/internal/internal.wxml",
+      "sha256": "bdb10f2fb19142f3ba7c675df0946f7f0a3f8a40596909cef00e7b940d04a37a"
+    },
+    {
+      "file": "miniprogram/pages/internal/internal.wxss",
+      "sha256": "fa04ba2cc4215909881b26a7dcc93855c25fd08d62d5a6384e48feceb714358c"
+    },
+    {
+      "file": "miniprogram/pages/legal/legal.wxml",
+      "sha256": "c89444a6a7f117fe204cb0c2d1c81741eceae3629f4d2179a4ab39d2809df565"
+    },
+    {
+      "file": "miniprogram/pages/legal/legal.wxss",
+      "sha256": "dc73af317da3b21639fbac506349bc4733ea8b847b2576a8630d047e5ae4fd72"
+    },
+    {
+      "file": "miniprogram/pages/meetup/meetup.wxml",
+      "sha256": "14c3b8adc3cd40ad4d4c17f51b63957c28135589277980cf2f461c3bf120aaa4"
+    },
+    {
+      "file": "miniprogram/pages/meetup/meetup.wxss",
+      "sha256": "be6d92de4d4cab57fc40bfe54d32b39b7ae49d66222a9443a54bd03a8371e2da"
+    },
+    {
+      "file": "miniprogram/pages/mileage/mileage.wxml",
+      "sha256": "9648424545070886cec09920df9c898458e712b2e2e74a832ef4ddbd1065444b"
+    },
+    {
+      "file": "miniprogram/pages/mileage/mileage.wxss",
+      "sha256": "a90d938ae1eea2b292e9a21a8b048b08c4d585882dd560d2f5d62eddd0de0cba"
+    },
+    {
+      "file": "miniprogram/pages/mine/mine.wxml",
+      "sha256": "c64d8da7a3741bb00dbd9f9b2ea2264b4e32d010d4b130b28ae23768229397b6"
+    },
+    {
+      "file": "miniprogram/pages/mine/mine.wxss",
+      "sha256": "e5baa87b45f56dc959d838d1f79ee2c7cb7bdeb0b3218a0e3ff613ed64cab1b6"
+    },
+    {
+      "file": "miniprogram/pages/news/detail.wxml",
+      "sha256": "22a751edc878b4ba40668f76c69483a2c5b6f1e36c1c87944bb9499c563633d1"
+    },
+    {
+      "file": "miniprogram/pages/news/detail.wxss",
+      "sha256": "d871b505cd258513504ac3d6026af1d58d8bb16a832c146cd85f4437b461edc3"
+    },
+    {
+      "file": "miniprogram/pages/news/news.wxml",
+      "sha256": "1635561a93830bbb20c2030e86f37b10174e108f834fedf765221b81a7b72028"
+    },
+    {
+      "file": "miniprogram/pages/news/news.wxss",
+      "sha256": "bf53657d09ff81bb9e01b216c761c086fa74c91874c31c59711919ab2c53d339"
+    },
+    {
+      "file": "miniprogram/pages/partner/partner.wxml",
+      "sha256": "a8146065c9f86b2afc4d3bfedc3ece2711e9a6d3080461b8e271e1356f330661"
+    },
+    {
+      "file": "miniprogram/pages/partner/partner.wxss",
+      "sha256": "09f9020f491c9224d22152fd0a5acb576af61613e5a848119c42a6fad025a887"
+    },
+    {
+      "file": "miniprogram/pages/privacy/privacy.wxml",
+      "sha256": "58b493505ac38ca91d591a62b88cbbc491ef3cdfa067be08e2eaf038f62550b4"
+    },
+    {
+      "file": "miniprogram/pages/privacy/privacy.wxss",
+      "sha256": "347a67cbd77be28ccb6645a360b07b55dd2f1083a6781ef765a213c2c77b9eb5"
+    },
+    {
+      "file": "miniprogram/pages/race/race.wxml",
+      "sha256": "c89def23ed4a000cb7493a4aa5afdf64a53856f4509ce1c79ab50819327a3163"
+    },
+    {
+      "file": "miniprogram/pages/race/race.wxss",
+      "sha256": "0429c68e517dfcd84e597589777c82a7f644c15a45d2738740a274a06e1a8d7f"
+    },
+    {
+      "file": "miniprogram/pages/races/races.wxml",
+      "sha256": "669468585caa5f57012d666a0cc272b0868293265f29076575c0416ed3aba499"
+    },
+    {
+      "file": "miniprogram/pages/races/races.wxss",
+      "sha256": "eba4ebc44f1a3f087b71a4c9adcebcb498e722f091999f441575df273654c889"
+    },
+    {
+      "file": "miniprogram/pages/radar/radar.wxml",
+      "sha256": "24b7dbf110931976ef210f5917e88104fd006743fcca9379298d4aff0d1eed4e"
+    },
+    {
+      "file": "miniprogram/pages/radar/radar.wxss",
+      "sha256": "aa0863a863e3805999bb895642e9f074f6749034e79f019d0386047fc72d48c3"
+    },
+    {
+      "file": "miniprogram/pages/runner/runner.wxml",
+      "sha256": "0971a3c7685e007fc8fe28d188eb2a3eea61ef907522c74cd9f1fb4a6c250c61"
+    },
+    {
+      "file": "miniprogram/pages/runner/runner.wxss",
+      "sha256": "35dd0807744900cac846e5f49e7b23723b640f1370f3d5b7e2e1df92209d63fc"
+    },
+    {
+      "file": "miniprogram/pages/signup/signup.wxml",
+      "sha256": "d4af15780745a7e4740f21c79eddc5deb171fae7efc42515ddc16314aaed2fd5"
+    },
+    {
+      "file": "miniprogram/pages/signup/signup.wxss",
+      "sha256": "b7dbaff3da3a2b3469db4da7a0a7e63cb72de12906481e859578ef110da989d9"
+    },
+    {
+      "file": "miniprogram/pages/sport/sport.wxml",
+      "sha256": "b14c1b53783489639aa827ee8492bc7575e82e0f5eb37bd691901f5fab70dc6a"
+    },
+    {
+      "file": "miniprogram/pages/sport/sport.wxss",
+      "sha256": "97c97db8365f0caab8bfca299e4fe29fe64862b7b894255e909a2ef40ba1dbb8"
+    },
+    {
+      "file": "miniprogram/utils/club-detail.wxss",
+      "sha256": "ba36f4166ea00d1fff03c70be26398dfc59987f3eb9298ffc283159799264ffa"
+    }
+  ],
+  "finalizedAt": "2026-11-11T05:00:03.995Z",
+  "changesSinceFreeze": [
+    {
+      "file": "web/src/views/ActivityCreate.vue",
+      "before": "958468dd783871feab4b1eecd0bd845673acc921a637bad501ba1ec046e14744",
+      "after": "d708aba11e59b8b35127a48c3b47471d811c55f5af9453051735bddcd22c0834",
+      "reason": "Primary text correction covered by targeted three-width recheck"
+    }
+  ]
+}

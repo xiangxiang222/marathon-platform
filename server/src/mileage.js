@@ -24,6 +24,16 @@ function beijingToday(now = Date.now()) {
   return new Date(now + 8 * 3600 * 1000).toISOString().slice(0, 10);
 }
 
+function validDay(value) {
+  if (typeof value !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(value) || value < "1900-01-01" || value > "9998-12-31") return false;
+  const instant = Date.parse(value + "T00:00:00Z");
+  return Number.isFinite(instant) && new Date(instant).toISOString().slice(0, 10) === value;
+}
+
+function validMonth(value) {
+  return typeof value === "string" && /^\d{4}-\d{2}$/.test(value) && validDay(value + "-01");
+}
+
 function beijingMonth(value) {
   const text = String(value || "");
   if (/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/.test(text)) return text.slice(0, 7);
@@ -90,6 +100,7 @@ function parseStart(text) {
   if (!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/.test(raw)) return "";
   const year = Number(raw.slice(0, 4));
   if (year < 2000 || year > 2100) return "";
+  if (!validDay(raw.slice(0, 10)) || Number(raw.slice(11, 13)) > 23 || Number(raw.slice(14, 16)) > 59) return "";
   if (!Number.isFinite(Date.parse(raw + ":00+08:00"))) return "";
   return raw;
 }
@@ -155,7 +166,7 @@ function presentRules(row) {
 function readRules(body) {
   const source = body || {};
   const effectiveOn = String(source.effectiveOn || "").trim();
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(effectiveOn) || effectiveOn > beijingToday()) {
+  if (!validDay(effectiveOn) || effectiveOn > beijingToday()) {
     return { error: "生效日写成 2026-10-01，不能晚于今天" };
   }
   const runMin = Number(source.runMin);
@@ -364,7 +375,7 @@ function attachClubs(db, rows) {
 
 function readRun(body) {
   const type = String((body && body.type) || "");
-  if (!TYPES[type]) return { error: "类型选跑步或越野" };
+  if (!Object.hasOwn(TYPES, type)) return { error: "类型选跑步或越野" };
   const startedAt = parseStart(body.startedAt);
   if (!startedAt) return { error: "时间写成 2026-10-21 06:00" };
   const distance = round2(body.distanceKm);
@@ -1016,7 +1027,12 @@ function mountMileage(app, { BASE, getDb, userFrom }) {
     const row = ctx.db.prepare("SELECT * FROM mileage_counts WHERE run_id = ? AND club_id = ?").get(req.params.rid, ctx.club.id);
     if (!row) return res.status(404).json({ error: "没有这场记录" });
     if (req.body && req.body.counted === true) {
-      ctx.db.prepare("UPDATE mileage_counts SET counted = 1, manual = 1, decision = 'in' WHERE run_id = ? AND club_id = ?").run(row.run_id, ctx.club.id);
+      const run = ctx.db.prepare("SELECT * FROM runs WHERE id = ?").get(row.run_id);
+      if (!run) return res.status(404).json({ error: "没有这场记录" });
+      // An existing volume is the judged snapshot. Rule changes must not rewrite
+      // it when a reviewer repeats a decision or restores an excluded record.
+      const volume = row.volume_km > 0 ? row.volume_km : clubVolume(ensureRules(ctx.db, ctx.club.id), run);
+      ctx.db.prepare("UPDATE mileage_counts SET counted = 1, volume_km = ?, manual = 1, decision = 'in' WHERE run_id = ? AND club_id = ?").run(volume, row.run_id, ctx.club.id);
     } else if (req.body && req.body.counted === false) {
       ctx.db.prepare("UPDATE mileage_counts SET counted = 0, manual = 1, decision = 'out' WHERE run_id = ? AND club_id = ?").run(row.run_id, ctx.club.id);
     } else {
@@ -1033,18 +1049,21 @@ function mountMileage(app, { BASE, getDb, userFrom }) {
     let title = "";
     let month = "";
     if (kind === "week") {
-      const at = /^\d{4}-\d{2}-\d{2}$/.test(query.at || "") ? query.at : today;
+      const at = query.at == null || query.at === "" ? today : query.at;
+      if (!validDay(at)) return { error: "请选择有效的周报日期" };
       const [start, end] = weekBounds(at);
       from = start + "T00:00";
       to = end + "T00:00";
       title = start.slice(5) + "～" + addDays(end, -1).slice(5);
     } else if (kind === "month") {
-      month = /^\d{4}-\d{2}$/.test(query.at || "") ? query.at : today.slice(0, 7);
+      month = query.at == null || query.at === "" ? today.slice(0, 7) : query.at;
+      if (!validMonth(month)) return { error: "请选择有效的月报月份" };
       from = month + "-01T00:00";
       to = nextMonth(month) + "-01T00:00";
       title = month;
     } else if (kind === "year") {
-      const year = /^\d{4}$/.test(query.at || "") ? query.at : today.slice(0, 4);
+      const year = query.at == null || query.at === "" ? today.slice(0, 4) : query.at;
+      if (typeof year !== "string" || !/^\d{4}$/.test(year) || Number(year) < 1900 || Number(year) > 9998) return { error: "请选择有效的年报年份" };
       from = year + "-01-01T00:00";
       to = Number(year) + 1 + "-01-01T00:00";
       title = year;
@@ -1053,7 +1072,7 @@ function mountMileage(app, { BASE, getDb, userFrom }) {
     } else if (kind === "custom") {
       const start = String(query.from || "");
       const end = String(query.to || "");
-      if (!/^\d{4}-\d{2}-\d{2}$/.test(start) || !/^\d{4}-\d{2}-\d{2}$/.test(end) || end < start) {
+      if (!validDay(start) || !validDay(end) || end < start) {
         return { error: "起止写成 2026-10-01 到 2026-10-31" };
       }
       const span = (Date.parse(end + "T00:00:00Z") - Date.parse(start + "T00:00:00Z")) / 86400000;

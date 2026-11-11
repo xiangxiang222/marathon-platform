@@ -10,6 +10,7 @@ const { syncOfficial, listOfficial, publishOfficial, openUpcoming, ignoreOfficia
 const { ensureAdmin, loginAdmin, adminSession, logoutAdmin, changeAdminPassword, listAdmins, createAdmin, setAdminRole } = require("./admin-auth");
 const { adminRoleLabel, clubRoleLabel } = require("./roles");
 const { mountClubLife, enrichBoard, clubLife } = require("./club-life");
+const { mountActivityTemplates } = require("./activity-templates");
 const { mountMileage } = require("./mileage");
 const { mountRunnerCenter } = require("./runner-center");
 const { mountRaceHistory } = require("./race-history");
@@ -1270,6 +1271,7 @@ app.put(BASE + "/api/admin/races/:id", (req, res) => {
 mountLegal(app, { BASE, getDb, userFrom, requireAdmin });
 mountClubIdentity(app, { BASE, getDb, userFrom, requireAdmin });
 mountClubLife(app, { BASE, getDb, userFrom });
+mountActivityTemplates(app, { BASE, getDb, userFrom });
 mountMileage(app, { BASE, getDb, userFrom });
 mountRunnerCenter(app, { BASE, getDb, userFrom, resultsFor, oneUpload });
 mountRaceHistory(app, { BASE, getDb, userFrom, oneUpload });

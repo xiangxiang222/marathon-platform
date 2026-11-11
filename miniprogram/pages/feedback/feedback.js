@@ -14,7 +14,7 @@ function decorate(item) {
   if (!item) return null;
   return { ...item, categoryLabel: (CATEGORIES.find((option) => option.key === item.category) || CATEGORIES[4]).label, moduleLabel: (MODULES.find((option) => option.key === item.module) || MODULES[0]).label, dateLabel: niceDate(item.createdAt), updateLabel: niceDate(item.updatedAt), images: (item.images || []).map((image) => ({ ...image, url: photoUrl(image.url) })), events: (item.events || []).map((event, index) => ({ ...event, key: index + ":" + event.createdAt, dateLabel: niceDate(event.createdAt) })), publicShare: Boolean(item.publishedAt) && !["pending", "withdrawn"].includes(item.status) };
 }
-function confirm(title, content) { return new Promise((resolve) => wx.showModal({ title, content, confirmColor: "#ff0a30", success: (result) => resolve(result.confirm), fail: () => resolve(false) })); }
+function confirm(title, content) { return new Promise((resolve) => wx.showModal({ title, content, confirmColor: "#e1251b", success: (result) => resolve(result.confirm), fail: () => resolve(false) })); }
 
 Page({
   data: {

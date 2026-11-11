@@ -332,7 +332,7 @@ Page({
   savePoster() {
     const lines = this.data.drawLines || [];
     const ctx = wx.createCanvasContext("poster", this);
-    ctx.setFillStyle("#ff0a30");
+    ctx.setFillStyle("#e1251b");
     ctx.fillRect(0, 0, 750, 1000);
     ctx.setFillStyle("#ffffff");
     ctx.setFontSize(48);

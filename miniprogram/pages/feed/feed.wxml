@@ -1,8 +1,8 @@
-<view class="pad">
+<view class="pad mini-feed-feed">
   <view class="card">
     <view class="title">动态</view>
     <view class="src">{{note}}</view>
-    <input placeholder="写给本团的一句" maxlength="200" value="{{body}}" bindinput="onBody" />
+    <input placeholder="写给本团的一句" maxlength="200" value="{{body}}" bindinput="onBody" aria-label="写给本团的一句" />
     <button class="btn" bindtap="publish">发出</button>
     <view wx:if="{{message}}" class="err">{{message}}</view>
   </view>
@@ -16,7 +16,7 @@
       {{comment.nickname}}：{{comment.body}}
       <text wx:if="{{comment.canDelete}}" data-pid="{{item.id}}" data-cid="{{comment.id}}" bindtap="removeComment"> 删除</text>
     </view>
-    <input placeholder="评论" maxlength="80" data-id="{{item.id}}" value="{{drafts[item.id]}}" bindinput="onDraft" />
+    <input placeholder="评论" maxlength="80" data-id="{{item.id}}" value="{{drafts[item.id]}}" bindinput="onDraft" aria-label="评论" />
     <button class="ghost" data-id="{{item.id}}" bindtap="comment">评论</button>
   </view>
 </view>

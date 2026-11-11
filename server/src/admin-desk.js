@@ -321,6 +321,7 @@ function deleteClub(db, id) {
     }
     if (gifts.length) db.prepare(`DELETE FROM redemptions WHERE gift_id IN (${gifts.map(() => "?").join(",")})`).run(...gifts);
     db.prepare("DELETE FROM activities WHERE club_id = ?").run(id);
+    db.prepare("DELETE FROM activity_templates WHERE club_id = ?").run(id);
     db.prepare("DELETE FROM club_groups WHERE club_id = ?").run(id);
     db.prepare("DELETE FROM checkins WHERE club_id = ?").run(id);
     db.prepare("DELETE FROM point_entries WHERE club_id = ?").run(id);

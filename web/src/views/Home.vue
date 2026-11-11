@@ -2,7 +2,7 @@
   <main class="home-page">
     <section class="home-top">
       <header class="home-heading">
-        <h1>赛历</h1>
+        <div><h1>赛历</h1><p>找到下一场，跑向新的自己</p></div>
         <span>{{ todayLabel }}</span>
       </header>
       <form class="home-search" role="search" @submit.prevent="submitSearch">
@@ -330,55 +330,71 @@ onMounted(() => {
 
 <style scoped>
 .home-page { padding-bottom: 12px; }
-.home-top { background: linear-gradient(180deg, #fff1f3 0, #fff 75%); padding-bottom: 4px; }
-.home-heading { display: flex; align-items: center; gap: 12px; min-height: 56px; padding: 8px 16px 4px; }
-.home-heading h1 { margin: 0; font-size: 26px; line-height: 1.2; font-weight: 700; letter-spacing: -.6px; }
-.home-heading > span { color: #777b85; font-size: 12px; line-height: 1.3; }
-.home-search { display: flex; align-items: center; height: 40px; margin: 4px 12px 3px; padding: 0 12px; border: 1px solid var(--accent); border-radius: 10px; background: #fff; }
-.home-search > svg { width: 18px; height: 18px; flex: none; fill: none; stroke: #a3a6af; stroke-width: 1.6; stroke-linecap: round; }
+.home-top { background: var(--card); padding-bottom: 4px; border-radius: 0 0 18px 18px;  border-bottom: 1px solid var(--line);}
+.home-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 86px; padding: 20px 16px 12px; }
+.home-heading h1 { margin: 0; font-size: 26px; line-height: 1.2; font-weight:600; letter-spacing: -.6px; }
+.home-heading p { margin: 6px 0 0; color: var(--accent); font-size: 12px; }
+.home-heading > span { align-self: flex-start; margin-top: 6px; color: var(--muted); font-size: 12px; line-height: 1.6; }
+.home-search { display: flex; align-items: center; height: 46px; margin: 2px 16px 5px; padding: 0 4px 0 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--field-bg); }
+.home-search > svg { width: 18px; height: 18px; flex: none; fill: none; stroke: var(--muted); stroke-width: 1.6; stroke-linecap: round; }
 .home-search input { width: 0; min-width: 0; flex: 1; height: 36px; margin-left: 8px; padding: 0; border: 0; border-radius: 0; background: transparent; font-size: 14px; font-weight: 400; outline: none; }
-.home-search button { flex: none; padding-left: 12px; color: var(--accent); font-size: 15px; font-weight: 600; }
-.race-categories { display: flex; align-items: stretch; gap: 24px; height: 56px; padding: 0 16px; }
-.race-categories button { position: relative; flex: none; min-width: 0; color: #595d67; font-size: 18px; font-weight: 500; white-space: nowrap; }
-.race-categories button.on { color: var(--accent); font-size: 20px; font-weight: 700; }
-.race-categories button.on::after { position: absolute; bottom: 6px; left: calc(50% - 10px); width: 20px; height: 3px; background: var(--accent); content: ""; border-radius: 2px; }
-.home-shortcuts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); padding: 12px 12px 16px; }
-.home-shortcuts a { display: flex; min-width: 0; min-height: 58px; flex-direction: column; align-items: center; gap: 6px; color: #595d67; font-size: 12px; line-height: 20px; font-weight: 400; }
-.home-shortcuts img { display: block; width: 32px; height: 32px; }
-.deadline-banner { display: flex; align-items: center; gap: 10px; min-height: 52px; margin: 10px 12px 0; padding: 8px 10px; border-radius: 8px; background: #fff0f3; }
+.home-search button { flex: none; min-height: 34px; padding: 5px 15px; border-radius: 8px; background: var(--accent); color: #fff; font-size: 14px; font-weight: 600; }
+.race-categories { display: flex; align-items: stretch; gap: 26px; height: 54px; padding: 0 16px; }
+.race-categories button { position: relative; flex: none; min-width: 0; color: var(--ink-secondary); font-size: 15px; font-weight: 500; white-space: nowrap; }
+.race-categories button.on { color: var(--ink); font-size: 16px; font-weight: 600; }
+.race-categories button.on::after { position: absolute; bottom: 6px; left: calc(50% - 11px); width: 22px; height: 2px; background: var(--accent); content: ""; border-radius: 2px; }
+.home-shortcuts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 0 16px; padding: 10px 0 18px; }
+.home-shortcuts a { display: flex; min-width: 0; min-height: 58px; flex-direction: column; align-items: center; gap: 6px; color: var(--ink-secondary); font-size: 12px; line-height: 20px; font-weight: 400; }
+.home-shortcuts img { display: block; width: 36px; height: 36px; }
+.deadline-banner { display: flex; align-items: center; gap: 10px; min-height: 52px; margin: 12px 16px 0; padding: 12px; border-radius: 12px; background: var(--accent-soft);  border: 1px solid var(--line);}
 .deadline-icon { flex: none; width: 26px; height: 26px; color: var(--accent); }
 .deadline-icon svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 .deadline-copy { flex: 1; min-width: 0; line-height: 1.4; }
-.deadline-copy > span { display: block; color: var(--accent); font-size: 11px; font-weight: 600; }
+.deadline-copy > span { display: block; color: var(--accent); font-size: 12px; font-weight: 600; }
 .deadline-copy strong { display: block; overflow: hidden; color: var(--ink); font-size: 13px; font-weight: 400; white-space: nowrap; text-overflow: ellipsis; }
 .deadline-next { display: flex; align-items: center; flex: none; gap: 6px; min-height: 32px; color: var(--accent); }
-.deadline-next small { font-size: 10px; font-weight: 400; opacity: .65; }
+.deadline-next small { font-size: 12px; font-weight: 400; opacity: .65; }
 .deadline-next > span { font-size: 22px; line-height: 1; }
-.results-heading { display: flex; align-items: center; justify-content: space-between; min-height: 46px; padding: 12px 14px 7px; }
-.results-heading h2 { margin: 0; font-size: 18px; font-weight: 700; line-height: 1.5; }
+.results-heading { display: flex; align-items: center; justify-content: space-between; min-height: 56px; padding: 18px 16px 10px; }
+.results-heading h2 { margin: 0; font-size: 18px; font-weight:600; line-height: 1.5; }
 .results-heading > span { color: var(--muted); font-size: 12px; }
-.race-format-filter { display: flex; align-items: center; gap: 12px; margin: 0 12px 12px; }
+.race-format-filter { display: flex; align-items: center; gap: 12px; margin: 0 16px 12px; }
 .format-label { flex: none; color: var(--muted); font-size: 12px; line-height: 20px; }
-.race-meet-categories { display: grid; flex: 1; grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 280px; padding: 3px; border-radius: 10px; background: #edeef2; }
-.race-meet-categories button { min-width: 0; min-height: 36px; padding: 0 7px; border-radius: 7px; color: #777b85; font-size: 12px; line-height: 20px; font-weight: 400; white-space: nowrap; }
-.race-meet-categories button.on { color: var(--ink); background: #fff; box-shadow: 0 1px 3px rgba(31,32,38,.06); font-weight: 600; }
+.race-meet-categories { display: grid; flex: 1; grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 280px; padding: 0; border-radius: 0; background: transparent;  gap: 6px;}
+.race-meet-categories button { min-width: 0; min-height: 34px; padding: 0 7px; border-radius: 7px; color: var(--muted); font-size: 12px; line-height: 20px; font-weight: 400; white-space: nowrap;  border: 1px solid var(--line); background: transparent;}
+.race-meet-categories button.on { color: var(--accent); background: var(--accent-soft); box-shadow: none; font-weight: 600;  border-color: #f5c4bf;}
 .race-meet-categories button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
 .home-filters { top: 0; }
-.home-filters .filter-bar { gap: 6px; padding: 0 12px 10px; }
-.home-filters .filter-bar > button { display: flex; align-items: center; justify-content: center; gap: 7px; height: 30px; padding: 0 10px; border-radius: 6px; background: #fff; font-size: 12px; font-weight: 400; }
+.home-filters .filter-bar { gap: 7px; padding: 0 16px 12px; }
+.home-filters .filter-bar > button { display: flex; align-items: center; justify-content: center; gap: 7px; min-height: 36px; height: auto; padding: 7px 12px; border: 1px solid var(--line); border-radius: 8px; background: #fff; font-size: 12px; font-weight: 400; }
 .home-filters .filter-bar > button.on { color: var(--accent); background: var(--accent-soft); }
-.home-filters i { width: 5px; height: 5px; margin-top: -3px; border-right: 1px solid #777b85; border-bottom: 1px solid #777b85; transform: rotate(45deg); }
-.home-race-list { gap: 8px; padding: 0 12px 8px; }
-.home-race-list :deep(.race-card) { min-height: 96px; }
+.home-filters i { width: 5px; height: 5px; margin-top: -3px; border-right: 1px solid var(--muted); border-bottom: 1px solid var(--muted); transform: rotate(45deg); }
+.home-race-list { gap: 10px; padding: 0 16px 12px; }
+.home-race-list :deep(.race-card) { min-height: 112px; }
 @media (max-width: 350px) {
   .home-heading { padding-left: 12px; gap: 8px; }
-  .home-heading h1 { font-size: 24px; }
-  .home-heading > span { font-size: 11px; }
-  .race-categories { gap: 22px; padding-left: 12px; }
-  .race-categories button { font-size: 17px; }
-  .race-categories button.on { font-size: 19px; }
-  .home-shortcuts a { font-size: 12px; }
-  .race-format-filter { gap: 10px; }
-  .race-meet-categories button { padding: 0 4px; }
+  .home-heading h1 { font-size: 26px; }
+  .home-heading > span { font-size: 12px;  color: var(--muted);}
+  .race-categories { gap: 26px; padding-left: 12px;  height: 54px;}
+  .race-categories button { font-size: 15px; }
+  .race-categories button.on { font-size: 16px;  color: var(--ink); font-weight: 600;}
+  .home-shortcuts a { font-size: 12px;  color: var(--ink-secondary);}
+  .race-format-filter { gap: 10px;  margin: 0 16px 12px;}
+  .race-meet-categories button { padding: 0 4px;  min-height: 34px; border: 1px solid var(--line); border-radius: 7px; background: transparent;}
 }
+
+
+/* A warm start, with a distinct colour for each destination. */
+.home-page { background:transparent; }
+.home-top { background:linear-gradient(145deg,#fff0e5 0%,#fff9f5 58%,#fff 100%); border-color:#f2ded5; box-shadow:var(--card-shadow,0 8px 26px #454c7010); }
+.home-heading h1 { color:#b92a22; }
+.home-heading>span { padding:6px 9px;border:1px solid #ffffffb3;border-radius:8px;background:#ffffff8c;color:#73574c; }
+.home-search { background:#ffffffed;border-color:#ffffff;box-shadow:0 3px 12px #9869520a; }
+.home-shortcuts { gap:8px;padding-top:12px; }.home-shortcuts img { box-sizing:content-box;padding:8px;border-radius:12px; }
+.home-shortcuts a { padding:12px 2px 10px;border:1px solid #ffffffc9;border-radius:14px;background:transparent; }
+.home-shortcuts img { background: transparent; }
+.deadline-banner { background:#fffaf0;border-color:#f0dfb7; }
+.deadline-icon { color:#a16b12;background:#fff9e9; }
+.home-race-list :deep(.race-card) { box-shadow:var(--card-shadow,0 4px 16px #454c7008); }
+@media(max-width:350px) { .home-shortcuts { gap:6px; }.home-shortcuts a { border-radius:12px; }.home-shortcuts span { font-size:12px; } }
 </style>
