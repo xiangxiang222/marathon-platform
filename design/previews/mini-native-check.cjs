@@ -142,7 +142,9 @@ for (const [tool, ext] of [["wcc", ".wxml"], ["wcsc", ".wxss"]]) {
 }
 report.passed = report.js.every((item) => item.exit === 0) && report.json.every((item) => item.ok) && report.wxss.every(item => item.ok) && report.wxssFixtureChecks.every(item => item.passed) && report.nativeSyntaxProbe.passed && report.nativeCoverageProbe.passed && !report.references.length && report.moduleReferences.every(item => item.ok) && report.moduleFixtureChecks.every(item => item.passed) && report.compile.every((item) => item.ok);
 report.finishedAt = new Date().toISOString();
-fs.writeFileSync(path.join(__dirname, "mini-native-check-report.json"), JSON.stringify(report, null, 2));
+const reportFile = process.env.MINI_NATIVE_REPORT ? path.resolve(root, process.env.MINI_NATIVE_REPORT) : path.join(__dirname, "mini-native-check-report.json");
+fs.mkdirSync(path.dirname(reportFile), { recursive: true });
+fs.writeFileSync(reportFile, JSON.stringify(report, null, 2));
 console.log(JSON.stringify({ passed: report.passed, js: report.js.length, json: report.json.length, wxss: report.wxss.length, wxssErrors: report.wxss.filter(item => !item.ok), wxssFixtureChecks: report.wxssFixtureChecks, nativeSyntaxProbe: report.nativeSyntaxProbe, nativeCoverageProbe: report.nativeCoverageProbe, references: report.references, moduleReferences: report.moduleReferences.length, moduleErrors: report.moduleReferences.filter(item => !item.ok), moduleFixtureChecks: report.moduleFixtureChecks, compile: report.compile }, null, 2));
 fs.rmSync(output, { recursive: true, force: true });
 if (!report.passed) process.exitCode = 1;
