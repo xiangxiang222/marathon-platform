@@ -15,7 +15,7 @@
           <view wx:elif="{{entry.id === 'pacer' && previewTarget}}" class="shortcut-pace"><text class="shortcut-time">{{previewTarget}}</text><text>完赛目标</text></view>
           <view wx:else class="shortcut-wordmark">{{entry.id === 'athlete' ? '42.195' : '稳稳领跑'}}<text wx:if="{{entry.id === 'athlete'}}"> km</text></view>
           <text class="shortcut-arrow">↗</text>
-        </view>
+        </view><view wx:if="{{previewLabels[entry.id]}}" class="shortcut-specific">{{previewLabels[entry.id]}}</view>
       </button>
     </view>
     <view class="section-caption"><text class="caption-title">{{heading}}</text><text wx:if="{{ready && !message && total}}">{{total}} {{tab === 'pacer' ? '位官兔' : isProfile ? '位运动员' : '篇内容'}}</text></view>
@@ -25,7 +25,7 @@
     <view wx:if="{{message}}" class="journal-state"><view class="state-icon">!</view><view class="state-title">内容暂时无法加载</view><view>{{message}}</view><button bindtap="load">重新加载</button></view>
     <view wx:elif="{{!ready}}" class="journal-state"><view class="loading-dot"></view>正在加载内容…</view>
     <block wx:else>
-      <navigator wx:for="{{rows}}" wx:key="id" class="journal-row {{isProfile ? 'person-row' : ''}}" url="/pages/news/detail?type={{isProfile ? 'profile' : tab === 'race' ? 'race' : 'article'}}&id={{item.id}}">
+      <view class="journal-list"><navigator wx:for="{{rows}}" wx:key="id" class="journal-row {{isProfile ? 'person-row' : ''}}" url="/pages/news/detail?type={{isProfile ? 'profile' : tab === 'race' ? 'race' : 'article'}}&id={{item.id}}">
         <block wx:if="{{isProfile}}">
           <text wx:if="{{tab === 'athlete'}}" class="person-number">{{item.number}}</text>
           <view class="person-portrait"><text>{{item.avatarLabel}}</text><image wx:if="{{!item.imageFailed && (item.avatar || item.photo)}}" src="{{item.avatar || item.photo}}" mode="aspectFill" data-index="{{index}}" binderror="profileImageError" aria-label="{{item.name}}照片" /></view>
@@ -33,7 +33,7 @@
           <view class="person-time"><view>{{tab === 'pacer' ? item.pacerTarget : item.seasonBest || item.personalBestDisplay || item.personalBest}}</view><text>{{tab === 'pacer' ? '完赛目标' : item.seasonBest ? '赛季最佳' : '全马 PB'}}</text></view><text class="row-arrow">›</text>
         </block>
         <block wx:else><view class="article-copy"><view class="row-kicker">{{item.raceName ? '赛事资讯' : item.categoryLabel}} <text wx:if="{{item.featured}}" class="featured-tag">精选</text></view><view class="article-title">{{item.title}}</view><view wx:if="{{item.summary}}" class="row-summary">{{item.summary}}</view><view class="row-meta"><text>{{item.authorLabel}}</text><text>{{item.dateLabel}}</text></view></view><image wx:if="{{item.coverUrl && !item.imageFailed}}" class="article-photo" src="{{item.coverUrl}}" mode="aspectFill" data-index="{{index}}" binderror="profileImageError" /></block>
-      </navigator>
+      </navigator></view>
       <view wx:if="{{!rows.length}}" class="journal-state"><view class="state-icon">＋</view><view class="state-title">{{query ? '还没找到相关内容' : clubId ? '还没有发布跑团资讯' : isProfile ? '人物资料正在整理' : '这个栏目还没有新内容'}}</view><view>{{query ? '换一个关键词试试。' : clubId ? '分享团练心得、赛事回顾或公众号好文。' : '稍后再来看看，或先逛逛其他栏目。'}}</view><navigator wx:if="{{clubId && canManage}}" url="/pages/news/editor?club={{clubId}}">发布第一篇</navigator><button wx:elif="{{!isProfile && !clubId}}" data-tab="athlete" bindtap="switchTab">浏览运动员档案</button></view>
       <view wx:if="{{pages > 1}}" class="journal-pager"><button disabled="{{page <= 1}}" bindtap="prevPage">上一页</button><text>{{page}} / {{pages}}</text><button disabled="{{page >= pages}}" bindtap="nextPage">下一页</button></view>
     </block>
