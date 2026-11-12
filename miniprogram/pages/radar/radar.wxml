@@ -1,15 +1,13 @@
 <view class="pad mini-radar-radar">
   <view class="card">
-    <view class="title">拿奖雷达</view>
+    <view class="radar-kicker">拿奖雷达</view><view class="title">{{loggedIn ? '我的跑步目标' : '找到适合你的拿奖赛事'}}</view>
     <block wx:if="{{!loggedIn}}">
       <view class="src login-description">登录后，结合个人目标成绩与赛事奖项查看适合你的比赛</view>
       <navigator class="btn" open-type="switchTab" url="/pages/mine/mine">登录后使用</navigator>
     </block>
     <block wx:else>
-    <view class="src">{{note}}</view>
-    <view class="slot"><text>天气和赛道修正</text><text class="slot-state">尚未开通</text></view>
-    <view class="src">对照仍用已记下的成绩和往届名次。</view>
-    <view class="src">性别、出生年月和省份自己填。不收身份证。出生月份和比赛月相同的，按小一岁算。</view>
+    <view class="src">结合目标成绩、年龄组与参赛地区，寻找适合你的比赛。</view>
+    <view class="radar-section-label">基本资料 <text>选填</text></view>
     <view class="field-label">性别</view>
     <view class="radar-gender">
       <button class="ghost {{gender === '' ? 'on' : ''}}" data-gender="" bindtap="setGender">不填</button>
@@ -18,16 +16,17 @@
     </view>
     <view class="radar-field"><view class="field-label">出生年月<text>选填</text></view><input placeholder="出生年月 1986-06，可空" value="{{birth}}" bindinput="onBirth" aria-label="出生年月 1986-06，可空" /></view>
     <view class="radar-field"><view class="field-label">所属省份<text>选填</text></view><input placeholder="省份，例如 河南，可空" value="{{province}}" bindinput="onProvince" aria-label="省份，例如 河南，可空" /></view>
+    <view class="radar-section-label">目标成绩 <text>留空使用已有 PB</text></view><view class="radar-targets">
     <view class="radar-field"><view class="field-label">全马目标<text>选填</text></view><input placeholder="全马目标 3:30:00，空则用 PB" value="{{full}}" bindinput="onFull" aria-label="全马目标 3:30:00，空则用 PB" /></view>
     <view class="radar-field"><view class="field-label">半马目标<text>选填</text></view><input placeholder="半马目标，可空" value="{{half}}" bindinput="onHalf" aria-label="半马目标，可空" /></view>
     <view class="radar-field"><view class="field-label">10 公里目标<text>选填</text></view><input placeholder="10 公里目标，可空" value="{{ten}}" bindinput="onTen" aria-label="10 公里目标，可空" /></view>
     <view class="radar-field"><view class="field-label">5 公里目标<text>选填</text></view><input placeholder="5 公里目标，可空" value="{{five}}" bindinput="onFive" aria-label="5 公里目标，可空" /></view>
-    <button class="btn" bindtap="save">保存</button>
+    </view><button class="btn" bindtap="save">保存</button><view class="radar-notes">{{note}} 性别、出生年月和省份用于匹配年龄组和本地籍，不收身份证。出生月份与比赛月相同时，按小一岁计算。天气和赛道修正尚未开通。</view>
     <view wx:if="{{message}}" class="err">{{message}}</view>
     </block>
   </view>
   <view wx:if="{{loggedIn}}" class="card">
-    <view class="title">对得上的奖</view>
+    <view class="title">适合我的奖项</view>
     <view wx:if="{{!rows.length}}" class="src">还没有对得上的奖。奖项要在后台按规程录入。</view>
     <navigator wx:for="{{rows}}" wx:key="ruleId" url="/pages/race/race?id={{item.race.id}}">
       <view class="src">{{item.race.raceDate}} {{item.race.name}}</view>

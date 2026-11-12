@@ -23,7 +23,7 @@
   --sun: var(--ink-secondary);
   --sun-soft: var(--chip);
   --peach-soft: var(--accent-soft);
-  --card-shadow: none;
+  --card-shadow: 0 1px 0 #00000002;
   --action-fill: var(--accent);
   --font: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
   --radius-card: 12px;
