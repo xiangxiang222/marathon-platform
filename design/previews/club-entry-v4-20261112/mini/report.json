@@ -1,0 +1,1379 @@
+{
+  "kind": "Current WXML/WXSS browser source mirrors. Synthetic display fixtures. Not WeChat simulator/device. Selected routes and applicable branches at 320/390; default covers every registered route.",
+  "date": "2026-11-12T04:00:56.268Z",
+  "output": "/Users/mengxiangxiang/Documents/work/dev/marathon-platform/design/previews/club-entry-v4-20261112/mini",
+  "expectedAccent": "#ff1838",
+  "routeCount": 1,
+  "sceneCount": 7,
+  "dataErrors": [],
+  "limitations": [
+    "Source layout mirror with synthetic fixtures; no lifecycle/API/device interaction",
+    "Native pickers, textareas, scroll areas and custom header are approximated in browser",
+    "Contact sheets crop the top of each page; individual PNGs show the complete rendered page"
+  ],
+  "passed": true,
+  "results": [
+    {
+      "route": "pages/clubs/clubs",
+      "scenario": "base",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 1109,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
+        "surface": "#ffffff",
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f7f7f7",
+        "mint": "#f7f7f7",
+        "lilac": "#f7f7f7",
+        "sun": "#f7f7f7",
+        "peach": "#fff0f2"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "coral"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "BUTTON",
+            "class": "result-action",
+            "area": 1936,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "A",
+            "class": "result-action joined",
+            "area": 1936,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#ff1838",
+      "browserErrors": [],
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/clubs/clubs",
+      "scenario": "expanded",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 1565,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
+        "surface": "#ffffff",
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f7f7f7",
+        "mint": "#f7f7f7",
+        "lilac": "#f7f7f7",
+        "sun": "#f7f7f7",
+        "peach": "#fff0f2"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "coral"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#ff1838",
+      "browserErrors": [],
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/clubs/clubs",
+      "scenario": "search",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 1390,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
+        "surface": "#ffffff",
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f7f7f7",
+        "mint": "#f7f7f7",
+        "lilac": "#f7f7f7",
+        "sun": "#f7f7f7",
+        "peach": "#fff0f2"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "coral"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#ff1838",
+      "browserErrors": [],
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/clubs/clubs",
+      "scenario": "create",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 1790,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
+        "surface": "#ffffff",
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f7f7f7",
+        "mint": "#f7f7f7",
+        "lilac": "#f7f7f7",
+        "sun": "#f7f7f7",
+        "peach": "#fff0f2"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "coral"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "BUTTON",
+            "class": "result-action",
+            "area": 1936,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "A",
+            "class": "result-action joined",
+            "area": 1936,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#ff1838",
+      "browserErrors": [],
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/clubs/clubs",
+      "scenario": "code",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 974,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
+        "surface": "#ffffff",
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f7f7f7",
+        "mint": "#f7f7f7",
+        "lilac": "#f7f7f7",
+        "sun": "#f7f7f7",
+        "peach": "#fff0f2"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "coral"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "create-mark",
+            "area": 745,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#ff1838",
+      "browserErrors": [],
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/clubs/clubs",
+      "scenario": "empty",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 766,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
+        "surface": "#ffffff",
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f7f7f7",
+        "mint": "#f7f7f7",
+        "lilac": "#f7f7f7",
+        "sun": "#f7f7f7",
+        "peach": "#fff0f2"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "coral"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "BUTTON",
+            "class": "result-action",
+            "area": 1936,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "A",
+            "class": "result-action joined",
+            "area": 1936,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "create-mark",
+            "area": 745,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#ff1838",
+      "browserErrors": [],
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/clubs/clubs",
+      "scenario": "guest",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 531,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
+        "surface": "#ffffff",
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f7f7f7",
+        "mint": "#f7f7f7",
+        "lilac": "#f7f7f7",
+        "sun": "#f7f7f7",
+        "peach": "#fff0f2"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "coral"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1051,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#ff1838",
+      "browserErrors": [],
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/clubs/clubs",
+      "scenario": "base",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 1153,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
+        "surface": "#ffffff",
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f7f7f7",
+        "mint": "#f7f7f7",
+        "lilac": "#f7f7f7",
+        "sun": "#f7f7f7",
+        "peach": "#fff0f2"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "coral"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "BUTTON",
+            "class": "result-action",
+            "area": 1936,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "A",
+            "class": "result-action joined",
+            "area": 767,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#ff1838",
+      "browserErrors": [],
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/clubs/clubs",
+      "scenario": "expanded",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 1609,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
+        "surface": "#ffffff",
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f7f7f7",
+        "mint": "#f7f7f7",
+        "lilac": "#f7f7f7",
+        "sun": "#f7f7f7",
+        "peach": "#fff0f2"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "coral"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#ff1838",
+      "browserErrors": [],
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/clubs/clubs",
+      "scenario": "search",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 1435,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
+        "surface": "#ffffff",
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f7f7f7",
+        "mint": "#f7f7f7",
+        "lilac": "#f7f7f7",
+        "sun": "#f7f7f7",
+        "peach": "#fff0f2"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "coral"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#ff1838",
+      "browserErrors": [],
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/clubs/clubs",
+      "scenario": "create",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 1869,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
+        "surface": "#ffffff",
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f7f7f7",
+        "mint": "#f7f7f7",
+        "lilac": "#f7f7f7",
+        "sun": "#f7f7f7",
+        "peach": "#fff0f2"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "coral"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "BUTTON",
+            "class": "result-action",
+            "area": 1936,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "A",
+            "class": "result-action joined",
+            "area": 767,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#ff1838",
+      "browserErrors": [],
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/clubs/clubs",
+      "scenario": "code",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 1004,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
+        "surface": "#ffffff",
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f7f7f7",
+        "mint": "#f7f7f7",
+        "lilac": "#f7f7f7",
+        "sun": "#f7f7f7",
+        "peach": "#fff0f2"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "coral"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1296,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "create-mark",
+            "area": 1107,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#ff1838",
+      "browserErrors": [],
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/clubs/clubs",
+      "scenario": "empty",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 813,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
+        "surface": "#ffffff",
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f7f7f7",
+        "mint": "#f7f7f7",
+        "lilac": "#f7f7f7",
+        "sun": "#f7f7f7",
+        "peach": "#fff0f2"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "coral"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "BUTTON",
+            "class": "result-action",
+            "area": 1936,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "A",
+            "class": "result-action joined",
+            "area": 1936,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "create-mark",
+            "area": 1107,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#ff1838",
+      "browserErrors": [],
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/clubs/clubs",
+      "scenario": "guest",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 559,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
+        "surface": "#ffffff",
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f7f7f7",
+        "mint": "#f7f7f7",
+        "lilac": "#f7f7f7",
+        "sun": "#f7f7f7",
+        "peach": "#fff0f2"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "coral"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "DIV",
+            "class": "club-letter",
+            "area": 1561,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#ff1838",
+      "browserErrors": [],
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    }
+  ]
+}
