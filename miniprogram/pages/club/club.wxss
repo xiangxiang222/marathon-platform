@@ -211,7 +211,7 @@ text.text-action { display:inline-flex; align-items:center; min-height:44px; box
 .switch-club { display:flex; align-items:center; gap:8rpx; min-height:44px; color:var(--text-secondary); font-size:12px; }
 .switch-club > text { color:var(--text-secondary); font-size:16px; }
 .club-identity { display:flex; align-items:flex-start; gap:28rpx; margin:12rpx 0 28rpx; }
-.club-letter { display:flex; flex:none; align-items:center; justify-content:center; width:56px; height:56px; border-radius:16px; color:#fff; background:var(--brand); font-size:24px; font-weight:600; box-shadow:none; }
+.club-letter { display:flex; flex:none; align-items:center; justify-content:center; width:56px; height:56px; border-radius:12px; color:#fff; background:var(--brand); font-size:24px; font-weight:600; box-shadow:none; }
 .club-identity-copy { flex:1; min-width:0; }
 .club-title { color:var(--text); font-size:24px; font-weight:600; line-height:1.35; letter-spacing:normal; overflow-wrap:anywhere; }
 .public-identity-line { display:flex; flex-wrap:wrap; align-items:center; gap:12rpx; margin-top:12rpx; color:var(--text-secondary); font-size:12px; line-height:1.6; }
@@ -239,7 +239,7 @@ text.text-action { display:inline-flex; align-items:center; min-height:44px; box
 .overview-section-head { margin:30rpx 0 14rpx; }
 .overview-section-head .section-title { font-size:18px; font-weight:600; letter-spacing:normal; }
 .overview-section-head .section-link { display:flex; align-items:center; min-height:44px; color:var(--text-secondary); font-size:12px; }
-.mini-club-club .next-activity { display:block; overflow:hidden; padding:32rpx; border:0; border-radius:16px; background:var(--card,#fff); box-shadow:none; }
+.mini-club-club .next-activity { display:block; overflow:hidden; padding:32rpx; border:0; border-radius:12px; background:var(--card,#fff); box-shadow:none; }
 .next-top { display:flex; align-items:center; justify-content:space-between; gap:16rpx; }
 .next-label { display:flex; align-items:center; gap:10rpx; color:var(--brand); font-size:12px; font-weight:500; }
 .activity-state-dot { width:5px; height:5px; border-radius:50%; background:currentColor; }
@@ -253,15 +253,15 @@ text.text-action { display:inline-flex; align-items:center; min-height:44px; box
 .next-bottom { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:16rpx; margin-top:26rpx; padding-top:22rpx; border-top:1rpx solid var(--border); color:var(--text-secondary); font-size:12px; }
 .next-cta { color:var(--text); font-weight:500; white-space:nowrap; }
 .next-cta > text { padding-left:8rpx; color:var(--brand); }
-.mini-club-club .next-empty { min-height:0; padding:32rpx; border:0; border-radius:16px; background:var(--card,#fff); }
+.mini-club-club .next-empty { min-height:0; padding:32rpx; border:0; border-radius:12px; background:var(--card,#fff); }
 .empty-content { position:relative; }
 .next-empty .empty-title { margin:0 0 12rpx; color:var(--text); font-size:18px; line-height:1.45; font-weight:600; letter-spacing:normal; }
 .next-empty .empty-action { margin-top:24rpx; min-height:40px; padding:0 24rpx; border:0; border-radius:12px; font-size:14px; }
-.mini-club-club .quick-grid { display:flex; margin:20rpx 0 24rpx; padding:24rpx 4rpx; border:0; border-radius:16px; background:var(--card,#fff); box-shadow:none; }
+.mini-club-club .quick-grid { display:flex; margin:20rpx 0 24rpx; padding:24rpx 4rpx; border:0; border-radius:12px; background:var(--card,#fff); box-shadow:none; }
 .quick-entry { display:flex; flex:1; min-width:0; min-height:60px; flex-direction:column; align-items:center; justify-content:center; gap:12rpx; color:var(--text); font-size:12px; font-weight:400; }
 .quick-icon { display:flex; align-items:center; justify-content:center; width:32px; height:32px; }
 .quick-entry image { display:block; width:29px; height:29px; }
-.mini-club-club .today-panel { margin:24rpx 0 30rpx; padding:30rpx 32rpx 0; border:0; border-radius:16px; background:var(--card,#fff); }
+.mini-club-club .today-panel { margin:24rpx 0 30rpx; padding:30rpx 32rpx 0; border:0; border-radius:12px; background:var(--card,#fff); }
 .today-panel-heading { display:flex; align-items:center; justify-content:space-between; }
 .today-panel-label { color:var(--text); font-size:14px; font-weight:600; }
 .my-summary { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0; margin:28rpx 0 28rpx; }

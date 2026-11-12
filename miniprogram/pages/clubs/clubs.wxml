@@ -1,4 +1,4 @@
-<page-header title="跑团" subtitle="和同频的人，一起出发" tone="light"></page-header>
+<page-header title="跑团" subtitle="和同频的人，一起出发"></page-header>
 <view class="clubs-page mini-clubs-clubs">
   <view class="my-clubs">
     <view class="section-heading"><text class="section-title">我的跑团</text><text wx:if="{{ready && clubs.length}}" class="section-count">{{clubs.length}} 个</text></view>

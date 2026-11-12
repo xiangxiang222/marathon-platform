@@ -1,5 +1,5 @@
 @import "../../utils/mileage-pages.wxss";
-.tg-card { margin-bottom:20rpx; padding:28rpx; border-radius:26rpx; }
+.tg-card { margin-bottom:20rpx; padding:16px; border-radius:24rpx; }
 .tg-card-top { display:flex; align-items:center; gap:20rpx; }
 .tg-mark { display:flex; align-items:center; justify-content:center; flex:none; width:76rpx; height:76rpx; border-radius:20rpx; background:rgba(255,255,255,.72); font-size:24px; font-weight:600; }
 .tg-main { flex:1; min-width:0; }.tg-name { color:var(--text); font-size:18px; font-weight:600; overflow-wrap:anywhere; }.tg-pace { color:var(--text-secondary); font-size:12px; margin-top:8rpx; overflow-wrap:anywhere; }
@@ -11,7 +11,7 @@
 
 .tg-card { border:1rpx solid var(--border); border-radius:24rpx; background:var(--card,#fff); color:var(--text); }
 .tg-mark { border-radius:16rpx; background:var(--page-bg); color:var(--text-secondary); font-size:20px; font-weight:500; }
-.tg-name { color:var(--text); font-size:16px; font-weight:500; }
+.tg-name { color:var(--text); font-size:15px; font-weight:500; }
 .tg-pace,.tg-description,.tg-size>text { color:var(--text-secondary); font-size:12px; }
 .tg-size { color:var(--text); font-size:20px; font-weight:500; }
 .tg-actions,.tg-member { border-color:var(--border); }

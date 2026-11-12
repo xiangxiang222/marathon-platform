@@ -1,22 +1,16 @@
 <view class="pad mini-feed-feed">
-  <view class="card">
-    <view class="title">动态</view>
-    <view class="src">{{note}}</view>
-    <input placeholder="写给本团的一句" maxlength="200" value="{{body}}" bindinput="onBody" aria-label="写给本团的一句" />
-    <button class="btn" bindtap="publish">发出</button>
+  <view class="card feed-compose">
+    <view class="feed-heading">跑团动态</view>
+    <view class="feed-note">{{note}}</view>
+    <view class="feed-input-row"><input placeholder="分享今天的训练与见闻" maxlength="200" value="{{body}}" bindinput="onBody" aria-label="写给本团的一句" /><button class="btn" bindtap="publish">发布</button></view>
     <view wx:if="{{message}}" class="err">{{message}}</view>
   </view>
-  <view wx:if="{{!posts.length}}" class="card"><view class="src">还没有动态。</view></view>
-  <view class="card" wx:for="{{posts}}" wx:key="id">
-    <view class="src">{{item.nickname}} {{item.at}}</view>
-    <view>{{item.body}}</view>
-    <button class="ghost" data-id="{{item.id}}" data-liked="{{item.liked}}" bindtap="like">{{item.liked ? '取消赞' : '赞'}} {{item.likes}}</button>
-    <button wx:if="{{item.canDelete}}" class="ghost" data-id="{{item.id}}" bindtap="removePost">删除</button>
-    <view wx:for="{{item.comments}}" wx:for-item="comment" wx:key="id" class="src">
-      {{comment.nickname}}：{{comment.body}}
-      <text wx:if="{{comment.canDelete}}" data-pid="{{item.id}}" data-cid="{{comment.id}}" bindtap="removeComment"> 删除</text>
-    </view>
-    <input placeholder="评论" maxlength="80" data-id="{{item.id}}" value="{{drafts[item.id]}}" bindinput="onDraft" aria-label="评论" />
-    <button class="ghost" data-id="{{item.id}}" bindtap="comment">评论</button>
+  <view wx:if="{{!posts.length}}" class="card feed-empty">还没有动态，分享你的第一次跑团记录。</view>
+  <view class="card feed-post" wx:for="{{posts}}" wx:key="id">
+    <view class="feed-post-head"><text class="feed-author">{{item.nickname}}</text><text class="feed-time">{{item.at}}</text></view>
+    <view class="feed-body">{{item.body}}</view>
+    <view class="feed-actions"><button class="ghost {{item.liked ? 'is-liked' : ''}}" data-id="{{item.id}}" data-liked="{{item.liked}}" bindtap="like">{{item.liked ? '已赞' : '点赞'}} {{item.likes}}</button><button wx:if="{{item.canDelete}}" class="ghost" data-id="{{item.id}}" bindtap="removePost">删除</button></view>
+    <view wx:if="{{item.comments.length}}" class="feed-comments"><view wx:for="{{item.comments}}" wx:for-item="comment" wx:key="id" class="feed-comment"><text class="feed-comment-author">{{comment.nickname}}：</text><text>{{comment.body}}</text><text wx:if="{{comment.canDelete}}" class="feed-comment-delete" data-pid="{{item.id}}" data-cid="{{comment.id}}" bindtap="removeComment">删除</text></view></view>
+    <view class="feed-input-row"><input placeholder="写下评论" maxlength="80" data-id="{{item.id}}" value="{{drafts[item.id]}}" bindinput="onDraft" aria-label="评论" /><button class="ghost feed-send" data-id="{{item.id}}" bindtap="comment">发送</button></view>
   </view>
 </view>

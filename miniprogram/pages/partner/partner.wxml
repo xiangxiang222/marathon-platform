@@ -10,7 +10,7 @@
   </view>
   <view class="card">
     <view class="title">物资</view>
-    <view class="src">用户不付钱。认证按额度领，核心额度乘二。</view>
+    <view class="src">认证跑团可按月度额度免费领取物资，核心跑团享双倍额度。</view>
     <view wx:for="{{view.supplies}}" wx:key="id">
       <view class="src">{{item.brand}} · {{item.name}} · {{item.month}}</view>
       <view class="src">签到至少 {{item.needChecks}} 天，跑量至少 {{item.needKm}} 公里。本团 {{item.clubUsed}}/{{item.cap}}</view>
@@ -26,7 +26,7 @@
   </view>
   <view class="card">
     <view class="title">联赛</view>
-    <view class="src">免费参加。奖品是物资，不发现金。</view>
+    <view class="src">联赛免费参加，奖励以实物发放。</view>
     <block wx:if="{{view.league}}">
       <view class="src">{{view.league.title}} {{view.league.sponsor}} {{view.league.closed ? '已结束' : ''}}</view>
       <view class="src" wx:if="{{view.league.prize}}">奖品 {{view.league.prize}}</view>

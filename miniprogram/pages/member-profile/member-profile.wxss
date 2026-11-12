@@ -15,8 +15,8 @@
 
 .member-profile { color:var(--text); font-size:14px; }
 .person-hero,.person-volume,.person-runs,.person-race-card,.person-result-card,.person-album-card,.person-tab-empty { border:1rpx solid var(--border); border-radius:24rpx; background:var(--card,#fff); color:var(--text); }
-.person-name { color:var(--text); font-size:22px; font-weight:600; letter-spacing:normal; }
-.person-fallback { background:var(--brand-soft); color:var(--brand); font-size:24px; }
+.person-name { color:var(--text); font-size:24px; font-weight:600; letter-spacing:normal; }
+.person-fallback { background:var(--page-bg); color:var(--text-secondary); font-size:24px; }
 .person-group,.person-joined,.person-role { color:var(--text-secondary); font-size:12px; }
 .person-hero-metrics { border-color:var(--border); }
 .person-hero-metrics>view>text:first-child { color:var(--text); font-size:24px; font-weight:600; }
@@ -26,7 +26,7 @@
 .person-stat-grid>view>text:last-child,.person-run-date>text:last-child,.person-run-meta,.person-run-extra { color:var(--text-secondary); font-size:12px; }
 .mp-page .person-race-filter { min-height:44px; border-radius:20rpx; color:var(--text-secondary); background:var(--card,#fff); border:1rpx solid var(--border); font-size:14px; font-weight:400; }
 .mp-page .person-race-filter.filter-selected { color:var(--brand); background:var(--brand-soft); border-color:var(--brand); font-weight:500; }
-.person-race-name { color:var(--text); font-size:16px; font-weight:500; }
+.person-race-name { color:var(--text); font-size:15px; font-weight:500; }
 .person-result-main>text:first-child { color:var(--text); font-size:28px; font-weight:600; letter-spacing:normal; }
 .person-result-name,.person-album-title { color:var(--text); font-size:14px; font-weight:500; }
 .person-status,.person-race-location,.person-result-top,.person-result-bottom,.person-result-pb,.person-album-meta { font-size:12px; color:var(--text-secondary); }

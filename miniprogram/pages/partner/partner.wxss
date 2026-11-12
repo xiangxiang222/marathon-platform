@@ -30,3 +30,12 @@ input { width: 100%; min-height: 44px; margin-top: 18rpx; padding: 0 22rpx; bord
 .card .title,.card:first-child .title { color:var(--text); font-size:18px; font-weight:600; }
 .mini-partner-partner .btn,.mini-partner-partner .ghost { min-height:44px; border-radius:20rpx; font-size:14px; font-weight:500; }
 .mini-partner-partner input { min-height:44px; border-radius:20rpx; font-size:14px; color:var(--text); background:var(--page-bg); }
+
+.mini-partner-partner { padding:16px; }
+.mini-partner-partner .card { margin:0 0 12px; padding:16px; border-radius:12px; }
+.mini-partner-partner button.ghost { width:auto; min-height:44px; padding:0 12px; color:var(--text); background:#fff; border:1rpx solid var(--border); border-radius:8px; }
+.mini-partner-partner .row { align-items:center; gap:12px; }
+.mini-partner-partner .row>text { flex:1; min-width:0; overflow-wrap:anywhere; }
+.mini-partner-partner .row>text:last-child { flex:none; max-width:42%; text-align:right; }
+.mini-partner-partner .row button.ghost { flex:none; width:auto; max-width:96px; min-height:44px; margin:0; font-size:12px; }
+.mini-partner-partner .btn { width:100%; background:var(--brand); color:#fff; }

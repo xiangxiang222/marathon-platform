@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "合作",
-  "navigationBarBackgroundColor": "#f5f5f5",
-  "backgroundColor": "#f5f5f5"
+  "navigationBarBackgroundColor": "#ffffff",
+  "backgroundColor": "#f5f5f5",
+  "navigationBarTextStyle": "black"
 }
