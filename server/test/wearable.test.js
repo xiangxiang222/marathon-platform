@@ -82,8 +82,17 @@ test("device management requires login, recognizes platforms and does not disclo
   getDb().prepare("UPDATE wearable_connections SET access_token = 'legacy-access-secret', refresh_token = 'legacy-refresh-secret' WHERE id = ?").run(stored.id);
   const result = await request(app).get(API + "/me/devices").set(owner.auth);
   assert.equal(result.status, 200);
+  assert.deepEqual(result.body.devices.map((row) => row.id), ["garmin", "coros", "huawei", "suunto"]);
+  assert.ok(result.body.devices.every((row) => row.status === "unavailable" && row.action === "unavailable" && !row.lastSyncedAt));
   assert.equal(JSON.stringify(result.body).includes("legacy-"), false);
   assert.equal(providerStatus(getDb(), owner.id, "coros").status, "unavailable");
+  assert.equal(result.body.devices.find((row) => row.id === "coros").canDisconnect, true);
+  for (const provider of ["garmin", "coros", "huawei", "suunto"]) {
+    assert.equal((await request(app).get(API + "/me/devices/" + provider + "/connect").set(owner.auth)).status, 503);
+    assert.equal((await request(app).post(API + "/me/devices/" + provider + "/sync").set(owner.auth)).status, 503);
+  }
+  assert.equal(config("apple"), null);
+  assert.equal((await request(app).get(API + "/me/devices/apple/connect").set(owner.auth)).status, 404);
   assert.equal((await request(app).get(API + "/me/devices/unknown/connect").set(owner.auth)).status, 404);
   assert.equal((await request(app).get(API + "/wearables/unknown/callback")).status, 404);
 });

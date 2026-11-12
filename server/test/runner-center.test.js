@@ -146,6 +146,7 @@ test("runner summary requires login, isolates accounts and uses measured distanc
   assert.equal(answer.body.training.runs.length, 2);
   assert.equal(answer.body.training.km, 18);
   assert.match(answer.headers["cache-control"], /no-store/);
+  assert.deepEqual(answer.body.devices.map((row) => row.id), ["garmin", "coros", "huawei", "suunto"]);
   assert.ok(answer.body.devices.every((row) => row.status === "unavailable"));
   assert.equal(answer.body.career.finished, 0);
   for (const query of ["period=bad", "offset=1", "offset=-1.5", "offset=-99999", "period=all&offset=-1", "offset=no"]) {

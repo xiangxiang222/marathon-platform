@@ -70,4 +70,48 @@
 
 @import "../../utils/personal-ui.wxss";
 
+/* Data sources use the native page title and compact functional cards. */
+.runner-page.devices-page { padding: 12px 16px 24px; background: #f5f5f5; }
+.runner-page.devices-page .surface { padding: 16px; margin-bottom: 12px; border: 0; border-radius: 12px; background: #fff; }
+.runner-page.devices-page .section-title { color: #1a1a1a; font-size: 16px; line-height: 24px; font-weight: 600; }
+.runner-page.devices-page .device-section-copy,
+.runner-page.devices-page .device-import-copy { margin: 6px 0 0; color: #777; font-size: 12px; line-height: 20px; }
+.runner-page.devices-page .device-brand-list { margin-top: 12px; }
+.runner-page.devices-page .device-connection { border: 0; border-bottom: 1rpx solid #f0f0f0; border-radius: 0; }
+.runner-page.devices-page .device-connection:last-child { border-bottom: 0; }
+.runner-page.devices-page .device-row { min-height: 80px; padding: 12px 0; gap: 12px; border: 0; box-sizing: border-box; }
+.runner-page.devices-page .device-brand-icon { display: block; width: 56px; height: 56px; flex: none; border-radius: 12px; }
+.runner-page.devices-page .device-copy { flex: 1; min-width: 0; }
+.runner-page.devices-page .device-name { color: #1a1a1a; font-size: 16px; line-height: 24px; font-weight: 500; white-space: nowrap; }
+.runner-page.devices-page .device-brand-subtitle { margin-top: 3px; color: #777; font-size: 12px; line-height: 18px; }
+.runner-page.devices-page .device-status { display: block; padding: 3px 7px; flex: none; border: 0; border-radius: 4px; color: #888; background: #f5f5f5; font-size: 12px; line-height: 18px; white-space: nowrap; }
+.runner-page.devices-page .device-actions { justify-content: flex-end; padding: 0 0 10px 68px; gap: 0; }
+.runner-page.devices-page .device-action-secondary { width: auto; min-height: 44px; margin: 0; padding: 0 12px; border: 1rpx solid #eee; border-radius: 8px; background: #fff; color: #777; font-size: 12px; line-height: 42px; }
+.runner-page.devices-page .device-import-actions { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 18px 0 12px; }
+.runner-page.devices-page .device-import-button { width: auto; height: 44px; min-height: 44px; padding: 0 16px; margin: 0; border: 0; border-radius: 8px; background: #ff1838; font-size: 14px; line-height: 44px; font-weight: 500; }
+.runner-page.devices-page .device-import-button[disabled] { background: #e8e8e8; color: #999; }
+.runner-page.devices-page .device-manual-button { flex: none; width: auto; min-height: 44px; margin: 0; padding: 0; border: 0; background: transparent; color: #777; font-size: 12px; line-height: 44px; font-weight: 400; }
+.runner-page.devices-page .device-feedback { margin: 0 0 12px; padding: 12px; border: 0; border-radius: 8px; background: #f5f5f5; color: #555; font-size: 12px; line-height: 20px; }
+.runner-page.devices-page .device-feedback.failure { background: #fff0f2; color: #ff1838; }
+.runner-page.devices-page .device-feedback button { width: auto; min-height: 44px; margin: 4px 0 0; padding: 0; border: 0; color: #ff1838; font-size: 12px; line-height: 44px; font-weight: 400; }
+.runner-page.devices-page .device-disclosure-toggle { display: flex; align-items: center; justify-content: space-between; gap: 16px; width: 100%; min-height: 48px; margin: 0; padding: 0; border: 0; border-radius: 0; background: transparent; color: #555; text-align: left; font-size: 14px; line-height: 22px; font-weight: 400; }
+.runner-page.devices-page .device-import-card .device-disclosure-toggle { border-top: 1rpx solid #f0f0f0; }
+.runner-page.devices-page .device-disclosure-symbol { flex: none; color: #999; font-size: 18px; }
+.runner-page.devices-page .device-disclosure-toggle::after,
+.runner-page.devices-page .device-manual-button::after,
+.runner-page.devices-page .device-feedback button::after { border: 0; }
+.runner-page.devices-page .device-guide { margin-top: 12px; }
+.runner-page.devices-page .device-guide > view { gap: 10px; padding: 0 0 14px; }
+.runner-page.devices-page .device-guide > view:last-child { padding-bottom: 0; }
+.runner-page.devices-page .guide-number { width: 22px; height: 22px; border-radius: 6px; background: #fff0f2; color: #ff1838; font-size: 12px; line-height: 22px; }
+.runner-page.devices-page .device-guide > view > view > text { color: #555; font-size: 12px; line-height: 22px; font-weight: 500; }
+.runner-page.devices-page .device-guide > view > view > view { margin-top: 3px; color: #777; font-size: 12px; line-height: 20px; }
+.runner-page.devices-page .device-data-content { padding: 0 0 10px; }
+.runner-page.devices-page .explain-row { padding-top: 12px; }
+.runner-page.devices-page .explain-row > text { color: #555; font-size: 12px; font-weight: 500; }
+.runner-page.devices-page .explain-row > view { margin-top: 4px; color: #777; font-size: 12px; line-height: 20px; }
+.runner-page.devices-page .device-legal-links { justify-content: center; gap: 24px; margin-top: 4px; color: #777; font-size: 12px; }
+.runner-page.devices-page .device-legal-links text { min-height: 44px; padding: 0; line-height: 44px; text-decoration: none; }
+.runner-page.devices-page .as-of { margin-top: 0; padding-top: 0; color: #999; font-size: 12px; line-height: 20px; }
+
 .modal-mask{background:rgba(26,26,26,.45)}.runner-page .close-button{width:44px;min-width:44px;height:44px;min-height:44px;flex:none;padding:0}.runner-page .sheet-handle{width:32px;height:4px;min-height:0;line-height:0;margin:8px auto 16px}
