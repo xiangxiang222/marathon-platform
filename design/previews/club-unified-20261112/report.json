@@ -1,0 +1,837 @@
+{
+  "date": "2026-11-12",
+  "scope": "Race-style club directory, detail tabs, mileage, member profile, permanent training groups, partner and feed",
+  "web": [
+    {
+      "group": "details",
+      "passed": true,
+      "checks": 26
+    },
+    {
+      "group": "directory",
+      "passed": true,
+      "checks": 9
+    },
+    {
+      "group": "mileage",
+      "passed": true,
+      "checks": 30
+    },
+    {
+      "group": "member",
+      "passed": true,
+      "checks": 20
+    },
+    {
+      "group": "supplement",
+      "passed": true,
+      "checks": 8
+    }
+  ],
+  "miniSourceMirrors": [
+    {
+      "group": "details",
+      "passed": true,
+      "scenes": 26,
+      "widths": [
+        320,
+        390
+      ],
+      "cases": [
+        {
+          "route": "pages/club/club",
+          "scenario": "overview",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/club/club",
+          "scenario": "activities",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/club/club",
+          "scenario": "meetups",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/club/club",
+          "scenario": "internals",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/club/club",
+          "scenario": "races",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/club/club",
+          "scenario": "members",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/club/club",
+          "scenario": "fees",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/club/club",
+          "scenario": "services",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/club/club",
+          "scenario": "service-form",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/club/club",
+          "scenario": "albums",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/club/club",
+          "scenario": "gifts",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/club/club",
+          "scenario": "ordinary",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/club/club",
+          "scenario": "long-title",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/club/club",
+          "scenario": "overview",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/club/club",
+          "scenario": "activities",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/club/club",
+          "scenario": "meetups",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/club/club",
+          "scenario": "internals",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/club/club",
+          "scenario": "races",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/club/club",
+          "scenario": "members",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/club/club",
+          "scenario": "fees",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/club/club",
+          "scenario": "services",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/club/club",
+          "scenario": "service-form",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/club/club",
+          "scenario": "albums",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/club/club",
+          "scenario": "gifts",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/club/club",
+          "scenario": "ordinary",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/club/club",
+          "scenario": "long-title",
+          "width": 390,
+          "passed": true
+        }
+      ]
+    },
+    {
+      "group": "mileage",
+      "passed": true,
+      "scenes": 10,
+      "widths": [
+        320,
+        390
+      ],
+      "cases": [
+        {
+          "route": "pages/mileage/mileage",
+          "scenario": "base",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/mileage/mileage",
+          "scenario": "pressure",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/mileage/mileage",
+          "scenario": "expanded",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/mileage/mileage",
+          "scenario": "empty",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/mileage/mileage",
+          "scenario": "error",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/mileage/mileage",
+          "scenario": "base",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/mileage/mileage",
+          "scenario": "pressure",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/mileage/mileage",
+          "scenario": "expanded",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/mileage/mileage",
+          "scenario": "empty",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/mileage/mileage",
+          "scenario": "error",
+          "width": 390,
+          "passed": true
+        }
+      ]
+    },
+    {
+      "group": "extra",
+      "passed": true,
+      "scenes": 22,
+      "widths": [
+        320,
+        390
+      ],
+      "cases": [
+        {
+          "route": "pages/mileage/mileage",
+          "scenario": "base",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/partner/partner",
+          "scenario": "base",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/training-groups/training-groups",
+          "scenario": "base",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/member-profile/member-profile",
+          "scenario": "base",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/training-groups/training-groups",
+          "scenario": "readonly",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/training-groups/training-groups",
+          "scenario": "empty",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/training-groups/training-groups",
+          "scenario": "sheet",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/member-profile/member-profile",
+          "scenario": "own",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/member-profile/member-profile",
+          "scenario": "empty",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/member-profile/member-profile",
+          "scenario": "error",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/member-profile/member-profile",
+          "scenario": "long-name",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/mileage/mileage",
+          "scenario": "base",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/partner/partner",
+          "scenario": "base",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/training-groups/training-groups",
+          "scenario": "base",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/member-profile/member-profile",
+          "scenario": "base",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/training-groups/training-groups",
+          "scenario": "readonly",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/training-groups/training-groups",
+          "scenario": "empty",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/training-groups/training-groups",
+          "scenario": "sheet",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/member-profile/member-profile",
+          "scenario": "own",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/member-profile/member-profile",
+          "scenario": "empty",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/member-profile/member-profile",
+          "scenario": "error",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/member-profile/member-profile",
+          "scenario": "long-name",
+          "width": 390,
+          "passed": true
+        }
+      ]
+    },
+    {
+      "group": "member",
+      "passed": true,
+      "scenes": 44,
+      "widths": [
+        320,
+        390
+      ],
+      "cases": [
+        {
+          "route": "pages/member-profile/member-profile",
+          "scenario": "base",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/member-profile/member-profile",
+          "scenario": "mileage",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/member-profile/member-profile",
+          "scenario": "races",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/member-profile/member-profile",
+          "scenario": "results",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/member-profile/member-profile",
+          "scenario": "albums",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/member-profile/member-profile",
+          "scenario": "empty-profile",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/member-profile/member-profile",
+          "scenario": "empty-mileage",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/member-profile/member-profile",
+          "scenario": "empty-races",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/member-profile/member-profile",
+          "scenario": "empty-results",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/member-profile/member-profile",
+          "scenario": "empty-albums",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/member-profile/member-profile",
+          "scenario": "error",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/member-profile/member-profile",
+          "scenario": "editing",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/member-profile/member-profile",
+          "scenario": "long-name",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/member-profile/member-profile",
+          "scenario": "races-wish",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/member-profile/member-profile",
+          "scenario": "races-upcoming",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/member-profile/member-profile",
+          "scenario": "races-finished",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/member-profile/member-profile",
+          "scenario": "past-mileage",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/mileage/mileage",
+          "scenario": "report-week",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/mileage/mileage",
+          "scenario": "report-month",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/mileage/mileage",
+          "scenario": "report-year",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/mileage/mileage",
+          "scenario": "report-empty",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/mileage/mileage",
+          "scenario": "report-error",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/member-profile/member-profile",
+          "scenario": "base",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/member-profile/member-profile",
+          "scenario": "mileage",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/member-profile/member-profile",
+          "scenario": "races",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/member-profile/member-profile",
+          "scenario": "results",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/member-profile/member-profile",
+          "scenario": "albums",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/member-profile/member-profile",
+          "scenario": "empty-profile",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/member-profile/member-profile",
+          "scenario": "empty-mileage",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/member-profile/member-profile",
+          "scenario": "empty-races",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/member-profile/member-profile",
+          "scenario": "empty-results",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/member-profile/member-profile",
+          "scenario": "empty-albums",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/member-profile/member-profile",
+          "scenario": "error",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/member-profile/member-profile",
+          "scenario": "editing",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/member-profile/member-profile",
+          "scenario": "long-name",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/member-profile/member-profile",
+          "scenario": "races-wish",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/member-profile/member-profile",
+          "scenario": "races-upcoming",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/member-profile/member-profile",
+          "scenario": "races-finished",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/member-profile/member-profile",
+          "scenario": "past-mileage",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/mileage/mileage",
+          "scenario": "report-week",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/mileage/mileage",
+          "scenario": "report-month",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/mileage/mileage",
+          "scenario": "report-year",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/mileage/mileage",
+          "scenario": "report-empty",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/mileage/mileage",
+          "scenario": "report-error",
+          "width": 390,
+          "passed": true
+        }
+      ]
+    },
+    {
+      "group": "supplement",
+      "passed": true,
+      "scenes": 16,
+      "widths": [
+        320,
+        390
+      ],
+      "cases": [
+        {
+          "route": "pages/clubs/clubs",
+          "scenario": "base",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/clubs/clubs",
+          "scenario": "expanded",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/clubs/clubs",
+          "scenario": "create",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/clubs/clubs",
+          "scenario": "invitation",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/feed/feed",
+          "scenario": "base",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/feed/feed",
+          "scenario": "empty",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/partner/partner",
+          "scenario": "base",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/partner/partner",
+          "scenario": "active",
+          "width": 320,
+          "passed": true
+        },
+        {
+          "route": "pages/clubs/clubs",
+          "scenario": "base",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/clubs/clubs",
+          "scenario": "expanded",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/clubs/clubs",
+          "scenario": "create",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/clubs/clubs",
+          "scenario": "invitation",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/feed/feed",
+          "scenario": "base",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/feed/feed",
+          "scenario": "empty",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/partner/partner",
+          "scenario": "base",
+          "width": 390,
+          "passed": true
+        },
+        {
+          "route": "pages/partner/partner",
+          "scenario": "active",
+          "width": 390,
+          "passed": true
+        }
+      ]
+    }
+  ],
+  "vm": [
+    {
+      "group": "mini-vm",
+      "passed": true,
+      "checks": 15
+    },
+    {
+      "group": "mini-clubs",
+      "passed": true,
+      "checks": 31
+    }
+  ],
+  "nativeCompilation": {
+    "passed": true,
+    "scope": "all registered WXML and WXSS"
+  },
+  "webBuild": {
+    "passed": true
+  },
+  "screenshots": [
+    "mini-partner-320.png",
+    "web-partner-320.png",
+    "web-feed-390.png",
+    "mini-runner-results-390.png",
+    "web-runner-results-390.png",
+    "mini-training-groups-320.png",
+    "web-overview-390.png",
+    "mini-directory-390.png",
+    "mini-feed-390.png",
+    "mini-members-320.png",
+    "web-members-320.png",
+    "web-directory-390.png",
+    "web-mileage-390.png",
+    "mini-mileage-390.png"
+  ],
+  "limitations": [
+    "Mini source mirrors are browser approximations, not WeChat device screenshots.",
+    "Native WXSS/WXML compilation and Page/Component VM tests are separate from layout mirrors.",
+    "Synthetic account/media fixtures are display only. Real directory flow uses an isolated database."
+  ],
+  "passed": true
+}

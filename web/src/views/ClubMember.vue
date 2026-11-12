@@ -107,9 +107,9 @@ onBeforeUnmount(() => { version++; closeMedia(); });
 .member-topbar svg { width:22px; height:22px; }
 .profile-header-mark { justify-self:end; color:var(--muted); }
 .profile-header-mark svg { width:20px; height:20px; }
-.member-profile { padding:18px 22px 0; background:var(--card); }
-.profile-identity { display:flex; align-items:center; gap:16px; }
-.profile-avatar { display:grid; place-items:center; flex:none; width:72px; height:72px; border:3px solid var(--line); border-radius:16px; background:var(--field-bg); color:var(--muted); font-size:29px; font-weight:500; overflow:hidden; box-shadow:none; }
+.member-profile { padding:16px 16px 0; background:var(--card); }
+.profile-identity { display:flex; align-items:center; gap:12px; }
+.profile-avatar { display:grid; place-items:center; flex:none; width:56px; height:56px; border:3px solid var(--line); border-radius:12px; background:var(--field-bg); color:var(--muted); font-size:29px; font-weight:500; overflow:hidden; box-shadow:none; }
 .profile-avatar img { width:100%; height:100%; object-fit:cover; }
 .profile-identity-copy { flex:1; min-width:0; }
 .profile-name { display:flex; align-items:center; gap:7px; }
@@ -118,7 +118,7 @@ onBeforeUnmount(() => { version++; closeMedia(); });
 .profile-role { display:flex; flex-wrap:wrap; align-items:center; gap:0; margin:7px 0 0; color:var(--muted); font-size:12px; line-height:1.7; }
 .profile-role span + span::before { content:'·'; margin:0 6px; color:var(--muted); }
 .profile-joined { margin:5px 0 0; font-size:12px; color:var(--muted); }
-.profile-key-metrics { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; padding:23px 0 21px; margin-top:19px; border-top:1px solid var(--line); }
+.profile-key-metrics { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; padding:16px 0; margin-top:16px; border-top:1px solid var(--line); }
 .profile-key-metrics button { display:grid; justify-items:center; gap:7px; min-width:0; padding:0; text-align:center; background:transparent; }
 .profile-key-metrics button+button { border-left:1px solid var(--line); }
 .profile-key-metrics b { font-size:22px; font-weight:600; letter-spacing:normal; font-variant-numeric:tabular-nums; line-height:1.2; overflow-wrap:anywhere; }
@@ -128,7 +128,7 @@ onBeforeUnmount(() => { version++; closeMedia(); });
 .profile-tabs button.on { color:var(--ink); font-weight:600; }
 .profile-tabs button.on::after { content:''; position:absolute; bottom:0; left:calc(50% - 9px); width:18px; height:2px; border-radius:2px; background:var(--accent); }
 .profile-content { padding:20px 16px 0; }
-.profile-card { padding:19px 18px; margin-bottom:14px; border:0; border-radius:16px; background:var(--card); }
+.profile-card { padding:16px; margin-bottom:12px; border:0; border-radius:12px; background:var(--card); }
 .section-heading { display:flex; align-items:center; justify-content:space-between; gap:12px; margin:0 0 13px; }
 .section-heading h2 { margin:0; font-size:16px; font-weight:600; line-height:1.5; overflow-wrap:anywhere; }
 .section-heading > span { flex:none; font-size:12px; color:var(--muted); }
@@ -164,7 +164,7 @@ onBeforeUnmount(() => { version++; closeMedia(); });
 .profile-period button { width:32px; min-height:36px; padding:0; color:var(--muted); font-size:22px; }
 .profile-period label { position:relative; display:grid; place-items:center; flex:1; min-width:0; min-height:36px; overflow:hidden; color:var(--muted); text-align:center; font-size:12px; line-height:1.6; }
 .profile-period input { position:absolute; inset:0; width:100%; height:100%; opacity:0; cursor:pointer; }
-.personal-volume { padding:23px 21px 0; border-radius:16px; background:var(--card); }
+.personal-volume { padding:23px 21px 0; border-radius:12px; background:var(--card); }
 .personal-volume > span { color:var(--muted); font-size:12px; }
 .personal-volume > span > small { margin-left:6px; color:var(--muted); font-size:12px; }
 .personal-volume > strong { display:block; margin:13px 0 25px; font-size:40px; font-weight:600; letter-spacing:normal; line-height:1.2; font-variant-numeric:tabular-nums; overflow-wrap:anywhere; }
@@ -190,7 +190,7 @@ onBeforeUnmount(() => { version++; closeMedia(); });
 .chapter-heading > div { min-width:0; }
 .chapter-heading h2 { margin:0; font-size:22px; line-height:1.5; letter-spacing:normal; font-weight:600; overflow-wrap:anywhere; }
 .chapter-heading p { margin:8px 0 0; color:var(--muted); font-size:12px; line-height:1.7; }
-.chapter-icon { display:grid; place-items:center; flex:none; width:42px; height:42px; border-radius:14px; }
+.chapter-icon { display:grid; place-items:center; flex:none; width:42px; height:42px; border-radius:12px; }
 .chapter-icon svg { width:24px; height:24px; }
 .chapter-icon.peach { color:var(--accent); background:var(--field-bg); }
 .chapter-icon.sun { color:var(--muted); background:var(--field-bg); }
@@ -215,7 +215,7 @@ onBeforeUnmount(() => { version++; closeMedia(); });
 .pb-section > .section-heading { margin:0 2px 13px; }
 .pb-section > .section-heading > span { font-size:12px; }
 .pb-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
-.pb-card { display:block; min-width:0; padding:16px 14px 13px; border-radius:14px; color:var(--ink); background:var(--card); }
+.pb-card { display:block; min-width:0; padding:16px 14px 13px; border-radius:12px; color:var(--ink); background:var(--card); }
 .pb-card > div { display:flex; align-items:center; justify-content:space-between; gap:6px; }
 .pb-card > div > span { font-size:12px; color:var(--muted); }
 .pb-card i { color:var(--muted); font-size:12px; font-style:italic; font-weight:600; letter-spacing:normal; }
@@ -258,7 +258,7 @@ onBeforeUnmount(() => { version++; closeMedia(); });
 .member-state { padding:65px 23px; text-align:center; color:var(--muted); font-size:14px; line-height:1.9; }
 .member-state h2 { font-size:20px; color:var(--ink); font-weight:500; }
 .member-state button { width:auto; min-height:40px; padding:0 15px; background:var(--accent-soft); color:var(--accent); border-radius:9px; font-size:12px; }
-.state-symbol,.profile-skeleton { display:grid; place-items:center; width:65px; height:65px; margin:0 auto 15px; border-radius:16px; background:var(--field-bg); color:var(--muted); }
+.state-symbol,.profile-skeleton { display:grid; place-items:center; width:65px; height:65px; margin:0 auto 15px; border-radius:12px; background:var(--field-bg); color:var(--muted); }
 .state-symbol svg { width:28px; height:28px; }
 .profile-skeleton { animation:profile-pulse 1.5s ease-in-out infinite; }
 .profile-inline-error { margin:14px 16px 0; padding:10px 13px; background:var(--field-bg); color:var(--accent); border-radius:9px; font-size:12px; line-height:1.7; }
@@ -285,17 +285,17 @@ onBeforeUnmount(() => { version++; closeMedia(); });
 @keyframes profile-pulse { 50% { opacity:.45; } }
 @media(prefers-reduced-motion:reduce) { .profile-skeleton { animation:none; } }
 @media(min-width:650px) { .profile-content { padding:25px 24px 0; } .member-profile { padding-right:28px; padding-left:28px; } .profile-identity { gap:20px; } .profile-key-metrics { margin-top:24px; } .profile-card { padding:23px; } .pb-grid { gap:14px; } .pb-card { padding:22px; } .pb-card strong { font-size:34px; } .album-grid { gap:11px; } .result-copy b { font-size:14px; } .result-clock strong { font-size:22px; } }
-@media(max-width:350px) { .member-topbar { padding:0 14px; } .member-profile { padding:16px 17px 0; } .profile-identity { gap:12px; } .profile-avatar { width:62px; height:62px; border-radius:16px; font-size:24px; } .profile-name h1 { font-size:22px; } .profile-key-metrics b { font-size:22px; } .profile-key-metrics span { font-size:12px; } .profile-content { padding:18px 12px 0; } .profile-card { padding:18px 15px; } .personal-volume { padding-right:18px; padding-left:18px; } .personal-volume > strong { font-size:40px; } .personal-metrics { gap:7px; } .personal-metrics b { font-size:14px; } .member-run { gap:9px; } .chapter-heading h2 { font-size:18px; } .chapter-heading p { font-size:12px; } .chapter-icon { width:35px; height:35px; border-radius:11px; } .chapter-icon svg { width:21px; height:21px; } .pb-grid { gap:8px; } .pb-card { padding:15px 11px 12px; } .pb-card strong { font-size:24px; } .pb-card p { font-size:12px; } .result-history { padding:17px 12px 4px; } .result-row { gap:8px; } .result-copy b { font-size:12px; } .result-clock strong { font-size:16px; } .result-clock small { font-size:12px; } .album-grid { gap:5px; } .album-grid .album-tile { border-radius:8px; } }
+@media(max-width:350px) { .member-topbar { padding:0 14px; } .member-profile { padding:16px 17px 0; } .profile-identity { gap:12px; } .profile-avatar { width:62px; height:62px; border-radius:12px; font-size:24px; } .profile-name h1 { font-size:24px; } .profile-key-metrics b { font-size:22px; } .profile-key-metrics span { font-size:12px; } .profile-content { padding:18px 12px 0; } .profile-card { padding:18px 15px; } .personal-volume { padding-right:18px; padding-left:18px; } .personal-volume > strong { font-size:40px; } .personal-metrics { gap:7px; } .personal-metrics b { font-size:14px; } .member-run { gap:9px; } .chapter-heading h2 { font-size:18px; } .chapter-heading p { font-size:12px; } .chapter-icon { width:35px; height:35px; border-radius:11px; } .chapter-icon svg { width:21px; height:21px; } .pb-grid { gap:8px; } .pb-card { padding:15px 11px 12px; } .pb-card strong { font-size:24px; } .pb-card p { font-size:12px; } .result-history { padding:17px 12px 4px; } .result-row { gap:8px; } .result-copy b { font-size:12px; } .result-clock strong { font-size:16px; } .result-clock small { font-size:12px; } .album-grid { gap:5px; } .album-grid .album-tile { border-radius:8px; } }
 </style>
 
 <style scoped>
-.profile-achievement-entry{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:18px 17px;margin-bottom:19px;background:var(--card);border-radius:14px;color:var(--ink)}.profile-achievement-entry>span{display:grid;gap:7px;min-width:0}.profile-achievement-entry b{font-size:14px;font-weight:500;line-height:1.6}.profile-achievement-entry small{font-size:12px;color:var(--muted);line-height:1.7}.profile-achievement-entry svg{width:18px;height:18px;color:var(--muted);flex:none}
+.profile-achievement-entry{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:18px 17px;margin-bottom:19px;background:var(--card);border-radius:12px;color:var(--ink)}.profile-achievement-entry>span{display:grid;gap:7px;min-width:0}.profile-achievement-entry b{font-size:14px;font-weight:500;line-height:1.6}.profile-achievement-entry small{font-size:12px;color:var(--muted);line-height:1.7}.profile-achievement-entry svg{width:18px;height:18px;color:var(--muted);flex:none}
 
 /* Shared typography and controls for club services. */
 
 .club-member-page { font-size:14px; color:var(--ink); background:var(--bg); }
-.profile-name h1 { font-size:22px; font-weight:600; letter-spacing:normal; }
-.profile-avatar { border-radius:12px; background:var(--accent-soft); color:var(--accent); }
+.profile-name h1 { font-size:24px; font-weight:600; letter-spacing:normal; }
+.profile-avatar { border-radius:8px; background:var(--field-bg); color:var(--muted); }
 .profile-key-metrics b { font-size:24px; font-weight:600; color:var(--ink); }
 .profile-key-metrics span { font-size:12px; }
 .profile-tabs { border-radius:0; background:var(--card); border-bottom:1px solid var(--line); }
@@ -309,7 +309,7 @@ onBeforeUnmount(() => { version++; closeMedia(); });
 .chapter-icon,.chapter-icon.peach,.chapter-icon.sun,.chapter-icon.lilac { background:var(--field-bg); color:var(--muted); border-radius:10px; }
 .pb-card strong { color:var(--ink); font-size:28px; font-weight:600; letter-spacing:normal; }
 .pb-card p,.pb-card small,.chapter-heading p,.result-clock small,.profile-joined,.profile-role { font-size:12px; }
-.result-copy b,.profile-race-card h3 { font-size:16px; font-weight:500; }
+.result-copy b,.profile-race-card h3 { font-size:15px; font-weight:500; }
 .result-clock strong { font-size:20px; font-weight:600; }
 .profile-race-card .race-status { background:var(--field-bg); color:var(--muted); }
 .club-member-page .content-filters button,.club-member-page .range-tabs button { min-height:44px; border-radius:10px; font-size:14px; }
@@ -318,7 +318,7 @@ onBeforeUnmount(() => { version++; closeMedia(); });
 .profile-achievement-entry { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px; }
 .profile-achievement-entry small { color:var(--muted); font-size:12px; }
 .profile-achievement-entry svg { color:var(--accent); }
-@media(max-width:350px) { .profile-name h1 { font-size:22px; }.personal-volume>strong { font-size:36px; }.profile-key-metrics span,.chapter-heading p,.pb-card p,.result-clock small { font-size:12px; } }
+@media(max-width:350px) { .profile-name h1 { font-size:24px; }.personal-volume>strong { font-size:36px; }.profile-key-metrics span,.chapter-heading p,.pb-card p,.result-clock small { font-size:12px; } }
 
 
 .club-member-page button,.club-member-page .profile-range button,.club-member-page .profile-period>button { min-height:44px; }

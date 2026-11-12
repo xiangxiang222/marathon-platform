@@ -10,7 +10,7 @@
   </section>
   <section v-if="view" class="block">
     <h2>物资</h2>
-    <p class="hint">用户不付钱。认证跑团按额度领，核心跑团额度乘二。条件按投放的那个月算，写成 0 的不卡。</p>
+    <p class="hint">认证跑团可按月度额度免费领取物资，核心跑团享双倍额度。领取条件按投放月份核算，数值为 0 表示不限。</p>
     <article v-for="item in view.supplies" :key="item.id" class="run">
       <p>{{ item.brand }} · {{ item.name }}</p>
       <p class="hint">{{ item.month }} · 签到至少 {{ item.needChecks }} 天，计入跑量至少 {{ item.needKm }} 公里</p>
@@ -31,7 +31,7 @@
   </section>
   <section v-if="view" class="block">
     <h2>联赛</h2>
-    <p class="hint">免费参加。奖品是物资，不发现金。核心跑团在榜上标优先，名次不因此提前。</p>
+    <p class="hint">联赛免费参加，奖励以实物发放。核心跑团标识不影响成绩排名。</p>
     <template v-if="view.league">
       <p>{{ view.league.title }}<template v-if="view.league.sponsor"> · {{ view.league.sponsor }}</template><template v-if="view.league.closed"> · 已结束</template></p>
       <p v-if="view.league.prize" class="hint">奖品 {{ view.league.prize }}</p>
@@ -121,10 +121,10 @@ onMounted(() => {
 <style scoped>
 .hint { margin: 8px 0 0; color: var(--muted); font-size: 14px; line-height: 1.45; }
 .modes { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
-.modes button, .line button { height: 34px; padding: 0 12px; border-radius: 8px; background: var(--card); color: var(--ink); font-weight: 600;  border: 1px solid var(--line); font-size: 14px; min-height: 40px;}
+.modes button, .line button { height: 34px; padding: 0 12px; border-radius: 8px; background: var(--card); color: var(--ink); font-weight: 500;  border: 1px solid var(--line); font-size: 14px; min-height: 44px;}
 .modes button:first-child { background: var(--accent); color: #fff; }
-.line { display: flex; justify-content: space-between; gap: 8px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--line); }
-.line em { font-style: normal; font-weight: 600; }
+.line { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--line); }
+.line em { font-style: normal; font-weight: 500; }
 .run { padding: 8px 0; border-bottom: 1px solid var(--line); }
 .err { color: var(--red); padding: 0 16px; }
 
@@ -134,4 +134,6 @@ onMounted(() => {
 .block .hint { font-size:12px; color:var(--muted); }
 .modes button,.line button { height:auto; min-height:44px; border-radius:10px; font-size:14px; font-weight:500; }
 .line em { color:var(--muted); font-size:12px; font-weight:400; }
+.line>span { flex:1; min-width:120px; overflow-wrap:anywhere; }
+.line>button { flex:none; }
 </style>

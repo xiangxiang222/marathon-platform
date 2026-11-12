@@ -243,34 +243,20 @@
       </router-link>
       <p v-if="!albums.length" class="empty">还没有活动照片。</p>
     </template>
-    <template v-if="club && tab === 'feed'">
-      <div class="block">
-        <h2>动态</h2>
-        <p class="rank-label">只有本团能看。点赞和评论不加积分。</p>
-        <form class="check-form" @submit.prevent="publishPost">
-          <input v-model="postBody" maxlength="200" placeholder="写给本团的一句" />
-          <button class="primary" type="submit">发出</button>
-        </form>
+    <section v-if="club && tab === 'feed'" class="club-feed">
+      <div class="block feed-compose">
+        <h2>跑团动态</h2><p class="rank-label">本团成员可见，分享训练记录与活动见闻。</p>
+        <form class="feed-input-row" @submit.prevent="publishPost"><input v-model="postBody" maxlength="200" placeholder="分享今天的训练与见闻" aria-label="发布跑团动态" /><button class="primary" type="submit">发布</button></form>
         <p v-if="postMessage" class="err">{{ postMessage }}</p>
-        <p v-if="!posts.length" class="empty">还没有动态。</p>
-        <article v-for="item in posts" :key="item.id">
-          <p><b>{{ item.nickname }}</b> <span class="src">{{ item.at }}</span></p>
-          <p>{{ item.body }}</p>
-          <p>
-            <button class="undo" type="button" @click="toggleLike(item)">{{ item.liked ? "取消赞" : "赞" }} {{ item.likes }}</button>
-            <button v-if="item.canDelete" class="undo" type="button" @click="removePost(item)">删除</button>
-          </p>
-          <p v-for="comment in item.comments" :key="comment.id">
-            {{ comment.nickname }}：{{ comment.body }}
-            <button v-if="comment.canDelete" class="undo" type="button" @click="removeComment(item, comment)">删除</button>
-          </p>
-          <form class="check-form" @submit.prevent="publishComment(item)">
-            <input v-model="commentDrafts[item.id]" maxlength="80" placeholder="评论" />
-            <button class="primary" type="submit">评论</button>
-          </form>
-        </article>
       </div>
-    </template>
+      <p v-if="!posts.length" class="block feed-empty">还没有动态，分享你的第一次跑团记录。</p>
+      <article v-for="item in posts" :key="item.id" class="block feed-post">
+        <header class="feed-post-head"><b>{{ item.nickname }}</b><span>{{ item.at }}</span></header><p class="feed-body">{{ item.body }}</p>
+        <div class="feed-actions"><button class="undo" :class="{ 'is-liked': item.liked }" type="button" @click="toggleLike(item)">{{ item.liked ? '已赞' : '点赞' }} {{ item.likes }}</button><button v-if="item.canDelete" class="undo" type="button" @click="removePost(item)">删除</button></div>
+        <div v-if="item.comments.length" class="feed-comments"><p v-for="comment in item.comments" :key="comment.id"><b>{{ comment.nickname }}：</b>{{ comment.body }}<button v-if="comment.canDelete" class="undo" type="button" @click="removeComment(item, comment)">删除</button></p></div>
+        <form class="feed-input-row" @submit.prevent="publishComment(item)"><input v-model="commentDrafts[item.id]" maxlength="80" placeholder="写下评论" aria-label="评论动态" /><button class="undo feed-send" type="submit">发送</button></form>
+      </article>
+    </section>
     <MileageBoard v-if="club && tab === 'km'" :club-id="club.id" />
     <PartnerBoard v-if="club && tab === 'partner'" :club-id="club.id" />
     <div v-if="shareImage" class="viewer" @click="shareImage = ''">
@@ -1393,7 +1379,7 @@ onBeforeUnmount(() => { window.removeEventListener("storage", onClubAccount); wi
 /* The organization profile stays part of the white page header. */
 .club-hero { margin: 0; padding: 12px 20px 0; border: 0; border-radius: 0; background: var(--card); }
 .club-identity { display: flex; align-items: flex-start; gap: 13px; }
-.club-letter { display: grid; place-items: center; width: 56px; height: 56px; flex: none; margin-top: 2px; border-radius: 16px; background: var(--accent); color: #fff; font-size: 24px; font-weight: 600; }
+.club-letter { display: grid; place-items: center; width: 56px; height: 56px; flex: none; margin-top: 2px; border-radius:12px; background: var(--accent); color: #fff; font-size: 24px; font-weight: 600; }
 .club-identity-copy { min-width: 0; flex: 1; }
 .club-hero h1 { margin: 0; color: var(--ink); font-size: 24px; font-weight: 600; line-height: 1.3; letter-spacing: normal; overflow-wrap: anywhere; }
 .club-location { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; margin: 7px 0 0; color: var(--muted); font-size: 12px; line-height: 1.5; }
@@ -1428,7 +1414,7 @@ onBeforeUnmount(() => { window.removeEventListener("storage", onClubAccount); wi
 .review-reminder b { font-size: 12px; font-weight: 500; }
 .review-reminder > span:last-child { margin-left: auto; font-size: 12px; }
 .reminder-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
-.next-activity { display: block; overflow: hidden; padding: 18px 18px 0; border: 0; border-radius: 16px; background: var(--card); }
+.next-activity { display: block; overflow: hidden; padding: 18px 18px 0; border: 0; border-radius:12px; background: var(--card); }
 .next-topline { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 .activity-kind { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); font-size: 12px; font-weight: 500; }
 .activity-kind.live { color: var(--muted); }
@@ -1446,7 +1432,7 @@ onBeforeUnmount(() => { window.removeEventListener("storage", onClubAccount); wi
 .next-footer > span { color: var(--muted); font-size: 12px; line-height: 1.5; }
 .next-footer > b { flex: none; color: var(--accent); font-size: 12px; font-weight: 500; }
 .next-footer i { margin-left: 4px; font-style: normal; }
-.next-empty { display: flex; align-items: flex-start; gap: 12px; padding: 22px 18px 17px; border: 0; border-radius: 16px; background: var(--card); }
+.next-empty { display: flex; align-items: flex-start; gap: 12px; padding: 22px 18px 17px; border: 0; border-radius:12px; background: var(--card); }
 .empty-icon { display: grid; place-items: center; flex: none; width: 38px; height: 38px; border-radius: 11px; color: var(--muted); background: var(--field-bg); }
 .club-page .empty-icon svg { width: 21px; height: 21px; }
 .next-empty-copy { min-width: 0; }
@@ -1454,12 +1440,12 @@ onBeforeUnmount(() => { window.removeEventListener("storage", onClubAccount); wi
 .next-empty p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.8; }
 .next-empty-copy > a, .club-page .next-empty-copy > button { display: inline-flex; align-items: center; gap: 7px; width: auto; min-height: 38px; margin-top: 5px; padding: 0; border-radius: 0; color: var(--accent); background: transparent; font-size: 12px; font-weight: 500; }
 .next-empty-copy > a span, .next-empty-copy > button span { font-size: 18px; }
-.quick-actions { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); margin: 12px 0; padding: 17px 4px 15px; border: 0; border-radius: 16px; background: var(--card); }
+.quick-actions { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); margin: 12px 0; padding: 17px 4px 15px; border: 0; border-radius:12px; background: var(--card); }
 .club-page .quick-actions button { flex-direction: column; gap: 8px; min-width: 0; padding: 0 2px; }
 .quick-icon { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 11px; color: var(--accent); }
 .club-page .quick-icon svg { width: 22px; height: 22px; stroke-width: 1.5; }
 .quick-actions b { color: var(--ink-secondary); font-size: 12px; font-weight: 500; line-height: 1.5; }
-.club-moments { overflow: hidden; border: 0; border-radius: 16px; background: var(--card); }
+.club-moments { overflow: hidden; border: 0; border-radius:12px; background: var(--card); }
 .my-club-status { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); padding: 18px 0; }
 .club-page .my-club-status button { align-items: flex-start; flex-direction: column; gap: 8px; min-width: 0; padding: 0 18px; text-align: left; }
 .my-club-status button+button { border-left: 1px solid var(--line); }
@@ -1502,7 +1488,7 @@ summary::-webkit-details-marker { display: none; }
 .club-section-head { flex-wrap: wrap; margin: 22px 18px 12px; }
 .club-section-head > div { display: flex; align-items: center; gap: 10px; }
 .club-section-head > div > span { color: var(--club-muted); font-size: 12px; }
-.club-page .block { margin: 12px 16px; padding: 17px; border-radius: 16px; background: var(--card); }
+.club-page .block { margin: 12px 16px; padding: 17px; border-radius:12px; background: var(--card); }
 .block h2 { margin: 0; color: var(--club-text); font-size: 18px; font-weight: 600; line-height: 1.45; }
 .block > .card { margin: 0; padding: 0; background: transparent; }
 .copy p { margin: 0; color: var(--club-text); font-size: 16px; font-weight: 600; line-height: 1.5; }

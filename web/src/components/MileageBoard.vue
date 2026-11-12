@@ -1,6 +1,6 @@
 <template>
   <section class="mileage-board">
-    <header class="board-heading"><div><h2>跑量看板</h2><p>每一程，都有迹可循</p></div><button v-if="board?.staff" type="button" class="text-action" @click="openGroups">训练组管理 <span>›</span></button></header>
+    <header class="board-heading"><div><h2>跑量看板</h2></div><button v-if="board?.staff" type="button" class="text-action" @click="openGroups">训练组管理 <span>›</span></button></header>
     <nav class="range-tabs" aria-label="跑量时间范围"><button v-for="item in ranges" :key="item.id" type="button" :class="{ on: range === item.id }" :aria-pressed="range === item.id" @click="pickRange(item.id)">{{ item.label }}</button></nav>
     <div class="period-control"><button type="button" aria-label="上一统计周期" :disabled="range === 'all' || loading" @click="shiftDate(-1)">‹</button><label><span>{{ board?.period?.label || date }}</span><input v-if="range !== 'all'" type="date" v-model="date" :max="today" aria-label="选择跑量统计日期" @change="loadPeriod" /></label><button type="button" aria-label="下一统计周期" :disabled="!canAdvanceMileage(range, date, today) || loading" @click="shiftDate(1)">›</button></div>
 
@@ -8,7 +8,7 @@
     <div v-if="!board && loading" class="board-loading" role="status">正在整理跑量…</div>
     <template v-if="board">
       <section class="volume-card" :aria-busy="loading"><div class="volume-label"><span>{{ selectedGroupName }} · 跑量合计</span><span class="volume-symbol" aria-hidden="true"><RunnerIcon name="stats" /></span></div><div class="volume-number" :class="{ 'is-long': number(board.summary.km).length > 9 }"><span>{{ number(board.summary.km) }}</span><small>公里</small></div><div class="volume-metrics"><div><b>{{ compact(board.summary.times) }}</b><span>运动次数</span></div><div><b>{{ compact(board.summary.activeMembers) }}<small> / {{ compact(board.summary.members) }}</small></b><span>活跃 / 成员</span></div><div><b>{{ compact(board.summary.members ? board.summary.km / board.summary.members : 0) }}</b><span>人均公里</span></div></div></section>
-      <section v-if="actualGroups.length" class="group-overview"><div class="panel-title"><div><h3>训练组跑量</h3><p>和同频的伙伴，一起积累</p></div><span>{{ actualGroups.length }} 组</span></div><div class="group-cards"><button v-for="group in shownGroups" :key="group.id" type="button" class="group-card" :class="{ selected: groupId === String(group.id) }" :aria-pressed="groupId === String(group.id)" @click="pickGroup(String(group.id))"><span class="group-card-top"><b>{{ group.name }}</b><i>↗</i></span><span class="group-card-pace">{{ group.pace || '按个人节奏' }}</span><strong :class="{ 'is-long': number(group.km).length > 8 }"><span>{{ number(group.km) }}</span><small> km</small></strong><span>{{ group.activeMembers }} 位活跃 · {{ group.memberCount }} 位成员</span></button></div><button v-if="actualGroups.length > 4" type="button" class="groups-toggle" :aria-expanded="groupsExpanded" @click="groupsExpanded = !groupsExpanded">{{ groupsExpanded ? '收起组别' : '查看全部 ' + actualGroups.length + ' 个组别' }}<span>{{ groupsExpanded ? '⌃' : '⌄' }}</span></button></section>
+      <section v-if="actualGroups.length" class="group-overview"><div class="panel-title"><div><h3>训练组跑量</h3><p>按当前训练组统计</p></div><span>{{ actualGroups.length }} 组</span></div><div class="group-cards"><button v-for="group in shownGroups" :key="group.id" type="button" class="group-card" :class="{ selected: groupId === String(group.id) }" :aria-pressed="groupId === String(group.id)" @click="pickGroup(String(group.id))"><span class="group-card-top"><b>{{ group.name }}</b><i>↗</i></span><span class="group-card-pace">{{ group.pace || '按个人节奏' }}</span><strong :class="{ 'is-long': number(group.km).length > 8 }"><span>{{ number(group.km) }}</span><small> km</small></strong><span>{{ group.activeMembers }} 位活跃 · {{ group.memberCount }} 位成员</span></button></div><button v-if="actualGroups.length > 4" type="button" class="groups-toggle" :aria-expanded="groupsExpanded" @click="groupsExpanded = !groupsExpanded">{{ groupsExpanded ? '收起组别' : '查看全部 ' + actualGroups.length + ' 个组别' }}<span>{{ groupsExpanded ? '⌃' : '⌄' }}</span></button></section>
       <section class="rank-panel"><div class="panel-title"><h3>成员排行</h3><span>{{ visibleRank.length }} 位成员</span></div><nav class="group-tabs" aria-label="按常设训练组筛选"><label><span>查看组别</span><select :value="groupId" aria-label="选择排行榜训练组" @change="pickGroup($event.target.value)"><option value="">全员</option><option v-for="group in actualGroups" :key="group.id" :value="String(group.id)">{{ group.name }}</option><option value="0">未分组</option></select></label></nav><label class="rank-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/></svg><input v-model="query" placeholder="搜索成员昵称" aria-label="搜索跑量排行榜成员" /><button v-if="query" type="button" aria-label="清空搜索" @click="query = ''">×</button></label><div v-if="mine" class="mine-summary"><div><span>我的本期</span><small>{{ mine.km > 0 ? '第 ' + mine.place + ' 名' : '等待出发' }}</small></div><b>{{ number(mine.km) }}<small> km</small></b></div><div class="rank-columns"><span>排名 / 成员</span><span>跑量 · 公里</span></div><router-link v-for="row in visibleRank" :key="row.userId" class="rank-row" :class="{ mine: row.mine }" :to="memberLink(row.userId)"><span class="rank-place" :class="{ medal: row.place <= 3 && row.km > 0 }">{{ row.place }}</span><span class="rank-avatar"><img v-if="row.avatar" :src="row.avatar" alt="" /><template v-else>{{ String(row.nickname || '跑').slice(0, 1) }}</template></span><span class="rank-person"><b>{{ row.nickname }}<small v-if="row.mine">我</small></b><span>{{ row.group || '未分组' }}<template v-if="row.times"> · {{ row.times }} 次</template></span></span><span class="rank-distance"><b>{{ number(row.km) }}</b><small>{{ row.paceLabel ? row.paceLabel + ' /km' : row.km ? row.days + ' 天运动' : '本期未记录' }}</small></span><i class="rank-chevron">›</i></router-link><div v-if="!visibleRank.length" class="quiet-empty">{{ query ? '没有找到这位成员，试试其他昵称。' : '这里还没有成员。' }}</div><p class="rank-footnote">按成员当前训练组汇总历史已计入本团的跑量 · 北京时间。点击成员查看介绍和跑量。</p></section>
       <details class="tools-panel" :open="toolsOpen" @toggle="openTools"><summary><span>近期明细、报表与规则</span><i>⌄</i></summary><template v-if="toolsOpen"><p v-if="toolsError" class="inline-error">{{ toolsError }} <button type="button" @click="loadTools">重试</button></p><template v-if="legacy"><p class="tools-note">{{ legacy.rules?.note || '只记跑步与越野；活动签到不折算公里。' }}</p><details class="nested-tool"><summary>全团近期运动明细 <span>{{ legacy.feed?.length || 0 }} 条</span></summary><article v-for="item in legacy.feed || []" :key="item.id" class="run-record"><div><b>{{ item.nickname }}</b><span>{{ item.typeLabel }} · {{ item.startedAt }}</span></div><strong>{{ number(item.volumeKm) }}<small> 公里</small></strong><p>{{ item.durationLabel }}<template v-if="item.paceLabel"> · {{ item.paceLabel }} /km</template></p><p v-if="item.challenge">质疑：{{ item.challenge }}</p><img v-if="item.shot" :src="runShotSrc(item.id)" alt="运动凭证" /><details v-if="!item.mine || legacy.staff" class="record-review"><summary>记录反馈与审核</summary><form v-if="!item.mine" class="inline-form" @submit.prevent="challenge(item)"><input v-model="reasons[item.id]" maxlength="80" placeholder="质疑原因" aria-label="质疑原因" /><button type="submit">提交质疑</button></form><div v-if="legacy.staff" class="review-actions"><button type="button" @click="decide(item, false)">不计入</button><button type="button" @click="decide(item, true)">继续计入</button></div></details></article><p v-if="!legacy.feed?.length" class="quiet-empty">这段时间没有计入的记录。</p></details><details class="nested-tool" :open="route.query.tools === '1'"><summary>当前周期报表与导出</summary><nav class="tool-tabs"><button v-for="item in kinds" :key="item.id" type="button" :class="{ on: kind === item.id }" @click="pickKind(item.id)">{{ item.label }}</button></nav><p v-if="report" class="tools-note">{{ report.title }} · {{ report.total?.km || 0 }} 公里 · {{ report.total?.durationLabel }}</p><div class="report-scroll"><table v-if="report"><thead><tr><th>成员</th><th>公里</th><th>天 / 次</th><th>时长</th><th>配速</th><th v-if="kind === 'month'">Flag</th></tr></thead><tbody><tr v-for="row in report.rows" :key="row.userId"><td><router-link :to="reportMemberLink(row.userId)" class="report-member-link">{{ row.nickname }} <span>›</span></router-link></td><td>{{ row.km }}</td><td>{{ row.dayText }}</td><td>{{ row.durationLabel }}</td><td>{{ row.paceLabel || '—' }}</td><td v-if="kind === 'month'">{{ row.flag }}</td></tr></tbody><tfoot><tr><td>合计</td><td>{{ report.total.km }}</td><td>{{ report.total.dayText }}</td><td>{{ report.total.durationLabel }}</td><td>{{ report.total.paceLabel || '—' }}</td><td v-if="kind === 'month'">—</td></tr></tfoot></table></div><label v-if="legacy.owner" class="check-line"><input v-model="includeEmpty" type="checkbox" />导出包含没有记录的成员</label><button v-if="legacy.owner" type="button" class="outline-action" @click="exportFile">导出 CSV</button></details><details v-if="legacy.rules" class="nested-tool"><summary>本团计入规则 <span>{{ legacy.owner ? '可编辑' : '只读' }}</span></summary><form class="rules-form" @submit.prevent="saveRules"><label>生效日期<input v-model="legacy.rules.effectiveOn" type="date" :disabled="!legacy.owner" /></label><label v-for="field in ruleChecks" :key="field.key" class="check-line"><input v-model="legacy.rules[field.key]" :disabled="!legacy.owner" type="checkbox" />{{ field.label }}</label><div class="rule-fields"><label v-for="field in ruleFields" :key="field.key">{{ field.label }}<input v-model="legacy.rules[field.key]" :disabled="!legacy.owner" :type="field.type || 'number'" :step="field.step || 'any'" /></label></div><button v-if="legacy.owner" type="submit" class="save-action" :disabled="busy">保存规则</button></form></details></template></template></details>
     </template>
@@ -84,54 +84,54 @@ onBeforeUnmount(() => { version++; toolsVersion++; groupsVersion++; reportVersio
 </script>
 
 <style scoped>
-.mileage-board,.training-sheet{--ink:#24302e;--muted:#687672;--ink-secondary:#687672;--line:#eeede8;--card:#fff;--field-bg:#f6f5f2;--accent:#d63150;--accent-soft:#fcebee;--sage:#3e7669;--sage-soft:#edf4ef;color:var(--ink);font-size:14px;line-height:1.5}
-.mileage-board{padding:16px;background:var(--field-bg);border-radius:16px}
+.mileage-board,.training-sheet{--ink:#1a1a1a;--muted:#777777;--ink-secondary:#777777;--line:#eeeeee;--card:#fff;--field-bg:#f5f5f5;--accent:#ff1838;--accent-soft:#fff0f2;--accent:#ff1838;--accent-soft:#fff0f2;color:var(--ink);font-size:14px;line-height:1.5}
+.mileage-board{padding:24px 16px 16px;background:var(--field-bg);border-radius:0}
 .mileage-board button,.training-sheet button{display:inline-flex;align-items:center;justify-content:center;width:auto;min-width:0;min-height:44px;margin:0;padding:0;border:0;border-radius:10px;background:transparent;color:inherit;font:inherit;font-size:13px;cursor:pointer}
 .mileage-board button:disabled,.training-sheet button:disabled{opacity:.35;cursor:default}
 .board-heading,.panel-title,.manage-section-heading{display:flex;align-items:center;justify-content:space-between;gap:12px}
-.board-heading h2{margin:0;font-size:20px;line-height:1.4;font-weight:650}
+.board-heading h2{margin:0;font-size:18px;line-height:1.4;font-weight:600}
 .board-heading p,.panel-title p{margin:4px 0 0;font-size:12px;color:var(--muted);line-height:1.6}
 .mileage-board .text-action,.training-sheet .text-action{flex:none;min-height:44px;padding:0 2px;color:var(--accent);font-size:12px;white-space:nowrap}
-.range-tabs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;margin:16px 0 0;padding:4px;border:1px solid var(--line);border-radius:13px;background:#eeede8}
-.mileage-board .range-tabs button{width:100%;min-height:44px;border-radius:9px;color:var(--muted);font-size:13px}
-.mileage-board .range-tabs button.on{background:#fff;color:var(--accent);font-weight:600;box-shadow:0 1px 4px #24302e08}
+.range-tabs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;margin:12px 0 0;padding:0;border:0;border-bottom:1px solid var(--line);border-radius:0;background:transparent}
+.mileage-board .range-tabs button{position:relative;width:100%;min-height:44px;border-radius:0;color:var(--muted);font-size:14px}
+.mileage-board .range-tabs button.on{background:transparent;color:var(--accent);font-weight:500;box-shadow:inset 0 -2px var(--accent)}
 .period-control{display:flex;align-items:center;gap:4px;min-height:52px;margin:4px 0 12px}
 .mileage-board .period-control>button{flex:none;width:44px;min-height:44px;font-size:24px;color:var(--muted)}
 .period-control label{position:relative;display:grid;place-items:center;flex:1;min-width:0;min-height:44px;overflow:hidden;color:var(--muted);font-size:12px;line-height:1.5;text-align:center}
 .period-control label>span{max-width:100%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 .period-control input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}
-.volume-card{position:relative;overflow:hidden;margin:0 0 24px;padding:18px 16px 16px;border:1px solid #456f62;border-radius:16px;background:linear-gradient(125deg,#263f37,#3e7669);color:#fff}
-.volume-label{display:flex;align-items:center;justify-content:space-between;gap:12px;color:#d4e7df;font-size:12px}
+.volume-card{position:relative;overflow:hidden;margin:0 0 24px;padding:16px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--ink)}
+.volume-label{display:flex;align-items:center;justify-content:space-between;gap:12px;color:var(--muted);font-size:12px}
 .volume-label>span:first-child{min-width:0;overflow-wrap:anywhere}
-.volume-symbol{display:grid;place-items:center;flex:none;width:30px;height:30px;border:1px solid #ffffff30;border-radius:10px;color:#e2f0e9;background:#ffffff0d}
+.volume-symbol{display:grid;place-items:center;flex:none;width:24px;height:24px;border:0;border-radius:0;color:var(--muted);background:transparent}
 .volume-symbol svg{width:18px;height:18px}
-.volume-number{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px;margin:12px 0 20px;font-size:clamp(30px,10vw,48px);font-weight:650;letter-spacing:-1px;font-variant-numeric:tabular-nums;line-height:1.15;overflow-wrap:anywhere}
+.volume-number{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px;margin:12px 0 20px;font-size:40px;font-weight:600;letter-spacing:normal;font-variant-numeric:tabular-nums;line-height:1.15;overflow-wrap:anywhere}
 .volume-number>span{white-space:nowrap}
 .volume-number.is-long{font-size:30px;letter-spacing:-.5px}
-.volume-number>small{margin-left:0;font-size:12px;font-weight:400;color:#d4e7df;letter-spacing:normal;white-space:nowrap}
-.volume-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;padding-top:14px;border-top:1px solid #ffffff26}
+.volume-number>small{margin-left:0;font-size:12px;font-weight:400;color:var(--muted);letter-spacing:normal;white-space:nowrap}
+.volume-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;padding-top:14px;border-top:1px solid var(--line)}
 .volume-metrics>div{display:grid;min-width:0;gap:5px}
-.volume-metrics>div+div{padding-left:10px;border-left:1px solid #ffffff26}
+.volume-metrics>div+div{padding-left:10px;border-left:1px solid var(--line)}
 .volume-metrics b{font-size:17px;font-weight:600;overflow-wrap:anywhere;font-variant-numeric:tabular-nums;line-height:1.4}
-.volume-metrics b small,.volume-metrics span{font-size:12px;font-weight:400;color:#d4e7df}
+.volume-metrics b small,.volume-metrics span{font-size:12px;font-weight:400;color:var(--muted)}
 .panel-title h3,.manage-section-heading h3{margin:0;font-size:16px;font-weight:600;line-height:1.4}
 .panel-title>span,.manage-section-heading>span{flex:none;font-size:12px;color:var(--muted)}
 .group-overview{margin-bottom:24px}
 .group-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}
-.mileage-board .group-card{display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:0;width:100%;min-width:0;min-height:158px;padding:12px;border:1px solid var(--line);border-radius:14px;background:#fff;text-align:left}
-.mileage-board .group-card.selected{border-color:#a9c4b7;background:var(--sage-soft)}
+.mileage-board .group-card{display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:0;width:100%;min-width:0;min-height:134px;padding:12px;border:1px solid var(--line);border-radius:10px;background:#fff;text-align:left}
+.mileage-board .group-card.selected{border-color:#ffb6c0;background:var(--accent-soft)}
 .group-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:5px}
-.group-card-top b{display:-webkit-box;min-height:38px;overflow:hidden;-webkit-line-clamp:2;-webkit-box-orient:vertical;color:var(--ink);font-size:13px;font-weight:600;line-height:19px;overflow-wrap:anywhere}
-.group-card-top i{flex:none;color:var(--sage);font-size:14px;font-style:normal}
+.group-card-top b{display:-webkit-box;min-height:36px;overflow:hidden;-webkit-line-clamp:2;-webkit-box-orient:vertical;color:var(--ink);font-size:14px;font-weight:500;line-height:18px;overflow-wrap:anywhere}
+.group-card-top i{flex:none;color:var(--muted);font-size:14px;font-style:normal}
 .group-card .group-card-pace{display:block;overflow:hidden;margin-top:4px;white-space:nowrap;text-overflow:ellipsis;font-size:12px;color:var(--muted)}
-.group-card strong{display:flex;flex-wrap:wrap;align-items:baseline;gap:3px;margin-top:14px;color:var(--sage);font-size:23px;font-weight:650;line-height:1.2;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+.group-card strong{display:flex;flex-wrap:wrap;align-items:baseline;gap:3px;margin-top:12px;color:var(--ink);font-size:24px;font-weight:600;line-height:1.2;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
 .group-card strong>span{white-space:nowrap}
 .group-card strong.is-long{font-size:15px}
 .group-card strong small{font-size:12px;font-weight:400;white-space:nowrap}
 .group-card>span:last-child{margin-top:7px;color:var(--muted);font-size:12px;line-height:1.5}
-.mileage-board .groups-toggle{display:flex;gap:8px;width:100%;min-height:44px;margin-top:4px;color:var(--sage);font-size:12px}
+.mileage-board .groups-toggle{display:flex;gap:8px;width:100%;min-height:44px;margin-top:4px;color:var(--accent);font-size:12px}
 .groups-toggle span{font-size:16px}
-.rank-panel{padding:16px 14px 12px;border:1px solid var(--line);border-radius:16px;background:#fff}
+.rank-panel{padding:16px 14px 12px;border:1px solid var(--line);border-radius:12px;background:#fff}
 .group-tabs{margin:14px 0 10px}
 .group-tabs label{display:flex;align-items:center;gap:12px;min-width:0;min-height:44px;padding-left:12px;border:1px solid var(--line);border-radius:10px;background:var(--field-bg)}
 .group-tabs label>span{flex:none;font-size:12px;color:var(--muted)}
@@ -140,27 +140,27 @@ onBeforeUnmount(() => { version++; toolsVersion++; groupsVersion++; reportVersio
 .rank-search svg{flex:none;width:16px;height:16px;color:var(--muted)}
 .rank-search input{flex:1;width:0;min-width:0;min-height:44px;padding:0;border:0;border-radius:0;outline:none;background:transparent;color:var(--ink);font:inherit;font-size:13px}
 .mileage-board .rank-search button{flex:none;width:44px;min-height:44px;font-size:20px;color:var(--muted)}
-.mine-summary{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px;border:1px solid #dce8df;border-radius:11px;background:var(--sage-soft);color:var(--sage)}
+.mine-summary{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px;border:1px solid #ffdce2;border-left:3px solid var(--accent);border-radius:8px;background:var(--accent-soft);color:var(--ink)}
 .mine-summary>div{display:grid;gap:3px}
 .mine-summary>div>span{font-size:12px;font-weight:600}
 .mine-summary small{font-size:12px;font-weight:400}
 .mine-summary>div small{color:var(--muted)}
-.mine-summary>b{min-width:0;font-size:22px;font-weight:650;text-align:right;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+.mine-summary>b{min-width:0;font-size:24px;font-weight:600;text-align:right;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
 .rank-columns{display:flex;justify-content:space-between;padding:16px 0 9px;font-size:12px;color:var(--muted)}
 .rank-row{display:flex;align-items:center;gap:8px;min-height:76px;border-top:1px solid var(--line);color:var(--ink);text-decoration:none}
-.rank-row.mine{margin:0 -5px;padding:0 5px;border-radius:10px;background:#f8faf7}
-.rank-place{flex:none;width:18px;color:#89948f;font-size:13px;font-weight:500;font-variant-numeric:tabular-nums}
-.rank-place.medal{color:var(--sage);font-weight:650}
-.rank-avatar{display:grid;place-items:center;flex:none;width:32px;height:32px;overflow:hidden;border:1px solid #e1e9e1;border-radius:11px;background:var(--sage-soft);color:var(--sage);font-size:13px}
+.rank-row.mine{margin:0 -5px;padding:0 5px;border-radius:10px;background:#fafafa}
+.rank-place{flex:none;width:18px;color:#999999;font-size:13px;font-weight:500;font-variant-numeric:tabular-nums}
+.rank-place.medal{color:var(--muted);font-weight:500}
+.rank-avatar{display:grid;place-items:center;flex:none;width:32px;height:32px;overflow:hidden;border:1px solid var(--line);border-radius:8px;background:var(--field-bg);color:var(--muted);font-size:13px}
 .rank-avatar img{width:100%;height:100%;object-fit:cover}
 .rank-person{display:grid;flex:1;min-width:0;gap:5px}
 .rank-person>b{display:flex;align-items:center;gap:4px;min-width:0;font-size:13px;font-weight:550;line-height:1.5;overflow-wrap:anywhere}
 .rank-person>b small{flex:none;padding:0 3px;border-radius:4px;background:var(--accent-soft);color:var(--accent);font-size:12px;font-weight:400}
 .rank-person>span{overflow:hidden;white-space:nowrap;text-overflow:ellipsis;color:var(--muted);font-size:12px;line-height:1.5}
 .rank-distance{display:grid;flex:none;gap:5px;max-width:39%;text-align:right}
-.rank-distance>b{font-size:19px;font-weight:650;line-height:1.2;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.rank-distance>b{font-size:19px;font-weight:600;line-height:1.2;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
 .rank-distance>small{color:var(--muted);font-size:12px}
-.rank-chevron{flex:none;color:#a8b0aa;font-size:15px;font-style:normal}
+.rank-chevron{flex:none;color:#999999;font-size:15px;font-style:normal}
 .rank-footnote{margin:12px 0 0;padding-top:12px;border-top:1px solid var(--line);color:var(--muted);font-size:12px;line-height:1.8}
 .quiet-empty{padding:26px 5px;text-align:center;color:var(--muted);font-size:12px;line-height:1.8}
 .board-error,.board-notice{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 12px;padding:13px;border:1px solid #f3d8dd;border-radius:12px;background:var(--accent-soft);color:var(--accent);font-size:12px;line-height:1.8}
@@ -232,7 +232,7 @@ td,th{padding:12px 9px;border-bottom:1px solid var(--line)}
 .manage-search{margin-bottom:7px}
 
 .report-member-link{display:inline-flex;align-items:center;gap:7px;min-height:44px;color:var(--ink);text-decoration:none}.report-member-link span{color:var(--muted)}
-.tools-panel{border:1px solid var(--line);border-radius:14px}
+.tools-panel{border:1px solid var(--line);border-radius:12px}
 .tools-panel>summary,.nested-tool>summary,.record-review summary{min-height:44px}
 .mileage-board .tool-tabs button,.training-sheet .form-actions button{flex:1;min-height:44px}
 .mileage-board .save-action,.training-sheet .save-action,.mileage-board .outline-action,.training-sheet .outline-action{min-height:44px}
@@ -241,5 +241,5 @@ td,th{padding:12px 9px;border-bottom:1px solid var(--line)}
 .training-sheet>header button{width:44px;min-height:44px}
 .managed-group>button{min-height:44px}
 .assign-row>.manage-member-link{display:flex;align-items:center;min-height:44px;color:var(--ink);text-decoration:none}
-@media(max-width:350px){.mileage-board{padding:16px 12px}.board-heading h2{font-size:19px}.board-heading p{max-width:160px}.volume-card{padding:16px 14px}.volume-metrics{gap:6px}.volume-metrics>div+div{padding-left:6px}.volume-metrics b{font-size:14px}.volume-number.is-long{font-size:26px}.group-card strong.is-long{font-size:13px}.group-cards{gap:8px}.mileage-board .group-card{padding:10px}.group-card strong{font-size:21px}.rank-panel{padding:14px 12px 12px}.rank-row{gap:6px}.rank-place{width:13px}.rank-avatar{width:28px;height:28px}.rank-distance>b{font-size:17px}.rank-chevron{display:none}.training-sheet{padding:18px 16px 28px}}
+@media(max-width:350px){.mileage-board{padding:24px 16px 16px;background:var(--field-bg);border-radius:0}.board-heading h2{margin:0;font-size:18px;line-height:1.4;font-weight:600}.board-heading p{max-width:160px}.volume-card{position:relative;overflow:hidden;margin:0 0 24px;padding:16px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--ink)}.volume-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;padding-top:14px;border-top:1px solid var(--line)}.volume-metrics>div+div{padding-left:10px;border-left:1px solid var(--line)}.volume-metrics b{font-size:14px}.volume-number.is-long{font-size:26px}.group-card strong.is-long{font-size:13px}.group-cards{gap:8px}.mileage-board .group-card{display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:0;width:100%;min-width:0;min-height:134px;padding:12px;border:1px solid var(--line);border-radius:10px;background:#fff;text-align:left}.group-card strong{display:flex;flex-wrap:wrap;align-items:baseline;gap:3px;margin-top:12px;color:var(--ink);font-size:24px;font-weight:600;line-height:1.2;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}.rank-panel{padding:14px 12px 12px}.rank-row{gap:6px}.rank-place{width:13px}.rank-avatar{display:grid;place-items:center;flex:none;width:32px;height:32px;overflow:hidden;border:1px solid var(--line);border-radius:8px;background:var(--field-bg);color:var(--muted);font-size:13px}.rank-distance>b{font-size:17px}.rank-chevron{display:none}.training-sheet{padding:18px 16px 28px}}
 </style>
