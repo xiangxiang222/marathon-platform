@@ -177,7 +177,7 @@ onMounted(load);
 .calendar { background: transparent; min-height: 100vh; color: var(--ink); }
 .month { display: flex; align-items: center; justify-content: center; gap: 28px; padding: 4px 0 2px; }
 .month b { font-size: 20px; font-weight: 600; letter-spacing: normal; }
-.month button { width: 36px; height: 36px; border-radius: 12px; background: #fff; font-size: 24px; color: var(--ink);  border: 1px solid var(--line);}
+.month button { width: 44px; height: 44px; border-radius: 8px; background: #fff; font-size: 24px; color: var(--ink);  border: 1px solid var(--line);}
 .week, .grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 0; padding: 0; background: #fff; margin: 0 16px;  border-radius: 0 0 12px 12px;}
 .week { border-radius: 12px 12px 0 0; padding: 8px 4px 2px; text-align: center; font-size: 13px;  margin: 0 16px;}
 .week .end { color: var(--accent); }

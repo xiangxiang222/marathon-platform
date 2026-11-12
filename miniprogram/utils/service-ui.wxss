@@ -161,3 +161,4 @@
 .service-page.activity-page .bottom-primary,.service-page.signup-page .submit-button { height:44px; min-height:44px; }
 
 .service-page .btn[disabled],.service-page .primary[disabled],.service-page.activity-page .bottom-primary[disabled],.service-page.signup-page .submit-button[disabled],.service-page.mini-activity-create-activity-create .bottom-actions .next-action[disabled] { color:#777; border-color:#eee; background:#eee; opacity:1; }
+.service-page .album-link{display:flex;align-items:center;min-height:44px}.service-page .drop{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px}

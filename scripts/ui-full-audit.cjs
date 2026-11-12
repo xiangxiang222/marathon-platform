@@ -188,6 +188,10 @@ async function main() {
         assert.deepEqual(item.apiErrors, [], 'real API server errors');
         assert.equal(item.brokenImages, 0, 'broken visible images');
         assert.equal(item.primaryColor.toLowerCase(), expectedAccent);
+        const nonBrand = (item.colorRichness?.coloredSurfaces || []).filter(surface => surface.families.some(family => family !== 'coral'));
+        assert.deepEqual(nonBrand, [], 'consumer UI backgrounds must use brand red or neutral surfaces');
+        assert.deepEqual(item.heavyText, [], 'consumer text must use at most weight 600');
+        assert.deepEqual(item.spacedText, [], 'Chinese text must retain natural letter spacing');
         if (view.id === 'activity-create') {
           assert.ok(item.primaryControls.length, 'activity form primary action must remain visible');
           assert.ok(item.primaryControls.every(control => control.color === 'rgb(255, 255, 255)'), 'activity primary action requires white text on brand red');
