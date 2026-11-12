@@ -15,7 +15,7 @@
       <div class="hero-bottom">
         <button class="club-avatars" type="button" @click="openMembers" :aria-label="'查看全部 ' + members.length + ' 位跑团成员'">
           <span class="avatar-stack" aria-hidden="true"><span v-for="member in members.slice(0, 4)" :key="member.id" class="club-avatar"><img v-if="member.avatar" :src="member.avatar" alt="" /><template v-else>{{ member.nickname.slice(0, 1) }}</template></span></span>
-          <span class="avatar-caption"><b>{{ members.length }}</b> 位成员</span><span class="member-entry-label">查看全部 <i>›</i></span>
+          <span class="avatar-caption"><b>{{ members.length }} 位成员</b><span class="member-entry-label">查看全部 <i>›</i></span></span>
         </button>
         <button v-if="club.publicStatus !== 'restricted'" type="button" class="hero-invite" :disabled="inviting" @click="copyInvite">邀请跑友 <span>＋</span></button>
       </div>
@@ -148,10 +148,10 @@
       </div>
       <div v-for="item in shownActivities" :key="item.id" class="block act">
         <label v-if="sharing" class="rank-label"><input v-model="shareIds" type="checkbox" :value="item.id" /> 选这场</label>
-        <router-link :to="'/clubs/' + club.id + '/activities/' + item.id">
-          <div class="act-topline"><span>{{ item.dateLabel }} · {{ item.clockLabel }}</span><b :class="'status-' + item.status">{{ item.statusLabel }}</b></div><h2>{{ item.title }}</h2>
+        <router-link class="activity-main" :to="'/clubs/' + club.id + '/activities/' + item.id">
+          <div class="act-topline"><span class="activity-schedule"><span>{{ item.dateLabel }}</span><strong>{{ item.clockLabel }}</strong></span><b :class="'status-' + item.status">{{ item.statusLabel }}</b></div><div class="activity-topic"><h2>{{ item.title }}</h2>
           <span v-if="item.mine && item.mine.signed" class="activity-registration">我已报名</span>
-          <p class="rank-label"><template v-if="item.place">{{ item.place }}</template><template v-if="item.plannedKm"> · {{ item.plannedKm }} 公里</template></p>
+          <p class="rank-label"><template v-if="item.place">{{ item.place }}</template><template v-if="item.plannedKm"> · {{ item.plannedKm }} 公里</template></p></div>
         </router-link>
         <div class="activity-card-footer"><p class="rank-label activity-count">{{ item.signupCount }} 人报名<template v-if="item.capacity"> / {{ item.capacity }} 人</template></p><div class="activity-inline-actions"><router-link v-if="club.staff" class="copy-activity" :to="'/clubs/' + club.id + '/activities/new?copy=' + item.id">复制这场</router-link><router-link class="view-activity" :to="'/clubs/' + club.id + '/activities/' + item.id">查看活动 <span>›</span></router-link></div></div>
       </div>
@@ -256,7 +256,7 @@
       </div>
       <p v-if="!posts.length" class="block feed-empty">还没有动态，分享你的第一次跑团记录。</p>
       <article v-for="item in posts" :key="item.id" class="block feed-post">
-        <header class="feed-post-head"><b>{{ item.nickname }}</b><span>{{ item.at }}</span></header><p class="feed-body">{{ item.body }}</p>
+        <header class="feed-post-head"><span class="feed-author-mark" aria-hidden="true">{{ item.nickname.slice(0, 1) }}</span><span class="feed-author-copy"><b>{{ item.nickname }}</b><small>{{ item.at }}</small></span></header><p class="feed-body">{{ item.body }}</p>
         <div class="feed-actions"><button class="undo" :class="{ 'is-liked': item.liked }" type="button" @click="toggleLike(item)">{{ item.liked ? '已赞' : '点赞' }} {{ item.likes }}</button><button v-if="item.canDelete" class="undo" type="button" @click="removePost(item)">删除</button></div>
         <div v-if="item.comments.length" class="feed-comments"><p v-for="comment in item.comments" :key="comment.id"><b>{{ comment.nickname }}：</b>{{ comment.body }}<button v-if="comment.canDelete" class="undo" type="button" @click="removeComment(item, comment)">删除</button></p></div>
         <form class="feed-input-row" @submit.prevent="publishComment(item)"><input v-model="commentDrafts[item.id]" maxlength="80" placeholder="写下评论" aria-label="评论动态" /><button class="undo feed-send" type="submit">发送</button></form>
@@ -286,7 +286,7 @@
         <input v-model="memberQuery" aria-label="搜索跑团成员" placeholder="搜索跑友昵称" />
         <div class="checks member-filters"><button v-for="item in memberFilters" :key="item.id" type="button" class="undo" :class="{ on: memberRole === item.id }" @click="memberRole = item.id">{{ item.label }}</button></div>
         <p v-if="!visibleMembers.length" class="rank-label">没有找到这位跑友，试试其他昵称。</p>
-        <div v-for="member in visibleMembers" :key="member.id" class="mate member">
+        <div v-for="member in visibleMembers" :key="member.id" class="mate member"><div class="member-row-main">
           <div class="who">
             <router-link class="member-identity" :to="memberLink(member.id)">
               <img v-if="member.avatar" :src="member.avatar" :alt="member.nickname" />
@@ -299,22 +299,20 @@
             <button v-if="club.owner && member.role === 'manager'" class="undo" type="button" @click="setRole(member, 'member')">改为成员</button>
             <button v-if="club.owner && !member.owner" class="undo" type="button" @click="setRole(member, 'owner')">交给他当团长</button>
             <button v-if="club.staff && !member.owner" class="undo danger" type="button" @click="removeMember(member)">移出</button>
-          </div></details>
+          </div></details></div>
         </div>
       </div>
       <div v-if="peopleView === 'fees'" id="club-fees" class="block fee-panel">
         <div class="section-head"><h2>会费名单</h2><span class="fee-period-label">{{ feeShown && feeShown.open ? '本期' : feeShown ? '历史期次' : '未开设' }}</span></div>
         <div v-if="feeHistory.length > 1" class="checks fee-periods"><button v-for="item in feeHistory" :key="item.id" class="undo" :class="{ on: feeShown && feeShown.id === item.id }" :aria-pressed="!!feeShown && feeShown.id === item.id" type="button" @click="openFee(item)">{{ item.name }}</button></div>
-        <h3 v-if="feeShown" class="fee-title">{{ feeShown.name }}</h3>
+        <div v-if="feeShown" class="fee-summary"><div><h3 class="fee-title">{{ feeShown.name }}</h3><p>{{ feeShown.startsOn }} 至 {{ feeShown.endsOn }}</p></div><strong>{{ feeShown.amount }}<small> 元</small></strong><div class="fee-mine-status"><span>我的本期状态</span><b>{{ feeShown.mine?.label || '未填写' }}</b></div></div>
         <p class="rank-label">会费在微信群里交给团长。这里只记名单，以团长标的为准。</p>
         <template v-if="feeShown">
-          <p class="rank-label">{{ feeShown.amount }} 元 · {{ feeShown.startsOn }} 至 {{ feeShown.endsOn }}</p>
           <p v-if="feeShown.note" class="rank-label">{{ feeShown.note }}</p>
-          <p class="rank-label">我的状态：{{ feeShown.mine?.label || '未填写' }}</p>
           <p class="rank-label">{{ feeShown.open ? '当前名单只列现成员；离团记录在期次结束后归入历史。' : '历史期次保留缴费记录，离团成员已标注。' }}</p>
           <p v-if="feeShown.blockSignup" class="rank-label">未交和待确认的人不能报名活动和队内赛。</p>
-          <div v-for="group in feeShown.groups" :key="group.status">
-            <p class="rank-label">{{ group.label }}</p>
+          <section v-for="group in feeShown.groups" :key="group.status" class="fee-status-group">
+            <div class="fee-group-heading"><h3>{{ group.label }}</h3><span>{{ group.people.length }} 人</span></div>
             <div v-for="person in group.people" :key="group.status + person.userId" class="mate member">
               <span><router-link v-if="!person.departed" :to="memberLink(person.userId)" class="member-name-link">{{ person.nickname }}</router-link><template v-else>{{ person.nickname }}</template><small v-if="person.departed" class="departed-member">已离团</small></span>
               <b v-if="club.staff && feeShown.open && !person.departed" class="acts">
@@ -323,8 +321,8 @@
                 <button class="undo" :class="{ on: group.status === 'waived' }" type="button" @click="markFee(person, 'waived')">免交</button>
               </b>
             </div>
-            <p v-if="!group.people.length" class="rank-label">无</p>
-          </div>
+            <p v-if="!group.people.length" class="rank-label">暂无成员</p>
+          </section>
           <button class="primary" type="button" @click="copyFee">复制名单</button>
         </template>
         <p v-else class="rank-label">还没有会费。</p>
@@ -1640,7 +1638,6 @@ article { margin-top: 22px; padding-top: 15px; border-top: 1px solid var(--line)
 .club-page .share-toolbar .undo { margin: 0; color: var(--muted); font-size: 12px; }
 .share-toolbar i { font-size: 16px; font-style: normal; }
 .member-directory .member { position: relative; padding: 13px 0; }
-.member-directory .member:has(.member-actions) .who { padding-right: 76px; }
 .member-copy { display: grid; gap: 4px; }
 .member-copy b { font-size: 14px; font-weight: 500; }
 .member-copy small { color: var(--muted); font-size: 12px; line-height: 1.6; }

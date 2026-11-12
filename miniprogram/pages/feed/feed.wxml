@@ -7,7 +7,7 @@
   </view>
   <view wx:if="{{!posts.length}}" class="card feed-empty">还没有动态，分享你的第一次跑团记录。</view>
   <view class="card feed-post" wx:for="{{posts}}" wx:key="id">
-    <view class="feed-post-head"><text class="feed-author">{{item.nickname}}</text><text class="feed-time">{{item.at}}</text></view>
+    <view class="feed-post-head"><view class="feed-author-mark">{{item.nickname[0]}}</view><view class="feed-author-copy"><text class="feed-author">{{item.nickname}}</text><text class="feed-time">{{item.at}}</text></view></view>
     <view class="feed-body">{{item.body}}</view>
     <view class="feed-actions"><button class="ghost {{item.liked ? 'is-liked' : ''}}" data-id="{{item.id}}" data-liked="{{item.liked}}" bindtap="like">{{item.liked ? '已赞' : '点赞'}} {{item.likes}}</button><button wx:if="{{item.canDelete}}" class="ghost" data-id="{{item.id}}" bindtap="removePost">删除</button></view>
     <view wx:if="{{item.comments.length}}" class="feed-comments"><view wx:for="{{item.comments}}" wx:for-item="comment" wx:key="id" class="feed-comment"><text class="feed-comment-author">{{comment.nickname}}：</text><text>{{comment.body}}</text><text wx:if="{{comment.canDelete}}" class="feed-comment-delete" data-pid="{{item.id}}" data-cid="{{comment.id}}" bindtap="removeComment">删除</text></view></view>

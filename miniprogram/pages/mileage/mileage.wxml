@@ -3,7 +3,7 @@
   <button class="mileage-tools-toggle" bindtap="toggleTools"><text>跑步动态、报表与计入规则</text><text>{{toolsOpen ? '收起 −' : '展开 ＋'}}</text></button>
   <block wx:if="{{toolsOpen && board}}">
   <view class="card mileage-report-card">
-    <view class="report-eyebrow">THE CLUB JOURNAL</view><view class="report-heading">一起跑过的这一程<text>.</text></view>
+    <view class="report-header"><view class="report-heading">跑量报表</view><view class="report-eyebrow">{{report ? report.title : reportDate}}</view></view>
     <view class="report-kinds"><button wx:for="{{['week', 'month', 'year']}}" wx:key="*this" class="report-kind {{kind === item ? 'selected' : ''}}" data-kind="{{item}}" bindtap="pickKind">{{item === 'week' ? '周报' : item === 'month' ? '月报' : '年报'}}</button></view>
     <picker mode="date" value="{{reportDate}}" end="{{today}}" bindchange="pickReportDate"><view class="report-date">{{report ? report.title : reportDate}}<text>选择日期 ⌄</text></view></picker>
     <view wx:if="{{reportError}}" class="err">{{reportError}}<button class="ghost" bindtap="load">重试</button></view>
