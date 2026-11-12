@@ -1,0 +1,106 @@
+/* Race-page red/black/white system for personal pages. */
+.sport-page,.mine-page,.runner-page,.history-page,.studio-page,.feedback-page,.privacy-page,.legal-page {--page-bg:#f5f5f5;--surface:#fff;--text:#1a1a1a;--text-secondary:#777;--border:#eee;--brand:#ff1838;--brand-soft:#fff0f2;color:#1a1a1a;font-size:14px;font-weight:400;line-height:1.5}
+.sport-page,.mine-page {padding:16px 16px 24px}
+.sport-page button,.mine-page button,.runner-page button,.history-page button,.feedback-page button,.privacy-page button,.legal-page button {width:auto;min-width:0;font-size:14px;border-radius:8px}
+.sport-page .surface,.mine-page .surface,.runner-page .surface,.history-page .surface {padding:16px;margin-bottom:12px;border:1rpx solid #eee;border-radius:12px;background:#fff;box-shadow:none}
+.sport-page .mileage-hero {padding:16px;background:#fff}
+.sport-page .hero-top {padding-bottom:12px;border-bottom:1rpx solid #eee;gap:8px;align-items:center}
+.sport-page .month-caption {display:none}
+.sport-page .month-control {gap:4px}
+.sport-page .month-step {width:32px;min-height:44px;height:44px;padding:0;border:0;background:transparent;color:#777;font-size:22px}
+.sport-page .month-value {height:44px;min-height:44px;padding:0 4px;line-height:44px;background:transparent;font-size:15px}
+.sport-page .target-link {width:auto;min-height:44px;height:44px;padding:0 4px;border:0;border-radius:0;background:transparent;color:#ff1838;font-size:13px}
+.sport-page .hero-overview {display:block;min-height:0;margin:20px 0 16px}
+.sport-page .mileage-number {font-size:40px;font-weight:600;letter-spacing:normal;line-height:1.2}
+.sport-page .mileage-footnote {margin-top:6px;font-size:12px}
+.sport-page .run-metrics {display:flex;padding:16px 0;border-top:1rpx solid #eee;border-bottom:0}
+.sport-page .run-metrics>view {flex:1;min-width:0;text-align:left;border:0}
+.sport-page .metric-value {font-size:20px;font-weight:600;line-height:1.4}
+.sport-page .record-actions {display:flex;gap:8px;margin-top:0}
+.sport-page .record-actions>button {flex:1;width:0;min-height:44px;margin:0;border-radius:8px;font-size:14px}
+.sport-page .weekly-chart {padding:0;margin:0;background:transparent;border-radius:0}
+.sport-page .chart-title,.sport-page .records-title {font-size:18px;font-weight:600}
+.sport-page .chart-subtitle {font-size:12px;color:#777}
+.sport-page .bar-track {height:88px;border-radius:3px;background:#f5f5f5}
+.sport-page .bar-value-fill {border-radius:3px;background:#ffb5bf}
+.sport-page .bar-value-fill.peak {background:#ff1838}
+.sport-page .target-prompt {display:flex;width:100%;min-height:60px;margin-top:16px;padding:12px 0 0;border:0;border-top:1rpx solid #eee;border-radius:0;background:#fff;text-align:left;gap:8px}
+.sport-page .target-mark {display:none}
+.sport-page .target-prompt-copy {flex:1;min-width:0}
+.sport-page .target-prompt-title {font-size:14px;font-weight:500}
+.sport-page .target-prompt-note {font-size:12px;color:#777}
+.sport-page .target-prompt-more {flex:none;font-size:13px;color:#ff1838}
+.sport-page .records-heading {margin:24px 0 12px}
+.sport-page .manual-note {margin:0 0 16px;font-size:12px}
+.sport-page .record-number {font-size:20px;font-weight:600}
+.sport-page .guest-mark {display:none}
+.sport-page .guest-state {padding:24px 16px;text-align:left}
+.sport-page .guest-title {font-size:18px;font-weight:600}
+.mine-page .account-hero {padding:0;margin:0 0 12px;overflow:hidden;background:#fff}
+.mine-page .identity-panel {display:block;min-height:0;padding:16px;background:#fff}
+.mine-page .identity-copy {width:100%;min-width:0}
+.mine-page .identity-kicker {display:none}
+.mine-page .hero-line {gap:12px;margin:0}
+.mine-page .hero-avatar {width:48px;height:48px;flex:none;border-radius:50%;background:#f5f5f5;color:#555;font-size:20px}
+.mine-page .hero-copy {flex:1;min-width:0}
+.mine-page .nickname {font-size:20px;line-height:1.4;font-weight:600}
+.mine-page .hero-copy .subtitle {margin-top:5px;font-size:12px;line-height:1.6;color:#777}
+.mine-page .role-tag {display:inline-block;margin-top:5px;padding:1px 5px;border-radius:3px;background:#fff0f2;color:#ff1838;font-size:12px}
+.mine-page .account-stats {display:flex;margin:0 16px;padding:16px 0;border-top:1rpx solid #eee}
+.mine-page .account-stats>view,.mine-page .account-stats>navigator {flex:1;min-width:0;min-height:44px;padding:0;border:0;border-right:1rpx solid #eee;border-radius:0;background:#fff}
+.mine-page .account-stats>navigator {border-right:0}
+.mine-page .account-stats .stat-value {font-size:24px;font-weight:600;line-height:1.3}
+.mine-page .account-stats .stat-label {margin-top:5px;font-size:12px}
+.mine-page .main-tabs {display:flex;margin:0 0 16px;padding:0;border:0;border-bottom:1rpx solid #e8e8e8;border-radius:0;background:transparent;gap:0}
+.mine-page .main-tabs>view {position:relative;flex:1;min-width:0;min-height:48px;padding:0;border:0;border-radius:0;background:transparent;color:#777;font-size:14px;font-weight:400;line-height:48px;white-space:nowrap;text-align:center}
+.mine-page .main-tabs>view.on {color:#ff1838;background:transparent;font-weight:600}
+.mine-page .main-tabs>view.on::after {position:absolute;right:auto;bottom:0;left:50%;width:20px;height:3px;border-radius:2px;background:#ff1838;transform:translateX(-50%);content:''}
+.mine-page .career-heading {font-size:18px;font-weight:600}
+.mine-page .best-grid>navigator,.mine-page .career-best-grid>navigator {padding:12px 0;border:0;border-radius:0;background:#fff}
+.mine-page .career-best-grid>navigator+ navigator {padding-left:12px;border-left:1rpx solid #eee}
+.mine-page .best-time {color:#1a1a1a;font-size:24px;font-weight:600}
+.mine-page .runner-entry-grid {display:block;margin:0 16px;padding:0}
+.mine-page .runner-entry {display:flex;flex-direction:row;height:auto;align-items:center;gap:10px;min-height:60px;padding:12px 0;border:0;border-bottom:1rpx solid #eee;border-radius:0;background:#fff;text-align:left}
+.mine-page .runner-entry::before {width:4px;height:18px;flex:none;background:#eee;content:''}
+.mine-page .runner-entry::after {margin-left:auto;color:#999;font-size:18px;content:'›'}
+.mine-page .runner-entry>view {flex:1;min-width:0}
+.mine-page .entry-title {font-size:15px;font-weight:500}
+.mine-page .entry-caption {font-size:12px;color:#777}
+.mine-page .archive-workbench {border:1rpx solid #eee;border-radius:12px;background:#fff}
+.mine-page .dashboard-heading {padding:16px}
+.mine-page .dashboard-heading>text {display:none}
+.mine-page .history-entry {margin:0 16px;padding:14px 0;border:0;border-radius:0;background:#fff}
+.mine-page .profile-history-kicker {display:none}
+.mine-page .history-entry .section-title {font-size:15px;font-weight:500}
+.mine-page .profile-section {margin:0 0 12px;padding:0;border:1rpx solid #eee;border-radius:10px;background:#fff}
+.mine-page .profile-section-title {padding:16px;border-bottom:1rpx solid #eee}
+.mine-page .profile-section-icon {display:none}
+.mine-page .profile-row {margin:0 16px;min-height:64px;padding:12px 0;border-bottom:1rpx solid #eee;border-radius:0;background:#fff}
+.mine-page .profile-row:last-child {border-bottom:0}
+.mine-page .row-copy>view:first-child {font-size:15px;font-weight:500}
+.mine-page .compact-poster {display:flex;flex-direction:column;align-items:flex-start;gap:4px;margin-top:12px;padding-top:12px;border-top:1rpx solid #eee;background:#fff}
+.mine-page .compact-poster button {min-height:36px;padding:0;border:0;background:transparent;color:#ff1838;font-size:13px}
+.runner-page .heading-icon,.runner-page .finish-graphic,.runner-page .run-symbol,.runner-page .empty-mark,.runner-page .collection-icon,.runner-page .passport-line {display:none}
+.runner-page .passport-title {font-size:24px;line-height:1.5;font-weight:600}
+.runner-page .career-number {font-size:40px;font-weight:600}
+.runner-page .career-hero {padding:16px 0}
+.runner-page .city-card {border:1rpx solid #eee;border-radius:10px;background:#fff}
+.runner-page .city-card.selected {border-color:#ff1838;background:#fff0f2}
+.runner-page .city-name {font-size:20px}
+.runner-page .collection-banner {text-align:left;background:#fff}
+.runner-page .runner-heading {font-size:24px;font-weight:600}
+.history-page .history-header,.runner-page .runner-header {background:#fff}
+.history-page .empty-symbol {display:none}
+.feedback-page .feedback-hero {padding:20px 16px;border:1rpx solid #eee;border-radius:12px;background:#fff}
+.feedback-page .hero-title {font-size:20px;font-weight:600}
+.feedback-page .hero-stats {background:#fff;border-top:1rpx solid #eee}
+.feedback-page .primary {min-height:44px;border-radius:8px;background:#ff1838;color:#fff}
+.privacy-page .title,.legal-page .title {font-size:24px;font-weight:600}
+
+.achievement-studio{--page-bg:#f5f5f5;--brand:#ff1838;--brand-soft:#fff0f2;color:#1a1a1a;background:#f5f5f5;font-size:14px}.achievement-studio button{width:auto;border-radius:8px;min-height:44px}.achievement-studio .studio-heading{padding:20px 16px;text-align:left;background:transparent}.achievement-studio .studio-title{font-size:24px;font-weight:600}.achievement-studio .studio-subtitle{font-size:14px;color:#777;line-height:1.7}.achievement-studio .studio-state{border-radius:12px;border:1rpx solid #eee;background:#fff}
+.privacy-page .privacy-copy,.legal-page .legal-copy,.legal-page .doc-paragraph,.legal-page .doc-list,.legal-page .guide-md{font-size:16px;line-height:1.8}.privacy-page .privacy-title{font-size:24px;font-weight:600}
+
+.header-settings{width:auto;flex:none;white-space:nowrap;min-height:44px;height:44px;color:#fff}.header-settings>text{flex:none}.settings-gear{font-size:18px}
+.runner-page .bar-fill{background:#ff1838}
+
+.legal-page .paragraph,.legal-page .list-item{font-size:16px;line-height:1.8}

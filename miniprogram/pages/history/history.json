@@ -2,6 +2,7 @@
   "navigationBarTitleText": "我的跑史",
   "enablePullDownRefresh": true,
   "usingComponents": {},
-  "navigationBarBackgroundColor": "#f6f7f9",
-  "backgroundColor": "#f6f7f9"
+  "navigationBarBackgroundColor": "#ffffff",
+  "backgroundColor": "#f5f5f5",
+  "navigationBarTextStyle": "black"
 }

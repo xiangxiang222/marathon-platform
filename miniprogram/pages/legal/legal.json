@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "协议与隐私中心",
   "navigationBarBackgroundColor": "#ffffff",
-  "backgroundColor": "#f5f5f5"
+  "backgroundColor": "#f5f5f5",
+  "navigationBarTextStyle": "black"
 }

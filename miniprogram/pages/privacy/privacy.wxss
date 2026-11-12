@@ -11,12 +11,12 @@
 .full-policy {padding:25rpx;margin-top:25rpx;background: var(--page-bg);border-radius:15rpx}.full-policy>view{font-size:12px;color:var(--text-secondary);line-height:1.9;margin-bottom:10rpx}.full-policy button{background:none;margin:0;padding:15rpx 0;text-align:left;font-size:12px;line-height:1.8;min-height:44px;color:var(--brand)}.full-policy button::after{border:0}
 
 /* Route geometry: surfaces, controls and compact labels have distinct roles. */
-.mini-privacy-privacy .privacy-card { border-radius: 36rpx; }
-.mini-privacy-privacy .agree, .mini-privacy-privacy .decline, .mini-privacy-privacy .contract { border-radius: 24rpx; }
+.mini-privacy-privacy .privacy-card { border-radius:36rpx; }
+.mini-privacy-privacy .agree, .mini-privacy-privacy .decline, .mini-privacy-privacy .contract { border-radius:24rpx; }
 
 /* Page composition and interaction hierarchy. */
 .mini-privacy-privacy { color: var(--text); }
-.mini-privacy-privacy button { font-weight: 500; border-radius: 24rpx; }
+.mini-privacy-privacy button { font-weight: 500; border-radius:24rpx; }
 
 .privacy-page { color: var(--text); background: transparent; }
 .privacy-card { padding: 36rpx; border: 1px solid var(--border); background:var(--surface); border-color:var(--border); box-shadow:none; }
@@ -31,3 +31,5 @@
 .mini-privacy-privacy .decline { font-size:13px; font-weight: 500; }
 
 .privacy-page{background:var(--page-bg);font-size:14px;letter-spacing:normal}.privacy-card{border-radius:24rpx;border-color:var(--border);box-shadow:none;padding:32rpx;background:var(--surface)}.privacy-title{font-size:24px;font-weight:600;letter-spacing:normal}.privacy-copy{font-size:14px;line-height:1.85;color:var(--text)}.full-policy{background:var(--page-bg);border-radius:20rpx}.full-policy button,.contract{font-size:14px;min-height:44px;border-radius:20rpx}.agree,.decline{min-height:44px;height:auto;line-height:1.5;padding:12px 18px;border-radius:20rpx;font-size:14px;font-weight:500}.agree{background:var(--brand);color:var(--surface)}.reason,.message{font-size:12px;line-height:1.85}.privacy-page button{font-weight:500}
+
+@import "../../utils/personal-ui.wxss";

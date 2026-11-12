@@ -29,12 +29,12 @@
 .studio-themes{display:flex;gap:18rpx}
 .studio-themes>.studio-theme{display:block;flex:1;min-height:0;padding:10rpx;border:2rpx solid transparent;border-radius:9.5px;background:#fff}
 .studio-themes>.theme-selected{border-color:var(--border);background:#fff}
-.theme-paper{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:8rpx;min-height:128rpx;padding:16rpx 22rpx;box-sizing:border-box;border-radius:11rpx;background:#fff5de;color:#b68b4b}
+.theme-paper{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:8rpx;min-height:128rpx;padding:16rpx 22rpx;box-sizing:border-box;border-radius:11rpx;background:#f5f5f5;color:#ff1838}
 .theme-paper>text{font-size:22px;font-weight:600;letter-spacing:-1rpx}
 .theme-paper>view{height:4rpx;width:80%;background:currentColor;opacity:.35}
 .theme-paper>view:last-child{width:50%}
-.theme-mint .theme-paper{background:#eaf7ee;color:#48896c}
-.theme-coral .theme-paper{background:#ffede7;color:#d67b68}
+.theme-mint .theme-paper{background:#f5f5f5;color:#777}
+.theme-coral .theme-paper{background:#f5f5f5;color:#ff1838}
 .studio-theme>view:last-child{display:flex;justify-content:space-between;align-items:center;gap:2rpx;min-height:34px;padding:4rpx 3rpx 0;font-size:12px;color:var(--text-secondary);white-space:nowrap}
 .studio-theme>view:last-child>text{color:var(--text-secondary);font-size:14px}
 .studio-controls{padding-bottom:6rpx}
@@ -86,3 +86,5 @@
 
 /* Page controls use the app palette; miniature paper samples retain artwork colors. */
 page,.achievement-studio{background:var(--page-bg);color:var(--text);font-size:14px;letter-spacing:normal}.studio-title{font-size:24px;font-weight:600;letter-spacing:normal}.studio-title>text,.studio-kicker,.studio-subtitle,.studio-preview-label,.studio-preview-hint,.studio-footnote,.studio-save-caption,.privacy-note{font-size:12px;color:var(--text-secondary);letter-spacing:normal}.studio-section,.studio-state,.studio-preview-placeholder{border:1px solid var(--border);border-radius:12px;background:#fff;box-shadow:none}.studio-section-heading,.state-title,.preview-empty-title{font-size:18px;font-weight:600;line-height:1.5;color:var(--text)}.studio-section-heading>text,.selection-copy>text{font-size:12px;color:var(--text-secondary)}.studio-modes{border-radius:10px;background:var(--page-bg)}.studio-modes>button{min-height:44px;font-size:14px;border-radius:10px}.studio-modes>button.selected{color:var(--brand)}.studio-themes>.theme-selected{border-color:var(--brand);background:var(--brand-soft)}.studio-theme>view:last-child{font-size:12px;color:var(--text-secondary)}.studio-control-row,.privacy-row{min-height:48px;font-size:14px;color:var(--text)}.control-label,.control-value,.control-expand>view,.pb-note>view{font-size:14px;line-height:1.7}.selection-copy>view{font-size:16px;font-weight:500;line-height:1.6;color:var(--text)}.selection-clock{font-size:14px;color:var(--text)}.is-selected .selection-check{background:var(--brand);border-color:var(--brand)}.selection-tools>button,.studio-save-message>button,.studio-pagination>button{min-width:44px;min-height:44px;font-size:14px;color:var(--brand)}.achievement-studio .studio-primary,.achievement-studio .studio-outline{min-height:46px;border-radius:10px;font-size:14px}.achievement-studio .studio-primary{background:var(--brand);border-color:var(--brand)}.privacy-mark,.state-symbol,.preview-spark{color:var(--text-secondary)}.studio-save-message{font-size:12px;line-height:1.7}.studio-control-row{gap:24rpx}.control-value{min-width:0;flex:1;text-align:right;white-space:normal}.studio-bottom{border-color:var(--border);background:#fff}
+
+@import "../../utils/personal-ui.wxss";

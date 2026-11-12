@@ -10,13 +10,15 @@
 
 <style scoped>
 .not-found { max-width: 440px; margin: auto; padding: 100px 24px 48px; text-align: center; }
-.missing-code { color: var(--accent); font-size: 40px; line-height: 1.2; font-weight: 600; }
-.not-found h1 { margin: 20px 0 10px; font-size: 22px; }
-.not-found p { color: var(--muted); font-size: 14px; line-height: 1.8; }
-.not-found a { display: block; margin-top: 12px; padding: 13px; border-radius: 12px; text-decoration: none;  font-size: 14px;}
+.missing-code { color: var(--accent); font-size:40px; line-height: 1.2; font-weight: 600; }
+.not-found h1 { margin: 20px 0 10px; font-size:22px; }
+.not-found p { color: var(--muted); font-size:14px; line-height: 1.8; }
+.not-found a { display: block; margin-top: 12px; padding: 13px; border-radius:12px; text-decoration: none;  font-size:14px;}
 .not-found .primary { color: #fff; background: var(--accent); }
 .secondary { color: var(--ink); background: var(--chip); }
 
 
-.not-found { background:transparent; }.missing-code { color:var(--muted);text-shadow:3px 3px 0 #fff0db; }
+.not-found { background:transparent; }.missing-code { color:var(--muted);text-shadow:3px 3px 0 #f5f5f5; }
 </style>
+
+<style scoped src="../personal-ui.css"></style>

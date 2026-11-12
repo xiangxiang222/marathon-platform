@@ -7,8 +7,8 @@
       <router-link class="week-foot" to="/runner?view=stats&report=1"><span>{{ overview.weekCount ? '每一次出发，都算数' : '从一次轻松跑开始' }}</span><b>查看运动周报 <span>›</span></b></router-link>
     </section>
     <router-link v-if="nextRace" class="next-race dash-card" :to="'/races/' + nextRace.race.id"><span class="next-date"><b>{{ nextRace.race.raceDate.slice(8, 10) }}</b><span>{{ nextRace.race.raceDate.slice(5, 7) }} 月</span></span><div><span class="overline">下一场期待 · {{ nextRace.status }}</span><h3>{{ nextRace.race.name }}</h3><p>{{ nextRace.race.city || '比赛地点待公布' }} · {{ nextRace.race.raceDate }}</p></div><RunnerIcon name="arrow"/></router-link>
-    <section class="dash-card career-card"><div class="dash-heading"><h3 class="career-heading"><img :src="medalImage" alt=""/>我的完赛成绩</h3><router-link to="/runner?view=career">赛事生涯 <span>›</span></router-link></div><div class="pb-grid"><router-link v-for="item in pbs" :key="item.distance" to="/runner?view=career"><span><i>PB</i>{{ item.label }}</span><b :class="{ 'awaiting-pb': !item.clock }">{{ item.clock || '等待你的突破' }}</b><small>{{ item.clock ? '个人最好成绩' : '下一次出发，新的可能' }}</small></router-link></div><div class="career-numbers"><div><b>{{ loading || !data ? '—' : data?.career?.finished || 0 }}</b><span>场完赛</span></div><div><b>{{ loading || !data ? '—' : data?.career?.cities?.length || 0 }}</b><span>座城市</span></div><div><b>{{ loading || !data ? '—' : number(data?.career?.totalKm) }}</b><span>比赛里程 · 公里</span></div></div><slot name="career-actions" /></section>
-    <section class="archive-workbench"><div class="dash-heading archive-heading"><h3>跑者工作台</h3><span>把热爱，留成记录</span></div><nav class="dash-entries" aria-label="跑者档案"><router-link v-for="entry in entries" :key="entry.id" :to="'/runner?view=' + entry.id"><span class="entry-icon" :class="entry.id"><RunnerIcon :name="entry.id"/></span><div><b>{{ entry.title }}</b><span>{{ entry.subtitle }}</span></div><RunnerIcon name="arrow" class="entry-arrow"/></router-link></nav><router-link class="history-entry" to="/history"><div><span class="overline">跑过的路，都值得记下</span><h3>我的跑史 <span>↗</span></h3><p>找回旧比赛，留住自己的高光。</p></div><img :src="historyImage" alt="跑者护照插画"/></router-link></section>
+    <section class="dash-card career-card"><div class="dash-heading"><h3 class="career-heading">我的完赛成绩</h3><router-link to="/runner?view=career">赛事生涯 <span>›</span></router-link></div><div class="pb-grid"><router-link v-for="item in pbs" :key="item.distance" to="/runner?view=career"><span><i>PB</i>{{ item.label }}</span><b :class="{ 'awaiting-pb': !item.clock }">{{ item.clock || '暂无成绩' }}</b><small>{{ item.clock ? '个人最好成绩' : '记录完赛成绩后展示' }}</small></router-link></div><div class="career-numbers"><div><b>{{ loading || !data ? '—' : data?.career?.finished || 0 }}</b><span>场完赛</span></div><div><b>{{ loading || !data ? '—' : data?.career?.cities?.length || 0 }}</b><span>座城市</span></div><div><b>{{ loading || !data ? '—' : number(data?.career?.totalKm) }}</b><span>比赛里程 · 公里</span></div></div><slot name="career-actions" /></section>
+    <section class="archive-workbench"><div class="dash-heading archive-heading"><h3>跑者工作台</h3><span>个人运动档案</span></div><nav class="dash-entries" aria-label="跑者档案"><router-link v-for="entry in entries" :key="entry.id" :to="'/runner?view=' + entry.id"><span class="entry-icon" :class="entry.id"><RunnerIcon :name="entry.id"/></span><div><b>{{ entry.title }}</b><span>{{ entry.subtitle }}</span></div><RunnerIcon name="arrow" class="entry-arrow"/></router-link></nav><router-link class="history-entry" to="/history"><div><span class="overline">历史赛事记录</span><h3>我的跑史 <span>↗</span></h3><p>导入历史成绩，管理参赛履历。</p></div></router-link></section>
     <p class="private-note"><RunnerIcon name="lock"/>个人运动、收藏与影像，仅自己可见</p>
     <router-link class="dash-help" to="/runner?view=help">使用帮助 <span>›</span></router-link>
   </div>
@@ -37,29 +37,29 @@ function minutes(value) { return Math.round(Number(value || 0) / 60); }
 .dash-heading h3{margin:0;font-size:18px;line-height:1.4;font-weight:600}
 .dash-heading>a{gap:4px;min-height:44px;font-size:12px;color:var(--muted)}
 .week-main{grid-template-columns:minmax(0,1fr) 128px;gap:12px;align-items:end;margin:8px 0 10px}
-.week-number{margin-top:2px;font-size:32px;line-height:1.15;font-weight:600;letter-spacing:-.6px;color:var(--ink)}
+.week-number{margin-top:2px;font-size:32px;line-height:1.15;font-weight:600;letter-spacing:normal;color:var(--ink)}
 .week-number small{font-size:12px;letter-spacing:0}
 .week-main p{margin-top:7px;font-size:12px;line-height:1.5}
 .mini-chart{gap:7px;padding-bottom:2px}
 .mini-day{width:12px;font-size:12px}
-.mini-track{height:54px;border-radius:3px;background:#f6f6f6}
-.mini-track i{border-radius:3px;background:#ffb5bf}
+.mini-track{height:54px;border-radius:3px;background:#f5f5f5}
+.mini-track i{border-radius:3px;background:#ff1838}
 .mini-track i.today{background:var(--accent)}.mini-track i.zero{background:var(--line)}
 .mini-day>span{margin-top:6px}
 .week-foot{padding-top:7px;min-height:42px;font-size:12px;border-color:var(--line)}
 .week-foot b{font-size:12px;font-weight:500}
-.next-race{gap:11px;padding:12px 14px;background:#fff7f7;border-color:#ffe1e5}
-.next-date{width:43px;height:47px;background:#fff;border-color:#ffd4dc;border-radius:7px}
+.next-race{gap:11px;padding:12px 14px;background:#f5f5f5;border-color:#f5f5f5}
+.next-date{width:43px;height:47px;background:#fff;border-color:#eee;border-radius:7px}
 .next-date b{font-size:22px}.next-date span{font-size:12px}
 .next-race .overline{font-size:12px;font-weight:500}.next-race h3{font-size:15px;line-height:1.45;font-weight:500}.next-race p{font-size:12px;line-height:1.5}
 .career-card{padding-bottom:3px}
 .pb-grid{gap:10px;margin-top:10px}
-.pb-grid>a{position:relative;overflow:hidden;padding:12px 10px;background:#fff3f3;border:1px solid #ffe1e5;border-radius:8px}
+.pb-grid>a{position:relative;overflow:hidden;padding:12px 10px;background:#f5f5f5;border:1px solid #f5f5f5;border-radius:8px}
 .pb-grid>a::after{position:absolute;right:-18px;bottom:-26px;width:70px;height:70px;border:12px solid rgba(255,24,56,.045);border-radius:50%;content:'';pointer-events:none}
-.pb-grid span{color:#925a62;font-size:12px}.pb-grid i{padding:1px 4px;border-radius:3px;background:#ffdee4;color:var(--accent);font-size:12px;font-weight:600;line-height:1.5}
-.pb-grid b{position:relative;z-index:1;margin-top:6px;color:var(--accent);font-size:24px;line-height:1.2;font-weight:600;letter-spacing:-.5px}
+.pb-grid span{color:#ff1838;font-size:12px}.pb-grid i{padding:1px 4px;border-radius:3px;background:#f5f5f5;color:var(--accent);font-size:12px;font-weight:600;line-height:1.5}
+.pb-grid b{position:relative;z-index:1;margin-top:6px;color:var(--accent);font-size:24px;line-height:1.2;font-weight:600;letter-spacing:normal}
 .pb-grid b.awaiting-pb{font-size:16px;letter-spacing:0}
-.pb-grid small{display:block;margin-top:6px;color:#a17b81;font-size:12px;line-height:1.4}
+.pb-grid small{display:block;margin-top:6px;color:#ff1838;font-size:12px;line-height:1.4}
 .career-numbers{grid-template-columns:.85fr .85fr 1.3fr;gap:10px;margin:15px 0 0;padding-bottom:14px}
 .career-numbers>div{gap:4px}.career-numbers b{font-size:20px;line-height:1.2;letter-spacing:0;font-weight:600}.career-numbers span{font-size:12px;line-height:1.5}
 .career-card :deep(.compact-poster){margin-top:0;padding-top:3px;gap:10px;min-height:49px}
@@ -70,14 +70,14 @@ function minutes(value) { return Math.round(Number(value || 0) / 60); }
 .dash-entries{grid-template-columns:repeat(3,minmax(0,1fr));gap:0;padding:9px 5px 11px}
 .dash-entries>a{display:flex;flex-direction:column;gap:7px;align-items:center;justify-content:center;min-height:92px;padding:10px 3px;border:0;border-radius:0;background:transparent;text-align:center}
 .dash-entries a:nth-child(-n+3){border-bottom:1px solid var(--line)}
-.entry-icon{width:35px;height:35px;border-radius:9px;color:var(--accent);background:#fff1f3}
+.entry-icon{width:35px;height:35px;border-radius:9px;color:var(--accent);background:#f5f5f5}
 .entry-icon svg{width:23px;height:23px}
-.entry-icon.honors{background:#fff8e9;color:#b67f24}.entry-icon.media{background:#eef4ff;color:#557ab7}.entry-icon.devices{background:#f0f3f4;color:#667680}.entry-icon.footprints{background:#f2f8f4;color:#50856c}
+.entry-icon.honors{background:#f5f5f5;color:#ff1838}.entry-icon.media{background:#f5f5f5;color:#777}.entry-icon.devices{background:#f5f5f5;color:#777}.entry-icon.footprints{background:#f5f5f5;color:#777}
 .dash-entries b{font-size:13px;line-height:1.4;font-weight:500;white-space:nowrap}
 .dash-entries div>span{margin-top:4px;font-size:12px;line-height:1.4;white-space:nowrap}
-.history-entry{display:flex;align-items:center;gap:12px;margin:0 12px 12px;padding:0 0 0 0;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fafafa}
+.history-entry{display:flex;align-items:center;gap:12px;margin:0 12px 12px;padding:0 0 0 0;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#f5f5f5}
 .history-entry>img{display:block;flex:none;width:85px;height:88px;object-fit:cover;object-position:center}
-.history-entry>div{flex:1;min-width:0;padding:9px 11px 9px 0}.history-entry .overline{font-size:12px;font-weight:500;letter-spacing:.5px}
+.history-entry>div{flex:1;min-width:0;padding:9px 11px 9px 0}.history-entry .overline{font-size:12px;font-weight:500;letter-spacing:normal}
 .history-entry h3{margin:4px 0;font-size:16px;line-height:1.4;font-weight:600}.history-entry h3 span{font-size:17px}
 .history-entry p{font-size:12px;line-height:1.5;color:var(--muted)}
 .private-note{margin:0;font-size:12px;line-height:1.5}.dash-help{min-height:44px;padding:0;font-size:12px}
@@ -87,6 +87,8 @@ function minutes(value) { return Math.round(Number(value || 0) / 60); }
 .dash-entries b{font-size:14px}.dash-entries div>span{font-size:12px}.history-entry p{font-size:12px}
 @media(max-width:350px){.week-foot,.week-foot b,.pb-grid span,.career-numbers span,.dash-entries div>span,.history-entry p{font-size:12px}.dash-entries b{font-size:14px}.career-numbers b{font-size:18px}}
 .career-heading{display:flex;align-items:center;gap:6px}.career-heading>img{width:34px;height:38px;object-fit:contain}
-.history-entry{flex-direction:row;gap:4px;padding:10px 12px;background:#fcfaf7;border-color:#f3ede7}.history-entry>div{padding:0;flex:1;min-width:0}.history-entry>img{width:70px;height:74px;object-fit:contain}.history-entry .overline{font-size:12px;letter-spacing:normal}.history-entry h3{font-size:16px}.history-entry p{font-size:12px}.career-card :deep(.compact-poster>span){max-width:none;font-size:12px;line-height:1.5}.career-card :deep(.compact-poster>a),.career-card :deep(.compact-poster>button){font-size:13px}
+.history-entry{flex-direction:row;gap:4px;padding:10px 12px;background:#f5f5f5;border-color:#f5f5f5}.history-entry>div{padding:0;flex:1;min-width:0}.history-entry>img{width:70px;height:74px;object-fit:contain}.history-entry .overline{font-size:12px;letter-spacing:normal}.history-entry h3{font-size:16px}.history-entry p{font-size:12px}.career-card :deep(.compact-poster>span){max-width:none;font-size:12px;line-height:1.5}.career-card :deep(.compact-poster>a),.career-card :deep(.compact-poster>button){font-size:13px}
 @media(max-width:350px){.career-heading{gap:4px;font-size:17px}.career-heading>img{width:29px;height:34px}.history-entry{padding:10px}.history-entry>img{width:64px;height:70px}.career-card :deep(.compact-poster>a),.career-card :deep(.compact-poster>button){font-size:12px}}
 </style>
+
+<style scoped src="../personal-ui.css"></style>

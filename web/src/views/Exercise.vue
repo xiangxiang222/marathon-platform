@@ -21,18 +21,14 @@
             <div class="mileage-value"><strong>{{ data.month.km }}</strong><span>km</span></div>
             <span class="mileage-footnote">累计跑量 · {{ data.month.count }} 次跑步</span>
           </div>
-          <div class="runner-strip">
-            <img class="runner-photo" :src="runSceneSrc" alt="跑鞋插画" />
-            <strong>跑向下一程</strong>
-            <span class="strip-detail">按你的节奏</span>
-          </div>
+
         </div>
         <div class="run-metrics"><div><b>{{ data.month.count }}</b><span>跑步次数</span></div><div><b>{{ data.month.days }}</b><span>运动天数</span></div><div><b>{{ data.month.paceLabel || '—' }}</b><span>平均配速</span></div></div>
         <div class="record-actions"><button class="primary record-button" type="button" :aria-expanded="recordOpen" @click="recordOpen = !recordOpen">{{ recordOpen ? '收起记录' : '＋ 记录跑步' }}</button><router-link class="import-button" to="/runner?view=devices">导入运动文件</router-link></div>
       </section>
       <section class="surface trend-card">
         <div class="weekly-chart" role="img" :aria-label="weeklyChartLabel">
-          <div class="chart-heading"><div><h2>跑量趋势</h2><p class="chart-subtitle">每一周的积累，都看得见</p></div><span>公里 / 周</span></div>
+          <div class="chart-heading"><div><h2>跑量趋势</h2><p class="chart-subtitle">按自然周统计本月跑量</p></div><span>公里 / 周</span></div>
           <div class="chart-bars" :style="{ gridTemplateColumns: `repeat(${weeklyRuns.length}, minmax(0, 1fr))` }" aria-hidden="true">
             <div v-for="week in weeklyRuns" :key="week.label" class="chart-column">
               <span class="bar-value">{{ week.kmLabel }}</span>
@@ -42,7 +38,7 @@
           </div>
         </div>
         <div v-if="data.month.target" class="target-summary"><div class="target-copy"><span>本月目标 <b>{{ data.month.target }} km</b></span><strong>{{ targetPercent }}%</strong></div><div class="progress" role="progressbar" :aria-valuenow="progressPercent" aria-valuemin="0" aria-valuemax="100" aria-label="跑量目标进度"><i :style="{ width: progressPercent + '%' }"></i></div><p><span>已完成 {{ data.month.km }} km</span><span>还差 {{ Math.max(0, Number(data.month.target) - Number(data.month.km)).toFixed(1) }} km</span></p></div>
-        <button v-else-if="data.month.canFlag" class="target-prompt" type="button" :aria-expanded="targetOpen" @click="targetOpen = !targetOpen"><span class="target-mark">＋</span><span><strong>给这个月定个目标</strong><small>按自己的节奏，一步步完成</small></span><b>设置 ›</b></button>
+        <button v-else-if="data.month.canFlag" class="target-prompt" type="button" :aria-expanded="targetOpen" @click="targetOpen = !targetOpen"><span class="target-mark">＋</span><span><strong>设置月度跑量目标</strong><small>记录目标并查看完成进度</small></span><b>设置 ›</b></button>
         <p v-if="data.month.observe" class="hint observe-note">本月先保持自己的节奏，跑起来就有进步。</p>
       </section>
       <section v-if="targetOpen && data.month.canFlag" class="surface editor"><div class="section-heading"><h2>本月目标</h2><button type="button" class="close-button" aria-label="收起目标设置" @click="targetOpen = false">收起</button></div><form class="stack" @submit.prevent="saveFlag"><label>目标跑量<input v-model="target" inputmode="decimal" placeholder="本月目标，公里" /></label><span class="field-label">性别</span><div class="choices"><button type="button" :class="{ on: gender === '男' }" @click="gender = '男'">男</button><button type="button" :class="{ on: gender === '女' }" @click="gender = '女'">女</button><button type="button" :class="{ on: gender === '' }" @click="gender = ''">不填</button></div><p class="hint">不填性别时，按本团下限里较高的一项计算。</p><button class="primary" type="submit">保存目标</button></form></section>
@@ -241,144 +237,144 @@ onMounted(() => {
 /* Monthly training summary. The shared PageHeader remains owned by the shell. */
 .exercise { padding: 0 12px 24px; color: var(--ink); }
 .exercise > .surface:first-of-type { margin-top: 0; }
-.surface { padding: 16px; margin-bottom: 12px; border: 1px solid var(--line); border-radius: 12px; background: #fff; }
+.surface { padding: 16px; margin-bottom: 12px; border: 1px solid var(--line); border-radius:12px; background: #fff; }
 .mileage-hero { padding: 16px 14px 14px; }
 .hero-top,.section-heading { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 .month-block { min-width: 0; }
-.month-caption,.hero-kicker { display: block; color: var(--muted); font-size: 12px; font-weight: 500; line-height: 18px; }
+.month-caption,.hero-kicker { display: block; color: var(--muted); font-size:12px; font-weight: 500; line-height: 18px; }
 .month-control { display: flex; align-items: center; gap: 4px; margin-top: 2px; }
-.month-step { display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--ink-secondary); font-size: 23px; line-height: 1; }
-.month-select { position: relative; display: grid; place-items: center; min-width: 90px; height: 44px; padding: 0 4px; border-radius: 8px; background: var(--bg); color: var(--ink); font-size: 14px; font-weight: 600; }
+.month-step { display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 1px solid var(--line); border-radius:8px; background: #fff; color: var(--ink-secondary); font-size:23px; line-height: 1; }
+.month-select { position: relative; display: grid; place-items: center; min-width: 90px; height: 44px; padding: 0 4px; border-radius:8px; background: var(--bg); color: var(--ink); font-size:14px; font-weight: 600; }
 .month-select input { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; border: 0; opacity: 0; }
-.target-link { display: flex; align-items: center; justify-content: center; min-width: 68px; min-height: 44px; padding: 0 6px; border: 1px solid #ffe0e3; border-radius: 8px; background: #fff6f7; color: var(--accent); font-size: 14px; line-height: 20px; white-space: nowrap; }
+.target-link { display: flex; align-items: center; justify-content: center; min-width: 68px; min-height: 44px; padding: 0 6px; border: 1px solid #f5f5f5; border-radius:8px; background: #f5f5f5; color: var(--accent); font-size:14px; line-height: 20px; white-space: nowrap; }
 .target-link b { font-weight: 600; }
 .hero-overview { display: grid; grid-template-columns: minmax(0,1fr) 104px; gap: 12px; align-items: center; margin-top: 16px; }
 .mileage-copy { min-width: 0; }
-.hero-kicker { color: #999; font-size: 12px; font-weight: 600; }
+.hero-kicker { color: #999; font-size:12px; font-weight: 600; }
 .mileage-value { display: flex; align-items: baseline; gap: 6px; margin: 6px 0 0; white-space: nowrap; }
-.mileage-value strong { color: var(--ink); font-size: 40px; line-height: 1.05; font-variant-numeric: tabular-nums; font-weight: 600; }
-.mileage-value > span { color: var(--muted); font-size: 14px; font-weight: 600; }
-.mileage-footnote { display: block; margin-top: 7px; color: var(--muted); font-size: 12px; line-height: 17px; }
-.runner-strip { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; min-width: 0; height: 128px; overflow: hidden; padding: 8px; border-radius: 10px; background: #fff5f5; color: var(--ink); }
+.mileage-value strong { color: var(--ink); font-size:40px; line-height: 1.05; font-variant-numeric: tabular-nums; font-weight: 600; }
+.mileage-value > span { color: var(--muted); font-size:14px; font-weight: 600; }
+.mileage-footnote { display: block; margin-top: 7px; color: var(--muted); font-size:12px; line-height: 17px; }
+.runner-strip { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; min-width: 0; height: 128px; overflow: hidden; padding: 8px; border-radius:10px; background: #f5f5f5; color: var(--ink); }
 .runner-photo { display: block; width: 76px; height: 76px; margin: -3px auto 0; object-fit: contain; }
-.strip-label { margin-bottom: 3px; color: #ffffffd9; font-size: 12px; font-weight: 600; }
-.runner-strip strong { font-size: 14px; line-height: 19px; white-space: nowrap; }
-.strip-detail { margin-top: 2px; color: var(--muted); font-size: 12px; line-height: 15px; }
-.weekly-chart { margin-top: 18px; padding: 12px 12px 8px; border-radius: 10px; background: #f7f7f8; }
+.strip-label { margin-bottom: 3px; color: #ffffffd9; font-size:12px; font-weight: 600; }
+.runner-strip strong { font-size:14px; line-height: 19px; white-space: nowrap; }
+.strip-detail { margin-top: 2px; color: var(--muted); font-size:12px; line-height: 15px; }
+.weekly-chart { margin-top: 18px; padding: 12px 12px 8px; border-radius:10px; background: #f5f5f5; }
 .chart-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
-.chart-heading h2 { margin: 0; font-size: 14px; font-weight: 600; line-height: 20px; }
-.chart-heading > span { color: var(--muted); font-size: 12px; }
+.chart-heading h2 { margin: 0; font-size:14px; font-weight: 600; line-height: 20px; }
+.chart-heading > span { color: var(--muted); font-size:12px; }
 .chart-bars { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); gap: 10px; height: 94px; margin-top: 8px; }
 .chart-column { display: grid; grid-template-rows: 17px minmax(0,1fr) 16px; justify-items: center; min-width: 0; }
-.bar-value,.bar-label { color: var(--muted); font-size: 12px; line-height: 14px; font-variant-numeric: tabular-nums; white-space: nowrap; }
-.bar-track { display: flex; align-items: flex-end; width: 100%; max-width: 26px; height: 100%; overflow: hidden; border-radius: 6px; background: #ececee; }
-.bar-track i { display: block; width: 100%; min-height: 0; border-radius: 6px; background: #f5a3ad; transition: height .2s ease; }
+.bar-value,.bar-label { color: var(--muted); font-size:12px; line-height: 14px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.bar-track { display: flex; align-items: flex-end; width: 100%; max-width: 26px; height: 100%; overflow: hidden; border-radius:6px; background: #f5f5f5; }
+.bar-track i { display: block; width: 100%; min-height: 0; border-radius:6px; background: #ff1838; transition: height .2s ease; }
 .bar-track i.peak { background: var(--accent); }
-.target-summary { padding: 12px; margin-top: 14px; border: 1px solid #ffe2e5; border-radius: 10px; background: #fff8f8; }
+.target-summary { padding: 12px; margin-top: 14px; border: 1px solid #f5f5f5; border-radius:10px; background: #fff; }
 .target-copy,.target-summary p { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
-.target-copy { margin-bottom: 9px; color: var(--ink-secondary); font-size: 12px; }
+.target-copy { margin-bottom: 9px; color: var(--ink-secondary); font-size:12px; }
 .target-copy b { color: var(--ink); font-weight: 600; }
-.target-copy strong { color: var(--accent); font-size: 14px; font-weight: 600; }
-.progress { height: 5px; overflow: hidden; border-radius: 99px; background: #f2dfe1; }
-.progress i { display: block; height: 100%; border-radius: inherit; background: var(--accent); }
-.target-summary p { margin: 7px 0 0; color: var(--muted); font-size: 12px; line-height: 16px; }
-.target-prompt { display: flex; align-items: center; gap: 9px; width: 100%; min-height: 58px; padding: 8px 10px; margin-top: 14px; border: 1px solid #f2e7e8; border-radius: 10px; background: #fff9fa; text-align: left; }
-.target-mark { display: grid; place-items: center; width: 30px; height: 30px; flex: none; border-radius: 8px; background: #ffe8eb; color: var(--accent); font-size: 19px; }
+.target-copy strong { color: var(--accent); font-size:14px; font-weight: 600; }
+.progress { height: 5px; overflow: hidden; border-radius:12px; background: #f5f5f5; }
+.progress i { display: block; height: 100%; border-radius:inherit; background: var(--accent); }
+.target-summary p { margin: 7px 0 0; color: var(--muted); font-size:12px; line-height: 16px; }
+.target-prompt { display: flex; align-items: center; gap: 9px; width: 100%; min-height: 58px; padding: 8px 10px; margin-top: 14px; border: 1px solid #eee; border-radius:10px; background: #fff; text-align: left; }
+.target-mark { display: grid; place-items: center; width: 30px; height: 30px; flex: none; border-radius:8px; background: #f5f5f5; color: var(--accent); font-size:19px; }
 .target-prompt > span:nth-child(2) { display: flex; flex-direction: column; min-width: 0; gap: 2px; }
-.target-prompt strong { color: var(--ink); font-size: 13px; font-weight: 600; }
-.target-prompt small { color: var(--muted); font-size: 12px; }
-.target-prompt > b { margin-left: auto; color: var(--accent); font-size: 12px; font-weight: 600; white-space: nowrap; }
+.target-prompt strong { color: var(--ink); font-size:13px; font-weight: 600; }
+.target-prompt small { color: var(--muted); font-size:12px; }
+.target-prompt > b { margin-left: auto; color: var(--accent); font-size:12px; font-weight: 600; white-space: nowrap; }
 .run-metrics { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); padding-top: 13px; margin-top: 13px; border-top: 1px solid var(--line); }
 .run-metrics div { text-align: center; }
 .run-metrics div:first-child { text-align: left; }
 .run-metrics div:last-child { text-align: right; }
-.run-metrics b { display: block; font-size: 18px; line-height: 22px; font-weight: 600; font-variant-numeric: tabular-nums; }
-.run-metrics span { display: block; margin-top: 3px; color: var(--muted); font-size: 12px; }
+.run-metrics b { display: block; font-size:18px; line-height: 22px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.run-metrics span { display: block; margin-top: 3px; color: var(--muted); font-size:12px; }
 .record-actions { display: grid; grid-template-columns: minmax(0,1.2fr) minmax(0,1fr); gap: 8px; margin-top: 12px; }
-.primary,.import-button,.choices button,.close-button,.delete-button,.text-button,.stack .file-pick { min-height: 44px; border-radius: 10px; font-size: 14px; }
+.primary,.import-button,.choices button,.close-button,.delete-button,.text-button,.stack .file-pick { min-height: 44px; border-radius:10px; font-size:14px; }
 .primary { padding: 0 14px; background: var(--accent); color: #fff; font-weight: 600; }
 .record-button { width: 100%; }
 .import-button { display: grid; place-items: center; padding: 0 8px; border: 1px solid var(--line); background: #fff; color: var(--ink-secondary); font-weight: 500; text-align: center; }
-.manual-note { margin: 6px 2px 18px; color: var(--muted); font-size: 12px; line-height: 17px; }
-.section-heading h2,.section-heading h3 { margin: 0; font-size: 16px; line-height: 24px; font-weight: 600; }
-.section-heading > span { color: var(--muted); font-size: 12px; }
+.manual-note { margin: 6px 2px 18px; color: var(--muted); font-size:12px; line-height: 17px; }
+.section-heading h2,.section-heading h3 { margin: 0; font-size:16px; line-height: 24px; font-weight: 600; }
+.section-heading > span { color: var(--muted); font-size:12px; }
 .records-heading { margin: 20px 4px 10px; }
-.records-heading h2 { font-size: 18px; }
+.records-heading h2 { font-size:18px; }
 .run-record { padding: 14px; }
-.run-record .section-heading h3 { font-size: 15px; }
-.text-button { padding: 0 8px; color: var(--accent); font-size: 12px; }
-.run-date { margin: 5px 0 12px; color: var(--muted); font-size: 12px; line-height: 18px; }
+.run-record .section-heading h3 { font-size:15px; }
+.text-button { padding: 0 8px; color: var(--accent); font-size:12px; }
+.run-date { margin: 5px 0 12px; color: var(--muted); font-size:12px; line-height: 18px; }
 .record-data { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 8px; }
-.record-data b { display: block; font-size: 18px; font-weight: 600; line-height: 24px; font-variant-numeric: tabular-nums; }
-.record-data span { display: block; margin-top: 3px; color: var(--muted); font-size: 12px; }
+.record-data b { display: block; font-size:18px; font-weight: 600; line-height: 24px; font-variant-numeric: tabular-nums; }
+.record-data span { display: block; margin-top: 3px; color: var(--muted); font-size:12px; }
 .stack { display: flex; flex-direction: column; gap: 12px; margin-top: 14px; }
-.stack label,.field-label { min-width: 0; color: var(--muted); font-size: 12px; }
-.stack input,.stack select { width: 100%; min-width: 0; height: 44px; margin-top: 6px; padding: 0 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); color: var(--ink); font-size: 14px; }
+.stack label,.field-label { min-width: 0; color: var(--muted); font-size:12px; }
+.stack input,.stack select { width: 100%; min-width: 0; height: 44px; margin-top: 6px; padding: 0 12px; border: 1px solid var(--line); border-radius:10px; background: var(--bg); color: var(--ink); font-size:14px; }
 .field-pair { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 10px; }
 .choices { display: flex; gap: 8px; }
-.choices button { min-width: 62px; min-height: 36px; padding: 0 12px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--ink); font-size: 13px; }
-.choices button.on { border-color: var(--accent); background: #fff4f5; color: var(--accent); }
-.close-button { padding: 0 8px; color: var(--muted); font-size: 12px; }
-.stack .file-pick { position: relative; display: grid; place-items: center; min-height: 44px; overflow: hidden; background: #f7f7f8; color: var(--ink-secondary); font-size: 13px; }
+.choices button { min-width: 62px; min-height: 36px; padding: 0 12px; border: 1px solid var(--line); border-radius:8px; background: #fff; color: var(--ink); font-size:13px; }
+.choices button.on { border-color: var(--accent); background: #f5f5f5; color: var(--accent); }
+.close-button { padding: 0 8px; color: var(--muted); font-size:12px; }
+.stack .file-pick { position: relative; display: grid; place-items: center; min-height: 44px; overflow: hidden; background: #f5f5f5; color: var(--ink-secondary); font-size:13px; }
 .file-pick input { position: absolute; width: 1px; height: 1px; overflow: hidden; opacity: 0; }
 .record-editor { padding-top: 12px; margin-top: 14px; border-top: 1px solid var(--line); }
-.delete-button { color: var(--muted); font-size: 13px; }
-.shot { display: block; width: 100%; margin-top: 12px; border-radius: 8px; }
+.delete-button { color: var(--muted); font-size:13px; }
+.shot { display: block; width: 100%; margin-top: 12px; border-radius:8px; }
 .guest-state,.empty-state { padding: 28px 20px; text-align: center; }
-.guest-state h2 { margin: 12px 0 0; font-size: 18px; line-height: 28px; font-weight: 600; }
-.guest-state p,.empty-state p { margin: 8px 0 18px; color: var(--muted); font-size: 14px; line-height: 1.65; }
+.guest-state h2 { margin: 12px 0 0; font-size:18px; line-height: 28px; font-weight: 600; }
+.guest-state p,.empty-state p { margin: 8px 0 18px; color: var(--muted); font-size:14px; line-height: 1.65; }
 .guest-state .primary { width: 100%; }
-.guest-mark { display: grid; place-items: center; width: 48px; height: 48px; margin: auto; border-radius: 12px; background: #fff0f2; color: var(--accent); font-size: 22px; }
-.empty-state h3 { margin: 0; font-size: 16px; }
-.year-note,.loading-copy { margin: 14px 4px; color: var(--muted); font-size: 12px; line-height: 20px; }
-.message { margin: 12px 4px; color: var(--accent); font-size: 12px; line-height: 20px; }
+.guest-mark { display: grid; place-items: center; width: 48px; height: 48px; margin: auto; border-radius:12px; background: #f5f5f5; color: var(--accent); font-size:22px; }
+.empty-state h3 { margin: 0; font-size:16px; }
+.year-note,.loading-copy { margin: 14px 4px; color: var(--muted); font-size:12px; line-height: 20px; }
+.message { margin: 12px 4px; color: var(--accent); font-size:12px; line-height: 20px; }
 .editor { margin-top: 8px; }
 @media(max-width:350px){.surface{padding:14px}.hero-overview{grid-template-columns:minmax(0,1fr) 88px;gap:8px}.runner-strip{height:120px;padding:7px}.runner-photo{width:68px;height:68px}.mileage-value strong{font-size:38px}.weekly-chart{padding-right:8px;padding-left:8px}.chart-bars{gap:6px}.record-actions{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
 
-.surface { border-radius: 16px; }
-.mileage-hero { padding: 13px 14px 14px; background: linear-gradient(150deg,#fff 65%,#fff8f8); }
+.surface { border-radius:12px; }
+.mileage-hero { padding: 13px 14px 14px; background: #fff; }
 .hero-top { gap: 6px; }
 .month-block { display: flex; flex-direction: column; gap: 3px; }
-.month-caption { color: #8b8b8b; }
+.month-caption { color: #777; }
 .month-control { gap: 1px; margin-top: 0; }
 .month-step { width: 28px; height: 32px; min-height: 32px; border: 0; background: transparent; }
-.month-select { min-width: 105px; height: 32px; padding: 0 3px; background: transparent; font-size: 15px; }
-.target-link { min-width: 0; min-height: 32px; height: 32px; padding: 0 8px; border-color: #ffdce1; border-radius: 20px; font-size: 12px; }
+.month-select { min-width: 105px; height: 32px; padding: 0 3px; background: transparent; font-size:15px; }
+.target-link { min-width: 0; min-height: 32px; height: 32px; padding: 0 8px; border-color: #f5f5f5; border-radius:12px; font-size:12px; }
 .hero-overview { grid-template-columns: minmax(0,1fr) 96px; min-height: 92px; gap: 6px; margin-top: 8px; }
-.hero-kicker { font-size: 12px; font-weight: 400; }
+.hero-kicker { font-size:12px; font-weight: 400; }
 .mileage-value { gap: 4px; margin-top: 3px; }
-.mileage-value strong { font-size: 48px; font-weight: 700; letter-spacing: -1.5px; line-height: 1.1; }
-.mileage-value > span { font-size: 13px; font-weight: 500; }
+.mileage-value strong { font-size:40px; font-weight:600; letter-spacing:normal; line-height: 1.1; }
+.mileage-value > span { font-size:13px; font-weight: 500; }
 .mileage-footnote { display: none; }
-.runner-strip { height: 100px; justify-content: center; padding: 0; background: transparent; border-radius: 0; }
+.runner-strip { height: 100px; justify-content: center; padding: 0; background: transparent; border-radius:0; }
 .runner-photo { width: 90px; height: 82px; margin: 0; }
-.runner-strip strong { font-size: 12px; font-weight: 500; color: #a77a80; }
+.runner-strip strong { font-size:12px; font-weight: 500; color: #ff1838; }
 .strip-detail { display: none; }
 .run-metrics { gap: 5px; margin-top: 13px; padding: 12px 0 0; }
 .run-metrics div,.run-metrics div:first-child,.run-metrics div:last-child { text-align: left; }
-.run-metrics div + div { padding-left: 10px; border-left: 1px solid #f0e8e9; }
-.run-metrics b { font-size: 20px; line-height: 24px; }
-.run-metrics span { margin-top: 3px; font-size: 12px; }
+.run-metrics div + div { padding-left: 10px; border-left: 1px solid #eee; }
+.run-metrics b { font-size:20px; line-height: 24px; }
+.run-metrics span { margin-top: 3px; font-size:12px; }
 .record-actions { grid-template-columns: minmax(0,1.3fr) minmax(0,1fr); gap: 8px; margin-top: 14px; }
-.record-actions > * { min-height: 42px; height: 42px; padding: 0 8px; border-radius: 10px; font-size: 13px; }
-.record-actions .import-button { border-color: #eee3e5; background: #fff; color: #76666a; }
+.record-actions > * { min-height: 42px; height: 42px; padding: 0 8px; border-radius:10px; font-size:13px; }
+.record-actions .import-button { border-color: #eee; background: #fff; color: #777; }
 .trend-card { padding: 14px; }
-.weekly-chart { padding: 0; margin-top: 0; border-radius: 0; background: transparent; }
+.weekly-chart { padding: 0; margin-top: 0; border-radius:0; background: transparent; }
 .chart-heading { align-items: center; }
-.chart-heading h2 { font-size: 15px; }
-.chart-subtitle { margin: 3px 0 0; color: #a0a0a0; font-size: 12px; line-height: 16px; }
-.chart-heading > span { font-size: 12px; color: #999; }
+.chart-heading h2 { font-size:15px; }
+.chart-subtitle { margin: 3px 0 0; color: #999; font-size:12px; line-height: 16px; }
+.chart-heading > span { font-size:12px; color: #999; }
 .chart-bars { height: 105px; padding: 0 2px; margin-top: 11px; gap: 12px; }
-.bar-track { max-width: 22px; margin: 3px 0 6px; border-radius: 5px 5px 2px 2px; background: #f5f5f6; }
-.bar-track i { border-radius: 5px 5px 2px 2px; }
-.bar-value,.bar-label { font-size: 12px; line-height: 15px; }
-.target-summary { margin-top: 13px; padding: 11px; background: #fff7f8; }
+.bar-track { max-width: 22px; margin: 3px 0 6px; border-radius:5px 5px 2px 2px; background: #f5f5f5; }
+.bar-track i { border-radius:5px 5px 2px 2px; }
+.bar-value,.bar-label { font-size:12px; line-height: 15px; }
+.target-summary { margin-top: 13px; padding: 11px; background: #f5f5f5; }
 .target-prompt { width: 100%; min-height: 58px; margin: 13px 0 0; padding: 9px; justify-content: flex-start; }
-.target-prompt strong { font-size: 12px; line-height: 18px; }
-.target-prompt small { font-size: 12px; line-height: 16px; }
-.target-prompt > b { margin-left: auto; font-size: 12px; }
-.observe-note { margin-top: 9px; font-size: 12px; }
-.manual-note { margin: -4px 4px 15px; font-size: 12px; text-align: center; }
+.target-prompt strong { font-size:12px; line-height: 18px; }
+.target-prompt small { font-size:12px; line-height: 16px; }
+.target-prompt > b { margin-left: auto; font-size:12px; }
+.observe-note { margin-top: 9px; font-size:12px; }
+.manual-note { margin: -4px 4px 15px; font-size:12px; text-align: center; }
 .records-heading { margin: 16px 2px 9px; }
 .run-record { padding: 13px 14px; }
 .run-record .section-heading { min-height: 30px; }
@@ -386,7 +382,9 @@ onMounted(() => {
 .run-date { margin-top: 2px; }
 .record-data { margin-bottom: 11px; }
 .empty-state { padding: 20px 14px; }
-.empty-state h3 { font-size: 15px; }
-.empty-state p { margin: 6px 0 0; font-size: 12px; }
-@media(max-width:350px) { .surface { padding: 12px; } .mileage-value strong { font-size: 44px; } .hero-overview { grid-template-columns:minmax(0,1fr) 80px; } .runner-strip { height: 90px; } .runner-photo { width:80px;height:74px; } .chart-bars { gap:9px; } .record-actions { grid-template-columns:minmax(0,1.2fr) minmax(0,1fr); } }
+.empty-state h3 { font-size:15px; }
+.empty-state p { margin: 6px 0 0; font-size:12px; }
+@media(max-width:350px) { .surface { padding: 12px; } .mileage-value strong { font-size:40px; } .hero-overview { grid-template-columns:minmax(0,1fr) 80px; } .runner-strip { height: 90px; } .runner-photo { width:80px;height:74px; } .chart-bars { gap:9px; } .record-actions { grid-template-columns:minmax(0,1.2fr) minmax(0,1fr); } }
 </style>
+
+<style scoped src="../personal-ui.css"></style>
