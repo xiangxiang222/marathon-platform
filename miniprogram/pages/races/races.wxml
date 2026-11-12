@@ -38,11 +38,11 @@
 
   <view wx:if="{{!searching}}" class="home-discover">
     <navigator url="/pages/calendar/calendar" class="discover-calendar">
-      <view class="discover-copy"><text class="discover-kicker">赛事日历</text><text class="discover-title">近期赛历</text><text class="discover-sub">{{races[0].raceDate || '选择你的比赛日'}}</text><text class="discover-race-name">{{races[0].name || '按日期查找，安排下一场比赛'}}</text></view><text class="calendar-corner">↗</text>
+      <view class="discover-copy"><text class="discover-kicker">赛事日历</text><text class="discover-title">近期赛历</text><text class="discover-sub">{{races[0].raceDate || '选择你的比赛日'}}</text><text class="discover-race-name">{{races[0].name || '按日期查找，安排下一场比赛'}}</text></view><image class="calendar-art" src="/images/art-calendar.png" mode="aspectFit" />
     </navigator>
     <view class="discover-side">
-      <navigator url="/pages/news/news?tab=athlete" class="discover-person"><view><text class="discover-card-title">见证中国速度</text><text class="discover-card-sub">赛季成绩 · 人物履历</text></view><text class="feature-arrow">↗</text></navigator>
-      <navigator url="/pages/news/news" class="discover-news"><view><text class="discover-card-title">跑圈新鲜事</text><text class="discover-card-sub">资讯 · 官兔 · 跑团</text></view><text class="feature-arrow">↗</text></navigator>
+      <navigator url="/pages/news/news?tab=athlete" class="discover-person"><view><text class="discover-card-title">见证中国速度</text><text class="discover-card-sub">赛季成绩 · 人物履历</text></view><image src="/images/art-medal.png" mode="aspectFit" /></navigator>
+      <navigator url="/pages/news/news" class="discover-news"><view><text class="discover-card-title">跑圈新鲜事</text><text class="discover-card-sub">资讯 · 官兔 · 跑团</text></view><image src="/images/art-news.png" mode="aspectFit" /></navigator>
     </view>
   </view>
 
