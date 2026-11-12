@@ -1,6 +1,6 @@
 <template>
   <main class="clubs-page">
-    <header class="clubs-header"><div><p class="page-eyebrow">一起出发</p><h1>我的跑团生活</h1></div><span class="directory-status">{{ ready && clubs.length ? clubs.length + ' 个已加入跑团' : '训练 · 赛事 · 跑友' }}</span></header>
+    <PageHeader title="跑团" tab eyebrow="一起训练，一起参赛" headline="和同频的人，一起出发" :subtitle="ready && clubs.length ? '已加入 ' + clubs.length + ' 个跑团，跑步有伴' : '发现同城跑友，分享每次坚持'" :art="clubsArt" />
 
     <section class="my-clubs service-group">
       <div class="section-heading"><h2>我的跑团</h2><span v-if="ready">{{ clubs.length }} 个</span></div>
@@ -76,8 +76,10 @@ import ClubLogo from "../components/ClubLogo.vue";
 import { computed, onBeforeUnmount, ref, watch } from "vue";
 import { useRouter } from "vue-router";
 import { useClubSession } from "../useClubSession";
+import PageHeader from "../components/PageHeader.vue";
 import RunnerIcon from "../components/RunnerIcon.vue";
 import ClubVerificationBadge from "../components/ClubVerificationBadge.vue";
+const clubsArt = import.meta.env.BASE_URL + "images/art-clubs.png";
 const router = useRouter();
 const loading = ref(false), loadFailed = ref(false), application = ref(null), code = ref(""), query = ref(""), city = ref(""), showAll = ref(false), mode = ref("search"), clubs = ref([]), openClubs = ref([]), listedQuery = ref(""), listedCity = ref(""), message = ref(""), page = ref(1), pages = ref(1);
 const mineQuery = ref(""), mineExpanded = ref(false);
@@ -124,7 +126,6 @@ onBeforeUnmount(() => { clearTimeout(queryTimer); loadSeq++; });
 <style scoped>
 .clubs-page{--accent:#ff1838;--accent-soft:#fff0f2;--bg:#f5f5f5;--card:#fff;--ink:#1a1a1a;--muted:#777;--line:#eee;--field-bg:#f5f5f5;background:var(--bg);color:var(--ink);padding-bottom:20px;font-size:14px}
 .clubs-page button,.clubs-page a{box-sizing:border-box}.clubs-page button{min-height:44px;font-weight:500}.clubs-page button:focus-visible,.clubs-page a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-.clubs-header{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;padding:20px 16px 24px;background:linear-gradient(135deg,#fff0f2 0%,#fff8f9 70%,#f5f5f5 100%);color:var(--ink)}.clubs-header h1{margin:4px 0 0;font-size:24px;font-weight:600;line-height:1.35}.page-eyebrow{margin:0;color:var(--muted);font-size:12px}.directory-status{max-width:110px;color:var(--muted);font-size:12px;text-align:right}
 .my-clubs,.pending-clubs{margin:0 16px 12px;padding:16px 16px 4px;border:0;border-radius:12px;background:#fff}.directory-section-title{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}.section-eyebrow{font-size:12px;color:var(--accent)}.section-helper{font-size:12px;color:var(--muted)}.section-heading,.directory-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}.section-heading h2,.directory-heading h2,.discovery-intro h2{margin:0;font-size:18px;font-weight:600;line-height:1.4}.section-heading>span,.directory-heading>span{font-size:12px;color:var(--muted)}.directory-heading{margin-top:20px}.discovery-intro{display:none}
 .loading-state,.hint,.my-search-count,.my-search-empty{color:var(--muted);font-size:12px;line-height:1.7}.loading-state{padding:12px 0}.login-guide{display:grid;grid-template-columns:40px minmax(0,1fr) auto;align-items:center;gap:10px;padding:4px 0 12px}.login-guide h3{margin:0;font-size:15px;font-weight:500}.login-guide p{margin:4px 0 0;color:var(--muted);font-size:12px}.club-primary{display:flex;align-items:center;justify-content:center;min-height:44px;padding:8px 12px;border-radius:8px;color:var(--accent);background:var(--accent-soft);font-size:14px}.club-letter{display:grid;place-items:center;flex:none;width:40px;height:40px;border:0;border-radius:8px;background:var(--field-bg);color:var(--ink);font-size:18px;font-weight:500;overflow:hidden}
 .my-club-search,.club-search{display:flex;align-items:center;gap:10px;min-height:46px;padding:0 8px 0 12px;border:1px solid transparent;border-radius:8px;background:var(--field-bg)}.my-club-search input,.club-search input{flex:1;width:0;min-width:0;height:44px;padding:0;border:0;outline:0;background:transparent;color:var(--ink);font-size:14px}.my-club-search button{min-width:44px;padding:0 6px;color:var(--muted);font-size:12px}.my-club-search:focus-within,.club-search:focus-within{border-color:#ffb6c0}.search-glyph{position:relative;flex:none;width:12px;height:12px;margin-right:2px;border:1.5px solid #999;border-radius:50%}.search-glyph:after{position:absolute;right:-4px;bottom:-2px;width:5px;height:1.5px;background:#999;transform:rotate(45deg);content:''}

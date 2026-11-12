@@ -1,6 +1,6 @@
 <template>
   <main class="exercise">
-    <PageHeader title="运动" subtitle="跑量、目标与运动记录" />
+    <PageHeader title="运动" tab eyebrow="我的运动日常" headline="每一步，都有进步" subtitle="记录跑量与目标，回看每次跑步" :art="runSceneSrc" />
     <section v-if="!ready" class="surface guest-state"><span class="guest-mark" aria-hidden="true">＋</span><h2>我的运动记录</h2><p>登录后记录跑步，查看自己的跑量与进步。</p><button class="primary" type="button" @click="login">登录后记录</button></section>
     <template v-else-if="data">
       <section class="surface mileage-hero" :aria-busy="loading">

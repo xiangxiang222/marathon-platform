@@ -1,4 +1,4 @@
-<page-header title="运动" subtitle="跑量、目标与运动记录" />
+<page-header title="运动" tab eyebrow="我的运动日常" headline="每一步，都有进步" subtitle="记录跑量与目标，回看每次跑步" art="/images/art-shoe.png" />
 <view class="sport-page mini-sport-sport">
   <view wx:if="{{!ready}}" class="surface guest-state"><view class="guest-mark">＋</view><view class="guest-title">我的运动记录</view><view class="hint">登录后记录跑步，查看自己的跑量与进步。</view><button class="primary" bindtap="login">登录后记录</button></view>
   <block wx:elif="{{summary}}">

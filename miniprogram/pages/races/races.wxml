@@ -8,6 +8,10 @@
   </view>
   <view class="home-header">
     <view class="home-search-area">
+    <view wx:if="{{!searching}}" class="home-feature">
+      <view class="home-feature-copy"><view class="home-feature-eyebrow">发现下一场比赛</view><view class="home-feature-headline">下一站，起跑线</view><view class="home-feature-subtitle">查赛历 · 看报名 · 记成绩</view></view>
+      <view class="home-feature-art" aria-hidden="true"><image src="/images/art-calendar.png" mode="aspectFit" /></view>
+    </view>
     <view class="search">
       <view class="lens"></view>
       <input class="search-input" placeholder-class="search-placeholder" placeholder="搜赛事名称或城市" value="{{q}}" bindinput="onQ" bindconfirm="load" confirm-type="search" aria-label="搜赛事名称或城市" />

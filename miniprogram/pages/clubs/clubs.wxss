@@ -2,10 +2,6 @@ page { background:var(--page-bg,#f5f5f5); }
 .clubs-page { padding:0 16px 24px; color:var(--text); font-size:14px; line-height:1.5; }
 .clubs-page button { display:flex; align-items:center; justify-content:center; width:auto; min-width:0; min-height:44px; margin:0; padding:0 12px; border:0; border-radius:8px; background:transparent; font-size:14px; font-weight:500; line-height:1.4; }
 .clubs-page button::after { border:0; }
-.directory-intro { margin:0 -16px; padding:12px 16px 22px; background:linear-gradient(180deg,#fff0f2 0%,#f5f5f5 100%); }
-.directory-eyebrow { color:var(--text-secondary); font-size:12px; }
-.directory-title { margin-top:6px; font-size:24px; font-weight:600; line-height:1.4; }
-.directory-description { max-width:320px; margin-top:8px; color:var(--text-secondary); font-size:12px; line-height:1.7; }
 .my-clubs,.directory-tools,.create-card { border:0; border-radius:12px; background:#fff; }
 .my-clubs { padding:16px 16px 0; }
 .section-heading,.directory-heading { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:12px; }

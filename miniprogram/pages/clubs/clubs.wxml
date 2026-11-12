@@ -1,6 +1,5 @@
-<page-header title="跑团" tone="light"></page-header>
+<page-header title="跑团" tab eyebrow="一起训练，一起参赛" headline="和同频的人，一起出发" subtitle="{{ready && clubs.length ? '已加入 ' + clubs.length + ' 个跑团，跑步有伴' : '发现同城跑友，分享每次坚持'}}" art="/images/art-clubs.png"></page-header>
 <view class="clubs-page mini-clubs-clubs">
-  <view class="directory-intro"><view class="directory-eyebrow">一起训练，一起参赛</view><view class="directory-title">找到你的跑步伙伴</view><view class="directory-description">团练安排、赛事名单和每一次坚持，在这里汇合。</view></view>
   <view class="my-clubs">
     <view class="section-heading"><text class="section-title">我的跑团</text><text wx:if="{{ready && clubs.length}}" class="section-count">{{clubs.length}} 个</text></view>
     <view wx:if="{{!ready}}" class="login-card">
