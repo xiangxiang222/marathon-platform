@@ -5,7 +5,7 @@ function accountKey() {
   return app && app.globalData ? String(app.globalData.token || "") : "";
 }
 const PRIVATE_EMPTY = {
-  leader: false, clubs: [], shownClubs: [], mineQuery: "", openClubs: [], application: null, createOpen: false,
+  leader: false, clubs: [], shownClubs: [], mineQuery: "", mineExpanded: false, mineSearching: false, mineMatchCount: 0, openClubs: [], application: null, createOpen: false,
   name: "", city: "", intro: "", applicationId: null, foundingMessage: "", creating: false,
   duplicates: [], duplicateMessage: "", directoryPage: 0, directoryPages: 0, directoryTotal: 0,
   directoryBusy: false, more: 0, query: "", searchCity: "", code: ""
@@ -37,11 +37,18 @@ Page({
   onMineQuery(e) { this.setData({ mineQuery: e.detail.value }); this.filterMine(); },
   filterMine() {
     const query = String(this.data.mineQuery || "").trim().toLowerCase();
-    this.setData({ shownClubs: this.data.clubs.filter((club) => !query || String(club.name || "").toLowerCase().includes(query)) });
+    const words = query.split(/\s+/).filter(Boolean);
+    const matches = this.data.clubs.filter((club) => {
+      const terms = [club.name, club.city, club.cityLabel, club.leader, club.roleLabel, club.id ? "#" + club.id : ""].filter(Boolean).join(" ").toLowerCase();
+      return words.every((word) => terms.includes(word));
+    });
+    this.setData({ shownClubs: query || this.data.mineExpanded ? matches : matches.slice(0, 4), mineSearching: !!query, mineMatchCount: matches.length });
+  },
+  toggleMineExpanded() {
+    if (this._account !== accountKey()) { this.onShow(); return; }
+    this.setData({ mineExpanded: !this.data.mineExpanded }); this.filterMine();
   },
   toggleCreate() { this.setData({ createOpen: !this.data.createOpen }); },
-  openCreate() { this.setData({ createOpen: true }); wx.pageScrollTo({ selector: "#create-club", duration: 250 }); },
-  openDiscover() { wx.pageScrollTo({ selector: "#discover-clubs", duration: 250 }); },
   openClub(e) {
     const id = Number(e.currentTarget.dataset.id);
     if (id) wx.navigateTo({ url: "/pages/club-intro/club-intro?id=" + id });
@@ -97,6 +104,7 @@ Page({
     this.queryTimer = setTimeout(() => this.loadDirectory(false), 200);
   },
   onSearchCity(e) { this.setData({ searchCity: e.detail.value }); },
+  clearSearchCity() { this.setData({ searchCity: "" }); return this.search(); },
   showRest() { return this.loadDirectory(true); },
   pickMode(e) { this.setData({ mode: e.currentTarget.dataset.mode, message: "" }); },
   load() {

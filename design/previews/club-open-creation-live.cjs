@@ -105,14 +105,23 @@ async function main() {
     assert.ok(!(await owner.locator('body').innerText()).includes('private-owner'));
     await owner.context().close();
   });
-  await check('两地同名目录与公开名片展示各自城市、团号和负责人', async () => {
+  await check('两地同名目录按城市辨认并进入对应名片，名片展示团号和负责人', async () => {
     for (const width of [320, 390, 1440]) {
       const page = await pageFor(null, width);
       await page.goto(base + '/clubs');
       await page.getByRole('textbox', { name: '搜索跑团', exact: true }).fill(name);
       await page.locator('.club-hit').filter({ hasText: '绍兴' }).waitFor();
       const body = await page.locator('body').innerText();
-      for (const value of ['杭州', '绍兴', first.user.nickname, second.user.nickname, '#' + firstClub.id, '#' + secondClub.id]) assert.ok(body.includes(value), 'directory missing ' + value);
+      for (const value of ['杭州', '绍兴']) assert.ok(body.includes(value), 'directory missing ' + value);
+      // Compact directory cards identify the city; full identity belongs to the
+      // linked public card. Verify both real links and the API identity payload.
+      const directory = await api('GET', '/clubs/directory?q=' + encodeURIComponent(name));
+      for (const [club, who] of [[firstClub, first], [secondClub, second]]) {
+        const row = directory.clubs.find(item => item.id === club.id);
+        assert.equal(row.leader, who.user.nickname);
+        assert.equal(row.city, club.city);
+        assert.equal(await page.locator('.club-hit').filter({ hasText: club.city }).locator('.result-identity').getAttribute('href'), '/marathon/clubs/' + club.id + '/public');
+      }
       await widthCheck(page, 'directory-' + width);
       await page.goto(base + '/clubs/' + firstClub.id + '/public');
       await page.getByRole('heading', { name, exact: true }).waitFor();
