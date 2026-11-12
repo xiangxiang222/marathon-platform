@@ -1,0 +1,96 @@
+{
+  "asOf": "2026-11-12T02:53:44.581Z",
+  "applied": {
+    "batch": "account-experiences-v1",
+    "dryRun": false,
+    "accounts": 205,
+    "affectedAccounts": 174,
+    "day": "2026-11-12",
+    "before": {
+      "clubsEmpty": 3,
+      "clubsBelowTwo": 46,
+      "plansEmpty": 2,
+      "planStatesBelowFour": 14,
+      "historyBelowTwo": 5,
+      "monthRunsBelowTwo": 5,
+      "weekRunsEmpty": 5,
+      "signupsBelowTwo": 170
+    },
+    "inserted": {
+      "clubs": 3,
+      "club_members": 52,
+      "races": 6,
+      "plans": 34,
+      "results": 10,
+      "activities": 26,
+      "activity_signups": 340,
+      "runs": 10,
+      "mileage_counts": 42,
+      "mileage_rules": 3
+    },
+    "totalRows": 526,
+    "protectedItems": [],
+    "after": {
+      "clubsEmpty": 0,
+      "clubsBelowTwo": 0,
+      "plansEmpty": 0,
+      "planStatesBelowFour": 0,
+      "historyBelowTwo": 0,
+      "monthRunsBelowTwo": 0,
+      "weekRunsEmpty": 0,
+      "signupsBelowTwo": 0
+    },
+    "originalRowsVerified": 22360,
+    "backup": "server/data/releases/editorial-accounts-20261112-03/app-before-account-seed.sqlite"
+  },
+  "verification": {
+    "passed": true,
+    "mode": "read-only",
+    "month": "2026-11",
+    "concurrency": 3,
+    "accounts": 205,
+    "checked": 205,
+    "passedAccounts": 205,
+    "failedAccounts": 0,
+    "seededSignupAccountsChecked": 170,
+    "failures": []
+  },
+  "repeatPreview": {
+    "batch": "account-experiences-v1",
+    "dryRun": true,
+    "accounts": 205,
+    "affectedAccounts": 0,
+    "day": "2026-11-12",
+    "before": {
+      "clubsEmpty": 0,
+      "clubsBelowTwo": 0,
+      "plansEmpty": 0,
+      "planStatesBelowFour": 0,
+      "historyBelowTwo": 0,
+      "monthRunsBelowTwo": 0,
+      "weekRunsEmpty": 0,
+      "signupsBelowTwo": 0
+    },
+    "inserted": {
+      "clubs": 0,
+      "club_members": 0,
+      "races": 0,
+      "plans": 0,
+      "results": 0,
+      "activities": 0,
+      "activity_signups": 0,
+      "runs": 0,
+      "mileage_counts": 0,
+      "mileage_rules": 0
+    },
+    "totalRows": 0,
+    "protectedItems": []
+  },
+  "validation": {
+    "seedUnitTests": 7,
+    "verificationCliTests": 2,
+    "isolatedBrowserChecks": 7,
+    "isolatedBrowserAccounts": 4,
+    "isolatedBrowserViews": 5
+  }
+}
