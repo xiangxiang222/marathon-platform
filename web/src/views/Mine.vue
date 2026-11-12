@@ -1,6 +1,6 @@
 <template>
   <main class="mine">
-    <PageHeader :title="section === 'settings' ? '设置' : '我的'" :subtitle="section === 'settings' ? '管理账号与使用偏好' : '每一程，都有记录'">
+    <PageHeader :title="section === 'settings' ? '设置' : '我的'" :tab="section !== 'settings'" :eyebrow="section === 'settings' ? '' : '个人跑者档案'" :headline="section === 'settings' ? '' : '记录你的每一程'" :subtitle="section === 'settings' ? '管理账号与使用偏好' : '赛事计划 · 完赛成绩 · 跑步足迹'" :art="section === 'settings' ? '' : passportImage">
       <button v-if="section !== 'settings'" class="header-settings" type="button" aria-label="设置" @click="openSettings"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 3-.7 2.1-1.9 1.1L4.2 6l-2 3.5 1.3 1.8v2.2L2.2 15l2 3.5 2.2-.2 1.9 1.1L9 21h4l.7-1.6 1.9-1.1 2.2.2 2-3.5-1.3-1.5v-2.2l1.3-1.8-2-3.5-2.2.2-1.9-1.1L13 3Z"/><circle cx="11" cy="12" r="3"/></svg><span>设置</span></button>
       <button v-else class="header-settings" type="button" aria-label="返回我的" @click="closeSettings">‹ 返回</button>
     </PageHeader>

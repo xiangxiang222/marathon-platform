@@ -1,8 +1,12 @@
-<view class="page-header">
+<view class="page-header {{tab ? 'tab-page-header' : ''}}">
   <view style="height: {{statusBarHeight}}px;"></view>
   <view class="header-main" style="min-height: {{navHeight}}px; padding-right: {{headerRight}}px;">
     <view class="header-title">{{title}}</view>
     <view class="header-actions"><slot></slot></view>
   </view>
-  <view wx:if="{{subtitle}}" class="header-subtitle">{{subtitle}}</view>
+  <view wx:if="{{tab}}" class="tab-header-feature">
+    <view class="tab-header-copy"><view wx:if="{{eyebrow}}" class="tab-header-eyebrow">{{eyebrow}}</view><view class="tab-header-headline">{{headline}}</view><view wx:if="{{subtitle}}" class="tab-header-subtitle">{{subtitle}}</view></view>
+    <view wx:if="{{art}}" class="tab-header-art" aria-hidden="true"><image src="{{art}}" mode="aspectFit" /></view>
+  </view>
+  <view wx:elif="{{subtitle}}" class="header-subtitle">{{subtitle}}</view>
 </view>
