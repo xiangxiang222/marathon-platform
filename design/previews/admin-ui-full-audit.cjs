@@ -27,6 +27,13 @@ async function shot(page, label, full = true) {
   Object.assign(m, await page.evaluate(inspectUiPalette));
   assert.equal(m.palette.accent, expectedAccent, "expected primary color");
   assert.ok(m.scrollWidth <= m.width + 1, label + " horizontal overflow");
+  const searchAlignment = await page.locator('.inline-form:has(.search-field)').evaluateAll(forms => forms.map(form => {
+    const input = form.querySelector('.search-field input'), button = form.querySelector('button[type="submit"]');
+    if (!input || !button) return null;
+    const fieldBox = input.getBoundingClientRect(), buttonBox = button.getBoundingClientRect();
+    return {fieldBottom:fieldBox.bottom, buttonBottom:buttonBox.bottom};
+  }).filter(Boolean));
+  for (const boxes of searchAlignment) assert.ok(Math.abs(boxes.fieldBottom-boxes.buttonBottom)<2, label+' search input and submit button align');
   report.checks.push({ label, ...m, pass: true });
   const file = "admin-ui-" + label + ".png";
   await page.screenshot({ path: out + "/" + file, fullPage: full, animations: "disabled" });

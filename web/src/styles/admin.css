@@ -313,7 +313,7 @@ a { color: var(--accent); }
 .inline-form .search-field { flex: 1; width: auto; max-width: 480px; min-width: 0; }
 .inline-form .search-field input { width: 100%; max-width: none; }
 .inline-form:has(.search-field) { align-items: flex-end; }
-.inline-form .primary { flex: none; margin: 0; padding: 0 20px; }
+.inline-form .primary { flex: none; align-self: flex-end; margin: 0; padding: 0 20px; }
 .statuses { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
 .statuses .status { height: 32px; min-height: 32px; margin: 0; padding: 0 13px; border: 1px solid var(--line); border-radius: 12px; background: #fff; color: var(--ink-secondary); font-size: 14px; }
 .statuses .status.on { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
@@ -348,6 +348,7 @@ a { color: var(--accent); }
 .user-row .row-actions { display: flex; align-items: center; gap: 14px; }
 .row-edit { color: var(--accent); font-size: 12px; }
 .user-row .who-name { font-size: 14px; font-weight: 500; }
+.user-row .race-open strong>span { display: inline; font: inherit; color: inherit; }
 .news-open { grid-template-columns: 100px 80px minmax(0,1fr); }
 .news-open span { min-width: 0; font-size: 14px; }
 .news-open strong { display: block; margin-top: 4px; color: var(--muted); font-size: 12px; font-weight: 400; }
@@ -579,7 +580,7 @@ a { color: var(--accent); }
 .admin :deep(.overview-page .overview-welcome),.admin :deep(.overview-page .metric-card),.admin :deep(.overview-page .metric-card.has-attention),.admin :deep(.overview-page .overview-card) { background:#fff; border-color:var(--line); box-shadow:none; }
 .admin :deep(.overview-page .metric-card.has-attention .metric-foot) { color:var(--accent); }
 .admin :deep(.feedback-admin-detail h2),.admin :deep(.feedback-admin-detail h3),.admin :deep(.identity-case-detail h3),.admin :deep(.case-detail h3) { font-size:18px; line-height:1.5; }
-.admin :deep(.navigation-item),.admin :deep(.welcome-action),.admin :deep(.logout-control),.admin :deep(.icon-control) { min-height:44px; border-radius:10px; font-size:14px; }
+.admin :deep(.welcome-action),.admin :deep(.logout-control),.admin :deep(.icon-control) { min-height:44px; border-radius:10px; font-size:14px; }
 .admin :deep(.sidebar-brand strong) { font-weight:600; letter-spacing:normal; }
 .admin :deep(.identity-desk-intro),.admin :deep(.privacy-desk .desk-intro),.admin :deep(.feedback-metrics>button) { border-radius:12px; background:#fff; border-color:var(--line); }
 .admin :deep(.identity-desk-tabs button),.admin :deep(.feedback-filters button),.admin :deep(.feedback-admin-detail header button),.admin :deep(.shortcut-grid button) { border-radius:10px; }
