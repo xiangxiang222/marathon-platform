@@ -1,5 +1,5 @@
 <view class="pad mini-race-race" wx:if="{{race}}">
-  <view class="card">
+  <view class="card race-identity">
     <view class="teal">{{race.regStatus}}</view>
     <view class="title">{{race.name}}</view>
     <view class="row"><text class="k">比赛日</text><text>{{race.raceDate}}</text></view>
