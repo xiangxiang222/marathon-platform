@@ -1,75 +1,66 @@
-.sport-page { padding: 0 24rpx calc(48rpx + env(safe-area-inset-bottom)); color: var(--text); }
-.surface { padding: 32rpx; margin-bottom: 24rpx; border: 1px solid var(--border); border-radius:12px; background: #fff; }
-.mileage-hero { padding: 32rpx 28rpx 28rpx; }
 .hero-top,.section-heading { display: flex; align-items: center; justify-content: space-between; gap: 20rpx; }
 .month-block { min-width: 0; }
 .month-caption,.hero-kicker { display: block; color: var(--text-secondary); font-size:12px; font-weight: 500; line-height: 18px; }
-.month-control { display: flex; align-items: center; gap: 8rpx; margin-top: 4rpx; }
-.month-step { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; min-height: 44px; padding: 0; border: 1px solid var(--border); border-radius:8px; background: #fff; color: #777; font-size:23px; line-height: 1; }
-.month-value { display: flex; align-items: center; justify-content: center; min-width: 90px; height: 44px; padding: 0 8rpx; border-radius:8px; background: var(--page-bg); color: var(--text); font-size:14px; font-weight: 600; }
-.target-link { display: flex; align-items: center; justify-content: center; min-width: 68px; min-height: 44px; padding: 0 12rpx; border: 1px solid #f5f5f5; border-radius:8px; background: #f5f5f5; color: var(--brand); font-size:14px; line-height: 20px; white-space: nowrap; }
+.month-control { display: flex; align-items: center; margin-top: 4rpx; }
+.month-step { display: flex; align-items: center; justify-content: center; border-radius:8px; line-height: 1; }
+.month-value { display: flex; align-items: center; justify-content: center; min-width: 90px; border-radius:8px; color: var(--text); font-weight: 600; }
+.target-link { display: flex; align-items: center; justify-content: center; min-width: 68px; line-height: 20px; white-space: nowrap; }
 .target-link-em { font-weight: 600; }
-.hero-overview { display: flex; align-items: center; gap: 24rpx; margin-top: 32rpx; }
+.hero-overview { align-items: center; gap: 24rpx; margin-top: 32rpx; }
 .mileage-copy { flex: 1; min-width: 0; }
-.hero-kicker { color: #999; font-size:12px; font-weight: 600; }
-.mileage-value { display: flex; align-items: baseline; gap: 12rpx; margin: 12rpx 0 0; white-space: nowrap; }
-.mileage-number { color: var(--text); font-size:40px; font-weight: 600; line-height: 1.05; font-variant-numeric: tabular-nums; }
-.mileage-unit { color: var(--text-secondary); font-size:14px; font-weight: 600; }
-.mileage-footnote { margin-top: 14rpx; color: var(--text-secondary); font-size:12px; line-height: 17px; }
+.hero-kicker { font-weight: 600; }
+.mileage-value { display: flex; align-items: baseline; margin: 12rpx 0 0; white-space: nowrap; }
+.mileage-number { color: var(--text); font-variant-numeric: tabular-nums; }
+.mileage-unit { font-weight: 600; }
+.mileage-footnote { line-height: 17px; }
 .runner-strip { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; width: 104px; height: 128px; flex: none; overflow: hidden; padding: 16rpx; border-radius:10px; background: #f5f5f5; color: var(--text); }
 .runner-photo { display: block; width: 76px; height: 76px; margin: -6rpx auto 0; }
 .strip-title { white-space: nowrap; font-size:14px; font-weight: 600; line-height: 19px; }
 .strip-detail { margin-top: 4rpx; color: var(--text-secondary); font-size:12px; line-height: 15px; }
-.weekly-chart { margin-top: 36rpx; padding: 24rpx 24rpx 16rpx; border-radius:10px; background: #f5f5f5; }
+.weekly-chart { margin-top: 36rpx; }
 .chart-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 16rpx; }
-.chart-title { font-size:14px; font-weight: 600; line-height: 20px; }
+.chart-title { line-height: 20px; }
 .chart-heading > text { color: var(--text-secondary); font-size:12px; }
-.chart-bars { display: flex; gap: 20rpx; height: 94px; margin-top: 16rpx; }
+.chart-bars { display: flex; height: 94px; }
 .chart-column { display: flex; flex: 1; flex-direction: column; align-items: center; min-width: 0; }
-.bar-value,.bar-label { height: 17px; flex: none; color: var(--text-secondary); font-size:12px; line-height: 14px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.bar-value,.bar-label { height: 17px; flex: none; color: var(--text-secondary); line-height: 14px; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .bar-label { height: 16px; }
-.bar-track { display: flex; align-items: flex-end; width: 100%; max-width: 26px; flex: 1; overflow: hidden; border-radius:6px; background: #f5f5f5; }
-.bar-value-fill { width: 100%; min-height: 0; border-radius:6px; background: #ff1838; }
-.bar-value-fill.peak { background: var(--brand); }
-.target-summary { padding: 24rpx; margin-top: 28rpx; border: 1px solid #f5f5f5; border-radius:10px; background: #fff; }
+.bar-track { display: flex; align-items: flex-end; width: 100%; max-width: 26px; flex: 1; overflow: hidden; }
+.bar-value-fill { width: 100%; min-height: 0; }
+.target-summary { margin-top: 28rpx; border: 1px solid #f5f5f5; border-radius:10px; background: #fff; }
 .target-copy,.target-caption { display: flex; align-items: baseline; justify-content: space-between; gap: 16rpx; }
-.target-copy { margin-bottom: 18rpx; color: #777; font-size:12px; }
+.target-copy { margin-bottom: 18rpx; color: #777; }
 .target-km { color: var(--text); font-weight: 600; }
-.target-percent { color: var(--brand); font-size:14px; font-weight: 600; }
-.progress-track { height: 5px; overflow: hidden; border-radius:12px; background: #f5f5f5; }
+.target-percent { color: var(--brand); font-weight: 600; }
+.progress-track { overflow: hidden; border-radius:12px; }
 .progress-value { height: 100%; border-radius:inherit; background: var(--brand); }
-.target-caption { margin-top: 14rpx; color: var(--text-secondary); font-size:12px; line-height: 16px; }
-.target-prompt { display: flex; align-items: center; gap: 18rpx; width: 100%; min-height: 58px; padding: 16rpx 20rpx; margin-top: 28rpx; border: 1px solid #eee; border-radius:10px; background: #fff; text-align: left; }
-.target-mark { display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; flex: none; border-radius:8px; background: #f5f5f5; color: var(--brand); font-size:19px; }
-.target-prompt-copy { flex: 1; min-width: 0; }
-.target-prompt-title { color: var(--text); font-size:13px; font-weight: 600; }
+.target-caption { margin-top: 14rpx; color: var(--text-secondary); line-height: 16px; }
+.target-prompt { margin-top: 28rpx; }
+.target-mark { align-items: center; justify-content: center; width: 30px; height: 30px; flex: none; border-radius:8px; background: #f5f5f5; color: var(--brand); font-size:19px; }
+.target-prompt-title { color: var(--text); }
 .target-prompt-note { margin-top: 4rpx; color: var(--text-secondary); font-size:12px; }
-.target-prompt-more { color: var(--brand); font-size:12px; font-weight: 600; white-space: nowrap; }
-.run-metrics { display: flex; padding-top: 26rpx; margin-top: 26rpx; border-top: 1px solid var(--border); }
+.target-prompt-more { font-weight: 600; }
+.run-metrics { padding-top: 26rpx; margin-top: 26rpx; border-top: 1px solid var(--border); }
 .run-metrics > view { flex: 1; min-width: 0; text-align: center; }
 .run-metrics > view:first-child { text-align: left; }
 .run-metrics > view:last-child { text-align: right; }
-.metric-value { display: block; font-size:18px; font-weight: 600; line-height: 22px; font-variant-numeric: tabular-nums; }
-.metric-label { display: block; margin-top: 6rpx; color: var(--text-secondary); font-size:12px; }
-.record-actions { display: flex; gap: 16rpx; margin-top: 24rpx; }
+.metric-value { display: block; font-variant-numeric: tabular-nums; }
+.metric-label { display: block; color: var(--text-secondary); }
 .record-actions > button { flex: 1; min-width: 0; }
 .record-actions > .record-button { flex: 1.2; }
 .primary,.import-button,.secondary,.choices button,.close-button,.delete-button,.text-button { min-height: 44px; margin: 0; border-radius:10px; font-size:14px; }
 .primary { width: 100%; padding: 0 28rpx; border: 0; background: var(--brand); color: #fff; font-weight: 600; line-height: 44px; }
-.import-button { padding: 0 16rpx; border: 1px solid var(--border); background: #fff; color: #777; font-weight: 500; line-height: 44px; }
-.manual-note { margin: 12rpx 4rpx 36rpx; color: var(--text-secondary); font-size:12px; line-height: 17px; }
+.import-button { padding: 0 16rpx; font-weight: 500; line-height: 44px; }
+.manual-note { color: var(--text-secondary); line-height: 17px; }
 .section-title,.records-title { font-size:16px; font-weight: 600; line-height: 24px; }
 .field-label { color: var(--text-secondary); font-size:12px; }
-.records-heading { margin: 40rpx 8rpx 20rpx; }
-.records-title { font-size:18px; }
 .run-record { padding: 28rpx; }
-.run-record .section-title { font-size:15px; }
-.text-button { display: flex; align-items: center; padding: 0 16rpx; color: var(--brand); font-size:12px; }
-.run-date { margin: 10rpx 0 24rpx; color: var(--text-secondary); font-size:12px; line-height: 18px; }
-.record-data { display: flex; gap: 16rpx; }
+.text-button { display: flex; align-items: center; color: var(--brand); }
+.run-date { color: var(--text-secondary); line-height: 18px; }
+.record-data { display: flex; }
 .record-data > view { flex: 1; min-width: 0; }
-.record-number { display: block; font-size:18px; font-weight: 600; line-height: 24px; font-variant-numeric: tabular-nums; }
-.record-unit { display: block; margin-top: 6rpx; color: var(--text-secondary); font-size:12px; }
+.record-number { display: block; line-height: 24px; font-variant-numeric: tabular-nums; }
+.record-unit { display: block; color: var(--text-secondary); }
 .hint { margin-top: 16rpx; color: var(--text-secondary); font-size:12px; line-height: 19px; }
 .stack { display: flex; flex-direction: column; gap: 24rpx; margin-top: 28rpx; }
 .stack input,.picker-value { width: 100%; min-width: 0; height: 44px; padding: 0 24rpx; border: 1px solid var(--border); border-radius:10px; background: var(--page-bg); color: var(--text); font-size:14px; line-height: 44px; }
@@ -82,74 +73,59 @@
 .choices button.on { border-color: var(--brand); background: #f5f5f5; color: var(--brand); }
 .close-button { display: flex; align-items: center; padding: 0 16rpx; color: var(--text-secondary); font-size:12px; }
 .secondary { width: 100%; padding: 0 24rpx; border: 1px solid var(--border); background: #fff; color: #777; font-size:13px; line-height: 44px; }
-.record-editor { padding-top: 24rpx; margin-top: 28rpx; border-top: 1px solid var(--border); }
+.record-editor { margin-top: 28rpx; border-top: 1px solid var(--border); }
 .delete-button { padding: 0 16rpx; border: 0; background: transparent; color: var(--text-secondary); font-size:13px; line-height: 44px; }
 .shot { display: block; width: 100%; margin-top: 24rpx; border-radius:8px; }
 .guest-state,.empty-state { padding: 56rpx 40rpx; text-align: center; }
-.guest-title { margin-top: 24rpx; font-size:18px; font-weight: 600; line-height: 28px; }
+.guest-title { margin-top: 24rpx; font-weight: 600; line-height: 28px; }
 .guest-state > .hint,.empty-state > .hint { margin: 16rpx 0 36rpx; color: var(--text-secondary); font-size:14px; line-height: 1.65; }
-.guest-mark { display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; margin: auto; border-radius:12px; background: #f5f5f5; color: var(--brand); font-size:22px; }
+.guest-mark { align-items: center; justify-content: center; width: 48px; height: 48px; margin: auto; border-radius:12px; background: #f5f5f5; color: var(--brand); font-size:22px; }
 .year-note,.loading-copy { margin: 28rpx 8rpx; color: var(--text-secondary); font-size:12px; line-height: 20px; }
 .message { margin: 24rpx 8rpx; color: var(--brand); font-size:12px; line-height: 20px; }
 .editor { margin-top: 16rpx; }
-@media(max-width:350px) { .sport-page { padding-right: 20rpx; padding-left: 20rpx; } .surface { padding: 28rpx; } .hero-overview { gap: 16rpx; } .runner-strip { width: 88px; height: 120px; padding: 14rpx; } .runner-photo { width: 68px; height: 68px; } .mileage-number { font-size:38px; } .weekly-chart { padding-right: 16rpx; padding-left: 16rpx; } .chart-bars { gap: 12rpx; } .record-actions > .record-button { flex: 1; } }
+@media(max-width:350px) { .sport-page { padding-right: 20rpx; padding-left: 20rpx; } .hero-overview { gap: 16rpx; } .runner-strip { width: 88px; height: 120px; padding: 14rpx; } .runner-photo { width: 68px; height: 68px; } .weekly-chart { padding-right: 16rpx; padding-left: 16rpx; } .record-actions > .record-button { flex: 1; } }
 
 /* The summary, primary action and trend each have a clear place on a small screen. */
-.sport-page { padding: 0 24rpx calc(48rpx + env(safe-area-inset-bottom)); }
-.surface { border-radius:12px; }
-.mileage-hero { padding: 26rpx 28rpx 28rpx; background: #fff; }
-.hero-top { gap: 12rpx; }
 .month-block { display: flex; flex-direction: column; gap: 6rpx; }
 .month-caption { font-size:12px; color: #777; }
-.month-control { gap: 2rpx; margin-top: 0; }
-.month-step { width: 28px; height: 32px; min-height: 32px; border: 0; background: transparent; font-size:23px; }
-.month-value { min-width: 105px; height: 32px; padding: 0 6rpx; background: transparent; font-size:15px; }
-.target-link { min-width: 0; min-height: 32px; height: 32px; padding: 0 16rpx; border-color: #f5f5f5; border-radius:12px; font-size:12px; }
-.hero-overview { position: relative; min-height: 92px; margin-top: 16rpx; gap: 12rpx; }
-.hero-kicker { font-size:12px; font-weight: 400; }
-.mileage-value { gap: 8rpx; margin-top: 6rpx; }
-.mileage-number { font-size:40px; font-weight:600; letter-spacing:normal; line-height: 1.1; }
-.mileage-unit { font-size:13px; font-weight: 500; }
+.month-control { margin-top: 0; }
+.month-value { min-width: 105px; }
+.target-link { min-width: 0; border-color: #f5f5f5; }
+.hero-overview { position: relative; margin-top: 16rpx; gap: 12rpx; }
+.hero-kicker { font-weight: 400; }
+.mileage-unit { font-weight: 500; }
 .mileage-footnote { display: none; }
 .runner-strip { width: 96px; height: 100px; justify-content: center; padding: 0; background: transparent; border-radius:0; }
 .runner-photo { width: 90px; height: 82px; margin: 0; }
 .strip-title { font-size:12px; font-weight: 500; color: #ff1838; }
 .strip-detail { display: none; }
-.run-metrics { gap: 10rpx; margin-top: 26rpx; padding: 24rpx 0 0; }
+.run-metrics { margin-top: 26rpx; }
 .run-metrics > view, .run-metrics > view:first-child, .run-metrics > view:last-child { text-align: left; }
 .run-metrics > view + view { padding-left: 20rpx; border-left: 1px solid #eee; }
-.metric-value { font-size:20px; line-height: 24px; }
-.metric-label { margin-top: 6rpx; font-size:12px; }
-.record-actions { gap: 16rpx; margin-top: 28rpx; }
 .record-actions > .record-button { flex: 1.3; }
 .record-actions > button { min-height: 42px; height: 42px; padding: 0 16rpx; border-radius:10px; font-size:13px; line-height: 42px; }
 .record-actions .import-button { border-color: #eee; background: #fff; color: #777; }
 .trend-card { padding: 28rpx; }
-.weekly-chart { padding: 0; margin-top: 0; border-radius:0; background: transparent; }
+.weekly-chart { margin-top: 0; }
 .chart-heading { align-items: center; }
-.chart-title { font-size:15px; }
-.chart-subtitle { margin-top: 6rpx; color: #999; font-size:12px; line-height: 16px; }
+.chart-subtitle { line-height: 16px; }
 .chart-heading > text { font-size:12px; color: #999; }
-.chart-bars { height: 105px; padding: 0 4rpx; margin-top: 22rpx; gap: 24rpx; }
-.bar-track { width: 100%; max-width: 22px; margin: 3px 0 6px; border-radius:5px 5px 2px 2px; background: #f5f5f5; }
-.bar-value-fill { border-radius:5px 5px 2px 2px; }
-.bar-value,.bar-label { font-size:12px; line-height: 15px; }
-.target-summary { margin-top: 26rpx; padding: 22rpx; background: #f5f5f5; }
-.target-prompt { width: 100%; min-height: 58px; margin: 26rpx 0 0; padding: 18rpx; justify-content: flex-start; }
-.target-prompt-title { font-size:12px; line-height: 18px; }
+.chart-bars { height: 105px; padding: 0 4rpx; }
+.bar-track { width: 100%; max-width: 22px; margin: 3px 0 6px; }
+.bar-value,.bar-label { line-height: 15px; }
+.target-summary { margin-top: 26rpx; background: #f5f5f5; }
+.target-prompt { justify-content: flex-start; }
+.target-prompt-title { line-height: 18px; }
 .target-prompt-note { font-size:12px; line-height: 16px; }
-.target-prompt-more { margin-left: auto; font-size:12px; }
-.observe-note { margin-top: 18rpx; font-size:12px; }
-.manual-note { margin: -8rpx 8rpx 30rpx; font-size:12px; text-align: center; }
-.records-heading { margin: 32rpx 4rpx 18rpx; }
+.observe-note { margin-top: 18rpx; }
+.manual-note { text-align: center; }
 .run-record { padding: 26rpx 28rpx; }
 .run-record .section-heading { min-height: 30px; }
-.text-button { min-height: 30px; }
 .run-date { margin-top: 4rpx; }
 .record-data { margin-bottom: 22rpx; }
 .empty-state { padding: 40rpx 28rpx; background: #fff; }
 .empty-state .section-title { font-size:15px; }
 .empty-state > .hint { margin: 12rpx 0 0; font-size:12px; }
-@media(max-width:350px) { .surface { padding: 24rpx; } .mileage-number { font-size:40px; } .runner-strip { width: 80px; height: 90px; } .runner-photo { width: 80px; height: 74px; } .chart-bars { gap: 18rpx; } .record-actions > .record-button { flex: 1.2; } }
+@media(max-width:350px) { .runner-strip { width: 80px; height: 90px; } .runner-photo { width: 80px; height: 74px; } .record-actions > .record-button { flex: 1.2; } }
 
 @import "../../utils/personal-ui.wxss";
