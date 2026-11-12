@@ -1,12 +1,61 @@
 {
   "description": "赛历",
   "packOptions": {
-    "ignore": [],
+    "ignore": [
+      {
+        "type": "suffix",
+        "value": ".svg"
+      },
+      {
+        "type": "file",
+        "value": "images/art-calendar.png"
+      },
+      {
+        "type": "file",
+        "value": "images/art-clubs.png"
+      },
+      {
+        "type": "file",
+        "value": "images/art-medal.png"
+      },
+      {
+        "type": "file",
+        "value": "images/art-news.png"
+      },
+      {
+        "type": "file",
+        "value": "images/art-passport.png"
+      },
+      {
+        "type": "file",
+        "value": "images/art-poster.png"
+      },
+      {
+        "type": "folder",
+        "value": "images/club"
+      },
+      {
+        "type": "file",
+        "value": "images/runner/add.png"
+      },
+      {
+        "type": "file",
+        "value": "images/runner/arrow.png"
+      },
+      {
+        "type": "file",
+        "value": "images/runner/back.png"
+      },
+      {
+        "type": "file",
+        "value": "images/runner/lock.png"
+      }
+    ],
     "include": []
   },
   "setting": {
     "es6": true,
-    "minified": false,
+    "minified": true,
     "urlCheck": false,
     "coverView": true,
     "postcss": true,
@@ -19,7 +68,8 @@
       "ignore": [],
       "disablePlugins": [],
       "outputPath": ""
-    }
+    },
+    "uploadWithSourceMap": false
   },
   "compileType": "miniprogram",
   "appid": "touristappid",
