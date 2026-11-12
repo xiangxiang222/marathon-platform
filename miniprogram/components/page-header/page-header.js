@@ -3,10 +3,7 @@ Component({
     title: { type: String, value: "" },
     subtitle: { type: String, value: "" },
     tone: { type: String, value: "brand" },
-    tab: { type: Boolean, value: false },
-    eyebrow: { type: String, value: "" },
-    headline: { type: String, value: "" },
-    art: { type: String, value: "" }
+    compact: { type: Boolean, value: false }
   },
   data: { statusBarHeight: 20, navHeight: 44, headerRight: 108 },
   lifetimes: {

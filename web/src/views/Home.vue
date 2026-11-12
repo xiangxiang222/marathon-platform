@@ -2,14 +2,8 @@
   <main class="home-page">
     <section class="home-top">
       <div class="home-brand">
-      <header class="home-heading">
-        <div><h1>赛事</h1></div>
-        <span>{{ todayLabel }}</span>
-      </header>
-      <div v-if="!searching" class="home-feature">
-        <div class="home-feature-copy"><span class="home-feature-eyebrow">发现下一场比赛</span><h2>下一站，起跑线</h2><p>查赛历 · 看报名 · 记成绩</p></div>
-        <div class="home-feature-art" aria-hidden="true"><img :src="base + 'images/art-calendar.png'" alt="" /></div>
-      </div>
+      <h1 class="home-page-title">赛事</h1>
+      <router-link class="home-calendar-link" to="/calendar"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="3"/><path d="M8 3v4m8-4v4M4 11h16"/></svg><span>{{ todayLabel }}</span><span aria-hidden="true">›</span></router-link>
       <form class="home-search" role="search" @submit.prevent="submitSearch">
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="7" /><path d="m16 16 4.5 4.5" /></svg>
         <input v-model="q" aria-label="搜索赛事名称或城市" placeholder="搜索赛事名称 / 城市" @input="queueSearch" />
@@ -354,17 +348,11 @@ onMounted(() => {
 .home-brand { position: relative; overflow: hidden; padding: 12px 0 16px; background: radial-gradient(ellipse at 100% 25%,#ff536a 0,transparent 70%),var(--brand-header); }
 .home-brand::before,.home-brand::after { position: absolute; top: 16px; right: -80px; width: 240px; height: 240px; border: 1px solid #ffffff29; border-radius: 50%; content: ''; pointer-events: none; }
 .home-brand::after { top: 32px; right: -64px; width: 208px; height: 208px; }
-.home-heading { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 0 16px 12px; color: #fff; }
-.home-heading > div { display: flex; align-items: baseline; gap: 12px; }
-.home-heading h1 { margin: 0; font-size: 24px; line-height: 36px; font-weight: 600; }
-.home-heading p { margin: 0; color: #ffffffdf; font-size: 12px; }
-.home-heading > span { padding: 5px 9px; border: 1px solid #ffffff30; border-radius: 20px; color: #fff; background: #ffffff12; font-size: 12px; white-space: nowrap; }
-.home-feature { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 106px; margin: -4px 16px 10px; color: #fff; }
-.home-feature-copy { flex: 1; min-width: 0; }.home-feature-eyebrow { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; line-height: 1.5; color: #ffffffdf; }.home-feature-eyebrow::before { width: 3px; height: 11px; border-radius: 2px; background: currentColor; content: ''; }
-.home-feature h2 { margin: 6px 0; font-size: 20px; font-weight: 600; line-height: 1.4; letter-spacing: normal; }.home-feature p { margin: 0; color: #ffffffdf; font-size: 12px; line-height: 1.6; }
-.home-feature-art { position: relative; display: flex; align-items: center; justify-content: center; flex: 0 0 104px; width: 104px; height: 104px; }.home-feature-art::before { position: absolute; inset: 12px 2px 4px; border-radius: 50%; background: #ffffff17; content: ''; }.home-feature-art img { position: relative; display: block; width: 104px; height: 104px; object-fit: contain; }
+.home-page-title { position:absolute; width:1px; height:1px; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; }
+.home-calendar-link { position:relative; z-index:1; display:flex; align-items:center; gap:6px; width:max-content; min-height:32px; margin:0 16px 6px; color:#fff; font-size:12px; }
+.home-calendar-link svg { width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; }
 .home-search { display: flex; align-items: center; height: 46px; margin: 0 12px; padding: 0 3px 0 12px; border: 1px solid #fff; border-radius: 10px; background: #fff; }
-.home-brand .home-heading,.home-brand .home-search { position: relative; z-index: 1; }
+.home-brand .home-search { position: relative; z-index: 1; }
 .home-search > svg { width: 18px; height: 18px; flex: none; fill: none; stroke: #888; stroke-width: 1.6; stroke-linecap: round; }
 .home-search input { width: 0; min-width: 0; flex: 1; height: 38px; margin-left: 8px; padding: 0; border: 0; border-radius: 0; background: transparent; font-size: 14px; font-weight: 400; outline: none; }
 .home-search button { display: flex; align-items: center; justify-content: center; flex: 0 0 56px; width: 56px; height: 44px; min-height: 44px; min-width: 0; padding: 0; border-radius: 7px; background: transparent; color: #fff; font-size: 13px; font-weight: 600; line-height: 1.4; }
@@ -411,9 +399,6 @@ onMounted(() => {
 .home-filters i { width: 5px; height: 5px; margin-top: -3px; border-right: 1px solid #999; border-bottom: 1px solid #999; transform: rotate(45deg); }
 .home-race-list { gap: 12px; padding: 0 16px 12px; }
 @media (max-width: 350px) {
- .home-feature { gap: 8px; }.home-feature h2 { font-size: 18px; }.home-feature-art { flex-basis: 84px; width: 84px; height: 92px; }.home-feature-art img { width: 88px; height: 88px; }
- .home-heading > div { gap: 8px; }
- .home-heading p { display: none; }
  .home-discover { grid-template-columns: 1fr 1fr; }
  .discover-side > a { padding:8px; }.discover-side strong { font-size:14px; }.discover-side img { width:28px;height:28px; }
  .discover-photo-copy { padding: 12px 10px; }

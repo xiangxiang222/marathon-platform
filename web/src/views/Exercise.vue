@@ -1,12 +1,12 @@
 <template>
   <main class="exercise">
-    <PageHeader title="运动" tab eyebrow="我的运动日常" headline="每一步，都有进步" subtitle="记录跑量与目标，回看每次跑步" :art="runSceneSrc" />
+    <PageHeader title="运动" compact />
     <section v-if="!ready" class="surface guest-state"><span class="guest-mark" aria-hidden="true">＋</span><h2>我的运动记录</h2><p>登录后记录跑步，查看自己的跑量与进步。</p><button class="primary" type="button" @click="login">登录后记录</button></section>
     <template v-else-if="data">
-      <section class="surface mileage-hero" :aria-busy="loading">
+      <section class="surface mileage-hero compact-mileage" :aria-busy="loading">
         <div class="hero-top">
           <div class="month-block">
-            <span class="month-caption">月度跑量</span>
+            <img class="month-art" :src="runSceneSrc" alt="" aria-hidden="true" />
             <div class="month-control">
               <button class="month-step" type="button" aria-label="上一个月" @click="shiftMonth(-1)">‹</button>
               <label class="month-select"><span>{{ monthLabel }}</span><input v-model="month" type="month" aria-label="选择月份" @change="load" /></label>
@@ -19,7 +19,6 @@
           <div class="mileage-copy">
             <span class="hero-kicker">本月累计</span>
             <div class="mileage-value"><strong>{{ data.month.km }}</strong><span>km</span></div>
-            <span class="mileage-footnote">{{ data.month.count }} 次跑步 · {{ data.month.days }} 天运动</span>
           </div>
 
         </div>
@@ -369,3 +368,15 @@ onMounted(() => {
 </style>
 
 <style scoped src="../personal-ui.css"></style>
+
+<style scoped>
+/* Month navigation and real training data lead the root page. */
+.exercise .compact-mileage{margin-top:8px;padding:12px 16px 16px;background:linear-gradient(125deg,#fff5f6,#fff 70%)}
+.exercise .compact-mileage .month-block{display:flex;flex-direction:row;align-items:center;gap:4px}
+.exercise .month-art{display:block;flex:none;width:36px;height:36px;object-fit:contain}
+.exercise .compact-mileage .hero-overview{margin:10px 0 0}
+.exercise .compact-mileage .run-metrics{padding:12px 0;margin:0}
+.exercise .compact-mileage .mileage-value strong{font-size:36px}
+.exercise .compact-mileage .record-actions{margin-top:12px}
+@media(max-width:350px){.exercise .compact-mileage{padding-right:14px;padding-left:14px}.exercise .month-art{width:32px;height:32px}.exercise .compact-mileage .month-block{gap:0}.exercise .compact-mileage .month-select{min-width:104px}}
+</style>

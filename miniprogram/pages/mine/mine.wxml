@@ -1,4 +1,4 @@
-<page-header title="{{mainTab === 'settings' ? '设置' : '我的'}}" tab="{{mainTab !== 'settings'}}" eyebrow="{{mainTab === 'settings' ? '' : '个人跑者档案'}}" headline="{{mainTab === 'settings' ? '' : '记录你的每一程'}}" subtitle="{{mainTab === 'settings' ? '管理账号与使用偏好' : '赛事计划 · 完赛成绩 · 跑步足迹'}}" art="{{mainTab === 'settings' ? '' : '/images/art-passport.png'}}"><button wx:if="{{mainTab !== 'settings'}}" class="header-settings" bindtap="openSettings" aria-label="设置"><text class="settings-gear" aria-hidden="true">⚙</text><text>设置</text></button><button wx:else class="header-settings" bindtap="closeSettings" aria-label="返回我的">‹ 返回</button></page-header>
+<page-header title="{{mainTab === 'settings' ? '设置' : '我的'}}" compact="{{mainTab !== 'settings'}}" subtitle="{{mainTab === 'settings' ? '管理账号与使用偏好' : ''}}"><button wx:if="{{mainTab !== 'settings'}}" class="header-settings nav-settings" bindtap="openSettings" aria-label="设置"><text class="settings-gear" aria-hidden="true">⚙</text><text>设置</text></button><button wx:if="{{mainTab === 'settings'}}" class="header-settings" bindtap="closeSettings" aria-label="返回我的">‹ 返回</button></page-header>
 <view class="mine-page mini-mine-mine">
   <view wx:if="{{mainTab === 'settings'}}" class="surface account-settings">
     <view class="settings-title">账号与隐私</view>
@@ -9,15 +9,14 @@
     <button wx:else class="primary settings-login" bindtap="settingsLogin">登录 / 注册</button>
   </view>
   <block wx:else>
-  <view wx:if="{{nickname}}" class="surface account-hero">
-    <view class="identity-panel"><view class="identity-copy"><text class="identity-kicker">个人档案</text><view class="hero-line"><image wx:if="{{avatar}}" class="hero-avatar" src="{{avatar}}" mode="aspectFill"/><view wx:else class="hero-avatar avatar-empty">{{nickname[0]}}</view><view class="hero-copy"><view class="nickname">{{nickname}}</view><view class="subtitle">{{clubs.length ? clubs[0].name : '尚未加入跑团'}}<text wx:if="{{clubs.length > 1}}"> 等 {{clubs.length}} 个跑团</text></view><text wx:if="{{leader}}" class="role-tag">建团资格</text></view></view></view></view>
+  <view wx:if="{{nickname}}" class="surface account-hero identity-summary">
+    <view class="identity-panel"><view class="identity-copy"><view class="hero-line"><image wx:if="{{avatar}}" class="hero-avatar" src="{{avatar}}" mode="aspectFill"/><view wx:else class="hero-avatar avatar-empty">{{nickname[0]}}</view><view class="hero-copy"><view class="nickname">{{nickname}}</view><view class="subtitle">{{clubs.length ? clubs[0].name : '尚未加入跑团'}}<text wx:if="{{clubs.length > 1}}"> 等 {{clubs.length}} 个跑团</text></view><text wx:if="{{leader}}" class="role-tag">建团资格</text></view></view></view></view>
     <view class="account-stats"><view data-tab="plans" bindtap="pickMainTab"><text class="stat-value">{{plans.length}}</text><text class="stat-label">已标记赛事</text></view><view data-tab="results" bindtap="pickMainTab"><text class="stat-value">{{career.finished}}</text><text class="stat-label">已完赛</text></view><navigator open-type="switchTab" url="/pages/clubs/clubs"><text class="stat-value">{{clubs.length}}</text><text class="stat-label">已加入跑团</text></navigator></view>
   </view>
-  <view wx:else class="surface guest-hero">
-    <view class="identity-panel guest-identity"><view class="identity-copy"><text class="identity-kicker">个人中心</text><view class="guest-title">我的运动与赛事</view><view class="guest-subtitle">管理运动记录、参赛计划与跑团。</view></view></view>
+  <view wx:else class="surface guest-hero identity-summary">
     <view class="guest-actions">
+    <view class="guest-login-row"><button wx:if="{{!wechatRegistrationRequired}}" class="primary" loading="{{wxLoading}}" disabled="{{wxLoading}}" bindtap="wechatLogin">{{wxLoading ? '正在登录' : '微信登录'}}</button></view>
     <view class="auth-legal"><checkbox-group bindchange="onLegalConsent"><label><checkbox value="accepted" checked="{{legalAccepted}}" color="#ff1838"/><text>我已阅读并同意用户协议，并已阅读隐私政策</text></label></checkbox-group><view class="auth-legal-links"><text data-doc="terms" bindtap="openLegal">《用户协议》</text><text data-doc="privacy" bindtap="openLegal">《隐私政策》</text></view><view class="auth-legal-note">账号服务暂面向已满14周岁的用户。运动资料、文件与领奖地址等可选信息，将在使用对应功能时另行说明。</view></view>
-    <button wx:if="{{!wechatRegistrationRequired}}" class="primary" loading="{{wxLoading}}" disabled="{{wxLoading}}" bindtap="wechatLogin">{{wxLoading ? '正在登录' : '微信登录'}}</button>
     <view class="hint account-guidance">已有账号请先用昵称和密码登录，再绑定微信，以保留原有赛事与跑团记录。</view>
     <view wx:if="{{wechatRegistrationRequired}}" class="wechat-choice">
       <view class="section-title">这个微信尚未绑定账号</view><view class="hint">请选择已有账号，或创建一个数据独立的新账号。</view>
