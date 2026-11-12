@@ -422,6 +422,7 @@ async function browserJourneys(fixture, base) {
     assert.equal(await field(owner, '开始时间').inputValue(), '');
     await field(owner, '训练标题').fill('浏览器发布·河岸周末轻松跑');
     await field(owner, '开始时间').fill(stamp(Date.now() + 7 * 86400000));
+    await owner.locator('details.basic-options > summary').click();
     await field(owner, '结束时间').fill(stamp(Date.now() + 7 * 86400000 + 7200000));
     await field(owner, '训练地点').fill('晨光河岸公园');
     await field(owner, '集合点').fill('公园南门红色雕塑旁');
