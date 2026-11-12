@@ -1,5 +1,5 @@
 <view class="achievement-studio">
-  <view class="studio-heading"><view class="studio-title">把热爱，定格成光<text>✦</text></view><view class="studio-subtitle">属于自己的成绩，值得好好分享。</view></view>
+  <view class="studio-heading"><view class="studio-title">制作成绩海报</view><view class="studio-subtitle">选择成绩与版式，保存后分享。</view></view>
   <view wx:if="{{!ready}}" class="studio-state"><view class="state-symbol">↗</view><view class="state-title">先打开你的跑者档案</view><view>{{error || '登录后，用自己的成绩制作一张海报。'}}</view><button class="studio-primary" bindtap="login">去登录</button></view>
   <view wx:elif="{{loading}}" class="studio-state"><view class="studio-skeleton"></view><view>正在整理你的高光时刻…</view></view>
   <view wx:elif="{{error}}" class="studio-state"><view class="state-title">成绩暂时没有打开</view><view>{{error}}</view><button class="studio-primary" bindtap="load">重新加载</button></view>

@@ -70,3 +70,5 @@ onMounted(load);
 
 .look-page { background:transparent; }.large { background:var(--card);border-bottom:1px solid var(--line); }.large h1 { color:var(--muted); }.stack :deep(.race-card) { box-shadow:none; }
 </style>
+
+<style scoped src="../personal-ui.css"></style>

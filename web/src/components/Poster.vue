@@ -59,3 +59,5 @@ text { font-family: inherit; fill: var(--ink); }
 .rule { fill: none; stroke: var(--line, #eff0f4); }
 .label { fill: var(--accent); font-size: 13px; font-weight: 600; }
 </style>
+
+<style scoped src="../personal-ui.css"></style>

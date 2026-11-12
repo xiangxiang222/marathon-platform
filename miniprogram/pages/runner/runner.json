@@ -1,6 +1,6 @@
 {
   "navigationBarTitleText": "跑者档案",
-  "navigationBarBackgroundColor": "#f5f5f5",
+  "navigationBarBackgroundColor": "#ffffff",
   "navigationBarTextStyle": "black",
   "enablePullDownRefresh": true,
   "backgroundTextStyle": "dark",

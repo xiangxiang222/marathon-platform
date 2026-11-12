@@ -1,0 +1,378 @@
+{
+  "date": "2026-11-12T06:50:22.393Z",
+  "scope": "Personal and sport pages, isolated consumer UI; no production writes",
+  "passed": true,
+  "web": {
+    "kind": "Disposable real SQLite and media; localhost-only browser",
+    "views": 62,
+    "widths": [
+      320,
+      390
+    ],
+    "passed": true,
+    "scenes": [
+      {
+        "id": "sport",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "look",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "mine",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "mine-plans",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "mine-results",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "mine-profile",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "history",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "history-import",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "history-review",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "feedback",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "feedback-detail",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "not-found",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "guest-mine",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "mine-settings",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "sport-target",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "sport-create",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "sport-edit",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "runner-stats",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "runner-career",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "runner-footprints",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "runner-honors",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "runner-media",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "runner-devices",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "runner-help",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "legal-terms",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "legal-privacy",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "legal-collection",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "legal-sharing",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "legal-rights",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "legal-permissions",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "legal-children",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "sport",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "look",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "mine",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "mine-plans",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "mine-results",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "mine-profile",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "history",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "history-import",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "history-review",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "feedback",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "feedback-detail",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "not-found",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "guest-mine",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "mine-settings",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "sport-target",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "sport-create",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "sport-edit",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "runner-stats",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "runner-career",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "runner-footprints",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "runner-honors",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "runner-media",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "runner-devices",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "runner-help",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "legal-terms",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "legal-privacy",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "legal-collection",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "legal-sharing",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "legal-rights",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "legal-permissions",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "legal-children",
+        "width": 390,
+        "passed": true
+      }
+    ]
+  },
+  "mini": {
+    "kind": "Current WXML/WXSS browser source mirrors. Synthetic display fixtures. Not WeChat simulator/device. Selected routes and applicable branches at 320/390; default covers every registered route.",
+    "routes": 8,
+    "scenes": 65,
+    "views": 130,
+    "passed": true,
+    "failures": [],
+    "limitations": [
+      "Source layout mirror with synthetic fixtures; no lifecycle/API/device interaction",
+      "Native pickers, textareas, scroll areas and custom header are approximated in browser",
+      "Contact sheets crop the top of each page; individual PNGs show the complete rendered page"
+    ]
+  },
+  "native": {
+    "passed": true,
+    "compile": [
+      {
+        "tool": "wcc",
+        "files": 34,
+        "pageFileCount": null,
+        "exit": 0,
+        "signal": null,
+        "error": "",
+        "artifactBytes": 814764,
+        "output": "",
+        "ok": true
+      },
+      {
+        "tool": "wcsc",
+        "files": 40,
+        "pageFileCount": 40,
+        "exit": 0,
+        "signal": null,
+        "error": "",
+        "artifactBytes": 561005,
+        "output": "",
+        "ok": true
+      }
+    ],
+    "validationContract": "Native compiler exit 0 alone is insufficient: every WXSS must pass strict PostCSS parsing; wcsc receives -pc for every input page; native tools must finish without diagnostics and create nonempty artifacts."
+  },
+  "regressions": {
+    "runnerBrowser": 30,
+    "feedbackBrowser": 23,
+    "historyRealApiBrowser": 15,
+    "posterBrowserCanvas": 36,
+    "runnerMini": true,
+    "feedbackMini": true,
+    "historyMini": true,
+    "posterMini": true
+  },
+  "build": true
+}
