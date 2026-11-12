@@ -35,15 +35,15 @@ async function behavior() {
     p.onMineQuery(event({}, query)); assert.equal(p.data.shownClubs.length, count, query); if (id) assert.equal(p.data.shownClubs[0].id, id);
   }
   p.onMineQuery(event({}, '')); assert.equal(p.data.shownClubs.length, 4);
-  p.toggleMineExpanded(); p.setData({ createOpen: true, name: '旧账户建团草稿', query: '旧目录搜索' });
+  p.toggleMineExpanded(); p.setData({ query: '旧目录搜索' });
   f.account('fixture-account-b'); f.handler(url => Promise.resolve(url === '/me' ? { user: { id: 2 }, clubs: [memberships[9]] } : { clubs: [], pages: 1, total: 0 }));
-  p.onShow(); await tick(); assert.equal(p.data.mineExpanded, false); assert.equal(p.data.mineQuery, ''); assert.equal(p.data.name, ''); assert.equal(p.data.query, ''); assert.equal(p.data.createOpen, false); assert.equal(p.data.shownClubs.length, 1); assert.equal(p.data.shownClubs[0].id, 110);
+  p.onShow(); await tick(); assert.equal(p.data.mineExpanded, false); assert.equal(p.data.mineQuery, ''); assert.equal(p.data.query, ''); assert.equal(p.data.shownClubs.length, 1); assert.equal(p.data.shownClubs[0].id, 110);
   p.onUnload();
   const late = instance(); let release;
   late.handler(url => url === '/me' ? new Promise(resolve => { release = resolve; }) : Promise.resolve({ clubs: [], pages: 1 }));
   late.page.onShow(); await tick(); late.account('fixture-account-b'); late.handler(url => Promise.resolve(url === '/me' ? { user: { id: 2 }, clubs: [] } : { clubs: [], pages: 1 })); late.page.onShow(); await tick();
   release({ user: { id: 1 }, clubs: clone(memberships) }); await tick(); assert.equal(late.page.data.clubs.length, 0); assert.equal(late.page.data.shownClubs.length, 0); late.page.onUnload();
-  return { passed: true, checks: ['default four vertical memberships', 'expand/collapse all ten', 'search all memberships by name/city/club number', 'account change clears expansion/search/create drafts', 'late prior-account memberships ignored'] };
+  return { passed: true, checks: ['default four vertical memberships', 'expand/collapse all ten', 'search all memberships by name/city/club number', 'account change clears directory expansion and search', 'late prior-account memberships ignored'] };
 }
 module.exports = {
   instance, memberships, behavior,
@@ -53,7 +53,7 @@ module.exports = {
     if (scenario === 'base') assert.equal(p.data.shownClubs.length, 4);
     if (scenario === 'expanded') { p.toggleMineExpanded(); assert.equal(p.data.shownClubs.length, 10); }
     if (scenario === 'search') { p.onMineQuery(event({}, '杭州')); assert.equal(p.data.shownClubs.length, 8); }
-    if (scenario === 'create') { p.toggleCreate(); assert.equal(p.data.createOpen, true); p.onName(event({}, '同城周末一起跑')); p.onCreateField(event({ key: 'city' }, '杭州')); p.onCreateField(event({ key: 'intro' }, '每周末按配速分组，一起轻松跑。')); await p.checkDuplicates(); }
+    if (scenario === 'create') { p.openCreate(); assert.deepEqual(p.data.name, undefined); }
     if (scenario === 'code') { p.pickMode(event({ mode: 'code' })); p.onCode(event({}, 'RUN-TOGETHER')); }
     const data = clone(p.data); p.onUnload(); return { data, components: {}, css: '' };
   },
@@ -68,8 +68,10 @@ module.exports = {
     });
     if (layout.rows.some((r, i, rows) => i && (r.top < rows[i - 1].bottom - 1 || Math.abs(r.left - rows[0].left) > 1))) errors.push('Memberships must stack vertically');
     if (scenario !== 'code' && layout.search && layout.city && layout.city.top < layout.search.bottom - 1) errors.push('City filter must be on a separate row below search');
-    if (scenario !== 'guest' && await page.locator('.create-entry').count() !== 1) errors.push('Exactly one bottom creation entry is required');
-    if (scenario === 'create' && await page.locator('.create-submit').count() !== 1) errors.push('Expanded creation form missing');
+    if (await page.locator('.create-entry').count() !== 1) errors.push('Exactly one creation entry between memberships and discovery is required');
+    if (await page.locator('.create-form,.create-submit').count()) errors.push('Directory must navigate to the standalone creation form');
+    const entry = await page.locator('.create-card').boundingBox(), mine = await page.locator('.my-clubs').boundingBox(), discover = await page.locator('.discover').boundingBox();
+    if (!entry || !mine || !discover || entry.y < mine.y + mine.height - 1 || entry.y + entry.height > discover.y + 1) errors.push('Creation entry must sit after memberships and before discovery');
     return errors;
   }
 };

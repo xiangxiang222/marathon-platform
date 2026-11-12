@@ -29,6 +29,8 @@
       <div v-else-if="ready && !loading && !loadFailed" class="no-club"><div><strong>跑团生活，从一起出发开始</strong><span>搜一搜熟悉的跑团，或输入朋友分享的口令</span></div><a href="#discover-clubs" class="text-link">去发现 ›</a></div>
     </section>
 
+    <router-link class="create-club" to="/clubs/new"><span class="create-mark"><RunnerIcon name="add" /></span><span><strong>{{ application ? '继续创建跑团' : '创建一个新跑团' }}</strong><small>{{ application ? '继续之前未完成的申请' : '把一起跑步的人聚在一起' }}</small></span><b>›</b></router-link>
+
     <section v-if="pendingClubs.length" class="pending-clubs"><div class="section-heading"><h2>入团审核</h2><span>{{ pendingClubs.length }} 个待处理</span></div><router-link v-for="club in pendingClubs" :key="club.id" class="pending-row" :to="'/clubs/' + club.id + '/public'"><span class="pending-indicator"></span><span>{{ club.name }}<small>申请已提交</small></span><b>审核中 ›</b></router-link></section>
 
     <section id="discover-clubs" class="discover">
@@ -65,7 +67,6 @@
       </div>
     </section>
 
-    <router-link class="create-club" to="/clubs/new"><span class="create-mark"><RunnerIcon name="add" /></span><span><strong>{{ application ? '继续创建跑团' : '创建一个新跑团' }}</strong><small>{{ application ? '继续之前未完成的申请' : '把一起跑步的人聚在一起' }}</small></span><b>›</b></router-link>
     <router-link v-if="ready" class="my-reports-link" to="/clubs/reports">跑团身份反馈与申诉 ›</router-link>
   </main>
 </template>
@@ -225,7 +226,7 @@ onBeforeUnmount(() => { clearTimeout(queryTimer); loadSeq++; });
 .directory-message.error { color:var(--accent); }
 .directory-message button { flex:none; padding:0; border:0; background:transparent; color:var(--accent); font-size:12px; }
 .more { display:flex!important; align-items:center; width:100%; justify-content:center; min-height:44px; padding:0; border:0; border-top:1px solid var(--line); background:transparent; color:#ff1838; font-size:12px; }
-.create-club{display:flex;align-items:center;gap:12px;margin:0 16px 8px;padding:16px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);box-shadow:none}
+.create-club{display:flex;align-items:center;gap:12px;margin:0 16px 24px;padding:16px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);box-shadow:none}
 .create-mark{display:grid;place-items:center;flex:none;width:36px;height:36px;border:0;border-radius:8px;background:var(--accent-soft);color:var(--accent)}
 .create-mark svg { width:19px; height:19px; }
 .create-club > span:nth-child(2) { display:grid; flex:1; gap:4px; min-width:0; }
