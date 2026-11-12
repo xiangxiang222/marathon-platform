@@ -92,7 +92,7 @@ function inventory(f) {
   const pages = [
     ['home', '/', '.home-page'], ['calendar', '/calendar', '.calendar'], ['radar', '/radar', 'h1'],
     ['news', '/news', 'h1'], ['news-detail', '/news/' + f.news.id, 'h2'], ['race', '/races/' + f.races[0], '.detail'],
-    ['clubs', '/clubs', '.clubs-page'], ['club-create', '/clubs/new', 'h1'],
+    ['clubs', '/clubs', '.clubs-page'], ['club-create', '/clubs/new', 'h1'], ['club-edit', c + '/edit', '.club-edit-page form'],
     ['reports', '/clubs/reports', 'h1'], ['club-report', c + '/report', 'h1'], ['club-identity', c + '/identity', 'h1'],
     ['club-public', c + '/public', 'h1'], ['club-invite', '/clubs/invite/' + f.club.code, 'h1'],
     ['club-overview', c, '.club-page'], ['club-race', c + '?tab=race', '.club-page'], ['club-training', c + '?tab=act', '.club-page'],
@@ -120,6 +120,8 @@ function inventory(f) {
     ['sport-edit', '/sport', '.exercise'],
     ['race-share-expanded', '/races/' + f.races[0], '.detail']
   );
+  pages.push(['club-news', c + '/news', '.journal-page'], ['club-news-editor', c + '/news/manage', '.journal-editor'], ['achievement-poster', '/achievement-poster', '.achievement-studio']);
+  for (const profileTab of ['info','mileage','races','results','album']) pages.push(['member-'+profileTab, c + '/members/' + f.actors.owner.id + '?profileTab=' + profileTab, '.club-member-page']);
   for (const view of ['stats', 'career', 'footprints', 'honors', 'media', 'devices', 'help']) pages.push(['runner-' + view, '/runner?view=' + view, '.runner-page']);
   for (const doc of ['terms', 'privacy', 'collection', 'sharing', 'rights', 'permissions', 'children']) pages.push(['legal-' + doc, '/legal/' + doc, 'h1']);
   return pages.map(([id, route, ready, actor = 'owner', click]) => ({ id, route, ready, actor, click }));

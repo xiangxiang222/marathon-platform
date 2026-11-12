@@ -7,6 +7,7 @@
     </header>
     <p v-if="message" class="err">{{ message }}</p>
     <article v-if="id && item" class="news-body">
+      <p class="news-kicker">赛事资讯</p>
       <h2>{{ item.title }}</h2>
       <p class="src">{{ contentDate(item.publishedAt) }}</p>
       <div v-if="blocks.length" class="guide-md">
@@ -18,7 +19,7 @@
           </template>
         </p>
       </div>
-      <router-link class="go" :to="'/races/' + item.raceId">{{ item.raceName }}</router-link>
+      <router-link class="go" :to="'/races/' + item.raceId"><span>{{ item.raceName }}</span><span aria-hidden="true">›</span></router-link>
     </article>
     <template v-else-if="!id">
       <router-link v-for="row in rows" :key="row.id" class="news-line" :to="'/news/' + row.id">
@@ -85,21 +86,5 @@ watch(id, () => {
 </script>
 
 <style scoped>
-.news-page { padding-bottom:28px; }
-.news-line { margin:12px 16px 0; padding:19px 18px; border:1px solid var(--line); border-radius:18px; background:var(--card); }
-.news-line b { font-size:16px; line-height:1.6; font-weight:600; }
-.news-line span { margin-top:9px; color:var(--muted); font-size:12px; line-height:1.8; }
-.news-body { margin:16px; padding:22px 20px; border:1px solid var(--line); border-radius:18px; background:var(--card); }
-.news-body h2 { margin-top:0; font-size:24px; line-height:1.5; }
-.news-body .src { padding-bottom:18px; border-bottom:1px solid var(--line); font-size:12px; line-height:1.8; }
-.news-body .guide-md .md { font-size:16px; line-height:1.9; }
-.news-body .go { margin-top:24px; padding-top:18px; border-top:1px solid var(--line); font-size:14px; }
-
-
-.news-page { background:var(--bg); color:var(--ink); font-size:14px; letter-spacing:normal; }
-.news-page .topbar { background:var(--card); border-bottom-color:var(--line); }
-.news-page .news-body { border:1px solid var(--line); border-radius:12px; box-shadow:none; }
-.news-page .news-body h2 { padding-bottom:16px; border-color:var(--line); font-size:24px; font-weight:600; letter-spacing:normal; }
-.news-page .news-body .src { border-color:var(--line); }
-.news-page .news-body .go { background:var(--field-bg); color:var(--accent); border-color:var(--line); }
+.news-page{padding-bottom:24px;background:var(--bg);color:var(--ink);font-size:14px}.topbar{background:#fff}.topbar h1{font-size:16px;font-weight:600}.news-body{margin:12px;padding:20px 16px;border-radius:12px;background:#fff}.news-kicker{margin:0 0 12px;color:var(--accent);font-size:12px;line-height:1.5}.news-body h2{margin:0 0 16px;font-size:24px;font-weight:600;line-height:1.5;overflow-wrap:anywhere}.news-body .src{margin:0;padding-bottom:16px;border-bottom:1px solid var(--line);color:var(--muted);font-size:12px;line-height:1.8}.news-body .guide-md .md{font-size:16px;line-height:1.9}.news-body .go{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:44px;margin-top:24px;padding:12px;border-radius:8px;background:var(--field-bg);color:var(--accent);font-size:14px;line-height:1.6}.news-line{display:block;margin:12px 16px 0;padding:14px;border-radius:12px;background:#fff}.news-line b{display:block;font-size:15px;font-weight:600;line-height:1.6}.news-line span{display:block;margin-top:6px;color:var(--muted);font-size:12px;line-height:1.7}
 </style>

@@ -1,0 +1,2568 @@
+{
+  "kind": "Registered-page redesign inventory and verification map",
+  "date": "2026-11-12",
+  "reference": "User supplied JD home and personal-center screenshots; abstract structure, no copied promotions",
+  "counts": {
+    "webRoutes": 38,
+    "miniPages": 34,
+    "webSourceViews": 33,
+    "explicitScenes": 110
+  },
+  "templateGroups": {
+    "race-discovery": {
+      "label": "赛事发现与日历",
+      "template": "紧凑搜索头 + 白卡服务条 + 筛选/日期锚点 + 内容列表"
+    },
+    "personal-dashboard": {
+      "label": "个人身份与运动数据",
+      "template": "浅红身份头 + 真实状态摘要 + 数据/内容模块 + 分组服务"
+    },
+    "club-community": {
+      "label": "跑团社区与团务",
+      "template": "跑团身份头 + 下一项行动 + 紧凑名单/内容 + 分组服务"
+    },
+    "editorial": {
+      "label": "资讯与人物内容",
+      "template": "紧凑编辑页头 + 人物/图片入口 + 内容列表；详情为身份简介 + 长文"
+    },
+    "event-service": {
+      "label": "活动与参赛服务",
+      "template": "活动摘要 + 时间地点状态 + 报名/名单/影像 + 主操作"
+    },
+    "form-utility": {
+      "label": "表单设置与公共文本",
+      "template": "简明标题 + 任务说明 + 分节白卡/文本 + 明确主操作"
+    },
+    "history-artifacts": {
+      "label": "个人跑史与海报作品",
+      "template": "记录摘要 + 时间线/原图预览 + 内容选择 + 保存操作"
+    },
+    "admin-workspace": {
+      "label": "运营后台",
+      "template": "工作台页头 + 状态摘要 + 筛选工具栏 + 表格/编辑器"
+    }
+  },
+  "sharedFiles": {
+    "rootFoundation": [
+      "web/src/styles.css",
+      "web/src/styles/consumer.css",
+      "web/src/components/PageHeader.vue",
+      "web/src/components/TabBar.vue",
+      "miniprogram/app.wxss",
+      "miniprogram/components/page-header/page-header.wxml",
+      "miniprogram/components/page-header/page-header.wxss",
+      "miniprogram/app.json"
+    ],
+    "personal": [
+      "web/src/personal-ui.css",
+      "web/src/components/RunnerDashboard.vue",
+      "web/src/components/RunnerBars.vue",
+      "miniprogram/utils/personal-ui.wxss"
+    ],
+    "clubs": [
+      "web/src/club-detail-visual.css",
+      "web/src/club-detail.css",
+      "web/src/components/MileageBoard.vue",
+      "miniprogram/pages/club/club-visual.wxss",
+      "miniprogram/components/mileage-board/mileage-board.wxml",
+      "miniprogram/components/mileage-board/mileage-board.wxss",
+      "miniprogram/utils/mileage-pages.wxss"
+    ],
+    "content": [
+      "web/src/journal.css",
+      "miniprogram/utils/journal.wxss"
+    ],
+    "servicesForms": [
+      "web/src/service-ui.css",
+      "web/src/club-forms.css",
+      "miniprogram/utils/service-ui.wxss"
+    ],
+    "admin": [
+      "web/src/styles/admin.css",
+      "web/src/components/admin/*"
+    ]
+  },
+  "pages": [
+    {
+      "id": "web:/",
+      "platform": "web",
+      "route": "/",
+      "file": "web/src/views/Home.vue",
+      "templateGroup": "race-discovery",
+      "changeMode": "targeted-structure",
+      "changes": "保留赛事成熟列表和日期块；合并同义入口，重排搜索/服务/筛选密度，减少首页重复推荐",
+      "miniEquivalent": "pages/races/races",
+      "registered": true,
+      "implementationPRs": [
+        "#136",
+        "#141"
+      ]
+    },
+    {
+      "id": "web:/calendar",
+      "platform": "web",
+      "route": "/calendar",
+      "file": "web/src/views/Calendar.vue",
+      "templateGroup": "race-discovery",
+      "changeMode": "shared-plus-local",
+      "changes": "日历与赛事统一白卡；选中日期/数量/当日列表建立层级，不重写日历逻辑",
+      "miniEquivalent": "pages/calendar/calendar",
+      "registered": true,
+      "implementationPRs": [
+        "#136",
+        "#141"
+      ]
+    },
+    {
+      "id": "web:/radar",
+      "platform": "web",
+      "route": "/radar",
+      "file": "web/src/views/Radar.vue",
+      "templateGroup": "race-discovery",
+      "changeMode": "structure",
+      "changes": "长说明改成结果导向摘要；用户条件折叠编辑，匹配结果带赛事信息和依据",
+      "miniEquivalent": "pages/radar/radar",
+      "registered": true,
+      "implementationPRs": [
+        "#136",
+        "#141"
+      ]
+    },
+    {
+      "id": "web:/news",
+      "platform": "web",
+      "route": "/news",
+      "file": "web/src/views/InfoCenter.vue",
+      "templateGroup": "editorial",
+      "changeMode": "structure",
+      "changes": "精选人物入口具体到姓名/成绩/赛事任务；资讯使用可用真实封面和栏目层级，人物筛选独占行",
+      "miniEquivalent": "pages/news/news",
+      "registered": true,
+      "implementationPRs": [
+        "#134",
+        "#140"
+      ]
+    },
+    {
+      "id": "web:/news/articles/:id",
+      "platform": "web",
+      "route": "/news/articles/:id",
+      "file": "web/src/views/ContentDetail.vue",
+      "templateGroup": "editorial",
+      "changeMode": "targeted-structure",
+      "changes": "人物身份与最佳成绩紧凑摘要，成长文章与履历留白清晰；资讯标题日期封面正文成一体",
+      "miniEquivalent": "pages/news/detail",
+      "registered": true,
+      "implementationPRs": [
+        "#134",
+        "#140"
+      ]
+    },
+    {
+      "id": "web:/news/profiles/:id",
+      "platform": "web",
+      "route": "/news/profiles/:id",
+      "file": "web/src/views/ContentDetail.vue",
+      "templateGroup": "editorial",
+      "changeMode": "targeted-structure",
+      "changes": "人物身份与最佳成绩紧凑摘要，成长文章与履历留白清晰；资讯标题日期封面正文成一体",
+      "miniEquivalent": "pages/news/detail",
+      "registered": true,
+      "implementationPRs": [
+        "#134",
+        "#140"
+      ]
+    },
+    {
+      "id": "web:/news/:id",
+      "platform": "web",
+      "route": "/news/:id",
+      "file": "web/src/views/News.vue",
+      "templateGroup": "editorial",
+      "changeMode": "targeted-structure",
+      "changes": "旧赛事资讯详情套用同一阅读模板，关联赛事收尾，保持兼容旧链接",
+      "miniEquivalent": "pages/news/detail",
+      "registered": true,
+      "implementationPRs": [
+        "#134",
+        "#140"
+      ]
+    },
+    {
+      "id": "web:/races/:id",
+      "platform": "web",
+      "route": "/races/:id",
+      "file": "web/src/views/Race.vue",
+      "templateGroup": "race-discovery",
+      "changeMode": "targeted-structure",
+      "changes": "保留信息完整度；首屏赛事身份、日期地点状态、个人参赛计划；规程与历史改清晰分节",
+      "miniEquivalent": "pages/race/race",
+      "registered": true,
+      "implementationPRs": [
+        "#136",
+        "#141"
+      ]
+    },
+    {
+      "id": "web:/sport",
+      "platform": "web",
+      "route": "/sport",
+      "file": "web/src/views/Exercise.vue",
+      "templateGroup": "personal-dashboard",
+      "changeMode": "structure",
+      "changes": "月度数字和小趋势并排，目标一行摘要，记录/导入同区；记录行按日期分组",
+      "miniEquivalent": "pages/sport/sport",
+      "registered": true,
+      "implementationPRs": [
+        "#137",
+        "#142"
+      ]
+    },
+    {
+      "id": "web:/look",
+      "platform": "web",
+      "route": "/look",
+      "file": "web/src/views/Look.vue",
+      "templateGroup": "race-discovery",
+      "changeMode": "shared-plus-local",
+      "changes": "复用赛事列表模板并加紧凑栏目状态；避免形成另一套首页",
+      "miniEquivalent": null,
+      "registered": true,
+      "implementationPRs": [
+        "#136",
+        "#141"
+      ]
+    },
+    {
+      "id": "web:/clubs",
+      "platform": "web",
+      "route": "/clubs",
+      "file": "web/src/views/Sport.vue",
+      "templateGroup": "club-community",
+      "changeMode": "structure",
+      "changes": "我的跑团紧凑列表，创建入口位于我的之后发现之前，发现工具与结果独立，真实跑团图片/角色层级",
+      "miniEquivalent": "pages/clubs/clubs",
+      "registered": true,
+      "implementationPRs": [
+        "#138",
+        "#143"
+      ]
+    },
+    {
+      "id": "web:/clubs/new",
+      "platform": "web",
+      "route": "/clubs/new",
+      "file": "web/src/views/ClubCreate.vue",
+      "templateGroup": "form-utility",
+      "changeMode": "shared-plus-local",
+      "changes": "独立创建页；表单分节简明，预览/同名提示有分量层级；不要装饰成促销页",
+      "miniEquivalent": "pages/club-create/club-create",
+      "registered": true,
+      "implementationPRs": [
+        "#133",
+        "#135",
+        "#144"
+      ]
+    },
+    {
+      "id": "web:/clubs/reports",
+      "platform": "web",
+      "route": "/clubs/reports",
+      "file": "web/src/views/ClubReport.vue",
+      "templateGroup": "form-utility",
+      "changeMode": "targeted-structure",
+      "changes": "目标跑团摘要/反馈类型/说明/处理进度分组，列表与表单使用相同材质",
+      "miniEquivalent": "pages/club-report/club-report",
+      "registered": true,
+      "implementationPRs": [
+        "#133",
+        "#135",
+        "#144"
+      ]
+    },
+    {
+      "id": "web:/clubs/:id/identity",
+      "platform": "web",
+      "route": "/clubs/:id/identity",
+      "file": "web/src/views/ClubIdentity.vue",
+      "templateGroup": "form-utility",
+      "changeMode": "targeted-structure",
+      "changes": "公开资料和组织核验分开；进度摘要/材料字段/提交操作清晰",
+      "miniEquivalent": "pages/club-identity/club-identity",
+      "registered": true,
+      "implementationPRs": [
+        "#133",
+        "#135",
+        "#144"
+      ]
+    },
+    {
+      "id": "web:/clubs/:id/report",
+      "platform": "web",
+      "route": "/clubs/:id/report",
+      "file": "web/src/views/ClubReport.vue",
+      "templateGroup": "form-utility",
+      "changeMode": "targeted-structure",
+      "changes": "目标跑团摘要/反馈类型/说明/处理进度分组，列表与表单使用相同材质",
+      "miniEquivalent": "pages/club-report/club-report",
+      "registered": true,
+      "implementationPRs": [
+        "#133",
+        "#135",
+        "#144"
+      ]
+    },
+    {
+      "id": "web:/clubs/invite/:code",
+      "platform": "web",
+      "route": "/clubs/invite/:code",
+      "file": "web/src/views/ClubIntro.vue",
+      "templateGroup": "club-community",
+      "changeMode": "structure",
+      "changes": "真实跑团资料名片+成员/活动摘要+申请状态，少用空插画，多用简介/可用照片",
+      "miniEquivalent": "pages/club-intro/club-intro",
+      "registered": true,
+      "implementationPRs": [
+        "#138",
+        "#143"
+      ]
+    },
+    {
+      "id": "web:/clubs/:id/public",
+      "platform": "web",
+      "route": "/clubs/:id/public",
+      "file": "web/src/views/ClubIntro.vue",
+      "templateGroup": "club-community",
+      "changeMode": "structure",
+      "changes": "真实跑团资料名片+成员/活动摘要+申请状态，少用空插画，多用简介/可用照片",
+      "miniEquivalent": "pages/club-intro/club-intro",
+      "registered": true,
+      "implementationPRs": [
+        "#138",
+        "#143"
+      ]
+    },
+    {
+      "id": "web:/clubs/:id",
+      "platform": "web",
+      "route": "/clubs/:id",
+      "file": "web/src/views/Club.vue",
+      "templateGroup": "club-community",
+      "changeMode": "structure",
+      "changes": "跑团身份/成员头像/下一团练优先；概览、赛事、活动、跑量、成员及更多服务按模板重组",
+      "miniEquivalent": "pages/club/club",
+      "registered": true,
+      "implementationPRs": [
+        "#138",
+        "#143"
+      ]
+    },
+    {
+      "id": "web:/clubs/:id/news",
+      "platform": "web",
+      "route": "/clubs/:id/news",
+      "file": "web/src/views/InfoCenter.vue",
+      "templateGroup": "editorial",
+      "changeMode": "structure",
+      "changes": "精选人物入口具体到姓名/成绩/赛事任务；资讯使用可用真实封面和栏目层级，人物筛选独占行",
+      "miniEquivalent": "pages/news/news",
+      "registered": true,
+      "implementationPRs": [
+        "#134",
+        "#140"
+      ]
+    },
+    {
+      "id": "web:/clubs/:id/news/manage",
+      "platform": "web",
+      "route": "/clubs/:id/news/manage",
+      "file": "web/src/views/ClubNewsEditor.vue",
+      "templateGroup": "form-utility",
+      "changeMode": "targeted-structure",
+      "changes": "编辑字段分基本信息/正文/发布；存草稿与发布层级清晰，预览保留正文宽度",
+      "miniEquivalent": "pages/news/editor",
+      "registered": true,
+      "implementationPRs": [
+        "#133",
+        "#135",
+        "#144"
+      ]
+    },
+    {
+      "id": "web:/clubs/:id/members/:uid",
+      "platform": "web",
+      "route": "/clubs/:id/members/:uid",
+      "file": "web/src/views/ClubMember.vue",
+      "templateGroup": "personal-dashboard",
+      "changeMode": "structure",
+      "changes": "身份与团内角色先行，运动摘要精简，赛事成绩/相册分节；隐藏空数据墙",
+      "miniEquivalent": "pages/member-profile/member-profile",
+      "registered": true,
+      "implementationPRs": [
+        "#137",
+        "#142"
+      ]
+    },
+    {
+      "id": "web:/clubs/:id/activities/new",
+      "platform": "web",
+      "route": "/clubs/:id/activities/new",
+      "file": "web/src/views/ActivityCreate.vue",
+      "templateGroup": "form-utility",
+      "changeMode": "targeted-structure",
+      "changes": "步进、模板选用、时间地点、组别形成真实任务流程；减少重复标题和大空白",
+      "miniEquivalent": "pages/activity-create/activity-create",
+      "registered": true,
+      "implementationPRs": [
+        "#133",
+        "#135",
+        "#144"
+      ]
+    },
+    {
+      "id": "web:/clubs/:id/activities/:aid",
+      "platform": "web",
+      "route": "/clubs/:id/activities/:aid",
+      "file": "web/src/views/Activity.vue",
+      "templateGroup": "event-service",
+      "changeMode": "structure",
+      "changes": "标题状态日期地点为主，公里为次；把签到/报名/成员/计划聚合成服务模块，统一动作栏",
+      "miniEquivalent": "pages/activity/activity",
+      "registered": true,
+      "implementationPRs": [
+        "#139"
+      ]
+    },
+    {
+      "id": "web:/clubs/:id/activities/:aid/signup",
+      "platform": "web",
+      "route": "/clubs/:id/activities/:aid/signup",
+      "file": "web/src/views/Signup.vue",
+      "templateGroup": "event-service",
+      "changeMode": "targeted-structure",
+      "changes": "活动摘要压缩，组别卡清晰呈现配速/名额/选中状态，确认/已报名成功态一致",
+      "miniEquivalent": "pages/signup/signup",
+      "registered": true,
+      "implementationPRs": [
+        "#139"
+      ]
+    },
+    {
+      "id": "web:/clubs/:id/activities/:aid/album",
+      "platform": "web",
+      "route": "/clubs/:id/activities/:aid/album",
+      "file": "web/src/views/Album.vue",
+      "templateGroup": "event-service",
+      "changeMode": "shared-plus-local",
+      "changes": "真实图片成为主内容；计数和排序紧凑工具条，上传/选择模式不挤占首屏",
+      "miniEquivalent": "pages/album/album",
+      "registered": true,
+      "implementationPRs": [
+        "#139"
+      ]
+    },
+    {
+      "id": "web:/clubs/:id/calls/:cid",
+      "platform": "web",
+      "route": "/clubs/:id/calls/:cid",
+      "file": "web/src/views/Call.vue",
+      "templateGroup": "event-service",
+      "changeMode": "structure",
+      "changes": "接龙摘要与本人提交状态头；项目选择+成绩输入为一个模块；名单按项目紧凑展示",
+      "miniEquivalent": "pages/call/call",
+      "registered": true,
+      "implementationPRs": [
+        "#139"
+      ]
+    },
+    {
+      "id": "web:/clubs/:id/meetups/:mid",
+      "platform": "web",
+      "route": "/clubs/:id/meetups/:mid",
+      "file": "web/src/views/Meetup.vue",
+      "templateGroup": "event-service",
+      "changeMode": "structure",
+      "changes": "时间地点和参与/签到状态先行；参与人头像与合影优先，管理操作收进次级区",
+      "miniEquivalent": "pages/meetup/meetup",
+      "registered": true,
+      "implementationPRs": [
+        "#139"
+      ]
+    },
+    {
+      "id": "web:/clubs/:id/internals/:rid",
+      "platform": "web",
+      "route": "/clubs/:id/internals/:rid",
+      "file": "web/src/views/Internal.vue",
+      "templateGroup": "event-service",
+      "changeMode": "structure",
+      "changes": "赛事摘要/本人报名组别/成绩状态分层，组别名额可扫读，报名与成绩主操作分阶段",
+      "miniEquivalent": "pages/internal/internal",
+      "registered": true,
+      "implementationPRs": [
+        "#139"
+      ]
+    },
+    {
+      "id": "web:/mine",
+      "platform": "web",
+      "route": "/mine",
+      "file": "web/src/views/Mine.vue",
+      "templateGroup": "personal-dashboard",
+      "changeMode": "structure",
+      "changes": "昵称头像与角色构成浅红身份头；待办/赛事状态条；个人工具分组；移除总览重复大标题与大留白",
+      "miniEquivalent": "pages/mine/mine",
+      "registered": true,
+      "implementationPRs": [
+        "#137",
+        "#142"
+      ]
+    },
+    {
+      "id": "web:/legal/:document?",
+      "platform": "web",
+      "route": "/legal/:document?",
+      "file": "web/src/views/Legal.vue",
+      "templateGroup": "form-utility",
+      "changeMode": "shared-plus-local",
+      "changes": "法律目录与正文采用阅读子模板；操作/联系信息可扫读，法律原文及版本不改",
+      "miniEquivalent": "pages/legal/legal",
+      "registered": true,
+      "implementationPRs": [
+        "#133",
+        "#135",
+        "#144"
+      ]
+    },
+    {
+      "id": "web:/runner",
+      "platform": "web",
+      "route": "/runner",
+      "file": "web/src/views/Runner.vue",
+      "templateGroup": "personal-dashboard",
+      "changeMode": "structure",
+      "changes": "7视图同一摘要骨架，数据图表/成绩/照片按内容不同布局；移除空口号海报头",
+      "miniEquivalent": "pages/runner/runner",
+      "registered": true,
+      "implementationPRs": [
+        "#137",
+        "#142"
+      ]
+    },
+    {
+      "id": "web:/achievement-poster",
+      "platform": "web",
+      "route": "/achievement-poster",
+      "file": "web/src/views/AchievementPoster.vue",
+      "templateGroup": "history-artifacts",
+      "changeMode": "targeted-structure",
+      "changes": "作品预览为主，选择/主题/保存为紧凑控制组；导出作品主题与界面主题分开",
+      "miniEquivalent": "pages/achievement-poster/achievement-poster",
+      "registered": true,
+      "implementationPRs": [
+        "#142"
+      ]
+    },
+    {
+      "id": "web:/history",
+      "platform": "web",
+      "route": "/history",
+      "file": "web/src/views/RaceHistory.vue",
+      "templateGroup": "history-artifacts",
+      "changeMode": "structure",
+      "changes": "以比赛日期/真实成绩/个人记忆为重心；导入核对/成长/阅读/编辑分明，减少重复宣传头",
+      "miniEquivalent": "pages/history/history",
+      "registered": true,
+      "implementationPRs": [
+        "#142"
+      ]
+    },
+    {
+      "id": "web:/feedback",
+      "platform": "web",
+      "route": "/feedback",
+      "file": "web/src/views/Feedback.vue",
+      "templateGroup": "form-utility",
+      "changeMode": "structure",
+      "changes": "列表为带状态/真实互动数的议题行，详情为正文和进度；表单另设明确任务头",
+      "miniEquivalent": "pages/feedback/feedback",
+      "registered": true,
+      "implementationPRs": [
+        "#133",
+        "#135",
+        "#144"
+      ]
+    },
+    {
+      "id": "web:/feedback/:id",
+      "platform": "web",
+      "route": "/feedback/:id",
+      "file": "web/src/views/Feedback.vue",
+      "templateGroup": "form-utility",
+      "changeMode": "structure",
+      "changes": "列表为带状态/真实互动数的议题行，详情为正文和进度；表单另设明确任务头",
+      "miniEquivalent": "pages/feedback/feedback",
+      "registered": true,
+      "implementationPRs": [
+        "#133",
+        "#135",
+        "#144"
+      ]
+    },
+    {
+      "id": "web:/admin",
+      "platform": "web",
+      "route": "/admin",
+      "file": "web/src/views/Admin.vue",
+      "templateGroup": "admin-workspace",
+      "changeMode": "targeted-structure",
+      "changes": "统一工作台标题/状态摘要/表格密度/侧栏；不同编辑器共享流程与预览，不套移动商城样式",
+      "miniEquivalent": null,
+      "registered": true,
+      "implementationPRs": [
+        "#145"
+      ]
+    },
+    {
+      "id": "web:/:pathMatch(.*)*",
+      "platform": "web",
+      "route": "/:pathMatch(.*)*",
+      "file": "web/src/views/NotFound.vue",
+      "templateGroup": "form-utility",
+      "changeMode": "shared-plus-local",
+      "changes": "简洁解释和返回动作，避免整屏大图与情绪口号",
+      "miniEquivalent": null,
+      "registered": true,
+      "implementationPRs": [
+        "#133",
+        "#135",
+        "#144"
+      ]
+    },
+    {
+      "id": "mini:pages/races/races",
+      "platform": "mini",
+      "route": "pages/races/races",
+      "files": [
+        "miniprogram/pages/races/races.js",
+        "miniprogram/pages/races/races.wxml",
+        "miniprogram/pages/races/races.wxss",
+        "miniprogram/pages/races/races.json"
+      ],
+      "templateGroup": "race-discovery",
+      "changeMode": "targeted-structure",
+      "changes": "保留赛事成熟列表和日期块；合并同义入口，重排搜索/服务/筛选密度，减少首页重复推荐",
+      "webEquivalent": [
+        "web:/"
+      ],
+      "registered": true,
+      "implementationPRs": [
+        "#136",
+        "#141"
+      ]
+    },
+    {
+      "id": "mini:pages/sport/sport",
+      "platform": "mini",
+      "route": "pages/sport/sport",
+      "files": [
+        "miniprogram/pages/sport/sport.js",
+        "miniprogram/pages/sport/sport.wxml",
+        "miniprogram/pages/sport/sport.wxss",
+        "miniprogram/pages/sport/sport.json"
+      ],
+      "templateGroup": "personal-dashboard",
+      "changeMode": "structure",
+      "changes": "月度数字和小趋势并排，目标一行摘要，记录/导入同区；记录行按日期分组",
+      "webEquivalent": [
+        "web:/sport"
+      ],
+      "registered": true,
+      "implementationPRs": [
+        "#137",
+        "#142"
+      ]
+    },
+    {
+      "id": "mini:pages/calendar/calendar",
+      "platform": "mini",
+      "route": "pages/calendar/calendar",
+      "files": [
+        "miniprogram/pages/calendar/calendar.js",
+        "miniprogram/pages/calendar/calendar.wxml",
+        "miniprogram/pages/calendar/calendar.wxss",
+        "miniprogram/pages/calendar/calendar.json"
+      ],
+      "templateGroup": "race-discovery",
+      "changeMode": "shared-plus-local",
+      "changes": "日历与赛事统一白卡；选中日期/数量/当日列表建立层级，不重写日历逻辑",
+      "webEquivalent": [
+        "web:/calendar"
+      ],
+      "registered": true,
+      "implementationPRs": [
+        "#136",
+        "#141"
+      ]
+    },
+    {
+      "id": "mini:pages/clubs/clubs",
+      "platform": "mini",
+      "route": "pages/clubs/clubs",
+      "files": [
+        "miniprogram/pages/clubs/clubs.js",
+        "miniprogram/pages/clubs/clubs.wxml",
+        "miniprogram/pages/clubs/clubs.wxss",
+        "miniprogram/pages/clubs/clubs.json"
+      ],
+      "templateGroup": "club-community",
+      "changeMode": "structure",
+      "changes": "我的跑团紧凑列表，创建入口位于我的之后发现之前，发现工具与结果独立，真实跑团图片/角色层级",
+      "webEquivalent": [
+        "web:/clubs"
+      ],
+      "registered": true,
+      "implementationPRs": [
+        "#138",
+        "#143"
+      ]
+    },
+    {
+      "id": "mini:pages/club-create/club-create",
+      "platform": "mini",
+      "route": "pages/club-create/club-create",
+      "files": [
+        "miniprogram/pages/club-create/club-create.js",
+        "miniprogram/pages/club-create/club-create.wxml",
+        "miniprogram/pages/club-create/club-create.wxss",
+        "miniprogram/pages/club-create/club-create.json"
+      ],
+      "templateGroup": "form-utility",
+      "changeMode": "shared-plus-local",
+      "changes": "独立创建页；表单分节简明，预览/同名提示有分量层级；不要装饰成促销页",
+      "webEquivalent": [
+        "web:/clubs/new"
+      ],
+      "registered": true,
+      "implementationPRs": [
+        "#133",
+        "#135",
+        "#144"
+      ]
+    },
+    {
+      "id": "mini:pages/mine/mine",
+      "platform": "mini",
+      "route": "pages/mine/mine",
+      "files": [
+        "miniprogram/pages/mine/mine.js",
+        "miniprogram/pages/mine/mine.wxml",
+        "miniprogram/pages/mine/mine.wxss",
+        "miniprogram/pages/mine/mine.json"
+      ],
+      "templateGroup": "personal-dashboard",
+      "changeMode": "structure",
+      "changes": "昵称头像与角色构成浅红身份头；待办/赛事状态条；个人工具分组；移除总览重复大标题与大留白",
+      "webEquivalent": [
+        "web:/mine"
+      ],
+      "registered": true,
+      "implementationPRs": [
+        "#137",
+        "#142"
+      ]
+    },
+    {
+      "id": "mini:pages/runner/runner",
+      "platform": "mini",
+      "route": "pages/runner/runner",
+      "files": [
+        "miniprogram/pages/runner/runner.js",
+        "miniprogram/pages/runner/runner.wxml",
+        "miniprogram/pages/runner/runner.wxss",
+        "miniprogram/pages/runner/runner.json"
+      ],
+      "templateGroup": "personal-dashboard",
+      "changeMode": "structure",
+      "changes": "7视图同一摘要骨架，数据图表/成绩/照片按内容不同布局；移除空口号海报头",
+      "webEquivalent": [
+        "web:/runner"
+      ],
+      "registered": true,
+      "implementationPRs": [
+        "#137",
+        "#142"
+      ]
+    },
+    {
+      "id": "mini:pages/achievement-poster/achievement-poster",
+      "platform": "mini",
+      "route": "pages/achievement-poster/achievement-poster",
+      "files": [
+        "miniprogram/pages/achievement-poster/achievement-poster.js",
+        "miniprogram/pages/achievement-poster/achievement-poster.wxml",
+        "miniprogram/pages/achievement-poster/achievement-poster.wxss",
+        "miniprogram/pages/achievement-poster/achievement-poster.json"
+      ],
+      "templateGroup": "history-artifacts",
+      "changeMode": "targeted-structure",
+      "changes": "作品预览为主，选择/主题/保存为紧凑控制组；导出作品主题与界面主题分开",
+      "webEquivalent": [
+        "web:/achievement-poster"
+      ],
+      "registered": true,
+      "implementationPRs": [
+        "#142"
+      ]
+    },
+    {
+      "id": "mini:pages/history/history",
+      "platform": "mini",
+      "route": "pages/history/history",
+      "files": [
+        "miniprogram/pages/history/history.js",
+        "miniprogram/pages/history/history.wxml",
+        "miniprogram/pages/history/history.wxss",
+        "miniprogram/pages/history/history.json"
+      ],
+      "templateGroup": "history-artifacts",
+      "changeMode": "structure",
+      "changes": "以比赛日期/真实成绩/个人记忆为重心；导入核对/成长/阅读/编辑分明，减少重复宣传头",
+      "webEquivalent": [
+        "web:/history"
+      ],
+      "registered": true,
+      "implementationPRs": [
+        "#142"
+      ]
+    },
+    {
+      "id": "mini:pages/radar/radar",
+      "platform": "mini",
+      "route": "pages/radar/radar",
+      "files": [
+        "miniprogram/pages/radar/radar.js",
+        "miniprogram/pages/radar/radar.wxml",
+        "miniprogram/pages/radar/radar.wxss",
+        "miniprogram/pages/radar/radar.json"
+      ],
+      "templateGroup": "race-discovery",
+      "changeMode": "structure",
+      "changes": "长说明改成结果导向摘要；用户条件折叠编辑，匹配结果带赛事信息和依据",
+      "webEquivalent": [
+        "web:/radar"
+      ],
+      "registered": true,
+      "implementationPRs": [
+        "#136",
+        "#141"
+      ]
+    },
+    {
+      "id": "mini:pages/race/race",
+      "platform": "mini",
+      "route": "pages/race/race",
+      "files": [
+        "miniprogram/pages/race/race.js",
+        "miniprogram/pages/race/race.wxml",
+        "miniprogram/pages/race/race.wxss",
+        "miniprogram/pages/race/race.json"
+      ],
+      "templateGroup": "race-discovery",
+      "changeMode": "targeted-structure",
+      "changes": "保留信息完整度；首屏赛事身份、日期地点状态、个人参赛计划；规程与历史改清晰分节",
+      "webEquivalent": [
+        "web:/races/:id"
+      ],
+      "registered": true,
+      "implementationPRs": [
+        "#136",
+        "#141"
+      ]
+    },
+    {
+      "id": "mini:pages/news/news",
+      "platform": "mini",
+      "route": "pages/news/news",
+      "files": [
+        "miniprogram/pages/news/news.js",
+        "miniprogram/pages/news/news.wxml",
+        "miniprogram/pages/news/news.wxss",
+        "miniprogram/pages/news/news.json"
+      ],
+      "templateGroup": "editorial",
+      "changeMode": "structure",
+      "changes": "精选人物入口具体到姓名/成绩/赛事任务；资讯使用可用真实封面和栏目层级，人物筛选独占行",
+      "webEquivalent": [
+        "web:/news",
+        "web:/clubs/:id/news"
+      ],
+      "registered": true,
+      "implementationPRs": [
+        "#134",
+        "#140"
+      ]
+    },
+    {
+      "id": "mini:pages/news/detail",
+      "platform": "mini",
+      "route": "pages/news/detail",
+      "files": [
+        "miniprogram/pages/news/detail.js",
+        "miniprogram/pages/news/detail.wxml",
+        "miniprogram/pages/news/detail.wxss",
+        "miniprogram/pages/news/detail.json"
+      ],
+      "templateGroup": "editorial",
+      "changeMode": "targeted-structure",
+      "changes": "人物身份与最佳成绩紧凑摘要，成长文章与履历留白清晰；资讯标题日期封面正文成一体",
+      "webEquivalent": [
+        "web:/news/articles/:id",
+        "web:/news/profiles/:id"
+      ],
+      "registered": true,
+      "implementationPRs": [
+        "#134",
+        "#140"
+      ]
+    },
+    {
+      "id": "mini:pages/news/editor",
+      "platform": "mini",
+      "route": "pages/news/editor",
+      "files": [
+        "miniprogram/pages/news/editor.js",
+        "miniprogram/pages/news/editor.wxml",
+        "miniprogram/pages/news/editor.wxss",
+        "miniprogram/pages/news/editor.json"
+      ],
+      "templateGroup": "form-utility",
+      "changeMode": "targeted-structure",
+      "changes": "编辑字段分基本信息/正文/发布；存草稿与发布层级清晰，预览保留正文宽度",
+      "webEquivalent": [
+        "web:/clubs/:id/news/manage"
+      ],
+      "registered": true,
+      "implementationPRs": [
+        "#133",
+        "#135",
+        "#144"
+      ]
+    },
+    {
+      "id": "mini:pages/club/club",
+      "platform": "mini",
+      "route": "pages/club/club",
+      "files": [
+        "miniprogram/pages/club/club.js",
+        "miniprogram/pages/club/club.wxml",
+        "miniprogram/pages/club/club.wxss",
+        "miniprogram/pages/club/club.json"
+      ],
+      "templateGroup": "club-community",
+      "changeMode": "structure",
+      "changes": "跑团身份/成员头像/下一团练优先；概览、赛事、活动、跑量、成员及更多服务按模板重组",
+      "webEquivalent": [
+        "web:/clubs/:id"
+      ],
+      "registered": true,
+      "implementationPRs": [
+        "#138",
+        "#143"
+      ]
+    },
+    {
+      "id": "mini:pages/club-intro/club-intro",
+      "platform": "mini",
+      "route": "pages/club-intro/club-intro",
+      "files": [
+        "miniprogram/pages/club-intro/club-intro.js",
+        "miniprogram/pages/club-intro/club-intro.wxml",
+        "miniprogram/pages/club-intro/club-intro.wxss",
+        "miniprogram/pages/club-intro/club-intro.json"
+      ],
+      "templateGroup": "club-community",
+      "changeMode": "structure",
+      "changes": "真实跑团资料名片+成员/活动摘要+申请状态，少用空插画，多用简介/可用照片",
+      "webEquivalent": [
+        "web:/clubs/invite/:code",
+        "web:/clubs/:id/public"
+      ],
+      "registered": true,
+      "implementationPRs": [
+        "#138",
+        "#143"
+      ]
+    },
+    {
+      "id": "mini:pages/mileage/mileage",
+      "platform": "mini",
+      "route": "pages/mileage/mileage",
+      "files": [
+        "miniprogram/pages/mileage/mileage.js",
+        "miniprogram/pages/mileage/mileage.wxml",
+        "miniprogram/pages/mileage/mileage.wxss",
+        "miniprogram/pages/mileage/mileage.json"
+      ],
+      "templateGroup": "club-community",
+      "changeMode": "structure",
+      "changes": "团内运动报告/训练组摘要+榜单；复用mileage-board图表与名单组件",
+      "webEquivalent": "web:/clubs/:id?tab=km",
+      "registered": true,
+      "implementationPRs": [
+        "#138",
+        "#143"
+      ]
+    },
+    {
+      "id": "mini:pages/partner/partner",
+      "platform": "mini",
+      "route": "pages/partner/partner",
+      "files": [
+        "miniprogram/pages/partner/partner.js",
+        "miniprogram/pages/partner/partner.wxml",
+        "miniprogram/pages/partner/partner.wxss",
+        "miniprogram/pages/partner/partner.json"
+      ],
+      "templateGroup": "club-community",
+      "changeMode": "structure",
+      "changes": "合作等级/实际可用权益/物资申请/记录四区，避免规则长墙",
+      "webEquivalent": "web:/clubs/:id?tab=partner",
+      "registered": true,
+      "implementationPRs": [
+        "#138",
+        "#143"
+      ]
+    },
+    {
+      "id": "mini:pages/feed/feed",
+      "platform": "mini",
+      "route": "pages/feed/feed",
+      "files": [
+        "miniprogram/pages/feed/feed.js",
+        "miniprogram/pages/feed/feed.wxml",
+        "miniprogram/pages/feed/feed.wxss",
+        "miniprogram/pages/feed/feed.json"
+      ],
+      "templateGroup": "club-community",
+      "changeMode": "targeted-structure",
+      "changes": "发布框压缩为工具入口；真实人物头像/图片/正文/互动紧凑动态卡",
+      "webEquivalent": "web:/clubs/:id?tab=feed",
+      "registered": true,
+      "implementationPRs": [
+        "#138",
+        "#143"
+      ]
+    },
+    {
+      "id": "mini:pages/activity/activity",
+      "platform": "mini",
+      "route": "pages/activity/activity",
+      "files": [
+        "miniprogram/pages/activity/activity.js",
+        "miniprogram/pages/activity/activity.wxml",
+        "miniprogram/pages/activity/activity.wxss",
+        "miniprogram/pages/activity/activity.json"
+      ],
+      "templateGroup": "event-service",
+      "changeMode": "structure",
+      "changes": "标题状态日期地点为主，公里为次；把签到/报名/成员/计划聚合成服务模块，统一动作栏",
+      "webEquivalent": [
+        "web:/clubs/:id/activities/:aid"
+      ],
+      "registered": true,
+      "implementationPRs": [
+        "#139"
+      ]
+    },
+    {
+      "id": "mini:pages/activity-create/activity-create",
+      "platform": "mini",
+      "route": "pages/activity-create/activity-create",
+      "files": [
+        "miniprogram/pages/activity-create/activity-create.js",
+        "miniprogram/pages/activity-create/activity-create.wxml",
+        "miniprogram/pages/activity-create/activity-create.wxss",
+        "miniprogram/pages/activity-create/activity-create.json"
+      ],
+      "templateGroup": "form-utility",
+      "changeMode": "targeted-structure",
+      "changes": "步进、模板选用、时间地点、组别形成真实任务流程；减少重复标题和大空白",
+      "webEquivalent": [
+        "web:/clubs/:id/activities/new"
+      ],
+      "registered": true,
+      "implementationPRs": [
+        "#133",
+        "#135",
+        "#144"
+      ]
+    },
+    {
+      "id": "mini:pages/signup/signup",
+      "platform": "mini",
+      "route": "pages/signup/signup",
+      "files": [
+        "miniprogram/pages/signup/signup.js",
+        "miniprogram/pages/signup/signup.wxml",
+        "miniprogram/pages/signup/signup.wxss",
+        "miniprogram/pages/signup/signup.json"
+      ],
+      "templateGroup": "event-service",
+      "changeMode": "targeted-structure",
+      "changes": "活动摘要压缩，组别卡清晰呈现配速/名额/选中状态，确认/已报名成功态一致",
+      "webEquivalent": [
+        "web:/clubs/:id/activities/:aid/signup"
+      ],
+      "registered": true,
+      "implementationPRs": [
+        "#139"
+      ]
+    },
+    {
+      "id": "mini:pages/album/album",
+      "platform": "mini",
+      "route": "pages/album/album",
+      "files": [
+        "miniprogram/pages/album/album.js",
+        "miniprogram/pages/album/album.wxml",
+        "miniprogram/pages/album/album.wxss",
+        "miniprogram/pages/album/album.json"
+      ],
+      "templateGroup": "event-service",
+      "changeMode": "shared-plus-local",
+      "changes": "真实图片成为主内容；计数和排序紧凑工具条，上传/选择模式不挤占首屏",
+      "webEquivalent": [
+        "web:/clubs/:id/activities/:aid/album"
+      ],
+      "registered": true,
+      "implementationPRs": [
+        "#139"
+      ]
+    },
+    {
+      "id": "mini:pages/call/call",
+      "platform": "mini",
+      "route": "pages/call/call",
+      "files": [
+        "miniprogram/pages/call/call.js",
+        "miniprogram/pages/call/call.wxml",
+        "miniprogram/pages/call/call.wxss",
+        "miniprogram/pages/call/call.json"
+      ],
+      "templateGroup": "event-service",
+      "changeMode": "structure",
+      "changes": "接龙摘要与本人提交状态头；项目选择+成绩输入为一个模块；名单按项目紧凑展示",
+      "webEquivalent": [
+        "web:/clubs/:id/calls/:cid"
+      ],
+      "registered": true,
+      "implementationPRs": [
+        "#139"
+      ]
+    },
+    {
+      "id": "mini:pages/meetup/meetup",
+      "platform": "mini",
+      "route": "pages/meetup/meetup",
+      "files": [
+        "miniprogram/pages/meetup/meetup.js",
+        "miniprogram/pages/meetup/meetup.wxml",
+        "miniprogram/pages/meetup/meetup.wxss",
+        "miniprogram/pages/meetup/meetup.json"
+      ],
+      "templateGroup": "event-service",
+      "changeMode": "structure",
+      "changes": "时间地点和参与/签到状态先行；参与人头像与合影优先，管理操作收进次级区",
+      "webEquivalent": [
+        "web:/clubs/:id/meetups/:mid"
+      ],
+      "registered": true,
+      "implementationPRs": [
+        "#139"
+      ]
+    },
+    {
+      "id": "mini:pages/internal/internal",
+      "platform": "mini",
+      "route": "pages/internal/internal",
+      "files": [
+        "miniprogram/pages/internal/internal.js",
+        "miniprogram/pages/internal/internal.wxml",
+        "miniprogram/pages/internal/internal.wxss",
+        "miniprogram/pages/internal/internal.json"
+      ],
+      "templateGroup": "event-service",
+      "changeMode": "structure",
+      "changes": "赛事摘要/本人报名组别/成绩状态分层，组别名额可扫读，报名与成绩主操作分阶段",
+      "webEquivalent": [
+        "web:/clubs/:id/internals/:rid"
+      ],
+      "registered": true,
+      "implementationPRs": [
+        "#139"
+      ]
+    },
+    {
+      "id": "mini:pages/privacy/privacy",
+      "platform": "mini",
+      "route": "pages/privacy/privacy",
+      "files": [
+        "miniprogram/pages/privacy/privacy.js",
+        "miniprogram/pages/privacy/privacy.wxml",
+        "miniprogram/pages/privacy/privacy.wxss",
+        "miniprogram/pages/privacy/privacy.json"
+      ],
+      "templateGroup": "form-utility",
+      "changeMode": "shared-plus-local",
+      "changes": "微信隐私授权简明任务页，协议入口/同意/暂不同意分层；不改授权逻辑",
+      "webEquivalent": "web:/legal/privacy",
+      "registered": true,
+      "implementationPRs": [
+        "#133",
+        "#135",
+        "#144"
+      ]
+    },
+    {
+      "id": "mini:pages/legal/legal",
+      "platform": "mini",
+      "route": "pages/legal/legal",
+      "files": [
+        "miniprogram/pages/legal/legal.js",
+        "miniprogram/pages/legal/legal.wxml",
+        "miniprogram/pages/legal/legal.wxss",
+        "miniprogram/pages/legal/legal.json"
+      ],
+      "templateGroup": "form-utility",
+      "changeMode": "shared-plus-local",
+      "changes": "法律目录与正文采用阅读子模板；操作/联系信息可扫读，法律原文及版本不改",
+      "webEquivalent": [
+        "web:/legal/:document?"
+      ],
+      "registered": true,
+      "implementationPRs": [
+        "#133",
+        "#135",
+        "#144"
+      ]
+    },
+    {
+      "id": "mini:pages/feedback/feedback",
+      "platform": "mini",
+      "route": "pages/feedback/feedback",
+      "files": [
+        "miniprogram/pages/feedback/feedback.js",
+        "miniprogram/pages/feedback/feedback.wxml",
+        "miniprogram/pages/feedback/feedback.wxss",
+        "miniprogram/pages/feedback/feedback.json"
+      ],
+      "templateGroup": "form-utility",
+      "changeMode": "structure",
+      "changes": "列表为带状态/真实互动数的议题行，详情为正文和进度；表单另设明确任务头",
+      "webEquivalent": [
+        "web:/feedback",
+        "web:/feedback/:id"
+      ],
+      "registered": true,
+      "implementationPRs": [
+        "#133",
+        "#135",
+        "#144"
+      ]
+    },
+    {
+      "id": "mini:pages/club-identity/club-identity",
+      "platform": "mini",
+      "route": "pages/club-identity/club-identity",
+      "files": [
+        "miniprogram/pages/club-identity/club-identity.js",
+        "miniprogram/pages/club-identity/club-identity.wxml",
+        "miniprogram/pages/club-identity/club-identity.wxss",
+        "miniprogram/pages/club-identity/club-identity.json"
+      ],
+      "templateGroup": "form-utility",
+      "changeMode": "targeted-structure",
+      "changes": "公开资料和组织核验分开；进度摘要/材料字段/提交操作清晰",
+      "webEquivalent": [
+        "web:/clubs/:id/identity"
+      ],
+      "registered": true,
+      "implementationPRs": [
+        "#133",
+        "#135",
+        "#144"
+      ]
+    },
+    {
+      "id": "mini:pages/club-report/club-report",
+      "platform": "mini",
+      "route": "pages/club-report/club-report",
+      "files": [
+        "miniprogram/pages/club-report/club-report.js",
+        "miniprogram/pages/club-report/club-report.wxml",
+        "miniprogram/pages/club-report/club-report.wxss",
+        "miniprogram/pages/club-report/club-report.json"
+      ],
+      "templateGroup": "form-utility",
+      "changeMode": "targeted-structure",
+      "changes": "目标跑团摘要/反馈类型/说明/处理进度分组，列表与表单使用相同材质",
+      "webEquivalent": [
+        "web:/clubs/reports",
+        "web:/clubs/:id/report"
+      ],
+      "registered": true,
+      "implementationPRs": [
+        "#133",
+        "#135",
+        "#144"
+      ]
+    },
+    {
+      "id": "mini:pages/training-groups/training-groups",
+      "platform": "mini",
+      "route": "pages/training-groups/training-groups",
+      "files": [
+        "miniprogram/pages/training-groups/training-groups.js",
+        "miniprogram/pages/training-groups/training-groups.wxml",
+        "miniprogram/pages/training-groups/training-groups.wxss",
+        "miniprogram/pages/training-groups/training-groups.json"
+      ],
+      "templateGroup": "club-community",
+      "changeMode": "targeted-structure",
+      "changes": "组名配速人数一行摘要，说明与成员展开；新增/编辑分任务弹层",
+      "webEquivalent": "web:/clubs/:id?tab=people&view=manage",
+      "registered": true,
+      "implementationPRs": [
+        "#138",
+        "#143"
+      ]
+    },
+    {
+      "id": "mini:pages/member-profile/member-profile",
+      "platform": "mini",
+      "route": "pages/member-profile/member-profile",
+      "files": [
+        "miniprogram/pages/member-profile/member-profile.js",
+        "miniprogram/pages/member-profile/member-profile.wxml",
+        "miniprogram/pages/member-profile/member-profile.wxss",
+        "miniprogram/pages/member-profile/member-profile.json"
+      ],
+      "templateGroup": "personal-dashboard",
+      "changeMode": "structure",
+      "changes": "身份与团内角色先行，运动摘要精简，赛事成绩/相册分节；隐藏空数据墙",
+      "webEquivalent": [
+        "web:/clubs/:id/members/:uid"
+      ],
+      "registered": true,
+      "implementationPRs": [
+        "#137",
+        "#142"
+      ]
+    },
+    {
+      "id": "web:/clubs/:id/edit",
+      "platform": "web",
+      "route": "/clubs/:id/edit",
+      "file": "web/src/views/ClubEdit.vue",
+      "templateGroup": "form-utility",
+      "changeMode": "targeted-structure",
+      "changes": "Logo、基本资料与简介分节；团长权限和保存/取消行为独立",
+      "miniEquivalent": "pages/club-edit/club-edit",
+      "registered": true,
+      "implementationPRs": [
+        "#133",
+        "#135",
+        "#144"
+      ]
+    },
+    {
+      "id": "mini:pages/club-edit/club-edit",
+      "platform": "mini",
+      "route": "pages/club-edit/club-edit",
+      "files": [
+        "miniprogram/pages/club-edit/club-edit.js",
+        "miniprogram/pages/club-edit/club-edit.wxml",
+        "miniprogram/pages/club-edit/club-edit.wxss",
+        "miniprogram/pages/club-edit/club-edit.json"
+      ],
+      "templateGroup": "form-utility",
+      "changeMode": "targeted-structure",
+      "changes": "与 Web 编辑表单同一分区、Logo 与权限状态",
+      "webEquivalent": [
+        "web:/clubs/:id/edit"
+      ],
+      "registered": true,
+      "implementationPRs": [
+        "#133",
+        "#135",
+        "#144"
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "id": "web:/clubs/:id#overview",
+      "platform": "web",
+      "parentRoute": "/clubs/:id",
+      "parentPage": "web:/clubs/:id",
+      "scene": "overview",
+      "label": "概览",
+      "templateGroup": "club-community",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/clubs/:id#act-training",
+      "platform": "web",
+      "parentRoute": "/clubs/:id",
+      "parentPage": "web:/clubs/:id",
+      "scene": "act-training",
+      "label": "团练/筛选/复制",
+      "templateGroup": "club-community",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/clubs/:id#act-meetup",
+      "platform": "web",
+      "parentRoute": "/clubs/:id",
+      "parentPage": "web:/clubs/:id",
+      "scene": "act-meetup",
+      "label": "约跑",
+      "templateGroup": "club-community",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/clubs/:id#act-internal",
+      "platform": "web",
+      "parentRoute": "/clubs/:id",
+      "parentPage": "web:/clubs/:id",
+      "scene": "act-internal",
+      "label": "队内赛",
+      "templateGroup": "club-community",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/clubs/:id#race",
+      "platform": "web",
+      "parentRoute": "/clubs/:id",
+      "parentPage": "web:/clubs/:id",
+      "scene": "race",
+      "label": "赛事名单/画像/成绩接龙",
+      "templateGroup": "club-community",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/clubs/:id#km",
+      "platform": "web",
+      "parentRoute": "/clubs/:id",
+      "parentPage": "web:/clubs/:id",
+      "scene": "km",
+      "label": "跑量/周期/组别/榜单",
+      "templateGroup": "club-community",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/clubs/:id#people-members",
+      "platform": "web",
+      "parentRoute": "/clubs/:id",
+      "parentPage": "web:/clubs/:id",
+      "scene": "people-members",
+      "label": "成员/管理/入团审核",
+      "templateGroup": "club-community",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/clubs/:id#people-fees",
+      "platform": "web",
+      "parentRoute": "/clubs/:id",
+      "parentPage": "web:/clubs/:id",
+      "scene": "people-fees",
+      "label": "会费/期次/状态",
+      "templateGroup": "club-community",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/clubs/:id#people-manage",
+      "platform": "web",
+      "parentRoute": "/clubs/:id",
+      "parentPage": "web:/clubs/:id",
+      "scene": "people-manage",
+      "label": "服务设置/组别/礼品/跑团关系",
+      "templateGroup": "club-community",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/clubs/:id#album",
+      "platform": "web",
+      "parentRoute": "/clubs/:id",
+      "parentPage": "web:/clubs/:id",
+      "scene": "album",
+      "label": "相册",
+      "templateGroup": "club-community",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/clubs/:id#feed",
+      "platform": "web",
+      "parentRoute": "/clubs/:id",
+      "parentPage": "web:/clubs/:id",
+      "scene": "feed",
+      "label": "动态",
+      "templateGroup": "club-community",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/clubs/:id#partner",
+      "platform": "web",
+      "parentRoute": "/clubs/:id",
+      "parentPage": "web:/clubs/:id",
+      "scene": "partner",
+      "label": "合作与物资",
+      "templateGroup": "club-community",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/mine#overview",
+      "platform": "web",
+      "parentRoute": "/mine",
+      "parentPage": "web:/mine",
+      "scene": "overview",
+      "label": "overview",
+      "templateGroup": "personal-dashboard",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/mine#plans",
+      "platform": "web",
+      "parentRoute": "/mine",
+      "parentPage": "web:/mine",
+      "scene": "plans",
+      "label": "plans",
+      "templateGroup": "personal-dashboard",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/mine#results-honor",
+      "platform": "web",
+      "parentRoute": "/mine",
+      "parentPage": "web:/mine",
+      "scene": "results-honor",
+      "label": "results-honor",
+      "templateGroup": "personal-dashboard",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/mine#results-photo",
+      "platform": "web",
+      "parentRoute": "/mine",
+      "parentPage": "web:/mine",
+      "scene": "results-photo",
+      "label": "results-photo",
+      "templateGroup": "personal-dashboard",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/mine#results-timeline",
+      "platform": "web",
+      "parentRoute": "/mine",
+      "parentPage": "web:/mine",
+      "scene": "results-timeline",
+      "label": "results-timeline",
+      "templateGroup": "personal-dashboard",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/mine#profile",
+      "platform": "web",
+      "parentRoute": "/mine",
+      "parentPage": "web:/mine",
+      "scene": "profile",
+      "label": "profile",
+      "templateGroup": "personal-dashboard",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/mine#settings",
+      "platform": "web",
+      "parentRoute": "/mine",
+      "parentPage": "web:/mine",
+      "scene": "settings",
+      "label": "settings",
+      "templateGroup": "personal-dashboard",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/mine#login",
+      "platform": "web",
+      "parentRoute": "/mine",
+      "parentPage": "web:/mine",
+      "scene": "login",
+      "label": "login",
+      "templateGroup": "personal-dashboard",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/mine#register",
+      "platform": "web",
+      "parentRoute": "/mine",
+      "parentPage": "web:/mine",
+      "scene": "register",
+      "label": "register",
+      "templateGroup": "personal-dashboard",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/runner#stats",
+      "platform": "web",
+      "parentRoute": "/runner",
+      "parentPage": "web:/runner",
+      "scene": "stats",
+      "label": "stats",
+      "templateGroup": "personal-dashboard",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/runner#career",
+      "platform": "web",
+      "parentRoute": "/runner",
+      "parentPage": "web:/runner",
+      "scene": "career",
+      "label": "career",
+      "templateGroup": "personal-dashboard",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/runner#footprints",
+      "platform": "web",
+      "parentRoute": "/runner",
+      "parentPage": "web:/runner",
+      "scene": "footprints",
+      "label": "footprints",
+      "templateGroup": "personal-dashboard",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/runner#honors",
+      "platform": "web",
+      "parentRoute": "/runner",
+      "parentPage": "web:/runner",
+      "scene": "honors",
+      "label": "honors",
+      "templateGroup": "personal-dashboard",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/runner#media",
+      "platform": "web",
+      "parentRoute": "/runner",
+      "parentPage": "web:/runner",
+      "scene": "media",
+      "label": "media",
+      "templateGroup": "personal-dashboard",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/runner#devices",
+      "platform": "web",
+      "parentRoute": "/runner",
+      "parentPage": "web:/runner",
+      "scene": "devices",
+      "label": "devices",
+      "templateGroup": "personal-dashboard",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/runner#help",
+      "platform": "web",
+      "parentRoute": "/runner",
+      "parentPage": "web:/runner",
+      "scene": "help",
+      "label": "help",
+      "templateGroup": "personal-dashboard",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/news#all",
+      "platform": "web",
+      "parentRoute": "/news",
+      "parentPage": "web:/news",
+      "scene": "all",
+      "label": "精选",
+      "templateGroup": "editorial",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/news#industry",
+      "platform": "web",
+      "parentRoute": "/news",
+      "parentPage": "web:/news",
+      "scene": "industry",
+      "label": "业界",
+      "templateGroup": "editorial",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/news#athlete-men",
+      "platform": "web",
+      "parentRoute": "/news",
+      "parentPage": "web:/news",
+      "scene": "athlete-men",
+      "label": "男子",
+      "templateGroup": "editorial",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/news#athlete-women",
+      "platform": "web",
+      "parentRoute": "/news",
+      "parentPage": "web:/news",
+      "scene": "athlete-women",
+      "label": "女子",
+      "templateGroup": "editorial",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/news#pacer-all",
+      "platform": "web",
+      "parentRoute": "/news",
+      "parentPage": "web:/news",
+      "scene": "pacer-all",
+      "label": "官兔人物默认列表",
+      "templateGroup": "editorial",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/news#pacer-race",
+      "platform": "web",
+      "parentRoute": "/news",
+      "parentPage": "web:/news",
+      "scene": "pacer-race",
+      "label": "官兔按赛事筛选",
+      "templateGroup": "editorial",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/news#club",
+      "platform": "web",
+      "parentRoute": "/news",
+      "parentPage": "web:/news",
+      "scene": "club",
+      "label": "跑团",
+      "templateGroup": "editorial",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/news#race",
+      "platform": "web",
+      "parentRoute": "/news",
+      "parentPage": "web:/news",
+      "scene": "race",
+      "label": "赛事资讯",
+      "templateGroup": "editorial",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/history#growth",
+      "platform": "web",
+      "parentRoute": "/history",
+      "parentPage": "web:history",
+      "scene": "growth",
+      "label": "growth",
+      "templateGroup": "history-artifacts",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/history#memory",
+      "platform": "web",
+      "parentRoute": "/history",
+      "parentPage": "web:history",
+      "scene": "memory",
+      "label": "memory",
+      "templateGroup": "history-artifacts",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/history#import",
+      "platform": "web",
+      "parentRoute": "/history",
+      "parentPage": "web:history",
+      "scene": "import",
+      "label": "import",
+      "templateGroup": "history-artifacts",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/history#candidates",
+      "platform": "web",
+      "parentRoute": "/history",
+      "parentPage": "web:history",
+      "scene": "candidates",
+      "label": "candidates",
+      "templateGroup": "history-artifacts",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/history#review",
+      "platform": "web",
+      "parentRoute": "/history",
+      "parentPage": "web:history",
+      "scene": "review",
+      "label": "review",
+      "templateGroup": "history-artifacts",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/history#edit",
+      "platform": "web",
+      "parentRoute": "/history",
+      "parentPage": "web:history",
+      "scene": "edit",
+      "label": "edit",
+      "templateGroup": "history-artifacts",
+      "mustAudit": true
+    },
+    {
+      "id": "mini:pages/club/club#overview",
+      "platform": "mini",
+      "parentRoute": "pages/club/club",
+      "parentPage": "mini:pages/club/club",
+      "scene": "overview",
+      "label": "概览",
+      "templateGroup": "club-community",
+      "mustAudit": true
+    },
+    {
+      "id": "mini:pages/club/club#act-training",
+      "platform": "mini",
+      "parentRoute": "pages/club/club",
+      "parentPage": "mini:pages/club/club",
+      "scene": "act-training",
+      "label": "团练/筛选/复制",
+      "templateGroup": "club-community",
+      "mustAudit": true
+    },
+    {
+      "id": "mini:pages/club/club#act-meetup",
+      "platform": "mini",
+      "parentRoute": "pages/club/club",
+      "parentPage": "mini:pages/club/club",
+      "scene": "act-meetup",
+      "label": "约跑",
+      "templateGroup": "club-community",
+      "mustAudit": true
+    },
+    {
+      "id": "mini:pages/club/club#act-internal",
+      "platform": "mini",
+      "parentRoute": "pages/club/club",
+      "parentPage": "mini:pages/club/club",
+      "scene": "act-internal",
+      "label": "队内赛",
+      "templateGroup": "club-community",
+      "mustAudit": true
+    },
+    {
+      "id": "mini:pages/club/club#race",
+      "platform": "mini",
+      "parentRoute": "pages/club/club",
+      "parentPage": "mini:pages/club/club",
+      "scene": "race",
+      "label": "赛事名单/画像/成绩接龙",
+      "templateGroup": "club-community",
+      "mustAudit": true
+    },
+    {
+      "id": "mini:pages/club/club#km",
+      "platform": "mini",
+      "parentRoute": "pages/club/club",
+      "parentPage": "mini:pages/club/club",
+      "scene": "km",
+      "label": "跑量/周期/组别/榜单",
+      "templateGroup": "club-community",
+      "mustAudit": true
+    },
+    {
+      "id": "mini:pages/club/club#people-members",
+      "platform": "mini",
+      "parentRoute": "pages/club/club",
+      "parentPage": "mini:pages/club/club",
+      "scene": "people-members",
+      "label": "成员/管理/入团审核",
+      "templateGroup": "club-community",
+      "mustAudit": true
+    },
+    {
+      "id": "mini:pages/club/club#people-fees",
+      "platform": "mini",
+      "parentRoute": "pages/club/club",
+      "parentPage": "mini:pages/club/club",
+      "scene": "people-fees",
+      "label": "会费/期次/状态",
+      "templateGroup": "club-community",
+      "mustAudit": true
+    },
+    {
+      "id": "mini:pages/club/club#people-manage",
+      "platform": "mini",
+      "parentRoute": "pages/club/club",
+      "parentPage": "mini:pages/club/club",
+      "scene": "people-manage",
+      "label": "服务设置/组别/礼品/跑团关系",
+      "templateGroup": "club-community",
+      "mustAudit": true
+    },
+    {
+      "id": "mini:pages/club/club#album",
+      "platform": "mini",
+      "parentRoute": "pages/club/club",
+      "parentPage": "mini:pages/club/club",
+      "scene": "album",
+      "label": "相册",
+      "templateGroup": "club-community",
+      "mustAudit": true
+    },
+    {
+      "id": "mini:pages/club/club#feed",
+      "platform": "mini",
+      "parentRoute": "pages/club/club",
+      "parentPage": "mini:pages/club/club",
+      "scene": "feed",
+      "label": "动态",
+      "templateGroup": "club-community",
+      "mustAudit": true
+    },
+    {
+      "id": "mini:pages/club/club#partner",
+      "platform": "mini",
+      "parentRoute": "pages/club/club",
+      "parentPage": "mini:pages/club/club",
+      "scene": "partner",
+      "label": "合作与物资",
+      "templateGroup": "club-community",
+      "mustAudit": true
+    },
+    {
+      "id": "mini:pages/mine/mine#overview",
+      "platform": "mini",
+      "parentRoute": "pages/mine/mine",
+      "parentPage": "mini:pages/mine/mine",
+      "scene": "overview",
+      "label": "overview",
+      "templateGroup": "personal-dashboard",
+      "mustAudit": true
+    },
+    {
+      "id": "mini:pages/mine/mine#plans",
+      "platform": "mini",
+      "parentRoute": "pages/mine/mine",
+      "parentPage": "mini:pages/mine/mine",
+      "scene": "plans",
+      "label": "plans",
+      "templateGroup": "personal-dashboard",
+      "mustAudit": true
+    },
+    {
+      "id": "mini:pages/mine/mine#results-honor",
+      "platform": "mini",
+      "parentRoute": "pages/mine/mine",
+      "parentPage": "mini:pages/mine/mine",
+      "scene": "results-honor",
+      "label": "results-honor",
+      "templateGroup": "personal-dashboard",
+      "mustAudit": true
+    },
+    {
+      "id": "mini:pages/mine/mine#results-photo",
+      "platform": "mini",
+      "parentRoute": "pages/mine/mine",
+      "parentPage": "mini:pages/mine/mine",
+      "scene": "results-photo",
+      "label": "results-photo",
+      "templateGroup": "personal-dashboard",
+      "mustAudit": true
+    },
+    {
+      "id": "mini:pages/mine/mine#results-timeline",
+      "platform": "mini",
+      "parentRoute": "pages/mine/mine",
+      "parentPage": "mini:pages/mine/mine",
+      "scene": "results-timeline",
+      "label": "results-timeline",
+      "templateGroup": "personal-dashboard",
+      "mustAudit": true
+    },
+    {
+      "id": "mini:pages/mine/mine#profile",
+      "platform": "mini",
+      "parentRoute": "pages/mine/mine",
+      "parentPage": "mini:pages/mine/mine",
+      "scene": "profile",
+      "label": "profile",
+      "templateGroup": "personal-dashboard",
+      "mustAudit": true
+    },
+    {
+      "id": "mini:pages/mine/mine#settings",
+      "platform": "mini",
+      "parentRoute": "pages/mine/mine",
+      "parentPage": "mini:pages/mine/mine",
+      "scene": "settings",
+      "label": "settings",
+      "templateGroup": "personal-dashboard",
+      "mustAudit": true
+    },
+    {
+      "id": "mini:pages/mine/mine#login",
+      "platform": "mini",
+      "parentRoute": "pages/mine/mine",
+      "parentPage": "mini:pages/mine/mine",
+      "scene": "login",
+      "label": "login",
+      "templateGroup": "personal-dashboard",
+      "mustAudit": true
+    },
+    {
+      "id": "mini:pages/mine/mine#register",
+      "platform": "mini",
+      "parentRoute": "pages/mine/mine",
+      "parentPage": "mini:pages/mine/mine",
+      "scene": "register",
+      "label": "register",
+      "templateGroup": "personal-dashboard",
+      "mustAudit": true
+    },
+    {
+      "id": "mini:pages/runner/runner#stats",
+      "platform": "mini",
+      "parentRoute": "pages/runner/runner",
+      "parentPage": "mini:pages/runner/runner",
+      "scene": "stats",
+      "label": "stats",
+      "templateGroup": "personal-dashboard",
+      "mustAudit": true
+    },
+    {
+      "id": "mini:pages/runner/runner#career",
+      "platform": "mini",
+      "parentRoute": "pages/runner/runner",
+      "parentPage": "mini:pages/runner/runner",
+      "scene": "career",
+      "label": "career",
+      "templateGroup": "personal-dashboard",
+      "mustAudit": true
+    },
+    {
+      "id": "mini:pages/runner/runner#footprints",
+      "platform": "mini",
+      "parentRoute": "pages/runner/runner",
+      "parentPage": "mini:pages/runner/runner",
+      "scene": "footprints",
+      "label": "footprints",
+      "templateGroup": "personal-dashboard",
+      "mustAudit": true
+    },
+    {
+      "id": "mini:pages/runner/runner#honors",
+      "platform": "mini",
+      "parentRoute": "pages/runner/runner",
+      "parentPage": "mini:pages/runner/runner",
+      "scene": "honors",
+      "label": "honors",
+      "templateGroup": "personal-dashboard",
+      "mustAudit": true
+    },
+    {
+      "id": "mini:pages/runner/runner#media",
+      "platform": "mini",
+      "parentRoute": "pages/runner/runner",
+      "parentPage": "mini:pages/runner/runner",
+      "scene": "media",
+      "label": "media",
+      "templateGroup": "personal-dashboard",
+      "mustAudit": true
+    },
+    {
+      "id": "mini:pages/runner/runner#devices",
+      "platform": "mini",
+      "parentRoute": "pages/runner/runner",
+      "parentPage": "mini:pages/runner/runner",
+      "scene": "devices",
+      "label": "devices",
+      "templateGroup": "personal-dashboard",
+      "mustAudit": true
+    },
+    {
+      "id": "mini:pages/runner/runner#help",
+      "platform": "mini",
+      "parentRoute": "pages/runner/runner",
+      "parentPage": "mini:pages/runner/runner",
+      "scene": "help",
+      "label": "help",
+      "templateGroup": "personal-dashboard",
+      "mustAudit": true
+    },
+    {
+      "id": "mini:pages/news/news#all",
+      "platform": "mini",
+      "parentRoute": "pages/news/news",
+      "parentPage": "mini:pages/news/news",
+      "scene": "all",
+      "label": "精选",
+      "templateGroup": "editorial",
+      "mustAudit": true
+    },
+    {
+      "id": "mini:pages/news/news#industry",
+      "platform": "mini",
+      "parentRoute": "pages/news/news",
+      "parentPage": "mini:pages/news/news",
+      "scene": "industry",
+      "label": "业界",
+      "templateGroup": "editorial",
+      "mustAudit": true
+    },
+    {
+      "id": "mini:pages/news/news#athlete-men",
+      "platform": "mini",
+      "parentRoute": "pages/news/news",
+      "parentPage": "mini:pages/news/news",
+      "scene": "athlete-men",
+      "label": "男子",
+      "templateGroup": "editorial",
+      "mustAudit": true
+    },
+    {
+      "id": "mini:pages/news/news#athlete-women",
+      "platform": "mini",
+      "parentRoute": "pages/news/news",
+      "parentPage": "mini:pages/news/news",
+      "scene": "athlete-women",
+      "label": "女子",
+      "templateGroup": "editorial",
+      "mustAudit": true
+    },
+    {
+      "id": "mini:pages/news/news#pacer-all",
+      "platform": "mini",
+      "parentRoute": "pages/news/news",
+      "parentPage": "mini:pages/news/news",
+      "scene": "pacer-all",
+      "label": "官兔人物默认列表",
+      "templateGroup": "editorial",
+      "mustAudit": true
+    },
+    {
+      "id": "mini:pages/news/news#pacer-race",
+      "platform": "mini",
+      "parentRoute": "pages/news/news",
+      "parentPage": "mini:pages/news/news",
+      "scene": "pacer-race",
+      "label": "官兔按赛事筛选",
+      "templateGroup": "editorial",
+      "mustAudit": true
+    },
+    {
+      "id": "mini:pages/news/news#club",
+      "platform": "mini",
+      "parentRoute": "pages/news/news",
+      "parentPage": "mini:pages/news/news",
+      "scene": "club",
+      "label": "跑团",
+      "templateGroup": "editorial",
+      "mustAudit": true
+    },
+    {
+      "id": "mini:pages/news/news#race",
+      "platform": "mini",
+      "parentRoute": "pages/news/news",
+      "parentPage": "mini:pages/news/news",
+      "scene": "race",
+      "label": "赛事资讯",
+      "templateGroup": "editorial",
+      "mustAudit": true
+    },
+    {
+      "id": "mini:pages/history/history#growth",
+      "platform": "mini",
+      "parentRoute": "pages/history/history",
+      "parentPage": "mini:history",
+      "scene": "growth",
+      "label": "growth",
+      "templateGroup": "history-artifacts",
+      "mustAudit": true
+    },
+    {
+      "id": "mini:pages/history/history#memory",
+      "platform": "mini",
+      "parentRoute": "pages/history/history",
+      "parentPage": "mini:history",
+      "scene": "memory",
+      "label": "memory",
+      "templateGroup": "history-artifacts",
+      "mustAudit": true
+    },
+    {
+      "id": "mini:pages/history/history#import",
+      "platform": "mini",
+      "parentRoute": "pages/history/history",
+      "parentPage": "mini:history",
+      "scene": "import",
+      "label": "import",
+      "templateGroup": "history-artifacts",
+      "mustAudit": true
+    },
+    {
+      "id": "mini:pages/history/history#candidates",
+      "platform": "mini",
+      "parentRoute": "pages/history/history",
+      "parentPage": "mini:history",
+      "scene": "candidates",
+      "label": "candidates",
+      "templateGroup": "history-artifacts",
+      "mustAudit": true
+    },
+    {
+      "id": "mini:pages/history/history#review",
+      "platform": "mini",
+      "parentRoute": "pages/history/history",
+      "parentPage": "mini:history",
+      "scene": "review",
+      "label": "review",
+      "templateGroup": "history-artifacts",
+      "mustAudit": true
+    },
+    {
+      "id": "mini:pages/history/history#edit",
+      "platform": "mini",
+      "parentRoute": "pages/history/history",
+      "parentPage": "mini:history",
+      "scene": "edit",
+      "label": "edit",
+      "templateGroup": "history-artifacts",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/admin#overview",
+      "platform": "web",
+      "parentRoute": "/admin",
+      "parentPage": "web:/admin",
+      "scene": "overview",
+      "label": "运营总览",
+      "templateGroup": "admin-workspace",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/admin#races",
+      "platform": "web",
+      "parentRoute": "/admin",
+      "parentPage": "web:/admin",
+      "scene": "races",
+      "label": "赛事管理",
+      "templateGroup": "admin-workspace",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/admin#news",
+      "platform": "web",
+      "parentRoute": "/admin",
+      "parentPage": "web:/admin",
+      "scene": "news",
+      "label": "赛事资讯",
+      "templateGroup": "admin-workspace",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/admin#content",
+      "platform": "web",
+      "parentRoute": "/admin",
+      "parentPage": "web:/admin",
+      "scene": "content",
+      "label": "资讯中心",
+      "templateGroup": "admin-workspace",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/admin#athletes",
+      "platform": "web",
+      "parentRoute": "/admin",
+      "parentPage": "web:/admin",
+      "scene": "athletes",
+      "label": "运动员管理",
+      "templateGroup": "admin-workspace",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/admin#pacers",
+      "platform": "web",
+      "parentRoute": "/admin",
+      "parentPage": "web:/admin",
+      "scene": "pacers",
+      "label": "官兔管理",
+      "templateGroup": "admin-workspace",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/admin#feedback",
+      "platform": "web",
+      "parentRoute": "/admin",
+      "parentPage": "web:/admin",
+      "scene": "feedback",
+      "label": "共创建议",
+      "templateGroup": "admin-workspace",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/admin#users",
+      "platform": "web",
+      "parentRoute": "/admin",
+      "parentPage": "web:/admin",
+      "scene": "users",
+      "label": "跑者管理",
+      "templateGroup": "admin-workspace",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/admin#clubs",
+      "platform": "web",
+      "parentRoute": "/admin",
+      "parentPage": "web:/admin",
+      "scene": "clubs",
+      "label": "跑团管理",
+      "templateGroup": "admin-workspace",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/admin#club-identity",
+      "platform": "web",
+      "parentRoute": "/admin",
+      "parentPage": "web:/admin",
+      "scene": "club-identity",
+      "label": "跑团身份",
+      "templateGroup": "admin-workspace",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/admin#privacy-requests",
+      "platform": "web",
+      "parentRoute": "/admin",
+      "parentPage": "web:/admin",
+      "scene": "privacy-requests",
+      "label": "个人信息权利",
+      "templateGroup": "admin-workspace",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/admin#joins",
+      "platform": "web",
+      "parentRoute": "/admin",
+      "parentPage": "web:/admin",
+      "scene": "joins",
+      "label": "申请审核",
+      "templateGroup": "admin-workspace",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/admin#runs",
+      "platform": "web",
+      "parentRoute": "/admin",
+      "parentPage": "web:/admin",
+      "scene": "runs",
+      "label": "运动记录",
+      "templateGroup": "admin-workspace",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/admin#shop",
+      "platform": "web",
+      "parentRoute": "/admin",
+      "parentPage": "web:/admin",
+      "scene": "shop",
+      "label": "积分礼品",
+      "templateGroup": "admin-workspace",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/admin#partner",
+      "platform": "web",
+      "parentRoute": "/admin",
+      "parentPage": "web:/admin",
+      "scene": "partner",
+      "label": "合作与物资",
+      "templateGroup": "admin-workspace",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/admin#accounts",
+      "platform": "web",
+      "parentRoute": "/admin",
+      "parentPage": "web:/admin",
+      "scene": "accounts",
+      "label": "账号与权限",
+      "templateGroup": "admin-workspace",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/admin#race-catalog",
+      "platform": "web",
+      "parentRoute": "/admin",
+      "parentPage": "web:/admin",
+      "scene": "race-catalog",
+      "label": "race-catalog",
+      "templateGroup": "admin-workspace",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/admin#race-review",
+      "platform": "web",
+      "parentRoute": "/admin",
+      "parentPage": "web:/admin",
+      "scene": "race-review",
+      "label": "race-review",
+      "templateGroup": "admin-workspace",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/admin#race-official",
+      "platform": "web",
+      "parentRoute": "/admin",
+      "parentPage": "web:/admin",
+      "scene": "race-official",
+      "label": "race-official",
+      "templateGroup": "admin-workspace",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/admin#race-editor",
+      "platform": "web",
+      "parentRoute": "/admin",
+      "parentPage": "web:/admin",
+      "scene": "race-editor",
+      "label": "race-editor",
+      "templateGroup": "admin-workspace",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/admin#news-editor",
+      "platform": "web",
+      "parentRoute": "/admin",
+      "parentPage": "web:/admin",
+      "scene": "news-editor",
+      "label": "news-editor",
+      "templateGroup": "admin-workspace",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/admin#content-editor",
+      "platform": "web",
+      "parentRoute": "/admin",
+      "parentPage": "web:/admin",
+      "scene": "content-editor",
+      "label": "content-editor",
+      "templateGroup": "admin-workspace",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/admin#athlete-editor",
+      "platform": "web",
+      "parentRoute": "/admin",
+      "parentPage": "web:/admin",
+      "scene": "athlete-editor",
+      "label": "athlete-editor",
+      "templateGroup": "admin-workspace",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/admin#pacer-editor",
+      "platform": "web",
+      "parentRoute": "/admin",
+      "parentPage": "web:/admin",
+      "scene": "pacer-editor",
+      "label": "pacer-editor",
+      "templateGroup": "admin-workspace",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/admin#account-permissions",
+      "platform": "web",
+      "parentRoute": "/admin",
+      "parentPage": "web:/admin",
+      "scene": "account-permissions",
+      "label": "account-permissions",
+      "templateGroup": "admin-workspace",
+      "mustAudit": true
+    },
+    {
+      "id": "web:/admin#login",
+      "platform": "web",
+      "parentRoute": "/admin",
+      "parentPage": "web:/admin",
+      "scene": "login",
+      "label": "login",
+      "templateGroup": "admin-workspace",
+      "mustAudit": true
+    }
+  ],
+  "globalStateCoverage": [
+    "guest",
+    "loading",
+    "error-retry",
+    "empty",
+    "populated",
+    "long-text",
+    "320px",
+    "390px",
+    "web-wide",
+    "owner-manager-member",
+    "stale-account",
+    "dialog-form-open"
+  ],
+  "notPageButMustAudit": [
+    "web:RaceCard",
+    "web:RunnerDashboard",
+    "web:MileageBoard",
+    "mini:components/mileage-board",
+    "mini:page-header",
+    "web:Pager",
+    "web:dialogs-and-sheets",
+    "mini:bottom-sheets"
+  ],
+  "verification": {
+    "web": {
+      "sceneCount": 80,
+      "widths": [
+        320,
+        390,
+        1440
+      ],
+      "checks": 240,
+      "report": "/tmp/marathon-jd-final-web-report.json"
+    },
+    "mini": {
+      "registeredPages": 34,
+      "sceneCount": 49,
+      "widths": [
+        320,
+        390
+      ],
+      "checks": 98,
+      "report": "/tmp/marathon-jd-final-mini/report.json"
+    },
+    "native": {
+      "wccTemplates": 36,
+      "wcscStyles": 43,
+      "report": "/tmp/marathon-jd-final-mini-native.json"
+    },
+    "scopeNote": "The full route pass is complemented by feature-specific branch and permission checks; counts are not a claim to exercise every possible combination. Source mirrors and offline compilers are not WeChat device verification.",
+    "admin": {
+      "checks": 366,
+      "workspaces": 16,
+      "widths": [
+        320,
+        390,
+        1024,
+        1440
+      ],
+      "review": "design/previews/jd-admin-20261112-review.md"
+    }
+  }
+}
