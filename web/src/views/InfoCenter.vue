@@ -12,7 +12,7 @@
             <span v-else-if="entry.id === 'pacer' && previewTarget" class="shortcut-pace"><strong>{{ previewTarget }}</strong><span>完赛目标</span></span>
             <span v-else class="shortcut-wordmark">{{ entry.id === 'athlete' ? '42.195' : '稳稳领跑' }}<span v-if="entry.id === 'athlete'"> km</span></span>
             <span class="shortcut-arrow" aria-hidden="true">↗</span>
-          </span>
+          </span><span v-if="previewLabels[entry.id]" class="shortcut-specific">{{ previewLabels[entry.id] }}</span>
         </router-link>
       </div>
       <div class="section-caption"><h2>{{ clubId ? '跑团资讯' : tabs.find(t=>t.id===tab)?.heading }}</h2><span v-if="ready && !message && total">{{ total }} {{ tab === 'pacer' ? '位官兔' : isProfile ? '位运动员' : '篇内容' }}</span></div>
@@ -22,6 +22,7 @@
       <div v-if="message" class="journal-state" role="alert"><span class="state-icon" aria-hidden="true">!</span><b>内容暂时无法加载</b><p>{{ message }}</p><button type="button" @click="load">重新加载</button></div>
       <div v-else-if="!ready" class="journal-state" role="status"><span class="loading-dot" aria-hidden="true"></span>正在加载内容…</div>
       <template v-else>
+        <div class="journal-list">
         <router-link v-for="(row,index) in rows" :key="row.id" :to="rowLink(row)" :class="['journal-row', { 'person-row': isProfile }]">
           <template v-if="isProfile">
             <span v-if="tab === 'athlete'" class="person-number" aria-hidden="true">{{ row.editorialOrigin === 'manual' && !row.seasonRank && !row.rank ? '—' : String(row.seasonRank || row.rank || (page - 1) * 20 + index + 1).padStart(2,'0') }}</span>
@@ -31,6 +32,7 @@
           </template>
           <template v-else><div class="article-copy"><span class="row-kicker">{{ row.raceName ? '赛事资讯' : categoryName(row.category) }}<i v-if="row.featured">精选</i></span><h3>{{ row.title }}</h3><p v-if="row.summary">{{ row.summary }}</p><div class="row-meta"><span>{{ authorLabel(row) }}</span><time>{{ contentDate(row.publishedAt) }}</time></div></div><img v-if="row.coverUrl" class="article-photo" :src="row.coverUrl" alt="" loading="lazy" @error="$event.target.hidden = true" /></template>
         </router-link>
+        </div>
         <div v-if="!rows.length" class="journal-state"><span class="state-icon" aria-hidden="true">＋</span><b>{{ query ? '还没找到相关内容' : clubId ? '还没有发布跑团资讯' : isProfile ? '人物资料正在整理' : '这个栏目还没有新内容' }}</b><p>{{ query ? '换一个关键词试试。' : clubId ? '分享团练心得、赛事回顾或公众号好文。' : '稍后再来看看，或先逛逛其他栏目。' }}</p><router-link v-if="clubId && canManage" :to="'/clubs/'+clubId+'/news/manage'">发布第一篇</router-link><router-link v-else-if="!isProfile && !clubId" to="/news?tab=athlete">浏览运动员档案</router-link></div>
         <Pager :page="page" :pages="pages" @update:page="turnPage" />
       </template>
@@ -48,7 +50,7 @@ const route=useRoute();
 const currentYear=Number(new Intl.DateTimeFormat('en',{year:'numeric',timeZone:'Asia/Shanghai'}).format(new Date()));
 const tabs=[{id:'all',label:'精选',heading:'精选资讯'},{id:'industry',label:'业界',heading:'业界动态'},{id:'athlete',label:'运动员',heading:'中国马拉松运动员'},{id:'pacer',label:'官兔',heading:'官方配速员档案'},{id:'club',label:'跑团',heading:'跑团故事'},{id:'race',label:'赛事',heading:'赛事资讯'}];
 const profileEntries=[{id:'athlete',kicker:'中国马拉松',title:'运动员档案',description:'成绩履历与成长故事'},{id:'pacer',kicker:'A 类赛事',title:'官兔档案',description:'配速任务与参赛经历'}];
-const previewPhotos=ref({athlete:[],pacer:[]}),previewTarget=ref('');
+const previewPhotos=ref({athlete:[],pacer:[]}),previewTarget=ref(''),previewLabels=ref({athlete:'',pacer:''});
 const previewLoaded={athlete:false,pacer:false};
 let previewSeq=0;
 function previewImage(value){
@@ -64,6 +66,7 @@ function loadPreviews(){
     if(disposed||seq!==previewSeq||clubId.value||tab.value!=='all')return;
     const people=(d.profiles||[]).filter(person=>person.type===entry.id);
     previewPhotos.value={...previewPhotos.value,[entry.id]:people.map(person=>({id:person.id,name:person.name,image:previewImage(person.avatar||person.photo)})).filter(person=>person.image).slice(0,3)};
+    previewLabels.value={...previewLabels.value,[entry.id]:entry.id==='athlete'?[people[0]?.name,people[0]?.seasonBest || people[0]?.personalBestDisplay || people[0]?.personalBest].filter(Boolean).join(' · '):people[0]?.assignments?.[0]?.raceName || people[0]?.verifiedPacerRaceNames?.[0] || people[0]?.name || ''};
     if(entry.id==='pacer')previewTarget.value=people.flatMap(person=>[person.primaryTargetTime,...(person.targetTimes||[])]).find(value=>/^\d:[0-5]\d(?::[0-5]\d)?$/.test(value||''))||'';
     previewLoaded[entry.id]=true;
   }));

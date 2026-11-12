@@ -7,7 +7,7 @@ const path = require('node:path');
 const crypto = require('node:crypto');
 const { chromium } = require('playwright-core');
 const ROOT = path.resolve(__dirname, '..');
-const OUT = path.join(ROOT, 'design/previews/content-center-20261111');
+const OUT = process.env.CONTENT_AUDIT_OUT ? path.resolve(process.env.CONTENT_AUDIT_OUT) : path.join(ROOT, 'design/previews/content-center-20261111');
 assert.ok(fs.existsSync(path.join(ROOT, 'web/dist/index.html')), 'Build web/dist before running this acceptance.');
 fs.mkdirSync(OUT, { recursive: true });
 const temporary = fs.mkdtempSync(path.join(os.tmpdir(), 'marathon-content-live-'));
