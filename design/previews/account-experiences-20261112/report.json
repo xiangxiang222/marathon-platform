@@ -1,0 +1,115 @@
+{
+  "startedAt": "2026-11-12T03:59:21.565Z",
+  "isolation": "Temporary SQLite/media, ephemeral localhost HTTP, built web/dist, .env hidden, browser external requests blocked; no production writes.",
+  "checks": [
+    {
+      "name": "Dry run describes account gaps without writing any business rows",
+      "passed": true
+    },
+    {
+      "name": "Seed fills empty account experiences while preserving existing manual data",
+      "passed": true
+    },
+    {
+      "name": "Repeating seed is idempotent and virtual experience runs never enter club PK",
+      "passed": true
+    },
+    {
+      "name": "Authenticated business APIs show each account its own plans, runs, results, history and training membership",
+      "passed": true
+    },
+    {
+      "name": "Another account cannot read preserved private history and anonymous requests cannot read personal records",
+      "passed": true
+    },
+    {
+      "name": "390px homepage, personal profile and club views display usable seeded account content",
+      "passed": true
+    },
+    {
+      "name": "320px second account sees its own month training, statistics and race history",
+      "passed": true
+    }
+  ],
+  "views": [
+    {
+      "name": "home",
+      "width": 390,
+      "scrollWidth": 390,
+      "bodyWidth": 390
+    },
+    {
+      "name": "mine",
+      "width": 390,
+      "scrollWidth": 390,
+      "bodyWidth": 390
+    },
+    {
+      "name": "clubs",
+      "width": 390,
+      "scrollWidth": 390,
+      "bodyWidth": 390
+    },
+    {
+      "name": "exercise",
+      "width": 320,
+      "scrollWidth": 320,
+      "bodyWidth": 320
+    },
+    {
+      "name": "history",
+      "width": 320,
+      "scrollWidth": 320,
+      "bodyWidth": 320
+    }
+  ],
+  "errors": [],
+  "limitations": [
+    "Browser checks use desktop Chromium mobile viewports, not WeChat devices.",
+    "Homepage is the public race catalogue; account-specific data is checked on private pages and authenticated APIs."
+  ],
+  "preview": {
+    "accounts": 4,
+    "affectedAccounts": 4,
+    "before": {
+      "clubsEmpty": 4,
+      "clubsBelowTwo": 4,
+      "plansEmpty": 4,
+      "planStatesBelowFour": 4,
+      "historyBelowTwo": 4,
+      "monthRunsBelowTwo": 4,
+      "weekRunsEmpty": 3,
+      "signupsBelowTwo": 4
+    },
+    "totalRows": 88
+  },
+  "seed": {
+    "accounts": 4,
+    "affectedAccounts": 4,
+    "inserted": {
+      "clubs": 3,
+      "club_members": 9,
+      "races": 6,
+      "plans": 23,
+      "results": 7,
+      "activities": 6,
+      "activity_signups": 8,
+      "runs": 7,
+      "mileage_counts": 16,
+      "mileage_rules": 3
+    },
+    "totalRows": 88
+  },
+  "passed": true,
+  "finishedAt": "2026-11-12T03:59:27.360Z",
+  "accountCount": 4,
+  "validation": {
+    "unitTests": 9,
+    "isolatedHttpBrowserChecks": 7,
+    "isolatedAccounts": 4,
+    "viewportChecks": 5,
+    "buildPassed": true,
+    "baseCommit": "d4ad37b"
+  },
+  "artifactNote": "Viewport screenshots were captured during isolated acceptance; this tracked report retains only anonymous check results and dimensions."
+}
