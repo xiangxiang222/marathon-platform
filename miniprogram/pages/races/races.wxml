@@ -11,13 +11,10 @@
     <view class="search">
       <view class="lens"></view>
       <input class="search-input" placeholder-class="search-placeholder" placeholder="搜赛事名称或城市" value="{{q}}" bindinput="onQ" bindconfirm="load" confirm-type="search" aria-label="搜赛事名称或城市" />
-      <button class="find" bindtap="load" aria-label="搜索赛事">搜索</button>
+      <button class="find" bindtap="load" aria-label="搜索赛事"><text>搜索</text></button>
     </view>
     </view>
     <block wx:if="{{!searching}}">
-      <view class="kind-tabs">
-        <view wx:for="{{kinds}}" wx:key="kind" class="kind-tab {{kind === item.kind ? 'on' : ''}}" data-kind="{{item.kind}}" bindtap="setKind">{{item.short}}</view>
-      </view>
       <view class="quick-entries">
         <navigator class="quick-entry" url="/pages/calendar/calendar">
           <image class="quick-icon" src="/images/quick-calendar.png" mode="aspectFit" />
@@ -69,6 +66,12 @@
     <view class="results-head">
       <text class="results-title">{{searching ? '搜索结果' : '全部赛事'}}</text>
       <text wx:if="{{loaded}}" class="total">共 {{total}} 场</text>
+    </view>
+    <view wx:if="{{!searching}}" class="race-format-filter">
+      <text class="format-label">赛事类型</text>
+      <view class="meet-tabs" role="group" aria-label="赛事类型">
+        <view wx:for="{{kinds}}" wx:key="kind" class="kind-tab {{kind === item.kind ? 'on' : ''}}" role="button" aria-role="button" aria-label="{{item.short}}" data-kind="{{item.kind}}" bindtap="setKind">{{item.short}}</view>
+      </view>
     </view>
     <view wx:if="{{!searching}}" class="race-format-filter">
       <text class="format-label">赛事形式</text>

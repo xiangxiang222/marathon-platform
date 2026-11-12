@@ -1,0 +1,107 @@
+{
+  "kind": "Current WXML/WXSS browser source mirrors. Synthetic display fixtures. Not WeChat simulator/device. Selected routes and applicable branches at 320/390; default covers every registered route.",
+  "date": "2026-11-12T04:03:40.073Z",
+  "routeCount": 3,
+  "sceneCount": 3,
+  "limitations": [
+    "Source layout mirror with synthetic fixtures; no lifecycle/API/device interaction",
+    "Native pickers, textareas, scroll areas and custom header are approximated in browser",
+    "Contact sheets crop the top of each page; individual PNGs show the complete rendered page"
+  ],
+  "passed": true,
+  "viewCount": 6,
+  "results": [
+    {
+      "route": "pages/races/races",
+      "scenario": "base",
+      "width": 320,
+      "scrollWidth": 320,
+      "height": 970,
+      "brokenImages": [],
+      "overflow": [],
+      "browserErrors": [],
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/sport/sport",
+      "scenario": "empty",
+      "width": 320,
+      "scrollWidth": 320,
+      "height": 955,
+      "brokenImages": [],
+      "overflow": [],
+      "browserErrors": [],
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/mine/mine",
+      "scenario": "profile",
+      "width": 320,
+      "scrollWidth": 320,
+      "height": 1585,
+      "brokenImages": [],
+      "overflow": [],
+      "browserErrors": [],
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/races/races",
+      "scenario": "base",
+      "width": 390,
+      "scrollWidth": 390,
+      "height": 970,
+      "brokenImages": [],
+      "overflow": [],
+      "browserErrors": [],
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/sport/sport",
+      "scenario": "empty",
+      "width": 390,
+      "scrollWidth": 390,
+      "height": 1040,
+      "brokenImages": [],
+      "overflow": [],
+      "browserErrors": [],
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/mine/mine",
+      "scenario": "profile",
+      "width": 390,
+      "scrollWidth": 390,
+      "height": 1637,
+      "brokenImages": [],
+      "overflow": [],
+      "browserErrors": [],
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    }
+  ],
+  "nativeCheck": {
+    "passed": true,
+    "js": 53,
+    "json": 38,
+    "wxss": 38,
+    "wxmlCompiledPages": 34,
+    "wxssCompiledFiles": 38
+  }
+}

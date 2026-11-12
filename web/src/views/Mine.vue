@@ -46,7 +46,6 @@
         <button class="primary" type="submit">{{ authTab === 'login' ? '登录' : '注册' }}</button>
       </form><p v-if="authTab === 'login'" class="hint">旧账号未设置密码或无法登录？请联系平台管理员核验身份后恢复账号。</p><p v-if="message" :class="ok ? 'success' : 'err'">{{ message }}</p>
     </section>
-    <nav v-if="section !== 'overview'" class="quick-links" aria-label="常用功能"><router-link v-for="item in quickLinks" :key="item.to" :to="item.to"><img :src="item.icon" alt="" /><span>{{ item.label }}</span></router-link></nav>
     <nav class="main-tabs" aria-label="个人中心"><button type="button" :class="{ on: section === 'overview' }" @click="section = 'overview'">总览</button><button type="button" :class="{ on: section === 'plans' }" @click="section = 'plans'">我的赛事</button><button type="button" :class="{ on: section === 'results' }" @click="section = 'results'">完赛记录</button><button type="button" :class="{ on: section === 'profile' }" @click="section = 'profile'">个人资料</button></nav>
     <RunnerDashboard v-if="section === 'overview' && nickname" :data="runnerData" :plans="plans" :loading="runnerLoading" :error="runnerError" @retry="loadRunner"><template #career-actions><div class="compact-poster"><img class="poster-art" :src="posterImage" alt=""/><span>{{ posterAvailable ? '让完赛记录成为一张留念' : '记下第一场完赛，再制作成绩海报' }}</span><router-link v-if="posterAvailable" :to="posterRoute">制作成绩海报 <i aria-hidden="true">↗</i></router-link><button v-else type="button" @click="section = 'results'">去记录成绩 ›</button></div></template></RunnerDashboard>
     <section v-else-if="section === 'overview'" class="sheet empty-state"><h3>积累每一公里，珍藏每次完赛</h3><p>运动趋势、赛事生涯、城市护照和荣誉收藏，都从一次出发开始。</p><router-link to="/">去发现下一场比赛 ›</router-link></section>
@@ -67,12 +66,23 @@
       <section v-else-if="tab === 'photo'" class="sheet"><router-link v-for="item in proofResults" :key="item.race.id + item.distance" class="proof-card" :to="'/races/' + item.race.id"><img :src="proofSrc(item.race.id, item.distance)" :alt="item.race.name + ' 成绩影像'"/><b>{{ item.proofLabel }} · 未核验</b><span>{{ item.race.name }}</span></router-link><p v-if="!proofResults.length" class="empty-copy">在赛事详情页上传证书或奖牌照片，建立自己的完赛相册。</p></section>
       <section v-else class="sheet"><p v-if="career.finished" class="hint">跑过 {{ career.provinces.length }} 个省、{{ career.cities.length }} 个城市 · 本年比赛 {{ career.yearKm }} 公里</p><div class="chips"><button v-for="item in [{id:'all',label:'全部'},{id:'road',label:'路跑'},{id:'trail',label:'越野'},{id:'other',label:'其他'}]" :key="item.id" type="button" :class="{ on: kindFilter === item.id }" @click="kindFilter = item.id">{{ item.label }}</button></div><router-link v-for="item in timeline" :key="item.race.id + item.distance" class="result-row" :to="'/races/' + item.race.id"><p>{{ item.race.raceDate }}</p><span>{{ item.race.name }}</span><b>{{ item.clock }}</b></router-link><p v-if="!timeline.length" class="empty-copy">你的赛事足迹，从第一条完赛记录开始。</p></section>
     </template>
-    <section v-else-if="nickname" class="sheet settings">
-      <button class="setting-row" type="button" :aria-expanded="profileOpen" @click="profileOpen = !profileOpen"><span>修改头像与昵称</span><i>{{ profileOpen ? '⌄' : '›' }}</i></button>
+    <section v-else-if="nickname" class="sheet settings profile-settings">
+      <div class="profile-settings-intro"><span class="profile-settings-kicker">账号与身份</span><h2 class="profile-settings-title">个人资料</h2><p class="profile-settings-note">管理你的头像、昵称和登录方式</p></div>
+      <div class="profile-section">
+        <div class="profile-section-title"><span class="profile-section-icon profile-section-icon-user" aria-hidden="true"></span><div><h3>公开资料</h3><small>跑团成员可以看到这些信息</small></div></div>
+        <button class="setting-row profile-row" type="button" :aria-expanded="profileOpen" @click="profileOpen = !profileOpen"><span>修改头像与昵称<small>{{ nickname }} · 点击编辑资料</small></span><i>{{ profileOpen ? '⌄' : '›' }}</i></button>
+      </div>
       <form v-if="profileOpen" class="auth-form profile-form" @submit.prevent="saveProfile"><label>昵称<input v-model="nicknameEdit" maxlength="20" autocomplete="nickname" /></label><div class="avatar-edit"><img v-if="avatarEdit" :src="avatarEdit" alt="头像预览" /><span v-else class="avatar-empty">{{ nicknameEdit.slice(0, 1) || '跑' }}</span><label class="avatar-choice">选择头像<input type="file" accept="image/jpeg,image/png,image/webp" @change="chooseAvatar" /></label></div><button class="primary" type="submit">保存资料</button><p v-if="profileMessage" :class="profileSaved ? 'success' : 'err'">{{ profileMessage }}</p></form>
-      <button class="setting-row" type="button" :aria-expanded="passwordOpen" @click="togglePassword"><span>{{ hasPassword ? '修改密码' : '设置登录密码' }}</span><i>{{ passwordOpen ? '⌄' : '›' }}</i></button>
+      <div class="profile-section">
+        <div class="profile-section-title"><span class="profile-section-icon profile-section-icon-lock" aria-hidden="true"></span><div><h3>账号安全</h3><small>保护你的赛事与运动记录</small></div></div>
+        <button class="setting-row profile-row" type="button" :aria-expanded="passwordOpen" @click="togglePassword"><span>{{ hasPassword ? '修改密码' : '设置登录密码' }}<small>{{ hasPassword ? '定期更新密码，保障账号安全' : '设置密码后可在其他设备登录' }}</small></span><i>{{ passwordOpen ? '⌄' : '›' }}</i></button>
+      </div>
       <form v-if="passwordOpen" class="auth-form" @submit.prevent="savePassword"><p class="hint">{{ hasPassword ? '请填写当前密码和新密码。' : '设置后，可使用昵称与密码在其他设备登录。' }}</p><input v-if="hasPassword" v-model="currentPassword" type="password" autocomplete="current-password" placeholder="当前密码" /><input v-model="nextPassword" type="password" autocomplete="new-password" placeholder="新密码，8 到 128 位" /><input v-model="nextPassword2" type="password" autocomplete="new-password" placeholder="再输入一次" /><button class="primary" type="submit">保存密码</button><button class="secondary" type="button" @click="cancelPassword">取消</button></form>
-      <p v-if="message" :class="ok ? 'success' : 'err'">{{ message }}</p><router-link v-for="club in clubs" :key="club.id" class="setting-row club-setting" :to="'/clubs/' + club.id"><span>{{ club.name }}<small>{{ club.roleLabel }}</small></span><i>›</i></router-link>
+      <p v-if="message" :class="ok ? 'success' : 'err'">{{ message }}</p>
+      <div v-if="clubs.length" class="profile-section profile-clubs-section">
+        <div class="profile-section-title"><span class="profile-section-icon profile-section-icon-club" aria-hidden="true"></span><div><h3>我的跑团</h3><small>你加入的跑团与身份</small></div></div>
+        <router-link v-for="club in clubs" :key="club.id" class="setting-row club-setting profile-row" :to="'/clubs/' + club.id"><span>{{ club.name }}<small>{{ club.roleLabel }}</small></span><i>›</i></router-link>
+      </div>
     </section>
     <section v-else class="sheet empty-state"><h3>你的资料，由你管理</h3><p>登录后设置头像、昵称和账号密码。</p><button class="text-action" type="button" @click="openAuth">去登录 ›</button></section>
     <router-link v-if="section === 'overview'" class="feedback-entry" :to="feedbackUnread ? '/feedback?mine=1' : '/feedback'"><span class="feedback-entry-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 1-8 8H5l-3 3v-9a10 10 0 0 1 10-10h1M17 3v8m-4-4h8"/></svg></span><span><b>共创建议<span v-if="feedbackUnread" class="feedback-entry-unread">{{ feedbackUnread > 99 ? '99+' : feedbackUnread }} 条新进度</span></b><small>提建议 · 为好想法投票 · 查看采纳进度</small></span><i aria-hidden="true">↗</i></router-link>
@@ -546,4 +556,50 @@ h3 { margin: 0; font-size: 16px; line-height: 24px; font-weight: 600; }.hint, .e
 .compact-poster{gap:8px}.compact-poster>span{font-size:12px}.compact-poster>a,.compact-poster>button{font-size:13px}
 @media(max-width:350px){.identity-panel{min-height:120px;padding-left:14px}.identity-panel .who-top{gap:8px}.identity-panel .face{width:40px;height:40px;font-size:17px}.identity-panel .nick{font-size:17px}.profile-art{width:64px;height:78px}.guest-identity h2{font-size:20px}.account-stats span{font-size:12px}.compact-poster>.poster-art{width:32px;height:36px}.compact-poster>a,.compact-poster>button{font-size:12px}}
 .legal nav a{min-height:44px;font-size:12px}.legal p{font-size:12px}.chips button{min-height:44px}.setting-row{font-size:16px}
+
+.account-hero { margin-bottom: 12px; }
+.identity-panel { min-height: 110px; }
+.identity-kicker { margin-bottom: 9px; }
+.profile-art { width: 66px; height: 75px; }
+.account-stats { padding: 10px 0; }
+.main-tabs { gap: 2px; padding: 4px; margin-bottom: 12px; border: 1px solid var(--line); border-radius: 12px; background: #fff; }
+.main-tabs button { height: 38px; min-height: 38px; padding: 0 2px; border-radius: 8px; font-size: 13px; }
+.main-tabs button.on { border-radius: 8px; background: var(--accent-soft); color: var(--accent); }
+.main-tabs button.on::after { display: none; }
+.plan-list { padding: 0 13px; }
+.plan-row { padding: 12px 0; gap: 8px; }
+.plan-row h3 { margin: 5px 0 0; font-size: 15px; font-weight: 600; line-height: 1.5; }
+.plan-row p { margin-top: 5px; font-size: 12px; line-height: 1.5; }
+.plan-state { padding: 2px 6px; border-radius: 5px; font-size: 12px; line-height: 1.5; }
+.plan-row i { color: #bbb; font-size: 22px; }
+.profile-settings.sheet { padding: 0; border: 0; border-radius: 0; background: transparent; }
+.profile-settings-intro { padding: 2px 4px 13px; }
+.profile-settings-kicker { color: var(--accent); font-size: 12px; line-height: 1.5; }
+.profile-settings-title { margin: 3px 0 0; color: var(--ink); font-size: 20px; font-weight: 600; line-height: 1.4; }
+.profile-settings-note { margin: 3px 0 0; color: #999; font-size: 12px; line-height: 1.6; }
+.profile-section { margin-bottom: 10px; padding: 12px; border: 1px solid var(--line); border-radius: 14px; background: #fff; }
+.profile-section-title { display: flex; align-items: center; gap: 8px; padding-bottom: 9px; }
+.profile-section-title > div { min-width: 0; }
+.profile-section-title h3 { margin: 0; color: #555; font-size: 12px; font-weight: 500; line-height: 1.5; }
+.profile-section-title small { display: block; margin-top: 2px; color: #aaa; font-size: 12px; line-height: 1.5; }
+.profile-section-icon { position: relative; display: block; width: 32px; height: 32px; flex: none; border-radius: 10px; background: #fff0f2; color: #d87988; }
+.profile-section-icon::before,.profile-section-icon::after { display: block; position: absolute; box-sizing: border-box; content: ''; }
+.profile-section-icon-user::before { top: 7px; left: 13px; width: 7px; height: 7px; border: 1.5px solid currentColor; border-radius: 50%; }
+.profile-section-icon-user::after { bottom: 6px; left: 9px; width: 15px; height: 9px; border: 1.5px solid currentColor; border-radius: 8px 8px 3px 3px; }
+.profile-section-icon-lock { color: #b08c5c; background: #fff7e9; }
+.profile-section-icon-lock::before { top: 6px; left: 11px; width: 10px; height: 11px; border: 1.5px solid currentColor; border-radius: 7px 7px 0 0; }
+.profile-section-icon-lock::after { top: 14px; left: 8px; width: 16px; height: 12px; border: 1.5px solid currentColor; border-radius: 3px; background: #fff7e9; }
+.profile-section-icon-club { color: #8e85b5; background: #f3f0fc; }
+.profile-section-icon-club::before { top: 7px; left: 11px; width: 8px; height: 8px; border: 1.5px solid currentColor; border-radius: 50%; }
+.profile-section-icon-club::after { bottom: 6px; left: 7px; width: 19px; height: 10px; border: 1.5px solid currentColor; border-radius: 9px 9px 3px 3px; }
+.profile-row { min-height: 56px; padding: 9px 1px 0; gap: 8px; border-top: 1px solid #f4f4f4; border-bottom: 0; font-size: 14px; font-weight: 500; }
+.profile-row small { margin-top: 4px; color: #999; font-size: 12px; font-weight: 400; line-height: 1.6; }
+.profile-row i { color: #bbb; font-size: 22px; }
+.profile-settings .auth-form { margin: -4px 0 10px; padding: 14px; border: 1px solid var(--line); border-radius: 14px; background: #fff; }
+.profile-clubs-section { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; }
+.profile-clubs-section .profile-section-title { grid-column: 1 / -1; padding-bottom: 2px; }
+.profile-clubs-section .profile-row { min-height: 70px; padding: 10px 8px; border: 0; border-radius: 10px; background: #f8f8fa; font-size: 13px; }
+.profile-clubs-section .profile-row small { margin-top: 3px; font-size: 12px; }
+.profile-clubs-section .profile-row i { font-size: 18px; }
+@media(max-width:350px) { .identity-panel { min-height: 110px; } .profile-art { width: 59px; height: 70px; } .main-tabs button { font-size: 12px; } .profile-section { padding: 11px; } .profile-clubs-section { gap: 6px; } .profile-clubs-section .profile-row { padding: 8px 7px; font-size: 12px; } }
 </style>

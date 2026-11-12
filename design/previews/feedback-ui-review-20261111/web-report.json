@@ -1,0 +1,108 @@
+{
+  "kind": "Home search/filter, exercise and personal profile UI checks with synthetic local replies; no business data writes",
+  "scenes": [
+    {
+      "name": "races",
+      "width": 320,
+      "scrollWidth": 320,
+      "viewport": 320,
+      "brokenImages": [],
+      "passed": true
+    },
+    {
+      "name": "sport",
+      "width": 320,
+      "scrollWidth": 320,
+      "viewport": 320,
+      "brokenImages": [],
+      "passed": true
+    },
+    {
+      "name": "mine",
+      "width": 320,
+      "scrollWidth": 320,
+      "viewport": 320,
+      "brokenImages": [],
+      "passed": true
+    },
+    {
+      "name": "races",
+      "width": 390,
+      "scrollWidth": 390,
+      "viewport": 390,
+      "brokenImages": [],
+      "passed": true
+    },
+    {
+      "name": "sport",
+      "width": 390,
+      "scrollWidth": 390,
+      "viewport": 390,
+      "brokenImages": [],
+      "passed": true
+    },
+    {
+      "name": "mine",
+      "width": 390,
+      "scrollWidth": 390,
+      "viewport": 390,
+      "brokenImages": [],
+      "passed": true
+    }
+  ],
+  "interactions": [
+    {
+      "name": "/races search",
+      "keyword": "杭州",
+      "buttonWidth": 56,
+      "hitHeight": 44,
+      "fillHeight": 34,
+      "inputWidth": 197,
+      "passed": true
+    },
+    {
+      "name": "sport first screen and editors",
+      "width": 320,
+      "heroHeight": 308,
+      "recordBottom": 389,
+      "passed": true
+    },
+    {
+      "name": "profile editors and ten club cards",
+      "width": 320,
+      "count": 10,
+      "columns": 2,
+      "minWidth": 133,
+      "overflow": 0,
+      "passed": true
+    },
+    {
+      "name": "/races search",
+      "keyword": "杭州",
+      "buttonWidth": 56,
+      "hitHeight": 44,
+      "fillHeight": 34,
+      "inputWidth": 267,
+      "passed": true
+    },
+    {
+      "name": "sport first screen and editors",
+      "width": 390,
+      "heroHeight": 319,
+      "recordBottom": 398,
+      "passed": true
+    },
+    {
+      "name": "profile editors and ten club cards",
+      "width": 390,
+      "count": 10,
+      "columns": 2,
+      "minWidth": 164,
+      "overflow": 0,
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "unexpected": [],
+  "passed": true
+}
