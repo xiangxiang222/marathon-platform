@@ -177,7 +177,7 @@ async function main() {
         await page.locator(view.ready).first().waitFor();
         assert.equal(new URL(page.url()).pathname, new URL(base + (view.id === 'club-invite' ? '/clubs/' + fixture.club.id + '/public' : view.route)).pathname, 'audit scene must remain on its requested route or resolved invite page');
         if (view.click) await page.getByRole('button', { name: view.click, exact: true }).click();
-        if (view.id === 'sport-edit') await page.getByRole('button', { name:'编辑记录', exact:true }).first().click();
+        if (view.id === 'sport-edit') await page.getByRole('button', { name:'详情 / 编辑', exact:true }).first().click();
         if (view.id === 'race-share-expanded') await page.locator('.share-toggle').click();
         await page.waitForLoadState('networkidle');
         await page.evaluate(() => document.fonts.ready);

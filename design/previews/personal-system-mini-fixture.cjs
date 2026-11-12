@@ -34,7 +34,8 @@ result.css='button{width:calc(100% - 32px)}\n'+(result.css||'');return result;
 },async audit({page,route,scenario}){const errors=[];
 if(route==='pages/mine/mine'&&scenario==='base'){
  const rows=await page.locator('.runner-entry').evaluateAll(es=>es.map(e=>({height:e.getBoundingClientRect().height,direction:getComputedStyle(e).flexDirection})));
- if(rows.some(row=>row.height>90||row.direction!=='row'))errors.push('Archive links must remain compact vertical rows');
+ if(rows.length!==8||rows.some(row=>row.height>90||row.direction!=='column'))errors.push('Personal services must render eight compact icon entries');
+ const grid=await page.locator('.runner-entry-grid').evaluate(e=>({width:e.clientWidth,entries:[...e.children].map(child=>child.getBoundingClientRect().width)}));if(grid.entries.some(width=>Math.abs(width-grid.width/4)>1))errors.push('Personal services must fit four equal columns at narrow widths');
  const settings=page.locator('.header-settings');if(await settings.count()){const bounds=await settings.boundingBox();const size=await settings.evaluate(e=>({height:e.clientHeight,lineHeight:parseFloat(getComputedStyle(e).lineHeight),whiteSpace:getComputedStyle(e).whiteSpace}));if(bounds.height<44||bounds.width<44||size.whiteSpace!=='nowrap')errors.push('Settings must remain a single line with 44px hit target');}
  if(await page.locator('.profile-art,.poster-art').count())errors.push('Personal UI must not render ornamental bitmap art');
 }
