@@ -1,0 +1,589 @@
+{
+  "kind": "Current WXML/WXSS browser source mirrors. Synthetic display fixtures. Not WeChat simulator/device. Selected routes and applicable branches at 320/390; default covers every registered route.",
+  "date": "2026-11-12T04:00:55.651Z",
+  "output": "/Users/mengxiangxiang/Documents/work/dev/marathon-platform/design/previews/athlete-gender-20261112/mini",
+  "expectedAccent": "#ff1838",
+  "routeCount": 1,
+  "sceneCount": 3,
+  "dataErrors": [],
+  "limitations": [
+    "Source layout mirror with synthetic fixtures; no lifecycle/API/device interaction",
+    "Native pickers, textareas, scroll areas and custom header are approximated in browser",
+    "Contact sheets crop the top of each page; individual PNGs show the complete rendered page"
+  ],
+  "passed": true,
+  "results": [
+    {
+      "route": "pages/news/news",
+      "scenario": "men",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 970,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
+        "surface": "#ffffff",
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f7f7f7",
+        "mint": "#f7f7f7",
+        "lilac": "#f7f7f7",
+        "sun": "#f7f7f7",
+        "peach": "#fff0f2"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "coral"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "BUTTON",
+            "class": "on",
+            "area": 6364,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#ff1838",
+      "browserErrors": [],
+      "genderLayout": {
+        "viewport": 320,
+        "container": {
+          "left": 12.796875,
+          "right": 307.203125,
+          "top": 254.765625,
+          "bottom": 298.765625,
+          "width": 294.40625,
+          "height": 44
+        },
+        "buttons": [
+          {
+            "left": 12.796875,
+            "right": 157.4375,
+            "top": 254.765625,
+            "bottom": 298.765625,
+            "width": 144.640625,
+            "height": 44
+          },
+          {
+            "left": 162.546875,
+            "right": 307.203125,
+            "top": 254.765625,
+            "bottom": 298.765625,
+            "width": 144.65625,
+            "height": 44
+          }
+        ],
+        "season": {
+          "left": 12.796875,
+          "right": 307.203125,
+          "top": 228.765625,
+          "bottom": 247.953125,
+          "width": 294.40625,
+          "height": 19.1875
+        },
+        "seasonInsideTabs": false
+      },
+      "nativeButtonDefault": "width:calc(100% - 32px)",
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/news/news",
+      "scenario": "women",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 970,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
+        "surface": "#ffffff",
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f7f7f7",
+        "mint": "#f7f7f7",
+        "lilac": "#f7f7f7",
+        "sun": "#f7f7f7",
+        "peach": "#fff0f2"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "coral"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "BUTTON",
+            "class": "on",
+            "area": 6365,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#ff1838",
+      "browserErrors": [],
+      "genderLayout": {
+        "viewport": 320,
+        "container": {
+          "left": 12.796875,
+          "right": 307.203125,
+          "top": 254.765625,
+          "bottom": 298.765625,
+          "width": 294.40625,
+          "height": 44
+        },
+        "buttons": [
+          {
+            "left": 12.796875,
+            "right": 157.4375,
+            "top": 254.765625,
+            "bottom": 298.765625,
+            "width": 144.640625,
+            "height": 44
+          },
+          {
+            "left": 162.546875,
+            "right": 307.203125,
+            "top": 254.765625,
+            "bottom": 298.765625,
+            "width": 144.65625,
+            "height": 44
+          }
+        ],
+        "season": {
+          "left": 12.796875,
+          "right": 307.203125,
+          "top": 228.765625,
+          "bottom": 247.953125,
+          "width": 294.40625,
+          "height": 19.1875
+        },
+        "seasonInsideTabs": false
+      },
+      "nativeButtonDefault": "width:calc(100% - 32px)",
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/news/news",
+      "scenario": "unavailable",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 970,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
+        "surface": "#ffffff",
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f7f7f7",
+        "mint": "#f7f7f7",
+        "lilac": "#f7f7f7",
+        "sun": "#f7f7f7",
+        "peach": "#fff0f2"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "coral"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "BUTTON",
+            "class": "",
+            "area": 10721,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "on",
+            "area": 6364,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#ff1838",
+      "browserErrors": [],
+      "genderLayout": {
+        "viewport": 320,
+        "container": {
+          "left": 12.796875,
+          "right": 307.203125,
+          "top": 254.765625,
+          "bottom": 298.765625,
+          "width": 294.40625,
+          "height": 44
+        },
+        "buttons": [
+          {
+            "left": 12.796875,
+            "right": 157.4375,
+            "top": 254.765625,
+            "bottom": 298.765625,
+            "width": 144.640625,
+            "height": 44
+          },
+          {
+            "left": 162.546875,
+            "right": 307.203125,
+            "top": 254.765625,
+            "bottom": 298.765625,
+            "width": 144.65625,
+            "height": 44
+          }
+        ],
+        "season": {
+          "left": 12.796875,
+          "right": 307.203125,
+          "top": 228.765625,
+          "bottom": 247.953125,
+          "width": 294.40625,
+          "height": 19.1875
+        },
+        "seasonInsideTabs": false
+      },
+      "nativeButtonDefault": "width:calc(100% - 32px)",
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/news/news",
+      "scenario": "men",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 1036,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
+        "surface": "#ffffff",
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f7f7f7",
+        "mint": "#f7f7f7",
+        "lilac": "#f7f7f7",
+        "sun": "#f7f7f7",
+        "peach": "#fff0f2"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "coral"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "BUTTON",
+            "class": "on",
+            "area": 7619,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#ff1838",
+      "browserErrors": [],
+      "genderLayout": {
+        "viewport": 390,
+        "container": {
+          "left": 18.71875,
+          "right": 371.28125,
+          "top": 268.96875,
+          "bottom": 312.96875,
+          "width": 352.5625,
+          "height": 44
+        },
+        "buttons": [
+          {
+            "left": 18.71875,
+            "right": 191.875,
+            "top": 268.96875,
+            "bottom": 312.96875,
+            "width": 173.15625,
+            "height": 44
+          },
+          {
+            "left": 198.109375,
+            "right": 371.28125,
+            "top": 268.96875,
+            "bottom": 312.96875,
+            "width": 173.171875,
+            "height": 44
+          }
+        ],
+        "season": {
+          "left": 18.71875,
+          "right": 371.28125,
+          "top": 241.46875,
+          "bottom": 260.65625,
+          "width": 352.5625,
+          "height": 19.1875
+        },
+        "seasonInsideTabs": false
+      },
+      "nativeButtonDefault": "width:calc(100% - 32px)",
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/news/news",
+      "scenario": "women",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 1036,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
+        "surface": "#ffffff",
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f7f7f7",
+        "mint": "#f7f7f7",
+        "lilac": "#f7f7f7",
+        "sun": "#f7f7f7",
+        "peach": "#fff0f2"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "coral"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "BUTTON",
+            "class": "on",
+            "area": 7620,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#ff1838",
+      "browserErrors": [],
+      "genderLayout": {
+        "viewport": 390,
+        "container": {
+          "left": 18.71875,
+          "right": 371.28125,
+          "top": 268.96875,
+          "bottom": 312.96875,
+          "width": 352.5625,
+          "height": 44
+        },
+        "buttons": [
+          {
+            "left": 18.71875,
+            "right": 191.875,
+            "top": 268.96875,
+            "bottom": 312.96875,
+            "width": 173.15625,
+            "height": 44
+          },
+          {
+            "left": 198.109375,
+            "right": 371.28125,
+            "top": 268.96875,
+            "bottom": 312.96875,
+            "width": 173.171875,
+            "height": 44
+          }
+        ],
+        "season": {
+          "left": 18.71875,
+          "right": 371.28125,
+          "top": 241.46875,
+          "bottom": 260.65625,
+          "width": 352.5625,
+          "height": 19.1875
+        },
+        "seasonInsideTabs": false
+      },
+      "nativeButtonDefault": "width:calc(100% - 32px)",
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/news/news",
+      "scenario": "unavailable",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 970,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
+        "surface": "#ffffff",
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f7f7f7",
+        "mint": "#f7f7f7",
+        "lilac": "#f7f7f7",
+        "sun": "#f7f7f7",
+        "peach": "#fff0f2"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "coral"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "BUTTON",
+            "class": "",
+            "area": 13098,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "on",
+            "area": 7619,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#ff1838",
+      "browserErrors": [],
+      "genderLayout": {
+        "viewport": 390,
+        "container": {
+          "left": 18.71875,
+          "right": 371.28125,
+          "top": 268.96875,
+          "bottom": 312.96875,
+          "width": 352.5625,
+          "height": 44
+        },
+        "buttons": [
+          {
+            "left": 18.71875,
+            "right": 191.875,
+            "top": 268.96875,
+            "bottom": 312.96875,
+            "width": 173.15625,
+            "height": 44
+          },
+          {
+            "left": 198.109375,
+            "right": 371.28125,
+            "top": 268.96875,
+            "bottom": 312.96875,
+            "width": 173.171875,
+            "height": 44
+          }
+        ],
+        "season": {
+          "left": 18.71875,
+          "right": 371.28125,
+          "top": 241.46875,
+          "bottom": 260.65625,
+          "width": 352.5625,
+          "height": 19.1875
+        },
+        "seasonInsideTabs": false
+      },
+      "nativeButtonDefault": "width:calc(100% - 32px)",
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    }
+  ]
+}

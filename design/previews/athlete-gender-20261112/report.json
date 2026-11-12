@@ -1,0 +1,270 @@
+{
+  "kind": "Real localhost athlete content API and source web browser gender-filter acceptance",
+  "isolation": "Temporary SQLite/media/content overlays; .env hidden; browser remote requests blocked; no production writes",
+  "checks": [
+    {
+      "name": "320px: real men/women/men switching, equal tap targets, separate season label and no horizontal overflow",
+      "passed": true
+    },
+    {
+      "name": "390px: real men/women/men switching, equal tap targets, separate season label and no horizontal overflow",
+      "passed": true
+    }
+  ],
+  "views": [
+    {
+      "gender": "men",
+      "width": 320,
+      "scrollWidth": 320,
+      "bodyWidth": 320,
+      "container": {
+        "left": 16,
+        "right": 304,
+        "top": 331.5625,
+        "bottom": 375.5625,
+        "width": 288,
+        "height": 44
+      },
+      "buttons": [
+        {
+          "left": 16,
+          "right": 157,
+          "top": 331.5625,
+          "bottom": 375.5625,
+          "width": 141,
+          "height": 44
+        },
+        {
+          "left": 163,
+          "right": 304,
+          "top": 331.5625,
+          "bottom": 375.5625,
+          "width": 141,
+          "height": 44
+        }
+      ],
+      "season": {
+        "left": 16,
+        "right": 304,
+        "top": 304.375,
+        "bottom": 323.5625,
+        "width": 288,
+        "height": 19.1875
+      },
+      "firstRowBottom": 479.5625,
+      "screenshot": "web-men-320.png"
+    },
+    {
+      "gender": "women",
+      "width": 320,
+      "scrollWidth": 320,
+      "bodyWidth": 320,
+      "container": {
+        "left": 16,
+        "right": 304,
+        "top": 331.5625,
+        "bottom": 375.5625,
+        "width": 288,
+        "height": 44
+      },
+      "buttons": [
+        {
+          "left": 16,
+          "right": 157,
+          "top": 331.5625,
+          "bottom": 375.5625,
+          "width": 141,
+          "height": 44
+        },
+        {
+          "left": 163,
+          "right": 304,
+          "top": 331.5625,
+          "bottom": 375.5625,
+          "width": 141,
+          "height": 44
+        }
+      ],
+      "season": {
+        "left": 16,
+        "right": 304,
+        "top": 304.375,
+        "bottom": 323.5625,
+        "width": 288,
+        "height": 19.1875
+      },
+      "firstRowBottom": 479.5625,
+      "screenshot": "web-women-320.png"
+    },
+    {
+      "gender": "men",
+      "width": 320,
+      "scrollWidth": 320,
+      "bodyWidth": 320,
+      "container": {
+        "left": 16,
+        "right": 304,
+        "top": 331.5625,
+        "bottom": 375.5625,
+        "width": 288,
+        "height": 44
+      },
+      "buttons": [
+        {
+          "left": 16,
+          "right": 157,
+          "top": 331.5625,
+          "bottom": 375.5625,
+          "width": 141,
+          "height": 44
+        },
+        {
+          "left": 163,
+          "right": 304,
+          "top": 331.5625,
+          "bottom": 375.5625,
+          "width": 141,
+          "height": 44
+        }
+      ],
+      "season": {
+        "left": 16,
+        "right": 304,
+        "top": 304.375,
+        "bottom": 323.5625,
+        "width": 288,
+        "height": 19.1875
+      },
+      "firstRowBottom": 479.5625,
+      "screenshot": "web-men-320.png"
+    },
+    {
+      "gender": "men",
+      "width": 390,
+      "scrollWidth": 390,
+      "bodyWidth": 390,
+      "container": {
+        "left": 20,
+        "right": 370,
+        "top": 331.5625,
+        "bottom": 375.5625,
+        "width": 350,
+        "height": 44
+      },
+      "buttons": [
+        {
+          "left": 20,
+          "right": 192,
+          "top": 331.5625,
+          "bottom": 375.5625,
+          "width": 172,
+          "height": 44
+        },
+        {
+          "left": 198,
+          "right": 370,
+          "top": 331.5625,
+          "bottom": 375.5625,
+          "width": 172,
+          "height": 44
+        }
+      ],
+      "season": {
+        "left": 20,
+        "right": 370,
+        "top": 304.375,
+        "bottom": 323.5625,
+        "width": 350,
+        "height": 19.1875
+      },
+      "firstRowBottom": 492.34375,
+      "screenshot": "web-men-390.png"
+    },
+    {
+      "gender": "women",
+      "width": 390,
+      "scrollWidth": 390,
+      "bodyWidth": 390,
+      "container": {
+        "left": 20,
+        "right": 370,
+        "top": 331.5625,
+        "bottom": 375.5625,
+        "width": 350,
+        "height": 44
+      },
+      "buttons": [
+        {
+          "left": 20,
+          "right": 192,
+          "top": 331.5625,
+          "bottom": 375.5625,
+          "width": 172,
+          "height": 44
+        },
+        {
+          "left": 198,
+          "right": 370,
+          "top": 331.5625,
+          "bottom": 375.5625,
+          "width": 172,
+          "height": 44
+        }
+      ],
+      "season": {
+        "left": 20,
+        "right": 370,
+        "top": 304.375,
+        "bottom": 323.5625,
+        "width": 350,
+        "height": 19.1875
+      },
+      "firstRowBottom": 492.34375,
+      "screenshot": "web-women-390.png"
+    },
+    {
+      "gender": "men",
+      "width": 390,
+      "scrollWidth": 390,
+      "bodyWidth": 390,
+      "container": {
+        "left": 20,
+        "right": 370,
+        "top": 331.5625,
+        "bottom": 375.5625,
+        "width": 350,
+        "height": 44
+      },
+      "buttons": [
+        {
+          "left": 20,
+          "right": 192,
+          "top": 331.5625,
+          "bottom": 375.5625,
+          "width": 172,
+          "height": 44
+        },
+        {
+          "left": 198,
+          "right": 370,
+          "top": 331.5625,
+          "bottom": 375.5625,
+          "width": 172,
+          "height": 44
+        }
+      ],
+      "season": {
+        "left": 20,
+        "right": 370,
+        "top": 304.375,
+        "bottom": 323.5625,
+        "width": 350,
+        "height": 19.1875
+      },
+      "firstRowBottom": 492.34375,
+      "screenshot": "web-men-390.png"
+    }
+  ],
+  "errors": [],
+  "passed": true
+}
