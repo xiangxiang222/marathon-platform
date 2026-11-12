@@ -1,5 +1,5 @@
 <template>
-  <main class="club-detail-page album-page service-page">
+  <main class="club-detail-page album-page service-page service-session">
     <header class="topbar">
       <router-link :to="'/clubs/' + clubId + '/activities/' + activityId" aria-label="返回">‹</router-link>
       <h1>相册</h1>
@@ -10,10 +10,10 @@
       <p>{{ loadError }}</p><button type="button" class="primary" :disabled="loading" @click="retryLoad">{{ loading ? '正在重试…' : '重新加载' }}</button>
     </section>
     <div v-if="activity" class="block album-hero">
-      <span class="detail-kicker">留住一起奔跑的瞬间</span>
+      <span class="detail-kicker">跑团活动相册</span>
       <h2>{{ activity.title }}</h2>
       <p class="hint">{{ activity.dateLabel }}<template v-if="activity.place"> · {{ activity.place }}</template></p>
-      <p class="hint">{{ photoCount }} 张照片 · {{ videoCount }} 个视频</p>
+      <div class="session-my-state"><span>{{ photoCount }} 张照片</span><span>{{ videoCount }} 个视频</span><span>{{ review ? "上传内容需审核" : "记录活动瞬间" }}</span></div></div><section v-if="activity" class="block album-collection"><div class="service-section-heading"><h2>活动影像</h2><span>{{ tab === "photo" ? photoCount + " 张照片" : videoCount + " 个视频" }}</span></div>
       <div class="tools">
         <button type="button" class="status" :class="{ on: tab === 'photo' }" @click="tab = 'photo'">照片</button>
         <button type="button" class="status" :class="{ on: tab === 'video' }" @click="tab = 'video'">视频</button>
@@ -44,7 +44,7 @@
         <input type="file" multiple accept="image/jpeg,image/png,image/webp,video/mp4,video/quicktime" @change="onFiles" />
       </label>
       <p class="hint">照片不超过 8MB，视频不超过 40MB。还剩 {{ photoLeft }} 张照片、{{ videoLeft }} 个视频。</p>
-    </div>
+    </section>
     <div v-if="viewer" class="viewer" @click="viewer = null">
       <button v-if="viewerIndex > 0" type="button" class="nav prev" @click.stop="step(-1)">‹</button>
       <div @click.stop>

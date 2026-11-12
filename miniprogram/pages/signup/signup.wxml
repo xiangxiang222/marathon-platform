@@ -1,10 +1,10 @@
-<view wx:if="{{activity}}" class="signup-page mini-signup-signup service-page">
+<view wx:if="{{activity}}" class="signup-page mini-signup-signup service-page service-session">
   <view class="signup-hero">
     <view class="hero-label">报名活动</view>
     <view class="signup-title">{{activity.title}}</view>
     <view class="signup-time">{{activity.timeLabel || '时间待定'}}</view>
     <view class="signup-place">{{activity.gatherPlace || activity.place || '地点待定'}}<text wx:if="{{activity.plannedKm}}"> · {{activity.plannedKm}} 公里</text></view>
-    <view class="signup-by">以 {{viewerName}} 的身份报名</view>
+    <view class="session-my-state"><text>报名人</text><text class="state-value">{{viewerName}}</text><text>{{groups.length ? "选择组别后确认" : "无需分组"}}</text></view>
   </view>
 
   <view class="selection-section">

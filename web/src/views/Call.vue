@@ -1,5 +1,5 @@
 <template>
-  <main class="club-detail-page service-page">
+  <main class="club-detail-page service-page service-session result-service">
     <header class="topbar">
       <router-link :to="'/clubs/' + clubId" aria-label="返回">‹</router-link>
       <h1>成绩统计</h1>
@@ -7,19 +7,19 @@
     </header>
     <template v-if="call">
       <div class="block detail-hero">
-        <span class="detail-kicker">每一份努力，值得记录</span>
+        <span class="detail-kicker">跑团成绩接龙</span>
         <h2>{{ call.title }}</h2>
         <p class="rank-label">{{ call.raceDate }} · 截止 {{ call.deadlineLabel }}<template v-if="call.closed"> · 已截止</template></p>
         <p v-if="call.note" class="rank-label">{{ call.note }}</p>
-        <p class="sum">{{ call.summary }}</p>
-        <details class="share-fold"><summary>查看成绩接龙文字</summary><pre class="share-text">{{ call.shareText }}</pre></details>
+        <div class="session-my-state"><span>我的成绩</span><strong>{{ ownRow ? ownRow.clock : "尚未填写" }}</strong><span>{{ call.closed ? "接龙已截止" : "可填写或更新" }}</span></div><p class="sum">{{ call.summary }}</p>
+        <details class="share-fold service-distribution"><summary>分享与导出成绩</summary><pre class="share-text">{{ call.shareText }}</pre>
         <div class="detail-actions"><button class="undo" type="button" @click="copy(call.shareText, '文字已复制，可以贴到微信群')">复制到微信群</button>
         <button class="undo" type="button" @click="copy(call.boardText, '成绩榜已复制')">复制成绩榜</button>
         <button class="undo" type="button" @click="makePoster">生成成绩长图</button>
-        <button class="undo" type="button" @click="downloadCsv">导出完整 CSV</button></div>
+        <button class="undo" type="button" @click="downloadCsv">导出完整 CSV</button></div></details>
       </div>
       <form v-if="!call.closed" class="block" @submit.prevent="submitOwn">
-        <h2>记录我的成绩</h2>
+        <div class="service-section-heading"><h2>{{ ownRow ? "更新我的成绩" : "记录我的成绩" }}</h2><span>完赛用时</span></div>
         <div class="checks">
           <label v-for="opt in options" :key="opt.id"><input v-model="distance" type="radio" name="distance" :value="opt.id" /> {{ opt.label }}</label>
         </div>
@@ -29,7 +29,7 @@
       </form>
       <p v-else class="block rank-label">已经截止。要改自己的成绩，请让团长把截止延后。</p>
       <div v-for="group in call.groups" :key="group.distance" class="block">
-        <h2>{{ group.label }}</h2>
+        <div class="service-section-heading"><h2>{{ group.label }}</h2><span>{{ group.rows.length }} 位跑友</span></div>
         <div v-for="row in group.rows" :key="row.id" class="mate" :class="{ mine: row.mine }">
           <span><router-link v-if="row.userId" :to="memberLink(row.userId)" class="member-name-link">{{ row.place }} {{ row.nickname }}</router-link><template v-else>{{ row.place }} {{ row.nickname }}</template><template v-if="row.mine"> · 我</template><template v-if="row.staffFilled"> · 管理员补录</template></span>
           <b>

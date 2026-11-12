@@ -1,5 +1,5 @@
 <template>
-  <main class="club-detail-page service-page">
+  <main class="club-detail-page service-page service-session internal-service">
     <header class="topbar">
       <router-link :to="'/clubs/' + clubId" aria-label="返回">‹</router-link>
       <h1>队内赛</h1>
@@ -7,17 +7,17 @@
     </header>
     <template v-if="race">
       <div class="block detail-hero">
-        <span class="detail-kicker">跑出状态 · 队内赛</span>
+        <span class="detail-kicker">跑团队内赛</span>
         <h2>{{ race.title }}</h2>
         <p class="rank-label">{{ race.startsLabel }}<template v-if="race.place"> · {{ race.place }}</template> · {{ race.distanceLabel }}</p>
-        <p class="rank-label">{{ race.statusLabel }} · 报名截止 {{ race.deadlineLabel }}</p>
+        <div class="session-my-state"><span>{{ race.statusLabel }}</span><strong>{{ race.mine ? (race.mine.clock || "我已报名") : "未报名" }}</strong></div><p class="rank-label">报名截止 {{ race.deadlineLabel }}</p>
         <p v-if="race.note" class="rank-label">{{ race.note }}</p>
         <p class="rank-label">{{ race.finishPoints ? "完赛每人 " + race.finishPoints + " 分" : "这场完赛不记分" }}</p>
         <details class="share-fold"><summary>邀请跑友 · 查看报名文字</summary><pre class="share-text">{{ race.shareText }}</pre><button class="undo" type="button" @click="copy(race.shareText)">复制到微信群</button></details>
       </div>
       <form v-if="race.canSignup || race.canCancel" class="block" @submit.prevent="signup">
-        <h2>选择组别，加入比赛</h2>
-        <p class="rank-label">{{ nickname }}</p>
+        <div class="service-section-heading"><h2>{{ race.mine ? "我的参赛组别" : "选择参赛组别" }}</h2><span>{{ nickname }}</span></div>
+        <p class="rank-label">选择适合自己的组别，报名后可在名单中查看。</p>
         <div class="checks">
           <label v-for="group in race.groups" :key="group.id">
             <input v-model="groupId" type="radio" name="group" :value="group.id" :disabled="group.full && groupId !== group.id" />
@@ -28,13 +28,13 @@
         <button v-if="race.canCancel" class="undo" type="button" @click="cancelSignup">取消报名</button>
       </form>
       <form v-if="race.canResult" class="block" @submit.prevent="saveMine">
-        <h2>完赛用时</h2>
+        <div class="service-section-heading"><h2>记录本场成绩</h2><span>我的完赛用时</span></div>
         <input v-model="time" placeholder="45:30 或 3:29:59" />
         <button class="primary" type="submit">提交</button>
         <button class="undo" type="button" @click="mark('dnf')">未完赛</button>
       </form>
       <div v-for="group in race.groups" :key="group.id" class="block">
-        <h2>{{ group.name }}</h2>
+        <div class="service-section-heading"><h2>{{ group.name }}</h2><span>{{ group.rows.length }} 人参赛</span></div>
         <p v-if="!group.rows.length" class="rank-label">还没有人报名。</p>
         <div v-for="row in group.rows" :key="row.userId" class="mate" :class="{ mine: row.mine }">
           <router-link :to="memberLink(row.userId)" class="member-name-link">{{ row.place }} {{ row.nickname }}<template v-if="row.mine"> · 我</template></router-link>

@@ -1,16 +1,16 @@
-<view class="pad club-detail mini-call-call service-page" wx:if="{{call}}">
-  <view class="card detail-hero"><view class="detail-kicker">每一份努力，值得记录</view>
+<view class="pad club-detail mini-call-call service-page service-session result-service" wx:if="{{call}}">
+  <view class="card detail-hero"><view class="detail-kicker">跑团成绩接龙</view>
     <view class="h2">{{call.title}}</view>
     <view class="src">{{call.raceDate}} · 截止 {{call.deadlineLabel}}{{call.closed ? ' · 已截止' : ''}}</view>
     <view wx:if="{{call.note}}" class="src">{{call.note}}</view>
-    <view class="sum">{{call.summary}}</view>
-    <button class="fold-toggle" data-key="shareExpanded" bindtap="toggleDetailSection"><text>查看接龙文字</text><text>{{shareExpanded ? "−" : "+"}}</text></button><view wx:if="{{shareExpanded}}" class="share-copy">{{call.shareText}}</view>
-    <view class="detail-actions"><button class="ghost" open-type="share">邀请接龙</button>
+    <view class="session-my-state"><text>{{call.closed ? "接龙已截止" : "接龙进行中"}}</text><text>{{call.summary}}</text></view>
+    <button class="fold-toggle" data-key="shareExpanded" bindtap="toggleDetailSection"><text>分享与导出成绩</text><text>{{shareExpanded ? "−" : "+"}}</text></button><view wx:if="{{shareExpanded}}" class="share-copy">{{call.shareText}}</view>
+    <view wx:if="{{shareExpanded}}" class="detail-actions"><button class="ghost" open-type="share">邀请接龙</button>
     <button class="ghost" data-text="{{call.boardText}}" bindtap="copyText">复制成绩榜</button>
     <button class="ghost" bindtap="exportPoster">生成成绩长图</button></view>
   </view>
   <view class="card" wx:if="{{!call.closed}}">
-    <view class="h2">记录我的成绩</view>
+    <view class="service-section-heading"><view class="h2">记录我的成绩</view><text>完赛用时</text></view>
     <view class="src">距离：{{distanceLabel || '还没选'}}</view>
     <view class="detail-options"><button wx:for="{{options}}" wx:key="id" class="ghost {{distance === item.id ? 'on' : ''}}" data-id="{{item.id}}" data-label="{{item.label}}" bindtap="pickDistance">{{item.label}}</button></view>
     <view class="stack">
@@ -22,7 +22,7 @@
   </view>
   <view wx:else class="card"><view class="src">已经截止。要改自己的成绩，请让团长把截止延后。</view></view>
   <view wx:for="{{call.groups}}" wx:for-item="group" wx:key="distance" class="card">
-    <view class="h2">{{group.label}}</view>
+    <view class="service-section-heading"><view class="h2">{{group.label}}</view><text>{{group.rows.length}} 位跑友</text></view>
     <view wx:for="{{group.rows}}" wx:for-item="row" wx:key="id">
       <view class="row">
         <text>{{row.place}} {{row.nickname}}{{row.mine ? ' · 我' : ''}}{{row.staffFilled ? ' · 管理员补录' : ''}}</text>
