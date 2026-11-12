@@ -1,5 +1,5 @@
 <view class="legal-page mini-legal-legal">
-  <view class="legal-hero"><view class="eyebrow">协议与隐私</view><view class="hero-title">服务规则与<view>个人信息保护</view></view><view class="hero-copy">了解我们提供的服务、如何处理个人信息，以及你可以行使的权利。</view><view wx:if="{{catalog}}" class="version"><text>版本 {{catalog.version}}</text><text>更新 {{catalog.updatedAt}}</text><text>生效 {{catalog.effectiveDate || '待公布'}}</text></view></view>
+  <view class="legal-hero"><view class="hero-title">协议与隐私中心</view><view class="hero-copy">了解我们提供的服务、如何处理个人信息，以及你可以行使的权利。</view><view wx:if="{{catalog}}" class="version"><text>版本 {{catalog.version}}</text><text>更新 {{catalog.updatedAt}}</text><text>生效 {{catalog.effectiveDate || '待公布'}}</text></view></view>
   <view wx:if="{{loading && !catalog}}" class="state">正在读取协议文件…</view><view wx:if="{{message}}" class="notice">{{message}}<button bindtap="load" disabled="{{loading}}">重新读取</button></view>
   <block wx:if="{{catalog}}">
     <view wx:if="{{catalog.ready === false}}" class="notice draft">当前显示工作区草案，尚未发布生效。请以核实并正式发布后的版本及生效日期为准。</view>

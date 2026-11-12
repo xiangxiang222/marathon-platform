@@ -44,10 +44,22 @@ async function submit() { if (!club.value || saving.value || profileSaving.value
 async function saveProfile() { if (!club.value || profileSaving.value || saving.value) return; const stamp = capture(); if (!current(stamp)) return; profileSaving.value = true; error.value = ''; profileNotice.value = ''; try { await request('/clubs/' + route.params.id + '/profile', { method: 'PUT', body: JSON.stringify(profile) }); if (!current(stamp)) return; const result = await request('/clubs/' + route.params.id + '/identity'); club.value = result.club; verification.value = result.verification || null; profileNotice.value = '公开名片资料已更新。'; } catch (err) { if (!err.stale && current(stamp)) error.value = err.message; } finally { if (current(stamp)) profileSaving.value = false; } }
 watch(() => [token.value, route.params.id], load, { immediate: true });
 </script>
-<style scoped>.identity-application{margin-top:20px}.identity-application .club-form-note{margin-bottom:22px}.club-record p{margin:8px 0}.club-form-panel h2{overflow-wrap:anywhere}.club-form-panel h2 :deep(.identity-badge){vertical-align:middle}.club-form-panel { border-color:var(--line); border-radius:18px; }
+<style scoped>.identity-application{margin-top:20px}.identity-application .club-form-note{margin-bottom:22px}.club-record p{margin:8px 0}.club-form-panel h2{overflow-wrap:anywhere}.club-form-panel h2 :deep(.identity-badge){vertical-align:middle}.club-form-panel { border-color:var(--line); border-radius:16px; }
 .club-form-panel h2 { font-size:20px; line-height:1.5; }
-.club-form-title { font-size:26px; }
+.club-form-title { font-size:24px; }
 
 
-.club-form-page { background:transparent; }.club-form-page>.topbar { background:transparent; }.club-form-eyebrow { color:#4b7b8b; }.club-form-panel { background:#fff;border-color:#dce7f0;box-shadow:var(--card-shadow,0 6px 20px #526c8b0a); }.club-private-tag { background:var(--sky-soft,#eaf4ff);color:#426f96;border-color:#d5e4f3; }.club-form-note { background:var(--sun-soft,#fff4d7);border-color:#eddfbb; }
+.club-form-page { background:transparent; }.club-form-page>.topbar { background:transparent; }.club-form-eyebrow { color:var(--muted); }.club-form-panel { background:var(--card);border-color:var(--line);box-shadow:none; }.club-private-tag { background:var(--sky-soft,var(--field-bg));color:var(--muted);border-color:var(--line); }.club-form-note { background:var(--sun-soft,var(--field-bg));border-color:var(--line); }
+
+/* Shared typography and controls for club services. */
+
+.club-form-page { color:var(--ink); background:var(--bg); }
+.club-form-title { font-size:24px; font-weight:600; letter-spacing:normal; }
+.club-form-eyebrow { color:var(--muted); font-size:12px; letter-spacing:normal; }
+.club-form-panel,.preview-card { border:1px solid var(--line); border-radius:12px; background:var(--card); box-shadow:none; }
+.club-form-panel h2 { font-size:18px; font-weight:600; }
+.club-form-note,.club-private-tag,.same-name { border-color:var(--line); background:var(--field-bg); color:var(--muted); }
+.preview-track { display:none; }
+.preview-card h3 { font-size:22px; font-weight:600; }
+
 </style>

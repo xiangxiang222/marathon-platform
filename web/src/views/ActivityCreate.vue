@@ -27,7 +27,7 @@
         <section v-if="step === 0" class="step-panel">
           <div class="step-heading"><span>01 / 03 · 基本信息</span><h2>这次跑什么？</h2><p class="timezone-note">活动时间按北京时间填写</p></div>
           <section v-if="!templateMode" class="template-library">
-            <div class="template-library-heading"><div><span class="small-kicker">A GOOD START</span><h3>从模板开始</h3><p>内容先备好，日期这次定。</p></div><button type="button" class="text-button" @click="enterTemplateEditor()">＋ 创建模板</button></div>
+            <div class="template-library-heading"><div><h3>从模板开始</h3><p>内容先备好，日期这次定。</p></div><button type="button" class="text-button" @click="enterTemplateEditor()">＋ 创建模板</button></div>
             <div class="templates" aria-label="基础训练模板">
               <button v-for="item in templates" :key="item.id" type="button" :class="['template', { selected: appliedTemplateKey === 'preset:' + item.id }]" :aria-pressed="appliedTemplateKey === 'preset:' + item.id" @click="chooseTemplate(item)"><span class="template-icon">{{ item.mark }}</span><strong>{{ item.label }}</strong><small>{{ item.hint }}</small><span class="template-check" v-if="appliedTemplateKey === 'preset:' + item.id">✓</span></button>
             </div>
@@ -40,7 +40,7 @@
             </div>
             <p v-else class="template-hint">把常用地点、配速分组和训练安排存下来，全团管理员都能复用。</p>
           </section>
-          <div v-else class="template-editor-name"><span class="small-kicker">CLUB TEMPLATE</span><label class="field"><span>模板名称 <b>*</b></span><input v-model.trim="templateName" maxlength="30" placeholder="例：周三间歇训练" /></label><label class="field"><span>训练类型</span><select v-model="form.trainingType"><option value="custom">自由训练</option><option v-for="item in templates" :key="item.id" :value="item.id">{{ item.label }}</option></select></label></div>
+          <div v-else class="template-editor-name"><span class="small-kicker">跑团模板</span><label class="field"><span>模板名称 <b>*</b></span><input v-model.trim="templateName" maxlength="30" placeholder="例：周三间歇训练" /></label><label class="field"><span>训练类型</span><select v-model="form.trainingType"><option value="custom">自由训练</option><option v-for="item in templates" :key="item.id" :value="item.id">{{ item.label }}</option></select></label></div>
           <div class="form-section-title"><span>01</span><h3>{{ templateMode ? '常用训练内容' : '这一次的安排' }}</h3><small v-if="!templateMode">必填项已标记 *</small></div>
           <label v-if="!templateMode && activeTiming.startTime" class="reuse-date-row"><span><b>常用时刻 {{ activeTiming.startTime }}</b><small>选择本次日期，即可带入时间与截止安排</small></span><input type="date" aria-label="选择本次活动日期" @change="applyTemplateDate" /></label>
           <div class="form-grid">
@@ -70,7 +70,7 @@
             <button class="add-group" type="button" :disabled="form.groups.length >= 12" @click="addGroup">＋ 添加分组</button></div>
           <div v-if="form.groups.length" class="group-list">
             <div v-for="(group, index) in form.groups" :key="index" class="group-editor">
-              <div class="group-card-heading"><span class="group-index">{{ group.trainingGroupId ? '来自常设训练组' : 'GROUP ' + String(index + 1).padStart(2, '0') }}</span><button class="remove-group" type="button" :aria-label="'删除' + (group.name || '第' + (index + 1) + '组')" @click="removeGroup(index)">删除 <span>×</span></button></div>
+              <div class="group-card-heading"><span class="group-index">{{ group.trainingGroupId ? '来自常设训练组' : '训练组 ' + String(index + 1).padStart(2, '0') }}</span><button class="remove-group" type="button" :aria-label="'删除' + (group.name || '第' + (index + 1) + '组')" @click="removeGroup(index)">删除 <span>×</span></button></div>
               <div class="group-fields"><label class="field"><span>组名 <b>*</b></span><input v-model.trim="group.name" maxlength="20" placeholder="例：轻松跑组" /></label><label class="field"><span>分组类型</span><select v-model="group.kind"><option v-for="item in groupKinds" :key="item.id" :value="item.id">{{ item.label }}</option></select></label><label class="field"><span>配速或目标</span><input v-model.trim="group.pace" maxlength="40" placeholder="例：6′30″–7′00″ /km" /></label><label class="field"><span>名额 <small>0 为不限</small></span><input v-model.number="group.capacity" type="number" min="0" max="500" /></label></div>
             </div>
           </div>
@@ -127,7 +127,7 @@
       </template>
     </div>
 
-    <div v-if="templateSaveOpen || pendingDeleteTemplate" class="template-modal" @click.self="closeTemplateModal" @keydown.esc="closeTemplateModal"><section class="template-sheet" role="dialog" aria-modal="true" :aria-labelledby="pendingDeleteTemplate ? 'delete-template-title' : 'save-template-title'"><button type="button" class="sheet-close" aria-label="关闭" :disabled="templateSaving" @click="closeTemplateModal">×</button><template v-if="pendingDeleteTemplate"><span class="small-kicker">CLUB TEMPLATE</span><h2 id="delete-template-title">删除这个训练模板？</h2><p>“{{ pendingDeleteTemplate.name }}”将从跑团模板库移除，已发布活动不受影响。</p><p v-if="templateActionError" class="form-error" role="alert">{{ templateActionError }}</p><div class="sheet-actions"><button type="button" class="outline" :disabled="templateSaving" @click="closeTemplateModal">保留模板</button><button type="button" class="primary" :disabled="templateSaving" @click="deleteTemplate">{{ templateSaving ? '正在删除…' : '确认删除' }}</button></div></template><template v-else><span class="small-kicker">SAVE FOR YOUR NEXT RUN</span><h2 id="save-template-title">{{ editingTemplate && templateMode ? '更新跑团模板' : '给常用训练起个名字' }}</h2><p>保存地点、分组、配速与训练安排；日期和活动期次每次单独确认。</p><label class="field"><span>模板名称</span><input v-model.trim="templateName" maxlength="30" placeholder="例：周三间歇训练" @keydown.enter.prevent="saveTemplate" /></label><p v-if="templateActionError" class="form-error" role="alert">{{ templateActionError }}</p><button type="button" class="primary sheet-submit" :disabled="templateSaving" @click="saveTemplate">{{ templateSaving ? '正在保存…' : editingTemplate && templateMode ? '保存修改' : '保存到跑团模板' }}</button></template></section></div>
+    <div v-if="templateSaveOpen || pendingDeleteTemplate" class="template-modal" @click.self="closeTemplateModal" @keydown.esc="closeTemplateModal"><section class="template-sheet" role="dialog" aria-modal="true" :aria-labelledby="pendingDeleteTemplate ? 'delete-template-title' : 'save-template-title'"><button type="button" class="sheet-close" aria-label="关闭" :disabled="templateSaving" @click="closeTemplateModal">×</button><template v-if="pendingDeleteTemplate"><span class="small-kicker">跑团模板</span><h2 id="delete-template-title">删除这个训练模板？</h2><p>“{{ pendingDeleteTemplate.name }}”将从跑团模板库移除，已发布活动不受影响。</p><p v-if="templateActionError" class="form-error" role="alert">{{ templateActionError }}</p><div class="sheet-actions"><button type="button" class="outline" :disabled="templateSaving" @click="closeTemplateModal">保留模板</button><button type="button" class="primary" :disabled="templateSaving" @click="deleteTemplate">{{ templateSaving ? '正在删除…' : '确认删除' }}</button></div></template><template v-else><span class="small-kicker">SAVE FOR YOUR NEXT RUN</span><h2 id="save-template-title">{{ editingTemplate && templateMode ? '更新跑团模板' : '给常用训练起个名字' }}</h2><p>保存地点、分组、配速与训练安排；日期和活动期次每次单独确认。</p><label class="field"><span>模板名称</span><input v-model.trim="templateName" maxlength="30" placeholder="例：周三间歇训练" @keydown.enter.prevent="saveTemplate" /></label><p v-if="templateActionError" class="form-error" role="alert">{{ templateActionError }}</p><button type="button" class="primary sheet-submit" :disabled="templateSaving" @click="saveTemplate">{{ templateSaving ? '正在保存…' : editingTemplate && templateMode ? '保存修改' : '保存到跑团模板' }}</button></template></section></div>
     <div v-if="restoreAvailable && !templateMode" class="restore-toast" role="status">
       <span>发现这支跑团的未完成草稿</span>
       <button type="button" @click="restoreDraft">恢复</button><button type="button" @click="discardDraft">忽略</button>
@@ -595,7 +595,7 @@ onUnmounted(() => { loadVersion += 1; templatesVersion += 1; });
 .activity-create button { font: inherit; cursor: pointer; }
 .activity-create button:disabled { cursor: default; opacity: .5; }
 .topbar { position: sticky; z-index: 5; top: 0; display: grid; grid-template-columns: 40px 1fr auto; align-items: center; min-height: 62px; padding: 0 18px; border: 0; background: #f5f5f5f5; backdrop-filter: blur(16px); }
-.topbar > a { display: grid; place-items: center; width: 34px; min-height: 44px; color: var(--ink); font-size: 31px; line-height: 1; }
+.topbar > a { display: grid; place-items: center; width: 34px; min-height: 44px; color: var(--ink); font-size: 24px; line-height: 1; }
 .topbar h1 { margin: 0; font-size: 16px; font-weight: 600; }
 .activity-create .draft-action { justify-self: end; min-height: 44px; padding: 0 4px; color: var(--accent); font-size: 12px; font-weight: 600; white-space: nowrap; }
 .create-wrap { width: min(100%, 900px); margin: 0 auto; padding: 10px 22px 34px; }
@@ -604,25 +604,25 @@ onUnmounted(() => { loadVersion += 1; templatesVersion += 1; });
 .steps button+button::before { position: absolute; left: -13px; top: 16px; width: 14px; height: 1px; background: #ebebed; content: ''; }
 .steps button.active { color: var(--ink); font-weight: 600; }
 .steps i { display: grid; flex: none; place-items: center; width: 25px; height: 25px; border: 1px solid var(--line); border-radius: 50%; color: var(--muted); font-size: 12px; font-style: normal; font-variant-numeric: tabular-nums; }
-.steps .active i { border-color: var(--accent); color: #fff; background: var(--accent); box-shadow: 0 3px 8px #e1251b18; }
-.steps .complete i { color: var(--accent); background: #fff2f0; border-color: #f5c4bf; }
+.steps .active i { border-color: var(--accent); color: #fff; background: var(--accent); box-shadow: none; }
+.steps .complete i { color: var(--accent); background: var(--field-bg); border-color: var(--line); }
 .club-line { display: flex; align-items: center; gap: 8px; margin: 0 1px 22px; color: var(--ink); font-size: 12px; }
 .club-mark { display: grid; flex: none; place-items: center; width: 25px; height: 25px; border-radius: 8px 8px 8px 3px; color: #fff; background: var(--accent); font-weight: 600; }
 .club-role { margin-left: auto; color: var(--muted); font-size: 12px; }
 .step-heading { margin: 0 0 24px; }
-.step-heading > span, .small-kicker { color: var(--muted); font-size: 12px; font-weight: 600; letter-spacing: 1.5px; }
+.step-heading > span, .small-kicker { color: var(--muted); font-size: 12px; font-weight: 600; letter-spacing: normal; }
 .step-heading > span { display: none; }
-.step-heading h2 { margin: 0; color: var(--ink); font-size: 26px; line-height: 1.4; font-weight:600; letter-spacing: -.6px; }
+.step-heading h2 { margin: 0; color: var(--ink); font-size: 24px; line-height: 1.4; font-weight:600; letter-spacing: normal; }
 .timezone-note { margin: 7px 0 0; color: var(--muted); font-size: 12px; }
-.template-library { overflow: hidden; margin: 0 0 27px; padding: 20px; border: 1px solid var(--line); border-radius: 18px; background: var(--card);  border-color: var(--line);}
+.template-library { overflow: hidden; margin: 0 0 27px; padding: 20px; border: 1px solid var(--line); border-radius: 12px; background: var(--card);  border-color: var(--line);}
 .template-library-heading { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 .template-library-heading h3 { margin: 5px 0 0; color: var(--ink); font-size: 19px; font-weight: 600; }
 .template-library-heading p { margin: 5px 0 0; color: var(--muted); font-size: 12px; }
-.activity-create .text-button { display: inline-flex; align-items: center; justify-content: flex-start; width: auto; min-height: 38px; padding: 0; color: var(--accent); font-size: 12px; font-weight: 550; white-space: nowrap; }
+.activity-create .text-button { display: inline-flex; align-items: center; justify-content: flex-start; width: auto; min-height: 38px; padding: 0; color: var(--accent); font-size: 12px; font-weight: 500; white-space: nowrap; }
 .templates { display: flex; gap: 9px; overflow-x: auto; margin: 19px -20px 17px; padding: 1px 20px 8px; scrollbar-width: thin; scrollbar-color: #e3e3e6 transparent; scroll-snap-type: x proximity; }
 .template { position: relative; display: grid; flex: 0 0 126px; min-width: 0; min-height: 119px; gap: 7px; justify-items: start; padding: 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--card); color: var(--ink); text-align: left; scroll-snap-align: start;  border-color: var(--line);}
-.template.selected { border-color: #f5c4bf; background: var(--accent-soft); box-shadow: none; }
-.template-icon { display: grid; place-items: center; width: 26px; height: 26px; color: var(--accent); font-size: 20px; font-weight: 700; font-style: italic; }
+.template.selected { border-color: var(--accent); background: var(--accent-soft); box-shadow: none; }
+.template-icon { display: grid; place-items: center; width: 26px; height: 26px; color: var(--accent); font-size: 20px; font-weight: 600; font-style: italic; }
 .template strong { align-self: end; font-size: 14px; font-weight: 600; }
 .template small { color: var(--muted); font-size: 12px; }
 .template-check { position: absolute; top: 12px; right: 12px; color: var(--accent); font-size: 13px; }
@@ -637,7 +637,7 @@ onUnmounted(() => { loadVersion += 1; templatesVersion += 1; });
 .template-load-error button { flex: none; min-height: 44px; color: var(--accent); }
 .saved-templates { display: flex; gap: 10px; margin: 10px -20px -3px; padding: 0 20px 9px; overflow-x: auto; scrollbar-width: thin; }
 .saved-template { flex: 0 0 245px; min-width: 0; border: 1px solid var(--line); border-radius: 12px; background: #fff;  border-color: var(--line);}
-.saved-template.selected { border-color: #f5c4bf; }
+.saved-template.selected { border-color: var(--accent); }
 .saved-template-use { display: grid; grid-template-columns: 22px minmax(0,1fr); gap: 7px; width: 100%; padding: 15px 12px; text-align: left; }
 .saved-template-mark { grid-row: span 2; color: var(--muted); font-size: 21px; }
 .saved-template-use strong { overflow-wrap: anywhere; color: var(--ink); font-size: 13px; font-weight: 600; }
@@ -649,7 +649,7 @@ onUnmounted(() => { loadVersion += 1; templatesVersion += 1; });
 .form-section-title > span { color: var(--muted); font-size: 12px; font-weight: 600; }
 .form-section-title h3 { margin: 0; color: var(--ink-secondary); font-size: 16px; font-weight: 600; }
 .form-section-title > small { margin-left: auto; color: var(--muted); font-size: 12px; }
-.form-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px 16px; padding: 22px; border: 1px solid var(--line); border-radius: 18px; background: #fff;  border-color: var(--line);}
+.form-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px 16px; padding: 22px; border: 1px solid var(--line); border-radius: 12px; background: #fff;  border-color: var(--line);}
 .field { display: flex; position: relative; min-width: 0; flex-direction: column; gap: 9px; color: var(--muted); font-size: 12px; }
 .field > span { display: flex; align-items: center; gap: 5px; font-weight: 600; line-height: 1.5;  font-size: 13px; color: var(--ink-secondary);}
 .field > span b { color: var(--accent); font-weight: 500; }
@@ -657,7 +657,7 @@ onUnmounted(() => { loadVersion += 1; templatesVersion += 1; });
 .field input, .field select, .field textarea { box-sizing: border-box; width: 100%; min-width: 0; min-height: 46px; border: 1px solid var(--line); border-radius: 11px; outline: none; padding: 11px 12px; color: var(--ink); background: var(--field-bg); font: inherit; font-size: 14px; }
 .field input::placeholder, .field textarea::placeholder { color: var(--muted); }
 .field textarea { min-height: 108px; resize: vertical; line-height: 1.8; }
-.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px #e1251b0c; }
+.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--accent); box-shadow: none; }
 .field input[type='datetime-local'] { padding: 10px; appearance: none; }
 .field > small { margin-top: -2px; color: var(--muted); font-size: 12px; line-height: 1.7; }
 .wide { grid-column: 1 / -1; }
@@ -665,7 +665,7 @@ onUnmounted(() => { loadVersion += 1; templatesVersion += 1; });
 .template-tip > span { color: var(--muted); font-size: 20px; }
 .template-tip p { flex: 1; margin: 0; font-size: 12px; line-height: 1.7; }
 .template-tip button { flex: none; min-height: 44px; padding: 0 0 0 8px; color: var(--accent); font-size: 12px; }
-.reuse-date-row { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; padding: 15px; border: 1px solid var(--line); border-radius: 12px; background: var(--accent-soft);  border-color: #f3d2ce;}
+.reuse-date-row { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; padding: 15px; border: 1px solid var(--line); border-radius: 12px; background: var(--accent-soft);  border-color: var(--line);}
 .reuse-date-row > span { display: grid; gap: 5px; flex: 1; }
 .reuse-date-row b { color: var(--ink-secondary); font-size: 12px; }
 .reuse-date-row small { color: var(--muted); font-size: 12px; line-height: 1.6; }
@@ -676,34 +676,34 @@ onUnmounted(() => { loadVersion += 1; templatesVersion += 1; });
 .group-heading small { color: var(--muted); font-size: 12px; line-height: 1.7; }
 .add-group { flex: none; min-height: 40px; padding: 0 13px; border: 1px solid var(--line); border-radius:12px; color: var(--accent); background: var(--card); font-size: 12px!important; font-weight: 600; white-space: nowrap;  border-color: var(--line);}
 .group-list { display: grid; gap: 15px; }
-.group-editor { overflow: hidden; padding: 0 20px 20px; border: 1px solid var(--line); border-radius: 18px; background: #fff;  border-color: var(--line);}
+.group-editor { overflow: hidden; padding: 0 20px 20px; border: 1px solid var(--line); border-radius: 12px; background: #fff;  border-color: var(--line);}
 .group-card-heading { display: flex; align-items: center; justify-content: space-between; min-height: 56px; margin-bottom: 17px; border-bottom: 1px solid var(--line); }
-.group-index { color: var(--accent); font-size: 12px; font-weight: 600; letter-spacing: 1.4px; }
+.group-index { color: var(--accent); font-size: 12px; font-weight: 600; letter-spacing: normal; }
 .remove-group { display: flex; align-items: center; gap: 7px; min-height: 44px; padding: 0; color: var(--muted); font-size: 12px!important; }
 .remove-group span { font-size: 20px; }
 .group-fields { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 17px 14px; }
-.empty-groups { width: 100%; min-height: 90px; border: 1px dashed var(--line); border-radius: 18px; color: var(--muted); background: #fffafa; font-size: 13px!important; }
+.empty-groups { width: 100%; min-height: 90px; border: 1px dashed var(--line); border-radius: 12px; color: var(--muted); background: #fffafa; font-size: 13px!important; }
 .detail-fields { margin-top: 22px; }
-.advanced { margin-top: 15px; padding: 0 19px; border: 1px solid var(--line); border-radius: 18px; background: #fff;  border-color: var(--line);}
-.advanced summary { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 58px; color: var(--ink-secondary); font-size: 13px; font-weight: 550; cursor: pointer; list-style: none; }
+.advanced { margin-top: 15px; padding: 0 19px; border: 1px solid var(--line); border-radius: 12px; background: #fff;  border-color: var(--line);}
+.advanced summary { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 58px; color: var(--ink-secondary); font-size: 13px; font-weight: 500; cursor: pointer; list-style: none; }
 .advanced summary::-webkit-details-marker { display: none; }
 .advanced summary::after { content: '+'; color: var(--muted); font-size: 21px; font-weight: 400; }
 .advanced[open] summary::after { content: '−'; }
 .advanced summary small { margin-left: auto; color: var(--muted); font-size: 12px; font-weight: 400; }
-.advanced .form-grid { padding: 6px 0 20px; border: 0; border-radius: 18px;  border-color: var(--line);}
-.preview-hero { position: relative; min-height: 220px; padding: 24px; overflow: hidden; border-radius: 18px 18px 0 0; color: var(--ink); background: linear-gradient(120deg,#fff 50%,#fff8f7); border: 1px solid var(--line);}
-.preview-hero::after { position: absolute; top: -33px; right: -24px; width: 180px; height: 260px; border: 1px solid #ffe3df; border-radius: 90px; transform: rotate(25deg); box-shadow: 0 0 0 18px #fff2f080,0 0 0 36px #fff2f04d; content: ''; }
+.advanced .form-grid { padding: 6px 0 20px; border: 0; border-radius: 12px;  border-color: var(--line);}
+.preview-hero { position: relative; min-height: 220px; padding: 24px; overflow: hidden; border-radius: 12px 12px 0 0; color: var(--ink); background: var(--card); border: 1px solid var(--line);}
+.preview-hero::after { position: absolute; top: -33px; right: -24px; width: 180px; height: 260px; border: 1px solid var(--line); border-radius: 90px; transform: rotate(25deg); box-shadow: none; content: ''; }
 .preview-type { color: var(--accent); font-size: 12px; font-weight: 600; }
-.preview-hero h3 { position: relative; z-index: 1; max-width: 85%; margin: 14px 0 12px; overflow-wrap: anywhere; font-size: 25px; line-height: 1.4; }
+.preview-hero h3 { position: relative; z-index: 1; max-width: 85%; margin: 14px 0 12px; overflow-wrap: anywhere; font-size: 24px; line-height: 1.4; }
 .preview-km { display: flex; align-items: baseline; gap: 7px; }
 .preview-km strong { color: var(--accent); font-size: 52px; line-height: 1; font-weight: 600; }
 .preview-km span { color: var(--muted); font-size: 12px; }
 .preview-hero p { position: relative; z-index: 1; margin: 16px 0 0; color: var(--muted); font-size: 12px; line-height: 1.8; }
-.preview-facts { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); margin: 0 0 17px; border: 1px solid var(--line); border-top: 0; border-radius: 0 0 18px 18px; background: #fff; }
+.preview-facts { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); margin: 0 0 17px; border: 1px solid var(--line); border-top: 0; border-radius: 0 0 12px 12px; background: #fff; }
 .preview-facts > div { display: grid; min-width: 0; gap: 7px; padding: 17px 14px; border-right: 1px solid var(--line); }
 .preview-facts > div:last-child { border: 0; }
 .preview-facts small { color: var(--muted); font-size: 12px; }
-.preview-facts b { overflow-wrap: anywhere; color: var(--ink-secondary); font-size: 12px; line-height: 1.8; font-weight: 550; }
+.preview-facts b { overflow-wrap: anywhere; color: var(--ink-secondary); font-size: 12px; line-height: 1.8; font-weight: 500; }
 .preview-groups { margin-top: 22px; }
 .preview-groups h4 { margin: 0 0 12px; color: var(--muted); font-size: 14px; }
 .preview-group { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr) auto; align-items: center; gap: 10px; padding: 16px; border-bottom: 1px solid var(--line); background: #fff; }
@@ -724,33 +724,33 @@ onUnmounted(() => { loadVersion += 1; templatesVersion += 1; });
 .state { padding: 40px 0; color: var(--muted); text-align: center; font-size: 13px; }
 .error-state { color: var(--muted); }
 .error-state .outline { margin: 10px auto; }
-.restore-toast { position: fixed; z-index: 8; right: max(16px,calc((100vw - 860px)/2)); bottom: calc(86px + env(safe-area-inset-bottom)); left: max(16px,calc((100vw - 860px)/2)); display: flex; align-items: center; gap: 13px; min-height: 58px; padding: 10px 15px; border: 1px solid var(--line); border-radius: 12px; background: var(--card); box-shadow: 0 8px 24px #0000000a; font-size: 12px;  border-color: var(--line);}
+.restore-toast { position: fixed; z-index: 8; right: max(16px,calc((100vw - 860px)/2)); bottom: calc(86px + env(safe-area-inset-bottom)); left: max(16px,calc((100vw - 860px)/2)); display: flex; align-items: center; gap: 13px; min-height: 58px; padding: 10px 15px; border: 1px solid var(--line); border-radius: 12px; background: var(--card); box-shadow: none; font-size: 12px;  border-color: var(--line);}
 .restore-toast span { flex: 1; min-width: 0; color: var(--muted); line-height: 1.7; }
 .restore-toast button { flex: none; min-height: 38px; color: var(--accent); font-size: 12px; font-weight: 600; }
-.editing-banner { display: flex; align-items: center; gap: 12px; margin-bottom: 23px; padding: 16px; border: 1px solid var(--line); border-radius: 17px; background: #fff2f0; }
-.editing-symbol { font-size: 26px; color: var(--muted); }
+.editing-banner { display: flex; align-items: center; gap: 12px; margin-bottom: 23px; padding: 16px; border: 1px solid var(--line); border-radius: 17px; background: var(--field-bg); }
+.editing-symbol { font-size: 24px; color: var(--muted); }
 .editing-banner b { color: var(--muted); font-size: 13px; font-weight: 600; }
 .editing-banner p { margin: 6px 0 0; color: var(--muted); font-size: 12px; line-height: 1.7; }
-.template-editor-name { display: grid; grid-template-columns: minmax(0,1fr) 140px; gap: 15px; margin-bottom: 24px; padding: 22px; border: 1px solid var(--line); border-radius: 18px; background: var(--accent-soft);  border-color: #f3d2ce;}
+.template-editor-name { display: grid; grid-template-columns: minmax(0,1fr) 140px; gap: 15px; margin-bottom: 24px; padding: 22px; border: 1px solid var(--line); border-radius: 12px; background: var(--accent-soft);  border-color: var(--line);}
 .template-editor-name > .small-kicker { grid-column: 1/-1; }
-.template-message { margin-bottom: 20px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 13px; background: #fafafa; color: var(--muted); font-size: 12px; line-height: 1.8; }
+.template-message { margin-bottom: 20px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 12px; background: #fafafa; color: var(--muted); font-size: 12px; line-height: 1.8; }
 .template-modal { position: fixed; z-index: 50; inset: 0; display: flex; align-items: flex-end; justify-content: center; padding: 16px; background: #00000066; backdrop-filter: blur(3px); }
-.template-sheet { position: relative; width: min(470px,100%); max-height: 85dvh; overflow-y: auto; padding: 30px 24px 24px; border-radius: 18px; background: var(--card); }
-.sheet-close { position: absolute; top: 10px; right: 10px; display: grid; place-items: center; width: 38px; min-height: 38px; color: var(--muted); font-size: 25px!important; }
+.template-sheet { position: relative; width: min(470px,100%); max-height: 85dvh; overflow-y: auto; padding: 30px 24px 24px; border-radius: 12px; background: var(--card); }
+.sheet-close { position: absolute; top: 10px; right: 10px; display: grid; place-items: center; width: 38px; min-height: 38px; color: var(--muted); font-size: 24px!important; }
 .template-sheet h2 { margin: 12px 0; color: var(--ink); font-size: 22px; line-height: 1.5; }
 .template-sheet > p { margin: 0 0 24px; color: var(--muted); font-size: 12px; line-height: 1.9; }
 .template-sheet .form-error { margin: 12px 0; color: var(--accent); }
 .activity-create .sheet-submit { width: 100%; margin-top: 22px; }
 .sheet-actions { display: flex; justify-content: space-between; gap: 12px; margin-top: 22px; }
-.activity-create :is(button,a,input,textarea,select,summary):focus-visible { outline: 2px solid #e1251b; outline-offset: 3px; }
+.activity-create :is(button,a,input,textarea,select,summary):focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 @media (max-width: 620px) {
   .create-wrap { padding: 8px 16px 30px; }
   .steps { gap: 8px; padding: 13px 0 17px; margin-bottom: 21px; }
   .steps button { gap: 6px; font-size: 12px; }
   .steps i { width: 22px; height: 22px; }
   .steps button+button::before { left: -8px; width: 9px; }
-  .step-heading h2 { font-size: 26px; }
-  .template-library { padding: 17px;  border-radius: 18px; border-color: var(--line);}
+  .step-heading h2 { font-size: 24px; }
+  .template-library { padding: 17px;  border-radius: 12px; border-color: var(--line);}
   .template-library-heading h3 { font-size: 18px;  color: var(--ink);}
   .template-library-heading { align-items: flex-start; }
   .template-library-heading .text-button { align-self: center; }
@@ -758,9 +758,9 @@ onUnmounted(() => { loadVersion += 1; templatesVersion += 1; });
   .template { flex-basis: 112px; min-height: 116px; padding: 12px;  border-radius: 12px; background: var(--card); color: var(--ink); border-color: var(--line);}
   .saved-templates { margin-right: -17px; margin-left: -17px; padding-right: 17px; padding-left: 17px; }
   .saved-template { flex-basis: 237px;  border-color: var(--line); border-radius: 12px;}
-  .form-grid { grid-template-columns: minmax(0,1fr); gap: 20px; padding: 20px 17px;  border-radius: 18px; border-color: var(--line);}
+  .form-grid { grid-template-columns: minmax(0,1fr); gap: 20px; padding: 20px 17px;  border-radius: 12px; border-color: var(--line);}
   .wide { grid-column: auto; }
-  .group-editor { padding: 0 17px 19px;  border-color: var(--line); border-radius: 18px;}
+  .group-editor { padding: 0 17px 19px;  border-color: var(--line); border-radius: 12px;}
   .group-fields { gap: 16px 11px; }
   .group-heading { gap: 8px; }
   .group-heading small { max-width: 180px; }
@@ -773,18 +773,18 @@ onUnmounted(() => { loadVersion += 1; templatesVersion += 1; });
   .preview-group span { grid-column: 1; grid-row: 2; }
   .actions { padding-right: 16px; padding-left: 16px; }
   .activity-create .publish { min-width: 0; padding-right: 18px; padding-left: 18px; }
-  .template-editor-name { grid-template-columns: 1fr; padding: 18px;  border-radius: 18px; background: var(--accent-soft); border-color: #f3d2ce;}
-  .template-sheet { padding: 29px 20px 22px;  border-radius: 18px; background: var(--card);}
+  .template-editor-name { grid-template-columns: 1fr; padding: 18px;  border-radius: 12px; background: var(--accent-soft); border-color: var(--line);}
+  .template-sheet { padding: 29px 20px 22px;  border-radius: 12px; background: var(--card);}
   .template-sheet h2 { font-size: 21px;  color: var(--ink);}
-  .reuse-date-row { flex-wrap: wrap;  border-color: #f3d2ce; background: var(--accent-soft); border-radius: 12px;}
+  .reuse-date-row { flex-wrap: wrap;  border-color: var(--line); background: var(--accent-soft); border-radius: 12px;}
   .reuse-date-row input { width: 100%; }
 }
 @media (max-width: 350px) {
   .create-wrap { padding-right: 12px; padding-left: 12px; }
   .topbar { padding-right: 12px; padding-left: 12px; }
-  .step-heading h2 { font-size: 26px; }
+  .step-heading h2 { font-size: 24px; }
   .template-library-heading .text-button { font-size: 12px; }
-  .small-kicker { letter-spacing: 1px; }
+  .small-kicker { letter-spacing: normal; }
   .group-heading { align-items: flex-start; }
   .group-heading small { max-width: 145px; }
   .group-fields { grid-template-columns: 1fr; }
@@ -794,33 +794,36 @@ onUnmounted(() => { loadVersion += 1; templatesVersion += 1; });
   .activity-create .primary, .activity-create .outline { min-width: 87px; padding-right: 16px; padding-left: 16px; }
   .activity-create .sheet-actions .primary, .activity-create .sheet-actions .outline { flex: 1; min-width: 0; }
 }
-
-
-/* Each reusable training frame has its own light colour, never a new action colour. */
 .activity-create { background:transparent; }
-.activity-create .topbar { background:#fffaf6dd;backdrop-filter:blur(16px); }
-.steps { border-color:#e3e5ee; }.steps i { background:#eaf0f9;color:#526b91; }.steps .active i { background:var(--accent);color:#fff; }.steps .complete i { background:#dff3e9;color:#27795d; }
+.activity-create .topbar { background:var(--card);backdrop-filter:blur(16px); }
+.steps { border-color:var(--line); }.steps i { background:var(--field-bg);color:var(--muted); }.steps .active i { background:var(--accent);color:#fff; }.steps .complete i { background:var(--field-bg);color:var(--muted); }
 .club-line { background:#ffffff91;border-color:#ffffffb5;border-radius:12px; }
-.step-heading { padding:18px 20px;background:linear-gradient(115deg,#fff7ef,#fff);border:1px solid #f0dfcc;border-radius:18px;margin-bottom:22px; }
-.template:nth-child(3n+1) { background:#fff;border-color:#d5eade; }.template:nth-child(3n+2) { background:#fff;border-color:#d4e4f6; }.template:nth-child(3n) { background:#fff;border-color:#e1d5f4; }
-.template.selected { border-color:var(--accent);box-shadow:0 0 0 1px #e1251b; }.template-icon { background:#eaf7ef;color:#32795f; }.template:nth-child(3n+2) .template-icon { background:#eaf4ff;color:#3f78a5; }.template:nth-child(3n) .template-icon { background:#f2edff;color:#7854ac; }
-.saved-template { background:#fff;border-color:#ede2d2; }.saved-template-mark { background:var(--sun-soft,#fff4d7);color:#9a7028; }
-.editing-banner { background:var(--lilac-soft,#f2edff);border-color:#dfd5ef; }.group-card-heading { background:#fff;border-bottom-color:#e0ebe7; }.group-index { background:#fff;color:#367b6a; }
-.advanced { background:#f2f7fc;border-color:#dfe8f1; }.preview-hero { background:linear-gradient(125deg,#fff2e5,#fff);border-color:#f0d8c7; }
-.preview-facts { background:#fff; }.template-tip { background:var(--sun-soft,#fff4d7);border-color:#eedfb8; }
+.step-heading { padding:18px 20px;background:var(--card);border:1px solid var(--line);border-radius:12px;margin-bottom:22px; }
+.template:nth-child(3n+1) { background:#fff;border-color:var(--line); }.template:nth-child(3n+2) { background:#fff;border-color:var(--line); }.template:nth-child(3n) { background:#fff;border-color:var(--line); }
+.template.selected { border-color:var(--accent);box-shadow:none; }.template-icon { background:var(--field-bg);color:var(--muted); }.template:nth-child(3n+2) .template-icon { background:var(--field-bg);color:var(--muted); }.template:nth-child(3n) .template-icon { background:var(--field-bg);color:var(--muted); }
+.saved-template { background:#fff;border-color:var(--line); }.saved-template-mark { background:var(--sun-soft,var(--field-bg));color:var(--muted); }
+.editing-banner { background:var(--lilac-soft,var(--field-bg));border-color:var(--line); }.group-card-heading { background:#fff;border-bottom-color:var(--line); }.group-index { background:#fff;color:var(--muted); }
+.advanced { background:var(--field-bg);border-color:var(--line); }.preview-hero { background:var(--card);border-color:var(--line); }
+.preview-facts { background:#fff; }.template-tip { background:var(--sun-soft,var(--field-bg));border-color:var(--line); }
 @media(max-width:350px) { .step-heading { padding:16px; }.step-heading h2 { font-size:24px; }.group-card-heading { gap:8px; }.template-library-heading { gap:10px; } }
 
-.permanent-groups { padding: 17px; margin: 0 0 22px; border: 1px solid #e7edf0; border-radius: 13px; background: #f9fbfc; }
+.permanent-groups { padding: 17px; margin: 0 0 22px; border: 1px solid #e7edf0; border-radius: 12px; background: #f9fbfc; }
 .permanent-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-.permanent-heading b { font-size: 14px; font-weight: 550; }
+.permanent-heading b { font-size: 14px; font-weight: 500; }
 .permanent-heading p { margin: 6px 0 0; color: var(--muted); font-size: 12px; line-height: 1.7; }
 .permanent-heading > a { flex: none; color: var(--accent); font-size: 12px; min-height: 36px; display: inline-flex; align-items: center; }
 .permanent-group-list { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; margin-top: 15px; }
 .activity-create .permanent-group-list button { display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%; min-width: 0; padding: 11px 12px; border: 1px solid var(--line); border-radius: 9px; background: #fff; text-align: left; }
-.permanent-group-list button.selected { border-color: #e9aaa2; background: #fff5f3; }
+.permanent-group-list button.selected { border-color: var(--accent); background: var(--accent-soft); }
 .permanent-group-list button > span { min-width: 0; display: grid; gap: 6px; }
-.permanent-group-list b { font-size: 13px; font-weight: 550; overflow-wrap: anywhere; }
-.permanent-group-list small { font-size: 11px; color: var(--muted); line-height: 1.6; overflow-wrap: anywhere; }
+.permanent-group-list b { font-size: 13px; font-weight: 500; overflow-wrap: anywhere; }
+.permanent-group-list small { font-size: 12px; color: var(--muted); line-height: 1.6; overflow-wrap: anywhere; }
 .permanent-group-list i { color: var(--accent); font-style: normal; font-size: 16px; }
 @media(max-width:350px) { .permanent-groups { padding: 14px; } .permanent-group-list { grid-template-columns: minmax(0,1fr); } }
+
+.steps .complete i { background:var(--accent); color:#fff; }
+.step-heading h2 { font-size:24px; line-height:1.4; }
+.step-heading { padding:16px; margin-bottom:16px; }
+.template,.saved-template,.group-card,.preview-hero { border-radius:12px; }
+.template-icon,.saved-template-mark { color:var(--accent); background:var(--accent-soft); }
 </style>

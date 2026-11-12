@@ -9,7 +9,7 @@ const { pathToFileURL } = require('node:url');
 const { chromium } = require('playwright-core');
 const { inspectUiPalette } = require('./ui-palette-metrics.cjs');
 const ROOT = path.resolve(__dirname, '..');
-const expectedAccent = (process.env.UI_EXPECTED_ACCENT || '#e1251b').toLowerCase();
+const expectedAccent = (process.env.UI_EXPECTED_ACCENT || '#ff1838').toLowerCase();
 if (!/^#[0-9a-f]{6}$/.test(expectedAccent)) throw new Error('UI_EXPECTED_ACCENT must be a six-digit hex color');
 const out = path.resolve(ROOT, process.env.UI_AUDIT_OUT || 'design/previews/ui-refresh');
 const reportFile = path.resolve(ROOT, process.env.UI_AUDIT_REPORT || 'design/previews/ui-full-audit-report.json');
@@ -22,7 +22,7 @@ let app;
 try { ({ app } = require('../server/src/index')); } finally { fs.existsSync = exists; }
 const { getDb } = require('../server/src/db');
 const version = require('../shared/legal-documents.json').version;
-const report = { startedAt: new Date().toISOString(), isolation: 'Disposable real SQLite and media; localhost-only browser', output: out, expectedAccent, typography: { minimumTextPx: 11, minimumControlTextPx: 12, rule: '11px is reserved for auxiliary captions; captionText is recorded for visual review. Body and form labels should remain 14–15px and 12–13px.' }, fixture: {}, views: [], errors: [], limitations: ['No WeChat device or external provider verification', 'Admin separately covered by admin-browser-regression.cjs and admin-ui-full-audit.cjs', 'Visible DOM layout checks do not imply every possible interactive state was exercised'] };
+const report = { startedAt: new Date().toISOString(), isolation: 'Disposable real SQLite and media; localhost-only browser', output: out, expectedAccent, typography: { minimumTextPx: 12, minimumControlTextPx: 12, rule: 'Minimum 12px for metadata, 14px for body and form controls; system fonts with natural Chinese spacing.' }, fixture: {}, views: [], errors: [], limitations: ['No WeChat device or external provider verification', 'Admin separately covered by admin-browser-regression.cjs and admin-ui-full-audit.cjs', 'Visible DOM layout checks do not imply every possible interactive state was exercised'] };
 let server, origin, vite, browser;
 const stamp = (days = 0) => new Date(Date.now() + (days * 24 + 8) * 3600000).toISOString().slice(0, 16);
 const day = days => stamp(days).slice(0, 10);
@@ -101,7 +101,7 @@ function inventory(f) {
     ['club-fees', c + '?tab=people&view=fees', '.club-page'], ['club-manage', c + '?tab=people&view=manage', '.club-page'],
     ['club-albums', c + '?tab=album', '.club-page'], ['club-feed', c + '?tab=feed', '.club-page'], ['club-partner', c + '?tab=partner', '.club-page'],
     ['activity-create', c + '/activities/new', '.activity-create'], ['activity', a, '.activity-page'],
-    ['signup', a + '/signup', 'h1', 'member'], ['album', a + '/album', 'h1'],
+    ['signup', a + '/signup', '.signup-page', 'owner'], ['album', a + '/album', 'h1'],
     ['call', c + '/calls/' + f.call.id, 'h1'], ['meetup', c + '/meetups/' + f.meetup.id, 'h1'], ['internal', c + '/internals/' + f.internal.id, 'h1'],
     ['sport', '/sport', '.exercise'], ['look', '/look', 'h1'], ['mine', '/mine', '.mine'],
     ['mine-plans', '/mine', '.mine', 'owner', '我的赛事'], ['mine-results', '/mine', '.mine', 'owner', '完赛记录'], ['mine-profile', '/mine', '.mine', 'owner', '个人资料'],
@@ -113,6 +113,13 @@ function inventory(f) {
     ['manager-club-manage', c + '?tab=people&view=manage', '.club-page', 'manager'], ['manager-club-training', c + '?tab=act&view=training', '.club-page', 'manager'],
     ['manager-activity', a, '.activity-page', 'manager']
   ];
+  pages.push(
+    ['mine-settings', '/mine', '.mine', 'owner', '设置'],
+    ['sport-target', '/sport', '.exercise', 'owner', '设置目标 ›'],
+    ['sport-create', '/sport', '.exercise', 'owner', '＋ 记录跑步'],
+    ['sport-edit', '/sport', '.exercise'],
+    ['race-share-expanded', '/races/' + f.races[0], '.detail']
+  );
   for (const view of ['stats', 'career', 'footprints', 'honors', 'media', 'devices', 'help']) pages.push(['runner-' + view, '/runner?view=' + view, '.runner-page']);
   for (const doc of ['terms', 'privacy', 'collection', 'sharing', 'rights', 'permissions', 'children']) pages.push(['legal-' + doc, '/legal/' + doc, 'h1']);
   return pages.map(([id, route, ready, actor = 'owner', click]) => ({ id, route, ready, actor, click }));
@@ -121,14 +128,16 @@ function inventory(f) {
 async function inspect(page) {
   return page.evaluate(() => {
     const displayed = el => { const r = el.getBoundingClientRect(), s = getComputedStyle(el); return r.width > 0 && r.height > 0 && s.visibility !== 'hidden' && s.display !== 'none'; };
-    const text = [...document.querySelectorAll('p,small,label,button,a,span')].filter(el => displayed(el) && el.innerText?.trim() && !el.querySelector('*'));
+    const text = [...document.querySelectorAll('p,small,label,button,a,span,b,strong,h1,h2,h3,h4,summary')].filter(el => displayed(el) && el.innerText?.trim() && !el.querySelector('*'));
     const describe = el => ({ tag: el.tagName, class: el.className, fontSize: getComputedStyle(el).fontSize, text: el.innerText.slice(0, 32) });
-    const tiny = text.filter(el => parseFloat(getComputedStyle(el).fontSize) < 10.9).map(describe).slice(0, 12);
+    const tiny = text.filter(el => parseFloat(getComputedStyle(el).fontSize) < 11.9).map(describe).slice(0, 12);
     const caption = text.filter(el => parseFloat(getComputedStyle(el).fontSize) < 11.9).map(describe).slice(0, 12);
     const tinyControls = text.filter(el => ['BUTTON', 'LABEL'].includes(el.tagName) && parseFloat(getComputedStyle(el).fontSize) < 11.9).map(describe).slice(0, 12);
     const over = [...document.querySelectorAll('main,section,article,form,input,textarea,select,button')].filter(el => displayed(el) && el.getBoundingClientRect().right > innerWidth + 1 && !el.closest('.rail,.filter-bar,.club-tabs,.runner-tabs,.history-nav,.table-wrap,.table-scroll,.scroll-table')).map(el => ({ tag: el.tagName, class: el.className, right: Math.round(el.getBoundingClientRect().right) })).slice(0, 8);
+    const spacedText = text.filter(el => /[\u4e00-\u9fff]/.test(el.innerText) && !['normal','0px'].includes(getComputedStyle(el).letterSpacing)).map(describe);
+    const heavyText = text.filter(el => Number(getComputedStyle(el).fontWeight) > 600).map(describe);
     const primaryControls = [...document.querySelectorAll('.activity-create .actions .primary')].filter(displayed).map(element => ({ text: element.innerText, color: getComputedStyle(element).color, background: getComputedStyle(element).backgroundColor }));
-    return { width: innerWidth, scrollWidth: document.documentElement.scrollWidth, bodyWidth: document.body.scrollWidth, title: document.querySelector('h1')?.innerText || '', tinyText: tiny, captionText: caption, tinyControls, overflowingElements: over, primaryControls, primaryColor: getComputedStyle(document.documentElement).getPropertyValue('--accent').trim(), brokenImages: [...document.images].filter(img => displayed(img) && img.complete && img.naturalWidth === 0).length };
+    return { width: innerWidth, scrollWidth: document.documentElement.scrollWidth, bodyWidth: document.body.scrollWidth, title: document.querySelector('h1')?.innerText || '', tinyText: tiny, captionText: caption, tinyControls, spacedText, heavyText, overflowingElements: over, primaryControls, primaryColor: getComputedStyle(document.documentElement).getPropertyValue('--accent').trim(), brokenImages: [...document.images].filter(img => displayed(img) && img.complete && img.naturalWidth === 0).length };
   });
 }
 
@@ -166,7 +175,10 @@ async function main() {
       try {
         await page.goto(base + view.route, { waitUntil: 'networkidle' });
         await page.locator(view.ready).first().waitFor();
+        assert.equal(new URL(page.url()).pathname, new URL(base + (view.id === 'club-invite' ? '/clubs/' + fixture.club.id + '/public' : view.route)).pathname, 'audit scene must remain on its requested route or resolved invite page');
         if (view.click) await page.getByRole('button', { name: view.click, exact: true }).click();
+        if (view.id === 'sport-edit') await page.getByRole('button', { name:'编辑记录', exact:true }).first().click();
+        if (view.id === 'race-share-expanded') await page.locator('.share-toggle').click();
         await page.waitForLoadState('networkidle');
         await page.evaluate(() => document.fonts.ready);
         Object.assign(item, await inspect(page), await page.evaluate(inspectUiPalette));
@@ -185,11 +197,13 @@ async function main() {
           assert.ok(process.env.UI_PALETTE_PROFILE === 'colorful' ? item.activityHero.brightReadableSurface : item.activityHero.minimumBackgroundLuminance >= 0.85, 'activity hero must retain a bright readable background');
           assert.ok(item.activityHero.textLuminance <= 0.3, 'activity hero must use readable dark text on its bright background');
         }
-        if (item.tinyText.length) throw new Error('visible text below 11px: ' + JSON.stringify(item.tinyText));
+        if (item.tinyText.length) throw new Error('visible text below 12px: ' + JSON.stringify(item.tinyText));
         if (item.tinyControls.length) throw new Error('button or form label below 12px: ' + JSON.stringify(item.tinyControls));
         item.passed = true;
       } catch (error) { item.error = error.message; report.errors.push({ id: view.id, width, error: error.message }); }
       if (process.env.UI_AUDIT_CAPTURE_ALL === '1' || width === 390 || !item.passed || ['home', 'clubs', 'mine', 'sport', 'club-overview', 'activity', 'manager-activity', 'activity-create', 'club-create'].includes(view.id)) {
+        await page.evaluate(() => scrollTo(0, 0));
+        await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
         const filename = view.id + '-' + width + '.png';
         await page.screenshot({ path: path.join(out, filename), fullPage: true }).catch(() => {});
         item.screenshot = path.relative(path.dirname(reportFile), path.join(out, filename));

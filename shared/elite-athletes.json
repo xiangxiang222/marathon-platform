@@ -1,0 +1,2621 @@
+{
+  "version": 1,
+  "asOf": "2026-11-11",
+  "rankingBasis": "World Athletics 中国籍（CHN）成年组全程马拉松历史个人最佳成绩；男子、女子分别排序，每位运动员仅取一条最佳记录。",
+  "rankingNotice": "2026-11-11 人工采集的官方榜单快照，包含历代选手，并非现役实力榜、年度榜或世界排名积分榜。保留源榜并列名次；后续成绩、成绩认定调整及资料更正可能改变顺序。",
+  "coverage": "男子20人、女子20人；提供基础履历，并为可读取官方个人档案的选手补充代表性大赛成绩。未核实的籍贯、队伍、商业签约与现役状态不作推断。",
+  "sources": [
+    {
+      "title": "World Athletics — 中国男子马拉松历史最佳成绩",
+      "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+    },
+    {
+      "title": "World Athletics — 中国女子马拉松历史最佳成绩",
+      "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+    }
+  ],
+  "athletes": [
+    {
+      "id": "athlete-men-1",
+      "type": "athlete",
+      "name": "丰配友",
+      "nameEn": "Peiyou FENG",
+      "gender": "men",
+      "rank": 1,
+      "displayOrder": 1,
+      "personalBest": "2:05:58",
+      "eventDate": "2026-03-01",
+      "eventName": "东京马拉松",
+      "eventVenue": "Tokyo (JPN)",
+      "eventPosition": "11",
+      "birthDate": "2001-08-01",
+      "bio": "中国男子马拉松运动员。公开出生日期为2001-08-01。2026-03-01在东京马拉松跑出2:05:58，该场列第11名；在本次中国籍男子历史个人最佳成绩榜单快照中列第1位。另据官方个人档案，2026-09-26获得亚运会马拉松第3名（2:12:13）。",
+      "sources": [
+        {
+          "title": "World Athletics — 中国男子马拉松历史最佳成绩",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "title": "World Athletics — Peiyou FENG 个人资料",
+          "url": "https://worldathletics.org/athletes/athlete=14913520"
+        },
+        {
+          "title": "中文姓名交叉来源 · 丰配友刷新男子马拉松全国纪录",
+          "url": "https://sports.cctv.com/2026/03/01/ARTIw1DZAEAnKpSjVwy7rSZK260301.shtml"
+        }
+      ],
+      "verificationStatus": "verified",
+      "verifiedAt": "2026-11-11",
+      "nameVerificationStatus": "cross_checked_chinese_reporting",
+      "verificationNote": "",
+      "highlights": [
+        {
+          "date": "2026-03-01",
+          "title": "东京马拉松",
+          "result": "2:05:58",
+          "position": "11",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "date": "2026-09-26",
+          "title": "亚运会 · 马拉松",
+          "competition": "20th Asian Games",
+          "discipline": "Marathon",
+          "result": "2:12:13",
+          "position": "3",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14913520"
+        },
+        {
+          "date": "2022-11-27",
+          "title": "全国锦标赛 · 马拉松",
+          "competition": "C&D Xiamen Marathon",
+          "discipline": "Marathon",
+          "result": "2:13:53",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14913520"
+        }
+      ],
+      "careerHighlights": [
+        {
+          "date": "2026-09-26",
+          "title": "亚运会 · 马拉松",
+          "competition": "20th Asian Games",
+          "discipline": "Marathon",
+          "result": "2:12:13",
+          "position": "3",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14913520"
+        },
+        {
+          "date": "2022-11-27",
+          "title": "全国锦标赛 · 马拉松",
+          "competition": "C&D Xiamen Marathon",
+          "discipline": "Marathon",
+          "result": "2:13:53",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14913520"
+        }
+      ],
+      "nameSource": {
+        "title": "中文姓名交叉来源 · 丰配友刷新男子马拉松全国纪录",
+        "url": "https://sports.cctv.com/2026/03/01/ARTIw1DZAEAnKpSjVwy7rSZK260301.shtml"
+      }
+    },
+    {
+      "id": "athlete-men-2",
+      "type": "athlete",
+      "name": "何杰",
+      "nameEn": "Jie HE",
+      "gender": "men",
+      "rank": 2,
+      "displayOrder": 2,
+      "personalBest": "2:06:57",
+      "eventDate": "2024-03-24",
+      "eventName": "无锡马拉松",
+      "eventVenue": "Wuxi (CHN)",
+      "eventPosition": "4",
+      "birthDate": "1998-12-27",
+      "bio": "中国男子马拉松运动员。公开出生日期为1998-12-27。2024-03-24在无锡马拉松跑出2:06:57，该场列第4名；在本次中国籍男子历史个人最佳成绩榜单快照中列第2位。另据官方个人档案，2023-10-05获得亚运会马拉松第1名（2:13:02）。",
+      "sources": [
+        {
+          "title": "World Athletics — 中国男子马拉松历史最佳成绩",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "title": "World Athletics — Jie HE 个人资料",
+          "url": "https://worldathletics.org/athletes/athlete=14795227"
+        },
+        {
+          "title": "中文姓名交叉来源 · 全运会历史首个跨境马拉松何杰夺冠",
+          "url": "https://people.cctv.com/2025/11/15/ARTI3yvw1obEEye0woDAqCX5251115.shtml"
+        }
+      ],
+      "verificationStatus": "verified",
+      "verifiedAt": "2026-11-11",
+      "nameVerificationStatus": "cross_checked_chinese_reporting",
+      "verificationNote": "",
+      "highlights": [
+        {
+          "date": "2024-03-24",
+          "title": "无锡马拉松",
+          "result": "2:06:57",
+          "position": "4",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "date": "2023-10-05",
+          "title": "亚运会 · 马拉松",
+          "competition": "19th Asian Games",
+          "discipline": "Marathon",
+          "result": "2:13:02",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14795227"
+        }
+      ],
+      "careerHighlights": [
+        {
+          "date": "2023-10-05",
+          "title": "亚运会 · 马拉松",
+          "competition": "19th Asian Games",
+          "discipline": "Marathon",
+          "result": "2:13:02",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14795227"
+        }
+      ],
+      "nameSource": {
+        "title": "中文姓名交叉来源 · 全运会历史首个跨境马拉松何杰夺冠",
+        "url": "https://people.cctv.com/2025/11/15/ARTI3yvw1obEEye0woDAqCX5251115.shtml"
+      }
+    },
+    {
+      "id": "athlete-men-3",
+      "type": "athlete",
+      "name": "杨绍辉",
+      "nameEn": "Shaohui YANG",
+      "gender": "men",
+      "rank": 3,
+      "displayOrder": 3,
+      "personalBest": "2:07:09",
+      "eventDate": "2023-12-03",
+      "eventName": "福冈国际马拉松",
+      "eventVenue": "Fukuoka (JPN)",
+      "eventPosition": "2",
+      "birthDate": "1992-07-09",
+      "bio": "中国男子马拉松运动员。公开出生日期为1992-07-09。2023-12-03在福冈国际马拉松跑出2:07:09，该场列第2名；在本次中国籍男子历史个人最佳成绩榜单快照中列第3位。另据官方个人档案，2023-10-05获得亚运会马拉松第3名（2:13:39）。",
+      "sources": [
+        {
+          "title": "World Athletics — 中国男子马拉松历史最佳成绩",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "title": "World Athletics — Shaohui YANG 个人资料",
+          "url": "https://worldathletics.org/athletes/athlete=14523268"
+        },
+        {
+          "title": "中文姓名交叉来源 · 2小时07分09秒 杨绍辉刷新中国男子马拉松纪录",
+          "url": "https://sports.cctv.com/2023/12/04/ARTIOWvjva8JK9tan3r7nqCV231204.shtml"
+        }
+      ],
+      "verificationStatus": "verified",
+      "verifiedAt": "2026-11-11",
+      "nameVerificationStatus": "cross_checked_chinese_reporting",
+      "verificationNote": "",
+      "highlights": [
+        {
+          "date": "2023-12-03",
+          "title": "福冈国际马拉松",
+          "result": "2:07:09",
+          "position": "2",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "date": "2023-10-05",
+          "title": "亚运会 · 马拉松",
+          "competition": "19th Asian Games",
+          "discipline": "Marathon",
+          "result": "2:13:39",
+          "position": "3",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14523268"
+        }
+      ],
+      "careerHighlights": [
+        {
+          "date": "2023-10-05",
+          "title": "亚运会 · 马拉松",
+          "competition": "19th Asian Games",
+          "discipline": "Marathon",
+          "result": "2:13:39",
+          "position": "3",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14523268"
+        }
+      ],
+      "nameSource": {
+        "title": "中文姓名交叉来源 · 2小时07分09秒 杨绍辉刷新中国男子马拉松纪录",
+        "url": "https://sports.cctv.com/2023/12/04/ARTIOWvjva8JK9tan3r7nqCV231204.shtml"
+      }
+    },
+    {
+      "id": "athlete-men-4",
+      "type": "athlete",
+      "name": "毛金虎",
+      "nameEn": "Jinhu MAO",
+      "gender": "men",
+      "rank": 4,
+      "displayOrder": 4,
+      "personalBest": "2:07:36",
+      "eventDate": "2026-03-22",
+      "eventName": "无锡马拉松",
+      "eventVenue": "Wuxi (CHN)",
+      "eventPosition": "2",
+      "birthDate": "2002-02-08",
+      "bio": "中国男子马拉松运动员。公开出生日期为2002-02-08。2026-03-22在无锡马拉松跑出2:07:36，该场列第2名；在本次中国籍男子历史个人最佳成绩榜单快照中列第4位。",
+      "sources": [
+        {
+          "title": "World Athletics — 中国男子马拉松历史最佳成绩",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "title": "World Athletics — Jinhu MAO 个人资料",
+          "url": "https://worldathletics.org/athletes/athlete=14913625"
+        },
+        {
+          "title": "中文姓名交叉来源 · 张德顺刷新中国女子10公里路跑最好成绩",
+          "url": "https://sports.cctv.com/2025/12/29/ARTID8ZhBErGKPEtnBjJqckA251229.shtml"
+        }
+      ],
+      "verificationStatus": "verified",
+      "verifiedAt": "2026-11-11",
+      "nameVerificationStatus": "cross_checked_chinese_reporting",
+      "verificationNote": "",
+      "highlights": [
+        {
+          "date": "2026-03-22",
+          "title": "无锡马拉松",
+          "result": "2:07:36",
+          "position": "2",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        }
+      ],
+      "nameSource": {
+        "title": "中文姓名交叉来源 · 张德顺刷新中国女子10公里路跑最好成绩",
+        "url": "https://sports.cctv.com/2025/12/29/ARTID8ZhBErGKPEtnBjJqckA251229.shtml"
+      }
+    },
+    {
+      "id": "athlete-men-5",
+      "type": "athlete",
+      "name": "吴向东",
+      "nameEn": "Xiangdong WU",
+      "gender": "men",
+      "rank": 5,
+      "displayOrder": 5,
+      "personalBest": "2:07:55",
+      "eventDate": "2026-09-27",
+      "eventName": "柏林马拉松",
+      "eventVenue": "Berlin (GER)",
+      "eventPosition": "14",
+      "birthDate": "1994-01-17",
+      "bio": "中国男子马拉松运动员。公开出生日期为1994-01-17。2026-09-27在柏林马拉松跑出2:07:55，该场列第14名；在本次中国籍男子历史个人最佳成绩榜单快照中列第5位。",
+      "sources": [
+        {
+          "title": "World Athletics — 中国男子马拉松历史最佳成绩",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "title": "World Athletics — Xiangdong WU 个人资料",
+          "url": "https://worldathletics.org/athletes/athlete=14430085"
+        },
+        {
+          "title": "中文姓名交叉来源 · “四赛合一”无锡马拉松将成“跑向”巴黎关键战",
+          "url": "https://sports.cctv.com/2024/03/21/ARTIYVqJFkVJTzNkjxE4vzLN240321.shtml"
+        }
+      ],
+      "verificationStatus": "verified",
+      "verifiedAt": "2026-11-11",
+      "nameVerificationStatus": "cross_checked_chinese_reporting",
+      "verificationNote": "",
+      "highlights": [
+        {
+          "date": "2026-09-27",
+          "title": "柏林马拉松",
+          "result": "2:07:55",
+          "position": "14",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        }
+      ],
+      "nameSource": {
+        "title": "中文姓名交叉来源 · “四赛合一”无锡马拉松将成“跑向”巴黎关键战",
+        "url": "https://sports.cctv.com/2024/03/21/ARTIYVqJFkVJTzNkjxE4vzLN240321.shtml"
+      }
+    },
+    {
+      "id": "athlete-men-6",
+      "type": "athlete",
+      "name": "陈天宇",
+      "nameEn": "Tianyu CHEN",
+      "gender": "men",
+      "rank": 6,
+      "displayOrder": 6,
+      "personalBest": "2:08:11",
+      "eventDate": "2023-10-29",
+      "eventName": "北京马拉松",
+      "eventVenue": "Beijing (CHN)",
+      "eventPosition": "7",
+      "birthDate": "1997-05-11",
+      "bio": "中国男子马拉松运动员。公开出生日期为1997-05-11。2023-10-29在北京马拉松跑出2:08:11，该场列第7名；在本次中国籍男子历史个人最佳成绩榜单快照中列第6位。另据官方个人档案，2025-03-30获得亚洲马拉松锦标赛马拉松第2名（2:11:50）。",
+      "sources": [
+        {
+          "title": "World Athletics — 中国男子马拉松历史最佳成绩",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "title": "World Athletics — Tianyu CHEN 个人资料",
+          "url": "https://worldathletics.org/athletes/athlete=14694073"
+        },
+        {
+          "title": "中文姓名交叉来源 · 中国选手陈天宇获季军！2024北京马拉松成绩出炉",
+          "url": "https://news.cctv.com/2024/11/03/ARTIqFtgJvXG0zniEkBUcdV1241103.shtml"
+        }
+      ],
+      "verificationStatus": "verified",
+      "verifiedAt": "2026-11-11",
+      "nameVerificationStatus": "cross_checked_chinese_reporting",
+      "verificationNote": "",
+      "highlights": [
+        {
+          "date": "2023-10-29",
+          "title": "北京马拉松",
+          "result": "2:08:11",
+          "position": "7",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "date": "2025-03-30",
+          "title": "亚洲马拉松锦标赛 · 马拉松",
+          "competition": "20th Asian Marathon Championships",
+          "discipline": "Marathon",
+          "result": "2:11:50",
+          "position": "2",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14694073"
+        }
+      ],
+      "careerHighlights": [
+        {
+          "date": "2025-03-30",
+          "title": "亚洲马拉松锦标赛 · 马拉松",
+          "competition": "20th Asian Marathon Championships",
+          "discipline": "Marathon",
+          "result": "2:11:50",
+          "position": "2",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14694073"
+        }
+      ],
+      "nameSource": {
+        "title": "中文姓名交叉来源 · 中国选手陈天宇获季军！2024北京马拉松成绩出炉",
+        "url": "https://news.cctv.com/2024/11/03/ARTIqFtgJvXG0zniEkBUcdV1241103.shtml"
+      }
+    },
+    {
+      "id": "athlete-men-7",
+      "type": "athlete",
+      "name": "董国建",
+      "nameEn": "Guojian DONG",
+      "gender": "men",
+      "rank": 7,
+      "displayOrder": 7,
+      "personalBest": "2:08:12",
+      "eventDate": "2024-02-25",
+      "eventName": "大阪马拉松",
+      "eventVenue": "Osaka (JPN)",
+      "eventPosition": "14",
+      "birthDate": "1987-03-16",
+      "bio": "中国男子马拉松运动员。公开出生日期为1987-03-16。2024-02-25在大阪马拉松跑出2:08:12，该场列第14名；在本次中国籍男子历史个人最佳成绩榜单快照中列第7位。另据官方个人档案，2021-06-13获得全国锦标赛10000米第1名（29:49.77）。",
+      "sources": [
+        {
+          "title": "World Athletics — 中国男子马拉松历史最佳成绩",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "title": "World Athletics — Guojian DONG 个人资料",
+          "url": "https://worldathletics.org/athletes/athlete=14172732"
+        },
+        {
+          "title": "中文姓名交叉来源 · 中国马拉松队举行半马队内赛 董国建夺魁",
+          "url": "https://sports.cctv.com/2020/05/22/ARTI7v4378ie0sWxSluolCHZ200522.shtml"
+        }
+      ],
+      "verificationStatus": "verified",
+      "verifiedAt": "2026-11-11",
+      "nameVerificationStatus": "cross_checked_chinese_reporting",
+      "verificationNote": "",
+      "highlights": [
+        {
+          "date": "2024-02-25",
+          "title": "大阪马拉松",
+          "result": "2:08:12",
+          "position": "14",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "date": "2021-06-13",
+          "title": "全国锦标赛 · 10000米",
+          "competition": "Chinese Championships",
+          "discipline": "10,000 Metres",
+          "result": "29:49.77",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14172732"
+        },
+        {
+          "date": "2020-09-16",
+          "title": "全国锦标赛 · 10000米",
+          "competition": "Chinese Championships",
+          "discipline": "10,000 Metres",
+          "result": "29:35.46",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14172732"
+        },
+        {
+          "date": "2015-09-22",
+          "title": "全国锦标赛 · 10000米",
+          "competition": "Chinese Championships",
+          "discipline": "10,000 Metres",
+          "result": "29:24.46",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14172732"
+        },
+        {
+          "date": "2009-05-15",
+          "title": "全国锦标赛 · 10000米",
+          "competition": "Chinese Championships",
+          "discipline": "10,000 Metres",
+          "result": "30:09.00",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14172732"
+        }
+      ],
+      "careerHighlights": [
+        {
+          "date": "2021-06-13",
+          "title": "全国锦标赛 · 10000米",
+          "competition": "Chinese Championships",
+          "discipline": "10,000 Metres",
+          "result": "29:49.77",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14172732"
+        },
+        {
+          "date": "2020-09-16",
+          "title": "全国锦标赛 · 10000米",
+          "competition": "Chinese Championships",
+          "discipline": "10,000 Metres",
+          "result": "29:35.46",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14172732"
+        },
+        {
+          "date": "2015-09-22",
+          "title": "全国锦标赛 · 10000米",
+          "competition": "Chinese Championships",
+          "discipline": "10,000 Metres",
+          "result": "29:24.46",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14172732"
+        },
+        {
+          "date": "2009-05-15",
+          "title": "全国锦标赛 · 10000米",
+          "competition": "Chinese Championships",
+          "discipline": "10,000 Metres",
+          "result": "30:09.00",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14172732"
+        }
+      ],
+      "nameSource": {
+        "title": "中文姓名交叉来源 · 中国马拉松队举行半马队内赛 董国建夺魁",
+        "url": "https://sports.cctv.com/2020/05/22/ARTI7v4378ie0sWxSluolCHZ200522.shtml"
+      }
+    },
+    {
+      "id": "athlete-men-8",
+      "type": "athlete",
+      "name": "任龙云",
+      "nameEn": "Longyun REN",
+      "gender": "men",
+      "rank": 8,
+      "displayOrder": 8,
+      "personalBest": "2:08:15",
+      "eventDate": "2007-10-21",
+      "eventName": "北京马拉松",
+      "eventVenue": "Beijing (CHN)",
+      "eventPosition": "2",
+      "birthDate": "1987-10-12",
+      "bio": "中国男子马拉松运动员。公开出生日期为1987-10-12。2007-10-21在北京马拉松跑出2:08:15，该场列第2名；在本次中国籍男子历史个人最佳成绩榜单快照中列第8位。另据官方个人档案，2012-09-22获得全国锦标赛10000米第1名（28:44.76）。",
+      "sources": [
+        {
+          "title": "World Athletics — 中国男子马拉松历史最佳成绩",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "title": "World Athletics — Longyun REN 个人资料",
+          "url": "https://worldathletics.org/athletes/athlete=14171607"
+        },
+        {
+          "title": "中文姓名交叉来源 · 他从老区走来，跑向亚洲之巅",
+          "url": "https://people.cctv.com/2026/03/20/ARTIiH7iGB69QgaABXy3K26q260320.shtml"
+        }
+      ],
+      "verificationStatus": "verified",
+      "verifiedAt": "2026-11-11",
+      "nameVerificationStatus": "cross_checked_chinese_reporting",
+      "verificationNote": "",
+      "highlights": [
+        {
+          "date": "2007-10-21",
+          "title": "北京马拉松",
+          "result": "2:08:15",
+          "position": "2",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "date": "2012-09-22",
+          "title": "全国锦标赛 · 10000米",
+          "competition": "Chinese Championships",
+          "discipline": "10,000 Metres",
+          "result": "28:44.76",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14171607"
+        },
+        {
+          "date": "2006-08-07",
+          "title": "全国锦标赛 · 10000米",
+          "competition": "Chinese Championships",
+          "discipline": "10,000 Metres",
+          "result": "29:44.18",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14171607"
+        }
+      ],
+      "careerHighlights": [
+        {
+          "date": "2012-09-22",
+          "title": "全国锦标赛 · 10000米",
+          "competition": "Chinese Championships",
+          "discipline": "10,000 Metres",
+          "result": "28:44.76",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14171607"
+        },
+        {
+          "date": "2006-08-07",
+          "title": "全国锦标赛 · 10000米",
+          "competition": "Chinese Championships",
+          "discipline": "10,000 Metres",
+          "result": "29:44.18",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14171607"
+        }
+      ],
+      "nameSource": {
+        "title": "中文姓名交叉来源 · 他从老区走来，跑向亚洲之巅",
+        "url": "https://people.cctv.com/2026/03/20/ARTIiH7iGB69QgaABXy3K26q260320.shtml"
+      }
+    },
+    {
+      "id": "athlete-men-9",
+      "type": "athlete",
+      "name": "索朗才仁",
+      "nameEn": "Cairen SUOLANG",
+      "gender": "men",
+      "rank": 9,
+      "displayOrder": 9,
+      "personalBest": "2:08:20",
+      "eventDate": "2026-03-22",
+      "eventName": "无锡马拉松",
+      "eventVenue": "Wuxi (CHN)",
+      "eventPosition": "6",
+      "birthDate": "1999-07-28",
+      "bio": "中国男子马拉松运动员。公开出生日期为1999-07-28。2026-03-22在无锡马拉松跑出2:08:20，该场列第6名；在本次中国籍男子历史个人最佳成绩榜单快照中列第9位。另据官方个人档案，2020-11-29获得全国锦标赛马拉松第1名（2:12:13）。",
+      "sources": [
+        {
+          "title": "World Athletics — 中国男子马拉松历史最佳成绩",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "title": "World Athletics — Cairen SUOLANG 个人资料",
+          "url": "https://worldathletics.org/athletes/athlete=14694176"
+        },
+        {
+          "title": "中文姓名交叉来源 · 2022深圳马拉松开赛 中国选手夺冠",
+          "url": "https://local.cctv.com/2023/02/20/ARTIXLlduTs1p4w8mfKZHw0O230220.shtml"
+        }
+      ],
+      "verificationStatus": "verified",
+      "verifiedAt": "2026-11-11",
+      "nameVerificationStatus": "cross_checked_chinese_reporting",
+      "verificationNote": "",
+      "highlights": [
+        {
+          "date": "2026-03-22",
+          "title": "无锡马拉松",
+          "result": "2:08:20",
+          "position": "6",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "date": "2020-11-29",
+          "title": "全国锦标赛 · 马拉松",
+          "competition": "Marathon & Chinese Marathon Championships",
+          "discipline": "Marathon",
+          "result": "2:12:13",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14694176"
+        }
+      ],
+      "careerHighlights": [
+        {
+          "date": "2020-11-29",
+          "title": "全国锦标赛 · 马拉松",
+          "competition": "Marathon & Chinese Marathon Championships",
+          "discipline": "Marathon",
+          "result": "2:12:13",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14694176"
+        }
+      ],
+      "nameSource": {
+        "title": "中文姓名交叉来源 · 2022深圳马拉松开赛 中国选手夺冠",
+        "url": "https://local.cctv.com/2023/02/20/ARTIXLlduTs1p4w8mfKZHw0O230220.shtml"
+      }
+    },
+    {
+      "id": "athlete-men-10",
+      "type": "athlete",
+      "name": "王佳浩",
+      "nameEn": "Jiahao WANG",
+      "gender": "men",
+      "rank": 10,
+      "displayOrder": 10,
+      "personalBest": "2:08:21",
+      "eventDate": "2026-09-27",
+      "eventName": "柏林马拉松",
+      "eventVenue": "Berlin (GER)",
+      "eventPosition": "15",
+      "birthDate": "2000-07-06",
+      "bio": "中国男子马拉松运动员。公开出生日期为2000-07-06。2026-09-27在柏林马拉松跑出2:08:21，该场列第15名；在本次中国籍男子历史个人最佳成绩榜单快照中列第10位。",
+      "sources": [
+        {
+          "title": "World Athletics — 中国男子马拉松历史最佳成绩",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "title": "World Athletics — Jiahao WANG 个人资料",
+          "url": "https://worldathletics.org/athletes/pr-of-china/jiahao-wang-15111707"
+        },
+        {
+          "title": "中文姓名交叉来源 · 2026南京半程马拉松鸣枪开跑 万名跑者逐梦长江之畔",
+          "url": "https://local.cctv.com/2026/03/15/ARTIuy1X9rbQfSvMKh6LwyWw260315.shtml"
+        }
+      ],
+      "verificationStatus": "verified",
+      "verifiedAt": "2026-11-11",
+      "nameVerificationStatus": "cross_checked_chinese_reporting",
+      "verificationNote": "",
+      "highlights": [
+        {
+          "date": "2026-09-27",
+          "title": "柏林马拉松",
+          "result": "2:08:21",
+          "position": "15",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        }
+      ],
+      "nameSource": {
+        "title": "中文姓名交叉来源 · 2026南京半程马拉松鸣枪开跑 万名跑者逐梦长江之畔",
+        "url": "https://local.cctv.com/2026/03/15/ARTIuy1X9rbQfSvMKh6LwyWw260315.shtml"
+      }
+    },
+    {
+      "id": "athlete-men-11",
+      "type": "athlete",
+      "name": "李大林",
+      "nameEn": "Dalin LI",
+      "gender": "men",
+      "rank": 11,
+      "displayOrder": 11,
+      "personalBest": "2:08:30",
+      "eventDate": "2026-10-18",
+      "eventName": "北京马拉松",
+      "eventVenue": "Beijing (CHN)",
+      "eventPosition": "4",
+      "birthDate": "2002-08-08",
+      "bio": "中国男子马拉松运动员。公开出生日期为2002-08-08。2026-10-18在北京马拉松跑出2:08:30，该场列第4名；在本次中国籍男子历史个人最佳成绩榜单快照中列第11位。",
+      "sources": [
+        {
+          "title": "World Athletics — 中国男子马拉松历史最佳成绩",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "title": "World Athletics — Dalin LI 个人资料",
+          "url": "https://worldathletics.org/athletes/pr-of-china/dalin-li-15182213"
+        },
+        {
+          "title": "中文姓名交叉来源 · 繁花胜景、彝海欢歌  2026楚雄马拉松盛大开跑",
+          "url": "https://sports.cctv.com/2026/08/03/ARTI7o0KBjjB1c9tMhkx6SdJ260803.shtml"
+        }
+      ],
+      "verificationStatus": "verified",
+      "verifiedAt": "2026-11-11",
+      "nameVerificationStatus": "cross_checked_chinese_reporting",
+      "verificationNote": "",
+      "highlights": [
+        {
+          "date": "2026-10-18",
+          "title": "北京马拉松",
+          "result": "2:08:30",
+          "position": "4",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        }
+      ],
+      "nameSource": {
+        "title": "中文姓名交叉来源 · 繁花胜景、彝海欢歌  2026楚雄马拉松盛大开跑",
+        "url": "https://sports.cctv.com/2026/08/03/ARTI7o0KBjjB1c9tMhkx6SdJ260803.shtml"
+      }
+    },
+    {
+      "id": "athlete-men-12",
+      "type": "athlete",
+      "name": "贾俄仁加",
+      "nameEn": "Erenjia JIA",
+      "gender": "men",
+      "rank": 12,
+      "displayOrder": 12,
+      "personalBest": "2:08:32",
+      "eventDate": "2024-09-29",
+      "eventName": "柏林马拉松",
+      "eventVenue": "Berlin (GER)",
+      "eventPosition": "25",
+      "birthDate": "1993-07-28",
+      "bio": "中国男子马拉松运动员。公开出生日期为1993-07-28。2024-09-29在柏林马拉松跑出2:08:32，该场列第25名；在本次中国籍男子历史个人最佳成绩榜单快照中列第12位。",
+      "sources": [
+        {
+          "title": "World Athletics — 中国男子马拉松历史最佳成绩",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "title": "World Athletics — Erenjia JIA 个人资料",
+          "url": "https://worldathletics.org/athletes/athlete=14821206"
+        },
+        {
+          "title": "中文姓名交叉来源 · 亚运会26日看点：男足力争四强 跳水冲向“百金”",
+          "url": "https://sports.cctv.com/2026/09/25/ARTIWYzTJkSyRTJmdGleUjzF260925.shtml"
+        }
+      ],
+      "verificationStatus": "verified",
+      "verifiedAt": "2026-11-11",
+      "nameVerificationStatus": "cross_checked_chinese_reporting",
+      "verificationNote": "",
+      "highlights": [
+        {
+          "date": "2024-09-29",
+          "title": "柏林马拉松",
+          "result": "2:08:32",
+          "position": "25",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        }
+      ],
+      "nameSource": {
+        "title": "中文姓名交叉来源 · 亚运会26日看点：男足力争四强 跳水冲向“百金”",
+        "url": "https://sports.cctv.com/2026/09/25/ARTIWYzTJkSyRTJmdGleUjzF260925.shtml"
+      }
+    },
+    {
+      "id": "athlete-men-13",
+      "type": "athlete",
+      "name": "杨克古",
+      "nameEn": "Kegu YANG",
+      "gender": "men",
+      "rank": 13,
+      "displayOrder": 13,
+      "personalBest": "2:08:48",
+      "eventDate": "2026-03-22",
+      "eventName": "无锡马拉松",
+      "eventVenue": "Wuxi (CHN)",
+      "eventPosition": "7",
+      "birthDate": "2000-06-02",
+      "bio": "中国男子马拉松运动员。公开出生日期为2000-06-02。2026-03-22在无锡马拉松跑出2:08:48，该场列第7名；在本次中国籍男子历史个人最佳成绩榜单快照中列第13位。另据官方个人档案，2023-08-06获得世界大学生运动会半程马拉松第3名（1:04:48）。",
+      "sources": [
+        {
+          "title": "World Athletics — 中国男子马拉松历史最佳成绩",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "title": "World Athletics — Kegu YANG 个人资料",
+          "url": "https://worldathletics.org/athletes/athlete=14754426"
+        },
+        {
+          "title": "中文姓名交叉来源 · 万名跑者逐梦古蜀！ 广汉三星堆半程马拉松赛事圆满收官",
+          "url": "https://local.cctv.com/2026/11/02/ARTIi6mKp96SvaCQ5z040mxJ261102.shtml"
+        }
+      ],
+      "verificationStatus": "verified",
+      "verifiedAt": "2026-11-11",
+      "nameVerificationStatus": "cross_checked_chinese_reporting",
+      "verificationNote": "",
+      "highlights": [
+        {
+          "date": "2026-03-22",
+          "title": "无锡马拉松",
+          "result": "2:08:48",
+          "position": "7",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "date": "2023-08-06",
+          "title": "世界大学生运动会 · 半程马拉松",
+          "competition": "FISU World University Games",
+          "discipline": "Half Marathon",
+          "result": "1:04:48",
+          "position": "3",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14754426"
+        },
+        {
+          "date": "2026-08-12",
+          "title": "全国锦标赛 · 10000米",
+          "competition": "Chinese Championships",
+          "discipline": "10,000 Metres",
+          "result": "29:06.40",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14754426"
+        },
+        {
+          "date": "2025-08-02",
+          "title": "全国锦标赛 · 5000米",
+          "competition": "Chinese Championships",
+          "discipline": "5000 Metres",
+          "result": "13:59.03",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14754426"
+        },
+        {
+          "date": "2024-06-30",
+          "title": "全国锦标赛 · 10000米",
+          "competition": "Chinese Championships",
+          "discipline": "10,000 Metres",
+          "result": "29:08.30",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14754426"
+        }
+      ],
+      "careerHighlights": [
+        {
+          "date": "2023-08-06",
+          "title": "世界大学生运动会 · 半程马拉松",
+          "competition": "FISU World University Games",
+          "discipline": "Half Marathon",
+          "result": "1:04:48",
+          "position": "3",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14754426"
+        },
+        {
+          "date": "2026-08-12",
+          "title": "全国锦标赛 · 10000米",
+          "competition": "Chinese Championships",
+          "discipline": "10,000 Metres",
+          "result": "29:06.40",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14754426"
+        },
+        {
+          "date": "2025-08-02",
+          "title": "全国锦标赛 · 5000米",
+          "competition": "Chinese Championships",
+          "discipline": "5000 Metres",
+          "result": "13:59.03",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14754426"
+        },
+        {
+          "date": "2024-06-30",
+          "title": "全国锦标赛 · 10000米",
+          "competition": "Chinese Championships",
+          "discipline": "10,000 Metres",
+          "result": "29:08.30",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14754426"
+        }
+      ],
+      "nameSource": {
+        "title": "中文姓名交叉来源 · 万名跑者逐梦古蜀！ 广汉三星堆半程马拉松赛事圆满收官",
+        "url": "https://local.cctv.com/2026/11/02/ARTIi6mKp96SvaCQ5z040mxJ261102.shtml"
+      }
+    },
+    {
+      "id": "athlete-men-14",
+      "type": "athlete",
+      "name": "洪跃",
+      "nameEn": "Yue HONG",
+      "gender": "men",
+      "rank": 14,
+      "displayOrder": 14,
+      "personalBest": "2:08:50",
+      "eventDate": "2026-03-22",
+      "eventName": "无锡马拉松",
+      "eventVenue": "Wuxi (CHN)",
+      "eventPosition": "8",
+      "birthDate": "1997-04-08",
+      "bio": "中国男子马拉松运动员。公开出生日期为1997-04-08。2026-03-22在无锡马拉松跑出2:08:50，该场列第8名；在本次中国籍男子历史个人最佳成绩榜单快照中列第14位。",
+      "sources": [
+        {
+          "title": "World Athletics — 中国男子马拉松历史最佳成绩",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "title": "World Athletics — Yue HONG 个人资料",
+          "url": "https://worldathletics.org/athletes/pr-of-china/yue-hong-15058848"
+        },
+        {
+          "title": "中文姓名交叉来源 · 2025雄马“中国人保杯” 每一步都很精彩",
+          "url": "https://sports.cctv.com/2025/04/23/ARTITkAUaCCjWE8IRt4ibDah250423.shtml"
+        }
+      ],
+      "verificationStatus": "verified",
+      "verifiedAt": "2026-11-11",
+      "nameVerificationStatus": "cross_checked_chinese_reporting",
+      "verificationNote": "",
+      "highlights": [
+        {
+          "date": "2026-03-22",
+          "title": "无锡马拉松",
+          "result": "2:08:50",
+          "position": "8",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        }
+      ],
+      "nameSource": {
+        "title": "中文姓名交叉来源 · 2025雄马“中国人保杯” 每一步都很精彩",
+        "url": "https://sports.cctv.com/2025/04/23/ARTITkAUaCCjWE8IRt4ibDah250423.shtml"
+      }
+    },
+    {
+      "id": "athlete-men-15",
+      "type": "athlete",
+      "name": "韩刚",
+      "nameEn": "Han GANG",
+      "gender": "men",
+      "rank": 15,
+      "displayOrder": 15,
+      "personalBest": "2:08:56",
+      "eventDate": "2007-10-21",
+      "eventName": "北京马拉松",
+      "eventVenue": "Beijing (CHN)",
+      "eventPosition": "3",
+      "birthDate": "1978-11-10",
+      "bio": "中国男子马拉松运动员。公开出生日期为1978-11-10。2007-10-21在北京马拉松跑出2:08:56，该场列第3名；在本次中国籍男子历史个人最佳成绩榜单快照中列第15位。另据官方个人档案，2004-11-07获得亚洲马拉松锦标赛马拉松第3名（2:15:12）。",
+      "sources": [
+        {
+          "title": "World Athletics — 中国男子马拉松历史最佳成绩",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "title": "World Athletics — Han GANG 个人资料",
+          "url": "https://worldathletics.org/athletes/athlete=14172632"
+        },
+        {
+          "title": "中文姓名交叉来源 · 成都双遗马拉松线路微调 了解赛道助你冲PB",
+          "url": "https://sports.cctv.com/2017/03/14/ARTIeOxEi34eoxHfvCztTvRi170314.shtml"
+        }
+      ],
+      "verificationStatus": "verified",
+      "verifiedAt": "2026-11-11",
+      "nameVerificationStatus": "cross_checked_chinese_reporting",
+      "verificationNote": "",
+      "highlights": [
+        {
+          "date": "2007-10-21",
+          "title": "北京马拉松",
+          "result": "2:08:56",
+          "position": "3",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "date": "2004-11-07",
+          "title": "亚洲马拉松锦标赛 · 马拉松",
+          "competition": "Seoul JoongAng Marathon",
+          "discipline": "Marathon",
+          "result": "2:15:12",
+          "position": "3",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14172632"
+        },
+        {
+          "date": "2003-09-12",
+          "title": "全国锦标赛 · 5000米",
+          "competition": "Chinese Championships",
+          "discipline": "5000 Metres",
+          "result": "13:54.73",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14172632"
+        }
+      ],
+      "careerHighlights": [
+        {
+          "date": "2004-11-07",
+          "title": "亚洲马拉松锦标赛 · 马拉松",
+          "competition": "Seoul JoongAng Marathon",
+          "discipline": "Marathon",
+          "result": "2:15:12",
+          "position": "3",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14172632"
+        },
+        {
+          "date": "2003-09-12",
+          "title": "全国锦标赛 · 5000米",
+          "competition": "Chinese Championships",
+          "discipline": "5000 Metres",
+          "result": "13:54.73",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14172632"
+        }
+      ],
+      "nameSource": {
+        "title": "中文姓名交叉来源 · 成都双遗马拉松线路微调 了解赛道助你冲PB",
+        "url": "https://sports.cctv.com/2017/03/14/ARTIeOxEi34eoxHfvCztTvRi170314.shtml"
+      }
+    },
+    {
+      "id": "athlete-men-16",
+      "type": "athlete",
+      "name": "Guangyu HU",
+      "nameEn": "Guangyu HU",
+      "gender": "men",
+      "rank": 16,
+      "displayOrder": 16,
+      "personalBest": "2:09:18",
+      "eventDate": "1997-10-04",
+      "eventName": "北京马拉松",
+      "eventVenue": "Beijing (CHN)",
+      "eventPosition": "1",
+      "birthDate": "1970-12-04",
+      "bio": "中国男子马拉松运动员。公开出生日期为1970-12-04。1997-10-04在北京马拉松跑出2:09:18，该场列第1名；在本次中国籍男子历史个人最佳成绩榜单快照中列第16位。",
+      "sources": [
+        {
+          "title": "World Athletics — 中国男子马拉松历史最佳成绩",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "title": "World Athletics — Guangyu HU 个人资料",
+          "url": "https://worldathletics.org/athletes/athlete=14172461"
+        }
+      ],
+      "verificationStatus": "verified",
+      "verifiedAt": "2026-11-11",
+      "nameVerificationStatus": "pending",
+      "verificationNote": "官方榜单英文姓名为 Guangyu HU，中文姓名待核实，未据相似成绩擅自合并其他人物。",
+      "highlights": [
+        {
+          "date": "1997-10-04",
+          "title": "北京马拉松",
+          "result": "2:09:18",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        }
+      ]
+    },
+    {
+      "id": "athlete-men-17",
+      "type": "athlete",
+      "name": "桑吉东知",
+      "nameEn": "Jidongzhi SANG",
+      "gender": "men",
+      "rank": 17,
+      "displayOrder": 17,
+      "personalBest": "2:09:29",
+      "eventDate": "2024-03-24",
+      "eventName": "无锡马拉松",
+      "eventVenue": "Wuxi (CHN)",
+      "eventPosition": "9",
+      "birthDate": "1997-11-10",
+      "bio": "中国男子马拉松运动员。公开出生日期为1997-11-10。2024-03-24在无锡马拉松跑出2:09:29，该场列第9名；在本次中国籍男子历史个人最佳成绩榜单快照中列第17位。",
+      "sources": [
+        {
+          "title": "World Athletics — 中国男子马拉松历史最佳成绩",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "title": "World Athletics — Jidongzhi SANG 个人资料",
+          "url": "https://worldathletics.org/athletes/athlete=14714456"
+        },
+        {
+          "title": "中文姓名交叉来源 · 用脚步丈量城市之美 石家庄马拉松赛圆满结束",
+          "url": "https://sports.cctv.com/2024/04/01/ARTIwzNHSZ5W2DnwPJzQRrbA240401.shtml"
+        }
+      ],
+      "verificationStatus": "verified",
+      "verifiedAt": "2026-11-11",
+      "nameVerificationStatus": "cross_checked_chinese_reporting",
+      "verificationNote": "",
+      "highlights": [
+        {
+          "date": "2024-03-24",
+          "title": "无锡马拉松",
+          "result": "2:09:29",
+          "position": "9",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        }
+      ],
+      "nameSource": {
+        "title": "中文姓名交叉来源 · 用脚步丈量城市之美 石家庄马拉松赛圆满结束",
+        "url": "https://sports.cctv.com/2024/04/01/ARTIwzNHSZ5W2DnwPJzQRrbA240401.shtml"
+      }
+    },
+    {
+      "id": "athlete-men-18",
+      "type": "athlete",
+      "name": "蒋发坤",
+      "nameEn": "Fakun JIANG",
+      "gender": "men",
+      "rank": 17,
+      "displayOrder": 18,
+      "personalBest": "2:09:29",
+      "eventDate": "2026-10-18",
+      "eventName": "北京马拉松",
+      "eventVenue": "Beijing (CHN)",
+      "eventPosition": "6",
+      "birthDate": "1999-08-16",
+      "bio": "中国男子马拉松运动员。公开出生日期为1999-08-16。2026-10-18在北京马拉松跑出2:09:29，该场列第6名；在本次中国籍男子历史个人最佳成绩榜单快照中列第17位。另据官方个人档案，2025-08-03获得全国锦标赛10000米第1名（29:41.67）。",
+      "sources": [
+        {
+          "title": "World Athletics — 中国男子马拉松历史最佳成绩",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "title": "World Athletics — Fakun JIANG 个人资料",
+          "url": "https://worldathletics.org/athletes/athlete=14839796"
+        },
+        {
+          "title": "中文姓名交叉来源 · 张德顺刷新中国女子10公里路跑最好成绩",
+          "url": "https://sports.cctv.com/2025/12/29/ARTID8ZhBErGKPEtnBjJqckA251229.shtml"
+        }
+      ],
+      "verificationStatus": "verified",
+      "verifiedAt": "2026-11-11",
+      "nameVerificationStatus": "cross_checked_chinese_reporting",
+      "verificationNote": "",
+      "highlights": [
+        {
+          "date": "2026-10-18",
+          "title": "北京马拉松",
+          "result": "2:09:29",
+          "position": "6",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "date": "2025-08-03",
+          "title": "全国锦标赛 · 10000米",
+          "competition": "Chinese Championships",
+          "discipline": "10,000 Metres",
+          "result": "29:41.67",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14839796"
+        }
+      ],
+      "careerHighlights": [
+        {
+          "date": "2025-08-03",
+          "title": "全国锦标赛 · 10000米",
+          "competition": "Chinese Championships",
+          "discipline": "10,000 Metres",
+          "result": "29:41.67",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14839796"
+        }
+      ],
+      "nameSource": {
+        "title": "中文姓名交叉来源 · 张德顺刷新中国女子10公里路跑最好成绩",
+        "url": "https://sports.cctv.com/2025/12/29/ARTID8ZhBErGKPEtnBjJqckA251229.shtml"
+      }
+    },
+    {
+      "id": "athlete-men-19",
+      "type": "athlete",
+      "name": "高鹏",
+      "nameEn": "Peng GAO",
+      "gender": "men",
+      "rank": 19,
+      "displayOrder": 19,
+      "personalBest": "2:09:34",
+      "eventDate": "2023-10-29",
+      "eventName": "北京马拉松",
+      "eventVenue": "Beijing (CHN)",
+      "eventPosition": "8",
+      "birthDate": "1996-08-16",
+      "bio": "中国男子马拉松运动员。公开出生日期为1996-08-16。2023-10-29在北京马拉松跑出2:09:34，该场列第8名；在本次中国籍男子历史个人最佳成绩榜单快照中列第19位。",
+      "sources": [
+        {
+          "title": "World Athletics — 中国男子马拉松历史最佳成绩",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "title": "World Athletics — Peng GAO 个人资料",
+          "url": "https://worldathletics.org/athletes/athlete=14750614"
+        },
+        {
+          "title": "中文姓名交叉来源 · 2023南京江岛半程马拉松吸引万人参加",
+          "url": "https://local.cctv.com/2023/04/17/ARTIIKJgDEz1fkDWDqPAmXB2230417.shtml"
+        }
+      ],
+      "verificationStatus": "verified",
+      "verifiedAt": "2026-11-11",
+      "nameVerificationStatus": "cross_checked_chinese_reporting",
+      "verificationNote": "",
+      "highlights": [
+        {
+          "date": "2023-10-29",
+          "title": "北京马拉松",
+          "result": "2:09:34",
+          "position": "8",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        }
+      ],
+      "nameSource": {
+        "title": "中文姓名交叉来源 · 2023南京江岛半程马拉松吸引万人参加",
+        "url": "https://local.cctv.com/2023/04/17/ARTIIKJgDEz1fkDWDqPAmXB2230417.shtml"
+      }
+    },
+    {
+      "id": "athlete-men-20",
+      "type": "athlete",
+      "name": "扎西次仁",
+      "nameEn": "Ciren ZHAXI",
+      "gender": "men",
+      "rank": 20,
+      "displayOrder": 20,
+      "personalBest": "2:09:43",
+      "eventDate": "2026-03-22",
+      "eventName": "无锡马拉松",
+      "eventVenue": "Wuxi (CHN)",
+      "eventPosition": "9",
+      "birthDate": "1999-02-13",
+      "bio": "中国男子马拉松运动员。公开出生日期为1999-02-13。2026-03-22在无锡马拉松跑出2:09:43，该场列第9名；在本次中国籍男子历史个人最佳成绩榜单快照中列第20位。",
+      "sources": [
+        {
+          "title": "World Athletics — 中国男子马拉松历史最佳成绩",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "title": "World Athletics — Ciren ZHAXI 个人资料",
+          "url": "https://worldathletics.org/athletes/pr-of-china/ciren-zhaxi-15136844"
+        }
+      ],
+      "verificationStatus": "verified",
+      "verifiedAt": "2026-11-11",
+      "nameVerificationStatus": "chinese_display_pending_crosscheck",
+      "verificationNote": "中文显示名采用常见写法，尚未完成本次原始中文赛事名单交叉核实；成绩记录与官方英文姓名已核实，此处不代表中文姓名与身份认证。",
+      "highlights": [
+        {
+          "date": "2026-03-22",
+          "title": "无锡马拉松",
+          "result": "2:09:43",
+          "position": "9",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        }
+      ]
+    },
+    {
+      "id": "athlete-women-1",
+      "type": "athlete",
+      "name": "孙英杰",
+      "nameEn": "Yingjie SUN",
+      "gender": "women",
+      "rank": 1,
+      "displayOrder": 1,
+      "personalBest": "2:19:39",
+      "eventDate": "2003-10-19",
+      "eventName": "北京马拉松",
+      "eventVenue": "Beijing (CHN)",
+      "eventPosition": "1",
+      "birthDate": "1979-01-19",
+      "bio": "中国女子马拉松运动员。公开出生日期为1979-01-19。2003-10-19在北京马拉松跑出2:19:39，该场列第1名；在本次中国籍女子历史个人最佳成绩榜单快照中列第1位。另据官方个人档案，2003-08-23获得世界田径锦标赛10000米第3名（30:07.20）。",
+      "sources": [
+        {
+          "title": "World Athletics — 中国女子马拉松历史最佳成绩",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "title": "World Athletics — Yingjie SUN 个人资料",
+          "url": "https://worldathletics.org/athletes/athlete=14265236"
+        },
+        {
+          "title": "中文姓名交叉来源 · 这一次，世界冠军给科创家点赞",
+          "url": "https://kepu.cctv.cn/2025/11/25/ARTIdnLUzTzz1RcVjo9H95ht251125.shtml"
+        }
+      ],
+      "verificationStatus": "verified",
+      "verifiedAt": "2026-11-11",
+      "nameVerificationStatus": "cross_checked_chinese_reporting",
+      "verificationNote": "",
+      "highlights": [
+        {
+          "date": "2003-10-19",
+          "title": "北京马拉松",
+          "result": "2:19:39",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "date": "2003-08-23",
+          "title": "世界田径锦标赛 · 10000米",
+          "competition": "IAAF World Championships",
+          "discipline": "10,000 Metres",
+          "result": "30:07.20",
+          "position": "3",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14265236"
+        },
+        {
+          "date": "2004-10-03",
+          "title": "世界半程马拉松锦标赛 · 半程马拉松",
+          "competition": "New Delhi IAAF World Half Marathon Championships",
+          "discipline": "Half Marathon",
+          "result": "1:08:40",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14265236"
+        },
+        {
+          "date": "2002-10-12",
+          "title": "亚运会 · 5000米",
+          "competition": "Busan Asian Games",
+          "discipline": "5000 Metres",
+          "result": "14:40.41",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14265236"
+        },
+        {
+          "date": "2002-10-08",
+          "title": "亚运会 · 10000米",
+          "competition": "Busan Asian Games",
+          "discipline": "10,000 Metres",
+          "result": "30:28.26",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14265236"
+        }
+      ],
+      "careerHighlights": [
+        {
+          "date": "2003-08-23",
+          "title": "世界田径锦标赛 · 10000米",
+          "competition": "IAAF World Championships",
+          "discipline": "10,000 Metres",
+          "result": "30:07.20",
+          "position": "3",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14265236"
+        },
+        {
+          "date": "2004-10-03",
+          "title": "世界半程马拉松锦标赛 · 半程马拉松",
+          "competition": "New Delhi IAAF World Half Marathon Championships",
+          "discipline": "Half Marathon",
+          "result": "1:08:40",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14265236"
+        },
+        {
+          "date": "2002-10-12",
+          "title": "亚运会 · 5000米",
+          "competition": "Busan Asian Games",
+          "discipline": "5000 Metres",
+          "result": "14:40.41",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14265236"
+        },
+        {
+          "date": "2002-10-08",
+          "title": "亚运会 · 10000米",
+          "competition": "Busan Asian Games",
+          "discipline": "10,000 Metres",
+          "result": "30:28.26",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14265236"
+        }
+      ],
+      "nameSource": {
+        "title": "中文姓名交叉来源 · 这一次，世界冠军给科创家点赞",
+        "url": "https://kepu.cctv.cn/2025/11/25/ARTIdnLUzTzz1RcVjo9H95ht251125.shtml"
+      }
+    },
+    {
+      "id": "athlete-women-2",
+      "type": "athlete",
+      "name": "周春秀",
+      "nameEn": "Chunxiu ZHOU",
+      "gender": "women",
+      "rank": 2,
+      "displayOrder": 2,
+      "personalBest": "2:19:51",
+      "eventDate": "2006-03-12",
+      "eventName": "首尔马拉松",
+      "eventVenue": "Seoul (KOR)",
+      "eventPosition": "1",
+      "birthDate": "1978-11-15",
+      "bio": "中国女子马拉松运动员。公开出生日期为1978-11-15。2006-03-12在首尔马拉松跑出2:19:51，该场列第1名；在本次中国籍女子历史个人最佳成绩榜单快照中列第2位。另据官方个人档案，2008-08-17获得奥运会马拉松第3名（2:27:07）。",
+      "sources": [
+        {
+          "title": "World Athletics — 中国女子马拉松历史最佳成绩",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "title": "World Athletics — Chunxiu ZHOU 个人资料",
+          "url": "https://worldathletics.org/athletes/athlete=14264260"
+        },
+        {
+          "title": "中文姓名交叉来源 · 5月18日08:15视频直播第十二届全运会马拉松赛",
+          "url": "https://sports.cntv.cn/2013/05/17/ARTI1368778746766767.shtml"
+        }
+      ],
+      "verificationStatus": "verified",
+      "verifiedAt": "2026-11-11",
+      "nameVerificationStatus": "cross_checked_chinese_reporting",
+      "verificationNote": "",
+      "highlights": [
+        {
+          "date": "2006-03-12",
+          "title": "首尔马拉松",
+          "result": "2:19:51",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "date": "2008-08-17",
+          "title": "奥运会 · 马拉松",
+          "competition": "The XXIX Olympic Games",
+          "discipline": "Marathon",
+          "result": "2:27:07",
+          "position": "3",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14264260"
+        },
+        {
+          "date": "2007-09-02",
+          "title": "世界田径锦标赛 · 马拉松",
+          "competition": "IAAF World Championships",
+          "discipline": "Marathon",
+          "result": "2:30:45",
+          "position": "2",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14264260"
+        },
+        {
+          "date": "2010-11-27",
+          "title": "亚运会 · 马拉松",
+          "competition": "Guangzhou Asian Games",
+          "discipline": "Marathon",
+          "result": "2:25:00",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14264260"
+        },
+        {
+          "date": "2006-12-09",
+          "title": "亚运会 · 马拉松",
+          "competition": "Doha Asian Games",
+          "discipline": "Marathon",
+          "result": "2:27:03",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14264260"
+        }
+      ],
+      "careerHighlights": [
+        {
+          "date": "2008-08-17",
+          "title": "奥运会 · 马拉松",
+          "competition": "The XXIX Olympic Games",
+          "discipline": "Marathon",
+          "result": "2:27:07",
+          "position": "3",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14264260"
+        },
+        {
+          "date": "2007-09-02",
+          "title": "世界田径锦标赛 · 马拉松",
+          "competition": "IAAF World Championships",
+          "discipline": "Marathon",
+          "result": "2:30:45",
+          "position": "2",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14264260"
+        },
+        {
+          "date": "2010-11-27",
+          "title": "亚运会 · 马拉松",
+          "competition": "Guangzhou Asian Games",
+          "discipline": "Marathon",
+          "result": "2:25:00",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14264260"
+        },
+        {
+          "date": "2006-12-09",
+          "title": "亚运会 · 马拉松",
+          "competition": "Doha Asian Games",
+          "discipline": "Marathon",
+          "result": "2:27:03",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14264260"
+        }
+      ],
+      "nameSource": {
+        "title": "中文姓名交叉来源 · 5月18日08:15视频直播第十二届全运会马拉松赛",
+        "url": "https://sports.cntv.cn/2013/05/17/ARTI1368778746766767.shtml"
+      }
+    },
+    {
+      "id": "athlete-women-3",
+      "type": "athlete",
+      "name": "张德顺",
+      "nameEn": "Deshun ZHANG",
+      "gender": "women",
+      "rank": 3,
+      "displayOrder": 3,
+      "personalBest": "2:20:53",
+      "eventDate": "2025-03-02",
+      "eventName": "东京马拉松",
+      "eventVenue": "Tokyo (JPN)",
+      "eventPosition": "9",
+      "birthDate": "1996-02-21",
+      "bio": "中国女子马拉松运动员。公开出生日期为1996-02-21。2025-03-02在东京马拉松跑出2:20:53，该场列第9名；在本次中国籍女子历史个人最佳成绩榜单快照中列第3位。另据官方个人档案，2023-10-05获得亚运会马拉松第2名（2:27:55）。",
+      "sources": [
+        {
+          "title": "World Athletics — 中国女子马拉松历史最佳成绩",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "title": "World Athletics — Deshun ZHANG 个人资料",
+          "url": "https://worldathletics.org/athletes/athlete=14693572"
+        },
+        {
+          "title": "中文姓名交叉来源 · 女子马拉松-张德顺获第11 埃塞俄比亚选手夺冠",
+          "url": "https://sports.cctv.com/2022/07/19/ARTIutVZHpCixwUycyqPpkxn220719.shtml"
+        }
+      ],
+      "verificationStatus": "verified",
+      "verifiedAt": "2026-11-11",
+      "nameVerificationStatus": "cross_checked_chinese_reporting",
+      "verificationNote": "",
+      "highlights": [
+        {
+          "date": "2025-03-02",
+          "title": "东京马拉松",
+          "result": "2:20:53",
+          "position": "9",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "date": "2023-10-05",
+          "title": "亚运会 · 马拉松",
+          "competition": "19th Asian Games",
+          "discipline": "Marathon",
+          "result": "2:27:55",
+          "position": "2",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14693572"
+        },
+        {
+          "date": "2018-08-25",
+          "title": "亚运会 · 10000米",
+          "competition": "Jakarta Asian Games",
+          "discipline": "10,000 Metres",
+          "result": "32:12.78",
+          "position": "3",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14693572"
+        },
+        {
+          "date": "2019-07-08",
+          "title": "世界大学生运动会 · 10000米",
+          "competition": "Universiade",
+          "discipline": "10,000 Metres",
+          "result": "34:03.31",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14693572"
+        },
+        {
+          "date": "2023-06-27",
+          "title": "全国锦标赛 · 5000米",
+          "competition": "Chinese Champinships",
+          "discipline": "5000 Metres",
+          "result": "15:49.75",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14693572"
+        }
+      ],
+      "careerHighlights": [
+        {
+          "date": "2023-10-05",
+          "title": "亚运会 · 马拉松",
+          "competition": "19th Asian Games",
+          "discipline": "Marathon",
+          "result": "2:27:55",
+          "position": "2",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14693572"
+        },
+        {
+          "date": "2018-08-25",
+          "title": "亚运会 · 10000米",
+          "competition": "Jakarta Asian Games",
+          "discipline": "10,000 Metres",
+          "result": "32:12.78",
+          "position": "3",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14693572"
+        },
+        {
+          "date": "2019-07-08",
+          "title": "世界大学生运动会 · 10000米",
+          "competition": "Universiade",
+          "discipline": "10,000 Metres",
+          "result": "34:03.31",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14693572"
+        },
+        {
+          "date": "2023-06-27",
+          "title": "全国锦标赛 · 5000米",
+          "competition": "Chinese Champinships",
+          "discipline": "5000 Metres",
+          "result": "15:49.75",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14693572"
+        }
+      ],
+      "nameSource": {
+        "title": "中文姓名交叉来源 · 女子马拉松-张德顺获第11 埃塞俄比亚选手夺冠",
+        "url": "https://sports.cctv.com/2022/07/19/ARTIutVZHpCixwUycyqPpkxn220719.shtml"
+      }
+    },
+    {
+      "id": "athlete-women-4",
+      "type": "athlete",
+      "name": "张莹莹",
+      "nameEn": "Yingying ZHANG",
+      "gender": "women",
+      "rank": 4,
+      "displayOrder": 4,
+      "personalBest": "2:22:38",
+      "eventDate": "2008-01-05",
+      "eventName": "厦门马拉松",
+      "eventVenue": "Xiamen (CHN)",
+      "eventPosition": "1",
+      "birthDate": "1990-01-04",
+      "bio": "中国女子马拉松运动员。公开出生日期为1990-01-04。2008-01-05在厦门马拉松跑出2:22:38，该场列第1名；在本次中国籍女子历史个人最佳成绩榜单快照中列第4位。",
+      "sources": [
+        {
+          "title": "World Athletics — 中国女子马拉松历史最佳成绩",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "title": "World Athletics — Yingying ZHANG 个人资料",
+          "url": "https://worldathletics.org/athletes/athlete=14264358"
+        },
+        {
+          "title": "中文姓名交叉来源 · 北京马拉松：中国女将22连冠 男子赛会纪录告破",
+          "url": "https://sports.cntv.cn/2013/10/20/ARTI1382248018498153.shtml"
+        }
+      ],
+      "verificationStatus": "verified",
+      "verifiedAt": "2026-11-11",
+      "nameVerificationStatus": "cross_checked_chinese_reporting",
+      "verificationNote": "",
+      "highlights": [
+        {
+          "date": "2008-01-05",
+          "title": "厦门马拉松",
+          "result": "2:22:38",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        }
+      ],
+      "nameSource": {
+        "title": "中文姓名交叉来源 · 北京马拉松：中国女将22连冠 男子赛会纪录告破",
+        "url": "https://sports.cntv.cn/2013/10/20/ARTI1382248018498153.shtml"
+      }
+    },
+    {
+      "id": "athlete-women-5",
+      "type": "athlete",
+      "name": "王佳丽",
+      "nameEn": "Jiali WANG",
+      "gender": "women",
+      "rank": 5,
+      "displayOrder": 5,
+      "personalBest": "2:22:41",
+      "eventDate": "2012-03-18",
+      "eventName": "重庆马拉松",
+      "eventVenue": "Chongqing (CHN)",
+      "eventPosition": "1",
+      "birthDate": "1986-02-01",
+      "bio": "中国女子马拉松运动员。公开出生日期为1986-02-01。2012-03-18在重庆马拉松跑出2:22:41，该场列第1名；在本次中国籍女子历史个人最佳成绩榜单快照中列第5位。",
+      "sources": [
+        {
+          "title": "World Athletics — 中国女子马拉松历史最佳成绩",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "title": "World Athletics — Jiali WANG 个人资料",
+          "url": "https://worldathletics.org/athletes/athlete=14265125"
+        },
+        {
+          "title": "中文姓名交叉来源 · 第13届全运会首金诞生 王佳丽摘女子马拉松金牌",
+          "url": "https://sports.cctv.com/2017/04/29/ARTIKKAYIBXilpYE5jjWTLXg170429.shtml"
+        }
+      ],
+      "verificationStatus": "verified",
+      "verifiedAt": "2026-11-11",
+      "nameVerificationStatus": "cross_checked_chinese_reporting",
+      "verificationNote": "",
+      "highlights": [
+        {
+          "date": "2012-03-18",
+          "title": "重庆马拉松",
+          "result": "2:22:41",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        }
+      ],
+      "nameSource": {
+        "title": "中文姓名交叉来源 · 第13届全运会首金诞生 王佳丽摘女子马拉松金牌",
+        "url": "https://sports.cctv.com/2017/04/29/ARTIKKAYIBXilpYE5jjWTLXg170429.shtml"
+      }
+    },
+    {
+      "id": "athlete-women-6",
+      "type": "athlete",
+      "name": "魏亚楠",
+      "nameEn": "Yanan WEI",
+      "gender": "women",
+      "rank": 6,
+      "displayOrder": 6,
+      "personalBest": "2:23:12",
+      "eventDate": "2007-03-18",
+      "eventName": "首尔马拉松",
+      "eventVenue": "Seoul (KOR)",
+      "eventPosition": "1",
+      "birthDate": "1981-12-06",
+      "bio": "中国女子马拉松运动员。公开出生日期为1981-12-06。2007-03-18在首尔马拉松跑出2:23:12，该场列第1名；在本次中国籍女子历史个人最佳成绩榜单快照中列第6位。",
+      "sources": [
+        {
+          "title": "World Athletics — 中国女子马拉松历史最佳成绩",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "title": "World Athletics — Yanan WEI 个人资料",
+          "url": "https://worldathletics.org/athletes/athlete=14264959"
+        },
+        {
+          "title": "中文姓名交叉来源 · 北京马拉松历届男女冠军：中国曾获女子22连冠",
+          "url": "https://sports.cctv.com/2018/09/14/ARTIcUmnbExkFGSOxh7nqyli180914.shtml"
+        }
+      ],
+      "verificationStatus": "verified",
+      "verifiedAt": "2026-11-11",
+      "nameVerificationStatus": "cross_checked_chinese_reporting",
+      "verificationNote": "",
+      "highlights": [
+        {
+          "date": "2007-03-18",
+          "title": "首尔马拉松",
+          "result": "2:23:12",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        }
+      ],
+      "nameSource": {
+        "title": "中文姓名交叉来源 · 北京马拉松历届男女冠军：中国曾获女子22连冠",
+        "url": "https://sports.cctv.com/2018/09/14/ARTIcUmnbExkFGSOxh7nqyli180914.shtml"
+      }
+    },
+    {
+      "id": "athlete-women-7",
+      "type": "athlete",
+      "name": "张淑晶",
+      "nameEn": "Shujing ZHANG",
+      "gender": "women",
+      "rank": 7,
+      "displayOrder": 7,
+      "personalBest": "2:23:17",
+      "eventDate": "2002-10-13",
+      "eventName": "北京马拉松",
+      "eventVenue": "Beijing (CHN)",
+      "eventPosition": "2",
+      "birthDate": "1978-09-13",
+      "bio": "中国女子马拉松运动员。公开出生日期为1978-09-13。2002-10-13在北京马拉松跑出2:23:17，该场列第2名；在本次中国籍女子历史个人最佳成绩榜单快照中列第7位。",
+      "sources": [
+        {
+          "title": "World Athletics — 中国女子马拉松历史最佳成绩",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "title": "World Athletics — Shujing ZHANG 个人资料",
+          "url": "https://worldathletics.org/athletes/athlete=14264390"
+        }
+      ],
+      "verificationStatus": "verified",
+      "verifiedAt": "2026-11-11",
+      "nameVerificationStatus": "chinese_display_pending_crosscheck",
+      "verificationNote": "中文显示名采用常见写法，尚未完成本次原始中文赛事名单交叉核实；成绩记录与官方英文姓名已核实，此处不代表中文姓名与身份认证。",
+      "highlights": [
+        {
+          "date": "2002-10-13",
+          "title": "北京马拉松",
+          "result": "2:23:17",
+          "position": "2",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        }
+      ]
+    },
+    {
+      "id": "athlete-women-8",
+      "type": "athlete",
+      "name": "白雪",
+      "nameEn": "Xue BAI",
+      "gender": "women",
+      "rank": 8,
+      "displayOrder": 8,
+      "personalBest": "2:23:27",
+      "eventDate": "2008-01-05",
+      "eventName": "厦门马拉松",
+      "eventVenue": "Xiamen (CHN)",
+      "eventPosition": "2",
+      "birthDate": "1988-12-13",
+      "bio": "中国女子马拉松运动员。公开出生日期为1988-12-13。2008-01-05在厦门马拉松跑出2:23:27，该场列第2名；在本次中国籍女子历史个人最佳成绩榜单快照中列第8位。另据官方个人档案，2009-08-23获得世界田径锦标赛马拉松第1名（2:25:15）。",
+      "sources": [
+        {
+          "title": "World Athletics — 中国女子马拉松历史最佳成绩",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "title": "World Athletics — Xue BAI 个人资料",
+          "url": "https://worldathletics.org/athletes/athlete=14266777"
+        },
+        {
+          "title": "中文姓名交叉来源 · 张培萌领衔入围集训名单 白雪上榜110米栏仅1人",
+          "url": "https://sports.cntv.cn/2013/10/24/ARTI1382575760194146.shtml"
+        }
+      ],
+      "verificationStatus": "verified",
+      "verifiedAt": "2026-11-11",
+      "nameVerificationStatus": "cross_checked_chinese_reporting",
+      "verificationNote": "",
+      "highlights": [
+        {
+          "date": "2008-01-05",
+          "title": "厦门马拉松",
+          "result": "2:23:27",
+          "position": "2",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "date": "2009-08-23",
+          "title": "世界田径锦标赛 · 马拉松",
+          "competition": "IAAF World Championships",
+          "discipline": "Marathon",
+          "result": "2:25:15",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14266777"
+        },
+        {
+          "date": "2004-11-07",
+          "title": "亚洲马拉松锦标赛 · 马拉松",
+          "competition": "Seoul JoongAng Marathon",
+          "discipline": "Marathon",
+          "result": "2:42:21",
+          "position": "3",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14266777"
+        },
+        {
+          "date": "2010-08-08",
+          "title": "全国锦标赛 · 10000米",
+          "competition": "Chinese Championships",
+          "discipline": "10,000 Metres",
+          "result": "32:53.24",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14266777"
+        },
+        {
+          "date": "2009-05-23",
+          "title": "全国锦标赛 · 5000米",
+          "competition": "Chinese Championships",
+          "discipline": "5000 Metres",
+          "result": "15:37.07",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14266777"
+        }
+      ],
+      "careerHighlights": [
+        {
+          "date": "2009-08-23",
+          "title": "世界田径锦标赛 · 马拉松",
+          "competition": "IAAF World Championships",
+          "discipline": "Marathon",
+          "result": "2:25:15",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14266777"
+        },
+        {
+          "date": "2004-11-07",
+          "title": "亚洲马拉松锦标赛 · 马拉松",
+          "competition": "Seoul JoongAng Marathon",
+          "discipline": "Marathon",
+          "result": "2:42:21",
+          "position": "3",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14266777"
+        },
+        {
+          "date": "2010-08-08",
+          "title": "全国锦标赛 · 10000米",
+          "competition": "Chinese Championships",
+          "discipline": "10,000 Metres",
+          "result": "32:53.24",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14266777"
+        },
+        {
+          "date": "2009-05-23",
+          "title": "全国锦标赛 · 5000米",
+          "competition": "Chinese Championships",
+          "discipline": "5000 Metres",
+          "result": "15:37.07",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14266777"
+        }
+      ],
+      "nameSource": {
+        "title": "中文姓名交叉来源 · 张培萌领衔入围集训名单 白雪上榜110米栏仅1人",
+        "url": "https://sports.cntv.cn/2013/10/24/ARTI1382575760194146.shtml"
+      }
+    },
+    {
+      "id": "athlete-women-9",
+      "type": "athlete",
+      "name": "刘敏",
+      "nameEn": "Min LIU",
+      "gender": "women",
+      "rank": 9,
+      "displayOrder": 9,
+      "personalBest": "2:23:37",
+      "eventDate": "2001-10-14",
+      "eventName": "北京马拉松",
+      "eventVenue": "Beijing (CHN)",
+      "eventPosition": "1",
+      "birthDate": "1983-11-29",
+      "bio": "中国女子马拉松运动员。公开出生日期为1983-11-29。2001-10-14在北京马拉松跑出2:23:37，该场列第1名；在本次中国籍女子历史个人最佳成绩榜单快照中列第9位。",
+      "sources": [
+        {
+          "title": "World Athletics — 中国女子马拉松历史最佳成绩",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "title": "World Athletics — Min LIU 个人资料",
+          "url": "https://worldathletics.org/athletes/athlete=14265772"
+        },
+        {
+          "title": "中文姓名交叉来源 · 北京马拉松历届男女冠军：中国曾获女子22连冠（女子冠军表图：2001刘敏2:23:37）",
+          "url": "https://sports.cctv.com/2018/09/14/ARTIcUmnbExkFGSOxh7nqyli180914.shtml"
+        }
+      ],
+      "verificationStatus": "verified",
+      "verifiedAt": "2026-11-11",
+      "nameVerificationStatus": "cross_checked_chinese_reporting",
+      "verificationNote": "",
+      "highlights": [
+        {
+          "date": "2001-10-14",
+          "title": "北京马拉松",
+          "result": "2:23:37",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        }
+      ],
+      "nameSource": {
+        "title": "中文姓名交叉来源 · 北京马拉松历届男女冠军：中国曾获女子22连冠（女子冠军表图：2001刘敏2:23:37）",
+        "url": "https://sports.cctv.com/2018/09/14/ARTIcUmnbExkFGSOxh7nqyli180914.shtml"
+      }
+    },
+    {
+      "id": "athlete-women-10",
+      "type": "athlete",
+      "name": "次仁措姆",
+      "nameEn": "Cuomu CIREN",
+      "gender": "women",
+      "rank": 10,
+      "displayOrder": 10,
+      "personalBest": "2:23:48",
+      "eventDate": "2026-10-18",
+      "eventName": "北京马拉松",
+      "eventVenue": "Beijing (CHN)",
+      "eventPosition": "2",
+      "birthDate": "1997-08-27",
+      "bio": "中国女子马拉松运动员。公开出生日期为1997-08-27。2026-10-18在北京马拉松跑出2:23:48，该场列第2名；在本次中国籍女子历史个人最佳成绩榜单快照中列第10位。",
+      "sources": [
+        {
+          "title": "World Athletics — 中国女子马拉松历史最佳成绩",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "title": "World Athletics — Cuomu CIREN 个人资料",
+          "url": "https://worldathletics.org/athletes/athlete=14663881"
+        },
+        {
+          "title": "中文姓名交叉来源 · 2022深圳马拉松开赛 中国选手夺冠",
+          "url": "https://local.cctv.com/2023/02/20/ARTIXLlduTs1p4w8mfKZHw0O230220.shtml"
+        }
+      ],
+      "verificationStatus": "verified",
+      "verifiedAt": "2026-11-11",
+      "nameVerificationStatus": "cross_checked_chinese_reporting",
+      "verificationNote": "",
+      "highlights": [
+        {
+          "date": "2026-10-18",
+          "title": "北京马拉松",
+          "result": "2:23:48",
+          "position": "2",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        }
+      ],
+      "nameSource": {
+        "title": "中文姓名交叉来源 · 2022深圳马拉松开赛 中国选手夺冠",
+        "url": "https://local.cctv.com/2023/02/20/ARTIXLlduTs1p4w8mfKZHw0O230220.shtml"
+      }
+    },
+    {
+      "id": "athlete-women-11",
+      "type": "athlete",
+      "name": "朱晓琳",
+      "nameEn": "Xiaolin ZHU",
+      "gender": "women",
+      "rank": 11,
+      "displayOrder": 11,
+      "personalBest": "2:23:57",
+      "eventDate": "2002-10-13",
+      "eventName": "北京马拉松",
+      "eventVenue": "Beijing (CHN)",
+      "eventPosition": "3",
+      "birthDate": "1984-02-20",
+      "bio": "中国女子马拉松运动员。公开出生日期为1984-02-20。2002-10-13在北京马拉松跑出2:23:57，该场列第3名；在本次中国籍女子历史个人最佳成绩榜单快照中列第11位。",
+      "sources": [
+        {
+          "title": "World Athletics — 中国女子马拉松历史最佳成绩",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "title": "World Athletics — Xiaolin ZHU 个人资料",
+          "url": "https://worldathletics.org/athletes/athlete=14264209"
+        },
+        {
+          "title": "中文姓名交叉来源 · 2023沈北蒲河女子半程马拉松赛于6月18日成功举办",
+          "url": "https://sports.cctv.com/2023/06/20/ARTIrckGuiiNjI5F8te8jQnJ230620.shtml"
+        }
+      ],
+      "verificationStatus": "verified",
+      "verifiedAt": "2026-11-11",
+      "nameVerificationStatus": "cross_checked_chinese_reporting",
+      "verificationNote": "",
+      "highlights": [
+        {
+          "date": "2002-10-13",
+          "title": "北京马拉松",
+          "result": "2:23:57",
+          "position": "3",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        }
+      ],
+      "nameSource": {
+        "title": "中文姓名交叉来源 · 2023沈北蒲河女子半程马拉松赛于6月18日成功举办",
+        "url": "https://sports.cctv.com/2023/06/20/ARTIrckGuiiNjI5F8te8jQnJ230620.shtml"
+      }
+    },
+    {
+      "id": "athlete-women-12",
+      "type": "athlete",
+      "name": "王军霞",
+      "nameEn": "Junxia WANG",
+      "gender": "women",
+      "rank": 12,
+      "displayOrder": 12,
+      "personalBest": "2:24:07",
+      "eventDate": "1993-04-04",
+      "eventName": "天津马拉松赛事（原始榜单地点：Tianjin）",
+      "eventVenue": "Tianjin (CHN)",
+      "eventPosition": "1",
+      "birthDate": "1973-01-09",
+      "bio": "中国女子马拉松运动员。公开出生日期为1973-01-09。1993-04-04在天津马拉松赛事（原始榜单地点：Tianjin）跑出2:24:07，该场列第1名；在本次中国籍女子历史个人最佳成绩榜单快照中列第12位。另据官方个人档案，1996-07-28获得奥运会5000米第1名（14:59.88）。",
+      "sources": [
+        {
+          "title": "World Athletics — 中国女子马拉松历史最佳成绩",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "title": "World Athletics — Junxia WANG 个人资料",
+          "url": "https://worldathletics.org/athletes/athlete=14265107"
+        },
+        {
+          "title": "中文姓名交叉来源 · 2023稷山马拉松赛成功举办",
+          "url": "https://sports.cctv.com/2023/05/14/ARTIq1kLDEi2phMhPlxvssE9230514.shtml"
+        }
+      ],
+      "verificationStatus": "verified",
+      "verifiedAt": "2026-11-11",
+      "nameVerificationStatus": "cross_checked_chinese_reporting",
+      "verificationNote": "",
+      "highlights": [
+        {
+          "date": "1993-04-04",
+          "title": "天津马拉松赛事（原始榜单地点：Tianjin）",
+          "result": "2:24:07",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "date": "1996-07-28",
+          "title": "奥运会 · 5000米",
+          "competition": "The XXVI Olympic Games",
+          "discipline": "5000 Metres",
+          "result": "14:59.88",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14265107"
+        },
+        {
+          "date": "1996-08-02",
+          "title": "奥运会 · 10000米",
+          "competition": "The XXVI Olympic Games",
+          "discipline": "10,000 Metres",
+          "result": "31:02.58",
+          "position": "2",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14265107"
+        },
+        {
+          "date": "1993-08-21",
+          "title": "世界田径锦标赛 · 10000米",
+          "competition": "IAAF World Championships",
+          "discipline": "10,000 Metres",
+          "result": "30:49.30",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14265107"
+        },
+        {
+          "date": "1996-05-08",
+          "title": "全国锦标赛 · 10000米",
+          "competition": "Chinese Championships",
+          "discipline": "10,000 Metres",
+          "result": "31:11.59",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14265107"
+        }
+      ],
+      "careerHighlights": [
+        {
+          "date": "1996-07-28",
+          "title": "奥运会 · 5000米",
+          "competition": "The XXVI Olympic Games",
+          "discipline": "5000 Metres",
+          "result": "14:59.88",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14265107"
+        },
+        {
+          "date": "1996-08-02",
+          "title": "奥运会 · 10000米",
+          "competition": "The XXVI Olympic Games",
+          "discipline": "10,000 Metres",
+          "result": "31:02.58",
+          "position": "2",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14265107"
+        },
+        {
+          "date": "1993-08-21",
+          "title": "世界田径锦标赛 · 10000米",
+          "competition": "IAAF World Championships",
+          "discipline": "10,000 Metres",
+          "result": "30:49.30",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14265107"
+        },
+        {
+          "date": "1996-05-08",
+          "title": "全国锦标赛 · 10000米",
+          "competition": "Chinese Championships",
+          "discipline": "10,000 Metres",
+          "result": "31:11.59",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14265107"
+        }
+      ],
+      "nameSource": {
+        "title": "中文姓名交叉来源 · 2023稷山马拉松赛成功举办",
+        "url": "https://sports.cctv.com/2023/05/14/ARTIq1kLDEi2phMhPlxvssE9230514.shtml"
+      }
+    },
+    {
+      "id": "athlete-women-13",
+      "type": "athlete",
+      "name": "任秀娟",
+      "nameEn": "Xiujuan REN",
+      "gender": "women",
+      "rank": 13,
+      "displayOrder": 13,
+      "personalBest": "2:24:22",
+      "eventDate": "2001-10-14",
+      "eventName": "北京马拉松",
+      "eventVenue": "Beijing (CHN)",
+      "eventPosition": "3",
+      "birthDate": "1974-09-14",
+      "bio": "中国女子马拉松运动员。公开出生日期为1974-09-14。2001-10-14在北京马拉松跑出2:24:22，该场列第3名；在本次中国籍女子历史个人最佳成绩榜单快照中列第13位。",
+      "sources": [
+        {
+          "title": "World Athletics — 中国女子马拉松历史最佳成绩",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "title": "World Athletics — Xiujuan REN 个人资料",
+          "url": "https://worldathletics.org/athletes/athlete=14265419"
+        },
+        {
+          "title": "中文姓名交叉来源 · 扬州将申办2022年世界半程马拉松锦标赛",
+          "url": "https://sports.cctv.com/2019/04/13/ARTIetTD5ZkeaiZEEQuhjopS190413.shtml"
+        }
+      ],
+      "verificationStatus": "verified",
+      "verifiedAt": "2026-11-11",
+      "nameVerificationStatus": "cross_checked_chinese_reporting",
+      "verificationNote": "",
+      "highlights": [
+        {
+          "date": "2001-10-14",
+          "title": "北京马拉松",
+          "result": "2:24:22",
+          "position": "3",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        }
+      ],
+      "nameSource": {
+        "title": "中文姓名交叉来源 · 扬州将申办2022年世界半程马拉松锦标赛",
+        "url": "https://sports.cctv.com/2019/04/13/ARTIetTD5ZkeaiZEEQuhjopS190413.shtml"
+      }
+    },
+    {
+      "id": "athlete-women-14",
+      "type": "athlete",
+      "name": "路颖",
+      "nameEn": "Ying LU",
+      "gender": "women",
+      "rank": 14,
+      "displayOrder": 14,
+      "personalBest": "2:24:24",
+      "eventDate": "2026-10-18",
+      "eventName": "北京马拉松",
+      "eventVenue": "Beijing (CHN)",
+      "eventPosition": "3",
+      "birthDate": "1997-10-13",
+      "bio": "中国女子马拉松运动员。公开出生日期为1997-10-13。2026-10-18在北京马拉松跑出2:24:24，该场列第3名；在本次中国籍女子历史个人最佳成绩榜单快照中列第14位。",
+      "sources": [
+        {
+          "title": "World Athletics — 中国女子马拉松历史最佳成绩",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "title": "World Athletics — Ying LU 个人资料",
+          "url": "https://worldathletics.org/athletes/athlete=14752711"
+        },
+        {
+          "title": "中文姓名交叉来源 · 4万人共赴太马：破纪录，交出城市治理与文旅融合新答卷",
+          "url": "https://local.cctv.com/2026/09/28/ARTIldVmNBReN2BO1z8n9gBZ260928.shtml"
+        }
+      ],
+      "verificationStatus": "verified",
+      "verifiedAt": "2026-11-11",
+      "nameVerificationStatus": "cross_checked_chinese_reporting",
+      "verificationNote": "",
+      "highlights": [
+        {
+          "date": "2026-10-18",
+          "title": "北京马拉松",
+          "result": "2:24:24",
+          "position": "3",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        }
+      ],
+      "nameSource": {
+        "title": "中文姓名交叉来源 · 4万人共赴太马：破纪录，交出城市治理与文旅融合新答卷",
+        "url": "https://local.cctv.com/2026/09/28/ARTIldVmNBReN2BO1z8n9gBZ260928.shtml"
+      }
+    },
+    {
+      "id": "athlete-women-15",
+      "type": "athlete",
+      "name": "曲云霞",
+      "nameEn": "Yunxia QU",
+      "gender": "women",
+      "rank": 15,
+      "displayOrder": 15,
+      "personalBest": "2:24:32",
+      "eventDate": "1993-04-04",
+      "eventName": "天津马拉松赛事（原始榜单地点：Tianjin）",
+      "eventVenue": "Tianjin (CHN)",
+      "eventPosition": "2",
+      "birthDate": "1972-12-25",
+      "bio": "中国女子马拉松运动员。公开出生日期为1972-12-25。1993-04-04在天津马拉松赛事（原始榜单地点：Tianjin）跑出2:24:32，该场列第2名；在本次中国籍女子历史个人最佳成绩榜单快照中列第15位。另据官方个人档案，1992-08-08获得奥运会1500米第3名（3:57.08）。",
+      "sources": [
+        {
+          "title": "World Athletics — 中国女子马拉松历史最佳成绩",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "title": "World Athletics — Yunxia QU 个人资料",
+          "url": "https://worldathletics.org/athletes/athlete=14265434"
+        },
+        {
+          "title": "中文姓名交叉来源 · 曝70岁马俊仁再度出山：正专心养藏獒 学生带队",
+          "url": "https://sports.cntv.cn/2013/05/10/ARTI1368159143705698.shtml"
+        }
+      ],
+      "verificationStatus": "verified",
+      "verifiedAt": "2026-11-11",
+      "nameVerificationStatus": "cross_checked_chinese_reporting",
+      "verificationNote": "",
+      "highlights": [
+        {
+          "date": "1993-04-04",
+          "title": "天津马拉松赛事（原始榜单地点：Tianjin）",
+          "result": "2:24:32",
+          "position": "2",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "date": "1992-08-08",
+          "title": "奥运会 · 1500米",
+          "competition": "The XXV Olympic Games",
+          "discipline": "1500 Metres",
+          "result": "3:57.08",
+          "position": "3",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14265434"
+        },
+        {
+          "date": "1993-08-16",
+          "title": "世界田径锦标赛 · 3000米",
+          "competition": "IAAF World Championships",
+          "discipline": "3000 Metres",
+          "result": "8:28.71",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14265434"
+        }
+      ],
+      "careerHighlights": [
+        {
+          "date": "1992-08-08",
+          "title": "奥运会 · 1500米",
+          "competition": "The XXV Olympic Games",
+          "discipline": "1500 Metres",
+          "result": "3:57.08",
+          "position": "3",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14265434"
+        },
+        {
+          "date": "1993-08-16",
+          "title": "世界田径锦标赛 · 3000米",
+          "competition": "IAAF World Championships",
+          "discipline": "3000 Metres",
+          "result": "8:28.71",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14265434"
+        }
+      ],
+      "nameSource": {
+        "title": "中文姓名交叉来源 · 曝70岁马俊仁再度出山：正专心养藏獒 学生带队",
+        "url": "https://sports.cntv.cn/2013/05/10/ARTI1368159143705698.shtml"
+      }
+    },
+    {
+      "id": "athlete-women-16",
+      "type": "athlete",
+      "name": "Yuanyuan HU",
+      "nameEn": "Yuanyuan HU",
+      "gender": "women",
+      "rank": 16,
+      "displayOrder": 16,
+      "personalBest": "2:24:39",
+      "eventDate": "2002-10-13",
+      "eventName": "北京马拉松",
+      "eventVenue": "Beijing (CHN)",
+      "eventPosition": "4",
+      "birthDate": "",
+      "bio": "中国女子马拉松运动员。官方榜单未提供出生日期。2002-10-13在北京马拉松跑出2:24:39，该场列第4名；在本次中国籍女子历史个人最佳成绩榜单快照中列第16位。",
+      "sources": [
+        {
+          "title": "World Athletics — 中国女子马拉松历史最佳成绩",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "title": "World Athletics — Yuanyuan HU 个人资料",
+          "url": "https://worldathletics.org/athletes/pr-of-china/yuanyuan-hu-14266300"
+        }
+      ],
+      "verificationStatus": "verified",
+      "verifiedAt": "2026-11-11",
+      "nameVerificationStatus": "pending",
+      "verificationNote": "官方榜单英文姓名为 Yuanyuan HU，中文姓名与出生日期尚待原始中文资料核实。",
+      "highlights": [
+        {
+          "date": "2002-10-13",
+          "title": "北京马拉松",
+          "result": "2:24:39",
+          "position": "4",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        }
+      ]
+    },
+    {
+      "id": "athlete-women-17",
+      "type": "athlete",
+      "name": "戴艳艳",
+      "nameEn": "Yanyan DAI",
+      "gender": "women",
+      "rank": 17,
+      "displayOrder": 17,
+      "personalBest": "2:24:41",
+      "eventDate": "2001-10-14",
+      "eventName": "北京马拉松",
+      "eventVenue": "Beijing (CHN)",
+      "eventPosition": "4",
+      "birthDate": "1980-01-08",
+      "bio": "中国女子马拉松运动员。公开出生日期为1980-01-08。2001-10-14在北京马拉松跑出2:24:41，该场列第4名；在本次中国籍女子历史个人最佳成绩榜单快照中列第17位。",
+      "sources": [
+        {
+          "title": "World Athletics — 中国女子马拉松历史最佳成绩",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "title": "World Athletics — Yanyan DAI 个人资料",
+          "url": "https://worldathletics.org/athletes/athlete=14266579"
+        }
+      ],
+      "verificationStatus": "verified",
+      "verifiedAt": "2026-11-11",
+      "nameVerificationStatus": "chinese_display_pending_crosscheck",
+      "verificationNote": "中文显示名采用常见写法，尚未完成本次原始中文赛事名单交叉核实；成绩记录与官方英文姓名已核实，此处不代表中文姓名与身份认证。",
+      "highlights": [
+        {
+          "date": "2001-10-14",
+          "title": "北京马拉松",
+          "result": "2:24:41",
+          "position": "4",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        }
+      ]
+    },
+    {
+      "id": "athlete-women-18",
+      "type": "athlete",
+      "name": "张林丽",
+      "nameEn": "Linli ZHANG",
+      "gender": "women",
+      "rank": 18,
+      "displayOrder": 18,
+      "personalBest": "2:24:42",
+      "eventDate": "1993-04-04",
+      "eventName": "天津马拉松赛事（原始榜单地点：Tianjin）",
+      "eventVenue": "Tianjin (CHN)",
+      "eventPosition": "3",
+      "birthDate": "1973-03-06",
+      "bio": "中国女子马拉松运动员。公开出生日期为1973-03-06。1993-04-04在天津马拉松赛事（原始榜单地点：Tianjin）跑出2:24:42，该场列第3名；在本次中国籍女子历史个人最佳成绩榜单快照中列第18位。",
+      "sources": [
+        {
+          "title": "World Athletics — 中国女子马拉松历史最佳成绩",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "title": "World Athletics — Linli ZHANG 个人资料",
+          "url": "https://worldathletics.org/athletes/athlete=14344470"
+        },
+        {
+          "title": "中文姓名交叉来源 · 小偷遇警界“长跑姐” 被追到瘫坐路上被擒",
+          "url": "https://news.cntv.cn/2013/02/25/ARTI1361754295650380.shtml"
+        }
+      ],
+      "verificationStatus": "verified",
+      "verifiedAt": "2026-11-11",
+      "nameVerificationStatus": "cross_checked_chinese_reporting",
+      "verificationNote": "",
+      "highlights": [
+        {
+          "date": "1993-04-04",
+          "title": "天津马拉松赛事（原始榜单地点：Tianjin）",
+          "result": "2:24:42",
+          "position": "3",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        }
+      ],
+      "nameSource": {
+        "title": "中文姓名交叉来源 · 小偷遇警界“长跑姐” 被追到瘫坐路上被擒",
+        "url": "https://news.cntv.cn/2013/02/25/ARTI1361754295650380.shtml"
+      }
+    },
+    {
+      "id": "athlete-women-19",
+      "type": "athlete",
+      "name": "张丽荣",
+      "nameEn": "Li-rong ZHANG",
+      "gender": "women",
+      "rank": 19,
+      "displayOrder": 19,
+      "personalBest": "2:24:52",
+      "eventDate": "1993-04-04",
+      "eventName": "天津马拉松赛事（原始榜单地点：Tianjin）",
+      "eventVenue": "Tianjin (CHN)",
+      "eventPosition": "4",
+      "birthDate": "1973-03-03",
+      "bio": "中国女子马拉松运动员。公开出生日期为1973-03-03。1993-04-04在天津马拉松赛事（原始榜单地点：Tianjin）跑出2:24:52，该场列第4名；在本次中国籍女子历史个人最佳成绩榜单快照中列第19位。",
+      "sources": [
+        {
+          "title": "World Athletics — 中国女子马拉松历史最佳成绩",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "title": "World Athletics — Li-rong ZHANG 个人资料",
+          "url": "https://worldathletics.org/athletes/athlete=14432524"
+        }
+      ],
+      "verificationStatus": "verified",
+      "verifiedAt": "2026-11-11",
+      "nameVerificationStatus": "chinese_display_pending_crosscheck",
+      "verificationNote": "中文显示名采用常见写法，尚未完成本次原始中文赛事名单交叉核实；成绩记录与官方英文姓名已核实，此处不代表中文姓名与身份认证。",
+      "highlights": [
+        {
+          "date": "1993-04-04",
+          "title": "天津马拉松赛事（原始榜单地点：Tianjin）",
+          "result": "2:24:52",
+          "position": "4",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        }
+      ]
+    },
+    {
+      "id": "athlete-women-20",
+      "type": "athlete",
+      "name": "李美珍",
+      "nameEn": "Meizhen LI",
+      "gender": "women",
+      "rank": 20,
+      "displayOrder": 20,
+      "personalBest": "2:25:06",
+      "eventDate": "2026-03-22",
+      "eventName": "无锡马拉松",
+      "eventVenue": "Wuxi (CHN)",
+      "eventPosition": "2",
+      "birthDate": "1999-01-03",
+      "bio": "中国女子马拉松运动员。公开出生日期为1999-01-03。2026-03-22在无锡马拉松跑出2:25:06，该场列第2名；在本次中国籍女子历史个人最佳成绩榜单快照中列第20位。",
+      "sources": [
+        {
+          "title": "World Athletics — 中国女子马拉松历史最佳成绩",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        },
+        {
+          "title": "World Athletics — Meizhen LI 个人资料",
+          "url": "https://worldathletics.org/athletes/athlete=14702479"
+        },
+        {
+          "title": "中文姓名交叉来源 · 2026厦门马拉松⑦丨2026厦门马拉松鸣枪开跑  男女冠军首次双双卫冕",
+          "url": "https://local.cctv.com/2026/01/11/ARTIhQI0RYgDsehFcxkDv1ZV260111.shtml"
+        }
+      ],
+      "verificationStatus": "verified",
+      "verifiedAt": "2026-11-11",
+      "nameVerificationStatus": "cross_checked_chinese_reporting",
+      "verificationNote": "",
+      "highlights": [
+        {
+          "date": "2026-03-22",
+          "title": "无锡马拉松",
+          "result": "2:25:06",
+          "position": "2",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&firstDay=1899-12-31&lastDay=2026-11-11&maxResultsByCountry=all"
+        }
+      ],
+      "nameSource": {
+        "title": "中文姓名交叉来源 · 2026厦门马拉松⑦丨2026厦门马拉松鸣枪开跑  男女冠军首次双双卫冕",
+        "url": "https://local.cctv.com/2026/01/11/ARTIhQI0RYgDsehFcxkDv1ZV260111.shtml"
+      }
+    }
+  ]
+}

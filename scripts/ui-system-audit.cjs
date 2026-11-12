@@ -8,7 +8,7 @@ const { spawn } = require('node:child_process');
 const { pathToFileURL } = require('node:url');
 const ROOT = path.resolve(__dirname, '..');
 const out = path.resolve(ROOT, process.env.UI_AUDIT_OUT || 'design/previews/bright-ui-20261111');
-const expectedAccent = (process.env.UI_EXPECTED_ACCENT || '#e1251b').toLowerCase();
+const expectedAccent = (process.env.UI_EXPECTED_ACCENT || '#ff1838').toLowerCase();
 if (!/^#[0-9a-f]{6}$/.test(expectedAccent)) throw new Error('UI_EXPECTED_ACCENT must be a six-digit hex color');
 const selected = process.argv.slice(2);
 const modes = selected.length ? selected : ['web', 'admin', 'mini'];

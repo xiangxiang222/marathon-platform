@@ -27,6 +27,7 @@ const { mountClubGather } = require("./club-gather");
 const { mountRaceGuide, attachGuide } = require("./race-guide");
 const { mountBotRaces } = require("./bot-races");
 const { mountNews } = require("./news");
+const { mountContent } = require("./content");
 const { mountAdminDesk } = require("./admin-desk");
 const { mountFeedback } = require("./feedback");
 const { mountLegal } = require("./legal");
@@ -1243,6 +1244,7 @@ app.post(BASE + "/api/admin/official/:id/apply", (req, res) => {
 
 mountBotRaces(app, { BASE, getDb, requireAdmin });
 mountNews(app, { BASE, getDb, requireAdmin });
+mountContent(app, { BASE, getDb, requireAdmin, userFrom });
 
 app.put(BASE + "/api/admin/races/:id", (req, res) => {
   if (!requireAdmin(req, res)) return;

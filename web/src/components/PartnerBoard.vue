@@ -119,12 +119,19 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.hint { margin: 8px 0 0; color: var(--muted); font-size: 13px; line-height: 1.45; }
+.hint { margin: 8px 0 0; color: var(--muted); font-size: 14px; line-height: 1.45; }
 .modes { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
-.modes button, .line button { height: 34px; padding: 0 12px; border-radius: 8px; background: var(--card); color: var(--ink); font-weight: 600;  border: 1px solid var(--line); font-size: 13px; min-height: 40px;}
+.modes button, .line button { height: 34px; padding: 0 12px; border-radius: 8px; background: var(--card); color: var(--ink); font-weight: 600;  border: 1px solid var(--line); font-size: 14px; min-height: 40px;}
 .modes button:first-child { background: var(--accent); color: #fff; }
 .line { display: flex; justify-content: space-between; gap: 8px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--line); }
 .line em { font-style: normal; font-weight: 600; }
 .run { padding: 8px 0; border-bottom: 1px solid var(--line); }
 .err { color: var(--red); padding: 0 16px; }
+
+ .block { color:var(--ink); font-size:14px; border:1px solid var(--line); border-radius:12px; background:var(--card); }
+.block h2 { font-size:18px; font-weight:600; }
+.block p { font-size:14px; line-height:1.7; }
+.block .hint { font-size:12px; color:var(--muted); }
+.modes button,.line button { height:auto; min-height:44px; border-radius:10px; font-size:14px; font-weight:500; }
+.line em { color:var(--muted); font-size:12px; font-weight:400; }
 </style>

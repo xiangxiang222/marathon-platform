@@ -45,10 +45,15 @@ function fixture(file = "runner") {
   vm.runInNewContext(fs.readFileSync(path.join(mini, "utils/legal-documents.js"), "utf8"), { module: legalModule }, { filename: "utils/legal-documents.js" });
   const helpers = { exports: {} };
   vm.runInNewContext(fs.readFileSync(path.join(mini, "utils/runner-center.js"), "utf8"), { module: helpers, getApp: () => app }, { filename: "runner-center.js" });
-  const request = { ready: () => !!globalData.token, request(endpoint, method = "GET", body = {}) { calls.push({ type: "request", endpoint, method, body }); return endpoint === "/legal" ? Promise.resolve(copy(legal)) : reply(endpoint, method, body); }, setAuth(token, nickname, avatar) { Object.assign(globalData, { token, nickname, avatar }); }, clearAuth() { Object.assign(globalData, { token: "", nickname: "", avatar: "" }); } };
+  const realAuth = { exports: {} };
+  vm.runInNewContext(fs.readFileSync(path.join(mini, "utils/request.js"), "utf8"), {
+    module: realAuth, wx, getApp: () => app,
+    require(name) { if (name === "./avatar") return { networkAvatar: value => value || "", normalizeAvatars: value => value }; throw Error("Unexpected auth module " + name); }
+  }, { filename: "utils/request.js" });
+  const request = { ready: () => !!globalData.token, request(endpoint, method = "GET", body = {}) { calls.push({ type: "request", endpoint, method, body }); return endpoint === "/legal" ? Promise.resolve(copy(legal)) : reply(endpoint, method, body); }, setAuth: realAuth.exports.setAuth, clearAuth: realAuth.exports.clearAuth };
   vm.runInNewContext(fs.readFileSync(path.join(mini, "pages/" + file + "/" + file + ".js"), "utf8"), {
     Page(page) { definition = page; }, wx, getApp: () => app,
-    require(name) { if (name === "../../utils/request") return request; if (name.endsWith(".json")) throw Error("Mini program require cannot load JSON as a script module: " + name); if (name === "../../utils/legal-documents" || name === "../../utils/legal-documents.js") return legalModule.exports; if (name === "../../config") return { baseUrl: globalData.baseUrl }; if (name === "../../utils/runner-center") return helpers.exports; if (name === "../../utils/captcha") return { saveCaptchaFile: () => Promise.resolve("local-captcha") }; if (name === "../../utils/avatar") return { networkAvatar: (url) => url || "", prepareAvatar: () => Promise.resolve("avatar") }; throw Error("Unexpected module " + name); }
+    require(name) { if (name === "../../utils/request") return request; if (name.endsWith(".json")) throw Error("Mini program require cannot load JSON as a script module: " + name); if (name === "../../utils/legal-documents" || name === "../../utils/legal-documents.js") return legalModule.exports; if (name === "../../config") return { baseUrl: globalData.baseUrl }; if (name === "../../utils/runner-center") return helpers.exports; if (name === "../../utils/achievement-model") return require(path.join(mini, "utils/achievement-model.js")); if (name === "../../utils/captcha") return { saveCaptchaFile: () => Promise.resolve("local-captcha") }; if (name === "../../utils/avatar") return { networkAvatar: (url) => url || "", prepareAvatar: () => Promise.resolve("avatar") }; throw Error("Unexpected module " + name); }
   }, { filename: file + ".js" });
   const page = { ...definition, data: copy(definition.data), setData(patch) { for (const [key, value] of Object.entries(patch)) { const parts = key.replace(/\[(\d+)\]/g, '.$1').split('.'); let target = this.data; for (const part of parts.slice(0, -1)) target = target[part]; target[parts.at(-1)] = value; } } };
   return { page, app, wx, calls, storage, helper: helpers.exports, setReply(fn) { reply = fn; }, chosen() { return choose; }, uploaded() { return upload; }, modal() { return modal; }, answerModal(confirm) { assert.ok(modal, "A user confirmation must be shown first"); modal.success({ confirm, cancel: !confirm }); if (modal.complete) modal.complete(); } };
@@ -424,6 +429,82 @@ async function main() {
     f.storage.marathon_runner_return = "../../admin"; const before = f.calls.length; f.page.resumePendingClub(); assert.equal(f.calls.length, before);
     f.page.logout(); assert.equal(f.page.data.runner, null); assert.equal(f.page.data.nextRace, null); assert.equal(f.page.data.mainTab, "overview");
   });
+  await check("Mine top-right settings preserve the previous tab and contain the only signed-in logout; real storage and private drafts clear", async () => {
+    const markup = fs.readFileSync(path.join(mini, "pages/mine/mine.wxml"), "utf8");
+    const signedInCard = markup.slice(markup.indexOf('<view wx:if="{{nickname}}" class="surface account-hero">'), markup.indexOf('<view wx:else class="surface guest-hero">'));
+    assert.ok(!signedInCard.includes('bindtap="logout"'), "Account card stays focused on the runner");
+    assert.match(markup.split('<view class="mine-page')[0], /class="header-settings" bindtap="openSettings" aria-label="设置"/);
+    const settings = markup.slice(markup.indexOf(`<view wx:if="{{mainTab === 'settings'}}"`), markup.indexOf('  <block wx:else>'));
+    assert.match(settings, /<button wx:if="{{nickname}}" class="logout" bindtap="logout">退出登录<\/button>/);
+    assert.equal((markup.match(/bindtap="logout"/g) || []).length, 1, "One signed-in-only logout entrance in settings");
+    const f = fixture("mine");
+    f.page.pickMainTab({ currentTarget: { dataset: { tab: "results" } } }); f.page.openSettings(); assert.equal(f.page.data.mainTab, "settings"); f.page.closeSettings(); assert.equal(f.page.data.mainTab, "results");
+    Object.assign(f.storage, { marathon_token: "owner-token", marathon_name: "旧昵称", marathon_avatar: "old-avatar" });
+    Object.assign(f.page.data, { nickname: "旧昵称", avatar: "old-avatar", nicknameDraft: "草稿昵称", avatarPreview: "selected-avatar", avatarSaving: true, profileMessage: "保存中", mainTab: "profile", draft: "旧登录名", password: "old-password", password2: "old-password", currentPassword: "old-password", nextPassword: "new-password", captcha: "abcd", captchaImage: "old-captcha", runner: copy(base), plans: [{ id: 1 }], results: [{ id: 1 }], clubs: [{ id: 1 }], ready: true });
+    f.page.logout();
+    for (const key of ["marathon_token", "marathon_name", "marathon_avatar"]) assert.equal(f.storage[key], undefined, key + " must be removed by the real clearAuth helper");
+    assert.equal(f.app.globalData.token, ""); assert.equal(f.app.globalData.nickname, ""); assert.equal(f.app.globalData.avatar, "");
+    for (const key of ["nickname", "nicknameDraft", "avatar", "avatarPreview", "profileMessage", "draft", "password", "password2", "currentPassword", "nextPassword", "captcha", "captchaImage"]) assert.equal(f.page.data[key], "", key + " must be cleared");
+    assert.equal(f.page.data.mainTab, "overview"); assert.equal(f.page.data.ready, false); assert.equal(f.page.data.runner, null); assert.equal(f.page.data.avatarSaving, false);
+    for (const key of ["plans", "results", "clubs"]) assert.equal(f.page.data[key].length, 0);
+  });
+  await check("Mine poster tools live inside career and results context and require eligible completed results", async () => {
+    const markup = fs.readFileSync(path.join(mini, "pages/mine/mine.wxml"), "utf8");
+    assert.ok(!markup.includes('achievement-poster-entry'));
+    assert.match(markup, /class="surface career-overview"[\s\S]*?class="compact-poster"/);
+    const f = fixture("mine");
+    f.page.setData({ runner: { asOf: base.asOf, results: base.results.filter(row => ["future", "invalid"].includes(row.race.id)) } });
+    f.page.openAchievementPoster({ currentTarget: { dataset: { mode: "results" } } });
+    assert.equal(f.calls.filter(call => call.type === "navigate").length, 0); assert.equal(f.page.data.mainTab, "results"); assert.match(f.calls.at(-1).title, /记录完赛成绩/);
+    f.page.setData({ runner: copy(base) }); f.page._runnerToken = f.app.globalData.token; f.page.applyRunnerCareer(); assert.equal(f.page.data.posterAvailable, true);
+    f.page.openAchievementPoster({ currentTarget: { dataset: { mode: "results" } } }); assert.match(f.calls.at(-1).url, /achievement-poster.*mode=results/);
+    f.page.logout(); assert.equal(f.page.data.posterAvailable, false); f.page.openAchievementPoster({ currentTarget: { dataset: {} } }); assert.equal(f.calls.filter(call => call.type === "navigate").length, 1);
+  });
+  await check("Late profile responses after logout cannot restore auth or write into a new account", async () => {
+    for (const switchAccount of [false, true]) {
+      const f = fixture("mine"); let finish;
+      f.page.data.nicknameDraft = "旧昵称";
+      f.setReply(endpoint => { assert.equal(endpoint, "/me/profile"); return new Promise(resolve => { finish = resolve; }); });
+      const saving = f.page.saveProfile();
+      assert.equal(typeof finish, "function"); f.page.logout();
+      if (switchAccount) { Object.assign(f.app.globalData, { token: "new-account-token", nickname: "新账号", avatar: "new-avatar" }); Object.assign(f.page.data, { nickname: "新账号", avatar: "new-avatar" }); }
+      finish({ user: { nickname: "迟到的旧昵称", avatar: "old-avatar" } }); await saving;
+      assert.equal(f.page.data.nickname, switchAccount ? "新账号" : ""); assert.equal(f.page.data.avatar, switchAccount ? "new-avatar" : "");
+      assert.equal(f.app.globalData.token, switchAccount ? "new-account-token" : ""); assert.equal(f.page.data.profileMessage, "");
+      assert.equal(f.calls.filter(call => call.type === "request").length, 1);
+    }
+  });
+  await check("Logout interrupts avatar preparation and prevents the next profile write after an in-flight upload", async () => {
+    for (const uploaded of [false, true]) {
+      const f = fixture("mine"); let finish;
+      f.page.data.nicknameDraft = "旧昵称"; f.page._avatarPath = "selected-avatar";
+      f.setReply(endpoint => { assert.equal(endpoint, "/me/avatar"); return new Promise(resolve => { finish = resolve; }); });
+      const saving = f.page.saveProfile();
+      if (uploaded) await tick();
+      f.page.logout();
+      if (uploaded) finish({ avatar: "old-avatar" });
+      await saving;
+      assert.equal(f.calls.filter(call => call.endpoint === "/me/avatar").length, uploaded ? 1 : 0);
+      assert.equal(f.calls.filter(call => call.endpoint === "/me/profile").length, 0);
+      assert.equal(f.app.globalData.token, ""); assert.equal(f.page.data.nickname, ""); assert.equal(f.page.data.avatar, "");
+    }
+  });
+  await check("Logout cancels older login, captcha and WeChat binding completions", async () => {
+    const login = fixture("mine"); let finishLogin;
+    login.page.data.legalAccepted = true; login.page.data.draft = "旧账号"; login.page.data.password = "old-password";
+    login.setReply(endpoint => { assert.equal(endpoint, "/auth/login"); return new Promise(resolve => { finishLogin = resolve; }); });
+    const pendingLogin = login.page.submitAuth(); login.page.logout();
+    finishLogin({ token: "old-token", user: { nickname: "旧账号", avatar: "old-avatar" } }); await pendingLogin;
+    assert.equal(login.app.globalData.token, ""); assert.equal(login.page.data.nickname, "");
+    const captcha = fixture("mine"); let finishCaptcha;
+    captcha.setReply(() => new Promise(resolve => { finishCaptcha = resolve; }));
+    const pendingCaptcha = captcha.page.loadCaptcha(); captcha.page.logout(); finishCaptcha({ image: "old-image", token: "old-captcha-token" }); await pendingCaptcha;
+    assert.equal(captcha.page.data.captchaImage, ""); assert.equal(captcha.page._captchaToken, "");
+    const binding = fixture("mine"); let nativeLogin;
+    binding.wx.login = options => { nativeLogin = options; };
+    const pendingBinding = binding.page.bindWechat(); binding.page.logout(); nativeLogin.success({ code: "old-code" });
+    assert.equal(await pendingBinding, false); assert.equal(binding.calls.filter(call => call.endpoint === "/me/wechat").length, 0);
+  });
   await check("Mine old summaries and result PBs match runner career in either response order", async () => {
     for (const order of ["runner-first", "account-first"]) {
       const f = fixture("mine");
@@ -473,7 +554,7 @@ async function main() {
       assert.equal(png.readUInt32BE(16), 96); assert.equal(png.readUInt32BE(20), 96);
       const svg = fs.readFileSync(path.join(mini, "images/runner/" + entry.key + ".svg"), "utf8");
       assert.ok(svg.includes(shapes.get(entry.key)), "shared path for " + entry.key);
-      const color = entry.key === "honors" ? "#bf893b" : entry.key === "media" ? "#8a77b3" : entry.key === "devices" ? "#778699" : (process.env.UI_EXPECTED_ACCENT || "#e1251b");
+      const color = entry.key === "help" ? "#767676" : (process.env.UI_EXPECTED_ICON_STROKE || "#45515D");
       assert.ok(svg.includes('stroke="' + color + '"'));
     }
     for (const file of ["pages/mine/mine.wxml", "pages/runner/runner.wxml"]) {

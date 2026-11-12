@@ -1,6 +1,6 @@
 @import "../../utils/club-detail.wxss";
 .src { color: var(--text-secondary); font-size: 12px; margin-top: 8rpx; white-space: pre-wrap; }
-.sum { margin-top: 16rpx; font-weight: 650; background: rgba(255,255,255,.65); }
+.sum { margin-top: 16rpx; font-weight: 600; background: rgba(255,255,255,.65); }
 .stack input { width: 100%; height: 80rpx; margin-top: 16rpx; background: var(--page-bg); border-radius: 16rpx; padding: 0 20rpx; box-sizing: border-box; }
 image { width: 100%; margin-top: 8rpx; border-radius: 12rpx; }
 .drop { color: var(--brand); font-size: 12px; }
@@ -16,10 +16,8 @@ input { width: 100%; height: 80rpx; margin-top: 16rpx; background: var(--page-bg
 .detail-state .btn { margin-top: 28rpx; display: flex; align-items: center; justify-content: center; min-height:44px; line-height: 1.35;  }
 
 /* Route geometry: surfaces, controls and compact labels have distinct roles. */
-.mini-call-call .card, .mini-call-call .detail-state { border-radius: 36rpx; }
+.mini-call-call .card, .mini-call-call .detail-state { border-radius: 24rpx; }
 .mini-call-call .btn, .mini-call-call .ghost, .mini-call-call .fold-toggle { border-radius: 24rpx; }
-
-/* Page composition and interaction hierarchy. */
 .mini-call-call { color: var(--text); background: transparent; }
 .mini-call-call button { font-weight: 500; border-radius: 24rpx; }
 
@@ -27,14 +25,12 @@ input { width: 100%; height: 80rpx; margin-top: 16rpx; background: var(--page-bg
 .club-detail .title { font-size: 24px; font-weight: 600; line-height: 1.5; }
 .detail-options { border-bottom: 1px solid var(--border); }
 .detail-options .ghost { border-radius: 0; background: transparent; font-size: 13px; }
-.detail-options .ghost.on { color: var(--text); box-shadow: inset 0 -2px var(--brand); background: transparent; }
+.detail-options .ghost.on { color: var(--text); box-shadow: none; background: transparent; }
 .stack input,input { min-height: 44px; border: 1px solid var(--border); border-radius: 24rpx; background: var(--page-bg); font-size: 14px; }
 .sum { padding: 24rpx; border-radius: 24rpx; background: rgba(255,255,255,.65); font-size: 14px; line-height: 1.8; }
 
 /* Primary actions read at 14px, secondary actions at 13px; compact filters stay at 12px. */
 .mini-call-call .btn { font-size: 14px; font-weight: 500; }
 .mini-call-call .ghost, .mini-call-call .fold-toggle { font-size: 13px; font-weight: 500; }
-
-/* Existing semantic sections receive distinct light color surfaces. */
-.detail-hero { background: linear-gradient(135deg,#eaf4ff,#ffffff); box-shadow: var(--card-shadow); }
+.detail-hero { background: var(--surface); box-shadow: none; }
 .mini-call-call > .card:nth-child(2) { background: #ffffff; }

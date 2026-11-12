@@ -9,7 +9,7 @@
 .report-detail { margin-top:14rpx; color:var(--text-secondary); white-space:pre-wrap; overflow-wrap:anywhere; }
 
 /* Route geometry: surfaces, controls and compact labels have distinct roles. */
-.mini-club-report-club-report .panel, .mini-club-report-club-report .target-card { border-radius: 36rpx; }
+.mini-club-report-club-report .panel, .mini-club-report-club-report .target-card { border-radius: 32rpx; }
 .mini-club-report-club-report .primary, .mini-club-report-club-report .secondary { border-radius: 24rpx; }
 .mini-club-report-club-report .type-choice, .mini-club-report-club-report .state { border-radius: 14rpx; }
 
@@ -18,14 +18,19 @@
 .mini-club-report-club-report button { font-weight: 500; border-radius: 24rpx; }
 
 .type-choices { gap: 14rpx; }
-.identity-page .type-choice { min-height: 44px; border: 1px solid var(--border); border-radius: 14rpx; background: #fff; color: var(--text-secondary); font-size: 12px; }
+.identity-page .type-choice { min-height: 44px; border: 1px solid var(--border); border-radius: 14rpx; background: var(--card,#fff); color: var(--text-secondary); font-size: 12px; }
 .identity-page .type-choice.selected { border-color: var(--brand); color: var(--brand); background: var(--peach-soft); box-shadow: none; }
-.target-card { border: 1px solid var(--border); border-radius: 36rpx; background: var(--sky-soft); }
+.target-card { border: 1px solid var(--border); border-radius: 32rpx; background: var(--sky-soft); }
 .report-detail { font-size: 14px; line-height: 1.8; }
 
 /* Primary actions read at 14px, secondary actions at 13px; compact filters stay at 12px. */
 .mini-club-report-club-report .primary, .mini-club-report-club-report .action-link { font-size: 14px; font-weight: 500; }
-.mini-club-report-club-report .secondary { font-size: 13px; font-weight: 500; }
+.mini-club-report-club-report .secondary { font-size: 14px; font-weight: 500; }
 
 /* Existing semantic sections receive distinct light color surfaces. */
-.mini-club-report-club-report .hero { background: linear-gradient(135deg,#fff0e7,#ffffff); }
+.mini-club-report-club-report .hero { background: var(--card,#fff); }
+
+.mini-club-report-club-report .hero { background:transparent; }
+.target-card { border-color:var(--border); border-radius:24rpx; background:var(--page-bg); }
+.identity-page .type-choice { min-height:44px; border-radius:20rpx; border:1rpx solid var(--border); background:var(--card,#fff); color:var(--text); font-size:14px; font-weight:400; }
+.identity-page .type-choice.selected { border-color:var(--brand); background:var(--brand-soft); color:var(--brand); }

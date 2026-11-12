@@ -1,5 +1,5 @@
 const { inspectUiPalette } = require('../../scripts/ui-palette-metrics.cjs');
-const expectedAccent = (process.env.UI_EXPECTED_ACCENT || '#e1251b').toLowerCase();
+const expectedAccent = (process.env.UI_EXPECTED_ACCENT || '#ff1838').toLowerCase();
 // All API reads and writes are fulfilled from fixtures. This verifies UI only.
 const { chromium } = require(process.env.PLAYWRIGHT_MODULE || "playwright-core");
 const fs = require("node:fs"), assert = require("node:assert/strict");

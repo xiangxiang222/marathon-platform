@@ -11,7 +11,7 @@
   white-space: nowrap;
 }
 .tab.on { background: transparent; color: var(--brand); }
-.tab.on::after { position: absolute; right: 12rpx; bottom: 0; left: 12rpx; border-radius: 2rpx; content: ''; }
+.tab.on::after { position: absolute; right: 12rpx; bottom: 0; left: 12rpx; border-radius: 1px; content: ''; }
 .timeline { display: flex; gap: 12rpx; overflow-x: auto; }
 .tl { flex: 1; min-width: 148rpx; text-align: center; }
 .dot { width: 16rpx; height: 16rpx; margin: 8rpx auto; border-radius: 50%; background: var(--brand); }
@@ -24,13 +24,13 @@ image.qr { width: 360rpx; height: 360rpx; margin: 24rpx auto 0; background: #fff
 .news-item { display: block; padding: 16rpx 0; border-bottom: 1rpx solid var(--border); }
 .news-item:last-child { border-bottom: 0; padding-bottom: 0; }
 .md { display: flex; flex-wrap: wrap; margin-top: 16rpx; font-size: 14px; line-height: 1.6; }
-.md-h1 { margin-top: 8rpx; font-size: 20px; font-weight: 700; line-height: 1.35; }
-.md-h2 { margin-top: 28rpx; font-size: 18px; font-weight: 700; line-height: 1.35; }
+.md-h1 { margin-top: 8rpx; font-size: 18px; font-weight: 600; line-height: 1.35; }
+.md-h2 { margin-top: 28rpx; font-size: 18px; font-weight: 600; line-height: 1.35; }
 .md-h3 { margin-top: 22rpx; font-size: 16px; font-weight: 600; line-height: 1.4; }
 .md-h4 { margin-top: 18rpx; font-size: 14px; font-weight: 600; line-height: 1.4; }
 .md-li, .md-oli { padding-left: 8rpx; }
 .md-mark { margin-right: 8rpx; color: var(--text-secondary); }
-.md-strong { font-weight: 700; }
+.md-strong { font-weight: 600; }
 .sum { margin: 8rpx 0 16rpx; }
 .src { color: var(--text-secondary); font-size: 12px; margin-top: 12rpx; }
 .warn { margin-top: 12rpx; color: var(--brand); font-size: 12px; }
@@ -39,33 +39,33 @@ image.qr { width: 360rpx; height: 360rpx; margin: 24rpx auto 0; background: #fff
 .result .field { margin-top: 16rpx; }
 .result .field input { background: var(--page-bg); }
 .result .btn { margin-top: 16rpx;  }
-.poster { margin: 12rpx 0; padding: 36rpx 28rpx; border-radius: 16rpx; background: var(--brand); color: #fff; font-size: 16px; font-weight: 600; line-height: 1.6; }
+.poster { margin: 12rpx 0; padding: 36rpx 28rpx; border-radius: 8px; background: var(--brand); color: #fff; font-size: 16px; font-weight: 600; line-height: 1.6; }
 .poster-canvas { position: fixed; left: -2000px; top: 0; width: 750px; height: 1000px; }
-image { width: 100%; margin-top: 12rpx; border-radius: 16rpx; }
+image { width: 100%; margin-top: 12rpx; border-radius: 8px; }
 .sheet { width: 100%; margin-top: 16rpx;  }
 .guide-text { display: block; margin-top: 12rpx; white-space: pre-wrap; line-height: 1.5; font-size: 14px; }
 
 .race-plan { border: 1rpx solid #fff; background: #ffffff; }
 .plan-heading { display: flex; align-items: center; justify-content: space-between; gap: 20rpx; }
 .plan-heading .h2 { margin-bottom: 0; font-size: 18px; }
-.plan-status { flex-shrink: 0; padding: 6rpx 14rpx; color: var(--brand); background: var(--sky-soft); }
-.plan-action { display: flex; align-items: center; justify-content: space-between; width: 100%; min-height:44px; margin: 0; padding: 18rpx 0 0;  background: transparent; color: #20222a; text-align: left; font-size: 14px; font-weight: 600; line-height: 1.5; }
+.plan-status { flex-shrink: 0; padding: 6rpx 14rpx; color: var(--brand); background: var(--page-bg); }
+.plan-action { display: flex; align-items: center; justify-content: space-between; width: 100%; min-height:44px; margin: 0; padding: 18rpx 0 0;  background: transparent; color: var(--text-secondary); text-align: left; font-size: 14px; font-weight: 600; line-height: 1.5; }
 .plan-action::after { border: 0;  }
-.plan-action .arrow { color: var(--text-secondary); font-size: 22px; font-weight: 400; line-height: 1;  }
+.plan-action .arrow { color: var(--text-secondary); font-size: 24px; font-weight: 400; line-height: 1;  }
 .plan-editor { margin-top: 20rpx; padding-top: 20rpx; border-top: 1rpx solid var(--border); }
 .plan-statuses { display: flex; flex-wrap: wrap; gap: 12rpx; }
 .plan-statuses .ghost { margin: 0;  }
 .race-plan .src { line-height: 1.6; }
-@media (max-width: 350px) { .plan-heading .h2 { font-size: 18px; } .plan-action { font-size: 15px;  } .src, .tab { font-size: 12px; } }
+@media (max-width: 350px) { .plan-heading .h2 { font-size: 18px; } .plan-action { font-size: 14px;  } .src, .tab { font-size: 12px; } }
 
 /* Route geometry: surfaces, controls and compact labels have distinct roles. */
-.mini-race-race .card, .mini-race-race .sheet { border-radius: 36rpx; }
-.mini-race-race .btn, .mini-race-race .ghost, .mini-race-race .plan-status, .mini-race-race .plan-action { border-radius: 24rpx; }
-.mini-race-race .plan-status { border-radius: 14rpx; }
+.mini-race-race .card, .mini-race-race .sheet { border-radius: 12px; }
+.mini-race-race .btn, .mini-race-race .ghost, .mini-race-race .plan-status, .mini-race-race .plan-action { border-radius: 10px; }
+.mini-race-race .plan-status { border-radius: 7px; }
 
 /* Page composition and interaction hierarchy. */
 .mini-race-race { color: var(--text); }
-.mini-race-race button { font-weight: 500; border-radius: 24rpx; }
+.mini-race-race button { font-weight: 500; border-radius: 10px; }
 
 .pad { padding-top: 28rpx; }
 .card { border: 1px solid var(--border); }
@@ -75,12 +75,12 @@ image { width: 100%; margin-top: 12rpx; border-radius: 16rpx; }
 .tab.on::after { height: 2px; background: var(--brand); }
 .md,.sum { font-size: 14px; line-height: 1.85; color: var(--text); }
 .src,.tl-at,.tl-label { font-size: 12px; line-height: 1.7; }
-.plan-status { border: 1px solid var(--border); border-radius: 14rpx; background: var(--sky-soft); font-size: 12px; }
+.plan-status { border: 1px solid var(--border); border-radius: 7px; background: var(--page-bg); font-size: 12px; }
 .plan-status.on { border-color: var(--brand); background: var(--brand-soft); color: var(--brand); }
 
 /* Primary actions read at 14px, secondary actions at 13px; compact filters stay at 12px. */
 .mini-race-race .btn { font-size: 14px; font-weight: 500; }
-.mini-race-race .ghost { font-size: 13px; font-weight: 500; }
+.mini-race-race .ghost { font-size: 14px; font-weight: 500; }
 
-/* Color surfaces use existing semantic page elements; layout stays unchanged. */
-.mini-race-race > .card:first-child { background: linear-gradient(135deg,#eaf4ff,#ffffff); box-shadow: var(--card-shadow); }
+/* A single reading scale and one native share action for the selected club. */
+page{background:var(--page-bg)}.mini-race-race{color:var(--text);font-size:14px;letter-spacing:normal}.mini-race-race .card{padding:32rpx;border:1px solid var(--border);border-radius:12px;background:#fff;box-shadow:none}.mini-race-race .title{font-size:24px;line-height:1.4;font-weight:600;letter-spacing:normal}.mini-race-race .h2{font-size:18px;line-height:1.5;font-weight:600}.mini-race-race .row{font-size:14px;line-height:1.7;gap:24rpx}.mini-race-race .row>text:last-child{min-width:0;overflow-wrap:anywhere}.mini-race-race .src,.mini-race-race .warn{font-size:12px;line-height:1.7}.mini-race-race .btn,.mini-race-race .ghost{min-height:44px;padding:20rpx 24rpx;border-radius:10px;font-size:14px;line-height:1.5}.mini-race-race .btn{background:var(--brand)}.mini-race-race .plan-action{padding:20rpx 0;min-height:44px;border-radius:0;color:var(--text);font-size:14px;font-weight:500;box-sizing:border-box}.mini-race-race .plan-status{background:var(--page-bg);border-color:var(--border);border-radius:6px}.mini-race-race .tab{display:flex;align-items:center;justify-content:center;min-height:44px;font-size:14px;line-height:1.5}.mini-race-race .field input,.mini-race-race .field picker,.mini-race-race .field textarea{min-height:44px;border-radius:10px;font-size:14px}.share-toggle{display:flex;align-items:center;justify-content:space-between;gap:24rpx;min-height:44px;width:100%;margin:0;padding:0;border:0;border-radius:0;background:transparent;color:var(--text);font-size:18px;font-weight:600;text-align:left;line-height:1.5}.share-toggle::after,.share-option::after{border:0}.share-toggle>.arrow{font-size:24px;color:var(--text-secondary);font-weight:400}.race-share>.src{margin-top:4rpx}.share-content{margin-top:28rpx}.share-options{border-top:1px solid var(--border)}.share-option{display:flex;align-items:center;gap:24rpx;width:100%;min-height:68px;margin:0;padding:24rpx 0;border:0;border-bottom:1px solid var(--border);border-radius:0;background:transparent;text-align:left;line-height:1.6}.share-radio{flex:none;width:18px;height:18px;border:1.5px solid var(--border);border-radius:50%;box-sizing:border-box}.share-option.is-selected .share-radio{border:5px solid var(--brand)}.share-option-copy{flex:1;min-width:0}.share-option-copy>view{font-size:16px;font-weight:500;color:var(--text);overflow-wrap:anywhere}.share-option-copy>text{display:block;margin-top:6rpx;font-size:12px;font-weight:400;color:var(--text-secondary);line-height:1.7;overflow-wrap:anywhere}.mini-race-race .share-submit{width:100%;min-height:46px;margin:32rpx 0 0;box-sizing:border-box}.mini-race-race .poster{font-size:16px;border-radius:12px}

@@ -1,49 +1,95 @@
-.sport-page { padding: 0 24rpx calc(48rpx + env(safe-area-inset-bottom)); background: transparent; }.surface { padding: 32rpx; margin-bottom: 24rpx;  background: #ffffff; box-shadow: var(--card-shadow); }.hero-top,.section-heading { display: flex; align-items: center; justify-content: space-between; gap: 24rpx; }.field-label { color: var(--text-secondary); font-size: 12px; }.month-value { margin-top: 10rpx; font-size: 14px; }.month-value text { color: var(--text-secondary); }.text-button { display: flex; align-items: center; min-height: 44px; flex: none; padding: 12rpx 0; color: var(--brand); font-size: 12px; }.mileage-value { display: flex; align-items: baseline; gap: 16rpx; margin: 24rpx 0 28rpx; }.mileage-number { font-size: 56px; line-height: 1.15; letter-spacing: -1px; font-weight: 750;  color: var(--brand);}.mileage-unit { color: var(--text-secondary); font-size: 14px; }.progress-track { height: 12rpx; border-radius: 8rpx; overflow: hidden; background: #d8eae5; }.progress-value { height: 100%; border-radius: inherit; background: linear-gradient(90deg,#f46c56,#e1251b); }.target-caption { display: flex; justify-content: space-between; gap: 16rpx; margin-top: 16rpx; color: var(--text-secondary); font-size: 12px; }.accent { color: var(--brand); }.no-target { color: var(--text-secondary); font-size: 12px; line-height: 40rpx; }.run-metrics { display: flex; padding-top: 28rpx; margin-top: 28rpx; border-top: 1rpx solid var(--border); background: rgba(255,255,255,.55); }.run-metrics > view { flex: 1; min-width: 0; text-align: center; }.run-metrics > view:first-child { text-align: left; }.run-metrics > view:last-child { text-align: right; }.metric-value { display: block; font-size: 22px; line-height: 56rpx; font-weight: 650; }.metric-label { display: block; margin-top: 8rpx; color: var(--text-secondary); font-size: 12px; }.primary { display: block; width: 100%; min-height:44px; margin: 0; padding: 0 24rpx;  background: var(--brand); color: #fff; font-size: 14px; font-weight: 600; line-height: 88rpx; }.primary::after,.secondary::after,.delete-button::after,.choices button::after { border: 0;  }.manual-note { margin: 16rpx 0 40rpx; text-align: center; color: var(--text-secondary); font-size: 12px; line-height: 36rpx; }.section-title { font-size: 19px; line-height: 48rpx; font-weight: 600; }.records-heading { margin: 40rpx 8rpx 24rpx; }.records-title { font-size: 20px; line-height: 52rpx; font-weight: 600; }.run-date { margin: 12rpx 0 28rpx; color: var(--text-secondary); font-size: 12px; line-height: 36rpx; }.record-data { display: flex; gap: 14rpx;  padding: 24rpx 0;}.record-data > view { flex: 1; min-width: 0; }.record-number { display: block; font-size: 18px; line-height: 1.4; font-weight: 600; }.record-unit { display: block; margin-top: 6rpx; color: var(--text-secondary); font-size: 12px; }.hint { margin-top: 20rpx; color: var(--text-secondary); font-size: 12px; line-height: 38rpx; }.stack { display: flex; flex-direction: column; gap: 24rpx; margin-top: 28rpx; }.stack input { width: 100%; min-width: 0; height: 88rpx; padding: 0 24rpx; border: 0; border-radius: 16rpx; background: var(--page-bg); color: var(--text); font-size: 14px; box-sizing: border-box; }.stack > .field-label + input { margin-top: -12rpx; }.field-pair { display: flex; gap: 20rpx; }.field-pair > view { flex: 1; min-width: 0; }.field-pair input,.picker-value { margin-top: 12rpx;  }.picker-value { height: 88rpx; padding: 0 24rpx;  background: var(--page-bg); font-size: 14px; line-height: 88rpx; }.choices { display: flex;  }.choices button { flex: none; min-width: 124rpx; margin: 0; line-height: 72rpx; }.close-button { display: flex; align-items: center; min-height: 44px; padding: 12rpx 0; color: var(--text-secondary); font-size: 12px; }.secondary { width: 100%; min-height:44px; margin: 0; padding: 0 24rpx; color: var(--text); font-size: 12px; line-height: 88rpx; }.record-editor { margin-top: 32rpx; padding-top: 24rpx; border-top: 1rpx solid var(--border); }.delete-button { min-height:44px; margin: 0; color: var(--text-secondary); background: transparent; font-size: 12px; line-height: 80rpx; }.shot { display: block; width: 100%; margin-top: 24rpx; border-radius: 16rpx; }.guest-state { padding: 56rpx 40rpx; text-align: center; background: linear-gradient(135deg,#e9f7f2,#ffffff); }
-.empty-state { padding: 56rpx 40rpx; text-align: center; }.guest-title { margin-top: 24rpx; font-size: 24px; line-height: 56rpx; font-weight: 600; }.guest-state .hint { margin: 16rpx 0 40rpx; }.guest-mark { display: flex; align-items: center; justify-content: center; width: 112rpx; height: 112rpx; margin: auto; border-radius: 50%; background: var(--brand-soft); color: var(--brand); font-size: 60rpx; }.year-note,.loading-copy { margin: 32rpx 8rpx; color: var(--text-secondary); font-size: 12px; line-height: 40rpx; }.message { margin: 24rpx 8rpx; color: var(--brand); font-size: 12px; line-height: 40rpx; }
-@media(max-width:375px){
-  .sport-page { font-size: 15px;  padding: 0 24rpx calc(48rpx + env(safe-area-inset-bottom)); background: transparent; }
-  .surface { padding: 14px; box-shadow: var(--card-shadow); background: #ffffff; }
-  .field-label,.text-button,.target-caption,.no-target,.metric-label,.manual-note,.run-date,.record-unit,.hint,.close-button,.year-note,.loading-copy,.message { font-size: 12px; line-height: 19px; }
-  .month-value { font-size: 15px; line-height: 23px; }
-  .mileage-number { font-size: 56px;  color: var(--brand); font-weight: 750; letter-spacing: -1px;}
-  .mileage-unit { font-size: 15px; }
-  .metric-value { font-size: 22px; line-height: 28px;  font-weight: 650;}
-  .section-title,.records-title,.guest-title { font-size: 20px; line-height: 26px; }
-  .record-data { gap: 14rpx;  padding: 24rpx 0;}
-  .record-number { font-size: 18px; line-height: 1.4; }
-  .field-pair { gap: 8px; }
-  .primary,.secondary,.delete-button,.choices button { min-height: 44px; font-size: 15px; line-height: 44px;  }
-  .stack input,.picker-value { height: 44px; font-size: 15px; line-height: 44px;  }
-  .target-caption { flex-wrap: wrap; }
-}
-
-.record-actions { display: flex; gap: 16rpx; }.record-actions > button { flex: 1; min-width: 0; }.import-button { display: block; min-height: 44px; margin: 0; padding: 0 16rpx; border: 1rpx solid var(--border);  background: var(--sky-soft); color: var(--brand); font-size: 14px; font-weight: 600; line-height: 44px; }.import-button::after { border: 0;  }
-.sport-eyebrow { margin-bottom: 24rpx; padding-bottom: 20rpx; border-bottom: 1rpx solid var(--border); color: var(--text-secondary); font-size: 12px; font-weight: 600; letter-spacing: 1rpx; }
-
-/* Route geometry: surfaces, controls and compact labels have distinct roles. */
-.mini-sport-sport .surface { border-radius: 36rpx; }
-.mini-sport-sport .primary, .mini-sport-sport .secondary, .mini-sport-sport .import-button, .mini-sport-sport .picker-value { border-radius: 24rpx; }
-.mini-sport-sport .choices { border-radius: 14rpx; }
-
-/* Page composition and interaction hierarchy. */
-.mini-sport-sport { color: var(--text); }
-.mini-sport-sport button { font-weight: 500; border-radius: 24rpx; }
-
-.sport-page { color: var(--text); background: transparent; }
-.surface { border: 1px solid var(--border); box-shadow: var(--card-shadow); background: #ffffff; }
-.section-title,.records-title { font-weight: 600; }
-.stack input,.picker-value { border: 1px solid var(--border); border-radius: 24rpx; background: var(--page-bg); font-size: 14px; }
-.choices { gap: 12rpx; border-radius: 0; }
-.choices button { min-height: 36px; padding: 8rpx 16rpx; border: 1px solid var(--border); border-radius: 14rpx; background: #fff; color: var(--text-secondary); font-size: 12px; }
-.choices button.on { border-color: var(--brand); background: var(--brand-soft); color: var(--brand); }
-.secondary { border: 1px solid var(--border); background: #fff; }
-.record-data { font-size: 14px; }
-.run-date,.manual-note,.record-unit { font-size: 11px; }
-
-/* Primary actions read at 14px, secondary actions at 13px; compact filters stay at 12px. */
-.mini-sport-sport .primary { font-size: 14px; font-weight: 500; }
-.mini-sport-sport .secondary, .mini-sport-sport .import-button { font-size: 13px; font-weight: 500; }
-
-/* Color surfaces use existing semantic page elements; layout stays unchanged. */
-.mileage-hero { background: linear-gradient(135deg,#e9f7f2,#ffffff); border-color: #dcece8; box-shadow: var(--card-shadow); }
-.editor { background: #ffffff; }
+.sport-page { padding: 0 24rpx calc(48rpx + env(safe-area-inset-bottom)); color: var(--text); }
+.surface { padding: 32rpx; margin-bottom: 24rpx; border: 1px solid var(--border); border-radius: 12px; background: #fff; }
+.mileage-hero { padding: 32rpx 28rpx 28rpx; }
+.hero-top,.section-heading { display: flex; align-items: center; justify-content: space-between; gap: 20rpx; }
+.month-block { min-width: 0; }
+.month-caption,.hero-kicker { display: block; color: var(--text-secondary); font-size: 12px; font-weight: 500; line-height: 18px; }
+.month-control { display: flex; align-items: center; gap: 8rpx; margin-top: 4rpx; }
+.month-step { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; min-height: 44px; padding: 0; border: 1px solid var(--border); border-radius: 8px; background: #fff; color: #555; font-size: 23px; line-height: 1; }
+.month-value { display: flex; align-items: center; justify-content: center; min-width: 90px; height: 44px; padding: 0 8rpx; border-radius: 8px; background: var(--page-bg); color: var(--text); font-size: 14px; font-weight: 600; }
+.target-link { display: flex; align-items: center; justify-content: center; min-width: 68px; min-height: 44px; padding: 0 12rpx; border: 1px solid #ffe0e3; border-radius: 8px; background: #fff6f7; color: var(--brand); font-size: 14px; line-height: 20px; white-space: nowrap; }
+.target-link-em { font-weight: 600; }
+.hero-overview { display: flex; align-items: center; gap: 24rpx; margin-top: 32rpx; }
+.mileage-copy { flex: 1; min-width: 0; }
+.hero-kicker { color: #999; font-size: 12px; font-weight: 600; }
+.mileage-value { display: flex; align-items: baseline; gap: 12rpx; margin: 12rpx 0 0; white-space: nowrap; }
+.mileage-number { color: var(--text); font-size: 40px; font-weight: 600; line-height: 1.05; font-variant-numeric: tabular-nums; }
+.mileage-unit { color: var(--text-secondary); font-size: 14px; font-weight: 600; }
+.mileage-footnote { margin-top: 14rpx; color: var(--text-secondary); font-size: 12px; line-height: 17px; }
+.runner-strip { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; width: 104px; height: 128px; flex: none; overflow: hidden; padding: 16rpx; border-radius: 10px; background: #fff5f5; color: var(--text); }
+.runner-photo { display: block; width: 76px; height: 76px; margin: -6rpx auto 0; }
+.strip-title { white-space: nowrap; font-size: 14px; font-weight: 600; line-height: 19px; }
+.strip-detail { margin-top: 4rpx; color: var(--text-secondary); font-size: 12px; line-height: 15px; }
+.weekly-chart { margin-top: 36rpx; padding: 24rpx 24rpx 16rpx; border-radius: 10px; background: #f7f7f8; }
+.chart-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 16rpx; }
+.chart-title { font-size: 14px; font-weight: 600; line-height: 20px; }
+.chart-heading > text { color: var(--text-secondary); font-size: 12px; }
+.chart-bars { display: flex; gap: 20rpx; height: 94px; margin-top: 16rpx; }
+.chart-column { display: flex; flex: 1; flex-direction: column; align-items: center; min-width: 0; }
+.bar-value,.bar-label { height: 17px; flex: none; color: var(--text-secondary); font-size: 12px; line-height: 14px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.bar-label { height: 16px; }
+.bar-track { display: flex; align-items: flex-end; width: 100%; max-width: 26px; flex: 1; overflow: hidden; border-radius: 6px; background: #ececee; }
+.bar-value-fill { width: 100%; min-height: 0; border-radius: 6px; background: #f5a3ad; }
+.bar-value-fill.peak { background: var(--brand); }
+.target-summary { padding: 24rpx; margin-top: 28rpx; border: 1px solid #ffe2e5; border-radius: 10px; background: #fff8f8; }
+.target-copy,.target-caption { display: flex; align-items: baseline; justify-content: space-between; gap: 16rpx; }
+.target-copy { margin-bottom: 18rpx; color: #555; font-size: 12px; }
+.target-km { color: var(--text); font-weight: 600; }
+.target-percent { color: var(--brand); font-size: 14px; font-weight: 600; }
+.progress-track { height: 5px; overflow: hidden; border-radius: 99px; background: #f2dfe1; }
+.progress-value { height: 100%; border-radius: inherit; background: var(--brand); }
+.target-caption { margin-top: 14rpx; color: var(--text-secondary); font-size: 12px; line-height: 16px; }
+.target-prompt { display: flex; align-items: center; gap: 18rpx; width: 100%; min-height: 58px; padding: 16rpx 20rpx; margin-top: 28rpx; border: 1px solid #f2e7e8; border-radius: 10px; background: #fff9fa; text-align: left; }
+.target-mark { display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; flex: none; border-radius: 8px; background: #ffe8eb; color: var(--brand); font-size: 19px; }
+.target-prompt-copy { flex: 1; min-width: 0; }
+.target-prompt-title { color: var(--text); font-size: 13px; font-weight: 600; }
+.target-prompt-note { margin-top: 4rpx; color: var(--text-secondary); font-size: 12px; }
+.target-prompt-more { color: var(--brand); font-size: 12px; font-weight: 600; white-space: nowrap; }
+.run-metrics { display: flex; padding-top: 26rpx; margin-top: 26rpx; border-top: 1px solid var(--border); }
+.run-metrics > view { flex: 1; min-width: 0; text-align: center; }
+.run-metrics > view:first-child { text-align: left; }
+.run-metrics > view:last-child { text-align: right; }
+.metric-value { display: block; font-size: 18px; font-weight: 600; line-height: 22px; font-variant-numeric: tabular-nums; }
+.metric-label { display: block; margin-top: 6rpx; color: var(--text-secondary); font-size: 12px; }
+.record-actions { display: flex; gap: 16rpx; margin-top: 24rpx; }
+.record-actions > button { flex: 1; min-width: 0; }
+.record-actions > .record-button { flex: 1.2; }
+.primary,.import-button,.secondary,.choices button,.close-button,.delete-button,.text-button { min-height: 44px; margin: 0; border-radius: 10px; font-size: 14px; }
+.primary { width: 100%; padding: 0 28rpx; border: 0; background: var(--brand); color: #fff; font-weight: 600; line-height: 44px; }
+.import-button { padding: 0 16rpx; border: 1px solid var(--border); background: #fff; color: #555; font-weight: 500; line-height: 44px; }
+.manual-note { margin: 12rpx 4rpx 36rpx; color: var(--text-secondary); font-size: 12px; line-height: 17px; }
+.section-title,.records-title { font-size: 16px; font-weight: 600; line-height: 24px; }
+.field-label { color: var(--text-secondary); font-size: 12px; }
+.records-heading { margin: 40rpx 8rpx 20rpx; }
+.records-title { font-size: 18px; }
+.run-record { padding: 28rpx; }
+.run-record .section-title { font-size: 15px; }
+.text-button { display: flex; align-items: center; padding: 0 16rpx; color: var(--brand); font-size: 12px; }
+.run-date { margin: 10rpx 0 24rpx; color: var(--text-secondary); font-size: 12px; line-height: 18px; }
+.record-data { display: flex; gap: 16rpx; }
+.record-data > view { flex: 1; min-width: 0; }
+.record-number { display: block; font-size: 18px; font-weight: 600; line-height: 24px; font-variant-numeric: tabular-nums; }
+.record-unit { display: block; margin-top: 6rpx; color: var(--text-secondary); font-size: 12px; }
+.hint { margin-top: 16rpx; color: var(--text-secondary); font-size: 12px; line-height: 19px; }
+.stack { display: flex; flex-direction: column; gap: 24rpx; margin-top: 28rpx; }
+.stack input,.picker-value { width: 100%; min-width: 0; height: 44px; padding: 0 24rpx; border: 1px solid var(--border); border-radius: 10px; background: var(--page-bg); color: var(--text); font-size: 14px; line-height: 44px; }
+.stack > .field-label + input { margin-top: -12rpx; }
+.field-pair { display: flex; gap: 20rpx; }
+.field-pair > view { flex: 1; min-width: 0; }
+.field-pair input,.picker-value { margin-top: 12rpx; }
+.choices { display: flex; gap: 16rpx; }
+.choices button { min-width: 124rpx; min-height: 36px; padding: 0 24rpx; border: 1px solid var(--border); border-radius: 8px; background: #fff; color: var(--text); font-size: 13px; line-height: 36px; }
+.choices button.on { border-color: var(--brand); background: #fff4f5; color: var(--brand); }
+.close-button { display: flex; align-items: center; padding: 0 16rpx; color: var(--text-secondary); font-size: 12px; }
+.secondary { width: 100%; padding: 0 24rpx; border: 1px solid var(--border); background: #fff; color: #555; font-size: 13px; line-height: 44px; }
+.record-editor { padding-top: 24rpx; margin-top: 28rpx; border-top: 1px solid var(--border); }
+.delete-button { padding: 0 16rpx; border: 0; background: transparent; color: var(--text-secondary); font-size: 13px; line-height: 44px; }
+.shot { display: block; width: 100%; margin-top: 24rpx; border-radius: 8px; }
+.guest-state,.empty-state { padding: 56rpx 40rpx; text-align: center; }
+.guest-title { margin-top: 24rpx; font-size: 18px; font-weight: 600; line-height: 28px; }
+.guest-state > .hint,.empty-state > .hint { margin: 16rpx 0 36rpx; color: var(--text-secondary); font-size: 14px; line-height: 1.65; }
+.guest-mark { display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; margin: auto; border-radius: 12px; background: #fff0f2; color: var(--brand); font-size: 22px; }
+.year-note,.loading-copy { margin: 28rpx 8rpx; color: var(--text-secondary); font-size: 12px; line-height: 20px; }
+.message { margin: 24rpx 8rpx; color: var(--brand); font-size: 12px; line-height: 20px; }
+.editor { margin-top: 16rpx; }
+@media(max-width:350px) { .sport-page { padding-right: 20rpx; padding-left: 20rpx; } .surface { padding: 28rpx; } .hero-overview { gap: 16rpx; } .runner-strip { width: 88px; height: 120px; padding: 14rpx; } .runner-photo { width: 68px; height: 68px; } .mileage-number { font-size: 38px; } .weekly-chart { padding-right: 16rpx; padding-left: 16rpx; } .chart-bars { gap: 12rpx; } .record-actions > .record-button { flex: 1; } }

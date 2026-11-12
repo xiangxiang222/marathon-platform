@@ -6,6 +6,27 @@ function thisMonth() {
   return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 7);
 }
 
+function monthVisuals(month, summary) {
+  const [year, selectedMonth] = month.split('-').map(Number);
+  const daysInMonth = new Date(year, selectedMonth, 0).getDate();
+  const weeks = Array.from({ length: Math.ceil(daysInMonth / 7) }, (_, index) => ({ label: `${index * 7 + 1}–${Math.min((index + 1) * 7, daysInMonth)}`, km: 0 }));
+  for (const run of summary.runs || []) {
+    if (run.type && !['run', 'trail'].includes(run.type)) continue;
+    const day = Number(String(run.startedAt).slice(8, 10));
+    const week = weeks[Math.floor((day - 1) / 7)];
+    if (week) week.km += Number(run.volumeKm || 0);
+  }
+  const max = Math.max(...weeks.map((week) => week.km), 0);
+  const peak = max > 0 ? weeks.findIndex((week) => week.km === max) : -1;
+  const weeklyRuns = weeks.map((week, index) => ({ ...week, kmLabel: week.km.toFixed(1), height: week.km > 0 && max > 0 ? Math.max(8, Math.round(week.km / max * 100)) : 0, peak: index === peak }));
+  return {
+    monthLabel: `${year}年${selectedMonth}月`,
+    weeklyRuns,
+    weeklyChartLabel: '每周跑量：' + weeklyRuns.map((week) => `${week.label}日 ${week.kmLabel} 公里`).join('，'),
+    targetRemaining: Math.max(0, Number(summary.month.target || 0) - Number(summary.month.km || 0)).toFixed(1)
+  };
+}
+
 Page({
   data: {
     ready: false,
@@ -14,6 +35,10 @@ Page({
     expandedRunId: null,
     targetPercent: 0,
     targetProgress: 0,
+    monthLabel: '',
+    weeklyRuns: [],
+    weeklyChartLabel: '',
+    targetRemaining: '0.0',
     runTypeOptions: ["跑步·待确认", "户外跑", "越野", "跑步机", "室内跑", "操场跑", "虚拟跑"],
     summary: null,
     month: "",
@@ -35,8 +60,11 @@ Page({
     if (ready) this.load();
   },
   load() {
-    return request("/runs?month=" + encodeURIComponent(this.data.month))
+    const sequence = this._loadSequence = (this._loadSequence || 0) + 1;
+    const selectedMonth = this.data.month;
+    return request("/runs?month=" + encodeURIComponent(selectedMonth))
       .then((data) => {
+        if (sequence !== this._loadSequence) return;
         const token = (getApp().globalData && getApp().globalData.token) || "";
         data.runs = (data.runs || []).map((item) => ({
           ...item,
@@ -48,6 +76,7 @@ Page({
         }));
         const percent = Number(data.month.target) > 0 ? (data.month.percent != null ? Number(data.month.percent) : Math.round(Number(data.month.km) / Number(data.month.target) * 100)) : 0;
         this.setData({
+          ...monthVisuals(selectedMonth, data),
           targetPercent: Number.isFinite(percent) ? percent : 0,
           targetProgress: Math.max(0, Math.min(100, Number.isFinite(percent) ? percent : 0)),
           summary: data,
@@ -57,6 +86,7 @@ Page({
         });
       })
       .catch((err) => {
+        if (sequence !== this._loadSequence) return;
         if (err.message === "请先登录") this.setData({ ready: false, summary: null });
         else this.setData({ message: err.message });
       });
@@ -74,6 +104,13 @@ Page({
   onMonth(e) {
     this.setData({ month: e.detail.value });
     this.load();
+  },
+  shiftMonth(e) {
+    const offset = Number(e.currentTarget.dataset.offset);
+    const [year, selectedMonth] = this.data.month.split('-').map(Number);
+    const shifted = new Date(Date.UTC(year, selectedMonth - 1 + offset, 1));
+    this.setData({ month: shifted.toISOString().slice(0, 7) });
+    return this.load();
   },
   pickGender(e) {
     this.setData({ gender: e.currentTarget.dataset.gender });

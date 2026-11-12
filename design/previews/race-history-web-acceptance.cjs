@@ -601,7 +601,7 @@ async function main() {
         await page.getByLabel('选择成绩截图或证书').setInputFiles([{name:'certificate-a.png',mimeType:'image/png',buffer:certificate},{name:'certificate-b.png',mimeType:'image/png',buffer:certificate}]);
         assert.equal(recognized,0);
         await page.getByRole('button',{name:'同意本次解析',exact:true}).click();
-        await page.getByText('识别文字已放入下方，可先更正，再点“识别并核对比赛”。',{exact:true}).waitFor({timeout:60000});
+        await page.getByText('文字已识别，可先更正，再核对比赛。',{exact:true}).waitFor({timeout:60000});
         assert.equal(recognized,2);assert.match(await page.getByLabel('成绩文字或表格').inputValue(),/03:12:45/);
         await page.getByRole('button',{name:'识别并核对比赛',exact:true}).click();
         await page.locator('.candidate').first().waitFor();

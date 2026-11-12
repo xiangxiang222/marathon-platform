@@ -199,6 +199,6 @@ onMounted(retryLoad);
 .club-detail-page .block :is(input:not([type="radio"]):not([type="checkbox"]):not([type="file"]),textarea,select) { border:1px solid var(--line); border-radius:12px; background:var(--field-bg); font-size:14px; }
 
 
-.club-detail-page { background:transparent; }.club-detail-page>.topbar { background:transparent; }.club-detail-page .detail-hero { background:linear-gradient(125deg,#eef8f2,#fff);border-color:#d5e8dd;box-shadow:var(--card-shadow,0 6px 20px #4c806710); }.club-detail-page .detail-kicker { color:#367d64; }.club-detail-page .detail-actions .undo { background:#ffffffa3;border-color:#d1e4d8; }
+.club-detail-page { background:transparent; }.club-detail-page>.topbar { background:transparent; }.club-detail-page .detail-hero { background:var(--card);border-color:var(--line);box-shadow:none; }.club-detail-page .detail-kicker { color:var(--muted); }.club-detail-page .detail-actions .undo { background:#ffffffa3;border-color:var(--line); }
 .member-name-link{min-width:0;color:var(--ink);overflow-wrap:anywhere;text-decoration:none}.member-name-link:hover{color:var(--accent)}
 </style>

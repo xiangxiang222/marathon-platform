@@ -207,7 +207,7 @@ Page({
     }
     if (!this.current(session)) return;
     const text = [this.data.importText.trim()].concat(texts).filter(Boolean).join("\n\n");
-    this.setData({ busy: "", importText: text, warnings: Array.from(new Set(warnings)), importError: failed.join("；"), importSuccess: texts.length ? "已识别 " + texts.length + " 张，请检查文字后点击「整理比赛」。" : "", ...(texts.length ? { candidates: [], selectedCount: 0, canConfirm: false } : {}) });
+    this.setData({ busy: "", importText: text, warnings: Array.from(new Set(warnings)), importError: failed.join("；"), importSuccess: texts.length ? "已识别 " + texts.length + " 张，可先更正文字，再核对比赛。" : "", ...(texts.length ? { candidates: [], selectedCount: 0, canConfirm: false } : {}) });
   },
   pickMediaKind(event) { this.setData({ mediaKindIndex: Number(event.detail.value) || 0 }); },
   chooseMedia() {

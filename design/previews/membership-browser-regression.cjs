@@ -112,7 +112,8 @@ async function main() {
       page.once("dialog", (dialog) => dialog.accept());
       await leave.click();
       await page.waitForURL(base + "/clubs");
-      await page.getByText("还没有加入跑团", { exact: true }).waitFor();
+      await page.locator('.no-club').getByText("跑团生活，从一起出发开始", { exact: true }).waitFor();
+      assert.equal(await page.locator('.my-club').count(), 0);
       assert.equal(state.writes.length, 2);
       assert.ok(state.writes.every((write) => write.method === "POST" && write.endpoint === "/clubs/44/leave"));
       report.checks.push({ name: "confirmed leave sends only the current club endpoint and returns to the refreshed club list", width, writes: state.writes });

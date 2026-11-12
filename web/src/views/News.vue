@@ -95,7 +95,10 @@ watch(id, () => {
 .news-body .go { margin-top:24px; padding-top:18px; border-top:1px solid var(--line); font-size:14px; }
 
 
-.news-page { background:transparent; }.news-page>.topbar { background:linear-gradient(115deg,#eff6ff,#fff);border-bottom:1px solid #dfe5f2; }
-.news-line { background:#fff;border-color:#e0e9f3;box-shadow:var(--card-shadow,0 4px 16px #454c7008); }.news-line:nth-of-type(2n) { background:#fff;border-color:#e8e0f3; }.news-line .src { color:#667a92; }
-.news-body { border-color:#e0e7f2; }.news-body h2 { padding-bottom:18px;border-bottom:2px solid #e7effb; }.go { background:var(--sky-soft,#eaf4ff);border-color:#dce8f5; }
+.news-page { background:var(--bg); color:var(--ink); font-size:14px; letter-spacing:normal; }
+.news-page .topbar { background:var(--card); border-bottom-color:var(--line); }
+.news-page .news-body { border:1px solid var(--line); border-radius:12px; box-shadow:none; }
+.news-page .news-body h2 { padding-bottom:16px; border-color:var(--line); font-size:24px; font-weight:600; letter-spacing:normal; }
+.news-page .news-body .src { border-color:var(--line); }
+.news-page .news-body .go { background:var(--field-bg); color:var(--accent); border-color:var(--line); }
 </style>

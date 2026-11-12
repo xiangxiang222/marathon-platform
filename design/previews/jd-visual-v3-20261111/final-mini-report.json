@@ -1,0 +1,729 @@
+{
+  "kind": "Current WXML/WXSS browser source mirrors. Synthetic display fixtures. Not WeChat simulator/device. Selected routes and applicable branches at 320/390; default covers every registered route.",
+  "date": "2026-11-11T12:31:48.763Z",
+  "output": "/Users/mengxiangxiang/Documents/work/dev/marathon-platform/design/previews/jd-visual-v3-20261111/final-mini",
+  "expectedAccent": "#ff1838",
+  "routeCount": 3,
+  "sceneCount": 4,
+  "dataErrors": [],
+  "limitations": [
+    "Source layout mirror with synthetic fixtures; no lifecycle/API/device interaction",
+    "Native pickers, textareas, scroll areas and custom header are approximated in browser",
+    "Contact sheets crop the top of each page; individual PNGs show the complete rendered page"
+  ],
+  "passed": true,
+  "results": [
+    {
+      "route": "pages/races/races",
+      "scenario": "base",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 970,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
+        "surface": "#ffffff",
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f7f7f7",
+        "mint": "#f7f7f7",
+        "lilac": "#f7f7f7",
+        "sun": "#f7f7f7",
+        "peach": "#fff0f2"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "coral",
+          "apricot-gold"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "A",
+            "class": "discover-calendar",
+            "area": 19454,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(135deg, rgb(255, 255, 255), rgb(255, 240, 242))",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "A",
+            "class": "discover-person",
+            "area": 8528,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(115deg, rgb(255, 248, 238), rgb(255, 241, 223))",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "A",
+            "class": "discover-news",
+            "area": 8528,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(115deg, rgb(255, 255, 255), rgb(255, 240, 242))",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "date",
+            "area": 4060,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(145deg, rgb(255, 255, 255), rgb(255, 246, 246))",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "date",
+            "area": 4060,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(145deg, rgb(255, 255, 255), rgb(255, 246, 246))",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "kind-tab on",
+            "area": 2427,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#ff1838",
+      "browserErrors": [],
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/mine/mine",
+      "scenario": "base",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 1824,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
+        "surface": "#ffffff",
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f7f7f7",
+        "mint": "#f7f7f7",
+        "lilac": "#f7f7f7",
+        "sun": "#f7f7f7",
+        "peach": "#fff0f2"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "apricot-gold",
+          "coral"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "DIV",
+            "class": "identity-panel",
+            "area": 36485,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(115deg, rgb(255, 255, 255), rgb(255, 249, 246))",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "A",
+            "class": "",
+            "area": 11900,
+            "background": "rgb(255, 243, 243)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "hero-avatar avatar-empty",
+            "area": 1608,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#ff1838",
+      "browserErrors": [],
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/news/news",
+      "scenario": "base",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 970,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
+        "surface": "#ffffff",
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f7f7f7",
+        "mint": "#f7f7f7",
+        "lilac": "#f7f7f7",
+        "sun": "#f7f7f7",
+        "peach": "#fff0f2"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "apricot-gold",
+          "coral"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "BUTTON",
+            "class": "",
+            "area": 11598,
+            "background": "rgb(255, 248, 242)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "",
+            "area": 11598,
+            "background": "rgb(255, 246, 247)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "shortcut-title",
+            "area": 1679,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "shortcut-title",
+            "area": 1679,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#ff1838",
+      "browserErrors": [],
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/news/news",
+      "scenario": "empty",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 970,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
+        "surface": "#ffffff",
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f7f7f7",
+        "mint": "#f7f7f7",
+        "lilac": "#f7f7f7",
+        "sun": "#f7f7f7",
+        "peach": "#fff0f2"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "apricot-gold",
+          "coral"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "BUTTON",
+            "class": "",
+            "area": 11598,
+            "background": "rgb(255, 248, 242)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "",
+            "area": 11598,
+            "background": "rgb(255, 246, 247)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "",
+            "area": 5664,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "shortcut-title",
+            "area": 1679,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "shortcut-title",
+            "area": 1679,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#ff1838",
+      "browserErrors": [],
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/races/races",
+      "scenario": "base",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 970,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
+        "surface": "#ffffff",
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f7f7f7",
+        "mint": "#f7f7f7",
+        "lilac": "#f7f7f7",
+        "sun": "#f7f7f7",
+        "peach": "#fff0f2"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "coral",
+          "apricot-gold"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "A",
+            "class": "discover-calendar",
+            "area": 25250,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(135deg, rgb(255, 255, 255), rgb(255, 240, 242))",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "A",
+            "class": "discover-person",
+            "area": 10977,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(115deg, rgb(255, 248, 238), rgb(255, 241, 223))",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "A",
+            "class": "discover-news",
+            "area": 10977,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(115deg, rgb(255, 255, 255), rgb(255, 240, 242))",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "date",
+            "area": 4060,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(145deg, rgb(255, 255, 255), rgb(255, 246, 246))",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "date",
+            "area": 4060,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(145deg, rgb(255, 255, 255), rgb(255, 246, 246))",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "kind-tab on",
+            "area": 3126,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#ff1838",
+      "browserErrors": [],
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/mine/mine",
+      "scenario": "base",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 1908,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
+        "surface": "#ffffff",
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f7f7f7",
+        "mint": "#f7f7f7",
+        "lilac": "#f7f7f7",
+        "sun": "#f7f7f7",
+        "peach": "#fff0f2"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "apricot-gold",
+          "coral"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "DIV",
+            "class": "identity-panel",
+            "area": 48178,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(115deg, rgb(255, 255, 255), rgb(255, 249, 246))",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "A",
+            "class": "",
+            "area": 6854,
+            "background": "rgb(255, 243, 243)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "hero-avatar avatar-empty",
+            "area": 2000,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#ff1838",
+      "browserErrors": [],
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/news/news",
+      "scenario": "base",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 970,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
+        "surface": "#ffffff",
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f7f7f7",
+        "mint": "#f7f7f7",
+        "lilac": "#f7f7f7",
+        "sun": "#f7f7f7",
+        "peach": "#fff0f2"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "coral",
+          "apricot-gold"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "BUTTON",
+            "class": "",
+            "area": 13688,
+            "background": "rgb(255, 246, 247)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "",
+            "area": 13686,
+            "background": "rgb(255, 248, 242)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "shortcut-title",
+            "area": 1859,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "shortcut-title",
+            "area": 1859,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#ff1838",
+      "browserErrors": [],
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    },
+    {
+      "route": "pages/news/news",
+      "scenario": "empty",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 970,
+      "footers": [],
+      "managementPanels": 0,
+      "editPanels": 0,
+      "groupRows": 0,
+      "brokenImages": [],
+      "overflow": [],
+      "palette": {
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
+        "surface": "#ffffff",
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f7f7f7",
+        "mint": "#f7f7f7",
+        "lilac": "#f7f7f7",
+        "sun": "#f7f7f7",
+        "peach": "#fff0f2"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "coral",
+          "apricot-gold"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "BUTTON",
+            "class": "",
+            "area": 13688,
+            "background": "rgb(255, 246, 247)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "",
+            "area": 13686,
+            "background": "rgb(255, 248, 242)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "",
+            "area": 5959,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "shortcut-title",
+            "area": 1859,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "shortcut-title",
+            "area": 1859,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          }
+        ]
+      },
+      "primaryColor": "#ff1838",
+      "browserErrors": [],
+      "expressionErrors": [],
+      "missingHandlers": [],
+      "branchErrors": [],
+      "passed": true
+    }
+  ]
+}

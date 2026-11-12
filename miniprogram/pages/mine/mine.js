@@ -2,6 +2,7 @@ const { request, setAuth, clearAuth, ready } = require("../../utils/request");
 const { saveCaptchaFile } = require("../../utils/captcha");
 const { networkAvatar, prepareAvatar } = require("../../utils/avatar");
 const { VIEWS, decorate, careerSummary } = require("../../utils/runner-center");
+const { normalizeResults } = require("../../utils/achievement-model");
 let legalVersion = require("../../utils/legal-documents").version;
 
 function wechatCode() {
@@ -16,7 +17,8 @@ function wechatCode() {
 Page({
   data: {
     mainTab: "overview",
-    runnerViews: VIEWS,
+    posterAvailable: false,
+    runnerViews: VIEWS.map(item => ({ ...item, shortCaption: ({ stats: '跑量与趋势', career: '成绩与 PB', footprints: '我的城市护照', honors: '证书与奖牌', media: '留住高光时刻', devices: '导入与设备' })[item.key] })),
     runner: null,
     runnerLoading: false,
     runnerError: "",
@@ -25,7 +27,7 @@ Page({
     nextRace: null,
     authOpen: false,
     profileOpen: false,
-    quickLinks: [{ url: "/pages/calendar/calendar", label: "赛事日历", icon: "/images/quick-calendar.png" }, { url: "/pages/radar/radar", label: "拿奖雷达", icon: "/images/quick-radar.png" }, { url: "/pages/clubs/clubs", label: "发现跑团", icon: "/images/quick-clubs.png", tab: true }, { url: "/pages/news/news", label: "赛事资讯", icon: "/images/quick-news.png" }],
+    quickLinks: [{ url: "/pages/calendar/calendar", label: "赛事日历", icon: "/images/quick-calendar.png" }, { url: "/pages/radar/radar", label: "拿奖雷达", icon: "/images/quick-radar.png" }, { url: "/pages/clubs/clubs", label: "发现跑团", icon: "/images/quick-clubs.png", tab: true }, { url: "/pages/news/news", label: "跑圈资讯", icon: "/images/quick-news.png" }],
     nickname: "",
     nicknameDraft: "",
     avatar: "",
@@ -75,8 +77,9 @@ Page({
     const avatar = networkAvatar(getApp().globalData && getApp().globalData.avatar, getApp().globalData && getApp().globalData.baseUrl);
     const token = (getApp().globalData && getApp().globalData.token) || "";
     if (token !== this._lastToken) {
+      this._sessionEpoch = (this._sessionEpoch || 0) + 1;
       this._lastToken = token;
-      this.setData({ runner: null, plans: [], results: [], clubs: [], nextRace: null, conflicts: [], reminders: [], feedbackUnread: 0, career: { finished: 0, provinces: [], cities: [], pb: { full: "", half: "" }, yearKm: 0 } });
+      this.setData({ runner: null, posterAvailable: false, plans: [], results: [], clubs: [], nextRace: null, conflicts: [], reminders: [], feedbackUnread: 0, career: { finished: 0, provinces: [], cities: [], pb: { full: "", half: "" }, yearKm: 0 } });
     }
     this.setData({ nickname, nicknameDraft: nickname, avatar, ready: ready() });
     if (ready()) this.load();
@@ -87,6 +90,8 @@ Page({
     }
     if (ready()) this.resumePendingClub();
   },
+  accountScope() { return { token: (getApp().globalData && getApp().globalData.token) || "", epoch: this._sessionEpoch || 0 }; },
+  accountCurrent(scope) { return Boolean(scope.token) && scope.token === ((getApp().globalData && getApp().globalData.token) || "") && scope.epoch === (this._sessionEpoch || 0); },
   openPrivacy() {
     wx.navigateTo({ url: "/pages/privacy/privacy" });
   },
@@ -103,9 +108,15 @@ Page({
       if (sequence === this._feedbackSequence && token === getApp().globalData.token) this.setData({ feedbackUnread: 0 });
     });
   },
+  openSettings() {
+    this._settingsReturn = this.data.mainTab === "settings" ? "overview" : this.data.mainTab;
+    this.pickMainTab({ currentTarget: { dataset: { tab: "settings" } } });
+  },
+  closeSettings() { this.pickMainTab({ currentTarget: { dataset: { tab: this._settingsReturn || "overview" } } }); },
+  settingsLogin() { this.closeSettings(); if (!this.data.authOpen) this.toggleAuth(); },
   pickMainTab(e) {
     const mainTab = e.currentTarget.dataset.tab;
-    if (!["overview", "plans", "results", "profile"].includes(mainTab)) return;
+    if (!["overview", "plans", "results", "profile", "settings"].includes(mainTab)) return;
     this.setData({ mainTab, profileOpen: false, passwordOpen: false, unbindOpen: false, unbindPassword: "", unbindMessage: "" });
   },
   toggleAuth() {
@@ -159,7 +170,12 @@ Page({
   },
   openAchievementPoster(event) {
     if (!ready()) return;
-    wx.navigateTo({ url: "/pages/achievement-poster/achievement-poster?mode=" + (event.currentTarget.dataset.mode === "results" ? "results" : "pb") });
+    if (!normalizeResults(this.data.runner).length) {
+      this.pickMainTab({ currentTarget: { dataset: { tab: "results" } } });
+      wx.showToast({ title: "先在赛事详情页记录完赛成绩", icon: "none" });
+      return;
+    }
+    wx.navigateTo({ url: "/pages/achievement-poster/achievement-poster?mode=results" });
   },
   loadRunner() {
     if (!ready()) return Promise.resolve();
@@ -181,7 +197,7 @@ Page({
     const runner = this.data.runner;
     if (!runner || this._runnerToken !== getApp().globalData.token) return;
     const flags = new Map(runner.results.map((item) => [String(item.race.id) + ":" + item.distance, item.pb]));
-    this.setData({ career: careerSummary(runner), results: this.data.results.map((item) => ({ ...item, pb: Boolean(flags.get(String(item.race.id) + ":" + item.distance)) })) });
+    this.setData({ posterAvailable: normalizeResults(runner).length > 0, career: careerSummary(runner), results: this.data.results.map((item) => ({ ...item, pb: Boolean(flags.get(String(item.race.id) + ":" + item.distance)) })) });
   },
   setTab(e) {
     const tab = e.currentTarget.dataset.tab === "register" ? "register" : "login";
@@ -189,15 +205,20 @@ Page({
     if (tab === "login") this.loadCaptcha();
   },
   loadCaptcha() {
+    const sequence = this._captchaSequence = (this._captchaSequence || 0) + 1;
     this.setData({ captchaLoading: true, captchaImage: "" });
-    request("/auth/captcha?t=" + Date.now())
-      .then((data) => saveCaptchaFile(data.image, this._captchaFile).then((filePath) => ({ data, filePath })))
-      .then(({ data, filePath }) => {
-        this._captchaFile = filePath;
-        this._captchaToken = data.token;
-        this.setData({ captchaImage: filePath, captcha: "", captchaLoading: false });
+    return request("/auth/captcha?t=" + Date.now())
+      .then((data) => {
+        if (sequence !== this._captchaSequence) return null;
+        return saveCaptchaFile(data.image, this._captchaFile).then((filePath) => ({ data, filePath }));
       })
-      .catch((err) => this.setData({ captchaLoading: false, message: err.message, ok: false }));
+      .then((result) => {
+        if (!result || sequence !== this._captchaSequence) return;
+        this._captchaFile = result.filePath;
+        this._captchaToken = result.data.token;
+        this.setData({ captchaImage: result.filePath, captcha: "", captchaLoading: false });
+      })
+      .catch((err) => { if (sequence === this._captchaSequence) this.setData({ captchaLoading: false, message: err.message, ok: false }); });
   },
   wechatLogin() {
     return this.startWechatLogin(false);
@@ -212,10 +233,14 @@ Page({
   },
   acceptSession(data) {
     const bindAfterLogin = this.data.bindAfterLogin;
+    this._sessionEpoch = (this._sessionEpoch || 0) + 1;
+    this._lastToken = data.token;
     setAuth(data.token, data.user.nickname, data.user.avatar);
     this.setData({ authOpen: false, ready: true, nickname: data.user.nickname, nicknameDraft: data.user.nickname, avatar: data.user.avatar || "", avatarPreview: "", wxLoading: false, wechatRegistrationRequired: false, bindAfterLogin: false, message: "", password: "", password2: "", captcha: "" });
     this._avatarPath = "";
+    const scope = this.accountScope();
     return this.load().then(() => {
+      if (!this.accountCurrent(scope)) return;
       if (bindAfterLogin) {
         this.setData({ mainTab: "profile" });
         return this.bindWechat(true).then((bound) => { if (bound) this.resumePendingClub(); });
@@ -226,29 +251,35 @@ Page({
   startWechatLogin(createAccount) {
     if (this.data.wxLoading) return;
     if (!this.data.legalAccepted) { this.setData({ message: "请先阅读用户协议与隐私政策，自主勾选后继续。" }); return; }
+    const epoch = this._sessionEpoch || 0;
     this.setData({ wxLoading: true, bindAfterLogin: false, message: "" });
     return wechatCode()
-      .then((code) => request("/auth/wechat", "POST", { code, ...(createAccount ? { createAccount: true } : {}), legalConsent: { version: legalVersion, accepted: true } }))
-      .then((data) => this.acceptSession(data))
+      .then((code) => { if (epoch !== (this._sessionEpoch || 0)) return null; return request("/auth/wechat", "POST", { code, ...(createAccount ? { createAccount: true } : {}), legalConsent: { version: legalVersion, accepted: true } }); })
+      .then((data) => { if (data && epoch === (this._sessionEpoch || 0)) return this.acceptSession(data); })
       .catch((err) => {
+        if (epoch !== (this._sessionEpoch || 0)) return;
         if (err.status === 409 && err.code === "WECHAT_REGISTRATION_REQUIRED") {
           this.setData({ wechatRegistrationRequired: true, message: "" });
         } else this.setData({ message: err.message });
       })
-      .finally(() => this.setData({ wxLoading: false }));
+      .finally(() => { if (epoch === (this._sessionEpoch || 0)) this.setData({ wxLoading: false }); });
   },
-  bindWechat(force) {
-    if (this.data.hasWechatLogin && force !== true) return Promise.resolve(true);
-    if (this.data.wxLoading) return Promise.resolve(false);
+  async bindWechat(force) {
+    if (!ready()) return false;
+    if (this.data.hasWechatLogin && force !== true) return true;
+    if (this.data.wxLoading) return false;
+    const scope = this.accountScope();
     this.setData({ wxLoading: true, profileMessage: "" });
-    return wechatCode()
-      .then((code) => request("/me/wechat", "POST", { code }))
-      .then(() => {
-        this.setData({ hasWechatLogin: true, profileMessage: "微信账号已绑定，可用于下次登录" });
-        return this.load().then(() => true);
-      })
-      .catch((err) => { this.setData({ profileMessage: err.message }); return false; })
-      .finally(() => this.setData({ wxLoading: false }));
+    try {
+      const code = await wechatCode();
+      if (!this.accountCurrent(scope)) return false;
+      await request("/me/wechat", "POST", { code });
+      if (!this.accountCurrent(scope)) return false;
+      this.setData({ hasWechatLogin: true, profileMessage: "微信账号已绑定，可用于下次登录" });
+      await this.load();
+      return this.accountCurrent(scope);
+    } catch (err) { if (this.accountCurrent(scope)) this.setData({ profileMessage: err.message }); return false; }
+    finally { if (this.accountCurrent(scope)) this.setData({ wxLoading: false }); }
   },
   toggleUnbind() {
     if (!this.data.hasPassword) {
@@ -258,19 +289,21 @@ Page({
     this.setData({ unbindOpen: !this.data.unbindOpen, unbindPassword: "", unbindMessage: "" });
   },
   unbindWechat() {
-    if (!this.data.hasPassword || this.data.unbindLoading) return;
+    if (!ready() || !this.data.hasPassword || this.data.unbindLoading) return;
     if (!this.data.unbindPassword) {
       this.setData({ unbindMessage: "请输入当前登录密码" });
       return;
     }
+    const scope = this.accountScope();
     this.setData({ unbindLoading: true, unbindMessage: "" });
     return request("/me/wechat", "DELETE", { password: this.data.unbindPassword })
       .then(() => {
+        if (!this.accountCurrent(scope)) return;
         this.setData({ hasWechatLogin: false, unbindOpen: false, unbindPassword: "", profileMessage: "微信已解绑，可继续使用昵称和密码登录。" });
         return this.load();
       })
-      .catch((err) => this.setData({ unbindMessage: err.message }))
-      .finally(() => this.setData({ unbindLoading: false }));
+      .catch((err) => { if (this.accountCurrent(scope)) this.setData({ unbindMessage: err.message }); })
+      .finally(() => { if (this.accountCurrent(scope)) this.setData({ unbindLoading: false }); });
   },
   chooseAvatar(e) {
     const path = e.detail && e.detail.avatarUrl;
@@ -278,32 +311,33 @@ Page({
     this._avatarPath = path;
     this.setData({ avatarPreview: path, profileMessage: "头像已选择，保存后团友可见" });
   },
-  saveProfile() {
-    if (this.data.avatarSaving) return;
+  async saveProfile() {
+    if (!ready() || this.data.avatarSaving) return;
     const nickname = (this.data.nicknameDraft || "").trim();
     if (!nickname || nickname.length > 20) {
       this.setData({ profileMessage: "昵称须为 1 到 20 个字" });
       return;
     }
+    const scope = this.accountScope(), avatarPath = this._avatarPath;
     this.setData({ avatarSaving: true, profileMessage: "正在保存个人资料" });
-    const saveAvatar = this._avatarPath
-      ? prepareAvatar(this._avatarPath)
-        .then((avatar) => request("/me/avatar", "POST", { avatar }))
-        .then((data) => {
-          this._avatarPath = "";
-          setAuth(getApp().globalData.token, this.data.nickname, data.avatar);
-          this.setData({ avatar: data.avatar || "", avatarPreview: "" });
-        })
-      : Promise.resolve();
-    return saveAvatar
-      .then(() => request("/me/profile", "PUT", { nickname }))
-      .then((data) => {
-        setAuth(getApp().globalData.token, data.user.nickname, data.user.avatar);
-        this.setData({ authOpen: false, ready: true, nickname: data.user.nickname, nicknameDraft: data.user.nickname, avatar: data.user.avatar || "", avatarPreview: "", profileMessage: "个人资料已保存" });
-        return this.load();
-      })
-      .catch((err) => this.setData({ profileMessage: err.message }))
-      .finally(() => this.setData({ avatarSaving: false }));
+    try {
+      if (avatarPath) {
+        const avatar = await prepareAvatar(avatarPath);
+        if (!this.accountCurrent(scope)) return;
+        const data = await request("/me/avatar", "POST", { avatar });
+        if (!this.accountCurrent(scope)) return;
+        this._avatarPath = "";
+        setAuth(scope.token, this.data.nickname, data.avatar);
+        this.setData({ avatar: data.avatar || "", avatarPreview: "" });
+      }
+      if (!this.accountCurrent(scope)) return;
+      const data = await request("/me/profile", "PUT", { nickname });
+      if (!this.accountCurrent(scope)) return;
+      setAuth(scope.token, data.user.nickname, data.user.avatar);
+      this.setData({ authOpen: false, ready: true, nickname: data.user.nickname, nicknameDraft: data.user.nickname, avatar: data.user.avatar || "", avatarPreview: "", profileMessage: "个人资料已保存" });
+      await this.load();
+    } catch (err) { if (this.accountCurrent(scope)) this.setData({ profileMessage: err.message }); }
+    finally { if (this.accountCurrent(scope)) this.setData({ avatarSaving: false }); }
   },
   submitAuth() {
     if (!this.data.legalAccepted) { this.setData({ message: "请先阅读用户协议与隐私政策，自主勾选后继续。", ok: false }); return; }
@@ -317,9 +351,11 @@ Page({
       body.captchaToken = this._captchaToken || "";
       body.captcha = this.data.captcha;
     }
+    const epoch = this._sessionEpoch || 0;
     return request(tab === "login" ? "/auth/login" : "/auth/register", "POST", body)
-      .then((data) => this.acceptSession(data))
+      .then((data) => { if (epoch === (this._sessionEpoch || 0)) return this.acceptSession(data); })
       .catch((err) => {
+        if (epoch !== (this._sessionEpoch || 0)) return;
         this.setData({ message: err.message, ok: false });
         if (tab === "login") this.loadCaptcha();
       });
@@ -339,6 +375,7 @@ Page({
     });
   },
   savePassword() {
+    if (!ready()) return;
     const next = this.data.nextPassword || "";
     if (next.length < 8 || next.length > 128) {
       this.setData({ message: "密码须为 8 到 128 位", ok: false });
@@ -348,8 +385,10 @@ Page({
       this.setData({ message: "两次输入的密码不一致", ok: false });
       return;
     }
-    request("/me/password", "PUT", { current: this.data.currentPassword, password: next })
+    const scope = this.accountScope();
+    return request("/me/password", "PUT", { current: this.data.currentPassword, password: next })
       .then(() => {
+        if (!this.accountCurrent(scope)) return;
         this.setData({
           hasPassword: true,
           passwordOpen: false,
@@ -360,15 +399,20 @@ Page({
           message: "密码已更新"
         });
       })
-      .catch((err) => this.setData({ message: err.message, ok: false }));
+      .catch((err) => { if (this.accountCurrent(scope)) this.setData({ message: err.message, ok: false }); });
   },
   logout() {
+    this._sessionEpoch = (this._sessionEpoch || 0) + 1;
+    this._lastToken = "";
+    this._captchaToken = "";
+    this._captchaSequence = (this._captchaSequence || 0) + 1;
     this.setData({ legalAccepted: false });
     this._feedbackSequence = (this._feedbackSequence || 0) + 1;
     this._runnerSequence = (this._runnerSequence || 0) + 1;
     this._mineSequence = (this._mineSequence || 0) + 1;
     this._runnerToken = "";
     this._avatarPath = "";
+    this._settingsReturn = "overview";
     clearAuth();
     this.setData({
       nickname: "",
@@ -376,6 +420,15 @@ Page({
       avatar: "",
       avatarPreview: "",
       avatarSaving: false,
+      draft: "",
+      password: "",
+      password2: "",
+      captcha: "",
+      captchaImage: "",
+      captchaLoading: false,
+      profileMessage: "",
+      wxLoading: false,
+      unbindLoading: false,
       leader: false,
       clubs: [],
       hasPassword: false,
@@ -398,6 +451,7 @@ Page({
       authOpen: false,
       profileOpen: false,
       mainTab: "overview",
+      posterAvailable: false,
       runner: null,
       runnerError: "",
       feedbackUnread: 0,

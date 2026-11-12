@@ -189,7 +189,8 @@ async function run() {
       for (let i = 0; i < 20 && !releaseOldFee; i++) await new Promise(resolve => setTimeout(resolve, 20));
       assert.equal(typeof releaseOldFee, "function");
       await page.getByRole("link", { name: "返回我的跑团", exact: true }).click();
-      await page.locator(".my-club").filter({ hasText: "河岸跑团" }).click();
+      await page.locator(".my-club").filter({ hasText: "河岸跑团" }).locator('.club-main').click();
+      await page.waitForURL(base + '/clubs/45');
       await page.getByRole("heading", { name: "河岸跑团", exact: true }).waitFor();
       releaseOldFee();
       await page.locator(".primary-tabs").getByRole("button", { name: "成员", exact: true }).click();

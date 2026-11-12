@@ -294,7 +294,7 @@ onMounted(retryLoad);
 .album.fall .shot { width: 100%; margin: 0 0 8px; break-inside: avoid; aspect-ratio: auto; }
 .album.fall .shot img { height: auto; }
 .shot { position: relative; aspect-ratio: 1; border-radius: 12px; overflow: hidden; background: var(--accent-soft); }
-.shot img, .play { width: 100%; height: 100%; object-fit: cover; display: grid; place-items: center; color: var(--accent); font-weight: 700; }
+.shot img, .play { width: 100%; height: 100%; object-fit: cover; display: grid; place-items: center; color: var(--accent); font-weight: 600; }
 .shot em, .shot i { position: absolute; left: 6px; bottom: 4px; font-style: normal; color: #fff; font-size: 12px; }
 .shot i { right: 6px; left: auto; }
 .undo { color: var(--muted); }
@@ -310,5 +310,5 @@ onMounted(retryLoad);
 .club-detail-page .block :is(input:not([type="radio"]):not([type="checkbox"]):not([type="file"]),textarea,select) { border:1px solid var(--line); border-radius:12px; background:var(--field-bg); font-size:14px; }
 
 
-.album-page { background:transparent; }.album-page>.topbar { background:transparent; }.album-hero { background:linear-gradient(#f7f3ff 0,#fff 180px);border-color:#e0d8ef;box-shadow:var(--card-shadow,0 6px 20px #71629410); }.tools .undo { background:#ffffffa1;border-color:#e0d8ef; }.shot { background:var(--sky-soft,#eaf4ff); }
+.album-page { background:transparent; }.album-page>.topbar { background:transparent; }.album-hero { background:var(--card);border-color:var(--line);box-shadow:none; }.tools .undo { background:#ffffffa1;border-color:var(--line); }.shot { background:var(--sky-soft,var(--field-bg)); }
 </style>

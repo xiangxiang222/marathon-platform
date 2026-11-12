@@ -94,16 +94,17 @@
         </div>
         <p class="src">报名和缴费请以组委会官方页面为准。</p>
       </div>
-      <section v-if="cards.length" class="block">
-        <button class="plan-action" type="button" :aria-expanded="shareOpen" @click="shareOpen = !shareOpen">跑团赛事卡片 <span>{{ shareOpen ? '⌃' : '›' }}</span></button>
-        <div v-if="shareOpen">
-          <div v-for="card in cards" :key="card.club.id" class="club-share">
-            <h3>{{ card.club.name }}</h3>
-            <pre class="share-text">{{ card.text }}</pre>
-            <button class="primary" type="button" @click="copyCard(card)">复制到微信群</button>
+      <section v-if="cards.length" class="block race-share">
+        <button class="share-toggle" type="button" :aria-expanded="shareOpen" aria-controls="race-share-options" @click="shareOpen = !shareOpen"><span>分享赛事到跑团</span><span aria-hidden="true">{{ shareOpen ? '⌃' : '›' }}</span></button>
+        <p class="src">选择跑团，复制这场比赛的参赛动态到微信群。</p>
+        <div v-if="shareOpen" id="race-share-options" class="share-content">
+          <div class="share-options" role="radiogroup" aria-label="选择分享跑团">
+            <button v-for="card in cards" :key="card.club.id" class="share-option" type="button" role="radio" :aria-checked="selectedShare?.club.id === card.club.id" @click="selectShare(card)"><span class="share-radio" aria-hidden="true"></span><span class="share-option-copy"><b>{{ card.club.name }}</b><small>{{ card.summary || '分享这场赛事与跑团参赛动态' }}</small></span></button>
           </div>
-          <p v-if="note" class="note">{{ note }}</p>
-          <p v-if="copyError" class="err">{{ copyError }}</p>
+          <button class="primary share-submit" type="button" :disabled="!selectedShare" @click="copyCard(selectedShare)">复制到微信群</button>
+          <p v-if="note" class="share-feedback" role="status">{{ note }}</p>
+          <p v-if="copyError" class="err" role="alert">{{ copyError }}</p>
+          <pre v-if="copyError && selectedShare" class="share-copy-fallback">{{ selectedShare.text }}</pre>
         </div>
       </section>
       <div v-for="club in clubs" :key="club.id" class="block">
@@ -305,6 +306,9 @@ const hasSheet = ref(false);
 const askSignup = ref(false);
 const clubs = ref([]);
 const cards = ref([]);
+const selectedShareId = ref("");
+const selectedShare = computed(() => cards.value.find(card => String(card.club?.id) === selectedShareId.value) || cards.value[0] || null);
+function selectShare(card) { selectedShareId.value = String(card.club.id); note.value = ""; copyError.value = ""; }
 const conflicts = ref([]);
 const alternatives = ref([]);
 const alternativeNote = ref("");
@@ -586,6 +590,7 @@ watch(
     tab.value = "signup";
     planOpen.value = route.query.plan === "1";
     shareOpen.value = false;
+    selectedShareId.value = "";
     load().catch((err) => { if (String(id) === String(route.params.id || "")) message.value = err.message; });
   }
 );
@@ -600,7 +605,7 @@ onMounted(() => {
 .race-state { display: grid; justify-items: center; gap: 12px; margin: 20px 16px; padding: 32px 20px; border-radius: 12px; background: #fff; color: var(--muted); text-align: center; font-size: 14px; }
 .race-state p { margin: 0; line-height: 1.6; }
 .race-state-error p { color: var(--accent); }
-.retry-button { min-height: 40px; padding: 0 20px; border-radius: 12px; background: var(--accent); color: #fff; font-weight: 600; }
+.retry-button { min-height: 40px; padding: 0 20px; border-radius: 10px; background: var(--accent); color: #fff; font-weight: 600; }
 .race-state a { color: var(--muted); font-size: 12px; }
 .pass { align-items: flex-start; padding: 24px 18px; }
 .pass-date { padding: 12px 8px; border-radius: 12px; background: var(--chip); }
@@ -609,22 +614,22 @@ onMounted(() => {
 .plan-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .plan-heading h2 { margin: 0; font-size: 18px; }
 .plan-status { flex: none; padding: 4px 8px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); font-size: 12px; }
-.plan-action { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; padding: 12px 0 0; background: transparent; color: var(--ink); text-align: left; font-size: 15px; font-weight: 600; }
-.plan-action span { color: var(--muted); font-size: 22px; font-weight: 400; line-height: 1; }
+.plan-action { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; padding: 12px 0 0; background: transparent; color: var(--ink); text-align: left; font-size: 14px; font-weight: 600; }
+.plan-action span { color: var(--muted); font-size: 24px; font-weight: 400; line-height: 1; }
 .plan-editor { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); }
 .club-share { margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--line); }
-.club-share h3 { margin: 0 0 8px; font-size: 15px; }
-.race-plan .src { font-size: 13px; line-height: 1.6; }
+.club-share h3 { margin: 0 0 8px; font-size: 14px; }
+.race-plan .src { font-size: 14px; line-height: 1.6; }
 
 .detail-poster :deep(.poster) { aspect-ratio: 16 / 9; height: auto; border-radius: 0; }
 .share-text { margin: 0; font: inherit; white-space: pre-wrap; line-height: 1.5; }
-.poster-card { margin-top: 8px; padding: 24px 20px; border-radius: 18px; background: var(--accent-soft); color: var(--ink);  border: 1px solid var(--line);}
+.poster-card { margin-top: 8px; padding: 24px 20px; border-radius: 12px; background: var(--accent-soft); color: var(--ink);  border: 1px solid var(--line);}
 .poster-card p { margin: 0; font-size: 16px; line-height: 1.45; }
-.poster-card p:first-child { font-size: 28px; font-weight: 700; color: var(--accent); }
+.poster-card p:first-child { font-size: 24px; font-weight: 600; color: var(--accent); }
 .poster-card p + p { margin-top: 10px; }
 .src { margin: 8px 0 0; color: var(--muted); font-size: 12px; }
-.note { color: var(--accent); font-size: 13px; padding: 0 16px; }
-.warn { margin: 10px 0 0; color: var(--orange); font-size: 13px; line-height: 1.45; }
+.note { color: var(--accent); font-size: 14px; padding: 0 16px; }
+.warn { margin: 10px 0 0; color: var(--orange); font-size: 14px; line-height: 1.45; }
 .copy-err { padding: 0 16px; }
 .primary { margin-top: 8px; }
 .result-form { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
@@ -639,7 +644,7 @@ onMounted(() => {
 .jump { display: block; margin-top: 8px; height: 44px; border-radius: 12px; background: var(--chip); color: var(--accent); font-weight: 600; font-size: 14px; line-height: 44px; text-align: center; }
 .jump.main { background: var(--accent); color: #fff; }
 .chips { display: flex; flex-wrap: wrap; gap: 8px; }
-.chip { padding: 6px 10px; border-radius: 8px; background: var(--chip); font-size: 13px; font-weight: 600; }
+.chip { padding: 6px 10px; border-radius: 8px; background: var(--chip); font-size: 14px; font-weight: 600; }
 .sheet { display: block; width: 100%; min-height: 0; margin: 8px 0 0; padding: 0; border-radius: 12px; overflow: hidden; background: var(--bg); }
 .sheet img { display: block; width: 100%; }
 .day-note { margin-top: 12px; }
@@ -651,23 +656,21 @@ onMounted(() => {
 .tl { flex: 1; min-width: 92px; text-align: center; }
 .tl .dot { display: block; width: 8px; height: 8px; margin: 0 auto 8px; border-radius: 50%; background: var(--accent); }
 .tl b, .tl span { display: block; }
-.tl b { font-size: 13px; }
+.tl b { font-size: 14px; }
 .tl span { margin-top: 4px; color: var(--muted); font-size: 12px; }
 .signup-qr { display: block; width: 180px; height: 180px; margin: 12px auto 0; background: #fff; }
-.day-note h3 { margin: 0 0 4px; font-size: 13px; font-weight: 600; color: var(--muted); }
-.day-note p { margin: 0; font-size: 15px; line-height: 1.5; white-space: pre-wrap; }
-.guide-md .md { margin: 10px 0 0; font-size: 15px; line-height: 1.6; }
-.guide-md .md-h1 { margin-top: 4px; font-size: 22px; font-weight: 700; line-height: 1.35; }
-.guide-md .md-h2 { margin-top: 18px; font-size: 18px; font-weight: 700; line-height: 1.35; }
-.guide-md .md-h3 { margin-top: 14px; font-size: 17px; font-weight: 600; line-height: 1.4; }
+.day-note h3 { margin: 0 0 4px; font-size: 14px; font-weight: 600; color: var(--muted); }
+.day-note p { margin: 0; font-size: 14px; line-height: 1.5; white-space: pre-wrap; }
+.guide-md .md { margin: 10px 0 0; font-size: 14px; line-height: 1.6; }
+.guide-md .md-h1 { margin-top: 4px; font-size: 24px; font-weight: 600; line-height: 1.35; }
+.guide-md .md-h2 { margin-top: 18px; font-size: 18px; font-weight: 600; line-height: 1.35; }
+.guide-md .md-h3 { margin-top: 14px; font-size: 18px; font-weight: 600; line-height: 1.4; }
 .guide-md .md-h4 { margin-top: 12px; font-size: 16px; font-weight: 600; line-height: 1.4; }
 .guide-md .md-mark { margin-right: 6px; color: var(--muted); }
 .viewer { position: fixed; inset: 0; z-index: 30; display: flex; align-items: center; justify-content: center; padding: 16px; background: rgba(0, 0, 0, 0.88); }
 .viewer img { max-width: 100%; max-height: 100%; }
 
 
-/* The race ticket is warm; reference information stays clear on white. */
-.race-page { background:transparent; }.race-page>.topbar { background:transparent; }
-.pass { background:linear-gradient(125deg,#fff2e4,#fff);border-color:#eed9c7;box-shadow:var(--card-shadow,0 7px 24px #92633d10); }.pass-date { background:#ffffffa3;border-color:#edcdb7; }.pass-date b { color:#bd4a30; }.pass-pill { color:#9e5e22;background:#fff6dc;border-color:#e9d4ab; }
-.race-plan { background:#fff;border-color:#d7e5f2; }.day-note { background:var(--mint-soft,#e9f7f2);border-color:#d4e7dc; }.warn { background:var(--sun-soft,#fff4d7);border-color:#eddfba; }
+/* Detail pages keep one reading scale and one share action. */
+.race-page{background:var(--bg);color:var(--ink);letter-spacing:normal;font-size:14px}.race-page>.topbar{background:#fff}.topbar h1{font-size:24px;letter-spacing:normal}.pass,.block,.detail{border:1px solid var(--line);border-radius:12px;background:#fff;box-shadow:none}.pass{margin:16px;padding:20px 16px}.pass h1{font-size:24px;font-weight:600;letter-spacing:normal;line-height:1.4}.pass-date{background:var(--bg);border:0}.pass-date b{font-size:24px;color:var(--ink);letter-spacing:normal}.pass-pill{background:var(--accent-soft);color:var(--accent);border:0}.pass-copy p{font-size:12px;line-height:1.7}.race-page h2{font-size:18px;font-weight:600;line-height:1.5;letter-spacing:normal}.row{font-size:14px;line-height:1.7;gap:16px}.row>b{font-weight:500;min-width:0;overflow-wrap:anywhere}.src{font-size:12px;line-height:1.7}.warn{font-size:12px;line-height:1.7;color:var(--accent);background:var(--accent-soft);border:0}.day-note{padding:12px 0;background:transparent;border:0}.day-note h3{font-size:14px;color:var(--ink)}.day-note p{font-size:14px;line-height:1.7}.race-page button,.race-page input,.race-page select,.race-page textarea{letter-spacing:normal}.race-page .primary,.race-page .jump,.race-page .status,.race-page .undo,.race-page .proof-actions label,.race-page .retry-button{min-height:44px;height:auto;border-radius:10px;font-size:14px;line-height:1.5;padding:11px 16px}.race-page .primary{background:var(--accent)}.race-page .statuses{display:flex;flex-wrap:wrap;gap:8px}.race-page .status{margin:0}.result-form input,.result-form select{height:46px;font-size:14px;border-radius:10px}.proof-actions label{display:flex;align-items:center}.plan-action{min-height:44px;padding:10px 0;font-size:14px;font-weight:500}.tabs{gap:4px;margin:16px 16px 0;padding:0 8px;border-radius:12px}.tab{height:48px;font-size:14px;font-weight:500}.mate{font-size:14px;line-height:1.7;gap:12px}.mate>b{font-size:12px;line-height:1.7;font-weight:400}.share-toggle{display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;min-height:44px;padding:0;background:transparent;text-align:left;color:var(--ink);font-size:18px;font-weight:600}.share-toggle>span:last-child{font-size:24px;color:var(--muted);font-weight:400}.race-share>.src{margin-top:2px}.share-content{margin-top:16px}.share-options{display:grid;gap:0;border-top:1px solid var(--line)}.share-option{display:flex;align-items:center;gap:12px;width:100%;min-height:68px;padding:14px 0;text-align:left;border-bottom:1px solid var(--line);background:transparent;color:var(--ink)}.share-radio{display:block;flex:none;width:18px;height:18px;border:1.5px solid var(--line);border-radius:50%;box-sizing:border-box}.share-option[aria-checked=true] .share-radio{border:5px solid var(--accent)}.share-option-copy{display:grid;gap:4px;min-width:0}.share-option-copy>b{font-size:16px;font-weight:500;line-height:1.6;overflow-wrap:anywhere}.share-option-copy>small{font-size:12px;color:var(--muted);line-height:1.7;overflow-wrap:anywhere}.race-share .share-submit{width:100%;min-height:46px;margin-top:16px}.share-feedback{margin:12px 0 0;color:var(--muted);font-size:12px;line-height:1.7}.share-copy-fallback{margin:12px 0 0;white-space:pre-wrap;font:inherit;font-size:14px;line-height:1.7;color:var(--ink)}.guide-md .md-h1{font-size:18px}.guide-md .md-h3{font-size:16px}.guide-md .md-h4{font-size:14px}.poster-card p:first-child{font-size:24px;letter-spacing:normal}
 </style>

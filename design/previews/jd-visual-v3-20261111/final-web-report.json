@@ -1,0 +1,1009 @@
+{
+  "startedAt": "2026-11-11T12:31:46.391Z",
+  "isolation": "Disposable real SQLite and media; localhost-only browser",
+  "output": "/Users/mengxiangxiang/Documents/work/dev/marathon-platform/design/previews/jd-visual-v3-20261111/final-web",
+  "expectedAccent": "#ff1838",
+  "typography": {
+    "minimumTextPx": 12,
+    "minimumControlTextPx": 12,
+    "rule": "Minimum 12px for metadata, 14px for body and form controls; system fonts with natural Chinese spacing."
+  },
+  "fixture": {
+    "registeredUsers": 4,
+    "createdClubs": 2,
+    "mode": "Real registration and business HTTP APIs; synthetic content"
+  },
+  "views": [
+    {
+      "id": "home",
+      "route": "/",
+      "role": "owner",
+      "width": 320,
+      "passed": true,
+      "errors": [],
+      "consoleErrors": [],
+      "apiErrors": [],
+      "scrollWidth": 320,
+      "bodyWidth": 320,
+      "title": "赛事",
+      "tinyText": [],
+      "captionText": [],
+      "tinyControls": [],
+      "spacedText": [],
+      "heavyText": [],
+      "overflowingElements": [],
+      "primaryControls": [],
+      "primaryColor": "#ff1838",
+      "brokenImages": 0,
+      "palette": {
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
+        "surface": "#ffffff",
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "coral",
+          "apricot-gold"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "A",
+            "class": "discover-calendar",
+            "area": 19140,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(135deg, rgb(255, 255, 255), rgb(255, 240, 242))",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "A",
+            "class": "discover-person",
+            "area": 8308,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(115deg, rgb(255, 248, 238), rgb(255, 241, 223))",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "A",
+            "class": "discover-news",
+            "area": 8308,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(115deg, rgb(255, 255, 255), rgb(255, 240, 242))",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "date",
+            "area": 3780,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(145deg, rgb(255, 255, 255), rgb(255, 246, 246))",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "date",
+            "area": 3780,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(145deg, rgb(255, 255, 255), rgb(255, 246, 246))",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "date",
+            "area": 3780,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(145deg, rgb(255, 255, 255), rgb(255, 246, 246))",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "on",
+            "area": 2389,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          }
+        ]
+      },
+      "screenshot": "final-web/home-320.png"
+    },
+    {
+      "id": "news",
+      "route": "/news",
+      "role": "owner",
+      "width": 320,
+      "passed": true,
+      "errors": [],
+      "consoleErrors": [],
+      "apiErrors": [],
+      "scrollWidth": 320,
+      "bodyWidth": 320,
+      "title": "跑圈动态",
+      "tinyText": [],
+      "captionText": [],
+      "tinyControls": [],
+      "spacedText": [],
+      "heavyText": [],
+      "overflowingElements": [],
+      "primaryControls": [],
+      "primaryColor": "#ff1838",
+      "brokenImages": 0,
+      "palette": {
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
+        "surface": "#ffffff",
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "apricot-gold",
+          "coral"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "A",
+            "class": "router-link-active router-link-exact-active",
+            "area": 11926,
+            "background": "rgb(255, 248, 242)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "A",
+            "class": "router-link-active router-link-exact-active",
+            "area": 11926,
+            "background": "rgb(255, 246, 247)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "A",
+            "class": "router-link-active router-link-exact-active",
+            "area": 5764,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          }
+        ]
+      },
+      "screenshot": "final-web/news-320.png"
+    },
+    {
+      "id": "mine",
+      "route": "/mine",
+      "role": "owner",
+      "width": 320,
+      "passed": true,
+      "errors": [],
+      "consoleErrors": [],
+      "apiErrors": [],
+      "scrollWidth": 320,
+      "bodyWidth": 320,
+      "title": "我的",
+      "tinyText": [],
+      "captionText": [],
+      "tinyControls": [],
+      "spacedText": [],
+      "heavyText": [],
+      "overflowingElements": [],
+      "primaryControls": [],
+      "primaryColor": "#ff1838",
+      "brokenImages": 0,
+      "palette": {
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
+        "surface": "#ffffff",
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "apricot-gold",
+          "coral"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "DIV",
+            "class": "identity-panel",
+            "area": 35280,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(115deg, rgb(255, 255, 255), rgb(255, 249, 246))",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "A",
+            "class": "",
+            "area": 13778,
+            "background": "rgb(255, 243, 243)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "A",
+            "class": "",
+            "area": 13778,
+            "background": "rgb(255, 243, 243)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          }
+        ]
+      },
+      "screenshot": "final-web/mine-320.png"
+    },
+    {
+      "id": "mine-plans",
+      "route": "/mine",
+      "role": "owner",
+      "width": 320,
+      "passed": true,
+      "errors": [],
+      "consoleErrors": [],
+      "apiErrors": [],
+      "scrollWidth": 320,
+      "bodyWidth": 320,
+      "title": "我的",
+      "tinyText": [],
+      "captionText": [],
+      "tinyControls": [],
+      "spacedText": [],
+      "heavyText": [],
+      "overflowingElements": [],
+      "primaryControls": [],
+      "primaryColor": "#ff1838",
+      "brokenImages": 0,
+      "palette": {
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
+        "surface": "#ffffff",
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "apricot-gold"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "DIV",
+            "class": "identity-panel",
+            "area": 35280,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(115deg, rgb(255, 255, 255), rgb(255, 249, 246))",
+            "families": [
+              "apricot-gold"
+            ]
+          }
+        ]
+      },
+      "screenshot": "final-web/mine-plans-320.png"
+    },
+    {
+      "id": "home",
+      "route": "/",
+      "role": "owner",
+      "width": 390,
+      "passed": true,
+      "errors": [],
+      "consoleErrors": [],
+      "apiErrors": [],
+      "scrollWidth": 390,
+      "bodyWidth": 390,
+      "title": "赛事",
+      "tinyText": [],
+      "captionText": [],
+      "tinyControls": [],
+      "spacedText": [],
+      "heavyText": [],
+      "overflowingElements": [],
+      "primaryControls": [],
+      "primaryColor": "#ff1838",
+      "brokenImages": 0,
+      "palette": {
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
+        "surface": "#ffffff",
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "coral",
+          "apricot-gold"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "A",
+            "class": "discover-calendar",
+            "area": 25279,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(135deg, rgb(255, 255, 255), rgb(255, 240, 242))",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "A",
+            "class": "discover-person",
+            "area": 11016,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(115deg, rgb(255, 248, 238), rgb(255, 241, 223))",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "A",
+            "class": "discover-news",
+            "area": 11016,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(115deg, rgb(255, 255, 255), rgb(255, 240, 242))",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "date",
+            "area": 4060,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(145deg, rgb(255, 255, 255), rgb(255, 246, 246))",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "date",
+            "area": 4060,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(145deg, rgb(255, 255, 255), rgb(255, 246, 246))",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "date",
+            "area": 4060,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(145deg, rgb(255, 255, 255), rgb(255, 246, 246))",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "on",
+            "area": 3136,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          }
+        ]
+      },
+      "screenshot": "final-web/home-390.png"
+    },
+    {
+      "id": "news",
+      "route": "/news",
+      "role": "owner",
+      "width": 390,
+      "passed": true,
+      "errors": [],
+      "consoleErrors": [],
+      "apiErrors": [],
+      "scrollWidth": 390,
+      "bodyWidth": 390,
+      "title": "跑圈动态",
+      "tinyText": [],
+      "captionText": [],
+      "tinyControls": [],
+      "spacedText": [],
+      "heavyText": [],
+      "overflowingElements": [],
+      "primaryControls": [],
+      "primaryColor": "#ff1838",
+      "brokenImages": 0,
+      "palette": {
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
+        "surface": "#ffffff",
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "apricot-gold",
+          "coral"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "A",
+            "class": "router-link-active router-link-exact-active",
+            "area": 13600,
+            "background": "rgb(255, 248, 242)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "A",
+            "class": "router-link-active router-link-exact-active",
+            "area": 13600,
+            "background": "rgb(255, 246, 247)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "A",
+            "class": "router-link-active router-link-exact-active",
+            "area": 5764,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          }
+        ]
+      },
+      "screenshot": "final-web/news-390.png"
+    },
+    {
+      "id": "mine",
+      "route": "/mine",
+      "role": "owner",
+      "width": 390,
+      "passed": true,
+      "errors": [],
+      "consoleErrors": [],
+      "apiErrors": [],
+      "scrollWidth": 390,
+      "bodyWidth": 390,
+      "title": "我的",
+      "tinyText": [],
+      "captionText": [],
+      "tinyControls": [],
+      "spacedText": [],
+      "heavyText": [],
+      "overflowingElements": [],
+      "primaryControls": [],
+      "primaryColor": "#ff1838",
+      "brokenImages": 0,
+      "palette": {
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
+        "surface": "#ffffff",
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "apricot-gold",
+          "coral"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "DIV",
+            "class": "identity-panel",
+            "area": 45360,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(115deg, rgb(255, 255, 255), rgb(255, 249, 246))",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "A",
+            "class": "",
+            "area": 14944,
+            "background": "rgb(255, 243, 243)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "A",
+            "class": "",
+            "area": 14944,
+            "background": "rgb(255, 243, 243)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          }
+        ]
+      },
+      "screenshot": "final-web/mine-390.png"
+    },
+    {
+      "id": "mine-plans",
+      "route": "/mine",
+      "role": "owner",
+      "width": 390,
+      "passed": true,
+      "errors": [],
+      "consoleErrors": [],
+      "apiErrors": [],
+      "scrollWidth": 390,
+      "bodyWidth": 390,
+      "title": "我的",
+      "tinyText": [],
+      "captionText": [],
+      "tinyControls": [],
+      "spacedText": [],
+      "heavyText": [],
+      "overflowingElements": [],
+      "primaryControls": [],
+      "primaryColor": "#ff1838",
+      "brokenImages": 0,
+      "palette": {
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
+        "surface": "#ffffff",
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "apricot-gold"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "DIV",
+            "class": "identity-panel",
+            "area": 45360,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(115deg, rgb(255, 255, 255), rgb(255, 249, 246))",
+            "families": [
+              "apricot-gold"
+            ]
+          }
+        ]
+      },
+      "screenshot": "final-web/mine-plans-390.png"
+    },
+    {
+      "id": "home",
+      "route": "/",
+      "role": "owner",
+      "width": 1440,
+      "passed": true,
+      "errors": [],
+      "consoleErrors": [],
+      "apiErrors": [],
+      "scrollWidth": 1440,
+      "bodyWidth": 1440,
+      "title": "赛事",
+      "tinyText": [],
+      "captionText": [],
+      "tinyControls": [],
+      "spacedText": [],
+      "heavyText": [],
+      "overflowingElements": [],
+      "primaryControls": [],
+      "primaryColor": "#ff1838",
+      "brokenImages": 0,
+      "palette": {
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
+        "surface": "#ffffff",
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "coral",
+          "apricot-gold"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "A",
+            "class": "discover-calendar",
+            "area": 28103,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(135deg, rgb(255, 255, 255), rgb(255, 240, 242))",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "A",
+            "class": "discover-person",
+            "area": 12247,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(115deg, rgb(255, 248, 238), rgb(255, 241, 223))",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "A",
+            "class": "discover-news",
+            "area": 12247,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(115deg, rgb(255, 255, 255), rgb(255, 240, 242))",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "date",
+            "area": 4060,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(145deg, rgb(255, 255, 255), rgb(255, 246, 246))",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "date",
+            "area": 4060,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(145deg, rgb(255, 255, 255), rgb(255, 246, 246))",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "DIV",
+            "class": "date",
+            "area": 4060,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(145deg, rgb(255, 255, 255), rgb(255, 246, 246))",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "class": "on",
+            "area": 3563,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          }
+        ]
+      },
+      "screenshot": "final-web/home-1440.png"
+    },
+    {
+      "id": "news",
+      "route": "/news",
+      "role": "owner",
+      "width": 1440,
+      "passed": true,
+      "errors": [],
+      "consoleErrors": [],
+      "apiErrors": [],
+      "scrollWidth": 1440,
+      "bodyWidth": 1440,
+      "title": "跑圈动态",
+      "tinyText": [],
+      "captionText": [],
+      "tinyControls": [],
+      "spacedText": [],
+      "heavyText": [],
+      "overflowingElements": [],
+      "primaryControls": [],
+      "primaryColor": "#ff1838",
+      "brokenImages": 0,
+      "palette": {
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
+        "surface": "#ffffff",
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "apricot-gold",
+          "coral"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "A",
+            "class": "router-link-active router-link-exact-active",
+            "area": 15200,
+            "background": "rgb(255, 248, 242)",
+            "gradient": "none",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "A",
+            "class": "router-link-active router-link-exact-active",
+            "area": 15200,
+            "background": "rgb(255, 246, 247)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "A",
+            "class": "router-link-active router-link-exact-active",
+            "area": 5764,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          }
+        ]
+      },
+      "screenshot": "final-web/news-1440.png"
+    },
+    {
+      "id": "mine",
+      "route": "/mine",
+      "role": "owner",
+      "width": 1440,
+      "passed": true,
+      "errors": [],
+      "consoleErrors": [],
+      "apiErrors": [],
+      "scrollWidth": 1440,
+      "bodyWidth": 1440,
+      "title": "我的",
+      "tinyText": [],
+      "captionText": [],
+      "tinyControls": [],
+      "spacedText": [],
+      "heavyText": [],
+      "overflowingElements": [],
+      "primaryControls": [],
+      "primaryColor": "#ff1838",
+      "brokenImages": 0,
+      "palette": {
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
+        "surface": "#ffffff",
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "apricot-gold",
+          "coral"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "DIV",
+            "class": "identity-panel",
+            "area": 50400,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(115deg, rgb(255, 255, 255), rgb(255, 249, 246))",
+            "families": [
+              "apricot-gold"
+            ]
+          },
+          {
+            "tag": "A",
+            "class": "",
+            "area": 16823,
+            "background": "rgb(255, 243, 243)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "A",
+            "class": "",
+            "area": 16823,
+            "background": "rgb(255, 243, 243)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          }
+        ]
+      },
+      "screenshot": "final-web/mine-1440.png"
+    },
+    {
+      "id": "mine-plans",
+      "route": "/mine",
+      "role": "owner",
+      "width": 1440,
+      "passed": true,
+      "errors": [],
+      "consoleErrors": [],
+      "apiErrors": [],
+      "scrollWidth": 1440,
+      "bodyWidth": 1440,
+      "title": "我的",
+      "tinyText": [],
+      "captionText": [],
+      "tinyControls": [],
+      "spacedText": [],
+      "heavyText": [],
+      "overflowingElements": [],
+      "primaryControls": [],
+      "primaryColor": "#ff1838",
+      "brokenImages": 0,
+      "palette": {
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
+        "surface": "#ffffff",
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "apricot-gold"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "DIV",
+            "class": "identity-panel",
+            "area": 50400,
+            "background": "rgba(0, 0, 0, 0)",
+            "gradient": "linear-gradient(115deg, rgb(255, 255, 255), rgb(255, 249, 246))",
+            "families": [
+              "apricot-gold"
+            ]
+          }
+        ]
+      },
+      "screenshot": "final-web/mine-plans-1440.png"
+    }
+  ],
+  "errors": [],
+  "limitations": [
+    "No WeChat device or external provider verification",
+    "Admin separately covered by admin-browser-regression.cjs and admin-ui-full-audit.cjs",
+    "Visible DOM layout checks do not imply every possible interactive state was exercised"
+  ],
+  "viewCount": 4,
+  "passed": true,
+  "finishedAt": "2026-11-11T12:31:58.472Z",
+  "checkCount": 12
+}

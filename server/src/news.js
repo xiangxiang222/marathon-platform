@@ -253,6 +253,10 @@ function listPublic(db, raceId, query) {
        ORDER BY n.published_at DESC, n.id DESC`
     )
     .all(...(raceId ? [raceId] : []))
+    .filter((row) => {
+      const q = String((query && query.q) || "").trim().toLowerCase();
+      return !q || [row.title, row.race_name, row.source].join(" ").toLowerCase().includes(q);
+    })
     .map((row) => present(row, {}, { withBody: false }));
   if (raceId) return { news: rows };
   const paged = slicePage(rows, query);

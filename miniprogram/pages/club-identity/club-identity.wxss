@@ -1,9 +1,9 @@
 .identity-page { min-height:100vh; padding:28rpx 24rpx 48rpx; box-sizing:border-box; background: transparent; }
-.hero { padding:18rpx 8rpx 30rpx; background: linear-gradient(135deg,#eaf4ff,#ffffff); }
-.eyebrow { color:var(--text-secondary); font-size: 12px; letter-spacing:3rpx; }
+.hero { padding:18rpx 8rpx 30rpx; background: var(--card,#fff); }
+.eyebrow { color:var(--text-secondary); font-size: 12px; letter-spacing:normal; }
 .title { margin-top:16rpx; }
 .copy { margin-top:14rpx; color:var(--text-secondary); overflow-wrap:anywhere; }
-.panel { margin-bottom:20rpx; padding:28rpx;  background: #ffffff; box-shadow: var(--card-shadow); }
+.panel { margin-bottom:20rpx; padding:28rpx;  background: var(--card,#fff); box-shadow: none; }
 .name { font-size: 18px; font-weight:600; overflow-wrap:anywhere; }
 .state { display:inline-block; margin-top:20rpx; padding:10rpx 16rpx; color:var(--text-secondary); background: var(--mint-soft);  font-size: 12px; }
 .decision { margin-top:20rpx; padding:20rpx; border-radius:14rpx; color:var(--text-secondary); background: var(--sun-soft); font-size: 12px; line-height:1.8; white-space:pre-wrap; overflow-wrap:anywhere; }
@@ -14,7 +14,7 @@
 .identity-page button,.action-link { display:flex; align-items:center; justify-content:center; width:100%; min-height:44px; padding:20rpx; box-sizing:border-box; border:0;  font-size: 14px; line-height:1.5; }
 .identity-page button::after { border:0; }
 .primary { margin-top:28rpx; color:#fff; background:var(--brand);  }
-.secondary { color:var(--text-secondary); background:#fff;  }
+.secondary { color:var(--text-secondary); background:var(--card,#fff);  }
 .panel .secondary { margin-top:24rpx; background:var(--page-bg);  }
 .identity-page .short-intro { min-height:140rpx;  }
 .message { margin:20rpx 0; padding:24rpx; border-radius:16rpx; color:var(--brand); background:var(--brand-soft); font-size: 12px; line-height:1.8; overflow-wrap:anywhere; }
@@ -22,7 +22,7 @@
 @media (max-width:350px) { .identity-page button,.action-link { min-height:44px;  } .identity-page input { min-height:44px; } }
 
 /* Route geometry: surfaces, controls and compact labels have distinct roles. */
-.mini-club-identity-club-identity .panel { border-radius: 36rpx; }
+.mini-club-identity-club-identity .panel { border-radius: 32rpx; }
 .mini-club-identity-club-identity .primary, .mini-club-identity-club-identity .secondary, .mini-club-identity-club-identity .action-link, .mini-club-identity-club-identity .short-intro { border-radius: 24rpx; }
 .mini-club-identity-club-identity .state { border-radius: 14rpx; }
 
@@ -32,16 +32,30 @@
 
 .identity-page { color: var(--text); background: transparent; }
 .title { font-size: 24px; font-weight: 600; }
-.panel { border: 1px solid var(--border); box-shadow: var(--card-shadow); background: #ffffff; }
-.copy { font-size: 13px; line-height: 1.85; }
-.label { font-size: 13px; font-weight: 500; }
-.label text { font-size: 11px; }
-.state { font-size: 11px; background: var(--mint-soft); }
+.panel { border: 1px solid var(--border); box-shadow: none; background: var(--card,#fff); }
+.copy { font-size: 14px; line-height: 1.85; }
+.label { font-size: 14px; font-weight: 500; }
+.label text { font-size: 12px; }
+.state { font-size: 12px; background: var(--mint-soft); }
 .identity-page input,.identity-page textarea { border: 1px solid var(--border); border-radius: 24rpx; background: var(--page-bg); font-size: 14px; }
 .identity-page .primary,.identity-page .secondary,.action-link { border-radius: 24rpx; font-size: 12px; }
-.identity-page .secondary { border: 1px solid var(--border); background: #fff; }
+.identity-page .secondary { border: 1px solid var(--border); background: var(--card,#fff); }
 
 /* Primary actions read at 14px, secondary actions at 13px; compact filters stay at 12px. */
 .mini-club-identity-club-identity .primary, .mini-club-identity-club-identity .action-link { font-size: 14px; font-weight: 500; }
-.mini-club-identity-club-identity .secondary { font-size: 13px; font-weight: 500; }
-.identity-page .primary,.identity-page .action-link { font-size: 14px; } .identity-page .secondary { font-size: 13px; }
+.mini-club-identity-club-identity .secondary { font-size: 14px; font-weight: 500; }
+.identity-page .primary,.identity-page .action-link { font-size: 14px; } .identity-page .secondary { font-size: 14px; }
+
+.identity-page { color:var(--text); background:var(--page-bg); font-size:14px; }
+.hero { padding:18rpx 0 28rpx; background:transparent; }
+.title { color:var(--text); font-size:24px; font-weight:600; letter-spacing:normal; }
+.eyebrow,.copy,.state,.decision { font-size:12px; color:var(--text-secondary); letter-spacing:normal; }
+.panel { padding:28rpx; border:1rpx solid var(--border); border-radius:24rpx; background:var(--card,#fff); box-shadow:none; }
+.name { color:var(--text); font-size:18px; font-weight:600; }
+.label { color:var(--text); font-size:14px; font-weight:400; }
+.label text { color:var(--text-secondary); font-size:12px; }
+.state,.decision { background:var(--page-bg); border-radius:12rpx; }
+.identity-page input,.identity-page textarea { min-height:44px; padding:18rpx 20rpx; border-radius:20rpx; border:1rpx solid var(--border); background:var(--page-bg); color:var(--text); font-size:14px; }
+.identity-page button,.identity-page .action-link { min-height:44px; border-radius:20rpx; font-size:14px; font-weight:500; }
+.identity-page .primary { background:var(--brand); color:#fff; }
+.identity-page .secondary { background:var(--card,#fff); color:var(--text); border:1rpx solid var(--border); }

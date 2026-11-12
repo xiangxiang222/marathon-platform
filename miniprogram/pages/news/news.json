@@ -1,5 +1,6 @@
 {
-  "navigationBarTitleText": "资讯",
-  "navigationBarBackgroundColor": "#f5f5f5",
-  "backgroundColor": "#f5f5f5"
+  "navigationBarTitleText": "跑圈资讯",
+  "navigationBarBackgroundColor": "#ffffff",
+  "backgroundColor": "#ffffff",
+  "enablePullDownRefresh": true
 }

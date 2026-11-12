@@ -36,18 +36,18 @@ const projectText = computed(() => {
 </script>
 
 <style scoped>
-.race-card { position: relative; align-items: center; gap: 14px; min-height: 112px; padding: 16px 14px; border-radius: var(--radius-card); background: #fff; border: 1px solid #edf0f3; box-shadow: var(--card-shadow); }
-.race-card .date { display: flex; flex-direction: column; justify-content: center; align-items: center; width: 52px; height: 66px; flex: none; border-radius: 12px; background: var(--tone-soft, var(--peach-soft)); color: var(--tone, var(--accent)); }
-.race-card .date span { color: var(--tone, var(--muted)); font-size: 12px; font-weight: 400; line-height: 16px; }
-.race-card .date b { margin-top: 3px; font-size: 29px; font-weight: 700; line-height: 1; }
+.race-card { position: relative; align-items: center; gap: 12px; min-height: 104px; padding: 14px 12px; border-radius: var(--radius-card); background: #fff; border: 0; box-shadow: var(--card-shadow); }
+.race-card .date { position: relative; display: flex; overflow: hidden; flex-direction: column; justify-content: center; align-items: center; width: 58px; height: 70px; flex: none; border: 1px solid #f4e1e3; border-radius: 8px; background: linear-gradient(145deg,#fff,#fff6f6); color: var(--ink); }
+.race-card .date span { position: absolute; inset: 0 0 auto; background: var(--accent-soft); color: var(--accent); font-size: 12px; font-weight: 400; line-height: 23px; text-align: center; }
+.race-card .date b { margin-top: 19px; font-size: 30px; font-weight: 600; line-height: 1; }
 .race-card .body { flex: 1; min-width: 0; }
-.race-card strong { font-size: 16px; line-height: 1.4; font-weight: 600; letter-spacing: 0; }
+.race-card strong { font-size: 15px; line-height: 1.5; font-weight: 500; letter-spacing: 0; }
 .race-card .meta { display: block; overflow: hidden; margin: 6px 0 0; font-size: 12px; line-height: 19px; font-weight: 400; color: var(--muted); white-space: nowrap; text-overflow: ellipsis; }
 .race-card-foot { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 8px; margin-top: 5px; min-height: 18px; }
-.race-state { flex: none; padding: 2px 7px; border-radius: 6px; color: var(--tone, #666); background: var(--tone-soft, var(--bg)); font-size: 12px; font-style: normal; line-height: 17px; font-weight: 500; }
+.race-state { flex: none; padding: 2px 7px; border-radius: 4px; color: var(--tone, #666); background: var(--tone-soft, var(--bg)); font-size: 12px; font-style: normal; line-height: 17px; font-weight: 500; }
 .race-state.active { color: var(--accent); background: var(--accent-soft); }
 .deadline { overflow: hidden; color: var(--muted); font-size: 12px; line-height: 18px; text-overflow: ellipsis; white-space: nowrap; }
 .deadline.urgent { color: var(--accent); }
 .race-chevron { flex: none; margin-left: -6px; color: var(--muted); font-size: 22px; line-height: 1; }
-@media (max-width: 350px) { .race-card { gap: 10px; } .race-card strong { font-size: 15px; } .race-card .date { width: 46px; } }
+@media (max-width: 350px) { .race-card { gap: 10px; } .race-card strong { font-size: 15px; } .race-card .date { width: 54px; } }
 </style>
