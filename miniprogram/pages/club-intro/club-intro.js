@@ -99,6 +99,9 @@ Page({
     if (enabled && wx.showShareMenu) wx.showShareMenu({ menus: ["shareAppMessage", "shareTimeline"] });
     if (!enabled && wx.hideShareMenu) wx.hideShareMenu({ menus: ["shareAppMessage", "shareTimeline"] });
   },
+  clubLogoError(e) {
+    if (!this.disposed && !this.hidden && this.account === accountKey() && this.data.club && e.currentTarget.dataset.src === this.data.club.logo) this.setData({ "club.logoFailed": true });
+  },
   verifiedInfo() { showVerification(this.data.club); },
   reportIdentity() {
     if (this.data.club) wx.navigateTo({ url: "/pages/club-report/club-report?id=" + this.data.club.id });

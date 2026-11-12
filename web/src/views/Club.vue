@@ -8,7 +8,7 @@
     <div v-if="loading && !club" class="club-loading" role="status"><span class="loading-ring"></span><b>正在打开跑团</b><p>准备活动与团友信息</p></div>
     <section v-if="club" class="club-hero">
       <div class="club-identity">
-        <span class="club-letter" aria-hidden="true">{{ club.name.slice(0, 1) }}</span>
+        <ClubLogo class="club-letter" :src="club.logo" :name="club.name" />
         <div class="club-identity-copy"><h1>{{ club.name }}</h1><p class="club-location"><span>{{ club.city || "城市待补充" }}</span><span class="meta-divider">·</span><span class="club-number">团号 #{{ club.id }}</span></p><p class="club-leader"><span class="role-badge">{{ club.roleLabel }}</span><span>负责人 {{ leaderName || '待补充' }}</span></p><ClubVerificationBadge :club="club" /></div>
       </div>
       <div class="hero-bottom">
@@ -18,7 +18,7 @@
         </button>
       </div>
     </section>
-    <section v-if="club && club.publicStatus !== 'restricted' && route.query.created === '1'" class="block created-welcome"><p>你的跑团，今天开始</p><h2>先邀请第一位跑友</h2><p>{{ club.city || "城市待补充" }} · 负责人 {{ leaderName }} · 团号 #{{ club.id }}</p><button class="primary" type="button" :disabled="inviting" @click="copyInvite">邀请第一位跑友</button><router-link :to="'/clubs/' + club.id + '/activities/new'">发布第一次约跑 →</router-link><router-link :to="'/clubs/' + club.id + '/identity'">已有线下跑团？核验组织身份 ›</router-link></section>
+    <section v-if="club && club.publicStatus !== 'restricted' && route.query.created === '1'" class="block created-welcome"><p>你的跑团，今天开始</p><h2>先邀请第一位跑友</h2><p>{{ club.city || "城市待补充" }} · 负责人 {{ leaderName }} · 团号 #{{ club.id }}</p><button class="primary" type="button" :disabled="inviting" @click="copyInvite">邀请第一位跑友</button><router-link :to="'/clubs/' + club.id + '/activities/new'">发布第一次约跑 →</router-link><router-link v-if="club.owner" :to="'/clubs/' + club.id + '/edit'">编辑跑团资料与 Logo ›</router-link><router-link :to="'/clubs/' + club.id + '/identity'">已有线下跑团？核验组织身份 ›</router-link></section>
     <nav v-if="club" class="seg primary-tabs" aria-label="跑团导航">
       <button v-for="item in mainTabs" :key="item.id" type="button" :class="{ on: activeMainTab === item.id }" :aria-current="activeMainTab === item.id ? 'page' : undefined" @click="go(item.id)">{{ item.label }}<span v-if="item.id === 'people' && club.staff && requests.length" class="tab-dot"></span></button>
     </nav>
@@ -337,6 +337,7 @@
           <button v-if="feeMode === 'new' && feeCurrent" class="undo" type="button" @click="feeMode = 'edit'">取消</button>
         </form>
       </div>
+      <section v-if="club.owner && peopleView === 'manage'" class="block profile-edit-entry"><h2>跑团资料</h2><p class="rank-label">更新跑团名称、活动城市、简介和 Logo。</p><router-link :to="'/clubs/' + club.id + '/edit'">编辑跑团资料 →</router-link></section>
       <section v-if="club.owner && peopleView === 'manage'" class="block identity-manage-entry"><h2>跑团身份与公开名片</h2><p class="rank-label">补充城市与简介，或自愿核验组织管理关系。基础功能照常使用。</p><router-link :to="'/clubs/' + club.id + '/identity'">管理公开资料与组织核验 →</router-link></section>
       <div v-if="club.staff && peopleView === 'manage'" id="club-groups" class="block">
         <h2>组别</h2>
@@ -390,6 +391,7 @@
 </template>
 
 <script setup>
+import ClubLogo from "../components/ClubLogo.vue";
 import { computed, nextTick, onBeforeUnmount, reactive, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { api as requestApi, mediaSrc } from "../api";
@@ -1644,7 +1646,7 @@ article { margin-top: 22px; padding-top: 15px; border-top: 1px solid var(--line)
 .fee-panel .member > .acts { max-width: none; margin: 0; gap: 5px; }
 .club-page .fee-panel .acts .undo { min-height: 38px; padding: 0 8px; font-size: 12px; }
 .club-page .fee-panel .acts .undo.on { color: var(--accent); background: var(--accent-soft); }
-.created-welcome{background:var(--card);border:1px solid var(--line)}.created-welcome>p{font-size:12px;color:var(--muted);line-height:1.9}.created-welcome>a,.identity-manage-entry>a{display:flex;align-items:center;min-height:44px;color:var(--accent);font-size:12px}.created-welcome .primary{min-height:46px;width:100%;margin:8px 0}.created-welcome h2{font-size:20px}
+.created-welcome{background:var(--card);border:1px solid var(--line)}.created-welcome>p{font-size:12px;color:var(--muted);line-height:1.9}.created-welcome>a,.identity-manage-entry>a,.profile-edit-entry>a{display:flex;align-items:center;min-height:44px;color:var(--accent);font-size:12px}.created-welcome .primary{min-height:46px;width:100%;margin:8px 0}.created-welcome h2{font-size:20px}
 
 
 /* Small icon accents keep the content surfaces quiet. */

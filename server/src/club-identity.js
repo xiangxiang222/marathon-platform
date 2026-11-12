@@ -1,5 +1,8 @@
 const crypto = require("crypto");
 const { slicePage, readPage, finishPage, pageFields } = require("./page");
+const { logoRoot, logoUrlOf, prepareLogo, storeLogo, removeLogo } = require("./club-logos");
+const fs = require("fs");
+const path = require("path");
 
 const HIDDEN = /[\u0000-\u001f\u007f-\u009f\u200b-\u200f\u202a-\u202e\u2060-\u206f\ufeff]/u;
 function normalized(value) { return String(value || "").normalize("NFKC").replace(/\s+/gu, "").toLocaleLowerCase("en"); }
@@ -9,7 +12,7 @@ function problem(error, status = 400) { return { error, status }; }
 function installClubIdentity(db) {
   db.function("club_normalize", { deterministic: true }, normalized);
   for (const [name, type] of [
-    ["city", "TEXT NOT NULL DEFAULT ''"], ["intro", "TEXT NOT NULL DEFAULT ''"], ["name_key", "TEXT NOT NULL DEFAULT ''"],
+    ["city", "TEXT NOT NULL DEFAULT ''"], ["intro", "TEXT NOT NULL DEFAULT ''"], ["logo", "TEXT NOT NULL DEFAULT ''"], ["name_key", "TEXT NOT NULL DEFAULT ''"],
     ["public_status", "TEXT NOT NULL DEFAULT 'active'"], ["moderation_note", "TEXT NOT NULL DEFAULT ''"]
   ]) {
     if (!db.prepare("PRAGMA table_info(clubs)").all().some((col) => col.name === name)) db.exec(`ALTER TABLE clubs ADD COLUMN ${name} ${type}`);
@@ -61,7 +64,7 @@ function cleanupIdentityMaterials(db) {
 }
 function publicIdentity(db, club) {
   const v = db.prepare("SELECT organization, scope, reviewed_at FROM club_verifications WHERE club_id=? AND owner_id=? AND status='verified' ORDER BY id DESC LIMIT 1").get(club.id, club.owner_id);
-  return { city: club.city || "", intro: club.intro || "", verified: Boolean(v && club.public_status !== "restricted"), verifiedAt: v ? v.reviewed_at : "", verificationScope: v ? v.scope : "", organization: v ? v.organization : "", publicStatus: club.public_status || "active" };
+  return { city: club.city || "", intro: club.intro || "", logo: logoUrlOf(club.id, club.logo), verified: Boolean(v && club.public_status !== "restricted"), verifiedAt: v ? v.reviewed_at : "", verificationScope: v ? v.scope : "", organization: v ? v.organization : "", publicStatus: club.public_status || "active" };
 }
 function invalidateVerification(db, clubId, note, actor = "system") {
   const rows = db.prepare("SELECT id FROM club_verifications WHERE club_id=? AND status IN ('verified','pending','supplement')").all(clubId);
@@ -80,8 +83,15 @@ function createClub(db, user, body) {
   if (!/^[\w:-]{8,100}$/.test(requestId)) return problem("创建请求标识无效，请重新提交");
   const applicationId = Number(body.applicationId || 0);
   if (!Number.isSafeInteger(applicationId) || applicationId < 0) return problem("旧申请无效");
-  const fingerprint = crypto.createHash("sha256").update(JSON.stringify({ name, city, intro, applicationId })).digest("hex");
-  return db.transaction(() => {
+  let image;
+  try { image = prepareLogo(body.logo, "", 0); }
+  catch (err) { if (err.status) return problem(err.message, err.status); throw err; }
+  const fingerprintInput = { name, city, intro, applicationId };
+  // Preserve pre-logo idempotency keys when the request has no image.
+  if (image && image.digest) fingerprintInput.logo = image.digest;
+  const fingerprint = crypto.createHash("sha256").update(JSON.stringify(fingerprintInput)).digest("hex");
+  let createdLogo = "";
+  try { return db.transaction(() => {
     const past = db.prepare("SELECT * FROM club_creations WHERE user_id=? AND request_id=?").get(user.id, requestId);
     if (past) {
       if (past.fingerprint !== fingerprint) return problem("该请求已用于其他创建，请重新提交", 409);
@@ -99,11 +109,18 @@ function createClub(db, user, body) {
     const now = new Date().toISOString();
     const code = crypto.randomBytes(6).toString("hex").toUpperCase();
     const id = Number(db.prepare("INSERT INTO clubs(name,city,intro,name_key,code,owner_id,created_at) VALUES(?,?,?,?,?,?,?)").run(name, city, intro, normalized(name), code, user.id, now).lastInsertRowid);
+    const logo = image ? storeLogo(id, image) : "";
+    createdLogo = logo;
+    if (logo) db.prepare("UPDATE clubs SET logo=? WHERE id=?").run(logo, id);
     db.prepare("INSERT INTO club_members(club_id,user_id,joined_at,role) VALUES(?,?,?,'owner')").run(id, user.id, now);
     db.prepare("INSERT INTO club_creations(user_id,request_id,fingerprint,club_id,created_at) VALUES(?,?,?,?,?)").run(user.id, requestId, fingerprint, id, now);
     if (applicationId) db.prepare("UPDATE club_applications SET status='approved',club_id=?,reviewed_at=?,reviewer='本人确认创建' WHERE id=?").run(id, now, applicationId);
-    return { pending: false, club: { id, name, city, intro, code, verified: false, verifiedAt: "", organization: "", verificationScope: "", publicStatus: "active" } };
-  }).immediate();
+    return { pending: false, club: { id, name, city, intro, code, logo: logoUrlOf(id, logo), verified: false, verifiedAt: "", organization: "", verificationScope: "", publicStatus: "active" } };
+  }).immediate(); }
+  catch (err) {
+    if (createdLogo) { try { removeLogo(createdLogo); } catch (_) {} }
+    throw err;
+  }
 }
 function directory(db, query, userId = 0) {
   const q = normalized(text(query.q, 40)), city = normalized(text(query.city, 30));
@@ -160,19 +177,47 @@ function mountClubIdentity(app, { BASE, getDb, userFrom, requireAdmin }) {
     const row = ctx.db.prepare("SELECT * FROM club_verifications WHERE club_id=? AND owner_id=? ORDER BY id DESC LIMIT 1").get(ctx.club.id, ctx.user.id);
     res.json({ club: { id: ctx.club.id, name: ctx.club.name, ...publicIdentity(ctx.db, ctx.club), leader: ctx.user.nickname, moderationNote: ctx.club.moderation_note || "" }, verification: verificationRow(row), moderationNote: ctx.club.moderation_note || "" });
   });
-  app.put(BASE + "/api/clubs/:id/profile", (req, res) => {
+  app.put([BASE + "/api/clubs/:id/profile", BASE + "/api/clubs/:id"], (req, res) => {
     const ctx = ownerGate(req, res); if (!ctx) return;
     const body = req.body || {}, name = text(body.name, 40), city = text(body.city, 30), intro = text(body.intro, 80);
     if (!validName(name) || !city || [...city].length > 30 || [...intro].length > 80 || HIDDEN.test(city + intro)) return res.status(400).json({ error: "请检查名称、城市和介绍" });
-    const result = ctx.db.transaction(() => {
+    let image;
+    try { image = prepareLogo(body.logo, ctx.club.logo, ctx.club.id); }
+    catch (err) { if (err.status) return res.status(err.status).json({ error: err.message }); throw err; }
+    let replaced = "", replacement = "";
+    let result;
+    try { result = ctx.db.transaction(() => {
       const current = ctx.db.prepare("SELECT * FROM clubs WHERE id=?").get(ctx.club.id);
       if (!current || current.owner_id !== ctx.user.id) return problem("团长已经变更，请刷新页面", 403);
+      const logo = image ? storeLogo(current.id, image) : current.logo;
+      if (logo !== current.logo) replacement = logo;
       if (normalized(name) !== normalized(current.name) || normalized(city) !== normalized(current.city)) invalidateVerification(ctx.db, ctx.club.id, "跑团名称或活动城市已变更，请补充当前管理授权后复核", "owner:" + ctx.user.id);
-      ctx.db.prepare("UPDATE clubs SET name=?,city=?,intro=?,name_key=? WHERE id=?").run(name, city, intro, normalized(name), ctx.club.id);
-      return { ok: true };
-    }).immediate();
+      ctx.db.prepare("UPDATE clubs SET name=?,city=?,intro=?,name_key=?,logo=? WHERE id=?").run(name, city, intro, normalized(name), logo, ctx.club.id);
+      if (current.logo !== logo) replaced = current.logo;
+      const club = { ...current, name, city, intro, logo };
+      return { ok: true, club: { id: club.id, name, code: club.code, ...publicIdentity(ctx.db, club), owner: true, role: "owner", staff: true } };
+    }).immediate(); }
+    catch (err) {
+      if (replacement) { try { removeLogo(replacement); } catch (_) {} }
+      throw err;
+    }
     if (result.error) return res.status(result.status).json({ error: result.error });
+    // Only remove the former image after its replacement is committed.
+    if (replaced) { try { removeLogo(replaced); } catch (err) { console.error("old club logo cleanup failed:", err.message); } }
     res.json(result);
+  });
+  app.get(BASE + "/api/club-logos/:id/:file", (req, res) => {
+    const club = getDb().prepare("SELECT id,logo,public_status FROM clubs WHERE id=?").get(req.params.id);
+    if (!club || !club.logo || logoUrlOf(club.id, club.logo) !== BASE + "/api/club-logos/" + req.params.id + "/" + req.params.file) return res.sendStatus(404);
+    if (club.public_status === "restricted") {
+      const user = userFrom(req);
+      if (!user || !getDb().prepare("SELECT 1 FROM club_members WHERE club_id=? AND user_id=?").get(club.id, user.id)) return res.sendStatus(404);
+    }
+    const file = path.join(logoRoot(), club.logo);
+    if (!fs.existsSync(file)) return res.sendStatus(404);
+    res.set("X-Content-Type-Options", "nosniff");
+    res.set("Cache-Control", "private, no-cache");
+    res.sendFile(file);
   });
   app.post(BASE + "/api/clubs/:id/identity", (req, res) => {
     const ctx = ownerGate(req, res); if (!ctx) return;

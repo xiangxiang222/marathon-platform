@@ -6,7 +6,7 @@
       <view class="intro-card">
         <view class="track-art" aria-hidden="true"><view class="track-line track-line-two"></view><view class="track-line track-line-three"></view></view>
         <view class="card-eyebrow">跑团名片</view>
-        <view class="club-mark" aria-hidden="true">{{clubInitial}}</view>
+        <image wx:if="{{club.logo && !club.logoFailed}}" class="club-mark" src="{{club.logo}}" data-src="{{club.logo}}" binderror="clubLogoError" mode="aspectFill" /><view wx:else class="club-mark" aria-hidden="true">{{clubInitial}}</view>
         <view class="club-name">{{club.name}}</view>
         <button wx:if="{{club.verified}}" class="verified-mark" bindtap="verifiedInfo">✓ 身份已核验 · 查看范围</button>
         <view class="card-tagline">{{club.city || '城市待补充'}} · 团号 #{{club.id}}</view>
@@ -46,7 +46,7 @@
       <view class="share-sheet" catchtap="stopTap">
         <view class="sheet-handle"></view>
         <view class="sheet-header"><view class="sheet-title">分享跑团</view><button class="sheet-close" bindtap="closeShare" aria-label="关闭分享">×</button></view>
-        <view class="share-preview"><view class="preview-mark">{{clubInitial}}</view><view class="preview-copy"><view class="preview-name">{{club.name}}</view><view class="preview-note">{{club.city || '城市待补充'}} · 负责人 {{club.leader || '跑团管理员'}} · #{{club.id}}</view><view class="preview-note">好友打开后可申请加入</view></view></view>
+        <view class="share-preview"><image wx:if="{{club.logo && !club.logoFailed}}" class="preview-mark" src="{{club.logo}}" data-src="{{club.logo}}" binderror="clubLogoError" mode="aspectFill" /><view wx:else class="preview-mark">{{clubInitial}}</view><view class="preview-copy"><view class="preview-name">{{club.name}}</view><view class="preview-note">{{club.city || '城市待补充'}} · 负责人 {{club.leader || '跑团管理员'}} · #{{club.id}}</view><view class="preview-note">好友打开后可申请加入</view></view></view>
         <button class="share-choice friend-choice" open-type="share">发给好友 / 微信群<text class="choice-arrow">›</text></button>
         <button class="share-choice timeline-choice" bindtap="showTimelineGuide">分享到朋友圈<text class="choice-arrow">›</text></button>
         <view class="share-foot">分享无需登录，好友加入仍需审核。</view>

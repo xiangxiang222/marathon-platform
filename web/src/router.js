@@ -37,6 +37,7 @@ export default createRouter({
     { path: "/clubs", component: Sport },
     { path: "/clubs/new", component: () => import("./views/ClubCreate.vue"), meta: { hideTab: true, wide: true } },
     { path: "/clubs/reports", component: () => import("./views/ClubReport.vue"), meta: { hideTab: true } },
+    { path: "/clubs/:id/edit", component: () => import("./views/ClubEdit.vue"), meta: { hideTab: true } },
     { path: "/clubs/:id/identity", component: () => import("./views/ClubIdentity.vue"), meta: { hideTab: true } },
     { path: "/clubs/:id/report", component: () => import("./views/ClubReport.vue"), meta: { hideTab: true } },
     { path: "/clubs/invite/:code", component: ClubIntro, meta: { hideTab: true, viewKey: "club-intro" } },

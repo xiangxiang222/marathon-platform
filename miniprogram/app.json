@@ -5,6 +5,7 @@
     "pages/calendar/calendar",
     "pages/clubs/clubs",
     "pages/club-create/club-create",
+    "pages/club-edit/club-edit",
     "pages/mine/mine",
     "pages/runner/runner",
     "pages/achievement-poster/achievement-poster",

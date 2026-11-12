@@ -19,7 +19,7 @@
         <p v-if="searchingMine" class="my-search-count" role="status">找到 {{ matchingMyClubs.length }} 个跑团</p>
         <div id="my-club-list" class="my-club-list">
           <article v-for="club in shownMyClubs" :key="club.id" class="my-club">
-            <router-link class="club-main" :to="'/clubs/' + club.id" :aria-label="'进入' + club.name"><span class="club-letter" aria-hidden="true">{{ club.name.slice(0, 1) }}</span><div class="club-copy"><h3>{{ club.name }}</h3><small class="my-club-meta"><span class="my-club-city">{{ club.city || "城市待补充" }}</span><span v-if="club.members !== undefined">· {{ club.members }}人</span><span v-if="club.roleLabel" class="my-role" :class="{ leader: club.role === 'owner' || club.role === 'manager' }">{{ club.roleLabel }}</span></small></div></router-link>
+            <router-link class="club-main" :to="'/clubs/' + club.id" :aria-label="'进入' + club.name"><ClubLogo class="club-letter" :src="club.logo" :name="club.name" /><div class="club-copy"><h3>{{ club.name }}</h3><small class="my-club-meta"><span class="my-club-city">{{ club.city || "城市待补充" }}</span><span v-if="club.members !== undefined">· {{ club.members }}人</span><span v-if="club.roleLabel" class="my-role" :class="{ leader: club.role === 'owner' || club.role === 'manager' }">{{ club.roleLabel }}</span></small></div></router-link>
             <div class="club-quick-actions"><router-link :to="'/clubs/' + club.id + '?tab=act'" :aria-label="club.name + '团练'"><span>团练</span></router-link><router-link :to="'/clubs/' + club.id + '?tab=race'" :aria-label="club.name + '赛事'"><span>赛事</span></router-link></div>
           </article>
         </div>
@@ -57,7 +57,7 @@
         <div v-if="message" class="directory-message" :class="{ error: loadFailed }" role="status"><p>{{ message }}</p><button v-if="loadFailed" type="button" @click="search">重新加载</button></div>
         <div v-if="mode === 'search'" class="club-results">
           <div v-for="club in shownClubs" :key="club.id" class="club-hit">
-            <span class="club-letter result-letter" aria-hidden="true">{{ club.name.slice(0, 1) }}</span>
+            <ClubLogo class="club-letter result-letter" :src="club.logo" :name="club.name" />
             <div class="club-copy"><router-link class="result-identity" :to="club.joined ? '/clubs/' + club.id : '/clubs/' + club.id + '/public'"><strong>{{ club.name }}</strong><small>{{ club.city || "城市待补充" }}<template v-if="club.members !== undefined"> · {{ club.members }} 位成员</template></small></router-link><ClubVerificationBadge :club="club" /></div>
             <router-link class="result-action" :class="{ pending: club.pending && !club.joined, joined: club.joined }" :aria-label="club.joined ? '进入' + club.name : club.pending ? club.name + '审核中' : '查看介绍：' + club.name" :to="club.joined ? '/clubs/' + club.id : '/clubs/' + club.id + '/public'"><span>{{ club.joined ? '进入' : club.pending ? '审核中' : '查看' }}</span><RunnerIcon v-if="!club.pending || club.joined" name="arrow" /></router-link>
           </div>
@@ -72,6 +72,7 @@
 </template>
 
 <script setup>
+import ClubLogo from "../components/ClubLogo.vue";
 import { computed, onBeforeUnmount, ref, watch } from "vue";
 import { useRouter } from "vue-router";
 import { useClubSession } from "../useClubSession";
