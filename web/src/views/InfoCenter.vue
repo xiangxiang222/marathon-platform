@@ -4,7 +4,17 @@
     <section class="journal-intro"><h1>{{ clubId ? (clubName || '跑团资讯') : '跑圈动态' }}</h1><p>{{ clubId ? '团练记录、赛事回顾和团友的故事' : '关注赛道上的人，也关注跑圈新鲜事' }}</p><form class="journal-search" role="search" @submit.prevent="search"><span class="search-icon" aria-hidden="true"></span><input v-model="draftQuery" :aria-label="isProfile ? tab === 'pacer' ? '搜索赛事、配速组别或配速员' : '搜索运动员姓名' : '搜索资讯标题'" :placeholder="isProfile ? tab === 'pacer' ? '搜索赛事、配速组别或配速员' : '搜索运动员姓名' : '搜索资讯、赛事和跑团故事'" maxlength="80" /><button type="submit"><span>搜索</span></button></form></section>
     <section class="journal-content">
       <nav v-if="!clubId" class="journal-tabs" aria-label="资讯栏目"><router-link v-for="t in tabs" :key="t.id" :to="{path:'/news',query:{tab:t.id}}" :class="{selected:tab===t.id}" :aria-current="tab===t.id?'page':undefined">{{ t.label }}</router-link></nav>
-      <div v-if="!clubId && tab === 'all'" class="journal-shortcuts"><router-link to="/news?tab=athlete"><b>运动员档案</b><span class="shortcut-arrow" aria-hidden="true">›</span><small>当年男女各 100 位</small></router-link><router-link to="/news?tab=pacer"><b>官兔档案</b><span class="shortcut-arrow" aria-hidden="true">›</span><small>认识 A 类赛事配速员</small></router-link></div>
+      <div v-if="!clubId && tab === 'all'" class="journal-shortcuts">
+        <router-link v-for="entry in profileEntries" :key="entry.id" :to="'/news?tab=' + entry.id" class="profile-entry">
+          <span class="shortcut-kicker">{{ entry.kicker }}</span><b>{{ entry.title }}</b><small>{{ entry.description }}</small>
+          <span class="shortcut-footer">
+            <span v-if="previewPhotos[entry.id].length" class="shortcut-portraits"><span v-for="person in previewPhotos[entry.id]" :key="person.id" class="shortcut-portrait"><img :src="person.image" :alt="person.name + '照片'" @error="hidePreviewImage(entry.id, person.id)" /></span></span>
+            <span v-else-if="entry.id === 'pacer' && previewTarget" class="shortcut-pace"><strong>{{ previewTarget }}</strong><span>完赛目标</span></span>
+            <span v-else class="shortcut-wordmark">{{ entry.id === 'athlete' ? '42.195' : '稳稳领跑' }}<span v-if="entry.id === 'athlete'"> km</span></span>
+            <span class="shortcut-arrow" aria-hidden="true">↗</span>
+          </span>
+        </router-link>
+      </div>
       <div class="section-caption"><h2>{{ clubId ? '跑团资讯' : tabs.find(t=>t.id===tab)?.heading }}</h2><span v-if="ready && !message && total">{{ total }} {{ tab === 'pacer' ? '位官兔' : isProfile ? '位运动员' : '篇内容' }}</span></div>
       <p v-if="tab === 'athlete'" class="athlete-season">{{ meta.seasonYear || currentYear }}赛季 · 全程马拉松</p>
       <div v-if="tab === 'athlete'" class="gender-tabs" aria-label="运动员性别"><button v-for="g in genders" :key="g.id" :class="{on:gender===g.id}" :aria-pressed="gender===g.id" type="button" @click="setGender(g.id)">{{ g.label }}</button></div>
@@ -37,6 +47,27 @@ import Pager from '../components/Pager.vue';
 const route=useRoute();
 const currentYear=Number(new Intl.DateTimeFormat('en',{year:'numeric',timeZone:'Asia/Shanghai'}).format(new Date()));
 const tabs=[{id:'all',label:'精选',heading:'精选资讯'},{id:'industry',label:'业界',heading:'业界动态'},{id:'athlete',label:'运动员',heading:'中国马拉松运动员'},{id:'pacer',label:'官兔',heading:'官方配速员档案'},{id:'club',label:'跑团',heading:'跑团故事'},{id:'race',label:'赛事',heading:'赛事资讯'}];
+const profileEntries=[{id:'athlete',kicker:'中国马拉松',title:'运动员档案',description:'成绩履历与成长故事'},{id:'pacer',kicker:'A 类赛事',title:'官兔档案',description:'配速任务与参赛经历'}];
+const previewPhotos=ref({athlete:[],pacer:[]}),previewTarget=ref('');
+const previewLoaded={athlete:false,pacer:false};
+let previewSeq=0;
+function previewImage(value){
+  return typeof value==='string'&&(/^\/marathon\/[\w/.-]+(?:[?#][^\s]*)?$/.test(value)||/^https:\/\/[^\s/@?#]+(?:[/?#][^\s]*)?$/i.test(value))?value:'';
+}
+function hidePreviewImage(type,id){
+  previewPhotos.value={...previewPhotos.value,[type]:previewPhotos.value[type].filter(person=>person.id!==id)};
+}
+function loadPreviews(){
+  const seq=++previewSeq;
+  return Promise.allSettled(profileEntries.filter(entry=>!previewLoaded[entry.id]).map(async entry=>{
+    const d=await api('/content/profiles?type='+entry.id+'&page=1&pageSize=6');
+    if(disposed||seq!==previewSeq||clubId.value||tab.value!=='all')return;
+    const people=(d.profiles||[]).filter(person=>person.type===entry.id);
+    previewPhotos.value={...previewPhotos.value,[entry.id]:people.map(person=>({id:person.id,name:person.name,image:previewImage(person.avatar||person.photo)})).filter(person=>person.image).slice(0,3)};
+    if(entry.id==='pacer')previewTarget.value=people.flatMap(person=>[person.primaryTargetTime,...(person.targetTimes||[])]).find(value=>/^\d:[0-5]\d(?::[0-5]\d)?$/.test(value||''))||'';
+    previewLoaded[entry.id]=true;
+  }));
+}
 const genders=[{id:'men',label:'男子'},{id:'women',label:'女子'}];
 const clubId=computed(()=>route.params.id||'');
 const tab=computed(()=>clubId.value?'club':tabs.some(t=>t.id===route.query.tab)?route.query.tab:'all');
@@ -60,9 +91,9 @@ function rowLink(r){return isProfile.value?'/news/profiles/'+r.id:tab.value==='r
 function pacerRaceLabel(row){const assignments=row.assignments||[],first=assignments[0]?.raceName;return first?first+(assignments.length>1?' 等 '+(row.raceCount||assignments.length)+' 场赛事':''):row.role||'查看官方配速履历';}
 function categoryName(v){return ({industry:'业界观察',club:'跑团来稿',stories:'跑者故事'})[v]||'跑圈资讯';}
 function authorLabel(row){return row.rights==='digest'?'跑圈编辑部':row.category==='club'&&row.rights==='original'?(row.authorName||row.author||row.clubName||row.source||''):'';}
-watch([tab,clubId],()=>{page.value=1;query.value='';draftQuery.value='';raceId.value='';raceFilters.value=[];load();},{immediate:true});
 let disposed=false;
-onBeforeUnmount(()=>{disposed=true;requestId++;});
+watch([tab,clubId],()=>{page.value=1;query.value='';draftQuery.value='';raceId.value='';raceFilters.value=[];previewSeq++;load();if(!clubId.value&&tab.value==='all')loadPreviews();},{immediate:true});
+onBeforeUnmount(()=>{disposed=true;requestId++;previewSeq++;});
 if(clubId.value)api('/clubs/'+clubId.value).then(d=>{if(disposed)return;clubName.value=d.club?.name||'';canManage.value=!!d.club?.staff;}).catch(()=>{});
 </script>
 

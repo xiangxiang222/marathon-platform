@@ -8,8 +8,15 @@
   <view class="journal-content">
     <scroll-view wx:if="{{!clubId}}" class="journal-tabs" scroll-x="true"><view wx:for="{{tabs}}" wx:key="id" class="journal-tab {{tab === item.id ? 'selected' : ''}}" data-tab="{{item.id}}" bindtap="switchTab">{{item.label}}</view></scroll-view>
     <view wx:if="{{!clubId && tab === 'all'}}" class="journal-shortcuts">
-      <button data-tab="athlete" bindtap="switchTab"><view class="shortcut-title">运动员档案</view><text class="shortcut-arrow">›</text><text class="shortcut-subtitle">当年男女各 100 位</text></button>
-      <button data-tab="pacer" bindtap="switchTab"><view class="shortcut-title">官兔档案</view><text class="shortcut-arrow">›</text><text class="shortcut-subtitle">认识 A 类赛事配速员</text></button>
+      <button wx:for="{{profileEntries}}" wx:for-item="entry" wx:key="id" class="profile-entry" data-tab="{{entry.id}}" bindtap="switchTab">
+        <view class="shortcut-kicker">{{entry.kicker}}</view><view class="shortcut-title">{{entry.title}}</view><view class="shortcut-subtitle">{{entry.description}}</view>
+        <view class="shortcut-footer">
+          <view wx:if="{{previewPhotos[entry.id].length}}" class="shortcut-portraits"><view wx:for="{{previewPhotos[entry.id]}}" wx:for-item="person" wx:key="id" class="shortcut-portrait"><image src="{{person.image}}" mode="aspectFill" data-type="{{entry.id}}" data-id="{{person.id}}" binderror="previewImageError" aria-label="{{person.name}}照片" /></view></view>
+          <view wx:elif="{{entry.id === 'pacer' && previewTarget}}" class="shortcut-pace"><text class="shortcut-time">{{previewTarget}}</text><text>完赛目标</text></view>
+          <view wx:else class="shortcut-wordmark">{{entry.id === 'athlete' ? '42.195' : '稳稳领跑'}}<text wx:if="{{entry.id === 'athlete'}}"> km</text></view>
+          <text class="shortcut-arrow">↗</text>
+        </view>
+      </button>
     </view>
     <view class="section-caption"><text class="caption-title">{{heading}}</text><text wx:if="{{ready && !message && total}}">{{total}} {{tab === 'pacer' ? '位官兔' : isProfile ? '位运动员' : '篇内容'}}</text></view>
     <view wx:if="{{tab === 'athlete'}}" class="athlete-season">{{seasonYear}}赛季 · 全程马拉松</view>
