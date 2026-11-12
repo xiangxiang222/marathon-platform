@@ -1,7 +1,7 @@
 <template>
   <div class="overview-page">
     <section class="overview-welcome">
-      <div><span class="welcome-label"><i></i>今日运营</span><h2>先处理待办，再准备下一场出发。</h2><p>赛事审核、跑团服务与近期赛程，在这里有序推进。</p></div>
+      <div class="welcome-copy"><span class="welcome-label"><i></i>今日待办</span><h2>{{ data ? (todoTotal ? `${number(todoTotal)} 项待处理` : '待办已全部处理') : '运营工作台' }}</h2><p>{{ isAdmin ? '赛事审核、内容发布与跑团申请' : '跑团申请、成员与日常服务' }}</p></div>
       <button v-if="isAdmin" class="welcome-action" type="button" @click="$emit('action', {section:'races',action:'create'})"><AdminIcon name="plus" />新建赛事</button>
       <button v-else class="welcome-action" type="button" @click="$emit('action', {section:'joins'})">处理跑团申请<AdminIcon name="arrow" /></button>
     </section>
@@ -74,29 +74,29 @@ function month(date){return Number(String(date || "").slice(5,7)) || "—"}
 .shortcut-grid button:hover { border-color:var(--line); background:var(--accent-soft); }
 .todo-row:hover,.upcoming-row:hover { background:var(--field-bg); }
 .overview-page :deep(svg) { display: block; flex: none; width: 16px; height: 16px; }
-.overview-welcome { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-bottom: 20px; padding: 24px 28px; border: 1px solid var(--line); background: var(--bg); border-radius: 12px;  border-color: var(--line);}
+.overview-welcome { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-bottom: 16px; padding: 16px 20px; border: 0; background: #fff; border-radius: 12px;}
 .welcome-label { display:inline-flex; align-items:center; gap:7px; color:var(--accent); font-size:12px; font-weight:600; }
 .welcome-label i { width:6px; height:6px; border-radius:50%; background:var(--accent); }
-.overview-welcome h2 { margin: 8px 0; font-size: 24px; font-weight:600; line-height: 1.45; letter-spacing: 0; }
+.overview-welcome h2 { margin: 3px 0; font-size: 20px; font-weight:600; line-height: 1.45; letter-spacing: 0; }
 .overview-welcome p { margin: 0; color:#666; font-size: 13px; }
 .welcome-action { display: flex; flex: none; align-items: center; gap: 8px; min-height: 44px; padding: 0 20px; border-radius: 12px; background: var(--accent); color: #fff; font-size: 14px; font-weight: 600; }
 .welcome-action :deep(svg) { width: 18px; height: 18px; }
 .overview-refresh { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: -8px 0 16px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color:#666; font-size: 12px; }
 .overview-refresh.is-error { border-color: var(--line); background: var(--accent-soft); color: var(--accent); }
 .overview-refresh button { flex: none; color: var(--accent); font-size: 12px; font-weight: 600; }
-.overview-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-bottom: 20px; }
-.metric-card { min-width: 0; padding: 20px 22px; border: 1px solid var(--line); border-radius: 12px; background: #fff; text-align: left; transition: border-color .15s;  border-color: var(--line);}
+.overview-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-bottom: 16px; }
+.metric-card { min-width: 0; padding: 16px 20px; border: 0; border-radius: 12px; background: #fff; text-align: left; transition: border-color .15s;  border-color: var(--line);}
 .metric-card:hover { border-color:var(--line); background:var(--chip); }
 .metric-card.has-attention { border-color: var(--line); background: var(--accent-soft); }
 .metric-card.has-attention strong,.metric-card.has-attention .metric-label :deep(svg) { color:var(--accent); }
 .metric-label { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 13px; }
 .metric-label :deep(svg) { width: 18px; height: 18px; color: var(--muted); }
-.metric-card strong { display: block; margin: 16px 0 14px; color: var(--ink); font-size: 36px; font-weight: 600; font-variant-numeric: tabular-nums; line-height: 1.15; }
+.metric-card strong { display: block; margin: 12px 0 10px; color: var(--ink); font-size: 28px; font-weight: 600; font-variant-numeric: tabular-nums; line-height: 1.15; }
 .metric-card strong small { margin-left: 8px; color: var(--muted); font-size: 12px; font-weight: 400; }
 .metric-foot { display: flex; align-items: center; justify-content: space-between; padding-top: 12px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
 .metric-foot :deep(svg) { width: 15px; height: 15px; }
-.overview-columns { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 20px; margin-bottom: 20px; }
-.overview-card { min-width: 0; padding: 22px 24px; border: 1px solid var(--line); border-radius: 12px; background: #fff;  border-color: var(--line);}
+.overview-columns { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 16px; margin-bottom: 16px; }
+.overview-card { min-width: 0; padding: 20px; border: 0; border-radius: 12px; background: #fff;  border-color: var(--line);}
 .card-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
 .card-heading h3 { margin: 0; color: var(--ink); font-size: 17px; font-weight: 600; }
 .card-heading h3 span { display: inline-flex; align-items: center; justify-content: center; min-width: 23px; margin-left: 6px; padding: 0 6px; border-radius: 5px; background: var(--accent-soft); color: var(--accent); font-size: 12px; line-height: 22px; }
@@ -154,12 +154,12 @@ function month(date){return Number(String(date || "").slice(5,7)) || "—"}
   .upcoming-state { display: none;  border-radius: 6px;}
 }
 @media (max-width: 767px) {
-  .overview-welcome { align-items: flex-start; flex-direction: column; gap: 16px; padding: 20px;  border-radius: 12px; border-color: var(--line); background: var(--bg);}
-  .overview-welcome h2 { font-size: 21px; }
+  .overview-welcome { align-items: flex-start; flex-direction: column; gap: 12px; padding: 16px; border-radius: 12px; background: #fff;}
+  .overview-welcome h2 { font-size: 18px; }
   .overview-welcome p { font-size: 12px; line-height: 1.8; }
   .overview-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
   .metric-card { padding: 16px;  border-radius: 12px; border-color: var(--line);}
-  .metric-card strong { font-size:30px; }
+  .metric-card strong { font-size:24px; }
   .overview-columns { grid-template-columns: minmax(0, 1fr); gap: 16px; margin-bottom: 16px; }
   .overview-card { padding: 18px;  border-radius: 12px; border-color: var(--line);}
   .shortcut-grid button { display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: 0 10px;  background: var(--field-bg); border-color: var(--line);}
@@ -167,17 +167,5 @@ function month(date){return Number(String(date || "").slice(5,7)) || "—"}
   .upcoming-copy b { font-size: 13px; }
   .todo-copy small { font-size: 12px; }
 }
-
-/* Bright overview: each operational measure keeps a stable colour family. */
-.metric-card:nth-child(4n + 1) { background: var(--bg); border-color: var(--line); }
-.metric-card:nth-child(4n + 2) { background: var(--bg); border-color: var(--line); }
-.metric-card:nth-child(4n + 3) { background: var(--bg); border-color: var(--line); }
-.metric-card:nth-child(4n + 4) { background: var(--bg); border-color: var(--line); }
-.metric-card.has-attention { background: var(--bg); border-color: var(--line); }
-.overview-card { box-shadow: var(--card-shadow); }
-.shortcut-grid button:nth-child(3n + 1) > span { background: var(--sky-soft); color: var(--sky); }
-.shortcut-grid button:nth-child(3n + 2) > span { background: var(--mint-soft); color: var(--mint); }
-.shortcut-grid button:nth-child(3n + 3) > span { background: var(--lilac-soft); color: var(--lilac); }
-.calendar-date { background: var(--sun-soft); }
 
 </style>

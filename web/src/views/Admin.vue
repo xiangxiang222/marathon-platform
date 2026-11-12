@@ -537,7 +537,6 @@
               <label class="field search-field"><span>搜索跑者</span><input v-model="userQuery" placeholder="搜昵称" @input="queueUsers" /></label>
               <button class="primary" type="submit">筛选</button>
             </form>
-            <p v-if="usersReady" class="hint">{{ userTotal }} 人</p>
             <div class="race-list">
               <div v-for="item in users" :key="item.id" class="race-row user-row" :class="{ on: person && person.user.id === item.id }">
                 <button type="button" class="race-open" @click="openUser(item.id, 'view')">
