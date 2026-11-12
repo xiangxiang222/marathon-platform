@@ -86,6 +86,36 @@ async function main() {
     f.page.switchTab(event({ tab: 'pacer' })); await settle(); assert.match(f.requests().at(-1).url, /\/content\/profiles\?type=pacer/); assert.equal(f.page.data.isProfile, true);
     f.page.switchTab(event({ tab: 'race' })); await settle(); assert.match(f.requests().at(-1).url, /^\/news\?/); assert.equal(f.page.data.rows[0].id, race.id); assert.equal(f.page.data.isProfile, false);
   });
+  await check('Featured entries use real profile photos and target times, cache previews and retain readable image fallbacks', async () => {
+    const f = fixture();
+    f.setReply(url => {
+      const parsed = new URL(url, 'https://fixture.example');
+      if (parsed.pathname === '/content/profiles') return Promise.resolve({ profiles: parsed.searchParams.get('type') === 'pacer' ? [{ id:'pacer-real',type:'pacer',name:'配速员',primaryTargetTime:'3:15:00' }] : [{...athlete,avatar:'/marathon/images/athletes/verified.jpg'},{...woman,avatar:'javascript:alert(1)'}] });
+      return Promise.resolve({ articles:[article],page:1,pages:1,total:1 });
+    });
+    f.page.onLoad({}); f.page.onShow(); await settle();
+    assert.equal(f.page.data.rows[0].id, article.id);
+    assert.equal(f.page.data.previewPhotos.athlete.length,1);
+    assert.equal(f.page.data.previewPhotos.athlete[0].image,'https://runner.example/marathon/images/athletes/verified.jpg');
+    assert.equal(f.page.data.previewPhotos.pacer.length,0); assert.equal(f.page.data.previewTarget,'3:15:00');
+    assert.equal(f.requests().filter(x=>x.url.includes('pageSize=6')).length,2);
+    f.page.switchTab(event({tab:'industry'})); await settle(); f.page.switchTab(event({tab:'all'})); await settle();
+    assert.equal(f.requests().filter(x=>x.url.includes('pageSize=6')).length,2,'Cached public previews do not refetch when switching back');
+    f.page.previewImageError(event({type:'athlete',id:athlete.id})); assert.equal(f.page.data.previewPhotos.athlete.length,0);
+    assert.equal(f.page.data.message,'');
+  });
+  await check('Preview failures are independent of news and never apply after leaving the featured section or unloading', async () => {
+    const f=fixture(),late=deferred();
+    f.setReply(url=>url.includes('pageSize=6') ? late.promise : Promise.resolve({articles:[article],page:1,pages:1,total:1}));
+    f.page.onLoad({});f.page.onShow();await settle();assert.equal(f.page.data.ready,true);assert.equal(f.page.data.rows[0].id,article.id);
+    f.page.switchTab(event({tab:'industry'}));await settle();
+    late.resolve({profiles:[{...athlete,avatar:'https://example.com/verified.jpg'}]});await settle();assert.equal(f.page.data.previewPhotos.athlete.length,0);assert.equal(f.page.data.message,'');
+    const retry=deferred();f.setReply(url=>url.includes('pageSize=6')?retry.promise:Promise.resolve({articles:[article],page:1,pages:1,total:1}));
+    f.page.switchTab(event({tab:'all'}));await settle();f.page.onUnload();const before=f.patches.length;
+    retry.resolve({profiles:[{...athlete,avatar:'https://example.com/verified.jpg'}]});await settle();assert.equal(f.patches.length,before);
+    const failed=fixture();failed.setReply(url=>url.includes('type=athlete')?Promise.reject(Error('preview unavailable')):url.includes('type=pacer')?Promise.resolve({profiles:[{id:'p1',type:'pacer',name:'配速员',primaryTargetTime:'3:30'}]}):Promise.resolve({articles:[article],page:1,pages:1,total:1}));
+    failed.page.onLoad({});failed.page.onShow();await settle();assert.equal(failed.page.data.message,'');assert.equal(failed.page.data.ready,true);assert.equal(failed.page.data.previewTarget,'3:30');
+  });
   await check('Male and female filters and Unicode search are encoded', async () => {
     const f = fixture(); f.page.onLoad({ tab: 'athlete' }); f.page.onShow(); await settle(); assert.equal(f.page.data.rows[0].gender, 'men');
     f.page.setGender(event({ gender: 'women' })); await settle(); assert.equal(f.page.data.rows[0].gender, 'women'); assert.match(f.requests().at(-1).url, /gender=women/);
