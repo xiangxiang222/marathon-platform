@@ -12,7 +12,8 @@
       <button data-tab="pacer" bindtap="switchTab"><view class="shortcut-title">官兔档案</view><image class="shortcut-art" src="/images/art-shoe.png" mode="aspectFit" aria-label="跑鞋小插画" /><text class="shortcut-subtitle">认识 A 类赛事配速员</text></button>
     </view>
     <view class="section-caption"><text class="caption-title">{{heading}}</text><text wx:if="{{ready && !message && total}}">{{total}} {{tab === 'pacer' ? '位官兔' : isProfile ? '位运动员' : '篇内容'}}</text></view>
-    <view wx:if="{{tab === 'athlete'}}" class="gender-tabs"><button class="{{gender === 'men' ? 'on' : ''}}" data-gender="men" bindtap="setGender">男子</button><button class="{{gender === 'women' ? 'on' : ''}}" data-gender="women" bindtap="setGender">女子</button><text>{{seasonYear}}赛季 · 全马</text></view>
+    <view wx:if="{{tab === 'athlete'}}" class="athlete-season">{{seasonYear}}赛季 · 全程马拉松</view>
+    <view wx:if="{{tab === 'athlete'}}" class="gender-tabs"><button class="{{gender === 'men' ? 'on' : ''}}" data-gender="men" bindtap="setGender" aria-label="查看男子运动员">男子</button><button class="{{gender === 'women' ? 'on' : ''}}" data-gender="women" bindtap="setGender" aria-label="查看女子运动员">女子</button></view>
     <view wx:if="{{tab === 'pacer'}}" class="pacer-race-filter"><text>配速赛事</text><picker range="{{raceFilterOptions}}" range-key="name" value="{{raceFilterIndex}}" bindchange="setRace"><view class="race-filter-value">{{raceFilterOptions[raceFilterIndex].name}}<text>⌄</text></view></picker><button wx:if="{{raceId || query}}" bindtap="resetPacerFilters">重置</button></view>
     <view wx:if="{{message}}" class="journal-state"><view class="state-icon">!</view><view class="state-title">内容暂时无法加载</view><view>{{message}}</view><button bindtap="load">重新加载</button></view>
     <view wx:elif="{{!ready}}" class="journal-state"><view class="loading-dot"></view>正在加载内容…</view>
