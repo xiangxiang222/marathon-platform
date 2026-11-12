@@ -28,3 +28,5 @@
 - [Web 赛事 320](../design/previews/club-detail-v5-web-tabs/races-320.png)
 - [小程序成员 320](../design/previews/club-detail-v5-mini-tabs/pages-club-club-members-320.png)
 - [小程序会费设置 320](../design/previews/club-detail-v5-mini-tabs/pages-club-club-service-form-320.png)
+
+联合真实 HTTP 回归同时校准两处过期断言：轻松跑预设本来会带入标题和训练内容，仍须清空本次日期与期次；主导航原名为“概览”。旧主线单独复现同样两项失败，未修改发布活动的实现以迎合旧断言。

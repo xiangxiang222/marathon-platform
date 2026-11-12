@@ -409,7 +409,7 @@ async function browserJourneys(fixture, base) {
   const field = (page, name) => page.locator('label.field').filter({ hasText: name }).locator('input');
   const overflow = async page => assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth + 1), 'no horizontal overflow');
   let uiActivity;
-  await check('UI-01 管理员真实发布三步活动；模板不自动写课表；复制清空日期期次', async () => {
+  await check('UI-01 管理员真实发布三步活动；模板带入内容并清空日期期次', async () => {
     await owner.goto(base + c + '/activities/new?copy=' + fixture.activity.id);
     await field(owner, '训练标题').waitFor();
     assert.equal(await field(owner, '活动期次').inputValue(), '');
@@ -417,7 +417,9 @@ async function browserJourneys(fixture, base) {
     await owner.goto(base + c + '/activities/new');
     await field(owner, '训练标题').waitFor();
     await owner.locator('.templates').getByRole('button', { name: /轻松跑/ }).click();
-    assert.equal(await field(owner, '训练标题').inputValue(), '');
+    assert.equal(await field(owner, '训练标题').inputValue(), '一起轻松跑');
+    assert.equal(await field(owner, '活动期次').inputValue(), '');
+    assert.equal(await field(owner, '开始时间').inputValue(), '');
     await field(owner, '训练标题').fill('浏览器发布·河岸周末轻松跑');
     await field(owner, '开始时间').fill(stamp(Date.now() + 7 * 86400000));
     await field(owner, '结束时间').fill(stamp(Date.now() + 7 * 86400000 + 7200000));
@@ -425,7 +427,7 @@ async function browserJourneys(fixture, base) {
     await field(owner, '集合点').fill('公园南门红色雕塑旁');
     await field(owner, '计划距离').fill('10');
     await owner.getByRole('button', { name: /^继续/ }).click();
-    assert.equal(await owner.getByPlaceholder('热身、主训练内容、放松安排…').inputValue(), '');
+    assert.match(await owner.getByPlaceholder('热身、主训练内容、放松安排…').inputValue(), /热身：[\s\S]*主训练：[\s\S]*放松：/);
     await owner.getByPlaceholder('热身、主训练内容、放松安排…').fill('按各自能力完成两圈，结束后拉伸。');
     await owner.getByRole('button', { name: /^继续/ }).click();
     await overflow(owner);
@@ -514,7 +516,7 @@ async function browserJourneys(fixture, base) {
   await check('UI-07 五个主导航及活动子分类、旧期会费、成员搜索/多团切换', async () => {
     await owner.goto(base + c);
     await owner.locator('nav[aria-label="跑团导航"]').waitFor();
-    for (const [name, tab] of [['活动', 'act'], ['赛事', 'race'], ['跑量', 'km'], ['成员', 'people'], ['今日', 'overview']]) {
+    for (const [name, tab] of [['活动', 'act'], ['赛事', 'race'], ['跑量', 'km'], ['成员', 'people'], ['概览', 'overview']]) {
       await owner.locator('nav[aria-label="跑团导航"]').getByRole('button', { name, exact: true }).click();
       await owner.waitForURL(url => url.searchParams.get('tab') === tab);
       await overflow(owner);
