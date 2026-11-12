@@ -1,7 +1,6 @@
-<page-header title="跑团" tab eyebrow="一起训练，一起参赛" headline="和同频的人，一起出发" subtitle="{{ready && clubs.length ? '已加入 ' + clubs.length + ' 个跑团，跑步有伴' : '发现同城跑友，分享每次坚持'}}" art="/images/art-clubs.png"></page-header>
+<page-header title="跑团" compact><view class="clubs-directory-heading"><text class="clubs-directory-title">我的跑团</text><text wx:if="{{ready && mineLoaded}}" class="clubs-directory-count">已加入 {{clubs.length}} 个</text></view></page-header>
 <view class="clubs-page mini-clubs-clubs">
   <view class="my-clubs">
-    <view class="section-heading"><text class="section-title">我的跑团</text><text wx:if="{{ready && clubs.length}}" class="section-count">{{clubs.length}} 个</text></view>
     <view wx:if="{{!ready}}" class="login-card">
       <view class="club-letter">团</view>
       <view class="login-copy"><view class="club-name">登录后查看我的跑团</view><view class="meta">团练、赛事与跑步记录都在这里</view></view>
@@ -18,7 +17,7 @@
       </view>
       <button wx:if="{{clubs.length > 4 && !mineSearching}}" class="mine-expand" bindtap="toggleMineExpanded" aria-expanded="{{mineExpanded}}">{{mineExpanded ? '收起跑团' : '查看全部 ' + clubs.length + ' 个跑团'}}<text>{{mineExpanded ? '⌃' : '⌄'}}</text></button>
       <view wx:if="{{clubs.length && !shownClubs.length}}" class="no-clubs">没有找到这个跑团，试试其他名称。</view>
-      <view wx:if="{{!clubs.length}}" class="no-clubs"><view class="no-club-title">{{loaded ? '跑团生活，从一起出发开始' : '正在加载跑团…'}}</view><view wx:if="{{loaded}}" class="meta">搜一搜熟悉的跑团，或输入朋友分享的口令</view></view>
+      <view wx:if="{{!clubs.length}}" class="no-clubs"><view class="no-club-title">{{loaded ? '还没有加入跑团' : '正在加载跑团…'}}</view><view wx:if="{{loaded}}" class="meta">搜索跑团或输入朋友分享的口令</view></view>
     </block>
   </view>
 

@@ -5,7 +5,7 @@ function accountKey() {
   return app && app.globalData ? String(app.globalData.token || "") : "";
 }
 const PRIVATE_EMPTY = {
-  leader: false, clubs: [], shownClubs: [], mineQuery: "", mineExpanded: false, mineSearching: false, mineMatchCount: 0, openClubs: [], application: null, directoryPage: 0, directoryPages: 0, directoryTotal: 0,
+  leader: false, clubs: [], shownClubs: [], mineQuery: "", mineExpanded: false, mineLoaded: false, mineSearching: false, mineMatchCount: 0, openClubs: [], application: null, directoryPage: 0, directoryPages: 0, directoryTotal: 0,
   directoryBusy: false, more: 0, query: "", searchCity: "", code: ""
 };
 Page({
@@ -83,7 +83,7 @@ Page({
     const seq = this.loadSeq = (this.loadSeq || 0) + 1;
     const mine = request("/me").then((data) => {
       if (!this.scopeCurrent(token) || seq !== this.loadSeq) return;
-      this.setData({ clubs: (data.clubs || []).map(publicClub), application: (data.applications || []).find((item) => !item.status || item.status === "pending") || null, loaded: true });
+      this.setData({ clubs: (data.clubs || []).map(publicClub), mineLoaded: true, application: (data.applications || []).find((item) => !item.status || item.status === "pending") || null, loaded: true });
       this.filterMine();
     }).catch((err) => {
       if (!this.scopeCurrent(token) || seq !== this.loadSeq) return;

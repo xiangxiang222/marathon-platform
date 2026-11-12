@@ -184,3 +184,26 @@
 @media(max-width:350px) { .profile-art { width: 118rpx; height: 140rpx; } .main-tabs > view { font-size:12px; } .profile-clubs-section { gap: 12rpx; } .profile-clubs-section .profile-row { padding: 16rpx 14rpx; font-size:12px; } }
 
 @import "../../utils/personal-ui.wxss";
+
+/* Identity and account tools share the root page's compact first block. */
+.mine-page .identity-summary{margin:0 -16px 12px;padding:0 16px;border-radius:0;background:linear-gradient(115deg,#fff5f6,#fff 85%)}
+.mine-page .identity-summary .identity-panel{display:flex;align-items:center;gap:24rpx;padding:28rpx 0 24rpx}
+.mine-page .identity-summary .identity-copy{flex:1;min-width:0}
+.mine-page .identity-summary .hero-line{gap:24rpx}
+.mine-page .identity-summary .nickname{font-size:20px;line-height:1.35}
+.mine-page .identity-settings{display:flex;flex:none;align-items:center;justify-content:center;width:44px;height:44px;min-width:44px;margin:0;padding:0;color:#555;background:transparent;border:0;border-radius:50%;font-size:22px;line-height:1}
+.mine-page .identity-settings::after{border:0}
+.mine-page .identity-summary .account-stats{padding:20rpx 0 28rpx;background:transparent;border:0}
+.mine-page .identity-summary .stat-value{font-size:22px}
+.mine-page .identity-summary .account-stats>view,.mine-page .identity-summary .account-stats>navigator{border-right:0}
+.mine-page .guest-hero .guest-actions{padding:24rpx 0}
+.mine-page .guest-login-row{display:flex;align-items:center;gap:24rpx}
+.mine-page .guest-login-row .primary{flex:1;width:auto;margin:0}
+.mine-page .guest-hero .auth-legal{margin-top:24rpx}
+@media(max-width:350px){.mine-page .identity-summary .hero-line{gap:20rpx}.mine-page .identity-summary .nickname{font-size:18px}}
+
+.mine-page{padding-top:0}
+.nav-settings{display:flex;align-items:center;gap:6px;min-height:44px;margin:0;padding:0 8px 0 0;border:0;background:transparent;color:#555;font-size:14px;line-height:1.4}
+.nav-settings .settings-gear{font-size:20px}
+.nav-settings::after{border:0}
+.mine-page .service-icon{width:40px;height:40px}

@@ -1,8 +1,7 @@
 <template>
   <main class="mine">
-    <PageHeader :title="section === 'settings' ? '设置' : '我的'" :tab="section !== 'settings'" :eyebrow="section === 'settings' ? '' : '个人跑者档案'" :headline="section === 'settings' ? '' : '记录你的每一程'" :subtitle="section === 'settings' ? '管理账号与使用偏好' : '赛事计划 · 完赛成绩 · 跑步足迹'" :art="section === 'settings' ? '' : passportImage">
-      <button v-if="section !== 'settings'" class="header-settings" type="button" aria-label="设置" @click="openSettings"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 3-.7 2.1-1.9 1.1L4.2 6l-2 3.5 1.3 1.8v2.2L2.2 15l2 3.5 2.2-.2 1.9 1.1L9 21h4l.7-1.6 1.9-1.1 2.2.2 2-3.5-1.3-1.5v-2.2l1.3-1.8-2-3.5-2.2.2-1.9-1.1L13 3Z"/><circle cx="11" cy="12" r="3"/></svg><span>设置</span></button>
-      <button v-else class="header-settings" type="button" aria-label="返回我的" @click="closeSettings">‹ 返回</button>
+    <PageHeader :title="section === 'settings' ? '设置' : '我的'" :compact="section !== 'settings'" :subtitle="section === 'settings' ? '管理账号与使用偏好' : ''">
+      <button v-if="section === 'settings'" class="header-settings" type="button" aria-label="返回我的" @click="closeSettings">‹ 返回</button>
     </PageHeader>
     <section v-if="section === 'settings'" class="sheet account-settings" aria-label="账号设置">
       <h2>账号与隐私</h2>
@@ -13,26 +12,21 @@
       <button v-else class="primary settings-login" type="button" @click="settingsLogin">登录 / 注册</button>
     </section>
     <template v-else>
-    <section v-if="nickname" class="account-hero">
+    <section v-if="nickname" class="account-hero identity-summary">
       <div class="identity-panel">
         <div class="identity-copy">
-          <span class="identity-kicker">个人档案</span>
           <div class="who-top">
             <img v-if="avatar" class="face" :src="avatar" :alt="nickname + ' 的头像'" />
             <span v-else class="face" aria-hidden="true">{{ nickname.slice(0, 1) }}</span>
             <div class="who-main"><h2 class="nick">{{ nickname }}</h2><p class="club-line">{{ clubs.length ? clubs[0].name + (clubs.length > 1 ? ` 等 ${clubs.length} 个跑团` : '') : '尚未加入跑团' }}</p><span v-if="leader" class="role">建团资格</span></div>
           </div>
         </div>
-
+        <button class="header-settings identity-settings" type="button" aria-label="设置" @click="openSettings"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 3-.7 2.1-1.9 1.1L4.2 6l-2 3.5 1.3 1.8v2.2L2.2 15l2 3.5 2.2-.2 1.9 1.1L9 21h4l.7-1.6 1.9-1.1 2.2.2 2-3.5-1.3-1.5v-2.2l1.3-1.8-2-3.5-2.2.2-1.9-1.1L13 3Z"/><circle cx="11" cy="12" r="3"/></svg></button>
       </div>
       <div class="account-stats"><button type="button" @click="section = 'plans'"><b>{{ plans.length }}</b><span>已标记赛事</span></button><button type="button" @click="section = 'results'"><b>{{ finished }}</b><span>已完赛</span></button><router-link to="/clubs"><b>{{ clubs.length }}</b><span>已加入跑团</span></router-link></div>
     </section>
-    <section v-else class="account-hero guest-hero">
-      <div class="identity-panel guest-identity">
-        <div class="identity-copy"><span class="identity-kicker">个人中心</span><h2>我的运动与赛事</h2><p>管理运动记录、参赛计划与跑团。</p></div>
-
-      </div>
-      <div class="guest-actions"><p>登录后收藏赛事、记录成绩，和跑团一起出发。</p><button class="primary hero-login" type="button" :aria-expanded="authOpen" @click="openAuth">{{ authOpen ? '收起登录' : '登录 / 注册' }}</button></div>
+    <section v-else class="account-hero guest-hero identity-summary">
+      <div class="guest-actions guest-login-row"><button class="primary hero-login" type="button" :aria-expanded="authOpen" @click="openAuth">{{ authOpen ? '收起登录' : '登录 / 注册' }}</button><button class="header-settings identity-settings" type="button" aria-label="设置" @click="openSettings"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 3-.7 2.1-1.9 1.1L4.2 6l-2 3.5 1.3 1.8v2.2L2.2 15l2 3.5 2.2-.2 1.9 1.1L9 21h4l.7-1.6 1.9-1.1 2.2.2 2-3.5-1.3-1.5v-2.2l1.3-1.8-2-3.5-2.2.2-1.9-1.1L13 3Z"/><circle cx="11" cy="12" r="3"/></svg></button></div>
     </section>
     <section v-if="!nickname && authOpen" class="sheet auth">
       <nav class="subtabs"><button type="button" :class="{ on: authTab === 'login' }" @click="setTab('login')">账号登录</button><button type="button" :class="{ on: authTab === 'register' }" @click="setTab('register')">注册账号</button></nav>
@@ -98,8 +92,6 @@ import { api, resultProofSrc } from "../api";
 import PageHeader from "../components/PageHeader.vue";
 import RunnerDashboard from "../components/RunnerDashboard.vue";
 import { normalizeResults } from "../achievement-model";
-const passportImage = `${import.meta.env.BASE_URL}images/art-passport.png`;
-const posterImage = `${import.meta.env.BASE_URL}images/art-poster.png`;
 
 import calendarIcon from "../assets/quick/calendar.svg";
 import radarIcon from "../assets/quick/radar.svg";
@@ -591,3 +583,19 @@ h3 { margin: 0; font-size:16px; line-height: 24px; font-weight: 600; }.hint, .em
 </style>
 
 <style scoped src="../personal-ui.css"></style>
+
+<style scoped>
+/* Root identity starts with account information and tools. */
+.mine .identity-summary{margin:0 -16px 12px;padding:0 16px;border-radius:0;background:linear-gradient(115deg,#fff5f6,#fff 85%)}
+.mine .identity-summary .identity-panel{display:flex;align-items:center;gap:12px;padding:14px 0 12px}
+.mine .identity-summary .identity-copy{flex:1;min-width:0}
+.mine .identity-summary .who-top{gap:12px}
+.mine .identity-summary .nick{font-size:20px;line-height:1.35}
+.mine .identity-settings{display:flex;flex:none;align-items:center;justify-content:center;width:44px;height:44px;min-width:44px;padding:0;color:#555;background:transparent;border:0;border-radius:50%}
+.mine .identity-summary .account-stats{padding:10px 0 14px;background:transparent}
+.mine .identity-summary .account-stats b{font-size:22px}
+.mine .identity-summary .account-stats>*{border-right:0}
+.mine .guest-login-row{display:flex;align-items:center;gap:12px;padding:18px 0}
+.mine .guest-login-row .hero-login{flex:1;width:auto;margin:0}
+@media(max-width:350px){.mine .identity-summary .who-top{gap:10px}.mine .identity-summary .nick{font-size:18px}}
+</style>
