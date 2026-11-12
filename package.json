@@ -14,6 +14,7 @@
     "test:client": "node design/previews/run-client-regressions.cjs",
     "test:admin:ui": "node design/previews/admin-browser-regression.cjs && node design/previews/admin-ui-full-audit.cjs",
     "test:mini": "node design/previews/mini-native-check.cjs",
+    "test:mini-package": "node scripts/check-mini-package.cjs",
     "test:clubs": "node design/previews/club-live-acceptance.cjs && node design/previews/club-navigation-regression.cjs && node design/previews/mini-club-redesign-regression.cjs && npm run test:club-identity",
     "test:club-identity": "node design/previews/club-open-creation-live.cjs && node design/previews/mini-club-open-creation-regression.cjs",
     "test:all": "npm test && npm run test:client && npm run test:mini && npm run test:feedback && npm run test:club-identity && npm run test:legal && npm run test:history:client && npm run build",
