@@ -1,4 +1,4 @@
-<view class="identity-page mini-club-report-club-report">
+<view class="identity-page mini-club-report-club-report service-page">
   <view class="hero"><view class="eyebrow">私人申诉</view><view class="title">名称与身份申诉</view><view class="copy">同名本身不等于冒用。请说明具体的误导呈现或管理授权问题，平台核对后处理；不会把成员、账目或历史记录移交给申诉方。</view></view>
   <view wx:if="{{!ready}}" class="panel"><view class="copy">登录后私密提交，查看本人的工单进度。</view><navigator class="primary action-link" open-type="switchTab" url="/pages/mine/mine">去登录</navigator></view>
   <block wx:else>

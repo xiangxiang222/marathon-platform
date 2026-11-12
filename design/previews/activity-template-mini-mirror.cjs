@@ -8,7 +8,7 @@ const expectedAccent = (process.env.UI_EXPECTED_ACCENT || '#ff1838').toLowerCase
 if (!/^#[0-9a-f]{6}$/.test(expectedAccent)) throw new Error('UI_EXPECTED_ACCENT must be a six-digit hex color');
 const out = path.resolve(root, process.env.UI_AUDIT_OUT || 'design/previews/activity-templates-20261110');
 const reportFile = process.env.UI_AUDIT_REPORT ? path.resolve(root, process.env.UI_AUDIT_REPORT) : path.join(out, 'mini-mirror-report.json');
-const scenarios = ['fresh','draft','groups','sheet','new-template','preview','member','template-error','template-empty','long-name','save-error'];
+const scenarios = ['fresh','draft','groups','training-library','sheet','new-template','preview','member','template-error','template-empty','long-name','save-error'];
 const { createFixture, event } = require('./activity-template-fixture.cjs');
 const assert = require('node:assert/strict');
 const { chromium } = require(path.join(root, 'node_modules/playwright-core'));
@@ -47,12 +47,12 @@ function addAssets(dir) {
 }
 addAssets(path.join(mini, 'images'));
 async function fixture(scenario) {
-  const f=createFixture({staff:scenario!=='member'});if(scenario==='template-empty')f.db.templates=[];if(scenario==='template-error'){let original;original=f.setHandler((url,method,...args)=>/activity-templates$/.test(url)&&(!method||method==='GET')?Promise.reject(Error('此功能暂不可用（HTTP 404），请联系管理员确认服务已更新。')):original(url,method,...args));}await f.load();
+  const f=createFixture({staff:scenario!=='member'});if(scenario==='training-library'){let original;original=f.setHandler((url,method,...args)=>/training-groups$/.test(url)?Promise.resolve({groups:[{id:31,name:'A 组 · 进阶训练',pace:'4:30–5:00',capacity:12},{id:32,name:'周末长距离循序渐进训练组',pace:'5:30–6:00',capacity:20},{id:33,name:'轻松有氧组',pace:'6:30–7:00',capacity:0}],members:[],staff:true}):original(url,method,...args));}if(scenario==='template-empty')f.db.templates=[];if(scenario==='template-error'){let original;original=f.setHandler((url,method,...args)=>/activity-templates$/.test(url)&&(!method||method==='GET')?Promise.reject(Error('此功能暂不可用（HTTP 404），请联系管理员确认服务已更新。')):original(url,method,...args));}await f.load();
   const p=f.page;
   if(scenario==='draft') {p.input(event({key:'title'},'周三的未完成训练'));p.saveDraft();}
-  if(scenario==='groups'||scenario==='preview'||scenario==='sheet'||scenario==='save-error'){
+  if(scenario==='groups'||scenario==='training-library'||scenario==='preview'||scenario==='sheet'||scenario==='save-error'){
     p.useTemplate(event({source:'saved',id:91}));p.pickDate(event({key:'startDate'},'2026-11-14'));
-    if(scenario==='groups'||scenario==='preview'){p.next();if(scenario==='preview'){p.groupInput(event({index:0,key:'capacity'},'0'));p.next();}}
+    if(scenario==='groups'||scenario==='training-library'||scenario==='preview'){p.next();if(scenario==='preview'){p.groupInput(event({index:0,key:'capacity'},'0'));p.next();}}
     if(scenario==='sheet'||scenario==='save-error'){p.saveTemplate();p.inputTemplateName(event({},'周三间歇训练'));if(scenario==='save-error'){f.setHandler(()=>Promise.reject(Object.assign(Error('服务暂时不可用（HTTP 503），请稍后重试。'),{status:503})));await p.confirmSaveTemplate();}}
   }
   if(scenario==='new-template'){p.newTemplate();p.input(event({key:'title'},'周末长距离'));p.useTemplate(event({source:'preset',id:'long'}));p.toggleExtra();p.input(event({key:'gatherAt'},'提前 10 分钟'));}
@@ -142,7 +142,8 @@ async function main() {
           width: innerWidth, scrollWidth: document.documentElement.scrollWidth, height: document.body.scrollHeight,
           brokenImages: [...document.images].filter(image => image.getAttribute('src') && !image.naturalWidth).map(image => image.getAttribute('src').slice(0, 80)),
           overflow: [...document.querySelectorAll('body *')].filter(element => { const rect = element.getBoundingClientRect(); return rect.width && (rect.right > innerWidth + 2 || rect.left < -2) && !element.closest('scroll-view,.template-scroll,.preset-scroll,.template-list'); }).slice(0, 20).map(element => ({ tag: element.tagName, class: element.className, text: element.textContent.trim().slice(0, 50), right: Math.round(element.getBoundingClientRect().right), left: Math.round(element.getBoundingClientRect().left) })),
-          footer: [...document.querySelectorAll('.bottom-actions button')].map(el=>{const rect=el.getBoundingClientRect(),range=document.createRange();range.selectNodeContents(el);return {text:el.textContent.trim(),width:rect.width,height:rect.height,top:rect.top,bottom:rect.bottom,lines:[...range.getClientRects()].filter(r=>r.width>0).map(r=>Math.round(r.top))};}),
+          footer: [...document.querySelectorAll('.bottom-actions button')].map(el=>{const rect=el.getBoundingClientRect(),range=document.createRange();range.selectNodeContents(el);return {text:el.textContent.trim(),primary:el.classList.contains('next-action'),background:getComputedStyle(el).backgroundColor,inServiceScope:Boolean(el.closest('.service-page')),width:rect.width,height:rect.height,top:rect.top,bottom:rect.bottom,lines:[...range.getClientRects()].filter(r=>r.width>0).map(r=>Math.round(r.top))};}),
+          trainingOptions: [...document.querySelectorAll('.training-library-option')].map(el=>({text:el.textContent.trim(),left:el.getBoundingClientRect().left,right:el.getBoundingClientRect().right,width:el.getBoundingClientRect().width})),
           restore: [...document.querySelectorAll('.restore-line')].map(el=>({width:el.getBoundingClientRect().width,height:el.getBoundingClientRect().height})),
           groupFields: [...document.querySelectorAll('input[data-key="name"],input[data-key="pace"]')].map(el=>({width:el.getBoundingClientRect().width,height:el.getBoundingClientRect().height})),
           previewGroups: [...document.querySelectorAll('.preview-group')].map(el=>el.textContent.trim()),
@@ -153,6 +154,8 @@ async function main() {
         await page.screenshot({ path: path.join(out, name + '-viewport.png') });
         fs.writeFileSync(path.join(out, name + '.html'), await page.content());
         const layoutErrors=[];
+        for(const button of metrics.footer){if(!button.inServiceScope)layoutErrors.push('Footer escaped the page style scope');if(button.primary&&button.background!=='rgb(255, 24, 56)')layoutErrors.push('Primary footer is not brand red: '+button.background);}
+        if(scenario==='training-library'&&(metrics.trainingOptions.length!==3||metrics.trainingOptions.some(row=>row.left<15||row.right>width-15||row.width<100)))layoutErrors.push('Training options must be fully visible within the page');
         for(const button of metrics.footer){if(button.width<60||button.height>58||Math.max(...button.lines)-Math.min(...button.lines)>12)layoutErrors.push('Footer button wraps or is cramped: '+JSON.stringify(button));}
         for(const restore of metrics.restore){if(restore.height>150)layoutErrors.push('Restore card is too tall: '+JSON.stringify(restore));}
         for(const field of metrics.groupFields){if(field.width<80)layoutErrors.push('Group input is too narrow: '+JSON.stringify(field));}

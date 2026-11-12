@@ -1,0 +1,94 @@
+{
+  "date": "2026-11-12",
+  "baseCommit": "7445258",
+  "scope": "Activity and club service routes, Vue and mini; production untouched",
+  "tests": {
+    "activityWeb": {
+      "passed": true,
+      "checks": 34,
+      "errors": 0,
+      "screenshots": 16,
+      "writes": 8
+    },
+    "templateWeb": {
+      "passed": true,
+      "checks": 24,
+      "errors": 0,
+      "unexpected": 0,
+      "screenshots": 7
+    },
+    "templateMini": {
+      "passed": true,
+      "checks": 18
+    },
+    "templateMiniMirror": {
+      "passed": true,
+      "results": 24
+    },
+    "serviceWeb": {
+      "passed": true,
+      "views": 34,
+      "errors": 0
+    },
+    "serviceMiniMirror": {
+      "passed": true,
+      "results": 32
+    },
+    "editorMiniMirror": {
+      "passed": true,
+      "results": 16
+    },
+    "realHttpDetail": {
+      "passed": true,
+      "summary": {
+        "apiPass": 29,
+        "apiFail": 0,
+        "browserPass": 0,
+        "browserFail": 0,
+        "layoutGroupPass": 15,
+        "layoutGroupFail": 0,
+        "layoutVisitPass": 36,
+        "layoutVisitFail": 0
+      }
+    },
+    "realHttpIdentity": {
+      "passed": true,
+      "checks": 9,
+      "errors": 0,
+      "screenshots": 11
+    },
+    "sharing": {
+      "passed": true,
+      "checks": 18,
+      "errors": 0,
+      "unexpected": 0,
+      "screenshots": 9
+    },
+    "native": {
+      "passed": true,
+      "js": 53,
+      "json": 38,
+      "wxss": 40,
+      "nativeCompileCommands": 2
+    },
+    "build": {
+      "passed": true,
+      "command": "npm run build"
+    }
+  },
+  "screenshots": [
+    "web-activity-320.png",
+    "web-create-320.png",
+    "mini-training-groups-320.png",
+    "mini-template-sheet-320.png",
+    "web-public-share-320.png",
+    "web-editor-390.png",
+    "mini-signup-320.png",
+    "web-identity-390.png",
+    "web-call-320.png"
+  ],
+  "limitations": [
+    "Mini screenshots mirror current WXML/WXSS with synthetic display data and browser approximations of native controls. They are not WeChat simulator or device screenshots.",
+    "Web visual fixtures use synthetic transport; separate temporary database HTTP journeys cover permission and data mutations."
+  ]
+}

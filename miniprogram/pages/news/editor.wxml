@@ -1,4 +1,4 @@
-<view class="journal-page club-journal-editor">
+<view class="journal-page club-journal-editor service-page">
   <view class="editor-intro"><view class="editor-title">发布跑团资讯</view><text class="editor-description">团练心得、赛事回顾，或一篇值得分享的公众号文章。</text></view>
   <view wx:if="{{message}}" class="editor-message" role="alert"><text>{{message}}</text><button wx:if="{{!allowed}}" bindtap="retry" size="mini">重试</button></view><view wx:if="{{success}}" class="editor-success" role="status">{{success}}</view>
   <view wx:if="{{loading}}" class="editor-state">正在确认发布权限…</view>

@@ -180,13 +180,13 @@ async function main() {
     }
 
     await page.goto(base + "/clubs/999/activities/new?copy=1");
-    await page.getByRole("heading", { name: "这次跑什么？" }).waitFor();
+    await page.getByRole("heading", { name: "基本信息" }).waitFor();
     await page.locator(".basic-options summary").click();
     assert.equal(await page.locator('.field:has-text("活动期次") input').inputValue(), "", "copied activity must not retain its issue");
     assert.equal(await page.locator('input[type="datetime-local"]').first().inputValue(), "", "copied activity must clear its start time");
 
     await page.goto(base + "/clubs/999/activities/new");
-    await page.getByRole("heading", { name: "这次跑什么？" }).waitFor();
+    await page.getByRole("heading", { name: "基本信息" }).waitFor();
     assert.equal(await page.locator('input[type="datetime-local"]').first().inputValue(), "", "start time must not be guessed");
     assert.equal(await page.locator('input[maxlength="40"]').first().inputValue(), "", "blank activity must not prefill a title");
     assert.equal(await page.locator('input[type="number"]').first().inputValue(), "", "blank activity must not prefill planned distance");

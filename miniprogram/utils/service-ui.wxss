@@ -1,0 +1,163 @@
+/* Service pages use the same controls and hierarchy as the race catalogue. */
+.service-page { --brand:#ff1838; --brand-soft:#fff0f2; --page-bg:#f5f5f5; --surface:#fff; --text:#1a1a1a; --text-secondary:#777; --border:#eee; color:var(--text); background:var(--page-bg); font-size:14px; line-height:1.5; }
+.service-page button { width:auto; min-width:44px; min-height:44px; margin:0; border-radius:8px; font-size:14px; font-weight:500; line-height:1.4; box-shadow:none; }
+.service-page button::after { border:0; }
+.service-page input,.service-page textarea,.service-page .picker-field { min-width:0; min-height:44px; border:1px solid var(--border); border-radius:8px; color:var(--text); background:var(--page-bg); font-size:14px; }
+.service-page textarea { line-height:1.75; }
+.service-page .card,.service-page .panel,.service-page .detail-state,.service-page .meetup-state { margin:0 0 12px; padding:16px; border:1px solid var(--border); border-radius:12px; background:#fff; box-shadow:none; }
+.service-page .title,.service-page .hero-title,.service-page .signup-title,.service-page.intro-page .club-name,.service-page .editor-title { font-size:24px; font-weight:600; line-height:1.45; }
+.service-page .section-title,.service-page .panel-title,.service-page .state-title { font-size:18px; font-weight:600; line-height:1.5; }
+.service-page .src,.service-page .muted,.service-page .fact-label,.service-page .label text { font-size:12px; font-weight:400; color:var(--text-secondary); }
+.service-page .btn,.service-page .primary { width:100%; min-height:44px; padding:10px 16px; border:1px solid var(--brand); border-radius:8px; background:var(--brand); color:#fff; font-size:14px; font-weight:500; }
+.service-page .ghost,.service-page .secondary { display:flex; align-items:center; justify-content:center; width:auto; min-height:44px; padding:8px 12px; border:1px solid var(--border); border-radius:8px; background:#fff; color:var(--text); font-size:13px; }
+.service-page .row { min-height:52px; padding:12px 0; gap:12px; font-size:14px; }
+.service-page .sum { margin-top:12px; padding:10px 12px; border-radius:8px; background:var(--page-bg); color:var(--text); font-size:14px; font-weight:500; }
+.service-page .detail-hero { background:#fff; }
+.service-page .detail-options { gap:16px; margin-bottom:12px; padding:0; border-bottom:1px solid var(--border); background:#fff; }
+.service-page .detail-options .ghost { position:relative; min-height:44px; padding:0 6px; border:0; border-radius:0; color:var(--text-secondary); background:transparent; font-size:14px; }
+.service-page .detail-options .ghost.on { color:var(--brand); background:transparent; }
+.service-page .detail-options .ghost.on::after { position:absolute; bottom:0; left:calc(50% - 10px); width:20px; height:2px; background:var(--brand); content:''; }
+.service-page .fold-toggle { min-height:44px; padding:0; border:0; background:transparent; color:var(--text-secondary); font-size:13px; }
+.service-page .stack input { height:44px; margin-top:8px; border-radius:8px; }
+.service-page .detail-actions { display:flex; flex-wrap:wrap; gap:0 12px; }
+.service-page .detail-actions .ghost { padding:0; border:0; color:var(--text-secondary); background:transparent; font-size:12px; }
+.service-page.activity-page { padding:16px 16px calc(104px + env(safe-area-inset-bottom)); }
+.service-page.activity-page .hero { padding:16px; border:1px solid var(--border); border-radius:12px; background:#fff; }
+.service-page.activity-page .hero::before { display:none; }
+.service-page.activity-page .hero-top { gap:8px; align-items:center; }
+.service-page.activity-page .status-label { padding:2px 6px; border:0; border-radius:4px; background:var(--brand-soft); color:var(--brand); }
+.service-page.activity-page .activity-share { flex:none; width:56px; min-width:56px; max-width:56px; min-height:44px; height:44px; padding:0; border:0; border-radius:0; background:transparent; color:var(--text-secondary); font-size:12px; }
+.service-page.activity-page .hero-title { margin-top:10px; }
+.service-page.activity-page .hero-distance { align-items:baseline; gap:6px; margin-top:12px; }
+.service-page.activity-page .distance-value { color:var(--text); font-size:32px; font-weight:600; }
+.service-page.activity-page .hero-facts { margin-top:16px; padding-top:12px; }
+.service-page.activity-page .fact-value { font-size:14px; font-weight:500; }
+.service-page.activity-page .tabs { gap:24px; margin:12px 0; padding:0 8px; border-bottom:1px solid var(--border); }
+.service-page.activity-page .tab { color:var(--text-secondary); font-size:14px; }
+.service-page.activity-page .tab-on { color:var(--brand); }
+.service-page.activity-page .tab-on::after { left:calc(50% - 10px); right:auto; width:20px; height:2px; }
+.service-page.activity-page .section-heading { margin:24px 0 12px; }
+.service-page.activity-page .info-list,.service-page.activity-page .group-list,.service-page.activity-page .roster-list,.service-page.activity-page .plan-block,.service-page.activity-page .album-row,.service-page.activity-page .staff-section { padding:12px 16px; border:1px solid var(--border); border-radius:12px; background:#fff; }
+.service-page.activity-page .info-row { padding:12px 0; }
+.service-page.activity-page .info-label { width:72px; font-size:12px; }
+.service-page.activity-page .info-value { font-size:14px; }
+.service-page.activity-page .staff-section { margin-top:24px; padding:16px; }
+.service-page.activity-page .staff-section .section-heading { margin:0; }
+.service-page.activity-page .staff-primary,.service-page.activity-page .check-button,.service-page.activity-page .bottom-primary { min-height:44px; border-radius:8px; background:var(--brand); color:#fff; font-size:14px; }
+.service-page.activity-page .staff-secondary,.service-page.activity-page .staff-danger,.service-page.activity-page .pacer-button { min-height:44px; border-radius:8px; font-size:13px; }
+.service-page.activity-page .bottom-bar { padding:10px 16px calc(10px + env(safe-area-inset-bottom)); gap:12px; background:#fff; }
+.service-page.activity-page .bottom-primary { flex:1; width:0; }
+.service-page.activity-page .pacer-button { flex:none; width:auto; padding:0 12px; }
+.service-page.activity-page .staff-input,.service-page.activity-page .staff-textarea { border-radius:8px; }
+.service-page.mini-activity-create-activity-create { padding:16px 16px calc(104px + env(safe-area-inset-bottom)); background:var(--page-bg); }
+.service-page.mini-activity-create-activity-create .hero { padding:0 0 20px; }
+.service-page.mini-activity-create-activity-create .hero-title { margin-top:8px; }
+.service-page.mini-activity-create-activity-create .hero-description { font-size:12px; }
+.service-page.mini-activity-create-activity-create .steps { margin:0 0 20px; gap:8px; }
+.service-page.mini-activity-create-activity-create .step-number { width:22px; height:22px; font-size:12px; }
+.service-page.mini-activity-create-activity-create .panel { padding:16px; }
+.service-page.mini-activity-create-activity-create .templates { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; overflow:visible; white-space:normal; }
+.service-page.mini-activity-create-activity-create .template { display:flex; flex-direction:column; align-items:flex-start; min-width:0; width:100%; padding:12px 8px; border:1px solid var(--border); border-radius:8px; background:#fff; }
+.service-page.mini-activity-create-activity-create .template.selected { border-color:var(--brand); background:var(--brand-soft); }
+.service-page.mini-activity-create-activity-create .template-icon { display:none; }
+.service-page.mini-activity-create-activity-create .saved-template { min-width:0; border:1px solid var(--border); border-radius:8px; }
+.service-page.mini-activity-create-activity-create .group-card { padding:12px; border:1px solid var(--border); border-radius:8px; background:#fff; }
+.service-page.mini-activity-create-activity-create .section-heading { margin:20px 0 12px; }
+.service-page.mini-activity-create-activity-create .permanent-groups { margin:0 0 20px; padding:0 0 16px; border:0; border-bottom:1px solid var(--border); border-radius:0; background:transparent; }
+.service-page.mini-activity-create-activity-create .training-group-option { border-radius:8px; background:#fff; }
+.service-page.mini-activity-create-activity-create .preview-hero { padding:16px; border:1px solid var(--border); border-radius:12px; background:#fff; }
+.service-page.signup-page { padding:16px 16px calc(104px + env(safe-area-inset-bottom)); }
+.service-page.signup-page .signup-hero { margin:0; padding:16px; border:1px solid var(--border); border-radius:12px; background:#fff; }
+.service-page.signup-page .signup-hero::before { display:none; }
+.service-page.signup-page .signup-title { margin-top:8px; }
+.service-page.signup-page .selection-section { margin-top:24px; }
+.service-page.signup-page .group-options { gap:8px; }
+.service-page.signup-page .group-option { width:100%; min-height:64px; padding:12px; border:1px solid var(--border); border-radius:8px; background:#fff; }
+.service-page.signup-page .group-option-on { border-color:var(--brand); background:var(--brand-soft); }
+.service-page.signup-page .group-option-name { font-size:15px; font-weight:500; }
+.service-page.signup-page .optional-section { margin-top:16px; border:1px solid var(--border); border-radius:12px; background:#fff; }
+.service-page.signup-page .optional-toggle { padding:16px; }
+.service-page.signup-page .optional-title { font-size:15px; }
+.service-page.signup-page .optional-caption { margin-top:4px; }
+.service-page.signup-page .submit-bar { padding:10px 16px calc(10px + env(safe-area-inset-bottom)); background:#fff; }
+.service-page.signup-page .submit-button { width:144px; min-width:144px; height:44px; min-height:44px; padding:0 12px; border-radius:8px; font-size:14px; }
+.service-page.intro-page .intro-content { padding:16px 16px calc(104px + env(safe-area-inset-bottom)); }
+.service-page.intro-page .intro-card { padding:16px; border:1px solid var(--border); border-radius:12px; background:#fff; }
+.service-page.intro-page .track-art { display:none; }
+.service-page.intro-page .club-mark { width:48px; height:48px; margin-top:12px; border-radius:10px; color:var(--brand); background:var(--brand-soft); font-size:22px; }
+.service-page.intro-page .club-name { margin-top:12px; }
+.service-page.intro-page .card-tagline { margin-top:4px; line-height:1.7; }
+.service-page.intro-page .club-facts { margin-top:16px; padding-top:12px; }
+.service-page.intro-page .count { font-size:24px; font-weight:600; }
+.service-page.intro-page .intro-benefits { margin-top:16px; padding:16px; border:1px solid var(--border); border-radius:12px; background:#fff; }
+.service-page.intro-page .benefit-icon { width:24px; height:24px; border-radius:0; background:transparent; color:var(--text-secondary); }
+.service-page.intro-page .benefit-title { font-size:14px; font-weight:500; }
+.service-page.intro-page .status { padding:14px; border:1px solid var(--border); border-radius:10px; background:#fff; }
+.service-page.intro-page .intro-dock { padding:10px 16px calc(10px + env(safe-area-inset-bottom)); background:#fff; }
+.service-page.intro-page .action { flex:1; width:0; min-height:44px; padding:10px 12px; border-radius:8px; font-size:14px; }
+.service-page.intro-page .share-action { flex:none; width:104px; min-height:44px; border-radius:8px; font-size:13px; }
+.service-page.intro-page .share-sheet,.service-page.intro-page .timeline-guide { border-radius:12px; }
+.service-page.identity-page { padding:20px 16px 28px; }
+.service-page.identity-page .hero { padding:0 0 20px; background:transparent; }
+.service-page.identity-page .title { margin-top:8px; }
+.service-page.identity-page .copy { margin-top:8px; font-size:14px; line-height:1.75; }
+.service-page.identity-page .panel { margin-bottom:12px; padding:16px; }
+.service-page.identity-page .name { font-size:18px; }
+.service-page.identity-page .state { padding:3px 6px; border-radius:4px; color:var(--text-secondary); background:var(--page-bg); }
+.service-page.identity-page .label { margin:20px 0 8px; font-size:14px; }
+.service-page.identity-page input { height:44px; }
+.service-page.identity-page .type-choice { justify-content:flex-start; width:100%; padding:12px; border:1px solid var(--border); border-radius:8px; background:#fff; color:var(--text); font-size:14px; }
+.service-page.identity-page .type-choice.selected { border-color:var(--brand); background:var(--brand-soft); color:var(--brand); }
+.service-page.identity-page .secondary { width:100%; }
+.service-page .editor-actions { flex-wrap:wrap; gap:8px; }
+.service-page .editor-actions button { flex:1; min-width:100px; padding:10px 12px; border-radius:8px; }
+.service-page .editor-field input,.service-page .editor-field textarea,.service-page .editor-picker { border-radius:8px; }
+.service-page .editor-preview-title { font-size:24px; font-weight:600; }
+.service-page .editor-md { font-size:16px; line-height:1.8; }
+@media(max-width:350px) { .service-page.mini-activity-create-activity-create .templates { grid-template-columns:repeat(2,minmax(0,1fr)); }.service-page.signup-page .submit-button { width:136px; min-width:136px; } }
+
+.service-page.pad { padding:16px 16px calc(28px + env(safe-area-inset-bottom)); }
+.service-page .h2 { font-size:18px; font-weight:600; line-height:1.5; }
+.service-page .detail-hero>.h2 { margin-top:8px; font-size:24px; }
+.service-page.mini-activity-create-activity-create .heading { margin:8px 0 0; font-size:24px; font-weight:600; line-height:1.4; }
+.service-page.mini-activity-create-activity-create .page-intro { margin-top:8px; font-size:12px; color:var(--text-secondary); }
+.service-page.mini-activity-create-activity-create .preset-row { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; margin:12px 0 20px; }
+.service-page.mini-activity-create-activity-create .preset-card { display:flex; align-items:flex-start; flex-direction:column; width:100%; min-width:0; padding:12px 8px; border:1px solid var(--border); border-radius:8px; background:#fff; }
+.service-page.mini-activity-create-activity-create .preset-active { border-color:var(--brand); background:var(--brand-soft); }
+.service-page.mini-activity-create-activity-create .preset-top { display:none; }
+.service-page.mini-activity-create-activity-create .preset-name { font-size:14px; font-weight:500; }
+.service-page.mini-activity-create-activity-create .preset-tag { margin-top:4px; font-size:12px; }
+.service-page.mini-activity-create-activity-create .template-scroll { display:grid; grid-template-columns:minmax(0,1fr); gap:8px; height:auto; margin:12px 0; padding:0; white-space:normal; }
+.service-page.mini-activity-create-activity-create .saved-template { display:flex; width:100%; margin:0; }
+.service-page.mini-activity-create-activity-create .saved-template-use { min-width:0; flex:1; width:0; padding:12px; }
+.service-page.mini-activity-create-activity-create .template-menu { flex:none; width:44px; padding:0; }
+.service-page.mini-activity-create-activity-create .form-area,.service-page.mini-activity-create-activity-create .template-studio { margin-top:12px; padding:16px; border:1px solid var(--border); border-radius:12px; background:#fff; }
+.service-page.mini-activity-create-activity-create .section-head { margin:0 0 12px; }
+.service-page.mini-activity-create-activity-create .field { width:100%; height:44px; padding:0 12px; border-radius:8px; }
+.service-page.mini-activity-create-activity-create .picker-field { height:44px; padding:0 12px; border-radius:8px; }
+.service-page.mini-activity-create-activity-create .label { margin:20px 0 8px; font-size:14px; }
+@media(max-width:350px) { .service-page.mini-activity-create-activity-create .preset-row { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+
+.service-page.mini-activity-create-activity-create .club-name { color:var(--text-secondary); font-size:12px; font-weight:400; }
+.service-page.mini-activity-create-activity-create .bottom-actions { padding:10px 16px calc(10px + env(safe-area-inset-bottom)); gap:12px; background:#fff; }
+.service-page.mini-activity-create-activity-create .bottom-actions .next-action { flex:1; width:0; min-width:0; padding:10px 16px; border:1px solid var(--brand); border-radius:8px; background:var(--brand); color:#fff; }
+.service-page.mini-activity-create-activity-create .bottom-actions .save-action,.service-page.mini-activity-create-activity-create .bottom-actions .back-action { flex:none; width:auto; padding:10px 12px; border:1px solid var(--border); border-radius:8px; background:#fff; color:var(--text); }
+
+.service-page.mini-activity-create-activity-create .training-library-scroll { width:100%; margin-bottom:20px; }
+.service-page.mini-activity-create-activity-create .training-library-options { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; padding:0; }
+.service-page.mini-activity-create-activity-create .training-library-option { width:100%; min-height:76px; padding:12px; border:1px solid var(--border); border-radius:8px; background:#fff; }
+.service-page.mini-activity-create-activity-create .training-library-option.is-selected { border-color:var(--brand); background:var(--brand-soft); }
+.template-overlay .template-sheet { padding:24px 16px 16px; border-radius:12px 12px 0 0; background:#fff; color:#1a1a1a; }
+.template-overlay .sheet-title { font-size:18px; font-weight:600; }
+.template-overlay .sheet-cancel,.template-overlay .sheet-save { min-height:44px; width:auto; border-radius:8px; font-size:14px; }
+.template-overlay .sheet-save { color:#fff; background:#ff1838; }
+@media(max-width:350px) { .service-page.mini-activity-create-activity-create .training-library-options { grid-template-columns:minmax(0,1fr); } }
+
+.service-page.load-state,.service-page.detail-state,.service-page.meetup-state { min-height:260px; margin:16px; padding:32px 16px; border:1px solid var(--border); border-radius:12px; background:#fff; color:var(--text-secondary); font-size:14px; }
+.service-page.load-state .retry-button,.service-page.detail-state .btn,.service-page.meetup-state .primary { min-width:88px; width:auto; min-height:44px; margin:16px auto 0; padding:10px 16px; border-radius:8px; background:var(--brand); color:#fff; font-size:14px; }
+
+.service-page.club-detail { padding:16px 16px calc(28px + env(safe-area-inset-bottom)); }
+.service-page.mini-activity-create-activity-create .bottom-actions button { height:44px; min-height:44px; }
+.service-page.activity-page .bottom-primary,.service-page.signup-page .submit-button { height:44px; min-height:44px; }
+
+.service-page .btn[disabled],.service-page .primary[disabled],.service-page.activity-page .bottom-primary[disabled],.service-page.signup-page .submit-button[disabled],.service-page.mini-activity-create-activity-create .bottom-actions .next-action[disabled] { color:#777; border-color:#eee; background:#eee; opacity:1; }
