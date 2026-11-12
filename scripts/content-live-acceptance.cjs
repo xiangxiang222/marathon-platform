@@ -71,8 +71,8 @@ async function main() {
   const men = await api('GET', '/content/profiles?type=athlete&gender=men&page=1&pageSize=20');
   const women = await api('GET', '/content/profiles?type=athlete&gender=women&page=1&pageSize=20');
   const pacers = await api('GET', '/content/profiles?type=pacer&page=1&pageSize=20');
-  assert.equal(men.total, 20); assert.equal(women.total, 20); assert.ok(pacers.total > 0, 'At least one source-backed pacer is available.');
-  assert.equal(new Set([...men.profiles, ...women.profiles, ...pacers.profiles].map(p => p.id)).size, 40 + pacers.total);
+  assert.equal(men.total, 100); assert.equal(women.total, 100); assert.ok(pacers.total > 0, 'At least one source-backed official pacer person is available.');
+  assert.equal(new Set([...men.profiles, ...women.profiles, ...pacers.profiles].map(p => p.id)).size, 40 + pacers.profiles.length);
   report.fixture = { registeredUsers: 1, createdClubs: 1, athletes: men.total + women.total, pacers: pacers.total, requestedPacers: 10, pacerIdentityCoverage: pacers.meta?.coverage || {}, source: 'Real static research; synthetic temporary articles' };
   let industryId, clubArticleId;
   const actorBrowser = await context(owner), adminBrowser = await context({ token: process.env.ADMIN_TOKEN }, 1024, true);
@@ -89,12 +89,13 @@ async function main() {
     assert.equal(await p.locator('.person-row').count(), 20); assert.ok((await p.locator('.person-row').first().innerText()).includes(women.profiles[0].name));
     await p.locator('.person-row').first().click(); await p.locator('.profile-hero h1').waitFor();
     assert.equal(await p.locator('.profile-hero h1').innerText(), women.profiles[0].name);
-    assert.ok(await p.locator('.source-box a').count()); assert.match(await p.locator('.ranking-note').last().innerText(), /快照|个人最佳/);
+    assert.ok((await p.locator('.profile-article .guide-md').innerText()).length>200); assert.equal(await p.locator('a[href^="http"]').count(),0);
   });
   await check('Pacer profiles match collected evidence without claiming a national ranking', async () => {
-    const p = actorBrowser.p; await p.goto(base + '/news?tab=pacer', { waitUntil: 'networkidle' }); await p.locator('.person-row').nth(pacers.total - 1).waitFor();
-    assert.equal(await p.locator('.person-row').count(), pacers.total); assert.match(await p.locator('.ranking-note').innerText(), /不代表|不存在|没有|并非|无.*排名|不等于|未找到|不能视为/);
-    await p.locator('.person-row').first().click(); await p.locator('.profile-hero').waitFor(); assert.ok(await p.locator('.evidence-card').count()); assert.ok(await p.locator('.source-box a').count());
+    const p = actorBrowser.p; await p.goto(base + '/news?tab=pacer', { waitUntil: 'networkidle' }); await p.locator('.person-row').nth(pacers.profiles.length - 1).waitFor();
+    assert.equal(await p.locator('.person-row').count(), pacers.profiles.length); assert.ok(await p.locator('#pacer-race option').count()>1);
+    assert.ok(pacers.profiles.every(profile=>profile.profileKind==='official_pacer_person'&&profile.assignments.length&&profile.assignments.every(a=>a.raceGrade==='A'&&a.sourceUrl)));
+    await p.locator('.person-row').first().click(); await p.locator('.profile-hero').waitFor(); assert.ok(await p.locator('.pacer-assignment').count()); assert.ok((await p.locator('.profile-article .guide-md').innerText()).length>100); assert.equal(await p.locator('a[href^="http"]').count(),0);
   });
   await check('Club publishing UI saves a private draft, publishes it, then withdraws it', async () => {
     const p = actorBrowser.p; await p.goto(base + '/clubs/' + club.id + '/news', { waitUntil: 'networkidle' });
@@ -130,7 +131,7 @@ async function main() {
     await p.getByText('已发布到资讯中心。', { exact: true }).waitFor();
     assert.equal((await api('GET', '/content/articles/' + industryId)).article.category, 'industry');
     const reader = actorBrowser.p; await reader.goto(base + '/news/articles/' + industryId, { waitUntil: 'networkidle' }); await reader.locator('.journal-detail h1').waitFor();
-    assert.match(await reader.locator('.guide-md').innerText(), /每一份人物档案/); assert.ok(await reader.locator('.source-box a').count());
+    assert.match(await reader.locator('.guide-md').innerText(), /每一份人物档案/); assert.equal(await reader.locator('a[href^="http"]').count(),0);
   });
   await check('Compact mobile sections show the first profile on the opening screen and keep filters on one line', async () => {
     const mobile = await context(owner, 320), p = mobile.p;
@@ -190,9 +191,9 @@ async function main() {
   const starters = JSON.parse(fs.readFileSync(path.join(ROOT, 'shared/content-starter-articles.json'), 'utf8'));
   const { importStarters } = require('./import-content-starters.cjs');
   const imported = importStarters(db, Array.isArray(starters) ? starters : starters.articles);
-  assert.equal(imported.inserted, 2);
+  assert.equal(imported.inserted, starters.length);
   const curated = await api('GET', '/content/articles?page=1&pageSize=20');
-  assert.equal(curated.total, 2);
+  assert.equal(curated.total, starters.length);
   assert.ok(curated.articles.every(row => row.sourceUrl && row.category === 'industry'));
   const curatedArticle = curated.articles.find(row => row.title === starters[0].title);
   assert.ok(curatedArticle);
@@ -201,13 +202,13 @@ async function main() {
     const reader = await context(null, width);
     await reader.p.goto(base + '/news', { waitUntil: 'networkidle' });
     await reader.p.locator('.journal-row').nth(1).waitFor();
-    assert.equal(await reader.p.locator('.journal-row').count(), 2);
+    assert.equal(await reader.p.locator('.journal-row').count(), Math.min(starters.length,20));
     assert.doesNotMatch(await reader.p.locator('.journal-content').innerText(), /临时验收|临时隔离/);
     await snapshot(reader.p, 'hub-curated');
     await reader.p.goto(base + '/news/articles/' + curatedArticle.id, { waitUntil: 'networkidle' });
     await reader.p.locator('.journal-detail h1').waitFor();
     assert.equal(await reader.p.locator('.journal-detail h1').innerText(), curatedArticle.title);
-    assert.equal(await reader.p.locator('.source-box a').first().getAttribute('href'), curatedArticle.sourceUrl);
+    assert.equal(await reader.p.locator('a[href^="http"]').count(),0); assert.match(await reader.p.locator('.detail-meta').innerText(), /跑圈编辑部/);
     assert.doesNotMatch(await reader.p.locator('.journal-detail').innerText(), /临时验收|临时隔离/);
     await snapshot(reader.p, 'industry-curated-detail');
     await reader.ctx.close();

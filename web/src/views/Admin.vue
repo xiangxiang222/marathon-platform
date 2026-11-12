@@ -19,6 +19,7 @@
       <PrivacyRequestsAdmin v-if="section === 'privacy-requests' && role === 'admin'" :key="token" :session-token="token" :request="admin" :refresh-key="privacyRefresh" />
       <FeedbackAdmin v-if="section === 'feedback' && role === 'admin'" :request="admin" :refresh-key="feedbackRefresh" :initial-filter="feedbackFilter" @changed="loadOverview" />
       <ContentAdmin v-if="section === 'content' && role === 'admin'" :key="token" :session-token="token" :request="admin" :refresh-key="contentRefresh" />
+      <ProfileAdmin v-if="['athletes','pacers'].includes(section) && role === 'admin'" :key="token+'-'+section" :profile-type="section === 'pacers' ? 'pacer' : 'athlete'" :session-token="token" :request="admin" :refresh-key="profileRefresh" />
       <div v-if="section === 'races'" class="workspace-tabs" role="tablist" aria-label="赛事工作区"><button v-for="item in raceWorkspaces" :key="item.id" type="button" role="tab" :aria-selected="raceWorkspace === item.id" :class="{ on: raceWorkspace === item.id }" @click="pickRaceWorkspace(item.id)"><AdminIcon :name="item.icon" />{{ item.label }}<span v-if="item.id === 'review' && pendingCount">{{ pendingCount }}</span></button></div>
       <div v-if="section === 'races'" class="desk race-desk" :class="{ editing: deskOpen, dragging }" :style="splitStyle">
       <div v-show="raceWorkspace !== 'official'" class="desk-main">
@@ -916,6 +917,7 @@ import FeedbackAdmin from "../components/admin/FeedbackAdmin.vue";
 import ClubIdentityAdmin from "../components/admin/ClubIdentityAdmin.vue";
 import PrivacyRequestsAdmin from "../components/admin/PrivacyRequestsAdmin.vue";
 import ContentAdmin from "../components/admin/ContentAdmin.vue";
+import ProfileAdmin from "../components/admin/ProfileAdmin.vue";
 import AdminIcon from "../components/admin/AdminIcon.vue";
 import { countiesOf, settleRegion } from "../areas";
 import { regions } from "../regions";
@@ -970,6 +972,7 @@ const section = ref("overview");
 const feedbackRefresh = ref(0);
 const identityRefresh = ref(0);
 const contentRefresh = ref(0);
+const profileRefresh = ref(0);
 const privacyRefresh = ref(0);
 const feedbackFilter = ref("pending");
 const loginBusy = ref(false);
@@ -986,6 +989,8 @@ const allSections = [
   { id: "races", label: "赛事管理", group: "内容运营", icon: "races", roles: ["admin"] },
   { id: "news", label: "赛事资讯", group: "内容运营", icon: "news", roles: ["admin"] },
   { id: "content", label: "资讯中心", group: "内容运营", icon: "news", roles: ["admin"] },
+  { id: "athletes", label: "运动员管理", group: "内容运营", icon: "users", roles: ["admin"] },
+  { id: "pacers", label: "官兔管理", group: "内容运营", icon: "runs", roles: ["admin"] },
   { id: "feedback", label: "共创建议", group: "内容运营", icon: "feedback", roles: ["admin"] },
   { id: "users", label: "跑者管理", group: "跑团与跑者", icon: "users", roles: ["admin", "club"] },
   { id: "clubs", label: "跑团管理", group: "跑团与跑者", icon: "clubs", roles: ["admin", "club"] },
@@ -1116,6 +1121,8 @@ const sectionLead = computed(() => ({
   races: "从采集核实到正式发布，维护每一场比赛的时间、项目、规程与来源。",
   news: "发布与审核赛事资讯，确保每条内容关联准确的赛事。",
   content: "整理业界新闻、人物故事与跑团资讯，维护来源、草稿和发布状态。",
+  athletes: "发布和编辑运动员个人资料、完整人物文章与比赛履历，未人工修改的成绩继续自动更新。",
+  pacers: "以人为单位维护官兔档案，关联配速赛事、目标组别与实际任职经历。",
   feedback: "听见跑者的功能与 UI 想法，公示投票、答复进度，并兑现采纳奖励。",
   users: "查看跑者的参赛计划、成绩与跑团，按需管理账号。跑团向所有登录用户开放创建。",
   clubs: "管理跑团成员、角色与团长移交，成员账号和跑团分开维护。",
@@ -1309,6 +1316,7 @@ async function refreshSection() {
     if (section.value === "overview") return await loadOverview();
     if (section.value === "feedback") { feedbackRefresh.value++; return; }
     if (section.value === "content") { contentRefresh.value++; return; }
+    if (["athletes","pacers"].includes(section.value)) { profileRefresh.value++; return; }
     if (section.value === "club-identity") { identityRefresh.value++; return; }
     if (section.value === "privacy-requests") { privacyRefresh.value++; return; }
     if (section.value === "races") return await Promise.all([raceWorkspace.value === "official" ? load() : raceWorkspace.value === "review" ? loadBotReviews() : loadCatalog(), loadSpots()]);
