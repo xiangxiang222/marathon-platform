@@ -1,5 +1,5 @@
 <template>
-  <main class="activity-page service-page">
+  <main class="activity-page service-page service-session">
     <header class="activity-nav">
       <router-link :to="'/clubs/' + clubId" aria-label="返回跑团">‹</router-link>
       <div><small>{{ clubName || '跑团活动' }}</small><h1>训练详情</h1></div>
@@ -9,17 +9,14 @@
     <p v-if="loading" class="state">正在加载活动…</p>
     <section v-else-if="activity" class="activity-content">
       <section class="event-hero">
-        <div class="hero-track" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
         <div class="hero-meta"><span>{{ typeLabel }}</span><span class="status">{{ activity.statusLabel }}</span></div>
         <h2>{{ activity.title }}</h2>
-        <p class="hero-km">{{ activity.plannedKm || '—' }}<small>公里计划</small></p>
-        <p class="hero-date">{{ activity.dateLabel }} <b>{{ activity.clockLabel }}</b></p>
+        <div class="session-appointment"><span class="appointment-label">活动时间</span><p>{{ activity.dateLabel }} <b>{{ activity.clockLabel }}</b></p><span class="appointment-label">集合地点</span><p>{{ activity.gatherPlace || activity.place || '待确认' }}<small v-if="activity.gatherAt"> · {{ activity.gatherAt }} 集合</small></p></div>
+        <div class="session-my-state"><span>{{ activity.mine.signed ? '我已报名' : activity.action.label }}</span><span v-if="activity.plannedKm">计划 {{ activity.plannedKm }} km</span><span v-if="activity.mine.km != null">已打卡 {{ activity.mine.km }} km</span></div>
         <p v-if="activity.issue" class="hero-issue">{{ activity.issue }}</p>
       </section>
 
       <section class="quickfacts" aria-label="活动信息">
-        <div><span>集合时间</span><b>{{ activity.gatherAt || activity.clockLabel || '待确认' }}</b></div>
-        <div><span>集合地点</span><b>{{ activity.gatherPlace || activity.place || '待确认' }}</b></div>
         <div><span>报名进度</span><b>{{ activity.signupCount }}<small>{{ activity.capacity ? ' / ' + activity.capacity : ' 人' }}</small></b></div>
         <div><span>报名截止</span><b>{{ signupDeadline }}</b></div>
       </section>
@@ -76,7 +73,7 @@
       </section>
 
       <section v-if="activity.mine.signed || staff" class="utility-panel">
-        <div class="utility-heading"><b>现场与管理</b><span>仅对已加入跑团的成员开放</span></div>
+        <div class="utility-heading"><b>我的训练记录</b><span>仅对已加入跑团的成员开放</span></div>
         <div v-if="activity.mine.signed && activity.checkAvailable" class="check-row"><input v-model="km" inputmode="decimal" placeholder="打卡里程 km"/><input v-model="checkNote" maxlength="40" placeholder="一句训练记录"/><button class="subtle-action" :disabled="busy" @click="check">{{ activity.mine.km != null ? '更新打卡' : '打卡' }}</button></div>
         <p v-else-if="activity.mine.signed && activity.status === 'cancelled'" class="check-hint">活动已取消，不能打卡</p>
         <div v-else-if="activity.mine.signed" class="check-hint"><span>活动开始后可打卡</span><button type="button" :disabled="busy" @click="load">刷新状态</button></div>

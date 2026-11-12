@@ -1,8 +1,8 @@
-<view class="pad club-detail mini-album-album service-page" wx:if="{{activity}}">
-  <view class="card">
-    <view class="detail-kicker">留住一起奔跑的瞬间</view><view class="title">{{activity.title}}</view>
+<view class="pad club-detail mini-album-album service-page service-session" wx:if="{{activity}}">
+  <view class="card album-identity">
+    <view class="detail-kicker">跑团活动相册</view><view class="title">{{activity.title}}</view>
     <view class="src">{{activity.dateLabel}} {{activity.place}}</view>
-    <view class="src">{{photoCount}} 张照片 · {{videoCount}} 个视频</view>
+    <view class="session-my-state"><text>{{photoCount}} 张照片</text><text>{{videoCount}} 个视频</text><text>{{review ? "上传内容需审核" : "记录活动瞬间"}}</text></view></view><view class="card album-collection"><view class="service-section-heading"><view class="h2">活动影像</view><text>{{tab === "photo" ? photoCount + " 张照片" : videoCount + " 个视频"}}</text></view>
     <view class="detail-options"><button class="ghost {{tab === 'photo' ? 'on' : ''}}" bindtap="showPhotos">照片 {{photoCount}}</button><button class="ghost {{tab === 'video' ? 'on' : ''}}" bindtap="showVideos">视频 {{videoCount}}</button></view>
     <view class="detail-actions">
     <button class="ghost" bindtap="toggleLayout">{{layout === 'grid' ? '瀑布流' : '宫格'}}</button>

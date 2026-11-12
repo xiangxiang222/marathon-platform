@@ -1,14 +1,14 @@
-<view class="activity-page mini-activity-activity service-page" wx:if="{{activity}}">
+<view class="activity-page mini-activity-activity service-page service-session" wx:if="{{activity}}">
   <view class="hero">
     <view class="hero-top"><text class="type-label">{{activity.trainingTypeLabel}}</text><text class="status-label">{{activity.statusLabel}}</text><button class="activity-share" open-type="share" aria-label="分享活动">分享 <text>↗</text></button></view>
     <view wx:if="{{activity.issue}}" class="issue">{{activity.issue}}</view>
     <view class="hero-title">{{activity.title}}</view>
-    <view class="hero-distance"><text class="distance-value">{{activity.plannedKm || '—'}}</text><text class="distance-unit">公里计划</text></view>
     <view class="hero-facts">
       <view class="hero-fact"><text class="fact-label">时间</text><text class="fact-value">{{activity.timeLabel || '待定'}}</text></view>
       <view class="hero-fact"><text class="fact-label">地点</text><text class="fact-value">{{activity.gatherPlace || activity.place || '待定'}}</text></view>
     </view>
     <view wx:if="{{activity.gatherAt && activity.gatherAt !== activity.clockLabel}}" class="gather-at">集合 {{activity.gatherAt}}</view>
+    <view class="session-my-state"><text>{{activity.mine.signed ? "我已报名" : activity.action.label}}</text><text wx:if="{{activity.plannedKm}}">计划 {{activity.plannedKm}} km</text><text wx:if="{{activity.mine.km != null}}">已打卡 {{activity.mine.km}} km</text></view>
   </view>
 
   <view class="tabs">

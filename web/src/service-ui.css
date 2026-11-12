@@ -156,3 +156,41 @@
 
 .template-modal .sheet-close { width:44px; height:44px; min-width:44px; }
 .service-page .viewer .nav { width:44px; height:44px; min-height:44px; }
+
+/* Appointments, personal state and the current task anchor every service route. */
+.service-session :is(.block,.detail-panel,.utility-panel,.event-heading,.form-section,.success-panel) { border:0; }
+.service-session :is(.detail-hero,.event-heading,.event-hero,.album-hero) { background:linear-gradient(135deg,#fff0f2 0%,#fff 76%); }
+.service-session .event-hero { display:block; border:0; }
+.service-session .event-hero h2 { margin:12px 0 16px; }
+.service-session .session-appointment { display:grid; grid-template-columns:72px minmax(0,1fr); align-items:baseline; gap:8px 12px; margin:14px 0; font-size:14px; line-height:1.65; }
+.service-session .session-appointment p { margin:0; color:var(--ink); }
+.service-session .session-appointment small { font-size:12px; color:var(--muted); }
+.service-session .appointment-label { color:var(--muted); font-size:12px; }
+.service-session .session-my-state { display:flex; flex-wrap:wrap; align-items:center; gap:6px 12px; margin-top:16px; padding:12px 0 0; border-top:1px solid #efdee1; color:var(--ink); font-size:12px; line-height:1.6; }
+.service-session .session-my-state>span:first-child { color:var(--accent); font-weight:500; }
+.service-session .session-my-state strong { font-size:15px; font-weight:600; }
+.service-session .quickfacts { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); background:#fff; }
+.service-session .quickfacts>div { min-height:64px; }
+.service-session .quickfacts>div span { font-size:12px; }
+.service-session .service-section-heading { display:flex; justify-content:space-between; align-items:baseline; gap:12px; margin-bottom:14px; }
+.service-session .service-section-heading h2 { margin:0; font-size:18px; line-height:1.5; }
+.service-session .service-section-heading>span { flex:none; color:var(--muted); font-size:12px; }
+.service-session .stage-actions { display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px; }
+.service-session .stage-actions :is(button,.file-pick) { margin:0; }
+.service-session .stage-actions .undo { padding:0 12px; color:var(--muted); border:1px solid var(--line); background:#fff; }
+.service-session .service-distribution { margin-top:12px; border-top:1px solid #efdee1; }
+.service-session .service-distribution summary { display:flex; align-items:center; justify-content:space-between; cursor:pointer; color:var(--muted); }
+.service-session .service-distribution summary::after { content:'⌄'; font-size:16px; }
+.service-session .detail-hero .sum { margin-top:12px; padding:0; background:transparent; font-size:12px; color:var(--muted); }
+.service-session .meetup-photos { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+.service-session .meetup-photos .sheet { width:100%; margin:0; border-radius:8px; }
+.service-session .mate { display:flex; justify-content:space-between; align-items:center; gap:12px; padding:12px 0; border-bottom:1px solid var(--line); font-size:15px; }
+.service-session .mate:last-child { border-bottom:0; }
+.service-session .mate b { font-size:15px; font-weight:600; }
+.service-session .mate small { font-size:12px; }
+.service-session .album-collection .tools { align-items:center; }
+.service-session .album-collection .tools .status { border:0; background:transparent; border-radius:0; color:var(--muted); }
+.service-session .album-collection .tools .status.on { color:var(--accent); border-bottom:2px solid var(--accent); }
+.service-session .album-collection .album { margin:16px 0; }
+.service-session .album-collection .file { display:flex; align-items:center; justify-content:center; }
+@media (min-width:800px) { .service-session .session-appointment { grid-template-columns:90px minmax(0,1fr); }.service-session .meetup-photos { grid-template-columns:repeat(3,minmax(0,1fr)); } }

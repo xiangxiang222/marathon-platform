@@ -1,5 +1,5 @@
 <template>
-  <main class="signup-page service-page">
+  <main class="signup-page service-page service-session">
     <header class="topbar">
       <router-link :to="activityPath" aria-label="返回活动">‹</router-link>
       <h1>活动报名</h1>
@@ -32,14 +32,14 @@
 
       <form v-else class="signup-form" @submit.prevent="submit">
         <section class="event-heading">
-          <p class="eyebrow">{{ clubName || "跑团活动" }}</p>
+          <p class="eyebrow">{{ clubName || "跑团活动" }} · 报名确认</p>
           <h2>{{ activity.title }}</h2>
           <p class="event-meta">{{ activity.timeLabel }}<template v-if="activity.plannedKm"> · {{ activity.plannedKm }} km</template></p>
           <p v-if="activity.gatherAt || activity.gatherPlace" class="event-meta">集合 {{ [activity.gatherAt, activity.gatherPlace].filter(Boolean).join(" · ") }}</p>
-        </section>
+        <div class="session-my-state"><span>报名人</span><strong>{{ viewerName }}</strong><span v-if="chosenGroup">{{ chosenGroup.name }}</span></div></section>
 
         <section class="form-section">
-          <div class="section-title"><h3>选择跑团组别</h3><span>请选择一项</span></div>
+          <div class="section-title"><h3>选择组别</h3><span>请选择一项</span></div>
           <div v-if="groups.length" class="group-list" role="radiogroup" aria-label="活动组别">
             <button v-for="group in groups" :key="group.id" class="group-option" :class="{ selected: groupId === group.id, unavailable: group.full }" type="button" role="radio" :aria-checked="groupId === group.id" :disabled="group.full" @click="groupId = group.id">
               <span class="radio-mark" aria-hidden="true"></span>

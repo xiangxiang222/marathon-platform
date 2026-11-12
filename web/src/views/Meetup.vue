@@ -1,5 +1,5 @@
 <template>
-  <main class="club-detail-page service-page">
+  <main class="club-detail-page service-page service-session meetup-service">
     <header class="topbar">
       <router-link :to="'/clubs/' + clubId" aria-label="返回">‹</router-link>
       <h1>约跑</h1>
@@ -11,42 +11,42 @@
     </section>
     <template v-if="meetup">
       <div class="block detail-hero">
-        <span class="detail-kicker">一起出发 · 约跑</span>
-        <h2>{{ meetup.dateLabel }} {{ meetup.place }}</h2>
-        <p class="rank-label">{{ meetup.statusLabel }}</p>
+        <span class="detail-kicker">跑团约跑</span>
+        <h2>{{ meetup.place || "跑团约跑" }}</h2><div class="session-appointment"><span class="appointment-label">约跑时间</span><p>{{ meetup.dateLabel }}</p></div>
+        <div class="session-my-state"><span>{{ meetup.statusLabel }}</span><strong>{{ meetup.canUncheck ? "我已打卡" : meetup.canLeave ? "我已参加" : "我的参与" }}</strong></div>
         <p v-if="meetup.note" class="rank-label">{{ meetup.note }}</p>
         <p class="sum">{{ meetup.hint }}</p>
         <details class="share-fold"><summary>邀请跑友 · 查看接龙文字</summary><pre class="share-text">{{ meetup.shareText }}</pre><button class="undo" type="button" @click="copy(meetup.shareText)">复制到微信群</button></details>
       </div>
-      <div v-if="meetup.canJoin || meetup.canLeave || meetup.canCheck || meetup.canUncheck || meetup.canPhoto" class="block">
-        <h2>我的参与</h2>
+      <div v-if="meetup.canJoin || meetup.canLeave || meetup.canCheck || meetup.canUncheck || meetup.canPhoto" class="block stage-action">
+        <div class="service-section-heading"><h2>我的参与</h2><span>{{ meetup.canCheck ? "到场后打卡" : "本场约跑" }}</span></div><div class="stage-actions">
         <button v-if="meetup.canJoin" class="primary" type="button" @click="act('join', 'POST')">算我一个</button>
         <button v-if="meetup.canLeave" class="undo" type="button" @click="act('join', 'DELETE')">不算我了</button>
         <button v-if="meetup.canCheck" class="primary" type="button" @click="act('check', 'POST')">打卡</button>
         <button v-if="meetup.canUncheck" class="undo" type="button" @click="act('check', 'DELETE')">撤销打卡</button>
-        <label v-if="meetup.canPhoto" class="file-pick">上传合影<input type="file" accept="image/jpeg,image/png,image/webp" @change="onPhoto" /></label>
+        <label v-if="meetup.canPhoto" class="file-pick">上传合影<input type="file" accept="image/jpeg,image/png,image/webp" @change="onPhoto" /></label></div>
       </div>
       <div class="block">
-        <h2>已打卡 {{ meetup.checkCount }}</h2>
+        <div class="service-section-heading"><h2>到场打卡</h2><span>{{ meetup.checkCount }} 人</span></div>
         <p v-if="!meetup.checks.length" class="rank-label">还没有人打卡。</p>
         <div v-for="person in meetup.checks" :key="person.userId" class="mate">
           <router-link :to="memberLink(person.userId)" class="member-name-link">{{ person.nickname }}<template v-if="person.mine"> · 我</template></router-link>
         </div>
       </div>
       <div class="block">
-        <h2>算我一个 {{ meetup.joins.length }}</h2>
+        <div class="service-section-heading"><h2>参与名单</h2><span>{{ meetup.joins.length }} 人</span></div>
         <p v-if="!meetup.joins.length" class="rank-label">还没有人预报。</p>
         <div v-for="person in meetup.joins" :key="person.userId" class="mate">
           <router-link :to="memberLink(person.userId)" class="member-name-link">{{ person.nickname }}</router-link>
         </div>
       </div>
       <div class="block">
-        <h2>合影</h2>
+        <div class="service-section-heading"><h2>约跑合影</h2><span>{{ meetup.photos.length }} 张</span></div><div class="meetup-photos">
         <p v-if="!meetup.photos.length" class="rank-label">还没有合影。至少 1 张，最多 9 张。</p>
         <div v-for="photo in meetup.photos" :key="photo.id">
           <img class="sheet" :src="photoSrc(photo.id)" alt="" />
           <button v-if="photo.mine || meetup.canStaff" class="undo" type="button" @click="removePhoto(photo)">删除</button>
-        </div>
+        </div></div>
       </div>
       <details v-if="meetup.canStaff || meetup.canVoid" class="block management-fold">
         <summary>约跑管理</summary>
