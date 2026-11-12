@@ -1,21 +1,2 @@
 @import "../../utils/mileage-pages.wxss";
-.tg-card { margin-bottom:20rpx; padding:16px; border-radius:24rpx; }
-.tg-card-top { display:flex; align-items:center; gap:20rpx; }
-.tg-mark { display:flex; align-items:center; justify-content:center; flex:none; width:76rpx; height:76rpx; border-radius:20rpx; background:rgba(255,255,255,.72); font-size:24px; font-weight:600; }
-.tg-main { flex:1; min-width:0; }.tg-name { color:var(--text); font-size:18px; font-weight:600; overflow-wrap:anywhere; }.tg-pace { color:var(--text-secondary); font-size:12px; margin-top:8rpx; overflow-wrap:anywhere; }
-.tg-size { flex:none; font-size:20px; color:var(--text); font-weight:600; }.tg-size>text { font-size:12px; color:var(--text-secondary); font-weight:400; }
-.tg-description { margin-top:20rpx; color:var(--text-secondary); font-size:12px; line-height:1.7; white-space:pre-wrap; overflow-wrap:anywhere; }
-.tg-actions { display:flex; align-items:center; justify-content:space-between; margin-top:16rpx; border-top:1rpx solid rgba(110,140,118,.12); }.tg-delete { min-height:44px; font-size:12px; color:var(--text-secondary); }
-.tg-members { padding:20rpx 26rpx; }.tg-member { display:flex; gap:14rpx; align-items:center; justify-content:space-between; border-bottom:1rpx solid var(--border); min-height:76px; }.tg-member:last-child { border-bottom:0; }
-.mp-page .tg-member-link { display:flex; flex:1; min-width:0; gap:16rpx; align-items:center; text-align:left; min-height:56px; }.tg-member-link>text { flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:14px; font-weight:500; }.tg-assignment { display:flex; gap:12rpx; align-items:center; min-height:44px; max-width:230rpx; color:var(--text-secondary); font-size:12px; overflow-wrap:anywhere; }
-
-.tg-card { border:1rpx solid var(--border); border-radius:24rpx; background:var(--card,#fff); color:var(--text); }
-.tg-mark { border-radius:16rpx; background:var(--page-bg); color:var(--text-secondary); font-size:20px; font-weight:500; }
-.tg-name { color:var(--text); font-size:15px; font-weight:500; }
-.tg-pace,.tg-description,.tg-size>text { color:var(--text-secondary); font-size:12px; }
-.tg-size { color:var(--text); font-size:20px; font-weight:500; }
-.tg-actions,.tg-member { border-color:var(--border); }
-.tg-delete { min-height:44px; color:var(--text-secondary); font-size:12px; }
-.mp-page .tg-member-link { min-height:56px; }
-.tg-member-link>text { font-size:14px; font-weight:500; }
-.tg-assignment { min-height:44px; color:var(--brand); font-size:12px; }
+.tg-page-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:4px 0 12px}.tg-total{flex:none;color:var(--text-secondary);font-size:12px}.tg-page-heading .mp-subtitle{margin-top:6px}.tg-card{margin-bottom:12px;padding:14px 16px;border:0;border-radius:12px;background:#fff}.tg-card-top{display:flex;align-items:center;gap:12px}.tg-main{flex:1;min-width:0}.tg-name{font-size:15px;font-weight:600;overflow-wrap:anywhere}.tg-pace{margin-top:5px;font-size:12px;color:var(--text-secondary);overflow-wrap:anywhere}.tg-size{display:flex;flex-direction:column;gap:2px;flex:none;font-size:22px;font-weight:600;text-align:right}.tg-size>text{font-size:12px;color:var(--text-secondary);font-weight:400}.tg-description{margin-top:10px;color:var(--text-secondary);font-size:12px;line-height:1.7;white-space:pre-wrap;overflow-wrap:anywhere}.tg-actions{display:flex;align-items:center;justify-content:flex-end;gap:16px;margin-top:8px;border-top:1px solid var(--border)}.tg-delete{min-height:44px;font-size:12px;color:var(--text-secondary)}.tg-members{padding:14px 16px}.tg-member{display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--border);min-height:72px}.tg-member:last-child{border-bottom:0}.mp-page .tg-member-link{display:flex;align-items:center;flex:1;min-width:0;gap:10px;text-align:left;min-height:56px}.tg-member-link>text{flex:1;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-size:14px;font-weight:500}.tg-assignment{display:flex;align-items:center;gap:6px;min-height:44px;max-width:115px;font-size:12px;color:var(--text-secondary);overflow-wrap:anywhere}.tg-member picker{flex:none;min-width:44px}.training-groups>.mp-section-head{margin-top:12px}.training-groups>.mp-section-head>.mp-small-note{max-width:45%;text-align:right}

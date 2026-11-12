@@ -1,5 +1,6 @@
 const { request } = require("../../utils/request");
 const { RANGES, today, shiftDate, canAdvance, decorate } = require("../../utils/mileage-board");
+const compactDistance = value => Number(value) >= 100000000 ? (Math.round(Number(value) / 10000000) / 10) + "亿" : Number(value) >= 10000 ? (Math.round(Number(value) / 1000) / 10) + "万" : String(Math.round(Number(value || 0) * 100) / 100);
 function token() { const app = getApp(); return app && app.globalData ? String(app.globalData.token || "") : ""; }
 Component({
   properties: { clubId: { type: String, value: "" }, embedded: { type: Boolean, value: false } },
@@ -35,7 +36,7 @@ Component({
       } finally { if (current()) this.setData({ loading: false }); }
     },
     renderGroups() {
-      const groups = this.data.board ? this.data.board.groups : [];
+      const groups = this.data.board ? this.data.board.groups.map(group => ({ ...group, displayKmLabel: compactDistance(group.km) })) : [];
       const options = [{ id: "", name: "全员" }, ...groups.map(group => ({ id: String(group.id), name: group.name })), { id: "0", name: "未分组" }];
       this.setData({ shownGroups: this.data.groupsExpanded ? groups : groups.slice(0, 4), groupOptions: options, selectedGroupIndex: Math.max(0, options.findIndex(group => group.id === this.data.groupId)) });
     },
@@ -62,7 +63,7 @@ Component({
     },
     resetDate() { this.setData({ date: today() }); this.load(); },
     onQuery(e) { this.setData({ query: e.detail.value }); this.filterRank(); },
-    filterRank() { const q = this.data.query.trim().toLowerCase(); this.setData({ shownRank: ((this.data.board || {}).rank || []).filter(r => !q || String(r.nickname).toLowerCase().includes(q)) }); },
+    filterRank() { const q = this.data.query.trim().toLowerCase(); this.setData({ shownRank: ((this.data.board || {}).rank || []).filter(r => !q || String(r.nickname).toLowerCase().includes(q)).map(row => ({ ...row, displayKmLabel: compactDistance(row.km) })) }); },
     openMember(e) { wx.navigateTo({ url: "/pages/member-profile/member-profile?club=" + encodeURIComponent(this.properties.clubId) + "&user=" + encodeURIComponent(e.currentTarget.dataset.id) + "&tab=mileage&range=" + this.data.range + "&date=" + this.data.date }); },
     openGroups() { wx.navigateTo({ url: "/pages/training-groups/training-groups?club=" + encodeURIComponent(this.properties.clubId) }); },
     openTools() { wx.navigateTo({ url: "/pages/mileage/mileage?id=" + encodeURIComponent(this.properties.clubId) + "&tools=1" }); }

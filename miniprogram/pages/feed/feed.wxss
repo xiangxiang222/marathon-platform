@@ -1,5 +1,5 @@
 .mini-feed-feed { padding:16px; color:var(--text); font-size:14px; }
-.mini-feed-feed .card { margin:0 0 12px; padding:16px; border:1rpx solid var(--border); border-radius:12px; background:#fff; box-shadow:none; }
+.mini-feed-feed .card { margin:0 0 12px; padding:16px; border:0; border-radius:12px; background:#fff; box-shadow:none; }
 .feed-heading { font-size:18px; font-weight:600; }
 .feed-note,.feed-time { color:var(--text-secondary); font-size:12px; line-height:1.7; }
 .feed-note { margin-top:6px; }
@@ -8,9 +8,9 @@
 .mini-feed-feed button { display:flex; align-items:center; justify-content:center; flex:none; width:auto; min-height:44px; margin:0; padding:0 10px; border:0; border-radius:8px; font-size:14px; font-weight:500; line-height:1.5; }
 .mini-feed-feed button::after { border:0; }
 .feed-input-row .btn { width:56px; padding:0; background:var(--brand); color:#fff; }
-.feed-post-head { display:flex; align-items:baseline; justify-content:space-between; gap:12px; }
+.feed-post-head{display:flex;align-items:center;gap:10px}.feed-author-mark{display:flex;align-items:center;justify-content:center;flex:none;width:36px;height:36px;border-radius:8px;background:var(--page-bg);color:var(--text-secondary);font-size:15px}.feed-author-copy{display:flex;flex-direction:column;gap:3px;flex:1;min-width:0}
 .feed-author { min-width:0; font-size:15px; font-weight:500; overflow-wrap:anywhere; }
-.feed-time { flex:none; max-width:45%; text-align:right; }
+.feed-time{font-size:12px;color:var(--text-secondary)}
 .feed-body { margin-top:12px; line-height:1.8; white-space:pre-wrap; overflow-wrap:anywhere; }
 .feed-actions { display:flex; justify-content:flex-end; gap:8px; margin-top:4px; }
 .mini-feed-feed .ghost { background:transparent; color:var(--text-secondary); font-size:12px; }

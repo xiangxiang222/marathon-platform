@@ -1,17 +1,17 @@
 <view class="pad mini-partner-partner" wx:if="{{view}}">
-  <view class="card">
-    <view class="title">认证 {{view.grade.label}}</view>
+  <view class="card partner-identity">
+    <view class="partner-heading"><view class="partner-label">跑团合作</view><view class="title">{{view.grade.label}}</view></view>
     <view class="src">{{view.grade.note}}</view>
     <view class="src">{{view.grade.rights}}</view>
     <view wx:for="{{view.grade.lines}}" wx:key="label" class="row">
-      <text>{{item.label}} · {{item.text}}</text>
+      <view class="partner-fact"><text>{{item.label}}</text><text>{{item.text}}</text></view>
       <text>{{item.met ? '已达到' : '未达到'}}</text>
     </view>
   </view>
   <view class="card">
     <view class="title">物资</view>
     <view class="src">认证跑团可按月度额度免费领取物资，核心跑团享双倍额度。</view>
-    <view wx:for="{{view.supplies}}" wx:key="id">
+    <view wx:for="{{view.supplies}}" wx:key="id" class="partner-supply">
       <view class="src">{{item.brand}} · {{item.name}} · {{item.month}}</view>
       <view class="src">签到至少 {{item.needChecks}} 天，跑量至少 {{item.needKm}} 公里。本团 {{item.clubUsed}}/{{item.cap}}</view>
       <view class="src" wx:if="{{item.reason}}">{{item.reason}}</view>
