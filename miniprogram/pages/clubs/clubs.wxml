@@ -1,5 +1,6 @@
-<page-header title="跑团" subtitle="和同频的人，一起出发"></page-header>
+<page-header title="跑团" tone="light"></page-header>
 <view class="clubs-page mini-clubs-clubs">
+  <view class="directory-intro"><view class="directory-eyebrow">一起训练，一起参赛</view><view class="directory-title">找到你的跑步伙伴</view><view class="directory-description">团练安排、赛事名单和每一次坚持，在这里汇合。</view></view>
   <view class="my-clubs">
     <view class="section-heading"><text class="section-title">我的跑团</text><text wx:if="{{ready && clubs.length}}" class="section-count">{{clubs.length}} 个</text></view>
     <view wx:if="{{!ready}}" class="login-card">
@@ -12,7 +13,7 @@
       <view wx:if="{{mineSearching}}" class="mine-search-status">找到 {{mineMatchCount}} 个已加入的跑团</view>
       <view wx:if="{{shownClubs.length}}" class="my-club-list">
         <view wx:for="{{shownClubs}}" wx:key="id" class="my-club">
-          <navigator class="club-main" url="/pages/club/club?id={{item.id}}" aria-label="{{item.name}}，进入跑团"><image wx:if="{{item.logo && !item.logoFailed}}" class="club-letter" src="{{item.logo}}" data-id="{{item.id}}" data-src="{{item.logo}}" binderror="clubLogoError" mode="aspectFill" /><view wx:else class="club-letter">{{item.initial}}</view><view class="club-copy"><view class="club-name">{{item.name}}</view><view class="meta my-club-meta"><text class="my-club-city">{{item.cityLabel}}</text><text wx:if="{{item.memberCount != null}}">· {{item.memberCount}}人</text><text wx:if="{{item.roleLabel}}" class="my-role {{item.role === 'owner' || item.role === 'manager' ? 'leader' : ''}}">{{item.roleLabel}}</text></view></view></navigator>
+          <navigator class="club-main" url="/pages/club/club?id={{item.id}}" aria-label="{{item.name}}，进入跑团"><image wx:if="{{item.logo && !item.logoFailed}}" class="club-letter" src="{{item.logo}}" data-id="{{item.id}}" data-src="{{item.logo}}" binderror="clubLogoError" mode="aspectFill" /><view wx:else class="club-letter">{{item.initial}}</view><view class="club-copy"><view class="club-title-line"><view class="club-name">{{item.name}}</view><text wx:if="{{item.roleLabel}}" class="my-role {{item.role === 'owner' || item.role === 'manager' ? 'leader' : ''}}">{{item.roleLabel}}</text></view><view class="meta my-club-meta"><text class="my-club-city">{{item.cityLabel}}</text><text wx:if="{{item.memberCount != null}}">· {{item.memberCount}}人</text></view></view></navigator>
           <view class="club-quick-actions"><navigator url="/pages/club/club?id={{item.id}}&tab=training" aria-label="{{item.name}}的团练"><text>团练</text></navigator><navigator url="/pages/club/club?id={{item.id}}&tab=matches" aria-label="{{item.name}}的赛事"><text>赛事</text></navigator></view>
         </view>
       </view>
@@ -27,16 +28,16 @@
   </view>
 
   <view id="discover-clubs" class="discover">
-    <view class="directory-heading"><view class="section-title">发现跑团</view><text class="section-count">找同城跑友</text></view>
+    <view class="directory-heading"><view><view class="section-title">发现跑团</view><view class="directory-section-note">按名称或城市，认识一起开跑的人</view></view><text wx:if="{{directoryTotal}}" class="section-count">{{directoryTotal}} 个</text></view>
     <view class="directory-tools">
       <view class="modes">
         <button class="mode {{mode === 'search' ? 'on' : ''}}" data-mode="search" bindtap="pickMode">搜索跑团</button>
         <button class="mode {{mode === 'code' ? 'on' : ''}}" data-mode="code" bindtap="pickMode">口令加入</button>
       </view>
-      <block wx:if="{{mode === 'search'}}">
+      <view class="directory-filter-group" wx:if="{{mode === 'search'}}">
         <view class="search-row"><view class="search-field"><view class="search-icon"></view><input placeholder="跑团名称、负责人或团号" value="{{query}}" bindinput="onQuery" confirm-type="search" bindconfirm="search" aria-label="跑团名称、负责人或团号" /><button class="search-action" bindtap="search"><text>搜索</text></button></view></view>
         <view class="city-filter"><view class="city-pin" aria-hidden="true"></view><text>活动城市</text><input placeholder="不限城市" maxlength="30" value="{{searchCity}}" bindinput="onSearchCity" bindconfirm="search" confirm-type="search" aria-label="筛选活动城市" /><button wx:if="{{searchCity}}" class="city-reset" bindtap="clearSearchCity">不限</button><button class="city-apply" bindtap="search">筛选</button></view>
-      </block>
+      </view>
       <view wx:else class="search-field code-field"><view class="search-icon"></view><input placeholder="输入朋友分享的跑团口令" value="{{code}}" bindinput="onCode" confirm-type="done" bindconfirm="join" aria-label="输入朋友分享的跑团口令" /><button class="search-action" bindtap="join"><text>查看</text></button></view>
       <view wx:if="{{mode === 'code'}}" class="helper">输入口令查看跑团介绍，再申请加入。</view>
       <view wx:if="{{message}}" class="message">{{message}}</view>

@@ -3,7 +3,7 @@
     <header class="topbar club-topbar">
       <router-link to="/clubs" class="club-back" aria-label="返回我的跑团"><RunnerIcon name="back" /></router-link>
       <router-link to="/clubs" class="club-switch">我的跑团 <span>切换跑团⌄</span></router-link>
-      <button v-if="club && club.publicStatus !== 'restricted'" type="button" class="top-invite hero-invite" :disabled="inviting" @click="copyInvite">邀请 <span>+</span></button><span v-else class="topbar-end" aria-hidden="true"></span>
+      <span class="topbar-end" aria-hidden="true"></span>
     </header>
     <div v-if="loading && !club" class="club-loading" role="status"><span class="loading-ring"></span><b>正在打开跑团</b><p>准备活动与团友信息</p></div>
     <section v-if="club" class="club-hero">
@@ -11,11 +11,13 @@
         <ClubLogo class="club-letter" :src="club.logo" :name="club.name" />
         <div class="club-identity-copy"><h1>{{ club.name }}</h1><p class="club-location"><span>{{ club.city || "城市待补充" }}</span><span class="meta-divider">·</span><span class="club-number">团号 #{{ club.id }}</span></p><p class="club-leader"><span class="role-badge">{{ club.roleLabel }}</span><span>负责人 {{ leaderName || '待补充' }}</span></p><ClubVerificationBadge :club="club" /></div>
       </div>
+      <p v-if="club.intro" class="club-intro-line">{{ club.intro }}</p>
       <div class="hero-bottom">
         <button class="club-avatars" type="button" @click="openMembers" :aria-label="'查看全部 ' + members.length + ' 位跑团成员'">
           <span class="avatar-stack" aria-hidden="true"><span v-for="member in members.slice(0, 4)" :key="member.id" class="club-avatar"><img v-if="member.avatar" :src="member.avatar" alt="" /><template v-else>{{ member.nickname.slice(0, 1) }}</template></span></span>
           <span class="avatar-caption"><b>{{ members.length }}</b> 位成员</span><span class="member-entry-label">查看全部 <i>›</i></span>
         </button>
+        <button v-if="club.publicStatus !== 'restricted'" type="button" class="hero-invite" :disabled="inviting" @click="copyInvite">邀请跑友 <span>＋</span></button>
       </div>
     </section>
     <section v-if="club && club.publicStatus !== 'restricted' && route.query.created === '1'" class="block created-welcome"><p>你的跑团，今天开始</p><h2>先邀请第一位跑友</h2><p>{{ club.city || "城市待补充" }} · 负责人 {{ leaderName }} · 团号 #{{ club.id }}</p><button class="primary" type="button" :disabled="inviting" @click="copyInvite">邀请第一位跑友</button><router-link :to="'/clubs/' + club.id + '/activities/new'">发布第一次约跑 →</router-link><router-link v-if="club.owner" :to="'/clubs/' + club.id + '/edit'">编辑跑团资料与 Logo ›</router-link><router-link :to="'/clubs/' + club.id + '/identity'">已有线下跑团？核验组织身份 ›</router-link></section>
@@ -25,14 +27,16 @@
     <div v-if="club && ['album', 'feed', 'partner'].includes(tab)" class="service-heading"><button type="button" @click="go('overview')"><RunnerIcon name="back" />返回概览</button><h2>{{ serviceTitle }}</h2></div>
     <section v-if="club && tab === 'overview'" class="overview">
       <button v-if="club.staff && requests.length" class="review-reminder" type="button" @click="go('people')"><span class="reminder-dot"></span><b>{{ requests.length }} 位跑友等你审核</b><span>去处理 ›</span></button>
-      <div class="section-head"><h2>团练安排</h2><button type="button" @click="go('act')">全部活动 <span>›</span></button></div>
+      <section class="overview-training content-card"><div class="section-head"><h2>团练安排</h2><button type="button" @click="go('act')">全部活动 <span>›</span></button></div>
       <router-link v-if="nextActivity" class="next-activity" :to="'/clubs/' + club.id + '/activities/' + nextActivity.id">
-        <div class="next-topline"><span class="activity-kind" :class="{ live: nextActivityIsLive }"><i v-if="nextActivityIsLive" aria-hidden="true"></i>{{ nextActivityIsLive ? '正在进行' : '下一场团练' }}</span><span class="activity-status">{{ nextActivity.statusLabel }}</span></div>
-        <h3>{{ nextActivity.title }}</h3><div class="next-detail"><RunnerIcon name="calendar" /><p class="next-time">{{ nextActivity.dateLabel }} <b>{{ nextActivity.clockLabel }}</b></p></div>
-        <p class="next-place"><RunnerIcon name="footprints" />{{ nextActivity.place || '集合地点待定' }}<span v-if="nextActivity.plannedKm"> · {{ nextActivity.plannedKm }} 公里</span></p>
+        <div class="next-topline"><span class="activity-kind" :class="{ live: nextActivityIsLive }"><i v-if="nextActivityIsLive" aria-hidden="true"></i>{{ nextActivityIsLive ? '正在进行' : '下一场团练' }}</span><span class="activity-status">{{ nextActivity.mine?.signed ? '我已报名' : nextActivity.statusLabel }}</span></div>
+        <div class="next-schedule"><p>{{ nextActivity.dateLabel }}</p><b>{{ nextActivity.clockLabel }}</b></div><div class="next-topic"><h3>{{ nextActivity.title }}</h3>
+        <p class="next-place"><RunnerIcon name="footprints" />{{ nextActivity.place || '集合地点待定' }}<span v-if="nextActivity.plannedKm"> · {{ nextActivity.plannedKm }} 公里</span></p></div>
         <div class="next-footer"><span>{{ nextActivity.signupCount }} 位跑友已报名<template v-if="nextActivity.capacity"> · 上限 {{ nextActivity.capacity }} 人</template></span><b>{{ nextActivity.mine && nextActivity.mine.signed ? '查看报名' : '查看活动' }} <i>→</i></b></div>
       </router-link>
       <div v-else class="next-empty"><span class="empty-icon"><RunnerIcon name="calendar" /></span><div class="next-empty-copy"><h3>暂无团练安排</h3><p>{{ club.staff ? '发布下一场团练，召集团友一起跑。' : '新的团练会显示在这里，也可以看看团内约跑。' }}</p><router-link v-if="club.staff" :to="'/clubs/' + club.id + '/activities/new'">发布活动 <span>+</span></router-link><button v-else type="button" @click="go('act', 'meetup')">看看约跑 <span>›</span></button></div></div>
+      </section>
+      <section class="member-service-group service-group"><div class="section-head"><h2>我的跑团服务</h2><span>常用与待办</span></div>
       <div class="quick-actions" aria-label="常用功能">
         <button type="button" @click="go('act')"><span class="quick-icon"><RunnerIcon name="calendar" /></span><b>活动报名</b></button>
         <button type="button" @click="go('race')"><span class="quick-icon"><RunnerIcon name="career" /></span><b>赛事名单</b></button>
@@ -55,13 +59,14 @@
         </div>
       </div>
       <p v-if="checkMessage" class="err">{{ checkMessage }}</p>
-      </details></div>
-      <div class="section-head"><div><p class="section-eyebrow">一起参赛</p><h2>同场的跑友</h2></div><button type="button" @click="go('race')">赛事名单 ›</button></div>
+      </details></div></section>
+      <section class="recent-races content-card"><div class="section-head"><div><p class="section-eyebrow">一起参赛</p><h2>同场的跑友</h2></div><button type="button" @click="go('race')">赛事名单 ›</button></div>
       <router-link v-if="nextRace" class="overview-row" :to="'/races/' + nextRace.race.id"><span class="race-date"><b>{{ dateParts(nextRace.race.raceDate).day }}</b><small>{{ dateParts(nextRace.race.raceDate).month }}月</small></span><span><strong>{{ nextRace.race.name }}</strong><small>{{ nextRace.marks.length }} 位团友已标记参赛 · {{ nextRace.race.raceDate }}</small></span><i>›</i></router-link>
       <div v-else class="overview-empty"><p>还没有即将开赛的团内赛事</p><router-link to="/">去赛历标记参赛 →</router-link></div>
+      </section>
       <router-link class="club-journal-entry" :to="'/clubs/' + club.id + '/news'"><span><b>跑团资讯</b><em>训练心得、赛事回顾与值得分享的好文</em></span><i>↗</i></router-link>
-      <div class="section-head"><h2>更多服务</h2></div>
-      <div class="service-grid"><button type="button" @click="go('album')"><RunnerIcon name="media" /><span>活动相册</span><i>›</i></button><button type="button" @click="go('feed')"><RunnerIcon name="help" /><span>团内动态</span><i>›</i></button><button type="button" @click="go('people', 'fees')"><RunnerIcon name="calendar" /><span>会费名单</span><i>›</i></button><button type="button" @click="go('people', 'manage', 'gifts')"><RunnerIcon name="honors" /><span>积分礼品</span><i>›</i></button><button type="button" @click="go('partner')"><RunnerIcon name="career" /><span>合作权益</span><i>›</i></button><button type="button" @click="go('people', 'manage')"><RunnerIcon name="lock" /><span>{{ club.staff ? '跑团管理' : '跑团设置' }}</span><i>›</i></button></div>
+      <section class="more-service-group service-group"><div class="section-head"><h2>更多跑团服务</h2></div>
+      <div class="service-grid"><button type="button" @click="go('album')"><RunnerIcon name="media" /><span>活动相册</span><i>›</i></button><button type="button" @click="go('feed')"><RunnerIcon name="help" /><span>团内动态</span><i>›</i></button><button type="button" @click="go('people', 'fees')"><RunnerIcon name="calendar" /><span>会费名单</span><i>›</i></button><button type="button" @click="go('people', 'manage', 'gifts')"><RunnerIcon name="honors" /><span>积分礼品</span><i>›</i></button><button type="button" @click="go('partner')"><RunnerIcon name="career" /><span>合作权益</span><i>›</i></button><button type="button" @click="go('people', 'manage')"><RunnerIcon name="lock" /><span>{{ club.staff ? '跑团管理' : '跑团设置' }}</span><i>›</i></button></div></section>
     </section>
     <div v-if="club && tab === 'race'" class="section-head club-section-head"><h2>跑团比赛名单</h2><div><span>{{ board.length }} 场比赛</span><button class="undo" type="button" @click="exportBoardCsv">导出完整 CSV</button></div></div>
     <p v-if="club && tab === 'race' && !board.length" class="empty">还没有人标比赛。打开一场，标上想跑或已报名。</p>
