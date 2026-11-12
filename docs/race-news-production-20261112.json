@@ -1,0 +1,75 @@
+{
+  "publishedAt": "2026-11-12T03:44:57.599Z",
+  "window": {
+    "since": "2026-11-06",
+    "until": "2026-11-12"
+  },
+  "inserted": 8,
+  "deletedMockNews": 8,
+  "deletedMockSubmissions": 0,
+  "preservedTables": 80,
+  "preservedRows": 28364,
+  "backup": "/var/www/marathon/server/data/releases/race-news-20261112-05/deleted-simulated-news.json",
+  "publicVerification": {
+    "verifiedAt": "2026-11-12T03:47:30.250Z",
+    "total": 8,
+    "details": [
+      {
+        "id": 9,
+        "title": "南昌马拉松领物启动：三天开放安排与比赛日交通提前看",
+        "publishedAt": "2026-11-12",
+        "raceId": "caa-1000452090",
+        "characters": 563
+      },
+      {
+        "id": 11,
+        "title": "临沂马拉松回顾：曹天祥2小时18分30秒夺冠，沂河赛道迎来26000名跑者",
+        "publishedAt": "2026-11-10",
+        "raceId": "caa-1000418245",
+        "characters": 565
+      },
+      {
+        "id": 10,
+        "title": "郴州马拉松赛后：朱昌荣与韦春华分别刷新组别赛会纪录",
+        "publishedAt": "2026-11-10",
+        "raceId": "caa-1000453046",
+        "characters": 555
+      },
+      {
+        "id": 14,
+        "title": "新余仙女湖马拉松：王涛刷新赛会纪录，半程男子冠亚军仅差1秒",
+        "publishedAt": "2026-11-09",
+        "raceId": "caa-1000419241",
+        "characters": 574
+      },
+      {
+        "id": 13,
+        "title": "钱塘女子半马迎来十周年，王佳莉1小时14分夺冠",
+        "publishedAt": "2026-11-09",
+        "raceId": "caa-1000418248",
+        "characters": 489
+      },
+      {
+        "id": 12,
+        "title": "两万人沿邛海开跑：西昌马拉松第十届调整起终点与集结动线",
+        "publishedAt": "2026-11-07",
+        "raceId": "caa-1000456006",
+        "characters": 553
+      },
+      {
+        "id": 16,
+        "title": "三星堆半马赛后回看：杨克古破纪录，女子冠军优势仅0.072秒",
+        "publishedAt": "2026-11-06",
+        "raceId": "caa-1000450007",
+        "characters": 558
+      },
+      {
+        "id": 15,
+        "title": "绍兴马拉松路线公布：迪荡段微调，半程再次穿越府山公园",
+        "publishedAt": "2026-11-06",
+        "raceId": "caa-1000454004",
+        "characters": 553
+      }
+    ]
+  }
+}

@@ -8,7 +8,7 @@
     <p v-if="message" class="err">{{ message }}</p>
     <article v-if="id && item" class="news-body">
       <h2>{{ item.title }}</h2>
-      <p class="src">{{ item.publishedAt }} · {{ item.source }}</p>
+      <p class="src">{{ contentDate(item.publishedAt) }}</p>
       <div v-if="blocks.length" class="guide-md">
         <p v-for="block in blocks" :key="block.i" :class="'md md-' + block.kind">
           <span v-if="block.mark" class="md-mark">{{ block.mark }}</span>
@@ -23,7 +23,7 @@
     <template v-else-if="!id">
       <router-link v-for="row in rows" :key="row.id" class="news-line" :to="'/news/' + row.id">
         <b>{{ row.title }}</b>
-        <span>{{ row.publishedAt }} · {{ row.raceName }} · {{ row.source }}</span>
+        <span>{{ contentDate(row.publishedAt) }} · {{ row.raceName }}</span>
       </router-link>
       <p v-if="ready && !rows.length" class="empty">还没有资讯</p>
       <p v-if="ready" class="hint">共 {{ total }} 条</p>
@@ -38,6 +38,7 @@ import { useRoute } from "vue-router";
 import { api } from "../api";
 import Pager from "../components/Pager.vue";
 import { parseGuide } from "../guide-md";
+import { contentDate } from "../content-date";
 
 const route = useRoute();
 const rows = ref([]);

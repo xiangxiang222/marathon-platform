@@ -74,6 +74,13 @@ function articleText(row) {
   return String((row && (row.body || row.summary)) || "");
 }
 
+function articleSummary(row) {
+  if (row.summary) return String(row.summary).slice(0, 180);
+  const paragraph = articleText(row).split(/\n\s*\n/).map(part => part.trim()).find(part => part && !/^#{1,6}\s/.test(part)) || "";
+  const plain = paragraph.replace(/!?\[([^\]]*)\]\([^)]*\)/g, "$1").replace(/https?:\/\/\S+/g, "").replace(/<[^>]*>/g, "").replace(/[*_`#>]/g, "").replace(/\s+/g, " ").trim();
+  return plain.length > 180 ? plain.slice(0, 179) + "…" : plain;
+}
+
 function present(row, extra, options) {
   const item = {
     id: row.id,
@@ -82,6 +89,7 @@ function present(row, extra, options) {
     raceDate: row.race_date,
     city: row.city,
     title: row.title,
+    summary: articleSummary(row),
     source: row.source,
     publishedAt: row.published_at,
     ...extra

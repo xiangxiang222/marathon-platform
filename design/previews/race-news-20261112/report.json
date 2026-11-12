@@ -1,0 +1,310 @@
+{
+  "startedAt": "2026-11-12T03:50:26.902Z",
+  "isolation": "Temporary SQLite/media, ephemeral localhost HTTP; .env hidden; external browser requests blocked; no production data writes.",
+  "checks": [
+    {
+      "name": "Dry-run previews researched race news and simulation cleanup without changing stored rows",
+      "passed": true
+    },
+    {
+      "name": "Apply removes simulated news only, links researched articles and keeps existing races and genuine content",
+      "passed": true
+    },
+    {
+      "name": "Repeated collection keeps one copy and does not recreate deleted simulation records",
+      "passed": true
+    },
+    {
+      "name": "Public APIs expose useful summaries, full rewritten bodies and race associations without external links",
+      "passed": true
+    },
+    {
+      "name": "320/390px race news lists show real summaries and details keep complete in-app prose",
+      "passed": true
+    }
+  ],
+  "views": [
+    {
+      "name": "race-news-list",
+      "width": 320,
+      "scrollWidth": 320,
+      "bodyWidth": 320,
+      "screenshot": "race-news-list-320.png"
+    },
+    {
+      "name": "race-news-detail",
+      "width": 320,
+      "scrollWidth": 320,
+      "bodyWidth": 320,
+      "screenshot": "race-news-detail-320.png"
+    },
+    {
+      "name": "race-news-list",
+      "width": 390,
+      "scrollWidth": 390,
+      "bodyWidth": 390,
+      "screenshot": "race-news-list-390.png"
+    },
+    {
+      "name": "race-news-detail",
+      "width": 390,
+      "scrollWidth": 390,
+      "bodyWidth": 390,
+      "screenshot": "race-news-detail-390.png"
+    }
+  ],
+  "errors": [],
+  "limitations": [
+    "Mobile Chromium viewports do not replace WeChat device testing.",
+    "Temporary race records are only linkage fixtures; real publication content is read from the researched input file."
+  ],
+  "preview": {
+    "dryRun": true,
+    "window": {
+      "since": "2026-11-06",
+      "until": "2026-11-12"
+    },
+    "inputArticles": 8,
+    "inserted": 8,
+    "updated": 0,
+    "skipped": 0,
+    "protected": [],
+    "pending": [],
+    "deletedMockNews": 8,
+    "deletedMockSubmissions": 0,
+    "removedNews": [
+      {
+        "id": 1,
+        "title": "【模拟】北京跑步场景 · 活动安排示例",
+        "key": "scenario-news-1"
+      },
+      {
+        "id": 2,
+        "title": "【模拟】杭州跑步场景 · 周末准备清单",
+        "key": "scenario-news-2"
+      },
+      {
+        "id": 3,
+        "title": "【模拟】成都跑步场景 · 活动安排示例",
+        "key": "scenario-news-3"
+      },
+      {
+        "id": 4,
+        "title": "【模拟】线上跑步场景 · 周末准备清单",
+        "key": "scenario-news-4"
+      },
+      {
+        "id": 5,
+        "title": "【模拟】深圳跑步场景 · 活动安排示例",
+        "key": "scenario-news-5"
+      },
+      {
+        "id": 6,
+        "title": "【模拟】北京跑步场景 · 周末准备清单",
+        "key": "scenario-news-6"
+      },
+      {
+        "id": 7,
+        "title": "【模拟】杭州跑步场景 · 活动安排示例",
+        "key": "scenario-news-7"
+      },
+      {
+        "id": 8,
+        "title": "【模拟】成都跑步场景 · 周末准备清单",
+        "key": "scenario-news-8"
+      }
+    ],
+    "publications": [
+      {
+        "title": "南昌马拉松领物启动：三天开放安排与比赛日交通提前看",
+        "raceId": "race-news-real-0",
+        "publishedAt": "2026-11-12",
+        "characters": 563,
+        "key": "race-news-fc0f41be263147b2c8ed"
+      },
+      {
+        "title": "郴州马拉松赛后：朱昌荣与韦春华分别刷新组别赛会纪录",
+        "raceId": "race-news-real-1",
+        "publishedAt": "2026-11-10",
+        "characters": 555,
+        "key": "race-news-457033064d61ec5d415b"
+      },
+      {
+        "title": "临沂马拉松回顾：曹天祥2小时18分30秒夺冠，沂河赛道迎来26000名跑者",
+        "raceId": "race-news-real-2",
+        "publishedAt": "2026-11-10",
+        "characters": 565,
+        "key": "race-news-e076878825e45f482431"
+      },
+      {
+        "title": "两万人沿邛海开跑：西昌马拉松第十届调整起终点与集结动线",
+        "raceId": "race-news-real-3",
+        "publishedAt": "2026-11-07",
+        "characters": 553,
+        "key": "race-news-528f3b466f872e4f44ba"
+      },
+      {
+        "title": "钱塘女子半马迎来十周年，王佳莉1小时14分夺冠",
+        "raceId": "race-news-real-4",
+        "publishedAt": "2026-11-09",
+        "characters": 489,
+        "key": "race-news-f48d021e7ec89c6755d0"
+      },
+      {
+        "title": "新余仙女湖马拉松：王涛刷新赛会纪录，半程男子冠亚军仅差1秒",
+        "raceId": "race-news-real-5",
+        "publishedAt": "2026-11-09",
+        "characters": 574,
+        "key": "race-news-a16ef656e43cb4ecca50"
+      },
+      {
+        "title": "绍兴马拉松路线公布：迪荡段微调，半程再次穿越府山公园",
+        "raceId": "race-news-real-6",
+        "publishedAt": "2026-11-06",
+        "characters": 553,
+        "key": "race-news-c1af7f0fa0f7185b194c"
+      },
+      {
+        "title": "三星堆半马赛后回看：杨克古破纪录，女子冠军优势仅0.072秒",
+        "raceId": "race-news-real-7",
+        "publishedAt": "2026-11-06",
+        "characters": 558,
+        "key": "race-news-ca9f5e34705b89baf452"
+      }
+    ]
+  },
+  "import": {
+    "dryRun": false,
+    "window": {
+      "since": "2026-11-06",
+      "until": "2026-11-12"
+    },
+    "inputArticles": 8,
+    "inserted": 8,
+    "updated": 0,
+    "skipped": 0,
+    "protected": [],
+    "pending": [],
+    "deletedMockNews": 8,
+    "deletedMockSubmissions": 0,
+    "removedNews": [
+      {
+        "id": 1,
+        "title": "【模拟】北京跑步场景 · 活动安排示例",
+        "key": "scenario-news-1"
+      },
+      {
+        "id": 2,
+        "title": "【模拟】杭州跑步场景 · 周末准备清单",
+        "key": "scenario-news-2"
+      },
+      {
+        "id": 3,
+        "title": "【模拟】成都跑步场景 · 活动安排示例",
+        "key": "scenario-news-3"
+      },
+      {
+        "id": 4,
+        "title": "【模拟】线上跑步场景 · 周末准备清单",
+        "key": "scenario-news-4"
+      },
+      {
+        "id": 5,
+        "title": "【模拟】深圳跑步场景 · 活动安排示例",
+        "key": "scenario-news-5"
+      },
+      {
+        "id": 6,
+        "title": "【模拟】北京跑步场景 · 周末准备清单",
+        "key": "scenario-news-6"
+      },
+      {
+        "id": 7,
+        "title": "【模拟】杭州跑步场景 · 活动安排示例",
+        "key": "scenario-news-7"
+      },
+      {
+        "id": 8,
+        "title": "【模拟】成都跑步场景 · 周末准备清单",
+        "key": "scenario-news-8"
+      }
+    ],
+    "publications": [
+      {
+        "title": "南昌马拉松领物启动：三天开放安排与比赛日交通提前看",
+        "raceId": "race-news-real-0",
+        "publishedAt": "2026-11-12",
+        "characters": 563,
+        "key": "race-news-fc0f41be263147b2c8ed"
+      },
+      {
+        "title": "郴州马拉松赛后：朱昌荣与韦春华分别刷新组别赛会纪录",
+        "raceId": "race-news-real-1",
+        "publishedAt": "2026-11-10",
+        "characters": 555,
+        "key": "race-news-457033064d61ec5d415b"
+      },
+      {
+        "title": "临沂马拉松回顾：曹天祥2小时18分30秒夺冠，沂河赛道迎来26000名跑者",
+        "raceId": "race-news-real-2",
+        "publishedAt": "2026-11-10",
+        "characters": 565,
+        "key": "race-news-e076878825e45f482431"
+      },
+      {
+        "title": "两万人沿邛海开跑：西昌马拉松第十届调整起终点与集结动线",
+        "raceId": "race-news-real-3",
+        "publishedAt": "2026-11-07",
+        "characters": 553,
+        "key": "race-news-528f3b466f872e4f44ba"
+      },
+      {
+        "title": "钱塘女子半马迎来十周年，王佳莉1小时14分夺冠",
+        "raceId": "race-news-real-4",
+        "publishedAt": "2026-11-09",
+        "characters": 489,
+        "key": "race-news-f48d021e7ec89c6755d0"
+      },
+      {
+        "title": "新余仙女湖马拉松：王涛刷新赛会纪录，半程男子冠亚军仅差1秒",
+        "raceId": "race-news-real-5",
+        "publishedAt": "2026-11-09",
+        "characters": 574,
+        "key": "race-news-a16ef656e43cb4ecca50"
+      },
+      {
+        "title": "绍兴马拉松路线公布：迪荡段微调，半程再次穿越府山公园",
+        "raceId": "race-news-real-6",
+        "publishedAt": "2026-11-06",
+        "characters": 553,
+        "key": "race-news-c1af7f0fa0f7185b194c"
+      },
+      {
+        "title": "三星堆半马赛后回看：杨克古破纪录，女子冠军优势仅0.072秒",
+        "raceId": "race-news-real-7",
+        "publishedAt": "2026-11-06",
+        "characters": 558,
+        "key": "race-news-ca9f5e34705b89baf452"
+      }
+    ],
+    "backupFile": "/var/folders/hw/7bmlf6pd2rv36rk8yv0rltrm0000gn/T/marathon-race-news-live-cmTy4b/deleted-simulation-backup.json",
+    "publishedIds": [
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ]
+  },
+  "published": {
+    "articles": 8,
+    "simulatedDeleted": 8,
+    "earliest": "2026-11-06",
+    "latest": "2026-11-12"
+  },
+  "passed": true,
+  "finishedAt": "2026-11-12T03:50:29.936Z"
+}
