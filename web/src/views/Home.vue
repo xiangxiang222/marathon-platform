@@ -22,11 +22,11 @@
     <section v-if="!searching" class="home-discover" aria-label="跑步精选入口">
       <router-link to="/calendar" class="discover-calendar">
         <div class="discover-photo-copy"><span>赛事日历</span><strong>近期赛历</strong><small>{{ races[0]?.raceDate || '选择你的比赛日' }}</small><p>{{ races[0]?.name || '按日期查找，安排下一场比赛' }}</p></div>
-        <span class="calendar-corner" aria-hidden="true">↗</span>
+        <img :src="base + 'images/art-calendar.png'" alt="" />
       </router-link>
       <div class="discover-side">
-        <router-link to="/news?tab=athlete" class="discover-person"><div><strong>见证中国速度</strong><span>赛季成绩 · 人物履历</span></div><span class="feature-arrow" aria-hidden="true">↗</span></router-link>
-        <router-link to="/news" class="discover-news"><div><strong>跑圈新鲜事</strong><span>资讯 · 官兔 · 跑团</span></div><span class="feature-arrow" aria-hidden="true">↗</span></router-link>
+        <router-link to="/news?tab=athlete" class="discover-person"><div><strong>见证中国速度</strong><span>赛季成绩 · 人物履历</span></div><img :src="radarIcon" alt="" /></router-link>
+        <router-link to="/news" class="discover-news"><div><strong>跑圈新鲜事</strong><span>资讯 · 官兔 · 跑团</span></div><img :src="newsIcon" alt="" /></router-link>
       </div>
     </section>
     <div v-if="!searching && currentReminder" class="deadline-banner">
@@ -360,21 +360,21 @@ onMounted(() => {
 .home-search button > span { display: flex; align-items: center; justify-content: center; width: 56px; height: 34px; border-radius: 7px; background: var(--accent); }
 .home-shortcuts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 0 12px; padding: 0 0 10px; }
 .home-shortcuts a { display: flex; min-width: 0; min-height: 76px; padding-top:12px; gap:8px; flex-direction: column; align-items: center; color: #444; font-size: 12px; line-height: 20px; }
-.home-shortcuts img { display: block; width: 28px; height: 28px; }
-.home-discover { display: grid; grid-template-columns: 1.08fr 1fr; gap: 12px; min-height: 144px; margin: 12px 16px 0; }
+.home-shortcuts img { display: block; width: 44px; height: 44px; }
+.home-discover { display: grid; grid-template-columns: 1.08fr 1fr; gap: 12px; min-height: 160px; margin: 12px 16px 0; }
 .discover-calendar { position: relative; display: flex; overflow: hidden; border-radius: 12px; background: linear-gradient(135deg,#fff,#fff0f2); color: var(--ink); }
-.discover-calendar > img { position: absolute; right: -5px; bottom: 3px; width: 76px; height: 76px; object-fit: contain; }
-.discover-photo-copy { position: relative; padding: 12px; z-index: 1; }
+.discover-calendar > img { position: absolute; right: 8px; top: 8px; width: 44px; height: 44px; object-fit: contain; }
+.discover-photo-copy { position: relative; padding: 12px; z-index: 1; }.discover-photo-copy>span,.discover-photo-copy>strong{padding-right:38px}.discover-side> a >div{flex:1;min-width:0}
 .discover-photo-copy > span { display: inline-block; color: var(--accent); font-size: 12px; line-height: 18px; }
 .discover-photo-copy strong { display: block; margin: 4px 0; font-size: 18px; font-weight: 600; line-height: 1.3; white-space: nowrap; }
 .discover-photo-copy small { display: block; margin-top: 6px; color: #888; font-size: 12px; line-height: 1.5; }
 .discover-photo-copy i { font-style: normal; margin-left: 2px; }
 .discover-side { display: grid; grid-template-rows: 1fr 1fr; gap: 8px; min-width: 0; }
-.discover-side > a { position: relative; display: flex; align-items: center; justify-content: space-between; overflow: hidden; gap: 0; padding: 12px; border-radius: 12px; background: var(--card); }
+.discover-side > a { position: relative; display: flex; align-items: center; justify-content: space-between; overflow: hidden; gap: 4px; padding: 10px; border-radius: 12px; background: var(--card); }
 .discover-side .discover-news { background: #fff; }
 .discover-side strong { display: block; font-size: 15px; line-height: 1.5; white-space: nowrap; font-weight: 600; }
-.discover-side div > span { display: block; margin-top: 4px; color: #888; font-size: 12px; white-space: nowrap; }
-.discover-side img { flex: none; width: 48px; height: 48px; margin-right: -6px; }
+.discover-side div > span { display: block; margin-top: 4px; color: #888; font-size: 12px; line-height: 1.5; white-space: normal; }
+.discover-side img { flex: none; width: 36px; height: 36px; }
 .deadline-banner { display: flex; align-items: center; gap: 8px; min-height: 49px; margin: 10px 12px 0; padding: 8px 12px; border-radius: 10px; background: #fff; }
 .deadline-icon { flex: none; width: 24px; height: 24px; color: var(--accent); }
 .deadline-icon svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
@@ -403,17 +403,15 @@ onMounted(() => {
  .home-heading > div { gap: 8px; }
  .home-heading p { display: none; }
  .home-discover { grid-template-columns: 1fr 1fr; }
- .discover-side > a { padding-left: 10px; }
- .discover-side img { width: 37px; height: 44px; margin-right: -4px; }
- .discover-side strong { font-size: 14px; }
+ .discover-side > a { padding:8px; }.discover-side strong { font-size:14px; }.discover-side img { width:28px;height:28px; }
  .discover-photo-copy { padding: 12px 10px; }
  .discover-photo-copy strong { font-size: 17px; }
- .discover-calendar > img { width: 72px; height: 72px; }
+ .discover-calendar > img { width:40px;height:40px; }
 }
 .discover-photo-copy { padding:14px; min-width:0; }
 .discover-photo-copy strong { font-size:18px; }
 .discover-photo-copy small { margin-top:8px; font-variant-numeric:tabular-nums; }
 .discover-photo-copy p { display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2; overflow:hidden; margin:8px 0 0; font-size:12px; line-height:1.6; color:var(--muted); }
-.calendar-corner { position:absolute; top:12px; right:12px; color:var(--accent); }
-.discover-side .feature-arrow { display:block; flex:none; margin-left:4px; color:var(--accent); font-size:18px; }
+
+
 </style>

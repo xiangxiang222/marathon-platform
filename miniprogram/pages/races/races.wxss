@@ -17,20 +17,20 @@
 .kind-tab.on::after { position: absolute; bottom: 5px; left: 50%; width: 18px; height: 3px; border-radius: 3px; background: var(--brand); transform: translateX(-50%); content: ''; }
 .quick-entries { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); margin: 0 24rpx; padding-bottom: 20rpx; }
 .quick-entry { display: flex; min-width: 0; min-height: 76px; padding-top:12px; gap:8px; flex-direction: column; align-items: center; color: #444; font-size: 12px; line-height: 20px; }
-.quick-icon { display: block; width: 28px; height: 28px; }
+.quick-icon { display: block; width: 44px; height: 44px; }
 .home-discover { display: grid; grid-template-columns: 1.08fr 1fr; gap:12px; min-height:144px; margin:12px 16px 0; }
 .discover-calendar { position: relative; display: flex; overflow: hidden; border-radius: 12px; background: linear-gradient(135deg,#fff,#fff0f2); }
-.discover-main-art { position: absolute; right: -5px; bottom: 3px; width: 76px; height: 76px; }
+.calendar-art { position: absolute; right: 8px; top: 8px; width: 44px; height: 44px; }
 .discover-copy { position: relative; z-index: 1; padding: 12px; }
-.discover-kicker { display: block; color: var(--brand); font-size: 12px; line-height: 18px; }
-.discover-title { display: block; margin-top: 4px; font-size: 18px; line-height: 1.3; font-weight: 600; white-space: nowrap; }
+.discover-kicker { padding-right:38px; display: block; color: var(--brand); font-size: 12px; line-height: 18px; }
+.discover-title { padding-right:38px; display: block; margin-top: 4px; font-size: 18px; line-height: 1.3; font-weight: 600; white-space: nowrap; }
 .discover-sub { display: block; margin-top: 8px; color: #888; font-size: 12px; line-height: 1.5; }
 .discover-side { display: grid; grid-template-rows: 1fr 1fr; gap: 16rpx; min-width: 0; }
-.discover-side > navigator { display: flex; align-items: center; justify-content: space-between; overflow: hidden; padding: 8px 6px 8px 12px; border-radius: 12px; background: var(--surface); }
+.discover-side > navigator { display: flex; align-items: center; justify-content: space-between; overflow: hidden; gap: 4px; padding: 10px; border-radius: 12px; background: var(--surface); }
 .discover-side .discover-news { background:#fff; }
 .discover-card-title { display: block; font-size: 15px; font-weight: 600; line-height: 1.5; white-space: nowrap; }
-.discover-card-sub { display: block; margin-top: 4px; color: #888; font-size: 12px; white-space: nowrap; }
-.discover-side image { flex: none; width: 48px; height: 48px; margin-right: -6px; }
+.discover-card-sub { display: block; margin-top: 4px; color: #888; font-size: 12px; line-height:1.5; white-space: normal; }
+.discover-side image { flex: none; width: 36px; height: 36px; margin: 0; }
 .reminder { height: 49px; margin: 20rpx 24rpx 0; overflow: hidden; border-radius: 10px; background: #fff; }
 .reminder-swiper { width: 100%; height: 49px; }
 .reminder-item { display: flex; align-items: center; gap: 16rpx; height: 49px; padding: 8px 12px; box-sizing: border-box; }
@@ -103,10 +103,12 @@
 @media(max-width:350px) {
  .discover-copy { padding: 12px 10px; }
  .discover-title { font-size: 17px; }
- .discover-main-art { width: 72px; height: 72px; }
- .discover-side > navigator { padding-left: 10px; }
+ .calendar-art { width: 40px; height: 40px; }
+ .discover-side > navigator { padding: 8px; }
  .discover-card-title { font-size: 14px; }
- .discover-side image { width: 37px; height: 44px; margin-right: -4px; }
+ .discover-side image { width: 28px; height: 28px; }
 }
 
-.discover-copy { padding:14px; min-width:0; }.discover-title { font-size:18px; }.discover-race-name { display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2; overflow:hidden; margin-top:8px; font-size:12px; line-height:1.6; color:var(--text-secondary); }.calendar-corner { position:absolute; top:12px; right:12px; color:var(--brand); }.feature-arrow { flex:none; margin-left:4px; color:var(--brand); font-size:18px; }
+.discover-copy { padding:14px; min-width:0; }.discover-title { font-size:18px; }.discover-race-name { display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2; overflow:hidden; margin-top:8px; font-size:12px; line-height:1.6; color:var(--text-secondary); }
+
+.discover-side>navigator>view{flex:1;min-width:0}
