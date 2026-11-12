@@ -10,17 +10,18 @@
     <view class="slot"><text>天气和赛道修正</text><text class="slot-state">尚未开通</text></view>
     <view class="src">对照仍用已记下的成绩和往届名次。</view>
     <view class="src">性别、出生年月和省份自己填。不收身份证。出生月份和比赛月相同的，按小一岁算。</view>
-    <view class="row">
+    <view class="field-label">性别</view>
+    <view class="radar-gender">
       <button class="ghost {{gender === '' ? 'on' : ''}}" data-gender="" bindtap="setGender">不填</button>
       <button class="ghost {{gender === '男' ? 'on' : ''}}" data-gender="男" bindtap="setGender">男</button>
       <button class="ghost {{gender === '女' ? 'on' : ''}}" data-gender="女" bindtap="setGender">女</button>
     </view>
-    <input placeholder="出生年月 1986-06，可空" value="{{birth}}" bindinput="onBirth" aria-label="出生年月 1986-06，可空" />
-    <input placeholder="省份，例如 河南，可空" value="{{province}}" bindinput="onProvince" aria-label="省份，例如 河南，可空" />
-    <input placeholder="全马目标 3:30:00，空则用 PB" value="{{full}}" bindinput="onFull" aria-label="全马目标 3:30:00，空则用 PB" />
-    <input placeholder="半马目标，可空" value="{{half}}" bindinput="onHalf" aria-label="半马目标，可空" />
-    <input placeholder="10 公里目标，可空" value="{{ten}}" bindinput="onTen" aria-label="10 公里目标，可空" />
-    <input placeholder="5 公里目标，可空" value="{{five}}" bindinput="onFive" aria-label="5 公里目标，可空" />
+    <view class="radar-field"><view class="field-label">出生年月<text>选填</text></view><input placeholder="出生年月 1986-06，可空" value="{{birth}}" bindinput="onBirth" aria-label="出生年月 1986-06，可空" /></view>
+    <view class="radar-field"><view class="field-label">所属省份<text>选填</text></view><input placeholder="省份，例如 河南，可空" value="{{province}}" bindinput="onProvince" aria-label="省份，例如 河南，可空" /></view>
+    <view class="radar-field"><view class="field-label">全马目标<text>选填</text></view><input placeholder="全马目标 3:30:00，空则用 PB" value="{{full}}" bindinput="onFull" aria-label="全马目标 3:30:00，空则用 PB" /></view>
+    <view class="radar-field"><view class="field-label">半马目标<text>选填</text></view><input placeholder="半马目标，可空" value="{{half}}" bindinput="onHalf" aria-label="半马目标，可空" /></view>
+    <view class="radar-field"><view class="field-label">10 公里目标<text>选填</text></view><input placeholder="10 公里目标，可空" value="{{ten}}" bindinput="onTen" aria-label="10 公里目标，可空" /></view>
+    <view class="radar-field"><view class="field-label">5 公里目标<text>选填</text></view><input placeholder="5 公里目标，可空" value="{{five}}" bindinput="onFive" aria-label="5 公里目标，可空" /></view>
     <button class="btn" bindtap="save">保存</button>
     <view wx:if="{{message}}" class="err">{{message}}</view>
     </block>

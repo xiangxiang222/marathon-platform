@@ -382,8 +382,8 @@ a { color: var(--accent); }
 .pick { min-height: 34px; padding: 0 12px; border: 1px solid var(--line); border-radius: 8px; background: #fff; font-size: 12px; }
 .pick.on { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
 .file-pick { padding: 12px; border: 1px dashed var(--line); border-radius: 10px; background: var(--field-bg); color: var(--ink-secondary); font-size: 12px; }
-.banner { margin: 0 0 18px; padding: 12px 16px; border: 1px solid #ffd7df; border-radius: 8px; background: var(--accent-soft); color: #d71d3d; font-size: 14px; }
-.banner.ok { border-color: #c9e9d7; background: #f2fbf6; color: #19875c; }
+.banner { margin: 0 0 18px; padding: 12px 16px; border: 1px solid var(--line); border-radius: 8px; background: var(--accent-soft); color: var(--accent); font-size: 14px; }
+.banner.ok { border-color: var(--line); background: var(--chip); color: var(--ink-secondary); }
 .empty { margin: 16px 0 0; padding: 40px 20px; border: 1px dashed var(--line); border-radius: 12px; background: var(--field-bg); text-align: center; color: var(--muted); font-size: 14px; line-height: 1.8; }
 .pager { flex-wrap: wrap; justify-content: flex-end; margin-top: 20px; gap: 5px; }
 .line { min-height: 70px; padding: 16px 0; gap: 8px 16px; }
