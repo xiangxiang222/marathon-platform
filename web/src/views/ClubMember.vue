@@ -1,19 +1,19 @@
 <template>
   <main class="club-member-page">
-    <header class="member-topbar"><router-link :to="backLink" :aria-label="backLabel"><RunnerIcon name="back" /></router-link><span>跑者主页</span><span class="profile-header-mark" aria-hidden="true"><RunnerIcon name="footprints" /></span></header>
+    <header class="member-topbar"><router-link :to="backLink" :aria-label="backLabel"><RunnerIcon name="back" /></router-link><span>跑者主页</span><span class="profile-header-scope">团内档案</span></header>
     <section v-if="error && !profile" class="member-state" role="alert"><span class="state-symbol"><RunnerIcon name="stats" /></span><h2>暂时无法查看</h2><p>{{ error }}</p><button type="button" @click="load">重新加载</button></section>
     <section v-else-if="!profile" class="member-state" role="status"><span class="profile-skeleton"></span><p>正在打开跑者主页…</p></section>
     <template v-else>
       <section class="member-profile">
-        <div class="profile-identity"><span class="profile-avatar"><img v-if="profile.user.avatar" :src="profile.user.avatar" alt="" /><template v-else>{{ profile.user.nickname.slice(0, 1) }}</template></span><div class="profile-identity-copy"><div class="profile-name"><h1>{{ profile.user.nickname }}</h1><span v-if="profile.mine" class="me-label">我</span></div><p class="profile-role"><span v-if="profile.user.roleLabel">{{ profile.user.roleLabel }}</span><span>{{ profile.user.groupName || '未分组' }}</span></p><p v-if="profile.user.joinedAt" class="profile-joined">{{ profile.user.joinedAt.slice(0, 10) }} 加入跑团</p></div></div>
-        <div class="profile-key-metrics"><button type="button" @click="openLifetimeMileage"><b>{{ number(lifetime.km) }}</b><span>团内累计 · km</span></button><button type="button" @click="openLifetimeMileage"><b>{{ lifetime.times || 0 }}</b><span>累计运动</span></button><button type="button" @click="pickTab('results')"><b>{{ profile.summary?.finishedRaceCount || 0 }}</b><span>完赛赛事</span></button></div>
+        <div class="profile-identity"><span class="profile-avatar"><img v-if="profile.user.avatar" :src="profile.user.avatar" alt="" /><template v-else>{{ profile.user.nickname.slice(0, 1) }}</template></span><div class="profile-identity-copy"><div class="profile-name"><h1>{{ profile.user.nickname }}</h1><span v-if="profile.mine" class="me-label">我</span></div><div class="profile-meta"><p class="profile-role"><span v-if="profile.user.roleLabel">{{ profile.user.roleLabel }}</span><span>{{ profile.user.groupName || '未分组' }}</span></p><p v-if="profile.user.joinedAt" class="profile-joined">{{ profile.user.joinedAt.slice(0, 10) }} 加入跑团</p></div></div></div>
+        <div class="profile-key-metrics" aria-label="团内跑量与参赛概览"><button type="button" @click="openLifetimeMileage"><b>{{ number(lifetime.km) }}</b><span>团内累计 · km</span></button><button type="button" @click="openLifetimeMileage"><b>{{ lifetime.times || 0 }}</b><span>累计运动</span></button><button type="button" @click="pickTab('results')"><b>{{ profile.summary?.finishedRaceCount || 0 }}</b><span>完赛赛事</span></button></div>
       </section>
       <nav class="profile-tabs" aria-label="跑者主页栏目"><button v-for="item in tabs" :key="item.id" type="button" :class="{ on: tab === item.id }" :aria-current="tab === item.id ? 'page' : undefined" @click="pickTab(item.id)">{{ item.label }}</button></nav>
       <p v-if="error" class="profile-inline-error" role="alert">{{ error }} <button type="button" @click="load">重试</button></p>
       <div class="profile-content">
         <template v-if="tab === 'info'">
-          <section class="profile-card intro-card"><div class="section-heading intro-heading"><h2>关于这位跑者</h2><button v-if="profile.mine && !editing" type="button" @click="startEdit">{{ profile.user.introduction ? '编辑介绍' : '写下介绍' }} <span>↗</span></button></div><form v-if="editing" class="intro-editor" @submit.prevent="saveIntroduction"><textarea v-model="introduction" maxlength="300" rows="5" aria-label="跑者介绍" placeholder="写写你的跑步经历、目标，或喜欢的路线" /><span>{{ introduction.length }} / 300</span><p v-if="saveError" role="alert">{{ saveError }}</p><div><button type="button" :disabled="saving" @click="editing = false">取消</button><button type="submit" class="save-intro" :disabled="saving">{{ saving ? '保存中…' : '保存介绍' }}</button></div></form><p v-else class="profile-intro">{{ profile.user.introduction || (profile.mine ? '写下你的跑步故事，让团友更了解你。' : '这位跑友还没有填写介绍。') }}</p></section>
-          <section class="profile-card group-profile-card"><span class="section-kicker">日常的节奏</span><div class="section-heading"><h2>{{ profile.group?.name || '尚未加入训练组' }}</h2><span class="group-emblem"><RunnerIcon name="footprints" /></span></div><p v-if="profile.group?.pace" class="group-target"><small>常用配速</small><b>{{ profile.group.pace }}</b></p><p class="group-description">{{ profile.group?.description || (profile.group ? '和组内跑友一起，按自己的节奏积累。' : '由跑团管理员安排常设训练组，活动报名仍可独立选择组别。') }}</p></section>
+          <section class="profile-card intro-card"><div class="section-heading intro-heading"><h2>{{ profile.mine ? '个人介绍' : '跑者介绍' }}</h2><button v-if="profile.mine && !editing" type="button" @click="startEdit">{{ profile.user.introduction ? '编辑介绍' : '写下介绍' }} <span>↗</span></button></div><form v-if="editing" class="intro-editor" @submit.prevent="saveIntroduction"><textarea v-model="introduction" maxlength="300" rows="5" aria-label="跑者介绍" placeholder="写写你的跑步经历、目标，或喜欢的路线" /><span>{{ introduction.length }} / 300</span><p v-if="saveError" role="alert">{{ saveError }}</p><div><button type="button" :disabled="saving" @click="editing = false">取消</button><button type="submit" class="save-intro" :disabled="saving">{{ saving ? '保存中…' : '保存介绍' }}</button></div></form><p v-else class="profile-intro">{{ profile.user.introduction || (profile.mine ? '写下你的跑步故事，让团友更了解你。' : '这位跑友还没有填写介绍。') }}</p></section>
+          <section class="profile-card group-profile-card"><span class="section-kicker">训练组</span><div class="section-heading"><h2>{{ profile.group?.name || '尚未加入训练组' }}</h2></div><p v-if="profile.group?.pace" class="group-target"><small>常用配速</small><b>{{ profile.group.pace }}</b></p><p class="group-description">{{ profile.group?.description || (profile.group ? '和组内跑友一起，按自己的节奏积累。' : '由跑团管理员安排常设训练组，活动报名仍可独立选择组别。') }}</p></section>
           <section class="profile-card info-facts"><div><span>团内身份</span><b>{{ profile.user.roleLabel || '成员' }}</b></div><div><span>加入时间</span><b>{{ profile.user.joinedAt?.slice(0, 10) || '—' }}</b></div><div><span>参赛标记</span><button type="button" @click="pickTab('races')">{{ profile.summary?.raceCount || 0 }} 场赛事 <i>›</i></button></div><div><span>团内影像</span><button type="button" @click="pickTab('album')">{{ photoCount }} 张照片<template v-if="videoCount"> · {{ videoCount }} 段视频</template> <i>›</i></button></div></section>
         </template>
         <template v-else-if="tab === 'mileage'">
@@ -21,19 +21,19 @@
           <section class="profile-card member-runs"><div class="section-heading"><h2>运动明细</h2><span>本周期最近 20 次</span></div><article v-for="run in profile.recentRuns || []" :key="run.id" class="member-run"><span class="member-run-date">{{ run.startedAt.slice(5, 10).replace('-', '.') }}<small>{{ run.startedAt.slice(11, 16) }}</small></span><div><b>{{ run.typeLabel }}</b><span>{{ run.durationLabel }}<template v-if="run.paceLabel"> · {{ run.paceLabel }} /km</template></span></div><strong>{{ number(run.km) }}<small>公里</small></strong></article><div v-if="!profile.recentRuns?.length" class="quiet-empty"><RunnerIcon name="stats" /><h3>这个周期，等待下一次出发</h3><p>计入本团的运动记录会出现在这里。</p></div></section>
         </template>
         <template v-else-if="tab === 'races'">
-          <section class="chapter-heading"><div><h2>赛道上的约定</h2><p>{{ profile.summary?.raceCount || 0 }} 场参赛标记 · {{ profile.summary?.upcomingRaceCount || 0 }} 场即将到来</p></div><span class="chapter-icon peach"><RunnerIcon name="calendar" /></span></section>
+          <section class="chapter-heading"><div><h2>参赛计划</h2><p>{{ profile.summary?.raceCount || 0 }} 场参赛标记 · {{ profile.summary?.upcomingRaceCount || 0 }} 场即将到来</p></div></section>
           <nav class="content-filters" aria-label="成员赛事筛选"><button v-for="item in raceFilters" :key="item.id" type="button" :class="{ on: raceFilter === item.id }" :aria-pressed="raceFilter === item.id" @click="raceFilter = item.id">{{ item.label }}</button></nav>
           <router-link v-for="item in visibleRaces" :key="item.race.id" class="profile-race-card" :to="'/races/' + item.race.id"><div class="race-card-meta"><span>{{ item.race.raceDate }}</span><span class="race-status" :class="raceTone(item.status)">{{ item.status }}</span></div><h3>{{ item.race.name }}</h3><p>{{ raceLocation(item.race) }}<span v-if="item.race.kind"> · {{ item.race.kind === 'trail' ? '越野赛' : '路跑赛事' }}</span></p><div class="race-card-bottom"><span>{{ item.results?.length ? item.results.map(row => row.distanceLabel).join(' / ') : item.status === '想跑' ? '心愿清单' : '参赛进度已记录' }}</span><b>{{ item.hasResult ? '查看赛事与成绩' : '查看赛事' }} <i>›</i></b></div></router-link>
           <section v-if="!visibleRaces.length" class="profile-card quiet-empty"><RunnerIcon name="calendar" /><h3>{{ raceFilter ? '这个状态下还没有赛事' : '新的赛道，值得期待' }}</h3><p>{{ raceFilter ? '换个状态看看其他参赛记录。' : '公开赛事中的参赛标记会显示在这里。' }}</p><button v-if="raceFilter" type="button" @click="raceFilter = ''">查看全部赛事</button></section>
         </template>
         <template v-else-if="tab === 'results'">
-          <router-link v-if="profile.mine" class="profile-achievement-entry" :to="{ path: '/achievement-poster', query: { returnTo: route.fullPath } }"><span><b>把我的成绩，做成海报</b><small>生涯 PB / 完赛履历 · 生成自己的高光</small></span><RunnerIcon name="arrow" /></router-link>
-          <section class="chapter-heading"><div><h2>每一次超越，都有记录</h2><p>{{ profile.summary?.resultCount || 0 }} 条成绩记录 · {{ personalBests.length }} 项个人最佳</p></div><span class="chapter-icon sun"><RunnerIcon name="honors" /></span></section>
+          <router-link v-if="profile.mine" class="profile-achievement-entry" :to="{ path: '/achievement-poster', query: { returnTo: route.fullPath } }"><span><b>把我的成绩，做成海报</b><small>生涯 PB / 完赛履历</small></span><RunnerIcon name="arrow" /></router-link>
+          <section class="chapter-heading"><div><h2>完赛成绩</h2><p>{{ profile.summary?.resultCount || 0 }} 条成绩记录 · {{ personalBests.length }} 项个人最佳</p></div></section>
           <section v-if="personalBests.length" class="pb-section"><div class="section-heading"><h2>个人最佳 <small>PB</small></h2><span>已记录的线下路跑成绩</span></div><div class="pb-grid"><router-link v-for="item in personalBests" :key="item.distance" class="pb-card" :to="'/races/' + item.race.id"><div><span>{{ item.distanceLabel }}</span><i>PB</i></div><strong>{{ item.clock }}</strong><p>{{ item.race.name }}</p><small>{{ item.race.raceDate }} <span>›</span></small></router-link></div></section>
           <section class="profile-card result-history"><div class="section-heading"><h2>成绩履历</h2><select v-if="resultDistances.length" v-model="resultDistance" aria-label="筛选成绩项目"><option value="">全部项目</option><option v-for="item in resultDistances" :key="item.id" :value="item.id">{{ item.label }}</option></select></div><router-link v-for="item in visibleResults" :key="item.race.id + ':' + item.distance" class="result-row" :to="'/races/' + item.race.id"><span class="result-year">{{ item.race.raceDate?.slice(0, 4) }}<small>{{ item.race.raceDate?.slice(5).replace('-', '.') }}</small></span><span class="result-copy"><b>{{ item.race.name }}</b><span>{{ item.distanceLabel }}<template v-if="item.pace"> · {{ item.pace }} /km</template></span></span><span class="result-clock"><strong>{{ item.clock }}</strong><small v-if="item.pb">个人最佳 PB</small></span></router-link><div v-if="!visibleResults.length" class="quiet-empty"><RunnerIcon name="honors" /><h3>每一份努力，值得记录</h3><p>{{ resultDistance ? '还没有这个项目的成绩，试试其他项目。' : '已记录的公开赛事成绩会展示在这里。' }}</p></div></section>
         </template>
         <template v-else-if="tab === 'album'">
-          <section class="chapter-heading"><div><h2>一起跑过的时刻</h2><p>{{ photoCount }} 张照片<template v-if="videoCount"> · {{ videoCount }} 段视频</template> · 本团共享影像</p></div><span class="chapter-icon lilac"><RunnerIcon name="media" /></span></section>
+          <section class="chapter-heading"><div><h2>活动相册</h2><p>{{ photoCount }} 张照片<template v-if="videoCount"> · {{ videoCount }} 段视频</template> · 本团共享影像</p></div></section>
           <section v-for="album in profile.albums || []" :key="album.id" class="profile-album"><div class="section-heading"><div><h2>{{ album.title }}</h2><p>{{ album.date }} · {{ album.photoCount }} 张照片<template v-if="album.videoCount"> / {{ album.videoCount }} 段视频</template></p></div><router-link :to="'/clubs/' + route.params.id + '/activities/' + album.id + '/album'" :aria-label="'打开' + album.title + '完整相册'">{{ profile.mine ? '管理相册' : '相册' }} ›</router-link></div><div class="album-grid"><button v-for="(item, index) in album.items" :key="item.id" type="button" class="album-tile" :class="{ video: item.kind === 'video' }" :aria-label="'查看' + album.title + '的' + (item.kind === 'video' ? '视频' : '照片') + (index + 1)" @click="openMedia(album, item)"><template v-if="item.kind === 'video'"><RunnerIcon name="media" /><span class="video-play">▶</span><small>视频</small></template><img v-else :src="photoUrl(item)" :alt="album.title + ' · 照片 ' + (index + 1)" loading="lazy" /></button></div></section><section v-if="!profile.albums?.length" class="profile-card quiet-empty"><RunnerIcon name="media" /><h3>把一起跑的日子，留在这里</h3><p>这位跑友在本团活动中分享的照片和视频会显示在这里。</p></section>
         </template>
       </div>
@@ -99,60 +99,57 @@ onBeforeUnmount(() => { version++; closeMedia(); });
 </script>
 
 <style scoped>
-.club-member-page { min-height:100dvh; padding-bottom:22px; color:var(--ink); background:var(--bg); }
+.club-member-page { min-height:100dvh; padding-bottom:22px; color:var(--ink); }
 .club-member-page button { width:auto; font:inherit; cursor:pointer; }
 .club-member-page button:disabled { opacity:.4; cursor:default; }
-.member-topbar { display:grid; grid-template-columns:38px 1fr 38px; align-items:center; min-height:62px; padding:0 18px; background:var(--card); text-align:center; font-size:14px; font-weight:500; }
+.member-topbar { display:grid; align-items:center; text-align:center; font-weight:500; }
 .member-topbar > a { display:flex; align-items:center; min-height:44px; }
 .member-topbar svg { width:22px; height:22px; }
 .profile-header-mark { justify-self:end; color:var(--muted); }
 .profile-header-mark svg { width:20px; height:20px; }
-.member-profile { padding:16px 16px 0; background:var(--card); }
 .profile-identity { display:flex; align-items:center; gap:12px; }
-.profile-avatar { display:grid; place-items:center; flex:none; width:56px; height:56px; border:3px solid var(--line); border-radius:12px; background:var(--field-bg); color:var(--muted); font-size:29px; font-weight:500; overflow:hidden; box-shadow:none; }
+.profile-avatar { display:grid; place-items:center; flex:none; font-weight:500; overflow:hidden; box-shadow:none; }
 .profile-avatar img { width:100%; height:100%; object-fit:cover; }
 .profile-identity-copy { flex:1; min-width:0; }
 .profile-name { display:flex; align-items:center; gap:7px; }
-.profile-name h1 { margin:0; font-size:24px; font-weight:600; letter-spacing:normal; overflow-wrap:anywhere; line-height:1.4; }
+.profile-name h1 { margin:0; font-weight:600; letter-spacing:normal; overflow-wrap:anywhere; line-height:1.4; }
 .me-label { flex:none; padding:2px 5px; border-radius:5px; background:var(--accent-soft); color:var(--accent); font-size:12px; }
-.profile-role { display:flex; flex-wrap:wrap; align-items:center; gap:0; margin:7px 0 0; color:var(--muted); font-size:12px; line-height:1.7; }
+.profile-role { display:flex; flex-wrap:wrap; align-items:center; color:var(--muted); line-height:1.7; }
 .profile-role span + span::before { content:'·'; margin:0 6px; color:var(--muted); }
-.profile-joined { margin:5px 0 0; font-size:12px; color:var(--muted); }
-.profile-key-metrics { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; padding:16px 0; margin-top:16px; border-top:1px solid var(--line); }
+.profile-joined { margin:5px 0 0; color:var(--muted); }
+.profile-key-metrics { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; margin-top:16px; border-top:1px solid var(--line); }
 .profile-key-metrics button { display:grid; justify-items:center; gap:7px; min-width:0; padding:0; text-align:center; background:transparent; }
 .profile-key-metrics button+button { border-left:1px solid var(--line); }
-.profile-key-metrics b { font-size:22px; font-weight:600; letter-spacing:normal; font-variant-numeric:tabular-nums; line-height:1.2; overflow-wrap:anywhere; }
-.profile-key-metrics span { font-size:12px; color:var(--muted); }
-.profile-tabs { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); padding:0 14px; background:var(--card); border-bottom:1px solid var(--line); }
-.profile-tabs button { position:relative; min-height:54px; min-width:0; padding:0 3px; color:var(--muted); font-size:14px; }
-.profile-tabs button.on { color:var(--ink); font-weight:600; }
+.profile-key-metrics b { letter-spacing:normal; font-variant-numeric:tabular-nums; line-height:1.2; overflow-wrap:anywhere; }
+.profile-key-metrics span { color:var(--muted); }
+.profile-tabs { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); border-bottom:1px solid var(--line); }
+.profile-tabs button { position:relative; min-width:0; padding:0 3px; }
+.profile-tabs button.on { font-weight:600; }
 .profile-tabs button.on::after { content:''; position:absolute; bottom:0; left:calc(50% - 9px); width:18px; height:2px; border-radius:2px; background:var(--accent); }
-.profile-content { padding:20px 16px 0; }
-.profile-card { padding:16px; margin-bottom:12px; border:0; border-radius:12px; background:var(--card); }
+.profile-card { margin-bottom:12px; }
 .section-heading { display:flex; align-items:center; justify-content:space-between; gap:12px; margin:0 0 13px; }
-.section-heading h2 { margin:0; font-size:16px; font-weight:600; line-height:1.5; overflow-wrap:anywhere; }
+.section-heading h2 { margin:0; font-weight:600; line-height:1.5; overflow-wrap:anywhere; }
 .section-heading > span { flex:none; font-size:12px; color:var(--muted); }
 .section-heading > button,.section-heading > a { display:inline-flex; align-items:center; gap:5px; flex:none; min-height:30px; padding:0; color:var(--accent); font-size:12px; }
 .section-heading h2 small { font-size:12px; margin-left:4px; color:var(--muted); }
 .intro-heading { margin-bottom:9px; }
 .intro-heading h2 { font-size:14px; }
-.profile-intro { margin:0; color:var(--muted); font-size:14px; line-height:1.95; white-space:pre-wrap; overflow-wrap:anywhere; }
+.profile-intro { white-space:pre-wrap; overflow-wrap:anywhere; }
 .group-profile-card { background:var(--card); }
 .section-kicker { display:block; margin-bottom:7px; color:var(--muted); font-size:12px; letter-spacing:normal; }
 .group-profile-card .section-heading { margin-bottom:12px; }
-.group-profile-card h2 { font-size:20px; letter-spacing:normal; }
+.group-profile-card h2 { letter-spacing:normal; }
 .group-emblem { display:grid; place-items:center; width:31px; height:31px; border-radius:10px; color:var(--muted); background:var(--field-bg); }
 .group-emblem svg { width:18px; height:18px; }
-.group-target { display:flex; align-items:baseline; gap:10px; margin:0 0 10px; }
-.group-target small { color:var(--muted); font-size:12px; }
-.group-target b { color:var(--ink); font-size:14px; font-weight:500; }
-.group-description { margin:0; color:var(--muted); font-size:12px; line-height:1.9; overflow-wrap:anywhere; }
+.group-target small { color:var(--muted); }
+.group-target b { color:var(--ink); font-weight:500; }
+.group-description { color:var(--muted); overflow-wrap:anywhere; }
 .info-facts { padding-top:2px; padding-bottom:2px; }
 .info-facts > div { display:flex; align-items:center; justify-content:space-between; gap:14px; min-height:55px; font-size:12px; }
 .info-facts > div+div { border-top:1px solid var(--line); }
 .info-facts span { flex:none; color:var(--muted); }
-.info-facts b { font-size:12px; font-weight:400; color:var(--ink-secondary); text-align:right; }
-.info-facts button { min-height:44px; padding:0; background:transparent; color:var(--ink-secondary); font-size:12px; text-align:right; line-height:1.7; }
+.info-facts b { color:var(--ink-secondary); text-align:right; }
+.info-facts button { background:transparent; color:var(--ink-secondary); text-align:right; line-height:1.7; }
 .info-facts i { margin-left:5px; color:var(--muted); font-size:18px; font-style:normal; }
 .member-volume { margin-bottom:20px; }
 .member-volume > .section-heading { padding:0 2px; }
@@ -160,18 +157,18 @@ onBeforeUnmount(() => { version++; closeMedia(); });
 .profile-range { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:4px; padding:4px; border-radius:11px; background:var(--card); }
 .profile-range button { min-height:38px; min-width:0; padding:0 4px; border-radius:8px; color:var(--muted); font-size:14px; }
 .profile-range button.on { color:var(--accent); background:var(--accent-soft); font-weight:500; }
-.profile-period { display:flex; align-items:center; gap:10px; margin:10px 0; }
-.profile-period button { width:32px; min-height:36px; padding:0; color:var(--muted); font-size:22px; }
-.profile-period label { position:relative; display:grid; place-items:center; flex:1; min-width:0; min-height:36px; overflow:hidden; color:var(--muted); text-align:center; font-size:12px; line-height:1.6; }
+.profile-period { display:flex; align-items:center; gap:10px; }
+.profile-period button { width:32px; padding:0; color:var(--muted); font-size:22px; }
+.profile-period label { position:relative; display:grid; place-items:center; flex:1; min-width:0; min-height:36px; overflow:hidden; color:var(--muted); text-align:center; line-height:1.6; }
 .profile-period input { position:absolute; inset:0; width:100%; height:100%; opacity:0; cursor:pointer; }
-.personal-volume { padding:23px 21px 0; border-radius:12px; background:var(--card); }
+.personal-volume { border-radius:12px; }
 .personal-volume > span { color:var(--muted); font-size:12px; }
 .personal-volume > span > small { margin-left:6px; color:var(--muted); font-size:12px; }
 .personal-volume > strong { display:block; margin:13px 0 25px; font-size:40px; font-weight:600; letter-spacing:normal; line-height:1.2; font-variant-numeric:tabular-nums; overflow-wrap:anywhere; }
 .personal-metrics { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; padding-bottom:21px; }
 .personal-metrics > div { display:grid; gap:7px; }
-.personal-metrics b { font-size:18px; font-weight:500; font-variant-numeric:tabular-nums; overflow-wrap:anywhere; }
-.personal-metrics span { font-size:12px; color:var(--muted); }
+.personal-metrics b { font-weight:500; font-variant-numeric:tabular-nums; overflow-wrap:anywhere; }
+.personal-metrics span { color:var(--muted); }
 .personal-pace { display:flex; align-items:center; justify-content:space-between; padding:16px 0; border-top:1px solid var(--line); color:var(--muted); font-size:12px; }
 .personal-pace b { color:var(--ink); font-size:18px; font-weight:500; }
 .personal-pace small { color:var(--muted); font-size:12px; font-weight:400; }
@@ -179,81 +176,77 @@ onBeforeUnmount(() => { version++; closeMedia(); });
 .member-runs { padding-bottom:8px; }
 .member-runs .section-heading { margin-bottom:10px; }
 .member-run { display:flex; align-items:center; gap:12px; padding:17px 0; border-top:1px solid var(--line); }
-.member-run-date { display:grid; gap:5px; font-size:14px; font-variant-numeric:tabular-nums; }
+.member-run-date { display:grid; gap:5px; font-variant-numeric:tabular-nums; }
 .member-run-date small { color:var(--muted); font-size:12px; }
 .member-run > div { display:grid; gap:7px; flex:1; min-width:0; }
 .member-run > div > b { font-size:14px; font-weight:500; }
 .member-run > div > span { color:var(--muted); font-size:12px; line-height:1.6; }
 .member-run > strong { font-size:22px; font-weight:600; letter-spacing:normal; text-align:right; font-variant-numeric:tabular-nums; }
 .member-run > strong small { display:block; margin-top:5px; color:var(--muted); font-size:12px; font-weight:400; letter-spacing:normal; }
-.chapter-heading { display:flex; align-items:center; justify-content:space-between; gap:15px; margin:3px 2px 18px; }
+.chapter-heading { display:flex; align-items:center; justify-content:space-between; gap:15px; }
 .chapter-heading > div { min-width:0; }
-.chapter-heading h2 { margin:0; font-size:22px; line-height:1.5; letter-spacing:normal; font-weight:600; overflow-wrap:anywhere; }
-.chapter-heading p { margin:8px 0 0; color:var(--muted); font-size:12px; line-height:1.7; }
+.chapter-heading h2 { margin:0; line-height:1.5; letter-spacing:normal; font-weight:600; overflow-wrap:anywhere; }
+.chapter-heading p { margin:8px 0 0; color:var(--muted); line-height:1.7; }
 .chapter-icon { display:grid; place-items:center; flex:none; width:42px; height:42px; border-radius:12px; }
 .chapter-icon svg { width:24px; height:24px; }
 .chapter-icon.peach { color:var(--accent); background:var(--field-bg); }
 .chapter-icon.sun { color:var(--muted); background:var(--field-bg); }
 .chapter-icon.lilac { color:var(--muted); background:var(--field-bg); }
-.content-filters { display:flex; gap:8px; margin-bottom:15px; }
-.content-filters button { flex:1; min-width:0; min-height:34px; padding:0 9px; border:1px solid var(--line); border-radius:8px; color:var(--muted); background:var(--card); font-size:12px; }
-.content-filters button.on { color:var(--accent); border-color:var(--line); background:var(--field-bg); }
-.profile-race-card { display:block; padding:17px 18px 0; margin-bottom:12px; border-radius:15px; color:var(--ink); background:var(--card); }
-.race-card-meta { display:flex; align-items:center; justify-content:space-between; gap:10px; color:var(--muted); font-size:12px; }
+.content-filters { display:flex; margin-bottom:15px; }
+.content-filters button { flex:1; min-width:0; color:var(--muted); }
+.content-filters button.on { border-color:var(--line); }
+.profile-race-card { display:block; margin-bottom:12px; color:var(--ink); }
+.race-card-meta { display:flex; align-items:center; justify-content:space-between; gap:10px; color:var(--muted); }
 .race-status { padding:3px 7px; border-radius:5px; font-size:12px; }
-.race-status.mint { color:var(--muted); background:var(--field-bg); }
-.race-status.peach { color:var(--muted); background:var(--field-bg); }
 .race-status.lilac { color:var(--muted); background:var(--field-bg); }
 .race-status.muted { color:var(--muted); background:var(--field-bg); }
-.profile-race-card h3 { margin:12px 0 8px; font-size:18px; line-height:1.6; font-weight:500; overflow-wrap:anywhere; }
+.profile-race-card h3 { line-height:1.6; font-weight:500; overflow-wrap:anywhere; }
 .profile-race-card > p { color:var(--muted); font-size:12px; line-height:1.8; margin:0 0 15px; }
-.race-card-bottom { display:flex; align-items:center; justify-content:space-between; gap:9px; min-height:48px; border-top:1px solid var(--line); font-size:12px; line-height:1.7; }
+.race-card-bottom { display:flex; align-items:center; justify-content:space-between; gap:9px; min-height:48px; line-height:1.7; }
 .race-card-bottom > span { min-width:0; color:var(--muted); }
 .race-card-bottom > b { flex:none; color:var(--accent); font-size:12px; font-weight:400; }
 .race-card-bottom i { color:var(--muted); margin-left:5px; font-size:18px; font-style:normal; }
-.pb-section { margin:0 0 22px; }
 .pb-section > .section-heading { margin:0 2px 13px; }
 .pb-section > .section-heading > span { font-size:12px; }
-.pb-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
-.pb-card { display:block; min-width:0; padding:16px 14px 13px; border-radius:12px; color:var(--ink); background:var(--card); }
+.pb-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); }
+.pb-card { display:block; min-width:0; color:var(--ink); }
 .pb-card > div { display:flex; align-items:center; justify-content:space-between; gap:6px; }
 .pb-card > div > span { font-size:12px; color:var(--muted); }
 .pb-card i { color:var(--muted); font-size:12px; font-style:italic; font-weight:600; letter-spacing:normal; }
-.pb-card strong { display:block; margin:17px 0 12px; font-size:24px; font-weight:600; letter-spacing:normal; line-height:1.15; font-variant-numeric:tabular-nums; }
-.pb-card p { margin:0 0 11px; color:var(--muted); font-size:12px; line-height:1.7; overflow-wrap:anywhere; }
+.pb-card strong { display:block; margin:17px 0 12px; font-weight:600; letter-spacing:normal; line-height:1.15; font-variant-numeric:tabular-nums; }
+.pb-card p { margin:0 0 11px; color:var(--muted); line-height:1.7; overflow-wrap:anywhere; }
 .pb-card > small { display:flex; align-items:center; justify-content:space-between; gap:5px; color:var(--muted); font-size:12px; }
 .pb-card > small > span { font-size:16px; }
 .result-history { padding:18px 15px 5px; }
 .result-history .section-heading { padding:0 2px; margin-bottom:11px; }
 .result-history select { max-width:46%; min-width:0; padding:7px 8px; border:1px solid var(--line); border-radius:7px; background:var(--card); color:var(--muted); font-size:12px; }
-.result-row { display:flex; align-items:center; gap:11px; padding:18px 0; border-top:1px solid var(--line); color:var(--ink); }
+.result-row { display:flex; align-items:center; border-top:1px solid var(--line); color:var(--ink); }
 .result-year { display:grid; flex:none; gap:5px; font-size:12px; font-weight:500; font-variant-numeric:tabular-nums; }
 .result-year small { color:var(--muted); font-size:12px; font-weight:400; }
 .result-copy { display:grid; flex:1; min-width:0; gap:7px; }
-.result-copy b { font-size:12px; font-weight:500; line-height:1.7; overflow-wrap:anywhere; }
+.result-copy b { font-weight:500; line-height:1.7; overflow-wrap:anywhere; }
 .result-copy > span { color:var(--muted); font-size:12px; line-height:1.5; }
 .result-clock { display:grid; flex:none; gap:7px; text-align:right; }
-.result-clock strong { font-size:18px; font-weight:600; letter-spacing:normal; font-variant-numeric:tabular-nums; }
+.result-clock strong { font-weight:600; letter-spacing:normal; font-variant-numeric:tabular-nums; }
 .result-clock small { color:var(--muted); font-size:12px; }
 .profile-album { margin-bottom:24px; }
 .profile-album > .section-heading { margin:0 2px 12px; }
 .profile-album .section-heading > div { min-width:0; }
-.profile-album .section-heading h2 { font-size:14px; line-height:1.7; }
-.profile-album .section-heading p { margin:5px 0 0; color:var(--muted); font-size:12px; line-height:1.7; }
+.profile-album .section-heading h2 { line-height:1.7; }
+.profile-album .section-heading p { margin:5px 0 0; color:var(--muted); line-height:1.7; }
 .profile-album .section-heading > a { color:var(--muted); font-size:12px; }
-.album-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:7px; }
+.album-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); }
 .album-grid .album-tile { position:relative; display:grid; place-items:center; width:100%; min-width:0; aspect-ratio:1; padding:0; overflow:hidden; border-radius:10px; background:var(--field-bg); }
 .album-tile > img { width:100%; height:100%; object-fit:cover; }
 .album-tile.video { color:var(--muted); background:var(--card); }
 .album-tile.video > svg { width:39px; height:39px; opacity:.3; }
 .video-play { position:absolute; top:calc(50% - 13px); left:calc(50% - 13px); display:grid; place-items:center; width:26px; height:26px; border-radius:50%; padding-left:2px; background:#fff9; color:var(--muted); font-size:12px; }
 .album-tile > small { position:absolute; right:6px; bottom:5px; color:var(--muted); font-size:12px; }
-.quiet-empty { padding:29px 15px; text-align:center; }
 .quiet-empty > svg { width:29px; height:29px; color:var(--muted); }
-.quiet-empty h3 { margin:17px 0 8px; color:var(--ink-secondary); font-size:14px; font-weight:500; line-height:1.7; }
-.quiet-empty p { color:var(--muted); font-size:12px; line-height:1.9; margin:0; }
+.quiet-empty h3 { margin:17px 0 8px; color:var(--ink-secondary); font-weight:500; line-height:1.7; }
+.quiet-empty p { color:var(--muted); line-height:1.9; margin:0; }
 .quiet-empty > button { min-height:38px; margin-top:10px; padding:0; color:var(--accent); font-size:12px; }
-.member-privacy { display:flex; justify-content:center; align-items:center; gap:5px; padding:12px 16px 0; color:var(--muted); font-size:12px; }
+.member-privacy { display:flex; justify-content:center; align-items:center; gap:5px; padding:12px 16px 0; color:var(--muted); }
 .member-privacy svg { width:12px; height:12px; }
 .member-state { padding:65px 23px; text-align:center; color:var(--muted); font-size:14px; line-height:1.9; }
 .member-state h2 { font-size:20px; color:var(--ink); font-weight:500; }
@@ -284,41 +277,38 @@ onBeforeUnmount(() => { version++; closeMedia(); });
 .lightbox-nav span { color:var(--muted); font-size:12px; }
 @keyframes profile-pulse { 50% { opacity:.45; } }
 @media(prefers-reduced-motion:reduce) { .profile-skeleton { animation:none; } }
-@media(min-width:650px) { .profile-content { padding:25px 24px 0; } .member-profile { padding-right:28px; padding-left:28px; } .profile-identity { gap:20px; } .profile-key-metrics { margin-top:24px; } .profile-card { padding:23px; } .pb-grid { gap:14px; } .pb-card { padding:22px; } .pb-card strong { font-size:34px; } .album-grid { gap:11px; } .result-copy b { font-size:14px; } .result-clock strong { font-size:22px; } }
-@media(max-width:350px) { .member-topbar { padding:0 14px; } .member-profile { padding:16px 17px 0; } .profile-identity { gap:12px; } .profile-avatar { width:62px; height:62px; border-radius:12px; font-size:24px; } .profile-name h1 { font-size:24px; } .profile-key-metrics b { font-size:22px; } .profile-key-metrics span { font-size:12px; } .profile-content { padding:18px 12px 0; } .profile-card { padding:18px 15px; } .personal-volume { padding-right:18px; padding-left:18px; } .personal-volume > strong { font-size:40px; } .personal-metrics { gap:7px; } .personal-metrics b { font-size:14px; } .member-run { gap:9px; } .chapter-heading h2 { font-size:18px; } .chapter-heading p { font-size:12px; } .chapter-icon { width:35px; height:35px; border-radius:11px; } .chapter-icon svg { width:21px; height:21px; } .pb-grid { gap:8px; } .pb-card { padding:15px 11px 12px; } .pb-card strong { font-size:24px; } .pb-card p { font-size:12px; } .result-history { padding:17px 12px 4px; } .result-row { gap:8px; } .result-copy b { font-size:12px; } .result-clock strong { font-size:16px; } .result-clock small { font-size:12px; } .album-grid { gap:5px; } .album-grid .album-tile { border-radius:8px; } }
+@media(min-width:650px) { .member-profile { padding-right:28px; padding-left:28px; } .profile-identity { gap:20px; } .profile-key-metrics { margin-top:24px; } }
+@media(max-width:350px) { .profile-identity { gap:12px; } .personal-volume { padding-right:18px; padding-left:18px; } .personal-volume > strong { font-size:40px; } .personal-metrics { gap:7px; } .member-run { gap:9px; } .chapter-icon { width:35px; height:35px; border-radius:11px; } .chapter-icon svg { width:21px; height:21px; } .result-history { padding:17px 12px 4px; } .result-clock small { font-size:12px; } .album-grid .album-tile { border-radius:8px; } }
 </style>
 
 <style scoped>
-.profile-achievement-entry{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:18px 17px;margin-bottom:19px;background:var(--card);border-radius:12px;color:var(--ink)}.profile-achievement-entry>span{display:grid;gap:7px;min-width:0}.profile-achievement-entry b{font-size:14px;font-weight:500;line-height:1.6}.profile-achievement-entry small{font-size:12px;color:var(--muted);line-height:1.7}.profile-achievement-entry svg{width:18px;height:18px;color:var(--muted);flex:none}
+.profile-achievement-entry{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:19px;color:var(--ink)}.profile-achievement-entry>span{display:grid;gap:7px;min-width:0}.profile-achievement-entry b{font-weight:500;line-height:1.6}.profile-achievement-entry small{color:var(--muted);line-height:1.7}.profile-achievement-entry svg{width:18px;height:18px;color:var(--muted);flex:none}
 
 /* Shared typography and controls for club services. */
 
-.club-member-page { font-size:14px; color:var(--ink); background:var(--bg); }
-.profile-name h1 { font-size:24px; font-weight:600; letter-spacing:normal; }
-.profile-avatar { border-radius:8px; background:var(--field-bg); color:var(--muted); }
-.profile-key-metrics b { font-size:24px; font-weight:600; color:var(--ink); }
-.profile-key-metrics span { font-size:12px; }
-.profile-tabs { border-radius:0; background:var(--card); border-bottom:1px solid var(--line); }
-.club-member-page .profile-tabs button { min-height:44px; border-radius:0; font-size:14px; font-weight:400; background:transparent; color:var(--muted); }
-.club-member-page .profile-tabs button.on { color:var(--accent); background:transparent; box-shadow:inset 0 -2px var(--accent); font-weight:500; }
+.club-member-page { font-size:14px; color:var(--ink); }
+.profile-name h1 { font-weight:600; letter-spacing:normal; }
+.profile-key-metrics b { color:var(--ink); }
+.profile-tabs { border-radius:0; border-bottom:1px solid var(--line); }
+.club-member-page .profile-tabs button { border-radius:0; font-weight:400; background:transparent; }
+.club-member-page .profile-tabs button.on { background:transparent; box-shadow:inset 0 -2px var(--accent); font-weight:500; }
 .profile-card,.profile-race-card,.profile-album,.pb-card,.personal-volume,.result-history { border:1px solid var(--line); border-radius:12px; background:var(--card); box-shadow:none; }
-.section-heading h2,.chapter-heading h2 { font-size:18px; font-weight:600; letter-spacing:normal; }
-.personal-volume>strong { font-size:40px; font-weight:600; letter-spacing:normal; color:var(--ink); }
+.section-heading h2,.chapter-heading h2 { font-weight:600; letter-spacing:normal; }
+.personal-volume>strong { font-weight:600; letter-spacing:normal; color:var(--ink); }
 .personal-volume p,.personal-volume small,.personal-volume span { font-size:12px; }
 .personal-volume .personal-metrics b { font-size:20px; font-weight:600; }
 .chapter-icon,.chapter-icon.peach,.chapter-icon.sun,.chapter-icon.lilac { background:var(--field-bg); color:var(--muted); border-radius:10px; }
-.pb-card strong { color:var(--ink); font-size:28px; font-weight:600; letter-spacing:normal; }
+.pb-card strong { font-weight:600; letter-spacing:normal; }
 .pb-card p,.pb-card small,.chapter-heading p,.result-clock small,.profile-joined,.profile-role { font-size:12px; }
-.result-copy b,.profile-race-card h3 { font-size:15px; font-weight:500; }
-.result-clock strong { font-size:20px; font-weight:600; }
+.result-copy b,.profile-race-card h3 { font-weight:500; }
+.result-clock strong { font-weight:600; }
 .profile-race-card .race-status { background:var(--field-bg); color:var(--muted); }
 .club-member-page .content-filters button,.club-member-page .range-tabs button { min-height:44px; border-radius:10px; font-size:14px; }
 .club-member-page .content-filters button.on,.club-member-page .range-tabs button.on { color:var(--accent); border-color:var(--accent); background:var(--accent-soft); }
 .club-member-page input,.club-member-page select,.club-member-page textarea { min-height:44px; border-radius:10px; background:var(--field-bg); color:var(--ink); font-size:14px; }
-.profile-achievement-entry { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px; }
-.profile-achievement-entry small { color:var(--muted); font-size:12px; }
+.profile-achievement-entry small { color:var(--muted); }
 .profile-achievement-entry svg { color:var(--accent); }
-@media(max-width:350px) { .profile-name h1 { font-size:24px; }.personal-volume>strong { font-size:36px; }.profile-key-metrics span,.chapter-heading p,.pb-card p,.result-clock small { font-size:12px; } }
+@media(max-width:350px) {.profile-key-metrics span,.chapter-heading p,.pb-card p,.result-clock small { font-size:12px; } }
 
 
 .club-member-page button,.club-member-page .profile-range button,.club-member-page .profile-period>button { min-height:44px; }
@@ -326,3 +316,5 @@ onBeforeUnmount(() => { version++; closeMedia(); });
 .club-member-page .profile-range button.on { color:var(--accent); background:transparent; box-shadow:inset 0 -2px var(--accent); font-weight:500; }
 .club-member-page .profile-range { border-radius:0; padding:0; background:transparent; border-bottom:1px solid var(--line); }
 </style>
+
+<style scoped src="../personal-ui.css"></style>

@@ -1,15 +1,15 @@
 <template>
   <main class="achievement-studio">
     <header class="studio-header"><router-link :to="backTo" aria-label="返回上一页"><RunnerIcon name="back" /></router-link><span>成绩海报</span><span class="studio-mark"><RunnerIcon name="honors" /></span></header>
-    <section class="studio-intro"><span class="studio-kicker">YOUR PERSONAL HIGHLIGHTS</span><h1>制作成绩海报</h1><p>选择成绩、版式与展示信息，保存后分享。</p></section>
-    <section v-if="!session.token.value" class="studio-state"><span><RunnerIcon name="lock" /></span><h2>属于你的高光，等你开启</h2><p>登录后，用自己的已记录成绩生成海报。</p><button type="button" class="primary-action" @click="login">登录并继续</button></section>
-    <section v-else-if="loading" class="studio-state" role="status"><span class="loading-symbol"><RunnerIcon name="honors" /></span><h2>正在整理你的成绩</h2><p>马上就好，精彩值得稍等。</p></section>
+    <section class="studio-intro studio-summary"><span class="studio-kicker">YOUR PERSONAL HIGHLIGHTS</span><h1>制作成绩海报</h1><p>选择成绩、版式与展示信息，保存后分享。</p></section>
+    <section v-if="!session.token.value" class="studio-state"><span><RunnerIcon name="lock" /></span><h2>用自己的成绩制作海报</h2><p>登录后，用自己的已记录成绩生成海报。</p><button type="button" class="primary-action" @click="login">登录并继续</button></section>
+    <section v-else-if="loading" class="studio-state" role="status"><span class="loading-symbol"><RunnerIcon name="honors" /></span><h2>正在整理你的成绩</h2><p>正在准备预览与成绩选项。</p></section>
     <section v-else-if="error" class="studio-state" role="alert"><span><RunnerIcon name="stats" /></span><h2>这次没能加载出来</h2><p>{{ error }}</p><button type="button" class="primary-action" @click="load">重新加载</button></section>
     <template v-else-if="runner">
       <nav class="poster-modes" aria-label="海报内容"><button v-for="item in MODES" :key="item.id" type="button" :class="{ on: mode === item.id }" :aria-pressed="mode === item.id" @click="mode = item.id"><RunnerIcon :name="item.id === 'pb' ? 'honors' : 'calendar'" /><span>{{ item.id === 'pb' ? 'PB 荣誉卡' : item.name }}</span><small>{{ item.id === 'pb' ? '生涯最好成绩' : '每一次完赛' }}</small></button></nav>
       <div class="studio-layout">
         <section class="preview-panel" aria-label="海报预览">
-          <div class="preview-top"><span><i></i> 实时预览</span><span v-if="previewMeta">{{ previewMeta.width }} × {{ previewMeta.height }}</span></div>
+          <div class="preview-top"><span>海报预览</span><span v-if="previewMeta">{{ previewMeta.width }} × {{ previewMeta.height }}</span></div>
           <div class="poster-stage" :class="'theme-' + style" :aria-busy="rendering">
             <img v-if="previewUrl" class="poster-image" :src="previewUrl" :alt="model.title + '，第' + (pageIndex + 1) + '张海报预览'" @click="openPreview" />
             <div v-else class="poster-placeholder"><RunnerIcon :name="visibleRows.length ? 'honors' : 'calendar'" /><h2>{{ !visibleRows.length ? mode === 'pb' ? '下一次突破，值得期待' : '每一次完赛，都值得记录' : '先选一项成绩' }}</h2><p>{{ !visibleRows.length ? mode === 'pb' ? '保存线下路跑成绩后，即可生成生涯 PB 荣誉卡。' : '这个年份还没有可用的完赛成绩。' : '在下面勾选成绩，立即生成你的海报。' }}</p><router-link v-if="!records.length" to="/">去记录一场完赛 ›</router-link></div>
@@ -19,10 +19,11 @@
           <p class="preview-hint">{{ pages.length > 1 ? '完整履历分为 ' + pages.length + ' 张，请逐张预览与保存。' : previewUrl ? '点击看原图 · 手机可长按图片保存' : '预览会随你的选择更新' }}</p>
         </section>
         <div class="studio-controls">
-          <section class="control-card theme-control"><div class="control-heading"><h2>选一个心情</h2><span>浅色主题</span></div><nav class="theme-options" aria-label="海报主题"><button v-for="item in STYLES" :key="item.id" type="button" :class="['theme-option', item.id, { on: style === item.id }]" :aria-label="item.name" :aria-pressed="style === item.id" @click="style = item.id"><span class="theme-swatch" :style="{ background: item.background, color: item.accent }"><i></i><b>PB</b><small></small></span><span>{{ item.name }}</span></button></nav></section>
+
           <section class="control-card selection-control"><div class="control-heading"><div><h2>{{ mode === 'pb' ? '我的生涯 PB' : '挑选完赛记录' }}</h2><p>{{ mode === 'pb' ? '线下路跑 · 固定生涯口径，不受年份影响' : '只整理你已记录、日期有效的完赛成绩' }}</p></div><span>{{ selectedVisibleCount }} / {{ visibleRows.length }}</span></div><div class="selection-toolbar"><label v-if="mode === 'results'" class="year-select"><span>年份</span><select v-model="year" aria-label="完赛成绩年份"><option value="">全部年份</option><option v-for="item in years" :key="item" :value="item">{{ item }} 年</option></select></label><span v-else class="lifetime-label">生涯最佳 · 最多 4 项</span><div><button type="button" :disabled="!visibleRows.length" @click="selectAll">全选</button><span>·</span><button type="button" :disabled="!visibleRows.length" @click="selectNone">全不选</button></div></div><div class="selection-list"><label v-for="item in visibleRows" :key="item.key" class="selection-row"><input type="checkbox" :checked="isSelected(item.key)" @change="toggleRow(item.key)" /><span class="selection-check" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="m3 8 3 3 7-7" /></svg></span><span class="selection-copy"><b>{{ item.distanceLabel }}<i v-if="mode === 'results' && item.pb">PB</i></b><span>{{ item.raceName }}</span><small>{{ item.raceDate }}<template v-if="item.kind !== 'road' || item.meet !== 'offline'"> · {{ item.typeLabel }}</template></small></span><strong>{{ item.clock }}</strong></label><p v-if="!visibleRows.length" class="selection-empty">{{ mode === 'pb' ? '还没有符合生涯 PB 口径的成绩。' : '这个年份还没有完赛记录。' }}</p></div><p v-if="pages.length > 1 && model.rows.length" class="pagination-note">已选 {{ model.rows.length }} 条，完整生成 {{ pages.length }} 张，每张最多 20 条。</p></section>
+          <section class="control-card theme-control"><div class="control-heading"><h2>海报版式</h2><span>浅色主题</span></div><nav class="theme-options" aria-label="海报主题"><button v-for="item in STYLES" :key="item.id" type="button" :class="['theme-option', item.id, { on: style === item.id }]" :aria-label="item.name" :aria-pressed="style === item.id" @click="style = item.id"><span class="theme-swatch" :style="{ background: item.background, color: item.accent }"><i></i><b>PB</b><small></small></span><span>{{ item.name }}</span></button></nav></section>
           <details class="control-card options-control"><summary><span><RunnerIcon name="add" /> 文案与展示信息</span><small>自由留白 <i>⌄</i></small></summary><div class="advanced-options"><label class="quote-select">海报短文案<select v-model="quote" aria-label="海报短文案"><option v-for="item in QUOTES" :key="item" :value="item">{{ item }}</option><option value="">不显示短文案</option></select></label><div class="privacy-options"><label><input v-model="showName" type="checkbox" />显示昵称</label><label><input v-model="showRace" type="checkbox" />显示赛事名</label><label><input v-model="showDate" type="checkbox" />显示比赛日期</label><label><input v-model="showCity" type="checkbox" />显示比赛城市</label></div><p>只影响这张海报，已记录成绩保持原样。</p></div></details>
-          <section class="caption-card"><div><span>分享时，也给自己一句鼓励</span><button type="button" :disabled="!model.rows.length" @click="copyCaption">复制朋友圈配文 <RunnerIcon name="arrow" /></button></div><p>{{ shareCaption }}</p></section>
+          <section class="caption-card"><div><span>分享配文</span><button type="button" :disabled="!model.rows.length" @click="copyCaption">复制朋友圈配文 <RunnerIcon name="arrow" /></button></div><p>{{ shareCaption }}</p></section>
           <p class="local-note"><RunnerIcon name="lock" /> 图片在当前设备生成，不上传。</p>
         </div>
       </div>
@@ -89,37 +90,34 @@ onBeforeUnmount(() => { disposed = true; loadVersion++; clearPreview(); clearTim
 </script>
 
 <style scoped>
-.achievement-studio { max-width: 1160px; min-height: 100dvh; margin: 0 auto; padding-bottom: calc(220px + env(safe-area-inset-bottom, 0px)); background: var(--bg); color: var(--ink); font-size:14px; letter-spacing: normal; }
+.achievement-studio { max-width: 1160px; min-height: 100dvh; margin: 0 auto; padding-bottom: calc(220px + env(safe-area-inset-bottom, 0px)); background: var(--bg); letter-spacing: normal; }
 .achievement-studio button { width: auto; font: inherit; cursor: pointer; }
 .achievement-studio button:disabled { opacity: .4; cursor: default; }
-.studio-header { display: grid; grid-template-columns: 44px 1fr 44px; align-items: center; min-height: 64px; padding: 0 16px; text-align: center; background: var(--card); font-size:24px; font-weight: 600; }
+.studio-header { display: grid; grid-template-columns: 44px 1fr 44px; align-items: center; padding: 0 16px; text-align: center; font-weight: 600; }
 .studio-header>a { display: flex; align-items: center; justify-content: center; min-height: 44px; }
 .studio-header svg { width: 22px; height: 22px; }
 .studio-mark { justify-self: end; color: var(--muted); }
-.studio-intro { padding: 24px 20px; background: var(--card); }
 .studio-kicker { color: var(--muted); font-size:12px; }
-.studio-intro h1 { font-size:24px; font-weight: 600; line-height: 1.5; margin: 8px 0; }
 .studio-intro>p { color: var(--muted); font-size:14px; line-height: 1.7; margin: 0; }
-.poster-modes { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; margin: 16px; }
+.poster-modes { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); }
 .poster-modes button { position: relative; display: grid; grid-template-columns: 22px 1fr; align-items: center; gap: 4px 8px; padding: 12px; min-width: 0; min-height: 72px; text-align: left; border: 1px solid var(--line); border-radius:var(--radius-control); background: var(--card); color: var(--ink); }
 .poster-modes svg { grid-row: span 2; width: 22px; height: 22px; color: var(--muted); }
 .poster-modes button>span { font-size:14px; font-weight: 500; }
 .poster-modes small { font-size:12px; color: var(--muted); }
 .poster-modes button.on { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
 .poster-modes button.on svg { color: var(--accent); }
-.studio-layout { padding: 0 16px; }
-.preview-panel { padding: 12px; background: var(--card); border-radius:var(--radius-card); margin-bottom: 16px; }
-.preview-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 0 2px 12px; color: var(--muted); font-size:12px; }
+.preview-panel { margin-bottom: 16px; }
+.preview-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 0 2px 12px; color: var(--muted); }
 .preview-top>span:first-child { display: flex; align-items: center; gap: 6px; }
 .preview-top i { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
-.poster-stage { min-height: 350px; display: grid; place-items: center; overflow: hidden; background: var(--bg); border-radius:var(--radius-control); }
+.poster-stage { min-height: 350px; display: grid; place-items: center; overflow: hidden; }
 .poster-image { display: block; width: 100%; height: auto; cursor: zoom-in; }
-.poster-placeholder { padding: 40px 20px; text-align: center; }
+.poster-placeholder { text-align: center; }
 .poster-placeholder>svg { width: 34px; height: 34px; color: var(--muted); }
-.poster-placeholder h2 { font-size:18px; font-weight: 600; line-height: 1.6; margin: 20px 0 10px; color: var(--ink); }
+.poster-placeholder h2 { font-weight: 600; line-height: 1.6; margin: 20px 0 10px; color: var(--ink); }
 .poster-placeholder p { font-size:14px; color: var(--muted); line-height: 1.7; }
 .poster-placeholder>a { display: inline-flex; align-items: center; min-height: 44px; padding: 8px; color: var(--accent); font-size:14px; }
-.preview-hint { text-align: center; margin: 12px 0 0; color: var(--muted); font-size:12px; line-height: 1.7; }
+.preview-hint { text-align: center; color: var(--muted); line-height: 1.7; }
 .poster-pagination { display: flex; justify-content: center; align-items: center; gap: 16px; padding: 12px 0 0; }
 .poster-pagination button { width: 44px; min-height: 44px; border-radius:var(--radius-control); background: var(--chip); font-size:24px; color: var(--ink); }
 .poster-pagination>span { display: block; text-align: center; font-size:14px; color: var(--ink-secondary); }
@@ -127,11 +125,11 @@ onBeforeUnmount(() => { disposed = true; loadVersion++; clearPreview(); clearTim
 .poster-pagination small { display: block; font-size:12px; color: var(--muted); margin-top: 4px; }
 .render-error { font-size:14px; color: var(--accent); line-height: 1.7; }
 .render-error button { min-height: 44px; padding: 0 8px; color: var(--accent); text-decoration: underline; }
-.control-card { padding: 16px; margin-bottom: 16px; background: var(--card); border-radius:var(--radius-card); }
-.control-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
-.control-heading h2 { font-size:18px; font-weight: 600; margin: 0; }
-.control-heading>span { flex: none; font-size:12px; color: var(--muted); }
-.control-heading p { font-size:12px; color: var(--muted); line-height: 1.7; margin: 6px 0 0; }
+.control-card { margin-bottom: 16px; }
+.control-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.control-heading h2 { font-weight: 600; margin: 0; }
+.control-heading>span { flex: none; color: var(--muted); }
+.control-heading p { color: var(--muted); line-height: 1.7; margin: 6px 0 0; }
 .theme-options { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; }
 .theme-options button { padding: 0; min-width: 0; min-height: 44px; background: transparent; text-align: center; }
 /* The swatches depict the exported artwork; keep their individual palette and typography. */
@@ -139,7 +137,7 @@ onBeforeUnmount(() => { disposed = true; loadVersion++; clearPreview(); clearTim
 .theme-swatch i { position: absolute; inset: 11px 13px auto; height: 1px; background: currentColor; opacity: .25; }
 .theme-swatch b { position: absolute; left: 13px; top: 15px; font-size:20px; font-weight:600; letter-spacing:normal; }
 .theme-swatch small { position: absolute; bottom: 10px; left: 13px; width: 24px; height: 4px; border-radius:2px; background: currentColor; opacity: .2; }
-.theme-option>span:last-child { font-size:14px; color: var(--ink-secondary); }
+.theme-option>span:last-child { color: var(--ink-secondary); }
 .theme-option.on .theme-swatch { outline: 2px solid var(--accent); }
 .theme-option.on>span:last-child { color: var(--accent); }
 .selection-control { padding-bottom: 4px; }
@@ -150,7 +148,7 @@ onBeforeUnmount(() => { disposed = true; loadVersion++; clearPreview(); clearTim
 .year-select { display: flex; align-items: center; gap: 8px; min-width: 0; font-size:14px; color: var(--ink-secondary); }
 .year-select select { max-width: 130px; min-height: 44px; padding: 8px; border: 1px solid var(--line); border-radius:var(--radius-control); background: var(--card); font-size:14px; color: var(--ink); }
 .selection-list { max-height: 460px; overflow: auto; scrollbar-width: thin; }
-.selection-row { position: relative; display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 16px 0; border-bottom: 1px solid var(--line); cursor: pointer; }
+.selection-row { position: relative; display: flex; align-items: center; min-height: 44px; border-bottom: 1px solid var(--line); cursor: pointer; }
 .selection-row:last-child { border: 0; }
 .selection-row>input { position: absolute; opacity: 0; width: 20px; height: 20px; left: 0; }
 .selection-check { display: grid; place-items: center; width: 20px; height: 20px; flex: none; border: 1px solid var(--line); border-radius:5px; background: var(--card); color: #fff; }
@@ -163,11 +161,11 @@ onBeforeUnmount(() => { disposed = true; loadVersion++; clearPreview(); clearTim
 .selection-copy i { display: inline-block; padding: 0 4px; margin-left: 5px; font-size:12px; font-style: normal; color: var(--accent); background: var(--accent-soft); border-radius:4px; }
 .selection-copy>span { font-size:14px; line-height: 1.6; color: var(--ink-secondary); overflow-wrap: anywhere; }
 .selection-copy>small { font-size:12px; color: var(--muted); }
-.selection-row>strong { flex: none; max-width: 38%; font-size:16px; font-weight: 600; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.selection-row>strong { flex: none; max-width: 38%; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
 .selection-empty { padding: 20px 0; color: var(--muted); text-align: center; font-size:14px; line-height: 1.7; }
 .pagination-note { padding: 12px 0; margin: 0; border-top: 1px solid var(--line); font-size:12px; line-height: 1.7; color: var(--muted); }
 .options-control { padding-top: 0; padding-bottom: 0; }
-.options-control summary { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 56px; list-style: none; cursor: pointer; }
+.options-control summary { display: flex; align-items: center; justify-content: space-between; gap: 8px; list-style: none; cursor: pointer; }
 .options-control summary::-webkit-details-marker { display: none; }
 .options-control summary>span { display: flex; align-items: center; gap: 8px; font-size:14px; }
 .options-control summary svg { width: 18px; height: 18px; color: var(--muted); }
@@ -181,29 +179,28 @@ onBeforeUnmount(() => { disposed = true; loadVersion++; clearPreview(); clearTim
 .privacy-options label { display: flex; align-items: center; gap: 8px; min-height: 44px; font-size:14px; color: var(--ink-secondary); }
 .privacy-options input { accent-color: var(--accent); width: 20px; height: 20px; margin: 0; flex: none; }
 .advanced-options>p { font-size:12px; color: var(--muted); line-height: 1.7; margin: 12px 0 0; }
-.caption-card { padding: 0 4px; }
 .caption-card>div { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 8px; }
-.caption-card>div>span { font-size:12px; color: var(--muted); }
+.caption-card>div>span { color: var(--muted); }
 .caption-card button { display: inline-flex; align-items: center; gap: 4px; min-height: 44px; color: var(--accent); padding: 8px 0; font-size:14px; }
 .caption-card button svg { width: 16px; height: 16px; }
 .caption-card>p { max-height: 140px; overflow: auto; margin: 4px 0; color: var(--ink-secondary); font-size:14px; line-height: 1.7; white-space: pre-wrap; user-select: text; overflow-wrap: anywhere; }
 .local-note { display: flex; align-items: center; justify-content: center; gap: 6px; color: var(--muted); font-size:12px; margin: 20px 0 8px; }
 .local-note svg { width: 14px; height: 14px; }
-.poster-actions { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); z-index: 9; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; width: min(100%,580px); padding: 12px 16px max(12px,env(safe-area-inset-bottom)); background: var(--card); border-top: 1px solid var(--line); }
+.poster-actions { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); z-index: 9; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; width: min(100%,580px); padding: 12px 16px max(12px,env(safe-area-inset-bottom)); }
 .action-summary { display: grid; gap: 4px; flex: 1 1 100%; min-width: 0; }
 .action-summary>b { font-size:14px; font-weight: 500; }
 .action-summary>span { font-size:12px; color: var(--muted); line-height: 1.5; }
 .action-buttons { display: flex; align-items: center; gap: 12px; flex: 1 1 100%; }
-.achievement-studio .primary-action { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 46px; padding: 0 16px; border: 0; border-radius:var(--radius-control); background: var(--accent); color: #fff; font-size:14px; font-weight: 500; text-decoration: none; }
+.achievement-studio .primary-action { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 0 16px; border: 0; background: var(--accent); color: #fff; font-size:14px; font-weight: 500; text-decoration: none; }
 .action-buttons .primary-action { flex: 1; }
 .primary-action svg { width: 16px; height: 16px; }
 .achievement-studio .share-action { min-height: 46px; padding: 0 16px; border: 1px solid var(--line); border-radius:var(--radius-control); color: var(--ink); font-size:14px; }
 .achievement-studio .save-all-action { display: block; flex-basis: 100%; min-height: 44px; text-align: center; padding: 8px 0; color: var(--accent); font-size:14px; }
 .save-all-action span { display: block; color: var(--muted); font-size:12px; }
-.studio-state { margin: 16px; padding: 40px 20px; border-radius:var(--radius-card); background: var(--card); text-align: center; }
-.studio-state>span { display: grid; place-items: center; width: 60px; height: 60px; margin: auto; border-radius:var(--radius-card); color: var(--muted); background: var(--chip); }
+.studio-state { background: var(--card); }
+.studio-state>span { place-items: center; width: 60px; height: 60px; margin: auto; border-radius:var(--radius-card); color: var(--muted); background: var(--chip); }
 .studio-state svg { width: 28px; height: 28px; }
-.studio-state h2 { font-size:18px; font-weight: 600; line-height: 1.6; margin: 20px 0 8px; }
+.studio-state h2 { font-weight: 600; line-height: 1.6; margin: 20px 0 8px; }
 .studio-state p { font-size:14px; line-height: 1.7; color: var(--muted); }
 .studio-state .primary-action { margin-top: 12px; }
 .studio-notice { position: fixed; bottom: 230px; left: 50%; transform: translateX(-50%); z-index: 30; width: max-content; max-width: calc(100vw - 32px); padding: 12px 16px; background: var(--ink); border-radius:var(--radius-control); color: #fff; font-size:12px; line-height: 1.7; }
@@ -219,40 +216,29 @@ onBeforeUnmount(() => { disposed = true; loadVersion++; clearPreview(); clearTim
 @keyframes soft-pulse { 50% { opacity: .4; } }
 @media (min-width: 1000px) {
   .achievement-studio { padding-bottom: 160px; }
-  .studio-layout { display: grid; grid-template-columns: minmax(0,1.05fr) minmax(0,.95fr); align-items: start; gap: 24px; padding: 0 28px; }
+  .studio-layout { display: grid; grid-template-columns: minmax(0,1.05fr) minmax(0,.95fr); align-items: start; }
   .preview-panel { position: sticky; top: 20px; }
-  .studio-intro { padding: 28px; }
-  .poster-modes { margin: 24px 28px; }
   .poster-actions { width: min(100%,1160px); padding: 16px 28px; }
   .action-summary { flex: 1; }
   .action-buttons { flex: none; }
   .save-all-action span { display: inline; margin-left: 8px; }
-  .control-card { padding: 20px; }
   .options-control { padding-top: 0; padding-bottom: 0; }
   .poster-stage { min-height: 440px; }
-  .poster-image { max-height: 75dvh; object-fit: contain; }
   .selection-list { max-height: 490px; }
   .studio-notice { bottom: 160px; }
 }
 @media (max-width: 350px) {
   .studio-header { padding: 0 12px; }
-  .studio-intro { padding: 20px 16px; }
-  .poster-modes { margin: 16px 12px; gap: 8px; }
   .poster-modes button { padding: 12px 8px; gap: 4px 6px; }
-  .studio-layout { padding: 0 12px; }
-  .preview-panel { padding: 10px; }
   .poster-stage { min-height: 320px; }
-  .control-card { padding: 16px 12px; }
   .options-control { padding-top: 0; padding-bottom: 0; }
   .theme-options { gap: 10px; }
   .theme-swatch { aspect-ratio: 1.4; }
   .theme-swatch b { font-size:18px; left: 9px; top: 13px; }
   .theme-swatch i { left: 9px; right: 9px; top: 10px; }
-  .selection-row { gap: 8px; }
   .poster-actions { padding-right: 12px; padding-left: 12px; }
   .action-buttons { gap: 8px; }
   .achievement-studio .primary-action, .achievement-studio .share-action { padding: 0 12px; }
-  .studio-state { margin: 16px 12px; padding: 32px 16px; }
 }
 @media (prefers-reduced-motion: reduce) { .loading-symbol { animation: none; } }
 </style>

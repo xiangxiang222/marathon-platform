@@ -1,32 +1,447 @@
 /* Race-page red/black/white system for personal pages. */
 .sport-page,.mine-page,.runner-page,.history-page,.studio-page,.feedback-page,.privacy-page,.legal-page {--page-bg:#f5f5f5;--surface:#fff;--text:#1a1a1a;--text-secondary:#777;--border:#eee;--brand:#ff1838;--brand-soft:#fff0f2;color:#1a1a1a;font-size:14px;font-weight:400;line-height:1.5}
-.runner-page .heading-icon,.runner-page .finish-graphic,.runner-page .run-symbol,.runner-page .empty-mark,.runner-page .collection-icon,.runner-page .passport-line {display:none}
-.runner-page .passport-title {font-size:24px;line-height:1.5;font-weight:600}
-.runner-page .career-number {font-size:40px;font-weight:600}
-.runner-page .career-hero {padding:16px 0}
-.runner-page .city-card {border:1rpx solid #eee;border-radius:10px;background:#fff}
-.runner-page .city-card.selected {border-color:#ff1838;background:#fff0f2}
-.runner-page .city-name {font-size:20px}
-.runner-page .collection-banner {text-align:left;background:#fff}
-.runner-page .runner-heading {font-size:24px;font-weight:600}
-.history-page .history-header,.runner-page .runner-header {background:#fff}
-.history-page .empty-symbol {display:none}
 .feedback-page .feedback-hero {padding:20px 16px;border:1rpx solid #eee;border-radius:12px;background:#fff}
 .feedback-page .hero-title {font-size:20px;font-weight:600}
 .feedback-page .hero-stats {background:#fff;border-top:1rpx solid #eee}
 .feedback-page .primary {min-height:44px;border-radius:8px;background:#ff1838;color:#fff}
 .privacy-page .title,.legal-page .title {font-size:24px;font-weight:600}
 
-.achievement-studio{--page-bg:#f5f5f5;--brand:#ff1838;--brand-soft:#fff0f2;color:#1a1a1a;background:#f5f5f5;font-size:14px}.achievement-studio button{width:auto;border-radius:8px;min-height:44px}.achievement-studio .studio-heading{padding:20px 16px;text-align:left;background:transparent}.achievement-studio .studio-title{font-size:24px;font-weight:600}.achievement-studio .studio-subtitle{font-size:14px;color:#777;line-height:1.7}.achievement-studio .studio-state{border-radius:12px;border:1rpx solid #eee;background:#fff}
-.privacy-page .privacy-copy,.legal-page .legal-copy,.legal-page .doc-paragraph,.legal-page .doc-list,.legal-page .guide-md{font-size:16px;line-height:1.8}.privacy-page .privacy-title{font-size:24px;font-weight:600}
+.achievement-studio{--page-bg:#f5f5f5;--brand:#ff1838;--brand-soft:#fff0f2;color:#1a1a1a;background:#f5f5f5;font-size:14px}
+.privacy-page .privacy-copy,.legal-page .legal-copy,.legal-page .doc-paragraph,.legal-page .doc-list,.legal-page .guide-md{font-size:16px;line-height:1.8}
+.privacy-page .privacy-title{font-size:24px;font-weight:600}
 
-.header-settings{width:auto;flex:none;white-space:nowrap;min-height:44px;height:44px;color:#fff}.header-settings>text{flex:none}.settings-gear{font-size:18px}
-.runner-page .bar-fill{background:#ff1838}
+.header-settings{width:auto;flex:none;white-space:nowrap;min-height:44px;height:44px;color:#555}
+.header-settings>text{flex:none}
+.settings-gear{font-size:18px}
 
 .legal-page .paragraph,.legal-page .list-item{font-size:16px;line-height:1.8}
 
 
 /* Compact identity, personal services and activity records. */
-.sport-page,.mine-page{padding:12px 16px 24px}.sport-page button,.mine-page button{width:auto;min-width:0;font-size:14px;border-radius:8px}.sport-page .surface,.mine-page .surface{padding:16px;margin-bottom:12px;border:0;border-radius:12px;background:#fff;box-shadow:none}.mine-page .account-hero{padding:0;overflow:hidden;background:linear-gradient(115deg,#fff1f3,#fff 80%)}.mine-page .identity-panel{display:block;min-height:0;padding:18px 16px 14px;background:transparent}.mine-page .identity-copy{width:100%;min-width:0}.mine-page .identity-kicker{display:none}.mine-page .hero-line{display:flex;align-items:center;gap:12px;margin:0}.mine-page .hero-avatar{width:50px;height:50px;flex:none;border:2px solid #fff;border-radius:50%;background:#fff;color:#ff1838;font-size:22px}.mine-page .hero-copy{flex:1;min-width:0}.mine-page .nickname{font-size:20px;line-height:1.4;font-weight:600}.mine-page .hero-copy .subtitle{margin-top:4px;font-size:12px;line-height:1.6;color:#777}.mine-page .role-tag{display:inline-block;margin-top:5px;padding:1px 5px;border-radius:3px;background:#fff0f2;color:#ff1838;font-size:12px}.mine-page .account-stats{display:flex;margin:0;padding:12px 0 14px;border:0;background:rgba(255,255,255,.65)}.mine-page .account-stats>view,.mine-page .account-stats>navigator{display:flex;flex-direction:column;align-items:center;flex:1;min-width:0;min-height:44px;padding:0;border:0;border-right:1rpx solid #eee;border-radius:0;background:transparent}.mine-page .account-stats>navigator{border-right:0}.mine-page .account-stats .stat-value{font-size:23px;font-weight:600;line-height:1.3;color:#1a1a1a}.mine-page .account-stats .stat-label{margin-top:4px;font-size:12px;color:#777}.mine-page .main-tabs{display:flex;margin:0 0 12px;padding:0;border:0;border-radius:0;background:transparent;gap:0}.mine-page .main-tabs>view{position:relative;flex:1;min-width:0;min-height:46px;padding:0;border:0;border-radius:0;background:transparent;color:#777;font-size:14px;font-weight:400;line-height:46px;white-space:nowrap;text-align:center}.mine-page .main-tabs>view.on{color:#1a1a1a;background:transparent;font-weight:600}.mine-page .main-tabs>view.on::after{position:absolute;right:auto;bottom:0;left:50%;width:20px;height:3px;border-radius:2px;background:#ff1838;transform:translateX(-50%);content:''}.mine-page .weekly-card{padding:16px}.mine-page .dashboard-head{padding:0;margin:0;min-height:28px}.mine-page .section-title{font-size:18px;font-weight:600}.mine-page .dashboard-more{font-size:12px;min-height:32px;line-height:32px;color:#777}.mine-page .weekly-content{padding:0;gap:12px;margin:10px 0 14px;align-items:flex-end}.mine-page .weekly-value{font-size:34px;font-weight:600;line-height:1.15;letter-spacing:-.5px}.mine-page .weekly-value>text{margin-left:6px;font-size:12px;font-weight:400;letter-spacing:0;color:#777}.mine-page .weekly-meta{margin-top:6px;font-size:12px}.mine-page .weekly-chart{width:128px;gap:7px}.mine-page .weekly-bar{width:11px}.mine-page .weekly-plot{height:44px;border-radius:3px;background:#f7f7f7}.mine-page .weekly-fill{background:#ffb8c2;border-radius:3px}.mine-page .weekly-fill.today{background:#ff1838}.mine-page .weekly-bar>text{font-size:12px}.mine-page .weekly-compare{display:none}.mine-page .weekly-footer{min-height:34px;padding:10px 0 0;border-top:1rpx solid #f0f0f0;font-size:12px;background:transparent}.mine-page .weekly-footer>view{font-size:12px}.mine-page .next-race{display:flex;align-items:center;gap:12px;background:linear-gradient(110deg,#fff5f6,#fff 72%)}.mine-page .next-days{width:46px;height:56px;flex:none;min-height:0;border:0;border-radius:7px;background:#fff;color:#ff1838}.mine-page .next-days>text:first-child{font-size:25px;line-height:1.1;font-weight:600}.mine-page .next-days>text:last-child{font-size:12px}.mine-page .next-copy{flex:1;min-width:0}.mine-page .dashboard-eyebrow{font-size:12px}.mine-page .next-name{font-size:15px;line-height:1.45;font-weight:600;margin:3px 0}.mine-page .next-copy .subtitle{font-size:12px;line-height:1.6}.mine-page .career-heading{font-size:18px}.mine-page .career-best-grid{display:flex;gap:0;margin:13px 0 0}.mine-page .career-best-grid>navigator{flex:1;min-width:0;padding:0 12px 4px 0;border:0;border-radius:0;background:transparent}.mine-page .career-best-grid>navigator+ navigator{padding-left:16px;border-left:1rpx solid #eee}.mine-page .best-label,.mine-page .best-race{font-size:12px;color:#777}.mine-page .best-time{margin-top:6px;color:#1a1a1a;font-size:25px;font-weight:600;line-height:1.2;letter-spacing:-.4px}.mine-page .best-race{margin-top:6px}.mine-page .compact-poster{display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:8px;margin-top:12px;padding-top:12px;border-top:1rpx solid #f0f0f0;background:transparent}.mine-page .compact-poster>text{flex:1;min-width:0;font-size:12px;line-height:1.5}.mine-page .compact-poster button,.mine-page .compact-poster navigator{flex:none;width:auto;min-height:36px;padding:0;margin:0;border:0;background:transparent;color:#ff1838;font-size:12px;white-space:nowrap}.mine-page .archive-workbench{padding:16px 8px 9px;border:0;border-radius:12px;background:#fff;margin-bottom:12px}.mine-page .dashboard-heading{padding:0 8px 4px}.mine-page .dashboard-heading>text{display:none}.mine-page .runner-entry-grid{display:flex;flex-wrap:wrap;margin:0;padding:0;gap:0}.mine-page .runner-entry{box-sizing:border-box;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;width:25%;min-height:80px;height:auto;padding:8px 1px;border:0;border-radius:0;background:transparent;text-align:center}.mine-page .runner-entry::before,.mine-page .runner-entry::after{display:none}.mine-page .service-icon{width:25px;height:25px;margin:3px 0 4px}.mine-page .entry-title{font-size:13px;font-weight:500;line-height:1.5;white-space:nowrap}.mine-page .profile-settings{padding:0;margin:0;border:0;border-radius:0;background:transparent}.mine-page .profile-settings-intro{padding:0 2px 12px}.mine-page .profile-settings-kicker{display:none}.mine-page .profile-settings-title{font-size:18px}.mine-page .profile-settings-note{font-size:12px;margin-top:4px}.mine-page .profile-clubs-section{display:block}.mine-page .profile-section{margin:0 0 12px;padding:0;border:0;border-radius:12px;background:#fff;overflow:hidden}.mine-page .profile-section-title{padding:14px 16px 0;border:0}.mine-page .profile-section-title>view>view{font-size:14px;font-weight:600}.mine-page .profile-section-title text{display:none}.mine-page .profile-section-icon{display:none}.mine-page .profile-row{margin:0 16px;min-height:64px;padding:12px 0;border:0;border-bottom:1rpx solid #f0f0f0;border-radius:0;background:#fff}.mine-page .profile-row:last-child{border-bottom:0}.mine-page .row-copy>view:first-child,.mine-page .row-copy>text{font-size:15px;font-weight:500}.mine-page .row-copy .subtitle{font-size:12px;font-weight:400}.mine-page .profile-form,.mine-page .password-form{padding:16px;margin:-4px 0 12px;border-radius:12px;background:#fff}.mine-page .feedback-entry{padding:14px 16px;margin:12px 0;border:0;border-radius:12px;background:#fff}.mine-page .feedback-entry-mark{width:28px;height:28px;border:0;background:transparent;color:#555}.mine-page .feedback-entry-copy>view>text{display:none}.mine-page .feedback-entry-copy>text{font-size:12px}.mine-page .career-number{font-size:22px}.mine-page .career-clock{font-size:18px}.mine-page .results-summary .stat-label{font-size:12px}.mine-page .plan-row{padding:14px 0;border-bottom:1rpx solid #f0f0f0}.mine-page .plan-row:last-child{border:0}.mine-page .plan-row .race-name{font-size:15px;font-weight:500}.mine-page .plan-row .subtitle{font-size:12px}
-.sport-page .mileage-hero{padding:14px 16px 16px;background:linear-gradient(125deg,#fff2f4,#fff 64%)}.sport-page .hero-top{align-items:center;gap:8px;padding:0;border:0}.sport-page .month-caption{display:none}.sport-page .month-control{gap:2px}.sport-page .month-step{width:28px;min-height:40px;height:40px;padding:0;border:0;background:transparent;color:#777;font-size:22px}.sport-page .month-value{height:40px;min-height:40px;padding:0 4px;line-height:40px;background:transparent;font-size:15px}.sport-page .target-link{width:auto;height:40px;min-height:40px;padding:0;border:0;border-radius:0;background:transparent;color:#ff1838;font-size:12px}.sport-page .hero-overview{display:block;min-height:0;margin:12px 0}.sport-page .hero-kicker{font-size:12px;color:#777}.sport-page .mileage-value{gap:7px;margin-top:3px}.sport-page .mileage-number{font-size:36px;font-weight:600;line-height:1.2;letter-spacing:-.5px}.sport-page .mileage-unit{font-size:12px;color:#777}.sport-page .mileage-footnote{margin-top:5px;font-size:12px;color:#777}.sport-page .run-metrics{display:flex;padding:12px 0 14px;border:0;gap:8px}.sport-page .run-metrics>view{flex:1;min-width:0;text-align:left;border:0}.sport-page .metric-value{font-size:20px;font-weight:600;line-height:1.4}.sport-page .metric-label{margin-top:3px;font-size:12px}.sport-page .record-actions{display:flex;margin-top:14px;gap:8px}.sport-page .record-actions>button{flex:1;width:0;min-height:44px;border-radius:8px;font-size:14px;margin:0}.sport-page .import-button{background:#f6f6f6;border:0;color:#333}.sport-page .target-summary{margin:0;padding:10px 0 0;border-top:1rpx solid #eee}.sport-page .target-copy{font-size:12px}.sport-page .target-percent{font-size:14px}.sport-page .progress-track{height:4px;margin:8px 0;background:#eee}.sport-page .target-caption{margin:0;font-size:12px}.sport-page .target-prompt{display:flex;align-items:center;gap:8px;width:100%;min-height:44px;margin:0;padding:8px 0 0;border:0;border-top:1rpx solid #eee;border-radius:0;background:transparent;text-align:left}.sport-page .target-mark{display:none}.sport-page .target-prompt-copy{flex:1;min-width:0}.sport-page .target-prompt-title{font-size:13px;font-weight:500}.sport-page .target-prompt-note{display:none}.sport-page .target-prompt-more{margin-left:auto;font-size:12px;color:#ff1838;white-space:nowrap}.sport-page .observe-note{font-size:12px;margin:8px 0 0}.sport-page .weekly-chart{padding:0;margin:0;background:transparent;border-radius:0}.sport-page .chart-title,.sport-page .records-title{font-size:18px;font-weight:600}.sport-page .chart-subtitle{font-size:12px;color:#777;margin-top:3px}.sport-page .bar-track{height:62px;border-radius:3px;background:#f7f7f7}.sport-page .bar-value-fill{border-radius:3px;background:#ffb5bf}.sport-page .bar-value-fill.peak{background:#ff1838}.sport-page .chart-bars{margin-top:14px;gap:22px}.sport-page .bar-value,.sport-page .bar-label{font-size:12px}.sport-page .records-heading{margin:20px 0 10px}.sport-page .manual-note{margin:0 0 12px;font-size:12px}.sport-page .run-record .section-title{font-size:15px}.sport-page .run-date{margin:4px 0 12px;font-size:12px}.sport-page .record-data{gap:8px;padding:0;border:0}.sport-page .record-data>view{min-width:0;align-items:flex-start;text-align:left}.sport-page .record-number{font-size:20px;font-weight:600}.sport-page .record-unit{font-size:12px;margin-top:3px}.sport-page .text-button{min-height:32px;padding:0;font-size:12px}.sport-page .record-details{padding-top:10px;margin-top:10px;border-top:1rpx solid #f0f0f0}.sport-page .record-editor{padding-top:12px}.sport-page .guest-state{padding:24px 16px;text-align:left}.sport-page .guest-mark{display:none}.sport-page .guest-title{margin:0;font-size:18px}
-@media(max-width:350px){.mine-page .weekly-chart{width:104px;gap:5px}.mine-page .weekly-bar{width:10px}.mine-page .weekly-value{font-size:30px}.mine-page .best-time{font-size:22px}.mine-page .entry-title{font-size:12px}.mine-page .compact-poster{align-items:flex-start;flex-direction:column;gap:4px}.sport-page .mileage-number{font-size:34px}.sport-page .chart-bars{gap:16px}.sport-page .record-number{font-size:18px}}
+.sport-page,.mine-page{padding:12px 16px 24px}
+.sport-page button,.mine-page button{width:auto;min-width:0;font-size:14px;border-radius:8px}
+.sport-page .surface,.mine-page .surface{padding:16px;margin-bottom:12px;border:0;border-radius:12px;background:#fff;box-shadow:none}
+.mine-page .account-hero{padding:0;overflow:hidden;background:linear-gradient(115deg,#fff1f3,#fff 80%)}
+.mine-page .identity-panel{display:block;min-height:0;padding:18px 16px 14px;background:transparent}
+.mine-page .identity-copy{width:100%;min-width:0}
+.mine-page .identity-kicker{display:none}
+.mine-page .hero-line{display:flex;align-items:center;gap:12px;margin:0}
+.mine-page .hero-avatar{width:50px;height:50px;flex:none;border:2px solid #fff;border-radius:50%;background:#fff;color:#ff1838;font-size:22px}
+.mine-page .hero-copy{flex:1;min-width:0}
+.mine-page .nickname{font-size:20px;line-height:1.4;font-weight:600}
+.mine-page .hero-copy .subtitle{margin-top:4px;font-size:12px;line-height:1.6;color:#777}
+.mine-page .role-tag{display:inline-block;margin-top:5px;padding:1px 5px;border-radius:3px;background:#fff0f2;color:#ff1838;font-size:12px}
+.mine-page .account-stats{display:flex;margin:0;padding:12px 0 14px;border:0;background:rgba(255,255,255,.65)}
+.mine-page .account-stats>view,.mine-page .account-stats>navigator{display:flex;flex-direction:column;align-items:center;flex:1;min-width:0;min-height:44px;padding:0;border:0;border-right:1rpx solid #eee;border-radius:0;background:transparent}
+.mine-page .account-stats>navigator{border-right:0}
+.mine-page .account-stats .stat-value{font-size:23px;font-weight:600;line-height:1.3;color:#1a1a1a}
+.mine-page .account-stats .stat-label{margin-top:4px;font-size:12px;color:#777}
+.mine-page .main-tabs{display:flex;margin:0 0 12px;padding:0;border:0;border-radius:0;background:transparent;gap:0}
+.mine-page .main-tabs>view{position:relative;flex:1;min-width:0;min-height:46px;padding:0;border:0;border-radius:0;background:transparent;color:#777;font-size:14px;font-weight:400;line-height:46px;white-space:nowrap;text-align:center}
+.mine-page .main-tabs>view.on{color:#1a1a1a;background:transparent;font-weight:600}
+.mine-page .main-tabs>view.on::after{position:absolute;right:auto;bottom:0;left:50%;width:20px;height:3px;border-radius:2px;background:#ff1838;transform:translateX(-50%);content:''}
+.mine-page .weekly-card{padding:16px}
+.mine-page .dashboard-head{padding:0;margin:0;min-height:28px}
+.mine-page .section-title{font-size:18px;font-weight:600}
+.mine-page .dashboard-more{font-size:12px;min-height:32px;line-height:32px;color:#777}
+.mine-page .weekly-content{padding:0;gap:12px;margin:10px 0 14px;align-items:flex-end}
+.mine-page .weekly-value{font-size:34px;font-weight:600;line-height:1.15;letter-spacing:-.5px}
+.mine-page .weekly-value>text{margin-left:6px;font-size:12px;font-weight:400;letter-spacing:0;color:#777}
+.mine-page .weekly-meta{margin-top:6px;font-size:12px}
+.mine-page .weekly-chart{width:128px;gap:7px}
+.mine-page .weekly-bar{width:11px}
+.mine-page .weekly-plot{height:44px;border-radius:3px;background:#f7f7f7}
+.mine-page .weekly-fill{background:#ffb8c2;border-radius:3px}
+.mine-page .weekly-fill.today{background:#ff1838}
+.mine-page .weekly-bar>text{font-size:12px}
+.mine-page .weekly-compare{display:none}
+.mine-page .weekly-footer{min-height:34px;padding:10px 0 0;border-top:1rpx solid #f0f0f0;font-size:12px;background:transparent}
+.mine-page .weekly-footer>view{font-size:12px}
+.mine-page .next-race{display:flex;align-items:center;gap:12px;background:linear-gradient(110deg,#fff5f6,#fff 72%)}
+.mine-page .next-days{width:46px;height:56px;flex:none;min-height:0;border:0;border-radius:7px;background:#fff;color:#ff1838}
+.mine-page .next-days>text:first-child{font-size:25px;line-height:1.1;font-weight:600}
+.mine-page .next-days>text:last-child{font-size:12px}
+.mine-page .next-copy{flex:1;min-width:0}
+.mine-page .dashboard-eyebrow{font-size:12px}
+.mine-page .next-name{font-size:15px;line-height:1.45;font-weight:600;margin:3px 0}
+.mine-page .next-copy .subtitle{font-size:12px;line-height:1.6}
+.mine-page .career-heading{font-size:18px}
+.mine-page .career-best-grid{display:flex;gap:0;margin:13px 0 0}
+.mine-page .career-best-grid>navigator{flex:1;min-width:0;padding:0 12px 4px 0;border:0;border-radius:0;background:transparent}
+.mine-page .career-best-grid>navigator+ navigator{padding-left:16px;border-left:1rpx solid #eee}
+.mine-page .best-label,.mine-page .best-race{font-size:12px;color:#777}
+.mine-page .best-time{margin-top:6px;color:#1a1a1a;font-size:25px;font-weight:600;line-height:1.2;letter-spacing:-.4px}
+.mine-page .best-race{margin-top:6px}
+.mine-page .compact-poster{display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:8px;margin-top:12px;padding-top:12px;border-top:1rpx solid #f0f0f0;background:transparent}
+.mine-page .compact-poster>text{flex:1;min-width:0;font-size:12px;line-height:1.5}
+.mine-page .compact-poster button,.mine-page .compact-poster navigator{flex:none;width:auto;min-height:36px;padding:0;margin:0;border:0;background:transparent;color:#ff1838;font-size:12px;white-space:nowrap}
+.mine-page .archive-workbench{padding:16px 8px 9px;border:0;border-radius:12px;background:#fff;margin-bottom:12px}
+.mine-page .dashboard-heading{padding:0 8px 4px}
+.mine-page .dashboard-heading>text{display:none}
+.mine-page .runner-entry-grid{display:flex;flex-wrap:wrap;margin:0;padding:0;gap:0}
+.mine-page .runner-entry{box-sizing:border-box;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;width:25%;min-height:80px;height:auto;padding:8px 1px;border:0;border-radius:0;background:transparent;text-align:center}
+.mine-page .runner-entry::before,.mine-page .runner-entry::after{display:none}
+.mine-page .service-icon{width:25px;height:25px;margin:3px 0 4px}
+.mine-page .entry-title{font-size:13px;font-weight:500;line-height:1.5;white-space:nowrap}
+.mine-page .profile-settings{padding:0;margin:0;border:0;border-radius:0;background:transparent}
+.mine-page .profile-settings-intro{padding:0 2px 12px}
+.mine-page .profile-settings-kicker{display:none}
+.mine-page .profile-settings-title{font-size:18px}
+.mine-page .profile-settings-note{font-size:12px;margin-top:4px}
+.mine-page .profile-clubs-section{display:block}
+.mine-page .profile-section{margin:0 0 12px;padding:0;border:0;border-radius:12px;background:#fff;overflow:hidden}
+.mine-page .profile-section-title{padding:14px 16px 0;border:0}
+.mine-page .profile-section-title>view>view{font-size:14px;font-weight:600}
+.mine-page .profile-section-title text{display:none}
+.mine-page .profile-section-icon{display:none}
+.mine-page .profile-row{margin:0 16px;min-height:64px;padding:12px 0;border:0;border-bottom:1rpx solid #f0f0f0;border-radius:0;background:#fff}
+.mine-page .profile-row:last-child{border-bottom:0}
+.mine-page .row-copy>view:first-child,.mine-page .row-copy>text{font-size:15px;font-weight:500}
+.mine-page .row-copy .subtitle{font-size:12px;font-weight:400}
+.mine-page .profile-form,.mine-page .password-form{padding:16px;margin:-4px 0 12px;border-radius:12px;background:#fff}
+.mine-page .feedback-entry{padding:14px 16px;margin:12px 0;border:0;border-radius:12px;background:#fff}
+.mine-page .feedback-entry-mark{width:28px;height:28px;border:0;background:transparent;color:#555}
+.mine-page .feedback-entry-copy>view>text{display:none}
+.mine-page .feedback-entry-copy>text{font-size:12px}
+.mine-page .career-number{font-size:22px}
+.mine-page .career-clock{font-size:18px}
+.mine-page .results-summary .stat-label{font-size:12px}
+.mine-page .plan-row{padding:14px 0;border-bottom:1rpx solid #f0f0f0}
+.mine-page .plan-row:last-child{border:0}
+.mine-page .plan-row .race-name{font-size:15px;font-weight:500}
+.mine-page .plan-row .subtitle{font-size:12px}
+.sport-page .mileage-hero{padding:14px 16px 16px;background:linear-gradient(125deg,#fff2f4,#fff 64%)}
+.sport-page .hero-top{align-items:center;gap:8px;padding:0;border:0}
+.sport-page .month-caption{display:none}
+.sport-page .month-control{gap:2px}
+.sport-page .month-step{width:28px;min-height:40px;height:40px;padding:0;border:0;background:transparent;color:#777;font-size:22px}
+.sport-page .month-value{height:40px;min-height:40px;padding:0 4px;line-height:40px;background:transparent;font-size:15px}
+.sport-page .target-link{width:auto;height:40px;min-height:40px;padding:0;border:0;border-radius:0;background:transparent;color:#ff1838;font-size:12px}
+.sport-page .hero-overview{display:block;min-height:0;margin:12px 0}
+.sport-page .hero-kicker{font-size:12px;color:#777}
+.sport-page .mileage-value{gap:7px;margin-top:3px}
+.sport-page .mileage-number{font-size:36px;font-weight:600;line-height:1.2;letter-spacing:-.5px}
+.sport-page .mileage-unit{font-size:12px;color:#777}
+.sport-page .mileage-footnote{margin-top:5px;font-size:12px;color:#777}
+.sport-page .run-metrics{display:flex;padding:12px 0 14px;border:0;gap:8px}
+.sport-page .run-metrics>view{flex:1;min-width:0;text-align:left;border:0}
+.sport-page .metric-value{font-size:20px;font-weight:600;line-height:1.4}
+.sport-page .metric-label{margin-top:3px;font-size:12px}
+.sport-page .record-actions{display:flex;margin-top:14px;gap:8px}
+.sport-page .record-actions>button{flex:1;width:0;min-height:44px;border-radius:8px;font-size:14px;margin:0}
+.sport-page .import-button{background:#f6f6f6;border:0;color:#333}
+.sport-page .target-summary{margin:0;padding:10px 0 0;border-top:1rpx solid #eee}
+.sport-page .target-copy{font-size:12px}
+.sport-page .target-percent{font-size:14px}
+.sport-page .progress-track{height:4px;margin:8px 0;background:#eee}
+.sport-page .target-caption{margin:0;font-size:12px}
+.sport-page .target-prompt{display:flex;align-items:center;gap:8px;width:100%;min-height:44px;margin:0;padding:8px 0 0;border:0;border-top:1rpx solid #eee;border-radius:0;background:transparent;text-align:left}
+.sport-page .target-mark{display:none}
+.sport-page .target-prompt-copy{flex:1;min-width:0}
+.sport-page .target-prompt-title{font-size:13px;font-weight:500}
+.sport-page .target-prompt-note{display:none}
+.sport-page .target-prompt-more{margin-left:auto;font-size:12px;color:#ff1838;white-space:nowrap}
+.sport-page .observe-note{font-size:12px;margin:8px 0 0}
+.sport-page .weekly-chart{padding:0;margin:0;background:transparent;border-radius:0}
+.sport-page .chart-title,.sport-page .records-title{font-size:18px;font-weight:600}
+.sport-page .chart-subtitle{font-size:12px;color:#777;margin-top:3px}
+.sport-page .bar-track{height:62px;border-radius:3px;background:#f7f7f7}
+.sport-page .bar-value-fill{border-radius:3px;background:#ffb5bf}
+.sport-page .bar-value-fill.peak{background:#ff1838}
+.sport-page .chart-bars{margin-top:14px;gap:22px}
+.sport-page .bar-value,.sport-page .bar-label{font-size:12px}
+.sport-page .records-heading{margin:20px 0 10px}
+.sport-page .manual-note{margin:0 0 12px;font-size:12px}
+.sport-page .run-record .section-title{font-size:15px}
+.sport-page .run-date{margin:4px 0 12px;font-size:12px}
+.sport-page .record-data{gap:8px;padding:0;border:0}
+.sport-page .record-data>view{min-width:0;align-items:flex-start;text-align:left}
+.sport-page .record-number{font-size:20px;font-weight:600}
+.sport-page .record-unit{font-size:12px;margin-top:3px}
+.sport-page .text-button{min-height:32px;padding:0;font-size:12px}
+.sport-page .record-details{padding-top:10px;margin-top:10px;border-top:1rpx solid #f0f0f0}
+.sport-page .record-editor{padding-top:12px}
+.sport-page .guest-state{padding:24px 16px;text-align:left}
+.sport-page .guest-mark{display:none}
+.sport-page .guest-title{margin:0;font-size:18px}
+@media(max-width:350px){.mine-page .weekly-chart{width:104px;gap:5px}
+.mine-page .weekly-bar{width:10px}
+.mine-page .weekly-value{font-size:30px}
+.mine-page .best-time{font-size:22px}
+.mine-page .entry-title{font-size:12px}
+.mine-page .compact-poster{align-items:flex-start;flex-direction:column;gap:4px}
+.sport-page .mileage-number{font-size:34px}
+.sport-page .chart-bars{gap:16px}
+.sport-page .record-number{font-size:18px}}
+
+/* Native runner archives use the same hierarchy as the personal overview. */
+.runner-page{padding:0 16px 24px;background:#f5f5f5}
+.runner-page .view-scroll{margin:0 -16px 12px;padding:0 12px;width:auto;background:#fff;border:0}
+.runner-page .view-tabs{gap:0;padding:0;display:flex;justify-content:space-between}
+.runner-page .view-tab{padding:10px 5px;min-height:44px;font-size:13px;border-radius:0;background:transparent;color:#777}
+.runner-page .view-tab.on{background:transparent;color:#1a1a1a;box-shadow:inset 0 -3px #ff1838;font-weight:600}
+.runner-page .page-heading{margin:0 -16px;padding:16px;background:linear-gradient(110deg,#fff0f2,#fff 84%)}
+.runner-page .page-heading .eyebrow{display:none}
+.runner-page .page-title{font-size:24px;font-weight:600;line-height:1.4}
+.runner-page .surface{padding:16px;margin-bottom:12px;border:0;border-radius:12px;background:#fff;box-shadow:none}
+.runner-page .section-title{font-size:18px;font-weight:600;line-height:1.4}
+.runner-page .period-tabs,.runner-page .metric-switch{margin:0 0 12px;padding:3px;border:0;border-radius:8px;background:#ebebeb;gap:2px}
+.runner-page .period-tabs>view,.runner-page .metric-switch>view{border:0;min-height:38px;padding:0 8px;border-radius:6px;background:transparent;line-height:38px;color:#777;font-size:13px}
+.runner-page .period-tabs>view.on,.runner-page .metric-switch>view.on{background:#fff;color:#1a1a1a}
+.runner-page .training-card,.runner-page .career-card{background:linear-gradient(120deg,#fff2f4,#fff 72%)}
+.runner-page .training-number{margin:10px 0 12px;font-size:34px;font-weight:600;line-height:1.2;letter-spacing:-.4px}
+.runner-page .training-number>text{font-size:12px;font-weight:400;color:#777;margin-left:6px;letter-spacing:0}
+.runner-page .training-metrics{gap:8px;padding:0 0 14px;margin:0;border:0;border-bottom:1rpx solid #eee}
+.runner-page .training-metrics .metric-value{font-size:18px;line-height:1.4}
+.runner-page .metric-label{font-size:12px;margin-top:3px;line-height:1.5}
+.runner-page .chart-heading{margin:10px 0;min-height:36px}
+.runner-page .period-arrow{min-height:36px;height:36px;width:36px;background:transparent}
+.runner-page .chart-heading>text{font-size:14px}
+.runner-page .bar-plot{height:88px;border-radius:3px;background:#f7f7f7}
+.runner-page .bar-fill{background:#ff1838;border-radius:3px}
+.runner-page .bar-label,.runner-page .bar-value{font-size:12px}
+.runner-page .data-note{font-size:12px;line-height:1.6;margin-top:12px}
+.runner-page .period-comparison{margin-top:12px;padding:10px 0 0;border:0;border-top:1rpx solid #eee;background:transparent;font-size:12px}
+.runner-page .two-summary{display:flex;gap:12px}
+.runner-page .two-summary>.surface{flex:1;min-width:0;padding:14px 16px}
+.runner-page .summary-value{font-size:23px;font-weight:600}
+.runner-page .summary-value>text{font-size:12px}
+.runner-page .run-row{padding:12px 0;gap:12px}
+.runner-page .run-symbol{display:none}
+.runner-page .run-name{font-size:15px}
+.runner-page .run-distance{font-size:20px}
+.runner-page .run-distance>text{font-size:12px}
+.runner-page .small-note{font-size:12px;line-height:1.5}
+.runner-page .career-hero{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:12px 0 0;padding:0}
+.runner-page .career-number{font-size:34px;font-weight:600;line-height:1.2;letter-spacing:0}
+.runner-page .career-number .unit{font-size:12px;font-weight:400;color:#777}
+.runner-page .career-head-meta{display:flex;flex-direction:column;gap:7px;font-size:12px;color:#777;text-align:right}
+.runner-page .career-head-meta>text:last-child{font-size:20px;color:#1a1a1a}
+.runner-page .distance-grid{display:flex;flex-wrap:wrap;gap:8px 16px;padding:12px 0;margin:12px 0 0;border-top:1rpx solid #eee;background:transparent}
+.runner-page .distance-grid>view{display:flex;flex-direction:row;align-items:baseline;gap:5px;padding:0;min-width:0;background:transparent}
+.runner-page .distance-grid .metric-value{font-size:16px;font-weight:500}
+.runner-page .career-duration{display:flex;align-items:center;justify-content:space-between;padding-top:10px;border-top:1rpx solid #eee;font-size:12px;color:#777}
+.runner-page .career-duration>text:last-child{font-size:14px;color:#333}
+.runner-page .career-bottom{margin:0;padding:10px 0 0;border-top:1rpx solid #eee;gap:10px}
+.runner-page .career-bottom>view>text:first-child{font-size:16px;font-weight:500}
+.runner-page .achievement-poster-entry{padding:10px 0 0;margin:12px 0 0;border:0;border-top:1rpx solid #eee;border-radius:0;background:transparent;font-size:12px;text-align:left}
+.runner-page .achievement-poster-entry>view,.runner-page .achievement-poster-entry>text{font-size:12px;line-height:1.6}
+.runner-page .history-entry{padding:14px 16px}
+.runner-page .history-entry .section-title{font-size:15px}
+.runner-page .history-entry .muted{font-size:12px;margin-top:4px}
+.runner-page .pb-row{padding:14px 0;gap:10px}
+.runner-page .pb-time{font-size:24px;font-weight:600;color:#1a1a1a}
+.runner-page .pb-distance{font-size:15px}
+.runner-page .pb-name{font-size:12px}
+.runner-page .pb-stamp{display:none}
+.runner-page .kind-tabs>view{border:0;background:#fff;border-radius:6px;min-height:36px;font-size:13px}
+.runner-page .kind-tabs>view.on{border:0;background:#fff0f2;color:#ff1838}
+.runner-page .timeline-heading{margin:18px 0 10px}
+.runner-page .timeline-row{gap:10px;margin-bottom:10px}
+.runner-page .timeline-card{padding:14px;border:0;border-radius:12px;background:#fff}
+.runner-page .timeline-name{font-size:15px}
+.runner-page .timeline-clock{font-size:22px;color:#1a1a1a}
+.runner-page .timeline-date{width:42px;font-size:16px}
+.runner-page .timeline-date>text:last-child{font-size:12px}
+.runner-page .footprint-hero{background:linear-gradient(120deg,#fff2f4,#fff 80%)}
+.runner-page .passport-title{font-size:18px;margin:8px 0 3px;line-height:1.4}
+.runner-page .passport-scope{font-size:12px;color:#777}
+.runner-page .passport-stats{margin:16px 0 0;padding:0;gap:12px}
+.runner-page .passport-stats>view>text:first-child{font-size:26px;font-weight:600}
+.runner-page .passport-stats>view>text:last-child{font-size:12px;margin-top:4px}
+.runner-page .passport-line{display:none}
+.runner-page .city-grid{gap:10px;grid-template-columns:repeat(2,minmax(0,1fr))}
+.runner-page .city-card{padding:14px;border:0;border-radius:12px;background:#fff;text-align:left}
+.runner-page .city-card.selected{background:#fff0f2;box-shadow:inset 0 0 0 1rpx #ffb8c2}
+.runner-page .city-name{font-size:18px}
+.runner-page .city-province,.runner-page .city-count{font-size:12px;color:#777}
+.runner-page .collection-banner{background:linear-gradient(120deg,#fff2f4,#fff 80%);text-align:left}
+.runner-page .collection-banner .muted{font-size:12px;margin-top:5px}
+.runner-page .collection-banner .privacy{font-size:12px;margin-top:6px}
+.runner-page .gallery-toolbar{gap:8px}
+.runner-page .gallery-tabs{flex:1;min-width:0}
+.runner-page .gallery-tabs>view{font-size:13px;min-height:38px;line-height:38px}
+.runner-page .gallery-item{padding:8px;border:0;border-radius:12px;background:#fff}
+.runner-page .gallery-name{font-size:14px}
+.runner-page .gallery-meta{font-size:12px}
+.runner-page .device-import-card{padding:16px;background:linear-gradient(120deg,#fff2f4,#fff 80%)}
+.runner-page .device-wordmark{font-size:12px;font-weight:400;color:#777}
+.runner-page .device-import-title{font-size:20px;margin:14px 0 7px;line-height:1.5}
+.runner-page .device-import-copy{font-size:13px;line-height:1.7;margin:0 0 14px}
+.runner-page .device-import-meta{margin:10px 0 14px;font-size:12px}
+.runner-page .device-import-meta button{font-size:12px}
+.runner-page .device-guide-title,.runner-page .device-guide-step{font-size:13px}
+.runner-page .device-import-rule,.runner-page .device-import-privacy{font-size:12px;line-height:1.7}
+.runner-page .source-intro,.runner-page .help-intro{padding:16px;border:0;border-radius:12px;background:#fff}
+.runner-page .runner-heading{font-size:18px}
+.runner-page .empty-mark,.runner-page .heading-icon,.runner-page .finish-graphic,.runner-page .collection-icon{display:none}
+.runner-page .empty-state{padding:24px 16px;text-align:left}
+.runner-page .empty-state .section-title{font-size:18px}
+.runner-page .empty-state .muted{font-size:14px;line-height:1.7}
+/* Member identity and every content tab retain the team's visibility scope. */
+.mp-page{padding:12px 16px 24px;background:#f5f5f5;color:#1a1a1a}
+.mp-page .person-hero{padding:14px 16px 0;border:0;border-radius:12px;background:linear-gradient(115deg,#fff1f3,#fff 80%);overflow:hidden}
+.mp-page .person-hero-top{margin:0}
+.mp-page .person-role{padding:1px 5px;border:0;border-radius:3px;background:#fff0f2;color:#ff1838;font-size:12px}
+.mp-page .person-identity{margin-top:12px;gap:12px}
+.mp-page .person-avatar{width:50px;height:50px;border:2px solid #fff;border-radius:50%;background:#fff;color:#ff1838}
+.mp-page .person-name{font-size:20px;line-height:1.4}
+.mp-page .person-group,.mp-page .person-joined{font-size:12px;margin-top:4px;line-height:1.6}
+.mp-page .person-hero-metrics{margin:14px -16px 0;padding:12px 0 14px;border:0;background:rgba(255,255,255,.65)}
+.mp-page .person-hero-metrics>view{align-items:center;text-align:center}
+.mp-page .person-hero-metrics>view>text:first-child{font-size:22px;font-weight:600;line-height:1.3}
+.mp-page .person-hero-metrics>view>text:last-child{font-size:12px;margin-top:4px}
+.mp-page .person-tabs{margin:0 0 12px;padding:0;border:0;background:transparent}
+.mp-page .person-tab{min-height:46px;font-size:14px;background:transparent;color:#777}
+.mp-page .person-tab.tab-selected{background:transparent;color:#1a1a1a}
+.mp-page .person-tab-line{height:3px;width:20px;background:#ff1838}
+.mp-page .mp-card,.mp-page .person-group-card,.mp-page .person-next-race,.mp-page .person-race-card,.mp-page .person-album{padding:16px;margin:0 0 12px;border:0;border-radius:12px;background:#fff;box-shadow:none}
+.mp-page .mp-section-head{margin:18px 0 10px}
+.mp-page .mp-card>.mp-section-head:first-child{margin:0 0 10px}
+.mp-page .mp-section-title{font-size:18px;font-weight:600;line-height:1.4}
+.mp-page .mp-text-action{min-height:32px;padding:0;font-size:12px;color:#ff1838;background:transparent}
+.mp-page .person-introduction{font-size:14px;line-height:1.8;color:#555}
+.mp-page .person-group-icon{display:none}
+.mp-page .person-group-card{gap:10px;text-align:left}
+.mp-page .person-group-copy>view:first-child{font-size:16px;font-weight:500}
+.mp-page .person-group-copy>view:last-child{font-size:12px;line-height:1.6}
+.mp-page .person-mini-stats{gap:12px;margin-bottom:12px}
+.mp-page .person-mini-stat{padding:14px 16px;border:0;border-radius:12px;background:#fff}
+.mp-page .person-mini-label,.mp-page .person-mini-note{font-size:12px;color:#777}
+.mp-page .person-mini-stat>view{font-size:24px;font-weight:600;margin:7px 0}
+.mp-page .person-mini-stat>view>text{font-size:12px;font-weight:400}
+.mp-page .person-next-race{background:linear-gradient(120deg,#fff2f4,#fff 80%)}
+.mp-page .person-next-kicker,.mp-page .person-next-meta{font-size:12px}
+.mp-page .person-next-title{font-size:15px;font-weight:500;line-height:1.6;margin:6px 0}
+.mp-page .person-pb-preview,.mp-page .person-pb-grid{gap:12px;margin-bottom:12px}
+.mp-page .person-pb-tile{box-sizing:border-box;width:calc(50% - 6px);min-width:0;padding:14px 16px;border:0;border-radius:12px;background:#fff}
+.mp-page .person-pb-clock{font-size:24px;font-weight:600;color:#1a1a1a}
+.mp-page .person-pb-top,.mp-page .person-pb-name{font-size:12px;color:#777}
+.mp-page .person-photo-strip{gap:6px}
+.mp-page .person-photo-strip image{border-radius:7px}
+.mp-page .person-section-caption,.mp-page .mp-small-note{font-size:12px;line-height:1.6}
+.mp-page .person-ranges{margin:0 0 12px;padding:3px;border:0;border-radius:8px;background:#ebebeb;gap:2px}
+.mp-page .person-range{min-height:38px;border-radius:6px;background:transparent;box-shadow:none;color:#777;font-size:13px}
+.mp-page .person-range.range-selected{color:#1a1a1a;background:#fff;box-shadow:none}
+.mp-page .person-period-control{margin:0 0 12px}
+.mp-page .person-period-arrow{width:36px;min-height:36px;height:36px;background:transparent}
+.mp-page .person-period{font-size:14px}
+.mp-page .person-stats{background:linear-gradient(120deg,#fff2f4,#fff 80%)}
+.mp-page .person-distance>text:first-child{font-size:34px;line-height:1.2;font-weight:600;letter-spacing:0}
+.mp-page .person-distance-unit{font-size:12px}
+.mp-page .person-stat-grid{margin-top:14px;padding-top:12px;border-top:1rpx solid #eee}
+.mp-page .person-stat-grid>view>text:first-child{font-size:20px}
+.mp-page .person-stat-grid>view>text:last-child{font-size:12px}
+.mp-page .person-pace{font-size:12px}
+.mp-page .person-pace>text:last-child{font-size:18px}
+.mp-page .person-run{padding:12px 0;gap:12px}
+.mp-page .person-run-date{font-size:12px}
+.mp-page .person-run-info>view:first-child{font-size:15px}
+.mp-page .person-run-info>view:first-child>text{font-size:20px}
+.mp-page .person-run-meta{font-size:12px}
+.mp-page .person-race-filters{margin-bottom:12px;gap:6px}
+.mp-page .person-race-filter{font-size:13px;min-height:36px;border:0;border-radius:6px;background:#fff;color:#777}
+.mp-page .person-race-filter.filter-selected{background:#fff0f2;color:#ff1838}
+.mp-page .person-race-date,.mp-page .person-status{background:#fff0f2;color:#ff1838}
+.mp-page .person-race-date.tone-gray,.mp-page .person-status.tone-gray{background:#f5f5f5;color:#777}
+.mp-page .person-race-info{font-size:15px}
+.mp-page .person-race-card-top{font-size:12px}
+.mp-page .person-race-name{font-size:15px;line-height:1.6}
+.mp-page .person-race-meta{font-size:12px}
+.mp-page .person-result-clock{font-size:20px;color:#1a1a1a}
+.mp-page .person-result-name{font-size:15px}
+.mp-page .person-result-meta{font-size:12px}
+.mp-page .person-album-grid{gap:6px}
+.mp-page .person-album-grid image{border-radius:7px}
+.mp-page .tone-mint,.mp-page .tone-apricot,.mp-page .tone-lilac,.mp-page .tone-blue{background:#fff;color:#777}
+/* History overview and records use compact white modules instead of a long editorial lead. */
+.history-page{padding:12px 16px 24px;background:#f5f5f5}
+.history-page .page-heading{margin:0 -16px 12px;padding:16px;background:linear-gradient(110deg,#fff0f2,#fff 84%)}
+.history-page .page-title{font-size:24px;line-height:1.4;font-weight:600}
+.history-page .page-heading .subtitle{font-size:12px;margin-top:5px}
+.history-page .card{padding:16px;margin-bottom:12px;border:0;border-radius:12px;background:#fff;box-shadow:none}
+.history-page .section-title{font-size:18px;font-weight:600;line-height:1.4}
+.history-page .toolbar{margin:0 0 12px;gap:8px}
+.history-page .mode-tabs{padding:3px;border:0;border-radius:8px;background:#ebebeb}
+.history-page .mode-tabs>view{min-height:38px;padding:0 14px;line-height:38px;border-radius:6px;background:transparent;font-size:14px;color:#777}
+.history-page .mode-tabs>view.active{background:#fff;color:#1a1a1a}
+.history-page .stats{padding:14px 16px;margin:0 0 12px;border:0;border-radius:12px;background:#fff}
+.history-page .stat-number{font-size:24px;font-weight:600;line-height:1.3}
+.history-page .stats .muted{font-size:12px;margin-top:4px}
+.history-page .growth-hero{background:linear-gradient(120deg,#fff2f4,#fff 80%)}
+.history-page .hero-title{font-size:16px;line-height:1.6;margin:10px 0 8px}
+.history-page .hero-clock{font-size:32px;font-weight:600;line-height:1.2}
+.history-page .hero-change{font-size:12px;line-height:1.6}
+.history-page .hero-foot{margin-top:12px;padding-top:12px;border-top:1rpx solid #eee;font-size:14px}
+.history-page .hero-foot .muted{font-size:12px;line-height:1.6}
+.history-page .list-heading{margin:18px 0 10px}
+.history-page .search-field{height:42px;min-height:42px;padding:0 12px;margin:0 0 12px;border:0;border-radius:8px;background:#fff;font-size:14px}
+.history-page .timeline{padding:0;border:0}
+.history-page .timeline-item{margin-bottom:10px;padding:14px 16px;border:0;border-radius:12px;background:#fff}
+.history-page .timeline-item::before{display:none}
+.history-page .entry-date{font-size:12px;color:#777}
+.history-page .entry-name{font-size:15px;font-weight:500;line-height:1.6}
+.history-page .entry-clock{font-size:22px;font-weight:600;line-height:1.3}
+.history-page .entry-body .muted{font-size:12px}
+.history-page .growth-node{padding:0;margin-top:8px;font-size:12px;background:transparent;color:#ff1838}
+.history-page .memory-card{padding:0;margin-bottom:12px;border:0;border-radius:12px;background:#fff;overflow:hidden}
+.history-page .memory-card .entry-body{padding:14px}
+.history-page .memory-story{font-size:13px;line-height:1.8}
+.history-page .memory-note{font-size:12px;line-height:1.7}
+.history-page .review-score{padding:16px;background:linear-gradient(120deg,#fff2f4,#fff 80%)}
+.history-page .review-clock{font-size:32px}
+.history-page .review-card,.history-page .story-card{padding:16px;margin-bottom:12px;border:0;border-radius:12px;background:#fff}
+.history-page .import-card{padding:16px}
+.history-page .import-actions{gap:8px}
+.history-page .import-choice{min-height:76px;padding:12px;border:0;border-radius:8px;background:#f5f5f5}
+.history-page .choice-title{font-size:15px}
+.history-page .choice-note{font-size:12px}
+.history-page .step-note{font-size:12px}
+/* Poster controls stay neutral; the generated artwork keeps its chosen theme. */
+.achievement-studio{background:#f5f5f5;color:#1a1a1a;font-size:14px}
+.achievement-studio button{width:auto;min-width:0}
+.achievement-studio .selection-tools{display:flex;align-items:center;gap:8px}
+.achievement-studio .selection-tools>text{flex:1;min-width:0;font-size:12px;line-height:1.6}
+.achievement-studio .selection-tools>button{flex:none;min-width:36px;min-height:36px;padding:0;margin:0;font-size:12px}
+.achievement-studio .studio-heading{padding:18px 16px 14px;text-align:left;background:linear-gradient(115deg,#fff0f2,#fff 85%)}
+.achievement-studio .studio-title{font-size:24px;font-weight:600;line-height:1.4}
+.achievement-studio .studio-subtitle{font-size:12px;line-height:1.6;margin-top:5px}
+.achievement-studio .studio-modes{padding:3px;margin:12px 16px;border:0;border-radius:8px;background:#ebebeb;gap:3px}
+.achievement-studio .studio-modes>button{min-height:42px;padding:8px;border:0;border-radius:6px;background:transparent;font-size:14px}
+.achievement-studio .studio-modes>button.selected{background:#fff;color:#1a1a1a}
+.achievement-studio .studio-preview-wrap{padding:16px;margin:0 16px 12px;border:0;border-radius:12px;background:#fff}
+.achievement-studio .studio-preview-label{font-size:12px;margin-bottom:12px}
+.achievement-studio .studio-preview{border-radius:4px;box-shadow:0 3px 14px #00000012}
+.achievement-studio .studio-preview-placeholder{padding:28px 12px;min-height:160px;border:0;border-radius:8px;background:#f1f1f1}
+.achievement-studio .preview-empty-title{font-size:18px}
+.achievement-studio .studio-preview-hint{font-size:12px;margin-top:10px}
+.achievement-studio .studio-section{padding:16px;margin:0 16px 12px;border:0;border-radius:12px;background:#fff;box-shadow:none}
+.achievement-studio .studio-section-heading{margin-bottom:12px;font-size:18px;font-weight:600}
+.achievement-studio .studio-section-heading>text{font-size:12px;font-weight:400;color:#777}
+.achievement-studio .studio-control-row{min-height:46px;font-size:14px;gap:10px}
+.achievement-studio .control-label,.achievement-studio .control-value{font-size:14px;line-height:1.7}
+.achievement-studio .control-value{min-width:0;flex:1;text-align:right;white-space:normal}
+.achievement-studio .studio-selection{margin-top:8px}
+.achievement-studio .selection-row{padding:12px 0;gap:10px;background:transparent;border:0;border-bottom:1rpx solid #f0f0f0;border-radius:0}
+.achievement-studio .selection-copy>view{font-size:14px}
+.achievement-studio .selection-copy>text{font-size:12px}
+.achievement-studio .selection-clock{font-size:18px;font-weight:600;color:#1a1a1a}
+.achievement-studio .studio-theme{padding:8px;border:1rpx solid transparent;border-radius:8px;background:#f7f7f7}
+.achievement-studio .studio-theme.theme-selected{border-color:#ffb8c2;background:#fff0f2}
+.achievement-studio .theme-paper{height:52px}
+.achievement-studio .studio-theme>view:last-child{font-size:12px;color:#777}
+.achievement-studio .studio-state{padding:24px 16px;margin:12px 16px;border:0;border-radius:12px;background:#fff;text-align:left}
+.achievement-studio .state-symbol,.achievement-studio .privacy-mark{display:none}
+.achievement-studio .studio-primary,.achievement-studio .studio-outline{min-height:44px;border-radius:8px;font-size:14px}
+.achievement-studio .studio-primary{background:#ff1838;border-color:#ff1838}
+.achievement-studio .studio-bottom{border-top:1rpx solid #eee;background:#fff}
+@media(max-width:350px){.runner-page .view-tab{font-size:12px;padding:10px 4px}
+.runner-page .training-number,.runner-page .career-number{font-size:32px}
+.runner-page .training-metrics .metric-value{font-size:16px}
+.runner-page .pb-time{font-size:21px}
+.runner-page .achievement-poster-entry{align-items:flex-start;flex-direction:column;gap:4px}
+.mp-page .person-pb-clock{font-size:21px}
+.mp-page .person-distance>text:first-child{font-size:32px}
+.history-page .entry-clock{font-size:19px}
+.achievement-studio .selection-clock{font-size:16px}
+.achievement-studio .selection-row{gap:7px}}

@@ -3,29 +3,14 @@
   --bg:#f5f5f5;--card:#fff;--ink:#1a1a1a;--ink-secondary:#555;--muted:#777;--line:#eee;--accent:#ff1838;--accent-soft:#fff0f2;
   color:var(--ink);font-size:14px;font-weight:400;line-height:1.5;
 }
-.runner-page,.history-page,.feedback-page {padding-right:16px;padding-left:16px;background:#f5f5f5}
-.runner-header,.history-header {height:76px;gap:10px;background:transparent}
-.runner-header h1,.history-header h1 {font-size:24px;font-weight:600}
-.runner-header .header-icon,.runner-header .eyebrow,.history-header .eyebrow {display:none}
-.runner-nav,.history-nav {border-radius:0;background:#fff;border-bottom:1px solid #eee}
-.runner-card,.history-card,.feedback-card {box-shadow:none;border:1px solid #eee;border-radius:12px;background:#fff}
-.runner-page .empty-emblem,.runner-page .finish-graphic,.runner-page .hero-graphic {display:none}
-.runner-page .collection-banner {display:block;text-align:left;background:#fff}
-.runner-page .passport-title,.history-page .history-title {font-size:24px;line-height:1.5;font-weight:600}
-.runner-page .city-card {border:1px solid #eee;border-radius:10px;background:#fff}
-.runner-page .city-card.selected {border-color:#ff1838;background:#fff0f2}
-.runner-page .city-name {font-size:20px}
-.runner-page .runner-dialog,.feedback-page dialog {border:1px solid #eee;border-radius:12px;box-shadow:none}
+.feedback-page {padding-right:16px;padding-left:16px;background:#f5f5f5}
+.feedback-card {box-shadow:none;border:1px solid #eee;border-radius:12px;background:#fff}
+.feedback-page dialog {border:1px solid #eee;border-radius:12px;box-shadow:none}
 .feedback-page .feedback-hero {padding:20px 16px;border:1px solid #eee;border-radius:12px;background:#fff}
 .feedback-page .feedback-hero h2 {font-size:20px;font-weight:600}
 .feedback-page .hero-stats {border-top:1px solid #eee;background:#fff}
 .feedback-page .hero-stats b {font-size:20px;font-weight:600}
 .feedback-page .primary {border-radius:8px;background:#ff1838;color:#fff;min-height:44px}
-.achievement-studio .studio-intro {padding:20px 16px;text-align:left;background:transparent}
-.achievement-studio .studio-kicker {display:none}
-.achievement-studio .studio-intro h1 {font-size:24px;font-weight:600;line-height:1.4}
-.achievement-studio .studio-intro p {font-size:14px;color:#777;line-height:1.7}
-.achievement-studio .studio-state {border:1px solid #eee;border-radius:12px;background:#fff}
 .legal-page .legal-hero {padding:20px 0;background:transparent}
 .legal-page .legal-hero h1 {font-size:24px;font-weight:600}
 .legal-page .legal-hero p {font-size:14px;line-height:1.8;color:#777}
@@ -35,19 +20,439 @@
 .look-page .large h1 {margin:0;color:#1a1a1a;font-size:24px;font-weight:600}
 
 
-.privacy-rights>header p,.legal-page :deep(.legal-text p),.legal-page :deep(.legal-text li){font-size:16px;line-height:1.8}.not-found{padding:40px 16px;background:#f5f5f5;color:#1a1a1a}.not-found h1{font-size:24px;font-weight:600}.not-found .missing-code{font-size:40px;color:#999}.not-found .primary{min-height:44px;border-radius:8px;background:#ff1838}.not-found .secondary{min-height:44px;border-radius:8px}
+.privacy-rights>header p,.legal-page :deep(.legal-text p),.legal-page :deep(.legal-text li){font-size:16px;line-height:1.8}
+.not-found{padding:40px 16px;background:#f5f5f5;color:#1a1a1a}
+.not-found h1{font-size:24px;font-weight:600}
+.not-found .missing-code{font-size:40px;color:#999}
+.not-found .primary{min-height:44px;border-radius:8px;background:#ff1838}
+.not-found .secondary{min-height:44px;border-radius:8px}
 
 /* Nav bleeds match the shared 16px page gutter. */
-.history-page .history-nav{margin-right:-16px;margin-left:-16px;padding-right:16px;padding-left:16px}
-.history-page .history-dialog::backdrop,.runner-page dialog::backdrop,.feedback-page dialog::backdrop{background:rgba(26,26,26,.45)}
+.feedback-page dialog::backdrop{background:rgba(26,26,26,.45)}
 
 
-.legal-page .legal-section p,.legal-page .legal-section li{font-size:16px;line-height:1.8}.legal-page .legal-topbar{font-size:16px}
-.history-page .history-header .back-link,.history-page .history-dialog .dialog-heading>button{width:44px;min-width:44px;height:44px;min-height:44px;padding:0;flex:none}
-.achievement-studio .image-preview::backdrop{background:rgba(26,26,26,.45)}
+.legal-page .legal-section p,.legal-page .legal-section li{font-size:16px;line-height:1.8}
+.legal-page .legal-topbar{font-size:16px}
 
 
 /* Personal identity, activity and account modules share one compact hierarchy. */
-.exercise,.mine{padding:0 16px 24px;background:var(--bg)}.exercise :deep(.page-header),.mine :deep(.page-header){margin:0 -16px}.exercise>.surface:first-of-type,.mine>.account-hero{margin-top:12px}.exercise .surface,.mine .sheet,.mine .account-hero{border:0;border-radius:12px;background:#fff;box-shadow:none}.exercise .surface,.mine .sheet{padding:16px;margin-bottom:12px}.mine .account-hero{margin:12px 0;overflow:hidden;background:linear-gradient(115deg,#fff1f3,#fff 80%)}.mine .identity-panel{display:block;min-height:0;padding:18px 16px 14px;background:transparent}.mine .identity-copy{width:100%;min-width:0}.mine .identity-kicker{display:none}.mine .who-top{display:flex;gap:12px;align-items:center;margin:0}.mine .face{display:flex;align-items:center;justify-content:center;width:50px;height:50px;flex:none;border:2px solid #fff;border-radius:50%;background:#fff;color:var(--accent);font-size:22px;object-fit:cover}.mine .who-main{flex:1;min-width:0}.mine .nick{margin:0;font-size:20px;line-height:1.4;font-weight:600;overflow-wrap:anywhere}.mine .club-line{max-width:none;margin:4px 0 0;font-size:12px;line-height:1.6;color:#777}.mine .role{display:inline-block;margin-top:5px;padding:1px 5px;border-radius:3px;background:var(--accent-soft);color:var(--accent);font-size:12px}.mine .account-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:0;padding:12px 0 14px;border-top:0;gap:0;background:rgba(255,255,255,.65)}.mine .account-stats>*{display:flex;flex-direction:column;align-items:center;min-height:44px;padding:0;border:0;border-right:1px solid #eee;border-radius:0;background:transparent}.mine .account-stats>*:last-child{border-right:0}.mine .account-stats b{font-size:23px;font-weight:600;line-height:1.3;color:var(--ink)}.mine .account-stats span{margin-top:4px;font-size:12px;color:#777}.mine .main-tabs{display:flex;margin:0 0 12px;padding:0;border:0;border-radius:0;background:transparent;gap:0}.mine .main-tabs button{position:relative;flex:1;width:0;min-width:0;min-height:46px;padding:0;border:0;border-radius:0;background:transparent;color:#777;font-size:14px;font-weight:400;white-space:nowrap}.mine .main-tabs button.on{color:var(--ink);background:transparent;font-weight:600}.mine .main-tabs button.on::after{position:absolute;right:auto;bottom:0;left:50%;width:20px;height:3px;border-radius:2px;background:var(--accent);transform:translateX(-50%);content:''}.mine .guest-hero .identity-panel{padding:20px 16px 0}.mine .guest-hero h2{margin:0;font-size:20px;font-weight:600}.mine .guest-hero .identity-copy p{margin:8px 0 0;color:#777;font-size:14px}.mine .guest-actions{padding:12px 16px 16px;border:0}.mine .guest-actions p{display:none}.mine .guest-actions .primary{width:100%;min-height:44px;border-radius:8px}.mine .compact-poster{display:flex;gap:8px;align-items:center;justify-content:space-between;margin-top:12px;padding-top:12px;border-top:1px solid #f0f0f0;background:transparent}.mine .compact-poster>span{flex:1;min-width:0;color:#777;font-size:12px;line-height:1.6}.mine .compact-poster>a,.mine .compact-poster>button{flex:none;min-height:36px;padding:0;border:0;color:var(--accent);font-size:12px;background:transparent;white-space:nowrap}.mine .profile-settings{padding:0;margin:0;border:0;border-radius:0;background:transparent}.mine .profile-settings-intro{padding:0 2px 12px}.mine .profile-settings-kicker{display:none}.mine .profile-settings-title{font-size:18px}.mine .profile-settings-note{font-size:12px;margin-top:4px}.mine .profile-clubs-section{display:block}.mine .profile-section{margin:0 0 12px;padding:0;border:0;border-radius:12px;background:#fff;overflow:hidden}.mine .profile-section-title{padding:14px 16px 0;border:0}.mine .profile-section-title h3{font-size:14px;font-weight:600}.mine .profile-section-title small{display:none}.mine .profile-section-icon{display:none}.mine .setting-row{display:flex;width:100%;min-height:64px;align-items:center;justify-content:space-between;padding:12px 0;border:0;border-bottom:1px solid #f0f0f0;border-radius:0;background:#fff;text-align:left}.mine .profile-section .setting-row{width:calc(100% - 32px);margin:0 16px}.mine .setting-row:last-child{border-bottom:0}.mine .setting-row span,.mine .setting-row strong{font-size:15px;font-weight:500}.mine .setting-row small{font-size:12px;font-weight:400;color:#777}.mine .profile-settings>.auth-form{padding:16px;margin:-4px 0 12px;border-radius:12px;background:#fff}.mine .plan-row{padding:14px 0;border-bottom:1px solid #f0f0f0}.mine .plan-row:last-child{border-bottom:0}.mine .plan-row h3{font-size:15px;font-weight:500;line-height:1.6}.mine .plan-state{padding:1px 5px;border-radius:3px;font-size:12px}.mine .plan-row p{font-size:12px}.mine .career-summary{gap:12px}.mine .career-summary b{font-size:22px}.mine .career-summary b.clock{font-size:18px}.mine .career-summary>div>span{font-size:12px}.mine .feedback-entry{margin-top:12px;padding:14px 16px;border:0;border-radius:12px;background:#fff}.mine .feedback-entry-icon{background:transparent;color:#555}.mine .feedback-entry small{font-size:12px}.mine .header-settings{width:auto;white-space:nowrap}
-.exercise .mileage-hero{padding:14px 16px 16px;background:linear-gradient(125deg,#fff2f4,#fff 64%)}.exercise .hero-top{align-items:center;gap:8px;padding:0;border:0}.exercise .month-caption{display:none}.exercise .month-control{gap:2px}.exercise .month-step{width:28px;min-height:40px;height:40px;padding:0;border:0;background:transparent;color:#777;font-size:22px}.exercise .month-select{height:40px;min-width:108px;background:transparent;font-size:15px}.exercise .target-link{width:auto;height:40px;min-height:40px;padding:0;border:0;border-radius:0;background:transparent;color:var(--accent);font-size:12px}.exercise .hero-overview{display:block;min-height:0;margin:12px 0}.exercise .hero-kicker{font-size:12px;color:#777}.exercise .mileage-value{gap:7px;margin-top:3px}.exercise .mileage-value strong{font-size:36px;font-weight:600;line-height:1.2;letter-spacing:-.5px}.exercise .mileage-value>span{font-size:12px;color:#777}.exercise .mileage-footnote{margin-top:5px;font-size:12px;color:#777}.exercise .run-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));padding:12px 0 14px;border:0;gap:8px}.exercise .run-metrics>div{min-width:0;text-align:left;border:0}.exercise .run-metrics b{font-size:20px;font-weight:600;line-height:1.4}.exercise .run-metrics span{margin-top:3px;font-size:12px}.exercise .record-actions{margin-top:14px;gap:8px;grid-template-columns:1fr 1fr}.exercise .record-button,.exercise .import-button{min-height:44px;border-radius:8px;font-size:14px}.exercise .import-button{background:#f6f6f6;border:0;color:#333}.exercise .target-summary{margin:0;padding:10px 0 0;border-top:1px solid #eee}.exercise .target-copy{font-size:12px}.exercise .target-copy strong{font-size:14px}.exercise .target-summary .progress{height:4px;margin:8px 0;background:#eee}.exercise .target-summary p{margin:0;font-size:12px}.exercise .target-prompt{display:flex;align-items:center;gap:8px;width:100%;min-height:44px;margin:0;padding:8px 0 0;border:0;border-top:1px solid #eee;border-radius:0;background:transparent;text-align:left}.exercise .target-mark{display:none}.exercise .target-prompt>span{flex:1;min-width:0}.exercise .target-prompt strong{font-size:13px;font-weight:500}.exercise .target-prompt small{display:none}.exercise .target-prompt>b{margin-left:auto;font-size:12px;color:var(--accent);white-space:nowrap}.exercise .observe-note{font-size:12px;margin:8px 0 0}.exercise .weekly-chart{padding:0;margin:0;background:transparent;border-radius:0}.exercise .chart-heading h2,.exercise .section-heading h2{font-size:18px;font-weight:600}.exercise .chart-subtitle{font-size:12px;color:#777;margin-top:3px}.exercise .bar-track{height:62px;border-radius:3px;background:#f7f7f7}.exercise .bar-track i{border-radius:3px;background:#ffb5bf}.exercise .bar-track i.peak{background:var(--accent)}.exercise .chart-bars{margin-top:14px;gap:22px}.exercise .bar-value,.exercise .bar-label{font-size:12px}.exercise .records-heading{margin:20px 0 10px}.exercise .manual-note{margin:0 0 12px;font-size:12px}.exercise .run-record .section-heading h3{font-size:15px}.exercise .run-date{margin:4px 0 12px;font-size:12px}.exercise .record-data{gap:8px;padding:0;border:0}.exercise .record-data>div{min-width:0;align-items:flex-start;text-align:left}.exercise .record-data b{font-size:20px;font-weight:600}.exercise .record-data span{font-size:12px;margin-top:3px}.exercise .run-record .text-button{min-height:32px;padding:0;font-size:12px}.exercise .record-details{padding-top:10px;margin-top:10px;border-top:1px solid #f0f0f0}.exercise .record-editor{padding-top:12px}.exercise .guest-state{padding:24px 16px;text-align:left}.exercise .guest-mark{display:none}.exercise .guest-state h2{margin:0;font-size:18px}
-@media(max-width:350px){.mine .career-summary{grid-template-columns:1fr 1fr}.mine .career-summary>div:first-child{grid-column:1/-1}.mine .compact-poster{align-items:flex-start;flex-direction:column;gap:4px}.exercise .mileage-value strong{font-size:34px}.exercise .chart-bars{gap:16px}.exercise .record-data b{font-size:18px}}
+.exercise,.mine{padding:0 16px 24px;background:var(--bg)}
+.exercise :deep(.page-header),.mine :deep(.page-header){margin:0 -16px}
+.exercise>.surface:first-of-type,.mine>.account-hero{margin-top:12px}
+.exercise .surface,.mine .sheet,.mine .account-hero{border:0;border-radius:12px;background:#fff;box-shadow:none}
+.exercise .surface,.mine .sheet{padding:16px;margin-bottom:12px}
+.mine .account-hero{margin:12px 0;overflow:hidden;background:linear-gradient(115deg,#fff1f3,#fff 80%)}
+.mine .identity-panel{display:block;min-height:0;padding:18px 16px 14px;background:transparent}
+.mine .identity-copy{width:100%;min-width:0}
+.mine .identity-kicker{display:none}
+.mine .who-top{display:flex;gap:12px;align-items:center;margin:0}
+.mine .face{display:flex;align-items:center;justify-content:center;width:50px;height:50px;flex:none;border:2px solid #fff;border-radius:50%;background:#fff;color:var(--accent);font-size:22px;object-fit:cover}
+.mine .who-main{flex:1;min-width:0}
+.mine .nick{margin:0;font-size:20px;line-height:1.4;font-weight:600;overflow-wrap:anywhere}
+.mine .club-line{max-width:none;margin:4px 0 0;font-size:12px;line-height:1.6;color:#777}
+.mine .role{display:inline-block;margin-top:5px;padding:1px 5px;border-radius:3px;background:var(--accent-soft);color:var(--accent);font-size:12px}
+.mine .account-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:0;padding:12px 0 14px;border-top:0;gap:0;background:rgba(255,255,255,.65)}
+.mine .account-stats>*{display:flex;flex-direction:column;align-items:center;min-height:44px;padding:0;border:0;border-right:1px solid #eee;border-radius:0;background:transparent}
+.mine .account-stats>*:last-child{border-right:0}
+.mine .account-stats b{font-size:23px;font-weight:600;line-height:1.3;color:var(--ink)}
+.mine .account-stats span{margin-top:4px;font-size:12px;color:#777}
+.mine .main-tabs{display:flex;margin:0 0 12px;padding:0;border:0;border-radius:0;background:transparent;gap:0}
+.mine .main-tabs button{position:relative;flex:1;width:0;min-width:0;min-height:46px;padding:0;border:0;border-radius:0;background:transparent;color:#777;font-size:14px;font-weight:400;white-space:nowrap}
+.mine .main-tabs button.on{color:var(--ink);background:transparent;font-weight:600}
+.mine .main-tabs button.on::after{position:absolute;right:auto;bottom:0;left:50%;width:20px;height:3px;border-radius:2px;background:var(--accent);transform:translateX(-50%);content:''}
+.mine .guest-hero .identity-panel{padding:20px 16px 0}
+.mine .guest-hero h2{margin:0;font-size:20px;font-weight:600}
+.mine .guest-hero .identity-copy p{margin:8px 0 0;color:#777;font-size:14px}
+.mine .guest-actions{padding:12px 16px 16px;border:0}
+.mine .guest-actions p{display:none}
+.mine .guest-actions .primary{width:100%;min-height:44px;border-radius:8px}
+.mine .compact-poster{display:flex;gap:8px;align-items:center;justify-content:space-between;margin-top:12px;padding-top:12px;border-top:1px solid #f0f0f0;background:transparent}
+.mine .compact-poster>span{flex:1;min-width:0;color:#777;font-size:12px;line-height:1.6}
+.mine .compact-poster>a,.mine .compact-poster>button{flex:none;min-height:36px;padding:0;border:0;color:var(--accent);font-size:12px;background:transparent;white-space:nowrap}
+.mine .profile-settings{padding:0;margin:0;border:0;border-radius:0;background:transparent}
+.mine .profile-settings-intro{padding:0 2px 12px}
+.mine .profile-settings-kicker{display:none}
+.mine .profile-settings-title{font-size:18px}
+.mine .profile-settings-note{font-size:12px;margin-top:4px}
+.mine .profile-clubs-section{display:block}
+.mine .profile-section{margin:0 0 12px;padding:0;border:0;border-radius:12px;background:#fff;overflow:hidden}
+.mine .profile-section-title{padding:14px 16px 0;border:0}
+.mine .profile-section-title h3{font-size:14px;font-weight:600}
+.mine .profile-section-title small{display:none}
+.mine .profile-section-icon{display:none}
+.mine .setting-row{display:flex;width:100%;min-height:64px;align-items:center;justify-content:space-between;padding:12px 0;border:0;border-bottom:1px solid #f0f0f0;border-radius:0;background:#fff;text-align:left}
+.mine .profile-section .setting-row{width:calc(100% - 32px);margin:0 16px}
+.mine .setting-row:last-child{border-bottom:0}
+.mine .setting-row span,.mine .setting-row strong{font-size:15px;font-weight:500}
+.mine .setting-row small{font-size:12px;font-weight:400;color:#777}
+.mine .profile-settings>.auth-form{padding:16px;margin:-4px 0 12px;border-radius:12px;background:#fff}
+.mine .plan-row{padding:14px 0;border-bottom:1px solid #f0f0f0}
+.mine .plan-row:last-child{border-bottom:0}
+.mine .plan-row h3{font-size:15px;font-weight:500;line-height:1.6}
+.mine .plan-state{padding:1px 5px;border-radius:3px;font-size:12px}
+.mine .plan-row p{font-size:12px}
+.mine .career-summary{gap:12px}
+.mine .career-summary b{font-size:22px}
+.mine .career-summary b.clock{font-size:18px}
+.mine .career-summary>div>span{font-size:12px}
+.mine .feedback-entry{margin-top:12px;padding:14px 16px;border:0;border-radius:12px;background:#fff}
+.mine .feedback-entry-icon{background:transparent;color:#555}
+.mine .feedback-entry small{font-size:12px}
+.mine .header-settings{width:auto;white-space:nowrap;color:#555}
+.exercise .mileage-hero{padding:14px 16px 16px;background:linear-gradient(125deg,#fff2f4,#fff 64%)}
+.exercise .hero-top{align-items:center;gap:8px;padding:0;border:0}
+.exercise .month-caption{display:none}
+.exercise .month-control{gap:2px}
+.exercise .month-step{width:28px;min-height:40px;height:40px;padding:0;border:0;background:transparent;color:#777;font-size:22px}
+.exercise .month-select{height:40px;min-width:108px;background:transparent;font-size:15px}
+.exercise .target-link{width:auto;height:40px;min-height:40px;padding:0;border:0;border-radius:0;background:transparent;color:var(--accent);font-size:12px}
+.exercise .hero-overview{display:block;min-height:0;margin:12px 0}
+.exercise .hero-kicker{font-size:12px;color:#777}
+.exercise .mileage-value{gap:7px;margin-top:3px}
+.exercise .mileage-value strong{font-size:36px;font-weight:600;line-height:1.2;letter-spacing:-.5px}
+.exercise .mileage-value>span{font-size:12px;color:#777}
+.exercise .mileage-footnote{margin-top:5px;font-size:12px;color:#777}
+.exercise .run-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));padding:12px 0 14px;border:0;gap:8px}
+.exercise .run-metrics>div{min-width:0;text-align:left;border:0}
+.exercise .run-metrics b{font-size:20px;font-weight:600;line-height:1.4}
+.exercise .run-metrics span{margin-top:3px;font-size:12px}
+.exercise .record-actions{margin-top:14px;gap:8px;grid-template-columns:1fr 1fr}
+.exercise .record-button,.exercise .import-button{min-height:44px;border-radius:8px;font-size:14px}
+.exercise .import-button{background:#f6f6f6;border:0;color:#333}
+.exercise .target-summary{margin:0;padding:10px 0 0;border-top:1px solid #eee}
+.exercise .target-copy{font-size:12px}
+.exercise .target-copy strong{font-size:14px}
+.exercise .target-summary .progress{height:4px;margin:8px 0;background:#eee}
+.exercise .target-summary p{margin:0;font-size:12px}
+.exercise .target-prompt{display:flex;align-items:center;gap:8px;width:100%;min-height:44px;margin:0;padding:8px 0 0;border:0;border-top:1px solid #eee;border-radius:0;background:transparent;text-align:left}
+.exercise .target-mark{display:none}
+.exercise .target-prompt>span{flex:1;min-width:0}
+.exercise .target-prompt strong{font-size:13px;font-weight:500}
+.exercise .target-prompt small{display:none}
+.exercise .target-prompt>b{margin-left:auto;font-size:12px;color:var(--accent);white-space:nowrap}
+.exercise .observe-note{font-size:12px;margin:8px 0 0}
+.exercise .weekly-chart{padding:0;margin:0;background:transparent;border-radius:0}
+.exercise .chart-heading h2,.exercise .section-heading h2{font-size:18px;font-weight:600}
+.exercise .chart-subtitle{font-size:12px;color:#777;margin-top:3px}
+.exercise .bar-track{height:62px;border-radius:3px;background:#f7f7f7}
+.exercise .bar-track i{border-radius:3px;background:#ffb5bf}
+.exercise .bar-track i.peak{background:var(--accent)}
+.exercise .chart-bars{margin-top:14px;gap:22px}
+.exercise .bar-value,.exercise .bar-label{font-size:12px}
+.exercise .records-heading{margin:20px 0 10px}
+.exercise .manual-note{margin:0 0 12px;font-size:12px}
+.exercise .run-record .section-heading h3{font-size:15px}
+.exercise .run-date{margin:4px 0 12px;font-size:12px}
+.exercise .record-data{gap:8px;padding:0;border:0}
+.exercise .record-data>div{min-width:0;align-items:flex-start;text-align:left}
+.exercise .record-data b{font-size:20px;font-weight:600}
+.exercise .record-data span{font-size:12px;margin-top:3px}
+.exercise .run-record .text-button{min-height:32px;padding:0;font-size:12px}
+.exercise .record-details{padding-top:10px;margin-top:10px;border-top:1px solid #f0f0f0}
+.exercise .record-editor{padding-top:12px}
+.exercise .guest-state{padding:24px 16px;text-align:left}
+.exercise .guest-mark{display:none}
+.exercise .guest-state h2{margin:0;font-size:18px}
+@media(max-width:350px){.mine .career-summary{grid-template-columns:1fr 1fr}
+.mine .career-summary>div:first-child{grid-column:1/-1}
+.mine .compact-poster{align-items:flex-start;flex-direction:column;gap:4px}
+.exercise .mileage-value strong{font-size:34px}
+.exercise .chart-bars{gap:16px}
+.exercise .record-data b{font-size:18px}}
+
+/* Runner archive: compact data summaries, record lists and image collections. */
+.runner-page,.history-page{padding:0 16px 24px;background:#f5f5f5}
+.runner-header,.history-header{display:flex;align-items:center;gap:10px;min-height:72px;height:auto;margin:0 -16px;padding:12px 16px;background:linear-gradient(110deg,#fff0f2,#fff 84%)}
+.runner-header h1,.history-header h1{margin:0;font-size:24px;font-weight:600}
+.runner-header .eyebrow,.runner-header .header-icon,.history-header .eyebrow{display:none}
+.runner-header .back,.history-header .back-link{width:36px;min-width:36px;height:44px;min-height:44px;padding:0;flex:none}
+.runner-nav{display:flex;justify-content:space-between;margin:0 -16px 12px;padding:0 12px;border:0;border-radius:0;background:#fff;gap:0}
+.runner-nav a{min-height:44px;padding:10px 5px;border-radius:0;background:transparent;color:#777;font-size:13px}
+.runner-nav a.on{background:transparent;color:#1a1a1a;box-shadow:inset 0 -3px #ff1838;font-weight:600}
+.runner-card,.history-card{padding:16px;margin-bottom:12px;border:0;border-radius:12px;background:#fff;box-shadow:none}
+.runner-page .segmented,.runner-page .metric-tabs{margin-bottom:12px;padding:3px;border:0;border-radius:8px;background:#ebebeb;gap:2px}
+.runner-page .segmented>button,.runner-page .metric-tabs>button{min-height:38px;border:0;border-radius:6px;font-size:13px;color:#777;background:transparent}
+.runner-page .segmented>button.on,.runner-page .metric-tabs>button.on{background:#fff;color:#1a1a1a;box-shadow:none}
+.runner-page .section-heading{margin-bottom:12px}
+.runner-page .section-heading h2{font-size:18px;font-weight:600}
+.runner-page .training-card,.runner-page .career-hero{background:linear-gradient(120deg,#fff2f4,#fff 72%)}
+.runner-page .period-control{margin:0 0 12px;min-height:36px}
+.runner-page .period-control h2{font-size:14px;font-weight:500}
+.runner-page .period-control button{min-height:36px;height:36px;width:36px}
+.runner-page .training-card .kicker{margin:0;color:#777;font-size:12px}
+.runner-page .training-distance{margin:4px 0 12px;font-size:34px;font-weight:600;line-height:1.2;letter-spacing:-.4px}
+.runner-page .distance-decoration{display:none}
+.runner-page .training-metrics{gap:8px;margin:0 0 16px;padding:0 0 14px;border:0;border-bottom:1px solid #eee}
+.runner-page .training-metrics b{font-size:18px;line-height:1.4}
+.runner-page .training-metrics span{font-size:12px;line-height:1.5;margin-top:3px}
+.runner-page .weekly-report{padding:14px 16px}
+.runner-page .weekly-copy{font-size:13px;margin:5px 0;color:#777}
+.runner-page .report-compare{margin:6px 0;font-size:13px;background:transparent;border:0;padding:0}
+.runner-page .weekly-report .small-pill{font-size:12px}
+.runner-page .run-line{padding:12px 0;gap:12px}
+.runner-page .run-line b{font-size:15px}
+.runner-page .run-line strong{font-size:20px}
+.runner-page .run-line>div>span,.runner-page .run-date{font-size:12px}
+.runner-page .inline-empty>svg,.runner-page .empty-emblem{display:none}
+.runner-page .empty-large{padding:24px 16px;text-align:left}
+.runner-page .empty-large h2{font-size:18px;margin:0 0 8px}
+.runner-page .empty-large p{font-size:14px;line-height:1.7}
+.runner-page .career-head{display:flex;align-items:center;justify-content:space-between;margin:0;gap:12px}
+.runner-page .career-head .kicker{font-size:12px;color:#777;margin:0 0 4px}
+.runner-page .career-count{font-size:34px;line-height:1.2;font-weight:600;letter-spacing:0}
+.runner-page .career-count>small{font-size:12px;margin-left:5px;color:#777}
+.runner-page .career-head-meta{display:flex;flex-direction:column;gap:7px;text-align:right;font-size:12px;color:#777}
+.runner-page .career-head-meta>b{font-size:20px;font-weight:500;color:#1a1a1a}
+.runner-page .career-head-meta small{font-size:12px;font-weight:400;color:#777}
+.runner-page .career-splits{display:flex;flex-wrap:wrap;gap:8px 16px;padding:12px 0;margin:12px 0 0;border-top:1px solid #eee}
+.runner-page .career-splits>div{display:flex;flex-direction:row;align-items:baseline;gap:5px}
+.runner-page .career-splits b{font-size:16px;font-weight:500}
+.runner-page .career-splits span{font-size:12px}
+.runner-page .career-duration{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:#777}
+.runner-page .career-duration b{font-size:14px;font-weight:500;color:#333}
+.runner-page .runner-achievement-entry{margin:12px 0 0;padding:10px 0 0;border-top:1px solid #eee;gap:8px}
+.runner-page .runner-achievement-entry>span{font-size:12px}
+.runner-page .runner-achievement-entry>a{font-size:12px;min-height:36px}
+.runner-page .history-entry{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px}
+.runner-page .history-entry h2{margin:0;font-size:15px}
+.runner-page .history-entry p{margin:4px 0 0;color:#777;font-size:12px;line-height:1.5}
+.runner-page .history-entry>svg{width:17px;height:17px;color:#999}
+.runner-page .personal-best{padding:14px 0}
+.runner-page .personal-best strong{font-size:24px;font-weight:600;color:#1a1a1a}
+.runner-page .personal-best h3{font-size:15px}
+.runner-page .personal-best .pb-tag{font-size:12px;color:#777;background:transparent;padding:0}
+.runner-page .personal-best p{font-size:12px}
+.runner-page .timeline-section>.section-heading{margin:18px 0 10px}
+.runner-page .timeline-item{gap:10px;margin:0 0 10px}
+.runner-page .timeline-item article{padding:14px;border:0;border-radius:12px;background:#fff}
+.runner-page .timeline-item h3{font-size:15px;font-weight:500}
+.runner-page .timeline-item strong{font-size:22px}
+.runner-page .timeline-date{width:42px;padding-top:12px}
+.runner-page .timeline-date b{font-size:16px}
+.runner-page .timeline-date span{font-size:12px}
+.runner-page .passport{padding:16px;margin-bottom:12px;border:0;border-radius:12px;background:linear-gradient(120deg,#fff2f4,#fff 80%)}
+.runner-page .passport-top{font-size:12px;color:#777}
+.runner-page .passport-top>svg{width:18px;height:18px;color:#ff1838}
+.runner-page .passport h2{margin:8px 0 3px;font-size:18px;line-height:1.4}
+.runner-page .passport>p{margin:0;font-size:12px;color:#777}
+.runner-page .passport-metrics{margin:16px 0 0;padding:0;gap:12px}
+.runner-page .passport-metrics b{font-size:26px;font-weight:600}
+.runner-page .passport-metrics span{font-size:12px;margin-top:4px}
+.runner-page .passport-bottom{margin-top:14px;padding-top:10px;border-top:1px solid #eee;font-size:12px}
+.runner-page .city-stamps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.runner-page .city-stamps>button{position:relative;display:flex;flex-direction:column;align-items:flex-start;min-width:0;padding:14px;border:0;border-radius:12px;background:#fff;text-align:left}
+.runner-page .city-stamps>button.selected{background:#fff0f2;box-shadow:inset 0 0 0 1px #ffb8c2}
+.runner-page .city-stamps>button>svg{position:absolute;right:13px;top:14px;width:20px;height:20px;color:#ddd}
+.runner-page .city-stamps .stamp-index{display:none}
+.runner-page .city-stamps b{font-size:18px;margin:0 0 4px}
+.runner-page .city-stamps>button>span:not(.stamp-index){font-size:12px}
+.runner-page .city-stamps i{font-size:12px;margin-top:12px;color:#777}
+.runner-page .collection-banner{display:block;text-align:left;padding:16px;margin-bottom:12px;border:0;border-radius:12px;background:linear-gradient(120deg,#fff2f4,#fff 80%)}
+.runner-page .collection-banner>svg,.runner-page .collection-banner .eyebrow{display:none}
+.runner-page .collection-banner h2{margin:0;font-size:18px}
+.runner-page .collection-banner p{margin:5px 0 0;font-size:12px;color:#777}
+.runner-page .gallery-toolbar{gap:8px;align-items:center}
+.runner-page .gallery-toolbar .segmented{margin:0;flex:1}
+.runner-page .upload-button{padding:0 12px;min-height:44px;font-size:13px;border-radius:8px}
+.runner-page .gallery-grid{gap:12px}
+.runner-page .gallery-item{padding:8px;border-radius:12px;background:#fff}
+.runner-page .gallery-item h3{font-size:14px;margin:9px 0 5px}
+.runner-page .media-meta{font-size:12px}
+.runner-page .media-cover{border-radius:7px;background:#eee}
+.runner-page .device-import-card{padding:16px;border:0;border-radius:12px;background:linear-gradient(120deg,#fff2f4,#fff 80%)}
+.runner-page .device-wordmark{font-size:12px;color:#777;font-weight:400}
+.runner-page .device-import-card>h2{font-size:20px;margin:14px 0 7px}
+.runner-page .device-import-card>p{font-size:13px;line-height:1.7;margin-bottom:16px}
+.runner-page .device-import-meta{margin:10px 0 14px}
+.runner-page .device-guide{padding-top:12px}
+.runner-page .device-guide li{font-size:13px}
+.runner-page .device-guide ol{margin-top:14px}
+.runner-page .device-guide li span{font-size:13px;line-height:1.7}
+.runner-page .device-row h3{font-size:15px}
+.runner-page .device-row p{font-size:12px}
+.runner-page .device-actions{padding-left:0}
+.runner-page .source-intro,.runner-page .help-intro{padding:16px;border:0;border-radius:12px;background:#fff}
+.runner-page .source-intro h2,.runner-page .help-intro h2{font-size:18px}
+.runner-page .source-faq details{border:0;border-radius:12px;background:#fff;padding:14px 16px;margin-bottom:10px}
+.runner-page .privacy-note{font-size:12px;line-height:1.6;margin:14px 0}
+.runner-page .text-link{font-size:12px;min-height:36px}
+/* Team member identity keeps the group context; its content is organized by task. */
+.club-member-page{--bg:#f5f5f5;--card:#fff;--ink:#1a1a1a;--muted:#777;--line:#eee;--accent:#ff1838;--accent-soft:#fff0f2;background:#f5f5f5}
+.club-member-page .member-topbar{min-height:60px;padding:0 16px;grid-template-columns:44px 1fr 64px;background:#fff;font-size:16px}
+.club-member-page .profile-header-scope{font-size:12px;color:#999;font-weight:400;white-space:nowrap}
+.club-member-page .member-profile{margin:12px 16px 0;padding:16px 16px 0;border-radius:12px;background:linear-gradient(115deg,#fff1f3,#fff 80%);overflow:hidden}
+.club-member-page .profile-avatar{width:50px;height:50px;border:2px solid #fff;border-radius:50%;background:#fff;color:#ff1838;font-size:22px}
+.club-member-page .profile-name h1{font-size:20px}
+.club-member-page .profile-role{margin:4px 0 0;font-size:12px;gap:7px}
+.club-member-page .profile-joined{margin-top:4px;font-size:12px}
+.club-member-page .profile-key-metrics{margin:14px -16px 0;padding:12px 0 14px;background:rgba(255,255,255,.65);border:0}
+.club-member-page .profile-key-metrics b{font-size:22px;font-weight:600}
+.club-member-page .profile-key-metrics span{font-size:12px;margin-top:3px}
+.club-member-page .profile-tabs{margin:0;padding:0 16px;border:0;background:transparent}
+.club-member-page .profile-tabs button{min-height:46px;color:#777;font-size:14px}
+.club-member-page .profile-tabs button.on{color:#1a1a1a}
+.club-member-page .profile-content{padding:0 16px}
+.club-member-page .profile-card,.club-member-page .member-volume,.club-member-page .profile-race-card,.club-member-page .profile-album,.club-member-page .pb-section{padding:16px;margin:0 0 12px;border:0;border-radius:12px;background:#fff;box-shadow:none}
+.club-member-page .section-heading{margin-bottom:10px}
+.club-member-page .section-heading h2{font-size:18px}
+.club-member-page .profile-intro{font-size:14px;line-height:1.8;margin:0;color:#555}
+.club-member-page .group-profile-card .section-kicker{font-size:12px;color:#777}
+.club-member-page .group-profile-card h2{font-size:16px;margin:4px 0}
+.club-member-page .group-target{display:flex;align-items:baseline;gap:9px;margin:8px 0}
+.club-member-page .group-target b{font-size:20px}
+.club-member-page .group-target small,.club-member-page .group-description{font-size:12px}
+.club-member-page .group-description{margin:6px 0 0;line-height:1.7}
+.club-member-page .info-facts{display:grid;grid-template-columns:1fr 1fr;gap:14px 12px}
+.club-member-page .info-facts>div{display:flex;flex-direction:column;align-items:flex-start;border:0;padding:0;gap:5px}
+.club-member-page .info-facts span{font-size:12px}
+.club-member-page .info-facts b,.club-member-page .info-facts button{font-size:14px;font-weight:500;min-height:24px;padding:0}
+.club-member-page .chapter-heading{padding:14px 2px 12px;min-height:0;margin:0}
+.club-member-page .chapter-heading h2{font-size:18px}
+.club-member-page .chapter-heading p{margin-top:4px;font-size:12px}
+.club-member-page .content-filters{margin:0 0 12px;gap:6px}
+.club-member-page .content-filters button{font-size:13px;min-height:36px;border:0;border-radius:6px;padding:0 12px;background:#fff}
+.club-member-page .content-filters button.on{background:#fff0f2;color:#ff1838}
+.club-member-page .profile-race-card h3{font-size:15px;margin:7px 0}
+.club-member-page .profile-race-card p,.club-member-page .race-card-meta,.club-member-page .race-card-bottom{font-size:12px}
+.club-member-page .race-status{background:#f5f5f5;color:#777}
+.club-member-page .race-status.mint,.club-member-page .race-status.peach{background:#fff0f2;color:#ff1838}
+.club-member-page .race-card-bottom{margin-top:12px;padding-top:10px;border-top:1px solid #f0f0f0}
+.club-member-page .race-card-bottom b{font-size:12px;font-weight:500}
+.club-member-page .profile-achievement-entry{margin:0 0 12px;padding:14px 16px;border:0;border-radius:12px;background:#fff}
+.club-member-page .profile-achievement-entry b{font-size:15px}
+.club-member-page .profile-achievement-entry small{font-size:12px}
+.club-member-page .pb-grid{gap:0}
+.club-member-page .pb-card{padding:0 12px 0 0;border:0;border-radius:0;background:transparent}
+.club-member-page .pb-card+.pb-card{border-left:1px solid #eee;padding-left:14px}
+.club-member-page .pb-card strong{font-size:24px;color:#1a1a1a}
+.club-member-page .pb-card p,.club-member-page .pb-card small{font-size:12px}
+.club-member-page .personal-volume{padding:14px 0 0;border:0;background:transparent}
+.club-member-page .personal-volume>strong{font-size:34px}
+.club-member-page .personal-metrics b{font-size:20px}
+.club-member-page .personal-metrics span{font-size:12px}
+.club-member-page .profile-period{margin:10px 0}
+.club-member-page .profile-period button{height:36px;min-height:36px}
+.club-member-page .profile-period label{font-size:14px}
+.club-member-page .member-run strong{font-size:20px}
+.club-member-page .member-run b{font-size:15px}
+.club-member-page .member-run-date{font-size:12px}
+.club-member-page .quiet-empty>svg,.club-member-page .state-symbol{display:none}
+.club-member-page .quiet-empty{padding:20px 0;text-align:left}
+.club-member-page .quiet-empty h3{font-size:15px}
+.club-member-page .quiet-empty p{font-size:13px}
+.club-member-page .result-row{padding:13px 0;gap:10px}
+.club-member-page .result-copy b{font-size:15px}
+.club-member-page .result-clock strong{font-size:20px}
+.club-member-page .profile-album .section-heading h2{font-size:16px}
+.club-member-page .profile-album .section-heading p{font-size:12px}
+.club-member-page .album-grid{gap:6px}
+.club-member-page .album-tile{border-radius:7px}
+.club-member-page .member-privacy{font-size:12px;margin:14px 0}
+/* Race history keeps totals close to its filters and lets real memories carry the image. */
+.history-page .history-nav{margin:0 -16px 12px;padding:0 16px;background:#fff;border:0;border-radius:0}
+.history-page .history-nav button{min-height:44px;font-size:14px;border-radius:0;background:transparent;color:#777}
+.history-page .history-nav button.on{color:#1a1a1a;background:transparent;box-shadow:inset 0 -3px #ff1838}
+.history-page .page-intro{padding:6px 2px 12px;margin:0}
+.history-page .page-intro h2{margin:0;font-size:20px;line-height:1.5}
+.history-page .page-intro p{font-size:12px;color:#777;margin:4px 0 0}
+.history-page .page-intro .eyebrow{display:none}
+.history-page .history-overview-heading h2{font-size:18px}
+.history-page .history-counts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0 0 12px;padding:14px 16px;background:#fff;border:0;border-radius:12px}
+.history-page .history-counts strong{font-size:24px;line-height:1.3;font-weight:600}
+.history-page .history-counts span{font-size:12px;margin-top:4px}
+.history-page .view-switch{margin:0 0 12px;padding:3px;border:0;border-radius:8px;background:#ebebeb}
+.history-page .view-switch button{min-height:38px;border-radius:6px;background:transparent;font-size:14px;color:#777}
+.history-page .view-switch button.on{background:#fff;color:#1a1a1a;box-shadow:none}
+.history-page .growth-highlight{padding:16px;background:linear-gradient(120deg,#fff2f4,#fff 80%)}
+.history-page .growth-highlight h3{font-size:16px;line-height:1.6;margin:10px 0 8px}
+.history-page .highlight-time{font-size:32px;font-weight:600;line-height:1.2}
+.history-page .highlight-bottom{margin-top:12px;padding-top:12px;border-top:1px solid #eee}
+.history-page .highlight-bottom b{font-size:14px}
+.history-page .highlight-bottom small{font-size:12px}
+.history-page .history-filters{gap:8px;margin:0 0 12px}
+.history-page .history-filters select,.history-page .history-filters input{min-height:42px;border:0;border-radius:8px;background:#fff;font-size:14px}
+.history-page .history-timeline{padding:0;border:0}
+.history-page .history-row{display:flex;gap:10px;align-items:center;margin:0 0 10px;padding:14px 16px;border:0;border-radius:12px;background:#fff}
+.history-page .history-row::before{display:none}
+.history-page .timeline-copy{flex:1;min-width:0}
+.history-page .timeline-copy h3{font-size:15px;font-weight:500;margin:5px 0}
+.history-page .timeline-copy time,.history-page .timeline-copy p{font-size:12px}
+.history-page .timeline-result strong{font-size:22px;font-weight:600}
+.history-page .timeline-result span{font-size:12px}
+.history-page .growth-node{padding:0;margin-top:8px;font-size:12px;background:transparent;color:#ff1838}
+.history-page .memory-card{padding:0;overflow:hidden;border:0;background:#fff}
+.history-page .memory-copy{padding:14px}
+.history-page .memory-copy h3{font-size:16px}
+.history-page .memory-copy p{font-size:13px;line-height:1.7}
+.history-page .memory-date{background:#fff0f2;color:#ff1838}
+.history-page .memory-date strong{font-size:34px}
+.history-page .review-score{padding:16px;background:linear-gradient(120deg,#fff2f4,#fff 80%)}
+.history-page .review-score strong{font-size:32px}
+.history-page .review-difference strong{font-size:24px}
+.history-page .review-insight,.history-page .personal-story{padding:16px;margin:0 0 12px;border:0;border-radius:12px;background:#fff}
+.history-page .review-insight h3{font-size:18px}
+.history-page .review-insight p,.history-page .personal-story p{font-size:14px;line-height:1.8}
+.history-page .source-facts h3{font-size:15px}
+.history-page .source-facts p{font-size:12px}
+.history-page .import-options{gap:8px}
+.history-page .file-action{min-height:76px;border:0;border-radius:8px;background:#f5f5f5;padding:12px}
+.history-page .file-copy b{font-size:15px}
+.history-page .file-copy small{font-size:12px}
+.history-page .import-step{margin-bottom:14px}
+.history-page .import-step>span{font-size:12px;background:#fff0f2;color:#ff1838;width:27px;height:27px}
+.history-page .import-step h3{font-size:18px}
+.history-page .history-dialog{border:0;border-radius:12px}
+.history-page .history-dialog::backdrop{background:rgba(26,26,26,.45)}
+/* Poster creation is a workspace: preview first, then records, theme and export. */
+.achievement-studio .studio-header{min-height:60px;background:#fff;font-size:16px}
+.achievement-studio .studio-mark{display:none}
+.achievement-studio .studio-intro{padding:18px 16px 14px;background:linear-gradient(115deg,#fff0f2,#fff 85%);text-align:left}
+.achievement-studio .studio-kicker{display:none}
+.achievement-studio .studio-intro h1{font-size:24px;margin:0;font-weight:600;line-height:1.4}
+.achievement-studio .studio-intro p{margin:5px 0 0;color:#777;font-size:12px;line-height:1.6}
+.achievement-studio .poster-modes{padding:3px;margin:12px 16px;border:0;border-radius:8px;background:#ebebeb;gap:3px}
+.achievement-studio .poster-modes>button{min-height:42px;padding:8px;border:0;border-radius:6px;background:transparent;font-size:14px}
+.achievement-studio .poster-modes>button.on{background:#fff;color:#1a1a1a;box-shadow:none}
+.achievement-studio .poster-modes svg,.achievement-studio .poster-modes small{display:none}
+.achievement-studio .studio-layout{gap:12px;padding:0 16px}
+.achievement-studio .preview-panel,.achievement-studio .control-card,.achievement-studio .caption-card{padding:16px;border:0;border-radius:12px;background:#fff;box-shadow:none}
+.achievement-studio .preview-top{font-size:12px;margin-bottom:12px}
+.achievement-studio .poster-stage{padding:16px;border:0;border-radius:8px;background:#f1f1f1}
+.achievement-studio .poster-image{max-height:600px;object-fit:contain;box-shadow:0 3px 14px #00000012}
+.achievement-studio .preview-hint{font-size:12px;margin:10px 0 0}
+.achievement-studio .studio-controls{gap:12px}
+.achievement-studio .control-heading{margin-bottom:12px}
+.achievement-studio .control-heading h2{font-size:18px}
+.achievement-studio .control-heading p,.achievement-studio .control-heading>span{font-size:12px}
+.achievement-studio .selection-row{padding:12px 0;gap:10px}
+.achievement-studio .selection-copy b{font-size:14px}
+.achievement-studio .selection-copy span,.achievement-studio .selection-copy small{font-size:12px}
+.achievement-studio .selection-row>strong{font-size:18px;font-weight:600}
+.achievement-studio .theme-option{padding:8px;border:1px solid transparent;border-radius:8px;background:#f7f7f7}
+.achievement-studio .theme-option.on{border-color:#ffb8c2;background:#fff0f2}
+.achievement-studio .theme-swatch{height:52px}
+.achievement-studio .theme-option>span:last-child{font-size:12px}
+.achievement-studio .options-control summary{font-size:14px;min-height:32px}
+.achievement-studio .caption-card>div>span{font-size:13px}
+.achievement-studio .caption-card p{font-size:12px;line-height:1.7}
+.achievement-studio .studio-state{margin:12px 16px;padding:24px 16px;border:0;border-radius:12px;text-align:left}
+.achievement-studio .studio-state>span{display:none}
+.achievement-studio .studio-state h2{font-size:18px}
+.achievement-studio .poster-placeholder{padding:28px 12px;min-height:160px}
+.achievement-studio .poster-placeholder>svg{display:none}
+.achievement-studio .poster-placeholder h2{font-size:18px}
+.achievement-studio .poster-actions{border-top:1px solid #eee;background:#fff}
+.achievement-studio .primary-action{border-radius:8px;min-height:44px}
+@media(max-width:350px){.runner-page .runner-nav a{font-size:12px;padding:10px 4px}
+.runner-page .training-distance,.runner-page .career-count{font-size:32px}
+.runner-page .training-metrics b{font-size:16px}
+.runner-page .personal-best strong{font-size:21px}
+.runner-page .runner-achievement-entry{align-items:flex-start;flex-direction:column;gap:4px}
+.club-member-page .personal-volume>strong{font-size:32px}
+.club-member-page .pb-card strong{font-size:21px}
+.club-member-page .result-clock strong{font-size:18px}
+.history-page .history-row{align-items:flex-start}
+.history-page .timeline-result strong{font-size:19px}
+.history-page .review-score{display:block}
+.achievement-studio .selection-row>strong{font-size:16px}
+.achievement-studio .selection-row{gap:7px}}
