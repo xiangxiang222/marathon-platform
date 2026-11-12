@@ -1,0 +1,57 @@
+{
+  "asOf": "2026-11-12T03:25:02.655Z",
+  "backend": {
+    "at": "2026-11-12T03:23:44.541Z",
+    "backendCodeSha256": "3c7a0833f213e2bee65b279bf0f93ac5441084415541cd63a22ed200627a99ed",
+    "backup": "server/data/releases/profile-admin-20261112-04",
+    "mutation": false,
+    "anonymousAdminStatus": 401,
+    "profiles": [
+      {
+        "type": "athlete",
+        "total": 200,
+        "articleVisible": true,
+        "adminEditorVisible": true
+      },
+      {
+        "type": "pacer",
+        "total": 80,
+        "articleVisible": true,
+        "adminEditorVisible": true
+      }
+    ],
+    "adminAuthenticationChecked": true,
+    "editorialRecords": 0,
+    "accounts": 205,
+    "passed": true
+  },
+  "assets": {
+    "passed": true,
+    "adminEntry": "/marathon/assets/index-_3_50lSf.js",
+    "adminChunk": "Admin-BXV1iPSz.js",
+    "adminChunkSha256": "7810b23fc761fb331c666711f2e4444823142f4e5bf18bfb4090f96cab2b3584",
+    "managementEntrances": [
+      "运动员管理",
+      "官兔管理"
+    ]
+  },
+  "validation": {
+    "serverTests": 304,
+    "profileTests": 8,
+    "collectorTests": 28,
+    "miniVmChecks": 19,
+    "miniNativeCompile": true,
+    "profileBrowserChecks": 8,
+    "profileBrowserViews": 6,
+    "readerRegressionChecks": 7,
+    "readerRegressionViews": 37
+  },
+  "reports": {
+    "profiles": "design/previews/profile-admin-20261112/report.json",
+    "readers": "design/previews/content-center-20261111/report.json"
+  },
+  "scope": {
+    "productionContentMutations": false,
+    "onlyRestartedService": "marathon"
+  }
+}

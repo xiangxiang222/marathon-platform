@@ -27,7 +27,10 @@
     "test:clubs:full": "node scripts/club-full-acceptance.cjs",
     "test:ui": "node scripts/ui-full-audit.cjs",
     "test:content": "node --test --test-concurrency=1 --require ./server/test/setup-env.js server/test/content.test.js server/test/news.test.js && node scripts/content-mini-regression.cjs && npm run build && node scripts/content-live-acceptance.cjs",
-    "content:seed": "node scripts/import-content-starters.cjs"
+    "content:seed": "node scripts/import-content-starters.cjs",
+    "content:sync": "node scripts/content-sync.cjs --publish",
+    "test:content-sync": "node --test scripts/content-sync.test.cjs scripts/content-news-enrichment.test.cjs scripts/athlete-biography.test.cjs scripts/content-date.test.cjs server/test/pacer-people.test.js",
+    "test:profiles": "node --test --test-concurrency=1 --require ./server/test/setup-env.js server/test/content-profiles.test.js server/test/pacer-people.test.js"
   },
   "devDependencies": {
     "concurrently": "^9.1.2",

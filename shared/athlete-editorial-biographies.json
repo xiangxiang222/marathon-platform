@@ -1,0 +1,313 @@
+{
+  "version": 2,
+  "reviewedAt": "2026-11-12",
+  "note": "按运动员世界田联编号保存的中文报道补充。每段为独立改写的事实摘要；保留报道日期和原文链接，成绩统计另由世界田联资料更新。",
+  "athletes": {
+    "14334270": [
+      {
+        "id": "editorial-nanjing",
+        "title": "南京半马赛场表现",
+        "body": "2026年3月15日，丁常琴在南京半程马拉松以1小时11分06秒获得女子冠军，尹亭和杨桦分获第二、第三名。",
+        "sourceUrl": "https://local.cctv.com/2026/03/15/ARTIuy1X9rbQfSvMKh6LwyWw260315.shtml",
+        "publishedAt": "2026-03-15"
+      }
+    ],
+    "14376349": [
+      {
+        "id": "editorial-worlds",
+        "title": "世界锦标赛参赛记录",
+        "body": "李芷萱在2022年俄勒冈田径世锦赛女子马拉松以2小时31分20秒获得第22名；张德顺在同场比赛位列第11。",
+        "sourceUrl": "https://sports.cctv.com/2022/07/19/ARTIutVZHpCixwUycyqPpkxn220719.shtml",
+        "publishedAt": "2022-07-19"
+      }
+    ],
+    "14430085": [
+      {
+        "id": "background-olympics",
+        "title": "第一次奥运会的赛场体验",
+        "body": "2024年巴黎奥运会，是吴向东首次站上奥运马拉松起跑线。他以2小时12分34秒获得第40名，创造了当时中国男子选手在奥运马拉松中的最好完赛时间。比赛后段的集中爬升与最后5公里的掉速，让他切身感受到奥运赛道的难度。赛后，他没有把这次突破当作终点，而是把继续参加下一届奥运会作为新的目标。",
+        "sourceUrl": "https://www.thepaper.cn/newsDetail_forward_28372261",
+        "publishedAt": "2024-08-10"
+      },
+      {
+        "id": "editorial-olympic",
+        "title": "巴黎奥运达标与选拔阶段",
+        "body": "吴向东在2024年大阪马拉松达到巴黎奥运会男子马拉松参赛标准。当年3月，何杰、杨绍辉、丰配友和吴向东成为中国男子已达标的四位选手，并共同报名参加无锡马拉松奥运选拔赛。",
+        "sourceUrl": "https://sports.cctv.com/2024/03/21/ARTIYVqJFkVJTzNkjxE4vzLN240321.shtml",
+        "publishedAt": "2024-03-21"
+      }
+    ],
+    "14523268": [
+      {
+        "id": "background-yunnan",
+        "title": "全国冠军与奥运之路",
+        "body": "杨绍辉来自云南，出生于1992年7月9日。2019年，他在北京以2小时13分14秒赢得全国马拉松冠军赛，这是他的第一个全国大赛冠军。2021年徐州奥运选拔赛的亚军，使他进入东京奥运会中国队阵容。他的国际大赛经历还包括2019年多哈、2022年俄勒冈与2023年布达佩斯三届世锦赛。",
+        "sourceUrl": "https://sports.cctv.com/2023/12/04/ARTIOWvjva8JK9tan3r7nqCV231204.shtml",
+        "publishedAt": "2023-12-04"
+      },
+      {
+        "id": "editorial-career",
+        "title": "从全国冠军到国际大赛",
+        "body": "2023年福冈国际马拉松，杨绍辉半程用时1小时03分，进入后程后继续留在领先竞争中。约40.5公里处，他提速追赶前方的挪威选手莫恩和肯尼亚选手吉泰，最终以2小时07分09秒获得亚军，刷新了当时的男子马拉松全国纪录。",
+        "sourceUrl": "https://sports.cctv.com/2023/12/04/ARTIOWvjva8JK9tan3r7nqCV231204.shtml",
+        "publishedAt": "2023-12-04"
+      }
+    ],
+    "14663881": [
+      {
+        "id": "editorial-shenzhen",
+        "title": "深圳半马女子冠军",
+        "body": "次仁措姆在2023年2月19日举行的2022深圳马拉松半程项目中获得女子冠军，达瓦吉拉和张水华分别获得第二、第三名。",
+        "sourceUrl": "https://local.cctv.com/2023/02/20/ARTIXLlduTs1p4w8mfKZHw0O230220.shtml",
+        "publishedAt": "2023-02-20"
+      }
+    ],
+    "14693572": [
+      {
+        "id": "background-track-road",
+        "title": "场地与公路两条赛道",
+        "body": "张德顺代表云南队参赛，她的长跑履历同时延伸在场地与公路上。2021年4月徐州奥运选拔赛，是她的第二场马拉松；她前程采用跟跑，也曾在风中领跑，最后依靠后程冲刺以2小时29分11秒夺冠。第一次接近奥运舞台时，她的全马比赛经验还不多，但已经在国内选拔中占据了一席位置。",
+        "sourceUrl": "https://sports.cctv.com/2021/04/11/ARTIf5JGGJN51znRH3YtEbPO210411.shtml",
+        "publishedAt": "2021-04-11"
+      },
+      {
+        "id": "background-double",
+        "title": "同一届全运会的多距离考验",
+        "body": "2021年陕西全运会，张德顺先后收获10000米冠军、5000米亚军和马拉松冠军。马拉松决赛中，她以2小时32分31秒率先冲线，领先李芷萱3秒。场地长跑的速度竞争与42.195公里的耐力比拼，在同一届大赛中交汇，成为她职业生涯中鲜明的一段经历。",
+        "sourceUrl": "https://sports.cctv.com/2021/09/26/ARTI09A9eFUan7qPpUMKRiGB210926.shtml",
+        "publishedAt": "2021-09-26"
+      },
+      {
+        "id": "editorial-worlds",
+        "title": "俄勒冈世锦赛中国队表现",
+        "body": "2022年俄勒冈田径世锦赛女子马拉松，张德顺以2小时28分11秒获得第11名，另一位中国选手李芷萱为第22名。",
+        "sourceUrl": "https://sports.cctv.com/2022/07/19/ARTIutVZHpCixwUycyqPpkxn220719.shtml",
+        "publishedAt": "2022-07-19"
+      },
+      {
+        "id": "editorial-road-record",
+        "title": "10公里纪录与全运会经历",
+        "body": "2025年12月的中国田径协会10公里精英赛总决赛，张德顺以31分54秒夺冠，将自己在2024年创造的31分57秒中国女子10公里路跑最好成绩缩短3秒。她已连续两届赢得全运会女子马拉松冠军。",
+        "sourceUrl": "https://sports.cctv.com/2025/12/29/ARTID8ZhBErGKPEtnBjJqckA251229.shtml",
+        "publishedAt": "2025-12-29"
+      }
+    ],
+    "14694073": [
+      {
+        "id": "editorial-beijing",
+        "title": "北京马拉松总名次领奖台",
+        "body": "2024年11月3日，陈天宇在北京马拉松以2小时09分48秒获得男子总成绩第三名，前两名分别为埃塞俄比亚的莱米·伯哈努·海勒和肯尼亚的贝特维尔·基贝特·琼巴。",
+        "sourceUrl": "https://news.cctv.com/2024/11/03/ARTIqFtgJvXG0zniEkBUcdV1241103.shtml",
+        "publishedAt": "2024-11-03"
+      }
+    ],
+    "14694176": [
+      {
+        "id": "editorial-half",
+        "title": "深圳半马夺冠经历",
+        "body": "索朗才仁在2023年2月19日举行的2022深圳马拉松半程项目中夺得男子冠军，扎西多杰与洛桑曲杰分列第二、第三。",
+        "sourceUrl": "https://local.cctv.com/2023/02/20/ARTIXLlduTs1p4w8mfKZHw0O230220.shtml",
+        "publishedAt": "2023-02-20"
+      }
+    ],
+    "14702479": [
+      {
+        "id": "editorial-xiamen",
+        "title": "厦门马拉松本土冠军节点",
+        "body": "2026年1月11日，李美珍在厦门马拉松以2小时27分24秒获得国内女子冠军，并刷新了当时的个人最佳。同届女子总冠军为埃塞俄比亚选手鲁蒂·阿加·索拉，成绩2小时22分45秒。",
+        "sourceUrl": "https://local.cctv.com/2026/01/11/ARTIhQI0RYgDsehFcxkDv1ZV260111.shtml",
+        "publishedAt": "2026-01-11"
+      }
+    ],
+    "14714417": [
+      {
+        "id": "editorial-olympic",
+        "title": "名古屋达标进入奥运选拔",
+        "body": "夏雨雨在2024年名古屋女子马拉松达到巴黎奥运会女子马拉松参赛标准。当年3月，中国女子已有张德顺、李芷萱、白丽和夏雨雨四人达标，四人均报名参加无锡奥运选拔赛。",
+        "sourceUrl": "https://sports.cctv.com/2024/03/21/ARTIYVqJFkVJTzNkjxE4vzLN240321.shtml",
+        "publishedAt": "2024-03-21"
+      },
+      {
+        "id": "editorial-beijing",
+        "title": "北京马拉松冠军",
+        "body": "2022年11月6日，北京马拉松时隔三年重新鸣枪。夏雨雨以2小时28分57秒获得女子冠军，李应美、王敏分获第二和第三。她在这场比赛中距离当时布达佩斯世锦赛的2小时28分达标线相差57秒；冠军与达标之间的差距，也构成了随后继续追逐更快成绩的具体坐标。",
+        "sourceUrl": "https://sports.cctv.com/2022/11/06/ARTIZgunDGoY1IXEw28Qi7JZ221106.shtml",
+        "publishedAt": "2022-11-06"
+      }
+    ],
+    "14750614": [
+      {
+        "id": "editorial-jiangdao",
+        "title": "南京江岛半马夺冠",
+        "body": "2023年4月16日，高鹏在南京江岛半程马拉松以1小时05分19秒夺得男子冠军。同场女子冠军为张德顺，成绩为1小时11分41秒。",
+        "sourceUrl": "https://local.cctv.com/2023/04/17/ARTIIKJgDEz1fkDWDqPAmXB2230417.shtml",
+        "publishedAt": "2023-04-17"
+      }
+    ],
+    "14752711": [
+      {
+        "id": "editorial-taiyuan",
+        "title": "太原马拉松中国籍女子赛会纪录",
+        "body": "2026年9月27日，路颖在太原马拉松以2小时29分45秒获得中国籍女子冠军，同时刷新该赛事的中国籍女子赛会纪录；刘敏和徐冰洁分列第二、第三。",
+        "sourceUrl": "https://local.cctv.com/2026/09/28/ARTIldVmNBReN2BO1z8n9gBZ260928.shtml",
+        "publishedAt": "2026-09-28"
+      }
+    ],
+    "14754426": [
+      {
+        "id": "editorial-sanxingdui",
+        "title": "三星堆半马冠军与赛会新高",
+        "body": "2026年11月1日，杨克古在德阳市广汉三星堆半程马拉松以1小时03分55秒夺冠，并创造该赛事新的男子赛会纪录。比赛路线经过三星堆博物馆等地。",
+        "sourceUrl": "https://local.cctv.com/2026/11/02/ARTIi6mKp96SvaCQ5z040mxJ261102.shtml",
+        "publishedAt": "2026-11-02"
+      }
+    ],
+    "14795227": [
+      {
+        "id": "background-development",
+        "title": "从平罗少年到马拉松运动员",
+        "body": "何杰出生在宁夏平罗县灵沙乡的农村家庭。小学五年级时，他曾在校运会夺得800米和1500米冠军，升入中学后开始利用课余时间参加业余训练。2014年，他在基层选材中进入专业队，跟随马自成训练。同年的宁夏运动会上，他在5000米比赛中途被踩掉跑鞋，仍跑完全程获得银牌，随后又取得10000米银牌。\n\n进入专业队后的成长并不顺畅。2016年至2017年，他借宁夏与山东的体育交流机会前往山东队，以陪练身份跟随朱树春训练。回到宁夏后，单长明结合他的有氧能力和速度条件，安排他转向马拉松。2018年长春马拉松，何杰的首马成绩约为2小时28分；这一改项让他找到了更适合自己的比赛距离。\n\n2020年至2021年冬训起，他开始跟随肖丽训练，随后在徐州继续提高成绩。国家队训练与赴肯尼亚交流，让他的备战方式继续变化。2023年无锡的全国纪录与杭州亚运会金牌，连接起了他从场地陪练转向中国男子马拉松前列的历程。",
+        "sourceUrl": "https://people.cctv.com/2023/10/05/ARTI4EYjfqBIfQD9BZDQoPqY231005.shtml",
+        "publishedAt": "2023-10-05"
+      },
+      {
+        "id": "background-recovery",
+        "title": "在失意之后重建比赛节奏",
+        "body": "2024年巴黎奥运会，何杰以2小时22分31秒获得第67名。比赛中出现的胃痉挛，让他未能发挥出备战时的状态。回家调整期间，母亲用给小麦压苗的农事经验开导他，帮助他把一场失意放回更长的人生尺度。10月的大连马拉松，他以2小时14分41秒再获冠军；年底福冈未达到预期后，他又赴肯尼亚埃尔多雷特冬训，把注意力重新放回身体状态和训练节奏。",
+        "sourceUrl": "https://people.cctv.com/2024/12/31/ARTILgBQwJEBggrHbaxN1SA9241231.shtml",
+        "publishedAt": "2024-12-31"
+      },
+      {
+        "id": "editorial-national",
+        "title": "全运会冠军节点",
+        "body": "2025年11月，何杰代表宁夏队夺得全运会男子马拉松冠军。这届比赛也是全运会历史上首次跨境马拉松赛事。",
+        "sourceUrl": "https://people.cctv.com/2025/11/15/ARTI3yvw1obEEye0woDAqCX5251115.shtml",
+        "publishedAt": "2025-11-15"
+      }
+    ],
+    "14796252": [
+      {
+        "id": "editorial-xiongan",
+        "title": "雄安马拉松夺冠并破赛会纪录",
+        "body": "贵州选手张珊珊在2025年4月20日以2小时37分51秒夺得雄安马拉松女子全程冠军，并打破该赛事的女子全程赛会纪录。这次突破还为她赢得中国人保杯与5万元奖金。",
+        "sourceUrl": "https://sports.cctv.com/2025/04/23/ARTITkAUaCCjWE8IRt4ibDah250423.shtml",
+        "publishedAt": "2025-04-23"
+      }
+    ],
+    "14821206": [
+      {
+        "id": "editorial-asian",
+        "title": "亚运会中国队阵容背景",
+        "body": "2026年爱知·名古屋亚运会，贾俄仁加与丰配友进入中国男子马拉松出战阵容。日本队派出吉田祐也、山下一贵，同场竞争使他的赛场经历进一步延伸到亚洲综合性运动会。",
+        "sourceUrl": "https://sports.cctv.com/2026/09/25/ARTIWYzTJkSyRTJmdGleUjzF260925.shtml",
+        "publishedAt": "2026-09-25"
+      }
+    ],
+    "14839796": [
+      {
+        "id": "editorial-10k",
+        "title": "全国10公里精英赛表现",
+        "body": "2025年12月28日，蒋发坤在四川眉山举行的中国田径协会10公里精英赛总决赛中获得男子亚军。该场冠军为毛金虎，季军为丰配友。",
+        "sourceUrl": "https://sports.cctv.com/2025/12/29/ARTID8ZhBErGKPEtnBjJqckA251229.shtml",
+        "publishedAt": "2025-12-29"
+      }
+    ],
+    "14865815": [
+      {
+        "id": "background-professional",
+        "title": "转向职业跑步的阶段",
+        "body": "黄菲在2025年转向职业跑者，随后在当年10月接连获得四项赛事冠军，其中包括西安马拉松女子冠军。从刚刚转换身份到密集登上领奖台，这段时间成为她职业跑步生涯中醒目的一次突破。",
+        "sourceUrl": "https://news.cctv.com/2026/01/07/ARTI8PhOOQow8UEZvSNXYuCb260107.shtml",
+        "publishedAt": "2026-01-07"
+      }
+    ],
+    "14892641": [
+      {
+        "id": "editorial-xiongan",
+        "title": "雄安半马冠军经历",
+        "body": "蒋洪美在2025年4月20日的雄安马拉松半程项目中以1小时15分23秒夺得女子冠军，同时打破女子半程赛会纪录。",
+        "sourceUrl": "https://sports.cctv.com/2025/04/23/ARTITkAUaCCjWE8IRt4ibDah250423.shtml",
+        "publishedAt": "2025-04-23"
+      }
+    ],
+    "14908056": [
+      {
+        "id": "editorial-taiyuan",
+        "title": "太原马拉松中国籍女子亚军",
+        "body": "2026年9月27日，刘敏以2小时30分40秒获得太原马拉松中国籍女子亚军，路颖与徐冰洁分获该组冠军和季军。三人的成绩均超过了赛事原有的中国籍女子赛会纪录；最终新的赛会标杆由冠军路颖的2小时29分45秒确立。",
+        "sourceUrl": "https://local.cctv.com/2026/09/28/ARTIldVmNBReN2BO1z8n9gBZ260928.shtml",
+        "publishedAt": "2026-09-28"
+      }
+    ],
+    "14913520": [
+      {
+        "id": "background-mountain",
+        "title": "从余庆山路走向专业训练",
+        "body": "丰配友在贵州遵义余庆县的山里长大。童年上学时，他每天要走单程约3公里的山路，回家再走同样的路程；起伏的山路和多雨的气候，是他最早熟悉的运动环境。进入体校后，日常奔走才逐渐转化为有计划的专业训练。成年后的他也习惯在雨中比赛，把家乡环境带来的适应力延续到了公路赛场。\n\n2021年，丰配友的首场马拉松跑出2小时16分28秒。2022年的亚运选拔赛成为一次挫折：准备充分的他在30公里后明显失速，最终位列第九。调整之后，他在当年年底赢得厦门马拉松冠军。对这段经历，他没有停留在失利本身，而是继续把训练和比赛逐场衔接起来。\n\n2023年无锡马拉松，他首次跑进2小时10分，成绩为2小时09分21秒。同场何杰、杨绍辉对全国纪录的突破，让他看见了追赶目标。此后，他在训练中调整跑量与强度的关系，着重改善30公里后的速度维持能力。到2026年东京马拉松，进入最后1公里时仍需应对大迫杰的追赶；他坚持到终点，以2小时05分58秒完成了从追赶者到全国纪录创造者的跨越。",
+        "sourceUrl": "https://people.cctv.com/2026/04/28/ARTITFPjxl2NrKgaXUpl9zGQ260428.shtml",
+        "publishedAt": "2026-04-28"
+      },
+      {
+        "id": "editorial-record",
+        "title": "走进中国男子全马纪录",
+        "body": "2026年3月1日，丰配友在东京马拉松以2小时05分58秒完赛。这一成绩刷新了何杰在2024年创造的2小时06分57秒男子马拉松全国纪录，将纪录推进59秒。",
+        "sourceUrl": "https://sports.cctv.com/2026/03/01/ARTIw1DZAEAnKpSjVwy7rSZK260301.shtml",
+        "publishedAt": "2026-03-01"
+      }
+    ],
+    "14913625": [
+      {
+        "id": "editorial-road",
+        "title": "从10公里赛场看速度基础",
+        "body": "在2025年12月28日于四川眉山举行的中国田径协会10公里精英赛总决赛中，毛金虎以28分59秒夺得男子冠军。该场参赛阵容包括蒋发坤、丰配友、杨绍辉等中长跑选手，蒋发坤和丰配友最终分获第二、第三名。",
+        "sourceUrl": "https://sports.cctv.com/2025/12/29/ARTID8ZhBErGKPEtnBjJqckA251229.shtml",
+        "publishedAt": "2025-12-29"
+      }
+    ],
+    "14920319": [
+      {
+        "id": "background-professional",
+        "title": "从护士工作转向职业跑者",
+        "body": "张水华曾一边从事护士工作，一边参加马拉松。2026年元旦，她在黑龙江抚远的迎新马拉松中获得女子冠军并打破赛会纪录。次日，她通过个人账号宣布辞去护士工作，把职业重心转向跑步。这个决定使2026赛季成为她身份转换的一年：从兼顾工作与参赛，转向以训练和比赛为主要工作的职业跑者。",
+        "sourceUrl": "https://news.cctv.com/2026/01/07/ARTI8PhOOQow8UEZvSNXYuCb260107.shtml",
+        "publishedAt": "2026-01-07"
+      }
+    ],
+    "15058848": [
+      {
+        "id": "editorial-hebei",
+        "title": "一个月内的两场河北冠军",
+        "body": "洪跃在2025年4月20日以2小时18分43秒获得雄安马拉松男子全程冠军。当年3月30日，他还以1小时03分18秒夺得石家庄马拉松男子半程冠军。一个月内，他分别在半程和全程赛场登顶。",
+        "sourceUrl": "https://sports.cctv.com/2025/04/23/ARTITkAUaCCjWE8IRt4ibDah250423.shtml",
+        "publishedAt": "2025-04-23"
+      }
+    ],
+    "15086453": [
+      {
+        "id": "editorial-guangze",
+        "title": "光泽半程马拉松冠军",
+        "body": "陕西选手武明瑶在2025年12月28日举行的光泽半程马拉松中以1小时07分58秒获得男子冠军，高九洲和丁仕成分列第二、第三。",
+        "sourceUrl": "https://sports.cctv.com/2025/12/28/ARTIfVo65mX4vwzNWtJlx6I8251228.shtml",
+        "publishedAt": "2025-12-28"
+      }
+    ],
+    "15111707": [
+      {
+        "id": "editorial-half",
+        "title": "南京半马领奖台",
+        "body": "2026年3月15日，王佳浩在南京半程马拉松获得男子亚军，冠军为李子成，第三名为狄鋆。比赛在南京江心洲生态科技岛举行，全程采用环岛沿江路线。",
+        "sourceUrl": "https://local.cctv.com/2026/03/15/ARTIuy1X9rbQfSvMKh6LwyWw260315.shtml",
+        "publishedAt": "2026-03-15"
+      }
+    ],
+    "15182213": [
+      {
+        "id": "editorial-chuxiong",
+        "title": "楚雄马拉松赛会纪录突破",
+        "body": "2026年8月2日，李大林以2小时21分47秒获得楚雄马拉松男子亚军。他与冠军吴正林均跑进了张治豪在2024年留下的2小时22分55秒赛会纪录。",
+        "sourceUrl": "https://sports.cctv.com/2026/08/03/ARTI7o0KBjjB1c9tMhkx6SdJ260803.shtml",
+        "publishedAt": "2026-08-03"
+      }
+    ]
+  }
+}

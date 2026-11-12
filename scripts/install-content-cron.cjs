@@ -1,0 +1,12 @@
+const path = require('node:path');
+const { spawnSync } = require('node:child_process');
+if(process.platform !== 'linux') throw new Error('Install this schedule on the production Linux host.');
+const root=path.resolve(__dirname,'..'), marker='# marathon-content-sync';
+const quote=s=>"'"+s.replace(/'/g,"'\\''")+"'";
+const current=spawnSync('crontab',['-l'],{encoding:'utf8'});
+if(current.status!==0 && !/no crontab/i.test(current.stderr||''))throw new Error('Cannot read existing crontab: '+current.stderr);
+const kept=(current.stdout||'').split('\n').filter(line=>!line.includes(marker));
+const entry='15 */6 * * * cd '+quote(root)+' && /usr/bin/timeout 45m /bin/bash scripts/content-sync.sh >> server/data/content-sync.log 2>&1 '+marker;
+const installed=spawnSync('crontab',['-'],{input:kept.join('\n').replace(/\n*$/,'\n')+entry+'\n',encoding:'utf8'});
+if(installed.status!==0)throw new Error('Cannot install collector schedule: '+installed.stderr);
+console.log(entry);

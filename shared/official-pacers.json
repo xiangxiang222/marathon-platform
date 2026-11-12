@@ -1,0 +1,716 @@
+{
+  "version": 2,
+  "asOf": "2026-11-12",
+  "updatedAt": "2026-11-12T01:40:37.100Z",
+  "seasonYear": 2026,
+  "rankingNotice": "跟踪中国田协2026赛历中的221场A类马拉松赛事，已核实2场官兔公示。组别、名单与照片按当届官方公开程度展示，资料持续更新。",
+  "coverage": {
+    "classARaces": 221,
+    "monitoredSites": 7,
+    "sourceLookups": 221,
+    "withAnnouncements": 2,
+    "withTextGroups": 1,
+    "withPhotos": 1,
+    "awaitingPublicRoster": 219,
+    "people": 80,
+    "withPersonalBest": 80,
+    "withPersonPhotos": 0
+  },
+  "profiles": [
+    {
+      "id": "official-pacer-1000452015",
+      "type": "pacer",
+      "profileKind": "official_pacer_race",
+      "name": "2026北京马拉松",
+      "edition": 2026,
+      "seasonYear": 2026,
+      "city": "北京",
+      "raceDate": "2026-10-18",
+      "officialRaceId": "1000452015",
+      "raceGrade": "A",
+      "role": "中国田协 A 类赛事 · 官方配速员",
+      "bio": "2026北京马拉松为中国田协赛历所列A类赛事。组委会已发布“2026中国银行北京马拉松暨全国马拉松锦标赛配速员名单公示”。已从公示正文识别16个目标完赛组。此处为组委会初步公示名单，最终出赛人员以正式公告为准。",
+      "announcementTitle": "2026中国银行北京马拉松暨全国马拉松锦标赛配速员名单公示",
+      "announcementDate": "2026-10-10",
+      "pacerGroups": [
+        {
+          "label": "2:45 完赛组",
+          "targetTime": "2:45",
+          "names": [
+            "马自强",
+            "王杰",
+            "覃伟"
+          ],
+          "members": [
+            {
+              "name": "马自强",
+              "gender": "men",
+              "personalBest": "2:34:06"
+            },
+            {
+              "name": "王杰",
+              "gender": "men",
+              "personalBest": "2:23:39"
+            },
+            {
+              "name": "覃伟",
+              "gender": "men",
+              "personalBest": "2:32:12"
+            }
+          ]
+        },
+        {
+          "label": "2:50 完赛组",
+          "targetTime": "2:50",
+          "names": [
+            "赵磊",
+            "刘柏才",
+            "陈代华"
+          ],
+          "members": [
+            {
+              "name": "赵磊",
+              "gender": "men",
+              "personalBest": "2:37:28"
+            },
+            {
+              "name": "刘柏才",
+              "gender": "men",
+              "personalBest": "2:38:36"
+            },
+            {
+              "name": "陈代华",
+              "gender": "men",
+              "personalBest": "2:37:45"
+            }
+          ]
+        },
+        {
+          "label": "2:55 完赛组",
+          "targetTime": "2:55",
+          "names": [
+            "王子尘",
+            "郝电波"
+          ],
+          "members": [
+            {
+              "name": "王子尘",
+              "gender": "men",
+              "personalBest": "2:40:45"
+            },
+            {
+              "name": "郝电波",
+              "gender": "men",
+              "personalBest": "2:41:13"
+            }
+          ]
+        },
+        {
+          "label": "3:00 完赛组",
+          "targetTime": "3:00",
+          "names": [
+            "王毕功",
+            "李一楷",
+            "郝云涛"
+          ],
+          "members": [
+            {
+              "name": "王毕功",
+              "gender": "men",
+              "personalBest": "2:45:34"
+            },
+            {
+              "name": "李一楷",
+              "gender": "men",
+              "personalBest": "2:44:55"
+            },
+            {
+              "name": "郝云涛",
+              "gender": "men",
+              "personalBest": "2:36:28"
+            }
+          ]
+        },
+        {
+          "label": "3:10 完赛组",
+          "targetTime": "3:10",
+          "names": [
+            "孙逢亮",
+            "刘征",
+            "李燕超",
+            "吉祥",
+            "王龙",
+            "林红亮"
+          ],
+          "members": [
+            {
+              "name": "孙逢亮",
+              "gender": "men",
+              "personalBest": "2:51:58"
+            },
+            {
+              "name": "刘征",
+              "gender": "men",
+              "personalBest": "2:51:11"
+            },
+            {
+              "name": "李燕超",
+              "gender": "men",
+              "personalBest": "2:54:28"
+            },
+            {
+              "name": "吉祥",
+              "gender": "men",
+              "personalBest": "2:48:54"
+            },
+            {
+              "name": "王龙",
+              "gender": "men",
+              "personalBest": "2:54:30"
+            },
+            {
+              "name": "林红亮",
+              "gender": "men",
+              "personalBest": "2:39:36"
+            }
+          ]
+        },
+        {
+          "label": "3:20 完赛组",
+          "targetTime": "3:20",
+          "names": [
+            "徐晓强",
+            "郭东",
+            "张英建",
+            "苗磊",
+            "密长林",
+            "佟鼐"
+          ],
+          "members": [
+            {
+              "name": "徐晓强",
+              "gender": "men",
+              "personalBest": "2:55:28"
+            },
+            {
+              "name": "郭东",
+              "gender": "men",
+              "personalBest": "2:56:58"
+            },
+            {
+              "name": "张英建",
+              "gender": "men",
+              "personalBest": "2:58:47"
+            },
+            {
+              "name": "苗磊",
+              "gender": "men",
+              "personalBest": "2:59:44"
+            },
+            {
+              "name": "密长林",
+              "gender": "men",
+              "personalBest": "2:57:55"
+            },
+            {
+              "name": "佟鼐",
+              "gender": "men",
+              "personalBest": "2:59:15"
+            }
+          ]
+        },
+        {
+          "label": "3:30 完赛组",
+          "targetTime": "3:30",
+          "names": [
+            "赵楠",
+            "刘远付",
+            "吴瑞",
+            "王洋",
+            "杨波",
+            "汤敬刚"
+          ],
+          "members": [
+            {
+              "name": "赵楠",
+              "gender": "men",
+              "personalBest": "2:56:50"
+            },
+            {
+              "name": "刘远付",
+              "gender": "men",
+              "personalBest": "2:58:56"
+            },
+            {
+              "name": "吴瑞",
+              "gender": "men",
+              "personalBest": "2:58:04"
+            },
+            {
+              "name": "王洋",
+              "gender": "men",
+              "personalBest": "2:44:21"
+            },
+            {
+              "name": "杨波",
+              "gender": "men",
+              "personalBest": "3:13:22"
+            },
+            {
+              "name": "汤敬刚",
+              "gender": "men",
+              "personalBest": "3:19:35"
+            }
+          ]
+        },
+        {
+          "label": "3:45 完赛组",
+          "targetTime": "3:45",
+          "names": [
+            "朱振红",
+            "翟洋",
+            "张涵诣",
+            "崔磊鑫",
+            "林满香",
+            "刁文亮"
+          ],
+          "members": [
+            {
+              "name": "朱振红",
+              "gender": "women",
+              "personalBest": "3:11:26"
+            },
+            {
+              "name": "翟洋",
+              "gender": "women",
+              "personalBest": "3:12:11"
+            },
+            {
+              "name": "张涵诣",
+              "gender": "men",
+              "personalBest": "3:19:24"
+            },
+            {
+              "name": "崔磊鑫",
+              "gender": "men",
+              "personalBest": "3:18:16"
+            },
+            {
+              "name": "林满香",
+              "gender": "women",
+              "personalBest": "3:19:48"
+            },
+            {
+              "name": "刁文亮",
+              "gender": "men",
+              "personalBest": "3:13:28"
+            }
+          ]
+        },
+        {
+          "label": "4:00 完赛组",
+          "targetTime": "4:00",
+          "names": [
+            "杨立凯",
+            "岳志勇",
+            "张鹏",
+            "王勉",
+            "刘佳",
+            "刘陆"
+          ],
+          "members": [
+            {
+              "name": "杨立凯",
+              "gender": "men",
+              "personalBest": "3:45:10"
+            },
+            {
+              "name": "岳志勇",
+              "gender": "men",
+              "personalBest": "3:19:22"
+            },
+            {
+              "name": "张鹏",
+              "gender": "men",
+              "personalBest": "3:14:25"
+            },
+            {
+              "name": "王勉",
+              "gender": "men",
+              "personalBest": "3:38:51"
+            },
+            {
+              "name": "刘佳",
+              "gender": "men",
+              "personalBest": "3:24:41"
+            },
+            {
+              "name": "刘陆",
+              "gender": "men",
+              "personalBest": "3:15:38"
+            }
+          ]
+        },
+        {
+          "label": "4:15 完赛组",
+          "targetTime": "4:15",
+          "names": [
+            "张静莹",
+            "郭玉华",
+            "刘银丽",
+            "孙宇",
+            "王楠",
+            "李思莹"
+          ],
+          "members": [
+            {
+              "name": "张静莹",
+              "gender": "women",
+              "personalBest": "3:58:54"
+            },
+            {
+              "name": "郭玉华",
+              "gender": "women",
+              "personalBest": "3:45:54"
+            },
+            {
+              "name": "刘银丽",
+              "gender": "women",
+              "personalBest": "3:15:52"
+            },
+            {
+              "name": "孙宇",
+              "gender": "women",
+              "personalBest": "3:39:43"
+            },
+            {
+              "name": "王楠",
+              "gender": "men",
+              "personalBest": "3:11:47"
+            },
+            {
+              "name": "李思莹",
+              "gender": "women",
+              "personalBest": "3:19:12"
+            }
+          ]
+        },
+        {
+          "label": "4:30 完赛组",
+          "targetTime": "4:30",
+          "names": [
+            "王笑欧",
+            "武文强",
+            "邓小斌",
+            "邢若齐",
+            "赵岩"
+          ],
+          "members": [
+            {
+              "name": "王笑欧",
+              "gender": "men",
+              "personalBest": "3:37:57"
+            },
+            {
+              "name": "武文强",
+              "gender": "men",
+              "personalBest": "4:08:16"
+            },
+            {
+              "name": "邓小斌",
+              "gender": "men",
+              "personalBest": "3:59:39"
+            },
+            {
+              "name": "邢若齐",
+              "gender": "women",
+              "personalBest": "3:52:08"
+            },
+            {
+              "name": "赵岩",
+              "gender": "men",
+              "personalBest": "3:58:25"
+            }
+          ]
+        },
+        {
+          "label": "4:45 完赛组",
+          "targetTime": "4:45",
+          "names": [
+            "昌其东",
+            "王楠",
+            "王婷婷",
+            "刘海丽",
+            "任航"
+          ],
+          "members": [
+            {
+              "name": "昌其东",
+              "gender": "men",
+              "personalBest": "3:47:17"
+            },
+            {
+              "name": "王楠",
+              "gender": "women",
+              "personalBest": "3:47:21"
+            },
+            {
+              "name": "王婷婷",
+              "gender": "women",
+              "personalBest": "4:14:39"
+            },
+            {
+              "name": "刘海丽",
+              "gender": "women",
+              "personalBest": "4:15:08"
+            },
+            {
+              "name": "任航",
+              "gender": "women",
+              "personalBest": "4:06:16"
+            }
+          ]
+        },
+        {
+          "label": "5:00 完赛组",
+          "targetTime": "5:00",
+          "names": [
+            "任芳萍",
+            "李素娴",
+            "林媛媛",
+            "杨海霞",
+            "张新蕊"
+          ],
+          "members": [
+            {
+              "name": "任芳萍",
+              "gender": "women",
+              "personalBest": "4:07:40"
+            },
+            {
+              "name": "李素娴",
+              "gender": "women",
+              "personalBest": "3:50:12"
+            },
+            {
+              "name": "林媛媛",
+              "gender": "women",
+              "personalBest": "4:19:16"
+            },
+            {
+              "name": "杨海霞",
+              "gender": "women",
+              "personalBest": "4:34:14"
+            },
+            {
+              "name": "张新蕊",
+              "gender": "women",
+              "personalBest": "4:12:17"
+            }
+          ]
+        },
+        {
+          "label": "5:15 完赛组",
+          "targetTime": "5:15",
+          "names": [
+            "崔洁",
+            "于翼云",
+            "张毓",
+            "贾景双",
+            "宋立辉"
+          ],
+          "members": [
+            {
+              "name": "崔洁",
+              "gender": "women",
+              "personalBest": "4:10:26"
+            },
+            {
+              "name": "于翼云",
+              "gender": "men",
+              "personalBest": "4:08:10"
+            },
+            {
+              "name": "张毓",
+              "gender": "women",
+              "personalBest": "4:14:44"
+            },
+            {
+              "name": "贾景双",
+              "gender": "women",
+              "personalBest": "4:26:43"
+            },
+            {
+              "name": "宋立辉",
+              "gender": "women",
+              "personalBest": "4:25:18"
+            }
+          ]
+        },
+        {
+          "label": "5:30 完赛组",
+          "targetTime": "5:30",
+          "names": [
+            "宋燕敏",
+            "范文静",
+            "曹广强",
+            "易交红",
+            "魏巍"
+          ],
+          "members": [
+            {
+              "name": "宋燕敏",
+              "gender": "women",
+              "personalBest": "4:51:32"
+            },
+            {
+              "name": "范文静",
+              "gender": "women",
+              "personalBest": "4:18:40"
+            },
+            {
+              "name": "曹广强",
+              "gender": "men",
+              "personalBest": "4:22:10"
+            },
+            {
+              "name": "易交红",
+              "gender": "women",
+              "personalBest": "4:27:39"
+            },
+            {
+              "name": "魏巍",
+              "gender": "women",
+              "personalBest": "3:43:40"
+            }
+          ]
+        },
+        {
+          "label": "6:00 完赛组",
+          "targetTime": "6:00",
+          "names": [
+            "毛大庆",
+            "张臻",
+            "张海霞",
+            "孔祥鑫",
+            "王涛",
+            "张丛",
+            "胡月",
+            "翟唯唯"
+          ],
+          "members": [
+            {
+              "name": "毛大庆",
+              "gender": "men",
+              "personalBest": "4:16:02"
+            },
+            {
+              "name": "张臻",
+              "gender": "men",
+              "personalBest": "3:26:41"
+            },
+            {
+              "name": "张海霞",
+              "gender": "women",
+              "personalBest": "4:19:31"
+            },
+            {
+              "name": "孔祥鑫",
+              "gender": "men",
+              "personalBest": "4:47:10"
+            },
+            {
+              "name": "王涛",
+              "gender": "men",
+              "personalBest": "5:10:53"
+            },
+            {
+              "name": "张丛",
+              "gender": "women",
+              "personalBest": "4:11:51"
+            },
+            {
+              "name": "胡月",
+              "gender": "men",
+              "personalBest": "3:08:14"
+            },
+            {
+              "name": "翟唯唯",
+              "gender": "women",
+              "personalBest": "4:18:45"
+            }
+          ]
+        }
+      ],
+      "groupCount": 16,
+      "groupSummary": "2:45 · 2:50 · 2:55 · 3:00 · 3:10 · 3:20 · 3:30 · 3:45 · 4:00 · 4:15 · 4:30 · 4:45 · 5:00 · 5:15 · 5:30 · 6:00",
+      "avatar": "https://pub.mararun.com/cms/pic/BJCN/40c985af2649b5767c4ece69b9dc7ba1.jpg?x-oss-process=image/resize,w_1280,limit_1/quality,q_80",
+      "photoStatus": "official_announcement_image",
+      "gallery": [
+        {
+          "url": "https://pub.mararun.com/cms/pic/BJCN/40c985af2649b5767c4ece69b9dc7ba1.jpg?x-oss-process=image/resize,w_1280,limit_1/quality,q_80",
+          "caption": "赛事官网官兔公告配图",
+          "sourceUrl": "https://user-gw.mararun.com/v2/cms/detailArticle?articleID=9070703869645102"
+        }
+      ],
+      "verificationStatus": "verified",
+      "verifiedAt": "2026-11-12",
+      "rosterStatus": "provisional",
+      "sources": [
+        {
+          "title": "中国田径协会 · 当届赛事认证信息",
+          "url": "https://www.runchina.org.cn/#/race/v/detail/1000452015"
+        },
+        {
+          "title": "北京马拉松官网官兔公告",
+          "url": "https://user-gw.mararun.com/v2/cms/detailArticle?articleID=9062861678814631"
+        },
+        {
+          "title": "组委会官兔集结公告与配图",
+          "url": "https://user-gw.mararun.com/v2/cms/detailArticle?articleID=9070703869645102"
+        }
+      ],
+      "pacingEvidence": []
+    },
+    {
+      "id": "official-pacer-1000361016",
+      "type": "pacer",
+      "profileKind": "official_pacer_race",
+      "name": "2026武汉马拉松",
+      "edition": 2026,
+      "seasonYear": 2026,
+      "city": "武汉",
+      "raceDate": "2026-03-22",
+      "officialRaceId": "1000361016",
+      "raceGrade": "A",
+      "role": "中国田协 A 类赛事 · 官方配速员",
+      "bio": "2026武汉马拉松为中国田协赛历所列A类赛事。组委会已发布“2026中国银行武汉马拉松官方配速员名单公布”。配速组别、姓名及照片以链接中的当届官方公示为准。公众号正文暂时无法自动读取，可通过原文链接查看完整名单。",
+      "announcementTitle": "2026中国银行武汉马拉松官方配速员名单公布",
+      "announcementDate": "2026-03-02",
+      "pacerGroups": [],
+      "groupCount": 0,
+      "groupSummary": "组委会已公示 · 查看官方名单",
+      "avatar": "",
+      "photoStatus": "awaiting_official_photo",
+      "gallery": [],
+      "verificationStatus": "verified",
+      "verifiedAt": "2026-11-12",
+      "rosterStatus": "official_announcement_link",
+      "sources": [
+        {
+          "title": "中国田径协会 · 当届赛事认证信息",
+          "url": "https://www.runchina.org.cn/#/race/v/detail/1000361016"
+        },
+        {
+          "title": "武汉马拉松官网官兔公告",
+          "url": "https://user-gw.mararun.com/v2/cms/detailArticle?articleID=8741555359835512"
+        },
+        {
+          "title": "2026中国银行武汉马拉松官方配速员名单公布",
+          "url": "https://mp.weixin.qq.com/s/tnK9p6fY4SXgq5j9lQXdFg"
+        }
+      ],
+      "pacingEvidence": []
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "news": { "publisher": "央视网", "searchUrl": "https://search.cctv.com/search.php", "days": 10, "maxPages": 8 },
+  "pacerSites": [
+    { "name": "北京马拉松", "racePattern": "北京马拉松", "homeUrl": "https://www.beijing-marathon.com/", "appKey": "BJCN" },
+    { "name": "广州马拉松", "racePattern": "广州马拉松", "homeUrl": "https://www.guangzhou-marathon.com/", "appKey": "GZCN" },
+    { "name": "武汉马拉松", "racePattern": "武汉马拉松", "homeUrl": "https://www.wuhanmarathon.org/", "appKey": "wuhan-cn-key" },
+    { "name": "扬州半程马拉松", "racePattern": "扬州.*半程马拉松", "homeUrl": "https://www.yzmls.com/", "appKey": "YZCN" }
+  ],
+  "raceWebsites": [
+    { "racePattern": "无锡马拉松", "url": "https://www.wuximarathon.com/" },
+    { "racePattern": "^2026重庆马拉松$", "url": "https://www.cqmarathon.com/" },
+    { "racePattern": "^2026厦门马拉松$", "url": "https://www.xmim.org/" }
+  ]
+}
