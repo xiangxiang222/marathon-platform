@@ -21,12 +21,12 @@
     </section>
     <section v-if="!searching" class="home-discover" aria-label="跑步精选入口">
       <router-link to="/calendar" class="discover-calendar">
-        <div class="discover-photo-copy"><span>赛事日历</span><strong>下一站，起跑线</strong><small>查看赛历 <i>›</i></small></div>
-        <img :src="base + 'images/art-calendar.png'" alt="" />
+        <div class="discover-photo-copy"><span>赛事日历</span><strong>近期赛历</strong><small>{{ races[0]?.raceDate || '选择你的比赛日' }}</small><p>{{ races[0]?.name || '按日期查找，安排下一场比赛' }}</p></div>
+        <span class="calendar-corner" aria-hidden="true">↗</span>
       </router-link>
       <div class="discover-side">
-        <router-link to="/news?tab=athlete" class="discover-person"><div><strong>见证中国速度</strong><span>运动员人物档案</span></div><img :src="radarIcon" alt="" /></router-link>
-        <router-link to="/news" class="discover-news"><div><strong>跑圈新鲜事</strong><span>业界 · 私兔 · 跑团</span></div><img :src="newsIcon" alt="" /></router-link>
+        <router-link to="/news?tab=athlete" class="discover-person"><div><strong>见证中国速度</strong><span>赛季成绩 · 人物履历</span></div><span class="feature-arrow" aria-hidden="true">↗</span></router-link>
+        <router-link to="/news" class="discover-news"><div><strong>跑圈新鲜事</strong><span>资讯 · 官兔 · 跑团</span></div><span class="feature-arrow" aria-hidden="true">↗</span></router-link>
       </div>
     </section>
     <div v-if="!searching && currentReminder" class="deadline-banner">
@@ -359,9 +359,9 @@ onMounted(() => {
 .home-search button { display: flex; align-items: center; justify-content: center; flex: 0 0 56px; width: 56px; height: 44px; min-height: 44px; min-width: 0; padding: 0; border-radius: 7px; background: transparent; color: #fff; font-size: 13px; font-weight: 600; line-height: 1.4; }
 .home-search button > span { display: flex; align-items: center; justify-content: center; width: 56px; height: 34px; border-radius: 7px; background: var(--accent); }
 .home-shortcuts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 0 12px; padding: 0 0 10px; }
-.home-shortcuts a { display: flex; min-width: 0; min-height: 80px; flex-direction: column; align-items: center; gap: 0; color: #444; font-size: 12px; line-height: 20px; }
-.home-shortcuts img { display: block; width: 58px; height: 58px; }
-.home-discover { display: grid; grid-template-columns: 1.08fr 1fr; gap: 8px; height: 128px; margin: 12px 12px 0; }
+.home-shortcuts a { display: flex; min-width: 0; min-height: 76px; padding-top:12px; gap:8px; flex-direction: column; align-items: center; color: #444; font-size: 12px; line-height: 20px; }
+.home-shortcuts img { display: block; width: 28px; height: 28px; }
+.home-discover { display: grid; grid-template-columns: 1.08fr 1fr; gap: 12px; min-height: 144px; margin: 12px 16px 0; }
 .discover-calendar { position: relative; display: flex; overflow: hidden; border-radius: 12px; background: linear-gradient(135deg,#fff,#fff0f2); color: var(--ink); }
 .discover-calendar > img { position: absolute; right: -5px; bottom: 3px; width: 76px; height: 76px; object-fit: contain; }
 .discover-photo-copy { position: relative; padding: 12px; z-index: 1; }
@@ -370,10 +370,10 @@ onMounted(() => {
 .discover-photo-copy small { display: block; margin-top: 6px; color: #888; font-size: 12px; line-height: 1.5; }
 .discover-photo-copy i { font-style: normal; margin-left: 2px; }
 .discover-side { display: grid; grid-template-rows: 1fr 1fr; gap: 8px; min-width: 0; }
-.discover-side > a { position: relative; display: flex; align-items: center; justify-content: space-between; overflow: hidden; gap: 0; padding: 8px 6px 8px 12px; border-radius: 12px; background: var(--card); }
-.discover-side .discover-news { background: linear-gradient(115deg,#fff,#fff0f2); }
+.discover-side > a { position: relative; display: flex; align-items: center; justify-content: space-between; overflow: hidden; gap: 0; padding: 12px; border-radius: 12px; background: var(--card); }
+.discover-side .discover-news { background: #fff; }
 .discover-side strong { display: block; font-size: 15px; line-height: 1.5; white-space: nowrap; font-weight: 600; }
-.discover-side span { display: block; margin-top: 4px; color: #888; font-size: 12px; white-space: nowrap; }
+.discover-side div > span { display: block; margin-top: 4px; color: #888; font-size: 12px; white-space: nowrap; }
 .discover-side img { flex: none; width: 48px; height: 48px; margin-right: -6px; }
 .deadline-banner { display: flex; align-items: center; gap: 8px; min-height: 49px; margin: 10px 12px 0; padding: 8px 12px; border-radius: 10px; background: #fff; }
 .deadline-icon { flex: none; width: 24px; height: 24px; color: var(--accent); }
@@ -398,11 +398,11 @@ onMounted(() => {
 .home-filters .filter-bar > button.on { color: var(--accent); background: var(--accent-soft); }
 .home-filters .filter-bar > button:last-child { position: sticky; right: 0; flex: none; box-shadow: -7px 0 8px var(--bg); }
 .home-filters i { width: 5px; height: 5px; margin-top: -3px; border-right: 1px solid #999; border-bottom: 1px solid #999; transform: rotate(45deg); }
-.home-race-list { gap: 8px; padding: 0 12px 12px; }
+.home-race-list { gap: 12px; padding: 0 16px 12px; }
 @media (max-width: 350px) {
  .home-heading > div { gap: 8px; }
  .home-heading p { display: none; }
- .home-discover { grid-template-columns: 1.08fr 1fr; height: 128px; }
+ .home-discover { grid-template-columns: 1fr 1fr; }
  .discover-side > a { padding-left: 10px; }
  .discover-side img { width: 37px; height: 44px; margin-right: -4px; }
  .discover-side strong { font-size: 14px; }
@@ -410,4 +410,10 @@ onMounted(() => {
  .discover-photo-copy strong { font-size: 17px; }
  .discover-calendar > img { width: 72px; height: 72px; }
 }
+.discover-photo-copy { padding:14px; min-width:0; }
+.discover-photo-copy strong { font-size:18px; }
+.discover-photo-copy small { margin-top:8px; font-variant-numeric:tabular-nums; }
+.discover-photo-copy p { display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2; overflow:hidden; margin:8px 0 0; font-size:12px; line-height:1.6; color:var(--muted); }
+.calendar-corner { position:absolute; top:12px; right:12px; color:var(--accent); }
+.discover-side .feature-arrow { display:block; flex:none; margin-left:4px; color:var(--accent); font-size:18px; }
 </style>

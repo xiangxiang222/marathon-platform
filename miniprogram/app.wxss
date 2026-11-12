@@ -16,7 +16,7 @@ page {
   --sun: #555555;
   --sun-soft: #f7f7f7;
   --peach-soft: #fff0f2;
-  --card-shadow: none;
+  --card-shadow: 0 1px 0 #00000002;
   --action-fill: #ff1838;
   --control-radius: 8px;
   --card-radius: 12px;
@@ -71,7 +71,7 @@ input::placeholder, textarea::placeholder { color: #999999; }
 .card {
   margin-bottom: 12px;
   padding: 16px;
-  border: 1rpx solid var(--border);
+  border: 0;
   border-radius: var(--card-radius);
   background: var(--surface);
   box-shadow: var(--card-shadow);
@@ -138,3 +138,15 @@ button[disabled], button.btn[disabled] { border-color: #eeeeef; background: #f2f
 .ui-label { color: var(--text-secondary); font-size: 12px; font-weight: 400; }
 .surface-sky, .surface-mint, .surface-lilac, .surface-sun, .surface-peach { background: var(--surface); border-color: var(--border); }
 @media (max-width: 350px) { .pad { padding-left: 14px; padding-right: 14px; } .card { padding: 16px; } }
+
+/* Content roles shared by full-page templates. */
+.ui-identity { padding:16px; background:linear-gradient(135deg,#fff0f2,#fffafa); color:var(--text); }
+.ui-surface { margin-bottom:12px; padding:16px; border:0; border-radius:12px; background:var(--surface); }
+.ui-section-heading { display:flex; align-items:center; justify-content:space-between; gap:12px; margin:0 0 12px; font-size:18px; font-weight:600; }
+.ui-status-summary { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 0; border-top:1px solid var(--border); font-size:14px; }
+.ui-service-group { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; }
+.ui-content-card { display:flex; align-items:center; gap:12px; min-width:0; }
+.ui-directory-row { display:flex; align-items:center; gap:12px; min-height:68px; padding:12px 0; border-bottom:1px solid var(--border); }
+.ui-form-section { margin:0 0 12px; padding:16px; border:0; border-radius:12px; background:var(--surface); }
+.ui-metric { font-size:32px; line-height:1.2; font-weight:600; font-variant-numeric:tabular-nums; }
+.ui-caption { font-size:12px; line-height:1.6; color:var(--text-secondary); }
