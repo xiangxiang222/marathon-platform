@@ -1,0 +1,1838 @@
+{
+  "date": "2026-11-12",
+  "web": {
+    "passed": true,
+    "widths": [
+      320,
+      390,
+      1440
+    ],
+    "scenes": 80,
+    "checks": [
+      {
+        "id": "home",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "calendar",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "radar",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "news",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "news-detail",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "race",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "clubs",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "club-create",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "club-edit",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "reports",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "club-report",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "club-identity",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "club-public",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "club-invite",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "club-overview",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "club-race",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "club-training",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "club-meetups",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "club-internals",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "club-mileage",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "club-members",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "club-fees",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "club-manage",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "club-albums",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "club-feed",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "club-partner",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "activity-create",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "activity",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "signup",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "album",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "call",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "meetup",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "internal",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "sport",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "look",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "mine",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "mine-plans",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "mine-results",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "mine-profile",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "history",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "history-import",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "history-review",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "feedback",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "feedback-detail",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "not-found",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "guest-home",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "guest-clubs",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "guest-mine",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "manager-club-overview",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "manager-club-members",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "manager-club-manage",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "manager-club-training",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "manager-activity",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "mine-settings",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "sport-target",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "sport-create",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "sport-edit",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "race-share-expanded",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "club-news",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "club-news-editor",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "achievement-poster",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "member-info",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "member-mileage",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "member-races",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "member-results",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "member-album",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "runner-stats",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "runner-career",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "runner-footprints",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "runner-honors",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "runner-media",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "runner-devices",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "runner-help",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "legal-terms",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "legal-privacy",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "legal-collection",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "legal-sharing",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "legal-rights",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "legal-permissions",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "legal-children",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "id": "home",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "calendar",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "radar",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "news",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "news-detail",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "race",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "clubs",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "club-create",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "club-edit",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "reports",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "club-report",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "club-identity",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "club-public",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "club-invite",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "club-overview",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "club-race",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "club-training",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "club-meetups",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "club-internals",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "club-mileage",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "club-members",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "club-fees",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "club-manage",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "club-albums",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "club-feed",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "club-partner",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "activity-create",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "activity",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "signup",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "album",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "call",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "meetup",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "internal",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "sport",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "look",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "mine",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "mine-plans",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "mine-results",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "mine-profile",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "history",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "history-import",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "history-review",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "feedback",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "feedback-detail",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "not-found",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "guest-home",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "guest-clubs",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "guest-mine",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "manager-club-overview",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "manager-club-members",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "manager-club-manage",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "manager-club-training",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "manager-activity",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "mine-settings",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "sport-target",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "sport-create",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "sport-edit",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "race-share-expanded",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "club-news",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "club-news-editor",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "achievement-poster",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "member-info",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "member-mileage",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "member-races",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "member-results",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "member-album",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "runner-stats",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "runner-career",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "runner-footprints",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "runner-honors",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "runner-media",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "runner-devices",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "runner-help",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "legal-terms",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "legal-privacy",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "legal-collection",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "legal-sharing",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "legal-rights",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "legal-permissions",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "legal-children",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "id": "home",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "calendar",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "radar",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "news",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "news-detail",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "race",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "clubs",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "club-create",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "club-edit",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "reports",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "club-report",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "club-identity",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "club-public",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "club-invite",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "club-overview",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "club-race",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "club-training",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "club-meetups",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "club-internals",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "club-mileage",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "club-members",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "club-fees",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "club-manage",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "club-albums",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "club-feed",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "club-partner",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "activity-create",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "activity",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "signup",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "album",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "call",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "meetup",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "internal",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "sport",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "look",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "mine",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "mine-plans",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "mine-results",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "mine-profile",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "history",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "history-import",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "history-review",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "feedback",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "feedback-detail",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "not-found",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "guest-home",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "guest-clubs",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "guest-mine",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "manager-club-overview",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "manager-club-members",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "manager-club-manage",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "manager-club-training",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "manager-activity",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "mine-settings",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "sport-target",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "sport-create",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "sport-edit",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "race-share-expanded",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "club-news",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "club-news-editor",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "achievement-poster",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "member-info",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "member-mileage",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "member-races",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "member-results",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "member-album",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "runner-stats",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "runner-career",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "runner-footprints",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "runner-honors",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "runner-media",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "runner-devices",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "runner-help",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "legal-terms",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "legal-privacy",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "legal-collection",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "legal-sharing",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "legal-rights",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "legal-permissions",
+        "width": 1440,
+        "passed": true
+      },
+      {
+        "id": "legal-children",
+        "width": 1440,
+        "passed": true
+      }
+    ]
+  },
+  "mini": {
+    "passed": true,
+    "registeredPages": 34,
+    "scenes": 49,
+    "checks": [
+      {
+        "route": "pages/races/races",
+        "scenario": "base",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "route": "pages/sport/sport",
+        "scenario": "base",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "route": "pages/calendar/calendar",
+        "scenario": "base",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "route": "pages/clubs/clubs",
+        "scenario": "base",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "route": "pages/club-create/club-create",
+        "scenario": "base",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "route": "pages/club-edit/club-edit",
+        "scenario": "base",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "route": "pages/mine/mine",
+        "scenario": "base",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "route": "pages/runner/runner",
+        "scenario": "base",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "route": "pages/achievement-poster/achievement-poster",
+        "scenario": "base",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "route": "pages/history/history",
+        "scenario": "base",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "route": "pages/radar/radar",
+        "scenario": "base",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "route": "pages/race/race",
+        "scenario": "base",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "route": "pages/news/news",
+        "scenario": "base",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "route": "pages/news/detail",
+        "scenario": "base",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "route": "pages/news/editor",
+        "scenario": "base",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "route": "pages/club/club",
+        "scenario": "base",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "route": "pages/club-intro/club-intro",
+        "scenario": "base",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "route": "pages/mileage/mileage",
+        "scenario": "base",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "route": "pages/partner/partner",
+        "scenario": "base",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "route": "pages/feed/feed",
+        "scenario": "base",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "route": "pages/activity/activity",
+        "scenario": "base",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "route": "pages/activity-create/activity-create",
+        "scenario": "base",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "route": "pages/signup/signup",
+        "scenario": "base",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "route": "pages/album/album",
+        "scenario": "base",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "route": "pages/call/call",
+        "scenario": "base",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "route": "pages/meetup/meetup",
+        "scenario": "base",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "route": "pages/internal/internal",
+        "scenario": "base",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "route": "pages/privacy/privacy",
+        "scenario": "base",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "route": "pages/legal/legal",
+        "scenario": "base",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "route": "pages/feedback/feedback",
+        "scenario": "base",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "route": "pages/club-identity/club-identity",
+        "scenario": "base",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "route": "pages/club-report/club-report",
+        "scenario": "base",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "route": "pages/training-groups/training-groups",
+        "scenario": "base",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "route": "pages/member-profile/member-profile",
+        "scenario": "base",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "route": "pages/activity/activity",
+        "scenario": "staff-edit",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "route": "pages/activity/activity",
+        "scenario": "member",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "route": "pages/activity/activity",
+        "scenario": "groups",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "route": "pages/activity/activity",
+        "scenario": "no-groups",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "route": "pages/activity/activity",
+        "scenario": "plan-empty",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "route": "pages/activity/activity",
+        "scenario": "error",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "route": "pages/club/club",
+        "scenario": "long-name",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "route": "pages/club/club",
+        "scenario": "members",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "route": "pages/club/club",
+        "scenario": "live",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "route": "pages/club/club",
+        "scenario": "future",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "route": "pages/club/club",
+        "scenario": "expired",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "route": "pages/club/club",
+        "scenario": "empty",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "route": "pages/clubs/clubs",
+        "scenario": "empty",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "route": "pages/news/news",
+        "scenario": "empty",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "route": "pages/feedback/feedback",
+        "scenario": "empty",
+        "width": 320,
+        "passed": true
+      },
+      {
+        "route": "pages/races/races",
+        "scenario": "base",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "route": "pages/sport/sport",
+        "scenario": "base",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "route": "pages/calendar/calendar",
+        "scenario": "base",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "route": "pages/clubs/clubs",
+        "scenario": "base",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "route": "pages/club-create/club-create",
+        "scenario": "base",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "route": "pages/club-edit/club-edit",
+        "scenario": "base",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "route": "pages/mine/mine",
+        "scenario": "base",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "route": "pages/runner/runner",
+        "scenario": "base",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "route": "pages/achievement-poster/achievement-poster",
+        "scenario": "base",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "route": "pages/history/history",
+        "scenario": "base",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "route": "pages/radar/radar",
+        "scenario": "base",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "route": "pages/race/race",
+        "scenario": "base",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "route": "pages/news/news",
+        "scenario": "base",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "route": "pages/news/detail",
+        "scenario": "base",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "route": "pages/news/editor",
+        "scenario": "base",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "route": "pages/club/club",
+        "scenario": "base",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "route": "pages/club-intro/club-intro",
+        "scenario": "base",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "route": "pages/mileage/mileage",
+        "scenario": "base",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "route": "pages/partner/partner",
+        "scenario": "base",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "route": "pages/feed/feed",
+        "scenario": "base",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "route": "pages/activity/activity",
+        "scenario": "base",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "route": "pages/activity-create/activity-create",
+        "scenario": "base",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "route": "pages/signup/signup",
+        "scenario": "base",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "route": "pages/album/album",
+        "scenario": "base",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "route": "pages/call/call",
+        "scenario": "base",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "route": "pages/meetup/meetup",
+        "scenario": "base",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "route": "pages/internal/internal",
+        "scenario": "base",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "route": "pages/privacy/privacy",
+        "scenario": "base",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "route": "pages/legal/legal",
+        "scenario": "base",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "route": "pages/feedback/feedback",
+        "scenario": "base",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "route": "pages/club-identity/club-identity",
+        "scenario": "base",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "route": "pages/club-report/club-report",
+        "scenario": "base",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "route": "pages/training-groups/training-groups",
+        "scenario": "base",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "route": "pages/member-profile/member-profile",
+        "scenario": "base",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "route": "pages/activity/activity",
+        "scenario": "staff-edit",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "route": "pages/activity/activity",
+        "scenario": "member",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "route": "pages/activity/activity",
+        "scenario": "groups",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "route": "pages/activity/activity",
+        "scenario": "no-groups",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "route": "pages/activity/activity",
+        "scenario": "plan-empty",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "route": "pages/activity/activity",
+        "scenario": "error",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "route": "pages/club/club",
+        "scenario": "long-name",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "route": "pages/club/club",
+        "scenario": "members",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "route": "pages/club/club",
+        "scenario": "live",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "route": "pages/club/club",
+        "scenario": "future",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "route": "pages/club/club",
+        "scenario": "expired",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "route": "pages/club/club",
+        "scenario": "empty",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "route": "pages/clubs/clubs",
+        "scenario": "empty",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "route": "pages/news/news",
+        "scenario": "empty",
+        "width": 390,
+        "passed": true
+      },
+      {
+        "route": "pages/feedback/feedback",
+        "scenario": "empty",
+        "width": 390,
+        "passed": true
+      }
+    ]
+  },
+  "additionalJourneys": {
+    "clubLogo": {
+      "checks": 12,
+      "views": 13,
+      "passed": true
+    },
+    "content": {
+      "checks": 7,
+      "views": 37,
+      "passed": true
+    },
+    "server": {
+      "tests": 313,
+      "failed": 0
+    },
+    "admin": {
+      "checks": 366,
+      "workspaces": 16,
+      "passed": true
+    },
+    "raceNewsReader": {
+      "checks": 3,
+      "passed": true
+    }
+  },
+  "limitations": [
+    "Visual fixtures use disposable synthetic accounts and records.",
+    "Mini layouts are WXML/WXSS browser mirrors; native compilation passed separately. No WeChat device or formal release is implied."
+  ]
+}
