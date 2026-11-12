@@ -11,7 +11,7 @@ let vite,browser;
 async function ready(){try{return(await fetch(base+'/')).ok;}catch{return false;}}
 const pause=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 async function check(width,name,work){await work();report.checks.push({width,name,passed:true});}
-async function screenshot(page,name,width){await page.evaluate(()=>window.scrollTo(0,0));await page.screenshot({path:path.join(out,`web-${name}-${width}.png`),fullPage:true});}
+async function screenshot(page,name,width){await page.evaluate(()=>window.scrollTo(0,0));if(name==='mileage')await page.locator('.mileage-board').screenshot({path:path.join(out,`web-${name}-${width}.png`),style:'.club-topbar{visibility:hidden!important}'});else await page.screenshot({path:path.join(out,`web-${name}-${width}.png`),fullPage:true});}
 async function noOverflow(page){const size=await page.evaluate(()=>({document:document.documentElement.scrollWidth,width:innerWidth}));assert.ok(size.document<=size.width+1,JSON.stringify(size));const broken=await page.evaluate(()=>[...document.images].filter(img=>img.getAttribute('src')&&img.getBoundingClientRect().width&&!img.naturalWidth).length);assert.equal(broken,0);}
 async function setup(width){
   const context=await browser.newContext({viewport:{width,height:900},timezoneId:'America/New_York'});
@@ -32,7 +32,7 @@ async function setup(width){
     if(match){const clubId=Number(match[1]),suffix=match[2];
       if(!suffix)return send(fixture.clubFixture(clubId,state));
       if(suffix==='/mileage/board'){
-        if(state.missingGroup && query.groupId==='701')return send({error:'没有这个训练组'},404);const data=fixture.boardFixture(query,state);if(state.hold&&state.hold(query)){const done=fixture.deferred();state.release=()=>done.resolve();state.held={query,data};await done.promise;}
+        if(state.missingGroup && query.groupId==='701')return send({error:'没有这个训练组'},404);const data=fixture.boardFixture(query,state);if(state.largeNumbers){data.summary.km=123456789.12;for(const group of data.groups)group.km=1234567.89;for(const row of data.rank)row.km=123456.78;}if(state.hold&&state.hold(query)){const done=fixture.deferred();state.release=()=>done.resolve();state.held={query,data};await done.promise;}
         return state.boardError?send({error:'暂时无法读取跑量，请重试'},503):send(data);
       }
       if(/^\/members\/\d+\/profile$/.test(suffix)){const person=Number(suffix.split('/')[2]);const data=fixture.profileFixture(person,query,state);return state.profileError?send({error:'成员已不在跑团'},404):data?send(data):send({error:'团里没有这个人'},404);}
@@ -67,15 +67,27 @@ async function run(){
       await nav.getByRole('button',{name:'月',exact:true}).click();await page.getByLabel('选择跑量统计日期').fill('2026-11-11');await page.getByLabel('选择跑量统计日期').dispatchEvent('change');await page.waitForFunction(()=>document.querySelector('.period-control label span')?.textContent==='2026-11');await noOverflow(page);await screenshot(page,'mileage',width);
     });
     await check(width,'all/current/unassigned/empty training groups filter exact IDs and expose zero runners; member search composes',async()=>{
-      const nav=page.getByRole('navigation',{name:'按常设训练组筛选'});assert.equal(await nav.getByRole('button',{name:'未分组',exact:true}).count(),1);
-      await nav.getByRole('button',{name:'晨光轻松组',exact:true}).click();await page.waitForFunction(()=>document.querySelectorAll('.rank-row').length===3);assert.equal(state.requests.filter(row=>row.endpoint.endsWith('/mileage/board')).at(-1).query.groupId,'701');
+      const nav=page.getByRole('navigation',{name:'按常设训练组筛选'});const picker=nav.getByLabel('选择排行榜训练组');assert.equal(await picker.locator('option[value="0"]').count(),1);
+      await picker.selectOption('701');await page.waitForFunction(()=>document.querySelectorAll('.rank-row').length===3);assert.equal(state.requests.filter(row=>row.endpoint.endsWith('/mileage/board')).at(-1).query.groupId,'701');
       await page.getByLabel('搜索跑量排行榜成员').fill(' 河畔 ');assert.equal(await page.locator('.rank-row').count(),1);await page.getByRole('button',{name:'清空搜索'}).click();
-      await nav.getByRole('button',{name:'未分组',exact:true}).click();await page.waitForFunction(()=>document.querySelectorAll('.rank-row').length===1);assert.match(await page.locator('.rank-row').innerText(),/长昵称/);
-      await nav.getByRole('button',{name:'周末长距离训练组',exact:true}).click();await page.getByText('这里还没有成员。',{exact:true}).waitFor();assert.equal(await page.locator('.rank-row').count(),0);
-      await nav.getByRole('button',{name:'全员',exact:true}).click();await page.waitForFunction(()=>document.querySelectorAll('.rank-row').length===6);assert.equal(await page.locator('.group-overview .group-card').count(),3);assert.equal(state.requests.filter(row=>row.endpoint.endsWith('/mileage/board')).at(-1).query.groupId,undefined);await noOverflow(page);
+      await picker.selectOption('0');await page.waitForFunction(()=>document.querySelectorAll('.rank-row').length===1);assert.match(await page.locator('.volume-label').innerText(),/未分组/);assert.match(await page.locator('.rank-row').innerText(),/长昵称/);
+      await picker.selectOption('703');await page.getByText('这里还没有成员。',{exact:true}).waitFor();assert.equal(await page.locator('.rank-row').count(),0);
+      await picker.selectOption('');await page.waitForFunction(()=>document.querySelectorAll('.rank-row').length===6);assert.equal(await page.locator('.group-overview .group-card').count(),3);assert.equal(state.requests.filter(row=>row.endpoint.endsWith('/mileage/board')).at(-1).query.groupId,undefined);await noOverflow(page);
+    });
+    await check(width,'compact group grid expands, keeps long names and large distances contained, and member return retains selected group',async()=>{
+      const original=fixture.copy(state.groups);
+      state.groups=[...state.groups,...[704,705,706].map(id=>({id,name:'同频进阶与周末长距离训练伙伴第'+id+'组',pace:'按每个人自己的节奏稳定训练',capacity:0,sort:id,memberCount:0}))];state.largeNumbers=true;
+      await page.goto(base+'/clubs/44?tab=km&range=month&date=2026-11-11');await page.getByRole('button',{name:'查看全部 6 个组别'}).waitFor();
+      assert.equal(await page.locator('.group-card').count(),4);const before=state.requests.length;
+      await page.getByRole('button',{name:'查看全部 6 个组别'}).click();assert.equal(await page.locator('.group-card').count(),6);assert.equal(state.requests.length,before);
+      const grid=await page.locator('.group-cards').evaluate(el=>({columns:getComputedStyle(el).gridTemplateColumns.split(' ').length,overflow:el.scrollWidth>el.clientWidth+1}));assert.equal(grid.columns,2);assert.equal(grid.overflow,false);await noOverflow(page);
+      await page.locator('.mileage-board').screenshot({path:path.join(out,`web-board-pressure-${width}.png`),style:'.club-topbar{visibility:hidden!important}'});
+      await page.getByLabel('选择排行榜训练组').selectOption('706');await page.waitForFunction(()=>document.querySelector('.group-tabs select')?.value==='706');const foldedRequests=state.requests.length;await page.getByRole('button',{name:'收起组别'}).click();assert.equal(await page.locator('.group-card').count(),4);assert.equal(await page.getByLabel('选择排行榜训练组').inputValue(),'706');assert.equal(state.requests.length,foldedRequests);
+      state.largeNumbers=false;state.groups=original;await page.goto(base+'/clubs/44?tab=km&range=week&date=2026-11-11&groupId=701');await page.locator('.rank-row').filter({hasText:'河畔领跑员'}).click();await page.getByRole('heading',{name:'河畔领跑员',exact:true}).waitFor();await page.getByRole('link',{name:'返回跑量看板'}).click();await page.locator('.volume-number').waitFor();assert.equal(await page.getByLabel('选择排行榜训练组').inputValue(),'701');assert.equal(await page.getByLabel('选择跑量统计日期').inputValue(),'2026-11-11');
+      await page.getByLabel('选择排行榜训练组').selectOption('');await page.waitForFunction(()=>document.querySelectorAll('.rank-row').length===6);
     });
     await check(width,'deleted selected permanent group falls back once to all members',async()=>{
-      state.missingGroup=true;const before=state.requests.length;await page.getByRole('navigation',{name:'按常设训练组筛选'}).getByRole('button',{name:'晨光轻松组',exact:true}).click();await page.waitForFunction(()=>document.querySelectorAll('.rank-row').length===6&&document.querySelector('.group-tabs button[aria-pressed="true"]')?.textContent==='全员');state.missingGroup=false;const loads=state.requests.slice(before).filter(row=>row.endpoint.endsWith('/mileage/board'));assert.equal(loads.length,2);assert.equal(loads[0].query.groupId,'701');assert.equal(loads[1].query.groupId,undefined);
+      state.missingGroup=true;const before=state.requests.length;await page.getByLabel('选择排行榜训练组').selectOption('701');await page.waitForFunction(()=>document.querySelectorAll('.rank-row').length===6&&document.querySelector('.group-tabs select')?.value==='');state.missingGroup=false;const loads=state.requests.slice(before).filter(row=>row.endpoint.endsWith('/mileage/board'));assert.equal(loads.length,2);assert.equal(loads[0].query.groupId,'701');assert.equal(loads[1].query.groupId,undefined);
     });
     await check(width,'stale period response cannot overwrite latest period',async()=>{
       state.hold=q=>q.range==='day';await page.getByRole('navigation',{name:'跑量时间范围'}).getByRole('button',{name:'日',exact:true}).click();for(let i=0;i<40&&!state.release;i++)await pause(10);assert.equal(typeof state.release,'function');await page.getByRole('navigation',{name:'跑量时间范围'}).getByRole('button',{name:'周',exact:true}).click();await page.waitForFunction(()=>document.querySelector('.volume-number')?.textContent.includes('240'));state.hold=null;state.release();await page.waitForLoadState('networkidle');assert.match(await page.locator('.volume-number').innerText(),/240/);delete state.release;

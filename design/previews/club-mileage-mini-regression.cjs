@@ -38,6 +38,18 @@ async function main(){
     x.instance.pickGroup(f.event({id:703}));await f.tick();assert.equal(x.instance.data.shownRank.length,0);assert.equal(x.instance.data.board.summary.km,0);
     x.instance.pickGroup(f.event({id:''}));await f.tick();assert.equal(queryOf(x.requests.at(-1)[0]).groupId,undefined);assert.equal(x.instance.data.shownRank.length,6);
   });
+  await check('compact group overview expands without requests; picker maps stable group IDs and account switches reset it',async()=>{
+    const x=boardComponent();
+    const groups=[...f.groups,...[704,705,706].map(id=>({id,name:'同频进阶与周末长距离训练伙伴第'+id+'组',pace:'6:00 /km',memberCount:0}))];
+    x.setReply(async url=>f.boardFixture(queryOf(url),{groups}));await x.lifecycle('attached');await f.tick();
+    assert.equal(x.instance.data.shownGroups.length,4);const before=x.requests.length;
+    x.instance.toggleGroups();assert.equal(x.instance.data.shownGroups.length,6);assert.equal(x.requests.length,before);
+    x.instance.selectGroup(f.input('6'));await f.tick();assert.equal(queryOf(x.requests.at(-1)[0]).groupId,'706');const selected=x.requests.length;x.instance.toggleGroups();assert.equal(x.instance.data.groupId,'706');assert.equal(x.instance.data.shownGroups.length,4);assert.equal(x.requests.length,selected);
+    x.instance.selectGroup(f.input('7'));await f.tick();assert.equal(queryOf(x.requests.at(-1)[0]).groupId,'0');
+    x.instance.selectGroup(f.input('0'));await f.tick();assert.equal(queryOf(x.requests.at(-1)[0]).groupId,undefined);
+    const count=x.requests.length;x.instance.selectGroup(f.input('999'));assert.equal(x.requests.length,count);
+    x.instance.toggleGroups();x.setAccount('new-account');await x.pageLifecycle('show');await f.tick();assert.equal(x.instance.data.groupsExpanded,false);assert.equal(x.instance.data.shownGroups.length,4);assert.equal(x.instance.data.groupId,'');
+  });
   await check('natural week/year navigation can return to current period across year and Saturday anchor',async()=>{
     const x=boardComponent();await x.lifecycle('attached');await f.tick();
     x.instance.setData({range:'year',date:'2026-12-31'});await x.instance.load();assert.equal(x.instance.data.canNext,true);x.instance.changePeriod(f.event({direction:1}));await f.tick();assert.equal(x.instance.data.date,'2027-01-01');assert.equal(x.instance.data.canNext,false);
