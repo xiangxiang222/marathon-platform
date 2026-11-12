@@ -1,4 +1,4 @@
-<view class="page club-detail mini-meetup-meetup" wx:if="{{meetup}}">
+<view class="page club-detail mini-meetup-meetup service-page" wx:if="{{meetup}}">
   <view class="card detail-hero"><view class="detail-kicker">一起出发 · 约跑</view>
     <view class="h2">{{meetup.dateLabel}} {{meetup.place}}</view>
     <view class="src">{{meetup.statusLabel}}</view>
@@ -37,7 +37,7 @@
   </view>
   <view wx:if="{{message}}" class="src">{{message}}</view>
 </view>
-<view wx:else class="meetup-state">
+<view wx:else class="meetup-state service-page">
   <view class="state-title">{{loading ? '正在加载约跑…' : '暂时无法打开约跑'}}</view>
   <view wx:if="{{!loading}}" class="src">{{message || '没有找到这场约跑'}}</view>
   <button wx:if="{{!loading}}" class="btn" bindtap="load">重新加载</button>

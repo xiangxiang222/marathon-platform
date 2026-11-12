@@ -1,5 +1,5 @@
 <template>
-  <main class="intro-page">
+  <main class="intro-page service-page">
     <header class="topbar"><router-link to="/clubs" aria-label="返回跑团">‹</router-link><h1>跑团介绍</h1><span></span></header>
     <section v-if="loading" class="intro-state" role="status">正在打开跑团…</section>
     <section v-else-if="club && (club.publicStatus === 'restricted' || club.restricted)" class="intro-content"><div class="intro-card"><div class="intro-eyebrow">跑团公开状态</div><h2>{{ club.name }}</h2><p class="intro-tagline">{{ club.city || "城市待补充" }} · 团号 #{{ club.id }}</p><h3>暂时停止公开展示与招募</h3><p class="intro-access">{{ club.statusMessage || "团内成员和历史记录保留。团长可在跑团身份页补充说明或申请复核。" }}</p><template v-if="club.joined"><p class="intro-access" role="status">你已加入这个跑团，仍可进入查看团内记录。</p><button class="intro-primary restricted-enter" type="button" @click="enterClub">进入已加入的跑团</button></template><router-link v-if="club.canManageIdentity === true" class="intro-report-entry" :to="'/clubs/' + club.id + '/identity'" @click.capture="checkIdentityAccess">我是团长，查看说明与补充途径 ›</router-link><router-link class="intro-report-entry" :to="'/clubs/' + club.id + '/report?type=management'">向平台补充说明 ›</router-link></div></section>
@@ -196,12 +196,12 @@ watch(() => [route.params.id, route.params.code, route.query.apply], () => {
 .intro-page { min-height: 100vh; padding-bottom: 76px; background: var(--bg); }
 .intro-page .topbar { background: transparent; border-bottom: 0; }
 .intro-content { padding: 12px 16px 24px; }
-.intro-card { position: relative; overflow: hidden; padding: 24px; border-radius: 16px; background: var(--card);  border: 1px solid var(--line);}
+.intro-card { position: relative; overflow: hidden; padding: 24px; border-radius:12px; background: var(--card);  border: 1px solid var(--line);}
 .intro-eyebrow { position: relative; display: flex; align-items: center; gap: 7px; color: var(--accent); font-size: 12px; letter-spacing: normal; }
 .intro-eyebrow > span { width: 6px; height: 6px; background: currentColor; border-radius: 50%; }
-.intro-track { position: absolute; top: -32px; right: -105px; width: 230px; height: 270px; border: 1px solid var(--line); border-radius: 16px; transform: rotate(32deg);  border-color: var(--line);}
-.intro-track::before, .intro-track::after { position: absolute; inset: 12px; border: 1px solid var(--line); border-radius: 16px; content: "";  border-color: var(--line);}
-.intro-track::after { inset: 24px; border-radius: 16px; }
+.intro-track { position: absolute; top: -32px; right: -105px; width: 230px; height: 270px; border: 1px solid var(--line); border-radius:12px; transform: rotate(32deg);  border-color: var(--line);}
+.intro-track::before, .intro-track::after { position: absolute; inset: 12px; border: 1px solid var(--line); border-radius:12px; content: "";  border-color: var(--line);}
+.intro-track::after { inset: 24px; border-radius:12px; }
 .club-letter { position: relative; display: grid; place-items: center; width: 64px; height: 64px; margin-top: 32px; color: #fff; background: var(--accent); border-radius: 14px; font-size: 30px; font-weight: 600; }
 .intro-card h2 { position: relative; margin: 20px 0 0; font-size: 24px; font-weight:600; line-height: 1.4; letter-spacing: normal; overflow-wrap: anywhere; }
 .intro-tagline { position: relative; margin: 10px 0 0; color: var(--muted); font-size: 14px; }
@@ -211,7 +211,7 @@ watch(() => [route.params.id, route.params.code, route.query.apply], () => {
 .intro-facts strong { display: block; margin-top: 6px; font-size: 14px; font-weight: 500; overflow-wrap: anywhere; }
 .intro-facts .intro-count { flex: none; display: flex; align-items: baseline; gap: 6px; }
 .intro-count strong { margin: 0; font-size: 28px; font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; }
-.intro-benefits { margin-top: 16px; padding: 22px 20px 18px; background: var(--card); border-radius: 16px;  border: 1px solid var(--line);}
+.intro-benefits { margin-top: 16px; padding: 22px 20px 18px; background: var(--card); border-radius:12px;  border: 1px solid var(--line);}
 .intro-benefits h3 { margin: 0; font-size: 16px; font-weight: 600; }
 .intro-features { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 24px; }
 .intro-features > div { display: flex; align-items: center; flex-direction: column; gap: 10px; font-size: 14px; }
@@ -236,7 +236,7 @@ watch(() => [route.params.id, route.params.code, route.query.apply], () => {
 .intro-state.error, .intro-error { color: var(--accent); }
 .intro-error { margin: 16px 4px 0; font-size: 14px; }
 .intro-share-overlay { position: fixed; z-index: 100; inset: 0; display: flex; align-items: flex-end; justify-content: center; background: rgba(20, 22, 30, .48); }
-.intro-share-dialog { position: relative; width: min(430px, 100%); max-height: calc(100dvh - 40px); overflow-y: auto; padding: 24px 24px calc(24px + env(safe-area-inset-bottom, 0px)); border-radius: 16px 16px 0 0; background: var(--card); outline: none; }
+.intro-share-dialog { position: relative; width: min(430px, 100%); max-height: calc(100dvh - 40px); overflow-y: auto; padding: 24px 24px calc(24px + env(safe-area-inset-bottom, 0px)); border-radius:12px 12px 0 0; background: var(--card); outline: none; }
 .share-dialog-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
 .intro-share-dialog h2 { margin: 0; font-size: 20px; font-weight: 600; line-height: 1.5; }
 .share-close { flex: none; width: 40px; height: 40px; margin: -8px -8px -8px 0; color: var(--muted); font-size: 28px; }
@@ -265,21 +265,21 @@ watch(() => [route.params.id, route.params.code, route.query.apply], () => {
 }
 @media (max-width: 350px) {
   .intro-content { padding: 8px 12px 24px; }
-  .intro-card { padding: 20px;  border-radius: 16px; border: 1px solid var(--line); background: var(--card);}
+  .intro-card { padding: 20px;  border-radius:12px; border: 1px solid var(--line); background: var(--card);}
   .intro-card h2 { font-size: 24px; }
   .intro-share { gap: 5px; padding: 0 12px; }
   .intro-primary, .intro-share { font-size: 14px; }
   .intro-dock { gap: 10px; padding-right: 12px; padding-left: 12px; }
-  .intro-share-dialog { padding-right: 20px; padding-left: 20px;  border-radius: 16px 16px 0 0;}
+  .intro-share-dialog { padding-right: 20px; padding-left: 20px;  border-radius:12px 12px 0 0;}
 }
 .intro-join-identity{text-align:center;font-size:12px;color:var(--muted);line-height:1.9;overflow-wrap:anywhere;margin:18px 0 4px}.intro-report-entry{display:flex;align-items:center;justify-content:center;min-height:44px;font-size:12px;color:var(--muted)}
 
 
-/* A welcoming peach club card, with fresh mint benefits underneath. */
+/* Public club details use the shared neutral service palette. */
 .intro-page { background:transparent; }.intro-page>.topbar { background:transparent; }
 .intro-card { background:var(--card);border-color:var(--line);box-shadow:none; }.intro-track { border-color:var(--line);opacity:.6; }.intro-facts { border-color:var(--line); }.intro-card .club-letter { background:var(--card);box-shadow:none; }
 .intro-benefits { background:var(--card);border-color:var(--line); }.intro-features>div { color:var(--muted); }.intro-features>div:nth-child(2) { color:var(--muted); }.intro-features>div:nth-child(3) { color:var(--muted); }
-.intro-status.joined { background:var(--mint-soft,var(--field-bg));border-color:var(--line); }.intro-status.pending { background:var(--sun-soft,var(--field-bg));border-color:var(--line); }
+.intro-status.joined { background:var(--field-bg);border-color:var(--line); }.intro-status.pending { background:var(--field-bg);border-color:var(--line); }
 
 /* Shared typography and controls for club services. */
 
@@ -295,3 +295,5 @@ watch(() => [route.params.id, route.params.code, route.query.apply], () => {
 .intro-story,.intro-note { font-size:14px; line-height:1.7; }
 
 </style>
+
+<style scoped src="../service-ui.css"></style>

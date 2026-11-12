@@ -1,4 +1,4 @@
-<view class="identity-page mini-club-identity-club-identity">
+<view class="identity-page mini-club-identity-club-identity service-page">
   <view class="hero"><view class="eyebrow">跑团核验</view><view class="title">跑团身份</view><view class="copy">核验页面与真实组织的管理授权关系。创建、邀请和约跑均不需要先核验。</view></view>
   <view wx:if="{{!ready}}" class="panel"><view class="copy">登录团长账号后查看和提交私密材料。</view><navigator class="primary action-link" open-type="switchTab" url="/pages/mine/mine">去登录</navigator></view>
   <view wx:elif="{{loading}}" class="panel copy">正在读取核验进度…</view>

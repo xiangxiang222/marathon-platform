@@ -1,5 +1,5 @@
 <template>
-  <main class="activity-create">
+  <main class="activity-create service-page">
     <header class="topbar">
       <router-link :to="'/clubs/' + clubId" aria-label="返回跑团">‹</router-link>
       <h1>{{ templateMode ? (editingTemplate ? '编辑训练模板' : '创建训练模板') : '发布训练' }}</h1>
@@ -21,13 +21,13 @@
       <template v-else-if="club">
         <div class="club-line"><span class="club-mark">{{ club.name.slice(0, 1) }}</span><span>{{ club.name }}</span>
           <span class="club-role">{{ templateMode ? '跑团共享模板' : '跑团训练' }}</span></div>
-        <div v-if="templateMode" class="editing-banner"><span class="editing-symbol">↗</span><div><b>{{ editingTemplate ? '正在编辑跑团模板' : '把常用训练，变成下次的起点' }}</b><p>仅保存训练内容与常用时刻；每次使用时重新确认日期。</p></div></div>
+        <div v-if="templateMode" class="editing-banner"><span class="editing-symbol">↗</span><div><b>{{ editingTemplate ? '正在编辑跑团模板' : '保存常用训练模板' }}</b><p>仅保存训练内容与常用时刻；每次使用时重新确认日期。</p></div></div>
         <div v-if="templateMessage" class="template-message" role="status">{{ templateMessage }}</div>
 
         <section v-if="step === 0" class="step-panel">
-          <div class="step-heading"><span>01 / 03 · 基本信息</span><h2>这次跑什么？</h2><p class="timezone-note">活动时间按北京时间填写</p></div>
+          <div class="step-heading"><span>01 / 03 · 基本信息</span><h2>基本信息</h2><p class="timezone-note">活动时间按北京时间填写</p></div>
           <section v-if="!templateMode" class="template-library">
-            <div class="template-library-heading"><div><h3>从模板开始</h3><p>内容先备好，日期这次定。</p></div><button type="button" class="text-button" @click="enterTemplateEditor()">＋ 创建模板</button></div>
+            <div class="template-library-heading"><div><h3>从模板开始</h3><p>选择模板带入训练内容，再确认本次安排。</p></div><button type="button" class="text-button" @click="enterTemplateEditor()">＋ 创建模板</button></div>
             <div class="templates" aria-label="基础训练模板">
               <button v-for="item in templates" :key="item.id" type="button" :class="['template', { selected: appliedTemplateKey === 'preset:' + item.id }]" :aria-pressed="appliedTemplateKey === 'preset:' + item.id" @click="chooseTemplate(item)"><span class="template-icon">{{ item.mark }}</span><strong>{{ item.label }}</strong><small>{{ item.hint }}</small><span class="template-check" v-if="appliedTemplateKey === 'preset:' + item.id">✓</span></button>
             </div>
@@ -594,7 +594,7 @@ onUnmounted(() => { loadVersion += 1; templatesVersion += 1; });
 .activity-create { min-height: 100vh; padding-bottom: 110px; color: var(--ink); background: var(--bg); }
 .activity-create button { font: inherit; cursor: pointer; }
 .activity-create button:disabled { cursor: default; opacity: .5; }
-.topbar { position: sticky; z-index: 5; top: 0; display: grid; grid-template-columns: 40px 1fr auto; align-items: center; min-height: 62px; padding: 0 18px; border: 0; background: #f5f5f5f5; backdrop-filter: blur(16px); }
+.topbar { position: sticky; z-index: 5; top: 0; display: grid; grid-template-columns: 40px 1fr auto; align-items: center; min-height: 62px; padding: 0 18px; border: 0; background: #fff; backdrop-filter: blur(16px); }
 .topbar > a { display: grid; place-items: center; width: 34px; min-height: 44px; color: var(--ink); font-size: 24px; line-height: 1; }
 .topbar h1 { margin: 0; font-size: 16px; font-weight: 600; }
 .activity-create .draft-action { justify-self: end; min-height: 44px; padding: 0 4px; color: var(--accent); font-size: 12px; font-weight: 600; white-space: nowrap; }
@@ -801,10 +801,10 @@ onUnmounted(() => { loadVersion += 1; templatesVersion += 1; });
 .step-heading { padding:18px 20px;background:var(--card);border:1px solid var(--line);border-radius:12px;margin-bottom:22px; }
 .template:nth-child(3n+1) { background:#fff;border-color:var(--line); }.template:nth-child(3n+2) { background:#fff;border-color:var(--line); }.template:nth-child(3n) { background:#fff;border-color:var(--line); }
 .template.selected { border-color:var(--accent);box-shadow:none; }.template-icon { background:var(--field-bg);color:var(--muted); }.template:nth-child(3n+2) .template-icon { background:var(--field-bg);color:var(--muted); }.template:nth-child(3n) .template-icon { background:var(--field-bg);color:var(--muted); }
-.saved-template { background:#fff;border-color:var(--line); }.saved-template-mark { background:var(--sun-soft,var(--field-bg));color:var(--muted); }
-.editing-banner { background:var(--lilac-soft,var(--field-bg));border-color:var(--line); }.group-card-heading { background:#fff;border-bottom-color:var(--line); }.group-index { background:#fff;color:var(--muted); }
+.saved-template { background:#fff;border-color:var(--line); }.saved-template-mark { background:var(--field-bg);color:var(--muted); }
+.editing-banner { background:var(--field-bg);border-color:var(--line); }.group-card-heading { background:#fff;border-bottom-color:var(--line); }.group-index { background:#fff;color:var(--muted); }
 .advanced { background:var(--field-bg);border-color:var(--line); }.preview-hero { background:var(--card);border-color:var(--line); }
-.preview-facts { background:#fff; }.template-tip { background:var(--sun-soft,var(--field-bg));border-color:var(--line); }
+.preview-facts { background:#fff; }.template-tip { background:var(--field-bg);border-color:var(--line); }
 @media(max-width:350px) { .step-heading { padding:16px; }.step-heading h2 { font-size:24px; }.group-card-heading { gap:8px; }.template-library-heading { gap:10px; } }
 
 .permanent-groups { padding: 17px; margin: 0 0 22px; border: 1px solid #e7edf0; border-radius: 12px; background: #f9fbfc; }
@@ -827,3 +827,5 @@ onUnmounted(() => { loadVersion += 1; templatesVersion += 1; });
 .template,.saved-template,.group-card,.preview-hero { border-radius:12px; }
 .template-icon,.saved-template-mark { color:var(--accent); background:var(--accent-soft); }
 </style>
+
+<style scoped src="../service-ui.css"></style>

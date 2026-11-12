@@ -1,0 +1,158 @@
+/* Consumer service routes share the race catalogue's red, black and white system. */
+.service-page { --accent:#ff1838; --accent-soft:#fff0f2; --bg:#f5f5f5; --card:#fff; --ink:#1a1a1a; --ink-secondary:#777; --muted:#777; --line:#eee; --field-bg:#f5f5f5; color:var(--ink); background:var(--bg); font-size:14px; line-height:1.5; }
+.service-page :is(button,input,textarea,select) { font-family:inherit; }
+.service-page :is(button,a,input,textarea,select):focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+.service-page :is(button,.primary,.undo,.outline,.quiet-button,.action-button,.club-form-primary,.club-form-secondary) { min-width:44px; min-height:44px; border-radius:8px; font-size:14px; font-weight:500; box-shadow:none; }
+.service-page :is(input:not([type="checkbox"]):not([type="radio"]):not([type="file"]),select,textarea) { min-width:0; min-height:44px; border:1px solid var(--line); border-radius:8px; background:var(--field-bg); color:var(--ink); font-size:14px; }
+.service-page textarea { line-height:1.75; }
+.service-page :is(.topbar,.activity-nav) { min-height:56px; height:auto; padding:6px 16px; background:#fff; border-bottom:1px solid var(--line); backdrop-filter:none; }
+.service-page :is(.topbar,.activity-nav) h1 { font-size:16px; font-weight:600; }
+.service-page :is(.topbar,.activity-nav)>a { min-width:44px; min-height:44px; }
+.service-page :is(.block,.detail-panel,.utility-panel,.form-section,.event-heading,.success-panel,.club-form-panel,.intro-card,.intro-benefits,.editor-card,.editor-library,.editor-preview) { border:1px solid var(--line); border-radius:12px; padding:16px; box-shadow:none; background:#fff; }
+.service-page :is(.block,.form-section,.detail-panel,.utility-panel) { margin-top:12px; }
+.service-page :is(.block,.detail-panel,.utility-panel,.club-form-panel) h2 { margin-top:0; font-size:18px; font-weight:600; line-height:1.5; }
+.service-page :is(.block,.detail-panel,.club-form-panel) h3 { font-size:15px; font-weight:600; }
+.service-page :is(.hint,.rank-label,.detail-kicker,.club-form-eyebrow,.club-form-hint) { color:var(--muted); font-size:12px; font-weight:400; }
+.service-page :is(.detail-kicker,.eyebrow) { letter-spacing:normal; }
+.service-page :is(.detail-actions,.tools,.utility-actions) { display:flex; flex-wrap:wrap; gap:6px 12px; }
+.service-page :is(.detail-actions,.tools,.utility-actions) .undo { min-height:44px; padding:0; border:0; color:var(--muted); background:transparent; font-size:12px; }
+.service-page :is(.detail-options,.detail-tabs) { min-height:48px; background:#fff; border-bottom:1px solid var(--line); backdrop-filter:none; }
+.service-page :is(.detail-options,.detail-tabs) :is(button,a) { position:relative; min-height:44px; padding:0 6px; border:0; border-radius:0; background:transparent; font-size:14px; color:var(--muted); }
+.service-page :is(.detail-options,.detail-tabs) :is(.on,.selected) { color:var(--accent); }
+.service-page :is(.detail-options,.detail-tabs) :is(.on,.selected)::after { position:absolute; bottom:0; left:calc(50% - 10px); width:20px; height:2px; border-radius:1px; background:var(--accent); content:""; }
+.service-page .sum { padding:10px 12px; background:var(--field-bg); border-radius:8px; color:var(--ink); font-size:14px; font-weight:500; }
+.service-page .detail-hero { background:#fff; }
+.service-page .detail-hero h2 { margin:8px 0; font-size:24px; font-weight:600; }
+.service-page .detail-actions { padding-top:4px; }
+.service-page .row { align-items:center; min-height:52px; padding:12px 0; gap:12px; font-size:14px; }
+.service-page .row :is(button,.undo) { flex:none; padding:0 8px; }
+.service-page .share-text { padding:12px; border-radius:8px; background:var(--field-bg); color:var(--muted); font-size:12px; line-height:1.8; font-family:inherit; overflow-wrap:anywhere; }
+.service-page .share-fold summary { min-height:44px; color:var(--muted); font-size:12px; }
+.service-page :is(.club-form-title,.editor-heading h1) { font-size:24px; font-weight:600; line-height:1.4; }
+.service-page :is(.club-form-wrap,.intro-content,.create-wrap) { padding:20px 16px 28px; }
+.service-page .club-form-grid { gap:16px; }
+.service-page .club-form-lead { margin:8px 0 24px; font-size:14px; line-height:1.75; }
+.service-page .club-form-panel label { margin-top:16px; }
+.service-page .club-form-panel :is(input,select,textarea) { width:100%; }
+.service-page .club-form-panel h2 { font-size:18px; }
+.service-page :is(.club-form-note,.club-private-tag,.same-name,.decision) { background:var(--field-bg); border-color:var(--line); color:var(--muted); border-radius:8px; }
+.service-page .preview-track,.service-page .intro-track { display:none; }
+.service-page .preview-card { padding:16px; border:1px solid var(--line); border-radius:12px; background:#fff; box-shadow:none; }
+.service-page .preview-card h3 { font-size:18px; }
+.service-page .preview-letter { width:40px; height:40px; border-radius:8px; background:var(--accent-soft); color:var(--accent); font-size:18px; }
+.service-page .intro-card { display:grid; grid-template-columns:48px minmax(0,1fr); gap:4px 12px; }
+.service-page .intro-eyebrow { grid-column:1/-1; margin:0 0 12px; color:var(--muted); font-size:12px; }
+.service-page .intro-eyebrow>span { display:none; }
+.service-page .intro-card .club-letter { grid-column:1; grid-row:2/5; width:48px; height:48px; margin:0; border-radius:10px; background:var(--accent-soft); color:var(--accent); font-size:22px; }
+.service-page .intro-card h2 { grid-column:2; margin:0; font-size:24px; line-height:1.4; }
+.service-page .intro-tagline { grid-column:2; margin:0; font-size:12px; line-height:1.7; }
+.service-page .intro-card :deep(.identity-badge) { grid-column:2; }
+.service-page .intro-facts { grid-column:1/-1; margin-top:16px; padding-top:14px; }
+.service-page .intro-count strong { font-size:24px; }
+.service-page .intro-features { margin-top:16px; }
+.service-page .intro-features>div { color:var(--muted); background:transparent; }
+.service-page .intro-features :is(svg,.feature-mark) { color:var(--muted); }
+.service-page .intro-status { border:1px solid var(--line); border-radius:10px; background:#fff; color:var(--ink); }
+.service-page .intro-dock { padding:10px 16px calc(10px + env(safe-area-inset-bottom)); border-top:1px solid var(--line); background:#fff; }
+.service-page :is(.intro-share-dialog,.share-sheet,.template-save-dialog,.confirm-dialog) { border-radius:12px; }
+.service-page .intro-share-dialog h2 { font-size:18px; }
+.service-page .activity-content { padding:16px; }
+.service-page .event-hero { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:12px; min-height:0; padding:16px; background:#fff; border:1px solid var(--line); border-radius:12px; }
+.service-page .hero-track { display:none; }
+.service-page .hero-meta { grid-column:1/-1; justify-content:space-between; }
+.service-page .hero-meta span { padding:2px 6px; border:0; border-radius:4px; background:var(--field-bg); color:var(--muted); font-weight:400; }
+.service-page .hero-meta .status { color:var(--accent); background:var(--accent-soft); }
+.service-page .event-hero h2 { grid-column:1; margin:0; font-size:24px; font-weight:600; line-height:1.45; overflow-wrap:anywhere; }
+.service-page .hero-km { align-self:center; grid-column:2; margin:0; color:var(--ink); font-size:32px; font-weight:600; line-height:1.2; text-align:right; }
+.service-page .hero-km small { display:block; margin:5px 0 0; color:var(--muted); font-size:12px; font-weight:400; }
+.service-page .hero-date { grid-column:1/-1; padding-top:12px; border-top:1px solid var(--line); font-size:14px; }
+.service-page .hero-issue { grid-column:1/-1; margin:0; }
+.service-page .quickfacts { margin-top:12px; border-radius:10px; }
+.service-page .quickfacts>div { min-height:72px; padding:12px; gap:6px; }
+.service-page .quickfacts b { font-size:14px; font-weight:500; }
+.service-page .fact-icon { width:24px; height:24px; background:transparent; color:var(--muted); font-size:16px; }
+.service-page .panel-heading h2 { font-size:18px; }
+.service-page .pace-group { padding:12px 0; border:0; border-top:1px solid var(--line); border-radius:0; }
+.service-page .group-title h3 { font-size:15px; }
+.service-page .briefing { padding:12px; border:0; border-radius:8px; }
+.service-page .briefing :is(p,.workout-text) { font-size:14px; line-height:1.75; }
+.service-page .activity-share { min-height:44px; }
+.service-page .sticky-join { gap:12px; padding:10px 16px calc(10px + env(safe-area-inset-bottom)); }
+.service-page .steps { margin:0 0 20px; gap:8px; }
+.service-page .steps button { min-height:44px; gap:6px; padding:0; background:transparent; font-size:12px; }
+.service-page .steps i { width:22px; height:22px; border-radius:50%; font-size:12px; }
+.service-page .steps .active i,.service-page .steps .complete i { background:var(--accent); color:#fff; }
+.service-page .step-panel { padding:0; border:0; border-radius:0; background:transparent; }
+.service-page .step-heading { margin:0 0 20px; padding:0 0 16px; border:0; border-bottom:1px solid var(--line); border-radius:0; background:transparent; }
+.service-page .step-heading h2 { margin-top:6px; font-size:24px; }
+.service-page .template-library { margin-bottom:24px; padding:16px; border:1px solid var(--line); border-radius:12px; background:#fff; }
+.service-page .template-library-heading { align-items:flex-start; gap:8px; }
+.service-page .template-library-heading h3 { font-size:15px; }
+.service-page .templates { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; margin:12px 0; padding:0; overflow:visible; }
+.service-page .template { position:relative; min-width:0; padding:12px 8px; border:1px solid var(--line); border-radius:8px; text-align:left; }
+.service-page .template.selected { border-color:var(--accent); background:var(--accent-soft); }
+.service-page .template-icon { display:none; }
+.service-page .template strong { font-size:14px; }
+.service-page .template small { display:block; margin-top:4px; font-size:12px; }
+.service-page .saved-templates { display:grid; grid-template-columns:minmax(0,1fr); gap:8px; margin:12px 0; padding:0; overflow:visible; }
+.service-page .saved-template { min-width:0; border-radius:8px; }
+.service-page .saved-template-use { padding:12px; }
+.service-page .saved-template-mark { color:var(--muted); }
+.service-page .saved-template-use strong { font-size:14px; }
+.service-page .form-section-title { margin:20px 0 12px; }
+.service-page .form-section-title h3 { font-size:15px; }
+.service-page .form-grid { gap:16px 12px; padding:16px; border:1px solid var(--line); border-radius:12px; background:#fff; }
+.service-page label.field { gap:8px; }
+.service-page label.field>span { font-size:14px; font-weight:400; }
+.service-page .permanent-groups { margin-top:0; padding:0 0 20px; border:0; border-bottom:1px solid var(--line); background:transparent; }
+.service-page .permanent-group-list { grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
+.service-page .permanent-group-list button { padding:10px; border-radius:8px; }
+.service-page .group-editor { padding:12px; border:1px solid var(--line); border-radius:8px; background:#fff; }
+.service-page .preview-hero { padding:16px; background:#fff; border:1px solid var(--line); }
+.service-page .preview-hero h3 { font-size:18px; }
+.service-page .actions { gap:12px; }
+.service-page .actions :is(.primary,.outline) { min-height:44px; border-radius:8px; }
+.service-page .event-heading { margin-top:16px; padding:16px; }
+.service-page .event-heading h2 { font-size:24px; line-height:1.45; }
+.service-page .group-list { gap:8px; }
+.service-page .group-option { min-height:64px; padding:12px; border-radius:8px; }
+.service-page .group-option.selected { border-color:var(--accent); background:var(--accent-soft); }
+.service-page .group-copy strong { font-size:15px; font-weight:500; }
+.service-page .disclosure { min-height:64px; }
+.service-page .success-panel { margin:16px; }
+.service-page .success-panel h2 { font-size:24px; }
+.service-page .success-mark { width:36px; height:36px; border-radius:50%; background:var(--accent-soft); color:var(--accent); font-size:20px; }
+.service-page .summary-list dd { font-size:14px; }
+.service-page .album-hero h2 { font-size:24px; }
+.service-page .album-hero .tools { margin-top:4px; }
+.service-page .album-hero .tools .status { min-width:44px; padding:0 8px; border-radius:0; background:transparent; color:var(--muted); }
+.service-page .album-hero .tools .status.on { color:var(--accent); }
+.service-page .shot { border-radius:8px; background:var(--field-bg); }
+.service-page .editor-heading { padding:20px 16px; }
+.service-page .editor-card label { gap:8px; font-size:14px; }
+.service-page .editor-actions { flex-wrap:wrap; }
+.service-page .editor-actions button { min-height:44px; border-radius:8px; }
+.service-page .editor-preview { font-size:16px; line-height:1.8; }
+@media (max-width:350px) { .service-page .event-hero { gap:10px; }.service-page .event-hero h2 { font-size:22px; }.service-page .hero-km { font-size:30px; }.service-page .templates { grid-template-columns:repeat(2,minmax(0,1fr)); }.service-page .permanent-group-list { grid-template-columns:minmax(0,1fr); } }
+
+/* Dialogs retain this route scope when rendered outside the main element. */
+.template-modal .template-sheet { padding:24px 16px 16px; border-radius:12px; background:#fff; color:#1a1a1a; }
+.template-modal .template-sheet h2 { font-size:18px; font-weight:600; }
+.template-modal .template-sheet :is(button,input) { min-height:44px; border-radius:8px; font-size:14px; }
+.service-page .training-library-options { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
+
+.service-page .journal-editor { padding:20px 16px; }
+.service-page .journal-editor h1 { font-size:24px; font-weight:600; }
+.service-page .journal-editor form { padding:16px; }
+.service-page .journal-editor .editor-actions { gap:8px; }
+.service-page .journal-editor .editor-preview p { font-size:16px; line-height:1.8; }
+.intro-share-overlay .intro-share-dialog { padding-right:16px; padding-left:16px; border-radius:12px 12px 0 0; }
+.intro-share-overlay .share-close { min-width:44px; min-height:44px; }
+.intro-share-overlay .share-copy { min-height:44px; border-radius:8px; color:#fff; background:#ff1838; }
+
+.service-page.club-detail-page .block { margin:12px 16px; }
+
+.service-page input[type="radio"],.service-page input[type="checkbox"] { accent-color:var(--accent); }
+
+.template-modal .sheet-close { width:44px; height:44px; min-width:44px; }
+.service-page .viewer .nav { width:44px; height:44px; min-height:44px; }

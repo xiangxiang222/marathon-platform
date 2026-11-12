@@ -1,7 +1,7 @@
 @import "../club-identity/club-identity.wxss";
 .type-choices { display:flex; flex-direction:column; }
 .identity-page .type-choice { justify-content:flex-start; text-align:left;  }
-.target-card { margin-top:24rpx; padding:24rpx; background: var(--sky-soft); }
+.target-card { margin-top:24rpx; padding:24rpx; background: var(--page-bg); }
 .list-heading,.report-heading { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:16rpx; }
 .identity-page .refresh { width:auto; min-width:112rpx; min-height:44px; padding:14rpx; color:var(--text-secondary); background:transparent; font-size: 12px; }
 .report-item { margin-top:20rpx; padding-top:24rpx; border-top:1rpx solid var(--border); }
@@ -9,18 +9,18 @@
 .report-detail { margin-top:14rpx; color:var(--text-secondary); white-space:pre-wrap; overflow-wrap:anywhere; }
 
 /* Route geometry: surfaces, controls and compact labels have distinct roles. */
-.mini-club-report-club-report .panel, .mini-club-report-club-report .target-card { border-radius: 32rpx; }
-.mini-club-report-club-report .primary, .mini-club-report-club-report .secondary { border-radius: 24rpx; }
+.mini-club-report-club-report .panel, .mini-club-report-club-report .target-card { border-radius:12px; }
+.mini-club-report-club-report .primary, .mini-club-report-club-report .secondary { border-radius:12px; }
 .mini-club-report-club-report .type-choice, .mini-club-report-club-report .state { border-radius: 14rpx; }
 
 /* Page composition and interaction hierarchy. */
 .mini-club-report-club-report { color: var(--text); background: transparent; }
-.mini-club-report-club-report button { font-weight: 500; border-radius: 24rpx; }
+.mini-club-report-club-report button { font-weight: 500; border-radius:12px; }
 
 .type-choices { gap: 14rpx; }
 .identity-page .type-choice { min-height: 44px; border: 1px solid var(--border); border-radius: 14rpx; background: var(--card,#fff); color: var(--text-secondary); font-size: 12px; }
-.identity-page .type-choice.selected { border-color: var(--brand); color: var(--brand); background: var(--peach-soft); box-shadow: none; }
-.target-card { border: 1px solid var(--border); border-radius: 32rpx; background: var(--sky-soft); }
+.identity-page .type-choice.selected { border-color: var(--brand); color: var(--brand); background: var(--page-bg); box-shadow: none; }
+.target-card { border: 1px solid var(--border); border-radius:12px; background: var(--page-bg); }
 .report-detail { font-size: 14px; line-height: 1.8; }
 
 /* Primary actions read at 14px, secondary actions at 13px; compact filters stay at 12px. */
@@ -31,6 +31,8 @@
 .mini-club-report-club-report .hero { background: var(--card,#fff); }
 
 .mini-club-report-club-report .hero { background:transparent; }
-.target-card { border-color:var(--border); border-radius:24rpx; background:var(--page-bg); }
+.target-card { border-color:var(--border); border-radius:12px; background:var(--page-bg); }
 .identity-page .type-choice { min-height:44px; border-radius:20rpx; border:1rpx solid var(--border); background:var(--card,#fff); color:var(--text); font-size:14px; font-weight:400; }
 .identity-page .type-choice.selected { border-color:var(--brand); background:var(--brand-soft); color:var(--brand); }
+
+@import "../../utils/service-ui.wxss";

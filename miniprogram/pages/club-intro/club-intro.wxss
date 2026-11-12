@@ -7,7 +7,7 @@
 .track-line { position: absolute; border: 2rpx solid var(--border); border-radius: 50%; }
 .track-line-two { inset: 28rpx; }
 .track-line-three { inset: 56rpx; }
-.club-mark { display: flex; align-items: center; justify-content: center; width: 100rpx; height: 100rpx; margin-top: 40rpx; border-radius:32rpx; color: #fff; background: var(--brand); font-size: 22px; font-weight: 600; box-shadow: none; }
+.club-mark { display: flex; align-items: center; justify-content: center; width: 100rpx; height: 100rpx; margin-top: 40rpx; border-radius:12px; color: #fff; background: var(--brand); font-size: 22px; font-weight: 600; box-shadow: none; }
 .club-name { margin-top: 26rpx; color: var(--text); line-height: 1.4; overflow-wrap: anywhere; word-break: break-all; }
 .card-tagline { margin-top: 12rpx; color: var(--text-secondary); font-size: 12px; line-height: 40rpx; }
 .club-facts { display: flex; align-items: center; justify-content: space-between; gap: 24rpx; margin-top: 40rpx; padding-top: 28rpx; border-top: 1rpx solid var(--border); }
@@ -21,7 +21,7 @@
 .section-title { font-size: 20px; font-weight: 600; line-height: 44rpx; }
 .benefit-list { display: flex; gap: 12rpx; margin-top: 28rpx; }
 .benefit { flex: 1; min-width: 0; text-align: center; }
-.benefit-icon { position: relative; display: flex; align-items: center; justify-content: center; width: 72rpx; height: 72rpx; margin: 0 auto; border-radius: 22rpx; background: var(--peach-soft); color: var(--brand); }
+.benefit-icon { position: relative; display: flex; align-items: center; justify-content: center; width: 72rpx; height: 72rpx; margin: 0 auto; border-radius: 22rpx; background: var(--page-bg); color: var(--brand); }
 .icon-route::before, .icon-route::after { content: ""; position: absolute; width: 8rpx; height: 8rpx; border: 3rpx solid var(--brand); border-radius: 50%; }
 .icon-route::before { left: 16rpx; top: 19rpx; }
 .icon-route::after { right: 16rpx; bottom: 18rpx; }
@@ -36,7 +36,7 @@
 .benefit-title { margin-top: 14rpx; line-height: 38rpx; }
 .benefit-copy { margin-top: 4rpx; color: var(--text-secondary); font-size: 12px; line-height: 34rpx; }
 .access-note { margin-top: 28rpx; padding-top: 20rpx; border-top: 1rpx solid var(--border); color: var(--text-secondary); font-size: 12px; line-height: 36rpx; }
-.status { display: flex; align-items: flex-start; gap: 16rpx; margin-top: 24rpx; padding: 24rpx;  background: var(--mint-soft); }
+.status { display: flex; align-items: flex-start; gap: 16rpx; margin-top: 24rpx; padding: 24rpx;  background: var(--page-bg); }
 .status-dot { flex: none; width: 12rpx; height: 12rpx; margin-top: 12rpx; border-radius: 50%; background: var(--brand); }
 .status-title { font-size: 14px; font-weight: 600; line-height: 40rpx; }
 .status-copy { margin-top: 6rpx; color: var(--text-secondary); font-size: 12px; line-height: 38rpx; }
@@ -54,7 +54,7 @@
 .retry-action { width: 220rpx; margin: 28rpx auto 0; padding: 12rpx; min-height:44px; background: var(--card,#fff); font-size: 12px;  }
 .error { margin-top: 20rpx; color: var(--brand); font-size: 12px; line-height: 38rpx; }
 .share-mask, .timeline-mask { position: fixed; z-index: 20; inset: 0; background: rgba(20, 23, 32, .46); }
-.share-sheet { position: absolute; left: 0; right: 0; bottom: 0; padding: 16rpx 32rpx 36rpx; padding-bottom: calc(36rpx + env(safe-area-inset-bottom)); border-radius: 32rpx 32rpx 0 0; background: var(--card,#fff); }
+.share-sheet { position: absolute; left: 0; right: 0; bottom: 0; padding: 16rpx 32rpx 36rpx; padding-bottom: calc(36rpx + env(safe-area-inset-bottom)); border-radius:12px 32rpx 0 0; background: var(--card,#fff); }
 .share-sheet { max-height: calc(100vh - 48rpx); overflow-y: auto; box-sizing: border-box; }
 .sheet-handle { width: 64rpx; height: 7rpx; margin: 0 auto; border-radius: 8rpx; background: var(--border); }
 .sheet-header { display: flex; align-items: center; justify-content: space-between; gap: 20rpx; margin-top: 16rpx; }
@@ -74,7 +74,7 @@
 .timeline-guide { position: absolute; right: 28rpx; top: 46rpx; left: 76rpx; max-width: 580rpx; padding: 32rpx;  background: var(--card,#fff); }
 .timeline-guide { max-height: calc(100vh - 100rpx); overflow-y: auto; box-sizing: border-box;  }
 .guide-pointer { position: absolute; top: -14rpx; right: 70rpx; width: 30rpx; height: 30rpx; border-radius: 4rpx; background: var(--card,#fff); transform: rotate(45deg); }
-.guide-menu { display: flex; align-items: center; justify-content: center; width: 76rpx; height: 44rpx; border: 2rpx solid var(--border); border-radius:32rpx; font-size: 20px; font-weight: 600; line-height: 1; }
+.guide-menu { display: flex; align-items: center; justify-content: center; width: 76rpx; height: 44rpx; border: 2rpx solid var(--border); border-radius:12px; font-size: 20px; font-weight: 600; line-height: 1; }
 .guide-title { margin-top: 24rpx; font-size: 18px; font-weight: 600; line-height: 48rpx; }
 .guide-copy { margin-top: 14rpx; color: var(--text-secondary); font-size: 14px; line-height: 46rpx; }
 .guide-dismiss { min-height:44px; margin-top: 28rpx;  color: #fff; background: var(--brand); font-size: 14px; line-height: 80rpx; }
@@ -100,30 +100,30 @@
 .intro-page .share-choice { justify-content:space-between;  }
 .intro-page .guide-dismiss { width:100%; padding:20rpx;  }
 .intro-page .verified-mark { justify-content:flex-start; min-height:44px; padding:12rpx 0; color:var(--text-secondary); background:transparent; font-size: 12px; }
-.join-identity { margin-top:22rpx; padding:20rpx; border:1rpx solid var(--border);  color:var(--text-secondary); background: var(--sky-soft); font-size: 12px; line-height:1.8; overflow-wrap:anywhere; }
+.join-identity { margin-top:22rpx; padding:20rpx; border:1rpx solid var(--border);  color:var(--text-secondary); background: var(--page-bg); font-size: 12px; line-height:1.8; overflow-wrap:anywhere; }
 .intro-page .report-link { width:100%; min-height:44px; margin-top:12rpx; padding:20rpx 0; color:var(--text-secondary); background:transparent; font-size: 12px; }
 .restricted-state .report-link { display:flex; align-items:center; justify-content:center; box-sizing:border-box; }
 
 /* Route geometry: surfaces, controls and compact labels have distinct roles. */
-.mini-club-intro-club-intro .intro-card, .mini-club-intro-club-intro .intro-benefits, .mini-club-intro-club-intro .status, .mini-club-intro-club-intro .timeline-guide { border-radius: 32rpx; }
-.mini-club-intro-club-intro .action, .mini-club-intro-club-intro .share-action, .mini-club-intro-club-intro .retry-action, .mini-club-intro-club-intro .share-choice, .mini-club-intro-club-intro .guide-dismiss { border-radius: 24rpx; }
+.mini-club-intro-club-intro .intro-card, .mini-club-intro-club-intro .intro-benefits, .mini-club-intro-club-intro .status, .mini-club-intro-club-intro .timeline-guide { border-radius:12px; }
+.mini-club-intro-club-intro .action, .mini-club-intro-club-intro .share-action, .mini-club-intro-club-intro .retry-action, .mini-club-intro-club-intro .share-choice, .mini-club-intro-club-intro .guide-dismiss { border-radius:12px; }
 .mini-club-intro-club-intro .join-identity { border-radius: 14rpx; }
 
 /* Page composition and interaction hierarchy. */
 .mini-club-intro-club-intro { color: var(--text); }
-.mini-club-intro-club-intro button { font-weight: 500; border-radius: 24rpx; }
+.mini-club-intro-club-intro button { font-weight: 500; border-radius:12px; }
 
 .intro-page { color: var(--text); background: transparent; }
 .intro-card { border: 1px solid var(--border); background: var(--card,#fff); border-color: var(--border); box-shadow: none; }
 .intro-benefits { border: 1px solid var(--border); background: var(--card,#fff); }
-.status { border: 1px solid var(--border); background: var(--mint-soft); }
+.status { border: 1px solid var(--border); background: var(--page-bg); }
 .club-name { font-size: 24px; font-weight: 600; }
 .card-tagline,.benefit-copy { font-size: 14px; line-height: 1.8; }
 .benefit-title { font-size: 14px; font-weight: 600; }
-.intro-dock button,.share-sheet button { border-radius: 24rpx; font-size: 12px; }
+.intro-dock button,.share-sheet button { border-radius:12px; font-size: 12px; }
 .intro-dock .action { background: var(--brand); color: #fff; }
 .intro-dock .share-action { border: 1px solid var(--border); background: var(--card,#fff); color: var(--text); }
-.share-choice { border: 1px solid var(--border); border-radius: 24rpx; background: var(--card,#fff); }
+.share-choice { border: 1px solid var(--border); border-radius:12px; background: var(--card,#fff); }
 
 /* Primary actions read at 14px, secondary actions at 13px; compact filters stay at 12px. */
 .mini-club-intro-club-intro .action { font-size: 14px; font-weight: 500; }
@@ -131,11 +131,13 @@
 .intro-dock .action { font-size: 14px; } .intro-dock .share-action { font-size: 14px; }
 
 .intro-page { color:var(--text); font-size:14px; background:var(--page-bg); }
-.intro-card,.intro-benefits { background:var(--card,#fff); border:1rpx solid var(--border); border-radius:24rpx; box-shadow:none; }
+.intro-card,.intro-benefits { background:var(--card,#fff); border:1rpx solid var(--border); border-radius:12px; box-shadow:none; }
 .track-art { display:none; }
-.club-mark { border-radius:24rpx; background:var(--brand); color:#fff; box-shadow:none; }
+.club-mark { border-radius:12px; background:var(--brand); color:#fff; box-shadow:none; }
 .club-name { color:var(--text); font-size:24px; font-weight:600; letter-spacing:normal; }
 .section-title { color:var(--text); font-size:18px; font-weight:600; line-height:1.5; }
 .card-eyebrow,.card-tagline,.count-label,.benefit-label,.status-copy { font-size:12px; color:var(--text-secondary); letter-spacing:normal; }
 .benefit-icon { background:var(--brand-soft); color:var(--brand); border-radius:20rpx; }
 .intro-page button,.intro-page .primary,.intro-page .secondary { min-height:44px; border-radius:20rpx; font-size:14px; font-weight:500; }
+
+@import "../../utils/service-ui.wxss";

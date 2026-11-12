@@ -1,5 +1,5 @@
 <template>
-  <main class="signup-page">
+  <main class="signup-page service-page">
     <header class="topbar">
       <router-link :to="activityPath" aria-label="返回活动">‹</router-link>
       <h1>活动报名</h1>
@@ -239,7 +239,9 @@ watch(() => `${route.params.id || ""}:${route.params.aid || ""}`, load, { immedi
 .signup-page button.primary, .signup-page .summary-link { display: flex; align-items: center; justify-content: center; line-height: 1.35;  border-radius: 12px;}
 
 
-.signup-page { background:transparent; }.signup-page>.topbar { background:transparent; }.event-heading { padding:22px 20px;background:var(--card);border:1px solid var(--line);border-radius:12px; }.group-option:nth-child(3n+1) { background:#fff;border-color:var(--line); }.group-option:nth-child(3n+2) { background:#fff;border-color:var(--line); }.group-option:nth-child(3n) { background:#fff;border-color:var(--line); }.group-option.selected { border-color:var(--accent);box-shadow:none; }.success-panel { background:var(--card);border-color:var(--line); }.success-mark { background:var(--field-bg);color:var(--muted); }.terms-line { background:var(--sky-soft,var(--field-bg));border-color:var(--line); }
+.signup-page { background:transparent; }.signup-page>.topbar { background:transparent; }.event-heading { padding:22px 20px;background:var(--card);border:1px solid var(--line);border-radius:12px; }.group-option:nth-child(3n+1) { background:#fff;border-color:var(--line); }.group-option:nth-child(3n+2) { background:#fff;border-color:var(--line); }.group-option:nth-child(3n) { background:#fff;border-color:var(--line); }.group-option.selected { border-color:var(--accent);box-shadow:none; }.success-panel { background:var(--card);border-color:var(--line); }.success-mark { background:var(--field-bg);color:var(--muted); }.terms-line { background:var(--field-bg);border-color:var(--line); }
 
 .success-mark { color:#fff; background:var(--accent); border-radius:50%; }
 </style>
+
+<style scoped src="../service-ui.css"></style>

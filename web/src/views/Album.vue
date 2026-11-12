@@ -1,5 +1,5 @@
 <template>
-  <main class="club-detail-page album-page">
+  <main class="club-detail-page album-page service-page">
     <header class="topbar">
       <router-link :to="'/clubs/' + clubId + '/activities/' + activityId" aria-label="返回">‹</router-link>
       <h1>相册</h1>
@@ -310,5 +310,7 @@ onMounted(retryLoad);
 .club-detail-page .block :is(input:not([type="radio"]):not([type="checkbox"]):not([type="file"]),textarea,select) { border:1px solid var(--line); border-radius:12px; background:var(--field-bg); font-size:14px; }
 
 
-.album-page { background:transparent; }.album-page>.topbar { background:transparent; }.album-hero { background:var(--card);border-color:var(--line);box-shadow:none; }.tools .undo { background:#ffffffa1;border-color:var(--line); }.shot { background:var(--sky-soft,var(--field-bg)); }
+.album-page { background:transparent; }.album-page>.topbar { background:transparent; }.album-hero { background:var(--card);border-color:var(--line);box-shadow:none; }.tools .undo { background:#ffffffa1;border-color:var(--line); }.shot { background:var(--field-bg); }
 </style>
+
+<style scoped src="../service-ui.css"></style>

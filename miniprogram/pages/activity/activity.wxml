@@ -1,4 +1,4 @@
-<view class="activity-page mini-activity-activity" wx:if="{{activity}}">
+<view class="activity-page mini-activity-activity service-page" wx:if="{{activity}}">
   <view class="hero">
     <view class="hero-top"><text class="type-label">{{activity.trainingTypeLabel}}</text><text class="status-label">{{activity.statusLabel}}</text><button class="activity-share" open-type="share" aria-label="分享活动">分享 <text>↗</text></button></view>
     <view wx:if="{{activity.issue}}" class="issue">{{activity.issue}}</view>
@@ -73,7 +73,7 @@
         <view class="field-label">成团人数</view><input class="staff-input" data-key="minPeople" type="number" placeholder="成团人数" value="{{draft.minPeople}}" bindinput="onDraft" aria-label="成团人数" />
         <view class="field-label">计分最低里程 · 公里</view><input class="staff-input" data-key="minKm" type="digit" placeholder="计分公里" value="{{draft.minKm}}" bindinput="onDraft" aria-label="计分公里" />
         <view class="field-label">活动积分</view><input class="staff-input" data-key="points" type="number" placeholder="活动积分" value="{{draft.points}}" bindinput="onDraft" aria-label="活动积分" />
-        <view class="review-setting"><text>活动相册内容需要管理员审核</text><switch color="#e1251b" checked="{{draft.review}}" bindchange="toggleReview"/></view>
+        <view class="review-setting"><text>活动相册内容需要管理员审核</text><switch color="#ff1838" checked="{{draft.review}}" bindchange="toggleReview"/></view>
         <button class="staff-primary" loading="{{actionBusy}}" bindtap="saveActivity">保存活动</button>
       </view>
       <view class="group-add">
@@ -135,15 +135,14 @@
   </view>
 
   <view wx:if="{{message}}" class="message-line">{{message}}</view>
+  <view wx:if="{{activity}}" class="bottom-bar">
+    <view class="bottom-meta"><text class="bottom-count">{{activity.signupCount}}</text><text class="bottom-caption">人已报名</text></view>
+    <navigator wx:if="{{activity.action.enabled && activity.action.kind === 'signup'}}" class="bottom-primary" url="/pages/signup/signup?club={{clubId}}&id={{activityId}}">{{activity.action.label}}</navigator>
+    <button wx:elif="{{activity.action.enabled && activity.action.kind === 'cancel'}}" class="bottom-primary" loading="{{actionBusy}}" disabled="{{actionBusy}}" bindtap="cancel">{{activity.action.label}}</button>
+    <button wx:else class="bottom-primary disabled" disabled>{{activity.action.label}}</button>
+    <button wx:if="{{activity.mine.signed && activity.mine.groupId}}" class="pacer-button" disabled="{{actionBusy}}" bindtap="pacer">{{activity.mine.pacer ? '不领跑' : '我领跑'}}</button>
+  </view>
 </view>
 
-<view wx:elif="{{loading}}" class="load-state"><view class="load-mark">MP</view><text>正在加载活动</text></view>
-<view wx:else class="load-state"><view class="load-mark">!</view><text>{{message || '活动暂时无法打开'}}</text><button class="retry-button" bindtap="retry">重新加载</button></view>
-
-<view wx:if="{{activity}}" class="bottom-bar">
-  <view class="bottom-meta"><text class="bottom-count">{{activity.signupCount}}</text><text class="bottom-caption">人已报名</text></view>
-  <navigator wx:if="{{activity.action.enabled && activity.action.kind === 'signup'}}" class="bottom-primary" url="/pages/signup/signup?club={{clubId}}&id={{activityId}}">{{activity.action.label}}</navigator>
-  <button wx:elif="{{activity.action.enabled && activity.action.kind === 'cancel'}}" class="bottom-primary" loading="{{actionBusy}}" disabled="{{actionBusy}}" bindtap="cancel">{{activity.action.label}}</button>
-  <button wx:else class="bottom-primary disabled" disabled>{{activity.action.label}}</button>
-  <button wx:if="{{activity.mine.signed && activity.mine.groupId}}" class="pacer-button" disabled="{{actionBusy}}" bindtap="pacer">{{activity.mine.pacer ? '不领跑' : '我领跑'}}</button>
-</view>
+<view wx:elif="{{loading}}" class="load-state service-page"><view class="load-mark">…</view><text>正在加载活动</text></view>
+<view wx:else class="load-state service-page"><view class="load-mark">!</view><text>{{message || '活动暂时无法打开'}}</text><button class="retry-button" bindtap="retry">重新加载</button></view>

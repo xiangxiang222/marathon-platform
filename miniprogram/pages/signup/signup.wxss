@@ -33,7 +33,7 @@
 .choice { flex: 1; min-width: 0; min-height: 44px; height: 44px; color: var(--text-secondary); text-align: center; }
 .choice-on { font-weight: 600; }
 .level-label { margin-top: 22rpx; }
-.level-list { overflow: hidden; border-radius: 8rpx; background: var(--lilac-soft); }
+.level-list { overflow: hidden; border-radius: 8rpx; background: var(--page-bg); }
 .level-option { display: flex; align-items: center; gap: 12rpx; min-height:44px; padding: 12rpx 14rpx; border-bottom: 1rpx solid var(--border); }
 .level-option:last-child { border-bottom: 0; }
 .level-name { flex: none; width: 72rpx; font-size: 12px; font-weight: 600; }
@@ -66,11 +66,11 @@
 .signup-hero { margin: 24rpx 0 0; background: var(--surface); border-color: var(--border); box-shadow: none; }
 
 /* Route geometry: surfaces, controls and compact labels have distinct roles. */
-.mini-signup-signup .signup-hero, .mini-signup-signup .group-option, .mini-signup-signup .optional-section, .mini-signup-signup .no-groups { border-radius: 24rpx; }
-.mini-signup-signup .submit-button, .mini-signup-signup .retry-button { border-radius: 24rpx; }
+.mini-signup-signup .signup-hero, .mini-signup-signup .group-option, .mini-signup-signup .optional-section, .mini-signup-signup .no-groups { border-radius:12px; }
+.mini-signup-signup .submit-button, .mini-signup-signup .retry-button { border-radius:12px; }
 .mini-signup-signup .choice { border-radius: 14rpx; }
 .mini-signup-signup { color: var(--text); }
-.mini-signup-signup button { font-weight: 500; border-radius: 24rpx; }
+.mini-signup-signup button { font-weight: 500; border-radius:12px; }
 
 .signup-page { background: transparent; color: var(--text); }
 .signup-hero { padding: 30rpx; border: 1px solid var(--border); background: var(--surface); border-color: var(--border); box-shadow: none; }
@@ -87,9 +87,11 @@
 .optional-caption { display: block; margin: 8rpx 0 0; font-size: 12px; line-height: 1.7; }
 .choice { display: flex; align-items: center; justify-content: center; border: 1px solid var(--border); border-radius: 14rpx; background: #fff; font-size: 12px; line-height: 1.4; }
 .choice-on { border-color: var(--brand); color: var(--brand); background: var(--brand-soft); }
-.submit-bar .submit-button { display: flex; align-items: center; justify-content: center; height: 44px; border-radius: 24rpx; line-height: 1.4; background: var(--brand); }
+.submit-bar .submit-button { display: flex; align-items: center; justify-content: center; height: 44px; border-radius:12px; line-height: 1.4; background: var(--brand); }
 
 /* Primary actions read at 14px, secondary actions at 13px; compact filters stay at 12px. */
 .mini-signup-signup .submit-button { font-size: 14px; font-weight: 500; }
 .mini-signup-signup .retry-button { font-size: 13px; font-weight: 500; }
 .submit-bar .submit-button { font-size: 14px; }
+
+@import "../../utils/service-ui.wxss";

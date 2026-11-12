@@ -1,4 +1,4 @@
-<view class="page club-detail mini-internal-internal" wx:if="{{race}}">
+<view class="page club-detail mini-internal-internal service-page" wx:if="{{race}}">
   <view class="card detail-hero"><view class="detail-kicker">跑出状态 · 队内赛</view>
     <view class="h2">{{race.title}}</view>
     <view class="src">{{race.startsLabel}}{{race.place ? ' · ' + race.place : ''}} · {{race.distanceLabel}}</view>
@@ -36,7 +36,7 @@
   </view>
   <view wx:if="{{message}}" class="src">{{message}}</view>
 </view>
-<view wx:else class="detail-state">
+<view wx:else class="detail-state service-page">
   <view class="state-title">{{loading ? '正在加载队内赛…' : '暂时无法打开队内赛'}}</view>
   <view wx:if="{{!loading}}" class="src">{{message || '没有找到这场队内赛'}}</view>
   <button wx:if="{{!loading}}" class="btn" bindtap="load">重新加载</button>

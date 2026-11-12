@@ -1,5 +1,5 @@
 <template>
-  <main class="club-detail-page">
+  <main class="club-detail-page service-page">
     <header class="topbar">
       <router-link :to="'/clubs/' + clubId" aria-label="返回">‹</router-link>
       <h1>约跑</h1>
@@ -202,3 +202,5 @@ onMounted(retryLoad);
 .club-detail-page { background:transparent; }.club-detail-page>.topbar { background:transparent; }.club-detail-page .detail-hero { background:var(--card);border-color:var(--line);box-shadow:none; }.club-detail-page .detail-kicker { color:var(--muted); }.club-detail-page .detail-actions .undo { background:#ffffffa3;border-color:var(--line); }
 .member-name-link{min-width:0;color:var(--ink);overflow-wrap:anywhere;text-decoration:none}.member-name-link:hover{color:var(--accent)}
 </style>
+
+<style scoped src="../service-ui.css"></style>

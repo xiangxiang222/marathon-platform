@@ -1,5 +1,5 @@
 <template>
-  <main class="activity-page">
+  <main class="activity-page service-page">
     <header class="activity-nav">
       <router-link :to="'/clubs/' + clubId" aria-label="返回跑团">‹</router-link>
       <div><small>{{ clubName || '跑团活动' }}</small><h1>训练详情</h1></div>
@@ -11,8 +11,8 @@
       <section class="event-hero">
         <div class="hero-track" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
         <div class="hero-meta"><span>{{ typeLabel }}</span><span class="status">{{ activity.statusLabel }}</span></div>
-        <p class="hero-km">{{ activity.plannedKm || '—' }}<small>KM</small></p>
         <h2>{{ activity.title }}</h2>
+        <p class="hero-km">{{ activity.plannedKm || '—' }}<small>公里计划</small></p>
         <p class="hero-date">{{ activity.dateLabel }} <b>{{ activity.clockLabel }}</b></p>
         <p v-if="activity.issue" class="hero-issue">{{ activity.issue }}</p>
       </section>
@@ -303,13 +303,13 @@ watch(() => [route.params.id, route.params.aid], () => { activity.value = null; 
 .utility-heading { align-items:flex-start; flex-direction:column; gap:4px; }
 @media(max-width:560px) { .activity-content { padding:12px 12px 24px; } .event-hero { min-height:248px; background: var(--card); color: var(--ink); border: 1px solid var(--line);} .hero-km { font-size:40px; color: var(--accent);} .event-hero h2 { font-size:24px; color: var(--ink);} .detail-panel,.utility-panel { padding:18px; } }
 .activity-page { background:transparent; }
-.activity-nav { background:#fffdfbdc;backdrop-filter:blur(16px);border-color:var(--line); }
+.activity-nav { background:#fff;backdrop-filter:blur(16px);border-color:var(--line); }
 .event-hero { background:var(--card);border-color:var(--line);box-shadow:none; }
 .hero-track i { border-color:var(--line); }.hero-meta span { background:#ffffffab;border-color:var(--line);color:var(--muted); }.hero-meta .status { background:var(--field-bg);border-color:var(--line);color:var(--muted); }
 .quickfacts { overflow:hidden;border-color:var(--line);box-shadow:none; }
 .quickfacts>div { background:#fff; }
-.detail-tabs { background:#f7f8fce8;backdrop-filter:blur(14px); }
-.run-facts>div:nth-child(2) .fact-icon { background:var(--mint-soft,var(--field-bg));color:var(--muted); }.run-facts>div:nth-child(3) .fact-icon { background:var(--sky-soft,var(--field-bg));color:var(--muted); }
+.detail-tabs { background:#fff;backdrop-filter:blur(14px); }
+.run-facts>div:nth-child(2) .fact-icon { background:var(--field-bg);color:var(--muted); }.run-facts>div:nth-child(3) .fact-icon { background:var(--field-bg);color:var(--muted); }
 .briefing { background:var(--field-bg);border-left-color:var(--line); }
 .pace-group:nth-child(3n+1) { background:#fff; }.pace-group:nth-child(3n+2) { background:#fff; }.pace-group:nth-child(3n) { background:#fff; }
 .album-entry { background:#fff;border-color:var(--line); }.safety-note { background:#fff; }
@@ -322,3 +322,5 @@ watch(() => [route.params.id, route.params.aid], () => { activity.value = null; 
 .event-hero h2 { font-size: 24px; font-weight: 600; }
 .detail-panel,.utility-panel,.quickfacts { border-radius: 12px; }
 </style>
+
+<style scoped src="../service-ui.css"></style>

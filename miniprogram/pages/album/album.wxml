@@ -1,4 +1,4 @@
-<view class="pad club-detail mini-album-album" wx:if="{{activity}}">
+<view class="pad club-detail mini-album-album service-page" wx:if="{{activity}}">
   <view class="card">
     <view class="detail-kicker">留住一起奔跑的瞬间</view><view class="title">{{activity.title}}</view>
     <view class="src">{{activity.dateLabel}} {{activity.place}}</view>
@@ -25,7 +25,7 @@
   </view>
   <view wx:if="{{message}}" class="err">{{message}}</view>
 </view>
-<view wx:else class="detail-state">
+<view wx:else class="detail-state service-page">
   <view class="state-title">{{loading ? '正在加载相册…' : '暂时无法打开相册'}}</view>
   <view wx:if="{{!loading}}" class="src">{{message || '没有找到这个相册'}}</view>
   <button wx:if="{{!loading}}" class="btn" bindtap="load">重新加载</button>

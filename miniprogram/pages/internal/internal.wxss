@@ -3,23 +3,23 @@
 .stack input { width: 100%; height: 80rpx; margin-top: 16rpx; padding: 0 20rpx; box-sizing: border-box; }
 .card .btn { margin-top: 16rpx;  }
 .mine { color: var(--brand); }
-.detail-state { margin: 32rpx; padding: 40rpx 28rpx;  background: var(--sky-soft); text-align: center; }
+.detail-state { margin: 32rpx; padding: 40rpx 28rpx;  background: var(--page-bg); text-align: center; }
 .state-title { color: var(--text); font-size: 18px; font-weight: 600; }
 .detail-state .src { margin-top: 16rpx; overflow-wrap: anywhere;  }
 .detail-state .btn { margin-top: 28rpx;  }
 
 /* Route geometry: surfaces, controls and compact labels have distinct roles. */
-.mini-internal-internal .card, .mini-internal-internal .detail-state { border-radius: 24rpx; }
-.mini-internal-internal .btn, .mini-internal-internal .ghost, .mini-internal-internal .fold-toggle { border-radius: 24rpx; }
+.mini-internal-internal .card, .mini-internal-internal .detail-state { border-radius:12px; }
+.mini-internal-internal .btn, .mini-internal-internal .ghost, .mini-internal-internal .fold-toggle { border-radius:12px; }
 .mini-internal-internal { color: var(--text); background: transparent; }
-.mini-internal-internal button { font-weight: 500; border-radius: 24rpx; }
+.mini-internal-internal button { font-weight: 500; border-radius:12px; }
 
 .club-detail .card { border: 1px solid var(--border); }
 .club-detail .title { font-size: 24px; font-weight: 600; line-height: 1.5; }
 .detail-options { border-bottom: 1px solid var(--border); }
 .detail-options .ghost { border-radius: 0; background: transparent; font-size: 13px; }
 .detail-options .ghost.on { color: var(--text); box-shadow: none; background: transparent; }
-.stack input { min-height: 44px; border: 1px solid var(--border); border-radius: 24rpx; background: var(--page-bg); font-size: 14px; }
+.stack input { min-height: 44px; border: 1px solid var(--border); border-radius:12px; background: var(--page-bg); font-size: 14px; }
 
 /* Primary actions read at 14px, secondary actions at 13px; compact filters stay at 12px. */
 .mini-internal-internal .btn { font-size: 14px; font-weight: 500; }
@@ -27,3 +27,5 @@
 .detail-hero { background: var(--surface); box-shadow: none; }
 .mini-internal-internal > .card:nth-child(2) { background: #ffffff; }
 .mini-internal-internal > .card:nth-child(3) { background: #ffffff; }
+
+@import "../../utils/service-ui.wxss";

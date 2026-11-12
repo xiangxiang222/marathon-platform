@@ -1,7 +1,7 @@
 <template>
-  <main class="club-form-page">
+  <main class="club-form-page service-page">
     <header class="topbar"><router-link to="/clubs" aria-label="返回跑团">‹</router-link><h1>创建跑团</h1><span></span></header>
-    <div class="club-form-wrap"><p class="club-form-eyebrow">和志同道合的人一起跑</p><h2 class="club-form-title">一起跑，<br class="create-title-break">从一个名字开始。</h2><p class="club-form-lead">填下名称和活动城市，今天就能邀请跑友。<br>团名可以重复，城市、负责人和团号让彼此认得清。</p>
+    <div class="club-form-wrap"><p class="club-form-eyebrow">和志同道合的人一起跑</p><h2 class="club-form-title">填写跑团资料</h2><p class="club-form-lead">填写名称和活动城市，创建后即可邀请跑友。团名可以重复，请核对城市、负责人和团号。</p>
       <div v-if="!token" class="club-form-panel"><h2>和跑友的下一程，从这里开始</h2><p class="club-form-hint">登录后即可创建，无需申请建团资格。</p><button class="club-form-primary" type="button" @click="login">登录并创建</button></div>
       <div v-else class="club-form-grid with-preview">
         <form class="club-form-panel" @submit.prevent="create">
@@ -40,13 +40,13 @@ watch(token, loadMe, { immediate: true }); onBeforeUnmount(() => clearTimeout(ti
 </script>
 <style scoped>
 .create-title-break{display:none}@media(max-width:500px){.create-title-break{display:block}}
-.same-name{padding:14px;border:1px solid var(--line);border-radius:11px;margin:-5px 0 22px;background:var(--card);color:var(--muted);font-size:12px;line-height:1.8}.same-name p{font-size:12px;margin:6px 0}.same-name-row{display:flex;align-items:center;justify-content:space-between;gap:5px;border-top:1px solid var(--line);padding:9px 0}.same-name-row>a{min-width:0;overflow-wrap:anywhere}.same-name-row b{display:block;font-size:12px;font-weight:500}.same-name-row small{display:block;color:var(--muted);font-size:12px;line-height:1.8}.create-preview{min-width:0}.preview-caption{display:flex;justify-content:space-between;margin:2px 4px 12px;font-size:12px;color:var(--muted)}.preview-caption span{font-size:12px}.preview-card{position:relative;overflow:hidden;padding:25px;border:1px solid var(--line);border-radius:16px;background:var(--card)}.preview-track{position:absolute;right:-110px;top:15px;width:250px;height:250px;border:22px double var(--line);border-radius:50%;pointer-events:none}.preview-card>*:not(.preview-track){position:relative}.preview-letter{display:grid;place-items:center;width:55px;height:55px;border:1px solid var(--line);border-radius:16px;background:white;color:var(--accent);font-size:24px;margin:24px 0 16px}.preview-card h3{margin:0;font-size:24px;line-height:1.5;overflow-wrap:anywhere}.preview-card>p:not(.club-form-eyebrow){font-size:12px;color:var(--muted);line-height:1.9;overflow-wrap:anywhere}.preview-intro{margin:22px 0}.preview-card footer{display:flex;justify-content:space-between;gap:12px;border-top:1px solid var(--line);margin-top:28px;padding-top:18px;font-size:12px;color:var(--muted);line-height:1.9}.preview-card footer b{font-weight:500;color:var(--muted)}
-.club-form-panel { border-color:var(--line); border-radius:16px; }
+.same-name{padding:14px;border:1px solid var(--line);border-radius:11px;margin:-5px 0 22px;background:var(--card);color:var(--muted);font-size:12px;line-height:1.8}.same-name p{font-size:12px;margin:6px 0}.same-name-row{display:flex;align-items:center;justify-content:space-between;gap:5px;border-top:1px solid var(--line);padding:9px 0}.same-name-row>a{min-width:0;overflow-wrap:anywhere}.same-name-row b{display:block;font-size:12px;font-weight:500}.same-name-row small{display:block;color:var(--muted);font-size:12px;line-height:1.8}.create-preview{min-width:0}.preview-caption{display:flex;justify-content:space-between;margin:2px 4px 12px;font-size:12px;color:var(--muted)}.preview-caption span{font-size:12px}.preview-card{position:relative;overflow:hidden;padding:25px;border:1px solid var(--line);border-radius:12px;background:var(--card)}.preview-track{position:absolute;right:-110px;top:15px;width:250px;height:250px;border:22px double var(--line);border-radius:50%;pointer-events:none}.preview-card>*:not(.preview-track){position:relative}.preview-letter{display:grid;place-items:center;width:55px;height:55px;border:1px solid var(--line);border-radius:12px;background:white;color:var(--accent);font-size:24px;margin:24px 0 16px}.preview-card h3{margin:0;font-size:24px;line-height:1.5;overflow-wrap:anywhere}.preview-card>p:not(.club-form-eyebrow){font-size:12px;color:var(--muted);line-height:1.9;overflow-wrap:anywhere}.preview-intro{margin:22px 0}.preview-card footer{display:flex;justify-content:space-between;gap:12px;border-top:1px solid var(--line);margin-top:28px;padding-top:18px;font-size:12px;color:var(--muted);line-height:1.9}.preview-card footer b{font-weight:500;color:var(--muted)}
+.club-form-panel { border-color:var(--line); border-radius:12px; }
 .club-form-title { max-width:22em; font-size:24px; line-height:1.4; }
 .club-form-panel h2 { font-size:20px; }
 
 
-.club-form-page { background:transparent; }.club-form-page>.topbar { background:transparent; }.club-form-eyebrow { color:var(--accent); }.club-form-panel { background:var(--card);border-color:var(--line);box-shadow:none; }.preview-card { background:var(--card);border-color:var(--line); }.preview-track { border-color:var(--line); }.same-name { background:var(--sky-soft,var(--field-bg));border-color:var(--line); }
+.club-form-page { background:transparent; }.club-form-page>.topbar { background:transparent; }.club-form-eyebrow { color:var(--accent); }.club-form-panel { background:var(--card);border-color:var(--line);box-shadow:none; }.preview-card { background:var(--card);border-color:var(--line); }.preview-track { border-color:var(--line); }.same-name { background:var(--field-bg);border-color:var(--line); }
 
 /* Shared typography and controls for club services. */
 
@@ -60,3 +60,5 @@ watch(token, loadMe, { immediate: true }); onBeforeUnmount(() => clearTimeout(ti
 .preview-card h3 { font-size:22px; font-weight:600; }
 
 </style>
+
+<style scoped src="../service-ui.css"></style>

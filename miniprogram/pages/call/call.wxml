@@ -1,4 +1,4 @@
-<view class="pad club-detail mini-call-call" wx:if="{{call}}">
+<view class="pad club-detail mini-call-call service-page" wx:if="{{call}}">
   <view class="card detail-hero"><view class="detail-kicker">每一份努力，值得记录</view>
     <view class="h2">{{call.title}}</view>
     <view class="src">{{call.raceDate}} · 截止 {{call.deadlineLabel}}{{call.closed ? ' · 已截止' : ''}}</view>
@@ -44,7 +44,7 @@
   <view wx:if="{{!call.groups.length}}" class="empty">还没有人填写。</view>
   <view wx:if="{{message}}" class="err">{{message}}</view>
 </view>
-<view wx:else class="detail-state"><view class="state-title">{{loading ? "正在打开成绩接龙…" : "暂时无法打开接龙"}}</view><view wx:if="{{!loading}}" class="src">{{message || "没有找到这场接龙"}}</view><button wx:if="{{!loading}}" class="btn" bindtap="load">重新加载</button></view>
+<view wx:else class="detail-state service-page"><view class="state-title">{{loading ? "正在打开成绩接龙…" : "暂时无法打开接龙"}}</view><view wx:if="{{!loading}}" class="src">{{message || "没有找到这场接龙"}}</view><button wx:if="{{!loading}}" class="btn" bindtap="load">重新加载</button></view>
 <canvas type="2d" id="call-poster" class="call-poster-canvas"></canvas>
 <view wx:if="{{posterPath}}" class="poster-layer" bindtap="closePoster" catchtouchmove="noop">
   <view class="poster-frame" catchtap="noop">
