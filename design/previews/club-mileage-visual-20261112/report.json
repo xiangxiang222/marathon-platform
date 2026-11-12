@@ -1,0 +1,73 @@
+{
+  "passed": true,
+  "baseCommit": "8395afe820afffc6d82fe0d01a64d28173e1b015",
+  "scope": "Web MileageBoard + Mini mileage-board; no API, database, PK calculation or permission changes",
+  "buildPassed": true,
+  "web": {
+    "checks": 30,
+    "widths": [
+      320,
+      390,
+      1440
+    ],
+    "errors": [],
+    "unexpected": []
+  },
+  "miniVm": {
+    "checks": 15,
+    "passed": true
+  },
+  "miniMirror": {
+    "views": 10,
+    "widths": [
+      320,
+      390
+    ],
+    "scenarios": [
+      "base",
+      "pressure",
+      "expanded",
+      "empty",
+      "error"
+    ],
+    "nativeButtonWidthModel": "button { width: calc(100% - 32px) }",
+    "errors": 0,
+    "passed": true
+  },
+  "native": {
+    "js": 53,
+    "json": 38,
+    "wxss": 38,
+    "compile": [
+      {
+        "tool": "wcc",
+        "files": 34,
+        "ok": true
+      },
+      {
+        "tool": "wcsc",
+        "files": 38,
+        "ok": true
+      }
+    ]
+  },
+  "keyBehaviors": [
+    "Five independent date ranges and Beijing calendar navigation",
+    "Exact group IDs: all, permanent group, unassigned, deleted group 404 fallback",
+    "Four group cards by default; expansion does not request data; folding preserves a selected later group",
+    "Member return retains group, date and range; old account/route responses are ignored",
+    "Permission-scoped group management and original reporting flows retain their checks"
+  ],
+  "screenshots": [
+    "web-mileage-320.png",
+    "web-mileage-390.png",
+    "web-board-pressure-320.png",
+    "mini/pages-mileage-mileage-320.png",
+    "mini/pages-mileage-mileage-390.png",
+    "mini/pages-mileage-mileage-pressure-320.png"
+  ],
+  "limitations": [
+    "Mini images are browser source mirrors of actual component state with approximated native controls, not WeChat device captures.",
+    "Web component screenshots temporarily hide the parent sticky header only during capture."
+  ]
+}
