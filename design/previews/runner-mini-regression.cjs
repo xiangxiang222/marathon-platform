@@ -372,36 +372,34 @@ async function main() {
     assert.equal(f.page.data.deviceMessage, ""); assert.equal(f.page.data.deviceBusy, "");
     assert.equal(f.calls.filter((item) => item.type === "request").length, reads);
   });
-  await check("Only connected devices can sync or disconnect; disconnect retains saved workouts", async () => {
+  await check("Only four pending brands display; stale API states cannot enable sync and legacy cleanup preserves workouts", async () => {
     const f = fixture(); const payload = copy(base);
-    payload.devices = [{ id: "coros", name: "COROS 高驰", status: "unavailable", reason: "厂商待开通" }];
+    payload.devices = [{ id: "apple", name: "Apple 健康", status: "connected" }, { id: "coros", status: "connected", lastSyncedAt: "2026-10-29T06:00:00Z" }];
     f.setReply(() => Promise.resolve(copy(payload))); await f.page.onShow();
+    assert.deepEqual(Array.from(f.page.data.payload.devices, row => row.id), ["garmin", "coros", "huawei", "suunto"]);
+    assert.ok(f.page.data.payload.devices.every(row => row.status === "unavailable" && row.statusLabel === "待开通" && !row.canDisconnect));
     const tap = { currentTarget: { dataset: { provider: "coros" } } }; const before = f.calls.length;
     await f.page.syncDevice(tap); f.page.disconnectDevice(tap); assert.equal(f.calls.length, before);
-    payload.devices[0].status = "connected";
+    for (const row of f.page.data.payload.devices) assert.ok(fs.existsSync(path.join(mini, row.icon)), row.icon);
+    payload.devices[1].canDisconnect = true;
     f.setReply((endpoint, method) => {
-      if (endpoint.endsWith("/sync")) return Promise.resolve({ imported: 2, duplicates: 1, rejected: 0 });
-      if (method === "DELETE") { payload.devices[0].status = "revoked"; return Promise.resolve({ ok: true }); }
+      if (method === "DELETE") { payload.devices[1].canDisconnect = false; return Promise.resolve({ ok: true }); }
       return Promise.resolve(copy(payload));
     });
-    await f.page.load(); assert.equal(f.page.data.payload.devices[0].statusLabel, "已连接");
-    await f.page.syncDevice(tap); assert.match(f.page.data.deviceMessage, /已同步 2 场/);
-    assert.ok(f.calls.some((item) => item.endpoint === "/me/devices/coros/sync" && item.method === "POST"));
+    await f.page.load();
+    f.page.disconnectDevice(tap); f.answerModal(false); await tick();
+    assert.equal(f.calls.filter(row => row.method === "DELETE").length, 0);
     f.page.disconnectDevice(tap); f.answerModal(true); await tick(); await tick();
-    assert.ok(f.calls.some((item) => item.endpoint === "/me/devices/coros" && item.method === "DELETE"));
-    assert.match(f.calls.filter((item) => item.type === "modal").at(-1).content, /已保存的运动记录继续保留/);
-    assert.equal(f.page.data.payload.devices[0].statusLabel, "已解除");
-    payload.devices[0].status = "unavailable"; payload.devices[0].canDisconnect = true;
-    await f.page.load(); const syncCount = f.calls.filter((item) => item.endpoint && item.endpoint.endsWith("/sync")).length;
-    await f.page.syncDevice(tap); assert.equal(f.calls.filter((item) => item.endpoint && item.endpoint.endsWith("/sync")).length, syncCount);
-    f.page.disconnectDevice(tap); f.answerModal(true); await tick(); await tick();
-    assert.match(f.calls.filter((item) => item.type === "modal").at(-1).content, /清除之前保留的连接凭据/);
+    assert.ok(f.calls.some(row => row.endpoint === "/me/devices/coros" && row.method === "DELETE"));
+    assert.equal(f.calls.filter(row => row.endpoint && row.endpoint.endsWith("/sync")).length, 0);
+    assert.match(f.calls.filter(row => row.type === "modal").at(-1).content, /清除之前保留的连接凭据/);
+    assert.match(f.calls.filter(row => row.type === "modal").at(-1).content, /已保存的运动记录继续保留/);
     assert.match(f.page.data.deviceMessage, /已清除旧连接/);
-    assert.equal(f.page.deviceSyncTime("2026-10-29T06:00:00Z"), "2026-10-29 14:00 北京时间");
-    const markup = fs.readFileSync(path.join(mini, "pages/runner/runner.wxml"), "utf8");
-    assert.match(markup, /文件导入按跑团的手填规则计入 PK/);
-    assert.match(markup, /item.status === 'available' \|\| item.status === 'revoked'/);
-    assert.doesNotMatch(markup, /bindtap="[^"]*"[^>]*>绑定设备</);
+    assert.ok(f.page.data.payload.devices.every(row => row.statusLabel === "待开通" && !row.canDisconnect));
+    f.page.toggleDeviceGuide(); assert.equal(f.page.data.deviceGuideOpen, true);
+    f.page.toggleDeviceData(); assert.equal(f.page.data.deviceDataOpen, true);
+    f.app.globalData.token = "another-owner"; await f.page.onShow();
+    assert.equal(f.page.data.deviceGuideOpen, false); assert.equal(f.page.data.deviceDataOpen, false);
   });
   await check("Existing imported workouts cannot open screenshot upload while manual records retain it", async () => {
     const f = fixture("sport");
@@ -433,7 +431,7 @@ async function main() {
     const markup = fs.readFileSync(path.join(mini, "pages/mine/mine.wxml"), "utf8");
     const signedInCard = markup.slice(markup.indexOf('<view wx:if="{{nickname}}" class="surface account-hero">'), markup.indexOf('<view wx:else class="surface guest-hero">'));
     assert.ok(!signedInCard.includes('bindtap="logout"'), "Account card stays focused on the runner");
-    assert.match(markup.split('<view class="mine-page')[0], /class="header-settings" bindtap="openSettings" aria-label="设置"/);
+    assert.match(markup.split('<view class="mine-page')[0], /class="header-settings(?: nav-settings)?" bindtap="openSettings" aria-label="设置"/);
     const settings = markup.slice(markup.indexOf(`<view wx:if="{{mainTab === 'settings'}}"`), markup.indexOf('  <block wx:else>'));
     assert.match(settings, /<button wx:if="{{nickname}}" class="logout" bindtap="logout">退出登录<\/button>/);
     assert.equal((markup.match(/bindtap="logout"/g) || []).length, 1, "One signed-in-only logout entrance in settings");
@@ -544,18 +542,14 @@ async function main() {
     assert.equal(f.helper.decorate(total).training.comparisonText, "");
     const mine = fixture("mine"); mine.page.toggleHelp(); assert.equal(mine.page.data.helpOpen, true); mine.page.toggleHelp(); assert.equal(mine.page.data.helpOpen, false);
   });
-  await check("Native icons match the shared web SVG paths and every referenced asset exists", async () => {
-    const webIcons = fs.readFileSync(path.join(root, "web/src/components/RunnerIcon.vue"), "utf8");
-    const shapes = new Map(Array.from(webIcons.matchAll(/<template v-(?:if|else-if)="name === '([^']+)'">([\s\S]*?)<\/template>/g), (match) => [match[1], match[2]]));
+  await check("Native service icons use the shared colorful Web artwork and every referenced asset exists", async () => {
     const f = fixture();
     for (const entry of f.helper.VIEWS) {
       assert.equal(entry.icon, "/images/runner/" + entry.key + ".png");
       const png = fs.readFileSync(path.join(mini, entry.icon));
-      assert.equal(png.readUInt32BE(16), 96); assert.equal(png.readUInt32BE(20), 96);
+      assert.ok(png.readUInt32BE(16) >= 96); assert.equal(png.readUInt32BE(16), png.readUInt32BE(20));
       const svg = fs.readFileSync(path.join(mini, "images/runner/" + entry.key + ".svg"), "utf8");
-      assert.ok(svg.includes(shapes.get(entry.key)), "shared path for " + entry.key);
-      const color = entry.key === "help" ? "#767676" : (process.env.UI_EXPECTED_ICON_STROKE || "#45515D");
-      assert.ok(svg.includes('stroke="' + color + '"'));
+      assert.equal(svg, fs.readFileSync(path.join(root, "web/public/images/runner/" + entry.key + ".svg"), "utf8"), "shared colorful artwork for " + entry.key);
     }
     for (const file of ["pages/mine/mine.wxml", "pages/runner/runner.wxml"]) {
       const markup = fs.readFileSync(path.join(mini, file), "utf8");
@@ -568,7 +562,7 @@ async function main() {
     assert.doesNotMatch(mineMarkup, /\{\{item\.mark\}\}/);
   });
   const markup = fs.readFileSync(path.join(mini, "pages/runner/runner.wxml"), "utf8");
-  assert.match(markup, /仅自己可见/); assert.match(markup, /厂商自动同步需正式开通/); assert.match(markup, /小程序暂不支持直接读取/);
+  assert.match(markup, /仅自己可见/); assert.match(markup, /厂商自动同步需正式开通/); assert.doesNotMatch(markup, /Apple 健康/);
   assert.match(markup, /payload\.training\.truncated/);
   report.passed = true;
 }

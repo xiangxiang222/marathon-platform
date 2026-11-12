@@ -1,9 +1,10 @@
 <template>
-  <main class="runner-page">
-    <header class="runner-header"><router-link class="back" to="/mine" aria-label="返回我的"><RunnerIcon name="back"/></router-link><div><span class="eyebrow">我的跑步记录</span><h1>{{ current.title }}</h1></div><span class="header-icon"><RunnerIcon :name="view"/></span></header>
-    <nav class="runner-nav" aria-label="跑者档案导航"><router-link v-for="item in views" :key="item.id" :to="{path:'/runner',query:{view:item.id}}" :class="{on:view===item.id}" :aria-current="view===item.id?'page':undefined">{{ item.short }}</router-link></nav>
-    <section v-if="!loggedIn" class="runner-card empty-large"><span class="empty-emblem"><RunnerIcon name="lock"/></span><h2>我的跑者档案</h2><p>登录后查看运动数据、赛事生涯与私人收藏。</p><button type="button" class="runner-primary" @click="login">登录，开启我的记录</button></section>
-    <section v-else-if="loading && !data" class="runner-card skeleton" aria-label="正在整理跑者档案" aria-busy="true"><i></i><i></i><i></i><p>正在读取跑者档案…</p></section>
+  <main class="runner-page" :class="{'devices-page':view==='devices'}">
+    <PageHeader v-if="view==='devices'" title="数据来源" class="devices-heading"><router-link to="/mine" class="devices-back" aria-label="返回我的"><RunnerIcon name="back"/></router-link></PageHeader>
+    <header v-else class="runner-header"><router-link class="back" to="/mine" aria-label="返回我的"><RunnerIcon name="back"/></router-link><div><span class="eyebrow">我的跑步记录</span><h1>{{ current.title }}</h1></div><span class="header-icon"><RunnerIcon :name="view"/></span></header>
+    <nav v-if="view!=='devices'" class="runner-nav" aria-label="跑者档案导航"><router-link v-for="item in views" :key="item.id" :to="{path:'/runner',query:{view:item.id}}" :class="{on:view===item.id}" :aria-current="view===item.id?'page':undefined">{{ item.short }}</router-link></nav>
+    <section v-if="!loggedIn" class="runner-card empty-large"><span class="empty-emblem"><RunnerIcon name="lock"/></span><h2>{{ view==='devices'?'登录后导入运动文件':'我的跑者档案' }}</h2><p>{{ view==='devices'?'将手表或 App 导出的 FIT / TCX 文件保存到自己的运动记录。':'登录后查看运动数据、赛事生涯与私人收藏。' }}</p><button type="button" class="runner-primary" @click="login">{{ view==='devices'?'登录后继续':'登录，开启我的记录' }}</button></section>
+    <section v-else-if="loading && !data" class="runner-card skeleton" :aria-label="view==='devices'?'正在读取数据来源':'正在整理跑者档案'" aria-busy="true"><i></i><i></i><i></i><p>{{ view==='devices'?'正在读取数据来源…':'正在读取跑者档案…' }}</p></section>
     <section v-else-if="error" class="runner-card empty-large" role="alert"><span class="empty-emblem"><RunnerIcon name="stats"/></span><h2>这次没能加载出来</h2><p>{{ error }}</p><button class="runner-primary" type="button" @click="load">重新加载</button></section>
     <template v-else-if="data">
       <template v-if="view === 'stats'">
@@ -31,31 +32,32 @@
         <section v-for="group in galleryGroups" :key="group.year" class="gallery-year"><h2>{{ group.year }}<span>{{ group.items.length }} 份收藏</span></h2><div class="gallery-grid"><article v-for="item in group.items" :key="item.key" class="gallery-item"><button type="button" class="media-cover" :class="item.kind" :aria-label="'预览'+item.race.name" @click="openPreview(item)"><video v-if="item.kind==='video'" :src="item.src" preload="metadata" muted playsinline></video><img v-else :src="item.src" :alt="item.race.name+' '+mediaLabel(item.kind)" loading="lazy"/><span v-if="item.kind==='video'" class="play-mark">▶</span><span class="media-kind">{{ mediaLabel(item.kind) }}</span></button><h3>{{ item.race.name }}</h3><div class="media-meta"><span>{{ item.race.raceDate }} · {{ item.distanceLabel }}</span><button v-if="!item.legacy" class="media-delete" type="button" :aria-label="'删除'+item.race.name+mediaLabel(item.kind)" @click="askDelete(item)">删除</button></div><router-link v-if="item.legacy" class="legacy-link" :to="'/races/'+item.race.id">在赛事详情管理 ›</router-link></article></div></section><p class="privacy-note"><RunnerIcon name="lock"/>私人收藏，不作为官方成绩核验。</p>
       </template>
       <template v-else-if="view === 'devices'">
-        <section class="runner-card device-import-card" :aria-busy="deviceBusy==='import'">
-          <div class="device-import-top"><span class="device-wordmark">运动数据</span><span class="small-pill">文件导入</span></div>
-          <h2>导入 FIT / TCX 文件</h2>
-          <p>导入设备导出的运动文件，查看跑量、用时与配速。</p>
-          <label class="device-file-button" :class="{busy:deviceBusy}"><RunnerIcon name="add"/><span>{{ deviceBusy==='import'?'正在读取运动记录…':'导入运动文件' }}</span><input aria-label="选择 FIT 或 TCX 运动文件" type="file" accept=".fit,.tcx" :disabled="!!deviceBusy" @change="importActivity"/></label>
-          <div class="device-import-meta"><span>FIT / TCX · 单场运动 · ≤ 5 MB</span><router-link to="/sport">手动记录 ›</router-link></div>
-          <div v-if="deviceMessage" class="device-feedback" :class="{failure:deviceFailed}" :role="deviceFailed?'alert':'status'"><p>{{ deviceMessage }}</p><router-link v-if="!deviceFailed" to="/sport">查看运动记录 ›</router-link></div>
-          <details class="device-guide"><summary>如何准备运动文件？ <span>查看步骤</span></summary><ol><li><b>打开一场活动</b><span>在高驰、佳明、颂拓等设备 App 中，打开一场已完成的跑步活动。</span></li><li><b>导出运动数据</b><span>查看当前 App 提供的导出选项，保存可用的 FIT / TCX 文件。菜单位置以实际版本为准，不要选择轨迹图片。</span></li><li><b>回到这里导入</b><span>选择刚保存的文件。开始时间相差不超过 60 秒，且距离、用时接近时，更完整的 FIT 可补全现存记录。与现存记录差异过大时不会新增或覆盖，请先到运动页核对。</span></li></ol></details>
-          <p class="device-import-privacy">仅保存运动摘要，不保留原文件、GPS 轨迹和心率。</p>
-          <nav class="device-legal-links" aria-label="运动数据保护说明"><router-link to="/legal/privacy">隐私政策</router-link><router-link to="/legal/permissions">权限说明</router-link></nav>
-          <p class="device-import-rule">文件导入按跑团的手填规则计入 PK；类型待确认、越野缺少爬升时，先计个人运动。不作为厂商官方同步或赛事成绩认证。</p>
+        <section class="runner-card device-connections">
+          <div class="device-card-heading"><h2>连接手表与 App</h2><p>一次记录，汇入你的运动档案</p></div>
+          <article v-for="device in supportedDevices" :key="device.id" class="device-connection">
+            <div class="device-row"><img class="device-brand-icon" :src="device.icon" :alt="device.english" width="56" height="56"/><div class="device-brand-copy"><h3>{{ device.name }}</h3><p>{{ device.english }}</p></div><span class="device-status">待开通</span></div>
+            <button v-if="device.canDisconnect" class="device-cleanup" type="button" :disabled="!!deviceBusy" @click="askDisconnect(device)">清除旧连接</button>
+          </article>
         </section>
-        <section class="runner-card device-connections"><div class="section-heading"><h2>自动同步</h2><span class="subtle">连接与授权</span></div><p class="device-section-copy">开通厂商授权后，完成活动即可同步。你可以随时解除连接，保留已保存的运动。</p><article v-for="device in data.devices" :key="device.id" class="device-connection"><div class="device-row"><span class="device-monogram" :class="device.id">{{ device.name.slice(0,1).toUpperCase() }}</span><div><h3>{{ device.name }}</h3><p>{{ device.error || device.reason || (device.status==='connected'?'跑步与越野记录同步中':'可在厂商页面安全授权') }}</p><p v-if="device.lastSyncedAt" class="device-sync-time">上次同步 {{ syncTime(device.lastSyncedAt) }}</p></div><span class="device-status" :class="device.status">{{ deviceStatus(device.status) }}</span></div><div v-if="device.status==='available'||device.status==='connected'||device.status==='error'||device.status==='revoked'||device.canDisconnect" class="device-actions"><button v-if="device.status==='available'||device.status==='revoked'" class="device-action-primary" type="button" :disabled="!!deviceBusy" @click="connectDevice(device)">{{ deviceBusy===device.id?'正在打开…':'前往授权' }}</button><template v-else-if="device.status==='connected'||device.status==='error'"><button class="device-action-primary" type="button" :disabled="!!deviceBusy" @click="syncDevice(device)">{{ deviceBusy===device.id?'正在同步…':'立即同步' }}</button><button class="device-action-secondary" type="button" :disabled="!!deviceBusy" @click="askDisconnect(device)">解除连接</button></template><button v-else class="device-action-secondary" type="button" :disabled="!!deviceBusy" @click="askDisconnect(device)">清除旧连接</button></div></article><p class="subtle source-note">厂商自动同步需正式开通，连接状态以本页提示为准。授权仅在厂商官方页面进行，平台不会索取你的设备账号密码。</p></section>
-        <section class="runner-card source-faq"><h2>关于运动数据</h2><details><summary>文件导入与自动同步有什么区别？</summary><p>文件由你从设备平台导出并上传，按手填规则参与跑团 PK。厂商自动同步需要正式授权与接入，只有开放后才会显示连接入口。两种方式都不会自动生成赛事完赛成绩。</p></details><details><summary>运动跑量和比赛里程有什么区别？</summary><p>运动统计来自运动页保存的跑步和越野原始距离；赛事生涯来自已保存的完赛成绩。两者单独展示，避免同一场比赛重复累加。</p></details><details><summary>为什么和跑团 PK 跑量不一样？</summary><p>个人运动统计展示原始跑步距离。跑团 PK 会按跑团规则计算有效跑量，越野折算、时间范围和审核规则可能不同。</p></details><details><summary>能直接同步 Apple 健康吗？</summary><p>当前网页和微信小程序不能直接读取 Apple 健康。本平台尚未提供连接；未来需通过具备 HealthKit 权限的原生应用接入。</p></details></section>
+        <section class="runner-card device-import-card" :aria-busy="deviceBusy==='import'">
+          <div class="device-card-heading"><h2>导入运动文件</h2><p>FIT / TCX · 单场运动 · ≤ 5 MB</p></div>
+          <div class="device-import-actions"><label class="device-file-button" :class="{busy:deviceBusy}"><RunnerIcon name="add"/><span>{{ deviceBusy==='import'?'正在导入…':'选择运动文件' }}</span><input aria-label="选择 FIT 或 TCX 运动文件" type="file" accept=".fit,.tcx" :disabled="!!deviceBusy" @change="importActivity"/></label><router-link class="device-manual" to="/sport">手动记录 <span aria-hidden="true">›</span></router-link></div>
+          <div v-if="deviceMessage" class="device-feedback" :class="{failure:deviceFailed}" :role="deviceFailed?'alert':'status'"><p>{{ deviceMessage }}</p><router-link v-if="!deviceFailed" to="/sport">查看运动记录 ›</router-link></div>
+          <details class="device-guide"><summary>导入方法 <span aria-hidden="true">＋</span></summary><ol><li><b>打开一场活动</b><span>在设备 App 中找到一场已完成的跑步活动。</span></li><li><b>导出运动文件</b><span>保存 App 提供的 FIT / TCX 文件，菜单位置以实际版本为准；轨迹图片无法导入。</span></li><li><b>回到这里选择文件</b><span>每个文件只含一场活动，大小不超过 5 MB。</span></li></ol></details>
+          <details class="device-data-explainer"><summary>数据如何保存与计入？ <span aria-hidden="true">＋</span></summary><div><p>仅保存运动摘要与去重信息，不保留原文件、GPS 轨迹和心率。</p><p class="device-import-rule">文件导入按跑团的手填规则计入 PK；类型待确认、越野缺少爬升时，先计个人运动。不会自动生成赛事完赛成绩。</p><p>重复记录不会重复计入。开始时间相差不超过 60 秒，且距离、用时接近时，更完整的 FIT 可补全现存记录；数据冲突、差异过大时不会新增或覆盖，请先到运动页核对。</p></div></details>
+        </section>
+        <nav class="device-legal-links" aria-label="运动数据保护说明"><router-link to="/legal/privacy">隐私政策</router-link><span aria-hidden="true">·</span><router-link to="/legal/permissions">权限说明</router-link></nav>
       </template>
       <template v-else-if="view === 'help'">
         <section class="runner-card help-intro"><RunnerIcon name="help"/><h2>少一点摸索，多一点奔跑。</h2><p>你可能想知道的，都整理在这里。</p></section><section class="runner-card source-faq"><details v-for="(item,i) in faqs" :key="item.title" :open="i===0"><summary>{{ item.title }}</summary><p>{{ item.text }}</p><router-link v-if="item.to" :to="item.to" class="text-link">{{ item.action }} ›</router-link></details></section><router-link class="help-footer" to="/news">查看赛事资讯与官方信息 <span>›</span></router-link>
       </template>
-      <footer class="data-footer">统计更新至 {{ data.asOf }} · 仅统计本账号已保存的记录</footer>
+      <footer v-if="view!=='devices'" class="data-footer">统计更新至 {{ data.asOf }} · 仅统计本账号已保存的记录</footer>
     </template>
     <p v-if="notice" class="runner-notice" role="status">{{ notice }}</p>
     <dialog ref="uploadDialog" class="runner-dialog" @close="resetUpload" @cancel="uploading && $event.preventDefault()"><form @submit.prevent="submitUpload"><div class="dialog-head"><h2>收藏这一场</h2><button type="button" aria-label="关闭上传" :disabled="uploading" @click="uploadDialog.close()">×</button></div><p class="subtle">内容仅自己可见，可随时删除。</p><label>关联比赛<select v-model="uploadResult" :disabled="uploading" required><option value="" disabled>选择已保存成绩的比赛</option><option v-for="(result,i) in data?.results || []" :key="result.race.id+result.distance" :value="String(i)">{{ result.race.name }} · {{ result.distanceLabel }}</option></select></label><label>收藏类型<select v-model="uploadKind" :disabled="uploading" @change="uploadFile=null"><option v-for="kind in galleryKinds" :key="kind.id" :value="kind.id">{{ kind.label }}</option></select></label><label class="file-choice"><RunnerIcon name="add"/><span>{{ uploadFile?.name || (uploadKind==='video'?'选择一段视频':'选择一张照片') }}</span><input :key="uploadKind" type="file" :accept="uploadKind==='video'?'video/mp4,video/webm':'image/jpeg,image/png,image/webp'" :disabled="uploading" @change="pickFile"/></label><p class="subtle">{{ uploadKind==='video'?'MP4 / WebM，最大 40 MB':'JPG / PNG / WebP，最大 8 MB' }}</p><p v-if="uploadError" role="alert" class="upload-error">{{ uploadError }}</p><button class="runner-primary" type="submit" :disabled="uploading||!uploadFile||uploadResult===''">{{ uploading?'正在上传，请稍候…':'保存到我的收藏' }}</button></form></dialog>
     <dialog ref="previewDialog" class="preview-dialog" @close="preview=null"><template v-if="preview"><div class="preview-head"><span>{{ mediaLabel(preview.kind) }} · 仅自己可见</span><button type="button" aria-label="关闭预览" @click="previewDialog.close()">×</button></div><video v-if="preview.kind==='video'" :src="preview.src" controls playsinline preload="metadata"></video><img v-else :src="preview.src" :alt="preview.race.name"/><h2>{{ preview.race.name }}</h2><p>{{ preview.race.raceDate }} · {{ preview.distanceLabel }} · 未核验</p></template></dialog>
     <dialog ref="activityConsentDialog" class="runner-dialog activity-consent-dialog" aria-labelledby="activity-consent-title" @cancel="cancelActivityFileConsent" @close="onActivityConsentClosed"><h2 id="activity-consent-title">导入运动数据前确认</h2><p>完整运动文件可能包含 GPS 轨迹、心率等敏感个人信息。</p><p>同意后，本次文件将临时上传并解析，仅保存运动摘要与去重信息，不保留原文件、GPS 轨迹和心率。跑量及相关截图按你所在跑团的规则展示。</p><p>取消不会上传，也不影响基本浏览。请阅读<router-link to="/legal/privacy" target="_blank" rel="noopener noreferrer">隐私政策</router-link>与<router-link to="/legal/permissions" target="_blank" rel="noopener noreferrer">权限说明</router-link>。</p><div><button class="runner-secondary" type="button" @click="cancelActivityFileConsent">取消</button><button class="runner-primary" type="button" @click="acceptActivityFileConsent">同意本次解析并导入</button></div></dialog>
-    <dialog ref="disconnectDialog" class="runner-dialog disconnect-dialog"><h2>{{ disconnectItem?.status==='unavailable'?'清除旧连接？':'解除 '+(disconnectItem?.name||'设备')+' 连接？' }}</h2><p>{{ disconnectItem?.status==='unavailable'?'厂商接入尚未开通，将清除之前保留的连接凭据。':'解除后停止接收新的运动数据，' }}已保存的运动记录继续保留。你仍可自行管理和删除它们。</p><p v-if="disconnectError" class="upload-error" role="alert">{{ disconnectError }}</p><div><button class="runner-secondary" type="button" :disabled="!!deviceBusy" @click="disconnectDialog.close()">{{ disconnectItem?.status==='unavailable'?'暂不清除':'保持连接' }}</button><button class="runner-primary" type="button" :disabled="!!deviceBusy" @click="disconnectDevice">{{ deviceBusy?'正在处理…':disconnectItem?.status==='unavailable'?'清除旧连接':'解除连接' }}</button></div></dialog>
+    <dialog ref="disconnectDialog" class="runner-dialog disconnect-dialog" @cancel="cancelDisconnect" @close="onDisconnectClosed"><h2>{{ disconnectItem?.status==='unavailable'?'清除旧连接？':'解除 '+(disconnectItem?.name||'设备')+' 连接？' }}</h2><p>{{ disconnectItem?.status==='unavailable'?'厂商接入尚未开通，将清除之前保留的连接凭据。':'解除后停止接收新的运动数据，' }}已保存的运动记录继续保留。你仍可自行管理和删除它们。</p><p v-if="disconnectError" class="upload-error" role="alert">{{ disconnectError }}</p><div><button class="runner-secondary" type="button" :disabled="!!deviceBusy" @click="cancelDisconnect">{{ disconnectItem?.status==='unavailable'?'暂不清除':'保持连接' }}</button><button class="runner-primary" type="button" :disabled="!!deviceBusy" @click="disconnectDevice">{{ deviceBusy?'正在处理…':disconnectItem?.status==='unavailable'?'清除旧连接':'解除连接' }}</button></div></dialog>
     <dialog ref="deleteDialog" class="runner-dialog delete-dialog"><h2>删除这份收藏？</h2><p>只删除这份文件，不影响比赛成绩。删除后无法恢复。</p><p v-if="deleteError" class="upload-error" role="alert">{{ deleteError }}</p><div><button class="runner-secondary" type="button" :disabled="deleting" @click="deleteDialog.close()">保留</button><button class="runner-primary" type="button" :disabled="deleting" @click="deleteMedia">{{ deleting?'正在删除':'删除收藏' }}</button></div></dialog>
   </main>
 </template>
@@ -64,6 +66,7 @@ import { computed, nextTick, onBeforeUnmount, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { api, resultProofSrc, upload } from '../api';
 import RunnerIcon from '../components/RunnerIcon.vue';
+import PageHeader from '../components/PageHeader.vue';
 import RunnerBars from '../components/RunnerBars.vue';
 import { normalizeResults } from '../achievement-model';
 import { version as activityConsentVersion } from '../../../shared/legal-documents.json';
@@ -74,6 +77,9 @@ const current=computed(()=>views.find(x=>x.id===view.value));
 const loggedIn=ref(Boolean(localStorage.getItem('marathon_token')));
 const data=ref(null), loading=ref(false), error=ref(''), notice=ref('');
 const posterAvailable=computed(()=>normalizeResults(data.value).length>0);
+const deviceBrands=[{id:'garmin',name:'佳明',english:'Garmin'},{id:'coros',name:'高驰',english:'COROS'},{id:'huawei',name:'华为运动健康',english:'HUAWEI Health'},{id:'suunto',name:'颂拓',english:'Suunto'}];
+const supportedDevices=computed(()=>deviceBrands.map(brand=>{const prior=(data.value?.devices||[]).find(item=>item.id===brand.id);return{...brand,status:'unavailable',canDisconnect:Boolean(prior?.canDisconnect),icon:import.meta.env.BASE_URL+'images/devices/'+brand.id+'.png'};}));
+
 const period=ref('week'), offset=ref(0), year=ref(''), kindFilter=ref('all'), trendMetric=ref('count'), selectedCity=ref('');
 const periods=[{id:'week',label:'周'},{id:'month',label:'月'},{id:'year',label:'年'},{id:'all',label:'累计'}];
 const kinds=[{id:'all',label:'全部'},{id:'road',label:'路跑'},{id:'trail',label:'越野'},{id:'other',label:'其他'}];
@@ -87,8 +93,8 @@ async function load(){if(!loggedIn.value)return;const id=++requestId;const sessi
 function login(){localStorage.setItem('marathon_return_after_login','/runner?view='+view.value);router.push('/mine');}
 function changePeriod(value){if(period.value===value)return;period.value=value;offset.value=0;load();}
 function changeOffset(delta){if(loading.value||period.value==='all')return;offset.value=Math.min(0,offset.value+delta);load();}
-watch(view,()=>{cancelActivityFileConsent();year.value='';selectedCity.value='';galleryKind.value=view.value==='media'?'photo':'certificate';window.scrollTo({top:0,behavior:'instant'});});
-onBeforeUnmount(()=>{unmounted=true;cancelActivityFileConsent();requestId++;clearTimeout(noticeTimer);});
+watch(view,()=>{cancelActivityFileConsent();cancelDisconnect();year.value='';selectedCity.value='';galleryKind.value=view.value==='media'?'photo':'certificate';window.scrollTo({top:0,behavior:'instant'});});
+onBeforeUnmount(()=>{unmounted=true;cancelActivityFileConsent();cancelDisconnect();requestId++;clearTimeout(noticeTimer);});
 const number=value=>Number(value||0).toLocaleString('zh-CN',{maximumFractionDigits:2});
 function clock(sec){const n=Math.round(Number(sec)||0);return`${Math.floor(n/3600)}:${String(Math.floor(n/60)%60).padStart(2,'0')}:${String(n%60).padStart(2,'0')}`;}
 function pace(sec){if(!Number.isFinite(sec)||sec<=0)return'—';const value=Math.round(sec);return`${Math.floor(value/60)}′${String(value%60).padStart(2,'0')}″`;}
@@ -129,7 +135,7 @@ function askDelete(item){deleteItem.value=item;deleteError.value='';deleteDialog
 async function deleteMedia(){if(deleting.value||!deleteItem.value)return;deleting.value=true;deleteError.value='';try{await api('/me/runner/media/'+deleteItem.value.id,{method:'DELETE'});notice.value='收藏已删除';deleteDialog.value.close();await load();}catch(err){deleteError.value=err.message;}finally{deleting.value=false;}}
 const deviceBusy=ref(''),deviceMessage=ref(''),deviceFailed=ref(false),disconnectDialog=ref(null),disconnectItem=ref(null),disconnectError=ref('');
 const activityConsentDialog=ref(null);
-let pendingActivityFile=null;
+let pendingActivityFile=null,pendingDisconnect=null;
 const deviceStatus=status=>({available:'可连接',connected:'已连接',error:'同步异常',revoked:'已解除'}[status]||'待开通');
 function runTypeLabel(run){return run.typeLabel||({road:'户外跑',trail:'越野',treadmill:'跑步机',indoor:'室内跑',track:'操场跑',virtual:'虚拟跑',unknown:'跑步·待确认'})[run.runMode]||(run.type==='trail'?'越野跑':'跑步');}
 function syncTime(value){if(!value)return'';const raw=String(value);if(!/(Z|[+-]\d{2}:?\d{2})$/.test(raw))return raw.replace('T',' ').slice(0,16);const ms=Date.parse(raw);return Number.isFinite(ms)?new Date(ms+8*3600000).toISOString().slice(0,16).replace('T',' ')+' 北京时间':'';}
@@ -155,8 +161,22 @@ async function acceptActivityFileConsent(){
 }
 async function connectDevice(device){if(deviceBusy.value||!['available','revoked'].includes(device.status))return;const token=localStorage.getItem('marathon_token');deviceBusy.value=device.id;deviceMessage.value='';deviceFailed.value=false;try{const result=await api('/me/devices/'+encodeURIComponent(device.id)+'/connect');if(!deviceSession(token))return;const url=new URL(result.url);if(url.protocol!=='https:')throw new Error('授权地址暂不可用');window.location.assign(url.href);}catch(err){if(deviceSession(token)){deviceFailed.value=true;deviceMessage.value=err.message||'暂时无法打开授权';}}finally{if(deviceSession(token))deviceBusy.value='';}}
 async function syncDevice(device){if(deviceBusy.value||!['connected','error'].includes(device.status))return;const token=localStorage.getItem('marathon_token');deviceBusy.value=device.id;deviceMessage.value='';deviceFailed.value=false;try{const result=await api('/me/devices/'+encodeURIComponent(device.id)+'/sync',{method:'POST'});if(!deviceSession(token))return;deviceMessage.value=result.imported?`已同步 ${result.imported} 场运动，数据已更新。`:'同步完成，暂时没有新的运动记录。';if(result.rejected)deviceMessage.value+=` ${result.rejected} 条记录未通过校验。`;await load();}catch(err){if(deviceSession(token)){deviceFailed.value=true;deviceMessage.value=err.message||'同步失败，请稍后重试';await load();}}finally{if(deviceSession(token))deviceBusy.value='';}}
-function askDisconnect(device){if(deviceBusy.value||(!['connected','error'].includes(device.status)&&!device.canDisconnect))return;disconnectItem.value=device;disconnectError.value='';disconnectDialog.value.showModal();}
-async function disconnectDevice(){if(deviceBusy.value||!disconnectItem.value)return;const token=localStorage.getItem('marathon_token');deviceBusy.value=disconnectItem.value.id;try{await api('/me/devices/'+encodeURIComponent(disconnectItem.value.id),{method:'DELETE'});if(!deviceSession(token))return;disconnectDialog.value.close();deviceFailed.value=false;deviceMessage.value=disconnectItem.value.status==='unavailable'?'已清除旧连接，已保存的运动记录继续保留。':'已解除连接，已保存的运动记录继续保留。';await load();}catch(err){if(deviceSession(token))disconnectError.value=err.message||'暂时无法解除连接';}finally{if(deviceSession(token))deviceBusy.value='';}}
+function cancelDisconnect(){pendingDisconnect=null;if(disconnectDialog.value?.open)disconnectDialog.value.close();}
+function onDisconnectClosed(){if(!disconnectDialog.value?.open)pendingDisconnect=null;}
+function askDisconnect(device){
+  if(deviceBusy.value||(!['connected','error'].includes(device.status)&&!device.canDisconnect))return;
+  const token=localStorage.getItem('marathon_token');if(!token||!deviceSession(token))return;
+  pendingDisconnect={token,view:view.value,device};disconnectItem.value=device;disconnectError.value='';disconnectDialog.value.showModal();
+}
+async function disconnectDevice(){
+  if(deviceBusy.value||!pendingDisconnect||!disconnectDialog.value?.open)return;
+  const pending=pendingDisconnect;
+  if(!deviceSession(pending.token)||view.value!==pending.view){cancelDisconnect();return;}
+  const {token,device}=pending;pendingDisconnect=null;deviceBusy.value=device.id;
+  try{await api('/me/devices/'+encodeURIComponent(device.id),{method:'DELETE'});if(!deviceSession(token))return;cancelDisconnect();deviceFailed.value=false;deviceMessage.value=device.status==='unavailable'?'已清除旧连接，已保存的运动记录继续保留。':'已解除连接，已保存的运动记录继续保留。';await load();}
+  catch(err){if(deviceSession(token)){disconnectError.value=err.message||'暂时无法解除连接';if(view.value===pending.view&&disconnectDialog.value?.open)pendingDisconnect=pending;}}
+  finally{if(deviceSession(token))deviceBusy.value='';}
+}
 const faqs=[{title:'怎么收藏一场想跑的比赛？',text:'打开赛事详情，标记“想跑”，也可以标记已报名、待抽签或中签等状态。标记会汇总到“我的赛事”。平台展示赛事信息，目前不提供赛事报名与支付。',to:'/',action:'去找比赛'},{title:'怎么录入成绩和上传证书？',text:'在赛事详情中选择参赛项目，保存完赛时间。然后在荣誉收藏上传证书、奖牌，在赛事影像保存照片与视频。个人上传内容仅自己可见，成绩均标注未核验。',to:'/',action:'选择比赛'},{title:'跑者生涯的数据怎么算？',text:'场数按不同赛事计算；比赛里程与总用时按保存的各项目成绩累加。平均配速使用总用时除以总距离。PB 取已保存的线下路跑同项目最好成绩，不代表官方认证。未来赛事不会计入已完赛，线上赛不点亮城市。'},{title:'为什么没有全国排名、卡路里和分段 PB？',text:'当前没有足够的数据证明这些数值，所以不会生成估算排名、热量或分段最佳成绩。个人成长只和自己的真实记录比较。'},{title:'怎么加入跑团？',text:'从好友分享的跑团介绍或“跑团”搜索进入，查看团名、团长和成员数后申请。等待团长或管理员审核，通过后才能查看团内内容。',to:'/clubs',action:'发现跑团'},{title:'设备自动同步现在可以用吗？',text:'现在可导入从高驰等设备导出的 FIT / TCX 文件，也可手动记录。自动同步仍需完成厂商开放平台接入，开通后才会提供正式授权入口；Apple 健康需要原生应用支持。',to:'/runner?view=devices',action:'查看数据来源'},{title:'撤回接龙或删除成绩，会影响私人收藏吗？',text:'不会。已上传的私人证书、奖牌、照片与视频继续保留，可在荣誉收藏或赛事影像中查看和删除。撤回团内接龙也不会删除你独立录入的成绩。'},{title:'头像、成绩和私人收藏分别谁能看到？',text:'头像与昵称会在跑团成员列表中展示；跑团成员可以按团内权限查看参赛成绩。个人运动明细、荣誉收藏和赛事影像仅自己可见。'}];
 load();
 </script>
@@ -181,3 +201,51 @@ load();
 </style>
 
 <style scoped src="../personal-ui.css"></style>
+
+<style scoped>
+/* Source connections are a small settings list; importing is a separate action. */
+.runner-page.devices-page{max-width:760px;padding-top:0;background:#f5f5f5}
+.devices-page .devices-heading{margin:0 -16px 12px;padding-top:8px;padding-bottom:8px;background:#fff}
+.devices-heading :deep(.page-header-main){justify-content:flex-start;gap:4px}
+.devices-heading :deep(h1){order:1;font-size:18px}
+.devices-page .devices-back{display:grid;place-items:center;width:36px;height:44px;margin-left:-8px;color:#333}
+.devices-back svg{width:22px;height:22px}
+.devices-page .runner-card{padding:16px;margin:0 0 12px;border:0;border-radius:12px;background:#fff;box-shadow:none}
+.devices-page .device-card-heading{margin:0 0 8px}
+.devices-page .device-card-heading h2{margin:0;font-size:16px;line-height:1.5;font-weight:600}
+.devices-page .device-card-heading p{margin:5px 0 0;font-size:12px;line-height:1.7;color:#777}
+.devices-page .device-connection{position:relative;padding:0;border:0;border-bottom:1px solid #f0f0f0}
+.devices-page .device-connection:last-child{border:0}
+.devices-page .device-row{display:flex;align-items:center;gap:12px;padding:14px 0;min-height:84px;border:0}
+.devices-page .device-brand-icon{display:block;flex:none;width:56px;height:56px;object-fit:contain;border-radius:12px}
+.devices-page .device-brand-copy{flex:1;min-width:0}
+.devices-page .device-brand-copy h3{margin:0;color:#1a1a1a;font-size:16px;font-weight:500;line-height:1.5}
+.devices-page .device-brand-copy p{margin:3px 0 0;color:#888;font-size:12px;line-height:1.5}
+.devices-page .device-status{flex:none;margin:0;padding:3px 7px;border:0;border-radius:5px;background:#f5f5f5;color:#999;font-size:12px;line-height:1.5;white-space:nowrap}
+.devices-page .device-cleanup{display:block;min-height:44px;margin:-9px 0 3px auto;padding:0 4px;border:0;background:transparent;color:#777;font-size:12px}
+.devices-page .device-import-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:16px 0 12px}
+.devices-page .device-file-button{display:inline-flex;flex:none;gap:6px;width:auto;min-height:44px;padding:0 14px;border-radius:8px;background:var(--accent);color:#fff;font-size:14px;font-weight:500}
+.devices-page .device-manual{display:flex;align-items:center;justify-content:flex-end;gap:6px;min-height:44px;color:#555;font-size:14px;white-space:nowrap}
+.devices-page .device-guide,.devices-page .device-data-explainer{border:0;border-top:1px solid #f0f0f0;margin:0;padding:0}
+.devices-page details>summary{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:48px;margin:0;padding:0;list-style:none;font-size:14px;font-weight:400;cursor:pointer;color:#333}
+.devices-page details>summary::-webkit-details-marker{display:none}
+.devices-page details>summary>span{flex:none;font-size:16px;color:#999}
+.devices-page details[open]>summary>span{font-size:0}
+.devices-page details[open]>summary>span:after{content:'−';font-size:16px}
+.devices-page .device-guide ol{margin:0;padding:0 0 12px}
+.devices-page .device-guide li{padding-bottom:14px;font-size:12px;line-height:1.8}
+.devices-page .device-guide li span{font-size:12px;line-height:1.8}
+.devices-page .device-data-explainer>div{padding-bottom:12px}
+.devices-page .device-data-explainer p,.devices-page .device-import-rule{margin:0 0 10px;padding:0;border:0;color:#777;font-size:12px;line-height:1.8}
+.devices-page .device-feedback{margin:0 0 12px;padding:10px 12px;border:0;background:#f7f7f7;font-size:12px}
+.devices-page .device-feedback.failure{color:var(--accent);background:var(--accent-soft)}
+.devices-page>.device-legal-links{display:flex;justify-content:center;align-items:center;gap:12px;margin:0;padding:0;color:#999;font-size:12px}
+.devices-page>.device-legal-links a{display:flex;align-items:center;min-height:44px;color:#888;font-size:12px}
+.devices-page .empty-large{text-align:left}
+.devices-page .empty-large .empty-emblem{display:none}
+.devices-page .empty-large h2{margin:0 0 8px;font-size:16px}
+.devices-page .empty-large p{margin:0 0 16px;font-size:14px}
+.devices-page .skeleton i{height:56px;background:#f5f5f5}
+.devices-page .skeleton i:first-child{height:20px}
+@media(max-width:350px){.devices-page .devices-heading{margin-right:-12px;margin-left:-12px}.devices-page .device-row{gap:10px}.devices-page .device-brand-icon{width:56px;height:56px}.devices-page .device-status{padding-right:5px;padding-left:5px}}
+</style>

@@ -3,11 +3,10 @@ const crypto = require("crypto");
 // A provider is only enabled after its partner API contract has been verified.
 // Credentials alone cannot enable an invented OAuth or webhook protocol.
 const PROVIDERS = {
-  coros: { id: "coros", name: "COROS 高驰", scopes: "", reason: "高驰自动同步尚未开放，现在可先导入运动文件。" },
   garmin: { id: "garmin", name: "Garmin 佳明", scopes: "", reason: "自动同步尚未开通，现在可导入 FIT 或 TCX 运动文件。" },
+  coros: { id: "coros", name: "COROS 高驰", scopes: "", reason: "高驰自动同步尚未开放，现在可先导入运动文件。" },
   huawei: { id: "huawei", name: "华为运动健康", scopes: "", reason: "自动同步尚未开通；若设备平台可导出 FIT / TCX，可导入文件，也可手动记录。" },
-  suunto: { id: "suunto", name: "Suunto 颂拓", scopes: "", reason: "自动同步尚未开通，现在可导入 FIT 或 TCX 运动文件。" },
-  apple: { id: "apple", name: "Apple 健康", scopes: "", reason: "微信小程序与网页无法直接读取 Apple 健康；需要原生应用取得 HealthKit 授权。" }
+  suunto: { id: "suunto", name: "Suunto 颂拓", scopes: "", reason: "自动同步尚未开通，现在可导入 FIT 或 TCX 运动文件。" }
 };
 
 const nowIso = () => new Date().toISOString();

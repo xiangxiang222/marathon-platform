@@ -3,6 +3,13 @@ const { request, ready } = require("../../utils/request");
 const { VIEWS, decorate, shortKm, barsOf } = require("../../utils/runner-center");
 const activityConsentVersion = require("../../utils/legal-documents").version;
 
+const DEVICE_BRANDS = [
+  { id: "garmin", name: "佳明", subtitle: "Garmin", icon: "/images/devices/garmin.png" },
+  { id: "coros", name: "高驰", subtitle: "COROS", icon: "/images/devices/coros.png" },
+  { id: "huawei", name: "华为运动健康", subtitle: "HUAWEI Health", icon: "/images/devices/huawei.png" },
+  { id: "suunto", name: "颂拓", subtitle: "Suunto", icon: "/images/devices/suunto.png" }
+];
+
 const METRICS = [
   { key: "count", label: "完赛场数", unit: "场" },
   { key: "km", label: "比赛里程", unit: "公里" },
@@ -50,7 +57,8 @@ Page({
     deviceMessage: "",
     deviceErrorDetail: "",
     deviceFailed: false,
-    deviceGuideOpen: false
+    deviceGuideOpen: false,
+    deviceDataOpen: false
   },
   onLoad(options) {
     this._unloaded = false;
@@ -66,7 +74,7 @@ Page({
       this._lastToken = token;
       this._fileSequence = (this._fileSequence || 0) + 1;
       this._activityConsentPending = false;
-      this.setData({ payload: null, posterAvailable: false, filteredResults: [], gallery: [], cities: [], selectedCityKey: "", selectedCity: null, uploadOpen: false, uploadMessage: "", uploading: false, error: "", deviceBusy: "", deviceMessage: "", deviceErrorDetail: "", deviceFailed: false });
+      this.setData({ payload: null, posterAvailable: false, filteredResults: [], gallery: [], cities: [], selectedCityKey: "", selectedCity: null, uploadOpen: false, uploadMessage: "", uploading: false, error: "", deviceBusy: "", deviceMessage: "", deviceErrorDetail: "", deviceFailed: false, deviceGuideOpen: false, deviceDataOpen: false });
     }
     this.setData({ ready: ready() });
     if (ready()) return this.load();
@@ -109,7 +117,11 @@ Page({
       .then((data) => {
         if (sequence !== this._sequence || token !== getApp().globalData.token) return;
         const payload = decorate(data);
-        payload.devices = (payload.devices || []).map((item) => ({ ...item, statusLabel: ({ available: "可连接", connected: "已连接", error: "同步异常", revoked: "已解除" })[item.status] || "待开通", syncLabel: this.deviceSyncTime(item.lastSyncedAt) }));
+        const devices = Array.isArray(payload.devices) ? payload.devices : [];
+        payload.devices = DEVICE_BRANDS.map((brand) => {
+          const previous = devices.find((item) => item.id === brand.id);
+          return { ...brand, status: "unavailable", statusLabel: "待开通", canDisconnect: !!(previous && previous.canDisconnect) };
+        });
         this.setData({ ready: true, payload, posterAvailable: normalizeResults(payload).length > 0, loading: false });
         this.filter();
       })
@@ -287,6 +299,7 @@ Page({
     return Number.isFinite(ms) ? new Date(ms + 8 * 3600000).toISOString().slice(0, 16).replace("T", " ") + " 北京时间" : "";
   },
   toggleDeviceGuide() { this.setData({ deviceGuideOpen: !this.data.deviceGuideOpen }); },
+  toggleDeviceData() { this.setData({ deviceDataOpen: !this.data.deviceDataOpen }); },
   deviceSession(token) { return !this._unloaded && !this._hidden && token === getApp().globalData.token; },
   openDeviceLegal(event) { const doc = event.currentTarget.dataset.doc; if (["privacy", "permissions"].includes(doc)) wx.navigateTo({ url: "/pages/legal/legal?doc=" + doc }); },
   activityFileSelectionFailed(token, error) {
