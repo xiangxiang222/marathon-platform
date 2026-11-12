@@ -5,6 +5,7 @@
       <h1>赛事日历</h1>
       <span></span>
     </header>
+    <section class="calendar-board" aria-label="月度赛事日历">
     <div class="month">
       <button type="button" aria-label="上个月" @click="shift(-1)">‹</button>
       <b>{{ year }}年{{ month }}月</b>
@@ -31,6 +32,7 @@
         <span class="count">{{ cell.count || "" }}</span>
       </button>
     </div>
+    </section>
     <button v-if="ready && dayRaces.length" class="poster-btn" type="button" @click="openPoster">
       <span class="poster-day">{{ dayNum }}</span>
       <span class="poster-copy">
@@ -174,95 +176,12 @@ onMounted(load);
 </script>
 
 <style scoped>
-.calendar { background: transparent; min-height: 100vh; color: var(--ink); }
-.month { display: flex; align-items: center; justify-content: center; gap: 28px; padding: 4px 0 2px; }
-.month b { font-size: 20px; font-weight: 600; letter-spacing: normal; }
-.month button { width: 44px; height: 44px; border-radius: 8px; background: #fff; font-size: 24px; color: var(--ink);  border: 1px solid var(--line);}
-.week, .grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 0; padding: 0; background: #fff; margin: 0 16px;  border-radius: 0 0 12px 12px;}
-.week { border-radius: 12px 12px 0 0; padding: 8px 4px 2px; text-align: center; font-size: 13px;  margin: 0 16px;}
-.week .end { color: var(--accent); }
-.grid { border-radius: 0 0 12px 12px; padding: 0 2px 8px;  margin: 0 16px;}
-.cell {
-  min-width: 0;
-  min-height: calc(74px * var(--s));
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1px;
-  padding: 4px 0 2px;
-}
-.cell:disabled { cursor: default; }
-.num {
-  width: calc(28px * var(--s));
-  height: calc(28px * var(--s));
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  background: var(--bg);
-  font-size: calc(15px * var(--s));
-  font-weight: 500;
-}
-.cell.out .num { color: var(--muted); }
-.cell.out .lunar { color: #e1e4e8; }
-.cell.today .num { color: var(--accent); font-weight: 600; }
-.cell.today.picked .num { background: var(--accent); color: #fff; }
-.cell.picked:not(.today) .num { background: var(--accent); color: #fff; }
-.lunar, .count {
-  font-size: 12px;
-  line-height: 1.2;
-  min-height: 13px;
-  overflow: hidden;
-  white-space: nowrap;
-}
-.lunar { color: var(--muted); }
-.count { color: var(--accent); font-weight: 600; }
-.day-races { padding: 4px 16px 28px; }
-.day-races h2 { margin: 14px 4px 4px; font-size: 15px; font-weight: 600; color: var(--muted); }
-.race { display: block; margin-top: 8px; padding: 14px 16px; background: #fff; border-radius: 12px;  border: 1px solid var(--line);}
-.race b { display: block; font-size: 16px; font-weight: 600; line-height: 1.35; }
-.race span, .race em { display: block; margin-top: 4px; color: var(--muted); font-size: 13px; font-style: normal; }
-.race em { color: var(--accent); font-weight: 600; }
-.none { color: var(--muted); text-align: center; padding: 28px 0; }
-.poster-btn {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  width: calc(100% - 32px);
-  margin: 12px 16px 0;
-  padding: 14px 16px 14px 18px;
-  border-radius: 12px;
-  text-align: left;
-  color: var(--ink);
-  background: #fff;
- border: 1px solid var(--line);}
-.poster-day { min-width: 44px; font-size: 36px; font-weight: 600; letter-spacing: normal; line-height: 1; color: var(--accent); }
-.poster-copy { flex: 1; min-width: 0; }
-.poster-copy b { display: block; font-size: 16px; font-weight: 600; letter-spacing: normal; }
-.poster-copy small { display: block; margin-top: 5px; color: var(--muted); font-size: 12px; }
-.poster-go { font-size: 22px; color: var(--muted); }
-.poster-layer {
-  position: fixed;
-  inset: 0;
-  z-index: 40;
-  display: flex;
-  flex-direction: column;
-  background: rgba(0, 0, 0, 0.56);
-}
-.poster-scroll { flex: 1; overflow: auto; padding: 16px 22px 8px; }
-.poster-scroll img { display: block; width: 100%; height: auto; border-radius: 12px; }
-.poster-hint { margin: 0; padding: 8px 0 calc(16px + env(safe-area-inset-bottom, 0px)); text-align: center; color: #fff; font-size: 12px; }
-.calendar { background:transparent; }.calendar>.topbar { background:transparent; }
-.month { margin:4px 16px 0;padding:20px 10px 16px;background:var(--card);border:1px solid var(--line);border-bottom:0;border-radius:12px 12px 0 0; }.month b { color:var(--muted); }.month button { background:#ffffffbd;border-color:#ffffffc9;color:var(--muted); }
-.week { padding-top:12px;border:1px solid var(--line);border-top:0;border-bottom:0;background:var(--field-bg);border-radius:0;color:var(--muted); }.grid { border:1px solid var(--line);border-top:0;box-shadow:none; }
-.cell.today:not(.picked) .num { background:var(--peach-soft,var(--accent-soft)); }.cell.picked { background:var(--accent-soft); }.cell.picked .num { box-shadow:none; }
-.poster-btn { background:var(--field-bg);border-color:var(--line); }.poster-day { color:var(--muted); }.poster-go { color:var(--muted); }
-.race:nth-of-type(3n+1) { background:#fff;border-color:var(--line); }.race:nth-of-type(3n+2) { background:#fff;border-color:var(--line); }.race:nth-of-type(3n) { background:#fff;border-color:var(--line); }
-
-.month,.week,.grid { background: var(--card); border-color: var(--line); }
-.month { border-radius: 12px 12px 0 0; }
-.month b,.month button { color: var(--ink); }
-.grid { border-radius: 0 0 12px 12px; }
-.cell.picked { background: var(--accent-soft); }
-.poster-btn { background: var(--card); border-color: var(--line); }
-.poster-day { color: var(--accent); }
+.calendar{min-height:100vh;padding-bottom:24px;background:var(--bg);color:var(--ink)}
+.topbar{background:#fff}.topbar h1{font-size:16px;font-weight:600}.calendar-board{margin:12px 16px;background:#fff;border-radius:12px;overflow:hidden}
+.month{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:8px 12px}.month b{font-size:18px;font-weight:600}.month button{display:grid;place-items:center;width:44px;height:44px;font-size:24px;color:var(--ink)}
+.week,.grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));margin:0;padding:0 4px}.week{padding-top:8px;padding-bottom:8px;text-align:center;color:var(--muted);font-size:12px}.week .end{color:var(--accent)}.grid{padding-bottom:12px}
+.cell{display:flex;flex-direction:column;align-items:center;gap:2px;min-width:0;min-height:70px;padding:4px 0 2px;border-radius:6px}.cell:disabled{cursor:default}.num{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;font-size:15px;font-weight:500}.out .num,.out .lunar{color:#b0b0b0}.today .num{color:var(--accent);font-weight:600}.picked{background:var(--accent-soft)}.picked .num{background:var(--accent);color:#fff}.lunar,.count{min-height:14px;font-size:12px;line-height:1.2;white-space:nowrap}.lunar{color:var(--muted)}.count{color:var(--accent)}
+.day-races{padding:4px 16px 16px}.day-races h2{margin:12px 0;font-size:18px;font-weight:600}.race{display:block;margin-top:8px;padding:14px;border-radius:12px;background:#fff}.race b{display:block;font-size:15px;font-weight:600;line-height:1.5}.race span,.race em{display:block;margin-top:6px;color:var(--muted);font-size:12px;line-height:1.6;font-style:normal}.race em{color:var(--accent)}.none{padding:24px 0;text-align:center;color:var(--muted);font-size:14px}.load-error{margin:12px 16px;font-size:14px}.load-error button{min-height:44px;margin-left:8px;color:var(--accent)}
+.poster-btn{display:flex;align-items:center;gap:12px;width:calc(100% - 32px);margin:12px 16px 0;padding:12px 14px;border-radius:12px;background:#fff;text-align:left}.poster-day{min-width:36px;color:var(--accent);font-size:28px;font-weight:600;line-height:1.2}.poster-copy{flex:1;min-width:0}.poster-copy b{display:block;font-size:15px;font-weight:500}.poster-copy small{display:block;margin-top:4px;color:var(--muted);font-size:12px}.poster-go{font-size:22px;color:var(--muted)}
+.poster-layer{position:fixed;inset:0;z-index:40;display:flex;flex-direction:column;background:rgba(0,0,0,.56)}.poster-scroll{flex:1;overflow:auto;padding:16px 22px 8px}.poster-scroll img{display:block;width:100%;height:auto;border-radius:12px}.poster-hint{margin:0;padding:8px 0 calc(16px + env(safe-area-inset-bottom,0px));text-align:center;color:#fff;font-size:12px}
 </style>

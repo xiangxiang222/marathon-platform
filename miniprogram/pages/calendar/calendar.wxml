@@ -1,4 +1,5 @@
 <view class="cal mini-calendar-calendar">
+  <view class="calendar-board">
   <view class="nav">
     <text bindtap="prev">‹</text>
     <text class="ym">{{year}}年{{month}}月</text>
@@ -11,7 +12,7 @@
     <view
       wx:for="{{cells}}"
       wx:key="date"
-      class="cell {{item.inMonth ? '' : 'out'}} {{item.today ? 'today' : ''}} {{item.picked && !item.today ? 'picked' : ''}}"
+      class="cell {{item.inMonth ? '' : 'out'}} {{item.today ? 'today' : ''}} {{item.picked ? 'picked' : ''}}"
       data-date="{{item.date}}"
       data-in="{{item.inMonth}}"
       bindtap="pick"
@@ -20,6 +21,7 @@
       <text class="lunar">{{item.lunar}}</text>
       <text class="count">{{item.countText}}</text>
     </view>
+  </view>
   </view>
   <view wx:if="{{message}}" class="err">{{message}}</view>
   <view wx:if="{{ready && dayRaces.length}}" class="poster-btn" bindtap="makePoster">
