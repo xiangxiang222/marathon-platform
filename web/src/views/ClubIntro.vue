@@ -7,7 +7,7 @@
       <section class="intro-card" aria-label="跑团名片">
         <div class="intro-track" aria-hidden="true"></div>
         <div class="intro-eyebrow"><span></span>跑团名片</div>
-        <span class="club-letter" aria-hidden="true">{{ club.name.slice(0, 1) }}</span>
+        <ClubLogo class="club-letter" :src="club.logo" :name="club.name" />
         <h2>{{ club.name }}</h2><ClubVerificationBadge :club="club" /><p class="intro-tagline">{{ club.city || "城市待补充" }} · 团号 #{{ club.id }}</p><p v-if="club.intro" class="intro-tagline">{{ club.intro }}</p>
         <div class="intro-facts"><div><span>团长</span><strong>{{ club.leader || "跑团管理员" }}</strong></div><div class="intro-count"><strong>{{ club.memberCount }}</strong><span>位成员</span></div></div>
       </section>
@@ -45,7 +45,7 @@
           </template>
           <template v-else>
             <div class="share-dialog-heading"><h2 id="intro-share-title">分享跑团</h2><button class="share-close" type="button" aria-label="关闭分享" @click="closeShare">×</button></div>
-            <div class="share-preview"><span class="share-letter" aria-hidden="true">{{ club.name.slice(0, 1) }}</span><div><strong>{{ club.name }}</strong><p>{{ club.city || "城市待补充" }} · 负责人 {{ club.leader || "待补充" }} · #{{ club.id }}</p></div></div>
+            <div class="share-preview"><ClubLogo class="share-letter" :src="club.logo" :name="club.name" /><div><strong>{{ club.name }}</strong><p>{{ club.city || "城市待补充" }} · 负责人 {{ club.leader || "待补充" }} · #{{ club.id }}</p></div></div>
             <p class="share-description">{{ shareHint || '当前浏览器暂不支持直接转发。可复制链接，发给微信好友或微信群。' }}</p>
             <button class="share-copy" type="button" @click="copyInvite">{{ copied ? '链接已复制' : '复制链接' }}</button>
             <p class="share-feedback" role="status">{{ shareFeedback }}</p>
@@ -58,6 +58,7 @@
 </template>
 
 <script setup>
+import ClubLogo from "../components/ClubLogo.vue";
 import { computed, nextTick, onBeforeUnmount, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { api as requestApi } from "../api";

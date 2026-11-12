@@ -12,7 +12,7 @@
       <view wx:if="{{mineSearching}}" class="mine-search-status">找到 {{mineMatchCount}} 个已加入的跑团</view>
       <view wx:if="{{shownClubs.length}}" class="my-club-list">
         <view wx:for="{{shownClubs}}" wx:key="id" class="my-club">
-          <navigator class="club-main" url="/pages/club/club?id={{item.id}}" aria-label="{{item.name}}，进入跑团"><view class="club-letter">{{item.initial}}</view><view class="club-copy"><view class="club-name">{{item.name}}</view><view class="meta my-club-meta"><text class="my-club-city">{{item.cityLabel}}</text><text wx:if="{{item.memberCount != null}}">· {{item.memberCount}}人</text><text wx:if="{{item.roleLabel}}" class="my-role {{item.role === 'owner' || item.role === 'manager' ? 'leader' : ''}}">{{item.roleLabel}}</text></view></view></navigator>
+          <navigator class="club-main" url="/pages/club/club?id={{item.id}}" aria-label="{{item.name}}，进入跑团"><image wx:if="{{item.logo && !item.logoFailed}}" class="club-letter" src="{{item.logo}}" data-id="{{item.id}}" data-src="{{item.logo}}" binderror="clubLogoError" mode="aspectFill" /><view wx:else class="club-letter">{{item.initial}}</view><view class="club-copy"><view class="club-name">{{item.name}}</view><view class="meta my-club-meta"><text class="my-club-city">{{item.cityLabel}}</text><text wx:if="{{item.memberCount != null}}">· {{item.memberCount}}人</text><text wx:if="{{item.roleLabel}}" class="my-role {{item.role === 'owner' || item.role === 'manager' ? 'leader' : ''}}">{{item.roleLabel}}</text></view></view></navigator>
           <view class="club-quick-actions"><navigator url="/pages/club/club?id={{item.id}}&tab=training" aria-label="{{item.name}}的团练"><text>团练</text></navigator><navigator url="/pages/club/club?id={{item.id}}&tab=matches" aria-label="{{item.name}}的赛事"><text>赛事</text></navigator></view>
         </view>
       </view>
@@ -42,7 +42,7 @@
       <view wx:if="{{message}}" class="message">{{message}}</view>
       <block wx:if="{{ready && mode === 'search'}}">
         <view wx:for="{{openClubs}}" wx:key="id" class="result-row">
-          <view class="result-avatar">{{item.initial}}</view>
+          <image wx:if="{{item.logo && !item.logoFailed}}" class="result-avatar" src="{{item.logo}}" data-id="{{item.id}}" data-src="{{item.logo}}" binderror="clubLogoError" mode="aspectFill" /><view wx:else class="result-avatar">{{item.initial}}</view>
           <view class="club-copy"><view class="club-name">{{item.name}}</view><view class="meta">{{item.cityLabel}} · {{item.memberCount != null ? item.memberCount + ' 位成员' : '查看跑友'}}</view><button wx:if="{{item.verified}}" class="verified-mark" data-id="{{item.id}}" bindtap="verifiedInfo" aria-label="查看跑团身份核验信息">✓ 身份已核验</button></view>
           <navigator wx:if="{{item.joined}}" class="result-action joined" url="/pages/club/club?id={{item.id}}"><text>进入</text><text class="action-arrow">›</text></navigator>
           <text wx:elif="{{item.pending}}" class="pending-badge">审核中</text>

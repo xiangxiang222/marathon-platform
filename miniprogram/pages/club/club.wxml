@@ -2,7 +2,7 @@
   <view class="club-hero">
     <view class="hero-topline"><text class="club-eyebrow">我的跑团</text><navigator class="switch-club" open-type="switchTab" url="/pages/clubs/clubs">切换跑团 <text>⇄</text></navigator></view>
     <view class="club-identity">
-      <view class="club-letter">{{clubInitial}}</view>
+      <image wx:if="{{club.logo && !club.logoFailed}}" class="club-letter" src="{{club.logo}}" data-src="{{club.logo}}" binderror="clubLogoError" mode="aspectFill" /><view wx:else class="club-letter">{{clubInitial}}</view>
       <view class="club-identity-copy">
         <view class="club-title">{{club.name}}</view>
         <view class="public-identity-line">{{club.city || '城市待补充'}}<text class="meta-divider">·</text>团号 {{club.id}}</view>
@@ -15,7 +15,7 @@
       <button class="hero-share" open-type="share" disabled="{{club.publicStatus === 'restricted'}}" aria-label="邀请跑友加入跑团"><text>＋</text>邀请</button>
     </view>
   </view>
-  <view wx:if="{{createdNow && club.owner}}" class="created-guide"><view class="section-title">你的跑团，今天开始</view><view class="muted">{{club.city || '城市待补充'}} · 负责人 {{leaderName || '跑团管理员'}} · 团号 #{{club.id}}</view><view class="created-actions"><button class="primary-btn" open-type="share" disabled="{{club.publicStatus === 'restricted'}}">邀请第一位跑友</button><navigator class="first-activity" url="/pages/activity-create/activity-create?club={{club.id}}">发布第一次约跑 →</navigator></view><button class="identity-secondary" bindtap="openIdentity">已有线下跑团？核验组织身份 ›</button></view>
+  <view wx:if="{{createdNow && club.owner}}" class="created-guide"><view class="section-title">你的跑团，今天开始</view><view class="muted">{{club.city || '城市待补充'}} · 负责人 {{leaderName || '跑团管理员'}} · 团号 #{{club.id}}</view><view class="created-actions"><button class="primary-btn" open-type="share" disabled="{{club.publicStatus === 'restricted'}}">邀请第一位跑友</button><navigator class="first-activity" url="/pages/activity-create/activity-create?club={{club.id}}">发布第一次约跑 →</navigator></view><button class="identity-secondary" bindtap="openEdit">编辑跑团资料 ›</button><button class="identity-secondary" bindtap="openIdentity">已有线下跑团？核验组织身份 ›</button></view>
   <view wx:if="{{club.staff && requests.length}}" class="approval-banner" data-area="requests" bindtap="openService"><view><text class="notice-dot"></text>{{requests.length}} 位跑友申请加入</view><text>去审核 ›</text></view>
   <view class="club-tabs">
     <view class="club-tab {{activeTab === 'overview' ? 'selected' : ''}}" data-tab="overview" bindtap="changeSection">概览</view>
@@ -166,7 +166,7 @@
       <button wx:if="{{club.staff && !item.owner}}" class="member-manage" data-id="{{item.id}}" bindtap="manageMember"><text>管理</text><text class="member-manage-chevron">⌄</text></button>
     </view></view>
     <view wx:if="{{!shownMembers.length}}" class="empty-card">没有找到符合条件的团友，试试其他昵称。</view>
-</block><block wx:if="{{memberArea === 'manage'}}"><button wx:if="{{club.owner}}" class="identity-setting" bindtap="openIdentity"><view><view class="section-title">跑团身份与公开名片</view><view class="muted">完善城市、简介；按需核验组织授权</view></view><text>›</text></button>    <view class="form-section">
+</block><block wx:if="{{memberArea === 'manage'}}"><button wx:if="{{club.owner}}" class="identity-setting" bindtap="openEdit"><view><view class="section-title">编辑跑团资料</view><view class="muted">名称、城市、简介与跑团标志</view></view><text>›</text></button><button wx:if="{{club.owner}}" class="identity-setting" bindtap="openIdentity"><view><view class="section-title">跑团身份与公开名片</view><view class="muted">完善城市、简介；按需核验组织授权</view></view><text>›</text></button>    <view class="form-section">
       <navigator class="training-group-entry" url="/pages/training-groups/training-groups?club={{club.id}}"><view><view class="section-title">训练组别</view><view class="muted">成员分组、默认配速与活动安排</view></view><text>›</text></navigator>
     </view>
 </block><block wx:if="{{memberArea === 'fees'}}">    <view class="form-section">

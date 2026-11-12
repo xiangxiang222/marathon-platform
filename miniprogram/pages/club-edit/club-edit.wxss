@@ -1,0 +1,2 @@
+@import "../club-create/club-create.wxss";
+.edit-notice { margin:20px 0; }

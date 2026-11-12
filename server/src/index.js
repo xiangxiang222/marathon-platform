@@ -905,7 +905,7 @@ function clubSummary(db, club, userId) {
   const isMember = userId
     ? db.prepare("SELECT 1 FROM club_members WHERE club_id = ? AND user_id = ?").get(club.id, userId)
     : null;
-  if (club.public_status === "restricted") return { id: club.id, name: club.name, city: club.city || "", intro: "", leader: "", memberCount: 0, joined: Boolean(isMember), canManageIdentity, pending: false, verified: false, verifiedAt: "", verificationScope: "", organization: "", publicStatus: "restricted", restricted: true, statusMessage: "该跑团目前暂停公开展示与招募。团内记录保留，已有成员可进入跑团，团长可在跑团身份页补充说明。" };
+  if (club.public_status === "restricted") return { id: club.id, name: club.name, city: club.city || "", intro: "", logo: "", leader: "", memberCount: 0, joined: Boolean(isMember), canManageIdentity, pending: false, verified: false, verifiedAt: "", verificationScope: "", organization: "", publicStatus: "restricted", restricted: true, statusMessage: "该跑团目前暂停公开展示与招募。团内记录保留，已有成员可进入跑团，团长可在跑团身份页补充说明。" };
   const owner = db.prepare("SELECT nickname FROM users WHERE id = ?").get(club.owner_id);
   const members = db.prepare("SELECT COUNT(*) AS count FROM club_members WHERE club_id = ?").get(club.id);
   const pending = userId

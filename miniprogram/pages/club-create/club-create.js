@@ -1,8 +1,9 @@
 const { request, ready, clearAuth } = require("../../utils/request");
 const { publicClub, showVerification } = require("../../utils/club-identity");
+const { logoData, logoMethods } = require("../../utils/club-logo");
 const RETURN_PATH = "/pages/club-create/club-create";
 const EMPTY = {
-  name: "", city: "", intro: "", application: null, applicationId: null,
+  ...logoData, name: "", city: "", intro: "", application: null, applicationId: null,
   duplicates: [], duplicateMessage: "", foundingMessage: "", loadMessage: "",
   creating: false, loading: false
 };
@@ -11,6 +12,7 @@ function accountKey() {
   return app && app.globalData ? String(app.globalData.token || "") : "";
 }
 Page({
+  ...logoMethods,
   data: { ...EMPTY, ready: false },
   onLoad(query = {}) { this._continueRequested = query.continue === "1"; },
   onShow() {
@@ -22,12 +24,13 @@ Page({
       this.setData({ ...EMPTY });
     }
     this._account = token;
-    this.setData({ ready: ready(), creating: false, loading: false });
+    this.setData({ ready: ready(), creating: false, loading: false, logoPreparing: false });
     if (!ready()) return Promise.resolve();
     if (this.data.name) this.checkDuplicates();
     return this.load();
   },
   invalidate() {
+    this.invalidateLogo();
     this.loadSeq = (this.loadSeq || 0) + 1;
     this.duplicateSeq = (this.duplicateSeq || 0) + 1;
     this.createSeq = (this.createSeq || 0) + 1;
@@ -108,6 +111,11 @@ Page({
     this.setData({ name: this.data.application.name || "", applicationId: this.data.application.id, foundingMessage: "补充活动城市后，点击创建即确认开通这份旧申请。" });
     return this.checkDuplicates();
   },
+  duplicateLogoError(e) {
+    if (!this.scopeCurrent(this._account)) return;
+    const id = Number(e.currentTarget.dataset.id), src = e.currentTarget.dataset.src;
+    this.setData({ duplicates: this.data.duplicates.map(club => club.id === id && club.logo === src ? { ...club, logoFailed: true } : club) });
+  },
   openClub(e) {
     if (!this.editable()) return;
     const id = Number(e.currentTarget.dataset.id);
@@ -119,12 +127,13 @@ Page({
     showVerification(this.data.duplicates.find((club) => club.id === id));
   },
   create() {
-    if (!this.editable()) return Promise.resolve();
+    if (!this.editable() || this.data.logoPreparing) return Promise.resolve();
     const name = String(this.data.name || "").trim(), city = String(this.data.city || "").trim(), intro = String(this.data.intro || "").trim();
     if (!name || !city) { this.setData({ foundingMessage: "填写跑团名称和活动城市，即可创建。" }); return Promise.resolve(); }
     const token = accountKey(), seq = this.createSeq = (this.createSeq || 0) + 1;
     if (!this._createRequestId) this._createRequestId = "mini-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 14);
     const payload = { name, city, intro, requestId: this._createRequestId };
+    if (this.data.logoChanged && this.data.logo) payload.logo = this.data.logo;
     if (this.data.applicationId) payload.applicationId = this.data.applicationId;
     this.setData({ creating: true, foundingMessage: "" });
     return request("/clubs", "POST", payload).then((data) => {

@@ -44,6 +44,12 @@ Page({
     if (this._account !== accountKey()) { this.onShow(); return; }
     this.setData({ mineExpanded: !this.data.mineExpanded }); this.filterMine();
   },
+  clubLogoError(e) {
+    if (this._account !== accountKey() || this._hidden || this._disposed) return;
+    const id = Number(e.currentTarget.dataset.id), src = e.currentTarget.dataset.src;
+    const mark = club => club.id === id && club.logo === src ? { ...club, logoFailed: true } : club;
+    this.setData({ clubs: this.data.clubs.map(mark), openClubs: this.data.openClubs.map(mark) }); this.filterMine();
+  },
   openCreate() {
     const continuing = this._account === accountKey() && this.data.application;
     wx.navigateTo({ url: "/pages/club-create/club-create" + (continuing ? "?continue=1" : "") });

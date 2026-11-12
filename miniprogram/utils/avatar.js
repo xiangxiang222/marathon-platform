@@ -2,7 +2,7 @@ const MAX_AVATAR_BYTES = 256 * 1024;
 
 function avatarUrl(value, baseUrl) {
   const source = typeof value === "string" ? value : "";
-  if (/^\/marathon\/api\/avatars\/[^/?#]+\/[^/?#]+$/.test(source)) {
+  if (/^\/marathon\/api\/(?:avatars|club-logos)\/[^/?#]+\/[^/?#]+$/.test(source)) {
     return String(baseUrl || "").replace(/\/$/, "") + source;
   }
   return source;
@@ -18,7 +18,7 @@ function normalizeAvatars(value, baseUrl) {
   if (!value || typeof value !== "object") return value;
   const normalized = {};
   for (const key of Object.keys(value)) {
-    normalized[key] = key === "avatar" && typeof value[key] === "string"
+    normalized[key] = (key === "avatar" || key === "logo") && typeof value[key] === "string"
       ? avatarUrl(value[key], baseUrl)
       : normalizeAvatars(value[key], baseUrl);
   }

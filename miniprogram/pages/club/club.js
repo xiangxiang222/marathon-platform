@@ -176,6 +176,12 @@ Page({
     };
   },
   verifiedInfo() { showVerification(this.data.club); },
+  clubLogoError(e) {
+    if (this._identity === String(this.clubId) + ":" + accountKey() && !this._hidden && !this._disposed && this.data.club && e.currentTarget.dataset.src === this.data.club.logo) this.setData({ "club.logoFailed": true });
+  },
+  openEdit() {
+    if (this._identity === String(this.clubId) + ":" + accountKey() && !this._hidden && !this._disposed && this.data.club && this.data.club.owner) wx.navigateTo({ url: "/pages/club-edit/club-edit?id=" + this.clubId });
+  },
   openIdentity() {
     if (this.data.club && this.data.club.owner) wx.navigateTo({ url: "/pages/club-identity/club-identity?id=" + this.clubId });
   },

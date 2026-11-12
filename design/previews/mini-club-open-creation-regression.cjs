@@ -20,6 +20,7 @@ function fixture(name, query = { id: '44' }) {
     ...common,
     require(moduleName) {
       if (moduleName === '../../utils/request') return { request: (...args) => { requests.push(args); return handler(...args); }, ready: () => loggedIn, clearAuth: () => { app.globalData.token = ''; loggedIn = false; } };
+      if (moduleName === '../../utils/club-logo') return { logoData: {}, logoMethods: { invalidateLogo() {} } };
       if (moduleName === '../../utils/club-identity') return identityModule.exports;
       if (moduleName === '../../utils/captcha') return { saveCaptchaFile() {} };
       if (moduleName === '../../utils/avatar') return { networkAvatar: value => value, prepareAvatar() {} };
