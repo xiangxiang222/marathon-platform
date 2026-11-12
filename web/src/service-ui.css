@@ -194,3 +194,45 @@
 .service-session .album-collection .album { margin:16px 0; }
 .service-session .album-collection .file { display:flex; align-items:center; justify-content:center; }
 @media (min-width:800px) { .service-session .session-appointment { grid-template-columns:90px minmax(0,1fr); }.service-session .meetup-photos { grid-template-columns:repeat(3,minmax(0,1fr)); } }
+
+/* Forms use task sections, an honest filled summary and one primary action. */
+.service-form .club-form-wrap { max-width:1040px; padding:20px 16px 32px; }
+.service-form .club-form-lead { max-width:44em; margin-bottom:20px; }
+.service-form :is(.club-form-panel,.preview-card,.template-library,.form-grid) { border:0; }
+.service-form .form-task-section { min-width:0; margin:0 0 20px; padding:0 0 20px; border:0; border-bottom:1px solid var(--line); }
+.service-form .form-task-section:last-child { border-bottom:0; padding-bottom:0; }
+.service-form .form-task-heading { display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:6px 12px; margin-bottom:12px; }
+.service-form .form-task-heading :is(h2,h3) { margin:0; font-size:18px; font-weight:600; line-height:1.5; }
+.service-form .form-task-heading>span { color:var(--muted); font-size:12px; line-height:1.7; }
+.service-form .form-filled-summary { display:flex; flex-wrap:wrap; gap:6px 12px; align-items:baseline; margin:16px 0; padding:14px; border-radius:8px; background:var(--accent-soft); color:var(--ink); font-size:14px; line-height:1.7; }
+.service-form .form-filled-summary b { font-size:15px; font-weight:600; overflow-wrap:anywhere; }
+.service-form .form-filled-summary small { width:100%; color:var(--muted); font-size:12px; }
+.service-form .form-target-heading { margin:16px 0 8px; padding-top:14px; border-top:1px solid var(--line); }
+.service-form .form-target-heading>span { color:var(--muted); font-size:12px; }
+.service-form .form-target-heading h2 { margin:6px 0 0; }
+.service-form .form-identity-summary { background:linear-gradient(135deg,#fff0f2,#fff); }
+.service-form .club-form-grid.with-preview { align-items:start; }
+.service-form .preview-card { background:linear-gradient(135deg,#fff0f2,#fff); }
+.service-form .preview-card .club-form-eyebrow { display:none; }
+.service-form .preview-card footer { margin-top:16px; padding-top:12px; }
+.service-form .preview-distance-line { margin:8px 0; font-size:14px; color:var(--muted); }
+.service-form .template-library { margin:16px 0; }
+.service-form .journal-editor>form { border:0; background:#fff; padding:16px; border-radius:12px; }
+.service-form .journal-editor form .form-task-section>label { display:grid; gap:8px; margin-top:16px; color:var(--ink); font-size:14px; }
+.service-form .editor-task-header { display:flex; gap:16px; justify-content:space-between; align-items:flex-start; padding:16px; margin-bottom:12px; border-radius:12px; background:linear-gradient(135deg,#fff0f2,#fff); }
+.service-form .editor-task-header h1 { margin:0; font-size:24px; }
+.service-form .editor-task-header p { font-size:14px; color:var(--muted); line-height:1.7; }
+.service-form .editor-task-header .club-form-eyebrow { margin:0 0 8px; font-size:12px; }
+.service-form .editor-draft-state { flex:none; padding:4px 8px; border-radius:4px; color:var(--accent); background:var(--accent-soft); font-size:12px; }
+.service-form .editor-list { margin-top:12px; border:0; border-radius:12px; padding:16px; background:#fff; }
+.service-form .editor-list>button { display:flex; width:100%; justify-content:space-between; gap:12px; min-height:56px; border:0; border-bottom:1px solid var(--line); border-radius:0; background:transparent; text-align:left; font-size:15px; }
+.service-form .editor-list small { flex:none; font-size:12px; color:var(--muted); }
+.service-form :is(.create-task-form,.club-edit-page form) { background:transparent; }
+.service-form .create-task-form,.service-form.club-edit-page form.club-form-panel { padding:0; border:0; background:transparent; }
+.service-form .create-task-form>.form-task-section,.service-form.club-edit-page form.club-form-panel>.form-task-section { padding:16px; margin-bottom:12px; border:0; border-radius:12px; background:#fff; }
+.service-form .create-task-form>.club-form-hint,.service-form.club-edit-page form.club-form-panel>.club-form-hint { padding:0 4px; }
+.service-form .create-task-form>.club-form-primary { margin-top:12px; }
+.service-form .form-page-heading { padding:16px; margin-bottom:12px; border-radius:12px; background:linear-gradient(135deg,#fff0f2,#fff); }
+.service-form .form-page-heading .club-form-eyebrow { margin:0 0 8px; }
+.service-form .form-page-heading .club-form-title { margin:0; }
+.service-form .form-page-heading .club-form-lead { margin:10px 0 0; }

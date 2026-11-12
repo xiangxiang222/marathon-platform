@@ -1,15 +1,15 @@
 <template>
-  <main class="club-form-page service-page club-edit-page">
+  <main class="club-form-page service-page service-form club-edit-page">
     <header class="topbar"><router-link :to="backPath" aria-label="取消编辑跑团资料">‹</router-link><h1>编辑跑团资料</h1><span></span></header>
-    <div class="club-form-wrap"><h2 class="club-form-title">让跑友更了解你们</h2><p class="club-form-lead">修改名称、活动城市、简介和 Logo，保存后更新跑团名片。</p>
-      <div v-if="!token" class="club-form-panel"><h2>登录后管理跑团资料</h2><p class="club-form-hint">仅团长可以编辑。请登录具有管理权限的账号。</p><button class="club-form-primary" type="button" @click="login">登录并继续</button></div>
+    <div class="club-form-wrap"><header class="form-page-heading"><h2 class="club-form-title">让跑友更了解你们</h2><p class="club-form-lead">修改名称、活动城市、简介和 Logo，保存后更新跑团名片。</p>
+      </header><div v-if="!token" class="club-form-panel"><h2>登录后管理跑团资料</h2><p class="club-form-hint">仅团长可以编辑。请登录具有管理权限的账号。</p><button class="club-form-primary" type="button" @click="login">登录并继续</button></div>
       <div v-else-if="loading" class="club-form-panel" role="status">正在读取跑团资料…</div>
       <div v-else-if="!owner" class="club-form-panel"><h2>{{ denied ? '仅团长可以编辑跑团资料' : '暂时无法读取跑团资料' }}</h2><p class="club-form-hint" role="alert">{{ error }}</p><button v-if="!denied" class="club-form-secondary" type="button" @click="load">重新加载</button><router-link class="club-form-link" :to="backPath">返回跑团 ›</router-link></div>
       <form v-else class="club-form-panel" @submit.prevent="save">
-        <ClubLogoPicker :key="token" v-model="logo" :name="name" :disabled="saving" @busy="logoBusy = $event" />
+        <section class="form-task-section"><div class="form-task-heading"><h2>跑团形象</h2><span>Logo 选填</span></div><ClubLogoPicker :key="token" v-model="logo" :name="name" :disabled="saving" @busy="logoBusy = $event" /></section><section class="form-task-section"><div class="form-task-heading"><h2>基本资料</h2><span>名称与城市必填</span></div>
         <label><span>跑团名称 <small>必填 · {{ name.length }}/20</small></span><input v-model="name" aria-label="跑团名称" required maxlength="20" :disabled="saving" /></label>
         <label><span>活动城市 <small>必填 · 最多 30 字</small></span><input v-model="city" aria-label="活动城市" required maxlength="30" :disabled="saving" /></label>
-        <label><span>一句话介绍 <small>选填 · {{ intro.length }}/80</small></span><textarea v-model="intro" aria-label="一句话介绍" maxlength="80" rows="3" :disabled="saving" /></label>
+        </section><section class="form-task-section"><div class="form-task-heading"><h2>跑团介绍</h2><span>选填</span></div><label><span>一句话介绍 <small>选填 · {{ intro.length }}/80</small></span><textarea v-model="intro" aria-label="一句话介绍" maxlength="80" rows="3" :disabled="saving" /></label></section><div class="form-filled-summary"><b>{{ name.trim() || "跑团名称待填写" }}</b><span>{{ city.trim() || "活动城市待填写" }}</span><small>保存后同步更新跑团公开名片</small></div>
         <p class="club-form-hint">名称可以重复，团号和邀请链接保持不变。已核验的跑团更改名称或城市后，平台会重新核验组织资料。</p>
         <p v-if="error" class="club-form-error" role="alert">{{ error }}</p>
         <div class="edit-actions"><router-link class="club-form-secondary" :to="backPath">取消</router-link><button class="club-form-primary" type="submit" :disabled="saving || logoBusy">{{ saving ? '正在保存…' : '保存资料' }}</button></div>

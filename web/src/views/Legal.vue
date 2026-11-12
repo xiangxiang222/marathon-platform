@@ -2,12 +2,12 @@
   <main class="legal-page">
     <header class="legal-topbar"><router-link to="/mine" aria-label="返回我的">‹</router-link><span>协议与隐私中心</span><span aria-hidden="true">赛历</span></header>
     <div class="legal-wrap">
-      <header class="legal-hero"><h1>协议与隐私中心</h1><p>了解我们提供的服务、如何处理个人信息，以及你可以行使的权利。</p><div v-if="catalog" class="legal-version"><span>版本 {{ catalog.version }}</span><span>更新日期 {{ catalog.updatedAt }}</span><span>生效日期 {{ catalog.effectiveDate || '待公布' }}</span></div></header>
+      <header class="legal-hero"><span class="reader-kicker">协议文件与个人信息权利</span><h1>协议与隐私中心</h1><p>了解我们提供的服务、如何处理个人信息，以及你可以行使的权利。</p><div v-if="catalog" class="legal-version"><span>版本 {{ catalog.version }}</span><span>更新日期 {{ catalog.updatedAt }}</span><span>生效日期 {{ catalog.effectiveDate || '待公布' }}</span></div></header>
       <p v-if="loading && !catalog" class="legal-state" role="status">正在读取协议文件…</p>
       <div v-if="error" class="legal-notice" role="alert"><p>{{ error }}</p><button type="button" @click="load" :disabled="loading">重新读取</button></div>
       <template v-if="catalog">
         <p v-if="catalog.ready === false" class="legal-notice legal-draft">当前显示工作区草案，尚未发布生效。请以核实并正式发布后的版本及生效日期为准。</p>
-        <section class="operator-card" aria-label="运营者与联系信息"><h2>运营者与联系信息</h2><dl><div><dt>运营主体</dt><dd>{{ catalog.operator?.name || '待核实' }}</dd></div><div><dt>联系邮箱</dt><dd>{{ catalog.operator?.contactEmail || '待核实' }}</dd></div><div><dt>联系地址</dt><dd>{{ catalog.operator?.address || '待核实' }}</dd></div><div><dt>托管服务商</dt><dd>{{ catalog.operator?.hostingProvider || '待核实' }}</dd></div><div><dt>数据存储地区</dt><dd>{{ catalog.operator?.storageRegion || '待核实' }}</dd></div></dl></section>
+
         <div class="legal-layout">
           <aside class="legal-directory"><nav aria-label="协议文件"><router-link v-for="item in catalog.documents" :key="item.id" :to="'/legal/' + item.id" :class="{ active: selected?.id === item.id }" :aria-current="selected?.id === item.id ? 'page' : undefined"><span>{{ item.title }}</span><span aria-hidden="true">↗</span></router-link></nav><p>所有文件均可在登录前阅读。授权或撤回某项权限，不影响与该权限无关的服务。</p></aside>
           <article v-if="selected" class="legal-document" :aria-label="selected.title">
@@ -24,6 +24,7 @@
           </article>
           <div v-else class="legal-document legal-state"><h2>暂未找到这份文件</h2><p>请从文件目录中选择需要阅读的内容。</p><router-link to="/legal/privacy">阅读隐私政策</router-link></div>
         </div>
+        <section class="operator-card" aria-label="运营者与联系信息"><h2>运营者与联系信息</h2><dl><div><dt>运营主体</dt><dd>{{ catalog.operator?.name || '待核实' }}</dd></div><div><dt>联系邮箱</dt><dd>{{ catalog.operator?.contactEmail || '待核实' }}</dd></div><div><dt>联系地址</dt><dd>{{ catalog.operator?.address || '待核实' }}</dd></div><div><dt>托管服务商</dt><dd>{{ catalog.operator?.hostingProvider || '待核实' }}</dd></div><div><dt>数据存储地区</dt><dd>{{ catalog.operator?.storageRegion || '待核实' }}</dd></div></dl></section>
       </template>
     </div>
   </main>
@@ -66,3 +67,6 @@ onMounted(load); onBeforeUnmount(() => { disposed = true; version++; });
 </style>
 
 <style scoped src="../personal-ui.css"></style>
+<style scoped>
+.legal-hero { padding:16px; margin-bottom:12px; border-radius:12px; background:linear-gradient(135deg,#fff0f2,#fff); }.reader-kicker { display:block; margin-bottom:8px; font-size:12px; color:var(--muted); }.legal-hero>p:not(.legal-eyebrow) { margin:10px 0; }.legal-version { margin:12px 0 0; gap:4px 16px; }.legal-directory nav,.legal-document,.operator-card { border:0; }.legal-layout { gap:12px; }.legal-document { padding:24px; }.operator-card { margin-top:12px; padding:16px; }.legal-section.important { border:0; border-left:2px solid var(--accent); border-radius:0 8px 8px 0; }.legal-toc a { border-bottom:1px solid var(--line); }.legal-toc a:last-child { border:0; }@media(max-width:700px){.legal-wrap{padding:16px;}.legal-document{padding:16px;}.legal-directory>p{margin:10px 0 14px;}.legal-directory nav a{font-size:14px;}.legal-section{padding-top:24px;}}
+</style>

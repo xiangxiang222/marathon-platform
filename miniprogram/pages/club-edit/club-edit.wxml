@@ -1,15 +1,15 @@
-<view class="create-page edit-page mini-club-edit-club-edit">
+<view class="create-page edit-page mini-club-edit-club-edit service-page service-form">
   <view class="create-heading"><view class="page-title">编辑跑团资料</view><view class="page-description">让跑友更容易认识你的跑团。</view></view>
   <view wx:if="{{!ready}}" class="create-panel"><view class="section-title">请先登录团长账号</view><view class="helper">只有本团团长可以修改名称、城市、简介和标志。</view><navigator class="primary" open-type="switchTab" url="/pages/mine/mine">前往登录</navigator></view>
   <view wx:elif="{{loading && !owner}}" class="create-panel helper">正在读取跑团资料…</view>
   <block wx:elif="{{owner}}">
-    <view class="create-panel create-form"><view class="section-title">跑团资料</view>
+    <view class="create-panel create-form"><view class="form-task-section logo-task-section"><view class="form-task-heading"><view class="section-title">跑团形象</view><text>Logo 选填</text></view>
       <view class="logo-field"><view class="logo-preview"><image wx:if="{{logoPreview && !logoFailed}}" src="{{logoPreview}}" data-src="{{logoPreview}}" binderror="logoPreviewError" mode="aspectFill" /><text wx:else>{{logoInitial}}</text></view><view class="logo-copy"><view class="logo-label">跑团标志 <text>选填</text></view><view class="helper">支持 JPG、PNG、WebP，自动压缩至 256KB 内</view><view class="logo-actions"><button class="logo-change" loading="{{logoPreparing}}" disabled="{{saving || logoPreparing}}" bindtap="chooseLogo">{{logoPreview ? '更换图片' : '上传图片'}}</button><button wx:if="{{logoPreview || logoPreparing}}" class="logo-remove" disabled="{{saving}}" bindtap="removeLogo">移除</button></view></view></view>
       <view wx:if="{{logoError}}" class="message" role="alert">{{logoError}}</view>
 
-      <view class="field-label">跑团名称 <text>必填 · 最多 20 字</text></view><input class="create-input" placeholder="跑团名称" maxlength="20" value="{{name}}" disabled="{{saving || loading}}" data-key="name" bindinput="onField" aria-label="跑团名称" />
+      </view><view class="form-task-section"><view class="form-task-heading"><view class="section-title">基本资料</view><text>名称与城市必填</text></view><view class="field-label">跑团名称 <text>必填 · 最多 20 字</text></view><input class="create-input" placeholder="跑团名称" maxlength="20" value="{{name}}" disabled="{{saving || loading}}" data-key="name" bindinput="onField" aria-label="跑团名称" />
       <view class="field-label">活动城市 <text>必填 · 最多 30 字</text></view><input class="create-input" placeholder="例如：杭州 · 西湖" maxlength="30" value="{{city}}" disabled="{{saving || loading}}" data-key="city" bindinput="onField" aria-label="活动城市" />
-      <view class="field-label">一句话介绍 <text>选填 · 最多 80 字</text></view><textarea class="create-intro" placeholder="介绍跑团的训练与活动" maxlength="80" value="{{intro}}" disabled="{{saving || loading}}" data-key="intro" bindinput="onField" auto-height aria-label="跑团介绍" />
+      </view><view class="form-task-section"><view class="form-task-heading"><view class="section-title">跑团介绍</view><text>选填</text></view><view class="field-label">一句话介绍 <text>选填 · 最多 80 字</text></view><textarea class="create-intro" placeholder="介绍跑团的训练与活动" maxlength="80" value="{{intro}}" disabled="{{saving || loading}}" data-key="intro" bindinput="onField" auto-height aria-label="跑团介绍" /></view><view class="form-filled-summary"><view>{{name || "跑团名称待填写"}}</view><text>{{city || "活动城市待填写"}}</text></view>
     </view>
     <view class="helper edit-notice">保存后，跑团主页、目录与公开名片将同步更新。</view>
     <view wx:if="{{message}}" class="message" role="alert">{{message}}</view>

@@ -1,10 +1,10 @@
 <template>
   <main class="not-found">
-    <span class="missing-code" aria-hidden="true">404</span>
+    <div class="recovery-label"><span aria-hidden="true">↗</span><span>页面访问</span></div>
     <h1>这个页面暂时找不到了</h1>
     <p>链接可能有误，或内容已经调整。回到赛事或跑团继续查看。</p>
-    <router-link class="primary" to="/">查看赛事</router-link>
-    <router-link class="secondary" to="/clubs">发现跑团</router-link>
+    <div class="recovery-actions"><router-link class="primary" to="/">查看赛事</router-link>
+    <router-link class="secondary" to="/clubs">发现跑团</router-link></div>
   </main>
 </template>
 
@@ -22,3 +22,6 @@
 </style>
 
 <style scoped src="../personal-ui.css"></style>
+<style scoped>
+.not-found { max-width:480px; padding:56px 16px; text-align:left; }.recovery-label { display:flex; gap:10px; align-items:center; padding:16px; border-radius:12px; background:linear-gradient(135deg,#fff0f2,#fff); font-size:12px; color:var(--muted); }.recovery-label>span:first-child { color:var(--accent); font-size:24px; }.not-found h1 { margin-top:24px; font-size:24px; font-weight:600; }.recovery-actions { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:24px; }.recovery-actions a { margin:0; min-height:44px; padding:12px; border-radius:8px; text-align:center; }.recovery-actions .secondary { background:#fff; border:1px solid var(--line); }
+</style>
