@@ -1,16 +1,17 @@
 <template>
-  <main class="club-form-page service-page">
+  <main class="club-form-page service-page service-form">
     <header class="topbar"><router-link to="/clubs" aria-label="返回跑团">‹</router-link><h1>创建跑团</h1><span></span></header>
-    <div class="club-form-wrap"><p class="club-form-eyebrow">和志同道合的人一起跑</p><h2 class="club-form-title">填写跑团资料</h2><p class="club-form-lead">填写名称和活动城市，创建后即可邀请跑友。团名可以重复，请核对城市、负责人和团号。</p>
-      <div v-if="!token" class="club-form-panel"><h2>和跑友的下一程，从这里开始</h2><p class="club-form-hint">登录后即可创建，无需申请建团资格。</p><button class="club-form-primary" type="button" @click="login">登录并创建</button></div>
+    <div class="club-form-wrap"><header class="form-page-heading"><p class="club-form-eyebrow">和志同道合的人一起跑</p><h2 class="club-form-title">填写跑团资料</h2><p class="club-form-lead">填写名称和活动城市，创建后即可邀请跑友。团名可以重复，请核对城市、负责人和团号。</p>
+      </header><div v-if="!token" class="club-form-panel"><h2>和跑友的下一程，从这里开始</h2><p class="club-form-hint">登录后即可创建，无需申请建团资格。</p><button class="club-form-primary" type="button" @click="login">登录并创建</button></div>
       <div v-else class="club-form-grid with-preview">
-        <form class="club-form-panel" @submit.prevent="create">
+        <form class="club-form-panel create-task-form" @submit.prevent="create">
           <p v-if="application" class="club-form-note">你之前申请的「{{ application.name }}」可以直接创建。确认名称与城市后，点击下方按钮即可继续。</p>
-          <ClubLogoPicker :key="token" v-model="logo" :name="name" :disabled="saving" @busy="logoBusy = $event" />
+          <section class="form-task-section"><div class="form-task-heading"><h2>跑团形象</h2><span>Logo 选填</span></div><ClubLogoPicker :key="token" v-model="logo" :name="name" :disabled="saving" @busy="logoBusy = $event" /></section><section class="form-task-section"><div class="form-task-heading"><h2>基本资料</h2><span>名称与城市必填</span></div>
           <label><span>跑团名称 <small>必填 · {{ name.length }}/20</small></span><input v-model="name" aria-label="跑团名称" required maxlength="20" placeholder="给一起跑步的人，一个名字" :disabled="saving" autocomplete="off" /></label>
           <div v-if="name.trim() && (matches.length || matchLoading || matchError)" class="same-name" aria-live="polite"><p v-if="matchLoading">正在看看有没有熟悉的跑团…</p><p v-else-if="matchError">暂时无法检查同名，你仍可创建。</p><template v-else><strong>找到 {{ matches.length }} 个名称相近的跑团</strong><p>名称可以重复，看看是否已有你要找的跑团。</p><div v-for="club in matches" :key="club.id" class="same-name-row"><router-link :to="'/clubs/' + club.id + '/public'" target="_blank" rel="noopener noreferrer"><b>{{ club.name }}</b><small>{{ club.city || '城市待补充' }} · 负责人 {{ club.leader || '待补充' }} · #{{ club.id }}</small></router-link><ClubVerificationBadge :club="club" /></div></template></div>
           <label><span>活动城市 <small>必填</small></span><input v-model="city" aria-label="活动城市" required maxlength="30" placeholder="如：杭州 · 西湖，或跨城／线上" :disabled="saving" autocomplete="address-level2" /><small>让跑友更容易找到你们；城市与名称都不需要抢占。</small></label>
-          <label><span>一句话介绍 <small>选填 · {{ intro.length }}/80</small></span><textarea v-model="intro" aria-label="一句话介绍" maxlength="80" rows="3" placeholder="比如：每周三晚，一起绕湖慢跑" :disabled="saving" /></label>
+          </section><section class="form-task-section"><div class="form-task-heading"><h2>跑团介绍</h2><span>选填</span></div><label><span>一句话介绍 <small>选填 · {{ intro.length }}/80</small></span><textarea v-model="intro" aria-label="一句话介绍" maxlength="80" rows="3" placeholder="比如：每周三晚，一起绕湖慢跑" :disabled="saving" /></label></section>
+          <div class="form-filled-summary"><b>{{ name.trim() || "跑团名称待填写" }}</b><span>{{ city.trim() || "活动城市待填写" }}</span><small>创建后可继续编辑资料与 Logo</small></div>
           <p class="club-form-hint">创建后即可邀请跑友，入团申请由你审核。每个账号 24 小时内可创建 1 个，同时最多担任 3 个跑团的团长。</p>
           <p v-if="error" class="club-form-error" role="alert">{{ error }}</p>
           <button class="club-form-primary" type="submit" :disabled="saving || logoBusy">{{ saving ? '正在创建…' : application ? '确认并继续创建' : '创建跑团' }} <span aria-hidden="true">→</span></button>

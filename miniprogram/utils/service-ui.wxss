@@ -187,3 +187,23 @@
 .service-session .album-collection .album { margin:32rpx 0; }
 .service-session .album-collection .shot { border:0; }
 .service-session .album-collection .drop { margin-right:16rpx; }
+
+.service-form .form-task-section { margin-bottom:40rpx; padding-bottom:40rpx; border-bottom:1px solid #eee; }
+.service-form .form-task-section:last-child { border:0; }
+.service-form .form-task-heading { display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:12rpx 24rpx; margin:24rpx 0; }
+.service-form .form-task-heading .section-title { margin:0; font-size:18px; line-height:1.5; font-weight:600; }
+.service-form .form-task-heading>text { color:#777; font-size:12px; line-height:1.7; }
+.service-form .form-filled-summary { margin:32rpx 0; padding:28rpx; border-radius:16rpx; background:#fff0f2; color:#1a1a1a; font-size:15px; line-height:1.7; }
+.service-form .form-filled-summary>view { font-weight:600; overflow-wrap:anywhere; }
+.service-form .form-filled-summary>text { display:block; margin-top:8rpx; color:#777; font-size:12px; }
+.service-form .form-identity-summary { background:linear-gradient(135deg,#fff0f2,#fff); }
+.service-form .create-panel,.service-form .panel,.service-form .editor-card,.service-form .editor-library,.service-form .form-area,.service-form .template-studio { border:0; border-radius:24rpx; padding:32rpx; }
+.service-form .create-heading,.service-form .hero,.service-form .editor-intro { padding:32rpx; margin-bottom:24rpx; border-radius:24rpx; background:linear-gradient(135deg,#fff0f2,#fff); }
+.service-form .create-heading .page-title,.service-form .hero .title,.service-form .editor-title { font-size:24px; font-weight:600; line-height:1.45; }
+.service-form .create-guidance { border:0; border-radius:24rpx; padding:32rpx; background:#fff; }
+.service-form .preview-distance-line { margin:16rpx 0; color:#777; font-size:14px; line-height:1.7; }
+.service-form .template-studio { margin-top:24rpx; }
+.service-form .create-panel.create-form { padding:0; background:transparent; }
+.service-form .create-form>.form-task-section { margin-bottom:24rpx; padding:32rpx; border:0; border-radius:24rpx; background:#fff; }
+.service-form .create-form>.form-task-section>.form-task-heading { margin-top:0; }
+.service-form .create-form>.logo-task-section .logo-field { margin-top:24rpx; }

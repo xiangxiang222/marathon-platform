@@ -1,4 +1,4 @@
-<view class="page mini-activity-create-activity-create service-page">
+<view class="page mini-activity-create-activity-create service-page service-form">
   <view wx:if="{{loading}}" class="loading">正在准备这一次相聚…</view>
   <view wx:elif="{{!club}}" class="error-panel">{{message || '暂时无法打开发布页'}}<button class="retry" bindtap="load">重新加载</button></view>
   <block wx:else>
@@ -19,17 +19,6 @@
       <view wx:if="{{successMessage}}" class="success-note">✓ {{successMessage}}</view>
       <view wx:if="{{templateMode}}" class="editing-banner"><view><text class="editing-dot"></text>{{editingTemplateId ? '正在编辑跑团模板' : '正在新建跑团模板'}}</view><text>不会发布活动</text></view>
       <block wx:if="{{step === 1}}">
-        <view class="template-studio">
-          <view class="section-head"><view><view class="section-kicker">训练模板</view><view class="section-title">从常用训练开始</view></view></view>
-          <view class="preset-row"><button wx:for="{{presets}}" wx:key="id" class="preset-card {{selectedTemplateId === 'preset:' + item.id ? 'preset-active' : ''}}" data-source="preset" data-id="{{item.id}}" bindtap="useTemplate"><view class="preset-top"><text class="preset-mark">{{item.mark}}</text><text class="preset-arrow">{{selectedTemplateId === 'preset:' + item.id ? '✓' : '↗'}}</text></view><text class="preset-name">{{item.name}}</text><text class="preset-tag">{{item.tag}}</text></button></view>
-          <view wx:if="{{!templateMode}}" class="library-head"><text>跑团的训练模板 <text class="library-count">{{clubTemplates.length}}</text></text><button class="text-button" disabled="{{templateBusy}}" bindtap="newTemplate">＋ 新建模板</button></view>
-          <block wx:if="{{!templateMode}}">
-            <view wx:if="{{templatesLoading}}" class="library-empty">正在载入跑团模板…</view>
-            <view wx:elif="{{templatesError}}" class="template-load-error"><text>{{templatesError}}</text><button class="text-button" bindtap="loadTemplates">重试</button></view>
-            <view wx:elif="{{clubTemplates.length}}" class="template-scroll"><view wx:for="{{clubTemplates}}" wx:key="id" class="saved-template {{selectedTemplateId === 'saved:' + item.id ? 'saved-active' : ''}}"><button class="saved-template-use" data-source="saved" data-id="{{item.id}}" bindtap="useTemplate"><text class="saved-template-name">{{item.name}}</text><text class="saved-template-meta">{{item.config.startTime || '时间灵活'}} · {{item.config.groups.length}} 个分组</text><text class="saved-template-cta">使用模板 ↗</text></button><button class="template-menu" aria-label="管理模板" data-id="{{item.id}}" disabled="{{templateBusy}}" bindtap="manageTemplate">•••</button></view></view>
-            <view wx:else class="library-empty">把每周的固定训练存下来，全团管理员都能用。</view>
-          </block>
-        </view>
         <view class="form-area">
           <view class="section-head"><view><view class="section-kicker">01 / {{templateMode ? '常用信息' : '时间与地点'}}</view><view class="section-title">{{templateMode ? '常用信息' : '基本信息'}}</view></view><text class="step-caption">{{templateMode ? '按需填写' : '北京时间'}}</text></view>
           <block wx:if="{{templateMode}}"><view class="label">模板名称 <text class="required">必填</text></view><input class="field" maxlength="30" placeholder="例如：周三间歇、周末长距离" value="{{templateName}}" bindinput="inputTemplateName" aria-label="模板名称" /></block>
@@ -49,6 +38,17 @@
             <block wx:if="{{templateMode}}"><view class="label">报名提前截止 <text class="optional">分钟 · 可选</text></view><input class="field" type="number" placeholder="例如 60，开始前 1 小时截止" value="{{templateTiming.signupLeadMinutes}}" data-key="signupLeadMinutes" bindinput="timingInput" aria-label="报名提前截止分钟" /><view class="label">取消提前截止 <text class="optional">分钟 · 可选</text></view><input class="field" type="number" placeholder="例如 120，开始前 2 小时截止" value="{{templateTiming.cancelLeadMinutes}}" data-key="cancelLeadMinutes" bindinput="timingInput" aria-label="取消提前截止分钟" /></block>
             <block wx:else><view class="two-col"><view class="col"><view class="label">报名截止日期</view><picker mode="date" value="{{draft.signupDate}}" data-key="signupDate" bindchange="pickDate"><view class="picker-field">{{draft.signupDate || '不单独设置'}}</view></picker></view><view class="col"><view class="label">截止时间</view><view class="time-clear"><picker mode="time" value="{{draft.signupTime}}" data-key="signupTime" bindchange="pickTime"><view class="picker-field">{{draft.signupTime || '不单独设置'}}</view></picker><text wx:if="{{draft.signupDate || draft.signupTime}}" class="clear" data-key="signup" bindtap="clearTime">清空</text></view></view></view><view class="two-col"><view class="col"><view class="label">取消截止日期</view><picker mode="date" value="{{draft.cancelDate}}" data-key="cancelDate" bindchange="pickDate"><view class="picker-field">{{draft.cancelDate || '不单独设置'}}</view></picker></view><view class="col"><view class="label">截止时间</view><view class="time-clear"><picker mode="time" value="{{draft.cancelTime}}" data-key="cancelTime" bindchange="pickTime"><view class="picker-field">{{draft.cancelTime || '不单独设置'}}</view></picker><text wx:if="{{draft.cancelDate || draft.cancelTime}}" class="clear" data-key="cancel" bindtap="clearTime">清空</text></view></view></view></block>
           </view>
+        </view>
+        <view class="template-studio">
+          <view class="section-head"><view><view class="section-kicker">训练模板</view><view class="section-title">从常用训练开始</view></view></view>
+          <view class="preset-row"><button wx:for="{{presets}}" wx:key="id" class="preset-card {{selectedTemplateId === 'preset:' + item.id ? 'preset-active' : ''}}" data-source="preset" data-id="{{item.id}}" bindtap="useTemplate"><view class="preset-top"><text class="preset-mark">{{item.mark}}</text><text class="preset-arrow">{{selectedTemplateId === 'preset:' + item.id ? '✓' : '↗'}}</text></view><text class="preset-name">{{item.name}}</text><text class="preset-tag">{{item.tag}}</text></button></view>
+          <view wx:if="{{!templateMode}}" class="library-head"><text>跑团的训练模板 <text class="library-count">{{clubTemplates.length}}</text></text><button class="text-button" disabled="{{templateBusy}}" bindtap="newTemplate">＋ 新建模板</button></view>
+          <block wx:if="{{!templateMode}}">
+            <view wx:if="{{templatesLoading}}" class="library-empty">正在载入跑团模板…</view>
+            <view wx:elif="{{templatesError}}" class="template-load-error"><text>{{templatesError}}</text><button class="text-button" bindtap="loadTemplates">重试</button></view>
+            <view wx:elif="{{clubTemplates.length}}" class="template-scroll"><view wx:for="{{clubTemplates}}" wx:key="id" class="saved-template {{selectedTemplateId === 'saved:' + item.id ? 'saved-active' : ''}}"><button class="saved-template-use" data-source="saved" data-id="{{item.id}}" bindtap="useTemplate"><text class="saved-template-name">{{item.name}}</text><text class="saved-template-meta">{{item.config.startTime || '时间灵活'}} · {{item.config.groups.length}} 个分组</text><text class="saved-template-cta">使用模板 ↗</text></button><button class="template-menu" aria-label="管理模板" data-id="{{item.id}}" disabled="{{templateBusy}}" bindtap="manageTemplate">•••</button></view></view>
+            <view wx:else class="library-empty">把每周的固定训练存下来，全团管理员都能用。</view>
+          </block>
         </view>
       </block>
       <block wx:if="{{step === 2}}">
@@ -74,7 +74,7 @@
       </block>
       <view wx:if="{{step === 3}}" class="preview">
         <view class="section-kicker">03 / {{templateMode ? '确认模板' : '准备出发'}}</view><view class="section-title">{{templateMode ? '一份模板，多次相聚' : '最后看一眼，就出发'}}</view>
-        <view class="preview-hero"><view class="preview-type">{{typeName}} · {{club.name}}</view><view class="preview-title">{{draft.title || templateName || '未命名活动'}}</view><view wx:if="{{draft.plannedKm}}" class="distance">{{draft.plannedKm}}<text> km</text></view><view class="preview-date">{{templateMode ? (draft.startTime ? '常用开始时间 ' + draft.startTime : '每次发布时选择日期与时间') : previewTime}}</view><view class="preview-place">{{draft.place || '地点每次补充'}}{{draft.gatherPlace ? ' · ' + draft.gatherPlace : ''}}</view></view>
+        <view class="preview-hero"><view class="preview-type">{{typeName}} · {{club.name}}</view><view class="preview-title">{{draft.title || templateName || '未命名活动'}}</view><view wx:if="{{draft.plannedKm}}" class="preview-distance-line">计划 {{draft.plannedKm}} km</view><view class="preview-date">{{templateMode ? (draft.startTime ? '常用开始时间 ' + draft.startTime : '每次发布时选择日期与时间') : previewTime}}</view><view class="preview-place">{{draft.place || '地点每次补充'}}{{draft.gatherPlace ? ' · ' + draft.gatherPlace : ''}}</view></view>
         <view class="preview-section"><view class="preview-label">训练安排</view><view class="preview-copy">{{draft.workout || '按本次计划与分组约定进行'}}</view></view>
         <view class="preview-section"><view class="preview-label">报名分组</view><block wx:for="{{groups}}" wx:key="key"><view wx:if="{{item.enabled}}" class="preview-group"><view><text class="preview-group-name">{{item.name}}</text><text class="preview-group-pace">{{item.pace || kindNames[item.kindIndex]}}</text></view><text>{{item.capacity > 0 ? item.capacity + ' 人' : '人数不限'}}</text></view></block></view>
         <view wx:if="{{draft.notice}}" class="preview-section"><view class="preview-label">参与须知</view><view class="preview-copy">{{draft.notice}}</view></view><view class="preview-foot">{{templateMode ? '保存到本跑团，团长与管理员均可复用。每次发布仍需确认日期。' : '活动仅对本跑团成员开放，发布后可邀请团友报名。'}}</view>

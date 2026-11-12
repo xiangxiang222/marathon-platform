@@ -9,3 +9,4 @@ page {color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"PingFang S
 .quiet-button{min-width:44px}
 
 @import "../../utils/personal-ui.wxss";
+.form-task-heading { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:baseline; gap:12rpx 24rpx; margin-bottom:24rpx; }.form-task-heading .section-title { font-size:18px; font-weight:600; line-height:1.5; }.form-task-heading>text { color:#777; font-size:12px; }.feedback-context-heading { padding-top:32rpx; margin-top:40rpx; border-top:1px solid #eee; }.compose-card { border:0; padding:32rpx; border-radius:24rpx; }

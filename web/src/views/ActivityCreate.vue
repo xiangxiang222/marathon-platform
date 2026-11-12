@@ -1,5 +1,5 @@
 <template>
-  <main class="activity-create service-page">
+  <main class="activity-create service-page service-form">
     <header class="topbar">
       <router-link :to="'/clubs/' + clubId" aria-label="返回跑团">‹</router-link>
       <h1>{{ templateMode ? (editingTemplate ? '编辑训练模板' : '创建训练模板') : '发布训练' }}</h1>
@@ -25,22 +25,8 @@
         <div v-if="templateMessage" class="template-message" role="status">{{ templateMessage }}</div>
 
         <section v-if="step === 0" class="step-panel">
-          <div class="step-heading"><span>01 / 03 · 基本信息</span><h2>基本信息</h2><p class="timezone-note">活动时间按北京时间填写</p></div>
-          <section v-if="!templateMode" class="template-library">
-            <div class="template-library-heading"><div><h3>从模板开始</h3><p>选择模板带入训练内容，再确认本次安排。</p></div><button type="button" class="text-button" @click="enterTemplateEditor()">＋ 创建模板</button></div>
-            <div class="templates" aria-label="基础训练模板">
-              <button v-for="item in templates" :key="item.id" type="button" :class="['template', { selected: appliedTemplateKey === 'preset:' + item.id }]" :aria-pressed="appliedTemplateKey === 'preset:' + item.id" @click="chooseTemplate(item)"><span class="template-icon">{{ item.mark }}</span><strong>{{ item.label }}</strong><small>{{ item.hint }}</small><span class="template-check" v-if="appliedTemplateKey === 'preset:' + item.id">✓</span></button>
-            </div>
-            <button type="button" class="blank-start" @click="clearTemplate">不使用模板，从空白开始 →</button>
-            <div class="saved-heading"><b>跑团的常用模板 <small>{{ sharedTemplates.length }}</small></b><button type="button" class="text-button" @click="openTemplateSave">将当前内容存为模板 ↗</button></div>
-            <p v-if="templatesLoading" class="template-hint" role="status">正在读取跑团模板…</p>
-            <div v-else-if="templatesError" class="template-load-error"><span>{{ templatesError }}</span><button type="button" @click="loadTemplates">重试</button></div>
-            <div v-else-if="sharedTemplates.length" class="saved-templates">
-              <article v-for="item in sharedTemplates" :key="item.id" class="saved-template" :class="{ selected: appliedTemplateKey === 'saved:' + item.id }"><button type="button" class="saved-template-use" @click="applySavedTemplate(item)"><span class="saved-template-mark">↗</span><strong>{{ item.name }}</strong><small>{{ templateSummary(item) }}</small></button><div class="saved-template-tools"><button type="button" @click="applySavedTemplate(item)">使用模板</button><button type="button" @click="enterTemplateEditor(item)">编辑</button><button type="button" @click="askDeleteTemplate(item)">删除</button></div></article>
-            </div>
-            <p v-else class="template-hint">把常用地点、配速分组和训练安排存下来，全团管理员都能复用。</p>
-          </section>
-          <div v-else class="template-editor-name"><span class="small-kicker">跑团模板</span><label class="field"><span>模板名称 <b>*</b></span><input v-model.trim="templateName" maxlength="30" placeholder="例：周三间歇训练" /></label><label class="field"><span>训练类型</span><select v-model="form.trainingType"><option value="custom">自由训练</option><option v-for="item in templates" :key="item.id" :value="item.id">{{ item.label }}</option></select></label></div>
+          <div class="step-heading"><span>01 / 03 · 基本信息</span><h2>安排时间与集合地点</h2><p class="timezone-note">活动时间按北京时间填写</p></div>
+          <div v-if="templateMode" class="template-editor-name"><span class="small-kicker">跑团模板</span><label class="field"><span>模板名称 <b>*</b></span><input v-model.trim="templateName" maxlength="30" placeholder="例：周三间歇训练" /></label><label class="field"><span>训练类型</span><select v-model="form.trainingType"><option value="custom">自由训练</option><option v-for="item in templates" :key="item.id" :value="item.id">{{ item.label }}</option></select></label></div>
           <div class="form-section-title"><span>01</span><h3>{{ templateMode ? '常用训练内容' : '这一次的安排' }}</h3><small v-if="!templateMode">必填项已标记 *</small></div>
           <label v-if="!templateMode && activeTiming.startTime" class="reuse-date-row"><span><b>常用时刻 {{ activeTiming.startTime }}</b><small>选择本次日期，即可带入时间与截止安排</small></span><input type="date" aria-label="选择本次活动日期" @change="applyTemplateDate" /></label>
           <div class="form-grid">
@@ -55,6 +41,20 @@
             <label class="field"><span>集合点 <b v-if="!templateMode">*</b></span><input v-model.trim="form.gatherPlace" maxlength="40" :required="!templateMode" placeholder="例：东门入口" /></label>
             <label class="field"><span>计划距离（公里）</span><input v-model="form.plannedKm" type="number" min="0.1" max="200" step="0.1" placeholder="可选" /></label>
           </div>
+          <section v-if="!templateMode" class="template-library">
+            <div class="template-library-heading"><div><h3>从模板开始</h3><p>选择模板带入训练内容，再确认本次安排。</p></div><button type="button" class="text-button" @click="enterTemplateEditor()">＋ 创建模板</button></div>
+            <div class="templates" aria-label="基础训练模板">
+              <button v-for="item in templates" :key="item.id" type="button" :class="['template', { selected: appliedTemplateKey === 'preset:' + item.id }]" :aria-pressed="appliedTemplateKey === 'preset:' + item.id" @click="chooseTemplate(item)"><span class="template-icon">{{ item.mark }}</span><strong>{{ item.label }}</strong><small>{{ item.hint }}</small><span class="template-check" v-if="appliedTemplateKey === 'preset:' + item.id">✓</span></button>
+            </div>
+            <button type="button" class="blank-start" @click="clearTemplate">不使用模板，从空白开始 →</button>
+            <div class="saved-heading"><b>跑团的常用模板 <small>{{ sharedTemplates.length }}</small></b><button type="button" class="text-button" @click="openTemplateSave">将当前内容存为模板 ↗</button></div>
+            <p v-if="templatesLoading" class="template-hint" role="status">正在读取跑团模板…</p>
+            <div v-else-if="templatesError" class="template-load-error"><span>{{ templatesError }}</span><button type="button" @click="loadTemplates">重试</button></div>
+            <div v-else-if="sharedTemplates.length" class="saved-templates">
+              <article v-for="item in sharedTemplates" :key="item.id" class="saved-template" :class="{ selected: appliedTemplateKey === 'saved:' + item.id }"><button type="button" class="saved-template-use" @click="applySavedTemplate(item)"><span class="saved-template-mark">↗</span><strong>{{ item.name }}</strong><small>{{ templateSummary(item) }}</small></button><div class="saved-template-tools"><button type="button" @click="applySavedTemplate(item)">使用模板</button><button type="button" @click="enterTemplateEditor(item)">编辑</button><button type="button" @click="askDeleteTemplate(item)">删除</button></div></article>
+            </div>
+            <p v-else class="template-hint">把常用地点、配速分组和训练安排存下来，全团管理员都能复用。</p>
+          </section>
           <details v-if="!templateMode" class="advanced basic-options"><summary><span>更多时间与期次</span><small>结束时间、活动期次</small></summary><div class="form-grid">
             <label class="field"><span>结束时间</span><input v-model="form.endsAt" type="datetime-local" /></label>
             <label class="field"><span>活动期次</span><input v-model.trim="form.issue" maxlength="40" placeholder="可选，每次活动单独填写" /></label>
@@ -99,7 +99,7 @@
           <div class="step-heading"><span>03 / 03 · {{ templateMode ? '保存前确认' : '发布前确认' }}</span><h2>{{ templateMode ? '模板信息预览' : '训练信息预览' }}</h2></div>
           <div class="preview-hero"><span class="preview-type">{{ trainingLabel }}</span>
             <h3>{{ form.title || '未命名训练' }}</h3>
-            <div class="preview-km"><strong>{{ form.plannedKm || '—' }}</strong><span>KM</span></div>
+            <div v-if="form.plannedKm" class="preview-distance-line">计划 {{ form.plannedKm }} km</div>
             <p>{{ templateMode ? (activeTiming.startTime ? '常用时刻 ' + activeTiming.startTime : '日期在使用时确认') : formatWhen(form.startsAt) || '请设置开始时间' }}<template v-if="form.place"> · {{ form.place }}</template></p>
           </div>
           <div class="preview-facts">

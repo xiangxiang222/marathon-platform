@@ -1,11 +1,11 @@
 <view class="feedback-page mini-feedback-feedback">
   <block wx:if="{{composeOpen}}">
     <view class="compose-heading"><view><view class="page-title">提交建议</view></view><button class="quiet-button" disabled="{{busy}}" bindtap="closeCompose">收起</button></view>
-    <view class="compose-card">
+    <view class="compose-card"><view class="form-task-heading"><view class="section-title">问题与改进建议</view><text>具体场景更有帮助</text></view>
       <view class="field-label">这是关于什么的想法？</view><view class="form-categories"><button wx:for="{{formCategories}}" wx:key="key" class="category-pill {{draft.category === item.key ? 'selected' : ''}}" data-key="{{item.key}}" bindtap="pickFormCategory">{{item.label}}</button></view>
       <view class="field-label">一句话概括<text class="field-count">{{draft.title.length}} / 80</text></view><input class="title-input" placeholder="例如：跑团首页优先显示下次团练" value="{{draft.title}}" maxlength="80" data-field="title" bindinput="inputDraft" disabled="{{busy}}" aria-label="例如：跑团首页优先显示下次团练"/>
       <view class="field-label">展开说说你的想法<text class="field-count">{{draft.body.length}} / 3000</text></view><textarea class="body-input" value="{{draft.body}}" placeholder="你在什么场景遇到问题？希望如何改进？一个具体的例子会很有帮助。" maxlength="3000" data-field="body" bindinput="inputDraft" disabled="{{busy}}" auto-height cursor-spacing="120" aria-label="你在什么场景遇到问题？希望如何改进？一个具体的例子会很有帮助。"/>
-      <view class="field-label">相关页面<text class="optional">选填</text></view><picker mode="selector" range="{{modules}}" range-key="label" value="{{moduleIndex}}" bindchange="pickModule" disabled="{{busy}}"><view class="module-picker">{{modules[moduleIndex].label}}<text>⌄</text></view></picker>
+      <view class="form-task-heading feedback-context-heading"><view class="section-title">补充信息</view><text>选填</text></view><view class="field-label">相关页面<text class="optional">选填</text></view><picker mode="selector" range="{{modules}}" range-key="label" value="{{moduleIndex}}" bindchange="pickModule" disabled="{{busy}}"><view class="module-picker">{{modules[moduleIndex].label}}<text>⌄</text></view></picker>
       <view class="field-label">补充截图<text class="optional">选填 · 最多 3 张</text></view><view class="image-grid"><view wx:for="{{draftImages}}" wx:key="path" class="image-tile"><image src="{{item.path}}" mode="aspectFill" data-url="{{item.path}}" bindtap="previewImage"/><button class="image-remove" data-index="{{index}}" catchtap="removeDraftImage" disabled="{{busy}}" aria-label="移除截图">×</button></view><button wx:if="{{draftImages.length < 3}}" class="image-add" disabled="{{busy}}" bindtap="chooseImages"><text>＋</text><text>添加截图</text></button></view>
       <view class="caption">每张不超过 5 MB。请勿上传身份证、电话、住址等个人资料。文字会按当前账号自动保存为草稿。</view>
     </view>
