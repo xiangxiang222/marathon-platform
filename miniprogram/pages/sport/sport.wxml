@@ -1,6 +1,6 @@
-<page-header title="运动" compact><block wx:if="{{ready && summary}}"><button class="header-record" bindtap="toggleRecord">{{recordOpen ? '收起记录' : '＋ 记录跑步'}}</button><button class="header-import" bindtap="goImport">导入</button></block><button wx:elif="{{!ready}}" class="header-record" bindtap="login">登录后记录</button></page-header>
+<page-header title="运动" compact />
 <view class="sport-page mini-sport-sport">
-  <view wx:if="{{!ready}}" class="surface guest-state"><view class="guest-mark">＋</view><view class="guest-title">我的运动记录</view><view class="hint">登录后记录跑步，查看自己的跑量与进步。</view></view>
+  <view wx:if="{{!ready}}" class="surface guest-state"><view class="guest-mark">＋</view><view class="guest-title">我的运动记录</view><view class="hint">登录后记录跑步，查看自己的跑量与进步。</view><button class="primary" bindtap="login">登录后记录</button></view>
   <block wx:elif="{{summary}}">
     <view class="surface mileage-hero compact-mileage">
       <view class="hero-top">
@@ -12,6 +12,7 @@
       <view wx:if="{{summary.month.target}}" class="target-summary"><view class="target-copy"><text>本月目标 <text class="target-km">{{summary.month.target}} km</text></text><text class="target-percent">{{targetPercent}}%</text></view><view class="progress-track"><view class="progress-value" style="width: {{targetProgress}}%;"></view></view><view class="target-caption"><text>已完成 {{summary.month.km}} km</text><text>还差 {{targetRemaining}} km</text></view></view>
       <button wx:elif="{{summary.month.canFlag}}" class="target-prompt" bindtap="toggleTarget"><view class="target-mark">＋</view><view class="target-prompt-copy"><view class="target-prompt-title">设置月度跑量目标</view><view class="target-prompt-note">记录目标并查看完成进度</view></view><view class="target-prompt-more">设置 ›</view></button>
       <view wx:if="{{summary.month.observe}}" class="hint observe-note">本月为观察月，目标仅供个人记录。</view>
+      <view class="record-actions"><button class="primary record-button" bindtap="toggleRecord" aria-expanded="{{recordOpen}}">{{recordOpen ? '收起记录' : '＋ 记录跑步'}}</button><button class="import-button" bindtap="goImport">导入运动文件</button></view>
     </view>
     <view class="surface trend-card">
       <view class="weekly-chart" aria-label="{{weeklyChartLabel}}"><view class="chart-heading"><view><view class="chart-title">跑量趋势</view><view class="chart-subtitle">按自然周统计本月跑量</view></view><text>公里 / 周</text></view><view class="chart-bars"><view wx:for="{{weeklyRuns}}" wx:key="label" class="chart-column"><text class="bar-value">{{item.kmLabel}}</text><view class="bar-track"><view class="bar-value-fill {{item.peak ? 'peak' : ''}}" style="height: {{item.height}}%;"></view></view><text class="bar-label">{{item.label}}</text></view></view></view>
