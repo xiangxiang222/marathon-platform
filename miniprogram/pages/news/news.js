@@ -10,7 +10,7 @@ function previewImage(value){
 }
 const TABS = [{id:'all',label:'精选',heading:'精选资讯'},{id:'industry',label:'业界',heading:'业界动态'},{id:'athlete',label:'运动员',heading:'中国马拉松运动员'},{id:'pacer',label:'官兔',heading:'官方配速员档案'},{id:'club',label:'跑团',heading:'跑团故事'},{id:'race',label:'赛事',heading:'赛事资讯'}];
 Page({
-  data:{profileEntries:PROFILE_ENTRIES,previewPhotos:{athlete:[],pacer:[]},previewTarget:'',tabs:TABS,tab:'all',heading:'精选资讯',clubId:'',clubName:'',canManage:false,isProfile:false,rows:[],page:1,pages:1,total:0,ready:false,message:'',gender:'men',query:'',raceId:'',raceFilters:[],raceFilterOptions:[{id:'',name:'全部赛事'}],raceFilterIndex:0,seasonYear:new Date(Date.now()+8*3600000).getUTCFullYear()},
+  data:{profileEntries:PROFILE_ENTRIES,previewPhotos:{athlete:[],pacer:[]},previewTarget:'',previewLabels:{athlete:'',pacer:''},tabs:TABS,tab:'all',heading:'精选资讯',clubId:'',clubName:'',canManage:false,isProfile:false,rows:[],page:1,pages:1,total:0,ready:false,message:'',gender:'men',query:'',raceId:'',raceFilters:[],raceFilterOptions:[{id:'',name:'全部赛事'}],raceFilterIndex:0,seasonYear:new Date(Date.now()+8*3600000).getUTCFullYear()},
   onLoad(q){this._disposed=false;this._previewSeq=0;this._previewLoaded={};this._permissionTicket=0;const tab=q.club?'club':TABS.some(t=>t.id===q.tab)?q.tab:'all';this.setData({clubId:q.club||'',tab,heading:q.club?'跑团资讯':TABS.find(t=>t.id===tab).heading,isProfile:['athlete','pacer'].includes(tab)});wx.setNavigationBarTitle({title:q.club?'跑团资讯':'跑圈资讯'});},
   onShow(){if(this.data.clubId){const ticket=++this._permissionTicket,token=accountToken();this.setData({canManage:false});request('/clubs/'+encodeURIComponent(this.data.clubId)).then(d=>{if(!this._disposed&&ticket===this._permissionTicket&&token===accountToken())this.setData({clubName:d.club&&d.club.name||'',canManage:!!(d.club&&d.club.staff)});}).catch(()=>{});}this.load();if(!this.data.clubId&&this.data.tab==='all')this.loadPreviews();},
   onPullDownRefresh(){this.load().finally(()=>wx.stopPullDownRefresh());},
@@ -27,7 +27,7 @@ Page({
         if(this._disposed||seq!==this._previewSeq||this.data.clubId||this.data.tab!=='all')return;
         const people=(r.profiles||[]).filter(person=>person.type===entry.id);
         const photos=people.map(person=>({id:person.id,name:person.name,image:previewImage(person.avatar||person.photo)})).filter(person=>person.image).slice(0,3);
-        const patch={['previewPhotos.'+entry.id]:photos};
+        const patch={['previewPhotos.'+entry.id]:photos,['previewLabels.'+entry.id]:entry.id==='athlete'?[people[0]&&people[0].name,people[0]&&(people[0].seasonBest||people[0].personalBestDisplay||people[0].personalBest)].filter(Boolean).join(' · '):people[0]&&((people[0].assignments||[])[0]||{}).raceName||people[0]&&(people[0].verifiedPacerRaceNames||[])[0]||people[0]&&people[0].name||''};
         if(entry.id==='pacer')patch.previewTarget=people.reduce((all,person)=>all.concat([person.primaryTargetTime],person.targetTimes||[]),[]).find(value=>/^\d:[0-5]\d(?::[0-5]\d)?$/.test(value||''))||'';
         this.setData(patch);this._previewLoaded[entry.id]=true;
       }catch(_){}
