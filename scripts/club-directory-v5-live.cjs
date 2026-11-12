@@ -5,7 +5,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs'), os = require('node:os'), path = require('node:path'), crypto = require('node:crypto');
 const { pathToFileURL } = require('node:url');
 const { chromium } = require('playwright-core');
-const ROOT = path.resolve(__dirname, '..'), OUT = path.join(ROOT, 'design/previews/club-directory-v5-20261112');
+const ROOT = path.resolve(__dirname, '..'), OUT = process.env.CLUB_DIRECTORY_OUT || path.join(ROOT, 'design/previews/club-directory-v5-20261112');
 const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'marathon-club-directory-v5-'));
 Object.assign(process.env, { NODE_ENV: 'test', BASE_PATH: '/marathon', PORT: '0', MARATHON_DB: path.join(temp, 'app.sqlite'), MARATHON_MEDIA: path.join(temp, 'media'), CONTENT_DATA_DIR: path.join(temp, 'content'), ADMIN_TOKEN: crypto.randomBytes(24).toString('hex') });
 const exists = fs.existsSync; fs.existsSync = file => path.resolve(String(file)) === path.join(ROOT, '.env') ? false : exists(file);
@@ -37,9 +37,15 @@ async function main() {
     await context.route('**/*', route => /^(https?:\/\/(127\.0\.0\.1|localhost)(:|\/)|data:|blob:)/.test(route.request().url()) ? route.continue() : route.abort());
     const page = await context.newPage(); page.on('pageerror', error => report.errors.push(error.message));
     const mine = () => page.locator('.my-clubs .my-club');
-    await check(width + 'px: default four memberships stack vertically with one bottom creation entry', async () => {
+    await check(width + 'px: memberships stack vertically and the creation entry sits before discovery', async () => {
       await page.goto(base + '/clubs', { waitUntil: 'networkidle' }); await mine().first().waitFor(); assert.equal(await mine().count(), 4);
       assert.equal(await page.locator('.clubs-header a[href$="/clubs/new"],.discover-feature').count(), 0); assert.equal(await page.locator('a[href$="/clubs/new"]').count(), 1);
+      const order = await page.evaluate(() => {
+        const mine = document.querySelector('.my-clubs'), create = document.querySelector('.create-club'), discover = document.querySelector('.discover');
+        return { afterMine: Boolean(mine.compareDocumentPosition(create) & Node.DOCUMENT_POSITION_FOLLOWING), beforeDiscovery: Boolean(create.compareDocumentPosition(discover) & Node.DOCUMENT_POSITION_FOLLOWING), separated: create.getBoundingClientRect().bottom <= discover.getBoundingClientRect().top };
+      });
+      assert.deepEqual(order, { afterMine: true, beforeDiscovery: true, separated: true });
+      assert.equal(await page.locator('input[name="name"],.create-form').count(), 0, 'The directory should open a dedicated creation page');
       const boxes = await mine().evaluateAll(rows => rows.map(row => { const r = row.getBoundingClientRect(); return { left: r.left, top: r.top, bottom: r.bottom }; })); assert.ok(boxes.every((r, i) => !i || r.top >= boxes[i - 1].bottom - 1 && Math.abs(r.left - boxes[0].left) < 2));
       const layout = await page.evaluate(() => { const search = document.querySelector('.search-row .club-search').getBoundingClientRect(), city = document.querySelector('.city-filter').getBoundingClientRect(); return { search: { top: search.top, bottom: search.bottom, width: search.width }, city: { top: city.top, bottom: city.bottom, width: city.width } }; }); assert.ok(layout.city.top >= layout.search.bottom - 1, 'City filter must have its own row');
       const visual = await page.evaluate(() => ({ background:getComputedStyle(document.querySelector('.clubs-page')).backgroundColor, headerColor:getComputedStyle(document.querySelector('.clubs-header')).color, buttonBorder:getComputedStyle(document.querySelector('.club-quick-actions a span')).borderTopWidth, target:document.querySelector('.club-quick-actions a').getBoundingClientRect().width, actionBackground:getComputedStyle(document.querySelector('.result-action')).backgroundColor }));
@@ -64,8 +70,16 @@ async function main() {
     });
     await context.close();
   }
-  await check('Bottom creation entry opens the real form and creates an independent club for an ordinary account', async () => {
-    const context = await browser.newContext({ viewport: { width: 320, height: 900 } }); await context.addInitScript(token => localStorage.setItem('marathon_token', token), other.token); const page = await context.newPage(); page.on('pageerror', error => report.errors.push(error.message)); await page.goto(base + '/clubs', { waitUntil: 'networkidle' }); await page.locator('.create-club').click(); await page.waitForURL(/\/clubs\/new$/); await page.getByLabel('跑团名称', { exact: true }).fill('从底部入口创建的跑团'); await page.getByLabel('活动城市', { exact: true }).fill('绍兴'); await page.getByLabel('一句话介绍', { exact: true }).fill('真实本地接口完成创建，按自己的节奏一起跑。'); await screenshot(page, 'web-create'); await page.getByRole('button', { name: /^创建跑团/ }).click(); await page.waitForURL(/\/clubs\/\d+\?created=1$/); const me = await api('GET', '/me', other.token); assert.equal(me.user.leader, false); assert.ok(me.clubs.some(club => club.name === '从底部入口创建的跑团' && club.city === '绍兴' && club.role === 'owner')); await context.close();
+  await check('Creation entry opens a separate page, supports returning, and creates a club for an ordinary account', async () => {
+    const context = await browser.newContext({ viewport: { width: 320, height: 900 } }); await context.addInitScript(token => localStorage.setItem('marathon_token', token), other.token); const page = await context.newPage(); page.on('pageerror', error => report.errors.push(error.message)); await page.goto(base + '/clubs', { waitUntil: 'networkidle' }); await page.locator('.create-club').click(); await page.waitForURL(/\/clubs\/new$/); await page.getByLabel('跑团名称', { exact: true }).waitFor(); await page.goBack(); await page.waitForURL(/\/clubs$/); await page.locator('.my-clubs .my-club').waitFor(); await page.locator('.create-club').click(); await page.waitForURL(/\/clubs\/new$/); await page.getByLabel('跑团名称', { exact: true }).fill('从独立创建页建立的跑团'); await page.getByLabel('活动城市', { exact: true }).fill('绍兴'); await page.getByLabel('一句话介绍', { exact: true }).fill('真实本地接口完成创建，按自己的节奏一起跑。'); await screenshot(page, 'web-create'); await page.getByRole('button', { name: /^创建跑团/ }).click(); await page.waitForURL(/\/clubs\/\d+\?created=1$/); const me = await api('GET', '/me', other.token); assert.equal(me.user.leader, false); assert.ok(me.clubs.some(club => club.name === '从独立创建页建立的跑团' && club.city === '绍兴' && club.role === 'owner')); await context.close();
+  });
+  await check('Guests see the same entry before discovery and are guided to sign in on the separate page', async () => {
+    const context = await browser.newContext({ viewport: { width: 390, height: 900 } }); const page = await context.newPage();
+    page.on('pageerror', error => report.errors.push(error.message)); await page.goto(base + '/clubs', { waitUntil: 'networkidle' });
+    const entry = page.locator('.create-club'); await entry.waitFor();
+    assert.ok(await entry.evaluate(node => Boolean(node.compareDocumentPosition(document.querySelector('.discover')) & Node.DOCUMENT_POSITION_FOLLOWING)));
+    await screenshot(page, 'web-guest-directory'); await entry.click(); await page.waitForURL(/\/clubs\/new$/);
+    await page.getByRole('button', { name: '登录并创建', exact: true }).waitFor(); await screenshot(page, 'web-guest-create'); await context.close();
   });
   assert.deepEqual(report.errors, []); report.passed = true;
 }
