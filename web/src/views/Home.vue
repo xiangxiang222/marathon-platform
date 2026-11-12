@@ -9,12 +9,9 @@
       <form class="home-search" role="search" @submit.prevent="submitSearch">
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="7" /><path d="m16 16 4.5 4.5" /></svg>
         <input v-model="q" aria-label="搜索赛事名称或城市" placeholder="搜索赛事名称 / 城市" @input="queueSearch" />
-        <button type="submit">搜索</button>
+        <button type="submit"><span>搜索</span></button>
       </form>
       </div>
-      <nav v-if="!searching" class="race-categories" aria-label="赛事类型">
-        <button v-for="item in trackKinds" :key="item.kind" type="button" :class="{ on: trackKind === item.kind }" :aria-pressed="trackKind === item.kind" @click="setTrackKind(item.kind)">{{ item.short }}</button>
-      </nav>
       <nav v-if="!searching" class="home-shortcuts" aria-label="常用功能">
         <router-link v-for="item in quickLinks" :key="item.to" :to="item.to">
           <img :src="item.icon" alt="" />
@@ -44,6 +41,12 @@
     </div>
     <section class="home-results">
       <div class="results-heading"><h2>{{ searching ? '搜索结果' : '全部赛事' }}</h2><span>共 {{ total }} 场</span></div>
+      <div v-if="!searching" class="race-format-filter">
+        <span class="format-label">赛事类型</span>
+        <nav class="race-meet-categories" aria-label="赛事类型">
+          <button v-for="item in trackKinds" :key="item.kind" type="button" :class="{ on: trackKind === item.kind }" :aria-pressed="trackKind === item.kind" @click="setTrackKind(item.kind)">{{ item.short }}</button>
+        </nav>
+      </div>
       <div v-if="!searching" class="race-format-filter">
         <span class="format-label">赛事形式</span>
         <nav class="race-meet-categories" aria-label="赛事形式">
@@ -353,11 +356,8 @@ onMounted(() => {
 .home-search { display: flex; align-items: center; height: 46px; margin: 0 12px; padding: 0 3px 0 12px; border: 1px solid #fff; border-radius: 10px; background: #fff; }
 .home-search > svg { width: 18px; height: 18px; flex: none; fill: none; stroke: #888; stroke-width: 1.6; stroke-linecap: round; }
 .home-search input { width: 0; min-width: 0; flex: 1; height: 38px; margin-left: 8px; padding: 0; border: 0; border-radius: 0; background: transparent; font-size: 14px; font-weight: 400; outline: none; }
-.home-search button { flex: none; min-height: 38px; padding: 0 17px; border-radius: 7px; background: var(--accent); color: #fff; font-size: 14px; font-weight: 600; }
-.race-categories { display: flex; align-items: stretch; gap: 28px; height: 46px; padding: 0 16px; }
-.race-categories button { position: relative; flex: none; min-width: 0; color: #555; font-size: 15px; font-weight: 400; white-space: nowrap; }
-.race-categories button.on { color: var(--accent); font-weight: 600; }
-.race-categories button.on::after { position: absolute; bottom: 5px; left: calc(50% - 9px); width: 18px; height: 3px; background: var(--accent); content: ''; border-radius: 3px; }
+.home-search button { display: flex; align-items: center; justify-content: center; flex: 0 0 56px; width: 56px; height: 44px; min-height: 44px; min-width: 0; padding: 0; border-radius: 7px; background: transparent; color: #fff; font-size: 13px; font-weight: 600; line-height: 1.4; }
+.home-search button > span { display: flex; align-items: center; justify-content: center; width: 56px; height: 34px; border-radius: 7px; background: var(--accent); }
 .home-shortcuts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 0 12px; padding: 0 0 10px; }
 .home-shortcuts a { display: flex; min-width: 0; min-height: 80px; flex-direction: column; align-items: center; gap: 0; color: #444; font-size: 12px; line-height: 20px; }
 .home-shortcuts img { display: block; width: 58px; height: 58px; }

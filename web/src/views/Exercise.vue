@@ -27,8 +27,12 @@
             <span class="strip-detail">按你的节奏</span>
           </div>
         </div>
+        <div class="run-metrics"><div><b>{{ data.month.count }}</b><span>跑步次数</span></div><div><b>{{ data.month.days }}</b><span>运动天数</span></div><div><b>{{ data.month.paceLabel || '—' }}</b><span>平均配速</span></div></div>
+        <div class="record-actions"><button class="primary record-button" type="button" :aria-expanded="recordOpen" @click="recordOpen = !recordOpen">{{ recordOpen ? '收起记录' : '＋ 记录跑步' }}</button><router-link class="import-button" to="/runner?view=devices">导入运动文件</router-link></div>
+      </section>
+      <section class="surface trend-card">
         <div class="weekly-chart" role="img" :aria-label="weeklyChartLabel">
-          <div class="chart-heading"><h2>分周跑量</h2><span>{{ monthLabel }} · km</span></div>
+          <div class="chart-heading"><div><h2>跑量趋势</h2><p class="chart-subtitle">每一周的积累，都看得见</p></div><span>公里 / 周</span></div>
           <div class="chart-bars" :style="{ gridTemplateColumns: `repeat(${weeklyRuns.length}, minmax(0, 1fr))` }" aria-hidden="true">
             <div v-for="week in weeklyRuns" :key="week.label" class="chart-column">
               <span class="bar-value">{{ week.kmLabel }}</span>
@@ -39,12 +43,10 @@
         </div>
         <div v-if="data.month.target" class="target-summary"><div class="target-copy"><span>本月目标 <b>{{ data.month.target }} km</b></span><strong>{{ targetPercent }}%</strong></div><div class="progress" role="progressbar" :aria-valuenow="progressPercent" aria-valuemin="0" aria-valuemax="100" aria-label="跑量目标进度"><i :style="{ width: progressPercent + '%' }"></i></div><p><span>已完成 {{ data.month.km }} km</span><span>还差 {{ Math.max(0, Number(data.month.target) - Number(data.month.km)).toFixed(1) }} km</span></p></div>
         <button v-else-if="data.month.canFlag" class="target-prompt" type="button" :aria-expanded="targetOpen" @click="targetOpen = !targetOpen"><span class="target-mark">＋</span><span><strong>给这个月定个目标</strong><small>按自己的节奏，一步步完成</small></span><b>设置 ›</b></button>
-        <div class="run-metrics"><div><b>{{ data.month.count }}</b><span>跑步次数</span></div><div><b>{{ data.month.days }}</b><span>运动天数</span></div><div><b>{{ data.month.paceLabel || '—' }}</b><span>平均配速</span></div></div>
-        <p v-if="data.month.observe" class="hint">本月观摩，不标记目标是否达成。</p>
+        <p v-if="data.month.observe" class="hint observe-note">本月先保持自己的节奏，跑起来就有进步。</p>
       </section>
       <section v-if="targetOpen && data.month.canFlag" class="surface editor"><div class="section-heading"><h2>本月目标</h2><button type="button" class="close-button" aria-label="收起目标设置" @click="targetOpen = false">收起</button></div><form class="stack" @submit.prevent="saveFlag"><label>目标跑量<input v-model="target" inputmode="decimal" placeholder="本月目标，公里" /></label><span class="field-label">性别</span><div class="choices"><button type="button" :class="{ on: gender === '男' }" @click="gender = '男'">男</button><button type="button" :class="{ on: gender === '女' }" @click="gender = '女'">女</button><button type="button" :class="{ on: gender === '' }" @click="gender = ''">不填</button></div><p class="hint">不填性别时，按本团下限里较高的一项计算。</p><button class="primary" type="submit">保存目标</button></form></section>
-      <div class="record-actions"><button class="primary record-button" type="button" :aria-expanded="recordOpen" @click="recordOpen = !recordOpen">{{ recordOpen ? '收起记录' : '＋ 记录跑步' }}</button><router-link class="import-button" to="/runner?view=devices">导入运动文件</router-link></div>
-      <p class="manual-note">支持手动记录与 FIT / TCX 文件导入 · 跑表自动同步尚未开通</p>
+      <p class="manual-note">支持手动记录与 FIT / TCX 文件导入</p>
       <section v-if="recordOpen" class="surface editor"><div class="section-heading"><h2>记录一次跑步</h2></div><form class="stack" @submit.prevent="create"><div class="choices"><button type="button" :class="{ on: form.type === 'run' }" @click="form.type = 'run'">跑步</button><button type="button" :class="{ on: form.type === 'trail' }" @click="form.type = 'trail'">越野</button></div><label>开始时间<input v-model="form.startedAt" placeholder="例如 2026-10-27 06:30" /></label><div class="field-pair"><label>距离（公里）<input v-model="form.distanceKm" inputmode="decimal" placeholder="例如 10" /></label><label>用时<input v-model="form.duration" placeholder="例如 0:50:00" /></label></div><div class="field-pair"><label>爬升（米）<input v-model="form.climb" inputmode="numeric" placeholder="可填 0" /></label><label>城市<input v-model="form.city" maxlength="20" placeholder="选填" /></label></div><label class="file-pick">{{ shot ? '已选择运动截图' : '添加运动截图（选填）' }}<input type="file" accept="image/jpeg,image/png,image/webp" @change="pickShot" /></label><button class="primary" type="submit">保存记录</button></form></section>
       <div class="section-heading records-heading"><h2>运动记录</h2><span>{{ data.runs.length }} 条</span></div>
       <article v-for="item in data.runs" :key="item.id" class="surface run-record"><div class="section-heading"><h3>{{ item.typeLabel }}</h3><button class="text-button" type="button" :aria-expanded="expandedRun === item.id" @click="expandedRun = expandedRun === item.id ? null : item.id">{{ expandedRun === item.id ? '收起' : '编辑记录' }}</button></div><p class="run-date">{{ item.startedAt }}<template v-if="item.city"> · {{ item.city }}</template></p><div class="record-data"><div><b>{{ item.distanceKm }}</b><span>公里</span></div><div><b>{{ item.durationLabel }}</b><span>用时</span></div><div><b>{{ item.paceLabel || '—' }}</b><span>配速</span></div></div><p class="hint">{{ item.sourceLabel }} · 跑量 {{ item.volumeKm }} 公里 · 爬升 {{ item.climb == null ? '未提供' : item.climb + ' 米' }}</p><p v-if="item.note" class="hint">{{ item.note }}</p><p v-for="club in item.clubs" :key="club.name" class="hint">{{ club.counted ? '计入' : '未计入' }} {{ club.name }}</p><img v-if="item.shot" class="shot" :src="shotSrc(item.id)" alt="运动记录截图"/><form v-if="expandedRun === item.id" class="stack record-editor" @submit.prevent="saveRow(item)"><div class="field-pair"><label>运动类型<select v-model="item.editRunMode"><option v-for="mode in runModes" :key="mode.value" :value="mode.value">{{ mode.label }}</option></select></label><label>城市<input v-model="item.city" maxlength="20" placeholder="城市" /></label></div><label>累计爬升（米）<input v-model="item.editClimb" inputmode="numeric" placeholder="未提供，可按设备记录补填" /></label><p class="hint">类型待确认时暂不计入跑团 PK；越野还需提供爬升。室内、操场与虚拟跑仅计个人运动。</p><button class="primary" type="submit">保存修改</button><button class="delete-button" type="button" @click="remove(item)">删除这条记录</button></form></article>
@@ -332,4 +334,59 @@ onMounted(() => {
 .message { margin: 12px 4px; color: var(--accent); font-size: 12px; line-height: 20px; }
 .editor { margin-top: 8px; }
 @media(max-width:350px){.surface{padding:14px}.hero-overview{grid-template-columns:minmax(0,1fr) 88px;gap:8px}.runner-strip{height:120px;padding:7px}.runner-photo{width:68px;height:68px}.mileage-value strong{font-size:38px}.weekly-chart{padding-right:8px;padding-left:8px}.chart-bars{gap:6px}.record-actions{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+
+.surface { border-radius: 16px; }
+.mileage-hero { padding: 13px 14px 14px; background: linear-gradient(150deg,#fff 65%,#fff8f8); }
+.hero-top { gap: 6px; }
+.month-block { display: flex; flex-direction: column; gap: 3px; }
+.month-caption { color: #8b8b8b; }
+.month-control { gap: 1px; margin-top: 0; }
+.month-step { width: 28px; height: 32px; min-height: 32px; border: 0; background: transparent; }
+.month-select { min-width: 105px; height: 32px; padding: 0 3px; background: transparent; font-size: 15px; }
+.target-link { min-width: 0; min-height: 32px; height: 32px; padding: 0 8px; border-color: #ffdce1; border-radius: 20px; font-size: 12px; }
+.hero-overview { grid-template-columns: minmax(0,1fr) 96px; min-height: 92px; gap: 6px; margin-top: 8px; }
+.hero-kicker { font-size: 12px; font-weight: 400; }
+.mileage-value { gap: 4px; margin-top: 3px; }
+.mileage-value strong { font-size: 48px; font-weight: 700; letter-spacing: -1.5px; line-height: 1.1; }
+.mileage-value > span { font-size: 13px; font-weight: 500; }
+.mileage-footnote { display: none; }
+.runner-strip { height: 100px; justify-content: center; padding: 0; background: transparent; border-radius: 0; }
+.runner-photo { width: 90px; height: 82px; margin: 0; }
+.runner-strip strong { font-size: 12px; font-weight: 500; color: #a77a80; }
+.strip-detail { display: none; }
+.run-metrics { gap: 5px; margin-top: 13px; padding: 12px 0 0; }
+.run-metrics div,.run-metrics div:first-child,.run-metrics div:last-child { text-align: left; }
+.run-metrics div + div { padding-left: 10px; border-left: 1px solid #f0e8e9; }
+.run-metrics b { font-size: 20px; line-height: 24px; }
+.run-metrics span { margin-top: 3px; font-size: 12px; }
+.record-actions { grid-template-columns: minmax(0,1.3fr) minmax(0,1fr); gap: 8px; margin-top: 14px; }
+.record-actions > * { min-height: 42px; height: 42px; padding: 0 8px; border-radius: 10px; font-size: 13px; }
+.record-actions .import-button { border-color: #eee3e5; background: #fff; color: #76666a; }
+.trend-card { padding: 14px; }
+.weekly-chart { padding: 0; margin-top: 0; border-radius: 0; background: transparent; }
+.chart-heading { align-items: center; }
+.chart-heading h2 { font-size: 15px; }
+.chart-subtitle { margin: 3px 0 0; color: #a0a0a0; font-size: 12px; line-height: 16px; }
+.chart-heading > span { font-size: 12px; color: #999; }
+.chart-bars { height: 105px; padding: 0 2px; margin-top: 11px; gap: 12px; }
+.bar-track { max-width: 22px; margin: 3px 0 6px; border-radius: 5px 5px 2px 2px; background: #f5f5f6; }
+.bar-track i { border-radius: 5px 5px 2px 2px; }
+.bar-value,.bar-label { font-size: 12px; line-height: 15px; }
+.target-summary { margin-top: 13px; padding: 11px; background: #fff7f8; }
+.target-prompt { width: 100%; min-height: 58px; margin: 13px 0 0; padding: 9px; justify-content: flex-start; }
+.target-prompt strong { font-size: 12px; line-height: 18px; }
+.target-prompt small { font-size: 12px; line-height: 16px; }
+.target-prompt > b { margin-left: auto; font-size: 12px; }
+.observe-note { margin-top: 9px; font-size: 12px; }
+.manual-note { margin: -4px 4px 15px; font-size: 12px; text-align: center; }
+.records-heading { margin: 16px 2px 9px; }
+.run-record { padding: 13px 14px; }
+.run-record .section-heading { min-height: 30px; }
+.text-button { min-height: 30px; }
+.run-date { margin-top: 2px; }
+.record-data { margin-bottom: 11px; }
+.empty-state { padding: 20px 14px; }
+.empty-state h3 { font-size: 15px; }
+.empty-state p { margin: 6px 0 0; font-size: 12px; }
+@media(max-width:350px) { .surface { padding: 12px; } .mileage-value strong { font-size: 44px; } .hero-overview { grid-template-columns:minmax(0,1fr) 80px; } .runner-strip { height: 90px; } .runner-photo { width:80px;height:74px; } .chart-bars { gap:9px; } .record-actions { grid-template-columns:minmax(0,1.2fr) minmax(0,1fr); } }
 </style>

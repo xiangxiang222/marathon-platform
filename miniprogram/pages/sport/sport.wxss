@@ -93,3 +93,61 @@
 .message { margin: 24rpx 8rpx; color: var(--brand); font-size: 12px; line-height: 20px; }
 .editor { margin-top: 16rpx; }
 @media(max-width:350px) { .sport-page { padding-right: 20rpx; padding-left: 20rpx; } .surface { padding: 28rpx; } .hero-overview { gap: 16rpx; } .runner-strip { width: 88px; height: 120px; padding: 14rpx; } .runner-photo { width: 68px; height: 68px; } .mileage-number { font-size: 38px; } .weekly-chart { padding-right: 16rpx; padding-left: 16rpx; } .chart-bars { gap: 12rpx; } .record-actions > .record-button { flex: 1; } }
+
+/* The summary, primary action and trend each have a clear place on a small screen. */
+.sport-page { padding: 0 24rpx calc(48rpx + env(safe-area-inset-bottom)); }
+.surface { border-radius: 16px; }
+.mileage-hero { padding: 26rpx 28rpx 28rpx; background: linear-gradient(150deg,#fff 65%,#fff8f8); }
+.hero-top { gap: 12rpx; }
+.month-block { display: flex; flex-direction: column; gap: 6rpx; }
+.month-caption { font-size: 12px; color: #8b8b8b; }
+.month-control { gap: 2rpx; margin-top: 0; }
+.month-step { width: 28px; height: 32px; min-height: 32px; border: 0; background: transparent; font-size: 23px; }
+.month-value { min-width: 105px; height: 32px; padding: 0 6rpx; background: transparent; font-size: 15px; }
+.target-link { min-width: 0; min-height: 32px; height: 32px; padding: 0 16rpx; border-color: #ffdce1; border-radius: 20px; font-size: 12px; }
+.hero-overview { position: relative; min-height: 92px; margin-top: 16rpx; gap: 12rpx; }
+.hero-kicker { font-size: 12px; font-weight: 400; }
+.mileage-value { gap: 8rpx; margin-top: 6rpx; }
+.mileage-number { font-size: 48px; font-weight: 700; letter-spacing: -1.5px; line-height: 1.1; }
+.mileage-unit { font-size: 13px; font-weight: 500; }
+.mileage-footnote { display: none; }
+.runner-strip { width: 96px; height: 100px; justify-content: center; padding: 0; background: transparent; border-radius: 0; }
+.runner-photo { width: 90px; height: 82px; margin: 0; }
+.strip-title { font-size: 12px; font-weight: 500; color: #a77a80; }
+.strip-detail { display: none; }
+.run-metrics { gap: 10rpx; margin-top: 26rpx; padding: 24rpx 0 0; }
+.run-metrics > view, .run-metrics > view:first-child, .run-metrics > view:last-child { text-align: left; }
+.run-metrics > view + view { padding-left: 20rpx; border-left: 1px solid #f0e8e9; }
+.metric-value { font-size: 20px; line-height: 24px; }
+.metric-label { margin-top: 6rpx; font-size: 12px; }
+.record-actions { gap: 16rpx; margin-top: 28rpx; }
+.record-actions > .record-button { flex: 1.3; }
+.record-actions > button { min-height: 42px; height: 42px; padding: 0 16rpx; border-radius: 10px; font-size: 13px; line-height: 42px; }
+.record-actions .import-button { border-color: #eee3e5; background: #fff; color: #76666a; }
+.trend-card { padding: 28rpx; }
+.weekly-chart { padding: 0; margin-top: 0; border-radius: 0; background: transparent; }
+.chart-heading { align-items: center; }
+.chart-title { font-size: 15px; }
+.chart-subtitle { margin-top: 6rpx; color: #a0a0a0; font-size: 12px; line-height: 16px; }
+.chart-heading > text { font-size: 12px; color: #999; }
+.chart-bars { height: 105px; padding: 0 4rpx; margin-top: 22rpx; gap: 24rpx; }
+.bar-track { width: 100%; max-width: 22px; margin: 3px 0 6px; border-radius: 5px 5px 2px 2px; background: #f5f5f6; }
+.bar-value-fill { border-radius: 5px 5px 2px 2px; }
+.bar-value,.bar-label { font-size: 12px; line-height: 15px; }
+.target-summary { margin-top: 26rpx; padding: 22rpx; background: #fff7f8; }
+.target-prompt { width: 100%; min-height: 58px; margin: 26rpx 0 0; padding: 18rpx; justify-content: flex-start; }
+.target-prompt-title { font-size: 12px; line-height: 18px; }
+.target-prompt-note { font-size: 12px; line-height: 16px; }
+.target-prompt-more { margin-left: auto; font-size: 12px; }
+.observe-note { margin-top: 18rpx; font-size: 12px; }
+.manual-note { margin: -8rpx 8rpx 30rpx; font-size: 12px; text-align: center; }
+.records-heading { margin: 32rpx 4rpx 18rpx; }
+.run-record { padding: 26rpx 28rpx; }
+.run-record .section-heading { min-height: 30px; }
+.text-button { min-height: 30px; }
+.run-date { margin-top: 4rpx; }
+.record-data { margin-bottom: 22rpx; }
+.empty-state { padding: 40rpx 28rpx; background: #fff; }
+.empty-state .section-title { font-size: 15px; }
+.empty-state > .hint { margin: 12rpx 0 0; font-size: 12px; }
+@media(max-width:350px) { .surface { padding: 24rpx; } .mileage-number { font-size: 44px; } .runner-strip { width: 80px; height: 90px; } .runner-photo { width: 80px; height: 74px; } .chart-bars { gap: 18rpx; } .record-actions > .record-button { flex: 1.2; } }
