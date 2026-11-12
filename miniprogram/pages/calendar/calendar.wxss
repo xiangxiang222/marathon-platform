@@ -77,3 +77,5 @@
 
 /* Primary actions read at 14px, secondary actions at 13px; compact filters stay at 12px. */
 .nav .ym { font-size: 24px; } .cell.picked { padding: 8rpx 0 0; font-weight: 400; border-radius: 0; } .list > .picked { padding: 24rpx 0 8rpx; font-size: 16px; font-weight: 600; }
+
+.nav > text:not(.ym) { display:flex;align-items:center;justify-content:center;min-width:44px;min-height:44px; }

@@ -1,0 +1,221 @@
+{
+  "date": "2026-11-12",
+  "kind": "Current source visual verification. Disposable HTTP database or synthetic source mirrors; no production mutations.",
+  "reports": {
+    "consumer_mobile": {
+      "passed": true,
+      "count": 142,
+      "widths": [
+        320,
+        390
+      ],
+      "registeredRoutes": null,
+      "checks": 0
+    },
+    "consumer_desktop": {
+      "passed": true,
+      "count": 71,
+      "widths": [
+        1440
+      ],
+      "registeredRoutes": null,
+      "checks": 0
+    },
+    "mini_registered": {
+      "passed": true,
+      "count": 94,
+      "widths": [
+        320,
+        390
+      ],
+      "registeredRoutes": 32,
+      "checks": 0
+    },
+    "mini_personal_branches": {
+      "passed": true,
+      "count": 130,
+      "widths": [
+        320,
+        390
+      ],
+      "registeredRoutes": 8,
+      "checks": 0
+    },
+    "mini_people_branches": {
+      "passed": true,
+      "count": 18,
+      "widths": [
+        320,
+        390
+      ],
+      "registeredRoutes": 2,
+      "checks": 0
+    },
+    "mini_editor_branches": {
+      "passed": true,
+      "count": 16,
+      "widths": [
+        320,
+        390
+      ],
+      "registeredRoutes": 1,
+      "checks": 0
+    },
+    "mini_activity_branches": {
+      "passed": true,
+      "count": 16,
+      "widths": [
+        320,
+        390
+      ],
+      "registeredRoutes": 2,
+      "checks": 0
+    },
+    "reading": {
+      "passed": true,
+      "count": 72,
+      "widths": [
+        320,
+        390
+      ],
+      "registeredRoutes": null,
+      "checks": 0
+    },
+    "admin": {
+      "passed": true,
+      "count": 138,
+      "widths": [
+        320,
+        390,
+        1024,
+        1440
+      ],
+      "registeredRoutes": null,
+      "checks": 138
+    },
+    "admin_business": {
+      "passed": true,
+      "count": 6,
+      "widths": [
+        320,
+        390,
+        1440
+      ],
+      "registeredRoutes": null,
+      "checks": 8
+    }
+  },
+  "limitations": [
+    "WXML/WXSS browser mirrors approximate native controls and navigation; not WeChat device screenshots.",
+    "Real photos and exported poster artwork retain their colors.",
+    "Desktop admin audit uses synthetic HTTP display responses; profile editor business tests use a disposable real SQLite database."
+  ],
+  "registeredMiniRoutes": [
+    "pages/achievement-poster/achievement-poster",
+    "pages/activity-create/activity-create",
+    "pages/activity/activity",
+    "pages/album/album",
+    "pages/calendar/calendar",
+    "pages/call/call",
+    "pages/club-identity/club-identity",
+    "pages/club-intro/club-intro",
+    "pages/club-report/club-report",
+    "pages/club/club",
+    "pages/clubs/clubs",
+    "pages/feed/feed",
+    "pages/feedback/feedback",
+    "pages/history/history",
+    "pages/internal/internal",
+    "pages/legal/legal",
+    "pages/meetup/meetup",
+    "pages/member-profile/member-profile",
+    "pages/mileage/mileage",
+    "pages/mine/mine",
+    "pages/news/detail",
+    "pages/news/editor",
+    "pages/news/news",
+    "pages/partner/partner",
+    "pages/privacy/privacy",
+    "pages/race/race",
+    "pages/races/races",
+    "pages/radar/radar",
+    "pages/runner/runner",
+    "pages/signup/signup",
+    "pages/sport/sport",
+    "pages/training-groups/training-groups"
+  ],
+  "webScenes": [
+    "activity",
+    "activity-create",
+    "album",
+    "calendar",
+    "call",
+    "club-albums",
+    "club-create",
+    "club-feed",
+    "club-fees",
+    "club-identity",
+    "club-internals",
+    "club-invite",
+    "club-manage",
+    "club-meetups",
+    "club-members",
+    "club-mileage",
+    "club-overview",
+    "club-partner",
+    "club-public",
+    "club-race",
+    "club-report",
+    "club-training",
+    "clubs",
+    "feedback",
+    "feedback-detail",
+    "guest-clubs",
+    "guest-home",
+    "guest-mine",
+    "history",
+    "history-import",
+    "history-review",
+    "home",
+    "internal",
+    "legal-children",
+    "legal-collection",
+    "legal-permissions",
+    "legal-privacy",
+    "legal-rights",
+    "legal-sharing",
+    "legal-terms",
+    "look",
+    "manager-activity",
+    "manager-club-manage",
+    "manager-club-members",
+    "manager-club-overview",
+    "manager-club-training",
+    "meetup",
+    "mine",
+    "mine-plans",
+    "mine-profile",
+    "mine-results",
+    "mine-settings",
+    "news",
+    "news-detail",
+    "not-found",
+    "race",
+    "race-share-expanded",
+    "radar",
+    "reports",
+    "runner-career",
+    "runner-devices",
+    "runner-footprints",
+    "runner-help",
+    "runner-honors",
+    "runner-media",
+    "runner-stats",
+    "signup",
+    "sport",
+    "sport-create",
+    "sport-edit",
+    "sport-target"
+  ],
+  "passed": true
+}

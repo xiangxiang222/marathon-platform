@@ -153,3 +153,5 @@
 .mine .header-settings{width:auto;white-space:nowrap;color:#fff}
 
 .legal-page .legal-section p,.legal-page .legal-section li{font-size:16px;line-height:1.8}.legal-page .legal-topbar{font-size:16px}
+.history-page .history-header .back-link,.history-page .history-dialog .dialog-heading>button{width:44px;min-width:44px;height:44px;min-height:44px;padding:0;flex:none}
+.achievement-studio .image-preview::backdrop{background:rgba(26,26,26,.45)}
