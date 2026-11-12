@@ -37,7 +37,7 @@ const projectText = computed(() => {
 
 <style scoped>
 .race-card { position: relative; align-items: center; gap: 12px; min-height: 104px; padding: 14px 12px; border-radius: var(--radius-card); background: #fff; border: 0; box-shadow: var(--card-shadow); }
-.race-card .date { position: relative; display: flex; overflow: hidden; flex-direction: column; justify-content: center; align-items: center; width: 58px; height: 70px; flex: none; border: 1px solid #f4e1e3; border-radius: 8px; background: linear-gradient(145deg,#fff,#fff6f6); color: var(--ink); }
+.race-card .date { position: relative; display: flex; overflow: hidden; flex-direction: column; justify-content: center; align-items: center; width: 58px; height: 70px; flex: none; border: 1px solid #f4e1e3; border-radius: 8px; background: var(--card); color: var(--ink); }
 .race-card .date span { position: absolute; inset: 0 0 auto; background: var(--accent-soft); color: var(--accent); font-size: 12px; font-weight: 400; line-height: 23px; text-align: center; }
 .race-card .date b { margin-top: 19px; font-size: 30px; font-weight: 600; line-height: 1; }
 .race-card .body { flex: 1; min-width: 0; }

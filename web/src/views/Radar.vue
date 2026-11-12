@@ -16,20 +16,21 @@
       <p class="hint">对照仍用已记下的成绩和往届名次。</p>
       <p class="hint">性别、出生年月和省份自己填，用来对年龄组和本地籍。不收身份证。出生月份和比赛月相同的，按小一岁算。</p>
       <form class="stack" @submit.prevent="save">
+        <div class="field-label">性别</div>
         <div class="modes">
           <button type="button" :class="{ on: gender === '' }" @click="gender = ''">不填</button>
           <button type="button" :class="{ on: gender === '男' }" @click="gender = '男'">男</button>
           <button type="button" :class="{ on: gender === '女' }" @click="gender = '女'">女</button>
         </div>
-        <input v-model="birth" placeholder="出生年月 1986-06，可空" />
-        <select v-model="province">
+        <label>出生年月<span>选填</span><input v-model="birth" placeholder="例如 1986-06" /></label>
+        <label>所属省份<span>选填</span><select v-model="province">
           <option value="">省份，可空</option>
           <option v-for="item in regions" :key="item.name" :value="item.name">{{ item.name }}</option>
-        </select>
-        <input v-model="targets.full" placeholder="全马目标 3:30:00，空则用 PB" />
-        <input v-model="targets.half" placeholder="半马目标，可空" />
-        <input v-model="targets['10k']" placeholder="10 公里目标，可空" />
-        <input v-model="targets['5k']" placeholder="5 公里目标，可空" />
+        </select></label>
+        <label>全马目标<span>选填</span><input v-model="targets.full" placeholder="例如 3:30:00，留空使用 PB" /></label>
+        <label>半马目标<span>选填</span><input v-model="targets.half" placeholder="例如 1:40:00" /></label>
+        <label>10 公里目标<span>选填</span><input v-model="targets['10k']" placeholder="例如 00:45:00" /></label>
+        <label>5 公里目标<span>选填</span><input v-model="targets['5k']" placeholder="例如 00:22:00" /></label>
         <button class="primary" type="submit">保存</button>
       </form>
       <p v-if="message" class="err">{{ message }}</p>
@@ -123,26 +124,5 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.hint { margin: 8px 0 0; color: var(--muted); font-size: 13px; line-height: 1.45; }
-.stack { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
-.stack input, .stack select { height: 40px; border: 1px solid var(--line); border-radius: 12px; padding: 0 12px; background: var(--field-bg);  min-height: 44px;}
-.modes { display: flex; gap: 24px; border-bottom: 1px solid var(--line); }
-.modes button { position: relative; height: 42px; padding: 0 2px; background: transparent; color: var(--muted); font-weight: 600; }
-.modes button.on { color: var(--accent); }
-.modes button.on::after { content: ""; position: absolute; right: 0; bottom: 0; left: 0; height: 2px; border-radius: 2px; background: var(--accent); }
-.primary { height: 40px; border-radius: 12px; background: var(--accent); color: #fff; font-weight: 600; }
-.radar-login h2 { margin-bottom: 8px; }
-.radar-login .primary { width: 100%; margin-top: 20px; }
-.run { padding: 8px 0; border-bottom: 1px solid var(--line); }
-.run a { color: inherit; }
-.err { color: var(--red); }
-
-
-/* A sunny discovery area, with matching awards separated on pale blue cards. */
-.radar-page { background:transparent; }.radar-page>.topbar { background:transparent; }
-.radar-page>.block:first-of-type { background:var(--card);border-color:var(--line);box-shadow:none; }
-.radar-page .slot { background:#ffffffb5;border-color:var(--line);border-radius:10px;padding:12px; }.radar-page .slot b { color:var(--muted); }
-.radar-page .stack input,.radar-page .stack select { background:#ffffffd9;border-color:var(--line); }
-.radar-page .run { padding:15px;border:1px solid var(--line);border-radius:12px;background:#fff;margin-top:12px; }.radar-page .run:nth-of-type(2n) { background:#fff;border-color:var(--line); }
-.radar-login h2 { color:var(--muted); }
+.radar-page{padding-bottom:24px}.hint{margin:8px 0 0;color:var(--muted);font-size:12px;line-height:1.8}.block h2{font-size:18px;color:var(--ink)}.stack{display:grid;gap:16px;margin-top:24px}.stack label{display:grid;grid-template-columns:1fr auto;gap:8px;font-size:14px}.stack label>span{color:var(--muted);font-size:12px}.stack input,.stack select{grid-column:1/-1;width:100%;min-width:0;height:44px;border:1px solid var(--line);border-radius:8px;padding:0 12px;background:var(--field-bg);font-size:14px}.field-label{font-size:14px}.modes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.modes button{min-height:44px;border:1px solid var(--line);border-radius:8px;background:#fff;font-size:14px;color:var(--muted)}.modes button.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}.primary{width:100%;min-height:44px;border-radius:8px;background:var(--accent);color:#fff;font-size:14px;font-weight:500}.radar-login .primary{margin-top:20px}.slot{display:flex;justify-content:space-between;gap:12px;margin-top:16px;padding:12px 0;border-block:1px solid var(--line);font-size:14px}.slot b{color:var(--muted);font-size:12px;font-weight:400}.run{padding:16px 0;border-bottom:1px solid var(--line)}.run p{margin:8px 0 0;font-size:14px;line-height:1.7}.run p:first-child{font-size:15px;font-weight:500}.run .hint{font-size:12px}.err{color:var(--accent);font-size:14px}
 </style>

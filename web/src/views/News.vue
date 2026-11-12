@@ -92,7 +92,7 @@ watch(id, () => {
 .news-body { margin:16px; padding:22px 20px; border:1px solid var(--line); border-radius:18px; background:var(--card); }
 .news-body h2 { margin-top:0; font-size:24px; line-height:1.5; }
 .news-body .src { padding-bottom:18px; border-bottom:1px solid var(--line); font-size:12px; line-height:1.8; }
-.news-body .guide-md .md { font-size:15px; line-height:1.9; }
+.news-body .guide-md .md { font-size:16px; line-height:1.9; }
 .news-body .go { margin-top:24px; padding-top:18px; border-top:1px solid var(--line); font-size:14px; }
 
 

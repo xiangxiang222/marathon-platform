@@ -370,7 +370,7 @@ onMounted(() => {
 .discover-photo-copy small { display: block; margin-top: 6px; color: #888; font-size: 12px; line-height: 1.5; }
 .discover-photo-copy i { font-style: normal; margin-left: 2px; }
 .discover-side { display: grid; grid-template-rows: 1fr 1fr; gap: 8px; min-width: 0; }
-.discover-side > a { position: relative; display: flex; align-items: center; justify-content: space-between; overflow: hidden; gap: 0; padding: 8px 6px 8px 12px; border-radius: 12px; background: linear-gradient(115deg,#fff8ee,#fff1df); }
+.discover-side > a { position: relative; display: flex; align-items: center; justify-content: space-between; overflow: hidden; gap: 0; padding: 8px 6px 8px 12px; border-radius: 12px; background: var(--card); }
 .discover-side .discover-news { background: linear-gradient(115deg,#fff,#fff0f2); }
 .discover-side strong { display: block; font-size: 15px; line-height: 1.5; white-space: nowrap; font-weight: 600; }
 .discover-side span { display: block; margin-top: 4px; color: #888; font-size: 12px; white-space: nowrap; }
