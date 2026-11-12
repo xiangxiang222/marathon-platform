@@ -39,11 +39,15 @@ page { background:var(--page-bg,#f5f5f5); }
 .mine-expand text { color:var(--text-secondary); font-size:16px; }
 .no-clubs { padding:16px 0 20px; color:var(--text-secondary); font-size:12px; line-height:1.7; }
 .no-club-title { color:var(--text); font-size:15px; font-weight:500; }
-.create-card { margin:12px 0 24px; }
-.clubs-page .create-entry { width:100%; min-height:80px; gap:12px; padding:16px; text-align:left; }
-.create-mark { display:flex; flex:none; align-items:center; justify-content:center; width:36px; height:36px; border-radius:8px; background:var(--brand-soft); color:var(--brand); font-size:24px; font-weight:400; }
+.create-card { overflow:hidden; margin:12px 0 24px; background:linear-gradient(110deg,#fff0f2 0%,#fff9fa 55%,#fff 100%); }
+.clubs-page .create-entry { width:100%; min-height:84px; gap:12px; padding:14px; border-radius:12px; text-align:left; }
+.create-entry:active { background:#ffe8ec; }
+.create-icon { display:block; flex:none; width:56px; height:56px; }
 .create-copy { flex:1; min-width:0; }
-.create-toggle { color:var(--text-secondary); font-size:22px; font-weight:400; }
+.create-title { color:var(--text); font-size:16px; font-weight:600; line-height:1.4; }
+.create-description { margin-top:5px; color:var(--text-secondary); font-size:12px; font-weight:400; line-height:1.6; }
+.create-arrow { display:flex; align-items:center; justify-content:center; flex:none; width:28px; height:28px; border-radius:50%; background:#fff; }
+.create-arrow>view { width:6px; height:6px; margin-left:-2px; border-top:1.5px solid var(--brand); border-right:1.5px solid var(--brand); transform:rotate(45deg); }
 .discover { margin-bottom:12px; }
 .directory-tools { padding:0 16px 4px; }
 .modes { display:flex; gap:20px; border-bottom:1px solid var(--border); }

@@ -22,7 +22,7 @@
   </view>
 
   <view id="create-club" class="create-card">
-    <button class="create-entry" bindtap="openCreate" aria-label="创建跑团，打开独立填写页"><view class="create-mark">＋</view><view class="create-copy"><view class="club-name">{{application ? '继续创建跑团' : '创建一个新跑团'}}</view><view class="meta">{{application ? '继续之前未完成的申请' : '把一起跑步的人聚在一起'}}</view></view><text class="create-toggle">›</text></button>
+    <button class="create-entry" bindtap="openCreate" aria-label="{{application ? '继续创建跑团，打开填写页' : '创建跑团，打开填写页'}}"><image class="create-icon" src="/images/club-create.png" mode="aspectFit" aria-hidden="true" /><view class="create-copy"><view class="create-title">{{application ? '继续创建跑团' : '创建跑团'}}</view><view class="create-description">{{application ? '继续之前未完成的申请' : '邀请跑友，一起训练参赛'}}</view></view><view class="create-arrow" aria-hidden="true"><view></view></view></button>
   </view>
 
   <view id="discover-clubs" class="discover">
