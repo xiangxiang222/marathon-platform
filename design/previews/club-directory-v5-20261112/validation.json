@@ -1,0 +1,54 @@
+{
+  "kind": "Club directory v5: real localhost web journeys and WXML/WXSS browser source mirrors; no device or production claim",
+  "passed": true,
+  "base": "8395afe820afffc6d82fe0d01a64d28173e1b015",
+  "web": {
+    "checks": 9,
+    "views": 12,
+    "runtimeErrors": 0,
+    "cases": [
+      "320px: default four memberships stack vertically with one bottom creation entry",
+      "320px: expand all memberships, search the complete list, and enter a joined club",
+      "320px: discovery name, city and invitation search retain working routes",
+      "320px: account switching clears the expanded list and search before showing the new memberships",
+      "390px: default four memberships stack vertically with one bottom creation entry",
+      "390px: expand all memberships, search the complete list, and enter a joined club",
+      "390px: discovery name, city and invitation search retain working routes",
+      "390px: account switching clears the expanded list and search before showing the new memberships",
+      "Bottom creation entry opens the real form and creates an independent club for an ordinary account"
+    ]
+  },
+  "mini": {
+    "views": 16,
+    "expressionErrors": 0,
+    "missingHandlers": 0,
+    "cases": [
+      "base",
+      "code",
+      "create",
+      "empty",
+      "expanded",
+      "guest",
+      "large-text",
+      "search"
+    ]
+  },
+  "defaultBrandHeader": {
+    "passed": true,
+    "views": 2,
+    "route": "pages/sport/sport"
+  },
+  "businessScriptsUnchanged": true,
+  "selectedScreenshots": [
+    "web-default-320.png",
+    "web-default-390.png",
+    "web-large-text-long-name-320.png",
+    "mini/pages-clubs-clubs-320.png",
+    "mini/pages-clubs-clubs-390.png",
+    "mini/pages-clubs-clubs-large-text-320.png"
+  ],
+  "limitations": [
+    "Mini screenshots are Chromium source mirrors, not WeChat simulator or device evidence.",
+    "Membership fixtures use disposable data; no production reads or writes."
+  ]
+}

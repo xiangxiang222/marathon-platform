@@ -8,3 +8,10 @@
 .header-actions { display: flex; flex: none; align-items: center; justify-content: flex-end; }
 
 .header-actions { position: relative; color: #fff; }
+
+.page-header-light { padding-bottom:20px; background:#f6f5f2; color:#24302e; }
+.page-header-light .header-main { padding-left:18px; }
+.page-header-light .header-title { display:flex; align-items:center; gap:11px; font-size:26px; font-weight:650; }
+.page-header-light .header-title::before { width:5px; height:16px; margin-right:14px; flex:none; border-radius:3px; background:#d63150; box-shadow:7px -4px #d63150,14px 3px #e4a3b1; transform:skew(-14deg); content:''; }
+.page-header-light .header-subtitle { padding:4px 16px 0; color:#687672; font-size:12px; line-height:1.5; }
+.page-header-light .header-actions { color:#24302e; }

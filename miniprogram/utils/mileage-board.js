@@ -2,6 +2,7 @@ const RANGES = [{ id: "day", name: "日" }, { id: "week", name: "周" }, { id: "
 const COLORS = ["mint", "blue", "apricot", "violet", "rose", "lime"];
 function today() { return new Date(Date.now() + 8 * 3600000).toISOString().slice(0, 10); }
 function number(value) { return String(Math.round((Number(value) || 0) * 100) / 100); }
+function compact(value) { const n = Number(value) || 0; return n >= 100000000 ? number(n / 100000000) + "亿" : n >= 10000 ? number(Math.round(n / 1000) / 10) + "万" : number(n); }
 function shiftDate(date, range, direction) {
   const d = new Date(date + "T00:00:00Z");
   if (range === "year") { d.setUTCMonth(0, 1); d.setUTCFullYear(d.getUTCFullYear() + direction); }
@@ -20,6 +21,6 @@ function decorate(board) {
   const maximum = Math.max(0, ...(board.rank || []).map(r => Number(r.km) || 0));
   const rank = (board.rank || []).map((r, index) => ({ ...r, initial: String(r.nickname || "跑").slice(0, 1), kmLabel: number(r.km), color: COLORS[index % COLORS.length], progress: maximum ? Math.round(Number(r.km) / maximum * 100) : 0 }));
   const groups = (board.groups || []).filter(g => Number(g.id) > 0).map((g, index) => ({ ...g, mark: String(g.name || "组").slice(0, 1), kmLabel: number(g.km), color: COLORS[index % COLORS.length] }));
-  return { ...board, rank, groups, kmLabel: number(board.summary && board.summary.km), average: number(board.summary && board.summary.members ? board.summary.km / board.summary.members : 0) };
+  return { ...board, rank, groups, kmLabel: number(board.summary && board.summary.km), summaryTimesLabel: compact(board.summary && board.summary.times), summaryActiveLabel: compact(board.summary && board.summary.activeMembers), summaryMembersLabel: compact(board.summary && board.summary.members), average: compact(board.summary && board.summary.members ? board.summary.km / board.summary.members : 0) };
 }
 module.exports = { RANGES, COLORS, today, number, shiftDate, periodKey, canAdvance, decorate };

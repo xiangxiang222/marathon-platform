@@ -3,15 +3,15 @@ const { RANGES, today, shiftDate, canAdvance, decorate } = require("../../utils/
 function token() { const app = getApp(); return app && app.globalData ? String(app.globalData.token || "") : ""; }
 Component({
   properties: { clubId: { type: String, value: "" }, embedded: { type: Boolean, value: false } },
-  data: { ranges: RANGES, range: "month", date: today(), today: today(), groupId: "", board: null, shownRank: [], mine: null, query: "", loading: true, message: "", selectedName: "全员", canNext: false },
-  observers: { clubId() { if (this._alive) { this.setData({ groupId: "", board: null, shownRank: [], mine: null, query: "" }); this.load(); } } },
+  data: { ranges: RANGES, range: "month", date: today(), today: today(), groupId: "", board: null, shownGroups: [], groupsExpanded: false, groupOptions: [], selectedGroupIndex: 0, shownRank: [], mine: null, query: "", loading: true, message: "", selectedName: "全员", canNext: false },
+  observers: { clubId() { if (this._alive) { this.setData({ groupId: "", board: null, shownGroups: [], groupsExpanded: false, groupOptions: [], selectedGroupIndex: 0, shownRank: [], mine: null, query: "" }); this.load(); } } },
   lifetimes: {
     attached() { this._alive = true; this._token = token(); this.load(); },
     detached() { this._alive = false; this._ticket = (this._ticket || 0) + 1; }
   },
   pageLifetimes: { show() {
     if (!this._alive) return;
-    if (this._token !== token()) this.setData({ board: null, shownRank: [], mine: null, groupId: "", query: "" });
+    if (this._token !== token()) this.setData({ board: null, shownGroups: [], groupsExpanded: false, groupOptions: [], selectedGroupIndex: 0, shownRank: [], mine: null, groupId: "", query: "" });
     this._token = token(); this.load();
   }, hide() { this._ticket = (this._ticket || 0) + 1; } },
   methods: {
@@ -28,12 +28,24 @@ Component({
         const board = decorate(result);
         const group = board.groups.find(g => String(g.id) === String(groupId));
         this.setData({ board, mine: board.rank.find(r => r.mine) || null, selectedName: groupId === "" ? "全员" : groupId === "0" ? "未分组" : group ? group.name : "训练组", canNext: canAdvance(date, range) });
-        this.filterRank();
+        this.renderGroups(); this.filterRank();
       } catch (err) {
         if (current() && err.status === 404 && groupId !== "") { this.setData({ groupId: "", query: "" }); return this.load(); }
-        if (current()) this.setData({ board: null, shownRank: [], mine: null, message: err.message || "跑量暂时无法载入，请重试" });
+        if (current()) this.setData({ board: null, shownGroups: [], groupsExpanded: false, groupOptions: [], selectedGroupIndex: 0, shownRank: [], mine: null, message: err.message || "跑量暂时无法载入，请重试" });
       } finally { if (current()) this.setData({ loading: false }); }
     },
+    renderGroups() {
+      const groups = this.data.board ? this.data.board.groups : [];
+      const options = [{ id: "", name: "全员" }, ...groups.map(group => ({ id: String(group.id), name: group.name })), { id: "0", name: "未分组" }];
+      this.setData({ shownGroups: this.data.groupsExpanded ? groups : groups.slice(0, 4), groupOptions: options, selectedGroupIndex: Math.max(0, options.findIndex(group => group.id === this.data.groupId)) });
+    },
+    toggleGroups() { if (this._token !== token()) return; this.setData({ groupsExpanded: !this.data.groupsExpanded }); this.renderGroups(); },
+    selectGroup(e) {
+      const option = this.data.groupOptions[Number(e.detail.value)];
+      if (!option) return;
+      this.pickGroup({ currentTarget: { dataset: { id: option.id } } });
+    },
+    clearQuery() { this.setData({ query: "" }); this.filterRank(); },
     pickRange(e) {
       const range = e.currentTarget.dataset.range;
       if (!RANGES.some(r => r.id === range)) return;
