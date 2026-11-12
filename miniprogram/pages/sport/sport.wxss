@@ -139,8 +139,3 @@
 .sport-page .compact-mileage .mileage-number{font-size:36px}
 .sport-page .compact-mileage .record-actions{margin-top:24rpx}
 @media(max-width:350px){.sport-page .compact-mileage{padding-right:28rpx;padding-left:28rpx}.sport-page .month-art{width:32px;height:32px}.sport-page .compact-mileage .month-block{gap:0}.sport-page .compact-mileage .month-value{min-width:104px}}
-
-.header-record,.header-import{display:flex;flex:none;align-items:center;justify-content:center;min-height:44px;margin:0;padding:0 12px;border:0;border-radius:8px;font-size:14px;font-weight:500;line-height:1.4}
-.header-record{background:transparent;color:var(--brand)}
-.header-import{padding-right:8px;padding-left:8px;background:transparent;color:#555}
-.header-record::after,.header-import::after{border:0}
