@@ -563,8 +563,8 @@ async function main() {
     }
     const mineMarkup = fs.readFileSync(path.join(mini, "pages/mine/mine.wxml"), "utf8");
     assert.match(mineMarkup, /data-tab="overview" bindtap="pickMainTab">总览/);
-    assert.match(mineMarkup, /class="runner-entry \{\{item\.tone\}\}"/);
-    assert.match(mineMarkup, /class="career-totals"/); assert.match(mineMarkup, /runner\.career\.kmLabel/); assert.match(mineMarkup, /比赛里程 · 公里/); assert.doesNotMatch(mineMarkup, /累计跑步 · 公里/);
+    assert.match(mineMarkup, /class="runner-entry"/);
+    assert.match(mineMarkup, /class="account-stats"/); assert.match(mineMarkup, /career\.finished/); assert.match(mineMarkup, /class="best-grid career-best-grid"/); assert.match(mineMarkup, /class="service-icon" src="\{\{item\.icon\}\}"/); assert.match(mineMarkup, /url="\/pages\/history\/history"/); assert.match(mineMarkup, /bindtap="toggleHelp" role="button" aria-label="使用帮助"/);
     assert.doesNotMatch(mineMarkup, /\{\{item\.mark\}\}/);
   });
   const markup = fs.readFileSync(path.join(mini, "pages/runner/runner.wxml"), "utf8");

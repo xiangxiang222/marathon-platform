@@ -3,116 +3,6 @@
   --bg:#f5f5f5;--card:#fff;--ink:#1a1a1a;--ink-secondary:#555;--muted:#777;--line:#eee;--accent:#ff1838;--accent-soft:#fff0f2;
   color:var(--ink);font-size:14px;font-weight:400;line-height:1.5;
 }
-.exercise,.mine {padding:0 16px 24px;background:var(--bg)}
-.exercise :deep(.page-header),.mine :deep(.page-header){margin:0 -16px}
-.exercise>.surface:first-of-type,.mine>.account-hero {margin-top:16px}
-.exercise .surface,.mine .sheet,.mine .account-hero,.runner-card,.history-card {border:1px solid var(--line);border-radius:12px;background:#fff;box-shadow:none}
-.exercise .surface,.mine .sheet {padding:16px;margin-bottom:12px}
-.exercise .mileage-hero {padding:16px;background:#fff}
-.exercise .hero-top {align-items:center;gap:12px;padding-bottom:12px;border-bottom:1px solid var(--line)}
-.exercise .month-caption {display:none}
-.exercise .month-control {gap:4px}
-.exercise .month-step {width:32px;min-height:44px;height:44px;padding:0;border:0;background:transparent;color:#777;font-size:22px}
-.exercise .month-select {height:44px;min-width:108px;background:transparent;font-size:15px}
-.exercise .target-link {width:auto;height:44px;min-height:44px;padding:0 4px;border:0;border-radius:0;background:transparent;color:var(--accent);font-size:13px}
-.exercise .hero-overview {display:block;min-height:0;margin:20px 0 16px}
-.exercise .mileage-value {gap:8px;margin-top:5px}
-.exercise .mileage-value strong {font-size:40px;font-weight:600;letter-spacing:normal}
-.exercise .mileage-footnote {margin-top:6px;font-size:12px}
-.exercise .run-metrics {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));padding:16px 0;border-top:1px solid var(--line);border-bottom:0}
-.exercise .run-metrics>div {min-width:0;text-align:left;border:0}
-.exercise .run-metrics b {font-size:20px;font-weight:600;line-height:1.4}
-.exercise .record-actions {margin-top:0;gap:8px;grid-template-columns:1fr 1fr}
-.exercise .record-button,.exercise .import-button {min-height:44px;border-radius:8px;font-size:14px}
-.exercise .weekly-chart {padding:0;margin:0;background:transparent;border-radius:0}
-.exercise .chart-heading h2,.exercise .section-heading h2 {font-size:18px;font-weight:600}
-.exercise .chart-subtitle {font-size:12px;color:#777}
-.exercise .bar-track {height:88px;border-radius:3px;background:#f5f5f5}
-.exercise .bar-track i {border-radius:3px;background:#ffb5bf}
-.exercise .bar-track i.peak {background:var(--accent)}
-.exercise .target-prompt {display:flex;align-items:center;gap:10px;width:100%;min-height:60px;margin-top:16px;padding:12px 0 0;border:0;border-top:1px solid var(--line);border-radius:0;background:#fff;text-align:left}
-.exercise .target-mark {display:none}
-.exercise .target-prompt>span {flex:1;min-width:0}
-.exercise .target-prompt strong {font-size:14px;font-weight:500}
-.exercise .target-prompt small {font-size:12px;color:#777}
-.exercise .target-prompt>b {margin-left:auto;font-size:13px;color:var(--accent);white-space:nowrap}
-.exercise .records-heading {margin:24px 0 12px}
-.exercise .manual-note {margin:0 0 16px;font-size:12px}
-.exercise .record-data b {font-size:20px}
-.exercise .guest-state {padding:24px 16px;text-align:left}
-.exercise .guest-mark {display:none}
-.exercise .guest-state h2 {margin:0;font-size:18px}
-.mine .account-hero {margin:16px 0 12px;overflow:hidden;background:#fff}
-.mine .identity-panel {display:block;min-height:0;padding:16px;background:#fff}
-.mine .identity-copy {width:100%;min-width:0}
-.mine .identity-kicker {display:none}
-.mine .who-top {gap:12px;margin:0}
-.mine .face {width:48px;height:48px;flex:none;border-radius:50%;background:#f5f5f5;color:#555;font-size:20px}
-.mine .who-main {flex:1;min-width:0}
-.mine .nick {margin:0;font-size:20px;line-height:1.4;font-weight:600;overflow-wrap:anywhere}
-.mine .club-line {max-width:none;margin:5px 0 0;font-size:12px;line-height:1.6;color:#777}
-.mine .role {display:inline-block;margin-top:5px;padding:1px 5px;border-radius:3px;background:var(--accent-soft);color:var(--accent);font-size:12px}
-.mine .account-stats {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:0 16px;padding:16px 0;border-top:1px solid var(--line);gap:0}
-.mine .account-stats>* {min-height:44px;padding:0;border:0;border-right:1px solid var(--line);border-radius:0;background:#fff}
-.mine .account-stats>*:last-child {border-right:0}
-.mine .account-stats b {font-size:24px;font-weight:600;line-height:1.3}
-.mine .account-stats span {margin-top:5px;font-size:12px}
-.mine .main-tabs {display:flex;margin:0 0 16px;padding:0;border:0;border-bottom:1px solid #e8e8e8;border-radius:0;background:transparent;gap:0}
-.mine .main-tabs button {position:relative;flex:1;width:0;min-width:0;min-height:48px;padding:0;border:0;border-radius:0;background:transparent;color:#777;font-size:14px;font-weight:400;white-space:nowrap}
-.mine .main-tabs button.on {color:var(--accent);background:transparent;font-weight:600}
-.mine .main-tabs button.on::after {position:absolute;right:auto;bottom:0;left:50%;width:20px;height:3px;border-radius:2px;background:var(--accent);transform:translateX(-50%);content:''}
-.mine .guest-hero .identity-panel {padding:20px 16px 0}
-.mine .guest-hero h2 {margin:0;font-size:20px;font-weight:600}
-.mine .guest-hero .identity-copy p {margin:8px 0 0;color:#777;font-size:14px}
-.mine .guest-actions {padding:12px 16px 16px;border:0}
-.mine .guest-actions p {display:none}
-.mine .guest-actions .primary {width:100%;min-height:44px;border-radius:8px}
-.mine .compact-poster {display:flex;gap:12px;align-items:center;margin-top:12px;padding-top:12px;border-top:1px solid var(--line);background:#fff}
-.mine .compact-poster>span {flex:1;min-width:0;color:#777;font-size:12px;line-height:1.6}
-.mine .compact-poster>a,.mine .compact-poster>button {flex:none;min-height:44px;padding:0;color:var(--accent);font-size:13px;background:transparent;white-space:nowrap}
-.mine .profile-section {margin:0 0 12px;padding:0;border:1px solid var(--line);border-radius:10px;background:#fff}
-.mine .profile-section-title {padding:16px;border-bottom:1px solid var(--line)}
-.mine .profile-section-icon {display:none}
-.mine .setting-row {display:flex;min-height:64px;align-items:center;padding:12px 0;border:0;border-bottom:1px solid var(--line);border-radius:0;background:#fff;text-align:left}
-.mine .profile-section .setting-row {margin:0 16px}
-.mine .setting-row:last-child {border-bottom:0}
-.mine .setting-row span,.mine .setting-row strong {font-size:15px;font-weight:500}
-.mine .setting-row small {font-size:12px;font-weight:400;color:#777}
-.mine .plan-row {padding:16px 0;border-bottom:1px solid var(--line)}
-.mine .plan-row h3 {font-size:15px;font-weight:500;line-height:1.6}
-.mine .plan-state {padding:1px 5px;border-radius:3px;font-size:12px}
-.mine .plan-row p {font-size:12px}
-.runner-dashboard {gap:12px}
-.runner-dashboard .dash-card {padding:16px;border:1px solid #eee;border-radius:12px;background:#fff}
-.runner-dashboard .dash-heading h3 {font-size:18px;font-weight:600}
-.runner-dashboard .week-number {font-size:32px;font-weight:600}
-.runner-dashboard .pb-grid {display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
-.runner-dashboard .pb-grid>a {padding:12px 0;border:0;border-radius:0;background:#fff}
-.runner-dashboard .pb-grid>a+a {padding-left:12px;border-left:1px solid #eee}
-.runner-dashboard .pb-grid>a::after {display:none}
-.runner-dashboard .pb-grid b {font-size:24px;color:#1a1a1a}
-.runner-dashboard .pb-grid span,.runner-dashboard .pb-grid small {color:#777}
-.runner-dashboard .pb-grid i {padding:1px 4px;border-radius:3px;color:var(--accent);background:var(--accent-soft)}
-.runner-dashboard .career-numbers {padding-top:12px;border-top:1px solid #eee}
-.runner-dashboard .career-numbers b {font-size:20px;font-weight:600}
-.runner-dashboard .next-race {padding:16px;border:1px solid #eee;border-radius:12px;background:#fff}
-.runner-dashboard .next-date {background:#fff0f2;border:0;color:#ff1838}
-.runner-dashboard .archive-workbench {border:1px solid #eee;border-radius:12px;background:#fff}
-.runner-dashboard .archive-heading {padding:16px 16px 4px}
-.runner-dashboard .archive-heading>span {display:none}
-.runner-dashboard .dash-entries {display:grid;grid-template-columns:1fr;margin:0 16px;padding:0;gap:0}
-.runner-dashboard .dash-entries>a {display:flex;flex-direction:row;justify-content:flex-start;gap:12px;min-height:60px;padding:12px 0;border-bottom:1px solid #eee;border-radius:0;background:#fff;text-align:left}
-.runner-dashboard .entry-icon {width:22px;height:24px;border-radius:0;background:transparent!important;color:#777!important}
-.runner-dashboard .entry-icon svg {width:21px;height:21px}
-.runner-dashboard .dash-entries a>div {flex:1;min-width:0}
-.runner-dashboard .dash-entries b {font-size:15px;font-weight:500}
-.runner-dashboard .dash-entries div>span {margin-top:3px;font-size:12px}
-.runner-dashboard .entry-arrow {display:block;width:16px;height:16px;color:#999}
-.runner-dashboard .history-entry {margin:0 16px;padding:14px 0;border:0;border-radius:0;background:#fff}
-.runner-dashboard .history-entry .overline {display:none}
-.runner-dashboard .history-entry h3 {margin:0;font-size:15px;font-weight:500}
-.runner-dashboard .history-entry p {margin-top:5px;font-size:12px}
-.runner-dashboard .private-note {margin-top:8px}
 .runner-page,.history-page,.feedback-page {padding-right:16px;padding-left:16px;background:#f5f5f5}
 .runner-header,.history-header {height:76px;gap:10px;background:transparent}
 .runner-header h1,.history-header h1 {font-size:24px;font-weight:600}
@@ -143,15 +33,21 @@
 .privacy-rights p {font-size:14px;line-height:1.8}
 .look-page .large {padding:20px 16px 16px;background:#fff}
 .look-page .large h1 {margin:0;color:#1a1a1a;font-size:24px;font-weight:600}
-@media(max-width:350px){.exercise,.mine,.runner-page,.history-page,.feedback-page{padding-right:16px;padding-left:16px}.exercise .mileage-value strong{font-size:40px}.mine .main-tabs button{font-size:13px}.mine .club-line{max-width:none}.mine .compact-poster{align-items:flex-start;flex-direction:column;gap:4px}.mine .compact-poster>a,.mine .compact-poster>button{min-height:36px}.runner-dashboard .pb-grid b{font-size:22px}.runner-dashboard .career-numbers b{font-size:18px}}
+
 
 .privacy-rights>header p,.legal-page :deep(.legal-text p),.legal-page :deep(.legal-text li){font-size:16px;line-height:1.8}.not-found{padding:40px 16px;background:#f5f5f5;color:#1a1a1a}.not-found h1{font-size:24px;font-weight:600}.not-found .missing-code{font-size:40px;color:#999}.not-found .primary{min-height:44px;border-radius:8px;background:#ff1838}.not-found .secondary{min-height:44px;border-radius:8px}
 
 /* Nav bleeds match the shared 16px page gutter. */
 .history-page .history-nav{margin-right:-16px;margin-left:-16px;padding-right:16px;padding-left:16px}
 .history-page .history-dialog::backdrop,.runner-page dialog::backdrop,.feedback-page dialog::backdrop{background:rgba(26,26,26,.45)}
-.mine .header-settings{width:auto;white-space:nowrap;color:#fff}
+
 
 .legal-page .legal-section p,.legal-page .legal-section li{font-size:16px;line-height:1.8}.legal-page .legal-topbar{font-size:16px}
 .history-page .history-header .back-link,.history-page .history-dialog .dialog-heading>button{width:44px;min-width:44px;height:44px;min-height:44px;padding:0;flex:none}
 .achievement-studio .image-preview::backdrop{background:rgba(26,26,26,.45)}
+
+
+/* Personal identity, activity and account modules share one compact hierarchy. */
+.exercise,.mine{padding:0 16px 24px;background:var(--bg)}.exercise :deep(.page-header),.mine :deep(.page-header){margin:0 -16px}.exercise>.surface:first-of-type,.mine>.account-hero{margin-top:12px}.exercise .surface,.mine .sheet,.mine .account-hero{border:0;border-radius:12px;background:#fff;box-shadow:none}.exercise .surface,.mine .sheet{padding:16px;margin-bottom:12px}.mine .account-hero{margin:12px 0;overflow:hidden;background:linear-gradient(115deg,#fff1f3,#fff 80%)}.mine .identity-panel{display:block;min-height:0;padding:18px 16px 14px;background:transparent}.mine .identity-copy{width:100%;min-width:0}.mine .identity-kicker{display:none}.mine .who-top{display:flex;gap:12px;align-items:center;margin:0}.mine .face{display:flex;align-items:center;justify-content:center;width:50px;height:50px;flex:none;border:2px solid #fff;border-radius:50%;background:#fff;color:var(--accent);font-size:22px;object-fit:cover}.mine .who-main{flex:1;min-width:0}.mine .nick{margin:0;font-size:20px;line-height:1.4;font-weight:600;overflow-wrap:anywhere}.mine .club-line{max-width:none;margin:4px 0 0;font-size:12px;line-height:1.6;color:#777}.mine .role{display:inline-block;margin-top:5px;padding:1px 5px;border-radius:3px;background:var(--accent-soft);color:var(--accent);font-size:12px}.mine .account-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:0;padding:12px 0 14px;border-top:0;gap:0;background:rgba(255,255,255,.65)}.mine .account-stats>*{display:flex;flex-direction:column;align-items:center;min-height:44px;padding:0;border:0;border-right:1px solid #eee;border-radius:0;background:transparent}.mine .account-stats>*:last-child{border-right:0}.mine .account-stats b{font-size:23px;font-weight:600;line-height:1.3;color:var(--ink)}.mine .account-stats span{margin-top:4px;font-size:12px;color:#777}.mine .main-tabs{display:flex;margin:0 0 12px;padding:0;border:0;border-radius:0;background:transparent;gap:0}.mine .main-tabs button{position:relative;flex:1;width:0;min-width:0;min-height:46px;padding:0;border:0;border-radius:0;background:transparent;color:#777;font-size:14px;font-weight:400;white-space:nowrap}.mine .main-tabs button.on{color:var(--ink);background:transparent;font-weight:600}.mine .main-tabs button.on::after{position:absolute;right:auto;bottom:0;left:50%;width:20px;height:3px;border-radius:2px;background:var(--accent);transform:translateX(-50%);content:''}.mine .guest-hero .identity-panel{padding:20px 16px 0}.mine .guest-hero h2{margin:0;font-size:20px;font-weight:600}.mine .guest-hero .identity-copy p{margin:8px 0 0;color:#777;font-size:14px}.mine .guest-actions{padding:12px 16px 16px;border:0}.mine .guest-actions p{display:none}.mine .guest-actions .primary{width:100%;min-height:44px;border-radius:8px}.mine .compact-poster{display:flex;gap:8px;align-items:center;justify-content:space-between;margin-top:12px;padding-top:12px;border-top:1px solid #f0f0f0;background:transparent}.mine .compact-poster>span{flex:1;min-width:0;color:#777;font-size:12px;line-height:1.6}.mine .compact-poster>a,.mine .compact-poster>button{flex:none;min-height:36px;padding:0;border:0;color:var(--accent);font-size:12px;background:transparent;white-space:nowrap}.mine .profile-settings{padding:0;margin:0;border:0;border-radius:0;background:transparent}.mine .profile-settings-intro{padding:0 2px 12px}.mine .profile-settings-kicker{display:none}.mine .profile-settings-title{font-size:18px}.mine .profile-settings-note{font-size:12px;margin-top:4px}.mine .profile-clubs-section{display:block}.mine .profile-section{margin:0 0 12px;padding:0;border:0;border-radius:12px;background:#fff;overflow:hidden}.mine .profile-section-title{padding:14px 16px 0;border:0}.mine .profile-section-title h3{font-size:14px;font-weight:600}.mine .profile-section-title small{display:none}.mine .profile-section-icon{display:none}.mine .setting-row{display:flex;width:100%;min-height:64px;align-items:center;justify-content:space-between;padding:12px 0;border:0;border-bottom:1px solid #f0f0f0;border-radius:0;background:#fff;text-align:left}.mine .profile-section .setting-row{width:calc(100% - 32px);margin:0 16px}.mine .setting-row:last-child{border-bottom:0}.mine .setting-row span,.mine .setting-row strong{font-size:15px;font-weight:500}.mine .setting-row small{font-size:12px;font-weight:400;color:#777}.mine .profile-settings>.auth-form{padding:16px;margin:-4px 0 12px;border-radius:12px;background:#fff}.mine .plan-row{padding:14px 0;border-bottom:1px solid #f0f0f0}.mine .plan-row:last-child{border-bottom:0}.mine .plan-row h3{font-size:15px;font-weight:500;line-height:1.6}.mine .plan-state{padding:1px 5px;border-radius:3px;font-size:12px}.mine .plan-row p{font-size:12px}.mine .career-summary{gap:12px}.mine .career-summary b{font-size:22px}.mine .career-summary b.clock{font-size:18px}.mine .career-summary>div>span{font-size:12px}.mine .feedback-entry{margin-top:12px;padding:14px 16px;border:0;border-radius:12px;background:#fff}.mine .feedback-entry-icon{background:transparent;color:#555}.mine .feedback-entry small{font-size:12px}.mine .header-settings{width:auto;white-space:nowrap}
+.exercise .mileage-hero{padding:14px 16px 16px;background:linear-gradient(125deg,#fff2f4,#fff 64%)}.exercise .hero-top{align-items:center;gap:8px;padding:0;border:0}.exercise .month-caption{display:none}.exercise .month-control{gap:2px}.exercise .month-step{width:28px;min-height:40px;height:40px;padding:0;border:0;background:transparent;color:#777;font-size:22px}.exercise .month-select{height:40px;min-width:108px;background:transparent;font-size:15px}.exercise .target-link{width:auto;height:40px;min-height:40px;padding:0;border:0;border-radius:0;background:transparent;color:var(--accent);font-size:12px}.exercise .hero-overview{display:block;min-height:0;margin:12px 0}.exercise .hero-kicker{font-size:12px;color:#777}.exercise .mileage-value{gap:7px;margin-top:3px}.exercise .mileage-value strong{font-size:36px;font-weight:600;line-height:1.2;letter-spacing:-.5px}.exercise .mileage-value>span{font-size:12px;color:#777}.exercise .mileage-footnote{margin-top:5px;font-size:12px;color:#777}.exercise .run-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));padding:12px 0 14px;border:0;gap:8px}.exercise .run-metrics>div{min-width:0;text-align:left;border:0}.exercise .run-metrics b{font-size:20px;font-weight:600;line-height:1.4}.exercise .run-metrics span{margin-top:3px;font-size:12px}.exercise .record-actions{margin-top:14px;gap:8px;grid-template-columns:1fr 1fr}.exercise .record-button,.exercise .import-button{min-height:44px;border-radius:8px;font-size:14px}.exercise .import-button{background:#f6f6f6;border:0;color:#333}.exercise .target-summary{margin:0;padding:10px 0 0;border-top:1px solid #eee}.exercise .target-copy{font-size:12px}.exercise .target-copy strong{font-size:14px}.exercise .target-summary .progress{height:4px;margin:8px 0;background:#eee}.exercise .target-summary p{margin:0;font-size:12px}.exercise .target-prompt{display:flex;align-items:center;gap:8px;width:100%;min-height:44px;margin:0;padding:8px 0 0;border:0;border-top:1px solid #eee;border-radius:0;background:transparent;text-align:left}.exercise .target-mark{display:none}.exercise .target-prompt>span{flex:1;min-width:0}.exercise .target-prompt strong{font-size:13px;font-weight:500}.exercise .target-prompt small{display:none}.exercise .target-prompt>b{margin-left:auto;font-size:12px;color:var(--accent);white-space:nowrap}.exercise .observe-note{font-size:12px;margin:8px 0 0}.exercise .weekly-chart{padding:0;margin:0;background:transparent;border-radius:0}.exercise .chart-heading h2,.exercise .section-heading h2{font-size:18px;font-weight:600}.exercise .chart-subtitle{font-size:12px;color:#777;margin-top:3px}.exercise .bar-track{height:62px;border-radius:3px;background:#f7f7f7}.exercise .bar-track i{border-radius:3px;background:#ffb5bf}.exercise .bar-track i.peak{background:var(--accent)}.exercise .chart-bars{margin-top:14px;gap:22px}.exercise .bar-value,.exercise .bar-label{font-size:12px}.exercise .records-heading{margin:20px 0 10px}.exercise .manual-note{margin:0 0 12px;font-size:12px}.exercise .run-record .section-heading h3{font-size:15px}.exercise .run-date{margin:4px 0 12px;font-size:12px}.exercise .record-data{gap:8px;padding:0;border:0}.exercise .record-data>div{min-width:0;align-items:flex-start;text-align:left}.exercise .record-data b{font-size:20px;font-weight:600}.exercise .record-data span{font-size:12px;margin-top:3px}.exercise .run-record .text-button{min-height:32px;padding:0;font-size:12px}.exercise .record-details{padding-top:10px;margin-top:10px;border-top:1px solid #f0f0f0}.exercise .record-editor{padding-top:12px}.exercise .guest-state{padding:24px 16px;text-align:left}.exercise .guest-mark{display:none}.exercise .guest-state h2{margin:0;font-size:18px}
+@media(max-width:350px){.mine .career-summary{grid-template-columns:1fr 1fr}.mine .career-summary>div:first-child{grid-column:1/-1}.mine .compact-poster{align-items:flex-start;flex-direction:column;gap:4px}.exercise .mileage-value strong{font-size:34px}.exercise .chart-bars{gap:16px}.exercise .record-data b{font-size:18px}}

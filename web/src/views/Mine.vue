@@ -20,7 +20,7 @@
           <div class="who-top">
             <img v-if="avatar" class="face" :src="avatar" :alt="nickname + ' 的头像'" />
             <span v-else class="face" aria-hidden="true">{{ nickname.slice(0, 1) }}</span>
-            <div class="who-main"><h2 class="nick">{{ nickname }}</h2><p class="club-line">{{ clubs.length ? clubs.map(item => item.name).join(' · ') : '和志同道合的人一起跑' }}</p><span v-if="leader" class="role">建团资格</span></div>
+            <div class="who-main"><h2 class="nick">{{ nickname }}</h2><p class="club-line">{{ clubs.length ? clubs[0].name + (clubs.length > 1 ? ` 等 ${clubs.length} 个跑团` : '') : '尚未加入跑团' }}</p><span v-if="leader" class="role">建团资格</span></div>
           </div>
         </div>
 
@@ -47,8 +47,8 @@
       </form><p v-if="authTab === 'login'" class="hint">旧账号未设置密码或无法登录？请联系平台管理员核验身份后恢复账号。</p><p v-if="message" :class="ok ? 'success' : 'err'">{{ message }}</p>
     </section>
     <nav class="main-tabs" aria-label="个人中心"><button type="button" :class="{ on: section === 'overview' }" @click="section = 'overview'">总览</button><button type="button" :class="{ on: section === 'plans' }" @click="section = 'plans'">我的赛事</button><button type="button" :class="{ on: section === 'results' }" @click="section = 'results'">完赛记录</button><button type="button" :class="{ on: section === 'profile' }" @click="section = 'profile'">个人资料</button></nav>
-    <RunnerDashboard v-if="section === 'overview' && nickname" :data="runnerData" :plans="plans" :loading="runnerLoading" :error="runnerError" @retry="loadRunner"><template #career-actions><div class="compact-poster"><span>{{ posterAvailable ? '让完赛记录成为一张留念' : '记下第一场完赛，再制作成绩海报' }}</span><router-link v-if="posterAvailable" :to="posterRoute">制作成绩海报 <i aria-hidden="true">↗</i></router-link><button v-else type="button" @click="section = 'results'">去记录成绩 ›</button></div></template></RunnerDashboard>
-    <section v-else-if="section === 'overview'" class="sheet empty-state"><h3>积累每一公里，珍藏每次完赛</h3><p>运动趋势、赛事生涯、城市护照和荣誉收藏，都从一次出发开始。</p><router-link to="/">去发现下一场比赛 ›</router-link></section>
+    <RunnerDashboard v-if="section === 'overview' && nickname" :data="runnerData" :plans="plans" :loading="runnerLoading" :error="runnerError" @retry="loadRunner"><template #career-actions><div class="compact-poster"><span>{{ posterAvailable ? '已收录自己的完赛成绩' : '记录完赛后可制作成绩海报' }}</span><router-link v-if="posterAvailable" :to="posterRoute">制作成绩海报 <i aria-hidden="true">↗</i></router-link><button v-else type="button" @click="section = 'results'">去记录成绩 ›</button></div></template></RunnerDashboard>
+    <section v-else-if="section === 'overview'" class="sheet empty-state"><h3>登录，查看自己的运动档案</h3><p>跑量、参赛计划与完赛成绩集中管理。</p><router-link to="/">去发现下一场比赛 ›</router-link></section>
     <template v-else-if="section === 'plans'">
       <section v-if="conflicts.length" class="sheet"><h3>比赛安排提醒</h3><p v-for="item in conflicts" :key="item.text" class="notice">{{ item.text }}</p></section>
       <section v-if="reminders.length" class="sheet"><h3>截止提醒</h3><router-link v-for="item in reminders" :key="item.race.id + item.hit.key" class="remind-line" :to="'/races/' + item.race.id"><b>{{ item.hit.reason }}</b><span>{{ item.race.name }}</span><i>›</i></router-link></section>
@@ -66,7 +66,7 @@
       <section v-else-if="tab === 'photo'" class="sheet"><router-link v-for="item in proofResults" :key="item.race.id + item.distance" class="proof-card" :to="'/races/' + item.race.id"><img :src="proofSrc(item.race.id, item.distance)" :alt="item.race.name + ' 成绩影像'"/><b>{{ item.proofLabel }} · 未核验</b><span>{{ item.race.name }}</span></router-link><p v-if="!proofResults.length" class="empty-copy">在赛事详情页上传证书或奖牌照片，建立自己的完赛相册。</p></section>
       <section v-else class="sheet"><p v-if="career.finished" class="hint">跑过 {{ career.provinces.length }} 个省、{{ career.cities.length }} 个城市 · 本年比赛 {{ career.yearKm }} 公里</p><div class="chips"><button v-for="item in [{id:'all',label:'全部'},{id:'road',label:'路跑'},{id:'trail',label:'越野'},{id:'other',label:'其他'}]" :key="item.id" type="button" :class="{ on: kindFilter === item.id }" @click="kindFilter = item.id">{{ item.label }}</button></div><router-link v-for="item in timeline" :key="item.race.id + item.distance" class="result-row" :to="'/races/' + item.race.id"><p>{{ item.race.raceDate }}</p><span>{{ item.race.name }}</span><b>{{ item.clock }}</b></router-link><p v-if="!timeline.length" class="empty-copy">你的赛事足迹，从第一条完赛记录开始。</p></section>
     </template>
-    <section v-else-if="nickname" class="sheet settings profile-settings">
+    <section v-else-if="nickname" class="settings profile-settings">
       <div class="profile-settings-intro"><span class="profile-settings-kicker">账号与身份</span><h2 class="profile-settings-title">个人资料</h2><p class="profile-settings-note">管理你的头像、昵称和登录方式</p></div>
       <div class="profile-section">
         <div class="profile-section-title"><span class="profile-section-icon profile-section-icon-user" aria-hidden="true"></span><div><h3>公开资料</h3><small>跑团成员可以看到这些信息</small></div></div>
