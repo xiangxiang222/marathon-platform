@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "我的跑团",
-  "navigationBarBackgroundColor": "#ffffff",
-  "backgroundColor": "#f5f6f8",
+  "navigationBarBackgroundColor": "#f6f5f2",
+  "navigationBarTextStyle": "black",
+  "backgroundColor": "#f6f5f2",
   "usingComponents": { "mileage-board": "/components/mileage-board/mileage-board" }
 }

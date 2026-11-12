@@ -326,3 +326,5 @@ text.text-action { display:inline-flex; align-items:center; min-height:44px; box
 .journal-entry-note { color:var(--text-secondary); font-size:12px; }
 .club-journal-entry>text { color:var(--brand); font-size:22px; }
 @media(max-width:350px) { .club-title { font-size:22px; }.club-page .next-title { font-size:16px; }.club-page .mileage-total { font-size:36px; } }
+
+@import "./club-visual.wxss";

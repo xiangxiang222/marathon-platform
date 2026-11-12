@@ -65,12 +65,10 @@
     </section>
     <div v-if="club && tab === 'race'" class="section-head club-section-head"><h2>跑团比赛名单</h2><div><span>{{ board.length }} 场比赛</span><button class="undo" type="button" @click="exportBoardCsv">导出完整 CSV</button></div></div>
     <p v-if="club && tab === 'race' && !board.length" class="empty">还没有人标比赛。打开一场，标上想跑或已报名。</p>
-    <div v-for="item in board" v-show="tab === 'race'" :key="item.race.id" class="block">
-      <router-link :to="'/races/' + item.race.id" class="card">
-        <div class="copy">
-          <p>{{ item.race.name }}</p>
-          <div class="foot"><span>{{ item.race.raceDate }}</span><span>{{ item.race.deadlineLabel }}</span></div>
-        </div>
+    <div v-for="item in board" v-show="tab === 'race'" :key="item.race.id" class="block club-race-card">
+      <router-link :to="'/races/' + item.race.id" class="race-card-head">
+        <span class="race-calendar"><small>{{ dateParts(item.race.raceDate).month }}月</small><b>{{ dateParts(item.race.raceDate).day }}</b></span>
+        <span class="race-card-copy"><strong>{{ item.race.name }}</strong><small>{{ item.race.city }}<template v-if="item.race.city && item.race.deadlineLabel"> · </template>{{ item.race.deadlineLabel || item.race.raceDate }}</small></span><RunnerIcon name="arrow" />
       </router-link>
       <p v-if="tallyLine(item)" class="rank-label">{{ tallyLine(item) }}</p>
       <p v-if="item.squad && item.squad.text" class="squad">{{ item.squad.text }}</p>
@@ -80,8 +78,7 @@
       </router-link>
       <details class="race-roster"><summary><span>参赛名单 <b>{{ item.marks.length }} 人</b></span><i>展开名单⌄</i></summary><pre class="share-text">{{ item.text }}</pre>
       <div v-for="mark in item.marks" :key="mark.nickname + mark.status" class="mate"><router-link v-if="mark.userId" :to="memberLink(mark.userId, 'races')" class="member-name-link">{{ mark.nickname }}</router-link><span v-else>{{ mark.nickname }}</span><b>{{ mark.status }}<template v-if="mark.clock"> · {{ mark.clock }}<template v-if="mark.pb"> PB</template></template></b></div></details>
-      <button class="primary" type="button" @click="copyCard(item)">复制卡片</button>
-      <button class="undo" type="button" @click="exportRacePoster(item)">生成本场赛事画像</button>
+      <div class="race-card-actions"><button class="race-copy" type="button" @click="copyCard(item)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M15 8V4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h4"/></svg>复制卡片</button><button class="race-poster" type="button" @click="exportRacePoster(item)"><RunnerIcon name="stats" />生成本场赛事画像</button></div>
 
     </div>
     <div v-if="tab === 'race' && ranks.length" class="block">
@@ -147,11 +144,11 @@
       <div v-for="item in shownActivities" :key="item.id" class="block act">
         <label v-if="sharing" class="rank-label"><input v-model="shareIds" type="checkbox" :value="item.id" /> 选这场</label>
         <router-link :to="'/clubs/' + club.id + '/activities/' + item.id">
-          <div class="act-topline"><span>{{ item.dateLabel }} · {{ item.clockLabel }}</span><b :class="{ signed: item.mine && item.mine.signed }">{{ item.mine && item.mine.signed ? '我已报名' : item.statusLabel }}</b></div><h2>{{ item.title }}</h2>
+          <div class="act-topline"><span>{{ item.dateLabel }} · {{ item.clockLabel }}</span><b :class="'status-' + item.status">{{ item.statusLabel }}</b></div><h2>{{ item.title }}</h2>
+          <span v-if="item.mine && item.mine.signed" class="activity-registration">我已报名</span>
           <p class="rank-label"><template v-if="item.place">{{ item.place }}</template><template v-if="item.plannedKm"> · {{ item.plannedKm }} 公里</template></p>
-          <p class="rank-label activity-count">{{ item.signupCount }} 人报名<template v-if="item.capacity"> · 上限 {{ item.capacity }} 人</template><span>查看活动 →</span></p>
         </router-link>
-        <router-link v-if="club.staff" class="copy-activity" :to="'/clubs/' + club.id + '/activities/new?copy=' + item.id">复制这场</router-link>
+        <div class="activity-card-footer"><p class="rank-label activity-count">{{ item.signupCount }} 人报名<template v-if="item.capacity"> / {{ item.capacity }} 人</template></p><div class="activity-inline-actions"><router-link v-if="club.staff" class="copy-activity" :to="'/clubs/' + club.id + '/activities/new?copy=' + item.id">复制这场</router-link><router-link class="view-activity" :to="'/clubs/' + club.id + '/activities/' + item.id">查看活动 <span>›</span></router-link></div></div>
       </div>
       <div v-if="!shownActivities.length" class="activity-empty block"><RunnerIcon name="calendar" /><h3>{{ activities.length ? '没有符合条件的活动' : '下一场团练，等你一起' }}</h3><p>{{ activities.length ? '试试其他日期或报名状态。' : '每周训练、活动报名都放在这里。' }}</p><button v-if="activities.length" type="button" class="undo" @click="clearActivityFilters">清除筛选</button><router-link v-else-if="club.staff" class="small-primary" :to="'/clubs/' + club.id + '/activities/new'">发布第一场活动</router-link></div>
       <div class="block activities-share">
@@ -1722,3 +1719,5 @@ article { margin-top: 22px; padding-top: 15px; border-top: 1px solid var(--line)
 @media(max-width:350px) { .club-hero h1 { font-size:22px; }.section-head h2 { font-size:18px; }.next-activity h3 { font-size:16px; } }
 
 </style>
+
+<style scoped src="../club-detail-visual.css"></style>

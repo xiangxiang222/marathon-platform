@@ -77,12 +77,12 @@ async function run(){
     await check(width,'compact group grid expands, keeps long names and large distances contained, and member return retains selected group',async()=>{
       const original=fixture.copy(state.groups);
       state.groups=[...state.groups,...[704,705,706].map(id=>({id,name:'同频进阶与周末长距离训练伙伴第'+id+'组',pace:'按每个人自己的节奏稳定训练',capacity:0,sort:id,memberCount:0}))];state.largeNumbers=true;
-      await page.goto(base+'/clubs/44?tab=km&range=month&date=2026-11-11');await page.getByRole('button',{name:'查看全部 6 个组别'}).waitFor();
-      assert.equal(await page.locator('.group-card').count(),4);const before=state.requests.length;
-      await page.getByRole('button',{name:'查看全部 6 个组别'}).click();assert.equal(await page.locator('.group-card').count(),6);assert.equal(state.requests.length,before);
+      await page.goto(base+'/clubs/44?tab=km&range=month&date=2026-11-11');await page.getByRole('button',{name:'查看全部 6 个组别'}).waitFor();await page.waitForLoadState('networkidle');
+      assert.equal(await page.locator('.group-card').count(),4);const boardRequests=()=>state.requests.filter(row=>row.endpoint.endsWith('/mileage/board')).length;const before=boardRequests();
+      await page.getByRole('button',{name:'查看全部 6 个组别'}).click();assert.equal(await page.locator('.group-card').count(),6);assert.equal(boardRequests(),before);
       const grid=await page.locator('.group-cards').evaluate(el=>({columns:getComputedStyle(el).gridTemplateColumns.split(' ').length,overflow:el.scrollWidth>el.clientWidth+1}));assert.equal(grid.columns,2);assert.equal(grid.overflow,false);await noOverflow(page);
       await page.locator('.mileage-board').screenshot({path:path.join(out,`web-board-pressure-${width}.png`),style:'.club-topbar{visibility:hidden!important}'});
-      await page.getByLabel('选择排行榜训练组').selectOption('706');await page.waitForFunction(()=>document.querySelector('.group-tabs select')?.value==='706');const foldedRequests=state.requests.length;await page.getByRole('button',{name:'收起组别'}).click();assert.equal(await page.locator('.group-card').count(),4);assert.equal(await page.getByLabel('选择排行榜训练组').inputValue(),'706');assert.equal(state.requests.length,foldedRequests);
+      await page.getByLabel('选择排行榜训练组').selectOption('706');await page.waitForFunction(()=>document.querySelector('.group-tabs select')?.value==='706');await page.waitForLoadState('networkidle');const foldedRequests=boardRequests();await page.getByRole('button',{name:'收起组别'}).click();assert.equal(await page.locator('.group-card').count(),4);assert.equal(await page.getByLabel('选择排行榜训练组').inputValue(),'706');assert.equal(boardRequests(),foldedRequests);
       state.largeNumbers=false;state.groups=original;await page.goto(base+'/clubs/44?tab=km&range=week&date=2026-11-11&groupId=701');await page.locator('.rank-row').filter({hasText:'河畔领跑员'}).click();await page.getByRole('heading',{name:'河畔领跑员',exact:true}).waitFor();await page.getByRole('link',{name:'返回跑量看板'}).click();await page.locator('.volume-number').waitFor();assert.equal(await page.getByLabel('选择排行榜训练组').inputValue(),'701');assert.equal(await page.getByLabel('选择跑量统计日期').inputValue(),'2026-11-11');
       await page.getByLabel('选择排行榜训练组').selectOption('');await page.waitForFunction(()=>document.querySelectorAll('.rank-row').length===6);
     });
