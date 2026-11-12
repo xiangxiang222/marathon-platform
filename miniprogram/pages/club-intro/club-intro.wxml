@@ -4,34 +4,17 @@
   <block wx:elif="{{club}}">
     <view class="intro-content">
       <view class="intro-card">
-        <view class="track-art" aria-hidden="true"><view class="track-line track-line-two"></view><view class="track-line track-line-three"></view></view>
-        <view class="card-eyebrow">跑团名片</view>
-        <image wx:if="{{club.logo && !club.logoFailed}}" class="club-mark" src="{{club.logo}}" data-src="{{club.logo}}" binderror="clubLogoError" mode="aspectFill" /><view wx:else class="club-mark" aria-hidden="true">{{clubInitial}}</view>
-        <view class="club-name">{{club.name}}</view>
-        <button wx:if="{{club.verified}}" class="verified-mark" bindtap="verifiedInfo">✓ 身份已核验 · 查看范围</button>
-        <view class="card-tagline">{{club.city || '城市待补充'}} · 团号 #{{club.id}}</view>
-        <view class="card-tagline">{{club.intro || '和跑友一起，跑得更远'}}</view>
-        <view class="club-facts">
-          <view class="club-owner"><text class="fact-label">公开负责人</text><text class="fact-value">{{club.leader || '跑团管理员'}}</text></view>
-          <view class="club-count"><text class="count">{{club.memberCount || 0}}</text><text class="count-label">位成员</text></view>
-        </view>
+        <view class="card-eyebrow">跑团公开名片</view>
+        <view class="intro-identity"><image wx:if="{{club.logo && !club.logoFailed}}" class="club-mark" src="{{club.logo}}" data-src="{{club.logo}}" binderror="clubLogoError" mode="aspectFill" /><view wx:else class="club-mark" aria-hidden="true">{{clubInitial}}</view><view class="intro-identity-copy"><view class="club-name">{{club.name}}</view><view class="card-tagline">{{club.city || '城市待补充'}} · 团号 #{{club.id}}</view><button wx:if="{{club.verified}}" class="verified-mark" bindtap="verifiedInfo">✓ 身份已核验 · 查看范围</button></view></view>
+        <view class="club-introduction">{{club.intro || '和跑友一起，按自己的节奏出发。'}}</view>
+        <view class="club-facts"><view class="club-owner"><text class="fact-label">负责人</text><text class="fact-value">{{club.leader || '跑团管理员'}}</text></view><view class="club-count"><text class="count">{{club.memberCount != null ? club.memberCount : '—'}}</text><text class="count-label">位成员</text></view></view>
       </view>
-
-      <view class="intro-benefits">
-        <view class="section-title">加入后，一起开跑</view>
-        <view class="benefit-list">
-          <view class="benefit"><view class="benefit-icon icon-route" aria-hidden="true"><view></view></view><view class="benefit-title">团练约跑</view><view class="benefit-copy">训练有伴</view></view>
-          <view class="benefit"><view class="benefit-icon icon-flag" aria-hidden="true"><view></view></view><view class="benefit-title">赛事同行</view><view class="benefit-copy">为彼此加油</view></view>
-          <view class="benefit"><view class="benefit-icon icon-rank" aria-hidden="true"><view></view><view></view><view></view></view><view class="benefit-title">跑量排行</view><view class="benefit-copy">记录每次进步</view></view>
-        </view>
-        <view class="access-note">审核通过后开放团内赛事、训练安排与成员信息。</view>
-      </view>
+      <view class="intro-benefits"><view class="section-title">一起开跑的日常</view><view class="benefit-list"><view class="benefit"><view class="benefit-title">团练与约跑</view><view class="benefit-copy">集合时间、地点与训练分组，一次看清</view></view><view class="benefit"><view class="benefit-title">赛事与跑量</view><view class="benefit-copy">找到赛道上的团友，记录每次训练</view></view><view class="benefit"><view class="benefit-title">成员与动态</view><view class="benefit-copy">交流训练见闻，分享一起出发的照片</view></view></view><view class="access-note">申请通过后，开放团内赛事、训练安排与成员信息。</view></view>
 
       <view wx:if="{{club.joined}}" class="status status-in"><view class="status-dot"></view><view><view class="status-title">你已加入这个跑团</view><view class="status-copy">进入跑团，看看跑友们的新动态。</view></view></view>
       <view wx:elif="{{club.pending}}" class="status status-pending"><view class="status-dot"></view><view><view class="status-title">申请已提交</view><view class="status-copy">等待团长或管理员审核，通过后即可进入跑团。</view></view></view>
       <view wx:if="{{error}}" class="error">{{error}}</view>
-      <view class="secondary-note">分享这张名片，邀请跑友一起来。</view>
-      <view class="join-identity">申请加入的是：{{club.name}} · {{club.city || '城市待补充'}} · 负责人 {{club.leader || '跑团管理员'}} · #{{club.id}}</view>
+      <view class="join-identity">入团申请交由本团团长或管理员审核。</view>
       <button class="report-link" bindtap="reportIdentity">名称或身份被冒用？私密反馈 ›</button>
     </view>
 

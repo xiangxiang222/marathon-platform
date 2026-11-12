@@ -5,14 +5,15 @@
     <section v-else-if="club && (club.publicStatus === 'restricted' || club.restricted)" class="intro-content"><div class="intro-card"><div class="intro-eyebrow">跑团公开状态</div><h2>{{ club.name }}</h2><p class="intro-tagline">{{ club.city || "城市待补充" }} · 团号 #{{ club.id }}</p><h3>暂时停止公开展示与招募</h3><p class="intro-access">{{ club.statusMessage || "团内成员和历史记录保留。团长可在跑团身份页补充说明或申请复核。" }}</p><template v-if="club.joined"><p class="intro-access" role="status">你已加入这个跑团，仍可进入查看团内记录。</p><button class="intro-primary restricted-enter" type="button" @click="enterClub">进入已加入的跑团</button></template><router-link v-if="club.canManageIdentity === true" class="intro-report-entry" :to="'/clubs/' + club.id + '/identity'" @click.capture="checkIdentityAccess">我是团长，查看说明与补充途径 ›</router-link><router-link class="intro-report-entry" :to="'/clubs/' + club.id + '/report?type=management'">向平台补充说明 ›</router-link></div></section>
     <div v-else-if="club" class="intro-content">
       <section class="intro-card" aria-label="跑团名片">
-        <div class="intro-track" aria-hidden="true"></div>
         <div class="intro-eyebrow"><span></span>跑团名片</div>
-        <ClubLogo class="club-letter" :src="club.logo" :name="club.name" />
-        <h2>{{ club.name }}</h2><ClubVerificationBadge :club="club" /><p class="intro-tagline">{{ club.city || "城市待补充" }} · 团号 #{{ club.id }}</p><p v-if="club.intro" class="intro-tagline">{{ club.intro }}</p>
+        <div class="public-identity"><ClubLogo class="club-letter" :src="club.logo" :name="club.name" /><div><h2>{{ club.name }}</h2><p class="intro-tagline">{{ club.city || "城市待补充" }} · 团号 #{{ club.id }}</p><ClubVerificationBadge :club="club" /></div></div>
+        <p v-if="club.intro" class="intro-story">{{ club.intro }}</p>
         <div class="intro-facts"><div><span>团长</span><strong>{{ club.leader || "跑团管理员" }}</strong></div><div class="intro-count"><strong>{{ club.memberCount }}</strong><span>位成员</span></div></div>
       </section>
+      <div v-if="club.joined" class="intro-status joined" role="status"><span class="status-dot"></span><div><strong>你已加入这个跑团</strong><p>去看看跑友们的最新动态。</p></div></div>
+      <div v-else-if="club.pending" class="intro-status pending" role="status"><span class="status-dot"></span><div><strong>申请已提交，等待审核</strong><p>团长或管理员审核通过后，即可进入跑团。</p></div></div>
       <section class="intro-benefits">
-        <h3>加入后，一起开跑</h3>
+        <h3>在这里，一起坚持</h3><p class="benefit-description">团练集合、参赛名单与跑量记录，都在一个跑团里。</p>
         <div class="intro-features">
           <div><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="3"/><path d="M8 3v4m8-4v4M4 11h16m-11 5 2 2 4-4"/></svg><span>团练约跑</span></div>
           <div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 21V3m0 1h13l-3 5 3 5H6"/></svg><span>赛事同行</span></div>
@@ -20,10 +21,8 @@
         </div>
         <p class="intro-access">审核通过后，即可查看团内活动、成员与参赛信息。</p>
       </section>
-      <div v-if="club.joined" class="intro-status joined" role="status"><span class="status-dot"></span><div><strong>你已加入这个跑团</strong><p>去看看跑友们的最新动态。</p></div></div>
-      <div v-else-if="club.pending" class="intro-status pending" role="status"><span class="status-dot"></span><div><strong>申请已提交，等待审核</strong><p>团长或管理员审核通过后，即可进入跑团。</p></div></div>
       <p v-if="message" class="intro-error" role="alert">{{ message }}</p>
-      <p class="intro-join-identity">你将申请加入：{{ club.name }} · {{ club.city || "城市待补充" }} · #{{ club.id }}<br>负责人 {{ club.leader || "待补充" }}</p><router-link class="intro-report-entry" :to="'/clubs/' + club.id + '/report'">名称或身份被冒用？向平台私密反馈 ›</router-link><p class="intro-foot">每一次出发，都有人同行</p>
+      <p class="intro-join-identity">你将申请加入：{{ club.name }} · {{ club.city || "城市待补充" }} · #{{ club.id }}<br>负责人 {{ club.leader || "待补充" }}</p><router-link class="intro-report-entry" :to="'/clubs/' + club.id + '/report'">名称或身份被冒用？向平台私密反馈 ›</router-link>
       <footer class="intro-dock">
         <button ref="shareButton" class="intro-share" type="button" :disabled="sharing" @click="shareInvite"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6m0-6L10 14M10 5H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2v-4"/></svg>分享跑团</button>
         <button v-if="club.joined" class="intro-primary" type="button" @click="enterClub">进入跑团</button>
@@ -194,48 +193,7 @@ watch(() => [route.params.id, route.params.code, route.query.apply], () => {
 </script>
 
 <style scoped>
-.intro-page { min-height: 100vh; padding-bottom: 76px; background: var(--bg); }
-.intro-page .topbar { background: transparent; border-bottom: 0; }
-.intro-content { padding: 12px 16px 24px; }
-.intro-card { position: relative; overflow: hidden; padding: 24px; border-radius:12px; background: var(--card);  border: 1px solid var(--line);}
-.intro-eyebrow { position: relative; display: flex; align-items: center; gap: 7px; color: var(--accent); font-size: 12px; letter-spacing: normal; }
-.intro-eyebrow > span { width: 6px; height: 6px; background: currentColor; border-radius: 50%; }
-.intro-track { position: absolute; top: -32px; right: -105px; width: 230px; height: 270px; border: 1px solid var(--line); border-radius:12px; transform: rotate(32deg);  border-color: var(--line);}
-.intro-track::before, .intro-track::after { position: absolute; inset: 12px; border: 1px solid var(--line); border-radius:12px; content: "";  border-color: var(--line);}
-.intro-track::after { inset: 24px; border-radius:12px; }
-.club-letter { position: relative; display: grid; place-items: center; width: 64px; height: 64px; margin-top: 32px; color: #fff; background: var(--accent); border-radius: 14px; font-size: 30px; font-weight: 600; }
-.intro-card h2 { position: relative; margin: 20px 0 0; font-size: 24px; font-weight:600; line-height: 1.4; letter-spacing: normal; overflow-wrap: anywhere; }
-.intro-tagline { position: relative; margin: 10px 0 0; color: var(--muted); font-size: 14px; }
-.intro-facts { position: relative; display: flex; align-items: flex-end; gap: 16px; margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--line); }
-.intro-facts > div { flex: 1; min-width: 0; }
-.intro-facts span { display: block; color: var(--muted); font-size: 12px; }
-.intro-facts strong { display: block; margin-top: 6px; font-size: 14px; font-weight: 500; overflow-wrap: anywhere; }
-.intro-facts .intro-count { flex: none; display: flex; align-items: baseline; gap: 6px; }
-.intro-count strong { margin: 0; font-size: 28px; font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; }
-.intro-benefits { margin-top: 16px; padding: 22px 20px 18px; background: var(--card); border-radius:12px;  border: 1px solid var(--line);}
-.intro-benefits h3 { margin: 0; font-size: 16px; font-weight: 600; }
-.intro-features { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 24px; }
-.intro-features > div { display: flex; align-items: center; flex-direction: column; gap: 10px; font-size: 14px; }
-.intro-features svg { width: 26px; height: 26px; color: var(--accent); fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
-.intro-access { margin: 22px 0 0; padding-top: 16px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; line-height: 1.8; }
-.intro-status { display: flex; gap: 10px; margin-top: 16px; padding: 16px; border-radius: 12px; background: var(--card); }
-.status-dot { flex: none; width: 7px; height: 7px; margin-top: 6px; border-radius: 50%; background: var(--accent); }
-.intro-status strong { font-size: 14px; font-weight: 500; }
-.intro-status p { margin: 5px 0 0; color: var(--muted); font-size: 12px; line-height: 1.7; }
-.pending .status-dot { background: var(--accent); }
-.intro-foot { margin: 24px 0 0; color: var(--muted); text-align: center; font-size: 12px; letter-spacing: normal; }
-.intro-dock { position: fixed; z-index: 20; right: 0; bottom: 0; left: 0; display: flex; gap: 12px; width: min(430px, 100%); margin: 0 auto; padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px)); background: var(--card); border-top: 1px solid var(--line); }
-.intro-primary, .intro-share { min-height: 48px; border-radius: 12px; font-size: 14px; font-weight: 600; }
-.intro-primary { flex: 1; min-width: 0; padding: 0 12px; color: #fff; background: var(--accent); }
-.intro-primary:disabled { opacity: .68; }
-.intro-primary.waiting { color: var(--muted); background: var(--chip); opacity: 1; }
-.restricted-enter { width: 100%; margin-top: 18px; }
-.intro-share { display: flex; align-items: center; justify-content: center; gap: 7px; flex: none; padding: 0 16px; color: var(--ink); background: var(--bg); }
-.intro-share svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
-.intro-state { padding: 100px 24px; color: var(--muted); text-align: center; font-size: 14px; }
-.intro-state button { margin-top: 12px; padding: 10px 18px; border-radius: 8px; color: var(--accent); background: var(--card); }
-.intro-state.error, .intro-error { color: var(--accent); }
-.intro-error { margin: 16px 4px 0; font-size: 14px; }
+.intro-page{min-height:100vh;padding-bottom:80px;background:var(--bg);color:var(--ink);font-size:14px}.intro-page .topbar{background:#fff6f7;border:0}.intro-page.service-page .intro-content{padding:0 16px 20px}.intro-page.service-page .intro-card{display:block;margin:0 -16px;padding:20px 16px 16px;border:0;border-radius:0;background:linear-gradient(135deg,#fff0f2,#fffafb);box-shadow:none}.intro-eyebrow{display:flex;align-items:center;gap:6px;color:var(--muted);font-size:12px}.intro-eyebrow>span{width:5px;height:5px;border-radius:50%;background:var(--accent)}.public-identity{display:flex;align-items:center;gap:12px;margin-top:14px}.public-identity>div{min-width:0;flex:1}.intro-card .club-letter{flex:none;width:52px;height:52px;margin:0;border:0;border-radius:10px;background:#fff;color:var(--ink);font-size:24px}.intro-card h2{margin:0;font-size:24px;font-weight:600;line-height:1.4;overflow-wrap:anywhere}.intro-tagline{margin:5px 0 0;color:var(--muted);font-size:12px;line-height:1.7}.intro-story{margin:14px 0 0;color:var(--ink);font-size:14px;line-height:1.7;overflow-wrap:anywhere}.intro-facts{display:flex;align-items:center;gap:20px;margin-top:16px;padding-top:12px;border-top:1px solid #f1e5e8}.intro-facts>div{display:flex;align-items:baseline;gap:8px;min-width:0}.intro-facts>div:first-child{flex:1}.intro-facts span{color:var(--muted);font-size:12px}.intro-facts strong{font-size:15px;font-weight:500;overflow-wrap:anywhere}.intro-facts .intro-count strong{font-size:20px;font-weight:600}.intro-benefits{margin-top:12px;padding:16px;border:0;border-radius:12px;background:#fff}.intro-benefits h3{margin:0;font-size:18px;font-weight:600}.benefit-description{margin:6px 0 0;color:var(--muted);font-size:12px;line-height:1.7}.intro-features{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:16px}.intro-features>div{display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--ink);font-size:14px}.intro-features svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round}.intro-access{margin:14px 0 0;padding-top:12px;border-top:1px solid var(--line);color:var(--muted);font-size:12px;line-height:1.8}.intro-status{display:flex;align-items:flex-start;gap:10px;margin-top:12px;padding:14px 16px;border:0;border-radius:12px;background:#fff}.status-dot{flex:none;width:6px;height:6px;margin-top:8px;border-radius:50%;background:var(--accent)}.intro-status strong{font-size:15px;font-weight:500}.intro-status p{margin:5px 0 0;color:var(--muted);font-size:12px;line-height:1.7}.intro-join-identity{margin:16px 0 4px;text-align:center;color:var(--muted);font-size:12px;line-height:1.8;overflow-wrap:anywhere}.intro-report-entry{display:flex;align-items:center;justify-content:center;min-height:44px;color:var(--muted);font-size:12px}.intro-dock{position:fixed;z-index:20;right:0;bottom:0;left:0;display:flex;gap:12px;width:min(430px,100%);margin:0 auto;padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line);background:#fff}.intro-primary,.intro-share{display:flex;align-items:center;justify-content:center;gap:7px;min-height:44px;padding:0 14px;border:0;border-radius:8px;font-size:14px;font-weight:500}.intro-primary{flex:1;min-width:0;color:#fff;background:var(--accent)}.intro-share{flex:none;color:var(--ink);background:var(--field-bg)}.intro-share svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7}.intro-primary.waiting{background:var(--field-bg);color:var(--muted)}.intro-primary:disabled{opacity:.65}.restricted-enter{width:100%;margin-top:16px}.intro-state{padding:72px 24px;color:var(--muted);text-align:center;font-size:14px}.intro-state button{min-height:44px;padding:8px 16px;color:var(--accent);font-size:14px}.intro-state.error,.intro-error{color:var(--accent)}.intro-error{margin:12px 0;font-size:14px}
 .intro-share-overlay { position: fixed; z-index: 100; inset: 0; display: flex; align-items: flex-end; justify-content: center; background: rgba(20, 22, 30, .48); }
 .intro-share-dialog { position: relative; width: min(430px, 100%); max-height: calc(100dvh - 40px); overflow-y: auto; padding: 24px 24px calc(24px + env(safe-area-inset-bottom, 0px)); border-radius:12px 12px 0 0; background: var(--card); outline: none; }
 .share-dialog-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
@@ -275,25 +233,6 @@ watch(() => [route.params.id, route.params.code, route.query.apply], () => {
 }
 .intro-join-identity{text-align:center;font-size:12px;color:var(--muted);line-height:1.9;overflow-wrap:anywhere;margin:18px 0 4px}.intro-report-entry{display:flex;align-items:center;justify-content:center;min-height:44px;font-size:12px;color:var(--muted)}
 
-
-/* Public club details use the shared neutral service palette. */
-.intro-page { background:transparent; }.intro-page>.topbar { background:transparent; }
-.intro-card { background:var(--card);border-color:var(--line);box-shadow:none; }.intro-track { border-color:var(--line);opacity:.6; }.intro-facts { border-color:var(--line); }.intro-card .club-letter { background:var(--card);box-shadow:none; }
-.intro-benefits { background:var(--card);border-color:var(--line); }.intro-features>div { color:var(--muted); }.intro-features>div:nth-child(2) { color:var(--muted); }.intro-features>div:nth-child(3) { color:var(--muted); }
-.intro-status.joined { background:var(--field-bg);border-color:var(--line); }.intro-status.pending { background:var(--field-bg);border-color:var(--line); }
-
-/* Shared typography and controls for club services. */
-
-.intro-page { font-size:14px; background:var(--bg); color:var(--ink); }
-.intro-card,.intro-benefits { border:1px solid var(--line); border-radius:12px; background:var(--card); box-shadow:none; }
-.intro-card h2 { font-size:24px; font-weight:600; letter-spacing:normal; }
-.intro-track { display:none; }
-.intro-card .club-letter { background:var(--accent); border-radius:12px; box-shadow:none; }
-.intro-features>div,.intro-features>div:nth-child(2),.intro-features>div:nth-child(3) { color:var(--muted); }
-.intro-status.joined,.intro-status.pending { color:var(--ink); border-color:var(--line); background:var(--field-bg); }
-.intro-primary,.intro-share,.share-copy,.guide-done { min-height:44px; border-radius:10px; font-size:14px; font-weight:500; }
-.intro-benefits h3,.intro-share-dialog h2 { font-size:18px; font-weight:600; }
-.intro-story,.intro-note { font-size:14px; line-height:1.7; }
 
 </style>
 
