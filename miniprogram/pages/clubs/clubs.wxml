@@ -22,6 +22,10 @@
     </block>
   </view>
 
+  <view id="create-club" class="create-card">
+    <button class="create-entry" bindtap="openCreate" aria-label="创建跑团，打开独立填写页"><view class="create-mark">＋</view><view class="create-copy"><view class="club-name">{{application ? '继续创建跑团' : '创建一个新跑团'}}</view><view class="meta">{{application ? '继续之前未完成的申请' : '把一起跑步的人聚在一起'}}</view></view><text class="create-toggle">›</text></button>
+  </view>
+
   <view id="discover-clubs" class="discover">
     <view class="directory-heading"><view class="section-title">发现跑团</view><text class="section-count">找同城跑友</text></view>
     <view class="directory-tools">
@@ -50,24 +54,5 @@
     </view>
   </view>
 
-  <view wx:if="{{ready}}" id="create-club" class="create-card">
-    <button class="create-entry" bindtap="toggleCreate"><view class="create-mark">＋</view><view class="create-copy"><view class="club-name">{{application ? '继续创建跑团' : '创建一个新跑团'}}</view><view class="meta">{{application ? '继续之前未完成的申请' : '把一起跑步的人聚在一起'}}</view></view><text class="create-toggle">{{createOpen ? '−' : '›'}}</text></button>
-    <view wx:if="{{createOpen}}" class="create-form">
-      <view class="helper">名称可以重复，城市、负责人和团号帮助大家辨认。</view>
-      <view wx:if="{{application}}" class="legacy-application"><view class="club-name">之前的申请：{{application.name}}</view><view class="helper">现在无需等待建团审批，由你确认后继续创建。</view><button class="secondary-action" disabled="{{creating}}" bindtap="continueApplication">继续这份申请</button></view>
-      <view class="field-label">跑团名称 <text>必填 · 最多 20 字</text></view>
-      <input class="create-input" placeholder="给一起跑步的人，一个名字" maxlength="20" value="{{name}}" disabled="{{creating}}" bindinput="onName" aria-label="给一起跑步的人，一个名字" />
-      <view class="field-label">活动城市 <text>必填 · 最多 30 字</text></view>
-      <input class="create-input" placeholder="例如：杭州 · 西湖" maxlength="30" value="{{city}}" disabled="{{creating}}" data-key="city" bindinput="onCreateField" aria-label="例如：杭州 · 西湖" />
-      <view class="city-choices"><button data-city="跨城" disabled="{{creating}}" bindtap="chooseCity">跨城</button><button data-city="线上" disabled="{{creating}}" bindtap="chooseCity">线上</button></view>
-      <view class="field-label">一句话介绍 <text>选填 · 最多 80 字</text></view>
-      <textarea class="create-intro" placeholder="比如：每周三晚，一起绕湖慢跑" maxlength="80" value="{{intro}}" disabled="{{creating}}" data-key="intro" bindinput="onCreateField" auto-height aria-label="比如：每周三晚，一起绕湖慢跑" />
-      <view wx:if="{{duplicates.length}}" class="name-notice"><view class="notice-title">找到相近名称，看看是不是你要找的团</view><view class="helper">名称可以重复，你仍可继续创建。</view><view wx:for="{{duplicates}}" wx:key="id" class="duplicate-row"><view class="club-copy"><view class="club-name">{{item.name}}</view><button wx:if="{{item.verified}}" class="verified-mark" data-id="{{item.id}}" bindtap="verifiedInfo">✓ 身份已核验</button><view class="meta">{{item.cityLabel}} · 负责人 {{item.leader || '跑团管理员'}} · #{{item.id}}</view></view><button class="result-action" data-id="{{item.id}}" bindtap="openClub">查看</button></view></view>
-      <view wx:if="{{duplicateMessage}}" class="helper">{{duplicateMessage}}</view>
-      <view class="helper">创建后即可邀请跑友，入团申请由你审核。一个账号 24 小时内可创建 1 个，同时担任团长最多 3 个。</view>
-      <view wx:if="{{foundingMessage}}" class="message" role="alert">{{foundingMessage}}</view>
-      <button class="submit create-submit" loading="{{creating}}" disabled="{{creating}}" bindtap="create">{{creating ? '正在创建' : duplicates.length ? '继续创建跑团' : '创建跑团'}}</button>
-    </view>
-  </view>
   <navigator wx:if="{{ready}}" class="private-reports-link" url="/pages/club-report/club-report">跑团身份反馈与申诉 ›</navigator>
 </view>

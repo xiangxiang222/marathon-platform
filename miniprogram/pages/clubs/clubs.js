@@ -5,9 +5,7 @@ function accountKey() {
   return app && app.globalData ? String(app.globalData.token || "") : "";
 }
 const PRIVATE_EMPTY = {
-  leader: false, clubs: [], shownClubs: [], mineQuery: "", mineExpanded: false, mineSearching: false, mineMatchCount: 0, openClubs: [], application: null, createOpen: false,
-  name: "", city: "", intro: "", applicationId: null, foundingMessage: "", creating: false,
-  duplicates: [], duplicateMessage: "", directoryPage: 0, directoryPages: 0, directoryTotal: 0,
+  leader: false, clubs: [], shownClubs: [], mineQuery: "", mineExpanded: false, mineSearching: false, mineMatchCount: 0, openClubs: [], application: null, directoryPage: 0, directoryPages: 0, directoryTotal: 0,
   directoryBusy: false, more: 0, query: "", searchCity: "", code: ""
 };
 Page({
@@ -17,19 +15,17 @@ Page({
     this._hidden = false;
     const token = accountKey();
     if (this._account !== token) {
-      this.invalidate(); this._createRequestId = "";
+      this.invalidate();
       this.setData({ ...PRIVATE_EMPTY, loaded: false, message: "" });
     }
     this._account = token;
-    this.setData({ ready: ready(), creating: false, directoryBusy: false });
+    this.setData({ ready: ready(), directoryBusy: false });
     if (ready()) this.load();
   },
   invalidate() {
     this.loadSeq = (this.loadSeq || 0) + 1;
     this.directorySeq = (this.directorySeq || 0) + 1;
-    this.duplicateSeq = (this.duplicateSeq || 0) + 1;
-    this.createSeq = (this.createSeq || 0) + 1;
-    clearTimeout(this.queryTimer); clearTimeout(this.duplicateTimer);
+    clearTimeout(this.queryTimer);
   },
   onHide() { this._hidden = true; this.invalidate(); },
   onUnload() { this._disposed = true; this.invalidate(); },
@@ -48,53 +44,17 @@ Page({
     if (this._account !== accountKey()) { this.onShow(); return; }
     this.setData({ mineExpanded: !this.data.mineExpanded }); this.filterMine();
   },
-  toggleCreate() { this.setData({ createOpen: !this.data.createOpen }); },
+  openCreate() {
+    const continuing = this._account === accountKey() && this.data.application;
+    wx.navigateTo({ url: "/pages/club-create/club-create" + (continuing ? "?continue=1" : "") });
+  },
   openClub(e) {
     const id = Number(e.currentTarget.dataset.id);
     if (id) wx.navigateTo({ url: "/pages/club-intro/club-intro?id=" + id });
   },
   verifiedInfo(e) {
     const id = Number(e.currentTarget.dataset.id);
-    showVerification(this.data.openClubs.concat(this.data.clubs, this.data.duplicates).find((club) => club.id === id));
-  },
-  onName(e) {
-    if (this.data.creating) return;
-    this._createRequestId = "";
-    this.setData({ name: e.detail.value, foundingMessage: "", duplicates: [], duplicateMessage: "" });
-    clearTimeout(this.duplicateTimer);
-    this.duplicateSeq = (this.duplicateSeq || 0) + 1;
-    this.duplicateTimer = setTimeout(() => this.checkDuplicates(), 250);
-  },
-  onCreateField(e) {
-    if (this.data.creating) return;
-    const key = e.currentTarget.dataset.key;
-    if (!["city", "intro"].includes(key)) return;
-    this._createRequestId = ""; this.setData({ [key]: e.detail.value, foundingMessage: "" });
-  },
-  chooseCity(e) {
-    if (this.data.creating) return;
-    this._createRequestId = ""; this.setData({ city: e.currentTarget.dataset.city, foundingMessage: "" });
-  },
-  checkDuplicates() {
-    if (this._account !== accountKey()) { this.onShow(); return Promise.resolve(); }
-    const name = String(this.data.name || "").trim();
-    if (!name || !ready() || this._hidden || this._disposed) return Promise.resolve();
-    const token = accountKey();
-    const seq = this.duplicateSeq = (this.duplicateSeq || 0) + 1;
-    return request("/clubs/directory?q=" + encodeURIComponent(name) + "&page=1&pageSize=3").then((data) => {
-      if (!this.scopeCurrent(token) || seq !== this.duplicateSeq || name !== this.data.name.trim()) return;
-      this.setData({ duplicates: (data.clubs || []).map(publicClub), duplicateMessage: "" });
-    }).catch(() => {
-      if (this.scopeCurrent(token) && seq === this.duplicateSeq) this.setData({ duplicateMessage: "暂时无法检查同名，你仍可创建。" });
-    });
-  },
-  continueApplication() {
-    if (this._account !== accountKey()) { this.onShow(); return; }
-    const application = this.data.application;
-    if (!application || this.data.creating) return;
-    this._createRequestId = "";
-    this.setData({ createOpen: true, name: application.name || "", applicationId: application.id, foundingMessage: "补充活动城市后，点击创建即确认开通这份旧申请。" });
-    this.checkDuplicates();
+    showVerification(this.data.openClubs.concat(this.data.clubs).find((club) => club.id === id));
   },
   onCode(e) { this.setData({ code: e.detail.value }); },
   onQuery(e) {
@@ -111,7 +71,7 @@ Page({
     if (!ready() || this._disposed || this._hidden) return Promise.resolve();
     const token = accountKey();
     if (this._account !== token) {
-      this.invalidate(); this._createRequestId = ""; this._account = token;
+      this.invalidate(); this._account = token;
       this.setData({ ...PRIVATE_EMPTY, ready: true, loaded: false, message: "" });
     }
     const seq = this.loadSeq = (this.loadSeq || 0) + 1;
@@ -121,7 +81,7 @@ Page({
       this.filterMine();
     }).catch((err) => {
       if (!this.scopeCurrent(token) || seq !== this.loadSeq) return;
-      if (err.status === 401 || err.status === 403) { this._createRequestId = ""; this.setData({ ...PRIVATE_EMPTY }); }
+      if (err.status === 401 || err.status === 403) { this.setData({ ...PRIVATE_EMPTY }); }
       this.setData({ loaded: true, message: err.message });
     });
     return Promise.all([mine, this.loadDirectory(false)]);
@@ -153,31 +113,6 @@ Page({
     if (!ready()) { this.setData({ message: "登录后即可搜索跑团，也可以用口令查看介绍" }); return; }
     clearTimeout(this.queryTimer); this.directorySeq = (this.directorySeq || 0) + 1;
     this.setData({ directoryBusy: false }); return this.loadDirectory(false);
-  },
-  create() {
-    if (!ready() || this.data.creating || this._hidden || this._disposed) return Promise.resolve();
-    if (this._account !== accountKey()) { this.onShow(); return Promise.resolve(); }
-    const name = String(this.data.name || "").trim();
-    const city = String(this.data.city || "").trim();
-    const intro = String(this.data.intro || "").trim();
-    if (!name || !city) { this.setData({ foundingMessage: "填写跑团名称和活动城市，即可创建。" }); return Promise.resolve(); }
-    const token = accountKey();
-    const seq = this.createSeq = (this.createSeq || 0) + 1;
-    if (!this._createRequestId) this._createRequestId = "mini-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 14);
-    const payload = { name, city, intro, requestId: this._createRequestId };
-    if (this.data.applicationId) payload.applicationId = this.data.applicationId;
-    this.setData({ creating: true, foundingMessage: "" });
-    return request("/clubs", "POST", payload).then((data) => {
-      if (!this.scopeCurrent(token) || seq !== this.createSeq) return;
-      if (!data.club || !data.club.id) throw new Error("未能确认创建结果，请重试。");
-      this._createRequestId = "";
-      this.setData({ name: "", city: "", intro: "", applicationId: null, duplicates: [], application: null, createOpen: false });
-      wx.navigateTo({ url: "/pages/club/club?id=" + data.club.id + "&created=1" });
-    }).catch((err) => {
-      if (this.scopeCurrent(token) && seq === this.createSeq) this.setData({ foundingMessage: err.message });
-    }).finally(() => {
-      if (this.scopeCurrent(token) && seq === this.createSeq) this.setData({ creating: false });
-    });
   },
   join() {
     const code = String(this.data.code || "").trim();
