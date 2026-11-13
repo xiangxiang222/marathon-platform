@@ -36,6 +36,7 @@ const { issueCaptcha, registerUser, loginUser, loginWechat, verifyWechatCode, ch
 const { avatarRoot, avatarUrlOf, saveAvatar, removeAvatar } = require("./avatars");
 const { signupTarget } = require("./signup-channel");
 const QRCode = require("qrcode");
+const raceCatalog = require("../../shared/race-catalog.json");
 
 function loadEnv() {
   const file = path.join(__dirname, "../../.env");
@@ -220,6 +221,10 @@ function checkinsOf(clubId, userId) {
 
 app.get(BASE + "/api/meta", (_req, res) => {
   res.json({ company: COMPANY, icp: ICP, product: "赛历" });
+});
+
+app.get(BASE + "/api/race-catalog", (_req, res) => {
+  res.json(raceCatalog);
 });
 
 app.get(BASE + "/api/races", (req, res) => {

@@ -1,0 +1,168 @@
+{
+  "updatedAt": "2026-11-13",
+  "selectionNote": "首批收录北京、上海、厦门三场赛事基本信息，按编辑顺序展示，不代表排名。历年路线、中签、完赛及物资详情后续补充。",
+  "races": [
+    {
+      "id": "beijing",
+      "name": "北京马拉松",
+      "shortName": "北马",
+      "city": "北京",
+      "province": "北京",
+      "tagline": "从天安门，跑向奥林匹克",
+      "summary": "1981年创办的北京马拉松，以天安门起跑和奥林匹克公园完赛的城市记忆为辨识。这里按届次保存规程、路线、成绩与赛事物品，帮助跑者看清一场比赛在不同年份的变化。",
+      "worldAthletics": {
+        "label": "金标",
+        "year": "2026",
+        "sourceIds": [
+          "wa-2026"
+        ]
+      },
+      "caa": {
+        "label": "A类",
+        "year": "2026",
+        "sourceIds": [
+          "caa-2026"
+        ]
+      },
+      "officialUrl": "https://www.beijing-marathon.com/",
+      "sources": [
+        {
+          "id": "wa-2026",
+          "title": "World Athletics Label Road Races 2026 日历：Bank of China Beijing Marathon",
+          "url": "https://worldathletics.org/competitions/world-athletics-label-road-races/calendar-results",
+          "publisher": "世界田联",
+          "publishedAt": "",
+          "accessedAt": "2026-11-13",
+          "evidence": {
+            "calendarId": 7235591,
+            "name": "Bank of China Beijing Marathon",
+            "startDate": "2026-10-18",
+            "competitionSubgroup": "Gold"
+          }
+        },
+        {
+          "id": "caa-2026",
+          "title": "2026北京马拉松 中国马拉松官方赛事目录",
+          "url": "https://www.runchina.org.cn/#/race/v/detail/1000452015",
+          "publisher": "中国田径协会 / 中国马拉松",
+          "publishedAt": "",
+          "accessedAt": "2026-11-12",
+          "snapshot": "shared/a-class-races.json",
+          "evidence": {
+            "officialId": "1000452015",
+            "grade": "A",
+            "raceDate": "2026-10-18"
+          }
+        }
+      ]
+    },
+    {
+      "id": "shanghai",
+      "name": "上海马拉松",
+      "shortName": "上马",
+      "city": "上海",
+      "province": "上海",
+      "tagline": "在城市的脉搏里奔跑",
+      "summary": "世界田联2026年日历收录为白金标赛事；中国马拉松2026年赛事目录标注为A类。",
+      "worldAthletics": {
+        "label": "白金标",
+        "year": "2026",
+        "sourceIds": [
+          "wa-2026"
+        ]
+      },
+      "caa": {
+        "label": "A类",
+        "year": "2026",
+        "sourceIds": [
+          "caa-2026"
+        ]
+      },
+      "officialUrl": "https://www.shang-ma.com/",
+      "sources": [
+        {
+          "id": "wa-2026",
+          "title": "World Athletics Label Road Races 2026 日历：Shanghai Marathon",
+          "url": "https://worldathletics.org/competitions/world-athletics-label-road-races/calendar-results",
+          "publisher": "世界田联",
+          "publishedAt": "",
+          "accessedAt": "2026-11-13",
+          "evidence": {
+            "calendarId": 7235577,
+            "name": "Shanghai Marathon",
+            "startDate": "2026-12-06",
+            "competitionSubgroup": "Platinum"
+          }
+        },
+        {
+          "id": "caa-2026",
+          "title": "2026上海马拉松 中国马拉松官方赛事目录",
+          "url": "https://www.runchina.org.cn/#/race/v/detail/1000479094",
+          "publisher": "中国田径协会 / 中国马拉松",
+          "publishedAt": "",
+          "accessedAt": "2026-11-12",
+          "snapshot": "shared/a-class-races.json",
+          "evidence": {
+            "officialId": "1000479094",
+            "grade": "A",
+            "raceDate": "2026-12-06"
+          }
+        }
+      ]
+    },
+    {
+      "id": "xiamen",
+      "name": "厦门马拉松",
+      "shortName": "厦马",
+      "city": "厦门",
+      "province": "福建",
+      "tagline": "把海风，写进完赛记忆",
+      "summary": "世界田联2026年日历收录为白金标赛事；中国马拉松2026年赛事目录标注为A类。",
+      "worldAthletics": {
+        "label": "白金标",
+        "year": "2026",
+        "sourceIds": [
+          "wa-2026"
+        ]
+      },
+      "caa": {
+        "label": "A类",
+        "year": "2026",
+        "sourceIds": [
+          "caa-2026"
+        ]
+      },
+      "officialUrl": "https://www.xmim.org/",
+      "sources": [
+        {
+          "id": "wa-2026",
+          "title": "World Athletics Label Road Races 2026 日历：C&D Xiamen Marathon",
+          "url": "https://worldathletics.org/competitions/world-athletics-label-road-races/calendar-results",
+          "publisher": "世界田联",
+          "publishedAt": "",
+          "accessedAt": "2026-11-13",
+          "evidence": {
+            "calendarId": 7235565,
+            "name": "C&D Xiamen Marathon",
+            "startDate": "2026-01-11",
+            "competitionSubgroup": "Platinum"
+          }
+        },
+        {
+          "id": "caa-2026",
+          "title": "2026厦门马拉松 中国马拉松官方赛事目录",
+          "url": "https://www.runchina.org.cn/#/race/v/detail/1000284235",
+          "publisher": "中国田径协会 / 中国马拉松",
+          "publishedAt": "",
+          "accessedAt": "2026-11-12",
+          "snapshot": "shared/a-class-races.json",
+          "evidence": {
+            "officialId": "1000284235",
+            "grade": "A",
+            "raceDate": "2026-01-11"
+          }
+        }
+      ]
+    }
+  ]
+}
