@@ -25,6 +25,8 @@ export default createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     { path: "/", component: Home },
+    { path: "/race-catalog", component: () => import("./views/RaceCatalog.vue"), meta: { hideTab: true, wide: true } },
+    { path: "/race-catalog/:id", component: () => import("./views/RaceArchive.vue"), meta: { hideTab: true, wide: true } },
     { path: "/calendar", component: Calendar, meta: { hideTab: true } },
     { path: "/radar", component: Radar, meta: { hideTab: true } },
     { path: "/news", component: () => import("./views/InfoCenter.vue"), meta: { hideTab: true } },

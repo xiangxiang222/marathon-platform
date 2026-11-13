@@ -1,0 +1,92 @@
+[
+  {
+    "sourceUrl": "https://pub.mararun.com/cms/pic/BJCN/28c34fc407162d6aafa06ce2a015384c.jpg",
+    "localUrl": "/marathon/images/race-archives/beijing-2026-route-044da27499.jpg",
+    "raceId": "beijing",
+    "year": "2026",
+    "kind": "route",
+    "bytes": 494505,
+    "sha256": "df4a3aeb3aa9c215918a1d4a3891e5766c9bc2129b38badcd410e05b68e7f572"
+  },
+  {
+    "sourceUrl": "https://bmtest.chinarun.com/upload/site/1132/img/art/20231026/6383395114450912721722732.jpeg",
+    "localUrl": "/marathon/images/race-archives/beijing-2023-gear-3-4a452443af.jpg",
+    "raceId": "beijing",
+    "year": "2023",
+    "kind": "gear-3",
+    "bytes": 259561,
+    "sha256": "ab740d161e35cc6fd097c5c648dc2d2820ab89c873b0743051e47eeee587fce9"
+  },
+  {
+    "sourceUrl": "https://www.xmim.org/file/public/volunteer/20251226/19e282924f60c24a4706f9730ba058a8.jpg",
+    "localUrl": "/marathon/images/race-archives/xiamen-2026-route-1a82429d3f.jpg",
+    "raceId": "xiamen",
+    "year": "2026",
+    "kind": "route",
+    "bytes": 372332,
+    "sha256": "3489f42daeb68e509f250d37fc8fe21794799284a74fe04c824e356bd6636c46"
+  },
+  {
+    "sourceUrl": "https://www.xmim.org/file/public/volunteer/20250928/df453641c189c714a6c5779844822099.png",
+    "localUrl": "/marathon/images/race-archives/xiamen-2026-gear-1-0455db4ef2.jpg",
+    "raceId": "xiamen",
+    "year": "2026",
+    "kind": "gear-1",
+    "bytes": 277514,
+    "sha256": "4e436d436578de8f417f49040ef52f00f9c477044a51092c9ac197ac372ce149"
+  },
+  {
+    "sourceUrl": "https://www.xmim.org/file/public/volunteer/20260108/6f16cd90111016c63d4e237c87767c74.png",
+    "localUrl": "/marathon/images/race-archives/xiamen-2026-gear-2-fffed6692e.jpg",
+    "raceId": "xiamen",
+    "year": "2026",
+    "kind": "gear-2",
+    "bytes": 378827,
+    "sha256": "ceb0e7f58453f0a4a21a90e4863b0d79fd4c976ad5f0054cd640b2f3f945e8e2"
+  },
+  {
+    "sourceUrl": "https://www.xmim.org/file/public/volunteer/20241227/d56bc8b5216318a62928f2870fe3ea31.png",
+    "localUrl": "/marathon/images/race-archives/xiamen-2025-route-50e18920d9.jpg",
+    "raceId": "xiamen",
+    "year": "2025",
+    "kind": "route",
+    "bytes": 444718,
+    "sha256": "49c10cf4b8989cc3c5491610a832c0fd89fb1f835a0f23919dc1f89a5a9b3ed4"
+  },
+  {
+    "sourceUrl": "https://www.xmim.org/file/public/volunteer/20240929/fc873b7918d807298a071b3787d801f0.jpg",
+    "localUrl": "/marathon/images/race-archives/xiamen-2025-gear-1-3fe393d243.jpg",
+    "raceId": "xiamen",
+    "year": "2025",
+    "kind": "gear-1",
+    "bytes": 289300,
+    "sha256": "78049ba41e588d1f7c9ad80bb83dd2b334120ef4593d7cfe983d65f0b6a245fa"
+  },
+  {
+    "sourceUrl": "https://www.xmim.org/file/public/volunteer/20240103/ac90816eccc5f749b1462f645ca42547.jpg",
+    "localUrl": "/marathon/images/race-archives/xiamen-2024-route-06e657f350.jpg",
+    "raceId": "xiamen",
+    "year": "2024",
+    "kind": "route",
+    "bytes": 483720,
+    "sha256": "c9dc26dbc3cd507178e037cd8eb48d5a9e8aab2bebf1cfefaa102a0ad9808d1f"
+  },
+  {
+    "sourceUrl": "https://tyj.sh.gov.cn/cmsres/ce/ceeec722b2d740ce966efbc5d2a82a60/a7487c448c1cc0921b1f5bc6d0e84862.jpg",
+    "localUrl": "/marathon/images/race-archives/shanghai-2024-route-ca3e5936ca.jpg",
+    "raceId": "shanghai",
+    "year": "2024",
+    "kind": "route",
+    "bytes": 518773,
+    "sha256": "894f8389deabd8d7b325d2171a5dbf350da72b8fa041650b0cdbf65a13d51176"
+  },
+  {
+    "sourceUrl": "https://tyj.sh.gov.cn/cmsres/9c/9c1eacd9afed4e2fb89553b7b9e518d6/16f4bc02a4c81534c8a20ee5ecb06b7a.jpg",
+    "localUrl": "/marathon/images/race-archives/shanghai-2024-gear-2-738637dd4b.jpg",
+    "raceId": "shanghai",
+    "year": "2024",
+    "kind": "gear-2",
+    "bytes": 380706,
+    "sha256": "5e908bf5ca8e717a31ed34c49a985635e6a34693131bdfe9c6711d120f48e058"
+  }
+]

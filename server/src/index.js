@@ -36,7 +36,7 @@ const { issueCaptcha, registerUser, loginUser, loginWechat, verifyWechatCode, ch
 const { avatarRoot, avatarUrlOf, saveAvatar, removeAvatar } = require("./avatars");
 const { signupTarget } = require("./signup-channel");
 const QRCode = require("qrcode");
-const raceCatalog = require("../../shared/race-catalog.json");
+const { mountRaceCatalog, raceArchiveId } = require("./race-catalog");
 
 function loadEnv() {
   const file = path.join(__dirname, "../../.env");
@@ -223,9 +223,7 @@ app.get(BASE + "/api/meta", (_req, res) => {
   res.json({ company: COMPANY, icp: ICP, product: "赛历" });
 });
 
-app.get(BASE + "/api/race-catalog", (_req, res) => {
-  res.json(raceCatalog);
-});
+mountRaceCatalog(app, { BASE, getDb });
 
 app.get(BASE + "/api/races", (req, res) => {
   const now = new Date();
@@ -282,6 +280,7 @@ app.get(BASE + "/api/races/:id", (req, res) => {
   const row = getDb().prepare("SELECT * FROM races WHERE id = ?").get(req.params.id);
   if (!row) return res.status(404).json({ error: "没有这场比赛" });
   const race = attachGuide(getDb(), presentRace(row, new Date()));
+  race.archiveId = raceArchiveId(race);
   const user = userFrom(req);
   const mine = user
     ? getDb().prepare("SELECT status, sheet FROM plans WHERE user_id = ? AND race_id = ?").get(user.id, race.id)

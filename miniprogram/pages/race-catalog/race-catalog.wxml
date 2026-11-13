@@ -1,0 +1,12 @@
+<view class="archive-page">
+  <view class="archive-intro"><text class="archive-kicker">一场比赛，一份年度记忆</text><view class="archive-title">认识你的下一场马拉松</view><text class="archive-lead">从路线到中签，从完赛到奖牌，按年份读懂一场比赛。</text></view>
+  <view class="archive-body"><view class="archive-search"><input value="{{q}}" bindinput="onQ" bindconfirm="load" confirm-type="search" placeholder="搜索赛事、简称或城市" aria-label="搜索赛事档案" maxlength="80" /><button bindtap="load">搜索</button></view>
+    <view class="archive-filters"><view><text>世界田联</text><picker range="{{waOptions}}" value="{{waIndex}}" bindchange="pickWa"><view class="archive-select">{{waOptions[waIndex]}} <text>⌄</text></view></picker></view><view><text>中国田协</text><picker range="{{caaOptions}}" value="{{caaIndex}}" bindchange="pickCaa"><view class="archive-select">{{caaOptions[caaIndex]}} <text>⌄</text></view></picker></view></view>
+    <view class="archive-caption">两套认证分别展示，适用年份见各赛事标签。</view>
+    <view wx:if="{{message}}" class="archive-state"><text>{{message}}</text><button class="archive-secondary" bindtap="load">重新加载</button></view>
+    <view wx:elif="{{loading}}" class="archive-state">正在整理赛事档案…</view>
+    <view wx:elif="{{!races.length}}" class="archive-state"><view class="archive-h2">没有符合条件的档案</view><view>试试赛事简称，或清除部分筛选。</view><button class="archive-secondary" bindtap="clear">清除筛选</button></view>
+    <block wx:else><view class="archive-list-heading"><text class="archive-h2">已收录赛事</text><text>{{races.length}} 场</text></view><navigator wx:for="{{races}}" wx:key="id" class="archive-directory-card" url="/pages/race-archive/race-archive?id={{item.id}}"><view class="archive-card-top"><view><view class="archive-h2">{{item.name}}</view><text class="archive-caption">{{item.city}} · {{item.shortName}}</text></view><text class="archive-arrow">›</text></view><view class="archive-card-tagline">{{item.tagline}}</view><view class="archive-badges"><text>世界田联 {{item.waLabel}}</text><text>中国田协 {{item.caaLabel}}</text></view><view class="archive-card-link"><text>阅读年度档案</text><text>→</text></view></navigator></block>
+    <view wx:if="{{selectionNote}}" class="archive-caption">{{selectionNote}}</view>
+  </view>
+</view>

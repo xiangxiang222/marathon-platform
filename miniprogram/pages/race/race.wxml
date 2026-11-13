@@ -12,6 +12,8 @@
     <view wx:for="{{conflicts}}" wx:key="text" class="warn">{{item.text}}</view>
   </view>
 
+  <navigator wx:if="{{race.archiveId}}" class="race-archive-entry" url="/pages/race-archive/race-archive?id={{race.archiveId}}&fromRaceId={{race.id}}"><view><view>报名前，先了解这场比赛</view><text>历年赛道 · 报名中签 · 完赛与奖牌</text></view><text>›</text></navigator>
+
   <view class="card race-plan">
     <view class="plan-heading"><view class="h2">我的参赛计划</view><text class="plan-status">{{myStatus || '未标记'}}</text></view>
     <view class="src">记录想跑、报名和中签状态，已加入的跑团可同步查看。</view>

@@ -31,6 +31,7 @@
       <p v-if="race.gradeLabel" class="src">{{ race.gradeLabel }}</p>
       <p v-for="item in conflicts" :key="item.text" class="warn">{{ item.text }}</p>
     </div>
+    <router-link v-if="race?.archiveId" class="race-archive-entry" :to="{path:'/race-catalog/'+race.archiveId,query:{fromRaceId:String(race.id)}}"><span><strong>报名前，先了解这场比赛</strong><small>历年赛道 · 报名中签 · 完赛与奖牌</small></span><span aria-hidden="true">›</span></router-link>
     <section v-if="race" class="block race-plan">
       <div class="plan-heading"><h2>我的参赛计划</h2><span class="plan-status">{{ myStatus || '未标记' }}</span></div>
       <p class="src">记录想跑、报名和中签状态，已加入的跑团可同步查看。</p>
@@ -602,6 +603,8 @@ onMounted(() => {
 </script>
 
 <style scoped>
+.race-archive-entry{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:72px;margin:12px 16px;padding:14px 16px;background:#fff0f2;border-radius:12px}.race-archive-entry strong{display:block;font-size:14px;font-weight:500}.race-archive-entry small{display:block;font-size:12px;color:#777;margin-top:4px}.race-archive-entry>span:last-child{font-size:24px;color:#ff1838}
+
 .race-state { display: grid; justify-items: center; gap: 12px; margin: 20px 16px; padding: 32px 20px; border-radius: 12px; background: #fff; color: var(--muted); text-align: center; font-size: 14px; }
 .race-state p { margin: 0; line-height: 1.6; }
 .race-state-error p { color: var(--accent); }
