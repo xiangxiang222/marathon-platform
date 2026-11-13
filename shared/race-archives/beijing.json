@@ -1,0 +1,794 @@
+{
+  "raceId": "beijing",
+  "updatedAt": "2026-11-14",
+  "intro": "北京马拉松创办于1981年。以天安门起跑、奥林匹克区域冲线为城市记忆，档案按届保存资格、路线、竞赛成绩与赛事物品，帮助跑者分辨每年变化。",
+  "highlights": [
+    {
+      "title": "从城市地标出发",
+      "body": "近年从天安门广场出发，终点设于奥林匹克区域；每届实际起终点和道路按当年规程记录。"
+    },
+    {
+      "title": "年度规则持续变化",
+      "body": "2025年按上一届北马成绩及年龄组标准提供直通；2026年成绩要求调整为近24个月内1次全马或2次半马，并新增存包选择。"
+    },
+    {
+      "title": "报名热度逐年留档",
+      "body": "2023年131239人报名，2024年182949人提交报名信息。报名总数与实际参加抽签人数分别记录。"
+    }
+  ],
+  "editions": [
+    {
+      "year": "2026",
+      "date": "2026-10-18",
+      "dateSourceIds": [
+        "bj-reg-2026",
+        "bj-notice-2026"
+      ],
+      "distance": "全程马拉松",
+      "route": {
+        "summary": "天安门广场东侧路 → 西长安街 → 复兴路 → 玲珑路 → 蓝靛厂 → 学院路 → 国家速滑馆区域 → 奥林匹克公园中心区景观大道",
+        "start": "天安门广场东侧路",
+        "finish": "奥林匹克公园中心区景观大道",
+        "mapUrl": "/marathon/images/race-archives/beijing-2026-route-044da27499.jpg",
+        "mapSourceUrl": "https://www.beijing-marathon.com/subject.html?detailId=7992140408205034&topicId=7793644601957146",
+        "changes": "官方规程道路序列与2025年一致；不能由此认定实测轨迹、补给或交通组织完全相同。",
+        "analysis": [
+          "编辑解读：长安街和复兴路路段可先建立稳定节奏，再按蓝靛厂、学院路和奥林匹克区域分段记忆。",
+          "编辑解读：后程进入速滑馆和奥林匹克区域后仍有转弯、折返，赛前应对照当届官方图确认方向。",
+          "当前资料不足以可靠给出累计爬升、坡度或PB难度评分。"
+        ],
+        "sourceIds": [
+          "bj-reg-2026",
+          "bj-map-2026"
+        ]
+      },
+      "registration": {
+        "method": "官网及官方合作平台个人报名，超额后抽签；直通资格按当届规则审核。",
+        "opens": "2026-09-17 10:00（北京时间）",
+        "closes": "2026-09-22 18:00（北京时间）",
+        "drawDate": "2026年9月底至10月初（报名须知计划）",
+        "fee": "人民币200元/人",
+        "qualification": "年满20周岁；报名截止日前24个月内有1次全马或2次半马的线下比赛成绩；65周岁及以上需本人及家庭成员共同签署承诺书。",
+        "applicants": "",
+        "eligibleApplicants": "",
+        "lotteryPool": "",
+        "drawQuota": "",
+        "directQuota": "互通名额200人；不含成绩直通等类别",
+        "lotteryRate": "",
+        "lotteryNote": "尚无同口径抽签池和实际抽签名额，不将计划规模除以预报名人数记作中签率。",
+        "note": "成绩直通以2025北马完赛成绩及年龄组标准认定；另从2026广马报名运动员随机抽200名符合资格者。 须知说明将按实际缴费情况决定是否另行补录，以后续公告为准。 本届报名“是否存包”的选择不影响中签概率。",
+        "sourceIds": [
+          "bj-notice-2026"
+        ]
+      },
+      "participation": {
+        "planned": "32000人（竞赛规程计划规模）",
+        "starters": "",
+        "finishers": "",
+        "finishRate": "",
+        "note": "这里的规模为赛前计划，不是实际起跑或完赛人数。规程列明07:30起跑、13:30终点关门；成绩证书可列枪时、净计时及分段成绩。实际起跑和完赛统计尚未取得可核验来源。",
+        "sourceIds": [
+          "bj-reg-2026"
+        ]
+      },
+      "results": [
+        {
+          "group": "男子冠军",
+          "athlete": "Tamirat TOLA",
+          "time": "02:03:10",
+          "timing": "枪时",
+          "sourceIds": [
+            "bj-result-men-2026"
+          ]
+        },
+        {
+          "group": "女子冠军",
+          "athlete": "Anchinalu Dessie GENANEH",
+          "time": "02:20:36",
+          "timing": "枪时",
+          "sourceIds": [
+            "bj-result-women-2026"
+          ]
+        }
+      ],
+      "gear": [
+        {
+          "category": "参赛包",
+          "name": "2026参赛物品",
+          "description": "规程列明的基础物品，未视为全部赞助实物清单；须本人携带有效证件及相应凭证领取。报名须知新增按报名时是否选择存包提供存衣包及存取包服务。",
+          "items": [
+            "参赛服",
+            "存衣包",
+            "号码布",
+            "计时芯片"
+          ],
+          "imageUrl": "",
+          "sourceUrl": "https://www.beijing-marathon.com/subject.html?detailId=9024241433441439&topicId=7793646850104219",
+          "sourceIds": [
+            "bj-reg-2026",
+            "bj-notice-2026"
+          ]
+        },
+        {
+          "category": "完赛包",
+          "name": "2026完赛领取物品",
+          "description": "须在关门时间内按规程完赛并凭当届号码布领取；规程未逐项列出的赞助物品不据此补写。",
+          "items": [
+            "完赛奖牌",
+            "完赛物品（规程未逐项列明）"
+          ],
+          "imageUrl": "",
+          "sourceUrl": "https://www.beijing-marathon.com/subject.html?detailId=9024241433441439&topicId=7793646850104219",
+          "sourceIds": [
+            "bj-reg-2026"
+          ]
+        },
+        {
+          "category": "参赛服",
+          "name": "2026参赛服",
+          "description": "当年规程明确提供参赛服，版型、配色及品牌实物细节待取得当届发布材料后补充。",
+          "items": [],
+          "imageUrl": "",
+          "sourceUrl": "https://www.beijing-marathon.com/subject.html?detailId=9024241433441439&topicId=7793646850104219",
+          "sourceIds": [
+            "bj-reg-2026"
+          ]
+        },
+        {
+          "category": "奖牌",
+          "name": "2026完赛奖牌",
+          "description": "关门内按规定完赛可凭号码布领取；当届设计细节及实物图待收录。",
+          "items": [],
+          "imageUrl": "",
+          "sourceUrl": "https://www.beijing-marathon.com/subject.html?detailId=9024241433441439&topicId=7793646850104219",
+          "sourceIds": [
+            "bj-reg-2026"
+          ]
+        }
+      ],
+      "notes": [
+        "所有时间均按北京时间；历史参赛条件只适用于该届，不代替新届报名须知。",
+        "本届实际起跑、完赛人数及中签率尚未核验收录。"
+      ]
+    },
+    {
+      "year": "2025",
+      "date": "2025-11-02",
+      "dateSourceIds": [
+        "bj-reg-2025",
+        "bj-notice-2025"
+      ],
+      "distance": "全程马拉松",
+      "route": {
+        "summary": "天安门广场东侧路 → 西长安街 → 复兴路 → 玲珑路 → 蓝靛厂 → 学院路 → 国家速滑馆区域 → 奥林匹克公园中心区景观大道",
+        "start": "天安门广场东侧路",
+        "finish": "奥林匹克公园中心区景观大道",
+        "mapUrl": "",
+        "mapSourceUrl": "",
+        "changes": "延长北四环辅路，取消原18—24公里海淀南路、知春路狭窄路段；新增国家速滑馆内部道路及奥林东路；后半程折返点由3个减为1个。",
+        "analysis": [
+          "编辑解读：取消原18—24公里狭窄路段、减少后程折返，有利于减少变向和拥挤，但实际成绩仍受天气、体能和起跑分区影响。",
+          "编辑解读：新增速滑馆内部道路，跑者可按冰丝带、奥林东路、奥林匹克公园三个节点记忆后程。",
+          "未取得可核验的GPX或高程数据，暂不提供累计爬升和坡度评分。"
+        ],
+        "sourceIds": [
+          "bj-reg-2025",
+          "bj-route-release-2025"
+        ]
+      },
+      "registration": {
+        "method": "官网及官方合作平台个人报名，超额后抽签；直通资格按当届规则审核。",
+        "opens": "2025-09-10 10:00（北京时间）",
+        "closes": "2025-09-15 18:00（北京时间）",
+        "drawDate": "2025年10月上旬（报名须知计划）",
+        "fee": "人民币200元/人",
+        "qualification": "年满20周岁；2023-01-01至2025-09-09有全马6小时内或半马3小时内的线下有效完赛成绩；65周岁及以上需本人及家庭成员共同签署承诺书。",
+        "applicants": "",
+        "eligibleApplicants": "",
+        "lotteryPool": "",
+        "drawQuota": "",
+        "directQuota": "互通名额200人；不含成绩直通等类别",
+        "lotteryRate": "",
+        "lotteryNote": "尚无同口径抽签池和实际抽签名额，不将计划规模除以预报名人数记作中签率。",
+        "note": "成绩直通以2024北马完赛成绩及年龄组标准认定；另从2025广马中签和未中签者各随机抽100名符合资格者，合计200名互通名额。 须知说明将按实际缴费情况决定是否另行补录，以后续公告为准。",
+        "sourceIds": [
+          "bj-notice-2025"
+        ]
+      },
+      "participation": {
+        "planned": "32000人（竞赛规程计划规模）",
+        "starters": "",
+        "finishers": "",
+        "finishRate": "",
+        "note": "这里的规模为赛前计划，不是实际起跑或完赛人数。规程列明07:30起跑、13:30终点关门；成绩证书可列枪时、净计时及分段成绩。实际起跑和完赛统计尚未取得可核验来源。",
+        "sourceIds": [
+          "bj-reg-2025"
+        ]
+      },
+      "results": [
+        {
+          "group": "男子冠军",
+          "athlete": "Lemi Berhanu Hayle",
+          "time": "02:08:10",
+          "timing": "枪时",
+          "sourceIds": [
+            "bj-result-men-2025"
+          ]
+        },
+        {
+          "group": "女子冠军",
+          "athlete": "Anchinalu Dessie Genaneh",
+          "time": "02:26:08",
+          "timing": "枪时",
+          "sourceIds": [
+            "bj-result-women-2025"
+          ]
+        },
+        {
+          "group": "国内男子冠军",
+          "athlete": "李大林",
+          "time": "02:11:26",
+          "timing": "枪时",
+          "sourceIds": [
+            "bj-race-report-2025"
+          ]
+        },
+        {
+          "group": "国内女子冠军",
+          "athlete": "黄雪梅",
+          "time": "02:31:28",
+          "timing": "枪时",
+          "sourceIds": [
+            "bj-race-report-2025"
+          ]
+        }
+      ],
+      "gear": [
+        {
+          "category": "参赛包",
+          "name": "2025参赛物品",
+          "description": "规程列明的基础物品，未视为全部赞助实物清单；须本人携带有效证件及相应凭证领取。",
+          "items": [
+            "参赛服",
+            "存衣包",
+            "号码布",
+            "计时芯片",
+            "电子官方手册",
+            "选手指南"
+          ],
+          "imageUrl": "",
+          "sourceUrl": "https://www.beijing-marathon.com/subject.html?detailId=8486678159362470&topicId=7793646850104219",
+          "sourceIds": [
+            "bj-reg-2025"
+          ]
+        },
+        {
+          "category": "完赛包",
+          "name": "2025完赛领取物品",
+          "description": "须在关门时间内按规程完赛并凭当届号码布领取；规程未逐项列出的赞助物品不据此补写。",
+          "items": [
+            "完赛奖牌",
+            "完赛物品（规程未逐项列明）"
+          ],
+          "imageUrl": "",
+          "sourceUrl": "https://www.beijing-marathon.com/subject.html?detailId=8486678159362470&topicId=7793646850104219",
+          "sourceIds": [
+            "bj-reg-2025"
+          ]
+        },
+        {
+          "category": "参赛服",
+          "name": "2025参赛服",
+          "description": "当年规程明确提供参赛服，版型、配色及品牌实物细节待取得当届发布材料后补充。",
+          "items": [],
+          "imageUrl": "",
+          "sourceUrl": "https://www.beijing-marathon.com/subject.html?detailId=8486678159362470&topicId=7793646850104219",
+          "sourceIds": [
+            "bj-reg-2025"
+          ]
+        },
+        {
+          "category": "奖牌",
+          "name": "2025完赛奖牌",
+          "description": "关门内按规定完赛可凭号码布领取；当届设计细节及实物图待收录。",
+          "items": [],
+          "imageUrl": "",
+          "sourceUrl": "https://www.beijing-marathon.com/subject.html?detailId=8486678159362470&topicId=7793646850104219",
+          "sourceIds": [
+            "bj-reg-2025"
+          ]
+        }
+      ],
+      "notes": [
+        "所有时间均按北京时间；历史参赛条件只适用于该届，不代替新届报名须知。",
+        "本届实际起跑、完赛人数及中签率尚未核验收录。"
+      ]
+    },
+    {
+      "year": "2024",
+      "date": "2024-11-03",
+      "dateSourceIds": [
+        "bj-reg-2024",
+        "bj-notice-2024"
+      ],
+      "distance": "全程马拉松",
+      "route": {
+        "summary": "天安门广场东侧 → 东城、西城、海淀、朝阳沿线 → 奥林匹克公园中心区景观大道",
+        "start": "天安门广场东侧",
+        "finish": "奥林匹克公园中心区景观大道",
+        "mapUrl": "",
+        "mapSourceUrl": "",
+        "changes": "起点拱门向北前移100米；全部选手在天安门广场东侧路集结，直线出发。",
+        "analysis": [
+          "编辑解读：起跑由统一在广场东侧路集结并直线出发的组织方式改善；其余路段尚未取得可核验的当届完整图，不沿用新届路线。"
+        ],
+        "sourceIds": [
+          "bj-reg-2024",
+          "bj-release-2024"
+        ]
+      },
+      "registration": {
+        "method": "官网及官方合作平台个人报名，超额后抽签；直通资格按当届规则审核。",
+        "opens": "2024-10-02 11:00（北京时间）",
+        "closes": "2024-10-05 11:00（北京时间）",
+        "drawDate": "2024年10月中旬（报名须知计划）",
+        "fee": "人民币200元/人；未中签者可按规则申请2000元公益名额",
+        "qualification": "年满20周岁；2023-01-01至2024-09-30有全马6小时内或半马3小时内的线下有效完赛成绩。",
+        "applicants": "182949人（提交报名信息的总人数，来自43个国家和地区）",
+        "eligibleApplicants": "",
+        "lotteryPool": "",
+        "drawQuota": "",
+        "directQuota": "",
+        "lotteryRate": "",
+        "lotteryNote": "尚无同口径抽签池和实际抽签名额，不将计划规模除以预报名人数记作中签率。",
+        "note": "直通来源包括北马大众九星跑者及2024广州马拉松；仍须符合当届资格并按时报名缴费。 中签后逾期未缴费视为放弃，报名须知规定名额不予后补。",
+        "sourceIds": [
+          "bj-notice-2024",
+          "bj-release-2024"
+        ]
+      },
+      "participation": {
+        "planned": "大众30000人；另列锦标赛约200人、特邀12人",
+        "starters": "",
+        "finishers": "",
+        "finishRate": "",
+        "note": "这里的规模为赛前计划，不是实际起跑或完赛人数。规程列明07:30起跑、13:30终点关门；成绩证书可列枪时、净计时及分段成绩。实际起跑和完赛统计尚未取得可核验来源。",
+        "sourceIds": [
+          "bj-reg-2024"
+        ]
+      },
+      "results": [
+        {
+          "group": "男子冠军",
+          "athlete": "Lemi Berhanu Hayle",
+          "time": "02:09:16",
+          "timing": "枪时",
+          "sourceIds": [
+            "bj-result-men-2024"
+          ]
+        },
+        {
+          "group": "女子冠军",
+          "athlete": "Vicoty Chepngeno",
+          "time": "02:21:56",
+          "timing": "枪时",
+          "sourceIds": [
+            "bj-result-women-2024"
+          ]
+        }
+      ],
+      "gear": [
+        {
+          "category": "参赛包",
+          "name": "2024参赛物品",
+          "description": "规程列明的基础物品，未视为全部赞助实物清单；须本人携带有效证件及相应凭证领取。",
+          "items": [
+            "参赛服",
+            "存衣包",
+            "号码布",
+            "计时芯片",
+            "电子官方手册",
+            "选手指南"
+          ],
+          "imageUrl": "",
+          "sourceUrl": "https://www.beijing-marathon.com/subject.html?detailId=7992119268562291&topicId=7793646850104219",
+          "sourceIds": [
+            "bj-reg-2024"
+          ]
+        },
+        {
+          "category": "完赛包",
+          "name": "2024完赛领取物品",
+          "description": "须在关门时间内按规程完赛并凭当届号码布领取；规程未逐项列出的赞助物品不据此补写。",
+          "items": [
+            "完赛奖牌",
+            "完赛物品（规程未逐项列明）"
+          ],
+          "imageUrl": "",
+          "sourceUrl": "https://www.beijing-marathon.com/subject.html?detailId=7992119268562291&topicId=7793646850104219",
+          "sourceIds": [
+            "bj-reg-2024"
+          ]
+        },
+        {
+          "category": "参赛服",
+          "name": "2024参赛服",
+          "description": "红色设计，正面将跑者和北京地标剪影融入“BEIJING”字母。男款为背心，女款为短袖T恤。",
+          "items": [],
+          "imageUrl": "",
+          "sourceUrl": "https://tyj.beijing.gov.cn/bjsports/gzdt84/jtdt/543439442/index.html",
+          "sourceIds": [
+            "bj-release-2024"
+          ]
+        },
+        {
+          "category": "奖牌",
+          "name": "2024完赛奖牌",
+          "description": "以鸟巢外形和国家速滑馆“冰丝带”的线条为核心，采用极简风格呈现北京“双奥之城”主题。",
+          "items": [],
+          "imageUrl": "",
+          "sourceUrl": "https://tyj.beijing.gov.cn/bjsports/gzdt84/jtdt/543439442/index.html",
+          "sourceIds": [
+            "bj-release-2024"
+          ]
+        }
+      ],
+      "notes": [
+        "所有时间均按北京时间；历史参赛条件只适用于该届，不代替新届报名须知。",
+        "本届实际起跑、完赛人数及中签率尚未核验收录。"
+      ]
+    },
+    {
+      "year": "2023",
+      "date": "2023-10-29",
+      "dateSourceIds": [
+        "bj-reg-2023",
+        "bj-notice-2023"
+      ],
+      "distance": "全程马拉松",
+      "route": {
+        "summary": "天安门广场 → 东城、西城、海淀、朝阳沿线 → 奥林匹克中心区景观大道",
+        "start": "天安门广场",
+        "finish": "奥林匹克中心区景观大道",
+        "mapUrl": "",
+        "mapSourceUrl": "",
+        "changes": "组委会发布会说明减少39公里后转弯和折返点。",
+        "analysis": [
+          "编辑解读：起终点有城市地标辨识度；未取得当年完整图与轨迹前，不沿用新届道路或给出坡度结论。"
+        ],
+        "sourceIds": [
+          "bj-reg-2023",
+          "bj-release-2023"
+        ]
+      },
+      "registration": {
+        "method": "官网及官方合作平台个人报名，超额后抽签；直通资格按当届规则审核。",
+        "opens": "2023-09-28 10:00（北京时间）",
+        "closes": "2023-10-01 10:00（北京时间）",
+        "drawDate": "2023年10月中上旬（报名须知计划）",
+        "fee": "人民币200元/人；未中签者可按规则申请2000元公益名额",
+        "qualification": "年满20周岁；2019-01-01至2023-09-24有全马6小时内或半马3小时内的线下有效完赛成绩。",
+        "applicants": "131239人（预报名总人数）",
+        "eligibleApplicants": "",
+        "lotteryPool": "",
+        "drawQuota": "",
+        "directQuota": "",
+        "lotteryRate": "",
+        "lotteryNote": "尚无同口径抽签池和实际抽签名额，不将计划规模除以预报名人数记作中签率。",
+        "note": "直通来源包括2020北马40周年线上赛、2020南京马拉松、2023广州马拉松及北马九星跑者；仍须符合当届资格并按时报名缴费。 中签后逾期未缴费视为放弃，报名须知规定名额不予后补。",
+        "sourceIds": [
+          "bj-notice-2023",
+          "bj-release-2023"
+        ]
+      },
+      "participation": {
+        "planned": "大众30000人；另列锦标赛约200人、特邀约15人",
+        "starters": "",
+        "finishers": "",
+        "finishRate": "",
+        "note": "官方赛后统计：2402人于3小时内完赛，当时创造国内马拉松赛事“破三”人数纪录。实际起跑与总完赛人数尚未取得可核验来源；计划规模不作为实际人数。",
+        "sourceIds": [
+          "bj-reg-2023",
+          "bj-race-report-2023"
+        ]
+      },
+      "results": [
+        {
+          "group": "男子冠军",
+          "athlete": "Deresa Geleta Ulfata",
+          "time": "02:07:41",
+          "timing": "枪时",
+          "sourceIds": [
+            "bj-race-report-2023"
+          ]
+        },
+        {
+          "group": "女子冠军",
+          "athlete": "Vibian Chepkirui",
+          "time": "02:21:57",
+          "timing": "枪时",
+          "sourceIds": [
+            "bj-race-report-2023"
+          ]
+        },
+        {
+          "group": "全国锦标赛男子冠军",
+          "athlete": "陈天宇",
+          "time": "02:08:11",
+          "timing": "枪时",
+          "sourceIds": [
+            "bj-race-report-2023"
+          ]
+        },
+        {
+          "group": "全国锦标赛女子冠军",
+          "athlete": "路颖",
+          "time": "02:27:49",
+          "timing": "枪时",
+          "sourceIds": [
+            "bj-race-report-2023"
+          ]
+        }
+      ],
+      "gear": [
+        {
+          "category": "参赛包",
+          "name": "2023参赛物品",
+          "description": "规程列明的基础物品，未视为全部赞助实物清单；须本人携带有效证件及相应凭证领取。",
+          "items": [
+            "参赛服",
+            "存衣包",
+            "号码布",
+            "计时芯片",
+            "官方手册"
+          ],
+          "imageUrl": "",
+          "sourceUrl": "https://www.beijing-marathon.com/subject.html?detailId=7838141151201938&topicId=7793646850104219",
+          "sourceIds": [
+            "bj-reg-2023"
+          ]
+        },
+        {
+          "category": "完赛包",
+          "name": "2023完赛领取物品",
+          "description": "须在关门时间内按规程完赛并凭当届号码布领取；规程未逐项列出的赞助物品不据此补写。",
+          "items": [
+            "完赛奖牌",
+            "完赛物品（规程未逐项列明）"
+          ],
+          "imageUrl": "",
+          "sourceUrl": "https://www.beijing-marathon.com/subject.html?detailId=7838141151201938&topicId=7793646850104219",
+          "sourceIds": [
+            "bj-reg-2023"
+          ]
+        },
+        {
+          "category": "参赛服",
+          "name": "2023参赛服",
+          "description": "当年规程明确提供参赛服，版型、配色及品牌实物细节待取得当届发布材料后补充。",
+          "items": [],
+          "imageUrl": "",
+          "sourceUrl": "https://www.beijing-marathon.com/subject.html?detailId=7838141151201938&topicId=7793646850104219",
+          "sourceIds": [
+            "bj-reg-2023"
+          ]
+        },
+        {
+          "category": "奖牌",
+          "name": "2023完赛奖牌",
+          "description": "以古代令牌为轮廓，结合中轴线建筑、对开滑动城门与红色流沙，表达开放迎新的城市主题。",
+          "items": [],
+          "imageUrl": "/marathon/images/race-archives/beijing-2023-gear-3-4a452443af.jpg",
+          "sourceUrl": "https://www.beijing-marathon.com/subject.html?detailId=7837960762814478&topicId=7793646346787704",
+          "sourceIds": [
+            "bj-release-2023"
+          ]
+        }
+      ],
+      "notes": [
+        "所有时间均按北京时间；历史参赛条件只适用于该届，不代替新届报名须知。",
+        "本届实际起跑、完赛人数及中签率尚未核验收录。"
+      ]
+    }
+  ],
+  "stories": [
+    {
+      "title": "一场从1981年开始的城市约定",
+      "body": "北马官网将赛事起点追溯到1981年。档案可沿起终点、路线与奖牌的逐年变化，保存赛事与城市共同生长的记忆。",
+      "sourceIds": [
+        "bj-intro"
+      ]
+    },
+    {
+      "title": "2023：把城门“打开”的奖牌",
+      "body": "2023年奖牌把中轴线建筑与可滑动的城门结构结合，红色流沙形成动态效果；这是一件有明确官方设计说明的年度完赛纪念物。",
+      "sourceIds": [
+        "bj-release-2023"
+      ]
+    },
+    {
+      "title": "2026：存包选择不改变抽签机会",
+      "body": "报名时增加是否存包选项，选择不存包可获纪念物资。官方须知明确，这个选择不影响中签概率。",
+      "sourceIds": [
+        "bj-notice-2026"
+      ]
+    },
+    {
+      "title": "2023：2402位跑者“破三”",
+      "body": "赛事官方赛后通报记录2402人于3小时内完赛；陈天宇以2:08:11夺得全国锦标赛男子冠军，并刷新当时北马中国男子选手赛会纪录。",
+      "sourceIds": [
+        "bj-race-report-2023"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "bj-release-2023",
+      "title": "2023北马新闻发布会：报名人数、路线优化与完赛奖牌",
+      "url": "https://www.beijing-marathon.com/subject.html?detailId=7837960762814478&topicId=7793646346787704",
+      "publisher": "北京马拉松组委会",
+      "publishedAt": "2023-10-11",
+      "accessedAt": "2026-11-14"
+    },
+    {
+      "id": "bj-intro",
+      "title": "北马介绍",
+      "url": "https://www.beijing-marathon.com/subject.html?detailId=7843824231772565&topicId=7793653947229092",
+      "publisher": "北京马拉松组委会",
+      "publishedAt": "",
+      "accessedAt": "2026-11-14"
+    },
+    {
+      "id": "bj-map-2026",
+      "title": "2026北京马拉松官方比赛路线图",
+      "url": "https://www.beijing-marathon.com/subject.html?detailId=7992140408205034&topicId=7793644601957146",
+      "publisher": "北京马拉松组委会",
+      "publishedAt": "2026-09-28",
+      "accessedAt": "2026-11-14"
+    },
+    {
+      "id": "bj-reg-2026",
+      "title": "2026北京马拉松竞赛规程",
+      "url": "https://www.beijing-marathon.com/subject.html?detailId=9024241433441439&topicId=7793646850104219",
+      "publisher": "北京马拉松组委会",
+      "publishedAt": "",
+      "accessedAt": "2026-11-14"
+    },
+    {
+      "id": "bj-notice-2026",
+      "title": "2026北京马拉松报名须知",
+      "url": "https://www.beijing-marathon.com/subject.html?detailId=9024245728409368&topicId=7793646850104219",
+      "publisher": "北京马拉松组委会",
+      "publishedAt": "",
+      "accessedAt": "2026-11-14"
+    },
+    {
+      "id": "bj-result-men-2026",
+      "title": "2026北京马拉松男子前八名枪时成绩公示",
+      "url": "https://www.beijing-marathon.com/subject.html?detailId=9076287477911197&topicId=7793646850104219",
+      "publisher": "北京马拉松组委会",
+      "publishedAt": "",
+      "accessedAt": "2026-11-14"
+    },
+    {
+      "id": "bj-result-women-2026",
+      "title": "2026北京马拉松女子前八名枪时成绩公示",
+      "url": "https://www.beijing-marathon.com/subject.html?detailId=9076288115445470&topicId=7793646850104219",
+      "publisher": "北京马拉松组委会",
+      "publishedAt": "",
+      "accessedAt": "2026-11-14"
+    },
+    {
+      "id": "bj-reg-2025",
+      "title": "2025北京马拉松竞赛规程",
+      "url": "https://www.beijing-marathon.com/subject.html?detailId=8486678159362470&topicId=7793646850104219",
+      "publisher": "北京马拉松组委会",
+      "publishedAt": "",
+      "accessedAt": "2026-11-14"
+    },
+    {
+      "id": "bj-notice-2025",
+      "title": "2025北京马拉松报名须知",
+      "url": "https://www.beijing-marathon.com/subject.html?detailId=8486680524950121&topicId=7793646850104219",
+      "publisher": "北京马拉松组委会",
+      "publishedAt": "",
+      "accessedAt": "2026-11-14"
+    },
+    {
+      "id": "bj-result-men-2025",
+      "title": "2025北京马拉松男子前八名枪时成绩公示",
+      "url": "https://www.beijing-marathon.com/subject.html?detailId=8569945378133372&topicId=7793646850104219",
+      "publisher": "北京马拉松组委会",
+      "publishedAt": "",
+      "accessedAt": "2026-11-14"
+    },
+    {
+      "id": "bj-result-women-2025",
+      "title": "2025北京马拉松女子前八名枪时成绩公示",
+      "url": "https://www.beijing-marathon.com/subject.html?detailId=8569944438609218&topicId=7793646850104219",
+      "publisher": "北京马拉松组委会",
+      "publishedAt": "",
+      "accessedAt": "2026-11-14"
+    },
+    {
+      "id": "bj-reg-2024",
+      "title": "2024北京马拉松竞赛规程",
+      "url": "https://www.beijing-marathon.com/subject.html?detailId=7992119268562291&topicId=7793646850104219",
+      "publisher": "北京马拉松组委会",
+      "publishedAt": "",
+      "accessedAt": "2026-11-14"
+    },
+    {
+      "id": "bj-notice-2024",
+      "title": "2024北京马拉松报名须知",
+      "url": "https://www.beijing-marathon.com/subject.html?detailId=7992123412534890&topicId=7793646850104219",
+      "publisher": "北京马拉松组委会",
+      "publishedAt": "",
+      "accessedAt": "2026-11-14"
+    },
+    {
+      "id": "bj-result-men-2024",
+      "title": "2024北京马拉松男子前八名枪时成绩公示",
+      "url": "https://www.beijing-marathon.com/subject.html?detailId=8040868875493392&topicId=7793646850104219",
+      "publisher": "北京马拉松组委会",
+      "publishedAt": "",
+      "accessedAt": "2026-11-14"
+    },
+    {
+      "id": "bj-result-women-2024",
+      "title": "2024北京马拉松女子前八名枪时成绩公示",
+      "url": "https://www.beijing-marathon.com/subject.html?detailId=8040866493128627&topicId=7793646850104219",
+      "publisher": "北京马拉松组委会",
+      "publishedAt": "",
+      "accessedAt": "2026-11-14"
+    },
+    {
+      "id": "bj-reg-2023",
+      "title": "2023北京马拉松竞赛规程",
+      "url": "https://www.beijing-marathon.com/subject.html?detailId=7838141151201938&topicId=7793646850104219",
+      "publisher": "北京马拉松组委会",
+      "publishedAt": "",
+      "accessedAt": "2026-11-14"
+    },
+    {
+      "id": "bj-notice-2023",
+      "title": "2023北京马拉松报名须知",
+      "url": "https://www.beijing-marathon.com/subject.html?detailId=7838142124245395&topicId=7793646850104219",
+      "publisher": "北京马拉松组委会",
+      "publishedAt": "",
+      "accessedAt": "2026-11-14"
+    },
+    {
+      "id": "bj-release-2024",
+      "title": "报名人数创历史纪录 北京马拉松11月3日开跑",
+      "url": "https://tyj.beijing.gov.cn/bjsports/gzdt84/jtdt/543439442/index.html",
+      "publisher": "北京市体育局（赛事发布会信息）",
+      "publishedAt": "2024-10-25",
+      "accessedAt": "2026-11-14"
+    },
+    {
+      "id": "bj-route-release-2025",
+      "title": "规模扩大至3.2万人 赛道多处有升级 2025北京马拉松开启报名",
+      "url": "https://tyj.beijing.gov.cn/bjsports/gzdt84/zwdt/743751776/index.html",
+      "publisher": "北京市体育局（赛事报名发布信息）",
+      "publishedAt": "2025-09-10",
+      "accessedAt": "2026-11-14"
+    },
+    {
+      "id": "bj-race-report-2023",
+      "title": "2023贝壳北京马拉松暨全国马拉松锦标赛（北京站）鸣枪起跑",
+      "url": "https://tyj.beijing.gov.cn/bjsports/gzdt84/jtdt/436263504/index.html",
+      "publisher": "北京市体育竞赛管理和国际交流中心",
+      "publishedAt": "2023-10-30",
+      "accessedAt": "2026-11-14"
+    },
+    {
+      "id": "bj-race-report-2025",
+      "title": "2025北京马拉松鸣枪起跑",
+      "url": "https://tyj.beijing.gov.cn/bjsports/gzdt84/zwdt/743819569/index.html",
+      "publisher": "北京市体育局（中国体育报）",
+      "publishedAt": "2025-11-03",
+      "accessedAt": "2026-11-14"
+    }
+  ]
+}

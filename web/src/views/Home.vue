@@ -28,17 +28,17 @@
       </div>
     </section>
     <section v-if="!searching" class="home-catalog" aria-labelledby="catalog-heading">
-      <div class="catalog-heading"><h2 id="catalog-heading">热门赛事档案</h2><span>首批 3 场</span></div>
+      <div class="catalog-heading"><h2 id="catalog-heading">热门赛事档案</h2><router-link class="catalog-all" to="/race-catalog">全部档案 ›</router-link></div>
       <p class="catalog-intro">先认识一场比赛，再决定下一次出发</p>
       <div v-if="catalogError" class="catalog-error" role="status"><span>赛事档案暂时无法加载</span><button type="button" @click="loadCatalog">重试</button></div>
       <p v-else-if="catalogLoading" class="catalog-note" role="status">正在加载赛事档案…</p>
       <p v-else-if="!catalogRaces.length" class="catalog-note">赛事档案整理中</p>
       <div v-else class="catalog-list">
-        <article v-for="item in catalogRaces" :key="item.id" class="catalog-race">
+        <router-link v-for="item in catalogRaces" :key="item.id" class="catalog-race" :to="'/race-catalog/' + item.id">
           <div class="catalog-race-heading"><h3>{{ item.name }}</h3><span>{{ item.city }} · {{ item.shortName }}</span></div>
           <p>{{ item.tagline }}</p>
           <div class="catalog-badges"><span>世界田联 {{ certificationLabel(item.worldAthletics) }}</span><span>中国田协 {{ certificationLabel(item.caa) }}</span></div>
-        </article>
+        </router-link>
       </div>
     </section>
     <div v-if="!searching && currentReminder" class="deadline-banner">
@@ -382,7 +382,8 @@ onMounted(() => {
 .catalog-heading > span { flex: none; color: var(--muted); font-size: 12px; }
 .catalog-intro { margin: 6px 0 4px; color: var(--muted); font-size: 12px; line-height: 1.7; }
 .catalog-list { display: grid; }
-.catalog-race { min-width: 0; padding: 16px 0; border-bottom: 1px solid var(--line); }
+.catalog-all { display:flex; align-items:center; min-height:44px; color:var(--accent); font-size:14px; }
+.catalog-race { display:block; min-width: 0; padding: 16px 0; border-bottom: 1px solid var(--line); }
 .catalog-race-heading { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 12px; }
 .catalog-race h3 { overflow-wrap: anywhere; margin: 0; font-size: 15px; font-weight: 600; }
 .catalog-race-heading > span { color: var(--muted); font-size: 12px; }

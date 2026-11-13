@@ -131,3 +131,5 @@
 .discover-copy { padding:14px; min-width:0; }.discover-title { font-size:18px; }.discover-race-name { display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2; overflow:hidden; margin-top:8px; font-size:12px; line-height:1.6; color:var(--text-secondary); }
 
 .discover-side>navigator>view{flex:1;min-width:0}
+
+.catalog-all{display:flex;align-items:center;min-height:44px;color:var(--brand);font-size:14px;}.catalog-race{display:block;}

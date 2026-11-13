@@ -12,6 +12,8 @@
     "pages/history/history",
     "pages/radar/radar",
     "pages/race/race",
+    "pages/race-catalog/race-catalog",
+    "pages/race-archive/race-archive",
     "pages/news/news",
     "pages/news/detail",
     "pages/news/editor",
