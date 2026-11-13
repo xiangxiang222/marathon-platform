@@ -121,6 +121,10 @@ Page({
     kinds: KINDS,
     meets: MEETS,
     races: [],
+    catalogRaces: [],
+    catalogLoading: false,
+    catalogLoaded: false,
+    catalogError: "",
     page: 1,
     pages: 1,
     pageNumbers: [],
@@ -147,6 +151,27 @@ Page({
     this.setData(today);
     this.paint();
     this.load();
+    this.loadCatalog();
+  },
+  loadCatalog() {
+    if (this.data.catalogLoading) return;
+    this.setData({ catalogLoading: true, catalogError: "" });
+    return request("/race-catalog")
+      .then((data) => {
+        const certification = (value) => {
+          if (!value || !value.label) return "待核实";
+          return (value.year ? value.year + " · " : "") + value.label;
+        };
+        const catalogRaces = (Array.isArray(data.races) ? data.races : []).slice(0, 3).map((race) => ({
+          ...race,
+          waLabel: certification(race.worldAthletics),
+          caaLabel: certification(race.caa)
+        }));
+        this.setData({ catalogRaces, catalogLoaded: true, catalogLoading: false });
+      })
+      .catch(() => {
+        this.setData({ catalogLoaded: true, catalogLoading: false, catalogError: "赛事档案暂时无法加载" });
+      });
   },
   onQ(e) {
     const q = e.detail.value || "";

@@ -45,6 +45,18 @@
     </view>
   </view>
 
+  <view wx:if="{{!searching}}" class="home-race-catalog">
+    <view class="catalog-heading"><text class="catalog-title">热门赛事档案</text><text class="catalog-count">首批3场</text></view>
+    <view wx:if="{{catalogError}}" class="catalog-state"><text>{{catalogError}}</text><button class="catalog-retry" bindtap="loadCatalog">重试</button></view>
+    <view wx:elif="{{!catalogLoaded}}" class="catalog-state"><text>正在加载赛事档案…</text></view>
+    <view wx:elif="{{!catalogRaces.length}}" class="catalog-state"><text>赛事档案整理中</text></view>
+    <view wx:for="{{catalogRaces}}" wx:key="id" class="catalog-race">
+      <view class="catalog-race-heading"><text class="catalog-race-name">{{item.name}}</text><text class="catalog-race-meta">{{item.shortName}} · {{item.city}}</text></view>
+      <view class="catalog-certifications"><text>世界田联 {{item.waLabel}}</text><text>中国田协 {{item.caaLabel}}</text></view>
+      <text wx:if="{{item.tagline}}" class="catalog-tagline">{{item.tagline}}</text>
+    </view>
+  </view>
+
   <view wx:if="{{!searching && reminders.length}}" class="reminder">
     <swiper class="reminder-swiper" autoplay="{{reminders.length > 1}}" interval="{{5000}}" duration="{{350}}" circular="{{true}}">
       <swiper-item wx:for="{{reminders}}" wx:key="key">
