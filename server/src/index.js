@@ -36,7 +36,8 @@ const { issueCaptcha, registerUser, loginUser, loginWechat, verifyWechatCode, ch
 const { avatarRoot, avatarUrlOf, saveAvatar, removeAvatar } = require("./avatars");
 const { signupTarget } = require("./signup-channel");
 const QRCode = require("qrcode");
-const { mountRaceCatalog, raceArchiveId } = require("./race-catalog");
+const { mountRaceCatalog, raceArchiveId, archiveBaseline, listCatalog } = require("./race-catalog");
+const { mountArchiveEditor } = require("./race-archive-editor");
 
 function loadEnv() {
   const file = path.join(__dirname, "../../.env");
@@ -224,6 +225,7 @@ app.get(BASE + "/api/meta", (_req, res) => {
 });
 
 mountRaceCatalog(app, { BASE, getDb });
+mountArchiveEditor(app, { BASE, getDb, requireAdmin, oneUpload, baseline: archiveBaseline, listCatalog });
 
 app.get(BASE + "/api/races", (req, res) => {
   const now = new Date();

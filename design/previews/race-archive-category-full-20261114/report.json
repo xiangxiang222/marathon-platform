@@ -1,0 +1,592 @@
+{
+  "startedAt": "2026-11-14T14:55:59.571Z",
+  "isolation": "Actual local Express API and Vue with authored three-event archives; temporary registration rows/SQLite/media; .env hidden; external browser traffic blocked.",
+  "checks": [
+    "home archive cards and directory entry at 320",
+    "independent certification filters and search at 320",
+    "beijing categories, annual facts and local year state at 320",
+    "shanghai categories, annual facts and local year state at 320",
+    "xiamen categories, annual facts and local year state at 320",
+    "registration and archive round trip only for matching full race at 320",
+    "injected 503 retry and actual API 404 at 320",
+    "home archive cards and directory entry at 390",
+    "independent certification filters and search at 390",
+    "beijing categories, annual facts and local year state at 390",
+    "shanghai categories, annual facts and local year state at 390",
+    "xiamen categories, annual facts and local year state at 390",
+    "registration and archive round trip only for matching full race at 390",
+    "injected 503 retry and actual API 404 at 390",
+    "home archive cards and directory entry at 1440",
+    "independent certification filters and search at 1440",
+    "beijing categories, annual facts and local year state at 1440",
+    "shanghai categories, annual facts and local year state at 1440",
+    "xiamen categories, annual facts and local year state at 1440",
+    "registration and archive round trip only for matching full race at 1440",
+    "injected 503 retry and actual API 404 at 1440"
+  ],
+  "views": [
+    {
+      "name": "home",
+      "width": 320,
+      "scrollWidth": 320,
+      "tinyText": [],
+      "module": {
+        "width": 288,
+        "height": 304.390625,
+        "cards": [
+          {
+            "left": 16,
+            "top": 482.390625,
+            "right": 106.65625,
+            "width": 90.65625,
+            "height": 226
+          },
+          {
+            "left": 114.65625,
+            "top": 482.390625,
+            "right": 205.328125,
+            "width": 90.671875,
+            "height": 226
+          },
+          {
+            "left": 213.328125,
+            "top": 482.390625,
+            "right": 303.984375,
+            "width": 90.65625,
+            "height": 226
+          }
+        ],
+        "images": [
+          {
+            "src": "/marathon/images/race-landmarks/beijing.svg",
+            "loaded": true
+          },
+          {
+            "src": "/marathon/images/race-landmarks/shanghai.svg",
+            "loaded": true
+          },
+          {
+            "src": "/marathon/images/race-landmarks/xiamen.svg",
+            "loaded": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "home-error",
+      "width": 320,
+      "scrollWidth": 320,
+      "tinyText": [],
+      "module": {
+        "width": 288,
+        "height": 146.390625,
+        "cards": [],
+        "images": []
+      }
+    },
+    {
+      "name": "directory-all",
+      "width": 320,
+      "scrollWidth": 320,
+      "tinyText": []
+    },
+    {
+      "name": "directory-filtered",
+      "width": 320,
+      "scrollWidth": 320,
+      "tinyText": []
+    },
+    {
+      "name": "beijing-overview",
+      "width": 320,
+      "scrollWidth": 320,
+      "tinyText": []
+    },
+    {
+      "name": "beijing-entry",
+      "width": 320,
+      "scrollWidth": 320,
+      "tinyText": []
+    },
+    {
+      "name": "beijing-route",
+      "width": 320,
+      "scrollWidth": 320,
+      "tinyText": []
+    },
+    {
+      "name": "beijing-results",
+      "width": 320,
+      "scrollWidth": 320,
+      "tinyText": []
+    },
+    {
+      "name": "beijing-gallery",
+      "width": 320,
+      "scrollWidth": 320,
+      "tinyText": []
+    },
+    {
+      "name": "beijing-updates",
+      "width": 320,
+      "scrollWidth": 320,
+      "tinyText": []
+    },
+    {
+      "name": "shanghai-overview",
+      "width": 320,
+      "scrollWidth": 320,
+      "tinyText": []
+    },
+    {
+      "name": "shanghai-entry",
+      "width": 320,
+      "scrollWidth": 320,
+      "tinyText": []
+    },
+    {
+      "name": "shanghai-route",
+      "width": 320,
+      "scrollWidth": 320,
+      "tinyText": []
+    },
+    {
+      "name": "shanghai-results",
+      "width": 320,
+      "scrollWidth": 320,
+      "tinyText": []
+    },
+    {
+      "name": "shanghai-gallery",
+      "width": 320,
+      "scrollWidth": 320,
+      "tinyText": []
+    },
+    {
+      "name": "shanghai-updates",
+      "width": 320,
+      "scrollWidth": 320,
+      "tinyText": []
+    },
+    {
+      "name": "xiamen-overview",
+      "width": 320,
+      "scrollWidth": 320,
+      "tinyText": []
+    },
+    {
+      "name": "xiamen-entry",
+      "width": 320,
+      "scrollWidth": 320,
+      "tinyText": []
+    },
+    {
+      "name": "xiamen-route",
+      "width": 320,
+      "scrollWidth": 320,
+      "tinyText": []
+    },
+    {
+      "name": "xiamen-results",
+      "width": 320,
+      "scrollWidth": 320,
+      "tinyText": []
+    },
+    {
+      "name": "xiamen-gallery",
+      "width": 320,
+      "scrollWidth": 320,
+      "tinyText": []
+    },
+    {
+      "name": "xiamen-updates",
+      "width": 320,
+      "scrollWidth": 320,
+      "tinyText": []
+    },
+    {
+      "name": "missing-archive",
+      "width": 320,
+      "scrollWidth": 320,
+      "tinyText": []
+    },
+    {
+      "name": "home",
+      "width": 390,
+      "scrollWidth": 390,
+      "tinyText": [],
+      "module": {
+        "width": 358,
+        "height": 304.390625,
+        "cards": [
+          {
+            "left": 16,
+            "top": 480.390625,
+            "right": 130,
+            "width": 114,
+            "height": 226
+          },
+          {
+            "left": 138,
+            "top": 480.390625,
+            "right": 252,
+            "width": 114,
+            "height": 226
+          },
+          {
+            "left": 260,
+            "top": 480.390625,
+            "right": 374,
+            "width": 114,
+            "height": 226
+          }
+        ],
+        "images": [
+          {
+            "src": "/marathon/images/race-landmarks/beijing.svg",
+            "loaded": true
+          },
+          {
+            "src": "/marathon/images/race-landmarks/shanghai.svg",
+            "loaded": true
+          },
+          {
+            "src": "/marathon/images/race-landmarks/xiamen.svg",
+            "loaded": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "home-error",
+      "width": 390,
+      "scrollWidth": 390,
+      "tinyText": [],
+      "module": {
+        "width": 358,
+        "height": 146.390625,
+        "cards": [],
+        "images": []
+      }
+    },
+    {
+      "name": "directory-all",
+      "width": 390,
+      "scrollWidth": 390,
+      "tinyText": []
+    },
+    {
+      "name": "directory-filtered",
+      "width": 390,
+      "scrollWidth": 390,
+      "tinyText": []
+    },
+    {
+      "name": "beijing-overview",
+      "width": 390,
+      "scrollWidth": 390,
+      "tinyText": []
+    },
+    {
+      "name": "beijing-entry",
+      "width": 390,
+      "scrollWidth": 390,
+      "tinyText": []
+    },
+    {
+      "name": "beijing-route",
+      "width": 390,
+      "scrollWidth": 390,
+      "tinyText": []
+    },
+    {
+      "name": "beijing-results",
+      "width": 390,
+      "scrollWidth": 390,
+      "tinyText": []
+    },
+    {
+      "name": "beijing-gallery",
+      "width": 390,
+      "scrollWidth": 390,
+      "tinyText": []
+    },
+    {
+      "name": "beijing-updates",
+      "width": 390,
+      "scrollWidth": 390,
+      "tinyText": []
+    },
+    {
+      "name": "shanghai-overview",
+      "width": 390,
+      "scrollWidth": 390,
+      "tinyText": []
+    },
+    {
+      "name": "shanghai-entry",
+      "width": 390,
+      "scrollWidth": 390,
+      "tinyText": []
+    },
+    {
+      "name": "shanghai-route",
+      "width": 390,
+      "scrollWidth": 390,
+      "tinyText": []
+    },
+    {
+      "name": "shanghai-results",
+      "width": 390,
+      "scrollWidth": 390,
+      "tinyText": []
+    },
+    {
+      "name": "shanghai-gallery",
+      "width": 390,
+      "scrollWidth": 390,
+      "tinyText": []
+    },
+    {
+      "name": "shanghai-updates",
+      "width": 390,
+      "scrollWidth": 390,
+      "tinyText": []
+    },
+    {
+      "name": "xiamen-overview",
+      "width": 390,
+      "scrollWidth": 390,
+      "tinyText": []
+    },
+    {
+      "name": "xiamen-entry",
+      "width": 390,
+      "scrollWidth": 390,
+      "tinyText": []
+    },
+    {
+      "name": "xiamen-route",
+      "width": 390,
+      "scrollWidth": 390,
+      "tinyText": []
+    },
+    {
+      "name": "xiamen-results",
+      "width": 390,
+      "scrollWidth": 390,
+      "tinyText": []
+    },
+    {
+      "name": "xiamen-gallery",
+      "width": 390,
+      "scrollWidth": 390,
+      "tinyText": []
+    },
+    {
+      "name": "xiamen-updates",
+      "width": 390,
+      "scrollWidth": 390,
+      "tinyText": []
+    },
+    {
+      "name": "missing-archive",
+      "width": 390,
+      "scrollWidth": 390,
+      "tinyText": []
+    },
+    {
+      "name": "home",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "tinyText": [],
+      "module": {
+        "width": 398,
+        "height": 320.390625,
+        "cards": [
+          {
+            "left": 521,
+            "top": 480.390625,
+            "right": 645.65625,
+            "width": 124.65625,
+            "height": 242
+          },
+          {
+            "left": 657.65625,
+            "top": 480.390625,
+            "right": 782.328125,
+            "width": 124.671875,
+            "height": 242
+          },
+          {
+            "left": 794.328125,
+            "top": 480.390625,
+            "right": 918.984375,
+            "width": 124.65625,
+            "height": 242
+          }
+        ],
+        "images": [
+          {
+            "src": "/marathon/images/race-landmarks/beijing.svg",
+            "loaded": true
+          },
+          {
+            "src": "/marathon/images/race-landmarks/shanghai.svg",
+            "loaded": true
+          },
+          {
+            "src": "/marathon/images/race-landmarks/xiamen.svg",
+            "loaded": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "home-error",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "tinyText": [],
+      "module": {
+        "width": 398,
+        "height": 146.390625,
+        "cards": [],
+        "images": []
+      }
+    },
+    {
+      "name": "directory-all",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "tinyText": []
+    },
+    {
+      "name": "directory-filtered",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "tinyText": []
+    },
+    {
+      "name": "beijing-overview",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "tinyText": []
+    },
+    {
+      "name": "beijing-entry",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "tinyText": []
+    },
+    {
+      "name": "beijing-route",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "tinyText": []
+    },
+    {
+      "name": "beijing-results",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "tinyText": []
+    },
+    {
+      "name": "beijing-gallery",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "tinyText": []
+    },
+    {
+      "name": "beijing-updates",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "tinyText": []
+    },
+    {
+      "name": "shanghai-overview",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "tinyText": []
+    },
+    {
+      "name": "shanghai-entry",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "tinyText": []
+    },
+    {
+      "name": "shanghai-route",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "tinyText": []
+    },
+    {
+      "name": "shanghai-results",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "tinyText": []
+    },
+    {
+      "name": "shanghai-gallery",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "tinyText": []
+    },
+    {
+      "name": "shanghai-updates",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "tinyText": []
+    },
+    {
+      "name": "xiamen-overview",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "tinyText": []
+    },
+    {
+      "name": "xiamen-entry",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "tinyText": []
+    },
+    {
+      "name": "xiamen-route",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "tinyText": []
+    },
+    {
+      "name": "xiamen-results",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "tinyText": []
+    },
+    {
+      "name": "xiamen-gallery",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "tinyText": []
+    },
+    {
+      "name": "xiamen-updates",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "tinyText": []
+    },
+    {
+      "name": "missing-archive",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "tinyText": []
+    }
+  ],
+  "errors": [],
+  "passed": true,
+  "limitations": [
+    "Chromium viewports are not a WeChat or mobile device test.",
+    "503 responses are injected only for the explicit failure/retry check.",
+    "Remote images are blocked to verify readable fallback; local archive assets are served by Vite."
+  ],
+  "finishedAt": "2026-11-14T14:56:37.585Z"
+}

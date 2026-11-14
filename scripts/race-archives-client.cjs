@@ -9,7 +9,8 @@ const { pathToFileURL } = require('node:url');
 const { chromium } = require('playwright-core');
 const ROOT = path.resolve(__dirname, '..');
 const temporary = fs.mkdtempSync(path.join(os.tmpdir(), 'marathon-archives-runtime-'));
-const OUT = process.env.RACE_ARCHIVE_OUT ? path.resolve(process.env.RACE_ARCHIVE_OUT) : fs.mkdtempSync(path.join(os.tmpdir(), 'race-archives-client-'));
+const OUT = process.env.RACE_ARCHIVE_OUT ? path.resolve(process.env.RACE_ARCHIVE_OUT) : path.join(ROOT, 'design/previews/race-archive-category-full-20261114');
+const screenshots = process.env.RACE_ARCHIVE_SCREENSHOTS === '1';
 Object.assign(process.env, { NODE_ENV: 'test', BASE_PATH: '/marathon', PORT: '0', MARATHON_DB: path.join(temporary, 'app.sqlite'), MARATHON_MEDIA: path.join(temporary, 'media'), CONTENT_DATA_DIR: path.join(temporary, 'content'), ADMIN_TOKEN: 'disposable-race-archive-client' });
 const exists = fs.existsSync;
 fs.existsSync = file => path.resolve(String(file)) === path.join(ROOT, '.env') ? false : exists(file);
@@ -21,7 +22,7 @@ let server, vite, browser;
 async function check(name, run) { await run(); report.checks.push(name); }
 async function snapshot(page, name, width) {
   const metrics = await page.evaluate(() => {
-    const area = document.querySelector('.archive-page,.home-catalog');
+    const area = document.querySelector('.event-shell,.home-catalog,.archive-directory');
     const visible = element => { const box = element.getBoundingClientRect(), css = getComputedStyle(element); return box.width > 0 && box.height > 0 && css.display !== 'none' && css.visibility !== 'hidden'; };
     const text = area ? [...area.querySelectorAll('*')].filter(element => visible(element) && [...element.childNodes].some(node => node.nodeType === 3 && node.textContent.trim())) : [];
     return { width: innerWidth, scrollWidth: document.documentElement.scrollWidth, tinyText: text.filter(element => parseFloat(getComputedStyle(element).fontSize) < 11.9).map(element => ({ class: element.className, text: element.textContent.trim().slice(0, 35) })) };
@@ -29,8 +30,8 @@ async function snapshot(page, name, width) {
   assert.ok(metrics.scrollWidth <= width, name + ': horizontal overflow');
   assert.deepEqual(metrics.tinyText, [], name + ': fonts below 12px');
   const filename = name + '-' + width + '.png';
-  await page.screenshot({ path: path.join(OUT, filename), fullPage: true });
-  const view = { name, ...metrics, screenshot: filename };
+  if (screenshots) await page.screenshot({ path: path.join(OUT, filename), fullPage: true });
+  const view = { name, ...metrics, ...(screenshots ? {screenshot:filename} : {}) };
   if (name.startsWith('home')) {
     const module = page.locator('.home-catalog');
     const moduleMetrics = await module.evaluate(element => {
@@ -50,8 +51,8 @@ async function snapshot(page, name, width) {
       assert.ok(moduleMetrics.images.every(image => image.loaded), 'All three local landmark icons load');
     }
     const moduleFilename = name + '-module-' + width + '.png';
-    await module.screenshot({ path: path.join(OUT, moduleFilename) });
-    view.module = { ...moduleMetrics, screenshot: moduleFilename };
+    if (screenshots) await module.screenshot({ path: path.join(OUT, moduleFilename) });
+    view.module = { ...moduleMetrics, ...(screenshots ? {screenshot:moduleFilename} : {}) };
   }
   report.views.push(view);
 }
@@ -93,7 +94,7 @@ async function main() {
       }
       await snapshot(page, 'home', width);
       await page.locator('.home-catalog .catalog-race').first().click();
-      await page.locator('.archive-tabs').waitFor();
+      await page.locator('.main-tabs').waitFor();
       assert.equal(new URL(page.url()).pathname, '/marathon/race-catalog/beijing');
       await page.goBack({ waitUntil: 'networkidle' });
       await page.locator('.home-catalog .catalog-race').first().waitFor();
@@ -136,62 +137,88 @@ async function main() {
     });
     for (const race of catalog.races) {
       const data = archives[race.id];
-      await check(race.id + ' annual sections and participant guides at ' + width, async () => {
+      await check(race.id + ' categories, annual facts and local year state at ' + width, async () => {
         await page.goto(origin + '/marathon/race-catalog/' + race.id, { waitUntil: 'networkidle' });
-        await page.locator('.archive-tabs').waitFor();
-        assert.equal(await page.getByLabel('选择档案年份').inputValue(), data.defaultYear || data.latestYear);
-        for (const [tab, label] of [['overview', '概览'], ['route', '赛道'], ['registration', '报名中签'], ['logistics', '参赛指南'], ['participation', '参赛完赛'], ['gear', '装备收藏'], ['stories', '赛事故事']]) {
-          await page.getByRole('button', { name: label, exact: true }).click();
+        await page.locator('.main-tabs').waitFor();
+        assert.equal(await page.locator('.main-tabs button').count(), 6);
+        assert.equal(await page.locator('.page-content select').count(), 0, 'Overview has no global year selector');
+        assert.ok(await page.locator('.hero-photo').evaluate(image => image.complete && image.naturalWidth > 0), 'Event cover loads');
+        for (const [tab, label] of [['overview', '概况'], ['entry', '参赛'], ['route', '赛道'], ['results', '成绩'], ['gallery', '图鉴'], ['updates', '动态']]) {
+          await page.locator('.main-tabs').getByRole('button', { name: label, exact: true }).click();
           assert.equal(new URL(page.url()).searchParams.get('tab'), tab);
+          assert.equal(await page.locator('.main-tabs button[aria-selected=true]').innerText(), label);
+          assert.equal(await page.locator('.archive-sources').count(), 0);
+          assert.equal(await page.getByText('复制原文链接', {exact:true}).count(), 0);
           await snapshot(page, race.id + '-' + tab, width);
         }
         for (const year of data.years) {
-          await page.getByLabel('选择档案年份').selectOption(String(year));
-          await page.getByRole('button', { name: '报名中签', exact: true }).click();
           const edition = data.archive.editions.find(item => String(item.year) === String(year));
-          assert.match(await page.locator('.archive-panel h2').first().innerText(), new RegExp(String(year)));
-          assert.equal(await page.locator('.archive-sources').count(), 0, 'Sources stay in the editorial record, outside the reading UI');
-          assert.equal(await page.getByText('复制原文链接', {exact:true}).count(), 0);
-          const facts = await page.locator('.archive-facts').innerText();
-          for (const key of ['applicants', 'eligibleApplicants', 'lotteryPool', 'drawQuota', 'directQuota', 'lotteryRate']) {
-            if (edition.registration[key]) assert.ok(facts.includes(String(edition.registration[key])), key + ' in ' + year);
+          await page.getByRole('button', { name: '参赛', exact: true }).click();
+          await page.getByLabel('选择参赛年份').selectOption(String(year));
+          await page.getByRole('button', { name: '报名中签', exact: true }).click();
+          await page.getByRole('heading', { name: year + ' 报名安排', exact:true }).waitFor();
+          const registrationText = await page.locator('.page-content').innerText();
+          for (const key of ['opens','closes','drawDate','fee','qualification','applicants','eligibleApplicants','lotteryPool','drawQuota','directQuota','lotteryRate']) {
+            if (edition.registration[key]) assert.ok(registrationText.includes(String(edition.registration[key])), race.id + ' ' + key + ' in ' + year);
           }
-          await page.locator('.archive-tabs').getByRole('button', { name: '参赛指南', exact: true }).click();
-          await page.getByRole('heading', { name: year + ' 年参赛指南', exact: true }).waitFor();
+          await page.getByRole('button', { name: '参赛指南', exact: true }).click();
+          const guideText = await page.locator('.page-content').innerText();
           for (const key of ['collection','transport','raceDay']) {
             const group = edition.logistics && edition.logistics[key] || {};
-            for (const [field,value] of Object.entries(group)) if (field !== 'sourceIds' && value) assert.ok((await page.locator('.archive-body').innerText()).includes(value));
+            for (const [field,value] of Object.entries(group)) if (field !== 'sourceIds' && value) assert.ok(guideText.includes(value), race.id + ' ' + year + ' guide: ' + field);
           }
-
-          assert.equal(new URL(page.url()).searchParams.get('year'), String(year));
-          await page.getByRole('button', { name: '参赛完赛', exact: true }).click();
-          assert.equal(await page.locator('.archive-result').count(), edition.results.length);
+          await page.getByRole('button', { name: '成绩', exact: true }).click();
+          await page.getByLabel('选择成绩年份').selectOption(String(year));
+          assert.equal(await page.locator('.champion,.result-row').count(), edition.results.length);
+          const resultText = await page.locator('.page-content').innerText();
+          for (const result of edition.results) {
+            assert.ok(resultText.includes(result.group), 'Preserve actual result groups');
+            assert.ok(resultText.includes(result.athlete), 'Preserve athlete names');
+            assert.ok(resultText.includes(result.time), 'Preserve verified times');
+          }
+          for (const key of ['planned','starters','finishers','finishRate']) if (edition.participation[key]) assert.ok(resultText.includes(edition.participation[key]), race.id + ' ' + year + ' participation: ' + key);
         }
-        const selectedYear = data.years.at(-1);
-        await page.getByLabel('选择档案年份').selectOption(String(selectedYear));
-        await page.getByRole('button', { name: '装备收藏', exact: true }).click();
+        const selectedYear = String(data.years.at(-1));
+        await page.getByLabel('选择成绩年份').selectOption(selectedYear);
+        await page.getByRole('button', { name: '参赛', exact: true }).click();
+        await page.getByLabel('选择参赛年份').selectOption(String(data.years[0]));
+        await page.getByRole('button', { name: '成绩', exact: true }).click();
+        assert.equal(await page.getByLabel('选择成绩年份').inputValue(), selectedYear, 'Entry year does not change result year');
+        await page.getByRole('button', { name: '图鉴', exact: true }).click();
+        assert.equal(await page.locator('.page-content select').count(), 0, 'Gallery presents annual groups directly');
+        for (const category of ['参赛服','奖牌','参赛包','完赛包']) {
+          await page.getByRole('button', { name: category, exact:true }).click();
+          const groups = data.archive.editions.flatMap(edition => (edition.gear||[]).filter(item=>item.category===category));
+          assert.equal(await page.locator('.collection-year').count(), groups.length);
+          const text = await page.locator('.page-content').innerText();
+          for (const item of groups) if(item.description) assert.ok(text.includes(item.description), category + ': preserved description');
+        }
+        await page.getByRole('button', { name: '官方图集', exact:true }).click();
+        assert.equal(await page.locator('.album-card').count(), data.archive.photoAlbums?.length || 0);
         await page.reload({ waitUntil: 'networkidle' });
-        assert.equal(await page.getByLabel('选择档案年份').inputValue(), String(selectedYear));
-        assert.equal(await page.locator('.archive-tabs button.selected').innerText(), '装备收藏');
-        await page.goto(origin + '/marathon/race-catalog/' + race.id + '?year=1900&fromRaceId=untrusted', { waitUntil: 'networkidle' });
-        assert.equal(await page.getByLabel('选择档案年份').inputValue(), data.defaultYear || data.latestYear);
-        assert.equal(await page.locator('.archive-return').count(), 0);
+        await page.locator('.main-tabs').waitFor();
+        assert.equal(await page.locator('.main-tabs button[aria-selected=true]').innerText(), '图鉴', 'Reload restores category');
+        await page.goto(origin + '/marathon/race-catalog/' + race.id + '?tab=entry&year=1900&fromRaceId=untrusted', { waitUntil: 'networkidle' });
+        assert.equal(await page.getByLabel('选择参赛年份').inputValue(), data.defaultYear || data.latestYear);
+        assert.equal(await page.locator('.return-link').count(), 0);
       });
     }
     await check('registration and archive round trip only for matching full race at ' + width, async () => {
       await page.goto(origin + '/marathon/races/archive-client-beijing', { waitUntil: 'networkidle' });
       await page.locator('.race-archive-entry').waitFor();
       await page.locator('.race-archive-entry').click();
-      await page.locator('.archive-return').waitFor();
+      await page.locator('.return-link').waitFor();
       assert.equal(new URL(page.url()).searchParams.get('fromRaceId'), 'archive-client-beijing');
-      assert.equal(await page.locator('.archive-return').getAttribute('href'), '/marathon/races/archive-client-beijing');
-      assert.equal(await page.locator('.archive-related[href$="archive-client-half"],.archive-related[href$="archive-client-online"]').count(), 0);
-      await page.locator('.archive-return').click();
+      assert.equal(await page.locator('.return-link').getAttribute('href'), '/marathon/races/archive-client-beijing');
+      const related = archives.beijing.relatedRaces;
+      assert.ok(!related.some(item=>['archive-client-half','archive-client-online'].includes(item.id)), 'Half/online races stay outside the archive return links');
+      await page.locator('.return-link').click();
       await page.locator('.race-archive-entry').waitFor();
       await page.goto(origin + '/marathon/races/archive-client-beijing-2025', { waitUntil: 'networkidle' });
       await page.locator('.race-archive-entry').click();
-      await page.locator('.archive-return').waitFor();
-      assert.equal(await page.getByLabel('选择档案年份').inputValue(), '2025', 'Registration entry selects its archived edition');
+      await page.locator('.return-link').waitFor();
+      await page.getByRole('button', {name:'参赛',exact:true}).click();
+      assert.equal(await page.getByLabel('选择参赛年份').inputValue(), '2025', 'Registration entry selects its matching year inside the participant category');
     });
     await check('injected 503 retry and actual API 404 at ' + width, async () => {
       let unavailable = true;
@@ -201,11 +228,11 @@ async function main() {
       await page.getByRole('button', { name: '重新加载', exact: true }).waitFor();
       unavailable = false;
       await page.getByRole('button', { name: '重新加载', exact: true }).click();
-      await page.locator('.archive-tabs').waitFor();
+      await page.locator('.main-tabs').waitFor();
       await page.unroute('**/marathon/api/race-catalog/beijing', fault);
       await page.goto(origin + '/marathon/race-catalog/missing-race', { waitUntil: 'networkidle' });
       await page.getByRole('button', { name: '重新加载', exact: true }).waitFor();
-      assert.equal(await page.locator('.archive-tabs').count(), 0);
+      assert.equal(await page.locator('.main-tabs').count(), 0);
       const response = await fetch(apiOrigin + '/marathon/api/race-catalog/missing-race');
       assert.equal(response.status, 404);
       await snapshot(page, 'missing-archive', width);

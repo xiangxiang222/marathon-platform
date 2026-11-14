@@ -1,0 +1,11 @@
+{
+  "checks": [
+    "Actual admin form saves existing facts and structured founding year",
+    "Original fixture uploads via multipart, appears in editor, saves with confirmation",
+    "Public gallery reads uploaded annual image and native dialog opens/closes",
+    "Structured news saved in CMS appears in public category",
+    "Admin editing works at 390px without horizontal page overflow"
+  ],
+  "errors": [],
+  "passed": true
+}

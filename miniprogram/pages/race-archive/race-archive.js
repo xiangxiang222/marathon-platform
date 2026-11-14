@@ -1,50 +1,61 @@
 const { request } = require('../../utils/request');
-const landmarks = {
-  beijing: '/images/race-landmarks/beijing.png',
-  shanghai: '/images/race-landmarks/shanghai.png',
-  xiamen: '/images/race-landmarks/xiamen.png'
-};
-function safeUrl(v) { return /^https:\/\/[^\s/@?#]+(?:[/?#][^\s]*)?$/i.test(String(v || '')) || /^\/marathon\/images\/race-archives\/[a-z0-9_/-]+\.(?:png|jpe?g|webp)$/i.test(String(v || '')); }
-function assetUrl(v) { if (!safeUrl(v)) return ''; return v.startsWith('/marathon/images/race-archives/') ? String(getApp().globalData.baseUrl || '').replace(/\/$/, '') + v : v; }
-function certification(v) { return v && v.label ? v.label + (v.year ? ' · ' + v.year : '') : '待核实'; }
-const TABS = [{ id: 'overview', label: '概览' }, { id: 'route', label: '赛道' }, { id: 'registration', label: '报名中签' }, { id: 'logistics', label: '参赛指南' }, { id: 'participation', label: '参赛完赛' }, { id: 'gear', label: '装备收藏' }, { id: 'stories', label: '赛事故事' }];
-function lotteryTable(editions) {
-  const known = value => value !== undefined && value !== null && String(value).trim() !== '';
-  const lotteryColumns = [['lotteryRate', '公布中签率', 180], ['applicants', '报名人数', 160], ['eligibleApplicants', '有效报名', 160], ['lotteryPool', '抽签人数', 160], ['drawQuota', '抽签名额', 160], ['directQuota', '直通名额', 160]]
-    .filter(([key]) => editions.some(edition => known(edition.registration && edition.registration[key])))
-    .map(([key, label, width]) => ({ key, label, width }));
-  return { lotteryColumns, lotteryTableWidth: 70 + lotteryColumns.reduce((sum, column) => sum + column.width, 0), lotteryRows: editions.map(edition => ({ year: String(edition.year), cells: lotteryColumns.map(column => ({ key: column.key, width: column.width, value: known(edition.registration && edition.registration[column.key]) ? edition.registration[column.key] : '—' })) })) };
+const TABS = [{id:'overview',label:'概况'},{id:'entry',label:'参赛'},{id:'route',label:'赛道'},{id:'results',label:'成绩'},{id:'gallery',label:'图鉴'},{id:'updates',label:'动态'}];
+const GALLERY = ['参赛服','奖牌','参赛包','完赛包','官方图集'];
+const LANDMARKS = {beijing:'/images/race-landmarks/beijing.png',shanghai:'/images/race-landmarks/shanghai.png',xiamen:'/images/race-landmarks/xiamen.png'};
+const LEGACY = {registration:'entry',logistics:'entry',participation:'results',gear:'gallery',stories:'updates'};
+function safeUrl(value) { return /^https:\/\/[^\s/@?#]+(?:[/?#][^\s]*)?$/i.test(String(value || '')) || /^\/marathon\/(?:api\/race-archive-media\/(?:beijing|shanghai|xiamen)\/[a-f0-9]{64}\.(?:jpg|png|webp)|images\/race-archives\/[a-z0-9_/-]+\.(?:png|jpe?g|webp))$/i.test(String(value || '')); }
+function asset(value) { if (!safeUrl(value)) return ''; return value[0] === '/' ? String(getApp().globalData.baseUrl || '').replace(/\/$/,'') + value : value; }
+function photos(items, fallback) { const images = (items || []).map(item => ({url:asset(item.url),caption:item.caption || '',credit:item.mediaRights && item.mediaRights.attribution || ''})).filter(item => item.url); const url = asset(fallback); if(url && !images.some(item => item.url === url)) images.unshift({url,caption:'',credit:''}); return images; }
+function fields(value, labels) { return labels.filter(([key]) => value && value[key]).map(([key,label]) => ({label,value:value[key]})); }
+function cert(value) { return value && value.label ? value.label + (value.year ? ' · '+value.year : '') : ''; }
+function indexFor(years, year) { return Math.max(0,years.indexOf(String(year))); }
+function lottery(editions) {
+  const columns = [['lotteryRate','公布中签率'],['applicants','报名人数'],['eligibleApplicants','有效报名'],['lotteryPool','抽签人数'],['drawQuota','抽签名额'],['directQuota','直通名额']].filter(([key]) => editions.some(e => e.registration && e.registration[key])).map(([key,label]) => ({key,label}));
+  return {lotteryColumns:columns,lotteryWidth:70+columns.length*160,lotteryRows:editions.map(e => ({year:String(e.year),cells:columns.map(c => ({key:c.key,value:e.registration && e.registration[c.key] || '—'}))}))};
 }
-function facts(object, labels) { return labels.filter(([key]) => object && object[key]).map(([key, label]) => ({ label, value: object[key] })); }
 Page({
-  data: { race: null, archive: null, landmarkSrc: '', relatedRaces: [], fromRace: null, years: [], yearIndex: 0, year: '', edition: null, tab: 'overview', tabs: TABS, loading: true, message: '', registrationFacts: [], participationFacts: [], logisticsSections: [], routeStages: [], coverageOpen: false, lotteryRows: [], lotteryColumns: [], lotteryTableWidth: 70, waLabel: '', caaLabel: '' },
-  onLoad(query) { this._id = query.id || ''; this._fromRaceId = query.fromRaceId || ''; this._requestedYear = query.year || ''; this._seq = 0; this._disposed = false; this.setData({ tab: TABS.some(t => t.id === query.tab) ? query.tab : 'overview' }); this.load(); },
-  onUnload() { this._disposed = true; this._seq++; },
-  load() { const seq = ++this._seq; this.setData({ loading: true, message: '', race: null, archive: null, edition: null }); return request('/race-catalog/' + encodeURIComponent(this._id)).then(d => { if (this._disposed || seq !== this._seq) return; if (!d.race || !d.archive) throw Error('这场赛事尚无已收录档案'); this._archive = d.archive; this._editions = (d.archive.editions || []).slice().sort((a, b) => Number(b.year) - Number(a.year)); const relatedRaces = d.relatedRaces || [], linked = relatedRaces.find(r => String(r.id) === String(this._fromRaceId)), linkedYear = String(linked && linked.raceDate || '').slice(0, 4); const years = (d.years || this._editions.map(e => e.year)).map(String), preferred = String(this._requestedYear || linkedYear), year = years.includes(preferred) ? preferred : String(d.defaultYear || d.latestYear || years[0] || ''); this.setData({ race: d.race, archive: d.archive, landmarkSrc: landmarks[d.race.id] || '', years, year, yearIndex: Math.max(0, years.indexOf(year)), relatedRaces, fromRace: relatedRaces.find(r => String(r.id) === String(this._fromRaceId)) || null, loading: false, waLabel: certification(d.race.worldAthletics), caaLabel: certification(d.race.caa), ...lotteryTable(this._editions) }); this.paint(); wx.setNavigationBarTitle({ title: d.race.name + ' · 年度档案' }); }).catch(e => { if (!this._disposed && seq === this._seq) this.setData({ message: e.message || '赛事档案暂时无法加载', loading: false }); }); },
+  data:{race:null,archive:null,tabs:TABS,tab:'overview',loading:true,message:'',landmarkSrc:'',heroUrl:'',heroFailed:false,waLabel:'',caaLabel:'',foundingYear:'',years:[],entryYear:'',entryIndex:0,entrySection:'registration',entryEdition:null,entryFacts:[],guideSections:[],routeYear:'',routeIndex:0,routeEdition:null,routeStages:[],routeImages:[],routeVersions:[],routeVersionNote:'',resultsYear:'',resultsIndex:0,resultsEdition:null,resultFacts:[],galleryTypes:GALLERY,galleryType:'参赛服',galleryGroups:[],albums:[],updateType:'stories',stories:[],news:[],activeArticle:null,latestEdition:null,relatedRaces:[],fromRace:null,lotteryColumns:[],lotteryRows:[],lotteryWidth:70},
+  onLoad(query) { this._id=query.id || ''; this._fromRaceId=query.fromRaceId || ''; this._query=query; this._seq=0; this._disposed=false; const tab=LEGACY[query.tab] || query.tab; this.setData({tab:TABS.some(item => item.id===tab)?tab:'overview',entrySection:query.tab==='logistics' || query.section==='guide'?'guide':'registration',galleryType:GALLERY.includes(query.category)?query.category:'参赛服',updateType:query.type==='news'?'news':'stories'}); this.load(); },
+  onUnload() { this._disposed=true; this._seq++; },
+  load() { const seq=++this._seq; this.setData({loading:true,message:''}); return request('/race-catalog/'+encodeURIComponent(this._id)).then(data => {
+    if(this._disposed || seq!==this._seq)return; if(!data.race || !data.archive)throw Error('这场赛事尚无档案');
+    this._archive=data.archive; this._editions=(data.archive.editions || []).slice().sort((a,b)=>Number(b.year)-Number(a.year));
+    const years=this._editions.map(e=>String(e.year)), latest=years[0] || '', results=this._editions.find(e=>(e.results || []).length), linked=(data.relatedRaces || []).find(r=>String(r.id)===String(this._fromRaceId));
+    const preferred=String(this._query.year || linked && linked.raceDate && linked.raceDate.slice(0,4) || ''), selected=years.includes(preferred)?preferred:latest;
+    const entryYear=this.data.tab==='entry'?selected:latest,routeYear=this.data.tab==='route'?selected:latest,resultsYear=this.data.tab==='results'?selected:String(results && results.year || latest);
+    const stories=(data.archive.updates && data.archive.updates.length?data.archive.updates:data.archive.stories || []).map((item,i)=>({...item,id:item.id || 'story-'+i,images:photos(item.images)}));
+    const news=(data.archive.news || []).map((item,i)=>({...item,id:item.id || 'news-'+i,images:photos(item.images)})).sort((a,b)=>String(b.publishedAt || '').localeCompare(String(a.publishedAt || '')));
+    const albums=(data.archive.photoAlbums || []).map((item,i)=>({...item,id:item.id || 'album-'+i,media:photos(item.media)})).filter(item=>item.media.length).sort((a,b)=>Number(b.year)-Number(a.year));
+    let routeVersions=(data.archive.routeGroups || []).map((item,i)=>({...item,id:item.id || 'version-'+i,years:(item.years || []).map(String).filter(y=>years.includes(y))})).filter(item=>item.years.length);
+    if(!routeVersions.length && data.race.id==='beijing' && years.includes('2025') && years.includes('2026'))routeVersions=[{id:'beijing-road-sequence',title:'近年道路序列',years:['2026','2025'],match:'similar',note:'2025、2026 公布的道路序列相近，细部线位仍分别记录。'}];
+    const grouped=new Set(routeVersions.flatMap(item=>item.years)); routeVersions=routeVersions.concat(years.filter(y=>!grouped.has(y)).map(y=>({id:'year-'+y,title:y+' 年路线',years:[y],note:''}))).map(item=>({...item,yearsLabel:item.years.join(' / ')}));
+    const founding=data.archive.profile && data.archive.profile.foundingYear || '';
+    this.setData({race:data.race,archive:data.archive,landmarkSrc:LANDMARKS[data.race.id] || '',heroUrl:asset(data.archive.hero && data.archive.hero.imageUrl) || (data.race.id==='beijing'?'/images/race-covers/beijing.jpg':''),heroFailed:false,waLabel:cert(data.race.worldAthletics),caaLabel:cert(data.race.caa),foundingYear:founding,years,entryYear,entryIndex:indexFor(years,entryYear),routeYear,routeIndex:indexFor(years,routeYear),resultsYear,resultsIndex:indexFor(years,resultsYear),latestEdition:this._editions[0] || null,routeVersions,stories,news,albums,relatedRaces:data.relatedRaces || [],fromRace:linked || null,loading:false,...lottery(this._editions)});
+    this.paint(); wx.setNavigationBarTitle({title:data.race.name+' · 赛事专题'});
+  }).catch(error=>{if(!this._disposed && seq===this._seq)this.setData({loading:false,message:error.message || '赛事档案暂时无法加载'});}); },
   paint() {
-    const raw = this._editions.find(e => String(e.year) === this.data.year);
-    if (!raw) { this.setData({ edition: null, logisticsSections: [], routeStages: [], coverageOpen: false }); return; }
-    const route = { ...(raw.route || {}) };
-    route.mapUrl = assetUrl(route.mapUrl);
-    route.imageCredit = route.mediaRights && route.mediaRights.attribution || '';
-    const routeStages = String(route.summary || '').includes('→') ? String(route.summary).split('→').map(name => name.trim()).filter(Boolean).map((name, index) => ({ order: String(index + 1).padStart(2, '0'), name })) : [];
-    const gear = (raw.gear || []).map((item, index) => ({ ...item, order: String(index + 1).padStart(2, '0'), imageUrl: assetUrl(item.imageUrl), imageCredit: item.mediaRights && item.mediaRights.attribution || '' }));
-    const edition = { ...raw, route, gear, registration: raw.registration || {}, participation: raw.participation || {}, results: raw.results || [], notes: raw.notes || [] };
-    const logisticsSections = [
-      { id: 'collection', title: '领物安排', labels: [['time','领物时间'],['place','领物地点'],['requirements','领取要求']] },
-      { id: 'transport', title: '交通与离场', labels: [['expo','领物交通'],['start','前往起点'],['finish','终点离场']] },
-      { id: 'raceDay', title: '比赛日服务', labels: [['startTime','发枪与分区'],['timeLimit','关门安排'],['bagDrop','存取包'],['aidStations','补给与饮水'],['toilets','卫生间'],['medical','医疗服务']] }
-    ].map(section => ({ id: section.id, title: section.title, fields: section.labels.filter(([key]) => raw.logistics && raw.logistics[section.id] && raw.logistics[section.id][key]).map(([key,label]) => ({ label, value: raw.logistics[section.id][key] })) })).filter(section => section.fields.length);
-    edition.coverageText = raw.coverage ? (raw.coverage.missing || []).join('、') : '';
-    edition.upcoming = raw.coverage && raw.coverage.upcoming;
-    this.setData({ edition, logisticsSections, routeStages, coverageOpen: false, registrationFacts: facts(edition.registration, [['opens','报名开始'],['closes','报名截止'],['drawDate','抽签公布'],['fee','报名费用'],['qualification','报名资格'],['applicants','报名人数'],['eligibleApplicants','有效报名'],['lotteryPool','实际抽签人数'],['drawQuota','抽签名额'],['directQuota','直通名额'],['lotteryRate','公布中签率']]), participationFacts: facts(edition.participation, [['planned','计划规模'],['starters','实际起跑'],['finishers','完赛人数'],['finishRate','完赛率']]) });
+    const entry=this._editions.find(e=>String(e.year)===this.data.entryYear),route=this._editions.find(e=>String(e.year)===this.data.routeYear),result=this._editions.find(e=>String(e.year)===this.data.resultsYear);
+    const guideSections=[{id:'collection',title:'领物安排',labels:[['time','领物时间'],['place','领物地点'],['requirements','领取要求']]},{id:'transport',title:'交通与离场',labels:[['expo','领物交通'],['start','前往起点'],['finish','终点离场']]},{id:'raceDay',title:'比赛日服务',labels:[['startTime','发枪与分区'],['timeLimit','关门安排'],['bagDrop','存取包'],['aidStations','补给与饮水'],['toilets','卫生间'],['medical','医疗服务']]}].map(s=>({id:s.id,title:s.title,fields:fields(entry && entry.logistics && entry.logistics[s.id],s.labels)})).filter(s=>s.fields.length);
+    const routeStages=String(route && route.route && route.route.summary || '').split('→').map(name=>name.trim()).filter(Boolean).map((name,i)=>({order:String(i+1).padStart(2,'0'),name}));
+    const routeVersion=this.data.routeVersions.find(item=>item.years.includes(this.data.routeYear));
+    const routeVersions=this.data.routeVersions.map(item=>({...item,selected:item.years.includes(this.data.routeYear)}));
+    const galleryGroups=this._editions.map(e=>({year:String(e.year),items:(e.gear || []).filter(g=>g.category===this.data.galleryType).map((g,i)=>({...g,id:String(e.year)+'-'+i,images:photos(g.images,g.imageUrl)}))})).filter(group=>group.items.length);
+    const resultsEdition=result?{...result,results:(result.results || []).map((item,i)=>({...item,key:i,timing:item.timing || '计时口径待补充'}))}:null;
+    this.setData({entryEdition:entry || null,entryFacts:fields(entry && entry.registration,[['opens','报名开始'],['closes','报名截止'],['drawDate','抽签公布'],['fee','报名费用'],['qualification','报名资格'],['applicants','报名人数'],['eligibleApplicants','有效报名'],['lotteryPool','抽签人数'],['drawQuota','抽签名额'],['lotteryRate','公布中签率'],['directQuota','直通名额']]),guideSections,routeEdition:route || null,routeStages,routeImages:photos(route && route.route && route.route.images,route && route.route && route.route.mapUrl),routeVersions,routeVersionNote:routeVersion && routeVersion.note || '',resultsEdition,resultFacts:fields(result && result.participation,[['planned','计划规模'],['starters','实际起跑'],['finishers','完赛人数'],['finishRate','完赛率']]),galleryGroups});
   },
-  pickYear(e) { const index = Number(e.detail.value); this.setData({ yearIndex: index, year: this.data.years[index] }); this.paint(); },
-  setYear(e) { const year = String(e.currentTarget.dataset.year); if (!this.data.years.includes(year)) return; this.setData({ year, yearIndex: this.data.years.indexOf(year) }); this.paint(); },
-  pickTab(e) { const tab = e.currentTarget.dataset.id; if (!TABS.some(t => t.id === tab)) return; this.setData({ tab }); this.paint(); },
-  toggleCoverage() { this.setData({ coverageOpen: !this.data.coverageOpen }); },
-  previewImage(e) { const url = e.currentTarget.dataset.url; if (safeUrl(url)) wx.previewImage({ current: url, urls: [url] }); },
-  routeImageError() { this.setData({ 'edition.route.imageFailed': true }); },
-  gearImageError(e) { const index = Number(e.currentTarget.dataset.index); if (Number.isInteger(index) && index >= 0) this.setData({ ['edition.gear[' + index + '].imageFailed']: true }); },
-  onShareAppMessage() { return { title: (this.data.race && this.data.race.name || '赛事档案') + ' · ' + this.data.year + '年度档案', path: '/pages/race-archive/race-archive?id=' + encodeURIComponent(this._id) + '&year=' + encodeURIComponent(this.data.year) + '&tab=' + encodeURIComponent(this.data.tab) }; }
+  pickTab(e) { const tab=e.currentTarget.dataset.id; if(TABS.some(item=>item.id===tab)){this.setData({tab,activeArticle:null});this.paint();} },
+  pickEntrySection(e) { const value=e.currentTarget.dataset.id; if(['registration','guide'].includes(value))this.setData({entrySection:value}); },
+  pickYear(e) { const scope=e.currentTarget.dataset.scope, index=Number(e.detail.value); if(!['entry','route','results'].includes(scope)||!this.data.years[index])return;this.setData({[scope+'Year']:this.data.years[index],[scope+'Index']:index});this.paint(); },
+  setEntryYear(e) { const year=String(e.currentTarget.dataset.year);if(this.data.years.includes(year)){this.setData({entryYear:year,entryIndex:indexFor(this.data.years,year)});this.paint();} },
+  pickVersion(e) { const version=this.data.routeVersions.find(item=>item.id===e.currentTarget.dataset.id); if(version){const year=version.years[0];this.setData({routeYear:year,routeIndex:indexFor(this.data.years,year)});this.paint();} },
+  openGallery(e) { const galleryType=e.currentTarget.dataset.id; if(GALLERY.includes(galleryType)){this.setData({tab:'gallery',galleryType});this.paint();} },
+  pickGallery(e) { const value=e.currentTarget.dataset.id; if(GALLERY.includes(value)){this.setData({galleryType:value});this.paint();} },
+  pickUpdateType(e) { const value=e.currentTarget.dataset.id;if(['stories','news'].includes(value))this.setData({updateType:value,activeArticle:null}); },
+  openArticle(e) { const list=e.currentTarget.dataset.type==='news'?this.data.news:this.data.stories,article=list.find(item=>item.id===e.currentTarget.dataset.id);if(article)this.setData({activeArticle:article}); },
+  closeArticle() { this.setData({activeArticle:null}); },
+  stopTap() {},
+  previewImage(e) { const current=asset(e.currentTarget.dataset.url);if(!current)return;const group=e.currentTarget.dataset.images;const urls=Array.isArray(group)?group.map(item=>asset(item.url)).filter(Boolean):[current];wx.previewImage({current,urls:urls.includes(current)?urls:[current]}); },
+  previewAlbum(e) { const album=this.data.albums.find(item=>item.id===e.currentTarget.dataset.id);if(album && album.media.length)wx.previewImage({current:album.media[0].url,urls:album.media.map(item=>item.url)}); },
+  heroError() { this.setData({heroFailed:true}); },
+  onShareAppMessage() { const tab=this.data.tab,year=tab==='entry'?this.data.entryYear:tab==='route'?this.data.routeYear:tab==='results'?this.data.resultsYear:'';return {title:(this.data.race && this.data.race.name || '赛事')+' · 赛事专题',path:'/pages/race-archive/race-archive?id='+encodeURIComponent(this._id)+'&tab='+tab+(year?'&year='+year:'')+(tab==='gallery'?'&category='+encodeURIComponent(this.data.galleryType):'')+(tab==='updates'?'&type='+this.data.updateType:'')+(tab==='entry'?'&section='+this.data.entrySection:'')}; }
 });

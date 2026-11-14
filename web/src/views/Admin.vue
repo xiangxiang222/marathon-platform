@@ -19,6 +19,7 @@
       <PrivacyRequestsAdmin v-if="section === 'privacy-requests' && role === 'admin'" :key="token" :session-token="token" :request="admin" :refresh-key="privacyRefresh" />
       <FeedbackAdmin v-if="section === 'feedback' && role === 'admin'" :request="admin" :refresh-key="feedbackRefresh" :initial-filter="feedbackFilter" @changed="loadOverview" />
       <ContentAdmin v-if="section === 'content' && role === 'admin'" :key="token" :session-token="token" :request="admin" :refresh-key="contentRefresh" />
+      <RaceArchiveAdmin v-if="section === 'race-archives' && role === 'admin'" ref="archiveEditor" :key="token" :session-token="token" :request="admin" :refresh-key="archiveRefresh" />
       <ProfileAdmin v-if="['athletes','pacers'].includes(section) && role === 'admin'" :key="token+'-'+section" :profile-type="section === 'pacers' ? 'pacer' : 'athlete'" :session-token="token" :request="admin" :refresh-key="profileRefresh" />
       <div v-if="section === 'races'" class="workspace-tabs" role="tablist" aria-label="赛事工作区"><button v-for="item in raceWorkspaces" :key="item.id" type="button" role="tab" :aria-selected="raceWorkspace === item.id" :class="{ on: raceWorkspace === item.id }" @click="pickRaceWorkspace(item.id)"><AdminIcon :name="item.icon" />{{ item.label }}<span v-if="item.id === 'review' && pendingCount">{{ pendingCount }}</span></button></div>
       <div v-if="section === 'races'" class="desk race-desk" :class="{ editing: deskOpen, dragging }" :style="splitStyle">
@@ -917,6 +918,7 @@ import FeedbackAdmin from "../components/admin/FeedbackAdmin.vue";
 import ClubIdentityAdmin from "../components/admin/ClubIdentityAdmin.vue";
 import PrivacyRequestsAdmin from "../components/admin/PrivacyRequestsAdmin.vue";
 import ContentAdmin from "../components/admin/ContentAdmin.vue";
+import RaceArchiveAdmin from "../components/admin/RaceArchiveAdmin.vue";
 import ProfileAdmin from "../components/admin/ProfileAdmin.vue";
 import RadarAdmin from "../components/admin/RadarAdmin.vue";
 import AdminIcon from "../components/admin/AdminIcon.vue";
@@ -973,6 +975,8 @@ const section = ref("overview");
 const feedbackRefresh = ref(0);
 const identityRefresh = ref(0);
 const contentRefresh = ref(0);
+const archiveRefresh = ref(0);
+const archiveEditor = ref(null);
 const profileRefresh = ref(0);
 const privacyRefresh = ref(0);
 const feedbackFilter = ref("pending");
@@ -988,6 +992,7 @@ const selfName = ref("");
 const allSections = [
   { id: "overview", label: "运营总览", group: "工作台", icon: "overview", roles: ["admin", "club"] },
   { id: "races", label: "赛事管理", group: "内容运营", icon: "races", roles: ["admin"] },
+  { id: "race-archives", label: "赛事档案", group: "内容运营", icon: "races", roles: ["admin"] },
   { id: "news", label: "赛事资讯", group: "内容运营", icon: "news", roles: ["admin"] },
   { id: "content", label: "资讯中心", group: "内容运营", icon: "news", roles: ["admin"] },
   { id: "athletes", label: "运动员管理", group: "内容运营", icon: "users", roles: ["admin"] },
@@ -1120,6 +1125,7 @@ const sectionLabel = computed(() => deskSections.value.find((item) => item.id ==
 const sectionLead = computed(() => ({
   overview: "把待办、近期赛事与信息质量放在一处，先处理影响跑者决策的事。",
   races: "从采集核实到正式发布，维护每一场比赛的时间、项目、规程与来源。",
+  "race-archives": "维护赛事介绍、历年资料和影像，保存后展示在赛事档案。",
   news: "发布与审核赛事资讯，确保每条内容关联准确的赛事。",
   content: "整理业界新闻、人物故事与跑团资讯，维护来源、草稿和发布状态。",
   athletes: "发布和编辑运动员个人资料、完整人物文章与比赛履历，未人工修改的成绩继续自动更新。",
@@ -1317,6 +1323,7 @@ async function refreshSection() {
     if (section.value === "overview") return await loadOverview();
     if (section.value === "feedback") { feedbackRefresh.value++; return; }
     if (section.value === "content") { contentRefresh.value++; return; }
+    if (section.value === "race-archives") { archiveRefresh.value++; return; }
     if (["athletes","pacers"].includes(section.value)) { profileRefresh.value++; return; }
     if (section.value === "club-identity") { identityRefresh.value++; return; }
     if (section.value === "privacy-requests") { privacyRefresh.value++; return; }
@@ -1328,6 +1335,7 @@ async function refreshSection() {
 }
 async function pickSection(id) {
   if (!deskSections.value.some(item => item.id === id)) return;
+  if (section.value === 'race-archives' && id !== section.value && archiveEditor.value?.hasUnsavedChanges()) { message.value = '赛事档案仍有未保存的修改，请先保存或放弃修改。'; saved.value = false; return; }
   section.value = id;
   message.value = "";
   saved.value = false;

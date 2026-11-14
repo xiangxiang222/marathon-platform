@@ -1,0 +1,24 @@
+{
+  "checks": [
+    "six categories, local year state, no overflow, legible text at 320",
+    "six categories, local year state, no overflow, legible text at 390",
+    "six categories, local year state, no overflow, legible text at 1440"
+  ],
+  "errors": [],
+  "views": [
+    "web-概况-320.png",
+    "web-参赛-320.png",
+    "web-赛道-320.png",
+    "web-成绩-320.png",
+    "web-图鉴-320.png",
+    "web-动态-320.png",
+    "web-概况-390.png",
+    "web-参赛-390.png",
+    "web-赛道-390.png",
+    "web-成绩-390.png",
+    "web-图鉴-390.png",
+    "web-动态-390.png",
+    "web-概况-1440.png"
+  ],
+  "passed": true
+}
