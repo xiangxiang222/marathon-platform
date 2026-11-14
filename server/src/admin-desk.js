@@ -67,6 +67,9 @@ function deleteUser(db, id) {
     db.prepare("DELETE FROM user_mileage WHERE user_id = ?").run(id);
     db.prepare("DELETE FROM supply_claims WHERE user_id = ?").run(id);
     db.prepare("DELETE FROM radar_profiles WHERE user_id = ?").run(id);
+    if (db.prepare("SELECT name FROM sqlite_master WHERE type='table' AND name='radar_entries'").get()) {
+      db.prepare("DELETE FROM radar_entries WHERE user_id = ?").run(id);
+    }
     db.prepare("DELETE FROM club_likes WHERE user_id = ? OR post_id IN (SELECT id FROM club_posts WHERE user_id = ?)").run(id, id);
     db.prepare("DELETE FROM club_comments WHERE user_id = ? OR post_id IN (SELECT id FROM club_posts WHERE user_id = ?)").run(id, id);
     db.prepare("DELETE FROM club_posts WHERE user_id = ?").run(id);

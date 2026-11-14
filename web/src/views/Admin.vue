@@ -342,6 +342,7 @@
               </div>
             </section>
             <section v-show="editTab === 'prize'" class="section">
+              <RadarAdmin v-if="book.id && !book.submissionId" :race-id="book.id" :race-date="book.raceDate" :active="editTab === 'prize'" :request="admin" />
               <h3>奖项</h3>
               <p class="note">按规程填写，并写上来源。没有往届名次成绩时，页面不估算概率。</p>
               <p v-if="!book.id && !book.submissionId" class="note">先保存这场比赛，再添加奖项。</p>
@@ -917,6 +918,7 @@ import ClubIdentityAdmin from "../components/admin/ClubIdentityAdmin.vue";
 import PrivacyRequestsAdmin from "../components/admin/PrivacyRequestsAdmin.vue";
 import ContentAdmin from "../components/admin/ContentAdmin.vue";
 import ProfileAdmin from "../components/admin/ProfileAdmin.vue";
+import RadarAdmin from "../components/admin/RadarAdmin.vue";
 import AdminIcon from "../components/admin/AdminIcon.vue";
 import { countiesOf, settleRegion } from "../areas";
 import { regions } from "../regions";
