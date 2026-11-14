@@ -29,15 +29,20 @@
     </section>
     <section v-if="!searching" class="home-catalog" aria-labelledby="catalog-heading">
       <div class="catalog-heading"><h2 id="catalog-heading">热门赛事档案</h2><router-link class="catalog-all" to="/race-catalog">全部档案 ›</router-link></div>
-      <p class="catalog-intro">先认识一场比赛，再决定下一次出发</p>
+      <p class="catalog-intro">历年路线、中签与完赛记忆</p>
       <div v-if="catalogError" class="catalog-error" role="status"><span>赛事档案暂时无法加载</span><button type="button" @click="loadCatalog">重试</button></div>
       <p v-else-if="catalogLoading" class="catalog-note" role="status">正在加载赛事档案…</p>
       <p v-else-if="!catalogRaces.length" class="catalog-note">赛事档案整理中</p>
       <div v-else class="catalog-list">
         <router-link v-for="item in catalogRaces" :key="item.id" class="catalog-race" :to="'/race-catalog/' + item.id">
-          <div class="catalog-race-heading"><h3>{{ item.name }}</h3><span>{{ item.city }} · {{ item.shortName }}</span></div>
-          <p>{{ item.tagline }}</p>
-          <div class="catalog-badges"><span>世界田联 {{ certificationLabel(item.worldAthletics) }}</span><span>中国田协 {{ certificationLabel(item.caa) }}</span></div>
+          <div class="catalog-landmark" aria-hidden="true"><img v-if="landmarkUrl(item.id) && !failedLandmarks[item.id]" :src="landmarkUrl(item.id)" alt="" width="80" height="64" @error="failedLandmarks[item.id] = true" /><span v-else>{{ item.city }}</span></div>
+          <h3>{{ item.name }}</h3>
+          <div class="catalog-certifications">
+            <span :title="'世界田联 ' + certificationLabel(item.worldAthletics)">田联 · {{ item.worldAthletics?.label || '待核实' }}<small v-if="!commonCertificationYear(item) && item.worldAthletics?.year">{{ item.worldAthletics.year }}</small></span>
+            <span :title="'中国田协 ' + certificationLabel(item.caa)">田协 · {{ item.caa?.label || '待核实' }}<small v-if="!commonCertificationYear(item) && item.caa?.year">{{ item.caa.year }}</small></span>
+          </div>
+          <span v-if="commonCertificationYear(item)" class="catalog-certification-year">{{ commonCertificationYear(item) }} 认证</span>
+          <div class="catalog-card-footer"><span>{{ item.years?.length ? item.years.length + ' 届档案' : '年度档案' }}</span><span class="catalog-card-arrow" aria-hidden="true">›</span></div>
         </router-link>
       </div>
     </section>
@@ -151,6 +156,9 @@ const barEl = ref(null);
 const dropTop = ref(180);
 const races = ref([]);
 const catalogRaces = ref([]), catalogLoading = ref(true), catalogError = ref(false);
+const failedLandmarks = ref({});
+function landmarkUrl(id) { return ['beijing', 'shanghai', 'xiamen'].includes(id) ? base + 'images/race-landmarks/' + id + '.svg' : ''; }
+function commonCertificationYear(race) { const year = race.worldAthletics?.year; return year && year === race.caa?.year ? year : ''; }
 function certificationLabel(value) {
   if (!value || !value.label) return "待核实";
   return value.label + (value.year ? " · " + value.year : "");
@@ -376,28 +384,30 @@ onMounted(() => {
 
 <style scoped>
 .home-page { padding-bottom: 16px; }
-.home-catalog { margin: 16px 16px 0; padding: 16px; border-radius: 12px; background: #fff; }
-.catalog-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-.catalog-heading h2 { margin: 0; font-size: 18px; font-weight: 600; }
-.catalog-heading > span { flex: none; color: var(--muted); font-size: 12px; }
-.catalog-intro { margin: 6px 0 4px; color: var(--muted); font-size: 12px; line-height: 1.7; }
-.catalog-list { display: grid; }
-.catalog-all { display:flex; align-items:center; min-height:44px; color:var(--accent); font-size:14px; }
-.catalog-race { display:block; min-width: 0; padding: 16px 0; border-bottom: 1px solid var(--line); }
-.catalog-race-heading { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 12px; }
-.catalog-race h3 { overflow-wrap: anywhere; margin: 0; font-size: 15px; font-weight: 600; }
-.catalog-race-heading > span { color: var(--muted); font-size: 12px; }
-.catalog-race p { margin: 6px 0 10px; color: #555; font-size: 14px; line-height: 1.7; }
-.catalog-badges { display: flex; flex-wrap: wrap; gap: 6px; }
-.catalog-badges span { max-width: 100%; overflow-wrap: anywhere; padding: 3px 7px; border-radius: 4px; background: #f5f5f5; color: #666; font-size: 12px; line-height: 1.6; }
-.catalog-note { margin: 12px 0 0; color: var(--muted); font-size: 12px; line-height: 1.8; }
-.catalog-error { display: flex; align-items: center; justify-content: space-between; gap: 12px; color: var(--muted); font-size: 12px; }
-.catalog-error button { min-width: 44px; min-height: 44px; color: var(--accent); }
-@media (min-width: 1000px) {
-  .catalog-list { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
-  .catalog-race-heading { display: block; }
-  .catalog-race-heading > span { display: block; margin-top: 4px; }
-}
+.home-catalog { margin: 24px 16px 0; }
+.catalog-heading { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.catalog-heading h2 { margin: 0; font-size: 18px; font-weight: 600; line-height: 1.5; }
+.catalog-all { display: flex; flex: none; align-items: center; min-height: 44px; color: var(--accent); font-size: 14px; }
+.catalog-intro { margin: 0 0 14px; color: var(--muted); font-size: 12px; line-height: 1.7; }
+.catalog-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.catalog-race { display: flex; min-width: 0; flex-direction: column; align-items: center; padding: 12px 4px 0; overflow: hidden; border: 1px solid #eaeaea; border-radius: 12px; background: #fff; text-align: center; transition: border-color .15s ease; }
+@media (hover: hover) { .catalog-race:hover { border-color: #ffbac5; } }
+.catalog-race:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.catalog-landmark { display: flex; align-items: center; justify-content: center; width: 80px; max-width: 100%; height: 64px; margin-bottom: 8px; }
+.catalog-landmark img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.catalog-landmark>span { color: #555; font-size: 18px; font-weight: 600; }
+.catalog-race h3 { margin: 0; max-width: 100%; font-size: 15px; font-weight: 600; line-height: 24px; white-space: nowrap; }
+.catalog-certifications { display: grid; gap: 2px; width: 100%; margin-top: 8px; color: #666; font-size: 12px; line-height: 18px; }
+.catalog-certifications>span { display: block; overflow-wrap: anywhere; }
+.catalog-certifications small { display: block; font-size: 12px; }
+.catalog-certification-year { margin-top: 4px; color: #777; font-size: 12px; line-height: 18px; }
+.catalog-card-footer { display: flex; align-items: center; justify-content: center; gap: 6px; align-self: stretch; min-height: 36px; margin: 12px 4px 0; border-top: 1px solid #f0f0f0; color: #777; font-size: 12px; line-height: 18px; }
+.catalog-card-arrow { color: var(--accent); font-size: 18px; }
+.catalog-note { margin: 0; padding: 20px 16px; border-radius: 12px; background: #fff; color: var(--muted); font-size: 12px; line-height: 1.8; }
+.catalog-error { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 16px; border-radius: 12px; background: #fff; color: var(--muted); font-size: 12px; }
+.catalog-error button { min-width: 44px; min-height: 44px; color: var(--accent); font-size: 14px; }
+@media (min-width: 600px) { .catalog-list { gap: 12px; }.catalog-race { padding-top: 16px; }.catalog-landmark { width: 96px; height: 76px; } }
+@media (prefers-reduced-motion: reduce) { .catalog-race { transition: none; } }
 .home-top { background: #fff; }
 .home-brand { position: relative; overflow: hidden; padding: 12px 0 16px; background: radial-gradient(ellipse at 100% 25%,#ff536a 0,transparent 70%),var(--brand-header); }
 .home-brand::before,.home-brand::after { position: absolute; top: 16px; right: -80px; width: 240px; height: 240px; border: 1px solid #ffffff29; border-radius: 50%; content: ''; pointer-events: none; }

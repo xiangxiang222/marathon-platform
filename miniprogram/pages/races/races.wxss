@@ -38,18 +38,25 @@
 .discover-card-sub { display: block; margin-top: 4px; color: #888; font-size: 12px; line-height:1.5; white-space: normal; }
 .discover-side image { flex: none; width: 36px; height: 36px; margin: 0; }
 .home-race-catalog { margin: 20px 16px 0; }
-.catalog-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+.catalog-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 44px; }
 .catalog-title { font-size: 18px; font-weight: 600; line-height: 1.5; }
-.catalog-count { flex: none; color: var(--text-secondary); font-size: 12px; }
-.catalog-race { min-width: 0; margin-top: 8px; padding: 14px; border-radius: 12px; background: var(--surface); }
-.catalog-race-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
-.catalog-race-name { min-width: 0; color: var(--text); font-size: 15px; font-weight: 600; line-height: 1.5; word-break: break-all; }
-.catalog-race-meta { color: var(--text-secondary); font-size: 12px; line-height: 1.5; }
-.catalog-certifications { display: flex; flex-wrap: wrap; gap: 4px 12px; margin-top: 7px; color: var(--text-secondary); font-size: 12px; line-height: 1.7; }
-.catalog-certifications > text { max-width: 100%; word-break: break-all; }
-.catalog-tagline { display: block; margin-top: 7px; color: var(--text); font-size: 14px; line-height: 1.6; }
-.catalog-state { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding: 12px 14px; border-radius: 12px; background: var(--surface); color: var(--text-secondary); font-size: 12px; }
+.catalog-all { display: flex; flex: none; align-items: center; gap: 5px; min-height: 44px; color: var(--brand); font-size: 14px; }
+.catalog-all > text { font-size: 20px; line-height: 1; }
+.catalog-intro { margin: 0 0 12px; color: var(--text-secondary); font-size: 12px; line-height: 1.6; }
+.catalog-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.catalog-race { display: flex; min-width: 0; flex-direction: column; align-items: center; padding: 12px 4px; box-sizing: border-box; border: 1px solid #e9e9e9; border-radius: 12px; background: #fff; text-align: center; }
+.catalog-landmark { display: block; flex: none; width: 80px; max-width: 100%; height: 64px; margin: 0 auto 8px; }
+.catalog-race-name { width: 100%; min-width: 0; color: var(--text); font-size: 15px; font-weight: 600; line-height: 1.5; overflow-wrap: anywhere; }
+.catalog-certifications { width: 100%; min-width: 0; margin-top: 8px; color: #666; font-size: 12px; line-height: 1.6; }
+.catalog-certifications > view + view { margin-top: 2px; }
+.catalog-certifications text { max-width: 100%; overflow-wrap: anywhere; }
+.catalog-certification-year { display: block; color: #888; font-size: 12px; line-height: 1.6; }
+.catalog-certifications > .catalog-certification-year { margin-top: 4px; }
+.catalog-editions { display: flex; align-items: center; justify-content: center; gap: 4px; width: 100%; margin-top: auto; padding-top: 10px; color: #888; font-size: 12px; line-height: 1.6; }
+.catalog-editions > text { color: var(--brand); }
+.catalog-state { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; min-height: 72px; padding: 12px 14px; box-sizing: border-box; border: 1px solid #e9e9e9; border-radius: 12px; background: #fff; color: var(--text-secondary); font-size: 12px; }
 .catalog-retry { flex: none; min-width: 44px; min-height: 44px; padding: 8px 10px; border: 0; background: transparent; color: var(--brand); font-size: 14px; }
+
 .reminder { height: 49px; margin: 20rpx 24rpx 0; overflow: hidden; border-radius: 10px; background: #fff; }
 .reminder-swiper { width: 100%; height: 49px; }
 .reminder-item { display: flex; align-items: center; gap: 16rpx; height: 49px; padding: 8px 12px; box-sizing: border-box; }
@@ -131,5 +138,3 @@
 .discover-copy { padding:14px; min-width:0; }.discover-title { font-size:18px; }.discover-race-name { display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2; overflow:hidden; margin-top:8px; font-size:12px; line-height:1.6; color:var(--text-secondary); }
 
 .discover-side>navigator>view{flex:1;min-width:0}
-
-.catalog-all{display:flex;align-items:center;min-height:44px;color:var(--brand);font-size:14px;}.catalog-race{display:block;}

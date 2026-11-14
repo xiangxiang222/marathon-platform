@@ -9,7 +9,19 @@
       <div v-if="error" class="archive-state" role="alert"><p>{{ error }}</p><button type="button" class="archive-secondary" @click="load">重新加载</button></div>
       <p v-else-if="loading" class="archive-state" role="status">正在整理赛事档案…</p>
       <div v-else-if="!races.length" class="archive-state"><h2>没有符合条件的档案</h2><p>试试赛事简称，或清除部分筛选。</p><button type="button" class="archive-secondary" @click="clear">清除筛选</button></div>
-      <template v-else><div class="archive-list-heading"><h2>已收录赛事</h2><span>{{ races.length }} 场</span></div><div class="archive-directory"><router-link v-for="race in races" :key="race.id" class="archive-directory-card" :to="{path:'/race-catalog/'+race.id,query:{...(query?{q:query}:{}),...(wa?{wa}:{}),...(caa?{caa}:{})}}"><div class="archive-card-top"><div><h2>{{ race.name }}</h2><p>{{ race.city }} · {{ race.shortName }}</p></div><span class="archive-arrow" aria-hidden="true">›</span></div><p class="archive-card-tagline">{{ race.tagline }}</p><div class="archive-badges"><span>世界田联 {{ certification(race.worldAthletics) }}</span><span>中国田协 {{ certification(race.caa) }}</span></div><span class="archive-card-link">阅读年度档案 <span aria-hidden="true">→</span></span></router-link></div></template>
+      <template v-else>
+        <div class="archive-list-heading"><h2>已收录赛事</h2><span>{{ races.length }} 场</span></div>
+        <div class="archive-directory landmark-directory">
+          <router-link v-for="race in races" :key="race.id" class="archive-directory-card" :to="{path:'/race-catalog/'+race.id,query:{...(query?{q:query}:{}),...(wa?{wa}:{}),...(caa?{caa}:{})}}">
+            <div class="archive-city-heading">
+              <div class="archive-city-landmark" aria-hidden="true"><img v-if="landmarkUrl(race.id) && !failedLandmarks[race.id]" :src="landmarkUrl(race.id)" alt="" width="88" height="72" @error="failedLandmarks[race.id] = true" /><span v-else>{{ race.city }}</span></div>
+              <div class="archive-city-copy"><span class="archive-city-shortname">{{ race.shortName }} · {{ race.city }}</span><h2>{{ race.name }}</h2><p>{{ race.tagline }}</p></div>
+            </div>
+            <div class="archive-badges"><span>世界田联 {{ certification(race.worldAthletics) }}</span><span>中国田协 {{ certification(race.caa) }}</span></div>
+            <div class="archive-city-footer"><span>{{ archiveYears(race) }}</span><span class="archive-city-action">阅读档案 <span aria-hidden="true">→</span></span></div>
+          </router-link>
+        </div>
+      </template>
       <p v-if="selectionNote" class="archive-caption">{{ selectionNote }}</p>
     </section>
   </main>
@@ -21,6 +33,9 @@ import { api } from '../api';
 const route=useRoute(),router=useRouter();
 const draft=ref(String(route.query.q||'')),query=ref(draft.value),wa=ref(['白金标','金标'].includes(route.query.wa)?route.query.wa:''),caa=ref(route.query.caa==='A类'?'A类':'');
 const races=ref([]),loading=ref(false),error=ref(''),selectionNote=ref('');let sequence=0;
+const failedLandmarks=ref({});
+function landmarkUrl(id){return ['beijing','shanghai','xiamen'].includes(id)?import.meta.env.BASE_URL+'images/race-landmarks/'+id+'.svg':'';}
+function archiveYears(race){const years=race.years||[];return years.length?Math.min(...years)+'—'+Math.max(...years)+' · '+years.length+' 届档案':'年度档案';}
 function certification(v){return v&&v.label?v.label+(v.year?' · '+v.year:''):'待核实';}
 async function load(){const seq=++sequence;loading.value=true;error.value='';try{const p=new URLSearchParams({q:query.value,wa:wa.value,caa:caa.value});const d=await api('/race-catalog?'+p);if(seq!==sequence)return;races.value=Array.isArray(d.races)?d.races:[];selectionNote.value=d.selectionNote||'';}catch(e){if(seq===sequence)error.value=e.message||'暂时无法加载赛事档案';}finally{if(seq===sequence)loading.value=false;}}
 function filter(){router.replace({path:'/race-catalog',query:{...(query.value?{q:query.value}:{}),...(wa.value?{wa:wa.value}:{}),...(caa.value?{caa:caa.value}:{})}});load();}

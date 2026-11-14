@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="96" viewBox="0 0 120 96" fill="none">
+  <title>北京天安门地标图标</title>
+  <g stroke="#505862" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M60 12v12"/>
+    <path d="M60 12h12l-3 4 3 4H60" fill="#ff1838" stroke="#ff1838"/>
+    <path d="M29 38h62v25H29z" fill="#f1f3f5"/>
+    <path d="M23 40c9-1 14-5 20-13h34c6 8 11 12 20 13l-2 4H25l-2-4Z" fill="#dce1e5"/>
+    <path d="M25 40h70M42 27l-2-3m38 3 2-3"/>
+    <path d="M37 46v14m12-14v14m22-14v14m12-14v14" stroke="#8b949e"/>
+    <path d="M42 46h36v13H42z" fill="#e6eaed" stroke="#a3acb5"/>
+    <path d="M50 46v13m10-13v13m10-13v13m-28-6h36" stroke="#a3acb5" stroke-width="1"/>
+    <path d="M18 66h84v17H18z" fill="#e7ebee"/>
+    <path d="M12 61c6 1 9-1 14-5h68c5 4 8 6 14 5l-3 6H15l-3-6Z" fill="#cbd2d8"/>
+    <path d="M16 62h88" stroke="#858f99"/>
+    <path d="M28 83v-8a3 3 0 0 1 6 0v8m10 0v-8a3 3 0 0 1 6 0v8m7 0v-9a3 3 0 0 1 6 0v9m7 0v-8a3 3 0 0 1 6 0v8m10 0v-8a3 3 0 0 1 6 0v8" fill="#858f99" stroke="#858f99"/>
+    <path d="M12 83h96"/>
+    <path d="M8 87h104" stroke="#dce1e5"/>
+  </g>
+</svg>
