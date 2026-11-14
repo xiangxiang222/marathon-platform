@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="96" viewBox="0 0 120 96" fill="none">
+  <title>厦门双子塔与演武大桥地标图标</title>
+  <defs>
+    <clipPath id="xm-west"><path d="M29 73V39c5-13 13-24 25-29v63H29Z"/></clipPath>
+    <clipPath id="xm-east"><path d="M61 73V39c6-12 14-21 25-26v60H61Z"/></clipPath>
+  </defs>
+  <g stroke="#505862" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M29 73V39c5-13 13-24 25-29v63H29Z" fill="#e1e7eb"/>
+    <path d="M61 73V39c6-12 14-21 25-26v60H61Z" fill="#f0f3f5"/>
+    <path d="M47 15v58m31-55v55" stroke="#a4afb8"/>
+    <g stroke="#b4bec6" stroke-width="1" clip-path="url(#xm-west)">
+      <path d="M27 27h29M27 35h29M27 43h29M27 51h29M27 59h29M27 67h29"/>
+      <path d="M36 29v44m6-51v51"/>
+    </g>
+    <g stroke="#bec7cf" stroke-width="1" clip-path="url(#xm-east)">
+      <path d="M59 30h29M59 38h29M59 46h29M59 54h29M59 62h29M59 70h29"/>
+      <path d="M67 29v44m6-50v50"/>
+    </g>
+    <path d="m50 12 4-2v11" stroke="#ff1838" stroke-width="2"/>
+    <path d="M10 75c31-10 70-11 100 0" stroke="#f5f6f7" stroke-width="7"/>
+    <path d="M10 73c31-10 70-11 100 0m-100 5c31-10 70-11 100 0" stroke="#788590"/>
+    <path d="M23 75v8m19-12v11m20-12v11m20-9v11m18-7v8" stroke="#a4afb8" stroke-width="2.5"/>
+    <path d="M8 87c8-3 13 3 21 0s13 3 21 0 13 3 21 0 13 3 21 0 13 3 21 0" stroke="#c9d1d8"/>
+    <path d="M22 91h18m8 0h22m8 0h18" stroke="#e1e6eb"/>
+  </g>
+</svg>

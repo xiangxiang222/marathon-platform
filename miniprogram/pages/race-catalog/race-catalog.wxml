@@ -6,7 +6,11 @@
     <view wx:if="{{message}}" class="archive-state"><text>{{message}}</text><button class="archive-secondary" bindtap="load">重新加载</button></view>
     <view wx:elif="{{loading}}" class="archive-state">正在整理赛事档案…</view>
     <view wx:elif="{{!races.length}}" class="archive-state"><view class="archive-h2">没有符合条件的档案</view><view>试试赛事简称，或清除部分筛选。</view><button class="archive-secondary" bindtap="clear">清除筛选</button></view>
-    <block wx:else><view class="archive-list-heading"><text class="archive-h2">已收录赛事</text><text>{{races.length}} 场</text></view><navigator wx:for="{{races}}" wx:key="id" class="archive-directory-card" url="/pages/race-archive/race-archive?id={{item.id}}"><view class="archive-card-top"><view><view class="archive-h2">{{item.name}}</view><text class="archive-caption">{{item.city}} · {{item.shortName}}</text></view><text class="archive-arrow">›</text></view><view class="archive-card-tagline">{{item.tagline}}</view><view class="archive-badges"><text>世界田联 {{item.waLabel}}</text><text>中国田协 {{item.caaLabel}}</text></view><view class="archive-card-link"><text>阅读年度档案</text><text>→</text></view></navigator></block>
+    <block wx:else><view class="archive-list-heading"><text class="archive-h2">已收录赛事</text><text>{{races.length}} 场</text></view><navigator wx:for="{{races}}" wx:key="id" class="archive-directory-card" url="/pages/race-archive/race-archive?id={{item.id}}">
+      <view class="archive-card-top"><image wx:if="{{item.landmarkSrc}}" class="archive-landmark" src="{{item.landmarkSrc}}" mode="aspectFit" aria-hidden="true" /><view class="archive-card-copy"><view class="archive-race-name">{{item.name}}</view><view wx:if="{{item.tagline}}" class="archive-card-tagline">{{item.tagline}}</view></view><text class="archive-arrow" aria-hidden="true">›</text></view>
+      <view class="archive-badges"><view><text class="archive-certification-origin">世界田联</text><text>{{item.waLabel}}</text></view><view><text class="archive-certification-origin">中国田协</text><text>{{item.caaLabel}}</text></view></view>
+      <view class="archive-card-link"><text wx:if="{{item.archiveCount}}">{{item.archiveCount}}届档案</text><text>阅读年度档案 →</text></view>
+    </navigator></block>
     <view wx:if="{{selectionNote}}" class="archive-caption">{{selectionNote}}</view>
   </view>
 </view>

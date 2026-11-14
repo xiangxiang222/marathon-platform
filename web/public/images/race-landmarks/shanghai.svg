@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="96" viewBox="0 0 120 96" fill="none">
+  <title>上海东方明珠地标图标</title>
+  <g stroke="#505862" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M17 83V61h12v22m-9-27h6v5m65 22V64h12v19m-9-24h6v5" fill="#f1f3f5" stroke="#bcc4cc"/>
+    <path d="M22 68h3m-3 6h3m70-3h4m-4 6h4" stroke="#c9d0d6"/>
+    <path d="M57 32h6v34h-6z" fill="#e3e8ec"/>
+    <path d="M54 70 43 83h8l9-12m6-1 11 13h-8l-9-12" fill="#d2d9df"/>
+    <path d="M57 73h6v10h-6z" fill="#d2d9df"/>
+    <path d="M60 7v15"/>
+    <path d="M60 7v5" stroke="#ff1838" stroke-width="2"/>
+    <path d="M58 21h4v8h-4z" fill="#e3e8ec"/>
+    <circle cx="60" cy="30" r="4" fill="#dce1e5"/>
+    <circle cx="60" cy="45" r="9" fill="#f3f5f6"/>
+    <path d="M51.5 43h17m-17 4h17" stroke="#ff1838"/>
+    <path d="M57 37c-3 6-3 10 0 16m6-16c3 6 3 10 0 16" stroke="#b6bfc8" stroke-width="1"/>
+    <circle cx="60" cy="65" r="14" fill="#e3e8ec"/>
+    <path d="M46.5 62h27m-27 6h27" stroke="#8d98a2"/>
+    <path d="M55 52c-5 8-5 18 0 26m10-26c5 8 5 18 0 26" stroke="#b6bfc8" stroke-width="1"/>
+    <path d="M39 83h42v3H39z" fill="#d2d9df"/>
+    <path d="M12 86h96" stroke="#a4aeb8"/>
+    <path d="M20 90h27m7 0h18m7 0h21" stroke="#dce1e5"/>
+  </g>
+</svg>

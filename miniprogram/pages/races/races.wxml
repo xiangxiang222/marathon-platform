@@ -46,15 +46,23 @@
   </view>
 
   <view wx:if="{{!searching}}" class="home-race-catalog">
-    <view class="catalog-heading"><text class="catalog-title">热门赛事档案</text><navigator class="catalog-all" url="/pages/race-catalog/race-catalog">全部档案 ›</navigator></view>
+    <view class="catalog-heading"><text class="catalog-title">热门赛事档案</text><navigator class="catalog-all" url="/pages/race-catalog/race-catalog">全部档案 <text aria-hidden="true">›</text></navigator></view>
+    <view class="catalog-intro">历年路线、中签与完赛记忆</view>
     <view wx:if="{{catalogError}}" class="catalog-state"><text>{{catalogError}}</text><button class="catalog-retry" bindtap="loadCatalog">重试</button></view>
     <view wx:elif="{{!catalogLoaded}}" class="catalog-state"><text>正在加载赛事档案…</text></view>
     <view wx:elif="{{!catalogRaces.length}}" class="catalog-state"><text>赛事档案整理中</text></view>
-    <navigator wx:for="{{catalogRaces}}" wx:key="id" class="catalog-race" url="/pages/race-archive/race-archive?id={{item.id}}">
-      <view class="catalog-race-heading"><text class="catalog-race-name">{{item.name}}</text><text class="catalog-race-meta">{{item.shortName}} · {{item.city}}</text></view>
-      <view class="catalog-certifications"><text>世界田联 {{item.waLabel}}</text><text>中国田协 {{item.caaLabel}}</text></view>
-      <text wx:if="{{item.tagline}}" class="catalog-tagline">{{item.tagline}}</text>
-    </navigator>
+    <view wx:else class="catalog-grid">
+      <navigator wx:for="{{catalogRaces}}" wx:key="id" class="catalog-race" url="/pages/race-archive/race-archive?id={{item.id}}">
+        <image wx:if="{{item.landmarkSrc}}" class="catalog-landmark" src="{{item.landmarkSrc}}" mode="aspectFit" aria-hidden="true" />
+        <view class="catalog-race-name">{{item.name}}</view>
+        <view class="catalog-certifications">
+          <view><text>田联 · {{item.waLabel}}</text><text wx:if="{{item.waYear}}" class="catalog-certification-year">{{item.waYear}}年</text></view>
+          <view><text>田协 · {{item.caaLabel}}</text><text wx:if="{{item.caaYear}}" class="catalog-certification-year">{{item.caaYear}}年</text></view>
+          <text wx:if="{{item.certificationYear}}" class="catalog-certification-year">{{item.certificationYear}}认证</text>
+        </view>
+        <view wx:if="{{item.archiveCount}}" class="catalog-editions">{{item.archiveCount}}届档案 <text aria-hidden="true">›</text></view>
+      </navigator>
+    </view>
   </view>
 
   <view wx:if="{{!searching && reminders.length}}" class="reminder">

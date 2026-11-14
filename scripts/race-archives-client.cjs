@@ -30,7 +30,30 @@ async function snapshot(page, name, width) {
   assert.deepEqual(metrics.tinyText, [], name + ': fonts below 12px');
   const filename = name + '-' + width + '.png';
   await page.screenshot({ path: path.join(OUT, filename), fullPage: true });
-  report.views.push({ name, ...metrics, screenshot: filename });
+  const view = { name, ...metrics, screenshot: filename };
+  if (name.startsWith('home')) {
+    const module = page.locator('.home-catalog');
+    const moduleMetrics = await module.evaluate(element => {
+      const box = element.getBoundingClientRect();
+      const cards = [...element.querySelectorAll('.catalog-race')].map(card => { const rect = card.getBoundingClientRect(); return { left: rect.left, top: rect.top, right: rect.right, width: rect.width, height: rect.height }; });
+      const images = [...element.querySelectorAll('.catalog-landmark img')].map(image => ({ src: image.getAttribute('src'), loaded: image.complete && image.naturalWidth > 0 }));
+      return { width: box.width, height: box.height, cards, images };
+    });
+    for (const card of moduleMetrics.cards) {
+      assert.ok(card.width >= 44 && card.height >= 44, name + ': archive card hit area');
+      assert.ok(card.left >= 0 && card.right <= width, name + ': card stays inside viewport');
+    }
+    if (moduleMetrics.cards.length) {
+      assert.equal(moduleMetrics.cards.length, 3);
+      assert.ok(moduleMetrics.cards.every(card => Math.abs(card.top - moduleMetrics.cards[0].top) < 1), 'Three archive cards remain on one row');
+      assert.equal(moduleMetrics.images.length, 3);
+      assert.ok(moduleMetrics.images.every(image => image.loaded), 'All three local landmark icons load');
+    }
+    const moduleFilename = name + '-module-' + width + '.png';
+    await module.screenshot({ path: path.join(OUT, moduleFilename) });
+    view.module = { ...moduleMetrics, screenshot: moduleFilename };
+  }
+  report.views.push(view);
 }
 async function main() {
   fs.mkdirSync(OUT, { recursive: true });
@@ -64,10 +87,36 @@ async function main() {
       await page.locator('.catalog-race').first().waitFor();
       assert.equal(await page.locator('.home-catalog .catalog-race').count(), 3);
       for (const race of catalog.races) assert.ok((await page.locator('.home-catalog').innerText()).includes(race.name));
+      await page.locator('.catalog-landmark img').evaluateAll(images => Promise.all(images.map(image => image.decode())));
+      for (const race of catalog.races) {
+        assert.equal(await page.locator('.home-catalog .catalog-race').filter({ has: page.getByRole('heading', { name: race.name, exact: true }) }).getAttribute('href'), '/marathon/race-catalog/' + race.id);
+      }
       await snapshot(page, 'home', width);
+      await page.locator('.home-catalog .catalog-race').first().click();
+      await page.locator('.archive-tabs').waitFor();
+      assert.equal(new URL(page.url()).pathname, '/marathon/race-catalog/beijing');
+      await page.goBack({ waitUntil: 'networkidle' });
+      await page.locator('.home-catalog .catalog-race').first().waitFor();
+      await page.getByLabel('搜索赛事名称或城市').fill('北京');
+      await page.waitForFunction(() => !document.querySelector('.home-catalog'));
+      await page.getByLabel('搜索赛事名称或城市').fill('');
+      await page.locator('.home-catalog').waitFor();
+      let unavailable = true;
+      const homeFault = async route => unavailable ? route.fulfill({ status: 503, contentType: 'application/json', body: JSON.stringify({ error: '测试注入：首页档案暂时不可用' }) }) : route.fallback();
+      await page.route('**/marathon/api/race-catalog', homeFault);
+      await page.reload({ waitUntil: 'networkidle' });
+      await page.locator('.catalog-error').waitFor();
+      assert.equal(await page.locator('.home-results .load-error').count(), 0, 'Archive failure is isolated from the race calendar');
+      await snapshot(page, 'home-error', width);
+      unavailable = false;
+      await page.locator('.catalog-error').getByRole('button', { name: '重试', exact: true }).click();
+      await page.locator('.home-catalog .catalog-race').first().waitFor();
+      assert.equal(await page.locator('.home-catalog .catalog-race').count(), 3);
+      await page.unroute('**/marathon/api/race-catalog', homeFault);
       await page.getByRole('link', { name: '全部档案 ›', exact: true }).click();
       await page.locator('.archive-directory-card').first().waitFor();
       assert.equal(await page.locator('.archive-directory-card').count(), 3);
+      await snapshot(page, 'directory-all', width);
     });
     await check('independent certification filters and search at ' + width, async () => {
       await page.getByLabel('世界田联标牌').selectOption('白金标');

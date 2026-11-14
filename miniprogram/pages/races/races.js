@@ -1,4 +1,9 @@
 const { request } = require("../../utils/request");
+const landmarks = {
+  beijing: '/images/race-landmarks/beijing.png',
+  shanghai: '/images/race-landmarks/shanghai.png',
+  xiamen: '/images/race-landmarks/xiamen.png'
+};
 
 function pageNumbers(page, pages) {
   const total = Math.max(1, Number(pages) || 1);
@@ -158,15 +163,20 @@ Page({
     this.setData({ catalogLoading: true, catalogError: "" });
     return request("/race-catalog")
       .then((data) => {
-        const certification = (value) => {
-          if (!value || !value.label) return "待核实";
-          return (value.year ? value.year + " · " : "") + value.label;
-        };
-        const catalogRaces = (Array.isArray(data.races) ? data.races : []).slice(0, 3).map((race) => ({
-          ...race,
-          waLabel: certification(race.worldAthletics),
-          caaLabel: certification(race.caa)
-        }));
+        const catalogRaces = (Array.isArray(data.races) ? data.races : []).slice(0, 3).map((race) => {
+          const wa = race.worldAthletics || {}, caa = race.caa || {};
+          const sameYear = wa.label && caa.label && wa.year && String(wa.year) === String(caa.year);
+          return {
+            ...race,
+            landmarkSrc: landmarks[race.id] || "",
+            waLabel: wa.label || "待核实",
+            caaLabel: caa.label || "待核实",
+            certificationYear: sameYear ? String(wa.year) : "",
+            waYear: sameYear ? "" : String(wa.year || ""),
+            caaYear: sameYear ? "" : String(caa.year || ""),
+            archiveCount: Array.isArray(race.years) ? race.years.length : 0
+          };
+        });
         this.setData({ catalogRaces, catalogLoaded: true, catalogLoading: false });
       })
       .catch(() => {
