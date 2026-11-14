@@ -16,6 +16,7 @@ const report = { checks: [], errors: [], screenshots: [], passed: false };
 let server, browser;
 async function check(name, fn) { await fn(); report.checks.push(name); }
 async function noOverflow(page) { assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'page fits viewport'); }
+async function fillTarget(page,value) { const parts=value.split(':'); await page.getByLabel('目标小时',{exact:true}).fill(parts[0]); await page.getByLabel('目标分钟',{exact:true}).fill(parts[1]); await page.getByLabel('目标秒',{exact:true}).fill(parts[2]); }
 async function main() {
   fs.mkdirSync(directory, {recursive:true});
   const db = getDb(); seedRadarDemo(db);
@@ -35,7 +36,7 @@ async function main() {
     await page.getByRole('button',{name:'寻找拿奖机会'}).waitFor();
     await check('target search and responsive list '+width,async()=>{
       await page.getByRole('button',{name:'男子组',exact:true}).click();
-      await page.getByLabel('目标完赛时间',{exact:true}).fill('2:20:00');
+      await fillTarget(page,'2:20:00');
       await page.getByRole('button',{name:'寻找拿奖机会'}).click();
       await page.getByText('滨湖马拉松 · 模拟赛事',{exact:true}).waitFor();
       await noOverflow(page);
@@ -59,7 +60,7 @@ async function main() {
     if(width===390)await check('gender search and unavailable distance retain honest empty states',async()=>{
       await page.getByRole('button',{name:'‹ 返回比赛列表',exact:true}).click();
       await page.getByRole('button',{name:'女子组',exact:true}).click();
-      await page.getByLabel('目标完赛时间',{exact:true}).fill('2:40:00');
+      await fillTarget(page,'2:40:00');
       await page.getByRole('button',{name:'寻找拿奖机会'}).click();
       await page.getByText('滨湖马拉松 · 模拟赛事',{exact:true}).waitFor();
       assert.ok(await page.locator('.radar-race-card').count() >= 1);
@@ -69,7 +70,7 @@ async function main() {
       await page.getByRole('heading',{name:'这个项目还没有收录资料',exact:true}).waitFor();
       await page.getByRole('button',{name:'全马',exact:true}).click();
       await page.getByRole('button',{name:'男子组',exact:true}).click();
-      await page.getByLabel('目标完赛时间',{exact:true}).fill('2:20:00');
+      await fillTarget(page,'2:20:00');
       await page.getByRole('button',{name:'寻找拿奖机会'}).click();
       await page.getByText('滨湖马拉松 · 模拟赛事',{exact:true}).waitFor();
     });
