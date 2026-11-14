@@ -4,7 +4,7 @@ const assert = require('node:assert/strict');
 const request = require('supertest');
 const { app } = require('../src/index');
 const { getDb } = require('../src/db');
-const { raceArchiveId } = require('../src/race-catalog');
+const { raceArchiveId, editionCoverage, mediaCanPublish, publicEdition } = require('../src/race-catalog');
 const base = '/marathon/api';
 
 test('catalog searches names and aliases and intersects independent certification filters', async () => {
@@ -41,6 +41,7 @@ test('annual archives retain each year independently and resolve all evidence re
     for (const source of body.archive.sources) {
       assert.match(source.url, /^https:\/\//);
       assert.ok(source.title && source.publisher);
+      if (source.publishedAt) assert.ok(source.publishedAt.slice(0, 10) <= body.archive.updatedAt, id + ' uses a future source: ' + source.id);
     }
     const walk = value => {
       if (Array.isArray(value)) return value.forEach(walk);
@@ -56,6 +57,12 @@ test('annual archives retain each year independently and resolve all evidence re
       assert.match(edition.year, /^20\d{2}$/);
       assert.ok(!edition.date || edition.date.startsWith(edition.year + '-'));
       assert.ok(edition.route && edition.registration && edition.participation);
+      assert.ok(edition.coverage && Array.isArray(edition.coverage.available) && Array.isArray(edition.coverage.missing));
+      for (const key of ['collection', 'transport', 'raceDay']) {
+        const group = edition.logistics?.[key];
+        if (group && Object.entries(group).some(([field, value]) => field !== 'sourceIds' && value)) assert.ok(group.sourceIds.length, id + ' ' + edition.year + ' ' + key + ' source missing');
+      }
+      for (const tip of edition.logistics?.tips || []) assert.ok(tip.title && tip.body && tip.sourceIds.length);
       if (edition.route.start || edition.route.finish || edition.route.mapUrl) assert.ok(edition.route.sourceIds.length, id + ' ' + edition.year + ' route source missing');
       if (edition.registration.method || edition.registration.applicants || edition.registration.lotteryRate) assert.ok(edition.registration.sourceIds.length, id + ' ' + edition.year + ' registration source missing');
       if (edition.date && edition.date <= '2026-11-14') assert.ok(edition.gear.length, id + ' ' + edition.year + ' needs verified race materials');
@@ -64,6 +71,35 @@ test('annual archives retain each year independently and resolve all evidence re
   }
   await request(app).get(base + '/race-catalog/not-a-race').expect(404);
   await request(app).get(base + '/race-catalog/__proto__').expect(404);
+});
+
+test('coverage distinguishes known facts, missing evidence and future results without inventing completeness', () => {
+  const minimal = { year: '2026', date: '2026-12-06', route: {}, registration: {}, participation: {}, gear: [], results: [] };
+  const archive = { updatedAt: '2026-11-14', stories: [] };
+  const empty = editionCoverage(minimal, archive);
+  assert.equal(empty.upcoming, true);
+  assert.deepEqual(empty.available, []);
+  assert.ok(empty.missing.includes('官方中签率'));
+  assert.ok(!empty.missing.includes('完赛人数'), 'future results are pending, not an incomplete historical result');
+  const known = editionCoverage({ ...minimal, date: '2026-01-11', logistics: { collection: { time: '2026-01-08', place: '当届领物点', sourceIds: ['fixture'] } } }, archive);
+  assert.ok(known.available.some(section => section.id === 'logistics'));
+  assert.ok(!known.missing.includes('领物时间与地点'));
+  assert.ok(known.missing.includes('完赛人数'));
+});
+
+test('public media requires documented rights and unlicensed cached originals are unavailable', async () => {
+  assert.equal(mediaCanPublish(undefined), false);
+  assert.equal(mediaCanPublish({ status: 'licensed', holder: 'fixture', title: '图' }), false);
+  const rights = { status: 'licensed', holder: 'fixture', title: '图', licenseUrl: 'https://example.org/license', attribution: '图：fixture' };
+  assert.equal(mediaCanPublish(rights), true);
+  const archive = { updatedAt: '2026-11-14', stories: [] };
+  const raw = { date: '2026-01-11', route: { mapUrl: '/marathon/images/race-archives/internal.png' }, gear: [{ imageUrl: 'https://example.org/photo.png' }] };
+  const filtered = publicEdition(raw, archive);
+  assert.equal(filtered.route.mapUrl, '');
+  assert.equal(filtered.gear[0].imageUrl, '');
+  assert.equal(raw.gear[0].imageUrl, 'https://example.org/photo.png', 'Research record remains intact');
+  assert.equal(publicEdition({ ...raw, route: { ...raw.route, mediaRights: rights } }, archive).route.mapUrl, raw.route.mapUrl);
+  await request(app).get('/marathon/images/race-archives/beijing-2026-route-044da27499.jpg').expect(404);
 });
 
 test('public registration pages and permanent archives link only to the matching full race', async () => {

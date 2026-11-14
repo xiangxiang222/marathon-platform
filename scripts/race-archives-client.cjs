@@ -136,11 +136,11 @@ async function main() {
     });
     for (const race of catalog.races) {
       const data = archives[race.id];
-      await check(race.id + ' annual sections and sources at ' + width, async () => {
+      await check(race.id + ' annual sections and participant guides at ' + width, async () => {
         await page.goto(origin + '/marathon/race-catalog/' + race.id, { waitUntil: 'networkidle' });
         await page.locator('.archive-tabs').waitFor();
         assert.equal(await page.getByLabel('选择档案年份').inputValue(), data.defaultYear || data.latestYear);
-        for (const [tab, label] of [['overview', '概览'], ['route', '赛道'], ['registration', '报名中签'], ['participation', '参赛完赛'], ['gear', '装备收藏'], ['stories', '赛事故事']]) {
+        for (const [tab, label] of [['overview', '概览'], ['route', '赛道'], ['registration', '报名中签'], ['logistics', '参赛指南'], ['participation', '参赛完赛'], ['gear', '装备收藏'], ['stories', '赛事故事']]) {
           await page.getByRole('button', { name: label, exact: true }).click();
           assert.equal(new URL(page.url()).searchParams.get('tab'), tab);
           await snapshot(page, race.id + '-' + tab, width);
@@ -150,12 +150,19 @@ async function main() {
           await page.getByRole('button', { name: '报名中签', exact: true }).click();
           const edition = data.archive.editions.find(item => String(item.year) === String(year));
           assert.match(await page.locator('.archive-panel h2').first().innerText(), new RegExp(String(year)));
-          const sourceTitles = data.archive.sources.filter(source => edition.registration.sourceIds.includes(source.id)).map(source => source.title);
-          for (const title of sourceTitles) assert.ok((await page.locator('.archive-sources').innerText()).includes(title));
+          assert.equal(await page.locator('.archive-sources').count(), 0, 'Sources stay in the editorial record, outside the reading UI');
+          assert.equal(await page.getByText('复制原文链接', {exact:true}).count(), 0);
           const facts = await page.locator('.archive-facts').innerText();
           for (const key of ['applicants', 'eligibleApplicants', 'lotteryPool', 'drawQuota', 'directQuota', 'lotteryRate']) {
             if (edition.registration[key]) assert.ok(facts.includes(String(edition.registration[key])), key + ' in ' + year);
           }
+          await page.locator('.archive-tabs').getByRole('button', { name: '参赛指南', exact: true }).click();
+          await page.getByRole('heading', { name: year + ' 年参赛指南', exact: true }).waitFor();
+          for (const key of ['collection','transport','raceDay']) {
+            const group = edition.logistics && edition.logistics[key] || {};
+            for (const [field,value] of Object.entries(group)) if (field !== 'sourceIds' && value) assert.ok((await page.locator('.archive-body').innerText()).includes(value));
+          }
+
           assert.equal(new URL(page.url()).searchParams.get('year'), String(year));
           await page.getByRole('button', { name: '参赛完赛', exact: true }).click();
           assert.equal(await page.locator('.archive-result').count(), edition.results.length);
