@@ -33,7 +33,7 @@
     "test:content-sync": "node --test scripts/content-sync.test.cjs scripts/content-news-enrichment.test.cjs scripts/athlete-biography.test.cjs scripts/content-date.test.cjs server/test/pacer-people.test.js",
     "test:profiles": "node --test --test-concurrency=1 --require ./server/test/setup-env.js server/test/content-profiles.test.js server/test/pacer-people.test.js",
     "seed:radar": "node scripts/seed-radar-demo.cjs",
-    "test:radar": "node --test --test-concurrency=1 --require ./server/test/setup-env.js server/test/radar.test.js && node scripts/radar-mini-regression.cjs && npm run build && node scripts/radar-live-acceptance.cjs && node scripts/radar-admin-live.cjs"
+    "test:radar": "node scripts/sync-radar-preview.cjs --check && node --test --test-concurrency=1 --require ./server/test/setup-env.js server/test/radar.test.js && node scripts/radar-mini-regression.cjs && npm run build && node scripts/radar-live-acceptance.cjs && node scripts/radar-admin-live.cjs"
   },
   "devDependencies": {
     "concurrently": "^9.1.2",

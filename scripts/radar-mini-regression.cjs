@@ -11,21 +11,22 @@ const base = { profile: { gender: '男', targets: {full:'2:20:00'} }, note:'参�
 function fixture() {
   let definition, signedIn = true, reply = async () => copy(base);
   const calls=[];
-  vm.runInNewContext(fs.readFileSync(pageFile,'utf8'),{Page(value){definition=value;},wx:{pageScrollTo(){}},require(name){assert.equal(name,'../../utils/request');return {ready:()=>signedIn, request:async(endpoint,method='GET',body)=>{calls.push({endpoint,method,body});return reply(endpoint,method,body);}};}});
+  vm.runInNewContext(fs.readFileSync(pageFile,'utf8'),{Page(value){definition=value;},wx:{pageScrollTo(){}},require(name){if(name==='../../utils/radar-preview')return require('../miniprogram/utils/radar-preview');assert.equal(name,'../../utils/request');return {ready:()=>signedIn, request:async(endpoint,method='GET',body)=>{calls.push({endpoint,method,body});return reply(endpoint,method,body);}};}});
   const page={...definition,data:copy(definition.data),setData(patch){Object.assign(this.data,patch);}};
   return {page,calls,logout(){signedIn=false;},reply(fn){reply=fn;}};
 }
 async function main(){
   const f=fixture();await f.page.onShow();assert.equal(f.page.data.filtered.length,1);assert.equal(f.page.data.filtered[0].gapLabel,'比参考线快 5分');
-  f.page.onTarget({detail:{value:'2:15:00'}});await f.page.save();const save=f.calls.find(x=>x.method==='PUT');assert.equal(save.body.targets.full,'2:15:00');assert.equal(f.page.data.filter,'opportunity');
+  f.page.onTarget({detail:{value:'2:15:00'}});await f.page.save();const save=f.calls.find(x=>x.method==='PUT');assert.equal(save.body.targets.full,'02:15:00');assert.equal(f.page.data.filter,'opportunity');
   f.page.openDetail({currentTarget:{dataset:{id:'demo:full-men'}}});assert.equal(f.page.data.yearRows.length,8);assert.equal(f.page.data.yearRows[1].clock,'—');
   f.page.chooseYear({currentTarget:{dataset:{year:'2025'}}});assert.equal(f.page.data.yearRows[0].name,'模拟乙');assert.equal(f.page.data.yearTiming,'净计时');assert.equal(f.page.data.yearSource,'模拟2025');
   f.page.openEntry();assert.equal(f.page.data.consent,false);const count=f.calls.length;await f.page.saveEntry();assert.equal(f.calls.length,count);assert.match(f.page.data.entryMessage,/确认/);
   f.page.data.selected.demo=false;f.page.onEntryClock({detail:{value:'2:10:00'}});f.page.onEntryDate({detail:{value:'2026-04-12'}});f.page.onConsent({detail:{value:['agree']}});await f.page.saveEntry();const entry=f.calls.find(x=>x.endpoint==='/me/radar/entries/demo'&&x.method==='PUT');assert.ok(entry);assert.equal(entry.body.clock,'2:10:00');assert.equal(entry.body.consent,true);assert.equal(entry.body.distance,'full');assert.equal(f.page.data.entryOpen,false);
   await f.page.withdrawEntry();assert.ok(f.calls.find(x=>x.method==='DELETE'));
-  f.logout();await f.page.onShow();assert.equal(f.page.data.rows.length,0);assert.equal(f.page.data.selected,null);assert.equal(f.page.data.loggedIn,false);
+  f.logout();await f.page.onShow();assert.equal(f.page.data.preview,true);assert.ok(f.page.data.rows.every(row=>row.preview));assert.equal(f.page.data.selected,null);assert.equal(f.page.data.loggedIn,false);
   const r=fixture();r.reply(async()=>{throw Object.assign(Error('登录已失效'),{status:401});});await r.page.onShow();assert.equal(r.page.data.loggedIn,false);assert.equal(r.page.data.loading,false);
-  const stale=fixture();let release;stale.reply(()=>new Promise(resolve=>{release=resolve;}));const pending=stale.page.load();stale.logout();await stale.page.load();release(copy(base));await pending;assert.equal(stale.page.data.rows.length,0);
+  const stale=fixture();let release;stale.reply(()=>new Promise(resolve=>{release=resolve;}));const pending=stale.page.load();stale.logout();await stale.page.load();release(copy(base));await pending;assert.equal(stale.page.data.preview,true);assert.ok(stale.page.data.rows.every(row=>row.preview));
+  const demo=fixture();demo.reply(async()=>{throw Error('接口不可用');});await demo.page.load();assert.equal(demo.page.data.preview,true);const before=demo.calls.length;demo.page.onTimePart({currentTarget:{dataset:{part:'hours'}},detail:{value:'02'}});await demo.page.save();assert.equal(demo.calls.length,before);assert.ok(demo.page.data.filtered.length);demo.page.exitPreview();assert.equal(demo.page.data.preview,false);assert.equal(demo.page.data.rows.length,0);
   console.log('拿奖雷达小程序：目标保存、机会筛选、历届切换、缺名次、匿名授权/撤回、退出和过期请求检查通过。');
 }
 main().catch(error=>{console.error(error);process.exitCode=1;});
