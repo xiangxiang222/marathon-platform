@@ -1,133 +1,80 @@
 <template>
   <main class="radar-page">
-    <header class="topbar">
-      <router-link to="/" aria-label="返回">‹</router-link>
-      <h1>拿奖雷达</h1>
-      <span></span>
-    </header>
-    <section v-if="!signedIn" class="block radar-login">
-      <h2>找到适合你的拿奖赛事</h2>
-      <p class="hint">登录后，结合个人目标成绩与赛事奖项，查看适合你的比赛。</p>
-      <button class="primary" type="button" @click="login">登录后使用</button>
-    </section>
-    <section v-else class="block">
-      <div class="radar-heading"><span class="radar-kicker">拿奖雷达</span><h2>我的跑步目标</h2><p class="hint">结合目标成绩、年龄组与参赛地区，寻找适合你的比赛。</p></div>
-      <form class="stack" @submit.prevent="save">
-        <div class="field-label">基本资料 <small>选填</small></div><div class="radar-label">性别</div>
-        <div class="modes">
-          <button type="button" :class="{ on: gender === '' }" @click="gender = ''">不填</button>
-          <button type="button" :class="{ on: gender === '男' }" @click="gender = '男'">男</button>
-          <button type="button" :class="{ on: gender === '女' }" @click="gender = '女'">女</button>
-        </div>
-        <label>出生年月<span>选填</span><input v-model="birth" placeholder="例如 1986-06" /></label>
-        <label>所属省份<span>选填</span><select v-model="province">
-          <option value="">省份，可空</option>
-          <option v-for="item in regions" :key="item.name" :value="item.name">{{ item.name }}</option>
-        </select></label>
-        <div class="field-label target-heading">目标成绩 <small>留空使用已有 PB</small></div>
-        <label>全马目标<span>选填</span><input v-model="targets.full" placeholder="例如 3:30:00，留空使用 PB" /></label>
-        <label>半马目标<span>选填</span><input v-model="targets.half" placeholder="例如 1:40:00" /></label>
-        <label>10 公里目标<span>选填</span><input v-model="targets['10k']" placeholder="例如 00:45:00" /></label>
-        <label>5 公里目标<span>选填</span><input v-model="targets['5k']" placeholder="例如 00:22:00" /></label>
-        <button class="primary" type="submit">保存</button>
-      </form>
-      <details class="radar-notes"><summary>计算依据与资料说明</summary><p class="hint">{{ note }} 天气和赛道修正尚未开通。</p><p class="hint">性别、出生年月和省份用于匹配年龄组和本地籍，不收身份证。出生月份与比赛月相同时，按小一岁计算。</p></details>
-      <p v-if="message" class="err">{{ message }}</p>
-    </section>
-    <section v-if="signedIn" class="block">
-      <div class="radar-results-heading"><h2>适合我的奖项</h2><span>{{ rows.length }} 项匹配</span></div>
-      <article v-for="item in rows" :key="item.ruleId" class="run">
-        <p><router-link :to="'/races/' + item.race.id">{{ item.race.raceDate }} {{ item.race.name }}</router-link></p>
-        <p>{{ item.kindLabel }} · {{ item.title }} · {{ item.amountText }}<template v-if="item.stack"> · 可叠加</template></p>
-        <p class="hint">{{ item.reason }}</p>
-        <p v-if="item.clockLabel" class="hint">{{ item.clockLabel }}</p>
-        <p class="hint">来源 {{ item.source }}<template v-if="item.cutoffSource"> · 往届 {{ item.cutoffSource }}</template></p>
-      </article>
-      <p v-if="ready && !rows.length" class="hint">还没有对得上的奖。奖项要在后台按规程录入。</p>
-    </section>
+    <header class="topbar"><router-link to="/" aria-label="返回">‹</router-link><h1>拿奖雷达</h1><span /></header>
+    <div class="radar-body">
+      <template v-if="!selected">
+        <header class="hero"><span class="eyebrow">为下一次站上领奖台</span><h2>把实力，跑成名次。</h2><p>设一个目标，找到更适合你的比赛。</p><div class="hero-mark" aria-hidden="true"><i /><i /><i /><b>↗</b></div></header>
+        <section v-if="!signedIn" class="panel login-panel"><h3>看看你的实力，适合跑哪场</h3><p>结合历届前八与今年已知阵容，寻找拿奖机会。</p><button class="primary" @click="login">登录后使用</button></section>
+        <template v-else>
+          <form class="panel target-panel" @submit.prevent="search">
+            <div class="section-heading"><h3>你的比赛目标</h3><span>首期 · 男女前八</span></div>
+            <div class="segments" role="group" aria-label="选择项目"><button v-for="item in distances" :key="item.key" type="button" :class="{on:distance===item.key}" :aria-pressed="distance===item.key" @click="distance=item.key">{{ item.label }}</button></div>
+            <div class="segments gender" role="group" aria-label="参赛性别"><button v-for="item in ['男','女']" :key="item" type="button" :class="{on:gender===item}" :aria-pressed="gender===item" @click="gender=item">{{ item }}子组</button></div>
+            <label class="target-label" for="radar-target">目标完赛时间</label><input id="radar-target" v-model="targets[distance]" class="target-input" placeholder="例如 2:20:00" autocomplete="off" maxlength="12" /><p class="caption">留空使用已有同项目 PB；填写后按目标情景比较。</p>
+            <button class="primary search-button" :disabled="busy || loading">{{ busy ? '正在寻找…' : '寻找拿奖机会' }}<span aria-hidden="true">↗</span></button>
+          </form>
+          <div v-if="message" class="error" role="alert">{{ message }}<button type="button" @click="load">重新加载</button></div>
+          <div class="results-heading"><h3>值得你跑的下一场</h3><span>{{ visible.length }} 个组别</span></div>
+          <div class="filters" role="group" aria-label="筛选比赛"><button :class="{on:filter==='all'}" :aria-pressed="filter==='all'" @click="filter='all'">全部参考</button><button :class="{on:filter==='opportunity'}" :aria-pressed="filter==='opportunity'" @click="filter='opportunity'">有竞争力</button></div>
+          <p v-if="loading" class="panel empty" role="status">正在比较目标与赛事资料…</p>
+          <div v-else-if="!visible.length" class="panel empty"><h3>{{ filter==='opportunity' ? '暂时没有匹配的拿奖机会' : '这个项目还没有收录资料' }}</h3><p>{{ filter==='opportunity' ? '可以调整目标，或查看“全部参考”里的历史门槛。' : '试试其他项目。资料更新后会在这里出现。' }}</p><button v-if="filter==='opportunity'" class="text-button" @click="filter='all'">查看全部参考 →</button></div>
+          <article v-for="item in visible" :key="item.id" class="panel radar-race-card">
+            <div class="card-top"><span class="level" :class="item.level">{{ item.levelLabel }}</span><span v-if="item.demo" class="demo">模拟数据</span></div>
+            <h3>{{ item.race.name }}</h3><p class="caption">{{ item.race.raceDate }} · {{ item.race.city }} · {{ item.gender }}子{{ item.distanceLabel }}</p>
+            <div class="metrics"><div><span>近 {{ item.history.sampleCount || '—' }} 届奖励线参考</span><strong>{{ item.history.clock || '待收录' }}</strong><small>奖励前 {{ item.awardDepth }} 名</small></div><div><span>{{ item.ability?.label || '我的比较成绩' }}</span><strong>{{ item.ability?.clock || '—' }}</strong><small class="gap">{{ gapLabel(item.gap) }}</small></div></div>
+            <div class="competition-line">今年已知 {{ item.competition.knownCount }} 人<span v-if="item.competition.fasterCount !== null"> · {{ item.competition.fasterCount }} 人 PB 更快</span><span v-else> · 补充目标后比较</span></div>
+            <button class="detail-button" :aria-label="'查看' + item.race.name + '的拿奖分析'" @click="open(item)"><span>历年前八与今年阵容</span><span aria-hidden="true">↗</span></button>
+          </article>
+          <details class="method"><summary>拿奖机会是怎么比较的？</summary><p>按同项目、同性别与当届奖励范围比较，首期最多前八。近三届同计时口径的奖励末位成绩取中位数；今年已知更快选手会提示竞争变化。</p><p>名单可能不完整，PB 不等于比赛日表现。目标仅用于情景比较，不生成获奖概率。</p></details>
+        </template>
+      </template>
+      <template v-else>
+        <button class="back" @click="close">‹ 返回比赛列表</button>
+        <header class="detail-hero"><span class="eyebrow">{{ selected.gender }}子{{ selected.distanceLabel }} · {{ timingLabel(selected.timing) }}</span><span v-if="selected.demo" class="demo">模拟数据 · 非真实成绩</span><h2>{{ selected.race.name }}</h2><p>{{ selected.race.raceDate }} · {{ selected.race.city }}</p></header>
+        <section class="panel assessment"><span class="level" :class="selected.level">{{ selected.levelLabel }}</span><p>{{ selected.reason }}</p><div class="metrics"><div><span>历史奖励线</span><strong>{{ selected.history.clock || '待收录' }}</strong></div><div><span>{{ selected.ability?.label || '我的比较成绩' }}</span><strong>{{ selected.ability?.clock || '—' }}</strong></div></div><p class="gap">{{ gapLabel(selected.gap) }}</p><p v-if="selected.history.rangeLabel" class="caption">{{ selected.history.years.join(' / ') }} 年 · 奖励线范围 {{ selected.history.rangeLabel }}</p></section>
+        <section class="panel"><div class="section-heading"><h3>当届奖励</h3><span>前 {{ selected.awardDepth }} 名</span></div><p class="copy">{{ selected.eligibility || '领奖资格以当届规程为准。' }}</p><div v-for="award in selected.awards" :key="award.place" class="award-row"><span>第 {{ award.place }} 名</span><b>{{ award.amount ? award.amount.toLocaleString() + ' 元' : '非现金奖励' }}</b></div><p v-if="selected.awards.length" class="caption">现金金额为税前参考；具体发放条件以当届规程为准。</p><p class="caption">{{ selected.ruleSource }}</p></section>
+        <section class="panel history-panel"><div class="section-heading"><h3>历年前八</h3><span>{{ edition ? timingLabel(edition.timing) : '成绩待收录' }}</span></div><p class="caption">逐届对照，不把历史成绩当作今年预测。</p><div class="year-tabs" role="group" aria-label="选择历史年份"><button v-for="year in selected.histories" :key="year.year" :class="{on:selectedYear===year.year}" :aria-pressed="selectedYear===year.year" @click="selectedYear=year.year">{{ year.year }}</button></div>
+          <p v-if="!edition" class="empty">历届成绩待收录</p>
+          <template v-else><p v-if="edition.timing!==selected.timing" class="caution">本届与该年计时口径不同，此年未计入奖励线参考。</p><table class="rank-table"><thead><tr><th>名次</th><th>选手</th><th>完赛成绩</th></tr></thead><tbody><tr v-for="row in yearRows" :key="row.place"><td :class="{rewarded:row.place<=selected.awardDepth}">{{ String(row.place).padStart(2,'0') }}</td><td>{{ row.name || '未提供姓名' }}</td><td>{{ row.clock || '—' }}</td></tr></tbody></table><div v-if="selected.ability" class="my-comparison"><span>{{ selected.ability.label }}</span><strong>{{ selected.ability.clock }}</strong></div><p class="caption">红色名次对应当届奖励范围。缺失成绩不作推算。</p><p class="caption">{{ edition.source }}</p></template>
+        </section>
+        <section class="panel entrants-panel"><div class="section-heading"><h3>今年已知阵容</h3><span>{{ selected.competition.knownCount }} 人</span></div><p class="copy">{{ selected.competition.notice }}</p><p v-if="!selected.competition.entrants.length" class="empty">暂无已知选手。没有人标记，不代表没有强手。</p><article v-for="person in selected.competition.entrants" :key="person.key" class="entrant"><div><b>{{ person.name || '已中签跑者' }}</b><strong>{{ person.clock }}</strong></div><p class="caption">{{ person.status }} · {{ person.evidence==='verified' ? '已核验资料' : '选手自报 · 待核验' }} · PB {{ person.pbDate }}</p></article>
+          <p v-if="selected.demo" class="caption">当前阵容为模拟资料，不接收真实参赛信息。</p>
+          <button v-else class="outline" @click="openEntry">{{ selected.myEntry ? '管理我的参赛线索' : '我已中签，补充阵容' }}</button>
+          <form v-if="entryOpen" class="entry-form" @submit.prevent="saveEntry"><h4>我的参赛线索</h4><p class="copy">提交本人该项目的 PB，并同步更新本场参赛状态。其他人可看到匿名 PB、日期、项目、性别和自报状态。</p><label>本人 PB<input v-model="entry.clock" placeholder="例如 2:18:30" required /></label><label>PB 日期<input v-model="entry.pbDate" type="date" required /></label><label>参赛状态<select v-model="entry.status"><option>中签</option><option>已缴费</option><option>已领物</option></select></label><label class="consent"><input v-model="consent" type="checkbox" /><span>同意将以上内容匿名用于今年阵容分析，可随时撤回。</span></label><p v-if="entryMessage" class="error" role="alert">{{ entryMessage }}</p><button class="primary" :disabled="busy">{{ busy ? '正在保存…' : '保存参赛线索' }}</button><button v-if="selected.myEntry" type="button" class="outline" :disabled="busy" @click="withdrawEntry">撤回雷达授权</button></form>
+        </section>
+        <router-link class="primary race-link" :to="'/races/'+selected.race.id">查看赛事详情 ↗</router-link><p class="footer-note">今年阵容与历史榜单分开统计。已知人数不能代表完整参赛名单，PB 仅作竞争参考。</p>
+      </template>
+    </div>
   </main>
 </template>
 
 <script setup>
-import { onMounted, reactive, ref } from "vue";
-import { api } from "../api";
-import { useRouter } from "vue-router";
-import { regions } from "../regions";
-
-const router = useRouter();
-const signedIn = ref(Boolean(localStorage.getItem("marathon_token")));
-function login() {
-  localStorage.setItem("marathon_return_after_login", "/radar");
-  router.push("/mine");
-}
-
-const note = ref("仅供参考。没有往届名次成绩时，不估算概率。");
-const gender = ref("");
-const birth = ref("");
-const province = ref("");
-const targets = reactive({ full: "", half: "", "10k": "", "5k": "" });
-const rows = ref([]);
-const message = ref("");
-const ready = ref(false);
-
-function apply(profile) {
-  gender.value = profile.gender || "";
-  birth.value = profile.birth || "";
-  province.value = profile.province || "";
-  targets.full = profile.targets.full || "";
-  targets.half = profile.targets.half || "";
-  targets["10k"] = profile.targets["10k"] || "";
-  targets["5k"] = profile.targets["5k"] || "";
-}
-
-async function load() {
-  if (!signedIn.value) return;
-  const data = await api("/radar");
-  note.value = data.note;
-  apply(data.profile);
-  rows.value = data.rows;
-  ready.value = true;
-  message.value = "";
-}
-
-async function save() {
-  if (!signedIn.value) { login(); return; }
-  message.value = "";
-  try {
-    await api("/me/radar", {
-      method: "PUT",
-      body: JSON.stringify({
-        gender: gender.value,
-        birth: birth.value,
-        province: province.value,
-        targets: { ...targets }
-      })
-    });
-    await load();
-  } catch (err) {
-    message.value = err.message;
-  }
-}
-
-onMounted(() => {
-  load().catch((err) => {
-    if (err.status === 401) {
-      signedIn.value = false;
-      localStorage.removeItem("marathon_token");
-      localStorage.removeItem("marathon_name");
-      return;
-    }
-    message.value = err.message;
-  });
-});
+import { computed, onBeforeUnmount, onMounted, reactive, ref, watch } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import { api } from '../api';
+const router=useRouter(),route=useRoute();
+const distances=[{key:'full',label:'全马'},{key:'half',label:'半马'},{key:'10k',label:'10 公里'},{key:'5k',label:'5 公里'}];
+const signedIn=ref(Boolean(localStorage.getItem('marathon_token'))),loading=ref(false),busy=ref(false),message=ref('');
+const gender=ref(''),birth=ref(''),province=ref(''),distance=ref('full'),filter=ref('all'),rows=ref([]),targets=reactive({full:'',half:'','10k':'','5k':''});
+const selected=ref(null),selectedYear=ref(0),entryOpen=ref(false),entryMessage=ref(''),consent=ref(false),entry=reactive({clock:'',pbDate:'',status:'中签'});
+let sequence=0;
+const visible=computed(()=>rows.value.filter(item=>item.distance===distance.value&&(!gender.value||item.gender===gender.value)&&(filter.value!=='opportunity'||['priority','challenge'].includes(item.level))));
+const edition=computed(()=>selected.value?.histories.find(item=>item.year===selectedYear.value));
+const yearRows=computed(()=>Array.from({length:8},(_,index)=>{const found=edition.value?.rows.find(item=>item.place===index+1);return found||{place:index+1,name:'未收录',clock:''};}));
+function timingLabel(value){return value==='gun'?'枪声成绩':'净计时';}
+function gapLabel(value){if(value==null)return '待补充可比资料';if(value===0)return '与历史参考线相同';const sec=Math.abs(value);return '比参考线'+(value>0?'快 ':'慢 ')+(sec>=60?Math.floor(sec/60)+'分':'')+(sec%60?sec%60+'秒':sec<60?'0秒':'');}
+function login(){localStorage.setItem('marathon_return_after_login','/radar');router.push('/mine');}
+function syncRoute(){const item=rows.value.find(row=>row.race.id===route.query.raceId&&(!route.query.groupId||row.groupId===route.query.groupId));selected.value=item||null;if(item&&!item.histories.some(year=>year.year===selectedYear.value))selectedYear.value=item.histories[0]?.year||0;}
+function open(item){entryOpen.value=false;consent.value=false;entryMessage.value='';selectedYear.value=item.histories[0]?.year||0;router.push({path:'/radar',query:{raceId:item.race.id,groupId:item.groupId}});window.scrollTo({top:0});}
+function close(){entryOpen.value=false;router.push('/radar');window.scrollTo({top:0});}
+async function load(){if(!signedIn.value)return;const current=++sequence;loading.value=true;message.value='';try{const data=await api('/radar');if(current!==sequence)return;const p=data.profile||{};gender.value=p.gender||'';birth.value=p.birth||'';province.value=p.province||'';for(const item of distances)targets[item.key]=p.targets?.[item.key]||'';rows.value=data.opportunities||[];syncRoute();}catch(err){if(current!==sequence)return;if(err.status===401){signedIn.value=false;rows.value=[];selected.value=null;localStorage.removeItem('marathon_token');}message.value=err.message;}finally{if(current===sequence)loading.value=false;}}
+async function search(){if(busy.value)return;if(!gender.value){message.value='先选择男子组或女子组。';return;}busy.value=true;message.value='';try{await api('/me/radar',{method:'PUT',body:JSON.stringify({gender:gender.value,birth:birth.value,province:province.value,targets:{...targets}})});filter.value='opportunity';await load();}catch(err){message.value=err.message;}finally{busy.value=false;}}
+function openEntry(){const own=selected.value.myEntry;entry.clock=own?.clock||'';entry.pbDate=own?.pbDate||'';entry.status=['中签','已缴费','已领物'].includes(own?.status)?own.status:'中签';consent.value=false;entryMessage.value='';entryOpen.value=true;}
+async function saveEntry(){if(busy.value)return;if(!consent.value){entryMessage.value='请先确认匿名展示的内容。';return;}const item=selected.value;busy.value=true;entryMessage.value='';try{await api('/me/radar/entries/'+encodeURIComponent(item.race.id),{method:'PUT',body:JSON.stringify({distance:item.distance,gender:item.gender,...entry,consent:true})});await load();entryOpen.value=false;}catch(err){entryMessage.value=err.message;}finally{busy.value=false;}}
+async function withdrawEntry(){if(busy.value)return;busy.value=true;entryMessage.value='';try{await api('/me/radar/entries/'+encodeURIComponent(selected.value.race.id),{method:'DELETE'});await load();entryOpen.value=false;}catch(err){entryMessage.value=err.message;}finally{busy.value=false;}}
+watch(()=>route.query,syncRoute);onMounted(load);onBeforeUnmount(()=>{sequence++;});
 </script>
 
 <style scoped>
-.radar-page{padding-bottom:24px}.hint{margin:8px 0 0;color:var(--muted);font-size:12px;line-height:1.8}.block h2{font-size:18px;color:var(--ink)}.stack{display:grid;gap:16px;margin-top:24px}.stack label{display:grid;grid-template-columns:1fr auto;gap:8px;font-size:14px}.stack label>span{color:var(--muted);font-size:12px}.stack input,.stack select{grid-column:1/-1;width:100%;min-width:0;height:44px;border:1px solid var(--line);border-radius:8px;padding:0 12px;background:var(--field-bg);font-size:14px}.field-label{font-size:14px}.modes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.modes button{min-height:44px;border:1px solid var(--line);border-radius:8px;background:#fff;font-size:14px;color:var(--muted)}.modes button.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}.primary{width:100%;min-height:44px;border-radius:8px;background:var(--accent);color:#fff;font-size:14px;font-weight:500}.radar-login .primary{margin-top:20px}.slot{display:flex;justify-content:space-between;gap:12px;margin-top:16px;padding:12px 0;border-block:1px solid var(--line);font-size:14px}.slot b{color:var(--muted);font-size:12px;font-weight:400}.run{padding:16px 0;border-bottom:1px solid var(--line)}.run p{margin:8px 0 0;font-size:14px;line-height:1.7}.run p:first-child{font-size:15px;font-weight:500}.run .hint{font-size:12px}.err{color:var(--accent);font-size:14px}
-.radar-page>.block { border:0; margin:12px 16px; padding:16px; border-radius:12px; background:#fff; }
-.radar-heading h2 { margin:6px 0 0; font-size:24px; }.radar-kicker { font-size:12px; color:var(--accent); }
-.stack { grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin-top:20px; }.stack>.modes,.stack>.field-label,.stack>.primary,.stack>.radar-label { grid-column:1/-1; }
-.stack .field-label { display:flex; justify-content:space-between; font-size:16px; font-weight:600; }.field-label small { font-size:12px; font-weight:400; color:var(--muted); }.radar-label { font-size:14px; }.target-heading { padding-top:16px; border-top:1px solid var(--line); }
-.radar-notes { margin-top:16px; font-size:12px; color:var(--muted); }.radar-notes summary { display:flex; align-items:center; min-height:44px; cursor:pointer; }.radar-notes summary:after { content:'⌄'; margin-left:auto; }
-.radar-results-heading { display:flex; align-items:center; justify-content:space-between; gap:12px; }.radar-results-heading h2 { margin:0; }.radar-results-heading>span { font-size:12px; color:var(--muted); }
+.radar-page{color:var(--ink);padding-bottom:30px}.radar-body{padding:0 16px}.hero{padding:32px 4px 28px;position:relative;overflow:hidden}.eyebrow{color:var(--accent);font-size:11px;font-weight:600;letter-spacing:1px}.hero h2{font-size:30px;letter-spacing:-1px;margin:10px 0;position:relative;z-index:1}.hero p,.detail-hero>p{font-size:12px;color:var(--muted);margin:8px 0}.hero-mark{position:absolute;right:-36px;top:0;width:150px;height:150px;opacity:.35;pointer-events:none}.hero-mark i{position:absolute;inset:5px;border:1px solid #e0cccf;border-radius:50%}.hero-mark i:nth-child(2){inset:27px}.hero-mark i:nth-child(3){inset:49px}.hero-mark b{position:absolute;left:63px;top:54px;color:var(--accent);font-size:25px}.panel{background:#fff;border-radius:16px;padding:20px;margin:0 0 14px;min-width:0}.section-heading,.results-heading,.card-top{display:flex;align-items:center;justify-content:space-between;gap:10px}.section-heading h3,.results-heading h3{font-size:16px;margin:0}.section-heading>span,.results-heading>span{font-size:11px;color:var(--muted)}.segments{display:flex;gap:6px;margin-top:18px}.segments button{flex:1;min-height:42px;font-size:13px;background:#f5f5f5;color:#777;border-radius:7px;border:1px solid transparent;white-space:nowrap}.segments button.on{color:var(--accent);background:var(--accent-soft);border-color:#ffd8df}.gender{margin-top:8px}.target-label{display:block;margin:23px 0 10px;color:#777;font-size:12px}#radar-target{width:100%;min-width:0;height:64px;border:1px solid var(--line);border-radius:8px;padding:0 14px;font-size:32px;letter-spacing:2px;font-weight:600;font-variant-numeric:tabular-nums;background:#fafafa;box-sizing:border-box;color:var(--ink)}.caption{font-size:11px;color:var(--muted);line-height:1.8;margin:8px 0 0;overflow-wrap:anywhere}.primary{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:48px;border:0;border-radius:8px;background:var(--accent);color:#fff;font-size:14px;box-sizing:border-box;text-decoration:none}.primary:disabled{opacity:.5;cursor:wait}.search-button{margin-top:20px;justify-content:space-between;padding:0 18px}.search-button>span{font-size:22px}.results-heading{margin:28px 4px 14px}.filters{display:flex;gap:8px;margin-bottom:14px}.filters button{padding:10px 14px;min-height:40px;border-radius:6px;font-size:12px;color:#777}.filters button.on{background:#222;color:#fff}.level{display:inline-flex;padding:4px 7px;border-radius:4px;font-size:11px;background:#f3f3f3;color:#777}.level.priority{background:#eaf7f0;color:#137458}.level.challenge{background:#fff5e5;color:#996214}.level.pressure{background:#fff0f2;color:#b93243}.demo{display:inline-block;flex:none;border:1px solid #efdfc2;border-radius:4px;padding:3px 6px;font-size:10px;color:#94703c;background:#fff8ec}.radar-race-card>h3{font-size:20px;line-height:1.45;margin:14px 0 3px;letter-spacing:-.3px}.metrics{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:22px 0 18px}.metrics>div{min-width:0}.metrics>div+div{border-left:1px solid var(--line);padding-left:14px}.metrics span,.metrics small{display:block;font-size:10px;color:var(--muted);line-height:1.8}.metrics strong{display:block;font-size:27px;font-weight:650;letter-spacing:-1px;line-height:1.6;font-variant-numeric:tabular-nums;white-space:nowrap}.metrics .gap,.gap{color:var(--accent);font-size:11px}.competition-line{padding:11px;border-radius:8px;background:#f6f6f6;color:#666;font-size:11px;line-height:1.7}.detail-button{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:48px;padding:14px 0 0;margin-top:14px;border-top:1px solid var(--line);font-size:12px;text-align:left}.detail-button>span:last-child{font-size:22px;color:var(--accent)}.empty{text-align:center;color:var(--muted);font-size:12px;line-height:1.8;padding:32px 18px}.empty h3{font-size:15px;color:var(--ink)}.text-button{color:var(--accent);font-size:12px;min-height:44px}.method{padding:4px 5px 15px;color:#888;font-size:11px;line-height:1.9}.method summary{min-height:44px;display:flex;align-items:center;cursor:pointer}.method summary:after{content:'⌄';margin-left:auto}.error{margin:12px 0;padding:12px;background:#fff0f2;border-radius:8px;font-size:12px;color:#b93243;line-height:1.7}.error>button{margin-left:10px;text-decoration:underline;min-height:40px}.back{display:block;min-height:44px;text-align:left;font-size:12px;color:#777}.detail-hero{padding:18px 4px 24px}.detail-hero>.demo{margin-top:10px}.detail-hero h2{font-size:29px;line-height:1.35;letter-spacing:-.7px;margin:14px 0 8px}.detail-hero .eyebrow{display:block}.assessment>p,.copy{font-size:12px;line-height:1.9;color:#777;margin:14px 0 0;overflow-wrap:anywhere}.assessment>.gap{color:var(--accent)}.assessment .metrics{padding-bottom:0}.award-row{display:flex;justify-content:space-between;gap:12px;font-size:12px;line-height:1.8;padding:12px 0;border-bottom:1px solid var(--line)}.award-row b{font-weight:500;font-variant-numeric:tabular-nums}.year-tabs{display:flex;gap:6px;overflow-x:auto;margin-top:16px;padding-bottom:12px}.year-tabs button{flex:none;min-height:40px;padding:8px 14px;background:#f5f5f5;border-radius:6px;font-size:12px}.year-tabs button.on{background:var(--accent-soft);color:var(--accent)}.rank-table{border-collapse:collapse;table-layout:fixed;width:100%;font-size:12px}.rank-table th{font-size:10px;color:#888;font-weight:400}.rank-table th,.rank-table td{padding:13px 3px;text-align:left;border-bottom:1px solid var(--line);overflow-wrap:anywhere}.rank-table th:first-child{width:36px}.rank-table th:last-child{width:90px;text-align:right}.rank-table td:last-child{text-align:right;font-variant-numeric:tabular-nums}.rank-table td:first-child{color:#aaa;font-size:13px;font-weight:600}.rank-table td.rewarded{color:var(--accent)}.my-comparison{display:flex;justify-content:space-between;gap:10px;margin-top:12px;padding:12px;border-radius:6px;background:var(--accent-soft);color:var(--accent);font-size:12px}.my-comparison strong{font-variant-numeric:tabular-nums}.caution{color:#996214;background:#fff5e5;padding:10px;font-size:11px;line-height:1.8}.entrant{padding:16px 0;border-bottom:1px solid var(--line)}.entrant>div{display:flex;justify-content:space-between;gap:12px;font-size:13px}.entrant b{font-weight:500}.entrant strong{font-size:15px;font-variant-numeric:tabular-nums}.outline{width:100%;min-height:44px;border:1px solid var(--line);border-radius:7px;margin-top:16px;font-size:12px;background:#fff}.entry-form{border-top:1px solid var(--line);margin-top:20px;padding-top:20px}.entry-form h4{margin:0;font-size:15px}.entry-form>label:not(.consent){display:grid;gap:8px;margin:16px 0;font-size:12px}.entry-form input:not([type=checkbox]),.entry-form select{width:100%;min-width:0;min-height:44px;padding:10px;border:1px solid var(--line);border-radius:8px;box-sizing:border-box;background:#fafafa;font-size:14px;color:var(--ink)}.consent{display:flex;align-items:flex-start;gap:9px;color:#777;font-size:11px;line-height:1.8;margin:20px 0}.consent input{flex:none;width:16px;height:16px;accent-color:var(--accent);margin-top:2px}.race-link{margin-top:20px}.footer-note{padding:10px 5px;color:#888;font-size:11px;line-height:1.9}.login-panel h3{font-size:18px}.login-panel>p{font-size:12px;color:#777;line-height:1.9}.login-panel .primary{margin-top:20px}button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:3px}@media(max-width:350px){.panel{padding:16px}.hero h2{font-size:27px}.metrics strong{font-size:24px}.metrics{gap:10px}.metrics>div+div{padding-left:10px}.segments button{font-size:12px}.detail-hero h2{font-size:26px}}
 </style>

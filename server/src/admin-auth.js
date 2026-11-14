@@ -45,7 +45,8 @@ function writeAdmin(db, username, password) {
 
 function ensureAdmin(db) {
   const legacy = db.prepare("SELECT salt, password_hash FROM admins WHERE username = 'admin'").get();
-  if (legacy && verifyPassword("admin", legacy.salt, legacy.password_hash)) {
+  const localDefaultAllowed = process.env.NODE_ENV === "development" && process.env.ALLOW_LOCAL_DEFAULT_ADMIN === "true";
+  if (!localDefaultAllowed && legacy && verifyPassword("admin", legacy.salt, legacy.password_hash)) {
     db.prepare("DELETE FROM admin_sessions WHERE username = 'admin'").run();
     db.prepare("DELETE FROM admins WHERE username = 'admin'").run();
   }

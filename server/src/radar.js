@@ -1,4 +1,6 @@
 const { parseClock, formatClock } = require("./career");
+const crypto = require("crypto");
+const { ensureRadarSchema, validateRadarConfig, loadRadarConfig, saveRadarConfig, buildRadar, validateEntry } = require("./radar-engine");
 
 const KINDS = { place: "名次", age: "年龄组", local: "本地籍", break: "破时", club: "跑团" };
 const DISTANCES = { full: "全马", half: "半马", "10k": "10公里", "5k": "5公里" };
@@ -278,7 +280,7 @@ function mountRadar(app, { BASE, getDb, userFrom, requireAdmin }) {
         };
       })
       .sort((a, b) => bandOf(a) - bandOf(b) || (b.gap || 0) - (a.gap || 0) || a.race.raceDate.localeCompare(b.race.raceDate) || a.ruleId - b.ruleId);
-    res.json({ note: NOTE, profile, rows });
+    res.set("Cache-Control", "private, no-store").json({ note: NOTE, profile, rows, ...buildRadar(db, user, profile, { today }) });
   });
 
   app.put(BASE + "/api/me/radar", (req, res) => {
@@ -300,6 +302,61 @@ function mountRadar(app, { BASE, getDb, userFrom, requireAdmin }) {
            target_5k = excluded.target_5k`
       )
       .run(user.id, input.gender, input.birth, input.province, input.targets.full, input.targets.half, input.targets["10k"], input.targets["5k"]);
+    res.json({ ok: true });
+  });
+
+  app.get(BASE + "/api/admin/races/:id/radar", (req, res) => {
+    if (!requireAdmin(req, res)) return;
+    const db = getDb();
+    if (!db.prepare("SELECT id FROM races WHERE id=?").get(req.params.id)) return res.status(404).json({ error: "没有这场比赛" });
+    res.set("Cache-Control", "private, no-store").json({ config: loadRadarConfig(db, req.params.id) });
+  });
+
+  app.put(BASE + "/api/admin/races/:id/radar", (req, res) => {
+    if (!requireAdmin(req, res)) return;
+    const db = getDb();
+    const race = db.prepare("SELECT id,race_date,distances FROM races WHERE id=?").get(req.params.id);
+    if (!race) return res.status(404).json({ error: "没有这场比赛" });
+    try {
+      const config = validateRadarConfig(req.body?.config, { raceDate: race.race_date });
+      if (config.groups.some((group) => !String(race.distances).split(",").includes(group.distance))) return res.status(400).json({ error: "雷达组别必须是本场比赛已有的项目" });
+      saveRadarConfig(db, race.id, config);
+      res.json({ config });
+    } catch (err) {
+      if (err.status === 400) return res.status(400).json({ error: err.message });
+      throw err;
+    }
+  });
+
+  app.put(BASE + "/api/me/radar/entries/:raceId", (req, res) => {
+    const user = login(req, res);
+    if (!user) return;
+    const db = getDb();
+    const race = db.prepare("SELECT id,race_date,distances FROM races WHERE id=?").get(req.params.raceId);
+    if (!race) return res.status(404).json({ error: "没有这场比赛" });
+    try {
+      const entry = validateEntry(req.body, { race, config: loadRadarConfig(db, race.id) });
+      const now = new Date().toISOString();
+      ensureRadarSchema(db);
+      db.transaction(() => {
+        db.prepare(`INSERT INTO radar_entries(user_id,race_id,public_id,distance,gender,seconds,pb_date,status,consent_at,updated_at)
+          VALUES(?,?,?,?,?,?,?,?,?,?) ON CONFLICT(user_id,race_id) DO UPDATE SET distance=excluded.distance,gender=excluded.gender,seconds=excluded.seconds,
+          pb_date=excluded.pb_date,status=excluded.status,consent_at=excluded.consent_at,updated_at=excluded.updated_at`).run(user.id, race.id, crypto.randomUUID(), entry.distance, entry.gender, entry.seconds, entry.pbDate, entry.status, now, now);
+        db.prepare(`INSERT INTO plans(user_id,race_id,status,updated_at) VALUES(?,?,?,?) ON CONFLICT(user_id,race_id) DO UPDATE SET status=excluded.status,updated_at=excluded.updated_at`).run(user.id, race.id, entry.status, now);
+      })();
+      res.json({ ok: true, myEntry: { distance: entry.distance, gender: entry.gender, clock: formatClock(entry.seconds), pbDate: entry.pbDate, status: entry.status, active: true, consent: true, evidence: "self_reported" } });
+    } catch (err) {
+      if (err.status === 400) return res.status(400).json({ error: err.message });
+      throw err;
+    }
+  });
+
+  app.delete(BASE + "/api/me/radar/entries/:raceId", (req, res) => {
+    const user = login(req, res);
+    if (!user) return;
+    const db = getDb();
+    ensureRadarSchema(db);
+    db.prepare("DELETE FROM radar_entries WHERE user_id=? AND race_id=?").run(user.id, req.params.raceId);
     res.json({ ok: true });
   });
 

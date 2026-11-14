@@ -1,38 +1,45 @@
-<view class="pad mini-radar-radar">
-  <view class="card">
-    <view class="radar-kicker">拿奖雷达</view><view class="title">{{loggedIn ? '我的跑步目标' : '找到适合你的拿奖赛事'}}</view>
-    <block wx:if="{{!loggedIn}}">
-      <view class="src login-description">登录后，结合个人目标成绩与赛事奖项查看适合你的比赛</view>
-      <navigator class="btn" open-type="switchTab" url="/pages/mine/mine">登录后使用</navigator>
-    </block>
+<view class="pad radar-page">
+  <block wx:if="{{!selected}}">
+    <view class="radar-hero"><view class="eyebrow">拿奖雷达 · 前八名</view><view class="hero-title">把实力，跑成名次。</view><view class="muted">用目标成绩，找到更适合你的领奖台。</view></view>
+    <view wx:if="{{!loggedIn}}" class="card login-card"><view class="title">下一场，向奖励发起挑战</view><view class="copy">登录后设置目标，对照历届前八和今年已知阵容。</view><navigator class="btn" open-type="switchTab" url="/pages/mine/mine">登录后使用</navigator></view>
     <block wx:else>
-    <view class="src">结合目标成绩、年龄组与参赛地区，寻找适合你的比赛。</view>
-    <view class="radar-section-label">基本资料 <text>选填</text></view>
-    <view class="field-label">性别</view>
-    <view class="radar-gender">
-      <button class="ghost {{gender === '' ? 'on' : ''}}" data-gender="" bindtap="setGender">不填</button>
-      <button class="ghost {{gender === '男' ? 'on' : ''}}" data-gender="男" bindtap="setGender">男</button>
-      <button class="ghost {{gender === '女' ? 'on' : ''}}" data-gender="女" bindtap="setGender">女</button>
-    </view>
-    <view class="radar-field"><view class="field-label">出生年月<text>选填</text></view><input placeholder="出生年月 1986-06，可空" value="{{birth}}" bindinput="onBirth" aria-label="出生年月 1986-06，可空" /></view>
-    <view class="radar-field"><view class="field-label">所属省份<text>选填</text></view><input placeholder="省份，例如 河南，可空" value="{{province}}" bindinput="onProvince" aria-label="省份，例如 河南，可空" /></view>
-    <view class="radar-section-label">目标成绩 <text>留空使用已有 PB</text></view><view class="radar-targets">
-    <view class="radar-field"><view class="field-label">全马目标<text>选填</text></view><input placeholder="全马目标 3:30:00，空则用 PB" value="{{full}}" bindinput="onFull" aria-label="全马目标 3:30:00，空则用 PB" /></view>
-    <view class="radar-field"><view class="field-label">半马目标<text>选填</text></view><input placeholder="半马目标，可空" value="{{half}}" bindinput="onHalf" aria-label="半马目标，可空" /></view>
-    <view class="radar-field"><view class="field-label">10 公里目标<text>选填</text></view><input placeholder="10 公里目标，可空" value="{{ten}}" bindinput="onTen" aria-label="10 公里目标，可空" /></view>
-    <view class="radar-field"><view class="field-label">5 公里目标<text>选填</text></view><input placeholder="5 公里目标，可空" value="{{five}}" bindinput="onFive" aria-label="5 公里目标，可空" /></view>
-    </view><button class="btn" bindtap="save">保存</button><view class="radar-notes">{{note}} 性别、出生年月和省份用于匹配年龄组和本地籍，不收身份证。出生月份与比赛月相同时，按小一岁计算。天气和赛道修正尚未开通。</view>
-    <view wx:if="{{message}}" class="err">{{message}}</view>
+      <view class="card target-card">
+        <view class="section-label">你的比赛目标 <text>同项目比较</text></view>
+        <view class="segments"><button wx:for="{{distances}}" wx:key="key" class="{{distance === item.key ? 'on' : ''}}" data-distance="{{item.key}}" bindtap="setDistance">{{item.label}}</button></view>
+        <view class="gender-row"><button class="{{gender === '男' ? 'on' : ''}}" data-gender="男" bindtap="setGender">男子组</button><button class="{{gender === '女' ? 'on' : ''}}" data-gender="女" bindtap="setGender">女子组</button></view>
+        <view class="target-label">目标完赛时间</view><input class="target-input" value="{{target}}" bindinput="onTarget" placeholder="例如 2:20:00" aria-label="目标完赛时间" /><view class="muted">留空使用已有同项目 PB；填写目标时按目标情景比较。</view>
+        <button class="btn" loading="{{busy}}" disabled="{{busy || loading}}" bindtap="save">寻找拿奖机会 <text>↗</text></button>
+      </view>
+      <view wx:if="{{message}}" class="error-card"><view>{{message}}</view><button bindtap="load" disabled="{{loading}}">重新加载</button></view>
+      <view class="results-head"><view class="title">值得你跑的下一场</view><text class="muted">{{filtered.length}} 个组别</text></view>
+      <view class="filters"><button class="{{filter === 'all' ? 'active' : ''}}" data-filter="all" bindtap="setFilter">全部参考</button><button class="{{filter === 'opportunity' ? 'active' : ''}}" data-filter="opportunity" bindtap="setFilter">有竞争力</button></view>
+      <view wx:if="{{loading}}" class="card empty">正在比较目标与赛事资料…</view>
+      <view wx:elif="{{ready && !filtered.length}}" class="card empty"><view class="title">{{filter === 'opportunity' ? '暂时没有匹配的拿奖机会' : '这个项目还没有收录资料'}}</view><view class="copy">{{filter === 'opportunity' ? '可以调整目标，或切换“全部参考”查看历史门槛。' : '试试其他项目。历届榜单更新后会在这里出现。'}}</view></view>
+      <view wx:for="{{filtered}}" wx:key="id" class="card opportunity" data-id="{{item.id}}" bindtap="openDetail">
+        <view class="card-top"><text class="level level-{{item.level}}">{{item.levelLabel}}</text><text wx:if="{{item.demo}}" class="demo">模拟数据</text></view>
+        <view class="race-name">{{item.race.name}}</view><view class="muted">{{item.race.raceDate}} · {{item.race.city}} · {{item.gender}}子{{item.distanceLabel}}</view>
+        <view class="metrics"><view><view class="metric-label">{{item.historyLabel}}</view><view class="clock">{{item.history.clock || '待收录'}}</view><view class="muted">奖励前 {{item.awardDepth}} 名</view></view><view><view class="metric-label">{{item.ability ? item.ability.label : '我的目标'}}</view><view class="clock">{{item.ability.clock || '—'}}</view><view class="gap">{{item.gapLabel}}</view></view></view>
+        <view class="competition-note">今年已知 {{item.competition.knownCount}} 人<text wx:if="{{item.competition.fasterCount !== null}}"> · {{item.competition.fasterCount}} 人 PB 更快</text></view>
+        <view class="card-foot"><text>查看历年前八与今年阵容</text><text>↗</text></view>
+      </view>
+      <view class="method-note">按同项目、同性别与当届奖励名额比较，首期最多前八名。历史成绩和已知阵容供选赛参考，不估算获奖概率。参赛名单可能不完整。</view>
     </block>
-  </view>
-  <view wx:if="{{loggedIn}}" class="card">
-    <view class="title">适合我的奖项</view>
-    <view wx:if="{{!rows.length}}" class="src">还没有对得上的奖。奖项要在后台按规程录入。</view>
-    <navigator wx:for="{{rows}}" wx:key="ruleId" url="/pages/race/race?id={{item.race.id}}">
-      <view class="src">{{item.race.raceDate}} {{item.race.name}}</view>
-      <view class="src">{{item.kindLabel}} · {{item.title}} · {{item.amountText}}</view>
-      <view class="src">{{item.reason}}</view>
-      <view class="src">来源 {{item.source}}</view>
-    </navigator>
-  </view>
+  </block>
+  <block wx:else>
+    <button class="back-button" bindtap="closeDetail">‹ 返回比赛列表</button>
+    <view class="detail-hero"><view class="eyebrow">{{selected.gender}}子{{selected.distanceLabel}} · {{selected.timingLabel}}</view><view wx:if="{{selected.demo}}" class="demo">模拟数据 · 非真实赛事成绩</view><view class="hero-title">{{selected.race.name}}</view><view class="muted">{{selected.race.raceDate}} · {{selected.race.city}}</view></view>
+    <view class="card assessment"><view class="level level-{{selected.level}}">{{selected.levelLabel}}</view><view class="copy">{{selected.reason}}</view><view class="metrics"><view><view class="metric-label">历史奖励线</view><view class="clock">{{selected.history.clock || '待收录'}}</view></view><view><view class="metric-label">{{selected.ability ? selected.ability.label : '我的成绩'}}</view><view class="clock">{{selected.ability.clock || '—'}}</view></view></view><view class="gap">{{selected.gapLabel}}</view></view>
+    <view class="card"><view class="section-label">当届奖励 <text>前 {{selected.awardDepth}} 名</text></view><view class="copy">{{selected.eligibility || '参赛资格以当届规程为准'}}</view><view class="award-row" wx:for="{{selected.awards}}" wx:key="place"><text>第 {{item.place}} 名</text><text>{{item.amount ? item.amount + ' 元' : '非现金奖励'}}</text></view><view class="muted">{{selected.ruleSource}}</view></view>
+    <view class="card history-card"><view class="section-label">历年前八 <text>{{yearTiming}}</text></view><view class="muted">逐届查看；缺失名次保持未收录。</view><scroll-view class="year-scroll" scroll-x><view class="year-tabs"><button wx:for="{{selected.histories}}" wx:key="year" class="{{selectedYear === item.year ? 'on' : ''}}" data-year="{{item.year}}" bindtap="chooseYear">{{item.year}}</button></view></scroll-view>
+      <view wx:if="{{!selected.histories.length}}" class="empty">历届成绩待收录</view>
+      <block wx:else><view class="rank-row rank-head"><text>名次</text><text>选手</text><text>完赛成绩</text></view><view wx:for="{{yearRows}}" wx:key="place" class="rank-row {{item.rewarded ? 'rewarded' : ''}}"><text class="rank-number">{{item.place}}</text><text>{{item.name}}</text><text class="rank-clock">{{item.clock}}</text></view><view class="muted">{{yearSource}}</view></block>
+    </view>
+    <view class="card"><view class="section-label">今年已知阵容 <text>{{selected.competition.knownCount}} 人</text></view><view class="copy">{{selected.competition.notice}}</view><view wx:if="{{!selected.entrants.length}}" class="empty">暂无已知选手；没有标记不代表没有强手。</view><view wx:for="{{selected.entrants}}" wx:key="key" class="entrant"><view class="entrant-top"><text>{{item.name}}</text><text class="rank-clock">{{item.clock}}</text></view><view class="muted">{{item.status}} · {{item.evidenceLabel}} · PB {{item.pbDate}}</view></view>
+      <button wx:if="{{!selected.demo}}" class="outline" bindtap="openEntry">{{selected.myEntry ? '管理我的参赛线索' : '我已中签，补充阵容'}}</button>
+      <view wx:if="{{selected.demo}}" class="muted">当前阵容为模拟资料。</view>
+      <view wx:if="{{entryOpen}}" class="entry-form"><view class="title">我的参赛线索</view><view class="copy">仅提交本人该项目的最好成绩。提交后会同步更新这场比赛的参赛状态，其他用户可看到匿名 PB、日期、项目、性别与自报状态。</view><view class="target-label">本人 PB</view><input value="{{entryClock}}" bindinput="onEntryClock" placeholder="例如 2:18:30" aria-label="本人 PB" /><view class="target-label">PB 日期</view><picker mode="date" value="{{entryDate}}" bindchange="onEntryDate"><view class="picker-field">{{entryDate || '选择成绩日期'}}</view></picker><view class="target-label">当前参赛状态</view><picker range="{{entryStatuses}}" value="{{entryStatusIndex}}" bindchange="onEntryStatus"><view class="picker-field">{{entryStatuses[entryStatusIndex]}}</view></picker><checkbox-group bindchange="onConsent"><label class="consent"><checkbox value="agree" checked="{{consent}}" color="#ff1838" /><text>同意将以上内容匿名用于今年阵容分析，可随时撤回。</text></label></checkbox-group><view wx:if="{{entryMessage}}" class="err">{{entryMessage}}</view><button class="btn" disabled="{{busy}}" loading="{{busy}}" bindtap="saveEntry">保存参赛线索</button><button wx:if="{{selected.myEntry}}" class="outline" disabled="{{busy}}" bindtap="withdrawEntry">撤回雷达授权</button></view>
+    </view>
+    <navigator class="btn race-link" url="/pages/race/race?id={{selected.race.id}}">查看赛事详情 ↗</navigator>
+    <view class="method-note">近三届同计时口径奖励线的中位数作为参考。目标成绩用于情景比较，PB 不等于本场必然表现；今年已知选手与历年榜单分开统计。</view>
+  </block>
 </view>
