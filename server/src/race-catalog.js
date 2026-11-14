@@ -1,5 +1,12 @@
 const catalog = require('../../shared/race-catalog.json');
 const archives = Object.fromEntries(catalog.races.map(race => [race.id, require('../../shared/race-archives/' + race.id + '.json')]));
+const { readArchiveEdit } = require('./race-archive-editor');
+
+function archiveBaseline(id) {
+  const race = catalog.races.find(item => item.id === id);
+  return race ? JSON.parse(JSON.stringify({ race, archive: archives[id] })) : null;
+}
+function archiveRecord(id, db) { return readArchiveEdit(db, id) || archiveBaseline(id); }
 
 function raceArchiveId(race) {
   if (!race || race.meet === 'online' || /(?:half|trail)/.test(String(race.kind || race.kinds || ''))) return '';
@@ -12,21 +19,20 @@ function raceArchiveId(race) {
   return match ? match.id : '';
 }
 
-function archiveSummary(race) {
-  const archive = archives[race.id];
+function archiveSummary(race, archive = archives[race.id]) {
   const years = archive.editions.map(edition => edition.year).sort((a, b) => Number(b) - Number(a));
-  const defaultYear = years.find(year => { const edition = archive.editions.find(item => item.year === year); return edition.route.sourceIds.length && edition.registration.sourceIds.length; }) || years[0] || '';
+  const defaultYear = years.find(year => { const edition = archive.editions.find(item => item.year === year); return edition.route?.summary && edition.registration?.method; }) || years[0] || '';
   return { ...race, archivesAvailable: true, years, latestYear: years[0] || '', defaultYear };
 }
 
-function listCatalog(query = {}) {
+function listCatalog(query = {}, db) {
   const q = String(query.q || '').trim().toLowerCase().slice(0, 100);
   const wa = String(query.wa || '').trim();
   const caa = String(query.caa || '').trim();
-  const races = catalog.races.filter(race =>
+  const races = catalog.races.map(item => archiveRecord(item.id, db)).filter(({ race }) =>
     (!q || [race.name, race.shortName, race.city, race.province].some(value => String(value || '').toLowerCase().includes(q))) &&
     (!wa || race.worldAthletics.label === wa) && (!caa || race.caa.label === caa)
-  ).map(archiveSummary);
+  ).map(({ race, archive }) => archiveSummary(race, archive));
   return { ...catalog, updatedAt: '2026-11-14', selectionNote: '北京、上海、厦门三场赛事档案，按编辑顺序展示，不代表排名。年度资料以各届公开来源为准，尚未核验的统计不记为零。', races };
 }
 
@@ -62,29 +68,35 @@ function editionCoverage(edition, archive) {
 // A publicly accessible original is evidence, not a reuse licence.
 function mediaCanPublish(rights) {
   if (!rights || !rights.title) return false;
+  if (rights.status === 'admin-confirmed') return Boolean(rights.holder && rights.confirmedAt);
   if (rights.status === 'original') return Boolean(rights.holder);
   return ['licensed', 'public-domain'].includes(rights.status) && /^https:\/\//.test(rights.licenseUrl || '') && Boolean(rights.holder) && (rights.status !== 'licensed' || Boolean(rights.attribution));
 }
 
 function publicEdition(edition, archive) {
-  const route = { ...edition.route, mapUrl: mediaCanPublish(edition.route?.mediaRights) ? edition.route.mapUrl : '' };
-  const gear = (edition.gear || []).map(item => ({ ...item, imageUrl: mediaCanPublish(item.mediaRights) ? item.imageUrl : '' }));
+  const publicImages = images => (images || []).filter(item => mediaCanPublish(item.mediaRights));
+  const route = { ...edition.route, mapUrl: mediaCanPublish(edition.route?.mediaRights) ? edition.route.mapUrl : '', images: publicImages(edition.route?.images) };
+  const gear = (edition.gear || []).map(item => ({ ...item, imageUrl: mediaCanPublish(item.mediaRights) ? item.imageUrl : '', images: publicImages(item.images) }));
   const visible = { ...edition, route, gear };
   return { ...visible, coverage: editionCoverage(visible, archive) };
 }
 
 function getArchive(id, db) {
-  const race = catalog.races.find(item => item.id === id);
-  if (!race) return null;
-  const archive = archives[id];
-  const summary = archiveSummary(race);
+  const record = archiveRecord(id, db);
+  if (!record) return null;
+  const { race, archive } = record;
+  const summary = archiveSummary(race, archive);
   const relatedRaces = db.prepare('SELECT id, name, city, kinds, meet, distances, race_date AS raceDate FROM races ORDER BY race_date DESC, id').all()
     .filter(row => raceArchiveId(row) === id)
     .map(({ id, name, raceDate }) => ({ id, name, raceDate }));
   // Both basic certification sources and annual sources are local to this race.
-  const sources = [...race.sources, ...archive.sources.filter(source => !race.sources.some(item => item.id === source.id))];
+  const sources = [...(race.sources || []), ...(archive.sources || []).filter(source => !(race.sources || []).some(item => item.id === source.id))];
   const editions = archive.editions.map(edition => publicEdition(edition, archive));
-  return { race: summary, archive: { ...archive, editions, sources }, relatedRaces, years: summary.years, latestYear: summary.latestYear, defaultYear: summary.defaultYear };
+  const publicMedia = items => (items || []).filter(item => mediaCanPublish(item.mediaRights));
+  const hero = archive.hero ? { ...archive.hero, imageUrl: mediaCanPublish(archive.hero.mediaRights) ? archive.hero.imageUrl : '' } : undefined;
+  const photoAlbums = (archive.photoAlbums || []).map(album => ({ ...album, media: publicMedia(album.media) }));
+  const publicArticles = items => (items || []).map(item => ({ ...item, images: publicMedia(item.images) }));
+  return { race: summary, archive: { ...archive, editions, sources, hero, photoAlbums, updates: publicArticles(archive.updates), news: publicArticles(archive.news), stories: publicArticles(archive.stories) }, relatedRaces, years: summary.years, latestYear: summary.latestYear, defaultYear: summary.defaultYear };
 }
 
 function mountRaceCatalog(app, { BASE, getDb }) {
@@ -97,7 +109,7 @@ function mountRaceCatalog(app, { BASE, getDb }) {
     if (!publicImages.has('/marathon/images/race-archives' + req.path)) return res.status(404).end();
     next();
   });
-  app.get(BASE + '/api/race-catalog', (req, res) => res.json(listCatalog(req.query)));
+  app.get(BASE + '/api/race-catalog', (req, res) => res.json(listCatalog(req.query, getDb())));
   app.get(BASE + '/api/race-catalog/:id', (req, res) => {
     const result = getArchive(req.params.id, getDb());
     if (!result) return res.status(404).json({ error: '尚未收录这场赛事档案' });
@@ -105,4 +117,4 @@ function mountRaceCatalog(app, { BASE, getDb }) {
   });
 }
 
-module.exports = { mountRaceCatalog, listCatalog, getArchive, raceArchiveId, editionCoverage, mediaCanPublish, publicEdition };
+module.exports = { mountRaceCatalog, listCatalog, getArchive, raceArchiveId, editionCoverage, mediaCanPublish, publicEdition, archiveBaseline };

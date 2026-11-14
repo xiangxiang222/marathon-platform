@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" fill="none">
+<title>北京晨光与奔跑 · 原创专题封面插画</title><desc>Original vector design concept, not a photograph or an official Beijing Marathon image. Dark dawn, Beijing architecture, open boulevard and stylised runners. No event marks.</desc>
+<defs>
+ <linearGradient id="sky" x1="800" y1="0" x2="800" y2="900" gradientUnits="userSpaceOnUse"><stop stop-color="#251F22"/><stop offset=".36" stop-color="#49383B"/><stop offset=".69" stop-color="#A55C5B"/><stop offset="1" stop-color="#D49A8B"/></linearGradient>
+ <radialGradient id="dawn" cx="0" cy="0" r="1" gradientTransform="translate(1135 420) rotate(90) scale(460 720)" gradientUnits="userSpaceOnUse"><stop stop-color="#F2C9B4" stop-opacity=".65"/><stop offset=".52" stop-color="#CF8A87" stop-opacity=".16"/><stop offset="1" stop-color="#D49C9A" stop-opacity="0"/></radialGradient>
+ <linearGradient id="road" x1="900" y1="530" x2="750" y2="900" gradientUnits="userSpaceOnUse"><stop stop-color="#625A5C"/><stop offset="1" stop-color="#30282C"/></linearGradient>
+ <linearGradient id="shade" x1="1000" y1="100" x2="100" y2="900" gradientUnits="userSpaceOnUse"><stop stop-color="#2E1F24" stop-opacity="0"/><stop offset=".6" stop-color="#24191F" stop-opacity=".3"/><stop offset="1" stop-color="#21191E"/></linearGradient>
+ <linearGradient id="wall" x1="550" y1="350" x2="550" y2="600" gradientUnits="userSpaceOnUse"><stop stop-color="#953E3E"/><stop offset="1" stop-color="#4F2429"/></linearGradient>
+ <linearGradient id="roof" x1="550" y1="310" x2="550" y2="410" gradientUnits="userSpaceOnUse"><stop stop-color="#BA907B"/><stop offset="1" stop-color="#5C4241"/></linearGradient>
+ <linearGradient id="lane" x1="1200" y1="560" x2="1140" y2="900" gradientUnits="userSpaceOnUse"><stop stop-color="#E8C3B3" stop-opacity=".6"/><stop offset="1" stop-color="#D7B6AD" stop-opacity=".12"/></linearGradient>
+ <pattern id="tiles" width="11" height="8" patternUnits="userSpaceOnUse"><path d="M0 0V8M5.5 0V8" stroke="#EDB9A4" stroke-opacity=".12"/></pattern>
+ <filter id="blur"><feGaussianBlur stdDeviation="19"/></filter>
+ <g id="runner"><path d="M-1-49C6-51 13-46 14-39 16-31 10-25 4-25-4-25-9-30-8-37-8-43-6-47-1-49Z" fill="currentColor"/><path d="M-1-21C5-24 12-21 15-14L22 6 38 14 34 23 13 13 5-1-1 18-14 28-22 47-33 43-24 19-11 3-10-8-22 6-36 8-39-1-26-4-16-17C-11-22-7-23-1-21Z" fill="currentColor"/><path d="M-1 15 14 29 22 52 13 56 2 36-12 27Z" fill="currentColor"/></g>
+</defs>
+<path fill="url(#sky)" d="M0 0H1600V900H0z"/><path fill="url(#dawn)" d="M0 0H1600V900H0z"/>
+<circle cx="1160" cy="345" r="74" fill="#EEC7B5" opacity=".35"/><circle cx="1160" cy="345" r="108" fill="#D99A92" opacity=".08"/>
+<path d="M0 428 1600 413M0 460 1600 451" stroke="#D6A5A1" stroke-opacity=".1" stroke-width="2"/>
+<path d="M1020 445V355h24v-55h14v-27h10v27h14v55h23v90m36 0V381h20v-38h15v-15h8v15h17v38h22v64m34 0v-50h41v-68h9v68h30v50m32 0v-83h59v83m31 0v-64h39v-34h15v34h32v64" stroke="#483439" stroke-width="11" opacity=".45"/>
+<path d="M1205 466c28-94 166-120 244-47 21 19 34 40 41 68H1205Z" fill="#675356"/><path d="m1227 440 231 17m-213-41 230 56m-205-76 181 90m-141-95 101 96m-60-99 20 104m47-97-24 98m63-84-43 80m74-57-48 59" stroke="#D4B6AB" stroke-opacity=".25" stroke-width="5"/>
+<path d="M0 533H1600V612H0Z" fill="#4C383C"/>
+<!-- Layered gateway roof, walls and arches are original illustrative geometry. -->
+<path d="M149 508h660v90H149z" fill="url(#wall)"/>
+<path d="M283 402h414v119H283z" fill="#963B3D"/>
+<path d="M315 367h350v57H315z" fill="#742A32"/>
+<path d="M282 380c20 17 42 19 60 14h291c24 2 46-6 64-22l-17 38H305l-23-30Z" fill="url(#roof)"/>
+<path d="M249 429c27 18 60 22 87 18h310c36 0 66-7 93-26l-26 47H273l-24-39Z" fill="url(#roof)"/>
+<path d="M246 426c26 13 47 12 75 9h338c25 1 53-5 78-17" stroke="#CF9F88" stroke-width="4"/>
+<path d="M277 379c18 11 42 12 67 9h284c21 0 45-4 67-17" stroke="#CBA28D" stroke-width="3"/>
+<path d="M314 398h352v11H314zM282 454h430v10H282z" fill="url(#tiles)"/>
+<path d="M299 472h396v47H299z" fill="#752E35"/>
+<path d="M327 473v43m35-43v43m35-43v43m35-43v43m35-43v43m35-43v43m35-43v43m35-43v43m35-43v43m35-43v43m35-43v43" stroke="#C38C79" stroke-opacity=".55" stroke-width="5"/>
+<path d="M353 585v-23a24 24 0 0 1 48 0v23m42 0v-32a29 29 0 0 1 58 0v32m37 0v-23a24 24 0 0 1 48 0v23m34 0v-18a20 20 0 0 1 40 0v18" fill="#39242B"/>
+<path d="M174 506h612v8H174zM152 586h650v11H152z" fill="#C8A494" fill-opacity=".45"/>
+<path d="M149 528h130m435 0h95M149 544h130m435 0h95" stroke="#DEAA94" stroke-opacity=".13" stroke-width="2"/>
+<path d="M0 575h180v45H0zm780 5h142v40H780z" fill="#4B3439"/>
+<path d="M1600 548 985 551 705 900H1600V548Z" fill="url(#road)"/>
+<path d="m1098 551-77 349M1145 551l102 349" stroke="url(#lane)" stroke-width="3"/>
+<path d="m1090 579-7 23m-10 31-9 33m-13 43-13 49m-20 68-18 74" stroke="#E6C9BC" stroke-opacity=".4" stroke-width="4"/>
+<path d="M1600 557 1007 551 645 900" stroke="#B3A2A3" stroke-width="5"/><path d="M1600 579 1034 563 706 900" stroke="#CDB8B6" stroke-opacity=".2" stroke-width="2"/>
+<path d="M0 608c245-29 471 23 731 18l-103 274H0V608Z" fill="#2D2228"/>
+<path d="M1600 576c-118-10-230-11-302-12l218 336h84V576Z" fill="#39272F"/>
+<!-- Diminishing street lights create boulevard depth. -->
+<g stroke="#483039" stroke-width="6"><path d="M866 590V391m-33 0h67m-34 22-22-15m22 15 24-15"/><path d="M941 573V436m-22 0h45m-23 15-16-12m16 12 17-12"/><path d="M990 563V471m-16 0h32"/><path d="M1020 557V495m-11 0h22"/></g>
+<g fill="#DDB5A3"><circle cx="835" cy="385" r="8"/><circle cx="866" cy="381" r="9"/><circle cx="897" cy="385" r="8"/><circle cx="922" cy="431" r="6"/><circle cx="942" cy="427" r="7"/><circle cx="962" cy="431" r="6"/><circle cx="977" cy="467" r="4"/><circle cx="990" cy="464" r="5"/><circle cx="1003" cy="467" r="4"/></g>
+<!-- Stylised runners remain illustrative, with no event identity or likeness. -->
+<use href="#runner" transform="translate(1264 678) scale(.92) rotate(-4)" style="color:#3E252E"/>
+<path d="m1256 657 16-2 11 30-23 4-10-14Z" fill="#D3474D"/><use href="#runner" transform="translate(1158 626) scale(.63) rotate(7)" style="color:#3E2930"/>
+<path d="m1151 613 13-1 6 20-17 3-7-9Z" fill="#F0D8D3"/>
+<use href="#runner" transform="translate(1372 756) scale(1.4) rotate(8)" style="color:#30232C"/>
+<path d="m1356 726 28 1 17 39-32 9-20-21Z" fill="#A4263D"/><use href="#runner" transform="translate(1081 587) scale(.34)" style="color:#71525A"/>
+<path d="m1250 746 58 13m-173-91 43 7m168 162 98 21" stroke="#20141C" stroke-opacity=".4" stroke-width="10" stroke-linecap="round"/>
+<path fill="url(#shade)" d="M0 0H1600V900H0z"/>
+<g fill="#E8C2B6" opacity=".16"><circle cx="278" cy="166" r="1.5"/><circle cx="360" cy="109" r="1"/><circle cx="1378" cy="152" r="1.5"/><circle cx="1488" cy="246" r="1"/><circle cx="1143" cy="92" r="1"/><circle cx="514" cy="190" r="1"/></g>
+</svg>
