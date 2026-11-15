@@ -28,3 +28,6 @@ coverage/
 /design/previews/**/*.md
 /design/prototypes/
 **/project.private.config.json
+
+# Local production-data verification reports.
+/docs/account-experiences-production-*.json
