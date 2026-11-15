@@ -155,6 +155,18 @@ const sheet = ref("");
 const barEl = ref(null);
 const dropTop = ref(180);
 const races = ref([]);
+const shownQuery = ref("");
+const loadError = ref("");
+const loading = ref(false);
+const reminders = ref([]);
+const reminderIndex = ref(0);
+const currentReminder = computed(() => reminders.value[reminderIndex.value % reminders.value.length] || null);
+const quickLinks = [
+  { to: "/calendar", label: "赛事日历", icon: calendarIcon },
+  { to: "/radar", label: "拿奖雷达", icon: radarIcon },
+  { to: "/clubs", label: "发现跑团", icon: clubsIcon },
+  { to: "/news", label: "跑圈资讯", icon: newsIcon }
+];
 const catalogRaces = ref([]), catalogLoading = ref(true), catalogError = ref(false);
 const failedLandmarks = ref({});
 function landmarkUrl(id) { return ['beijing', 'shanghai', 'xiamen'].includes(id) ? base + 'images/race-landmarks/' + id + '.svg' : ''; }
@@ -168,25 +180,13 @@ async function loadCatalog() {
   catalogError.value = false;
   try {
     const data = await api("/race-catalog");
-    catalogRaces.value = (Array.isArray(data.races) ? data.races : []).slice(0, 3);
+    catalogRaces.value = data.races || [];
   } catch {
     catalogError.value = true;
   } finally {
     catalogLoading.value = false;
   }
 }
-const shownQuery = ref("");
-const loadError = ref("");
-const loading = ref(false);
-const reminders = ref([]);
-const reminderIndex = ref(0);
-const currentReminder = computed(() => reminders.value[reminderIndex.value % reminders.value.length] || null);
-const quickLinks = [
-  { to: "/calendar", label: "赛事日历", icon: calendarIcon },
-  { to: "/radar", label: "拿奖雷达", icon: radarIcon },
-  { to: "/clubs", label: "发现跑团", icon: clubsIcon },
-  { to: "/news", label: "跑圈资讯", icon: newsIcon }
-];
 function nextReminder() { reminderIndex.value = (reminderIndex.value + 1) % Math.max(1, reminders.value.length); }
 let reminderTimer;
 onMounted(() => { reminderTimer = window.setInterval(nextReminder, 5000); });
@@ -374,8 +374,8 @@ function confirmStatus() {
 
 onMounted(() => {
   if (trackKinds.some((item) => item.kind === route.query.kind)) trackKind.value = route.query.kind;
-  load();
   loadCatalog();
+  load();
   api("/reminders").then((data) => {
     reminders.value = (data.reminders || []).slice(0, 3);
   }).catch(() => {});

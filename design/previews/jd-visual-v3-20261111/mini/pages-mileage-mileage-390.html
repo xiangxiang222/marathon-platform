@@ -1,0 +1,310 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><style>html,body{margin:0;padding:0}body{padding-bottom:70px}a{display:block;color:inherit;text-decoration:none}button{display:block;box-sizing:border-box;padding:0 14px;line-height:1.35}input,textarea{outline:none}input[type=checkbox]{min-height:0}img{display:inline-block;vertical-align:middle}*{box-sizing:border-box}.native-switch{display:inline-block;width:44px;height:26px;flex:none;border-radius:20px;background:#dedede;position:relative}.native-switch[checked=true]{background:#ff1838}.native-switch:after{content:"";display:block;position:absolute;top:2px;left:2px;width:22px;height:22px;border-radius:50%;background:white}.native-switch[checked=true]:after{left:20px}swiper-item{display:block}.audit-banner{font:10px system-ui;color:#767676;padding:5px 12px;text-align:center}.mirror-tabbar{position:fixed;z-index:50;left:0;right:0;bottom:0;display:flex;background:white;border-top:1px solid #eee;height:64px;padding:6px 0}.mirror-tabbar a{width:25%;font:11px system-ui;text-align:center}.mirror-tabbar img{display:block;margin:0 auto 3px;width:25px;height:25px}</style><style>body {
+  --brand: #ff1838;
+  --brand-soft: #fff0f2;
+  --page-bg: #f5f5f5;
+  --surface: #ffffff;
+  --brand-header: linear-gradient(145deg, #ff1838 0%, #ff2946 60%, #ff4659 100%);
+  --text: #1a1a1a;
+  --text-secondary: #777777;
+  --border: #eeeeee;
+  --sky: #555555;
+  --sky-soft: #f7f7f7;
+  --mint: #555555;
+  --mint-soft: #f7f7f7;
+  --lilac: #555555;
+  --lilac-soft: #f7f7f7;
+  --sun: #555555;
+  --sun-soft: #f7f7f7;
+  --peach-soft: #fff0f2;
+  --card-shadow: none;
+  --action-fill: #ff1838;
+  --control-radius: 10.4px;
+  --card-radius: 12.48px;
+  min-height: 100%;
+  background: var(--page-bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+div, span, a, div, button, input, textarea, div { box-sizing: border-box; }
+button, input, textarea { font-family: inherit; color: var(--text); }
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 44px;
+  margin: 0;
+  padding: 12px 18px;
+  border: 0.52px solid var(--border);
+  border-radius: var(--control-radius);
+  background: var(--surface);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+button::after { border: 0; }
+button[plain] { border: 0.52px solid var(--border); background: var(--surface); }
+input, textarea {
+  min-width: 0;
+  border: 0.52px solid var(--border);
+  border-radius: 10.4px;
+  background: var(--page-bg);
+  color: var(--text);
+  font-size: 14px;
+  caret-color: var(--brand);
+}
+input { min-height: 46px; padding: 0 12.48px; }
+textarea { min-height: 120px; padding: 12.48px; line-height: 1.75; }
+input::placeholder, textarea::placeholder { color: #999999; }
+.pad { padding: 16.64px 16.64px calc(24.96px + env(safe-area-inset-bottom)); }
+.card {
+  margin-bottom: 12.48px;
+  padding: 16.64px;
+  border: 0.52px solid var(--border);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  box-shadow: var(--card-shadow);
+}
+.title { font-size: 18px; font-weight: 600; line-height: 1.4; letter-spacing: normal; }
+.muted { color: var(--text-secondary); font-size: 12px; }
+.slot { display: flex; justify-content: space-between; gap: 12.48px; margin-top: 6.24px; padding: 9.36px 10.4px; border-radius: 8.32px; background: var(--page-bg); font-size: 14px; }
+.slot-state { color: var(--text-secondary); font-size: 12px; }
+.teal { color: var(--brand); }
+.row { display: flex; justify-content: space-between; gap: 12.48px; padding: 10.4px 0; border-bottom: 0.52px solid var(--border); }
+.row:last-child { border-bottom: 0; }
+.row .k { flex: none; color: var(--text-secondary); }
+.soon { color: #c87825; }
+.err { margin-top: 6.24px; color: #b42318; font-size: 12px; line-height: 1.7; }
+.note { margin-top: 6.24px; color: var(--brand); font-size: 12px; line-height: 1.7; }
+.empty { padding: 29.12px 16.64px; color: var(--text-secondary); font-size: 13px; text-align: center; line-height: 1.8; }
+.field { display: flex; align-items: center; gap: 8.32px; }
+.field input { flex: 1; min-width: 0; height: 46px; padding: 0 12.48px; border-radius: 10.4px; background: var(--page-bg); }
+.btn, .login-go {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 46px;
+  margin: 0;
+  padding: 12px 20px;
+  border: 0.52px solid transparent;
+  border-radius: var(--control-radius);
+  background: var(--action-fill);
+  box-shadow: none;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
+}
+.login-go { margin-top: 12.48px; }
+button.ghost {
+  min-height: 44px;
+  margin: 8.32px 8.32px 0 0;
+  padding: 10px 16px;
+  border: 0.52px solid var(--border);
+  border-radius: var(--control-radius);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+button.ghost.on { border-color: var(--brand); background: var(--brand-soft); color: var(--brand); }
+button[disabled], button.btn[disabled] { border-color: #eeeeef; background: #f2f2f2; color: #999999; opacity: 1; box-shadow: none; }
+.chip { display: inline-block; margin-right: 4.16px; padding: 2.08px 6.24px; border: 0.52px solid #ebebed; border-radius: 6.24px; background: #f5f5f7; color: var(--text-secondary); font-size: 12px; font-weight: 400; line-height: 1.6; }
+.foot { display: flex; justify-content: space-between; gap: 10.4px; margin-top: 8.32px; color: var(--text-secondary); font-size: 12px; }
+.src { margin-top: 6.24px; color: var(--text-secondary); font-size: 12px; line-height: 1.75; overflow-wrap: anywhere; }
+.card > input, .card > textarea, .card > div { margin-top: 10.4px; }
+.card > input { width: 100%; }
+.card > .btn { margin-top: 12.48px; }
+.primary, .primary-btn, .primary-button, .submit-button, .save-action, .next-action, .bottom-primary, .staff-primary { border-radius: var(--control-radius); }
+.field-label, .form-label { line-height: 1.6; }
+.metric-value, .stat-value, .career-number, .record-number, .rank-time { font-variant-numeric: tabular-nums; }
+/* Shared control roles for new screens and gradual migrations. */
+.ui-control-text { width: auto; min-height: 44px; padding: 10px 8px; border: 0; border-radius: 6.24px; background: transparent; color: var(--brand); font-size: 13px; }
+.ui-control-danger { border-color: #f5d1cc; background: #fff5f3; color: #c52e24; }
+.ui-label { color: var(--text-secondary); font-size: 12px; font-weight: 400; }
+.surface-sky, .surface-mint, .surface-lilac, .surface-sun, .surface-peach { background: var(--surface); border-color: var(--border); }
+@media (max-width: 350px) { .pad { padding-left: 14px; padding-right: 14px; } .card { padding: 16px; } }
+
+:host { display: block; }
+.page-header { position: relative; padding-bottom: 14.56px; background: var(--brand-header); color: #fff; }
+.header-main { display: flex; align-items: center; padding-left: 16.64px; box-sizing: border-box; }
+.header-title { flex: 1; min-width: 0; overflow: hidden; font-size: 24px; line-height: 1.3; font-weight: 600; letter-spacing: normal; white-space: nowrap; text-overflow: ellipsis; }
+.header-subtitle { padding: 0 16.64px 12.48px; color: #ffffffcf; font-size: 12px; line-height: 1.5; }
+@media (max-width: 350px) { .header-main { padding-left: 14px; } .header-subtitle { padding-left: 14px; padding-right: 14px; } }
+
+.header-actions { display: flex; flex: none; align-items: center; justify-content: flex-end; }
+
+.header-actions { position: relative; color: #fff; }
+
+input { width: 100%; height: 41.6px; margin-top: 8.32px; padding: 0 10.4px; box-sizing: border-box; }
+.src { color: var(--text-secondary); font-size: 12px; margin-top: 4.16px; }
+
+.range-filters { display: flex; flex-wrap: wrap; margin-top: 12.48px; }
+.range-filters .ghost { flex: 1; margin: 0; padding: 0 6.24px;  }
+
+/* Route geometry: surfaces, controls and compact labels have distinct roles. */
+.mini-mileage-mileage .card { border-radius: 16.64px; }
+.mini-mileage-mileage .btn, .mini-mileage-mileage .ghost { border-radius: 12.48px; }
+
+/* Page composition and interaction hierarchy. */
+.mini-mileage-mileage { color: var(--text); }
+.mini-mileage-mileage button { font-weight: 500; border-radius: 12.48px; }
+
+.card { border: 1px solid var(--border); }
+.title { font-size: 22px; font-weight: 600; line-height: 1.45; }
+.range-filters { gap: 6.24px; }
+.range-filters .ghost { min-height: 36px; min-width: 37.44px; border: 1px solid var(--border); border-radius: 7.28px; background: var(--card,#fff); }
+.range-filters .ghost.on { border-color: var(--brand); background: var(--brand-soft); color: var(--brand); }
+input { min-height: 44px; border: 1px solid var(--border); border-radius: 12.48px; background: var(--page-bg); font-size: 14px; }
+.row { gap: 12.48px; padding: 12.48px 0; font-size: 14px; }
+.row > span:first-child { flex: 1; min-width: 0; }
+.row > span:last-child { flex: none; font-variant-numeric: tabular-nums; }
+
+/* Primary actions read at 14px, secondary actions at 13px; compact filters stay at 12px. */
+.mini-mileage-mileage .btn { font-size: 14px; font-weight: 500; }
+.mini-mileage-mileage .ghost { font-size: 14px; font-weight: 500; }
+.range-filters .ghost { font-size: 12px; }
+.card .title { font-size: 18px; } .card:first-child .title { font-size: 24px; }
+
+/* Color surfaces use existing semantic body elements; layout stays unchanged. */
+.mini-mileage-mileage > .card:first-child { background: var(--card,#fff); box-shadow: none; }
+.mini-mileage-mileage .card:nth-child(3) { background: var(--card,#fff); }
+
+.mini-mileage-mileage .mileage-tools-toggle { display:flex; align-items:center; justify-content:space-between; gap:8.32px; width:100%; min-height:52px; margin:12.48px 0; padding:0 6.24px; border:0; border-radius:0; background:transparent; color:var(--text-secondary); font-size:12px; }
+.tools-range-label { margin-top:13.52px; font-size:12px; color:var(--text-secondary); }
+.mini-mileage-mileage .mileage-report-card{padding:14.56px;border:0;background:var(--card,#fff);border-radius:14.56px}.report-eyebrow{color:var(--text-secondary);font-size:12px;letter-spacing:normal}.report-heading{margin:8.32px 0 12.48px;color:var(--text);font-size:22px;font-weight:600}.report-heading>span{color:var(--text-secondary)}.report-kinds{display:flex;gap:4.16px;padding:4.16px;background:var(--field-bg,var(--page-bg));border-radius:10.4px}.mini-mileage-mileage .report-kind{flex:1;margin:0;border:0;min-height:42px;border-radius:7.28px;background:transparent;color:var(--text-secondary);font-size:14px}.mini-mileage-mileage .report-kind.selected{background:var(--card,#fff);color:var(--text-secondary);font-weight:600}.report-date{display:flex;align-items:center;justify-content:space-between;gap:8.32px;min-height:54px;color:var(--text-secondary);font-size:12px}.report-date>span{color:var(--text-secondary);font-size:12px;flex:none}.report-summary{display:flex;gap:10.4px;padding:13.52px;border-radius:10.4px;background:var(--card,#fff)}.report-summary>div{flex:1;display:flex;flex-direction:column;gap:7.28px}.report-summary>div>span:first-child{font-size:24px;font-weight:600;letter-spacing:normal;color:var(--text-secondary);font-variant-numeric:tabular-nums}.report-summary>div>span:last-child{font-size:12px;color:var(--text-secondary)}.report-list-note{display:flex;justify-content:space-between;margin-top:13.52px;color:var(--text-secondary);font-size:12px}.mini-mileage-mileage .report-person{display:flex;align-items:center;gap:9.36px;width:100%;margin:0;padding:14.56px 0;border:0;border-bottom:0.52px solid var(--border);border-radius:0;background:var(--card,#fff);text-align:left;min-height:80px;line-height:1.5}.report-place{width:12.48px;flex:none;color:var(--text-secondary);font-size:12px}.report-place.leading{color:var(--text-secondary)}.report-avatar{width:34.32px;height:34.32px;border-radius:50%;flex:none}.report-fallback{display:flex;align-items:center;justify-content:center;background:var(--field-bg,var(--page-bg));color:var(--text-secondary);font-size:14px}.report-person-copy{flex:1;min-width:0}.report-person-top{display:flex;align-items:center;justify-content:space-between;gap:6.24px}.report-person-top>span{font-size:14px;color:var(--text-secondary);overflow-wrap:anywhere}.report-person-top>div{flex:none;color:var(--text-secondary);font-size:18px;font-weight:600;letter-spacing:normal}.report-person-top>div>span{font-size:12px;color:var(--text-secondary);font-weight:400}.report-person-meta{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4.16px;margin-top:6.24px;font-size:12px;color:var(--text-secondary)}.report-person-flag{margin-top:4.16px;font-size:12px;color:var(--text-secondary)}.report-chevron{color:var(--text-secondary);font-size:16px;flex:none}.report-footer{margin-top:13.52px;text-align:center;font-size:12px;color:var(--text-secondary)}.report-empty{padding:18.72px 0;color:var(--text-secondary);font-size:12px;line-height:1.8}
+
+.mini-mileage-mileage { font-size:14px; color:var(--text); }
+.mini-mileage-mileage>.card:first-child,.mini-mileage-mileage .mileage-report-card { border:0.52px solid var(--border); border-radius:12.48px; background:var(--card,#fff); box-shadow:none; }
+.mini-mileage-mileage .mileage-tools-toggle { min-height:48px; color:var(--text); font-size:14px; border-top:0.52px solid var(--border); }
+.report-eyebrow,.report-date>span,.report-list-note,.report-person-meta,.report-person-flag,.report-footer { font-size:12px; color:var(--text-secondary); letter-spacing:normal; }
+.report-heading { font-size:18px; color:var(--text); font-weight:600; letter-spacing:normal; }
+.report-heading>span { color:var(--brand); }
+.report-kinds { background:transparent; padding:0; border-radius:0; border-bottom:0.52px solid var(--border); }
+.mini-mileage-mileage .report-kind { min-height:44px; border-radius:0; color:var(--text-secondary); font-size:14px; }
+.mini-mileage-mileage .report-kind.selected { background:transparent; color:var(--brand); box-shadow:inset 0 -2px var(--brand); font-weight:500; }
+.report-summary { background:var(--page-bg); border-radius:10.4px; }
+.report-summary>div>span:first-child { font-size:24px; color:var(--text); font-weight:600; letter-spacing:normal; }
+.report-summary>div>span:last-child { font-size:12px; color:var(--text-secondary); }
+.report-person-top>span { font-size:14px; color:var(--text); }
+.report-person-top>div { font-size:20px; color:var(--text); font-weight:600; letter-spacing:normal; }
+.report-person-top>div>span { font-size:12px; color:var(--text-secondary); }
+.report-place.leading { color:var(--brand); }
+.report-fallback { color:var(--text-secondary); background:var(--page-bg); }
+.range-filters .ghost { min-height:44px; border-radius:10.4px; }
+
+:host { display:block; }
+.mileage-board { color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif; font-size:14px; line-height:1.6; }
+.mileage-board div,.mileage-board button,.mileage-board input { box-sizing:border-box; }
+.mileage-board button { margin:0; padding:0; min-height:44px; border:0; border-radius:0; background:transparent; font-size:14px; font-weight:400; line-height:1.4; color:inherit; }
+.mileage-board button::after { border:0; }
+.mb-heading,.mb-section-heading,.mb-summary-top,.mb-group-top,.mb-table-head,.mb-mine { display:flex; align-items:center; justify-content:space-between; gap:8.32px; }
+.mb-heading { padding:12.48px 0; }
+.mb-kicker { font-size:12px; color:var(--text-secondary); font-weight:400; }
+.mb-title { font-size:22px; font-weight:600; line-height:1.4; }
+.mb-title-dot { color:var(--brand); }
+.mileage-board .mb-link { flex:none; min-height:44px; padding:0; color:var(--brand); font-size:12px; font-weight:500; }
+.mb-link>span { padding-left:4.16px; font-size:16px; }
+.mb-ranges { display:flex; gap:0; padding:0; border-bottom:0.52px solid var(--border); background:transparent; }
+.mileage-board .mb-range { flex:1; min-height:44px; border-radius:0; font-size:14px; color:var(--text-secondary); }
+.mileage-board .mb-range.is-active { background:transparent; color:var(--brand); font-weight:500; box-shadow:inset 0 -2px var(--brand); }
+.mb-period { display:flex; align-items:center; justify-content:center; gap:10.4px; min-height:56px; color:var(--text-secondary); font-size:14px; }
+.mileage-board .mb-period-arrow { width:44px; height:44px; font-size:24px; color:var(--text-secondary); }
+.mileage-board .mb-period-arrow[disabled] { opacity:.3; }
+.mb-period-label { min-width:114.4px; min-height:44px; display:flex; align-items:center; justify-content:center; gap:6.24px; }
+.mb-all-period { font-size:12px; }
+.mb-loading,.mb-error { padding:16.64px 10.4px; font-size:14px; color:var(--text-secondary); line-height:1.7; }
+.mb-error { display:flex; align-items:center; justify-content:space-between; background:var(--brand-soft); border-radius:10.4px; color:var(--brand); }
+.mb-summary { padding:16.64px; overflow:hidden; border:0.52px solid var(--border); border-radius:12.48px; background:var(--card,#fff); }
+.mb-summary-label { font-size:14px; color:var(--text-secondary); font-weight:400; }
+.mb-summary-badge { padding:3.12px 6.24px; border-radius:4.16px; background:var(--page-bg); color:var(--text-secondary); font-size:12px; }
+.mb-total { margin:9.36px 0 14.56px; color:var(--text); font-size:40px; line-height:1.2; font-weight:600; letter-spacing:normal; font-variant-numeric:tabular-nums; }
+.mb-total>span { margin-left:6.24px; color:var(--text-secondary); font-size:14px; font-weight:400; }
+.mb-stats { display:flex; gap:6.24px; padding-top:12.48px; border-top:0.52px solid var(--border); }
+.mb-stats>div { flex:1; min-width:0; display:flex; flex-direction:column; gap:4.16px; }
+.mb-stat-number { color:var(--text); font-size:20px; font-weight:600; font-variant-numeric:tabular-nums; }
+.mb-stat-unit,.mb-stat-label { color:var(--text-secondary); font-size:12px; font-weight:400; }
+.mb-section-heading { margin:12.48px 0 8.32px; min-height:44px; }
+.mb-section-title { font-size:18px; font-weight:600; color:var(--text); line-height:1.5; }
+.mb-group-scroll { width:100%; }
+.mb-group-cards { display:flex; gap:10.4px; padding:1.04px 0.52px 4.16px; }
+.mileage-board .mb-group-card { display:block; flex:none; width:144.56px; min-height:112.32px; padding:12.48px; border-radius:12.48px; text-align:left; border:0.52px solid var(--border); background:var(--card,#fff); color:var(--text); }
+.mileage-board .mb-group-card.group-selected { border-color:var(--brand); background:var(--brand-soft); }
+.mb-group-mark { display:flex; align-items:center; justify-content:center; width:22.88px; height:22.88px; border-radius:4.16px; background:var(--page-bg); color:var(--text-secondary); font-size:14px; font-weight:500; }
+.mb-group-members { font-size:12px; color:var(--text-secondary); }
+.mb-group-name { margin-top:7.28px; font-size:14px; font-weight:500; color:var(--text); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.mb-group-pace { margin-top:3.12px; font-size:12px; color:var(--text-secondary); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.mb-group-km { margin-top:7.28px; font-size:24px; font-weight:600; font-variant-numeric:tabular-nums; color:var(--text); }
+.mb-group-km>span { color:var(--text-secondary); font-size:12px; font-weight:400; }
+.mb-rank-card { margin-top:12.48px; padding:4.16px 14.56px 8.32px; border:0.52px solid var(--border); border-radius:12.48px; background:var(--card,#fff); }
+.mb-rank-card .mb-section-heading { margin:6.24px 0 8.32px; }
+.mb-caption { margin-top:4.16px; font-size:12px; color:var(--text-secondary); }
+.mb-count { color:var(--text-secondary); font-size:12px; }
+.mb-filters { display:flex; gap:6.24px; white-space:nowrap; padding-bottom:5.2px; }
+.mileage-board .mb-filter { flex:none; min-height:44px; padding:6.24px 12.48px; border:0.52px solid var(--border); border-radius:10.4px; color:var(--text-secondary); background:var(--card,#fff); font-size:12px; }
+.mileage-board .mb-filter.filter-selected { border-color:var(--brand); background:var(--brand-soft); color:var(--brand); font-weight:500; }
+.mb-search { display:flex; align-items:center; gap:6.24px; min-height:44px; margin:8.32px 0 10.4px; padding:0 10.4px; border-radius:10.4px; background:var(--page-bg); color:var(--text-secondary); }
+.mb-search>span { font-size:22px; }
+.mb-search input { flex:1; min-width:0; height:44px; font-size:14px; border:0; padding:0; margin:0; background:transparent; color:var(--text); }
+.mb-mine { padding:10.4px; border-radius:8.32px; color:var(--text); background:var(--page-bg); font-size:12px; }
+.mb-mine-place { margin-left:7.28px; color:var(--text-secondary); }
+.mb-mine>span:last-child { font-size:18px; font-weight:500; }
+.mb-mine-unit { font-size:12px; font-weight:400; }
+.mb-table-head { margin-top:7.28px; padding:7.28px 0; color:var(--text-secondary); font-size:12px; }
+.mileage-board .mb-person { display:flex; align-items:center; gap:8.32px; width:100%; min-height:76px; padding:11.44px 0; text-align:left; border-bottom:0.52px solid var(--border); }
+.mb-person:last-child { border-bottom:0; }
+.mb-place { flex:none; width:16.64px; text-align:center; font-size:14px; font-weight:500; color:var(--text-secondary); }
+.place-1,.place-2,.place-3 { color:var(--brand); }
+.mb-avatar { flex:none; width:36.4px; height:36.4px; border-radius:50%; }
+.mb-initial { display:flex; align-items:center; justify-content:center; background:var(--page-bg); color:var(--text-secondary); font-size:14px; font-weight:500; }
+.mb-person-copy { flex:1; min-width:0; }
+.mb-person-name { font-size:14px; color:var(--text); font-weight:500; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
+.mb-me-tag { margin-left:4.16px; color:var(--brand); font-size:12px; font-weight:400; }
+.mb-person-meta { margin-top:5.2px; color:var(--text-secondary); font-size:12px; }
+.mb-person-distance { flex:none; min-width:58.24px; text-align:right; font-size:20px; font-weight:600; color:var(--text); font-variant-numeric:tabular-nums; }
+.mb-person-chevron { margin-left:6.24px; color:var(--text-secondary); font-size:16px; font-weight:400; }
+.mb-progress-track { width:54.08px; height:2.6px; border-radius:2.6px; margin:6.24px 12.48px 0 auto; background:var(--page-bg); overflow:hidden; }
+.mb-progress { height:100%; border-radius:2.6px; background:var(--brand); }
+.mb-empty-groups { padding:14.56px; border:0.52px solid var(--border); border-radius:12.48px; color:var(--text-secondary); background:var(--card,#fff); font-size:14px; line-height:1.7; }
+.mb-empty-title { margin-bottom:5.2px; color:var(--text); font-size:16px; font-weight:500; }
+.mileage-board .mb-outline { min-height:44px; width:100%; margin-top:9.36px; border:0.52px solid var(--border); border-radius:10.4px; color:var(--text); background:var(--card,#fff); }
+.mb-empty-rank { padding:16.64px 0; color:var(--text-secondary); font-size:14px; line-height:1.7; text-align:center; }
+.mb-bottom-note { padding:12.48px 0 8.32px; font-size:12px; color:var(--text-secondary); text-align:center; line-height:1.7; }
+.mileage-board .mb-tools { width:100%; min-height:48px; padding:0; display:flex; align-items:center; justify-content:space-between; color:var(--text); font-size:14px; border-top:0.52px solid var(--border); }
+@media(max-width:350px) { .mb-total { font-size:36px; }.mb-summary { padding:14.56px; }.mb-stat-number { font-size:18px; }.mb-person-distance { font-size:18px; min-width:52px; }.mb-person-name { font-size:14px; } }
+</style></head><body><div class="pad mini-mileage-mileage">
+  <div class="audit-component"><div class="mileage-board">
+  <div class="mb-heading"><div><div class="mb-title">跑量看板</div></div><button class="mb-link">训练组 <span>↗</span></button></div>
+  <div class="mb-ranges"><button class="mb-range ">日</button><button class="mb-range ">周</button><button class="mb-range is-active">月</button><button class="mb-range ">年</button><button class="mb-range ">累计</button></div>
+  <div class="mb-period"><button class="mb-period-arrow" aria-label="上一周期">‹</button><div mode="date" value="2026-11-11" end="2027-01-01"><div class="mb-period-label">2026-11 <span>⌄</span></div></div><button class="mb-period-arrow" aria-label="下一周期">›</button></div>
+  
+  
+  
+  
+    <div class="mb-summary"><div class="mb-summary-top"><span class="mb-summary-label">全员总跑量</span><span class="mb-summary-badge">本期里程</span></div><div class="mb-total">720<span>km</span></div><div class="mb-stats"><div><span class="mb-stat-number">5<span class="mb-stat-unit"> / 6</span></span><span class="mb-stat-label">跑步成员</span></div><div><span class="mb-stat-number">60<span class="mb-stat-unit"> 次</span></span><span class="mb-stat-label">跑步记录</span></div><div><span class="mb-stat-number">120<span class="mb-stat-unit"> km</span></span><span class="mb-stat-label">成员人均</span></div></div></div>
+    <div class="mb-section-heading"><div class="mb-section-title">训练组跑量</div><button class="mb-link">管理组别 ›</button></div>
+    <div class="mb-group-scroll" data-mirror-scroll-x="true" enhanced="" show-scrollbar="false" style="overflow-x: auto; white-space: nowrap;"><div class="mb-group-cards"><button class="mb-group-card tone-mint "><div class="mb-group-top"><span class="mb-group-mark">晨</span><span class="mb-group-members">3 人</span></div><div class="mb-group-name">晨光轻松组</div><div class="mb-group-pace">6′00″–6′30″ /km</div><div class="mb-group-km">568.8<span> km</span></div></button><button class="mb-group-card tone-blue "><div class="mb-group-top"><span class="mb-group-mark">稳</span><span class="mb-group-members">2 人</span></div><div class="mb-group-name">稳步进阶组</div><div class="mb-group-pace">5′00″–5′30″ /km</div><div class="mb-group-km">91.2<span> km</span></div></button><button class="mb-group-card tone-apricot "><div class="mb-group-top"><span class="mb-group-mark">周</span><span class="mb-group-members">0 人</span></div><div class="mb-group-name">周末长距离训练组</div><div class="mb-group-pace">按当天状态</div><div class="mb-group-km">0<span> km</span></div></button></div></div>
+    
+    <div class="mb-rank-card"><div class="mb-section-heading"><div><div class="mb-section-title">成员里程榜</div><div class="mb-caption">每份坚持，都值得被看见</div></div><span class="mb-count">6 人</span></div>
+      <div data-mirror-scroll-x="true" class="mb-filter-scroll" enhanced="" show-scrollbar="false" style="overflow-x: auto; white-space: nowrap;"><div class="mb-filters"><button class="mb-filter filter-selected">全员</button><button class="mb-filter ">晨光轻松组</button><button class="mb-filter ">稳步进阶组</button><button class="mb-filter ">周末长距离训练组</button><button class="mb-filter ">未分组</button></div></div>
+      <div class="mb-search"><span>⌕</span><input placeholder="找一位团友" maxlength="50" aria-label="搜索跑量榜成员" style=""></div>
+      <div class="mb-mine"><span>我的本期 <span class="mb-mine-place">第 1 名</span></span><span>220.8 <span class="mb-mine-unit">km</span></span></div>
+      <div class="mb-table-head"><span>排名 / 团友</span><span>跑量 · km</span></div>
+      <button class="mb-person" aria-label="查看晨光团长的成员主页"><span class="mb-place place-1">1</span><img class="mb-avatar" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDQ4IDQ4Ij48cmVjdCB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHJ4PSIyNCIgZmlsbD0iI2VhZjRmZiIvPjx0ZXh0IHg9IjI0IiB5PSIyNSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjMiIGZvbnQtd2VpZ2h0PSI2MDAiIGZpbGw9IiMzODdjYmQiPkE8L3RleHQ+PC9zdmc+" mode="aspectFill"><div class="mb-person-copy"><div class="mb-person-name">晨光团长<span class="mb-me-tag">我</span></div><div class="mb-person-meta">晨光轻松组 · 12 次</div></div><div class="mb-person-distance"><div>220.8<span class="mb-person-chevron">›</span></div><div class="mb-progress-track"><div class="mb-progress" style="width:100%;"></div></div></div></button><button class="mb-person" aria-label="查看河畔领跑员的成员主页"><span class="mb-place place-2">2</span><div class="mb-avatar mb-initial tone-blue">河</div><div class="mb-person-copy"><div class="mb-person-name">河畔领跑员</div><div class="mb-person-meta">晨光轻松组 · 12 次</div></div><div class="mb-person-distance"><div>194.4<span class="mb-person-chevron">›</span></div><div class="mb-progress-track"><div class="mb-progress" style="width:88%;"></div></div></div></button><button class="mb-person" aria-label="查看周末慢跑者的成员主页"><span class="mb-place place-3">3</span><img class="mb-avatar" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDQ4IDQ4Ij48cmVjdCB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHJ4PSIyNCIgZmlsbD0iI2U5ZjdmMiIvPjx0ZXh0IHg9IjI0IiB5PSIyNSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjMiIGZvbnQtd2VpZ2h0PSI2MDAiIGZpbGw9IiMyNTgwNjIiPkM8L3RleHQ+PC9zdmc+" mode="aspectFill"><div class="mb-person-copy"><div class="mb-person-name">周末慢跑者</div><div class="mb-person-meta">晨光轻松组 · 12 次</div></div><div class="mb-person-distance"><div>153.6<span class="mb-person-chevron">›</span></div><div class="mb-progress-track"><div class="mb-progress" style="width:70%;"></div></div></div></button><button class="mb-person" aria-label="查看清晨一起跑的成员主页"><span class="mb-place place-other">4</span><img class="mb-avatar" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDQ4IDQ4Ij48cmVjdCB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHJ4PSIyNCIgZmlsbD0iI2ZmZjBlNyIvPjx0ZXh0IHg9IjI0IiB5PSIyNSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjMiIGZvbnQtd2VpZ2h0PSI2MDAiIGZpbGw9IiNiOTZhMmMiPkU8L3RleHQ+PC9zdmc+" mode="aspectFill"><div class="mb-person-copy"><div class="mb-person-name">清晨一起跑</div><div class="mb-person-meta">稳步进阶组 · 12 次</div></div><div class="mb-person-distance"><div>91.2<span class="mb-person-chevron">›</span></div><div class="mb-progress-track"><div class="mb-progress" style="width:41%;"></div></div></div></button><button class="mb-person" aria-label="查看长昵称也按自己的节奏奔跑的朋友的成员主页"><span class="mb-place place-other">5</span><div class="mb-avatar mb-initial tone-rose">长</div><div class="mb-person-copy"><div class="mb-person-name">长昵称也按自己的节奏奔跑的朋友</div><div class="mb-person-meta">未分组 · 12 次</div></div><div class="mb-person-distance"><div>60<span class="mb-person-chevron">›</span></div><div class="mb-progress-track"><div class="mb-progress" style="width:27%;"></div></div></div></button><button class="mb-person" aria-label="查看稳定向前的成员主页"><span class="mb-place place-other">—</span><div class="mb-avatar mb-initial tone-lime">稳</div><div class="mb-person-copy"><div class="mb-person-name">稳定向前</div><div class="mb-person-meta">稳步进阶组 · 0 次</div></div><div class="mb-person-distance"><div>0<span class="mb-person-chevron">›</span></div><div class="mb-progress-track"><div class="mb-progress" style="width:0%;"></div></div></div></button>
+      
+    </div>
+    <div class="mb-bottom-note">仅统计计入本团的跑量 · 按当前训练组汇总 · 北京时间</div>
+    
+  
+</div>
+</div>
+  <button class="mileage-tools-toggle"><span>跑步动态、报表与计入规则</span><span>展开 ＋</span></button>
+  
+</div>
+</body></html>

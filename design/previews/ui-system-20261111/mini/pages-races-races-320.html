@@ -1,0 +1,363 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><style>html,body{margin:0;padding:0}body{padding-bottom:70px}a{display:block;color:inherit;text-decoration:none}button{display:block;box-sizing:border-box;padding:0 14px;line-height:1.35}input,textarea{outline:none}input[type=checkbox]{min-height:0}img{display:inline-block;vertical-align:middle}*{box-sizing:border-box}.native-switch{display:inline-block;width:44px;height:26px;flex:none;border-radius:20px;background:#d8ded5;position:relative}.native-switch[checked=true]{background:#c54332}.native-switch:after{content:"";display:block;position:absolute;top:2px;left:2px;width:22px;height:22px;border-radius:50%;background:white}.native-switch[checked=true]:after{left:20px}swiper-item{display:block}.audit-banner{font:10px system-ui;color:#767676;padding:5px 12px;text-align:center}.mirror-tabbar{position:fixed;z-index:50;left:0;right:0;bottom:0;display:flex;background:white;border-top:1px solid #eee;height:64px;padding:6px 0}.mirror-tabbar a{width:25%;font:11px system-ui;text-align:center}.mirror-tabbar img{display:block;margin:0 auto 3px;width:25px;height:25px}</style><style>body {
+  --brand: #c54332;
+  --brand-soft: #f8eee9;
+  --page-bg: #f7f7f4;
+  --surface: #ffffff;
+  --text: #252923;
+  --text-secondary: #6f756c;
+  --border: #e3e6df;
+  --control-radius: 10.24px;
+  --card-radius: 15.36px;
+  min-height: 100%;
+  background: var(--page-bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.65;
+}
+div, span, a, div, button, input, textarea, div { box-sizing: border-box; }
+button, input, textarea { font-family: inherit; color: var(--text); }
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 44px;
+  margin: 0;
+  padding: 12px 18px;
+  border: 0.4266666666666667px solid var(--border);
+  border-radius: var(--control-radius);
+  background: var(--surface);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+button::after { border: 0; }
+button[plain] { border: 0.4266666666666667px solid var(--border); background: var(--surface); }
+input, textarea {
+  min-width: 0;
+  border: 0.4266666666666667px solid var(--border);
+  border-radius: 8.533333333333333px;
+  background: #fafbf8;
+  color: var(--text);
+  font-size: 14px;
+  caret-color: var(--brand);
+}
+input { min-height: 46px; padding: 0 10.24px; }
+textarea { min-height: 120px; padding: 10.24px; line-height: 1.75; }
+input::placeholder, textarea::placeholder { color: #92978e; }
+.pad { padding: 13.653333333333334px 13.653333333333334px calc(20.48px + env(safe-area-inset-bottom)); }
+.card {
+  margin-bottom: 10.24px;
+  padding: 13.653333333333334px;
+  border: 0.4266666666666667px solid var(--border);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+}
+.title { font-size: 18px; font-weight: 600; line-height: 1.4; letter-spacing: -0.128px; }
+.muted { color: var(--text-secondary); font-size: 12px; }
+.slot { display: flex; justify-content: space-between; gap: 10.24px; margin-top: 5.12px; padding: 7.68px 8.533333333333333px; border-radius: 6.826666666666667px; background: #f3f5ef; font-size: 14px; }
+.slot-state { color: var(--text-secondary); font-size: 12px; }
+.teal { color: var(--brand); }
+.row { display: flex; justify-content: space-between; gap: 10.24px; padding: 8.533333333333333px 0; border-bottom: 0.4266666666666667px solid var(--border); }
+.row:last-child { border-bottom: 0; }
+.row .k { flex: none; color: var(--text-secondary); }
+.soon { color: #a06a2e; }
+.err { margin-top: 5.12px; color: #ad382b; font-size: 12px; line-height: 1.7; }
+.note { margin-top: 5.12px; color: var(--brand); font-size: 12px; line-height: 1.7; }
+.empty { padding: 23.893333333333334px 13.653333333333334px; color: var(--text-secondary); font-size: 13px; text-align: center; line-height: 1.8; }
+.field { display: flex; align-items: center; gap: 6.826666666666667px; }
+.field input { flex: 1; min-width: 0; height: 46px; padding: 0 10.24px; border-radius: 8.533333333333333px; background: #fafbf8; }
+.btn, .login-go {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 46px;
+  margin: 0;
+  padding: 12px 20px;
+  border: 0.4266666666666667px solid transparent;
+  border-radius: var(--control-radius);
+  background: var(--brand);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
+}
+.login-go { margin-top: 10.24px; }
+button.ghost {
+  min-height: 44px;
+  margin: 6.826666666666667px 6.826666666666667px 0 0;
+  padding: 10px 16px;
+  border: 0.4266666666666667px solid var(--border);
+  border-radius: var(--control-radius);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+button.ghost.on { border-color: #d8b4a9; background: var(--brand-soft); color: var(--brand); }
+button[disabled], button.btn[disabled] { border-color: #e8eae4; background: #edf0e9; color: #93998e; opacity: 1; }
+.chip { display: inline-block; margin-right: 3.4133333333333336px; padding: 1.7066666666666668px 5.12px; border: 0.4266666666666667px solid #e7eae2; border-radius: 5.12px; background: #f3f5ef; color: var(--text-secondary); font-size: 11px; font-weight: 400; line-height: 1.6; }
+.foot { display: flex; justify-content: space-between; gap: 8.533333333333333px; margin-top: 6.826666666666667px; color: var(--text-secondary); font-size: 12px; }
+.src { margin-top: 5.12px; color: var(--text-secondary); font-size: 12px; line-height: 1.75; overflow-wrap: anywhere; }
+.card > input, .card > textarea, .card > div { margin-top: 8.533333333333333px; }
+.card > input { width: 100%; }
+.card > .btn { margin-top: 10.24px; }
+.primary, .primary-btn, .primary-button, .submit-button, .save-action, .next-action, .bottom-primary, .staff-primary { border-radius: var(--control-radius); }
+.field-label, .form-label { line-height: 1.6; }
+.metric-value, .stat-value, .career-number, .record-number, .rank-time { font-variant-numeric: tabular-nums; }
+/* Shared control roles for new screens and gradual migrations. */
+.ui-control-text { width: auto; min-height: 44px; padding: 10px 8px; border: 0; border-radius: 5.12px; background: transparent; color: var(--brand); font-size: 13px; }
+.ui-control-danger { border-color: #ead6ce; background: #fcf4ef; color: #a33829; }
+.ui-label { color: var(--text-secondary); font-size: 12px; font-weight: 400; }
+@media (max-width: 350px) { .pad { padding-left: 14px; padding-right: 14px; } .card { padding: 16px; } }
+
+:host { display: block; }
+.page-header { background: #f7f7f4; color: #252923; }
+.header-main { display: flex; align-items: center; padding-left: 13.653333333333334px; box-sizing: border-box; }
+.header-title { min-width: 0; overflow: hidden; font-size: 24px; line-height: 1.3; font-weight: 600; letter-spacing: -0.21333333333333335px; white-space: nowrap; text-overflow: ellipsis; }
+.header-subtitle { padding: 0 13.653333333333334px 10.24px; color: #6f756c; font-size: 12px; line-height: 1.7; }
+@media (max-width: 350px) { .header-main { padding-left: 14px; } .header-subtitle { padding-left: 14px; padding-right: 14px; } }
+
+.page { min-height: 100vh; background: var(--page-bg); color: var(--text); font-weight: 400; }
+.home-navigation { position: sticky; top: 0; z-index: 12; background: var(--page-bg); }
+.home-header { padding-bottom: 5.12px; background: var(--page-bg); }
+.home-nav { display: flex; align-items: center; gap: 6.826666666666667px; padding-left: 10.24px; box-sizing: border-box; overflow: hidden; }
+.home-title { flex: none; font-size: 26px; font-weight: 700; line-height: 1.2; }
+.home-intro { padding: 10.24px 11.946666666666667px 0; }
+.intro-title { font-size: 24px; line-height: 1.4; font-weight: 750; letter-spacing: -.5px; }
+.intro-caption { margin-top: 4.266666666666667px; color: var(--text-secondary); font-size: 12px; line-height: 1.7; }
+.today { min-width: 0; overflow: hidden; color: var(--text-secondary); font-size: 12px; line-height: 13.653333333333334px; text-overflow: ellipsis; white-space: nowrap; }
+
+.search { display: flex; align-items: center; height: 52px; margin: 8.533333333333333px 10.24px 0; padding: 4px 5px 4px 9.386666666666667px; border: 1.5px solid var(--brand);  box-sizing: border-box; background: #fff; }
+.lens { position: relative; flex: none; width: 9.386666666666667px; height: 9.386666666666667px; border: 0.8533333333333334px solid var(--text-secondary); border-radius: 50%; }
+.lens::after { position: absolute; right: -3.4133333333333336px; bottom: -1.28px; width: 4.266666666666667px; height: 0.8533333333333334px; background: var(--text-secondary); transform: rotate(45deg); content: ''; }
+.search-input { flex: 1; min-width: 0; min-height: 44px; height: 44px; margin-left: 6.826666666666667px; padding: 0; border: 0; border-radius: 0; background: transparent; font-size: 14px; }
+.search-placeholder { color: var(--text-secondary); font-size: 14px; }
+.find { flex: none; padding-left: 8.533333333333333px; color: #fff; font-size: 14px; font-weight: 600; line-height: 44px;  min-height: 44px; height: 44px; padding: 0 10.24px; background: var(--brand); }
+
+.kind-tabs { display: flex; gap: 17.066666666666666px; width: 100%; height: 40.96px; padding: 0 13.653333333333334px; box-sizing: border-box; }
+.kind-tab { min-height: 44px; position: relative; display: flex; flex: none; min-width: 0; align-items: center; justify-content: center; height: 40.96px; color: var(--text-secondary); font-size: 16px; font-weight: 500; white-space: nowrap;  }
+.kind-tab.on { color: var(--brand); font-size: 18px; font-weight: 700;  }
+.kind-tab.on::after { position: absolute; bottom: 5.12px; left: 50%; width: 17.066666666666666px; height: 2.56px;  background: var(--brand); transform: translateX(-50%); content: ''; }
+.quick-entries { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 3.4133333333333336px 10.24px 0; padding: 11.946666666666667px 0 8.533333333333333px;  background: #fff; }
+.quick-entry { display: flex; min-width: 0; min-height: 49.49333333333333px; flex-direction: column; align-items: center; gap: 5.973333333333334px; color: var(--text-secondary); font-size: 12px; line-height: 17.066666666666666px; white-space: nowrap; }
+.quick-icon { display: block; width: 27.30666666666667px; height: 27.30666666666667px; margin: 0; border: 0; background: transparent; }
+
+.reminder { height: 42.666666666666664px; margin: 8.533333333333333px 10.24px; overflow: hidden;  background: var(--brand-soft); }
+.reminder-swiper { width: 100%; height: 42.666666666666664px; }
+.reminder-item { display: flex; align-items: center; gap: 6.826666666666667px; height: 42.666666666666664px; padding: 6.826666666666667px 8.533333333333333px; box-sizing: border-box; }
+.reminder-clock { position: relative; flex: none; width: 14.506666666666666px; height: 14.506666666666666px; border: 0.8533333333333334px solid var(--brand); border-radius: 50%; box-sizing: border-box; }
+.reminder-clock::before { position: absolute; top: 2.56px; left: 5.973333333333334px; width: 0.8533333333333334px; height: 4.266666666666667px; border-radius: 0.4266666666666667px; background: var(--brand); content: ''; }
+.reminder-clock::after { position: absolute; top: 5.973333333333334px; left: 5.973333333333334px; width: 3.84px; height: 0.8533333333333334px; border-radius: 0.4266666666666667px; background: var(--brand); content: ''; }
+.reminder-copy { flex: 1; min-width: 0; }
+.reminder-reason { overflow: hidden; color: var(--brand); font-size: 12px; line-height: 11.093333333333334px; text-overflow: ellipsis; white-space: nowrap; }
+.reminder-name { margin-top: 1.7066666666666668px; overflow: hidden; color: var(--text); font-size: 12px; line-height: 13.653333333333334px; text-overflow: ellipsis; white-space: nowrap; }
+.reminder-arrow { flex: none; color: var(--brand); font-size: 18px; line-height: 1; }
+
+.results { padding: 5.12px 0 10.24px; }
+.results-head { display: flex; align-items: center; justify-content: space-between; gap: 6.826666666666667px; margin: 0 10.24px 5.12px; }
+.results-title { color: var(--text); font-size: 19px; font-weight: 700; line-height: 21.333333333333332px; }
+.total { flex: none; color: var(--text-secondary); font-size: 12px; line-height: 14.506666666666666px; }
+.race-format-filter { display: flex; align-items: center; gap: 10.24px; margin: 0 10.24px 10.24px; }
+.format-label { flex: none; color: var(--text-secondary); font-size: 12px; line-height: 17.066666666666666px; }
+.meet-tabs { display: flex; flex: 1; min-width: 0; max-width: 238.93333333333334px; padding: 2.56px; border-radius: 0; background: #ebebeb; }
+.meet-tabs .kind-tab { min-height: 44px; flex: 1; height: 44px; min-height: 44px; padding: 0 3.4133333333333336px;  color: var(--text-secondary); font-size: 12px; line-height: 17.066666666666666px; font-weight: 400; box-sizing: border-box; }
+.meet-tabs .kind-tab.on { color: var(--text); background: #fff; box-shadow: 0 0.8533333333333334px 2.56px rgba(31,32,38,.06); font-size: 12px; font-weight: 600;  }
+.meet-tabs .kind-tab.on::after { display: none;  }
+.filters { width: 100%; height: 56px; overflow: hidden; white-space: nowrap; }
+.filter-chip { min-height: 44px; display: inline-block; height: 40px; margin-right: 5.12px; padding: 0 8.533333333333333px;  background: #fff; color: var(--text); font-size: 12px; line-height: 40px; vertical-align: top;  min-height: 40px; border: 0.4266666666666667px solid var(--border);}
+.filter-chip:first-child { margin-left: 10.24px;  }
+.filter-chip:last-child { margin-right: 10.24px;  }
+.filter-chip.on { background: var(--brand-soft); color: var(--brand);  }
+.race { display: flex; align-items: flex-start; gap: 8.533333333333333px; margin: 0 10.24px 8.533333333333333px; padding: 11.946666666666667px;  background: #fff;  border: 0.4266666666666667px solid #fff;}
+.date { display: flex; flex: none; width: 44.373333333333335px; height: 52.906666666666666px; flex-direction: column; align-items: center; justify-content: center; border-radius: 8.533333333333333px; background: var(--brand-soft); }
+.mo { color: var(--text-secondary); font-size: 12px; line-height: 11.946666666666667px; }
+.da { margin-top: 1.7066666666666668px; color: var(--brand); font-size: 22.186666666666667px; font-weight: 700; line-height: 25.6px; }
+.race-body { flex: 1; min-width: 0; }
+.race-name { display: -webkit-box; overflow: hidden; color: var(--text); font-size: 18px; font-weight: 650; line-height: 1.5; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.race-meta { margin-top: 3.4133333333333336px; overflow: hidden; color: var(--text-secondary); font-size: 12px; line-height: 1.7; text-overflow: ellipsis; white-space: nowrap; }
+.race-footer { display: flex; align-items: center; gap: 5.12px; margin-top: 5.973333333333334px;  flex-wrap: wrap;}
+.status-pill { flex: none; padding: 0.8533333333333334px 4.266666666666667px;  background: var(--brand-soft); color: var(--brand); font-size: 12px; line-height: 11.946666666666667px; white-space: nowrap; }
+.status-pill.muted-status { background: #f2f2f2; color: var(--text-secondary);  }
+.deadline { flex: 1; min-width: 0; overflow: hidden; color: var(--text-secondary); font-size: 12px; line-height: 12.8px; text-overflow: ellipsis; white-space: nowrap; }
+.deadline.hot { color: var(--brand); }
+.page-error { margin: 6.826666666666667px 10.24px; color: #b42318; font-size: 12px; }
+.page-error .retry { margin-left: 6.826666666666667px; color: var(--brand); font-weight: 600; }
+.empty { padding: 20.48px 10.24px; color: var(--text-secondary); font-size: 14px; text-align: center; }
+.pager { display: flex; align-items: center; flex-wrap: wrap; gap: 5.12px; margin: 8.533333333333333px 10.24px 3.4133333333333336px; }
+.pager-step { height: 27.30666666666667px; padding: 0 3.4133333333333336px; color: var(--brand); font-size: 12px; font-weight: 600; line-height: 27.30666666666667px; }
+.pager-step.off { color: #c9ccd3; }
+.pager-num { min-width: 20.48px; height: 27.30666666666667px; padding: 0 6.826666666666667px; border-radius: 6.826666666666667px; background: #f2f2f2; color: var(--text); font-size: 12px; font-weight: 600; line-height: 27.30666666666667px; text-align: center; }
+.pager-num.on { background: var(--brand); color: #fff; }
+
+.dim { position: fixed; left: 0; right: 0; top: 0; bottom: 0; z-index: 20; background: rgba(0, 0, 0, 0.45); }
+.drop { position: fixed; left: 0; right: 0; bottom: 0; z-index: 21; max-height: 70vh; padding-bottom: env(safe-area-inset-bottom); border-radius: 10.24px 10.24px 0 0; background: #fff; }
+.loc { display: flex; height: 290.1333333333333px; }
+.prov { flex: none; width: 95.57333333333334px; height: 290.1333333333333px; background: var(--page-bg); }
+.prov-item { padding: 11.946666666666667px 13.653333333333334px; color: var(--text); font-size: 14px; }
+.prov-item.on { background: #fff; color: var(--brand); font-weight: 600; }
+.cities, .months { display: flex; flex-wrap: wrap; align-content: flex-start; gap: 6.826666666666667px; }
+.cities { flex: 1; min-width: 0; padding: 10.24px; box-sizing: border-box; }
+.time { max-height: 70vh; padding: 10.24px 11.946666666666667px 13.653333333333334px; box-sizing: border-box; }
+.year { margin: 8.533333333333333px 0 6.826666666666667px; font-size: 14px; font-weight: 600; }
+.pick { padding: 6.826666666666667px 10.24px;  background: #f2f2f2; color: var(--text); font-size: 12px; }
+.pick.on { background: var(--brand); color: #fff;  }
+.status-sheet { padding: 13.653333333333334px 11.946666666666667px 11.946666666666667px; }
+.sheet-title { margin-bottom: 10.24px; font-size: 18px; font-weight: 600; }
+.actions { display: flex; gap: 8.533333333333333px; margin-top: 13.653333333333334px; }
+.act { flex: 1; height: 37.54666666666667px;  font-size: 14px; font-weight: 600; line-height: 37.54666666666667px; text-align: center; }
+.act.ghost { background: #f2f2f2;  }
+.act.ok { background: var(--brand); color: #fff;  }
+
+@media (max-width: 350px) {
+  .home-title { font-size: 26px; }
+  .today { font-size: 11px; }
+  .kind-tabs { gap: 17.066666666666666px; padding-left: 10.24px;  height: 40.96px;}
+  .kind-tab { min-height: 44px; font-size: 16px;  height: 40.96px;  }
+  .kind-tab.on { font-size: 18px;  }
+  .quick-entry { font-size: 12px; line-height: 18px;  color: var(--text-secondary); gap: 5.973333333333334px;}
+  .quick-icon { width: 30px; height: 30px; }
+  .race-format-filter { gap: 10px; }
+  .format-label { font-size: 12px; }
+  .meet-tabs .kind-tab, .meet-tabs .kind-tab.on { font-size: 12px;  }
+  .race-name { font-size: 18px; line-height: 1.5;  font-weight: 650;}
+  .race-meta { font-size: 12px; line-height: 1.7;  margin-top: 3.4133333333333336px;}
+  .status-pill, .deadline { font-size: 11px; line-height: 16px;  }
+  .race-footer { flex-wrap: wrap;  margin-top: 5.973333333333334px;}
+  .race { gap: 10px;  padding: 11.946666666666667px; margin: 0 10.24px 8.533333333333333px; border: 0.4266666666666667px solid #fff; align-items: flex-start;  }
+  .date { width: 44.373333333333335px; height: 52.906666666666666px;  background: var(--brand-soft); border-radius: 8.533333333333333px;}
+  .mo { font-size: 11px; line-height: 16px; }
+  .da { font-size: 26px; line-height: 28px; }
+}
+
+/* Route geometry: surfaces, controls and compact labels have distinct roles. */
+.mini-races-races .race, .mini-races-races .quick-entries, .mini-races-races .reminder { border-radius: 15.36px; }
+.mini-races-races .search, .mini-races-races .find, .mini-races-races .filter-chip, .mini-races-races .pick, .mini-races-races .act { border-radius: 10.24px; }
+.mini-races-races .status-pill, .mini-races-races .kind-tab { border-radius: 5.973333333333334px; }
+
+/* Page composition and interaction hierarchy. */
+.mini-races-races { color: var(--text); }
+.mini-races-races button { font-weight: 500; border-radius: 10.24px; }
+
+.home-title,.intro-title { font-weight: 600; }
+.home-intro { padding: 13.653333333333334px 11.946666666666667px 0; }
+.search { border: 1px solid var(--border); border-radius: 10.24px; }
+.find { border-radius: 10.24px; font-size: 12px; font-weight: 500; }
+.kind-tab,.kind-tab.on { font-size: 14px; font-weight: 500; border-radius: 0; }
+.kind-tab.on { color: var(--text); font-weight: 600; }
+.kind-tab.on::after { height: 2px; border-radius: 0; }
+.meet-tabs { gap: 5.12px; padding: 0; border-radius: 0; background: transparent; }
+.meet-tabs .kind-tab { border: 1px solid var(--border); border-radius: 5.973333333333334px; background: #fff; font-size: 12px; }
+.meet-tabs .kind-tab.on { border-color: var(--brand); background: var(--brand-soft); color: var(--brand); box-shadow: none; }
+.filter-chip { border-radius: 5.973333333333334px; }
+.filter-chip.on { border-color: var(--brand); }
+.race,.quick-entries { border: 1px solid var(--border); }
+.race-name { font-size: 18px; font-weight: 600; }
+.race-meta,.deadline,.status-pill { font-size: 11px; }
+.date { border-radius: 10.24px; background: var(--page-bg); }
+.da { color: var(--text); }
+
+/* Primary actions read at 14px, secondary actions at 13px; compact filters stay at 12px. */
+.mini-races-races .find { font-size: 14px; font-weight: 500; }
+</style></head><body><div class="page mini-races-races">
+  <div class="home-navigation">
+    <div style="height: 47px;"></div>
+    <div class="home-nav" style="height: 44px; padding-right: 104px;">
+      <span class="home-title">赛历</span>
+      <span class="today">11月5日 周四</span>
+    </div>
+  </div>
+  <div class="home-header">
+    <div class="home-intro"><div class="intro-title">下一场，跑向热爱</div><div class="intro-caption">找赛事、看赛期，和跑友一起出发</div></div>
+    <div class="search">
+      <div class="lens"></div>
+      <input class="search-input" placeholder-class="search-placeholder" placeholder="搜赛事名称或城市" confirm-type="search" aria-label="搜赛事名称或城市" style="">
+      <button class="find" aria-label="搜索赛事">搜索</button>
+    </div>
+    
+      <div class="kind-tabs">
+        <div class="kind-tab on">全部赛事</div><div class="kind-tab ">路跑</div><div class="kind-tab ">越野赛</div>
+      </div>
+      <div class="quick-entries">
+        <a class="quick-entry" href="#">
+          <img class="quick-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAB4CAYAAAA5ZDbSAAAD2klEQVR4nOzbP2gTURwH8N/LBaFOXRzUQVvQUcRBcPKcAjWtJRpbQ9FRC4Lg5GYdnEUplE4iSE0N2tqkBadWOgiCII4KVgddXHRRoUmeLyFItXrpu7vE1+99P3Alfbn2Hu/b/LlcvykhaCkhaAwYHAMGx4DBMWBwDBgcAwbHgMExYHAMGFxaHDI8mvWbN7RcFyXP5ouVCXGc63NW4pDhkazeNKjkhFm0FXGU63N25inaLNTyX+9oPDIctR3m7NJTtG857gLfcrzrnHgE/3odC3n//7Bd5sx30eAYMDgGDI4Bg2PA4LryQcfQ6NCeVF0f1UoOmZPE/SklvVr/duxeCT61WDHbF3GL1ZyVEl3Xje/Ve6XldT2lXiwUFz5Jh3U04FMjgxeV1hfMUY4JbabluVbq3pPZ8rR0SEcCPn02O1BTMmlu9gltxZqn5fKjh5UliVmsAefz+Z519SMjSs8JWTMvW3d26J5rpVLpu8QktoAH84N9XkpPmZsZoSie1upqvFwqr0kMYnkXnRvL7PaUPi8MNw4Zz5O7jTWVGMQScK2645Z5LpgQiofWx5trGoPIT9G5keyRushLix95Z7aPZqttGGucchwO+JlX4uZpks2cPbPtNVu/bJFS6upcsRwp6EgBZwvZA+mavGm3nznIZ/P1tvJq9x/PLH348/7mlRctywG/wLmL/mHnnCsM7NM1b8w8TK9okV3SRtWTg5WZylsJKdL14HRV32icwQdS+kG6tnPcvDP8KiStP/Cb5oxjct37NiVanQvav7nGIgUJKfRrcK5wst+EGzg58+HN9HxxscBwN2usSWNtGmsUuKNZ4+ZahxQ64HpVnWmzy+rc7OIloUCtNVoN2mcLa/1PTv3THcWPV5PAMWBwDBgcAwbHgMExYHAMGBwDBseAwTFgcCyAR8QCuAUWwOPHAngELIDb8S3HXeBbjncdC+AhsQBOTmDA4BgwOAYMjgGDYwE8PBbAWQBvgwXwxGABPAlYAE8GFsDBsQAOjwVwJ7AAvuEgLIC3sAAOjgXwhGABPCFYAKdIeDUJHAMGx4DBMWBwDBgcAwbHgMExYHAMGBwDBscCeEQsgFtgATx+LIBHwAK4Hd9y3AW+5XjXsQAeEgvg5AQGDI4Bg2PA4BgwOBbAw2MBnAXwNlgATwwWwJOABfBkYAEcHAvg8FgAdwIL4BsOwgJ4Cwvg4FgATwgWwBOCBXCKhFeTwDFgcAwYHAMGx4DBMWBwDBgcAwbHgMExYHAsgEfEArgFFsDjxwJ4BCyA2/Etx13gW453HQvgIbEATk5gwOAYMDgGDI4Bg/sJAAD//1deyBcAAAAGSURBVAMAqJ195YGHYGsAAAAASUVORK5CYII=" mode="aspectFit">
+          <span>赛事日历</span>
+        </a>
+        <a class="quick-entry" href="#">
+          <img class="quick-icon" src="data:image/png;base64,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" mode="aspectFit">
+          <span>拿奖雷达</span>
+        </a>
+        <a class="quick-entry" open-type="switchTab" href="#">
+          <img class="quick-icon" src="data:image/png;base64,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" mode="aspectFit">
+          <span>发现跑团</span>
+        </a>
+        <a class="quick-entry" href="#">
+          <img class="quick-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAB4CAYAAAA5ZDbSAAAED0lEQVR4nOzdvU4bQRQF4DsmD0KFKJKGpEoUMRaULuigzZOwfpuko6AkYqyIVEmqREJUeZEwmV0vBAVsL947nuvj8zUgbKFlDjv/nh0IQRsIQWPA4BgwOAYMjgGDY8DgGDA4BgyOAYNjwOAYMDgGDO6FKDo6GXkhOft4HsQIJwqaYKOcpm+90D9OhqXD1qmio1wKw30slUvpWq13wOkPqITm8VJQ/zY4yr7QbIXLh71ocAwYHAMGpzoOfkJIQ4WxoDM8RMwdsKlBfy5Hx6NTMYpVNDgGDI4Bg2PA4BgwOAYMjgGDY8DgGDA4Bgwu+1TlMr4cvvFSyPuLb0GAmAr46nCvaibu462UcnWwV++lGr+7+FEJADNV9H24FqTraK4HgJ072Eq4d6bXU0l/Pq02XXZ+t5NJ/SWtwlWiwGQbDMh3fmecvvfoZKQSMnvRVqUaRGPLrZ2Are38sHA9Cs2WmYCbXquVkIF60aba4LZQK46D9ZjsZKEVcknsRa9GmPOal4wYcH7h7NP5cNaL7RjZSyYcJoEzdQffda62Yuw1PIguTlB6wX2ZCngQb5spvSg9pdmgtGhweusGw03vsJmpor8evO4+X9tR35oAgZk7OEr0oizH71w37GSBMxOwExdEWY7fuW7MBPzHOfV56Lefvw9lw5lpg9verqt3Urjoep1rkeOfZV2Zm8ni+FUXO1ngGDA4BgyOAYNjwOAYMDhTw6T7baIlN8E7mWhtOrfA1jh4eixx6WvwzblXBs561mCmin7WxztWwdpHaZZk6Q72YosXAOxkgbMUcBBbggDgZ5NmmLfVdZ2YaYPbHqtrngFR8hh8sOOPzS0XIo1BLWAnCxwDBseAwTFgcAwYHAMGx4DBMWBwJj/hX/KRrGjPebK2o6M9jFSKSevSzXQlyoyanQX/u3AtmJ4yVwkAO22wzcNI1x47WeAYMDgu+M8Csi5sJuCm12roMFKUXrSpYVJbqBXHwXpMTnRswkOlV4WdLHAMGBwDBseAwTFgcAwYHAMGx4DBMWBwDBhc7qlKL+SXfr19Emkf/e/gBRdRcuFgZQyXgUYVHRa87gVfWPC6f+qHHfZ9BekpfxsMtIFtaU+UQZdNhhqralvS0/XPm9+7L3d8+nZ7ztv87qsdl94bBNBzy6DTDlInY43y0ulk1Tsx4oKquP4vPh7tP2ivgmCZdC6DuLpmy4mS3M/g2zBB6xAYvTYY7PCSohTLUu0OrjXDAQvnTa4z5TMyVQOuMeQeMhyAqj5Mai4wXajQ80y36gZRpn4HP2TqA2XGpU5Vlix6j4Pnqcdx179uxvX4r/3RttD/6hrvQz2Wlgyy3sGzbMT8dEe594AXCZhWh+vB4BgwOAYMjgGDY8DgGDA4BgzuLwAAAP//FUOGDAAAAAZJREFUAwBAZCrN6BYiigAAAABJRU5ErkJggg==" mode="aspectFit">
+          <span>赛事资讯</span>
+        </a>
+      </div>
+    
+  </div>
+
+  
+
+  <div class="results">
+    <div class="results-head">
+      <span class="results-title">全部赛事</span>
+      <span class="total">共 238 场</span>
+    </div>
+    <div class="race-format-filter">
+      <span class="format-label">赛事形式</span>
+      <div class="meet-tabs" role="group" aria-label="赛事形式">
+        <div class="kind-tab on" role="button" aria-role="button" aria-label="全部形式">全部形式</div><div class="kind-tab " role="button" aria-role="button" aria-label="线上赛">线上赛</div><div class="kind-tab " role="button" aria-role="button" aria-label="线下赛">线下赛</div>
+      </div>
+    </div>
+    <div class="filters" data-mirror-scroll-x="true" enable-flex="" show-scrollbar="false" style="overflow-x: auto; white-space: nowrap;">
+      <div class="filter-chip ">全部城市 ▾</div>
+      <div class="filter-chip ">全部时间 ▾</div>
+      <div class="filter-chip ">马拉松</div>
+      <div class="filter-chip ">半程马拉松</div>
+      <div class="filter-chip ">筛选</div>
+    </div>
+    
+    
+    <a class="race" href="#">
+      <div class="date">
+        <span class="mo">11月</span>
+        <span class="da">15</span>
+      </div>
+      <div class="race-body">
+        <div class="race-name">杭州马拉松</div>
+        <div class="race-meta">杭州 · 全程 / 半程马拉松</div>
+        <div class="race-footer">
+          <span class="status-pill ">报名中</span>
+          
+        </div>
+      </div>
+    </a><a class="race" href="#">
+      <div class="date">
+        <span class="mo">11月</span>
+        <span class="da">29</span>
+      </div>
+      <div class="race-body">
+        <div class="race-name">上海马拉松</div>
+        <div class="race-meta">上海 · 全程 / 半程马拉松</div>
+        <div class="race-footer">
+          <span class="status-pill ">抽签结果已公布</span>
+          
+        </div>
+      </div>
+    </a>
+    
+    
+  </div>
+</div>
+
+
+
+<div class="mirror-tabbar"><a style="color: rgb(197, 67, 50);"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAYAAABV7bNHAAADFUlEQVR4nOyc4W7bIBSFwdsTZfu1apqr5r2SvleqZpq6X2vfaGa+KERuBhxjcwFX95MqJY5DwvHl+HIh7ZQQpVNCFBEIIAIBRCCACAQQgQAiEOCzaoRf+6/9J2MORpuf9Pzu9HZUDaBVA7zsd0dl1OHdQa0eWxCpukC/H748G2V674sNiFRNoOuQColzQSt9/qv14/fTn7OqQBWBSJzODM9Jb6oUTcXvYuQ3yeIQo0dZrypMUYG8ZnyBhtLd05umP3rsbaCCSMUEIjMOiUPD59vT6717ah+Px7znjm3YtgrB7kHQjCPeEos4YtDdPbd5swqEzHhOB5FI3ObNNsRiZkweM/fqU+fp3OAJzL7EEkHIjKd+k0KNpDJ7BKWYcSo1zDtbBMHkL+MVLmneWSIIJX/0hXOGv20rFEkj9F1y+dJqgZDfcN2KnXlzJ5WrhljMNNeYcSrRIbdyaC8SaE3yxwWK5KUVgWSBSppxKhxJZZJALaT+iNwXcLZAXMkfF7mSyll3Mc7kj4tcSSUUiCKn5ZpxjFi+RH2i4YjawBEUiJzcyR8XMZHoTozevyhRbMGMUwhVBNCCAbFIoC2J41j6nWXpGSACAUQggAgEEIEAIhBABAKwb6CiqYo2+gdtjMpZk87dZghWgVwFYMxYKW3tXx52hzVZ+LVQZ0x/bXO/U5tcOCToKt8eW1pQdwsDt9MD32fkhDWC7H7D8Sr//4ItqNuH6OpPoyb4GYywCkSdt0L4KgKXYzTsfLNt6zEULWagweTFFupOr0fFCLtJR0VyeF4zQVkuUKGOWRyiyG0eLfSlUrIWVSwPog7R7rE1QrldaCXLLcUTxXdCzRDLrc7Se2rUvqvttJ8MkaOrDXdq6AfVnd05LRTmmvgpwkSIs2oMmYsBRCCACAQQgQAiEEAEAohAABEIABNFSvVvi1Q1fpaUhZsCQXAD6AQokLfoFStdbIg5xTY4xKZzo4/GnL5Bgew8KWMtpxnGPs2ZDGfZo7glrKcmLBct2ie9RZN2wym1hNLEPxZoGcmDACIQQAQCiEAAEQjwDwAA//9FlrUxAAAABklEQVQDAMw66mKkKEGEAAAAAElFTkSuQmCC">赛历</a><a style="color: rgb(111, 117, 108);"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAYAAABV7bNHAAAFa0lEQVR4nOybv28cRRTH3+y5IhElLZbMf5Ao2EoEmwYoQp8SRBqU8w+ROwuJAqdAQj4HfLYjGiPaNFS4AFGwFAl2BH9CWv6AKEmVu8m8vd1kb3Z+7ZvZ81mej+TYO7szt/vNmzfvvdlLIGIkgYiRKJCFKJCFKJCFKJCFKJCFKJCFKJCFKJCFKJCFBWiBtTtfXgLWucEAVsThEjB4Czi8EH8/4QD/AB8d7d376T84AzAIyJ2v1y69fDn+Toz6sfViDn8sLCTf3Pt+jyzURq+bijmQwhiy3Z2DDFogmEAb/bUeh/EAGsIg6e8O9nagIRub3S3O4dvaeAzu7m4fbEEgggi00e8OxNTpARXGBsPt/U3Xy9FyOIO/zEOGEcrbSU8sxyAOg2fi3/+L32o47+M4EBC0LrQy8MTLgnKfMxr/qzrHgR3yEfy8/8P+cdm23rv9PmfJLQb8lqrPQie57OqTdFNMxteSvARa73V/Vzjk50Kem8PB/SNtv/7tG+KjH4g/L0ydEI57uHPwCTjy2knDxGJ01zEO16lOnCwQLuUs6Sish39qEqekEOm3Wu/x6DI1BDBYVTYcHFwHAnQfJOIcuQmnlYs4CF6H17uM6wpOJbQWxak0tzYCZIGKIHC6jY8PoQHoo1zGbQJOJfQ7tc9idn+lwmcVW5o6EqvUcOf+CTQgd+D11W0JPNE45RQIeEwxkT5U4fAUKMj95HHpZHIDZZrRBZrkVm9g8DZQkPvJ4xIR0+xvCIDPFHsydcTh4upXq8vQAIyLsJ9x3JAkzacZWaA8K5dgHfgCGoBBo8u4wRjXp50Njyk2qi3nGCFP4hs7eJ0yolaMS0EVD1GCRbJAeTAnIt/6GfbAJlIlkp5GjBeiThQiByvxKphhPUfkYnKqcQEj5LX+6iHGRdWlH33UZBpqcjExHniSZ/qaMggQ8C53WOtAGOfgUo6rVd0hVy6j1YWm7sWQwIpUg/Ss3iVXfKj1zdV3sGShvGAiykX0vlpEPWh3m1A0K5JVIcqH4hB/a4anWQ/SgQCcPHz858rVZcziP4KGoOUMB/uNHyC3FoBfYBIhL2rH9yx3BBEIOX508ujaB8tH4zF/Vzz1e9YOk5r0zR+3936FhuR+ZiKOkRBVxaBF+5K2dzUcSq6ZyOrvhijktyLQLNA45GDClAQX6HVC+MZ5ItiWTeVHAbZqqsnnXG/7yKtJk76ht2lC4yVQ4QvQzFPwpFyK500s8ipWWWYXIQwp/qxcu8KOHz7OYE4gCbTe7+IK8hm0w1yJ1GiKuexoQrGSlAdV5yk58Nb3tELgLJDDRl3jJbbMutva0wqBcy5meAhy7FFah7CsTGeZRbv1P7K0ztBiOllQGxtyIT9H1S/Uqmh10qbXTMRNfw4BQceMDhrqYcOiznEb8rIUf5avXtnycfrGiuKs3sGpUoybye352xrE3VHsK1ZeTqk0kkquba8sxXTK5HbV7qhuJ1UF5ZWYxDag3KbZ+w5ONVSooNxjz/fkhUiFUBkYaCqS1knrHN8s45IiIE2BcA+2sMR1HK0FuQRybaOyokqFwAg+PNahddPP1ZKUAumc4ayj2iKmyaTmRq+ylNNPdc7FCBJNayo3+RS+fdD4okYY3hsqp7EW91WMsG3bGoQ99ny1I7xcdSa/iuDqh2Q0U9b4clXiegOnlTAGz6004YPuep0FpTDfpEBEZ0W6aXYuv+2jDB800yx+HcrCuRSoiV+LFmQhCmThPAuUScep6qJzK5D8mrAuldIJlLl0niFZ9SDE/VSS2MxU+lDuamCcIOKCFOaEtu7HpTph3NXA6PI096RkTuN+zuz7QbMiLvMWokAWokAWokAWokAWXgEAAP//dTAnOgAAAAZJREFUAwAdM4Zbo1wIVAAAAABJRU5ErkJggg==">跑团</a><a style="color: rgb(111, 117, 108);"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAYAAABV7bNHAAAEtUlEQVR4nOycMUwUQRSG3+xpb20jtdFCC1Q0ca1JsNHOQisKTsCIJCYmQGKigTMCLgWVFnbaaELNUkCQQguUGhpra/F2nLfZJcfc7M7s7szsoPslentzM7t3/773z7y5Uw8acvGgIZdGIAmNQBIagSScghPEw8ej51tw+hwed+Hw4M2r1T0wDIETwOTU2NOIkFH2Zs/1tlOAA4/S1cXOygswhNMCYcR45PR79i4v5fWjFL5RenjPREQ5K1B7un22BWSTffoBpQGE7HeBXg/mg5+gEWdN2ovokrI4COsbj9GMkxE0PjV+gZBoV/DSHhNiLT4iZJj9fZ7vQKl3cbmz/B004eQsRrzuMNC+e/d5aSG43fN8euJJ+xN7HOkbC6BNICdTjETeZb6t+weeqbSJxlbBTQ8i9AzfFLwOdlXaRGOr4KZAlPzim9qP2hdV2kRjq+CkQNSLvvJtrVPwXKVNNLYKTpo0jVprbBZ7yTWPMFP+IZ3F2FjQiLMLxfGpsQ+EkDtFxlBKPy53Vu6CRpxdKEYemcDVsfIA1jceoxlnBcKSIer+HsY6S9qZ9cG+ussMpKnmJTgl0ORU28fHxU4Qil7/r/eD2Ay1zh58PCYE5hbng1lwgNoFwqhhZdc63+6KSC2okSxxEvxrNwbJ9uZOCDVSm0CT0+1ZZrJvJd38a0ODG9tbO/tQE7VM87E4FGZU+rIIU+pnilIRhKlxdWhwoMydTcz4foEhA3WmWiGTzrjzITPUDYggzJqeU3pnqqLUZdo6BOLpE0xixsoQCrdkN0E3hap5Js5NhW4+6+cz6WdYxODzkOZHTQj9r4vaUj8KwSKFTJrdwTkojp/RHrI9ZhJHm+A6mFKic2EUg0UKmTSa8petnTk0zaRpAMqB4tzCgytDgzP8eZY6wQM05eQ6PjfW6vqo8ko6rp+8OK0w/XxZf95sWRpSrsuReMnrQmO35UeVdxSTNxmmz/ME48WJzZs7H59ymG7Me3z+umj66HFHqagwi5bBeC2WVugI/wFEs6JoOi+ysIR0FsXraVgW1FqsqgqU1VeVNMrKCObejmIknsbxw2XMbFJQWPyDftcb0SrUKpBoXZXnI6lIiVCZ/XKvWbC2q/trH597HsoG9PlTMingsUoKitZdedQmkGgGKwM3i87G504Wk6pLjzxqM+k809VdmMr2uvOoRSDVGcmFbVfrApWp7OsUyrpAJ21PyKpAWamVrm9UF4I2hbImUJ44x+ozx/zJikA5vnOscj82RkEoGxW9lZV01uo1bwMOoyPZUJsrel6dmK/mFVOr9HkMR5HRCNIlDpL0D/l201FkTKDYd8QeEpY114yU9MEgxgQq4zsy+N3LlKJbGEUwIlBSLPp8e5xaFf1CJLDJNNNu0jp9JwvBRr8xs9YaQSZ8J4OQbzAVRVoFMuE7Bc7ngwG0CWTSd3hsmrUWgWz4Tt+5LZm1yYViaLKYzIhKX3cUaRFI9O2Ebt/JIOQbdEeRFoF4MUz4jsp1E3zQeQ3QCIa37R84iXYoda6JtHqQbXEQ06lc6++kdYC/Wer9HVGc3gvBO9CEU/9WowpVvvvK458RyBTNf48joRFIQiOQhEYgCY1AEv4CAAD//2QVq/UAAAAGSURBVAMAsPBmhimovBAAAAAASUVORK5CYII=">运动</a><a style="color: rgb(111, 117, 108);"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAYAAABV7bNHAAAFLElEQVR4nOybT2xURRzHf/N2IREkUTy1XJSkSownE1qbEnkcvBg9iOlRPSgY06VdQrdwwkJiAu0StmUbI/5J1IOHJlz0Yjz4NCl/luhBCSGQwAn2BiQUSGD7ht8su6V9O+/N+zO/9xYyn6TZ19/Mzm/63fnNn99sLTAEYoEhECOQAiOQAiOQAiOQAiOQAiOQgjxkSLE08iZn1jvg8n7OoI8BbBR2DnCTcbgCFqsx7v5RmZ77FzKCQQYUJ0Y+cjkroPP+MPVRsJrFeLUyNfczpEyqAjVHDLBj+GhDPBwGfF+aIyo1gcSo4Zz9BBpgjH+c1mjKQQqMlkZ245/1g7IiY3X8WcSnDYqKHwwMba2fO33+HyCGfASNlUbeQze/Sgs5LGIPvuWWdap+tX5mfn5+SZiHh4dzPZt7Bpnr7sQ6u7DO8/LW+fsz03O/ASGkAhUniy/wu40L+LjJW4Zz0Xe5xr39x49/fzOojQMHvnjx3lJ+CueezyTF19n6/BuVycptIIJ2mb/bOAwScTCMxmenThwL08SRI1/fwpddYxN7LgHnZU/xppaPUSCCbAQVxguv5Bhc7SzhhzEsvoQYYLgewi4f9NqXOGyulqvXgACynXTegk86jAz+jiuOoPlebCOUL02QCeRy2Om1cc6PQkJkbch86YIkxIrF3T18zdobHvOVmenqq6CBsVLhMr70rbSxhw96K5WTddAMyQhy16553WvDVesv0ISsLZlPHVCFWK/XwBhcAk34tNULBNAIxOG5DhN374AmpG1JfOqARiAG9ztMzNoAmpC2JfGpA6oQ807Q+KnDFtCET1s3gAASgawHDy96bXhU2A6akLUl86kDEoHEcotJrv895j481b8LCWm1sWqJF74olngB2UbRYnDKa2OM7YeEyNqQ+dIFmUANF37sMHJ4+/F5Kh7N92IboXxpgixhVjtduz041P8SPg6sLmHb39o2sHhuoXYGIoCn+X348pXXjkeBE7Pl6i9ABG26Y33+IKYjxDlpdcoD0xajpT1b1uUaE610hi979366cSm/7ii+R5oPavogxGQUFaSStBc5aQbsG2VFkZMWcN6jqsqBfz47PXcSiDG3GgpSudUQnF04/9/g0FYMNfYa/voyxEPci32I92K/Q0qYm1UFmQjUxtzNPwNk9u2O4njBxn28LZ7xdN5x+MSk2JOsoQtOpVx1IAPS/fICioKh1L7VsCEiKNqhtMVKRaDiRGGyNUps0IQQqzJVnQRiaK+eH4+YP4EQaqForn2ehJINKUApknaBWuEU5vbUwaV8OfXhnVeak7gAJ/Kw4UkhlFaBQoizLEqciTbMXKZbJG0CqcTR2fE0fWkRSNFhB6+cdwABQX51iZT4sBrYSQ47ZsrV2ClWFWcXas7gtn7xIduSYluUiTqQgMQ56SBx0tjQiVEifMnKRN+WJ/uYJBJIjB6ZPS1x2ghfviKxUCuqL7EF8gutZuxncG4KEMlOMopiC+QrTgrbfz9aH4zjtSfZzccSyC+0shSnjd+K6ddnFbEE8hs90CXI+iJLqYRqCyLicwAl2+vEZaxUEH20V9riLB7RR5DVuedYldzqElae89rEWdEiZxRl4dUNcw8VkUaQz3LpQBfis6JFXvKjhdhTEl5tZGEm+xuCSJ60d7tzBOki0/9ZzYKoy32kEJM1ntV1TBh09M38W7iCRAJ10+45AGflL1EXlUgCSVeFLidpn2OlXMVeopvnHhlx+2y+vKDATNIKjEAKjEAKjEAKjEAKHgEAAP//qlqBsQAAAAZJREFUAwACYiYooVOXdQAAAABJRU5ErkJggg==">我的</a></div></body></html>

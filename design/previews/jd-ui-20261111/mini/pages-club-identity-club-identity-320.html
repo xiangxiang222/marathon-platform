@@ -1,0 +1,226 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><style>html,body{margin:0;padding:0}body{padding-bottom:70px}a{display:block;color:inherit;text-decoration:none}button{display:block;box-sizing:border-box;padding:0 14px;line-height:1.35}input,textarea{outline:none}input[type=checkbox]{min-height:0}img{display:inline-block;vertical-align:middle}*{box-sizing:border-box}.native-switch{display:inline-block;width:44px;height:26px;flex:none;border-radius:20px;background:#dedede;position:relative}.native-switch[checked=true]{background:#ff1838}.native-switch:after{content:"";display:block;position:absolute;top:2px;left:2px;width:22px;height:22px;border-radius:50%;background:white}.native-switch[checked=true]:after{left:20px}swiper-item{display:block}.audit-banner{font:10px system-ui;color:#767676;padding:5px 12px;text-align:center}.mirror-tabbar{position:fixed;z-index:50;left:0;right:0;bottom:0;display:flex;background:white;border-top:1px solid #eee;height:64px;padding:6px 0}.mirror-tabbar a{width:25%;font:11px system-ui;text-align:center}.mirror-tabbar img{display:block;margin:0 auto 3px;width:25px;height:25px}</style><style>body {
+  --brand: #ff1838;
+  --brand-soft: #fff0f2;
+  --page-bg: #f5f5f5;
+  --surface: #ffffff;
+  --brand-header: linear-gradient(145deg, #ff1838 0%, #ff2946 60%, #ff4659 100%);
+  --text: #1a1a1a;
+  --text-secondary: #777777;
+  --border: #eeeeee;
+  --sky: #555555;
+  --sky-soft: #f7f7f7;
+  --mint: #555555;
+  --mint-soft: #f7f7f7;
+  --lilac: #555555;
+  --lilac-soft: #f7f7f7;
+  --sun: #555555;
+  --sun-soft: #f7f7f7;
+  --peach-soft: #fff0f2;
+  --card-shadow: none;
+  --action-fill: #ff1838;
+  --control-radius: 8.533333333333333px;
+  --card-radius: 10.24px;
+  min-height: 100%;
+  background: var(--page-bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+div, span, a, div, button, input, textarea, div { box-sizing: border-box; }
+button, input, textarea { font-family: inherit; color: var(--text); }
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 44px;
+  margin: 0;
+  padding: 12px 18px;
+  border: 0.4266666666666667px solid var(--border);
+  border-radius: var(--control-radius);
+  background: var(--surface);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+button::after { border: 0; }
+button[plain] { border: 0.4266666666666667px solid var(--border); background: var(--surface); }
+input, textarea {
+  min-width: 0;
+  border: 0.4266666666666667px solid var(--border);
+  border-radius: 8.533333333333333px;
+  background: var(--page-bg);
+  color: var(--text);
+  font-size: 14px;
+  caret-color: var(--brand);
+}
+input { min-height: 46px; padding: 0 10.24px; }
+textarea { min-height: 120px; padding: 10.24px; line-height: 1.75; }
+input::placeholder, textarea::placeholder { color: #999999; }
+.pad { padding: 13.653333333333334px 13.653333333333334px calc(20.48px + env(safe-area-inset-bottom)); }
+.card {
+  margin-bottom: 10.24px;
+  padding: 13.653333333333334px;
+  border: 0.4266666666666667px solid var(--border);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  box-shadow: var(--card-shadow);
+}
+.title { font-size: 18px; font-weight: 600; line-height: 1.4; letter-spacing: normal; }
+.muted { color: var(--text-secondary); font-size: 12px; }
+.slot { display: flex; justify-content: space-between; gap: 10.24px; margin-top: 5.12px; padding: 7.68px 8.533333333333333px; border-radius: 6.826666666666667px; background: var(--page-bg); font-size: 14px; }
+.slot-state { color: var(--text-secondary); font-size: 12px; }
+.teal { color: var(--brand); }
+.row { display: flex; justify-content: space-between; gap: 10.24px; padding: 8.533333333333333px 0; border-bottom: 0.4266666666666667px solid var(--border); }
+.row:last-child { border-bottom: 0; }
+.row .k { flex: none; color: var(--text-secondary); }
+.soon { color: #c87825; }
+.err { margin-top: 5.12px; color: #b42318; font-size: 12px; line-height: 1.7; }
+.note { margin-top: 5.12px; color: var(--brand); font-size: 12px; line-height: 1.7; }
+.empty { padding: 23.893333333333334px 13.653333333333334px; color: var(--text-secondary); font-size: 13px; text-align: center; line-height: 1.8; }
+.field { display: flex; align-items: center; gap: 6.826666666666667px; }
+.field input { flex: 1; min-width: 0; height: 46px; padding: 0 10.24px; border-radius: 8.533333333333333px; background: var(--page-bg); }
+.btn, .login-go {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 46px;
+  margin: 0;
+  padding: 12px 20px;
+  border: 0.4266666666666667px solid transparent;
+  border-radius: var(--control-radius);
+  background: var(--action-fill);
+  box-shadow: none;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
+}
+.login-go { margin-top: 10.24px; }
+button.ghost {
+  min-height: 44px;
+  margin: 6.826666666666667px 6.826666666666667px 0 0;
+  padding: 10px 16px;
+  border: 0.4266666666666667px solid var(--border);
+  border-radius: var(--control-radius);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+button.ghost.on { border-color: var(--brand); background: var(--brand-soft); color: var(--brand); }
+button[disabled], button.btn[disabled] { border-color: #eeeeef; background: #f2f2f2; color: #999999; opacity: 1; box-shadow: none; }
+.chip { display: inline-block; margin-right: 3.4133333333333336px; padding: 1.7066666666666668px 5.12px; border: 0.4266666666666667px solid #ebebed; border-radius: 5.12px; background: #f5f5f7; color: var(--text-secondary); font-size: 12px; font-weight: 400; line-height: 1.6; }
+.foot { display: flex; justify-content: space-between; gap: 8.533333333333333px; margin-top: 6.826666666666667px; color: var(--text-secondary); font-size: 12px; }
+.src { margin-top: 5.12px; color: var(--text-secondary); font-size: 12px; line-height: 1.75; overflow-wrap: anywhere; }
+.card > input, .card > textarea, .card > div { margin-top: 8.533333333333333px; }
+.card > input { width: 100%; }
+.card > .btn { margin-top: 10.24px; }
+.primary, .primary-btn, .primary-button, .submit-button, .save-action, .next-action, .bottom-primary, .staff-primary { border-radius: var(--control-radius); }
+.field-label, .form-label { line-height: 1.6; }
+.metric-value, .stat-value, .career-number, .record-number, .rank-time { font-variant-numeric: tabular-nums; }
+/* Shared control roles for new screens and gradual migrations. */
+.ui-control-text { width: auto; min-height: 44px; padding: 10px 8px; border: 0; border-radius: 5.12px; background: transparent; color: var(--brand); font-size: 13px; }
+.ui-control-danger { border-color: #f5d1cc; background: #fff5f3; color: #c52e24; }
+.ui-label { color: var(--text-secondary); font-size: 12px; font-weight: 400; }
+.surface-sky, .surface-mint, .surface-lilac, .surface-sun, .surface-peach { background: var(--surface); border-color: var(--border); }
+@media (max-width: 350px) { .pad { padding-left: 14px; padding-right: 14px; } .card { padding: 16px; } }
+
+:host { display: block; }
+.page-header { position: relative; padding-bottom: 17.066666666666666px; background: var(--brand-header); color: #fff; }
+.header-main { display: flex; align-items: center; padding-left: 13.653333333333334px; box-sizing: border-box; }
+.header-title { flex: 1; min-width: 0; overflow: hidden; font-size: 24px; line-height: 1.3; font-weight: 600; letter-spacing: normal; white-space: nowrap; text-overflow: ellipsis; }
+.header-subtitle { padding: 0 13.653333333333334px 10.24px; color: #ffffffcf; font-size: 12px; line-height: 1.5; }
+@media (max-width: 350px) { .header-main { padding-left: 14px; } .header-subtitle { padding-left: 14px; padding-right: 14px; } }
+
+.header-actions { display: flex; flex: none; align-items: center; justify-content: flex-end; }
+
+.header-actions { position: relative; color: #fff; }
+
+.identity-page { min-height:100vh; padding:11.946666666666667px 10.24px 20.48px; box-sizing:border-box; background: transparent; }
+.hero { padding:7.68px 3.4133333333333336px 12.8px; background: var(--card,#fff); }
+.eyebrow { color:var(--text-secondary); font-size: 12px; letter-spacing:normal; }
+.title { margin-top:6.826666666666667px; }
+.copy { margin-top:5.973333333333334px; color:var(--text-secondary); overflow-wrap:anywhere; }
+.panel { margin-bottom:8.533333333333333px; padding:11.946666666666667px;  background: var(--card,#fff); box-shadow: none; }
+.name { font-size: 18px; font-weight:600; overflow-wrap:anywhere; }
+.state { display:inline-block; margin-top:8.533333333333333px; padding:4.266666666666667px 6.826666666666667px; color:var(--text-secondary); background: var(--mint-soft);  font-size: 12px; }
+.decision { margin-top:8.533333333333333px; padding:8.533333333333333px; border-radius:5.973333333333334px; color:var(--text-secondary); background: var(--sun-soft); font-size: 12px; line-height:1.8; white-space:pre-wrap; overflow-wrap:anywhere; }
+.label { display:flex; flex-wrap:wrap; gap:5.12px; margin:11.946666666666667px 0 5.12px; }
+.label span { color:var(--text-secondary); font-size: 12px; font-weight:400; }
+.identity-page input { width:100%; height:40.96px; padding:0 8.533333333333333px; font-size: 14px; }
+.identity-page textarea { width:100%; min-height:106.66666666666667px; padding:8.533333333333333px; font-size: 14px; line-height:1.7; }
+.identity-page button,.action-link { display:flex; align-items:center; justify-content:center; width:100%; min-height:44px; padding:8.533333333333333px; box-sizing:border-box; border:0;  font-size: 14px; line-height:1.5; }
+.identity-page button::after { border:0; }
+.primary { margin-top:11.946666666666667px; color:#fff; background:var(--brand);  }
+.secondary { color:var(--text-secondary); background:var(--card,#fff);  }
+.panel .secondary { margin-top:10.24px; background:var(--page-bg);  }
+.identity-page .short-intro { min-height:59.733333333333334px;  }
+.message { margin:8.533333333333333px 0; padding:10.24px; border-radius:6.826666666666667px; color:var(--brand); background:var(--brand-soft); font-size: 12px; line-height:1.8; overflow-wrap:anywhere; }
+
+@media (max-width:350px) { .identity-page button,.action-link { min-height:44px;  } .identity-page input { min-height:44px; } }
+
+/* Route geometry: surfaces, controls and compact labels have distinct roles. */
+.mini-club-identity-club-identity .panel { border-radius: 13.653333333333334px; }
+.mini-club-identity-club-identity .primary, .mini-club-identity-club-identity .secondary, .mini-club-identity-club-identity .action-link, .mini-club-identity-club-identity .short-intro { border-radius: 10.24px; }
+.mini-club-identity-club-identity .state { border-radius: 5.973333333333334px; }
+
+/* Page composition and interaction hierarchy. */
+.mini-club-identity-club-identity { color: var(--text); }
+.mini-club-identity-club-identity button { font-weight: 500; border-radius: 10.24px; }
+
+.identity-page { color: var(--text); background: transparent; }
+.title { font-size: 24px; font-weight: 600; }
+.panel { border: 1px solid var(--border); box-shadow: none; background: var(--card,#fff); }
+.copy { font-size: 14px; line-height: 1.85; }
+.label { font-size: 14px; font-weight: 500; }
+.label span { font-size: 12px; }
+.state { font-size: 12px; background: var(--mint-soft); }
+.identity-page input,.identity-page textarea { border: 1px solid var(--border); border-radius: 10.24px; background: var(--page-bg); font-size: 14px; }
+.identity-page .primary,.identity-page .secondary,.action-link { border-radius: 10.24px; font-size: 12px; }
+.identity-page .secondary { border: 1px solid var(--border); background: var(--card,#fff); }
+
+/* Primary actions read at 14px, secondary actions at 13px; compact filters stay at 12px. */
+.mini-club-identity-club-identity .primary, .mini-club-identity-club-identity .action-link { font-size: 14px; font-weight: 500; }
+.mini-club-identity-club-identity .secondary { font-size: 14px; font-weight: 500; }
+.identity-page .primary,.identity-page .action-link { font-size: 14px; } .identity-page .secondary { font-size: 14px; }
+
+.identity-page { color:var(--text); background:var(--page-bg); font-size:14px; }
+.hero { padding:7.68px 0 11.946666666666667px; background:transparent; }
+.title { color:var(--text); font-size:24px; font-weight:600; letter-spacing:normal; }
+.eyebrow,.copy,.state,.decision { font-size:12px; color:var(--text-secondary); letter-spacing:normal; }
+.panel { padding:11.946666666666667px; border:0.4266666666666667px solid var(--border); border-radius:10.24px; background:var(--card,#fff); box-shadow:none; }
+.name { color:var(--text); font-size:18px; font-weight:600; }
+.label { color:var(--text); font-size:14px; font-weight:400; }
+.label span { color:var(--text-secondary); font-size:12px; }
+.state,.decision { background:var(--page-bg); border-radius:5.12px; }
+.identity-page input,.identity-page textarea { min-height:44px; padding:7.68px 8.533333333333333px; border-radius:8.533333333333333px; border:0.4266666666666667px solid var(--border); background:var(--page-bg); color:var(--text); font-size:14px; }
+.identity-page button,.identity-page .action-link { min-height:44px; border-radius:8.533333333333333px; font-size:14px; font-weight:500; }
+.identity-page .primary { background:var(--brand); color:#fff; }
+.identity-page .secondary { background:var(--card,#fff); color:var(--text); border:0.4266666666666667px solid var(--border); }
+
+</style></head><body><div class="identity-page mini-club-identity-club-identity">
+  <div class="hero"><div class="eyebrow">跑团核验</div><div class="title">跑团身份</div><div class="copy">核验页面与真实组织的管理授权关系。创建、邀请和约跑均不需要先核验。</div></div>
+  
+  
+  
+    <div class="panel"><div class="name">杭州一起跑俱乐部</div><div class="copy">杭州 · 团号 #106</div><div class="state">未申请</div></div>
+    <div class="panel"><div class="name">公开名片</div><div class="copy">完善城市与简介，帮助跑友辨认。名称可以重复；已核验组织更改名称或城市后会重新核对授权。</div><div class="label">跑团名称</div><input maxlength="20" style=""><div class="label">活动城市</div><input maxlength="30" placeholder="城市、跨城或线上" aria-label="城市、跨城或线上" style=""><div class="label">一句话介绍 <span>选填 · 最多 80 字</span></div><textarea class="short-intro" maxlength="80" style="">每周三晚，一起绕湖慢跑。每个人都有自己的节奏。</textarea><button class="secondary" loading="false">保存公开名片</button></div>
+    <div class="panel"><div class="name">提交组织授权材料</div><div class="copy">仅你和有权限的平台处理人员可见，不会公开到名片或共创建议。无需上传完整身份证件；没有公共账号也可提供可交叉核对的组织记录。</div>
+      <div class="label">组织名称 <span>必填</span></div><input maxlength="80" placeholder="真实组织的完整名称" aria-label="真实组织的完整名称" style="">
+      <div class="label">授权活动范围 <span>必填</span></div><input maxlength="120" placeholder="例如：杭州西湖分团，非全国总团" aria-label="例如：杭州西湖分团，非全国总团" style="">
+      <div class="label">既有公共来源链接 <span>与授权说明至少填一项</span></div><input maxlength="1000" placeholder="公众号、组织官网或活动组织页面链接" aria-label="公众号、组织官网或活动组织页面链接" style="">
+      <div class="label">管理授权与控制证明 <span>与公共来源链接至少填一项</span></div><textarea maxlength="4000" placeholder="说明你与组织的关系、已有渠道如何确认本团号，或提供可核对的活动记录与授权说明。仅提交必要的脱敏内容。" aria-label="说明你与组织的关系、已有渠道如何确认本团号，或提供可核对的活动记录与授权说明。仅提交必要的脱敏内容。" style=""></textarea>
+      <div class="label">私密联系方式 <span>必填</span></div><input maxlength="200" placeholder="便于平台核对授权的联系方式" aria-label="便于平台核对授权的联系方式" style="">
+      <div class="copy">核验不授予名称独占权，也不代表平台对活动安全、赛事成绩或商业服务背书。补充或变更组织授权需重新核对。</div>
+      <button class="primary" loading="false">提交补充或重新核验</button>
+    </div>
+  
+  
+</div>
+</body></html>

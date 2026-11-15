@@ -1,0 +1,225 @@
+{
+  "checks": [
+    {
+      "width": 320,
+      "name": "default real PB canvas, four checked PB and three themes change PNG immediately",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "name": "PB deselection, empty selection disabled export, selection recovery",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "name": "privacy flags redact drawn text and copied caption, city off by default",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "name": "real PNG download, supported file share and full-resolution preview",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "name": "year filtering, all45 rows paginate20/20/5; PB unaffected by year",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "name": "batch export generates all three PNGs with distinct page names",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "name": "batch interrupted by account switch stops later downloads",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "name": "delayed canvas blob from previous account cannot restore preview",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "name": "unsupported file sharing keeps download and long-press preview available",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "name": "scope isolation clears preview immediately on logout and old responses cannot restore it",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "name": "account switch reloads fresh identity and never uses public member payload",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "name": "empty results has clear disabled-export state",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "name": "default real PB canvas, four checked PB and three themes change PNG immediately",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "name": "PB deselection, empty selection disabled export, selection recovery",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "name": "privacy flags redact drawn text and copied caption, city off by default",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "name": "real PNG download, supported file share and full-resolution preview",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "name": "year filtering, all45 rows paginate20/20/5; PB unaffected by year",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "name": "batch export generates all three PNGs with distinct page names",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "name": "batch interrupted by account switch stops later downloads",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "name": "delayed canvas blob from previous account cannot restore preview",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "name": "unsupported file sharing keeps download and long-press preview available",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "name": "scope isolation clears preview immediately on logout and old responses cannot restore it",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "name": "account switch reloads fresh identity and never uses public member payload",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "name": "empty results has clear disabled-export state",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "name": "default real PB canvas, four checked PB and three themes change PNG immediately",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "name": "PB deselection, empty selection disabled export, selection recovery",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "name": "privacy flags redact drawn text and copied caption, city off by default",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "name": "real PNG download, supported file share and full-resolution preview",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "name": "year filtering, all45 rows paginate20/20/5; PB unaffected by year",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "name": "batch export generates all three PNGs with distinct page names",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "name": "batch interrupted by account switch stops later downloads",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "name": "delayed canvas blob from previous account cannot restore preview",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "name": "unsupported file sharing keeps download and long-press preview available",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "name": "scope isolation clears preview immediately on logout and old responses cannot restore it",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "name": "account switch reloads fresh identity and never uses public member payload",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "name": "empty results has clear disabled-export state",
+      "passed": true
+    }
+  ],
+  "screenshots": [
+    "pb-studio-320.png",
+    "no-selected-results-320.png",
+    "options-open-320.png",
+    "full-resolution-dialog-320.png",
+    "results-studio-320.png",
+    "logged-out-320.png",
+    "empty-320.png",
+    "error-320.png",
+    "pb-cream.png",
+    "pb-mint.png",
+    "pb-coral.png",
+    "pb-studio-390.png",
+    "no-selected-results-390.png",
+    "pb-three-items.png",
+    "options-open-390.png",
+    "full-resolution-dialog-390.png",
+    "results-page3.png",
+    "results-studio-390.png",
+    "results-page1.png",
+    "logged-out-390.png",
+    "empty-390.png",
+    "error-390.png",
+    "pb-studio-1440.png",
+    "no-selected-results-1440.png",
+    "options-open-1440.png",
+    "full-resolution-dialog-1440.png",
+    "results-studio-1440.png",
+    "logged-out-1440.png",
+    "empty-1440.png",
+    "error-1440.png"
+  ],
+  "errors": [],
+  "unexpected": [],
+  "writes": [],
+  "passed": true,
+  "sourceHashes": {
+    "web/src/views/AchievementPoster.vue": "6d8d37a394d47bf74305831818cfbee0488b0b7e05e0d8f4effb33f51e684938",
+    "web/src/achievement-poster.js": "cfb1d27df40130d561e56a3af004d3aae138fe053226a3c93e33a2445614b0e5",
+    "web/src/achievement-model.js": "73323bb7c491566c7d7d5497e5622a267ed71183e497deab2b26208636a78d38"
+  }
+}

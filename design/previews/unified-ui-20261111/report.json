@@ -1,0 +1,809 @@
+{
+  "startedAt": "2026-11-11T10:23:12.785Z",
+  "isolation": "Disposable real SQLite and media; localhost-only browser",
+  "output": "/Users/mengxiangxiang/Documents/work/dev/marathon-platform/design/previews/unified-ui-20261111",
+  "expectedAccent": "#e1251b",
+  "typography": {
+    "minimumTextPx": 11,
+    "minimumControlTextPx": 12,
+    "rule": "11px is reserved for auxiliary captions; captionText is recorded for visual review. Body and form labels should remain 14–15px and 12–13px."
+  },
+  "fixture": {
+    "registeredUsers": 4,
+    "createdClubs": 2,
+    "mode": "Real registration and business HTTP APIs; synthetic content"
+  },
+  "views": [
+    {
+      "id": "home",
+      "route": "/",
+      "role": "owner",
+      "width": 320,
+      "passed": true,
+      "errors": [],
+      "consoleErrors": [],
+      "apiErrors": [],
+      "scrollWidth": 320,
+      "bodyWidth": 320,
+      "title": "赛事",
+      "tinyText": [],
+      "captionText": [],
+      "tinyControls": [],
+      "overflowingElements": [],
+      "primaryControls": [],
+      "primaryColor": "#e1251b",
+      "brokenImages": 0,
+      "palette": {
+        "accent": "#e1251b",
+        "background": "#f6f7f9",
+        "surface": "#ffffff",
+        "ink": "#17212b",
+        "secondary": "#687480",
+        "border": "#e8ebef",
+        "sky": "#f2f4f6",
+        "mint": "#f2f4f6",
+        "lilac": "#f2f4f6",
+        "sun": "#f2f4f6",
+        "peach": "#fff2f0"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "coral"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "BUTTON",
+            "class": "on",
+            "area": 2470,
+            "background": "rgb(255, 242, 240)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          }
+        ]
+      },
+      "screenshot": "home-320.png"
+    },
+    {
+      "id": "clubs",
+      "route": "/clubs",
+      "role": "owner",
+      "width": 320,
+      "passed": true,
+      "errors": [],
+      "consoleErrors": [],
+      "apiErrors": [],
+      "scrollWidth": 320,
+      "bodyWidth": 320,
+      "title": "跑团",
+      "tinyText": [],
+      "captionText": [],
+      "tinyControls": [],
+      "overflowingElements": [],
+      "primaryControls": [],
+      "primaryColor": "#e1251b",
+      "brokenImages": 0,
+      "palette": {
+        "accent": "#e1251b",
+        "background": "#f6f7f9",
+        "surface": "#ffffff",
+        "ink": "#17212b",
+        "secondary": "#687480",
+        "border": "#e8ebef",
+        "sky": "#f2f4f6",
+        "mint": "#f2f4f6",
+        "lilac": "#f2f4f6",
+        "sun": "#f2f4f6",
+        "peach": "#fff2f0"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "coral"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "A",
+            "class": "result-action",
+            "area": 2904,
+            "background": "rgb(255, 242, 240)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "A",
+            "class": "result-action",
+            "area": 1848,
+            "background": "rgb(255, 242, 240)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          }
+        ]
+      },
+      "screenshot": "clubs-320.png"
+    },
+    {
+      "id": "sport",
+      "route": "/sport",
+      "role": "owner",
+      "width": 320,
+      "passed": true,
+      "errors": [],
+      "consoleErrors": [],
+      "apiErrors": [],
+      "scrollWidth": 320,
+      "bodyWidth": 320,
+      "title": "运动",
+      "tinyText": [],
+      "captionText": [],
+      "tinyControls": [],
+      "overflowingElements": [],
+      "primaryControls": [],
+      "primaryColor": "#e1251b",
+      "brokenImages": 0,
+      "palette": {
+        "accent": "#e1251b",
+        "background": "#f6f7f9",
+        "surface": "#ffffff",
+        "ink": "#17212b",
+        "secondary": "#687480",
+        "border": "#e8ebef",
+        "sky": "#f2f4f6",
+        "mint": "#f2f4f6",
+        "lilac": "#f2f4f6",
+        "sun": "#f2f4f6",
+        "peach": "#fff2f0"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [],
+        "coloredSurfaces": []
+      },
+      "screenshot": "sport-320.png"
+    },
+    {
+      "id": "mine",
+      "route": "/mine",
+      "role": "owner",
+      "width": 320,
+      "passed": true,
+      "errors": [],
+      "consoleErrors": [],
+      "apiErrors": [],
+      "scrollWidth": 320,
+      "bodyWidth": 320,
+      "title": "我的",
+      "tinyText": [],
+      "captionText": [],
+      "tinyControls": [],
+      "overflowingElements": [],
+      "primaryControls": [],
+      "primaryColor": "#e1251b",
+      "brokenImages": 0,
+      "palette": {
+        "accent": "#e1251b",
+        "background": "#f6f7f9",
+        "surface": "#ffffff",
+        "ink": "#17212b",
+        "secondary": "#687480",
+        "border": "#e8ebef",
+        "sky": "#f2f4f6",
+        "mint": "#f2f4f6",
+        "lilac": "#f2f4f6",
+        "sun": "#f2f4f6",
+        "peach": "#fff2f0"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [],
+        "coloredSurfaces": []
+      },
+      "screenshot": "mine-320.png"
+    },
+    {
+      "id": "history",
+      "route": "/history",
+      "role": "owner",
+      "width": 320,
+      "passed": true,
+      "errors": [],
+      "consoleErrors": [],
+      "apiErrors": [],
+      "scrollWidth": 320,
+      "bodyWidth": 320,
+      "title": "我的跑史",
+      "tinyText": [],
+      "captionText": [
+        {
+          "tag": "SPAN",
+          "class": "private-badge",
+          "fontSize": "11px",
+          "text": "仅自己可见"
+        }
+      ],
+      "tinyControls": [],
+      "overflowingElements": [],
+      "primaryControls": [],
+      "primaryColor": "#e1251b",
+      "brokenImages": 0,
+      "palette": {
+        "accent": "#e1251b",
+        "background": "#f6f7f9",
+        "surface": "#ffffff",
+        "ink": "#17212b",
+        "secondary": "#687480",
+        "border": "#e8ebef",
+        "sky": "#f2f4f6",
+        "mint": "#f2f4f6",
+        "lilac": "#f2f4f6",
+        "sun": "#f2f4f6",
+        "peach": "#fff2f0"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "coral"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "BUTTON",
+            "class": "circle-arrow",
+            "area": 1444,
+            "background": "rgb(255, 242, 240)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "home",
+      "route": "/",
+      "role": "owner",
+      "width": 390,
+      "passed": true,
+      "errors": [],
+      "consoleErrors": [],
+      "apiErrors": [],
+      "scrollWidth": 390,
+      "bodyWidth": 390,
+      "title": "赛事",
+      "tinyText": [],
+      "captionText": [],
+      "tinyControls": [],
+      "overflowingElements": [],
+      "primaryControls": [],
+      "primaryColor": "#e1251b",
+      "brokenImages": 0,
+      "palette": {
+        "accent": "#e1251b",
+        "background": "#f6f7f9",
+        "surface": "#ffffff",
+        "ink": "#17212b",
+        "secondary": "#687480",
+        "border": "#e8ebef",
+        "sky": "#f2f4f6",
+        "mint": "#f2f4f6",
+        "lilac": "#f2f4f6",
+        "sun": "#f2f4f6",
+        "peach": "#fff2f0"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "coral"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "BUTTON",
+            "class": "on",
+            "area": 3037,
+            "background": "rgb(255, 242, 240)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          }
+        ]
+      },
+      "screenshot": "home-390.png"
+    },
+    {
+      "id": "clubs",
+      "route": "/clubs",
+      "role": "owner",
+      "width": 390,
+      "passed": true,
+      "errors": [],
+      "consoleErrors": [],
+      "apiErrors": [],
+      "scrollWidth": 390,
+      "bodyWidth": 390,
+      "title": "跑团",
+      "tinyText": [],
+      "captionText": [],
+      "tinyControls": [],
+      "overflowingElements": [],
+      "primaryControls": [],
+      "primaryColor": "#e1251b",
+      "brokenImages": 0,
+      "palette": {
+        "accent": "#e1251b",
+        "background": "#f6f7f9",
+        "surface": "#ffffff",
+        "ink": "#17212b",
+        "secondary": "#687480",
+        "border": "#e8ebef",
+        "sky": "#f2f4f6",
+        "mint": "#f2f4f6",
+        "lilac": "#f2f4f6",
+        "sun": "#f2f4f6",
+        "peach": "#fff2f0"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "coral"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "A",
+            "class": "result-action",
+            "area": 2904,
+            "background": "rgb(255, 242, 240)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "A",
+            "class": "result-action",
+            "area": 1848,
+            "background": "rgb(255, 242, 240)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          }
+        ]
+      },
+      "screenshot": "clubs-390.png"
+    },
+    {
+      "id": "sport",
+      "route": "/sport",
+      "role": "owner",
+      "width": 390,
+      "passed": true,
+      "errors": [],
+      "consoleErrors": [],
+      "apiErrors": [],
+      "scrollWidth": 390,
+      "bodyWidth": 390,
+      "title": "运动",
+      "tinyText": [],
+      "captionText": [],
+      "tinyControls": [],
+      "overflowingElements": [],
+      "primaryControls": [],
+      "primaryColor": "#e1251b",
+      "brokenImages": 0,
+      "palette": {
+        "accent": "#e1251b",
+        "background": "#f6f7f9",
+        "surface": "#ffffff",
+        "ink": "#17212b",
+        "secondary": "#687480",
+        "border": "#e8ebef",
+        "sky": "#f2f4f6",
+        "mint": "#f2f4f6",
+        "lilac": "#f2f4f6",
+        "sun": "#f2f4f6",
+        "peach": "#fff2f0"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [],
+        "coloredSurfaces": []
+      },
+      "screenshot": "sport-390.png"
+    },
+    {
+      "id": "mine",
+      "route": "/mine",
+      "role": "owner",
+      "width": 390,
+      "passed": true,
+      "errors": [],
+      "consoleErrors": [],
+      "apiErrors": [],
+      "scrollWidth": 390,
+      "bodyWidth": 390,
+      "title": "我的",
+      "tinyText": [],
+      "captionText": [],
+      "tinyControls": [],
+      "overflowingElements": [],
+      "primaryControls": [],
+      "primaryColor": "#e1251b",
+      "brokenImages": 0,
+      "palette": {
+        "accent": "#e1251b",
+        "background": "#f6f7f9",
+        "surface": "#ffffff",
+        "ink": "#17212b",
+        "secondary": "#687480",
+        "border": "#e8ebef",
+        "sky": "#f2f4f6",
+        "mint": "#f2f4f6",
+        "lilac": "#f2f4f6",
+        "sun": "#f2f4f6",
+        "peach": "#fff2f0"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [],
+        "coloredSurfaces": []
+      },
+      "screenshot": "mine-390.png"
+    },
+    {
+      "id": "history",
+      "route": "/history",
+      "role": "owner",
+      "width": 390,
+      "passed": true,
+      "errors": [],
+      "consoleErrors": [],
+      "apiErrors": [],
+      "scrollWidth": 390,
+      "bodyWidth": 390,
+      "title": "我的跑史",
+      "tinyText": [],
+      "captionText": [
+        {
+          "tag": "SPAN",
+          "class": "private-badge",
+          "fontSize": "11px",
+          "text": "仅自己可见"
+        }
+      ],
+      "tinyControls": [],
+      "overflowingElements": [],
+      "primaryControls": [],
+      "primaryColor": "#e1251b",
+      "brokenImages": 0,
+      "palette": {
+        "accent": "#e1251b",
+        "background": "#f6f7f9",
+        "surface": "#ffffff",
+        "ink": "#17212b",
+        "secondary": "#687480",
+        "border": "#e8ebef",
+        "sky": "#f2f4f6",
+        "mint": "#f2f4f6",
+        "lilac": "#f2f4f6",
+        "sun": "#f2f4f6",
+        "peach": "#fff2f0"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "coral"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "BUTTON",
+            "class": "circle-arrow",
+            "area": 1444,
+            "background": "rgb(255, 242, 240)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          }
+        ]
+      },
+      "screenshot": "history-390.png"
+    },
+    {
+      "id": "home",
+      "route": "/",
+      "role": "owner",
+      "width": 1440,
+      "passed": true,
+      "errors": [],
+      "consoleErrors": [],
+      "apiErrors": [],
+      "scrollWidth": 1440,
+      "bodyWidth": 1440,
+      "title": "赛事",
+      "tinyText": [],
+      "captionText": [],
+      "tinyControls": [],
+      "overflowingElements": [],
+      "primaryControls": [],
+      "primaryColor": "#e1251b",
+      "brokenImages": 0,
+      "palette": {
+        "accent": "#e1251b",
+        "background": "#f6f7f9",
+        "surface": "#ffffff",
+        "ink": "#17212b",
+        "secondary": "#687480",
+        "border": "#e8ebef",
+        "sky": "#f2f4f6",
+        "mint": "#f2f4f6",
+        "lilac": "#f2f4f6",
+        "sun": "#f2f4f6",
+        "peach": "#fff2f0"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "coral"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "BUTTON",
+            "class": "on",
+            "area": 3037,
+            "background": "rgb(255, 242, 240)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          }
+        ]
+      },
+      "screenshot": "home-1440.png"
+    },
+    {
+      "id": "clubs",
+      "route": "/clubs",
+      "role": "owner",
+      "width": 1440,
+      "passed": true,
+      "errors": [],
+      "consoleErrors": [],
+      "apiErrors": [],
+      "scrollWidth": 1440,
+      "bodyWidth": 1440,
+      "title": "跑团",
+      "tinyText": [],
+      "captionText": [],
+      "tinyControls": [],
+      "overflowingElements": [],
+      "primaryControls": [],
+      "primaryColor": "#e1251b",
+      "brokenImages": 0,
+      "palette": {
+        "accent": "#e1251b",
+        "background": "#f6f7f9",
+        "surface": "#ffffff",
+        "ink": "#17212b",
+        "secondary": "#687480",
+        "border": "#e8ebef",
+        "sky": "#f2f4f6",
+        "mint": "#f2f4f6",
+        "lilac": "#f2f4f6",
+        "sun": "#f2f4f6",
+        "peach": "#fff2f0"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "coral"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "A",
+            "class": "result-action",
+            "area": 2904,
+            "background": "rgb(255, 242, 240)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          },
+          {
+            "tag": "A",
+            "class": "result-action",
+            "area": 1848,
+            "background": "rgb(255, 242, 240)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          }
+        ]
+      },
+      "screenshot": "clubs-1440.png"
+    },
+    {
+      "id": "sport",
+      "route": "/sport",
+      "role": "owner",
+      "width": 1440,
+      "passed": true,
+      "errors": [],
+      "consoleErrors": [],
+      "apiErrors": [],
+      "scrollWidth": 1440,
+      "bodyWidth": 1440,
+      "title": "运动",
+      "tinyText": [],
+      "captionText": [],
+      "tinyControls": [],
+      "overflowingElements": [],
+      "primaryControls": [],
+      "primaryColor": "#e1251b",
+      "brokenImages": 0,
+      "palette": {
+        "accent": "#e1251b",
+        "background": "#f6f7f9",
+        "surface": "#ffffff",
+        "ink": "#17212b",
+        "secondary": "#687480",
+        "border": "#e8ebef",
+        "sky": "#f2f4f6",
+        "mint": "#f2f4f6",
+        "lilac": "#f2f4f6",
+        "sun": "#f2f4f6",
+        "peach": "#fff2f0"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [],
+        "coloredSurfaces": []
+      },
+      "screenshot": "sport-1440.png"
+    },
+    {
+      "id": "mine",
+      "route": "/mine",
+      "role": "owner",
+      "width": 1440,
+      "passed": true,
+      "errors": [],
+      "consoleErrors": [],
+      "apiErrors": [],
+      "scrollWidth": 1440,
+      "bodyWidth": 1440,
+      "title": "我的",
+      "tinyText": [],
+      "captionText": [],
+      "tinyControls": [],
+      "overflowingElements": [],
+      "primaryControls": [],
+      "primaryColor": "#e1251b",
+      "brokenImages": 0,
+      "palette": {
+        "accent": "#e1251b",
+        "background": "#f6f7f9",
+        "surface": "#ffffff",
+        "ink": "#17212b",
+        "secondary": "#687480",
+        "border": "#e8ebef",
+        "sky": "#f2f4f6",
+        "mint": "#f2f4f6",
+        "lilac": "#f2f4f6",
+        "sun": "#f2f4f6",
+        "peach": "#fff2f0"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [],
+        "coloredSurfaces": []
+      },
+      "screenshot": "mine-1440.png"
+    },
+    {
+      "id": "history",
+      "route": "/history",
+      "role": "owner",
+      "width": 1440,
+      "passed": true,
+      "errors": [],
+      "consoleErrors": [],
+      "apiErrors": [],
+      "scrollWidth": 1440,
+      "bodyWidth": 1440,
+      "title": "我的跑史",
+      "tinyText": [],
+      "captionText": [
+        {
+          "tag": "SPAN",
+          "class": "private-badge",
+          "fontSize": "11px",
+          "text": "仅自己可见"
+        }
+      ],
+      "tinyControls": [],
+      "overflowingElements": [],
+      "primaryControls": [],
+      "primaryColor": "#e1251b",
+      "brokenImages": 0,
+      "palette": {
+        "accent": "#e1251b",
+        "background": "#f6f7f9",
+        "surface": "#ffffff",
+        "ink": "#17212b",
+        "secondary": "#687480",
+        "border": "#e8ebef",
+        "sky": "#f2f4f6",
+        "mint": "#f2f4f6",
+        "lilac": "#f2f4f6",
+        "sun": "#f2f4f6",
+        "peach": "#fff2f0"
+      },
+      "activityHero": null,
+      "darkNeutralControls": [],
+      "colorRichness": {
+        "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
+        "pastelFamilies": [
+          "coral"
+        ],
+        "coloredSurfaces": [
+          {
+            "tag": "BUTTON",
+            "class": "circle-arrow",
+            "area": 1444,
+            "background": "rgb(255, 242, 240)",
+            "gradient": "none",
+            "families": [
+              "coral"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [],
+  "limitations": [
+    "No WeChat device or external provider verification",
+    "Admin separately covered by admin-browser-regression.cjs and admin-ui-full-audit.cjs",
+    "Visible DOM layout checks do not imply every possible interactive state was exercised"
+  ],
+  "viewCount": 5,
+  "passed": true,
+  "finishedAt": "2026-11-11T10:23:25.673Z",
+  "checkCount": 15
+}

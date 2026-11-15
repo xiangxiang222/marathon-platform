@@ -1,0 +1,131 @@
+{
+  "kind": "Club membership browser acceptance; every API call uses an in-memory fixture",
+  "startedAt": "2026-11-11T16:09:51.874Z",
+  "checks": [
+    {
+      "name": "member sees consequences and can cancel without sending a request",
+      "width": 320
+    },
+    {
+      "name": "a failed leave stays on the club page, explains the failure, and permits retry",
+      "width": 320,
+      "dimensions": {
+        "width": 320,
+        "body": 320,
+        "document": 320
+      }
+    },
+    {
+      "name": "confirmed leave sends only the current club endpoint and returns to the refreshed club list",
+      "width": 320,
+      "writes": [
+        {
+          "method": "POST",
+          "endpoint": "/clubs/44/leave",
+          "body": {}
+        },
+        {
+          "method": "POST",
+          "endpoint": "/clubs/44/leave",
+          "body": {}
+        }
+      ]
+    },
+    {
+      "name": "owner sees transfer instructions and no direct leave action",
+      "width": 320,
+      "dimensions": {
+        "width": 320,
+        "body": 320,
+        "document": 320
+      }
+    },
+    {
+      "name": "member sees consequences and can cancel without sending a request",
+      "width": 390
+    },
+    {
+      "name": "a failed leave stays on the club page, explains the failure, and permits retry",
+      "width": 390,
+      "dimensions": {
+        "width": 390,
+        "body": 390,
+        "document": 390
+      }
+    },
+    {
+      "name": "confirmed leave sends only the current club endpoint and returns to the refreshed club list",
+      "width": 390,
+      "writes": [
+        {
+          "method": "POST",
+          "endpoint": "/clubs/44/leave",
+          "body": {}
+        },
+        {
+          "method": "POST",
+          "endpoint": "/clubs/44/leave",
+          "body": {}
+        }
+      ]
+    },
+    {
+      "name": "owner sees transfer instructions and no direct leave action",
+      "width": 390,
+      "dimensions": {
+        "width": 390,
+        "body": 390,
+        "document": 390
+      }
+    },
+    {
+      "name": "member sees consequences and can cancel without sending a request",
+      "width": 1440
+    },
+    {
+      "name": "a failed leave stays on the club page, explains the failure, and permits retry",
+      "width": 1440,
+      "dimensions": {
+        "width": 1440,
+        "body": 1440,
+        "document": 1440
+      }
+    },
+    {
+      "name": "confirmed leave sends only the current club endpoint and returns to the refreshed club list",
+      "width": 1440,
+      "writes": [
+        {
+          "method": "POST",
+          "endpoint": "/clubs/44/leave",
+          "body": {}
+        },
+        {
+          "method": "POST",
+          "endpoint": "/clubs/44/leave",
+          "body": {}
+        }
+      ]
+    },
+    {
+      "name": "owner sees transfer instructions and no direct leave action",
+      "width": 1440,
+      "dimensions": {
+        "width": 1440,
+        "body": 1440,
+        "document": 1440
+      }
+    }
+  ],
+  "screenshots": [
+    "membership-failed-320.png",
+    "membership-owner-320.png",
+    "membership-failed-390.png",
+    "membership-owner-390.png",
+    "membership-failed-1440.png",
+    "membership-owner-1440.png"
+  ],
+  "errors": [],
+  "unexpected": [],
+  "passed": true
+}

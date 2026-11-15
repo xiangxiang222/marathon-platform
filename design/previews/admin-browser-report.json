@@ -1,7 +1,7 @@
 {
   "kind": "Admin browser regression; every API GET and write fulfilled from in-memory fixtures",
-  "startedAt": "2026-11-11T05:28:50.871Z",
-  "expectedAccent": "#e1251b",
+  "startedAt": "2026-11-11T16:10:25.558Z",
+  "expectedAccent": "#ff1838",
   "checks": [
     {
       "label": "overview-1440",
@@ -10,108 +10,32 @@
       "title": "运营总览",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
         "pastelFamilies": [
-          "sky",
-          "mint",
-          "apricot-gold",
-          "lilac",
           "coral"
         ],
         "coloredSurfaces": [
           {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 1296000,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 1296000,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          },
-          {
-            "tag": "SECTION",
-            "class": "overview-welcome",
-            "area": 166104,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(115deg, rgb(238, 247, 255), rgb(242, 238, 255) 65%, rgb(255, 240, 233))",
-            "families": [
-              "sky",
-              "apricot-gold"
-            ]
-          },
-          {
-            "tag": "BUTTON",
-            "class": "metric-card",
-            "area": 45920,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(135deg, rgb(255, 250, 245), rgb(255, 240, 223))",
-            "families": [
-              "apricot-gold"
-            ]
-          },
-          {
-            "tag": "BUTTON",
-            "class": "metric-card has-attention",
-            "area": 45920,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(135deg, rgb(255, 249, 245), rgb(255, 233, 223))",
-            "families": [
-              "apricot-gold"
-            ]
-          },
-          {
-            "tag": "BUTTON",
-            "class": "metric-card",
-            "area": 45920,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(135deg, rgb(247, 255, 251), rgb(232, 246, 239))",
-            "families": [
-              "mint"
-            ]
-          },
-          {
-            "tag": "BUTTON",
-            "class": "metric-card",
-            "area": 45920,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(135deg, rgb(253, 250, 255), rgb(241, 234, 255))",
-            "families": [
-              "lilac"
-            ]
-          },
-          {
             "tag": "BUTTON",
             "class": "navigation-item is-active",
-            "area": 8970,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(100deg, rgb(255, 232, 223), rgb(255, 240, 235))",
+            "area": 8580,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
             "families": [
               "coral"
             ]
@@ -126,55 +50,32 @@
       "title": "赛事管理",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
         "pastelFamilies": [
-          "sky",
-          "mint",
           "coral"
         ],
         "coloredSurfaces": [
           {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 1296000,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 1296000,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          },
-          {
             "tag": "BUTTON",
             "class": "navigation-item is-active",
-            "area": 8970,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(100deg, rgb(255, 232, 223), rgb(255, 240, 235))",
+            "area": 8580,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
             "families": [
               "coral"
             ]
@@ -183,7 +84,7 @@
             "tag": "BUTTON",
             "class": "status on",
             "area": 1872,
-            "background": "rgb(255, 242, 240)",
+            "background": "rgb(255, 240, 242)",
             "gradient": "none",
             "families": [
               "coral"
@@ -199,54 +100,31 @@
       "title": "赛事管理",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
         "pastelFamilies": [
-          "sky",
-          "mint",
           "coral"
         ],
         "coloredSurfaces": [
           {
             "tag": "DIV",
-            "class": "stage wide",
-            "area": 1296000,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 1296000,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          },
-          {
-            "tag": "DIV",
             "class": "race-row review-row on",
             "area": 36945,
-            "background": "rgb(255, 242, 240)",
+            "background": "rgb(255, 240, 242)",
             "gradient": "none",
             "families": [
               "coral"
@@ -255,7 +133,7 @@
           {
             "tag": "BUTTON",
             "class": "race-open catalog-open",
-            "area": 28335,
+            "area": 28031,
             "background": "rgba(0, 0, 0, 0)",
             "gradient": "none",
             "families": [
@@ -265,9 +143,9 @@
           {
             "tag": "BUTTON",
             "class": "navigation-item is-active",
-            "area": 8970,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(100deg, rgb(255, 232, 223), rgb(255, 240, 235))",
+            "area": 8580,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
             "families": [
               "coral"
             ]
@@ -276,7 +154,7 @@
             "tag": "BUTTON",
             "class": "status on",
             "area": 1872,
-            "background": "rgb(255, 242, 240)",
+            "background": "rgb(255, 240, 242)",
             "gradient": "none",
             "families": [
               "coral"
@@ -296,54 +174,31 @@
       "title": "赛事管理",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
         "pastelFamilies": [
-          "sky",
-          "mint",
           "coral"
         ],
         "coloredSurfaces": [
           {
             "tag": "DIV",
-            "class": "stage wide",
-            "area": 1296000,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 1296000,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          },
-          {
-            "tag": "DIV",
             "class": "race-row catalog-row on",
             "area": 36945,
-            "background": "rgb(255, 242, 240)",
+            "background": "rgb(255, 240, 242)",
             "gradient": "none",
             "families": [
               "coral"
@@ -352,7 +207,7 @@
           {
             "tag": "BUTTON",
             "class": "race-open catalog-open",
-            "area": 31298,
+            "area": 30995,
             "background": "rgba(0, 0, 0, 0)",
             "gradient": "none",
             "families": [
@@ -362,9 +217,9 @@
           {
             "tag": "BUTTON",
             "class": "navigation-item is-active",
-            "area": 8970,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(100deg, rgb(255, 232, 223), rgb(255, 240, 235))",
+            "area": 8580,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
             "families": [
               "coral"
             ]
@@ -373,7 +228,7 @@
             "tag": "BUTTON",
             "class": "status on",
             "area": 2808,
-            "background": "rgb(255, 242, 240)",
+            "background": "rgb(255, 240, 242)",
             "gradient": "none",
             "families": [
               "coral"
@@ -382,7 +237,7 @@
           {
             "tag": "BUTTON",
             "class": "remove",
-            "area": 1296,
+            "area": 1440,
             "background": "rgba(0, 0, 0, 0)",
             "gradient": "none",
             "families": [
@@ -399,55 +254,32 @@
       "title": "赛事管理",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
         "pastelFamilies": [
-          "sky",
-          "mint",
           "coral"
         ],
         "coloredSurfaces": [
           {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 1296000,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 1296000,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          },
-          {
             "tag": "BUTTON",
             "class": "navigation-item is-active",
-            "area": 8970,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(100deg, rgb(255, 232, 223), rgb(255, 240, 235))",
+            "area": 8580,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
             "families": [
               "coral"
             ]
@@ -456,7 +288,7 @@
             "tag": "BUTTON",
             "class": "status on",
             "area": 2340,
-            "background": "rgb(255, 242, 240)",
+            "background": "rgb(255, 240, 242)",
             "gradient": "none",
             "families": [
               "coral"
@@ -472,55 +304,32 @@
       "title": "赛事资讯",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
         "pastelFamilies": [
-          "sky",
-          "mint",
           "coral"
         ],
         "coloredSurfaces": [
           {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 1296000,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 1296000,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          },
-          {
             "tag": "BUTTON",
             "class": "navigation-item is-active",
-            "area": 8970,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(100deg, rgb(255, 232, 223), rgb(255, 240, 235))",
+            "area": 8580,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
             "families": [
               "coral"
             ]
@@ -529,7 +338,7 @@
             "tag": "BUTTON",
             "class": "status on",
             "area": 2340,
-            "background": "rgb(255, 242, 240)",
+            "background": "rgb(255, 240, 242)",
             "gradient": "none",
             "families": [
               "coral"
@@ -545,55 +354,32 @@
       "title": "跑者管理",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
         "pastelFamilies": [
-          "sky",
-          "mint",
           "coral"
         ],
         "coloredSurfaces": [
           {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 1296000,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 1296000,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          },
-          {
             "tag": "BUTTON",
             "class": "navigation-item is-active",
-            "area": 8970,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(100deg, rgb(255, 232, 223), rgb(255, 240, 235))",
+            "area": 8580,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
             "families": [
               "coral"
             ]
@@ -612,54 +398,31 @@
       "title": "跑者管理",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
         "pastelFamilies": [
-          "sky",
-          "mint",
           "coral"
         ],
         "coloredSurfaces": [
           {
             "tag": "DIV",
-            "class": "stage wide",
-            "area": 1296000,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 1296000,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          },
-          {
-            "tag": "DIV",
             "class": "race-row user-row on",
             "area": 49033,
-            "background": "rgb(255, 242, 240)",
+            "background": "rgb(255, 240, 242)",
             "gradient": "none",
             "families": [
               "coral"
@@ -668,7 +431,7 @@
           {
             "tag": "BUTTON",
             "class": "race-open",
-            "area": 35805,
+            "area": 34996,
             "background": "rgba(0, 0, 0, 0)",
             "gradient": "none",
             "families": [
@@ -678,9 +441,9 @@
           {
             "tag": "BUTTON",
             "class": "navigation-item is-active",
-            "area": 8970,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(100deg, rgb(255, 232, 223), rgb(255, 240, 235))",
+            "area": 8580,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
             "families": [
               "coral"
             ]
@@ -688,7 +451,7 @@
           {
             "tag": "DIV",
             "class": "row-actions",
-            "area": 3948,
+            "area": 4528,
             "background": "rgba(0, 0, 0, 0)",
             "gradient": "none",
             "families": [
@@ -699,7 +462,7 @@
             "tag": "DIV",
             "class": "person-face",
             "area": 2116,
-            "background": "rgb(255, 242, 240)",
+            "background": "rgb(255, 240, 242)",
             "gradient": "none",
             "families": [
               "coral"
@@ -708,7 +471,7 @@
           {
             "tag": "BUTTON",
             "class": "row-edit",
-            "area": 1548,
+            "area": 1843,
             "background": "rgba(0, 0, 0, 0)",
             "gradient": "none",
             "families": [
@@ -718,7 +481,7 @@
           {
             "tag": "BUTTON",
             "class": "remove",
-            "area": 1296,
+            "area": 1440,
             "background": "rgba(0, 0, 0, 0)",
             "gradient": "none",
             "families": [
@@ -735,55 +498,32 @@
       "title": "跑团管理",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
         "pastelFamilies": [
-          "sky",
-          "mint",
           "coral"
         ],
         "coloredSurfaces": [
           {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 1296000,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 1296000,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          },
-          {
             "tag": "BUTTON",
             "class": "navigation-item is-active",
-            "area": 8970,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(100deg, rgb(255, 232, 223), rgb(255, 240, 235))",
+            "area": 8580,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
             "families": [
               "coral"
             ]
@@ -798,54 +538,31 @@
       "title": "跑团管理",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
         "pastelFamilies": [
-          "sky",
-          "mint",
           "coral"
         ],
         "coloredSurfaces": [
           {
             "tag": "DIV",
-            "class": "stage wide",
-            "area": 1296000,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 1296000,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          },
-          {
-            "tag": "DIV",
             "class": "race-row user-row on",
             "area": 36750,
-            "background": "rgb(255, 242, 240)",
+            "background": "rgb(255, 240, 242)",
             "gradient": "none",
             "families": [
               "coral"
@@ -854,7 +571,7 @@
           {
             "tag": "BUTTON",
             "class": "race-open",
-            "area": 31131,
+            "area": 30829,
             "background": "rgba(0, 0, 0, 0)",
             "gradient": "none",
             "families": [
@@ -864,9 +581,9 @@
           {
             "tag": "BUTTON",
             "class": "navigation-item is-active",
-            "area": 8970,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(100deg, rgb(255, 232, 223), rgb(255, 240, 235))",
+            "area": 8580,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
             "families": [
               "coral"
             ]
@@ -875,7 +592,7 @@
             "tag": "DIV",
             "class": "person-face",
             "area": 2116,
-            "background": "rgb(255, 242, 240)",
+            "background": "rgb(255, 240, 242)",
             "gradient": "none",
             "families": [
               "coral"
@@ -884,7 +601,7 @@
           {
             "tag": "DIV",
             "class": "row-actions",
-            "area": 1512,
+            "area": 1680,
             "background": "rgba(0, 0, 0, 0)",
             "gradient": "none",
             "families": [
@@ -894,7 +611,7 @@
           {
             "tag": "BUTTON",
             "class": "remove",
-            "area": 1296,
+            "area": 1440,
             "background": "rgba(0, 0, 0, 0)",
             "gradient": "none",
             "families": [
@@ -911,54 +628,31 @@
       "title": "申请审核",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
         "pastelFamilies": [
-          "sky",
-          "mint",
           "coral"
         ],
         "coloredSurfaces": [
           {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 1296000,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 1296000,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          },
-          {
             "tag": "BUTTON",
             "class": "on",
             "area": 21736,
-            "background": "rgb(255, 242, 240)",
+            "background": "rgb(255, 240, 242)",
             "gradient": "none",
             "families": [
               "coral"
@@ -967,9 +661,9 @@
           {
             "tag": "BUTTON",
             "class": "navigation-item is-active",
-            "area": 8970,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(100deg, rgb(255, 232, 223), rgb(255, 240, 235))",
+            "area": 8580,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
             "families": [
               "coral"
             ]
@@ -988,55 +682,32 @@
       "title": "运动记录",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
         "pastelFamilies": [
-          "sky",
-          "mint",
           "coral"
         ],
         "coloredSurfaces": [
           {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 1296000,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 1296000,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          },
-          {
             "tag": "BUTTON",
             "class": "navigation-item is-active",
-            "area": 8970,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(100deg, rgb(255, 232, 223), rgb(255, 240, 235))",
+            "area": 8580,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
             "families": [
               "coral"
             ]
@@ -1051,55 +722,32 @@
       "title": "积分礼品",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
         "pastelFamilies": [
-          "sky",
-          "mint",
           "coral"
         ],
         "coloredSurfaces": [
           {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 1296000,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 1296000,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          },
-          {
             "tag": "BUTTON",
             "class": "navigation-item is-active",
-            "area": 8970,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(100deg, rgb(255, 232, 223), rgb(255, 240, 235))",
+            "area": 8580,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
             "families": [
               "coral"
             ]
@@ -1114,55 +762,32 @@
       "title": "合作与物资",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
         "pastelFamilies": [
-          "sky",
-          "mint",
           "coral"
         ],
         "coloredSurfaces": [
           {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 1296000,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 1296000,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          },
-          {
             "tag": "BUTTON",
             "class": "navigation-item is-active",
-            "area": 8970,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(100deg, rgb(255, 232, 223), rgb(255, 240, 235))",
+            "area": 8580,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
             "families": [
               "coral"
             ]
@@ -1177,55 +802,32 @@
       "title": "账号与权限",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
         "pastelFamilies": [
-          "sky",
-          "mint",
           "coral"
         ],
         "coloredSurfaces": [
           {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 1296000,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 1296000,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          },
-          {
             "tag": "BUTTON",
             "class": "navigation-item is-active",
-            "area": 8970,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(100deg, rgb(255, 232, 223), rgb(255, 240, 235))",
+            "area": 8580,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
             "families": [
               "coral"
             ]
@@ -1240,108 +842,32 @@
       "title": "运营总览",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
         "pastelFamilies": [
-          "sky",
-          "mint",
-          "apricot-gold",
-          "lilac",
           "coral"
         ],
         "coloredSurfaces": [
           {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 921600,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 921600,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          },
-          {
-            "tag": "SECTION",
-            "class": "overview-welcome",
-            "area": 111890,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(115deg, rgb(238, 247, 255), rgb(242, 238, 255) 65%, rgb(255, 240, 233))",
-            "families": [
-              "sky",
-              "apricot-gold"
-            ]
-          },
-          {
-            "tag": "BUTTON",
-            "class": "metric-card",
-            "area": 30039,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(135deg, rgb(255, 250, 245), rgb(255, 240, 223))",
-            "families": [
-              "apricot-gold"
-            ]
-          },
-          {
-            "tag": "BUTTON",
-            "class": "metric-card has-attention",
-            "area": 30039,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(135deg, rgb(255, 249, 245), rgb(255, 233, 223))",
-            "families": [
-              "apricot-gold"
-            ]
-          },
-          {
-            "tag": "BUTTON",
-            "class": "metric-card",
-            "area": 30039,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(135deg, rgb(247, 255, 251), rgb(232, 246, 239))",
-            "families": [
-              "mint"
-            ]
-          },
-          {
-            "tag": "BUTTON",
-            "class": "metric-card",
-            "area": 30039,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(135deg, rgb(253, 250, 255), rgb(241, 234, 255))",
-            "families": [
-              "lilac"
-            ]
-          },
-          {
             "tag": "BUTTON",
             "class": "navigation-item is-active",
-            "area": 7866,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(100deg, rgb(255, 232, 223), rgb(255, 240, 235))",
+            "area": 7524,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
             "families": [
               "coral"
             ]
@@ -1356,55 +882,32 @@
       "title": "赛事管理",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
         "pastelFamilies": [
-          "sky",
-          "mint",
           "coral"
         ],
         "coloredSurfaces": [
           {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 921600,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 921600,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          },
-          {
             "tag": "BUTTON",
             "class": "navigation-item is-active",
-            "area": 7866,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(100deg, rgb(255, 232, 223), rgb(255, 240, 235))",
+            "area": 7524,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
             "families": [
               "coral"
             ]
@@ -1413,7 +916,7 @@
             "tag": "BUTTON",
             "class": "status on",
             "area": 1872,
-            "background": "rgb(255, 242, 240)",
+            "background": "rgb(255, 240, 242)",
             "gradient": "none",
             "families": [
               "coral"
@@ -1429,55 +932,32 @@
       "title": "赛事管理",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
         "pastelFamilies": [
-          "sky",
-          "mint",
           "coral"
         ],
         "coloredSurfaces": [
           {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 921600,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 921600,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          },
-          {
             "tag": "BUTTON",
             "class": "navigation-item is-active",
-            "area": 7866,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(100deg, rgb(255, 232, 223), rgb(255, 240, 235))",
+            "area": 7524,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
             "families": [
               "coral"
             ]
@@ -1496,55 +976,32 @@
       "title": "赛事管理",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
         "pastelFamilies": [
-          "sky",
-          "mint",
           "coral"
         ],
         "coloredSurfaces": [
           {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 921600,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 921600,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          },
-          {
             "tag": "BUTTON",
             "class": "navigation-item is-active",
-            "area": 7866,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(100deg, rgb(255, 232, 223), rgb(255, 240, 235))",
+            "area": 7524,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
             "families": [
               "coral"
             ]
@@ -1559,55 +1016,32 @@
       "title": "赛事管理",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
         "pastelFamilies": [
-          "sky",
-          "mint",
           "coral"
         ],
         "coloredSurfaces": [
           {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 921600,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 921600,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          },
-          {
             "tag": "BUTTON",
             "class": "navigation-item is-active",
-            "area": 7866,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(100deg, rgb(255, 232, 223), rgb(255, 240, 235))",
+            "area": 7524,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
             "families": [
               "coral"
             ]
@@ -1616,7 +1050,7 @@
             "tag": "BUTTON",
             "class": "status on",
             "area": 2340,
-            "background": "rgb(255, 242, 240)",
+            "background": "rgb(255, 240, 242)",
             "gradient": "none",
             "families": [
               "coral"
@@ -1632,55 +1066,32 @@
       "title": "赛事资讯",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
         "pastelFamilies": [
-          "sky",
-          "mint",
           "coral"
         ],
         "coloredSurfaces": [
           {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 921600,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 921600,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          },
-          {
             "tag": "BUTTON",
             "class": "navigation-item is-active",
-            "area": 7866,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(100deg, rgb(255, 232, 223), rgb(255, 240, 235))",
+            "area": 7524,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
             "families": [
               "coral"
             ]
@@ -1689,7 +1100,7 @@
             "tag": "BUTTON",
             "class": "status on",
             "area": 2340,
-            "background": "rgb(255, 242, 240)",
+            "background": "rgb(255, 240, 242)",
             "gradient": "none",
             "families": [
               "coral"
@@ -1705,55 +1116,32 @@
       "title": "跑者管理",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
         "pastelFamilies": [
-          "sky",
-          "mint",
           "coral"
         ],
         "coloredSurfaces": [
           {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 921600,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 921600,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          },
-          {
             "tag": "BUTTON",
             "class": "navigation-item is-active",
-            "area": 7866,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(100deg, rgb(255, 232, 223), rgb(255, 240, 235))",
+            "area": 7524,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
             "families": [
               "coral"
             ]
@@ -1772,54 +1160,31 @@
       "title": "跑者管理",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
         "pastelFamilies": [
-          "sky",
-          "mint",
           "coral"
         ],
         "coloredSurfaces": [
           {
             "tag": "DIV",
-            "class": "stage wide",
-            "area": 921600,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 921600,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          },
-          {
-            "tag": "DIV",
             "class": "race-row user-row on",
             "area": 74177,
-            "background": "rgb(255, 242, 240)",
+            "background": "rgb(255, 240, 242)",
             "gradient": "none",
             "families": [
               "coral"
@@ -1828,7 +1193,7 @@
           {
             "tag": "BUTTON",
             "class": "race-open",
-            "area": 60703,
+            "area": 59894,
             "background": "rgba(0, 0, 0, 0)",
             "gradient": "none",
             "families": [
@@ -1838,9 +1203,9 @@
           {
             "tag": "BUTTON",
             "class": "navigation-item is-active",
-            "area": 7866,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(100deg, rgb(255, 232, 223), rgb(255, 240, 235))",
+            "area": 7524,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
             "families": [
               "coral"
             ]
@@ -1848,7 +1213,7 @@
           {
             "tag": "DIV",
             "class": "row-actions",
-            "area": 3948,
+            "area": 4528,
             "background": "rgba(0, 0, 0, 0)",
             "gradient": "none",
             "families": [
@@ -1858,7 +1223,7 @@
           {
             "tag": "BUTTON",
             "class": "row-edit",
-            "area": 1548,
+            "area": 1843,
             "background": "rgba(0, 0, 0, 0)",
             "gradient": "none",
             "families": [
@@ -1868,7 +1233,7 @@
           {
             "tag": "BUTTON",
             "class": "remove",
-            "area": 1296,
+            "area": 1440,
             "background": "rgba(0, 0, 0, 0)",
             "gradient": "none",
             "families": [
@@ -1885,55 +1250,32 @@
       "title": "跑团管理",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
         "pastelFamilies": [
-          "sky",
-          "mint",
           "coral"
         ],
         "coloredSurfaces": [
           {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 921600,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 921600,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          },
-          {
             "tag": "BUTTON",
             "class": "navigation-item is-active",
-            "area": 7866,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(100deg, rgb(255, 232, 223), rgb(255, 240, 235))",
+            "area": 7524,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
             "families": [
               "coral"
             ]
@@ -1948,55 +1290,32 @@
       "title": "跑团管理",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
         "pastelFamilies": [
-          "sky",
-          "mint",
           "coral"
         ],
         "coloredSurfaces": [
           {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 921600,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 921600,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          },
-          {
             "tag": "BUTTON",
             "class": "navigation-item is-active",
-            "area": 7866,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(100deg, rgb(255, 232, 223), rgb(255, 240, 235))",
+            "area": 7524,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
             "families": [
               "coral"
             ]
@@ -2005,7 +1324,7 @@
             "tag": "DIV",
             "class": "person-face",
             "area": 2116,
-            "background": "rgb(255, 242, 240)",
+            "background": "rgb(255, 240, 242)",
             "gradient": "none",
             "families": [
               "coral"
@@ -2021,54 +1340,31 @@
       "title": "申请审核",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
         "pastelFamilies": [
-          "sky",
-          "mint",
           "coral"
         ],
         "coloredSurfaces": [
           {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 921600,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 921600,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          },
-          {
             "tag": "BUTTON",
             "class": "on",
             "area": 14592,
-            "background": "rgb(255, 242, 240)",
+            "background": "rgb(255, 240, 242)",
             "gradient": "none",
             "families": [
               "coral"
@@ -2077,9 +1373,9 @@
           {
             "tag": "BUTTON",
             "class": "navigation-item is-active",
-            "area": 7866,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(100deg, rgb(255, 232, 223), rgb(255, 240, 235))",
+            "area": 7524,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
             "families": [
               "coral"
             ]
@@ -2098,55 +1394,32 @@
       "title": "运动记录",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
         "pastelFamilies": [
-          "sky",
-          "mint",
           "coral"
         ],
         "coloredSurfaces": [
           {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 921600,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 921600,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          },
-          {
             "tag": "BUTTON",
             "class": "navigation-item is-active",
-            "area": 7866,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(100deg, rgb(255, 232, 223), rgb(255, 240, 235))",
+            "area": 7524,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
             "families": [
               "coral"
             ]
@@ -2161,55 +1434,32 @@
       "title": "积分礼品",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
         "pastelFamilies": [
-          "sky",
-          "mint",
           "coral"
         ],
         "coloredSurfaces": [
           {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 921600,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 921600,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          },
-          {
             "tag": "BUTTON",
             "class": "navigation-item is-active",
-            "area": 7866,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(100deg, rgb(255, 232, 223), rgb(255, 240, 235))",
+            "area": 7524,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
             "families": [
               "coral"
             ]
@@ -2224,55 +1474,32 @@
       "title": "合作与物资",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
         "pastelFamilies": [
-          "sky",
-          "mint",
           "coral"
         ],
         "coloredSurfaces": [
           {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 921600,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 921600,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          },
-          {
             "tag": "BUTTON",
             "class": "navigation-item is-active",
-            "area": 7866,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(100deg, rgb(255, 232, 223), rgb(255, 240, 235))",
+            "area": 7524,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
             "families": [
               "coral"
             ]
@@ -2287,55 +1514,32 @@
       "title": "账号与权限",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
         "pastelFamilies": [
-          "sky",
-          "mint",
           "coral"
         ],
         "coloredSurfaces": [
           {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 921600,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 921600,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          },
-          {
             "tag": "BUTTON",
             "class": "navigation-item is-active",
-            "area": 7866,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(100deg, rgb(255, 232, 223), rgb(255, 240, 235))",
+            "area": 7524,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
             "families": [
               "coral"
             ]
@@ -2350,102 +1554,24 @@
       "title": "运营总览",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
-        "pastelFamilies": [
-          "sky",
-          "mint",
-          "apricot-gold",
-          "lilac"
-        ],
-        "coloredSurfaces": [
-          {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 351000,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 351000,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          },
-          {
-            "tag": "SECTION",
-            "class": "overview-welcome",
-            "area": 68960,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(120deg, rgb(238, 247, 255), rgb(242, 238, 255) 65%, rgb(255, 240, 233))",
-            "families": [
-              "sky",
-              "apricot-gold"
-            ]
-          },
-          {
-            "tag": "BUTTON",
-            "class": "metric-card",
-            "area": 26358,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(135deg, rgb(255, 250, 245), rgb(255, 240, 223))",
-            "families": [
-              "apricot-gold"
-            ]
-          },
-          {
-            "tag": "BUTTON",
-            "class": "metric-card has-attention",
-            "area": 26358,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(135deg, rgb(255, 249, 245), rgb(255, 233, 223))",
-            "families": [
-              "apricot-gold"
-            ]
-          },
-          {
-            "tag": "BUTTON",
-            "class": "metric-card",
-            "area": 26358,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(135deg, rgb(247, 255, 251), rgb(232, 246, 239))",
-            "families": [
-              "mint"
-            ]
-          },
-          {
-            "tag": "BUTTON",
-            "class": "metric-card",
-            "area": 26358,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(135deg, rgb(253, 250, 255), rgb(241, 234, 255))",
-            "families": [
-              "lilac"
-            ]
-          }
-        ]
+        "pastelFamilies": [],
+        "coloredSurfaces": []
       }
     },
     {
@@ -2455,54 +1581,31 @@
       "title": "赛事管理",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
         "pastelFamilies": [
-          "sky",
-          "mint",
           "coral"
         ],
         "coloredSurfaces": [
           {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 351000,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 351000,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          },
-          {
             "tag": "BUTTON",
             "class": "status on",
-            "area": 1913,
-            "background": "rgb(255, 242, 240)",
+            "area": 2288,
+            "background": "rgb(255, 240, 242)",
             "gradient": "none",
             "families": [
               "coral"
@@ -2518,49 +1621,24 @@
       "title": "赛事管理",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
-        "pastelFamilies": [
-          "sky",
-          "mint"
-        ],
-        "coloredSurfaces": [
-          {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 351000,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 351000,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          }
-        ]
+        "pastelFamilies": [],
+        "coloredSurfaces": []
       }
     },
     {
@@ -2574,49 +1652,24 @@
       "title": "赛事管理",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
-        "pastelFamilies": [
-          "sky",
-          "mint"
-        ],
-        "coloredSurfaces": [
-          {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 351000,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 351000,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          }
-        ]
+        "pastelFamilies": [],
+        "coloredSurfaces": []
       }
     },
     {
@@ -2626,54 +1679,31 @@
       "title": "赛事管理",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
         "pastelFamilies": [
-          "sky",
-          "mint",
           "coral"
         ],
         "coloredSurfaces": [
           {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 351000,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 351000,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          },
-          {
             "tag": "BUTTON",
             "class": "status on",
-            "area": 2392,
-            "background": "rgb(255, 242, 240)",
+            "area": 2860,
+            "background": "rgb(255, 240, 242)",
             "gradient": "none",
             "families": [
               "coral"
@@ -2689,54 +1719,31 @@
       "title": "赛事资讯",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
         "pastelFamilies": [
-          "sky",
-          "mint",
           "coral"
         ],
         "coloredSurfaces": [
           {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 351000,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 351000,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          },
-          {
             "tag": "BUTTON",
             "class": "status on",
-            "area": 2392,
-            "background": "rgb(255, 242, 240)",
+            "area": 2860,
+            "background": "rgb(255, 240, 242)",
             "gradient": "none",
             "families": [
               "coral"
@@ -2752,49 +1759,24 @@
       "title": "跑者管理",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
-        "pastelFamilies": [
-          "sky",
-          "mint"
-        ],
-        "coloredSurfaces": [
-          {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 351000,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 351000,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          }
-        ]
+        "pastelFamilies": [],
+        "coloredSurfaces": []
       }
     },
     {
@@ -2808,54 +1790,31 @@
       "title": "跑者管理",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
         "pastelFamilies": [
-          "sky",
-          "mint",
           "coral"
         ],
         "coloredSurfaces": [
           {
             "tag": "DIV",
-            "class": "stage wide",
-            "area": 350994,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 350994,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          },
-          {
-            "tag": "DIV",
             "class": "race-row user-row on",
             "area": 34010,
-            "background": "rgb(255, 242, 240)",
+            "background": "rgb(255, 240, 242)",
             "gradient": "none",
             "families": [
               "coral"
@@ -2864,7 +1823,7 @@
           {
             "tag": "BUTTON",
             "class": "race-open",
-            "area": 22873,
+            "area": 22041,
             "background": "rgba(0, 0, 0, 0)",
             "gradient": "none",
             "families": [
@@ -2874,7 +1833,7 @@
           {
             "tag": "DIV",
             "class": "row-actions",
-            "area": 4400,
+            "area": 4800,
             "background": "rgba(0, 0, 0, 0)",
             "gradient": "none",
             "families": [
@@ -2884,7 +1843,7 @@
           {
             "tag": "BUTTON",
             "class": "row-edit",
-            "area": 1936,
+            "area": 2112,
             "background": "rgba(0, 0, 0, 0)",
             "gradient": "none",
             "families": [
@@ -2894,7 +1853,7 @@
           {
             "tag": "BUTTON",
             "class": "remove",
-            "area": 1584,
+            "area": 1760,
             "background": "rgba(0, 0, 0, 0)",
             "gradient": "none",
             "families": [
@@ -2911,49 +1870,24 @@
       "title": "跑团管理",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
-        "pastelFamilies": [
-          "sky",
-          "mint"
-        ],
-        "coloredSurfaces": [
-          {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 351000,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 351000,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          }
-        ]
+        "pastelFamilies": [],
+        "coloredSurfaces": []
       }
     },
     {
@@ -2963,54 +1897,31 @@
       "title": "跑团管理",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
         "pastelFamilies": [
-          "sky",
-          "mint",
           "coral"
         ],
         "coloredSurfaces": [
           {
             "tag": "DIV",
-            "class": "stage wide",
-            "area": 351000,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 351000,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          },
-          {
-            "tag": "DIV",
             "class": "person-face",
             "area": 2116,
-            "background": "rgb(255, 242, 240)",
+            "background": "rgb(255, 240, 242)",
             "gradient": "none",
             "families": [
               "coral"
@@ -3026,54 +1937,31 @@
       "title": "申请审核",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
         "pastelFamilies": [
-          "sky",
-          "mint",
           "coral"
         ],
         "coloredSurfaces": [
           {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 351000,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 351000,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          },
-          {
             "tag": "BUTTON",
             "class": "on",
             "area": 7700,
-            "background": "rgb(255, 242, 240)",
+            "background": "rgb(255, 240, 242)",
             "gradient": "none",
             "families": [
               "coral"
@@ -3093,49 +1981,24 @@
       "title": "运动记录",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
-        "pastelFamilies": [
-          "sky",
-          "mint"
-        ],
-        "coloredSurfaces": [
-          {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 351000,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 351000,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          }
-        ]
+        "pastelFamilies": [],
+        "coloredSurfaces": []
       }
     },
     {
@@ -3145,49 +2008,24 @@
       "title": "积分礼品",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
-        "pastelFamilies": [
-          "sky",
-          "mint"
-        ],
-        "coloredSurfaces": [
-          {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 351000,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 351000,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          }
-        ]
+        "pastelFamilies": [],
+        "coloredSurfaces": []
       }
     },
     {
@@ -3197,49 +2035,24 @@
       "title": "合作与物资",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
-        "pastelFamilies": [
-          "sky",
-          "mint"
-        ],
-        "coloredSurfaces": [
-          {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 351000,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 351000,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          }
-        ]
+        "pastelFamilies": [],
+        "coloredSurfaces": []
       }
     },
     {
@@ -3249,49 +2062,24 @@
       "title": "账号与权限",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
-        "pastelFamilies": [
-          "sky",
-          "mint"
-        ],
-        "coloredSurfaces": [
-          {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 351000,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 351000,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          }
-        ]
+        "pastelFamilies": [],
+        "coloredSurfaces": []
       }
     },
     {
@@ -3301,102 +2089,24 @@
       "title": "运营总览",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
-        "pastelFamilies": [
-          "sky",
-          "mint",
-          "apricot-gold",
-          "lilac"
-        ],
-        "coloredSurfaces": [
-          {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 288000,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 288000,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          },
-          {
-            "tag": "SECTION",
-            "class": "overview-welcome",
-            "area": 70461,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(120deg, rgb(238, 247, 255), rgb(242, 238, 255) 65%, rgb(255, 240, 233))",
-            "families": [
-              "sky",
-              "apricot-gold"
-            ]
-          },
-          {
-            "tag": "BUTTON",
-            "class": "metric-card",
-            "area": 28519,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(135deg, rgb(247, 255, 251), rgb(232, 246, 239))",
-            "families": [
-              "mint"
-            ]
-          },
-          {
-            "tag": "BUTTON",
-            "class": "metric-card",
-            "area": 28519,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(135deg, rgb(253, 250, 255), rgb(241, 234, 255))",
-            "families": [
-              "lilac"
-            ]
-          },
-          {
-            "tag": "BUTTON",
-            "class": "metric-card",
-            "area": 21056,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(135deg, rgb(255, 250, 245), rgb(255, 240, 223))",
-            "families": [
-              "apricot-gold"
-            ]
-          },
-          {
-            "tag": "BUTTON",
-            "class": "metric-card has-attention",
-            "area": 21056,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(135deg, rgb(255, 249, 245), rgb(255, 233, 223))",
-            "families": [
-              "apricot-gold"
-            ]
-          }
-        ]
+        "pastelFamilies": [],
+        "coloredSurfaces": []
       }
     },
     {
@@ -3406,54 +2116,31 @@
       "title": "赛事管理",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
         "pastelFamilies": [
-          "sky",
-          "mint",
           "coral"
         ],
         "coloredSurfaces": [
           {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 288000,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 288000,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          },
-          {
             "tag": "BUTTON",
             "class": "status on",
-            "area": 1913,
-            "background": "rgb(255, 242, 240)",
+            "area": 2288,
+            "background": "rgb(255, 240, 242)",
             "gradient": "none",
             "families": [
               "coral"
@@ -3469,49 +2156,24 @@
       "title": "赛事管理",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
-        "pastelFamilies": [
-          "sky",
-          "mint"
-        ],
-        "coloredSurfaces": [
-          {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 288000,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 288000,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          }
-        ]
+        "pastelFamilies": [],
+        "coloredSurfaces": []
       }
     },
     {
@@ -3525,49 +2187,24 @@
       "title": "赛事管理",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
-        "pastelFamilies": [
-          "sky",
-          "mint"
-        ],
-        "coloredSurfaces": [
-          {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 288000,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 288000,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          }
-        ]
+        "pastelFamilies": [],
+        "coloredSurfaces": []
       }
     },
     {
@@ -3577,54 +2214,31 @@
       "title": "赛事管理",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
         "pastelFamilies": [
-          "sky",
-          "mint",
           "coral"
         ],
         "coloredSurfaces": [
           {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 288000,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 288000,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          },
-          {
             "tag": "BUTTON",
             "class": "status on",
-            "area": 2392,
-            "background": "rgb(255, 242, 240)",
+            "area": 2860,
+            "background": "rgb(255, 240, 242)",
             "gradient": "none",
             "families": [
               "coral"
@@ -3640,54 +2254,31 @@
       "title": "赛事资讯",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
         "pastelFamilies": [
-          "sky",
-          "mint",
           "coral"
         ],
         "coloredSurfaces": [
           {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 288000,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 288000,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          },
-          {
             "tag": "BUTTON",
             "class": "status on",
-            "area": 2392,
-            "background": "rgb(255, 242, 240)",
+            "area": 2860,
+            "background": "rgb(255, 240, 242)",
             "gradient": "none",
             "families": [
               "coral"
@@ -3703,49 +2294,24 @@
       "title": "跑者管理",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
-        "pastelFamilies": [
-          "sky",
-          "mint"
-        ],
-        "coloredSurfaces": [
-          {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 288000,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 288000,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          }
-        ]
+        "pastelFamilies": [],
+        "coloredSurfaces": []
       }
     },
     {
@@ -3759,54 +2325,31 @@
       "title": "跑者管理",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
         "pastelFamilies": [
-          "sky",
-          "mint",
           "coral"
         ],
         "coloredSurfaces": [
           {
             "tag": "DIV",
-            "class": "stage wide",
-            "area": 287925,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 287925,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          },
-          {
-            "tag": "DIV",
             "class": "race-row user-row on",
             "area": 31841,
-            "background": "rgb(255, 242, 240)",
+            "background": "rgb(255, 240, 242)",
             "gradient": "none",
             "families": [
               "coral"
@@ -3815,7 +2358,7 @@
           {
             "tag": "BUTTON",
             "class": "race-open",
-            "area": 18654,
+            "area": 17659,
             "background": "rgba(0, 0, 0, 0)",
             "gradient": "none",
             "families": [
@@ -3825,7 +2368,7 @@
           {
             "tag": "DIV",
             "class": "row-actions",
-            "area": 4400,
+            "area": 4800,
             "background": "rgba(0, 0, 0, 0)",
             "gradient": "none",
             "families": [
@@ -3835,7 +2378,7 @@
           {
             "tag": "BUTTON",
             "class": "row-edit",
-            "area": 1936,
+            "area": 2112,
             "background": "rgba(0, 0, 0, 0)",
             "gradient": "none",
             "families": [
@@ -3845,7 +2388,7 @@
           {
             "tag": "BUTTON",
             "class": "remove",
-            "area": 1584,
+            "area": 1760,
             "background": "rgba(0, 0, 0, 0)",
             "gradient": "none",
             "families": [
@@ -3862,49 +2405,24 @@
       "title": "跑团管理",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
-        "pastelFamilies": [
-          "sky",
-          "mint"
-        ],
-        "coloredSurfaces": [
-          {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 288000,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 288000,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          }
-        ]
+        "pastelFamilies": [],
+        "coloredSurfaces": []
       }
     },
     {
@@ -3914,54 +2432,31 @@
       "title": "跑团管理",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
         "pastelFamilies": [
-          "sky",
-          "mint",
           "coral"
         ],
         "coloredSurfaces": [
           {
             "tag": "DIV",
-            "class": "stage wide",
-            "area": 288000,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 288000,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          },
-          {
-            "tag": "DIV",
             "class": "person-face",
             "area": 2116,
-            "background": "rgb(255, 242, 240)",
+            "background": "rgb(255, 240, 242)",
             "gradient": "none",
             "families": [
               "coral"
@@ -3977,54 +2472,31 @@
       "title": "申请审核",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
         "pastelFamilies": [
-          "sky",
-          "mint",
           "coral"
         ],
         "coloredSurfaces": [
           {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 288000,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 288000,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          },
-          {
             "tag": "BUTTON",
             "class": "on",
             "area": 6160,
-            "background": "rgb(255, 242, 240)",
+            "background": "rgb(255, 240, 242)",
             "gradient": "none",
             "families": [
               "coral"
@@ -4044,49 +2516,24 @@
       "title": "运动记录",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
-        "pastelFamilies": [
-          "sky",
-          "mint"
-        ],
-        "coloredSurfaces": [
-          {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 288000,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 288000,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          }
-        ]
+        "pastelFamilies": [],
+        "coloredSurfaces": []
       }
     },
     {
@@ -4096,49 +2543,24 @@
       "title": "积分礼品",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
-        "pastelFamilies": [
-          "sky",
-          "mint"
-        ],
-        "coloredSurfaces": [
-          {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 288000,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 288000,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          }
-        ]
+        "pastelFamilies": [],
+        "coloredSurfaces": []
       }
     },
     {
@@ -4148,49 +2570,24 @@
       "title": "合作与物资",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
-        "pastelFamilies": [
-          "sky",
-          "mint"
-        ],
-        "coloredSurfaces": [
-          {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 288000,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 288000,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          }
-        ]
+        "pastelFamilies": [],
+        "coloredSurfaces": []
       }
     },
     {
@@ -4200,49 +2597,24 @@
       "title": "账号与权限",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
-        "pastelFamilies": [
-          "sky",
-          "mint"
-        ],
-        "coloredSurfaces": [
-          {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 288000,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 288000,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          }
-        ]
+        "pastelFamilies": [],
+        "coloredSurfaces": []
       }
     },
     {
@@ -4252,108 +2624,32 @@
       "title": "运营总览",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
         "pastelFamilies": [
-          "sky",
-          "mint",
-          "apricot-gold",
-          "lilac",
           "coral"
         ],
         "coloredSurfaces": [
           {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 1296000,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 1296000,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          },
-          {
-            "tag": "SECTION",
-            "class": "overview-welcome",
-            "area": 166104,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(115deg, rgb(238, 247, 255), rgb(242, 238, 255) 65%, rgb(255, 240, 233))",
-            "families": [
-              "sky",
-              "apricot-gold"
-            ]
-          },
-          {
-            "tag": "BUTTON",
-            "class": "metric-card has-attention",
-            "area": 45920,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(135deg, rgb(255, 249, 245), rgb(255, 233, 223))",
-            "families": [
-              "apricot-gold"
-            ]
-          },
-          {
-            "tag": "BUTTON",
-            "class": "metric-card has-attention",
-            "area": 45920,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(135deg, rgb(255, 249, 245), rgb(255, 233, 223))",
-            "families": [
-              "apricot-gold"
-            ]
-          },
-          {
-            "tag": "BUTTON",
-            "class": "metric-card",
-            "area": 45920,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(135deg, rgb(247, 255, 251), rgb(232, 246, 239))",
-            "families": [
-              "mint"
-            ]
-          },
-          {
-            "tag": "BUTTON",
-            "class": "metric-card",
-            "area": 45920,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(135deg, rgb(253, 250, 255), rgb(241, 234, 255))",
-            "families": [
-              "lilac"
-            ]
-          },
-          {
             "tag": "BUTTON",
             "class": "navigation-item is-active",
-            "area": 8970,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(100deg, rgb(255, 232, 223), rgb(255, 240, 235))",
+            "area": 8580,
+            "background": "rgb(255, 240, 242)",
+            "gradient": "none",
             "families": [
               "coral"
             ]
@@ -4376,102 +2672,24 @@
       "title": "运营总览",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
-        "pastelFamilies": [
-          "sky",
-          "mint",
-          "apricot-gold",
-          "lilac"
-        ],
-        "coloredSurfaces": [
-          {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 351000,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          },
-          {
-            "tag": "DIV",
-            "class": "operations-shell",
-            "area": 351000,
-            "background": "rgb(247, 248, 252)",
-            "gradient": "radial-gradient(70% 420px at 100% 0px, rgb(233, 229, 255), rgba(0, 0, 0, 0) 85%), radial-gradient(80% 420px at 20% 0px, rgb(224, 243, 239), rgba(0, 0, 0, 0) 85%), none",
-            "families": [
-              "sky",
-              "mint"
-            ]
-          },
-          {
-            "tag": "SECTION",
-            "class": "overview-welcome",
-            "area": 68960,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(120deg, rgb(238, 247, 255), rgb(242, 238, 255) 65%, rgb(255, 240, 233))",
-            "families": [
-              "sky",
-              "apricot-gold"
-            ]
-          },
-          {
-            "tag": "BUTTON",
-            "class": "metric-card has-attention",
-            "area": 26358,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(135deg, rgb(255, 249, 245), rgb(255, 233, 223))",
-            "families": [
-              "apricot-gold"
-            ]
-          },
-          {
-            "tag": "BUTTON",
-            "class": "metric-card has-attention",
-            "area": 26358,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(135deg, rgb(255, 249, 245), rgb(255, 233, 223))",
-            "families": [
-              "apricot-gold"
-            ]
-          },
-          {
-            "tag": "BUTTON",
-            "class": "metric-card",
-            "area": 26358,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(135deg, rgb(247, 255, 251), rgb(232, 246, 239))",
-            "families": [
-              "mint"
-            ]
-          },
-          {
-            "tag": "BUTTON",
-            "class": "metric-card",
-            "area": 26358,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(135deg, rgb(253, 250, 255), rgb(241, 234, 255))",
-            "families": [
-              "lilac"
-            ]
-          }
-        ]
+        "pastelFamilies": [],
+        "coloredSurfaces": []
       }
     },
     {
@@ -4489,37 +2707,24 @@
       "title": "登录",
       "overflow": [],
       "palette": {
-        "accent": "#e1251b",
-        "background": "#f5f6f8",
+        "accent": "#ff1838",
+        "background": "#f5f5f5",
         "surface": "#ffffff",
-        "ink": "#262626",
-        "secondary": "#737373",
-        "border": "#eaedf1",
-        "sky": "#eaf4ff",
-        "mint": "#e9f7f2",
-        "lilac": "#f2edff",
-        "sun": "#fff4d7",
-        "peach": "#fff0e7"
+        "ink": "#1a1a1a",
+        "secondary": "#777777",
+        "border": "#eeeeee",
+        "sky": "#f5f5f5",
+        "mint": "#f5f5f5",
+        "lilac": "#f5f5f5",
+        "sun": "#f5f5f5",
+        "peach": "#fff0f2"
       },
       "activityHero": null,
       "darkNeutralControls": [],
       "colorRichness": {
         "method": "Visible first-viewport DOM backgrounds and gradient-stop colors; no pixel coverage claim",
-        "pastelFamilies": [
-          "sky"
-        ],
-        "coloredSurfaces": [
-          {
-            "tag": "DIV",
-            "class": "stage wide",
-            "area": 1296000,
-            "background": "rgba(0, 0, 0, 0)",
-            "gradient": "linear-gradient(rgb(232, 239, 255) 0px, rgb(250, 251, 252) 240px, rgb(245, 246, 248) 360px)",
-            "families": [
-              "sky"
-            ]
-          }
-        ]
+        "pastelFamilies": [],
+        "coloredSurfaces": []
       }
     },
     {

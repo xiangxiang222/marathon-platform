@@ -11,6 +11,11 @@
     "showES6CompileOption": false,
     "checkInvalidKey": true,
     "ignoreDevUnusedFiles": false,
-    "bigPackageSizeSupport": false
+    "bigPackageSizeSupport": false,
+    "coverView": true,
+    "lazyloadPlaceholderEnable": false,
+    "skylineRenderEnable": false,
+    "useApiHook": true,
+    "showShadowRootInWxmlPanel": false
   }
 }

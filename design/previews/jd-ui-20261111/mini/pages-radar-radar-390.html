@@ -1,0 +1,205 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><style>html,body{margin:0;padding:0}body{padding-bottom:70px}a{display:block;color:inherit;text-decoration:none}button{display:block;box-sizing:border-box;padding:0 14px;line-height:1.35}input,textarea{outline:none}input[type=checkbox]{min-height:0}img{display:inline-block;vertical-align:middle}*{box-sizing:border-box}.native-switch{display:inline-block;width:44px;height:26px;flex:none;border-radius:20px;background:#dedede;position:relative}.native-switch[checked=true]{background:#ff1838}.native-switch:after{content:"";display:block;position:absolute;top:2px;left:2px;width:22px;height:22px;border-radius:50%;background:white}.native-switch[checked=true]:after{left:20px}swiper-item{display:block}.audit-banner{font:10px system-ui;color:#767676;padding:5px 12px;text-align:center}.mirror-tabbar{position:fixed;z-index:50;left:0;right:0;bottom:0;display:flex;background:white;border-top:1px solid #eee;height:64px;padding:6px 0}.mirror-tabbar a{width:25%;font:11px system-ui;text-align:center}.mirror-tabbar img{display:block;margin:0 auto 3px;width:25px;height:25px}</style><style>body {
+  --brand: #ff1838;
+  --brand-soft: #fff0f2;
+  --page-bg: #f5f5f5;
+  --surface: #ffffff;
+  --brand-header: linear-gradient(145deg, #ff1838 0%, #ff2946 60%, #ff4659 100%);
+  --text: #1a1a1a;
+  --text-secondary: #777777;
+  --border: #eeeeee;
+  --sky: #555555;
+  --sky-soft: #f7f7f7;
+  --mint: #555555;
+  --mint-soft: #f7f7f7;
+  --lilac: #555555;
+  --lilac-soft: #f7f7f7;
+  --sun: #555555;
+  --sun-soft: #f7f7f7;
+  --peach-soft: #fff0f2;
+  --card-shadow: none;
+  --action-fill: #ff1838;
+  --control-radius: 10.4px;
+  --card-radius: 12.48px;
+  min-height: 100%;
+  background: var(--page-bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+div, span, a, div, button, input, textarea, div { box-sizing: border-box; }
+button, input, textarea { font-family: inherit; color: var(--text); }
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 44px;
+  margin: 0;
+  padding: 12px 18px;
+  border: 0.52px solid var(--border);
+  border-radius: var(--control-radius);
+  background: var(--surface);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+button::after { border: 0; }
+button[plain] { border: 0.52px solid var(--border); background: var(--surface); }
+input, textarea {
+  min-width: 0;
+  border: 0.52px solid var(--border);
+  border-radius: 10.4px;
+  background: var(--page-bg);
+  color: var(--text);
+  font-size: 14px;
+  caret-color: var(--brand);
+}
+input { min-height: 46px; padding: 0 12.48px; }
+textarea { min-height: 120px; padding: 12.48px; line-height: 1.75; }
+input::placeholder, textarea::placeholder { color: #999999; }
+.pad { padding: 16.64px 16.64px calc(24.96px + env(safe-area-inset-bottom)); }
+.card {
+  margin-bottom: 12.48px;
+  padding: 16.64px;
+  border: 0.52px solid var(--border);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  box-shadow: var(--card-shadow);
+}
+.title { font-size: 18px; font-weight: 600; line-height: 1.4; letter-spacing: normal; }
+.muted { color: var(--text-secondary); font-size: 12px; }
+.slot { display: flex; justify-content: space-between; gap: 12.48px; margin-top: 6.24px; padding: 9.36px 10.4px; border-radius: 8.32px; background: var(--page-bg); font-size: 14px; }
+.slot-state { color: var(--text-secondary); font-size: 12px; }
+.teal { color: var(--brand); }
+.row { display: flex; justify-content: space-between; gap: 12.48px; padding: 10.4px 0; border-bottom: 0.52px solid var(--border); }
+.row:last-child { border-bottom: 0; }
+.row .k { flex: none; color: var(--text-secondary); }
+.soon { color: #c87825; }
+.err { margin-top: 6.24px; color: #b42318; font-size: 12px; line-height: 1.7; }
+.note { margin-top: 6.24px; color: var(--brand); font-size: 12px; line-height: 1.7; }
+.empty { padding: 29.12px 16.64px; color: var(--text-secondary); font-size: 13px; text-align: center; line-height: 1.8; }
+.field { display: flex; align-items: center; gap: 8.32px; }
+.field input { flex: 1; min-width: 0; height: 46px; padding: 0 12.48px; border-radius: 10.4px; background: var(--page-bg); }
+.btn, .login-go {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 46px;
+  margin: 0;
+  padding: 12px 20px;
+  border: 0.52px solid transparent;
+  border-radius: var(--control-radius);
+  background: var(--action-fill);
+  box-shadow: none;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
+}
+.login-go { margin-top: 12.48px; }
+button.ghost {
+  min-height: 44px;
+  margin: 8.32px 8.32px 0 0;
+  padding: 10px 16px;
+  border: 0.52px solid var(--border);
+  border-radius: var(--control-radius);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+button.ghost.on { border-color: var(--brand); background: var(--brand-soft); color: var(--brand); }
+button[disabled], button.btn[disabled] { border-color: #eeeeef; background: #f2f2f2; color: #999999; opacity: 1; box-shadow: none; }
+.chip { display: inline-block; margin-right: 4.16px; padding: 2.08px 6.24px; border: 0.52px solid #ebebed; border-radius: 6.24px; background: #f5f5f7; color: var(--text-secondary); font-size: 12px; font-weight: 400; line-height: 1.6; }
+.foot { display: flex; justify-content: space-between; gap: 10.4px; margin-top: 8.32px; color: var(--text-secondary); font-size: 12px; }
+.src { margin-top: 6.24px; color: var(--text-secondary); font-size: 12px; line-height: 1.75; overflow-wrap: anywhere; }
+.card > input, .card > textarea, .card > div { margin-top: 10.4px; }
+.card > input { width: 100%; }
+.card > .btn { margin-top: 12.48px; }
+.primary, .primary-btn, .primary-button, .submit-button, .save-action, .next-action, .bottom-primary, .staff-primary { border-radius: var(--control-radius); }
+.field-label, .form-label { line-height: 1.6; }
+.metric-value, .stat-value, .career-number, .record-number, .rank-time { font-variant-numeric: tabular-nums; }
+/* Shared control roles for new screens and gradual migrations. */
+.ui-control-text { width: auto; min-height: 44px; padding: 10px 8px; border: 0; border-radius: 6.24px; background: transparent; color: var(--brand); font-size: 13px; }
+.ui-control-danger { border-color: #f5d1cc; background: #fff5f3; color: #c52e24; }
+.ui-label { color: var(--text-secondary); font-size: 12px; font-weight: 400; }
+.surface-sky, .surface-mint, .surface-lilac, .surface-sun, .surface-peach { background: var(--surface); border-color: var(--border); }
+@media (max-width: 350px) { .pad { padding-left: 14px; padding-right: 14px; } .card { padding: 16px; } }
+
+:host { display: block; }
+.page-header { position: relative; padding-bottom: 20.8px; background: var(--brand-header); color: #fff; }
+.header-main { display: flex; align-items: center; padding-left: 16.64px; box-sizing: border-box; }
+.header-title { flex: 1; min-width: 0; overflow: hidden; font-size: 24px; line-height: 1.3; font-weight: 600; letter-spacing: normal; white-space: nowrap; text-overflow: ellipsis; }
+.header-subtitle { padding: 0 16.64px 12.48px; color: #ffffffcf; font-size: 12px; line-height: 1.5; }
+@media (max-width: 350px) { .header-main { padding-left: 14px; } .header-subtitle { padding-left: 14px; padding-right: 14px; } }
+
+.header-actions { display: flex; flex: none; align-items: center; justify-content: flex-end; }
+
+.header-actions { position: relative; color: #fff; }
+
+.src { margin-top: 4.16px; }
+input { width: 100%; height: 41.6px; margin-top: 8.32px; padding: 0 10.4px; box-sizing: border-box; }
+.card .btn, .ghost { margin-top: 8.32px;  }
+.login-description { margin-top: 8.32px; line-height: 1.6; }
+
+/* Route geometry: surfaces, controls and compact labels have distinct roles. */
+.mini-radar-radar .card { border-radius: 12.48px; }
+.mini-radar-radar .btn, .mini-radar-radar .ghost { border-radius: 12.48px; }
+.mini-radar-radar { color: var(--text); background: transparent; }
+.mini-radar-radar button { font-weight: 500; border-radius: 12.48px; }
+
+.card { border: 1px solid var(--border); }
+.title { font-size: 24px; font-weight: 600; }
+.src { color: var(--text-secondary); font-size: 13px; line-height: 1.8; }
+input { min-height: 44px; border: 1px solid var(--border); border-radius: 12.48px; background: var(--page-bg); font-size: 14px; }
+.slot { gap: 10.4px; padding: 12.48px; border: 1px solid var(--border); border-radius: 12.48px; background: var(--sky-soft); font-size: 14px; }
+
+/* Primary actions read at 14px, secondary actions at 13px; compact filters stay at 12px. */
+.mini-radar-radar .btn { font-size: 14px; font-weight: 500; }
+.mini-radar-radar .ghost { font-size: 13px; font-weight: 500; }
+.range-filters .ghost { font-size: 12px; }
+.card .title { font-size: 18px; } .card:first-child .title { font-size: 24px; }
+.mini-radar-radar > .card:first-child { background: var(--surface); box-shadow: none; }
+.mini-radar-radar > .card:nth-child(2) { background: #ffffff; }
+
+</style></head><body><div class="pad mini-radar-radar">
+  <div class="card">
+    <div class="title">拿奖雷达</div>
+    
+    
+    <div class="src">仅供参考。没有往届名次成绩时，不估算概率。</div>
+    <div class="slot"><span>天气和赛道修正</span><span class="slot-state">尚未开通</span></div>
+    <div class="src">对照仍用已记下的成绩和往届名次。</div>
+    <div class="src">性别、出生年月和省份自己填。不收身份证。出生月份和比赛月相同的，按小一岁算。</div>
+    <div class="row">
+      <button class="ghost ">不填</button>
+      <button class="ghost ">男</button>
+      <button class="ghost ">女</button>
+    </div>
+    <input placeholder="出生年月 1986-06，可空" aria-label="出生年月 1986-06，可空" style="">
+    <input placeholder="省份，例如 河南，可空" aria-label="省份，例如 河南，可空" style="">
+    <input placeholder="全马目标 3:30:00，空则用 PB" aria-label="全马目标 3:30:00，空则用 PB" style="">
+    <input placeholder="半马目标，可空" aria-label="半马目标，可空" style="">
+    <input placeholder="10 公里目标，可空" aria-label="10 公里目标，可空" style="">
+    <input placeholder="5 公里目标，可空" aria-label="5 公里目标，可空" style="">
+    <button class="btn">保存</button>
+    
+    
+  </div>
+  <div class="card">
+    <div class="title">对得上的奖</div>
+    
+    <a href="#">
+      <div class="src">2026-11-15 杭州马拉松</div>
+      <div class="src">参赛奖励 · 本地跑者参赛指引 · 以赛事规程为准</div>
+      <div class="src">请核对报名要求与参赛资格</div>
+      <div class="src">来源 测试赛事规程</div>
+    </a>
+  </div>
+</div>
+</body></html>

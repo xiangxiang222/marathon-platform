@@ -1,0 +1,21 @@
+{
+  "kind": "Real API admin radar editing in a disposable database",
+  "checks": [
+    "initial save disabled and all eight places editable at 1440",
+    "history edits save through live API and reload at 1440",
+    "partial new year keeps blank ranks absent",
+    "actual award depth and individual amount persist",
+    "known entrant PB status evidence and demo switch persist",
+    "switching races never carries unsaved history into another event at 1440",
+    "initial save disabled and all eight places editable at 390",
+    "history edits save through live API and reload at 390",
+    "switching races never carries unsaved history into another event at 390"
+  ],
+  "errors": [],
+  "screenshots": [
+    "admin-history-1440.png",
+    "admin-entrants-1440.png",
+    "admin-history-390.png"
+  ],
+  "passed": true
+}

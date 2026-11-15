@@ -1,0 +1,632 @@
+{
+  "kind": "Current WXML/WXSS browser source mirrors. Synthetic display fixtures. Not WeChat simulator/device. All 28 routes at 320/390.",
+  "date": "2026-11-05",
+  "passed": true,
+  "results": [
+    {
+      "route": "pages/races/races",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 970,
+      "overflow": [
+        {
+          "tag": "DIV",
+          "cls": "filter-chip ",
+          "text": "筛选",
+          "right": 360
+        }
+      ],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/sport/sport",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 948,
+      "overflow": [],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/calendar/calendar",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 970,
+      "overflow": [],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/clubs/clubs",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 1090,
+      "overflow": [],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/mine/mine",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 2046,
+      "overflow": [],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/runner/runner",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 1043,
+      "overflow": [
+        {
+          "tag": "DIV",
+          "cls": "view-tab ",
+          "text": "数据来源",
+          "right": 378
+        }
+      ],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/history/history",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 725,
+      "overflow": [],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/radar/radar",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 271,
+      "overflow": [],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/race/race",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 731,
+      "overflow": [],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/news/news",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 247,
+      "overflow": [],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/news/detail",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 341,
+      "overflow": [],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/club/club",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 1211,
+      "overflow": [],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/club-intro/club-intro",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 970,
+      "overflow": [
+        {
+          "tag": "DIV",
+          "cls": "track-art",
+          "text": "",
+          "right": 399
+        },
+        {
+          "tag": "DIV",
+          "cls": "track-line track-line-two",
+          "text": "",
+          "right": 382
+        },
+        {
+          "tag": "DIV",
+          "cls": "track-line track-line-three",
+          "text": "",
+          "right": 367
+        }
+      ],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/mileage/mileage",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 725,
+      "overflow": [],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/partner/partner",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 685,
+      "overflow": [],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/feed/feed",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 373,
+      "overflow": [],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/activity/activity",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 1001,
+      "overflow": [],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/activity-create/activity-create",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 1327,
+      "overflow": [],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/signup/signup",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 970,
+      "overflow": [],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/album/album",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 970,
+      "overflow": [],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/call/call",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 977,
+      "overflow": [],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/meetup/meetup",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 970,
+      "overflow": [],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/internal/internal",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 970,
+      "overflow": [],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/privacy/privacy",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 1580,
+      "overflow": [],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/legal/legal",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 970,
+      "overflow": [],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/feedback/feedback",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 835,
+      "overflow": [
+        {
+          "tag": "DIV",
+          "cls": "hero-track",
+          "text": "",
+          "right": 391
+        },
+        {
+          "tag": "DIV",
+          "cls": "",
+          "text": "",
+          "right": 391
+        },
+        {
+          "tag": "DIV",
+          "cls": "",
+          "text": "",
+          "right": 377
+        },
+        {
+          "tag": "DIV",
+          "cls": "",
+          "text": "",
+          "right": 363
+        },
+        {
+          "tag": "DIV",
+          "cls": "category-row",
+          "text": "全部功能建议界面设计问题反馈其他",
+          "right": 327
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "category-pill ",
+          "text": "其他",
+          "right": 327
+        }
+      ],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/club-identity/club-identity",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 1534,
+      "overflow": [],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/club-report/club-report",
+      "width": 320,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 320,
+      "height": 1312,
+      "overflow": [],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/races/races",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 970,
+      "overflow": [],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/sport/sport",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 998,
+      "overflow": [],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/calendar/calendar",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 970,
+      "overflow": [],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/clubs/clubs",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 1120,
+      "overflow": [],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/mine/mine",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 2201,
+      "overflow": [],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/runner/runner",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 1200,
+      "overflow": [
+        {
+          "tag": "DIV",
+          "cls": "view-tab ",
+          "text": "数据来源",
+          "right": 400
+        }
+      ],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/history/history",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 782,
+      "overflow": [],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/radar/radar",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 269,
+      "overflow": [],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/race/race",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 778,
+      "overflow": [],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/news/news",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 262,
+      "overflow": [],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/news/detail",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 340,
+      "overflow": [],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/club/club",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 1334,
+      "overflow": [],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/club-intro/club-intro",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 980,
+      "overflow": [
+        {
+          "tag": "DIV",
+          "cls": "track-art",
+          "text": "",
+          "right": 486
+        },
+        {
+          "tag": "DIV",
+          "cls": "track-line track-line-two",
+          "text": "",
+          "right": 466
+        },
+        {
+          "tag": "DIV",
+          "cls": "track-line track-line-three",
+          "text": "",
+          "right": 448
+        }
+      ],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/mileage/mileage",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 764,
+      "overflow": [],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/partner/partner",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 742,
+      "overflow": [],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/feed/feed",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 399,
+      "overflow": [],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/activity/activity",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 1089,
+      "overflow": [],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/activity-create/activity-create",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 1402,
+      "overflow": [],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/signup/signup",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 970,
+      "overflow": [],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/album/album",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 970,
+      "overflow": [],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/call/call",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 1050,
+      "overflow": [],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/meetup/meetup",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 970,
+      "overflow": [],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/internal/internal",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 970,
+      "overflow": [],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/privacy/privacy",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 1494,
+      "overflow": [],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/legal/legal",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 970,
+      "overflow": [],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/feedback/feedback",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 915,
+      "overflow": [
+        {
+          "tag": "DIV",
+          "cls": "hero-track",
+          "text": "",
+          "right": 477
+        },
+        {
+          "tag": "DIV",
+          "cls": "",
+          "text": "",
+          "right": 477
+        },
+        {
+          "tag": "DIV",
+          "cls": "",
+          "text": "",
+          "right": 460
+        },
+        {
+          "tag": "DIV",
+          "cls": "",
+          "text": "",
+          "right": 443
+        }
+      ],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/club-identity/club-identity",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 1657,
+      "overflow": [],
+      "expressionErrors": []
+    },
+    {
+      "route": "pages/club-report/club-report",
+      "width": 390,
+      "fixture": "synthetic display only; no transport, not WeChat",
+      "scrollWidth": 390,
+      "height": 1376,
+      "overflow": [],
+      "expressionErrors": []
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "kind": "Local Vue homepage with verified catalog JSON and empty calendar display fixtures",
+  "passed": true,
+  "views": [
+    {
+      "width": 288,
+      "overflow": false,
+      "smallFonts": 0,
+      "passed": true
+    },
+    {
+      "width": 358,
+      "overflow": false,
+      "smallFonts": 0,
+      "passed": true
+    },
+    {
+      "width": 398,
+      "overflow": false,
+      "smallFonts": 0,
+      "passed": true
+    }
+  ],
+  "errors": []
+}

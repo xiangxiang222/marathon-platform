@@ -92,5 +92,6 @@
     "isolatedBrowserChecks": 7,
     "isolatedBrowserAccounts": 4,
     "isolatedBrowserViews": 5
-  }
+  },
+  "readerProductionReport": "design/previews/editorial-production-20261112/report.json"
 }

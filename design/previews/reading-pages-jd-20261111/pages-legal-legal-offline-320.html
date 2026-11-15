@@ -1,0 +1,170 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><style>html,body{margin:0;padding:0}body{padding-bottom:70px}a{display:block;color:inherit;text-decoration:none}button{display:block;box-sizing:border-box;padding:0 14px;line-height:1.35}input,textarea{outline:none}input[type=checkbox]{min-height:0}img{display:inline-block;vertical-align:middle}*{box-sizing:border-box}.native-switch{display:inline-block;width:44px;height:26px;flex:none;border-radius:20px;background:#dedede;position:relative}.native-switch[checked=true]{background:#ff1838}.native-switch:after{content:"";display:block;position:absolute;top:2px;left:2px;width:22px;height:22px;border-radius:50%;background:white}.native-switch[checked=true]:after{left:20px}swiper-item{display:block}.audit-banner{font:10px system-ui;color:#767676;padding:5px 12px;text-align:center}.mirror-tabbar{position:fixed;z-index:50;left:0;right:0;bottom:0;display:flex;background:white;border-top:1px solid #eee;height:64px;padding:6px 0}.mirror-tabbar a{width:25%;font:11px system-ui;text-align:center}.mirror-tabbar img{display:block;margin:0 auto 3px;width:25px;height:25px}</style><style>body {
+  --brand: #ff1838;
+  --brand-soft: #fff0f2;
+  --page-bg: #f5f5f5;
+  --surface: #ffffff;
+  --brand-header: linear-gradient(145deg, #ff1838 0%, #ff2946 60%, #ff4659 100%);
+  --text: #1a1a1a;
+  --text-secondary: #777777;
+  --border: #eeeeee;
+  --sky: #555555;
+  --sky-soft: #f7f7f7;
+  --mint: #555555;
+  --mint-soft: #f7f7f7;
+  --lilac: #555555;
+  --lilac-soft: #f7f7f7;
+  --sun: #555555;
+  --sun-soft: #f7f7f7;
+  --peach-soft: #fff0f2;
+  --card-shadow: none;
+  --action-fill: #ff1838;
+  --control-radius: 8.533333333333333px;
+  --card-radius: 10.24px;
+  min-height: 100%;
+  background: var(--page-bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+div, span, a, div, button, input, textarea, div { box-sizing: border-box; }
+button, input, textarea { font-family: inherit; color: var(--text); }
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 44px;
+  margin: 0;
+  padding: 12px 18px;
+  border: 0.4266666666666667px solid var(--border);
+  border-radius: var(--control-radius);
+  background: var(--surface);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+button::after { border: 0; }
+button[plain] { border: 0.4266666666666667px solid var(--border); background: var(--surface); }
+input, textarea {
+  min-width: 0;
+  border: 0.4266666666666667px solid var(--border);
+  border-radius: 8.533333333333333px;
+  background: var(--page-bg);
+  color: var(--text);
+  font-size: 14px;
+  caret-color: var(--brand);
+}
+input { min-height: 46px; padding: 0 10.24px; }
+textarea { min-height: 120px; padding: 10.24px; line-height: 1.75; }
+input::placeholder, textarea::placeholder { color: #999999; }
+.pad { padding: 13.653333333333334px 13.653333333333334px calc(20.48px + env(safe-area-inset-bottom)); }
+.card {
+  margin-bottom: 10.24px;
+  padding: 13.653333333333334px;
+  border: 0.4266666666666667px solid var(--border);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  box-shadow: var(--card-shadow);
+}
+.title { font-size: 18px; font-weight: 600; line-height: 1.4; letter-spacing: normal; }
+.muted { color: var(--text-secondary); font-size: 12px; }
+.slot { display: flex; justify-content: space-between; gap: 10.24px; margin-top: 5.12px; padding: 7.68px 8.533333333333333px; border-radius: 6.826666666666667px; background: var(--page-bg); font-size: 14px; }
+.slot-state { color: var(--text-secondary); font-size: 12px; }
+.teal { color: var(--brand); }
+.row { display: flex; justify-content: space-between; gap: 10.24px; padding: 8.533333333333333px 0; border-bottom: 0.4266666666666667px solid var(--border); }
+.row:last-child { border-bottom: 0; }
+.row .k { flex: none; color: var(--text-secondary); }
+.soon { color: #c87825; }
+.err { margin-top: 5.12px; color: #b42318; font-size: 12px; line-height: 1.7; }
+.note { margin-top: 5.12px; color: var(--brand); font-size: 12px; line-height: 1.7; }
+.empty { padding: 23.893333333333334px 13.653333333333334px; color: var(--text-secondary); font-size: 13px; text-align: center; line-height: 1.8; }
+.field { display: flex; align-items: center; gap: 6.826666666666667px; }
+.field input { flex: 1; min-width: 0; height: 46px; padding: 0 10.24px; border-radius: 8.533333333333333px; background: var(--page-bg); }
+.btn, .login-go {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 46px;
+  margin: 0;
+  padding: 12px 20px;
+  border: 0.4266666666666667px solid transparent;
+  border-radius: var(--control-radius);
+  background: var(--action-fill);
+  box-shadow: none;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
+}
+.login-go { margin-top: 10.24px; }
+button.ghost {
+  min-height: 44px;
+  margin: 6.826666666666667px 6.826666666666667px 0 0;
+  padding: 10px 16px;
+  border: 0.4266666666666667px solid var(--border);
+  border-radius: var(--control-radius);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+button.ghost.on { border-color: var(--brand); background: var(--brand-soft); color: var(--brand); }
+button[disabled], button.btn[disabled] { border-color: #eeeeef; background: #f2f2f2; color: #999999; opacity: 1; box-shadow: none; }
+.chip { display: inline-block; margin-right: 3.4133333333333336px; padding: 1.7066666666666668px 5.12px; border: 0.4266666666666667px solid #ebebed; border-radius: 5.12px; background: #f5f5f7; color: var(--text-secondary); font-size: 12px; font-weight: 400; line-height: 1.6; }
+.foot { display: flex; justify-content: space-between; gap: 8.533333333333333px; margin-top: 6.826666666666667px; color: var(--text-secondary); font-size: 12px; }
+.src { margin-top: 5.12px; color: var(--text-secondary); font-size: 12px; line-height: 1.75; overflow-wrap: anywhere; }
+.card > input, .card > textarea, .card > div { margin-top: 8.533333333333333px; }
+.card > input { width: 100%; }
+.card > .btn { margin-top: 10.24px; }
+.primary, .primary-btn, .primary-button, .submit-button, .save-action, .next-action, .bottom-primary, .staff-primary { border-radius: var(--control-radius); }
+.field-label, .form-label { line-height: 1.6; }
+.metric-value, .stat-value, .career-number, .record-number, .rank-time { font-variant-numeric: tabular-nums; }
+/* Shared control roles for new screens and gradual migrations. */
+.ui-control-text { width: auto; min-height: 44px; padding: 10px 8px; border: 0; border-radius: 5.12px; background: transparent; color: var(--brand); font-size: 13px; }
+.ui-control-danger { border-color: #f5d1cc; background: #fff5f3; color: #c52e24; }
+.ui-label { color: var(--text-secondary); font-size: 12px; font-weight: 400; }
+.surface-sky, .surface-mint, .surface-lilac, .surface-sun, .surface-peach { background: var(--surface); border-color: var(--border); }
+@media (max-width: 350px) { .pad { padding-left: 14px; padding-right: 14px; } .card { padding: 16px; } }
+
+:host { display: block; }
+.page-header { position: relative; padding-bottom: 17.066666666666666px; background: var(--brand-header); color: #fff; }
+.header-main { display: flex; align-items: center; padding-left: 13.653333333333334px; box-sizing: border-box; }
+.header-title { flex: 1; min-width: 0; overflow: hidden; font-size: 24px; line-height: 1.3; font-weight: 600; letter-spacing: normal; white-space: nowrap; text-overflow: ellipsis; }
+.header-subtitle { padding: 0 13.653333333333334px 10.24px; color: #ffffffcf; font-size: 12px; line-height: 1.5; }
+@media (max-width: 350px) { .header-main { padding-left: 14px; } .header-subtitle { padding-left: 14px; padding-right: 14px; } }
+
+.header-actions { display: flex; flex: none; align-items: center; justify-content: flex-end; }
+
+.header-actions { position: relative; color: #fff; }
+
+.legal-page {min-height:100vh;padding:20.48px 11.946666666666667px 34.13333333333333px;box-sizing:border-box; background: transparent; }.legal-hero {padding:3.4133333333333336px 2.1333333333333333px 0; background:var(--surface); }.eyebrow{color:var(--text-secondary);font-size:12px;letter-spacing:normal;line-height:1.8}.hero-title{line-height:1.45;margin-top:10.24px}.hero-copy{font-size:12px;line-height:1.95;color:var(--text-secondary);margin:11.946666666666667px 0}.version{display:flex;flex-wrap:wrap;gap:3.4133333333333336px 11.946666666666667px;color:var(--text-secondary);font-size:12px;line-height:1.9;margin:13.226666666666667px 0 16.64px}.notice {padding:11.52px 12.8px;margin-bottom:12.8px;font-size:12px;line-height:1.9;border:0.4266666666666667px solid var(--border);background: var(--page-bg);color:var(--text-secondary);border-radius:7.68px}.notice button{min-height:44px;padding:0;margin:2.56px 0 0;text-align:left;color:var(--brand);font-size:12px;background:none}.draft{border-color:var(--border);background:var(--page-bg);color:var(--text-secondary)}.document-nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border:0.4266666666666667px solid var(--border)}.document-nav button{display:flex;align-items:center;justify-content:space-between;text-align:left;gap:5.12px;min-height:44px;color:var(--text-secondary);line-height:1.7;margin:0}.document-nav button span{flex:none  }.document-nav button.active{font-weight:600  }.reading-note{color:var(--text-secondary);font-size:12px;line-height:1.95;padding:0 5.973333333333334px;margin:9.813333333333333px 0 14.933333333333334px}.document-card {border:0.4266666666666667px solid var(--border);background:var(--surface);padding:19.2px 15.36px;box-sizing:border-box}
+.rights-card {border:0.4266666666666667px solid var(--border);background:var(--surface);padding:19.2px 15.36px;box-sizing:border-box}.document-label{font-size:12px;letter-spacing:normal;color:var(--text-secondary)}.document-title{font-size:22px;line-height:1.6;font-weight:600;margin:10.24px 0 11.946666666666667px;word-break:break-all}.summary{font-size:12px;line-height:1.95;color:var(--text-secondary);white-space:pre-wrap}.operator{font-size:12px;color:var(--text-secondary);line-height:1.8;margin-top:11.946666666666667px;padding-bottom:14.933333333333334px;border-bottom:0.4266666666666667px solid var(--border)}.toc {background: var(--page-bg);border-radius:7.253333333333333px;padding:12.373333333333333px;margin-top:14.933333333333334px}.toc>div{font-size:12px;color:var(--text-secondary);font-weight:500;margin-bottom:6.4px}.toc button{font-size:12px;color:var(--text-secondary);background:none;text-align:left;line-height:1.9;padding:4.266666666666667px 0;margin:0;min-height:44px}.section{padding-top:19.626666666666665px;word-break:break-all}.section-title{font-size:18px;font-weight:600;line-height:1.7}.paragraph,.list-item{font-size:12px;color:var(--text-secondary);line-height:2.05;margin:9.813333333333333px 0;white-space:pre-wrap}.strong{font-weight:600;color:var(--text-secondary)}.list-item{display:flex;gap:6.4px}.bullet{flex:none;color:var(--text-secondary)}.list-item>div{flex:1;min-width:0}.section.important {padding:13.653333333333334px;margin-top:17.92px;border:0.4266666666666667px solid var(--border);border-radius:7.68px;background: var(--page-bg);}.table-record{border:0.4266666666666667px solid var(--border);border-radius:6.826666666666667px;margin-top:10.666666666666666px;overflow:hidden}.table-cell{padding:9.386666666666667px 10.666666666666666px;border-bottom:0.4266666666666667px solid var(--border);word-break:break-all}.table-cell:first-child{background:var(--page-bg)}.table-cell:last-child{border:0}.cell-label{color:var(--text-secondary);font-size:12px;line-height:1.8;margin-bottom:4.266666666666667px}.cell-value{color:var(--text-secondary);font-size:12px;line-height:1.95;white-space:pre-wrap}.document-bottom{border-top:0.4266666666666667px solid var(--border);font-size:12px;line-height:1.9;color:var(--text-secondary);padding-top:13.653333333333334px;margin-top:17.92px}.document-bottom button{color:var(--text-secondary);background:none;font-size:12px;min-height:44px;text-align:left;padding:0;margin:5.12px 0 0}.state{padding:17.066666666666666px;color:var(--text-secondary);font-size:12px;line-height:1.9;text-align:center}.rights-card {margin-top:13.226666666666667px; background:var(--surface); }.rights-card>.summary{margin-top:8.533333333333333px  }.field-label{font-size:12px;color:var(--text-secondary);line-height:1.8;margin:12.373333333333333px 0 6.4px}.type-picker{display:flex;align-items:center;justify-content:space-between;gap:6.4px;padding:9.813333333333333px;background:var(--page-bg);border:0.4266666666666667px solid var(--border);font-size:12px;color:var(--text-secondary);line-height:1.8}.rights-card textarea{box-sizing:border-box;width:100%;min-height:106.66666666666667px;line-height:1.95;font-size:14px;padding:10.666666666666666px;border:0.4266666666666667px solid var(--border);background:var(--page-bg);color:var(--text-secondary)}.close-note{font-size:12px;color:var(--text-secondary);background:var(--page-bg);line-height:1.9;padding:10.24px;border-radius:6.4px;margin-top:10.666666666666666px}.primary{background:var(--brand);color:var(--surface);font-size:12px;line-height:1.6;min-height:44px;padding:9.813333333333333px 10.666666666666666px;margin:11.946666666666667px 0 0;font-weight:600}.request-message{font-size:12px;line-height:1.9;color:var(--text-secondary);background:var(--brand-soft);padding:9.813333333333333px;border-radius:5.973333333333334px;margin-top:11.52px}.request-list{margin-top:17.92px;border-top:0.4266666666666667px solid var(--border);padding-top:13.653333333333334px}.list-heading{display:flex;align-items:center;justify-content:space-between;gap:5.12px}.list-heading button{font-size:12px;color:var(--text-secondary);background:none;min-height:44px;margin:0;padding:6.4px 0}.request-record{border:0.4266666666666667px solid var(--border);border-radius:7.68px;padding:11.093333333333334px;margin-top:10.666666666666666px}.request-status{color:var(--text-secondary);font-size:12px;line-height:1.8}.request-title{font-size:14px;color:var(--text-secondary);line-height:1.7;margin-top:4.693333333333333px}.request-date{font-size:12px;color:var(--text-secondary);margin-top:3.4133333333333336px;line-height:1.8}.request-detail,.response{font-size:12px;color:var(--text-secondary);line-height:1.95;white-space:pre-wrap;margin-top:8.96px;word-break:break-all}.response{background:var(--page-bg);padding:9.386666666666667px;border-radius:5.546666666666667px;color:var(--text-secondary)}.response>div:first-child{font-size:12px;color:var(--text-secondary);margin-bottom:5.12px}button::after{border:0}button[disabled]{opacity:.5}
+
+.operator-card {background:var(--surface);border:0.4266666666666667px solid var(--border);padding:15.36px;margin-bottom:11.093333333333334px}.operator-field{display:flex;gap:10.24px;font-size:12px;line-height:1.9;margin-top:7.68px;color:var(--text-secondary)}.operator-field>span:first-child{width:68.26666666666667px;flex:none;color:var(--text-secondary)}.operator-field>span:last-child{flex:1;min-width:0;word-break:break-all}
+
+
+.legal-page{background:var(--page-bg);font-size:14px;letter-spacing:normal;padding-top:15.36px}.legal-hero{background:transparent;padding:0 2.56px}.eyebrow{display:none}.hero-title{font-size:24px;font-weight:600;letter-spacing:normal;margin-top:0}.hero-copy{font-size:14px;line-height:1.85;margin:9.386666666666667px 0}.operator-card,.document-card,.rights-card{border-radius:10.24px;background:var(--surface)}.document-nav{border-radius:10.24px;overflow:hidden;background:var(--surface);gap:1.7066666666666668px;padding:3.4133333333333336px}.document-nav button{font-size:14px;min-height:44px;border-radius:8.533333333333333px;padding:7.68px 6.826666666666667px;background:var(--surface);color:var(--text-secondary)}.document-nav button.active{color:var(--brand);background:var(--brand-soft)}.document-nav button span{font-size:14px}.document-label{color:var(--brand);letter-spacing:normal}.document-title{font-size:24px;font-weight:600}.section-title{font-size:18px;font-weight:600}.paragraph,.list-item,.summary,.cell-value,.request-detail,.response,.request-title{font-size:14px;line-height:1.85;color:var(--text)}.operator-field>span:last-child{font-size:14px;color:var(--text)}.toc{background:var(--page-bg);border-radius:8.533333333333333px}.toc button{font-size:14px;min-height:44px}.rights-card textarea,.type-picker{font-size:14px;min-height:44px;color:var(--text);border-radius:8.533333333333333px;background:var(--surface)}.primary{font-size:14px;min-height:44px;border-radius:8.533333333333333px}.field-label{font-size:14px}.type-picker{align-items:center}.notice,.request-message{border-radius:8.533333333333333px;background:var(--page-bg);color:var(--text-secondary)}.notice button,.list-heading button,.document-bottom button{font-size:14px;min-height:44px}.section.important{background:var(--page-bg);border-radius:8.533333333333333px}.request-record{border-radius:8.533333333333333px}.table-record{border-radius:8.533333333333333px}.response{background:var(--page-bg)}
+
+.list-heading button,.notice button,.document-bottom button{min-width:44px}
+
+</style></head><body><div class="legal-page mini-legal-legal">
+  <div class="legal-hero"><div class="hero-title">协议与隐私中心</div><div class="hero-copy">了解我们提供的服务、如何处理个人信息，以及你可以行使的权利。</div><div class="version"><span>版本 2026-11-01.2</span><span>更新 2026-11-01</span><span>生效 本版本正式发布之日</span></div></div>
+  <div class="notice">暂时无法读取在线版本，当前显示小程序内置版本，可继续阅读全部文件。你可以稍后重试更新。<button>重新读取</button></div>
+  
+    <div class="notice draft">当前显示工作区草案，尚未发布生效。请以核实并正式发布后的版本及生效日期为准。</div>
+    <div class="operator-card"><div class="section-title">运营者与联系信息</div><div class="operator-field"><span>运营主体</span><span selectable="">北京华创科技有限公司</span></div><div class="operator-field"><span>联系邮箱</span><span selectable="">待核实</span></div><div class="operator-field"><span>联系地址</span><span selectable="">待核实</span></div><div class="operator-field"><span>托管服务商</span><span selectable="">腾讯云（具体受托主体待核实）</span></div><div class="operator-field"><span>数据存储地区</span><span selectable="">待核实</span></div></div>
+    <div class="document-nav"><button class="active">赛历隐私政策<span>↗</span></button><button class="">赛历用户服务协议<span>↗</span></button><button class="">个人信息收集使用清单<span>↗</span></button><button class="">第三方信息共享与受托处理清单<span>↗</span></button><button class="">系统权限与本地存储说明<span>↗</span></button><button class="">未成年人个人信息保护说明<span>↗</span></button><button class="">个人信息权利与账号注销指引<span>↗</span></button></div><div class="reading-note">所有文件均可在登录前阅读。授权或撤回某项权限，不影响与该权限无关的服务。</div>
+    <div class="document-card"><div class="document-label">个人信息保护</div><div class="document-title">赛历隐私政策</div><div class="summary">适用于赛历微信小程序及 togetherbetter.cn/marathon 网页。请结合个人信息收集清单、第三方信息共享清单及权限说明阅读。</div><div class="operator">运营主体：北京华创科技有限公司</div>
+      <div class="toc"><div>本文件目录</div><button>导言与适用范围</button><button>一、先了解您的选择</button><button>二、账号与身份资料</button><button>三、个人赛事、运动记录及可选资料</button><button>四、跑团协作与公开内容</button><button>五、共创建议、奖励与联系</button><button>六、权限、缓存与必要技术信息</button><button>七、委托处理、提供、公开与跨境</button><button>八、存储期限与删除</button><button>九、我们怎样保护信息</button><button>十、您的权利与办理方式</button><button>十一、未成年人</button><button>十二、政策更新与联系我们</button></div>
+      <div id="legal-section-0" class="section important"><div class="section-title">导言与适用范围</div><div class="paragraph"><span class="" selectable="">赛历由北京华创科技有限公司运营（以下称“我们”）。我们提供赛事信息查询、个人赛事与运动记录、跑团协作和共创建议等服务。本政策说明我们如何处理与您有关的个人信息，以及您可以怎样作出选择、行使权利。</span></div><div class="paragraph"><span class="" selectable="">本政策适用于我们直接运营的上述产品及服务。您主动打开的赛事主办方、报名平台、成绩查询、地图、社交平台等第三方页面，由相应主体依其规则处理信息；我们会在第三方信息共享清单中说明边界。微信平台自身服务适用腾讯的相应规则。</span></div><div class="paragraph"><span class="" selectable="">本政策与用户协议分别说明个人信息处理和服务规则。</span><span class="strong" selectable="">同意用户协议、阅读本政策，不意味着您已授权所有可选功能、敏感个人信息处理或第三方提供。</span><span class="" selectable="">依法需要同意或单独同意时，我们将在相应场景另行告知并取得同意。</span></div></div><div id="legal-section-1" class="section important"><div class="section-title">一、先了解您的选择</div><div class="paragraph"><span class="strong" selectable="">浏览公开赛历、公开赛事信息、跑团介绍和公开共创建议，无需创建赛历账号，也不要求提供手机号、精确位置或健康资料。</span><span class="" selectable="">参与团内协作、保存个人记录等功能需要登录，以识别您本人并控制访问权限。</span></div><div class="paragraph"><span class="" selectable="">昵称和密码用于网页账号注册；微信登录以您主动触发为前提。头像、运动记录、成绩证明、雷达资料、奖励收件信息和核验材料分别由您按需提供。不使用某项可选功能，不影响基本信息浏览。</span></div><div class="paragraph"><span class="" selectable="">我们不以默认勾选、默认开启全部权限、概括性授权或拒绝可选授权即禁止基本浏览的方式索取信息。您可以不提供可选字段，但相关个性化或协作功能可能无法完整工作。</span></div></div><div id="legal-section-2" class="section "><div class="section-title">二、账号与身份资料</div><div class="paragraph"><span class="" selectable="">网页注册需昵称、密码；登录使用昵称、密码及图形验证码。服务器保存加盐密码校验摘要，不保存明文密码。登录令牌用于识别有效会话。您选择微信登录或绑定微信时，我们将临时登录凭证发送至微信接口核验，保存本小程序内的 OpenID 与赛历账号关联。当前不主动向您索取微信密码、通讯录、身份证号码或系统手机号。</span></div><div class="paragraph"><span class="" selectable="">昵称由您填写；头像为您主动选择并上传的图片，并非未经授权读取微信个人资料。头像及昵称可能显示在您参与的跑团、活动、名单和已公开的共创建议中。请避免使用与服务无关的敏感内容。</span></div><div class="paragraph"><span class="" selectable="">您可在“我的”修改昵称、头像、密码及微信绑定。解绑微信前需要确保其他登录方式可用并进行身份验证。注销账号与解绑微信不同；注销请通过“协议与隐私中心—个人信息权利”提出申请。</span></div></div><div id="legal-section-3" class="section important"><div class="section-title">三、个人赛事、运动记录及可选资料</div><div class="paragraph"><span class="" selectable="">您主动标记赛事、填写成绩或提交证明时，我们保存赛事关联、状态、距离、用时、备注以及您选择上传的报名单、成绩或证书图片，生成个人赛事生涯、配速及统计。您加入跑团后，有关参赛标记、活动成绩和按团规则计入的跑量可能展示给相关团成员或管理人员；权限和范围详见收集清单。</span></div><div class="paragraph"><span class="" selectable="">您手填跑步或导入 FIT／TCX 文件时，我们处理运动类型、开始与结束时间、距离、运动用时、爬升及相关来源标识，生成个人运动统计、周报和团内跑量。</span><span class="strong" selectable="">运动文件会上传至我们的服务器进行临时解析；原文件可能包含 GPS 轨迹、心率等额外字段。当前解析流程只持久保存必要运动摘要及去重标识，不持久保存原文件、GPS 轨迹或心率，也不调用设备实时定位。</span><span class="" selectable="">请仅导入您本人有权处理的文件。</span></div><div class="paragraph"><span class="" selectable="">运动摘要、成绩、训练能力与证明可能反映个人活动或健康情况；出生年月、活动时间及关联资料也可能产生身份或活动规律推断。相关处理应以充分告知、必要范围及依法取得的同意为前提；不得将本政策的总括阅读代替敏感信息的单独同意。您可不使用这些功能，或删除记录、清空可选资料、申请停止处理。</span></div><div class="paragraph"><span class="" selectable="">“奖金雷达”等可选功能可由您填写性别、出生年月、省份和目标成绩，以匹配公开赛事规则。出生年月并非完整出生日期；不要求真实姓名、身份证或体检报告。不提供相关字段可能无法匹配相应年龄组或目标，但不影响公开赛事浏览。</span></div><div class="paragraph"><span class="" selectable="">个人赛事影像收藏仅本人可访问；您主动上传到团活动相册、约跑合影、团内动态、成绩接龙或跑量截图的内容，则按该功能权限向相关团成员或管理人员展示。拍摄、上传其他人的照片前，应取得必要授权并进行脱敏。</span></div><div class="paragraph"><span class="" selectable="">您可在“我的跑史”批量导入文字、CSV／JSON或选择图片识别，整理本人历史参赛经历、净计时／枪声成绩、号码布、感受和标签。图片识别需另行确认：所选图片上传至本方服务器的隔离进程作中英文文字识别，不发送给外部OCR服务，不持久保存本次识别原图或识别全文；识别文字只在本次页面供您核对，确认后仅保存选定的比赛资料。图片可能包含姓名、证件号或人脸，请优先裁剪到成绩区域；系统不作人脸匹配，自动隐藏识别到的标准证件号和手机号可能不完整，请您再次核对。拒绝图片解析不影响手填或文字导入。</span></div><div class="paragraph"><span class="" selectable="">新跑史和回顾默认仅本人访问，不因加入跑团自动向团长开放；原有成绩的团内可见规则保持原样。在跑史里补充或更正原有成绩时形成私人副本，不改写团内原成绩。回顾根据已记录比赛和本人文字生成；不代表官方核验，也不自动发布。您可另选保存个人照片、证书或其他图片，并主动导出回顾或个人数据；识别原图不会自动成为永久收藏。</span></div></div><div id="legal-section-4" class="section "><div class="section-title">四、跑团协作与公开内容</div><div class="paragraph"><span class="" selectable="">创建或加入跑团时，我们处理团名、活动城市、简介、公开负责人昵称、团号、成员关系、加入申请、角色及协作记录。</span><span class="strong" selectable="">团名、活动城市、公开负责人、团号和有效核验范围等属于公开名片信息；邀请口令不等于成员或团内资料的公开授权。</span><span class="" selectable="">加入申请仍由该团管理者审核。</span></div><div class="paragraph"><span class="" selectable="">团内活动报名、分组、到场签到、打卡里程、成绩、积分、兑换、会费状态及相关图片用于组织活动和履行团内协作规则。签到当前为您主动记录到场，不采集精确定位。“会费”功能记录缴费状态，不等于本平台提供支付或资金托管。</span></div><div class="paragraph"><span class="" selectable="">团长、团内管理和其他成员各有不同访问权限，团长可依功能导出必要名单或跑量表。我们要求使用者仅为组织管理目的使用，不得擅自向无关第三方传播。您退出跑团后，未来报名会依业务规则清理，已完成活动、历史成绩及必要对账记录不一定同步消失；可申请评估删除或匿名化。</span></div><div class="paragraph"><span class="" selectable="">您申请组织身份核验或提交名称、身份申诉时，我们处理组织名称、授权范围、公共来源、必要事实与说明、联系方式及处理记录。材料仅提交人和经授权的平台处理人员可见，不进入公开共创建议，不向其他跑团或被反馈方提供您的私人联系方式。对相关方说明的事实或处理理由应脱敏。仅同名不视为冒用，核验不授予名称独占权，也不转移任何成员、会费或账号控制权。</span></div></div><div id="legal-section-5" class="section "><div class="section-title">五、共创建议、奖励与联系</div><div class="paragraph"><span class="" selectable="">提交建议时，我们处理标题、正文、分类、相关模块和您主动上传的截图；审核公开后，作者昵称、建议、截图、票数、进度及公开回复可被他人浏览。请勿将电话、住址、证件、账号凭据或他人私密资料作为公开建议内容；个人信息权利事项请使用专门的私密入口。</span></div><div class="paragraph"><span class="" selectable="">仅在建议被采纳且您主动领取实物奖励时，才收集收件人、手机号码和详细地址，并记录相应明确同意。信息仅供您本人和平台授权发货人员访问。实际寄送时，需要按寄递要求向所选承运人提供必要收件信息；我们将在具体寄送前告知实际承运人及必要提供事项，依法取得所需同意。当前没有自动快递下单接口，也不要求所有用户提供收货信息。</span></div><div class="paragraph"><span class="" selectable="">处理个人信息申请或您主动联系平台时，我们保存申请类型、必要说明、处理状态、回复及时间，用于验证请求、沟通和留存必要处理记录。一般不要求补交身份证件；只有合理身份核验确有必要时，才说明依据、范围与安全提交方式。</span></div></div><div id="legal-section-6" class="section "><div class="section-title">六、权限、缓存与必要技术信息</div><div class="paragraph"><span class="" selectable="">具体接口和系统权限见“系统权限与本地存储说明”。图片、视频或文件选择仅在您操作相关功能时发起；您可以通过微信或操作系统设置拒绝、撤回授权。相册写入只用于您主动保存海报。剪贴板仅在您点击复制时写入，不主动读取剪贴板内容。</span></div><div class="paragraph"><span class="" selectable="">网页及小程序在本地保存登录令牌、昵称、头像地址和部分功能草稿、返回路径，用于保持会话和恢复您发起的操作。管理员工作台使用独立会话存储。清理缓存或退出登录可能使会话失效或草稿丢失，但不自动删除服务器记录。</span></div><div class="paragraph"><span class="" selectable="">您访问网络服务时，服务器或受托基础设施会接收 IP 地址、请求时间、目标路径、浏览器或客户端提供的必要连接信息。其目的为传输、故障排查和安全保障，不用于广告画像。部署日志的采集范围、留存和访问应按实际配置及适用法律管理；不得将未经核对的日志期限写成已执行承诺。</span></div><div class="paragraph"><span class="" selectable="">我们目前未在应用代码中接入广告投放、商业画像或第三方行为分析 SDK；公开赛事内容拉取、链接跳转及服务器本地解析库不等于向这些主体发送您的运动档案。新增处理目的或第三方接入时将更新清单，并依法另行告知。</span></div></div><div id="legal-section-7" class="section "><div class="section-title">七、委托处理、提供、公开与跨境</div><div class="paragraph"><span class="" selectable="">我们不出售您的个人信息。委托基础设施供应商处理数据时，应约定处理目的、期限、方式、种类、保护要求及双方义务，并对履行情况进行监督。向独立第三方提供时，依法告知接收方、目的、方式和种类，并取得必要的单独同意或具有其他合法依据。</span></div><div class="paragraph"><span class="" selectable="">真实已使用的第三方能力、按场景发生的寄递、外部链接与未开通能力分别列于第三方信息共享清单。跑团组织者、成员和公众的功能内可见范围另见收集清单，不以笼统的“合作伙伴”替代说明。</span></div><div class="paragraph"><span class="" selectable="">未经必要授权，我们不公开您的私人运动文件、身份证明、收货地址或核验材料。您主动公开的内容可能被他人转发或保存；我们会提供合理的管理方式，但无法替您收回第三方已合法取得的全部副本。</span></div><div class="paragraph"><span class="" selectable="">本产品面向中国境内用户。服务器实际存储地域、受托主体及跨境链路须在发布前核对并公示。我们不会以本政策取得将个人信息向境外提供的概括授权；如确需境外提供，将履行法律规定的前置程序，另行告知境外接收方等事项并依法取得单独同意。</span></div><div class="paragraph"><span class="" selectable="">发生合并、分立、解散、破产或其他信息承接情形时，我们将依法告知接收方，要求接收方继续履行保护义务；其改变原目的、方式的，应重新取得必要同意。</span></div></div><div id="legal-section-8" class="section "><div class="section-title">八、存储期限与删除</div><div class="paragraph"><span class="" selectable="">账号资料及您选择保留的个人记录，在实现相应功能所需期间保存；当目的已实现、无需继续、您撤回可撤回的同意、依法申请删除或注销且无其他合法保留依据时，我们会删除或匿名化。我们不会以“永久使用”作为一般保留规则。</span></div><div class="paragraph"><span class="" selectable="">运动文件仅临时解析，摘要按您保存的记录管理。为避免您已删除的运动被重复导入恢复，系统可能保留必要的同场去重或删除标识；您可申请核对、删除其关联，需同步评估去重和争议处理要求。</span></div><div class="paragraph"><span class="" selectable="">新跑史删除后清理该私人记录及其新上传素材；为避免重复导入恢复，仅保留账号关联的必要散列删除标识。原有成绩在新跑史中选择“移除”仅隐藏该入口，原始成绩和既有收藏仍在原功能中保留，需到原功能分别删除。账号注销时清理私人跑史、素材与删除标识。图片识别的同意凭据仅保存账号、版本、场景与时间，不记录原图或全文。</span></div><div class="paragraph"><span class="" selectable="">跑团身份核验与申诉结案后，原始私密材料依当前规则在 90 天后清理；用于继续展示有效核验、维持限制状态或解释决定的最小记录按具体必要性保留。终结案件与决定事件原则上按 1 年规则清理；未结案件及依法需要继续处理的争议不以逾期自动判败。</span></div><div class="paragraph"><span class="" selectable="">领奖收件信息仅为本次履约、查询与争议处理所需而保存，履约完成并超过必要处理期间后应删除或匿名化。收件信息目前通过人工核对办理清理，不按固定日期自动删除；您可通过个人信息权利入口提出删除请求。</span></div><div class="paragraph"><span class="" selectable="">备份、缓存和依法需保留的安全、账务或争议材料可能按必要恢复周期或法定期限暂存；保留期间限制其他用途及访问，期满清理。无法立即删除时，我们将说明原因、期限和可采取的措施。具体部署备份、日志周期须经运营核对后执行。</span></div></div><div id="legal-section-9" class="section "><div class="section-title">九、我们怎样保护信息</div><div class="paragraph"><span class="" selectable="">我们采取与风险相适应的账号鉴别、加盐密码摘要、接口权限控制、私密材料与公开内容分离、管理员分级授权等措施，并要求授权人员仅为履职目的访问。网络传输、部署权限、备份及恢复应配合安全配置和定期核查；不对任何技术环境作“绝对安全”保证。</span></div><div class="paragraph"><span class="" selectable="">发生或可能发生泄露、篡改、丢失等个人信息安全事件时，我们将依法采取补救措施并向履职部门报告；需要通知个人时，说明事件、影响、措施及建议。难以逐一通知的，依法采取合理方式公告。</span></div></div><div id="legal-section-10" class="section important"><div class="section-title">十、您的权利与办理方式</div><div class="paragraph"><span class="" selectable="">您有权依法知情、决定、限制或拒绝处理，查阅、复制、更正、补充、删除信息，撤回同意、申请注销、请求解释处理规则，以及在法律规定条件下请求转移。入口为“我的—协议与隐私中心—个人信息权利”。登录后可私密提交并查看回复；忘记登录方式或无法登录时，可通过本页公开的运营者联系渠道提出。</span></div><div class="paragraph"><span class="" selectable="">我们在收到可识别的申请后及时核验、处理，原则上在 15 个工作日内答复受理情况或处理结果；复杂事项会说明原因、预计时限及补充材料要求。对拒绝的请求说明理由和可用救济。法律有更严格规定的从其规定。处理工单显示“已完成”仅指本次工单办理完结，实际操作应在回复中逐项说明，不能替代删除或注销执行。</span></div><div class="paragraph"><span class="" selectable="">撤回同意不影响撤回前基于同意的合法处理；可能导致特定可选功能停止，但不得据此拒绝无关基本服务。微信权限撤回、解绑微信、删除运动记录和注销账号互不替代。担任团长时可先处理移交或说明实际困难，我们不会仅因尚未移交而无限期拒绝依法提出的注销申请。</span></div><div class="paragraph"><span class="" selectable="">申请通常免费。明显重复、超出合理限度或侵害他人权益的请求，依法处理；身份核验坚持必要、适度，不以收集无关证件作为所有申请的统一门槛。您可向有管辖权的履职部门投诉或依法向法院寻求救济。</span></div></div><div id="legal-section-11" class="section "><div class="section-title">十一、未成年人</div><div class="paragraph"><span class="" selectable="">本产品并非专门面向儿童提供的服务。未满 18 周岁的用户应在监护人指导下阅读并依其民事行为能力使用服务；不满 14 周岁儿童的个人信息属于敏感个人信息，需履行专门规则和监护人同意等要求。</span></div><div class="paragraph"><span class="" selectable="">我们不以本政策的总括阅读代替儿童监护人的有效同意。发现未经必要监护人同意收集儿童信息的，将采取限制相关处理、核验和删除等适当措施。监护人可通过个人信息权利入口或公开联系渠道请求核对。详细规则见“未成年人个人信息保护说明”。</span></div></div><div id="legal-section-12" class="section "><div class="section-title">十二、政策更新与联系我们</div><div class="paragraph"><span class="" selectable="">本政策发生实质变化时，例如目的、方式、信息种类、接收方、权利渠道或运营者变更，我们将以页面显著提示等合理方式告知；依法需要同意的，重新取得同意。仅继续浏览、关闭提示或保持登录状态不视为您同意新增授权。</span></div><div class="paragraph"><span class="" selectable="">运营者：北京华创科技有限公司。个人信息事项请使用“协议与隐私中心—个人信息权利”的私密申请。联系邮箱、通信地址及已核实存储地域见协议中心运营者信息卡。若您无法登录，可使用该公开联系方式。请勿将完整证件、登录令牌或密码提交到公开共创建议。</span></div></div>
+      <div class="document-bottom">如需查阅、更正、复制或删除个人信息，请查看《个人信息权利与账号注销指引》。<button>回到顶部 ↑</button></div>
+    </div>
+    
+  
+</div>
+</body></html>

@@ -1,0 +1,56 @@
+{
+  "kind": "Real HTTP and browser club identity journey; isolated temporary data",
+  "checks": [
+    {
+      "name": "普通账号立即创建且不获得全局建团资格",
+      "passed": true
+    },
+    {
+      "name": "网页同名提示仍允许普通账号创建并直接进入自己的跑团",
+      "passed": true
+    },
+    {
+      "name": "核验申请、管理员处理、公开标记及私密材料遵守接口边界",
+      "passed": true
+    },
+    {
+      "name": "两地同名目录按城市辨认并进入对应名片，名片展示团号和负责人",
+      "passed": true
+    },
+    {
+      "name": "跑友私密提交反馈、不公开案件、不自动下架也不转移成员",
+      "passed": true
+    },
+    {
+      "name": "受限公开名片和邀请页仍可供已有成员进入，游客与团外保持限制",
+      "passed": true
+    },
+    {
+      "name": "受限团长入口在换号时清除，迟到的旧账号摘要不能恢复入口",
+      "passed": true
+    },
+    {
+      "name": "离开核验页后的迟到响应不会把私密材料带到公开页面",
+      "passed": true
+    },
+    {
+      "name": "平台后台读取私密材料并记录核验决定，切换管理员凭据即清空材料",
+      "passed": true
+    }
+  ],
+  "screenshots": [
+    "club-open-live-create-320.png",
+    "club-open-live-identity-390.png",
+    "club-open-live-directory-320.png",
+    "club-open-live-public-320.png",
+    "club-open-live-directory-390.png",
+    "club-open-live-public-390.png",
+    "club-open-live-directory-1440.png",
+    "club-open-live-public-1440.png",
+    "club-open-live-report-320.png",
+    "club-open-live-admin-390.png",
+    "club-open-live-admin-1440.png"
+  ],
+  "errors": [],
+  "passed": true
+}

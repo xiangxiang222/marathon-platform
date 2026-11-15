@@ -1,0 +1,368 @@
+{
+  "startedAt": "2026-11-12T03:19:03.949Z",
+  "isolation": "Temporary SQLite/media; ephemeral localhost port; built web/dist; .env not loaded; remote browser requests blocked.",
+  "checks": [
+    {
+      "name": "Homepage exposes the single running-news entrance",
+      "passed": true
+    },
+    {
+      "name": "Athlete filters show twenty men and twenty women with source-backed details",
+      "passed": true
+    },
+    {
+      "name": "Pacer profiles match collected evidence without claiming a national ranking",
+      "passed": true
+    },
+    {
+      "name": "Club publishing UI saves a private draft, publishes it, then withdraws it",
+      "passed": true
+    },
+    {
+      "name": "New backend Content Center publishes an industry article through the real editor",
+      "passed": true
+    },
+    {
+      "name": "Compact mobile sections show the first profile on the opening screen and keep filters on one line",
+      "passed": true
+    },
+    {
+      "name": "Unavailable content hides counts and stale notes, offers a friendly retry, then recovers real profiles",
+      "passed": true
+    }
+  ],
+  "views": [
+    {
+      "name": "athletes-unavailable",
+      "width": 390,
+      "scrollWidth": 390,
+      "bodyWidth": 390,
+      "overflow": [],
+      "screenshot": "athletes-unavailable-390.png"
+    },
+    {
+      "name": "hub",
+      "width": 320,
+      "scrollWidth": 320,
+      "bodyWidth": 320,
+      "overflow": [],
+      "screenshot": "hub-320.png"
+    },
+    {
+      "name": "athletes-men",
+      "width": 320,
+      "scrollWidth": 320,
+      "bodyWidth": 320,
+      "overflow": [],
+      "screenshot": "athletes-men-320.png"
+    },
+    {
+      "name": "athletes-women",
+      "width": 320,
+      "scrollWidth": 320,
+      "bodyWidth": 320,
+      "overflow": [],
+      "screenshot": "athletes-women-320.png"
+    },
+    {
+      "name": "pacers",
+      "width": 320,
+      "scrollWidth": 320,
+      "bodyWidth": 320,
+      "overflow": [],
+      "screenshot": "pacers-320.png"
+    },
+    {
+      "name": "athlete-detail",
+      "width": 320,
+      "scrollWidth": 320,
+      "bodyWidth": 320,
+      "overflow": [],
+      "screenshot": "athlete-detail-320.png"
+    },
+    {
+      "name": "pacer-detail",
+      "width": 320,
+      "scrollWidth": 320,
+      "bodyWidth": 320,
+      "overflow": [],
+      "screenshot": "pacer-detail-320.png"
+    },
+    {
+      "name": "industry-detail",
+      "width": 320,
+      "scrollWidth": 320,
+      "bodyWidth": 320,
+      "overflow": [],
+      "screenshot": "industry-detail-320.png"
+    },
+    {
+      "name": "club-news",
+      "width": 320,
+      "scrollWidth": 320,
+      "bodyWidth": 320,
+      "overflow": [],
+      "screenshot": "club-news-320.png"
+    },
+    {
+      "name": "club-editor",
+      "width": 320,
+      "scrollWidth": 320,
+      "bodyWidth": 320,
+      "overflow": [],
+      "screenshot": "club-editor-320.png"
+    },
+    {
+      "name": "admin-content-editor",
+      "width": 320,
+      "scrollWidth": 320,
+      "bodyWidth": 320,
+      "overflow": [],
+      "screenshot": "admin-content-editor-320.png"
+    },
+    {
+      "name": "hub",
+      "width": 390,
+      "scrollWidth": 390,
+      "bodyWidth": 390,
+      "overflow": [],
+      "screenshot": "hub-390.png"
+    },
+    {
+      "name": "athletes-men",
+      "width": 390,
+      "scrollWidth": 390,
+      "bodyWidth": 390,
+      "overflow": [],
+      "screenshot": "athletes-men-390.png"
+    },
+    {
+      "name": "athletes-women",
+      "width": 390,
+      "scrollWidth": 390,
+      "bodyWidth": 390,
+      "overflow": [],
+      "screenshot": "athletes-women-390.png"
+    },
+    {
+      "name": "pacers",
+      "width": 390,
+      "scrollWidth": 390,
+      "bodyWidth": 390,
+      "overflow": [],
+      "screenshot": "pacers-390.png"
+    },
+    {
+      "name": "athlete-detail",
+      "width": 390,
+      "scrollWidth": 390,
+      "bodyWidth": 390,
+      "overflow": [],
+      "screenshot": "athlete-detail-390.png"
+    },
+    {
+      "name": "pacer-detail",
+      "width": 390,
+      "scrollWidth": 390,
+      "bodyWidth": 390,
+      "overflow": [],
+      "screenshot": "pacer-detail-390.png"
+    },
+    {
+      "name": "industry-detail",
+      "width": 390,
+      "scrollWidth": 390,
+      "bodyWidth": 390,
+      "overflow": [],
+      "screenshot": "industry-detail-390.png"
+    },
+    {
+      "name": "club-news",
+      "width": 390,
+      "scrollWidth": 390,
+      "bodyWidth": 390,
+      "overflow": [],
+      "screenshot": "club-news-390.png"
+    },
+    {
+      "name": "club-editor",
+      "width": 390,
+      "scrollWidth": 390,
+      "bodyWidth": 390,
+      "overflow": [],
+      "screenshot": "club-editor-390.png"
+    },
+    {
+      "name": "admin-content-editor",
+      "width": 390,
+      "scrollWidth": 390,
+      "bodyWidth": 390,
+      "overflow": [],
+      "screenshot": "admin-content-editor-390.png"
+    },
+    {
+      "name": "hub",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "bodyWidth": 1024,
+      "overflow": [],
+      "screenshot": "hub-1024.png"
+    },
+    {
+      "name": "athletes-men",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "bodyWidth": 1024,
+      "overflow": [],
+      "screenshot": "athletes-men-1024.png"
+    },
+    {
+      "name": "athletes-women",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "bodyWidth": 1024,
+      "overflow": [],
+      "screenshot": "athletes-women-1024.png"
+    },
+    {
+      "name": "pacers",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "bodyWidth": 1024,
+      "overflow": [],
+      "screenshot": "pacers-1024.png"
+    },
+    {
+      "name": "athlete-detail",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "bodyWidth": 1024,
+      "overflow": [],
+      "screenshot": "athlete-detail-1024.png"
+    },
+    {
+      "name": "pacer-detail",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "bodyWidth": 1024,
+      "overflow": [],
+      "screenshot": "pacer-detail-1024.png"
+    },
+    {
+      "name": "industry-detail",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "bodyWidth": 1024,
+      "overflow": [],
+      "screenshot": "industry-detail-1024.png"
+    },
+    {
+      "name": "club-news",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "bodyWidth": 1024,
+      "overflow": [],
+      "screenshot": "club-news-1024.png"
+    },
+    {
+      "name": "club-editor",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "bodyWidth": 1024,
+      "overflow": [],
+      "screenshot": "club-editor-1024.png"
+    },
+    {
+      "name": "admin-content-editor",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "bodyWidth": 1024,
+      "overflow": [],
+      "screenshot": "admin-content-editor-1024.png"
+    },
+    {
+      "name": "hub-curated",
+      "width": 320,
+      "scrollWidth": 320,
+      "bodyWidth": 320,
+      "overflow": [],
+      "screenshot": "hub-curated-320.png"
+    },
+    {
+      "name": "industry-curated-detail",
+      "width": 320,
+      "scrollWidth": 320,
+      "bodyWidth": 320,
+      "overflow": [],
+      "screenshot": "industry-curated-detail-320.png"
+    },
+    {
+      "name": "hub-curated",
+      "width": 390,
+      "scrollWidth": 390,
+      "bodyWidth": 390,
+      "overflow": [],
+      "screenshot": "hub-curated-390.png"
+    },
+    {
+      "name": "industry-curated-detail",
+      "width": 390,
+      "scrollWidth": 390,
+      "bodyWidth": 390,
+      "overflow": [],
+      "screenshot": "industry-curated-detail-390.png"
+    },
+    {
+      "name": "hub-curated",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "bodyWidth": 1024,
+      "overflow": [],
+      "screenshot": "hub-curated-1024.png"
+    },
+    {
+      "name": "industry-curated-detail",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "bodyWidth": 1024,
+      "overflow": [],
+      "screenshot": "industry-curated-detail-1024.png"
+    }
+  ],
+  "errors": [],
+  "limitations": [
+    "No publication to production.",
+    "WeChat device behavior and official-article navigation require separate real-device verification.",
+    "UI fixtures are synthetic and removed with the temporary database. Real public athlete and pacer files are read without modification."
+  ],
+  "fixture": {
+    "registeredUsers": 1,
+    "createdClubs": 1,
+    "athletes": 200,
+    "pacers": 80,
+    "requestedPacers": 10,
+    "pacerIdentityCoverage": {
+      "classARaces": 221,
+      "monitoredSites": 7,
+      "sourceLookups": 221,
+      "withAnnouncements": 2,
+      "withTextGroups": 1,
+      "withPhotos": 0,
+      "awaitingPublicRoster": 219,
+      "people": 80,
+      "withPersonalBest": 80,
+      "withPersonPhotos": 0,
+      "withAnnouncementPhotos": 1,
+      "sourceRaces": 1
+    },
+    "source": "Real static research; synthetic temporary articles"
+  },
+  "curatedPreview": {
+    "syntheticArticlesArchived": 2,
+    "importedArticles": 12,
+    "sourceFile": "shared/content-starter-articles.json",
+    "isolation": "Same temporary database only; default local and production databases were never opened."
+  },
+  "passed": true,
+  "finishedAt": "2026-11-12T03:19:36.447Z"
+}

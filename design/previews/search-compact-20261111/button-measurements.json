@@ -1,0 +1,44 @@
+[
+  {
+    "route": "races",
+    "width": 56,
+    "height": 44,
+    "visibleWidth": 56,
+    "visibleHeight": 34
+  },
+  {
+    "route": "clubs",
+    "width": 56,
+    "height": 44,
+    "visibleWidth": 56,
+    "visibleHeight": 34
+  },
+  {
+    "route": "news",
+    "width": 56,
+    "height": 44,
+    "visibleWidth": 56,
+    "visibleHeight": 34
+  },
+  {
+    "route": "races",
+    "width": 56,
+    "height": 44,
+    "visibleWidth": 56,
+    "visibleHeight": 34
+  },
+  {
+    "route": "clubs",
+    "width": 56,
+    "height": 44,
+    "visibleWidth": 56,
+    "visibleHeight": 34
+  },
+  {
+    "route": "news",
+    "width": 56,
+    "height": 44,
+    "visibleWidth": 56,
+    "visibleHeight": 34
+  }
+]

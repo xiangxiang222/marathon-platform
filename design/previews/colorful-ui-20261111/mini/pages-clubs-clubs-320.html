@@ -1,0 +1,317 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><style>html,body{margin:0;padding:0}body{padding-bottom:70px}a{display:block;color:inherit;text-decoration:none}button{display:block;box-sizing:border-box;padding:0 14px;line-height:1.35}input,textarea{outline:none}input[type=checkbox]{min-height:0}img{display:inline-block;vertical-align:middle}*{box-sizing:border-box}.native-switch{display:inline-block;width:44px;height:26px;flex:none;border-radius:20px;background:#dedede;position:relative}.native-switch[checked=true]{background:#e1251b}.native-switch:after{content:"";display:block;position:absolute;top:2px;left:2px;width:22px;height:22px;border-radius:50%;background:white}.native-switch[checked=true]:after{left:20px}swiper-item{display:block}.audit-banner{font:10px system-ui;color:#767676;padding:5px 12px;text-align:center}.mirror-tabbar{position:fixed;z-index:50;left:0;right:0;bottom:0;display:flex;background:white;border-top:1px solid #eee;height:64px;padding:6px 0}.mirror-tabbar a{width:25%;font:11px system-ui;text-align:center}.mirror-tabbar img{display:block;margin:0 auto 3px;width:25px;height:25px}</style><style>body {
+  --brand: #e1251b;
+  --brand-soft: #fff2f0;
+  --page-bg: #f5f6f8;
+  --surface: #ffffff;
+  --text: #262626;
+  --text-secondary: #737373;
+  --border: #eaedf1;
+  --sky: #2767aa;
+  --sky-soft: #eaf4ff;
+  --mint: #23765f;
+  --mint-soft: #e9f7f2;
+  --lilac: #7753ae;
+  --lilac-soft: #f2edff;
+  --sun: #986614;
+  --sun-soft: #fff4d7;
+  --peach-soft: #fff0e7;
+  --card-shadow: 0 1.7066666666666668px 10.24px rgba(42, 61, 105, .025);
+  --action-fill: linear-gradient(120deg, #e1251b, #cf3025);
+  --control-radius: 10.24px;
+  --card-radius: 15.36px;
+  min-height: 100%;
+  background: var(--page-bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.65;
+}
+div, span, a, div, button, input, textarea, div { box-sizing: border-box; }
+button, input, textarea { font-family: inherit; color: var(--text); }
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 44px;
+  margin: 0;
+  padding: 12px 18px;
+  border: 0.4266666666666667px solid var(--border);
+  border-radius: var(--control-radius);
+  background: var(--surface);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+button::after { border: 0; }
+button[plain] { border: 0.4266666666666667px solid var(--border); background: var(--surface); }
+input, textarea {
+  min-width: 0;
+  border: 0.4266666666666667px solid var(--border);
+  border-radius: 8.533333333333333px;
+  background: #f8faff;
+  color: var(--text);
+  font-size: 14px;
+  caret-color: var(--brand);
+}
+input { min-height: 46px; padding: 0 10.24px; }
+textarea { min-height: 120px; padding: 10.24px; line-height: 1.75; }
+input::placeholder, textarea::placeholder { color: #999999; }
+.pad { padding: 13.653333333333334px 13.653333333333334px calc(20.48px + env(safe-area-inset-bottom)); }
+.card {
+  margin-bottom: 10.24px;
+  padding: 13.653333333333334px;
+  border: 0.4266666666666667px solid var(--border);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  box-shadow: var(--card-shadow);
+}
+.title { font-size: 18px; font-weight: 600; line-height: 1.4; letter-spacing: -0.128px; }
+.muted { color: var(--text-secondary); font-size: 12px; }
+.slot { display: flex; justify-content: space-between; gap: 10.24px; margin-top: 5.12px; padding: 7.68px 8.533333333333333px; border-radius: 6.826666666666667px; background: #f0f5fc; font-size: 14px; }
+.slot-state { color: var(--text-secondary); font-size: 12px; }
+.teal { color: var(--brand); }
+.row { display: flex; justify-content: space-between; gap: 10.24px; padding: 8.533333333333333px 0; border-bottom: 0.4266666666666667px solid var(--border); }
+.row:last-child { border-bottom: 0; }
+.row .k { flex: none; color: var(--text-secondary); }
+.soon { color: #c87825; }
+.err { margin-top: 5.12px; color: #b42318; font-size: 12px; line-height: 1.7; }
+.note { margin-top: 5.12px; color: var(--brand); font-size: 12px; line-height: 1.7; }
+.empty { padding: 23.893333333333334px 13.653333333333334px; color: var(--text-secondary); font-size: 13px; text-align: center; line-height: 1.8; }
+.field { display: flex; align-items: center; gap: 6.826666666666667px; }
+.field input { flex: 1; min-width: 0; height: 46px; padding: 0 10.24px; border-radius: 8.533333333333333px; background: #f8faff; }
+.btn, .login-go {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 46px;
+  margin: 0;
+  padding: 12px 20px;
+  border: 0.4266666666666667px solid transparent;
+  border-radius: var(--control-radius);
+  background: var(--action-fill);
+  box-shadow: 0 2.56px 8.533333333333333px rgba(225, 37, 27, .14);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
+}
+.login-go { margin-top: 10.24px; }
+button.ghost {
+  min-height: 44px;
+  margin: 6.826666666666667px 6.826666666666667px 0 0;
+  padding: 10px 16px;
+  border: 0.4266666666666667px solid var(--border);
+  border-radius: var(--control-radius);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+button.ghost.on { border-color: #f4bdb8; background: var(--brand-soft); color: var(--brand); }
+button[disabled], button.btn[disabled] { border-color: #eeeeef; background: #f2f2f2; color: #999999; opacity: 1; box-shadow: none; }
+.chip { display: inline-block; margin-right: 3.4133333333333336px; padding: 1.7066666666666668px 5.12px; border: 0.4266666666666667px solid #ebebed; border-radius: 5.12px; background: #f5f5f7; color: var(--text-secondary); font-size: 11px; font-weight: 400; line-height: 1.6; }
+.foot { display: flex; justify-content: space-between; gap: 8.533333333333333px; margin-top: 6.826666666666667px; color: var(--text-secondary); font-size: 12px; }
+.src { margin-top: 5.12px; color: var(--text-secondary); font-size: 12px; line-height: 1.75; overflow-wrap: anywhere; }
+.card > input, .card > textarea, .card > div { margin-top: 8.533333333333333px; }
+.card > input { width: 100%; }
+.card > .btn { margin-top: 10.24px; }
+.primary, .primary-btn, .primary-button, .submit-button, .save-action, .next-action, .bottom-primary, .staff-primary { border-radius: var(--control-radius); }
+.field-label, .form-label { line-height: 1.6; }
+.metric-value, .stat-value, .career-number, .record-number, .rank-time { font-variant-numeric: tabular-nums; }
+/* Shared control roles for new screens and gradual migrations. */
+.ui-control-text { width: auto; min-height: 44px; padding: 10px 8px; border: 0; border-radius: 5.12px; background: transparent; color: var(--brand); font-size: 13px; }
+.ui-control-danger { border-color: #f5d1cc; background: #fff5f3; color: #c52e24; }
+.ui-label { color: var(--text-secondary); font-size: 12px; font-weight: 400; }
+.surface-sky { background: linear-gradient(135deg, #f8fcff, var(--sky-soft)); border-color: #d9e9fb; }
+.surface-mint { background: linear-gradient(135deg, #fbfffd, var(--mint-soft)); border-color: #d5eee4; }
+.surface-lilac { background: linear-gradient(135deg, #fdfbff, var(--lilac-soft)); border-color: #e4d9f7; }
+.surface-sun { background: linear-gradient(135deg, #fffdf7, var(--sun-soft)); border-color: #f3e4b8; }
+.surface-peach { background: linear-gradient(135deg, #fffaf7, var(--peach-soft)); border-color: #f6dcd0; }
+@media (max-width: 350px) { .pad { padding-left: 14px; padding-right: 14px; } .card { padding: 16px; } }
+
+:host { display: block; }
+.page-header { background: transparent; color: #262626; }
+.header-main { display: flex; align-items: center; padding-left: 13.653333333333334px; box-sizing: border-box; }
+.header-title { min-width: 0; overflow: hidden; font-size: 24px; line-height: 1.3; font-weight: 600; letter-spacing: -0.21333333333333335px; white-space: nowrap; text-overflow: ellipsis; }
+.header-subtitle { padding: 0 13.653333333333334px 10.24px; color: #737373; font-size: 12px; line-height: 1.7; }
+@media (max-width: 350px) { .header-main { padding-left: 14px; } .header-subtitle { padding-left: 14px; padding-right: 14px; } }
+
+.clubs-page { min-height:100vh; box-sizing:border-box; color:var(--text); background: transparent; font-size: 14px; line-height:1.5; }
+.clubs-page button { display:flex; align-items:center; justify-content:center; min-height:44px; margin:0; padding:6.826666666666667px 9.386666666666667px; box-sizing:border-box; border-radius:5.973333333333334px; font-size: 12px; font-weight:500; line-height:1.25; }
+.clubs-page button::after { border:0; }
+.clubs-welcome {  margin-bottom: 12.8px; background: linear-gradient(135deg,#eaf4ff,#ffffff); border-color: #dbeaf1; box-shadow: var(--card-shadow); }
+.welcome-eyebrow { color: var(--brand); font-size: 12px; font-weight: 600; letter-spacing: 0.8533333333333334px; }
+.welcome-title { margin-top:5.973333333333334px; color:var(--text); line-height: 1.45; letter-spacing:-0.4266666666666667px; }
+.welcome-copy { margin-top: 8.533333333333333px; color: var(--text-secondary); }
+.welcome-small { margin-top: 5.12px; color: var(--text-secondary); font-size: 14px; line-height: 1.6; font-weight: 400; letter-spacing: 0; }
+.section-heading { display:flex; align-items:center; justify-content:space-between; gap:8.533333333333333px; margin:10.24px 1.7066666666666668px 6.826666666666667px; }
+.section-title { color:var(--text); font-size: 20px; font-weight:700; }
+.section-count { color:var(--text-secondary); font-size: 12px; }
+.surface { margin-bottom:7.68px;  background: #ffffff; box-shadow: var(--card-shadow); }
+.my-club { overflow:hidden; border: 0.4266666666666667px solid #fff; box-shadow: var(--card-shadow); background: #ffffff; border-color: #f6e4da; }
+.club-main { display:flex; align-items:center; gap: 10.24px; padding: 12.8px; }
+.club-letter { display:flex; flex:none; align-items:center; justify-content:center; width:35.84px; height:35.84px; color: #fff; background: var(--brand); border-radius: 10.24px; font-size: 18px; font-weight:600; }
+.club-copy,.login-copy { flex:1; min-width:0; }
+.club-name { font-size: 17px; font-weight:600; line-height:1.5; overflow-wrap:anywhere; }
+.my-meta { display:flex; flex-wrap:wrap; align-items:center; gap:3.4133333333333336px 5.973333333333334px; margin-top:4.266666666666667px; color:var(--text-secondary); font-size: 12px; }
+.role-badge { padding: 1.7066666666666668px 5.973333333333334px; color: var(--brand); background: var(--sun-soft);  font-size: 12px; }
+.enter { flex:none; color:var(--text-secondary); font-size: 20px; font-weight:400; }
+.club-quick-actions { display:flex; gap:8.533333333333333px; margin:0 11.093333333333334px; padding:4.266666666666667px 0; border-top:0.4266666666666667px solid var(--page-bg); }
+.club-quick-actions a { display:flex; flex:1; align-items:center; justify-content:space-between; min-height:44px; padding:0 3.4133333333333336px; box-sizing:border-box; color:var(--text-secondary); font-size: 12px; }
+.club-quick-actions a+ a { border-left:0.4266666666666667px solid var(--page-bg); padding-left:10.24px; }
+.club-quick-actions a>span:last-child { color:var(--border); }
+.mine-search { display:flex; align-items:center; gap:7.68px; min-height:44px; margin-bottom:7.68px; padding:0 10.24px; border:0.4266666666666667px solid var(--border);  background:#fff; }
+.mine-search input { flex:1; min-width:0; height:44px; padding:0; border:0;  background:transparent; font-size:14px; }
+.login-card { display:flex; align-items:center; gap:7.68px; padding:11.093333333333334px; }
+.meta { margin-top:2.56px; color:var(--text-secondary); font-size: 12px; line-height:1.6; overflow-wrap:anywhere; }
+.small-action { display:flex; flex:none; align-items:center; justify-content:center; min-height:44px; padding:0 7.68px;  color:var(--brand); background:var(--brand-soft); font-size: 12px; }
+.no-clubs { padding:12.8px 11.093333333333334px; color:var(--text-secondary); font-size: 12px; line-height:1.8; }
+.discover { padding:9.386666666666667px 10.24px; }
+.modes { display:flex; margin-bottom:8.533333333333333px; }
+.clubs-page .mode { flex:1; color:var(--text-secondary); background:transparent;  }
+.clubs-page .mode.on { font-weight:600;  }
+.search-field { display:flex; align-items:center; gap: 6.826666666666667px; padding: 4px 6px 4px 14px; min-height:52px; box-sizing:border-box; border:0.4266666666666667px solid var(--border);  background: var(--page-bg); }
+.search-field input { flex:1; min-width:0; min-height:44px; height:44px; padding:0; border:0;  background:transparent; font-size:14px; }
+.search-icon { position:relative; flex:none; width:9.386666666666667px; height:9.386666666666667px; margin-right:1.7066666666666668px; border:1.28px solid var(--text-secondary); border-radius:50%; }
+.search-icon::after { position:absolute; right:-3.84px; bottom:-2.56px; content:''; width:5.12px; height:1.28px; background:var(--text-secondary); transform:rotate(45deg); }
+.clubs-page .search-action { flex:none; min-height: 44px; padding: 0 8.533333333333333px; color: #fff; background: var(--brand);  line-height: 44px; }
+.helper { margin-top:7.68px; color:var(--text-secondary); font-size: 12px; line-height:1.7; }
+.message { margin-top:8.533333333333333px; padding:6.826666666666667px; border-radius:4.266666666666667px; color:var(--brand); background:var(--brand-soft); font-size: 12px; }
+.result-row { display:flex; align-items:center; gap:7.68px; min-height:52.053333333333335px; padding:9.386666666666667px 0; border-bottom:0.4266666666666667px solid var(--border); box-sizing:border-box; }
+.result-row:last-child { border-bottom:0; }
+.result-avatar { display:flex; flex:none; align-items:center; justify-content:center; width:29.013333333333332px; height:29.013333333333332px; border-radius:7.68px; color:var(--text-secondary); background: var(--sky-soft); font-size: 14px; font-weight:600; }
+.result-row .club-name { font-size: 17px; }
+.result-row .meta { font-size: 12px; }
+.clubs-page .result-action,.result-action { display:flex; flex:none; align-items:center; justify-content:center; min-height:44px; padding:5.12px 6.826666666666667px; box-sizing:border-box; color:var(--brand); background:var(--brand-soft);  font-size: 12px; }
+.result-action.joined { color:var(--text-secondary); background:var(--page-bg);  }
+.pending-badge { flex:none; color:var(--brand); font-size: 12px;  }
+.clubs-page .show-more { width:100%; min-height:44px; padding:6.826666666666667px 0; color:var(--text-secondary); background:transparent; font-size: 12px; }
+.create-card { margin-top:10.24px; overflow:hidden; }
+.clubs-page .create-entry { justify-content:space-between; gap:8.533333333333333px; width:100%; color:#333333; background: #ffffff; text-align:left;  }
+.create-entry .club-name { font-size: 17px;  }
+.create-toggle { flex:none; color:var(--text-secondary); font-size: 12px; }
+.create-form { padding:0 10.24px 10.24px; border-top:0.4266666666666667px solid var(--page-bg); }
+.application { display:flex; justify-content:space-between; align-items:center; gap:8.533333333333333px; margin-top:7.68px; font-size: 12px; }
+.create-field { display:flex; gap:6.826666666666667px; margin-top:7.68px; }
+.create-field input { flex:1; min-width:0; height:37.54666666666667px; padding:0 7.68px; border-radius:5.973333333333334px; background:var(--page-bg); font-size: 14px; }
+.clubs-page .submit { flex:none; color:#fff; background:var(--brand); font-size: 12px;  }
+@media (max-width:350px) {
+ .clubs-page { padding-left:8.533333333333333px; padding-right:8.533333333333333px; background: transparent; }
+ .welcome-title {  line-height: 1.45;}
+ .welcome-copy { font-size: 12px;  color: var(--text-secondary); margin-top: 8.533333333333333px;}
+ .login-card { flex-wrap:wrap; }
+ .login-copy { min-width:128px; }
+ .small-action { width:100%;  }
+ .result-row { gap:5.973333333333334px; }
+ .result-avatar { width:27.30666666666667px; height:27.30666666666667px; background: var(--sky-soft); }
+}
+
+.city-filter { margin-top:5.973333333333334px; }
+.city-filter input,.create-input { width:100%; height:37.54666666666667px; padding:0 8.533333333333333px; font-size: 14px;  }
+.field-label { display:flex; flex-wrap:wrap; gap:5.12px; margin:11.093333333333334px 0 5.12px; color:var(--text-secondary); font-size: 12px; font-weight:600; }
+.field-label span { color:var(--text-secondary); font-size: 12px; font-weight:400; }
+.city-choices { display:flex; gap:5.973333333333334px; margin-top:3.4133333333333336px; }
+.clubs-page .city-choices button { min-width:49.49333333333333px; min-height:44px; padding:5.12px 8.533333333333333px; color:var(--text-secondary); background:transparent; font-size: 12px; }
+.create-intro { width:100%; min-height:56.32px; padding:8.533333333333333px; font-size: 12px; line-height:1.6;  }
+.name-notice { margin-top:9.386666666666667px; padding:8.533333333333333px;  background: var(--peach-soft); }
+.legacy-application { margin-top:9.386666666666667px; padding:8.533333333333333px;  background: var(--sun-soft); }
+.notice-title { font-size: 12px; font-weight:600; }
+.name-notice .helper,.legacy-application .helper { margin-top:3.4133333333333336px;  }
+.duplicate-row { display:flex; align-items:center; gap:6.826666666666667px; padding:8.533333333333333px 0; border-bottom:0.4266666666666667px solid var(--border); }
+.duplicate-row:last-child { padding-bottom:0; border-bottom:0; }
+.clubs-page .verified-mark { display:inline-flex; justify-content:flex-start; min-height:44px; padding:3.4133333333333336px 0; color:var(--text-secondary); background:transparent; font-size: 12px; }
+.clubs-page .create-submit { width:100%; margin-top:10.24px; min-height:44px; }
+.clubs-page .secondary-action { width:100%; margin-top:6.826666666666667px; color:var(--text-secondary); background:#fff; }
+.private-reports-link { display:flex; align-items:center; justify-content:center; min-height:44px; padding:5.12px 8.533333333333333px; color:var(--text-secondary); font-size: 12px; }
+.result-action,.small-action,.club-quick-actions a { min-height:44px;  }
+@media (max-width:350px) { .result-row { flex-wrap:wrap; } .result-row .result-action,.result-row .pending-badge { margin-left:33.28px;  } }
+
+@media (max-width:350px) { .clubs-page button,.clubs-page .result-action,.clubs-page .small-action,.clubs-page .club-quick-actions a,.private-reports-link { min-height:44px;  } }
+
+/* Route geometry: surfaces, controls and compact labels have distinct roles. */
+.mini-clubs-clubs .clubs-welcome, .mini-clubs-clubs .surface, .mini-clubs-clubs .name-notice, .mini-clubs-clubs .legacy-application { border-radius: 15.36px; }
+.mini-clubs-clubs .search-field, .mini-clubs-clubs .search-action, .mini-clubs-clubs .mine-search, .mini-clubs-clubs .create-input, .mini-clubs-clubs .create-intro, .mini-clubs-clubs .submit, .mini-clubs-clubs .result-action, .mini-clubs-clubs .small-action, .mini-clubs-clubs .create-entry { border-radius: 10.24px; }
+.mini-clubs-clubs .role-badge, .mini-clubs-clubs .mode, .mini-clubs-clubs .pending-badge { border-radius: 5.973333333333334px; }
+
+/* Page composition and interaction hierarchy. */
+.mini-clubs-clubs { color: var(--text); }
+.mini-clubs-clubs button { font-weight: 500; border-radius: 10.24px; }
+
+.clubs-page { padding: 8.533333333333333px 11.946666666666667px 20.48px; background: transparent; }
+.clubs-welcome { padding: 13.653333333333334px; border: 1px solid var(--border); background: linear-gradient(135deg,#eaf4ff,#ffffff); border-color: #dbeaf1; box-shadow: var(--card-shadow); }
+.welcome-title { font-size: 26px; font-weight: 600; }
+.welcome-copy { font-size: 13px; line-height: 1.7; }
+.surface { border: 1px solid var(--border); box-shadow: var(--card-shadow); background: #ffffff; }
+.modes { gap: 10.24px; padding: 0; border-bottom: 1px solid var(--border); border-radius: 0; background: transparent; }
+.clubs-page .mode { position: relative; min-height: 44px; padding: 3.4133333333333336px 0; border-radius: 0; font-size: 14px; }
+.clubs-page .mode.on { background: transparent; color: var(--text); box-shadow: inset 0 -2px var(--brand); }
+.mine-search,.search-field { border-radius: 10.24px; border-color: var(--border); background: #fff; }
+.mine-search input,.search-field input { border-radius: 0; }
+.clubs-page .search-action { border-radius: 10.24px; font-size: 12px; }
+.clubs-page .create-entry { padding: 11.946666666666667px; min-height: 44.373333333333335px; border-radius: 15.36px; background: #ffffff; }
+.club-name { color: var(--text); }
+.my-meta { font-size: 11px; }
+.meta { font-size: 11px; }
+.role-badge { font-size: 11px; background: var(--sun-soft); }
+.pending-badge { font-size: 11px; }
+.create-field input,.city-filter input,.create-input,.create-intro { border: 1px solid var(--border); border-radius: 10.24px; background: var(--page-bg); font-size: 14px; }
+@media(max-width:350px) { .welcome-title { font-size: 24px; } .result-row .club-copy { min-width: 0; } }
+
+/* Primary actions read at 14px, secondary actions at 13px; compact filters stay at 12px. */
+.mini-clubs-clubs .submit, .mini-clubs-clubs .search-action { font-size: 14px; font-weight: 500; }
+.mini-clubs-clubs .result-action, .mini-clubs-clubs .small-action, .mini-clubs-clubs .secondary-action { font-size: 13px; font-weight: 500; }
+</style></head><body><div class="page-header"><div style="height:47px"></div><div class="header-main" style="min-height:44px;padding-right:100px"><div class="header-title">跑团</div></div><div class="header-subtitle">有人同行，热爱更长久</div></div>
+<div class="clubs-page mini-clubs-clubs">
+  <div class="clubs-welcome"><div class="welcome-eyebrow">一起开跑</div><div class="welcome-title"><div>找到你的跑步搭子</div><div class="welcome-small">每次出发，都有人同行</div></div><div class="welcome-copy">团练报名 · 赛事同行 · 跑量排行</div></div>
+  <div class="section-heading"><span class="section-title">我的跑团</span><span class="section-count">1 个</span></div>
+  
+  
+    
+    <div class="surface my-club">
+      <a class="club-main" href="#"><div class="club-letter">杭</div><div class="club-copy"><div class="club-name">杭州一起跑俱乐部</div><div class="meta">杭州 · 西湖 · 负责人 向前跑 · #106</div><div class="my-meta"><span class="role-badge">团长</span><span>38 位成员</span></div></div><div class="enter">›</div></a>
+      <div class="club-quick-actions"><a href="#"><span>活动报名</span><span>↗</span></a><a href="#"><span>赛事名单</span><span>↗</span></a></div>
+    </div>
+    
+    
+  
+
+  <div class="section-heading"><span class="section-title">找跑团</span><span class="section-count">遇见同频的跑友</span></div>
+  <div class="surface discover">
+    <div class="modes">
+      <button class="mode on">搜索跑团</button>
+      <button class="mode ">跑团口令</button>
+    </div>
+    <div class="search-field">
+      <div class="search-icon"></div>
+      <input placeholder="名称、负责人或团号" confirm-type="search" aria-label="名称、负责人或团号" style="">
+      <button class="search-action">搜索</button>
+    </div>
+    
+    <div class="city-filter"><input placeholder="全部城市（可填写城市筛选）" maxlength="30" confirm-type="search" aria-label="全部城市（可填写城市筛选）" style=""></div>
+    
+    
+    
+      <div class="result-row">
+        <div class="result-avatar">城</div>
+        <div class="club-copy"><div class="club-name">城市晨跑团</div><button class="verified-mark">✓ 身份已核验</button><div class="meta">杭州 · 西湖 · 负责人 向前跑</div><div class="meta">每周三晚，一起绕湖慢跑。每个人都有自己的节奏。</div><div class="meta">团号 #108 · 56 位成员</div></div>
+        
+        
+        <button class="result-action">查看</button>
+      </div>
+      
+      
+    
+  </div>
+
+  <div class="surface create-card">
+    <button class="create-entry"><div><div class="club-name">创建跑团</div><div class="meta">让同频的跑友聚在一起</div></div><span class="create-toggle">展开 +</span></button>
+    
+  </div>
+  <a class="private-reports-link" href="#">名称与身份申诉 · 我的进度 ›</a>
+</div>
+<div class="mirror-tabbar"><a style="color: rgb(115, 115, 115);"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAYAAABV7bNHAAADJ0lEQVR4nOybTXLiMBCF25k5COeAxZibkDPAHtjDGSY5STQbuMbchFFPpCoXkfUkWT92qr8qgsGyHZ67n+WmeSHBywsJXkQggAgEEIEAIhBABAKIQICfNBMOh0P/eDyOXdf94deXy+VEM+AHzQAtzkmL81svrvSj58dms+lut5uixjQXaL/ff+innWPVLETqqBE2pegzYnwonXZnnXKKGtAkgow4HDmrgOE8ZtcqmqoLNPCbWJqkXNXLvBHnOLJaXa/Xjh+87BrA2/I+qCLVIshjxsQeo4V5ta/v9/s7Rwu5/alfr9c9j6EKFDdpZMbGgE8j2/oijrfdljbvohGEzNh8wLex7dlvPJHEFDfvYgIBM+ZL92vI2Tci8ex6NzKkqHkXSbEAM95SAsbHetc6X6pOIXsExZhxLC3MO1sEDfzGfaCMZ7imeWeJIDT5Q2YcS03zniwQ8ptQM45lYN4rcl8ls5j3pBTzmSZNMONYfCdpamonCTRl8leKgEhOqghEp1jA5O/cohoIfGlFib4UJVBtM46lxKQyOMVKTf5KkWtSGRRBJSd/pcg1qYQCmfrLzrWuld+EgnyJ01GP+evbByyYeS6f2zmLY+H/kU+ka51vNm5JqijWqMPkxIjk8sgebZsk0JLEsaT+z/LVM0AEAohAABEIIAIBRCCACAQo3kBlbnJ/cWNU5pp01n2OUVSgYQVAP/f6pvc4ZRZuC3W8L7tP/V7RbrSiKcZn2fHeR0oDghH7SwnDdYycFI0gTgF7toeYLo3/y+jsP0eN6xhUkKIC8YdnIVx3zfY9k3Znx3qODBbHdwi1aA9ifCJZQsoOz9SqRVW5zPtqMinUrEVV65M2H+iEvjYGVK99V28kHwrFrwPEatrl2qzTfpAiLFZvlvlZDcYoaswsfoowEELRzJB7MYAIBBCBACIQQAQCiEAAEQggAgFCJoqKnopUtX9xkwtH6UShbaBArqLXhJvNWRFSbAtJMUXfF4UGwAYqbjACTduLxFQI3tC4oBa8gM72JcHlk/fQgltqn/SJlofiP7EllGY/C18KMg8CiEAAEQggAgFEIMA/AAAA//8qnPMpAAAABklEQVQDAFYiDHJxc/aCAAAAAElFTkSuQmCC">赛历</a><a style="color: rgb(225, 37, 27);"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAYAAABV7bNHAAAE90lEQVR4nOybv1MTQRTH3x5WwFg6I0QyDETtdUathEoK7O3lTwAbC6Gwwv9A7OmhkAqs1BntHQODwYC9o3Rk3XfJxcvd7u3u2738mOxnJhNyud3b++bt2/feHhEECokgUEgQSEMQSEMQSEMQSEMQSEMQSEMQSEMQSEMQSMM1KIHGws17wNgqMHgEwBbEoUnxugTgJ8DhI3C+Xz359RVGAAYeadwVwlyx16LbJ/qz+QFM8JfVb3ShThcrS1EES60WHM0fN4+gBLwJdFabWefAtsESBnxjrn7xBixp3K5sCkt8le+QbVW/NzfBE14EOrtT2eYtvg5k2Ha13nxhenZsOYwfFnfpRyhnJx1bToE44hf4I94uOu8K+Ab2Az4R1hVbmSNOFtT2OdEX6Zec77SAvZs/Pv+UHPpZqzy44q01xtiatM1E676pT1JOsSyOluQmUG3mvcQh/xWvZ9X6+b663eyqeNsVr6neb/hBtX6xAoYkTrrdVC1Wi7NlqhMnCxQv5ZHUep4WidNt3xZpL/dFS1gRMQRQWZW4yaO5+vkyEKD7IIxzMnAxrUzEQeLzxPkm/ZqCUwmtJXucAyyhtQEBB4EwCOxlgkU7YAH6KJN+bYinkvA7kBubgb+S4LCKxRHy/09ilbpVb34GC9CB51e33n4pyJwyWhEQcFnmJ6F3AL+BgKTdJHgA/U72GGWauQh0Cb0Dug4EJO0uwQOcsQ/gAQeBROKZ/gQwfbo4+xAswLgI2xX165NuSGDTBqhgVp7rjD8HCzBoNOnXF5jUgiUOAvH8ci4i5E58owXPk0bUsn4pSOIhSrBIFqgdzImSRZ5dnUipSDqDiKQ91Il85GAJbsmqqOdIjmL6sPdjceYt+pj0F+ijGuI4tCPoKcP+rIhXKkUZBAg4lzt0dSCMc3Apx9Uq75DT59HqQmmKElgRuZPu1bnkijfVqFVuYMlC9n1HlGle2AvbFrmStThJsso4fxwHglxxFaL1xE3BE0NTUcxdYIDljiz9qkkbVRQRD1VFr7sanZtdGfSuBqYZV5xtzdfdC/leLaifyKZYVxiPOxzeBUoSwsR54t/oQHHw6fzIx1ZNOvkc6m2f3GpiNQK/2zS+cRIIhcFCFLXW0juS9lI8bGLRa9Kmy6wtQ2ZRJIHOarOHXqxGxRCJZCWQSfyRrCTJ57TzTDvwfgR5PjAWSDelKEtsN+suaU/LB+YC1Wa5ogPn2ENnmSaJZmKdvsU0EqiMDTmf15G287QqagXq12Mm1OuV/aRHYcGs3+Ig2K9sywbHQd0djZ/0EC6CUmkkVRTLXllwOslEku2OqnZSpRAeiYl0HWYPyfa+yyAdKnSHo9hjj38wFEm8pNbX04mdSEofpHJ8/YxLpAGp4Ri0kb5hP2oLKiONsERmRUmFQAfefBweqKafoSVJLUi1MlAL3y7IrMg2eHQp5kstSLpF61D4dkFmRbaonhtC8Acoamu8ilG2bcuCsseOFkd5uGok/xXB1A9lQZFMw4eEyHQAg0oYfV9XFT6ozpcKVGqtxwMu41NZkWqajeQUc0VmRappNpYC2TCWAtn4tWBBGoJAGsZWoOxKploZx1ag3GPCilRKHihm44QB5WHdy5cwnqSGFPddUPqQPv6CcYLI5pdgSChrPCb1oMJUH6PLQe5JZRnEePpe3xk1wjKvIQikIQikIQikIQik4R8AAAD//2oSRboAAAAGSURBVAMAlbegYWhff0oAAAAASUVORK5CYII=">跑团</a><a style="color: rgb(115, 115, 115);"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAYAAABV7bNHAAAEdUlEQVR4nOycPUwUQRTH3x2G2lYbryZSaGi4K1xqEmyws9DKihgCucTEBEhMNOQIMVRWWthpo4mVBUNx0GmBWpqjsTaxI4HzDZnFc25mZ2b3zQe6v+Syu29ndm//9+Y/H3fQhJpCmlBTSC2QgVogA7VABi7BBWJpaWlqcnLyGt8/Pj4+2tnZ+QaeacAFYHV19dFwOHyAu9ekU0eNRuNFr9d7Cp5IWiCRMa9x94ah6GfMqLs+MipZgbrd7tWTk5M+7rYsqwwmJiY6m5ubP4CQZE0axXkO9uJwWqIOKUlmEHrOdfScQ8Up3oQ+iP15fE3JBdCTptGTvgARqfZi84rY+62trdsjx92VlZV3uF1Q1CUTKMkmhtlzU46dnp4+tomp6lYhVYEuy7Ht7e1Dmxg2sbG6VUhSIHzIn3JseXl52iaG4o7VrUKqAn2SY81m84lNTFW3CqmaNO+pnkmxBTTlr2DoxUbOk5DsQBHFeIObRXDjLfZ0d4CQZAeKOCp+iJuBQ5WBqEP7PiBR+v3+r5mZmY/40G08vGIozudii9irfQdi6tm8gaQEQiEyvsUHZqrz//V6EJryLm4yvo9ZsYEirUMCRBeIZw02n105nopIUU1aJ44g63Q6jf39fQYRiSYQirOO4rw0FOMi7aFIA4hElHGQEGfNpqxtOV+UyiDeNNrtdqvMJyvM+J5DlVbMpuZk0ppPnqGh7vGtrnvOGe2pXIll2hQCyYwJZjBja/C6c6YPgRqn2Tw+5C2LYlyMDLdrmDH8mIljHQzGs0oVy/2IQUCcTJqnObiTaeIMZ94NkW1j99HcK+NZDAFxMmluygcHBxvcNEWoBeXg4szxndnZ2TX5OnjuPjdlcZ9Mqht0fFR5JC3mT5lofpmpvGy22AyHUpFz8cR5pbGH8iPyqUaRYLI4KvO2KSOXF7vMh2De52L5DJ0jP4CqV1R15y4DS/jTiwLFsCDqZNVWIF1ZW/IsKyNYikuuTBXkD1eyFz0bHvAX97vRjLYhqkCqcVWRj+QiCaG05Qz3dMrC2F/7ZNIxM1VQ+FOWX8fm4VXjriKiCSR6J6iKyDgmDtfFtc+2tkOPIqKZdJHpUk9MTWvdRUQRyLZHSmHZNbhAZWb2MYUKLtBFWxMKKpCuaeXjG9suOKRQwQQqEkeaeyXlT0EEKvCdv2buUh2jUCFm9EFG0kXdua4Ozw6xoLbhel1KQszmrZpWhet4zSKvGUQlDkeUZ3LcdxZ5E0j4jurNs7LmqlunBo94E6iM75iQ5l3nuC5huOBFIDFZzOS4aFoMKqAS2Gcz87EmTeY7OhQL/d7MmjSDfPiOBiYHfGURqUA+fMfhehl4gEwgn74jE9KsSQQK4Tuqa8sxH83M50CR9TxOJjVZmVFnEYlAqm8nqH1HA4Px90KaRSQCyWL48B2b+woyoLwHEMLTO/QPnFQrlJRjIlIPCi0Ox3dTTvaPWWzhv1ka/R2RaN6vgIioP16gpMp3X0X8MwL5ov73OAZqgQzUAhmoBTJQC2TgNwAAAP//iM/j9wAAAAZJREFUAwBEBYCyujMsBAAAAABJRU5ErkJggg==">运动</a><a style="color: rgb(115, 115, 115);"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAYAAABV7bNHAAAEuUlEQVR4nOybT2hURxzHf9ltDoUKrT2pEGghJZSeKliagHkeeintoUKObS+1vZSSZJOaU5oKhdjsJoH20j8U2h48BLzozYNPD1kQ9KJIUFAIaG4qGPAQkvgdnZX1Oe/NvJn5zVtlPvB4b3/z9s3sd3/zm5nf7NYoUkiNIoVEgTREgTREgTREgTREgTREgTS8RhUyPT394e7u7ic4DuHlII69sugejpt9fX2XcJxbWFi4QhXRRxXQaDS+hCjf48MfMrkf9wqhfm+1Wv9TYIIKJDxmZ2enhcuE7EhrtVojpEcFE0h4DU7/kR++CuVNdQoAxPkWp38Mbt3AsYljj+a+L4aHhzfa7fZlYobdgyYnJz9D/DijKkNs2UTZX7g8vb6+3l5ZWdkW9rGxsfrAwMDHuDyKe47hnjdy3v/54uLiWWKEVaDx8fE36/X6NVweUBT/jXh0fGlp6V7RM2ZmZt7a2tr6FZffKIrvbG9vf7C8vPyAmGAd5iHOCVKLM4UY0jJ4BM3Pz9/H6Ri66RrOzUzxAVnHD8QEmwdNTU29gy5wS1F0Atr8RBZApJ9xms3a0QXfbTabt4kBzpn01wrbRVtxBPK9Fw3r8gKbQPCeowrbSXIE86CTJnX5gqWLITjvQ2y4mzHfhAe8Rx5AV7tBT5cmz0Cw3o9gvUGeYfEgfMvvK8wXyB8XDOt0hmUUQ9DcrzCvkT/WDOt0hmuYf11he0j+eGhYpzNcAj1S2HTLhzLsMazTGZYYhFHlrsI8RP4YMqzTGRaBsIS4rjCPkj9GDet0hkUgOdxezZgHkQ/6lBzB4lc8YzBjvsoxxAvYJooYVU5nbWJxSo7gucdN6vIF51LjX4XtsFxPWSHfe9iwLi+wJcxWV1cfIKn1Ni4/yhSNwr6JZFebSgBxGjj9oij6DTP0U8QEa7oD0/9ZLDnEOimb8mji8w719/f/KNMZuUxMTOyV66+8fNAsMRIzihqCJO1lTvoPg1s7I9E+g3u/Q9f6k5iJuxoagm09iw+EWHIQlynZI/bFDobcQIw7qxoqEahD3Jt/Bajs1x3Y9UhI7tHDg15YfMJzurOGKXYtUqqAoB4kRIEYnV2NhEoC0cRSI6hYQQSCMHPSSxLyhBALQs0RM6wCSY85T4xwC8UiUFdXSigAnCJ5F0h2J5Pd01TGlCdk44oM4oLEtHtyCOVVIANxnoliE2hNYplvkbwJpBPHZ8ND1uVFIE2DUywRjhADRfX6Esk5o6hp5BGIY51i1YGsZToyMiK+5ERRnIgycQ854LyaLxInxIROeImoS1Um2tYV7K1wEkh4j8oeSpwOoq4ikcgBa4Hyupbs+ykFpkCkxMWLrAUqEGeOKkJ+MWnW7jKbtxIor2tVKU6HvBEzr806rATK8x7qEVRtUaVUjJ5FJclZgLLNdWxBWle0Mem22QweNh6UZA2Z5FZPkONFpUe00hlFVSW9EHu4KOVBOcNlSj1IzohWesgv28WSrKEXu1eHnIEjoRL4SNqn9ApT6X9Wq6DscF+qi6keXtV2jAk+2hb/Fq7BSaBemj0XkHa/KDuolBLoJRHkOVzbbJVyFXOJXo49KmzbHH+8oCEGaQ1RIA1RIA1RIA1RIA2PAQAA///HgeM7AAAABklEQVQDAMCrGk40S6GlAAAAAElFTkSuQmCC">我的</a></div></body></html>

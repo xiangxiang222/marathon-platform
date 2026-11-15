@@ -1,0 +1,13 @@
+{
+  "checks": [
+    "beijing: six categories, red selected state, loaded cover, mobile layout",
+    "shanghai: six categories, red selected state, loaded cover, mobile layout",
+    "xiamen: six categories, red selected state, loaded cover, mobile layout",
+    "Public three-event API and protected admin endpoint"
+  ],
+  "errors": [],
+  "views": [
+    "live-red-390.png"
+  ],
+  "passed": true
+}

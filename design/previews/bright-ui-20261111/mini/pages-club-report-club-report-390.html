@@ -1,0 +1,218 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><style>html,body{margin:0;padding:0}body{padding-bottom:70px}a{display:block;color:inherit;text-decoration:none}button{display:block;box-sizing:border-box;padding:0 14px;line-height:1.35}input,textarea{outline:none}input[type=checkbox]{min-height:0}img{display:inline-block;vertical-align:middle}*{box-sizing:border-box}.native-switch{display:inline-block;width:44px;height:26px;flex:none;border-radius:20px;background:#dedede;position:relative}.native-switch[checked=true]{background:#e1251b}.native-switch:after{content:"";display:block;position:absolute;top:2px;left:2px;width:22px;height:22px;border-radius:50%;background:white}.native-switch[checked=true]:after{left:20px}swiper-item{display:block}.audit-banner{font:10px system-ui;color:#767676;padding:5px 12px;text-align:center}.mirror-tabbar{position:fixed;z-index:50;left:0;right:0;bottom:0;display:flex;background:white;border-top:1px solid #eee;height:64px;padding:6px 0}.mirror-tabbar a{width:25%;font:11px system-ui;text-align:center}.mirror-tabbar img{display:block;margin:0 auto 3px;width:25px;height:25px}</style><style>body {
+  --brand: #e1251b;
+  --brand-soft: #fff2f0;
+  --page-bg: #f5f5f5;
+  --surface: #ffffff;
+  --text: #262626;
+  --text-secondary: #737373;
+  --border: #ebebed;
+  --control-radius: 12.48px;
+  --card-radius: 18.72px;
+  min-height: 100%;
+  background: var(--page-bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.65;
+}
+div, span, a, div, button, input, textarea, div { box-sizing: border-box; }
+button, input, textarea { font-family: inherit; color: var(--text); }
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 44px;
+  margin: 0;
+  padding: 12px 18px;
+  border: 0.52px solid var(--border);
+  border-radius: var(--control-radius);
+  background: var(--surface);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+button::after { border: 0; }
+button[plain] { border: 0.52px solid var(--border); background: var(--surface); }
+input, textarea {
+  min-width: 0;
+  border: 0.52px solid var(--border);
+  border-radius: 10.4px;
+  background: #f8f8f9;
+  color: var(--text);
+  font-size: 14px;
+  caret-color: var(--brand);
+}
+input { min-height: 46px; padding: 0 12.48px; }
+textarea { min-height: 120px; padding: 12.48px; line-height: 1.75; }
+input::placeholder, textarea::placeholder { color: #999999; }
+.pad { padding: 16.64px 16.64px calc(24.96px + env(safe-area-inset-bottom)); }
+.card {
+  margin-bottom: 12.48px;
+  padding: 16.64px;
+  border: 0.52px solid var(--border);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+}
+.title { font-size: 18px; font-weight: 600; line-height: 1.4; letter-spacing: -0.156px; }
+.muted { color: var(--text-secondary); font-size: 12px; }
+.slot { display: flex; justify-content: space-between; gap: 12.48px; margin-top: 6.24px; padding: 9.36px 10.4px; border-radius: 8.32px; background: #f5f5f7; font-size: 14px; }
+.slot-state { color: var(--text-secondary); font-size: 12px; }
+.teal { color: var(--brand); }
+.row { display: flex; justify-content: space-between; gap: 12.48px; padding: 10.4px 0; border-bottom: 0.52px solid var(--border); }
+.row:last-child { border-bottom: 0; }
+.row .k { flex: none; color: var(--text-secondary); }
+.soon { color: #c87825; }
+.err { margin-top: 6.24px; color: #b42318; font-size: 12px; line-height: 1.7; }
+.note { margin-top: 6.24px; color: var(--brand); font-size: 12px; line-height: 1.7; }
+.empty { padding: 29.12px 16.64px; color: var(--text-secondary); font-size: 13px; text-align: center; line-height: 1.8; }
+.field { display: flex; align-items: center; gap: 8.32px; }
+.field input { flex: 1; min-width: 0; height: 46px; padding: 0 12.48px; border-radius: 10.4px; background: #f8f8f9; }
+.btn, .login-go {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 46px;
+  margin: 0;
+  padding: 12px 20px;
+  border: 0.52px solid transparent;
+  border-radius: var(--control-radius);
+  background: var(--brand);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
+}
+.login-go { margin-top: 12.48px; }
+button.ghost {
+  min-height: 44px;
+  margin: 8.32px 8.32px 0 0;
+  padding: 10px 16px;
+  border: 0.52px solid var(--border);
+  border-radius: var(--control-radius);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+button.ghost.on { border-color: #f4bdb8; background: var(--brand-soft); color: var(--brand); }
+button[disabled], button.btn[disabled] { border-color: #eeeeef; background: #f2f2f2; color: #999999; opacity: 1; }
+.chip { display: inline-block; margin-right: 4.16px; padding: 2.08px 6.24px; border: 0.52px solid #ebebed; border-radius: 6.24px; background: #f5f5f7; color: var(--text-secondary); font-size: 11px; font-weight: 400; line-height: 1.6; }
+.foot { display: flex; justify-content: space-between; gap: 10.4px; margin-top: 8.32px; color: var(--text-secondary); font-size: 12px; }
+.src { margin-top: 6.24px; color: var(--text-secondary); font-size: 12px; line-height: 1.75; overflow-wrap: anywhere; }
+.card > input, .card > textarea, .card > div { margin-top: 10.4px; }
+.card > input { width: 100%; }
+.card > .btn { margin-top: 12.48px; }
+.primary, .primary-btn, .primary-button, .submit-button, .save-action, .next-action, .bottom-primary, .staff-primary { border-radius: var(--control-radius); }
+.field-label, .form-label { line-height: 1.6; }
+.metric-value, .stat-value, .career-number, .record-number, .rank-time { font-variant-numeric: tabular-nums; }
+/* Shared control roles for new screens and gradual migrations. */
+.ui-control-text { width: auto; min-height: 44px; padding: 10px 8px; border: 0; border-radius: 6.24px; background: transparent; color: var(--brand); font-size: 13px; }
+.ui-control-danger { border-color: #f5d1cc; background: #fff5f3; color: #c52e24; }
+.ui-label { color: var(--text-secondary); font-size: 12px; font-weight: 400; }
+@media (max-width: 350px) { .pad { padding-left: 14px; padding-right: 14px; } .card { padding: 16px; } }
+
+:host { display: block; }
+.page-header { background: #f5f5f5; color: #262626; }
+.header-main { display: flex; align-items: center; padding-left: 16.64px; box-sizing: border-box; }
+.header-title { min-width: 0; overflow: hidden; font-size: 24px; line-height: 1.3; font-weight: 600; letter-spacing: -0.26px; white-space: nowrap; text-overflow: ellipsis; }
+.header-subtitle { padding: 0 16.64px 12.48px; color: #737373; font-size: 12px; line-height: 1.7; }
+@media (max-width: 350px) { .header-main { padding-left: 14px; } .header-subtitle { padding-left: 14px; padding-right: 14px; } }
+
+.identity-page { min-height:100vh; padding:14.56px 12.48px 24.96px; box-sizing:border-box; }
+.hero { padding:9.36px 4.16px 15.6px; }
+.eyebrow { color:var(--text-secondary); font-size: 12px; letter-spacing:1.56px; }
+.title { margin-top:8.32px; }
+.copy { margin-top:7.28px; color:var(--text-secondary); overflow-wrap:anywhere; }
+.panel { margin-bottom:10.4px; padding:14.56px;  background:#fff; }
+.name { font-size: 18px; font-weight:600; overflow-wrap:anywhere; }
+.state { display:inline-block; margin-top:10.4px; padding:5.2px 8.32px; color:var(--text-secondary); background:var(--page-bg);  font-size: 12px; }
+.decision { margin-top:10.4px; padding:10.4px; border-radius:7.28px; color:var(--text-secondary); background:var(--brand-soft); font-size: 12px; line-height:1.8; white-space:pre-wrap; overflow-wrap:anywhere; }
+.label { display:flex; flex-wrap:wrap; gap:6.24px; margin:14.56px 0 6.24px; }
+.label span { color:var(--text-secondary); font-size: 12px; font-weight:400; }
+.identity-page input { width:100%; height:49.92px; padding:0 10.4px; font-size: 14px; }
+.identity-page textarea { width:100%; min-height:130px; padding:10.4px; font-size: 14px; line-height:1.7; }
+.identity-page button,.action-link { display:flex; align-items:center; justify-content:center; width:100%; min-height:44px; padding:10.4px; box-sizing:border-box; border:0;  font-size: 14px; line-height:1.5; }
+.identity-page button::after { border:0; }
+.primary { margin-top:14.56px; color:#fff; background:var(--brand);  }
+.secondary { color:var(--text-secondary); background:#fff;  }
+.panel .secondary { margin-top:12.48px; background:var(--page-bg);  }
+.identity-page .short-intro { min-height:72.8px;  }
+.message { margin:10.4px 0; padding:12.48px; border-radius:8.32px; color:var(--brand); background:var(--brand-soft); font-size: 12px; line-height:1.8; overflow-wrap:anywhere; }
+
+@media (max-width:350px) { .identity-page button,.action-link { min-height:44px;  } .identity-page input { min-height:44px; } }
+
+/* Route geometry: surfaces, controls and compact labels have distinct roles. */
+.mini-club-identity-club-identity .panel { border-radius: 18.72px; }
+.mini-club-identity-club-identity .primary, .mini-club-identity-club-identity .secondary, .mini-club-identity-club-identity .action-link, .mini-club-identity-club-identity .short-intro { border-radius: 12.48px; }
+.mini-club-identity-club-identity .state { border-radius: 7.28px; }
+
+/* Page composition and interaction hierarchy. */
+.mini-club-identity-club-identity { color: var(--text); }
+.mini-club-identity-club-identity button { font-weight: 500; border-radius: 12.48px; }
+
+.identity-page { color: var(--text); background: var(--page-bg); }
+.title { font-size: 24px; font-weight: 600; }
+.panel { border: 1px solid var(--border); }
+.copy { font-size: 13px; line-height: 1.85; }
+.label { font-size: 13px; font-weight: 500; }
+.label span,.state { font-size: 11px; }
+.identity-page input,.identity-page textarea { border: 1px solid var(--border); border-radius: 12.48px; background: var(--page-bg); font-size: 14px; }
+.identity-page .primary,.identity-page .secondary,.action-link { border-radius: 12.48px; font-size: 12px; }
+.identity-page .secondary { border: 1px solid var(--border); background: #fff; }
+
+/* Primary actions read at 14px, secondary actions at 13px; compact filters stay at 12px. */
+.mini-club-identity-club-identity .primary, .mini-club-identity-club-identity .action-link { font-size: 14px; font-weight: 500; }
+.mini-club-identity-club-identity .secondary { font-size: 13px; font-weight: 500; }
+.identity-page .primary,.identity-page .action-link { font-size: 14px; } .identity-page .secondary { font-size: 13px; }
+
+.type-choices { display:flex; flex-direction:column; }
+.identity-page .type-choice { justify-content:flex-start; text-align:left;  }
+.target-card { margin-top:12.48px; padding:12.48px;  }
+.list-heading,.report-heading { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:8.32px; }
+.identity-page .refresh { width:auto; min-width:58.24px; min-height:44px; padding:7.28px; color:var(--text-secondary); background:transparent; font-size: 12px; }
+.report-item { margin-top:10.4px; padding-top:12.48px; border-top:0.52px solid var(--border); }
+.report-heading .state { margin:0;  }
+.report-detail { margin-top:7.28px; color:var(--text-secondary); white-space:pre-wrap; overflow-wrap:anywhere; }
+
+/* Route geometry: surfaces, controls and compact labels have distinct roles. */
+.mini-club-report-club-report .panel, .mini-club-report-club-report .target-card { border-radius: 18.72px; }
+.mini-club-report-club-report .primary, .mini-club-report-club-report .secondary { border-radius: 12.48px; }
+.mini-club-report-club-report .type-choice, .mini-club-report-club-report .state { border-radius: 7.28px; }
+
+/* Page composition and interaction hierarchy. */
+.mini-club-report-club-report { color: var(--text); }
+.mini-club-report-club-report button { font-weight: 500; border-radius: 12.48px; }
+
+.type-choices { gap: 7.28px; }
+.identity-page .type-choice { min-height: 44px; border: 1px solid var(--border); border-radius: 7.28px; background: #fff; color: var(--text-secondary); font-size: 12px; }
+.identity-page .type-choice.selected { border-color: var(--brand); color: var(--brand); background: var(--brand-soft); box-shadow: none; }
+.target-card { border: 1px solid var(--border); border-radius: 18.72px; background: var(--page-bg); }
+.report-detail { font-size: 14px; line-height: 1.8; }
+
+/* Primary actions read at 14px, secondary actions at 13px; compact filters stay at 12px. */
+.mini-club-report-club-report .primary, .mini-club-report-club-report .action-link { font-size: 14px; font-weight: 500; }
+.mini-club-report-club-report .secondary { font-size: 13px; font-weight: 500; }
+</style></head><body><div class="identity-page mini-club-report-club-report">
+  <div class="hero"><div class="eyebrow">私人申诉</div><div class="title">名称与身份申诉</div><div class="copy">同名本身不等于冒用。请说明具体的误导呈现或管理授权问题，平台核对后处理；不会把成员、账目或历史记录移交给申诉方。</div></div>
+  
+  
+    <div class="panel"><div class="name">提交私密工单</div><div class="target-card"><div class="name">杭州一起跑俱乐部</div><div class="copy">杭州 · 负责人 向前跑 · #106</div></div>
+      <div class="label">涉及的跑团号 <span>必填</span></div><input type="number" maxlength="15" placeholder="公开名片中的团号，如 10482" disabled="" aria-label="公开名片中的团号，如 10482" style="">
+      <button class="secondary">查看这个团号的名片</button>
+      <div class="label">遇到了哪种情况</div><div class="type-choices"><button class="type-choice selected" disabled="">同名容易混淆</button><button class="type-choice " disabled="">组织身份被冒用</button><button class="type-choice " disabled="">管理权存在争议</button></div>
+      <div class="copy">城市、简介和团号通常可以帮助辨认。平台可协助核对，同名不会自动被处罚。</div>
+      <div class="label">具体情况与依据 <span>必填</span></div><textarea maxlength="4000" placeholder="描述涉及位置、发生经过、可核对的组织授权和必要的脱敏证据。请勿提交无关的个人资料。" aria-label="描述涉及位置、发生经过、可核对的组织授权和必要的脱敏证据。请勿提交无关的个人资料。" style=""></textarea>
+      <div class="label">公共来源链接 <span>选填</span></div><input maxlength="1000" placeholder="组织主页、公共说明或活动页面链接" aria-label="组织主页、公共说明或活动页面链接" style="">
+      <div class="label">私密联系方式 <span>必填</span></div><input maxlength="200" placeholder="便于平台核对和通知补充的联系方式" aria-label="便于平台核对和通知补充的联系方式" style="">
+      <div class="copy">工单和联系方式仅本人及有权限的平台处理人员可见，不进入公开建议。提交后不会自动下架或公开给对方贴标签。</div><button class="primary" loading="false">私密提交</button>
+    </div>
+    
+    <div class="panel"><div class="list-heading"><div class="name">我的工单进度</div><button class="refresh">刷新</button></div><div class="copy">暂无工单，提交后会显示在这里。</div></div>
+  
+</div>
+</body></html>

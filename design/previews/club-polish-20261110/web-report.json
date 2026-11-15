@@ -1,0 +1,71 @@
+{
+  "kind": "Web browser screenshots with synthetic API responses; no business data access",
+  "checks": [
+    {
+      "scenario": "empty",
+      "width": 320,
+      "scrollWidth": 320,
+      "brokenImages": 0,
+      "passed": true
+    },
+    {
+      "scenario": "signed",
+      "width": 320,
+      "scrollWidth": 320,
+      "brokenImages": 0,
+      "passed": true
+    },
+    {
+      "scenario": "long-name",
+      "width": 320,
+      "scrollWidth": 320,
+      "brokenImages": 0,
+      "passed": true
+    },
+    {
+      "scenario": "empty",
+      "width": 390,
+      "scrollWidth": 390,
+      "brokenImages": 0,
+      "passed": true
+    },
+    {
+      "scenario": "signed",
+      "width": 390,
+      "scrollWidth": 390,
+      "brokenImages": 0,
+      "passed": true
+    },
+    {
+      "scenario": "long-name",
+      "width": 390,
+      "scrollWidth": 390,
+      "brokenImages": 0,
+      "passed": true
+    },
+    {
+      "scenario": "empty",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "brokenImages": 0,
+      "passed": true
+    },
+    {
+      "scenario": "signed",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "brokenImages": 0,
+      "passed": true
+    },
+    {
+      "scenario": "long-name",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "brokenImages": 0,
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "unexpected": [],
+  "passed": true
+}

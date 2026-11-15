@@ -1,0 +1,602 @@
+{
+  "kind": "Current activity-create WXML/WXSS browser source mirror; actual Page VM handlers with synthetic fixtures; not WeChat simulator/device. Native controls approximated.",
+  "source": {
+    "js": "/Users/mengxiangxiang/Documents/work/dev/marathon-platform/miniprogram/pages/activity-create/activity-create.js",
+    "wxml": "/Users/mengxiangxiang/Documents/work/dev/marathon-platform/miniprogram/pages/activity-create/activity-create.wxml",
+    "wxss": "/Users/mengxiangxiang/Documents/work/dev/marathon-platform/miniprogram/pages/activity-create/activity-create.wxss"
+  },
+  "missingHandlers": [],
+  "results": [
+    {
+      "scenario": "fresh",
+      "width": 320,
+      "scrollWidth": 320,
+      "height": 1142,
+      "brokenImages": [],
+      "overflow": [],
+      "footer": [
+        {
+          "text": "保存草稿",
+          "width": 80,
+          "height": 48,
+          "top": 704.328125,
+          "bottom": 752.328125,
+          "lines": [
+            720
+          ]
+        },
+        {
+          "text": "继续 →",
+          "width": 214.421875,
+          "height": 48,
+          "top": 704.328125,
+          "bottom": 752.328125,
+          "lines": [
+            720,
+            720,
+            720
+          ]
+        }
+      ],
+      "restore": [],
+      "groupFields": [],
+      "previewGroups": [],
+      "gatherAt": [],
+      "expressionErrors": [],
+      "layoutErrors": [],
+      "network": [],
+      "passed": true
+    },
+    {
+      "scenario": "draft",
+      "width": 320,
+      "scrollWidth": 320,
+      "height": 1253,
+      "brokenImages": [],
+      "overflow": [],
+      "footer": [
+        {
+          "text": "保存草稿",
+          "width": 80,
+          "height": 48,
+          "top": 704.328125,
+          "bottom": 752.328125,
+          "lines": [
+            720
+          ]
+        },
+        {
+          "text": "继续 →",
+          "width": 214.421875,
+          "height": 48,
+          "top": 704.328125,
+          "bottom": 752.328125,
+          "lines": [
+            720,
+            720,
+            720
+          ]
+        }
+      ],
+      "restore": [
+        {
+          "width": 299.53125,
+          "height": 101.546875
+        }
+      ],
+      "groupFields": [],
+      "previewGroups": [],
+      "gatherAt": [],
+      "expressionErrors": [],
+      "layoutErrors": [],
+      "network": [],
+      "passed": true
+    },
+    {
+      "scenario": "groups",
+      "width": 320,
+      "scrollWidth": 320,
+      "height": 1082,
+      "brokenImages": [],
+      "overflow": [],
+      "footer": [
+        {
+          "text": "保存草稿",
+          "width": 80,
+          "height": 48,
+          "top": 704.328125,
+          "bottom": 752.328125,
+          "lines": [
+            720
+          ]
+        },
+        {
+          "text": "上一步",
+          "width": 60,
+          "height": 48,
+          "top": 704.328125,
+          "bottom": 752.328125,
+          "lines": [
+            720
+          ]
+        },
+        {
+          "text": "继续 →",
+          "width": 149.3125,
+          "height": 48,
+          "top": 704.328125,
+          "bottom": 752.328125,
+          "lines": [
+            720,
+            720,
+            720
+          ]
+        }
+      ],
+      "restore": [],
+      "groupFields": [
+        {
+          "width": 254.625,
+          "height": 46
+        },
+        {
+          "width": 254.625,
+          "height": 46
+        }
+      ],
+      "previewGroups": [],
+      "gatherAt": [],
+      "expressionErrors": [],
+      "layoutErrors": [],
+      "network": [],
+      "passed": true
+    },
+    {
+      "scenario": "sheet",
+      "width": 320,
+      "scrollWidth": 320,
+      "height": 1188,
+      "brokenImages": [],
+      "overflow": [],
+      "footer": [
+        {
+          "text": "保存草稿",
+          "width": 80,
+          "height": 48,
+          "top": 704.328125,
+          "bottom": 752.328125,
+          "lines": [
+            720
+          ]
+        },
+        {
+          "text": "继续 →",
+          "width": 214.421875,
+          "height": 48,
+          "top": 704.328125,
+          "bottom": 752.328125,
+          "lines": [
+            720,
+            720,
+            720
+          ]
+        }
+      ],
+      "restore": [],
+      "groupFields": [],
+      "previewGroups": [],
+      "gatherAt": [],
+      "expressionErrors": [],
+      "layoutErrors": [],
+      "network": [],
+      "passed": true
+    },
+    {
+      "scenario": "new-template",
+      "width": 320,
+      "scrollWidth": 320,
+      "height": 1546,
+      "brokenImages": [],
+      "overflow": [],
+      "footer": [
+        {
+          "text": "退出编辑",
+          "width": 80,
+          "height": 48,
+          "top": 704.328125,
+          "bottom": 752.328125,
+          "lines": [
+            720
+          ]
+        },
+        {
+          "text": "继续 →",
+          "width": 214.421875,
+          "height": 48,
+          "top": 704.328125,
+          "bottom": 752.328125,
+          "lines": [
+            720,
+            720,
+            720
+          ]
+        }
+      ],
+      "restore": [],
+      "groupFields": [],
+      "previewGroups": [],
+      "gatherAt": [
+        "提前 10 分钟"
+      ],
+      "expressionErrors": [],
+      "layoutErrors": [],
+      "network": [],
+      "passed": true
+    },
+    {
+      "scenario": "preview",
+      "width": 320,
+      "scrollWidth": 320,
+      "height": 941,
+      "brokenImages": [],
+      "overflow": [],
+      "footer": [
+        {
+          "text": "保存草稿",
+          "width": 80,
+          "height": 48,
+          "top": 704.328125,
+          "bottom": 752.328125,
+          "lines": [
+            720
+          ]
+        },
+        {
+          "text": "上一步",
+          "width": 60,
+          "height": 48,
+          "top": 704.328125,
+          "bottom": 752.328125,
+          "lines": [
+            720
+          ]
+        },
+        {
+          "text": "确认发布 ↗",
+          "width": 149.3125,
+          "height": 48,
+          "top": 704.328125,
+          "bottom": 752.328125,
+          "lines": [
+            720,
+            720,
+            720
+          ]
+        }
+      ],
+      "restore": [],
+      "groupFields": [],
+      "previewGroups": [
+        "A 组5:30–6:00 /km人数不限"
+      ],
+      "gatherAt": [],
+      "expressionErrors": [],
+      "layoutErrors": [],
+      "network": [],
+      "passed": true
+    },
+    {
+      "scenario": "member",
+      "width": 320,
+      "scrollWidth": 320,
+      "height": 148,
+      "brokenImages": [],
+      "overflow": [],
+      "footer": [],
+      "restore": [],
+      "groupFields": [],
+      "previewGroups": [],
+      "gatherAt": [],
+      "expressionErrors": [],
+      "layoutErrors": [],
+      "network": [],
+      "passed": true
+    },
+    {
+      "scenario": "fresh",
+      "width": 390,
+      "scrollWidth": 390,
+      "height": 1242,
+      "brokenImages": [],
+      "overflow": [],
+      "footer": [
+        {
+          "text": "保存草稿",
+          "width": 84,
+          "height": 48,
+          "top": 786.640625,
+          "bottom": 834.640625,
+          "lines": [
+            802
+          ]
+        },
+        {
+          "text": "继续 →",
+          "width": 270.671875,
+          "height": 48,
+          "top": 786.640625,
+          "bottom": 834.640625,
+          "lines": [
+            802,
+            802,
+            802
+          ]
+        }
+      ],
+      "restore": [],
+      "groupFields": [],
+      "previewGroups": [],
+      "gatherAt": [],
+      "expressionErrors": [],
+      "layoutErrors": [],
+      "network": [],
+      "passed": true
+    },
+    {
+      "scenario": "draft",
+      "width": 390,
+      "scrollWidth": 390,
+      "height": 1359,
+      "brokenImages": [],
+      "overflow": [],
+      "footer": [
+        {
+          "text": "保存草稿",
+          "width": 84,
+          "height": 48,
+          "top": 786.640625,
+          "bottom": 834.640625,
+          "lines": [
+            802
+          ]
+        },
+        {
+          "text": "继续 →",
+          "width": 270.671875,
+          "height": 48,
+          "top": 786.640625,
+          "bottom": 834.640625,
+          "lines": [
+            802,
+            802,
+            802
+          ]
+        }
+      ],
+      "restore": [
+        {
+          "width": 360.90625,
+          "height": 105.65625
+        }
+      ],
+      "groupFields": [],
+      "previewGroups": [],
+      "gatherAt": [],
+      "expressionErrors": [],
+      "layoutErrors": [],
+      "network": [],
+      "passed": true
+    },
+    {
+      "scenario": "groups",
+      "width": 390,
+      "scrollWidth": 390,
+      "height": 1176,
+      "brokenImages": [],
+      "overflow": [],
+      "footer": [
+        {
+          "text": "保存草稿",
+          "width": 84,
+          "height": 48,
+          "top": 786.640625,
+          "bottom": 834.640625,
+          "lines": [
+            802
+          ]
+        },
+        {
+          "text": "上一步",
+          "width": 64,
+          "height": 48,
+          "top": 786.640625,
+          "bottom": 834.640625,
+          "lines": [
+            802
+          ]
+        },
+        {
+          "text": "继续 →",
+          "width": 200.4375,
+          "height": 48,
+          "top": 786.640625,
+          "bottom": 834.640625,
+          "lines": [
+            802,
+            802,
+            802
+          ]
+        }
+      ],
+      "restore": [],
+      "groupFields": [
+        {
+          "width": 302.84375,
+          "height": 46
+        },
+        {
+          "width": 302.84375,
+          "height": 46
+        }
+      ],
+      "previewGroups": [],
+      "gatherAt": [],
+      "expressionErrors": [],
+      "layoutErrors": [],
+      "network": [],
+      "passed": true
+    },
+    {
+      "scenario": "sheet",
+      "width": 390,
+      "scrollWidth": 390,
+      "height": 1294,
+      "brokenImages": [],
+      "overflow": [],
+      "footer": [
+        {
+          "text": "保存草稿",
+          "width": 84,
+          "height": 48,
+          "top": 786.640625,
+          "bottom": 834.640625,
+          "lines": [
+            802
+          ]
+        },
+        {
+          "text": "继续 →",
+          "width": 270.671875,
+          "height": 48,
+          "top": 786.640625,
+          "bottom": 834.640625,
+          "lines": [
+            802,
+            802,
+            802
+          ]
+        }
+      ],
+      "restore": [],
+      "groupFields": [],
+      "previewGroups": [],
+      "gatherAt": [],
+      "expressionErrors": [],
+      "layoutErrors": [],
+      "network": [],
+      "passed": true
+    },
+    {
+      "scenario": "new-template",
+      "width": 390,
+      "scrollWidth": 390,
+      "height": 1669,
+      "brokenImages": [],
+      "overflow": [],
+      "footer": [
+        {
+          "text": "退出编辑",
+          "width": 84,
+          "height": 48,
+          "top": 786.640625,
+          "bottom": 834.640625,
+          "lines": [
+            802
+          ]
+        },
+        {
+          "text": "继续 →",
+          "width": 270.671875,
+          "height": 48,
+          "top": 786.640625,
+          "bottom": 834.640625,
+          "lines": [
+            802,
+            802,
+            802
+          ]
+        }
+      ],
+      "restore": [],
+      "groupFields": [],
+      "previewGroups": [],
+      "gatherAt": [
+        "提前 10 分钟"
+      ],
+      "expressionErrors": [],
+      "layoutErrors": [],
+      "network": [],
+      "passed": true
+    },
+    {
+      "scenario": "preview",
+      "width": 390,
+      "scrollWidth": 390,
+      "height": 1009,
+      "brokenImages": [],
+      "overflow": [],
+      "footer": [
+        {
+          "text": "保存草稿",
+          "width": 84,
+          "height": 48,
+          "top": 786.640625,
+          "bottom": 834.640625,
+          "lines": [
+            802
+          ]
+        },
+        {
+          "text": "上一步",
+          "width": 64,
+          "height": 48,
+          "top": 786.640625,
+          "bottom": 834.640625,
+          "lines": [
+            802
+          ]
+        },
+        {
+          "text": "确认发布 ↗",
+          "width": 200.4375,
+          "height": 48,
+          "top": 786.640625,
+          "bottom": 834.640625,
+          "lines": [
+            802,
+            802,
+            802
+          ]
+        }
+      ],
+      "restore": [],
+      "groupFields": [],
+      "previewGroups": [
+        "A 组5:30–6:00 /km人数不限"
+      ],
+      "gatherAt": [],
+      "expressionErrors": [],
+      "layoutErrors": [],
+      "network": [],
+      "passed": true
+    },
+    {
+      "scenario": "member",
+      "width": 390,
+      "scrollWidth": 390,
+      "height": 175,
+      "brokenImages": [],
+      "overflow": [],
+      "footer": [],
+      "restore": [],
+      "groupFields": [],
+      "previewGroups": [],
+      "gatherAt": [],
+      "expressionErrors": [],
+      "layoutErrors": [],
+      "network": [],
+      "passed": true
+    }
+  ],
+  "passed": true
+}

@@ -1,8 +1,16 @@
 {
-  "kind": "Home search/filter, exercise and personal profile UI checks with synthetic local replies; no business data writes",
+  "kind": "Focused Web UI checks with synthetic local replies; no business data writes",
   "scenes": [
     {
       "name": "races",
+      "width": 320,
+      "scrollWidth": 320,
+      "viewport": 320,
+      "brokenImages": [],
+      "passed": true
+    },
+    {
+      "name": "clubs",
       "width": 320,
       "scrollWidth": 320,
       "viewport": 320,
@@ -27,6 +35,14 @@
     },
     {
       "name": "races",
+      "width": 390,
+      "scrollWidth": 390,
+      "viewport": 390,
+      "brokenImages": [],
+      "passed": true
+    },
+    {
+      "name": "clubs",
       "width": 390,
       "scrollWidth": 390,
       "viewport": 390,
@@ -61,6 +77,20 @@
       "passed": true
     },
     {
+      "name": "/clubs/directory search",
+      "keyword": "晨光",
+      "buttonWidth": 56,
+      "hitHeight": 44,
+      "fillHeight": 34,
+      "inputWidth": 105,
+      "passed": true
+    },
+    {
+      "name": "club code navigation",
+      "width": 320,
+      "passed": true
+    },
+    {
       "name": "sport first screen and editors",
       "width": 320,
       "heroHeight": 308,
@@ -77,12 +107,35 @@
       "passed": true
     },
     {
+      "name": "/content/articles search",
+      "keyword": "马拉松",
+      "buttonWidth": 56,
+      "hitHeight": 44,
+      "fillHeight": 34,
+      "inputWidth": 176,
+      "passed": true
+    },
+    {
       "name": "/races search",
       "keyword": "杭州",
       "buttonWidth": 56,
       "hitHeight": 44,
       "fillHeight": 34,
       "inputWidth": 267,
+      "passed": true
+    },
+    {
+      "name": "/clubs/directory search",
+      "keyword": "晨光",
+      "buttonWidth": 56,
+      "hitHeight": 44,
+      "fillHeight": 34,
+      "inputWidth": 145,
+      "passed": true
+    },
+    {
+      "name": "club code navigation",
+      "width": 390,
       "passed": true
     },
     {
@@ -99,6 +152,15 @@
       "columns": 2,
       "minWidth": 164,
       "overflow": 0,
+      "passed": true
+    },
+    {
+      "name": "/content/articles search",
+      "keyword": "马拉松",
+      "buttonWidth": 56,
+      "hitHeight": 44,
+      "fillHeight": 34,
+      "inputWidth": 232,
       "passed": true
     }
   ],

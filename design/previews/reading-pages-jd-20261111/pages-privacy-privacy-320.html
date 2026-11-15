@@ -1,0 +1,196 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><style>html,body{margin:0;padding:0}body{padding-bottom:70px}a{display:block;color:inherit;text-decoration:none}button{display:block;box-sizing:border-box;padding:0 14px;line-height:1.35}input,textarea{outline:none}input[type=checkbox]{min-height:0}img{display:inline-block;vertical-align:middle}*{box-sizing:border-box}.native-switch{display:inline-block;width:44px;height:26px;flex:none;border-radius:20px;background:#dedede;position:relative}.native-switch[checked=true]{background:#ff1838}.native-switch:after{content:"";display:block;position:absolute;top:2px;left:2px;width:22px;height:22px;border-radius:50%;background:white}.native-switch[checked=true]:after{left:20px}swiper-item{display:block}.audit-banner{font:10px system-ui;color:#767676;padding:5px 12px;text-align:center}.mirror-tabbar{position:fixed;z-index:50;left:0;right:0;bottom:0;display:flex;background:white;border-top:1px solid #eee;height:64px;padding:6px 0}.mirror-tabbar a{width:25%;font:11px system-ui;text-align:center}.mirror-tabbar img{display:block;margin:0 auto 3px;width:25px;height:25px}</style><style>body {
+  --brand: #ff1838;
+  --brand-soft: #fff0f2;
+  --page-bg: #f5f5f5;
+  --surface: #ffffff;
+  --brand-header: linear-gradient(145deg, #ff1838 0%, #ff2946 60%, #ff4659 100%);
+  --text: #1a1a1a;
+  --text-secondary: #777777;
+  --border: #eeeeee;
+  --sky: #555555;
+  --sky-soft: #f7f7f7;
+  --mint: #555555;
+  --mint-soft: #f7f7f7;
+  --lilac: #555555;
+  --lilac-soft: #f7f7f7;
+  --sun: #555555;
+  --sun-soft: #f7f7f7;
+  --peach-soft: #fff0f2;
+  --card-shadow: none;
+  --action-fill: #ff1838;
+  --control-radius: 8.533333333333333px;
+  --card-radius: 10.24px;
+  min-height: 100%;
+  background: var(--page-bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+div, span, a, div, button, input, textarea, div { box-sizing: border-box; }
+button, input, textarea { font-family: inherit; color: var(--text); }
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 44px;
+  margin: 0;
+  padding: 12px 18px;
+  border: 0.4266666666666667px solid var(--border);
+  border-radius: var(--control-radius);
+  background: var(--surface);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+button::after { border: 0; }
+button[plain] { border: 0.4266666666666667px solid var(--border); background: var(--surface); }
+input, textarea {
+  min-width: 0;
+  border: 0.4266666666666667px solid var(--border);
+  border-radius: 8.533333333333333px;
+  background: var(--page-bg);
+  color: var(--text);
+  font-size: 14px;
+  caret-color: var(--brand);
+}
+input { min-height: 46px; padding: 0 10.24px; }
+textarea { min-height: 120px; padding: 10.24px; line-height: 1.75; }
+input::placeholder, textarea::placeholder { color: #999999; }
+.pad { padding: 13.653333333333334px 13.653333333333334px calc(20.48px + env(safe-area-inset-bottom)); }
+.card {
+  margin-bottom: 10.24px;
+  padding: 13.653333333333334px;
+  border: 0.4266666666666667px solid var(--border);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  box-shadow: var(--card-shadow);
+}
+.title { font-size: 18px; font-weight: 600; line-height: 1.4; letter-spacing: normal; }
+.muted { color: var(--text-secondary); font-size: 12px; }
+.slot { display: flex; justify-content: space-between; gap: 10.24px; margin-top: 5.12px; padding: 7.68px 8.533333333333333px; border-radius: 6.826666666666667px; background: var(--page-bg); font-size: 14px; }
+.slot-state { color: var(--text-secondary); font-size: 12px; }
+.teal { color: var(--brand); }
+.row { display: flex; justify-content: space-between; gap: 10.24px; padding: 8.533333333333333px 0; border-bottom: 0.4266666666666667px solid var(--border); }
+.row:last-child { border-bottom: 0; }
+.row .k { flex: none; color: var(--text-secondary); }
+.soon { color: #c87825; }
+.err { margin-top: 5.12px; color: #b42318; font-size: 12px; line-height: 1.7; }
+.note { margin-top: 5.12px; color: var(--brand); font-size: 12px; line-height: 1.7; }
+.empty { padding: 23.893333333333334px 13.653333333333334px; color: var(--text-secondary); font-size: 13px; text-align: center; line-height: 1.8; }
+.field { display: flex; align-items: center; gap: 6.826666666666667px; }
+.field input { flex: 1; min-width: 0; height: 46px; padding: 0 10.24px; border-radius: 8.533333333333333px; background: var(--page-bg); }
+.btn, .login-go {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 46px;
+  margin: 0;
+  padding: 12px 20px;
+  border: 0.4266666666666667px solid transparent;
+  border-radius: var(--control-radius);
+  background: var(--action-fill);
+  box-shadow: none;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
+}
+.login-go { margin-top: 10.24px; }
+button.ghost {
+  min-height: 44px;
+  margin: 6.826666666666667px 6.826666666666667px 0 0;
+  padding: 10px 16px;
+  border: 0.4266666666666667px solid var(--border);
+  border-radius: var(--control-radius);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+button.ghost.on { border-color: var(--brand); background: var(--brand-soft); color: var(--brand); }
+button[disabled], button.btn[disabled] { border-color: #eeeeef; background: #f2f2f2; color: #999999; opacity: 1; box-shadow: none; }
+.chip { display: inline-block; margin-right: 3.4133333333333336px; padding: 1.7066666666666668px 5.12px; border: 0.4266666666666667px solid #ebebed; border-radius: 5.12px; background: #f5f5f7; color: var(--text-secondary); font-size: 12px; font-weight: 400; line-height: 1.6; }
+.foot { display: flex; justify-content: space-between; gap: 8.533333333333333px; margin-top: 6.826666666666667px; color: var(--text-secondary); font-size: 12px; }
+.src { margin-top: 5.12px; color: var(--text-secondary); font-size: 12px; line-height: 1.75; overflow-wrap: anywhere; }
+.card > input, .card > textarea, .card > div { margin-top: 8.533333333333333px; }
+.card > input { width: 100%; }
+.card > .btn { margin-top: 10.24px; }
+.primary, .primary-btn, .primary-button, .submit-button, .save-action, .next-action, .bottom-primary, .staff-primary { border-radius: var(--control-radius); }
+.field-label, .form-label { line-height: 1.6; }
+.metric-value, .stat-value, .career-number, .record-number, .rank-time { font-variant-numeric: tabular-nums; }
+/* Shared control roles for new screens and gradual migrations. */
+.ui-control-text { width: auto; min-height: 44px; padding: 10px 8px; border: 0; border-radius: 5.12px; background: transparent; color: var(--brand); font-size: 13px; }
+.ui-control-danger { border-color: #f5d1cc; background: #fff5f3; color: #c52e24; }
+.ui-label { color: var(--text-secondary); font-size: 12px; font-weight: 400; }
+.surface-sky, .surface-mint, .surface-lilac, .surface-sun, .surface-peach { background: var(--surface); border-color: var(--border); }
+@media (max-width: 350px) { .pad { padding-left: 14px; padding-right: 14px; } .card { padding: 16px; } }
+
+:host { display: block; }
+.page-header { position: relative; padding-bottom: 17.066666666666666px; background: var(--brand-header); color: #fff; }
+.header-main { display: flex; align-items: center; padding-left: 13.653333333333334px; box-sizing: border-box; }
+.header-title { flex: 1; min-width: 0; overflow: hidden; font-size: 24px; line-height: 1.3; font-weight: 600; letter-spacing: normal; white-space: nowrap; text-overflow: ellipsis; }
+.header-subtitle { padding: 0 13.653333333333334px 10.24px; color: #ffffffcf; font-size: 12px; line-height: 1.5; }
+@media (max-width: 350px) { .header-main { padding-left: 14px; } .header-subtitle { padding-left: 14px; padding-right: 14px; } }
+
+.header-actions { display: flex; flex: none; align-items: center; justify-content: flex-end; }
+
+.header-actions { position: relative; color: #fff; }
+
+.privacy-page { min-height: 100vh; padding: 13.653333333333334px 10.24px calc(20.48px + env(safe-area-inset-bottom)); box-sizing: border-box; background: transparent; }
+.privacy-card {  background:var(--surface); border-color:var(--border); box-shadow:none; }
+.privacy-title { margin-bottom: 10.24px; }
+.privacy-copy { margin: 8.533333333333333px 0; color: var(--text-secondary); }
+.contract { margin-top: 11.946666666666667px; text-align: left;  }
+.contract::after,.agree::after,.decline::after { border: 0;  }
+.reason { margin-top: 10.24px; color: var(--text-secondary); font-size:12px; line-height: 16.213333333333335px; }
+.agree,.decline { width: 100%; height: 37.54666666666667px; margin-top: 10.24px;  font-size:14px; line-height: 37.54666666666667px; }
+.agree { color:var(--surface); font-weight: 600;  }
+.message { margin-top: 7.68px; color: var(--brand); font-size:12px; line-height: 16.213333333333335px; }
+.full-policy {padding:10.666666666666666px;margin-top:10.666666666666666px;background: var(--page-bg);border-radius:6.4px}.full-policy>div{font-size:12px;color:var(--text-secondary);line-height:1.9;margin-bottom:4.266666666666667px}.full-policy button{background:none;margin:0;padding:6.4px 0;text-align:left;font-size:12px;line-height:1.8;min-height:44px;color:var(--brand)}.full-policy button::after{border:0}
+
+/* Route geometry: surfaces, controls and compact labels have distinct roles. */
+.mini-privacy-privacy .privacy-card { border-radius: 15.36px; }
+.mini-privacy-privacy .agree, .mini-privacy-privacy .decline, .mini-privacy-privacy .contract { border-radius: 10.24px; }
+
+/* Page composition and interaction hierarchy. */
+.mini-privacy-privacy { color: var(--text); }
+.mini-privacy-privacy button { font-weight: 500; border-radius: 10.24px; }
+
+.privacy-page { color: var(--text); background: transparent; }
+.privacy-card { padding: 15.36px; border: 1px solid var(--border); background:var(--surface); border-color:var(--border); box-shadow:none; }
+.privacy-title { font-size:24px; font-weight: 600; line-height: 1.5; }
+.privacy-copy { font-size:14px; line-height: 1.9; }
+.agree { background: var(--brand); }
+.decline { border: 1px solid var(--border); background:var(--surface); color: var(--text-secondary); }
+.contract { min-height: 44px; padding: 5.12px 0; background: transparent; color: var(--brand); font-size:12px; }
+
+/* Primary actions read at 14px, secondary actions at 13px; compact filters stay at 12px. */
+.mini-privacy-privacy .agree { font-size:14px; font-weight: 500; }
+.mini-privacy-privacy .decline { font-size:13px; font-weight: 500; }
+
+.privacy-page{background:var(--page-bg);font-size:14px;letter-spacing:normal}.privacy-card{border-radius:10.24px;border-color:var(--border);box-shadow:none;padding:13.653333333333334px;background:var(--surface)}.privacy-title{font-size:24px;font-weight:600;letter-spacing:normal}.privacy-copy{font-size:14px;line-height:1.85;color:var(--text)}.full-policy{background:var(--page-bg);border-radius:8.533333333333333px}.full-policy button,.contract{font-size:14px;min-height:44px;border-radius:8.533333333333333px}.agree,.decline{min-height:44px;height:auto;line-height:1.5;padding:12px 18px;border-radius:8.533333333333333px;font-size:14px;font-weight:500}.agree{background:var(--brand);color:var(--surface)}.reason,.message{font-size:12px;line-height:1.85}.privacy-page button{font-weight:500}
+
+</style></head><body><div class="privacy-page mini-privacy-privacy">
+  <div class="privacy-card">
+    <div class="privacy-title">小程序用户隐私保护指引</div>
+    <div class="privacy-copy">本平台使用你提供的微信登录凭证、昵称和头像来识别账号；保存你主动标记的赛事、成绩，以及你提交到跑团活动中的信息和图片，用于赛事管理、跑团协作与个人记录。</div>
+    <div class="privacy-copy">头像、昵称和成绩资料会按页面说明展示给跑团成员或活动管理者。浏览赛事和参与跑团不要求手机号、精确位置或健康档案。你可以在个人资料中修改头像与昵称，也可以通过平台联系渠道申请处理账号资料。</div>
+    <div class="privacy-copy">提交共创建议时，平台保存你主动填写的标题、正文、分类和截图。审核通过后，建议、昵称、截图、票数及官方回复会公开展示。请勿在建议里填写电话、地址或上传他人个人资料。领奖时仅在你主动同意后保存收件人、手机号和地址，用于寄送该建议对应的实物奖励，仅本人和平台管理员可以查看；不填写不影响其他功能。</div>
+    <div class="privacy-copy">主动导入 FIT／TCX 运动文件时，平台仅保存活动类型、起止时间、距离、运动用时与爬升摘要，用于个人运动统计，并按所在跑团规则判断是否计入跑量 PK。原文件只用于本次解析，不保存文件、GPS 轨迹或心率。你可以在运动记录中删除已导入的记录。</div>
+    <div class="privacy-copy">你主动申请跑团组织身份核验或提交名称与身份申诉时，平台保存组织名称、授权范围、公共来源链接、必要的授权说明或证据及联系方式，用于核对组织管理关系、处理争议和反馈进度。这些材料仅申请人本人和有权限的平台处理人员可见，不进入公开名片或共创建议；公开名片只展示城市、负责人公开昵称、团号和有效核验的范围与日期。请仅提交处理所需的脱敏材料，不提交无关个人资料。</div>
+    <div class="privacy-copy">使用图片选择、微信登录等隐私相关能力前，请阅读微信展示的隐私保护指引。具体收集项目、保存期限、处理方式和联系渠道以小程序管理后台发布的指引为准。</div>
+    <button class="contract">查看小程序用户隐私保护指引</button>
+    <div class="full-policy"><div>进一步了解赛历如何处理个人信息</div><button>完整隐私政策 ›</button><button>个人信息收集清单 ›</button><button>第三方信息共享清单 ›</button><button>系统权限与小程序接口说明 ›</button><button>个人信息权利与联系渠道 ›</button></div>
+    
+    <button id="privacy-agree-btn" class="agree" open-type="agreePrivacyAuthorization">阅读并同意</button>
+    
+    
+  </div>
+</div>
+</body></html>

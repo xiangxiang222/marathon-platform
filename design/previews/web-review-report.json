@@ -1,0 +1,233 @@
+{
+  "kind": "Web真实页面；登录身份、个人记录与写操作使用浏览器内存fixture；赛事读取本地真实GET接口",
+  "checks": [
+    {
+      "label": "web-events-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "title": "赛历",
+      "selected": [
+        "赛事"
+      ],
+      "inputs": 1
+    },
+    {
+      "label": "web-clubs-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "title": "跑团",
+      "selected": [
+        "跑团"
+      ],
+      "inputs": 1
+    },
+    {
+      "label": "web-sport-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "title": "运动",
+      "selected": [
+        "运动"
+      ],
+      "inputs": 1
+    },
+    {
+      "label": "sport-target-record-390",
+      "pass": true
+    },
+    {
+      "label": "web-mine-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "title": "我的",
+      "selected": [
+        "我的"
+      ],
+      "inputs": 0
+    },
+    {
+      "label": "web-mine-results-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "title": "我的",
+      "selected": [
+        "我的"
+      ],
+      "inputs": 0
+    },
+    {
+      "label": "web-mine-profile-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "title": "我的",
+      "selected": [
+        "我的"
+      ],
+      "inputs": 2
+    },
+    {
+      "label": "web-race-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "title": "赛事",
+      "selected": [],
+      "inputs": 0
+    },
+    {
+      "label": "race-mark-390",
+      "pass": true
+    },
+    {
+      "label": "web-events-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "title": "赛历",
+      "selected": [
+        "赛事"
+      ],
+      "inputs": 1
+    },
+    {
+      "label": "web-clubs-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "title": "跑团",
+      "selected": [
+        "跑团"
+      ],
+      "inputs": 1
+    },
+    {
+      "label": "web-sport-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "title": "运动",
+      "selected": [
+        "运动"
+      ],
+      "inputs": 1
+    },
+    {
+      "label": "sport-target-record-320",
+      "pass": true
+    },
+    {
+      "label": "web-mine-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "title": "我的",
+      "selected": [
+        "我的"
+      ],
+      "inputs": 0
+    },
+    {
+      "label": "web-mine-results-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "title": "我的",
+      "selected": [
+        "我的"
+      ],
+      "inputs": 0
+    },
+    {
+      "label": "web-mine-profile-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "title": "我的",
+      "selected": [
+        "我的"
+      ],
+      "inputs": 2
+    },
+    {
+      "label": "web-race-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "title": "赛事",
+      "selected": [],
+      "inputs": 0
+    },
+    {
+      "label": "race-mark-320",
+      "pass": true
+    },
+    {
+      "label": "web-mine-guest-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "title": "我的",
+      "selected": [
+        "我的"
+      ],
+      "inputs": 0
+    },
+    {
+      "label": "race-login-return",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "console": [],
+  "failed": [],
+  "writes": [
+    {
+      "p": "/runs-flag",
+      "method": "PUT",
+      "body": {
+        "month": "2026-10",
+        "targetKm": 240,
+        "gender": ""
+      }
+    },
+    {
+      "p": "/runs",
+      "method": "POST",
+      "body": {
+        "type": "run",
+        "startedAt": "2026-10-27 07:00",
+        "distanceKm": 10,
+        "duration": "0:50:00",
+        "climb": 0,
+        "city": ""
+      }
+    },
+    {
+      "p": "/me/races/bishan",
+      "method": "PUT",
+      "body": {
+        "status": "已报名"
+      }
+    },
+    {
+      "p": "/runs-flag",
+      "method": "PUT",
+      "body": {
+        "month": "2026-10",
+        "targetKm": 240,
+        "gender": ""
+      }
+    },
+    {
+      "p": "/runs",
+      "method": "POST",
+      "body": {
+        "type": "run",
+        "startedAt": "2026-10-27 07:00",
+        "distanceKm": 10,
+        "duration": "0:50:00",
+        "climb": 0,
+        "city": ""
+      }
+    },
+    {
+      "p": "/me/races/bishan",
+      "method": "PUT",
+      "body": {
+        "status": "已报名"
+      }
+    }
+  ],
+  "passed": true
+}

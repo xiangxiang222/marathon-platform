@@ -1,0 +1,268 @@
+{
+  "kind": "Training templates browser acceptance. Real Vue UI, intercepted in-memory APIs; no business database writes.",
+  "checks": [
+    {
+      "name": "step1-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "footer": [
+        {
+          "text": "继续 →",
+          "width": 226,
+          "height": 46
+        }
+      ]
+    },
+    {
+      "name": "templates load and shared template starts a clean occurrence",
+      "passed": true
+    },
+    {
+      "name": "naming-sheet-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "footer": [
+        {
+          "text": "继续 →",
+          "width": 238,
+          "height": 46
+        }
+      ]
+    },
+    {
+      "name": "save current training writes a portable shared template and leaves activity/draft intact",
+      "passed": true
+    },
+    {
+      "name": "draft-restore-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "footer": [
+        {
+          "text": "继续 →",
+          "width": 226,
+          "height": 46
+        }
+      ]
+    },
+    {
+      "name": "footer geometry",
+      "top": 771,
+      "bottom": 844,
+      "height": 73,
+      "viewport": 844,
+      "buttons": [
+        {
+          "text": "继续 →",
+          "left": 148,
+          "right": 374,
+          "width": 226,
+          "height": 46,
+          "lines": [
+            799,
+            794,
+            797
+          ]
+        }
+      ]
+    },
+    {
+      "name": "draft-restore-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "footer": [
+        {
+          "text": "继续 →",
+          "width": 168,
+          "height": 46
+        }
+      ]
+    },
+    {
+      "name": "footer geometry",
+      "top": 687,
+      "bottom": 760,
+      "height": 73,
+      "viewport": 760,
+      "buttons": [
+        {
+          "text": "继续 →",
+          "left": 140,
+          "right": 308,
+          "width": 168,
+          "height": 46,
+          "lines": [
+            715,
+            710,
+            713
+          ]
+        }
+      ]
+    },
+    {
+      "name": "reload reads server templates and restores account-scoped draft with horizontal controls",
+      "passed": true
+    },
+    {
+      "name": "step2-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "footer": [
+        {
+          "text": "上一步",
+          "width": 144,
+          "height": 46
+        },
+        {
+          "text": "继续 →",
+          "width": 144,
+          "height": 46
+        }
+      ]
+    },
+    {
+      "name": "footer geometry",
+      "top": 687,
+      "bottom": 760,
+      "height": 73,
+      "viewport": 760,
+      "buttons": [
+        {
+          "text": "上一步",
+          "left": 12,
+          "right": 156,
+          "width": 144,
+          "height": 46,
+          "lines": [
+            715
+          ]
+        },
+        {
+          "text": "继续 →",
+          "left": 164,
+          "right": 308,
+          "width": 144,
+          "height": 46,
+          "lines": [
+            715,
+            710,
+            713
+          ]
+        }
+      ]
+    },
+    {
+      "name": "step2-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "footer": [
+        {
+          "text": "上一步",
+          "width": 173,
+          "height": 46
+        },
+        {
+          "text": "继续 →",
+          "width": 173,
+          "height": 46
+        }
+      ]
+    },
+    {
+      "name": "footer geometry",
+      "top": 771,
+      "bottom": 844,
+      "height": 73,
+      "viewport": 844,
+      "buttons": [
+        {
+          "text": "上一步",
+          "left": 16,
+          "right": 189,
+          "width": 173,
+          "height": 46,
+          "lines": [
+            799
+          ]
+        },
+        {
+          "text": "继续 →",
+          "left": 201,
+          "right": 374,
+          "width": 173,
+          "height": 46,
+          "lines": [
+            799,
+            794,
+            797
+          ]
+        }
+      ]
+    },
+    {
+      "name": "group cards and fixed footer fit 320 and 390 without horizontal overflow or covered final field",
+      "passed": true
+    },
+    {
+      "name": "preview-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "footer": [
+        {
+          "text": "上一步",
+          "width": 176,
+          "height": 46
+        },
+        {
+          "text": "确认发布训练",
+          "width": 170,
+          "height": 46
+        }
+      ]
+    },
+    {
+      "name": "publishing a reused template produces one independent occurrence with only stable group fields",
+      "passed": true
+    },
+    {
+      "name": "apply clears old occurrence; template edit returns original unsaved activity and cannot change published activity",
+      "passed": true
+    },
+    {
+      "name": "deleting shared template leaves current form, local draft and published occurrence intact",
+      "passed": true
+    },
+    {
+      "name": "custom template editor saves without dates or location and leaves activity snapshot intact",
+      "passed": true
+    },
+    {
+      "name": "ordinary member has no template library and cannot issue writes",
+      "passed": true
+    },
+    {
+      "name": "template load error can retry without blocking manual form",
+      "passed": true
+    },
+    {
+      "name": "late response from previous account cannot populate current editor",
+      "passed": true
+    },
+    {
+      "name": "club navigation ignores previous club delayed template list",
+      "passed": true
+    }
+  ],
+  "screenshots": [
+    "web-step1-390.png",
+    "web-naming-sheet-390.png",
+    "web-draft-restore-390.png",
+    "web-draft-restore-320.png",
+    "web-step2-320.png",
+    "web-step2-390.png",
+    "web-preview-390.png"
+  ],
+  "errors": [],
+  "unexpected": [],
+  "passed": true
+}

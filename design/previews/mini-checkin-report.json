@@ -1,0 +1,26 @@
+{
+  "kind": "Mini-program check-in Page VM acceptance",
+  "checks": [
+    {
+      "scenario": "future",
+      "passed": true
+    },
+    {
+      "scenario": "live",
+      "passed": true
+    },
+    {
+      "scenario": "ended",
+      "passed": true
+    },
+    {
+      "scenario": "cancelled",
+      "passed": true
+    },
+    {
+      "scenario": "unsigned",
+      "passed": true
+    }
+  ],
+  "passed": true
+}

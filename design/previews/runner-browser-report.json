@@ -1,0 +1,157 @@
+{
+  "kind": "Runner center browser regression; API reads/writes use in-memory fixtures, no business database writes",
+  "checks": [
+    {
+      "name": "top-right settings preserve tabs and contain the only logout 320",
+      "passed": true
+    },
+    {
+      "name": "top-right settings preserve tabs and contain the only logout 390",
+      "passed": true
+    },
+    {
+      "name": "top-right settings preserve tabs and contain the only logout 1440",
+      "passed": true
+    },
+    {
+      "name": "poster tools stay with career results and empty records guide the next step",
+      "passed": true
+    },
+    {
+      "name": "a profile save resolving after logout cannot restore the previous account",
+      "passed": true
+    },
+    {
+      "name": "responsive dashboard and seven detail views 320",
+      "passed": true
+    },
+    {
+      "name": "responsive dashboard and seven detail views 390",
+      "passed": true
+    },
+    {
+      "name": "responsive dashboard and seven detail views 1440",
+      "passed": true
+    },
+    {
+      "name": "failed runner request can retry without losing navigation",
+      "passed": true
+    },
+    {
+      "name": "period and offset navigation use matching query and totals",
+      "passed": true
+    },
+    {
+      "name": "weekly comparison uses selected historical period when previous week is empty",
+      "passed": true
+    },
+    {
+      "name": "annual pace keeps unknown-distance years missing and explains direction",
+      "passed": true
+    },
+    {
+      "name": "timeline excludes future and invalid dates, retains online finishes, and filters year/type",
+      "passed": true
+    },
+    {
+      "name": "PB cards and badges use offline road races",
+      "passed": true
+    },
+    {
+      "name": "city passport distinguishes equal city names and excludes online/future",
+      "passed": true
+    },
+    {
+      "name": "city passport shows every result from multiple races in a selected city",
+      "passed": true
+    },
+    {
+      "name": "private collection remains previewable and removable after its result is deleted",
+      "passed": true
+    },
+    {
+      "name": "device import validates before upload, displays duplicate and server failure without claiming official sync",
+      "passed": true
+    },
+    {
+      "name": "declining independent file parsing leaves import usable and agreement carries the current policy version",
+      "passed": true
+    },
+    {
+      "name": "a late file parsing agreement cannot upload under a changed account",
+      "passed": true
+    },
+    {
+      "name": "navigation away invalidates a pending file agreement and its detached confirmation button",
+      "passed": true
+    },
+    {
+      "name": "device connected state synchronizes and disconnect confirmation keeps saved workouts",
+      "passed": true
+    },
+    {
+      "name": "unavailable legacy device credentials can only be cleared without exposing sync or authorization",
+      "passed": true
+    },
+    {
+      "name": "legacy proof remains visible and opens private preview",
+      "passed": true
+    },
+    {
+      "name": "upload validates type and associates selected race/project",
+      "passed": true
+    },
+    {
+      "name": "cancel deletion preserves media; confirmed deletion preserves proof",
+      "passed": true
+    },
+    {
+      "name": "empty statistics and collections offer usable next steps",
+      "passed": true
+    },
+    {
+      "name": "guest login returns to chosen collection without leaking private records",
+      "passed": true
+    },
+    {
+      "name": "401 clears private runner data and shows login recovery",
+      "passed": true
+    },
+    {
+      "name": "sport import entrance and explicit mode/ascent edits preserve missing values",
+      "passed": true
+    }
+  ],
+  "screenshots": [
+    "runner-mine-320.png",
+    "runner-stats-320.png",
+    "runner-career-320.png",
+    "runner-footprints-320.png",
+    "runner-honors-320.png",
+    "runner-media-320.png",
+    "runner-devices-320.png",
+    "runner-help-320.png",
+    "runner-mine-390.png",
+    "runner-stats-390.png",
+    "runner-career-390.png",
+    "runner-footprints-390.png",
+    "runner-honors-390.png",
+    "runner-media-390.png",
+    "runner-devices-390.png",
+    "runner-help-390.png",
+    "runner-mine-1440.png",
+    "runner-stats-1440.png",
+    "runner-career-1440.png",
+    "runner-footprints-1440.png",
+    "runner-honors-1440.png",
+    "runner-media-1440.png",
+    "runner-devices-1440.png",
+    "runner-help-1440.png",
+    "runner-empty-honors-320.png"
+  ],
+  "errors": [],
+  "unexpected": [],
+  "startedAt": "2026-11-11T16:09:14.838Z",
+  "passed": true,
+  "finishedAt": "2026-11-11T16:09:33.573Z"
+}

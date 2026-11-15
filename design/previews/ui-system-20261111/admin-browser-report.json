@@ -1,0 +1,925 @@
+{
+  "kind": "Admin browser regression; every API GET and write fulfilled from in-memory fixtures",
+  "startedAt": "2026-11-10T16:42:02.304Z",
+  "checks": [
+    {
+      "label": "overview-1440",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "title": "运营总览",
+      "overflow": []
+    },
+    {
+      "label": "review-1440",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "title": "赛事管理",
+      "overflow": []
+    },
+    {
+      "label": "review-editor-1440",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "title": "赛事管理",
+      "overflow": []
+    },
+    {
+      "label": "review-save-return-publish-1440",
+      "pass": true
+    },
+    {
+      "label": "catalog-editor-1440",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "title": "赛事管理",
+      "overflow": []
+    },
+    {
+      "label": "official-1440",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "title": "赛事管理",
+      "overflow": []
+    },
+    {
+      "label": "news-1440",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "title": "赛事资讯",
+      "overflow": []
+    },
+    {
+      "label": "users-1440",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "title": "跑者管理",
+      "overflow": []
+    },
+    {
+      "label": "user-account-permissions-admin-1440",
+      "pass": true
+    },
+    {
+      "label": "user-detail-1440",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "title": "跑者管理",
+      "overflow": []
+    },
+    {
+      "label": "clubs-1440",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "title": "跑团管理",
+      "overflow": []
+    },
+    {
+      "label": "club-detail-1440",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "title": "跑团管理",
+      "overflow": []
+    },
+    {
+      "label": "joins-1440",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "title": "申请审核",
+      "overflow": []
+    },
+    {
+      "label": "approval-queues-1440",
+      "pass": true
+    },
+    {
+      "label": "runs-1440",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "title": "运动记录",
+      "overflow": []
+    },
+    {
+      "label": "shop-1440",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "title": "积分礼品",
+      "overflow": []
+    },
+    {
+      "label": "partner-1440",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "title": "合作与物资",
+      "overflow": []
+    },
+    {
+      "label": "accounts-1440",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "title": "账号与权限",
+      "overflow": []
+    },
+    {
+      "label": "overview-1024",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "title": "运营总览",
+      "overflow": []
+    },
+    {
+      "label": "review-1024",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "title": "赛事管理",
+      "overflow": []
+    },
+    {
+      "label": "review-editor-1024",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "title": "赛事管理",
+      "overflow": []
+    },
+    {
+      "label": "review-save-return-publish-1024",
+      "pass": true
+    },
+    {
+      "label": "catalog-editor-1024",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "title": "赛事管理",
+      "overflow": []
+    },
+    {
+      "label": "official-1024",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "title": "赛事管理",
+      "overflow": []
+    },
+    {
+      "label": "news-1024",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "title": "赛事资讯",
+      "overflow": []
+    },
+    {
+      "label": "users-1024",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "title": "跑者管理",
+      "overflow": []
+    },
+    {
+      "label": "user-account-permissions-admin-1024",
+      "pass": true
+    },
+    {
+      "label": "user-detail-1024",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "title": "跑者管理",
+      "overflow": []
+    },
+    {
+      "label": "clubs-1024",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "title": "跑团管理",
+      "overflow": []
+    },
+    {
+      "label": "club-detail-1024",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "title": "跑团管理",
+      "overflow": []
+    },
+    {
+      "label": "joins-1024",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "title": "申请审核",
+      "overflow": []
+    },
+    {
+      "label": "approval-queues-1024",
+      "pass": true
+    },
+    {
+      "label": "runs-1024",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "title": "运动记录",
+      "overflow": []
+    },
+    {
+      "label": "shop-1024",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "title": "积分礼品",
+      "overflow": []
+    },
+    {
+      "label": "partner-1024",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "title": "合作与物资",
+      "overflow": []
+    },
+    {
+      "label": "accounts-1024",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "title": "账号与权限",
+      "overflow": []
+    },
+    {
+      "label": "overview-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "title": "运营总览",
+      "overflow": []
+    },
+    {
+      "label": "review-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "title": "赛事管理",
+      "overflow": []
+    },
+    {
+      "label": "review-editor-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "title": "赛事管理",
+      "overflow": []
+    },
+    {
+      "label": "review-save-return-publish-390",
+      "pass": true
+    },
+    {
+      "label": "catalog-editor-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "title": "赛事管理",
+      "overflow": []
+    },
+    {
+      "label": "official-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "title": "赛事管理",
+      "overflow": []
+    },
+    {
+      "label": "news-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "title": "赛事资讯",
+      "overflow": []
+    },
+    {
+      "label": "users-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "title": "跑者管理",
+      "overflow": []
+    },
+    {
+      "label": "user-account-permissions-admin-390",
+      "pass": true
+    },
+    {
+      "label": "user-detail-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "title": "跑者管理",
+      "overflow": []
+    },
+    {
+      "label": "clubs-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "title": "跑团管理",
+      "overflow": []
+    },
+    {
+      "label": "club-detail-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "title": "跑团管理",
+      "overflow": []
+    },
+    {
+      "label": "joins-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "title": "申请审核",
+      "overflow": []
+    },
+    {
+      "label": "approval-queues-390",
+      "pass": true
+    },
+    {
+      "label": "runs-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "title": "运动记录",
+      "overflow": []
+    },
+    {
+      "label": "shop-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "title": "积分礼品",
+      "overflow": []
+    },
+    {
+      "label": "partner-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "title": "合作与物资",
+      "overflow": []
+    },
+    {
+      "label": "accounts-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "title": "账号与权限",
+      "overflow": []
+    },
+    {
+      "label": "overview-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "title": "运营总览",
+      "overflow": []
+    },
+    {
+      "label": "review-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "title": "赛事管理",
+      "overflow": []
+    },
+    {
+      "label": "review-editor-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "title": "赛事管理",
+      "overflow": []
+    },
+    {
+      "label": "review-save-return-publish-320",
+      "pass": true
+    },
+    {
+      "label": "catalog-editor-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "title": "赛事管理",
+      "overflow": []
+    },
+    {
+      "label": "official-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "title": "赛事管理",
+      "overflow": []
+    },
+    {
+      "label": "news-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "title": "赛事资讯",
+      "overflow": []
+    },
+    {
+      "label": "users-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "title": "跑者管理",
+      "overflow": []
+    },
+    {
+      "label": "user-account-permissions-admin-320",
+      "pass": true
+    },
+    {
+      "label": "user-detail-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "title": "跑者管理",
+      "overflow": []
+    },
+    {
+      "label": "clubs-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "title": "跑团管理",
+      "overflow": []
+    },
+    {
+      "label": "club-detail-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "title": "跑团管理",
+      "overflow": []
+    },
+    {
+      "label": "joins-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "title": "申请审核",
+      "overflow": []
+    },
+    {
+      "label": "approval-queues-320",
+      "pass": true
+    },
+    {
+      "label": "runs-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "title": "运动记录",
+      "overflow": []
+    },
+    {
+      "label": "shop-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "title": "积分礼品",
+      "overflow": []
+    },
+    {
+      "label": "partner-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "title": "合作与物资",
+      "overflow": []
+    },
+    {
+      "label": "accounts-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "title": "账号与权限",
+      "overflow": []
+    },
+    {
+      "label": "club-role-1440",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "title": "运营总览",
+      "overflow": []
+    },
+    {
+      "label": "user-account-permissions-club-1440",
+      "pass": true
+    },
+    {
+      "label": "club-role-limited-navigation-1440",
+      "pass": true
+    },
+    {
+      "label": "club-role-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "title": "运营总览",
+      "overflow": []
+    },
+    {
+      "label": "user-account-permissions-club-390",
+      "pass": true
+    },
+    {
+      "label": "club-role-limited-navigation-390",
+      "pass": true
+    },
+    {
+      "label": "login-1440",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "title": "登录",
+      "overflow": []
+    },
+    {
+      "label": "login-flow",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "console": [],
+  "screenshots": [
+    "admin-overview-1440.png",
+    "admin-review-1440.png",
+    "admin-review-editor-1440.png",
+    "admin-catalog-editor-1440.png",
+    "admin-official-1440.png",
+    "admin-news-1440.png",
+    "admin-users-1440.png",
+    "admin-user-detail-1440.png",
+    "admin-clubs-1440.png",
+    "admin-club-detail-1440.png",
+    "admin-joins-1440.png",
+    "admin-runs-1440.png",
+    "admin-shop-1440.png",
+    "admin-partner-1440.png",
+    "admin-accounts-1440.png",
+    "admin-overview-1024.png",
+    "admin-review-1024.png",
+    "admin-review-editor-1024.png",
+    "admin-catalog-editor-1024.png",
+    "admin-official-1024.png",
+    "admin-news-1024.png",
+    "admin-users-1024.png",
+    "admin-user-detail-1024.png",
+    "admin-clubs-1024.png",
+    "admin-club-detail-1024.png",
+    "admin-joins-1024.png",
+    "admin-runs-1024.png",
+    "admin-shop-1024.png",
+    "admin-partner-1024.png",
+    "admin-accounts-1024.png",
+    "admin-overview-390.png",
+    "admin-review-390.png",
+    "admin-review-editor-390.png",
+    "admin-catalog-editor-390.png",
+    "admin-official-390.png",
+    "admin-news-390.png",
+    "admin-users-390.png",
+    "admin-user-detail-390.png",
+    "admin-clubs-390.png",
+    "admin-club-detail-390.png",
+    "admin-joins-390.png",
+    "admin-runs-390.png",
+    "admin-shop-390.png",
+    "admin-partner-390.png",
+    "admin-accounts-390.png",
+    "admin-overview-320.png",
+    "admin-review-320.png",
+    "admin-review-editor-320.png",
+    "admin-catalog-editor-320.png",
+    "admin-official-320.png",
+    "admin-news-320.png",
+    "admin-users-320.png",
+    "admin-user-detail-320.png",
+    "admin-clubs-320.png",
+    "admin-club-detail-320.png",
+    "admin-joins-320.png",
+    "admin-runs-320.png",
+    "admin-shop-320.png",
+    "admin-partner-320.png",
+    "admin-accounts-320.png",
+    "admin-club-role-1440.png",
+    "admin-club-role-390.png",
+    "admin-login-1440.png"
+  ],
+  "states": [
+    {
+      "width": 1440,
+      "role": "admin",
+      "gets": [
+        "/admin/session",
+        "/admin/overview",
+        "/admin/bot-races?status=pending&page=1",
+        "/admin/places",
+        "/admin/bot-races/71",
+        "/admin/bot-races?status=pending&page=1",
+        "/admin/bot-races?status=pending&page=1",
+        "/admin/bot-races?status=pending&page=1",
+        "/admin/bot-races/72",
+        "/admin/bot-races?status=pending&page=1",
+        "/admin/bot-races?status=pending&page=1",
+        "/admin/official?status=pending&page=1",
+        "/admin/races?when=upcoming&page=1",
+        "/admin/races?when=upcoming&page=1",
+        "/admin/places",
+        "/races/beijing-26",
+        "/admin/races/beijing-26/prizes",
+        "/admin/races/beijing-26/draws",
+        "/admin/races/beijing-26/news",
+        "/races/beijing-26",
+        "/admin/races/beijing-26/prizes",
+        "/admin/races/beijing-26/draws",
+        "/admin/races/beijing-26/news",
+        "/admin/races?when=upcoming&page=1",
+        "/admin/places",
+        "/admin/official?status=pending&page=1",
+        "/admin/places",
+        "/admin/official?status=pending&page=1",
+        "/admin/news?status=published&q=&page=1",
+        "/admin/users?q=&page=1",
+        "/admin/users/1",
+        "/admin/clubs?q=&page=1",
+        "/admin/clubs/91",
+        "/admin/club-requests?page=1",
+        "/admin/club-applications?page=1",
+        "/admin/club-requests?page=1",
+        "/admin/club-applications?page=1",
+        "/admin/runs?page=1",
+        "/admin/shop?giftPage=1&redemptionPage=1",
+        "/admin/partner?supplyPage=1&leaguePage=1&splitPage=1",
+        "/admin/accounts"
+      ],
+      "writes": [
+        {
+          "method": "PUT",
+          "path": "/admin/bot-races/71",
+          "body": "{\"name\":\"2026苏州马拉松\",\"province\":\"苏州\",\"city\":\"苏州\",\"district\":\"\",\"place\":\"苏州体育中心\",\"organizer\":\"赛事组委会\",\"grade\":\"A\",\"distances\":[\"full\",\"half\"],\"kinds\":[],\"meet\":\"offline\",\"groups\":\"\",\"startAt\":\"07:30\",\"bibAt\":\"\",\"scale\":\"20000人\",\"fee\":\"150元\",\"phone\":\"010-12345678\",\"signupUrl\":\"https://example.org/signup\",\"drawUrl\":\"\",\"bibUrl\":\"\",\"resultUrl\":\"\",\"liveUrl\":\"\",\"eventUrl\":\"https://example.org\",\"officialUrl\":\"\",\"raceDate\":\"2026-12-06\",\"route\":\"城市环线\",\"pickup\":\"赛前两天领物\",\"pacers\":\"\",\"guideText\":\"## 参赛资格\\n请核对竞赛规程。\",\"regStart\":\"2026-09-01\",\"deadline\":\"2026-10-28\",\"drawAt\":\"2026-10-29\",\"payDeadline\":\"2026-10-30\",\"deadlineName\":\"报名截止\",\"nodeSource\":\"赛事组委会，2026-10-27\",\"prizesSet\":false,\"drawsSet\":false}"
+        },
+        {
+          "method": "POST",
+          "path": "/admin/bot-races/71/return",
+          "body": "{\"note\":\"请补充官方报名来源\"}"
+        },
+        {
+          "method": "PUT",
+          "path": "/admin/bot-races/72",
+          "body": "{\"name\":\"2026无锡半程马拉松\",\"province\":\"无锡\",\"city\":\"无锡\",\"district\":\"\",\"place\":\"无锡体育中心\",\"organizer\":\"赛事组委会\",\"grade\":\"A\",\"distances\":[\"full\",\"half\"],\"kinds\":[],\"meet\":\"offline\",\"groups\":\"\",\"startAt\":\"07:30\",\"bibAt\":\"\",\"scale\":\"20000人\",\"fee\":\"150元\",\"phone\":\"010-12345678\",\"signupUrl\":\"https://example.org/signup\",\"drawUrl\":\"\",\"bibUrl\":\"\",\"resultUrl\":\"\",\"liveUrl\":\"\",\"eventUrl\":\"https://example.org\",\"officialUrl\":\"\",\"raceDate\":\"2026-12-20\",\"route\":\"城市环线\",\"pickup\":\"赛前两天领物\",\"pacers\":\"\",\"guideText\":\"## 参赛资格\\n请核对竞赛规程。\",\"regStart\":\"2026-09-01\",\"deadline\":\"2026-10-28\",\"drawAt\":\"2026-10-29\",\"payDeadline\":\"2026-10-30\",\"deadlineName\":\"报名截止\",\"nodeSource\":\"赛事组委会，2026-10-27\",\"prizesSet\":false,\"drawsSet\":false}"
+        },
+        {
+          "method": "POST",
+          "path": "/admin/bot-races/72/publish",
+          "body": "{}"
+        },
+        {
+          "method": "PUT",
+          "path": "/admin/races/beijing-26/guide",
+          "body": "{\"name\":\"2026北京马拉松\",\"province\":\"北京\",\"city\":\"北京\",\"district\":\"\",\"place\":\"北京体育中心\",\"organizer\":\"赛事组委会\",\"grade\":\"A\",\"distances\":[\"full\",\"half\"],\"kinds\":[],\"meet\":\"offline\",\"groups\":\"\",\"startAt\":\"07:30\",\"bibAt\":\"\",\"scale\":\"20000人\",\"fee\":\"150元\",\"phone\":\"010-12345678\",\"signupUrl\":\"https://example.org/signup\",\"drawUrl\":\"\",\"bibUrl\":\"\",\"resultUrl\":\"\",\"liveUrl\":\"\",\"eventUrl\":\"https://example.org\",\"officialUrl\":\"\",\"raceDate\":\"2026-11-01\",\"route\":\"城市环线\",\"pickup\":\"赛前两天领物\",\"pacers\":\"\",\"guideText\":\"## 参赛资格\\n请核对竞赛规程。\"}"
+        },
+        {
+          "method": "POST",
+          "path": "/admin/official/sync",
+          "body": "{\"name\":\"\"}"
+        },
+        {
+          "method": "POST",
+          "path": "/admin/club-requests/31",
+          "body": "{\"decision\":\"approve\"}"
+        }
+      ],
+      "unexpected": []
+    },
+    {
+      "width": 1024,
+      "role": "admin",
+      "gets": [
+        "/admin/session",
+        "/admin/overview",
+        "/admin/bot-races?status=pending&page=1",
+        "/admin/places",
+        "/admin/bot-races/71",
+        "/admin/bot-races?status=pending&page=1",
+        "/admin/bot-races?status=pending&page=1",
+        "/admin/bot-races?status=pending&page=1",
+        "/admin/bot-races/72",
+        "/admin/bot-races?status=pending&page=1",
+        "/admin/bot-races?status=pending&page=1",
+        "/admin/official?status=pending&page=1",
+        "/admin/races?when=upcoming&page=1",
+        "/admin/races?when=upcoming&page=1",
+        "/admin/places",
+        "/races/beijing-26",
+        "/admin/races/beijing-26/prizes",
+        "/admin/races/beijing-26/draws",
+        "/admin/races/beijing-26/news",
+        "/races/beijing-26",
+        "/admin/races/beijing-26/prizes",
+        "/admin/races/beijing-26/draws",
+        "/admin/races/beijing-26/news",
+        "/admin/races?when=upcoming&page=1",
+        "/admin/places",
+        "/admin/official?status=pending&page=1",
+        "/admin/places",
+        "/admin/official?status=pending&page=1",
+        "/admin/news?status=published&q=&page=1",
+        "/admin/users?q=&page=1",
+        "/admin/users/1",
+        "/admin/clubs?q=&page=1",
+        "/admin/clubs/91",
+        "/admin/club-requests?page=1",
+        "/admin/club-applications?page=1",
+        "/admin/club-requests?page=1",
+        "/admin/club-applications?page=1",
+        "/admin/runs?page=1",
+        "/admin/shop?giftPage=1&redemptionPage=1",
+        "/admin/partner?supplyPage=1&leaguePage=1&splitPage=1",
+        "/admin/accounts"
+      ],
+      "writes": [
+        {
+          "method": "PUT",
+          "path": "/admin/bot-races/71",
+          "body": "{\"name\":\"2026苏州马拉松\",\"province\":\"苏州\",\"city\":\"苏州\",\"district\":\"\",\"place\":\"苏州体育中心\",\"organizer\":\"赛事组委会\",\"grade\":\"A\",\"distances\":[\"full\",\"half\"],\"kinds\":[],\"meet\":\"offline\",\"groups\":\"\",\"startAt\":\"07:30\",\"bibAt\":\"\",\"scale\":\"20000人\",\"fee\":\"150元\",\"phone\":\"010-12345678\",\"signupUrl\":\"https://example.org/signup\",\"drawUrl\":\"\",\"bibUrl\":\"\",\"resultUrl\":\"\",\"liveUrl\":\"\",\"eventUrl\":\"https://example.org\",\"officialUrl\":\"\",\"raceDate\":\"2026-12-06\",\"route\":\"城市环线\",\"pickup\":\"赛前两天领物\",\"pacers\":\"\",\"guideText\":\"## 参赛资格\\n请核对竞赛规程。\",\"regStart\":\"2026-09-01\",\"deadline\":\"2026-10-28\",\"drawAt\":\"2026-10-29\",\"payDeadline\":\"2026-10-30\",\"deadlineName\":\"报名截止\",\"nodeSource\":\"赛事组委会，2026-10-27\",\"prizesSet\":false,\"drawsSet\":false}"
+        },
+        {
+          "method": "POST",
+          "path": "/admin/bot-races/71/return",
+          "body": "{\"note\":\"请补充官方报名来源\"}"
+        },
+        {
+          "method": "PUT",
+          "path": "/admin/bot-races/72",
+          "body": "{\"name\":\"2026无锡半程马拉松\",\"province\":\"无锡\",\"city\":\"无锡\",\"district\":\"\",\"place\":\"无锡体育中心\",\"organizer\":\"赛事组委会\",\"grade\":\"A\",\"distances\":[\"full\",\"half\"],\"kinds\":[],\"meet\":\"offline\",\"groups\":\"\",\"startAt\":\"07:30\",\"bibAt\":\"\",\"scale\":\"20000人\",\"fee\":\"150元\",\"phone\":\"010-12345678\",\"signupUrl\":\"https://example.org/signup\",\"drawUrl\":\"\",\"bibUrl\":\"\",\"resultUrl\":\"\",\"liveUrl\":\"\",\"eventUrl\":\"https://example.org\",\"officialUrl\":\"\",\"raceDate\":\"2026-12-20\",\"route\":\"城市环线\",\"pickup\":\"赛前两天领物\",\"pacers\":\"\",\"guideText\":\"## 参赛资格\\n请核对竞赛规程。\",\"regStart\":\"2026-09-01\",\"deadline\":\"2026-10-28\",\"drawAt\":\"2026-10-29\",\"payDeadline\":\"2026-10-30\",\"deadlineName\":\"报名截止\",\"nodeSource\":\"赛事组委会，2026-10-27\",\"prizesSet\":false,\"drawsSet\":false}"
+        },
+        {
+          "method": "POST",
+          "path": "/admin/bot-races/72/publish",
+          "body": "{}"
+        },
+        {
+          "method": "PUT",
+          "path": "/admin/races/beijing-26/guide",
+          "body": "{\"name\":\"2026北京马拉松\",\"province\":\"北京\",\"city\":\"北京\",\"district\":\"\",\"place\":\"北京体育中心\",\"organizer\":\"赛事组委会\",\"grade\":\"A\",\"distances\":[\"full\",\"half\"],\"kinds\":[],\"meet\":\"offline\",\"groups\":\"\",\"startAt\":\"07:30\",\"bibAt\":\"\",\"scale\":\"20000人\",\"fee\":\"150元\",\"phone\":\"010-12345678\",\"signupUrl\":\"https://example.org/signup\",\"drawUrl\":\"\",\"bibUrl\":\"\",\"resultUrl\":\"\",\"liveUrl\":\"\",\"eventUrl\":\"https://example.org\",\"officialUrl\":\"\",\"raceDate\":\"2026-11-01\",\"route\":\"城市环线\",\"pickup\":\"赛前两天领物\",\"pacers\":\"\",\"guideText\":\"## 参赛资格\\n请核对竞赛规程。\"}"
+        },
+        {
+          "method": "POST",
+          "path": "/admin/official/sync",
+          "body": "{\"name\":\"\"}"
+        },
+        {
+          "method": "POST",
+          "path": "/admin/club-requests/31",
+          "body": "{\"decision\":\"approve\"}"
+        }
+      ],
+      "unexpected": []
+    },
+    {
+      "width": 390,
+      "role": "admin",
+      "gets": [
+        "/admin/session",
+        "/admin/overview",
+        "/admin/bot-races?status=pending&page=1",
+        "/admin/places",
+        "/admin/bot-races/71",
+        "/admin/bot-races?status=pending&page=1",
+        "/admin/bot-races?status=pending&page=1",
+        "/admin/bot-races?status=pending&page=1",
+        "/admin/bot-races/72",
+        "/admin/bot-races?status=pending&page=1",
+        "/admin/bot-races?status=pending&page=1",
+        "/admin/official?status=pending&page=1",
+        "/admin/races?when=upcoming&page=1",
+        "/admin/races?when=upcoming&page=1",
+        "/admin/places",
+        "/races/beijing-26",
+        "/admin/races/beijing-26/prizes",
+        "/admin/races/beijing-26/draws",
+        "/admin/races/beijing-26/news",
+        "/races/beijing-26",
+        "/admin/races/beijing-26/prizes",
+        "/admin/races/beijing-26/draws",
+        "/admin/races/beijing-26/news",
+        "/admin/races?when=upcoming&page=1",
+        "/admin/places",
+        "/admin/official?status=pending&page=1",
+        "/admin/places",
+        "/admin/official?status=pending&page=1",
+        "/admin/news?status=published&q=&page=1",
+        "/admin/users?q=&page=1",
+        "/admin/users/1",
+        "/admin/clubs?q=&page=1",
+        "/admin/clubs/91",
+        "/admin/club-requests?page=1",
+        "/admin/club-applications?page=1",
+        "/admin/club-requests?page=1",
+        "/admin/club-applications?page=1",
+        "/admin/runs?page=1",
+        "/admin/shop?giftPage=1&redemptionPage=1",
+        "/admin/partner?supplyPage=1&leaguePage=1&splitPage=1",
+        "/admin/accounts"
+      ],
+      "writes": [
+        {
+          "method": "PUT",
+          "path": "/admin/bot-races/71",
+          "body": "{\"name\":\"2026苏州马拉松\",\"province\":\"苏州\",\"city\":\"苏州\",\"district\":\"\",\"place\":\"苏州体育中心\",\"organizer\":\"赛事组委会\",\"grade\":\"A\",\"distances\":[\"full\",\"half\"],\"kinds\":[],\"meet\":\"offline\",\"groups\":\"\",\"startAt\":\"07:30\",\"bibAt\":\"\",\"scale\":\"20000人\",\"fee\":\"150元\",\"phone\":\"010-12345678\",\"signupUrl\":\"https://example.org/signup\",\"drawUrl\":\"\",\"bibUrl\":\"\",\"resultUrl\":\"\",\"liveUrl\":\"\",\"eventUrl\":\"https://example.org\",\"officialUrl\":\"\",\"raceDate\":\"2026-12-06\",\"route\":\"城市环线\",\"pickup\":\"赛前两天领物\",\"pacers\":\"\",\"guideText\":\"## 参赛资格\\n请核对竞赛规程。\",\"regStart\":\"2026-09-01\",\"deadline\":\"2026-10-28\",\"drawAt\":\"2026-10-29\",\"payDeadline\":\"2026-10-30\",\"deadlineName\":\"报名截止\",\"nodeSource\":\"赛事组委会，2026-10-27\",\"prizesSet\":false,\"drawsSet\":false}"
+        },
+        {
+          "method": "POST",
+          "path": "/admin/bot-races/71/return",
+          "body": "{\"note\":\"请补充官方报名来源\"}"
+        },
+        {
+          "method": "PUT",
+          "path": "/admin/bot-races/72",
+          "body": "{\"name\":\"2026无锡半程马拉松\",\"province\":\"无锡\",\"city\":\"无锡\",\"district\":\"\",\"place\":\"无锡体育中心\",\"organizer\":\"赛事组委会\",\"grade\":\"A\",\"distances\":[\"full\",\"half\"],\"kinds\":[],\"meet\":\"offline\",\"groups\":\"\",\"startAt\":\"07:30\",\"bibAt\":\"\",\"scale\":\"20000人\",\"fee\":\"150元\",\"phone\":\"010-12345678\",\"signupUrl\":\"https://example.org/signup\",\"drawUrl\":\"\",\"bibUrl\":\"\",\"resultUrl\":\"\",\"liveUrl\":\"\",\"eventUrl\":\"https://example.org\",\"officialUrl\":\"\",\"raceDate\":\"2026-12-20\",\"route\":\"城市环线\",\"pickup\":\"赛前两天领物\",\"pacers\":\"\",\"guideText\":\"## 参赛资格\\n请核对竞赛规程。\",\"regStart\":\"2026-09-01\",\"deadline\":\"2026-10-28\",\"drawAt\":\"2026-10-29\",\"payDeadline\":\"2026-10-30\",\"deadlineName\":\"报名截止\",\"nodeSource\":\"赛事组委会，2026-10-27\",\"prizesSet\":false,\"drawsSet\":false}"
+        },
+        {
+          "method": "POST",
+          "path": "/admin/bot-races/72/publish",
+          "body": "{}"
+        },
+        {
+          "method": "PUT",
+          "path": "/admin/races/beijing-26/guide",
+          "body": "{\"name\":\"2026北京马拉松\",\"province\":\"北京\",\"city\":\"北京\",\"district\":\"\",\"place\":\"北京体育中心\",\"organizer\":\"赛事组委会\",\"grade\":\"A\",\"distances\":[\"full\",\"half\"],\"kinds\":[],\"meet\":\"offline\",\"groups\":\"\",\"startAt\":\"07:30\",\"bibAt\":\"\",\"scale\":\"20000人\",\"fee\":\"150元\",\"phone\":\"010-12345678\",\"signupUrl\":\"https://example.org/signup\",\"drawUrl\":\"\",\"bibUrl\":\"\",\"resultUrl\":\"\",\"liveUrl\":\"\",\"eventUrl\":\"https://example.org\",\"officialUrl\":\"\",\"raceDate\":\"2026-11-01\",\"route\":\"城市环线\",\"pickup\":\"赛前两天领物\",\"pacers\":\"\",\"guideText\":\"## 参赛资格\\n请核对竞赛规程。\"}"
+        },
+        {
+          "method": "POST",
+          "path": "/admin/official/sync",
+          "body": "{\"name\":\"\"}"
+        },
+        {
+          "method": "POST",
+          "path": "/admin/club-requests/31",
+          "body": "{\"decision\":\"approve\"}"
+        }
+      ],
+      "unexpected": []
+    },
+    {
+      "width": 320,
+      "role": "admin",
+      "gets": [
+        "/admin/session",
+        "/admin/overview",
+        "/admin/bot-races?status=pending&page=1",
+        "/admin/places",
+        "/admin/bot-races/71",
+        "/admin/bot-races?status=pending&page=1",
+        "/admin/bot-races?status=pending&page=1",
+        "/admin/bot-races?status=pending&page=1",
+        "/admin/bot-races/72",
+        "/admin/bot-races?status=pending&page=1",
+        "/admin/bot-races?status=pending&page=1",
+        "/admin/official?status=pending&page=1",
+        "/admin/races?when=upcoming&page=1",
+        "/admin/races?when=upcoming&page=1",
+        "/admin/places",
+        "/races/beijing-26",
+        "/admin/races/beijing-26/prizes",
+        "/admin/races/beijing-26/draws",
+        "/admin/races/beijing-26/news",
+        "/races/beijing-26",
+        "/admin/races/beijing-26/prizes",
+        "/admin/races/beijing-26/draws",
+        "/admin/races/beijing-26/news",
+        "/admin/races?when=upcoming&page=1",
+        "/admin/places",
+        "/admin/official?status=pending&page=1",
+        "/admin/places",
+        "/admin/official?status=pending&page=1",
+        "/admin/news?status=published&q=&page=1",
+        "/admin/users?q=&page=1",
+        "/admin/users/1",
+        "/admin/clubs?q=&page=1",
+        "/admin/clubs/91",
+        "/admin/club-requests?page=1",
+        "/admin/club-applications?page=1",
+        "/admin/club-requests?page=1",
+        "/admin/club-applications?page=1",
+        "/admin/runs?page=1",
+        "/admin/shop?giftPage=1&redemptionPage=1",
+        "/admin/partner?supplyPage=1&leaguePage=1&splitPage=1",
+        "/admin/accounts"
+      ],
+      "writes": [
+        {
+          "method": "PUT",
+          "path": "/admin/bot-races/71",
+          "body": "{\"name\":\"2026苏州马拉松\",\"province\":\"苏州\",\"city\":\"苏州\",\"district\":\"\",\"place\":\"苏州体育中心\",\"organizer\":\"赛事组委会\",\"grade\":\"A\",\"distances\":[\"full\",\"half\"],\"kinds\":[],\"meet\":\"offline\",\"groups\":\"\",\"startAt\":\"07:30\",\"bibAt\":\"\",\"scale\":\"20000人\",\"fee\":\"150元\",\"phone\":\"010-12345678\",\"signupUrl\":\"https://example.org/signup\",\"drawUrl\":\"\",\"bibUrl\":\"\",\"resultUrl\":\"\",\"liveUrl\":\"\",\"eventUrl\":\"https://example.org\",\"officialUrl\":\"\",\"raceDate\":\"2026-12-06\",\"route\":\"城市环线\",\"pickup\":\"赛前两天领物\",\"pacers\":\"\",\"guideText\":\"## 参赛资格\\n请核对竞赛规程。\",\"regStart\":\"2026-09-01\",\"deadline\":\"2026-10-28\",\"drawAt\":\"2026-10-29\",\"payDeadline\":\"2026-10-30\",\"deadlineName\":\"报名截止\",\"nodeSource\":\"赛事组委会，2026-10-27\",\"prizesSet\":false,\"drawsSet\":false}"
+        },
+        {
+          "method": "POST",
+          "path": "/admin/bot-races/71/return",
+          "body": "{\"note\":\"请补充官方报名来源\"}"
+        },
+        {
+          "method": "PUT",
+          "path": "/admin/bot-races/72",
+          "body": "{\"name\":\"2026无锡半程马拉松\",\"province\":\"无锡\",\"city\":\"无锡\",\"district\":\"\",\"place\":\"无锡体育中心\",\"organizer\":\"赛事组委会\",\"grade\":\"A\",\"distances\":[\"full\",\"half\"],\"kinds\":[],\"meet\":\"offline\",\"groups\":\"\",\"startAt\":\"07:30\",\"bibAt\":\"\",\"scale\":\"20000人\",\"fee\":\"150元\",\"phone\":\"010-12345678\",\"signupUrl\":\"https://example.org/signup\",\"drawUrl\":\"\",\"bibUrl\":\"\",\"resultUrl\":\"\",\"liveUrl\":\"\",\"eventUrl\":\"https://example.org\",\"officialUrl\":\"\",\"raceDate\":\"2026-12-20\",\"route\":\"城市环线\",\"pickup\":\"赛前两天领物\",\"pacers\":\"\",\"guideText\":\"## 参赛资格\\n请核对竞赛规程。\",\"regStart\":\"2026-09-01\",\"deadline\":\"2026-10-28\",\"drawAt\":\"2026-10-29\",\"payDeadline\":\"2026-10-30\",\"deadlineName\":\"报名截止\",\"nodeSource\":\"赛事组委会，2026-10-27\",\"prizesSet\":false,\"drawsSet\":false}"
+        },
+        {
+          "method": "POST",
+          "path": "/admin/bot-races/72/publish",
+          "body": "{}"
+        },
+        {
+          "method": "PUT",
+          "path": "/admin/races/beijing-26/guide",
+          "body": "{\"name\":\"2026北京马拉松\",\"province\":\"北京\",\"city\":\"北京\",\"district\":\"\",\"place\":\"北京体育中心\",\"organizer\":\"赛事组委会\",\"grade\":\"A\",\"distances\":[\"full\",\"half\"],\"kinds\":[],\"meet\":\"offline\",\"groups\":\"\",\"startAt\":\"07:30\",\"bibAt\":\"\",\"scale\":\"20000人\",\"fee\":\"150元\",\"phone\":\"010-12345678\",\"signupUrl\":\"https://example.org/signup\",\"drawUrl\":\"\",\"bibUrl\":\"\",\"resultUrl\":\"\",\"liveUrl\":\"\",\"eventUrl\":\"https://example.org\",\"officialUrl\":\"\",\"raceDate\":\"2026-11-01\",\"route\":\"城市环线\",\"pickup\":\"赛前两天领物\",\"pacers\":\"\",\"guideText\":\"## 参赛资格\\n请核对竞赛规程。\"}"
+        },
+        {
+          "method": "POST",
+          "path": "/admin/official/sync",
+          "body": "{\"name\":\"\"}"
+        },
+        {
+          "method": "POST",
+          "path": "/admin/club-requests/31",
+          "body": "{\"decision\":\"approve\"}"
+        }
+      ],
+      "unexpected": []
+    }
+  ],
+  "passed": true
+}

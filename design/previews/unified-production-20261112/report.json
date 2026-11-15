@@ -1,0 +1,343 @@
+{
+  "readOnly": true,
+  "checks": [
+    "Production HTML exactly matches reviewed merged build",
+    "All 32 browser-loaded JS/CSS assets exactly match reviewed build"
+  ],
+  "views": [
+    {
+      "name": "races",
+      "width": 320,
+      "scroll": 320,
+      "body": 320,
+      "accent": "#ff1838"
+    },
+    {
+      "name": "clubs",
+      "width": 320,
+      "scroll": 320,
+      "body": 320,
+      "accent": "#ff1838"
+    },
+    {
+      "name": "clubs-code",
+      "width": 320,
+      "scroll": 320,
+      "body": 320,
+      "accent": "#ff1838"
+    },
+    {
+      "name": "sport",
+      "width": 320,
+      "scroll": 320,
+      "body": 320,
+      "accent": "#ff1838"
+    },
+    {
+      "name": "mine",
+      "width": 320,
+      "scroll": 320,
+      "body": 320,
+      "accent": "#ff1838"
+    },
+    {
+      "name": "articles",
+      "width": 320,
+      "scroll": 320,
+      "body": 320,
+      "accent": "#ff1838"
+    },
+    {
+      "name": "athletes",
+      "width": 320,
+      "scroll": 320,
+      "body": 320,
+      "accent": "#ff1838"
+    },
+    {
+      "name": "athletes-detail",
+      "width": 320,
+      "scroll": 320,
+      "body": 320,
+      "accent": "#ff1838"
+    },
+    {
+      "name": "pacers",
+      "width": 320,
+      "scroll": 320,
+      "body": 320,
+      "accent": "#ff1838"
+    },
+    {
+      "name": "pacers-detail",
+      "width": 320,
+      "scroll": 320,
+      "body": 320,
+      "accent": "#ff1838"
+    },
+    {
+      "name": "calendar",
+      "width": 320,
+      "scroll": 320,
+      "body": 320,
+      "accent": "#ff1838"
+    },
+    {
+      "name": "radar",
+      "width": 320,
+      "scroll": 320,
+      "body": 320,
+      "accent": "#ff1838"
+    },
+    {
+      "name": "privacy",
+      "width": 320,
+      "scroll": 320,
+      "body": 320,
+      "accent": "#ff1838"
+    },
+    {
+      "name": "admin-login",
+      "width": 320,
+      "scroll": 320,
+      "body": 320,
+      "accent": "#ff1838"
+    },
+    {
+      "name": "races",
+      "width": 390,
+      "scroll": 390,
+      "body": 390,
+      "accent": "#ff1838"
+    },
+    {
+      "name": "clubs",
+      "width": 390,
+      "scroll": 390,
+      "body": 390,
+      "accent": "#ff1838"
+    },
+    {
+      "name": "clubs-code",
+      "width": 390,
+      "scroll": 390,
+      "body": 390,
+      "accent": "#ff1838"
+    },
+    {
+      "name": "sport",
+      "width": 390,
+      "scroll": 390,
+      "body": 390,
+      "accent": "#ff1838"
+    },
+    {
+      "name": "mine",
+      "width": 390,
+      "scroll": 390,
+      "body": 390,
+      "accent": "#ff1838"
+    },
+    {
+      "name": "articles",
+      "width": 390,
+      "scroll": 390,
+      "body": 390,
+      "accent": "#ff1838"
+    },
+    {
+      "name": "athletes",
+      "width": 390,
+      "scroll": 390,
+      "body": 390,
+      "accent": "#ff1838"
+    },
+    {
+      "name": "athletes-detail",
+      "width": 390,
+      "scroll": 390,
+      "body": 390,
+      "accent": "#ff1838"
+    },
+    {
+      "name": "pacers",
+      "width": 390,
+      "scroll": 390,
+      "body": 390,
+      "accent": "#ff1838"
+    },
+    {
+      "name": "pacers-detail",
+      "width": 390,
+      "scroll": 390,
+      "body": 390,
+      "accent": "#ff1838"
+    },
+    {
+      "name": "calendar",
+      "width": 390,
+      "scroll": 390,
+      "body": 390,
+      "accent": "#ff1838"
+    },
+    {
+      "name": "radar",
+      "width": 390,
+      "scroll": 390,
+      "body": 390,
+      "accent": "#ff1838"
+    },
+    {
+      "name": "privacy",
+      "width": 390,
+      "scroll": 390,
+      "body": 390,
+      "accent": "#ff1838"
+    },
+    {
+      "name": "admin-login",
+      "width": 390,
+      "scroll": 390,
+      "body": 390,
+      "accent": "#ff1838"
+    }
+  ],
+  "errors": [],
+  "writes": [],
+  "assets": [
+    {
+      "path": "/marathon/assets/index-BpCXZQwY.css",
+      "bytes": 29556
+    },
+    {
+      "path": "/marathon/assets/index-ICfu0DCX.js",
+      "bytes": 137435
+    },
+    {
+      "path": "/marathon/assets/Sport-D09hTsZV.js",
+      "bytes": 11446
+    },
+    {
+      "path": "/marathon/assets/useClubSession-DG3GSDtZ.js",
+      "bytes": 909
+    },
+    {
+      "path": "/marathon/assets/RunnerIcon-tPMGIsfo.js",
+      "bytes": 2354
+    },
+    {
+      "path": "/marathon/assets/ClubVerificationBadge-CNXG7ajN.js",
+      "bytes": 2504
+    },
+    {
+      "path": "/marathon/assets/club-identity-DBElAq5d.js",
+      "bytes": 905
+    },
+    {
+      "path": "/marathon/assets/ClubVerificationBadge-eYmc401z.css",
+      "bytes": 1720
+    },
+    {
+      "path": "/marathon/assets/Sport-sb0gfXa1.css",
+      "bytes": 14719
+    },
+    {
+      "path": "/marathon/assets/Exercise-Ba3sj88V.js",
+      "bytes": 15480
+    },
+    {
+      "path": "/marathon/assets/PageHeader-9HQhYiaB.js",
+      "bytes": 473
+    },
+    {
+      "path": "/marathon/assets/PageHeader-DNk_rId-.css",
+      "bytes": 532
+    },
+    {
+      "path": "/marathon/assets/Exercise-BMBbcnaY.css",
+      "bytes": 31470
+    },
+    {
+      "path": "/marathon/assets/Mine-CJz2J0wK.js",
+      "bytes": 33562
+    },
+    {
+      "path": "/marathon/assets/achievement-model-BLKVuqio.js",
+      "bytes": 5068
+    },
+    {
+      "path": "/marathon/assets/Mine-CrqDogP-.css",
+      "bytes": 72473
+    },
+    {
+      "path": "/marathon/assets/content-date-CQNjL7yN.js",
+      "bytes": 141
+    },
+    {
+      "path": "/marathon/assets/InfoCenter-BctgB8T1.js",
+      "bytes": 10562
+    },
+    {
+      "path": "/marathon/assets/InfoCenter-CtQNjvhq.css",
+      "bytes": 16465
+    },
+    {
+      "path": "/marathon/assets/guide-md-AeF184bi.js",
+      "bytes": 1103
+    },
+    {
+      "path": "/marathon/assets/ContentDetail-DldQWENE.js",
+      "bytes": 10514
+    },
+    {
+      "path": "/marathon/assets/ContentDetail-B3lqiuMz.css",
+      "bytes": 16465
+    },
+    {
+      "path": "/marathon/assets/Calendar-Cy3TXjIS.css",
+      "bytes": 5243
+    },
+    {
+      "path": "/marathon/assets/Calendar-DLLISqVf.js",
+      "bytes": 10334
+    },
+    {
+      "path": "/marathon/assets/regions-8BVqGYHn.js",
+      "bytes": 4298
+    },
+    {
+      "path": "/marathon/assets/Radar-DUw60OwO.js",
+      "bytes": 5315
+    },
+    {
+      "path": "/marathon/assets/Radar-DN39q_ot.css",
+      "bytes": 1767
+    },
+    {
+      "path": "/marathon/assets/Legal-e1zw5-4O.js",
+      "bytes": 11609
+    },
+    {
+      "path": "/marathon/assets/legal-documents-DAv0N2a6.js",
+      "bytes": 52231
+    },
+    {
+      "path": "/marathon/assets/Legal-Bp_TlW7D.css",
+      "bytes": 64600
+    },
+    {
+      "path": "/marathon/assets/Admin-DXL_9dWv.js",
+      "bytes": 266420
+    },
+    {
+      "path": "/marathon/assets/Admin-CMuIqu7E.css",
+      "bytes": 127205
+    }
+  ],
+  "limitations": [
+    "Public guest states only in production; account and write interactions tested separately in disposable databases.",
+    "Browser mobile screenshots are not WeChat device verification."
+  ],
+  "passed": true,
+  "checkedAt": "2026-11-12T07:25:45.322Z"
+}

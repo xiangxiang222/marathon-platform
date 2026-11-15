@@ -1,0 +1,30 @@
+{
+  "kind": "Mini-program membership Page VM acceptance; in-memory request, modal and navigation mocks",
+  "checks": [
+    {
+      "name": "member sees consequences; cancelling sends no request and does not navigate",
+      "passed": true
+    },
+    {
+      "name": "confirmed leave sends one POST for the current club, prevents duplicate submissions and returns after success",
+      "passed": true
+    },
+    {
+      "name": "failure is visible, releases the loading state and permits a successful retry",
+      "passed": true
+    },
+    {
+      "name": "member removal explains signup cleanup and preserves historical records before sending DELETE",
+      "passed": true
+    },
+    {
+      "name": "owner is guarded in Page logic and the template presents transfer guidance instead of a leave button",
+      "passed": true
+    },
+    {
+      "name": "fee history loads, switches periods, copies the selected roster, recovers from errors, and creates a new period from history",
+      "passed": true
+    }
+  ],
+  "passed": true
+}

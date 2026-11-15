@@ -1,0 +1,32 @@
+{
+  "kind": "Compact race share selection, native sharing, account boundaries and responsive type scale; fixture data only",
+  "checks": [
+    {
+      "name": "Mini uses one native share action for the selected authorized club and ignores unknown selections",
+      "passed": true
+    },
+    {
+      "name": "Web compact selection, original copy payload, 44px controls and tab typography 320",
+      "passed": true
+    },
+    {
+      "name": "Web compact selection, original copy payload, 44px controls and tab typography 390",
+      "passed": true
+    },
+    {
+      "name": "Web compact selection, original copy payload, 44px controls and tab typography 1440",
+      "passed": true
+    },
+    {
+      "name": "Web guest retains login protection and has no private share choices",
+      "passed": true
+    }
+  ],
+  "screenshots": [
+    "race-share-compact-320.png",
+    "race-share-compact-390.png",
+    "race-share-compact-1440.png"
+  ],
+  "errors": [],
+  "passed": true
+}

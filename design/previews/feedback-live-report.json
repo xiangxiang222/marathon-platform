@@ -1,0 +1,39 @@
+{
+  "startedAt": "2026-11-11T10:56:13.232Z",
+  "isolated": true,
+  "checks": [
+    "FB-LIVE-01 三个账号真实注册",
+    "FB-LIVE-02 网页提交 UI 建议与截图，保存到待审核",
+    "FB-LIVE-03 未审核的详情、截图不对游客和其他跑者开放",
+    "FB-LIVE-04 后台核对截图、拦截过期审核后公示",
+    "FB-LIVE-05 跑友真实投票、取消和重复投票保持一票",
+    "FB-LIVE-06 游客支持时转登录并保存原建议地址",
+    "FB-LIVE-07 平台采纳建议并明确实物奖品",
+    "FB-LIVE-08 本人查看新进度、登记领奖信息；其他人看不到收件地址",
+    "FB-LIVE-09 后台待寄奖励入口登记实际物流",
+    "FB-LIVE-10 本人确认签收，开发及上线进度持续公开",
+    "FB-LIVE-11 公开列表与后台在 320/390/1440 宽度可用且无溢出",
+    "FB-LIVE-12 本人撤回后公示入口失效"
+  ],
+  "screenshots": [
+    "feedback-live-pending-author-390.png",
+    "feedback-live-admin-published-1440.png",
+    "feedback-live-adopted-author-390.png",
+    "feedback-live-released-author-390.png",
+    "feedback-live-board-320.png",
+    "feedback-live-detail-public-320.png",
+    "feedback-live-admin-list-320.png",
+    "feedback-live-admin-detail-320.png",
+    "feedback-live-board-390.png",
+    "feedback-live-detail-public-390.png",
+    "feedback-live-admin-list-390.png",
+    "feedback-live-admin-detail-390.png",
+    "feedback-live-board-1440.png",
+    "feedback-live-detail-public-1440.png",
+    "feedback-live-admin-list-1440.png",
+    "feedback-live-admin-detail-1440.png"
+  ],
+  "errors": [],
+  "passed": true,
+  "finishedAt": "2026-11-11T10:56:31.272Z"
+}

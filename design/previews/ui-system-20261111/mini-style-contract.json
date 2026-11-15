@@ -1,0 +1,119 @@
+{
+  "pages": 28,
+  "jsonBackgrounds": [
+    {
+      "page": "pages/races/races",
+      "background": "#f7f7f4"
+    },
+    {
+      "page": "pages/sport/sport",
+      "background": "#f7f7f4"
+    },
+    {
+      "page": "pages/calendar/calendar",
+      "background": "#f7f7f4"
+    },
+    {
+      "page": "pages/clubs/clubs",
+      "background": "#f7f7f4"
+    },
+    {
+      "page": "pages/mine/mine",
+      "background": "#f7f7f4"
+    },
+    {
+      "page": "pages/runner/runner",
+      "background": "#f7f7f4"
+    },
+    {
+      "page": "pages/history/history",
+      "background": "#f7f7f4"
+    },
+    {
+      "page": "pages/radar/radar",
+      "background": "#f7f7f4"
+    },
+    {
+      "page": "pages/race/race",
+      "background": "#f7f7f4"
+    },
+    {
+      "page": "pages/news/news",
+      "background": "#f7f7f4"
+    },
+    {
+      "page": "pages/news/detail",
+      "background": "#f7f7f4"
+    },
+    {
+      "page": "pages/club/club",
+      "background": "#f7f7f4"
+    },
+    {
+      "page": "pages/club-intro/club-intro",
+      "background": "#f7f7f4"
+    },
+    {
+      "page": "pages/mileage/mileage",
+      "background": "#f7f7f4"
+    },
+    {
+      "page": "pages/partner/partner",
+      "background": "#f7f7f4"
+    },
+    {
+      "page": "pages/feed/feed",
+      "background": "#f7f7f4"
+    },
+    {
+      "page": "pages/activity/activity",
+      "background": "#f7f7f4"
+    },
+    {
+      "page": "pages/activity-create/activity-create",
+      "background": "#f7f7f4"
+    },
+    {
+      "page": "pages/signup/signup",
+      "background": "#f7f7f4"
+    },
+    {
+      "page": "pages/album/album",
+      "background": "#f7f7f4"
+    },
+    {
+      "page": "pages/call/call",
+      "background": "#f7f7f4"
+    },
+    {
+      "page": "pages/meetup/meetup",
+      "background": "#f7f7f4"
+    },
+    {
+      "page": "pages/internal/internal",
+      "background": "#f7f7f4"
+    },
+    {
+      "page": "pages/privacy/privacy",
+      "background": "#f7f7f4"
+    },
+    {
+      "page": "pages/legal/legal",
+      "background": "#f7f7f4"
+    },
+    {
+      "page": "pages/feedback/feedback",
+      "background": "#f7f7f4"
+    },
+    {
+      "page": "pages/club-identity/club-identity",
+      "background": "#f7f7f4"
+    },
+    {
+      "page": "pages/club-report/club-report",
+      "background": "#f7f7f4"
+    }
+  ],
+  "lowFontSizes": [],
+  "remainingCapsuleControls": []
+}

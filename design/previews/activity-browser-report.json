@@ -11,18 +11,7 @@
       "width": 320,
       "documentWidth": 320,
       "bodyWidth": 320,
-      "overflow": [
-        {
-          "tag": "DIV",
-          "className": "hero-track",
-          "right": 366
-        },
-        {
-          "tag": "I",
-          "className": "",
-          "right": 336
-        }
-      ]
+      "overflow": []
     },
     {
       "name": "activity-roster-avatar-fallback-320",
@@ -33,18 +22,7 @@
       "width": 320,
       "documentWidth": 320,
       "bodyWidth": 320,
-      "overflow": [
-        {
-          "tag": "DIV",
-          "className": "hero-track",
-          "right": 366
-        },
-        {
-          "tag": "I",
-          "className": "",
-          "right": 336
-        }
-      ]
+      "overflow": []
     },
     {
       "name": "web-activity-signup-320",
@@ -58,18 +36,7 @@
       "width": 320,
       "documentWidth": 320,
       "bodyWidth": 320,
-      "overflow": [
-        {
-          "tag": "DIV",
-          "className": "hero-track",
-          "right": 366
-        },
-        {
-          "tag": "I",
-          "className": "",
-          "right": 336
-        }
-      ]
+      "overflow": []
     },
     {
       "name": "check-status-refresh-opens-check-in-after-start-320",
@@ -96,18 +63,7 @@
       "width": 320,
       "documentWidth": 320,
       "bodyWidth": 320,
-      "overflow": [
-        {
-          "tag": "DIV",
-          "className": "hero-track",
-          "right": 366
-        },
-        {
-          "tag": "I",
-          "className": "",
-          "right": 336
-        }
-      ]
+      "overflow": []
     },
     {
       "name": "check-entry-unsigned-320",
@@ -168,18 +124,7 @@
       "width": 390,
       "documentWidth": 390,
       "bodyWidth": 390,
-      "overflow": [
-        {
-          "tag": "DIV",
-          "className": "hero-track",
-          "right": 429
-        },
-        {
-          "tag": "I",
-          "className": "",
-          "right": 401
-        }
-      ]
+      "overflow": []
     },
     {
       "name": "activity-roster-avatar-fallback-390",
@@ -190,18 +135,7 @@
       "width": 390,
       "documentWidth": 390,
       "bodyWidth": 390,
-      "overflow": [
-        {
-          "tag": "DIV",
-          "className": "hero-track",
-          "right": 429
-        },
-        {
-          "tag": "I",
-          "className": "",
-          "right": 401
-        }
-      ]
+      "overflow": []
     },
     {
       "name": "web-activity-signup-390",
@@ -215,18 +149,7 @@
       "width": 390,
       "documentWidth": 390,
       "bodyWidth": 390,
-      "overflow": [
-        {
-          "tag": "DIV",
-          "className": "hero-track",
-          "right": 429
-        },
-        {
-          "tag": "I",
-          "className": "",
-          "right": 401
-        }
-      ]
+      "overflow": []
     },
     {
       "name": "check-status-refresh-opens-check-in-after-start-390",
@@ -253,18 +176,7 @@
       "width": 390,
       "documentWidth": 390,
       "bodyWidth": 390,
-      "overflow": [
-        {
-          "tag": "DIV",
-          "className": "hero-track",
-          "right": 429
-        },
-        {
-          "tag": "I",
-          "className": "",
-          "right": 401
-        }
-      ]
+      "overflow": []
     },
     {
       "name": "check-entry-unsigned-390",

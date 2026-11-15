@@ -1,0 +1,77 @@
+{
+  "setting": {
+    "es6": true,
+    "postcss": true,
+    "minified": true,
+    "uglifyFileName": false,
+    "enhance": true,
+    "packNpmRelationList": [],
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "useCompilerPlugins": false,
+    "minifyWXSS": true,
+    "minifyWXML": true,
+    "uploadWithSourceMap": false
+  },
+  "compileType": "miniprogram",
+  "miniprogramRoot": "miniprogram/",
+  "simulatorPluginLibVersion": {},
+  "packOptions": {
+    "ignore": [
+      {
+        "type": "suffix",
+        "value": ".svg"
+      },
+      {
+        "type": "file",
+        "value": "images/art-calendar.png"
+      },
+      {
+        "type": "file",
+        "value": "images/art-clubs.png"
+      },
+      {
+        "type": "file",
+        "value": "images/art-medal.png"
+      },
+      {
+        "type": "file",
+        "value": "images/art-news.png"
+      },
+      {
+        "type": "file",
+        "value": "images/art-passport.png"
+      },
+      {
+        "type": "file",
+        "value": "images/art-poster.png"
+      },
+      {
+        "type": "folder",
+        "value": "images/club"
+      },
+      {
+        "type": "file",
+        "value": "images/runner/add.png"
+      },
+      {
+        "type": "file",
+        "value": "images/runner/arrow.png"
+      },
+      {
+        "type": "file",
+        "value": "images/runner/back.png"
+      },
+      {
+        "type": "file",
+        "value": "images/runner/lock.png"
+      }
+    ],
+    "include": []
+  },
+  "appid": "wx348783427dac56cd",
+  "editorSetting": {}
+}

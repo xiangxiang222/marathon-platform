@@ -1,0 +1,84 @@
+{
+  "kind": "Product browsing regressions with in-memory API fixtures",
+  "checks": [
+    {
+      "name": "race track type and participation format combine independently",
+      "query": "kind=trail&meet=online&status=upcoming&page=1"
+    },
+    {
+      "name": "home-320",
+      "width": 320,
+      "body": 320,
+      "document": 320
+    },
+    {
+      "name": "race track type and participation format combine independently",
+      "query": "kind=trail&meet=online&status=upcoming&page=1"
+    },
+    {
+      "name": "home-390",
+      "width": 390,
+      "body": 390,
+      "document": 390
+    },
+    {
+      "name": "race track type and participation format combine independently",
+      "query": "kind=trail&meet=online&status=upcoming&page=1"
+    },
+    {
+      "name": "home-1440",
+      "width": 1440,
+      "body": 1440,
+      "document": 1440
+    },
+    {
+      "name": "guest can search public clubs and open an introduction",
+      "requests": [
+        "/marathon/api/clubs/directory?q=&city=&page=1&pageSize=20",
+        "/marathon/api/clubs/directory?q=%E5%A5%A5%E6%A3%AE%E6%99%A8%E8%B7%91&city=&page=1&pageSize=20"
+      ]
+    },
+    {
+      "name": "guest-club-search-320",
+      "width": 320,
+      "body": 320,
+      "document": 320
+    },
+    {
+      "name": "guest can search public clubs and open an introduction",
+      "requests": [
+        "/marathon/api/clubs/directory?q=&city=&page=1&pageSize=20",
+        "/marathon/api/clubs/directory?q=%E5%A5%A5%E6%A3%AE%E6%99%A8%E8%B7%91&city=&page=1&pageSize=20"
+      ]
+    },
+    {
+      "name": "guest-club-search-390",
+      "width": 390,
+      "body": 390,
+      "document": 390
+    },
+    {
+      "name": "result call exports a poster image and a full CSV",
+      "posterSize": {
+        "width": 750,
+        "height": 474
+      }
+    },
+    {
+      "name": "result-call-export-390",
+      "width": 390,
+      "body": 390,
+      "document": 390
+    }
+  ],
+  "screenshots": [
+    "product-home-320.png",
+    "product-home-390.png",
+    "product-home-1440.png",
+    "product-guest-club-search-320.png",
+    "product-guest-club-search-390.png",
+    "product-result-call-export-390.png"
+  ],
+  "errors": [],
+  "passed": true
+}

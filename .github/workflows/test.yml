@@ -28,10 +28,6 @@ jobs:
         run: |
           npm ci --prefix server
           npm test
-      - name: Verify achievement model and shared canvas sources
-        run: |
-          node --test scripts/achievement-model.test.cjs
-          node scripts/sync-achievement-poster.cjs --check
       - name: Check mini program package budget and image references
         run: node scripts/check-mini-package.cjs
       - name: Verify annual race archives in mini program

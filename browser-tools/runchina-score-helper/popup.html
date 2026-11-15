@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>跑史成绩整理助手</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main>
+      <span class="badge">本地验证原型</span>
+      <h1>把查到的成绩带回跑史</h1>
+      <p>先在中国马拉松官网完成本人查询和滑块验证，再读取当前页已经展示的成绩。</p>
+      <p class="privacy">姓名、证件号和验证信息留在官网。助手不向服务器发送数据。</p>
+      <button id="export-scores" type="button">导出当前页成绩</button>
+      <p id="status" role="status" aria-live="polite">仅处理当前页。翻页后可再次读取；导入跑史时仍需本人核对。</p>
+      <details>
+        <summary>页面无法读取时</summary>
+        <p>官网结果布局尚需实测。可导出不含成绩或身份信息的结构报告，用于确认表格布局和验证服务线索。</p>
+        <button id="export-structure" class="secondary" type="button">导出页面结构报告</button>
+      </details>
+      <p class="note">此原型不处理滑块，不代表后台自动查询已经接通。暂不支持的布局会明确停止。</p>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>

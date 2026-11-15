@@ -1,0 +1,56 @@
+{
+  "startedAt": "2026-11-11T02:24:31.858Z",
+  "kind": "Isolated UI system review; no production requests or writes",
+  "output": "/Users/mengxiangxiang/Documents/work/dev/marathon-platform/design/previews/bright-ui-20261111",
+  "requestedModes": [
+    "mini"
+  ],
+  "expectedAccent": "#e1251b",
+  "scope": "Palette adjustment and small visual refinements of existing pages; no layout rewrite",
+  "runs": [
+    {
+      "script": "scripts/ui-full-audit.cjs",
+      "exit": 0,
+      "passed": true,
+      "report": "web-report.json",
+      "checks": 198,
+      "verifiedAt": "2026-11-11T02:22:58.241Z"
+    },
+    {
+      "script": "design/previews/admin-browser-regression.cjs",
+      "exit": 0,
+      "passed": true,
+      "report": "admin-browser-report.json",
+      "checks": 80,
+      "verifiedAt": "2026-11-11T02:23:30.366Z"
+    },
+    {
+      "script": "design/previews/admin-ui-full-audit.cjs",
+      "exit": 0,
+      "passed": true,
+      "report": "admin-ui-full-audit-report.json",
+      "checks": 138,
+      "verifiedAt": "2026-11-11T02:24:07.531Z"
+    },
+    {
+      "script": "design/previews/mini-ui-source-audit.cjs",
+      "exit": 0,
+      "passed": true,
+      "report": "mini-report.json",
+      "checks": 76,
+      "verifiedAt": "2026-11-11T02:24:38.981Z"
+    },
+    {
+      "script": "design/previews/activity-template-mini-mirror.cjs",
+      "exit": 0,
+      "passed": true,
+      "report": "mini-training-report.json",
+      "checks": 22,
+      "verifiedAt": "2026-11-11T02:24:44.960Z"
+    }
+  ],
+  "finishedAt": "2026-11-11T02:24:44.966Z",
+  "checkCount": 514,
+  "passed": true,
+  "comparisonCount": 8
+}

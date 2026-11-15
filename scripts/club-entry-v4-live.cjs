@@ -48,6 +48,7 @@ async function main() {
       await page.locator('.my-clubs').getByRole('button', { name: /展开|查看全部/ }).click(); assert.equal(await mine().count(), 10); await screenshot(page, 'web-expanded');
       const search = page.getByRole('textbox', { name: '搜索我的跑团', exact: true });
       for (const [query, count, title] of [['杭州', 8], ['#' + clubs[8].id, 1, clubs[8].name], ['西湖周末', 1, clubs[8].name], ['找不到的跑团', 0]]) { await search.fill(query); await page.waitForFunction(count => document.querySelectorAll('.my-clubs .my-club').length === count, count); if (title) assert.match(await mine().innerText(), new RegExp(title)); }
+      await search.fill(''); assert.equal(await mine().count(), 10); await page.locator('.my-clubs').getByRole('button', { name: /收起/ }).click(); assert.equal(await mine().count(), 4); await search.fill('杭州'); assert.equal(await mine().count(), 8); await search.fill(''); assert.equal(await mine().count(), 4);
       await search.fill('#' + clubs[8].id); await screenshot(page, 'web-membership-search'); await mine().locator('a.club-main').click(); await page.waitForURL(new RegExp('/clubs/' + clubs[8].id + '$')); await page.getByRole('heading', { name: clubs[8].name, exact: true }).waitFor();
       await page.goto(base + '/clubs', { waitUntil: 'networkidle' }); assert.equal(await mine().count(), 4);
     });

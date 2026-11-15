@@ -1,0 +1,56 @@
+{
+  "kind": "Final mobile race editor regression; all API calls use in-memory fixtures",
+  "checks": [
+    {
+      "width": 390,
+      "viewportWidth": 390,
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "pageHorizontalOverflow": false,
+      "visibleHorizontalScrollContainers": [],
+      "editorNav": {
+        "scrollWidth": 324,
+        "clientWidth": 324
+      },
+      "clickedTabs": [
+        "基本信息",
+        "项目",
+        "报名",
+        "官网",
+        "比赛日",
+        "规程",
+        "直播",
+        "奖项",
+        "资讯"
+      ],
+      "writes": 0,
+      "unexpectedApiCalls": 0
+    },
+    {
+      "width": 320,
+      "viewportWidth": 320,
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "pageHorizontalOverflow": false,
+      "visibleHorizontalScrollContainers": [],
+      "editorNav": {
+        "scrollWidth": 254,
+        "clientWidth": 254
+      },
+      "clickedTabs": [
+        "基本信息",
+        "项目",
+        "报名",
+        "官网",
+        "比赛日",
+        "规程",
+        "直播",
+        "奖项",
+        "资讯"
+      ],
+      "writes": 0,
+      "unexpectedApiCalls": 0
+    }
+  ],
+  "passed": true
+}

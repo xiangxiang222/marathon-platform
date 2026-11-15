@@ -1,0 +1,170 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><style>html,body{margin:0;padding:0}body{padding-bottom:70px}a{display:block;color:inherit;text-decoration:none}button{display:block;box-sizing:border-box;padding:0 14px;line-height:1.35}input,textarea{outline:none}input[type=checkbox]{min-height:0}img{display:inline-block;vertical-align:middle}*{box-sizing:border-box}.native-switch{display:inline-block;width:44px;height:26px;flex:none;border-radius:20px;background:#dedede;position:relative}.native-switch[checked=true]{background:#ff1838}.native-switch:after{content:"";display:block;position:absolute;top:2px;left:2px;width:22px;height:22px;border-radius:50%;background:white}.native-switch[checked=true]:after{left:20px}swiper-item{display:block}.audit-banner{font:10px system-ui;color:#767676;padding:5px 12px;text-align:center}.mirror-tabbar{position:fixed;z-index:50;left:0;right:0;bottom:0;display:flex;background:white;border-top:1px solid #eee;height:64px;padding:6px 0}.mirror-tabbar a{width:25%;font:11px system-ui;text-align:center}.mirror-tabbar img{display:block;margin:0 auto 3px;width:25px;height:25px}</style><style>body {
+  --brand: #ff1838;
+  --brand-soft: #fff0f2;
+  --page-bg: #f5f5f5;
+  --surface: #ffffff;
+  --brand-header: linear-gradient(145deg, #ff1838 0%, #ff2946 60%, #ff4659 100%);
+  --text: #1a1a1a;
+  --text-secondary: #777777;
+  --border: #eeeeee;
+  --sky: #555555;
+  --sky-soft: #f7f7f7;
+  --mint: #555555;
+  --mint-soft: #f7f7f7;
+  --lilac: #555555;
+  --lilac-soft: #f7f7f7;
+  --sun: #555555;
+  --sun-soft: #f7f7f7;
+  --peach-soft: #fff0f2;
+  --card-shadow: none;
+  --action-fill: #ff1838;
+  --control-radius: 10.4px;
+  --card-radius: 12.48px;
+  min-height: 100%;
+  background: var(--page-bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+div, span, a, div, button, input, textarea, div { box-sizing: border-box; }
+button, input, textarea { font-family: inherit; color: var(--text); }
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 44px;
+  margin: 0;
+  padding: 12px 18px;
+  border: 0.52px solid var(--border);
+  border-radius: var(--control-radius);
+  background: var(--surface);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+button::after { border: 0; }
+button[plain] { border: 0.52px solid var(--border); background: var(--surface); }
+input, textarea {
+  min-width: 0;
+  border: 0.52px solid var(--border);
+  border-radius: 10.4px;
+  background: var(--page-bg);
+  color: var(--text);
+  font-size: 14px;
+  caret-color: var(--brand);
+}
+input { min-height: 46px; padding: 0 12.48px; }
+textarea { min-height: 120px; padding: 12.48px; line-height: 1.75; }
+input::placeholder, textarea::placeholder { color: #999999; }
+.pad { padding: 16.64px 16.64px calc(24.96px + env(safe-area-inset-bottom)); }
+.card {
+  margin-bottom: 12.48px;
+  padding: 16.64px;
+  border: 0.52px solid var(--border);
+  border-radius: var(--card-radius);
+  background: var(--surface);
+  box-shadow: var(--card-shadow);
+}
+.title { font-size: 18px; font-weight: 600; line-height: 1.4; letter-spacing: normal; }
+.muted { color: var(--text-secondary); font-size: 12px; }
+.slot { display: flex; justify-content: space-between; gap: 12.48px; margin-top: 6.24px; padding: 9.36px 10.4px; border-radius: 8.32px; background: var(--page-bg); font-size: 14px; }
+.slot-state { color: var(--text-secondary); font-size: 12px; }
+.teal { color: var(--brand); }
+.row { display: flex; justify-content: space-between; gap: 12.48px; padding: 10.4px 0; border-bottom: 0.52px solid var(--border); }
+.row:last-child { border-bottom: 0; }
+.row .k { flex: none; color: var(--text-secondary); }
+.soon { color: #c87825; }
+.err { margin-top: 6.24px; color: #b42318; font-size: 12px; line-height: 1.7; }
+.note { margin-top: 6.24px; color: var(--brand); font-size: 12px; line-height: 1.7; }
+.empty { padding: 29.12px 16.64px; color: var(--text-secondary); font-size: 13px; text-align: center; line-height: 1.8; }
+.field { display: flex; align-items: center; gap: 8.32px; }
+.field input { flex: 1; min-width: 0; height: 46px; padding: 0 12.48px; border-radius: 10.4px; background: var(--page-bg); }
+.btn, .login-go {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 46px;
+  margin: 0;
+  padding: 12px 20px;
+  border: 0.52px solid transparent;
+  border-radius: var(--control-radius);
+  background: var(--action-fill);
+  box-shadow: none;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
+}
+.login-go { margin-top: 12.48px; }
+button.ghost {
+  min-height: 44px;
+  margin: 8.32px 8.32px 0 0;
+  padding: 10px 16px;
+  border: 0.52px solid var(--border);
+  border-radius: var(--control-radius);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+button.ghost.on { border-color: var(--brand); background: var(--brand-soft); color: var(--brand); }
+button[disabled], button.btn[disabled] { border-color: #eeeeef; background: #f2f2f2; color: #999999; opacity: 1; box-shadow: none; }
+.chip { display: inline-block; margin-right: 4.16px; padding: 2.08px 6.24px; border: 0.52px solid #ebebed; border-radius: 6.24px; background: #f5f5f7; color: var(--text-secondary); font-size: 12px; font-weight: 400; line-height: 1.6; }
+.foot { display: flex; justify-content: space-between; gap: 10.4px; margin-top: 8.32px; color: var(--text-secondary); font-size: 12px; }
+.src { margin-top: 6.24px; color: var(--text-secondary); font-size: 12px; line-height: 1.75; overflow-wrap: anywhere; }
+.card > input, .card > textarea, .card > div { margin-top: 10.4px; }
+.card > input { width: 100%; }
+.card > .btn { margin-top: 12.48px; }
+.primary, .primary-btn, .primary-button, .submit-button, .save-action, .next-action, .bottom-primary, .staff-primary { border-radius: var(--control-radius); }
+.field-label, .form-label { line-height: 1.6; }
+.metric-value, .stat-value, .career-number, .record-number, .rank-time { font-variant-numeric: tabular-nums; }
+/* Shared control roles for new screens and gradual migrations. */
+.ui-control-text { width: auto; min-height: 44px; padding: 10px 8px; border: 0; border-radius: 6.24px; background: transparent; color: var(--brand); font-size: 13px; }
+.ui-control-danger { border-color: #f5d1cc; background: #fff5f3; color: #c52e24; }
+.ui-label { color: var(--text-secondary); font-size: 12px; font-weight: 400; }
+.surface-sky, .surface-mint, .surface-lilac, .surface-sun, .surface-peach { background: var(--surface); border-color: var(--border); }
+@media (max-width: 350px) { .pad { padding-left: 14px; padding-right: 14px; } .card { padding: 16px; } }
+
+:host { display: block; }
+.page-header { position: relative; padding-bottom: 20.8px; background: var(--brand-header); color: #fff; }
+.header-main { display: flex; align-items: center; padding-left: 16.64px; box-sizing: border-box; }
+.header-title { flex: 1; min-width: 0; overflow: hidden; font-size: 24px; line-height: 1.3; font-weight: 600; letter-spacing: normal; white-space: nowrap; text-overflow: ellipsis; }
+.header-subtitle { padding: 0 16.64px 12.48px; color: #ffffffcf; font-size: 12px; line-height: 1.5; }
+@media (max-width: 350px) { .header-main { padding-left: 14px; } .header-subtitle { padding-left: 14px; padding-right: 14px; } }
+
+.header-actions { display: flex; flex: none; align-items: center; justify-content: flex-end; }
+
+.header-actions { position: relative; color: #fff; }
+
+.legal-page {min-height:100vh;padding:24.96px 14.56px 41.6px;box-sizing:border-box; background: transparent; }.legal-hero {padding:4.16px 2.6px 0; background:var(--surface); }.eyebrow{color:var(--text-secondary);font-size:12px;letter-spacing:normal;line-height:1.8}.hero-title{line-height:1.45;margin-top:12.48px}.hero-copy{font-size:12px;line-height:1.95;color:var(--text-secondary);margin:14.56px 0}.version{display:flex;flex-wrap:wrap;gap:4.16px 14.56px;color:var(--text-secondary);font-size:12px;line-height:1.9;margin:16.12px 0 20.28px}.notice {padding:14.04px 15.6px;margin-bottom:15.6px;font-size:12px;line-height:1.9;border:0.52px solid var(--border);background: var(--page-bg);color:var(--text-secondary);border-radius:9.36px}.notice button{min-height:44px;padding:0;margin:3.12px 0 0;text-align:left;color:var(--brand);font-size:12px;background:none}.draft{border-color:var(--border);background:var(--page-bg);color:var(--text-secondary)}.document-nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border:0.52px solid var(--border)}.document-nav button{display:flex;align-items:center;justify-content:space-between;text-align:left;gap:6.24px;min-height:44px;color:var(--text-secondary);line-height:1.7;margin:0}.document-nav button span{flex:none  }.document-nav button.active{font-weight:600  }.reading-note{color:var(--text-secondary);font-size:12px;line-height:1.95;padding:0 7.28px;margin:11.96px 0 18.2px}.document-card {border:0.52px solid var(--border);background:var(--surface);padding:23.4px 18.72px;box-sizing:border-box}
+.rights-card {border:0.52px solid var(--border);background:var(--surface);padding:23.4px 18.72px;box-sizing:border-box}.document-label{font-size:12px;letter-spacing:normal;color:var(--text-secondary)}.document-title{font-size:22px;line-height:1.6;font-weight:600;margin:12.48px 0 14.56px;word-break:break-all}.summary{font-size:12px;line-height:1.95;color:var(--text-secondary);white-space:pre-wrap}.operator{font-size:12px;color:var(--text-secondary);line-height:1.8;margin-top:14.56px;padding-bottom:18.2px;border-bottom:0.52px solid var(--border)}.toc {background: var(--page-bg);border-radius:8.84px;padding:15.08px;margin-top:18.2px}.toc>div{font-size:12px;color:var(--text-secondary);font-weight:500;margin-bottom:7.8px}.toc button{font-size:12px;color:var(--text-secondary);background:none;text-align:left;line-height:1.9;padding:5.2px 0;margin:0;min-height:44px}.section{padding-top:23.92px;word-break:break-all}.section-title{font-size:18px;font-weight:600;line-height:1.7}.paragraph,.list-item{font-size:12px;color:var(--text-secondary);line-height:2.05;margin:11.96px 0;white-space:pre-wrap}.strong{font-weight:600;color:var(--text-secondary)}.list-item{display:flex;gap:7.8px}.bullet{flex:none;color:var(--text-secondary)}.list-item>div{flex:1;min-width:0}.section.important {padding:16.64px;margin-top:21.84px;border:0.52px solid var(--border);border-radius:9.36px;background: var(--page-bg);}.table-record{border:0.52px solid var(--border);border-radius:8.32px;margin-top:13px;overflow:hidden}.table-cell{padding:11.44px 13px;border-bottom:0.52px solid var(--border);word-break:break-all}.table-cell:first-child{background:var(--page-bg)}.table-cell:last-child{border:0}.cell-label{color:var(--text-secondary);font-size:12px;line-height:1.8;margin-bottom:5.2px}.cell-value{color:var(--text-secondary);font-size:12px;line-height:1.95;white-space:pre-wrap}.document-bottom{border-top:0.52px solid var(--border);font-size:12px;line-height:1.9;color:var(--text-secondary);padding-top:16.64px;margin-top:21.84px}.document-bottom button{color:var(--text-secondary);background:none;font-size:12px;min-height:44px;text-align:left;padding:0;margin:6.24px 0 0}.state{padding:20.8px;color:var(--text-secondary);font-size:12px;line-height:1.9;text-align:center}.rights-card {margin-top:16.12px; background:var(--surface); }.rights-card>.summary{margin-top:10.4px  }.field-label{font-size:12px;color:var(--text-secondary);line-height:1.8;margin:15.08px 0 7.8px}.type-picker{display:flex;align-items:center;justify-content:space-between;gap:7.8px;padding:11.96px;background:var(--page-bg);border:0.52px solid var(--border);font-size:12px;color:var(--text-secondary);line-height:1.8}.rights-card textarea{box-sizing:border-box;width:100%;min-height:130px;line-height:1.95;font-size:14px;padding:13px;border:0.52px solid var(--border);background:var(--page-bg);color:var(--text-secondary)}.close-note{font-size:12px;color:var(--text-secondary);background:var(--page-bg);line-height:1.9;padding:12.48px;border-radius:7.8px;margin-top:13px}.primary{background:var(--brand);color:var(--surface);font-size:12px;line-height:1.6;min-height:44px;padding:11.96px 13px;margin:14.56px 0 0;font-weight:600}.request-message{font-size:12px;line-height:1.9;color:var(--text-secondary);background:var(--brand-soft);padding:11.96px;border-radius:7.28px;margin-top:14.04px}.request-list{margin-top:21.84px;border-top:0.52px solid var(--border);padding-top:16.64px}.list-heading{display:flex;align-items:center;justify-content:space-between;gap:6.24px}.list-heading button{font-size:12px;color:var(--text-secondary);background:none;min-height:44px;margin:0;padding:7.8px 0}.request-record{border:0.52px solid var(--border);border-radius:9.36px;padding:13.52px;margin-top:13px}.request-status{color:var(--text-secondary);font-size:12px;line-height:1.8}.request-title{font-size:14px;color:var(--text-secondary);line-height:1.7;margin-top:5.72px}.request-date{font-size:12px;color:var(--text-secondary);margin-top:4.16px;line-height:1.8}.request-detail,.response{font-size:12px;color:var(--text-secondary);line-height:1.95;white-space:pre-wrap;margin-top:10.92px;word-break:break-all}.response{background:var(--page-bg);padding:11.44px;border-radius:6.76px;color:var(--text-secondary)}.response>div:first-child{font-size:12px;color:var(--text-secondary);margin-bottom:6.24px}button::after{border:0}button[disabled]{opacity:.5}
+
+.operator-card {background:var(--surface);border:0.52px solid var(--border);padding:18.72px;margin-bottom:13.52px}.operator-field{display:flex;gap:12.48px;font-size:12px;line-height:1.9;margin-top:9.36px;color:var(--text-secondary)}.operator-field>span:first-child{width:83.2px;flex:none;color:var(--text-secondary)}.operator-field>span:last-child{flex:1;min-width:0;word-break:break-all}
+
+
+.legal-page{background:var(--page-bg);font-size:14px;letter-spacing:normal;padding-top:18.72px}.legal-hero{background:transparent;padding:0 3.12px}.eyebrow{display:none}.hero-title{font-size:24px;font-weight:600;letter-spacing:normal;margin-top:0}.hero-copy{font-size:14px;line-height:1.85;margin:11.44px 0}.operator-card,.document-card,.rights-card{border-radius:12.48px;background:var(--surface)}.document-nav{border-radius:12.48px;overflow:hidden;background:var(--surface);gap:2.08px;padding:4.16px}.document-nav button{font-size:14px;min-height:44px;border-radius:10.4px;padding:9.36px 8.32px;background:var(--surface);color:var(--text-secondary)}.document-nav button.active{color:var(--brand);background:var(--brand-soft)}.document-nav button span{font-size:14px}.document-label{color:var(--brand);letter-spacing:normal}.document-title{font-size:24px;font-weight:600}.section-title{font-size:18px;font-weight:600}.paragraph,.list-item,.summary,.cell-value,.request-detail,.response,.request-title{font-size:14px;line-height:1.85;color:var(--text)}.operator-field>span:last-child{font-size:14px;color:var(--text)}.toc{background:var(--page-bg);border-radius:10.4px}.toc button{font-size:14px;min-height:44px}.rights-card textarea,.type-picker{font-size:14px;min-height:44px;color:var(--text);border-radius:10.4px;background:var(--surface)}.primary{font-size:14px;min-height:44px;border-radius:10.4px}.field-label{font-size:14px}.type-picker{align-items:center}.notice,.request-message{border-radius:10.4px;background:var(--page-bg);color:var(--text-secondary)}.notice button,.list-heading button,.document-bottom button{font-size:14px;min-height:44px}.section.important{background:var(--page-bg);border-radius:10.4px}.request-record{border-radius:10.4px}.table-record{border-radius:10.4px}.response{background:var(--page-bg)}
+
+.list-heading button,.notice button,.document-bottom button{min-width:44px}
+
+</style></head><body><div class="legal-page mini-legal-legal">
+  <div class="legal-hero"><div class="hero-title">协议与隐私中心</div><div class="hero-copy">了解我们提供的服务、如何处理个人信息，以及你可以行使的权利。</div><div class="version"><span>版本 2026-11-01.2</span><span>更新 2026-11-01</span><span>生效 本版本正式发布之日</span></div></div>
+  
+  
+    <div class="notice draft">当前显示工作区草案，尚未发布生效。请以核实并正式发布后的版本及生效日期为准。</div>
+    <div class="operator-card"><div class="section-title">运营者与联系信息</div><div class="operator-field"><span>运营主体</span><span selectable="">北京华创科技有限公司</span></div><div class="operator-field"><span>联系邮箱</span><span selectable="">待核实</span></div><div class="operator-field"><span>联系地址</span><span selectable="">待核实</span></div><div class="operator-field"><span>托管服务商</span><span selectable="">腾讯云（具体受托主体待核实）</span></div><div class="operator-field"><span>数据存储地区</span><span selectable="">待核实</span></div></div>
+    <div class="document-nav"><button class="">赛历隐私政策<span>↗</span></button><button class="">赛历用户服务协议<span>↗</span></button><button class="">个人信息收集使用清单<span>↗</span></button><button class="">第三方信息共享与受托处理清单<span>↗</span></button><button class="active">系统权限与本地存储说明<span>↗</span></button><button class="">未成年人个人信息保护说明<span>↗</span></button><button class="">个人信息权利与账号注销指引<span>↗</span></button></div><div class="reading-note">所有文件均可在登录前阅读。授权或撤回某项权限，不影响与该权限无关的服务。</div>
+    <div class="document-card"><div class="document-label">透明说明</div><div class="document-title">系统权限与本地存储说明</div><div class="summary">仅在您主动使用对应功能时申请或调用必要能力；原生能力是否需要系统授权，以微信及操作系统实际提示为准。</div><div class="operator">运营主体：北京华创科技有限公司</div>
+      
+      <div id="legal-section-0" class="section "><div class="section-title">一、权限和原生能力</div><div class="table-record"><div class="table-cell"><div class="cell-label">能力／接口场景</div><div class="cell-value"><span class="" selectable="">微信登录 wx.login</span></div></div><div class="table-cell"><div class="cell-label">目的与时机</div><div class="cell-value"><span class="" selectable="">您选择微信登录或绑定时签发临时凭证</span></div></div><div class="table-cell"><div class="cell-label">处理范围</div><div class="cell-value"><span class="" selectable="">用于登录核验；不自动获取通讯录、微信密码或手机号</span></div></div><div class="table-cell"><div class="cell-label">拒绝／撤回影响</div><div class="cell-value"><span class="" selectable="">可改用昵称密码；绑定、解绑按账号安全规则验证</span></div></div></div><div class="table-record"><div class="table-cell"><div class="cell-label">能力／接口场景</div><div class="cell-value"><span class="" selectable="">文件选择 wx.chooseMessageFile</span></div></div><div class="table-cell"><div class="cell-label">目的与时机</div><div class="cell-value"><span class="" selectable="">您点击导入运动文件或跑史CSV／JSON表格时打开微信文件选择器</span></div></div><div class="table-cell"><div class="cell-label">处理范围</div><div class="cell-value"><span class="" selectable="">仅取得您选中的文件；运动文件及识别图片按场景临时解析，跑史表格在本次页面读取后供核对，不读取全部聊天记录</span></div></div><div class="table-cell"><div class="cell-label">拒绝／撤回影响</div><div class="cell-value"><span class="" selectable="">本次导入不可用，仍可浏览或使用手填等功能；微信隐私声明另需维护</span></div></div></div><div class="table-record"><div class="table-cell"><div class="cell-label">能力／接口场景</div><div class="cell-value"><span class="" selectable="">图片／视频选择 wx.chooseMedia等、头像选择 chooseAvatar</span></div></div><div class="table-cell"><div class="cell-label">目的与时机</div><div class="cell-value"><span class="" selectable="">您主动上传头像、证明、相册、建议截图、跑史资料或选择图片识别时</span></div></div><div class="table-cell"><div class="cell-label">处理范围</div><div class="cell-value"><span class="" selectable="">仅选中的文件；选择拍摄或相册由您决定，不遍历全部内容</span></div></div><div class="table-cell"><div class="cell-label">拒绝／撤回影响</div><div class="cell-value"><span class="" selectable="">对应上传不可用，文字和公开浏览不受影响</span></div></div></div><div class="table-record"><div class="table-cell"><div class="cell-label">能力／接口场景</div><div class="cell-value"><span class="" selectable="">相机（原生选择器由您选择拍摄时）</span></div></div><div class="table-cell"><div class="cell-label">目的与时机</div><div class="cell-value"><span class="" selectable="">拍摄本次要上传的图像／视频</span></div></div><div class="table-cell"><div class="cell-label">处理范围</div><div class="cell-value"><span class="" selectable="">不后台持续拍摄、不申请麦克风进行独立录音；视频若含声音由所选媒体携带</span></div></div><div class="table-cell"><div class="cell-label">拒绝／撤回影响</div><div class="cell-value"><span class="" selectable="">可以改从已有媒体选择；具体授权在微信／系统设置管理</span></div></div></div><div class="table-record"><div class="table-cell"><div class="cell-label">能力／接口场景</div><div class="cell-value"><span class="" selectable="">保存至相册 wx.saveImageToPhotosAlbum</span></div></div><div class="table-cell"><div class="cell-label">目的与时机</div><div class="cell-value"><span class="" selectable="">您点击保存成绩／活动海报时</span></div></div><div class="table-cell"><div class="cell-label">处理范围</div><div class="cell-value"><span class="" selectable="">把本次生成图片写入相册；不读取现有相册内容</span></div></div><div class="table-cell"><div class="cell-label">拒绝／撤回影响</div><div class="cell-value"><span class="" selectable="">不能自动保存，可按支持方式预览后另行保存</span></div></div></div><div class="table-record"><div class="table-cell"><div class="cell-label">能力／接口场景</div><div class="cell-value"><span class="" selectable="">剪贴板写入 wx.setClipboardData／navigator.clipboard.writeText</span></div></div><div class="table-cell"><div class="cell-label">目的与时机</div><div class="cell-value"><span class="" selectable="">您点击复制链接、口令、名单、回顾、个人跑史或错误信息时</span></div></div><div class="table-cell"><div class="cell-label">处理范围</div><div class="cell-value"><span class="" selectable="">仅写入您发起复制的内容；不主动读取剪贴板</span></div></div><div class="table-cell"><div class="cell-label">拒绝／撤回影响</div><div class="cell-value"><span class="" selectable="">无法自动复制，可手动选择文字；复制诊断不应包含登录令牌</span></div></div></div><div class="table-record"><div class="table-cell"><div class="cell-label">能力／接口场景</div><div class="cell-value"><span class="" selectable="">微信分享／系统分享、下载</span></div></div><div class="table-cell"><div class="cell-label">目的与时机</div><div class="cell-value"><span class="" selectable="">您主动向朋友、群、朋友圈或本地保存时</span></div></div><div class="table-cell"><div class="cell-label">处理范围</div><div class="cell-value"><span class="" selectable="">分享公开团号链接或所选内容；您决定接收对象，不自动分享私人档案；跑史导出不含登录令牌和私密文件地址</span></div></div><div class="table-cell"><div class="cell-label">拒绝／撤回影响</div><div class="cell-value"><span class="" selectable="">不影响浏览；公开内容发出后他人可能保存</span></div></div></div><div class="table-record"><div class="table-cell"><div class="cell-label">能力／接口场景</div><div class="cell-value"><span class="" selectable="">定位、通讯录、日历读取、步数／微信运动、系统手机号、蓝牙</span></div></div><div class="table-cell"><div class="cell-label">目的与时机</div><div class="cell-value"><span class="" selectable="">当前没有启用这些读取能力</span></div></div><div class="table-cell"><div class="cell-label">处理范围</div><div class="cell-value"><span class="" selectable="">活动城市由您手填，签到为主动记录，不实时定位；不读取设备步数或生理传感器</span></div></div><div class="table-cell"><div class="cell-label">拒绝／撤回影响</div><div class="cell-value"><span class="" selectable="">不应为使用赛历要求开启这些权限</span></div></div></div></div><div id="legal-section-1" class="section "><div class="section-title">二、本地存储与会话</div><div class="table-record"><div class="table-cell"><div class="cell-label">种类</div><div class="cell-value"><span class="" selectable="">用户登录状态</span></div></div><div class="table-cell"><div class="cell-label">保存内容与目的</div><div class="cell-value"><span class="" selectable="">登录令牌、昵称、头像地址，保持会话和展示本人资料</span></div></div><div class="table-cell"><div class="cell-label">位置与控制</div><div class="cell-value"><span class="" selectable="">浏览器localStorage／小程序本地存储；退出登录清会话，清缓存可能需重新登录</span></div></div></div><div class="table-record"><div class="table-cell"><div class="cell-label">种类</div><div class="cell-value"><span class="" selectable="">管理员会话</span></div></div><div class="table-cell"><div class="cell-label">保存内容与目的</div><div class="cell-value"><span class="" selectable="">后台登录会话，用于权限核验</span></div></div><div class="table-cell"><div class="cell-label">位置与控制</div><div class="cell-value"><span class="" selectable="">浏览器sessionStorage；与普通用户账号分离，退出后失效</span></div></div></div><div class="table-record"><div class="table-cell"><div class="cell-label">种类</div><div class="cell-value"><span class="" selectable="">本人操作草稿</span></div></div><div class="table-cell"><div class="cell-label">保存内容与目的</div><div class="cell-value"><span class="" selectable="">部分活动创建、共创建议草稿及暂存填写状态</span></div></div><div class="table-cell"><div class="cell-label">位置与控制</div><div class="cell-value"><span class="" selectable="">相应客户端本地／内存；跨账号隔离，清缓存或页面关闭可能丢失，不保证跨设备同步</span></div></div></div><div class="table-record"><div class="table-cell"><div class="cell-label">种类</div><div class="cell-value"><span class="" selectable="">导航与交互状态</span></div></div><div class="table-cell"><div class="cell-label">保存内容与目的</div><div class="cell-value"><span class="" selectable="">登录后的返回路径、待加入的公开团号、选择页签等</span></div></div><div class="table-cell"><div class="cell-label">位置与控制</div><div class="cell-value"><span class="" selectable="">用于完成您发起的操作；不作为广告追踪标识</span></div></div></div><div class="table-record"><div class="table-cell"><div class="cell-label">种类</div><div class="cell-value"><span class="" selectable="">协议选择记录</span></div></div><div class="table-cell"><div class="cell-label">保存内容与目的</div><div class="cell-value"><span class="" selectable="">明确接受的条款版本与服务端记录时间</span></div></div><div class="table-cell"><div class="cell-label">位置与控制</div><div class="cell-value"><span class="" selectable="">本人账号相关记录；不把未勾选或旧版本自动标成已接受，也不代替敏感场景单独同意</span></div></div></div></div><div id="legal-section-2" class="section "><div class="section-title">三、怎样拒绝或撤回</div><div class="paragraph"><span class="" selectable="">在微信“设置—个人信息与权限／授权管理”及小程序右上角设置中，按当前版本提供的入口管理授权；手机相机、相册权限可在操作系统应用权限中管理。不同系统路径可能不同，以实际界面为准。</span></div><div class="paragraph"><span class="" selectable="">微信隐私授权弹窗由微信机制管理；本产品的隐私政策阅读、服务条款选择和微信原生隐私授权是不同事项，不能用一个按钮替代全部授权。撤回权限不自动删除已上传的记录；删除或注销可使用个人信息权利入口。</span></div></div>
+      <div class="document-bottom">如需查阅、更正、复制或删除个人信息，请查看《个人信息权利与账号注销指引》。<button>回到顶部 ↑</button></div>
+    </div>
+    
+  
+</div>
+</body></html>

@@ -1,0 +1,233 @@
+{
+  "baseline": "/tmp/marathon-web-before-bright-20261111",
+  "algorithm": "git diff --no-index --numstat against pre-bright task snapshot",
+  "changedFiles": 38,
+  "added": 142,
+  "removed": 142,
+  "changeType": "Palette and light-surface CSS/SVG/canvas colors only. All Vue script and template blocks unchanged.",
+  "files": [
+    {
+      "path": "web/src/assets/navigation/clubs-on.svg",
+      "added": 1,
+      "removed": 1
+    },
+    {
+      "path": "web/src/assets/navigation/clubs.svg",
+      "added": 1,
+      "removed": 1
+    },
+    {
+      "path": "web/src/assets/navigation/mine-on.svg",
+      "added": 1,
+      "removed": 1
+    },
+    {
+      "path": "web/src/assets/navigation/mine.svg",
+      "added": 1,
+      "removed": 1
+    },
+    {
+      "path": "web/src/assets/navigation/races-on.svg",
+      "added": 1,
+      "removed": 1
+    },
+    {
+      "path": "web/src/assets/navigation/races.svg",
+      "added": 1,
+      "removed": 1
+    },
+    {
+      "path": "web/src/assets/navigation/sport-on.svg",
+      "added": 1,
+      "removed": 1
+    },
+    {
+      "path": "web/src/assets/navigation/sport.svg",
+      "added": 1,
+      "removed": 1
+    },
+    {
+      "path": "web/src/assets/quick/calendar.svg",
+      "added": 1,
+      "removed": 1
+    },
+    {
+      "path": "web/src/assets/quick/clubs.svg",
+      "added": 1,
+      "removed": 1
+    },
+    {
+      "path": "web/src/assets/quick/news.svg",
+      "added": 1,
+      "removed": 1
+    },
+    {
+      "path": "web/src/assets/quick/radar.svg",
+      "added": 1,
+      "removed": 1
+    },
+    {
+      "path": "web/src/club-detail.css",
+      "added": 1,
+      "removed": 1
+    },
+    {
+      "path": "web/src/club-forms.css",
+      "added": 1,
+      "removed": 1
+    },
+    {
+      "path": "web/src/components/Pager.vue",
+      "added": 1,
+      "removed": 1
+    },
+    {
+      "path": "web/src/components/PrivacyRights.vue",
+      "added": 1,
+      "removed": 1
+    },
+    {
+      "path": "web/src/components/RunnerDashboard.vue",
+      "added": 2,
+      "removed": 2
+    },
+    {
+      "path": "web/src/components/admin/AdminDashboard.vue",
+      "added": 5,
+      "removed": 5
+    },
+    {
+      "path": "web/src/components/admin/ClubIdentityAdmin.vue",
+      "added": 1,
+      "removed": 1
+    },
+    {
+      "path": "web/src/components/admin/FeedbackAdmin.vue",
+      "added": 1,
+      "removed": 1
+    },
+    {
+      "path": "web/src/day-poster.js",
+      "added": 6,
+      "removed": 6
+    },
+    {
+      "path": "web/src/result-poster.js",
+      "added": 14,
+      "removed": 14
+    },
+    {
+      "path": "web/src/share-card.js",
+      "added": 4,
+      "removed": 4
+    },
+    {
+      "path": "web/src/styles/admin.css",
+      "added": 8,
+      "removed": 8
+    },
+    {
+      "path": "web/src/styles/consumer.css",
+      "added": 1,
+      "removed": 1
+    },
+    {
+      "path": "web/src/styles.css",
+      "added": 11,
+      "removed": 11
+    },
+    {
+      "path": "web/src/views/Activity.vue",
+      "added": 17,
+      "removed": 17
+    },
+    {
+      "path": "web/src/views/ActivityCreate.vue",
+      "added": 24,
+      "removed": 24
+    },
+    {
+      "path": "web/src/views/Club.vue",
+      "added": 13,
+      "removed": 13
+    },
+    {
+      "path": "web/src/views/ClubIntro.vue",
+      "added": 4,
+      "removed": 4
+    },
+    {
+      "path": "web/src/views/Feedback.vue",
+      "added": 2,
+      "removed": 2
+    },
+    {
+      "path": "web/src/views/Home.vue",
+      "added": 1,
+      "removed": 1
+    },
+    {
+      "path": "web/src/views/Legal.vue",
+      "added": 1,
+      "removed": 1
+    },
+    {
+      "path": "web/src/views/Mine.vue",
+      "added": 1,
+      "removed": 1
+    },
+    {
+      "path": "web/src/views/RaceHistory.vue",
+      "added": 1,
+      "removed": 1
+    },
+    {
+      "path": "web/src/views/Runner.vue",
+      "added": 1,
+      "removed": 1
+    },
+    {
+      "path": "web/src/views/Signup.vue",
+      "added": 5,
+      "removed": 5
+    },
+    {
+      "path": "web/src/views/Sport.vue",
+      "added": 3,
+      "removed": 3
+    }
+  ],
+  "build": "npm run build --prefix web passed (1.41s)",
+  "checks": {
+    "core": {
+      "passed": true,
+      "checks": 28,
+      "report": "core-report.json",
+      "screenshots": 21
+    },
+    "templates": {
+      "passed": true,
+      "checks": 23,
+      "report": "templates/browser-report.json",
+      "screenshots": 7
+    },
+    "admin": {
+      "passed": true,
+      "checks": 80,
+      "report": "admin-report.json",
+      "screenshots": 63
+    }
+  },
+  "darkCardsRemoved": [
+    "Activity.vue .event-hero",
+    "ActivityCreate.vue .preview-hero",
+    "Signup.vue .event-heading"
+  ],
+  "brightSurfaces": [
+    "Runner.vue .preview-dialog",
+    "Feedback.vue .image-dialog",
+    "Mine.vue .account-hero",
+    "ClubIntro.vue .intro-card",
+    "RunnerDashboard.vue .week-card"
+  ]
+}

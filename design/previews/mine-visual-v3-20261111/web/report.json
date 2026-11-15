@@ -1,0 +1,115 @@
+{
+  "kind": "Mine visual review with synthetic local API replies",
+  "scenes": [
+    {
+      "scene": "overview",
+      "width": 320,
+      "guest": false,
+      "file": "mine-overview-320.png",
+      "scroll": 320,
+      "broken": [],
+      "passed": true
+    },
+    {
+      "scene": "results",
+      "width": 320,
+      "guest": false,
+      "file": "mine-results-320.png",
+      "scroll": 320,
+      "broken": [],
+      "passed": true
+    },
+    {
+      "scene": "profile",
+      "width": 320,
+      "guest": false,
+      "file": "mine-profile-320.png",
+      "scroll": 320,
+      "broken": [],
+      "passed": true
+    },
+    {
+      "scene": "settings",
+      "width": 320,
+      "guest": false,
+      "file": "mine-settings-320.png",
+      "scroll": 320,
+      "broken": [],
+      "passed": true
+    },
+    {
+      "scene": "guest",
+      "width": 320,
+      "guest": true,
+      "file": "mine-guest-guest-320.png",
+      "scroll": 320,
+      "broken": [],
+      "passed": true
+    },
+    {
+      "scene": "settings",
+      "width": 320,
+      "guest": true,
+      "file": "mine-guest-settings-320.png",
+      "scroll": 320,
+      "broken": [],
+      "passed": true
+    },
+    {
+      "scene": "overview",
+      "width": 390,
+      "guest": false,
+      "file": "mine-overview-390.png",
+      "scroll": 390,
+      "broken": [],
+      "passed": true
+    },
+    {
+      "scene": "results",
+      "width": 390,
+      "guest": false,
+      "file": "mine-results-390.png",
+      "scroll": 390,
+      "broken": [],
+      "passed": true
+    },
+    {
+      "scene": "profile",
+      "width": 390,
+      "guest": false,
+      "file": "mine-profile-390.png",
+      "scroll": 390,
+      "broken": [],
+      "passed": true
+    },
+    {
+      "scene": "settings",
+      "width": 390,
+      "guest": false,
+      "file": "mine-settings-390.png",
+      "scroll": 390,
+      "broken": [],
+      "passed": true
+    },
+    {
+      "scene": "guest",
+      "width": 390,
+      "guest": true,
+      "file": "mine-guest-guest-390.png",
+      "scroll": 390,
+      "broken": [],
+      "passed": true
+    },
+    {
+      "scene": "settings",
+      "width": 390,
+      "guest": true,
+      "file": "mine-guest-settings-390.png",
+      "scroll": 390,
+      "broken": [],
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

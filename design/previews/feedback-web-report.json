@@ -1,0 +1,41 @@
+{
+  "kind": "Feedback UI fixture regression; no business database writes",
+  "checks": [
+    "public board renders readable controls without overflow 320",
+    "detail and reply show progress without overflow 320",
+    "public board renders readable controls without overflow 390",
+    "detail and reply show progress without overflow 390",
+    "public board renders readable controls without overflow 1440",
+    "detail and reply show progress without overflow 1440",
+    "guest vote routes to login with exact suggestion return",
+    "guest submit returns to compose after login",
+    "votes use explicit desired state and cancel restores count",
+    "category, sort and pagination requests follow selected controls",
+    "draft persists by account and invalid image never uploads",
+    "different account never reads previous account draft",
+    "partial screenshot failure preserves submitted text without duplicate and offers retry",
+    "withdraw confirm cancellation preserves suggestion and confirmation withdraws once",
+    "own list keeps pending private progress readable and acknowledges once",
+    "reward claim validates consent and keeps information private in dedicated form",
+    "shipped reward displays real tracking and confirms receipt only explicitly",
+    "cross-tab account change clears private reward data",
+    "failed list has usable retry",
+    "text payload renders as text without injecting HTML",
+    "unknown private suggestion returns friendly unavailable state",
+    "late private reward response cannot repopulate a changed account",
+    "Mine exposes unread suggestion progress and opens my suggestions"
+  ],
+  "screenshots": [
+    "feedback-board-320.png",
+    "feedback-detail-320.png",
+    "feedback-board-390.png",
+    "feedback-detail-390.png",
+    "feedback-board-1440.png",
+    "feedback-detail-1440.png",
+    "feedback-compose-320.png",
+    "feedback-reward-claim-320.png"
+  ],
+  "errors": [],
+  "unexpected": [],
+  "passed": true
+}

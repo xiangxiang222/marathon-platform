@@ -1,0 +1,363 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>html,body{margin:0;padding:0}a{display:block;color:inherit;text-decoration:none}button{display:block;box-sizing:border-box;line-height:1.35;cursor:default}input,textarea{outline:none}img{display:inline-block;vertical-align:middle}*{box-sizing:border-box}.native-switch{display:inline-block;width:44px;height:26px;flex:none;border-radius:20px;background:#d8cec2;position:relative}.native-switch[checked=true]{background:#e1251b}.native-switch:after{content:"";display:block;position:absolute;top:2px;left:2px;width:22px;height:22px;border-radius:50%;background:white}.native-switch[checked=true]:after{left:20px}</style><style>body {
+  --brand: #e1251b;
+  --brand-soft: #fff2f0;
+  --page-bg: #f5f5f5;
+  --surface: #ffffff;
+  --text: #262626;
+  --text-secondary: #767676;
+  --border: #eeeeee;
+  min-height: 100%;
+  background: #f5f5f5;
+  color: #262626;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+div, span, a, div, button, input, textarea, div {
+  box-sizing: border-box;
+}
+
+button, input, textarea {
+  font-family: inherit;
+  color: #262626;
+}
+
+button {
+  margin: 0;
+  border: 0;
+  min-height: 44px;
+  border-radius: 426.24px;
+  background: #f2f2f2;
+  font-size: 14px;
+}
+
+input, textarea {
+  box-sizing: border-box;
+  border: 0.4266666666666667px solid #e8e8e8;
+  border-radius: 8.533333333333333px;
+  background: #f7f7f7;
+  color: #262626;
+  font-size: 14px;
+}
+
+button::after { border: 0; }
+button[plain] { border: 0.4266666666666667px solid #e8e8e8; background: #fff; }
+input { min-height: 44px; padding: 0 10.24px; }
+textarea { min-height: 120px; padding: 9.386666666666667px 10.24px; line-height: 1.7; }
+
+.pad { padding: 11.946666666666667px 10.24px calc(20.48px + env(safe-area-inset-bottom)); }
+.card {
+  margin-bottom: 8.533333333333333px;
+  padding: 12.8px;
+  border: 0;
+  border-radius:13.653333333333334px;
+  background: #fff;
+}
+.muted { color: #767676; font-size: 12px; }
+.slot {
+  display: flex;
+  justify-content: space-between;
+  gap: 10.24px;
+  margin-top: 5.12px;
+  padding: 6.826666666666667px 8.533333333333333px;
+  border-radius: 6.826666666666667px;
+  background: #f5f5f5;
+  font-size: 14px;
+}
+.slot-state { color: #767676; font-size: 12px; }
+.teal { color: #e1251b; }
+.title { font-size: 18px; font-weight: 700; line-height: 1.45; }
+.row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10.24px;
+  padding: 6.826666666666667px 0;
+  border-bottom: 0.4266666666666667px solid #eeeeee;
+}
+.row .k { flex: none; color: #767676; }
+.soon { color: #c87825; }
+.err { margin-top: 3.4133333333333336px; color: #b42318; font-size: 12px; }
+.note { margin-top: 3.4133333333333336px; color: #e1251b; font-size: 12px; }
+.empty { padding: 27.30666666666667px 13.653333333333334px; color: #767676; text-align: center; line-height: 1.8; }
+
+.field { display: flex; align-items: center; gap: 6.826666666666667px; }
+.field input {
+  flex: 1;
+  height: 44px;
+  padding: 0 8.533333333333333px;
+  border-radius: 8.533333333333333px;
+  background: #fff;
+}
+.btn {
+  display: block;
+  margin: 0;
+  padding: 0 11.946666666666667px;
+  min-height: 44px;
+  border-radius:426.24px;
+  background: #e1251b;
+  color: #fff;
+  font-size: 14px;
+  line-height: 44px;
+  text-align: center;
+}
+button.ghost {
+  margin: 6.826666666666667px 6.826666666666667px 0 0;
+  padding: 0 10.24px;
+  min-height: 44px;
+  border-radius:426.24px;
+  background: #f2f2f2;
+  color: #262626;
+  font-size: 12px;
+  line-height: 44px;
+}
+button.ghost.on { background: #fff2f0; color: #e1251b; }
+button[disabled], button.btn[disabled] { background: #f2f2f2; color: #767676; }
+.chip {
+  display: inline-block;
+  margin-right: 3.4133333333333336px;
+  padding: 0.8533333333333334px 4.266666666666667px;
+  border-radius: 3.4133333333333336px;
+  background: #f2f2f2;
+  color: #767676;
+  font-size: 12px;
+}
+.login-go {
+  display: block;
+  min-height: 44px;
+  margin-top: 6.826666666666667px;
+  border-radius: 426.24px;
+  background: #e1251b;
+  color: #fff;
+  font-weight: 600;
+  line-height: 44px;
+  text-align: center;
+}
+.foot {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5.12px;
+  color: #767676;
+  font-size: 12px;
+}
+
+/* Shared form language also covers the compact secondary pages. */
+.src { margin-top: 5.12px; color: #767676; font-size: 12px; line-height: 1.75; overflow-wrap: anywhere; }
+.card > input, .card > textarea, .card > div { margin-top: 8.533333333333333px; }
+.card > input { width: 100%; }
+.card > .btn { margin-top: 10.24px; }
+.primary, .primary-btn, .primary-button, .submit-button, .save-action, .next-action, .bottom-primary, .staff-primary { border-radius:426.24px; }
+.field-label, .form-label { line-height: 1.6; }
+.metric-value, .stat-value, .career-number, .record-number, .rank-time { font-variant-numeric: tabular-nums; }
+@media (max-width: 350px) {
+  .pad { padding-left: 12px; padding-right: 12px; }
+  .card { padding: 14px; }
+}
+
+body { background: #f6f5f3; color: #282720; }
+.page { padding: 11.946666666666667px 11.946666666666667px calc(76.8px + env(safe-area-inset-bottom)); box-sizing: border-box; }
+.page button, .template-sheet button { display: flex; align-items: center; justify-content: center; gap: 5.12px; width: auto; min-width: 0; min-height: 44px; margin: 0; padding: 6.826666666666667px 10.24px; border: 0; border-radius: 6.826666666666667px; font-size: 14px; line-height: 1.3; box-sizing: border-box; }
+.page button::after, .template-sheet button::after { border: 0; }
+.hero { padding: 5.12px 1.7066666666666668px 12.8px; }
+.club-kicker { display: flex; align-items: center; gap: 5.12px; color: #77736e; font-size: 12px; }
+.club-kicker::before { content: ''; width: 10.24px; height: 1.7066666666666668px; background: #e1251b; }
+.hero-title { margin-top: 7.68px; font-size: 27px; font-weight: 700; line-height: 1.3; letter-spacing: -0.4266666666666667px; }
+.hero-description { margin-top: 5.973333333333334px; color: #77736e; font-size: 12px; line-height: 1.7; }
+.steps { display: flex; align-items: center; gap: 5.973333333333334px; margin: 0 1.7066666666666668px 13.653333333333334px; }
+.step { display: flex; align-items: center; gap: 4.266666666666667px; min-width: 0; font-size: 12px; color: #99948e; white-space: nowrap; }
+.step-number { display: flex; align-items: center; justify-content: center; width: 16.213333333333335px; height: 16.213333333333335px; border: 1px solid #ded9d2; border-radius: 50%; font-size: 10px; }
+.step.current { color: #282720; font-weight: 600; }
+.step.current .step-number { background: #e1251b; border-color: #e1251b; color: #fff; }
+.step-line { flex: 1; min-width: 5.12px; height: 1px; background: #ded9d2; }
+.restore-line { margin-bottom: 9.386666666666667px; padding: 10.24px 11.946666666666667px 5.12px; border: 1px solid #ebdfd5; border-radius: 10.24px; background: #fcf8f2; }
+.restore-main { display: flex; align-items: center; gap: 8.533333333333333px; }
+.draft-mark { display: flex; align-items: center; justify-content: center; flex: 0 0 25.6px; height: 27.30666666666667px; border: 1px solid #e4d5c5; border-radius: 5.12px; color: #8e7358; font-size: 18px; }
+.restore-copy { flex: 1; min-width: 0; }
+.restore-title { font-size: 14px; font-weight: 600; line-height: 1.5; }
+.subtle { color: #77736e; font-size: 12px; line-height: 1.65; }
+.restore-actions { display: flex; justify-content: flex-end; gap: 5.12px; margin-top: 3.4133333333333336px; }
+.restore-actions button { flex: none; min-height: 40px; padding: 5.12px 8.533333333333333px; font-size: 12px; white-space: nowrap; }
+.discard-btn { color: #77736e; background: transparent; }
+.restore-btn { color: #a94a30; background: #f6e9da; }
+.success-note { margin-bottom: 9.386666666666667px; padding: 8.533333333333333px 10.24px; color: #72604d; background: #f0ece3; border-radius: 6.826666666666667px; font-size: 12px; line-height: 1.6; }
+.editing-banner { display: flex; align-items: center; justify-content: space-between; gap: 6.826666666666667px; padding: 10.24px; margin-bottom: 9.386666666666667px; background: #f7e9df; border-radius: 8.533333333333333px; }
+.editing-banner > div { flex: 1; min-width: 0; }
+.editing-banner button { flex: none; padding: 3.4133333333333336px 5.12px; color: #a94a30; background: transparent; font-size: 12px; }
+.template-studio { margin-bottom: 11.093333333333334px; }
+.studio-head, .library-head, .section-head { display: flex; justify-content: space-between; align-items: center; gap: 6.826666666666667px; }
+.section-kicker { color: #b54331; font-size: 11px; letter-spacing: 0.4266666666666667px; }
+.studio-title { margin-top: 3.4133333333333336px; font-size: 19px; font-weight: 600; }
+.studio-caption { color: #8d857a; font-size: 11px; }
+.preset-row { display: flex; gap: 5.973333333333334px; margin-top: 9.386666666666667px; }
+.page .preset-card { flex: 1; display: flex; flex-direction: column; align-items: stretch; min-width: 0; min-height: 71.68px; padding: 8.533333333333333px; border: 1px solid #e8e3dc; border-radius: 8.533333333333333px; background: #fff; text-align: left; }
+.page .preset-card.preset-active { border-color: #df8e7f; background: #fff3ef; }
+.preset-top { display: flex; align-items: center; justify-content: space-between; }
+.preset-mark { font-size: 21px; font-style: italic; font-weight: 700; color: #c54530; }
+.preset-arrow { color: #b5a397; font-size: 13px; }
+.preset-name { margin-top: 6.826666666666667px; font-size: 14px; font-weight: 600; white-space: nowrap; }
+.preset-tag { margin-top: 3.4133333333333336px; font-size: 11px; color: #77736e; white-space: nowrap; }
+.library-head { margin: 10.24px 0 5.12px; }
+.library-title { font-size: 12px; font-weight: 600; }
+.library-count { color: #968d82; margin-left: 4.266666666666667px; font-weight: 400; }
+.page .text-button { min-height: 40px; padding: 3.4133333333333336px 0 3.4133333333333336px 8.533333333333333px; color: #b54331; background: transparent; font-size: 12px; }
+.template-scroll { width: 100%; white-space: nowrap; }
+.saved-template { position: relative; display: inline-block; vertical-align: top; width: 123.73333333333333px; margin-right: 5.973333333333334px; border: 1px solid #e7e0d7; border-radius: 7.68px; background: #fff; white-space: normal; overflow: hidden; }
+.saved-template.saved-active { border-color: #df8e7f; background: #fff7f3; }
+.page .saved-template-use { width: 100%; flex-direction: column; align-items: flex-start; gap: 5.12px; padding: 9.386666666666667px; padding-right: 21.333333333333332px; background: transparent; text-align: left; }
+.saved-template-name { width: 100%; font-size: 13px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.saved-template-meta { color: #77736e; font-size: 11px; }
+.saved-template-cta { font-size: 11px; color: #b54331; }
+.page .template-menu { position: absolute; top: 0; right: 0; width: 44px; min-height: 44px; padding: 0; background: transparent; color: #77736e; }
+.library-empty, .template-load-error { padding: 8.533333333333333px 10.24px; font-size: 12px; line-height: 1.7; border: 1px dashed #ddd4c8; border-radius: 6.826666666666667px; color: #77736e; }
+.template-load-error { display: flex; align-items: center; justify-content: space-between; gap: 5.12px; }
+.template-load-error button { color: #b54331; background: transparent; font-size: 12px; padding: 3.4133333333333336px; }
+.form-area, .preview { padding: 12.8px; margin-bottom: 10.24px; border: 1px solid #e9e5df; border-radius: 10.24px; background: #fff; }
+.section-head { align-items: flex-start; }
+.section-title { margin-top: 5.12px; font-size: 21px; font-weight: 600; line-height: 1.4; letter-spacing: -0.21333333333333335px; }
+.step-caption { color: #8d857a; font-size: 11px; white-space: nowrap; padding-top: 0.8533333333333334px; }
+.section-description { color: #77736e; font-size: 12px; line-height: 1.75; margin-top: 5.973333333333334px; }
+.label { margin: 11.946666666666667px 0 5.973333333333334px; font-size: 14px; font-weight: 500; line-height: 1.5; }
+.required, .optional { margin-left: 3.4133333333333336px; color: #8d857a; font-size: 11px; font-weight: 400; }
+.field, .picker-field, .textarea { width: 100%; min-width: 0; border: 1px solid #eae6e0; border-radius: 5.973333333333334px; background: #faf9f7; font-size: 14px; color: #282720; box-sizing: border-box; }
+.field { height: 46px; padding: 0 8.533333333333333px; }
+.picker-field { display: flex; align-items: center; justify-content: space-between; min-height: 46px; padding: 7.68px 8.533333333333333px; }
+.placeholder { color: #96918a; }
+.two-col { display: flex; align-items: flex-start; gap: 6.826666666666667px; }
+.col { flex: 1; min-width: 0; }
+.type-row { display: flex; flex-wrap: wrap; gap: 3.4133333333333336px; margin-top: 7.68px; }
+.page .type-option { min-height: 36px; padding: 4.266666666666667px 7.68px; border-radius: 426.24px; background: #f4f1ec; color: #77736e; font-size: 12px; }
+.page .type-selected { color: #b54331; background: #fbece5; }
+.page .disclosure { justify-content: space-between; width: 100%; margin-top: 11.946666666666667px; padding: 10.24px 0 0; border-top: 1px solid #eee9e2; border-radius: 0; background: transparent; text-align: left; }
+.disclosure-title { font-size: 13px; line-height: 1.6; }
+.disclosure > span { color: #b54331; font-size: 19px; }
+.time-clear { display: flex; align-items: center; gap: 4.266666666666667px; }
+.time-clear div { flex: 1; min-width: 0; }
+.clear { flex: none; padding: 5.973333333333334px 0; color: #b54331; font-size: 11px; }
+.group-section-label { margin-top: 12.8px; }
+.empty-groups { padding: 9.386666666666667px; color: #77736e; font-size: 12px; }
+.group-line { margin: 7.68px 0; padding: 9.386666666666667px; border: 1px solid #e8e0d7; border-radius: 8.533333333333333px; background: #fcfbf9; }
+.group-muted { opacity: .6; }
+.group-head { display: flex; justify-content: space-between; align-items: center; gap: 5.12px; margin-bottom: 6.826666666666667px; }
+.group-number { color: #b54331; font-size: 11px; font-weight: 600; letter-spacing: 0.4266666666666667px; }
+.group-enable { display: flex; align-items: center; color: #8d857a; font-size: 11px; }
+.group-switch { transform: scale(.75); transform-origin: right center; margin-left: -3.4133333333333336px; }
+.group-field-label { display: flex; align-items: center; gap: 3.4133333333333336px; margin: 6.826666666666667px 0 4.266666666666667px; color: #77736e; font-size: 12px; }
+.group-field-label > span { font-size: 10px; color: #8d857a; }
+.group-line .field { background: #fff; }
+.kind-picker { display: flex; align-items: center; justify-content: space-between; min-height: 46px; padding: 7.68px 8.533333333333333px; border: 1px solid #eae6e0; border-radius: 5.973333333333334px; background: #fff; font-size: 13px; box-sizing: border-box; }
+.page .add-group { width: 100%; min-height: 46px; margin-top: 6.826666666666667px; border: 1px dashed #ddc9b9; color: #b54331; background: transparent; font-size: 13px; }
+.workout-heading { display: flex; align-items: baseline; justify-content: space-between; margin-top: 3.4133333333333336px; }
+.textarea { min-height: 140px; height: 119.46666666666667px; padding: 9.386666666666667px; line-height: 1.75; }
+.textarea.short { min-height: 100px; height: 85.33333333333333px; }
+.metrics .label { font-size: 12px; white-space: nowrap; }
+.metric-note { margin-top: 5.973333333333334px; }
+.review-row { display: flex; align-items: center; justify-content: space-between; gap: 6.826666666666667px; }
+.review-row .label { margin-bottom: 1.7066666666666668px; }
+.save-template-strip { display: flex; align-items: center; justify-content: space-between; gap: 6.826666666666667px; padding: 10.24px; margin-bottom: 10.24px; border: 1px solid #eadccf; border-radius: 8.533333333333333px; background: #fcf5ed; }
+.save-template-strip > div { flex: 1; min-width: 0; }
+.strip-title { font-size: 13px; font-weight: 500; line-height: 1.6; }
+.page .save-template-strip button { flex: none; padding: 4.266666666666667px; font-size: 12px; white-space: nowrap; color: #b54331; background: transparent; }
+.preview-hero { margin-top: 12.8px; padding: 11.946666666666667px; border-left: 3px solid #e1251b; background: #fcf8f2; border-radius: 0 6.826666666666667px 6.826666666666667px 0; }
+.preview-type { color: #8d857a; font-size: 11px; }
+.preview-title { margin-top: 6.826666666666667px; font-size: 22px; font-weight: 600; line-height: 1.5; }
+.distance { margin: 7.68px 0; font-size: 36px; font-weight: 600; }
+.distance span { font-size: 14px; font-weight: 400; }
+.preview-date, .preview-place { margin-top: 5.973333333333334px; color: #77736e; font-size: 12px; line-height: 1.6; }
+.preview-section { margin-top: 12.8px; }
+.preview-label { margin-bottom: 6.826666666666667px; color: #8d857a; font-size: 11px; }
+.preview-copy { font-size: 14px; line-height: 1.8; white-space: pre-wrap; word-break: break-word; }
+.preview-group { display: flex; align-items: center; justify-content: space-between; gap: 6.826666666666667px; padding: 9.386666666666667px 0; border-bottom: 1px solid #eee9e2; font-size: 12px; }
+.preview-group > div { flex: 1; min-width: 0; }
+.preview-group > span { flex: none; color: #8d857a; font-size: 11px; }
+.preview-group-name, .preview-group-pace { display: block; line-height: 1.6; }
+.preview-group-pace { color: #77736e; font-size: 11px; }
+.preview-foot { margin-top: 11.946666666666667px; font-size: 12px; color: #77736e; line-height: 1.7; }
+.page .preview-save-template { justify-content: flex-start; margin-top: 8.533333333333333px; padding: 5.12px 0; background: transparent; color: #b54331; font-size: 12px; }
+.message { margin: 8.533333333333333px 0; padding: 8.533333333333333px 10.24px; border-radius: 6.826666666666667px; color: #b54331; background: #fff0eb; font-size: 12px; line-height: 1.7; }
+.bottom-actions { position: fixed; z-index: 5; left: 0; right: 0; bottom: 0; display: flex; align-items: center; gap: 5.12px; padding: 7.68px 11.946666666666667px calc(7.68px + env(safe-area-inset-bottom)); border-top: 1px solid #e9e5df; background: #fff; }
+.page .bottom-actions button { width: auto; min-width: 0; height: 48px; min-height: 48px; margin: 0; padding: 0 5.973333333333334px; border-radius: 426.24px; white-space: nowrap; word-break: keep-all; font-size: 14px; }
+.page .save-action { flex: 0 0 84px; color: #77736e; background: #f2f0ec; }
+.page .back-action { flex: 0 0 64px; color: #77736e; background: #f2f0ec; }
+.page .next-action { flex: 1; color: #fff; background: #e1251b; }
+button[disabled] { opacity: .6; }
+.template-overlay { position: fixed; z-index: 40; top: 0; right: 0; bottom: 0; left: 0; display: flex; align-items: flex-end; background: rgba(42,34,27,.35); }
+.template-sheet { width: 100%; max-height: 85vh; overflow-y: auto; padding: 6.826666666666667px 15.36px calc(13.653333333333334px + env(safe-area-inset-bottom)); border-radius: 15.36px 15.36px 0 0; background: #fff; box-sizing: border-box; }
+.sheet-handle { width: 23.893333333333334px; height: 2.986666666666667px; margin: 0 auto 13.653333333333334px; border-radius: 426.24px; background: #ddd7ce; }
+.sheet-title { margin-top: 6.826666666666667px; font-size: 24px; font-weight: 600; }
+.sheet-description { margin-top: 7.68px; color: #77736e; font-size: 12px; line-height: 1.75; }
+.sheet-actions { display: flex; gap: 7.68px; margin-top: 11.946666666666667px; }
+.template-sheet .sheet-cancel { flex: 1; border-radius: 426.24px; color: #77736e; background: #f2f0ec; }
+.template-sheet .sheet-save { flex: 2; border-radius: 426.24px; color: #fff; background: #e1251b; }
+@media (max-width: 350px) { .page { padding-left: 10.24px; padding-right: 10.24px; } .hero-title { font-size: 24px; } .form-area, .preview { padding: 11.093333333333334px; } .steps { gap: 4.266666666666667px; } .step { gap: 3.4133333333333336px; font-size: 11px; } .step-number { width: 14.506666666666666px; height: 14.506666666666666px; } .preset-row { gap: 5.12px; } .page .preset-card { padding: 7.68px 6.826666666666667px; } .preset-tag { font-size: 10px; } .bottom-actions { padding-left: 10.24px; padding-right: 10.24px; } .page .bottom-actions button { font-size: 13px; } .page .save-action { flex-basis: 80px; } .page .back-action { flex-basis: 60px; } }
+
+.topline { display: flex; align-items: center; justify-content: space-between; gap: 6.826666666666667px; min-height: 13.653333333333334px; margin: 5.12px 1.7066666666666668px 7.68px; }
+.eyebrow { display: flex; align-items: center; gap: 5.12px; min-width: 0; font-size: 12px; color: #77736e; }
+.brand-dash { flex: 0 0 10.24px; height: 1.7066666666666668px; background: #e1251b; }
+.heading { margin: 0 1.7066666666666668px; font-size: 27px; font-weight: 700; line-height: 1.4; letter-spacing: -0.4266666666666667px; }
+.heading-dot { color: #e1251b; }
+.page-intro { margin: 5.12px 1.7066666666666668px 11.946666666666667px; color: #77736e; font-size: 12px; line-height: 1.7; }
+.copy-tag { flex: none; font-size: 10px; color: #b54331; }
+.page .exit-edit { flex: none; min-height: 36px; padding: 1.7066666666666668px 3.4133333333333336px; font-size: 12px; color: #b54331; background: transparent; }
+.step.done { color: #77736e; }
+.step.done .step-number { color: #b54331; background: #f6e5dc; border-color: #f6e5dc; }
+.editing-banner { color: #a54d31; font-size: 12px; line-height: 1.6; }
+.editing-banner > span { color: #8d7764; font-size: 10px; white-space: nowrap; }
+.editing-dot { display: inline-block; width: 4.266666666666667px; height: 4.266666666666667px; margin-right: 5.12px; border-radius: 50%; background: #b54331; }
+.library-head > span { font-size: 12px; font-weight: 500; }
+.loading, .error-panel { margin: 17.066666666666666px 0; color: #77736e; font-size: 14px; line-height: 1.8; }
+.page .retry { margin-top: 10.24px; background: #e1251b; color: #fff; }
+@media (max-width: 350px) { .heading { font-size: 24px; } }
+</style></head><body><div class="page">
+  
+  
+  
+    
+    
+      <div class="topline"><div class="eyebrow"><span class="brand-dash"></span>奥森悦跑团</div><button class="exit-edit">返回活动</button></div>
+      <div class="heading">把好训练，留下来<span class="heading-dot">.</span></div>
+      <div class="page-intro">保存常用内容，让每次发布更轻松。</div>
+      <div class="steps">
+        <div class="step current"><span class="step-number">01</span><span>常用信息</span></div><div class="step-line"></div>
+        <div class="step "><span class="step-number">02</span><span>训练安排</span></div><div class="step-line"></div>
+        <div class="step "><span class="step-number">03</span><span>确认保存</span></div>
+      </div>
+      
+      <div class="success-note">✓ 已套用「长距离」，可继续调整</div>
+      <div class="editing-banner"><div><span class="editing-dot"></span>正在新建跑团模板</div><span>不会发布活动</span></div>
+      
+        <div class="template-studio">
+          <div class="section-head"><div><div class="section-kicker">少填几次，多跑几次</div><div class="section-title">从常用训练开始</div></div></div>
+          <div class="preset-row"><button class="preset-card " data-source="preset" data-id="easy"><div class="preset-top"><span class="preset-mark">E</span><span class="preset-arrow">↗</span></div><span class="preset-name">轻松跑</span><span class="preset-tag">轻松有氧</span></button><button class="preset-card " data-source="preset" data-id="interval"><div class="preset-top"><span class="preset-mark">I</span><span class="preset-arrow">↗</span></div><span class="preset-name">间歇跑</span><span class="preset-tag">速度与节奏</span></button><button class="preset-card preset-active" data-source="preset" data-id="long"><div class="preset-top"><span class="preset-mark">L</span><span class="preset-arrow">✓</span></div><span class="preset-name">长距离</span><span class="preset-tag">耐力积累</span></button></div>
+          
+          
+        </div>
+        <div class="form-area">
+          <div class="section-head"><div><div class="section-kicker">01 / 常用信息</div><div class="section-title">下一次，不必重新填</div></div><span class="step-caption">按需填写</span></div>
+          <div class="label">模板名称 <span class="required">必填</span></div><input class="field" maxlength="30" placeholder="例如：周三间歇、周末长距离" value="" aria-label="模板名称" style="">
+          <div class="label">活动默认标题 <span class="required">可用模板名称</span></div><input class="field" maxlength="40" placeholder="例如：周末长距离" value="周末长距离" data-key="title" aria-label="活动名称" style="">
+          <div class="type-row"><button class="type-option " data-id="easy">轻松跑</button><button class="type-option type-selected" data-id="long">长距离</button><button class="type-option " data-id="interval">间歇训练</button><button class="type-option " data-id="custom">自由安排</button></div>
+          
+          <div class="two-col"><div class="col"><div class="label">常用开始时间</div><div mode="time" value="" data-key="startTime"><div class="picker-field">每次另选<span>⌄</span></div></div></div><div class="col"><div class="label">预计时长 <span class="optional">分钟</span></div><input class="field" type="number" placeholder="可不填" value="" data-key="durationMinutes" aria-label="预计时长分钟" style=""></div></div>
+          <div class="label">活动地点 <span class="required">可稍后补充</span></div><input class="field" maxlength="40" placeholder="公园、跑道或训练区域" value="" data-key="place" aria-label="活动地点" style="">
+          <div class="label">具体集合点 <span class="required">可稍后补充</span></div><input class="field" maxlength="40" placeholder="例如：南园南门，地铁 A 出口" value="" data-key="gatherPlace" aria-label="具体集合点" style="">
+          <div class="label">计划里程 <span class="optional">公里 · 可选</span></div><input class="field" type="digit" placeholder="按本次计划填写" value="" data-key="plannedKm" aria-label="计划里程公里" style="">
+          <button class="disclosure"><div><div class="disclosure-title">更多时间与报名设置</div><div class="subtle">集合时刻、路线与提前截止时间</div></div><span>−</span></button>
+          <div class="extra-fields">
+            
+            <div class="label">集合时间 <span class="optional">可选</span></div><input class="field" maxlength="40" placeholder="例如：06:20，或提前 10 分钟集合" value="提前 10 分钟" data-key="gatherAt" aria-label="集合时间说明" style="">
+            
+            <div class="label">路线说明 <span class="optional">可选</span></div><input class="field" maxlength="200" placeholder="路线、补水点或交通提示" value="" data-key="route" aria-label="路线说明" style="">
+            <div class="label">报名提前截止 <span class="optional">分钟 · 可选</span></div><input class="field" type="number" placeholder="例如 60，开始前 1 小时截止" value="" data-key="signupLeadMinutes" aria-label="报名提前截止分钟" style=""><div class="label">取消提前截止 <span class="optional">分钟 · 可选</span></div><input class="field" type="number" placeholder="例如 120，开始前 2 小时截止" value="" data-key="cancelLeadMinutes" aria-label="取消提前截止分钟" style="">
+            
+          </div>
+        </div>
+      
+      
+      
+      
+      <div class="bottom-actions"><button class="save-action">退出编辑</button><button class="next-action">继续 <span>→</span></button></div>
+    
+  
+</div>
+
+</body></html>

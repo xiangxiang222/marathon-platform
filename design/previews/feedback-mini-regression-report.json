@@ -1,0 +1,70 @@
+{
+  "kind": "WeChat page logic regression in VM; not a simulator or device test",
+  "checks": [
+    {
+      "name": "Guests browse publicly and return through the existing login for mine, compose and voting",
+      "passed": true
+    },
+    {
+      "name": "Category, sort and pagination build independent server queries and refuse invalid navigation",
+      "passed": true
+    },
+    {
+      "name": "Private pending detail marks own progress read and cannot be shared",
+      "passed": true
+    },
+    {
+      "name": "Published decisions share the stable public detail, while a withdrawn idea shares only the board",
+      "passed": true
+    },
+    {
+      "name": "Account switching clears private addresses and ignores a late response from the previous account",
+      "passed": true
+    },
+    {
+      "name": "Text drafts are account isolated; images and reward addresses are never persisted as drafts",
+      "passed": true
+    },
+    {
+      "name": "Changing a nickname keeps the stable owner draft; a new account reusing the nickname cannot read it",
+      "passed": true
+    },
+    {
+      "name": "Validation preserves drafts; duplicate taps cannot create two ideas",
+      "passed": true
+    },
+    {
+      "name": "A failed image upload keeps the created pending idea and offers retry instead of resubmitting the text",
+      "passed": true
+    },
+    {
+      "name": "Screenshot selection rejects oversized files, caps three images and previews only the selected set",
+      "passed": true
+    },
+    {
+      "name": "Voting sends an idempotent target boolean, ignores duplicate taps, and honors author and closed-state restrictions",
+      "passed": true
+    },
+    {
+      "name": "Expired login clears private claim data and routes back to exactly the same idea",
+      "passed": true
+    },
+    {
+      "name": "Reward receipt requires owner eligibility and explicit consent before sending private data",
+      "passed": true
+    },
+    {
+      "name": "Withdrawal and receiving rewards require confirmation and return authoritative server state",
+      "passed": true
+    },
+    {
+      "name": "Mine progress badge loads quietly, ignores old-account responses and clears on logout or errors",
+      "passed": true
+    },
+    {
+      "name": "My entry remains visible to guests and login-return only allows this known page shape",
+      "passed": true
+    }
+  ],
+  "passed": true
+}

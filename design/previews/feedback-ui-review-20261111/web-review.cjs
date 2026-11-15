@@ -14,7 +14,7 @@ const account = {user:{id:1,nickname:'Amy123',avatar:'',leader:true,hasPassword:
 const training = trainingOf([], 'week',0,new Date('2026-11-11T12:00:00Z'));
 const runner = {asOf:'2026-11-11',overview:{weekKm:0,weekCount:0,weekDurationSec:0,monthKm:0,totalKm:0,totalCount:0},training,career:careerOf([],'2026-11-11'),results:[],media:[],devices:[]};
 const summary = {month:{id:'2026-11',km:0,count:0,days:0,paceLabel:'',target:0,canFlag:true,observe:true},runs:[],year:{km:0},total:{km:0,count:0}};
-const report = {kind:'Home search/filter, exercise and personal profile UI checks with synthetic local replies; no business data writes',scenes:[],interactions:[],errors:[],unexpected:[]};
+const report = {kind:'Focused Web UI checks with synthetic local replies; no business data writes',scenes:[],interactions:[],errors:[],unexpected:[]};
 async function metrics(page, selector) {
   return page.locator(selector).evaluate(button=>{
     const rect=button.getBoundingClientRect(),input=button.parentElement.querySelector('input'),fill=button.querySelector('span'),ir=input?.getBoundingClientRect(),fr=fill?.getBoundingClientRect();
@@ -52,7 +52,7 @@ async function searchCheck(page,selector,input,keyword,requests,prefix) {
         else { report.unexpected.push(key);body={}; }
         return route.fulfill({contentType:'application/json',body:JSON.stringify(body)});
       });
-      for(const [name,route,ready] of [['races','/','.home-search'],['sport','/sport','.mileage-hero'],['mine','/mine','.main-tabs']]){
+      for(const [name,route,ready] of [['races','/','.home-search'],['clubs','/clubs','.club-search'],['sport','/sport','.mileage-hero'],['mine','/mine','.main-tabs']]){
         await page.goto(origin+route);await page.locator(ready).waitFor();await page.waitForLoadState('networkidle');
         if(name==='mine')await page.getByRole('button',{name:'个人资料',exact:true}).click();
         const geometry=await page.evaluate(()=>({scrollWidth:document.documentElement.scrollWidth,viewport:innerWidth,brokenImages:[...document.images].filter(img=>img.getBoundingClientRect().width&&!img.naturalWidth).map(img=>img.src)}));
@@ -61,6 +61,10 @@ async function searchCheck(page,selector,input,keyword,requests,prefix) {
         if(name==='races'){
           assert.equal(await page.locator('.home-top .race-meet-categories').count(),0);assert.equal(await page.locator('.home-results [aria-label="赛事类型"]').count(),1);
           await searchCheck(page,'.home-search button','.home-search input','杭州',requests,'/races');
+        }
+        if(name==='clubs'){
+          await searchCheck(page,'.club-search button','input[aria-label="搜索跑团"]','晨光',requests,'/clubs/directory');
+          await page.getByRole('tab',{name:'口令加入',exact:true}).click();await page.getByRole('textbox',{name:'跑团口令',exact:true}).fill('RUN123');await page.locator('.club-search button').click();await page.waitForURL('**/clubs/invite/RUN123');report.interactions.push({name:'club code navigation',width,passed:true});
         }
         if(name==='sport'){
           const hero=await page.locator('.mileage-hero').boundingBox(),record=await page.locator('.record-actions').boundingBox();assert.ok(hero.height<340&&record.y+record.height<520);
@@ -74,6 +78,8 @@ async function searchCheck(page,selector,input,keyword,requests,prefix) {
         }
         report.scenes.push({name,width,...geometry,passed:true});
       }
+      await page.goto(origin+'/news');await page.waitForLoadState('networkidle');await searchCheck(page,'.journal-search button','.journal-search input','马拉松',requests,'/content/articles');
+      if(width===390)await page.screenshot({path:path.join(out,'web-news-search-390.png'),fullPage:true});
       await context.close();
     }
     assert.deepEqual(report.errors,[]);assert.deepEqual(report.unexpected,[]);report.passed=true;

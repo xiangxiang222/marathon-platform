@@ -1,0 +1,275 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><style>html,body{margin:0;padding:0}body{padding-bottom:70px}a{display:block;color:inherit;text-decoration:none}button{display:block;box-sizing:border-box;padding:0 14px;line-height:1.35}input,textarea{outline:none}input[type=checkbox]{min-height:0}img{display:inline-block;vertical-align:middle}*{box-sizing:border-box}swiper-item{display:block}.audit-banner{font:10px system-ui;color:#767676;padding:5px 12px;text-align:center}.mirror-tabbar{position:fixed;z-index:50;left:0;right:0;bottom:0;display:flex;background:white;border-top:1px solid #eee;height:64px;padding:6px 0}.mirror-tabbar a{width:25%;font:11px system-ui;text-align:center}.mirror-tabbar img{display:block;margin:0 auto 3px;width:25px;height:25px}</style><style>body {
+  --brand: #e1251b;
+  --brand-soft: #fff2f0;
+  --page-bg: #f5f5f5;
+  --surface: #ffffff;
+  --text: #262626;
+  --text-secondary: #767676;
+  --border: #eeeeee;
+  min-height: 100%;
+  background: #f5f5f5;
+  color: #262626;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+div, span, a, div, button, input, textarea, div {
+  box-sizing: border-box;
+}
+
+button, input, textarea {
+  font-family: inherit;
+  color: #262626;
+}
+
+button {
+  margin: 0;
+  border: 0;
+  min-height: 44px;
+  border-radius: 519.48px;
+  background: #f2f2f2;
+  font-size: 14px;
+}
+
+input, textarea {
+  box-sizing: border-box;
+  border: 0.52px solid #e8e8e8;
+  border-radius: 10.4px;
+  background: #f7f7f7;
+  color: #262626;
+  font-size: 14px;
+}
+
+button::after { border: 0; }
+button[plain] { border: 0.52px solid #e8e8e8; background: #fff; }
+input { min-height: 44px; padding: 0 12.48px; }
+textarea { min-height: 120px; padding: 11.44px 12.48px; line-height: 1.7; }
+
+.pad { padding: 14.56px 12.48px calc(24.96px + env(safe-area-inset-bottom)); }
+.card {
+  margin-bottom: 10.4px;
+  padding: 15.6px;
+  border: 0;
+  border-radius:16.64px;
+  background: #fff;
+}
+.muted { color: #767676; font-size: 12px; }
+.slot {
+  display: flex;
+  justify-content: space-between;
+  gap: 12.48px;
+  margin-top: 6.24px;
+  padding: 8.32px 10.4px;
+  border-radius: 8.32px;
+  background: #f5f5f5;
+  font-size: 14px;
+}
+.slot-state { color: #767676; font-size: 12px; }
+.teal { color: #e1251b; }
+.title { font-size: 18px; font-weight: 700; line-height: 1.45; }
+.row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12.48px;
+  padding: 8.32px 0;
+  border-bottom: 0.52px solid #eeeeee;
+}
+.row .k { flex: none; color: #767676; }
+.soon { color: #c87825; }
+.err { margin-top: 4.16px; color: #b42318; font-size: 12px; }
+.note { margin-top: 4.16px; color: #e1251b; font-size: 12px; }
+.empty { padding: 33.28px 16.64px; color: #767676; text-align: center; line-height: 1.8; }
+
+.field { display: flex; align-items: center; gap: 8.32px; }
+.field input {
+  flex: 1;
+  height: 44px;
+  padding: 0 10.4px;
+  border-radius: 10.4px;
+  background: #fff;
+}
+.btn {
+  display: block;
+  margin: 0;
+  padding: 0 14.56px;
+  min-height: 44px;
+  border-radius:519.48px;
+  background: #e1251b;
+  color: #fff;
+  font-size: 14px;
+  line-height: 44px;
+  text-align: center;
+}
+button.ghost {
+  margin: 8.32px 8.32px 0 0;
+  padding: 0 12.48px;
+  min-height: 44px;
+  border-radius:519.48px;
+  background: #f2f2f2;
+  color: #262626;
+  font-size: 12px;
+  line-height: 44px;
+}
+button.ghost.on { background: #fff2f0; color: #e1251b; }
+button[disabled], button.btn[disabled] { background: #f2f2f2; color: #767676; }
+.chip {
+  display: inline-block;
+  margin-right: 4.16px;
+  padding: 1.04px 5.2px;
+  border-radius: 4.16px;
+  background: #f2f2f2;
+  color: #767676;
+  font-size: 12px;
+}
+.login-go {
+  display: block;
+  min-height: 44px;
+  margin-top: 8.32px;
+  border-radius: 519.48px;
+  background: #e1251b;
+  color: #fff;
+  font-weight: 600;
+  line-height: 44px;
+  text-align: center;
+}
+.foot {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6.24px;
+  color: #767676;
+  font-size: 12px;
+}
+
+/* Shared form language also covers the compact secondary pages. */
+.src { margin-top: 6.24px; color: #767676; font-size: 12px; line-height: 1.75; overflow-wrap: anywhere; }
+.card > input, .card > textarea, .card > div { margin-top: 10.4px; }
+.card > input { width: 100%; }
+.card > .btn { margin-top: 12.48px; }
+.primary, .primary-btn, .primary-button, .submit-button, .save-action, .next-action, .bottom-primary, .staff-primary { border-radius:519.48px; }
+.field-label, .form-label { line-height: 1.6; }
+.metric-value, .stat-value, .career-number, .record-number, .rank-time { font-variant-numeric: tabular-nums; }
+@media (max-width: 350px) {
+  .pad { padding-left: 12px; padding-right: 12px; }
+  .card { padding: 14px; }
+}
+
+:host { display: block; }
+.page-header { background: #f5f5f5; color: #262626; }
+.header-main { display: flex; align-items: center; padding-left: 12.48px; box-sizing: border-box; }
+.header-title { overflow: hidden; font-size: 24px; line-height: 1.25; font-weight: 700; white-space: nowrap; text-overflow: ellipsis; }
+.header-subtitle { padding: 0 12.48px 12.48px; color: #767676; font-size: 12px; line-height: 1.6; }
+@media (max-width: 350px) { .header-title { font-size: 24px; } .header-subtitle { font-size: 12px; } }
+
+.tabs { display: flex; gap: 6.24px; margin-bottom: 10.4px; border-bottom: 0.52px solid #eeeeee; }
+.tab {
+  position: relative;
+  flex: 1;
+  text-align: center;
+  background: transparent;
+  color: #767676;
+  border-radius: 0;
+  font-size: 12px;
+  line-height: 33.28px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.tab.on { background: transparent; color: #e1251b; }
+.tab.on::after { position: absolute; right: 6.24px; bottom: 0; left: 6.24px; height: 2.08px; border-radius: 1.04px; background: #e1251b; content: ''; }
+.timeline { display: flex; gap: 6.24px; overflow-x: auto; }
+.tl { flex: 1; min-width: 76.96px; text-align: center; }
+.dot { width: 8.32px; height: 8.32px; margin: 4.16px auto; border-radius: 50%; background: #e1251b; }
+.tl-at, .tl-label { display: block; }
+.tl-at { font-size: 12px; font-weight: 600; }
+.tl-label { margin-top: 3.12px; color: #767676; font-size: 12px; }
+.page-title { margin-top: 14.56px; }
+img.qr { width: 187.2px; height: 187.2px; margin: 12.48px auto 0; background: #fff; }
+.h2 { font-size: 14px; font-weight: 600; margin-bottom: 4.16px; }
+.news-item { display: block; padding: 8.32px 0; border-bottom: 0.52px solid #eeeeee; }
+.news-item:last-child { border-bottom: 0; padding-bottom: 0; }
+.md { display: flex; flex-wrap: wrap; margin-top: 8.32px; font-size: 14px; line-height: 1.6; }
+.md-h1 { margin-top: 4.16px; font-size: 20px; font-weight: 700; line-height: 1.35; }
+.md-h2 { margin-top: 14.56px; font-size: 18px; font-weight: 700; line-height: 1.35; }
+.md-h3 { margin-top: 11.44px; font-size: 16px; font-weight: 600; line-height: 1.4; }
+.md-h4 { margin-top: 9.36px; font-size: 14px; font-weight: 600; line-height: 1.4; }
+.md-li, .md-oli { padding-left: 4.16px; }
+.md-mark { margin-right: 4.16px; color: #767676; }
+.md-strong { font-weight: 700; }
+.sum { margin: 4.16px 0 8.32px; }
+.src { color: #767676; font-size: 12px; margin-top: 6.24px; }
+.warn { margin-top: 6.24px; color: #c87825; font-size: 12px; }
+.share { margin-top: 8.32px; }
+.nick .field { margin-top: 8.32px; }
+.result .field { margin-top: 8.32px; }
+.result .field input { background: #f5f5f5; }
+.result .btn { margin-top: 8.32px; }
+.poster { margin: 6.24px 0; padding: 18.72px 14.56px; border-radius: 8.32px; background: #e1251b; color: #fff; font-size: 16px; font-weight: 600; line-height: 1.6; }
+.poster-canvas { position: fixed; left: -2000px; top: 0; width: 750px; height: 1000px; }
+img { width: 100%; margin-top: 6.24px; border-radius: 8.32px; }
+.sheet { width: 100%; margin-top: 8.32px; border-radius: 8.32px; }
+.guide-text { display: block; margin-top: 6.24px; white-space: pre-wrap; line-height: 1.5; font-size: 14px; }
+
+.race-plan { border: 0.52px solid #fff; }
+.plan-heading { display: flex; align-items: center; justify-content: space-between; gap: 10.4px; }
+.plan-heading .h2 { margin-bottom: 0; font-size: 18px; }
+.plan-status { flex-shrink: 0; padding: 3.12px 7.28px; border-radius: 5.2px; background: #fff2f0; color: #e1251b; font-size: 12px; }
+.plan-action { display: flex; align-items: center; justify-content: space-between; width: 100%; min-height:44px; margin: 0; padding: 9.36px 0 0; border-radius: 0; background: transparent; color: #20222a; text-align: left; font-size: 14px; font-weight: 600; line-height: 1.5; }
+.plan-action::after { border: 0; }
+.plan-action .arrow { color: #767676; font-size: 22px; font-weight: 400; line-height: 1; }
+.plan-editor { margin-top: 10.4px; padding-top: 10.4px; border-top: 0.52px solid #eeeeee; }
+.plan-statuses { display: flex; flex-wrap: wrap; gap: 6.24px; }
+.plan-statuses .ghost { margin: 0; }
+.race-plan .src { line-height: 1.6; }
+@media (max-width: 350px) { .plan-heading .h2 { font-size: 18px; } .plan-action { font-size: 15px; } .src, .tab { font-size: 12px; } }
+</style></head><body><div class="pad">
+  <div class="card">
+    <div class="teal"></div>
+    <div class="title">杭州马拉松</div>
+    <div class="row"><span class="k">比赛日</span><span>2026-11-15</span></div>
+    <div class="row"><span class="k">地点</span><span>浙江 · 杭州</span></div>
+    <div class="row"><span class="k">项目</span><span>全程 / 半程马拉松</span></div>
+    <div class="row"><span class="k">举办</span><span>线下</span></div>
+    
+    <div class="row"><span class="k"></span><span class="">11月08日截止</span></div>
+    
+    
+  </div>
+
+  <div class="card race-plan">
+    <div class="plan-heading"><div class="h2">我的参赛计划</div><span class="plan-status">已中签</span></div>
+    <div class="src">记录想跑、报名和中签状态，已加入的跑团可同步查看。</div>
+    
+    <button class="plan-action"><span>修改参赛状态</span><span class="arrow">›</span></button>
+    
+    
+  </div>
+
+  <div class="tabs">
+    <div class="tab on">赛事信息</div><div class="tab ">赛事资讯</div>
+  </div>
+
+  
+    
+    
+    
+    <div class="card">
+      <div class="h2">官方报名信息</div>
+      <div class="src">请前往组委会官方渠道了解报名安排。</div>
+      
+      
+      
+      <div class="src">报名和缴费请以组委会官方页面为准。</div>
+    </div>
+    
+    
+    
+  
+
+  
+
+  
+
+  
+</div>
+
+</body></html>

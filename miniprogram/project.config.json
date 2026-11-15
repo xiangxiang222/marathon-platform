@@ -69,11 +69,19 @@
       "disablePlugins": [],
       "outputPath": ""
     },
-    "uploadWithSourceMap": false
+    "compileWorklet": false,
+    "uglifyFileName": false,
+    "uploadWithSourceMap": false,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "localPlugins": false,
+    "useCompilerPlugins": false,
+    "condition": false
   },
   "compileType": "miniprogram",
-  "appid": "touristappid",
+  "appid": "wx348783427dac56cd",
   "projectname": "marathon-platform",
   "libVersion": "3.17.1",
-  "editorSetting": {}
+  "editorSetting": {},
+  "simulatorPluginLibVersion": {}
 }

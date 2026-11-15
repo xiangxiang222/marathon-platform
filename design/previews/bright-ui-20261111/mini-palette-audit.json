@@ -1,0 +1,614 @@
+{
+  "scope": "This bright-color pass only, compared against exact 84-file pre-edit snapshot; prior edits excluded",
+  "snapshotAt": "2026-11-11T02:16:46.378940+00:00",
+  "completedAt": "2026-11-11T02:22:01.803387+00:00",
+  "routes": 28,
+  "stats": {
+    "wxss": {
+      "changedFiles": 26,
+      "added": 253,
+      "deleted": 280
+    },
+    "json": {
+      "changedFiles": 28,
+      "added": 56,
+      "deleted": 56
+    },
+    "wxml": {
+      "changedFiles": 3,
+      "added": 4,
+      "deleted": 4
+    }
+  },
+  "rows": [
+    {
+      "route": "pages/races/races",
+      "navBackground": "#f5f5f5",
+      "background": "#f5f5f5",
+      "staleOlivePalette": [],
+      "intentionalDarkDecorativeOrOverlay": [
+        {
+          "selector": ".lens::after",
+          "value": "var(--text-secondary)",
+          "reason": "modal/poster overlay or small icon/track glyph; not a page/card background"
+        },
+        {
+          "selector": ".dim",
+          "value": "rgba(0, 0, 0, 0.45)",
+          "reason": "modal/poster overlay or small icon/track glyph; not a page/card background"
+        }
+      ],
+      "checked": true
+    },
+    {
+      "route": "pages/sport/sport",
+      "navBackground": "#f5f5f5",
+      "background": "#f5f5f5",
+      "staleOlivePalette": [],
+      "intentionalDarkDecorativeOrOverlay": [],
+      "checked": true
+    },
+    {
+      "route": "pages/calendar/calendar",
+      "navBackground": "#f5f5f5",
+      "background": "#f5f5f5",
+      "staleOlivePalette": [],
+      "intentionalDarkDecorativeOrOverlay": [
+        {
+          "selector": ".poster-mask",
+          "value": "rgba(0, 0, 0, 0.45)",
+          "reason": "modal/poster overlay or small icon/track glyph; not a page/card background"
+        }
+      ],
+      "checked": true
+    },
+    {
+      "route": "pages/clubs/clubs",
+      "navBackground": "#f5f5f5",
+      "background": "#f5f5f5",
+      "staleOlivePalette": [],
+      "intentionalDarkDecorativeOrOverlay": [
+        {
+          "selector": ".search-icon::after",
+          "value": "var(--text-secondary)",
+          "reason": "modal/poster overlay or small icon/track glyph; not a page/card background"
+        }
+      ],
+      "checked": true
+    },
+    {
+      "route": "pages/mine/mine",
+      "navBackground": "#f5f5f5",
+      "background": "#f5f5f5",
+      "staleOlivePalette": [],
+      "intentionalDarkDecorativeOrOverlay": [],
+      "checked": true
+    },
+    {
+      "route": "pages/runner/runner",
+      "navBackground": "#f5f5f5",
+      "background": "#f5f5f5",
+      "staleOlivePalette": [],
+      "intentionalDarkDecorativeOrOverlay": [
+        {
+          "selector": ".modal-mask",
+          "value": "#26262678",
+          "reason": "modal/poster overlay or small icon/track glyph; not a page/card background"
+        }
+      ],
+      "checked": true
+    },
+    {
+      "route": "pages/history/history",
+      "navBackground": "#f5f5f5",
+      "background": "#f5f5f5",
+      "staleOlivePalette": [],
+      "intentionalDarkDecorativeOrOverlay": [
+        {
+          "selector": ".timeline-item::before",
+          "value": "var(--text-secondary)",
+          "reason": "modal/poster overlay or small icon/track glyph; not a page/card background"
+        }
+      ],
+      "checked": true
+    },
+    {
+      "route": "pages/radar/radar",
+      "navBackground": "#f5f5f5",
+      "background": "#f5f5f5",
+      "staleOlivePalette": [],
+      "intentionalDarkDecorativeOrOverlay": [],
+      "checked": true
+    },
+    {
+      "route": "pages/race/race",
+      "navBackground": "#f5f5f5",
+      "background": "#f5f5f5",
+      "staleOlivePalette": [],
+      "intentionalDarkDecorativeOrOverlay": [],
+      "checked": true
+    },
+    {
+      "route": "pages/news/news",
+      "navBackground": "#f5f5f5",
+      "background": "#f5f5f5",
+      "staleOlivePalette": [],
+      "intentionalDarkDecorativeOrOverlay": [],
+      "checked": true
+    },
+    {
+      "route": "pages/news/detail",
+      "navBackground": "#f5f5f5",
+      "background": "#f5f5f5",
+      "staleOlivePalette": [],
+      "intentionalDarkDecorativeOrOverlay": [],
+      "checked": true
+    },
+    {
+      "route": "pages/club/club",
+      "navBackground": "#f5f5f5",
+      "background": "#f5f5f5",
+      "staleOlivePalette": [],
+      "intentionalDarkDecorativeOrOverlay": [
+        {
+          "selector": ".search-glass::after",
+          "value": "var(--text-secondary)",
+          "reason": "modal/poster overlay or small icon/track glyph; not a page/card background"
+        },
+        {
+          "selector": ".poster-layer",
+          "value": "rgba(20,22,28,.76)",
+          "reason": "modal/poster overlay or small icon/track glyph; not a page/card background"
+        }
+      ],
+      "checked": true
+    },
+    {
+      "route": "pages/club-intro/club-intro",
+      "navBackground": "#f5f5f5",
+      "background": "#f5f5f5",
+      "staleOlivePalette": [],
+      "intentionalDarkDecorativeOrOverlay": [
+        {
+          "selector": ".share-glyph::before",
+          "value": "var(--text)",
+          "reason": "modal/poster overlay or small icon/track glyph; not a page/card background"
+        },
+        {
+          "selector": ".share-mask, .timeline-mask",
+          "value": "rgba(20, 23, 32, .46)",
+          "reason": "modal/poster overlay or small icon/track glyph; not a page/card background"
+        }
+      ],
+      "checked": true
+    },
+    {
+      "route": "pages/mileage/mileage",
+      "navBackground": "#f5f5f5",
+      "background": "#f5f5f5",
+      "staleOlivePalette": [],
+      "intentionalDarkDecorativeOrOverlay": [],
+      "checked": true
+    },
+    {
+      "route": "pages/partner/partner",
+      "navBackground": "#f5f5f5",
+      "background": "#f5f5f5",
+      "staleOlivePalette": [],
+      "intentionalDarkDecorativeOrOverlay": [],
+      "checked": true
+    },
+    {
+      "route": "pages/feed/feed",
+      "navBackground": "#f5f5f5",
+      "background": "#f5f5f5",
+      "staleOlivePalette": [],
+      "intentionalDarkDecorativeOrOverlay": [],
+      "checked": true
+    },
+    {
+      "route": "pages/activity/activity",
+      "navBackground": "#f5f5f5",
+      "background": "#f5f5f5",
+      "staleOlivePalette": [],
+      "intentionalDarkDecorativeOrOverlay": [],
+      "checked": true
+    },
+    {
+      "route": "pages/activity-create/activity-create",
+      "navBackground": "#f5f5f5",
+      "background": "#f5f5f5",
+      "staleOlivePalette": [],
+      "intentionalDarkDecorativeOrOverlay": [
+        {
+          "selector": ".template-overlay",
+          "value": "rgba(0,0,0,.35)",
+          "reason": "modal/poster overlay or small icon/track glyph; not a page/card background"
+        }
+      ],
+      "checked": true
+    },
+    {
+      "route": "pages/signup/signup",
+      "navBackground": "#f5f5f5",
+      "background": "#f5f5f5",
+      "staleOlivePalette": [],
+      "intentionalDarkDecorativeOrOverlay": [],
+      "checked": true
+    },
+    {
+      "route": "pages/album/album",
+      "navBackground": "#f5f5f5",
+      "background": "#f5f5f5",
+      "staleOlivePalette": [],
+      "intentionalDarkDecorativeOrOverlay": [],
+      "checked": true
+    },
+    {
+      "route": "pages/call/call",
+      "navBackground": "#f5f5f5",
+      "background": "#f5f5f5",
+      "staleOlivePalette": [],
+      "intentionalDarkDecorativeOrOverlay": [
+        {
+          "selector": ".poster-layer",
+          "value": "rgba(20, 22, 28, .76)",
+          "reason": "modal/poster overlay or small icon/track glyph; not a page/card background"
+        }
+      ],
+      "checked": true
+    },
+    {
+      "route": "pages/meetup/meetup",
+      "navBackground": "#f5f5f5",
+      "background": "#f5f5f5",
+      "staleOlivePalette": [],
+      "intentionalDarkDecorativeOrOverlay": [],
+      "checked": true
+    },
+    {
+      "route": "pages/internal/internal",
+      "navBackground": "#f5f5f5",
+      "background": "#f5f5f5",
+      "staleOlivePalette": [],
+      "intentionalDarkDecorativeOrOverlay": [],
+      "checked": true
+    },
+    {
+      "route": "pages/privacy/privacy",
+      "navBackground": "#f5f5f5",
+      "background": "#f5f5f5",
+      "staleOlivePalette": [],
+      "intentionalDarkDecorativeOrOverlay": [],
+      "checked": true
+    },
+    {
+      "route": "pages/legal/legal",
+      "navBackground": "#f5f5f5",
+      "background": "#f5f5f5",
+      "staleOlivePalette": [],
+      "intentionalDarkDecorativeOrOverlay": [],
+      "checked": true
+    },
+    {
+      "route": "pages/feedback/feedback",
+      "navBackground": "#f5f5f5",
+      "background": "#f5f5f5",
+      "staleOlivePalette": [],
+      "intentionalDarkDecorativeOrOverlay": [
+        {
+          "selector": ".image-remove",
+          "value": "rgba(27,29,38,.62)",
+          "reason": "modal/poster overlay or small icon/track glyph; not a page/card background"
+        }
+      ],
+      "checked": true
+    },
+    {
+      "route": "pages/club-identity/club-identity",
+      "navBackground": "#f5f5f5",
+      "background": "#f5f5f5",
+      "staleOlivePalette": [],
+      "intentionalDarkDecorativeOrOverlay": [],
+      "checked": true
+    },
+    {
+      "route": "pages/club-report/club-report",
+      "navBackground": "#f5f5f5",
+      "background": "#f5f5f5",
+      "staleOlivePalette": [],
+      "intentionalDarkDecorativeOrOverlay": [],
+      "checked": true
+    }
+  ],
+  "changes": [
+    {
+      "file": "miniprogram/pages/races/races.wxss",
+      "added": 16,
+      "deleted": 17
+    },
+    {
+      "file": "miniprogram/pages/races/races.json",
+      "added": 2,
+      "deleted": 2
+    },
+    {
+      "file": "miniprogram/pages/sport/sport.wxss",
+      "added": 1,
+      "deleted": 1
+    },
+    {
+      "file": "miniprogram/pages/sport/sport.json",
+      "added": 2,
+      "deleted": 2
+    },
+    {
+      "file": "miniprogram/pages/calendar/calendar.wxss",
+      "added": 5,
+      "deleted": 9
+    },
+    {
+      "file": "miniprogram/pages/calendar/calendar.json",
+      "added": 2,
+      "deleted": 2
+    },
+    {
+      "file": "miniprogram/pages/clubs/clubs.wxss",
+      "added": 22,
+      "deleted": 22
+    },
+    {
+      "file": "miniprogram/pages/clubs/clubs.json",
+      "added": 2,
+      "deleted": 2
+    },
+    {
+      "file": "miniprogram/pages/mine/mine.wxss",
+      "added": 6,
+      "deleted": 7
+    },
+    {
+      "file": "miniprogram/pages/mine/mine.json",
+      "added": 2,
+      "deleted": 2
+    },
+    {
+      "file": "miniprogram/pages/mine/mine.wxml",
+      "added": 1,
+      "deleted": 1
+    },
+    {
+      "file": "miniprogram/pages/runner/runner.wxss",
+      "added": 15,
+      "deleted": 15
+    },
+    {
+      "file": "miniprogram/pages/runner/runner.json",
+      "added": 2,
+      "deleted": 2
+    },
+    {
+      "file": "miniprogram/pages/history/history.wxss",
+      "added": 3,
+      "deleted": 3
+    },
+    {
+      "file": "miniprogram/pages/history/history.json",
+      "added": 2,
+      "deleted": 2
+    },
+    {
+      "file": "miniprogram/pages/radar/radar.wxss",
+      "added": 2,
+      "deleted": 2
+    },
+    {
+      "file": "miniprogram/pages/radar/radar.json",
+      "added": 2,
+      "deleted": 2
+    },
+    {
+      "file": "miniprogram/pages/race/race.wxss",
+      "added": 4,
+      "deleted": 5
+    },
+    {
+      "file": "miniprogram/pages/race/race.json",
+      "added": 2,
+      "deleted": 2
+    },
+    {
+      "file": "miniprogram/pages/news/news.wxss",
+      "added": 2,
+      "deleted": 3
+    },
+    {
+      "file": "miniprogram/pages/news/news.json",
+      "added": 2,
+      "deleted": 2
+    },
+    {
+      "file": "miniprogram/pages/news/detail.wxss",
+      "added": 3,
+      "deleted": 3
+    },
+    {
+      "file": "miniprogram/pages/news/detail.json",
+      "added": 2,
+      "deleted": 2
+    },
+    {
+      "file": "miniprogram/pages/club/club.wxss",
+      "added": 59,
+      "deleted": 60
+    },
+    {
+      "file": "miniprogram/pages/club/club.json",
+      "added": 2,
+      "deleted": 2
+    },
+    {
+      "file": "miniprogram/pages/club-intro/club-intro.wxss",
+      "added": 13,
+      "deleted": 13
+    },
+    {
+      "file": "miniprogram/pages/club-intro/club-intro.json",
+      "added": 2,
+      "deleted": 2
+    },
+    {
+      "file": "miniprogram/pages/mileage/mileage.wxss",
+      "added": 4,
+      "deleted": 4
+    },
+    {
+      "file": "miniprogram/pages/mileage/mileage.json",
+      "added": 2,
+      "deleted": 2
+    },
+    {
+      "file": "miniprogram/pages/partner/partner.wxss",
+      "added": 1,
+      "deleted": 1
+    },
+    {
+      "file": "miniprogram/pages/partner/partner.json",
+      "added": 2,
+      "deleted": 2
+    },
+    {
+      "file": "miniprogram/pages/feed/feed.wxss",
+      "added": 2,
+      "deleted": 2
+    },
+    {
+      "file": "miniprogram/pages/feed/feed.json",
+      "added": 2,
+      "deleted": 2
+    },
+    {
+      "file": "miniprogram/pages/activity/activity.wxss",
+      "added": 23,
+      "deleted": 33
+    },
+    {
+      "file": "miniprogram/pages/activity/activity.json",
+      "added": 2,
+      "deleted": 2
+    },
+    {
+      "file": "miniprogram/pages/activity/activity.wxml",
+      "added": 1,
+      "deleted": 1
+    },
+    {
+      "file": "miniprogram/pages/activity-create/activity-create.wxss",
+      "added": 31,
+      "deleted": 35
+    },
+    {
+      "file": "miniprogram/pages/activity-create/activity-create.json",
+      "added": 2,
+      "deleted": 2
+    },
+    {
+      "file": "miniprogram/pages/activity-create/activity-create.wxml",
+      "added": 2,
+      "deleted": 2
+    },
+    {
+      "file": "miniprogram/pages/signup/signup.wxss",
+      "added": 17,
+      "deleted": 18
+    },
+    {
+      "file": "miniprogram/pages/signup/signup.json",
+      "added": 2,
+      "deleted": 2
+    },
+    {
+      "file": "miniprogram/pages/album/album.wxss",
+      "added": 2,
+      "deleted": 3
+    },
+    {
+      "file": "miniprogram/pages/album/album.json",
+      "added": 2,
+      "deleted": 2
+    },
+    {
+      "file": "miniprogram/pages/call/call.json",
+      "added": 2,
+      "deleted": 2
+    },
+    {
+      "file": "miniprogram/pages/meetup/meetup.json",
+      "added": 2,
+      "deleted": 2
+    },
+    {
+      "file": "miniprogram/pages/internal/internal.wxss",
+      "added": 1,
+      "deleted": 1
+    },
+    {
+      "file": "miniprogram/pages/internal/internal.json",
+      "added": 2,
+      "deleted": 2
+    },
+    {
+      "file": "miniprogram/pages/privacy/privacy.wxss",
+      "added": 7,
+      "deleted": 8
+    },
+    {
+      "file": "miniprogram/pages/privacy/privacy.json",
+      "added": 2,
+      "deleted": 2
+    },
+    {
+      "file": "miniprogram/pages/legal/legal.wxss",
+      "added": 2,
+      "deleted": 2
+    },
+    {
+      "file": "miniprogram/pages/legal/legal.json",
+      "added": 2,
+      "deleted": 2
+    },
+    {
+      "file": "miniprogram/pages/feedback/feedback.wxss",
+      "added": 1,
+      "deleted": 1
+    },
+    {
+      "file": "miniprogram/pages/feedback/feedback.json",
+      "added": 2,
+      "deleted": 2
+    },
+    {
+      "file": "miniprogram/pages/club-identity/club-identity.wxss",
+      "added": 7,
+      "deleted": 7
+    },
+    {
+      "file": "miniprogram/pages/club-identity/club-identity.json",
+      "added": 2,
+      "deleted": 2
+    },
+    {
+      "file": "miniprogram/pages/club-report/club-report.wxss",
+      "added": 4,
+      "deleted": 5
+    },
+    {
+      "file": "miniprogram/pages/club-report/club-report.json",
+      "added": 2,
+      "deleted": 2
+    }
+  ],
+  "layoutAndLogic": "No page JS changed; WXML edits only native red color attributes. Existing CSS geometry kept; older exact-selector duplicate declarations removed.",
+  "nativeCompile": "wcc 29 / wcsc 31 exit 0; see native-check report",
+  "limitations": "Static CSS/color audit; final visual mirrors and before/after screenshots generated separately by data_audit."
+}

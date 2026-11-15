@@ -5,12 +5,14 @@ const clubs = names.map((name,index)=>({id:index+1,name,initial:name[0],city:'åŒ
 module.exports = {
   cases: [
     {route:'pages/races/races',scenario:'base'},
+    {route:'pages/clubs/clubs',scenario:'base'},
     {route:'pages/sport/sport',scenario:'empty'},
     {route:'pages/mine/mine',scenario:'profile'}
   ],
   async prepare(route,data,scenario) {
     if(route==='pages/sport/sport')return sport.prepare(route,data,scenario);
     if(route==='pages/mine/mine')Object.assign(data,{nickname:'Amy123',mainTab:'profile',hasPassword:true,hasWechatLogin:false,clubs,profileOpen:false,passwordOpen:false});
+    if(route==='pages/clubs/clubs')Object.assign(data,{clubs:clubs.slice(0,2),shownClubs:clubs.slice(0,2),openClubs:clubs.slice(2,8)});
     return {data,components:{},css:''};
   },
   async audit({page,route}) {

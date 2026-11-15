@@ -1,0 +1,11 @@
+{
+  "manifest_version": 3,
+  "name": "跑史成绩整理助手（本地原型）",
+  "version": "0.1.0",
+  "description": "本人完成官网查询后，手动读取当前页已展示的成绩，导出供跑史核对。",
+  "permissions": ["activeTab", "scripting"],
+  "action": {
+    "default_title": "整理当前页成绩",
+    "default_popup": "popup.html"
+  }
+}

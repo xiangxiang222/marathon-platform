@@ -1,0 +1,214 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><style>html,body{margin:0;padding:0}body{padding-bottom:70px}a{display:block;color:inherit;text-decoration:none}button{display:block;box-sizing:border-box;padding:0 14px;line-height:1.35}input,textarea{outline:none}input[type=checkbox]{min-height:0}img{display:inline-block;vertical-align:middle}*{box-sizing:border-box}swiper-item{display:block}.audit-banner{font:10px system-ui;color:#767676;padding:5px 12px;text-align:center}.mirror-tabbar{position:fixed;z-index:50;left:0;right:0;bottom:0;display:flex;background:white;border-top:1px solid #eee;height:64px;padding:6px 0}.mirror-tabbar a{width:25%;font:11px system-ui;text-align:center}.mirror-tabbar img{display:block;margin:0 auto 3px;width:25px;height:25px}</style><style>body {
+  --brand: #e1251b;
+  --brand-soft: #fff2f0;
+  --page-bg: #f5f5f5;
+  --surface: #ffffff;
+  --text: #262626;
+  --text-secondary: #767676;
+  --border: #eeeeee;
+  min-height: 100%;
+  background: #f5f5f5;
+  color: #262626;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+div, span, a, div, button, input, textarea, div {
+  box-sizing: border-box;
+}
+
+button, input, textarea {
+  font-family: inherit;
+  color: #262626;
+}
+
+button {
+  margin: 0;
+  border: 0;
+  min-height: 44px;
+  border-radius: 519.48px;
+  background: #f2f2f2;
+  font-size: 14px;
+}
+
+input, textarea {
+  box-sizing: border-box;
+  border: 0.52px solid #e8e8e8;
+  border-radius: 10.4px;
+  background: #f7f7f7;
+  color: #262626;
+  font-size: 14px;
+}
+
+button::after { border: 0; }
+button[plain] { border: 0.52px solid #e8e8e8; background: #fff; }
+input { min-height: 44px; padding: 0 12.48px; }
+textarea { min-height: 120px; padding: 11.44px 12.48px; line-height: 1.7; }
+
+.pad { padding: 14.56px 12.48px calc(24.96px + env(safe-area-inset-bottom)); }
+.card {
+  margin-bottom: 10.4px;
+  padding: 15.6px;
+  border: 0;
+  border-radius:16.64px;
+  background: #fff;
+}
+.muted { color: #767676; font-size: 12px; }
+.slot {
+  display: flex;
+  justify-content: space-between;
+  gap: 12.48px;
+  margin-top: 6.24px;
+  padding: 8.32px 10.4px;
+  border-radius: 8.32px;
+  background: #f5f5f5;
+  font-size: 14px;
+}
+.slot-state { color: #767676; font-size: 12px; }
+.teal { color: #e1251b; }
+.title { font-size: 18px; font-weight: 700; line-height: 1.45; }
+.row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12.48px;
+  padding: 8.32px 0;
+  border-bottom: 0.52px solid #eeeeee;
+}
+.row .k { flex: none; color: #767676; }
+.soon { color: #c87825; }
+.err { margin-top: 4.16px; color: #b42318; font-size: 12px; }
+.note { margin-top: 4.16px; color: #e1251b; font-size: 12px; }
+.empty { padding: 33.28px 16.64px; color: #767676; text-align: center; line-height: 1.8; }
+
+.field { display: flex; align-items: center; gap: 8.32px; }
+.field input {
+  flex: 1;
+  height: 44px;
+  padding: 0 10.4px;
+  border-radius: 10.4px;
+  background: #fff;
+}
+.btn {
+  display: block;
+  margin: 0;
+  padding: 0 14.56px;
+  min-height: 44px;
+  border-radius:519.48px;
+  background: #e1251b;
+  color: #fff;
+  font-size: 14px;
+  line-height: 44px;
+  text-align: center;
+}
+button.ghost {
+  margin: 8.32px 8.32px 0 0;
+  padding: 0 12.48px;
+  min-height: 44px;
+  border-radius:519.48px;
+  background: #f2f2f2;
+  color: #262626;
+  font-size: 12px;
+  line-height: 44px;
+}
+button.ghost.on { background: #fff2f0; color: #e1251b; }
+button[disabled], button.btn[disabled] { background: #f2f2f2; color: #767676; }
+.chip {
+  display: inline-block;
+  margin-right: 4.16px;
+  padding: 1.04px 5.2px;
+  border-radius: 4.16px;
+  background: #f2f2f2;
+  color: #767676;
+  font-size: 12px;
+}
+.login-go {
+  display: block;
+  min-height: 44px;
+  margin-top: 8.32px;
+  border-radius: 519.48px;
+  background: #e1251b;
+  color: #fff;
+  font-weight: 600;
+  line-height: 44px;
+  text-align: center;
+}
+.foot {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6.24px;
+  color: #767676;
+  font-size: 12px;
+}
+
+/* Shared form language also covers the compact secondary pages. */
+.src { margin-top: 6.24px; color: #767676; font-size: 12px; line-height: 1.75; overflow-wrap: anywhere; }
+.card > input, .card > textarea, .card > div { margin-top: 10.4px; }
+.card > input { width: 100%; }
+.card > .btn { margin-top: 12.48px; }
+.primary, .primary-btn, .primary-button, .submit-button, .save-action, .next-action, .bottom-primary, .staff-primary { border-radius:519.48px; }
+.field-label, .form-label { line-height: 1.6; }
+.metric-value, .stat-value, .career-number, .record-number, .rank-time { font-variant-numeric: tabular-nums; }
+@media (max-width: 350px) {
+  .pad { padding-left: 12px; padding-right: 12px; }
+  .card { padding: 14px; }
+}
+
+:host { display: block; }
+.page-header { background: #f5f5f5; color: #262626; }
+.header-main { display: flex; align-items: center; padding-left: 12.48px; box-sizing: border-box; }
+.header-title { overflow: hidden; font-size: 24px; line-height: 1.25; font-weight: 700; white-space: nowrap; text-overflow: ellipsis; }
+.header-subtitle { padding: 0 12.48px 12.48px; color: #767676; font-size: 12px; line-height: 1.6; }
+@media (max-width: 350px) { .header-title { font-size: 24px; } .header-subtitle { font-size: 12px; } }
+
+.identity-page { min-height:100vh; padding:14.56px 12.48px 24.96px; box-sizing:border-box; color:#262626; background:#f5f5f5; }
+.hero { padding:9.36px 4.16px 15.6px; }
+.eyebrow { color:#767676; font-size: 12px; letter-spacing:1.56px; }
+.title { margin-top:8.32px; font-size: 22px; font-weight:700; }
+.copy { margin-top:7.28px; color:#767676; font-size: 12px; line-height:1.8; overflow-wrap:anywhere; }
+.panel { margin-bottom:10.4px; padding:14.56px; border-radius:16.64px; background:#fff; }
+.name { font-size: 16px; font-weight:600; overflow-wrap:anywhere; }
+.state { display:inline-block; margin-top:10.4px; padding:5.2px 8.32px; color:#767676; background:#f2f2f2; border-radius:5.2px; font-size: 12px; }
+.decision { margin-top:10.4px; padding:10.4px; border-radius:7.28px; color:#767676; background:#fff8f7; font-size: 12px; line-height:1.8; white-space:pre-wrap; overflow-wrap:anywhere; }
+.label { display:flex; flex-wrap:wrap; gap:6.24px; margin:14.56px 0 6.24px; font-size: 14px; font-weight:600; }
+.label span { color:#767676; font-size: 12px; font-weight:400; }
+.identity-page input { width:100%; height:49.92px; padding:0 10.4px; font-size: 14px; }
+.identity-page textarea { width:100%; min-height:130px; padding:10.4px; font-size: 14px; line-height:1.7; }
+.identity-page button,.action-link { display:flex; align-items:center; justify-content:center; width:100%; min-height:44px; padding:10.4px; box-sizing:border-box; border:0; border-radius:8.32px; font-size: 14px; line-height:1.5; }
+.identity-page button::after { border:0; }
+.primary { margin-top:14.56px; color:#fff; background:#e1251b; }
+.secondary { color:#767676; background:#fff; }
+.panel .secondary { margin-top:12.48px; background:#f2f2f2; }
+.identity-page .short-intro { min-height:72.8px; }
+.message { margin:10.4px 0; padding:12.48px; border-radius:8.32px; color:#b45369; background:#fff2f0; font-size: 12px; line-height:1.8; overflow-wrap:anywhere; }
+
+@media (max-width:350px) { .identity-page button,.action-link { min-height:44px; } .identity-page input { min-height:44px; } }
+
+.type-choices { display:flex; flex-direction:column; gap:6.24px; }
+.identity-page .type-choice { justify-content:flex-start; min-height:44px; text-align:left; color:#767676; background:#f4f5f8; font-size: 12px; }
+.identity-page .type-choice.selected { color:#ce2748; background:#fff2f0; box-shadow:inset 0 0 0 0.52px #ffc5d0; }
+.target-card { margin-top:12.48px; padding:12.48px; background:#f7f7f7; border-radius:8.32px; }
+.list-heading,.report-heading { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:8.32px; }
+.identity-page .refresh { width:auto; min-width:58.24px; min-height:44px; padding:7.28px; color:#767676; background:transparent; font-size: 12px; }
+.report-item { margin-top:10.4px; padding-top:12.48px; border-top:0.52px solid #e8e8e8; }
+.report-heading .state { margin:0; }
+.report-detail { margin-top:7.28px; font-size: 12px; line-height:1.7; color:#767676; white-space:pre-wrap; overflow-wrap:anywhere; }
+</style></head><body><div class="identity-page">
+  <div class="hero"><div class="eyebrow">私人申诉</div><div class="title">名称与身份申诉</div><div class="copy">同名本身不等于冒用。请说明具体的误导呈现或管理授权问题，平台核对后处理；不会把成员、账目或历史记录移交给申诉方。</div></div>
+  
+  
+    <div class="panel"><div class="name">提交私密工单</div><div class="target-card"><div class="name">杭州一起跑俱乐部</div><div class="copy">杭州 · 负责人 向前跑 · #106</div></div>
+      <div class="label">涉及的跑团号 <span>必填</span></div><input type="number" maxlength="15" placeholder="公开名片中的团号，如 10482" disabled="" aria-label="公开名片中的团号，如 10482" style="">
+      <button class="secondary">查看这个团号的名片</button>
+      <div class="label">遇到了哪种情况</div><div class="type-choices"><button class="type-choice selected" disabled="">同名容易混淆</button><button class="type-choice " disabled="">组织身份被冒用</button><button class="type-choice " disabled="">管理权存在争议</button></div>
+      <div class="copy">城市、简介和团号通常可以帮助辨认。平台可协助核对，同名不会自动被处罚。</div>
+      <div class="label">具体情况与依据 <span>必填</span></div><textarea maxlength="4000" placeholder="描述涉及位置、发生经过、可核对的组织授权和必要的脱敏证据。请勿提交无关的个人资料。" value="" aria-label="描述涉及位置、发生经过、可核对的组织授权和必要的脱敏证据。请勿提交无关的个人资料。" style=""></textarea>
+      <div class="label">公共来源链接 <span>选填</span></div><input maxlength="1000" placeholder="组织主页、公共说明或活动页面链接" aria-label="组织主页、公共说明或活动页面链接" style="">
+      <div class="label">私密联系方式 <span>必填</span></div><input maxlength="200" placeholder="便于平台核对和通知补充的联系方式" aria-label="便于平台核对和通知补充的联系方式" style="">
+      <div class="copy">工单和联系方式仅本人及有权限的平台处理人员可见，不进入公开建议。提交后不会自动下架或公开给对方贴标签。</div><button class="primary" loading="false">私密提交</button>
+    </div>
+    
+    <div class="panel"><div class="list-heading"><div class="name">我的工单进度</div><button class="refresh">刷新</button></div><div class="copy">暂无工单，提交后会显示在这里。</div></div>
+  
+</div>
+</body></html>

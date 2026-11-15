@@ -69,7 +69,7 @@ async function readAccount(actor) {
     }
   }
   assert.ok(joinedActivities.length, 'Each account has a visible personal training signup');
-  report.accounts.push({ plans: me.plans.length, results: me.results.length, clubs: me.clubs.length, monthRuns: runs.runs.length, monthKm: runs.month.km, totalRuns: runner.overview.totalCount, histories: history.entries.length, signedActivities: joinedActivities.length });
+  report.accounts.push({ userId: actor.id, nickname: actor.nickname, plans: me.plans.length, results: me.results.length, clubs: me.clubs.length, monthRuns: runs.runs.length, monthKm: runs.month.km, totalRuns: runner.overview.totalCount, histories: history.entries.length, signedActivities: joinedActivities.length });
   return { actor, me, runs, runner, history, joinedActivities };
 }
 async function context(actor, width) {
