@@ -10,7 +10,8 @@ async function main() {
     const target = path.join(root, 'miniprogram/images/race-landmarks');
     fs.mkdirSync(target, { recursive: true });
     for (const id of ['beijing', 'shanghai', 'xiamen']) {
-      const page = await browser.newPage({ viewport: { width: 120, height: 96 }, deviceScaleFactor: 2 });
+      // 160 x 128 keeps the 80 x 64 home icons sharp at 2x within the mini package budget.
+      const page = await browser.newPage({ viewport: { width: 120, height: 96 }, deviceScaleFactor: 4 / 3 });
       await page.route('**/*', request => request.abort());
       const svg = fs.readFileSync(path.join(root, 'web/public/images/race-landmarks', id + '.svg'), 'utf8');
       await page.setContent('<style>html,body{margin:0;background:transparent}svg{display:block}</style>' + svg);

@@ -12,7 +12,7 @@ const { app } = require('../server/src/index');
 const { getDb } = require('../server/src/db');
 const { seedRadarDemo } = require('./seed-radar-demo.cjs');
 const directory = path.resolve(__dirname, '../design/previews/radar-20261114');
-const report = { checks: [], errors: [], screenshots: [], passed: false };
+const report = { checks: [], typography: [], errors: [], screenshots: [], passed: false };
 let server, browser;
 async function check(name, fn) { await fn(); report.checks.push(name); }
 async function noOverflow(page) { assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'page fits viewport'); }
@@ -40,6 +40,16 @@ async function main() {
       await page.getByRole('button',{name:'寻找拿奖机会'}).click();
       await page.getByText('滨湖马拉松 · 模拟赛事',{exact:true}).waitFor();
       await noOverflow(page);
+      const typography=await page.locator('.time-fields input').evaluateAll(inputs=>inputs.map(input=>{
+        const bounds=input.getBoundingClientRect();
+        return {label:input.getAttribute('aria-label'),fontSize:parseFloat(getComputedStyle(input).fontSize),left:bounds.left,right:bounds.right,viewport:innerWidth};
+      }));
+      assert.equal(typography.length,3,'all three clock fields are present');
+      for(const input of typography){
+        assert.ok(input.fontSize>=28,input.label+' uses readable clock digits');
+        assert.ok(input.left>=0&&input.right<=input.viewport,input.label+' fits the viewport');
+      }
+      report.typography.push({width,inputs:typography});
       await page.screenshot({path:path.join(directory,'web-list-'+width+'.png'),fullPage:true});report.screenshots.push('web-list-'+width+'.png');
     });
     await check('race detail, complete top eight, year switch and entrants '+width,async()=>{

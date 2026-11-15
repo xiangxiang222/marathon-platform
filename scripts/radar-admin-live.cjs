@@ -124,6 +124,7 @@ async function main() {
 }
 main().catch(error => { report.fatal = error.stack; process.exitCode = 1; }).finally(async () => {
   if (browser) await browser.close(); if (server) await new Promise(resolve => server.close(resolve));
+  getDb().close();
   fs.rmSync(temporary, { recursive: true, force: true });
   fs.writeFileSync(path.join(out, 'admin-report.json'), JSON.stringify(report, null, 2));
   console.log(JSON.stringify(report, null, 2));

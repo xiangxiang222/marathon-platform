@@ -482,7 +482,7 @@ async function browserJourneys(fixture, base) {
     await member.reload();
     await member.getByPlaceholder('45:30 或 3:29:59').fill('25:30');
     await member.getByRole('button', { name: '提交', exact: true }).click();
-    await member.getByText('25:30', { exact: true }).waitFor();
+    await member.locator('.mate.mine').getByText('25:30', { exact: true }).waitFor();
     assert.equal(db.prepare('SELECT seconds FROM internal_results WHERE race_id = ? AND user_id = ?').get(race.id, actor.a.id).seconds, 1530);
     await overflow(member);
   }, 'browser');
@@ -503,9 +503,12 @@ async function browserJourneys(fixture, base) {
     await member.getByPlaceholder('1:32:10 或 45:30').fill('3:30:01');
     await member.getByRole('button', { name: '提交', exact: true }).click();
     await member.locator('.mate.mine b').filter({ hasText: '3:30:01' }).waitFor();
-    const download = member.waitForEvent('download');
-    await member.getByRole('button', { name: '导出完整 CSV', exact: true }).click();
-    const file = await download, csv = fs.readFileSync(await file.path(), 'utf8');
+    await member.locator('.share-fold summary').click();
+    const [file] = await Promise.all([
+      member.waitForEvent('download'),
+      member.getByRole('button', { name: '导出完整 CSV', exact: true }).click()
+    ]);
+    const csv = fs.readFileSync(await file.path(), 'utf8');
     assert.ok(csv.includes(actor.a.nickname)); assert.ok(csv.includes('3:30:01'));
     await member.getByRole('button', { name: '生成成绩长图', exact: true }).click();
     await member.getByAltText('成绩接龙长图').waitFor();
