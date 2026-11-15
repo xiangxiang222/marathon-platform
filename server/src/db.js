@@ -973,6 +973,7 @@ function open() {
   require("./activity-templates").installActivityTemplates(handle);
   require("./training-groups").installTrainingGroups(handle);
   require("./content").installContent(handle);
+  require("./participation").installParticipation(handle);
   migrateLegacyAvatars(handle);
   return handle;
 }

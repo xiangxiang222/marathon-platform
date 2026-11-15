@@ -86,11 +86,13 @@ function gradeOf(db, clubId) {
       `SELECT COUNT(*) AS n FROM (
          SELECT p.race_id FROM plans p
          JOIN club_members m ON m.user_id = p.user_id AND m.club_id = ?
+         JOIN plan_club_shares s ON s.user_id=p.user_id AND s.race_id=p.race_id AND s.club_id=m.club_id
          GROUP BY p.race_id
          HAVING COUNT(DISTINCT p.user_id) >= 2
          UNION
          SELECT r.race_id FROM results r
          JOIN club_members m ON m.user_id = r.user_id AND m.club_id = ?
+         JOIN plan_club_shares s ON s.user_id=r.user_id AND s.race_id=r.race_id AND s.club_id=m.club_id
          GROUP BY r.race_id
          HAVING COUNT(DISTINCT r.user_id) >= 2
        ) AS grouped`
@@ -195,6 +197,7 @@ function leagueBoard(db, league, clubId) {
           `SELECT COUNT(DISTINCT r.user_id) AS n
            FROM results r
            JOIN club_members m ON m.user_id = r.user_id AND m.club_id = ?
+           JOIN plan_club_shares s ON s.user_id=r.user_id AND s.race_id=r.race_id AND s.club_id=m.club_id
            JOIN races rc ON rc.id = r.race_id
            WHERE substr(rc.race_date, 1, 7) = ?`
         )

@@ -270,7 +270,7 @@ function rowTag(db, call, row) {
   return "首次";
 }
 
-function syncCareer(db, call, userId, removed) {
+function syncCareer(db, call, userId, removed, shareWithClub = false) {
   if (!call.race_id) return;
   const race = db.prepare("SELECT distances FROM races WHERE id = ?").get(call.race_id);
   if (!race) return;
@@ -301,6 +301,13 @@ function syncCareer(db, call, userId, removed) {
       `INSERT INTO plans (user_id, race_id, status, updated_at) VALUES (?, ?, '完赛', ?)
        ON CONFLICT(user_id, race_id) DO UPDATE SET status = '完赛', updated_at = excluded.updated_at`
     ).run(userId, call.race_id, now);
+    // Submitting a club's result call is an explicit action in that club only.
+    // It must not opt the same race into any of the runner's other clubs.
+    if (!removed && shareWithClub) {
+      db.prepare(`INSERT OR IGNORE INTO plan_club_shares(user_id,race_id,club_id)
+        SELECT ?,?,? WHERE EXISTS(SELECT 1 FROM club_members WHERE user_id=? AND club_id=?)`)
+        .run(userId, call.race_id, call.club_id, userId, call.club_id);
+    }
   }
   if (removed && !latest.has(removed.distance)) {
     const existing = db
@@ -341,7 +348,7 @@ function presentCall(db, call, userId) {
     )
     .all(call.id);
   const tagged = rows.map((row) => {
-    const { filename, ...visibleRow } = row;
+    const { filename, replaced_seconds, ...visibleRow } = row;
     return {
       ...visibleRow,
       clock: formatClock(row.seconds),
@@ -653,7 +660,7 @@ function mountClubOps(app, { BASE, getDb, userFrom }) {
              updated_at = excluded.updated_at`
         )
         .run(call.id, userId, distance, seconds, staffFilled, debut, replaced, now);
-      syncCareer(ctx.db, call, userId);
+      syncCareer(ctx.db, call, userId, null, userId === ctx.user.id);
     })();
     const next = loadCall(ctx.db, ctx.club.id, call.id);
     res.json({ call: presentCall(ctx.db, next, ctx.user.id) });

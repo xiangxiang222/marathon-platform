@@ -138,3 +138,4 @@
 .discover-copy { padding:14px; min-width:0; }.discover-title { font-size:18px; }.discover-race-name { display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2; overflow:hidden; margin-top:8px; font-size:12px; line-height:1.6; color:var(--text-secondary); }
 
 .discover-side>navigator>view{flex:1;min-width:0}
+.race{position:relative}.race-personal{display:flex;flex-direction:column;align-items:flex-end;justify-content:center;gap:6px;flex:none;margin-left:8px;max-width:86px}.race-personal .my-state{font-size:12px;line-height:1.5;color:#ff1838;overflow-wrap:anywhere}.race-personal .race-follow{margin:0;padding:0 5px;min-height:44px;line-height:44px;font-size:12px;background:transparent;color:#888;border:0;white-space:nowrap}.race-personal .race-follow.on{color:#ff1838}.race-follow::after{border:0}

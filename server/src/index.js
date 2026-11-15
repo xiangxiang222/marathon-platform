@@ -38,6 +38,7 @@ const { signupTarget } = require("./signup-channel");
 const QRCode = require("qrcode");
 const { mountRaceCatalog, raceArchiveId, archiveBaseline, listCatalog } = require("./race-catalog");
 const { mountArchiveEditor } = require("./race-archive-editor");
+const { STATUSES, sharedClubIds, validateClubIds, replaceShares } = require("./participation");
 
 function loadEnv() {
   const file = path.join(__dirname, "../../.env");
@@ -51,7 +52,6 @@ function loadEnv() {
 loadEnv();
 
 const BASE = process.env.BASE_PATH || "/marathon";
-const STATUSES = ["想跑", "已报名", "待抽签", "中签", "未中签", "已缴费", "已领物", "完赛", "未完赛", "弃赛"];
 const COMPANY = "北京华创科技有限公司";
 const ICP = "京ICP备2026060284号-2";
 
@@ -70,9 +70,10 @@ function userFrom(req) {
 function marksOf(clubId, raceId) {
   return getDb()
     .prepare(
-      `SELECT u.nickname, p.status FROM plans p
+      `SELECT u.id AS userId, u.nickname, p.status, p.companion_note AS note FROM plans p
        JOIN users u ON u.id = p.user_id
        JOIN club_members m ON m.user_id = u.id AND m.club_id = ?
+       JOIN plan_club_shares s ON s.user_id=p.user_id AND s.race_id=p.race_id AND s.club_id=m.club_id
        WHERE p.race_id = ?
        ORDER BY p.updated_at DESC`
     )
@@ -108,12 +109,12 @@ function gapDays() {
 function plansFor(userId, now = new Date()) {
   return getDb()
     .prepare(
-      `SELECT p.status, p.sheet, p.updated_at, r.* FROM plans p
+      `SELECT p.status, p.sheet, p.updated_at, p.companion_note, r.* FROM plans p
        JOIN races r ON r.id = p.race_id
        WHERE p.user_id = ? ORDER BY r.race_date`
     )
     .all(userId)
-    .map((row) => ({ status: row.status, hasSheet: Boolean(row.sheet), updatedAt: row.updated_at, race: presentRace(row, now) }));
+    .map((row) => ({ status: row.status, hasSheet: Boolean(row.sheet), updatedAt: row.updated_at, companionNote: row.companion_note, sharedClubIds: sharedClubIds(getDb(), userId, row.id), race: presentRace(row, now) }));
 }
 
 function resultsFor(userId, now = new Date()) {
@@ -260,6 +261,11 @@ app.get(BASE + "/api/races", (req, res) => {
   const cities = [...new Set(getDb().prepare("SELECT city FROM races ORDER BY city").all().map((r) => r.city))];
   const months = [...new Set(getDb().prepare("SELECT race_date FROM races ORDER BY race_date").all().map((r) => r.race_date.slice(0, 7)))];
   const paged = slicePage(rows, req.query);
+  const user = userFrom(req);
+  const follows = new Set(user ? getDb().prepare('SELECT race_id FROM race_follows WHERE user_id=?').all(user.id).map(row => row.race_id) : []);
+  const plans = new Map(user ? getDb().prepare('SELECT race_id,status FROM plans WHERE user_id=?').all(user.id).map(row => [row.race_id, row.status]) : []);
+  paged.rows = paged.rows.map(race => ({ ...race, following: follows.has(race.id), myStatus: plans.get(race.id) || '' }));
+  res.set('Cache-Control', 'private, no-store');
   res.json({ races: paged.rows, total: paged.total, page: paged.page, pageSize: paged.pageSize, pages: paged.pages, cities, months, statuses: STATUSES });
 });
 
@@ -285,8 +291,10 @@ app.get(BASE + "/api/races/:id", (req, res) => {
   race.archiveId = raceArchiveId(race);
   const user = userFrom(req);
   const mine = user
-    ? getDb().prepare("SELECT status, sheet FROM plans WHERE user_id = ? AND race_id = ?").get(user.id, race.id)
+    ? getDb().prepare("SELECT status, sheet, companion_note FROM plans WHERE user_id = ? AND race_id = ?").get(user.id, race.id)
     : null;
+  const sharedIds = user ? sharedClubIds(getDb(), user.id, race.id) : [];
+  const following = Boolean(user && getDb().prepare('SELECT 1 FROM race_follows WHERE user_id=? AND race_id=?').get(user.id, race.id));
   const clubs = user
     ? getDb()
         .prepare(
@@ -297,11 +305,13 @@ app.get(BASE + "/api/races/:id", (req, res) => {
         .all(user.id)
         .map((club) => ({
           ...club,
+          shared: sharedIds.includes(club.id),
           mates: getDb()
             .prepare(
-              `SELECT u.nickname, p.status FROM club_members m
+              `SELECT u.id AS userId, u.nickname, p.status, p.companion_note AS note FROM club_members m
                JOIN users u ON u.id = m.user_id
                JOIN plans p ON p.user_id = u.id AND p.race_id = ?
+               JOIN plan_club_shares s ON s.user_id=p.user_id AND s.race_id=p.race_id AND s.club_id=m.club_id
                WHERE m.club_id = ? AND u.id != ?
                ORDER BY p.updated_at DESC`
             )
@@ -325,6 +335,9 @@ app.get(BASE + "/api/races/:id", (req, res) => {
   res.json({
     race,
     myStatus,
+    following,
+    sharedClubIds: sharedIds,
+    companionNote: mine ? mine.companion_note : '',
     hasSheet: Boolean(mine && mine.sheet),
     myResult,
     myResults,
@@ -382,6 +395,7 @@ function todayPayload(user, now = new Date()) {
            JOIN users u ON u.id = p.user_id
            JOIN races r ON r.id = p.race_id
            JOIN club_members m ON m.user_id = u.id AND m.club_id = ?
+           JOIN plan_club_shares s ON s.user_id=p.user_id AND s.race_id=p.race_id AND s.club_id=m.club_id
            ORDER BY r.race_date, r.id`
         )
         .all(club.id);
@@ -488,6 +502,9 @@ app.get(BASE + "/api/me", (req, res) => {
   const user = requireUser(req, res);
   if (!user) return;
   const plans = plansFor(user.id);
+  const planStatus = new Map(plans.map(plan => [plan.race.id, plan.status]));
+  const followedRaces = getDb().prepare(`SELECT r.* FROM races r JOIN race_follows f ON f.race_id=r.id
+    WHERE f.user_id=? ORDER BY r.race_date,r.id`).all(user.id).map(row => ({ ...presentRace(row, new Date()), following: true, myStatus: planStatus.get(row.id) || '' }));
   const clubs = getDb()
     .prepare(
       `SELECT c.*, (SELECT nickname FROM users WHERE id=c.owner_id) AS owner_nickname,
@@ -511,6 +528,7 @@ app.get(BASE + "/api/me", (req, res) => {
     user: { id: user.id, nickname: user.nickname, avatar: user.avatar || "", leader: Boolean(user.leader), hasPassword: Boolean(account && account.password_hash), hasWechatLogin: Boolean(account && account.openid) },
     applications,
     plans,
+    followedRaces,
     clubs,
     reminders,
     conflicts: fullConflicts(plans, gapDays()),
@@ -616,6 +634,48 @@ app.put(BASE + "/api/me/password", (req, res) => {
   res.json({ ok: true });
 });
 
+app.put(BASE + "/api/me/races/:id/follow", (req, res) => {
+  const user = requireUser(req, res);
+  if (!user) return;
+  const db = getDb(), raceId = req.params.id;
+  if (!db.prepare('SELECT 1 FROM races WHERE id=?').get(raceId)) return res.status(404).json({ error: '没有这场比赛' });
+  const following = req.body && req.body.following;
+  if (typeof following !== 'boolean') return res.status(400).json({ error: '请选择关注或取消关注' });
+  if (following) db.prepare('INSERT OR IGNORE INTO race_follows(user_id,race_id,created_at) VALUES(?,?,?)').run(user.id, raceId, new Date().toISOString());
+  else db.prepare('DELETE FROM race_follows WHERE user_id=? AND race_id=?').run(user.id, raceId);
+  res.json({ ok: true, following });
+});
+
+app.put(BASE + "/api/me/races/:id/sharing", (req, res) => {
+  const user = requireUser(req, res);
+  if (!user) return;
+  const db = getDb(), raceId = req.params.id;
+  if (!db.prepare('SELECT 1 FROM plans WHERE user_id=? AND race_id=?').get(user.id, raceId)) return res.status(404).json({ error: '请先记录参赛状态' });
+  const selected = validateClubIds(db, user.id, req.body && req.body.clubIds);
+  if (selected.error) return res.status(selected.status).json({ error: selected.error });
+  db.transaction(() => replaceShares(db, user.id, raceId, selected.ids))();
+  res.json({ ok: true, sharedClubIds: selected.ids });
+});
+
+app.get(BASE + "/api/me/races/:id/companionship", (req, res) => {
+  const user = requireUser(req, res);
+  if (!user) return;
+  const plan = getDb().prepare('SELECT companion_note FROM plans WHERE user_id=? AND race_id=?').get(user.id, req.params.id);
+  if (!plan) return res.status(404).json({ error: '请先记录参赛状态' });
+  res.json({ companionNote: plan.companion_note });
+});
+
+app.put(BASE + "/api/me/races/:id/companionship", (req, res) => {
+  const user = requireUser(req, res);
+  if (!user) return;
+  const db = getDb(), raceId = req.params.id;
+  if (!db.prepare('SELECT 1 FROM plans WHERE user_id=? AND race_id=?').get(user.id, raceId)) return res.status(404).json({ error: '请先记录参赛状态' });
+  const note = req.body && req.body.note;
+  if (typeof note !== 'string' || note.trim().length > 200) return res.status(400).json({ error: '同行备注不超过200字' });
+  db.prepare('UPDATE plans SET companion_note=?,updated_at=? WHERE user_id=? AND race_id=?').run(note.trim(), new Date().toISOString(), user.id, raceId);
+  res.json({ ok: true, companionNote: note.trim() });
+});
+
 app.put(BASE + "/api/me/races/:id", (req, res) => {
   const user = requireUser(req, res);
   if (!user) return;
@@ -623,13 +683,19 @@ app.put(BASE + "/api/me/races/:id", (req, res) => {
   if (!race) return res.status(404).json({ error: "没有这场比赛" });
   const status = String((req.body && req.body.status) || "");
   if (!STATUSES.includes(status)) return res.status(400).json({ error: "状态不对" });
-  getDb()
+  const db = getDb();
+  const selected = req.body && Object.hasOwn(req.body, 'sharedClubIds') ? validateClubIds(db, user.id, req.body.sharedClubIds) : null;
+  if (selected && selected.error) return res.status(selected.status).json({ error: selected.error });
+  db.transaction(() => {
+    db
     .prepare(
       `INSERT INTO plans (user_id, race_id, status, updated_at) VALUES (?, ?, ?, ?)
        ON CONFLICT(user_id, race_id) DO UPDATE SET status = excluded.status, updated_at = excluded.updated_at`
     )
     .run(user.id, race.id, status, new Date().toISOString());
-  res.json({ ok: true, status });
+    if (selected) replaceShares(db, user.id, race.id, selected.ids);
+  })();
+  res.json({ ok: true, status, sharedClubIds: sharedClubIds(db, user.id, race.id) });
 });
 
 app.delete(BASE + "/api/me/races/:id", (req, res) => {
@@ -1003,10 +1069,11 @@ app.get(BASE + "/api/clubs/:id", (req, res) => {
   const club = { id: clubRow.id, name: clubRow.name, code: clubRow.code };
   const plans = getDb()
     .prepare(
-      `SELECT u.id AS user_id, u.nickname, p.status, r.* FROM plans p
+      `SELECT u.id AS user_id, u.nickname, p.status, p.companion_note, r.* FROM plans p
        JOIN users u ON u.id = p.user_id
        JOIN races r ON r.id = p.race_id
        JOIN club_members m ON m.user_id = u.id AND m.club_id = ?
+       JOIN plan_club_shares s ON s.user_id=p.user_id AND s.race_id=p.race_id AND s.club_id=m.club_id
        ORDER BY r.race_date, p.updated_at DESC`
     )
     .all(club.id);
@@ -1019,13 +1086,14 @@ app.get(BASE + "/api/clubs/:id", (req, res) => {
       item = { race, marks: [] };
       board.push(item);
     }
-    item.marks.push({ userId: row.user_id, nickname: row.nickname, status: row.status });
+    item.marks.push({ userId: row.user_id, nickname: row.nickname, status: row.status, note: row.companion_note });
   }
   const finished = getDb().prepare(
     `SELECT DISTINCT u.id AS user_id, u.nickname, r.* FROM results res
      JOIN users u ON u.id = res.user_id
      JOIN races r ON r.id = res.race_id
      JOIN club_members m ON m.user_id = u.id AND m.club_id = ?
+     JOIN plan_club_shares s ON s.user_id=res.user_id AND s.race_id=res.race_id AND s.club_id=m.club_id
      ORDER BY r.race_date, u.id`
   ).all(club.id);
   for (const row of finished) {
@@ -1059,7 +1127,8 @@ app.get(BASE + "/api/clubs/:id", (req, res) => {
        FROM results res
        JOIN users u ON u.id = res.user_id
        JOIN races r ON r.id = res.race_id
-       JOIN club_members m ON m.user_id = u.id AND m.club_id = ?`
+       JOIN club_members m ON m.user_id = u.id AND m.club_id = ?
+       JOIN plan_club_shares s ON s.user_id=res.user_id AND s.race_id=res.race_id AND s.club_id=m.club_id`
     )
     .all(club.id)
     .map((row) => {

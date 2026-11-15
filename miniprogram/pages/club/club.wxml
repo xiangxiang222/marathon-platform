@@ -51,7 +51,7 @@
     </view>
     </view>
     <view class="section-head"><view class="section-title">近期赛事</view><text class="section-link" data-tab="matches" bindtap="changeSection">赛事名单 ›</text></view>
-    <navigator wx:if="{{nextRace}}" class="preview-row" url="/pages/race/race?id={{nextRace.race.id}}"><view class="race-date-tag">{{nextRace.race.raceDate}}</view><view class="preview-body"><view class="preview-title">{{nextRace.race.name}}</view><view class="muted">{{nextRace.marks.length}} 位团友已标记参赛</view></view><text class="preview-arrow">›</text></navigator><view wx:else class="empty-card compact-empty">标记想跑或已报名的赛事，和团友在赛道相见。</view>
+    <navigator wx:if="{{nextRace}}" class="preview-row" url="/pages/race/race?id={{nextRace.race.id}}"><view class="race-date-tag">{{nextRace.race.raceDate}}</view><view class="preview-body"><view class="preview-title">{{nextRace.race.name}}</view><view class="muted">{{nextRace.marks.length}} 位团友已标记参赛</view></view><text class="preview-arrow">›</text></navigator><view wx:else class="empty-card compact-empty">在赛事详情记录状态并选择同步到本团，和团友在赛道相见。</view>
     <navigator wx:if="{{albums.length}}" class="album-content-preview" url="/pages/album/album?club={{club.id}}&id={{albums[0].id}}"><view class="album-preview-count">{{albums[0].photoCount || 0}}<text> 张照片</text></view><view><view class="preview-title">{{albums[0].title}}</view><view class="muted">最近的活动相册 · 留下我们一起出发的样子</view></view><text>›</text></navigator>
     <navigator class="club-journal-entry" url="/pages/news/news?club={{club.id}}"><view><view class="journal-entry-title">跑团资讯</view><view class="journal-entry-note">训练心得、赛事回顾与值得分享的好文</view></view><text>↗</text></navigator>
     <view class="service-panel"><view class="section-head"><view class="section-title">更多服务</view><text class="muted">跑团生活与团务</text></view>
@@ -111,7 +111,7 @@
 </block></block>
   <block wx:if="{{activeTab === 'matches'}}">
     <view class="section-head"><view class="section-title">跑团赛事</view><button class="text-action" bindtap="exportBoard">复制全团赛事表格</button></view>
-    <view wx:if="{{!board.length}}" class="empty-row">打开赛事并标记“想跑”或“已报名”，团友就能一起查看。</view>
+    <view wx:if="{{!board.length}}" class="empty-row">在赛事详情记录参赛状态，再选择同步到本团。同行活动需单独报名。</view>
     <view wx:for="{{board}}" wx:for-index="index" wx:key="key" class="match-row">
       <navigator class="match-head" url="/pages/race/race?id={{item.race.id}}">
         <view class="match-date">{{item.race.raceDate}}</view>
@@ -124,7 +124,7 @@
       <navigator wx:for="{{item.alternatives}}" wx:for-item="alt" wx:key="id" class="related-race" url="/pages/race/race?id={{alt.id}}"><text>{{alt.name}}</text><text>{{alt.deadlineLabel}}</text></navigator>
       <view wx:if="{{item.unpaid.length}}" class="unpaid-note">中签后待缴费：{{item.unpaidText}}</view>
       <button class="roster-toggle" data-key="{{item.key}}" bindtap="toggleRace"><text>{{raceExpanded[item.key] ? '收起团友名单' : '查看团友名单'}}</text><text>{{item.marks.length}} 人 {{raceExpanded[item.key] ? '−' : '＋'}}</text></button>
-      <block wx:if="{{raceExpanded[item.key]}}"><view wx:for="{{item.marks}}" wx:for-item="mark" wx:key="nickname" class="member-mark"><text>{{mark.nickname}}</text><text>{{mark.status}}{{mark.clock ? ' · ' + mark.clock : ''}}{{mark.pb ? ' PB' : ''}}</text></view></block>
+      <block wx:if="{{raceExpanded[item.key]}}"><view wx:for="{{item.marks}}" wx:for-item="mark" wx:key="nickname" class="member-mark"><text>{{mark.nickname}}</text><view><text>{{mark.status}}{{mark.clock ? ' · ' + mark.clock : ''}}{{mark.pb ? ' PB' : ''}}</text><view wx:if="{{mark.note}}" class="match-note">{{mark.note}}</view></view></view></block>
       <view class="match-row-tools"><button class="secondary-btn race-poster-action" data-index="{{index}}" bindtap="exportRacePoster"><view class="poster-action-icon"></view>生成本场赛事画像</button></view>
     </view>
     <view wx:if="{{ranks.length}}" class="section-head"><view class="section-title">团内最好成绩</view><text class="section-link">按距离排名</text></view>

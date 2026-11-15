@@ -113,7 +113,7 @@ function validateArchiveInput(body, current, db, id, base) {
   const confirmedUploads = new Map();
   const uploadPrefix = imageUrl(base, id, '');
   function rememberUpload(url, rights) {
-    if (typeof url === 'string' && url.startsWith(uploadPrefix) && rights?.status === 'admin-confirmed' && rights.title && rights.holder && rights.confirmedAt) confirmedUploads.set(url, rights);
+    if (typeof url === 'string' && url.startsWith(uploadPrefix) && rights?.status === 'admin-confirmed' && rights.title && rights.holder && rights.confirmedAt && !confirmedUploads.has(url)) confirmedUploads.set(url, rights);
   }
   function rememberMedia(items) {
     for (const item of items || []) rememberUpload(item.url, item.mediaRights);
@@ -129,7 +129,14 @@ function validateArchiveInput(body, current, db, id, base) {
   }
   for (const album of current.archive.photoAlbums || []) rememberMedia(album.media);
   for (const section of ['stories', 'updates', 'news']) for (const article of current.archive[section] || []) rememberMedia(article.images);
-  const rightsFor = url => confirmedUploads.get(url) || confirmedRights();
+  // A reused upload has one confirmation, regardless of how many sections use it.
+  // Keep newly issued confirmations separate from the persisted trust map below.
+  const newConfirmations = new Map();
+  const rightsFor = url => {
+    if (confirmedUploads.has(url)) return confirmedUploads.get(url);
+    if (!newConfirmations.has(url)) newConfirmations.set(url, confirmedRights());
+    return newConfirmations.get(url);
+  };
   let needsMediaConfirmation = false;
   const knownRefs = new Set((current.archive.sources || []).map(item => item.id));
   const refs = value => texts(value, '资料标识').filter(ref => knownRefs.has(ref));

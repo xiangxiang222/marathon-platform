@@ -1,0 +1,145 @@
+'use strict';
+// Execute the current Page methods with isolated in-memory API replies.
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const vm = require('node:vm');
+const { createRequire } = require('node:module');
+const root = path.resolve(__dirname, '..');
+const copy = value => JSON.parse(JSON.stringify(value));
+const settle = async () => { await new Promise(resolve => setImmediate(resolve)); await new Promise(resolve => setImmediate(resolve)); };
+const event = (dataset = {}, value) => ({ currentTarget: { dataset }, detail: { value } });
+const statuses = ['想跑', '已报名', '待抽签', '中签', '未中签', '确认参赛', '已缴费', '已领物', '完赛', '未完赛', '弃赛'];
+const race = { id: 'sample-race', name: '合成参赛流程验收', city: '验收城市', province: '验收城市', raceDate: '2027-03-21', distances: ['full'], distanceLabels: ['全马'], kindLabels: [], groups: [], links: [], nodes: [], regStatus: '报名中' };
+
+function fixture(name = 'race', handler) {
+  const app = { globalData: { token: 'runner-a', nickname: '合成跑者', baseUrl: 'https://runner.example' } };
+  const state = { following: false, status: '', sharedClubIds: [], note: '', results: [], confirmDeletion: true }, requests = [], patches = [], storage = {}, navigation = [];
+  const reply = async (url, method = 'GET', body) => {
+    if (handler) return handler(url, method, body);
+    if (url.endsWith('/news')) return { news: [] };
+    if (url === '/reminders') return {};
+    if (url.startsWith('/races?')) return { races: [{ ...race, following: state.following, myStatus: state.status }] };
+    if (url === '/races/' + race.id) return { race: copy(race), statuses, following: state.following, myStatus: state.status, sharedClubIds: state.sharedClubIds, companionNote: state.note,
+      clubs: [{ id: 7, name: '合成跑团', mates: [{ userId: 2, nickname: '团友', status: '确认参赛', note: '一起合影' }] }, { id: 8, name: '周末跑团', mates: [] }], myResults: state.results };
+    if (url.endsWith('/follow')) { state.following = body.following; return { ok: true }; }
+    if (url.endsWith('/sharing')) { state.sharedClubIds = body.clubIds; return { ok: true }; }
+    if (url.endsWith('/companionship')) { state.note = body.note; return { ok: true }; }
+    if (method === 'PUT' && url === '/me/races/' + race.id) { state.status = body.status; state.sharedClubIds = body.sharedClubIds || state.sharedClubIds; return { ok: true }; }
+    if (method === 'DELETE' && url === '/me/races/' + race.id) { state.status = ''; state.sharedClubIds = []; state.note = ''; return { ok: true }; }
+    if (url === '/me') return { user: { nickname: '合成跑者' }, plans: state.status ? [{ race, status: state.status }] : [], followedRaces: state.following ? [race] : [], results: [], clubs: [] };
+    if (url.includes('/runner')) throw Error('isolated runner fixture unavailable');
+    return {};
+  };
+  const file = path.join(root, 'miniprogram/pages', name, name + '.js');
+  const localRequire = createRequire(file);
+  let definition;
+  const wx = new Proxy({ setStorageSync(key, value) { storage[key] = value; }, getStorageSync(key) { return storage[key]; }, removeStorageSync(key) { delete storage[key]; }, navigateTo(value) { navigation.push(value.url); }, switchTab(value) { navigation.push(value.url); }, showModal(options) { options.success({ confirm: state.confirmDeletion, cancel: !state.confirmDeletion }); } }, { get: (target, key) => target[key] || (() => {}) });
+  vm.runInNewContext(fs.readFileSync(file, 'utf8'), {
+    Page(value) { definition = value; }, getApp: () => app, wx, console, Date, Promise, setTimeout, clearTimeout,
+    require(id) {
+      if (id === '../../utils/request') return { request(url, method, body) { requests.push({ url, method: method || 'GET', body: copy(body || {}) }); return Promise.resolve().then(() => reply(url, method, body)); }, ready: () => !!app.globalData.token, setAuth() {}, clearAuth() { app.globalData.token = ''; } };
+      return localRequire(id);
+    }
+  }, { filename: file });
+  const page = { ...definition, data: copy(definition.data), setData(patch) { patches.push(copy(patch)); Object.assign(this.data, patch); } };
+  return { page, state, app, requests, storage, navigation, patches, reply };
+}
+
+async function main() {
+  const checks = [];
+  const f = fixture(); f.page.onLoad({ id: race.id, plan: '1' }); await f.page.load();
+  await f.page.toggleFollow();
+  assert.equal(f.state.following, true); assert.equal(f.state.status, '');
+  assert.equal(f.requests.filter(call => call.method === 'PUT' && call.url === '/me/races/' + race.id).length, 0);
+  f.page.pickPlanStage(event({ id: 'confirmed' }));
+  assert.ok(f.page.data.stageStatuses.includes('确认参赛')); assert.equal(f.page.data.planStages.length, 4);
+  f.page.pickSharedClubs(event({}, ['7'])); await f.page.mark(event({ status: '确认参赛' }));
+  assert.equal(f.state.status, '确认参赛'); assert.deepEqual(copy(f.state.sharedClubIds), []);
+  assert.deepEqual(copy(f.page.data.sharingDraft), [7]); await f.page.saveSharing(); assert.deepEqual(copy(f.state.sharedClubIds), [7]);
+  await f.page.toggleFollow(); assert.equal(f.state.following, false); assert.equal(f.state.status, '确认参赛');
+  checks.push('Following remains separate from participation; direct entry skips the lottery and records one personal status');
+  f.page.pickSharedClubs(event({}, [])); await f.page.saveSharing();
+  assert.deepEqual(copy(f.state.sharedClubIds), []); assert.equal(f.state.status, '确认参赛');
+  f.page.onCompanionNote(event({}, '  起点附近拼车  ')); await f.page.saveCompanionNote();
+  assert.equal(f.state.note, '起点附近拼车');
+  assert.ok(f.page.data.clubs[0].mates[0].note);
+  assert.equal(f.requests.some(call => /activities|meetups/.test(call.url) && call.method !== 'GET'), false);
+  checks.push('Per-club sharing can be cleared while personal status persists; companionship never signs up for club activities');
+  for (const status of statuses) {
+    f.state.status = status; await f.page.load();
+    assert.ok(f.page.data.stageStatuses.includes(status));
+    assert.ok(f.page.data.stageStatuses.length <= 4);
+  }
+  checks.push('All legacy and direct-entry statuses map to one of four stages without showing ten actions at once');
+
+  const removed = fixture(); removed.state.status = '完赛'; removed.state.following = true; removed.state.sharedClubIds = [7]; removed.state.note = '赛后集合';
+  removed.state.results = [{ distance: 'full', clock: '03:40:00', story: '首马' }]; removed.page.onLoad({ id: race.id }); await removed.page.load();
+  removed.state.confirmDeletion = false; await removed.page.removePlan(); assert.equal(removed.state.status, '完赛');
+  assert.equal(removed.requests.some(call => call.method === 'DELETE'), false);
+  removed.state.confirmDeletion = true; await removed.page.removePlan();
+  assert.equal(removed.page.data.myStatus, ''); assert.deepEqual(copy(removed.page.data.sharedClubIds), []); assert.equal(removed.page.data.companionNote, '');
+  assert.equal(removed.page.data.following, true); assert.equal(removed.page.data.myResults[0].clock, '03:40:00');
+  checks.push('Removing a confirmed plan clears sharing and note, retains following and results, and cancellation performs no mutation');
+
+  const guest = fixture(); guest.app.globalData.token = ''; guest.page.onLoad({ id: race.id }); guest.page.toggleFollow();
+  assert.equal(guest.storage.marathon_return_after_login, '/pages/race/race?id=' + race.id + '&follow=1');
+  assert.equal(guest.navigation[0], '/pages/mine/mine');
+  const resumed = fixture(); resumed.page.onLoad({ id: race.id, follow: '1' }); await resumed.page.load(); await settle();
+  assert.equal(resumed.state.following, true); assert.equal(resumed.state.status, '');
+  checks.push('Guest follow resumes after login as a follow operation only');
+
+  let release;
+  const late = fixture('race', url => url.endsWith('/news') ? { news: [] } : new Promise(resolve => { release = resolve; }));
+  late.page.onLoad({ id: race.id }); const loading = late.page.load(); await settle(); late.page.onUnload();
+  const patchCount = late.patches.length; release({ race, statuses }); await loading;
+  assert.equal(late.patches.length, patchCount);
+  let releaseMutation;
+  const changing = fixture('race', (url, method) => method === 'PUT' ? new Promise(resolve => { releaseMutation = resolve; }) : { race, statuses });
+  changing.page.onLoad({ id: race.id }); await changing.page.load(); const pending = changing.page.toggleFollow(); await settle();
+  changing.app.globalData.token = 'runner-b'; const previous = changing.patches.length; releaseMutation({ ok: true }); await pending;
+  assert.equal(changing.patches.length, previous);
+  checks.push('Late loads after unload and mutations after account changes cannot write private state');
+
+  const duplicate = fixture(); duplicate.page.onLoad({ id: race.id }); await duplicate.page.load();
+  const first = duplicate.page.toggleFollow(); const second = duplicate.page.toggleFollow(); await Promise.all([first, second]);
+  assert.equal(duplicate.requests.filter(call => call.url.endsWith('/follow')).length, 1);
+  const failed = fixture('race', (url, method) => { if (method === 'PUT') throw Error('注入保存失败'); return url.endsWith('/news') ? {} : { race, statuses }; });
+  failed.page.onLoad({ id: race.id }); await failed.page.load(); await failed.page.toggleFollow();
+  assert.equal(failed.page.data.following, false); assert.equal(failed.page.data.followBusy, false); assert.equal(failed.page.data.message, '注入保存失败');
+  checks.push('Repeated follow taps serialize; failed writes preserve state and show retryable errors');
+
+  let failSharing = false;
+  const sharing = fixture('race', (url, method, body) => {
+    if (method === 'PUT' && url.endsWith('/sharing')) { failSharing = true; throw Error('注入同步失败'); }
+    if (method === 'PUT') return { ok: true };
+    return url.endsWith('/news') ? {} : { race, statuses, myStatus: '中签', sharedClubIds: [7], companionNote: '保存过的备注', clubs: [{ id: 7, name: '团一', mates: [] }, { id: 8, name: '团二', mates: [] }] };
+  });
+  sharing.page.onLoad({ id: race.id }); await sharing.page.load();
+  sharing.page.pickSharedClubs(event({}, ['8'])); sharing.page.onCompanionNote(event({}, '尚未保存的备注'));
+  await sharing.page.mark(event({ status: '已缴费' }));
+  assert.deepEqual(copy(sharing.page.data.sharedClubIds), [7]); assert.deepEqual(copy(sharing.page.data.sharingDraft), [8]);
+  assert.equal(sharing.page.data.companionNote, '尚未保存的备注');
+  const written = sharing.requests.find(call => call.method === 'PUT' && call.url === '/me/races/' + race.id);
+  assert.equal('sharedClubIds' in written.body, false);
+  await sharing.page.saveSharing(); assert.equal(failSharing, true); assert.deepEqual(copy(sharing.page.data.sharedClubIds), [7]);
+  assert.deepEqual(copy(sharing.page.data.sharingDraft), [8]); assert.equal(sharing.page.data.clubs[0].synced, true);
+  assert.equal(sharing.page.data.planBusy, false); assert.equal(sharing.page.data.message, '注入同步失败');
+  checks.push('Unsaved club choices and note drafts survive status refresh; failed sharing saves never change the displayed persisted audience');
+
+  const list = fixture('races'); await list.page.load(); await settle();
+  await list.page.toggleFollow(event({ id: race.id })); assert.equal(list.state.following, true); assert.equal(list.page.data.races[0].following, true); assert.equal(list.state.status, '');
+  const mine = fixture('mine'); mine.state.following = true; mine.state.status = '中签'; await mine.page.load(); await settle();
+  assert.equal(mine.page.data.followedRaces.length, 1); assert.equal(mine.page.data.plans.length, 1);
+  await mine.page.unfollow(event({ id: race.id })); assert.equal(mine.page.data.followedRaces.length, 0); assert.equal(mine.page.data.plans.length, 1);
+  checks.push('Race list and personal hub use the same independent follow state without deleting participation');
+  const cal = fixture('calendar'); cal.page.year = 2027; cal.page.month = 3; cal.page.picked = race.raceDate;
+  cal.page.paint([{ ...race, following: true, myStatus: '中签' }]);
+  assert.equal(cal.page.data.dayRaces[0].following, true); assert.equal(cal.page.data.dayRaces[0].myStatus, '中签');
+  const markup = fs.readFileSync(path.join(root, 'miniprogram/pages/race/race.wxml'), 'utf8');
+  assert.match(markup, /仅自己可见/); assert.doesNotMatch(markup, /供自己与跑团留存/); assert.match(markup, /活动需单独报名/);
+  checks.push('Calendar retains personal indicators; privacy and official versus club sign-up boundaries are explicit');
+  console.log(JSON.stringify({ passed: true, kind: 'Current mini-program Page VM acceptance, not device testing', checks }, null, 2));
+}
+module.exports = { fixture, race, statuses, event, settle };
+if (require.main === module) main().catch(error => { console.error(error); process.exitCode = 1; });

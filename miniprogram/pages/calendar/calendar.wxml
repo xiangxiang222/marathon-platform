@@ -37,6 +37,7 @@
     <navigator wx:for="{{dayRaces}}" wx:key="id" url="/pages/race/race?id={{item.id}}" class="race">
       <view class="name">{{item.name}}</view>
       <view class="meta">{{item.meta}}</view>
+      <view wx:if="{{item.following || item.myStatus}}" class="personal-race-meta"><text wx:if="{{item.following}}">★ 已关注</text><text wx:if="{{item.myStatus}}">我 · {{item.myStatus}}</text></view>
     </navigator>
     <view wx:if="{{ready && !dayRaces.length}}" class="empty">这一天没有赛事</view>
   </view>

@@ -28,10 +28,11 @@ function race(f, name, date = "2025-01-01", kind = "road", meet = "offline") {
   return id;
 }
 async function mark(f, id, status) {
-  const r = await request(app).put(API + "/me/races/" + id).set(f.member.auth).send({ status }); assert.equal(r.status, 200);
+  const r = await request(app).put(API + "/me/races/" + id).set(f.member.auth).send({ status, sharedClubIds: [f.club.id] }); assert.equal(r.status, 200);
 }
 async function result(f, id, distance, time) {
   const r = await request(app).put(API + "/me/races/" + id + "/result").set(f.member.auth).send({ distance, time, story: "个人私密跑后故事" }); assert.equal(r.status, 200, JSON.stringify(r.body));
+  await request(app).put(API + "/me/races/" + id + "/sharing").set(f.member.auth).send({ clubIds: [f.club.id] }).expect(200);
 }
 async function activity(f, review = false, clubId = f.club.id) {
   const made = await request(app).post(API + "/clubs/" + clubId + "/activities").set(f.owner.auth).send({ title: "团内相册活动", startsAt: "2025-01-01T07:00", review });
@@ -148,6 +149,7 @@ test("historical week/month/year report members and result rankings expose stabl
   const id = race(f, "PB榜身份测试"); await result(f, id, "half", "1:40:00");
   f.db.prepare("UPDATE users SET nickname=? WHERE id=?").run(f.owner.nickname, f.member.id);
   const saved = await request(app).put(API + "/me/races/" + id + "/result").set(f.owner.auth).send({ distance: "half", time: "1:50:00" }); assert.equal(saved.status, 200);
+  await request(app).put(API + "/me/races/" + id + "/sharing").set(f.owner.auth).send({ clubIds: [f.club.id] }).expect(200);
   const club = await request(app).get(f.base).set(f.owner.auth);
   const rank = club.body.ranks.find(g => g.distance === "half").rows;
   assert.equal(rank.length, 2, "legacy identical nicknames remain separate members");

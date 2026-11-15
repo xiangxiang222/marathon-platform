@@ -3,6 +3,7 @@ const { lunarLabel } = require("../../lunar");
 const { renderDayPoster, posterFacts } = require("../../utils/day-poster");
 
 const WEEKS = ["日", "一", "二", "三", "四", "五", "六"];
+function accountToken() { return typeof getApp === "function" ? (getApp().globalData || {}).token || "" : ""; }
 
 function cstParts(date = new Date()) {
   const shifted = new Date(date.getTime() + 8 * 3600 * 1000);
@@ -28,6 +29,7 @@ Page({
     posterPath: ""
   },
   onLoad() {
+    this._disposed = false;
     const now = cstParts();
     this.year = now.y;
     this.month = now.m;
@@ -35,6 +37,16 @@ Page({
     this.setData({ year: now.y, month: now.m });
     this.load();
   },
+  onShow() {
+    const token = accountToken();
+    if (this._seenToken !== token) {
+      this._seenToken = token;
+      this.setData({ dayRaces: this.data.dayRaces.map(race => ({ ...race, following: false, myStatus: "" })) });
+      if (this.races) this.races = this.races.map(race => ({ ...race, following: false, myStatus: "" }));
+    }
+    if (this.races) this.load();
+  },
+  onUnload() { this._disposed = true; this._loadSeq = (this._loadSeq || 0) + 1; },
   prev() {
     this.shift(-1);
   },
@@ -58,15 +70,16 @@ Page({
     this.paint(this.races || []);
   },
   load() {
+    const seq = this._loadSeq = (this._loadSeq || 0) + 1, token = accountToken();
     const key = this.year + "-" + String(this.month).padStart(2, "0");
     this.setData({ ready: false, message: "" });
     request("/races?status=all&month=" + key)
       .then((data) => {
-        if (key !== this.year + "-" + String(this.month).padStart(2, "0")) return;
+        if (this._disposed || seq !== this._loadSeq || token !== accountToken() || key !== this.year + "-" + String(this.month).padStart(2, "0")) return;
         this.races = data.races || [];
         this.paint(this.races);
       })
-      .catch((err) => this.setData({ ready: true, message: err.message }));
+      .catch((err) => { if (!this._disposed && seq === this._loadSeq && token === accountToken()) this.setData({ ready: true, message: err.message }); });
   },
   paint(races) {
     const first = new Date(Date.UTC(this.year, this.month - 1, 1));
@@ -102,6 +115,8 @@ Page({
       .map((race) => ({
         id: race.id,
         name: race.name,
+        following: !!race.following,
+        myStatus: race.myStatus || "",
         meta: race.city + (race.distanceLabels && race.distanceLabels.length ? " · " + race.distanceLabels.join(" / ") : "") + " · " + race.regStatus
       }));
     const parts = this.picked.split("-");

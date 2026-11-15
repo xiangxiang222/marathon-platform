@@ -49,6 +49,8 @@ Page({
     nextPassword: "",
     nextPassword2: "",
     plans: [],
+    followedRaces: [],
+    unfollowBusyId: "",
     results: [],
     career: { finished: 0, provinces: [], cities: [], pb: { full: "", half: "" }, yearKm: 0 },
     conflicts: [],
@@ -79,7 +81,7 @@ Page({
     if (token !== this._lastToken) {
       this._sessionEpoch = (this._sessionEpoch || 0) + 1;
       this._lastToken = token;
-      this.setData({ runner: null, posterAvailable: false, plans: [], results: [], clubs: [], nextRace: null, conflicts: [], reminders: [], feedbackUnread: 0, career: { finished: 0, provinces: [], cities: [], pb: { full: "", half: "" }, yearKm: 0 } });
+      this.setData({ runner: null, posterAvailable: false, plans: [], followedRaces: [], unfollowBusyId: "", results: [], clubs: [], nextRace: null, conflicts: [], reminders: [], feedbackUnread: 0, career: { finished: 0, provinces: [], cities: [], pb: { full: "", half: "" }, yearKm: 0 } });
     }
     this.setData({ nickname, nicknameDraft: nickname, avatar, ready: ready() });
     if (ready()) this.load();
@@ -143,7 +145,7 @@ Page({
       return;
     }
     const returnPath = wx.getStorageSync("marathon_return_after_login");
-    if (returnPath === "/pages/club-create/club-create" || returnPath === "/pages/club-create/club-create?continue=1" || returnPath === "/pages/legal/legal?doc=rights" || returnPath === "/pages/radar/radar" || returnPath === "/pages/history/history" || /^\/pages\/race\/race\?id=[^&#]+(?:&plan=1)?$/.test(returnPath) || /^\/pages\/feedback\/feedback(?:\?(?:id=\d+|compose=1|mine=1))?$/.test(returnPath)) {
+    if (returnPath === "/pages/club-create/club-create" || returnPath === "/pages/club-create/club-create?continue=1" || returnPath === "/pages/legal/legal?doc=rights" || returnPath === "/pages/radar/radar" || returnPath === "/pages/history/history" || /^\/pages\/race\/race\?id=[^&#]+(?:&(?:plan|follow)=1)?$/.test(returnPath) || /^\/pages\/feedback\/feedback(?:\?(?:id=\d+|compose=1|mine=1))?$/.test(returnPath)) {
       wx.removeStorageSync("marathon_return_after_login");
       wx.navigateTo({ url: returnPath });
     } else if (returnPath === "/pages/sport/sport") {
@@ -443,6 +445,8 @@ Page({
       nextPassword: "",
       nextPassword2: "",
       plans: [],
+      followedRaces: [],
+      unfollowBusyId: "",
       results: [],
       conflicts: [],
       reminders: [],
@@ -487,6 +491,7 @@ Page({
         setAuth((getApp().globalData && getApp().globalData.token) || "", data.user.nickname, data.user.avatar);
         this.setData({
           plans,
+          followedRaces: data.followedRaces || [],
           nextRace,
           results,
           career: data.career || this.data.career,
@@ -508,5 +513,14 @@ Page({
         if (err.message === "请先登录") this.logout();
         else this.setData({ loaded: true, message: err.message, ok: false });
       });
+  },
+  unfollow(e) {
+    if (this.data.unfollowBusyId || !ready()) return;
+    const id = String(e.currentTarget.dataset.id), scope = this.accountScope();
+    this.setData({ unfollowBusyId: id, message: "" });
+    return request("/me/races/" + encodeURIComponent(id) + "/follow", "PUT", { following: false }).then(() => {
+      if (this.accountCurrent(scope)) this.setData({ followedRaces: this.data.followedRaces.filter(race => String(race.id) !== id), message: "已取消关注，参赛记录仍保留" });
+    }).catch(err => { if (this.accountCurrent(scope)) this.setData({ message: err.message }); })
+      .finally(() => { if (this.accountCurrent(scope)) this.setData({ unfollowBusyId: "" }); });
   }
 });

@@ -118,6 +118,7 @@
           <text wx:if="{{item.showWhen}}" class="deadline {{item.soon ? 'hot' : ''}}">{{item.deadlineLabel}}</text>
         </view>
       </view>
+      <view class="race-personal"><text wx:if="{{item.myStatus}}" class="my-state">我 · {{item.myStatus}}</text><button class="race-follow {{item.following ? 'on' : ''}}" aria-label="{{item.following ? '取消关注' : '关注'}}{{item.name}}" data-id="{{item.id}}" catchtap="toggleFollow" disabled="{{followBusyId}}">{{item.following ? '★ 已关注' : '☆ 关注'}}</button></view>
     </navigator>
     <view wx:if="{{loaded && !races.length && !message}}" class="empty">{{searching ? '没有找到这场赛事' : '这个分类还没有赛事'}}</view>
     <view wx:if="{{pages > 1}}" class="pager">

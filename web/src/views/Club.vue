@@ -69,7 +69,8 @@
       <div class="service-grid"><button type="button" @click="go('album')"><RunnerIcon name="media" /><span>活动相册</span><i>›</i></button><button type="button" @click="go('feed')"><RunnerIcon name="help" /><span>团内动态</span><i>›</i></button><button type="button" @click="go('people', 'fees')"><RunnerIcon name="calendar" /><span>会费名单</span><i>›</i></button><button type="button" @click="go('people', 'manage', 'gifts')"><RunnerIcon name="honors" /><span>积分礼品</span><i>›</i></button><button type="button" @click="go('partner')"><RunnerIcon name="career" /><span>合作权益</span><i>›</i></button><button type="button" @click="go('people', 'manage')"><RunnerIcon name="lock" /><span>{{ club.staff ? '跑团管理' : '跑团设置' }}</span><i>›</i></button></div></section>
     </section>
     <div v-if="club && tab === 'race'" class="section-head club-section-head"><h2>跑团比赛名单</h2><div><span>{{ board.length }} 场比赛</span><button class="undo" type="button" @click="exportBoardCsv">导出完整 CSV</button></div></div>
-    <p v-if="club && tab === 'race' && !board.length" class="empty">还没有人标比赛。打开一场，标上想跑或已报名。</p>
+    <p v-if="club && tab === 'race'" class="participation-note">只汇总主动同步到本团的参赛记录。同行需求可在赛事详情填写，参加团内活动需单独报名。</p>
+    <p v-if="club && tab === 'race' && !board.length" class="empty">还没有人分享参赛计划。打开一场比赛，记录状态并选择同步到本团。</p>
     <div v-for="item in board" v-show="tab === 'race'" :key="item.race.id" class="block club-race-card">
       <router-link :to="'/races/' + item.race.id" class="race-card-head">
         <span class="race-calendar"><small>{{ dateParts(item.race.raceDate).month }}月</small><b>{{ dateParts(item.race.raceDate).day }}</b></span>
@@ -82,7 +83,8 @@
         <span>{{ alt.name }}</span><b>{{ alt.deadlineLabel }}</b>
       </router-link>
       <details class="race-roster"><summary><span>参赛名单 <b>{{ item.marks.length }} 人</b></span><i>展开名单⌄</i></summary><pre class="share-text">{{ item.text }}</pre>
-      <div v-for="mark in item.marks" :key="mark.nickname + mark.status" class="mate"><router-link v-if="mark.userId" :to="memberLink(mark.userId, 'races')" class="member-name-link">{{ mark.nickname }}</router-link><span v-else>{{ mark.nickname }}</span><b>{{ mark.status }}<template v-if="mark.clock"> · {{ mark.clock }}<template v-if="mark.pb"> PB</template></template></b></div></details>
+      <div v-for="mark in item.marks" :key="mark.nickname + mark.status" class="mate"><span class="companion-member"><router-link v-if="mark.userId" :to="memberLink(mark.userId, 'races')" class="member-name-link">{{ mark.nickname }}</router-link><span v-else>{{ mark.nickname }}</span><small v-if="mark.note">{{ mark.note }}</small></span><b>{{ mark.status }}<template v-if="mark.clock"> · {{ mark.clock }}<template v-if="mark.pb"> PB</template></template></b></div></details>
+      <router-link class="race-activity-link" :to="'/races/' + item.race.id">查看同行小队与同步设置 ›</router-link>
       <div class="race-card-actions"><button class="race-copy" type="button" @click="copyCard(item)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M15 8V4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h4"/></svg>复制卡片</button><button class="race-poster" type="button" @click="exportRacePoster(item)"><RunnerIcon name="stats" />生成本场赛事画像</button></div>
 
     </div>
@@ -799,7 +801,7 @@ function exportRacePoster(item) {
 function tallyLine(item) {
   const tally = item.tally || {};
   const parts = [];
-  for (const key of ["已报名", "待抽签", "中签", "未中签", "已缴费", "已领物", "完赛", "未完赛", "弃赛", "想跑"]) {
+  for (const key of ["已报名", "待抽签", "中签", "未中签", "确认参赛", "已缴费", "已领物", "完赛", "未完赛", "弃赛", "想跑"]) {
     if (tally[key]) parts.push(tally[key] + "人" + key);
   }
   if (item.pbCount) parts.push(item.pbCount + "人 PB");
@@ -1372,6 +1374,7 @@ onBeforeUnmount(() => { window.removeEventListener("storage", onClubAccount); wi
 </script>
 
 <style scoped>
+.participation-note{margin:0 16px 12px;font-size:12px;line-height:1.8;color:#777}.companion-member{display:grid;gap:4px;min-width:0;flex:1}.companion-member small{font-size:12px;line-height:1.7;color:#777;overflow-wrap:anywhere}.race-activity-link{display:flex;align-items:center;min-height:44px;color:#ff1838;font-size:12px}
 .club-page { min-height: 100vh; padding-bottom: 28px; background: var(--bg); --club-text: var(--ink); --club-muted: var(--muted); }
 .club-page button, .club-page .primary, .club-page .undo, .club-page .small-primary { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 44px; line-height: 1.2; font-size: 14px; }
 .club-page button:disabled { opacity: .48; }

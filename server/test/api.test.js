@@ -84,7 +84,7 @@ test("a club sees a teammate mark the same race", async () => {
   const marked = await request(app)
     .put("/marathon/api/me/races/bishan")
     .set("Authorization", "Bearer " + mate)
-    .send({ status: "已报名" });
+    .send({ status: "已报名", sharedClubIds: [created.body.club.id] });
   assert.equal(marked.status, 200);
 
   const detail = await request(app).get("/marathon/api/races/bishan").set("Authorization", "Bearer " + leader);
@@ -309,7 +309,7 @@ test("club and platform admins remove members and their future signups in one tr
   assert.equal((await request(app).delete("/marathon/api/admin/clubs/" + clubId + "/members/" + deskMemberId).set(adminAuth)).status, 404);
 });
 
-test("club race boards retain results even after the personal plan is removed", async () => {
+test("removing a personal plan withdraws its shared result from club boards without deleting the result", async () => {
   const owner = await session("纯成绩团长");
   const member = await session("纯成绩队友");
   const auth = { Authorization: "Bearer " + owner };
@@ -317,19 +317,18 @@ test("club race boards retain results even after the personal plan is removed", 
   const created = await createClub(auth, "纯成绩测试团");
   await joinWithCode(member, created.body.club.code);
   assert.equal((await request(app).put("/marathon/api/me/races/bishan/result").set(memberAuth).send({ distance: "full", time: "3:26:00" })).status, 200);
+  await request(app).put("/marathon/api/me/races/bishan/sharing").set(memberAuth).send({ clubIds: [created.body.club.id] }).expect(200);
+  const before = await request(app).get("/marathon/api/clubs/" + created.body.club.id).set(auth);
+  assert.equal(before.body.board.find(item => item.race.id === 'bishan').results[0].clock, '3:26:00');
   assert.equal((await request(app).delete("/marathon/api/me/races/bishan").set(memberAuth)).status, 200);
   const initial = await request(app).get("/marathon/api/clubs/" + created.body.club.id).set(auth);
   const race = initial.body.board.find((item) => item.race.id === "bishan");
-  assert.ok(race);
-  assert.equal(race.marks.length, 1);
-  assert.equal(race.marks[0].nickname, "纯成绩队友");
-  assert.equal(race.marks[0].status, "完赛");
-  assert.equal(race.marks[0].clock, "3:26:00");
-  assert.equal(race.results.length, 1);
-  assert.equal(race.summary, "1 人完赛");
-  await request(app).put("/marathon/api/me/races/bishan").set(auth).send({ status: "想跑" });
+  assert.equal(race, undefined);
+  const me = await request(app).get('/marathon/api/me').set(memberAuth);
+  assert.equal(me.body.results.find(result => result.race.id === 'bishan').clock, '3:26:00');
+  await request(app).put("/marathon/api/me/races/bishan").set(auth).send({ status: "想跑", sharedClubIds: [created.body.club.id] });
   const shared = await request(app).get("/marathon/api/clubs/" + created.body.club.id).set(auth);
-  assert.equal(shared.body.board.find((item) => item.race.id === "bishan").marks.length, 2);
+  assert.equal(shared.body.board.find((item) => item.race.id === "bishan").marks.length, 1);
 });
 
 test("a club card names who has not paid", async () => {
@@ -338,8 +337,8 @@ test("a club card names who has not paid", async () => {
   const created = await createClub(leader, "滨河跑团");
   const code = created.body.club.code;
   await joinWithCode(mate, code);
-  await request(app).put("/marathon/api/me/races/bishan").set("Authorization", "Bearer " + leader).send({ status: "已缴费" });
-  await request(app).put("/marathon/api/me/races/bishan").set("Authorization", "Bearer " + mate).send({ status: "中签" });
+  await request(app).put("/marathon/api/me/races/bishan").set("Authorization", "Bearer " + leader).send({ status: "已缴费", sharedClubIds: [created.body.club.id] });
+  await request(app).put("/marathon/api/me/races/bishan").set("Authorization", "Bearer " + mate).send({ status: "中签", sharedClubIds: [created.body.club.id] });
 
   const card = await request(app).get("/marathon/api/races/bishan/card?code=" + code).set("Authorization", "Bearer " + leader);
   assert.equal(card.status, 200);
@@ -456,22 +455,22 @@ test("two teammates who are still in the race can go together", async () => {
   const code = created.body.club.code;
   await joinWithCode(mate, code);
 
-  await request(app).put("/marathon/api/me/races/jinjiang").set("Authorization", "Bearer " + leader).send({ status: "已报名" });
+  await request(app).put("/marathon/api/me/races/jinjiang").set("Authorization", "Bearer " + leader).send({ status: "已报名", sharedClubIds: [created.body.club.id] });
   const alone = await request(app).get("/marathon/api/races/jinjiang/card?code=" + code).set("Authorization", "Bearer " + leader);
   assert.equal(alone.body.squad.ready, false);
   assert.equal(alone.body.squad.size, 1);
   assert.equal(alone.body.squad.text, "还差一个人就能凑一队");
   assert.equal(/可以一起去/.test(alone.body.text), false);
 
-  await request(app).put("/marathon/api/me/races/jinjiang").set("Authorization", "Bearer " + mate).send({ status: "已缴费" });
+  await request(app).put("/marathon/api/me/races/jinjiang").set("Authorization", "Bearer " + mate).send({ status: "已缴费", sharedClubIds: [created.body.club.id] });
   const card = await request(app).get("/marathon/api/races/jinjiang/card?code=" + code).set("Authorization", "Bearer " + leader);
   assert.equal(card.body.squad.ready, true);
   assert.equal(card.body.squad.size, 2);
   assert.match(card.body.text, /可以一起去：凑队团长、凑队队友|可以一起去：凑队队友、凑队团长/);
 
-  const missed = await request(app).put("/marathon/api/me/races/hailing").set("Authorization", "Bearer " + leader).send({ status: "未中签" });
+  const missed = await request(app).put("/marathon/api/me/races/hailing").set("Authorization", "Bearer " + leader).send({ status: "未中签", sharedClubIds: [created.body.club.id] });
   assert.equal(missed.status, 200);
-  await request(app).put("/marathon/api/me/races/hailing").set("Authorization", "Bearer " + mate).send({ status: "想跑" });
+  await request(app).put("/marathon/api/me/races/hailing").set("Authorization", "Bearer " + mate).send({ status: "想跑", sharedClubIds: [created.body.club.id] });
   const out = await request(app).get("/marathon/api/races/hailing/card?code=" + code).set("Authorization", "Bearer " + leader);
   assert.equal(out.body.squad.ready, false);
   assert.equal(out.body.squad.size, 0);
@@ -512,6 +511,7 @@ test("a missed draw is the only time nearby races are listed", async () => {
   if (expected.length) assert.match(detail.body.alternativeNote, /这场没中/);
 
   const created = await createClub(auth, "改报跑团");
+  await request(app).put('/marathon/api/me/races/bishan/sharing').set(auth).send({ clubIds: [created.body.club.id] }).expect(200);
   const board = await request(app).get("/marathon/api/clubs/" + created.body.club.id).set(auth);
   const item = board.body.board.find((row) => row.race.id === "bishan");
   assert.deepEqual(item.alternatives.map((race) => race.id), expected.map((race) => race.id));
@@ -534,13 +534,14 @@ test("marking a draw makes a personal card and names who got in", async () => {
   assert.equal(/官方|中签率|保证/.test(detail.body.drawText), false);
 
   const created = await createClub(auth, "中签跑团");
+  await request(app).put('/marathon/api/me/races/tmsk/sharing').set(auth).send({ clubIds: [created.body.club.id] }).expect(200);
   const applied = await request(app).post("/marathon/api/clubs/join").set("Authorization", "Bearer " + mate).send({ code: created.body.club.code });
   assert.equal(applied.body.pending, true);
   const ownerView = await request(app).get("/marathon/api/clubs/" + created.body.club.id).set(auth);
   const pending = ownerView.body.requests.find((item) => item.nickname === "已缴队友");
   assert.ok(pending);
   assert.equal((await request(app).post("/marathon/api/clubs/" + created.body.club.id + "/requests/" + pending.id).set(auth).send({ decision: "approve" })).status, 200);
-  await request(app).put("/marathon/api/me/races/tmsk").set("Authorization", "Bearer " + mate).send({ status: "已缴费" });
+  await request(app).put("/marathon/api/me/races/tmsk").set("Authorization", "Bearer " + mate).send({ status: "已缴费", sharedClubIds: [created.body.club.id] });
   const anonymousCard = await request(app).get("/marathon/api/races/tmsk/card?code=" + created.body.club.code);
   assert.equal(anonymousCard.status, 401);
   const outsider = await session("旁观赛事卡");
@@ -550,7 +551,7 @@ test("marking a draw makes a personal card and names who got in", async () => {
   assert.equal(card.status, 200);
   assert.match(card.body.text, /中了：(已缴队友、中签卡|中签卡、已缴队友)/);
 
-  await request(app).put("/marathon/api/me/races/tmsk").set(auth).send({ status: "已缴费" });
+  await request(app).put("/marathon/api/me/races/tmsk").set(auth).send({ status: "已缴费", sharedClubIds: [created.body.club.id] });
   const paid = await request(app).get("/marathon/api/races/tmsk").set(auth);
   assert.equal(paid.body.drawText, "");
 });
@@ -568,6 +569,9 @@ test("a club ranks each member's best full and half", async () => {
   await request(app).put("/marathon/api/me/races/yuxi/result").set(fastAuth).send({ distance: "half", time: "1:45:00" });
   await request(app).put("/marathon/api/me/races/jinjiang/result").set(slowAuth).send({ distance: "full", time: "4:00:00" });
   await request(app).put("/marathon/api/me/races/hailing/result").set(slowAuth).send({ distance: "half", time: "1:30:00" });
+  for (const [actor, raceIds] of [[fastAuth, ['bishan', 'songshanhu', 'yuxi']], [slowAuth, ['jinjiang', 'hailing']]]) {
+    for (const raceId of raceIds) await request(app).put('/marathon/api/me/races/' + raceId + '/sharing').set(actor).send({ clubIds: [created.body.club.id] }).expect(200);
+  }
 
   const board = await request(app).get("/marathon/api/clubs/" + created.body.club.id).set(fastAuth);
   const full = board.body.ranks.find((group) => group.distance === "full");
@@ -889,9 +893,9 @@ test("today names who has not paid, and a plan can be removed", async () => {
   const created = await createClub(auth, "值班跑团");
   const mate = await session("还没缴");
   await joinWithCode(mate, created.body.club.code);
-  await request(app).put("/marathon/api/me/races/bishan").set(auth).send({ status: "已缴费" });
-  await request(app).put("/marathon/api/me/races/bishan").set("Authorization", "Bearer " + mate).send({ status: "中签" });
-  await request(app).put("/marathon/api/me/races/songshanhu").set(auth).send({ status: "想跑" });
+  await request(app).put("/marathon/api/me/races/bishan").set(auth).send({ status: "已缴费", sharedClubIds: [created.body.club.id] });
+  await request(app).put("/marathon/api/me/races/bishan").set("Authorization", "Bearer " + mate).send({ status: "中签", sharedClubIds: [created.body.club.id] });
+  await request(app).put("/marathon/api/me/races/songshanhu").set(auth).send({ status: "想跑", sharedClubIds: [created.body.club.id] });
 
   const today = await request(app).get("/marathon/api/today").set(auth);
   assert.equal(today.body.user.nickname, "值班团长");
@@ -977,7 +981,7 @@ test("club activity points need enough people and kilometres, then gifts spend t
   const back = await request(app).post("/marathon/api/clubs/" + clubId + "/activities/" + aid + "/check").set("Authorization", "Bearer " + mate).send({ km: 5 });
   assert.equal(back.body.myPoints, 1);
 
-  await request(app).put("/marathon/api/me/races/bishan").set(auth).send({ status: "完赛" });
+  await request(app).put("/marathon/api/me/races/bishan").set(auth).send({ status: "完赛", sharedClubIds: [created.body.club.id] });
   await request(app).put("/marathon/api/me/races/bishan/result").set(auth).send({ distance: "full", time: "3:28:15", story: "" });
   const raced = await request(app).get("/marathon/api/clubs/" + clubId).set(auth);
   const bishan = raced.body.board.find((item) => item.race.id === "bishan");
@@ -2985,6 +2989,7 @@ test("club grade, supplies, offline splits and the monthly league stay off the p
   check(coreId, coreLeaderId, monthShift(-2) + "-15");
   getDb().prepare("INSERT INTO plans (user_id, race_id, status, updated_at) VALUES (?, 'bishan', '想跑', ?)").run(coreLeaderId, now);
   getDb().prepare("INSERT INTO plans (user_id, race_id, status, updated_at) VALUES (?, 'bishan', '想跑', ?)").run(coreMateId, now);
+  getDb().prepare("INSERT INTO plan_club_shares(user_id,race_id,club_id) VALUES(?,'bishan',?),(?,'bishan',?)").run(coreLeaderId, coreId, coreMateId, coreId);
   const coreView = await request(app).get("/marathon/api/clubs/" + coreId + "/partner").set(auth(coreLeader));
   assert.equal(coreView.body.grade.id, "core");
   assert.equal(coreView.body.grade.members, 100);
@@ -3048,6 +3053,7 @@ test("club grade, supplies, offline splits and the monthly league stay off the p
   const race = getDb().prepare("SELECT id FROM races WHERE substr(race_date, 1, 7) = ? LIMIT 1").get(month);
   if (race) {
     getDb().prepare("INSERT OR REPLACE INTO results (user_id, race_id, distance, seconds, story, updated_at) VALUES (?, ?, '10k', 2400, '', ?)").run(leaderId, race.id, now);
+    getDb().prepare("INSERT OR IGNORE INTO plan_club_shares(user_id,race_id,club_id) VALUES(?,?,?)").run(leaderId, race.id, clubId);
   }
   const board = await request(app).get("/marathon/api/clubs/" + clubId + "/partner").set(auth(leader));
   assert.equal(board.body.league.title, "十月联赛");
@@ -3114,7 +3120,11 @@ test("club grade, supplies, offline splits and the monthly league stay off the p
   assert.equal(getDb().prepare("SELECT COUNT(*) AS n FROM point_entries").get().n, pointsBefore);
 });
 
-test("the prize radar compares a sourced cutoff and does not invent a probability", async () => {
+test("the prize radar compares a sourced cutoff and does not invent a probability", async (t) => {
+  const oldDate = getDb().prepare("SELECT race_date FROM races WHERE id='bishan'").get().race_date;
+  const raceYear = new Date().getFullYear() + 1;
+  getDb().prepare("UPDATE races SET race_date=? WHERE id='bishan'").run(raceYear + "-11-01");
+  t.after(() => getDb().prepare("UPDATE races SET race_date=? WHERE id='bishan'").run(oldDate));
   process.env.ADMIN_TOKEN = process.env.ADMIN_TOKEN || "test-admin";
   const admin = { Authorization: "Bearer " + process.env.ADMIN_TOKEN };
   const token = await session("雷达甲");
@@ -3203,7 +3213,7 @@ test("the prize radar compares a sourced cutoff and does not invent a probabilit
   assert.equal(recorded.status, 200);
   const saved = await request(app).put("/marathon/api/me/radar").set(auth).send({
     gender: "男",
-    birth: "1986-10",
+    birth: (raceYear - 40) + "-10",
     province: "重庆",
     targets: {}
   });
@@ -3228,18 +3238,18 @@ test("the prize radar compares a sourced cutoff and does not invent a probabilit
   assert.match(clubRow.reason, /跑团奖/);
   assert.ok(hit.body.rows.findIndex((row) => row.ruleId === age.body.id) < hit.body.rows.findIndex((row) => row.ruleId === club.body.id));
 
-  const young = await request(app).put("/marathon/api/me/radar").set(auth).send({ gender: "男", birth: "1986-11", province: "重庆", targets: {} });
+  const young = await request(app).put("/marathon/api/me/radar").set(auth).send({ gender: "男", birth: (raceYear - 40) + "-11", province: "重庆", targets: {} });
   assert.equal(young.status, 200);
   const younger = await request(app).get("/marathon/api/radar").set(auth);
   assert.equal(younger.body.rows.some((row) => row.ruleId === age.body.id), false);
 
-  const other = await request(app).put("/marathon/api/me/radar").set(auth).send({ gender: "女", birth: "1986-10", province: "北京", targets: {} });
+  const other = await request(app).put("/marathon/api/me/radar").set(auth).send({ gender: "女", birth: (raceYear - 40) + "-10", province: "北京", targets: {} });
   assert.equal(other.status, 200);
   const hers = await request(app).get("/marathon/api/radar").set(auth);
   assert.equal(hers.body.rows.some((row) => row.ruleId === age.body.id), false);
   assert.equal(hers.body.rows.some((row) => row.ruleId === local.body.id), false);
 
-  const future = await request(app).put("/marathon/api/me/radar").set(auth).send({ gender: "男", birth: "2027-01", province: "", targets: {} });
+  const future = await request(app).put("/marathon/api/me/radar").set(auth).send({ gender: "男", birth: (raceYear + 1) + "-01", province: "", targets: {} });
   assert.equal(future.status, 400);
   assert.match(future.body.error, /不能晚于本月/);
   const alien = await request(app).put("/marathon/api/me/radar").set(auth).send({ gender: "男", birth: "", province: "火星", targets: {} });

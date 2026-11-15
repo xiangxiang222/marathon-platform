@@ -10,23 +10,42 @@
     <view class="row"><text class="k">{{race.deadlineName}}</text><text class="{{race.open && race.daysLeft <= 3 ? 'soon' : ''}}">{{race.deadlineLabel}}</text></view>
     <view wx:if="{{race.gradeLabel}}" class="src">{{race.gradeLabel}}</view>
     <view wx:for="{{conflicts}}" wx:key="text" class="warn">{{item.text}}</view>
+    <button class="follow-action {{following ? 'following' : ''}}" bindtap="toggleFollow" disabled="{{followBusy}}" loading="{{followBusy}}">{{following ? '★ 已关注' : '☆ 关注比赛'}}</button>
+    <view class="src">关注后收进「我的赛事」，不会替你报名或改变参赛状态。</view>
   </view>
 
   <navigator wx:if="{{race.archiveId}}" class="race-archive-entry" url="/pages/race-archive/race-archive?id={{race.archiveId}}&fromRaceId={{race.id}}"><view><view>报名前，先了解这场比赛</view><text>历年赛道 · 报名中签 · 完赛与奖牌</text></view><text>›</text></navigator>
 
   <view class="card race-plan">
     <view class="plan-heading"><view class="h2">我的参赛计划</view><text class="plan-status">{{myStatus || '未标记'}}</text></view>
-    <view class="src">记录想跑、报名和中签状态，已加入的跑团可同步查看。</view>
+    <view class="src">这是你的个人记录。实际报名、中签与缴费结果以官方为准。</view>
     <button wx:if="{{!ready}}" class="plan-action" bindtap="loginForPlan"><text>登录后标记</text><text class="arrow">›</text></button>
     <button wx:else class="plan-action" bindtap="togglePlan"><text>{{myStatus ? '修改参赛状态' : '标记参赛状态'}}</text><text class="arrow">{{planOpen ? '⌃' : '›'}}</text></button>
     <view wx:if="{{ready && planOpen}}" class="plan-editor">
-      <view class="plan-statuses"><button wx:for="{{statuses}}" wx:key="*this" class="ghost {{myStatus === item ? 'on' : ''}}" data-status="{{item}}" bindtap="mark">{{item}}</button></view>
-      <view wx:if="{{myStatus}}" class="src">可附报名成功截图，供自己与跑团留存。</view>
+      <view class="plan-stages" role="tablist" aria-label="参赛阶段"><button wx:for="{{planStages}}" wx:key="id" class="stage {{planStage === item.id ? 'on' : ''}}" role="tab" aria-selected="{{planStage === item.id}}" data-id="{{item.id}}" bindtap="pickPlanStage">{{item.label}}</button></view>
+      <view class="src">可直接选当前阶段；无需抽签的比赛可直接确认参赛。</view>
+      <view wx:if="{{planStage === 'finished'}}" class="src">赛后可记录完赛、未完赛或弃赛，成绩可在下方补充。</view>
+      <view class="plan-statuses"><button wx:for="{{stageStatuses}}" wx:key="*this" class="ghost {{myStatus === item ? 'on' : ''}}" data-status="{{item}}" disabled="{{planBusy}}" bindtap="mark">{{item}}</button></view>
+      <view wx:if="{{planStage === 'finished'}}" class="record-result" role="button" data-id="result" bindtap="pickTab">在「我的成绩」记录完赛成绩 ›</view>
+      <view wx:if="{{myStatus}}" class="src">可附报名成功截图，仅自己可见。</view>
       <image wx:if="{{sheetSrc}}" src="{{sheetSrc}}" mode="widthFix" />
       <button wx:if="{{myStatus}}" class="ghost" bindtap="chooseSheet">上传报名截图</button>
       <button wx:if="{{hasSheet}}" class="ghost" bindtap="removeSheet">移除截图</button>
+      <button wx:if="{{myStatus}}" class="ghost remove-plan" disabled="{{planBusy}}" bindtap="removePlan">移除参赛计划</button>
     </view>
     <view wx:if="{{message}}" class="err">{{message}}</view>
+  </view>
+
+  <view wx:if="{{ready}}" class="card companion-settings">
+    <button class="companion-toggle" bindtap="toggleCompanion" aria-expanded="{{companionOpen}}"><text>同步到跑团</text><text>{{sharedClubIds.length ? '已同步 ' + sharedClubIds.length + ' 个跑团' : '仅自己可见'}} {{companionOpen ? '⌃' : '›'}}</text></button>
+    <view class="src">自己记录参赛计划，自愿选择跑团同行。</view>
+    <view wx:if="{{companionOpen}}"><view class="src">只向选中的跑团展示这场参赛状态与同行备注；不选则仅自己可见。不会替你报名团内活动。</view>
+    <checkbox-group bindchange="pickSharedClubs"><label wx:for="{{clubs}}" wx:key="id" class="club-choice"><checkbox value="{{item.id + ''}}" checked="{{item.selected}}" disabled="{{planBusy}}" color="#ff1838"/><text>{{item.name}}</text></label></checkbox-group>
+    <view wx:if="{{!clubs.length}}" class="src">还没加入跑团？个人参赛安排照样可以完整记录。</view>
+    <button wx:if="{{clubs.length && myStatus}}" class="ghost" disabled="{{planBusy}}" bindtap="saveSharing">保存同步范围</button>
+    <view wx:if="{{clubs.length && !myStatus}}" class="src">先记录个人参赛状态，再保存同步范围。未保存的选择不会分享。</view><view wx:if="{{sharingDirty}}" class="src">同步范围有未保存的修改</view>
+    <view wx:if="{{myStatus}}" class="companion-note"><view class="h2">同行备注</view><textarea value="{{companionNote}}" bindinput="onCompanionNote" maxlength="200" placeholder="例如：想拼车、住起点附近、赛后合影" aria-label="同行备注" disabled="{{planBusy}}"/><view class="src">{{sharedClubIds.length ? '仅选中的跑团可见' : '当前仅自己可见'}} · 不填写手机号等私人信息</view><button class="ghost" disabled="{{planBusy}}" bindtap="saveCompanionNote">保存同行备注</button></view>
+    </view>
   </view>
 
   <view class="tabs">
@@ -83,12 +102,11 @@
       </view>
     </view>
     <view wx:for="{{clubs}}" wx:key="id" class="card">
-      <view class="h2">{{item.name}}</view>
+      <view class="plan-heading"><view class="h2">{{item.name}} · 同行小队</view><text class="src">{{item.synced ? '已同步' : '未同步我的状态'}}</text></view>
       <view wx:if="{{item.squadText}}" class="warn">{{item.squadText}}</view>
-      <view wx:if="{{!item.mates.length}}" class="muted">团里还没人标这场</view>
-      <view wx:for="{{item.mates}}" wx:for-item="mate" wx:key="nickname" class="row">
-        <text>{{mate.nickname}}</text><text>{{mate.status}}</text>
-      </view>
+      <view wx:if="{{!item.mates.length}}" class="muted">还没有团友分享这场参赛计划</view>
+      <view wx:for="{{item.mates}}" wx:for-item="mate" wx:key="userId" class="companion-member"><view class="row"><text>{{mate.nickname}}</text><text>{{mate.status}}</text></view><view wx:if="{{mate.note}}" class="src">{{mate.note}}</view></view>
+      <navigator class="record-result" url="/pages/club/club?id={{item.id}}&amp;tab=training&amp;view=meetup">去跑团查看集合与活动 ›</navigator><view class="src">参加同行活动需单独报名，官方参赛资格仍以组委会为准。</view>
     </view>
   </block>
 

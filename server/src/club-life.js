@@ -503,7 +503,8 @@ function enrichBoard(db, clubId, board) {
       `SELECT res.user_id, u.nickname, res.race_id, res.distance, res.seconds
        FROM results res
        JOIN users u ON u.id = res.user_id
-       JOIN club_members m ON m.user_id = res.user_id AND m.club_id = ?`
+       JOIN club_members m ON m.user_id = res.user_id AND m.club_id = ?
+       JOIN plan_club_shares s ON s.user_id=res.user_id AND s.race_id=res.race_id AND s.club_id=m.club_id`
     )
     .all(clubId);
   const best = {};

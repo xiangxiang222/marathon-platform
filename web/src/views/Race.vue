@@ -16,7 +16,7 @@
         <span>{{ parts.month }}月</span>
       </div>
       <div class="pass-copy">
-        <span class="pass-pill">{{ race.regStatus }}</span>
+        <span class="pass-pill">赛事 · {{ race.regStatus }}</span>
         <h1>{{ race.name }}</h1>
         <p>{{ placeLine }}<template v-if="projectLabels.length"> · {{ projectLabels.join(" / ") }}</template></p>
       </div>
@@ -30,27 +30,45 @@
       <div v-if="race.phone" class="row"><span>咨询</span><b>{{ race.phone }}</b></div>
       <p v-if="race.gradeLabel" class="src">{{ race.gradeLabel }}</p>
       <p v-for="item in conflicts" :key="item.text" class="warn">{{ item.text }}</p>
+      <div class="race-follow-row"><span>关注报名与比赛安排，关注不代表报名。</span><FollowRaceButton :race-id="race.id" :race-name="race.name" :following="following" @change="value => following = value" /></div>
     </div>
     <router-link v-if="race?.archiveId" class="race-archive-entry" :to="{path:'/race-catalog/'+race.archiveId,query:{fromRaceId:String(race.id)}}"><span><strong>报名前，先了解这场比赛</strong><small>历年赛道 · 报名中签 · 完赛与奖牌</small></span><span aria-hidden="true">›</span></router-link>
     <section v-if="race" class="block race-plan">
       <div class="plan-heading"><h2>我的参赛计划</h2><span class="plan-status">{{ myStatus || '未标记' }}</span></div>
-      <p class="src">记录想跑、报名和中签状态，已加入的跑团可同步查看。</p>
+      <p class="src">这是你的个人记录，实际报名、抽签和缴费结果以官方为准。</p>
       <button v-if="!ready" class="plan-action" type="button" @click="loginForPlan">登录后标记 <span>›</span></button>
       <button v-else class="plan-action" type="button" :aria-expanded="planOpen" @click="planOpen = !planOpen">{{ myStatus ? '修改参赛状态' : '标记参赛状态' }} <span>{{ planOpen ? '⌃' : '›' }}</span></button>
       <div v-if="ready && planOpen" class="plan-editor">
+        <nav class="plan-stages" aria-label="参赛阶段"><button v-for="(stage, index) in planStages" :key="stage.id" type="button" :class="{ selected: planStage === stage.id, current: stageFor(myStatus) === stage.id && myStatus }" :aria-pressed="planStage === stage.id" @click="planStage = stage.id"><small>{{ index + 1 }}</small>{{ stage.label }}</button></nav>
+        <p class="src">{{ activeStage.hint }}可直接选择当前阶段，不必逐步填写。</p>
         <div class="statuses">
-          <button v-for="item in statuses" :key="item" type="button" class="status" :class="{ on: myStatus === item }" @click="choosePlan(item)">{{ item }}</button>
+          <button v-for="item in activeStage.statuses" :key="item" type="button" class="status" :class="{ on: myStatus === item }" :disabled="planBusy" @click="choosePlan(item)">{{ item }}</button>
         </div>
         <template v-if="myStatus">
-          <p class="src">可附报名成功截图，供自己与跑团留存。</p>
+          <p class="src">报名截图仅本人可见，不会同步给跑团。</p>
           <img v-if="hasSheet" class="proof" :src="signupSrc" alt="报名截图" />
           <div class="proof-actions">
-            <label>上传报名截图<input type="file" accept="image/jpeg,image/png,image/webp" @change="onSignup" /></label>
-            <button v-if="hasSheet" class="undo" type="button" @click="removeSignup">移除截图</button>
+            <label>上传报名截图<input type="file" accept="image/jpeg,image/png,image/webp" :disabled="planBusy" @change="onSignup" /></label>
+            <button v-if="hasSheet" class="undo" type="button" :disabled="planBusy" @click="removeSignup">移除截图</button>
           </div>
         </template>
+        <button v-if="myStatus" class="undo remove-plan" type="button" :disabled="planBusy" @click="removePlan">移除参赛计划</button>
       </div>
-      <p v-if="message" class="err">{{ message }}</p>
+      <p v-if="message" class="err" role="status">{{ message }}</p>
+    </section>
+    <section v-if="race && ready" class="block race-companionship">
+      <div class="plan-heading"><h2>与团同行</h2><span class="plan-status">{{ sharedClubIds.length ? sharedClubIds.length + ' 个跑团可见' : '仅自己可见' }}</span></div>
+      <p class="src">{{ sharedClubNames || '参赛计划仅自己可见，可选择同步给跑团。' }}同步不代表报名跑团活动。</p>
+      <template v-if="clubs.length"><button type="button" class="plan-action companion-settings" :aria-expanded="companionOpen" @click="companionOpen = !companionOpen">同步设置与同行需求 <span>{{ companionOpen ? '⌃' : '›' }}</span></button><div v-if="companionOpen" class="companion-editor">
+        <p class="src">状态更新后会同步到选中的跑团，关注比赛不会公开。</p>
+        <fieldset class="club-sharing" :disabled="planBusy || !myStatus"><legend class="visually-hidden">同步到哪些跑团</legend><label v-for="club in clubs" :key="club.id"><input v-model="sharingDraft" type="checkbox" :value="Number(club.id)" /><span>{{ club.name }}</span><small>{{ club.mates?.length || 0 }} 位团友已分享</small></label></fieldset>
+        <p v-if="!myStatus" class="src">先记录参赛状态，再选择同步的跑团。</p>
+        <button type="button" class="primary sharing-save" :disabled="!myStatus || planBusy || !sharingDirty" @click="saveSharing">{{ planBusy ? '保存中…' : '保存同步范围' }}</button>
+        <form v-if="myStatus" class="companion-form" @submit.prevent="saveCompanion"><label for="companion-note">我的同行需求</label><textarea id="companion-note" v-model="companionDraft" maxlength="200" rows="2" placeholder="例如：比赛日想拼车，或约好领物后一起集合" :disabled="planBusy"></textarea><span class="src">{{ companionDraft.length }}/200 · 仅选中的跑团可见。具体安排请在团内活动中确认。</span><button type="submit" class="undo" :disabled="planBusy || companionDraft === companionNote">保存同行需求</button></form>
+      </div></template>
+      <router-link v-else class="companionship-link" to="/clubs">发现跑团，找一起参赛的伙伴 ›</router-link>
+      <p v-if="sharingMessage" class="src" role="status">{{ sharingMessage }}</p>
+      <p v-if="sharingError" class="err" role="alert">{{ sharingError }}</p>
     </section>
     <div v-if="tabs.length" class="tabs" role="tablist">
       <button v-for="item in tabs" :key="item.id" type="button" class="tab" :class="{ on: tab === item.id }" @click="pickTab(item.id)">{{ item.label }}</button>
@@ -108,13 +126,16 @@
           <pre v-if="copyError && selectedShare" class="share-copy-fallback">{{ selectedShare.text }}</pre>
         </div>
       </section>
-      <div v-for="club in clubs" :key="club.id" class="block">
-        <h2>{{ club.name }}</h2>
+      <div v-if="clubs.length && !activeCompanionClubs.length" class="block companion-empty"><h2>同行小队</h2><p class="src">还没有团友分享这场参赛计划。可在“与团同行”中设置同步范围，再到团内查看活动。</p><router-link class="companionship-link" to="/clubs">查看我的跑团与活动 ›</router-link></div>
+      <div v-for="club in activeCompanionClubs" :key="club.id" class="block">
+        <h2>{{ club.name }} · 同行小队</h2>
+        <p class="src">仅显示主动同步到本团的参赛记录，以下为团友自行标记。</p>
         <p v-if="squadLine(club)" class="warn">{{ squadLine(club) }}</p>
-        <div v-if="!club.mates.length" class="empty">团里还没人标这场</div>
-        <div v-for="mate in club.mates" :key="mate.nickname" class="mate">
-          <span>{{ mate.nickname }}</span><b>{{ mate.status }}</b>
+        <div v-if="!club.mates.length" class="empty">还没有团友分享这场参赛计划</div>
+        <div v-for="mate in club.mates" :key="mate.userId || mate.nickname" class="mate companion-mate">
+          <span>{{ mate.nickname }}<small v-if="mate.note">{{ mate.note }}</small></span><b>{{ mate.status }}</b>
         </div>
+        <router-link class="companionship-link" :to="'/clubs/' + club.id + '?tab=act'">查看团内活动与集合安排 ›</router-link>
       </div>
     </template>
     <template v-if="race && tab === 'guide'">
@@ -241,16 +262,49 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref, watch } from "vue";
+import { computed, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { api, raceSheetSrc, resultProofSrc, signupSheetSrc, upload } from "../api";
 import { copyText } from "../copy";
 import { dateParts, toneOf } from "../tone";
 import { parseGuide } from "../guide-md";
+import FollowRaceButton from '../components/FollowRaceButton.vue';
+import { planStages, stageFor } from '../participation';
 const route = useRoute();
 const router = useRouter();
 const planOpen = ref(route.query.plan === "1");
 const shareOpen = ref(false);
+const following = ref(false), planStage = ref('interest'), planBusy = ref(false);
+const companionOpen = ref(false);
+const sharedClubIds = ref([]), sharingDraft = ref([]), companionNote = ref(''), companionDraft = ref('');
+const sharingMessage = ref(''), sharingError = ref('');
+const activeStage = computed(() => planStages.find(stage => stage.id === planStage.value) || planStages[0]);
+const sharingDirty = computed(() => [...sharingDraft.value].sort().join(',') !== [...sharedClubIds.value].sort().join(','));
+const activeCompanionClubs = computed(() => clubs.value.filter(club => club.mates?.length));
+const sharedClubNames = computed(() => { const names = clubs.value.filter(club => sharedClubIds.value.includes(Number(club.id))).map(club => club.name); return names.length ? '已同步到：' + names.join('、') + '。' : ''; });
+let actionSequence = 0, disposed = false;
+async function planAction(suffix, body) {
+  if (planBusy.value) return false;
+  const id = String(route.params.id), token = localStorage.getItem('marathon_token'), ticket = ++actionSequence;
+  planBusy.value = true; message.value = ''; sharingError.value = ''; sharingMessage.value = '';
+  try {
+    await api('/me/races/' + encodeURIComponent(id) + suffix, { method: 'PUT', body: JSON.stringify(body) });
+    if (disposed || ticket !== actionSequence || id !== String(route.params.id) || token !== localStorage.getItem('marathon_token')) return false;
+    await load({ replaceSharing: suffix === '/sharing', replaceCompanion: suffix === '/companionship' });
+    return !disposed && ticket === actionSequence && id === String(route.params.id) && token === localStorage.getItem('marathon_token');
+  } catch (err) { if (!disposed && ticket === actionSequence && id === String(route.params.id) && token === localStorage.getItem('marathon_token')) { sharingError.value = err.message; message.value = err.message; } return false; }
+  finally { if (!disposed && ticket === actionSequence) planBusy.value = false; }
+}
+async function saveSharing() { if (await planAction('/sharing', { clubIds: sharingDraft.value })) sharingMessage.value = sharedClubIds.value.length ? '已更新同步范围，后续参赛状态会自动同步。' : '已设为仅自己可见。'; }
+async function saveCompanion() { if (await planAction('/companionship', { note: companionDraft.value })) sharingMessage.value = '同行需求已保存。'; }
+async function removePlan() {
+  if (planBusy.value || !window.confirm('移除参赛计划？关注的比赛和已记录的成绩会保留，跑团不再同步这条计划。')) return;
+  const id = String(route.params.id), token = localStorage.getItem('marathon_token'), ticket = ++actionSequence;
+  planBusy.value = true;
+  try { await api('/me/races/' + encodeURIComponent(id), { method: 'DELETE' }); if (!disposed && ticket === actionSequence && id === String(route.params.id) && token === localStorage.getItem('marathon_token')) { await load({ replaceSharing: true, replaceCompanion: true }); if (!disposed && ticket === actionSequence) message.value = '已移除参赛计划。'; } }
+  catch (err) { if (!disposed && ticket === actionSequence && token === localStorage.getItem('marathon_token')) message.value = err.message; }
+  finally { if (!disposed && ticket === actionSequence) planBusy.value = false; }
+}
 function loginForPlan() {
   localStorage.setItem("marathon_return_after_login", "/races/" + encodeURIComponent(route.params.id) + "?plan=1");
   router.push("/mine");
@@ -301,7 +355,6 @@ function sheetSrc(id) {
 function openSheet(id) {
   viewer.value = sheetSrc(id);
 }
-const statuses = ref([]);
 const myStatus = ref("");
 const hasSheet = ref(false);
 const askSignup = ref(false);
@@ -332,8 +385,9 @@ const loading = ref(true);
 const loadError = ref("");
 let loadSequence = 0;
 
-async function load() {
+async function load(options = {}) {
   const id = String(route.params.id || "");
+  const token = localStorage.getItem('marathon_token');
   const sequence = ++loadSequence;
   loading.value = true;
   loadError.value = "";
@@ -342,13 +396,20 @@ async function load() {
       api("/races/" + id),
       api("/races/" + id + "/news").catch(() => ({ news: [] }))
     ]);
-    if (sequence !== loadSequence || id !== String(route.params.id || "")) return;
+    if (disposed || sequence !== loadSequence || id !== String(route.params.id || "") || token !== localStorage.getItem('marathon_token')) return;
     articles.value = news.news || [];
     race.value = data.race;
-    statuses.value = data.statuses;
-    myStatus.value = data.myStatus;
+    myStatus.value = data.myStatus || '';
+    planStage.value = stageFor(myStatus.value);
+    following.value = !!data.following;
+    const keepSharingDraft = sharingDirty.value && !options.replaceSharing;
+    const keepCompanionDraft = companionDraft.value !== companionNote.value && !options.replaceCompanion;
+    sharedClubIds.value = data.sharedClubIds || [];
+    if (!keepSharingDraft) sharingDraft.value = [...sharedClubIds.value];
+    companionNote.value = data.companionNote || '';
+    if (!keepCompanionDraft) companionDraft.value = companionNote.value;
     hasSheet.value = Boolean(data.hasSheet);
-    clubs.value = data.clubs;
+    clubs.value = data.clubs || [];
     cards.value = data.cards || [];
     conflicts.value = data.conflicts || [];
     alternatives.value = data.alternatives || [];
@@ -363,7 +424,7 @@ async function load() {
     }
     pickDistance(distance.value);
   } catch (error) {
-    if (sequence !== loadSequence || id !== String(route.params.id || "")) return;
+    if (disposed || sequence !== loadSequence || id !== String(route.params.id || "") || token !== localStorage.getItem('marathon_token')) return;
     if (!race.value) loadError.value = error.message || "赛事暂时无法加载，请重试";
     throw error;
   } finally {
@@ -441,25 +502,32 @@ async function confirmSigned() {
 async function onSignup(event) {
   const file = event.target.files && event.target.files[0];
   event.target.value = "";
-  if (!file) return;
+  if (!file || planBusy.value) return;
+  const id = String(route.params.id), token = localStorage.getItem('marathon_token'), ticket = ++actionSequence;
+  planBusy.value = true;
   message.value = "";
   try {
-    await upload("/me/races/" + route.params.id + "/sheet", file);
-    message.value = "报名截图已上传";
+    await upload("/me/races/" + encodeURIComponent(id) + "/sheet", file);
+    if (disposed || ticket !== actionSequence || id !== String(route.params.id) || token !== localStorage.getItem('marathon_token')) return;
     await load();
+    if (!disposed && ticket === actionSequence) message.value = "报名截图已上传";
   } catch (err) {
-    message.value = err.message;
-  }
+    if (!disposed && ticket === actionSequence && token === localStorage.getItem('marathon_token')) message.value = err.message;
+  } finally { if (!disposed && ticket === actionSequence) planBusy.value = false; }
 }
 
 async function removeSignup() {
+  if (planBusy.value) return;
+  const id = String(route.params.id), token = localStorage.getItem('marathon_token'), ticket = ++actionSequence;
+  planBusy.value = true;
   message.value = "";
   try {
-    await api("/me/races/" + route.params.id + "/sheet", { method: "DELETE" });
+    await api("/me/races/" + encodeURIComponent(id) + "/sheet", { method: "DELETE" });
+    if (disposed || ticket !== actionSequence || id !== String(route.params.id) || token !== localStorage.getItem('marathon_token')) return;
     await load();
   } catch (err) {
-    message.value = err.message;
-  }
+    if (!disposed && ticket === actionSequence && token === localStorage.getItem('marathon_token')) message.value = err.message;
+  } finally { if (!disposed && ticket === actionSequence) planBusy.value = false; }
 }
 
 async function removeResult() {
@@ -567,22 +635,19 @@ async function copyCard(card) {
 }
 
 async function mark(status) {
-  message.value = "";
-  try {
-    await api("/me/races/" + route.params.id, { method: "PUT", body: JSON.stringify({ status }) });
-    myStatus.value = status;
-    await load();
-    return true;
-  } catch (err) {
-    message.value = err.message;
-    return false;
-  }
+  return planAction('', { status });
 }
 
 watch(
   () => route.params.id,
   (id, prev) => {
     if (!prev || id === prev) return;
+    actionSequence++; loadSequence++;
+    planBusy.value = false;
+    companionOpen.value = false;
+    following.value = false; sharedClubIds.value = []; sharingDraft.value = [];
+    companionNote.value = ''; companionDraft.value = ''; sharingError.value = ''; sharingMessage.value = '';
+    myStatus.value = ''; clubs.value = []; cards.value = [];
     race.value = null;
     message.value = "";
     distance.value = "";
@@ -598,11 +663,18 @@ watch(
 
 onMounted(() => {
   const id = String(route.params.id || "");
-  load().catch((err) => { if (id === String(route.params.id || "")) message.value = err.message; });
+  load().then(async () => {
+    if (ready.value && route.query.follow === '1' && id === String(route.params.id || '')) {
+      const saved = await planAction('/follow', { following: true });
+      if (saved) { message.value = '已关注这场比赛。'; router.replace({ path: route.path, query: { ...route.query, follow: undefined } }); }
+    }
+  }).catch((err) => { if (id === String(route.params.id || "")) message.value = err.message; });
 });
+onBeforeUnmount(() => { disposed = true; loadSequence++; actionSequence++; });
 </script>
 
 <style scoped>
+.race-follow-row{display:flex;align-items:center;justify-content:space-between;gap:14px;border-top:1px solid #eee;margin-top:12px;padding-top:12px}.race-follow-row>span{font-size:12px;line-height:1.7;color:#777}.plan-stages{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px}.plan-stages button{min-width:0;min-height:64px;padding:9px 2px;background:#f7f7f8;border-radius:8px;font-size:12px;line-height:1.5;color:#777;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px}.plan-stages small{font-size:12px;line-height:20px;border-radius:50%;width:20px;height:20px;background:#eaeaec;color:#777}.plan-stages .selected{background:#fff1f3;color:#ff1838}.plan-stages .selected small{background:#ff1838;color:#fff}.plan-stages .current{box-shadow:inset 0 0 0 1px #ffc8d1}.race-companionship .club-sharing{border:0;padding:0;margin:15px 0 10px;min-width:0}.club-sharing label{display:flex;align-items:center;gap:10px;min-height:52px;border-top:1px solid #eee;font-size:14px}.club-sharing input{width:18px;height:18px;accent-color:#ff1838;flex:none}.club-sharing label>span{flex:1;min-width:0;overflow-wrap:anywhere}.club-sharing small{font-size:12px;color:#888}.race-page .sharing-save{width:100%}.race-page button:disabled{opacity:.45;cursor:default}.companion-form{display:flex;flex-direction:column;gap:8px;margin-top:20px;padding-top:18px;border-top:1px solid #eee}.companion-form>label{font-size:14px;font-weight:500}.companion-form textarea{resize:vertical;border:1px solid #e5e5e5;border-radius:8px;padding:10px;font-size:14px;line-height:1.7;min-width:0;width:100%;box-sizing:border-box}.companion-form>button{align-self:flex-start}.companion-mate>span{min-width:0;flex:1;overflow-wrap:anywhere}.companion-mate small{display:block;color:#777;font-size:12px;line-height:1.7;margin-top:5px}.companionship-link{display:flex;align-items:center;min-height:44px;color:#ff1838;font-size:14px;line-height:1.7;margin-top:8px}.remove-plan{margin-top:12px}.visually-hidden{position:absolute;width:1px;height:1px;clip-path:inset(50%);overflow:hidden;white-space:nowrap}
 .race-archive-entry{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:72px;margin:12px 16px;padding:14px 16px;background:#fff0f2;border-radius:12px}.race-archive-entry strong{display:block;font-size:14px;font-weight:500}.race-archive-entry small{display:block;font-size:12px;color:#777;margin-top:4px}.race-archive-entry>span:last-child{font-size:24px;color:#ff1838}
 
 .race-state { display: grid; justify-items: center; gap: 12px; margin: 20px 16px; padding: 32px 20px; border-radius: 12px; background: #fff; color: var(--muted); text-align: center; font-size: 14px; }

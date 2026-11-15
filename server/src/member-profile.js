@@ -18,8 +18,9 @@ function pastRace(race, today) {
 function memberSharedProfile(db, clubId, userId, base) {
   const today = new Date(Date.now() + 8 * 3600000).toISOString().slice(0, 10);
   const rawResults = db.prepare(`SELECT r.*,res.distance AS result_distance,res.seconds
-    FROM results res JOIN races r ON r.id=res.race_id WHERE res.user_id=?
-    ORDER BY r.race_date DESC,r.id,res.distance`).all(userId);
+    FROM results res JOIN races r ON r.id=res.race_id
+    JOIN plan_club_shares s ON s.user_id=res.user_id AND s.race_id=res.race_id AND s.club_id=?
+    WHERE res.user_id=? ORDER BY r.race_date DESC,r.id,res.distance`).all(clubId, userId);
   const results = rawResults.filter(r => Number.isSafeInteger(r.seconds) && r.seconds > 0).map(row => {
     const race = raceSummary(row);
     return { id: race.id + ":" + row.result_distance, raceId: race.id, name: race.name, raceDate: race.raceDate,
@@ -34,7 +35,8 @@ function memberSharedProfile(db, clubId, userId, base) {
 
   const byRace = new Map();
   for (const row of db.prepare(`SELECT r.*,p.status AS mark_status FROM plans p JOIN races r ON r.id=p.race_id
-    WHERE p.user_id=? ORDER BY r.race_date DESC,r.id`).all(userId)) {
+    JOIN plan_club_shares s ON s.user_id=p.user_id AND s.race_id=p.race_id AND s.club_id=?
+    WHERE p.user_id=? ORDER BY r.race_date DESC,r.id`).all(clubId, userId)) {
     const race = raceSummary(row);
     byRace.set(race.id, { race, raceId: race.id, name: race.name, raceDate: race.raceDate, city: race.city,
       status: row.mark_status, statusLabel: row.mark_status, hasResult: false, results: [] });

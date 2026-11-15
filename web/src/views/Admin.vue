@@ -1542,7 +1542,7 @@ async function setClubMemberRole(member, next) {
 const loginPass = ref("");
 const planStatus = ref("");
 const planQuery = ref("");
-const planStatusOrder = ["想跑", "已报名", "待抽签", "中签", "未中签", "已缴费", "已领物", "完赛", "未完赛", "弃赛"];
+const planStatusOrder = ["想跑", "已报名", "待抽签", "中签", "未中签", "确认参赛", "已缴费", "已领物", "完赛", "未完赛", "弃赛"];
 const planStatusOptions = computed(() => {
   const counts = {};
   for (const item of person.value?.plans || []) counts[item.status] = (counts[item.status] || 0) + 1;

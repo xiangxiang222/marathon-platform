@@ -1,4 +1,5 @@
-const { request } = require("../../utils/request");
+const { request, ready } = require("../../utils/request");
+function accountToken() { return typeof getApp === "function" ? (getApp().globalData || {}).token || "" : ""; }
 const landmarks = {
   beijing: '/images/race-landmarks/beijing.png',
   shanghai: '/images/race-landmarks/shanghai.png',
@@ -137,6 +138,7 @@ Page({
     reminders: [],
     loaded: false,
     message: "",
+    followBusyId: "",
     statusBarHeight: 20,
     navHeight: 44,
     headerRight: 108,
@@ -152,11 +154,36 @@ Page({
     this.setData(navigationMetrics());
   },
   onShow() {
+    this._visible = true;
+    this._viewVersion = (this._viewVersion || 0) + 1;
+    const token = accountToken();
+    if (this._seenToken !== token) {
+      this._seenToken = token;
+      this.setData({ races: this.data.races.map(race => ({ ...race, following: false, myStatus: "" })) });
+    }
+    this.setData({ followBusyId: "" });
     const today = todayInfo();
     this.setData(today);
     this.paint();
     this.load();
     this.loadCatalog();
+  },
+  onHide() { this._visible = false; this.loadSeq = (this.loadSeq || 0) + 1; this._viewVersion = (this._viewVersion || 0) + 1; },
+  onUnload() { this.onHide(); },
+  toggleFollow(e) {
+    const id = String(e.currentTarget.dataset.id), race = this.data.races.find(item => String(item.id) === id);
+    if (!race || this.data.followBusyId) return;
+    if (!ready()) {
+      wx.setStorageSync("marathon_return_after_login", "/pages/race/race?id=" + encodeURIComponent(id) + "&follow=1");
+      wx.switchTab({ url: "/pages/mine/mine" });
+      return;
+    }
+    const token = accountToken(), version = this._viewVersion;
+    this.setData({ followBusyId: id, message: "" });
+    return request("/me/races/" + encodeURIComponent(id) + "/follow", "PUT", { following: !race.following }).then(() => {
+      if (token === accountToken() && version === this._viewVersion && this._visible !== false) this.setData({ races: this.data.races.map(item => String(item.id) === id ? { ...item, following: !race.following } : item) });
+    }).catch(err => { if (token === accountToken() && version === this._viewVersion) this.setData({ message: err.message }); })
+      .finally(() => { if (token === accountToken() && version === this._viewVersion) this.setData({ followBusyId: "" }); });
   },
   loadCatalog() {
     if (this.data.catalogLoading) return;
@@ -299,6 +326,7 @@ Page({
     this.load();
   },
   load() {
+    const token = accountToken();
     const q = (this.data.q || "").trim();
     const seq = (this.loadSeq = (this.loadSeq || 0) + 1);
     const params = [];
@@ -325,7 +353,7 @@ Page({
       .catch(() => {});
     request("/races?" + params.join("&"))
       .then((data) => {
-        if (seq !== this.loadSeq) return;
+        if (seq !== this.loadSeq || token !== accountToken()) return;
         const races = (data.races || []).map((race) => {
           const parts = String(race.raceDate || "").split("-");
           const labels = race.distanceLabels || [];
@@ -355,7 +383,7 @@ Page({
         });
       })
       .catch((err) => {
-        if (seq !== this.loadSeq) return;
+        if (seq !== this.loadSeq || token !== accountToken()) return;
         this.setData({ loaded: true, message: err.message });
       });
   }

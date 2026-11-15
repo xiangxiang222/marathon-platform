@@ -43,11 +43,12 @@
     </button>
     <section class="day-races">
       <h2>{{ pickedTitle }}</h2>
-      <router-link v-for="race in dayRaces" :key="race.id" class="race" :to="'/races/' + race.id">
+      <div v-for="race in dayRaces" :key="race.id" class="calendar-race-row"><router-link class="race" :to="'/races/' + race.id">
         <b>{{ race.name }}</b>
         <span>{{ race.city }}{{ race.distanceLabels.length ? " · " + race.distanceLabels.join(" / ") : "" }}</span>
         <em>{{ race.regStatus }}</em>
-      </router-link>
+        <small v-if="race.myStatus" class="my-status">我的状态 · {{ race.myStatus }}</small>
+      </router-link><FollowRaceButton :race-id="race.id" :race-name="race.name" :following="!!race.following" @change="value => race.following = value" /></div>
       <p v-if="ready && !loadError && !dayRaces.length" class="none">这一天没有赛事</p>
     </section>
     <div v-if="posterUrl" class="poster-layer" @click="closePoster">
@@ -64,6 +65,7 @@ import { computed, onMounted, ref } from "vue";
 import { api } from "../api";
 import { lunarLabel } from "../lunar";
 import { renderDayPoster } from "../day-poster";
+import FollowRaceButton from '../components/FollowRaceButton.vue';
 
 const weeks = ["日", "一", "二", "三", "四", "五", "六"];
 const today = cstParts();
@@ -176,6 +178,7 @@ onMounted(load);
 </script>
 
 <style scoped>
+.calendar-race-row{display:flex;gap:8px;align-items:center;min-width:0;border-bottom:1px solid #eee}.calendar-race-row>.race{flex:1;min-width:0;border-bottom:0}.my-status{display:block;margin-top:6px;color:#ff1838;font-size:12px;line-height:1.6}
 .calendar{min-height:100vh;padding-bottom:24px;background:var(--bg);color:var(--ink)}
 .topbar{background:#fff}.topbar h1{font-size:16px;font-weight:600}.calendar-board{margin:12px 16px;background:#fff;border-radius:12px;overflow:hidden}
 .month{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:8px 12px}.month b{font-size:18px;font-weight:600}.month button{display:grid;place-items:center;width:44px;height:44px;font-size:24px;color:var(--ink)}

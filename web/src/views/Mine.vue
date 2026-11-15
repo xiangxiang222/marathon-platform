@@ -44,10 +44,15 @@
     <RunnerDashboard v-if="section === 'overview' && nickname" :data="runnerData" :plans="plans" :loading="runnerLoading" :error="runnerError" @retry="loadRunner"><template #career-actions><div class="compact-poster"><span>{{ posterAvailable ? '已收录自己的完赛成绩' : '记录完赛后可制作成绩海报' }}</span><router-link v-if="posterAvailable" :to="posterRoute">制作成绩海报 <i aria-hidden="true">↗</i></router-link><button v-else type="button" @click="section = 'results'">去记录成绩 ›</button></div></template></RunnerDashboard>
     <section v-else-if="section === 'overview'" class="sheet empty-state"><h3>登录，查看自己的运动档案</h3><p>跑量、参赛计划与完赛成绩集中管理。</p><router-link to="/">去发现下一场比赛 ›</router-link></section>
     <template v-else-if="section === 'plans'">
+      <nav class="subtabs plan-view-tabs" aria-label="我的赛事分类"><button type="button" :class="{ on: planView === 'plans' }" @click="planView = 'plans'">参赛计划 {{ plans.length }}</button><button type="button" :class="{ on: planView === 'followed' }" @click="planView = 'followed'">关注的比赛 {{ followedRaces.length }}</button></nav>
+      <p class="plan-privacy-hint">关注仅自己可见；参赛状态可在赛事详情中选择同步跑团。</p>
+      <template v-if="planView === 'plans'">
       <section v-if="conflicts.length" class="sheet"><h3>比赛安排提醒</h3><p v-for="item in conflicts" :key="item.text" class="notice">{{ item.text }}</p></section>
       <section v-if="reminders.length" class="sheet"><h3>截止提醒</h3><router-link v-for="item in reminders" :key="item.race.id + item.hit.key" class="remind-line" :to="'/races/' + item.race.id"><b>{{ item.hit.reason }}</b><span>{{ item.race.name }}</span><i>›</i></router-link></section>
       <section v-if="plans.length" class="sheet plan-list"><router-link v-for="item in plans" :key="item.race.id" class="plan-row" :to="'/races/' + item.race.id"><div><span class="plan-state">{{ item.status }}</span><h3>{{ item.race.name }}</h3><p>{{ item.race.raceDate }}<template v-if="item.race.city"> · {{ item.race.city }}</template></p></div><i>›</i></router-link></section>
       <section v-else class="sheet empty-state"><h3>{{ nickname ? '下一场，想去哪里跑？' : '把想跑的比赛放进这里' }}</h3><p>{{ nickname ? '在赛事详情页标记报名或中签状态，随时查看参赛安排。' : '登录后，你标记的比赛会自动汇总在这里。' }}</p><router-link to="/">去看赛事 ›</router-link></section>
+      </template>
+      <section v-else class="sheet followed-races"><RaceCard v-for="race in followedRaces" :key="race.id" :race="{ ...race, following: true }" @follow="value => { if (!value) followedRaces = followedRaces.filter(item => item.id !== race.id); }" /><div v-if="!followedRaces.length" class="empty-state"><h3>先关注，慢慢选下一场</h3><p>关注不会创建参赛计划，取消关注也不会删除已有计划。</p><router-link to="/">去看赛事 ›</router-link></div></section>
     </template>
     <template v-else-if="section === 'results'">
       <section class="sheet career-summary"><div><span>完赛场数</span><b>{{ nickname ? finished : '—' }}<small> 场</small></b></div><div><span>半马最好成绩</span><b class="clock">{{ career.pb.half || '—' }}</b></div><div><span>全马最好成绩</span><b class="clock">{{ career.pb.full || '—' }}</b></div><div v-if="nickname" class="compact-poster"><span>{{ posterAvailable ? '把自己的成绩，留作纪念' : '在赛事详情页记下完赛成绩，即可制作海报' }}</span><router-link v-if="posterAvailable" :to="posterRoute">制作成绩海报 <i aria-hidden="true">↗</i></router-link><router-link v-else to="/">去看赛事 ›</router-link></div></section>
@@ -91,6 +96,7 @@ import { useRouter } from "vue-router";
 import { api, resultProofSrc } from "../api";
 import PageHeader from "../components/PageHeader.vue";
 import RunnerDashboard from "../components/RunnerDashboard.vue";
+import RaceCard from '../components/RaceCard.vue';
 import { normalizeResults } from "../achievement-model";
 
 import calendarIcon from "../assets/quick/calendar.svg";
@@ -154,6 +160,7 @@ const currentPassword = ref("");
 const nextPassword = ref("");
 const nextPassword2 = ref("");
 const plans = ref([]);
+const followedRaces = ref([]), planView = ref('plans');
 const results = ref([]);
 const career = ref({ finished: 0, provinces: [], cities: [], pb: { full: "", half: "" }, yearKm: 0 });
 const conflicts = ref([]);
@@ -230,6 +237,7 @@ async function load() {
     hasPassword.value = Boolean(data.user.hasPassword);
     clubs.value = data.clubs || [];
     plans.value = data.plans || [];
+    followedRaces.value = data.followedRaces || [];
     results.value = data.results || [];
     career.value = data.career || career.value;
     applyRunnerCareer();
@@ -308,6 +316,7 @@ function logout() {
   hasPassword.value = false;
   clubs.value = [];
   plans.value = [];
+  followedRaces.value = []; planView.value = 'plans';
   results.value = [];
   conflicts.value = [];
   reminders.value = [];
@@ -342,7 +351,7 @@ async function submitAuth() {
     saveSession(data);
     await load();
     const returnPath = localStorage.getItem("marathon_return_after_login") || "";
-    if (returnPath === "/legal/rights" || returnPath === "/history" || returnPath.startsWith("/clubs/") || /^\/runner(?:\?view=(?:stats|career|footprints|honors|media|devices|help))?$/.test(returnPath) || /^\/feedback(?:\/\d+)?(?:\?(?:compose|mine)=1)?$/.test(returnPath) || (returnPath === "/radar" || returnPath === "/sport" || /^\/races\/[^/?#]+(?:\?plan=1)?$/.test(returnPath))) {
+    if (returnPath === "/legal/rights" || returnPath === "/history" || returnPath.startsWith("/clubs/") || /^\/runner(?:\?view=(?:stats|career|footprints|honors|media|devices|help))?$/.test(returnPath) || /^\/feedback(?:\/\d+)?(?:\?(?:compose|mine)=1)?$/.test(returnPath) || (returnPath === "/radar" || returnPath === "/sport" || /^\/races\/[^/?#]+(?:\?(?:plan|follow)=1)?$/.test(returnPath))) {
       localStorage.removeItem("marathon_return_after_login");
       await router.replace(returnPath);
     }
@@ -473,6 +482,7 @@ onMounted(() => { load(); loadLegalVersion(); });
 </script>
 
 <style scoped>
+.plan-view-tabs{margin:14px 16px 0}.plan-privacy-hint{margin:10px 20px;font-size:12px;color:#777;line-height:1.7}.followed-races{display:grid;gap:12px;padding:12px!important}.followed-races .empty-state{padding:22px 8px}
 .auth-form .auth-legal{padding:5px 0 9px}.auth-form .auth-legal label{display:flex;align-items:flex-start;gap:9px;color: var(--muted);font-size:12px;line-height:1.9;cursor:pointer}.auth-form .auth-legal input[type=checkbox]{width:17px;height:17px;min-height:17px;flex:none;margin:3px 0 0;accent-color:var(--accent)}.auth-legal p{display:flex;flex-wrap:wrap;gap:10px;margin:7px 0 6px;padding-left:26px;font-size:12px;line-height:1.9}.auth-legal a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}.auth-legal small{display:block;padding-left:26px;color:var(--muted);font-size:12px;line-height:1.9}.legal nav{display:flex;flex-wrap:wrap;gap:2px 15px}.legal nav a{min-height:36px;display:flex;align-items:center;color:var(--muted);font-size:12px}.legal p{margin:8px 0;line-height:1.8}
 .feedback-entry-unread{display:inline-block;margin-left:6px;padding:1px 5px;vertical-align:middle;border-radius:5px;background:var(--accent);color:white;font-size:12px;font-weight:500;line-height:1.7}.feedback-entry b{display:flex!important;align-items:center;gap:3px;flex-wrap:wrap}.feedback-entry small{color:var(--muted)!important}
 .feedback-entry {display:flex;align-items:center;gap:12px;margin:16px 0 12px;color: var(--ink)}.feedback-entry-icon{display:grid;place-items:center;width:35px;height:37px;border-radius:11px;flex:none}.feedback-entry-icon svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}.feedback-entry>span:nth-child(2){flex:1;min-width:0}.feedback-entry b{display:block;font-size:14px;font-weight:600;line-height:1.7}.feedback-entry small{display:block;line-height:1.9;color:var(--muted);margin-top:3px}.feedback-entry i{font-size:24px;color:var(--accent);font-style:normal;flex:none}

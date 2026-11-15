@@ -137,6 +137,8 @@ test('previously confirmed archive images allow text-only saves without repeatin
 
   const stored = (await request(app).get(editor + '/beijing').set(auth).expect(200)).body;
   const originalConfirmation = stored.archive.hero.mediaRights.confirmedAt;
+  assert.equal(stored.archive.editions[0].route.mediaRights.confirmedAt, originalConfirmation);
+  assert.equal(stored.archive.news[0].images[0].mediaRights.confirmedAt, originalConfirmation);
   assert.notEqual(stored.archive.hero.mediaRights.holder, forgedRights.holder);
   stored.archive.intro = '再次进入编辑器，只修改介绍。';
   stored.archive.news[0].title = '更新消息标题';
@@ -154,4 +156,24 @@ test('previously confirmed archive images allow text-only saves without repeatin
   await request(app).put(editor + '/beijing').set(auth).send({ ...changed, mediaConfirmed: false }).expect(400);
   assert.equal(readArchiveEdit(getDb(), 'beijing').archive.hero.imageUrl, url, 'Failed confirmation keeps the published image');
   await request(app).put(editor + '/beijing').set(auth).send({ ...changed, mediaConfirmed: true }).expect(200);
+});
+
+test('persisted duplicate image confirmations keep the first valid confirmation when editing text', async () => {
+  const url = (await request(app).post(editor + '/beijing/images').set(auth).attach('file', png, 'same-image.png').expect(200)).body.url;
+  const value = (await request(app).get(editor + '/beijing').set(auth).expect(200)).body;
+  value.archive.hero = { imageUrl: url };
+  value.archive.news = [{ id: 'duplicate-image', title: '复用封面图片', images: [{ url, caption: '同一图片' }] }];
+  await request(app).put(editor + '/beijing').set(auth).send({ ...value, mediaConfirmed: true }).expect(200);
+  // Model a pre-fix record: each reference used to mint its own millisecond timestamp.
+  const previous = readArchiveEdit(getDb(), 'beijing');
+  const original = '2026-11-14T00:00:00.001Z', later = '2026-11-14T00:00:00.002Z';
+  previous.archive.hero.mediaRights.confirmedAt = original;
+  previous.archive.news[0].images[0].mediaRights.confirmedAt = later;
+  getDb().prepare('UPDATE race_archive_edits SET payload=? WHERE race_id=?').run(JSON.stringify(previous), 'beijing');
+  previous.archive.intro = '只更新介绍，已确认图片不需要重新确认。';
+  const response = await request(app).put(editor + '/beijing').set(auth).send({ ...previous, mediaConfirmed: false }).expect(200);
+  assert.equal(response.body.archive.hero.mediaRights.confirmedAt, original);
+  assert.equal(response.body.archive.news[0].images[0].mediaRights.confirmedAt, original);
+  const repeat = await request(app).put(editor + '/beijing').set(auth).send({ ...response.body, mediaConfirmed: false }).expect(200);
+  assert.equal(repeat.body.archive.hero.mediaRights.confirmedAt, original);
 });

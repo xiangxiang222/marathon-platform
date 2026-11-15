@@ -22,6 +22,15 @@ function withUnpaid(card) {
   return { ...card, unpaidText: names.join("、"), clubId: card.club && card.club.id };
 }
 
+const PLAN_STAGES = [
+  { id: "wish", label: "有意向", statuses: ["想跑"] },
+  { id: "signup", label: "已报名", statuses: ["已报名", "待抽签", "中签", "未中签"] },
+  { id: "confirmed", label: "确认参赛", statuses: ["确认参赛", "已缴费", "已领物"] },
+  { id: "finished", label: "已完赛", statuses: ["完赛", "未完赛", "弃赛"] }
+];
+function stageFor(status) { return PLAN_STAGES.find(item => item.statuses.includes(status)) || PLAN_STAGES[0]; }
+function tokenNow() { return (getApp().globalData || {}).token || ""; }
+
 Page({
   data: {
     race: null,
@@ -29,6 +38,16 @@ Page({
     meetText: "线下",
     statuses: [],
     myStatus: "",
+    following: false,
+    followBusy: false,
+    planBusy: false,
+    planStages: PLAN_STAGES,
+    planStage: "wish",
+    stageStatuses: ["想跑"],
+    sharedClubIds: [],
+    sharingDraft: [],
+    companionNote: "",
+    companionOpen: false,
     planOpen: false,
     shareOpen: false,
     shareChoices: [],
@@ -78,6 +97,9 @@ Page({
     articles: []
   },
   onLoad(query) {
+    this._disposed = false;
+    this._epoch = (this._epoch || 0) + 1;
+    this._resumeFollow = query.follow === "1";
     this.raceId = query.id;
     const code = String(query.code || "").toUpperCase();
     this.pending = null;
@@ -90,11 +112,86 @@ Page({
     wx.showShareMenu({ menus: ["shareAppMessage"] });
   },
   onShow() {
+    this._hidden = false;
+    const token = tokenNow();
+    if (this._token !== token) {
+      this._token = token;
+      this._epoch = (this._epoch || 0) + 1;
+      this.setData({ following: false, myStatus: "", sharedClubIds: [], sharingDraft: [], companionNote: "", sharingDirty: false, companionDirty: false, clubs: [], cards: [], myResults: [], myResult: null, hasSheet: false, sheetSrc: "", proofSrc: "", shareChoices: [], selectedShare: null });
+    }
+    this.setData({ followBusy: false, planBusy: false });
     this.open();
+  },
+  onHide() { this._hidden = true; this._epoch = (this._epoch || 0) + 1; this._loadSeq = (this._loadSeq || 0) + 1; },
+  onUnload() { this._disposed = true; this._loadSeq = (this._loadSeq || 0) + 1; },
+  current(scope) { return !this._disposed && !this._hidden && scope.epoch === (this._epoch || 0) && scope.id === this.raceId && scope.token === tokenNow(); },
+  pickPlanStage(e) {
+    const stage = PLAN_STAGES.find(item => item.id === e.currentTarget.dataset.id);
+    if (stage) this.setData({ planStage: stage.id, stageStatuses: stage.statuses.filter(status => this.data.statuses.includes(status)) });
+  },
+  toggleFollow() {
+    if (!ready()) {
+      wx.setStorageSync("marathon_return_after_login", "/pages/race/race?id=" + encodeURIComponent(this.raceId) + "&follow=1");
+      wx.switchTab({ url: "/pages/mine/mine" });
+      return;
+    }
+    if (this.data.followBusy) return;
+    const scope = { id: this.raceId, token: tokenNow(), epoch: this._epoch || 0 }, following = !this.data.following;
+    this.setData({ followBusy: true, message: "" });
+    return request("/me/races/" + scope.id + "/follow", "PUT", { following }).then(() => {
+      if (this.current(scope)) this.setData({ following, message: following ? "已关注，可在「我的赛事」查看" : "已取消关注，参赛记录仍保留" });
+    }).catch(err => { if (this.current(scope)) this.setData({ message: err.message }); })
+      .finally(() => { if (this.current(scope)) this.setData({ followBusy: false }); });
+  },
+  pickSharedClubs(e) {
+    if (this.data.planBusy) return;
+    const sharedClubIds = (e.detail.value || []).map(Number);
+    this.setData({ sharingDraft: sharedClubIds, sharingDirty: true, clubs: this.data.clubs.map(club => ({ ...club, selected: sharedClubIds.includes(club.id) })) });
+  },
+  saveSharing() {
+    if (!this.data.myStatus) { this.setData({ message: "先记录参赛状态，再同步到跑团" }); return; }
+    return this.updatePlan("/sharing", { clubIds: this.data.sharingDraft }, "已更新同步跑团，个人记录仍保留");
+  },
+  onCompanionNote(e) { this.setData({ companionNote: e.detail.value, companionDirty: true }); },
+  saveCompanionNote() {
+    return this.updatePlan("/companionship", { note: this.data.companionNote.trim() }, "已保存同行备注，仅向选中的跑团展示");
+  },
+  removePlan() {
+    if (this.data.planBusy || this._confirmingRemoval || !this.data.myStatus || !ready()) return Promise.resolve();
+    const scope = { id: this.raceId, token: tokenNow(), epoch: this._epoch || 0 };
+    this._confirmingRemoval = true;
+    return new Promise(resolve => wx.showModal({
+      title: "移除参赛计划？",
+      content: "关注的比赛和已记录的成绩会保留，跑团不再同步这条计划。",
+      confirmText: "移除计划",
+      success: result => {
+        this._confirmingRemoval = false;
+        if (result.confirm && this.current(scope)) resolve(this.updatePlan("", {}, "已移除参赛计划，关注和成绩仍保留", "DELETE"));
+        else resolve();
+      },
+      fail: () => { this._confirmingRemoval = false; resolve(); }
+    }));
+  },
+  updatePlan(suffix, body, message, method = "PUT") {
+    if (this.data.planBusy || !ready()) return Promise.resolve();
+    const scope = { id: this.raceId, token: tokenNow(), epoch: this._epoch || 0 };
+    this.setData({ planBusy: true, message: "" });
+    return request("/me/races/" + scope.id + suffix, method, body)
+      .then(() => {
+        if (!this.current(scope)) return;
+        if (suffix === "/sharing") this.setData({ sharingDirty: false });
+        if (suffix === "/companionship") this.setData({ companionDirty: false });
+        if (method === "DELETE") this.setData({ sharingDirty: false, companionDirty: false });
+        return this.load();
+      })
+      .then(result => { if (this.current(scope) && result !== false) this.setData({ message }); })
+      .catch(err => { if (this.current(scope)) this.setData({ message: err.message }); })
+      .finally(() => { if (this.current(scope)) this.setData({ planBusy: false }); });
   },
   togglePlan() {
     this.setData({ planOpen: !this.data.planOpen });
   },
+  toggleCompanion() { this.setData({ companionOpen: !this.data.companionOpen }); },
   toggleShare() {
     this.setData({ shareOpen: !this.data.shareOpen });
   },
@@ -145,9 +242,18 @@ Page({
     this.load().catch((err) => this.setData({ message: err.message }));
   },
   load() {
+    if (this._disposed || this._hidden) return Promise.resolve();
+    const scope = { id: this.raceId, token: tokenNow(), epoch: this._epoch || 0 }, seq = this._loadSeq = (this._loadSeq || 0) + 1;
+    const current = () => this.current(scope) && seq === this._loadSeq;
     const jobs = [
       request("/races/" + this.raceId).then((data) => {
+        if (!current()) return;
         const race = data.race;
+        const sharedClubIds = data.sharedClubIds || [];
+        const memberIds = (data.clubs || []).map(club => club.id);
+        const sharingDraft = this.data.sharingDirty ? this.data.sharingDraft.filter(id => memberIds.includes(id)) : sharedClubIds;
+        const stage = stageFor(data.myStatus);
+        const statuses = data.statuses || PLAN_STAGES.reduce((all, item) => all.concat(item.statuses), []);
         const distanceOptions = (race.distances || []).map((key, i) => ({
           key,
           label: (race.distanceLabels || [])[i] || key
@@ -158,11 +264,17 @@ Page({
           race,
           distanceText: [...(race.distanceLabels || []), ...(race.kind === "trail" && !(race.kindLabels || []).includes("越野") ? ["越野"] : []), ...(race.kindLabels || []), ...(race.groups || [])].join(" / "),
           meetText: race.meet === "online" ? "线上" : "线下",
-          statuses: data.statuses || [],
+          statuses,
           myStatus: data.myStatus || "",
+          following: !!data.following,
+          sharedClubIds,
+          sharingDraft,
+          companionNote: this.data.companionDirty ? this.data.companionNote : data.companionNote || "",
+          planStage: stage.id,
+          stageStatuses: stage.statuses.filter(status => statuses.includes(status)),
           clubs: (data.clubs || []).map((club) => {
             const card = (data.cards || []).find((item) => item.club && item.club.id === club.id);
-            return { ...club, squadText: card && card.squad ? card.squad.text : "" };
+            return { ...club, selected: sharingDraft.includes(club.id), synced: sharedClubIds.includes(club.id), squadText: card && card.squad ? card.squad.text : "" };
           }),
           cards: (data.cards || []).map(withUnpaid),
           conflicts: data.conflicts || [],
@@ -212,20 +324,22 @@ Page({
         }
         this.setData(patch);
         this.syncShareChoices(patch.cards, this.data.card);
+        if (this._resumeFollow && ready()) { this._resumeFollow = false; if (!patch.following) this.toggleFollow(); }
       }),
       request("/races/" + this.raceId + "/news").then((data) => {
-        this.setData({ articles: data.news || [] });
+        if (current()) this.setData({ articles: data.news || [] });
       })
     ];
     if (this.data.code) {
       jobs.push(
         request("/races/" + this.raceId + "/card?code=" + encodeURIComponent(this.data.code)).then((card) => {
+          if (!current()) return;
           this.setData({ card: withUnpaid(card) });
           this.syncShareChoices(this.data.cards, this.data.card);
         })
       );
     }
-    return Promise.all(jobs).catch((err) => this.setData({ message: err.message }));
+    return Promise.all(jobs).then(() => true).catch((err) => { if (current()) this.setData({ message: err.message }); return false; });
   },
   pickTab(e) {
     const tab = e.currentTarget.dataset.id;
@@ -254,10 +368,8 @@ Page({
       this.setData({ askSignup: false, message: "这场已经标成「" + this.data.myStatus + "」" });
       return;
     }
-    request("/me/races/" + this.raceId, "PUT", { status: "已报名" })
-      .then(() => this.load())
-      .then(() => this.setData({ askSignup: false, message: "已标成已报名" }))
-      .catch((err) => this.setData({ message: err.message }));
+    this.setData({ askSignup: false });
+    return this.updatePlan("", { status: "已报名" }, "已记录为已报名，实际报名结果以官方为准");
   },
   chooseSheet() {
     wx.chooseMedia({
@@ -316,10 +428,8 @@ Page({
   },
   mark(e) {
     const status = e.currentTarget.dataset.status;
-    request("/me/races/" + this.raceId, "PUT", { status })
-      .then(() => this.load())
-      .then(() => this.setData({ message: "已标记为「" + status + "」" }))
-      .catch((err) => this.setData({ message: err.message }));
+    if (!this.data.statuses.includes(status)) return;
+    return this.updatePlan("", { status }, "已标记为「" + status + "」");
   },
   pickDistance(e) {
     const distance = e.currentTarget.dataset.distance;

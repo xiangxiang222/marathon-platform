@@ -207,3 +207,4 @@
 .nav-settings .settings-gear{font-size:20px}
 .nav-settings::after{border:0}
 .mine-page .service-icon{width:40px;height:40px}
+.followed-list>.hint{margin:10px 0}.followed-row{display:flex;align-items:center;gap:12px;padding:16px 0;border-top:1px solid #f0f0f0}.followed-row>.row-copy{min-width:0;flex:1}.followed-row>button{flex:none;min-height:44px;padding:0 6px;margin:0;line-height:44px;font-size:12px;color:#888;background:transparent}.followed-row>button::after{border:0}
