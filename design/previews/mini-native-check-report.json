@@ -1,15 +1,10 @@
 {
   "kind": "Strict source syntax plus WeChat native offline compilation; this is not a device test",
-  "startedAt": "2026-11-14T15:25:05.999Z",
+  "startedAt": "2026-11-11T05:23:21.796Z",
   "validationContract": "Native compiler exit 0 alone is insufficient: every WXSS must pass strict PostCSS parsing; wcsc receives -pc for every input page; native tools must finish without diagnostics and create nonempty artifacts.",
   "js": [
     {
       "file": "miniprogram/app.js",
-      "exit": 0,
-      "error": ""
-    },
-    {
-      "file": "miniprogram/components/mileage-board/mileage-board.js",
       "exit": 0,
       "error": ""
     },
@@ -25,11 +20,6 @@
     },
     {
       "file": "miniprogram/lunar.js",
-      "exit": 0,
-      "error": ""
-    },
-    {
-      "file": "miniprogram/pages/achievement-poster/achievement-poster.js",
       "exit": 0,
       "error": ""
     },
@@ -60,16 +50,6 @@
     },
     {
       "file": "miniprogram/pages/club/club.js",
-      "exit": 0,
-      "error": ""
-    },
-    {
-      "file": "miniprogram/pages/club-create/club-create.js",
-      "exit": 0,
-      "error": ""
-    },
-    {
-      "file": "miniprogram/pages/club-edit/club-edit.js",
       "exit": 0,
       "error": ""
     },
@@ -124,11 +104,6 @@
       "error": ""
     },
     {
-      "file": "miniprogram/pages/member-profile/member-profile.js",
-      "exit": 0,
-      "error": ""
-    },
-    {
       "file": "miniprogram/pages/mileage/mileage.js",
       "exit": 0,
       "error": ""
@@ -140,11 +115,6 @@
     },
     {
       "file": "miniprogram/pages/news/detail.js",
-      "exit": 0,
-      "error": ""
-    },
-    {
-      "file": "miniprogram/pages/news/editor.js",
       "exit": 0,
       "error": ""
     },
@@ -165,16 +135,6 @@
     },
     {
       "file": "miniprogram/pages/race/race.js",
-      "exit": 0,
-      "error": ""
-    },
-    {
-      "file": "miniprogram/pages/race-archive/race-archive.js",
-      "exit": 0,
-      "error": ""
-    },
-    {
-      "file": "miniprogram/pages/race-catalog/race-catalog.js",
       "exit": 0,
       "error": ""
     },
@@ -204,21 +164,6 @@
       "error": ""
     },
     {
-      "file": "miniprogram/pages/training-groups/training-groups.js",
-      "exit": 0,
-      "error": ""
-    },
-    {
-      "file": "miniprogram/utils/achievement-model.js",
-      "exit": 0,
-      "error": ""
-    },
-    {
-      "file": "miniprogram/utils/achievement-poster.js",
-      "exit": 0,
-      "error": ""
-    },
-    {
       "file": "miniprogram/utils/activity-templates.js",
       "exit": 0,
       "error": ""
@@ -244,16 +189,6 @@
       "error": ""
     },
     {
-      "file": "miniprogram/utils/club-logo.js",
-      "exit": 0,
-      "error": ""
-    },
-    {
-      "file": "miniprogram/utils/content.js",
-      "exit": 0,
-      "error": ""
-    },
-    {
       "file": "miniprogram/utils/day-poster.js",
       "exit": 0,
       "error": ""
@@ -269,22 +204,7 @@
       "error": ""
     },
     {
-      "file": "miniprogram/utils/member-profile.js",
-      "exit": 0,
-      "error": ""
-    },
-    {
-      "file": "miniprogram/utils/mileage-board.js",
-      "exit": 0,
-      "error": ""
-    },
-    {
       "file": "miniprogram/utils/race-history.js",
-      "exit": 0,
-      "error": ""
-    },
-    {
-      "file": "miniprogram/utils/radar-preview.js",
       "exit": 0,
       "error": ""
     },
@@ -305,15 +225,7 @@
       "ok": true
     },
     {
-      "file": "miniprogram/components/mileage-board/mileage-board.json",
-      "ok": true
-    },
-    {
       "file": "miniprogram/components/page-header/page-header.json",
-      "ok": true
-    },
-    {
-      "file": "miniprogram/pages/achievement-poster/achievement-poster.json",
       "ok": true
     },
     {
@@ -338,14 +250,6 @@
     },
     {
       "file": "miniprogram/pages/club/club.json",
-      "ok": true
-    },
-    {
-      "file": "miniprogram/pages/club-create/club-create.json",
-      "ok": true
-    },
-    {
-      "file": "miniprogram/pages/club-edit/club-edit.json",
       "ok": true
     },
     {
@@ -389,10 +293,6 @@
       "ok": true
     },
     {
-      "file": "miniprogram/pages/member-profile/member-profile.json",
-      "ok": true
-    },
-    {
       "file": "miniprogram/pages/mileage/mileage.json",
       "ok": true
     },
@@ -402,10 +302,6 @@
     },
     {
       "file": "miniprogram/pages/news/detail.json",
-      "ok": true
-    },
-    {
-      "file": "miniprogram/pages/news/editor.json",
       "ok": true
     },
     {
@@ -422,14 +318,6 @@
     },
     {
       "file": "miniprogram/pages/race/race.json",
-      "ok": true
-    },
-    {
-      "file": "miniprogram/pages/race-archive/race-archive.json",
-      "ok": true
-    },
-    {
-      "file": "miniprogram/pages/race-catalog/race-catalog.json",
       "ok": true
     },
     {
@@ -453,10 +341,6 @@
       "ok": true
     },
     {
-      "file": "miniprogram/pages/training-groups/training-groups.json",
-      "ok": true
-    },
-    {
       "file": "miniprogram/project.config.json",
       "ok": true
     },
@@ -473,32 +357,22 @@
     {
       "file": "miniprogram/app.wxss",
       "ok": true,
-      "declarations": 251
-    },
-    {
-      "file": "miniprogram/components/mileage-board/mileage-board.wxss",
-      "ok": true,
-      "declarations": 409
+      "declarations": 203
     },
     {
       "file": "miniprogram/components/page-header/page-header.wxss",
       "ok": true,
-      "declarations": 43
-    },
-    {
-      "file": "miniprogram/pages/achievement-poster/achievement-poster.wxss",
-      "ok": true,
-      "declarations": 319
+      "declarations": 22
     },
     {
       "file": "miniprogram/pages/activity/activity.wxss",
       "ok": true,
-      "declarations": 640
+      "declarations": 635
     },
     {
       "file": "miniprogram/pages/activity-create/activity-create.wxss",
       "ok": true,
-      "declarations": 760
+      "declarations": 713
     },
     {
       "file": "miniprogram/pages/album/album.wxss",
@@ -508,7 +382,7 @@
     {
       "file": "miniprogram/pages/calendar/calendar.wxss",
       "ok": true,
-      "declarations": 119
+      "declarations": 145
     },
     {
       "file": "miniprogram/pages/call/call.wxss",
@@ -516,59 +390,44 @@
       "declarations": 98
     },
     {
-      "file": "miniprogram/pages/club/club-visual.wxss",
-      "ok": true,
-      "declarations": 1063
-    },
-    {
       "file": "miniprogram/pages/club/club.wxss",
       "ok": true,
-      "declarations": 1073
-    },
-    {
-      "file": "miniprogram/pages/club-create/club-create.wxss",
-      "ok": true,
-      "declarations": 193
-    },
-    {
-      "file": "miniprogram/pages/club-edit/club-edit.wxss",
-      "ok": true,
-      "declarations": 1
+      "declarations": 1152
     },
     {
       "file": "miniprogram/pages/club-identity/club-identity.wxss",
       "ok": true,
-      "declarations": 157
+      "declarations": 114
     },
     {
       "file": "miniprogram/pages/club-intro/club-intro.wxss",
       "ok": true,
-      "declarations": 295
+      "declarations": 484
     },
     {
       "file": "miniprogram/pages/club-report/club-report.wxss",
       "ok": true,
-      "declarations": 69
+      "declarations": 55
     },
     {
       "file": "miniprogram/pages/clubs/clubs.wxss",
       "ok": true,
-      "declarations": 349
+      "declarations": 419
     },
     {
       "file": "miniprogram/pages/feed/feed.wxss",
       "ok": true,
-      "declarations": 111
+      "declarations": 33
     },
     {
       "file": "miniprogram/pages/feedback/feedback.wxss",
       "ok": true,
-      "declarations": 803
+      "declarations": 726
     },
     {
       "file": "miniprogram/pages/history/history.wxss",
       "ok": true,
-      "declarations": 509
+      "declarations": 484
     },
     {
       "file": "miniprogram/pages/internal/internal.wxss",
@@ -578,7 +437,7 @@
     {
       "file": "miniprogram/pages/legal/legal.wxss",
       "ok": true,
-      "declarations": 352
+      "declarations": 309
     },
     {
       "file": "miniprogram/pages/meetup/meetup.wxss",
@@ -586,74 +445,54 @@
       "declarations": 48
     },
     {
-      "file": "miniprogram/pages/member-profile/member-profile.wxss",
-      "ok": true,
-      "declarations": 436
-    },
-    {
       "file": "miniprogram/pages/mileage/mileage.wxss",
       "ok": true,
-      "declarations": 183
+      "declarations": 54
     },
     {
       "file": "miniprogram/pages/mine/mine.wxss",
       "ok": true,
-      "declarations": 1298
+      "declarations": 778
     },
     {
       "file": "miniprogram/pages/news/detail.wxss",
       "ok": true,
-      "declarations": 71
-    },
-    {
-      "file": "miniprogram/pages/news/editor.wxss",
-      "ok": true,
-      "declarations": 276
+      "declarations": 57
     },
     {
       "file": "miniprogram/pages/news/news.wxss",
       "ok": true,
-      "declarations": 47
+      "declarations": 45
     },
     {
       "file": "miniprogram/pages/partner/partner.wxss",
       "ok": true,
-      "declarations": 72
+      "declarations": 36
     },
     {
       "file": "miniprogram/pages/privacy/privacy.wxss",
       "ok": true,
-      "declarations": 123
+      "declarations": 75
     },
     {
       "file": "miniprogram/pages/race/race.wxss",
       "ok": true,
-      "declarations": 314
-    },
-    {
-      "file": "miniprogram/pages/race-archive/race-archive.wxss",
-      "ok": true,
-      "declarations": 384
-    },
-    {
-      "file": "miniprogram/pages/race-catalog/race-catalog.wxss",
-      "ok": true,
-      "declarations": 144
+      "declarations": 184
     },
     {
       "file": "miniprogram/pages/races/races.wxss",
       "ok": true,
-      "declarations": 631
+      "declarations": 487
     },
     {
       "file": "miniprogram/pages/radar/radar.wxss",
       "ok": true,
-      "declarations": 421
+      "declarations": 42
     },
     {
       "file": "miniprogram/pages/runner/runner.wxss",
       "ok": true,
-      "declarations": 1134
+      "declarations": 1041
     },
     {
       "file": "miniprogram/pages/signup/signup.wxss",
@@ -663,37 +502,12 @@
     {
       "file": "miniprogram/pages/sport/sport.wxss",
       "ok": true,
-      "declarations": 385
-    },
-    {
-      "file": "miniprogram/pages/training-groups/training-groups.wxss",
-      "ok": true,
-      "declarations": 86
+      "declarations": 290
     },
     {
       "file": "miniprogram/utils/club-detail.wxss",
       "ok": true,
-      "declarations": 122
-    },
-    {
-      "file": "miniprogram/utils/journal.wxss",
-      "ok": true,
-      "declarations": 790
-    },
-    {
-      "file": "miniprogram/utils/mileage-pages.wxss",
-      "ok": true,
-      "declarations": 158
-    },
-    {
-      "file": "miniprogram/utils/personal-ui.wxss",
-      "ok": true,
-      "declarations": 1228
-    },
-    {
-      "file": "miniprogram/utils/service-ui.wxss",
-      "ok": true,
-      "declarations": 642
+      "declarations": 119
     }
   ],
   "wxssFixtureChecks": [
@@ -881,41 +695,6 @@
       "ok": true
     },
     {
-      "file": "miniprogram/components/mileage-board/mileage-board.js",
-      "request": "../../utils/mileage-board",
-      "line": 2,
-      "target": "miniprogram/utils/mileage-board.js",
-      "ok": true
-    },
-    {
-      "file": "miniprogram/components/mileage-board/mileage-board.js",
-      "request": "../../utils/request",
-      "line": 1,
-      "target": "miniprogram/utils/request.js",
-      "ok": true
-    },
-    {
-      "file": "miniprogram/pages/achievement-poster/achievement-poster.js",
-      "request": "../../utils/achievement-poster",
-      "line": 3,
-      "target": "miniprogram/utils/achievement-poster.js",
-      "ok": true
-    },
-    {
-      "file": "miniprogram/pages/achievement-poster/achievement-poster.js",
-      "request": "../../utils/achievement-model",
-      "line": 2,
-      "target": "miniprogram/utils/achievement-model.js",
-      "ok": true
-    },
-    {
-      "file": "miniprogram/pages/achievement-poster/achievement-poster.js",
-      "request": "../../utils/request",
-      "line": 1,
-      "target": "miniprogram/utils/request.js",
-      "ok": true
-    },
-    {
       "file": "miniprogram/pages/activity/activity.js",
       "request": "../../utils/request",
       "line": 1,
@@ -1001,48 +780,6 @@
     },
     {
       "file": "miniprogram/pages/club/club.js",
-      "request": "../../utils/request",
-      "line": 1,
-      "target": "miniprogram/utils/request.js",
-      "ok": true
-    },
-    {
-      "file": "miniprogram/pages/club-create/club-create.js",
-      "request": "../../utils/club-logo",
-      "line": 3,
-      "target": "miniprogram/utils/club-logo.js",
-      "ok": true
-    },
-    {
-      "file": "miniprogram/pages/club-create/club-create.js",
-      "request": "../../utils/club-identity",
-      "line": 2,
-      "target": "miniprogram/utils/club-identity.js",
-      "ok": true
-    },
-    {
-      "file": "miniprogram/pages/club-create/club-create.js",
-      "request": "../../utils/request",
-      "line": 1,
-      "target": "miniprogram/utils/request.js",
-      "ok": true
-    },
-    {
-      "file": "miniprogram/pages/club-edit/club-edit.js",
-      "request": "../../utils/club-logo",
-      "line": 3,
-      "target": "miniprogram/utils/club-logo.js",
-      "ok": true
-    },
-    {
-      "file": "miniprogram/pages/club-edit/club-edit.js",
-      "request": "../../utils/avatar",
-      "line": 2,
-      "target": "miniprogram/utils/avatar.js",
-      "ok": true
-    },
-    {
-      "file": "miniprogram/pages/club-edit/club-edit.js",
       "request": "../../utils/request",
       "line": 1,
       "target": "miniprogram/utils/request.js",
@@ -1154,34 +891,6 @@
       "ok": true
     },
     {
-      "file": "miniprogram/pages/member-profile/member-profile.js",
-      "request": "../../utils/member-profile",
-      "line": 3,
-      "target": "miniprogram/utils/member-profile.js",
-      "ok": true
-    },
-    {
-      "file": "miniprogram/pages/member-profile/member-profile.js",
-      "request": "../../utils/mileage-board",
-      "line": 2,
-      "target": "miniprogram/utils/mileage-board.js",
-      "ok": true
-    },
-    {
-      "file": "miniprogram/pages/member-profile/member-profile.js",
-      "request": "../../utils/request",
-      "line": 1,
-      "target": "miniprogram/utils/request.js",
-      "ok": true
-    },
-    {
-      "file": "miniprogram/pages/mileage/mileage.js",
-      "request": "../../utils/mileage-board",
-      "line": 2,
-      "target": "miniprogram/utils/mileage-board.js",
-      "ok": true
-    },
-    {
       "file": "miniprogram/pages/mileage/mileage.js",
       "request": "../../utils/request",
       "line": 1,
@@ -1191,15 +900,8 @@
     {
       "file": "miniprogram/pages/mine/mine.js",
       "request": "../../utils/legal-documents",
-      "line": 6,
-      "target": "miniprogram/utils/legal-documents.js",
-      "ok": true
-    },
-    {
-      "file": "miniprogram/pages/mine/mine.js",
-      "request": "../../utils/achievement-model",
       "line": 5,
-      "target": "miniprogram/utils/achievement-model.js",
+      "target": "miniprogram/utils/legal-documents.js",
       "ok": true
     },
     {
@@ -1232,13 +934,6 @@
     },
     {
       "file": "miniprogram/pages/news/detail.js",
-      "request": "../../utils/content",
-      "line": 3,
-      "target": "miniprogram/utils/content.js",
-      "ok": true
-    },
-    {
-      "file": "miniprogram/pages/news/detail.js",
       "request": "../../utils/guide-md",
       "line": 2,
       "target": "miniprogram/utils/guide-md.js",
@@ -1249,27 +944,6 @@
       "request": "../../utils/request",
       "line": 1,
       "target": "miniprogram/utils/request.js",
-      "ok": true
-    },
-    {
-      "file": "miniprogram/pages/news/editor.js",
-      "request": "../../utils/guide-md",
-      "line": 2,
-      "target": "miniprogram/utils/guide-md.js",
-      "ok": true
-    },
-    {
-      "file": "miniprogram/pages/news/editor.js",
-      "request": "../../utils/request",
-      "line": 1,
-      "target": "miniprogram/utils/request.js",
-      "ok": true
-    },
-    {
-      "file": "miniprogram/pages/news/news.js",
-      "request": "../../utils/content",
-      "line": 2,
-      "target": "miniprogram/utils/content.js",
       "ok": true
     },
     {
@@ -1308,31 +982,10 @@
       "ok": true
     },
     {
-      "file": "miniprogram/pages/race-archive/race-archive.js",
-      "request": "../../utils/request",
-      "line": 1,
-      "target": "miniprogram/utils/request.js",
-      "ok": true
-    },
-    {
-      "file": "miniprogram/pages/race-catalog/race-catalog.js",
-      "request": "../../utils/request",
-      "line": 1,
-      "target": "miniprogram/utils/request.js",
-      "ok": true
-    },
-    {
       "file": "miniprogram/pages/races/races.js",
       "request": "../../utils/request",
       "line": 1,
       "target": "miniprogram/utils/request.js",
-      "ok": true
-    },
-    {
-      "file": "miniprogram/pages/radar/radar.js",
-      "request": "../../utils/radar-preview",
-      "line": 2,
-      "target": "miniprogram/utils/radar-preview.js",
       "ok": true
     },
     {
@@ -1345,29 +998,22 @@
     {
       "file": "miniprogram/pages/runner/runner.js",
       "request": "../../utils/legal-documents",
-      "line": 4,
+      "line": 3,
       "target": "miniprogram/utils/legal-documents.js",
       "ok": true
     },
     {
       "file": "miniprogram/pages/runner/runner.js",
       "request": "../../utils/runner-center",
-      "line": 3,
+      "line": 2,
       "target": "miniprogram/utils/runner-center.js",
       "ok": true
     },
     {
       "file": "miniprogram/pages/runner/runner.js",
       "request": "../../utils/request",
-      "line": 2,
-      "target": "miniprogram/utils/request.js",
-      "ok": true
-    },
-    {
-      "file": "miniprogram/pages/runner/runner.js",
-      "request": "../../utils/achievement-model",
       "line": 1,
-      "target": "miniprogram/utils/achievement-model.js",
+      "target": "miniprogram/utils/request.js",
       "ok": true
     },
     {
@@ -1389,41 +1035,6 @@
       "request": "../../utils/request",
       "line": 1,
       "target": "miniprogram/utils/request.js",
-      "ok": true
-    },
-    {
-      "file": "miniprogram/pages/training-groups/training-groups.js",
-      "request": "../../utils/mileage-board",
-      "line": 2,
-      "target": "miniprogram/utils/mileage-board.js",
-      "ok": true
-    },
-    {
-      "file": "miniprogram/pages/training-groups/training-groups.js",
-      "request": "../../utils/request",
-      "line": 1,
-      "target": "miniprogram/utils/request.js",
-      "ok": true
-    },
-    {
-      "file": "miniprogram/utils/achievement-poster.js",
-      "request": "./achievement-model",
-      "line": 3,
-      "target": "miniprogram/utils/achievement-model.js",
-      "ok": true
-    },
-    {
-      "file": "miniprogram/utils/club-logo.js",
-      "request": "./avatar",
-      "line": 1,
-      "target": "miniprogram/utils/avatar.js",
-      "ok": true
-    },
-    {
-      "file": "miniprogram/utils/member-profile.js",
-      "request": "./mileage-board",
-      "line": 1,
-      "target": "miniprogram/utils/mileage-board.js",
       "ok": true
     },
     {
@@ -1463,27 +1074,27 @@
   "compile": [
     {
       "tool": "wcc",
-      "files": 38,
+      "files": 29,
       "pageFileCount": null,
       "exit": 0,
       "signal": null,
       "error": "",
-      "artifactBytes": 912970,
+      "artifactBytes": 663957,
       "output": "",
       "ok": true
     },
     {
       "tool": "wcsc",
-      "files": 45,
-      "pageFileCount": 45,
+      "files": 31,
+      "pageFileCount": 31,
       "exit": 0,
       "signal": null,
       "error": "",
-      "artifactBytes": 609233,
+      "artifactBytes": 355587,
       "output": "",
       "ok": true
     }
   ],
   "passed": true,
-  "finishedAt": "2026-11-14T15:25:08.188Z"
+  "finishedAt": "2026-11-11T05:23:23.383Z"
 }

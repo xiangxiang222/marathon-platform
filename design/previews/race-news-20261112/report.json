@@ -1,5 +1,5 @@
 {
-  "startedAt": "2026-11-12T03:42:09.795Z",
+  "startedAt": "2026-11-12T03:50:26.902Z",
   "isolation": "Temporary SQLite/media, ephemeral localhost HTTP; .env hidden; external browser requests blocked; no production data writes.",
   "checks": [
     {
@@ -287,7 +287,7 @@
         "key": "race-news-ca9f5e34705b89baf452"
       }
     ],
-    "backupFile": "/var/folders/hw/7bmlf6pd2rv36rk8yv0rltrm0000gn/T/marathon-race-news-live-EBOulH/deleted-simulation-backup.json",
+    "backupFile": "/var/folders/hw/7bmlf6pd2rv36rk8yv0rltrm0000gn/T/marathon-race-news-live-cmTy4b/deleted-simulation-backup.json",
     "publishedIds": [
       10,
       11,
@@ -306,5 +306,5 @@
     "latest": "2026-11-12"
   },
   "passed": true,
-  "finishedAt": "2026-11-12T03:42:12.893Z"
+  "finishedAt": "2026-11-12T03:50:29.936Z"
 }

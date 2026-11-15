@@ -123,5 +123,5 @@
     "Membership fixtures are inserted into a temporary database; search, navigation and creation use actual application APIs."
   ],
   "passed": true,
-  "finishedAt": "2026-11-12T04:03:24.471Z"
+  "finishedAt": "2026-11-12T04:02:44.256Z"
 }

@@ -1,5 +1,5 @@
 {
-  "startedAt": "2026-11-12T02:52:51.701Z",
+  "startedAt": "2026-11-12T03:59:21.565Z",
   "isolation": "Temporary SQLite/media, ephemeral localhost HTTP, built web/dist, .env hidden, browser external requests blocked; no production writes.",
   "checks": [
     {
@@ -36,89 +36,34 @@
       "name": "home",
       "width": 390,
       "scrollWidth": 390,
-      "bodyWidth": 390,
-      "screenshot": "home-390.png"
+      "bodyWidth": 390
     },
     {
       "name": "mine",
       "width": 390,
       "scrollWidth": 390,
-      "bodyWidth": 390,
-      "screenshot": "mine-390.png"
+      "bodyWidth": 390
     },
     {
       "name": "clubs",
       "width": 390,
       "scrollWidth": 390,
-      "bodyWidth": 390,
-      "screenshot": "clubs-390.png"
+      "bodyWidth": 390
     },
     {
       "name": "exercise",
       "width": 320,
       "scrollWidth": 320,
-      "bodyWidth": 320,
-      "screenshot": "exercise-320.png"
+      "bodyWidth": 320
     },
     {
       "name": "history",
       "width": 320,
       "scrollWidth": 320,
-      "bodyWidth": 320,
-      "screenshot": "history-320.png"
+      "bodyWidth": 320
     }
   ],
   "errors": [],
-  "accounts": [
-    {
-      "userId": 1,
-      "nickname": "体验验收晨光",
-      "plans": 6,
-      "results": 2,
-      "clubs": 3,
-      "monthRuns": 2,
-      "monthKm": 11.86,
-      "totalRuns": 2,
-      "histories": 2,
-      "signedActivities": 2
-    },
-    {
-      "userId": 2,
-      "nickname": "体验验收湖畔",
-      "plans": 6,
-      "results": 2,
-      "clubs": 2,
-      "monthRuns": 2,
-      "monthKm": 11.42,
-      "totalRuns": 2,
-      "histories": 2,
-      "signedActivities": 2
-    },
-    {
-      "userId": 3,
-      "nickname": "体验验收山径",
-      "plans": 6,
-      "results": 2,
-      "clubs": 2,
-      "monthRuns": 2,
-      "monthKm": 12.3,
-      "totalRuns": 2,
-      "histories": 2,
-      "signedActivities": 2
-    },
-    {
-      "userId": 4,
-      "nickname": "体验验收原有记录",
-      "plans": 5,
-      "results": 1,
-      "clubs": 2,
-      "monthRuns": 2,
-      "monthKm": 12.68,
-      "totalRuns": 2,
-      "histories": 2,
-      "signedActivities": 2
-    }
-  ],
   "limitations": [
     "Browser checks use desktop Chromium mobile viewports, not WeChat devices.",
     "Homepage is the public race catalogue; account-specific data is checked on private pages and authenticated APIs."
@@ -156,5 +101,15 @@
     "totalRows": 88
   },
   "passed": true,
-  "finishedAt": "2026-11-12T02:52:57.650Z"
+  "finishedAt": "2026-11-12T03:59:27.360Z",
+  "accountCount": 4,
+  "validation": {
+    "unitTests": 9,
+    "isolatedHttpBrowserChecks": 7,
+    "isolatedAccounts": 4,
+    "viewportChecks": 5,
+    "buildPassed": true,
+    "baseCommit": "d4ad37b"
+  },
+  "artifactNote": "Viewport screenshots were captured during isolated acceptance; this tracked report retains only anonymous check results and dimensions."
 }

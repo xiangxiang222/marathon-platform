@@ -10,3 +10,21 @@ coverage/
 *.log
 .idea/
 .vscode/
+
+# Generated previews and test reports; source scripts remain versioned.
+/design/previews/**/*.png
+/design/previews/**/*.jpg
+/design/previews/**/*.jpeg
+/design/previews/**/*.webp
+/design/previews/**/*.gif
+/design/previews/**/*.avif
+/design/previews/**/*.pdf
+/design/previews/**/*.mp4
+/design/previews/**/*.mov
+/design/previews/**/*.html
+/design/previews/**/*.json
+/design/previews/**/*.csv
+/design/previews/**/*.txt
+/design/previews/**/*.md
+/design/prototypes/
+**/project.private.config.json
