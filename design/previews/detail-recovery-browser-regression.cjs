@@ -71,7 +71,8 @@ async function run() {
         await page.getByRole("alert").getByText("服务暂不可用，请稍后重试").waitFor();
         await screenshot(page, "recovery-" + kind + "-error-" + width);
         await page.getByRole("button", { name: "重新加载", exact: true }).click();
-        await page.getByRole("heading", { name: kind === "album" ? "周末奥森训练相册" : "11月1日 奥森南门", exact: true }).waitFor();
+        await page.getByRole("heading", { name: kind === "album" ? album.activity.title : meetup.place, exact: true }).waitFor();
+        if (kind === "meetup") await page.locator(".session-appointment").getByText(meetup.dateLabel, { exact: true }).waitFor();
         assert.equal(await page.getByRole("alert").count(), 0);
         await screenshot(page, "recovery-" + kind + "-ready-" + width);
         report.checks.push({ name: kind + " first failure recovers on retry", width, passed: true });

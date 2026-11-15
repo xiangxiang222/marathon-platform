@@ -137,7 +137,8 @@ for (const file of all.filter((item) => item.endsWith(".json"))) {
 const app = JSON.parse(fs.readFileSync(path.join(mini, "app.json"), "utf8"));
 for (const page of app.pages) for (const ext of [".js", ".json", ".wxml", ".wxss"]) if (!fs.existsSync(path.join(mini, page + ext))) report.references.push({ missing: page + ext });
 for (const [tool, ext] of [["wcc", ".wxml"], ["wcsc", ".wxss"]]) {
-  const input = all.filter((file) => file.endsWith(ext)).map((file) => path.relative(mini, file));
+  // Native compilers resolve imports using slash-separated mini-program paths on every OS.
+  const input = all.filter((file) => file.endsWith(ext)).map((file) => path.relative(mini, file).split(path.sep).join("/"));
   report.compile.push(compile(tool, input, mini, path.join(output, tool + ".js")));
 }
 report.passed = report.js.every((item) => item.exit === 0) && report.json.every((item) => item.ok) && report.wxss.every(item => item.ok) && report.wxssFixtureChecks.every(item => item.passed) && report.nativeSyntaxProbe.passed && report.nativeCoverageProbe.passed && !report.references.length && report.moduleReferences.every(item => item.ok) && report.moduleFixtureChecks.every(item => item.passed) && report.compile.every((item) => item.ok);

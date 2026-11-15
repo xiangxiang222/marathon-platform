@@ -28,6 +28,7 @@ async function main() {
         if (apiPath === "/runs") return reply(200, { month: { km: 0, count: 0, days: 0, target: 0, canFlag: true }, year: { km: 0 }, total: { km: 0, count: 0 }, runs: [] });
         if (apiPath === "/races") return reply(200, { races: [], total: 0, page: 1, pages: 1 });
         if (apiPath === "/reminders") return reply(200, { reminders: [] });
+        if (apiPath === "/race-catalog") return reply(200, { races: [] });
         throw new Error("Unexpected fixture API " + apiPath);
       });
       for (const scenario of [

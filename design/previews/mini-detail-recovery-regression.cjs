@@ -51,7 +51,7 @@ async function run() {
     assert.equal(page.data.loading, false);
     assert.equal(page.data[stateKey], null);
     assert.equal(page.data.message, "你不在这个跑团里");
-    assert.match(markup, /<view wx:else class="(?:detail-state|meetup-state)">/);
+    assert.match(markup, /<view wx:else class="[^"]*\b(?:detail-state|meetup-state)\b[^"]*">/);
     assert.match(markup, /\{\{message \|\| ['"][^'"]+['"]\}\}/);
     assert.match(markup, /<button wx:if="\{\{!loading\}\}" class="btn" bindtap="load">重新加载<\/button>/);
     report.checks.push({ name: name + " initial 403 exposes an error state and a retry entry", passed: true });

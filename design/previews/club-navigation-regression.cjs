@@ -162,23 +162,23 @@ async function run() {
       await page.getByRole("link", { name: /约跑南门/ }).waitFor();
       await page.locator(".primary-tabs").getByRole("button", { name: "成员", exact: true }).click();
       await page.getByRole("button", { name: "会费名单", exact: true }).click();
-      await page.getByText("我的状态：未填写", { exact: true }).waitFor();
+      await page.locator(".fee-mine-status").getByText("未填写", { exact: true }).waitFor();
       assert.equal(new URL(page.url()).searchParams.get("view"), "fees");
       await page.getByRole("link", { name: "返回我的跑团", exact: true }).click();
       await page.waitForURL(base + "/clubs");
       await page.goBack();
-      await page.getByText("我的状态：未填写", { exact: true }).waitFor();
+      await page.locator(".fee-mine-status").getByText("未填写", { exact: true }).waitFor();
       report.checks.push({ width, name: "activity/member subnavigation, history return and missing fee mine field remain usable", passed: true });
 
-      await page.locator(".top-invite").click();
+      await page.locator(".hero-invite").click();
       let shared = await page.evaluate(() => window.shared);
       assert.equal(shared.length, 1); assert.equal(shared[0].url, base + "/clubs/44/public"); assert.equal(await page.evaluate(() => window.copied.length), 0);
       await page.evaluate(() => { window.shareMode = "abort"; });
-      await page.locator(".top-invite").click();
+      await page.locator(".hero-invite").click();
       assert.equal(await page.evaluate(() => window.copied.length), 0);
       assert.equal(await page.locator(".club-error").count(), 0);
       await page.evaluate(() => { window.shareMode = "fail"; });
-      await page.locator(".top-invite").click();
+      await page.locator(".hero-invite").click();
       await page.getByRole("status").filter({ hasText: "跑团名片链接已复制" }).waitFor();
       assert.deepEqual(await page.evaluate(() => window.copied), [base + "/clubs/44/public"]);
       report.checks.push({ width, name: "native public-card sharing, silent cancellation and real copy fallback", passed: true });

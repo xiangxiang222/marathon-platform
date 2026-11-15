@@ -19,6 +19,7 @@ async function auditWidth(page, name) {
 
 async function main() {
   const browser = await chromium.launch({ executablePath: process.env.CHROME_PATH || "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome", headless: true, args: ["--no-sandbox", "--disable-dev-shm-usage"] });
+  try {
   for (const width of [320, 390, 1440]) {
     const context = await browser.newContext({ viewport: { width, height: 900 } });
     const page = await context.newPage();
@@ -54,13 +55,13 @@ async function main() {
     await page.goto(base + "/");
     await page.getByRole("alert").getByRole("button", { name: "重试" }).waitFor();
     await page.getByRole("alert").getByRole("button", { name: "重试" }).click();
-    await page.getByText("云上越野训练赛").waitFor();
+    await page.locator(".home-results").getByText("云上越野训练赛", { exact: true }).waitFor();
     await page.getByRole("navigation", { name: "赛事形式" }).getByRole("button", { name: "线上赛" }).click();
     await page.getByRole("navigation", { name: "赛事类型" }).getByRole("button", { name: "越野赛" }).click();
     const combined = queries.at(-1);
     assert.equal(new URLSearchParams(combined).get("kind"), "trail");
     assert.equal(new URLSearchParams(combined).get("meet"), "online");
-    await page.getByText("云上越野训练赛").waitFor();
+    await page.locator(".home-results").getByText("云上越野训练赛", { exact: true }).waitFor();
     await page.getByText("正在加载赛历…").waitFor({ state: "hidden" });
     report.checks.push({ name: "race track type and participation format combine independently", query: combined });
     await auditWidth(page, "home-" + width);
@@ -107,6 +108,7 @@ async function main() {
     });
     await page.goto(base + "/clubs/55/calls/8");
     await page.getByRole("heading", { name: "杭州马拉松", exact: true }).waitFor();
+    await page.locator(".share-fold summary").click();
     await page.getByRole("button", { name: "生成成绩长图" }).click();
     await page.getByAltText("成绩接龙长图").waitFor();
     const posterSize = await page.getByAltText("成绩接龙长图").evaluate((image) => ({ width: image.naturalWidth, height: image.naturalHeight }));
@@ -121,7 +123,9 @@ async function main() {
     await context.close();
   }
 
-  await browser.close();
+  } finally {
+    await browser.close();
+  }
   assert.deepEqual(report.errors, []);
   report.passed = true;
   fs.writeFileSync(path.join(output, "product-browser-report.json"), JSON.stringify(report, null, 2));
