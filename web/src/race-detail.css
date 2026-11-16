@@ -67,33 +67,35 @@
 .race-page :deep(.race-outings .outings-empty){border-color:#eadedb;background:#ffffffc7}
 .race-page :deep(.race-outings .outing-card){border-color:#ece2e1;background:#fff;box-shadow:0 3px 12px #7e535304}
 .race-page :deep(.race-outings .outing-form){background:#fff;border-color:#efd2d9}
+/* Short panels must not shrink the page and move the tab row. */
+.race-tab-content{display:flow-root;min-height:calc(100vh - 70px)}
 .race-page .tabs{display:flex;gap:4px;margin:22px 16px 14px;padding:5px;border:1px solid #eae4e3;border-radius:13px;background:#eeebe9;box-shadow:inset 0 1px 3px #49252b04}
 .race-page .tabs .tab{position:relative;flex:1;min-width:0;min-height:44px;height:auto;padding:10px 5px;border:0;border-radius:9px;background:transparent;color:#9b8c92;font-size:13px;line-height:1.6;font-weight:500}
 .race-page .tabs .tab.on{background:#fff;color:#df2c4b;box-shadow:0 2px 7px #7750570b;font-weight:600}
 .race-page .tabs .tab.on:after{display:none}
-.race-page>.block:where(:not(.race-plan):not(.race-companionship)){margin-top:14px;padding:19px 18px;border:1px solid #eee8e6;border-radius:16px;background:#fff;box-shadow:0 3px 13px #56333202}
-.race-page>.block:not(.race-plan):not(.race-companionship)>h2{display:flex;align-items:center;gap:8px;margin-bottom:12px;color:#55454e;font-size:16px;font-weight:650;line-height:1.6}
-.race-page>.block:not(.race-plan):not(.race-companionship)>h2:before{content:'';display:block;flex:none;width:4px;height:14px;border-radius:3px;background:#e6a9b4}
-.race-page>.race-timeline-card{background:#fffaf7;border-color:#f1e5df}
+.race-tab-content>.block:where(:not(.race-plan):not(.race-companionship)){margin-top:14px;padding:19px 18px;border:1px solid #eee8e6;border-radius:16px;background:#fff;box-shadow:0 3px 13px #56333202}
+.race-tab-content>.block:not(.race-plan):not(.race-companionship)>h2{display:flex;align-items:center;gap:8px;margin-bottom:12px;color:#55454e;font-size:16px;font-weight:650;line-height:1.6}
+.race-tab-content>.block:not(.race-plan):not(.race-companionship)>h2:before{content:'';display:block;flex:none;width:4px;height:14px;border-radius:3px;background:#e6a9b4}
+.race-tab-content>.race-timeline-card{background:#fffaf7;border-color:#f1e5df}
 .race-timeline-card .timeline{position:relative;gap:0;padding:10px 0 2px;isolation:isolate}
 .race-timeline-card .timeline:before{content:'';position:absolute;z-index:-1;top:14px;right:24px;left:24px;height:1px;background:#f2d8dc}
 .race-timeline-card .tl{min-width:105px;padding:0 7px}
 .race-timeline-card .tl .dot{width:9px;height:9px;margin-bottom:13px;background:#ee5973;box-shadow:0 0 0 4px #fff4f5}
 .race-timeline-card .tl b{color:#755d65;font-size:13px;font-weight:600;line-height:1.6}
 .race-timeline-card .tl>span{color:#a58b94;font-size:12px;line-height:1.7}
-.race-page>.race-signup-card{background:linear-gradient(135deg,#fff,#fffaf7);border-color:#f0e7df}
+.race-tab-content>.race-signup-card{background:linear-gradient(135deg,#fff,#fffaf7);border-color:#f0e7df}
 .race-page .race-project-card .chip{border:1px solid #f2e4e5;border-radius:7px;background:#fcf5f5;color:#a4757d;font-size:12px;font-weight:500}
-.race-page>.block .src{color:#978e93;line-height:1.85}
-.race-page>.block .row{border-bottom-color:#f1eceb;font-size:13px;line-height:1.8}
-.race-page>.block .row>span{color:#a3939b}
-.race-page>.block .row>b{color:#6a5963;font-weight:500}
-.race-page>.block .mate{border-color:#f0e9e9;color:#71616a;font-size:13px}
-.race-page>.block .mate>b{color:#a28b96}
+.race-page>.block .src,.race-tab-content>.block .src{color:#978e93;line-height:1.85}
+.race-page>.block .row,.race-tab-content>.block .row{border-bottom-color:#f1eceb;font-size:13px;line-height:1.8}
+.race-page>.block .row>span,.race-tab-content>.block .row>span{color:#a3939b}
+.race-page>.block .row>b,.race-tab-content>.block .row>b{color:#6a5963;font-weight:500}
+.race-page>.block .mate,.race-tab-content>.block .mate{border-color:#f0e9e9;color:#71616a;font-size:13px}
+.race-page>.block .mate>b,.race-tab-content>.block .mate>b{color:#a28b96}
 .race-page .companion-empty{background:#faf8f7!important}
 .race-page .share-toggle{color:#5d4751;font-size:16px}
 .race-page .share-toggle>span:last-child{color:#b2a0a8}
 .race-page .signup-qr{padding:8px;border:1px solid #f1e6e6;border-radius:12px}
 .race-page .guide-md .md{color:#6e6067;line-height:1.9}
 .race-page .guide-md :is(.md-h1,.md-h2,.md-h3){color:#61454e}
-@media(max-width:380px){.race-page .race-hero{gap:12px;padding:20px 17px 40px;min-height:207px}.race-page .race-hero h1{font-size:24px;line-height:1.45}.race-page .race-hero .race-calendar{width:60px;min-width:60px;border-radius:10px}.race-page .race-calendar>b{font-size:31px}.race-page .race-overview{padding:17px 12px 14px}.overview-heading>span{display:none}.race-facts-grid{gap:8px}.race-fact{padding:12px 10px;min-height:96px}.race-fact>b{font-size:13px}.race-page .race-plan{padding:18px 14px 16px}.race-plan .plan-heading h2{gap:6px;font-size:16px}.plan-heading-icon{width:25px;height:27px}.plan-heading-icon svg{width:17px;height:17px}.race-plan .plan-privacy{font-size:12px;gap:3px}.race-plan .plan-summary{gap:8px}.race-plan .plan-status.is-empty{font-size:18px}.race-page .race-archive-entry{gap:9px;padding:14px 12px}.race-archive-entry .archive-entry-icon{width:35px;height:42px;border-radius:9px}.archive-entry-icon svg{width:25px;height:25px}.race-archive-entry .archive-entry-copy strong{font-size:13px}.race-page>.block:not(.race-plan):not(.race-companionship){padding:17px 15px}}
+@media(max-width:380px){.race-page .race-hero{gap:12px;padding:20px 17px 40px;min-height:207px}.race-page .race-hero h1{font-size:24px;line-height:1.45}.race-page .race-hero .race-calendar{width:60px;min-width:60px;border-radius:10px}.race-page .race-calendar>b{font-size:31px}.race-page .race-overview{padding:17px 12px 14px}.overview-heading>span{display:none}.race-facts-grid{gap:8px}.race-fact{padding:12px 10px;min-height:96px}.race-fact>b{font-size:13px}.race-page .race-plan{padding:18px 14px 16px}.race-plan .plan-heading h2{gap:6px;font-size:16px}.plan-heading-icon{width:25px;height:27px}.plan-heading-icon svg{width:17px;height:17px}.race-plan .plan-privacy{font-size:12px;gap:3px}.race-plan .plan-summary{gap:8px}.race-plan .plan-status.is-empty{font-size:18px}.race-page .race-archive-entry{gap:9px;padding:14px 12px}.race-archive-entry .archive-entry-icon{width:35px;height:42px;border-radius:9px}.archive-entry-icon svg{width:25px;height:25px}.race-archive-entry .archive-entry-copy strong{font-size:13px}.race-tab-content>.block:not(.race-plan):not(.race-companionship){padding:17px 15px}}
 @media(prefers-reduced-motion:reduce){.race-page .race-calendar{transform:none}}

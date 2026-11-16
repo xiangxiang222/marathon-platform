@@ -14,7 +14,7 @@ const race = { id: 'sample-race', name: '合成参赛流程验收', city: '验�
 
 function fixture(name = 'race', handler) {
   const app = { globalData: { token: 'runner-a', nickname: '合成跑者', baseUrl: 'https://runner.example' } };
-  const state = { following: false, status: '', sharedClubIds: [], note: '', results: [], outings: [], confirmDeletion: true }, requests = [], patches = [], storage = {}, navigation = [];
+  const state = { following: false, status: '', sharedClubIds: [], note: '', results: [], outings: [], confirmDeletion: true }, requests = [], patches = [], storage = {}, navigation = [], scrolls = [];
   const presentOuting = item => { const joined = item.members.some(member => member.userId === 1), canCancel = item.host.userId === 1;
     return { ...copy(item), memberCount: item.members.length, remaining: Math.max(0, item.capacity - item.members.length), joined, isHost: canCancel, canCancel, canJoin: !joined && item.members.length < item.capacity }; };
   const reply = async (url, method = 'GET', body) => {
@@ -49,7 +49,7 @@ function fixture(name = 'race', handler) {
   const file = path.join(root, 'miniprogram/pages', name, name + '.js');
   const localRequire = createRequire(file);
   let definition;
-  const wx = new Proxy({ setStorageSync(key, value) { storage[key] = value; }, getStorageSync(key) { return storage[key]; }, removeStorageSync(key) { delete storage[key]; }, navigateTo(value) { navigation.push(value.url); }, switchTab(value) { navigation.push(value.url); }, showModal(options) { options.success({ confirm: state.confirmDeletion, cancel: !state.confirmDeletion }); } }, { get: (target, key) => target[key] || (() => {}) });
+  const wx = new Proxy({ setStorageSync(key, value) { storage[key] = value; }, getStorageSync(key) { return storage[key]; }, removeStorageSync(key) { delete storage[key]; }, navigateTo(value) { navigation.push(value.url); }, switchTab(value) { navigation.push(value.url); }, pageScrollTo(options) { scrolls.push(copy(options)); }, showModal(options) { options.success({ confirm: state.confirmDeletion, cancel: !state.confirmDeletion }); } }, { get: (target, key) => target[key] || (() => {}) });
   vm.runInNewContext(fs.readFileSync(file, 'utf8'), {
     Page(value) { definition = value; }, getApp: () => app, wx, console, Date, Promise, setTimeout, clearTimeout,
     require(id) {
@@ -58,7 +58,7 @@ function fixture(name = 'race', handler) {
     }
   }, { filename: file });
   const page = { ...definition, data: copy(definition.data), setData(patch) { patches.push(copy(patch)); Object.assign(this.data, patch); } };
-  return { page, state, app, requests, storage, navigation, patches, reply };
+  return { page, state, app, requests, storage, navigation, scrolls, patches, reply };
 }
 
 async function main() {
@@ -165,6 +165,12 @@ async function main() {
   assert.equal(cal.page.data.dayRaces[0].following, true); assert.equal(cal.page.data.dayRaces[0].myStatus, '中签');
   const markup = fs.readFileSync(path.join(root, 'miniprogram/pages/race/race.wxml'), 'utf8');
   assert.match(markup, /仅自己可见/); assert.doesNotMatch(markup, /供自己与跑团留存/); assert.match(markup, /活动需单独报名/);
+  for (const id of ['news', 'result', 'signup']) {
+    f.page.pickTab(event({ id })); assert.equal(f.page.data.tab, id);
+  }
+  f.page.pickPlanStage(event({ id: 'finished' })); f.page.pickTab(event({ id: 'result' }));
+  assert.equal(f.page.data.tab, 'result', 'the finish-result entry still selects the result content');
+  assert.deepEqual(f.scrolls, [], 'switching race tabs must keep the current scroll position');
   checks.push('Calendar retains personal indicators; privacy and official versus club sign-up boundaries are explicit');
 
   const group = fixture(); group.page.onLoad({ id: race.id, clubId: '8', outings: '1' }); await group.page.load(); await group.page.loadOutings();
@@ -196,6 +202,7 @@ async function main() {
   await join.page.changeOutingMembership(event({ id: 31 })); assert.equal(join.page.data.outings[0].joined, false); assert.equal(join.page.data.outings[0].remaining, 1);
   join.page.pickOutingFilter(event({}, '2')); assert.equal(join.page.data.visibleOutings.length, 0);
   join.page.showClubOutings(event({ club: 7 })); assert.equal(join.page.data.outingFilterClubId, 7); assert.equal(join.page.data.visibleOutings.length, 3);
+  assert.deepEqual(join.scrolls.at(-1), { selector: '#race-outings', duration: 200 }, 'dedicated outing navigation keeps its section scroll');
   checks.push('Open outing lists filter by club, show rosters and capacity, serialize join and leave, and block full or elapsed arrangements');
   join.state.outings[0].members.push({ userId: 1, nickname: '合成跑者' });
   join.page.paintOutings([{ ...baseOuting, startsAt: '2000-03-20T08:30', joined: true, isHost: false, canCancel: true, memberCount: 2, remaining: 0, canJoin: false }]);

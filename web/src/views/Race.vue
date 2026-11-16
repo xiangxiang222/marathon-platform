@@ -100,6 +100,7 @@
     <div v-if="tabs.length" class="tabs" role="tablist">
       <button v-for="item in tabs" :key="item.id" type="button" class="tab" :class="{ on: tab === item.id }" @click="pickTab(item.id)">{{ item.label }}</button>
     </div>
+    <div v-if="race" class="race-tab-content">
     <template v-if="race && tab === 'signup'">
       <div v-if="race.nodes.length" class="block race-timeline-card">
         <div class="race-section-heading"><h2>重要时间</h2><span>报名 · 参赛节点</span></div>
@@ -283,6 +284,7 @@
         <p v-if="resultMessage" class="err">{{ resultMessage }}</p>
       </div>
     </template>
+    </div>
     <button v-if="viewer" class="viewer" type="button" @click="viewer = ''">
       <img :src="viewer" alt="放大查看" />
     </button>
@@ -506,7 +508,6 @@ const tabs = computed(() => {
 
 function pickTab(id) {
   tab.value = id;
-  window.scrollTo(0, 0);
 }
 
 watch(tabs, (list) => {
