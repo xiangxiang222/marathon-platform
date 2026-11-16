@@ -42,7 +42,7 @@ const STATUSES = [
   { label: "待开赛", value: "wait" },
   { label: "比赛中", value: "live" },
   { label: "比赛结束", value: "closed" },
-  { label: "报名未公布", value: "unannounced" }
+  { label: "报名未录入", value: "unannounced" }
 ];
 
 function navigationMetrics() {

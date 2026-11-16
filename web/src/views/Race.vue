@@ -10,44 +10,76 @@
       <button v-if="!loading" type="button" class="retry-button" @click="retryLoad">重新加载</button>
       <router-link v-if="!loading" to="/">返回赛事列表</router-link>
     </section>
-    <div v-if="race" class="pass race-hero" :class="'tone-' + tone">
-      <svg class="race-hero-lines" viewBox="0 0 430 300" fill="none" aria-hidden="true"><circle cx="413" cy="65" r="90"/><circle cx="413" cy="65" r="124"/><circle cx="413" cy="65" r="158"/><path d="M-30 261c85-89 142 52 239-32 64-55 85-17 164-69 34-22 58-23 88-17M-30 278c88-86 150 49 247-35 65-56 85-18 164-70 36-23 61-21 87-18"/></svg>
+    <button v-if="race?.coverSheet && !coverFailed" class="race-cover" type="button" aria-label="查看赛事封面" @click="openSheet(race.coverSheet.id)"><img :src="sheetSrc(race.coverSheet.id)" :alt="race.name + '赛事封面'" fetchpriority="high" @error="coverFailed = true" /><span>查看封面 <span aria-hidden="true">↗</span></span></button>
+    <section v-if="race" class="pass race-hero" :class="['tone-' + tone, { 'has-cover': race.coverSheet && !coverFailed }]" aria-labelledby="race-title">
+      <svg v-if="!race.coverSheet || coverFailed" class="race-hero-lines" viewBox="0 0 430 280" fill="none" aria-hidden="true"><path d="M330-60h40a85 85 0 0 1 85 85v85a85 85 0 0 1-85 85h-40a85 85 0 0 1-85-85V25a85 85 0 0 1 85-85Z"/><path d="M330-42h40a67 67 0 0 1 67 67v85a67 67 0 0 1-67 67h-40a67 67 0 0 1-67-67V25a67 67 0 0 1 67-67Z"/><path d="M330-24h40a49 49 0 0 1 49 49v85a49 49 0 0 1-49 49h-40a49 49 0 0 1-49-49V25a49 49 0 0 1 49-49Z"/><path d="M277 248v-41h26v41m6 0v-72h23v72m8 0v-54h36v54m9 0v-92h28v92m-150 0h167"/><path d="M246 207h-25v41h-28m67-203h160M260 53h160"/></svg>
       <div class="pass-copy">
-        <span class="pass-pill">赛事 · {{ race.regStatus }}</span>
-        <h1>{{ race.name }}</h1>
-        <p class="race-hero-place"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 6c0 3.5-5 8-5 8S3 9.5 3 6a5 5 0 1 1 10 0Z"/><circle cx="8" cy="6" r="1.5"/></svg>{{ placeLine }}</p>
-        <div v-if="projectLabels.length" class="race-hero-projects"><span v-for="label in projectLabels" :key="label">{{ label }}</span></div>
+        <div class="race-hero-eyebrow"><span>{{ race.raceDate ? race.raceDate.slice(0, 4) + ' 年度赛事' : '赛事日历' }}</span><span class="pass-pill">{{ publicStage }}</span></div>
+        <h1 id="race-title">{{ race.name }}</h1>
+        <p class="race-hero-date"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="3" y="4.5" width="14" height="13" rx="2"/><path d="M6 2.5v4m8-4v4M3 8.5h14"/></svg><strong>{{ race.raceDate || '比赛日期未录入' }}</strong><span v-if="race.startAt">{{ race.startAt }} 起跑</span></p>
+        <p class="race-hero-place"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 6c0 3.5-5 8-5 8S3 9.5 3 6a5 5 0 1 1 10 0Z"/><circle cx="8" cy="6" r="1.5"/></svg>{{ locationLine || '举办地点未录入' }}</p>
+        <div v-if="projectLabels.length" class="race-hero-projects" aria-label="赛事项目"><span v-for="label in projectLabels" :key="label">{{ label }}</span></div><p v-else class="race-project-missing">赛事项目尚未录入</p>
+        <button v-if="coverFailed" type="button" class="cover-retry" @click="coverFailed = false">封面暂时无法加载 · 重试</button>
+        <div class="race-extra-facts"><span>{{ race.meet === 'online' ? '线上赛' : '线下赛' }}</span><span>{{ typeLabel }}</span><span v-if="race.gradeLabel">{{ race.gradeLabel }}</span></div>
       </div>
-      <div class="pass-date race-calendar">
-        <template v-if="parts.day"><span>{{ parts.month }}月</span><b>{{ parts.day }}</b><small>比赛日</small></template>
-        <small v-else>日期<br />待公布</small>
-      </div>
-    </div>
+    </section>
     <div v-if="race" class="detail race-overview">
-      <div class="race-section-heading overview-heading"><h2>赛事速览</h2></div>
-      <div class="race-facts-grid">
-        <div class="race-fact"><span class="race-fact-label"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="3" y="4.5" width="14" height="13" rx="2"/><path d="M6 2.5v4m8-4v4M3 8.5h14m-10 4h2m2 0h2"/></svg>比赛日</span><b>{{ race.raceDate }}</b></div>
-        <div class="race-fact"><span class="race-fact-label"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M16 7.5C16 12 10 18 10 18S4 12 4 7.5a6 6 0 0 1 12 0Z"/><circle cx="10" cy="7.5" r="2"/></svg>地点</span><b>{{ locationLine }}</b></div>
-        <div class="race-fact"><span class="race-fact-label"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 17V3m0 1c4-3 8 3 12 0v8c-4 3-8-3-12 0"/></svg>项目</span><b>{{ projectLabels.join(" / ") }}</b></div>
-        <div class="race-fact fact-registration" :class="{ 'fact-soon': race.open && race.daysLeft <= 3 }"><span class="race-fact-label"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="7"/><path d="M10 6v4l3 2"/></svg>{{ race.deadlineName }}</span><b :class="{ soon: race.open && race.daysLeft <= 3 }">{{ race.deadlineLabel }}</b></div>
-      </div>
-      <div class="race-extra-facts"><span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="2.5" y="3.5" width="11" height="9" rx="2"/><path d="M5.5 6.5h5m-5 3h3"/></svg>举办 · {{ race.meet === "online" ? "线上" : "线下" }}</span><span v-if="race.gradeLabel"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m8 2 2 3.5 4 .5-3 3 .5 4-3.5-2-3.5 2L5 9 2 6l4-.5L8 2Z"/></svg>{{ race.gradeLabel }}</span><span v-if="race.phone"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m5 2 2 3-1.5 1.5a8 8 0 0 0 4 4L11 9l3 2-1 3C6 14 2 10 2 3l3-1Z"/></svg>咨询 · {{ race.phone }}</span></div>
-      <p v-for="item in conflicts" :key="item.text" class="warn">{{ item.text }}</p>
       <div class="race-follow-row">
-        <span class="follow-symbol" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M7 4.5h10a1 1 0 0 1 1 1V20l-6-3.5L6 20V5.5a1 1 0 0 1 1-1Z"/></svg></span>
-        <span class="follow-copy"><strong>{{ following ? '已关注这场比赛' : '关注这场比赛' }}</strong><small>收进我的赛事，报名节点会在站内提醒。</small></span>
-        <FollowRaceButton appearance="detail" :race-id="race.id" :race-name="race.name" :following="following" @change="value => following = value" />
+        <span class="follow-copy"><strong>{{ following ? '已收进我的赛事' : '关注这场比赛' }}</strong><small>{{ following ? '与参赛计划分别管理' : '收藏赛事，接收站内节点提醒' }}</small></span>
+        <FollowRaceButton appearance="list" :race-id="race.id" :race-name="race.name" :following="following" @change="value => following = value" />
       </div>
+      <p v-for="item in conflicts" :key="item.text" class="warn">{{ item.text }}</p>
     </div>
+    <section v-if="race" class="official-actions" aria-labelledby="official-actions-title">
+      <div class="official-heading"><span id="official-actions-title">官方报名与查询</span><span class="official-stage">{{ publicStage }}</span></div><p v-if="nextMoment && nextMoment.key !== 'race'" class="official-moment"><span>{{ nextMoment.label }}</span><strong>{{ nextMoment.at }}</strong><small v-if="nextMoment.text">{{ nextMoment.text }}</small></p>
+      <a v-if="primaryOfficial" class="official-primary" :href="primaryOfficial.url" target="_blank" rel="noopener" @click="onOfficialOpen(primaryOfficial)"><span>{{ primaryOfficial.label }}</span><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h12m-5-5 5 5-5 5"/></svg></a>
+      <p v-else class="official-unavailable">{{ officialHint }}</p>
+      <nav v-if="secondaryOfficial.length" class="official-secondary" aria-label="官方查询入口"><a v-for="link in secondaryOfficial" :key="link.key" :href="link.url" target="_blank" rel="noopener" @click="onOfficialOpen(link)">{{ link.label }}<span aria-hidden="true">›</span></a></nav>
+      <details v-if="signupQr" class="signup-code" @click="prepareFold"><summary>手机扫码报名<span aria-hidden="true">＋</span></summary><img v-if="!qrFailed" :src="signupQr" alt="官方报名页二维码" loading="lazy" @error="qrFailed = true" /><p v-else class="src">二维码暂时无法加载。<button type="button" class="media-retry" @click="qrFailed = false">重试</button></p><p class="src">扫描二维码前往已录入的官方报名页。</p></details>
+      <div v-if="askSignup" class="ask"><span>已在官方渠道提交报名？</span><button class="undo" type="button" :disabled="planBusy" @click="confirmSigned">{{ ready ? '记为已报名' : '登录后记录' }}</button><button class="undo" type="button" @click="askSignup = false">稍后再记</button></div>
+      <p class="official-note">报名与缴费在官方渠道完成，个人计划单独记录。</p>
+    </section>
+    <div v-if="tabs.length" class="tabs" role="tablist">
+      <button v-for="item in tabs" :key="item.id" type="button" role="tab" :id="'race-tab-' + item.id" :aria-selected="tab === item.id" :tabindex="tab === item.id ? 0 : -1" aria-controls="race-content" class="tab" :class="{ on: tab === item.id }" @click="pickTab(item.id)" @keydown="moveTab($event, item.id)">{{ item.label }}</button>
+    </div>
+    <div v-if="race" id="race-content" ref="raceTabPanel" class="race-tab-content" :style="{ minHeight: tabContentMinHeight + 'px' }" role="tabpanel" :aria-labelledby="'race-tab-' + tab">
+    <template v-if="race && tab === 'signup'">
+      <div v-if="race.nodes.some(node => node.key !== 'race')" class="block race-timeline-card">
+        <div class="race-section-heading"><h2>重要时间</h2><span>报名 · 参赛节点</span></div>
+        <div class="timeline">
+          <div v-for="node in sortedNodes" :key="node.key" class="tl" :class="{ 'is-past': node.past, 'is-next': node.key === nextMoment?.key, 'is-today': node.today }">
+            <span class="dot"></span>
+            <b>{{ node.at }}</b>
+            <span>{{ node.label }}<small v-if="node.today">今天</small><small v-else-if="node.key === nextMoment?.key">下一节点</small></span>
+          </div>
+        </div>
+      </div>
+      <div class="block race-project-card">
+        <h2>参赛项目与费用</h2>
+        <div class="row"><span>距离</span><b>{{ (race.distanceLabels || []).join(' / ') || '未录入' }}</b></div>
+        <div v-if="race.groups?.length" class="row"><span>其他组别</span><b>{{ race.groups.join(' / ') }}</b></div>
+        <div class="row"><span>报名费</span><b>{{ race.fee || '未录入' }}</b></div>
+        <div v-if="race.scale" class="row"><span>赛事规模</span><b>{{ race.scale }}</b></div>
+        <div v-if="race.phone" class="row"><span>咨询电话</span><a :href="'tel:' + race.phone">{{ race.phone }}</a></div>
+      </div>
+      <div v-if="drawRates.length" class="block">
+        <h2>历年中签</h2>
+        <p class="src">依据已公布的报名人数与名额计算。</p>
+        <div v-for="item in drawRates" :key="item.id" class="mate">
+          <span>{{ item.label }} · 报名 {{ item.applicants }} · 名额 {{ item.quota }} · {{ item.rateText }}</span>
+          <details class="draw-rate-source" @click="prepareFold"><summary>资料来源</summary>{{ item.source }}</details>
+        </div>
+      </div>
+    <router-link v-if="race?.archiveId" class="race-archive-entry" :to="{path:'/race-catalog/'+race.archiveId,query:{fromRaceId:String(race.id)}}"><span class="archive-entry-icon" aria-hidden="true"><svg viewBox="0 0 28 28" fill="none"><path d="M5 6h7a3 3 0 0 1 3 3v14a4 4 0 0 0-4-2H5V6Zm18 0h-5a3 3 0 0 0-3 3v14a4 4 0 0 1 4-2h4V6Z"/><path d="M8 10h3m-3 4h3m8-4h1m-1 4h1"/></svg></span><span class="archive-entry-copy"><span>赛事档案</span><strong>历年赛事档案</strong><small>赛道、奖牌与历年记录</small></span><span class="archive-entry-arrow" aria-hidden="true">›</span></router-link>
     <section v-if="race" class="block race-plan" :class="{ 'is-open': ready && planOpen }" aria-labelledby="race-plan-title">
-      <div class="plan-heading"><h2 id="race-plan-title"><span class="plan-heading-icon" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M5 17V3m0 1c3-2 6 2 10 0v8c-4 2-7-2-10 0"/></svg></span>我的参赛计划</h2><span class="plan-privacy"><svg v-if="!sharedClubIds.length" viewBox="0 0 16 16" aria-hidden="true" fill="none"><rect x="3.5" y="7" width="9" height="6.5" rx="1.5"/><path d="M5.5 7V4.5a2.5 2.5 0 0 1 5 0V7"/></svg>{{ sharedClubIds.length ? sharedClubIds.length + ' 个跑团可见' : '仅自己可见' }}</span></div>
+      <div class="plan-heading"><h2 id="race-plan-title"><img class="plan-heading-art" :src="myStatus ? planActiveIcon : planIcon" alt="" />我的参赛计划</h2><span class="plan-privacy"><svg v-if="!sharedClubIds.length" viewBox="0 0 16 16" aria-hidden="true" fill="none"><rect x="3.5" y="7" width="9" height="6.5" rx="1.5"/><path d="M5.5 7V4.5a2.5 2.5 0 0 1 5 0V7"/></svg>{{ sharedClubIds.length ? sharedClubIds.length + ' 个跑团可见' : '仅自己可见' }}</span></div>
       <div class="plan-summary">
         <div class="plan-summary-copy"><span class="plan-summary-label">{{ myStatus ? '当前状态' : '为下一场，留个位置' }}</span><strong class="plan-status" :class="{ 'is-empty': !myStatus }">{{ myStatus || '还没有参赛计划' }}</strong></div>
         <button v-if="!ready" class="plan-action" type="button" @click="loginForPlan">登录后标记<svg viewBox="0 0 16 16" aria-hidden="true"><path d="m6 4 4 4-4 4"/></svg></button>
-        <button v-else class="plan-action" type="button" :aria-label="planOpen ? '收起参赛状态' : myStatus ? '修改参赛状态' : '标记参赛状态'" :aria-expanded="planOpen" aria-controls="race-plan-editor" @click="planOpen = !planOpen">{{ planOpen ? '收起' : myStatus ? '修改' : '添加计划' }}<svg viewBox="0 0 16 16" aria-hidden="true" :class="{ expanded: planOpen }"><path d="m6 4 4 4-4 4"/></svg></button>
+        <button v-else class="plan-action" type="button" :aria-label="planOpen ? '收起参赛状态' : myStatus ? '修改参赛状态' : '标记参赛状态'" :aria-expanded="planOpen" aria-controls="race-plan-editor" @click="togglePlan">{{ planOpen ? '收起' : myStatus ? '修改' : '添加计划' }}<svg viewBox="0 0 16 16" aria-hidden="true" :class="{ expanded: planOpen }"><path d="m6 4 4 4-4 4"/></svg></button>
       </div>
       <div v-if="ready && planOpen" id="race-plan-editor" class="plan-editor">
-        <nav class="plan-stages" aria-label="参赛阶段"><button v-for="(stage, index) in planStages" :key="stage.id" type="button" :class="{ selected: planStage === stage.id, current: stageFor(myStatus) === stage.id && myStatus }" :aria-label="(index + 1) + ' ' + stage.label" :aria-pressed="planStage === stage.id" @click="planStage = stage.id"><small aria-hidden="true">{{ String(index + 1).padStart(2, '0') }}</small><span>{{ stageLabels[stage.id] }}</span></button></nav>
+        <nav class="plan-stages" aria-label="参赛阶段"><button v-for="(stage, index) in planStages" :key="stage.id" type="button" :class="{ selected: planStage === stage.id, current: stageFor(myStatus) === stage.id && myStatus }" :aria-label="(index + 1) + ' ' + stage.label" :aria-pressed="planStage === stage.id" @click="pickPlanStage(stage.id)"><small aria-hidden="true">{{ String(index + 1).padStart(2, '0') }}</small><span>{{ stageLabels[stage.id] }}</span></button></nav>
         <div class="plan-field-heading"><span>选择当前状态</span><small>{{ planBusy ? '正在保存…' : '选择后自动保存' }}</small></div>
         <div class="statuses plan-options" :class="{ 'single-option': activeStage.statuses.length === 1 }">
           <button v-for="item in activeStage.statuses" :key="item" type="button" class="status" :class="{ on: myStatus === item }" :aria-label="item" :aria-pressed="myStatus === item" :disabled="planBusy" @click="choosePlan(item)"><span class="status-copy"><strong>{{ item }}</strong><small aria-hidden="true">{{ statusHints[item] }}</small></span><span class="status-indicator" aria-hidden="true"><svg v-if="myStatus === item" viewBox="0 0 16 16"><path d="m4 8 2.5 2.5L12 5"/></svg></span></button>
@@ -69,7 +101,7 @@
       <p v-if="message" class="plan-feedback" :class="{ 'is-error': sharingError && sharingError === message }" role="status">{{ message }}</p>
     </section>
     <section v-if="race && ready" class="block race-companionship" aria-labelledby="club-sync-title">
-      <button type="button" class="club-sync-toggle" aria-label="同步设置与同行需求" :aria-expanded="companionOpen" aria-controls="club-sync-panel" @click="companionOpen = !companionOpen">
+      <button type="button" class="club-sync-toggle" aria-label="同步设置与同行需求" :aria-expanded="companionOpen" aria-controls="club-sync-panel" @click="toggleCompanion">
         <span class="club-sync-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3"/><path d="M3.5 20v-2.5a5.5 5.5 0 0 1 11 0V20M17 5a3 3 0 0 1 0 6m1 3a4.5 4.5 0 0 1 3 4v2"/></svg></span>
         <span class="club-sync-heading"><strong id="club-sync-title">同步到跑团</strong><small :title="sharedClubNames">{{ sharedClubNames || '让跑友知道你的参赛安排' }}</small></span>
         <span class="club-sync-state"><span :class="{ 'is-shared': sharedClubIds.length }">{{ sharedClubIds.length ? '已同步 ' + sharedClubIds.length + ' 团' : '仅自己可见' }}</span><svg viewBox="0 0 16 16" aria-hidden="true" :class="{ expanded: companionOpen }"><path d="m6 4 4 4-4 4"/></svg></span>
@@ -95,55 +127,10 @@
       <p v-if="sharingMessage" class="src" role="status">{{ sharingMessage }}</p>
       <p v-if="sharingError" class="err" role="alert">{{ sharingError }}</p>
     </section>
-    <router-link v-if="race?.archiveId" class="race-archive-entry" :to="{path:'/race-catalog/'+race.archiveId,query:{fromRaceId:String(race.id)}}"><span class="archive-entry-icon" aria-hidden="true"><svg viewBox="0 0 28 28" fill="none"><path d="M5 6h7a3 3 0 0 1 3 3v14a4 4 0 0 0-4-2H5V6Zm18 0h-5a3 3 0 0 0-3 3v14a4 4 0 0 1 4-2h4V6Z"/><path d="M8 10h3m-3 4h3m8-4h1m-1 4h1"/></svg></span><span class="archive-entry-copy"><span>赛事档案</span><strong>报名前，先了解这场比赛</strong><small>历年赛道 · 报名中签 · 完赛与奖牌</small></span><span class="archive-entry-arrow" aria-hidden="true">›</span></router-link>
-    <RaceOutings v-if="race" :race-id="race.id" :clubs="clubs" :ready="ready" />
-    <div v-if="tabs.length" class="tabs" role="tablist">
-      <button v-for="item in tabs" :key="item.id" type="button" class="tab" :class="{ on: tab === item.id }" @click="pickTab(item.id)">{{ item.label }}</button>
-    </div>
-    <div v-if="race" class="race-tab-content">
-    <template v-if="race && tab === 'signup'">
-      <div v-if="race.nodes.length" class="block race-timeline-card">
-        <div class="race-section-heading"><h2>重要时间</h2><span>报名 · 参赛节点</span></div>
-        <div class="timeline">
-          <div v-for="node in race.nodes" :key="node.key" class="tl">
-            <span class="dot"></span>
-            <b>{{ node.at }}</b>
-            <span>{{ node.label }}</span>
-          </div>
-        </div>
-        <p v-for="node in race.nodes.filter((item) => item.text)" :key="node.key + '-text'" class="src">{{ node.label }} {{ node.text }}</p>
-      </div>
-      <div v-if="showFacts" class="block race-project-card">
-        <h2>项目</h2>
-        <div v-if="projectLabels.length" class="chips">
-          <span v-for="label in projectLabels" :key="label" class="chip">{{ label }}</span>
-        </div>
-        <div v-if="race.startAt" class="row"><span>起跑</span><b>{{ race.startAt }}</b></div>
-        <div v-if="race.fee" class="row"><span>报名费</span><b>{{ race.fee }}</b></div>
-        <div v-if="race.scale" class="row"><span>规模</span><b>{{ race.scale }}</b></div>
-      </div>
-      <div v-if="drawRates.length" class="block">
-        <h2>历年中签</h2>
-        <p class="src">按公布的报名人数和名额计算。来源写在每一届下面。</p>
-        <div v-for="item in drawRates" :key="item.id" class="mate">
-          <span>{{ item.label }} · 报名 {{ item.applicants }} · 名额 {{ item.quota }} · {{ item.rateText }}</span>
-          <b>来源 {{ item.source }}</b>
-        </div>
-      </div>
-      <div class="block race-signup-card">
-        <h2>官方报名信息</h2>
-        <p class="src">{{ signupHint }}</p>
-        <img v-if="signupQr" class="signup-qr" :src="signupQr" alt="报名页二维码" />
-        <button v-if="signupQr && signupLink" type="button" class="jump main" @click="openSignup(signupLink.url)">打开报名页</button>
-        <div v-if="askSignup" class="ask">
-          <p>报上了吗</p>
-          <button class="primary" type="button" @click="confirmSigned">报上了</button>
-          <button class="undo" type="button" @click="askSignup = false">还没有</button>
-        </div>
-        <p class="src">报名和缴费请以组委会官方页面为准。</p>
-      </div>
+
+    <section v-if="race" class="outings-fold"><button type="button" class="outings-fold-toggle" aria-label="展开或收起同行安排" :aria-expanded="outingsOpen" aria-controls="outings-detail" @click="toggleOutings"><span><strong>本场同行安排</strong><small>拼车、集合与领物，和伙伴约好再出发</small></span><span aria-hidden="true">{{ outingsOpen ? '⌃' : '›' }}</span></button><div id="outings-detail" v-show="outingsOpen"><RaceOutings :race-id="race.id" :clubs="clubs" :ready="ready" /></div></section>
       <section v-if="cards.length" class="block race-share">
-        <button class="share-toggle" type="button" :aria-expanded="shareOpen" aria-controls="race-share-options" @click="shareOpen = !shareOpen"><span>分享赛事到跑团</span><span aria-hidden="true">{{ shareOpen ? '⌃' : '›' }}</span></button>
+        <button class="share-toggle" type="button" :aria-expanded="shareOpen" aria-controls="race-share-options" @click="toggleShare"><span>分享赛事到跑团</span><span aria-hidden="true">{{ shareOpen ? '⌃' : '›' }}</span></button>
         <p class="src">选择跑团，复制这场比赛的参赛动态到微信群。</p>
         <div v-if="shareOpen" id="race-share-options" class="share-content">
           <div class="share-options" role="radiogroup" aria-label="选择分享跑团">
@@ -155,22 +142,28 @@
           <pre v-if="copyError && selectedShare" class="share-copy-fallback">{{ selectedShare.text }}</pre>
         </div>
       </section>
-      <div v-if="clubs.length && !activeCompanionClubs.length" class="block companion-empty"><h2>团友参赛记录</h2><p class="src">这里展示团友主动同步的个人参赛记录，目前还没有公开记录。想约伙伴，可直接发起或加入本场同行安排。</p><button class="companionship-link" type="button" @click="openOutings()">查看本场同行安排 ›</button></div>
-      <div v-for="club in activeCompanionClubs" :key="club.id" class="block">
-        <h2>{{ club.name }} · 参赛记录</h2>
-        <p class="src">仅显示主动同步到本团的参赛记录，以下为团友自行标记。</p>
-        <p v-if="squadLine(club)" class="warn">{{ squadLine(club) }}</p>
-        <div v-if="!club.mates.length" class="empty">还没有团友分享这场参赛计划</div>
-        <div v-for="mate in club.mates" :key="mate.userId || mate.nickname" class="mate companion-mate">
-          <span>{{ mate.nickname }}<small v-if="mate.note">{{ mate.note }}</small></span><b>{{ mate.status }}</b>
-        </div>
-        <button class="companionship-link" type="button" @click="openOutings(club.id)">查看本团本场同行安排 ›</button>
-      </div>
+      <details v-if="clubs.length" class="block race-mates" @click="prepareFold"><summary><span>团友参赛记录<small>仅展示主动同步的个人标记</small></span><span aria-hidden="true">＋</span></summary>
+        <p v-if="!activeCompanionClubs.length" class="src">还没有团友同步本场参赛计划。</p>
+        <section v-for="club in activeCompanionClubs" :key="club.id" class="club-mates-group"><h3>{{ club.name }}</h3><p v-if="squadLine(club)" class="warn">{{ squadLine(club) }}</p><div v-for="mate in club.mates" :key="mate.userId || mate.nickname" class="mate companion-mate"><span>{{ mate.nickname }}<small v-if="mate.note">{{ mate.note }}</small></span><b>{{ mate.status }}</b></div><button class="companionship-link" type="button" @click="openOutings(club.id)">查看本团同行安排 <span aria-hidden="true">›</span></button></section>
+        <p class="src">个人标记不会自动取得参赛资格，也不会报名跑团活动。</p>
+      </details>
+      <details v-if="race.organizer || race.source || race.eventUrl || race.officialUrl" class="block race-source" @click="prepareFold"><summary>主办与资料信息<span>按需查看 ›</span></summary>
+        <p v-if="race.organizer" class="src">主办 {{ race.organizer }}</p>
+        <p v-if="race.source" class="src">来源 {{ race.source }}<template v-if="race.updatedAt"> · 更新于 {{ race.updatedAt.slice(0, 10) }}</template></p>
+        <p v-if="safeOfficialUrl(race.eventUrl)" class="src"><a :href="race.eventUrl" target="_blank" rel="noopener">赛事网站</a></p>
+        <p v-if="safeOfficialUrl(race.officialUrl)" class="src"><a :href="race.officialUrl" target="_blank" rel="noopener">中国马拉松赛事信息</a></p>
+      </details>
     </template>
     <template v-if="race && tab === 'guide'">
-      <div class="block">
+      <p v-if="!dayNotes.length && !routeSheets.length && !race.pacerSheets.length && !guideBlocks.length && !race.guide.length" class="block quiet-state">参赛指南尚未录入，后续资料将在这里更新。</p>
+      <nav class="guide-index" aria-label="参赛指南目录"><button v-for="section in guideSections" :key="section.id" type="button" @click="goToGuide(section.id)">{{ section.label }}<span :class="{ missing: !section.hasContent }">{{ section.hasContent ? '查看' : '未录入' }}</span></button></nav>
+      <section id="guide-route" class="block guide-section"><h2>赛道与路线</h2><p v-if="race.route" class="guide-note">{{ race.route }}</p><p v-if="!race.route && !routeSheets.length" class="src">路线资料尚未录入。</p><div class="pacer-photos"><RaceMedia v-for="(sheet, index) in routeSheets" :key="sheet.id" :src="sheetSrc(sheet.id)" :alt="'路线图 ' + (index + 1)" @open="openSheet(sheet.id)" /></div></section>
+      <section id="guide-pickup" class="block guide-section"><h2>领物与比赛日</h2><div v-if="race.startAt" class="row"><span>比赛日起跑</span><b>{{ race.startAt }}</b></div><p class="guide-note" :class="{ src: !race.pickup }">{{ race.pickup || '领物及比赛日安排尚未录入。' }}</p></section>
+      <section id="guide-pacers" class="block guide-section"><h2>配速与官方领跑员</h2><p v-if="race.pacers" class="guide-note">{{ race.pacers }}</p><p v-if="!race.pacers && !race.pacerSheets.length" class="src">配速资料尚未录入。</p><div class="pacer-photos"><RaceMedia v-for="(sheet, index) in race.pacerSheets" :key="sheet.id" :src="sheetSrc(sheet.id)" :alt="'配速资料 ' + (index + 1)" @open="openSheet(sheet.id)" /></div></section>
+
+      <div id="guide-rules" class="block guide-section">
         <h2>竞赛规程</h2>
-        <p v-if="guideBlocks.length" class="src">按标题阅读。奖金、关门时间和参赛资格以组委会原文为准。</p>
+        <p class="src">{{ guideBlocks.length || race.guide.length ? '参赛资格、奖励及关门安排，以组委会规程为准。' : '竞赛规程尚未录入。' }}</p>
         <div v-if="guideBlocks.length" class="guide-md">
           <p v-for="block in guideBlocks" :key="block.i" :class="'md md-' + block.kind">
             <span v-if="block.mark" class="md-mark">{{ block.mark }}</span>
@@ -184,13 +177,12 @@
           <h3>原页</h3>
           <p v-if="guideBlocks.length" class="src">正文在上面。原页留着对照。</p>
           <p v-else class="src">正文还没整理，下面是组委会公布的原页。</p>
-          <button v-for="sheet in race.guide" :key="sheet.id" class="sheet" type="button" @click="openSheet(sheet.id)">
-            <img :src="sheetSrc(sheet.id)" alt="竞赛规程原页" />
-          </button>
+          <RaceMedia v-for="(sheet, index) in race.guide" :key="sheet.id" :src="sheetSrc(sheet.id)" :alt="'竞赛规程 · 第 ' + (index + 1) + ' 页'" @open="openSheet(sheet.id)" />
         </template>
       </div>
     </template>
     <template v-if="race && tab === 'news'">
+      <p v-if="!articles.length && !race.liveSheet && !alternatives.length" class="block quiet-state">还没有发布相关资讯</p>
       <div v-if="articles.length" class="block">
         <h2>相关资讯</h2>
         <router-link v-for="item in articles" :key="item.id" class="mate" :to="'/news/' + item.id">
@@ -198,37 +190,10 @@
           <b>{{ item.publishedAt }}</b>
         </router-link>
       </div>
-      <div v-if="race.organizer || race.source || race.eventUrl || race.officialUrl || queryLinks.length" class="block">
-        <h2>这场的页面</h2>
-        <p v-if="race.organizer" class="src">主办 {{ race.organizer }}</p>
-        <p v-if="race.source" class="src">来源 {{ race.source }}<template v-if="race.updatedAt"> · 更新于 {{ race.updatedAt }}</template></p>
-        <p v-if="race.eventUrl" class="src"><a :href="race.eventUrl" target="_blank" rel="noopener">赛事网站</a></p>
-        <p v-if="race.officialUrl" class="src"><a :href="race.officialUrl" target="_blank" rel="noopener">中国马拉松官网这场</a></p>
-        <a v-for="link in queryLinks" :key="link.key" class="jump" :href="link.url" target="_blank" rel="noopener">{{ link.label }}</a>
-      </div>
-      <div v-if="dayNotes.length || routeSheets.length || race.pacerSheets.length" class="block">
-        <h2>比赛日</h2>
-        <div v-for="item in dayNotes" :key="item.label" class="day-note">
-          <h3>{{ item.label }}</h3>
-          <p v-if="item.text">{{ item.text }}</p>
-          <div v-if="item.label === '路线' && routeSheets.length" class="pacer-photos">
-            <button v-for="sheet in routeSheets" :key="sheet.id" class="sheet" type="button" @click="openSheet(sheet.id)">
-              <img :src="sheetSrc(sheet.id)" alt="路线图" />
-            </button>
-          </div>
-        </div>
-        <div v-if="race.pacerSheets.length" class="pacer-photos">
-          <button v-for="sheet in race.pacerSheets" :key="sheet.id" class="sheet" type="button" @click="openSheet(sheet.id)">
-            <img :src="sheetSrc(sheet.id)" alt="配速员" />
-          </button>
-        </div>
-      </div>
       <div v-if="race.liveSheet" class="block">
         <h2>直播</h2>
         <p class="src">扫组委会的二维码。</p>
-        <button class="sheet" type="button" @click="openSheet(race.liveSheet.id)">
-          <img :src="sheetSrc(race.liveSheet.id)" alt="直播二维码" />
-        </button>
+        <RaceMedia :src="sheetSrc(race.liveSheet.id)" alt="直播二维码" @open="openSheet(race.liveSheet.id)" />
       </div>
       <div v-if="alternatives.length" class="block">
         <h2>同期还开着</h2>
@@ -240,6 +205,8 @@
       </div>
     </template>
     <template v-if="race && tab === 'result'">
+      <section v-if="officialResultLink" class="block official-result"><div class="race-section-heading"><h2>官方成绩与证书</h2><span>组委会查询入口</span></div><a class="jump" :href="officialResultLink.url" target="_blank" rel="noopener">前往官方查询</a></section>
+      <section v-if="!ready" class="block quiet-state"><h2>把这一程，留给自己</h2><p>登录后记录完赛成绩、证书与比赛感受。</p><button type="button" class="primary" @click="loginForResult">登录后记录成绩</button></section>
       <div v-if="drawText" class="block">
         <h2>中签卡片</h2>
         <div class="poster-card">
@@ -251,8 +218,8 @@
         <p v-if="drawError" class="err">{{ drawError }}</p>
       </div>
       <div v-if="ready" class="block">
-        <h2>成绩</h2>
-        <p class="src">手记的成绩标为未核验。可以附一张证书或奖牌照片。</p>
+        <h2>我的手记成绩</h2>
+        <p class="src">个人手记与官方查询分开。手记标为未核验，可附证书或奖牌照片。</p>
 
         <p v-for="item in myResults" :key="item.distance" class="src">{{ item.distanceLabel }} {{ item.clock }} · 配速 {{ item.pace }}<template v-if="item.pb"> · PB</template> · {{ item.verifyLabel }}</p>
         <p v-if="myResult && myResult.story">{{ myResult.story }}</p>
@@ -271,8 +238,8 @@
           </button>
         </div>
         <form class="result-form" @submit.prevent="saveResult">
-          <input v-model="clock" placeholder="3:29:59" />
-          <input v-model="story" maxlength="200" placeholder="这场想记的一句" />
+          <label>完赛用时<input v-model="clock" aria-label="完赛用时" placeholder="3:29:59" inputmode="numeric" required /></label>
+          <label>比赛手记<span>选填</span><input v-model="story" aria-label="比赛手记" maxlength="200" placeholder="这场想记的一句" /></label>
           <button class="primary" type="submit">记下成绩</button>
         </form>
         <div v-if="myResult" class="proof-actions">
@@ -285,21 +252,26 @@
       </div>
     </template>
     </div>
-    <button v-if="viewer" class="viewer" type="button" @click="viewer = ''">
-      <img :src="viewer" alt="放大查看" />
-    </button>
+    <dialog ref="imageDialog" class="race-image-viewer" aria-label="赛事图片预览" @cancel.prevent="closeViewer" @click.self="closeViewer">
+      <div class="viewer-toolbar"><span>{{ viewerLabel }}<small v-if="gallery.length > 1">{{ viewerIndex + 1 }} / {{ gallery.length }}</small></span><button type="button" autofocus class="viewer-close" aria-label="关闭图片预览" @click="closeViewer">关闭 ×</button></div>
+      <div class="viewer-canvas" :class="{ 'is-zoomed': viewerZoom }"><img v-if="viewer && !viewerFailed" :src="viewer" :alt="viewerLabel" @error="viewerFailed = true" /><div v-else-if="viewerFailed" class="viewer-error" role="status"><p>这张图片暂时无法加载</p><button type="button" @click="retryViewer">重新加载</button></div></div>
+      <div class="viewer-controls"><button v-if="gallery.length > 1" type="button" aria-label="上一张图片" @click="stepViewer(-1)">‹ 上一张</button><button type="button" :aria-pressed="viewerZoom" @click="viewerZoom = !viewerZoom">{{ viewerZoom ? '适应屏幕' : '查看原图' }}</button><button v-if="gallery.length > 1" type="button" aria-label="下一张图片" @click="stepViewer(1)">下一张 ›</button></div>
+    </dialog>
   </main>
 </template>
 
 <script setup>
-import { computed, onBeforeUnmount, onMounted, ref, watch } from "vue";
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { api, raceSheetSrc, resultProofSrc, signupSheetSrc, upload } from "../api";
 import { copyText } from "../copy";
-import { dateParts, toneOf } from "../tone";
+import { toneOf } from "../tone";
 import { parseGuide } from "../guide-md";
 import FollowRaceButton from '../components/FollowRaceButton.vue';
 import RaceOutings from '../components/RaceOutings.vue';
+import RaceMedia from '../components/RaceMedia.vue';
+import planIcon from '../assets/race-actions/plan.svg';
+import planActiveIcon from '../assets/race-actions/plan-active.svg';
 import { planStages, stageFor } from '../participation';
 const route = useRoute();
 const router = useRouter();
@@ -307,6 +279,9 @@ const planOpen = ref(route.query.plan === "1");
 const shareOpen = ref(false);
 const following = ref(false), planStage = ref('interest'), planBusy = ref(false);
 const companionOpen = ref(false);
+const outingsOpen = ref(route.hash === '#race-outings');
+const coverFailed = ref(false), qrFailed = ref(false);
+const imageDialog = ref(null);
 const sharedClubIds = ref([]), sharingDraft = ref([]), companionNote = ref(''), companionDraft = ref('');
 const sharingMessage = ref(''), sharingError = ref('');
 const activeStage = computed(() => planStages.find(stage => stage.id === planStage.value) || planStages[0]);
@@ -330,7 +305,7 @@ async function planAction(suffix, body) {
 }
 async function saveSharing() {
   if (!await planAction('/sharing', { clubIds: sharingDraft.value })) return;
-  companionOpen.value = false;
+  keepPosition(() => { companionOpen.value = false; });
   sharingMessage.value = sharedClubIds.value.length ? '已更新同步范围，后续参赛状态会自动同步。' : '已设为仅自己可见。';
 }
 async function saveCompanion() { if (await planAction('/companionship', { note: companionDraft.value })) sharingMessage.value = '同行需求已保存。'; }
@@ -346,34 +321,35 @@ function loginForPlan() {
   localStorage.setItem("marathon_return_after_login", "/races/" + encodeURIComponent(route.params.id) + "?plan=1");
   router.push("/mine");
 }
+function loginForResult() {
+  localStorage.setItem("marathon_return_after_login", "/races/" + encodeURIComponent(route.params.id) + "?tab=result");
+  router.push("/mine");
+}
 async function choosePlan(status) {
   if (await mark(status)) message.value = "已标记为「" + status + "」";
 }
 const race = ref(null);
 const tone = computed(() => toneOf(race.value));
-const parts = computed(() => dateParts(race.value && race.value.raceDate));
-const placeLine = computed(() => {
-  if (!race.value) return "";
-  return race.value.province === race.value.city ? race.value.city : race.value.province + " · " + race.value.city;
+const today = () => new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10);
+const locationLine = computed(() => [...new Set([race.value?.province, race.value?.city, race.value?.district, race.value?.place].filter(Boolean))].join(' · '));
+const projectLabels = computed(() => [...new Set([...(race.value?.distanceLabels || []), ...(race.value?.groups || [])])]);
+const typeLabel = computed(() => {
+  const labels = race.value?.kindLabels || [];
+  return labels.length ? labels.join(' / ') : race.value?.kind === 'trail' ? '越野' : '路跑';
 });
-const locationLine = computed(() => {
-  if (!race.value) return "";
-  const parts = [];
-  if (placeLine.value) parts.push(placeLine.value);
-  if (race.value.district) parts.push(race.value.district);
-  const spot = race.value.place;
-  if (spot && spot !== race.value.city && spot !== race.value.province && spot !== race.value.district) parts.push(spot);
-  return parts.join(" · ");
+const publicStage = computed(() => {
+  const row = race.value;
+  if (!row) return '';
+  if (row.raceDate && row.raceDate < today()) return '已结束';
+  if (row.raceDate === today()) return '比赛日';
+  if (row.regStart && row.regStart.slice(0, 10) > today()) return '报名未开始';
+  if (!row.deadline) return '报名时间未录入';
+  return row.open ? '报名中' : '报名已截止';
 });
-const projectLabels = computed(() => {
-  if (!race.value) return [];
-  const kinds = [...race.value.kindLabels];
-  if (race.value.kind === "trail" && !kinds.includes("越野")) kinds.unshift("越野");
-  return [...race.value.distanceLabels, ...kinds, ...race.value.groups];
-});
-const showFacts = computed(() => {
-  if (!race.value) return false;
-  return race.value.kindLabels.length || race.value.groups.length || race.value.fee || race.value.scale || race.value.startAt;
+const sortedNodes = computed(() => [...(race.value?.nodes || [])].sort((a, b) => a.at.localeCompare(b.at)));
+const nextMoment = computed(() => {
+  const rows = sortedNodes.value.filter(node => !node.past || node.today);
+  return rows.find(node => node.key !== 'race') || rows.find(node => node.key === 'race') || null;
 });
 const routeSheets = computed(() => (race.value && race.value.routeSheets) || []);
 const guideBlocks = computed(() => parseGuide(race.value && race.value.guideText));
@@ -385,13 +361,55 @@ const dayNotes = computed(() => {
     ["配速员", race.value.pacers, false]
   ].filter((item) => item[1] || item[2]).map(([label, text]) => ({ label, text }));
 });
-const viewer = ref("");
-function sheetSrc(id) {
-  return raceSheetSrc(id);
+const guideSections = computed(() => [
+  { id: 'route', label: '赛道路线', hasContent: !!race.value?.route || routeSheets.value.length > 0 },
+  { id: 'pickup', label: '领物安排', hasContent: !!race.value?.pickup },
+  { id: 'pacers', label: '配速资料', hasContent: !!race.value?.pacers || race.value?.pacerSheets?.length > 0 },
+  { id: 'rules', label: '竞赛规程', hasContent: guideBlocks.value.length > 0 || race.value?.guide?.length > 0 }
+]);
+function goToGuide(id) { document.getElementById('guide-' + id)?.scrollIntoView({ behavior: 'auto', block: 'start' }); }
+const viewer = ref(''), viewerFailed = ref(false), viewerZoom = ref(false);
+const gallery = computed(() => {
+  const row = race.value;
+  if (!row) return [];
+  return [
+    ...(row.coverSheet ? [{ ...row.coverSheet, label: '赛事封面' }] : []),
+    ...routeSheets.value.map((sheet, index) => ({ ...sheet, label: '路线图 ' + (index + 1) })),
+    ...(row.pacerSheets || []).map((sheet, index) => ({ ...sheet, label: '配速资料 ' + (index + 1) })),
+    ...(row.guide || []).map((sheet, index) => ({ ...sheet, label: '竞赛规程 · 第 ' + (index + 1) + ' 页' })),
+    ...(row.liveSheet ? [{ ...row.liveSheet, label: '直播二维码' }] : [])
+  ].map(sheet => ({ ...sheet, src: sheetSrc(sheet.id) }));
+});
+const viewerIndex = computed(() => Math.max(0, gallery.value.findIndex(sheet => sheet.src === viewer.value)));
+const viewerLabel = computed(() => gallery.value[viewerIndex.value]?.label || '赛事图片');
+let imageBodyOverflow, imageScrollY = 0;
+watch(viewer, async value => {
+  viewerFailed.value = false; viewerZoom.value = false;
+  if (!value) return;
+  if (!imageDialog.value?.open) {
+    imageScrollY = window.scrollY;
+    imageBodyOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    await nextTick();
+    if (viewer.value) imageDialog.value?.showModal();
+    window.scrollTo(0, imageScrollY);
+  }
+});
+function closeViewer() {
+  imageDialog.value?.close();
+  viewer.value = '';
+  if (imageBodyOverflow !== undefined) document.body.style.overflow = imageBodyOverflow;
+  imageBodyOverflow = undefined;
+  nextTick(() => window.scrollTo(0, imageScrollY));
 }
-function openSheet(id) {
-  viewer.value = sheetSrc(id);
+function stepViewer(step) {
+  if (!gallery.value.length) return;
+  viewer.value = gallery.value[(viewerIndex.value + step + gallery.value.length) % gallery.value.length].src;
 }
+function retryViewer() { viewerFailed.value = false; }
+onBeforeUnmount(() => { if (imageBodyOverflow !== undefined) document.body.style.overflow = imageBodyOverflow; });
+function sheetSrc(id) { return raceSheetSrc(id); }
+function openSheet(id) { viewer.value = sheetSrc(id); }
 const myStatus = ref("");
 const hasSheet = ref(false);
 const askSignup = ref(false);
@@ -435,7 +453,7 @@ async function load(options = {}) {
     ]);
     if (disposed || sequence !== loadSequence || id !== String(route.params.id || "") || token !== localStorage.getItem('marathon_token')) return;
     articles.value = news.news || [];
-    race.value = data.race;
+    race.value = { ...data.race, nodes: data.race.nodes || [], distanceLabels: data.race.distanceLabels || [], distances: data.race.distances || [], kindLabels: data.race.kindLabels || [], groups: data.race.groups || [], guide: data.race.guide || [], pacerSheets: data.race.pacerSheets || [] };
     myStatus.value = data.myStatus || '';
     planStage.value = stageFor(myStatus.value);
     following.value = !!data.following;
@@ -457,7 +475,7 @@ async function load(options = {}) {
     if (!distance.value) {
       const first = myResults.value[0];
       if (first) distance.value = first.distance;
-      else if (data.race.distances.length) distance.value = data.race.distances[0];
+      else if (data.race.distances?.length) distance.value = data.race.distances[0];
     }
     pickDistance(distance.value);
   } catch (error) {
@@ -488,26 +506,81 @@ function pickDistance(next) {
 
 const proofSrc = computed(() => (race.value && myResult.value && myResult.value.hasProof ? resultProofSrc(race.value.id, myResult.value.distance) : ""));
 const signupSrc = computed(() => (race.value && hasSheet.value ? signupSheetSrc(race.value.id) : ""));
-const tab = ref("signup");
-const signupLink = computed(() => ((race.value && race.value.links) || []).find((item) => item.key === "signup") || null);
-const queryLinks = computed(() => ((race.value && race.value.links) || []).filter((item) => item.key !== "signup" && item.url.startsWith("https://")));
-const signupQr = computed(() => (race.value && race.value.signupHost ? "/marathon/api/races/" + encodeURIComponent(race.value.id) + "/signup-qr" : ""));
-const signupHint = computed(() => {
-  if (!race.value || !race.value.signupHost) return "这场还没有报名链接。这里不报名，也不收款。";
-  const where = race.value.signupChannel ? race.value.signupChannel + "的报名页" : race.value.signupHost + " 上的报名页";
-  return "用手机扫这个码，打开" + where + "。这里不报名，也不收款。";
+const initialTab = () => ["signup", "guide", "news", "result"].includes(route.query.tab) ? route.query.tab : "signup";
+const tab = ref(initialTab());
+const raceTabPanel = ref(null);
+const tabContentMinHeight = ref(0);
+const signupQr = computed(() => race.value?.signupHost && officialLinks.value.some(link => link.key === 'signup') ? '/marathon/api/races/' + encodeURIComponent(race.value.id) + '/signup-qr' : '');
+function safeOfficialUrl(value) { return typeof value === 'string' && /^https:\/\/[^\s]+$/i.test(value); }
+const officialLinks = computed(() => (race.value?.links || []).filter(item => safeOfficialUrl(item.url)));
+const officialResultLink = computed(() => officialLinks.value.find(item => item.key === 'result'));
+const primaryOfficial = computed(() => {
+  if (!race.value) return null;
+  const row = race.value, date = today();
+  const find = key => officialLinks.value.find(link => link.key === key);
+  const ended = row.regStatus === '已结束' || row.raceDate && row.raceDate < date;
+  const upcomingSignup = row.regStart && row.regStart.slice(0, 10) > date;
+  const paymentPeriod = !ended && !upcomingSignup && row.payDeadline && row.payDeadline.slice(0, 10) >= date && row.drawAt && row.drawAt.slice(0, 10) <= date;
+  let key = ended && find('result') ? 'result'
+    : paymentPeriod && find('signup') ? 'signup'
+    : !upcomingSignup && !row.open && row.bibAt && row.bibAt.slice(0, 10) <= date && find('bib') ? 'bib'
+    : !upcomingSignup && !row.open && row.drawAt && row.drawAt.slice(0, 10) <= date && find('draw') ? 'draw'
+    : row.open && find('signup') ? 'signup' : null;
+  if (!key) key = ['signup', 'draw', 'bib', 'result', 'live'].find(key => find(key));
+  if (key) return { ...find(key), label: key === 'signup' ? paymentPeriod ? '查看官方报名与缴费信息' : row.open && !upcomingSignup && !ended ? '前往官方报名' : '查看官方报名信息' : { draw: '查询中签结果', bib: '查询参赛号码', result: '查询官方成绩与证书', live: '查看官方直播' }[key] };
+  const url = [row.eventUrl, row.officialUrl].find(safeOfficialUrl);
+  return url ? { key: 'website', label: '查看赛事官方信息', url } : null;
 });
+const secondaryOfficial = computed(() => officialLinks.value.filter(link => link.key !== primaryOfficial.value?.key).map(link => ({ ...link, label: { signup: '报名信息', draw: '中签查询', bib: '号码查询', result: '成绩与证书', live: '官方直播' }[link.key] || link.label })));
+const officialHint = computed(() => race.value?.open ? '官方报名链接尚未录入，可关注赛事，稍后再来查看。' : '官方报名与查询入口尚未录入。');
+function onOfficialOpen(link) {
+  if (link.key === 'signup' && race.value?.open) askSignup.value = true;
+}
 const tabs = computed(() => {
   if (!race.value) return [];
   const list = [{ id: "signup", label: "赛事信息" }];
-  if (race.value.guideText || (race.value.guide && race.value.guide.length)) list.push({ id: "guide", label: "竞赛规程" });
+  list.push({ id: "guide", label: "参赛指南" });
   list.push({ id: "news", label: "赛事资讯" });
-  if (ready.value || drawText.value) list.push({ id: "result", label: "我的成绩" });
+  list.push({ id: "result", label: "我的成绩" });
   return list;
 });
 
+function keepPosition(update) {
+  const scrollY = window.scrollY;
+  const panelTop = raceTabPanel.value ? raceTabPanel.value.getBoundingClientRect().top + scrollY : 0;
+  tabContentMinHeight.value = Math.max(tabContentMinHeight.value, Math.ceil(scrollY + window.innerHeight - panelTop));
+  update();
+  nextTick(() => { if (Math.abs(window.scrollY - scrollY) > 1) window.scrollTo(0, scrollY); });
+}
+function pickPlanStage(id) { keepPosition(() => { planStage.value = id; }); }
+function togglePlan() { keepPosition(() => { planOpen.value = !planOpen.value; }); }
+function toggleCompanion() { keepPosition(() => { companionOpen.value = !companionOpen.value; }); }
+function toggleOutings() { keepPosition(() => { outingsOpen.value = !outingsOpen.value; }); }
+function toggleShare() { keepPosition(() => { shareOpen.value = !shareOpen.value; }); }
+function prepareFold(event) {
+  if (event.target.closest('summary')) keepPosition(() => {});
+}
+
 function pickTab(id) {
+  if (id === tab.value) return;
+  const scrollY = window.scrollY;
+  const panelTop = raceTabPanel.value?.getBoundingClientRect().top || 0;
+  tabContentMinHeight.value = Math.max(tabContentMinHeight.value, Math.ceil(window.innerHeight - panelTop));
   tab.value = id;
+  nextTick(() => {
+    if (Math.abs(window.scrollY - scrollY) > 1) window.scrollTo(0, scrollY);
+  });
+}
+
+function moveTab(event, id) {
+  const index = tabs.value.findIndex(item => item.id === id);
+  const step = event.key === "ArrowRight" ? 1 : event.key === "ArrowLeft" ? -1 : 0;
+  const next = event.key === "Home" ? 0 : event.key === "End" ? tabs.value.length - 1 : step ? (index + step + tabs.value.length) % tabs.value.length : -1;
+  if (next < 0) return;
+  event.preventDefault();
+  const target = tabs.value[next];
+  pickTab(target.id);
+  nextTick(() => document.getElementById("race-tab-" + target.id)?.focus());
 }
 
 watch(tabs, (list) => {
@@ -521,7 +594,7 @@ function openSignup(url) {
 
 async function confirmSigned() {
   if (!ready.value) {
-    message.value = "先到「我的」登录";
+    loginForPlan();
     return;
   }
   if (myStatus.value && myStatus.value !== "想跑") {
@@ -621,7 +694,9 @@ function squadLine(club) {
   return card && card.squad ? card.squad.text : "";
 }
 async function openOutings(clubId) {
+  tab.value = 'signup'; outingsOpen.value = true;
   await router.replace({ path: route.path, query: { ...route.query, clubId: clubId ? String(clubId) : undefined }, hash: '#race-outings' });
+  await nextTick();
   document.getElementById('race-outings')?.scrollIntoView({ behavior: 'auto', block: 'start' });
 }
 
@@ -693,8 +768,12 @@ watch(
     distance.value = "";
     clock.value = "";
     story.value = "";
-    tab.value = "signup";
+    tab.value = initialTab();
+    tabContentMinHeight.value = 0;
     planOpen.value = route.query.plan === "1";
+    outingsOpen.value = route.hash === '#race-outings';
+    coverFailed.value = false; qrFailed.value = false;
+    if (viewer.value) closeViewer();
     shareOpen.value = false;
     selectedShareId.value = "";
     load().catch((err) => { if (String(id) === String(route.params.id || "")) message.value = err.message; });

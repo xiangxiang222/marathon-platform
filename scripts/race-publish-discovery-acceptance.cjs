@@ -1,0 +1,89 @@
+'use strict';
+// Isolated real Express + Vue acceptance. Synthetic cases never touch production.
+const assert=require('node:assert/strict'),fs=require('node:fs'),os=require('node:os'),path=require('node:path');
+const {pathToFileURL}=require('node:url'),{chromium}=require('playwright-core');
+const root=path.resolve(__dirname,'..'),temporary=fs.mkdtempSync(path.join(os.tmpdir(),'race-publish-'));
+const out=path.join(root,'design/previews/race-publish-discovery-20261116');
+Object.assign(process.env,{NODE_ENV:'test',PORT:'0',BASE_PATH:'/marathon',MARATHON_DB:path.join(temporary,'db.sqlite'),MARATHON_MEDIA:path.join(temporary,'media'),CONTENT_DATA_DIR:path.join(temporary,'content'),ADMIN_TOKEN:'local-publish-admin',GROK_BOT_TOKEN:'local-publish-bot'});
+const exists=fs.existsSync;fs.existsSync=file=>path.resolve(String(file))===path.join(root,'.env')?false:exists(file);
+let app;try{({app}=require('../server/src/index'));}finally{fs.existsSync=exists;}
+const db=require('../server/src/db').getDb();
+let server,vite,browser,origin,apiOrigin;
+const report={kind:'Real local Vue + Express + disposable DB. Synthetic data, not production. Browser screenshots, not WeChat device testing.',checks:[],views:[],errors:[],passed:false};
+const day=offset=>new Date(Date.now()+offset*86400000+8*3600000).toISOString().slice(0,10);
+async function request(url,body,method=body?'POST':'GET',token=process.env.ADMIN_TOKEN){const r=await fetch(apiOrigin+'/marathon/api'+url,{method,headers:{Authorization:'Bearer '+token,...(body?{'Content-Type':'application/json'}:{})},...(body?{body:JSON.stringify(body)}:{})});const data=await r.json();assert.ok(r.ok,JSON.stringify({url,status:r.status,data}));return data;}
+async function check(name,fn){await fn();report.checks.push(name);console.log('PASS '+name);}
+async function shot(page,name,{controls=false}={}){
+ const m=await page.evaluate(controls=>{const visible=e=>{const r=e.getBoundingClientRect(),s=getComputedStyle(e);return r.width>1&&r.height>1&&s.visibility!=='hidden'&&s.display!=='none'&&!e.closest('[inert]')};return{width:innerWidth,scrollWidth:document.documentElement.scrollWidth,smallControls:controls?[...document.querySelectorAll('.editor button,.editor input:not([type=file]),.editor select,.editor textarea,.race-page .official-actions a,.race-page .tabs button,.race-page .race-follow-row button,.race-page .plan-action,.race-page .race-personal-toggle,.race-page .personal-tools-toggle')].filter(visible).map(control=>{const e=control.matches('input[type=checkbox],input[type=radio]')?(control.closest('label')||control):control;return{text:e.getAttribute('aria-label')||e.textContent.trim().slice(0,40),width:e.getBoundingClientRect().width,height:e.getBoundingClientRect().height}}).filter(r=>r.width<43.5||r.height<43.5):[]}},controls);
+ assert.ok(m.scrollWidth<=m.width,name+' page overflow '+JSON.stringify(m));assert.deepEqual(m.smallControls,[],name+' controls below 44px');
+ await page.screenshot({path:path.join(out,name+'.png'),fullPage:true});report.views.push({name,screenshot:name+'.png',...m});
+}
+async function newEditor(page){await page.goto(origin+'/marathon/admin',{waitUntil:'networkidle'});await page.getByRole('button',{name:'赛事管理',exact:true}).click();await page.getByRole('button',{name:'新建赛事',exact:true}).click();await page.locator('#race-editor').waitFor();}
+const field=(p,name)=>p.locator('[data-editor-field="'+name+'"]');
+async function stage(p,id){await p.getByRole('tab',{name:id,exact:true}).click();}
+async function main(){
+ fs.mkdirSync(out,{recursive:true});server=await new Promise(resolve=>{const s=app.listen(0,'127.0.0.1',()=>resolve(s))});apiOrigin='http://127.0.0.1:'+server.address().port;
+ const {createServer}=await import(pathToFileURL(path.join(root,'web/node_modules/vite/dist/node/index.js')).href);vite=await createServer({root:path.join(root,'web'),configFile:path.join(root,'web/vite.config.js'),cacheDir:path.join(temporary,'vite'),server:{host:'127.0.0.1',port:0,proxy:{'/marathon/api':apiOrigin}}});await vite.listen();origin='http://127.0.0.1:'+vite.httpServer.address().port;
+ const executablePath=process.env.CHROME_PATH||'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';browser=await chromium.launch({headless:true,executablePath});
+ const ctx=await browser.newContext({viewport:{width:1440,height:1000}});await ctx.addInitScript(()=>sessionStorage.setItem('marathon_admin','local-publish-admin'));
+ const p=await ctx.newPage();p.on('pageerror',e=>report.errors.push(e.message));
+ const longName='合成验收·2027山海城市生态马拉松暨全民健身长名称测试赛事';let createdId;
+ if(!process.env.PUBLISH_FRONT_ONLY){
+ await check('New editor states and real input previews retain independent project dimensions',async()=>{
+  await newEditor(p);await shot(p,'admin-new-1440',{controls:true});
+  await p.getByRole('button',{name:'新建并发布到赛历',exact:true}).click();await p.locator('.editor-validation').waitFor();assert.equal(await field(p,'name').getAttribute('aria-invalid'),'true');
+  await field(p,'name').fill(longName);await field(p,'raceDate').fill(day(60));await field(p,'place').fill('合成城市起点广场');
+  await stage(p,'项目');await p.locator('#race-editor').getByRole('button',{name:'全马',exact:true}).click();await p.locator('#race-editor').getByRole('button',{name:'越野',exact:true}).click();await p.locator('#race-editor').getByRole('button',{name:'线上',exact:true}).click();await field(p,'groups').fill('亲子组、欢乐体验组');
+  assert.ok((await p.locator('.publish-preview-card').textContent()).includes(longName));assert.equal(db.prepare('SELECT COUNT(*) n FROM races WHERE name=?').get(longName).n,0);
+  await p.getByRole('tab',{name:'移动详情',exact:true}).click();assert.ok((await p.locator('.publish-preview-mobile').textContent()).includes('欢乐体验组'));
+  await shot(p,'admin-preview-current-input-1440',{controls:true});
+ });
+ await check('Field errors locate the registration stage, and unsaved close can be cancelled',async()=>{
+  await stage(p,'报名');await field(p,'regStart').fill(day(10));await field(p,'deadline').fill(day(5));await field(p,'nodeSource').fill('合成验收资料');await p.getByRole('button',{name:'新建并发布到赛历',exact:true}).click();await p.locator('.editor-validation').waitFor();assert.equal(await field(p,'deadline').getAttribute('aria-invalid'),'true');
+  await field(p,'regStart').fill(day(-3));await field(p,'deadline').fill(day(7));
+  p.once('dialog',d=>d.dismiss());await p.locator('.edit-tools').getByRole('button',{name:'取消',exact:true}).click();assert.equal(await p.locator('#race-editor').count(),1);
+ });
+ await check('Creation publishes once; partial node and media failures retain inputs and retry without duplicate race or upload',async()=>{
+  await stage(p,'基本信息');const png=fs.readFileSync(path.join(root,'server/test/fixtures/race-certificate.png'));
+  await p.getByLabel('上传赛事封面',{exact:true}).setInputFiles({name:'synthetic.png',mimeType:'image/png',buffer:png});
+  let creates=0;const count=r=>{if(r.method()==='POST'&&new URL(r.url()).pathname==='/marathon/api/admin/races')creates++};p.on('request',count);
+  const failNodes=r=>r.fulfill({status:503,contentType:'application/json',body:JSON.stringify({error:'合成节点保存失败'})});const failMedia=r=>r.fulfill({status:503,contentType:'application/json',body:JSON.stringify({error:'合成封面上传失败'})});
+  await p.route('**/api/admin/races/hand-*',r=>r.request().method()==='PUT'?failNodes(r):r.continue());await p.route('**/api/admin/races/*/sheets?kind=cover',failMedia);
+  await p.getByRole('button',{name:'新建并发布到赛历',exact:true}).click();await p.getByRole('button',{name:'保存修改',exact:true}).waitFor();await p.locator('.editor-save-steps .failed').first().waitFor();
+  createdId=db.prepare('SELECT id FROM races WHERE name=?').get(longName).id;assert.equal(creates,1);assert.equal((await request('/races/'+createdId)).race.name,longName);await stage(p,'报名');assert.equal(await field(p,'deadline').inputValue(),day(7));
+  await shot(p,'admin-partial-save-1440',{controls:true});await p.unroute('**/api/admin/races/hand-*');await p.unroute('**/api/admin/races/*/sheets?kind=cover',failMedia);
+  await p.getByRole('button',{name:'重试未完成项',exact:true}).first().click();await p.waitForFunction(()=>document.querySelectorAll('.editor-save-steps .failed').length===0&&document.querySelectorAll('.editor-save-steps .done').length>=2);
+  assert.equal(creates,1);assert.equal(db.prepare('SELECT COUNT(*) n FROM races WHERE name=?').get(longName).n,1);assert.equal(db.prepare('SELECT COUNT(*) n FROM race_sheets WHERE race_id=? AND kind=?').get(createdId,'cover').n,1);assert.equal((await request('/races/'+createdId)).race.deadline,day(7));p.off('request',count);
+ });
+ await check('Admin editing and preview fit 320/390 short screens with 44px controls',async()=>{
+  for(const width of [390,320]){await p.setViewportSize({width,height:568});for(const tab of ['基本信息','报名','比赛日']){await stage(p,tab);await shot(p,'admin-edit-'+tab+'-'+width,{controls:true});}}
+ });
+ await p.setViewportSize({width:1440,height:1000});
+ await check('Review saves stay private, then approval publishes current edits',async()=>{
+  await request('/bot/races',{officialId:'review-local',name:'合成验收待审赛事',raceDate:day(90),province:'浙江',city:'杭州',distances:['half'],source:'合成审核来源'},'POST',process.env.GROK_BOT_TOKEN);
+  await p.getByRole('button',{name:'收起',exact:true}).click();await p.getByRole('tab',{name:/内容审核/}).click();await p.locator('.review-row').filter({hasText:'合成验收待审赛事'}).getByRole('button',{name:'审核',exact:true}).click();
+  await p.getByRole('button',{name:'保存待审资料',exact:true}).waitFor();await field(p,'name').fill('合成验收待审赛事·已核对');await p.getByRole('button',{name:'保存待审资料',exact:true}).click();await p.locator('.editor-save-steps .done').waitFor();assert.equal(db.prepare('SELECT COUNT(*) n FROM races WHERE name=?').get('合成验收待审赛事·已核对').n,0);await shot(p,'admin-review-private-1440',{controls:true});
+  await p.getByRole('button',{name:'审核通过发布',exact:true}).click();await p.getByRole('button',{name:'保存修改',exact:true}).waitFor();assert.equal(db.prepare('SELECT COUNT(*) n FROM races WHERE name=?').get('合成验收待审赛事·已核对').n,1);await shot(p,'admin-review-published-1440',{controls:true});
+ });
+ }else{const row=await request('/admin/races',{name:longName,city:'杭州',province:'浙江',place:'合成城市长名称测试起点广场',raceDate:day(60),distances:['full','half']});createdId=row.id;const form=new FormData();form.append('file',new Blob([fs.readFileSync(path.join(root,'server/test/fixtures/race-certificate.png'))],{type:'image/png'}),'synthetic.png');const uploaded=await fetch(apiOrigin+'/marathon/api/admin/races/'+createdId+'/sheets?kind=cover',{method:'POST',headers:{Authorization:'Bearer '+process.env.ADMIN_TOKEN},body:form});assert.ok(uploaded.ok);}
+ const userToken='local-publish-runner',stamp=new Date().toISOString();db.prepare('INSERT INTO users(nickname,token,created_at) VALUES(?,?,?)').run('合成验收跑者',userToken,stamp);
+ const fixtures=[['missing',{raceDate:day(40)}],['scheduled',{raceDate:day(40),regStart:day(10),deadline:day(15)}],['open',{raceDate:day(40),regStart:day(-3),deadline:day(5)}],['draw',{raceDate:day(40),deadline:day(-5),drawAt:day(0)}],['payment',{raceDate:day(40),deadline:day(-5),drawAt:day(-1),payDeadline:day(3)}],['bib',{raceDate:day(2),deadline:day(-10),bibAt:day(0)}],['live',{raceDate:day(0),deadline:day(-10)}],['ended',{raceDate:day(-1),deadline:day(-20)}]];
+ const ids={};for(const [key,dates]of fixtures){const r=await request('/admin/races',{name:'合成验收·'+({missing:'资料未录入',scheduled:'报名未开始',open:'报名进行中',draw:'中签查询阶段',payment:'缴费阶段',bib:'号码查询阶段',live:'比赛日',ended:'官方成绩查询'}[key]),city:'杭州',province:'浙江',place:'合成起点广场',distances:['full','half'],kinds:['fun'],groups:'亲子组',startAt:'07:30',route:'合成赛道说明，仅用于布局验收。',pickup:'合成领物说明，仅用于布局验收。',pacers:'合成配速说明，仅用于布局验收。',guideText:'## 合成验收规程\n\n本内容只存在隔离测试数据库。',signupUrl:key==='missing'?'':'https://official.example/signup',drawUrl:'https://official.example/draw',bibUrl:'https://official.example/bib',resultUrl:'https://official.example/result',...dates});ids[key]=r.id;if(dates.deadline||dates.regStart||dates.drawAt||dates.payDeadline)await request('/admin/races/'+r.id,{...dates,source:'合成节点来源'},'PUT');}
+ const runner=await browser.newContext({viewport:{width:390,height:844}});await runner.addInitScript(t=>{localStorage.setItem('marathon_token',t);localStorage.setItem('marathon_name','合成验收跑者')},userToken);const front=await runner.newPage();front.on('pageerror',e=>report.errors.push(e.message));
+ await check('Public registration stages use real actions, follow and plan remain independent',async()=>{
+  for(const width of [390,320,1440]){await front.setViewportSize({width,height:width===320?568:900});for(const [key]of fixtures){await front.goto(origin+'/marathon/races/'+ids[key],{waitUntil:'networkidle'});await front.locator('.race-hero').waitFor();await shot(front,'web-'+key+'-'+width,{controls:true});if(key==='scheduled')assert.ok((await front.locator('.official-primary').textContent()).includes('报名信息'));if(key==='ended')assert.ok((await front.locator('.official-primary').textContent()).includes('成绩'));}}
+  for(const [status,following]of [['',false],['',true],['想跑',false],['已报名',true],['中签',false],['已缴费',true],['完赛',false]]){await request('/me/races/'+ids.open+'/follow',{following},'PUT',userToken);if(status)await request('/me/races/'+ids.open,{status},'PUT',userToken);await front.setViewportSize({width:390,height:844});await front.goto(origin+'/marathon/races/'+ids.open,{waitUntil:'networkidle'});const read=await request('/races/'+ids.open,null,'GET',userToken);assert.equal(read.myStatus,status);assert.equal(read.following,following);assert.equal(read.race.regStatus,'报名中');await shot(front,'web-personal-'+(status||'none')+'-'+following+'-390',{controls:true});}
+ });
+ await check('Long names, cover failures and guide images preserve access without overflow',async()=>{
+  await front.setViewportSize({width:320,height:568});await front.goto(origin+'/marathon/races/'+createdId,{waitUntil:'networkidle'});await front.locator('.race-cover img').waitFor();await shot(front,'web-long-cover-320',{controls:true});
+  await front.route('**/api/race-sheets/*',r=>r.abort());await front.reload({waitUntil:'networkidle'});await front.waitForFunction(()=>!document.querySelector('.race-cover img'));await shot(front,'web-cover-failed-320',{controls:true});await front.unroute('**/api/race-sheets/*');
+  await front.goto(origin+'/marathon/races/'+ids.open,{waitUntil:'networkidle'});await front.getByRole('tab',{name:'参赛指南',exact:true}).click();await shot(front,'web-guide-320',{controls:true});await front.getByRole('tab',{name:'我的成绩',exact:true}).click();await shot(front,'web-results-320',{controls:true});
+ });
+ await check('Guide images have retry and full image gallery closes at the same scroll position',async()=>{
+  const form=new FormData();form.append('file',new Blob([fs.readFileSync(path.join(root,'server/test/fixtures/race-certificate.png'))],{type:'image/png'}),'synthetic-guide.png');const upload=await fetch(apiOrigin+'/marathon/api/admin/races/'+ids.open+'/sheets?kind=route',{method:'POST',headers:{Authorization:'Bearer '+process.env.ADMIN_TOKEN},body:form});assert.ok(upload.ok);
+  await front.goto(origin+'/marathon/races/'+ids.open,{waitUntil:'networkidle'});await front.getByRole('tab',{name:'参赛指南',exact:true}).click();const image=front.locator('.race-media-open').first();await image.scrollIntoViewIfNeeded();await image.locator('img').evaluate(e=>e.decode());const before=await front.evaluate(()=>scrollY);await image.click();await front.locator('dialog[open]').waitFor();await shot(front,'web-image-gallery-320',{controls:true});await front.getByRole('button',{name:'关闭图片预览',exact:true}).click();assert.ok(Math.abs((await front.evaluate(()=>scrollY))-before)<2);
+  await front.route('**/api/race-sheets/*',r=>r.abort());await front.reload({waitUntil:'networkidle'});await front.getByRole('tab',{name:'参赛指南',exact:true}).click();await front.locator('.race-media').first().scrollIntoViewIfNeeded();await front.locator('.race-media-error').first().waitFor();await shot(front,'web-guide-image-failed-320',{controls:true});await front.unroute('**/api/race-sheets/*');await front.locator('.race-media-error button').first().click();await front.locator('.race-media-open img').first().evaluate(e=>e.decode());
+ });
+ assert.deepEqual(report.errors,[]);report.passed=true;
+}
+main().catch(e=>{report.fatal=e.stack;process.exitCode=1;console.error(e)}).finally(async()=>{if(browser&&!report.passed){for(const context of browser.contexts())for(const page of context.pages()){report.failurePage={url:page.url(),text:(await page.locator('body').innerText()).slice(0,2000)};await page.screenshot({path:path.join(out,'failure-debug.png'),fullPage:true}).catch(()=>{});}}if(browser)await browser.close();if(vite)await vite.close();if(server)await new Promise(r=>server.close(r));fs.mkdirSync(out,{recursive:true});fs.writeFileSync(path.join(out,'web-admin-report.json'),JSON.stringify(report,null,2));console.log(JSON.stringify({passed:report.passed,checks:report.checks.length,views:report.views.length,fatal:report.fatal,errors:report.errors},null,2))});

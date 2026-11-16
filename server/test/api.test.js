@@ -657,8 +657,8 @@ test("a race without a signup deadline is not shown as closed", () => {
     { id: "caa-1", name: "未公布报名", city: "重庆", province: "重庆", distances: "half", race_date: "2026-12-27", deadline: "", place: "巴南" },
     new Date("2026-10-09T10:00:00+08:00")
   );
-  assert.equal(race.regStatus, "报名时间未公布");
-  assert.equal(race.deadlineLabel, "报名时间未公布");
+  assert.equal(race.regStatus, "报名时间未录入");
+  assert.equal(race.deadlineLabel, "报名时间未录入");
   assert.equal(race.open, false);
 });
 
@@ -705,7 +705,7 @@ test("official races stay in review until published, and do not overwrite a know
   const created = await request(app).post("/marathon/api/admin/official/4242/publish").set(admin).send({});
   assert.equal(created.body.raceId, "caa-4242");
   const fresh = await request(app).get("/marathon/api/races/caa-4242");
-  assert.equal(fresh.body.race.regStatus, "报名时间未公布");
+  assert.equal(fresh.body.race.regStatus, "报名时间未录入");
   assert.equal(fresh.body.race.source, "中国马拉松官网赛历");
   assert.equal(fresh.body.race.city, "杭州");
 
@@ -714,7 +714,7 @@ test("official races stay in review until published, and do not overwrite a know
   const still = await request(app).get("/marathon/api/races/bishan");
   assert.equal(still.body.race.deadline, deadline);
 
-  const sourced = await request(app).put("/marathon/api/admin/races/caa-4242").set(admin).send({ deadline: "2026-12-20", source: "规程，2026-10-09" });
+  const sourced = await request(app).put("/marathon/api/admin/races/caa-4242").set(admin).send({ deadline: "2026-11-20", source: "规程，2026-10-09" });
   assert.equal(sourced.status, 200);
   assert.equal(sourced.body.race.regStatus, "报名中");
   assert.equal(sourced.body.race.source, "规程，2026-10-09");
@@ -822,7 +822,7 @@ test("upcoming official races show on the calendar without inventing a deadline"
   assert.ok(opened >= 1);
   const listed = await request(app).get("/marathon/api/races?status=upcoming");
   const created = listed.body.races.find((race) => race.id === "caa-9100");
-  assert.equal(created.regStatus, "报名时间未公布");
+  assert.equal(created.regStatus, "报名时间未录入");
   assert.equal(created.deadline, "");
   assert.equal(created.city, "杭州");
   const kept = await request(app).get("/marathon/api/races/bishan");
@@ -1223,7 +1223,7 @@ test("a race missing from the official calendar can be added by hand", async () 
   assert.equal(race.status, 200);
   assert.equal(race.body.race.name, "2026手工添加测试赛");
   assert.equal(race.body.race.deadline, "");
-  assert.equal(race.body.race.deadlineLabel, "报名时间未公布");
+  assert.equal(race.body.race.deadlineLabel, "报名时间未录入");
   assert.equal(race.body.race.source, "后台手工添加");
   assert.equal(race.body.race.startAt, "08:00");
   assert.deepEqual(race.body.race.kindLabels, ["亲子跑", "越野"]);
@@ -1247,6 +1247,27 @@ test("a race missing from the official calendar can be added by hand", async () 
     .attach("file", jpeg, { filename: "pacer.jpg", contentType: "image/jpeg" });
   assert.equal(pacer.status, 200);
   assert.equal(pacer.body.sheet.kind, "pacer");
+  const uploadCover = (bytes = jpeg) => request(app)
+    .post("/marathon/api/admin/races/" + created.body.id + "/sheets?kind=cover")
+    .set(admin).attach("file", bytes, { filename: "cover.jpg", contentType: "image/jpeg" });
+  const firstCover = await uploadCover();
+  assert.equal(firstCover.status, 200);
+  assert.equal(firstCover.body.sheet.kind, "cover");
+  const invalidCover = await uploadCover(Buffer.from("invalid image"));
+  assert.equal(invalidCover.status, 400);
+  const keptCover = await request(app).get("/marathon/api/races/" + created.body.id);
+  assert.equal(keptCover.body.race.coverSheet.id, firstCover.body.sheet.id, "Failed replacement keeps the existing cover");
+  const replacementCover = await uploadCover();
+  assert.equal(replacementCover.status, 200);
+  assert.notEqual(replacementCover.body.sheet.id, firstCover.body.sheet.id);
+  const oldCover = await request(app).get("/marathon/api/race-sheets/" + firstCover.body.sheet.id);
+  assert.equal(oldCover.status, 404);
+  const withCover = await request(app).get("/marathon/api/races/" + created.body.id);
+  assert.deepEqual(withCover.body.race.coverSheet, { id: replacementCover.body.sheet.id });
+  assert.equal(getDb().prepare("SELECT COUNT(*) AS n FROM race_sheets WHERE race_id=? AND kind='cover'").get(created.body.id).n, 1);
+  const deniedCover = await request(app).post("/marathon/api/admin/races/" + created.body.id + "/sheets?kind=cover")
+    .set("Authorization", "Bearer " + user).attach("file", jpeg, { filename: "cover.jpg", contentType: "image/jpeg" });
+  assert.equal(deniedCover.status, 401);
   const unknown = await request(app)
     .post("/marathon/api/admin/races/" + created.body.id + "/sheets?kind=poster")
     .set(admin)
@@ -3605,7 +3626,7 @@ test("a bot upload waits for review and a return can be sent again", async () =>
   assert.equal(published.status, 200);
   assert.equal(published.body.created, true);
   const opened = await request(app).get("/marathon/api/races/" + published.body.raceId);
-  assert.equal(opened.body.race.regStatus, "报名时间未公布");
+  assert.equal(opened.body.race.regStatus, "报名时间未录入");
   assert.equal(opened.body.race.id, "bot4242");
   assert.equal(opened.body.race.officialUrl, "");
   assert.equal(opened.body.race.meet, "offline");
@@ -3973,4 +3994,32 @@ test("a pending upload can be corrected before it is published", async () => {
   assert.equal(returned.body.city, "温州");
   assert.equal(returned.body.note, "城市不对");
   assert.equal(returned.body.status, "returned");
+});
+
+test("registration node edits validate real dates and retained dates before committing", async () => {
+  process.env.ADMIN_TOKEN = "test-admin";
+  const admin = { Authorization: "Bearer test-admin" };
+  getDb().prepare("INSERT INTO races(id,name,city,province,distances,race_date,deadline,place,reg_start,draw_at,pay_deadline) VALUES(?,?,?,?,?,?,?,?,?,?,?)").run("node-order-check", "节点校验测试", "北京", "北京", "half", "2099-04-20", "2099-03-10", "起点", "2099-03-01", "2099-03-15", "2099-03-18");
+  const write = body => request(app).put("/marathon/api/admin/races/node-order-check").set(admin).send({ source: "本地验收资料", ...body });
+  const invalidDay = await write({ deadline: "2099-02-30" });
+  assert.equal(invalidDay.status, 400);
+  assert.equal(invalidDay.body.field, "deadline");
+  const reversed = await write({ deadline: "2099-02-28" });
+  assert.equal(reversed.status, 400);
+  assert.equal(reversed.body.field, "deadline");
+  const retainedDraw = await write({ deadline: "2099-03-16" });
+  assert.equal(retainedDraw.status, 400);
+  assert.equal(retainedDraw.body.field, "drawAt");
+  assert.equal((await write({ payDeadline: "2099-04-21" })).status, 400);
+  const kept = getDb().prepare("SELECT deadline,draw_at,pay_deadline FROM races WHERE id=?").get("node-order-check");
+  assert.deepEqual(kept, { deadline: "2099-03-10", draw_at: "2099-03-15", pay_deadline: "2099-03-18" });
+  const saved = await write({ deadline: "2099-03-11", drawAt: "", payDeadline: "" });
+  assert.equal(saved.status, 200);
+  assert.equal(saved.body.race.drawAt, "2099-03-15");
+  assert.equal(saved.body.race.payDeadline, "2099-03-18");
+  assert.equal(saved.body.race.regStatus, "未开始");
+  const soon = await request(app).get("/marathon/api/races?status=soon");
+  assert.ok(soon.body.races.some(race => race.id === "node-order-check"));
+  const open = await request(app).get("/marathon/api/races?status=open");
+  assert.equal(open.body.races.some(race => race.id === "node-order-check"), false);
 });

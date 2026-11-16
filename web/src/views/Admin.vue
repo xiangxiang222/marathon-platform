@@ -148,57 +148,62 @@
                 <button v-if="book.id || book.submissionId" class="text-btn" type="button" @click="closeEditor">收起</button>
                 <router-link v-if="book.id || book.raceId" class="text-btn" :to="'/races/' + (book.id || book.raceId)">查看赛历</router-link>
                 <button v-if="!book.id && !book.submissionId" class="text-btn" type="button" @click="closeEditor">取消</button>
-                <button v-if="book.submissionId && book.status === 'pending'" class="save" type="button" @click="publishBot(book)">通过</button>
-                <button class="save" type="submit" form="race-editor">保存</button>
+                <button type="button" class="editor-preview-toggle" :aria-pressed="previewOpen" @click="previewOpen = !previewOpen">{{ previewOpen ? '收起预览' : '预览展示' }}</button>
+                <button v-if="book.submissionId && book.status === 'pending'" class="save" type="button" :disabled="editorBusy" @click="publishBot(book)">{{ editorSaving ? '正在处理…' : '审核通过发布' }}</button>
+                <button class="save" type="submit" form="race-editor" :disabled="editorBusy">{{ editorSaving ? '正在保存…' : editorSaveLabel }}</button>
               </div>
             </header>
-            <nav class="edit-nav" role="tablist" aria-label="赛事资料">
-              <button v-for="item in sections" :key="item.id" type="button" role="tab" :aria-selected="editTab === item.id" :class="{ on: editTab === item.id }" @click="editTab = item.id">{{ item.label }}</button>
-            </nav>
+            <div class="editor-workflow"><p>{{ book.submissionId ? '保存只更新待审资料，审核通过后才展示在前台。' : book.id ? '已在赛历展示，保存修改会更新跑者看到的信息。' : '填写基础资料即可建赛，首次保存后直接展示在赛历。' }}</p><span :class="{changed:editorDirty}">{{ editorDirty ? '有未保存的修改' : !book.id && !book.submissionId ? '尚未发布' : '当前修改已保存' }}</span></div>
+            <nav class="editor-stages" aria-label="赛事编辑阶段"><div v-for="(stage,index) in editorStages" :key="stage.id" class="editor-stage" :class="{active:stage.tabs.includes(editTab)}"><button type="button" class="stage-heading" :disabled="editorBusy" :aria-pressed="stage.tabs.includes(editTab)" @click="selectEditorSection(stage.tabs[0])"><span>{{ index+1 }}</span><b>{{ stage.label }}<small>{{ index === 0 ? (sectionFilled('base') && sectionFilled('projects') ? '建赛必填已完成' : '建赛必填') : '选填 · ' + stage.tabs.filter(sectionFilled).length + '/' + stage.tabs.length + ' 项已录入' }}</small></b></button><div class="edit-nav" role="tablist" :aria-label="stage.label + '资料'"><button v-for="item in sections.filter(item=>stage.tabs.includes(item.id))" :key="item.id" type="button" role="tab" :aria-label="item.label" :aria-selected="editTab === item.id" :disabled="editorBusy" :class="{on:editTab===item.id,filled:sectionFilled(item.id),invalid:editorError?.tab===item.id}" @click="selectEditorSection(item.id)"><i aria-hidden="true"></i>{{ item.label }}<span class="section-status">{{ sectionFilled(item.id) ? '已录入' : '未录入' }}</span></button></div></div></nav>
           </div>
+          <div v-if="editorError" class="editor-validation" role="alert"><b>还有一处需要核对</b><button type="button" @click="focusEditorError">{{ editorError.message }} <AdminIcon name="arrow" /></button></div>
+          <ol v-if="saveSteps.length" class="editor-save-steps" aria-label="本次保存进度" aria-live="polite"><li v-for="step in saveSteps" :key="step.id" :class="step.status"><span>{{ step.label }}</span><b>{{ step.status==='saving' ? '正在保存…' : step.status==='done' ? '已完成' : step.status==='failed' ? '未完成' : '等待' }}</b><small v-if="step.error">{{ step.error }}</small><button v-if="step.status==='failed'" type="button" :disabled="editorBusy" @click="saveGuide">重试未完成项</button></li></ol>
+          <div class="editor-content" :class="{previewing:previewOpen}"><div class="editor-fields">
           <p v-if="book.submissionId && book.note" class="warn">打回原因：{{ book.note }}</p>
           <form v-if="book.submissionId && book.status === 'pending'" class="check-form return-form" @submit.prevent="returnBot(book)">
             <label class="field"><span>打回原因</span><input v-model="book.returnNote" maxlength="200" placeholder="打回原因" /></label>
             <button class="undo" type="submit">打回</button>
           </form>
-          <form id="race-editor" class="check-form guide-form" @submit.prevent="saveGuide">
-            <section v-show="editTab === 'base'" class="section">
-              <h3>基本信息</h3>
+          <form id="race-editor" class="check-form guide-form" @submit.prevent="saveGuide" @input="clearEditorError"><fieldset class="editor-fieldset" :disabled="editorBusy">
+            <section v-show="editorSectionVisible('base')" :id="'editor-section-base'" class="section">
+              <h3>基本信息 <small>建赛必填</small></h3><p class="note">填写名称、日期和举办地点，再选择比赛项目。其余资料可在发布后补充。</p>
               <div class="pair">
-                <label class="field span"><span>赛事名称</span><input v-model="book.name" placeholder="例如 2026 普洱墨江半程马拉松" /></label>
-                <label class="field"><span>比赛日期</span><input v-model="book.raceDate" type="date" /></label>
-                <label class="field"><span>起跑时间</span><input v-model="book.startAt" type="time" /></label>
+                <label class="field span"><span>赛事名称 <em class="field-required">必填</em></span><input v-model="book.name" aria-label="赛事名称" :data-editor-field="'name'" :aria-invalid="editorError?.field === 'name' || undefined" placeholder="例如 2026 普洱墨江半程马拉松" /></label>
+                <label class="field"><span>比赛日期 <em class="field-required">必填</em></span><input v-model="book.raceDate" aria-label="比赛日期" :data-editor-field="'raceDate'" :aria-invalid="editorError?.field === 'raceDate' || undefined" type="date" /></label>
+                <label class="field"><span>起跑时间</span><input v-model="book.startAt" :data-editor-field="'startAt'" :aria-invalid="editorError?.field === 'startAt' || undefined" type="time" /></label>
                 <label class="field"><span>省份</span>
-                  <select v-model="book.province" @change="onProvinceChange">
+                  <select v-model="book.province" :data-editor-field="'province'" :aria-invalid="editorError?.field === 'province' || undefined" @change="onProvinceChange">
                     <option value="">选择省份</option>
                     <option v-for="name in provinceOptions" :key="name" :value="name">{{ name }}</option>
                   </select>
                 </label>
                 <label class="field"><span>城市</span>
-                  <select v-model="book.city" @change="onCityChange">
+                  <select v-model="book.city" :data-editor-field="'city'" :aria-invalid="editorError?.field === 'city' || undefined" @change="onCityChange">
                     <option value="">选择城市</option>
                     <option v-for="name in cityOptions" :key="name" :value="name">{{ name }}</option>
                   </select>
                 </label>
                 <label class="field"><span>区县</span>
-                  <select v-model="book.district">
+                  <select v-model="book.district" :data-editor-field="'district'" :aria-invalid="editorError?.field === 'district' || undefined">
                     <option value="">选择区县</option>
                     <option v-for="name in districtOptions" :key="name" :value="name">{{ name }}</option>
                   </select>
                 </label>
-                <label class="field span"><span>举办地点</span><input v-model="book.place" list="place-options" placeholder="起点、场馆或景区" /><datalist id="place-options"><option v-for="name in placeOptions" :key="name" :value="name" /></datalist></label>
-                <label class="field"><span>主办单位</span><input v-model="book.organizer" placeholder="组委会或主办机构" /></label>
+                <label class="field span"><span>举办地点</span><input v-model="book.place" :data-editor-field="'place'" :aria-invalid="editorError?.field === 'place' || undefined" list="place-options" placeholder="起点、场馆或景区" /><datalist id="place-options"><option v-for="name in placeOptions" :key="name" :value="name" /></datalist></label>
+                <label class="field"><span>主办单位</span><input v-model="book.organizer" :data-editor-field="'organizer'" :aria-invalid="editorError?.field === 'organizer' || undefined" placeholder="组委会或主办机构" /></label>
                 <label class="field"><span>认证类别</span>
-                  <select v-model="book.grade">
+                  <select v-model="book.grade" :data-editor-field="'grade'" :aria-invalid="editorError?.field === 'grade' || undefined">
                     <option v-for="item in gradeChoices" :key="item.value" :value="item.value">{{ item.label }}</option>
                   </select>
                 </label>
               </div>
+              <RaceEditorMedia v-if="!book.submissionId" label="赛事封面" kind="cover" :sheets="book.coverSheet ? [book.coverSheet] : []" :queue="coverQueue ? [coverQueue] : []" :limit="1" :busy="editorBusy" :existing="!!book.id" :sheet-src="raceSheetSrc" @select="onMediaFile($event,'cover')" @remove="removeSheet" @drop="dropMedia('cover',$event)" @retry="retryMedia('cover',$event)" />
+              <p v-else class="note">赛事封面在审核通过后上传。</p>
             </section>
-            <section v-show="editTab === 'projects'" class="section">
-              <h3>项目</h3>
-              <p class="pick-label">计时项目</p>
-              <div class="picks">
+            <section v-show="editorSectionVisible('projects')" :id="'editor-section-projects'" class="section">
+              <h3>比赛项目 <small>至少选择一项或填写组别</small></h3>
+              <p class="pick-label">比赛距离</p>
+              <div class="picks" data-editor-field="distances" tabindex="-1">
                 <button v-for="item in distanceChoices" :key="item.key" type="button" class="pick" :class="{ on: book.distances.includes(item.key) }" :aria-pressed="book.distances.includes(item.key)" @click="toggle(book.distances, item.key)">{{ item.label }}</button>
               </div>
               <p class="pick-label">赛事类型</p>
@@ -206,38 +211,31 @@
                 <button v-for="item in kindChoices" :key="item.key" type="button" class="pick" :class="{ on: book.kinds.includes(item.key) }" :aria-pressed="book.kinds.includes(item.key)" @click="toggle(book.kinds, item.key)">{{ item.label }}</button>
               </div>
               <p class="note">越野和超马可以不选计时项目，把 30 公里、50 公里写在其他组别。</p>
-              <p class="pick-label">举办</p>
+              <p class="pick-label">举办形式</p>
               <div class="picks">
                 <button type="button" class="pick" :class="{ on: book.meet !== 'online' }" :aria-pressed="book.meet !== 'online'" @click="book.meet = 'offline'">线下</button>
                 <button type="button" class="pick" :class="{ on: book.meet === 'online' }" :aria-pressed="book.meet === 'online'" @click="book.meet = 'online'">线上</button>
               </div>
               <div class="pair">
-                <label class="field span"><span>其他组别</span><input v-model="book.groups" placeholder="15公里、30公里、50公里" /><small>多项以顿号分隔，最多 8 项。</small></label>
-                <label class="field"><span>规模</span><input v-model="book.scale" placeholder="例如全程 35000 人" /></label>
-                <label class="field"><span>报名费用</span><input v-model="book.fee" placeholder="例如全程 200 元，半程 150 元" /></label>
-                <label class="field span"><span>咨询电话</span><input v-model="book.phone" placeholder="仅填写号码" /></label>
+                <label class="field span"><span>其他组别</span><input v-model="book.groups" :data-editor-field="'groups'" :aria-invalid="editorError?.field === 'groups' || undefined" placeholder="15公里、30公里、50公里" /><small>多项以顿号分隔，最多 8 项。</small></label>
+                <label class="field"><span>规模</span><input v-model="book.scale" :data-editor-field="'scale'" :aria-invalid="editorError?.field === 'scale' || undefined" placeholder="例如全程 35000 人" /></label>
+                <label class="field"><span>报名费用</span><input v-model="book.fee" :data-editor-field="'fee'" :aria-invalid="editorError?.field === 'fee' || undefined" placeholder="例如全程 200 元，半程 150 元" /></label>
+                <label class="field span"><span>咨询电话</span><input v-model="book.phone" :data-editor-field="'phone'" :aria-invalid="editorError?.field === 'phone' || undefined" placeholder="仅填写号码" /></label>
               </div>
             </section>
-            <section v-show="editTab === 'signup'" class="section">
+            <section v-show="editorSectionVisible('signup')" :id="'editor-section-signup'" class="section">
               <h3>报名与查询</h3>
               <p v-if="book.submissionId" class="note">改的是这场待审。保存后仍停在待审，点通过才写入赛历。日期和链接留空时，通过不会盖掉赛历里已经记下的。</p>
-              <p v-else class="note">日期留空则保持原值。新建赛事未填写时，赛历显示「报名时间未公布」。修改日期须填写本次来源。</p>
-              <h4 class="group-title">时间节点</h4>
-              <div class="pair">
-                <label class="field"><span>报名开始</span><input v-model="book.regStart" type="date" /></label>
-                <label class="field"><span>报名截止</span><input v-model="book.deadline" type="date" /></label>
-                <label class="field"><span>截止说明</span><input v-model="book.deadlineName" placeholder="报名截止" /></label>
-                <label class="field"><span>中签公布</span><input v-model="book.drawAt" type="date" /></label>
-                <label class="field"><span>缴费截止</span><input v-model="book.payDeadline" type="date" /></label>
-                <label class="field"><span>号码公布</span><input v-model="book.bibAt" type="date" /></label>
-                <label class="field span"><span>本次来源</span><input v-model="book.nodeSource" placeholder="规程或官网，并注明所见日期" /></label>
-              </div>
+              <p v-else class="note">日期留空会保留已有值；新建未填时显示「报名时间未录入」，不代表官方尚未公布。更改报名日期须填写本次来源。</p>
+              <div class="timeline-editor-heading"><h4 class="group-title">报名时间线</h4><span>北京时间 · 日期级节点</span></div>
+              <ol class="editor-timeline"><li v-for="(node,index) in editorNodeFields" :key="node.field" :class="{filled:book[node.field],invalid:editorError?.field===node.field}"><span class="timeline-marker" aria-hidden="true">{{ index + 1 }}</span><label class="field"><span>{{ node.label }} <small>{{ book[node.field] ? '已录入' : originalNode(node.field) ? '留空保留 ' + originalNode(node.field) : '选填 · 未录入' }}</small></span><input v-model="book[node.field]" :data-editor-field="node.field" :aria-invalid="editorError?.field === node.field || undefined" type="date" /><small>{{ node.hint }}</small></label></li><li class="timeline-race"><span class="timeline-marker" aria-hidden="true">终</span><span>比赛日 <b>{{ book.raceDate || '请先填写比赛日期' }}</b></span></li></ol>
+              <div class="pair node-meta"><label class="field"><span>截止说明 <small>选填</small></span><input v-model="book.deadlineName" data-editor-field="deadlineName" :aria-invalid="editorError?.field === 'deadlineName' || undefined" placeholder="报名截止" /></label><label class="field"><span>本次来源 <small>修改日期时必填</small></span><input v-model="book.nodeSource" data-editor-field="nodeSource" :aria-invalid="editorError?.field === 'nodeSource' || undefined" placeholder="规程或官网，并注明所见日期" /></label></div>
               <h4 class="group-title">查询入口</h4>
               <div class="pair">
-                <label class="field span"><span>报名入口</span><input v-model="book.signupUrl" inputmode="url" placeholder="https://" /></label>
-                <label class="field"><span>中签查询</span><input v-model="book.drawUrl" inputmode="url" placeholder="https://" /></label>
-                <label class="field"><span>号码查询</span><input v-model="book.bibUrl" inputmode="url" placeholder="https://" /></label>
-                <label class="field span"><span>成绩与证书</span><input v-model="book.resultUrl" inputmode="url" placeholder="https://" /></label>
+                <label class="field span"><span>报名入口</span><input v-model="book.signupUrl" :data-editor-field="'signupUrl'" :aria-invalid="editorError?.field === 'signupUrl' || undefined" inputmode="url" placeholder="https://" /></label>
+                <label class="field"><span>中签查询</span><input v-model="book.drawUrl" :data-editor-field="'drawUrl'" :aria-invalid="editorError?.field === 'drawUrl' || undefined" inputmode="url" placeholder="https://" /></label>
+                <label class="field"><span>号码查询</span><input v-model="book.bibUrl" :data-editor-field="'bibUrl'" :aria-invalid="editorError?.field === 'bibUrl' || undefined" inputmode="url" placeholder="https://" /></label>
+                <label class="field span"><span>成绩与证书</span><input v-model="book.resultUrl" :data-editor-field="'resultUrl'" :aria-invalid="editorError?.field === 'resultUrl' || undefined" inputmode="url" placeholder="https://" /></label>
               </div>
               <h4 class="group-title">历年中签</h4>
               <p class="note">按公布的报名人数和名额填写，并写上来源。页面用这两个数算比例。没有录入就不显示。</p>
@@ -257,93 +255,43 @@
                 </div>
               </template>
             </section>
-            <section v-show="editTab === 'site'" class="section">
+            <section v-show="editorSectionVisible('site')" :id="'editor-section-site'" class="section">
               <h3>官网</h3>
               <p class="note">留空则保留已有链接。</p>
               <div class="pair">
-                <label class="field span"><span>赛事官网</span><input v-model="book.eventUrl" inputmode="url" placeholder="https://" /></label>
-                <label class="field span"><span>中国马拉松官网</span><input v-model="book.officialUrl" inputmode="url" placeholder="https://" /></label>
+                <label class="field span"><span>赛事官网</span><input v-model="book.eventUrl" :data-editor-field="'eventUrl'" :aria-invalid="editorError?.field === 'eventUrl' || undefined" inputmode="url" placeholder="https://" /></label>
+                <label class="field span"><span>中国马拉松官网</span><input v-model="book.officialUrl" :data-editor-field="'officialUrl'" :aria-invalid="editorError?.field === 'officialUrl' || undefined" inputmode="url" placeholder="https://" /></label>
               </div>
             </section>
-            <section v-show="editTab === 'day'" class="section">
+            <section v-show="editorSectionVisible('day')" :id="'editor-section-day'" class="section">
               <h3>比赛日安排</h3>
               <p v-if="book.submissionId" class="note">路线图和配速表在通过后再传。</p>
               <div class="pair">
-                <label class="field span"><span>路线说明</span><textarea v-model="book.route" rows="3" placeholder="例如永安湖环湖，起点在北门"></textarea></label>
+                <label class="field span"><span>路线说明</span><textarea v-model="book.route" :data-editor-field="'route'" :aria-invalid="editorError?.field === 'route' || undefined" rows="3" placeholder="例如永安湖环湖，起点在北门"></textarea></label>
               </div>
-              <div v-if="!book.submissionId" class="media">
-                <div class="media-head"><span>路线图</span><b>{{ book.routeSheets.length + routeQueue.length }}/4</b></div>
-                <div v-if="book.routeSheets.length || routeQueue.length" class="sheets">
-                  <div v-for="sheet in book.routeSheets" :key="sheet.id" class="sheet-row">
-                    <img :src="raceSheetSrc(sheet.id)" alt="路线图" />
-                    <button class="undo" type="button" @click="removeSheet(sheet.id)">移除</button>
-                  </div>
-                  <div v-for="(item, index) in routeQueue" :key="item.url" class="sheet-row">
-                    <img :src="item.url" alt="待上传的路线图" />
-                    <button class="undo" type="button" @click="dropQueuedRoute(index)">取消</button>
-                  </div>
-                </div>
-                <label v-if="book.routeSheets.length + routeQueue.length < 4" class="file-pick">添加路线图<input type="file" accept="image/jpeg,image/png,image/webp" @change="onRouteFile" /></label>
-              </div>
+              <RaceEditorMedia v-if="!book.submissionId" label="路线图" kind="route" :sheets="book.routeSheets" :queue="routeQueue" :limit="4" :busy="editorBusy" :existing="!!book.id" :sheet-src="raceSheetSrc" @select="onMediaFile($event,'route')" @remove="removeSheet" @drop="dropMedia('route',$event)" @retry="retryMedia('route',$event)" />
               <div class="pair">
-                <label class="field span"><span>领物须知</span><textarea v-model="book.pickup" rows="3" placeholder="例如赛前一天 10:00–20:00，按号段领取"></textarea></label>
-                <label class="field span"><span>配速安排</span><textarea v-model="book.pacers" rows="3" placeholder="例如全马 4 小时至 6 小时，每 15 分钟一档"></textarea></label>
+                <label class="field span"><span>领物须知</span><textarea v-model="book.pickup" :data-editor-field="'pickup'" :aria-invalid="editorError?.field === 'pickup' || undefined" rows="3" placeholder="例如赛前一天 10:00–20:00，按号段领取"></textarea></label>
+                <label class="field span"><span>配速安排</span><textarea v-model="book.pacers" :data-editor-field="'pacers'" :aria-invalid="editorError?.field === 'pacers' || undefined" rows="3" placeholder="例如全马 4 小时至 6 小时，每 15 分钟一档"></textarea></label>
               </div>
-              <div v-if="!book.submissionId" class="media">
-                <div class="media-head"><span>配速资料</span><b>{{ book.pacerSheets.length + pacerQueue.length }}/8</b></div>
-                <div v-if="book.pacerSheets.length || pacerQueue.length" class="sheets">
-                  <div v-for="sheet in book.pacerSheets" :key="sheet.id" class="sheet-row">
-                    <img :src="raceSheetSrc(sheet.id)" alt="配速资料" />
-                    <button class="undo" type="button" @click="removeSheet(sheet.id)">移除</button>
-                  </div>
-                  <div v-for="(item, index) in pacerQueue" :key="item.url" class="sheet-row">
-                    <img :src="item.url" alt="待上传的配速资料" />
-                    <button class="undo" type="button" @click="dropQueuedPacer(index)">取消</button>
-                  </div>
-                </div>
-                <label v-if="book.pacerSheets.length + pacerQueue.length < 8" class="file-pick">添加配速表或照片<input type="file" accept="image/jpeg,image/png,image/webp" @change="onPacerFile" /></label>
-              </div>
+              <RaceEditorMedia v-if="!book.submissionId" label="配速资料" kind="pacer" :sheets="book.pacerSheets" :queue="pacerQueue" :limit="8" :busy="editorBusy" :existing="!!book.id" :sheet-src="raceSheetSrc" @select="onMediaFile($event,'pacer')" @remove="removeSheet" @drop="dropMedia('pacer',$event)" @retry="retryMedia('pacer',$event)" />
             </section>
-            <section v-show="editTab === 'guide'" class="section">
+            <section v-show="editorSectionVisible('guide')" :id="'editor-section-guide'" class="section">
               <h3>竞赛规程</h3>
               <p v-if="book.submissionId" class="note">规程原页在通过后再传。正文可以现在改。</p>
               <p class="note">选手先阅读正文，再查看原页。奖金、关门时间与参赛资格以组委会原文为准。</p>
-              <label class="field"><span>规程正文</span><textarea v-model="book.guideText" rows="8" placeholder="可用 Markdown。# 一级标题，## 二级，### 三级，#### 四级"></textarea></label>
-              <div v-if="!book.submissionId" class="media">
-                <div class="media-head"><span>规程原页</span><b>{{ book.guide.length + guideQueue.length }}/16</b></div>
-                <div v-if="book.guide.length || guideQueue.length" class="sheets">
-                  <div v-for="sheet in book.guide" :key="sheet.id" class="sheet-row">
-                    <img :src="raceSheetSrc(sheet.id)" alt="规程原页" />
-                    <button class="undo" type="button" @click="removeSheet(sheet.id)">移除</button>
-                  </div>
-                  <div v-for="(item, index) in guideQueue" :key="item.url" class="sheet-row">
-                    <img :src="item.url" alt="待上传的规程原页" />
-                    <button class="undo" type="button" @click="dropQueuedGuide(index)">取消</button>
-                  </div>
-                </div>
-                <label v-if="book.guide.length + guideQueue.length < 16" class="file-pick">添加原页<input type="file" accept="image/jpeg,image/png,image/webp" @change="onGuideFile" /></label>
-              </div>
+              <label class="field"><span>规程正文</span><textarea v-model="book.guideText" :data-editor-field="'guideText'" :aria-invalid="editorError?.field === 'guideText' || undefined" rows="8" placeholder="可用 Markdown。# 一级标题，## 二级，### 三级，#### 四级"></textarea></label>
+              <RaceEditorMedia v-if="!book.submissionId" label="规程原页" kind="guide" :sheets="book.guide" :queue="guideQueue" :limit="16" :busy="editorBusy" :existing="!!book.id" :sheet-src="raceSheetSrc" @select="onMediaFile($event,'guide')" @remove="removeSheet" @drop="dropMedia('guide',$event)" @retry="retryMedia('guide',$event)" />
             </section>
-            <section v-show="editTab === 'live'" class="section">
+            <section v-show="editorSectionVisible('live')" :id="'editor-section-live'" class="section">
               <h3>直播</h3>
               <p v-if="book.submissionId" class="note">直播二维码在通过后再传。直播地址可以现在改。</p>
               <p class="note">再次上传将替换当前二维码。</p>
-              <label class="field"><span>直播地址</span><input v-model="book.liveUrl" inputmode="url" placeholder="https://" /></label>
-              <div v-if="!book.submissionId" class="media">
-                <div class="media-head"><span>直播二维码</span><b>{{ book.liveSheet || liveQueue ? 1 : 0 }}/1</b></div>
-                <div v-if="book.liveSheet" class="sheet-row live-preview">
-                  <img :src="raceSheetSrc(book.liveSheet.id)" alt="直播二维码" />
-                  <button class="undo" type="button" @click="removeSheet(book.liveSheet.id)">移除</button>
-                </div>
-                <div v-if="liveQueue" class="sheet-row live-preview">
-                  <img :src="liveQueue.url" alt="待上传的直播二维码" />
-                  <button class="undo" type="button" @click="dropQueuedLive">取消</button>
-                </div>
-                <label class="file-pick">{{ book.liveSheet || liveQueue ? "替换二维码" : "添加二维码" }}<input type="file" accept="image/jpeg,image/png,image/webp" @change="onLiveFile" /></label>
-              </div>
+              <label class="field"><span>直播地址</span><input v-model="book.liveUrl" :data-editor-field="'liveUrl'" :aria-invalid="editorError?.field === 'liveUrl' || undefined" inputmode="url" placeholder="https://" /></label>
+              <RaceEditorMedia v-if="!book.submissionId" label="直播二维码" kind="live" :sheets="(book.liveSheet ? [book.liveSheet] : [])" :queue="(liveQueue ? [liveQueue] : [])" :limit="1" :busy="editorBusy" :existing="!!book.id" :sheet-src="raceSheetSrc" @select="onMediaFile($event,'live')" @remove="removeSheet" @drop="dropMedia('live',$event)" @retry="retryMedia('live',$event)" />
             </section>
-            <section v-show="editTab === 'prize'" class="section">
-              <RadarAdmin v-if="book.id && !book.submissionId" :race-id="book.id" :race-date="book.raceDate" :active="editTab === 'prize'" :request="admin" />
+            <section v-show="editorSectionVisible('prize')" :id="'editor-section-prize'" class="section">
+              <RadarAdmin v-if="book.id && !book.submissionId" :race-id="book.id" :race-date="book.raceDate" :active="editorSectionVisible('prize')" :request="admin" />
               <h3>奖项</h3>
               <p class="note">按规程填写，并写上来源。没有往届名次成绩时，页面不估算概率。</p>
               <p v-if="!book.id && !book.submissionId" class="note">先保存这场比赛，再添加奖项。</p>
@@ -391,7 +339,7 @@
                 </div>
               </template>
             </section>
-            <section v-show="editTab === 'news'" class="section">
+            <section v-show="editorSectionVisible('news')" :id="'editor-section-news'" class="section">
               <h3>资讯</h3>
               <p class="note">一条资讯只绑这场。写下标题、发布时间和来源，正文用 Markdown 贴进来。</p>
               <p v-if="!raceNewsId" class="note">这场还没进赛历，保存或通过后再挂资讯。</p>
@@ -417,7 +365,8 @@
                 </div>
               </template>
             </section>
-          </form>
+          </fieldset></form>
+          </div><RacePublishPreview v-if="previewOpen" :book="previewBook" :queues="previewQueues" :sheet-src="raceSheetSrc" /></div>
         </template>
       </div>
       </aside>
@@ -909,7 +858,8 @@
 </template>
 
 <script setup>
-import { computed, nextTick, ref } from "vue";
+import { computed, nextTick, onBeforeUnmount, ref } from "vue";
+import { onBeforeRouteLeave } from "vue-router";
 import { adminUpload, api, raceSheetSrc } from "../api";
 import Pager from "../components/Pager.vue";
 import AdminShell from "../components/admin/AdminShell.vue";
@@ -922,6 +872,9 @@ import RaceArchiveAdmin from "../components/admin/RaceArchiveAdmin.vue";
 import ProfileAdmin from "../components/admin/ProfileAdmin.vue";
 import RadarAdmin from "../components/admin/RadarAdmin.vue";
 import AdminIcon from "../components/admin/AdminIcon.vue";
+import RacePublishPreview from "../components/admin/RacePublishPreview.vue";
+import RaceEditorMedia from "../components/admin/RaceEditorMedia.vue";
+import { validateRaceEditor, raceEditorError } from "../components/admin/race-editor";
 import { countiesOf, settleRegion } from "../areas";
 import { regions } from "../regions";
 
@@ -1148,6 +1101,7 @@ const guideQueue = ref([]);
 const routeQueue = ref([]);
 const pacerQueue = ref([]);
 const liveQueue = ref(null);
+const coverQueue = ref(null);
 const spots = ref([]);
 const distanceChoices = [
   { key: "full", label: "全马" },
@@ -1172,6 +1126,50 @@ const sections = [
   { id: "prize", label: "奖项" },
   { id: "news", label: "资讯" }
 ];
+const editorStages = [
+  { id:'event', label:'建赛信息', tabs:['base','projects'] },
+  { id:'registration', label:'报名与入口', tabs:['signup','site'] },
+  { id:'details', label:'比赛日与内容', tabs:['day','guide','live','prize','news'] }
+];
+const editorSaving=ref(false), editorUploading=ref(false), editorOpening=ref(false), editorError=ref(null), saveSteps=ref([]), previewOpen=ref(false), editorSnapshot=ref(''), lastBaseSaved=ref('');
+const editorBusy=computed(()=>editorSaving.value||editorUploading.value||editorOpening.value);
+const editorNodeFields=[
+  {field:'regStart',label:'报名开始',hint:'开始日期不得晚于报名截止。'},
+  {field:'deadline',label:'报名截止',hint:'与报名开始一起核对，未填写不推断报名开放。'},
+  {field:'drawAt',label:'中签公布',hint:'抽签赛事填写；无需抽签可留空。'},
+  {field:'payDeadline',label:'缴费截止',hint:'抽签后缴费时，不得早于中签公布。'},
+  {field:'bibAt',label:'号码公布',hint:'号码查询开放日，独立于领物安排。'}
+];
+function originalNode(field){const fields=['regStart','deadline','drawAt','payDeadline','deadlineName'];return (nodeOrigin.value||'').split('|')[fields.indexOf(field)]||'';}
+const previewBook=computed(()=>{if(!book.value)return {};const row={...book.value};if(row.id&&!row.submissionId)for(const field of ['regStart','deadline','drawAt','payDeadline','deadlineName'])row[field]=row[field]||originalNode(field);return row;});
+function editorSectionVisible(id){return editorStages.some(stage=>stage.tabs.includes(id)&&stage.tabs.includes(editTab.value));}
+function selectEditorSection(id){editTab.value=id;nextTick(()=>document.getElementById('editor-section-'+id)?.scrollIntoView({block:'start',behavior:'smooth'}));}
+const previewQueues=computed(()=>({guide:guideQueue.value,route:routeQueue.value,pacer:pacerQueue.value,live:liveQueue.value,cover:coverQueue.value}));
+const editorSaveLabel=computed(()=>book.value?.submissionId?'保存待审资料':book.value?.id?'保存修改':'新建并发布到赛历');
+function editorFingerprint(){
+  if(!book.value)return '';
+  const row={...book.value};
+  for(const field of ['guide','routeSheets','pacerSheets','liveSheet','coverSheet','returnNote'])delete row[field];
+  return JSON.stringify({row,prizes:row.submissionId?prizes.value.map(prizeInput):[],draws:row.submissionId?draws.value.map(({label,applicants,quota,source})=>({label,applicants,quota,source})):[]});
+}
+const editorDirty=computed(()=>!!book.value&&(editorFingerprint()!==editorSnapshot.value||guideQueue.value.length>0||routeQueue.value.length>0||pacerQueue.value.length>0||!!liveQueue.value||!!coverQueue.value||saveSteps.value.some(step=>step.status==='failed')));
+function markEditorSaved(){editorSnapshot.value=editorFingerprint();}
+function canLeaveEditor(){
+  if(editorBusy.value){message.value='赛事资料正在处理，请稍候。';saved.value=false;return false;}
+  return !editorDirty.value||window.confirm('赛事资料有未保存的修改，离开将放弃这些修改。确定离开吗？');
+}
+function beforeEditorUnload(event){if(editorDirty.value||editorBusy.value){event.preventDefault();event.returnValue='';}}
+window.addEventListener('beforeunload',beforeEditorUnload);
+onBeforeUnmount(()=>{window.removeEventListener('beforeunload',beforeEditorUnload);clearQueues();});
+onBeforeRouteLeave(()=>canLeaveEditor());
+function sectionFilled(id){
+  const r=book.value;if(!r)return false;
+  return ({base:!!(r.name&&r.raceDate&&(r.city||r.place)),projects:!!(r.distances.length||r.kinds.length||r.groups),signup:!!(r.regStart||r.deadline||r.drawAt||r.payDeadline||r.signupUrl),site:!!(r.eventUrl||r.officialUrl),day:!!(r.route||r.pickup||r.pacers||r.routeSheets?.length||r.pacerSheets?.length||routeQueue.value.length||pacerQueue.value.length),guide:!!(r.guideText||r.guide?.length||guideQueue.value.length),live:!!(r.liveUrl||r.liveSheet||liveQueue.value),prize:!!prizes.value.length,news:!!raceNews.value.length})[id];
+}
+function focusEditorError(){if(!editorError.value)return;editTab.value=editorError.value.tab;nextTick(()=>{const target=document.querySelector('#race-editor [data-editor-field="'+editorError.value.field+'"]');target?.focus({preventScroll:true});target?.scrollIntoView({block:'center',behavior:'smooth'});});}
+function setEditorError(error){editorError.value=error;message.value=error.message;saved.value=false;focusEditorError();}
+function clearEditorError(event){if(editorError.value&&event.target?.dataset?.editorField===editorError.value.field)editorError.value=null;}
+function saveStep(id,label){saveSteps.value.push({id,label,status:'saving',error:''});return saveSteps.value[saveSteps.value.length-1];}
 const gradeChoices = [
   { value: "", label: "未标注" },
   { value: "A", label: "A 类" },
@@ -1245,6 +1243,8 @@ async function enter() {
 }
 
 async function logout() {
+  if(!canLeaveEditor())return;
+  closeEditor(true);
   try {
     await admin("/admin/logout", { method: "POST", body: "{}" });
   } catch (err) {
@@ -1335,7 +1335,9 @@ async function refreshSection() {
 }
 async function pickSection(id) {
   if (!deskSections.value.some(item => item.id === id)) return;
+  if(id!==section.value&&book.value&&!canLeaveEditor())return;
   if (section.value === 'race-archives' && id !== section.value && archiveEditor.value?.hasUnsavedChanges()) { message.value = '赛事档案仍有未保存的修改，请先保存或放弃修改。'; saved.value = false; return; }
+  if(id!==section.value&&book.value)closeEditor(true);
   section.value = id;
   message.value = "";
   saved.value = false;
@@ -1343,7 +1345,7 @@ async function pickSection(id) {
 }
 async function pickRaceWorkspace(id) {
   if (!raceWorkspaces.some(item => item.id === id)) return;
-  if (id !== raceWorkspace.value) closeEditor();
+  if (id !== raceWorkspace.value && book.value && !closeEditor()) return;
   raceWorkspace.value = id;
   if (id === "catalog") showPublished();
   if (id === "review") showReview();
@@ -1353,7 +1355,7 @@ async function handleOverviewAction(target) {
   if (!target || !deskSections.value.some(item=>item.id === target.section)) return;
   if (target.section === "feedback") feedbackFilter.value = target.filter === "rewards" ? "rewards" : "pending";
   if (target.section === "races") {
-    closeEditor();
+    if(book.value&&!closeEditor())return;
     raceWorkspace.value = target.raceId ? "catalog" : target.tab === "review" ? "review" : target.tab === "official" ? "official" : "catalog";
     if (raceWorkspace.value === "catalog") raceTab.value = "published";
     if (raceWorkspace.value === "review") {
@@ -2063,22 +2065,26 @@ async function syncAll() {
 function showPublished() {
   raceWorkspace.value = "catalog";
   raceTab.value = "published";
-  if (book.value && book.value.submissionId) closeEditor();
+  if (book.value && book.value.submissionId && !closeEditor()) { raceWorkspace.value="review";raceTab.value="review"; }
 }
 
 function showReview() {
   raceWorkspace.value = "review";
   raceTab.value = "review";
-  if (book.value && !book.value.submissionId) closeEditor();
+  if (book.value && !book.value.submissionId && !closeEditor()) { raceWorkspace.value="catalog";raceTab.value="published"; }
 }
 
 async function openReview(item) {
+  if(editorBusy.value)return;
+  if(editorBusy.value)return;
   if (book.value && book.value.submissionId === item.id) {
     closeEditor();
     return;
   }
+  if(book.value&&!canLeaveEditor())return;
   message.value = "";
   saved.value = false;
+  editorOpening.value=true;
   try {
     const row = await admin("/admin/bot-races/" + item.id);
     clearQueues();
@@ -2089,9 +2095,11 @@ async function openReview(item) {
     settlePlace();
     nodeOrigin.value = nodesKey(book.value);
     await loadRaceNews(row.raceId);
+    markEditorSaved();
+    previewOpen.value=true;editorError.value=null;saveSteps.value=[];
   } catch (err) {
     fail(err);
-  }
+  } finally {editorOpening.value=false;}
 }
 
 function turnBot(page) {
@@ -2339,6 +2347,7 @@ function submissionKey(item) {
 }
 
 async function publishBot(item) {
+  if(editorBusy.value)return;
   const id = submissionKey(item);
   message.value = "";
   saved.value = false;
@@ -2347,20 +2356,28 @@ async function publishBot(item) {
       const ok = await saveSubmission(true);
       if (!ok) return;
     }
+    editorSaving.value=true;
     await admin("/admin/bot-races/" + id + "/publish", { method: "POST", body: "{}" });
-    if (book.value && book.value.submissionId === id) closeEditor();
+    const published=await admin('/admin/bot-races/'+id);
+    if(book.value?.submissionId===id&&published.raceId){
+      const data=await api('/races/'+published.raceId);book.value=blankBook(data.race);book.value.raceId=data.race.id;
+      nodeOrigin.value=nodesKey(book.value);lastBaseSaved.value=JSON.stringify(guideBody(book.value));markEditorSaved();
+      saveSteps.value=[{id:'approval',label:'审核通过并发布到赛历',status:'done'}];
+    }
     saved.value = true;
-    message.value = "已发布";
+    message.value = "审核已通过，赛事已发布到赛历。";
     await Promise.all([loadBotReviews(), load(), loadCatalog()]);
   } catch (err) {
     fail(err);
-  }
+  } finally {editorSaving.value=false;}
 }
 
 async function returnBot(item) {
+  if(editorBusy.value)return;
   const id = submissionKey(item);
   message.value = "";
   saved.value = false;
+  editorSaving.value=true;
   try {
     await admin("/admin/bot-races/" + id + "/return", { method: "POST", body: JSON.stringify({ note: item.returnNote }) });
     saved.value = true;
@@ -2368,7 +2385,7 @@ async function returnBot(item) {
     await loadBotReviews();
   } catch (err) {
     fail(err);
-  }
+  } finally {editorSaving.value=false;}
 }
 
 async function publish(row) {
@@ -2467,6 +2484,7 @@ function blankBook(race) {
     routeSheets: race.routeSheets || [],
     pacerSheets: race.pacerSheets || [],
     liveSheet: race.liveSheet || null,
+    coverSheet: race.coverSheet || null,
     regStart: dayOf(race.regStart),
     deadline: dayOf(race.deadline),
     drawAt: dayOf(race.drawAt),
@@ -2617,6 +2635,7 @@ function emptyBook() {
     routeSheets: [],
     pacerSheets: [],
     liveSheet: null,
+    coverSheet: null,
     regStart: "",
     deadline: "",
     drawAt: "",
@@ -2631,6 +2650,8 @@ function clearQueues() {
   for (const item of routeQueue.value) URL.revokeObjectURL(item.url);
   for (const item of pacerQueue.value) URL.revokeObjectURL(item.url);
   if (liveQueue.value) URL.revokeObjectURL(liveQueue.value.url);
+  if (coverQueue.value) URL.revokeObjectURL(coverQueue.value.url);
+  coverQueue.value = null;
   guideQueue.value = [];
   routeQueue.value = [];
   pacerQueue.value = [];
@@ -2693,6 +2714,7 @@ function toggle(list, key) {
 }
 
 function startDraft() {
+  if(book.value&&!canLeaveEditor())return;
   raceWorkspace.value = "catalog";
   raceTab.value = "published";
   raceTab.value = "published";
@@ -2705,6 +2727,7 @@ function startDraft() {
   raceNewsWaiting.value = [];
   raceNewsDraft.value = blankRaceNews();
   nodeOrigin.value = nodesKey(book.value);
+  previewOpen.value=true;editorError.value=null;saveSteps.value=[];markEditorSaved();
 }
 
 function blankRaceNews() {
@@ -2775,7 +2798,8 @@ async function removeRaceNews(item) {
   }
 }
 
-function closeEditor() {
+function closeEditor(force=false) {
+  if(force!==true&&book.value&&!canLeaveEditor())return false;
   clearQueues();
   book.value = null;
   prizes.value = [];
@@ -2783,6 +2807,8 @@ function closeEditor() {
   raceNews.value = [];
   raceNewsWaiting.value = [];
   raceNewsDraft.value = blankRaceNews();
+  editorSnapshot.value='';lastBaseSaved.value='';editorError.value=null;saveSteps.value=[];previewOpen.value=false;
+  return true;
 }
 
 async function loadDraws(id) {
@@ -3010,7 +3036,6 @@ async function removePrize(item) {
 let catalogTimer = 0;
 let catalogSeq = 0;
 function queueCatalog() {
-  if (catalogQuery.value.trim()) closeEditor();
   catalogPage.value = 1;
   clearTimeout(catalogTimer);
   catalogTimer = setTimeout(() => {
@@ -3057,6 +3082,7 @@ async function setCatalogWhen(value) {
 
 async function removeRace(item) {
   if (!window.confirm("从赛历去掉「" + item.name + "」？标过这场的记录也会去掉，之后不会自动加回来。")) return;
+  if(book.value&&book.value.id===item.id&&!canLeaveEditor())return;
   message.value = "";
   saved.value = false;
   try {
@@ -3071,12 +3097,15 @@ async function removeRace(item) {
 }
 
 async function openGuide(id) {
+  if(editorBusy.value)return;
   if (book.value && book.value.id === id && !book.value.submissionId) {
     closeEditor();
     return;
   }
+  if(book.value&&!canLeaveEditor())return;
   message.value = "";
   saved.value = false;
+  editorOpening.value=true;
   try {
     const data = await api("/races/" + id);
     clearQueues();
@@ -3087,9 +3116,11 @@ async function openGuide(id) {
     await loadRaceNews(data.race.id);
     nodeOrigin.value = nodesKey(book.value);
     settlePlace();
+    previewOpen.value=true;editorError.value=null;saveSteps.value=[];markEditorSaved();
+    lastBaseSaved.value=JSON.stringify(guideBody(book.value));
   } catch (err) {
     fail(err);
-  }
+  } finally {editorOpening.value=false;}
 }
 
 function guideBody(row) {
@@ -3152,198 +3183,111 @@ function submissionBody(row) {
 
 async function saveSubmission(quiet) {
   const row = book.value;
-  if (!row || !row.submissionId) return false;
+  if (!row || !row.submissionId || editorBusy.value) return false;
   message.value = "";
   saved.value = false;
-  if (!row.name.trim()) {
-    fail(new Error("请填写赛事名称"));
-    return false;
-  }
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(String(row.raceDate || "").trim())) {
-    fail(new Error("比赛日期须为 2026-11-01 这种格式"));
-    return false;
-  }
-  if (!String(row.province || "").trim() || !String(row.city || "").trim()) {
-    fail(new Error("请填写省份和城市"));
-    return false;
-  }
-  if (!row.distances.length && !row.kinds.length && !String(row.groups || "").trim()) {
-    fail(new Error("请至少选择一个项目"));
-    return false;
-  }
-  const dated = [row.regStart, row.deadline, row.drawAt, row.payDeadline, row.bibAt].some((item) => String(item || "").trim());
-  if (dated && !String(row.nodeSource || "").trim()) {
-    fail(new Error("报名时间要写来源"));
-    return false;
-  }
+  const invalid=validateRaceEditor(row,{nodesTouched:true});if(invalid){setEditorError(invalid);return false;}
+  editorSaving.value=true;editorError.value=null;saveSteps.value=[];
+  const step=saveStep('submission','保存待审资料');
   try {
     await admin("/admin/bot-races/" + row.submissionId, { method: "PUT", body: JSON.stringify(submissionBody(row)) });
+    step.status='done';
     saved.value = true;
-    if (!quiet) message.value = "已改在待审里";
+    if (!quiet) message.value = "待审资料已保存，尚未发布到赛历。";
     nodeOrigin.value = nodesKey(row);
     await loadBotReviews();
+    markEditorSaved();
     return true;
   } catch (err) {
+    step.status='failed';step.error=err.message;
     fail(err);
     return false;
-  }
+  } finally {editorSaving.value=false;}
 }
 
 async function saveGuide() {
   if (book.value && book.value.submissionId) return saveSubmission();
+  if(editorBusy.value)return;
   message.value = "";
   saved.value = false;
   const row = book.value;
-  if (!row.name.trim()) return fail(new Error("请填写赛事名称"));
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(row.raceDate.trim())) return fail(new Error("比赛日期须为 2026-11-01 这种格式"));
-  if (!row.city.trim() && !row.place.trim()) return fail(new Error("请填写城市或举办地点"));
-  if (!row.distances.length && !row.kinds.length && !row.groups.trim()) return fail(new Error("请至少选择一个项目"));
+  if(!row)return;
   const nodesTouched = nodesKey(row) !== nodeOrigin.value || row.nodeSource.trim();
-  if (nodesTouched && !row.nodeSource.trim()) return fail(new Error("修改报名时间须填写本次来源"));
-  if (nodesTouched && ![row.regStart, row.deadline, row.drawAt, row.payDeadline].some((item) => item.trim())) {
-    return fail(new Error("请填写需要记录的报名时间"));
-  }
+  const invalid=validateRaceEditor(row,{nodesTouched,originalNodes: Object.fromEntries(['regStart','deadline','drawAt','payDeadline'].map(field=>[field,originalNode(field)]))});if(invalid){setEditorError(invalid);return;}
   const creating = !row.id;
   let id = row.id;
+  const baseBody=JSON.stringify(guideBody(row));
+  editorSaving.value=true;editorError.value=null;saveSteps.value=[];
+  const baseStep=saveStep('base',creating?'创建并发布赛事':'保存赛事基本资料');
   try {
     if (creating) {
       const data = await admin("/admin/races", { method: "POST", body: JSON.stringify(guideBody(row)) });
       id = data.id;
       row.id = id;
+      row.raceId=id;
+      baseStep.status='done';lastBaseSaved.value=baseBody;markEditorSaved();
       catalogQuery.value = "";
       catalogWhen.value = row.raceDate >= new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10) ? "upcoming" : "all";
-    } else {
+    } else if(lastBaseSaved.value!==baseBody) {
       await admin("/admin/races/" + id + "/guide", { method: "PUT", body: JSON.stringify(guideBody(row)) });
-    }
-    if (nodesTouched) {
-      await admin("/admin/races/" + id, {
-        method: "PUT",
-        body: JSON.stringify({
-          regStart: row.regStart,
-          deadline: row.deadline,
-          drawAt: row.drawAt,
-          payDeadline: row.payDeadline,
-          deadlineName: row.deadlineName,
-          source: row.nodeSource
-        })
-      });
-    }
-    for (const item of guideQueue.value) {
-      await adminUpload("/admin/races/" + id + "/sheets?kind=guide", item.file, token.value);
-    }
-    for (const item of routeQueue.value) {
-      await adminUpload("/admin/races/" + id + "/sheets?kind=route", item.file, token.value);
-    }
-    for (const item of pacerQueue.value) {
-      await adminUpload("/admin/races/" + id + "/sheets?kind=pacer", item.file, token.value);
-    }
-    if (liveQueue.value) {
-      await adminUpload("/admin/races/" + id + "/sheets?kind=live", liveQueue.value.file, token.value);
-    }
-    const opened = await api("/races/" + id);
-    clearQueues();
-    book.value = blankBook(opened.race);
-    await loadPrizes(opened.race.id);
-    await loadDraws(opened.race.id);
-    await loadRaceNews(opened.race.id);
-    nodeOrigin.value = nodesKey(book.value);
-    settlePlace();
-    saved.value = true;
-    message.value = creating ? "已加入赛历" : nodesTouched ? "赛事资料与报名时间已保存" : "赛事资料已保存";
-    await Promise.all([loadCatalog(), loadSpots()]);
+      baseStep.status='done';lastBaseSaved.value=baseBody;markEditorSaved();
+    } else baseStep.status='done';
+    const pending=[];
+    if(nodesTouched)pending.push({id:'nodes',label:'保存报名时间和来源',run:()=>admin('/admin/races/'+id,{method:'PUT',body:JSON.stringify({regStart:row.regStart,deadline:row.deadline,drawAt:row.drawAt,payDeadline:row.payDeadline,deadlineName:row.deadlineName,source:row.nodeSource})})});
+    const queues=[['cover',coverQueue.value],['guide',guideQueue.value],['route',routeQueue.value],['pacer',pacerQueue.value],['live',liveQueue.value]];
+    const uploads=queues.filter(([,queue])=>Array.isArray(queue)?queue.length:!!queue);
+    if(uploads.length)pending.push({id:'media',label:'上传赛事图片与资料',run:()=>uploadQueuedMedia(id)});
+    for(const item of pending){const step=saveStep(item.id,item.label);try{const result=await item.run();step.status='done';if(item.id==='nodes'){if(result?.race)for(const field of ['regStart','deadline','drawAt','payDeadline'])row[field]=dayOf(result.race[field]);nodeOrigin.value=nodesKey(row);row.nodeSource='';markEditorSaved();}}catch(error){step.status='failed';step.error=error.message;if(error.field)setEditorError(raceEditorError(error.field,error.message));}}
+    let refreshError='';
+    try{if(!saveSteps.value.some(item=>item.status==='failed')){const opened=await api('/races/'+id);const fresh=blankBook(opened.race);Object.assign(row,fresh);row.raceId=id;settlePlace();nodeOrigin.value=nodesKey(row);lastBaseSaved.value=JSON.stringify(guideBody(row));}}
+    catch(error){refreshError=error.message;}
+    await Promise.allSettled([loadCatalog(),loadSpots()]);
+    saved.value=true;
+    const failures=saveSteps.value.filter(item=>item.status==='failed');
+    message.value=failures.length?`${creating?'赛事已创建并发布':'赛事基本资料已保存'}；${failures.map(item=>item.label+'失败').join('、')}，可重试未完成项目。`:`${creating?'赛事已加入赛历':'赛事资料已保存'}${refreshError?'，但最新资料刷新失败：'+refreshError:''}`;
+    if(!failures.length)markEditorSaved();
   } catch (err) {
-    fail(err);
-    if (creating && id) message.value = err.message + "。该赛事已写入赛历，请修改后再次保存";
-  }
+    baseStep.status='failed';baseStep.error=err.message;
+    if(err.field)setEditorError(raceEditorError(err.field,err.message));else fail(err);
+  } finally {editorSaving.value=false;}
 }
 
-function onGuideFile(event) {
-  const file = event.target.files && event.target.files[0];
-  event.target.value = "";
-  if (!file || !book.value) return;
-  if (book.value.guide.length + guideQueue.value.length >= 16) return fail(new Error("规程最多 16 页"));
-  if (book.value.id) return sendSheet(file, "guide");
-  guideQueue.value = [...guideQueue.value, { file, url: URL.createObjectURL(file) }];
+function queueFor(kind){return kind==='cover'?'cover':kind==='guide'?'guide':kind==='route'?'route':kind==='pacer'?'pacer':'live';}
+function queueRef(kind){const name=queueFor(kind);return name==='cover'?coverQueue:name==='live'?liveQueue:({guide:guideQueue,route:routeQueue,pacer:pacerQueue}[name]);}
+function sheetKind(kind){return kind==='cover'?'cover':kind;}
+function dropMedia(kind,item){const target=queueRef(kind);if(Array.isArray(target.value)){const index=target.value.indexOf(item);if(index>=0)target.value.splice(index,1);}else if(target.value===item)target.value=null;if(item?.url)URL.revokeObjectURL(item.url);}
+function mediaLimit(kind){return kind==='cover'?1:kind==='live'?1:kind==='guide'?16:kind==='route'?4:8;}
+function mediaSheets(kind){if(kind==='cover')return book.value?.coverSheet?[book.value.coverSheet]:[];if(kind==='live')return book.value?.liveSheet?[book.value.liveSheet]:[];return book.value?.[kind==='guide'?'guide':kind==='route'?'routeSheets':'pacerSheets']||[];}
+function onMediaFile(event,kind){
+  const file=event.target.files?.[0];event.target.value='';if(!file||!book.value||editorBusy.value)return;
+  if(!['image/jpeg','image/png','image/webp'].includes(file.type)||file.size>8*1024*1024){setEditorError(raceEditorError(kind,'请上传 JPG、PNG 或 WebP 图片，且不超过 8MB'));return;}
+  const queue=queueRef(kind),single=['cover','live'].includes(kind),limit=mediaLimit(kind),current=Array.isArray(queue.value)?queue.value.length:Number(!!queue.value);
+  if(!single&&mediaSheets(kind).length+current>=limit){setEditorError(raceEditorError(kind,kind==='guide'?'规程最多 16 页':kind==='route'?'路线图最多 4 张':'配速资料最多 8 张'));return;}
+  const item={file,url:URL.createObjectURL(file),status:'queued',error:''};
+  if(single){if(queue.value?.url)URL.revokeObjectURL(queue.value.url);queue.value=item;}else queue.value=[...queue.value,item];
+  editorError.value=null;message.value='';saved.value=false;
+  if(book.value.id){editorUploading.value=true;uploadOne(kind,item).then(ok=>{saved.value=ok;message.value=ok?'图片已上传。若有文字修改，请保存赛事资料。':'图片上传失败，保留原图与本次文件，可重试。';}).finally(()=>editorUploading.value=false);}
 }
-
-function onRouteFile(event) {
-  const file = event.target.files && event.target.files[0];
-  event.target.value = "";
-  if (!file || !book.value) return;
-  if (book.value.routeSheets.length + routeQueue.value.length >= 4) return fail(new Error("路线图最多 4 张"));
-  if (book.value.id) return sendSheet(file, "route");
-  routeQueue.value = [...routeQueue.value, { file, url: URL.createObjectURL(file) }];
+async function uploadOne(kind,item){
+  item.status='uploading';item.error='';
+  try{
+    const data=await adminUpload('/admin/races/'+book.value.id+'/sheets?kind='+sheetKind(kind),item.file,token.value);
+    if(kind==='cover')book.value.coverSheet=data.sheet;
+    else if(kind==='live')book.value.liveSheet=data.sheet;
+    else{const field=kind==='guide'?'guide':kind==='route'?'routeSheets':'pacerSheets';if(!book.value[field].some(sheet=>sheet.id===data.sheet.id))book.value[field].push(data.sheet);}
+    item.status='done';dropMedia(kind,item);
+    // Upload acknowledgement is authoritative. A later refresh cannot turn it into a failed upload.
+    return true;
+  }catch(error){item.status='failed';item.error=error.message;return false;}
 }
-
-function onPacerFile(event) {
-  const file = event.target.files && event.target.files[0];
-  event.target.value = "";
-  if (!file || !book.value) return;
-  if (book.value.pacerSheets.length + pacerQueue.value.length >= 8) return fail(new Error("配速资料最多 8 张"));
-  if (book.value.id) return sendSheet(file, "pacer");
-  pacerQueue.value = [...pacerQueue.value, { file, url: URL.createObjectURL(file) }];
+async function uploadQueuedMedia(id){
+  const entries=[['cover',coverQueue.value],['guide',[...guideQueue.value]],['route',[...routeQueue.value]],['pacer',[...pacerQueue.value]],['live',liveQueue.value]];const failures=[];
+  for(const[kind,items]of entries){const list=Array.isArray(items)?items.filter(Boolean):items?[items]:[];for(const item of list){const ok=await uploadOne(kind,item);if(!ok)failures.push(kind+'：'+item.error);}}
+  if(failures.length)throw new Error(failures.join('；'));
 }
-
-function onLiveFile(event) {
-  const file = event.target.files && event.target.files[0];
-  event.target.value = "";
-  if (!file || !book.value) return;
-  if (book.value.id) return sendSheet(file, "live");
-  if (liveQueue.value) URL.revokeObjectURL(liveQueue.value.url);
-  liveQueue.value = { file, url: URL.createObjectURL(file) };
-}
-
-function dropQueuedGuide(index) {
-  const [item] = guideQueue.value.splice(index, 1);
-  if (item) URL.revokeObjectURL(item.url);
-}
-
-function dropQueuedRoute(index) {
-  const [item] = routeQueue.value.splice(index, 1);
-  if (item) URL.revokeObjectURL(item.url);
-}
-
-function dropQueuedPacer(index) {
-  const [item] = pacerQueue.value.splice(index, 1);
-  if (item) URL.revokeObjectURL(item.url);
-}
-
-function dropQueuedLive() {
-  if (liveQueue.value) URL.revokeObjectURL(liveQueue.value.url);
-  liveQueue.value = null;
-}
-
-async function refreshSheets() {
-  const data = await api("/races/" + book.value.id);
-  book.value.guide = data.race.guide || [];
-  book.value.routeSheets = data.race.routeSheets || [];
-  book.value.pacerSheets = data.race.pacerSheets || [];
-  book.value.liveSheet = data.race.liveSheet || null;
-}
-
-async function sendSheet(file, kind) {
-  message.value = "";
-  saved.value = false;
-  try {
-    await adminUpload("/admin/races/" + book.value.id + "/sheets?kind=" + kind, file, token.value);
-    await refreshSheets();
-    saved.value = true;
-    message.value = kind === "live" ? "直播二维码已更新" : kind === "route" ? "路线图已添加" : kind === "pacer" ? "配速资料已添加" : "规程原页已添加";
-  } catch (err) {
-    fail(err);
-  }
-}
-
-async function removeSheet(id) {
-  message.value = "";
-  saved.value = false;
-  try {
-    await admin("/admin/races/" + book.value.id + "/sheets/" + id, { method: "DELETE" });
-    await refreshSheets();
-  } catch (err) {
-    fail(err);
-  }
-}
+async function retryMedia(kind,item){if(!book.value?.id||editorBusy.value)return;editorUploading.value=true;const ok=await uploadOne(kind,item);editorUploading.value=false;message.value=ok?'图片已上传':'图片上传失败：'+item.error;saved.value=ok;}
+async function refreshSheets(){if(!book.value?.id)return;const data=await api('/races/'+book.value.id);book.value.guide=data.race.guide||[];book.value.routeSheets=data.race.routeSheets||[];book.value.pacerSheets=data.race.pacerSheets||[];book.value.liveSheet=data.race.liveSheet||null;book.value.coverSheet=data.race.coverSheet||null;}
+async function removeSheet(id){if(editorBusy.value)return;editorUploading.value=true;message.value='';try{await admin('/admin/races/'+book.value.id+'/sheets/'+id,{method:'DELETE'});for(const field of ['guide','routeSheets','pacerSheets'])book.value[field]=book.value[field].filter(sheet=>sheet.id!==id);for(const field of ['coverSheet','liveSheet'])if(book.value[field]?.id===id)book.value[field]=null;saved.value=true;message.value='已移除图片，前台展示已更新。';}catch(error){fail(error);}finally{editorUploading.value=false;}}
 
 if (token.value) {
   enterDesk()
@@ -3357,3 +3301,5 @@ if (token.value) {
 </script>
 
 <style scoped src="../styles/admin.css"></style>
+
+<style scoped src="../styles/race-editor.css"></style>

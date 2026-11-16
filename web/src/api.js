@@ -11,6 +11,7 @@ export function api(path, options = {}) {
     if (!res.ok) {
       const error = new Error(data.error || "请求失败");
       error.status = res.status;
+      error.field = data.field || '';
       throw error;
     }
     return data;

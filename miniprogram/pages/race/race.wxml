@@ -1,31 +1,36 @@
 <view class="pad mini-race-race" wx:if="{{race}}">
-  <view class="race-hero">
-    <view class="hero-top"><text>赛事详情</text><text class="hero-status">{{race.regStatus}}</text></view>
-    <view class="hero-name">{{race.name}}</view>
-    <view class="hero-meta"><text>{{race.city || race.province || '地点待公布'}}</text><text wx:if="{{distanceText}}">{{distanceText}}</text></view>
-    <view class="hero-date"><text>{{heroDate}}</text><view><text>{{heroYear}}</text><text>比赛日</text></view></view>
+  <view class="race-hero {{coverSrc ? 'has-cover' : ''}}">
+    <image wx:if="{{coverSrc}}" class="race-cover" src="{{coverSrc}}" data-src="{{coverSrc}}" mode="aspectFill" lazy-load="{{true}}" binderror="coverError" bindtap="previewGuide" aria-label="查看赛事封面"/>
+    <view wx:else class="track-art" aria-hidden="true"><view></view><view></view><view></view></view>
+    <text class="hero-kicker">{{coverSrc ? '点击查看赛事封面' : 'RACE DAY · 下一次出发'}}</text>
   </view>
   <view class="card race-identity">
-    <view class="race-facts">
-      <view><view class="fact-label"><view class="fact-icon calendar" aria-hidden="true"></view>比赛日</view><view class="fact-value">{{race.raceDate || '日期待公布'}}</view></view>
-      <view><view class="fact-label"><view class="fact-icon pin" aria-hidden="true"></view>地点</view><view class="fact-value">{{race.province && race.province !== race.city ? race.province + ' · ' + (race.city || '') : race.city || race.province || '地点待公布'}}{{race.district ? ' · ' + race.district : ''}}</view></view>
-      <view><view class="fact-label"><view class="fact-icon route" aria-hidden="true"></view>参赛项目</view><view class="fact-value">{{distanceText || '项目待公布'}}</view></view>
-      <view><view class="fact-label"><view class="fact-icon calendar" aria-hidden="true"></view>{{race.deadlineName || '报名节点'}}</view><view class="fact-value {{race.open && race.daysLeft <= 3 ? 'urgent' : ''}}">{{race.deadlineLabel || '待公布'}}</view></view>
-    </view>
-    <view class="race-extra"><text>{{meetText}}举办</text><text wx:if="{{race.gradeLabel}}">{{race.gradeLabel}}</text><text wx:if="{{race.phone}}">咨询 {{race.phone}}</text></view>
-    <view wx:if="{{race.place && race.place !== race.city && race.place !== race.district}}" class="race-place-note">{{race.place}}</view>
-    <view wx:for="{{conflicts}}" wx:key="text" class="warn">{{item.text}}</view>
+    <view class="hero-top"><text class="hero-status">{{publicStatus}}</text><text>{{meetText}}举办</text></view>
+    <view class="hero-name">{{race.name}}</view>
+    <view class="hero-meta"><text>{{race.raceDate || '日期未录入'}}</text><text>{{locationText}}</text></view>
+    <view wx:if="{{projectLabels.length}}" class="hero-projects"><text wx:for="{{projectLabels}}" wx:key="*this">{{item}}</text></view>
+    <view class="entry-node"><text class="entry-node-dot"></text><view><text>{{phaseTitle}}</text><text>{{phaseDetail}}</text></view></view>
+    <view wx:if="{{officialActions.length}}" class="official-actions"><button wx:for="{{officialActions}}" wx:key="key" class="official-action {{index === 0 ? 'primary' : ''}}" data-url="{{item.url}}" data-key="{{item.key}}" bindtap="copyLink">{{item.label}}<text wx:if="{{index === 0}}">↗</text></button></view>
+    <view wx:else class="entry-pending">官方入口尚未录入</view>
+    <view class="official-foot"><text wx:if="{{officialActions.length}}">复制链接后，在浏览器打开</text><button wx:if="{{signupQr}}" bindtap="toggleSignupQr" aria-expanded="{{signupQrOpen}}">{{signupQrOpen ? '收起二维码' : '报名二维码'}}</button></view>
+    <view wx:if="{{signupQrOpen && signupQr}}" class="official-qr"><view class="src">{{signupHint}}</view><image class="qr" src="{{signupQr}}" mode="aspectFit" show-menu-by-longpress="{{true}}"/></view>
+    <view wx:if="{{askSignup}}" class="signup-confirm"><text>已在官方完成报名？</text><button bindtap="confirmSigned">记录已报名</button><button bindtap="dismissAsk">稍后</button></view>
     <view class="race-follow-row">
-      <view class="follow-copy"><view class="follow-heading">{{following ? '已关注这场比赛' : '关注这场比赛'}}</view><text>站内查看报名节点提醒</text></view>
-      <button class="follow-action {{following ? 'following' : ''}}" bindtap="toggleFollow" disabled="{{followBusy}}" aria-pressed="{{following}}" aria-label="{{following ? '取消关注' : '关注'}}{{race.name}}"><view class="{{followBusy ? 'control-spinner' : following ? 'control-check' : 'bookmark-icon'}}" aria-hidden="true"></view><text>{{followBusy ? '保存中' : following ? '已关注' : '关注'}}</text></button>
+      <view class="follow-copy"><view class="follow-heading">{{following ? '已关注这场比赛' : '关注这场比赛'}}</view><text>报名与缴费在官方渠道完成</text></view>
+      <button class="follow-action {{following ? 'following' : ''}}" bindtap="toggleFollow" disabled="{{followBusy}}" aria-pressed="{{following}}" aria-label="{{following ? '取消关注' : '关注'}}{{race.name}}"><view wx:if="{{followBusy}}" class="control-spinner" aria-hidden="true"></view><image wx:else class="personal-art" src="{{following ? '/images/race-actions/follow-active.png' : '/images/race-actions/follow.png'}}" mode="aspectFit" aria-hidden="true"/><text>{{followBusy ? '保存中' : following ? '已关注' : '关注'}}</text></button>
     </view>
   </view>
 
 
-  <view class="card race-plan">
-    <view class="plan-heading"><view class="h2"><view class="plan-symbol" aria-hidden="true"></view>我的参赛计划</view><text class="plan-private"><text wx:if="{{!sharedClubIds.length}}" class="lock-icon" aria-hidden="true"></text>{{sharedClubIds.length ? '已同步 ' + sharedClubIds.length + ' 个跑团' : '仅自己可见'}}</text></view>
+  <view class="card personal-summary {{personalOpen ? 'is-open' : ''}}">
+    <button class="personal-toggle" bindtap="togglePersonal" aria-expanded="{{personalOpen}}" aria-label="我的参赛安排"><image class="personal-art" src="{{myStatus ? '/images/race-actions/plan-active.png' : '/images/race-actions/plan.png'}}" mode="aspectFit" aria-hidden="true"/><view class="personal-summary-copy"><view>我的参赛安排<text>{{myStatus || '尚未添加'}}</text></view><text>{{sharedClubIds.length ? '已同步 ' + sharedClubIds.length + ' 个跑团' : '计划仅自己可见'}} · {{visibleOutings.length ? visibleOutings.length + ' 个同行安排' : '可约团友同行'}}</text></view><view class="sync-chevron {{personalOpen ? 'open' : ''}}" aria-hidden="true"></view></button>
+  </view>
+  <view wx:if="{{message && !personalOpen}}" class="card plan-feedback" role="status">{{message}}</view>
+  <view wx:if="{{personalOpen}}" class="personal-panel">
+  <view class="card race-plan {{planOpen ? 'editing' : 'collapsed'}}">
+    <view class="plan-heading"><view class="h2"><image class="personal-art" src="{{myStatus ? '/images/race-actions/plan-active.png' : '/images/race-actions/plan.png'}}" mode="aspectFit" aria-hidden="true"/>我的参赛计划</view><text class="plan-private"><text wx:if="{{!sharedClubIds.length}}" class="lock-icon" aria-hidden="true"></text>{{sharedClubIds.length ? '已同步 ' + sharedClubIds.length + ' 个跑团' : '仅自己可见'}}</text></view>
     <view class="plan-overview">
-      <view class="plan-summary"><view class="plan-status {{!myStatus ? 'plan-empty' : ''}}">{{myStatus || '还没有参赛计划'}}</view><text>{{myStatus ? '按实际进度，随时更新状态' : '报名、抽签、参赛，每一步都记得'}}</text></view>
+      <view class="plan-summary"><view class="plan-status {{!myStatus ? 'plan-empty' : ''}}">{{myStatus || '还没有参赛计划'}}</view></view>
       <button wx:if="{{!ready}}" class="plan-action" bindtap="loginForPlan"><text>登录后标记</text><view class="control-arrow" aria-hidden="true"></view></button>
       <button wx:else class="plan-action {{planOpen ? 'expanded' : ''}}" aria-label="{{myStatus ? '修改参赛状态' : '标记参赛状态'}}" aria-expanded="{{planOpen}}" bindtap="togglePlan"><text>{{planOpen ? '收起' : myStatus ? '修改' : '添加计划'}}</text><view class="control-arrow" aria-hidden="true"></view></button>
     </view>
@@ -42,7 +47,7 @@
       </view>
       <view wx:if="{{myStatus}}" class="plan-footer"><text>不再安排这场比赛？</text><button class="remove-plan" disabled="{{planBusy}}" bindtap="removePlan">移除计划</button></view>
     </view>
-    <view class="plan-disclaimer">个人记录，报名与参赛资格以官方结果为准。</view>
+    <view wx:if="{{planOpen}}" class="plan-disclaimer">个人记录，报名与参赛资格以官方结果为准。</view>
     <view wx:if="{{message}}" class="plan-feedback" role="status">{{message}}</view>
   </view>
 
@@ -57,10 +62,11 @@
     </view>
   </view>
 
-  <navigator wx:if="{{race.archiveId}}" class="race-archive-entry" url="/pages/race-archive/race-archive?id={{race.archiveId}}&fromRaceId={{race.id}}"><image class="archive-art" src="/images/quick-calendar.png" mode="aspectFit"/><view><view>赛事档案</view><text>历年赛道、报名中签与完赛记忆</text></view><text>›</text></navigator>
+
 
   <view class="card race-outings" id="race-outings">
-    <view class="outing-heading"><view><view class="outing-kicker">一起出发</view><view class="h2">本场同行</view></view><button class="outing-start" bindtap="toggleOutingForm" disabled="{{!!outingBusy}}" aria-expanded="{{outingFormOpen}}">{{outingFormOpen ? '收起' : '发起同行'}}<text>{{outingFormOpen ? '−' : '＋'}}</text></button></view>
+    <button class="outings-toggle" bindtap="toggleOutings" aria-expanded="{{outingsOpen}}"><view><text>本场同行</text><text class="outing-summary">{{visibleOutings.length ? visibleOutings.length + ' 个安排 · 拼车 / 集合 / 领物' : '拼车 / 集合 / 领物'}}</text></view><text>{{outingsOpen ? '收起' : '展开'}}</text><view class="sync-chevron {{outingsOpen ? 'open' : ''}}" aria-hidden="true"></view></button>
+    <view wx:if="{{outingsOpen}}" class="outings-content"><view class="outing-heading"><view class="h2">约好这一程</view><button class="outing-start" bindtap="toggleOutingForm" disabled="{{!!outingBusy}}" aria-expanded="{{outingFormOpen}}">{{outingFormOpen ? '收起' : '发起同行'}}<text>{{outingFormOpen ? '−' : '＋'}}</text></button></view>
     <view class="outing-intro">拼车、集合、领物，在这场比赛下约好。<text>仅团内可见，与参赛计划和活动独立。</text></view>
     <view wx:if="{{outingFeedback}}" class="outing-feedback" role="status">{{outingFeedback}}</view>
     <view wx:if="{{!ready}}" class="outing-empty"><view>登录后，与团友约好这一程</view><button class="outing-link" bindtap="loginForOutings">登录查看 ›</button></view>
@@ -88,53 +94,9 @@
         <view class="outing-card-footer"><text>{{item.isHost ? '你发起的同行' : item.joined ? '你已加入' : item.past ? '出发时间已过' : item.full ? '名额已满' : '与团友一起出发'}}</text><view class="outing-actions"><button wx:if="{{item.canCancel}}" class="outing-link" data-id="{{item.id}}" bindtap="cancelOuting" disabled="{{!!outingBusy}}">{{outingBusy === item.id + '' ? '处理中…' : '取消同行'}}</button><button wx:if="{{item.canJoin || item.canLeave}}" class="outing-join {{item.joined ? 'joined' : ''}}" data-id="{{item.id}}" bindtap="changeOutingMembership" disabled="{{!!outingBusy}}">{{outingBusy === item.id + '' ? '处理中…' : item.joined ? '退出同行' : '加入同行'}}</button></view></view>
       </view>
     </block>
+    </view>
   </view>
 
-  <view class="tabs" role="tablist" aria-label="赛事内容">
-    <view wx:for="{{tabs}}" wx:key="id" class="tab {{tab === item.id ? 'on' : ''}}" role="tab" aria-selected="{{tab === item.id}}" data-id="{{item.id}}" bindtap="pickTab">{{item.label}}</view>
-  </view>
-
-  <view class="race-tab-content">
-  <block wx:if="{{tab === 'signup'}}">
-    <view class="card" wx:if="{{race.nodes.length}}">
-      <view class="h2">赛事时间线</view>
-      <view class="timeline">
-        <view wx:for="{{race.nodes}}" wx:key="key" class="tl">
-          <view class="dot"></view>
-          <text class="tl-at">{{item.at}}</text>
-          <text class="tl-label">{{item.label}}</text>
-        </view>
-      </view>
-      <view wx:for="{{race.nodes}}" wx:key="key" wx:if="{{item.text}}" class="src">{{item.label}} {{item.text}}</view>
-    </view>
-    <view class="card" wx:if="{{race.fee || race.scale || race.startAt || race.kindLabels.length || race.groups.length}}">
-      <view class="h2">项目</view>
-      <view wx:if="{{race.startAt}}" class="row"><text class="k">起跑</text><text>{{race.startAt}}</text></view>
-      <view wx:if="{{race.fee}}" class="row"><text class="k">报名费</text><text>{{race.fee}}</text></view>
-      <view wx:if="{{race.scale}}" class="row"><text class="k">规模</text><text>{{race.scale}}</text></view>
-      <view wx:if="{{race.kindLabels.length}}" class="src">{{kindText}}</view>
-      <view wx:if="{{race.groups.length}}" class="src">{{groupText}}</view>
-    </view>
-    <view class="card" wx:if="{{drawRates.length}}">
-      <view class="h2">历年中签</view>
-      <view class="src">按公布的报名人数和名额计算。</view>
-      <view wx:for="{{drawRates}}" wx:key="id">
-        <view class="src">{{item.label}} · 报名 {{item.applicants}} · 名额 {{item.quota}} · {{item.rateText}}</view>
-        <view class="src">来源 {{item.source}}</view>
-      </view>
-    </view>
-    <view class="card">
-      <view class="h2">官方报名信息</view>
-      <view class="src">{{signupHint}}</view>
-      <image wx:if="{{signupQr}}" class="qr" src="{{signupQr}}" mode="aspectFit" show-menu-by-longpress="{{true}}" />
-      <button wx:if="{{signupQr}}" class="btn" data-url="{{signupUrl}}" data-key="signup" bindtap="copyLink">复制报名链接</button>
-      <view wx:if="{{askSignup}}">
-        <view class="src">报上了吗</view>
-        <button class="btn" bindtap="confirmSigned">报上了</button>
-        <button class="ghost" bindtap="dismissAsk">还没有</button>
-      </view>
-      <view class="src">报名和缴费请以组委会官方页面为准。</view>
-    </view>
     <view wx:if="{{shareChoices.length}}" class="card race-share">
       <button class="share-toggle" bindtap="toggleShare" aria-expanded="{{shareOpen}}"><text>分享赛事到跑团</text><text class="arrow">{{shareOpen ? '⌃' : '›'}}</text></button>
       <view class="src">选择跑团，分享这场比赛与跑团参赛动态。</view>
@@ -153,24 +115,90 @@
       <view wx:for="{{item.mates}}" wx:for-item="mate" wx:key="userId" class="companion-member"><view class="row"><text>{{mate.nickname}}</text><text>{{mate.status}}</text></view><view wx:if="{{mate.note}}" class="src">{{mate.note}}</view></view>
       <view class="record-result" role="button" data-club="{{item.id}}" bindtap="showClubOutings">查看本团同行安排 ›</view><view class="src">跑团活动需单独报名，官方参赛资格仍以组委会为准。</view>
     </view>
+  </view>
+
+  <view class="tabs" role="tablist" aria-label="赛事内容">
+    <button wx:for="{{tabs}}" wx:key="id" class="tab {{tab === item.id ? 'on' : ''}}" role="tab" aria-selected="{{tab === item.id}}" data-id="{{item.id}}" bindtap="pickTab">{{item.label}}</button>
+  </view>
+
+  <view class="race-tab-content">
+  <block wx:if="{{tab === 'signup'}}">
+  <navigator wx:if="{{race.archiveId}}" class="race-archive-entry" url="/pages/race-archive/race-archive?id={{race.archiveId}}&fromRaceId={{race.id}}"><image class="archive-art" src="/images/quick-calendar.png" mode="aspectFit"/><view><view>赛事档案</view><text>历年赛道、报名中签与完赛记忆</text></view><text>›</text></navigator>
+    <view class="card" wx:if="{{race.place || race.gradeLabel || race.phone || conflicts.length}}">
+      <view class="h2">赛事资料</view>
+      <view wx:if="{{race.place}}" class="row"><text class="k">比赛地点</text><text>{{race.place}}</text></view><view wx:if="{{race.gradeLabel}}" class="row"><text class="k">认证</text><text>{{race.gradeLabel}}</text></view><view wx:if="{{race.phone}}" class="row"><text class="k">咨询</text><text>{{race.phone}}</text></view><view wx:for="{{conflicts}}" wx:key="text" class="warn">{{item.text}}</view>
+
+    </view>
+
+    <view class="card" wx:if="{{race.nodes.length}}">
+      <view class="h2">赛事时间线</view>
+      <view class="timeline">
+        <view wx:for="{{race.nodes}}" wx:key="key" class="tl">
+          <view class="dot"></view>
+          <text class="tl-at">{{item.at}}</text>
+          <text class="tl-label">{{item.label}}</text>
+        </view>
+      </view>
+
+    </view>
+    <view class="card" wx:if="{{race.fee || race.scale || race.startAt || race.kindLabels.length || race.groups.length}}">
+      <view class="h2">参赛项目与规模</view>
+      <view wx:if="{{race.startAt}}" class="row"><text class="k">起跑</text><text>{{race.startAt}}</text></view>
+      <view wx:if="{{race.fee}}" class="row"><text class="k">报名费</text><text>{{race.fee}}</text></view>
+      <view wx:if="{{race.scale}}" class="row"><text class="k">规模</text><text>{{race.scale}}</text></view>
+      <view wx:if="{{race.kindLabels.length}}" class="src">{{kindText}}</view>
+      <view wx:if="{{race.groups.length}}" class="src">{{groupText}}</view>
+    </view>
+    <view class="card" wx:if="{{drawRates.length}}">
+      <view class="h2">历年中签</view>
+      <view class="src">按公布的报名人数和名额计算。</view>
+      <view wx:for="{{drawRates}}" wx:key="id">
+        <view class="src">{{item.label}} · 报名 {{item.applicants}} · 名额 {{item.quota}} · {{item.rateText}}</view>
+        <view class="src">来源 {{item.source}}</view>
+      </view>
+    </view>
+    <view class="card race-source" wx:if="{{race.organizer || race.source || race.eventUrl || race.officialUrl}}"><button class="source-toggle" bindtap="toggleSource" aria-expanded="{{sourceOpen}}"><text>主办与资料信息</text><text>{{sourceOpen ? '收起' : '按需查看'}} ›</text></button><view wx:if="{{sourceOpen}}" class="source-content">
+      <view wx:if="{{race.organizer}}" class="src">主办 {{race.organizer}}</view>
+      <view wx:if="{{race.source}}" class="src">来源 {{race.source}}<text wx:if="{{race.updatedAt}}"> · 更新于 {{race.updatedAt}}</text></view>
+      <button wx:if="{{race.eventUrl}}" class="official-text" data-url="{{race.eventUrl}}" bindtap="copyLink">赛事网站 ↗</button>
+      <button wx:if="{{race.officialUrl}}" class="official-text" data-url="{{race.officialUrl}}" bindtap="copyLink">中国马拉松赛事页 ↗</button>
+
+    </view></view>
   </block>
 
   <block wx:if="{{tab === 'guide'}}">
-    <view class="card">
-      <view class="h2">竞赛规程</view>
-      <view wx:if="{{guideBlocks.length}}" class="src">按标题阅读。奖金、关门时间和参赛资格以组委会原文为准。</view>
-      <view wx:for="{{guideBlocks}}" wx:key="i" class="md md-{{item.kind}}">
-        <text wx:if="{{item.mark}}" class="md-mark">{{item.mark}}</text>
-        <text wx:for="{{item.runs}}" wx:for-item="run" wx:key="j" class="{{run.strong ? 'md-strong' : ''}}">{{run.text}}</text>
+    <view wx:if="{{!race.route && !routeSheets.length && !race.pickup && !race.pacers && !pacerSheets.length && !race.startAt && !race.place && !guide.length && !guideBlocks.length}}" class="card content-empty">参赛指南尚未录入，后续资料将在这里更新。</view>
+    <view class="card day-guide" wx:if="{{race.route || routeSheets.length || race.pickup || race.pacers || pacerSheets.length || race.startAt || race.place}}">
+      <view class="h2">比赛日安排</view>
+      <view wx:if="{{race.startAt || race.place}}" class="day-section"><view class="day-section-title">起跑与检录</view><view wx:if="{{race.startAt}}" class="src">起跑时间 · {{race.startAt}}</view><view wx:if="{{race.place}}" class="src">{{race.place}}</view></view>
+      <view wx:if="{{race.route || routeSheets.length}}" class="day-section"><view class="day-section-title">赛道与路线</view><view wx:if="{{race.route}}" class="guide-text">{{race.route}}</view>
+      <view wx:for="{{routeSheets}}" wx:key="id" class="race-media {{item.state === 'failed' ? 'media-failed' : ''}}">
+        <button wx:if="{{item.state !== 'failed'}}" class="media-open" data-src="{{item.src}}" bindtap="previewGuide" aria-label="预览路线图"><image lazy-load="{{true}}" class="sheet" mode="aspectFit" src="{{item.displaySrc || item.src}}" data-kind="routeSheets" data-id="{{item.id}}" data-src="{{item.displaySrc || item.src}}" bindload="mediaLoaded" binderror="mediaError"/><text class="media-caption">路线图 {{index + 1}} · 点击查看原图</text><view wx:if="{{item.state === 'loading'}}" class="media-loading">正在加载…</view></button>
+        <view wx:else class="media-error"><view>路线图加载失败</view><button data-kind="routeSheets" data-id="{{item.id}}" bindtap="retryMedia">重新加载</button></view>
       </view>
-      <view wx:if="{{guide.length}}" class="h2 page-title">原页</view>
-      <view wx:if="{{guide.length && guideBlocks.length}}" class="src">正文在上面。原页留着对照。</view>
-      <view wx:if="{{guide.length && !guideBlocks.length}}" class="src">正文还没整理，下面是组委会公布的原页。</view>
-      <image wx:for="{{guide}}" wx:key="id" class="sheet" mode="widthFix" src="{{item.src}}" data-src="{{item.src}}" bindtap="previewGuide" />
+      </view>
+      <view wx:if="{{race.pickup}}" class="day-section"><view class="day-section-title">领物指引</view><view class="guide-text">{{race.pickup}}</view></view>
+      <view wx:if="{{race.pacers || pacerSheets.length}}" class="day-section"><view class="day-section-title">配速与官兔</view><view wx:if="{{race.pacers}}" class="guide-text">{{race.pacers}}</view>
+      <view wx:for="{{pacerSheets}}" wx:key="id" class="race-media {{item.state === 'failed' ? 'media-failed' : ''}}">
+        <button wx:if="{{item.state !== 'failed'}}" class="media-open" data-src="{{item.src}}" bindtap="previewGuide" aria-label="预览配速资料"><image lazy-load="{{true}}" class="sheet" mode="aspectFit" src="{{item.displaySrc || item.src}}" data-kind="pacerSheets" data-id="{{item.id}}" data-src="{{item.displaySrc || item.src}}" bindload="mediaLoaded" binderror="mediaError"/><text class="media-caption">配速资料 {{index + 1}} · 点击查看原图</text><view wx:if="{{item.state === 'loading'}}" class="media-loading">正在加载…</view></button>
+        <view wx:else class="media-error"><view>配速资料加载失败</view><button data-kind="pacerSheets" data-id="{{item.id}}" bindtap="retryMedia">重新加载</button></view>
+      </view>
+      </view>
+    </view>
+    <view class="card" wx:if="{{guide.length || guideBlocks.length}}">
+      <view class="h2">竞赛规程</view>
+      <view wx:if="{{guideBlocks.length}}" class="src">参赛资格、关门时间和奖金以组委会规程为准。</view>
+      <view wx:for="{{guideBlocks}}" wx:key="i" class="md md-{{item.kind}}"><text wx:if="{{item.mark}}" class="md-mark">{{item.mark}}</text><text wx:for="{{item.runs}}" wx:for-item="run" wx:key="j" class="{{run.strong ? 'md-strong' : ''}}">{{run.text}}</text></view>
+      <view wx:if="{{guide.length}}" class="day-section-title page-title">规程原页 <text>共 {{guide.length}} 页</text></view>
+      <view wx:for="{{guide}}" wx:key="id" class="race-media {{item.state === 'failed' ? 'media-failed' : ''}}">
+        <button wx:if="{{item.state !== 'failed'}}" class="media-open" data-src="{{item.src}}" bindtap="previewGuide" aria-label="预览规程原页"><image lazy-load="{{true}}" class="sheet" mode="aspectFit" src="{{item.displaySrc || item.src}}" data-kind="guide" data-id="{{item.id}}" data-src="{{item.displaySrc || item.src}}" bindload="mediaLoaded" binderror="mediaError"/><text class="media-caption">规程原页 {{index + 1}} · 点击查看原图</text><view wx:if="{{item.state === 'loading'}}" class="media-loading">正在加载…</view></button>
+        <view wx:else class="media-error"><view>规程原页加载失败</view><button data-kind="guide" data-id="{{item.id}}" bindtap="retryMedia">重新加载</button></view>
+      </view>
     </view>
   </block>
 
   <block wx:if="{{tab === 'news'}}">
+    <view wx:if="{{!articles.length && !liveSheet && !alternatives.length}}" class="card content-empty">赛事资讯更新中</view>
     <view class="card" wx:if="{{articles.length}}">
       <view class="h2">相关资讯</view>
       <navigator wx:for="{{articles}}" wx:key="id" class="news-item" url="/pages/news/detail?id={{item.id}}">
@@ -178,27 +206,7 @@
         <view class="src">{{item.publishedAt}} · {{item.source}}</view>
       </navigator>
     </view>
-    <view class="card" wx:if="{{race.organizer || race.source || race.eventUrl || race.officialUrl || queryLinks.length}}">
-      <view class="h2">这场的页面</view>
-      <view wx:if="{{race.organizer}}" class="src">主办 {{race.organizer}}</view>
-      <view wx:if="{{race.source}}" class="src">来源 {{race.source}}<text wx:if="{{race.updatedAt}}"> · 更新于 {{race.updatedAt}}</text></view>
-      <view wx:if="{{race.eventUrl}}" class="src">赛事网站 {{race.eventUrl}}</view>
-      <view wx:if="{{race.officialUrl}}" class="src">官网这场 {{race.officialUrl}}</view>
-      <button wx:for="{{queryLinks}}" wx:key="key" class="btn" data-url="{{item.url}}" data-key="{{item.key}}" bindtap="copyLink">{{item.label}}</button>
-    </view>
-    <view class="card" wx:if="{{race.route || routeSheets.length || race.pickup || race.pacers || pacerSheets.length}}">
-      <view class="h2">比赛日</view>
-      <view wx:if="{{race.route}}" class="src">路线 {{race.route}}</view>
-      <image wx:for="{{routeSheets}}" wx:key="id" class="sheet" mode="widthFix" src="{{item.src}}" data-src="{{item.src}}" bindtap="previewGuide" />
-      <view wx:if="{{race.pickup}}" class="src">领物 {{race.pickup}}</view>
-      <view wx:if="{{race.pacers}}" class="src">配速员 {{race.pacers}}</view>
-      <image wx:for="{{pacerSheets}}" wx:key="id" class="sheet" mode="widthFix" src="{{item.src}}" data-src="{{item.src}}" bindtap="previewGuide" />
-    </view>
-    <view class="card" wx:if="{{liveSheet}}">
-      <view class="h2">直播</view>
-      <view class="src">扫组委会的二维码。</view>
-      <image class="sheet" mode="widthFix" src="{{liveSheet.src}}" data-src="{{liveSheet.src}}" bindtap="previewGuide" />
-    </view>
+    <view class="card" wx:if="{{liveSheet}}"><view class="h2">赛事直播</view><view class="src">组委会上传的直播二维码，点击放大后识别。</view><view class="race-media"><button wx:if="{{liveSheet.state !== 'failed'}}" class="media-open" data-src="{{liveSheet.src}}" bindtap="previewGuide" aria-label="预览直播二维码"><image lazy-load="{{true}}" class="sheet" mode="aspectFit" src="{{liveSheet.displaySrc || liveSheet.src}}" data-kind="liveSheet" data-id="{{liveSheet.id}}" data-src="{{liveSheet.displaySrc || liveSheet.src}}" bindload="mediaLoaded" binderror="mediaError"/><text class="media-caption">直播二维码 · 点击查看原图</text></button><view wx:else class="media-error"><view>直播二维码加载失败</view><button data-kind="liveSheet" data-id="{{liveSheet.id}}" bindtap="retryMedia">重新加载</button></view></view></view>
     <view class="card" wx:if="{{alternatives.length}}">
       <view class="h2">同期还开着</view>
       <view class="src">{{alternativeNote}}</view>
@@ -220,14 +228,16 @@
       <view wx:if="{{drawError}}" class="err">{{drawError}}</view>
       <canvas canvas-id="poster" class="poster-canvas" />
     </view>
+    <view wx:if="{{officialResultLink}}" class="card"><view class="h2">官方成绩查询</view><button class="official-action primary" data-url="{{officialResultLink}}" data-key="result" bindtap="copyLink">复制官方成绩链接 ↗</button></view>
+    <view wx:if="{{!ready}}" class="card content-empty"><view>登录后记录个人成绩</view><button class="official-text" data-id="result" bindtap="loginForResult">登录记录 ›</button></view>
     <view class="card result" wx:if="{{ready}}">
-      <view class="h2">成绩</view>
-      <view class="src">手记的成绩标为未核验。可以附一张证书或奖牌照片。</view>
+      <view class="h2">个人成绩手记</view>
+      <view class="src">自己记录的成绩标为未核验，与官方成绩查询分开保存。可附证书或奖牌照片。</view>
 
       <view wx:for="{{myResults}}" wx:key="distance" class="sum">{{item.distanceLabel}} {{item.clock}} · 配速 {{item.pace}}<text wx:if="{{item.pb}}"> · PB</text> · {{item.verifyLabel}}</view>
-      <view wx:if="{{myResult.story}}" class="src">{{myResult.story}}</view>
+      <view wx:if="{{myResult && myResult.story}}" class="src">{{myResult && myResult.story}}</view>
       <image wx:if="{{proofSrc}}" src="{{proofSrc}}" mode="widthFix" />
-      <view wx:if="{{myResult.proofLabel}}" class="src">{{myResult.proofLabel}} · 未核验</view>
+      <view wx:if="{{myResult && myResult.proofLabel}}" class="src">{{myResult.proofLabel}} · 未核验</view>
       <button wx:for="{{distanceOptions}}" wx:key="key" class="ghost {{distance === item.key ? 'on' : ''}}" data-distance="{{item.key}}" bindtap="pickDistance">{{item.label}}</button>
       <view class="field">
         <input placeholder="3:29:59" value="{{clock}}" bindinput="onClock" aria-label="3:29:59" />
@@ -238,11 +248,11 @@
       <button class="btn" bindtap="saveResult">记下成绩</button>
       <button wx:if="{{myResult}}" class="ghost" data-kind="certificate" bindtap="chooseProof">证书照片</button>
       <button wx:if="{{myResult}}" class="ghost" data-kind="medal" bindtap="chooseProof">奖牌照片</button>
-      <button wx:if="{{myResult.hasProof}}" class="ghost" bindtap="removeProof">去掉照片</button>
+      <button wx:if="{{myResult && myResult.hasProof}}" class="ghost" bindtap="removeProof">去掉照片</button>
       <button wx:if="{{myResult}}" class="ghost" bindtap="removeResult">去掉这项成绩</button>
       <view wx:if="{{resultMessage}}" class="err">{{resultMessage}}</view>
     </view>
   </block>
   </view>
 </view>
-<view wx:else class="empty">{{message || '正在打开这场'}}</view>
+<view wx:else class="empty race-empty-state"><view>{{loadError || '正在加载赛事…'}}</view><button wx:if="{{loadError}}" bindtap="open">重新加载</button><navigator wx:if="{{loadError}}" open-type="switchTab" url="/pages/races/races">返回赛事列表</navigator></view>

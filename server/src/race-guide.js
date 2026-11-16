@@ -11,7 +11,7 @@ const GUIDE_TEXT_MAX = 40000;
 const GUIDE_MAX = 16;
 const PACER_MAX = 8;
 const ROUTE_MAX = 4;
-const SHEET_LIMIT = { guide: GUIDE_MAX, pacer: PACER_MAX, route: ROUTE_MAX, live: 1 };
+const SHEET_LIMIT = { guide: GUIDE_MAX, pacer: PACER_MAX, route: ROUTE_MAX, live: 1, cover: 1 };
 const SHEET_FULL = {
   guide: "规程最多 16 页",
   pacer: "配速资料最多 8 张",
@@ -224,6 +224,8 @@ function attachGuide(db, race) {
   race.pacerSheets = rows.filter((row) => row.kind === "pacer").map((row) => ({ id: row.id }));
   const live = rows.find((row) => row.kind === "live");
   race.liveSheet = live ? { id: live.id } : null;
+  const cover = rows.find((row) => row.kind === "cover");
+  race.coverSheet = cover ? { id: cover.id } : null;
   return race;
 }
 
@@ -457,7 +459,7 @@ function mountRaceGuide(app, { BASE, getDb, requireAdmin }) {
     if (!race) return res.status(404).json({ error: "没有这场比赛" });
     const kind = String(req.query.kind || "");
     if (!SHEET_LIMIT[kind]) return res.status(400).json({ error: "不支持的图片类型" });
-    if (kind !== "live") {
+    if (kind !== "live" && kind !== "cover") {
       const count = getDb().prepare("SELECT COUNT(*) AS n FROM race_sheets WHERE race_id = ? AND kind = ?").get(race.id, kind);
       if (count.n >= SHEET_LIMIT[kind]) return res.status(400).json({ error: SHEET_FULL[kind] });
     }
@@ -472,10 +474,8 @@ function mountRaceGuide(app, { BASE, getDb, requireAdmin }) {
     if (!photo) return res.status(400).json({ error: "仅支持 jpg、png、webp" });
     if (buffer.length > PHOTO_MAX) return res.status(413).json({ error: "照片不超过 8MB" });
     const db = getDb();
-    if (kind === "live") {
-      const old = db.prepare("SELECT * FROM race_sheets WHERE race_id = ? AND kind = 'live'").all(race.id);
-      for (const row of old) removeSheet(db, row);
-    }
+    const replacing = kind === "live" || kind === "cover";
+    const old = replacing ? db.prepare("SELECT * FROM race_sheets WHERE race_id = ? AND kind = ?").all(race.id, kind) : [];
     const sortRow = db.prepare("SELECT COALESCE(MAX(sort), 0) AS n FROM race_sheets WHERE race_id = ? AND kind = ?").get(race.id, kind);
     const info = db
       .prepare("INSERT INTO race_sheets (race_id, kind, filename, sort, created_at) VALUES (?, ?, '', ?, ?)")
@@ -483,9 +483,16 @@ function mountRaceGuide(app, { BASE, getDb, requireAdmin }) {
     const id = Number(info.lastInsertRowid);
     const filename = id + "." + photo.ext;
     const dir = path.join(mediaRoot(), "races");
-    fs.mkdirSync(dir, { recursive: true });
-    fs.writeFileSync(path.join(dir, filename), buffer);
-    db.prepare("UPDATE race_sheets SET filename = ? WHERE id = ?").run(filename, id);
+    try {
+      fs.mkdirSync(dir, { recursive: true });
+      fs.writeFileSync(path.join(dir, filename), buffer);
+      db.prepare("UPDATE race_sheets SET filename = ? WHERE id = ?").run(filename, id);
+    } catch (err) {
+      db.prepare("DELETE FROM race_sheets WHERE id = ?").run(id);
+      if (fs.existsSync(path.join(dir, filename))) fs.unlinkSync(path.join(dir, filename));
+      return res.status(500).json({ error: "图片未保存，请重试" });
+    }
+    for (const row of old) removeSheet(db, row);
     res.json({ sheet: { id, kind } });
   });
 

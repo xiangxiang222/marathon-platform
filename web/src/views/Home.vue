@@ -219,7 +219,7 @@ const statusOptions = [
   { label: "待开赛", value: "wait" },
   { label: "比赛中", value: "live" },
   { label: "比赛结束", value: "closed" },
-  { label: "报名未公布", value: "unannounced" }
+  { label: "报名未录入", value: "unannounced" }
 ];
 
 const distanceOptions = [{ label: '不限距离', value: '' }, { label: '马拉松', value: 'full' }, { label: '半程马拉松', value: 'half' }, { label: '10公里', value: '10k' }];

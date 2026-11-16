@@ -5,7 +5,7 @@ export function toneOf(race) {
   if (status === "比赛中") return "live";
   if (race.open && Number(race.daysLeft) <= 7) return "soon";
   if (status === "报名中") return "open";
-  if (status === "报名时间未公布") return "wait";
+  if (status === "报名时间未公布" || status === "报名时间未录入") return "wait";
   return "next";
 }
 
