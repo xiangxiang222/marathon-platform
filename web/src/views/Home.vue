@@ -524,8 +524,8 @@ onUnmounted(() => { reminderRequest++; window.removeEventListener('race-follow-c
 .filter-sheet-heading p{margin:4px 0 0;color:#a18d98;font-size:12px;line-height:1.5}
 .filter-sheet-heading>button{display:grid;place-items:center;flex:none;width:44px;height:44px;border:0;border-radius:50%;background:#f6f3f4;color:#9b8591}
 .filter-sheet-heading svg{width:19px;height:19px;stroke:currentColor;stroke-width:1.35;stroke-linecap:round}
-.home-filter-sheet .loc,.home-filter-sheet .selection-layout{display:grid;grid-template-columns:94px minmax(0,1fr);height:auto;min-height:0;max-height:min(52dvh,384px);overflow:hidden}
-.home-filter-sheet .prov,.home-filter-sheet .year-nav{display:flex;flex-direction:column;gap:0;width:auto;min-width:0;margin:0;padding:4px 0 12px;background:#f8f6f7;overflow-y:auto;overscroll-behavior:contain}
+.home-filter-sheet .loc,.home-filter-sheet .selection-layout{display:grid;grid-template-columns:94px minmax(0,1fr);grid-template-rows:minmax(0,1fr);height:auto;min-height:0;max-height:min(52dvh,384px);overflow:hidden}
+.home-filter-sheet .prov,.home-filter-sheet .year-nav{display:flex;flex-direction:column;gap:0;width:auto;min-width:0;min-height:0;max-height:inherit;margin:0;padding:4px 0 12px;background:#f8f6f7;overflow-y:auto;overscroll-behavior:contain}
 .home-filter-sheet :is(.prov,.year-nav) button{position:relative;display:block;flex:none;width:100%;min-width:0;min-height:48px;padding:10px 10px;border:0;border-radius:0;background:transparent;color:#897b83;font-size:13px;line-height:1.5;text-align:center;overflow-wrap:anywhere}
 .home-filter-sheet :is(.prov,.year-nav) button.on{background:#fff;color:#e83150;font-weight:600}
 .home-filter-sheet :is(.prov,.year-nav) button.on:before{position:absolute;top:17px;bottom:17px;left:0;width:3px;border-radius:2px;background:#f04b65;content:''}

@@ -156,6 +156,14 @@ async function main() {
     for(const city of ['北京','上海','杭州','成都'])assert.equal(await page.locator('.cities').getByRole('button',{name:city,exact:true}).count(),1,'nationwide grid includes API city '+city);
     await page.getByRole('navigation',{name:'省份导航'}).getByRole('button',{name:'浙江',exact:true}).click();
     assert.equal(raceRequests.length,before,'province navigation must not query');assert.equal(await drawer.count(),1);
+    const provinceLayout=await page.locator('.loc').evaluate(panel=>{
+      const nav=panel.querySelector('.prov'),content=panel.querySelector('.city-content'),first=panel.querySelector('.cities button');
+      const box=e=>{const r=e.getBoundingClientRect();return{top:r.top,bottom:r.bottom,height:r.height};};
+      return {scrollTop:panel.scrollTop,panel:box(panel),nav:box(nav),content:box(content),first:box(first)};
+    });
+    assert.ok(Math.abs(provinceLayout.scrollTop)<1,'province navigation must not pan the entire two-column grid: '+JSON.stringify(provinceLayout));
+    assert.ok(provinceLayout.nav.height<=provinceLayout.panel.height+1,'the province list must scroll within its own column: '+JSON.stringify(provinceLayout));
+    assert.ok(provinceLayout.first.top>=provinceLayout.content.top-1&&provinceLayout.first.bottom<=provinceLayout.content.bottom+1,'the initial city options must remain visible after province navigation: '+JSON.stringify(provinceLayout));
     await shot('home-list-location',390);
     let r=await picked(()=>page.locator('.cities').getByRole('button',{name:'杭州',exact:true}).click(),{city:'杭州'});assert.deepEqual(r.data.races.map(r=>r.id),['home-trail']);
     await openFilter('比赛地点');assert.equal(await page.getByRole('navigation',{name:'省份导航'}).getByRole('button',{name:'浙江',exact:true}).getAttribute('aria-pressed'),'true');assert.equal(await page.locator('.cities').getByRole('button',{name:'杭州',exact:true}).getAttribute('aria-pressed'),'true');
