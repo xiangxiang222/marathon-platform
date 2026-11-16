@@ -138,7 +138,7 @@ function formatWhen(value) {
 }
 
 function deadlineMeta(deadline, now = new Date()) {
-  if (!deadline) return { open: false, known: false, daysLeft: 0, deadlineLabel: "报名时间未公布" };
+  if (!deadline) return { open: false, known: false, daysLeft: 0, deadlineLabel: "报名时间未录入" };
   const end = instant(deadline);
   const open = end > now.getTime();
   const days = dayIndex(end) - dayIndex(now.getTime());
@@ -357,6 +357,10 @@ function linksOf(row) {
 
 function presentRace(row, now) {
   const meta = deadlineMeta(row.deadline, now);
+  const regStart = field(row, "regStart", "reg_start");
+  const startInstant = /^\d{4}-\d{2}-\d{2}$/.test(regStart) ? Date.parse(regStart + "T00:00:00+08:00") : instant(regStart);
+  const registrationScheduled = !!regStart && startInstant > now.getTime();
+  if (registrationScheduled) meta.open = false;
   const distances = String(row.distances).split(",").filter(Boolean);
   const kinds = listed(field(row, "kinds", "kinds"), KIND_LABEL);
   const nodes = buildNodes(row, now);
@@ -402,7 +406,7 @@ function presentRace(row, now) {
     signupHost: signup ? signup.host : "",
     nodes,
     nextNode,
-    regStatus: phaseLabel(row.race_date || row.raceDate, meta, now),
+    regStatus: phaseLabel(row.race_date || row.raceDate, meta, now, registrationScheduled),
     kind: kinds.includes("trail") || KIND[row.id] === "trail" ? "trail" : "road",
     meet: field(row, "meet", "meet") === "online" ? "online" : "offline",
     ...meta
@@ -427,11 +431,12 @@ function inChannel(race, channel) {
   return false;
 }
 
-function phaseLabel(raceDate, meta, now) {
+function phaseLabel(raceDate, meta, now, registrationScheduled = false) {
   const today = new Date(now.getTime() + TZ).toISOString().slice(0, 10);
   if (raceDate < today) return "已结束";
   if (raceDate === today) return "比赛中";
-  if (!meta.known) return "报名时间未公布";
+  if (registrationScheduled) return "未开始";
+  if (!meta.known) return "报名时间未录入";
   if (!meta.open) return "待开赛";
   return "报名中";
 }

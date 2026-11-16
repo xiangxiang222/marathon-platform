@@ -269,7 +269,7 @@ app.get(BASE + "/api/races", (req, res) => {
   if (!q && status === "live") rows = rows.filter((r) => r.regStatus === "比赛中");
   if (!q && status === "soon") rows = rows.filter((r) => r.regStatus === "未开始");
   if (!q && status === "closed") rows = rows.filter((r) => r.regStatus === "已结束");
-  if (!q && status === "unannounced") rows = rows.filter((r) => r.regStatus === "报名时间未公布");
+  if (!q && status === "unannounced") rows = rows.filter((r) => r.regStatus === "报名时间未录入");
   const cities = [...new Set(getDb().prepare("SELECT city FROM races ORDER BY city").all().map((r) => r.city))];
   const months = [...new Set(getDb().prepare("SELECT race_date FROM races ORDER BY race_date").all().map((r) => r.race_date.slice(0, 7)))];
   const paged = slicePage(rows, req.query);
@@ -1332,24 +1332,37 @@ mountContent(app, { BASE, getDb, requireAdmin, userFrom });
 
 app.put(BASE + "/api/admin/races/:id", (req, res) => {
   if (!requireAdmin(req, res)) return;
-  const race = getDb().prepare("SELECT id, reg_start, deadline, draw_at, pay_deadline, deadline_name, source FROM races WHERE id = ?").get(req.params.id);
+  const race = getDb().prepare("SELECT id, race_date, meet, reg_start, deadline, draw_at, pay_deadline, deadline_name, source FROM races WHERE id = ?").get(req.params.id);
   if (!race) return res.status(404).json({ error: "没有这场比赛" });
   const body = req.body || {};
   const source = String(body.source || "").trim();
   const deadlineName = String(body.deadlineName || "").trim();
-  const dates = ["regStart", "deadline", "drawAt", "payDeadline"].map((key) => {
+  const nodeKeys = ["regStart", "deadline", "drawAt", "payDeadline"];
+  const dates = nodeKeys.map((key) => {
     const text = String(body[key] || "").trim();
     if (!text) return "";
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(text)) return null;
+    const parsed = Date.parse(text + "T00:00:00Z");
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(text) || !Number.isFinite(parsed) || new Date(parsed).toISOString().slice(0, 10) !== text) return null;
     return text;
   });
-  if (dates.some((item) => item == null)) return res.status(400).json({ error: "日期须为 2026-10-28 这种格式" });
+  const invalidDate = dates.findIndex(item => item == null);
+  if (invalidDate >= 0) return res.status(400).json({ error: "请填写真实的日期，格式如 2026-10-28", field: nodeKeys[invalidDate] });
   if (!dates.some(Boolean)) return res.status(400).json({ error: "请填写需要记录的报名时间" });
   if (!source) return res.status(400).json({ error: "修改报名时间须填写本次来源" });
   if (source.length > 80) return res.status(400).json({ error: "来源不超过 80 个字" });
   if (deadlineName.length > 12) return res.status(400).json({ error: "截止说明不超过 12 个字" });
   const current = [race.reg_start, race.deadline, race.draw_at, race.pay_deadline];
   const next = dates.map((value, index) => value || current[index]);
+  const nodeLabels = ["报名开始", "报名截止", "中签公布", "缴费截止"];
+  let previous = -1;
+  for (let index = 0; index < next.length; index++) {
+    if (!next[index]) continue;
+    if (previous >= 0 && next[index].slice(0, 10) < next[previous].slice(0, 10)) return res.status(400).json({ error: nodeLabels[index] + "不能早于" + nodeLabels[previous], field: nodeKeys[index] });
+    previous = index;
+  }
+  for (const [index, field] of ["regStart", "deadline", "drawAt", "payDeadline"].entries()) {
+    if (race.meet !== "online" && next[index] && race.race_date && next[index].slice(0, 10) > race.race_date) return res.status(400).json({ error: "报名节点不能晚于比赛日", field });
+  }
   getDb()
     .prepare(
       `UPDATE races

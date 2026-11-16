@@ -2,12 +2,39 @@ const { request, ready } = require("../../utils/request");
 const { baseUrl } = require("../../config");
 const { parseGuide } = require("../../utils/guide-md");
 
-function raceTabs(race, extra) {
-  const tabs = [{ id: "signup", label: "赛事信息" }];
-  if ((extra.guide && extra.guide.length) || (race && race.guideText)) tabs.push({ id: "guide", label: "竞赛规程" });
-  tabs.push({ id: "news", label: "赛事资讯" });
-  if (extra.ready || extra.drawText) tabs.push({ id: "result", label: "我的成绩" });
-  return tabs;
+function raceTabs() {
+  return [{ id: "signup", label: "赛事信息" }, { id: "guide", label: "参赛指南" }, { id: "news", label: "赛事资讯" }, { id: "result", label: "我的成绩" }];
+}
+function officialActions(race, today) {
+  const signupLabel = race.regStart && race.regStart > today ? "报名安排" : race.deadline && race.deadline < today || race.raceDate && race.raceDate < today ? "报名信息" : "官方报名";
+  const labels = { signup: signupLabel, draw: "中签查询", bib: "参赛号码", result: "官方成绩", live: "赛事直播" };
+  const links = (race.links || []).filter(item => /^https:\/\/\S+$/i.test(item.url || "")).map(item => ({ ...item, label: labels[item.key] || item.label || "官方入口" }));
+  const website = race.eventUrl || race.officialUrl;
+  if (/^https:\/\/\S+$/i.test(website || "")) links.push({ key: "website", label: "赛事官网", url: website });
+  const due = value => /^\d{4}-\d{2}-\d{2}$/.test(value || "") && value <= today;
+  const ended = race.raceDate && race.raceDate < today;
+  const preferred = ended ? "result" : due(race.bibAt) ? "bib" : due(race.drawAt) ? "draw" : race.regStatus === "报名中" || !race.deadline || race.deadline >= today ? "signup" : "website";
+  const first = links.find(item => item.key === preferred) || links.find(item => item.key === "website") || links.find(item => !ended || item.key !== "signup") || links[0];
+  return first ? [first, ...links.filter(item => item !== first)].filter((item, index, all) => all.findIndex(other => other.url === item.url) === index) : [];
+}
+
+function publicPhase(race, today) {
+  const status = String(race.regStatus || "").replace(/未公布|待公布/g, "未录入");
+  if (race.raceDate && race.raceDate < today) return { publicStatus: "已结束", phaseTitle: "比赛已结束", phaseDetail: "查看官方成绩，或记下自己的完赛故事。" };
+  if (race.raceDate === today) return { publicStatus: "比赛日", phaseTitle: "今天开跑", phaseDetail: race.startAt ? "起跑时间 " + race.startAt + " · 出发前确认号码与比赛日资料。" : "出发前确认号码与比赛日资料。" };
+  if (race.regStart && race.regStart > today) return { publicStatus: "报名未开始", phaseTitle: race.regStart + " 开始报名", phaseDetail: "先关注比赛，按官方通知安排报名。" };
+  if (race.deadline && race.deadline >= today) return { publicStatus: status || "报名中", phaseTitle: (race.deadlineName || "报名截止") + " · " + race.deadline, phaseDetail: "请到官方渠道核对要求并完成报名与缴费。" };
+  if (race.drawAt && race.drawAt >= today) return { publicStatus: status || "待开赛", phaseTitle: "中签结果 · " + race.drawAt, phaseDetail: "请按官方时间查询，个人标记不会取得参赛资格。" };
+  if (race.payDeadline && race.payDeadline >= today) return { publicStatus: status || "待开赛", phaseTitle: "缴费截止 · " + race.payDeadline, phaseDetail: "中签与缴费结果以官方渠道为准。" };
+  if (race.bibAt && race.bibAt >= today) return { publicStatus: status || "待开赛", phaseTitle: "号码公布 · " + race.bibAt, phaseDetail: "领物、赛道与配速信息请看参赛指南。" };
+  if (race.deadline && race.deadline < today) return { publicStatus: status || "待开赛", phaseTitle: "报名已截止", phaseDetail: "查询参赛结果，提前阅读领物和比赛日安排。" };
+  return { publicStatus: status || "报名时间未录入", phaseTitle: "报名时间尚未录入", phaseDetail: "可前往赛事官网核对最新安排。" };
+}
+function mediaRows(items, previous) {
+  return (items || []).map(item => {
+    const saved = (previous || []).find(row => row.id === item.id);
+    return { ...item, src: baseUrl + "/marathon/api/race-sheets/" + item.id, state: saved ? saved.state : "loading", displaySrc: saved ? saved.displaySrc : "" };
+  });
 }
 
 function signupHint(race) {
@@ -36,6 +63,19 @@ function beijingDate() { return new Date(Date.now() + 8 * 3600000).toISOString()
 Page({
   data: {
     race: null,
+    loadError: "",
+    personalOpen: false,
+    sourceOpen: false,
+    projectLabels: [],
+    locationText: "",
+    publicStatus: "",
+    phaseTitle: "",
+    phaseDetail: "",
+    coverSrc: "",
+    officialActions: [],
+    officialResultLink: "",
+    signupQrOpen: false,
+    outingsOpen: false,
     heroDate: "",
     heroYear: "",
     distanceText: "",
@@ -113,7 +153,7 @@ Page({
     this.pending = null;
     this.inviteRedirect = !!code;
     this._scrollToOutings = query.outings === "1";
-    this.setData({ code: "", ready: ready(), tab: "signup", planOpen: query.plan === "1", outings: [], visibleOutings: [], outingFilterClubId: Number(query.clubId) || 0, outingFormOpen: false, outingToday: beijingDate() });
+    this.setData({ code: "", ready: ready(), personalOpen: query.plan === "1" || query.outings === "1" || !!query.clubId, tab: ["signup", "guide", "news", "result"].includes(query.tab) ? query.tab : "signup", planOpen: query.plan === "1", outingsOpen: query.outings === "1" || !!query.clubId, outings: [], visibleOutings: [], outingFilterClubId: Number(query.clubId) || 0, outingFormOpen: false, outingToday: beijingDate() });
     if (code) {
       wx.redirectTo({ url: "/pages/club-intro/club-intro?code=" + encodeURIComponent(code) });
       return;
@@ -201,10 +241,19 @@ Page({
       .catch(err => { if (this.current(scope)) this.setData({ message: err.message }); })
       .finally(() => { if (this.current(scope)) this.setData({ planBusy: false }); });
   },
+  togglePersonal() { this.setData({ personalOpen: !this.data.personalOpen }); },
+  toggleSource() { this.setData({ sourceOpen: !this.data.sourceOpen }); },
   togglePlan() {
-    this.setData({ planOpen: !this.data.planOpen });
+    this.setData({ personalOpen: true, planOpen: !this.data.planOpen });
   },
-  toggleCompanion() { this.setData({ companionOpen: !this.data.companionOpen }); },
+  loginForResult() {
+    wx.setStorageSync("marathon_return_after_login", "/pages/race/race?id=" + encodeURIComponent(this.raceId) + "&tab=result");
+    wx.switchTab({ url: "/pages/mine/mine" });
+  },
+  toggleSignupQr() { this.setData({ signupQrOpen: !this.data.signupQrOpen }); },
+  coverError(e) { if (!e.currentTarget.dataset.src || e.currentTarget.dataset.src === this.data.coverSrc) this.setData({ coverSrc: "" }); },
+  toggleOutings() { this.setData({ personalOpen: true, outingsOpen: !this.data.outingsOpen }); },
+  toggleCompanion() { this.setData({ personalOpen: true, companionOpen: !this.data.companionOpen }); },
   syncOutingClubs(clubs) {
     const filters = [{ id: 0, name: "全部跑团" }].concat(clubs.map(club => ({ id: club.id, name: club.name })));
     const filterIndex = Math.max(0, filters.findIndex(club => club.id === this.data.outingFilterClubId));
@@ -239,6 +288,7 @@ Page({
     this.paintOutings(this.data.outings);
   },
   showClubOutings(e) {
+    this.setData({ personalOpen: true, outingsOpen: true });
     const index = this.data.outingFilters.findIndex(club => club.id === Number(e.currentTarget.dataset.club));
     if (index >= 0) this.pickOutingFilter({ detail: { value: index } });
     wx.pageScrollTo({ selector: "#race-outings", duration: 200 });
@@ -250,7 +300,7 @@ Page({
   toggleOutingForm() {
     if (!ready()) { this.loginForOutings(); return; }
     if (this.data.outingBusy) return;
-    this.setData({ outingFormOpen: !this.data.outingFormOpen, outingFeedback: "", outingDate: this.data.outingDate || (this.data.race.raceDate >= beijingDate() ? this.data.race.raceDate : beijingDate()) });
+    this.setData({ personalOpen: true, outingsOpen: true, outingFormOpen: !this.data.outingFormOpen, outingFeedback: "", outingDate: this.data.outingDate || (this.data.race.raceDate >= beijingDate() ? this.data.race.raceDate : beijingDate()) });
   },
   pickOutingKind(e) { if (!this.data.outingBusy && OUTING_KINDS.some(item => item.id === e.currentTarget.dataset.kind)) this.setData({ outingKind: e.currentTarget.dataset.kind }); },
   pickOutingClub(e) {
@@ -352,7 +402,8 @@ Page({
   },
   open() {
     if (this.inviteRedirect) return;
-    this.load().catch((err) => this.setData({ message: err.message }));
+    this.setData({ loadError: "" });
+    this.load();
     this.loadOutings();
   },
   load() {
@@ -377,6 +428,13 @@ Page({
         const myResult = myResults.find((item) => item.distance === this.data.distance) || myResults[0] || null;
         const patch = {
           race,
+          loadError: "",
+          ...publicPhase(race, beijingDate()),
+          projectLabels: [...new Set([...(race.distanceLabels || []), ...(race.kind === "trail" ? ["越野"] : []), ...(race.kindLabels || []), ...(race.groups || [])])],
+          locationText: [race.province, race.city, race.district].filter((value, i, all) => value && all.indexOf(value) === i).join(" · ") || race.place || "地点未录入",
+          coverSrc: race.coverSheet && race.coverSheet.id ? baseUrl + "/marathon/api/race-sheets/" + race.coverSheet.id : "",
+          officialActions: officialActions(race, beijingDate()),
+          officialResultLink: ((race.links || []).find(item => item.key === "result" && /^https:\/\/\S+$/i.test(item.url || "")) || {}).url || "",
           heroDate: date ? date[2] + "." + date[3] : race.raceDate || "日期待定",
           heroYear: date ? date[1] : "",
           distanceText: [...(race.distanceLabels || []), ...(race.kind === "trail" && !(race.kindLabels || []).includes("越野") ? ["越野"] : []), ...(race.kindLabels || []), ...(race.groups || [])].join(" / "),
@@ -415,10 +473,10 @@ Page({
           myResult,
           distanceOptions,
           resultMessage: "",
-          guide: (race.guide || []).map((item) => ({ id: item.id, src: baseUrl + "/marathon/api/race-sheets/" + item.id })),
-          routeSheets: (race.routeSheets || []).map((item) => ({ id: item.id, src: baseUrl + "/marathon/api/race-sheets/" + item.id })),
-          pacerSheets: (race.pacerSheets || []).map((item) => ({ id: item.id, src: baseUrl + "/marathon/api/race-sheets/" + item.id })),
-          liveSheet: race.liveSheet ? { id: race.liveSheet.id, src: baseUrl + "/marathon/api/race-sheets/" + race.liveSheet.id } : null,
+          guide: mediaRows(race.guide, this.data.guide),
+          routeSheets: mediaRows(race.routeSheets, this.data.routeSheets),
+          pacerSheets: mediaRows(race.pacerSheets, this.data.pacerSheets),
+          liveSheet: race.liveSheet ? mediaRows([race.liveSheet], this.data.liveSheet ? [this.data.liveSheet] : [])[0] : null,
           kindText: (race.kindLabels || []).join(" / "),
           groupText: (race.groups || []).join("、"),
           guideBlocks: parseGuide(race.guideText),
@@ -458,7 +516,7 @@ Page({
         })
       );
     }
-    return Promise.all(jobs).then(() => true).catch((err) => { if (current()) this.setData({ message: err.message }); return false; });
+    return Promise.all(jobs).then(() => true).catch((err) => { if (current()) this.setData({ message: err.message, loadError: this.data.race ? "" : err.message || "赛事暂时无法加载" }); return false; });
   },
   pickTab(e) {
     const tab = e.currentTarget.dataset.id;
@@ -466,12 +524,14 @@ Page({
     this.setData({ tab });
   },
   copyLink(e) {
-    const key = e.currentTarget.dataset.key || "";
+    const key = e.currentTarget.dataset.key || "", url = e.currentTarget.dataset.url || "";
+    if (!/^https:\/\/\S+$/i.test(url)) return;
     wx.setClipboardData({
-      data: e.currentTarget.dataset.url || "",
+      data: url,
       success: () => {
-        if (key === "signup") this.setData({ askSignup: true });
-      }
+        if (key === "signup" && !(this.data.race.regStart > beijingDate()) && !(this.data.race.raceDate < beijingDate()) && !(this.data.race.deadline && this.data.race.deadline < beijingDate())) this.setData({ askSignup: true });
+      },
+      fail: () => wx.showToast({ title: "复制失败，请重试", icon: "none" })
     });
   },
   dismissAsk() {
@@ -538,11 +598,23 @@ Page({
       }
     });
   },
+  updateMedia(e, state, retry) {
+    const { kind, id, src } = e.currentTarget.dataset;
+    if (!["guide", "routeSheets", "pacerSheets", "liveSheet"].includes(kind)) return;
+    const rows = kind === "liveSheet" ? this.data.liveSheet ? [this.data.liveSheet] : [] : this.data[kind];
+    const found = rows.find(row => String(row.id) === String(id));
+    if (!found || src && src !== (found.displaySrc || found.src)) return;
+    const updated = rows.map(row => row !== found ? row : { ...row, state, ...(retry ? { displaySrc: row.src + "?retry=" + Date.now() } : {}) });
+    this.setData({ [kind]: kind === "liveSheet" ? updated[0] : updated });
+  },
+  mediaLoaded(e) { this.updateMedia(e, "ready"); },
+  mediaError(e) { this.updateMedia(e, "failed"); },
+  retryMedia(e) { this.updateMedia(e, "loading", true); },
   previewGuide(e) {
     const current = e.currentTarget.dataset.src;
-    const urls = this.data.guide.map((item) => item.src).concat(this.data.routeSheets.map((item) => item.src), this.data.pacerSheets.map((item) => item.src));
+    const urls = (this.data.coverSrc ? [this.data.coverSrc] : []).concat(this.data.guide.map((item) => item.src).concat(this.data.routeSheets.map((item) => item.src), this.data.pacerSheets.map((item) => item.src)));
     if (this.data.liveSheet) urls.push(this.data.liveSheet.src);
-    wx.previewImage({ current, urls });
+    if (current && urls.includes(current)) wx.previewImage({ current, urls });
   },
   mark(e) {
     const status = e.currentTarget.dataset.status;

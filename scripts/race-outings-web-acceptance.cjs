@@ -57,6 +57,10 @@ async function main() {
   }
   const host = await runner(token, '合成发起人'), buddy = await runner(buddyToken, '合成同行者');
   const page = host.page, racePath = origin + '/marathon/races/' + raceId;
+  async function openOutings(targetPage) {
+    const toggle = targetPage.getByRole('button', { name: '展开或收起同行安排', exact: true });
+    if (await toggle.getAttribute('aria-expanded') === 'false') await toggle.click();
+  }
   await check('Follow-only race produces personal node reminders without a participation plan', async () => {
     await api('/me/races/' + raceId + '/follow', 'PUT', { following: true });
     const mine = await api('/me');
@@ -80,6 +84,8 @@ async function main() {
 
   // The following browser assertions deliberately use the shipped component's controls.
   await page.goto(racePath, { waitUntil: 'networkidle' });
+  assert.equal(await page.getByRole('button', { name: '展开或收起同行安排', exact: true }).getAttribute('aria-expanded'), 'false');
+  await openOutings(page);
   await page.locator('#race-outings').waitFor();
   const panel = page.locator('#race-outings');
   async function create(kind, place, capacity = 2, clubId = clubIds[0]) {
@@ -103,10 +109,12 @@ async function main() {
     const mine = await api('/me'); assert.equal(mine.plans.length, 0); assert.equal(mine.followedRaces.length, 0);
     for (const table of ['plan_club_shares', 'activity_signups', 'meetup_joins']) assert.equal(db.prepare('SELECT COUNT(*) AS n FROM ' + table + ' WHERE user_id=?').get(hostId).n, 0);
     await page.reload({ waitUntil: 'networkidle' });
+    await openOutings(page);
     await panel.locator('.outing-card').filter({ hasText: '合成公园东门' }).waitFor();
   });
   await check('Only explicit joins take a seat; leaving releases it without changing participation or sharing', async () => {
     await buddy.page.goto(racePath, { waitUntil: 'networkidle' });
+    await openOutings(buddy.page);
     const card = buddy.page.locator('.outing-card').filter({ hasText: '合成公园东门' });
     await card.getByRole('button', { name: '加入安排', exact: true }).click();
     await card.getByRole('button', { name: '退出安排', exact: true }).waitFor();
@@ -139,10 +147,12 @@ async function main() {
     await panel.locator('.outing-card').filter({ hasText: '合成领物大厅' }).waitFor();
     assert.equal(await panel.locator('.outing-card').count(), 1);
     const anchor = await panel.evaluate(element => ({ top: element.getBoundingClientRect().top, heading: element.querySelector('h2').getBoundingClientRect().top }));
-    assert.ok(anchor.top >= 60 && anchor.top <= 90, 'Club entry must scroll to the arrangements below the fixed header: ' + JSON.stringify(anchor));
+    const viewportHeight = await page.evaluate(() => innerHeight);
+    assert.ok(anchor.top >= 60 && anchor.heading < viewportHeight / 2, 'Club entry must reveal the arrangements heading below navigation, allowing the natural page-end clamp: ' + JSON.stringify(anchor));
   });
   await check('Redesigned cards and creation form remain usable at 320, 390 and 1440px', async () => {
     await page.goto(racePath, { waitUntil: 'networkidle' });
+    await openOutings(page);
     for (const width of [320, 390, 1440]) {
       await page.setViewportSize({ width, height: 1100 });
       await panel.getByRole('button', { name: '发起安排', exact: true }).click();
@@ -185,6 +195,7 @@ async function main() {
     const retryPage = buddy.page, pattern = '**/api/races/' + raceId + '/outings';
     await retryPage.route(pattern, intercepted => intercepted.fulfill({ status: 503, contentType: 'application/json', body: JSON.stringify({ error: '合成同行安排加载失败' }) }));
     await retryPage.goto(racePath, { waitUntil: 'networkidle' });
+    await openOutings(retryPage);
     const retryPanel = retryPage.locator('#race-outings');
     await retryPanel.getByText('合成同行安排加载失败', { exact: true }).waitFor();
     await retryPage.getByRole('heading', { name: '合成城市马拉松', exact: true }).waitFor();
@@ -201,6 +212,7 @@ async function main() {
     let guestOutingRequests = 0;
     guest.page.on('request', request => { if (new URL(request.url()).pathname.endsWith('/outings')) guestOutingRequests++; });
     await guest.page.goto(racePath + '?clubId=' + clubIds[0], { waitUntil: 'networkidle' });
+    await openOutings(guest.page);
     const guestPanel = guest.page.locator('#race-outings');
     await guestPanel.getByRole('button', { name: '登录查看同行安排', exact: true }).waitFor();
     assert.equal(await guestPanel.locator('.outing-card, .outing-form').count(), 0);
@@ -211,6 +223,7 @@ async function main() {
     await guest.page.waitForURL('**/mine');
     assert.equal(await guest.page.evaluate(() => localStorage.getItem('marathon_return_after_login')), '/races/' + raceId + '?clubId=' + clubIds[0] + '#race-outings');
     await solo.page.goto(racePath, { waitUntil: 'networkidle' });
+    await openOutings(solo.page);
     const soloPanel = solo.page.locator('#race-outings');
     await soloPanel.getByText('先找到你的跑团', { exact: true }).waitFor();
     const discover = soloPanel.getByRole('link', { name: /发现跑团/ });
@@ -236,6 +249,7 @@ async function main() {
       try { await intercepted.fulfill({ response }); } finally { responseFinished(); }
     });
     await runnerPage.page.goto(racePath, { waitUntil: 'domcontentloaded' });
+    await openOutings(runnerPage.page);
     await arrived;
     return { ...runnerPage, release, finished };
   }
@@ -245,6 +259,7 @@ async function main() {
     try {
       await delayed.page.evaluate(id => document.querySelector('#app').__vue_app__.config.globalProperties.$router.push('/races/' + id), otherId);
       await delayed.page.getByRole('heading', { name: '合成另一场赛事', exact: true }).waitFor();
+      await openOutings(delayed.page);
       const currentPanel = delayed.page.locator('#race-outings');
       await currentPanel.getByText('第一份同行约定，等你发起', { exact: true }).waitFor();
       delayed.release(); await delayed.finished; await nextPaint(delayed.page);

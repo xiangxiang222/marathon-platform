@@ -221,15 +221,16 @@ async function main() {
   });
   await check('Race tabs switch locally without returning to the page header', async () => {
     for (const width of [320, 390, 1440]) {
-      await page.setViewportSize({ width, height: 1000 });
+      db.prepare('UPDATE races SET race_date=? WHERE id=?').run((Number(day.slice(0, 4)) + 1) + '-06-21', raceId);
+      await page.setViewportSize({ width, height: 700 });
       await page.goto(racePath, { waitUntil: 'networkidle' });
-      for (const position of [500, 80]) {
+      for (const position of [200, 80]) {
         // Keep the tabs clear of the sticky page header so clicks need no automatic scrolling.
         await page.locator('.tabs').evaluate((element, top) => scrollTo(0, scrollY + element.getBoundingClientRect().top - top), position);
         for (const label of ['赛事信息', '赛事资讯', '我的成绩', '赛事信息', '赛事资讯', '赛事信息']) {
           const before = await page.locator('.tabs').evaluate(element => ({ y: element.getBoundingClientRect().top, scrollY }));
           assert.ok(before.scrollY > 100, 'The tab regression must start below the hero');
-          await page.locator('.tabs').getByRole('button', { name: label, exact: true }).click();
+          await page.locator('.tabs').getByRole('tab', { name: label, exact: true }).click();
           await page.waitForFunction(label => document.querySelector('.tabs .on')?.textContent === label, label);
           const after = await page.locator('.tabs').evaluate(element => ({ y: element.getBoundingClientRect().top, scrollY }));
           assert.ok(after.scrollY > 100, label + ' must not return to the page header at ' + width);
@@ -237,6 +238,29 @@ async function main() {
         }
       }
     }
+  });
+  await check('Long race names and place details fit narrow screens without clipping actions', async () => {
+    const longName = '2027全国城市生态马拉松暨全民健康跑·大型长名称展示测试赛事';
+    db.prepare('UPDATE races SET name=?,place=?,city=?,province=?,race_date=? WHERE id=?').run(longName, '合成城市滨海生态景观大道起点广场', '合成城市', '合成地区', (Number(day.slice(0, 4)) + 1) + '-06-21', otherId);
+    for (const width of [320, 390]) {
+      await page.setViewportSize({ width, height: 568 });
+      await page.goto(origin + '/marathon/races/' + otherId, { waitUntil: 'networkidle' });
+      assert.equal(await page.locator('.race-hero h1').textContent(), longName);
+      const metrics = await page.evaluate(() => ({
+        width: innerWidth,
+        pageWidth: document.documentElement.scrollWidth,
+        titleWidth: document.querySelector('.race-hero h1').clientWidth,
+        titleScrollWidth: document.querySelector('.race-hero h1').scrollWidth,
+        hasCover: !!document.querySelector('.race-cover'),
+        mainControls: [...document.querySelectorAll('.official-primary,.tabs .tab,.race-follow-row button,.race-plan .plan-action')].filter(el => el.getClientRects().length).map(el => ({ label: el.textContent.trim(), height: el.getBoundingClientRect().height }))
+      }));
+      assert.ok(metrics.pageWidth <= width, JSON.stringify(metrics));
+      assert.ok(metrics.titleScrollWidth <= metrics.titleWidth, 'Long title should wrap inside the available column');
+      assert.equal(metrics.hasCover, false, 'Missing images keep the original abstract track hero');
+      assert.ok(metrics.mainControls.every(control => control.height >= 43.5), JSON.stringify(metrics.mainControls));
+    }
+    db.prepare('UPDATE races SET name=?,place=?,race_date=? WHERE id=?').run('合成另一场马拉松', '合成起点', day, otherId);
+    await page.goto(racePath, { waitUntil: 'networkidle' });
   });
   await check('Mine separates followed races from participation plans', async () => {
     await page.locator('.race-follow-row').getByRole('button').click();
@@ -251,6 +275,7 @@ async function main() {
     assert.equal((await read('/races/' + raceId)).myStatus, '已缴费');
   });
   await check('Calendar displays personal state separately from event state', async () => {
+    db.prepare('UPDATE races SET race_date=? WHERE id=?').run(day, raceId);
     await page.goto(origin + '/marathon/calendar', { waitUntil: 'networkidle' });
     await page.locator('.calendar-race-row').filter({ hasText: '合成同行马拉松' }).waitFor();
     assert.ok((await page.locator('.calendar-race-row').filter({ hasText: '合成同行马拉松' }).innerText()).includes('我的状态 · 已缴费'));
@@ -291,6 +316,7 @@ async function main() {
     } finally { await guest.close(); }
   });
   await check('A pending update cannot duplicate requests or change another event after navigation', async () => {
+    db.prepare('UPDATE races SET race_date=? WHERE id=?').run(new Date(Date.now() + 2 * 86400000 + 8 * 3600000).toISOString().slice(0, 10), otherId);
     await page.goto(racePath + '?plan=1', { waitUntil: 'networkidle' });
     let release, arrived, done, requests = 0;
     const requestArrived = new Promise(resolve => { arrived = resolve; });
@@ -304,6 +330,8 @@ async function main() {
     await stateButton.evaluate(button => button.click());
     assert.equal(requests, 1);
     await page.locator('header.topbar a').first().click();
+    await page.getByRole('textbox', { name: '搜索赛事名称或城市' }).fill('合成另一场马拉松');
+    await page.getByRole('button', { name: '搜索', exact: true }).click();
     await page.locator('.race-card').filter({ hasText: '合成另一场马拉松' }).click();
     await page.waitForURL('**/races/' + otherId);
     release();
