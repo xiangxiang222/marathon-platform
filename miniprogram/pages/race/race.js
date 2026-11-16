@@ -194,7 +194,10 @@ Page({
         if (method === "DELETE") this.setData({ sharingDirty: false, companionDirty: false });
         return this.load();
       })
-      .then(result => { if (this.current(scope) && result !== false) this.setData({ message }); })
+      .then(result => {
+        if (this.current(scope) && result !== false) this.setData({ message });
+        if (this.current(scope) && result === true && suffix === "/sharing") this.setData({ companionOpen: false });
+      })
       .catch(err => { if (this.current(scope)) this.setData({ message: err.message }); })
       .finally(() => { if (this.current(scope)) this.setData({ planBusy: false }); });
   },
