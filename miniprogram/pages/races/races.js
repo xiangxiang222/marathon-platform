@@ -122,6 +122,9 @@ Page({
     meet: "",
     status: "upcoming",
     draftStatus: "upcoming",
+    draftMeet: "",
+    filterSummary: "",
+    statusLabel: "即将开赛",
     sheet: "",
     province: "河北",
     kinds: KINDS,
@@ -224,7 +227,9 @@ Page({
     const cities = (PLACES.find((item) => item.name === province) || { cities: [] }).cities;
     const patch = Object.assign({}, extra || {}, {
       cityLabel: next.city || "比赛地点",
+      statusLabel: (STATUSES.find(item => item.value === next.status) || {}).label || "即将开赛",
       monthLabel: next.month ? next.month.replace("-", "年") + "月" : "比赛时间",
+      filterSummary: [next.city, next.month, next.full ? "全马" : "", next.half ? "半马" : "", (KINDS.find(item => item.kind === next.kind && item.kind) || {}).short, (MEETS.find(item => item.meet === next.meet && item.meet) || {}).short, next.status !== "upcoming" ? (STATUSES.find(item => item.value === next.status) || {}).label : ""].filter(Boolean).join(" · "),
       provinces: PLACES.map((item) => ({ name: item.name, on: item.name === province })),
       cities: cities.map((name) => ({ name, on: name === next.city })),
       yearBlocks: yearBlocks(next.month),
@@ -234,33 +239,23 @@ Page({
     this.setData(patch);
   },
   setKind(e) {
-    this.data.kind = e.currentTarget.dataset.kind;
-    this.data.sheet = "";
-    this.data.page = 1;
-    this.setData({ kind: this.data.kind, sheet: "", page: 1 });
+    this.paint({ kind: e.currentTarget.dataset.kind, sheet: "", page: 1 });
     this.load();
   },
   setMeet(e) {
-    this.data.meet = e.currentTarget.dataset.meet || "";
-    this.data.page = 1;
-    this.setData({ meet: this.data.meet, page: 1 });
-    this.load();
+    this.setData({ draftMeet: e.currentTarget.dataset.meet || "" });
   },
   toggleDist(e) {
     const which = e.currentTarget.dataset.which;
-    this.data[which] = !this.data[which];
-    const patch = {};
-    patch[which] = this.data[which];
-    this.data.page = 1;
-    patch.page = 1;
-    this.setData(patch);
+    if (which !== "full" && which !== "half") return;
+    this.paint({ full: which === "full" && !this.data.full, half: which === "half" && !this.data.half, page: 1 });
     this.load();
   },
   openSheet(e) {
     const name = e.currentTarget.dataset.sheet;
     const sheet = this.data.sheet === name ? "" : name;
     const extra = { sheet };
-    if (name === "status") extra.draftStatus = this.data.status;
+    if (name === "status") { extra.draftStatus = this.data.status; extra.draftMeet = this.data.meet; }
     if (name === "city" && this.data.city) {
       const found = PLACES.find((item) => item.cities.indexOf(this.data.city) >= 0);
       if (found) extra.province = found.name;
@@ -277,19 +272,16 @@ Page({
   pickCity(e) {
     const name = e.currentTarget.dataset.name;
     const city = this.data.city === name ? "" : name;
-    this.data.page = 1;
     this.paint({ city, sheet: "", page: 1 });
     this.load();
   },
   pickMonth(e) {
     const value = e.currentTarget.dataset.value;
     const month = this.data.month === value ? "" : value;
-    this.data.page = 1;
     this.paint({ month, sheet: "", page: 1 });
     this.load();
   },
   clearMonth() {
-    this.data.page = 1;
     this.paint({ month: "", sheet: "", page: 1 });
     this.load();
   },
@@ -297,13 +289,14 @@ Page({
     this.paint({ draftStatus: e.currentTarget.dataset.value });
   },
   resetStatus() {
-    this.paint({ draftStatus: "upcoming" });
+    this.paint({ draftStatus: "upcoming", draftMeet: "" });
   },
   confirmStatus() {
-    this.data.status = this.data.draftStatus;
-    this.data.sheet = "";
-    this.data.page = 1;
-    this.setData({ status: this.data.status, sheet: "", page: 1 });
+    this.paint({ status: this.data.draftStatus, meet: this.data.draftMeet, sheet: "", page: 1 });
+    this.load();
+  },
+  clearFilters() {
+    this.paint({ kind: "", city: "", month: "", full: false, half: false, meet: "", draftMeet: "", status: "upcoming", draftStatus: "upcoming", sheet: "", page: 1 });
     this.load();
   },
   prevPage() {
@@ -364,8 +357,9 @@ Page({
             ...race,
             displayStatus: race.regStatus || "报名未公布",
             statusMuted: !["报名中", "未开始", "比赛中"].includes(race.regStatus),
-            monthText: (Number(parts[1]) || "") + "月",
+            monthText: parts[1] ? Number(parts[1]) + "月" : "待定",
             day: Number(parts[2]) || "",
+            yearText: parts[0] || "",
             distanceText: project ? " · " + project : "",
             showWhen: race.deadlineLabel && race.deadlineLabel !== race.regStatus,
             soon: race.open && Number(race.daysLeft) <= 7

@@ -81,81 +81,27 @@
   </view>
 
   <view class="results">
-    <view class="results-head">
-      <text class="results-title">{{searching ? '搜索结果' : '全部赛事'}}</text>
-      <text wx:if="{{loaded}}" class="total">共 {{total}} 场</text>
+    <view class="results-head"><text class="results-title">{{searching ? '搜索结果' : '全部赛事'}}</text><text class="total">{{loaded ? (searching ? '' : statusLabel + ' · ') + total + ' 场' : '正在加载赛事'}}</text></view>
+    <view wx:if="{{!searching}}" class="filter-panel">
+      <view class="filter-top"><view class="kind-options" role="group" aria-label="赛事类型"><button wx:for="{{kinds}}" wx:key="kind" class="kind-tab {{kind === item.kind ? 'on' : ''}}" aria-pressed="{{kind === item.kind}}" aria-label="{{item.short}}" data-kind="{{item.kind}}" bindtap="setKind">{{item.short}}</button></view><button class="filter-more {{meet || status !== 'upcoming' ? 'on' : ''}}" data-sheet="status" bindtap="openSheet" aria-label="更多筛选"><view class="filter-icon" aria-hidden="true"></view>筛选</button></view>
+      <view class="filter-row"><button class="filter-chip {{city ? 'on' : ''}}" data-sheet="city" bindtap="openSheet" aria-label="比赛地点"><text>{{city || '地点'}}</text><view class="chip-arrow" aria-hidden="true"></view></button><button class="filter-chip {{month ? 'on' : ''}}" data-sheet="time" bindtap="openSheet" aria-label="比赛时间"><text>{{month ? monthLabel : '时间'}}</text><view class="chip-arrow" aria-hidden="true"></view></button><button class="filter-chip {{full ? 'on' : ''}}" data-which="full" bindtap="toggleDist" aria-label="马拉松" aria-pressed="{{full}}">全马</button><button class="filter-chip {{half ? 'on' : ''}}" data-which="half" bindtap="toggleDist" aria-label="半程马拉松" aria-pressed="{{half}}">半马</button></view>
     </view>
-    <view wx:if="{{!searching}}" class="race-format-filter">
-      <text class="format-label">赛事类型</text>
-      <view class="meet-tabs" role="group" aria-label="赛事类型">
-        <view wx:for="{{kinds}}" wx:key="kind" class="kind-tab {{kind === item.kind ? 'on' : ''}}" role="button" aria-role="button" aria-label="{{item.short}}" data-kind="{{item.kind}}" bindtap="setKind">{{item.short}}</view>
-      </view>
-    </view>
-    <view wx:if="{{!searching}}" class="race-format-filter">
-      <text class="format-label">赛事形式</text>
-      <view class="meet-tabs" role="group" aria-label="赛事形式">
-        <view wx:for="{{meets}}" wx:key="meet" class="kind-tab {{meet === item.meet ? 'on' : ''}}" role="button" aria-role="button" aria-label="{{item.short}}" data-meet="{{item.meet}}" bindtap="setMeet">{{item.short}}</view>
-      </view>
-    </view>
-    <view wx:if="{{!searching}}" class="filter-row"><scroll-view class="filters" scroll-x enable-flex show-scrollbar="{{false}}">
-      <view class="filter-chip {{city ? 'on' : ''}}" data-sheet="city" bindtap="openSheet">{{cityLabel}} ▾</view>
-      <view class="filter-chip {{month ? 'on' : ''}}" data-sheet="time" bindtap="openSheet">{{monthLabel}} ▾</view>
-      <view class="filter-chip {{full ? 'on' : ''}}" data-which="full" bindtap="toggleDist">马拉松</view>
-      <view class="filter-chip {{half ? 'on' : ''}}" data-which="half" bindtap="toggleDist">半程马拉松</view>
-    </scroll-view><view class="filter-fixed {{sheet === 'status' ? 'on' : ''}}" data-sheet="status" bindtap="openSheet" role="button">筛选 ▾</view></view>
+    <view wx:if="{{!searching && filterSummary}}" class="filter-summary"><text>{{filterSummary}}</text><button class="clear-filters" bindtap="clearFilters">清空筛选</button></view>
     <view wx:if="{{message}}" class="page-error"><text>{{message}}</text><text class="retry" bindtap="load">重试</text></view>
     <view wx:if="{{!loaded && !message}}" class="empty">正在加载赛事…</view>
-    <navigator wx:for="{{races}}" wx:key="id" class="race" url="/pages/race/race?id={{item.id}}">
-      <view class="date">
-        <text class="mo">{{item.monthText}}</text>
-        <text class="da">{{item.day}}</text>
-      </view>
-      <view class="race-body">
-        <view class="race-name">{{item.name}}</view>
-        <view class="race-meta">{{item.city}}{{item.distanceText}}</view>
-        <view class="race-footer">
-          <text class="status-pill {{item.statusMuted ? 'muted-status' : ''}}">{{item.displayStatus}}</text>
-          <text wx:if="{{item.showWhen}}" class="deadline {{item.soon ? 'hot' : ''}}">{{item.deadlineLabel}}</text>
-        </view>
-      </view>
-      <view class="race-personal"><text wx:if="{{item.myStatus}}" class="my-state">我 · {{item.myStatus}}</text><button class="race-follow {{item.following ? 'on' : ''}}" aria-label="{{item.following ? '取消关注' : '关注'}}{{item.name}}" data-id="{{item.id}}" catchtap="toggleFollow" disabled="{{followBusyId}}">{{item.following ? '★ 已关注' : '☆ 关注'}}</button></view>
-    </navigator>
-    <view wx:if="{{loaded && !races.length && !message}}" class="empty">{{searching ? '没有找到这场赛事' : '这个分类还没有赛事'}}</view>
-    <view wx:if="{{pages > 1}}" class="pager">
-      <view class="pager-step {{page <= 1 ? 'off' : ''}}" bindtap="prevPage">上一页</view>
-      <view wx:for="{{pageNumbers}}" wx:key="*this" class="pager-num {{page === item ? 'on' : ''}}" data-page="{{item}}" bindtap="goPage">{{item}}</view>
-      <view class="pager-step {{page >= pages ? 'off' : ''}}" bindtap="nextPage">下一页</view>
+    <view wx:for="{{races}}" wx:key="id" class="race">
+      <navigator class="race-main" url="/pages/race/race?id={{item.id}}"><view class="date"><text class="mo">{{item.monthText}}</text><text class="da">{{item.day || '—'}}</text><text class="ye">{{item.yearText}}</text></view><view class="race-body"><view class="race-name">{{item.name}}</view><view class="race-meta">{{item.city}}{{item.distanceText}}</view><view class="race-footer"><text class="status-pill {{item.statusMuted ? 'muted-status' : ''}}">{{item.displayStatus}}</text><text wx:if="{{item.showWhen}}" class="deadline {{item.soon ? 'hot' : ''}}">{{item.deadlineLabel}}</text></view></view></navigator>
+      <view class="race-personal"><navigator class="race-plan-link" url="/pages/race/race?id={{item.id}}&amp;plan=1" aria-label="{{item.myStatus ? '我的计划：' + item.myStatus : '添加参赛计划'}}"><view class="plan-flag" aria-hidden="true"></view><view><text>{{item.myStatus ? '我的计划' : '添加参赛计划'}}</text><text wx:if="{{item.myStatus}}" class="my-state">{{item.myStatus}}</text></view><text class="plan-link-arrow" aria-hidden="true">›</text></navigator><button class="race-follow {{item.following ? 'on' : ''}}" aria-label="{{item.following ? '取消关注' : '关注'}}{{item.name}}" aria-pressed="{{item.following}}" data-id="{{item.id}}" bindtap="toggleFollow" disabled="{{!!followBusyId}}"><view class="list-bookmark" aria-hidden="true"></view>{{followBusyId === item.id + '' ? '保存中' : item.following ? '已关注' : '关注'}}</button></view>
     </view>
+    <view wx:if="{{loaded && !races.length && !message}}" class="empty">{{searching ? '没有找到这场赛事' : '这个分类还没有赛事'}}</view>
+    <view wx:if="{{pages > 1}}" class="pager"><view class="pager-step {{page <= 1 ? 'off' : ''}}" bindtap="prevPage">上一页</view><view wx:for="{{pageNumbers}}" wx:key="*this" class="pager-num {{page === item ? 'on' : ''}}" data-page="{{item}}" bindtap="goPage">{{item}}</view><view class="pager-step {{page >= pages ? 'off' : ''}}" bindtap="nextPage">下一页</view></view>
   </view>
 </view>
 
 <view wx:if="{{sheet}}" class="dim" bindtap="closeSheet" catchtouchmove="noop"></view>
 <view wx:if="{{sheet}}" class="drop">
-  <view wx:if="{{sheet === 'city'}}" class="loc">
-    <scroll-view class="prov" scroll-y>
-      <view wx:for="{{provinces}}" wx:key="name" class="prov-item {{item.on ? 'on' : ''}}" data-name="{{item.name}}" bindtap="pickProvince">{{item.name}}</view>
-    </scroll-view>
-    <view class="cities">
-      <view wx:for="{{cities}}" wx:key="name" class="pick {{item.on ? 'on' : ''}}" data-name="{{item.name}}" bindtap="pickCity">{{item.name}}</view>
-    </view>
-  </view>
-  <scroll-view wx:elif="{{sheet === 'time'}}" class="time" scroll-y>
-    <view class="pick {{month ? '' : 'on'}}" bindtap="clearMonth">不限</view>
-    <block wx:for="{{yearBlocks}}" wx:key="year">
-      <view class="year">{{item.year}}年</view>
-      <view class="months">
-        <view wx:for="{{item.months}}" wx:for-item="mon" wx:key="value" class="pick {{mon.on ? 'on' : ''}}" data-value="{{mon.value}}" bindtap="pickMonth">{{mon.m}}月</view>
-      </view>
-    </block>
-  </scroll-view>
-  <view wx:else class="status-sheet">
-    <view class="sheet-title">赛事状态</view>
-    <view class="months">
-      <view wx:for="{{statusOptions}}" wx:key="value" class="pick {{item.on ? 'on' : ''}}" data-value="{{item.value}}" bindtap="pickStatus">{{item.label}}</view>
-    </view>
-    <view class="actions">
-      <view class="act ghost" bindtap="resetStatus">重置</view>
-      <view class="act ok" bindtap="confirmStatus">确认</view>
-    </view>
-  </view>
+  <view class="sheet-head"><view>{{sheet === 'city' ? '比赛地点' : sheet === 'time' ? '比赛时间' : '更多筛选'}}</view><button bindtap="closeSheet" aria-label="关闭筛选"><view class="sheet-close" aria-hidden="true"></view></button></view>
+  <view wx:if="{{sheet === 'city'}}" class="loc"><scroll-view class="prov" scroll-y><view wx:for="{{provinces}}" wx:key="name" class="prov-item {{item.on ? 'on' : ''}}" data-name="{{item.name}}" bindtap="pickProvince">{{item.name}}</view></scroll-view><view class="cities"><view wx:for="{{cities}}" wx:key="name" class="pick {{item.on ? 'on' : ''}}" data-name="{{item.name}}" bindtap="pickCity">{{item.name}}</view></view></view>
+  <scroll-view wx:elif="{{sheet === 'time'}}" class="time" scroll-y><view class="pick {{month ? '' : 'on'}}" bindtap="clearMonth">不限</view><block wx:for="{{yearBlocks}}" wx:key="year"><view class="year">{{item.year}}年</view><view class="months"><view wx:for="{{item.months}}" wx:for-item="mon" wx:key="value" class="pick {{mon.on ? 'on' : ''}}" data-value="{{mon.value}}" bindtap="pickMonth">{{mon.m}}月</view></view></block></scroll-view>
+  <view wx:else class="status-sheet"><view class="sheet-title">赛事形式</view><view class="months"><button wx:for="{{meets}}" wx:key="meet" class="pick {{draftMeet === item.meet ? 'on' : ''}}" data-meet="{{item.meet}}" bindtap="setMeet" aria-pressed="{{draftMeet === item.meet}}">{{item.short}}</button></view><view class="sheet-title">赛事状态</view><view class="months"><button wx:for="{{statusOptions}}" wx:key="value" class="pick {{item.on ? 'on' : ''}}" data-value="{{item.value}}" bindtap="pickStatus" aria-pressed="{{item.on}}">{{item.label}}</button></view><view class="actions"><button class="act ghost" bindtap="resetStatus">重置</button><button class="act ok" bindtap="confirmStatus">确认筛选</button></view></view>
 </view>
