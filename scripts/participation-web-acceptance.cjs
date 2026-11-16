@@ -354,6 +354,22 @@ async function main() {
     assert.equal((await read('/races/' + raceId)).following, true);
     await guest.close();
   });
+  await check('Guest result entry resumes at results after login without opening the plan editor', async () => {
+    const guest = await browser.newContext(), guestPage = await guest.newPage();
+    await guest.route('**/*', route => new URL(route.request().url()).origin === origin ? route.continue() : route.abort());
+    try {
+      await guestPage.goto(racePath + '?tab=result', { waitUntil: 'networkidle' });
+      await guestPage.getByRole('button', { name: '登录后记录成绩', exact: true }).click();
+      await guestPage.waitForURL('**/marathon/mine');
+      const returnTo = await guestPage.evaluate(() => localStorage.getItem('marathon_return_after_login'));
+      assert.equal(returnTo, '/races/' + raceId + '?tab=result');
+      await guestPage.evaluate(token => localStorage.setItem('marathon_token', token), token);
+      await guestPage.goto(origin + '/marathon' + returnTo, { waitUntil: 'networkidle' });
+      await guestPage.getByRole('heading', { name: '我的手记成绩', exact: true }).waitFor();
+      assert.equal(await guestPage.getByRole('tab', { name: '我的成绩', exact: true }).getAttribute('aria-selected'), 'true');
+      assert.equal(await guestPage.locator('.plan-editor').count(), 0);
+    } finally { await guest.close(); }
+  });
   assert.deepEqual(report.errors, []);
   report.passed = true;
   await context.close();

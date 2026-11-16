@@ -206,7 +206,7 @@
     </template>
     <template v-if="race && tab === 'result'">
       <section v-if="officialResultLink" class="block official-result"><div class="race-section-heading"><h2>官方成绩与证书</h2><span>组委会查询入口</span></div><a class="jump" :href="officialResultLink.url" target="_blank" rel="noopener">前往官方查询</a></section>
-      <section v-if="!ready" class="block quiet-state"><h2>把这一程，留给自己</h2><p>登录后记录完赛成绩、证书与比赛感受。</p><button type="button" class="primary" @click="loginForPlan">登录后记录成绩</button></section>
+      <section v-if="!ready" class="block quiet-state"><h2>把这一程，留给自己</h2><p>登录后记录完赛成绩、证书与比赛感受。</p><button type="button" class="primary" @click="loginForResult">登录后记录成绩</button></section>
       <div v-if="drawText" class="block">
         <h2>中签卡片</h2>
         <div class="poster-card">
@@ -319,6 +319,10 @@ async function removePlan() {
 }
 function loginForPlan() {
   localStorage.setItem("marathon_return_after_login", "/races/" + encodeURIComponent(route.params.id) + "?plan=1");
+  router.push("/mine");
+}
+function loginForResult() {
+  localStorage.setItem("marathon_return_after_login", "/races/" + encodeURIComponent(route.params.id) + "?tab=result");
   router.push("/mine");
 }
 async function choosePlan(status) {
@@ -502,7 +506,8 @@ function pickDistance(next) {
 
 const proofSrc = computed(() => (race.value && myResult.value && myResult.value.hasProof ? resultProofSrc(race.value.id, myResult.value.distance) : ""));
 const signupSrc = computed(() => (race.value && hasSheet.value ? signupSheetSrc(race.value.id) : ""));
-const tab = ref("signup");
+const initialTab = () => ["signup", "guide", "news", "result"].includes(route.query.tab) ? route.query.tab : "signup";
+const tab = ref(initialTab());
 const raceTabPanel = ref(null);
 const tabContentMinHeight = ref(0);
 const signupQr = computed(() => race.value?.signupHost && officialLinks.value.some(link => link.key === 'signup') ? '/marathon/api/races/' + encodeURIComponent(race.value.id) + '/signup-qr' : '');
@@ -763,7 +768,7 @@ watch(
     distance.value = "";
     clock.value = "";
     story.value = "";
-    tab.value = "signup";
+    tab.value = initialTab();
     tabContentMinHeight.value = 0;
     planOpen.value = route.query.plan === "1";
     outingsOpen.value = route.hash === '#race-outings';
