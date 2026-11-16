@@ -43,14 +43,13 @@
   </view>
 
   <view wx:if="{{ready}}" class="card companion-settings">
-    <button class="companion-toggle" bindtap="toggleCompanion" aria-expanded="{{companionOpen}}"><text>同步到跑团</text><text>{{sharedClubIds.length ? '已同步 ' + sharedClubIds.length + ' 个跑团' : '仅自己可见'}} {{companionOpen ? '⌃' : '›'}}</text></button>
-    <view class="src">自己记录参赛计划，自愿选择跑团同行。</view>
-    <view wx:if="{{companionOpen}}"><view class="src">只向选中的跑团展示这场参赛状态与同行备注；不选则仅自己可见。不会替你报名团内活动。</view>
-    <checkbox-group bindchange="pickSharedClubs"><label wx:for="{{clubs}}" wx:key="id" class="club-choice"><checkbox value="{{item.id + ''}}" checked="{{item.selected}}" disabled="{{planBusy}}" color="#ff1838"/><text>{{item.name}}</text></label></checkbox-group>
-    <view wx:if="{{!clubs.length}}" class="src">还没加入跑团？个人参赛安排照样可以完整记录。</view>
-    <button wx:if="{{clubs.length && myStatus}}" class="ghost" disabled="{{planBusy}}" bindtap="saveSharing">保存同步范围</button>
-    <view wx:if="{{clubs.length && !myStatus}}" class="src">先记录个人参赛状态，再保存同步范围。未保存的选择不会分享。</view><view wx:if="{{sharingDirty}}" class="src">同步范围有未保存的修改</view>
-    <view wx:if="{{myStatus}}" class="companion-note"><view class="h2">同行备注</view><textarea value="{{companionNote}}" bindinput="onCompanionNote" maxlength="200" placeholder="例如：想拼车、住起点附近、赛后合影" aria-label="同行备注" disabled="{{planBusy}}"/><view class="src">{{sharedClubIds.length ? '仅选中的跑团可见' : '当前仅自己可见'}} · 不填写手机号等私人信息</view><button class="ghost" disabled="{{planBusy}}" bindtap="saveCompanionNote">保存同行备注</button></view>
+    <button class="companion-toggle" bindtap="toggleCompanion" aria-expanded="{{companionOpen}}" aria-label="{{'同步到跑团，' + (sharedClubIds.length ? '已同步' + sharedClubIds.length + '个跑团' : '仅自己可见')}}"><view class="sync-group-icon" aria-hidden="true"><view></view><view></view></view><view class="sync-heading"><view>同步到跑团</view><view class="sync-summary"><block wx:if="{{sharedClubIds.length}}"><text wx:for="{{clubs}}" wx:key="id" wx:if="{{item.synced}}">{{item.name}}</text></block><text wx:else>参赛安排默认仅自己可见</text></view></view><text class="sync-badge {{sharedClubIds.length ? 'shared' : ''}}">{{sharedClubIds.length ? sharedClubIds.length + '个跑团' : '仅自己'}}</text><view class="sync-chevron {{companionOpen ? 'open' : ''}}" aria-hidden="true"></view></button>
+    <view wx:if="{{companionOpen}}" class="sync-panel">
+      <view class="sync-rule">仅所选跑团可见，不会替你报名团内活动。</view>
+      <checkbox-group bindchange="pickSharedClubs" aria-label="选择同步跑团"><label wx:for="{{clubs}}" wx:key="id" class="club-choice sync-choice {{item.selected ? 'selected' : ''}} {{planBusy ? 'busy' : ''}}"><view class="sync-avatar" aria-hidden="true">{{item.name ? item.name[0] : '团'}}</view><view class="sync-choice-copy"><view>{{item.name}}</view><text>{{item.mates.length ? item.mates.length + '位团友已分享计划' : '同步本场参赛状态与备注'}}</text></view><view class="sync-check-wrap"><checkbox class="sync-native" value="{{item.id + ''}}" checked="{{item.selected}}" disabled="{{planBusy}}" color="#ff1838" aria-label="{{item.name}}"/><view class="sync-check" aria-hidden="true"></view></view></label></checkbox-group>
+      <view wx:if="{{!clubs.length}}" class="sync-empty"><view>还没加入跑团</view><text>个人参赛计划照常保存，加入后再同步。</text></view>
+      <view wx:else class="sync-footer"><view><view>已选 <text>{{sharingDraft.length}}</text> 个跑团</view><text>{{!myStatus ? '先在上方添加参赛计划' : sharingDirty ? '选择尚未保存' : sharingDraft.length ? '已保存的范围已生效' : '不选则仅自己可见'}}</text></view><button class="sync-save" disabled="{{planBusy || !myStatus}}" bindtap="saveSharing">{{planBusy ? '保存中…' : '保存选择'}}</button></view>
+      <view wx:if="{{myStatus}}" class="companion-note"><view class="sync-note-heading"><text>同行备注</text><text>选填</text></view><textarea value="{{companionNote}}" bindinput="onCompanionNote" maxlength="200" placeholder="想和团友说点什么，例如：赛后一起合影" aria-label="同行备注" disabled="{{planBusy}}"/><view class="sync-note-footer"><text>{{sharedClubIds.length ? '仅已同步跑团可见' : '当前仅自己可见'}}</text><button disabled="{{planBusy}}" bindtap="saveCompanionNote">保存备注</button></view></view>
     </view>
   </view>
 

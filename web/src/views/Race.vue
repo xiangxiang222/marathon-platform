@@ -66,17 +66,30 @@
       <p class="plan-footnote">个人记录 · 实际报名与参赛资格以官方为准</p>
       <p v-if="message" class="plan-feedback" :class="{ 'is-error': sharingError && sharingError === message }" role="status">{{ message }}</p>
     </section>
-    <section v-if="race && ready" class="block race-companionship">
-      <div class="plan-heading"><h2>与团同行</h2><span class="plan-status">{{ sharedClubIds.length ? sharedClubIds.length + ' 个跑团可见' : '仅自己可见' }}</span></div>
-      <p class="src">{{ sharedClubNames || '参赛计划仅自己可见，可选择同步给跑团。' }}同步不代表报名跑团活动。</p>
-      <template v-if="clubs.length"><button type="button" class="plan-action companion-settings" :aria-expanded="companionOpen" @click="companionOpen = !companionOpen">同步设置与同行需求 <span>{{ companionOpen ? '⌃' : '›' }}</span></button><div v-if="companionOpen" class="companion-editor">
-        <p class="src">状态更新后会同步到选中的跑团，关注比赛不会公开。</p>
-        <fieldset class="club-sharing" :disabled="planBusy || !myStatus"><legend class="visually-hidden">同步到哪些跑团</legend><label v-for="club in clubs" :key="club.id"><input v-model="sharingDraft" type="checkbox" :value="Number(club.id)" /><span>{{ club.name }}</span><small>{{ club.mates?.length || 0 }} 位团友已分享</small></label></fieldset>
-        <p v-if="!myStatus" class="src">先记录参赛状态，再选择同步的跑团。</p>
-        <button type="button" class="primary sharing-save" :disabled="!myStatus || planBusy || !sharingDirty" @click="saveSharing">{{ planBusy ? '保存中…' : '保存同步范围' }}</button>
-        <form v-if="myStatus" class="companion-form" @submit.prevent="saveCompanion"><label for="companion-note">我的同行需求</label><textarea id="companion-note" v-model="companionDraft" maxlength="200" rows="2" placeholder="例如：比赛日想拼车，或约好领物后一起集合" :disabled="planBusy"></textarea><span class="src">{{ companionDraft.length }}/200 · 仅选中的跑团可见。具体时间和地点可在下方同行安排中约定。</span><button type="submit" class="undo" :disabled="planBusy || companionDraft === companionNote">保存同行需求</button></form>
-      </div></template>
-      <router-link v-else class="companionship-link" to="/clubs">发现跑团，找一起参赛的伙伴 ›</router-link>
+    <section v-if="race && ready" class="block race-companionship" aria-labelledby="club-sync-title">
+      <button type="button" class="club-sync-toggle" aria-label="同步设置与同行需求" :aria-expanded="companionOpen" aria-controls="club-sync-panel" @click="companionOpen = !companionOpen">
+        <span class="club-sync-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3"/><path d="M3.5 20v-2.5a5.5 5.5 0 0 1 11 0V20M17 5a3 3 0 0 1 0 6m1 3a4.5 4.5 0 0 1 3 4v2"/></svg></span>
+        <span class="club-sync-heading"><strong id="club-sync-title">同步到跑团</strong><small :title="sharedClubNames">{{ sharedClubNames || '让跑友知道你的参赛安排' }}</small></span>
+        <span class="club-sync-state"><span :class="{ 'is-shared': sharedClubIds.length }">{{ sharedClubIds.length ? '已同步 ' + sharedClubIds.length + ' 团' : '仅自己可见' }}</span><svg viewBox="0 0 16 16" aria-hidden="true" :class="{ expanded: companionOpen }"><path d="m6 4 4 4-4 4"/></svg></span>
+      </button>
+      <div v-if="companionOpen" id="club-sync-panel" class="companion-editor">
+        <template v-if="clubs.length">
+          <div class="club-sync-label"><strong>选择同步范围</strong><span>可多选</span></div>
+          <fieldset class="club-sharing" :disabled="planBusy || !myStatus"><legend class="visually-hidden">同步到哪些跑团</legend>
+            <label v-for="club in clubs" :key="club.id" class="club-choice-card" :class="{ 'is-selected': sharingDraft.includes(Number(club.id)), 'is-disabled': planBusy || !myStatus }">
+              <input v-model="sharingDraft" class="club-choice-input" type="checkbox" :value="Number(club.id)" :aria-label="club.name" />
+              <span class="club-choice-avatar" aria-hidden="true">{{ club.name.slice(0, 1) }}</span>
+              <span class="club-choice-copy"><strong>{{ club.name }}</strong><small>{{ club.mates?.length ? club.mates.length + ' 位团友已分享参赛计划' : '与团友同步参赛进度' }}</small></span>
+              <span class="club-choice-check" aria-hidden="true"><svg v-if="sharingDraft.includes(Number(club.id))" viewBox="0 0 16 16"><path d="m4 8 2.5 2.5L12 5"/></svg></span>
+            </label>
+          </fieldset>
+          <p v-if="!myStatus" class="club-sync-notice">先添加参赛计划，再选择同步跑团。</p>
+          <div class="club-sync-footer"><span><strong>{{ sharingDraft.length }}</strong> 个跑团<small>{{ sharingDirty ? '有更改待保存' : sharedClubIds.length ? '后续状态自动同步' : '当前仅自己可见' }}</small></span><button type="button" class="primary sharing-save" :disabled="!myStatus || planBusy || !sharingDirty" @click="saveSharing">{{ planBusy ? '保存中…' : '保存同步范围' }}</button></div>
+          <p class="club-sync-caption">保存后，仅所选跑团可见。同步不会报名团内活动。</p>
+        </template>
+        <div v-else class="club-sync-empty"><strong>找到一起参赛的伙伴</strong><p>加入跑团后，可在这里选择同步范围。</p><router-link class="companionship-link" to="/clubs">发现跑团 <span aria-hidden="true">›</span></router-link></div>
+        <form v-if="myStatus && clubs.length" class="companion-form" @submit.prevent="saveCompanion"><label for="companion-note">我的同行需求<span>选填</span></label><textarea id="companion-note" aria-label="我的同行需求" v-model="companionDraft" maxlength="200" rows="2" placeholder="想拼车、约好领物，或赛后一起合影…" :disabled="planBusy"></textarea><span class="src">{{ companionDraft.length }}/200 · 仅已同步的跑团可见</span><button type="submit" class="undo" :disabled="planBusy || companionDraft === companionNote">保存同行需求</button></form>
+      </div>
       <p v-if="sharingMessage" class="src" role="status">{{ sharingMessage }}</p>
       <p v-if="sharingError" class="err" role="alert">{{ sharingError }}</p>
     </section>
@@ -692,7 +705,7 @@ onBeforeUnmount(() => { disposed = true; loadSequence++; actionSequence++; });
 </script>
 
 <style scoped>
-.race-follow-row{display:flex;align-items:center;justify-content:space-between;gap:14px;border-top:1px solid #eee;margin-top:12px;padding-top:12px}.race-follow-row>span{font-size:12px;line-height:1.7;color:#777}.plan-stages{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px}.plan-stages button{min-width:0;min-height:64px;padding:9px 2px;background:#f7f7f8;border-radius:8px;font-size:12px;line-height:1.5;color:#777;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px}.plan-stages small{font-size:12px;line-height:20px;border-radius:50%;width:20px;height:20px;background:#eaeaec;color:#777}.plan-stages .selected{background:#fff1f3;color:#ff1838}.plan-stages .selected small{background:#ff1838;color:#fff}.plan-stages .current{box-shadow:inset 0 0 0 1px #ffc8d1}.race-companionship .club-sharing{border:0;padding:0;margin:15px 0 10px;min-width:0}.club-sharing label{display:flex;align-items:center;gap:10px;min-height:52px;border-top:1px solid #eee;font-size:14px}.club-sharing input{width:18px;height:18px;accent-color:#ff1838;flex:none}.club-sharing label>span{flex:1;min-width:0;overflow-wrap:anywhere}.club-sharing small{font-size:12px;color:#888}.race-page .sharing-save{width:100%}.race-page button:disabled{opacity:.45;cursor:default}.companion-form{display:flex;flex-direction:column;gap:8px;margin-top:20px;padding-top:18px;border-top:1px solid #eee}.companion-form>label{font-size:14px;font-weight:500}.companion-form textarea{resize:vertical;border:1px solid #e5e5e5;border-radius:8px;padding:10px;font-size:14px;line-height:1.7;min-width:0;width:100%;box-sizing:border-box}.companion-form>button{align-self:flex-start}.companion-mate>span{min-width:0;flex:1;overflow-wrap:anywhere}.companion-mate small{display:block;color:#777;font-size:12px;line-height:1.7;margin-top:5px}.companionship-link{display:flex;align-items:center;min-height:44px;color:#ff1838;font-size:14px;line-height:1.7;margin-top:8px}.remove-plan{margin-top:12px}.visually-hidden{position:absolute;width:1px;height:1px;clip-path:inset(50%);overflow:hidden;white-space:nowrap}
+.race-follow-row{display:flex;align-items:center;justify-content:space-between;gap:14px;border-top:1px solid #eee;margin-top:12px;padding-top:12px}.race-follow-row>span{font-size:12px;line-height:1.7;color:#777}.plan-stages{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px}.plan-stages button{min-width:0;min-height:64px;padding:9px 2px;background:#f7f7f8;border-radius:8px;font-size:12px;line-height:1.5;color:#777;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px}.plan-stages small{font-size:12px;line-height:20px;border-radius:50%;width:20px;height:20px;background:#eaeaec;color:#777}.plan-stages .selected{background:#fff1f3;color:#ff1838}.plan-stages .selected small{background:#ff1838;color:#fff}.plan-stages .current{box-shadow:inset 0 0 0 1px #ffc8d1}.race-page button:disabled{opacity:.45;cursor:default}.companion-form{display:flex;flex-direction:column;gap:8px;margin-top:20px;padding-top:18px;border-top:1px solid #eee}.companion-form>label{font-size:14px;font-weight:500}.companion-form textarea{resize:vertical;border:1px solid #e5e5e5;border-radius:8px;padding:10px;font-size:14px;line-height:1.7;min-width:0;width:100%;box-sizing:border-box}.companion-form>button{align-self:flex-start}.companion-mate>span{min-width:0;flex:1;overflow-wrap:anywhere}.companion-mate small{display:block;color:#777;font-size:12px;line-height:1.7;margin-top:5px}.companionship-link{display:flex;align-items:center;min-height:44px;color:#ff1838;font-size:14px;line-height:1.7;margin-top:8px}.remove-plan{margin-top:12px}.visually-hidden{position:absolute;width:1px;height:1px;clip-path:inset(50%);overflow:hidden;white-space:nowrap}
 .race-archive-entry{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:72px;margin:12px 16px;padding:14px 16px;background:#fff0f2;border-radius:12px}.race-archive-entry strong{display:block;font-size:14px;font-weight:500}.race-archive-entry small{display:block;font-size:12px;color:#777;margin-top:4px}.race-archive-entry>span:last-child{font-size:24px;color:#ff1838}
 
 .race-state { display: grid; justify-items: center; gap: 12px; margin: 20px 16px; padding: 32px 20px; border-radius: 12px; background: #fff; color: var(--muted); text-align: center; font-size: 14px; }
