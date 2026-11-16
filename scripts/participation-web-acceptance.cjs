@@ -19,6 +19,10 @@ const report = { checks: [], views: [], errors: [], passed: false };
 let server, vite, browser;
 const token = 'participation-browser-synthetic';
 async function check(name, run) { await run(); report.checks.push(name); }
+async function assertSharingCollapsed(page) {
+  assert.equal(await page.locator('#club-sync-panel').count(), 0, 'Successful sharing save closes the selector');
+  assert.equal(await page.getByRole('button', { name: '同步设置与同行需求', exact: false }).getAttribute('aria-expanded'), 'false');
+}
 async function participationLayout(page, name, width, { expanded, guest = false } = {}) {
   const plan = page.locator('.race-plan');
   await plan.waitFor();
@@ -135,6 +139,10 @@ async function main() {
     await page.getByRole('checkbox', { name: /合成甲团/ }).check();
     await page.getByRole('button', { name: '保存同步范围', exact: true }).click();
     await page.getByText('已更新同步范围，后续参赛状态会自动同步。', { exact: true }).waitFor();
+    await assertSharingCollapsed(page);
+    assert.ok((await page.locator('.club-sync-heading').innerText()).includes('合成甲团'));
+    await page.getByRole('button', { name: '同步设置与同行需求', exact: false }).click();
+    assert.equal(await page.getByRole('checkbox', { name: /合成甲团/ }).isChecked(), true);
     await page.getByLabel('我的同行需求', { exact: true }).fill('合成需求：比赛日想拼车，领物后一起集合');
     await page.getByRole('button', { name: '保存同行需求', exact: true }).click();
     await page.getByText('同行需求已保存。', { exact: true }).waitFor();
@@ -151,10 +159,20 @@ async function main() {
     const race = await read('/races/' + raceId);
     assert.equal(race.following, false); assert.equal(race.myStatus, '已缴费'); assert.deepEqual(race.sharedClubIds, [clubIds[0]]);
   });
-  await check('Unsharing removes existing plan and note from fellow runners', async () => {
+  await check('Failed unsharing stays open with the draft; retry saves and collapses the selector', async () => {
     await page.getByRole('checkbox', { name: /合成甲团/ }).uncheck();
+    const failSharing = route => route.fulfill({ status: 503, contentType: 'application/json', body: JSON.stringify({ error: '合成同步保存失败' }) });
+    await page.route('**/api/me/races/' + raceId + '/sharing', failSharing);
+    await page.getByRole('button', { name: '保存同步范围', exact: true }).click();
+    await page.locator('.race-companionship [role=alert]').filter({ hasText: '合成同步保存失败' }).waitFor();
+    assert.equal(await page.getByRole('button', { name: '同步设置与同行需求', exact: false }).getAttribute('aria-expanded'), 'true');
+    assert.equal(await page.getByRole('checkbox', { name: /合成甲团/ }).isChecked(), false);
+    assert.deepEqual((await read('/races/' + raceId)).sharedClubIds, [clubIds[0]]);
+    await page.unroute('**/api/me/races/' + raceId + '/sharing', failSharing);
     await page.getByRole('button', { name: '保存同步范围', exact: true }).click();
     await page.getByText('已设为仅自己可见。', { exact: true }).waitFor();
+    await assertSharingCollapsed(page);
+    assert.ok((await page.locator('.club-sync-state').innerText()).includes('仅自己可见'));
     const buddyRace = await read('/races/' + raceId, 'participation-buddy');
     assert.ok(buddyRace.clubs.every(club => !club.mates.some(mate => mate.nickname === '合成跑者')));
     const mine = await read('/races/' + raceId); assert.ok(mine.companionNote.includes('拼车'));
@@ -177,6 +195,7 @@ async function main() {
   });
   await check('Unsaved sharing and companion drafts survive status and independent section saves', async () => {
     const draft = '尚未保存的同行需求：等待团友确认';
+    await page.getByRole('button', { name: '同步设置与同行需求', exact: false }).click();
     await page.getByLabel('我的同行需求', { exact: true }).fill(draft);
     await page.getByRole('checkbox', { name: /合成乙团/ }).check();
     await page.locator('.race-plan .statuses').getByRole('button', { name: '已领物', exact: true }).click();
@@ -186,6 +205,8 @@ async function main() {
     assert.deepEqual((await read('/races/' + raceId)).sharedClubIds, []);
     await page.getByRole('button', { name: '保存同步范围', exact: true }).click();
     await page.getByText('已更新同步范围，后续参赛状态会自动同步。', { exact: true }).waitFor();
+    await assertSharingCollapsed(page);
+    await page.getByRole('button', { name: '同步设置与同行需求', exact: false }).click();
     assert.equal(await page.getByLabel('我的同行需求', { exact: true }).inputValue(), draft);
     await page.getByRole('checkbox', { name: /合成乙团/ }).uncheck();
     await page.getByRole('button', { name: '保存同行需求', exact: true }).click();
@@ -194,6 +215,7 @@ async function main() {
     assert.deepEqual((await read('/races/' + raceId)).sharedClubIds, [clubIds[1]], 'saving a note must not silently save the audience draft');
     await page.getByRole('button', { name: '保存同步范围', exact: true }).click();
     await page.getByText('已设为仅自己可见。', { exact: true }).waitFor();
+    await assertSharingCollapsed(page);
     await page.locator('.race-plan .statuses').getByRole('button', { name: '已缴费', exact: true }).click();
     await page.waitForFunction(() => document.querySelector('.race-plan .plan-status')?.textContent === '已缴费');
   });

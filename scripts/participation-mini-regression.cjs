@@ -71,10 +71,12 @@ async function main() {
   assert.ok(f.page.data.stageStatuses.includes('确认参赛')); assert.equal(f.page.data.planStages.length, 4);
   f.page.pickSharedClubs(event({}, ['7'])); await f.page.mark(event({ status: '确认参赛' }));
   assert.equal(f.state.status, '确认参赛'); assert.deepEqual(copy(f.state.sharedClubIds), []);
-  assert.deepEqual(copy(f.page.data.sharingDraft), [7]); await f.page.saveSharing(); assert.deepEqual(copy(f.state.sharedClubIds), [7]);
+  assert.deepEqual(copy(f.page.data.sharingDraft), [7]); f.page.toggleCompanion(); await f.page.saveSharing(); assert.deepEqual(copy(f.state.sharedClubIds), [7]);
+  assert.equal(f.page.data.companionOpen, false, 'successful sharing save and reload collapse the club selector');
   await f.page.toggleFollow(); assert.equal(f.state.following, false); assert.equal(f.state.status, '确认参赛');
   checks.push('Following remains separate from participation; direct entry skips the lottery and records one personal status');
-  f.page.pickSharedClubs(event({}, [])); await f.page.saveSharing();
+  f.page.toggleCompanion(); f.page.pickSharedClubs(event({}, [])); await f.page.saveSharing();
+  assert.equal(f.page.data.companionOpen, false, 'saving an empty audience also collapses the selector');
   assert.deepEqual(copy(f.state.sharedClubIds), []); assert.equal(f.state.status, '确认参赛');
   f.page.onCompanionNote(event({}, '  起点附近拼车  ')); await f.page.saveCompanionNote();
   assert.equal(f.state.note, '起点附近拼车');
@@ -137,9 +139,19 @@ async function main() {
   assert.equal(sharing.page.data.companionNote, '尚未保存的备注');
   const written = sharing.requests.find(call => call.method === 'PUT' && call.url === '/me/races/' + race.id);
   assert.equal('sharedClubIds' in written.body, false);
-  await sharing.page.saveSharing(); assert.equal(failSharing, true); assert.deepEqual(copy(sharing.page.data.sharedClubIds), [7]);
+  sharing.page.toggleCompanion(); await sharing.page.saveSharing(); assert.equal(failSharing, true); assert.deepEqual(copy(sharing.page.data.sharedClubIds), [7]);
+  assert.equal(sharing.page.data.companionOpen, true, 'failed sharing save keeps choices open');
   assert.deepEqual(copy(sharing.page.data.sharingDraft), [8]); assert.equal(sharing.page.data.clubs[0].synced, true);
   assert.equal(sharing.page.data.planBusy, false); assert.equal(sharing.page.data.message, '注入同步失败');
+  let failReadback = false;
+  const readback = fixture('race', (url, method) => {
+    if (method === 'PUT') { failReadback = true; return { ok: true }; }
+    if (failReadback && !url.endsWith('/news')) throw Error('同步范围回读失败');
+    return url.endsWith('/news') ? {} : { race, statuses, myStatus: '中签', sharedClubIds: [7], clubs: [{ id: 7, name: '团一', mates: [] }, { id: 8, name: '团二', mates: [] }] };
+  });
+  readback.page.onLoad({ id: race.id }); await readback.page.load(); readback.page.toggleCompanion(); readback.page.pickSharedClubs(event({}, ['8'])); await readback.page.saveSharing();
+  assert.equal(readback.page.data.companionOpen, true, 'a successful write with failed reload must not collapse the selector');
+  assert.deepEqual(copy(readback.page.data.sharingDraft), [8]); assert.equal(readback.page.data.message, '同步范围回读失败'); assert.equal(readback.page.data.planBusy, false);
   checks.push('Unsaved club choices and note drafts survive status refresh; failed sharing saves never change the displayed persisted audience');
 
   const list = fixture('races'); await list.page.load(); await settle();

@@ -326,7 +326,11 @@ async function planAction(suffix, body) {
   } catch (err) { if (!disposed && ticket === actionSequence && id === String(route.params.id) && token === localStorage.getItem('marathon_token')) { sharingError.value = err.message; message.value = err.message; } return false; }
   finally { if (!disposed && ticket === actionSequence) planBusy.value = false; }
 }
-async function saveSharing() { if (await planAction('/sharing', { clubIds: sharingDraft.value })) sharingMessage.value = sharedClubIds.value.length ? '已更新同步范围，后续参赛状态会自动同步。' : '已设为仅自己可见。'; }
+async function saveSharing() {
+  if (!await planAction('/sharing', { clubIds: sharingDraft.value })) return;
+  companionOpen.value = false;
+  sharingMessage.value = sharedClubIds.value.length ? '已更新同步范围，后续参赛状态会自动同步。' : '已设为仅自己可见。';
+}
 async function saveCompanion() { if (await planAction('/companionship', { note: companionDraft.value })) sharingMessage.value = '同行需求已保存。'; }
 async function removePlan() {
   if (planBusy.value || !window.confirm('移除参赛计划？关注的比赛和已记录的成绩会保留，跑团不再同步这条计划。')) return;
