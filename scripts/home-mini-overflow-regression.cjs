@@ -7,7 +7,7 @@ const Module = require('node:module');
 const { fixture, event, settle } = require('./participation-mini-regression.cjs');
 const root = path.resolve(__dirname, '..');
 const route = 'pages/races/races';
-const scenarios = ['base', 'long-selected', 'native-buttons', 'long-native', 'sdk-buttons', 'long-sdk', 'large-count', 'more', 'time'];
+const scenarios = ['base', 'long-selected', 'native-buttons', 'long-native', 'sdk-buttons', 'long-sdk', 'large-count', 'more', 'city', 'time'];
 const fullWidthPressure = 'button{width:100%;margin-left:auto;margin-right:auto}';
 // Local WeChat WAWebview.js uses wx-button:not([size=mini]) at 184px. The mirror
 // maps wx-button to button, preserving the selector's specificity and dimensions.
@@ -35,14 +35,15 @@ async function prepare(_route, _initial, scenario) {
   }
   if (scenario === 'large-count') f.page.setData({ total: 123456789, statusLabel: '报名时间尚未公布' });
   if (scenario === 'more') {
+    await f.page.setMeet(event({ meet: 'online' }));
     f.page.openSheet(event({ sheet: 'status' }));
-    f.page.setMeet(event({ meet: 'online' }));
   }
-  if (scenario === 'time') f.page.openSheet(event({ sheet: 'time' }));
+  if (scenario === 'time') { f.page.openSheet(event({ sheet: 'time' })); f.page.pickYear(event({year:2027})); }
+  if (scenario === 'city') { f.page.openSheet(event({ sheet: 'city' })); f.page.pickProvince(event({name:'贵州'})); }
   // 100% is a controlled width-pressure scenario, not a claim about WeChat's default.
   // The separate SDK scenarios reproduce the observed 184px rule and specificity.
-  const css = ['native-buttons', 'long-native'].includes(scenario) ? fullWidthPressure : ['sdk-buttons', 'long-sdk'].includes(scenario) ? sdkButtonDefault : '';
-  return { data: f.page.data, components: {}, css };
+  const pressure = ['native-buttons', 'long-native'].includes(scenario) ? fullWidthPressure : ['sdk-buttons', 'long-sdk'].includes(scenario) ? sdkButtonDefault : '';
+  return { data: f.page.data, components: {}, css: pressure };
 }
 
 async function audit({ page, scenario, width }) {
@@ -51,7 +52,7 @@ async function audit({ page, scenario, width }) {
   const metrics = await page.evaluate(() => {
     const box = e => { const r = e.getBoundingClientRect(); return { left: r.left, right: r.right, top: r.top, bottom: r.bottom, width: r.width, height: r.height }; };
     const outside = [...document.querySelectorAll('body *')].map(e => ({ tag: e.tagName, cls: e.className, text: e.textContent.slice(0, 50), ...box(e) })).filter(e => e.width > 0 && (e.right > innerWidth + 1 || e.left < -1));
-    const controls = [...document.querySelectorAll('.kind-tab,.filter-more,.filter-chip,.race-plan-link,.race-follow,.clear-filters')].map(e => ({ cls: e.className, ...box(e) }));
+    const controls = [...document.querySelectorAll('.kind-tab,.filter-more,.filter-chip,.race-plan-link,.race-follow,.filter-tag,.clear-filters')].map(e => ({ cls: e.className, ...box(e) }));
     const pseudoOverflow = [];
     for (const e of document.querySelectorAll('body *')) {
       for (const pseudo of ['::before', '::after']) {
@@ -74,28 +75,40 @@ async function audit({ page, scenario, width }) {
   await page.evaluate(() => scrollTo(0, 250));
   const sticky = await page.locator('.home-navigation').evaluate(e => ({ top: e.getBoundingClientRect().top, position: getComputedStyle(e).position }));
   expect(sticky.position === 'sticky' && Math.abs(sticky.top) < 1, 'The red navigation must keep its sticky position after horizontal containment');
-  if (['more', 'time'].includes(scenario)) {
+  if (['more', 'city', 'time'].includes(scenario)) {
     const drawer = await page.locator('.drop').evaluate(e => {
       const r = e.getBoundingClientRect(); return { left: r.left, right: r.right, top: r.top, bottom: r.bottom, viewportHeight: innerHeight };
     });
     expect(drawer.left >= -1 && drawer.right <= width + 1 && drawer.top >= 0 && Math.abs(drawer.bottom - drawer.viewportHeight) < 1, 'The filter drawer must remain visible at the bottom of the viewport');
-    if (scenario === 'more') expect(await page.locator('.act.ok').evaluate(e => {
-      const r = e.getBoundingClientRect(); return r.top >= 0 && r.bottom <= innerHeight && e.contains(document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2));
-    }), 'The filter confirmation must remain visible and clickable');
+    expect(await page.locator('.act.ok').count() === 0, 'Immediate filters must not expose an obsolete confirmation action');
+    const options = page.locator('.drop button');
+    for (let index = 0; index < await options.count(); index++) {
+      const option = options.nth(index); await option.scrollIntoViewIfNeeded();
+      const target = await option.evaluate(e => {
+        const r=e.getBoundingClientRect();return {label:e.textContent.trim(),left:r.left,right:r.right,top:r.top,bottom:r.bottom,width:r.width,height:r.height,hit:e.contains(document.elementFromPoint(r.x+r.width/2,r.y+r.height/2))};
+      });
+      expect(target.left>=-1 && target.right<=width+1 && target.top>=0 && target.bottom<=page.viewportSize().height+1 && target.height>=43.5 && target.width>=43.5 && target.hit, 'Drawer option must remain reachable with a 44px target: '+JSON.stringify(target));
+    }
+    if(scenario==='time')expect(await page.locator('.month-grid button').count()===12,'The time drawer exposes all twelve months for the selected year');
+    if(scenario==='city')expect(await page.locator('.panel-menu button').count()>=30,'Complete province navigation remains available');
   }
   if (scenario === 'more' && [320, 390].includes(width)) {
     const originalViewport = page.viewportSize();
     const shortHeight = width === 320 ? 780 : 844;
     await page.setViewportSize({ width, height: shortHeight });
-    // Fitting the page must not hide the drawer's confirmation under either
-    // the actual SDK selector or the separate full-width pressure scenario.
+    // Every immediate-apply option must remain reachable under both the actual
+    // SDK selector and the separate full-width pressure scenario.
     for (const [name, css] of [['native-drawer', fullWidthPressure], ['sdk-drawer', sdkButtonDefault]]) {
       const nativeStyle = await page.addStyleTag({ content: css });
-      const drawerControls = await page.locator('.drop button').evaluateAll(elements => elements.map(e => {
-        const r = e.getBoundingClientRect();
-        return { label: e.getAttribute('aria-label') || e.textContent.trim(), left: r.left, right: r.right, top: r.top, bottom: r.bottom, height: r.height, clickable: e.contains(document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2)) };
-      }));
-      expect(drawerControls.every(e => e.left >= -1 && e.right <= width + 1 && e.top >= 0 && e.bottom <= shortHeight + 1 && e.height >= 43.5 && e.clickable), 'Every ' + name + ' button must remain visible and clickable at ' + width + 'x' + shortHeight);
+      const drawerControls = [];
+      const buttons = page.locator('.drop button');
+      for (let index=0;index<await buttons.count();index++) {
+        const button=buttons.nth(index);await button.scrollIntoViewIfNeeded();
+        drawerControls.push(await button.evaluate(e=>{
+          const r=e.getBoundingClientRect();return {label:e.getAttribute('aria-label')||e.textContent.trim(),left:r.left,right:r.right,top:r.top,bottom:r.bottom,width:r.width,height:r.height,clickable:e.contains(document.elementFromPoint(r.x+r.width/2,r.y+r.height/2))};
+        }));
+      }
+      expect(drawerControls.every(e=>e.left>=-1&&e.right<=width+1&&e.top>=0&&e.bottom<=shortHeight+1&&e.height>=43.5&&e.width>=43.5&&e.clickable),'Every '+name+' option must remain reachable with a 44px target at '+width+'x'+shortHeight+': '+JSON.stringify(drawerControls.filter(e=>!e.clickable||e.bottom>shortHeight+1)));
       const shortName = name + '-' + width + 'x' + shortHeight + '.png';
       await page.screenshot({ path: path.join(out, shortName) });
       observations.push({ scenario: name + '-short-height', width, height: shortHeight, controls: drawerControls, errors: errors.slice() });
