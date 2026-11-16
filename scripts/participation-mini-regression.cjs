@@ -14,9 +14,24 @@ const race = { id: 'sample-race', name: '合成参赛流程验收', city: '验�
 
 function fixture(name = 'race', handler) {
   const app = { globalData: { token: 'runner-a', nickname: '合成跑者', baseUrl: 'https://runner.example' } };
-  const state = { following: false, status: '', sharedClubIds: [], note: '', results: [], confirmDeletion: true }, requests = [], patches = [], storage = {}, navigation = [];
+  const state = { following: false, status: '', sharedClubIds: [], note: '', results: [], outings: [], confirmDeletion: true }, requests = [], patches = [], storage = {}, navigation = [];
+  const presentOuting = item => { const joined = item.members.some(member => member.userId === 1), canCancel = item.host.userId === 1;
+    return { ...copy(item), memberCount: item.members.length, remaining: Math.max(0, item.capacity - item.members.length), joined, isHost: canCancel, canCancel, canJoin: !joined && item.members.length < item.capacity }; };
   const reply = async (url, method = 'GET', body) => {
     if (handler) return handler(url, method, body);
+    if (url === '/races/' + race.id + '/outings') {
+      if (method === 'GET') return { outings: state.outings.map(presentOuting) };
+      const outing = { ...body, id: state.outings.length + 1, raceId: race.id, clubName: body.clubId === 7 ? '合成跑团' : '周末跑团', kindLabel: { carpool: '拼车', gather: '集合', pickup: '领物' }[body.kind], status: 'open', host: { userId: 1, nickname: '合成跑者' }, members: [{ userId: 1, nickname: '合成跑者' }] };
+      state.outings.push(outing); return { outing: presentOuting(outing) };
+    }
+    const outingMatch = url.match(/\/outings\/(\d+)(\/membership)?$/);
+    if (outingMatch) {
+      const outing = state.outings.find(item => item.id === Number(outingMatch[1]));
+      if (method === 'DELETE') { outing.status = 'cancelled'; return { ok: true }; }
+      outing.members = outing.members.filter(member => member.userId !== 1);
+      if (body.joined) outing.members.push({ userId: 1, nickname: '合成跑者' });
+      return { outing: presentOuting(outing) };
+    }
     if (url.endsWith('/news')) return { news: [] };
     if (url === '/reminders') return {};
     if (url.startsWith('/races?')) return { races: [{ ...race, following: state.following, myStatus: state.status }] };
@@ -139,6 +154,76 @@ async function main() {
   const markup = fs.readFileSync(path.join(root, 'miniprogram/pages/race/race.wxml'), 'utf8');
   assert.match(markup, /仅自己可见/); assert.doesNotMatch(markup, /供自己与跑团留存/); assert.match(markup, /活动需单独报名/);
   checks.push('Calendar retains personal indicators; privacy and official versus club sign-up boundaries are explicit');
+
+  const group = fixture(); group.page.onLoad({ id: race.id, clubId: '8', outings: '1' }); await group.page.load(); await group.page.loadOutings();
+  assert.equal(group.page.data.outingFilterClubId, 8); assert.equal(group.page.data.outingClubId, 8);
+  group.page.setData({ outingDate: '2099-03-20', outingTime: '08:30', outingPlace: '  终点北门  ', outingCapacity: '4', outingNote: '  一起领物  ', outingKind: 'pickup' });
+  const creation = group.page.createOuting(); await group.page.createOuting(); await creation;
+  assert.equal(group.state.outings.length, 1); assert.equal(group.state.outings[0].startsAt, '2099-03-20T08:30');
+  assert.equal(group.state.outings[0].place, '终点北门'); assert.equal(group.state.outings[0].note, '一起领物');
+  assert.equal(group.page.data.visibleOutings[0].memberCount, 1); assert.equal(group.page.data.visibleOutings[0].canCancel, true);
+  assert.equal(group.state.status, ''); assert.equal(group.state.following, false); assert.deepEqual(group.state.sharedClubIds, []);
+  assert.equal(group.requests.some(call => /activities|meetups|\/me\/races/.test(call.url) && call.method !== 'GET'), false);
+  checks.push('Race-linked outings create once, include the host in capacity, preserve Beijing wall time, preselect the club, and never change personal plans, follows, sharing or ordinary activities');
+
+  const own = group.page.data.visibleOutings[0]; await group.page.changeOutingMembership(event({ id: own.id }));
+  assert.equal(group.requests.some(call => call.url.endsWith('/membership')), false, 'hosts cancel rather than leave');
+  group.state.confirmDeletion = false; await group.page.cancelOuting(event({ id: own.id })); assert.equal(group.state.outings[0].status, 'open');
+  group.state.confirmDeletion = true; const cancellation = group.page.cancelOuting(event({ id: own.id })); await group.page.cancelOuting(event({ id: own.id })); await cancellation;
+  assert.equal(group.requests.filter(call => call.method === 'DELETE').length, 1); assert.equal(group.page.data.outings.length, 0);
+  checks.push('Hosts cannot leave their own arrangement; cancellation is confirmed, serialized and removes only the outing');
+
+  const join = fixture(); join.page.onLoad({ id: race.id }); await join.page.load();
+  const baseOuting = { id: 31, raceId: race.id, clubId: 7, clubName: '合成跑团', kind: 'carpool', kindLabel: '拼车', startsAt: '2099-03-20T08:30', place: '起点东门', capacity: 2, note: '', status: 'open', host: { userId: 2, nickname: '团友' }, members: [{ userId: 2, nickname: '团友' }] };
+  join.state.outings = [copy(baseOuting), { ...copy(baseOuting), id: 32, clubId: 8, status: 'cancelled' }, { ...copy(baseOuting), id: 33, capacity: 1 }, { ...copy(baseOuting), id: 34, startsAt: '2000-03-20T08:30' }]; await join.page.loadOutings();
+  assert.equal(join.page.data.outings.length, 3); assert.equal(join.page.data.outings.find(item => item.id === 33).canJoin, false); assert.equal(join.page.data.outings.find(item => item.id === 34).canJoin, false);
+  for (const id of [33, 34]) await join.page.changeOutingMembership(event({ id }));
+  assert.equal(join.requests.some(call => call.url.endsWith('/membership')), false);
+  const joining = join.page.changeOutingMembership(event({ id: 31 })); await join.page.changeOutingMembership(event({ id: 31 })); await joining;
+  assert.equal(join.page.data.outings[0].joined, true); assert.equal(join.page.data.outings[0].memberCount, 2); assert.equal(join.page.data.outings[0].full, true);
+  await join.page.changeOutingMembership(event({ id: 31 })); assert.equal(join.page.data.outings[0].joined, false); assert.equal(join.page.data.outings[0].remaining, 1);
+  join.page.pickOutingFilter(event({}, '2')); assert.equal(join.page.data.visibleOutings.length, 0);
+  join.page.showClubOutings(event({ club: 7 })); assert.equal(join.page.data.outingFilterClubId, 7); assert.equal(join.page.data.visibleOutings.length, 3);
+  checks.push('Open outing lists filter by club, show rosters and capacity, serialize join and leave, and block full or elapsed arrangements');
+  join.state.outings[0].members.push({ userId: 1, nickname: '合成跑者' });
+  join.page.paintOutings([{ ...baseOuting, startsAt: '2000-03-20T08:30', joined: true, isHost: false, canCancel: true, memberCount: 2, remaining: 0, canJoin: false }]);
+  assert.equal(join.page.data.outings[0].canLeave, true); await join.page.changeOutingMembership(event({ id: 31 }));
+  assert.equal(join.requests.at(-2).body.joined, false); assert.equal(join.page.data.outings[0].joined, false);
+  checks.push('A participating club manager can leave even when also allowed to cancel; elapsed outings remain leaveable by non-hosts');
+
+  const invalid = fixture(); invalid.page.onLoad({ id: race.id }); await invalid.page.load(); invalid.page.setData({ outingDate: '2099-03-20', outingTime: '08:30', outingPlace: '集合点' });
+  for (const capacity of ['0', '101', '1.5']) { invalid.page.setData({ outingCapacity: capacity }); await invalid.page.createOuting(); assert.match(invalid.page.data.outingFeedback, /1至100/); }
+  invalid.page.setData({ outingCapacity: '1', outingNote: '多'.repeat(301) }); await invalid.page.createOuting(); assert.match(invalid.page.data.outingFeedback, /300/);
+  invalid.page.setData({ outingNote: '', outingDate: '2000-01-01' }); await invalid.page.createOuting(); assert.match(invalid.page.data.outingFeedback, /未来/);
+  invalid.page.setData({ outingDate: '2099-02-31' }); await invalid.page.createOuting(); assert.match(invalid.page.data.outingFeedback, /未来/);
+  assert.equal(invalid.requests.some(call => call.method === 'POST'), false);
+  checks.push('Outing form rejects invalid total capacity, overlong notes and elapsed Beijing times before posting');
+
+  let failure = true;
+  const retry = fixture('race', (url, method) => {
+    if (url.endsWith('/outings')) { if (failure) throw Error('同行加载失败'); return { outings: [] }; }
+    if (method === 'PUT') throw Error('名额刚刚已满');
+    return url.endsWith('/news') ? {} : { race, statuses, myStatus: '中签', following: true, clubs: [{ id: 7, name: '合成跑团', mates: [] }] };
+  });
+  retry.page.onLoad({ id: race.id }); await retry.page.load(); await retry.page.loadOutings();
+  assert.equal(retry.page.data.myStatus, '中签'); assert.equal(retry.page.data.following, true); assert.equal(retry.page.data.outingsError, '同行加载失败');
+  failure = false; await retry.page.loadOutings(); assert.equal(retry.page.data.outingsError, '');
+  retry.page.paintOutings([{ ...baseOuting, memberCount: 1, remaining: 1, joined: false, canCancel: false, canJoin: true }]); await retry.page.changeOutingMembership(event({ id: 31 }));
+  assert.equal(retry.page.data.outings[0].joined, false); assert.equal(retry.page.data.outingBusy, ''); assert.equal(retry.page.data.outingFeedback, '名额刚刚已满');
+  checks.push('Outing load and mutation errors are independent, retryable and retain the saved race and membership state');
+
+  let releaseOuting;
+  const stale = fixture('race', () => new Promise(resolve => { releaseOuting = resolve; })); stale.page.onLoad({ id: race.id });
+  const staleLoad = stale.page.loadOutings(); await settle(); stale.page.raceId = 'other-race'; const staleCount = stale.patches.length; releaseOuting({ outings: [baseOuting] }); await staleLoad; assert.equal(stale.patches.length, staleCount);
+  const staleWrite = fixture('race', () => new Promise(resolve => { releaseOuting = resolve; })); staleWrite.page.onLoad({ id: race.id });
+  staleWrite.page.paintOutings([{ ...baseOuting, memberCount: 1, remaining: 1, joined: false, canCancel: false, canJoin: true }]);
+  const staleMutation = staleWrite.page.changeOutingMembership(event({ id: 31 })); await settle(); staleWrite.app.globalData.token = 'runner-b'; const staleWriteCount = staleWrite.patches.length; releaseOuting({ outing: baseOuting }); await staleMutation; assert.equal(staleWrite.patches.length, staleWriteCount);
+  guest.page.loginForOutings(); assert.match(guest.storage.marathon_return_after_login, /outings=1/);
+  staleWrite.page.open = () => {}; staleWrite.page.onShow();
+  assert.equal(staleWrite.page.data.outings.length, 0); assert.equal(staleWrite.page.data.outingFilters.length, 1); assert.equal(staleWrite.page.data.outingBusy, ''); assert.equal(staleWrite.page.data.outingNote, '');
+  checks.push('Outing responses after route or account changes cannot write private data; guest login returns to the race outing flow');
+  assert.match(markup, /mode="date"/); assert.match(markup, /mode="time"/); assert.match(markup, /北京时间/); assert.match(markup, /本场同行/);
+  assert.match(fs.readFileSync(path.join(root, 'miniprogram/pages/club/club.wxml'), 'utf8'), /clubId=\{\{club.id\}\}.*outings=1/);
   console.log(JSON.stringify({ passed: true, kind: 'Current mini-program Page VM acceptance, not device testing', checks }, null, 2));
 }
 module.exports = { fixture, race, statuses, event, settle };

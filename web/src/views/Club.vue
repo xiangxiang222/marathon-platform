@@ -84,7 +84,7 @@
       </router-link>
       <details class="race-roster"><summary><span>参赛名单 <b>{{ item.marks.length }} 人</b></span><i>展开名单⌄</i></summary><pre class="share-text">{{ item.text }}</pre>
       <div v-for="mark in item.marks" :key="mark.nickname + mark.status" class="mate"><span class="companion-member"><router-link v-if="mark.userId" :to="memberLink(mark.userId, 'races')" class="member-name-link">{{ mark.nickname }}</router-link><span v-else>{{ mark.nickname }}</span><small v-if="mark.note">{{ mark.note }}</small></span><b>{{ mark.status }}<template v-if="mark.clock"> · {{ mark.clock }}<template v-if="mark.pb"> PB</template></template></b></div></details>
-      <router-link class="race-activity-link" :to="'/races/' + item.race.id">查看同行小队与同步设置 ›</router-link>
+      <router-link class="race-activity-link" :to="{ path: '/races/' + item.race.id, query: { clubId: String(club.id) }, hash: '#race-outings' }">本场同行 · 拼车、集合与领物 ›</router-link>
       <div class="race-card-actions"><button class="race-copy" type="button" @click="copyCard(item)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M15 8V4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h4"/></svg>复制卡片</button><button class="race-poster" type="button" @click="exportRacePoster(item)"><RunnerIcon name="stats" />生成本场赛事画像</button></div>
 
     </div>

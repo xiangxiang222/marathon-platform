@@ -187,6 +187,7 @@ function buildNodes(row, now) {
         label,
         at: formatWhen(at),
         past: !meta.open,
+        today: dayIndex(instant(at)) === dayIndex(now.getTime()),
         daysLeft: meta.daysLeft,
         soon: meta.open && meta.daysLeft <= 3 && key !== "race",
         text: key === "race" ? "" : reminderText(label, at, now)
@@ -195,7 +196,8 @@ function buildNodes(row, now) {
 }
 
 const ENTERED = ["已报名", "待抽签", "中签", "未中签", "确认参赛", "已缴费", "已领物", "完赛", "未完赛", "弃赛"];
-const GOING = ["已报名", "待抽签", "中签", "确认参赛", "已缴费", "已领物"];
+const GOING = ["确认参赛", "已缴费", "已领物"];
+const PENDING = ["已报名", "待抽签", "中签"];
 const DRAWN = ["中签", "已缴费", "已领物"];
 
 function drawnNames(marks) {
@@ -212,12 +214,13 @@ function drawPoster(nickname, race) {
 function squadOf(marks) {
   const list = marks || [];
   const going = list.filter((mark) => GOING.includes(mark.status));
+  const pending = list.filter((mark) => PENDING.includes(mark.status));
   const interested = list.filter((mark) => mark.status === "想跑");
-  let text = "";
-  if (going.length >= 2) text = going.length + " 人可以一起去";
-  else if (going.length === 1) text = "还差一个人就能凑一队";
-  else if (interested.length) text = interested.length + " 人想跑，还没人报名";
-  return { going, interested, size: going.length, ready: going.length >= 2, text };
+  const parts = [];
+  if (going.length) parts.push(going.length + " 人已确认参赛");
+  if (pending.length) parts.push(pending.length + " 人报名或中签待确认");
+  if (interested.length) parts.push(interested.length + " 人想跑");
+  return { going, pending, interested, size: going.length, pendingSize: pending.length, ready: going.length >= 2, text: parts.join("，") };
 }
 
 function nearbyOpen(race, races, limit = 3) {
@@ -276,13 +279,17 @@ function cardTitle(race) {
 function reminderHits(race) {
   const hits = [];
   for (const node of race.nodes || []) {
-    if (node.past) continue;
+    // Opening is still useful news after its exact start time, for the rest
+    // of that Beijing calendar day. Expired openings never roll into tomorrow.
+    const openingToday = node.key === "regStart" && node.today;
+    if (node.past && !openingToday) continue;
     let reason = "";
-    if (node.key === "draw" && node.daysLeft === 0) reason = node.text || "今天出签";
+    if (openingToday) reason = "今天开始报名";
+    else if (["draw", "deadline", "pay"].includes(node.key) && node.daysLeft === 0) reason = node.text || "今天" + node.label;
     else if (node.key === "race" && node.daysLeft === 1) reason = "明天比赛";
     else if (node.key !== "race" && node.daysLeft === 1) reason = node.text || "明天" + node.label;
     if (!reason) continue;
-    hits.push({ key: node.key, label: node.label, text: node.text, reason, daysLeft: node.daysLeft });
+    hits.push({ key: node.key, label: node.label, text: openingToday ? reason : node.text, reason, daysLeft: node.daysLeft });
   }
   return hits;
 }
