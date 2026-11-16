@@ -270,7 +270,7 @@ async function main() {
       await page.goto(origin + '/marathon/', { waitUntil: 'networkidle' });
       assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'list overflow at ' + width);
       const row = page.locator('.race-card-shell').filter({ hasText: '合成同行马拉松' });
-      const overlaps = await row.evaluate(element => { const link = element.querySelector('.body').getBoundingClientRect(), button = element.querySelector('.follow-race').getBoundingClientRect(); return link.right > button.left; });
+      const overlaps = await row.evaluate(element => { const link = element.querySelector('.body').getBoundingClientRect(), button = element.querySelector('.follow-race').getBoundingClientRect(); return link.left < button.right && link.right > button.left && link.top < button.bottom && link.bottom > button.top; });
       assert.equal(overlaps, false, 'follow does not overlap race text at ' + width);
     }
   });

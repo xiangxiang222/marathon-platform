@@ -56,7 +56,9 @@ async function main() {
     await page.getByRole("alert").getByRole("button", { name: "重试" }).waitFor();
     await page.getByRole("alert").getByRole("button", { name: "重试" }).click();
     await page.locator(".home-results").getByText("云上越野训练赛", { exact: true }).waitFor();
+    await page.getByRole("button", { name: "更多筛选", exact: true }).click();
     await page.getByRole("navigation", { name: "赛事形式" }).getByRole("button", { name: "线上赛" }).click();
+    await page.locator(".status-sheet").getByRole("button", { name: "确认", exact: true }).click();
     await page.getByRole("navigation", { name: "赛事类型" }).getByRole("button", { name: "越野赛" }).click();
     const combined = queries.at(-1);
     assert.equal(new URLSearchParams(combined).get("kind"), "trail");
