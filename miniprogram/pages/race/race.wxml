@@ -10,30 +10,36 @@
     <view class="row"><text class="k">{{race.deadlineName}}</text><text class="{{race.open && race.daysLeft <= 3 ? 'soon' : ''}}">{{race.deadlineLabel}}</text></view>
     <view wx:if="{{race.gradeLabel}}" class="src">{{race.gradeLabel}}</view>
     <view wx:for="{{conflicts}}" wx:key="text" class="warn">{{item.text}}</view>
-    <button class="follow-action {{following ? 'following' : ''}}" bindtap="toggleFollow" disabled="{{followBusy}}" loading="{{followBusy}}">{{following ? '★ 已关注' : '☆ 关注比赛'}}</button>
-    <view class="src">关注后收进「我的赛事」，不会替你报名或改变参赛状态。</view>
+    <view class="race-follow-row">
+      <view class="follow-copy"><view class="follow-heading">{{following ? '已关注这场比赛' : '关注这场比赛'}}</view><text>在「我的赛事」随时查看</text></view>
+      <button class="follow-action {{following ? 'following' : ''}}" bindtap="toggleFollow" disabled="{{followBusy}}" aria-pressed="{{following}}" aria-label="{{following ? '取消关注' : '关注'}}{{race.name}}"><view class="{{followBusy ? 'control-spinner' : following ? 'control-check' : 'bookmark-icon'}}" aria-hidden="true"></view><text>{{followBusy ? '保存中' : following ? '已关注' : '关注'}}</text></button>
+    </view>
   </view>
 
   <navigator wx:if="{{race.archiveId}}" class="race-archive-entry" url="/pages/race-archive/race-archive?id={{race.archiveId}}&fromRaceId={{race.id}}"><view><view>报名前，先了解这场比赛</view><text>历年赛道 · 报名中签 · 完赛与奖牌</text></view><text>›</text></navigator>
 
   <view class="card race-plan">
-    <view class="plan-heading"><view class="h2">我的参赛计划</view><text class="plan-status">{{myStatus || '未标记'}}</text></view>
-    <view class="src">这是你的个人记录。实际报名、中签与缴费结果以官方为准。</view>
-    <button wx:if="{{!ready}}" class="plan-action" bindtap="loginForPlan"><text>登录后标记</text><text class="arrow">›</text></button>
-    <button wx:else class="plan-action" bindtap="togglePlan"><text>{{myStatus ? '修改参赛状态' : '标记参赛状态'}}</text><text class="arrow">{{planOpen ? '⌃' : '›'}}</text></button>
-    <view wx:if="{{ready && planOpen}}" class="plan-editor">
-      <view class="plan-stages" role="tablist" aria-label="参赛阶段"><button wx:for="{{planStages}}" wx:key="id" class="stage {{planStage === item.id ? 'on' : ''}}" role="tab" aria-selected="{{planStage === item.id}}" data-id="{{item.id}}" bindtap="pickPlanStage">{{item.label}}</button></view>
-      <view class="src">可直接选当前阶段；无需抽签的比赛可直接确认参赛。</view>
-      <view wx:if="{{planStage === 'finished'}}" class="src">赛后可记录完赛、未完赛或弃赛，成绩可在下方补充。</view>
-      <view class="plan-statuses"><button wx:for="{{stageStatuses}}" wx:key="*this" class="ghost {{myStatus === item ? 'on' : ''}}" data-status="{{item}}" disabled="{{planBusy}}" bindtap="mark">{{item}}</button></view>
-      <view wx:if="{{planStage === 'finished'}}" class="record-result" role="button" data-id="result" bindtap="pickTab">在「我的成绩」记录完赛成绩 ›</view>
-      <view wx:if="{{myStatus}}" class="src">可附报名成功截图，仅自己可见。</view>
-      <image wx:if="{{sheetSrc}}" src="{{sheetSrc}}" mode="widthFix" />
-      <button wx:if="{{myStatus}}" class="ghost" bindtap="chooseSheet">上传报名截图</button>
-      <button wx:if="{{hasSheet}}" class="ghost" bindtap="removeSheet">移除截图</button>
-      <button wx:if="{{myStatus}}" class="ghost remove-plan" disabled="{{planBusy}}" bindtap="removePlan">移除参赛计划</button>
+    <view class="plan-heading"><view class="h2">我的参赛计划</view><text class="plan-private"><text wx:if="{{!sharedClubIds.length}}" class="lock-icon" aria-hidden="true"></text>{{sharedClubIds.length ? '已同步 ' + sharedClubIds.length + ' 个跑团' : '仅自己可见'}}</text></view>
+    <view class="plan-overview">
+      <view class="plan-summary"><view class="plan-status {{!myStatus ? 'plan-empty' : ''}}">{{myStatus || '还没有参赛计划'}}</view><text>{{myStatus ? '按实际进度，随时更新状态' : '报名、抽签、参赛，每一步都记得'}}</text></view>
+      <button wx:if="{{!ready}}" class="plan-action" bindtap="loginForPlan"><text>登录后标记</text><view class="control-arrow" aria-hidden="true"></view></button>
+      <button wx:else class="plan-action {{planOpen ? 'expanded' : ''}}" aria-label="{{myStatus ? '修改参赛状态' : '标记参赛状态'}}" aria-expanded="{{planOpen}}" bindtap="togglePlan"><text>{{planOpen ? '收起' : myStatus ? '修改' : '添加计划'}}</text><view class="control-arrow" aria-hidden="true"></view></button>
     </view>
-    <view wx:if="{{message}}" class="err">{{message}}</view>
+    <view wx:if="{{ready && planOpen}}" class="plan-editor">
+      <view class="plan-stages" role="tablist" aria-label="参赛阶段"><button wx:for="{{planStages}}" wx:key="id" class="stage {{planStage === item.id ? 'on' : ''}}" role="tab" aria-selected="{{planStage === item.id}}" aria-label="{{item.label}}" data-id="{{item.id}}" bindtap="pickPlanStage"><text class="stage-number">{{index + 1}}</text><text class="stage-label">{{item.id === 'wish' ? '意向' : item.id === 'signup' ? '报名' : item.id === 'confirmed' ? '参赛' : '赛后'}}</text></button></view>
+      <view class="state-field-heading"><text>选择当前状态</text><text>{{planBusy ? '正在保存…' : '点击即保存'}}</text></view>
+      <view class="plan-statuses {{stageStatuses.length === 1 ? 'single' : ''}}"><button wx:for="{{stageStatuses}}" wx:key="*this" class="plan-option {{myStatus === item ? 'on' : ''}}" data-status="{{item}}" aria-label="{{item}}" aria-pressed="{{myStatus === item}}" disabled="{{planBusy}}" bindtap="mark"><text>{{item}}</text><view class="option-check" aria-hidden="true"></view></button></view>
+      <view class="plan-hint">可直接选择任一阶段，不必依次完成。</view>
+      <view wx:if="{{planStage === 'finished'}}" class="record-result" role="button" data-id="result" bindtap="pickTab">去记录完赛成绩 <text aria-hidden="true">→</text></view>
+      <view wx:if="{{myStatus}}" class="plan-evidence">
+        <view class="evidence-heading"><view><view>报名凭证</view><text>截图仅自己可见</text></view><button class="evidence-upload" disabled="{{planBusy}}" bindtap="chooseSheet">{{hasSheet ? '更换截图' : '上传截图'}}<text aria-hidden="true">＋</text></button></view>
+        <image wx:if="{{sheetSrc}}" class="evidence-preview" src="{{sheetSrc}}" mode="widthFix" />
+        <button wx:if="{{hasSheet}}" class="plan-text-action" disabled="{{planBusy}}" bindtap="removeSheet">移除截图</button>
+      </view>
+      <view wx:if="{{myStatus}}" class="plan-footer"><text>不再安排这场比赛？</text><button class="remove-plan" disabled="{{planBusy}}" bindtap="removePlan">移除计划</button></view>
+    </view>
+    <view class="plan-disclaimer">个人记录，报名与参赛资格以官方结果为准。</view>
+    <view wx:if="{{message}}" class="plan-feedback" role="status">{{message}}</view>
   </view>
 
   <view wx:if="{{ready}}" class="card companion-settings">

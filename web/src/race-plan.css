@@ -1,0 +1,67 @@
+/* Personal actions on race detail. Keep the event facts and personal state distinct. */
+.race-page .race-follow-row{display:flex;align-items:center;gap:12px;padding:19px 0 6px;margin-top:14px;border-top:1px solid #f0f0f2}
+.race-follow-row .follow-symbol{display:flex;align-items:center;justify-content:center;width:38px;height:42px;flex:none;background:#fff3f5;border-radius:11px;color:#ff1838}
+.follow-symbol svg{width:23px;height:23px;stroke:currentColor;stroke-width:1.45;stroke-linecap:round;stroke-linejoin:round}
+.race-follow-row .follow-copy{flex:1;min-width:0;font-size:14px;line-height:1.5;color:#232329}
+.follow-copy strong{display:block;font-size:14px;font-weight:600;line-height:1.6}
+.follow-copy small{display:block;font-size:12px;color:#96969c;font-weight:400;line-height:1.65;margin-top:3px}
+.race-page .race-plan{padding:22px 20px 18px;overflow:hidden}
+.race-plan .plan-heading{gap:10px;align-items:center}
+.race-plan .plan-heading h2{font-size:18px;font-weight:600;line-height:1.5;margin:0;letter-spacing:-.3px}
+.plan-privacy{display:inline-flex;gap:4px;align-items:center;flex:none;font-size:12px;font-weight:400;line-height:1.6;color:#99999f}
+.plan-privacy svg{width:13px;height:13px;stroke:currentColor;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round}
+.plan-summary{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:24px}
+.plan-summary-copy{min-width:0}
+.plan-summary-label{display:block;font-size:12px;color:#96969d;line-height:1.7}
+.race-plan .plan-status{display:block;color:#202027;background:none;border:0;padding:0;margin-top:3px;font-size:25px;line-height:1.5;font-weight:600;letter-spacing:-.6px;overflow-wrap:anywhere}
+.race-plan .plan-status.is-empty{font-size:20px;letter-spacing:-.3px}
+.race-plan .plan-action{display:inline-flex;justify-content:center;align-items:center;gap:5px;flex:none;width:auto;min-height:44px;padding:10px 14px;border:1px solid #ffd4dc;border-radius:24px;background:#fff5f7;color:#e52242;font-size:13px;line-height:1.5;font-weight:500;text-align:center}
+.plan-action svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.plan-action svg.expanded{transform:rotate(-90deg)}
+.plan-summary-note{margin:10px 0 0;font-size:12px;line-height:1.8;color:#96969d}
+.plan-footnote{margin:18px 0 0;padding-top:13px;border-top:1px solid #f2f2f4;font-size:12px;line-height:1.8;color:#a0a0a5}
+.race-plan .plan-editor{margin-top:22px;padding-top:0;border:0}
+.race-plan .plan-stages{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;padding:0 0 15px;margin:0 0 20px;border-bottom:1px solid #f0f0f2}
+.plan-stages:before{content:"";position:absolute;top:15px;left:12.5%;right:12.5%;height:1px;background:#e8e8ec;pointer-events:none}
+.race-plan .plan-stages button{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:9px;position:relative;border:0;background:transparent;box-shadow:none;border-radius:7px;min-height:64px;padding:0 2px;font-size:12px;font-weight:400;line-height:1.7;color:#93939b}
+.race-plan .plan-stages small{display:flex;align-items:center;justify-content:center;flex:none;position:relative;width:30px;height:30px;line-height:1;font-size:12px;font-weight:500;letter-spacing:.4px;border:1px solid #e8e8ec;border-radius:50%;background:#fff;color:#9b9ba3;box-shadow:0 0 0 5px #fff}
+.race-plan .plan-stages .selected{color:#e52242;background:none;box-shadow:none;font-weight:600}
+.race-plan .plan-stages .selected small{border-color:#ff1838;background:#ff1838;color:white;box-shadow:0 0 0 5px #fff}
+.race-plan .plan-stages .current:not(.selected) small{border-color:#f5b5c0;color:#e52242;background:#fff5f7}
+.plan-field-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 12px;line-height:1.7}
+.plan-field-heading>span{font-size:13px;font-weight:500;color:#55555e}
+.plan-field-heading>small{font-size:12px;color:#a0a0a8}
+.race-page .race-plan .plan-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.race-plan .plan-options.single-option{grid-template-columns:1fr}
+.race-page .race-plan .plan-options .status{display:flex;align-items:center;justify-content:space-between;gap:6px;min-width:0;min-height:76px;height:auto;margin:0;padding:14px 12px;border:1px solid #e9e9ed;border-radius:10px;background:#fff;text-align:left;color:#303039;font-size:14px;font-weight:400;line-height:1.5;transition:border-color .15s,background-color .15s}
+.status-copy{display:grid;gap:5px;min-width:0}
+.status-copy strong{font-size:14px;font-weight:500;line-height:1.5}
+.status-copy small{font-size:12px;font-weight:400;line-height:1.65;color:#96969f;overflow-wrap:anywhere}
+.status-indicator{display:flex;align-items:center;justify-content:center;flex:none;width:16px;height:16px;border:1px solid #dddde4;border-radius:50%;color:white;box-sizing:border-box}
+.status-indicator svg{display:block;width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.race-page .race-plan .plan-options .status.on{border-color:#ff879b;background:#fff5f7;color:#df2745;box-shadow:inset 0 0 0 .3px #ff879b}
+.status.on .status-copy small{color:#bf7f8c}
+.status.on .status-indicator{border-color:#ff1838;background:#ff1838}
+.plan-stage-hint{margin:12px 0 0;font-size:12px;font-weight:400;line-height:1.85;color:#9999a1}
+.plan-proof{margin-top:23px;padding-top:20px;border-top:1px solid #f0f0f2}
+.plan-proof-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:12px;color:#a0a0a8;line-height:1.7}
+.plan-proof-heading strong{font-size:13px;font-weight:500;color:#55555e}
+.race-page .race-plan .plan-proof .src{font-size:12px;font-weight:400;line-height:1.8;margin:5px 0 0;color:#96969f}
+.plan-proof .proof{width:auto;max-width:100%;max-height:180px;object-fit:contain;object-position:left center;margin:14px 0;border:1px solid #ededf0;border-radius:8px}
+.race-plan .proof-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:12px}
+.race-page .race-plan .plan-upload{display:inline-flex;align-items:center;gap:7px;min-height:44px;height:auto;max-width:100%;padding:10px 13px;border:1px dashed #dedee4;border-radius:8px;background:#fafafb;color:#686871;font-size:12px;font-weight:400;line-height:1.5}
+.plan-upload svg{width:17px;height:17px;stroke:currentColor;stroke-width:1.25;stroke-linecap:round;stroke-linejoin:round}
+.plan-upload:focus-within{outline:2px solid #ff1838;outline-offset:3px}
+.race-page .race-plan .proof-actions .undo,.race-page .race-plan .remove-plan{display:inline-flex;align-items:center;min-height:44px;padding:10px 0;margin:0;background:none;color:#9d9da5;font-size:12px;font-weight:400;border:0;border-radius:4px;line-height:1.7}
+.race-page .race-plan .remove-plan{margin-top:16px}
+.plan-feedback{margin:14px 0 0;padding:10px 12px;border-radius:7px;background:#f7f7f9;color:#777780;font-size:12px;line-height:1.8}
+.plan-feedback.is-error{background:#fff2f4;color:#bd2944}
+.race-plan button:focus-visible,.race-companionship button:focus-visible{outline:2px solid #ff1838;outline-offset:3px}
+.race-plan button:hover:not(:disabled){filter:brightness(.985)}
+.race-page .race-companionship{padding:20px}
+.race-companionship .plan-heading h2{font-size:16px;margin:0}
+.race-companionship .plan-status{background:none;color:#93939b;border:0;font-size:12px;padding:0}
+.race-companionship>.src{font-size:12px;line-height:1.85;color:#92929b;margin-top:9px}
+.race-companionship .companion-settings{min-height:44px;margin-top:9px;padding:12px 0 0;font-size:13px;font-weight:500;border-top:1px solid #f1f1f3}
+@media(max-width:350px){.race-page .race-plan{padding:20px 16px 16px}.race-page .race-follow-row{gap:8px}.race-follow-row .follow-symbol{display:none}.race-plan .plan-heading h2{font-size:17px}.plan-privacy{font-size:12px;gap:3px}.race-plan .plan-status.is-empty{font-size:18px}.race-plan .plan-action{padding:10px 11px;font-size:12px}.race-page .race-plan .plan-options .status{padding:12px 10px;min-height:84px}.status-indicator{width:14px;height:14px}.status-copy strong{font-size:14px}.status-copy small{font-size:12px}.race-plan .plan-summary{gap:8px}}
+@media(prefers-reduced-motion:reduce){.race-plan .plan-options .status{transition:none}}

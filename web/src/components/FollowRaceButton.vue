@@ -1,7 +1,7 @@
 <template>
-  <span class="follow-control">
+  <span class="follow-control" :class="{ 'follow-detail': appearance === 'detail' }">
     <button type="button" class="follow-race" :class="{ following: value }" :disabled="busy" :aria-pressed="value" :aria-label="(value ? '取消关注' : '关注') + raceName" @click.stop.prevent="toggle">
-      <span aria-hidden="true">{{ value ? '★' : '☆' }}</span>{{ busy ? '保存中' : value ? '已关注' : '关注' }}
+      <svg class="follow-icon" viewBox="0 0 20 20" aria-hidden="true" fill="none"><path v-if="value" d="m4 10 4 4 8-8"/><path v-else d="M6 3.5h8a1 1 0 0 1 1 1V17l-5-3-5 3V4.5a1 1 0 0 1 1-1Z"/></svg>{{ busy ? '保存中' : value ? '已关注' : '关注' }}
     </button>
     <span v-if="error" class="follow-error" role="alert">{{ error }}</span>
   </span>
@@ -10,7 +10,7 @@
 import { onBeforeUnmount, ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import { api } from '../api';
-const props = defineProps({ raceId: { type: [String, Number], required: true }, raceName: { type: String, default: '这场比赛' }, following: Boolean });
+const props = defineProps({ raceId: { type: [String, Number], required: true }, raceName: { type: String, default: '这场比赛' }, following: Boolean, appearance: { type: String, default: 'compact' } });
 const emit = defineEmits(['change']);
 const router = useRouter(), value = ref(!!props.following), busy = ref(false), error = ref('');
 let sequence = 0, disposed = false;
@@ -40,4 +40,5 @@ async function toggle() {
 </script>
 <style scoped>
 .follow-control{display:inline-flex;flex-direction:column;align-items:flex-end;gap:3px;max-width:100%}.follow-race{display:inline-flex;align-items:center;justify-content:center;gap:4px;min-height:44px;min-width:64px;padding:8px 10px;border:1px solid #eee;border-radius:9px;background:#fff;color:#777;font-size:12px;line-height:1.4;white-space:nowrap}.follow-race.following{color:#ff1838;background:#fff1f3;border-color:#ffe0e5}.follow-race:disabled{opacity:.6}.follow-race:focus-visible{outline:2px solid #ff1838;outline-offset:2px}.follow-race>span{font-size:16px}.follow-error{max-width:145px;color:#b8384b;font-size:12px;line-height:1.5;overflow-wrap:anywhere}
+.follow-icon{width:16px;height:16px;flex:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}.follow-detail .follow-race{min-height:44px;min-width:88px;padding:10px 14px;border:1px solid #ff1838;border-radius:24px;color:#ff1838;background:#fff;font-size:13px;font-weight:500;gap:5px}.follow-detail .follow-race.following{border-color:#ececef;background:#f6f6f8;color:#777}.follow-detail .follow-error{max-width:135px}.follow-detail{flex-shrink:0}
 </style>
