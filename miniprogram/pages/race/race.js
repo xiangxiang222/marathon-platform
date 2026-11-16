@@ -36,6 +36,8 @@ function beijingDate() { return new Date(Date.now() + 8 * 3600000).toISOString()
 Page({
   data: {
     race: null,
+    heroDate: "",
+    heroYear: "",
     distanceText: "",
     meetText: "线下",
     statuses: [],
@@ -358,6 +360,7 @@ Page({
       request("/races/" + this.raceId).then((data) => {
         if (!current()) return;
         const race = data.race;
+        const date = /^(\d{4})-(\d{2})-(\d{2})$/.exec(race.raceDate || "");
         const sharedClubIds = data.sharedClubIds || [];
         const memberIds = (data.clubs || []).map(club => club.id);
         const sharingDraft = this.data.sharingDirty ? this.data.sharingDraft.filter(id => memberIds.includes(id)) : sharedClubIds;
@@ -371,6 +374,8 @@ Page({
         const myResult = myResults.find((item) => item.distance === this.data.distance) || myResults[0] || null;
         const patch = {
           race,
+          heroDate: date ? date[2] + "." + date[3] : race.raceDate || "日期待定",
+          heroYear: date ? date[1] : "",
           distanceText: [...(race.distanceLabels || []), ...(race.kind === "trail" && !(race.kindLabels || []).includes("越野") ? ["越野"] : []), ...(race.kindLabels || []), ...(race.groups || [])].join(" / "),
           meetText: race.meet === "online" ? "线上" : "线下",
           statuses,

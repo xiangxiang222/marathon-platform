@@ -10,25 +10,28 @@
       <button v-if="!loading" type="button" class="retry-button" @click="retryLoad">重新加载</button>
       <router-link v-if="!loading" to="/">返回赛事列表</router-link>
     </section>
-    <div v-if="race" class="pass" :class="'tone-' + tone">
-      <div class="pass-date">
-        <b>{{ parts.day }}</b>
-        <span>{{ parts.month }}月</span>
-      </div>
+    <div v-if="race" class="pass race-hero" :class="'tone-' + tone">
+      <svg class="race-hero-lines" viewBox="0 0 430 300" fill="none" aria-hidden="true"><circle cx="413" cy="65" r="90"/><circle cx="413" cy="65" r="124"/><circle cx="413" cy="65" r="158"/><path d="M-30 261c85-89 142 52 239-32 64-55 85-17 164-69 34-22 58-23 88-17M-30 278c88-86 150 49 247-35 65-56 85-18 164-70 36-23 61-21 87-18"/></svg>
       <div class="pass-copy">
         <span class="pass-pill">赛事 · {{ race.regStatus }}</span>
         <h1>{{ race.name }}</h1>
-        <p>{{ placeLine }}<template v-if="projectLabels.length"> · {{ projectLabels.join(" / ") }}</template></p>
+        <p class="race-hero-place"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 6c0 3.5-5 8-5 8S3 9.5 3 6a5 5 0 1 1 10 0Z"/><circle cx="8" cy="6" r="1.5"/></svg>{{ placeLine }}</p>
+        <div v-if="projectLabels.length" class="race-hero-projects"><span v-for="label in projectLabels" :key="label">{{ label }}</span></div>
+      </div>
+      <div class="pass-date race-calendar">
+        <template v-if="parts.day"><span>{{ parts.month }}月</span><b>{{ parts.day }}</b><small>比赛日</small></template>
+        <small v-else>日期<br />待公布</small>
       </div>
     </div>
-    <div v-if="race" class="detail">
-      <div class="row"><span>比赛日</span><b>{{ race.raceDate }}</b></div>
-      <div class="row"><span>地点</span><b>{{ locationLine }}</b></div>
-      <div class="row"><span>项目</span><b>{{ projectLabels.join(" / ") }}</b></div>
-      <div class="row"><span>举办</span><b>{{ race.meet === "online" ? "线上" : "线下" }}</b></div>
-      <div class="row"><span>{{ race.deadlineName }}</span><b :class="{ soon: race.open && race.daysLeft <= 3 }">{{ race.deadlineLabel }}</b></div>
-      <div v-if="race.phone" class="row"><span>咨询</span><b>{{ race.phone }}</b></div>
-      <p v-if="race.gradeLabel" class="src">{{ race.gradeLabel }}</p>
+    <div v-if="race" class="detail race-overview">
+      <div class="race-section-heading overview-heading"><h2>赛事速览</h2></div>
+      <div class="race-facts-grid">
+        <div class="race-fact"><span class="race-fact-label"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="3" y="4.5" width="14" height="13" rx="2"/><path d="M6 2.5v4m8-4v4M3 8.5h14m-10 4h2m2 0h2"/></svg>比赛日</span><b>{{ race.raceDate }}</b></div>
+        <div class="race-fact"><span class="race-fact-label"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M16 7.5C16 12 10 18 10 18S4 12 4 7.5a6 6 0 0 1 12 0Z"/><circle cx="10" cy="7.5" r="2"/></svg>地点</span><b>{{ locationLine }}</b></div>
+        <div class="race-fact"><span class="race-fact-label"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 17V3m0 1c4-3 8 3 12 0v8c-4 3-8-3-12 0"/></svg>项目</span><b>{{ projectLabels.join(" / ") }}</b></div>
+        <div class="race-fact fact-registration" :class="{ 'fact-soon': race.open && race.daysLeft <= 3 }"><span class="race-fact-label"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="7"/><path d="M10 6v4l3 2"/></svg>{{ race.deadlineName }}</span><b :class="{ soon: race.open && race.daysLeft <= 3 }">{{ race.deadlineLabel }}</b></div>
+      </div>
+      <div class="race-extra-facts"><span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="2.5" y="3.5" width="11" height="9" rx="2"/><path d="M5.5 6.5h5m-5 3h3"/></svg>举办 · {{ race.meet === "online" ? "线上" : "线下" }}</span><span v-if="race.gradeLabel"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m8 2 2 3.5 4 .5-3 3 .5 4-3.5-2-3.5 2L5 9 2 6l4-.5L8 2Z"/></svg>{{ race.gradeLabel }}</span><span v-if="race.phone"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m5 2 2 3-1.5 1.5a8 8 0 0 0 4 4L11 9l3 2-1 3C6 14 2 10 2 3l3-1Z"/></svg>咨询 · {{ race.phone }}</span></div>
       <p v-for="item in conflicts" :key="item.text" class="warn">{{ item.text }}</p>
       <div class="race-follow-row">
         <span class="follow-symbol" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M7 4.5h10a1 1 0 0 1 1 1V20l-6-3.5L6 20V5.5a1 1 0 0 1 1-1Z"/></svg></span>
@@ -36,9 +39,8 @@
         <FollowRaceButton appearance="detail" :race-id="race.id" :race-name="race.name" :following="following" @change="value => following = value" />
       </div>
     </div>
-    <router-link v-if="race?.archiveId" class="race-archive-entry" :to="{path:'/race-catalog/'+race.archiveId,query:{fromRaceId:String(race.id)}}"><span><strong>报名前，先了解这场比赛</strong><small>历年赛道 · 报名中签 · 完赛与奖牌</small></span><span aria-hidden="true">›</span></router-link>
     <section v-if="race" class="block race-plan" :class="{ 'is-open': ready && planOpen }" aria-labelledby="race-plan-title">
-      <div class="plan-heading"><h2 id="race-plan-title">我的参赛计划</h2><span class="plan-privacy"><svg v-if="!sharedClubIds.length" viewBox="0 0 16 16" aria-hidden="true" fill="none"><rect x="3.5" y="7" width="9" height="6.5" rx="1.5"/><path d="M5.5 7V4.5a2.5 2.5 0 0 1 5 0V7"/></svg>{{ sharedClubIds.length ? sharedClubIds.length + ' 个跑团可见' : '仅自己可见' }}</span></div>
+      <div class="plan-heading"><h2 id="race-plan-title"><span class="plan-heading-icon" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M5 17V3m0 1c3-2 6 2 10 0v8c-4 2-7-2-10 0"/></svg></span>我的参赛计划</h2><span class="plan-privacy"><svg v-if="!sharedClubIds.length" viewBox="0 0 16 16" aria-hidden="true" fill="none"><rect x="3.5" y="7" width="9" height="6.5" rx="1.5"/><path d="M5.5 7V4.5a2.5 2.5 0 0 1 5 0V7"/></svg>{{ sharedClubIds.length ? sharedClubIds.length + ' 个跑团可见' : '仅自己可见' }}</span></div>
       <div class="plan-summary">
         <div class="plan-summary-copy"><span class="plan-summary-label">{{ myStatus ? '当前状态' : '为下一场，留个位置' }}</span><strong class="plan-status" :class="{ 'is-empty': !myStatus }">{{ myStatus || '还没有参赛计划' }}</strong></div>
         <button v-if="!ready" class="plan-action" type="button" @click="loginForPlan">登录后标记<svg viewBox="0 0 16 16" aria-hidden="true"><path d="m6 4 4 4-4 4"/></svg></button>
@@ -93,12 +95,14 @@
       <p v-if="sharingMessage" class="src" role="status">{{ sharingMessage }}</p>
       <p v-if="sharingError" class="err" role="alert">{{ sharingError }}</p>
     </section>
+    <router-link v-if="race?.archiveId" class="race-archive-entry" :to="{path:'/race-catalog/'+race.archiveId,query:{fromRaceId:String(race.id)}}"><span class="archive-entry-icon" aria-hidden="true"><svg viewBox="0 0 28 28" fill="none"><path d="M5 6h7a3 3 0 0 1 3 3v14a4 4 0 0 0-4-2H5V6Zm18 0h-5a3 3 0 0 0-3 3v14a4 4 0 0 1 4-2h4V6Z"/><path d="M8 10h3m-3 4h3m8-4h1m-1 4h1"/></svg></span><span class="archive-entry-copy"><span>赛事档案</span><strong>报名前，先了解这场比赛</strong><small>历年赛道 · 报名中签 · 完赛与奖牌</small></span><span class="archive-entry-arrow" aria-hidden="true">›</span></router-link>
     <RaceOutings v-if="race" :race-id="race.id" :clubs="clubs" :ready="ready" />
     <div v-if="tabs.length" class="tabs" role="tablist">
       <button v-for="item in tabs" :key="item.id" type="button" class="tab" :class="{ on: tab === item.id }" @click="pickTab(item.id)">{{ item.label }}</button>
     </div>
     <template v-if="race && tab === 'signup'">
-      <div v-if="race.nodes.length" class="block">
+      <div v-if="race.nodes.length" class="block race-timeline-card">
+        <div class="race-section-heading"><h2>重要时间</h2><span>报名 · 参赛节点</span></div>
         <div class="timeline">
           <div v-for="node in race.nodes" :key="node.key" class="tl">
             <span class="dot"></span>
@@ -108,7 +112,7 @@
         </div>
         <p v-for="node in race.nodes.filter((item) => item.text)" :key="node.key + '-text'" class="src">{{ node.label }} {{ node.text }}</p>
       </div>
-      <div v-if="showFacts" class="block">
+      <div v-if="showFacts" class="block race-project-card">
         <h2>项目</h2>
         <div v-if="projectLabels.length" class="chips">
           <span v-for="label in projectLabels" :key="label" class="chip">{{ label }}</span>
@@ -125,7 +129,7 @@
           <b>来源 {{ item.source }}</b>
         </div>
       </div>
-      <div class="block">
+      <div class="block race-signup-card">
         <h2>官方报名信息</h2>
         <p class="src">{{ signupHint }}</p>
         <img v-if="signupQr" class="signup-qr" :src="signupQr" alt="报名页二维码" />
@@ -782,3 +786,4 @@ onBeforeUnmount(() => { disposed = true; loadSequence++; actionSequence++; });
 </style>
 
 <style scoped src="../race-plan.css"></style>
+<style scoped src="../race-detail.css"></style>

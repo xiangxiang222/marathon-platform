@@ -1,14 +1,19 @@
 <view class="pad mini-race-race" wx:if="{{race}}">
+  <view class="race-hero">
+    <view class="hero-top"><text>赛事详情</text><text class="hero-status">{{race.regStatus}}</text></view>
+    <view class="hero-name">{{race.name}}</view>
+    <view class="hero-meta"><text>{{race.city || race.province || '地点待公布'}}</text><text wx:if="{{distanceText}}">{{distanceText}}</text></view>
+    <view class="hero-date"><text>{{heroDate}}</text><view><text>{{heroYear}}</text><text>比赛日</text></view></view>
+  </view>
   <view class="card race-identity">
-    <view class="teal">{{race.regStatus}}</view>
-    <view class="title">{{race.name}}</view>
-    <view class="row"><text class="k">比赛日</text><text>{{race.raceDate}}</text></view>
-    <view class="row"><text class="k">地点</text><text>{{race.province === race.city ? race.city : race.province + ' · ' + race.city}}{{race.district ? ' · ' + race.district : ''}}{{race.place && race.place !== race.city && race.place !== race.district ? ' · ' + race.place : ''}}</text></view>
-    <view class="row"><text class="k">项目</text><text>{{distanceText}}</text></view>
-    <view class="row"><text class="k">举办</text><text>{{meetText}}</text></view>
-    <view wx:if="{{race.phone}}" class="row"><text class="k">咨询</text><text>{{race.phone}}</text></view>
-    <view class="row"><text class="k">{{race.deadlineName}}</text><text class="{{race.open && race.daysLeft <= 3 ? 'soon' : ''}}">{{race.deadlineLabel}}</text></view>
-    <view wx:if="{{race.gradeLabel}}" class="src">{{race.gradeLabel}}</view>
+    <view class="race-facts">
+      <view><view class="fact-label"><view class="fact-icon calendar" aria-hidden="true"></view>比赛日</view><view class="fact-value">{{race.raceDate || '日期待公布'}}</view></view>
+      <view><view class="fact-label"><view class="fact-icon pin" aria-hidden="true"></view>地点</view><view class="fact-value">{{race.province && race.province !== race.city ? race.province + ' · ' + (race.city || '') : race.city || race.province || '地点待公布'}}{{race.district ? ' · ' + race.district : ''}}</view></view>
+      <view><view class="fact-label"><view class="fact-icon route" aria-hidden="true"></view>参赛项目</view><view class="fact-value">{{distanceText || '项目待公布'}}</view></view>
+      <view><view class="fact-label"><view class="fact-icon calendar" aria-hidden="true"></view>{{race.deadlineName || '报名节点'}}</view><view class="fact-value {{race.open && race.daysLeft <= 3 ? 'urgent' : ''}}">{{race.deadlineLabel || '待公布'}}</view></view>
+    </view>
+    <view class="race-extra"><text>{{meetText}}举办</text><text wx:if="{{race.gradeLabel}}">{{race.gradeLabel}}</text><text wx:if="{{race.phone}}">咨询 {{race.phone}}</text></view>
+    <view wx:if="{{race.place && race.place !== race.city && race.place !== race.district}}" class="race-place-note">{{race.place}}</view>
     <view wx:for="{{conflicts}}" wx:key="text" class="warn">{{item.text}}</view>
     <view class="race-follow-row">
       <view class="follow-copy"><view class="follow-heading">{{following ? '已关注这场比赛' : '关注这场比赛'}}</view><text>站内查看报名节点提醒</text></view>
@@ -16,10 +21,9 @@
     </view>
   </view>
 
-  <navigator wx:if="{{race.archiveId}}" class="race-archive-entry" url="/pages/race-archive/race-archive?id={{race.archiveId}}&fromRaceId={{race.id}}"><view><view>报名前，先了解这场比赛</view><text>历年赛道 · 报名中签 · 完赛与奖牌</text></view><text>›</text></navigator>
 
   <view class="card race-plan">
-    <view class="plan-heading"><view class="h2">我的参赛计划</view><text class="plan-private"><text wx:if="{{!sharedClubIds.length}}" class="lock-icon" aria-hidden="true"></text>{{sharedClubIds.length ? '已同步 ' + sharedClubIds.length + ' 个跑团' : '仅自己可见'}}</text></view>
+    <view class="plan-heading"><view class="h2"><view class="plan-symbol" aria-hidden="true"></view>我的参赛计划</view><text class="plan-private"><text wx:if="{{!sharedClubIds.length}}" class="lock-icon" aria-hidden="true"></text>{{sharedClubIds.length ? '已同步 ' + sharedClubIds.length + ' 个跑团' : '仅自己可见'}}</text></view>
     <view class="plan-overview">
       <view class="plan-summary"><view class="plan-status {{!myStatus ? 'plan-empty' : ''}}">{{myStatus || '还没有参赛计划'}}</view><text>{{myStatus ? '按实际进度，随时更新状态' : '报名、抽签、参赛，每一步都记得'}}</text></view>
       <button wx:if="{{!ready}}" class="plan-action" bindtap="loginForPlan"><text>登录后标记</text><view class="control-arrow" aria-hidden="true"></view></button>
@@ -53,6 +57,8 @@
     </view>
   </view>
 
+  <navigator wx:if="{{race.archiveId}}" class="race-archive-entry" url="/pages/race-archive/race-archive?id={{race.archiveId}}&fromRaceId={{race.id}}"><image class="archive-art" src="/images/quick-calendar.png" mode="aspectFit"/><view><view>赛事档案</view><text>历年赛道、报名中签与完赛记忆</text></view><text>›</text></navigator>
+
   <view class="card race-outings" id="race-outings">
     <view class="outing-heading"><view><view class="outing-kicker">一起出发</view><view class="h2">本场同行</view></view><button class="outing-start" bindtap="toggleOutingForm" disabled="{{!!outingBusy}}" aria-expanded="{{outingFormOpen}}">{{outingFormOpen ? '收起' : '发起同行'}}<text>{{outingFormOpen ? '−' : '＋'}}</text></button></view>
     <view class="outing-intro">拼车、集合、领物，在这场比赛下约好。<text>仅团内可见，与参赛计划和活动独立。</text></view>
@@ -84,12 +90,13 @@
     </block>
   </view>
 
-  <view class="tabs">
-    <view wx:for="{{tabs}}" wx:key="id" class="tab {{tab === item.id ? 'on' : ''}}" data-id="{{item.id}}" bindtap="pickTab">{{item.label}}</view>
+  <view class="tabs" role="tablist" aria-label="赛事内容">
+    <view wx:for="{{tabs}}" wx:key="id" class="tab {{tab === item.id ? 'on' : ''}}" role="tab" aria-selected="{{tab === item.id}}" data-id="{{item.id}}" bindtap="pickTab">{{item.label}}</view>
   </view>
 
   <block wx:if="{{tab === 'signup'}}">
     <view class="card" wx:if="{{race.nodes.length}}">
+      <view class="h2">赛事时间线</view>
       <view class="timeline">
         <view wx:for="{{race.nodes}}" wx:key="key" class="tl">
           <view class="dot"></view>
