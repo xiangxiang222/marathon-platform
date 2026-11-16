@@ -22,28 +22,7 @@ function pageNumbers(page, pages) {
   return list;
 }
 
-const PLACES = [
-  { name: "北京", cities: ["北京"] },
-  { name: "天津", cities: ["天津"] },
-  { name: "河北", cities: ["石家庄", "唐山", "秦皇岛", "邯郸", "邢台", "保定"] },
-  { name: "山西", cities: ["太原", "大同"] },
-  { name: "内蒙古", cities: ["呼和浩特", "包头"] },
-  { name: "辽宁", cities: ["沈阳", "大连"] },
-  { name: "吉林", cities: ["长春"] },
-  { name: "黑龙江", cities: ["哈尔滨"] },
-  { name: "上海", cities: ["上海"] },
-  { name: "江苏", cities: ["南京", "无锡", "苏州"] },
-  { name: "浙江", cities: ["杭州", "宁波"] },
-  { name: "安徽", cities: ["合肥", "黄山"] },
-  { name: "福建", cities: ["福州", "厦门", "泉州"] },
-  { name: "山东", cities: ["济南", "青岛"] },
-  { name: "广东", cities: ["广州", "深圳", "东莞", "阳江"] },
-  { name: "重庆", cities: ["重庆"] },
-  { name: "四川", cities: ["成都"] },
-  { name: "云南", cities: ["昆明", "玉溪"] },
-  { name: "陕西", cities: ["西安"] },
-  { name: "新疆", cities: ["乌鲁木齐", "图木舒克"] }
-];
+const PLACES = require("../../utils/regions");
 
 const KINDS = [
   { short: "全部赛事", kind: "" },
@@ -57,6 +36,7 @@ const MEETS = [
 ];
 
 const STATUSES = [
+  { label: "全部状态", value: "all" },
   { label: "即将开赛", value: "upcoming" },
   { label: "报名中", value: "open" },
   { label: "待开赛", value: "wait" },
@@ -74,6 +54,7 @@ function navigationMetrics() {
       info = wx.getSystemInfoSync();
     } catch (fallbackError) {}
   }
+  const windowHeight = Number(info.windowHeight) || 700;
   const statusBarHeight = Number(info.statusBarHeight) || 20;
   const windowWidth = Number(info.windowWidth) || 375;
   let capsule = null;
@@ -81,10 +62,10 @@ function navigationMetrics() {
     capsule = wx.getMenuButtonBoundingClientRect();
   } catch (err) {}
   if (!capsule || !capsule.width || !capsule.height || capsule.top < statusBarHeight) {
-    return { statusBarHeight, navHeight: 44, headerRight: 108 };
+    return { statusBarHeight, windowHeight, navHeight: 44, headerRight: 108 };
   }
   return {
-    statusBarHeight,
+    statusBarHeight, windowHeight,
     navHeight: Math.max(44, capsule.height + (capsule.top - statusBarHeight) * 2),
     headerRight: capsule.width + Math.max(0, windowWidth - capsule.right) + 12
   };
@@ -96,18 +77,13 @@ function todayInfo() {
   return { todayLabel: shifted.getUTCMonth() + 1 + "月" + shifted.getUTCDate() + "日 " + weeks[shifted.getUTCDay()] };
 }
 
-function yearBlocks(selected) {
-  const blocks = [];
-  const yearNow = new Date(Date.now() + 8 * 3600 * 1000).getUTCFullYear();
-  for (let year = yearNow - 1; year <= yearNow + 2; year += 1) {
-    const months = [];
-    for (let m = 1; m <= 12; m += 1) {
-      const value = year + "-" + String(m).padStart(2, "0");
-      months.push({ m, value, on: selected === value });
-    }
-    blocks.push({ year, months });
-  }
-  return blocks;
+function yearBlocks(selected, dates = []) {
+  const now = new Date(Date.now() + 8 * 3600 * 1000).getUTCFullYear();
+  const years = [...new Set([now - 1, now, now + 1, now + 2, ...(selected ? [Number(selected.slice(0, 4))] : []), ...dates.map(value => Number(value.slice(0, 4)))])].filter(year => year > 1900).sort((a, b) => a - b);
+  return years.map(year => ({ year, months: Array.from({ length: 12 }, (_, i) => {
+    const m = i + 1, value = year + "-" + String(m).padStart(2, "0");
+    return { m, value, on: selected === value };
+  }) }));
 }
 
 Page({
@@ -118,15 +94,25 @@ Page({
     month: "",
     full: false,
     half: false,
+    ten: false,
     kind: "",
     meet: "",
     status: "upcoming",
-    draftStatus: "upcoming",
-    draftMeet: "",
-    filterSummary: "",
+    filterTags: [],
     statusLabel: "即将开赛",
     sheet: "",
-    province: "河北",
+    province: "",
+    selectedYear: new Date(Date.now() + 8 * 3600 * 1000).getUTCFullYear(),
+    years: [],
+    months: [],
+    availableCities: [],
+    availableMonths: [],
+    distances: [{ value: "", label: "不限距离" }, { value: "full", label: "马拉松" }, { value: "half", label: "半程马拉松" }, { value: "10k", label: "10公里" }],
+    distance: "",
+    advancedCount: 0,
+    pageFloor: 0,
+    panelHeight: 300,
+    windowHeight: 700,
     kinds: KINDS,
     meets: MEETS,
     races: [],
@@ -156,6 +142,7 @@ Page({
   onLoad() {
     this.setData(navigationMetrics());
   },
+  onPageScroll(e) { this._scrollTop = Math.max(0, Number(e.scrollTop) || 0); },
   onShow() {
     this._visible = true;
     this._viewVersion = (this._viewVersion || 0) + 1;
@@ -223,82 +210,71 @@ Page({
   },
   paint(extra) {
     const next = Object.assign({}, this.data, extra || {});
-    const province = next.province;
-    const cities = (PLACES.find((item) => item.name === province) || { cities: [] }).cities;
+    const province = next.province, blocks = yearBlocks(next.month, next.availableMonths);
+    const cityNames = province ? (PLACES.find(item => item.name === province) || { cities: [] }).cities : next.availableCities.length ? next.availableCities : PLACES.flatMap(item => item.cities);
+    const distance = next.full ? "full" : next.half ? "half" : next.ten ? "10k" : "";
+    const tags = [
+      { key: "kind", category: "类型", label: (KINDS.find(item => item.kind === next.kind && item.kind) || {}).short },
+      { key: "city", category: "地点", label: next.city }, { key: "month", category: "时间", label: next.month && Number(next.month.slice(0, 4)) + "年" + Number(next.month.slice(5)) + "月" },
+      { key: "distance", category: "距离", label: (next.distances.find(item => item.value === distance && item.value) || {}).label },
+      { key: "meet", category: "形式", label: (MEETS.find(item => item.meet === next.meet && item.meet) || {}).short },
+      { key: "status", category: "状态", label: next.status !== "upcoming" && (STATUSES.find(item => item.value === next.status) || {}).label }
+    ].filter(item => item.label);
+    const cities = [{ name: "", label: "全国不限" }, ...(province ? [{ name: province, label: province + (["北京", "天津", "上海", "重庆"].includes(province) ? "全市" : "全省") }] : []), ...cityNames.filter(name => name !== province).map(name => ({ name, label: name }))];
     const patch = Object.assign({}, extra || {}, {
-      cityLabel: next.city || "比赛地点",
+      cityLabel: next.city || "比赛地点", monthLabel: next.month ? Number(next.month.slice(0, 4)) + "年" + Number(next.month.slice(5)) + "月" : "比赛时间",
       statusLabel: (STATUSES.find(item => item.value === next.status) || {}).label || "即将开赛",
-      monthLabel: next.month ? next.month.replace("-", "年") + "月" : "比赛时间",
-      filterSummary: [next.city, next.month, next.full ? "全马" : "", next.half ? "半马" : "", (KINDS.find(item => item.kind === next.kind && item.kind) || {}).short, (MEETS.find(item => item.meet === next.meet && item.meet) || {}).short, next.status !== "upcoming" ? (STATUSES.find(item => item.value === next.status) || {}).label : ""].filter(Boolean).join(" · "),
-      provinces: PLACES.map((item) => ({ name: item.name, on: item.name === province })),
-      cities: cities.map((name) => ({ name, on: name === next.city })),
-      yearBlocks: yearBlocks(next.month),
-      statusOptions: STATUSES.map((item) => ({ label: item.label, value: item.value, on: item.value === next.draftStatus }))
+      panelHeight: next.sheet === "time" ? 300 : Math.min(360, Math.max(224, Math.ceil(cities.length / 2) * 52 + 28)),
+      distance, filterTags: tags, advancedCount: Number(!!next.meet) + Number(!!distance) + Number(next.status !== "upcoming"),
+      provinces: [{ name: "", label: "全国", on: !province }, ...PLACES.map(item => ({ name: item.name, label: item.name, on: item.name === province }))],
+      cities: cities.map(item => ({ ...item, on: item.name === next.city })), yearBlocks: blocks,
+      years: blocks.map(item => ({ year: item.year, on: item.year === next.selectedYear })),
+      months: (blocks.find(item => item.year === next.selectedYear) || blocks[0]).months,
+      statusOptions: STATUSES.map(item => ({ ...item, on: item.value === next.status }))
     });
     Object.assign(this.data, patch);
     this.setData(patch);
   },
-  setKind(e) {
-    this.paint({ kind: e.currentTarget.dataset.kind, sheet: "", page: 1 });
-    this.load();
+  applyFilter(patch) {
+    const top = this._filterScrollTop == null ? this._scrollTop || 0 : this._filterScrollTop;
+    this._filterScrollTop = null;
+    this._keepScroll = top;
+    this.paint({ ...patch, sheet: "", page: 1, pageFloor: top + this.data.windowHeight });
+    return this.load();
   },
-  setMeet(e) {
-    this.setData({ draftMeet: e.currentTarget.dataset.meet || "" });
+  setKind(e) { return this.applyFilter({ kind: e.currentTarget.dataset.kind }); },
+  setMeet(e) { return this.applyFilter({ meet: e.currentTarget.dataset.meet || "" }); },
+  setDistance(e) {
+    const value = e.currentTarget.dataset.value;
+    return this.applyFilter({ full: value === "full", half: value === "half", ten: value === "10k" });
   },
   toggleDist(e) {
     const which = e.currentTarget.dataset.which;
-    if (which !== "full" && which !== "half") return;
-    this.paint({ full: which === "full" && !this.data.full, half: which === "half" && !this.data.half, page: 1 });
-    this.load();
+    if (!["full", "half"].includes(which)) return;
+    return this.setDistance({ currentTarget: { dataset: { value: this.data[which] ? "" : which } } });
   },
   openSheet(e) {
-    const name = e.currentTarget.dataset.sheet;
-    const sheet = this.data.sheet === name ? "" : name;
+    const name = e.currentTarget.dataset.sheet, sheet = this.data.sheet === name ? "" : name;
+    this._filterScrollTop = sheet ? this._scrollTop || 0 : null;
     const extra = { sheet };
-    if (name === "status") { extra.draftStatus = this.data.status; extra.draftMeet = this.data.meet; }
-    if (name === "city" && this.data.city) {
-      const found = PLACES.find((item) => item.cities.indexOf(this.data.city) >= 0);
-      if (found) extra.province = found.name;
-    }
+    if (name === "city") extra.province = (PLACES.find(item => item.name === this.data.city || item.cities.includes(this.data.city)) || {}).name || "";
+    if (name === "time" && this.data.month) extra.selectedYear = Number(this.data.month.slice(0, 4));
     this.paint(extra);
   },
-  closeSheet() {
-    this.setData({ sheet: "" });
-  },
+  closeSheet() { this._filterScrollTop = null; this.setData({ sheet: "" }); },
   noop() {},
-  pickProvince(e) {
-    this.paint({ province: e.currentTarget.dataset.name });
+  pickProvince(e) { this.paint({ province: e.currentTarget.dataset.name || "" }); },
+  pickYear(e) { this.paint({ selectedYear: Number(e.currentTarget.dataset.year) }); },
+  pickCity(e) { return this.applyFilter({ city: e.currentTarget.dataset.name || "" }); },
+  pickMonth(e) { return this.applyFilter({ month: e.currentTarget.dataset.value || "" }); },
+  clearMonth() { return this.applyFilter({ month: "" }); },
+  pickStatus(e) { return this.applyFilter({ status: e.currentTarget.dataset.value }); },
+  clearFilter(e) {
+    const key = e.currentTarget.dataset.key;
+    if (key === "distance") return this.applyFilter({ full: false, half: false, ten: false });
+    if (["kind", "city", "month", "meet", "status"].includes(key)) return this.applyFilter({ [key]: key === "status" ? "upcoming" : "" });
   },
-  pickCity(e) {
-    const name = e.currentTarget.dataset.name;
-    const city = this.data.city === name ? "" : name;
-    this.paint({ city, sheet: "", page: 1 });
-    this.load();
-  },
-  pickMonth(e) {
-    const value = e.currentTarget.dataset.value;
-    const month = this.data.month === value ? "" : value;
-    this.paint({ month, sheet: "", page: 1 });
-    this.load();
-  },
-  clearMonth() {
-    this.paint({ month: "", sheet: "", page: 1 });
-    this.load();
-  },
-  pickStatus(e) {
-    this.paint({ draftStatus: e.currentTarget.dataset.value });
-  },
-  resetStatus() {
-    this.paint({ draftStatus: "upcoming", draftMeet: "" });
-  },
-  confirmStatus() {
-    this.paint({ status: this.data.draftStatus, meet: this.data.draftMeet, sheet: "", page: 1 });
-    this.load();
-  },
-  clearFilters() {
-    this.paint({ kind: "", city: "", month: "", full: false, half: false, meet: "", draftMeet: "", status: "upcoming", draftStatus: "upcoming", sheet: "", page: 1 });
-    this.load();
-  },
+  clearFilters() { return this.applyFilter({ kind: "", city: "", month: "", full: false, half: false, ten: false, meet: "", status: "upcoming" }); },
   prevPage() {
     if (this.data.page <= 1) return;
     this.data.page -= 1;
@@ -320,6 +296,7 @@ Page({
   },
   load() {
     const token = accountToken();
+    const keepScroll = this._keepScroll; this._keepScroll = null;
     const q = (this.data.q || "").trim();
     const seq = (this.loadSeq = (this.loadSeq || 0) + 1);
     const params = [];
@@ -331,8 +308,7 @@ Page({
       if (this.data.meet) params.push("meet=" + encodeURIComponent(this.data.meet));
       if (this.data.city) params.push("city=" + encodeURIComponent(this.data.city));
       if (this.data.month) params.push("month=" + encodeURIComponent(this.data.month));
-      if (this.data.full && !this.data.half) params.push("distance=full");
-      if (this.data.half && !this.data.full) params.push("distance=half");
+      if (this.data.distance) params.push("distance=" + this.data.distance);
     }
     params.push("page=" + (this.data.page || 1));
     request("/reminders")
@@ -344,7 +320,7 @@ Page({
         this.setData({ reminders });
       })
       .catch(() => {});
-    request("/races?" + params.join("&"))
+    return request("/races?" + params.join("&"))
       .then((data) => {
         if (seq !== this.loadSeq || token !== accountToken()) return;
         const races = (data.races || []).map((race) => {
@@ -365,6 +341,7 @@ Page({
             soon: race.open && Number(race.daysLeft) <= 7
           };
         });
+        this.paint({ availableCities: Array.isArray(data.cities) ? data.cities : [], availableMonths: Array.isArray(data.months) ? data.months : [] });
         this.setData({
           races,
           loaded: true,
@@ -374,6 +351,8 @@ Page({
           pages: data.pages || 1,
           pageNumbers: pageNumbers(data.page || 1, data.pages || 1),
           total: data.total || 0
+        }, () => {
+          if (keepScroll != null && seq === this.loadSeq && token === accountToken() && this._visible !== false) wx.pageScrollTo({ scrollTop: keepScroll, duration: 0 });
         });
       })
       .catch((err) => {

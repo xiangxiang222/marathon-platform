@@ -17,7 +17,7 @@
     </div>
     <div class="race-card-actions">
       <router-link class="card-plan" :class="{ 'has-plan': race.myStatus }" :to="{ path: '/races/' + race.id, query: { plan: '1' } }">
-        <span class="card-plan-symbol" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M5 17V3m0 1c3-2 6 2 10 0v8c-4 2-7-2-10 0"/></svg></span>
+        <img class="card-plan-symbol" :src="race.myStatus ? planActiveIcon : planIcon" alt="" aria-hidden="true" />
         <span v-if="race.myStatus" class="card-plan-copy"><span>我的计划</span><strong class="my-race-status">{{ race.myStatus }}</strong></span>
         <span v-else class="card-plan-empty">添加参赛计划</span>
         <svg class="card-plan-arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 4 4 4-4 4"/></svg>
@@ -31,6 +31,8 @@
 import { computed } from "vue";
 import { dateParts, toneOf } from "../tone";
 import FollowRaceButton from './FollowRaceButton.vue';
+import planIcon from '../assets/race-actions/plan.svg';
+import planActiveIcon from '../assets/race-actions/plan-active.svg';
 defineEmits(['follow']);
 
 const props = defineProps({
@@ -71,17 +73,15 @@ const projectText = computed(() => {
 .race-state.active .race-state-dot{background:#ef7890}
 .deadline{min-width:0;color:#85747d;font-size:12px;line-height:1.7;overflow-wrap:anywhere}
 .deadline.urgent{color:#cf3c57}
-.race-card-actions{display:flex;align-items:center;gap:10px;min-height:60px;padding:7px 12px 7px 15px;border-top:1px solid #f1eceb;background:#fdfbfb}
-.card-plan{display:flex;align-items:center;gap:7px;flex:1;min-width:0;min-height:44px;border-radius:7px;color:#847780;font-size:12px;line-height:1.7}
-.card-plan-symbol{display:grid;place-items:center;flex:none;width:27px;height:28px;border:1px solid #f1e6e9;border-radius:8px;background:#fff;color:#bfa4ad}
-.card-plan-symbol svg{width:17px;height:17px;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
-.card-plan-copy{display:flex;align-items:center;flex-wrap:wrap;gap:2px 7px;min-width:0;font-size:12px;line-height:1.7}
+.race-card-actions{display:flex;align-items:center;gap:10px;min-height:64px;padding:6px 12px 6px 15px;border-top:1px solid #f1eceb;background:linear-gradient(105deg,#fffcfa,#fffdfd)}
+.card-plan{display:flex;align-items:center;gap:8px;flex:1;min-width:0;min-height:48px;border-radius:8px;color:#796a72;font-size:12px;line-height:1.7}
+.card-plan-symbol{display:block;flex:none;width:30px;height:30px;object-fit:contain}
+.card-plan-copy{display:flex;flex-direction:column;align-items:flex-start;gap:0;min-width:0;font-size:12px;line-height:1.6}
 .card-plan-copy>span{color:#85747d}
-.my-race-status{display:block;color:#d74866;font-size:12px;font-weight:500;line-height:1.7;overflow-wrap:anywhere}
-.card-plan.has-plan .card-plan-symbol{border-color:#ffe0e7;background:#fff2f6;color:#e56b85}
+.my-race-status{display:block;color:#bc405a;font-size:12px;font-weight:600;line-height:1.6;overflow-wrap:anywhere}
 .card-plan-arrow{flex:none;width:12px;height:12px;fill:none;stroke:#c0abb4;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
 .card-plan-empty{min-width:0;overflow-wrap:anywhere}
-.card-follow{flex:none;max-width:44%;padding-left:11px;border-left:1px solid #eee5e8}
+.card-follow{flex:none;max-width:44%;padding-left:10px;border-left:1px solid #eee5e8}
 .race-card:focus-visible,.card-plan:focus-visible{outline:2px solid #ff1838;outline-offset:-3px}
-@media(max-width:350px){.race-card-shell .race-card{gap:11px;padding:15px 13px 9px}.race-card-foot{margin-right:13px;margin-left:74px}.race-card-actions{gap:8px;padding:7px 10px 7px 12px}.card-plan{gap:6px}.card-plan-symbol{width:24px;height:27px;border-radius:7px}.card-plan-copy{gap:1px 5px}.card-follow{padding-left:8px}}
+@media(max-width:350px){.race-card-shell .race-card{gap:11px;padding:15px 13px 9px}.race-card-foot{margin-right:13px;margin-left:74px}.race-card-actions{gap:7px;padding:6px 9px 6px 11px}.card-plan{gap:6px}.card-plan-symbol{width:28px;height:28px}.card-follow{padding-left:7px}}
 </style>

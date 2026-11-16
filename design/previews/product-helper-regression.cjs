@@ -2,20 +2,24 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
 const vm = require("node:vm");
+const { createRequire } = require("node:module");
 
 const root = path.resolve(__dirname, "../..");
 const source = fs.readFileSync(path.join(root, "miniprogram/pages/races/races.js"), "utf8");
 let pageDefinition;
 const requests = [];
+const scrolls = [];
+const racesRequire = createRequire(path.join(root, "miniprogram/pages/races/races.js"));
 const fakeWx = {
-  getWindowInfo: () => ({ statusBarHeight: 20, windowWidth: 390 }),
-  getSystemInfoSync: () => ({ statusBarHeight: 20, windowWidth: 390 }),
+  getWindowInfo: () => ({ statusBarHeight: 20, windowWidth: 390, windowHeight: 844 }),
+  getSystemInfoSync: () => ({ statusBarHeight: 20, windowWidth: 390, windowHeight: 844 }),
+  pageScrollTo: (options) => scrolls.push(options),
   getMenuButtonBoundingClientRect: () => ({ width: 87, height: 32, top: 52, right: 380 })
 };
 vm.runInNewContext(source, {
   require(name) {
     if (name === "../../utils/request") return { request: (url) => { requests.push(url); return Promise.resolve({ races: [], reminders: [], total: 0, pages: 1, page: 1 }); } };
-    throw new Error("Unexpected module " + name);
+    return racesRequire(name);
   },
   Page: (definition) => { pageDefinition = definition; },
   wx: fakeWx,
@@ -27,7 +31,7 @@ vm.runInNewContext(source, {
 const page = {
   ...pageDefinition,
   data: JSON.parse(JSON.stringify(pageDefinition.data)),
-  setData(patch) { Object.assign(this.data, patch); }
+  setData(patch, complete) { Object.assign(this.data, patch); if (complete) complete(); }
 };
 
 async function settle() {
@@ -42,81 +46,106 @@ async function run() {
   const event = (dataset) => ({ currentTarget: { dataset } });
   const raceRequests = () => requests.filter((url) => url.startsWith("/races?"));
   const lastParams = () => new URLSearchParams(raceRequests().at(-1).split("?")[1]);
-  page.setKind(event({ kind: "trail" }));
+  await page.load();
+  async function apply(method, dataset, expected) {
+    const before = raceRequests().length;
+    page.onPageScroll({ scrollTop: 640 });
+    page.openSheet(event({ sheet: method === "pickCity" ? "city" : method === "pickMonth" ? "time" : "status" }));
+    await page[method](event(dataset));
+    await settle();
+    assert.equal(raceRequests().length, before + 1, method + " applies exactly once without confirmation");
+    assert.equal(page.data.sheet, "", method + " automatically closes the sheet");
+    for (const [key, value] of Object.entries(expected)) assert.equal(lastParams().get(key), value, method + " query " + key);
+    assert.equal(scrolls.at(-1).scrollTop, 640, method + " restores the prior page position after loading");
+  }
+  await page.setKind(event({ kind: "trail" }));
   await settle();
-  const beforeDraft = raceRequests().length;
+  await apply("setMeet", { meet: "online" }, { kind: "trail", meet: "online", status: "upcoming" });
   page.openSheet(event({ sheet: "status" }));
-  page.setMeet(event({ meet: "online" }));
-  page.pickStatus(event({ value: "open" }));
-  await settle();
-  assert.equal(raceRequests().length, beforeDraft, "draft selections must not request races");
-  assert.equal(page.data.meet, "");
-  assert.equal(page.data.status, "upcoming");
-  page.confirmStatus();
-  await settle();
-  assert.equal(lastParams().get("kind"), "trail");
-  assert.equal(lastParams().get("meet"), "online");
-  assert.equal(lastParams().get("status"), "open");
-  assert.equal(page.data.sheet, "");
-  assert.ok(page.data.filterSummary.includes("线上赛"));
-
-  const beforeDiscard = raceRequests().length;
-  page.openSheet(event({ sheet: "status" }));
-  page.setMeet(event({ meet: "offline" }));
-  page.pickStatus(event({ value: "closed" }));
+  assert.equal(page.data.meet, "online", "reopening preserves the selected format");
+  const beforeClose = raceRequests().length;
   page.closeSheet();
-  await settle();
-  assert.equal(raceRequests().length, beforeDiscard, "closing the drawer discards edits without reloading");
-  assert.equal(page.data.meet, "online");
-  assert.equal(page.data.status, "open");
-  page.openSheet(event({ sheet: "status" }));
-  assert.equal(page.data.draftMeet, "online");
-  assert.equal(page.data.draftStatus, "open");
-  page.resetStatus();
-  assert.equal(page.data.meet, "online", "drawer reset remains a draft until confirmed");
-  assert.equal(page.data.status, "open");
-  page.confirmStatus();
-  await settle();
-  assert.equal(lastParams().has("meet"), false);
-  assert.equal(lastParams().get("status"), "upcoming");
-  assert.equal(lastParams().get("kind"), "trail", "drawer reset keeps other filters");
+  assert.equal(raceRequests().length, beforeClose, "closing alone does not issue another request");
+  await apply("pickStatus", { value: "all" }, { kind: "trail", meet: "online", status: "all" });
+  await apply("setDistance", { value: "full" }, { kind: "trail", meet: "online", distance: "full", status: "all" });
+  await apply("setDistance", { value: "half" }, { distance: "half", kind: "trail", meet: "online", status: "all" });
+  assert.equal(page.data.full, false, "distance options are mutually exclusive");
+  assert.equal(page.data.half, true);
+  await apply("setDistance", { value: "10k" }, { distance: "10k", kind: "trail" });
+  assert.equal(page.data.full || page.data.half, false);
+  await apply("setDistance", { value: "" }, { distance: null, kind: "trail", meet: "online" });
 
-  page.toggleDist(event({ which: "full" }));
+  page.openSheet(event({ sheet: "city" }));
+  const beforeProvince = raceRequests().length;
+  page.pickProvince(event({ name: "浙江" }));
+  assert.equal(page.data.sheet, "city", "province browsing keeps the sheet open");
+  assert.equal(raceRequests().length, beforeProvince, "province browsing does not query races");
+  assert.ok(page.data.cities.some((item) => item.name === "杭州"));
+  await page.pickCity(event({ name: "杭州" }));
   await settle();
-  assert.equal(lastParams().get("distance"), "full");
-  page.toggleDist(event({ which: "half" }));
+  assert.equal(lastParams().get("city"), "杭州");
+  assert.equal(page.data.sheet, "");
+  page.openSheet(event({ sheet: "city" }));
+  assert.equal(page.data.province, "浙江", "reopening selects the province of the applied city");
+  assert.ok(page.data.cities.some((item) => item.name === "杭州" && item.on));
+  await page.pickCity(event({ name: "" }));
   await settle();
-  assert.equal(lastParams().get("distance"), "half");
-  assert.equal(page.data.full, false, "distance chips are mutually exclusive");
-  page.toggleDist(event({ which: "half" }));
+  assert.equal(lastParams().has("city"), false, "nationwide removes only the city filter");
+  assert.equal(lastParams().get("kind"), "trail");
+
+  page.openSheet(event({ sheet: "time" }));
+  const beforeYear = raceRequests().length;
+  page.pickYear(event({ year: currentYear + 1 }));
+  assert.equal(page.data.sheet, "time", "year browsing keeps the sheet open");
+  assert.equal(raceRequests().length, beforeYear, "year browsing does not query races");
+  assert.equal(page.data.months.length, 12);
+  assert.ok(page.data.months.every((item) => item.value.startsWith((currentYear + 1) + "-")));
+  await page.pickMonth(event({ value: (currentYear + 1) + "-11" }));
   await settle();
-  assert.equal(lastParams().has("distance"), false, "tapping the selected distance clears it");
-  page.pickCity(event({ name: "北京" }));
-  page.pickMonth(event({ value: currentYear + "-11" }));
-  page.toggleDist(event({ which: "full" }));
-  page.openSheet(event({ sheet: "status" }));
-  page.setMeet(event({ meet: "offline" }));
-  page.pickStatus(event({ value: "closed" }));
-  page.confirmStatus();
+  assert.equal(page.data.sheet, "");
+  page.openSheet(event({ sheet: "time" }));
+  assert.equal(page.data.selectedYear, currentYear + 1);
+  assert.ok(page.data.months.some((item) => item.value === (currentYear + 1) + "-11" && item.on));
+  await page.pickMonth(event({ value: "" }));
   await settle();
-  assert.ok(page.data.filterSummary.includes("北京"));
-  assert.ok(page.data.filterSummary.includes("全马"));
-  assert.ok(page.data.filterSummary.includes("比赛结束"));
+  assert.equal(lastParams().has("month"), false);
+  assert.equal(lastParams().get("meet"), "online");
+
+  await apply("pickCity", { name: "北京" }, { city: "北京" });
+  await apply("pickMonth", { value: currentYear + "-11" }, { month: currentYear + "-11" });
+  await apply("setDistance", { value: "full" }, { distance: "full" });
+  await apply("setMeet", { meet: "offline" }, { meet: "offline" });
+  await apply("pickStatus", { value: "closed" }, { status: "closed" });
+  assert.deepEqual(Array.from(page.data.filterTags, (item) => item.key).sort(), ["city", "distance", "kind", "meet", "month", "status"]);
+  const expected = { kind: "trail", city: "北京", month: currentYear + "-11", distance: "full", meet: "offline", status: "closed" };
+  for (const key of ["distance", "city", "month", "kind", "meet", "status"]) {
+    await page.clearFilter(event({ key }));
+    await settle();
+    delete expected[key];
+    if (key === "status") expected.status = "upcoming";
+    for (const [other, value] of Object.entries(expected)) assert.equal(lastParams().get(other), value, "clearing " + key + " keeps " + other);
+    if (key !== "status") assert.equal(lastParams().has(key), false);
+    assert.equal(page.data.filterTags.some((item) => item.key === key), false, "only the selected tag is removed");
+  }
+  assert.equal(page.data.filterTags.length, 0);
+  await apply("pickCity", { name: "北京" }, { city: "北京" });
+  await apply("setMeet", { meet: "offline" }, { city: "北京", meet: "offline" });
   page.data.q = "北马";
-  page.load();
+  await page.load();
   await settle();
   assert.equal(lastParams().get("q"), "北马");
   assert.equal(lastParams().get("status"), "all");
   assert.deepEqual([...lastParams().keys()].sort(), ["page", "q", "status"], "search ignores active filters");
   page.data.q = "";
-  page.clearFilters();
+  await page.load();
+  assert.equal(lastParams().get("city"), "北京", "clearing search restores applied filters");
+  await page.clearFilters();
   await settle();
   assert.deepEqual([...lastParams().entries()], [["status", "upcoming"], ["page", "1"]]);
-  assert.equal(page.data.filterSummary, "");
-  for (const key of ["city", "month", "kind", "meet", "draftMeet", "sheet"]) assert.equal(page.data[key], "", key + " resets");
-  assert.equal(page.data.full, false);
-  assert.equal(page.data.half, false);
-  assert.equal(page.data.draftStatus, "upcoming");
+  assert.equal(page.data.filterTags.length, 0);
+  for (const key of ["city", "month", "kind", "meet", "distance", "sheet"]) assert.equal(page.data[key], "", key + " resets");
+  assert.equal(page.data.full || page.data.half || page.data.ten, false);
+  assert.equal(page.data.status, "upcoming");
 
   let meetupPage;
   const meetupSource = fs.readFileSync(path.join(root, "miniprogram/pages/meetup/meetup.js"), "utf8");
@@ -188,7 +217,7 @@ async function run() {
   assert.equal(size.width, 750);
   assert.ok(size.height < 32768);
   assert.ok(calls.some((line) => String(line).includes("前 350 条")));
-  console.log(JSON.stringify({ passed: true, checks: ["mini filter drafts confirm together", "mini drawer close abandons drafts", "mini drawer reset confirms defaults", "mini distance filters stay exclusive", "mini filter summary and clear", "mini search ignores filters", "dynamic year list", "meetup share route", "privacy consent resolver", "long result poster dimensions and large-result limit"] }, null, 2));
+  console.log(JSON.stringify({ passed: true, checks: ["mini independent filters apply and close immediately", "mini province and year only browse", "mini reopening preserves selection", "mini distance options stay exclusive", "mini individual tags and clear all", "mini filter update restores scroll", "mini search ignores and restores filters", "dynamic twelve-month year grid", "meetup share route", "privacy consent resolver", "long result poster dimensions and large-result limit"] }, null, 2));
 }
 
 run().catch((error) => { console.error(error); process.exitCode = 1; });

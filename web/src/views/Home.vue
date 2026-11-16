@@ -1,5 +1,5 @@
 <template>
-  <main class="home-page">
+  <main class="home-page" :style="pageMinHeight ? { minHeight: pageMinHeight + 'px' } : undefined">
     <section class="home-top">
       <div class="home-brand">
       <h1 class="home-page-title">赛事</h1>
@@ -63,52 +63,51 @@
           <nav class="race-meet-categories" aria-label="赛事类型">
             <button v-for="item in trackKinds" :key="item.kind" type="button" :class="{ on: trackKind === item.kind }" :aria-pressed="trackKind === item.kind" @click="setTrackKind(item.kind)">{{ item.short }}</button>
           </nav>
-          <button type="button" class="filter-more" :class="{ on: advancedCount }" aria-label="更多筛选" @click="openSheet('status')"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 5h14M3 10h14M3 15h14"/><circle cx="7" cy="5" r="2"/><circle cx="13" cy="10" r="2"/><circle cx="8" cy="15" r="2"/></svg><span>筛选</span><b v-if="advancedCount">{{ advancedCount }}</b></button>
+          <span class="filter-hint">找到你的下一场</span>
         </div>
         <div class="filter-bar">
-          <button type="button" :class="{ on: city }" :title="city || '比赛地点'" aria-label="比赛地点" @click="openSheet('city')"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 6c0 3.5-5 8-5 8S3 9.5 3 6a5 5 0 1 1 10 0Z"/><circle cx="8" cy="6" r="1.5"/></svg><span>{{ city || '地点' }}</span><i></i></button>
-          <button type="button" :class="{ on: month }" :title="monthLabel || '比赛时间'" aria-label="比赛时间" @click="openSheet('time')"><span>{{ month ? Number(month.slice(5)) + '月' : '时间' }}</span><i></i></button>
-          <button type="button" :class="{ on: full }" :aria-pressed="full" aria-label="马拉松" @click="toggleDist('full')">全马</button>
-          <button type="button" :class="{ on: half }" :aria-pressed="half" aria-label="半程马拉松" @click="toggleDist('half')">半马</button>
+          <button type="button" :class="{ on: city }" :title="city || '比赛地点'" aria-label="比赛地点" :aria-expanded="sheet === 'city'" @click="openSheet('city')"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M16 8c0 4-6 9-6 9S4 12 4 8a6 6 0 1 1 12 0Z"/><circle cx="10" cy="8" r="2"/></svg><span>{{ city || '比赛地点' }}</span><i></i></button>
+          <button type="button" :class="{ on: month }" :title="monthLabel || '比赛时间'" aria-label="比赛时间" :aria-expanded="sheet === 'time'" @click="openSheet('time')"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="3" y="4" width="14" height="13" rx="3"/><path d="M6 2v4m8-4v4M3 9h14"/></svg><span>{{ month ? Number(month.slice(5)) + '月赛事' : '比赛时间' }}</span><i></i></button>
+          <button type="button" class="filter-more" :class="{ on: advancedCount }" aria-label="更多筛选" :aria-expanded="sheet === 'status'" @click="openSheet('status')"><img :src="filterIcon" alt="" /><span>筛选</span><b v-if="advancedCount">{{ advancedCount }}</b><i v-else></i></button>
         </div>
       </div>
-      <div v-if="!searching && activeFilters.length" class="active-filters"><span>{{ activeFilters.join(' · ') }}</span><button type="button" @click="resetFilters">清空筛选<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m5 5 6 6m0-6-6 6"/></svg></button></div>
+      <div v-if="!searching && activeFilters.length" class="active-filters" aria-label="已选筛选条件"><button v-for="item in activeFilters" :key="item.key" type="button" class="filter-tag" :aria-label="'取消' + item.category + '：' + item.label" @click="removeFilter(item.key)"><span>{{ item.label }}</span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m5 5 6 6m0-6-6 6"/></svg></button><button type="button" class="clear-filters" @click="resetFilters">清空筛选</button></div>
       <div v-if="loadError" class="load-error" role="alert"><span>{{ loadError }}</span><button type="button" @click="load">重试</button></div>
       <p v-else-if="loading" class="results-loading" role="status">正在更新赛事…</p>
       <dialog v-if="sheet" ref="sheetDialog" class="drop home-filter-sheet" aria-labelledby="home-filter-title" @cancel.prevent="sheet = ''" @click="closeBackdrop">
-        <div class="filter-sheet-heading"><div><span>查找赛事</span><h3 id="home-filter-title">{{ sheet === 'city' ? '比赛地点' : sheet === 'time' ? '比赛时间' : '更多筛选' }}</h3></div><button type="button" aria-label="关闭筛选" @click="sheet = ''"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15"/></svg></button></div>
+        <div class="sheet-grip" aria-hidden="true"></div>
+        <div class="filter-sheet-heading"><div><h3 id="home-filter-title">{{ sheet === 'city' ? '想去哪里跑' : sheet === 'time' ? '选个比赛时间' : '找到心仪赛事' }}</h3><p>点选即生效，自动收起</p></div><button type="button" autofocus aria-label="关闭筛选" @click="sheet = ''"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15"/></svg></button></div>
         <div v-if="sheet === 'city'" class="loc">
-          <div class="prov">
-            <button v-for="item in places" :key="item.name" type="button" :class="{ on: province === item.name }" @click="province = item.name">
+          <nav class="prov" aria-label="省份导航">
+            <button type="button" :class="{ on: !province }" :aria-pressed="!province" @click="province = ''">全国</button>
+            <button v-for="item in places" :key="item.name" type="button" :class="{ on: province === item.name }" :aria-pressed="province === item.name" @click="province = item.name">
               {{ item.name }}
             </button>
-          </div>
-          <div class="cities">
-            <button v-for="name in cityNames" :key="name" type="button" :class="{ on: city === name }" @click="pickCity(name)">{{ name }}</button>
-          </div>
+          </nav>
+          <div class="city-content"><div class="selection-caption"><h4>{{ province || '全国' }}</h4><span>选择目的地</span></div><div class="cities">
+            <button type="button" :class="{ on: !city }" :aria-pressed="!city" @click="pickCity('')">全国不限</button>
+            <button v-if="province" type="button" :class="{ on: city === province }" :aria-pressed="city === province" @click="pickCity(province)">{{ province }}{{ ['北京', '天津', '上海', '重庆'].includes(province) ? '全市' : '全省' }}</button>
+            <button v-for="name in cityNames.filter(name => name !== province)" :key="name" type="button" :class="{ on: city === name }" :aria-pressed="city === name" @click="pickCity(name)">{{ name }}</button>
+          </div></div>
         </div>
-        <div v-else-if="sheet === 'time'" class="time">
-          <button type="button" class="chip" :class="{ on: !month }" @click="clearMonth">不限</button>
-          <section v-for="year in years" :key="year">
-            <h4>{{ year }}年</h4>
-            <div class="months">
-              <button v-for="m in 12" :key="year + '-' + m" type="button" :class="{ on: month === ym(year, m) }" @click="pickMonth(year, m)">{{ m }}月</button>
-            </div>
-          </section>
+        <div v-else-if="sheet === 'time'" class="time selection-layout">
+          <nav class="year-nav" aria-label="年份导航"><button v-for="year in years" :key="year" type="button" :class="{ on: selectedYear === year }" :aria-pressed="selectedYear === year" @click="selectedYear = year">{{ year }}年</button></nav>
+          <div class="month-content"><div class="selection-caption"><h4>{{ selectedYear }}年</h4><span>选择比赛月份</span></div><div class="months">
+            <button type="button" class="unlimited-month" :class="{ on: !month }" :aria-pressed="!month" @click="clearMonth">不限时间</button>
+            <button v-for="m in 12" :key="m" type="button" :class="{ on: month === ym(selectedYear, m) }" :aria-pressed="month === ym(selectedYear, m)" @click="pickMonth(selectedYear, m)">{{ m }}月</button>
+          </div>
+          </div>
         </div>
         <div v-else class="status-sheet">
-          <h4>赛事形式</h4>
-          <nav class="meet-options" aria-label="赛事形式"><button v-for="item in meetKinds" :key="item.kind" type="button" :class="{ on: draftMeetKind === item.kind }" :aria-pressed="draftMeetKind === item.kind" @click="draftMeetKind = item.kind">{{ item.short }}</button></nav>
-          <h4>赛事状态</h4>
+          <section class="option-group"><h4>赛事形式<span>选择比赛参与方式</span></h4>
+          <nav class="meet-options" aria-label="赛事形式"><button v-for="item in meetKinds" :key="item.kind" type="button" :class="{ on: meetKind === item.kind }" :aria-pressed="meetKind === item.kind" @click="pickMeet(item.kind)">{{ item.short }}</button></nav></section>
+          <section class="option-group"><h4>比赛距离<span>与赛事类型独立筛选</span></h4><nav class="distance-options" aria-label="比赛距离"><button v-for="item in distanceOptions" :key="item.value" type="button" :class="{ on: distanceParam() === item.value }" :aria-pressed="distanceParam() === item.value" @click="pickDistance(item.value)">{{ item.label }}</button></nav></section>
+          <section class="option-group"><h4>公开赛事状态<span>与我的参赛计划无关</span></h4>
           <div class="pills">
-            <button v-for="item in statusOptions" :key="item.value" type="button" :class="{ on: draftStatus === item.value }" :aria-pressed="draftStatus === item.value" @click="draftStatus = item.value">
+            <button v-for="item in statusOptions" :key="item.value" type="button" :class="{ on: status === item.value }" :aria-pressed="status === item.value" @click="pickStatus(item.value)">
               {{ item.label }}
             </button>
-          </div>
-          <div class="actions">
-            <button type="button" class="ghost" @click="resetDraft">重置</button>
-            <button type="button" class="ok" @click="confirmStatus">确认</button>
-          </div>
+          </div></section>
         </div>
       </dialog>
 
@@ -131,6 +130,8 @@ import calendarIcon from "../assets/quick/calendar.svg";
 import radarIcon from "../assets/quick/radar.svg";
 import clubsIcon from "../assets/quick/clubs.svg";
 import newsIcon from "../assets/quick/news.svg";
+import filterIcon from "../assets/race-actions/filter.svg";
+import { regions as places } from "../regions";
 
 const base = import.meta.env.BASE_URL;
 const route = useRoute();
@@ -146,10 +147,10 @@ const ten = ref(false);
 const trackKind = ref("");
 const meetKind = ref("");
 const status = ref("upcoming");
-const draftStatus = ref("upcoming");
 const sheet = ref("");
 const sheetDialog = ref(null);
-const draftMeetKind = ref("");
+const pageMinHeight = ref(0);
+let filterScrollTop = 0;
 const races = ref([]);
 const shownQuery = ref("");
 const loadError = ref("");
@@ -190,32 +191,12 @@ onUnmounted(() => { window.clearInterval(reminderTimer); clearTimeout(searchTime
 const searching = computed(() => !!q.value.trim());
 let searchTimer = 0;
 let loadSeq = 0;
-const province = ref("河北");
+const province = ref("");
+const availableCities = ref([]), availableMonths = ref([]);
 const currentYear = new Date(Date.now() + 8 * 3600 * 1000).getUTCFullYear();
-const years = [currentYear - 1, currentYear, currentYear + 1, currentYear + 2];
+const years = computed(() => [...new Set([currentYear - 1, currentYear, currentYear + 1, currentYear + 2, ...availableMonths.value.map(value => Number(value.slice(0, 4))), ...(month.value ? [Number(month.value.slice(0, 4))] : [])])].filter(year => year > 1900).sort((a, b) => a - b));
+const selectedYear = ref(currentYear);
 
-const places = [
-  { name: "北京", cities: ["北京"] },
-  { name: "天津", cities: ["天津"] },
-  { name: "河北", cities: ["石家庄", "唐山", "秦皇岛", "邯郸", "邢台", "保定"] },
-  { name: "山西", cities: ["太原", "大同"] },
-  { name: "内蒙古", cities: ["呼和浩特", "包头"] },
-  { name: "辽宁", cities: ["沈阳", "大连"] },
-  { name: "吉林", cities: ["长春"] },
-  { name: "黑龙江", cities: ["哈尔滨"] },
-  { name: "上海", cities: ["上海"] },
-  { name: "江苏", cities: ["南京", "无锡", "苏州"] },
-  { name: "浙江", cities: ["杭州", "宁波"] },
-  { name: "安徽", cities: ["合肥", "黄山"] },
-  { name: "福建", cities: ["福州", "厦门", "泉州"] },
-  { name: "山东", cities: ["济南", "青岛"] },
-  { name: "广东", cities: ["广州", "深圳", "东莞", "阳江"] },
-  { name: "重庆", cities: ["重庆"] },
-  { name: "四川", cities: ["成都"] },
-  { name: "云南", cities: ["昆明", "玉溪"] },
-  { name: "陕西", cities: ["西安"] },
-  { name: "新疆", cities: ["乌鲁木齐", "图木舒克"] }
-];
 
 const trackKinds = [
   { short: "全部赛事", kind: "" },
@@ -232,6 +213,7 @@ const todayParts = computed(() => {
 const todayLabel = computed(() => todayParts.value.month + "月" + todayParts.value.day + "日 " + todayParts.value.week);
 
 const statusOptions = [
+  { label: "全部状态", value: "all" },
   { label: "即将开赛", value: "upcoming" },
   { label: "报名中", value: "open" },
   { label: "待开赛", value: "wait" },
@@ -240,18 +222,20 @@ const statusOptions = [
   { label: "报名未公布", value: "unannounced" }
 ];
 
-const advancedCount = computed(() => Number(!!meetKind.value) + Number(status.value !== 'upcoming'));
+const distanceOptions = [{ label: '不限距离', value: '' }, { label: '马拉松', value: 'full' }, { label: '半程马拉松', value: 'half' }, { label: '10公里', value: '10k' }];
+const advancedCount = computed(() => Number(!!meetKind.value) + Number(!!distanceParam()) + Number(status.value !== 'upcoming'));
 const statusLabel = computed(() => statusOptions.find(item => item.value === status.value)?.label || '全部状态');
 const activeFilters = computed(() => [
-  city.value, monthLabel.value,
-  full.value && '全马', half.value && '半马',
-  trackKinds.find(item => item.kind && item.kind === trackKind.value)?.short,
-  meetKinds.find(item => item.kind && item.kind === meetKind.value)?.short,
-  status.value !== 'upcoming' && statusOptions.find(item => item.value === status.value)?.label
-].filter(Boolean));
+  { key: 'city', category: '地点', label: city.value },
+  { key: 'month', category: '时间', label: monthLabel.value },
+  { key: 'distance', category: '距离', label: distanceParam() && distanceOptions.find(item => item.value === distanceParam())?.label },
+  { key: 'kind', category: '类型', label: trackKinds.find(item => item.kind && item.kind === trackKind.value)?.short },
+  { key: 'meet', category: '形式', label: meetKinds.find(item => item.kind && item.kind === meetKind.value)?.short },
+  { key: 'status', category: '状态', label: status.value !== 'upcoming' && statusOptions.find(item => item.value === status.value)?.label }
+].filter(item => item.label));
 
-const cityNames = computed(() => places.find((item) => item.name === province.value)?.cities || []);
-const monthLabel = computed(() => (month.value ? month.value.replace("-", "年") + "月" : ""));
+const cityNames = computed(() => province.value ? places.find((item) => item.name === province.value)?.cities || [] : availableCities.value.length ? availableCities.value : places.flatMap(item => item.cities));
+const monthLabel = computed(() => (month.value ? Number(month.value.slice(0, 4)) + '年' + Number(month.value.slice(5)) + '月' : ''));
 
 function ym(year, m) {
   return year + "-" + String(m).padStart(2, "0");
@@ -280,7 +264,7 @@ function turnPage(next) {
   return load();
 }
 
-async function load() {
+async function load(options = {}) {
   const seq = ++loadSeq;
   loading.value = true;
   loadError.value = "";
@@ -303,6 +287,8 @@ async function load() {
     const data = await api("/races?" + params.toString());
     if (seq !== loadSeq) return;
     races.value = data.races;
+    availableCities.value = (Array.isArray(data.cities) ? data.cities : []).filter(Boolean);
+    availableMonths.value = Array.isArray(data.months) ? data.months : [];
     total.value = data.total || 0;
     pages.value = data.pages || 1;
     page.value = data.page || 1;
@@ -313,24 +299,40 @@ async function load() {
     shownQuery.value = query;
     loadError.value = err.message || "赛历加载失败";
   } finally {
-    if (seq === loadSeq) loading.value = false;
+    if (seq === loadSeq) {
+      loading.value = false;
+      if (Number.isFinite(options.keepScroll)) {
+        await nextTick();
+        if (seq === loadSeq) window.scrollTo({ top: options.keepScroll, behavior: 'auto' });
+      }
+    }
   }
 }
 
 function setTrackKind(next) {
   trackKind.value = next;
-  sheet.value = "";
-  page.value = 1;
-  load();
+  applyFilters();
 }
 
-function toggleDist(which) {
-  if (which === "full") { full.value = !full.value; half.value = false; }
-  if (which === "half") { half.value = !half.value; full.value = false; }
-  if (full.value || half.value) ten.value = false;
-  page.value = 1;
-  load();
+function rememberPosition() {
+  const top = window.scrollY;
+  const main = document.querySelector('.home-page');
+  const start = main ? main.getBoundingClientRect().top + top : 0;
+  pageMinHeight.value = Math.max(pageMinHeight.value, top + window.innerHeight - start);
+  return top;
 }
+function applyFilters() {
+  const keepScroll = sheet.value ? filterScrollTop : rememberPosition();
+  sheet.value = '';
+  page.value = 1;
+  return load({ keepScroll });
+}
+function pickDistance(value) {
+  full.value = value === 'full'; half.value = value === 'half'; ten.value = value === '10k';
+  applyFilters();
+}
+function pickMeet(value) { meetKind.value = value; applyFilters(); }
+function pickStatus(value) { status.value = value; applyFilters(); }
 
 let filterBodyOverflow;
 watch(sheet, async (value) => {
@@ -343,7 +345,11 @@ watch(sheet, async (value) => {
   if (filterBodyOverflow === undefined) filterBodyOverflow = document.body.style.overflow;
   document.body.style.overflow = 'hidden';
   await nextTick();
-  if (sheet.value && sheetDialog.value && !sheetDialog.value.open) sheetDialog.value.showModal();
+  if (sheet.value && sheetDialog.value && !sheetDialog.value.open) {
+    sheetDialog.value.showModal();
+    const selected = sheetDialog.value.querySelector('.prov .on,.year-nav .on');
+    if (selected) selected.parentElement.scrollTop = selected.offsetTop - selected.parentElement.offsetTop - 48;
+  }
 });
 onUnmounted(() => { if (filterBodyOverflow !== undefined) document.body.style.overflow = filterBodyOverflow; });
 function closeBackdrop(event) {
@@ -353,48 +359,44 @@ function closeBackdrop(event) {
 }
 
 function openSheet(name) {
+  filterScrollTop = rememberPosition();
   sheet.value = sheet.value === name ? "" : name;
-  if (name === "status") { draftStatus.value = status.value; draftMeetKind.value = meetKind.value; }
-  if (name === "city" && city.value) {
-    const found = places.find((item) => item.cities.includes(city.value));
-    if (found) province.value = found.name;
+  if (name === "city") {
+    const found = places.find((item) => item.name === city.value || item.cities.includes(city.value));
+    province.value = found?.name || '';
   }
+  if (name === 'time') selectedYear.value = month.value ? Number(month.value.slice(0, 4)) : currentYear;
 }
 
 function pickCity(name) {
-  city.value = city.value === name ? "" : name;
-  sheet.value = "";
-  page.value = 1;
-  load();
+  city.value = name;
+  applyFilters();
 }
 
 function pickMonth(year, m) {
   const value = ym(year, m);
-  month.value = month.value === value ? "" : value;
-  sheet.value = "";
-  page.value = 1;
-  load();
+  month.value = value;
+  applyFilters();
 }
 
 function clearMonth() {
   month.value = "";
-  sheet.value = "";
-  page.value = 1;
-  load();
+  applyFilters();
 }
 
-function resetDraft() { draftStatus.value = 'upcoming'; draftMeetKind.value = ''; }
 function resetFilters() {
   city.value = ''; month.value = ''; full.value = false; half.value = false; ten.value = false;
   trackKind.value = ''; meetKind.value = ''; status.value = 'upcoming'; page.value = 1;
-  sheet.value = ''; load();
+  applyFilters();
 }
-function confirmStatus() {
-  status.value = draftStatus.value;
-  meetKind.value = draftMeetKind.value;
-  sheet.value = "";
-  page.value = 1;
-  load();
+function removeFilter(key) {
+  if (key === 'city') city.value = '';
+  if (key === 'month') month.value = '';
+  if (key === 'distance') { full.value = false; half.value = false; ten.value = false; }
+  if (key === 'kind') trackKind.value = '';
+  if (key === 'meet') meetKind.value = '';
+  if (key === 'status') status.value = 'upcoming';
+  applyFilters();
 }
 
 onMounted(() => {
@@ -488,66 +490,70 @@ onUnmounted(() => { reminderRequest++; window.removeEventListener('race-follow-c
 .deadline-next { display: flex; align-items: center; flex: none; gap: 6px; min-height: 32px; color: #999; }
 .deadline-next small { font-size: 12px; font-weight: 400; }
 .deadline-next > span { font-size: 22px; line-height: 1; }
-.results-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:24px 18px 14px}
-.results-heading h2{margin:0;font-size:20px;font-weight:650;line-height:1.5;letter-spacing:-.3px}
-.results-heading>span{padding:4px 9px;border-radius:7px;background:#fff;color:#857781;font-size:12px;font-variant-numeric:tabular-nums}
-.home-filters{position:sticky;top:0;z-index:8;margin:0 16px 14px;padding:5px 11px 11px;border:1px solid #ebe7e7;border-radius:15px;background:#fff;box-shadow:0 5px 18px #573b4004}
-.filter-navigation{display:flex;align-items:center;gap:10px;min-height:53px;margin-bottom:7px;border-bottom:1px solid #f2eeee}
-.race-meet-categories{display:flex;flex:1;min-width:0;gap:2px}
-.race-meet-categories button{position:relative;flex:1;min-width:0;min-height:44px;padding:7px 1px;color:#8b7e86;font-size:13px;line-height:1.5;white-space:nowrap}
-.race-meet-categories button.on{color:#e92546;font-weight:650}
-.race-meet-categories button.on:after{position:absolute;bottom:0;left:50%;width:19px;height:3px;border-radius:3px;background:#ff1838;transform:translateX(-50%);content:''}
-.filter-more{display:flex;align-items:center;justify-content:center;flex:none;gap:5px;min-width:59px;min-height:44px;padding:7px 0 7px 8px;color:#756b74;font-size:12px;line-height:1.5}
-.filter-more>svg{width:17px;height:17px;stroke:currentColor;stroke-width:1.35;stroke-linecap:round}
-.filter-more>svg circle{fill:#fff}
-.filter-more.on{color:#e92546}
-.filter-more>b{display:grid;place-items:center;min-width:16px;height:16px;padding:0 3px;border-radius:5px;background:#ff1838;color:#fff;font-size:12px;font-weight:500;line-height:1}
-.home-filters .filter-bar{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;padding:0;overflow:visible;background:transparent}
-.home-filters .filter-bar>button{display:flex;align-items:center;justify-content:center;gap:5px;min-width:0;min-height:44px;height:auto;padding:7px 6px;border:1px solid #f1eeee;border-radius:9px;background:#f7f6f5;color:#776c75;font-size:12px;font-weight:400;line-height:1.5;white-space:nowrap}
-.home-filters .filter-bar>button>span{overflow:hidden;text-overflow:ellipsis}
-.home-filters .filter-bar>button>svg{flex:none;width:14px;height:14px;stroke:#ae9ea6;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
-.home-filters .filter-bar>button.on{border-color:#ffd9e1;background:#fff2f5;color:#df3452}
-.home-filters i{flex:none;width:5px;height:5px;margin-top:-3px;border-right:1px solid currentColor;border-bottom:1px solid currentColor;transform:rotate(45deg);opacity:.65}
-.active-filters{display:flex;align-items:center;gap:8px;margin:-7px 18px 7px;color:#aa7b87;font-size:12px;line-height:1.6}
-.active-filters>span{flex:1;min-width:0;overflow-wrap:anywhere}
-.active-filters>button{display:flex;align-items:center;gap:3px;flex:none;min-height:44px;color:#94848c;font-size:12px}
-.active-filters svg{width:15px;height:15px;stroke:currentColor;stroke-width:1.3;stroke-linecap:round}
-.home-page dialog.drop.home-filter-sheet[open]{position:fixed;inset:auto 0 0;width:min(430px,100%);max-width:none;max-height:85vh;margin:0 auto;padding:0 0 env(safe-area-inset-bottom,0px);border:0;border-radius:23px 23px 0 0;transform:none;background:#fff;color:#443b43;overscroll-behavior:contain}
-.home-filter-sheet::backdrop{background:#24151d70;backdrop-filter:blur(3px)}
-.filter-sheet-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 20px 17px;border-bottom:1px solid #f2eeee}
-.filter-sheet-heading h3{margin:3px 0 0;color:#3f343e;font-size:20px;font-weight:650;line-height:1.5}
-.filter-sheet-heading>div>span{color:#b498a2;font-size:12px;line-height:1.5}
-.filter-sheet-heading>button{display:grid;place-items:center;flex:none;width:44px;height:44px;border-radius:50%;background:#f7f5f5;color:#a18b96}
+/* Event discovery stays visually lighter than the editorial sections above. */
+.results-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:26px 18px 4px}
+.results-heading h2{margin:0;color:#302a30;font-size:21px;font-weight:650;line-height:1.5;letter-spacing:-.4px}
+.results-heading>span{color:#897b83;font-size:12px;font-variant-numeric:tabular-nums}
+.home-filters{position:sticky;top:0;z-index:8;padding:0 16px 12px;background:var(--bg,#f5f5f5)}
+.filter-navigation{display:flex;align-items:center;gap:10px;min-height:52px}
+.race-meet-categories{display:flex;flex:1;min-width:0;gap:14px}
+.race-meet-categories button{position:relative;flex:none;min-width:44px;min-height:48px;padding:10px 0;color:#897b83;font-size:13px;line-height:1.5;white-space:nowrap}
+.race-meet-categories button.on{color:#e83150;font-weight:650}
+.race-meet-categories button.on:after{position:absolute;bottom:6px;left:50%;width:18px;height:3px;border-radius:3px;background:linear-gradient(90deg,#ff8a81,#f03553);transform:translateX(-50%);content:''}
+.filter-hint{flex:none;color:#a2949b;font-size:12px;line-height:1.5}
+.home-filters .filter-bar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;padding:2px 0;overflow:visible;border-radius:12px;background:#fff;box-shadow:0 3px 12px #48303903}
+.home-filters .filter-bar>button{position:relative;display:flex;align-items:center;justify-content:center;gap:6px;width:auto;min-width:0;min-height:48px;height:auto;padding:7px 8px;border:0;border-radius:0;background:transparent;color:#655861;font-size:13px;font-weight:400;line-height:1.5;white-space:normal}
+.home-filters .filter-bar>button+button:before{position:absolute;left:0;top:16px;bottom:16px;width:1px;background:#f0ebed;content:''}
+.home-filters .filter-bar>button>span{min-width:0;overflow-wrap:anywhere}
+.home-filters .filter-bar>button>svg{flex:none;width:17px;height:17px;stroke:#ae98a3;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
+.home-filters .filter-bar>button.on{color:#df3452;font-weight:550}
+.home-filters .filter-more>img{flex:none;width:27px;height:27px;object-fit:contain}
+.filter-more>b{display:grid;place-items:center;flex:none;min-width:16px;height:16px;padding:0 3px;border-radius:5px;background:#e83150;color:#fff;font-size:12px;font-weight:500;line-height:1}
+.home-filters i{flex:none;width:5px;height:5px;margin:0 1px 3px;border-right:1px solid currentColor;border-bottom:1px solid currentColor;transform:rotate(45deg);opacity:.55}
+.active-filters{display:flex;align-items:center;flex-wrap:wrap;column-gap:6px;row-gap:0;margin:-6px 16px 8px;color:#df3452;font-size:12px;line-height:1.6}
+.active-filters .filter-tag{position:relative;display:flex;align-items:center;justify-content:center;gap:4px;min-width:44px;min-height:44px;max-width:100%;padding:10px 9px;border:0;border-radius:0;background:transparent;color:#ca4c68;font-size:12px;line-height:1.6;isolation:isolate}
+.filter-tag:before{position:absolute;inset:8px 0;border-radius:7px;background:#ffebf0;content:'';z-index:-1}
+.filter-tag>span{min-width:0;overflow-wrap:anywhere}
+.active-filters .clear-filters{min-width:44px;min-height:44px;padding:8px 5px;background:transparent;color:#91818b;font-size:12px;line-height:1.5}
+.active-filters svg{flex:none;width:14px;height:14px;stroke:currentColor;stroke-width:1.3;stroke-linecap:round}
+.home-page dialog.drop.home-filter-sheet[open]{position:fixed;inset:auto 0 0;width:min(430px,100%);max-width:none;max-height:calc(90dvh - env(safe-area-inset-top,0px));margin:0 auto;padding:0 0 env(safe-area-inset-bottom,0px);border:0;border-radius:23px 23px 0 0;transform:none;background:#fff;color:#443b43;overscroll-behavior:contain;overflow-y:auto}
+.home-filter-sheet::backdrop{background:#261c244d;backdrop-filter:blur(3px)}
+.sheet-grip{width:30px;height:4px;margin:10px auto 0;border-radius:4px;background:#e9e0e4}
+.filter-sheet-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 20px 20px}
+.filter-sheet-heading h3{margin:0;color:#302a30;font-size:21px;font-weight:650;line-height:1.5;letter-spacing:-.4px}
+.filter-sheet-heading p{margin:4px 0 0;color:#a18d98;font-size:12px;line-height:1.5}
+.filter-sheet-heading>button{display:grid;place-items:center;flex:none;width:44px;height:44px;border:0;border-radius:50%;background:#f6f3f4;color:#9b8591}
 .filter-sheet-heading svg{width:19px;height:19px;stroke:currentColor;stroke-width:1.35;stroke-linecap:round}
-.home-filter-sheet .loc{height:380px;max-height:calc(85vh - 105px);min-height:200px}
-.home-filter-sheet .prov{width:100px;background:#faf8f8}
-.home-filter-sheet .prov button{min-height:48px;padding:10px 15px;color:#8a7c86;font-size:13px;line-height:1.5}
-.home-filter-sheet .prov button.on{position:relative;background:#fff;color:#e72c4b;font-weight:600}
-.home-filter-sheet .prov button.on:before{position:absolute;top:16px;bottom:16px;left:0;width:3px;border-radius:2px;background:#ff1838;content:''}
-.home-filter-sheet .cities{gap:8px;padding:14px;align-content:flex-start}
-.home-filter-sheet .cities button{flex:1 0 calc(50% - 8px);min-width:44px;min-height:44px;padding:8px 6px}
-.home-filter-sheet .time{padding:18px 20px 24px;max-height:calc(85vh - 108px);overflow-y:auto}
-.home-filter-sheet .time h4{margin:21px 0 11px;color:#6f5b67;font-size:14px;font-weight:600}
-.home-filter-sheet .months{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
-.home-filter-sheet .months button,.home-filter-sheet .time>.chip{min-height:44px;padding:8px 6px}
-.home-filter-sheet :is(.cities,.months,.pills,.meet-options) button,.home-filter-sheet .time>.chip{border:1px solid #f0eaea;border-radius:9px;background:#f8f6f6;color:#8c7a86;font-size:13px;line-height:1.5}
-.home-filter-sheet :is(.cities,.months,.pills,.meet-options) button.on,.home-filter-sheet .time>.chip.on{border-color:#ffc9d5;background:#fff0f4;color:#e72b4d;font-weight:500}
-.home-filter-sheet .status-sheet{padding:0 20px 22px}
-.status-sheet h4{margin:22px 0 12px;color:#8d7886;font-size:13px;font-weight:500}
-.meet-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
-.meet-options button{min-width:0;min-height:44px;padding:9px 4px}
-.home-filter-sheet .pills{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
-.home-filter-sheet .pills button{min-width:0;min-height:44px;padding:9px 3px;font-size:12px}
-.home-filter-sheet .actions{gap:10px;margin-top:25px}
-.home-filter-sheet .actions button{height:46px;border-radius:11px;font-size:14px;font-weight:500}
-.home-filter-sheet .actions .ghost{background:#f6f3f4;color:#99818e}
-.home-filter-sheet .actions .ok{background:#ff1838;color:#fff}
+.home-filter-sheet .loc,.home-filter-sheet .selection-layout{display:grid;grid-template-columns:94px minmax(0,1fr);height:auto;min-height:0;max-height:min(52dvh,384px);overflow:hidden}
+.home-filter-sheet .prov,.home-filter-sheet .year-nav{display:flex;flex-direction:column;gap:0;width:auto;min-width:0;margin:0;padding:4px 0 12px;background:#f8f6f7;overflow-y:auto;overscroll-behavior:contain}
+.home-filter-sheet :is(.prov,.year-nav) button{position:relative;display:block;flex:none;width:100%;min-width:0;min-height:48px;padding:10px 10px;border:0;border-radius:0;background:transparent;color:#897b83;font-size:13px;line-height:1.5;text-align:center;overflow-wrap:anywhere}
+.home-filter-sheet :is(.prov,.year-nav) button.on{background:#fff;color:#e83150;font-weight:600}
+.home-filter-sheet :is(.prov,.year-nav) button.on:before{position:absolute;top:17px;bottom:17px;left:0;width:3px;border-radius:2px;background:#f04b65;content:''}
+.city-content,.month-content{min-width:0;max-height:inherit;padding:7px 16px 24px;overflow-y:auto;overscroll-behavior:contain}
+.selection-caption{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:4px;padding:2px 0 14px}
+.selection-caption h4{margin:0;color:#55434e;font-size:14px;font-weight:600;line-height:1.5}
+.selection-caption>span{color:#ae9aa5;font-size:12px;line-height:1.5}
+.home-filter-sheet .cities,.home-filter-sheet .months{display:grid;gap:8px;padding:0;overflow:visible;align-content:start}
+.home-filter-sheet .cities{grid-template-columns:repeat(2,minmax(0,1fr))}
+.home-filter-sheet .months{grid-template-columns:repeat(3,minmax(0,1fr))}
+.home-filter-sheet .time{padding:0;overflow:hidden}
+.home-filter-sheet :is(.cities,.months,.pills,.meet-options,.distance-options) button{position:relative;width:auto;min-width:0;min-height:44px;height:auto;margin:0;padding:11px 6px;border:1px solid transparent;border-radius:9px;background:#f7f5f6;color:#806e7a;font-size:13px;line-height:1.5;white-space:normal;overflow-wrap:anywhere}
+.home-filter-sheet :is(.cities,.months,.pills,.meet-options,.distance-options) button.on{border-color:#ffc9d5;background:#fff0f3;color:#df3452;font-weight:550}
+.home-filter-sheet :is(.cities,.months,.pills,.meet-options,.distance-options) button.on:after{position:absolute;right:3px;bottom:3px;width:4px;height:4px;border-radius:50%;background:#f0637c;content:''}
+.home-filter-sheet .months .unlimited-month{grid-column:span 3;margin-bottom:2px}
+.home-filter-sheet .status-sheet{padding:0 20px 24px;overflow-y:auto}
+.option-group+.option-group{margin-top:24px}
+.option-group h4{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:4px;margin:0 0 12px;color:#4c3d47;font-size:14px;font-weight:600;line-height:1.5}
+.option-group h4>span{color:#ae9aa5;font-size:12px;font-weight:400}
+.meet-options,.distance-options,.home-filter-sheet .pills{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.distance-options{grid-template-columns:repeat(4,minmax(0,1fr))}
+.home-filter-sheet .distance-options button{padding-right:3px;padding-left:3px;font-size:12px}
 .results-loading{margin:0 18px 12px;color:#a58d99;font-size:12px;line-height:1.7}
 .home-race-list{gap:12px;padding:0 16px 16px}
-.home-results>.empty{margin:0 16px;padding:36px 22px;border:1px solid #eee7e9;border-radius:15px;background:#fff;color:#9c8593;font-size:13px;line-height:1.8}
+.home-results>.empty{margin:0 16px;padding:36px 22px;border:0;border-radius:15px;background:#fff;color:#9c8593;font-size:13px;line-height:1.8}
 .home-results>.load-error{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 16px 14px;padding:12px 16px;border:1px solid #f0dce3;border-radius:14px;background:#fff7f9;font-size:13px;line-height:1.7}
 .home-results>.load-error button{flex:none;min-width:44px;min-height:44px;color:#e62b4b}
-@media(max-width:350px){.home-filters{padding-right:9px;padding-left:9px}.filter-navigation{gap:5px}.race-meet-categories button{font-size:12px}.home-filters .filter-bar>button>svg{display:none}.home-filter-sheet .status-sheet{padding-right:16px;padding-left:16px}}
+@media(max-width:350px){.race-meet-categories{gap:11px}.filter-hint{font-size:12px}.home-filters .filter-bar>button{gap:4px;padding-right:5px;padding-left:5px;font-size:12px}.home-filter-sheet .status-sheet{padding-right:16px;padding-left:16px}.home-filter-sheet .loc,.home-filter-sheet .selection-layout{grid-template-columns:82px minmax(0,1fr)}.city-content,.month-content{padding-right:12px;padding-left:12px}}
 @media (max-width: 350px) {
  .home-discover { grid-template-columns: 1fr 1fr; }
  .discover-side > a { padding:8px; }.discover-side strong { font-size:14px; }.discover-side img { width:28px;height:28px; }
