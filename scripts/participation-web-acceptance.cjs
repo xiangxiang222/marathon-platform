@@ -19,6 +19,68 @@ const report = { checks: [], views: [], errors: [], passed: false };
 let server, vite, browser;
 const token = 'participation-browser-synthetic';
 async function check(name, run) { await run(); report.checks.push(name); }
+async function participationLayout(page, name, width, { expanded, guest = false } = {}) {
+  const plan = page.locator('.race-plan');
+  await plan.waitFor();
+  assert.equal(await page.locator('.race-plan .plan-editor').count(), expanded ? 1 : 0, name + ': editor visibility');
+  if (guest) {
+    assert.equal(await plan.getByRole('button', { name: '登录后标记', exact: true }).count(), 1);
+    assert.equal(await page.locator('.race-companionship').count(), 0, 'Guests cannot see personal sharing controls');
+  } else {
+    assert.equal(await plan.locator('button[aria-expanded]').first().getAttribute('aria-expanded'), String(expanded));
+  }
+  if (expanded) {
+    assert.equal(await plan.locator('.plan-stages button').count(), 4);
+    assert.equal(await plan.locator('.plan-stages button[aria-pressed=true]').count(), 1);
+  }
+  const metrics = await page.evaluate(() => {
+    const visible = element => {
+      // aria-hidden descriptions still have to be legible to sighted readers.
+      if (element.closest('svg,.visually-hidden')) return false;
+      const css = getComputedStyle(element), rect = element.getBoundingClientRect();
+      return rect.width > 1 && rect.height > 1 && css.display !== 'none' && css.visibility !== 'hidden' && css.opacity !== '0';
+    };
+    const areas = [...document.querySelectorAll('.race-follow-row,.race-plan')];
+    const tinyText = [], smallControls = [];
+    for (const area of areas) {
+      const walker = document.createTreeWalker(area, NodeFilter.SHOW_TEXT);
+      for (let node; (node = walker.nextNode());) {
+        const element = node.parentElement;
+        if (!node.textContent.trim() || !element || !visible(element)) continue;
+        const range = document.createRange(); range.selectNodeContents(node);
+        if (![...range.getClientRects()].some(rect => rect.width > 1 && rect.height > 1)) continue;
+        const size = parseFloat(getComputedStyle(element).fontSize);
+        if (size < 11.9) tinyText.push({ text: node.textContent.trim().slice(0, 60), size });
+      }
+      for (const control of area.querySelectorAll('button,a[href],.proof-actions label')) {
+        if (!visible(control)) continue;
+        const rect = control.getBoundingClientRect();
+        if (rect.width < 43.5 || rect.height < 43.5) smallControls.push({ text: control.getAttribute('aria-label') || control.textContent.trim(), width: rect.width, height: rect.height });
+      }
+    }
+    return { width: innerWidth, scrollWidth: document.documentElement.scrollWidth, tinyText, smallControls };
+  });
+  assert.equal(metrics.width, width);
+  assert.ok(metrics.scrollWidth <= width, name + ': horizontal page overflow');
+  assert.deepEqual(metrics.tinyText, [], name + ': visible participation text below 12px');
+  assert.deepEqual(metrics.smallControls, [], name + ': participation controls below 44px');
+  const focusTargets = [page.locator('.race-follow-row button'), plan.locator('button').first()];
+  if (expanded) focusTargets.push(plan.locator('.plan-stages button[aria-pressed=true]'), plan.locator('.statuses button').first());
+  for (const target of focusTargets) {
+    // Establish keyboard modality before focusing the actual control, so :focus-visible is exercised.
+    await page.keyboard.press('Tab');
+    await target.focus();
+    const focus = await target.evaluate(element => {
+      const css = getComputedStyle(element);
+      return { focused: document.activeElement === element, visible: element.matches(':focus-visible'), outline: parseFloat(css.outlineWidth) >= 1 && css.outlineStyle !== 'none' && !/rgba\([^)]*,\s*0\)$/.test(css.outlineColor), shadow: css.boxShadow !== 'none' };
+    });
+    assert.ok(focus.focused && focus.visible && (focus.outline || focus.shadow), name + ': visible keyboard focus');
+  }
+  await page.evaluate(() => { document.activeElement?.blur(); scrollTo(0, 0); });
+  const filename = name + '-' + width + '.png';
+  await page.screenshot({ path: path.join(out, filename), fullPage: true });
+  report.views.push({ name, screenshot: filename, ...metrics });
+}
 async function main() {
   fs.mkdirSync(out, { recursive: true });
   const stamp = new Date().toISOString(), day = new Date(Date.now() + 8 * 3600000).toISOString().slice(0, 10);
@@ -155,16 +217,37 @@ async function main() {
   await check('Responsive layouts preserve all controls at 320, 390 and 1440px', async () => {
     for (const width of [320, 390, 1440]) {
       await page.setViewportSize({ width, height: 1000 });
+      await page.goto(racePath, { waitUntil: 'networkidle' });
+      await participationLayout(page, 'race-plan-collapsed', width, { expanded: false });
+      await page.locator('.race-plan button[aria-expanded]').first().click();
+      await participationLayout(page, 'race-plan-expanded', width, { expanded: true });
+      await page.locator('.race-plan button[aria-expanded]').first().click();
+      assert.equal(await page.locator('.race-plan .plan-editor').count(), 0, 'Plan can collapse without changing saved state');
+      assert.equal((await read('/races/' + raceId)).myStatus, '已缴费');
       await page.goto(racePath + '?plan=1', { waitUntil: 'networkidle' });
-      assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'race detail overflow at ' + width);
-      await page.screenshot({ path: path.join(out, 'race-' + width + '.png'), fullPage: true });
-      report.views.push('race-' + width + '.png');
+      assert.equal(await page.locator('.race-plan .plan-editor').count(), 1, 'A plan deep link expands the editor');
       await page.goto(origin + '/marathon/', { waitUntil: 'networkidle' });
       assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'list overflow at ' + width);
       const row = page.locator('.race-card-shell').filter({ hasText: '合成同行马拉松' });
       const overlaps = await row.evaluate(element => { const link = element.querySelector('.body').getBoundingClientRect(), button = element.querySelector('.follow-race').getBoundingClientRect(); return link.right > button.left; });
       assert.equal(overlaps, false, 'follow does not overlap race text at ' + width);
     }
+  });
+  await check('Guests see readable follow and login actions without private plan controls at every width', async () => {
+    const guest = await browser.newContext({ reducedMotion: 'reduce' });
+    await guest.route('**/*', route => new URL(route.request().url()).origin === origin ? route.continue() : route.abort());
+    const guestPage = await guest.newPage();
+    guestPage.on('pageerror', error => report.errors.push(error.message));
+    try {
+      for (const width of [320, 390, 1440]) {
+        await guestPage.setViewportSize({ width, height: 1000 });
+        await guestPage.goto(racePath, { waitUntil: 'networkidle' });
+        await participationLayout(guestPage, 'race-plan-guest', width, { expanded: false, guest: true });
+      }
+      await guestPage.getByRole('button', { name: '登录后标记', exact: true }).click();
+      await guestPage.waitForURL('**/marathon/mine');
+      assert.equal(await guestPage.evaluate(() => localStorage.getItem('marathon_return_after_login')), '/races/' + raceId + '?plan=1');
+    } finally { await guest.close(); }
   });
   await check('A pending update cannot duplicate requests or change another event after navigation', async () => {
     await page.goto(racePath + '?plan=1', { waitUntil: 'networkidle' });
@@ -185,7 +268,7 @@ async function main() {
     release();
     await finished;
     await page.unroute('**/api/me/races/' + raceId, delayed);
-    await page.locator('.race-plan .plan-status').filter({ hasText: '未标记' }).waitFor();
+    await page.locator('.race-plan .plan-status').filter({ hasText: '还没有参赛计划' }).waitFor();
     assert.equal((await read('/races/' + otherId)).myStatus, '');
     assert.equal(await page.getByText('已标记为「已领物」', { exact: true }).count(), 0);
   });

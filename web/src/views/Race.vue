@@ -30,31 +30,41 @@
       <div v-if="race.phone" class="row"><span>咨询</span><b>{{ race.phone }}</b></div>
       <p v-if="race.gradeLabel" class="src">{{ race.gradeLabel }}</p>
       <p v-for="item in conflicts" :key="item.text" class="warn">{{ item.text }}</p>
-      <div class="race-follow-row"><span>关注报名与比赛安排，关注不代表报名。</span><FollowRaceButton :race-id="race.id" :race-name="race.name" :following="following" @change="value => following = value" /></div>
+      <div class="race-follow-row">
+        <span class="follow-symbol" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M7 4.5h10a1 1 0 0 1 1 1V20l-6-3.5L6 20V5.5a1 1 0 0 1 1-1Z"/></svg></span>
+        <span class="follow-copy"><strong>{{ following ? '已关注这场比赛' : '关注这场比赛' }}</strong><small>收进我的赛事，方便下次找到</small></span>
+        <FollowRaceButton appearance="detail" :race-id="race.id" :race-name="race.name" :following="following" @change="value => following = value" />
+      </div>
     </div>
     <router-link v-if="race?.archiveId" class="race-archive-entry" :to="{path:'/race-catalog/'+race.archiveId,query:{fromRaceId:String(race.id)}}"><span><strong>报名前，先了解这场比赛</strong><small>历年赛道 · 报名中签 · 完赛与奖牌</small></span><span aria-hidden="true">›</span></router-link>
-    <section v-if="race" class="block race-plan">
-      <div class="plan-heading"><h2>我的参赛计划</h2><span class="plan-status">{{ myStatus || '未标记' }}</span></div>
-      <p class="src">这是你的个人记录，实际报名、抽签和缴费结果以官方为准。</p>
-      <button v-if="!ready" class="plan-action" type="button" @click="loginForPlan">登录后标记 <span>›</span></button>
-      <button v-else class="plan-action" type="button" :aria-expanded="planOpen" @click="planOpen = !planOpen">{{ myStatus ? '修改参赛状态' : '标记参赛状态' }} <span>{{ planOpen ? '⌃' : '›' }}</span></button>
-      <div v-if="ready && planOpen" class="plan-editor">
-        <nav class="plan-stages" aria-label="参赛阶段"><button v-for="(stage, index) in planStages" :key="stage.id" type="button" :class="{ selected: planStage === stage.id, current: stageFor(myStatus) === stage.id && myStatus }" :aria-pressed="planStage === stage.id" @click="planStage = stage.id"><small>{{ index + 1 }}</small>{{ stage.label }}</button></nav>
-        <p class="src">{{ activeStage.hint }}可直接选择当前阶段，不必逐步填写。</p>
-        <div class="statuses">
-          <button v-for="item in activeStage.statuses" :key="item" type="button" class="status" :class="{ on: myStatus === item }" :disabled="planBusy" @click="choosePlan(item)">{{ item }}</button>
+    <section v-if="race" class="block race-plan" :class="{ 'is-open': ready && planOpen }" aria-labelledby="race-plan-title">
+      <div class="plan-heading"><h2 id="race-plan-title">我的参赛计划</h2><span class="plan-privacy"><svg v-if="!sharedClubIds.length" viewBox="0 0 16 16" aria-hidden="true" fill="none"><rect x="3.5" y="7" width="9" height="6.5" rx="1.5"/><path d="M5.5 7V4.5a2.5 2.5 0 0 1 5 0V7"/></svg>{{ sharedClubIds.length ? sharedClubIds.length + ' 个跑团可见' : '仅自己可见' }}</span></div>
+      <div class="plan-summary">
+        <div class="plan-summary-copy"><span class="plan-summary-label">{{ myStatus ? '当前状态' : '为下一场，留个位置' }}</span><strong class="plan-status" :class="{ 'is-empty': !myStatus }">{{ myStatus || '还没有参赛计划' }}</strong></div>
+        <button v-if="!ready" class="plan-action" type="button" @click="loginForPlan">登录后标记<svg viewBox="0 0 16 16" aria-hidden="true"><path d="m6 4 4 4-4 4"/></svg></button>
+        <button v-else class="plan-action" type="button" :aria-label="planOpen ? '收起参赛状态' : myStatus ? '修改参赛状态' : '标记参赛状态'" :aria-expanded="planOpen" aria-controls="race-plan-editor" @click="planOpen = !planOpen">{{ planOpen ? '收起' : myStatus ? '修改' : '添加计划' }}<svg viewBox="0 0 16 16" aria-hidden="true" :class="{ expanded: planOpen }"><path d="m6 4 4 4-4 4"/></svg></button>
+      </div>
+      <div v-if="ready && planOpen" id="race-plan-editor" class="plan-editor">
+        <nav class="plan-stages" aria-label="参赛阶段"><button v-for="(stage, index) in planStages" :key="stage.id" type="button" :class="{ selected: planStage === stage.id, current: stageFor(myStatus) === stage.id && myStatus }" :aria-label="(index + 1) + ' ' + stage.label" :aria-pressed="planStage === stage.id" @click="planStage = stage.id"><small aria-hidden="true">{{ String(index + 1).padStart(2, '0') }}</small><span>{{ stageLabels[stage.id] }}</span></button></nav>
+        <div class="plan-field-heading"><span>选择当前状态</span><small>{{ planBusy ? '正在保存…' : '选择后自动保存' }}</small></div>
+        <div class="statuses plan-options" :class="{ 'single-option': activeStage.statuses.length === 1 }">
+          <button v-for="item in activeStage.statuses" :key="item" type="button" class="status" :class="{ on: myStatus === item }" :aria-label="item" :aria-pressed="myStatus === item" :disabled="planBusy" @click="choosePlan(item)"><span class="status-copy"><strong>{{ item }}</strong><small aria-hidden="true">{{ statusHints[item] }}</small></span><span class="status-indicator" aria-hidden="true"><svg v-if="myStatus === item" viewBox="0 0 16 16"><path d="m4 8 2.5 2.5L12 5"/></svg></span></button>
         </div>
-        <template v-if="myStatus">
+        <p class="plan-stage-hint">{{ activeStage.hint }}</p>
+        <div v-if="myStatus" class="plan-proof">
+          <div class="plan-proof-heading"><strong>报名凭证</strong><span>可选</span></div>
           <p class="src">报名截图仅本人可见，不会同步给跑团。</p>
           <img v-if="hasSheet" class="proof" :src="signupSrc" alt="报名截图" />
           <div class="proof-actions">
-            <label>上传报名截图<input type="file" accept="image/jpeg,image/png,image/webp" :disabled="planBusy" @change="onSignup" /></label>
+            <label class="plan-upload"><svg viewBox="0 0 20 20" aria-hidden="true" fill="none"><path d="M6 5.5 7.5 3h5L14 5.5h2a1.5 1.5 0 0 1 1.5 1.5v8a1.5 1.5 0 0 1-1.5 1.5H4A1.5 1.5 0 0 1 2.5 15V7A1.5 1.5 0 0 1 4 5.5Z"/><circle cx="10" cy="10.5" r="3"/></svg>{{ hasSheet ? '更换报名截图' : '上传报名截图' }}<input type="file" aria-label="上传报名截图" accept="image/jpeg,image/png,image/webp" :disabled="planBusy" @change="onSignup" /></label>
             <button v-if="hasSheet" class="undo" type="button" :disabled="planBusy" @click="removeSignup">移除截图</button>
           </div>
-        </template>
+        </div>
         <button v-if="myStatus" class="undo remove-plan" type="button" :disabled="planBusy" @click="removePlan">移除参赛计划</button>
       </div>
-      <p v-if="message" class="err" role="status">{{ message }}</p>
+      <p v-else class="plan-summary-note">{{ myStatus ? '报名、领物到完赛，按自己的进度记录。' : '从想跑到完赛，把每一步留在这里。' }}</p>
+      <p class="plan-footnote">个人记录 · 实际报名与参赛资格以官方为准</p>
+      <p v-if="message" class="plan-feedback" :class="{ 'is-error': sharingError && sharingError === message }" role="status">{{ message }}</p>
     </section>
     <section v-if="race && ready" class="block race-companionship">
       <div class="plan-heading"><h2>与团同行</h2><span class="plan-status">{{ sharedClubIds.length ? sharedClubIds.length + ' 个跑团可见' : '仅自己可见' }}</span></div>
@@ -279,6 +289,8 @@ const companionOpen = ref(false);
 const sharedClubIds = ref([]), sharingDraft = ref([]), companionNote = ref(''), companionDraft = ref('');
 const sharingMessage = ref(''), sharingError = ref('');
 const activeStage = computed(() => planStages.find(stage => stage.id === planStage.value) || planStages[0]);
+const stageLabels = { interest: '意向', registration: '报名', confirmed: '参赛', finished: '赛后' };
+const statusHints = { '想跑': '先记下这场', '已报名': '报名申请已交', '待抽签': '等一个好消息', '中签': '已获得名额', '未中签': '下次再出发', '确认参赛': '行程已确定', '已缴费': '报名费已付', '已领物': '准备好出发', '完赛': '留住这一程', '未完赛': '每次出发都算', '弃赛': '这次先休息' };
 const sharingDirty = computed(() => [...sharingDraft.value].sort().join(',') !== [...sharedClubIds.value].sort().join(','));
 const activeCompanionClubs = computed(() => clubs.value.filter(club => club.mates?.length));
 const sharedClubNames = computed(() => { const names = clubs.value.filter(club => sharedClubIds.value.includes(Number(club.id))).map(club => club.name); return names.length ? '已同步到：' + names.join('、') + '。' : ''; });
@@ -749,3 +761,5 @@ onBeforeUnmount(() => { disposed = true; loadSequence++; actionSequence++; });
 /* Detail pages keep one reading scale and one share action. */
 .race-page{background:var(--bg);color:var(--ink);letter-spacing:normal;font-size:14px}.race-page>.topbar{background:#fff}.topbar h1{font-size:16px;letter-spacing:normal}.pass,.block,.detail{border:0;border-radius:12px;background:#fff;box-shadow:none}.pass{margin:12px 16px;padding:16px;background:linear-gradient(135deg,#fff0f2,#fffafa)}.pass h1{font-size:20px;font-weight:600;letter-spacing:normal;line-height:1.4}.pass-date{background:#fff;border:0}.pass-date b{font-size:24px;color:var(--ink);letter-spacing:normal}.pass-pill{background:var(--accent-soft);color:var(--accent);border:0}.pass-copy p{font-size:12px;line-height:1.7}.race-page h2{font-size:18px;font-weight:600;line-height:1.5;letter-spacing:normal}.row{font-size:14px;line-height:1.7;gap:16px}.row>b{font-weight:500;min-width:0;overflow-wrap:anywhere}.src{font-size:12px;line-height:1.7}.warn{font-size:12px;line-height:1.7;color:var(--accent);background:var(--accent-soft);border:0}.day-note{padding:12px 0;background:transparent;border:0}.day-note h3{font-size:14px;color:var(--ink)}.day-note p{font-size:14px;line-height:1.7}.race-page button,.race-page input,.race-page select,.race-page textarea{letter-spacing:normal}.race-page .primary,.race-page .jump,.race-page .status,.race-page .undo,.race-page .proof-actions label,.race-page .retry-button{min-height:44px;height:auto;border-radius:8px;font-size:14px;line-height:1.5;padding:11px 16px}.race-page .primary{background:var(--accent)}.race-page .statuses{display:flex;flex-wrap:wrap;gap:8px}.race-page .status{margin:0}.result-form input,.result-form select{height:46px;font-size:14px;border-radius:8px}.proof-actions label{display:flex;align-items:center}.plan-action{min-height:44px;padding:10px 0;font-size:14px;font-weight:500}.tabs{gap:4px;margin:16px 16px 0;padding:0 8px;border-radius:12px}.tab{height:48px;font-size:14px;font-weight:500}.mate{font-size:14px;line-height:1.7;gap:12px}.mate>b{font-size:12px;line-height:1.7;font-weight:400}.share-toggle{display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;min-height:44px;padding:0;background:transparent;text-align:left;color:var(--ink);font-size:18px;font-weight:600}.share-toggle>span:last-child{font-size:24px;color:var(--muted);font-weight:400}.race-share>.src{margin-top:2px}.share-content{margin-top:16px}.share-options{display:grid;gap:0;border-top:1px solid var(--line)}.share-option{display:flex;align-items:center;gap:12px;width:100%;min-height:68px;padding:14px 0;text-align:left;border-bottom:1px solid var(--line);background:transparent;color:var(--ink)}.share-radio{display:block;flex:none;width:18px;height:18px;border:1.5px solid var(--line);border-radius:50%;box-sizing:border-box}.share-option[aria-checked=true] .share-radio{border:5px solid var(--accent)}.share-option-copy{display:grid;gap:4px;min-width:0}.share-option-copy>b{font-size:16px;font-weight:500;line-height:1.6;overflow-wrap:anywhere}.share-option-copy>small{font-size:12px;color:var(--muted);line-height:1.7;overflow-wrap:anywhere}.race-share .share-submit{width:100%;min-height:46px;margin-top:16px}.share-feedback{margin:12px 0 0;color:var(--muted);font-size:12px;line-height:1.7}.share-copy-fallback{margin:12px 0 0;white-space:pre-wrap;font:inherit;font-size:14px;line-height:1.7;color:var(--ink)}.guide-md .md-h1{font-size:18px}.guide-md .md-h3{font-size:16px}.guide-md .md-h4{font-size:14px}.poster-card p:first-child{font-size:24px;letter-spacing:normal}
 </style>
+
+<style scoped src="../race-plan.css"></style>
