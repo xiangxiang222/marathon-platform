@@ -464,7 +464,6 @@ Page({
     const tab = e.currentTarget.dataset.id;
     if (!tab || tab === this.data.tab) return;
     this.setData({ tab });
-    wx.pageScrollTo({ scrollTop: 0, duration: 0 });
   },
   copyLink(e) {
     const key = e.currentTarget.dataset.key || "";

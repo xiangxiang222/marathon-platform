@@ -219,6 +219,25 @@ async function main() {
     await page.locator('.race-plan .statuses').getByRole('button', { name: '已缴费', exact: true }).click();
     await page.waitForFunction(() => document.querySelector('.race-plan .plan-status')?.textContent === '已缴费');
   });
+  await check('Race tabs switch locally without returning to the page header', async () => {
+    for (const width of [320, 390, 1440]) {
+      await page.setViewportSize({ width, height: 1000 });
+      await page.goto(racePath, { waitUntil: 'networkidle' });
+      for (const position of [500, 80]) {
+        // Keep the tabs clear of the sticky page header so clicks need no automatic scrolling.
+        await page.locator('.tabs').evaluate((element, top) => scrollTo(0, scrollY + element.getBoundingClientRect().top - top), position);
+        for (const label of ['赛事信息', '赛事资讯', '我的成绩', '赛事信息', '赛事资讯', '赛事信息']) {
+          const before = await page.locator('.tabs').evaluate(element => ({ y: element.getBoundingClientRect().top, scrollY }));
+          assert.ok(before.scrollY > 100, 'The tab regression must start below the hero');
+          await page.locator('.tabs').getByRole('button', { name: label, exact: true }).click();
+          await page.waitForFunction(label => document.querySelector('.tabs .on')?.textContent === label, label);
+          const after = await page.locator('.tabs').evaluate(element => ({ y: element.getBoundingClientRect().top, scrollY }));
+          assert.ok(after.scrollY > 100, label + ' must not return to the page header at ' + width);
+          assert.ok(Math.abs(after.y - before.y) <= 1, label + ' must keep the tab row in place at ' + width + ': ' + JSON.stringify({ before, after }));
+        }
+      }
+    }
+  });
   await check('Mine separates followed races from participation plans', async () => {
     await page.locator('.race-follow-row').getByRole('button').click();
     await page.locator('.race-follow-row').getByRole('button', { name: '取消关注合成同行马拉松', exact: true }).waitFor();

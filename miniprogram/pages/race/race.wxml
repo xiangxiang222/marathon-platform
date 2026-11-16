@@ -94,6 +94,7 @@
     <view wx:for="{{tabs}}" wx:key="id" class="tab {{tab === item.id ? 'on' : ''}}" role="tab" aria-selected="{{tab === item.id}}" data-id="{{item.id}}" bindtap="pickTab">{{item.label}}</view>
   </view>
 
+  <view class="race-tab-content">
   <block wx:if="{{tab === 'signup'}}">
     <view class="card" wx:if="{{race.nodes.length}}">
       <view class="h2">赛事时间线</view>
@@ -242,5 +243,6 @@
       <view wx:if="{{resultMessage}}" class="err">{{resultMessage}}</view>
     </view>
   </block>
+  </view>
 </view>
 <view wx:else class="empty">{{message || '正在打开这场'}}</view>
