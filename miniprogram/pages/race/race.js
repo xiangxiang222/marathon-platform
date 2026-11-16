@@ -30,6 +30,8 @@ const PLAN_STAGES = [
 ];
 function stageFor(status) { return PLAN_STAGES.find(item => item.statuses.includes(status)) || PLAN_STAGES[0]; }
 function tokenNow() { return (getApp().globalData || {}).token || ""; }
+const OUTING_KINDS = [{ id: "carpool", label: "拼车" }, { id: "gather", label: "集合" }, { id: "pickup", label: "领物" }];
+function beijingDate() { return new Date(Date.now() + 8 * 3600000).toISOString().slice(0, 10); }
 
 Page({
   data: {
@@ -94,7 +96,11 @@ Page({
     signupQr: "",
     signupHint: "",
     queryLinks: [],
-    articles: []
+    articles: [],
+    outings: [], visibleOutings: [], outingsLoading: false, outingsError: "", outingFeedback: "", outingBusy: "",
+    outingKinds: OUTING_KINDS, outingFormOpen: false, outingKind: "carpool", outingClubId: 0, outingClubIndex: 0,
+    outingClubOptions: [], outingFilters: [{ id: 0, name: "全部跑团" }], outingFilterClubId: 0, outingFilterIndex: 0,
+    outingDate: "", outingTime: "", outingToday: "", outingPlace: "", outingCapacity: "4", outingNote: ""
   },
   onLoad(query) {
     this._disposed = false;
@@ -104,7 +110,8 @@ Page({
     const code = String(query.code || "").toUpperCase();
     this.pending = null;
     this.inviteRedirect = !!code;
-    this.setData({ code: "", ready: ready(), tab: "signup", planOpen: query.plan === "1" });
+    this._scrollToOutings = query.outings === "1";
+    this.setData({ code: "", ready: ready(), tab: "signup", planOpen: query.plan === "1", outings: [], visibleOutings: [], outingFilterClubId: Number(query.clubId) || 0, outingFormOpen: false, outingToday: beijingDate() });
     if (code) {
       wx.redirectTo({ url: "/pages/club-intro/club-intro?code=" + encodeURIComponent(code) });
       return;
@@ -117,9 +124,10 @@ Page({
     if (this._token !== token) {
       this._token = token;
       this._epoch = (this._epoch || 0) + 1;
-      this.setData({ following: false, myStatus: "", sharedClubIds: [], sharingDraft: [], companionNote: "", sharingDirty: false, companionDirty: false, clubs: [], cards: [], myResults: [], myResult: null, hasSheet: false, sheetSrc: "", proofSrc: "", shareChoices: [], selectedShare: null });
+      this.setData({ following: false, myStatus: "", sharedClubIds: [], sharingDraft: [], companionNote: "", sharingDirty: false, companionDirty: false, clubs: [], cards: [], myResults: [], myResult: null, hasSheet: false, sheetSrc: "", proofSrc: "", shareChoices: [], selectedShare: null, outings: [], visibleOutings: [], outingsError: "", outingFeedback: "", outingPlace: "", outingNote: "", outingDate: "", outingTime: "", outingCapacity: "4", outingClubId: 0, outingClubOptions: [], outingFilters: [{ id: 0, name: "全部跑团" }], outingFilterIndex: 0 });
     }
-    this.setData({ followBusy: false, planBusy: false });
+    this._outingConfirmation = null;
+    this.setData({ followBusy: false, planBusy: false, outingBusy: "", ready: ready() });
     this.open();
   },
   onHide() { this._hidden = true; this._epoch = (this._epoch || 0) + 1; this._loadSeq = (this._loadSeq || 0) + 1; },
@@ -192,6 +200,106 @@ Page({
     this.setData({ planOpen: !this.data.planOpen });
   },
   toggleCompanion() { this.setData({ companionOpen: !this.data.companionOpen }); },
+  syncOutingClubs(clubs) {
+    const filters = [{ id: 0, name: "全部跑团" }].concat(clubs.map(club => ({ id: club.id, name: club.name })));
+    const filterIndex = Math.max(0, filters.findIndex(club => club.id === this.data.outingFilterClubId));
+    const options = filters.slice(1), preferred = this.data.outingClubId || filters[filterIndex].id;
+    const clubIndex = Math.max(0, options.findIndex(club => club.id === preferred));
+    this.setData({ outingFilters: filters, outingFilterIndex: filterIndex, outingFilterClubId: filters[filterIndex].id, outingClubOptions: options, outingClubIndex: clubIndex, outingClubId: options[clubIndex] ? options[clubIndex].id : 0 });
+    this.paintOutings(this.data.outings);
+  },
+  paintOutings(items) {
+    const outings = (items || []).filter(item => item.status === "open").map(item => {
+      const past = Date.parse(item.startsAt + (item.startsAt.length === 16 ? ":00+08:00" : "+08:00")) <= Date.now();
+      const full = item.memberCount >= item.capacity;
+      return { ...item, past, full, timeLabel: String(item.startsAt || "").replace("T", " "), canJoin: !!item.canJoin && !past && !full, canLeave: !!item.joined && !item.isHost, stateLabel: past ? "已过时" : full ? "已满员" : "余 " + item.remaining + " 位" };
+    });
+    this.setData({ outings, visibleOutings: outings.filter(item => !this.data.outingFilterClubId || item.clubId === this.data.outingFilterClubId) });
+  },
+  loadOutings() {
+    if (this._disposed || this._hidden) return Promise.resolve();
+    const scope = { id: this.raceId, token: tokenNow(), epoch: this._epoch || 0 }, seq = this._outingLoadSeq = (this._outingLoadSeq || 0) + 1;
+    if (!ready()) { this.setData({ outings: [], visibleOutings: [], outingsLoading: false, outingsError: "" }); return Promise.resolve(); }
+    const current = () => this.current(scope) && seq === this._outingLoadSeq;
+    this.setData({ outingsLoading: true, outingsError: "" });
+    return request("/races/" + scope.id + "/outings").then(data => {
+      if (current()) this.paintOutings(data.outings || []);
+    }).catch(err => { if (current()) this.setData({ outingsError: err.message || "同行组织暂时无法加载" }); })
+      .finally(() => { if (current()) this.setData({ outingsLoading: false }); });
+  },
+  pickOutingFilter(e) {
+    const index = Number(e.detail.value), club = this.data.outingFilters[index];
+    if (!club) return;
+    this.setData({ outingFilterIndex: index, outingFilterClubId: club.id });
+    this.paintOutings(this.data.outings);
+  },
+  showClubOutings(e) {
+    const index = this.data.outingFilters.findIndex(club => club.id === Number(e.currentTarget.dataset.club));
+    if (index >= 0) this.pickOutingFilter({ detail: { value: index } });
+    wx.pageScrollTo({ selector: "#race-outings", duration: 200 });
+  },
+  loginForOutings() {
+    wx.setStorageSync("marathon_return_after_login", "/pages/race/race?id=" + encodeURIComponent(this.raceId) + "&outings=1" + (this.data.outingFilterClubId ? "&clubId=" + this.data.outingFilterClubId : ""));
+    wx.switchTab({ url: "/pages/mine/mine" });
+  },
+  toggleOutingForm() {
+    if (!ready()) { this.loginForOutings(); return; }
+    if (this.data.outingBusy) return;
+    this.setData({ outingFormOpen: !this.data.outingFormOpen, outingFeedback: "", outingDate: this.data.outingDate || (this.data.race.raceDate >= beijingDate() ? this.data.race.raceDate : beijingDate()) });
+  },
+  pickOutingKind(e) { if (!this.data.outingBusy && OUTING_KINDS.some(item => item.id === e.currentTarget.dataset.kind)) this.setData({ outingKind: e.currentTarget.dataset.kind }); },
+  pickOutingClub(e) {
+    const index = Number(e.detail.value), club = this.data.outingClubOptions[index];
+    if (!this.data.outingBusy && club) this.setData({ outingClubIndex: index, outingClubId: club.id });
+  },
+  onOutingField(e) {
+    const key = e.currentTarget.dataset.key;
+    if (!this.data.outingBusy && ["outingDate", "outingTime", "outingPlace", "outingCapacity", "outingNote"].includes(key)) this.setData({ [key]: e.detail.value });
+  },
+  createOuting() {
+    if (!ready()) { this.loginForOutings(); return Promise.resolve(); }
+    if (this.data.outingBusy) return Promise.resolve();
+    const d = this.data, startsAt = d.outingDate + "T" + d.outingTime, instant = Date.parse(startsAt + ":00+08:00"), capacity = Number(d.outingCapacity), place = d.outingPlace.trim(), note = d.outingNote.trim();
+    let error = "";
+    if (!d.outingClubOptions.some(club => club.id === d.outingClubId)) error = "请先选择已加入的跑团";
+    else if (!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/.test(startsAt) || !Number.isFinite(instant) || new Date(instant + 8 * 3600000).toISOString().slice(0, 16) !== startsAt || instant <= Date.now()) error = "请选择未来的北京时间";
+    else if (!place || place.length > 120) error = "请填写地点，最多120字";
+    else if (!Number.isInteger(capacity) || capacity < 1 || capacity > 100) error = "总人数需为1至100人，含发起人";
+    else if (note.length > 300) error = "备注最多300字";
+    if (error) { this.setData({ outingFeedback: error }); return Promise.resolve(); }
+    return this.mutateOuting("", "POST", { clubId: d.outingClubId, kind: d.outingKind, startsAt, place, capacity, note }, "create", "已发起，你已占1个名额");
+  },
+  changeOutingMembership(e) {
+    const item = this.data.outings.find(outing => String(outing.id) === String(e.currentTarget.dataset.id));
+    if (!item || item.isHost || (item.joined ? !item.canLeave : !item.canJoin)) return Promise.resolve();
+    return this.mutateOuting("/" + item.id + "/membership", "PUT", { joined: !item.joined }, String(item.id), item.joined ? "已退出本次同行" : "已加入本次同行");
+  },
+  cancelOuting(e) {
+    const item = this.data.outings.find(outing => String(outing.id) === String(e.currentTarget.dataset.id));
+    if (!item || !item.canCancel || this.data.outingBusy || this._outingConfirmation) return Promise.resolve();
+    const scope = { id: this.raceId, token: tokenNow(), epoch: this._epoch || 0 };
+    this._outingConfirmation = scope;
+    return new Promise(resolve => wx.showModal({ title: "取消这次同行？", content: "取消后将从本场同行列表移除，参赛计划和跑团活动不受影响。", confirmText: "取消同行", success: result => {
+      if (this._outingConfirmation === scope) this._outingConfirmation = null;
+      if (result.confirm && this.current(scope)) resolve(this.mutateOuting("/" + item.id, "DELETE", {}, String(item.id), "已取消本次同行"));
+      else resolve();
+    }, fail: () => { if (this._outingConfirmation === scope) this._outingConfirmation = null; resolve(); } }));
+  },
+  mutateOuting(suffix, method, body, busy, message) {
+    if (this.data.outingBusy || !ready()) return Promise.resolve();
+    const scope = { id: this.raceId, token: tokenNow(), epoch: this._epoch || 0 };
+    this.setData({ outingBusy: busy, outingFeedback: "" });
+    return request("/races/" + scope.id + "/outings" + suffix, method, body).then(data => {
+      if (!this.current(scope)) return;
+      const items = this.data.outings.filter(item => String(item.id) !== busy && (!data.outing || item.id !== data.outing.id));
+      if (data.outing) items.push(data.outing);
+      this.paintOutings(items);
+      if (busy === "create") this.setData({ outingFormOpen: false, outingPlace: "", outingNote: "" });
+      this.setData({ outingFeedback: message });
+      return this.loadOutings();
+    }).catch(err => { if (this.current(scope)) this.setData({ outingFeedback: err.message || "没有保存成功，请重试" }); })
+      .finally(() => { if (this.current(scope)) this.setData({ outingBusy: "" }); });
+  },
   toggleShare() {
     this.setData({ shareOpen: !this.data.shareOpen });
   },
@@ -240,6 +348,7 @@ Page({
   open() {
     if (this.inviteRedirect) return;
     this.load().catch((err) => this.setData({ message: err.message }));
+    this.loadOutings();
   },
   load() {
     if (this._disposed || this._hidden) return Promise.resolve();
@@ -323,6 +432,8 @@ Page({
           patch.distance = distanceOptions[0].key;
         }
         this.setData(patch);
+        this.syncOutingClubs(patch.clubs);
+        if (this._scrollToOutings) wx.nextTick(() => { if (current()) { this._scrollToOutings = false; wx.pageScrollTo({ selector: "#race-outings", duration: 200 }); } });
         this.syncShareChoices(patch.cards, this.data.card);
         if (this._resumeFollow && ready()) { this._resumeFollow = false; if (!patch.following) this.toggleFollow(); }
       }),

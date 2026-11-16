@@ -32,7 +32,7 @@
       <p v-for="item in conflicts" :key="item.text" class="warn">{{ item.text }}</p>
       <div class="race-follow-row">
         <span class="follow-symbol" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M7 4.5h10a1 1 0 0 1 1 1V20l-6-3.5L6 20V5.5a1 1 0 0 1 1-1Z"/></svg></span>
-        <span class="follow-copy"><strong>{{ following ? '已关注这场比赛' : '关注这场比赛' }}</strong><small>收进我的赛事，方便下次找到</small></span>
+        <span class="follow-copy"><strong>{{ following ? '已关注这场比赛' : '关注这场比赛' }}</strong><small>收进我的赛事，报名节点会在站内提醒。</small></span>
         <FollowRaceButton appearance="detail" :race-id="race.id" :race-name="race.name" :following="following" @change="value => following = value" />
       </div>
     </div>
@@ -74,12 +74,13 @@
         <fieldset class="club-sharing" :disabled="planBusy || !myStatus"><legend class="visually-hidden">同步到哪些跑团</legend><label v-for="club in clubs" :key="club.id"><input v-model="sharingDraft" type="checkbox" :value="Number(club.id)" /><span>{{ club.name }}</span><small>{{ club.mates?.length || 0 }} 位团友已分享</small></label></fieldset>
         <p v-if="!myStatus" class="src">先记录参赛状态，再选择同步的跑团。</p>
         <button type="button" class="primary sharing-save" :disabled="!myStatus || planBusy || !sharingDirty" @click="saveSharing">{{ planBusy ? '保存中…' : '保存同步范围' }}</button>
-        <form v-if="myStatus" class="companion-form" @submit.prevent="saveCompanion"><label for="companion-note">我的同行需求</label><textarea id="companion-note" v-model="companionDraft" maxlength="200" rows="2" placeholder="例如：比赛日想拼车，或约好领物后一起集合" :disabled="planBusy"></textarea><span class="src">{{ companionDraft.length }}/200 · 仅选中的跑团可见。具体安排请在团内活动中确认。</span><button type="submit" class="undo" :disabled="planBusy || companionDraft === companionNote">保存同行需求</button></form>
+        <form v-if="myStatus" class="companion-form" @submit.prevent="saveCompanion"><label for="companion-note">我的同行需求</label><textarea id="companion-note" v-model="companionDraft" maxlength="200" rows="2" placeholder="例如：比赛日想拼车，或约好领物后一起集合" :disabled="planBusy"></textarea><span class="src">{{ companionDraft.length }}/200 · 仅选中的跑团可见。具体时间和地点可在下方同行安排中约定。</span><button type="submit" class="undo" :disabled="planBusy || companionDraft === companionNote">保存同行需求</button></form>
       </div></template>
       <router-link v-else class="companionship-link" to="/clubs">发现跑团，找一起参赛的伙伴 ›</router-link>
       <p v-if="sharingMessage" class="src" role="status">{{ sharingMessage }}</p>
       <p v-if="sharingError" class="err" role="alert">{{ sharingError }}</p>
     </section>
+    <RaceOutings v-if="race" :race-id="race.id" :clubs="clubs" :ready="ready" />
     <div v-if="tabs.length" class="tabs" role="tablist">
       <button v-for="item in tabs" :key="item.id" type="button" class="tab" :class="{ on: tab === item.id }" @click="pickTab(item.id)">{{ item.label }}</button>
     </div>
@@ -136,16 +137,16 @@
           <pre v-if="copyError && selectedShare" class="share-copy-fallback">{{ selectedShare.text }}</pre>
         </div>
       </section>
-      <div v-if="clubs.length && !activeCompanionClubs.length" class="block companion-empty"><h2>同行小队</h2><p class="src">还没有团友分享这场参赛计划。可在“与团同行”中设置同步范围，再到团内查看活动。</p><router-link class="companionship-link" to="/clubs">查看我的跑团与活动 ›</router-link></div>
+      <div v-if="clubs.length && !activeCompanionClubs.length" class="block companion-empty"><h2>团友参赛记录</h2><p class="src">这里展示团友主动同步的个人参赛记录，目前还没有公开记录。想约伙伴，可直接发起或加入本场同行安排。</p><button class="companionship-link" type="button" @click="openOutings()">查看本场同行安排 ›</button></div>
       <div v-for="club in activeCompanionClubs" :key="club.id" class="block">
-        <h2>{{ club.name }} · 同行小队</h2>
+        <h2>{{ club.name }} · 参赛记录</h2>
         <p class="src">仅显示主动同步到本团的参赛记录，以下为团友自行标记。</p>
         <p v-if="squadLine(club)" class="warn">{{ squadLine(club) }}</p>
         <div v-if="!club.mates.length" class="empty">还没有团友分享这场参赛计划</div>
         <div v-for="mate in club.mates" :key="mate.userId || mate.nickname" class="mate companion-mate">
           <span>{{ mate.nickname }}<small v-if="mate.note">{{ mate.note }}</small></span><b>{{ mate.status }}</b>
         </div>
-        <router-link class="companionship-link" :to="'/clubs/' + club.id + '?tab=act'">查看团内活动与集合安排 ›</router-link>
+        <button class="companionship-link" type="button" @click="openOutings(club.id)">查看本团本场同行安排 ›</button>
       </div>
     </template>
     <template v-if="race && tab === 'guide'">
@@ -279,6 +280,7 @@ import { copyText } from "../copy";
 import { dateParts, toneOf } from "../tone";
 import { parseGuide } from "../guide-md";
 import FollowRaceButton from '../components/FollowRaceButton.vue';
+import RaceOutings from '../components/RaceOutings.vue';
 import { planStages, stageFor } from '../participation';
 const route = useRoute();
 const router = useRouter();
@@ -595,6 +597,10 @@ async function saveResult() {
 function squadLine(club) {
   const card = cards.value.find((item) => item.club && item.club.id === club.id);
   return card && card.squad ? card.squad.text : "";
+}
+async function openOutings(clubId) {
+  await router.replace({ path: route.path, query: { ...route.query, clubId: clubId ? String(clubId) : undefined }, hash: '#race-outings' });
+  document.getElementById('race-outings')?.scrollIntoView({ behavior: 'auto', block: 'start' });
 }
 
 const drawLines = computed(() => drawText.value.split("\n").filter(Boolean));

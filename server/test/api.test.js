@@ -447,7 +447,7 @@ test("a finish time becomes the career PB, footprint, and this year's race dista
   assert.equal(removed.body.career.finished, 3);
 });
 
-test("two teammates who are still in the race can go together", async () => {
+test("only confirmed teammates count as going together, pending registration remains separate", async () => {
   const leader = await session("凑队团长");
   const mate = await session("凑队队友");
   const created = await createClub(leader, "凑队跑团");
@@ -458,11 +458,18 @@ test("two teammates who are still in the race can go together", async () => {
   await request(app).put("/marathon/api/me/races/jinjiang").set("Authorization", "Bearer " + leader).send({ status: "已报名", sharedClubIds: [created.body.club.id] });
   const alone = await request(app).get("/marathon/api/races/jinjiang/card?code=" + code).set("Authorization", "Bearer " + leader);
   assert.equal(alone.body.squad.ready, false);
-  assert.equal(alone.body.squad.size, 1);
-  assert.equal(alone.body.squad.text, "还差一个人就能凑一队");
+  assert.equal(alone.body.squad.size, 0);
+  assert.equal(alone.body.squad.pendingSize, 1);
+  assert.equal(alone.body.squad.text, "1 人报名或中签待确认");
   assert.equal(/可以一起去/.test(alone.body.text), false);
 
   await request(app).put("/marathon/api/me/races/jinjiang").set("Authorization", "Bearer " + mate).send({ status: "已缴费", sharedClubIds: [created.body.club.id] });
+  const pending = await request(app).get("/marathon/api/races/jinjiang/card?code=" + code).set("Authorization", "Bearer " + leader);
+  assert.equal(pending.body.squad.ready, false);
+  assert.equal(pending.body.squad.size, 1);
+  assert.equal(pending.body.squad.pendingSize, 1);
+  assert.equal(/可以一起去/.test(pending.body.text), false);
+  await request(app).put("/marathon/api/me/races/jinjiang").set("Authorization", "Bearer " + leader).send({ status: "确认参赛" });
   const card = await request(app).get("/marathon/api/races/jinjiang/card?code=" + code).set("Authorization", "Bearer " + leader);
   assert.equal(card.body.squad.ready, true);
   assert.equal(card.body.squad.size, 2);
@@ -474,7 +481,7 @@ test("two teammates who are still in the race can go together", async () => {
   const out = await request(app).get("/marathon/api/races/hailing/card?code=" + code).set("Authorization", "Bearer " + leader);
   assert.equal(out.body.squad.ready, false);
   assert.equal(out.body.squad.size, 0);
-  assert.equal(out.body.squad.text, "1 人想跑，还没人报名");
+  assert.equal(out.body.squad.text, "1 人想跑");
 
   const board = await request(app).get("/marathon/api/clubs/" + created.body.club.id).set("Authorization", "Bearer " + leader);
   const jinjiang = board.body.board.find((item) => item.race.id === "jinjiang");

@@ -113,7 +113,7 @@
     <view class="section-head"><view class="section-title">跑团赛事</view><button class="text-action" bindtap="exportBoard">复制全团赛事表格</button></view>
     <view wx:if="{{!board.length}}" class="empty-row">在赛事详情记录参赛状态，再选择同步到本团。同行活动需单独报名。</view>
     <view wx:for="{{board}}" wx:for-index="index" wx:key="key" class="match-row">
-      <navigator class="match-head" url="/pages/race/race?id={{item.race.id}}">
+      <navigator class="match-head" url="/pages/race/race?id={{item.race.id}}&amp;clubId={{club.id}}">
         <view class="match-date">{{item.race.raceDate}}</view>
         <view class="match-main"><view class="match-title">{{item.race.name}}</view><view class="muted">{{item.marks.length}} 位团友已标记<text wx:if="{{item.race.city}}"> · {{item.race.city}}</text></view></view>
         <text class="preview-arrow">›</text>
@@ -125,7 +125,7 @@
       <view wx:if="{{item.unpaid.length}}" class="unpaid-note">中签后待缴费：{{item.unpaidText}}</view>
       <button class="roster-toggle" data-key="{{item.key}}" bindtap="toggleRace"><text>{{raceExpanded[item.key] ? '收起团友名单' : '查看团友名单'}}</text><text>{{item.marks.length}} 人 {{raceExpanded[item.key] ? '−' : '＋'}}</text></button>
       <block wx:if="{{raceExpanded[item.key]}}"><view wx:for="{{item.marks}}" wx:for-item="mark" wx:key="nickname" class="member-mark"><text>{{mark.nickname}}</text><view><text>{{mark.status}}{{mark.clock ? ' · ' + mark.clock : ''}}{{mark.pb ? ' PB' : ''}}</text><view wx:if="{{mark.note}}" class="match-note">{{mark.note}}</view></view></view></block>
-      <view class="match-row-tools"><button class="secondary-btn race-poster-action" data-index="{{index}}" bindtap="exportRacePoster"><view class="poster-action-icon"></view>生成本场赛事画像</button></view>
+      <view class="match-row-tools"><navigator class="secondary-btn race-poster-action" style="display:flex;align-items:center" url="/pages/race/race?id={{item.race.id}}&amp;clubId={{club.id}}&amp;outings=1">拼车 · 集合 · 领物 ›</navigator><button class="secondary-btn race-poster-action" data-index="{{index}}" bindtap="exportRacePoster"><view class="poster-action-icon"></view>生成本场赛事画像</button></view>
     </view>
     <view wx:if="{{ranks.length}}" class="section-head"><view class="section-title">团内最好成绩</view><text class="section-link">按距离排名</text></view>
     <view wx:for="{{ranks}}" wx:for-item="group" wx:key="distance" class="rank-group">

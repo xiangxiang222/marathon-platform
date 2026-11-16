@@ -376,10 +376,26 @@ onMounted(() => {
   if (trackKinds.some((item) => item.kind === route.query.kind)) trackKind.value = route.query.kind;
   loadCatalog();
   load();
-  api("/reminders").then((data) => {
-    reminders.value = (data.reminders || []).slice(0, 3);
-  }).catch(() => {});
+  loadReminders();
+  window.addEventListener('race-follow-changed', loadReminders);
 });
+let reminderRequest = 0;
+async function loadReminders() {
+  const ticket = ++reminderRequest, token = localStorage.getItem('marathon_token');
+  try {
+    const data = await api('/reminders');
+    if (ticket !== reminderRequest || token !== localStorage.getItem('marathon_token')) return;
+    const seen = new Set();
+    reminders.value = [...(data.mine || []), ...(data.reminders || [])].filter(item => {
+      const key = item.race.id + ':' + item.hit.key;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    }).slice(0, 3);
+    reminderIndex.value = 0;
+  } catch { /* The event list remains usable when reminders are unavailable. */ }
+}
+onUnmounted(() => { reminderRequest++; window.removeEventListener('race-follow-changed', loadReminders); });
 </script>
 
 <style scoped>

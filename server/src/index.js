@@ -39,6 +39,7 @@ const QRCode = require("qrcode");
 const { mountRaceCatalog, raceArchiveId, archiveBaseline, listCatalog } = require("./race-catalog");
 const { mountArchiveEditor } = require("./race-archive-editor");
 const { STATUSES, sharedClubIds, validateClubIds, replaceShares } = require("./participation");
+const { mountRaceOutings } = require("./race-outings");
 
 function loadEnv() {
   const file = path.join(__dirname, "../../.env");
@@ -162,6 +163,17 @@ function remindable(now = new Date()) {
   }
   items.sort((a, b) => a.hit.daysLeft - b.hit.daysLeft || a.race.raceDate.localeCompare(b.race.raceDate));
   return items;
+}
+
+function personalReminders(userId, plans, reminders) {
+  const planStatus = new Map(plans.map(plan => [plan.race.id, plan.status]));
+  const follows = new Set(getDb().prepare('SELECT race_id FROM race_follows WHERE user_id=?').all(userId).map(row => row.race_id));
+  const unique = new Map();
+  for (const item of reminders) {
+    if (!planStatus.has(item.race.id) && !follows.has(item.race.id)) continue;
+    unique.set(item.race.id + ':' + item.hit.key, { ...item, myStatus: planStatus.get(item.race.id) || '', following: follows.has(item.race.id) });
+  }
+  return [...unique.values()];
 }
 
 function requireUser(req, res) {
@@ -368,13 +380,13 @@ function todayPayload(user, now = new Date()) {
       });
     }
   }
-  for (const item of remindable(now).filter((row) => plans.some((plan) => plan.race.id === row.race.id))) {
+  for (const item of user ? personalReminders(user.id, plans, remindable(now)) : []) {
     const plan = plans.find((row) => row.race.id === item.race.id);
     tasks.push({
       id: "reminder:" + item.race.id + ":" + item.hit.key,
       kind: "reminder",
       title: item.hit.reason,
-      body: item.race.name + (plan ? " · 你标的是" + plan.status : ""),
+      body: item.race.name + (plan ? " · 你标的是" + plan.status : " · 已关注"),
       raceId: item.race.id,
       clubId: null
     });
@@ -433,13 +445,10 @@ app.get(BASE + "/api/reminders", (req, res) => {
   const reminders = remindable();
   const user = userFrom(req);
   const plans = user ? plansFor(user.id) : [];
-  const mineIds = new Set(plans.map((plan) => plan.race.id));
   res.json({
     gapDays: gapDays(),
     reminders,
-    mine: reminders
-      .filter((item) => mineIds.has(item.race.id))
-      .map((item) => ({ ...item, myStatus: plans.find((plan) => plan.race.id === item.race.id).status })),
+    mine: user ? personalReminders(user.id, plans, reminders) : [],
     conflicts: user ? fullConflicts(plans, gapDays()) : []
   });
 });
@@ -517,7 +526,7 @@ app.get(BASE + "/api/me", (req, res) => {
       const role = Number(row.owner_id) === Number(user.id) ? "owner" : row.member_role === "manager" ? "manager" : "member";
       return { id: row.id, name: row.name, code: row.code, leader: row.owner_nickname || "", members: row.member_count, memberCount: row.member_count, ...publicIdentity(getDb(), row), role, roleLabel: clubRoleLabel(role) };
     });
-  const reminders = remindable().filter((item) => plans.some((plan) => plan.race.id === item.race.id));
+  const reminders = personalReminders(user.id, plans, remindable());
   const results = resultsFor(user.id);
   const applications = getDb()
     .prepare("SELECT id, name, status FROM club_applications WHERE user_id = ? AND status = 'pending' ORDER BY id DESC")
@@ -1368,6 +1377,7 @@ mountFeed(app, { BASE, getDb, userFrom });
 mountDraws(app, { BASE, getDb, requireAdmin });
 mountClubOps(app, { BASE, getDb, userFrom });
 mountClubGather(app, { BASE, getDb, userFrom });
+mountRaceOutings(app, { BASE, getDb, userFrom });
 mountRaceGuide(app, { BASE, getDb, requireAdmin });
 mountAdminDesk(app, { BASE, getDb, requireAdmin });
 mountFeedback(app, { BASE, getDb, userFrom, requireAdmin, oneUpload });

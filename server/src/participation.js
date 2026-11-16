@@ -14,6 +14,36 @@ function installParticipation(db) {
       PRIMARY KEY(user_id, race_id, club_id)
     );
     CREATE INDEX IF NOT EXISTS plan_shares_club ON plan_club_shares(club_id, race_id, user_id);
+    CREATE TABLE IF NOT EXISTS race_outings (
+      id INTEGER PRIMARY KEY AUTOINCREMENT, race_id TEXT NOT NULL, club_id INTEGER NOT NULL,
+      host_user_id INTEGER NOT NULL, kind TEXT NOT NULL, starts_at TEXT NOT NULL,
+      place TEXT NOT NULL, capacity INTEGER NOT NULL, note TEXT NOT NULL DEFAULT '',
+      status TEXT NOT NULL DEFAULT 'open', created_at TEXT NOT NULL, cancelled_at TEXT NOT NULL DEFAULT ''
+    );
+    CREATE INDEX IF NOT EXISTS race_outings_race_club ON race_outings(race_id, club_id, status, starts_at);
+    CREATE TABLE IF NOT EXISTS race_outing_members (
+      outing_id INTEGER NOT NULL, user_id INTEGER NOT NULL, joined_at TEXT NOT NULL,
+      PRIMARY KEY(outing_id, user_id)
+    );
+    CREATE TRIGGER IF NOT EXISTS race_outings_leave AFTER DELETE ON club_members BEGIN
+      DELETE FROM race_outing_members WHERE user_id=OLD.user_id AND outing_id IN
+        (SELECT id FROM race_outings WHERE club_id=OLD.club_id);
+      UPDATE race_outings SET status='cancelled', cancelled_at=strftime('%Y-%m-%dT%H:%M:%fZ','now')
+        WHERE club_id=OLD.club_id AND host_user_id=OLD.user_id AND status='open';
+    END;
+    CREATE TRIGGER IF NOT EXISTS race_outings_remove_outing AFTER DELETE ON race_outings BEGIN
+      DELETE FROM race_outing_members WHERE outing_id=OLD.id;
+    END;
+    CREATE TRIGGER IF NOT EXISTS race_outings_remove_user AFTER DELETE ON users BEGIN
+      DELETE FROM race_outing_members WHERE user_id=OLD.id;
+      DELETE FROM race_outings WHERE host_user_id=OLD.id;
+    END;
+    CREATE TRIGGER IF NOT EXISTS race_outings_remove_club AFTER DELETE ON clubs BEGIN
+      DELETE FROM race_outings WHERE club_id=OLD.id;
+    END;
+    CREATE TRIGGER IF NOT EXISTS race_outings_remove_race AFTER DELETE ON races BEGIN
+      DELETE FROM race_outings WHERE race_id=OLD.id;
+    END;
     CREATE TABLE IF NOT EXISTS participation_migrations (name TEXT PRIMARY KEY);
     CREATE TRIGGER IF NOT EXISTS participation_leave AFTER DELETE ON club_members BEGIN
       DELETE FROM plan_club_shares WHERE user_id=OLD.user_id AND club_id=OLD.club_id;
