@@ -26,6 +26,10 @@ coverage/
 /design/previews/**/*.csv
 /design/previews/**/*.txt
 /design/previews/**/*.md
+
+# Local third-party reading caches; publish original writing and source cards.
+/docs/editorial/china-marathon-20261117/sources/
+/docs/editorial/china-marathon-20261117/root-sources/
 /design/prototypes/
 **/project.private.config.json
 

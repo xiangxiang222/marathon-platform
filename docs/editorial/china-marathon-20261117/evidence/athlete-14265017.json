@@ -1,0 +1,552 @@
+{
+  "sourceUrl": "https://worldathletics.org/athletes/athlete=14265017",
+  "retrievedAt": "2026-11-17T01:28:32.215075+00:00",
+  "competitor": {
+    "__typename": "singleCompetitor",
+    "_id": 14265017,
+    "primaryMediaId": null,
+    "primaryMediaId2": null,
+    "primaryMedia": null,
+    "basicData": {
+      "__typename": "AthleteNewData",
+      "id": null,
+      "friendlyName": null,
+      "fullName": null,
+      "friendlyNameLetter": null,
+      "friendlyNameFirst3Letter": null,
+      "sexCode": null,
+      "birthPlace": null,
+      "birthPlaceCountryName": null,
+      "sexNameUrlSlug": null,
+      "birthPlaceCountryUrlSlug": null,
+      "birthCountryCode": null,
+      "primaryMediaId": null,
+      "facebookUsername": null,
+      "twitterUsername": null,
+      "instagramUsername": null,
+      "countryFullName": "PR of China",
+      "familyName": "WANG",
+      "givenName": "Yanfang",
+      "firstName": null,
+      "lastName": null,
+      "countryName": null,
+      "countryCode": "CHN",
+      "countryUrlSlug": null,
+      "birthDate": "10 JUL 1971",
+      "birthDateStr": null,
+      "urlSlug": null,
+      "representativeId": null,
+      "biography": null,
+      "twitterLink": null,
+      "instagramLink": null,
+      "facebookLink": null,
+      "transfersOfAllegiance": [],
+      "iaafId": 131252,
+      "aaId": 14265017,
+      "primaryMediaEdited": null,
+      "male": false,
+      "primaryMedia": null
+    },
+    "athleteRepresentative": null,
+    "personalBests": {
+      "__typename": "personalBestsType",
+      "withWind": false,
+      "withRecords": false,
+      "results": [
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "3000-metres",
+          "typeNameUrlSlug": "middlelong",
+          "discipline": "3000 Metres",
+          "linkToList": true,
+          "mark": "9:12.59",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "Beijing (CHN) (i)",
+          "date": "19 FEB 1997",
+          "listPosition": null,
+          "resultScore": 1085,
+          "records": [],
+          "competitionId": null,
+          "eventId": "10229519",
+          "eventName": null
+        },
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "3000-metres-short-track",
+          "typeNameUrlSlug": "middlelong",
+          "discipline": "3000 Metres Short Track",
+          "linkToList": true,
+          "mark": "9:12.59",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "Beijing (CHN) (i)",
+          "date": "19 FEB 1997",
+          "listPosition": null,
+          "resultScore": 1085,
+          "records": [],
+          "competitionId": null,
+          "eventId": "10229584",
+          "eventName": null
+        },
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "5000-metres",
+          "typeNameUrlSlug": "middlelong",
+          "discipline": "5000 Metres",
+          "linkToList": true,
+          "mark": "15:24.93",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "Shanghai (CHN)",
+          "date": "21 OCT 1997",
+          "listPosition": null,
+          "resultScore": 1115,
+          "records": [],
+          "competitionId": null,
+          "eventId": "10229514",
+          "eventName": null
+        },
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "10000-metres",
+          "typeNameUrlSlug": "middlelong",
+          "discipline": "10,000 Metres",
+          "linkToList": true,
+          "mark": "31:32.50",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "Beijing (CHN)",
+          "date": "08 SEP 1993",
+          "listPosition": "391",
+          "resultScore": 1163,
+          "records": [],
+          "competitionId": null,
+          "eventId": "10229521",
+          "eventName": null
+        },
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "half-marathon",
+          "typeNameUrlSlug": "road-running",
+          "discipline": "Half Marathon",
+          "linkToList": true,
+          "mark": "1:15:56",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "Zürich (SUI)",
+          "date": "27 SEP 1998",
+          "listPosition": null,
+          "resultScore": 1011,
+          "records": [],
+          "competitionId": "6956810",
+          "eventId": "10229541",
+          "eventName": "7th IAAF World Half Marathon Championships"
+        },
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "marathon",
+          "typeNameUrlSlug": "road-running",
+          "discipline": "Marathon",
+          "linkToList": true,
+          "mark": "2:26:36",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "Tianjin (CHN)",
+          "date": "04 APR 1993",
+          "listPosition": "816",
+          "resultScore": 1149,
+          "records": [],
+          "competitionId": null,
+          "eventId": "10229534",
+          "eventName": null
+        }
+      ]
+    },
+    "seasonsBests": {
+      "__typename": "seasonsBestsType",
+      "parameters": {
+        "__typename": "seasonsBestsParamsType",
+        "seasonsBestsSeason": 2000
+      },
+      "activeSeasons": [
+        "2000",
+        "1999",
+        "1998",
+        "1997",
+        "1993"
+      ],
+      "withWind": false,
+      "withRecords": false,
+      "results": [
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "marathon",
+          "typeNameUrlSlug": "road-running",
+          "discipline": "Marathon",
+          "linkToList": false,
+          "mark": "2:45:04",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "Roma (ITA)",
+          "date": "01 JAN 2000",
+          "listPosition": null,
+          "resultScore": 981,
+          "records": [],
+          "competitionId": null,
+          "eventId": "10229534",
+          "competition": "Roma Marathon"
+        }
+      ]
+    },
+    "progressionOfSeasonsBests": [
+      {
+        "__typename": "singleCompetitorProgression",
+        "indoor": false,
+        "disciplineCode": null,
+        "disciplineNameUrlSlug": "3000-metres",
+        "typeNameUrlSlug": "middlelong",
+        "discipline": "3000 Metres",
+        "withWind": false,
+        "mainEvent": false,
+        "eventId": "10229519",
+        "results": [
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1997",
+            "numericResult": 552.59,
+            "mark": "9:12.59",
+            "wind": null,
+            "venue": "Beijing (CHN) (i)",
+            "date": "19 FEB 1997",
+            "listPosition": null,
+            "resultScore": 1085,
+            "competitionId": null,
+            "competition": "Beijing"
+          }
+        ]
+      },
+      {
+        "__typename": "singleCompetitorProgression",
+        "indoor": false,
+        "disciplineCode": null,
+        "disciplineNameUrlSlug": "3000-metres-short-track",
+        "typeNameUrlSlug": "middlelong",
+        "discipline": "3000 Metres Short Track",
+        "withWind": false,
+        "mainEvent": false,
+        "eventId": "10229584",
+        "results": [
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1997",
+            "numericResult": 552.59,
+            "mark": "9:12.59",
+            "wind": null,
+            "venue": "Beijing (CHN) (i)",
+            "date": "19 FEB 1997",
+            "listPosition": null,
+            "resultScore": 1085,
+            "competitionId": null,
+            "competition": "Beijing"
+          }
+        ]
+      },
+      {
+        "__typename": "singleCompetitorProgression",
+        "indoor": false,
+        "disciplineCode": null,
+        "disciplineNameUrlSlug": "5000-metres",
+        "typeNameUrlSlug": "middlelong",
+        "discipline": "5000 Metres",
+        "withWind": false,
+        "mainEvent": false,
+        "eventId": "10229514",
+        "results": [
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1997",
+            "numericResult": 924.93,
+            "mark": "15:24.93",
+            "wind": null,
+            "venue": "Shanghai (CHN)",
+            "date": "21 OCT 1997",
+            "listPosition": null,
+            "resultScore": 1115,
+            "competitionId": null,
+            "competition": "Shanghai Chinese Nat. Games"
+          }
+        ]
+      },
+      {
+        "__typename": "singleCompetitorProgression",
+        "indoor": false,
+        "disciplineCode": null,
+        "disciplineNameUrlSlug": "10000-metres",
+        "typeNameUrlSlug": "middlelong",
+        "discipline": "10,000 Metres",
+        "withWind": false,
+        "mainEvent": true,
+        "eventId": "10229521",
+        "results": [
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1993",
+            "numericResult": 1892.5,
+            "mark": "31:32.50",
+            "wind": null,
+            "venue": "Beijing (CHN)",
+            "date": "08 SEP 1993",
+            "listPosition": null,
+            "resultScore": 1163,
+            "competitionId": null,
+            "competition": "Beijing Chinese National Games"
+          },
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1997",
+            "numericResult": 1919.93,
+            "mark": "31:59.93",
+            "wind": null,
+            "venue": "Shanghai (CHN)",
+            "date": "19 OCT 1997",
+            "listPosition": null,
+            "resultScore": 1139,
+            "competitionId": null,
+            "competition": "Shanghai Chinese Nat. Games"
+          }
+        ]
+      },
+      {
+        "__typename": "singleCompetitorProgression",
+        "indoor": false,
+        "disciplineCode": null,
+        "disciplineNameUrlSlug": "half-marathon",
+        "typeNameUrlSlug": "road-running",
+        "discipline": "Half Marathon",
+        "withWind": false,
+        "mainEvent": false,
+        "eventId": "10229541",
+        "results": [
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1998",
+            "numericResult": 4556,
+            "mark": "1:15:56",
+            "wind": null,
+            "venue": "Zürich (SUI)",
+            "date": "27 SEP 1998",
+            "listPosition": null,
+            "resultScore": 1011,
+            "competitionId": "6956810",
+            "competition": "Zürich IAAF World Half Marathon Championships"
+          }
+        ]
+      },
+      {
+        "__typename": "singleCompetitorProgression",
+        "indoor": false,
+        "disciplineCode": null,
+        "disciplineNameUrlSlug": "marathon",
+        "typeNameUrlSlug": "road-running",
+        "discipline": "Marathon",
+        "withWind": false,
+        "mainEvent": false,
+        "eventId": "10229534",
+        "results": [
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1993",
+            "numericResult": 8796,
+            "mark": "2:26:36",
+            "wind": null,
+            "venue": "Tianjin (CHN)",
+            "date": "04 APR 1993",
+            "listPosition": null,
+            "resultScore": 1149,
+            "competitionId": null,
+            "competition": "Tianjin NG"
+          },
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1997",
+            "numericResult": 8957,
+            "mark": "2:29:17",
+            "wind": null,
+            "venue": "Beijing (CHN)",
+            "date": "04 OCT 1997",
+            "listPosition": null,
+            "resultScore": 1124,
+            "competitionId": null,
+            "competition": "Beijing Marathon"
+          },
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1998",
+            "numericResult": 9047,
+            "mark": "2:30:47",
+            "wind": null,
+            "venue": "London (GBR)",
+            "date": "26 APR 1998",
+            "listPosition": null,
+            "resultScore": 1110,
+            "competitionId": null,
+            "competition": "London Marathon"
+          },
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1999",
+            "numericResult": 9179,
+            "mark": "2:32:59",
+            "wind": null,
+            "venue": "Beijing (CHN)",
+            "date": "09 OCT 1999",
+            "listPosition": null,
+            "resultScore": 1090,
+            "competitionId": null,
+            "competition": "Beijing Marathon"
+          },
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "2000",
+            "numericResult": 9904,
+            "mark": "2:45:04",
+            "wind": null,
+            "venue": "Roma (ITA)",
+            "date": "01 JAN 2000",
+            "listPosition": null,
+            "resultScore": 981,
+            "competitionId": null,
+            "competition": "Roma Marathon"
+          }
+        ]
+      }
+    ],
+    "worldRankings": {
+      "__typename": "worldRankingsType",
+      "parameters": {
+        "__typename": "worldRankingsParamsType",
+        "worldRankingsProgressionYear": null
+      },
+      "current": [],
+      "best": []
+    },
+    "honours": [
+      {
+        "__typename": "honour",
+        "categoryName": "Asian Games",
+        "withWind": false,
+        "withDrop": true,
+        "results": [
+          {
+            "__typename": "honourResult",
+            "place": "8.",
+            "indoor": null,
+            "disciplineCode": null,
+            "disciplineNameUrlSlug": null,
+            "typeNameUrlSlug": null,
+            "discipline": "Marathon",
+            "competition": "Bangkok Asian Games",
+            "venue": "Bangkok (THA)",
+            "mark": "2:58:13",
+            "date": "06 DEC 1998",
+            "competitionId": "6959609",
+            "eventId": "10229534",
+            "eventName": null
+          }
+        ]
+      },
+      {
+        "__typename": "honour",
+        "categoryName": "Major Marathon",
+        "withWind": false,
+        "withDrop": true,
+        "results": [
+          {
+            "__typename": "honourResult",
+            "place": "8.",
+            "indoor": null,
+            "disciplineCode": null,
+            "disciplineNameUrlSlug": null,
+            "typeNameUrlSlug": null,
+            "discipline": "Marathon",
+            "competition": "London Marathon",
+            "venue": "London (GBR)",
+            "mark": "2:30:47",
+            "date": "26 APR 1998",
+            "competitionId": "7021390",
+            "eventId": "10229534",
+            "eventName": null
+          }
+        ]
+      }
+    ],
+    "resultsByYear": {
+      "__typename": "resultsByYearType",
+      "parameters": {
+        "__typename": "resultByYearParamsType",
+        "resultsByYear": 2000,
+        "resultsByYearOrderBy": "discipline"
+      },
+      "activeYears": [
+        "2000",
+        "1999",
+        "1998",
+        "1997",
+        "1993"
+      ],
+      "resultsByEvent": [
+        {
+          "__typename": "resultsByEvent",
+          "indoor": null,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": null,
+          "typeNameUrlSlug": null,
+          "discipline": "Marathon",
+          "withWind": null,
+          "results": [
+            {
+              "__typename": "resultsByEventResult",
+              "date": "01 JAN 2000",
+              "competition": "Roma Marathon, Roma",
+              "venue": "Roma (ITA)",
+              "country": "ITA",
+              "category": "A",
+              "race": "F",
+              "place": "13.",
+              "mark": "2:45:04",
+              "wind": null,
+              "notLegal": false,
+              "resultScore": 981,
+              "remark": "",
+              "competitionId": null,
+              "eventId": null,
+              "eventName": null
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

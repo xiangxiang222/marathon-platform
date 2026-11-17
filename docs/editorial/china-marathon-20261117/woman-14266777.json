@@ -1,0 +1,311 @@
+{
+  "name": "白雪",
+  "worldAthleticsId": "14266777",
+  "gender": "women",
+  "cutoffDate": "2026-11-17",
+  "researchStatus": "sources_read_before_writing",
+  "identity": {
+    "countryCode": "CHN",
+    "birthDateRaw": "13 DEC 1988",
+    "sourceId": "S1"
+  },
+  "sources": [
+    {
+      "id": "S1",
+      "title": "白雪｜World Athletics官方人物资料",
+      "url": "https://worldathletics.org/athletes/pr-of-china/xue-bai-14266777",
+      "publisher": "World Athletics",
+      "accessedAt": "2026-11-17",
+      "verification": "full_page_embedded_record_read"
+    },
+    {
+      "id": "S2",
+      "title": "田径名宿变身解说嘉宾 中央电视台世锦赛报道“接地气”",
+      "url": "https://www.cctv.com/2015/08/25/ARTI1440470619532519.shtml",
+      "publishedAt": "2015-08-25",
+      "accessedAt": "2026-11-17",
+      "verification": "full_article_read"
+    }
+  ],
+  "recordEvidence": {
+    "personalBests": [
+      {
+        "discipline": "1500 Metres",
+        "mark": "4:24.51",
+        "date": "10 APR 2004",
+        "venue": "Yichun (CHN)",
+        "notLegal": false
+      },
+      {
+        "discipline": "3000 Metres",
+        "mark": "9:16.32",
+        "date": "12 APR 2004",
+        "venue": "Yichun (CHN)",
+        "notLegal": false
+      },
+      {
+        "discipline": "5000 Metres",
+        "mark": "15:09.84",
+        "date": "31 OCT 2007",
+        "venue": "Wuhan (CHN)",
+        "notLegal": false
+      },
+      {
+        "discipline": "10,000 Metres",
+        "mark": "31:17.62",
+        "date": "26 OCT 2009",
+        "venue": "Jinan (CHN)",
+        "notLegal": false
+      },
+      {
+        "discipline": "Marathon",
+        "mark": "2:23:27",
+        "date": "05 JAN 2008",
+        "venue": "Xiamen (CHN)",
+        "notLegal": false
+      }
+    ],
+    "marathonProgression": [
+      {
+        "mark": "2:37:07",
+        "date": "19 OCT 2003",
+        "venue": "Beijing (CHN)",
+        "competition": "Beijing Marathon",
+        "season": "2003"
+      },
+      {
+        "mark": "2:42:21",
+        "date": "07 NOV 2004",
+        "venue": "Seoul (KOR)",
+        "competition": "Seoul JoongAng Marathon",
+        "season": "2004"
+      },
+      {
+        "mark": "2:27:46",
+        "date": "21 OCT 2007",
+        "venue": "Beijing (CHN)",
+        "competition": "Beijing Marathon",
+        "season": "2007"
+      },
+      {
+        "mark": "2:23:27",
+        "date": "05 JAN 2008",
+        "venue": "Xiamen (CHN)",
+        "competition": "Xiamen International Marathon",
+        "season": "2008"
+      },
+      {
+        "mark": "2:25:15",
+        "date": "23 AUG 2009",
+        "venue": "Olympiastadion, Berlin (GER)",
+        "competition": "IAAF World Championships",
+        "season": "2009"
+      },
+      {
+        "mark": "2:25:18",
+        "date": "25 APR 2010",
+        "venue": "London (GBR)",
+        "competition": "London Marathon",
+        "season": "2010"
+      },
+      {
+        "mark": "2:43:27",
+        "date": "18 MAR 2012",
+        "venue": "Chongqing (CHN)",
+        "competition": "Chongqing Marathon",
+        "season": "2012"
+      },
+      {
+        "mark": "2:54:21",
+        "date": "31 AUG 2025",
+        "venue": "Harbin (CHN)",
+        "competition": "Harbin Marathon",
+        "season": "2025"
+      }
+    ],
+    "currentResults": [
+      {
+        "mark": "2:54:21",
+        "date": "31 AUG 2025",
+        "venue": "Harbin (CHN)",
+        "notLegal": false,
+        "competition": "Harbin Marathon, Harbin",
+        "place": "19.",
+        "remark": "",
+        "discipline": "Marathon"
+      }
+    ],
+    "honours": [
+      {
+        "discipline": "Marathon",
+        "mark": "2:25:15",
+        "date": "23 AUG 2009",
+        "venue": "Olympiastadion, Berlin (GER)",
+        "competition": "IAAF World Championships",
+        "place": "1.",
+        "category": "World Championships"
+      },
+      {
+        "discipline": "5000 Metres",
+        "mark": "15:37.12",
+        "date": "15 AUG 2006",
+        "venue": "Chaoyang Sport Center, Beijing (CHN)",
+        "competition": "Beijing IAAF World Junior Championships",
+        "place": "4.",
+        "category": "World U20 Championships"
+      },
+      {
+        "discipline": "5000 Metres",
+        "mark": "15:40.89",
+        "date": "03 SEP 2005",
+        "venue": "Incheon (KOR)",
+        "competition": "Incheon Asian Championships",
+        "place": "1.",
+        "category": "Asian Championships"
+      },
+      {
+        "discipline": "10,000 Metres",
+        "mark": "33:34.74",
+        "date": "01 SEP 2005",
+        "venue": "Incheon (KOR)",
+        "competition": "Incheon Asian Championships",
+        "place": "1.",
+        "category": "Asian Championships"
+      },
+      {
+        "discipline": "10,000 Metres",
+        "mark": "34:11.14",
+        "date": "14 NOV 2009",
+        "venue": "Guangzhou (CHN)",
+        "competition": "Guangzhou Asian Championships",
+        "place": "1.",
+        "category": "Asian Championships"
+      },
+      {
+        "discipline": "10,000 Metres",
+        "mark": "32:39.13",
+        "date": "21 NOV 2010",
+        "venue": "Guangzhou (CHN)",
+        "competition": "Guangzhou Asian Games",
+        "place": "8.",
+        "category": "Asian Games"
+      },
+      {
+        "discipline": "Marathon",
+        "mark": "2:25:18",
+        "date": "25 APR 2010",
+        "venue": "London (GBR)",
+        "competition": "London Marathon",
+        "place": "5.",
+        "category": "Major Marathon"
+      },
+      {
+        "discipline": "Marathon",
+        "mark": "2:42:21",
+        "date": "07 NOV 2004",
+        "venue": "Seoul (KOR)",
+        "competition": "Seoul JoongAng Marathon",
+        "place": "3.",
+        "category": "Asian Marathon Championships"
+      },
+      {
+        "discipline": "10,000 Metres",
+        "mark": "32:53.24",
+        "date": "08 AUG 2010",
+        "venue": "Jinan (CHN)",
+        "competition": "Chinese Championships",
+        "place": "1.",
+        "category": "National Championships"
+      },
+      {
+        "discipline": "5000 Metres",
+        "mark": "15:37.07",
+        "date": "23 MAY 2009",
+        "venue": "Suzhou (CHN)",
+        "competition": "Chinese Championships",
+        "place": "1.",
+        "category": "National Championships"
+      },
+      {
+        "discipline": "10,000 Metres",
+        "mark": "32:30.79",
+        "date": "13 OCT 2008",
+        "venue": "Shijiazhuang (CHN)",
+        "competition": "Chinese Championships",
+        "place": "1.",
+        "category": "National Championships"
+      },
+      {
+        "discipline": "5000 Metres",
+        "mark": "15:32.25",
+        "date": "11 OCT 2008",
+        "venue": "Shijiazhuang (CHN)",
+        "competition": "Chinese Championships",
+        "place": "1.",
+        "category": "National Championships"
+      },
+      {
+        "discipline": "10,000 Metres",
+        "mark": "33:33.49",
+        "date": "05 AUG 2007",
+        "venue": "Shijiazhuang (CHN)",
+        "competition": "Chinese Championships",
+        "place": "1.",
+        "category": "National Championships"
+      }
+    ]
+  },
+  "facts": [
+    {
+      "id": "F1",
+      "claim": "官方认可全马PB 2:23:27，05 JAN 2008，Xiamen (CHN)。",
+      "sourceIds": [
+        "S1"
+      ]
+    },
+    {
+      "id": "F2",
+      "claim": "2015年央视世锦赛报道列白雪为受邀解说嘉宾。该文的退役名宿概述不能单独证明她的准确退役时间。",
+      "sourceIds": [
+        "S2"
+      ]
+    }
+  ],
+  "activeEvidence": {
+    "formalResultsInLast24Months": [
+      {
+        "mark": "2:54:21",
+        "date": "31 AUG 2025",
+        "venue": "Harbin (CHN)",
+        "notLegal": false,
+        "competition": "Harbin Marathon, Harbin",
+        "place": "19.",
+        "remark": "",
+        "discipline": "Marathon"
+      }
+    ],
+    "sourceId": "S1",
+    "note": "现役按近24个月正式参赛口径；不据此推断国家队/专业队在队身份。"
+  },
+  "gaps": [
+    "缺少完整训练日志与代表马拉松官方分段，不编造配速变化和训练处方。",
+    "本稿不推断当前所属队伍、是否领工资、专业或大众报名身份。",
+    "2025哈尔滨的WA结果未显示专业/大众报名身份，未查得可靠当代访谈说明当前职业安排；只确认本人官方资料下的正式参赛。"
+  ],
+  "editorialQuestions": {
+    "memorableTrait": "2009世锦赛金牌和2025哈尔滨正式成绩并存。",
+    "definingRaceOrChoice": "柏林世界冠军比厦门PB慢，冠军价值无法用PB一个维度替代。",
+    "readerValue": "在尊重历史成绩时准确面对当前表现，不混淆专业队身份。"
+  },
+  "centralQuestion": "在尊重历史成绩时准确面对当前表现，不混淆专业队身份。",
+  "draftedAfterResearchCard": true,
+  "article": {
+    "title": "白雪：世界冠军之后，还有一张哈尔滨成绩单",
+    "lead": "2009年柏林世锦赛金牌，和2025年哈尔滨2小时54分21秒，属于同一位跑者。白雪的档案需要容纳竞技巅峰，也需要准确看见她后来仍参加的比赛。",
+    "body": "2025年8月31日，世界田联在白雪的本人资料下收录哈尔滨马拉松成绩：2小时54分21秒，第19名。她出生于1988年12月13日，比赛时36岁。[S1]\n\n这条记录把她带回本专题近24个月正式参赛的筛选窗口。它没有写她正在国家队训练，也没有给出专业或大众报名身份；本文据此确认的是正式参赛，不能把它包装成重返专业队或重新冲击世界冠军的声明。\n\n## 柏林，那块有明确位置的金牌\n\n2009年8月23日，白雪在柏林世锦赛女子马拉松以2小时25分15秒夺冠。世界田联的荣誉记录把冠军、时间与日期一并保留。这是她在中国马拉松史中最具辨识度的一场比赛。[S1]\n\n但她的全马PB来自另一场：2008年1月5日厦门2小时23分27秒。世锦赛夺冠的时间比PB慢1分48秒。只看速度，厦门更快；只看世界大赛的冠军结果，柏林又拥有无法被这个时间差消去的意义。[S1]\n\n柏林冠军时间的平均配速约为每公里3分27秒，厦门PB约为3分24秒。这里的计算帮助读者理解两场比赛的总速度，不能还原柏林每次集团分化与最终进攻。本次没有取得完整官方分段，因此不补写一个未经证实的突围地点。[S1]\n\n## 公路冠军背后，也有跑道\n\n白雪并非只有马拉松一种竞技经历。2005年亚洲田径锦标赛，她赢得5000米与10000米；2009年10000米跑出31分17秒62，世界田联将其列为个人最好成绩。场地与公路共同构成了她早期的长跑版图。[S1]\n\n这些记录说明她曾在多个距离参与高水平竞争，却不足以替她写出训练课表。她如何开始练跑、专业生涯中每次调整的原因，本次材料没有给出完整本人叙述。年龄和比赛地点都不能代替成长经历的证据。\n\n2015年，央视报道将白雪列在北京世锦赛受邀解说嘉宾之中。那份名单让读者看到，赛场之外她也曾通过解说角色参与田径传播。报道没有明确给出她本人准确的退役日期，不能把对一群体育名宿的概述当作个人职业状态证明。[S2]\n\n## 用两种时间阅读同一个人\n\n从柏林世锦赛到2025年哈尔滨，相隔十六年。哈尔滨的2小时54分21秒，比她2008年的PB慢30分54秒。这个时间差是真实的，但没有当代采访和训练资料，不能擅自用“为了某个目标复出”解释这次参赛。[S1]\n\n对她最基本的尊重，是既不隐藏当前成绩，也不让当前成绩覆盖过去的冠军。PB榜排列的是各人的历史最快合法全马结果，本专题的“现役”则按近24个月正式参赛判断，两者都不是当前国家队身份或综合实力的同义词。\n\n普通跑者可以从这里得到一个具体启发：把曾经最快的自己和今天能够完成的任务分开记录。两者可以相互照亮，未必需要每次都相互竞争。这是一种复盘建议，不是要求大众模仿她的训练或参赛频率。\n\n白雪值得被记住，首先因为那场有官方记录的世界大赛胜利；也因为多年之后，她的姓名仍出现在一张新的正式成绩单上。档案不需要替她宣布新的职业目标，只需要把这两个真实时刻，准确地交到读者手里。",
+    "version": 2,
+    "updatedAt": "2026-11-17",
+    "editorialStatus": "evidence_based_feature",
+    "characters": 951
+  }
+}

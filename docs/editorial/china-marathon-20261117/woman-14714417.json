@@ -1,0 +1,518 @@
+{
+  "name": "夏雨雨",
+  "worldAthleticsId": "14714417",
+  "gender": "women",
+  "cutoffDate": "2026-11-17",
+  "researchStatus": "sources_read_before_writing",
+  "identity": {
+    "countryCode": "CHN",
+    "countryLabel": "PR of China",
+    "birthDateRaw": "01 MAR 1998",
+    "sourceId": "S1"
+  },
+  "sources": [
+    {
+      "id": "S1",
+      "title": "夏雨雨｜World Athletics运动员资料",
+      "url": "https://worldathletics.org/athletes/pr-of-china/yuyu-xia-14714417",
+      "publisher": "World Athletics",
+      "kind": "official_athlete_record",
+      "accessedAt": "2026-11-17",
+      "verification": "full_page_and_embedded_competitor_json_read",
+      "publishedAt": null
+    },
+    {
+      "id": "S2",
+      "title": "2022北京马拉松鸣枪开跑 男女组冠军出炉",
+      "url": "https://sports.cctv.com/2022/11/06/ARTIZgunDGoY1IXEw28Qi7JZ221106.shtml",
+      "publisher": "央视网（具体原创机构见正文署名）",
+      "kind": "original_reporting_or_attributed_wire",
+      "publishedAt": "2022-11-06",
+      "accessedAt": "2026-11-17",
+      "verification": "full_article_read"
+    },
+    {
+      "id": "S3",
+      "title": "“四赛合一”无锡马拉松将成“跑向”巴黎关键战",
+      "url": "https://sports.cctv.com/2024/03/21/ARTIYVqJFkVJTzNkjxE4vzLN240321.shtml",
+      "publisher": "央视网（具体原创机构见正文署名）",
+      "kind": "original_reporting_or_attributed_wire",
+      "publishedAt": "2024-03-21",
+      "accessedAt": "2026-11-17",
+      "verification": "full_article_read"
+    },
+    {
+      "id": "S4",
+      "title": "戴眼镜跨栏，这届“学霸”“卷”到奥运会了",
+      "url": "https://people.cctv.com/2024/08/09/ARTIlScdh59rWwU4VxlWDZWz240809.shtml",
+      "publisher": "央视网（具体原创机构见正文署名）",
+      "kind": "original_reporting_or_attributed_wire",
+      "publishedAt": "2024-08-09",
+      "accessedAt": "2026-11-17",
+      "verification": "full_article_read"
+    },
+    {
+      "id": "S5",
+      "title": "理念深入人心 实践任重道远——从成都大运会看体教融合",
+      "url": "https://news.cctv.com/2023/08/14/ARTIQizvzjWPwzQEuoP4lI3O230814.shtml",
+      "publisher": "央视网（具体原创机构见正文署名）",
+      "kind": "original_reporting_or_attributed_wire",
+      "publishedAt": "2023-08-14",
+      "accessedAt": "2026-11-17",
+      "verification": "full_article_read"
+    },
+    {
+      "id": "S6",
+      "title": "中国选手夏雨雨获成都大运会田径女子10000米金牌",
+      "url": "https://sports.cctv.com/2023/08/01/ARTInRlthRtnOR3gXm9m03EF230801.shtml",
+      "publisher": "央视网（具体原创机构见正文署名）",
+      "kind": "original_reporting_or_attributed_wire",
+      "publishedAt": "2023-08-01",
+      "accessedAt": "2026-11-17",
+      "verification": "full_article_read"
+    }
+  ],
+  "facts": [
+    {
+      "id": "F1",
+      "claim": "官方全马PB 2:25:45，日期 10 MAR 2024，地点 Nagoya (JPN)；未标记notLegal。",
+      "sourceIds": [
+        "S1"
+      ]
+    },
+    {
+      "id": "F2",
+      "claim": "2022年11月6日北京马拉松2:28:57夺冠，距报道所述2023世锦赛2:28:00标准57秒。",
+      "sourceIds": [
+        "S2"
+      ]
+    },
+    {
+      "id": "F3",
+      "claim": "2024年名古屋达巴黎奥运女子马拉松标准；2024年3月已达标4人，奥运最多3名，选拔需结合当年合资格赛事成绩。",
+      "sourceIds": [
+        "S3"
+      ]
+    },
+    {
+      "id": "F4",
+      "claim": "中学时期从贵州被曹振水相中，后先后在清华附中、清华大学就读；新华社将其列为高校自主培养学生运动员。",
+      "sourceIds": [
+        "S5"
+      ]
+    },
+    {
+      "id": "F5",
+      "claim": "新华社报道她为平衡学习、训练而牺牲假期加练。",
+      "sourceIds": [
+        "S4"
+      ]
+    },
+    {
+      "id": "F6",
+      "claim": "2023年8月1日成都大运会女子10000米夺冠；新华社体教融合报道图片说明成绩33:48.35。",
+      "sourceIds": [
+        "S5",
+        "S6"
+      ]
+    },
+    {
+      "id": "F7",
+      "claim": "2026年11月1日杭州全马2:35:10、第五名。",
+      "sourceIds": [
+        "S1"
+      ]
+    }
+  ],
+  "recordEvidence": {
+    "personalBests": [
+      {
+        "discipline": "1500 Metres",
+        "mark": "4:29.55",
+        "date": "28 APR 2021",
+        "venue": "Zaozhuang (CHN)",
+        "notLegal": false
+      },
+      {
+        "discipline": "3000 Metres",
+        "mark": "9:10.80",
+        "date": "07 SEP 2025",
+        "venue": "National Stadium, Beijing (CHN)",
+        "notLegal": false
+      },
+      {
+        "discipline": "5000 Metres",
+        "mark": "15:32.84",
+        "date": "26 JUN 2026",
+        "venue": "Kuishan Sports Center, Rizhao (CHN)",
+        "notLegal": false
+      },
+      {
+        "discipline": "10,000 Metres",
+        "mark": "32:38.13",
+        "date": "20 SEP 2021",
+        "venue": "Xi'an (CHN)",
+        "notLegal": false
+      },
+      {
+        "discipline": "Half Marathon",
+        "mark": "1:10:07",
+        "date": "12 APR 2026",
+        "venue": "Beijing (CHN)",
+        "notLegal": false
+      },
+      {
+        "discipline": "Marathon",
+        "mark": "2:25:45",
+        "date": "10 MAR 2024",
+        "venue": "Nagoya (JPN)",
+        "notLegal": false
+      },
+      {
+        "discipline": "4x800 Metres Relay",
+        "mark": "8:48.54",
+        "date": "15 SEP 2023",
+        "venue": "Shangyu Stadium, Shaoxing (CHN)",
+        "notLegal": false
+      }
+    ],
+    "marathonProgression": [
+      {
+        "mark": "2:41:29",
+        "date": "03 NOV 2019",
+        "venue": "Hangzhou (CHN)",
+        "competition": "Hangzhou Marathon",
+        "season": "2019"
+      },
+      {
+        "mark": "2:28:57",
+        "date": "06 NOV 2022",
+        "venue": "Beijing (CHN)",
+        "competition": "Beike Beijing Marathon",
+        "season": "2022"
+      },
+      {
+        "mark": "2:30:44",
+        "date": "17 DEC 2023",
+        "venue": "Hangzhou (CHN)",
+        "competition": "Hangzhou Marathon",
+        "season": "2023"
+      },
+      {
+        "mark": "2:25:45",
+        "date": "10 MAR 2024",
+        "venue": "Nagoya (JPN)",
+        "competition": "Nagoya Women's Marathon",
+        "season": "2024"
+      },
+      {
+        "mark": "2:34:15",
+        "date": "07 DEC 2025",
+        "venue": "Shenzhen (CHN)",
+        "competition": "Shenzhen Marathon",
+        "season": "2025"
+      },
+      {
+        "mark": "2:27:33",
+        "date": "18 OCT 2026",
+        "venue": "Beijing (CHN)",
+        "competition": "Bank of China Beijing Marathon",
+        "season": "2026"
+      }
+    ],
+    "currentResults": [
+      {
+        "mark": "16:00.34",
+        "date": "18 APR 2026",
+        "venue": "Henan Provincial Stadium, Zhengzhou (CHN)",
+        "notLegal": false,
+        "competition": "National Middle and Long Distance Running Meeting, Henan Provincial Stadium, Zhengzhou",
+        "place": "2.",
+        "discipline": "5000 Metres"
+      },
+      {
+        "mark": "16:10.97",
+        "date": "28 APR 2026",
+        "venue": "Taian sports center stadium, Taian (CHN)",
+        "notLegal": false,
+        "competition": "National Middle and Long Distance Running Meeting 2, Taian sports center stadium, Taian",
+        "place": "3.",
+        "discipline": "5000 Metres"
+      },
+      {
+        "mark": "15:32.84",
+        "date": "26 JUN 2026",
+        "venue": "Kuishan Sports Center, Rizhao (CHN)",
+        "notLegal": false,
+        "competition": "Chinese Athletics Meet, Kuishan Sports Center, Rizhao",
+        "place": "4.",
+        "discipline": "5000 Metres"
+      },
+      {
+        "mark": "15:54.51",
+        "date": "12 AUG 2026",
+        "venue": "Sports Center, Quzhou (CHN)",
+        "notLegal": false,
+        "competition": "Chinese Championships, Sports Center, Quzhou",
+        "place": "2.",
+        "discipline": "5000 Metres"
+      },
+      {
+        "mark": "33:08.12",
+        "date": "19 APR 2026",
+        "venue": "Henan Provincial Stadium, Zhengzhou (CHN)",
+        "notLegal": false,
+        "competition": "National Middle and Long Distance Running Meeting, Henan Provincial Stadium, Zhengzhou",
+        "place": "2.",
+        "discipline": "10,000 Metres"
+      },
+      {
+        "mark": "33:09.03",
+        "date": "29 APR 2026",
+        "venue": "Taian sports center stadium, Taian (CHN)",
+        "notLegal": false,
+        "competition": "National Middle and Long Distance Running Meeting 2, Taian sports center stadium, Taian",
+        "place": "3.",
+        "discipline": "10,000 Metres"
+      },
+      {
+        "mark": "34:09.34",
+        "date": "28 JUN 2026",
+        "venue": "Kuishan Sports Center, Rizhao (CHN)",
+        "notLegal": false,
+        "competition": "Chinese Athletics Meet, Kuishan Sports Center, Rizhao",
+        "place": "5.",
+        "discipline": "10,000 Metres"
+      },
+      {
+        "mark": "33:58.16",
+        "date": "16 AUG 2026",
+        "venue": "Sports Center, Quzhou (CHN)",
+        "notLegal": false,
+        "competition": "Chinese Championships, Sports Center, Quzhou",
+        "place": "3.",
+        "discipline": "10,000 Metres"
+      },
+      {
+        "mark": "1:11:18",
+        "date": "15 MAR 2026",
+        "venue": "Meishan (CHN)",
+        "notLegal": false,
+        "competition": "Meishan Renshou Half Marathon, Meishan",
+        "place": "13.",
+        "discipline": "Half Marathon"
+      },
+      {
+        "mark": "1:10:07",
+        "date": "12 APR 2026",
+        "venue": "Beijing (CHN)",
+        "notLegal": false,
+        "competition": "Beijing Half Marathon, Beijing",
+        "place": "2.",
+        "discipline": "Half Marathon"
+      },
+      {
+        "mark": "1:11:36",
+        "date": "20 SEP 2026",
+        "venue": "København (DEN)",
+        "notLegal": false,
+        "competition": "World Athletics Road Running Championships, København",
+        "place": "50.",
+        "discipline": "Half Marathon"
+      },
+      {
+        "mark": "2:29:14",
+        "date": "01 MAR 2026",
+        "venue": "Tokyo (JPN)",
+        "notLegal": false,
+        "competition": "Tokyo Marathon, Tokyo",
+        "place": "16.",
+        "discipline": "Marathon"
+      },
+      {
+        "mark": "2:27:33",
+        "date": "18 OCT 2026",
+        "venue": "Beijing (CHN)",
+        "notLegal": false,
+        "competition": "Bank of China Beijing Marathon, Beijing",
+        "place": "5.",
+        "discipline": "Marathon"
+      },
+      {
+        "mark": "38:08",
+        "date": "08 MAR 2026",
+        "venue": "Maoshan Cross Country Training Base, Huangshan (CHN)",
+        "notLegal": false,
+        "competition": "Chinese Cross Country Championships 1, Maoshan Cross Country Training Base, Huangshan - XC 10.0km",
+        "place": "13.",
+        "discipline": "Cross Country"
+      },
+      {
+        "discipline": "Marathon",
+        "mark": "2:35:10",
+        "date": "01 NOV 2026",
+        "competition": "Hangzhou Marathon, Hangzhou",
+        "venue": "Hangzhou (CHN)",
+        "place": "5.",
+        "notLegal": false,
+        "provenance": "本轮在线读取，比11-12旧快照多收录此条。"
+      }
+    ]
+  },
+  "gaps": [
+    "未获得本人与教练完整训练日志，不写周跑量、心率区间、饮食和伤病诊断。",
+    "未获取代表全马比赛完整官方分段；平均配速只作算术说明，不伪写加速位置。",
+    "现役名单最终纳入待全历史PB筛选和退役公告审计。"
+  ],
+  "recordEvidenceSnapshotNote": "本轮已在线核读6人官方页面；重复请求后0字节，结构化事实快照采用既有2026-11-12采集JSON并与本轮已读内容核对。",
+  "activeEvidence": {
+    "formalResultsInLast24Months": [
+      {
+        "mark": "16:00.34",
+        "date": "18 APR 2026",
+        "venue": "Henan Provincial Stadium, Zhengzhou (CHN)",
+        "notLegal": false,
+        "competition": "National Middle and Long Distance Running Meeting, Henan Provincial Stadium, Zhengzhou",
+        "place": "2.",
+        "discipline": "5000 Metres"
+      },
+      {
+        "mark": "16:10.97",
+        "date": "28 APR 2026",
+        "venue": "Taian sports center stadium, Taian (CHN)",
+        "notLegal": false,
+        "competition": "National Middle and Long Distance Running Meeting 2, Taian sports center stadium, Taian",
+        "place": "3.",
+        "discipline": "5000 Metres"
+      },
+      {
+        "mark": "15:32.84",
+        "date": "26 JUN 2026",
+        "venue": "Kuishan Sports Center, Rizhao (CHN)",
+        "notLegal": false,
+        "competition": "Chinese Athletics Meet, Kuishan Sports Center, Rizhao",
+        "place": "4.",
+        "discipline": "5000 Metres"
+      },
+      {
+        "mark": "15:54.51",
+        "date": "12 AUG 2026",
+        "venue": "Sports Center, Quzhou (CHN)",
+        "notLegal": false,
+        "competition": "Chinese Championships, Sports Center, Quzhou",
+        "place": "2.",
+        "discipline": "5000 Metres"
+      },
+      {
+        "mark": "33:08.12",
+        "date": "19 APR 2026",
+        "venue": "Henan Provincial Stadium, Zhengzhou (CHN)",
+        "notLegal": false,
+        "competition": "National Middle and Long Distance Running Meeting, Henan Provincial Stadium, Zhengzhou",
+        "place": "2.",
+        "discipline": "10,000 Metres"
+      },
+      {
+        "mark": "33:09.03",
+        "date": "29 APR 2026",
+        "venue": "Taian sports center stadium, Taian (CHN)",
+        "notLegal": false,
+        "competition": "National Middle and Long Distance Running Meeting 2, Taian sports center stadium, Taian",
+        "place": "3.",
+        "discipline": "10,000 Metres"
+      },
+      {
+        "mark": "34:09.34",
+        "date": "28 JUN 2026",
+        "venue": "Kuishan Sports Center, Rizhao (CHN)",
+        "notLegal": false,
+        "competition": "Chinese Athletics Meet, Kuishan Sports Center, Rizhao",
+        "place": "5.",
+        "discipline": "10,000 Metres"
+      },
+      {
+        "mark": "33:58.16",
+        "date": "16 AUG 2026",
+        "venue": "Sports Center, Quzhou (CHN)",
+        "notLegal": false,
+        "competition": "Chinese Championships, Sports Center, Quzhou",
+        "place": "3.",
+        "discipline": "10,000 Metres"
+      },
+      {
+        "mark": "1:11:18",
+        "date": "15 MAR 2026",
+        "venue": "Meishan (CHN)",
+        "notLegal": false,
+        "competition": "Meishan Renshou Half Marathon, Meishan",
+        "place": "13.",
+        "discipline": "Half Marathon"
+      },
+      {
+        "mark": "1:10:07",
+        "date": "12 APR 2026",
+        "venue": "Beijing (CHN)",
+        "notLegal": false,
+        "competition": "Beijing Half Marathon, Beijing",
+        "place": "2.",
+        "discipline": "Half Marathon"
+      },
+      {
+        "mark": "1:11:36",
+        "date": "20 SEP 2026",
+        "venue": "København (DEN)",
+        "notLegal": false,
+        "competition": "World Athletics Road Running Championships, København",
+        "place": "50.",
+        "discipline": "Half Marathon"
+      },
+      {
+        "mark": "2:29:14",
+        "date": "01 MAR 2026",
+        "venue": "Tokyo (JPN)",
+        "notLegal": false,
+        "competition": "Tokyo Marathon, Tokyo",
+        "place": "16.",
+        "discipline": "Marathon"
+      },
+      {
+        "mark": "2:27:33",
+        "date": "18 OCT 2026",
+        "venue": "Beijing (CHN)",
+        "notLegal": false,
+        "competition": "Bank of China Beijing Marathon, Beijing",
+        "place": "5.",
+        "discipline": "Marathon"
+      },
+      {
+        "mark": "38:08",
+        "date": "08 MAR 2026",
+        "venue": "Maoshan Cross Country Training Base, Huangshan (CHN)",
+        "notLegal": false,
+        "competition": "Chinese Cross Country Championships 1, Maoshan Cross Country Training Base, Huangshan - XC 10.0km",
+        "place": "13.",
+        "discipline": "Cross Country"
+      }
+    ],
+    "sourceId": "S1",
+    "retirementAnnouncementCheck": "pending_final_roster_audit",
+    "note": "正式参赛记录已核实；不单凭世界田联页面断言未退役。"
+  },
+  "editorialQuestions": {
+    "memorableTrait": "从清华附中到清华大学成长起来的学生运动员。",
+    "definingRaceOrChoice": "2022北马冠军与2024名古屋奥运达标之间，名次与门槛发生转换。",
+    "readerValue": "把学业训练冲突落实到有限时间与阶段目标，而不是神化自律。"
+  },
+  "centralQuestion": "把学业训练冲突落实到有限时间与阶段目标，而不是神化自律。",
+  "article": {
+    "title": "夏雨雨：一张课表之外，还有一条通往奥运会的路",
+    "lead": "北马冠军、清华学生、奥运达标者，几个身份常常被压缩成一句“学霸跑者”。夏雨雨的故事更具体：有限的时间怎样分配，一次夺冠之后，下一道门槛又怎样出现。",
+    "body": "2022年11月6日，北京马拉松时隔三年重新鸣枪。夏雨雨以2小时28分57秒成为女子冠军。终点给了她第一名，也留下了57秒：按当天报道所列的2小时28分整世锦赛标准，她还差这么长的一段时间。[S2]\n\n一场比赛可以同时带来成功与未完成。这是理解夏雨雨很好的入口。把“冠军”两个字放大，就容易忽略她随后还要追赶的时间；只盯着达标差距，又会错过她已经完成的竞争。她的路，就在这样的双重目标里延伸。\n\n## 她怎样走进清华跑道\n\n新华社在2023年关于体教融合的原创报道中，给出了夏雨雨清楚的成长线索。中学时期，来自贵州的她被清华大学田径队曹振水教授相中，随后到北京，先后就读清华附中、清华大学。报道把她列为高校自主培养的学生运动员。[S5]\n\n这条路径值得单独记住。她在学校里成长，同时积累能够站上高水平比赛起点的能力。2023年成都大运会女子10000米，她跑出33分48秒35夺冠。学校与竞技场在这次比赛中没有被分成彼此隔绝的两个世界，而是共同出现在一位运动员的履历里。[S5][S6]\n\n但这种结合并不意味着每天都能轻松安排。2024年的新华社人物报道写到，平衡学习与训练是夏雨雨面对的难题，许多时候需要牺牲假期加练。材料没有给出她每天固定几点上课、几点跑步，也没有提供一张全部课程和训练量的详细表格。因此，不能凭“清华”标签替她虚构一套完美时间管理法。[S4]\n\n我们能确认的，恰恰是平衡需要代价。对也在工作、学业与跑步之间分配时间的人来说，这比一个毫无缝隙的励志形象更有辨识度：她的竞技成长发生在另一项长期任务同时存在的生活里。\n\n## 北马的57秒，怎样成为下一站\n\n2022年北马，第二名李应美的成绩是2小时30分44秒，夏雨雨领先1分47秒。她的冠军有明确的比赛结果支撑。不过，2小时28分57秒折算平均配速约为每公里3分32秒；要达到报道中的2小时28分整，整场平均每公里还需要再快约1.4秒。[S2]\n\n这个计算只是把57秒放回42.195公里之中，不能当作她当年的具体训练方案。它也无法说明少掉的时间应从哪一个赛段拿回来。没有完整官方分段，不能说她只要更早加速或在终点冲刺更久就能达标。那样的叙述看起来直接，却跳过了整场体力分配的问题。\n\n真正可以从这场比赛中读出的，是评价目标的变化。她已经能在国内大型马拉松上争取冠军，而下一步要面对由绝对时间定义的资格门槛。名次由同场对手决定，达标线在起跑前就已存在；一个跑者可能在前者成功，而仍需为后者继续准备。\n\n2024年3月10日，名古屋女子马拉松，夏雨雨跑出2小时25分45秒。世界田联至今将这一成绩列为她的全马PB。与2022北马相比，时间缩短3分12秒。新华社随后确认，她在名古屋达到了巴黎奥运会女子马拉松参赛标准。[S1][S3]\n\n从“差57秒”到奥运达标，这段变化有具体成绩作坐标。至于她在中间用了哪些专项课、如何调整跑量，现有材料并不足以逐周重建。可以记住突破，也应给未知的训练过程留下位置。\n\n## 达标之后，起点还没有自动到来\n\n2024年3月，中国女子已有张德顺、李芷萱、白丽、夏雨雨四人达标。每队奥运马拉松最多派三人，四位达标者均报名无锡选拔赛。新华社当时解释，选拔还与当年合资格赛事成绩排名有关。[S3]\n\n对夏雨雨来说，名古屋不是一张可以取消后续竞争的通行证。她完成了时间门槛，仍要处在选拔规则之内。这也是大赛故事里容易被省略的一层：跑到标准并不总等于立即获得最终席位，个人突破要放到队伍名额和选拔周期中理解。\n\n这里不把2024年的办法写成今天仍在适用的规则。它的作用，是解释那一次职业节点的具体处境。对普通跑者，则提醒我们在报名重要比赛、争取参赛资格时，既要看自己的成绩，也要读清当届赛事的时间窗口与条件。\n\n## 不把校园故事停在一张金牌照片上\n\n如果只保存成都大运会的冠军照片，夏雨雨的故事会显得非常完整：来自清华的学生，在万米跑道上赢得世界大学生比赛。可她之后继续在全马、半马和场地赛中参赛，运动生涯没有停在那一晚。[S1][S5]\n\n2026年的世界田联记录里，她在东京马拉松跑出2小时29分14秒，10月18日北京马拉松2小时27分33秒、第五名；11月1日杭州马拉松2小时35分10秒、第五名。同一个名次对应不同的完赛时间，而不同比赛又各有自己的参赛阵容和环境，不能只用第五名说明三场比赛的状态完全相同。[S1]\n\n2026年4月12日北京半马，她以1小时10分07秒完成比赛，成为世界田联登记的半马PB；6月26日日照5000米15分32秒84，同样出现在她的个人最好成绩栏。全马PB仍在2024年，并不代表其他距离的成长也一起停止。[S1]\n\n作者更愿意把这些记录看成几条同时延伸的线：一条是她熟悉的场地赛，一条是半程，一条是完整的马拉松。不同距离之间可以提供观察角度，但它们不会按一个固定比例自动换算。5000米刷新PB，仍然需要额外证据才能解释为全马专项能力已经提高。\n\n## 读者可以带走什么\n\n夏雨雨给普通跑者最具体的启发，是把目标从一句口号拆开。学习、工作和训练都要占据时间时，先确认某一阶段最需要完成的任务，再为跑步安排能够长期兑现的位置。她付出假期时间的事实，不等于每个人都应该牺牲休息；适用的前提是生活条件、恢复能力与目标强度允许。[S4]\n\n另一种值得学习的做法，是为自己保留多种评价尺度。一场拿到好名次却没有达标的比赛，不必被概括为全胜或全败；一个没有全马PB的赛季，也可以在较短距离上看见进步。这是根据她的比赛记录作出的阅读建议，并非她本人公开总结的训练方法。\n\n从贵州到北京，从清华附中到大学，从北马的57秒差距到名古屋达标，夏雨雨留下的是一条有阶段、有门槛的路。记住她，不必只记“学霸”这个醒目的词；也可以记住那个具体的问题：当两件重要的事都需要时间，一个人怎样仍然把自己的下一步跑出来。",
+    "version": 2,
+    "updatedAt": "2026-11-17",
+    "editorialStatus": "evidence_based_feature",
+    "analysisBoundary": "正文中的平均配速和时间差为作者按官方成绩计算；无完整分段处不推断战术。",
+    "characters": 1938
+  },
+  "draftedAfterResearchCard": true
+}

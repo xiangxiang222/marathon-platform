@@ -1,0 +1,225 @@
+{
+  "sourceUrl": "https://worldathletics.org/athletes/athlete=14265122",
+  "retrievedAt": "2026-11-17T01:28:34.842423+00:00",
+  "competitor": {
+    "__typename": "singleCompetitor",
+    "_id": 14265122,
+    "primaryMediaId": null,
+    "primaryMediaId2": null,
+    "primaryMedia": null,
+    "basicData": {
+      "__typename": "AthleteNewData",
+      "id": null,
+      "friendlyName": null,
+      "fullName": null,
+      "friendlyNameLetter": null,
+      "friendlyNameFirst3Letter": null,
+      "sexCode": null,
+      "birthPlace": null,
+      "birthPlaceCountryName": null,
+      "sexNameUrlSlug": null,
+      "birthPlaceCountryUrlSlug": null,
+      "birthCountryCode": null,
+      "primaryMediaId": null,
+      "facebookUsername": null,
+      "twitterUsername": null,
+      "instagramUsername": null,
+      "countryFullName": "PR of China",
+      "familyName": "WANG",
+      "givenName": "Jianfen",
+      "firstName": null,
+      "lastName": null,
+      "countryName": null,
+      "countryCode": "CHN",
+      "countryUrlSlug": null,
+      "birthDate": "16 SEP 1975",
+      "birthDateStr": null,
+      "urlSlug": null,
+      "representativeId": null,
+      "biography": null,
+      "twitterLink": null,
+      "instagramLink": null,
+      "facebookLink": null,
+      "transfersOfAllegiance": [],
+      "iaafId": 131251,
+      "aaId": 14265122,
+      "primaryMediaEdited": null,
+      "male": false,
+      "primaryMedia": null
+    },
+    "athleteRepresentative": null,
+    "personalBests": {
+      "__typename": "personalBestsType",
+      "withWind": false,
+      "withRecords": false,
+      "results": [
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "marathon",
+          "typeNameUrlSlug": "road-running",
+          "discipline": "Marathon",
+          "linkToList": true,
+          "mark": "2:26:58",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "Beijing (CHN)",
+          "date": "04 OCT 1997",
+          "listPosition": "884",
+          "resultScore": 1146,
+          "records": [],
+          "competitionId": null,
+          "eventId": "10229534",
+          "eventName": null
+        }
+      ]
+    },
+    "seasonsBests": {
+      "__typename": "seasonsBestsType",
+      "parameters": {
+        "__typename": "seasonsBestsParamsType",
+        "seasonsBestsSeason": 1998
+      },
+      "activeSeasons": [
+        "1998",
+        "1997",
+        "1996"
+      ],
+      "withWind": false,
+      "withRecords": false,
+      "results": [
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "marathon",
+          "typeNameUrlSlug": "road-running",
+          "discipline": "Marathon",
+          "linkToList": false,
+          "mark": "2:33:20",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "Tianjin (CHN)",
+          "date": "11 APR 1998",
+          "listPosition": null,
+          "resultScore": 1086,
+          "records": [],
+          "competitionId": null,
+          "eventId": "10229534",
+          "competition": "Tianjin Chinese Marathon Ch."
+        }
+      ]
+    },
+    "progressionOfSeasonsBests": [
+      {
+        "__typename": "singleCompetitorProgression",
+        "indoor": false,
+        "disciplineCode": null,
+        "disciplineNameUrlSlug": "marathon",
+        "typeNameUrlSlug": "road-running",
+        "discipline": "Marathon",
+        "withWind": false,
+        "mainEvent": true,
+        "eventId": "10229534",
+        "results": [
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1996",
+            "numericResult": 9100,
+            "mark": "2:31:40",
+            "wind": null,
+            "venue": "Beijing (CHN)",
+            "date": "20 OCT 1996",
+            "listPosition": null,
+            "resultScore": 1102,
+            "competitionId": null,
+            "competition": "Beijing Marathon"
+          },
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1997",
+            "numericResult": 8818,
+            "mark": "2:26:58",
+            "wind": null,
+            "venue": "Beijing (CHN)",
+            "date": "04 OCT 1997",
+            "listPosition": null,
+            "resultScore": 1146,
+            "competitionId": null,
+            "competition": "Beijing Marathon"
+          },
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1998",
+            "numericResult": 9200,
+            "mark": "2:33:20",
+            "wind": null,
+            "venue": "Tianjin (CHN)",
+            "date": "11 APR 1998",
+            "listPosition": null,
+            "resultScore": 1086,
+            "competitionId": null,
+            "competition": "Tianjin Chinese Marathon Ch."
+          }
+        ]
+      }
+    ],
+    "worldRankings": {
+      "__typename": "worldRankingsType",
+      "parameters": {
+        "__typename": "worldRankingsParamsType",
+        "worldRankingsProgressionYear": null
+      },
+      "current": [],
+      "best": []
+    },
+    "honours": [],
+    "resultsByYear": {
+      "__typename": "resultsByYearType",
+      "parameters": {
+        "__typename": "resultByYearParamsType",
+        "resultsByYear": 1998,
+        "resultsByYearOrderBy": "discipline"
+      },
+      "activeYears": [
+        "1998",
+        "1997",
+        "1996"
+      ],
+      "resultsByEvent": [
+        {
+          "__typename": "resultsByEvent",
+          "indoor": null,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": null,
+          "typeNameUrlSlug": null,
+          "discipline": "Marathon",
+          "withWind": null,
+          "results": [
+            {
+              "__typename": "resultsByEventResult",
+              "date": "11 APR 1998",
+              "competition": "Tianjin Chinese Marathon Ch., Tianjin",
+              "venue": "Tianjin (CHN)",
+              "country": "CHN",
+              "category": "F",
+              "race": "F",
+              "place": "2.",
+              "mark": "2:33:20",
+              "wind": null,
+              "notLegal": false,
+              "resultScore": 1086,
+              "remark": "",
+              "competitionId": null,
+              "eventId": null,
+              "eventName": null
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

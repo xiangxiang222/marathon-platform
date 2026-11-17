@@ -1,0 +1,496 @@
+{
+  "sourceUrl": "https://worldathletics.org/athletes/athlete=14344470",
+  "retrievedAt": "2026-11-17T01:28:27.489219+00:00",
+  "competitor": {
+    "__typename": "singleCompetitor",
+    "_id": 14344470,
+    "primaryMediaId": null,
+    "primaryMediaId2": null,
+    "primaryMedia": null,
+    "basicData": {
+      "__typename": "AthleteNewData",
+      "id": null,
+      "friendlyName": null,
+      "fullName": null,
+      "friendlyNameLetter": null,
+      "friendlyNameFirst3Letter": null,
+      "sexCode": null,
+      "birthPlace": null,
+      "birthPlaceCountryName": null,
+      "sexNameUrlSlug": null,
+      "birthPlaceCountryUrlSlug": null,
+      "birthCountryCode": null,
+      "primaryMediaId": null,
+      "facebookUsername": null,
+      "twitterUsername": null,
+      "instagramUsername": null,
+      "countryFullName": "PR of China",
+      "familyName": "ZHANG",
+      "givenName": "Linli",
+      "firstName": null,
+      "lastName": null,
+      "countryName": null,
+      "countryCode": "CHN",
+      "countryUrlSlug": null,
+      "birthDate": "06 MAR 1973",
+      "birthDateStr": null,
+      "urlSlug": null,
+      "representativeId": null,
+      "biography": null,
+      "twitterLink": null,
+      "instagramLink": null,
+      "facebookLink": null,
+      "transfersOfAllegiance": [],
+      "iaafId": 67861,
+      "aaId": 14344470,
+      "primaryMediaEdited": null,
+      "male": false,
+      "primaryMedia": null
+    },
+    "athleteRepresentative": null,
+    "personalBests": {
+      "__typename": "personalBestsType",
+      "withWind": false,
+      "withRecords": false,
+      "results": [
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "1500-metres",
+          "typeNameUrlSlug": "middlelong",
+          "discipline": "1500 Metres",
+          "linkToList": true,
+          "mark": "3:57.46",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "Beijing (CHN)",
+          "date": "11 SEP 1993",
+          "listPosition": "70",
+          "resultScore": 1226,
+          "records": [],
+          "competitionId": null,
+          "eventId": "10229513",
+          "eventName": null
+        },
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "3000-metres",
+          "typeNameUrlSlug": "middlelong",
+          "discipline": "3000 Metres",
+          "linkToList": true,
+          "mark": "8:16.50",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "Beijing (CHN)",
+          "date": "13 SEP 1993",
+          "listPosition": "6",
+          "resultScore": 1256,
+          "records": [],
+          "competitionId": null,
+          "eventId": "10229519",
+          "eventName": null
+        },
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "10000-metres",
+          "typeNameUrlSlug": "middlelong",
+          "discipline": "10,000 Metres",
+          "linkToList": true,
+          "mark": "31:16.28",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "Beijing (CHN)",
+          "date": "08 SEP 1993",
+          "listPosition": "269",
+          "resultScore": 1178,
+          "records": [],
+          "competitionId": null,
+          "eventId": "10229521",
+          "eventName": null
+        },
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "marathon",
+          "typeNameUrlSlug": "road-running",
+          "discipline": "Marathon",
+          "linkToList": true,
+          "mark": "2:24:42",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "Tianjin (CHN)",
+          "date": "04 APR 1993",
+          "listPosition": "515",
+          "resultScore": 1167,
+          "records": [],
+          "competitionId": null,
+          "eventId": "10229534",
+          "eventName": null
+        }
+      ]
+    },
+    "seasonsBests": {
+      "__typename": "seasonsBestsType",
+      "parameters": {
+        "__typename": "seasonsBestsParamsType",
+        "seasonsBestsSeason": 1994
+      },
+      "activeSeasons": [
+        "1994",
+        "1993",
+        "1992"
+      ],
+      "withWind": false,
+      "withRecords": false,
+      "results": [
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "3000-metres",
+          "typeNameUrlSlug": "middlelong",
+          "discipline": "3000 Metres",
+          "linkToList": false,
+          "mark": "8:52.97",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "Hiroshima (JPN)",
+          "date": "11 OCT 1994",
+          "listPosition": null,
+          "resultScore": 1129,
+          "records": [],
+          "competitionId": null,
+          "eventId": "10229519",
+          "competition": "Hiroshima Asian Games"
+        },
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "marathon",
+          "typeNameUrlSlug": "road-running",
+          "discipline": "Marathon",
+          "linkToList": false,
+          "mark": "2:29:42",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "San Sebastián (ESP)",
+          "date": "31 OCT 1994",
+          "listPosition": null,
+          "resultScore": 1120,
+          "records": [],
+          "competitionId": null,
+          "eventId": "10229534",
+          "competition": "San Sebastián"
+        }
+      ]
+    },
+    "progressionOfSeasonsBests": [
+      {
+        "__typename": "singleCompetitorProgression",
+        "indoor": false,
+        "disciplineCode": null,
+        "disciplineNameUrlSlug": "1500-metres",
+        "typeNameUrlSlug": "middlelong",
+        "discipline": "1500 Metres",
+        "withWind": false,
+        "mainEvent": false,
+        "eventId": "10229513",
+        "results": [
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1993",
+            "numericResult": 237.46,
+            "mark": "3:57.46",
+            "wind": null,
+            "venue": "Beijing (CHN)",
+            "date": "11 SEP 1993",
+            "listPosition": null,
+            "resultScore": 1226,
+            "competitionId": null,
+            "competition": "Beijing Chinese National Games"
+          }
+        ]
+      },
+      {
+        "__typename": "singleCompetitorProgression",
+        "indoor": false,
+        "disciplineCode": null,
+        "disciplineNameUrlSlug": "3000-metres",
+        "typeNameUrlSlug": "middlelong",
+        "discipline": "3000 Metres",
+        "withWind": false,
+        "mainEvent": true,
+        "eventId": "10229519",
+        "results": [
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1992",
+            "numericResult": 526.86,
+            "mark": "8:46.86",
+            "wind": null,
+            "venue": "Olympic Stadium, Seoul (KOR)",
+            "date": "20 SEP 1992",
+            "listPosition": null,
+            "resultScore": 1150,
+            "competitionId": null,
+            "competition": "Seoul IAAF World Junior Championships"
+          },
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1993",
+            "numericResult": 496.5,
+            "mark": "8:16.50",
+            "wind": null,
+            "venue": "Beijing (CHN)",
+            "date": "13 SEP 1993",
+            "listPosition": null,
+            "resultScore": 1256,
+            "competitionId": null,
+            "competition": "Beijing Chinese National Games"
+          },
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1994",
+            "numericResult": 532.97,
+            "mark": "8:52.97",
+            "wind": null,
+            "venue": "Hiroshima (JPN)",
+            "date": "11 OCT 1994",
+            "listPosition": null,
+            "resultScore": 1129,
+            "competitionId": null,
+            "competition": "Hiroshima Asian Games"
+          }
+        ]
+      },
+      {
+        "__typename": "singleCompetitorProgression",
+        "indoor": false,
+        "disciplineCode": null,
+        "disciplineNameUrlSlug": "10000-metres",
+        "typeNameUrlSlug": "middlelong",
+        "discipline": "10,000 Metres",
+        "withWind": false,
+        "mainEvent": false,
+        "eventId": "10229521",
+        "results": [
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1993",
+            "numericResult": 1876.28,
+            "mark": "31:16.28",
+            "wind": null,
+            "venue": "Beijing (CHN)",
+            "date": "08 SEP 1993",
+            "listPosition": null,
+            "resultScore": 1178,
+            "competitionId": null,
+            "competition": "Beijing Chinese National Games"
+          }
+        ]
+      },
+      {
+        "__typename": "singleCompetitorProgression",
+        "indoor": false,
+        "disciplineCode": null,
+        "disciplineNameUrlSlug": "marathon",
+        "typeNameUrlSlug": "road-running",
+        "discipline": "Marathon",
+        "withWind": false,
+        "mainEvent": false,
+        "eventId": "10229534",
+        "results": [
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1993",
+            "numericResult": 8682,
+            "mark": "2:24:42",
+            "wind": null,
+            "venue": "Tianjin (CHN)",
+            "date": "04 APR 1993",
+            "listPosition": null,
+            "resultScore": 1167,
+            "competitionId": null,
+            "competition": "Tianjin NG"
+          },
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1994",
+            "numericResult": 8982,
+            "mark": "2:29:42",
+            "wind": null,
+            "venue": "San Sebastián (ESP)",
+            "date": "31 OCT 1994",
+            "listPosition": null,
+            "resultScore": 1120,
+            "competitionId": null,
+            "competition": "San Sebastián"
+          }
+        ]
+      }
+    ],
+    "worldRankings": {
+      "__typename": "worldRankingsType",
+      "parameters": {
+        "__typename": "worldRankingsParamsType",
+        "worldRankingsProgressionYear": null
+      },
+      "current": [],
+      "best": []
+    },
+    "honours": [
+      {
+        "__typename": "honour",
+        "categoryName": "World Championships",
+        "withWind": false,
+        "withDrop": false,
+        "results": [
+          {
+            "__typename": "honourResult",
+            "place": "2.",
+            "indoor": null,
+            "disciplineCode": null,
+            "disciplineNameUrlSlug": null,
+            "typeNameUrlSlug": null,
+            "discipline": "3000 Metres",
+            "competition": "IAAF World Championships",
+            "venue": "Gottlieb-Daimler Stadion, Stuttgart (GER)",
+            "mark": "8:29.25",
+            "date": "16 AUG 1993",
+            "competitionId": "6993598",
+            "eventId": "10229519",
+            "eventName": null
+          }
+        ]
+      },
+      {
+        "__typename": "honour",
+        "categoryName": "World U20 Championships",
+        "withWind": false,
+        "withDrop": false,
+        "results": [
+          {
+            "__typename": "honourResult",
+            "place": "1.",
+            "indoor": null,
+            "disciplineCode": null,
+            "disciplineNameUrlSlug": null,
+            "typeNameUrlSlug": null,
+            "discipline": "3000 Metres",
+            "competition": "Seoul IAAF World Junior Championships",
+            "venue": "Olympic Stadium, Seoul (KOR)",
+            "mark": "8:46.86",
+            "date": "20 SEP 1992",
+            "competitionId": "6979742",
+            "eventId": "10229519",
+            "eventName": null
+          }
+        ]
+      }
+    ],
+    "resultsByYear": {
+      "__typename": "resultsByYearType",
+      "parameters": {
+        "__typename": "resultByYearParamsType",
+        "resultsByYear": 1994,
+        "resultsByYearOrderBy": "discipline"
+      },
+      "activeYears": [
+        "1994",
+        "1993",
+        "1992"
+      ],
+      "resultsByEvent": [
+        {
+          "__typename": "resultsByEvent",
+          "indoor": null,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": null,
+          "typeNameUrlSlug": null,
+          "discipline": "3000 Metres",
+          "withWind": null,
+          "results": [
+            {
+              "__typename": "resultsByEventResult",
+              "date": "11 OCT 1994",
+              "competition": "Hiroshima Asian Games, Hiroshima",
+              "venue": "Hiroshima (JPN)",
+              "country": "JPN",
+              "category": null,
+              "race": "F",
+              "place": "1.",
+              "mark": "8:52.97",
+              "wind": null,
+              "notLegal": false,
+              "resultScore": 1129,
+              "remark": "",
+              "competitionId": null,
+              "eventId": null,
+              "eventName": null
+            }
+          ]
+        },
+        {
+          "__typename": "resultsByEvent",
+          "indoor": null,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": null,
+          "typeNameUrlSlug": null,
+          "discipline": "Marathon",
+          "withWind": null,
+          "results": [
+            {
+              "__typename": "resultsByEventResult",
+              "date": "30 OCT 1994",
+              "competition": "Beijing Marathon, Beijing",
+              "venue": "Beijing (CHN)",
+              "country": "CHN",
+              "category": null,
+              "race": "F",
+              "place": "4.",
+              "mark": "2:32:15",
+              "wind": null,
+              "notLegal": false,
+              "resultScore": 1096,
+              "remark": "",
+              "competitionId": null,
+              "eventId": null,
+              "eventName": null
+            },
+            {
+              "__typename": "resultsByEventResult",
+              "date": "31 OCT 1994",
+              "competition": "San Sebastián",
+              "venue": "San Sebastián (ESP)",
+              "country": "ESP",
+              "category": null,
+              "race": "F",
+              "place": "2.",
+              "mark": "2:29:42",
+              "wind": null,
+              "notLegal": false,
+              "resultScore": 1120,
+              "remark": "",
+              "competitionId": null,
+              "eventId": null,
+              "eventName": null
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

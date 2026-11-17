@@ -1,0 +1,358 @@
+{
+  "sourceUrl": "https://worldathletics.org/athletes/athlete=14483323",
+  "retrievedAt": "2026-11-17T01:28:33.421367+00:00",
+  "competitor": {
+    "__typename": "singleCompetitor",
+    "_id": 14483323,
+    "primaryMediaId": null,
+    "primaryMediaId2": null,
+    "primaryMedia": null,
+    "basicData": {
+      "__typename": "AthleteNewData",
+      "id": null,
+      "friendlyName": null,
+      "fullName": null,
+      "friendlyNameLetter": null,
+      "friendlyNameFirst3Letter": null,
+      "sexCode": null,
+      "birthPlace": null,
+      "birthPlaceCountryName": null,
+      "sexNameUrlSlug": null,
+      "birthPlaceCountryUrlSlug": null,
+      "birthCountryCode": null,
+      "primaryMediaId": null,
+      "facebookUsername": null,
+      "twitterUsername": null,
+      "instagramUsername": null,
+      "countryFullName": "PR of China",
+      "familyName": "WEI",
+      "givenName": "Jie",
+      "firstName": null,
+      "lastName": null,
+      "countryName": null,
+      "countryCode": "CHN",
+      "countryUrlSlug": null,
+      "birthDate": "25 JAN 1993",
+      "birthDateStr": null,
+      "urlSlug": null,
+      "representativeId": null,
+      "biography": null,
+      "twitterLink": null,
+      "instagramLink": null,
+      "facebookLink": null,
+      "transfersOfAllegiance": [],
+      "iaafId": 244591,
+      "aaId": 14483323,
+      "primaryMediaEdited": null,
+      "male": false,
+      "primaryMedia": null
+    },
+    "athleteRepresentative": null,
+    "personalBests": {
+      "__typename": "personalBestsType",
+      "withWind": false,
+      "withRecords": false,
+      "results": [
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "5000-metres",
+          "typeNameUrlSlug": "middlelong",
+          "discipline": "5000 Metres",
+          "linkToList": true,
+          "mark": "15:40.31",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "Hefei (CHN)",
+          "date": "11 SEP 2011",
+          "listPosition": null,
+          "resultScore": 1086,
+          "records": [],
+          "competitionId": null,
+          "eventId": "10229514",
+          "eventName": null
+        },
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "10000-metres",
+          "typeNameUrlSlug": "middlelong",
+          "discipline": "10,000 Metres",
+          "linkToList": true,
+          "mark": "32:53.63",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "Hefei (CHN)",
+          "date": "08 SEP 2011",
+          "listPosition": null,
+          "resultScore": 1092,
+          "records": [],
+          "competitionId": null,
+          "eventId": "10229521",
+          "eventName": null
+        },
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "marathon",
+          "typeNameUrlSlug": "road-running",
+          "discipline": "Marathon",
+          "linkToList": true,
+          "mark": "2:26:41",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "Zhengzhou (CHN)",
+          "date": "27 MAR 2011",
+          "listPosition": "831",
+          "resultScore": 1148,
+          "records": [],
+          "competitionId": null,
+          "eventId": "10229534",
+          "eventName": null
+        }
+      ]
+    },
+    "seasonsBests": {
+      "__typename": "seasonsBestsType",
+      "parameters": {
+        "__typename": "seasonsBestsParamsType",
+        "seasonsBestsSeason": 2012
+      },
+      "activeSeasons": [
+        "2012",
+        "2011"
+      ],
+      "withWind": false,
+      "withRecords": false,
+      "results": [
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "marathon",
+          "typeNameUrlSlug": "road-running",
+          "discipline": "Marathon",
+          "linkToList": true,
+          "mark": "2:29:46",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "Dalian (CHN)",
+          "date": "12 MAY 2012",
+          "listPosition": "133",
+          "resultScore": 1119,
+          "records": [],
+          "competitionId": null,
+          "eventId": "10229534",
+          "competition": "Dalian International Marathon"
+        }
+      ]
+    },
+    "progressionOfSeasonsBests": [
+      {
+        "__typename": "singleCompetitorProgression",
+        "indoor": false,
+        "disciplineCode": null,
+        "disciplineNameUrlSlug": "5000-metres",
+        "typeNameUrlSlug": "middlelong",
+        "discipline": "5000 Metres",
+        "withWind": false,
+        "mainEvent": false,
+        "eventId": "10229514",
+        "results": [
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "2011",
+            "numericResult": 940.31,
+            "mark": "15:40.31",
+            "wind": null,
+            "venue": "Hefei (CHN)",
+            "date": "11 SEP 2011",
+            "listPosition": 115,
+            "resultScore": 1086,
+            "competitionId": null,
+            "competition": "Hefei Chinese Championships"
+          }
+        ]
+      },
+      {
+        "__typename": "singleCompetitorProgression",
+        "indoor": false,
+        "disciplineCode": null,
+        "disciplineNameUrlSlug": "10000-metres",
+        "typeNameUrlSlug": "middlelong",
+        "discipline": "10,000 Metres",
+        "withWind": false,
+        "mainEvent": false,
+        "eventId": "10229521",
+        "results": [
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "2011",
+            "numericResult": 1973.63,
+            "mark": "32:53.63",
+            "wind": null,
+            "venue": "Hefei (CHN)",
+            "date": "08 SEP 2011",
+            "listPosition": 91,
+            "resultScore": 1092,
+            "competitionId": null,
+            "competition": "Hefei Chinese Championships"
+          }
+        ]
+      },
+      {
+        "__typename": "singleCompetitorProgression",
+        "indoor": false,
+        "disciplineCode": null,
+        "disciplineNameUrlSlug": "marathon",
+        "typeNameUrlSlug": "road-running",
+        "discipline": "Marathon",
+        "withWind": false,
+        "mainEvent": true,
+        "eventId": "10229534",
+        "results": [
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "2011",
+            "numericResult": 8801,
+            "mark": "2:26:41",
+            "wind": null,
+            "venue": "Zhengzhou (CHN)",
+            "date": "27 MAR 2011",
+            "listPosition": 61,
+            "resultScore": 1148,
+            "competitionId": null,
+            "competition": "Zhengzhou Int'l Marathon"
+          },
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "2012",
+            "numericResult": 8986,
+            "mark": "2:29:46",
+            "wind": null,
+            "venue": "Dalian (CHN)",
+            "date": "12 MAY 2012",
+            "listPosition": 133,
+            "resultScore": 1119,
+            "competitionId": null,
+            "competition": "Dalian International Marathon"
+          }
+        ]
+      }
+    ],
+    "worldRankings": {
+      "__typename": "worldRankingsType",
+      "parameters": {
+        "__typename": "worldRankingsParamsType",
+        "worldRankingsProgressionYear": null
+      },
+      "current": [],
+      "best": []
+    },
+    "honours": [],
+    "resultsByYear": {
+      "__typename": "resultsByYearType",
+      "parameters": {
+        "__typename": "resultByYearParamsType",
+        "resultsByYear": 2012,
+        "resultsByYearOrderBy": "discipline"
+      },
+      "activeYears": [
+        "2012",
+        "2011"
+      ],
+      "resultsByEvent": [
+        {
+          "__typename": "resultsByEvent",
+          "indoor": null,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": null,
+          "typeNameUrlSlug": null,
+          "discipline": "Marathon",
+          "withWind": null,
+          "results": [
+            {
+              "__typename": "resultsByEventResult",
+              "date": "18 MAR 2012",
+              "competition": "Chongqing Marathon, Chongqing - Chinese Marathon Ch.",
+              "venue": "Chongqing (CHN)",
+              "country": "CHN",
+              "category": "B",
+              "race": "F",
+              "place": "12.",
+              "mark": "2:33:01",
+              "wind": null,
+              "notLegal": false,
+              "resultScore": 1089,
+              "remark": "",
+              "competitionId": null,
+              "eventId": null,
+              "eventName": null
+            },
+            {
+              "__typename": "resultsByEventResult",
+              "date": "12 MAY 2012",
+              "competition": "Dalian International Marathon, Dalian",
+              "venue": "Dalian (CHN)",
+              "country": "CHN",
+              "category": "E",
+              "race": "F",
+              "place": "1.",
+              "mark": "2:29:46",
+              "wind": null,
+              "notLegal": false,
+              "resultScore": 1119,
+              "remark": "",
+              "competitionId": null,
+              "eventId": null,
+              "eventName": null
+            },
+            {
+              "__typename": "resultsByEventResult",
+              "date": "22 SEP 2012",
+              "competition": "Yingkou Bayuquan Marathon, Yingkou",
+              "venue": "Yingkou (CHN)",
+              "country": "CHN",
+              "category": "E",
+              "race": "F",
+              "place": "1.",
+              "mark": "2:30:04",
+              "wind": null,
+              "notLegal": false,
+              "resultScore": 1117,
+              "remark": "",
+              "competitionId": null,
+              "eventId": null,
+              "eventName": null
+            },
+            {
+              "__typename": "resultsByEventResult",
+              "date": "25 NOV 2012",
+              "competition": "Beijing International Marathon, Beijing",
+              "venue": "Beijing (CHN)",
+              "country": "CHN",
+              "category": "C",
+              "race": "F",
+              "place": "14.",
+              "mark": "2:37:08",
+              "wind": null,
+              "notLegal": false,
+              "resultScore": 1052,
+              "remark": "",
+              "competitionId": null,
+              "eventId": null,
+              "eventName": null
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

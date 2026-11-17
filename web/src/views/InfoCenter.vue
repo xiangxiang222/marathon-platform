@@ -1,7 +1,7 @@
 <template>
   <main class="journal-page">
     <header class="journal-top"><router-link :to="clubId ? '/clubs/' + clubId : '/'" aria-label="返回">‹</router-link><span>{{ clubId ? '跑团资讯' : '跑圈资讯' }}</span><router-link v-if="clubId && canManage" :to="'/clubs/' + clubId + '/news/manage'" class="publish-link">发布</router-link><span v-else class="top-spacer" aria-hidden="true"></span></header>
-    <section class="journal-intro"><h1>{{ clubId ? (clubName || '跑团资讯') : '跑圈动态' }}</h1><p>{{ clubId ? '团练记录、赛事回顾和团友的故事' : '关注赛道上的人，也关注跑圈新鲜事' }}</p><form class="journal-search" role="search" @submit.prevent="search"><span class="search-icon" aria-hidden="true"></span><input v-model="draftQuery" :aria-label="isProfile ? tab === 'pacer' ? '搜索赛事、配速组别或配速员' : '搜索运动员姓名' : '搜索资讯标题'" :placeholder="isProfile ? tab === 'pacer' ? '搜索赛事、配速组别或配速员' : '搜索运动员姓名' : '搜索资讯、赛事和跑团故事'" maxlength="80" /><button type="submit"><span>搜索</span></button></form></section>
+    <section class="journal-intro"><h1>{{ clubId ? (clubName || '跑团资讯') : tab === 'athlete' ? '赛道人物' : '跑圈动态' }}</h1><p>{{ clubId ? '团练记录、赛事回顾和团友的故事' : tab === 'athlete' ? '从一场比赛，认识中国马拉松的40个人' : '关注赛道上的人，也关注跑圈新鲜事' }}</p><form class="journal-search" role="search" @submit.prevent="search"><span class="search-icon" aria-hidden="true"></span><input v-model="draftQuery" :aria-label="isProfile ? tab === 'pacer' ? '搜索赛事、配速组别或配速员' : '搜索运动员姓名' : '搜索资讯标题'" :placeholder="isProfile ? tab === 'pacer' ? '搜索赛事、配速组别或配速员' : '搜索运动员姓名' : '搜索资讯、赛事和跑团故事'" maxlength="80" /><button type="submit"><span>搜索</span></button></form></section>
     <section class="journal-content">
       <nav v-if="!clubId" class="journal-tabs" aria-label="资讯栏目"><router-link v-for="t in tabs" :key="t.id" :to="{path:'/news',query:{tab:t.id}}" :class="{selected:tab===t.id}" :aria-current="tab===t.id?'page':undefined">{{ t.label }}</router-link></nav>
       <div v-if="!clubId && tab === 'all'" class="journal-shortcuts">
@@ -16,7 +16,8 @@
         </router-link>
       </div>
       <div class="section-caption"><h2>{{ clubId ? '跑团资讯' : tabs.find(t=>t.id===tab)?.heading }}</h2><span v-if="ready && !message && total">{{ total }} {{ tab === 'pacer' ? '位官兔' : isProfile ? '位运动员' : '篇内容' }}</span></div>
-      <p v-if="tab === 'athlete'" class="athlete-season">{{ meta.seasonYear || currentYear }}赛季 · 全程马拉松</p>
+      <p v-if="tab === 'athlete'" class="athlete-season">现役人物专题 · 全程马拉松 PB</p>
+      <p v-if="tab === 'athlete' && meta.rankingNotice" class="ranking-note">{{ meta.rankingNotice }}<br />{{ meta.activityRule }}</p>
       <div v-if="tab === 'athlete'" class="gender-tabs" aria-label="运动员性别"><button v-for="g in genders" :key="g.id" :class="{on:gender===g.id}" :aria-pressed="gender===g.id" type="button" @click="setGender(g.id)">{{ g.label }}</button></div>
       <div v-if="tab === 'pacer'" class="pacer-race-filter"><label for="pacer-race">配速赛事</label><select id="pacer-race" v-model="raceId" @change="setRace"><option value="">全部赛事</option><option v-for="race in raceFilters" :key="race.id" :value="race.id">{{ race.name }} · {{ race.count }} 位</option></select><button v-if="raceId || query" type="button" @click="resetPacerFilters">重置</button></div>
       <div v-if="message" class="journal-state" role="alert"><span class="state-icon" aria-hidden="true">!</span><b>内容暂时无法加载</b><p>{{ message }}</p><button type="button" @click="load">重新加载</button></div>
@@ -25,10 +26,10 @@
         <div class="journal-list">
         <router-link v-for="(row,index) in rows" :key="row.id" :to="rowLink(row)" :class="['journal-row', { 'person-row': isProfile }]">
           <template v-if="isProfile">
-            <span v-if="tab === 'athlete'" class="person-number" aria-hidden="true">{{ row.editorialOrigin === 'manual' && !row.seasonRank && !row.rank ? '—' : String(row.seasonRank || row.rank || (page - 1) * 20 + index + 1).padStart(2,'0') }}</span>
+            <span v-if="tab === 'athlete'" class="person-number" aria-hidden="true">{{ row.editorialOrigin === 'manual' && !row.seasonRank && !row.rank ? '—' : String(row.pbRank || row.seasonRank || row.rank || (page - 1) * 20 + index + 1).padStart(2,'0') }}</span>
             <span class="person-portrait"><span aria-hidden="true">{{ row.name.slice(0,1) }}</span><img v-if="row.avatar || row.photo" :src="row.avatar || row.photo" :alt="row.name + '头像'" loading="lazy" @error="$event.target.hidden = true" /></span>
-            <div class="person-copy"><span class="row-kicker">{{ tab === 'pacer' ? (row.gender==='women'?'女子 · ':row.gender==='men'?'男子 · ':'')+'官方配速员' : (row.gender==='women'?'女子':'男子')+' · '+(row.editorialOrigin === 'manual' ? '运动员档案' : (row.seasonYear || meta.seasonYear || currentYear)+'赛季') }}</span><h3>{{ row.name }}</h3><p v-if="tab !== 'pacer'">{{ row.seasonEventName || row.eventName || row.bio }}</p><template v-else><div v-if="row.raceBadges?.length" class="race-badges"><span v-for="(badge,bindex) in row.raceBadges" :key="badge.raceId + '-' + bindex" :class="{provisional:badge.status==='provisional'}">{{ badge.label || badge.raceName }} · {{ badge.status==='provisional' ? '入选公示' : badge.statusLabel || '已确认' }}</span></div><p v-else>{{ pacerRaceLabel(row) }}</p><p v-if="row.verifiedPacerRaceNames?.length" class="verified-race-label">曾任官兔 · {{ row.verifiedPacerRaceNames.join('、') }}</p></template></div>
-            <div class="person-time"><b>{{ tab === 'pacer' ? row.primaryTargetTime || row.targetTimes?.[0] || '查看履历' : row.seasonBest || row.personalBestDisplay || row.personalBest }}</b><small>{{ tab === 'pacer' ? '完赛目标' : row.seasonBest ? '赛季最佳' : '全马 PB' }}</small></div><span class="row-arrow" aria-hidden="true">›</span>
+            <div class="person-copy"><span class="row-kicker">{{ tab === 'pacer' ? (row.gender==='women'?'女子 · ':row.gender==='men'?'男子 · ':'')+'官方配速员' : (row.gender==='women'?'女子':'男子')+' · '+(row.editorialOrigin === 'manual' ? '运动员档案' : row.feature ? '人物专题 · PB榜' : (row.seasonYear || meta.seasonYear || currentYear)+'赛季') }}</span><h3>{{ row.name }}</h3><p v-if="tab !== 'pacer'" :class="{'feature-theme':row.feature}">{{ row.feature?.theme || row.seasonEventName || row.eventName || row.bio }}</p><template v-else><div v-if="row.raceBadges?.length" class="race-badges"><span v-for="(badge,bindex) in row.raceBadges" :key="badge.raceId + '-' + bindex" :class="{provisional:badge.status==='provisional'}">{{ badge.label || badge.raceName }} · {{ badge.status==='provisional' ? '入选公示' : badge.statusLabel || '已确认' }}</span></div><p v-else>{{ pacerRaceLabel(row) }}</p><p v-if="row.verifiedPacerRaceNames?.length" class="verified-race-label">曾任官兔 · {{ row.verifiedPacerRaceNames.join('、') }}</p></template></div>
+            <div class="person-time"><b>{{ tab === 'pacer' ? row.primaryTargetTime || row.targetTimes?.[0] || '查看履历' : row.feature ? row.personalBest : row.seasonBest || row.personalBestDisplay || row.personalBest }}</b><small>{{ tab === 'pacer' ? '完赛目标' : row.feature ? '全马 PB' : row.seasonBest ? '赛季最佳' : '全马 PB' }}</small></div><span class="row-arrow" aria-hidden="true">›</span>
           </template>
           <template v-else><div class="article-copy"><span class="row-kicker">{{ row.raceName ? '赛事资讯' : categoryName(row.category) }}<i v-if="row.featured">精选</i></span><h3>{{ row.title }}</h3><p v-if="row.summary">{{ row.summary }}</p><div class="row-meta"><span>{{ authorLabel(row) }}</span><time>{{ contentDate(row.publishedAt) }}</time></div></div><img v-if="row.coverUrl" class="article-photo" :src="row.coverUrl" alt="" loading="lazy" @error="$event.target.hidden = true" /></template>
         </router-link>
@@ -48,7 +49,7 @@ import {contentDate} from '../content-date';
 import Pager from '../components/Pager.vue';
 const route=useRoute();
 const currentYear=Number(new Intl.DateTimeFormat('en',{year:'numeric',timeZone:'Asia/Shanghai'}).format(new Date()));
-const tabs=[{id:'all',label:'精选',heading:'精选资讯'},{id:'industry',label:'业界',heading:'业界动态'},{id:'athlete',label:'运动员',heading:'中国马拉松运动员'},{id:'pacer',label:'官兔',heading:'官方配速员档案'},{id:'club',label:'跑团',heading:'跑团故事'},{id:'race',label:'赛事',heading:'赛事资讯'}];
+const tabs=[{id:'all',label:'精选',heading:'精选资讯'},{id:'industry',label:'业界',heading:'业界动态'},{id:'athlete',label:'运动员',heading:'中国马拉松运动员档案'},{id:'pacer',label:'官兔',heading:'官方配速员档案'},{id:'club',label:'跑团',heading:'跑团故事'},{id:'race',label:'赛事',heading:'赛事资讯'}];
 const profileEntries=[{id:'athlete',kicker:'中国马拉松',title:'运动员档案',description:'成绩履历与成长故事'},{id:'pacer',kicker:'A 类赛事',title:'官兔档案',description:'配速任务与参赛经历'}];
 const previewPhotos=ref({athlete:[],pacer:[]}),previewTarget=ref(''),previewLabels=ref({athlete:'',pacer:''});
 const previewLoaded={athlete:false,pacer:false};
@@ -62,11 +63,11 @@ function hidePreviewImage(type,id){
 function loadPreviews(){
   const seq=++previewSeq;
   return Promise.allSettled(profileEntries.filter(entry=>!previewLoaded[entry.id]).map(async entry=>{
-    const d=await api('/content/profiles?type='+entry.id+'&page=1&pageSize=6');
+    const d=await api('/content/profiles?type='+entry.id+(entry.id==='athlete'?'&collection=china-marathon':'')+'&page=1&pageSize=6');
     if(disposed||seq!==previewSeq||clubId.value||tab.value!=='all')return;
     const people=(d.profiles||[]).filter(person=>person.type===entry.id);
     previewPhotos.value={...previewPhotos.value,[entry.id]:people.map(person=>({id:person.id,name:person.name,image:previewImage(person.avatar||person.photo)})).filter(person=>person.image).slice(0,3)};
-    previewLabels.value={...previewLabels.value,[entry.id]:entry.id==='athlete'?[people[0]?.name,people[0]?.seasonBest || people[0]?.personalBestDisplay || people[0]?.personalBest].filter(Boolean).join(' · '):people[0]?.assignments?.[0]?.raceName || people[0]?.verifiedPacerRaceNames?.[0] || people[0]?.name || ''};
+    previewLabels.value={...previewLabels.value,[entry.id]:entry.id==='athlete'?[people[0]?.name,people[0]?.feature ? people[0]?.personalBest : people[0]?.seasonBest || people[0]?.personalBestDisplay || people[0]?.personalBest].filter(Boolean).join(' · '):people[0]?.assignments?.[0]?.raceName || people[0]?.verifiedPacerRaceNames?.[0] || people[0]?.name || ''};
     if(entry.id==='pacer')previewTarget.value=people.flatMap(person=>[person.primaryTargetTime,...(person.targetTimes||[])]).find(value=>/^\d:[0-5]\d(?::[0-5]\d)?$/.test(value||''))||'';
     previewLoaded[entry.id]=true;
   }));
@@ -79,7 +80,7 @@ const rows=ref([]),page=ref(1),pages=ref(1),total=ref(0),ready=ref(false),messag
 const raceId=ref(''),raceFilters=ref([]);
 let requestId=0;
 async function load(){const seq=++requestId;ready.value=false;message.value='';rows.value=[];meta.value={};try{let path;
-if(isProfile.value)path='/content/profiles?type='+tab.value+(tab.value==='athlete'?'&gender='+gender.value:raceId.value?'&raceId='+encodeURIComponent(raceId.value):'');
+if(isProfile.value)path='/content/profiles?type='+tab.value+(tab.value==='athlete'?'&collection=china-marathon&gender='+gender.value:raceId.value?'&raceId='+encodeURIComponent(raceId.value):'');
 else if(tab.value==='race')path='/news?';
 else path='/content/articles?'+(clubId.value?'clubId='+encodeURIComponent(clubId.value):tab.value==='all'?'':'category='+tab.value);
 const d=await api(path+(path.endsWith('?')?'':'&')+'page='+page.value+'&pageSize=20&q='+encodeURIComponent(query.value));if(seq!==requestId)return;

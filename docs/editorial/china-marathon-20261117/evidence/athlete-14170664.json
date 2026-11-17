@@ -1,0 +1,429 @@
+{
+  "retrievedAt": "2026-11-17T01:10:29.206642Z",
+  "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/donglin-zhan-14170664",
+  "competitor": {
+    "__typename": "singleCompetitor",
+    "_id": 14170664,
+    "primaryMediaId": null,
+    "primaryMediaId2": null,
+    "primaryMedia": null,
+    "basicData": {
+      "__typename": "AthleteNewData",
+      "id": null,
+      "friendlyName": null,
+      "fullName": null,
+      "friendlyNameLetter": null,
+      "friendlyNameFirst3Letter": null,
+      "sexCode": null,
+      "birthPlace": null,
+      "birthPlaceCountryName": null,
+      "sexNameUrlSlug": null,
+      "birthPlaceCountryUrlSlug": null,
+      "birthCountryCode": null,
+      "primaryMediaId": null,
+      "facebookUsername": null,
+      "twitterUsername": null,
+      "instagramUsername": null,
+      "countryFullName": "PR of China",
+      "familyName": "ZHAN",
+      "givenName": "Donglin",
+      "firstName": null,
+      "lastName": null,
+      "countryName": null,
+      "countryCode": "CHN",
+      "countryUrlSlug": null,
+      "birthDate": "15 JUL 1970",
+      "birthDateStr": null,
+      "urlSlug": null,
+      "representativeId": null,
+      "biography": null,
+      "twitterLink": null,
+      "instagramLink": null,
+      "facebookLink": null,
+      "transfersOfAllegiance": [],
+      "iaafId": 175802,
+      "aaId": 14170664,
+      "primaryMediaEdited": null,
+      "male": true,
+      "primaryMedia": null
+    },
+    "athleteRepresentative": null,
+    "personalBests": {
+      "__typename": "personalBestsType",
+      "withWind": false,
+      "withRecords": false,
+      "results": [
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "half-marathon",
+          "typeNameUrlSlug": "road-running",
+          "discipline": "Half Marathon",
+          "linkToList": true,
+          "mark": "1:04:46",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "Bruxelles (BEL)",
+          "date": "05 MAY 2002",
+          "listPosition": null,
+          "resultScore": 1002,
+          "records": [],
+          "competitionId": "6950102",
+          "eventId": "10229633",
+          "eventName": "11th IAAF World Half Marathon Championships"
+        },
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "30-kilometres",
+          "typeNameUrlSlug": "road-running",
+          "discipline": "30 Kilometres Road",
+          "linkToList": false,
+          "mark": "1:36:13",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "Tokyo (JPN)",
+          "date": "18 FEB 2001",
+          "listPosition": null,
+          "resultScore": 976,
+          "records": [],
+          "competitionId": null,
+          "eventId": "10229622",
+          "eventName": null
+        },
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "marathon",
+          "typeNameUrlSlug": "road-running",
+          "discipline": "Marathon",
+          "linkToList": true,
+          "mark": "2:10:38",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "Beijing (CHN)",
+          "date": "14 OCT 2001",
+          "listPosition": null,
+          "resultScore": 1119,
+          "records": [],
+          "competitionId": null,
+          "eventId": "10229634",
+          "eventName": null
+        }
+      ]
+    },
+    "seasonsBests": {
+      "__typename": "seasonsBestsType",
+      "parameters": {
+        "__typename": "seasonsBestsParamsType",
+        "seasonsBestsSeason": 2002
+      },
+      "activeSeasons": [
+        "2002",
+        "2001",
+        "2000",
+        "1999",
+        "1998",
+        "1997",
+        "1996"
+      ],
+      "withWind": false,
+      "withRecords": false,
+      "results": [
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "half-marathon",
+          "typeNameUrlSlug": "road-running",
+          "discipline": "Half Marathon",
+          "linkToList": true,
+          "mark": "1:04:46",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "Bruxelles (BEL)",
+          "date": "05 MAY 2002",
+          "listPosition": null,
+          "resultScore": 1002,
+          "records": [],
+          "competitionId": "6950102",
+          "eventId": "10229633",
+          "competition": "Bruxelles IAAF World Half Marathon Championships"
+        },
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "marathon",
+          "typeNameUrlSlug": "road-running",
+          "discipline": "Marathon",
+          "linkToList": true,
+          "mark": "2:19:58",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "Jinan (CHN)",
+          "date": "06 APR 2002",
+          "listPosition": null,
+          "resultScore": 957,
+          "records": [],
+          "competitionId": null,
+          "eventId": "10229634",
+          "competition": "Chinese Marathon Championships"
+        }
+      ]
+    },
+    "progressionOfSeasonsBests": [
+      {
+        "__typename": "singleCompetitorProgression",
+        "indoor": false,
+        "disciplineCode": null,
+        "disciplineNameUrlSlug": "half-marathon",
+        "typeNameUrlSlug": "road-running",
+        "discipline": "Half Marathon",
+        "withWind": false,
+        "mainEvent": false,
+        "eventId": "10229633",
+        "results": [
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1996",
+            "numericResult": 3919,
+            "mark": "1:05:19",
+            "wind": null,
+            "venue": "Siem Reap (CAM)",
+            "date": "22 DEC 1996",
+            "listPosition": null,
+            "resultScore": 982,
+            "competitionId": null,
+            "competition": "Siem Reap Half Marathon"
+          },
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "2002",
+            "numericResult": 3886,
+            "mark": "1:04:46",
+            "wind": null,
+            "venue": "Bruxelles (BEL)",
+            "date": "05 MAY 2002",
+            "listPosition": null,
+            "resultScore": 1002,
+            "competitionId": "6950102",
+            "competition": "Bruxelles IAAF World Half Marathon Championships"
+          }
+        ]
+      },
+      {
+        "__typename": "singleCompetitorProgression",
+        "indoor": false,
+        "disciplineCode": null,
+        "disciplineNameUrlSlug": "30-kilometres",
+        "typeNameUrlSlug": "road-running",
+        "discipline": "30 Kilometres Road",
+        "withWind": false,
+        "mainEvent": false,
+        "eventId": "10229622",
+        "results": [
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "2001",
+            "numericResult": 5773,
+            "mark": "1:36:13",
+            "wind": null,
+            "venue": "Tokyo (JPN)",
+            "date": "18 FEB 2001",
+            "listPosition": null,
+            "resultScore": 976,
+            "competitionId": null,
+            "competition": "Tokyo Ohme-Hochi 30 km"
+          }
+        ]
+      },
+      {
+        "__typename": "singleCompetitorProgression",
+        "indoor": false,
+        "disciplineCode": null,
+        "disciplineNameUrlSlug": "marathon",
+        "typeNameUrlSlug": "road-running",
+        "discipline": "Marathon",
+        "withWind": false,
+        "mainEvent": true,
+        "eventId": "10229634",
+        "results": [
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1997",
+            "numericResult": 8158,
+            "mark": "2:15:58",
+            "wind": null,
+            "venue": "Beijing (CHN)",
+            "date": "04 OCT 1997",
+            "listPosition": null,
+            "resultScore": 1025,
+            "competitionId": null,
+            "competition": "Beijing Marathon"
+          },
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1998",
+            "numericResult": 8197,
+            "mark": "2:16:37",
+            "wind": null,
+            "venue": "Tianjin (CHN)",
+            "date": "11 APR 1998",
+            "listPosition": null,
+            "resultScore": 1014,
+            "competitionId": null,
+            "competition": "Tianjin Chinese Marathon Ch."
+          },
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1999",
+            "numericResult": 8171,
+            "mark": "2:16:11",
+            "wind": null,
+            "venue": "Beijing (CHN)",
+            "date": "09 OCT 1999",
+            "listPosition": null,
+            "resultScore": 1021,
+            "competitionId": null,
+            "competition": "Beijing Marathon"
+          },
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "2000",
+            "numericResult": 8046,
+            "mark": "2:14:06",
+            "wind": null,
+            "venue": "Beijing (CHN)",
+            "date": "15 OCT 2000",
+            "listPosition": null,
+            "resultScore": 1057,
+            "competitionId": null,
+            "competition": "Beijing Marathon"
+          },
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "2001",
+            "numericResult": 7838,
+            "mark": "2:10:38",
+            "wind": null,
+            "venue": "Beijing (CHN)",
+            "date": "14 OCT 2001",
+            "listPosition": 68,
+            "resultScore": 1119,
+            "competitionId": null,
+            "competition": "Beijing Marathon"
+          },
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "2002",
+            "numericResult": 8398,
+            "mark": "2:19:58",
+            "wind": null,
+            "venue": "Jinan (CHN)",
+            "date": "06 APR 2002",
+            "listPosition": null,
+            "resultScore": 957,
+            "competitionId": null,
+            "competition": "Chinese Marathon Championships"
+          }
+        ]
+      }
+    ],
+    "worldRankings": {
+      "__typename": "worldRankingsType",
+      "parameters": {
+        "__typename": "worldRankingsParamsType",
+        "worldRankingsProgressionYear": null
+      },
+      "current": [],
+      "best": []
+    },
+    "honours": [],
+    "resultsByYear": {
+      "__typename": "resultsByYearType",
+      "parameters": {
+        "__typename": "resultByYearParamsType",
+        "resultsByYear": 2002,
+        "resultsByYearOrderBy": "discipline"
+      },
+      "activeYears": [
+        "2002",
+        "2001",
+        "2000",
+        "1999",
+        "1998",
+        "1997",
+        "1996"
+      ],
+      "resultsByEvent": [
+        {
+          "__typename": "resultsByEvent",
+          "indoor": null,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": null,
+          "typeNameUrlSlug": null,
+          "discipline": "Half Marathon",
+          "withWind": null,
+          "results": [
+            {
+              "__typename": "resultsByEventResult",
+              "date": "05 MAY 2002",
+              "competition": "Bruxelles IAAF World Half Marathon Championships, Bruxelles",
+              "venue": "Bruxelles (BEL)",
+              "country": "BEL",
+              "category": "GW",
+              "race": "F",
+              "place": "51.",
+              "mark": "1:04:46",
+              "wind": null,
+              "notLegal": false,
+              "resultScore": 1002,
+              "remark": "",
+              "competitionId": "6950102",
+              "eventId": "10229633",
+              "eventName": null
+            }
+          ]
+        },
+        {
+          "__typename": "resultsByEvent",
+          "indoor": null,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": null,
+          "typeNameUrlSlug": null,
+          "discipline": "Marathon",
+          "withWind": null,
+          "results": [
+            {
+              "__typename": "resultsByEventResult",
+              "date": "06 APR 2002",
+              "competition": "Chinese Marathon Championships, Jinan",
+              "venue": "Jinan (CHN)",
+              "country": "CHN",
+              "category": "C",
+              "race": "F",
+              "place": "6.",
+              "mark": "2:19:58",
+              "wind": null,
+              "notLegal": false,
+              "resultScore": 957,
+              "remark": "",
+              "competitionId": null,
+              "eventId": null,
+              "eventName": null
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

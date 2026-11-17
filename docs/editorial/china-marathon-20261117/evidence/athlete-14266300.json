@@ -1,0 +1,195 @@
+{
+  "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/yuanyuan-hu-14266300",
+  "retrievedAt": "2026-11-17T01:28:26.059716+00:00",
+  "competitor": {
+    "__typename": "singleCompetitor",
+    "_id": 14266300,
+    "primaryMediaId": null,
+    "primaryMediaId2": null,
+    "primaryMedia": null,
+    "basicData": {
+      "__typename": "AthleteNewData",
+      "id": null,
+      "friendlyName": null,
+      "fullName": null,
+      "friendlyNameLetter": null,
+      "friendlyNameFirst3Letter": null,
+      "sexCode": null,
+      "birthPlace": null,
+      "birthPlaceCountryName": null,
+      "sexNameUrlSlug": null,
+      "birthPlaceCountryUrlSlug": null,
+      "birthCountryCode": null,
+      "primaryMediaId": null,
+      "facebookUsername": null,
+      "twitterUsername": null,
+      "instagramUsername": null,
+      "countryFullName": "PR of China",
+      "familyName": "HU",
+      "givenName": "Yuanyuan",
+      "firstName": null,
+      "lastName": null,
+      "countryName": null,
+      "countryCode": "CHN",
+      "countryUrlSlug": null,
+      "birthDate": null,
+      "birthDateStr": null,
+      "urlSlug": null,
+      "representativeId": null,
+      "biography": null,
+      "twitterLink": null,
+      "instagramLink": null,
+      "facebookLink": null,
+      "transfersOfAllegiance": [],
+      "iaafId": null,
+      "aaId": 14266300,
+      "primaryMediaEdited": null,
+      "male": false,
+      "primaryMedia": null
+    },
+    "athleteRepresentative": null,
+    "personalBests": {
+      "__typename": "personalBestsType",
+      "withWind": false,
+      "withRecords": false,
+      "results": [
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "marathon",
+          "typeNameUrlSlug": "road-running",
+          "discipline": "Marathon",
+          "linkToList": true,
+          "mark": "2:24:39",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "Beijing (CHN)",
+          "date": "13 OCT 2002",
+          "listPosition": "509",
+          "resultScore": 1168,
+          "records": [],
+          "competitionId": null,
+          "eventId": "10229534",
+          "eventName": null
+        }
+      ]
+    },
+    "seasonsBests": {
+      "__typename": "seasonsBestsType",
+      "parameters": {
+        "__typename": "seasonsBestsParamsType",
+        "seasonsBestsSeason": 2002
+      },
+      "activeSeasons": [
+        "2002"
+      ],
+      "withWind": false,
+      "withRecords": false,
+      "results": [
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "marathon",
+          "typeNameUrlSlug": "road-running",
+          "discipline": "Marathon",
+          "linkToList": true,
+          "mark": "2:24:39",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "Beijing (CHN)",
+          "date": "13 OCT 2002",
+          "listPosition": "20",
+          "resultScore": 1168,
+          "records": [],
+          "competitionId": null,
+          "eventId": "10229534",
+          "competition": "Beijing Marathon"
+        }
+      ]
+    },
+    "progressionOfSeasonsBests": [
+      {
+        "__typename": "singleCompetitorProgression",
+        "indoor": false,
+        "disciplineCode": null,
+        "disciplineNameUrlSlug": "marathon",
+        "typeNameUrlSlug": "road-running",
+        "discipline": "Marathon",
+        "withWind": false,
+        "mainEvent": true,
+        "eventId": "10229534",
+        "results": [
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "2002",
+            "numericResult": 8679,
+            "mark": "2:24:39",
+            "wind": null,
+            "venue": "Beijing (CHN)",
+            "date": "13 OCT 2002",
+            "listPosition": 20,
+            "resultScore": 1168,
+            "competitionId": null,
+            "competition": "Beijing Marathon"
+          }
+        ]
+      }
+    ],
+    "worldRankings": {
+      "__typename": "worldRankingsType",
+      "parameters": {
+        "__typename": "worldRankingsParamsType",
+        "worldRankingsProgressionYear": null
+      },
+      "current": [],
+      "best": []
+    },
+    "honours": [],
+    "resultsByYear": {
+      "__typename": "resultsByYearType",
+      "parameters": {
+        "__typename": "resultByYearParamsType",
+        "resultsByYear": 2002,
+        "resultsByYearOrderBy": "discipline"
+      },
+      "activeYears": [
+        "2002"
+      ],
+      "resultsByEvent": [
+        {
+          "__typename": "resultsByEvent",
+          "indoor": null,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": null,
+          "typeNameUrlSlug": null,
+          "discipline": "Marathon",
+          "withWind": null,
+          "results": [
+            {
+              "__typename": "resultsByEventResult",
+              "date": "13 OCT 2002",
+              "competition": "Beijing Marathon, Beijing",
+              "venue": "Beijing (CHN)",
+              "country": "CHN",
+              "category": "A",
+              "race": "F",
+              "place": "4.",
+              "mark": "2:24:39",
+              "wind": null,
+              "notLegal": false,
+              "resultScore": 1168,
+              "remark": "",
+              "competitionId": null,
+              "eventId": null,
+              "eventName": null
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

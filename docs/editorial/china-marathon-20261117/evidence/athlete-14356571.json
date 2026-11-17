@@ -1,0 +1,559 @@
+{
+  "retrievedAt": "2026-11-17T01:10:35.017014Z",
+  "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/guowei-zhang-14356571",
+  "competitor": {
+    "__typename": "singleCompetitor",
+    "_id": 14356571,
+    "primaryMediaId": null,
+    "primaryMediaId2": null,
+    "primaryMedia": null,
+    "basicData": {
+      "__typename": "AthleteNewData",
+      "id": null,
+      "friendlyName": null,
+      "fullName": null,
+      "friendlyNameLetter": null,
+      "friendlyNameFirst3Letter": null,
+      "sexCode": null,
+      "birthPlace": null,
+      "birthPlaceCountryName": null,
+      "sexNameUrlSlug": null,
+      "birthPlaceCountryUrlSlug": null,
+      "birthCountryCode": null,
+      "primaryMediaId": null,
+      "facebookUsername": null,
+      "twitterUsername": null,
+      "instagramUsername": null,
+      "countryFullName": "PR of China",
+      "familyName": "ZHANG",
+      "givenName": "Guowei",
+      "firstName": null,
+      "lastName": null,
+      "countryName": null,
+      "countryCode": "CHN",
+      "countryUrlSlug": null,
+      "birthDate": "27 APR 1959",
+      "birthDateStr": null,
+      "urlSlug": null,
+      "representativeId": null,
+      "biography": null,
+      "twitterLink": null,
+      "instagramLink": null,
+      "facebookLink": null,
+      "transfersOfAllegiance": [],
+      "iaafId": 5103,
+      "aaId": 14356571,
+      "primaryMediaEdited": null,
+      "male": true,
+      "primaryMedia": null
+    },
+    "athleteRepresentative": null,
+    "personalBests": {
+      "__typename": "personalBestsType",
+      "withWind": false,
+      "withRecords": true,
+      "results": [
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "3000-metres",
+          "typeNameUrlSlug": "middlelong",
+          "discipline": "3000 Metres",
+          "linkToList": true,
+          "mark": "7:56.19",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "Praha (TCH)",
+          "date": "23 JUN 1987",
+          "listPosition": null,
+          "resultScore": 1078,
+          "records": [
+            "NR"
+          ],
+          "competitionId": null,
+          "eventId": "10229607",
+          "eventName": null
+        },
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "5000-metres",
+          "typeNameUrlSlug": "middlelong",
+          "discipline": "5000 Metres",
+          "linkToList": true,
+          "mark": "13:31.01",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "London (GBR)",
+          "date": "11 JUL 1986",
+          "listPosition": null,
+          "resultScore": 1099,
+          "records": [],
+          "competitionId": null,
+          "eventId": "10229609",
+          "eventName": null
+        },
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "10000-metres",
+          "typeNameUrlSlug": "middlelong",
+          "discipline": "10,000 Metres",
+          "linkToList": true,
+          "mark": "28:24.85",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "Kobe (JPN)",
+          "date": "29 APR 1986",
+          "listPosition": null,
+          "resultScore": 1094,
+          "records": [],
+          "competitionId": null,
+          "eventId": "10229610",
+          "eventName": null
+        },
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "marathon",
+          "typeNameUrlSlug": "road-running",
+          "discipline": "Marathon",
+          "linkToList": true,
+          "mark": "2:12:03",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "London (GBR)",
+          "date": "23 APR 1989",
+          "listPosition": null,
+          "resultScore": 1093,
+          "records": [],
+          "competitionId": null,
+          "eventId": "10229634",
+          "eventName": null
+        }
+      ]
+    },
+    "seasonsBests": {
+      "__typename": "seasonsBestsType",
+      "parameters": {
+        "__typename": "seasonsBestsParamsType",
+        "seasonsBestsSeason": 1990
+      },
+      "activeSeasons": [
+        "1990",
+        "1989",
+        "1988",
+        "1987",
+        "1986",
+        "1985",
+        "1984",
+        "1983",
+        "1982"
+      ],
+      "withWind": false,
+      "withRecords": false,
+      "results": [
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "5000-metres",
+          "typeNameUrlSlug": "middlelong",
+          "discipline": "5000 Metres",
+          "linkToList": false,
+          "mark": "13:42.8h",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "Beijing (CHN)",
+          "date": "27 JUN 1990",
+          "listPosition": null,
+          "resultScore": 1058,
+          "records": [],
+          "competitionId": null,
+          "eventId": "10229609",
+          "competition": "Beijing Chinese Championships"
+        },
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "10000-metres",
+          "typeNameUrlSlug": "middlelong",
+          "discipline": "10,000 Metres",
+          "linkToList": false,
+          "mark": "28:24.95",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "Mito (JPN)",
+          "date": "06 MAY 1990",
+          "listPosition": null,
+          "resultScore": 1094,
+          "records": [],
+          "competitionId": null,
+          "eventId": "10229610",
+          "competition": "Mito"
+        }
+      ]
+    },
+    "progressionOfSeasonsBests": [
+      {
+        "__typename": "singleCompetitorProgression",
+        "indoor": false,
+        "disciplineCode": null,
+        "disciplineNameUrlSlug": "3000-metres",
+        "typeNameUrlSlug": "middlelong",
+        "discipline": "3000 Metres",
+        "withWind": false,
+        "mainEvent": false,
+        "eventId": "10229607",
+        "results": [
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1987",
+            "numericResult": 476.19,
+            "mark": "7:56.19",
+            "wind": null,
+            "venue": "Praha (TCH)",
+            "date": "23 JUN 1987",
+            "listPosition": null,
+            "resultScore": 1078,
+            "competitionId": null,
+            "competition": "Praha Grand Prix"
+          }
+        ]
+      },
+      {
+        "__typename": "singleCompetitorProgression",
+        "indoor": false,
+        "disciplineCode": null,
+        "disciplineNameUrlSlug": "5000-metres",
+        "typeNameUrlSlug": "middlelong",
+        "discipline": "5000 Metres",
+        "withWind": false,
+        "mainEvent": true,
+        "eventId": "10229609",
+        "results": [
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1982",
+            "numericResult": 838.09,
+            "mark": "13:58.09",
+            "wind": null,
+            "venue": "New Delhi (IND)",
+            "date": "02 DEC 1982",
+            "listPosition": null,
+            "resultScore": 1006,
+            "competitionId": null,
+            "competition": "New Delhi Asian Championships"
+          },
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1986",
+            "numericResult": 811.01,
+            "mark": "13:31.01",
+            "wind": null,
+            "venue": "London (GBR)",
+            "date": "11 JUL 1986",
+            "listPosition": null,
+            "resultScore": 1099,
+            "competitionId": null,
+            "competition": "London Peugeot-Talbot Games"
+          },
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1987",
+            "numericResult": 820.46,
+            "mark": "13:40.46",
+            "wind": null,
+            "venue": "Stadio Olimpico, Roma (ITA)",
+            "date": "04 SEP 1987",
+            "listPosition": null,
+            "resultScore": 1066,
+            "competitionId": "6986221",
+            "competition": "IAAF World Championships"
+          },
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1988",
+            "numericResult": 817.08,
+            "mark": "13:37.08",
+            "wind": null,
+            "venue": "London (GBR)",
+            "date": "08 JUL 1988",
+            "listPosition": null,
+            "resultScore": 1077,
+            "competitionId": null,
+            "competition": "London Peugeot Games"
+          },
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1990",
+            "numericResult": 822.8,
+            "mark": "13:42.8h",
+            "wind": null,
+            "venue": "Beijing (CHN)",
+            "date": "27 JUN 1990",
+            "listPosition": null,
+            "resultScore": 1058,
+            "competitionId": null,
+            "competition": "Beijing Chinese Championships"
+          }
+        ]
+      },
+      {
+        "__typename": "singleCompetitorProgression",
+        "indoor": false,
+        "disciplineCode": null,
+        "disciplineNameUrlSlug": "10000-metres",
+        "typeNameUrlSlug": "middlelong",
+        "discipline": "10,000 Metres",
+        "withWind": false,
+        "mainEvent": false,
+        "eventId": "10229610",
+        "results": [
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1982",
+            "numericResult": 1777.56,
+            "mark": "29:37.56",
+            "wind": null,
+            "venue": "New Delhi (IND)",
+            "date": "25 NOV 1982",
+            "listPosition": null,
+            "resultScore": 987,
+            "competitionId": null,
+            "competition": "New Delhi Asian Championships"
+          },
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1985",
+            "numericResult": 1826.58,
+            "mark": "30:26.58",
+            "wind": null,
+            "venue": "Bruce Stadium, Canberra (AUS)",
+            "date": "04 OCT 1985",
+            "listPosition": null,
+            "resultScore": 917,
+            "competitionId": null,
+            "competition": "Canberra IAAF World Cup"
+          },
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1986",
+            "numericResult": 1704.85,
+            "mark": "28:24.85",
+            "wind": null,
+            "venue": "Kobe (JPN)",
+            "date": "29 APR 1986",
+            "listPosition": null,
+            "resultScore": 1094,
+            "competitionId": null,
+            "competition": "Kobe"
+          },
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1987",
+            "numericResult": 1710,
+            "mark": "28:30.00",
+            "wind": null,
+            "venue": "Stadio Olimpico, Roma (ITA)",
+            "date": "29 AUG 1987",
+            "listPosition": null,
+            "resultScore": 1086,
+            "competitionId": "6986221",
+            "competition": "IAAF World Championships"
+          },
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1990",
+            "numericResult": 1704.95,
+            "mark": "28:24.95",
+            "wind": null,
+            "venue": "Mito (JPN)",
+            "date": "06 MAY 1990",
+            "listPosition": null,
+            "resultScore": 1094,
+            "competitionId": null,
+            "competition": "Mito"
+          }
+        ]
+      },
+      {
+        "__typename": "singleCompetitorProgression",
+        "indoor": false,
+        "disciplineCode": null,
+        "disciplineNameUrlSlug": "marathon",
+        "typeNameUrlSlug": "road-running",
+        "discipline": "Marathon",
+        "withWind": false,
+        "mainEvent": false,
+        "eventId": "10229634",
+        "results": [
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1987",
+            "numericResult": 7937,
+            "mark": "2:12:17",
+            "wind": null,
+            "venue": "Tianjin (CHN)",
+            "date": "29 MAR 1987",
+            "listPosition": null,
+            "resultScore": 1089,
+            "competitionId": null,
+            "competition": "Tianjin"
+          },
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1988",
+            "numericResult": 8569,
+            "mark": "2:22:49",
+            "wind": null,
+            "venue": "Olympic Stadium, Seoul (KOR)",
+            "date": "02 OCT 1988",
+            "listPosition": null,
+            "resultScore": 910,
+            "competitionId": null,
+            "competition": "The XXIV Olympic Games"
+          },
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1989",
+            "numericResult": 7923,
+            "mark": "2:12:03",
+            "wind": null,
+            "venue": "London (GBR)",
+            "date": "23 APR 1989",
+            "listPosition": null,
+            "resultScore": 1093,
+            "competitionId": null,
+            "competition": "London Marathon"
+          }
+        ]
+      }
+    ],
+    "worldRankings": {
+      "__typename": "worldRankingsType",
+      "parameters": {
+        "__typename": "worldRankingsParamsType",
+        "worldRankingsProgressionYear": null
+      },
+      "current": [],
+      "best": []
+    },
+    "honours": [
+      {
+        "__typename": "honour",
+        "categoryName": "World (Continental) Cup",
+        "withWind": false,
+        "withDrop": false,
+        "results": [
+          {
+            "__typename": "honourResult",
+            "place": "8.",
+            "indoor": null,
+            "disciplineCode": null,
+            "disciplineNameUrlSlug": null,
+            "typeNameUrlSlug": null,
+            "discipline": "10,000 Metres",
+            "competition": "Canberra IAAF World Cup",
+            "venue": "Bruce Stadium, Canberra (AUS)",
+            "mark": "30:26.58",
+            "date": "04 OCT 1985",
+            "competitionId": "6981425",
+            "eventId": "10229610",
+            "eventName": null
+          }
+        ]
+      }
+    ],
+    "resultsByYear": {
+      "__typename": "resultsByYearType",
+      "parameters": {
+        "__typename": "resultByYearParamsType",
+        "resultsByYear": 1990,
+        "resultsByYearOrderBy": "discipline"
+      },
+      "activeYears": [
+        "1990",
+        "1989",
+        "1988",
+        "1987",
+        "1986",
+        "1985",
+        "1984",
+        "1983",
+        "1982"
+      ],
+      "resultsByEvent": [
+        {
+          "__typename": "resultsByEvent",
+          "indoor": null,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": null,
+          "typeNameUrlSlug": null,
+          "discipline": "5000 Metres",
+          "withWind": null,
+          "results": [
+            {
+              "__typename": "resultsByEventResult",
+              "date": "27 JUN 1990",
+              "competition": "Beijing Chinese Championships, Beijing",
+              "venue": "Beijing (CHN)",
+              "country": "CHN",
+              "category": null,
+              "race": "F",
+              "place": "1.",
+              "mark": "13:42.8h",
+              "wind": null,
+              "notLegal": false,
+              "resultScore": 1058,
+              "remark": "",
+              "competitionId": null,
+              "eventId": null,
+              "eventName": null
+            }
+          ]
+        },
+        {
+          "__typename": "resultsByEvent",
+          "indoor": null,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": null,
+          "typeNameUrlSlug": null,
+          "discipline": "10,000 Metres",
+          "withWind": null,
+          "results": [
+            {
+              "__typename": "resultsByEventResult",
+              "date": "06 MAY 1990",
+              "competition": "Mito",
+              "venue": "Mito (JPN)",
+              "country": "JPN",
+              "category": "F",
+              "race": "F",
+              "place": "1.",
+              "mark": "28:24.95",
+              "wind": null,
+              "notLegal": false,
+              "resultScore": 1094,
+              "remark": "",
+              "competitionId": null,
+              "eventId": null,
+              "eventName": null
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

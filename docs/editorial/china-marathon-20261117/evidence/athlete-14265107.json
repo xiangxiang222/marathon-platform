@@ -1,0 +1,778 @@
+{
+  "sourceUrl": "https://worldathletics.org/athletes/athlete=14265107",
+  "retrievedAt": "2026-11-17T01:28:23.297647+00:00",
+  "competitor": {
+    "__typename": "singleCompetitor",
+    "_id": 14265107,
+    "primaryMediaId": [
+      "5075ae255b6f401ce0dc7c80"
+    ],
+    "primaryMediaId2": null,
+    "primaryMedia": [
+      {
+        "__typename": "Media",
+        "urlSlug": null,
+        "title": "IAAF Hall of Fame - Wang Junxia (CHN)",
+        "fileName": "791cd1be-892a-4dcf-bfeb-2a01e748e16a.jpg"
+      }
+    ],
+    "basicData": {
+      "__typename": "AthleteNewData",
+      "id": null,
+      "friendlyName": null,
+      "fullName": null,
+      "friendlyNameLetter": null,
+      "friendlyNameFirst3Letter": null,
+      "sexCode": null,
+      "birthPlace": null,
+      "birthPlaceCountryName": null,
+      "sexNameUrlSlug": null,
+      "birthPlaceCountryUrlSlug": null,
+      "birthCountryCode": null,
+      "primaryMediaId": null,
+      "facebookUsername": null,
+      "twitterUsername": null,
+      "instagramUsername": null,
+      "countryFullName": "PR of China",
+      "familyName": "WANG",
+      "givenName": "Junxia",
+      "firstName": null,
+      "lastName": null,
+      "countryName": null,
+      "countryCode": "CHN",
+      "countryUrlSlug": null,
+      "birthDate": "09 JAN 1973",
+      "birthDateStr": null,
+      "urlSlug": null,
+      "representativeId": null,
+      "biography": null,
+      "twitterLink": null,
+      "instagramLink": null,
+      "facebookLink": null,
+      "transfersOfAllegiance": [],
+      "iaafId": 67840,
+      "aaId": 14265107,
+      "primaryMediaEdited": null,
+      "male": false,
+      "primaryMedia": null
+    },
+    "athleteRepresentative": null,
+    "personalBests": {
+      "__typename": "personalBestsType",
+      "withWind": false,
+      "withRecords": true,
+      "results": [
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "1500-metres",
+          "typeNameUrlSlug": "middlelong",
+          "discipline": "1500 Metres",
+          "linkToList": true,
+          "mark": "3:51.92",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "Beijing (CHN)",
+          "date": "11 SEP 1993",
+          "listPosition": "8",
+          "resultScore": 1271,
+          "records": [],
+          "competitionId": null,
+          "eventId": "10229513",
+          "eventName": null
+        },
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "3000-metres",
+          "typeNameUrlSlug": "middlelong",
+          "discipline": "3000 Metres",
+          "linkToList": true,
+          "mark": "8:06.11",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "Beijing (CHN)",
+          "date": "13 SEP 1993",
+          "listPosition": "1",
+          "resultScore": 1293,
+          "records": [
+            "WR",
+            "AR",
+            "NR"
+          ],
+          "competitionId": null,
+          "eventId": "10229519",
+          "eventName": null
+        },
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "5000-metres",
+          "typeNameUrlSlug": "middlelong",
+          "discipline": "5000 Metres",
+          "linkToList": true,
+          "mark": "14:51.87",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "Nanjing (CHN)",
+          "date": "05 MAY 1996",
+          "listPosition": "255",
+          "resultScore": 1179,
+          "records": [],
+          "competitionId": null,
+          "eventId": "10229514",
+          "eventName": null
+        },
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "10000-metres",
+          "typeNameUrlSlug": "middlelong",
+          "discipline": "10,000 Metres",
+          "linkToList": true,
+          "mark": "29:31.78",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "Beijing (CHN)",
+          "date": "08 SEP 1993",
+          "listPosition": "8",
+          "resultScore": 1274,
+          "records": [
+            "AR",
+            "NR"
+          ],
+          "competitionId": null,
+          "eventId": "10229521",
+          "eventName": null
+        },
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "marathon",
+          "typeNameUrlSlug": "road-running",
+          "discipline": "Marathon",
+          "linkToList": true,
+          "mark": "2:24:07",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "Tianjin (CHN)",
+          "date": "04 APR 1993",
+          "listPosition": "436",
+          "resultScore": 1173,
+          "records": [],
+          "competitionId": null,
+          "eventId": "10229534",
+          "eventName": null
+        }
+      ]
+    },
+    "seasonsBests": {
+      "__typename": "seasonsBestsType",
+      "parameters": {
+        "__typename": "seasonsBestsParamsType",
+        "seasonsBestsSeason": 1996
+      },
+      "activeSeasons": [
+        "1996",
+        "1995",
+        "1994",
+        "1993",
+        "1992"
+      ],
+      "withWind": false,
+      "withRecords": false,
+      "results": [
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "5000-metres",
+          "typeNameUrlSlug": "middlelong",
+          "discipline": "5000 Metres",
+          "linkToList": false,
+          "mark": "14:51.87",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "Nanjing (CHN)",
+          "date": "05 MAY 1996",
+          "listPosition": null,
+          "resultScore": 1179,
+          "records": [],
+          "competitionId": null,
+          "eventId": "10229514",
+          "competition": "Chinese Championships"
+        },
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "10000-metres",
+          "typeNameUrlSlug": "middlelong",
+          "discipline": "10,000 Metres",
+          "linkToList": false,
+          "mark": "31:01.76",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "Nanjing (CHN)",
+          "date": "07 MAY 1996",
+          "listPosition": null,
+          "resultScore": 1191,
+          "records": [],
+          "competitionId": null,
+          "eventId": "10229521",
+          "competition": "Chinese Championships"
+        }
+      ]
+    },
+    "progressionOfSeasonsBests": [
+      {
+        "__typename": "singleCompetitorProgression",
+        "indoor": false,
+        "disciplineCode": null,
+        "disciplineNameUrlSlug": "1500-metres",
+        "typeNameUrlSlug": "middlelong",
+        "discipline": "1500 Metres",
+        "withWind": false,
+        "mainEvent": false,
+        "eventId": "10229513",
+        "results": [
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1993",
+            "numericResult": 231.92,
+            "mark": "3:51.92",
+            "wind": null,
+            "venue": "Beijing (CHN)",
+            "date": "11 SEP 1993",
+            "listPosition": null,
+            "resultScore": 1271,
+            "competitionId": null,
+            "competition": "Beijing Chinese National Games"
+          }
+        ]
+      },
+      {
+        "__typename": "singleCompetitorProgression",
+        "indoor": false,
+        "disciplineCode": null,
+        "disciplineNameUrlSlug": "3000-metres",
+        "typeNameUrlSlug": "middlelong",
+        "discipline": "3000 Metres",
+        "withWind": false,
+        "mainEvent": true,
+        "eventId": "10229519",
+        "results": [
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1993",
+            "numericResult": 486.11,
+            "mark": "8:06.11",
+            "wind": null,
+            "venue": "Beijing (CHN)",
+            "date": "13 SEP 1993",
+            "listPosition": null,
+            "resultScore": 1293,
+            "competitionId": null,
+            "competition": "Beijing Chinese National Games"
+          }
+        ]
+      },
+      {
+        "__typename": "singleCompetitorProgression",
+        "indoor": false,
+        "disciplineCode": null,
+        "disciplineNameUrlSlug": "5000-metres",
+        "typeNameUrlSlug": "middlelong",
+        "discipline": "5000 Metres",
+        "withWind": false,
+        "mainEvent": false,
+        "eventId": "10229514",
+        "results": [
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1995",
+            "numericResult": 893.08,
+            "mark": "14:53.08",
+            "wind": null,
+            "venue": "Nanjing (CHN)",
+            "date": "24 OCT 1995",
+            "listPosition": null,
+            "resultScore": 1176,
+            "competitionId": null,
+            "competition": "Nanjing CG"
+          },
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1996",
+            "numericResult": 891.87,
+            "mark": "14:51.87",
+            "wind": null,
+            "venue": "Nanjing (CHN)",
+            "date": "05 MAY 1996",
+            "listPosition": null,
+            "resultScore": 1179,
+            "competitionId": null,
+            "competition": "Chinese Championships"
+          }
+        ]
+      },
+      {
+        "__typename": "singleCompetitorProgression",
+        "indoor": false,
+        "disciplineCode": null,
+        "disciplineNameUrlSlug": "10000-metres",
+        "typeNameUrlSlug": "middlelong",
+        "discipline": "10,000 Metres",
+        "withWind": false,
+        "mainEvent": false,
+        "eventId": "10229521",
+        "results": [
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1992",
+            "numericResult": 1949.9,
+            "mark": "32:29.90",
+            "wind": null,
+            "venue": "Olympic Stadium, Seoul (KOR)",
+            "date": "19 SEP 1992",
+            "listPosition": null,
+            "resultScore": 1113,
+            "competitionId": null,
+            "competition": "Seoul IAAF World Junior Championships"
+          },
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1993",
+            "numericResult": 1771.78,
+            "mark": "29:31.78",
+            "wind": null,
+            "venue": "Beijing (CHN)",
+            "date": "08 SEP 1993",
+            "listPosition": null,
+            "resultScore": 1274,
+            "competitionId": null,
+            "competition": "Beijing Chinese National Games"
+          },
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1994",
+            "numericResult": 1850.34,
+            "mark": "30:50.34",
+            "wind": null,
+            "venue": "Hiroshima (JPN)",
+            "date": "15 OCT 1994",
+            "listPosition": null,
+            "resultScore": 1201,
+            "competitionId": null,
+            "competition": "Hiroshima Asian Games"
+          },
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1995",
+            "numericResult": 1883.24,
+            "mark": "31:23.24",
+            "wind": null,
+            "venue": "Changchun (CHN)",
+            "date": "07 SEP 1995",
+            "listPosition": null,
+            "resultScore": 1172,
+            "competitionId": null,
+            "competition": "Changchun NP"
+          },
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1996",
+            "numericResult": 1861.76,
+            "mark": "31:01.76",
+            "wind": null,
+            "venue": "Nanjing (CHN)",
+            "date": "07 MAY 1996",
+            "listPosition": null,
+            "resultScore": 1191,
+            "competitionId": null,
+            "competition": "Chinese Championships"
+          }
+        ]
+      },
+      {
+        "__typename": "singleCompetitorProgression",
+        "indoor": false,
+        "disciplineCode": null,
+        "disciplineNameUrlSlug": "marathon",
+        "typeNameUrlSlug": "road-running",
+        "discipline": "Marathon",
+        "withWind": false,
+        "mainEvent": false,
+        "eventId": "10229534",
+        "results": [
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1993",
+            "numericResult": 8647,
+            "mark": "2:24:07",
+            "wind": null,
+            "venue": "Tianjin (CHN)",
+            "date": "04 APR 1993",
+            "listPosition": null,
+            "resultScore": 1173,
+            "competitionId": null,
+            "competition": "Tianjin NG"
+          },
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1994",
+            "numericResult": 9071,
+            "mark": "2:31:11",
+            "wind": null,
+            "venue": "Beijing (CHN)",
+            "date": "30 OCT 1994",
+            "listPosition": null,
+            "resultScore": 1106,
+            "competitionId": null,
+            "competition": "Beijing Marathon"
+          }
+        ]
+      }
+    ],
+    "worldRankings": {
+      "__typename": "worldRankingsType",
+      "parameters": {
+        "__typename": "worldRankingsParamsType",
+        "worldRankingsProgressionYear": null
+      },
+      "current": [],
+      "best": []
+    },
+    "honours": [
+      {
+        "__typename": "honour",
+        "categoryName": "Olympic Games",
+        "withWind": false,
+        "withDrop": false,
+        "results": [
+          {
+            "__typename": "honourResult",
+            "place": "1.",
+            "indoor": null,
+            "disciplineCode": null,
+            "disciplineNameUrlSlug": null,
+            "typeNameUrlSlug": null,
+            "discipline": "5000 Metres",
+            "competition": "The XXVI Olympic Games",
+            "venue": "Olympic Stadium, Atlanta, GA (USA)",
+            "mark": "14:59.88",
+            "date": "28 JUL 1996",
+            "competitionId": "6961749",
+            "eventId": "10229514",
+            "eventName": null
+          },
+          {
+            "__typename": "honourResult",
+            "place": "2.",
+            "indoor": null,
+            "disciplineCode": null,
+            "disciplineNameUrlSlug": null,
+            "typeNameUrlSlug": null,
+            "discipline": "10,000 Metres",
+            "competition": "The XXVI Olympic Games",
+            "venue": "Olympic Stadium, Atlanta, GA (USA)",
+            "mark": "31:02.58",
+            "date": "02 AUG 1996",
+            "competitionId": "6961749",
+            "eventId": "10229521",
+            "eventName": null
+          }
+        ]
+      },
+      {
+        "__typename": "honour",
+        "categoryName": "World Championships",
+        "withWind": false,
+        "withDrop": false,
+        "results": [
+          {
+            "__typename": "honourResult",
+            "place": "1.",
+            "indoor": null,
+            "disciplineCode": null,
+            "disciplineNameUrlSlug": null,
+            "typeNameUrlSlug": null,
+            "discipline": "10,000 Metres",
+            "competition": "IAAF World Championships",
+            "venue": "Gottlieb-Daimler Stadion, Stuttgart (GER)",
+            "mark": "30:49.30",
+            "date": "21 AUG 1993",
+            "competitionId": "6993598",
+            "eventId": "10229521",
+            "eventName": null
+          }
+        ]
+      },
+      {
+        "__typename": "honour",
+        "categoryName": "World Cross Country Championships",
+        "withWind": false,
+        "withDrop": false,
+        "results": [
+          {
+            "__typename": "honourResult",
+            "place": "2.",
+            "indoor": null,
+            "disciplineCode": null,
+            "disciplineNameUrlSlug": null,
+            "typeNameUrlSlug": null,
+            "discipline": "Cross Country U20 Race",
+            "competition": "20th IAAF World Cross Country Championships",
+            "venue": "Boston, MA (USA)",
+            "mark": "13:35",
+            "date": "21 MAR 1992",
+            "competitionId": "7116846",
+            "eventId": "10230008",
+            "eventName": null
+          }
+        ]
+      },
+      {
+        "__typename": "honour",
+        "categoryName": "World U20 Championships",
+        "withWind": false,
+        "withDrop": false,
+        "results": [
+          {
+            "__typename": "honourResult",
+            "place": "1.",
+            "indoor": null,
+            "disciplineCode": null,
+            "disciplineNameUrlSlug": null,
+            "typeNameUrlSlug": null,
+            "discipline": "10,000 Metres",
+            "competition": "Seoul IAAF World Junior Championships",
+            "venue": "Olympic Stadium, Seoul (KOR)",
+            "mark": "32:29.90",
+            "date": "19 SEP 1992",
+            "competitionId": "6979742",
+            "eventId": "10229521",
+            "eventName": null
+          }
+        ]
+      },
+      {
+        "__typename": "honour",
+        "categoryName": "National Championships",
+        "withWind": false,
+        "withDrop": false,
+        "results": [
+          {
+            "__typename": "honourResult",
+            "place": "1.",
+            "indoor": null,
+            "disciplineCode": null,
+            "disciplineNameUrlSlug": null,
+            "typeNameUrlSlug": null,
+            "discipline": "10,000 Metres",
+            "competition": "Chinese Championships",
+            "venue": "Nanjing (CHN)",
+            "mark": "31:11.59",
+            "date": "08 MAY 1996",
+            "competitionId": "6945603",
+            "eventId": "10229521",
+            "eventName": null
+          },
+          {
+            "__typename": "honourResult",
+            "place": "1.",
+            "indoor": null,
+            "disciplineCode": null,
+            "disciplineNameUrlSlug": null,
+            "typeNameUrlSlug": null,
+            "discipline": "5000 Metres",
+            "competition": "Chinese Championships",
+            "venue": "Nanjing (CHN)",
+            "mark": "14:51.87",
+            "date": "05 MAY 1996",
+            "competitionId": "6945603",
+            "eventId": "10229514",
+            "eventName": null
+          }
+        ]
+      }
+    ],
+    "resultsByYear": {
+      "__typename": "resultsByYearType",
+      "parameters": {
+        "__typename": "resultByYearParamsType",
+        "resultsByYear": 1996,
+        "resultsByYearOrderBy": "discipline"
+      },
+      "activeYears": [
+        "1996",
+        "1995",
+        "1994",
+        "1993",
+        "1992"
+      ],
+      "resultsByEvent": [
+        {
+          "__typename": "resultsByEvent",
+          "indoor": null,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": null,
+          "typeNameUrlSlug": null,
+          "discipline": "5000 Metres",
+          "withWind": null,
+          "results": [
+            {
+              "__typename": "resultsByEventResult",
+              "date": "05 MAY 1996",
+              "competition": "Chinese Championships, Nanjing",
+              "venue": "Nanjing (CHN)",
+              "country": "CHN",
+              "category": "C",
+              "race": "F",
+              "place": "1.",
+              "mark": "14:51.87",
+              "wind": null,
+              "notLegal": false,
+              "resultScore": 1179,
+              "remark": "",
+              "competitionId": null,
+              "eventId": null,
+              "eventName": null
+            },
+            {
+              "__typename": "resultsByEventResult",
+              "date": "26 JUL 1996",
+              "competition": "The XXVI Olympic Games, Olympic Stadium, Atlanta, GA",
+              "venue": "Olympic Stadium, Atlanta, GA (USA)",
+              "country": "USA",
+              "category": "OW",
+              "race": "H2",
+              "place": "4.",
+              "mark": "15:24.28",
+              "wind": null,
+              "notLegal": false,
+              "resultScore": 1116,
+              "remark": "",
+              "competitionId": "6961749",
+              "eventId": "10229514",
+              "eventName": null
+            },
+            {
+              "__typename": "resultsByEventResult",
+              "date": "28 JUL 1996",
+              "competition": "The XXVI Olympic Games, Olympic Stadium, Atlanta, GA",
+              "venue": "Olympic Stadium, Atlanta, GA (USA)",
+              "country": "USA",
+              "category": "OW",
+              "race": "F",
+              "place": "1.",
+              "mark": "14:59.88",
+              "wind": null,
+              "notLegal": false,
+              "resultScore": 1163,
+              "remark": "",
+              "competitionId": "6961749",
+              "eventId": "10229514",
+              "eventName": null
+            }
+          ]
+        },
+        {
+          "__typename": "resultsByEvent",
+          "indoor": null,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": null,
+          "typeNameUrlSlug": null,
+          "discipline": "10,000 Metres",
+          "withWind": null,
+          "results": [
+            {
+              "__typename": "resultsByEventResult",
+              "date": "07 MAY 1996",
+              "competition": "Chinese Championships, Nanjing",
+              "venue": "Nanjing (CHN)",
+              "country": "CHN",
+              "category": "C",
+              "race": "H1",
+              "place": "1.",
+              "mark": "31:01.76",
+              "wind": null,
+              "notLegal": false,
+              "resultScore": 1191,
+              "remark": "",
+              "competitionId": null,
+              "eventId": null,
+              "eventName": null
+            },
+            {
+              "__typename": "resultsByEventResult",
+              "date": "08 MAY 1996",
+              "competition": "Chinese Championships, Nanjing",
+              "venue": "Nanjing (CHN)",
+              "country": "CHN",
+              "category": "C",
+              "race": "F",
+              "place": "1.",
+              "mark": "31:11.59",
+              "wind": null,
+              "notLegal": false,
+              "resultScore": 1182,
+              "remark": "",
+              "competitionId": null,
+              "eventId": null,
+              "eventName": null
+            },
+            {
+              "__typename": "resultsByEventResult",
+              "date": "27 JUL 1996",
+              "competition": "The XXVI Olympic Games, Olympic Stadium, Atlanta, GA",
+              "venue": "Olympic Stadium, Atlanta, GA (USA)",
+              "country": "USA",
+              "category": "OW",
+              "race": "H1",
+              "place": "7.",
+              "mark": "32:36.53",
+              "wind": null,
+              "notLegal": false,
+              "resultScore": 1107,
+              "remark": "",
+              "competitionId": "6961749",
+              "eventId": "10229521",
+              "eventName": null
+            },
+            {
+              "__typename": "resultsByEventResult",
+              "date": "02 AUG 1996",
+              "competition": "The XXVI Olympic Games, Olympic Stadium, Atlanta, GA",
+              "venue": "Olympic Stadium, Atlanta, GA (USA)",
+              "country": "USA",
+              "category": "OW",
+              "race": "F",
+              "place": "2.",
+              "mark": "31:02.58",
+              "wind": null,
+              "notLegal": false,
+              "resultScore": 1190,
+              "remark": "",
+              "competitionId": "6961749",
+              "eventId": "10229521",
+              "eventName": null
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

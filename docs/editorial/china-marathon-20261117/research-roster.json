@@ -1,0 +1,4881 @@
+{
+  "version": 1,
+  "asOf": "2026-11-17",
+  "activityWindowStart": "2024-11-17",
+  "rankingBasis": "World Athletics认可的中国代表队登记（CHN）运动员合法全程马拉松个人最好成绩，筛近24个月任一正式田径或路跑项目参赛、未发现退出竞技公告。离开专业队但继续竞技者计入；同PB同名次，选篇边界按PB达成日较早者优先，同日按WAID稳定排序。",
+  "rankingStatus": "official_pb_with_documented_activity_scope",
+  "notice": "按官方PB筛选且有近24个月正式参赛证据的40人研究名单；专业队退役后持续竞技者计入。退役公告检索及历史候选排除存在已披露边界，不代表实时综合实力榜。",
+  "athletes": [
+    {
+      "worldAthleticsId": "14913520",
+      "nameEn": "Peiyou FENG",
+      "name": "丰配友",
+      "personalBest": "2:05:58",
+      "pbDate": "2026-03-01",
+      "pbVenue": "Tokyo (JPN)",
+      "birthDate": "2001-08-01",
+      "allTimeRank": "1",
+      "gender": "men",
+      "countryEvidence": {
+        "code": "CHN",
+        "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+        "verifiedAt": "2026-11-17"
+      },
+      "pbSourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+      "sources": [
+        {
+          "title": "World Athletics 中国全马历史PB榜",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all"
+        }
+      ],
+      "activityEvidence": [
+        {
+          "date": "2026-09-26",
+          "competition": "20th Asian Games, Municipal Mizuho Stadium, Nagoya",
+          "discipline": "Marathon",
+          "mark": "2:12:13",
+          "position": "3.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/peiyou-feng-14913520",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-06-28",
+          "competition": "Guizhou Zhenning Huangguoshu Half Marathon, Zhenning",
+          "discipline": "Half Marathon",
+          "mark": "1:04:31",
+          "position": "3.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/peiyou-feng-14913520",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": true
+        },
+        {
+          "date": "2026-05-30",
+          "competition": "National Athletics Grand Prix 4, Sports Center, Bengbu",
+          "discipline": "10,000 Metres",
+          "mark": "30:05.23",
+          "position": "4.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/peiyou-feng-14913520",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-05-24",
+          "competition": "Lanzhou Marathon, Lanzhou",
+          "discipline": "Marathon",
+          "mark": "2:14:09",
+          "position": "5.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/peiyou-feng-14913520",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-29",
+          "competition": "Yangzhou Half Marathon, Yangzhou",
+          "discipline": "Half Marathon",
+          "mark": "1:06:25",
+          "position": "16.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/peiyou-feng-14913520",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-22",
+          "competition": "Wuxi Marathon, Wuxi",
+          "discipline": "Marathon",
+          "mark": "2:08:10",
+          "position": "4.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/peiyou-feng-14913520",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-08",
+          "competition": "Chinese Cross Country Championships 1, Maoshan Cross Country Training Base, Huangshan - XC 10.0km",
+          "discipline": "Cross Country",
+          "mark": "34:15",
+          "position": "40.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/peiyou-feng-14913520",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-01",
+          "competition": "Tokyo Marathon, Tokyo",
+          "discipline": "Marathon",
+          "mark": "2:05:58",
+          "position": "11.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/peiyou-feng-14913520",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-01",
+          "competition": "Tokyo (JPN)",
+          "discipline": "Marathon",
+          "mark": "2:05:58",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-01-18",
+          "competition": "Chang'an Automobile Chongqing Marathon, Chongqing",
+          "discipline": "Marathon",
+          "mark": "2:10:22",
+          "position": "2.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/peiyou-feng-14913520",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        }
+      ],
+      "activityStatus": "recent_official_start_confirmed",
+      "profileUrl": "https://worldathletics.org/athletes/pr-of-china/peiyou-feng-14913520",
+      "identityCheckedAt": "2026-11-17",
+      "countryCode": "CHN",
+      "activeYears": [
+        "2026",
+        "2025",
+        "2024",
+        "2023",
+        "2022",
+        "2021",
+        "2019"
+      ],
+      "retirementCheck": {
+        "status": "public_source_search_with_limits",
+        "notice": "检索范围与摘录见retirement-searches.json及人物来源；未见退出竞技公告，不代表穷尽所有未索引声明。离开专业队但继续正式竞技者依用户确认计入。"
+      },
+      "displayOrder": 1,
+      "pbRank": 1
+    },
+    {
+      "worldAthleticsId": "14795227",
+      "nameEn": "Jie HE",
+      "name": "何杰",
+      "personalBest": "2:06:57",
+      "pbDate": "2024-03-24",
+      "pbVenue": "Wuxi (CHN)",
+      "birthDate": "1998-12-27",
+      "allTimeRank": "2",
+      "gender": "men",
+      "countryEvidence": {
+        "code": "CHN",
+        "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+        "verifiedAt": "2026-11-17"
+      },
+      "pbSourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+      "sources": [
+        {
+          "title": "World Athletics 中国全马历史PB榜",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all"
+        }
+      ],
+      "activityEvidence": [
+        {
+          "date": "2026-09-27",
+          "competition": "BMW Berlin Marathon, Berlin",
+          "discipline": "Marathon",
+          "mark": "2:16:16",
+          "position": "54.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/jie-he-14795227",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-05-24",
+          "competition": "Lanzhou Marathon, Lanzhou",
+          "discipline": "Marathon",
+          "mark": "2:24:53",
+          "position": "12.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/jie-he-14795227",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-04-12",
+          "competition": "Regional Athletics Invitational Meeting 3, Hubei Olympic Sports Center, Wuhan",
+          "discipline": "10,000 Metres",
+          "mark": "30:51.44",
+          "position": "10.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/jie-he-14795227",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-22",
+          "competition": "Bank of China Wuhan Marathon, Wuhan",
+          "discipline": "Marathon",
+          "mark": "2:10:56",
+          "position": "4.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/jie-he-14795227",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-15",
+          "competition": "Seoul Marathon, Seoul",
+          "discipline": "Marathon",
+          "mark": "2:08:15",
+          "position": "10.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/jie-he-14795227",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        }
+      ],
+      "activityStatus": "recent_official_start_confirmed",
+      "profileUrl": "https://worldathletics.org/athletes/pr-of-china/jie-he-14795227",
+      "identityCheckedAt": "2026-11-17",
+      "countryCode": "CHN",
+      "activeYears": [
+        "2026",
+        "2025",
+        "2024",
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017"
+      ],
+      "retirementCheck": {
+        "status": "public_source_search_with_limits",
+        "notice": "检索范围与摘录见retirement-searches.json及人物来源；未见退出竞技公告，不代表穷尽所有未索引声明。离开专业队但继续正式竞技者依用户确认计入。"
+      },
+      "displayOrder": 2,
+      "pbRank": 2
+    },
+    {
+      "worldAthleticsId": "14523268",
+      "nameEn": "Shaohui YANG",
+      "name": "杨绍辉",
+      "personalBest": "2:07:09",
+      "pbDate": "2023-12-03",
+      "pbVenue": "Fukuoka (JPN)",
+      "birthDate": "1992-07-09",
+      "allTimeRank": "3",
+      "gender": "men",
+      "countryEvidence": {
+        "code": "CHN",
+        "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+        "verifiedAt": "2026-11-17"
+      },
+      "pbSourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+      "sources": [
+        {
+          "title": "World Athletics 中国全马历史PB榜",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all"
+        }
+      ],
+      "activityEvidence": [
+        {
+          "date": "2026-10-18",
+          "competition": "Bank of China Beijing Marathon, Beijing",
+          "discipline": "Marathon",
+          "mark": "2:10:42",
+          "position": "9.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/shaohui-yang-14523268",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-09-27",
+          "competition": "Taiyuan Marathon, Taiyuan",
+          "discipline": "Marathon",
+          "mark": "2:11:55",
+          "position": "5.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/shaohui-yang-14523268",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-22",
+          "competition": "Wuxi Marathon, Wuxi",
+          "discipline": "Marathon",
+          "mark": "2:19:17",
+          "position": "45.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/shaohui-yang-14523268",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-01",
+          "competition": "Tokyo Marathon, Tokyo",
+          "discipline": "Marathon",
+          "mark": "2:14:43",
+          "position": "60.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/shaohui-yang-14523268",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-01-11",
+          "competition": "C&D Xiamen Marathon, Xiamen",
+          "discipline": "Marathon",
+          "mark": "2:11:14",
+          "position": "6.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/shaohui-yang-14523268",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        }
+      ],
+      "activityStatus": "recent_official_start_confirmed",
+      "profileUrl": "https://worldathletics.org/athletes/pr-of-china/shaohui-yang-14523268",
+      "identityCheckedAt": "2026-11-17",
+      "countryCode": "CHN",
+      "activeYears": [
+        "2026",
+        "2025",
+        "2024",
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017",
+        "2016",
+        "2015",
+        "2014",
+        "2013",
+        "2012"
+      ],
+      "retirementCheck": {
+        "status": "public_source_search_with_limits",
+        "notice": "检索范围与摘录见retirement-searches.json及人物来源；未见退出竞技公告，不代表穷尽所有未索引声明。离开专业队但继续正式竞技者依用户确认计入。"
+      },
+      "displayOrder": 3,
+      "pbRank": 3
+    },
+    {
+      "worldAthleticsId": "14913625",
+      "nameEn": "Jinhu MAO",
+      "name": "毛金虎",
+      "personalBest": "2:07:36",
+      "pbDate": "2026-03-22",
+      "pbVenue": "Wuxi (CHN)",
+      "birthDate": "2002-02-08",
+      "allTimeRank": "4",
+      "gender": "men",
+      "countryEvidence": {
+        "code": "CHN",
+        "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+        "verifiedAt": "2026-11-17"
+      },
+      "pbSourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+      "sources": [
+        {
+          "title": "World Athletics 中国全马历史PB榜",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all"
+        }
+      ],
+      "activityEvidence": [
+        {
+          "date": "2026-10-18",
+          "competition": "Bank of China Beijing Marathon, Beijing",
+          "discipline": "Marathon",
+          "mark": "2:10:39",
+          "position": "8.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/jinhu-mao-14913625",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-08-16",
+          "competition": "Chinese Championships, Sports Center, Quzhou",
+          "discipline": "5000 Metres",
+          "mark": "14:00.61",
+          "position": "3.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/jinhu-mao-14913625",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-08-12",
+          "competition": "Chinese Championships, Sports Center, Quzhou",
+          "discipline": "10,000 Metres",
+          "mark": "30:44.13",
+          "position": "19.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/jinhu-mao-14913625",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-06-26",
+          "competition": "Chinese Athletics Meet, Kuishan Sports Center, Rizhao",
+          "discipline": "10,000 Metres",
+          "mark": "DNF",
+          "position": "",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/jinhu-mao-14913625",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-05-30",
+          "competition": "National Athletics Grand Prix 4, Sports Center, Bengbu",
+          "discipline": "10,000 Metres",
+          "mark": "29:26.43",
+          "position": "1.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/jinhu-mao-14913625",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-05-24",
+          "competition": "Lanzhou Marathon, Lanzhou",
+          "discipline": "Marathon",
+          "mark": "2:27:32",
+          "position": "17.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/jinhu-mao-14913625",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-29",
+          "competition": "East Asian Half Marathon Championships, Yangzhou",
+          "discipline": "Half Marathon",
+          "mark": "1:03:39",
+          "position": "2.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/jinhu-mao-14913625",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-22",
+          "competition": "Wuxi Marathon, Wuxi",
+          "discipline": "Marathon",
+          "mark": "2:07:36",
+          "position": "2.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/jinhu-mao-14913625",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-22",
+          "competition": "Wuxi (CHN)",
+          "discipline": "Marathon",
+          "mark": "2:07:36",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        }
+      ],
+      "activityStatus": "recent_official_start_confirmed",
+      "profileUrl": "https://worldathletics.org/athletes/pr-of-china/jinhu-mao-14913625",
+      "identityCheckedAt": "2026-11-17",
+      "countryCode": "CHN",
+      "activeYears": [
+        "2026",
+        "2025",
+        "2024",
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019"
+      ],
+      "retirementCheck": {
+        "status": "public_source_search_with_limits",
+        "notice": "检索范围与摘录见retirement-searches.json及人物来源；未见退出竞技公告，不代表穷尽所有未索引声明。离开专业队但继续正式竞技者依用户确认计入。"
+      },
+      "displayOrder": 4,
+      "pbRank": 4
+    },
+    {
+      "worldAthleticsId": "14430085",
+      "nameEn": "Xiangdong WU",
+      "name": "吴向东",
+      "personalBest": "2:07:55",
+      "pbDate": "2026-09-27",
+      "pbVenue": "Berlin (GER)",
+      "birthDate": "1994-01-17",
+      "allTimeRank": "5",
+      "gender": "men",
+      "countryEvidence": {
+        "code": "CHN",
+        "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+        "verifiedAt": "2026-11-17"
+      },
+      "pbSourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+      "sources": [
+        {
+          "title": "World Athletics 中国全马历史PB榜",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all"
+        }
+      ],
+      "activityEvidence": [
+        {
+          "date": "2026-09-27",
+          "competition": "BMW Berlin Marathon, Berlin",
+          "discipline": "Marathon",
+          "mark": "2:07:55",
+          "position": "14.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/xiangdong-wu-14430085",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-09-27",
+          "competition": "Berlin (GER)",
+          "discipline": "Marathon",
+          "mark": "2:07:55",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-22",
+          "competition": "Wuxi Marathon, Wuxi",
+          "discipline": "Marathon",
+          "mark": "2:12:01",
+          "position": "16.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/xiangdong-wu-14430085",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-15",
+          "competition": "Shanghai Half Marathon, Shanghai",
+          "discipline": "Half Marathon",
+          "mark": "1:06:07",
+          "position": "19.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/xiangdong-wu-14430085",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-02-22",
+          "competition": "Osaka Marathon, Osaka",
+          "discipline": "Marathon",
+          "mark": "2:08:50",
+          "position": "27.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/xiangdong-wu-14430085",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        }
+      ],
+      "activityStatus": "recent_official_start_confirmed",
+      "profileUrl": "https://worldathletics.org/athletes/pr-of-china/xiangdong-wu-14430085",
+      "identityCheckedAt": "2026-11-17",
+      "countryCode": "CHN",
+      "activeYears": [
+        "2026",
+        "2025",
+        "2024",
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2017",
+        "2016",
+        "2015",
+        "2014",
+        "2013",
+        "2012",
+        "2011",
+        "2010"
+      ],
+      "retirementCheck": {
+        "status": "public_source_search_with_limits",
+        "notice": "检索范围与摘录见retirement-searches.json及人物来源；未见退出竞技公告，不代表穷尽所有未索引声明。离开专业队但继续正式竞技者依用户确认计入。"
+      },
+      "displayOrder": 5,
+      "pbRank": 5
+    },
+    {
+      "worldAthleticsId": "14694073",
+      "nameEn": "Tianyu CHEN",
+      "name": "陈天宇",
+      "personalBest": "2:08:11",
+      "pbDate": "2023-10-29",
+      "pbVenue": "Beijing (CHN)",
+      "birthDate": "1997-05-11",
+      "allTimeRank": "6",
+      "gender": "men",
+      "countryEvidence": {
+        "code": "CHN",
+        "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+        "verifiedAt": "2026-11-17"
+      },
+      "pbSourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+      "sources": [
+        {
+          "title": "World Athletics 中国全马历史PB榜",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all"
+        }
+      ],
+      "activityEvidence": [
+        {
+          "date": "2026-10-18",
+          "competition": "Bank of China Beijing Marathon, Beijing",
+          "discipline": "Marathon",
+          "mark": "2:09:09",
+          "position": "5.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/tianyu-chen-14694073",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-05-24",
+          "competition": "Lanzhou Marathon, Lanzhou",
+          "discipline": "Marathon",
+          "mark": "2:19:55",
+          "position": "9.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/tianyu-chen-14694073",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-22",
+          "competition": "Wuxi Marathon, Wuxi",
+          "discipline": "Marathon",
+          "mark": "2:18:59",
+          "position": "42.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/tianyu-chen-14694073",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-02-22",
+          "competition": "Osaka Marathon, Osaka",
+          "discipline": "Marathon",
+          "mark": "2:11:42",
+          "position": "54.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/tianyu-chen-14694073",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-01-18",
+          "competition": "Standard Chartered Hong Kong Marathon, Hong Kong",
+          "discipline": "Marathon",
+          "mark": "2:22:18",
+          "position": "21.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/tianyu-chen-14694073",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        }
+      ],
+      "activityStatus": "recent_official_start_confirmed",
+      "profileUrl": "https://worldathletics.org/athletes/pr-of-china/tianyu-chen-14694073",
+      "identityCheckedAt": "2026-11-17",
+      "countryCode": "CHN",
+      "activeYears": [
+        "2026",
+        "2025",
+        "2024",
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017",
+        "2016",
+        "2015"
+      ],
+      "retirementCheck": {
+        "status": "public_source_search_with_limits",
+        "notice": "检索范围与摘录见retirement-searches.json及人物来源；未见退出竞技公告，不代表穷尽所有未索引声明。离开专业队但继续正式竞技者依用户确认计入。"
+      },
+      "displayOrder": 6,
+      "pbRank": 6
+    },
+    {
+      "worldAthleticsId": "14172732",
+      "nameEn": "Guojian DONG",
+      "name": "董国建",
+      "personalBest": "2:08:12",
+      "pbDate": "2024-02-25",
+      "pbVenue": "Osaka (JPN)",
+      "birthDate": "1987-03-16",
+      "allTimeRank": "7",
+      "gender": "men",
+      "countryEvidence": {
+        "code": "CHN",
+        "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+        "verifiedAt": "2026-11-17"
+      },
+      "pbSourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+      "sources": [
+        {
+          "title": "World Athletics 中国全马历史PB榜",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all"
+        }
+      ],
+      "activityEvidence": [
+        {
+          "date": "2026-10-18",
+          "competition": "Xi'an Marathon, Xi'an",
+          "discipline": "Marathon",
+          "mark": "2:13:29",
+          "position": "2.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/guojian-dong-14172732",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-09-27",
+          "competition": "Taiyuan Marathon, Taiyuan",
+          "discipline": "Marathon",
+          "mark": "2:13:21",
+          "position": "7.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/guojian-dong-14172732",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-04-12",
+          "competition": "Nanjing Xianlin Half Marathon, Nanjing",
+          "discipline": "Half Marathon",
+          "mark": "1:04:49",
+          "position": "6.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/guojian-dong-14172732",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-22",
+          "competition": "Bank of China Wuhan Marathon, Wuhan",
+          "discipline": "Marathon",
+          "mark": "2:12:22",
+          "position": "5.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/guojian-dong-14172732",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-01-18",
+          "competition": "Chang'an Automobile Chongqing Marathon, Chongqing",
+          "discipline": "Marathon",
+          "mark": "2:13:02",
+          "position": "5.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/guojian-dong-14172732",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        }
+      ],
+      "activityStatus": "recent_official_start_confirmed",
+      "profileUrl": "https://worldathletics.org/athletes/pr-of-china/guojian-dong-14172732",
+      "identityCheckedAt": "2026-11-17",
+      "countryCode": "CHN",
+      "activeYears": [
+        "2026",
+        "2025",
+        "2024",
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017",
+        "2016",
+        "2015",
+        "2014",
+        "2013",
+        "2012",
+        "2011",
+        "2010",
+        "2009",
+        "2008",
+        "2007",
+        "2006"
+      ],
+      "retirementCheck": {
+        "status": "public_source_search_with_limits",
+        "notice": "检索范围与摘录见retirement-searches.json及人物来源；未见退出竞技公告，不代表穷尽所有未索引声明。离开专业队但继续正式竞技者依用户确认计入。"
+      },
+      "displayOrder": 7,
+      "pbRank": 7
+    },
+    {
+      "worldAthleticsId": "14694176",
+      "nameEn": "Cairen SUOLANG",
+      "name": "索朗才仁",
+      "personalBest": "2:08:20",
+      "pbDate": "2026-03-22",
+      "pbVenue": "Wuxi (CHN)",
+      "birthDate": "1999-07-28",
+      "allTimeRank": "9",
+      "gender": "men",
+      "countryEvidence": {
+        "code": "CHN",
+        "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+        "verifiedAt": "2026-11-17"
+      },
+      "pbSourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+      "sources": [
+        {
+          "title": "World Athletics 中国全马历史PB榜",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all"
+        }
+      ],
+      "activityEvidence": [
+        {
+          "date": "2026-10-18",
+          "competition": "Bank of China Beijing Marathon, Beijing",
+          "discipline": "Marathon",
+          "mark": "2:14:03",
+          "position": "33.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/cairen-suolang-14694176",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-06-26",
+          "competition": "Chinese Athletics Meet, Kuishan Sports Center, Rizhao",
+          "discipline": "10,000 Metres",
+          "mark": "29:59.38",
+          "position": "15.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/cairen-suolang-14694176",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-05-30",
+          "competition": "National Athletics Grand Prix 4, Sports Center, Bengbu",
+          "discipline": "10,000 Metres",
+          "mark": "DNF",
+          "position": "",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/cairen-suolang-14694176",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-05-24",
+          "competition": "Lanzhou Marathon, Lanzhou",
+          "discipline": "Marathon",
+          "mark": "2:21:00",
+          "position": "10.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/cairen-suolang-14694176",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-04-19",
+          "competition": "National Middle and Long Distance Running Meeting, Henan Provincial Stadium, Zhengzhou",
+          "discipline": "10,000 Metres",
+          "mark": "30:49.94",
+          "position": "12.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/cairen-suolang-14694176",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-22",
+          "competition": "Wuxi Marathon, Wuxi",
+          "discipline": "Marathon",
+          "mark": "2:08:20",
+          "position": "6.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/cairen-suolang-14694176",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-22",
+          "competition": "Wuxi (CHN)",
+          "discipline": "Marathon",
+          "mark": "2:08:20",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-15",
+          "competition": "Meishan Renshou Half Marathon, Meishan",
+          "discipline": "Half Marathon",
+          "mark": "1:02:42",
+          "position": "10.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/cairen-suolang-14694176",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-08",
+          "competition": "Chinese Cross Country Championships 1, Maoshan Cross Country Training Base, Huangshan - XC 10.0km",
+          "discipline": "Cross Country",
+          "mark": "32:08",
+          "position": "9.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/cairen-suolang-14694176",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        }
+      ],
+      "activityStatus": "recent_official_start_confirmed",
+      "profileUrl": "https://worldathletics.org/athletes/pr-of-china/cairen-suolang-14694176",
+      "identityCheckedAt": "2026-11-17",
+      "countryCode": "CHN",
+      "activeYears": [
+        "2026",
+        "2025",
+        "2024",
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017",
+        "2016",
+        "2015"
+      ],
+      "retirementCheck": {
+        "status": "public_source_search_with_limits",
+        "notice": "检索范围与摘录见retirement-searches.json及人物来源；未见退出竞技公告，不代表穷尽所有未索引声明。离开专业队但继续正式竞技者依用户确认计入。"
+      },
+      "displayOrder": 8,
+      "pbRank": 8
+    },
+    {
+      "worldAthleticsId": "15111707",
+      "nameEn": "Jiahao WANG",
+      "name": "王佳浩",
+      "personalBest": "2:08:21",
+      "pbDate": "2026-09-27",
+      "pbVenue": "Berlin (GER)",
+      "birthDate": "2000-07-06",
+      "allTimeRank": "10",
+      "gender": "men",
+      "countryEvidence": {
+        "code": "CHN",
+        "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+        "verifiedAt": "2026-11-17"
+      },
+      "pbSourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+      "sources": [
+        {
+          "title": "World Athletics 中国全马历史PB榜",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all"
+        }
+      ],
+      "activityEvidence": [
+        {
+          "date": "2026-09-27",
+          "competition": "BMW Berlin Marathon, Berlin",
+          "discipline": "Marathon",
+          "mark": "2:08:21",
+          "position": "15.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/jiahao-wang-15111707",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-09-27",
+          "competition": "Berlin (GER)",
+          "discipline": "Marathon",
+          "mark": "2:08:21",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-08-12",
+          "competition": "Chinese Championships, Sports Center, Quzhou",
+          "discipline": "10,000 Metres",
+          "mark": "30:41.63",
+          "position": "18.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/jiahao-wang-15111707",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-07-26",
+          "competition": "Chinese Athletics Association 10Km Elite Series Qujing Zhanyi, Qujing",
+          "discipline": "10 Kilometres Road",
+          "mark": "31:02",
+          "position": "5.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/jiahao-wang-15111707",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-06-20",
+          "competition": "Regional Athletics Invitational Meeting 9, Shanxi Athletics Administrative Center, Xi'an",
+          "discipline": "10,000 Metres",
+          "mark": "31:15.40",
+          "position": "5.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/jiahao-wang-15111707",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-06-19",
+          "competition": "Regional Athletics Invitational Meeting 9, Shanxi Athletics Administrative Center, Xi'an",
+          "discipline": "5000 Metres",
+          "mark": "15:24.87",
+          "position": "16.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/jiahao-wang-15111707",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-06-04",
+          "competition": "Regional Athletics Invitational Meeting 8, Sports Center, Nanping",
+          "discipline": "10,000 Metres",
+          "mark": "31:16.59",
+          "position": "1.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/jiahao-wang-15111707",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-06-03",
+          "competition": "Regional Athletics Invitational Meeting 8, Sports Center, Nanping",
+          "discipline": "5000 Metres",
+          "mark": "14:56.44",
+          "position": "2.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/jiahao-wang-15111707",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-05-31",
+          "competition": "Jilin City Marathon, Jilin",
+          "discipline": "Marathon",
+          "mark": "2:17:33",
+          "position": "7.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/jiahao-wang-15111707",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-05-16",
+          "competition": "Regional Athletics Invitational Meeting 7, Guoxin Sports Center, Qingdao",
+          "discipline": "10,000 Metres",
+          "mark": "30:01.31",
+          "position": "3.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/jiahao-wang-15111707",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-05-15",
+          "competition": "Regional Athletics Invitational Meeting 7, Guoxin Sports Center, Qingdao",
+          "discipline": "5000 Metres",
+          "mark": "14:42.67",
+          "position": "1.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/jiahao-wang-15111707",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-04-26",
+          "competition": "Miyun Marathon, Beijing",
+          "discipline": "Marathon",
+          "mark": "2:14:38",
+          "position": "5.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/jiahao-wang-15111707",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-04-19",
+          "competition": "Haier Qingdao Marathon, Qingdao",
+          "discipline": "Marathon",
+          "mark": "2:15:31",
+          "position": "4.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/jiahao-wang-15111707",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-04-12",
+          "competition": "Wizz Air Milano Marathon, Milano",
+          "discipline": "Marathon",
+          "mark": "2:31:02",
+          "position": "39.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/jiahao-wang-15111707",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-15",
+          "competition": "Shanghai Half Marathon, Shanghai",
+          "discipline": "Half Marathon",
+          "mark": "1:04:32",
+          "position": "10.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/jiahao-wang-15111707",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-08",
+          "competition": "NanJing Pukou Marathon, Pukou, Nanjing",
+          "discipline": "Marathon",
+          "mark": "2:11:32",
+          "position": "1.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/jiahao-wang-15111707",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-02-15",
+          "competition": "Zurich Maratón Sevilla, Sevilla",
+          "discipline": "Marathon",
+          "mark": "2:11:17",
+          "position": "29.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/jiahao-wang-15111707",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        }
+      ],
+      "activityStatus": "recent_official_start_confirmed",
+      "profileUrl": "https://worldathletics.org/athletes/china/jiahao-wang-15111707",
+      "identityCheckedAt": "2026-11-17",
+      "countryCode": "CHN",
+      "activeYears": [
+        "2026",
+        "2025",
+        "2024",
+        "2023",
+        "2021"
+      ],
+      "retirementCheck": {
+        "status": "public_source_search_with_limits",
+        "notice": "检索范围与摘录见retirement-searches.json及人物来源；未见退出竞技公告，不代表穷尽所有未索引声明。离开专业队但继续正式竞技者依用户确认计入。"
+      },
+      "displayOrder": 9,
+      "pbRank": 9
+    },
+    {
+      "worldAthleticsId": "15182213",
+      "nameEn": "Dalin LI",
+      "name": "李大林",
+      "personalBest": "2:08:30",
+      "pbDate": "2026-10-18",
+      "pbVenue": "Beijing (CHN)",
+      "birthDate": "2002-08-08",
+      "allTimeRank": "11",
+      "gender": "men",
+      "countryEvidence": {
+        "code": "CHN",
+        "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+        "verifiedAt": "2026-11-17"
+      },
+      "pbSourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+      "sources": [
+        {
+          "title": "World Athletics 中国全马历史PB榜",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all"
+        }
+      ],
+      "activityEvidence": [
+        {
+          "date": "2026-10-18",
+          "competition": "Bank of China Beijing Marathon, Beijing",
+          "discipline": "Marathon",
+          "mark": "2:08:30",
+          "position": "4.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/dalin-li-15182213",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-10-18",
+          "competition": "Beijing (CHN)",
+          "discipline": "Marathon",
+          "mark": "2:08:30",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-09-13",
+          "competition": "Harbin Marathon, Harbin",
+          "discipline": "Marathon",
+          "mark": "2:13:44",
+          "position": "3.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/dalin-li-15182213",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-07-26",
+          "competition": "Chinese Athletics Association 10Km Elite Series Qujing Zhanyi, Qujing",
+          "discipline": "10 Kilometres Road",
+          "mark": "30:51",
+          "position": "4.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/dalin-li-15182213",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-06-28",
+          "competition": "Guizhou Zhenning Huangguoshu Half Marathon, Zhenning",
+          "discipline": "Half Marathon",
+          "mark": "1:04:47",
+          "position": "4.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/dalin-li-15182213",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": true
+        },
+        {
+          "date": "2026-04-16",
+          "competition": "Bryan Clay Invitational, Cougar Athletic Stadium, Azusa, CA - Open Event",
+          "discipline": "10,000 Metres",
+          "mark": "30:21.90",
+          "position": "6.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/dalin-li-15182213",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-22",
+          "competition": "Wuxi Marathon, Wuxi",
+          "discipline": "Marathon",
+          "mark": "2:12:46",
+          "position": "17.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/dalin-li-15182213",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-01-11",
+          "competition": "C&D Xiamen Marathon, Xiamen",
+          "discipline": "Marathon",
+          "mark": "2:13:24",
+          "position": "9.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/dalin-li-15182213",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        }
+      ],
+      "activityStatus": "recent_official_start_confirmed",
+      "profileUrl": "https://worldathletics.org/athletes/china/dalin-li-15182213",
+      "identityCheckedAt": "2026-11-17",
+      "countryCode": "CHN",
+      "activeYears": [
+        "2026",
+        "2025",
+        "2024"
+      ],
+      "retirementCheck": {
+        "status": "public_source_search_with_limits",
+        "notice": "检索范围与摘录见retirement-searches.json及人物来源；未见退出竞技公告，不代表穷尽所有未索引声明。离开专业队但继续正式竞技者依用户确认计入。"
+      },
+      "displayOrder": 10,
+      "pbRank": 10
+    },
+    {
+      "worldAthleticsId": "14821206",
+      "nameEn": "Erenjia JIA",
+      "name": "贾俄仁加",
+      "personalBest": "2:08:32",
+      "pbDate": "2024-09-29",
+      "pbVenue": "Berlin (GER)",
+      "birthDate": "1993-07-28",
+      "allTimeRank": "12",
+      "gender": "men",
+      "countryEvidence": {
+        "code": "CHN",
+        "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+        "verifiedAt": "2026-11-17"
+      },
+      "pbSourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+      "sources": [
+        {
+          "title": "World Athletics 中国全马历史PB榜",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all"
+        }
+      ],
+      "activityEvidence": [
+        {
+          "date": "2026-10-31",
+          "competition": "Chinese Athletics Association 10Km Elite Series Wuxi Liangxi, Wuxi",
+          "discipline": "10 Kilometres Road",
+          "mark": "30:08",
+          "position": "1.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/erenjia-jia-14821206",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-10-18",
+          "competition": "Bank of China Beijing Marathon, Beijing",
+          "discipline": "Marathon",
+          "mark": "2:13:10",
+          "position": "23.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/erenjia-jia-14821206",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-09-26",
+          "competition": "20th Asian Games, Municipal Mizuho Stadium, Nagoya",
+          "discipline": "Marathon",
+          "mark": "2:19:18",
+          "position": "12.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/erenjia-jia-14821206",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-05-24",
+          "competition": "Lanzhou Marathon, Lanzhou",
+          "discipline": "Marathon",
+          "mark": "2:17:15",
+          "position": "6.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/erenjia-jia-14821206",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-05-03",
+          "competition": "Chinese Athletics Association 10Km Elite Series - Nujiang·Lushui, Lushui",
+          "discipline": "10 Kilometres Road",
+          "mark": "30:10",
+          "position": "1.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/erenjia-jia-14821206",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-22",
+          "competition": "Wuxi Marathon, Wuxi",
+          "discipline": "Marathon",
+          "mark": "2:10:22",
+          "position": "11.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/erenjia-jia-14821206",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-15",
+          "competition": "Meishan Renshou Half Marathon, Meishan",
+          "discipline": "Half Marathon",
+          "mark": "1:02:07",
+          "position": "6.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/erenjia-jia-14821206",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-02-22",
+          "competition": "Osaka Marathon, Osaka",
+          "discipline": "Marathon",
+          "mark": "2:17:21",
+          "position": "88.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/erenjia-jia-14821206",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-02-01",
+          "competition": "78th Kagawa Marugame International Half Marathon, Marugame",
+          "discipline": "Half Marathon",
+          "mark": "1:03:08",
+          "position": "143.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/erenjia-jia-14821206",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        }
+      ],
+      "activityStatus": "recent_official_start_confirmed",
+      "profileUrl": "https://worldathletics.org/athletes/pr-of-china/erenjia-jia-14821206",
+      "identityCheckedAt": "2026-11-17",
+      "countryCode": "CHN",
+      "activeYears": [
+        "2026",
+        "2025",
+        "2024",
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017"
+      ],
+      "retirementCheck": {
+        "status": "public_source_search_with_limits",
+        "notice": "检索范围与摘录见retirement-searches.json及人物来源；未见退出竞技公告，不代表穷尽所有未索引声明。离开专业队但继续正式竞技者依用户确认计入。"
+      },
+      "displayOrder": 11,
+      "pbRank": 11
+    },
+    {
+      "worldAthleticsId": "14754426",
+      "nameEn": "Kegu YANG",
+      "name": "杨克古",
+      "personalBest": "2:08:48",
+      "pbDate": "2026-03-22",
+      "pbVenue": "Wuxi (CHN)",
+      "birthDate": "2000-06-02",
+      "allTimeRank": "13",
+      "gender": "men",
+      "countryEvidence": {
+        "code": "CHN",
+        "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+        "verifiedAt": "2026-11-17"
+      },
+      "pbSourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+      "sources": [
+        {
+          "title": "World Athletics 中国全马历史PB榜",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all"
+        }
+      ],
+      "activityEvidence": [
+        {
+          "date": "2026-10-18",
+          "competition": "Bank of China Beijing Marathon, Beijing",
+          "discipline": "Marathon",
+          "mark": "2:14:08",
+          "position": "34.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/kegu-yang-14754426",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-09-13",
+          "competition": "Harbin Half Marathon, Harbin",
+          "discipline": "Half Marathon",
+          "mark": "1:05:58",
+          "position": "2.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/kegu-yang-14754426",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-08-16",
+          "competition": "Chinese Championships, Sports Center, Quzhou",
+          "discipline": "5000 Metres",
+          "mark": "14:03.67",
+          "position": "5.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/kegu-yang-14754426",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-08-12",
+          "competition": "Chinese Championships, Sports Center, Quzhou",
+          "discipline": "10,000 Metres",
+          "mark": "29:06.40",
+          "position": "1.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/kegu-yang-14754426",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-05-19",
+          "competition": "The 4th Belt and Road Athletics Invitational Meeting & National Athletics Grand Prix Series-3rd Leg, Changshou Sports Center, Chongqing - National Events",
+          "discipline": "5000 Metres",
+          "mark": "14:28.53",
+          "position": "4.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/kegu-yang-14754426",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-05-15",
+          "competition": "Regional Athletics Invitational Meeting 6, Olympic Sports Center, Chongqing",
+          "discipline": "10,000 Metres",
+          "mark": "29:48.24",
+          "position": "2.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/kegu-yang-14754426",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-05-14",
+          "competition": "Regional Athletics Invitational Meeting 6, Olympic Sports Center, Chongqing",
+          "discipline": "5000 Metres",
+          "mark": "14:17.10",
+          "position": "1.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/kegu-yang-14754426",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-05-09",
+          "competition": "National Athletics Grand Prix 2, Sports Center, Jiaxing",
+          "discipline": "10,000 Metres",
+          "mark": "29:31.34",
+          "position": "4.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/kegu-yang-14754426",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-22",
+          "competition": "Wuxi Marathon, Wuxi",
+          "discipline": "Marathon",
+          "mark": "2:08:48",
+          "position": "7.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/kegu-yang-14754426",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-22",
+          "competition": "Wuxi (CHN)",
+          "discipline": "Marathon",
+          "mark": "2:08:48",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-08",
+          "competition": "Chinese Cross Country Championships 1, Maoshan Cross Country Training Base, Huangshan - XC 10.0km",
+          "discipline": "Cross Country",
+          "mark": "33:42",
+          "position": "29.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/kegu-yang-14754426",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-07",
+          "competition": "Chinese Cross Country Championships 1, Maoshan Cross Country Training Base, Huangshan - XC 6.0km",
+          "discipline": "Cross Country",
+          "mark": "19:05",
+          "position": "10.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/kegu-yang-14754426",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        }
+      ],
+      "activityStatus": "recent_official_start_confirmed",
+      "profileUrl": "https://worldathletics.org/athletes/pr-of-china/kegu-yang-14754426",
+      "identityCheckedAt": "2026-11-17",
+      "countryCode": "CHN",
+      "activeYears": [
+        "2026",
+        "2025",
+        "2024",
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017",
+        "2016"
+      ],
+      "retirementCheck": {
+        "status": "public_source_search_with_limits",
+        "notice": "检索范围与摘录见retirement-searches.json及人物来源；未见退出竞技公告，不代表穷尽所有未索引声明。离开专业队但继续正式竞技者依用户确认计入。"
+      },
+      "displayOrder": 12,
+      "pbRank": 12
+    },
+    {
+      "worldAthleticsId": "15058848",
+      "nameEn": "Yue HONG",
+      "name": "洪跃",
+      "personalBest": "2:08:50",
+      "pbDate": "2026-03-22",
+      "pbVenue": "Wuxi (CHN)",
+      "birthDate": "1997-04-08",
+      "allTimeRank": "14",
+      "gender": "men",
+      "countryEvidence": {
+        "code": "CHN",
+        "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+        "verifiedAt": "2026-11-17"
+      },
+      "pbSourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+      "sources": [
+        {
+          "title": "World Athletics 中国全马历史PB榜",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all"
+        }
+      ],
+      "activityEvidence": [
+        {
+          "date": "2026-09-13",
+          "competition": "Harbin Marathon, Harbin",
+          "discipline": "全程马拉松",
+          "mark": "2:12:46",
+          "position": "2",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/yue-hong-15058848",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2026-06-14",
+          "competition": "Guiyang Marathon, Guiyang",
+          "discipline": "全程马拉松",
+          "mark": "2:19:21",
+          "position": "4",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/yue-hong-15058848",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2026-03-22",
+          "competition": "Wuxi Marathon, Wuxi",
+          "discipline": "全程马拉松",
+          "mark": "2:08:50",
+          "position": "8",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/yue-hong-15058848",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2026-03-22",
+          "competition": "Wuxi (CHN)",
+          "discipline": "Marathon",
+          "mark": "2:08:50",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-01-11",
+          "competition": "C&D Xiamen Marathon, Xiamen",
+          "discipline": "全程马拉松",
+          "mark": "2:15:19",
+          "position": "11",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/yue-hong-15058848",
+          "checkedAt": "2026-11-12"
+        }
+      ],
+      "activityStatus": "recent_official_start_confirmed",
+      "profileUrl": "https://worldathletics.org/athletes/pr-of-china/yue-hong-15058848",
+      "countryCode": "CHN",
+      "identityCheckedAt": "2026-11-12",
+      "retirementCheck": {
+        "status": "public_source_search_with_limits",
+        "notice": "检索范围与摘录见retirement-searches.json及人物来源；未见退出竞技公告，不代表穷尽所有未索引声明。离开专业队但继续正式竞技者依用户确认计入。"
+      },
+      "displayOrder": 13,
+      "pbRank": 13
+    },
+    {
+      "worldAthleticsId": "14714456",
+      "nameEn": "Jidongzhi SANG",
+      "name": "桑吉东知",
+      "personalBest": "2:09:29",
+      "pbDate": "2024-03-24",
+      "pbVenue": "Wuxi (CHN)",
+      "birthDate": "1997-11-10",
+      "allTimeRank": "17",
+      "gender": "men",
+      "countryEvidence": {
+        "code": "CHN",
+        "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+        "verifiedAt": "2026-11-17"
+      },
+      "pbSourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+      "sources": [
+        {
+          "title": "World Athletics 中国全马历史PB榜",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all"
+        }
+      ],
+      "activityEvidence": [
+        {
+          "date": "2026-10-18",
+          "competition": "Xi'an Marathon, Xi'an",
+          "discipline": "Marathon",
+          "mark": "2:14:03",
+          "position": "3.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/jidongzhi-sang-14714456",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-09-27",
+          "competition": "Taiyuan Marathon, Taiyuan",
+          "discipline": "Marathon",
+          "mark": "2:15:53",
+          "position": "10.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/jidongzhi-sang-14714456",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-22",
+          "competition": "Wuxi Marathon, Wuxi",
+          "discipline": "Marathon",
+          "mark": "2:14:02",
+          "position": "21.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/jidongzhi-sang-14714456",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-15",
+          "competition": "Shanghai Half Marathon, Shanghai",
+          "discipline": "Half Marathon",
+          "mark": "1:03:19",
+          "position": "4.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/jidongzhi-sang-14714456",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        }
+      ],
+      "activityStatus": "recent_official_start_confirmed",
+      "profileUrl": "https://worldathletics.org/athletes/pr-of-china/jidongzhi-sang-14714456",
+      "identityCheckedAt": "2026-11-17",
+      "countryCode": "CHN",
+      "activeYears": [
+        "2026",
+        "2025",
+        "2024",
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017",
+        "2016",
+        "2015"
+      ],
+      "retirementCheck": {
+        "status": "public_source_search_with_limits",
+        "notice": "检索范围与摘录见retirement-searches.json及人物来源；未见退出竞技公告，不代表穷尽所有未索引声明。离开专业队但继续正式竞技者依用户确认计入。"
+      },
+      "displayOrder": 14,
+      "pbRank": 14
+    },
+    {
+      "worldAthleticsId": "14839796",
+      "nameEn": "Fakun JIANG",
+      "name": "蒋发坤",
+      "personalBest": "2:09:29",
+      "pbDate": "2026-10-18",
+      "pbVenue": "Beijing (CHN)",
+      "birthDate": "1999-08-16",
+      "allTimeRank": "17",
+      "gender": "men",
+      "countryEvidence": {
+        "code": "CHN",
+        "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+        "verifiedAt": "2026-11-17"
+      },
+      "pbSourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+      "sources": [
+        {
+          "title": "World Athletics 中国全马历史PB榜",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all"
+        }
+      ],
+      "activityEvidence": [
+        {
+          "date": "2026-10-18",
+          "competition": "Bank of China Beijing Marathon, Beijing",
+          "discipline": "Marathon",
+          "mark": "2:09:29",
+          "position": "6.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/fakun-jiang-14839796",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-10-18",
+          "competition": "Beijing (CHN)",
+          "discipline": "Marathon",
+          "mark": "2:09:29",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-09-20",
+          "competition": "World Athletics Road Running Championships, København",
+          "discipline": "Half Marathon",
+          "mark": "1:05:03",
+          "position": "90.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/fakun-jiang-14839796",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-08-16",
+          "competition": "Chinese Championships, Sports Center, Quzhou",
+          "discipline": "5000 Metres",
+          "mark": "14:04.32",
+          "position": "3.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/fakun-jiang-14839796",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-08-12",
+          "competition": "Chinese Championships, Sports Center, Quzhou",
+          "discipline": "10,000 Metres",
+          "mark": "29:24.33",
+          "position": "4.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/fakun-jiang-14839796",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-06-28",
+          "competition": "Chinese Athletics Meet, Kuishan Sports Center, Rizhao",
+          "discipline": "5000 Metres",
+          "mark": "14:11.92",
+          "position": "7.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/fakun-jiang-14839796",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-06-26",
+          "competition": "Chinese Athletics Meet, Kuishan Sports Center, Rizhao",
+          "discipline": "10,000 Metres",
+          "mark": "28:39.87",
+          "position": "3.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/fakun-jiang-14839796",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-05-16",
+          "competition": "Regional Athletics Invitational Meeting 7, Guoxin Sports Center, Qingdao",
+          "discipline": "10,000 Metres",
+          "mark": "29:33.63",
+          "position": "5.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/fakun-jiang-14839796",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-05-15",
+          "competition": "Regional Athletics Invitational Meeting 7, Guoxin Sports Center, Qingdao",
+          "discipline": "5000 Metres",
+          "mark": "14:09.39",
+          "position": "5.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/fakun-jiang-14839796",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-05-09",
+          "competition": "National Athletics Grand Prix 2, Sports Center, Jiaxing",
+          "discipline": "10,000 Metres",
+          "mark": "29:16.86",
+          "position": "1.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/fakun-jiang-14839796",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-04-19",
+          "competition": "National Middle and Long Distance Running Meeting, Henan Provincial Stadium, Zhengzhou",
+          "discipline": "10,000 Metres",
+          "mark": "29:33.57",
+          "position": "3.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/fakun-jiang-14839796",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-04-18",
+          "competition": "National Middle and Long Distance Running Meeting, Henan Provincial Stadium, Zhengzhou",
+          "discipline": "5000 Metres",
+          "mark": "14:14.96",
+          "position": "4.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/fakun-jiang-14839796",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-29",
+          "competition": "Yangzhou Half Marathon, Yangzhou",
+          "discipline": "Half Marathon",
+          "mark": "1:03:09",
+          "position": "6.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/fakun-jiang-14839796",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-15",
+          "competition": "Meishan Renshou Half Marathon, Meishan",
+          "discipline": "Half Marathon",
+          "mark": "1:02:52",
+          "position": "12.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/fakun-jiang-14839796",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        }
+      ],
+      "activityStatus": "recent_official_start_confirmed",
+      "profileUrl": "https://worldathletics.org/athletes/pr-of-china/fakun-jiang-14839796",
+      "identityCheckedAt": "2026-11-17",
+      "countryCode": "CHN",
+      "activeYears": [
+        "2026",
+        "2025",
+        "2024",
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018"
+      ],
+      "retirementCheck": {
+        "status": "public_source_search_with_limits",
+        "notice": "检索范围与摘录见retirement-searches.json及人物来源；未见退出竞技公告，不代表穷尽所有未索引声明。离开专业队但继续正式竞技者依用户确认计入。"
+      },
+      "displayOrder": 15,
+      "pbRank": 14
+    },
+    {
+      "worldAthleticsId": "14750614",
+      "nameEn": "Peng GAO",
+      "name": "高鹏",
+      "personalBest": "2:09:34",
+      "pbDate": "2023-10-29",
+      "pbVenue": "Beijing (CHN)",
+      "birthDate": "1996-08-16",
+      "allTimeRank": "19",
+      "gender": "men",
+      "countryEvidence": {
+        "code": "CHN",
+        "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+        "verifiedAt": "2026-11-17"
+      },
+      "pbSourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+      "sources": [
+        {
+          "title": "World Athletics 中国全马历史PB榜",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all"
+        }
+      ],
+      "activityEvidence": [
+        {
+          "date": "2026-11-01",
+          "competition": "Hangzhou Marathon, Hangzhou",
+          "discipline": "Marathon",
+          "mark": "2:13:19",
+          "position": "5.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/peng-gao-14750614",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-10-18",
+          "competition": "Bank of China Beijing Marathon, Beijing",
+          "discipline": "Marathon",
+          "mark": "2:13:51",
+          "position": "32.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/peng-gao-14750614",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-04-12",
+          "competition": "Beijing Half Marathon, Beijing",
+          "discipline": "Half Marathon",
+          "mark": "1:04:56",
+          "position": "4.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/peng-gao-14750614",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-29",
+          "competition": "Yangzhou Half Marathon, Yangzhou",
+          "discipline": "Half Marathon",
+          "mark": "1:08:22",
+          "position": "19.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/peng-gao-14750614",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-22",
+          "competition": "Wuxi Marathon, Wuxi",
+          "discipline": "Marathon",
+          "mark": "2:10:54",
+          "position": "15.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/peng-gao-14750614",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-08",
+          "competition": "Chinese Cross Country Championships 1, Maoshan Cross Country Training Base, Huangshan - XC 10.0km",
+          "discipline": "Cross Country",
+          "mark": "34:04",
+          "position": "38.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/peng-gao-14750614",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-02-22",
+          "competition": "Osaka Marathon, Osaka",
+          "discipline": "Marathon",
+          "mark": "2:15:53",
+          "position": "80.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/peng-gao-14750614",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-01-18",
+          "competition": "Standard Chartered Hong Kong Marathon, Hong Kong",
+          "discipline": "Marathon",
+          "mark": "2:22:52",
+          "position": "22.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/peng-gao-14750614",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        }
+      ],
+      "activityStatus": "recent_official_start_confirmed",
+      "profileUrl": "https://worldathletics.org/athletes/pr-of-china/peng-gao-14750614",
+      "identityCheckedAt": "2026-11-17",
+      "countryCode": "CHN",
+      "activeYears": [
+        "2026",
+        "2025",
+        "2024",
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017",
+        "2016"
+      ],
+      "retirementCheck": {
+        "status": "public_source_search_with_limits",
+        "notice": "检索范围与摘录见retirement-searches.json及人物来源；未见退出竞技公告，不代表穷尽所有未索引声明。离开专业队但继续正式竞技者依用户确认计入。"
+      },
+      "displayOrder": 16,
+      "pbRank": 16
+    },
+    {
+      "worldAthleticsId": "15136844",
+      "nameEn": "Ciren ZHAXI",
+      "name": "扎西次仁",
+      "personalBest": "2:09:43",
+      "pbDate": "2026-03-22",
+      "pbVenue": "Wuxi (CHN)",
+      "birthDate": "1999-02-13",
+      "allTimeRank": "20",
+      "gender": "men",
+      "countryEvidence": {
+        "code": "CHN",
+        "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+        "verifiedAt": "2026-11-17"
+      },
+      "pbSourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+      "sources": [
+        {
+          "title": "World Athletics 中国全马历史PB榜",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all"
+        }
+      ],
+      "activityEvidence": [
+        {
+          "date": "2026-10-18",
+          "competition": "Bank of China Beijing Marathon, Beijing",
+          "discipline": "全程马拉松",
+          "mark": "2:11:13",
+          "position": "10",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/ciren-zhaxi-15136844",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2026-08-12",
+          "competition": "Chinese Championships, Sports Center, Quzhou",
+          "discipline": "10000米",
+          "mark": "30:02.97",
+          "position": "10",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/ciren-zhaxi-15136844",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2026-05-30",
+          "competition": "National Athletics Grand Prix 4, Sports Center, Bengbu",
+          "discipline": "10000米",
+          "mark": "30:07.40",
+          "position": "5",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/ciren-zhaxi-15136844",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2026-05-24",
+          "competition": "Lanzhou Marathon, Lanzhou",
+          "discipline": "全程马拉松",
+          "mark": "2:18:30",
+          "position": "7",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/ciren-zhaxi-15136844",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2026-04-19",
+          "competition": "National Middle and Long Distance Running Meeting, Henan Provincial Stadium, Zhengzhou",
+          "discipline": "10000米",
+          "mark": "29:58.47",
+          "position": "7",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/ciren-zhaxi-15136844",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2026-04-18",
+          "competition": "National Middle and Long Distance Running Meeting, Henan Provincial Stadium, Zhengzhou",
+          "discipline": "5000米",
+          "mark": "14:25.91",
+          "position": "9",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/ciren-zhaxi-15136844",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2026-03-22",
+          "competition": "Wuxi Marathon, Wuxi",
+          "discipline": "全程马拉松",
+          "mark": "2:09:43",
+          "position": "9",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/ciren-zhaxi-15136844",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2026-03-22",
+          "competition": "Wuxi (CHN)",
+          "discipline": "Marathon",
+          "mark": "2:09:43",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-15",
+          "competition": "Meishan Renshou Half Marathon, Meishan",
+          "discipline": "半程马拉松",
+          "mark": "1:02:39",
+          "position": "9",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/ciren-zhaxi-15136844",
+          "checkedAt": "2026-11-12"
+        }
+      ],
+      "activityStatus": "recent_official_start_confirmed",
+      "profileUrl": "https://worldathletics.org/athletes/pr-of-china/ciren-zhaxi-15136844",
+      "countryCode": "CHN",
+      "identityCheckedAt": "2026-11-12",
+      "retirementCheck": {
+        "status": "public_source_search_with_limits",
+        "notice": "检索范围与摘录见retirement-searches.json及人物来源；未见退出竞技公告，不代表穷尽所有未索引声明。离开专业队但继续正式竞技者依用户确认计入。"
+      },
+      "displayOrder": 17,
+      "pbRank": 17
+    },
+    {
+      "worldAthleticsId": "15073011",
+      "nameEn": "Yunce XIE",
+      "name": "谢运策",
+      "personalBest": "2:09:47",
+      "pbDate": "2026-10-18",
+      "pbVenue": "Beijing (CHN)",
+      "birthDate": "2004-06-25",
+      "allTimeRank": "21",
+      "gender": "men",
+      "countryEvidence": {
+        "code": "CHN",
+        "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+        "verifiedAt": "2026-11-17"
+      },
+      "pbSourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+      "sources": [
+        {
+          "title": "World Athletics 中国全马历史PB榜",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all"
+        }
+      ],
+      "activityEvidence": [
+        {
+          "date": "2026-10-18",
+          "competition": "Bank of China Beijing Marathon, Beijing",
+          "discipline": "全程马拉松",
+          "mark": "2:09:47",
+          "position": "7",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/yunce-xie-15073011",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2026-10-18",
+          "competition": "Beijing (CHN)",
+          "discipline": "Marathon",
+          "mark": "2:09:47",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-05-31",
+          "competition": "Jilin City Marathon, Jilin",
+          "discipline": "全程马拉松",
+          "mark": "2:16:34",
+          "position": "4",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/yunce-xie-15073011",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2026-05-16",
+          "competition": "Regional Athletics Invitational Meeting 7, Guoxin Sports Center, Qingdao",
+          "discipline": "10000米",
+          "mark": "29:29.18",
+          "position": "4",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/yunce-xie-15073011",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2026-03-22",
+          "competition": "Wuxi Marathon, Wuxi",
+          "discipline": "全程马拉松",
+          "mark": "2:10:49",
+          "position": "14",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/yunce-xie-15073011",
+          "checkedAt": "2026-11-12"
+        }
+      ],
+      "activityStatus": "recent_official_start_confirmed",
+      "profileUrl": "https://worldathletics.org/athletes/pr-of-china/yunce-xie-15073011",
+      "countryCode": "CHN",
+      "identityCheckedAt": "2026-11-12",
+      "retirementCheck": {
+        "status": "public_source_search_with_limits",
+        "notice": "检索范围与摘录见retirement-searches.json及人物来源；未见退出竞技公告，不代表穷尽所有未索引声明。离开专业队但继续正式竞技者依用户确认计入。"
+      },
+      "displayOrder": 18,
+      "pbRank": 18
+    },
+    {
+      "worldAthleticsId": "14750662",
+      "nameEn": "Jianhua PENG",
+      "name": "彭建华",
+      "personalBest": "2:09:57",
+      "pbDate": "2019-12-08",
+      "pbVenue": "Guangzhou (CHN)",
+      "birthDate": "1996-12-18",
+      "allTimeRank": "22",
+      "gender": "men",
+      "countryEvidence": {
+        "code": "CHN",
+        "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+        "verifiedAt": "2026-11-17"
+      },
+      "pbSourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+      "sources": [
+        {
+          "title": "World Athletics 中国全马历史PB榜",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all"
+        }
+      ],
+      "activityEvidence": [
+        {
+          "date": "2026-09-13",
+          "competition": "Harbin Marathon, Harbin",
+          "discipline": "Marathon",
+          "mark": "2:34:16",
+          "position": "17.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/jianhua-peng-14750662",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        }
+      ],
+      "activityStatus": "recent_official_start_confirmed",
+      "profileUrl": "https://worldathletics.org/athletes/pr-of-china/jianhua-peng-14750662",
+      "identityCheckedAt": "2026-11-17",
+      "countryCode": "CHN",
+      "activeYears": [
+        "2026",
+        "2024",
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017",
+        "2016"
+      ],
+      "retirementCheck": {
+        "status": "public_source_search_with_limits",
+        "notice": "检索范围与摘录见retirement-searches.json及人物来源；未见退出竞技公告，不代表穷尽所有未索引声明。离开专业队但继续正式竞技者依用户确认计入。"
+      },
+      "displayOrder": 19,
+      "pbRank": 19
+    },
+    {
+      "worldAthleticsId": "14811588",
+      "nameEn": "Fei SU",
+      "name": "苏飞",
+      "personalBest": "2:10:06",
+      "pbDate": "2026-03-15",
+      "pbVenue": "Seoul (KOR)",
+      "birthDate": "2001-05-13",
+      "allTimeRank": "23",
+      "gender": "men",
+      "countryEvidence": {
+        "code": "CHN",
+        "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+        "verifiedAt": "2026-11-17"
+      },
+      "pbSourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+      "sources": [
+        {
+          "title": "World Athletics 中国全马历史PB榜",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all"
+        }
+      ],
+      "activityEvidence": [
+        {
+          "date": "2026-10-18",
+          "competition": "Bank of China Beijing Marathon, Beijing",
+          "discipline": "Marathon",
+          "mark": "2:15:10",
+          "position": "41.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/fei-su-14811588",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-08-16",
+          "competition": "Chinese Championships, Sports Center, Quzhou",
+          "discipline": "5000 Metres",
+          "mark": "14:23.77",
+          "position": "10.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/fei-su-14811588",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-08-12",
+          "competition": "Chinese Championships, Sports Center, Quzhou",
+          "discipline": "10,000 Metres",
+          "mark": "DNF",
+          "position": "",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/fei-su-14811588",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-07-19",
+          "competition": "National Athletics Grand Prix - Final, Sports Center, Yulin",
+          "discipline": "10,000 Metres",
+          "mark": "31:54.65",
+          "position": "1.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/fei-su-14811588",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-07-18",
+          "competition": "National Athletics Grand Prix - Final, Sports Center, Yulin",
+          "discipline": "5000 Metres",
+          "mark": "14:40.31",
+          "position": "1.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/fei-su-14811588",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-05-30",
+          "competition": "National Athletics Grand Prix 4, Sports Center, Bengbu",
+          "discipline": "10,000 Metres",
+          "mark": "30:23.03",
+          "position": "7.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/fei-su-14811588",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-05-24",
+          "competition": "Lanzhou Marathon, Lanzhou",
+          "discipline": "Marathon",
+          "mark": "2:19:39",
+          "position": "8.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/fei-su-14811588",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-04-26",
+          "competition": "Miyun Marathon, Beijing",
+          "discipline": "Marathon",
+          "mark": "2:31:02",
+          "position": "13.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/fei-su-14811588",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-04-12",
+          "competition": "Regional Athletics Invitational Meeting 3, Hubei Olympic Sports Center, Wuhan",
+          "discipline": "10,000 Metres",
+          "mark": "30:03.52",
+          "position": "1.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/fei-su-14811588",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-04-11",
+          "competition": "Regional Athletics Invitational Meeting 3, Hubei Olympic Sports Center, Wuhan",
+          "discipline": "5000 Metres",
+          "mark": "14:15.88",
+          "position": "4.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/fei-su-14811588",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-22",
+          "competition": "Bank of China Wuhan Marathon, Wuhan",
+          "discipline": "Marathon",
+          "mark": "2:16:08",
+          "position": "7.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/fei-su-14811588",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-15",
+          "competition": "Seoul Marathon, Seoul",
+          "discipline": "Marathon",
+          "mark": "2:10:06",
+          "position": "16.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/fei-su-14811588",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-15",
+          "competition": "Seoul (KOR)",
+          "discipline": "Marathon",
+          "mark": "2:10:06",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/men/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-07",
+          "competition": "Chinese Cross Country Championships 1, Maoshan Cross Country Training Base, Huangshan - XC 6.0km",
+          "discipline": "Cross Country",
+          "mark": "19:54",
+          "position": "31.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/fei-su-14811588",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-01-11",
+          "competition": "C&D Xiamen Marathon, Xiamen",
+          "discipline": "Marathon",
+          "mark": "2:15:37",
+          "position": "12.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/fei-su-14811588",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        }
+      ],
+      "activityStatus": "recent_official_start_confirmed",
+      "profileUrl": "https://worldathletics.org/athletes/pr-of-china/fei-su-14811588",
+      "identityCheckedAt": "2026-11-17",
+      "countryCode": "CHN",
+      "activeYears": [
+        "2026",
+        "2025",
+        "2024",
+        "2023",
+        "2022",
+        "2021",
+        "2019",
+        "2017"
+      ],
+      "retirementCheck": {
+        "status": "public_source_search_with_limits",
+        "notice": "检索范围与摘录见retirement-searches.json及人物来源；未见退出竞技公告，不代表穷尽所有未索引声明。离开专业队但继续正式竞技者依用户确认计入。"
+      },
+      "displayOrder": 20,
+      "pbRank": 20
+    },
+    {
+      "worldAthleticsId": "14693572",
+      "nameEn": "Deshun ZHANG",
+      "name": "张德顺",
+      "personalBest": "2:20:53",
+      "pbDate": "2025-03-02",
+      "pbVenue": "Tokyo (JPN)",
+      "birthDate": "1996-02-21",
+      "allTimeRank": "3",
+      "gender": "women",
+      "countryEvidence": {
+        "code": "CHN",
+        "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+        "verifiedAt": "2026-11-17"
+      },
+      "pbSourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+      "sources": [
+        {
+          "title": "World Athletics 中国全马历史PB榜",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all"
+        }
+      ],
+      "activityEvidence": [
+        {
+          "date": "2026-09-27",
+          "competition": "BMW Berlin Marathon, Berlin",
+          "discipline": "全程马拉松",
+          "mark": "2:23:37",
+          "position": "12",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/deshun-zhang-14693572",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2025-03-02",
+          "competition": "Tokyo (JPN)",
+          "discipline": "Marathon",
+          "mark": "2:20:53",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        }
+      ],
+      "activityStatus": "recent_official_start_confirmed",
+      "profileUrl": "https://worldathletics.org/athletes/pr-of-china/deshun-zhang-14693572",
+      "countryCode": "CHN",
+      "identityCheckedAt": "2026-11-12",
+      "retirementCheck": {
+        "status": "public_source_search_with_limits",
+        "notice": "检索范围与摘录见retirement-searches.json及人物来源；未见退出竞技公告，不代表穷尽所有未索引声明。离开专业队但继续正式竞技者依用户确认计入。"
+      },
+      "displayOrder": 1,
+      "pbRank": 1
+    },
+    {
+      "worldAthleticsId": "14264959",
+      "nameEn": "Yanan WEI",
+      "name": "魏亚楠",
+      "personalBest": "2:23:12",
+      "pbDate": "2007-03-18",
+      "pbVenue": "Seoul (KOR)",
+      "birthDate": "1981-12-06",
+      "allTimeRank": "6",
+      "gender": "women",
+      "countryEvidence": {
+        "code": "CHN",
+        "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+        "verifiedAt": "2026-11-17"
+      },
+      "pbSourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+      "sources": [
+        {
+          "title": "World Athletics 中国全马历史PB榜",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all"
+        }
+      ],
+      "activityEvidence": [
+        {
+          "date": "2026-09-13",
+          "competition": "Harbin Marathon, Harbin",
+          "discipline": "Marathon",
+          "mark": "2:46:33",
+          "position": "10.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/yanan-wei-14264959",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        }
+      ],
+      "activityStatus": "recent_official_start_confirmed",
+      "profileUrl": "https://worldathletics.org/athletes/pr-of-china/yanan-wei-14264959",
+      "identityCheckedAt": "2026-11-17",
+      "countryCode": "CHN",
+      "activeYears": [
+        "2026",
+        "2025",
+        "2023",
+        "2012",
+        "2011",
+        "2010",
+        "2009",
+        "2008",
+        "2007",
+        "2006",
+        "2005",
+        "2004",
+        "2002",
+        "2001",
+        "2000",
+        "1999"
+      ],
+      "retirementCheck": {
+        "status": "public_source_search_with_limits",
+        "notice": "检索范围与摘录见retirement-searches.json及人物来源；未见退出竞技公告，不代表穷尽所有未索引声明。离开专业队但继续正式竞技者依用户确认计入。"
+      },
+      "displayOrder": 2,
+      "pbRank": 2
+    },
+    {
+      "worldAthleticsId": "14266777",
+      "nameEn": "Xue BAI",
+      "name": "白雪",
+      "personalBest": "2:23:27",
+      "pbDate": "2008-01-05",
+      "pbVenue": "Xiamen (CHN)",
+      "birthDate": "1988-12-13",
+      "allTimeRank": "8",
+      "gender": "women",
+      "countryEvidence": {
+        "code": "CHN",
+        "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+        "verifiedAt": "2026-11-17"
+      },
+      "pbSourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+      "sources": [
+        {
+          "title": "World Athletics 中国全马历史PB榜",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all"
+        }
+      ],
+      "activityEvidence": [
+        {
+          "date": "2025-08-31",
+          "competition": "Harbin Marathon, Harbin",
+          "discipline": "Marathon",
+          "mark": "2:54:21",
+          "position": "19.",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/xue-bai-14266777",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        }
+      ],
+      "activityStatus": "recent_official_start_confirmed",
+      "profileUrl": "https://worldathletics.org/athletes/pr-of-china/xue-bai-14266777",
+      "identityCheckedAt": "2026-11-17",
+      "countryCode": "CHN",
+      "activeYears": [
+        "2025",
+        "2012",
+        "2010",
+        "2009",
+        "2008",
+        "2007",
+        "2006",
+        "2005",
+        "2004",
+        "2003"
+      ],
+      "retirementCheck": {
+        "status": "public_source_search_with_limits",
+        "notice": "检索范围与摘录见retirement-searches.json及人物来源；未见退出竞技公告，不代表穷尽所有未索引声明。离开专业队但继续正式竞技者依用户确认计入。"
+      },
+      "displayOrder": 3,
+      "pbRank": 3
+    },
+    {
+      "worldAthleticsId": "14663881",
+      "nameEn": "Cuomu CIREN",
+      "name": "次仁措姆",
+      "personalBest": "2:23:48",
+      "pbDate": "2026-10-18",
+      "pbVenue": "Beijing (CHN)",
+      "birthDate": "1997-08-27",
+      "allTimeRank": "10",
+      "gender": "women",
+      "countryEvidence": {
+        "code": "CHN",
+        "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+        "verifiedAt": "2026-11-17"
+      },
+      "pbSourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+      "sources": [
+        {
+          "title": "World Athletics 中国全马历史PB榜",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all"
+        }
+      ],
+      "activityEvidence": [
+        {
+          "date": "2026-10-18",
+          "competition": "Bank of China Beijing Marathon, Beijing",
+          "discipline": "全程马拉松",
+          "mark": "2:23:48",
+          "position": "2",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/cuomu-ciren-14663881",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2026-10-18",
+          "competition": "Beijing (CHN)",
+          "discipline": "Marathon",
+          "mark": "2:23:48",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-09-26",
+          "competition": "20th Asian Games, Municipal Mizuho Stadium, Nagoya",
+          "discipline": "全程马拉松",
+          "mark": "2:27:43",
+          "position": "2",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/cuomu-ciren-14663881",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2026-06-28",
+          "competition": "Chinese Athletics Meet, Kuishan Sports Center, Rizhao",
+          "discipline": "10000米",
+          "mark": "33:53.22",
+          "position": "2",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/cuomu-ciren-14663881",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2026-06-26",
+          "competition": "Chinese Athletics Meet, Kuishan Sports Center, Rizhao",
+          "discipline": "5000米",
+          "mark": "15:29.80",
+          "position": "3",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/cuomu-ciren-14663881",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2026-05-24",
+          "competition": "Lanzhou Marathon, Lanzhou",
+          "discipline": "全程马拉松",
+          "mark": "2:29:59",
+          "position": "2",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/cuomu-ciren-14663881",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2026-04-29",
+          "competition": "National Middle and Long Distance Running Meeting 2, Taian sports center stadium, Taian",
+          "discipline": "10000米",
+          "mark": "32:38.41",
+          "position": "2",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/cuomu-ciren-14663881",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2026-04-28",
+          "competition": "National Middle and Long Distance Running Meeting 2, Taian sports center stadium, Taian",
+          "discipline": "5000米",
+          "mark": "16:10.82",
+          "position": "2",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/cuomu-ciren-14663881",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2026-04-19",
+          "competition": "National Middle and Long Distance Running Meeting, Henan Provincial Stadium, Zhengzhou",
+          "discipline": "10000米",
+          "mark": "32:45.60",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/cuomu-ciren-14663881",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2026-04-18",
+          "competition": "National Middle and Long Distance Running Meeting, Henan Provincial Stadium, Zhengzhou",
+          "discipline": "5000米",
+          "mark": "16:03.05",
+          "position": "3",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/cuomu-ciren-14663881",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2026-03-29",
+          "competition": "Yangzhou Half Marathon, Yangzhou",
+          "discipline": "半程马拉松",
+          "mark": "1:10:10",
+          "position": "7",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/cuomu-ciren-14663881",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2026-01-11",
+          "competition": "C&D Xiamen Marathon, Xiamen",
+          "discipline": "全程马拉松",
+          "mark": "2:34:01",
+          "position": "9",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/cuomu-ciren-14663881",
+          "checkedAt": "2026-11-12"
+        }
+      ],
+      "activityStatus": "recent_official_start_confirmed",
+      "profileUrl": "https://worldathletics.org/athletes/pr-of-china/cuomu-ciren-14663881",
+      "countryCode": "CHN",
+      "identityCheckedAt": "2026-11-12",
+      "retirementCheck": {
+        "status": "public_source_search_with_limits",
+        "notice": "检索范围与摘录见retirement-searches.json及人物来源；未见退出竞技公告，不代表穷尽所有未索引声明。离开专业队但继续正式竞技者依用户确认计入。"
+      },
+      "displayOrder": 4,
+      "pbRank": 4
+    },
+    {
+      "worldAthleticsId": "14264209",
+      "nameEn": "Xiaolin ZHU",
+      "name": "朱晓琳",
+      "personalBest": "2:23:57",
+      "pbDate": "2002-10-13",
+      "pbVenue": "Beijing (CHN)",
+      "birthDate": "1984-02-20",
+      "allTimeRank": "11",
+      "gender": "women",
+      "countryEvidence": {
+        "code": "CHN",
+        "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+        "verifiedAt": "2026-11-17"
+      },
+      "pbSourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+      "sources": [
+        {
+          "title": "World Athletics 中国全马历史PB榜",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all"
+        }
+      ],
+      "activityEvidence": [
+        {
+          "date": "2025-11-02",
+          "competition": "Beijing Marathon, Beijing",
+          "discipline": "Marathon",
+          "mark": "2:42:13",
+          "position": "17.",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14264209",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2025-05-11",
+          "competition": "The 35th Dalian Marathon, Dalian",
+          "discipline": "Marathon",
+          "mark": "2:43:06",
+          "position": "13.",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14264209",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2025-03-30",
+          "competition": "Shijiazhuang Marathon, Shijiazhuang",
+          "discipline": "Marathon",
+          "mark": "2:38:12",
+          "position": "3.",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14264209",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        }
+      ],
+      "activityStatus": "recent_official_start_confirmed",
+      "profileUrl": "https://worldathletics.org/athletes/athlete=14264209",
+      "identityCheckedAt": "2026-11-17",
+      "countryCode": "CHN",
+      "activeYears": [
+        "2025",
+        "2024",
+        "2023",
+        "2022",
+        "2020",
+        "2019",
+        "2013",
+        "2012",
+        "2011",
+        "2010",
+        "2009",
+        "2008",
+        "2007",
+        "2006",
+        "2005",
+        "2004",
+        "2003",
+        "2002"
+      ],
+      "retirementCheck": {
+        "status": "public_source_search_with_limits",
+        "notice": "检索范围与摘录见retirement-searches.json及人物来源；未见退出竞技公告，不代表穷尽所有未索引声明。离开专业队但继续正式竞技者依用户确认计入。"
+      },
+      "displayOrder": 5,
+      "pbRank": 5
+    },
+    {
+      "worldAthleticsId": "14265419",
+      "nameEn": "Xiujuan REN",
+      "name": "任秀娟",
+      "personalBest": "2:24:22",
+      "pbDate": "2001-10-14",
+      "pbVenue": "Beijing (CHN)",
+      "birthDate": "1974-09-14",
+      "allTimeRank": "13",
+      "gender": "women",
+      "countryEvidence": {
+        "code": "CHN",
+        "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+        "verifiedAt": "2026-11-17"
+      },
+      "pbSourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+      "sources": [
+        {
+          "title": "World Athletics 中国全马历史PB榜",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all"
+        }
+      ],
+      "activityEvidence": [
+        {
+          "date": "2024-12-15",
+          "competition": "Chinese Athletics Association 10Km Elite Series Yangzhou, Yangzhou",
+          "discipline": "10 Kilometres Road",
+          "mark": "36:30",
+          "position": "6.",
+          "sourceUrl": "https://worldathletics.org/athletes/athlete=14265419",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        }
+      ],
+      "activityStatus": "recent_official_start_confirmed",
+      "profileUrl": "https://worldathletics.org/athletes/athlete=14265419",
+      "identityCheckedAt": "2026-11-17",
+      "countryCode": "CHN",
+      "activeYears": [
+        "2024",
+        "2001",
+        "2000",
+        "1999",
+        "1997",
+        "1996",
+        "1995",
+        "1994"
+      ],
+      "retirementCheck": {
+        "status": "public_source_search_with_limits",
+        "notice": "检索范围与摘录见retirement-searches.json及人物来源；未见退出竞技公告，不代表穷尽所有未索引声明。离开专业队但继续正式竞技者依用户确认计入。"
+      },
+      "displayOrder": 6,
+      "pbRank": 6
+    },
+    {
+      "worldAthleticsId": "14752711",
+      "nameEn": "Ying LU",
+      "name": "路颖",
+      "personalBest": "2:24:24",
+      "pbDate": "2026-10-18",
+      "pbVenue": "Beijing (CHN)",
+      "birthDate": "1997-10-13",
+      "allTimeRank": "14",
+      "gender": "women",
+      "countryEvidence": {
+        "code": "CHN",
+        "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+        "verifiedAt": "2026-11-17"
+      },
+      "pbSourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+      "sources": [
+        {
+          "title": "World Athletics 中国全马历史PB榜",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all"
+        }
+      ],
+      "activityEvidence": [
+        {
+          "date": "2026-10-18",
+          "competition": "Bank of China Beijing Marathon, Beijing",
+          "discipline": "全程马拉松",
+          "mark": "2:24:24",
+          "position": "3",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/ying-lu-14752711",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2026-10-18",
+          "competition": "Beijing (CHN)",
+          "discipline": "Marathon",
+          "mark": "2:24:24",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-09-27",
+          "competition": "Taiyuan Marathon, Taiyuan",
+          "discipline": "全程马拉松",
+          "mark": "2:29:45",
+          "position": "3",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/ying-lu-14752711",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2026-07-12",
+          "competition": "National Middle and Long Distance Running Meeting 3, Huludao",
+          "discipline": "10000米",
+          "mark": "35:13.31",
+          "position": "2",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/ying-lu-14752711",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2026-07-11",
+          "competition": "National Middle and Long Distance Running Meeting 3, Huludao",
+          "discipline": "5000米",
+          "mark": "16:57.96",
+          "position": "3",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/ying-lu-14752711",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2026-05-31",
+          "competition": "Jilin City Marathon, Jilin",
+          "discipline": "全程马拉松",
+          "mark": "2:34:05",
+          "position": "2",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/ying-lu-14752711",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2026-05-24",
+          "competition": "Lanzhou Marathon, Lanzhou",
+          "discipline": "全程马拉松",
+          "mark": "2:36:53",
+          "position": "5",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/ying-lu-14752711",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2026-04-19",
+          "competition": "National Middle and Long Distance Running Meeting, Henan Provincial Stadium, Zhengzhou",
+          "discipline": "10000米",
+          "mark": "34:37.14",
+          "position": "4",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/ying-lu-14752711",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2026-04-18",
+          "competition": "National Middle and Long Distance Running Meeting, Henan Provincial Stadium, Zhengzhou",
+          "discipline": "5000米",
+          "mark": "16:29.98",
+          "position": "4",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/ying-lu-14752711",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2026-03-29",
+          "competition": "Yancheng Marathon, Yancheng",
+          "discipline": "全程马拉松",
+          "mark": "2:31:06",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/ying-lu-14752711",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2026-03-15",
+          "competition": "Meishan Renshou Half Marathon, Meishan",
+          "discipline": "半程马拉松",
+          "mark": "1:10:36",
+          "position": "9",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/ying-lu-14752711",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2026-03-01",
+          "competition": "Tokyo Marathon, Tokyo",
+          "discipline": "全程马拉松",
+          "mark": "2:26:35",
+          "position": "12",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/ying-lu-14752711",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2026-01-11",
+          "competition": "C&D Xiamen Marathon, Xiamen",
+          "discipline": "全程马拉松",
+          "mark": "2:29:17",
+          "position": "7",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/ying-lu-14752711",
+          "checkedAt": "2026-11-12"
+        }
+      ],
+      "activityStatus": "recent_official_start_confirmed",
+      "profileUrl": "https://worldathletics.org/athletes/pr-of-china/ying-lu-14752711",
+      "countryCode": "CHN",
+      "identityCheckedAt": "2026-11-12",
+      "retirementCheck": {
+        "status": "public_source_search_with_limits",
+        "notice": "检索范围与摘录见retirement-searches.json及人物来源；未见退出竞技公告，不代表穷尽所有未索引声明。离开专业队但继续正式竞技者依用户确认计入。"
+      },
+      "displayOrder": 7,
+      "pbRank": 7
+    },
+    {
+      "worldAthleticsId": "14702479",
+      "nameEn": "Meizhen LI",
+      "name": "李美珍",
+      "personalBest": "2:25:06",
+      "pbDate": "2026-03-22",
+      "pbVenue": "Wuxi (CHN)",
+      "birthDate": "1999-01-03",
+      "allTimeRank": "20",
+      "gender": "women",
+      "countryEvidence": {
+        "code": "CHN",
+        "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+        "verifiedAt": "2026-11-17"
+      },
+      "pbSourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+      "sources": [
+        {
+          "title": "World Athletics 中国全马历史PB榜",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all"
+        }
+      ],
+      "activityEvidence": [
+        {
+          "date": "2026-10-31",
+          "competition": "Chinese Athletics Association 10Km Elite Series Wuxi Liangxi, Wuxi",
+          "discipline": "10 Kilometres Road",
+          "mark": "33:37",
+          "position": "1.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/meizhen-li-14702479",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-09-13",
+          "competition": "Harbin Half Marathon, Harbin",
+          "discipline": "Half Marathon",
+          "mark": "1:13:22",
+          "position": "1.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/meizhen-li-14702479",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-05-24",
+          "competition": "Lanzhou Marathon, Lanzhou",
+          "discipline": "Marathon",
+          "mark": "2:40:46",
+          "position": "8.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/meizhen-li-14702479",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-05-03",
+          "competition": "Chinese Athletics Association 10Km Elite Series - Nujiang·Lushui, Lushui",
+          "discipline": "10 Kilometres Road",
+          "mark": "33:46",
+          "position": "1.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/meizhen-li-14702479",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-04-19",
+          "competition": "Chinese Athletics Association 10Km Elite Series Wuxi Mashan, Wuxi",
+          "discipline": "10 Kilometres Road",
+          "mark": "32:57",
+          "position": "1.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/meizhen-li-14702479",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-29",
+          "competition": "East Asian Half Marathon Championships, Yangzhou",
+          "discipline": "Half Marathon",
+          "mark": "1:10:37",
+          "position": "2.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/meizhen-li-14702479",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-22",
+          "competition": "Wuxi Marathon, Wuxi",
+          "discipline": "Marathon",
+          "mark": "2:25:06",
+          "position": "2.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/meizhen-li-14702479",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-22",
+          "competition": "Wuxi (CHN)",
+          "discipline": "Marathon",
+          "mark": "2:25:06",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-08",
+          "competition": "Chinese Cross Country Championships 1, Maoshan Cross Country Training Base, Huangshan - XC 10.0km",
+          "discipline": "Cross Country",
+          "mark": "35:44",
+          "position": "1.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/meizhen-li-14702479",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-01-11",
+          "competition": "C&D Xiamen Marathon, Xiamen",
+          "discipline": "Marathon",
+          "mark": "2:27:24",
+          "position": "5.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/meizhen-li-14702479",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        }
+      ],
+      "activityStatus": "recent_official_start_confirmed",
+      "profileUrl": "https://worldathletics.org/athletes/china/meizhen-li-14702479",
+      "identityCheckedAt": "2026-11-17",
+      "countryCode": "CHN",
+      "activeYears": [
+        "2026",
+        "2025",
+        "2024",
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017",
+        "2016",
+        "2015"
+      ],
+      "retirementCheck": {
+        "status": "public_source_search_with_limits",
+        "notice": "检索范围与摘录见retirement-searches.json及人物来源；未见退出竞技公告，不代表穷尽所有未索引声明。离开专业队但继续正式竞技者依用户确认计入。"
+      },
+      "displayOrder": 8,
+      "pbRank": 8
+    },
+    {
+      "worldAthleticsId": "14714417",
+      "nameEn": "Yuyu XIA",
+      "name": "夏雨雨",
+      "personalBest": "2:25:45",
+      "pbDate": "2024-03-10",
+      "pbVenue": "Nagoya (JPN)",
+      "birthDate": "1998-03-01",
+      "allTimeRank": "23",
+      "gender": "women",
+      "countryEvidence": {
+        "code": "CHN",
+        "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+        "verifiedAt": "2026-11-17"
+      },
+      "pbSourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+      "sources": [
+        {
+          "title": "World Athletics 中国全马历史PB榜",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all"
+        }
+      ],
+      "activityEvidence": [
+        {
+          "date": "2026-10-18",
+          "competition": "Bank of China Beijing Marathon, Beijing",
+          "discipline": "全程马拉松",
+          "mark": "2:27:33",
+          "position": "5",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/yuyu-xia-14714417",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2026-09-20",
+          "competition": "World Athletics Road Running Championships, København",
+          "discipline": "半程马拉松",
+          "mark": "1:11:36",
+          "position": "50",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/yuyu-xia-14714417",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2026-08-16",
+          "competition": "Chinese Championships, Sports Center, Quzhou",
+          "discipline": "10000米",
+          "mark": "33:58.16",
+          "position": "3",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/yuyu-xia-14714417",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2026-08-12",
+          "competition": "Chinese Championships, Sports Center, Quzhou",
+          "discipline": "5000米",
+          "mark": "15:54.51",
+          "position": "2",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/yuyu-xia-14714417",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2026-06-28",
+          "competition": "Chinese Athletics Meet, Kuishan Sports Center, Rizhao",
+          "discipline": "10000米",
+          "mark": "34:09.34",
+          "position": "5",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/yuyu-xia-14714417",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2026-06-26",
+          "competition": "Chinese Athletics Meet, Kuishan Sports Center, Rizhao",
+          "discipline": "5000米",
+          "mark": "15:32.84",
+          "position": "4",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/yuyu-xia-14714417",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2026-04-29",
+          "competition": "National Middle and Long Distance Running Meeting 2, Taian sports center stadium, Taian",
+          "discipline": "10000米",
+          "mark": "33:09.03",
+          "position": "3",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/yuyu-xia-14714417",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2026-04-28",
+          "competition": "National Middle and Long Distance Running Meeting 2, Taian sports center stadium, Taian",
+          "discipline": "5000米",
+          "mark": "16:10.97",
+          "position": "3",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/yuyu-xia-14714417",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2026-04-19",
+          "competition": "National Middle and Long Distance Running Meeting, Henan Provincial Stadium, Zhengzhou",
+          "discipline": "10000米",
+          "mark": "33:08.12",
+          "position": "2",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/yuyu-xia-14714417",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2026-04-18",
+          "competition": "National Middle and Long Distance Running Meeting, Henan Provincial Stadium, Zhengzhou",
+          "discipline": "5000米",
+          "mark": "16:00.34",
+          "position": "2",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/yuyu-xia-14714417",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2026-04-12",
+          "competition": "Beijing Half Marathon, Beijing",
+          "discipline": "半程马拉松",
+          "mark": "1:10:07",
+          "position": "2",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/yuyu-xia-14714417",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2026-03-15",
+          "competition": "Meishan Renshou Half Marathon, Meishan",
+          "discipline": "半程马拉松",
+          "mark": "1:11:18",
+          "position": "13",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/yuyu-xia-14714417",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2026-03-01",
+          "competition": "Tokyo Marathon, Tokyo",
+          "discipline": "全程马拉松",
+          "mark": "2:29:14",
+          "position": "16",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/yuyu-xia-14714417",
+          "checkedAt": "2026-11-12"
+        }
+      ],
+      "activityStatus": "recent_official_start_confirmed",
+      "profileUrl": "https://worldathletics.org/athletes/pr-of-china/yuyu-xia-14714417",
+      "countryCode": "CHN",
+      "identityCheckedAt": "2026-11-12",
+      "retirementCheck": {
+        "status": "public_source_search_with_limits",
+        "notice": "检索范围与摘录见retirement-searches.json及人物来源；未见退出竞技公告，不代表穷尽所有未索引声明。离开专业队但继续正式竞技者依用户确认计入。"
+      },
+      "displayOrder": 9,
+      "pbRank": 9
+    },
+    {
+      "worldAthleticsId": "14811652",
+      "nameEn": "Bing WU",
+      "name": "吴冰",
+      "personalBest": "2:26:01",
+      "pbDate": "2025-03-30",
+      "pbVenue": "Jiaxing (CHN)",
+      "birthDate": "2001-07-20",
+      "allTimeRank": "28",
+      "gender": "women",
+      "countryEvidence": {
+        "code": "CHN",
+        "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+        "verifiedAt": "2026-11-17"
+      },
+      "pbSourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+      "sources": [
+        {
+          "title": "World Athletics 中国全马历史PB榜",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all"
+        }
+      ],
+      "activityEvidence": [
+        {
+          "date": "2026-09-26",
+          "competition": "20th Asian Games, Municipal Mizuho Stadium, Nagoya",
+          "discipline": "Marathon",
+          "mark": "2:32:09",
+          "position": "8.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/bing-wu-14811652",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-06-28",
+          "competition": "Chinese Athletics Meet, Kuishan Sports Center, Rizhao",
+          "discipline": "10,000 Metres",
+          "mark": "34:15.03",
+          "position": "8.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/bing-wu-14811652",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-06-19",
+          "competition": "Regional Athletics Invitational Meeting 9, Shanxi Athletics Administrative Center, Xi'an",
+          "discipline": "5000 Metres",
+          "mark": "16:38.63",
+          "position": "1.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/bing-wu-14811652",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-05-31",
+          "competition": "National Athletics Grand Prix 4, Sports Center, Bengbu",
+          "discipline": "10,000 Metres",
+          "mark": "33:59.74",
+          "position": "2.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/bing-wu-14811652",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-05-24",
+          "competition": "Lanzhou Marathon, Lanzhou",
+          "discipline": "Marathon",
+          "mark": "2:35:20",
+          "position": "4.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/bing-wu-14811652",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-04-12",
+          "competition": "Nanjing Xianlin Half Marathon, Nanjing",
+          "discipline": "Half Marathon",
+          "mark": "1:12:44",
+          "position": "4.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/bing-wu-14811652",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-15",
+          "competition": "Seoul Marathon, Seoul",
+          "discipline": "Marathon",
+          "mark": "2:32:25",
+          "position": "9.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/bing-wu-14811652",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2025-03-30",
+          "competition": "Jiaxing (CHN)",
+          "discipline": "Marathon",
+          "mark": "2:26:01",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        }
+      ],
+      "activityStatus": "recent_official_start_confirmed",
+      "profileUrl": "https://worldathletics.org/athletes/china/bing-wu-14811652",
+      "identityCheckedAt": "2026-11-17",
+      "countryCode": "CHN",
+      "activeYears": [
+        "2026",
+        "2025",
+        "2024",
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2017"
+      ],
+      "retirementCheck": {
+        "status": "public_source_search_with_limits",
+        "notice": "检索范围与摘录见retirement-searches.json及人物来源；未见退出竞技公告，不代表穷尽所有未索引声明。离开专业队但继续正式竞技者依用户确认计入。"
+      },
+      "displayOrder": 10,
+      "pbRank": 10
+    },
+    {
+      "worldAthleticsId": "14376349",
+      "nameEn": "Zhixuan LI",
+      "name": "李芷萱",
+      "personalBest": "2:26:15",
+      "pbDate": "2019-03-10",
+      "pbVenue": "Nagoya (JPN)",
+      "birthDate": "1994-03-23",
+      "allTimeRank": "30",
+      "gender": "women",
+      "countryEvidence": {
+        "code": "CHN",
+        "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+        "verifiedAt": "2026-11-17"
+      },
+      "pbSourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+      "sources": [
+        {
+          "title": "World Athletics 中国全马历史PB榜",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all"
+        }
+      ],
+      "activityEvidence": [
+        {
+          "date": "2026-10-25",
+          "competition": "MDC FINAL supported by On, Komazawa Olympic Park Athletic Stadium, Tokyo",
+          "discipline": "5000米",
+          "mark": "16:20.47",
+          "position": "8",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/zhixuan-li-14376349",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2026-04-26",
+          "competition": "Chinese Athletics Association 10Km Elite Series Jiashan Dayun, Jiaxing",
+          "discipline": "10公里路跑",
+          "mark": "33:38",
+          "position": "1",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/zhixuan-li-14376349",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2026-03-29",
+          "competition": "Yangzhou Half Marathon, Yangzhou",
+          "discipline": "半程马拉松",
+          "mark": "1:13:25",
+          "position": "10",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/zhixuan-li-14376349",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2026-03-15",
+          "competition": "Shanghai Half Marathon, Shanghai",
+          "discipline": "半程马拉松",
+          "mark": "1:12:24",
+          "position": "5",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/zhixuan-li-14376349",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2026-03-01",
+          "competition": "Tokyo Marathon, Tokyo",
+          "discipline": "全程马拉松",
+          "mark": "2:26:53",
+          "position": "13",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/zhixuan-li-14376349",
+          "checkedAt": "2026-11-12"
+        }
+      ],
+      "activityStatus": "recent_official_start_confirmed",
+      "profileUrl": "https://worldathletics.org/athletes/pr-of-china/zhixuan-li-14376349",
+      "countryCode": "CHN",
+      "identityCheckedAt": "2026-11-12",
+      "retirementCheck": {
+        "status": "public_source_search_with_limits",
+        "notice": "检索范围与摘录见retirement-searches.json及人物来源；未见退出竞技公告，不代表穷尽所有未索引声明。离开专业队但继续正式竞技者依用户确认计入。"
+      },
+      "displayOrder": 11,
+      "pbRank": 11
+    },
+    {
+      "worldAthleticsId": "14334270",
+      "nameEn": "Changqin DING",
+      "name": "丁常琴",
+      "personalBest": "2:26:29",
+      "pbDate": "2026-03-22",
+      "pbVenue": "Wuxi (CHN)",
+      "birthDate": "1991-11-27",
+      "allTimeRank": "31",
+      "gender": "women",
+      "countryEvidence": {
+        "code": "CHN",
+        "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+        "verifiedAt": "2026-11-17"
+      },
+      "pbSourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+      "sources": [
+        {
+          "title": "World Athletics 中国全马历史PB榜",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all"
+        }
+      ],
+      "activityEvidence": [
+        {
+          "date": "2026-03-22",
+          "competition": "Wuxi Marathon, Wuxi",
+          "discipline": "全程马拉松",
+          "mark": "2:26:29",
+          "position": "4",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/changqin-ding-14334270",
+          "checkedAt": "2026-11-12"
+        },
+        {
+          "date": "2026-03-22",
+          "competition": "Wuxi (CHN)",
+          "discipline": "Marathon",
+          "mark": "2:26:29",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-01-18",
+          "competition": "Chang'an Automobile Chongqing Marathon, Chongqing",
+          "discipline": "全程马拉松",
+          "mark": "2:29:59",
+          "position": "5",
+          "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/changqin-ding-14334270",
+          "checkedAt": "2026-11-12"
+        }
+      ],
+      "activityStatus": "recent_official_start_confirmed",
+      "profileUrl": "https://worldathletics.org/athletes/pr-of-china/changqin-ding-14334270",
+      "countryCode": "CHN",
+      "identityCheckedAt": "2026-11-12",
+      "retirementCheck": {
+        "status": "public_source_search_with_limits",
+        "notice": "检索范围与摘录见retirement-searches.json及人物来源；未见退出竞技公告，不代表穷尽所有未索引声明。离开专业队但继续正式竞技者依用户确认计入。"
+      },
+      "displayOrder": 12,
+      "pbRank": 12
+    },
+    {
+      "worldAthleticsId": "14702490",
+      "nameEn": "Li BAI",
+      "name": "白丽",
+      "personalBest": "2:26:33",
+      "pbDate": "2023-03-19",
+      "pbVenue": "Wuxi (CHN)",
+      "birthDate": "1996-03-30",
+      "allTimeRank": "32",
+      "gender": "women",
+      "countryEvidence": {
+        "code": "CHN",
+        "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+        "verifiedAt": "2026-11-17"
+      },
+      "pbSourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+      "sources": [
+        {
+          "title": "World Athletics 中国全马历史PB榜",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all"
+        }
+      ],
+      "activityEvidence": [
+        {
+          "date": "2026-10-18",
+          "competition": "Xi'an Marathon, Xi'an",
+          "discipline": "Marathon",
+          "mark": "2:46:36",
+          "position": "13.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/li-bai-14702490",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-09-27",
+          "competition": "Taiyuan Marathon, Taiyuan",
+          "discipline": "Marathon",
+          "mark": "2:45:37",
+          "position": "11.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/li-bai-14702490",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-01",
+          "competition": "Tokyo Marathon, Tokyo",
+          "discipline": "Marathon",
+          "mark": "2:37:19",
+          "position": "31.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/li-bai-14702490",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        }
+      ],
+      "activityStatus": "recent_official_start_confirmed",
+      "profileUrl": "https://worldathletics.org/athletes/china/li-bai-14702490",
+      "identityCheckedAt": "2026-11-17",
+      "countryCode": "CHN",
+      "activeYears": [
+        "2026",
+        "2025",
+        "2024",
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017",
+        "2016",
+        "2015"
+      ],
+      "retirementCheck": {
+        "status": "public_source_search_with_limits",
+        "notice": "检索范围与摘录见retirement-searches.json及人物来源；未见退出竞技公告，不代表穷尽所有未索引声明。离开专业队但继续正式竞技者依用户确认计入。"
+      },
+      "displayOrder": 13,
+      "pbRank": 13
+    },
+    {
+      "worldAthleticsId": "14488655",
+      "nameEn": "Xinyan ZHANG",
+      "name": "张新艳",
+      "personalBest": "2:26:56",
+      "pbDate": "2022-04-17",
+      "pbVenue": "Hangzhou (CHN)",
+      "birthDate": "1994-02-09",
+      "allTimeRank": "38",
+      "gender": "women",
+      "countryEvidence": {
+        "code": "CHN",
+        "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+        "verifiedAt": "2026-11-17"
+      },
+      "pbSourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+      "sources": [
+        {
+          "title": "World Athletics 中国全马历史PB榜",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all"
+        }
+      ],
+      "activityEvidence": [
+        {
+          "date": "2026-01-11",
+          "competition": "C&D Xiamen Marathon, Xiamen",
+          "discipline": "Marathon",
+          "mark": "2:47:48",
+          "position": "15.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/xinyan-zhang-14488655",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2025-01-05",
+          "competition": "厦门马拉松",
+          "discipline": "Marathon",
+          "mark": "2:29:04",
+          "position": "中国籍冠军",
+          "sourceUrl": "https://local.cctv.com/2025/01/06/ARTImZ3BhO0pU5DuSVYRn6jr250106.shtml",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        }
+      ],
+      "activityStatus": "recent_official_start_reported",
+      "profileUrl": "https://worldathletics.org/athletes/china/xinyan-zhang-14488655",
+      "identityCheckedAt": "2026-11-17",
+      "countryCode": "CHN",
+      "activeYears": [
+        "2026",
+        "2025",
+        "2024",
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017",
+        "2016",
+        "2015",
+        "2014",
+        "2013",
+        "2012",
+        "2011"
+      ],
+      "retirementCheck": {
+        "status": "public_source_search_with_limits",
+        "notice": "检索范围与摘录见retirement-searches.json及人物来源；未见退出竞技公告，不代表穷尽所有未索引声明。离开专业队但继续正式竞技者依用户确认计入。"
+      },
+      "displayOrder": 14,
+      "pbRank": 14
+    },
+    {
+      "worldAthleticsId": "14607905",
+      "nameEn": "Dan LI",
+      "name": "李丹",
+      "personalBest": "2:26:59",
+      "pbDate": "2020-11-29",
+      "pbVenue": "Nanjing (CHN)",
+      "birthDate": "1995-05-01",
+      "allTimeRank": "40",
+      "gender": "women",
+      "countryEvidence": {
+        "code": "CHN",
+        "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+        "verifiedAt": "2026-11-17"
+      },
+      "pbSourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+      "sources": [
+        {
+          "title": "World Athletics 中国全马历史PB榜",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all"
+        }
+      ],
+      "activityEvidence": [
+        {
+          "date": "2026-10-18",
+          "competition": "Bank of China Beijing Marathon, Beijing",
+          "discipline": "Marathon",
+          "mark": "2:37:38",
+          "position": "30.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/dan-li-14607905",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-04-26",
+          "competition": "The 36th Dalian Marathon, Dalian",
+          "discipline": "Marathon",
+          "mark": "DNF",
+          "position": "",
+          "sourceUrl": "https://worldathletics.org/athletes/china/dan-li-14607905",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-15",
+          "competition": "Shanghai Half Marathon, Shanghai",
+          "discipline": "Half Marathon",
+          "mark": "1:21:38",
+          "position": "17.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/dan-li-14607905",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        }
+      ],
+      "activityStatus": "recent_official_start_confirmed",
+      "profileUrl": "https://worldathletics.org/athletes/china/dan-li-14607905",
+      "identityCheckedAt": "2026-11-17",
+      "countryCode": "CHN",
+      "activeYears": [
+        "2026",
+        "2025",
+        "2024",
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017",
+        "2016",
+        "2015",
+        "2014",
+        "2013"
+      ],
+      "retirementCheck": {
+        "status": "public_source_search_with_limits",
+        "notice": "检索范围与摘录见retirement-searches.json及人物来源；未见退出竞技公告，不代表穷尽所有未索引声明。离开专业队但继续正式竞技者依用户确认计入。"
+      },
+      "displayOrder": 15,
+      "pbRank": 15
+    },
+    {
+      "worldAthleticsId": "14913613",
+      "nameEn": "Bingjie XU",
+      "name": "徐冰洁",
+      "personalBest": "2:27:11",
+      "pbDate": "2025-03-23",
+      "pbVenue": "Wuxi (CHN)",
+      "birthDate": "2003-01-30",
+      "allTimeRank": "43",
+      "gender": "women",
+      "countryEvidence": {
+        "code": "CHN",
+        "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+        "verifiedAt": "2026-11-17"
+      },
+      "pbSourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+      "sources": [
+        {
+          "title": "World Athletics 中国全马历史PB榜",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all"
+        }
+      ],
+      "activityEvidence": [
+        {
+          "date": "2026-10-18",
+          "competition": "Xi'an Marathon, Xi'an",
+          "discipline": "Marathon",
+          "mark": "2:33:35",
+          "position": "4.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/bingjie-xu-14913613",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-09-27",
+          "competition": "Taiyuan Marathon, Taiyuan",
+          "discipline": "Marathon",
+          "mark": "2:31:10",
+          "position": "5.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/bingjie-xu-14913613",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-07-12",
+          "competition": "National Middle and Long Distance Running Meeting 3, Huludao",
+          "discipline": "10,000 Metres",
+          "mark": "36:19.00",
+          "position": "6.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/bingjie-xu-14913613",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-07-11",
+          "competition": "National Middle and Long Distance Running Meeting 3, Huludao",
+          "discipline": "5000 Metres",
+          "mark": "17:28.51",
+          "position": "11.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/bingjie-xu-14913613",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-05-31",
+          "competition": "Jilin City Marathon, Jilin",
+          "discipline": "Marathon",
+          "mark": "2:36:31",
+          "position": "4.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/bingjie-xu-14913613",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-05-24",
+          "competition": "Lanzhou Marathon, Lanzhou",
+          "discipline": "Marathon",
+          "mark": "2:41:05",
+          "position": "10.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/bingjie-xu-14913613",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-04-26",
+          "competition": "Miyun Marathon, Beijing",
+          "discipline": "Marathon",
+          "mark": "2:33:21",
+          "position": "5.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/bingjie-xu-14913613",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-04-19",
+          "competition": "National Middle and Long Distance Running Meeting, Henan Provincial Stadium, Zhengzhou",
+          "discipline": "10,000 Metres",
+          "mark": "34:17.16",
+          "position": "3.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/bingjie-xu-14913613",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-04-18",
+          "competition": "National Middle and Long Distance Running Meeting, Henan Provincial Stadium, Zhengzhou",
+          "discipline": "5000 Metres",
+          "mark": "16:30.13",
+          "position": "5.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/bingjie-xu-14913613",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-29",
+          "competition": "Yancheng Marathon, Yancheng",
+          "discipline": "Marathon",
+          "mark": "2:33:16",
+          "position": "2.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/bingjie-xu-14913613",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-15",
+          "competition": "Meishan Renshou Half Marathon, Meishan",
+          "discipline": "Half Marathon",
+          "mark": "1:13:30",
+          "position": "24.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/bingjie-xu-14913613",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-01",
+          "competition": "Tokyo Marathon, Tokyo",
+          "discipline": "Marathon",
+          "mark": "2:34:26",
+          "position": "27.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/bingjie-xu-14913613",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-01-11",
+          "competition": "C&D Xiamen Marathon, Xiamen",
+          "discipline": "Marathon",
+          "mark": "2:32:30",
+          "position": "8.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/bingjie-xu-14913613",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2025-03-23",
+          "competition": "Wuxi (CHN)",
+          "discipline": "Marathon",
+          "mark": "2:27:11",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        }
+      ],
+      "activityStatus": "recent_official_start_confirmed",
+      "profileUrl": "https://worldathletics.org/athletes/china/bingjie-xu-14913613",
+      "identityCheckedAt": "2026-11-17",
+      "countryCode": "CHN",
+      "activeYears": [
+        "2026",
+        "2025",
+        "2024",
+        "2023",
+        "2022",
+        "2021",
+        "2020",
+        "2019"
+      ],
+      "retirementCheck": {
+        "status": "public_source_search_with_limits",
+        "notice": "检索范围与摘录见retirement-searches.json及人物来源；未见退出竞技公告，不代表穷尽所有未索引声明。离开专业队但继续正式竞技者依用户确认计入。"
+      },
+      "displayOrder": 16,
+      "pbRank": 16
+    },
+    {
+      "worldAthleticsId": "14977274",
+      "nameEn": "XiuZhen MA",
+      "name": "马秀珍",
+      "personalBest": "2:27:12",
+      "pbDate": "2026-03-22",
+      "pbVenue": "Wuxi (CHN)",
+      "birthDate": "2000-07-05",
+      "allTimeRank": "44",
+      "gender": "women",
+      "countryEvidence": {
+        "code": "CHN",
+        "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+        "verifiedAt": "2026-11-17"
+      },
+      "pbSourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+      "sources": [
+        {
+          "title": "World Athletics 中国全马历史PB榜",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all"
+        }
+      ],
+      "activityEvidence": [
+        {
+          "date": "2026-08-16",
+          "competition": "Chinese Championships, Sports Center, Quzhou",
+          "discipline": "10,000 Metres",
+          "mark": "34:23.69",
+          "position": "6.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/xiuzhen-ma-14977274",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-08-12",
+          "competition": "Chinese Championships, Sports Center, Quzhou",
+          "discipline": "5000 Metres",
+          "mark": "16:04.91",
+          "position": "4.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/xiuzhen-ma-14977274",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-05-09",
+          "competition": "National Athletics Grand Prix 2, Sports Center, Jiaxing",
+          "discipline": "10,000 Metres",
+          "mark": "33:24.32",
+          "position": "3.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/xiuzhen-ma-14977274",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-04-29",
+          "competition": "Regional Athletics Invitational Meeting 5, Hebei Olympic Sports Center, Qinhuangdao",
+          "discipline": "10,000 Metres",
+          "mark": "33:07.67",
+          "position": "2.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/xiuzhen-ma-14977274",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-04-28",
+          "competition": "Regional Athletics Invitational Meeting 5, Hebei Olympic Sports Center, Qinhuangdao",
+          "discipline": "5000 Metres",
+          "mark": "16:27.03",
+          "position": "3.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/xiuzhen-ma-14977274",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-04-12",
+          "competition": "Regional Athletics Invitational Meeting 3, Hubei Olympic Sports Center, Wuhan",
+          "discipline": "10,000 Metres",
+          "mark": "33:10.32",
+          "position": "2.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/xiuzhen-ma-14977274",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-04-11",
+          "competition": "Regional Athletics Invitational Meeting 3, Hubei Olympic Sports Center, Wuhan",
+          "discipline": "5000 Metres",
+          "mark": "15:53.98",
+          "position": "1.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/xiuzhen-ma-14977274",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-22",
+          "competition": "Wuxi Marathon, Wuxi",
+          "discipline": "Marathon",
+          "mark": "2:27:12",
+          "position": "5.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/xiuzhen-ma-14977274",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-22",
+          "competition": "Wuxi (CHN)",
+          "discipline": "Marathon",
+          "mark": "2:27:12",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-08",
+          "competition": "Chinese Cross Country Championships 1, Maoshan Cross Country Training Base, Huangshan - XC 10.0km",
+          "discipline": "Cross Country",
+          "mark": "37:25",
+          "position": "4.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/xiuzhen-ma-14977274",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        }
+      ],
+      "activityStatus": "recent_official_start_confirmed",
+      "profileUrl": "https://worldathletics.org/athletes/china/xiuzhen-ma-14977274",
+      "identityCheckedAt": "2026-11-17",
+      "countryCode": "CHN",
+      "activeYears": [
+        "2026",
+        "2025",
+        "2024",
+        "2023",
+        "2022",
+        "2021"
+      ],
+      "retirementCheck": {
+        "status": "public_source_search_with_limits",
+        "notice": "检索范围与摘录见retirement-searches.json及人物来源；未见退出竞技公告，不代表穷尽所有未索引声明。离开专业队但继续正式竞技者依用户确认计入。"
+      },
+      "displayOrder": 17,
+      "pbRank": 17
+    },
+    {
+      "worldAthleticsId": "15123187",
+      "nameEn": "Qing ZHU",
+      "name": "朱卿",
+      "personalBest": "2:27:26",
+      "pbDate": "2026-10-18",
+      "pbVenue": "Beijing (CHN)",
+      "birthDate": "1996-01-19",
+      "allTimeRank": "45",
+      "gender": "women",
+      "countryEvidence": {
+        "code": "CHN",
+        "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+        "verifiedAt": "2026-11-17"
+      },
+      "pbSourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+      "sources": [
+        {
+          "title": "World Athletics 中国全马历史PB榜",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all"
+        }
+      ],
+      "activityEvidence": [
+        {
+          "date": "2026-10-18",
+          "competition": "Bank of China Beijing Marathon, Beijing",
+          "discipline": "Marathon",
+          "mark": "2:27:26",
+          "position": "4.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/qing-zhu-15123187",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-10-18",
+          "competition": "Beijing (CHN)",
+          "discipline": "Marathon",
+          "mark": "2:27:26",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-09-27",
+          "competition": "BMW Berlin Marathon, Berlin",
+          "discipline": "Marathon",
+          "mark": "DNF",
+          "position": "",
+          "sourceUrl": "https://worldathletics.org/athletes/china/qing-zhu-15123187",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-09-06",
+          "competition": "Shenyang Marathon, Shenyang",
+          "discipline": "Marathon",
+          "mark": "2:30:49",
+          "position": "3.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/qing-zhu-15123187",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-05-24",
+          "competition": "Lanzhou Marathon, Lanzhou",
+          "discipline": "Marathon",
+          "mark": "2:37:48",
+          "position": "6.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/qing-zhu-15123187",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-04-26",
+          "competition": "The 36th Dalian Marathon, Dalian",
+          "discipline": "Marathon",
+          "mark": "2:29:02",
+          "position": "1.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/qing-zhu-15123187",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-29",
+          "competition": "Shijiazhuang Half Marathon, Shijiazhuang",
+          "discipline": "Half Marathon",
+          "mark": "1:11:52",
+          "position": "1.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/qing-zhu-15123187",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-22",
+          "competition": "Bank of China Wuhan Marathon, Wuhan",
+          "discipline": "Marathon",
+          "mark": "2:28:45",
+          "position": "4.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/qing-zhu-15123187",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-01-18",
+          "competition": "Chang'an Automobile Chongqing Marathon, Chongqing",
+          "discipline": "Marathon",
+          "mark": "2:28:53",
+          "position": "3.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/qing-zhu-15123187",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        }
+      ],
+      "activityStatus": "recent_official_start_confirmed",
+      "profileUrl": "https://worldathletics.org/athletes/china/qing-zhu-15123187",
+      "identityCheckedAt": "2026-11-17",
+      "countryCode": "CHN",
+      "activeYears": [
+        "2026",
+        "2025",
+        "2024",
+        "2023"
+      ],
+      "retirementCheck": {
+        "status": "public_source_search_with_limits",
+        "notice": "检索范围与摘录见retirement-searches.json及人物来源；未见退出竞技公告，不代表穷尽所有未索引声明。离开专业队但继续正式竞技者依用户确认计入。"
+      },
+      "displayOrder": 18,
+      "pbRank": 18
+    },
+    {
+      "worldAthleticsId": "14265279",
+      "nameEn": "Lamei SUN",
+      "name": "孙腊梅",
+      "personalBest": "2:27:55",
+      "pbDate": "2012-11-25",
+      "pbVenue": "Beijing (CHN)",
+      "birthDate": "1991-01-04",
+      "allTimeRank": "50",
+      "gender": "women",
+      "countryEvidence": {
+        "code": "CHN",
+        "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+        "verifiedAt": "2026-11-17"
+      },
+      "pbSourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+      "sources": [
+        {
+          "title": "World Athletics 中国全马历史PB榜",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all"
+        }
+      ],
+      "activityEvidence": [
+        {
+          "date": "2024-12-22",
+          "competition": "Shantou Marathon, Shantou",
+          "discipline": "Marathon",
+          "mark": "3:03:45",
+          "position": "8.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/lamei-sun-14265279",
+          "checkedAt": "2026-11-17",
+          "remark": "UNC",
+          "notLegal": false
+        }
+      ],
+      "activityStatus": "recent_official_start_confirmed",
+      "profileUrl": "https://worldathletics.org/athletes/china/lamei-sun-14265279",
+      "identityCheckedAt": "2026-11-17",
+      "countryCode": "CHN",
+      "activeYears": [
+        "2024",
+        "2016",
+        "2015",
+        "2014",
+        "2013",
+        "2012",
+        "2010",
+        "2009",
+        "2008",
+        "2007"
+      ],
+      "retirementCheck": {
+        "status": "public_source_search_with_limits",
+        "notice": "检索范围与摘录见retirement-searches.json及人物来源；未见退出竞技公告，不代表穷尽所有未索引声明。离开专业队但继续正式竞技者依用户确认计入。"
+      },
+      "displayOrder": 19,
+      "pbRank": 19
+    },
+    {
+      "worldAthleticsId": "14908056",
+      "nameEn": "Min LIU",
+      "name": "刘敏",
+      "personalBest": "2:28:16",
+      "pbDate": "2025-03-23",
+      "pbVenue": "Wuxi (CHN)",
+      "birthDate": "1997-12-22",
+      "allTimeRank": "55",
+      "gender": "women",
+      "countryEvidence": {
+        "code": "CHN",
+        "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+        "verifiedAt": "2026-11-17"
+      },
+      "pbSourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+      "sources": [
+        {
+          "title": "World Athletics 中国全马历史PB榜",
+          "url": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all"
+        }
+      ],
+      "activityEvidence": [
+        {
+          "date": "2026-11-01",
+          "competition": "ChangZhou West Taihu Lake Half Marathon, Changzhou",
+          "discipline": "Half Marathon",
+          "mark": "1:13:42",
+          "position": "3.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/min-liu-14908056",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-10-18",
+          "competition": "Bank of China Beijing Marathon, Beijing",
+          "discipline": "Marathon",
+          "mark": "2:32:10",
+          "position": "14.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/min-liu-14908056",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-09-27",
+          "competition": "Taiyuan Marathon, Taiyuan",
+          "discipline": "Marathon",
+          "mark": "2:30:40",
+          "position": "4.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/min-liu-14908056",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-08-22",
+          "competition": "Chinese Athletics Association 10Km Elite Series Beijing Fengtai, Beijing",
+          "discipline": "10 Kilometres Road",
+          "mark": "34:25",
+          "position": "1.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/min-liu-14908056",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-08-16",
+          "competition": "Chinese Championships, Sports Center, Quzhou",
+          "discipline": "10,000 Metres",
+          "mark": "34:33.69",
+          "position": "7.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/min-liu-14908056",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-08-12",
+          "competition": "Chinese Championships, Sports Center, Quzhou",
+          "discipline": "5000 Metres",
+          "mark": "16:05.74",
+          "position": "6.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/min-liu-14908056",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-06-28",
+          "competition": "Chinese Athletics Meet, Kuishan Sports Center, Rizhao",
+          "discipline": "10,000 Metres",
+          "mark": "34:47.80",
+          "position": "10.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/min-liu-14908056",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-06-26",
+          "competition": "Chinese Athletics Meet, Kuishan Sports Center, Rizhao",
+          "discipline": "5000 Metres",
+          "mark": "16:05.39",
+          "position": "13.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/min-liu-14908056",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-05-16",
+          "competition": "Regional Athletics Invitational Meeting 7, Guoxin Sports Center, Qingdao",
+          "discipline": "10,000 Metres",
+          "mark": "33:36.66",
+          "position": "2.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/min-liu-14908056",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-05-15",
+          "competition": "Regional Athletics Invitational Meeting 7, Guoxin Sports Center, Qingdao",
+          "discipline": "5000 Metres",
+          "mark": "16:10.07",
+          "position": "4.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/min-liu-14908056",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-04-12",
+          "competition": "Beijing Half Marathon, Beijing",
+          "discipline": "Half Marathon",
+          "mark": "1:10:54",
+          "position": "3.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/min-liu-14908056",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-04-06",
+          "competition": "Chinese Athletics Association 10Km Elite Series Beijing Haidian, Haidian District, Beijing",
+          "discipline": "10 Kilometres Road",
+          "mark": "32:42",
+          "position": "1.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/min-liu-14908056",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-28",
+          "competition": "Chinese Athletics Association 10km Elite Series Beijing Mentougou, Beijing",
+          "discipline": "10 Kilometres Road",
+          "mark": "33:50",
+          "position": "1.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/min-liu-14908056",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-22",
+          "competition": "Wuxi Marathon, Wuxi",
+          "discipline": "Marathon",
+          "mark": "2:29:17",
+          "position": "8.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/min-liu-14908056",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-15",
+          "competition": "Meishan Renshou Half Marathon, Meishan",
+          "discipline": "Half Marathon",
+          "mark": "1:09:48",
+          "position": "6.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/min-liu-14908056",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-08",
+          "competition": "Chinese Cross Country Championships 1, Maoshan Cross Country Training Base, Huangshan - XC 10.0km",
+          "discipline": "Cross Country",
+          "mark": "36:36",
+          "position": "2.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/min-liu-14908056",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-03-01",
+          "competition": "Tokyo Marathon, Tokyo",
+          "discipline": "Marathon",
+          "mark": "2:30:03",
+          "position": "20.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/min-liu-14908056",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2026-01-18",
+          "competition": "Chang'an Automobile Chongqing Marathon, Chongqing",
+          "discipline": "Marathon",
+          "mark": "2:29:23",
+          "position": "4.",
+          "sourceUrl": "https://worldathletics.org/athletes/china/min-liu-14908056",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        },
+        {
+          "date": "2025-03-23",
+          "competition": "Wuxi (CHN)",
+          "discipline": "Marathon",
+          "mark": "2:28:16",
+          "sourceUrl": "https://worldathletics.org/records/all-time-toplists/road-running/marathon/outdoor/women/senior?regionType=countries&region=chn&bestResultsOnly=true&maxResultsByCountry=all&firstDay=1899-12-31&lastDay=2026-11-17&page=1&topListView=all",
+          "checkedAt": "2026-11-17",
+          "remark": "",
+          "notLegal": false
+        }
+      ],
+      "activityStatus": "recent_official_start_confirmed",
+      "profileUrl": "https://worldathletics.org/athletes/china/min-liu-14908056",
+      "identityCheckedAt": "2026-11-17",
+      "countryCode": "CHN",
+      "activeYears": [
+        "2026",
+        "2025",
+        "2024",
+        "2023",
+        "2018"
+      ],
+      "retirementCheck": {
+        "status": "public_source_search_with_limits",
+        "notice": "检索范围与摘录见retirement-searches.json及人物来源；未见退出竞技公告，不代表穷尽所有未索引声明。离开专业队但继续正式竞技者依用户确认计入。"
+      },
+      "displayOrder": 20,
+      "pbRank": 20
+    }
+  ]
+}

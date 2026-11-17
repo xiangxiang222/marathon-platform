@@ -36,7 +36,10 @@ function fixture(pageName = 'news') {
     if (parsed.pathname.startsWith('/news/')) return Promise.resolve({ news: clone(race) });
     return Promise.reject(new Error('Unexpected request ' + method + ' ' + url));
   };
+  const storage=new Map();
   const wx = {
+    getStorageSync(key){return storage.get(key);},
+    setStorageSync(key,value){storage.set(key,value);},
     setNavigationBarTitle(options) { calls.push({ type: 'title', ...options }); },
     hideShareMenu() { calls.push({ type: 'hide-share' }); },
     pageScrollTo(options) { calls.push({ type: 'scroll', ...options }); },
@@ -170,15 +173,19 @@ async function main() {
     assert.equal(helper.decorate({}, 2, 2).number, '23');
     assert.equal(helper.decorate({ type:'athlete', editorialOrigin:'manual' }, 0, 1).number, '—', 'An editorial profile must not receive a fabricated season rank');
   });
-  await check('All reader details omit source links, original-media names and verification-process labels', async () => {
-    const f = fixture('detail'); f.page.onLoad({ type: 'profile', id: athlete.id }); await settle();
-    assert.equal(f.page.data.item.sources[0].url, athlete.sources[0].url); // retained in response, never rendered
-    assert.equal(typeof f.page.openSource, 'undefined'); assert.equal(f.page.data.sources, undefined); assert.equal(f.clipboard.length, 0); assert.equal(f.official.length, 0);
-    for (const name of ['web/src/views/ContentDetail.vue', 'web/src/views/News.vue', 'miniprogram/pages/news/detail.wxml']) {
-      const markup = fs.readFileSync(path.join(root, name), 'utf8').split('<script')[0];
-      assert.doesNotMatch(markup, /source-box|source-button|sourceUrl|sourceRefs|verificationNote|rankingNote|查阅来源|资料来源|查看原文|照片来源|target="_blank"|bindtap="openSource"/);
-      assert.doesNotMatch(markup, /:href=|href="https?:/);
-    }
+  await check('Researched profiles expose safe citations, local bookmarks and chapter navigation', async () => {
+    const f=fixture('detail');
+    f.setReply(()=>Promise.resolve({profile:{...athlete,feature:{asOf:'2026-11-17'},article:{title:'人物专题',body:'## 代表比赛\n有据可查的段落。[S1]'},sources:[{id:'S1',title:'官方成绩',url:'https://worldathletics.org/records/test'},{id:'S2',title:'无效来源',url:'javascript:alert(1)'}]}}));
+    f.page.onLoad({type:'profile',id:athlete.id});await settle();
+    assert.equal(f.page.data.profileSources.length,1);
+    const citation=f.page.data.profileBlocks[1].runs.find(r=>r.sourceId==='S1');assert.equal(citation.sourceUrl,'https://worldathletics.org/records/test');
+    f.page.copySource(event({url:citation.sourceUrl}));assert.equal(f.clipboard[0],citation.sourceUrl);
+    f.page.copySource(event({url:'javascript:alert(1)'}));assert.equal(f.clipboard.length,1);
+    f.page.goChapter(event({index:0}));assert.equal(f.calls.at(-1).selector,'#chapter-0');
+    f.page.toggleSaved();assert.equal(f.page.data.saved,true);await f.page.load();assert.equal(f.page.data.saved,true);f.page.toggleSaved();assert.equal(f.page.data.saved,false);
+    assert.equal(f.page.onShareAppMessage().path,'/pages/news/detail?type=profile&id='+athlete.id);
+    for(const file of ['web/src/views/ContentDetail.vue','miniprogram/pages/news/detail.wxml'])assert.match(fs.readFileSync(path.join(root,file),'utf8'),/isProfile && item.feature && profileSources.length/);
+    assert.doesNotMatch(fs.readFileSync(path.join(root,'web/src/views/News.vue'),'utf8').split('<script')[0],/source-box/);
   });
   await check('Pacer race filters retain a person list and reset paging without opening a race page', async () => {
     const f = fixture();

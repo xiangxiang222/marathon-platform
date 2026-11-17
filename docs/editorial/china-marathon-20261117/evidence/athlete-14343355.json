@@ -1,0 +1,443 @@
+{
+  "sourceUrl": "https://worldathletics.org/athletes/athlete=14343355",
+  "retrievedAt": "2026-11-17T01:28:29.222515+00:00",
+  "competitor": {
+    "__typename": "singleCompetitor",
+    "_id": 14343355,
+    "primaryMediaId": null,
+    "primaryMediaId2": null,
+    "primaryMedia": null,
+    "basicData": {
+      "__typename": "AthleteNewData",
+      "id": null,
+      "friendlyName": null,
+      "fullName": null,
+      "friendlyNameLetter": null,
+      "friendlyNameFirst3Letter": null,
+      "sexCode": null,
+      "birthPlace": null,
+      "birthPlaceCountryName": null,
+      "sexNameUrlSlug": null,
+      "birthPlaceCountryUrlSlug": null,
+      "birthCountryCode": null,
+      "primaryMediaId": null,
+      "facebookUsername": null,
+      "twitterUsername": null,
+      "instagramUsername": null,
+      "countryFullName": "PR of China",
+      "familyName": "MA",
+      "givenName": "Liyan",
+      "firstName": null,
+      "lastName": null,
+      "countryName": null,
+      "countryCode": "CHN",
+      "countryUrlSlug": null,
+      "birthDate": "06 SEP 1968",
+      "birthDateStr": null,
+      "urlSlug": null,
+      "representativeId": null,
+      "biography": null,
+      "twitterLink": null,
+      "instagramLink": null,
+      "facebookLink": null,
+      "transfersOfAllegiance": [],
+      "iaafId": 67947,
+      "aaId": 14343355,
+      "primaryMediaEdited": null,
+      "male": false,
+      "primaryMedia": null
+    },
+    "athleteRepresentative": null,
+    "personalBests": {
+      "__typename": "personalBestsType",
+      "withWind": false,
+      "withRecords": false,
+      "results": [
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "3000-metres",
+          "typeNameUrlSlug": "middlelong",
+          "discipline": "3000 Metres",
+          "linkToList": true,
+          "mark": "8:19.78",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "Beijing (CHN)",
+          "date": "12 SEP 1993",
+          "listPosition": "12",
+          "resultScore": 1244,
+          "records": [],
+          "competitionId": null,
+          "eventId": "10229519",
+          "eventName": null
+        },
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "10000-metres",
+          "typeNameUrlSlug": "middlelong",
+          "discipline": "10,000 Metres",
+          "linkToList": true,
+          "mark": "31:10.46",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "Beijing (CHN)",
+          "date": "08 SEP 1993",
+          "listPosition": "224",
+          "resultScore": 1183,
+          "records": [],
+          "competitionId": null,
+          "eventId": "10229521",
+          "eventName": null
+        },
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "marathon",
+          "typeNameUrlSlug": "road-running",
+          "discipline": "Marathon",
+          "linkToList": true,
+          "mark": "2:25:46",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "Tianjin (CHN)",
+          "date": "04 APR 1993",
+          "listPosition": "647",
+          "resultScore": 1157,
+          "records": [],
+          "competitionId": null,
+          "eventId": "10229534",
+          "eventName": null
+        }
+      ]
+    },
+    "seasonsBests": {
+      "__typename": "seasonsBestsType",
+      "parameters": {
+        "__typename": "seasonsBestsParamsType",
+        "seasonsBestsSeason": 1993
+      },
+      "activeSeasons": [
+        "1993"
+      ],
+      "withWind": false,
+      "withRecords": false,
+      "results": [
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "3000-metres",
+          "typeNameUrlSlug": "middlelong",
+          "discipline": "3000 Metres",
+          "linkToList": false,
+          "mark": "8:19.78",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "Beijing (CHN)",
+          "date": "12 SEP 1993",
+          "listPosition": null,
+          "resultScore": 1244,
+          "records": [],
+          "competitionId": null,
+          "eventId": "10229519",
+          "competition": "Beijing Chinese National Games"
+        },
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "10000-metres",
+          "typeNameUrlSlug": "middlelong",
+          "discipline": "10,000 Metres",
+          "linkToList": false,
+          "mark": "31:10.46",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "Beijing (CHN)",
+          "date": "08 SEP 1993",
+          "listPosition": null,
+          "resultScore": 1183,
+          "records": [],
+          "competitionId": null,
+          "eventId": "10229521",
+          "competition": "Beijing Chinese National Games"
+        },
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "marathon",
+          "typeNameUrlSlug": "road-running",
+          "discipline": "Marathon",
+          "linkToList": false,
+          "mark": "2:25:46",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "Tianjin (CHN)",
+          "date": "04 APR 1993",
+          "listPosition": null,
+          "resultScore": 1157,
+          "records": [],
+          "competitionId": null,
+          "eventId": "10229534",
+          "competition": "Tianjin NG"
+        }
+      ]
+    },
+    "progressionOfSeasonsBests": [
+      {
+        "__typename": "singleCompetitorProgression",
+        "indoor": false,
+        "disciplineCode": null,
+        "disciplineNameUrlSlug": "3000-metres",
+        "typeNameUrlSlug": "middlelong",
+        "discipline": "3000 Metres",
+        "withWind": false,
+        "mainEvent": true,
+        "eventId": "10229519",
+        "results": [
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1993",
+            "numericResult": 499.78,
+            "mark": "8:19.78",
+            "wind": null,
+            "venue": "Beijing (CHN)",
+            "date": "12 SEP 1993",
+            "listPosition": null,
+            "resultScore": 1244,
+            "competitionId": null,
+            "competition": "Beijing Chinese National Games"
+          }
+        ]
+      },
+      {
+        "__typename": "singleCompetitorProgression",
+        "indoor": false,
+        "disciplineCode": null,
+        "disciplineNameUrlSlug": "10000-metres",
+        "typeNameUrlSlug": "middlelong",
+        "discipline": "10,000 Metres",
+        "withWind": false,
+        "mainEvent": false,
+        "eventId": "10229521",
+        "results": [
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1993",
+            "numericResult": 1870.46,
+            "mark": "31:10.46",
+            "wind": null,
+            "venue": "Beijing (CHN)",
+            "date": "08 SEP 1993",
+            "listPosition": null,
+            "resultScore": 1183,
+            "competitionId": null,
+            "competition": "Beijing Chinese National Games"
+          }
+        ]
+      },
+      {
+        "__typename": "singleCompetitorProgression",
+        "indoor": false,
+        "disciplineCode": null,
+        "disciplineNameUrlSlug": "marathon",
+        "typeNameUrlSlug": "road-running",
+        "discipline": "Marathon",
+        "withWind": false,
+        "mainEvent": false,
+        "eventId": "10229534",
+        "results": [
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1993",
+            "numericResult": 8746,
+            "mark": "2:25:46",
+            "wind": null,
+            "venue": "Tianjin (CHN)",
+            "date": "04 APR 1993",
+            "listPosition": null,
+            "resultScore": 1157,
+            "competitionId": null,
+            "competition": "Tianjin NG"
+          }
+        ]
+      }
+    ],
+    "worldRankings": {
+      "__typename": "worldRankingsType",
+      "parameters": {
+        "__typename": "worldRankingsParamsType",
+        "worldRankingsProgressionYear": null
+      },
+      "current": [],
+      "best": []
+    },
+    "honours": [],
+    "resultsByYear": {
+      "__typename": "resultsByYearType",
+      "parameters": {
+        "__typename": "resultByYearParamsType",
+        "resultsByYear": 1993,
+        "resultsByYearOrderBy": "discipline"
+      },
+      "activeYears": [
+        "1993"
+      ],
+      "resultsByEvent": [
+        {
+          "__typename": "resultsByEvent",
+          "indoor": null,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": null,
+          "typeNameUrlSlug": null,
+          "discipline": "3000 Metres",
+          "withWind": null,
+          "results": [
+            {
+              "__typename": "resultsByEventResult",
+              "date": "12 SEP 1993",
+              "competition": "Beijing Chinese National Games, Beijing",
+              "venue": "Beijing (CHN)",
+              "country": "CHN",
+              "category": null,
+              "race": "H2",
+              "place": "3.",
+              "mark": "8:19.78",
+              "wind": null,
+              "notLegal": false,
+              "resultScore": 1244,
+              "remark": "",
+              "competitionId": null,
+              "eventId": null,
+              "eventName": null
+            },
+            {
+              "__typename": "resultsByEventResult",
+              "date": "13 SEP 1993",
+              "competition": "Beijing Chinese National Games, Beijing",
+              "venue": "Beijing (CHN)",
+              "country": "CHN",
+              "category": null,
+              "race": "F",
+              "place": "4.",
+              "mark": "8:21.26",
+              "wind": null,
+              "notLegal": false,
+              "resultScore": 1239,
+              "remark": "",
+              "competitionId": null,
+              "eventId": null,
+              "eventName": null
+            }
+          ]
+        },
+        {
+          "__typename": "resultsByEvent",
+          "indoor": null,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": null,
+          "typeNameUrlSlug": null,
+          "discipline": "10,000 Metres",
+          "withWind": null,
+          "results": [
+            {
+              "__typename": "resultsByEventResult",
+              "date": "08 SEP 1993",
+              "competition": "Beijing Chinese National Games, Beijing",
+              "venue": "Beijing (CHN)",
+              "country": "CHN",
+              "category": null,
+              "race": "F",
+              "place": "4.",
+              "mark": "31:10.46",
+              "wind": null,
+              "notLegal": false,
+              "resultScore": 1183,
+              "remark": "",
+              "competitionId": null,
+              "eventId": null,
+              "eventName": null
+            }
+          ]
+        },
+        {
+          "__typename": "resultsByEvent",
+          "indoor": null,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": null,
+          "typeNameUrlSlug": null,
+          "discipline": "Marathon",
+          "withWind": null,
+          "results": [
+            {
+              "__typename": "resultsByEventResult",
+              "date": "04 APR 1993",
+              "competition": "Tianjin NG, Tianjin",
+              "venue": "Tianjin (CHN)",
+              "country": "CHN",
+              "category": null,
+              "race": "F",
+              "place": "6.",
+              "mark": "2:25:46",
+              "wind": null,
+              "notLegal": false,
+              "resultScore": 1157,
+              "remark": "",
+              "competitionId": null,
+              "eventId": null,
+              "eventName": null
+            },
+            {
+              "__typename": "resultsByEventResult",
+              "date": "15 AUG 1993",
+              "competition": "IAAF World Championships, Gottlieb-Daimler Stadion, Stuttgart",
+              "venue": "Gottlieb-Daimler Stadion, Stuttgart (GER)",
+              "country": "GER",
+              "category": "OW",
+              "race": "F",
+              "place": "",
+              "mark": "DNF",
+              "wind": null,
+              "notLegal": false,
+              "resultScore": 0,
+              "remark": "",
+              "competitionId": "6993598",
+              "eventId": "10229534",
+              "eventName": null
+            },
+            {
+              "__typename": "resultsByEventResult",
+              "date": "31 OCT 1993",
+              "competition": "San Sebastián IAAF Marathon World Cup, San Sebastián",
+              "venue": "San Sebastián (ESP)",
+              "country": "ESP",
+              "category": null,
+              "race": "F",
+              "place": "4.",
+              "mark": "2:30:44",
+              "wind": null,
+              "notLegal": false,
+              "resultScore": 1110,
+              "remark": "",
+              "competitionId": null,
+              "eventId": null,
+              "eventName": null
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

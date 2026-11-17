@@ -1,0 +1,317 @@
+{
+  "name": "丁常琴",
+  "worldAthleticsId": "14334270",
+  "gender": "women",
+  "cutoffDate": "2026-11-17",
+  "researchStatus": "sources_read_before_writing",
+  "identity": {
+    "countryCode": "CHN",
+    "countryLabel": "PR of China",
+    "birthDateRaw": "27 NOV 1991",
+    "sourceId": "S1"
+  },
+  "sources": [
+    {
+      "id": "S1",
+      "title": "丁常琴｜World Athletics运动员资料",
+      "url": "https://worldathletics.org/athletes/pr-of-china/changqin-ding-14334270",
+      "publisher": "World Athletics",
+      "kind": "official_athlete_record",
+      "accessedAt": "2026-11-17",
+      "verification": "full_page_and_embedded_competitor_json_read",
+      "publishedAt": null
+    },
+    {
+      "id": "S2",
+      "title": "2026南京半程马拉松鸣枪开跑 万名跑者逐梦长江之畔",
+      "url": "https://local.cctv.com/2026/03/15/ARTIuy1X9rbQfSvMKh6LwyWw260315.shtml",
+      "publisher": "央视网（具体原创机构见正文署名）",
+      "kind": "original_reporting_or_attributed_wire",
+      "publishedAt": "2026-03-15",
+      "accessedAt": "2026-11-17",
+      "verification": "full_article_read"
+    },
+    {
+      "id": "S3",
+      "title": "总参赛规模5万人 2023福州马拉松开跑",
+      "url": "https://local.cctv.com/2023/12/18/ARTIIVORXLvhQkOcvcGBib3X231218.shtml",
+      "publisher": "央视网（具体原创机构见正文署名）",
+      "kind": "original_reporting_or_attributed_wire",
+      "publishedAt": "2023-12-18",
+      "accessedAt": "2026-11-17",
+      "verification": "full_article_read"
+    },
+    {
+      "id": "S4",
+      "title": "世锦赛女子马拉松 迪巴巴1秒优势惊险夺冠",
+      "url": "https://sports.cntv.cn/2015/08/30/ARTI1440900553219560.shtml",
+      "publisher": "央视网（具体原创机构见正文署名）",
+      "kind": "original_reporting_or_attributed_wire",
+      "publishedAt": "2015-08-30",
+      "accessedAt": "2026-11-17",
+      "verification": "full_article_read"
+    }
+  ],
+  "facts": [
+    {
+      "id": "F1",
+      "claim": "官方全马PB 2:26:29，日期 22 MAR 2026，地点 Wuxi (CHN)；未标记notLegal。",
+      "sourceIds": [
+        "S1"
+      ]
+    },
+    {
+      "id": "F2",
+      "claim": "2026年3月15日南京半马1:11:06夺冠；赛道位于江心洲生态科技岛沿江环岛。",
+      "sourceIds": [
+        "S2"
+      ]
+    },
+    {
+      "id": "F3",
+      "claim": "2023年12月17日福州马拉松2:28:24冠军、打破赛会纪录，前二对手为两位埃塞俄比亚选手。",
+      "sourceIds": [
+        "S3"
+      ]
+    },
+    {
+      "id": "F4",
+      "claim": "2015北京世锦赛半程时接近领跑集团，30公里落后28秒暂列14；比赛中岔气，最终第16。",
+      "sourceIds": [
+        "S4"
+      ]
+    }
+  ],
+  "recordEvidence": {
+    "personalBests": [
+      {
+        "discipline": "1500 Metres",
+        "mark": "4:24.65",
+        "date": "26 APR 2014",
+        "venue": "Qinhuangdao (CHN)",
+        "notLegal": false
+      },
+      {
+        "discipline": "3000 Metres",
+        "mark": "9:06.2h",
+        "date": "02 SEP 2014",
+        "venue": "Changbaishan (CHN)",
+        "notLegal": false
+      },
+      {
+        "discipline": "5000 Metres",
+        "mark": "15:12.51",
+        "date": "02 OCT 2014",
+        "venue": "Incheon (KOR)",
+        "notLegal": false
+      },
+      {
+        "discipline": "10,000 Metres",
+        "mark": "31:53.09",
+        "date": "27 SEP 2014",
+        "venue": "Incheon (KOR)",
+        "notLegal": false
+      },
+      {
+        "discipline": "3000 Metres Steeplechase",
+        "mark": "10:15.88",
+        "date": "11 APR 2009",
+        "venue": "Zhaoqing (CHN)",
+        "notLegal": false
+      },
+      {
+        "discipline": "10 Kilometres Road",
+        "mark": "33:51",
+        "date": "29 NOV 2025",
+        "venue": "Chongqing (CHN)",
+        "notLegal": false
+      },
+      {
+        "discipline": "Half Marathon",
+        "mark": "1:09:58",
+        "date": "23 FEB 2025",
+        "venue": "Meishan (CHN)",
+        "notLegal": false
+      },
+      {
+        "discipline": "Marathon",
+        "mark": "2:26:29",
+        "date": "22 MAR 2026",
+        "venue": "Wuxi (CHN)",
+        "notLegal": false
+      }
+    ],
+    "marathonProgression": [
+      {
+        "mark": "2:43:00",
+        "date": "30 APR 2011",
+        "venue": "Dalian (CHN)",
+        "competition": "Marathon",
+        "season": "2011"
+      },
+      {
+        "mark": "2:40:46",
+        "date": "18 MAR 2012",
+        "venue": "Chongqing (CHN)",
+        "competition": "Chongqing Marathon",
+        "season": "2012"
+      },
+      {
+        "mark": "2:40:13",
+        "date": "10 AUG 2013",
+        "venue": "Luzhniki Stadion, Moskva (RUS)",
+        "competition": "IAAF World Championships",
+        "season": "2013"
+      },
+      {
+        "mark": "2:26:54",
+        "date": "22 MAR 2015",
+        "venue": "Chongqing (CHN)",
+        "competition": "Chongqing Marathon",
+        "season": "2015"
+      },
+      {
+        "mark": "2:37:23",
+        "date": "12 NOV 2016",
+        "venue": "Hefei (CHN)",
+        "competition": "Hefei Marathon",
+        "season": "2016"
+      },
+      {
+        "mark": "2:41:49",
+        "date": "08 DEC 2019",
+        "venue": "Guangzhou (CHN)",
+        "competition": "Guangzhou Marathon",
+        "season": "2019"
+      },
+      {
+        "mark": "2:34:58",
+        "date": "29 NOV 2020",
+        "venue": "Chengdu (CHN)",
+        "competition": "Dongfeng Nissan Chengdu Marathon",
+        "season": "2020"
+      },
+      {
+        "mark": "2:32:45",
+        "date": "11 APR 2021",
+        "venue": "Wuxi (CHN)",
+        "competition": "COLMO Wuxi Marathon",
+        "season": "2021"
+      },
+      {
+        "mark": "2:28:24",
+        "date": "17 DEC 2023",
+        "venue": "Fuzhou (CHN)",
+        "competition": "Fuzhou Marathon",
+        "season": "2023"
+      },
+      {
+        "mark": "2:34:51",
+        "date": "01 DEC 2024",
+        "venue": "Shanghai (CHN)",
+        "competition": "Shanghai Marathon",
+        "season": "2024"
+      },
+      {
+        "mark": "2:29:09",
+        "date": "02 MAR 2025",
+        "venue": "Chongqing (CHN)",
+        "competition": "Chang'an Automobile Chongqing Marathon",
+        "season": "2025"
+      },
+      {
+        "mark": "2:26:29",
+        "date": "22 MAR 2026",
+        "venue": "Wuxi (CHN)",
+        "competition": "Wuxi Marathon",
+        "season": "2026"
+      }
+    ],
+    "currentResults": [
+      {
+        "mark": "DNF",
+        "date": "12 APR 2026",
+        "venue": "Beijing (CHN)",
+        "notLegal": false,
+        "competition": "Beijing Half Marathon, Beijing",
+        "place": "",
+        "discipline": "Half Marathon"
+      },
+      {
+        "mark": "2:29:59",
+        "date": "18 JAN 2026",
+        "venue": "Chongqing (CHN)",
+        "notLegal": false,
+        "competition": "Chang'an Automobile Chongqing Marathon, Chongqing",
+        "place": "5.",
+        "discipline": "Marathon"
+      },
+      {
+        "mark": "2:26:29",
+        "date": "22 MAR 2026",
+        "venue": "Wuxi (CHN)",
+        "notLegal": false,
+        "competition": "Wuxi Marathon, Wuxi",
+        "place": "4.",
+        "discipline": "Marathon"
+      }
+    ]
+  },
+  "gaps": [
+    "未获得本人与教练完整训练日志，不写周跑量、心率区间、饮食和伤病诊断。",
+    "未获取代表全马比赛完整官方分段；平均配速只作算术说明，不伪写加速位置。",
+    "现役名单最终纳入待全历史PB筛选和退役公告审计。"
+  ],
+  "recordEvidenceSnapshotNote": "本轮已在线核读6人官方页面；重复请求后0字节，结构化事实快照采用既有2026-11-12采集JSON并与本轮已读内容核对。",
+  "activeEvidence": {
+    "formalResultsInLast24Months": [
+      {
+        "mark": "DNF",
+        "date": "12 APR 2026",
+        "venue": "Beijing (CHN)",
+        "notLegal": false,
+        "competition": "Beijing Half Marathon, Beijing",
+        "place": "",
+        "discipline": "Half Marathon"
+      },
+      {
+        "mark": "2:29:59",
+        "date": "18 JAN 2026",
+        "venue": "Chongqing (CHN)",
+        "notLegal": false,
+        "competition": "Chang'an Automobile Chongqing Marathon, Chongqing",
+        "place": "5.",
+        "discipline": "Marathon"
+      },
+      {
+        "mark": "2:26:29",
+        "date": "22 MAR 2026",
+        "venue": "Wuxi (CHN)",
+        "notLegal": false,
+        "competition": "Wuxi Marathon, Wuxi",
+        "place": "4.",
+        "discipline": "Marathon"
+      }
+    ],
+    "sourceId": "S1",
+    "retirementAnnouncementCheck": "pending_final_roster_audit",
+    "note": "正式参赛记录已核实；不单凭世界田联页面断言未退役。"
+  },
+  "editorialQuestions": {
+    "memorableTrait": "2015年跑出的全马PB直到2026年才改写25秒。",
+    "definingRaceOrChoice": "2015北京世锦赛在比赛分化与岔气中调整，说明名次竞争不同于PB赛。",
+    "readerValue": "理解长期表现起伏和纪录迟到，建立更长的复盘尺度。"
+  },
+  "centralQuestion": "理解长期表现起伏和纪录迟到，建立更长的复盘尺度。",
+  "article": {
+    "title": "丁常琴：十一年，个人纪录终于又快了25秒",
+    "lead": "2015年重庆2小时26分54秒，2026年无锡2小时26分29秒。中间的十一年不能被一个“坚持”概括：世界大赛、成绩起伏、再夺冠军，都是这25秒真正的长度。",
+    "body": "2026年3月22日，丁常琴在无锡马拉松跑出2小时26分29秒，获得第四名。世界田联将这一成绩登记为她新的全马PB。被改写的旧纪录来自2015年重庆：2小时26分54秒。[S1]\n\n两次纪录发生在不同城市，日期恰好都是3月22日，相隔整整十一年。秒表只向前推进25秒，生涯却已经多走了很远。如果只读那一行PB，丁常琴很容易被看成2026年又一位跑快的选手；把年份放回去，这次突破才有了她独有的时间尺度。[S1]\n\n## 早已站上世界大赛的起点\n\n丁常琴生于1991年11月27日。2014年，她的10000米跑到31分53秒09，5000米15分12秒51，这两项个人最好成绩都来自仁川。她的长跑能力在全马PB出现之前，已经在场地赛中得到检验。[S1]\n\n2015年北京世锦赛女子马拉松，是一个可以看到比赛细节的节点。央视现场综述记载，开赛后几位中国选手按自己的节奏处在领跑集团之后；半程时，丁常琴和王雪琴已相当接近前方集团。随后领跑集团提速，再度拉开距离。到30公里，丁常琴落后领先者28秒，暂列第14位。[S4]\n\n最终，她获得第16名。报道还记录了她在比赛中出现岔气，经过调整跑到终点。这里的“调整”有现场报道支撑，但具体采取了什么呼吸或跑姿变化，材料没有提供，不能由作者替她补上。[S4]\n\n这场世界大赛值得记住，因为它把一个数字排名展开成了进程：按自身节奏起跑、逐渐靠近、遇到对方加速、身体又出现问题。她在一次次变化中完成比赛，结果与最快成绩不是同一种检验。\n\n## 十一年里，成绩没有走一条直线\n\n在2015年跑出2小时26分54秒以后，世界田联登记的年度最佳有过明显变化：2016年2小时37分23秒，2019年2小时41分49秒，2020年2小时34分58秒。2023年，她在福州跑到2小时28分24秒。[S1]\n\n这些数字能够确认一段有起伏的比赛履历，却不能自动组成伤病史。没有本人或队伍的可靠说明，不能把较慢的年份一概写成受伤，也不能把某个缺少比赛记录的年份断言为退出竞技。留住时间线，也要留住解释的边界。\n\n2023年福州的2小时28分24秒有明确的当场意义：她击败两位埃塞俄比亚选手夺冠，并打破赛会纪录。它仍比2015年的PB慢1分30秒，却足以成为那场比赛的冠军和新的赛事标杆。[S3]\n\n于是，丁常琴的经历里同时出现了两件事：个人纪录很久没有变化，她仍然能赢下一场大型城市马拉松。对有旧PB的跑者而言，这是非常具体的提醒——纪录没有更新，并不等于所有比赛能力都已停止存在。\n\n## 无锡之前的一周与之后的一个月\n\n2026年3月15日南京半程马拉松，丁常琴以1小时11分06秒夺冠。比赛位于江心洲生态科技岛，沿江环岛。一周之后，她在无锡跑出新的全马PB。[S2][S1]\n\n时间相隔七天，是可核对的事实；把南京半马说成教练刻意安排的“最后一堂强度课”，则超出了材料。本文没有她当时的完整备战计划，无法确认两场比赛各自承担的训练目的，也不能据此给大众跑者推荐连续作战。\n\n2026年无锡的2小时26分29秒，平均每公里约3分28秒。与十一年前的纪录相比，平均每公里只快约0.6秒。这个很细的算术差值，不表示突破容易：当旧纪录已经很快，最终25秒仍然需要整场比赛来兑现。[S1]\n\n本次没有获得无锡的完整官方分段、即时天气和个人补给过程，无法判断25秒具体来自前半程、后半程还是某次临场变化。世界田联随后收录她4月北京半马DNF，原因未得到核实；不能因为刚跑过PB，就把下一次未完赛解释为某种确定的因果。[S1]\n\n## 她在中国长跑里的位置\n\n丁常琴同时留下了仁川的场地成绩、北京世锦赛的比赛过程、福州冠军和无锡PB。她的价值因此并不只属于“老将”这个概括。这里有一个曾在较短距离跑得很快的运动员，也有一个多年后仍能在全马推进个人边界的人。[S1][S3][S4]\n\n年龄本身不能替她解释突破。根据出生日期计算，她在2026无锡比赛时34岁；这说明成绩发生在人生哪个阶段，不足以推出适用于所有人的巅峰年龄。真正能确认的，是她在这一阶段仍然完成了正式比赛认可的新纪录。[S1]\n\n如果把她的故事带进自己的训练日历，可以先做一件朴素的事：把最近五年最好的几场比赛列出来，同时标注比赛目的和当时条件。别让一条旧PB独自遮住后来所有经历，也别拿职业选手的十一年等待，为自己的疼痛或过度训练寻找理由。\n\n丁常琴这25秒最动人的地方，是它没有抹掉此前的年份。福州的冠军、北京世锦赛最后跑到终点的那段路，都留在里面。新的PB终于出现时，旧成绩没有失去意义，它只是有了一个继续向前的邻居。",
+    "version": 2,
+    "updatedAt": "2026-11-17",
+    "editorialStatus": "evidence_based_feature",
+    "analysisBoundary": "正文中的平均配速和时间差为作者按官方成绩计算；无完整分段处不推断战术。",
+    "characters": 1445
+  },
+  "draftedAfterResearchCard": true
+}

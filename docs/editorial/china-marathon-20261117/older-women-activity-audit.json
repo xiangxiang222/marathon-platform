@@ -1,0 +1,570 @@
+[
+  {
+    "name": "魏亚楠",
+    "worldAthleticsId": "14264959",
+    "url": "https://worldathletics.org/athletes/pr-of-china/yanan-wei-14264959",
+    "identity": "06 DEC 1981",
+    "activeYears": [
+      "2026",
+      "2025",
+      "2023",
+      "2012",
+      "2011",
+      "2010",
+      "2009",
+      "2008",
+      "2007",
+      "2006",
+      "2005",
+      "2004",
+      "2002",
+      "2001",
+      "2000",
+      "1999"
+    ],
+    "results": [
+      {
+        "__typename": "resultsByEvent",
+        "indoor": null,
+        "disciplineCode": null,
+        "disciplineNameUrlSlug": null,
+        "typeNameUrlSlug": null,
+        "discipline": "Marathon",
+        "withWind": null,
+        "results": [
+          {
+            "__typename": "resultsByEventResult",
+            "date": "13 SEP 2026",
+            "competition": "Harbin Marathon, Harbin",
+            "venue": "Harbin (CHN)",
+            "country": "CHN",
+            "category": "B",
+            "race": "F",
+            "place": "10.",
+            "mark": "2:46:33",
+            "wind": null,
+            "notLegal": false,
+            "resultScore": 968,
+            "remark": "",
+            "competitionId": "7240795",
+            "eventId": "10229534",
+            "eventName": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "何引丽",
+    "worldAthleticsId": "14264580",
+    "url": "https://worldathletics.org/athletes/pr-of-china/yinli-he-14264580",
+    "identity": "20 SEP 1988",
+    "activeYears": [
+      "2021",
+      "2020",
+      "2019",
+      "2018",
+      "2017",
+      "2016",
+      "2015",
+      "2014",
+      "2013",
+      "2012",
+      "2011",
+      "2010",
+      "2009",
+      "2008",
+      "2007"
+    ],
+    "results": [
+      {
+        "__typename": "resultsByEvent",
+        "indoor": null,
+        "disciplineCode": null,
+        "disciplineNameUrlSlug": null,
+        "typeNameUrlSlug": null,
+        "discipline": "Marathon",
+        "withWind": null,
+        "results": [
+          {
+            "__typename": "resultsByEventResult",
+            "date": "11 APR 2021",
+            "competition": "Chinese Marathon Championships, Xuzhou",
+            "venue": "Xuzhou (CHN)",
+            "country": "CHN",
+            "category": "B",
+            "race": "F",
+            "place": "11.",
+            "mark": "2:36:42",
+            "wind": null,
+            "notLegal": false,
+            "resultScore": 1056,
+            "remark": "",
+            "competitionId": "7160084",
+            "eventId": "10229534",
+            "eventName": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "贾超风",
+    "worldAthleticsId": "14266236",
+    "url": "https://worldathletics.org/athletes/pr-of-china/chaofeng-jia-14266236",
+    "identity": "16 NOV 1988",
+    "activeYears": [
+      "2015",
+      "2014",
+      "2013",
+      "2012",
+      "2011",
+      "2010",
+      "2009",
+      "2008",
+      "2007",
+      "2006",
+      "2005",
+      "2004"
+    ],
+    "results": [
+      {
+        "__typename": "resultsByEvent",
+        "indoor": null,
+        "disciplineCode": null,
+        "disciplineNameUrlSlug": null,
+        "typeNameUrlSlug": null,
+        "discipline": "5000 Metres",
+        "withWind": null,
+        "results": [
+          {
+            "__typename": "resultsByEventResult",
+            "date": "11 MAY 2015",
+            "competition": "Taiyuan Chinese National GP, Taiyuan",
+            "venue": "Taiyuan (CHN)",
+            "country": "CHN",
+            "category": "F",
+            "race": "F2",
+            "place": "1.",
+            "mark": "16:25.38",
+            "wind": null,
+            "notLegal": false,
+            "resultScore": 1003,
+            "remark": "",
+            "competitionId": null,
+            "eventId": null,
+            "eventName": null
+          },
+          {
+            "__typename": "resultsByEventResult",
+            "date": "27 JUN 2015",
+            "competition": "Beijing",
+            "venue": "Beijing (CHN)",
+            "country": "CHN",
+            "category": "F",
+            "race": "F2",
+            "place": "",
+            "mark": "DNF",
+            "wind": null,
+            "notLegal": false,
+            "resultScore": 0,
+            "remark": "",
+            "competitionId": null,
+            "eventId": null,
+            "eventName": null
+          },
+          {
+            "__typename": "resultsByEventResult",
+            "date": "23 SEP 2015",
+            "competition": "Chinese Championships, Suzhou",
+            "venue": "Suzhou (CHN)",
+            "country": "CHN",
+            "category": "B",
+            "race": "F",
+            "place": "9.",
+            "mark": "16:46.01",
+            "wind": null,
+            "notLegal": false,
+            "resultScore": 967,
+            "remark": "",
+            "competitionId": null,
+            "eventId": null,
+            "eventName": null
+          }
+        ]
+      },
+      {
+        "__typename": "resultsByEvent",
+        "indoor": null,
+        "disciplineCode": null,
+        "disciplineNameUrlSlug": null,
+        "typeNameUrlSlug": null,
+        "discipline": "10,000 Metres",
+        "withWind": null,
+        "results": [
+          {
+            "__typename": "resultsByEventResult",
+            "date": "12 MAY 2015",
+            "competition": "Taiyuan Chinese National GP, Taiyuan",
+            "venue": "Taiyuan (CHN)",
+            "country": "CHN",
+            "category": "F",
+            "race": "F1",
+            "place": "1.",
+            "mark": "33:28.13",
+            "wind": null,
+            "notLegal": false,
+            "resultScore": 1063,
+            "remark": "",
+            "competitionId": null,
+            "eventId": null,
+            "eventName": null
+          },
+          {
+            "__typename": "resultsByEventResult",
+            "date": "29 JUN 2015",
+            "competition": "Beijing",
+            "venue": "Beijing (CHN)",
+            "country": "CHN",
+            "category": "F",
+            "race": "F1",
+            "place": "",
+            "mark": "DNF",
+            "wind": null,
+            "notLegal": false,
+            "resultScore": 0,
+            "remark": "",
+            "competitionId": null,
+            "eventId": null,
+            "eventName": null
+          },
+          {
+            "__typename": "resultsByEventResult",
+            "date": "22 SEP 2015",
+            "competition": "Chinese Championships, Suzhou",
+            "venue": "Suzhou (CHN)",
+            "country": "CHN",
+            "category": "B",
+            "race": "F",
+            "place": "9.",
+            "mark": "36:53.67",
+            "wind": null,
+            "notLegal": false,
+            "resultScore": 894,
+            "remark": "",
+            "competitionId": null,
+            "eventId": null,
+            "eventName": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "张莹莹",
+    "worldAthleticsId": "14264358",
+    "url": "https://worldathletics.org/athletes/pr-of-china/yingying-zhang-14264358",
+    "identity": "04 JAN 1990",
+    "activeYears": [
+      "2017",
+      "2016",
+      "2015",
+      "2014",
+      "2013",
+      "2010",
+      "2009",
+      "2008",
+      "2007",
+      "2006",
+      "2005"
+    ],
+    "results": [
+      {
+        "__typename": "resultsByEvent",
+        "indoor": null,
+        "disciplineCode": null,
+        "disciplineNameUrlSlug": null,
+        "typeNameUrlSlug": null,
+        "discipline": "Marathon",
+        "withWind": null,
+        "results": [
+          {
+            "__typename": "resultsByEventResult",
+            "date": "29 APR 2017",
+            "competition": "Tianjin Marathon, Tianjin",
+            "venue": "Tianjin (CHN)",
+            "country": "CHN",
+            "category": "F",
+            "race": "F",
+            "place": " - ",
+            "mark": " - ",
+            "wind": null,
+            "notLegal": false,
+            "resultScore": 0,
+            "remark": "DQ",
+            "competitionId": null,
+            "eventId": null,
+            "eventName": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "白雪",
+    "worldAthleticsId": "14266777",
+    "url": "https://worldathletics.org/athletes/pr-of-china/xue-bai-14266777",
+    "identity": "13 DEC 1988",
+    "activeYears": [
+      "2025",
+      "2012",
+      "2010",
+      "2009",
+      "2008",
+      "2007",
+      "2006",
+      "2005",
+      "2004",
+      "2003"
+    ],
+    "results": [
+      {
+        "__typename": "resultsByEvent",
+        "indoor": null,
+        "disciplineCode": null,
+        "disciplineNameUrlSlug": null,
+        "typeNameUrlSlug": null,
+        "discipline": "Marathon",
+        "withWind": null,
+        "results": [
+          {
+            "__typename": "resultsByEventResult",
+            "date": "31 AUG 2025",
+            "competition": "Harbin Marathon, Harbin",
+            "venue": "Harbin (CHN)",
+            "country": "CHN",
+            "category": "A",
+            "race": "F",
+            "place": "19.",
+            "mark": "2:54:21",
+            "wind": null,
+            "notLegal": false,
+            "resultScore": 902,
+            "remark": "",
+            "competitionId": "7220352",
+            "eventId": "10229534",
+            "eventName": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "王佳丽",
+    "worldAthleticsId": "14265125",
+    "url": "https://worldathletics.org/athletes/pr-of-china/jiali-wang-14265125",
+    "identity": "01 FEB 1986",
+    "activeYears": [
+      "2017",
+      "2016",
+      "2015",
+      "2012",
+      "2011",
+      "2010",
+      "2009",
+      "2008",
+      "2007"
+    ],
+    "results": [
+      {
+        "__typename": "resultsByEvent",
+        "indoor": null,
+        "disciplineCode": null,
+        "disciplineNameUrlSlug": null,
+        "typeNameUrlSlug": null,
+        "discipline": "5000 Metres",
+        "withWind": null,
+        "results": [
+          {
+            "__typename": "resultsByEventResult",
+            "date": "18 MAY 2017",
+            "competition": "Chinese Championships, Jinan",
+            "venue": "Jinan (CHN)",
+            "country": "CHN",
+            "category": "B",
+            "race": "F",
+            "place": "2.",
+            "mark": "15:58.50",
+            "wind": null,
+            "notLegal": false,
+            "resultScore": 1052,
+            "remark": "",
+            "competitionId": null,
+            "eventId": null,
+            "eventName": null
+          },
+          {
+            "__typename": "resultsByEventResult",
+            "date": "25 JUN 2017",
+            "competition": "Guiyang Chinese GP, Guiyang",
+            "venue": "Guiyang (CHN)",
+            "country": "CHN",
+            "category": "F",
+            "race": "F",
+            "place": "1.",
+            "mark": "16:25.30",
+            "wind": null,
+            "notLegal": false,
+            "resultScore": 1003,
+            "remark": "",
+            "competitionId": null,
+            "eventId": null,
+            "eventName": null
+          }
+        ]
+      },
+      {
+        "__typename": "resultsByEvent",
+        "indoor": null,
+        "disciplineCode": null,
+        "disciplineNameUrlSlug": null,
+        "typeNameUrlSlug": null,
+        "discipline": "10,000 Metres",
+        "withWind": null,
+        "results": [
+          {
+            "__typename": "resultsByEventResult",
+            "date": "05 APR 2017",
+            "competition": "Huaian Chinese GP, Huai'an",
+            "venue": "Huai'an (CHN)",
+            "country": "CHN",
+            "category": "F",
+            "race": "F",
+            "place": "5.",
+            "mark": "34:02.63",
+            "wind": null,
+            "notLegal": false,
+            "resultScore": 1033,
+            "remark": "",
+            "competitionId": null,
+            "eventId": null,
+            "eventName": null
+          },
+          {
+            "__typename": "resultsByEventResult",
+            "date": "16 MAY 2017",
+            "competition": "Chinese Championships, Jinan",
+            "venue": "Jinan (CHN)",
+            "country": "CHN",
+            "category": "B",
+            "race": "F",
+            "place": "1.",
+            "mark": "33:08.06",
+            "wind": null,
+            "notLegal": false,
+            "resultScore": 1080,
+            "remark": "",
+            "competitionId": null,
+            "eventId": null,
+            "eventName": null
+          },
+          {
+            "__typename": "resultsByEventResult",
+            "date": "27 JUN 2017",
+            "competition": "Guiyang Chinese GP, Guiyang",
+            "venue": "Guiyang (CHN)",
+            "country": "CHN",
+            "category": "F",
+            "race": "F",
+            "place": "1.",
+            "mark": "33:29.29",
+            "wind": null,
+            "notLegal": false,
+            "resultScore": 1062,
+            "remark": "",
+            "competitionId": null,
+            "eventId": null,
+            "eventName": null
+          }
+        ]
+      },
+      {
+        "__typename": "resultsByEvent",
+        "indoor": null,
+        "disciplineCode": null,
+        "disciplineNameUrlSlug": null,
+        "typeNameUrlSlug": null,
+        "discipline": "Marathon",
+        "withWind": null,
+        "results": [
+          {
+            "__typename": "resultsByEventResult",
+            "date": "29 APR 2017",
+            "competition": "Tianjin Marathon, Tianjin",
+            "venue": "Tianjin (CHN)",
+            "country": "CHN",
+            "category": "F",
+            "race": "F",
+            "place": "1.",
+            "mark": "2:33:36",
+            "wind": null,
+            "notLegal": false,
+            "resultScore": 1084,
+            "remark": "",
+            "competitionId": null,
+            "eventId": null,
+            "eventName": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "陈荣",
+    "worldAthleticsId": "14266668",
+    "url": "https://worldathletics.org/athletes/pr-of-china/rong-chen-14266668",
+    "identity": "18 MAY 1988",
+    "activeYears": [
+      "2013",
+      "2012",
+      "2011",
+      "2010",
+      "2009",
+      "2008",
+      "2007",
+      "2006",
+      "2005"
+    ],
+    "results": [
+      {
+        "__typename": "resultsByEvent",
+        "indoor": null,
+        "disciplineCode": null,
+        "disciplineNameUrlSlug": null,
+        "typeNameUrlSlug": null,
+        "discipline": "10,000 Metres",
+        "withWind": null,
+        "results": [
+          {
+            "__typename": "resultsByEventResult",
+            "date": "11 SEP 2013",
+            "competition": "Shenyang National Games, Shenyang",
+            "venue": "Shenyang (CHN)",
+            "country": "CHN",
+            "category": "F",
+            "race": "F",
+            "place": "23.",
+            "mark": "36:41.20",
+            "wind": null,
+            "notLegal": false,
+            "resultScore": 904,
+            "remark": "",
+            "competitionId": null,
+            "eventId": null,
+            "eventName": null
+          }
+        ]
+      }
+    ]
+  }
+]
