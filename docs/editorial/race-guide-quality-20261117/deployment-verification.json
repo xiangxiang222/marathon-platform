@@ -1,0 +1,271 @@
+{
+  "pr": "https://github.com/xiangxiang222/marathon-platform/pull/177",
+  "commit": "1c8ea1cd49d77a7d0d660c86e04467f60b106871",
+  "productionApplied": {
+    "saved": 223,
+    "failed": 0,
+    "schemaUnchanged": true,
+    "quickCheck": "ok",
+    "backup": "server/data/race-guide-quality-20261117/applied.json.before.sqlite"
+  },
+  "savedRowsVerified": 223,
+  "api": {
+    "rows": 223,
+    "errors": [],
+    "formatting": "Exact generated chapters normalize trailing whitespace and zero-width characters; independent editorial text is retained. Compared via publicGuideText after independently checking all saved raw bodies on production DB."
+  },
+  "web": {
+    "kind": "Real production HTTPS page/API in desktop Chrome at 320/390px. No mocks. Not a WeChat device or mini-program release.",
+    "passed": true,
+    "views": [
+      {
+        "id": "zuiku-96336",
+        "width": 320,
+        "tables": 9,
+        "images": 8
+      },
+      {
+        "id": "zuiku-96336",
+        "width": 390,
+        "tables": 9,
+        "images": 8
+      },
+      {
+        "id": "zuiku-41338",
+        "width": 320,
+        "tables": 0,
+        "images": 9
+      },
+      {
+        "id": "zuiku-41338",
+        "width": 390,
+        "tables": 0,
+        "images": 9
+      },
+      {
+        "id": "zuiku-43816",
+        "width": 320,
+        "tables": 0,
+        "images": 8
+      },
+      {
+        "id": "zuiku-43816",
+        "width": 390,
+        "tables": 0,
+        "images": 8
+      }
+    ],
+    "errors": []
+  },
+  "mini": {
+    "kind": "Actual WeChat DevTools with current deployed HTTPS API; not physical phone or published mini-program",
+    "completedAt": "2026-11-17T16:58:48.638Z",
+    "source": "https://togetherbetter.cn/marathon/api/races/zuiku-96336",
+    "raceId": "zuiku-96336",
+    "proseExactlyMatchesProduction": true,
+    "guideCharacters": 9572,
+    "chapters": [
+      {
+        "id": "chapter-0",
+        "label": "赛事概况"
+      },
+      {
+        "id": "chapter-5",
+        "label": "项目组别"
+      },
+      {
+        "id": "chapter-8",
+        "label": "报名与费用"
+      },
+      {
+        "id": "chapter-15",
+        "label": "参赛资格"
+      },
+      {
+        "id": "chapter-19",
+        "label": "健康与禁报要求"
+      },
+      {
+        "id": "chapter-35",
+        "label": "精英选手优惠"
+      },
+      {
+        "id": "chapter-42",
+        "label": "日程与领物"
+      },
+      {
+        "id": "chapter-45",
+        "label": "领物与邮寄"
+      },
+      {
+        "id": "chapter-53",
+        "label": "路线与补给"
+      },
+      {
+        "id": "chapter-64",
+        "label": "竞赛规则"
+      },
+      {
+        "id": "chapter-82",
+        "label": "强制装备"
+      },
+      {
+        "id": "chapter-89",
+        "label": "关门、存包与计时"
+      },
+      {
+        "id": "chapter-99",
+        "label": "处罚与申诉"
+      },
+      {
+        "id": "chapter-104",
+        "label": "奖励办法"
+      },
+      {
+        "id": "chapter-119",
+        "label": "医疗、环保与保险"
+      },
+      {
+        "id": "chapter-134",
+        "label": "影像、特别说明与安全提示"
+      },
+      {
+        "id": "chapter-146",
+        "label": "退改政策与联系方式"
+      }
+    ],
+    "chapterCount": 17,
+    "groupCount": 4,
+    "tables": [
+      {
+        "left": 27,
+        "right": 363,
+        "top": -419.8203125,
+        "bottom": -61.8203125,
+        "width": 336,
+        "height": 358,
+        "scrollLeft": 144,
+        "scrollTop": 0,
+        "scrollWidth": 1080,
+        "scrollHeight": 376
+      },
+      {
+        "left": 27,
+        "right": 363,
+        "top": 460.8828125,
+        "bottom": 843.8828125,
+        "width": 336,
+        "height": 383,
+        "scrollLeft": 0,
+        "scrollTop": 0,
+        "scrollWidth": 480,
+        "scrollHeight": 401
+      },
+      {
+        "left": 27,
+        "right": 363,
+        "top": 1159.4296875,
+        "bottom": 1723.4296875,
+        "width": 336,
+        "height": 564,
+        "scrollLeft": 0,
+        "scrollTop": 0,
+        "scrollWidth": 480,
+        "scrollHeight": 582
+      },
+      {
+        "left": 27,
+        "right": 363,
+        "top": 3220.5546875,
+        "bottom": 4409.5546875,
+        "width": 336,
+        "height": 1189,
+        "scrollLeft": 0,
+        "scrollTop": 0,
+        "scrollWidth": 360,
+        "scrollHeight": 1207
+      },
+      {
+        "left": 27,
+        "right": 363,
+        "top": 7767.09375,
+        "bottom": 8990.09375,
+        "width": 336,
+        "height": 1223,
+        "scrollLeft": 0,
+        "scrollTop": 0,
+        "scrollWidth": 600,
+        "scrollHeight": 1241
+      },
+      {
+        "left": 27,
+        "right": 363,
+        "top": 10035.3046875,
+        "bottom": 11308.3046875,
+        "width": 336,
+        "height": 1273,
+        "scrollLeft": 0,
+        "scrollTop": 0,
+        "scrollWidth": 334,
+        "scrollHeight": 1291
+      },
+      {
+        "left": 27,
+        "right": 363,
+        "top": 11689.0390625,
+        "bottom": 11904.0390625,
+        "width": 336,
+        "height": 215,
+        "scrollLeft": 0,
+        "scrollTop": 0,
+        "scrollWidth": 600,
+        "scrollHeight": 233
+      },
+      {
+        "left": 27,
+        "right": 363,
+        "top": 12074.015625,
+        "bottom": 12260.015625,
+        "width": 336,
+        "height": 186,
+        "scrollLeft": 0,
+        "scrollTop": 0,
+        "scrollWidth": 600,
+        "scrollHeight": 204
+      },
+      {
+        "left": 27,
+        "right": 363,
+        "top": 15539.578125,
+        "bottom": 15771.578125,
+        "width": 336,
+        "height": 232,
+        "scrollLeft": 0,
+        "scrollTop": 0,
+        "scrollWidth": 334,
+        "scrollHeight": 250
+      }
+    ],
+    "feesTable": {
+      "sourceAndRenderedValuesVerified": true,
+      "viewportWidth": 336,
+      "scrollWidth": 480,
+      "notes": "Actual horizontal scroll verified on shared native project-table component (scrollLeft=144). The fees table was visually checked at its initial horizontal offset."
+    },
+    "originalImage": {
+      "mode": "widthFix",
+      "nativePreviewLoaded": true,
+      "screenshot": "/tmp/race-guide-devtools-deployed-preview.png"
+    },
+    "screenshots": [
+      "/tmp/race-guide-devtools-deployed-body.png",
+      "/tmp/race-guide-devtools-deployed-fees.png",
+      "/tmp/race-guide-devtools-deployed-fees-scrolled.png",
+      "/tmp/race-guide-devtools-deployed-preview.png"
+    ],
+    "remaining": [
+      "Physical-phone long-press menu and gestures",
+      "Formal mini-program upload/release"
+    ]
+  }
+}

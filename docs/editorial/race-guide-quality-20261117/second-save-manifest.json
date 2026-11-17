@@ -1,0 +1,626 @@
+[
+  {
+    "id": "yuxi",
+    "name": "2026玉溪抚仙湖半程马拉松",
+    "status": "partially_verified",
+    "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对",
+    "beforeBodyHash": "e66468e5b9c36b55b49f8612e54df472647b81e58d462944ed84796f066331c6",
+    "savedBodyHash": "84b1345f5e9851dd0f82f04b04f917dbb23bc988085615530e0f5477ddb589d0",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 1,
+    "pendingImages": 3,
+    "chapters": 15,
+    "groups": 1,
+    "groupCorrections": 0,
+    "questions": [
+      {
+        "status": "source-checked",
+        "question": "官网/articles/30是路跑运动员赛前体检表，不是本届完整规程；本届页面已定位至/races/2026-yu-xi-fu-xian-lake-half-marathon及/articles/317、318。两篇主体为图片，本轮仅核对上述报名长图。",
+        "sources": [
+          "https://www.sichuanbojiesports.com/races/2026-yu-xi-fu-xian-lake-half-marathon",
+          "https://www.sichuanbojiesports.com/articles/317",
+          "https://www.sichuanbojiesports.com/articles/318"
+        ]
+      }
+    ],
+    "officialDocuments": [],
+    "stages": {
+      "reviewed": true,
+      "saved": false,
+      "displayed": false,
+      "deployedVerified": false
+    }
+  },
+  {
+    "id": "jinjiang",
+    "name": "2026泉州晋江马拉松",
+    "status": "partially_verified",
+    "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对",
+    "beforeBodyHash": "662c7648d8ee40cd1c80864e0a6ffb83911792ae983b3f117887dfcd8e52a94d",
+    "savedBodyHash": "4765e27146d5144fb0d59106286a4eb1778d055dedeb2aaa73891ae907383826",
+    "bodyChanged": true,
+    "edits": 3,
+    "viewedImages": 3,
+    "pendingImages": 9,
+    "chapters": 19,
+    "groups": 2,
+    "groupCorrections": 0,
+    "questions": [
+      {
+        "status": "unconfirmed",
+        "question": "补给站原表项目列将全马和半马合并，跨越22.5—40公里，无法据图直接分开适用范围。保留原表与图注，不把半马补写成跑过21.0975公里。",
+        "source": {
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/69024ad307af4eeedbbcb578f00052951fef4124.png?imageView2/2/w/640",
+          "sourceUrl": "https://reg.zuicool.com/20543",
+          "sha256": "dc8110b4d1398966a15b2e3baa7526b074e06aa955cceadddff35a51b3723deb",
+          "imageViewed": true,
+          "officialUrls": [
+            "http://www.jinjiang-marathon.cn/2026-09/28/content_32260416.htm",
+            "http://www.jinjiang-marathon.cn/2026-09/28/content_32260417.htm"
+          ]
+        }
+      }
+    ],
+    "officialDocuments": [],
+    "stages": {
+      "reviewed": true,
+      "saved": false,
+      "displayed": false,
+      "deployedVerified": false
+    }
+  },
+  {
+    "id": "songshanhu",
+    "name": "2026东阳光药·东莞（松山湖）马拉松",
+    "status": "partially_verified",
+    "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对",
+    "beforeBodyHash": "75a37b818b09ea80917a9ecabd1838536585507496aec0400a5e71e5dbc0cde1",
+    "savedBodyHash": "8c65d04d1639a6ca655e3429dd743224d3c5ab9e90f1347fbd6f8c74f576f654",
+    "bodyChanged": true,
+    "edits": 5,
+    "viewedImages": 2,
+    "pendingImages": 1,
+    "chapters": 22,
+    "groups": 0,
+    "groupCorrections": 0,
+    "questions": [
+      {
+        "status": "unconfirmed",
+        "question": "生产赛事日期字段为2026-11-22，现有竞赛规程与报名须知两张原图均写12月6日07:00，现有section3/13亦为12月6日。尚缺官方变更公告确认，本轮不修改赛事日期字段。",
+        "sources": [
+          {
+            "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/be426e7a5d802de48c1cbfffc5d00c7fb8009011.jpeg?imageView2/2/w/750",
+            "sourceUrl": "https://zuicool.com/news/archives/318006",
+            "sha256": "6d43f6a1984387052945f5ac54ae9025a8f165398c28d8439abc4feea3101307",
+            "imageViewed": true
+          },
+          {
+            "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/4324093413acd587cbee0d5fb2d7303bd99be3fc.jpeg?imageView2/2/w/750",
+            "sourceUrl": "https://zuicool.com/news/archives/318002",
+            "sha256": "0b3b709c0c6c60f0f1f94827ca7402a3ee0aac3575f4154cb821c28b488aea66",
+            "imageViewed": true
+          }
+        ]
+      }
+    ],
+    "officialDocuments": [],
+    "stages": {
+      "reviewed": true,
+      "saved": false,
+      "displayed": false,
+      "deployedVerified": false
+    }
+  },
+  {
+    "id": "caa-1000494002",
+    "name": "2026重庆半程马拉松",
+    "status": "partially_verified",
+    "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对",
+    "beforeBodyHash": "6cba363c727311d5800adc56e7986fdedc77e0d20c14658ab02a2849955977f0",
+    "savedBodyHash": "61ae3cb15ee0a037b966219c7de871b6739471fdba34920bbf6a698c8607d562",
+    "bodyChanged": true,
+    "edits": 2,
+    "viewedImages": 1,
+    "pendingImages": 4,
+    "chapters": 15,
+    "groups": 1,
+    "groupCorrections": 0,
+    "questions": [
+      {
+        "status": "unconfirmed",
+        "question": "文字规程举办地点为龙洲湾市政广场，路线起终点写碧海湾；保持现有来源措辞，不擅自合并为同一地点。",
+        "source": {
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/a7de10db7def45f159a5ed92fd5c672a8ccf638e.jpeg?imageView2/2/w/750",
+          "sourceUrl": "https://reg.zuicool.com/79019",
+          "sha256": "6ac0e53158915d893827e929f6949643fd84d797da841edf62b39ca4b157b4df",
+          "imageViewed": true
+        }
+      }
+    ],
+    "officialDocuments": [],
+    "stages": {
+      "reviewed": true,
+      "saved": false,
+      "displayed": false,
+      "deployedVerified": false
+    }
+  },
+  {
+    "id": "hailing",
+    "name": "2026阳江海陵岛马拉松",
+    "status": "partially_verified",
+    "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对",
+    "beforeBodyHash": "e7179b7c239e142c88e59130c5bb0b39a7aa72b2d843bb2f514e2c33f0ebcc43",
+    "savedBodyHash": "d238141b5d73d6606bd444987e3504878765f552587afe1d77b827a7da652787",
+    "bodyChanged": true,
+    "edits": 5,
+    "viewedImages": 1,
+    "pendingImages": 5,
+    "chapters": 13,
+    "groups": 4,
+    "groupCorrections": 0,
+    "questions": [],
+    "officialDocuments": [],
+    "stages": {
+      "reviewed": true,
+      "saved": false,
+      "displayed": false,
+      "deployedVerified": false
+    }
+  },
+  {
+    "id": "caa-1000480043",
+    "name": "2026重庆忠县马拉松暨第九届长江三峡马拉松",
+    "status": "partially_verified",
+    "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对",
+    "beforeBodyHash": "4c9a45e34bf2a5d849a9886c236fe0c749e9b214059bf179bde782008650acfd",
+    "savedBodyHash": "7869b7130462a308397484f1e1b44e6dde9dfa1c7a4782580b93216b412b9ff9",
+    "bodyChanged": true,
+    "edits": 6,
+    "viewedImages": 1,
+    "pendingImages": 7,
+    "chapters": 18,
+    "groups": 2,
+    "groupCorrections": 0,
+    "questions": [],
+    "officialDocuments": [],
+    "stages": {
+      "reviewed": true,
+      "saved": false,
+      "displayed": false,
+      "deployedVerified": false
+    }
+  },
+  {
+    "id": "caa-1000479009",
+    "name": "2026舟山群岛马拉松",
+    "status": "partially_verified",
+    "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对",
+    "beforeBodyHash": "c6f0696af8bd80a08c19b49b975ab48d3a967ccf9aa9c8d317a41332ebf5df80",
+    "savedBodyHash": "7fa66bb6472e137c2fd7c06c3ab099311faa6a4185831d1e57900bf92f4a2ee2",
+    "bodyChanged": true,
+    "edits": 4,
+    "viewedImages": 1,
+    "pendingImages": 7,
+    "chapters": 12,
+    "groups": 4,
+    "groupCorrections": 0,
+    "questions": [],
+    "officialDocuments": [],
+    "stages": {
+      "reviewed": true,
+      "saved": false,
+      "displayed": false,
+      "deployedVerified": false
+    }
+  },
+  {
+    "id": "caa-1000479069",
+    "name": "2026黄山马拉松",
+    "status": "partially_verified",
+    "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对",
+    "beforeBodyHash": "1d7fd3eae743486cc655e214b80d0b5f52e72ecf4e4513c0ca1403af7c0d894f",
+    "savedBodyHash": "4267bf7fe1c33b8fbd8ff240fdcc488b240d005160dab0a83acc0bfe1b3e6a71",
+    "bodyChanged": true,
+    "edits": 8,
+    "viewedImages": 1,
+    "pendingImages": 9,
+    "chapters": 17,
+    "groups": 2,
+    "groupCorrections": 0,
+    "questions": [],
+    "officialDocuments": [],
+    "stages": {
+      "reviewed": true,
+      "saved": false,
+      "displayed": false,
+      "deployedVerified": false
+    }
+  },
+  {
+    "id": "zuiku-32373",
+    "name": "2027重庆马拉松",
+    "status": "partially_verified",
+    "scope": "仅 edits 列出的章节、facts 列出的数值及 imageReviews 对应原图实际核对；其他已保存正文及原图保留，未声明全篇逐条人工校对、保存或线上展示。",
+    "beforeBodyHash": "04d420fa47b9907cfac60f93d0b204d5c20be92968d6f0ff229cd3c8c559f789",
+    "savedBodyHash": "11695d05b150904b923183fe3a15ab1200c53e4d980aef2a5b1a586f4b74a8db",
+    "bodyChanged": true,
+    "edits": 4,
+    "viewedImages": 3,
+    "pendingImages": 1,
+    "chapters": 10,
+    "groups": 0,
+    "groupCorrections": 0,
+    "questions": [
+      {
+        "issue": "官网系列赛直通段未重复原图中的“需满足2027重马报名资格”，原图及既有可靠条款保留该限制。",
+        "status": "retained_original_verified_image_clause",
+        "sourceUrl": "https://www.cqmarathon.com/News/Detail/21070C87897D1015"
+      },
+      {
+        "issue": "入围人数公式在官网为图片，文本层缺失。本次实际查看原图后人工补写，未凭常识推导。",
+        "status": "image_formula_transcribed",
+        "imageUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/d10b762d4ab0f590e187f7aee7b14d16e16f1671.jpeg?imageView2/2/w/750"
+      }
+    ],
+    "officialDocuments": [
+      {
+        "url": "https://www.cqmarathon.com/News/Detail/21070C87897D1015",
+        "title": "2027重庆马拉松竞赛规程",
+        "role": "official_website",
+        "verified": true,
+        "identityReview": "人工核对当届标题、年份、赛事地点及本届原图；仅此明确页面验证，不授权站点全域",
+        "characters": 7956,
+        "bodySha256": "6dd84c1961df9ba994bd27851403c43890b400e5bbf739596e63b2fb8b14f2cb",
+        "checkedAt": "2026-11-17T17:53:57.996Z"
+      },
+      {
+        "url": "https://www.cqmarathon.com/News/Detail/1CB916B2816F6C28",
+        "title": "2027重庆马拉松报名须知",
+        "role": "official_website",
+        "verified": true,
+        "identityReview": "人工核对当届标题、年份、赛事地点及本届原图；仅此明确页面验证，不授权站点全域",
+        "characters": 3476,
+        "bodySha256": "a2e3bd7df8355332fd3f8f66bebe3aaf6102d6c92f288eda8496aa6249090f38",
+        "checkedAt": "2026-11-17T17:53:57.996Z"
+      }
+    ],
+    "stages": {
+      "reviewed": true,
+      "saved": false,
+      "displayed": false,
+      "deployedVerified": false
+    }
+  },
+  {
+    "id": "caa-1000454004",
+    "name": "2026绍兴马拉松",
+    "status": "partially_verified",
+    "scope": "仅 edits 列出的章节、facts 列出的数值及 imageReviews 对应原图实际核对；其他已保存正文及原图保留，未声明全篇逐条人工校对、保存或线上展示。",
+    "beforeBodyHash": "eeb47611c6602743df20889ffc485099da134da435049690b9b7a36ff06fc851",
+    "savedBodyHash": "c9983c8bc5dca1dd33cca2f193ce2720fd645feb073a31fb81ba1f2df59e9a2e",
+    "bodyChanged": true,
+    "edits": 3,
+    "viewedImages": 3,
+    "pendingImages": 1,
+    "chapters": 13,
+    "groups": 0,
+    "groupCorrections": 0,
+    "questions": [
+      {
+        "issue": "官网首页新闻仍有2025资料，仅以标题为2026瑞丰银行绍兴马拉松的规程/须知页核对；未混入2025规则。",
+        "status": "edition_checked"
+      },
+      {
+        "issue": "新增领物要求来自本届官网可复制报名须知，既有缓存未收录其对应原图，因此只声明官网正文核对，不声称看过该须知原图。",
+        "status": "official_text_verified_image_not_available",
+        "sourceUrl": "http://sxym.org.cn/html/bmxz.html"
+      }
+    ],
+    "officialDocuments": [
+      {
+        "url": "http://sxym.org.cn/html/jsgc.html",
+        "title": "2026瑞丰银行绍兴马拉松竞赛规程-绍兴马拉松",
+        "role": "official_website",
+        "verified": true,
+        "identityReview": "人工核对当届标题、年份、赛事地点及本届原图；仅此明确页面验证，不授权站点全域",
+        "characters": 11428,
+        "bodySha256": "48df102d7fd98a9f7e12ebd3753b30ce5e69fb34f423513800b445dbe047a459",
+        "checkedAt": "2026-11-17T17:53:57.996Z"
+      },
+      {
+        "url": "http://sxym.org.cn/html/bmxz.html",
+        "title": "2026瑞丰银行绍兴马拉松报名须知-绍兴马拉松",
+        "role": "official_website",
+        "verified": true,
+        "identityReview": "人工核对当届标题、年份、赛事地点及本届原图；仅此明确页面验证，不授权站点全域",
+        "characters": 4244,
+        "bodySha256": "8db5c2747fc8418e9be59639f3d89768d67ae11ba6e1f09874dff416cf3c1b6e",
+        "checkedAt": "2026-11-17T17:53:57.996Z"
+      }
+    ],
+    "stages": {
+      "reviewed": true,
+      "saved": false,
+      "displayed": false,
+      "deployedVerified": false
+    }
+  },
+  {
+    "id": "caa-1000479118",
+    "name": "2026海南儋州马拉松",
+    "status": "partially_verified",
+    "scope": "仅 edits 列出的章节、facts 列出的数值及 imageReviews 对应原图实际核对；其他已保存正文及原图保留，未声明全篇逐条人工校对、保存或线上展示。",
+    "beforeBodyHash": "026108e7019b05c65291078950cc38299d1bdbdc1cd02462eb5b2a55fe210b2c",
+    "savedBodyHash": "737b36495f8c5a6164e0501ef27127bc77799712703a8120f46172150ff8ec55",
+    "bodyChanged": true,
+    "edits": 4,
+    "viewedImages": 3,
+    "pendingImages": 0,
+    "chapters": 18,
+    "groups": 4,
+    "groupCorrections": 0,
+    "questions": [
+      {
+        "issue": "领物地点官方仍写“另行通知”，不按起终点或其他赛事补齐。",
+        "status": "unconfirmed_official_not_announced",
+        "sourceUrl": "http://www.danma.cn/page/Kn6NygxDqdk1mqPZebWM.html"
+      },
+      {
+        "issue": "尚未合并报名须知与竞赛规程中重复的年龄/资格/费用章节；此次只修复已核实错误并保留现有其他章节。",
+        "status": "remaining_layout_work"
+      },
+      {
+        "issue": "官网页尾客服办公时间下午14:00与报名须知正文14:30不一致；正文沿用当届报名须知14:30，不据页脚覆盖，具体以组委会进一步明确为准。",
+        "status": "source_conflict_preserved",
+        "sourceUrl": "http://www.danma.cn/page/Kn6NygxDqdk1mqPZebWM.html"
+      }
+    ],
+    "officialDocuments": [
+      {
+        "url": "http://www.danma.cn/page/P1Y3kqE0N8rOD5BwMlze.html",
+        "title": "2026海南儋州马拉松竞赛规程 | 2026海南儋州马拉松",
+        "role": "official_website",
+        "verified": true,
+        "identityReview": "人工核对当届标题、年份、赛事地点及本届原图；仅此明确页面验证，不授权站点全域",
+        "characters": 10272,
+        "bodySha256": "11b1d9064747f95e565fd4d86389a8025dc80b99619db59a2c96924d82051b74",
+        "checkedAt": "2026-11-17T17:53:57.996Z"
+      },
+      {
+        "url": "http://www.danma.cn/page/Kn6NygxDqdk1mqPZebWM.html",
+        "title": "2026海南儋州马拉松报名须知 | 2026海南儋州马拉松",
+        "role": "official_website",
+        "verified": true,
+        "identityReview": "人工核对当届标题、年份、赛事地点及本届原图；仅此明确页面验证，不授权站点全域",
+        "characters": 3730,
+        "bodySha256": "1995dd566faa7a7f6cd8cc0f0e5f3cdd27397c2a31a0e6671a433d87d3f04b1b",
+        "checkedAt": "2026-11-17T17:53:57.996Z"
+      }
+    ],
+    "stages": {
+      "reviewed": true,
+      "saved": false,
+      "displayed": false,
+      "deployedVerified": false
+    }
+  },
+  {
+    "id": "caa-1000452086",
+    "name": "2026肇庆马拉松",
+    "status": "current_registration_regulation_verified_with_questions",
+    "scope": "实际打开3张既存源图；规程原图分6块、宣传长图分6块查看；对照本届报名页可复制完整文字，保留全部13条规程及服务说明。未宣称最新领物/路线公告已覆盖。",
+    "beforeBodyHash": "29810306483eb677fbef9c99504641d72edef83be03094001c200ad0bdbfc5a5",
+    "savedBodyHash": "86fd1ac00b42f1fd3fcf08f1456d572a6fabb2cbeb17eaca8f168da2df4b1764",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 3,
+    "pendingImages": 0,
+    "chapters": 15,
+    "groups": 2,
+    "groupCorrections": 0,
+    "questions": [
+      {
+        "field": "存衣服务结束时间",
+        "question": "本届报名页可复制文字写07:15，规程原图写07:10；两来源版本差异尚无可靠调整公告。",
+        "sourceUrl": "https://reg.zuicool.com/63767",
+        "imageUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/92051eba65e37182379661cd674da857047ec317.jpeg?imageView2/2/w/750",
+        "status": "unconfirmed"
+      },
+      {
+        "field": "领物具体时间与最终路线",
+        "question": "当前规程指引后续公告，未根据地名或常识补写。",
+        "sourceUrl": "https://reg.zuicool.com/63767",
+        "status": "unconfirmed"
+      }
+    ],
+    "officialDocuments": [],
+    "stages": {
+      "reviewed": true,
+      "saved": false,
+      "displayed": false,
+      "deployedVerified": false
+    }
+  },
+  {
+    "id": "zuiku-43816",
+    "name": "2026第七届洛带HAKKA50越野赛",
+    "status": "partially_verified",
+    "scope": "局部校对：仅edits逐项列出的原图、段落及表格已实际查看并核对；其他现有正文保持原值，不代表全篇已完成校对。",
+    "beforeBodyHash": "77d447b62394fa79d6dbfc31811043fb1051ff0b4c389562d2ebf583e769883f",
+    "savedBodyHash": "dc7e80070d62003667ac13df6285b0b2478c845fce9e68d3e3990fa099aaeab5",
+    "bodyChanged": true,
+    "edits": 9,
+    "viewedImages": 5,
+    "pendingImages": 3,
+    "chapters": 17,
+    "groups": 5,
+    "groupCorrections": 19,
+    "questions": [
+      {
+        "status": "unconfirmed",
+        "question": "本页补给站点/分段关门时间表的部分站名、距离、累计升降及服务项目字号过小，未可靠转录；须保留该清晰度最高原图供查看。",
+        "reason": "已下载移除缩放参数的原图（仍750像素宽），分块放大3倍后仍不能逐格可靠辨认。",
+        "source": {
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/e97c22bf72733d8433e3739488c4c5bafb48150a.jpeg?imageView2/2/w/750",
+          "sourceUrl": "https://reg.zuicool.com/48197",
+          "sha256": "c86fbd815b8f15eaf9a9cf0e74fa6ae7fec56a5a50a064d8fe8c8f52338fbb1b",
+          "imageViewed": true
+        }
+      },
+      {
+        "status": "unconfirmed",
+        "question": "9公里组资格表原图日期为2025年12月23日之后，而其他组为2025年12月13日之后。",
+        "reason": "源文自身差异，未按赛事日期或年龄常识改写。",
+        "source": {
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/ad73d375dd828088b5aa9339fbea5dc1f5b06091.jpeg?imageView2/2/w/750",
+          "sourceUrl": "https://reg.zuicool.com/48197",
+          "sha256": "65d0bfb5e4e00c035948bca99d4d93acd0ed2b744eb555673c29ea6e7101dda9",
+          "imageViewed": true
+        }
+      },
+      {
+        "status": "unconfirmed",
+        "question": "亲子年龄分段宣传图为6—9岁/9—12岁，9岁分界有重叠；规则称按身份证日期自动分组。",
+        "reason": "尚无出生日期分界细则，不补造日期。",
+        "source": {
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/df0429eda4d5a8f76a3997e8267eaddc3aa29f09.jpeg?imageView2/2/w/750",
+          "sourceUrl": "https://reg.zuicool.com/48197",
+          "sha256": "d19827f8a9300ed83238def11b729567e74ee23d84ea6349e285842c79d8b57f",
+          "imageViewed": true
+        }
+      },
+      {
+        "status": "unconfirmed",
+        "question": "报名费包含服务表部分品名字号过小，整表对应关系保留原图；未将不确定品名直接补入正文。",
+        "reason": "未缩放原图仍为750像素宽，已分块放大3倍；可确认项目之外的细字不能可靠逐字转录。",
+        "source": {
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/ad73d375dd828088b5aa9339fbea5dc1f5b06091.jpeg?imageView2/2/w/750",
+          "sourceUrl": "https://reg.zuicool.com/48197",
+          "sha256": "65d0bfb5e4e00c035948bca99d4d93acd0ed2b744eb555673c29ea6e7101dda9",
+          "imageViewed": true
+        }
+      }
+    ],
+    "officialDocuments": [],
+    "stages": {
+      "reviewed": true,
+      "saved": false,
+      "displayed": false,
+      "deployedVerified": false
+    }
+  },
+  {
+    "id": "zuiku-41338",
+    "name": "2026冲峰赛-广州香雪站",
+    "status": "partially_verified",
+    "scope": "局部校对：仅edits逐项列出的原图、段落及表格已实际查看并核对；其他现有正文保持原值，不代表全篇已完成校对。",
+    "beforeBodyHash": "009136257c0318199211a465d4f4849a786fea9dc0a164cd31f96437325defbb",
+    "savedBodyHash": "9821a1e9e1dce40af3e5e26688898e29ca7edd876460f20703fefec9b26ff117",
+    "bodyChanged": true,
+    "edits": 10,
+    "viewedImages": 4,
+    "pendingImages": 5,
+    "chapters": 13,
+    "groups": 6,
+    "groupCorrections": 20,
+    "questions": [
+      {
+        "status": "unconfirmed",
+        "question": "鱼苗个人10km同页文字写4.5小时，而地图和可复制报名概况为09:00—13:00、4小时。",
+        "reason": "源资料内部矛盾，未按常识改选唯一关门时长。",
+        "source": {
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/d04cef50d35175d0597229883ce00fbfcf33afc9.jpeg?imageView2/2/w/1024",
+          "sourceUrl": "https://reg.zuicool.com/67140",
+          "sha256": "cf6d6bbaf62aa50c1effc127b0db80d60a323ef088ee3eacedd0a98aae5cde25",
+          "imageViewed": true
+        }
+      },
+      {
+        "status": "unconfirmed",
+        "question": "鱼苗亲子10km写不设关门时间，但海拔图内贤江公园5.3公里仍写11:00关门。",
+        "reason": "总关门与分段关门适用方式不明，已并列保留且保留原图。",
+        "source": {
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/d04cef50d35175d0597229883ce00fbfcf33afc9.jpeg?imageView2/2/w/1024",
+          "sourceUrl": "https://reg.zuicool.com/67140",
+          "sha256": "cf6d6bbaf62aa50c1effc127b0db80d60a323ef088ee3eacedd0a98aae5cde25",
+          "imageViewed": true
+        }
+      },
+      {
+        "status": "unconfirmed",
+        "question": "MINI组8—17岁与括注2008年12月12日后出生不一致；宣传图ITRA提示至少7岁与鱼苗10km最低6岁不同。",
+        "reason": "不依据年龄常识补改年份或资格。",
+        "source": {
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/fb479912d04ffd602fb836b025ae8f44b2c6d40a.jpeg?imageView2/2/w/1024",
+          "sourceUrl": "https://reg.zuicool.com/67140",
+          "sha256": "93f04a591f3c81355a9caa134733e8e9cd04ca805ae83627d6b587086b2354af",
+          "imageViewed": true
+        }
+      },
+      {
+        "status": "unconfirmed",
+        "question": "精英申请回复时限宣传图3工作日、正式规程7工作日；宣传图另有保证金赛后5工作日退款。",
+        "reason": "资料不一致，保留各自明确表述并提示向组委会确认。",
+        "source": {
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/d04cef50d35175d0597229883ce00fbfcf33afc9.jpeg?imageView2/2/w/1024",
+          "sourceUrl": "https://reg.zuicool.com/67140",
+          "sha256": "cf6d6bbaf62aa50c1effc127b0db80d60a323ef088ee3eacedd0a98aae5cde25",
+          "imageViewed": true
+        }
+      },
+      {
+        "status": "unconfirmed",
+        "question": "MINI奖励表写不分男女，通用奖励正文包含男/女；奖项表脚注10人门槛与亲子正文6组门槛不同。",
+        "reason": "源文不同，不自行决定适用优先顺序。",
+        "source": {
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/d04cef50d35175d0597229883ce00fbfcf33afc9.jpeg?imageView2/2/w/1024",
+          "sourceUrl": "https://reg.zuicool.com/67140",
+          "sha256": "cf6d6bbaf62aa50c1effc127b0db80d60a323ef088ee3eacedd0a98aae5cde25",
+          "imageViewed": true
+        }
+      },
+      {
+        "status": "unconfirmed",
+        "question": "服装尺码原表男M腰围94厘米、男L92厘米，反常但图中清楚。",
+        "reason": "按原表转录，未根据尺码常识改数。",
+        "source": {
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/fb479912d04ffd602fb836b025ae8f44b2c6d40a.jpeg?imageView2/2/w/1024",
+          "sourceUrl": "https://reg.zuicool.com/67140",
+          "sha256": "93f04a591f3c81355a9caa134733e8e9cd04ca805ae83627d6b587086b2354af",
+          "imageViewed": true
+        }
+      },
+      {
+        "status": "unconfirmed",
+        "question": "MINI路线地图与海拔图中的站点编号/地点文字不同，本文仅转录海拔图的SP7周岭坳2.8公里11:00，路线位置继续以原图对照。",
+        "reason": "源图内标注不一致，未替组委会决定唯一站名。",
+        "source": {
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/fb479912d04ffd602fb836b025ae8f44b2c6d40a.jpeg?imageView2/2/w/1024",
+          "sourceUrl": "https://reg.zuicool.com/67140",
+          "sha256": "93f04a591f3c81355a9caa134733e8e9cd04ca805ae83627d6b587086b2354af",
+          "imageViewed": true
+        }
+      },
+      {
+        "status": "unconfirmed",
+        "question": "MINI强制装备表手机和轨迹标×、饮水至少500毫升，但通用处罚表要求携带手机及容量不少于1升水具；适用MINI的处罚范围待确认。",
+        "reason": "保留两张表原文，不因通用条款覆盖组别特殊要求。",
+        "source": {
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/fb479912d04ffd602fb836b025ae8f44b2c6d40a.jpeg?imageView2/2/w/1024",
+          "sourceUrl": "https://reg.zuicool.com/67140",
+          "sha256": "93f04a591f3c81355a9caa134733e8e9cd04ca805ae83627d6b587086b2354af",
+          "imageViewed": true
+        }
+      }
+    ],
+    "officialDocuments": [],
+    "stages": {
+      "reviewed": true,
+      "saved": false,
+      "displayed": false,
+      "deployedVerified": false
+    }
+  }
+]

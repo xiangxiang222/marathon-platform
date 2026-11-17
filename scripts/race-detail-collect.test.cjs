@@ -27,6 +27,8 @@ test('edition and locality prevent wrong same-year race documents', () => {
   assert.equal(sameEdition('2026重庆垫江明月山越野赛','2026重庆垫江明月山越野赛 - 一键报名 - 最酷'),true);
   assert.equal(sameEdition('2026北京马拉松','2025北京马拉松'),false);
   assert.equal(sameEdition('2027建发厦门马拉松赛','2027厦门马拉松 竞赛规程'),true);
+  assert.equal(sameEdition('2026肇庆马拉松','2026ȫ���ܾ����ھ�'),false);
+  assert.equal(sameEdition('2026肇庆马拉松',''),false);
 });
 test('registration ranges retain exact clocks and reject elite/earlybird deadlines', () => {
   assert.deepEqual(registrationDates('报名时间\n2026年9月15日-11月10日（额满即止）'),{opensAt:'2026-09-15',closesAt:'2026-11-10'});
@@ -118,6 +120,21 @@ test('source collector avoids non-public and non-HTTP entries', () => {
   assert.equal(publicUrl('https://localhost/test'),'');
   assert.equal(publicUrl('https://192.168.1.2/a'),'');
   assert.equal(publicUrl('/77675','https://reg.zuicool.com'),'https://reg.zuicool.com/77675');
+});
+test('independent search continues after access failures and reads direct destination links', async t => {
+  const fs=require('node:fs'), executablePath=process.platform==='darwin'?'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome':'/usr/bin/google-chrome';
+  if(!fs.existsSync(executablePath))return t.skip('Chrome is unavailable for the search browser check');
+  const collector=new Collector({browser:executablePath,cacheDir:fs.mkdtempSync(require('node:path').join(require('node:os').tmpdir(),'race-search-test-'))});
+  await collector.start();
+  const browser=collector.browser;
+  collector.browser=await browser.newContext();
+  try{
+    await collector.browser.route('**/*',route=>route.fulfill({contentType:'text/html; charset=utf-8',body:route.request().url().includes('www.so.com/s?')?'<h3><a href="https://www.so.com/link?tracking=1" data-mdurl="https://race.example/2026/rules">2026测试赛竞赛规程</a></h3><h3><a data-mdurl="http://127.0.0.1/private">无关链接</a></h3>':'<body>请完成验证</body>'}));
+    const result=await collector.searchSources('2026测试赛 官网 规程');
+    assert.deepEqual(result.sources.map(s=>s.url),['https://race.example/2026/rules']);
+    assert.equal(result.failures.length,2);
+    assert.ok(result.failures.every(f=>f.error==='search_access_verification_required'),JSON.stringify(result.failures));
+  }finally{await collector.stop();await browser.close();}
 });
 test('source discovery keeps official, signup and public WeChat candidates for races without Zuicool URLs', async () => {
   const race = { signup_url: '', event_url: 'https://mp.weixin.qq.com/s/gNt4D6NcPAUi16s-HelcHg', official_url: 'https://www.runchina.org.cn/#/race/v/detail/1000480022' };

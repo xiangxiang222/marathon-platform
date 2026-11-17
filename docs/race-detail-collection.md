@@ -16,7 +16,7 @@ node scripts/race-detail-collect.cjs --targets /tmp/targets.json --out-dir /tmp/
 
 OCR只保存为图片证据。图片正文须提供 `review.status: verified`、`review.imageViewed: true` 和独立校对后的 `reviewedText` 才能纳入正文；旧数据的 `reviewed: true` 不满足此要求。长图先放大、调整对比度并分块识别，按坐标清除重叠；表格仍须人工核对表头、合并单元格及每行所属组别。PDF优先读取文字层，保留图片页作为对照。重新识别无可用正文时，应用器保留已有正文与章节。
 
-准备更新计划后检查赛事身份、状态、日期、全组别、收费阶段及媒体。原有人工正文可在已核实合并后标记 `verification.reconcilesExistingGuide`；官方明确调整组别且已逐项核对时，才允许 `verification.groupsReconciledByOfficial` 替换原组别集合。普通不完整采集保留已存组别和非空事实。
+准备更新计划后检查赛事身份、状态、日期、全组别、收费阶段及媒体。已有完整正文及章节在逐项核实合并后才能标记 `verification.reconcilesExistingGuide` 并替换；官网文字层非空或篇幅较长，不足以证明图片表格和既有条款已经完整覆盖。官方明确调整组别且已逐项核对时，才允许 `verification.groupsReconciledByOfficial` 替换原组别集合。普通不完整采集保留已存正文、章节、组别和非空事实。
 
 ```sh
 node scripts/race-detail-apply.cjs --inventory /tmp/inventory.json --scope /tmp/scope.json --collections /tmp/collections --out /tmp/plan.json

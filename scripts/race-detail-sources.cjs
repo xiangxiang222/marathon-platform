@@ -73,7 +73,7 @@ function officialIdOf(race = {}) {
   if (race.officialId || race.official_id) return clean(race.officialId || race.official_id);
   if (Array.isArray(race.officialIds) && race.officialIds[0]) return clean(race.officialIds[0]);
   for (const value of [race.id, race.raceId, race.official_url, race.officialUrl]) {
-    const match = /(?:^caa-|\/race\/v\/detail\/)(\d+)/.exec(clean(value)); if (match) return match[1];
+    const match = /(?:^caa-(\d+)$|\/race\/v\/detail\/(\d+)(?:[/?#]|$))/.exec(clean(value)); if (match) return match[1] || match[2];
   }
   return '';
 }
@@ -140,7 +140,9 @@ async function verifyOfficialCandidate(candidate, { name, readDocument, matchesE
     if (!url || platformRole(url) || registryUrl(url)) return { ...source, status: 'rejected', error: 'redirected_to_platform_or_registry' };
     if (!matchesEdition(name, doc)) return { ...source, status: 'rejected', error: 'edition_name_or_locality_mismatch', title: doc.title || '' };
     const government = /\.gov\.cn$/.test(new URL(url).hostname);
-    const claim = /赛事官网|官方网站|official\s+(?:website|site)/i.test([doc.title, doc.header, clean(doc.text).slice(0, 1500)].join('\n'));
+    // A news article can tell readers to visit the official website. That
+    // sentence does not make the article's publisher the race organizer.
+    const claim = /(?:^|[|｜—\-·:\s])(?:赛事官网|官方网站|official\s+(?:website|site))(?:$|[|｜—\-·:\s])/i.test(clean(doc.title));
     const anchored = ['caa_web_url', 'explicit_official_link'].includes(candidate.provenance);
     // The shared WeChat host and a self-written “official” title do not identify
     // the publisher. Only an association field or explicit official link anchors
@@ -188,7 +190,16 @@ async function discoverRaceSources(race = {}, options = {}) {
         const url = publicSourceUrl(source.url || source.sourceUrl); if (!url) continue;
         discovered.push({ ...source, url, discoveredBy: query, verified: false });
         // Search snippets and role claims are not publisher verification.
-        if (!platformRole(url) && !registryUrl(url) && !checked.some(item => item.url === url)) checked.push(await verifyOfficialCandidate({ url, provenance: 'search_candidate', sourceUrl: source.sourceUrl || '' }, { ...options, name }));
+        if (!platformRole(url) && !registryUrl(url) && !checked.some(item => item.url === url)) {
+          const candidate = await verifyOfficialCandidate({ url, provenance: 'search_candidate', sourceUrl: source.sourceUrl || '' }, { ...options, name });
+          checked.push(candidate);
+          // Search often finds a registration announcement before the race
+          // website. Follow its explicit website link and verify that edition
+          // instead of promoting the announcement's publisher to organizer.
+          if (candidate.document) for (const linked of officialCandidates({}, { documents: [candidate.document] }).slice(0,5)) {
+            if (!checked.some(item => item.url === linked.url)) checked.push(await verifyOfficialCandidate(linked, { ...options, name }));
+          }
+        }
       }
     } catch (error) { failures.push({ query, step: 'source_search', error: error.message || 'search_unavailable' }); searches.push({ query, status: 'failed', candidates: 0 }); }
   }

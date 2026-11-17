@@ -74,12 +74,14 @@ function statusOf(text, { header = false } = {}) {
   return 'unknown';
 }
 function sameEdition(expected, actual) {
-  if (!expected || !actual) return true;
+  if (!expected) return true;
+  if (!actual) return false;
   const years = value => value.match(/20\d{2}/g) || [];
   if (years(expected).length && years(actual).length && !years(expected).some(y => years(actual).includes(y))) return false;
   const key = value => value.replace(/报名须知|竞赛规程|参赛指南|比赛规程|赛事详情|报名指南|竞赛办法|官方网站|20\d{2}|马拉松|半程|赛事|越野赛|越野跑|公路跑|一键报名|报名|最酷|\s|[^\u4e00-\u9fffA-Za-z0-9]/g, '').toLowerCase();
   const a = key(expected), b = key(actual);
-  if (!a || !b || a.includes(b) || b.includes(a)) return true;
+  if (!a || !b) return false;
+  if (a.includes(b) || b.includes(a)) return true;
   const bigrams = s => new Set([...s].slice(1).map((_, i) => s.slice(i, i + 2)));
   const aa = bigrams(a), bb = bigrams(b), overlap = [...aa].filter(x => bb.has(x)).length;
   return overlap / Math.max(1, Math.min(aa.size, bb.size)) >= 0.5;
@@ -384,13 +386,13 @@ class Collector {
   }
   async searchSources(query) {
     const sources = [], failures = [];
-    for (const endpoint of ['https://www.bing.com/search?q=', 'https://weixin.sogou.com/weixin?type=2&query=']) {
+    for (const endpoint of ['https://www.bing.com/search?q=', 'https://weixin.sogou.com/weixin?type=2&query=', 'https://www.so.com/s?q=']) {
       const searchUrl = endpoint + encodeURIComponent(query), page = await this.browser.newPage();
       try {
         await page.goto(searchUrl, {waitUntil:'domcontentloaded',timeout:20000});
         const text = clean(await page.locator('body').innerText());
         if (/此验证码用于确认|请完成验证|安全验证|人机验证|访问过于频繁/.test(text)) throw new Error('search_access_verification_required');
-        const hits = await page.locator('#b_results h2 a,h3 a').evaluateAll(links => links.map(a => ({url:a.href,label:a.textContent.trim()})));
+        const hits = await page.locator('#b_results h2 a,h3 a').evaluateAll(links => links.map(a => ({url:a.getAttribute('data-mdurl') || a.href,label:a.textContent.trim()})));
         for (const hit of hits.slice(0,12)) {
           let candidate = publicUrl(hit.url); if (!candidate) continue;
           const u = new URL(candidate);
@@ -431,7 +433,7 @@ class Collector {
         const doc = this._discoveryDocuments?.get(url) || await this.document(url, cached[url]);
         // Exact title identity prevents a linked login/generic calendar from replacing this event.
         if (/^(?:登录|登陆|用户登录|请先登录|验证码|安全验证)/.test(doc.title)) { this.failures.push({ url, step: 'access', error: 'login_or_verification_required', title: doc.title }); continue; }
-        if (!sameEdition(name, doc.title)) { this.failures.push({ url, step: 'identity', error: 'edition_name_or_locality_mismatch', title: doc.title }); continue; }
+        if (!sameEdition(name, doc.title || clean(doc.text).slice(0,300))) { this.failures.push({ url, step: 'identity', error: 'edition_name_or_locality_mismatch', title: doc.title }); continue; }
         docs.push(doc);
         for (const pkg of doc.packages) {
           const reg = /^https:\/\/reg\.zuicool\.com\/\d+/.exec(pkg.url);
@@ -578,9 +580,9 @@ function assembleCollection({id = '',name = '',docs = [],groups = [],media = [],
           if (selected.primary && (!topics.length || overlaps)) selected.supplementalReview.push({sourceUrl:image.sourceUrl,imageUrl:image.url,title:section.title,text:section.text,topics,status:'pending',reason:overlaps?'overlapping_primary_topics':'unknown_topic',primarySourceUrl:selected.primary.url});
           else sections.push({ ...section, sourceUrl: image.sourceUrl, imageUrl: image.url, ocr: true, reviewed: true });
         }
-      } else if (usefulMedia(image) && !image.skipOcr) {
+      } else if (usefulMedia(image)) {
         imageReviews.push({ sourceUrl:image.sourceUrl || '', imageUrl:image.url, sha256:image.sha256 || '', status:'pending',
-          reason:image.ocr?.text || image.ocrText ? 'OCR未逐图校对，未加入正文；需核对表头、合并单元格、数字与单位。' : '尚未取得可靠文字，保留原图供查看。',
+          reason:image.textLayer ? '已优先提取PDF文字层，页面内图表仍须逐页查看校对；文字层非空不代表图表完整。' : image.ocr?.text || image.ocrText ? 'OCR未逐图校对，未加入正文；需核对表头、合并单元格、数字与单位。' : '尚未取得可靠文字，保留原图供查看。',
           questions:Array.isArray(image.review?.questions) ? image.review.questions : [] });
       }
     }
@@ -601,7 +603,7 @@ function assembleCollection({id = '',name = '',docs = [],groups = [],media = [],
     if (dates.opensAt) fields.reg_start = dates.opensAt;
     if (dates.closesAt) fields.deadline = dates.closesAt;
     const contactText = selected.primary ? selected.primary.text : signupDoc?.header || '';
-    const phone = /(?:报名咨询电话|联系电话|咨询电话)[：:\s]*([\d()（）+ /-]{7,50})/.exec(contactText);
+    const phone = /(?:报名咨询电话|联系电话|咨询电话)[：:\s]*((?:\+?\d[\d()（） -]{5,}\d)(?:\s*[/、，]\s*\+?\d[\d()（） -]{5,}\d)*)/.exec(contactText);
     if (phone) fields.phone = phone[1].trim();
     const fee = groups.filter(g=>g.fees.length).map(g=>g.name+'：'+g.fees.map(f=>f.amount+'元/'+f.unit).join('、')).join('；');
     if (fee && fee.length <= 80) fields.fee = fee;

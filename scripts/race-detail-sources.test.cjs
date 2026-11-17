@@ -1,11 +1,16 @@
 'use strict';
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { publicSourceUrl, platformRole, sourceRole, rankSources, caaOfficialUrls, officialCandidates, currentEditionMatches, verifyOfficialCandidate, fetchCaaSource, missingSourceQueries, discoverRaceSources } = require('./race-detail-sources.cjs');
+const { publicSourceUrl, platformRole, sourceRole, rankSources, caaOfficialUrls, officialCandidates, officialIdOf, currentEditionMatches, verifyOfficialCandidate, fetchCaaSource, missingSourceQueries, discoverRaceSources } = require('./race-detail-sources.cjs');
 
 const name = '2026重庆垫江明月山越野赛';
 const page = (url, extra = {}) => ({ url, title: name + ' 官方网站', text: name + '\n竞赛规程\n报名时间', links: [], capture: { fresh: true }, ...extra });
 const caa = (webUrl) => ({ success: true, data: { ssdetails: { name, webUrl } } });
+
+test('association IDs must be entirely numeric and cannot be inferred from a 10k alias', () => {
+  assert.equal(officialIdOf({id:'caa-10k'}),'');
+  assert.equal(officialIdOf({id:'caa-1000452086'}),'1000452086');
+});
 
 test('association website field produces a lead, with official documents ranked above platforms after verification', async () => {
   const url = 'http://mingyue.example/2026/';
@@ -106,4 +111,20 @@ test('existing event URL without an official publisher claim is a lead, and redi
   const redirected = await verifyOfficialCandidate({ url: 'https://race.example', provenance: 'caa_web_url' }, { name, readDocument: async () => page('https://reg.zuicool.com/77675') });
   assert.equal(redirected.status, 'rejected');
   assert.equal(redirected.error, 'redirected_to_platform_or_registry');
+});
+
+test('a public article quoting website instructions is not itself an official publisher', async () => {
+  const url='https://www.163.com/dy/article/race.html';
+  const result=await verifyOfficialCandidate({url,provenance:'search_candidate'}, {name,readDocument:async value=>page(value,{title:name+'报名公告',text:name+'\n请登录赛事官方网站报名。'})});
+  assert.equal(result.verified,false);
+  assert.equal(result.error,'official_publisher_not_confirmed');
+});
+
+test('a discovered announcement leads to its explicit current-edition website before platform prose', async () => {
+  const article='https://news.example/race',website='http://race.example/2026';
+  const result=await discoverRaceSources({name},{fetchCaa:false,search:async()=>[{url:article}],readDocument:async url=>url===article?page(url,{title:name+'报名公告',links:[{url:website,label:'赛事官方网站'}]}):page(url,{title:name,text:name+'\n报名费用\n参赛资格'})});
+  assert.equal(result.officialStatus,'verified');
+  assert.equal(result.sources[0].url,website);
+  assert.equal(result.sourceRoles[article],'public_source');
+  assert.equal(result.sourceRoles[website],'official_website');
 });
