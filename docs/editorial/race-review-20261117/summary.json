@@ -1,0 +1,71 @@
+{
+  "checkedAt": "2026-11-17T09:44:52.853Z",
+  "scope": {
+    "rawPublishedRows": 434,
+    "deduplicatedGroups": 432,
+    "realRaces": 410,
+    "demoGroupsPreserved": 22
+  },
+  "collection": {
+    "reviewedRealRaces": 410,
+    "readyToSaveRaces": 409,
+    "fullPublicPageOrOfficialDocumentRaces": 259,
+    "associationCoreOnlyRaces": 150,
+    "unavailableAndPreserved": 1,
+    "signupOptionsSaved": 727
+  },
+  "saving": {
+    "racesUpdated": 409,
+    "rowsUpdated": 411,
+    "failedWrites": 0,
+    "newApprovals": 0,
+    "remainingPending": 0,
+    "raceRowsBefore": 434,
+    "raceRowsAfter": 434,
+    "schemaUnchanged": true,
+    "configurationAndDependencyFilesUnchanged": true,
+    "untargetedAndPreservedRowsIdentical": 23
+  },
+  "verification": {
+    "startedAt": "2026-11-17T09:43:47.672Z",
+    "checked": 411,
+    "mediaChecked": 1722,
+    "failures": [],
+    "bodyCharacters": 2238174,
+    "groupCount": 727,
+    "expectedRows": 411,
+    "expectedMedia": 1722,
+    "passed": true,
+    "completedAt": "2026-11-17T09:44:52.853Z"
+  },
+  "deployedWebPilot": {
+    "kind": "Deployed web page and production API; Chrome mobile viewports, not a WeChat device or published mini program.",
+    "startedAt": "2026-11-17T09:43:48.832Z",
+    "passed": true,
+    "checks": [
+      "Saved four options, fees, actual distances, climbs, cutoffs, dates, eligibility, pickup and guide chapters.",
+      "Every selected pilot image is served and decoded in the deployed page at 320/390px.",
+      "One QR preview and truthful closed status; actual cancelled events suppress registration QR.",
+      "Calendar avoids full rich documents and stays below 1 MiB for the first 40 items."
+    ],
+    "errors": [],
+    "savedImagesVerified": 8,
+    "qrImage": "/tmp/marathon-detail-review-20261117/ui-live-final/dianjiang-signup-qr.png",
+    "expectedQrTarget": "https://reg.zuicool.com/77675",
+    "calendarBytes": 66036,
+    "completedAt": "2026-11-17T09:44:30.594Z"
+  },
+  "qrDecodedTarget": "https://reg.zuicool.com/77675",
+  "codePRs": [
+    "https://github.com/xiangxiang222/marathon-platform/pull/174",
+    "https://github.com/xiangxiang222/marathon-platform/pull/175"
+  ],
+  "limits": [
+    "150 races expose association core data only; full regulations and registration details remain missing.",
+    "2026常熟尚湖半程马拉松 public association response was empty; prior data retained.",
+    "702 linked Zuicool package pages require login/verification. Main public page options were retained.",
+    "6 source images failed to download; Beijing/Guangzhou large route images timed out; readable route text retained.",
+    "Some fee phases, table cells and qualification facts cannot be reliably structured from OCR; exact raw images and readable chapters retained where available.",
+    "WeChat mini-program source budget, VM and native compiler were checked; no true-device release verification or WeChat publication was performed."
+  ]
+}
