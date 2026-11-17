@@ -553,7 +553,7 @@
       "saved": true,
       "displayed": true,
       "deployedVerified": true,
-      "mini": "pending_second_batch_devtools_recheck",
+      "mini": "verified_in_actual_DevTools_390_using_production_API",
       "physicalDevice": false,
       "formalMiniRelease": false
     }
@@ -668,7 +668,7 @@
       "saved": true,
       "displayed": true,
       "deployedVerified": true,
-      "mini": "pending_second_batch_devtools_recheck",
+      "mini": "verified_in_actual_DevTools_390_using_production_API",
       "physicalDevice": false,
       "formalMiniRelease": false
     }

@@ -1,0 +1,256 @@
+{
+  "completedAt": "2026-11-17T18:28:56.354Z",
+  "passedForVerifiedScope": true,
+  "scope": "Production HTTPS web in Chrome at320/390 plus actual WeChat DevTools390 simulator using production API. Not physical phone or published mini-program.",
+  "productionOrigin": "https://togetherbetter.cn",
+  "noMocks": true,
+  "repositoryWrites": false,
+  "databaseWritesByThisVerification": false,
+  "web": {
+    "passed": true,
+    "views": [
+      {
+        "raceId": "zuiku-96336",
+        "width": 320,
+        "tables": 9,
+        "images": 8,
+        "passed": true
+      },
+      {
+        "raceId": "zuiku-96336",
+        "width": 390,
+        "tables": 9,
+        "images": 8,
+        "passed": true
+      },
+      {
+        "raceId": "zuiku-41338",
+        "width": 320,
+        "tables": 12,
+        "images": 9,
+        "passed": true
+      },
+      {
+        "raceId": "zuiku-41338",
+        "width": 390,
+        "tables": 12,
+        "images": 9,
+        "passed": true
+      },
+      {
+        "raceId": "zuiku-43816",
+        "width": 320,
+        "tables": 9,
+        "images": 10,
+        "passed": true
+      },
+      {
+        "raceId": "zuiku-43816",
+        "width": 390,
+        "tables": 9,
+        "images": 10,
+        "passed": true
+      }
+    ],
+    "reviewedSectionExactMatches": 23,
+    "guideTextExactMatches": [
+      {
+        "raceId": "zuiku-43816",
+        "characters": 16078,
+        "api": true,
+        "mini": true
+      },
+      {
+        "raceId": "zuiku-41338",
+        "characters": 14684,
+        "api": true,
+        "mini": true
+      }
+    ],
+    "originalGroupFieldComparisons": 39,
+    "followupEligibility": {
+      "passed": true,
+      "views": [
+        {
+          "width": 320,
+          "visibleEligibilityGroups": 5,
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "visibleEligibilityGroups": 5,
+          "overflow": false
+        }
+      ],
+      "source": "https://togetherbetter.cn/marathon/api/races/zuiku-43816",
+      "checkedAt": "2026-11-17T18:27:13.944Z"
+    },
+    "nativeHorizontalScroll": true,
+    "proportionalImages": true,
+    "originalsFoldAndPreview": true,
+    "sourceImages": [
+      1724,
+      1725
+    ],
+    "pageErrors": [],
+    "report": "/tmp/race-guide-live-second-deployed/report.json"
+  },
+  "mini": {
+    "kind": "Actual logged-in WeChat DevTools simulator; production API",
+    "width": 390,
+    "passed": true,
+    "races": [
+      {
+        "raceId": "zuiku-41338",
+        "groups": 6,
+        "tables": 12,
+        "exactProductionSections": true,
+        "feesVisible": true,
+        "mixedFamilyFormsVisible": true,
+        "cutoffConflictInRenderedFields": true
+      },
+      {
+        "raceId": "zuiku-43816",
+        "groups": 5,
+        "tables": 9,
+        "exactProductionSections": true,
+        "actualDistances": [
+          62.1,
+          45.1,
+          23.7,
+          9.3,
+          9.3
+        ],
+        "allFiveEligibilityFieldsRendered": true,
+        "ascentConflictVisible": "1140/1440",
+        "firstTableNativeScroll": {
+          "width": 336,
+          "scrollWidth": 960,
+          "scrollLeft": 624
+        }
+      }
+    ],
+    "originalImages": {
+      "widthFix": true,
+      "longpressProperty": true,
+      "dimensions": [
+        {
+          "src": "https://togetherbetter.cn/marathon/api/race-sheets/1364",
+          "width": 334,
+          "height": 2777.09375
+        },
+        {
+          "src": "https://togetherbetter.cn/marathon/api/race-sheets/1368",
+          "width": 334,
+          "height": 6649.7109375
+        },
+        {
+          "src": "https://togetherbetter.cn/marathon/api/race-sheets/1362",
+          "width": 334,
+          "height": 3225.1015625
+        },
+        {
+          "src": "https://togetherbetter.cn/marathon/api/race-sheets/1724",
+          "width": 334,
+          "height": 134.703125
+        },
+        {
+          "src": "https://togetherbetter.cn/marathon/api/race-sheets/1363",
+          "width": 334,
+          "height": 2727.6640625
+        },
+        {
+          "src": "https://togetherbetter.cn/marathon/api/race-sheets/1725",
+          "width": 334,
+          "height": 146
+        },
+        {
+          "src": "https://togetherbetter.cn/marathon/api/race-sheets/1365",
+          "width": 334,
+          "height": 4713.8515625
+        },
+        {
+          "src": "https://togetherbetter.cn/marathon/api/race-sheets/1366",
+          "width": 334,
+          "height": 320.6328125
+        },
+        {
+          "src": "https://togetherbetter.cn/marathon/api/race-sheets/1367",
+          "width": 334,
+          "height": 219.5703125
+        },
+        {
+          "src": "https://togetherbetter.cn/marathon/api/race-sheets/1369",
+          "width": 334,
+          "height": 5447.7578125
+        }
+      ],
+      "nativePreviewXSByButton": true,
+      "nativePreviewOfficialCpByHandler": true
+    },
+    "notes": [
+      "香雪费用表原始左侧列和两种三人亲子形式已实际查看；该表独立横滑动作未成功定位，未将工具成功响应算作横滑证据。洛带首个组别表已用scrollLeft=624及前后截图验证相同表格组件横滑。",
+      "Native preview remains open after page navigation in DevTools; simulator_refresh cleared it before final group-card/table screenshots, which were then recaptured and actually viewed."
+    ]
+  },
+  "contentStatus": [
+    {
+      "raceId": "zuiku-43816",
+      "reviewLevel": "partial",
+      "scope": "局部校对：本届官网正式规程文字及主参数/分段/25行日程/资格/费用/服务/装备/领物八张高清原表已核对；edits列明13处正式内容修订。现有赛事概况、宣传章节和四、赛事报名说明占位节保持原值，未标为全篇已校对。",
+      "edits": 13,
+      "saved": true,
+      "displayedInProductionWeb": true,
+      "displayedInActualDevtools": true,
+      "unconfirmed": [
+        "9公里组资格表原图日期为2025年12月23日之后，而其他组为2025年12月13日之后。",
+        "亲子年龄分段宣传图为6—9岁/9—12岁，9岁分界有重叠；规则称按身份证日期自动分组。",
+        "QYLW-24公里组爬升，官网主参数表1140米，分段关门表终点1440米（下降也1440米），两张高清官方表存在差异。"
+      ]
+    },
+    {
+      "raceId": "zuiku-41338",
+      "reviewLevel": "partial",
+      "scope": "局部校对：仅edits逐项列出的原图、段落及表格已实际查看并核对；其他现有正文保持原值，不代表全篇已完成校对。",
+      "edits": 10,
+      "saved": true,
+      "displayedInProductionWeb": true,
+      "displayedInActualDevtools": true,
+      "unconfirmed": [
+        "鱼苗个人10km同页文字写4.5小时，而地图和可复制报名概况为09:00—13:00、4小时。",
+        "鱼苗亲子10km写不设关门时间，但海拔图内贤江公园5.3公里仍写11:00关门。",
+        "MINI组8—17岁与括注2008年12月12日后出生不一致；宣传图ITRA提示至少7岁与鱼苗10km最低6岁不同。",
+        "精英申请回复时限宣传图3工作日、正式规程7工作日；宣传图另有保证金赛后5工作日退款。",
+        "MINI奖励表写不分男女，通用奖励正文包含男/女；奖项表脚注10人门槛与亲子正文6组门槛不同。",
+        "服装尺码原表男M腰围94厘米、男L92厘米，反常但图中清楚。",
+        "MINI路线地图与海拔图中的站点编号/地点文字不同，本文仅转录海拔图的SP7周岭坳2.8公里11:00，路线位置继续以原图对照。",
+        "MINI强制装备表手机和轨迹标×、饮水至少500毫升，但通用处罚表要求携带手机及容量不少于1升水具；适用MINI的处罚范围待确认。"
+      ]
+    }
+  ],
+  "screenshots": {
+    "web": [
+      "/tmp/race-guide-live-second-deployed/zuiku-41338-focus-0-320.png",
+      "/tmp/race-guide-live-second-deployed/zuiku-41338-group-focus-390.png",
+      "/private/tmp/race-guide-quality-20261117/second-web-hakka-24-card-320.png",
+      "/private/tmp/race-guide-quality-20261117/second-web-hakka-24-card-390.png",
+      "/tmp/race-guide-live-second-deployed/zuiku-43816-cp-preview-390.png",
+      "/tmp/race-guide-live-second-deployed/zuiku-43816-service-preview-390.png"
+    ],
+    "mini": [
+      "/private/tmp/race-guide-quality-20261117/second-mini-xs-fees.png",
+      "/private/tmp/race-guide-quality-20261117/second-mini-xs-original.png",
+      "/private/tmp/race-guide-quality-20261117/second-mini-xs-preview.png",
+      "/private/tmp/race-guide-quality-20261117/second-mini-hakka-24-card.png",
+      "/private/tmp/race-guide-quality-20261117/second-mini-hakka-groups.png",
+      "/private/tmp/race-guide-quality-20261117/second-mini-hakka-groups-scrolled.png",
+      "/private/tmp/race-guide-quality-20261117/second-mini-hakka-cp-preview.png"
+    ]
+  },
+  "remaining": [
+    "Physical-phone rendering/gestures and long-press native menu are not verified.",
+    "Formal mini-program upload/release was not performed for this verification.",
+    "Actual DevTools viewport was390;320 mini coverage remains earlier VM/mirror evidence, not a physical-device or DevTools320 result.",
+    "Both race reviews retain explicitly named unreviewed sections and source-internal ambiguities; no claim that all regulations are fully corrected."
+  ]
+}

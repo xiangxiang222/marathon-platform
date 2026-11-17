@@ -1,0 +1,132 @@
+[
+  {
+    "raceId": "zuiku-43816",
+    "groupIndex": 0,
+    "field": "eligibility",
+    "before": null,
+    "beforeAbsent": true,
+    "after": "18—63周岁。\n近一年内（2025年12月13日之后）完成过1次三十公里及以上级别越野赛，或1次全程马拉松，提供完赛证明。\n须提交赛前1年内（2025年12月13日之后）、正规医疗机构（二级甲等及以上医院）的体检报告，必检项目为血压检测和心电图报告；具体提交流程关注后续公众号通知。",
+    "source": {
+      "url": "https://mmbiz.qpic.cn/mmbiz_png/JvPDmaiaZGHtfqKEztGRCqkSMJIw2XicBDq2LBLEklcI7ofibiaKtdEs93Apa4KQZXRCibcOfkkNeKfA7iat40ViaJxPLXJ7mYgsXlVZBs5VMza28A/0?wx_fmt=png&from=appmsg",
+      "sourceUrl": "http://www.cd100k.com/event?id=903855&mid=69458",
+      "sha256": "cc2631437466dc5bdd3bb5da38dafa32319d72248f1bd2787d1d428d27242da2"
+    },
+    "imageViewed": true,
+    "reason": "本届官方可复制文字和资格原表明确各组年龄、证明材料及体检要求；原description不进入组卡，完整同步现有eligibility字段；9公里日期和24公里爬升原文冲突保留说明。",
+    "beforeMissing": true,
+    "sources": [
+      {
+        "url": "http://www.cd100k.com/event?id=903855&mid=69458",
+        "sourceType": "official-html-copyable-text"
+      }
+    ]
+  },
+  {
+    "raceId": "zuiku-43816",
+    "groupIndex": 1,
+    "field": "eligibility",
+    "before": null,
+    "beforeAbsent": true,
+    "after": "18—63周岁。\n近一年内（2025年12月13日之后）完成过1次二十公里及以上级别越野赛，或1次全程马拉松，提供完赛证明。\n须提交赛前1年内（2025年12月13日之后）、正规医疗机构（二级甲等及以上医院）的体检报告，必检项目为血压检测和心电图报告；具体提交流程关注后续公众号通知。",
+    "source": {
+      "url": "https://mmbiz.qpic.cn/mmbiz_png/JvPDmaiaZGHtfqKEztGRCqkSMJIw2XicBDq2LBLEklcI7ofibiaKtdEs93Apa4KQZXRCibcOfkkNeKfA7iat40ViaJxPLXJ7mYgsXlVZBs5VMza28A/0?wx_fmt=png&from=appmsg",
+      "sourceUrl": "http://www.cd100k.com/event?id=903855&mid=69458",
+      "sha256": "cc2631437466dc5bdd3bb5da38dafa32319d72248f1bd2787d1d428d27242da2"
+    },
+    "imageViewed": true,
+    "reason": "本届官方可复制文字和资格原表明确各组年龄、证明材料及体检要求；原description不进入组卡，完整同步现有eligibility字段；9公里日期和24公里爬升原文冲突保留说明。",
+    "beforeMissing": true,
+    "sources": [
+      {
+        "url": "http://www.cd100k.com/event?id=903855&mid=69458",
+        "sourceType": "official-html-copyable-text"
+      }
+    ]
+  },
+  {
+    "raceId": "zuiku-43816",
+    "groupIndex": 2,
+    "field": "eligibility",
+    "before": null,
+    "beforeAbsent": true,
+    "after": "18—63周岁。累计爬升：官网主参数表1140米，分段关门表终点1440米，二者存在差异，待组委会确认。\n近一年内（2025年12月13日之后）有越野跑赛事或活动的经历，或1次半程马拉松，提供完赛证明。\n须提交赛前1年内（2025年12月13日之后）、正规医疗机构（二级甲等及以上医院）的体检报告，必检项目为血压检测和心电图报告；具体提交流程关注后续公众号通知。",
+    "source": {
+      "url": "https://mmbiz.qpic.cn/mmbiz_png/JvPDmaiaZGHtfqKEztGRCqkSMJIw2XicBDq2LBLEklcI7ofibiaKtdEs93Apa4KQZXRCibcOfkkNeKfA7iat40ViaJxPLXJ7mYgsXlVZBs5VMza28A/0?wx_fmt=png&from=appmsg",
+      "sourceUrl": "http://www.cd100k.com/event?id=903855&mid=69458",
+      "sha256": "cc2631437466dc5bdd3bb5da38dafa32319d72248f1bd2787d1d428d27242da2"
+    },
+    "sources": [
+      {
+        "i": 0,
+        "url": "https://mmbiz.qpic.cn/mmbiz_png/JvPDmaiaZGHtUd7IzKUHr5a848q84N0US1iaEkDhiaWg86okpIuHxib2anxW8zK1xb2ASfUlBengloasZ8p4OYf0TEYTb9Cx1wfpgq1WQuZ8XQQ/0?wx_fmt=png&from=appmsg",
+        "status": 200,
+        "bytes": 174163,
+        "file": "/private/tmp/race-guide-quality-20261117/source-crops/hakka-official-0.png",
+        "sha256": "d13263ea58052d2b03a31b81c4371d7b335e048fae169deeb5ee231590055438",
+        "sourceUrl": "http://www.cd100k.com/event?id=903855&mid=69458",
+        "imageViewed": true
+      },
+      {
+        "i": 2,
+        "url": "https://mmbiz.qpic.cn/sz_mmbiz_png/JvPDmaiaZGHtJibhX7rVjkbJVKVNueyiaeibe6GCmGvql5WbWEz68H0E7D5f8YMc17FTLyVQuabgfTgJWW15qNbA0BvccxsAiawHdSAIPeaH1f1I/0?wx_fmt=png&from=appmsg",
+        "status": 200,
+        "bytes": 364765,
+        "file": "/private/tmp/race-guide-quality-20261117/source-crops/hakka-official-2.png",
+        "sha256": "270f08b51e01d084b3690f5173ba1bbe5ce1c944510ee644edb997409d5de3ae",
+        "sourceUrl": "http://www.cd100k.com/event?id=903855&mid=69458",
+        "imageViewed": true
+      },
+      {
+        "url": "http://www.cd100k.com/event?id=903855&mid=69458",
+        "sourceType": "official-html-copyable-text"
+      }
+    ],
+    "imageViewed": true,
+    "reason": "本届官方可复制文字和资格原表明确各组年龄、证明材料及体检要求；原description不进入组卡，完整同步现有eligibility字段；9公里日期和24公里爬升原文冲突保留说明。",
+    "beforeMissing": true
+  },
+  {
+    "raceId": "zuiku-43816",
+    "groupIndex": 3,
+    "field": "eligibility",
+    "before": null,
+    "beforeAbsent": true,
+    "after": "13—65周岁；18岁以下须监护人或法定代理人签署风险告知书。\n近一年内（资格表原文为2025年12月23日之后）运动轨迹或跑步相关赛事完赛证明；该日期与其他组别12月13日不同，待组委会确认。\n无需提交体检报告，仍建议赛前健康体检。",
+    "source": {
+      "url": "https://mmbiz.qpic.cn/mmbiz_png/JvPDmaiaZGHtfqKEztGRCqkSMJIw2XicBDq2LBLEklcI7ofibiaKtdEs93Apa4KQZXRCibcOfkkNeKfA7iat40ViaJxPLXJ7mYgsXlVZBs5VMza28A/0?wx_fmt=png&from=appmsg",
+      "sourceUrl": "http://www.cd100k.com/event?id=903855&mid=69458",
+      "sha256": "cc2631437466dc5bdd3bb5da38dafa32319d72248f1bd2787d1d428d27242da2"
+    },
+    "imageViewed": true,
+    "reason": "本届官方可复制文字和资格原表明确各组年龄、证明材料及体检要求；原description不进入组卡，完整同步现有eligibility字段；9公里日期和24公里爬升原文冲突保留说明。",
+    "beforeMissing": true,
+    "sources": [
+      {
+        "url": "http://www.cd100k.com/event?id=903855&mid=69458",
+        "sourceType": "official-html-copyable-text"
+      }
+    ]
+  },
+  {
+    "raceId": "zuiku-43816",
+    "groupIndex": 4,
+    "field": "eligibility",
+    "before": null,
+    "beforeAbsent": true,
+    "after": "1大1小；孩子6—12周岁；监护人18—63周岁，须报名参赛并全程陪同。\n应经常进行跑步运动，选手和陪同的父母应充分自我评估身体状态。\n无需提交体检报告，仍建议赛前健康体检。",
+    "source": {
+      "url": "https://mmbiz.qpic.cn/mmbiz_png/JvPDmaiaZGHtfqKEztGRCqkSMJIw2XicBDq2LBLEklcI7ofibiaKtdEs93Apa4KQZXRCibcOfkkNeKfA7iat40ViaJxPLXJ7mYgsXlVZBs5VMza28A/0?wx_fmt=png&from=appmsg",
+      "sourceUrl": "http://www.cd100k.com/event?id=903855&mid=69458",
+      "sha256": "cc2631437466dc5bdd3bb5da38dafa32319d72248f1bd2787d1d428d27242da2"
+    },
+    "imageViewed": true,
+    "reason": "本届官方可复制文字和资格原表明确各组年龄、证明材料及体检要求；原description不进入组卡，完整同步现有eligibility字段；9公里日期和24公里爬升原文冲突保留说明。",
+    "beforeMissing": true,
+    "sources": [
+      {
+        "url": "http://www.cd100k.com/event?id=903855&mid=69458",
+        "sourceType": "official-html-copyable-text"
+      }
+    ]
+  }
+]

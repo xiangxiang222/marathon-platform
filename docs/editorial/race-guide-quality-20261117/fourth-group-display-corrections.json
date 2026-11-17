@@ -1,0 +1,173 @@
+[
+  {
+    "raceId": "zuiku-99229",
+    "groupIndex": 0,
+    "field": "eligibility",
+    "beforeMissing": true,
+    "beforeAbsent": true,
+    "after": [
+      "12公里个人组：参赛选手须年满10周岁（2017年1月9日以前出生），且不得超过65周岁（1962年1月9日之后出生）。",
+      "各组别年龄限制外申请报名，组委会视提交健康证明及相关运动证明、参赛经验考虑是否接受报名。"
+    ],
+    "source": {
+      "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/11/da377ef332a193cc8abb6074344499d686ee44a4.jpeg?imageView2/2/w/750",
+      "sourceUrl": "https://reg.zuicool.com/72993",
+      "sha256": "5bfee44f31c3fbb880632036292384c8546540e1e5156af0483eb57ca9384cf0",
+      "imageViewed": true
+    },
+    "imageViewed": true,
+    "reason": "将已实际查看的延期后原图年龄与出生日期要求写入现有eligibility显示字段，含全部监护及超龄申请说明；缺失字段显式标明，未计算或猜测生日边界。"
+  },
+  {
+    "raceId": "zuiku-99229",
+    "groupIndex": 1,
+    "field": "eligibility",
+    "beforeMissing": true,
+    "beforeAbsent": true,
+    "after": [
+      "12公里亲子组：须组队参赛，至少有一位成年监护人或教练陪同参与。小孩7—9岁，须年满7周岁（2020年1月9日以前出生）、不满10周岁（2017年1月9日之后出生）；成人18—65岁。",
+      "各组别年龄限制外申请报名，组委会视提交健康证明及相关运动证明、参赛经验考虑是否接受报名。"
+    ],
+    "source": {
+      "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/11/da377ef332a193cc8abb6074344499d686ee44a4.jpeg?imageView2/2/w/750",
+      "sourceUrl": "https://reg.zuicool.com/72993",
+      "sha256": "5bfee44f31c3fbb880632036292384c8546540e1e5156af0483eb57ca9384cf0",
+      "imageViewed": true
+    },
+    "imageViewed": true,
+    "reason": "将已实际查看的延期后原图年龄与出生日期要求写入现有eligibility显示字段，含全部监护及超龄申请说明；缺失字段显式标明，未计算或猜测生日边界。"
+  },
+  {
+    "raceId": "zuiku-99229",
+    "groupIndex": 2,
+    "field": "eligibility",
+    "beforeMissing": true,
+    "beforeAbsent": true,
+    "after": [
+      "12公里亲子组：须组队参赛，至少有一位成年监护人或教练陪同参与。小孩7—9岁，须年满7周岁（2020年1月9日以前出生）、不满10周岁（2017年1月9日之后出生）；成人18—65岁。",
+      "各组别年龄限制外申请报名，组委会视提交健康证明及相关运动证明、参赛经验考虑是否接受报名。"
+    ],
+    "source": {
+      "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/11/da377ef332a193cc8abb6074344499d686ee44a4.jpeg?imageView2/2/w/750",
+      "sourceUrl": "https://reg.zuicool.com/72993",
+      "sha256": "5bfee44f31c3fbb880632036292384c8546540e1e5156af0483eb57ca9384cf0",
+      "imageViewed": true
+    },
+    "imageViewed": true,
+    "reason": "将已实际查看的延期后原图年龄与出生日期要求写入现有eligibility显示字段，含全部监护及超龄申请说明；缺失字段显式标明，未计算或猜测生日边界。"
+  },
+  {
+    "raceId": "zuiku-99229",
+    "groupIndex": 3,
+    "field": "eligibility",
+    "beforeMissing": true,
+    "beforeAbsent": true,
+    "after": [
+      "8公里及6公里个人组：参赛选手须年满10周岁（2017年1月9日以前出生），且不得超过65周岁（1962年1月9日之后出生）。",
+      "各组别年龄限制外申请报名，组委会视提交健康证明及相关运动证明、参赛经验考虑是否接受报名。"
+    ],
+    "source": {
+      "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/11/da377ef332a193cc8abb6074344499d686ee44a4.jpeg?imageView2/2/w/750",
+      "sourceUrl": "https://reg.zuicool.com/72993",
+      "sha256": "5bfee44f31c3fbb880632036292384c8546540e1e5156af0483eb57ca9384cf0",
+      "imageViewed": true
+    },
+    "imageViewed": true,
+    "reason": "将已实际查看的延期后原图年龄与出生日期要求写入现有eligibility显示字段，含全部监护及超龄申请说明；缺失字段显式标明，未计算或猜测生日边界。"
+  },
+  {
+    "raceId": "zuiku-99229",
+    "groupIndex": 4,
+    "field": "eligibility",
+    "beforeMissing": true,
+    "beforeAbsent": true,
+    "after": [
+      "8公里及6公里亲子组：须组队参赛，至少有一位成年监护人或教练陪同参与。小孩4—9岁，须年满4周岁（2023年1月9日以前出生）、不满10周岁（2017年1月9日之后出生）；成人18—65岁。",
+      "各组别年龄限制外申请报名，组委会视提交健康证明及相关运动证明、参赛经验考虑是否接受报名。"
+    ],
+    "source": {
+      "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/11/da377ef332a193cc8abb6074344499d686ee44a4.jpeg?imageView2/2/w/750",
+      "sourceUrl": "https://reg.zuicool.com/72993",
+      "sha256": "5bfee44f31c3fbb880632036292384c8546540e1e5156af0483eb57ca9384cf0",
+      "imageViewed": true
+    },
+    "imageViewed": true,
+    "reason": "将已实际查看的延期后原图年龄与出生日期要求写入现有eligibility显示字段，含全部监护及超龄申请说明；缺失字段显式标明，未计算或猜测生日边界。"
+  },
+  {
+    "raceId": "zuiku-99229",
+    "groupIndex": 5,
+    "field": "eligibility",
+    "beforeMissing": true,
+    "beforeAbsent": true,
+    "after": [
+      "8公里及6公里亲子组：须组队参赛，至少有一位成年监护人或教练陪同参与。小孩4—9岁，须年满4周岁（2023年1月9日以前出生）、不满10周岁（2017年1月9日之后出生）；成人18—65岁。",
+      "各组别年龄限制外申请报名，组委会视提交健康证明及相关运动证明、参赛经验考虑是否接受报名。"
+    ],
+    "source": {
+      "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/11/da377ef332a193cc8abb6074344499d686ee44a4.jpeg?imageView2/2/w/750",
+      "sourceUrl": "https://reg.zuicool.com/72993",
+      "sha256": "5bfee44f31c3fbb880632036292384c8546540e1e5156af0483eb57ca9384cf0",
+      "imageViewed": true
+    },
+    "imageViewed": true,
+    "reason": "将已实际查看的延期后原图年龄与出生日期要求写入现有eligibility显示字段，含全部监护及超龄申请说明；缺失字段显式标明，未计算或猜测生日边界。"
+  },
+  {
+    "raceId": "zuiku-99229",
+    "groupIndex": 6,
+    "field": "eligibility",
+    "beforeMissing": true,
+    "beforeAbsent": true,
+    "after": [
+      "8公里及6公里个人组：参赛选手须年满10周岁（2017年1月9日以前出生），且不得超过65周岁（1962年1月9日之后出生）。",
+      "各组别年龄限制外申请报名，组委会视提交健康证明及相关运动证明、参赛经验考虑是否接受报名。"
+    ],
+    "source": {
+      "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/11/da377ef332a193cc8abb6074344499d686ee44a4.jpeg?imageView2/2/w/750",
+      "sourceUrl": "https://reg.zuicool.com/72993",
+      "sha256": "5bfee44f31c3fbb880632036292384c8546540e1e5156af0483eb57ca9384cf0",
+      "imageViewed": true
+    },
+    "imageViewed": true,
+    "reason": "将已实际查看的延期后原图年龄与出生日期要求写入现有eligibility显示字段，含全部监护及超龄申请说明；缺失字段显式标明，未计算或猜测生日边界。"
+  },
+  {
+    "raceId": "zuiku-99229",
+    "groupIndex": 7,
+    "field": "eligibility",
+    "beforeMissing": true,
+    "beforeAbsent": true,
+    "after": [
+      "8公里及6公里亲子组：须组队参赛，至少有一位成年监护人或教练陪同参与。小孩4—9岁，须年满4周岁（2023年1月9日以前出生）、不满10周岁（2017年1月9日之后出生）；成人18—65岁。",
+      "各组别年龄限制外申请报名，组委会视提交健康证明及相关运动证明、参赛经验考虑是否接受报名。"
+    ],
+    "source": {
+      "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/11/da377ef332a193cc8abb6074344499d686ee44a4.jpeg?imageView2/2/w/750",
+      "sourceUrl": "https://reg.zuicool.com/72993",
+      "sha256": "5bfee44f31c3fbb880632036292384c8546540e1e5156af0483eb57ca9384cf0",
+      "imageViewed": true
+    },
+    "imageViewed": true,
+    "reason": "将已实际查看的延期后原图年龄与出生日期要求写入现有eligibility显示字段，含全部监护及超龄申请说明；缺失字段显式标明，未计算或猜测生日边界。"
+  },
+  {
+    "raceId": "zuiku-99229",
+    "groupIndex": 8,
+    "field": "eligibility",
+    "beforeMissing": true,
+    "beforeAbsent": true,
+    "after": [
+      "8公里及6公里亲子组：须组队参赛，至少有一位成年监护人或教练陪同参与。小孩4—9岁，须年满4周岁（2023年1月9日以前出生）、不满10周岁（2017年1月9日之后出生）；成人18—65岁。",
+      "各组别年龄限制外申请报名，组委会视提交健康证明及相关运动证明、参赛经验考虑是否接受报名。"
+    ],
+    "source": {
+      "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/11/da377ef332a193cc8abb6074344499d686ee44a4.jpeg?imageView2/2/w/750",
+      "sourceUrl": "https://reg.zuicool.com/72993",
+      "sha256": "5bfee44f31c3fbb880632036292384c8546540e1e5156af0483eb57ca9384cf0",
+      "imageViewed": true
+    },
+    "imageViewed": true,
+    "reason": "将已实际查看的延期后原图年龄与出生日期要求写入现有eligibility显示字段，含全部监护及超龄申请说明；缺失字段显式标明，未计算或猜测生日边界。"
+  }
+]
