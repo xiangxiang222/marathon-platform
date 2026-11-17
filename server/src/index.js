@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const express = require("express");
 const { getDb } = require("./db");
-const { presentRace, inChannel, summarizeMarks, cardTitle, shareText, reminderHits, fullConflicts, squadOf, nearbyOpen, alternativeNote, drawPoster } = require("./races");
+const { presentRace, summarizeRace, inChannel, summarizeMarks, cardTitle, shareText, reminderHits, fullConflicts, squadOf, nearbyOpen, alternativeNote, drawPoster } = require("./races");
 const { slicePage } = require("./page");
 const { parseClock, decorateResults, careerOf, yearOf, bestRanks } = require("./career");
 const { syncOfficial, listOfficial, publishOfficial, openUpcoming, ignoreOfficial, applyOfficial } = require("./official");
@@ -99,7 +99,7 @@ function packCard(race, club, marks) {
 }
 
 function presentedRaces(now = new Date()) {
-  return getDb().prepare("SELECT * FROM races").all().map((row) => presentRace(row, now));
+  return getDb().prepare("SELECT * FROM races").all().map((row) => summarizeRace(presentRace(row, now)));
 }
 
 function gapDays() {
@@ -115,7 +115,7 @@ function plansFor(userId, now = new Date()) {
        WHERE p.user_id = ? ORDER BY r.race_date`
     )
     .all(userId)
-    .map((row) => ({ status: row.status, hasSheet: Boolean(row.sheet), updatedAt: row.updated_at, companionNote: row.companion_note, sharedClubIds: sharedClubIds(getDb(), userId, row.id), race: presentRace(row, now) }));
+    .map((row) => ({ status: row.status, hasSheet: Boolean(row.sheet), updatedAt: row.updated_at, companionNote: row.companion_note, sharedClubIds: sharedClubIds(getDb(), userId, row.id), race: summarizeRace(presentRace(row, now)) }));
 }
 
 function resultsFor(userId, now = new Date()) {
@@ -265,7 +265,7 @@ app.get(BASE + "/api/races", (req, res) => {
     rows = rows.filter((r) => r.raceDate >= today);
   }
   if (!q && status === "open") rows = rows.filter((r) => r.regStatus === "报名中");
-  if (!q && status === "wait") rows = rows.filter((r) => r.regStatus === "待开赛");
+  if (!q && status === "wait") rows = rows.filter((r) => ['待开赛', '报名已截止', '报名已满'].includes(r.regStatus));
   if (!q && status === "live") rows = rows.filter((r) => r.regStatus === "比赛中");
   if (!q && status === "soon") rows = rows.filter((r) => r.regStatus === "未开始");
   if (!q && status === "closed") rows = rows.filter((r) => r.regStatus === "已结束");
@@ -276,16 +276,17 @@ app.get(BASE + "/api/races", (req, res) => {
   const user = userFrom(req);
   const follows = new Set(user ? getDb().prepare('SELECT race_id FROM race_follows WHERE user_id=?').all(user.id).map(row => row.race_id) : []);
   const plans = new Map(user ? getDb().prepare('SELECT race_id,status FROM plans WHERE user_id=?').all(user.id).map(row => [row.race_id, row.status]) : []);
-  paged.rows = paged.rows.map(race => ({ ...race, following: follows.has(race.id), myStatus: plans.get(race.id) || '' }));
+  paged.rows = paged.rows.map(race => ({ ...summarizeRace(race), following: follows.has(race.id), myStatus: plans.get(race.id) || '' }));
   res.set('Cache-Control', 'private, no-store');
   res.json({ races: paged.rows, total: paged.total, page: paged.page, pageSize: paged.pageSize, pages: paged.pages, cities, months, statuses: STATUSES });
 });
 
 app.get(BASE + "/api/races/:id/signup-qr", async (req, res) => {
-  const row = getDb().prepare("SELECT signup_url FROM races WHERE id = ?").get(req.params.id);
+  const row = getDb().prepare("SELECT * FROM races WHERE id = ?").get(req.params.id);
   if (!row) return res.status(404).json({ error: "没有这场比赛" });
   const target = signupTarget(row.signup_url);
   if (!target) return res.status(404).json({ error: "这场还没有报名页" });
+  if (!presentRace(row, new Date()).signupQrAvailable) return res.status(404).json({ error: "这场当前没有有效的报名入口" });
   try {
     const png = await QRCode.toBuffer(target.url, { width: 360, margin: 1, errorCorrectionLevel: "M" });
     res.set("Content-Type", "image/png");
@@ -513,7 +514,7 @@ app.get(BASE + "/api/me", (req, res) => {
   const plans = plansFor(user.id);
   const planStatus = new Map(plans.map(plan => [plan.race.id, plan.status]));
   const followedRaces = getDb().prepare(`SELECT r.* FROM races r JOIN race_follows f ON f.race_id=r.id
-    WHERE f.user_id=? ORDER BY r.race_date,r.id`).all(user.id).map(row => ({ ...presentRace(row, new Date()), following: true, myStatus: planStatus.get(row.id) || '' }));
+    WHERE f.user_id=? ORDER BY r.race_date,r.id`).all(user.id).map(row => ({ ...summarizeRace(presentRace(row, new Date())), following: true, myStatus: planStatus.get(row.id) || '' }));
   const clubs = getDb()
     .prepare(
       `SELECT c.*, (SELECT nickname FROM users WHERE id=c.owner_id) AS owner_nickname,

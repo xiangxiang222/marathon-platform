@@ -125,3 +125,26 @@
 @media(prefers-reduced-motion:reduce){.race-page *{scroll-behavior:auto!important;transition:none!important}}
 
 .draw-rate-source{color:#a58b9a;font-size:12px;line-height:1.8}.draw-rate-source>summary{display:flex;align-items:center;min-height:44px;color:#bc839a;cursor:pointer}
+/* All collected options remain readable on narrow screens. */
+.race-page .signup-code{border:0;margin:0;text-align:center}
+.race-page .signup-qr-preview{display:block;width:180px;max-width:100%;min-height:180px;margin:4px auto 8px;padding:0;border:0;border-radius:8px;background:#fff;cursor:zoom-in}
+.signup-qr-preview>img{display:block;width:180px;max-width:100%;height:180px;object-fit:contain;image-rendering:crisp-edges}
+.race-page .signup-qr-hint{max-width:340px;margin:8px auto 0;color:#887580}
+.race-group{padding:17px 0;border-top:1px solid #eee8ec;min-width:0}
+.race-group:first-of-type{border-top:0;padding-top:2px}
+.race-group-heading{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.race-group-heading h3{margin:0;font-size:15px;font-weight:600;line-height:1.7;color:#4d3d48}
+.race-group-heading>span{font-size:12px;color:#bc3b57;line-height:1.6}
+.race-group-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 16px;margin:12px 0 0}
+.race-group-facts>div{display:flex;flex-direction:column;gap:3px;min-width:0}
+.race-group-facts dt{font-size:12px;line-height:1.6;color:#9a8591}
+.race-group-facts dd{margin:0;font-size:13px;line-height:1.8;color:#5f4d59;white-space:pre-wrap;overflow-wrap:anywhere}
+.race-group-fees{padding:10px 12px;margin:12px 0 0;border-radius:9px;list-style:none;background:#faf5f7;color:#765462;font-size:13px;line-height:1.9}
+.race-group-fees li+li{margin-top:5px}
+.guide-table-scroll{max-width:100%;margin:14px 0;overflow-x:auto;border:1px solid #eee4e9;border-radius:8px;-webkit-overflow-scrolling:touch}
+.guide-table{width:100%;border-collapse:collapse;font-size:13px;line-height:1.8;color:#6e5663}
+.guide-table th,.guide-table td{min-width:105px;max-width:360px;padding:10px 12px;vertical-align:top;text-align:left;border-right:1px solid #eee4e9;border-bottom:1px solid #eee4e9;overflow-wrap:anywhere}
+.guide-table th{font-weight:600;background:#faf3f6;color:#604451}
+.guide-table tr:last-child td{border-bottom:0}.guide-table tr>:last-child{border-right:0}.guide-table .md-strong{font-weight:600}
+.race-queries nav{display:flex;flex-wrap:wrap;gap:4px 18px}.race-queries nav a{display:flex;align-items:center;gap:8px;min-height:44px;color:#b84e6a;font-size:13px;line-height:1.7}
+.race-group-facts>.wide{grid-column:1/-1}

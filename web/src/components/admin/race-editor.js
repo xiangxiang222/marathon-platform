@@ -15,10 +15,10 @@ export function validateRaceEditor(row,{nodesTouched=false,scheduleChanged=false
   if(row.submissionId&&!value('city'))return error('city','请填写城市');
   if(!value('city')&&!value('place'))return error('city','请填写城市或举办地点');
   if(!(row.distances||[]).length&&!(row.kinds||[]).length&&!value('groups'))return error('distances','请至少选择一个项目，或填写其他组别');
-  const limits={name:100,city:20,province:20,district:40,place:80,organizer:80,fee:80,scale:80,phone:40,route:400,pickup:400,pacers:400,guideText:40000,nodeSource:80,deadlineName:12};
+  const limits={name:100,city:20,province:20,district:40,place:80,organizer:80,fee:80,scale:80,phone:40,route:400,pickup:400,pacers:400,guideText:2000000,nodeSource:80,deadlineName:12};
   for(const [key,max]of Object.entries(limits))if(value(key).length>max)return error(key,'此项最多填写 '+max+' 个字');
   const groups=value('groups').split(/[,，、]/).map(s=>s.trim()).filter(Boolean);
-  if(groups.length>8||groups.some(s=>s.length>16))return error('groups','其他组别最多 8 项，每项不超过 16 个字');
+  if(groups.length>128||groups.some(s=>s.length>256))return error('groups','其他组别最多 128 项，每项不超过 256 个字');
   if(value('startAt')&&!/^([01]\d|2[0-3]):[0-5]\d(?::[0-5]\d)?$/.test(value('startAt')))return error('startAt','起跑时间请填写为 07:00');
   for(const key of['regStart','deadline','drawAt','payDeadline','bibAt'])if(value(key)&&!validEditorDay(value(key)))return error(key,'请填写有效的日期');
   const dated=['regStart','deadline','drawAt','payDeadline',...(row.submissionId?['bibAt']:[])].some(key=>value(key));

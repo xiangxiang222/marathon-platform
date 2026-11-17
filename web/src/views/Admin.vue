@@ -218,7 +218,7 @@
                 <button type="button" class="pick" :class="{ on: book.meet === 'online' }" :aria-pressed="book.meet === 'online'" @click="book.meet = 'online'">线上</button>
               </div>
               <div class="pair">
-                <label class="field span"><span>其他组别</span><input v-model="book.groups" :data-editor-field="'groups'" :aria-invalid="editorError?.field === 'groups' || undefined" placeholder="15公里、30公里、50公里" /><small>多项以顿号分隔，最多 8 项。</small></label>
+                <label class="field span"><span>其他组别</span><input v-model="book.groups" :data-editor-field="'groups'" :aria-invalid="editorError?.field === 'groups' || undefined" placeholder="15公里、30公里、50公里" /><small>多项以顿号分隔，最多 128 项，保留完整组名。</small></label>
                 <label class="field"><span>规模</span><input v-model="book.scale" :data-editor-field="'scale'" :aria-invalid="editorError?.field === 'scale' || undefined" placeholder="例如全程 35000 人" /></label>
                 <label class="field"><span>报名费用</span><input v-model="book.fee" :data-editor-field="'fee'" :aria-invalid="editorError?.field === 'fee' || undefined" placeholder="例如全程 200 元，半程 150 元" /></label>
                 <label class="field span"><span>咨询电话</span><input v-model="book.phone" :data-editor-field="'phone'" :aria-invalid="editorError?.field === 'phone' || undefined" placeholder="仅填写号码" /></label>

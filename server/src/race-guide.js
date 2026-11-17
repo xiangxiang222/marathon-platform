@@ -3,11 +3,11 @@ const fs = require("fs");
 const path = require("path");
 const { likeParams } = require("./search-like");
 const { readPage, finishPage, pageFields } = require("./page");
+const { GUIDE_TEXT_MAX, mergeGuideText } = require("./race-details");
 
 const DISTANCES = ["full", "half", "10k", "5k"];
 const KINDS = ["trail", "ultra", "family", "fun"];
 const PHOTO_MAX = 8 * 1024 * 1024;
-const GUIDE_TEXT_MAX = 40000;
 const GUIDE_MAX = 16;
 const PACER_MAX = 8;
 const ROUTE_MAX = 4;
@@ -53,8 +53,8 @@ function groupsOf(value) {
     .split(/[,，、]/)
     .map((item) => item.trim())
     .filter(Boolean);
-  if (parts.length > 8) return null;
-  if (parts.some((item) => item.length > 16)) return null;
+  if (parts.length > 128) return null;
+  if (parts.some((item) => item.length > 256)) return null;
   return parts;
 }
 
@@ -85,7 +85,7 @@ function parseGuide(body) {
   const kinds = codes(body.kinds, KINDS);
   if (!distances || !kinds) return { status: 400, error: "包含不支持的项目类型" };
   const groups = groupsOf(body.groups);
-  if (groups == null) return { status: 400, error: "其他组别最多 8 个，每个不超过 16 个字" };
+  if (groups == null) return { status: 400, error: "其他组别最多 128 个，每个不超过 256 个字" };
   if (!distances.length && !kinds.length && !groups.length) return { status: 400, error: "请至少选择一个项目" };
   let meet = null;
   if (body.meet != null && String(body.meet).trim() !== "") {
@@ -130,7 +130,7 @@ function parseGuide(body) {
   let guideTextSet = false;
   if (body.guideText != null) {
     const text = clip(body.guideText, GUIDE_TEXT_MAX);
-    if (text == null) return { status: 400, error: "规程文字最多 40000 字" };
+    if (text == null) return { status: 400, error: "规程文字最多 2000000 字，超出请保留原始附件，正文不会截断" };
     guideText = text;
     guideTextSet = true;
   }
@@ -179,7 +179,7 @@ function saveGuide(db, race, body) {
   }
   const organizer = fields.organizerSet ? fields.organizer : race.organizer || "";
   const grade = fields.gradeSet ? fields.grade : race.grade || "";
-  const guideText = fields.guideTextSet ? fields.guideText : race.guide_text || "";
+  const guideText = fields.guideTextSet ? mergeGuideText(fields.guideText, race.guide_text) : race.guide_text || "";
   const today = new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10);
   db.prepare(
     `UPDATE races SET
