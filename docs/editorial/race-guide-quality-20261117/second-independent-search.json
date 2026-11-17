@@ -1,0 +1,2699 @@
+[
+  {
+    "id": "jinjiang",
+    "name": "2026泉州晋江马拉松",
+    "query": "2026泉州晋江马拉松 官方网站 竞赛规程 报名须知",
+    "checkedAt": "2026-11-17T17:52:04.301Z",
+    "sources": [
+      {
+        "url": "https://www.zhihu.com/question/557559599",
+        "label": "知乎 - 有问题，就会有答案",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E6%B3%89%E5%B7%9E%E6%99%8B%E6%B1%9F%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://jingyan.baidu.com/article/d2b1d102d42c7e1d7e37d4b8.html",
+        "label": "qq音乐微信账号与qq账号合并-百度经验",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E6%B3%89%E5%B7%9E%E6%99%8B%E6%B1%9F%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://jingyan.baidu.com/article/17bd8e527d9d51c4aa2bb859.html",
+        "label": "如何禁止qq音乐蓝牙自动播放-百度经验",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E6%B3%89%E5%B7%9E%E6%99%8B%E6%B1%9F%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.zhihu.com/question/428511401",
+        "label": "新版PC端QQ音乐的频谱动效在哪里开启？ - 知乎",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E6%B3%89%E5%B7%9E%E6%99%8B%E6%B1%9F%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.52pojie.cn/thread-1887071-1-1.html",
+        "label": "哪位大佬，来一个QQ音乐变成mp3的东西 - 吾爱破解 - 52pojie.cn",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E6%B3%89%E5%B7%9E%E6%99%8B%E6%B1%9F%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.52pojie.cn/thread-1699985-1-1.html",
+        "label": "QQ音乐会员下载的歌曲转换通用格式 - 吾爱破解 - 52pojie.cn",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E6%B3%89%E5%B7%9E%E6%99%8B%E6%B1%9F%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.zhihu.com/question/28440940",
+        "label": "Mac版QQ音乐下载的歌曲保存在哪？ - 知乎",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E6%B3%89%E5%B7%9E%E6%99%8B%E6%B1%9F%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.zhihu.com/question/30840974",
+        "label": "qq音乐和网易云音乐哪个音质好？ - 知乎",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E6%B3%89%E5%B7%9E%E6%99%8B%E6%B1%9F%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.zhihu.com/question/581352814",
+        "label": "qq音乐的看广告免费听歌怎么没有了？ - 知乎",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E6%B3%89%E5%B7%9E%E6%99%8B%E6%B1%9F%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.zhihu.com/question/374803229",
+        "label": "Apple Music、QQ音乐、网易云音乐你会选择谁？",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E6%B3%89%E5%B7%9E%E6%99%8B%E6%B1%9F%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://qz.bendibao.com/xiuxian/2026929/38516.shtm",
+        "label": "2026晋江马拉松报名官网入口(附报名时间)- 泉州本地宝",
+        "sourceUrl": "https://www.so.com/s?q=2026%E6%B3%89%E5%B7%9E%E6%99%8B%E6%B1%9F%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://qz.bendibao.com/xiuxian/2026929/38517.shtm",
+        "label": "2026泉州晋江马拉松报名时间+入口- 泉州本地宝",
+        "sourceUrl": "https://www.so.com/s?q=2026%E6%B3%89%E5%B7%9E%E6%99%8B%E6%B1%9F%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://news.ijjnews.com/txzr/wtyl/2026/10/10/506938.shtml",
+        "label": "2026泉州晋江马拉松报名火热 这份报名攻略请收好_文体娱乐_晋江新闻网_晋江网_晋江市融媒体中心_晋江最本土的信息源",
+        "sourceUrl": "https://www.so.com/s?q=2026%E6%B3%89%E5%B7%9E%E6%99%8B%E6%B1%9F%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://weibo.com/2/detail/5348777096382046",
+        "label": "2026泉州晋江马拉松开启报名 附报名入口",
+        "sourceUrl": "https://www.so.com/s?q=2026%E6%B3%89%E5%B7%9E%E6%99%8B%E6%B1%9F%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://qz.bendibao.com/xiuxian/2026119/38700.shtm",
+        "label": "2026泉州晋江马拉松竞赛规程- 泉州本地宝",
+        "sourceUrl": "https://www.so.com/s?q=2026%E6%B3%89%E5%B7%9E%E6%99%8B%E6%B1%9F%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://qz.bendibao.com/xiuxian/2026929/38519.shtm",
+        "label": "2026泉州晋江马拉松比赛路线图- 泉州本地宝",
+        "sourceUrl": "https://www.so.com/s?q=2026%E6%B3%89%E5%B7%9E%E6%99%8B%E6%B1%9F%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://news.ijjnews.com/jjxw/shms/2026/09/30/505978.shtml",
+        "label": "2026泉州晋江马拉松赛启动报名_社会民生_晋江新闻网_晋江网_晋江市融媒体中心_晋江最本土的信息源",
+        "sourceUrl": "https://www.so.com/s?q=2026%E6%B3%89%E5%B7%9E%E6%99%8B%E6%B1%9F%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://info.so.com/feedback.html?src=know_side_nlp",
+        "label": "反馈",
+        "sourceUrl": "https://www.so.com/s?q=2026%E6%B3%89%E5%B7%9E%E6%99%8B%E6%B1%9F%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://info.so.com/feedback.html?src=know_side_nlp",
+        "label": "反馈",
+        "sourceUrl": "https://www.so.com/s?q=2026%E6%B3%89%E5%B7%9E%E6%99%8B%E6%B1%9F%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://info.so.com/feedback.html?src=know_side_nlp",
+        "label": "反馈",
+        "sourceUrl": "https://www.so.com/s?q=2026%E6%B3%89%E5%B7%9E%E6%99%8B%E6%B1%9F%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://ranks.hao.360.com/?src=so_youce_title",
+        "label": "",
+        "sourceUrl": "https://www.so.com/s?q=2026%E6%B3%89%E5%B7%9E%E6%99%8B%E6%B1%9F%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      }
+    ],
+    "failures": [
+      {
+        "url": "https://weixin.sogou.com/weixin?type=2&query=2026%E6%B3%89%E5%B7%9E%E6%99%8B%E6%B1%9F%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "step": "source_search",
+        "error": "search_access_verification_required"
+      }
+    ],
+    "candidates": [
+      {
+        "url": "https://www.zhihu.com/question/557559599",
+        "label": "知乎 - 有问题，就会有答案",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E6%B3%89%E5%B7%9E%E6%99%8B%E6%B1%9F%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "error": "HTTP_403"
+      },
+      {
+        "url": "https://www.zhihu.com/question/428511401",
+        "label": "新版PC端QQ音乐的频谱动效在哪里开启？ - 知乎",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E6%B3%89%E5%B7%9E%E6%99%8B%E6%B1%9F%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "error": "HTTP_403"
+      },
+      {
+        "url": "https://www.52pojie.cn/thread-1887071-1-1.html",
+        "label": "哪位大佬，来一个QQ音乐变成mp3的东西 - 吾爱破解 - 52pojie.cn",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E6%B3%89%E5%B7%9E%E6%99%8B%E6%B1%9F%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "title": "[��������]\n��λ���У���һ��QQ���ֱ��mp3�Ķ���",
+        "matchesEdition": false,
+        "characters": 6378
+      },
+      {
+        "url": "https://www.52pojie.cn/thread-1699985-1-1.html",
+        "label": "QQ音乐会员下载的歌曲转换通用格式 - 吾爱破解 - 52pojie.cn",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E6%B3%89%E5%B7%9E%E6%99%8B%E6%B1%9F%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "title": "[��Դ����]\nQQ���ֻ�Ա���صĸ���ת��ͨ�ø�ʽ",
+        "matchesEdition": false,
+        "characters": 5830
+      }
+    ],
+    "relevantCandidates": [
+      {
+        "url": "http://qz.bendibao.com/xiuxian/2026929/38516.shtm",
+        "label": "2026晋江马拉松报名官网入口(附报名时间)- 泉州本地宝",
+        "sourceUrl": "https://www.so.com/s?q=2026%E6%B3%89%E5%B7%9E%E6%99%8B%E6%B1%9F%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_candidate",
+        "verified": false,
+        "status": "rejected",
+        "error": "edition_name_or_locality_mismatch",
+        "title": "🧩 请完成拼图验证"
+      },
+      {
+        "url": "https://qz.bendibao.com/xiuxian/2026929/38517.shtm",
+        "label": "2026泉州晋江马拉松报名时间+入口- 泉州本地宝",
+        "sourceUrl": "https://www.so.com/s?q=2026%E6%B3%89%E5%B7%9E%E6%99%8B%E6%B1%9F%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_candidate",
+        "verified": false,
+        "status": "rejected",
+        "error": "edition_name_or_locality_mismatch",
+        "title": "🧩 请完成拼图验证"
+      },
+      {
+        "url": "http://news.ijjnews.com/txzr/wtyl/2026/10/10/506938.shtml",
+        "label": "2026泉州晋江马拉松报名火热 这份报名攻略请收好_文体娱乐_晋江新闻网_晋江网_晋江市融媒体中心_晋江最本土的信息源",
+        "sourceUrl": "https://www.so.com/s?q=2026%E6%B3%89%E5%B7%9E%E6%99%8B%E6%B1%9F%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_candidate",
+        "verified": false,
+        "status": "unverified",
+        "error": "official_publisher_not_confirmed",
+        "title": ""
+      },
+      {
+        "url": "https://weibo.com/2/detail/5348777096382046",
+        "label": "2026泉州晋江马拉松开启报名 附报名入口",
+        "sourceUrl": "https://www.so.com/s?q=2026%E6%B3%89%E5%B7%9E%E6%99%8B%E6%B1%9F%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_candidate",
+        "verified": false,
+        "status": "unverified",
+        "error": "official_publisher_not_confirmed",
+        "title": "2026泉州晋江马拉松开启报名 附报名入口"
+      },
+      {
+        "url": "https://qz.bendibao.com/xiuxian/2026119/38700.shtm",
+        "label": "2026泉州晋江马拉松竞赛规程- 泉州本地宝",
+        "sourceUrl": "https://www.so.com/s?q=2026%E6%B3%89%E5%B7%9E%E6%99%8B%E6%B1%9F%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_candidate",
+        "verified": false,
+        "status": "rejected",
+        "error": "edition_name_or_locality_mismatch",
+        "title": "🧩 请完成拼图验证"
+      }
+    ]
+  },
+  {
+    "id": "songshanhu",
+    "name": "2026东阳光药·东莞（松山湖）马拉松",
+    "query": "2026东阳光药·东莞（松山湖）马拉松 官方网站 竞赛规程 报名须知",
+    "checkedAt": "2026-11-17T17:52:04.961Z",
+    "sources": [
+      {
+        "url": "https://baike.baidu.com/item/2026%E5%B9%B4%E8",
+        "label": "2026年_百度百科",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E4%B8%9C%E9%98%B3%E5%85%89%E8%8D%AF%C2%B7%E4%B8%9C%E8%8E%9E%EF%BC%88%E6%9D%BE%E5%B1%B1%E6%B9%96%EF%BC%89%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://yz.chsi.com.cn/kyzx/zt/kyfs.shtml",
+        "label": "2026年研考分数查询及复试分数线汇总_中国研究生招生信息网",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E4%B8%9C%E9%98%B3%E5%85%89%E8%8D%AF%C2%B7%E4%B8%9C%E8%8E%9E%EF%BC%88%E6%9D%BE%E5%B1%B1%E6%B9%96%EF%BC%89%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://lol.qq.com/act/a20261115champion/preview.html?e_code=500130",
+        "label": "2026全球总决赛冠军-英雄联盟官方网站-腾讯游戏",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E4%B8%9C%E9%98%B3%E5%85%89%E8%8D%AF%C2%B7%E4%B8%9C%E8%8E%9E%EF%BC%88%E6%9D%BE%E5%B1%B1%E6%B9%96%EF%BC%89%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://fgc.suse.edu.cn/2026/1010/c5016a217143/page.htm",
+        "label": "2026年国家社会科学基金年度项目立项名单公示",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E4%B8%9C%E9%98%B3%E5%85%89%E8%8D%AF%C2%B7%E4%B8%9C%E8%8E%9E%EF%BC%88%E6%9D%BE%E5%B1%B1%E6%B9%96%EF%BC%89%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://gaokao.chsi.com.cn/z/gkbmfslq2026/cjcx.jsp",
+        "label": "2026年高考成绩查询_阳光高考",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E4%B8%9C%E9%98%B3%E5%85%89%E8%8D%AF%C2%B7%E4%B8%9C%E8%8E%9E%EF%BC%88%E6%9D%BE%E5%B1%B1%E6%B9%96%EF%BC%89%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.ithome.com/zt/apec2026",
+        "label": "2026 深圳 APEC 工商领导人峰会专题 - IT之家",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E4%B8%9C%E9%98%B3%E5%85%89%E8%8D%AF%C2%B7%E4%B8%9C%E8%8E%9E%EF%BC%88%E6%9D%BE%E5%B1%B1%E6%B9%96%EF%BC%89%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.rili.com.cn/wannianli/2026/",
+        "label": "万年历2026年日历表_日历网",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E4%B8%9C%E9%98%B3%E5%85%89%E8%8D%AF%C2%B7%E4%B8%9C%E8%8E%9E%EF%BC%88%E6%9D%BE%E5%B1%B1%E6%B9%96%EF%BC%89%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://sports.cctv.com/2026/11/15/ARTI5VvqhhtEckKGKjisvgy2261115.shtml",
+        "label": "BLG夺得S16全球总决赛冠军，LPL赛区时隔五年再度问鼎",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E4%B8%9C%E9%98%B3%E5%85%89%E8%8D%AF%C2%B7%E4%B8%9C%E8%8E%9E%EF%BC%88%E6%9D%BE%E5%B1%B1%E6%B9%96%EF%BC%89%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.gov.cn/zhengce/content/202511/content_7047090.htm",
+        "label": "国务院办公厅关于2026年部分节假日安排的通知_其他_中国 ...",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E4%B8%9C%E9%98%B3%E5%85%89%E8%8D%AF%C2%B7%E4%B8%9C%E8%8E%9E%EF%BC%88%E6%9D%BE%E5%B1%B1%E6%B9%96%EF%BC%89%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://2026dyylb.com.cn/",
+        "label": "2026电影一览表 - 2026年上映电影/国产剧集/短剧动漫片单全 ...",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E4%B8%9C%E9%98%B3%E5%85%89%E8%8D%AF%C2%B7%E4%B8%9C%E8%8E%9E%EF%BC%88%E6%9D%BE%E5%B1%B1%E6%B9%96%EF%BC%89%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://dg.bendibao.com/yule/202598/179019.shtm",
+        "label": "2026东莞东阳光药松山湖马拉松竞赛规程- 东莞本地宝",
+        "sourceUrl": "https://www.so.com/s?q=2026%E4%B8%9C%E9%98%B3%E5%85%89%E8%8D%AF%C2%B7%E4%B8%9C%E8%8E%9E%EF%BC%88%E6%9D%BE%E5%B1%B1%E6%B9%96%EF%BC%89%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://dg.bendibao.com/yule/202598/179023.shtm",
+        "label": "2026东莞东阳光药松山湖马拉松赛事规模- 东莞本地宝",
+        "sourceUrl": "https://www.so.com/s?q=2026%E4%B8%9C%E9%98%B3%E5%85%89%E8%8D%AF%C2%B7%E4%B8%9C%E8%8E%9E%EF%BC%88%E6%9D%BE%E5%B1%B1%E6%B9%96%EF%BC%89%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://dg.bendibao.com/yule/2024119/170073.shtm",
+        "label": "2026东莞东阳光药松山湖马拉松报名官网入口- 东莞本地宝",
+        "sourceUrl": "https://www.so.com/s?q=2026%E4%B8%9C%E9%98%B3%E5%85%89%E8%8D%AF%C2%B7%E4%B8%9C%E8%8E%9E%EF%BC%88%E6%9D%BE%E5%B1%B1%E6%B9%96%EF%BC%89%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://dg.bendibao.com/yule/list_28_1497_10.htm",
+        "label": "休闲娱乐-东莞本地宝",
+        "sourceUrl": "https://www.so.com/s?q=2026%E4%B8%9C%E9%98%B3%E5%85%89%E8%8D%AF%C2%B7%E4%B8%9C%E8%8E%9E%EF%BC%88%E6%9D%BE%E5%B1%B1%E6%B9%96%EF%BC%89%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://dg.bendibao.com/yule/2025128/180517.shtm",
+        "label": "2026东莞东阳光药松山湖马拉松报名参赛指南 附报名入口- 东莞本地宝",
+        "sourceUrl": "https://www.so.com/s?q=2026%E4%B8%9C%E9%98%B3%E5%85%89%E8%8D%AF%C2%B7%E4%B8%9C%E8%8E%9E%EF%BC%88%E6%9D%BE%E5%B1%B1%E6%B9%96%EF%BC%89%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.sohu.com/a/1081859721_121117450",
+        "label": "今起报名!2026东阳光药·东莞(松山湖)马拉松12月开跑!_竞赛_赛事_参赛",
+        "sourceUrl": "https://www.so.com/s?q=2026%E4%B8%9C%E9%98%B3%E5%85%89%E8%8D%AF%C2%B7%E4%B8%9C%E8%8E%9E%EF%BC%88%E6%9D%BE%E5%B1%B1%E6%B9%96%EF%BC%89%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://pub.timedg.com/a/2026-09/28/AP6aba497be4b090a3a179408a.html",
+        "label": "就在今天!2026东阳光药·东莞(松山湖)马拉松开启报名",
+        "sourceUrl": "https://www.so.com/s?q=2026%E4%B8%9C%E9%98%B3%E5%85%89%E8%8D%AF%C2%B7%E4%B8%9C%E8%8E%9E%EF%BC%88%E6%9D%BE%E5%B1%B1%E6%B9%96%EF%BC%89%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://info.so.com/feedback.html?src=know_side_nlp",
+        "label": "反馈",
+        "sourceUrl": "https://www.so.com/s?q=2026%E4%B8%9C%E9%98%B3%E5%85%89%E8%8D%AF%C2%B7%E4%B8%9C%E8%8E%9E%EF%BC%88%E6%9D%BE%E5%B1%B1%E6%B9%96%EF%BC%89%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://info.so.com/feedback.html?src=know_side_nlp",
+        "label": "反馈",
+        "sourceUrl": "https://www.so.com/s?q=2026%E4%B8%9C%E9%98%B3%E5%85%89%E8%8D%AF%C2%B7%E4%B8%9C%E8%8E%9E%EF%BC%88%E6%9D%BE%E5%B1%B1%E6%B9%96%EF%BC%89%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://info.so.com/feedback.html?src=know_side_nlp",
+        "label": "反馈",
+        "sourceUrl": "https://www.so.com/s?q=2026%E4%B8%9C%E9%98%B3%E5%85%89%E8%8D%AF%C2%B7%E4%B8%9C%E8%8E%9E%EF%BC%88%E6%9D%BE%E5%B1%B1%E6%B9%96%EF%BC%89%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://ranks.hao.360.com/?src=so_youce_title",
+        "label": "",
+        "sourceUrl": "https://www.so.com/s?q=2026%E4%B8%9C%E9%98%B3%E5%85%89%E8%8D%AF%C2%B7%E4%B8%9C%E8%8E%9E%EF%BC%88%E6%9D%BE%E5%B1%B1%E6%B9%96%EF%BC%89%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      }
+    ],
+    "failures": [
+      {
+        "url": "https://weixin.sogou.com/weixin?type=2&query=2026%E4%B8%9C%E9%98%B3%E5%85%89%E8%8D%AF%C2%B7%E4%B8%9C%E8%8E%9E%EF%BC%88%E6%9D%BE%E5%B1%B1%E6%B9%96%EF%BC%89%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "step": "source_search",
+        "error": "search_access_verification_required"
+      }
+    ],
+    "candidates": [
+      {
+        "url": "https://yz.chsi.com.cn/kyzx/zt/kyfs.shtml",
+        "label": "2026年研考分数查询及复试分数线汇总_中国研究生招生信息网",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E4%B8%9C%E9%98%B3%E5%85%89%E8%8D%AF%C2%B7%E4%B8%9C%E8%8E%9E%EF%BC%88%E6%9D%BE%E5%B1%B1%E6%B9%96%EF%BC%89%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "title": "2026年研考分数查询及复试分数线汇总_中国研究生招生信息网",
+        "matchesEdition": false,
+        "characters": 31
+      },
+      {
+        "url": "https://lol.qq.com/act/a20261115champion/preview.html?e_code=500130",
+        "label": "2026全球总决赛冠军-英雄联盟官方网站-腾讯游戏",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E4%B8%9C%E9%98%B3%E5%85%89%E8%8D%AF%C2%B7%E4%B8%9C%E8%8E%9E%EF%BC%88%E6%9D%BE%E5%B1%B1%E6%B9%96%EF%BC%89%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "title": "2026ȫ���ܾ����ھ�",
+        "matchesEdition": false,
+        "characters": 3779
+      },
+      {
+        "url": "https://fgc.suse.edu.cn/2026/1010/c5016a217143/page.htm",
+        "label": "2026年国家社会科学基金年度项目立项名单公示",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E4%B8%9C%E9%98%B3%E5%85%89%E8%8D%AF%C2%B7%E4%B8%9C%E8%8E%9E%EF%BC%88%E6%9D%BE%E5%B1%B1%E6%B9%96%EF%BC%89%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "title": "2026年国家社会科学基金年度项目立项名单公示",
+        "matchesEdition": false,
+        "characters": 870
+      },
+      {
+        "url": "https://gaokao.chsi.com.cn/z/gkbmfslq2026/cjcx.jsp",
+        "label": "2026年高考成绩查询_阳光高考",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E4%B8%9C%E9%98%B3%E5%85%89%E8%8D%AF%C2%B7%E4%B8%9C%E8%8E%9E%EF%BC%88%E6%9D%BE%E5%B1%B1%E6%B9%96%EF%BC%89%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "error": "HTTP_412"
+      }
+    ],
+    "relevantCandidates": [
+      {
+        "url": "https://dg.bendibao.com/yule/202598/179019.shtm",
+        "label": "2026东莞东阳光药松山湖马拉松竞赛规程- 东莞本地宝",
+        "sourceUrl": "https://www.so.com/s?q=2026%E4%B8%9C%E9%98%B3%E5%85%89%E8%8D%AF%C2%B7%E4%B8%9C%E8%8E%9E%EF%BC%88%E6%9D%BE%E5%B1%B1%E6%B9%96%EF%BC%89%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_candidate",
+        "verified": false,
+        "status": "rejected",
+        "error": "edition_name_or_locality_mismatch",
+        "title": "🧩 请完成拼图验证"
+      },
+      {
+        "url": "http://dg.bendibao.com/yule/202598/179023.shtm",
+        "label": "2026东莞东阳光药松山湖马拉松赛事规模- 东莞本地宝",
+        "sourceUrl": "https://www.so.com/s?q=2026%E4%B8%9C%E9%98%B3%E5%85%89%E8%8D%AF%C2%B7%E4%B8%9C%E8%8E%9E%EF%BC%88%E6%9D%BE%E5%B1%B1%E6%B9%96%EF%BC%89%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_candidate",
+        "verified": false,
+        "status": "rejected",
+        "error": "edition_name_or_locality_mismatch",
+        "title": "🧩 请完成拼图验证"
+      },
+      {
+        "url": "http://dg.bendibao.com/yule/2024119/170073.shtm",
+        "label": "2026东莞东阳光药松山湖马拉松报名官网入口- 东莞本地宝",
+        "sourceUrl": "https://www.so.com/s?q=2026%E4%B8%9C%E9%98%B3%E5%85%89%E8%8D%AF%C2%B7%E4%B8%9C%E8%8E%9E%EF%BC%88%E6%9D%BE%E5%B1%B1%E6%B9%96%EF%BC%89%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_candidate",
+        "verified": false,
+        "status": "rejected",
+        "error": "edition_name_or_locality_mismatch",
+        "title": "🧩 请完成拼图验证"
+      },
+      {
+        "url": "http://dg.bendibao.com/yule/2025128/180517.shtm",
+        "label": "2026东莞东阳光药松山湖马拉松报名参赛指南 附报名入口- 东莞本地宝",
+        "sourceUrl": "https://www.so.com/s?q=2026%E4%B8%9C%E9%98%B3%E5%85%89%E8%8D%AF%C2%B7%E4%B8%9C%E8%8E%9E%EF%BC%88%E6%9D%BE%E5%B1%B1%E6%B9%96%EF%BC%89%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_candidate",
+        "verified": false,
+        "status": "rejected",
+        "error": "edition_name_or_locality_mismatch",
+        "title": "🧩 请完成拼图验证"
+      },
+      {
+        "url": "https://www.sohu.com/a/1081859721_121117450",
+        "label": "今起报名!2026东阳光药·东莞(松山湖)马拉松12月开跑!_竞赛_赛事_参赛",
+        "sourceUrl": "https://www.so.com/s?q=2026%E4%B8%9C%E9%98%B3%E5%85%89%E8%8D%AF%C2%B7%E4%B8%9C%E8%8E%9E%EF%BC%88%E6%9D%BE%E5%B1%B1%E6%B9%96%EF%BC%89%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_candidate",
+        "verified": false,
+        "status": "unverified",
+        "error": "official_publisher_not_confirmed",
+        "title": "今起报名！2026东阳光药·东莞（松山湖）马拉松12月开跑！"
+      }
+    ]
+  },
+  {
+    "id": "yuxi",
+    "name": "2026玉溪抚仙湖半程马拉松",
+    "query": "2026玉溪抚仙湖半程马拉松 官方网站 竞赛规程 报名须知",
+    "checkedAt": "2026-11-17T17:52:05.720Z",
+    "sources": [
+      {
+        "url": "https://jingyan.baidu.com/article/ab0b56308048a5805afa7dfb.html",
+        "label": "企业微信组织机构域在哪看-百度经验",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E7%8E%89%E6%BA%AA%E6%8A%9A%E4%BB%99%E6%B9%96%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.zhihu.com/question/489136037",
+        "label": "怎么在微信中看企业微信消息？ - 知乎",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E7%8E%89%E6%BA%AA%E6%8A%9A%E4%BB%99%E6%B9%96%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.zhihu.com/question/448537733",
+        "label": "企业微信在电脑上显示不出二维码怎么办? - 知乎",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E7%8E%89%E6%BA%AA%E6%8A%9A%E4%BB%99%E6%B9%96%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://jingyan.baidu.com/article/b7001fe176e5974f7382dd0f.html",
+        "label": "电脑版企业微信接收的文件在哪里-百度经验",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E7%8E%89%E6%BA%AA%E6%8A%9A%E4%BB%99%E6%B9%96%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://jingyan.baidu.com/article/a17d5285e35fd2c198c8f2ca.html",
+        "label": "如何将个人微信群快速转为企业微信群？ - 百度经验",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E7%8E%89%E6%BA%AA%E6%8A%9A%E4%BB%99%E6%B9%96%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.zhihu.com/question/475216038",
+        "label": "为什么越来越多企业用企业微信？ - 知乎",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E7%8E%89%E6%BA%AA%E6%8A%9A%E4%BB%99%E6%B9%96%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://jingyan.baidu.com/article/a65957f4b3358965e77f9b09.html",
+        "label": "企业微信怎么设置邀请别人进群需要管理员确定-百度经验",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E7%8E%89%E6%BA%AA%E6%8A%9A%E4%BB%99%E6%B9%96%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.zhihu.com/question/269045263",
+        "label": "企业微信和微信的区别在哪里？ - 知乎",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E7%8E%89%E6%BA%AA%E6%8A%9A%E4%BB%99%E6%B9%96%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.zhihu.com/question/278659339/answers/updated",
+        "label": "电脑端企业微信如何实现双开？ - 知乎",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E7%8E%89%E6%BA%AA%E6%8A%9A%E4%BB%99%E6%B9%96%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://jingyan.baidu.com/article/76a7e409e86d40bd3a6e1505.html",
+        "label": "企业微信在线表格怎么创建 - 百度经验",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E7%8E%89%E6%BA%AA%E6%8A%9A%E4%BB%99%E6%B9%96%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://tyj.yn.gov.cn/ssxx/202609/t20260930_4341252.html",
+        "label": "报名开启!2026玉溪抚仙湖半程马拉松11月22日开跑_ 云南省体育局",
+        "sourceUrl": "https://www.so.com/s?q=2026%E7%8E%89%E6%BA%AA%E6%8A%9A%E4%BB%99%E6%B9%96%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://c.m.163.com/news/v/VF73EVJ1I.html",
+        "label": "2026玉溪抚仙湖半程马拉松 定档11月22日 今日开启报名",
+        "sourceUrl": "https://www.so.com/s?q=2026%E7%8E%89%E6%BA%AA%E6%8A%9A%E4%BB%99%E6%B9%96%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://zuicool.com/news/archives/317334",
+        "label": "2026玉溪抚仙湖半程马拉松,9月28日14点开启报名 - 最酷 ZUICOOL 马拉松报名",
+        "sourceUrl": "https://www.so.com/s?q=2026%E7%8E%89%E6%BA%AA%E6%8A%9A%E4%BB%99%E6%B9%96%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.sohu.com/a/949482437_100156507?scm=10001.325_13-325_13.0.0.5_32",
+        "label": "第七届玉溪抚仙湖半程马拉松预报名今日开启_澄江_中国田径协会_赛事",
+        "sourceUrl": "https://www.so.com/s?q=2026%E7%8E%89%E6%BA%AA%E6%8A%9A%E4%BB%99%E6%B9%96%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://zuicool.com/event/84074",
+        "label": "2026玉溪抚仙湖半程马拉松",
+        "sourceUrl": "https://www.so.com/s?q=2026%E7%8E%89%E6%BA%AA%E6%8A%9A%E4%BB%99%E6%B9%96%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://zuicool.com/event/18986118",
+        "label": "一带一路·七彩云南 抚仙湖国际半程马拉松",
+        "sourceUrl": "https://www.so.com/s?q=2026%E7%8E%89%E6%BA%AA%E6%8A%9A%E4%BB%99%E6%B9%96%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.sohu.com/a/732989960_121106902?scm=1102.xchannel:325:100002.0.6.0",
+        "label": "竞赛规程|2023玉溪抚仙湖半程马拉松暨昆明玉溪双城马拉松(玉溪站)_参赛_比赛_选手",
+        "sourceUrl": "https://www.so.com/s?q=2026%E7%8E%89%E6%BA%AA%E6%8A%9A%E4%BB%99%E6%B9%96%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://info.so.com/feedback.html?src=know_side_nlp",
+        "label": "反馈",
+        "sourceUrl": "https://www.so.com/s?q=2026%E7%8E%89%E6%BA%AA%E6%8A%9A%E4%BB%99%E6%B9%96%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://info.so.com/feedback.html?src=know_side_nlp",
+        "label": "反馈",
+        "sourceUrl": "https://www.so.com/s?q=2026%E7%8E%89%E6%BA%AA%E6%8A%9A%E4%BB%99%E6%B9%96%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://info.so.com/feedback.html?src=know_side_nlp",
+        "label": "反馈",
+        "sourceUrl": "https://www.so.com/s?q=2026%E7%8E%89%E6%BA%AA%E6%8A%9A%E4%BB%99%E6%B9%96%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://ranks.hao.360.com/?src=so_youce_title",
+        "label": "",
+        "sourceUrl": "https://www.so.com/s?q=2026%E7%8E%89%E6%BA%AA%E6%8A%9A%E4%BB%99%E6%B9%96%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      }
+    ],
+    "failures": [
+      {
+        "url": "https://weixin.sogou.com/weixin?type=2&query=2026%E7%8E%89%E6%BA%AA%E6%8A%9A%E4%BB%99%E6%B9%96%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "step": "source_search",
+        "error": "search_access_verification_required"
+      }
+    ],
+    "candidates": [
+      {
+        "url": "https://www.zhihu.com/question/489136037",
+        "label": "怎么在微信中看企业微信消息？ - 知乎",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E7%8E%89%E6%BA%AA%E6%8A%9A%E4%BB%99%E6%B9%96%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "error": "HTTP_403"
+      },
+      {
+        "url": "https://www.zhihu.com/question/448537733",
+        "label": "企业微信在电脑上显示不出二维码怎么办? - 知乎",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E7%8E%89%E6%BA%AA%E6%8A%9A%E4%BB%99%E6%B9%96%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "error": "HTTP_403"
+      },
+      {
+        "url": "https://www.zhihu.com/question/475216038",
+        "label": "为什么越来越多企业用企业微信？ - 知乎",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E7%8E%89%E6%BA%AA%E6%8A%9A%E4%BB%99%E6%B9%96%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "error": "HTTP_403"
+      },
+      {
+        "url": "https://www.zhihu.com/question/269045263",
+        "label": "企业微信和微信的区别在哪里？ - 知乎",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E7%8E%89%E6%BA%AA%E6%8A%9A%E4%BB%99%E6%B9%96%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "error": "HTTP_403"
+      }
+    ],
+    "relevantCandidates": [
+      {
+        "url": "https://tyj.yn.gov.cn/ssxx/202609/t20260930_4341252.html",
+        "label": "报名开启!2026玉溪抚仙湖半程马拉松11月22日开跑_ 云南省体育局",
+        "sourceUrl": "https://www.so.com/s?q=2026%E7%8E%89%E6%BA%AA%E6%8A%9A%E4%BB%99%E6%B9%96%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_announcement",
+        "verified": true,
+        "status": "verified",
+        "title": "报名开启！2026玉溪抚仙湖半程马拉松11月22日开跑_ 云南省体育局"
+      },
+      {
+        "url": "http://c.m.163.com/news/v/VF73EVJ1I.html",
+        "label": "2026玉溪抚仙湖半程马拉松 定档11月22日 今日开启报名",
+        "sourceUrl": "https://www.so.com/s?q=2026%E7%8E%89%E6%BA%AA%E6%8A%9A%E4%BB%99%E6%B9%96%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_candidate",
+        "verified": false,
+        "status": "unverified",
+        "error": "official_publisher_not_confirmed",
+        "title": "2026玉溪抚仙湖半程马拉松 定档11月22日 今日开启报名"
+      },
+      {
+        "url": "https://www.sohu.com/a/949482437_100156507?scm=10001.325_13-325_13.0.0.5_32",
+        "label": "第七届玉溪抚仙湖半程马拉松预报名今日开启_澄江_中国田径协会_赛事",
+        "sourceUrl": "https://www.so.com/s?q=2026%E7%8E%89%E6%BA%AA%E6%8A%9A%E4%BB%99%E6%B9%96%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_candidate",
+        "verified": false,
+        "status": "rejected",
+        "error": "edition_name_or_locality_mismatch",
+        "title": "第七届玉溪抚仙湖半程马拉松预报名今日开启"
+      }
+    ]
+  },
+  {
+    "id": "caa-1000494002",
+    "name": "2026重庆半程马拉松",
+    "query": "2026重庆半程马拉松 官方网站 竞赛规程 报名须知",
+    "checkedAt": "2026-11-17T17:52:07.891Z",
+    "sources": [
+      {
+        "url": "https://baike.baidu.com/item/2026%E5%B9%B4%E8",
+        "label": "2026年_百度百科",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%87%8D%E5%BA%86%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://yz.chsi.com.cn/kyzx/zt/kyfs.shtml",
+        "label": "2026年研考分数查询及复试分数线汇总_中国研究生招生信息网",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%87%8D%E5%BA%86%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://lol.qq.com/act/a20261115champion/preview.html?e_code=500130",
+        "label": "2026全球总决赛冠军-英雄联盟官方网站-腾讯游戏",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%87%8D%E5%BA%86%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://fgc.suse.edu.cn/2026/1010/c5016a217143/page.htm",
+        "label": "2026年国家社会科学基金年度项目立项名单公示",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%87%8D%E5%BA%86%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://gaokao.chsi.com.cn/z/gkbmfslq2026/cjcx.jsp",
+        "label": "2026年高考成绩查询_阳光高考",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%87%8D%E5%BA%86%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.ithome.com/zt/apec2026",
+        "label": "2026 深圳 APEC 工商领导人峰会专题 - IT之家",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%87%8D%E5%BA%86%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.rili.com.cn/wannianli/2026/",
+        "label": "万年历2026年日历表_日历网",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%87%8D%E5%BA%86%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://sports.cctv.com/2026/11/15/ARTI5VvqhhtEckKGKjisvgy2261115.shtml",
+        "label": "BLG夺得S16全球总决赛冠军，LPL赛区时隔五年再度问鼎",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%87%8D%E5%BA%86%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.gov.cn/zhengce/content/202511/content_7047090.htm",
+        "label": "国务院办公厅关于2026年部分节假日安排的通知_其他_中国 ...",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%87%8D%E5%BA%86%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://2026dyylb.com.cn/",
+        "label": "2026电影一览表 - 2026年上映电影/国产剧集/短剧动漫片单全 ...",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%87%8D%E5%BA%86%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.cqrb.cn/cbtiyu/2026-08-25/2759391_pc.html",
+        "label": "官宣!2026重庆半程马拉松报名开启!-重庆日报",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%87%8D%E5%BA%86%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://cq.bendibao.com/xiuxian/2025925/158393.shtm",
+        "label": "2026重庆半程马拉松报名时间+入口+费用+条件- 重庆本地宝",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%87%8D%E5%BA%86%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://cq.bendibao.com/xiuxian/2026713/165778.shtm",
+        "label": "2026重庆长嘉汇半程马拉松报名时间+入口+条件+费用+流程- 重庆本地宝",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%87%8D%E5%BA%86%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://i.ifeng.com/c/8wfpgvzoPXZ",
+        "label": "提醒!2026重庆半程马拉松报名即将截止!报名入口+比赛奖金_凤凰网",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%87%8D%E5%BA%86%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://cq.bendibao.com/xiuxian/2026713/165776.shtm",
+        "label": "2026重庆长嘉汇半程马拉松时间+地点+路线+报名方式- 重庆本地宝",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%87%8D%E5%BA%86%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://cq.bendibao.com/xiuxian/2025813/156928.shtm",
+        "label": "2026重庆马拉松报名时间+入口+报名费+条件- 重庆本地宝",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%87%8D%E5%BA%86%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://m.cq.bendibao.com/xiuxian/156985.shtm",
+        "label": "2026重庆马拉松报名入口及流程- 重庆本地宝",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%87%8D%E5%BA%86%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://info.so.com/feedback.html?src=know_side_nlp",
+        "label": "反馈",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%87%8D%E5%BA%86%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://info.so.com/feedback.html?src=know_side_nlp",
+        "label": "反馈",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%87%8D%E5%BA%86%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://info.so.com/feedback.html?src=know_side_nlp",
+        "label": "反馈",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%87%8D%E5%BA%86%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://ranks.hao.360.com/?src=so_youce_title",
+        "label": "",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%87%8D%E5%BA%86%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      }
+    ],
+    "failures": [
+      {
+        "url": "https://weixin.sogou.com/weixin?type=2&query=2026%E9%87%8D%E5%BA%86%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "step": "source_search",
+        "error": "search_access_verification_required"
+      }
+    ],
+    "candidates": [
+      {
+        "url": "https://yz.chsi.com.cn/kyzx/zt/kyfs.shtml",
+        "label": "2026年研考分数查询及复试分数线汇总_中国研究生招生信息网",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%87%8D%E5%BA%86%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "title": "2026年研考分数查询及复试分数线汇总_中国研究生招生信息网",
+        "matchesEdition": false,
+        "characters": 31
+      },
+      {
+        "url": "https://lol.qq.com/act/a20261115champion/preview.html?e_code=500130",
+        "label": "2026全球总决赛冠军-英雄联盟官方网站-腾讯游戏",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%87%8D%E5%BA%86%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "title": "2026ȫ���ܾ����ھ�",
+        "matchesEdition": false,
+        "characters": 3779
+      },
+      {
+        "url": "https://fgc.suse.edu.cn/2026/1010/c5016a217143/page.htm",
+        "label": "2026年国家社会科学基金年度项目立项名单公示",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%87%8D%E5%BA%86%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "title": "2026年国家社会科学基金年度项目立项名单公示",
+        "matchesEdition": false,
+        "characters": 870
+      },
+      {
+        "url": "https://gaokao.chsi.com.cn/z/gkbmfslq2026/cjcx.jsp",
+        "label": "2026年高考成绩查询_阳光高考",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%87%8D%E5%BA%86%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "error": "HTTP_412"
+      }
+    ],
+    "relevantCandidates": [
+      {
+        "url": "https://www.cqrb.cn/cbtiyu/2026-08-25/2759391_pc.html",
+        "label": "官宣!2026重庆半程马拉松报名开启!-重庆日报",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%87%8D%E5%BA%86%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_candidate",
+        "verified": false,
+        "status": "unverified",
+        "error": "official_publisher_not_confirmed",
+        "title": "官宣！2026重庆半程马拉松报名开启！-重庆日报"
+      },
+      {
+        "url": "http://cq.bendibao.com/xiuxian/2025925/158393.shtm",
+        "label": "2026重庆半程马拉松报名时间+入口+费用+条件- 重庆本地宝",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%87%8D%E5%BA%86%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_candidate",
+        "verified": false,
+        "status": "rejected",
+        "error": "edition_name_or_locality_mismatch",
+        "title": "🧩 请完成拼图验证"
+      },
+      {
+        "url": "http://cq.bendibao.com/xiuxian/2026713/165778.shtm",
+        "label": "2026重庆长嘉汇半程马拉松报名时间+入口+条件+费用+流程- 重庆本地宝",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%87%8D%E5%BA%86%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_candidate",
+        "verified": false,
+        "status": "rejected",
+        "error": "edition_name_or_locality_mismatch",
+        "title": "🧩 请完成拼图验证"
+      },
+      {
+        "url": "https://i.ifeng.com/c/8wfpgvzoPXZ",
+        "label": "提醒!2026重庆半程马拉松报名即将截止!报名入口+比赛奖金_凤凰网",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%87%8D%E5%BA%86%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_candidate",
+        "verified": false,
+        "status": "unverified",
+        "error": "official_publisher_not_confirmed",
+        "title": "提醒！2026重庆半程马拉松报名即将截止！报名入口+比赛奖金"
+      },
+      {
+        "url": "http://cq.bendibao.com/xiuxian/2026713/165776.shtm",
+        "label": "2026重庆长嘉汇半程马拉松时间+地点+路线+报名方式- 重庆本地宝",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%87%8D%E5%BA%86%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_candidate",
+        "verified": false,
+        "status": "rejected",
+        "error": "edition_name_or_locality_mismatch",
+        "title": "🧩 请完成拼图验证"
+      }
+    ]
+  },
+  {
+    "id": "hailing",
+    "name": "2026阳江海陵岛马拉松",
+    "query": "2026阳江海陵岛马拉松 官方网站 竞赛规程 报名须知",
+    "checkedAt": "2026-11-17T17:52:08.430Z",
+    "sources": [
+      {
+        "url": "https://baike.baidu.com/item/2026%E5%B9%B4%E8",
+        "label": "2026年_百度百科",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%98%B3%E6%B1%9F%E6%B5%B7%E9%99%B5%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://yz.chsi.com.cn/kyzx/zt/kyfs.shtml",
+        "label": "2026年研考分数查询及复试分数线汇总_中国研究生招生信息网",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%98%B3%E6%B1%9F%E6%B5%B7%E9%99%B5%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://lol.qq.com/act/a20261115champion/preview.html?e_code=500130",
+        "label": "2026全球总决赛冠军-英雄联盟官方网站-腾讯游戏",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%98%B3%E6%B1%9F%E6%B5%B7%E9%99%B5%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://fgc.suse.edu.cn/2026/1010/c5016a217143/page.htm",
+        "label": "2026年国家社会科学基金年度项目立项名单公示",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%98%B3%E6%B1%9F%E6%B5%B7%E9%99%B5%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://gaokao.chsi.com.cn/z/gkbmfslq2026/cjcx.jsp",
+        "label": "2026年高考成绩查询_阳光高考",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%98%B3%E6%B1%9F%E6%B5%B7%E9%99%B5%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.ithome.com/zt/apec2026",
+        "label": "2026 深圳 APEC 工商领导人峰会专题 - IT之家",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%98%B3%E6%B1%9F%E6%B5%B7%E9%99%B5%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.rili.com.cn/wannianli/2026/",
+        "label": "万年历2026年日历表_日历网",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%98%B3%E6%B1%9F%E6%B5%B7%E9%99%B5%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://sports.cctv.com/2026/11/15/ARTI5VvqhhtEckKGKjisvgy2261115.shtml",
+        "label": "BLG夺得S16全球总决赛冠军，LPL赛区时隔五年再度问鼎",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%98%B3%E6%B1%9F%E6%B5%B7%E9%99%B5%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.gov.cn/zhengce/content/202511/content_7047090.htm",
+        "label": "国务院办公厅关于2026年部分节假日安排的通知_其他_中国 ...",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%98%B3%E6%B1%9F%E6%B5%B7%E9%99%B5%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://2026dyylb.com.cn/",
+        "label": "2026电影一览表 - 2026年上映电影/国产剧集/短剧动漫片单全 ...",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%98%B3%E6%B1%9F%E6%B5%B7%E9%99%B5%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://ai.so.com/search/so5844134f7e2a2aa5ee623d52e3a7b885?search=2026%E9%98%B3%E6%B1%9F%E6%B5%B7%E9%99%B5%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%E8%B5%9B%E4%BA%8B%E5%B0%86%E4%BA%8E12%E6%9C%8820%E6%97%A5%E4%B8%BE%E8%A1%8C%EF%BC%8C%E6%B5%B7%E5%B2%9B%E4%B8%8E%E6%B5%B7%E4%B8%9D%E5%85%83%E7%B4%A0%E8%9E%8D%E5%85%A5%E8%B5%9B%E4%BA%8B&src=so_result_natural_news&srcg=so_result_natural_news",
+        "label": "2026阳江海陵岛马拉松赛事将于12月20日举行,海岛与海丝元素融入...",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%98%B3%E6%B1%9F%E6%B5%B7%E9%99%B5%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.sohu.com/a/1080335927_362042?scm=10001.319_13-100000-0_8000.0-0.0-1-0-0-0.0_5820",
+        "label": "2026阳江海陵岛马拉松12月20日开跑_赛事_海岛_海丝",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%98%B3%E6%B1%9F%E6%B5%B7%E9%99%B5%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://weibo.com/2/detail/5348522935453184",
+        "label": "2026阳江海陵岛马拉松启动报名 定档12月20日",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%98%B3%E6%B1%9F%E6%B5%B7%E9%99%B5%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.163.com/dy/article/L9BPU6N905502L65.html",
+        "label": "最高8000元奖金+三重补贴叠加!2026阳江海陵岛马拉松团报福利全解锁|报名费|成都马拉松_网易订阅",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%98%B3%E6%B1%9F%E6%B5%B7%E9%99%B5%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://zuicool.com/news/archives/317400",
+        "label": "广东绝美海岛马拉松!2026阳江海陵岛马拉松 开启报名 - 最酷 ZUICOOL 马拉松报名",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%98%B3%E6%B1%9F%E6%B5%B7%E9%99%B5%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://reg.zuicool.com/84762",
+        "label": "2026阳江海陵岛马拉松 - 一键报名 - 最酷",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%98%B3%E6%B1%9F%E6%B5%B7%E9%99%B5%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.nowrun.cn/race/307",
+        "label": "2026阳江海陵岛马拉松 - 闹跑",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%98%B3%E6%B1%9F%E6%B5%B7%E9%99%B5%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://info.so.com/feedback.html?src=know_side_nlp",
+        "label": "反馈",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%98%B3%E6%B1%9F%E6%B5%B7%E9%99%B5%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://info.so.com/feedback.html?src=know_side_nlp",
+        "label": "反馈",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%98%B3%E6%B1%9F%E6%B5%B7%E9%99%B5%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://info.so.com/feedback.html?src=know_side_nlp",
+        "label": "反馈",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%98%B3%E6%B1%9F%E6%B5%B7%E9%99%B5%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://ranks.hao.360.com/?src=so_youce_title",
+        "label": "",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%98%B3%E6%B1%9F%E6%B5%B7%E9%99%B5%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      }
+    ],
+    "failures": [
+      {
+        "url": "https://weixin.sogou.com/weixin?type=2&query=2026%E9%98%B3%E6%B1%9F%E6%B5%B7%E9%99%B5%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "step": "source_search",
+        "error": "search_access_verification_required"
+      }
+    ],
+    "candidates": [
+      {
+        "url": "https://yz.chsi.com.cn/kyzx/zt/kyfs.shtml",
+        "label": "2026年研考分数查询及复试分数线汇总_中国研究生招生信息网",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%98%B3%E6%B1%9F%E6%B5%B7%E9%99%B5%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "title": "2026年研考分数查询及复试分数线汇总_中国研究生招生信息网",
+        "matchesEdition": false,
+        "characters": 31
+      },
+      {
+        "url": "https://lol.qq.com/act/a20261115champion/preview.html?e_code=500130",
+        "label": "2026全球总决赛冠军-英雄联盟官方网站-腾讯游戏",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%98%B3%E6%B1%9F%E6%B5%B7%E9%99%B5%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "title": "2026ȫ���ܾ����ھ�",
+        "matchesEdition": false,
+        "characters": 3779
+      },
+      {
+        "url": "https://fgc.suse.edu.cn/2026/1010/c5016a217143/page.htm",
+        "label": "2026年国家社会科学基金年度项目立项名单公示",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%98%B3%E6%B1%9F%E6%B5%B7%E9%99%B5%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "title": "2026年国家社会科学基金年度项目立项名单公示",
+        "matchesEdition": false,
+        "characters": 870
+      },
+      {
+        "url": "https://gaokao.chsi.com.cn/z/gkbmfslq2026/cjcx.jsp",
+        "label": "2026年高考成绩查询_阳光高考",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%98%B3%E6%B1%9F%E6%B5%B7%E9%99%B5%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "error": "HTTP_412"
+      }
+    ],
+    "relevantCandidates": [
+      {
+        "url": "https://www.sohu.com/a/1080335927_362042?scm=10001.319_13-100000-0_8000.0-0.0-1-0-0-0.0_5820",
+        "label": "2026阳江海陵岛马拉松12月20日开跑_赛事_海岛_海丝",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%98%B3%E6%B1%9F%E6%B5%B7%E9%99%B5%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_candidate",
+        "verified": false,
+        "status": "unverified",
+        "error": "official_publisher_not_confirmed",
+        "title": "2026阳江海陵岛马拉松12月20日开跑"
+      },
+      {
+        "url": "https://weibo.com/2/detail/5348522935453184",
+        "label": "2026阳江海陵岛马拉松启动报名 定档12月20日",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%98%B3%E6%B1%9F%E6%B5%B7%E9%99%B5%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_candidate",
+        "verified": false,
+        "status": "unverified",
+        "error": "official_publisher_not_confirmed",
+        "title": "2026阳江海陵岛马拉松启动报名 定档12月20日"
+      },
+      {
+        "url": "https://www.163.com/dy/article/L9BPU6N905502L65.html",
+        "label": "最高8000元奖金+三重补贴叠加!2026阳江海陵岛马拉松团报福利全解锁|报名费|成都马拉松_网易订阅",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%98%B3%E6%B1%9F%E6%B5%B7%E9%99%B5%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_candidate",
+        "verified": false,
+        "status": "unverified",
+        "error": "official_publisher_not_confirmed",
+        "title": "最高8000元奖金+三重补贴叠加！2026阳江海陵岛马拉松团报福利全解锁"
+      },
+      {
+        "url": "https://www.nowrun.cn/race/307",
+        "label": "2026阳江海陵岛马拉松 - 闹跑",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%98%B3%E6%B1%9F%E6%B5%B7%E9%99%B5%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_candidate",
+        "verified": false,
+        "status": "unverified",
+        "error": "official_publisher_not_confirmed",
+        "title": "2026阳江海陵岛马拉松报名中"
+      }
+    ]
+  },
+  {
+    "id": "caa-1000480043",
+    "name": "2026重庆忠县马拉松暨第九届长江三峡马拉松",
+    "query": "2026重庆忠县马拉松暨第九届长江三峡马拉松 官方网站 竞赛规程 报名须知",
+    "checkedAt": "2026-11-17T17:52:10.047Z",
+    "sources": [
+      {
+        "url": "https://baike.baidu.com/item/2026%E5%B9%B4%E8",
+        "label": "2026年_百度百科",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%87%8D%E5%BA%86%E5%BF%A0%E5%8E%BF%E9%A9%AC%E6%8B%89%E6%9D%BE%E6%9A%A8%E7%AC%AC%E4%B9%9D%E5%B1%8A%E9%95%BF%E6%B1%9F%E4%B8%89%E5%B3%A1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://yz.chsi.com.cn/kyzx/zt/kyfs.shtml",
+        "label": "2026年研考分数查询及复试分数线汇总_中国研究生招生信息网",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%87%8D%E5%BA%86%E5%BF%A0%E5%8E%BF%E9%A9%AC%E6%8B%89%E6%9D%BE%E6%9A%A8%E7%AC%AC%E4%B9%9D%E5%B1%8A%E9%95%BF%E6%B1%9F%E4%B8%89%E5%B3%A1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://lol.qq.com/act/a20261115champion/preview.html?e_code=500130",
+        "label": "2026全球总决赛冠军-英雄联盟官方网站-腾讯游戏",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%87%8D%E5%BA%86%E5%BF%A0%E5%8E%BF%E9%A9%AC%E6%8B%89%E6%9D%BE%E6%9A%A8%E7%AC%AC%E4%B9%9D%E5%B1%8A%E9%95%BF%E6%B1%9F%E4%B8%89%E5%B3%A1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://fgc.suse.edu.cn/2026/1010/c5016a217143/page.htm",
+        "label": "2026年国家社会科学基金年度项目立项名单公示",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%87%8D%E5%BA%86%E5%BF%A0%E5%8E%BF%E9%A9%AC%E6%8B%89%E6%9D%BE%E6%9A%A8%E7%AC%AC%E4%B9%9D%E5%B1%8A%E9%95%BF%E6%B1%9F%E4%B8%89%E5%B3%A1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://gaokao.chsi.com.cn/z/gkbmfslq2026/cjcx.jsp",
+        "label": "2026年高考成绩查询_阳光高考",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%87%8D%E5%BA%86%E5%BF%A0%E5%8E%BF%E9%A9%AC%E6%8B%89%E6%9D%BE%E6%9A%A8%E7%AC%AC%E4%B9%9D%E5%B1%8A%E9%95%BF%E6%B1%9F%E4%B8%89%E5%B3%A1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.ithome.com/zt/apec2026",
+        "label": "2026 深圳 APEC 工商领导人峰会专题 - IT之家",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%87%8D%E5%BA%86%E5%BF%A0%E5%8E%BF%E9%A9%AC%E6%8B%89%E6%9D%BE%E6%9A%A8%E7%AC%AC%E4%B9%9D%E5%B1%8A%E9%95%BF%E6%B1%9F%E4%B8%89%E5%B3%A1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.rili.com.cn/wannianli/2026/",
+        "label": "万年历2026年日历表_日历网",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%87%8D%E5%BA%86%E5%BF%A0%E5%8E%BF%E9%A9%AC%E6%8B%89%E6%9D%BE%E6%9A%A8%E7%AC%AC%E4%B9%9D%E5%B1%8A%E9%95%BF%E6%B1%9F%E4%B8%89%E5%B3%A1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://sports.cctv.com/2026/11/15/ARTI5VvqhhtEckKGKjisvgy2261115.shtml",
+        "label": "BLG夺得S16全球总决赛冠军，LPL赛区时隔五年再度问鼎",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%87%8D%E5%BA%86%E5%BF%A0%E5%8E%BF%E9%A9%AC%E6%8B%89%E6%9D%BE%E6%9A%A8%E7%AC%AC%E4%B9%9D%E5%B1%8A%E9%95%BF%E6%B1%9F%E4%B8%89%E5%B3%A1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.gov.cn/zhengce/content/202511/content_7047090.htm",
+        "label": "国务院办公厅关于2026年部分节假日安排的通知_其他_中国 ...",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%87%8D%E5%BA%86%E5%BF%A0%E5%8E%BF%E9%A9%AC%E6%8B%89%E6%9D%BE%E6%9A%A8%E7%AC%AC%E4%B9%9D%E5%B1%8A%E9%95%BF%E6%B1%9F%E4%B8%89%E5%B3%A1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://2026dyylb.com.cn/",
+        "label": "2026电影一览表 - 2026年上映电影/国产剧集/短剧动漫片单全 ...",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%87%8D%E5%BA%86%E5%BF%A0%E5%8E%BF%E9%A9%AC%E6%8B%89%E6%9D%BE%E6%9A%A8%E7%AC%AC%E4%B9%9D%E5%B1%8A%E9%95%BF%E6%B1%9F%E4%B8%89%E5%B3%A1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://epaper.zzxw.net/html/2026-09/30/content_30332_19915299.htm",
+        "label": "忠州报数字报-2026 三峡马 12月6日鸣枪开跑",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%87%8D%E5%BA%86%E5%BF%A0%E5%8E%BF%E9%A9%AC%E6%8B%89%E6%9D%BE%E6%9A%A8%E7%AC%AC%E4%B9%9D%E5%B1%8A%E9%95%BF%E6%B1%9F%E4%B8%89%E5%B3%A1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://weibo.com/2/detail/5347052826920542",
+        "label": "第九届长江三峡马拉松定档2026年12月6日 忠县开跑",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%87%8D%E5%BA%86%E5%BF%A0%E5%8E%BF%E9%A9%AC%E6%8B%89%E6%9D%BE%E6%9A%A8%E7%AC%AC%E4%B9%9D%E5%B1%8A%E9%95%BF%E6%B1%9F%E4%B8%89%E5%B3%A1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://reg.zuicool.com/59372",
+        "label": "「榕泉木业杯」第九届长江三峡马拉松暨2026重庆忠县马拉松 - 一键报名 - 最酷",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%87%8D%E5%BA%86%E5%BF%A0%E5%8E%BF%E9%A9%AC%E6%8B%89%E6%9D%BE%E6%9A%A8%E7%AC%AC%E4%B9%9D%E5%B1%8A%E9%95%BF%E6%B1%9F%E4%B8%89%E5%B3%A1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://cq.bendibao.com/xiuxian/2025813/156928.shtm",
+        "label": "2026重庆马拉松报名时间+入口+报名费+条件- 重庆本地宝",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%87%8D%E5%BA%86%E5%BF%A0%E5%8E%BF%E9%A9%AC%E6%8B%89%E6%9D%BE%E6%9A%A8%E7%AC%AC%E4%B9%9D%E5%B1%8A%E9%95%BF%E6%B1%9F%E4%B8%89%E5%B3%A1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://m.cq.bendibao.com/xiuxian/156985.shtm",
+        "label": "2026重庆马拉松报名入口及流程- 重庆本地宝",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%87%8D%E5%BA%86%E5%BF%A0%E5%8E%BF%E9%A9%AC%E6%8B%89%E6%9D%BE%E6%9A%A8%E7%AC%AC%E4%B9%9D%E5%B1%8A%E9%95%BF%E6%B1%9F%E4%B8%89%E5%B3%A1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.ezjw.com/notice-detail-332673747.html",
+        "label": "2026重庆忠县马拉松暨第九届长江三峡马拉松赛事执行(ZHZ26C00037)公开招标公告-重庆招标采购-住建网",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%87%8D%E5%BA%86%E5%BF%A0%E5%8E%BF%E9%A9%AC%E6%8B%89%E6%9D%BE%E6%9A%A8%E7%AC%AC%E4%B9%9D%E5%B1%8A%E9%95%BF%E6%B1%9F%E4%B8%89%E5%B3%A1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.bidcenter.com.cn/news-442468922-1.html",
+        "label": "2026重庆忠县马拉松暨第九届长江三峡马拉松赛事执行公开招标公告-采招网",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%87%8D%E5%BA%86%E5%BF%A0%E5%8E%BF%E9%A9%AC%E6%8B%89%E6%9D%BE%E6%9A%A8%E7%AC%AC%E4%B9%9D%E5%B1%8A%E9%95%BF%E6%B1%9F%E4%B8%89%E5%B3%A1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://info.so.com/feedback.html?src=know_side_nlp",
+        "label": "反馈",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%87%8D%E5%BA%86%E5%BF%A0%E5%8E%BF%E9%A9%AC%E6%8B%89%E6%9D%BE%E6%9A%A8%E7%AC%AC%E4%B9%9D%E5%B1%8A%E9%95%BF%E6%B1%9F%E4%B8%89%E5%B3%A1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://info.so.com/feedback.html?src=know_side_nlp",
+        "label": "反馈",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%87%8D%E5%BA%86%E5%BF%A0%E5%8E%BF%E9%A9%AC%E6%8B%89%E6%9D%BE%E6%9A%A8%E7%AC%AC%E4%B9%9D%E5%B1%8A%E9%95%BF%E6%B1%9F%E4%B8%89%E5%B3%A1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://info.so.com/feedback.html?src=know_side_nlp",
+        "label": "反馈",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%87%8D%E5%BA%86%E5%BF%A0%E5%8E%BF%E9%A9%AC%E6%8B%89%E6%9D%BE%E6%9A%A8%E7%AC%AC%E4%B9%9D%E5%B1%8A%E9%95%BF%E6%B1%9F%E4%B8%89%E5%B3%A1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://info.so.com/feedback.html?src=know_side_nlp",
+        "label": "反馈",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%87%8D%E5%BA%86%E5%BF%A0%E5%8E%BF%E9%A9%AC%E6%8B%89%E6%9D%BE%E6%9A%A8%E7%AC%AC%E4%B9%9D%E5%B1%8A%E9%95%BF%E6%B1%9F%E4%B8%89%E5%B3%A1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      }
+    ],
+    "failures": [
+      {
+        "url": "https://weixin.sogou.com/weixin?type=2&query=2026%E9%87%8D%E5%BA%86%E5%BF%A0%E5%8E%BF%E9%A9%AC%E6%8B%89%E6%9D%BE%E6%9A%A8%E7%AC%AC%E4%B9%9D%E5%B1%8A%E9%95%BF%E6%B1%9F%E4%B8%89%E5%B3%A1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "step": "source_search",
+        "error": "search_access_verification_required"
+      }
+    ],
+    "candidates": [
+      {
+        "url": "https://yz.chsi.com.cn/kyzx/zt/kyfs.shtml",
+        "label": "2026年研考分数查询及复试分数线汇总_中国研究生招生信息网",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%87%8D%E5%BA%86%E5%BF%A0%E5%8E%BF%E9%A9%AC%E6%8B%89%E6%9D%BE%E6%9A%A8%E7%AC%AC%E4%B9%9D%E5%B1%8A%E9%95%BF%E6%B1%9F%E4%B8%89%E5%B3%A1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "title": "2026年研考分数查询及复试分数线汇总_中国研究生招生信息网",
+        "matchesEdition": false,
+        "characters": 31
+      },
+      {
+        "url": "https://lol.qq.com/act/a20261115champion/preview.html?e_code=500130",
+        "label": "2026全球总决赛冠军-英雄联盟官方网站-腾讯游戏",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%87%8D%E5%BA%86%E5%BF%A0%E5%8E%BF%E9%A9%AC%E6%8B%89%E6%9D%BE%E6%9A%A8%E7%AC%AC%E4%B9%9D%E5%B1%8A%E9%95%BF%E6%B1%9F%E4%B8%89%E5%B3%A1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "title": "2026ȫ���ܾ����ھ�",
+        "matchesEdition": false,
+        "characters": 3779
+      },
+      {
+        "url": "https://fgc.suse.edu.cn/2026/1010/c5016a217143/page.htm",
+        "label": "2026年国家社会科学基金年度项目立项名单公示",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%87%8D%E5%BA%86%E5%BF%A0%E5%8E%BF%E9%A9%AC%E6%8B%89%E6%9D%BE%E6%9A%A8%E7%AC%AC%E4%B9%9D%E5%B1%8A%E9%95%BF%E6%B1%9F%E4%B8%89%E5%B3%A1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "title": "2026年国家社会科学基金年度项目立项名单公示",
+        "matchesEdition": false,
+        "characters": 870
+      },
+      {
+        "url": "https://gaokao.chsi.com.cn/z/gkbmfslq2026/cjcx.jsp",
+        "label": "2026年高考成绩查询_阳光高考",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%87%8D%E5%BA%86%E5%BF%A0%E5%8E%BF%E9%A9%AC%E6%8B%89%E6%9D%BE%E6%9A%A8%E7%AC%AC%E4%B9%9D%E5%B1%8A%E9%95%BF%E6%B1%9F%E4%B8%89%E5%B3%A1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "error": "HTTP_412"
+      }
+    ],
+    "relevantCandidates": [
+      {
+        "url": "https://weibo.com/2/detail/5347052826920542",
+        "label": "第九届长江三峡马拉松定档2026年12月6日 忠县开跑",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%87%8D%E5%BA%86%E5%BF%A0%E5%8E%BF%E9%A9%AC%E6%8B%89%E6%9D%BE%E6%9A%A8%E7%AC%AC%E4%B9%9D%E5%B1%8A%E9%95%BF%E6%B1%9F%E4%B8%89%E5%B3%A1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_candidate",
+        "verified": false,
+        "status": "unverified",
+        "error": "official_publisher_not_confirmed",
+        "title": "第九届长江三峡马拉松定档2026年12月6日 忠县开跑"
+      },
+      {
+        "url": "https://www.ezjw.com/notice-detail-332673747.html",
+        "label": "2026重庆忠县马拉松暨第九届长江三峡马拉松赛事执行(ZHZ26C00037)公开招标公告-重庆招标采购-住建网",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%87%8D%E5%BA%86%E5%BF%A0%E5%8E%BF%E9%A9%AC%E6%8B%89%E6%9D%BE%E6%9A%A8%E7%AC%AC%E4%B9%9D%E5%B1%8A%E9%95%BF%E6%B1%9F%E4%B8%89%E5%B3%A1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_candidate",
+        "verified": false,
+        "status": "access_restricted",
+        "error": "access_verification_required"
+      },
+      {
+        "url": "https://www.bidcenter.com.cn/news-442468922-1.html",
+        "label": "2026重庆忠县马拉松暨第九届长江三峡马拉松赛事执行公开招标公告-采招网",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%87%8D%E5%BA%86%E5%BF%A0%E5%8E%BF%E9%A9%AC%E6%8B%89%E6%9D%BE%E6%9A%A8%E7%AC%AC%E4%B9%9D%E5%B1%8A%E9%95%BF%E6%B1%9F%E4%B8%89%E5%B3%A1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_candidate",
+        "verified": false,
+        "status": "access_restricted",
+        "error": "access_verification_required"
+      }
+    ]
+  },
+  {
+    "id": "caa-1000479009",
+    "name": "2026舟山群岛马拉松",
+    "query": "2026舟山群岛马拉松 官方网站 竞赛规程 报名须知",
+    "checkedAt": "2026-11-17T17:52:12.298Z",
+    "sources": [
+      {
+        "url": "https://baike.baidu.com/item/2026%E5%B9%B4%E8",
+        "label": "2026年_百度百科",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E8%88%9F%E5%B1%B1%E7%BE%A4%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://yz.chsi.com.cn/kyzx/zt/kyfs.shtml",
+        "label": "2026年研考分数查询及复试分数线汇总_中国研究生招生信息网",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E8%88%9F%E5%B1%B1%E7%BE%A4%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://lol.qq.com/act/a20261115champion/preview.html?e_code=500130",
+        "label": "2026全球总决赛冠军-英雄联盟官方网站-腾讯游戏",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E8%88%9F%E5%B1%B1%E7%BE%A4%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://fgc.suse.edu.cn/2026/1010/c5016a217143/page.htm",
+        "label": "2026年国家社会科学基金年度项目立项名单公示",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E8%88%9F%E5%B1%B1%E7%BE%A4%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://gaokao.chsi.com.cn/z/gkbmfslq2026/cjcx.jsp",
+        "label": "2026年高考成绩查询_阳光高考",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E8%88%9F%E5%B1%B1%E7%BE%A4%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.ithome.com/zt/apec2026",
+        "label": "2026 深圳 APEC 工商领导人峰会专题 - IT之家",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E8%88%9F%E5%B1%B1%E7%BE%A4%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.rili.com.cn/wannianli/2026/",
+        "label": "万年历2026年日历表_日历网",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E8%88%9F%E5%B1%B1%E7%BE%A4%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://sports.cctv.com/2026/11/15/ARTI5VvqhhtEckKGKjisvgy2261115.shtml",
+        "label": "BLG夺得S16全球总决赛冠军，LPL赛区时隔五年再度问鼎",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E8%88%9F%E5%B1%B1%E7%BE%A4%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.gov.cn/zhengce/content/202511/content_7047090.htm",
+        "label": "国务院办公厅关于2026年部分节假日安排的通知_其他_中国 ...",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E8%88%9F%E5%B1%B1%E7%BE%A4%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://2026dyylb.com.cn/",
+        "label": "2026电影一览表 - 2026年上映电影/国产剧集/短剧动漫片单全 ...",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E8%88%9F%E5%B1%B1%E7%BE%A4%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://ai.so.com/search/soc648ae2b8c273aafbcdcdd2c7a30fab8?search=2026%E8%88%9F%E5%B1%B1%E7%BE%A4%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%E6%8A%A5%E5%90%8D%E7%A8%8B%E5%BA%8F%E6%AD%A3%E5%BC%8F%E5%90%AF%E5%8A%A8&src=so_result_natural_news&srcg=so_result_natural_news",
+        "label": "2026舟山群岛马拉松报名程序正式启动",
+        "sourceUrl": "https://www.so.com/s?q=2026%E8%88%9F%E5%B1%B1%E7%BE%A4%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.163.com/dy/article/LADA3VKB05149TGD.html",
+        "label": "2026舟山群岛马拉松启动报名程序|滨海|普陀|半程马拉松_网易订阅",
+        "sourceUrl": "https://www.so.com/s?q=2026%E8%88%9F%E5%B1%B1%E7%BE%A4%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://weibo.com/2/detail/5359038936384352",
+        "label": "2026舟山群岛马拉松报名通道开启",
+        "sourceUrl": "https://www.so.com/s?q=2026%E8%88%9F%E5%B1%B1%E7%BE%A4%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://reg.zuicool.com/34604",
+        "label": "2026舟山群岛马拉松 - 一键报名 - 最酷",
+        "sourceUrl": "https://www.so.com/s?q=2026%E8%88%9F%E5%B1%B1%E7%BE%A4%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://zuicool.com/event/84480",
+        "label": "2026舟山群岛马拉松",
+        "sourceUrl": "https://www.so.com/s?q=2026%E8%88%9F%E5%B1%B1%E7%BE%A4%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://zs.zjim.org/",
+        "label": "2023舟山群岛马拉松",
+        "sourceUrl": "https://www.so.com/s?q=2026%E8%88%9F%E5%B1%B1%E7%BE%A4%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://hz.bendibao.com/xiuxian/20201010/94306.shtm",
+        "label": "2020舟山群岛马拉松报名须知(官方版)- 杭州本地宝",
+        "sourceUrl": "https://www.so.com/s?q=2026%E8%88%9F%E5%B1%B1%E7%BE%A4%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://info.so.com/feedback.html?src=know_side_nlp",
+        "label": "反馈",
+        "sourceUrl": "https://www.so.com/s?q=2026%E8%88%9F%E5%B1%B1%E7%BE%A4%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://info.so.com/feedback.html?src=know_side_nlp",
+        "label": "反馈",
+        "sourceUrl": "https://www.so.com/s?q=2026%E8%88%9F%E5%B1%B1%E7%BE%A4%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://info.so.com/feedback.html?src=know_side_nlp",
+        "label": "反馈",
+        "sourceUrl": "https://www.so.com/s?q=2026%E8%88%9F%E5%B1%B1%E7%BE%A4%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://ranks.hao.360.com/?src=so_youce_title",
+        "label": "",
+        "sourceUrl": "https://www.so.com/s?q=2026%E8%88%9F%E5%B1%B1%E7%BE%A4%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      }
+    ],
+    "failures": [
+      {
+        "url": "https://weixin.sogou.com/weixin?type=2&query=2026%E8%88%9F%E5%B1%B1%E7%BE%A4%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "step": "source_search",
+        "error": "search_access_verification_required"
+      }
+    ],
+    "candidates": [
+      {
+        "url": "https://yz.chsi.com.cn/kyzx/zt/kyfs.shtml",
+        "label": "2026年研考分数查询及复试分数线汇总_中国研究生招生信息网",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E8%88%9F%E5%B1%B1%E7%BE%A4%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "title": "2026年研考分数查询及复试分数线汇总_中国研究生招生信息网",
+        "matchesEdition": false,
+        "characters": 31
+      },
+      {
+        "url": "https://lol.qq.com/act/a20261115champion/preview.html?e_code=500130",
+        "label": "2026全球总决赛冠军-英雄联盟官方网站-腾讯游戏",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E8%88%9F%E5%B1%B1%E7%BE%A4%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "title": "2026ȫ���ܾ����ھ�",
+        "matchesEdition": false,
+        "characters": 3779
+      },
+      {
+        "url": "https://fgc.suse.edu.cn/2026/1010/c5016a217143/page.htm",
+        "label": "2026年国家社会科学基金年度项目立项名单公示",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E8%88%9F%E5%B1%B1%E7%BE%A4%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "title": "2026年国家社会科学基金年度项目立项名单公示",
+        "matchesEdition": false,
+        "characters": 870
+      },
+      {
+        "url": "https://gaokao.chsi.com.cn/z/gkbmfslq2026/cjcx.jsp",
+        "label": "2026年高考成绩查询_阳光高考",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E8%88%9F%E5%B1%B1%E7%BE%A4%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "error": "HTTP_412"
+      }
+    ],
+    "relevantCandidates": [
+      {
+        "url": "https://www.163.com/dy/article/LADA3VKB05149TGD.html",
+        "label": "2026舟山群岛马拉松启动报名程序|滨海|普陀|半程马拉松_网易订阅",
+        "sourceUrl": "https://www.so.com/s?q=2026%E8%88%9F%E5%B1%B1%E7%BE%A4%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_candidate",
+        "verified": false,
+        "status": "unverified",
+        "error": "official_publisher_not_confirmed",
+        "title": "2026舟山群岛马拉松启动报名程序"
+      },
+      {
+        "url": "https://weibo.com/2/detail/5359038936384352",
+        "label": "2026舟山群岛马拉松报名通道开启",
+        "sourceUrl": "https://www.so.com/s?q=2026%E8%88%9F%E5%B1%B1%E7%BE%A4%E5%B2%9B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_candidate",
+        "verified": false,
+        "status": "unverified",
+        "error": "official_publisher_not_confirmed",
+        "title": "2026舟山群岛马拉松报名通道开启"
+      }
+    ]
+  },
+  {
+    "id": "caa-1000479069",
+    "name": "2026黄山马拉松",
+    "query": "2026黄山马拉松 官方网站 竞赛规程 报名须知",
+    "checkedAt": "2026-11-17T17:52:12.626Z",
+    "sources": [
+      {
+        "url": "https://baike.baidu.com/item/2026%E5%B9%B4%E8",
+        "label": "2026年_百度百科",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%BB%84%E5%B1%B1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://yz.chsi.com.cn/kyzx/zt/kyfs.shtml",
+        "label": "2026年研考分数查询及复试分数线汇总_中国研究生招生信息网",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%BB%84%E5%B1%B1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://lol.qq.com/act/a20261115champion/preview.html?e_code=500130",
+        "label": "2026全球总决赛冠军-英雄联盟官方网站-腾讯游戏",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%BB%84%E5%B1%B1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://fgc.suse.edu.cn/2026/1010/c5016a217143/page.htm",
+        "label": "2026年国家社会科学基金年度项目立项名单公示",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%BB%84%E5%B1%B1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://gaokao.chsi.com.cn/z/gkbmfslq2026/cjcx.jsp",
+        "label": "2026年高考成绩查询_阳光高考",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%BB%84%E5%B1%B1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.ithome.com/zt/apec2026",
+        "label": "2026 深圳 APEC 工商领导人峰会专题 - IT之家",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%BB%84%E5%B1%B1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.rili.com.cn/wannianli/2026/",
+        "label": "万年历2026年日历表_日历网",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%BB%84%E5%B1%B1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://sports.cctv.com/2026/11/15/ARTI5VvqhhtEckKGKjisvgy2261115.shtml",
+        "label": "BLG夺得S16全球总决赛冠军，LPL赛区时隔五年再度问鼎",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%BB%84%E5%B1%B1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.gov.cn/zhengce/content/202511/content_7047090.htm",
+        "label": "国务院办公厅关于2026年部分节假日安排的通知_其他_中国 ...",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%BB%84%E5%B1%B1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://2026dyylb.com.cn/",
+        "label": "2026电影一览表 - 2026年上映电影/国产剧集/短剧动漫片单全 ...",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%BB%84%E5%B1%B1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://ai.so.com/search/so34b283397b5844b14d446f4798152e9d?search=2026%E9%BB%84%E5%B1%B1%E9%A9%AC%E6%8B%89%E6%9D%BE%E6%9A%A8%E9%A6%96%E5%B1%8A%E4%BA%9A%E6%B4%B2%E5%A4%A7%E5%B8%88%E9%A9%AC%E6%8B%89%E6%9D%BE%E8%B5%9B%E5%BC%80%E5%90%AF%E6%8A%A5%E5%90%8D%EF%BC%8C%E8%8E%B7%E4%B8%AD%E5%9B%BD%E7%94%B0%E5%8D%8FA%E7%B1%BB%E8%AE%A4%E8%AF%81&src=so_result_natural_news&srcg=so_result_natural_news",
+        "label": "2026黄山马拉松暨首届亚洲大师马拉松赛开启报名,获中国田协A类...",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%BB%84%E5%B1%B1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.sohu.com/a/1068426242_121124664",
+        "label": "中国田协A类认证!2026黄山马拉松暨首届亚洲大师马拉松赛报名!11月29日等你来跑!_赛事_赛道_山水",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%BB%84%E5%B1%B1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://c.m.163.com/news/a/L5MDRQ7H0529BKEP.html",
+        "label": "报名火热进行中 | 2026黄山马拉松,跑起来,去见山",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%BB%84%E5%B1%B1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://reg.zuicool.com/40656",
+        "label": "2026黄山马拉松 - 一键报名 - 最酷",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%BB%84%E5%B1%B1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.toutiao.com/article/7586978582426042943/",
+        "label": "2026黄山马拉松,最新消息来了! - 今日头条",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%BB%84%E5%B1%B1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://zuicool.com/news/archives/301033",
+        "label": "户外特工2026黄山西宏越野秋季赛 竞赛规程 - 最酷 ZUICOOL 马拉松报名",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%BB%84%E5%B1%B1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://haokan.baidu.com/v?pd=wisenatural&vid=16446737182527660897",
+        "label": "2026年黄山马拉松比赛时间,体育,田径,好看视频",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%BB%84%E5%B1%B1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://info.so.com/feedback.html?src=know_side_nlp",
+        "label": "反馈",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%BB%84%E5%B1%B1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://info.so.com/feedback.html?src=know_side_nlp",
+        "label": "反馈",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%BB%84%E5%B1%B1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://info.so.com/feedback.html?src=know_side_nlp",
+        "label": "反馈",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%BB%84%E5%B1%B1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://ranks.hao.360.com/?src=so_youce_title",
+        "label": "",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%BB%84%E5%B1%B1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      }
+    ],
+    "failures": [
+      {
+        "url": "https://weixin.sogou.com/weixin?type=2&query=2026%E9%BB%84%E5%B1%B1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "step": "source_search",
+        "error": "search_access_verification_required"
+      }
+    ],
+    "candidates": [
+      {
+        "url": "https://yz.chsi.com.cn/kyzx/zt/kyfs.shtml",
+        "label": "2026年研考分数查询及复试分数线汇总_中国研究生招生信息网",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%BB%84%E5%B1%B1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "title": "2026年研考分数查询及复试分数线汇总_中国研究生招生信息网",
+        "matchesEdition": false,
+        "characters": 31
+      },
+      {
+        "url": "https://lol.qq.com/act/a20261115champion/preview.html?e_code=500130",
+        "label": "2026全球总决赛冠军-英雄联盟官方网站-腾讯游戏",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%BB%84%E5%B1%B1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "title": "2026ȫ���ܾ����ھ�",
+        "matchesEdition": false,
+        "characters": 3779
+      },
+      {
+        "url": "https://fgc.suse.edu.cn/2026/1010/c5016a217143/page.htm",
+        "label": "2026年国家社会科学基金年度项目立项名单公示",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%BB%84%E5%B1%B1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "title": "2026年国家社会科学基金年度项目立项名单公示",
+        "matchesEdition": false,
+        "characters": 870
+      },
+      {
+        "url": "https://gaokao.chsi.com.cn/z/gkbmfslq2026/cjcx.jsp",
+        "label": "2026年高考成绩查询_阳光高考",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E9%BB%84%E5%B1%B1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "error": "HTTP_412"
+      }
+    ],
+    "relevantCandidates": [
+      {
+        "url": "https://www.sohu.com/a/1068426242_121124664",
+        "label": "中国田协A类认证!2026黄山马拉松暨首届亚洲大师马拉松赛报名!11月29日等你来跑!_赛事_赛道_山水",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%BB%84%E5%B1%B1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_candidate",
+        "verified": false,
+        "status": "unverified",
+        "error": "official_publisher_not_confirmed",
+        "title": "中国田协A类认证！2026黄山马拉松暨首届亚洲大师马拉松赛报名！11月29日等你来跑！"
+      },
+      {
+        "url": "https://c.m.163.com/news/a/L5MDRQ7H0529BKEP.html",
+        "label": "报名火热进行中 | 2026黄山马拉松,跑起来,去见山",
+        "sourceUrl": "https://www.so.com/s?q=2026%E9%BB%84%E5%B1%B1%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_candidate",
+        "verified": false,
+        "status": "unverified",
+        "error": "official_publisher_not_confirmed",
+        "title": "报名火热进行中 | 2026黄山马拉松，跑起来，去见山"
+      }
+    ]
+  },
+  {
+    "id": "caa-1000452086",
+    "name": "2026肇庆马拉松",
+    "query": "2026肇庆马拉松 官方网站 竞赛规程 报名须知",
+    "checkedAt": "2026-11-17T17:52:14.148Z",
+    "sources": [
+      {
+        "url": "https://baike.baidu.com/item/2026%E5%B9%B4%E8",
+        "label": "2026年_百度百科",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E8%82%87%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://yz.chsi.com.cn/kyzx/zt/kyfs.shtml",
+        "label": "2026年研考分数查询及复试分数线汇总_中国研究生招生信息网",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E8%82%87%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://lol.qq.com/act/a20261115champion/preview.html?e_code=500130",
+        "label": "2026全球总决赛冠军-英雄联盟官方网站-腾讯游戏",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E8%82%87%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://fgc.suse.edu.cn/2026/1010/c5016a217143/page.htm",
+        "label": "2026年国家社会科学基金年度项目立项名单公示",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E8%82%87%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://gaokao.chsi.com.cn/z/gkbmfslq2026/cjcx.jsp",
+        "label": "2026年高考成绩查询_阳光高考",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E8%82%87%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.ithome.com/zt/apec2026",
+        "label": "2026 深圳 APEC 工商领导人峰会专题 - IT之家",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E8%82%87%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.rili.com.cn/wannianli/2026/",
+        "label": "万年历2026年日历表_日历网",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E8%82%87%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://sports.cctv.com/2026/11/15/ARTI5VvqhhtEckKGKjisvgy2261115.shtml",
+        "label": "BLG夺得S16全球总决赛冠军，LPL赛区时隔五年再度问鼎",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E8%82%87%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.gov.cn/zhengce/content/202511/content_7047090.htm",
+        "label": "国务院办公厅关于2026年部分节假日安排的通知_其他_中国 ...",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E8%82%87%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://2026dyylb.com.cn/",
+        "label": "2026电影一览表 - 2026年上映电影/国产剧集/短剧动漫片单全 ...",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E8%82%87%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://m.thepaper.cn/newsDetail_forward_33846614",
+        "label": "来了!2026肇庆马拉松,今天14点开启报名!_澎湃号·政务_澎湃新闻-The Paper",
+        "sourceUrl": "https://www.so.com/s?q=2026%E8%82%87%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.thepaper.cn/newsDetail_forward_33824887",
+        "label": "2026肇庆马拉松,报名时间定了!_澎湃号·政务_澎湃新闻-The Paper",
+        "sourceUrl": "https://www.so.com/s?q=2026%E8%82%87%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://pub.timedg.com/s/2026-08/21/AP6a882eade4b090a39fb55fff.html",
+        "label": "2026肇庆马拉松,报名时间定了!",
+        "sourceUrl": "https://www.so.com/s?q=2026%E8%82%87%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.sohu.com/a/1067346043_122001006",
+        "label": "来了!2026肇庆马拉松,今天14点开启报名!_赛事_廖文奕_比赛",
+        "sourceUrl": "https://www.so.com/s?q=2026%E8%82%87%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://weibo.com/2/detail/5335854214022638",
+        "label": "2026肇庆马拉松开启报名 赛事定档11月29日",
+        "sourceUrl": "https://www.so.com/s?q=2026%E8%82%87%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://www.xjrb.com/2026/0827/704989.shtml",
+        "label": "2026肇马报名通道开启 _肇庆新闻_肇庆_西江网",
+        "sourceUrl": "https://www.so.com/s?q=2026%E8%82%87%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://k.sina.com.cn/article_5952915720_162d249080670535vk.html",
+        "label": "2026肇庆马拉松抽签结果公布!速查→|组委会|报名|赛事|选手|参赛_新浪新闻",
+        "sourceUrl": "https://www.so.com/s?q=2026%E8%82%87%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://info.so.com/feedback.html?src=know_side_nlp",
+        "label": "反馈",
+        "sourceUrl": "https://www.so.com/s?q=2026%E8%82%87%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://info.so.com/feedback.html?src=know_side_nlp",
+        "label": "反馈",
+        "sourceUrl": "https://www.so.com/s?q=2026%E8%82%87%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://info.so.com/feedback.html?src=know_side_nlp",
+        "label": "反馈",
+        "sourceUrl": "https://www.so.com/s?q=2026%E8%82%87%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://ranks.hao.360.com/?src=so_youce_title",
+        "label": "",
+        "sourceUrl": "https://www.so.com/s?q=2026%E8%82%87%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      }
+    ],
+    "failures": [
+      {
+        "url": "https://weixin.sogou.com/weixin?type=2&query=2026%E8%82%87%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "step": "source_search",
+        "error": "search_access_verification_required"
+      }
+    ],
+    "candidates": [
+      {
+        "url": "https://yz.chsi.com.cn/kyzx/zt/kyfs.shtml",
+        "label": "2026年研考分数查询及复试分数线汇总_中国研究生招生信息网",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E8%82%87%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "title": "2026年研考分数查询及复试分数线汇总_中国研究生招生信息网",
+        "matchesEdition": false,
+        "characters": 31
+      },
+      {
+        "url": "https://lol.qq.com/act/a20261115champion/preview.html?e_code=500130",
+        "label": "2026全球总决赛冠军-英雄联盟官方网站-腾讯游戏",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E8%82%87%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "title": "2026ȫ���ܾ����ھ�",
+        "matchesEdition": false,
+        "characters": 3779
+      },
+      {
+        "url": "https://fgc.suse.edu.cn/2026/1010/c5016a217143/page.htm",
+        "label": "2026年国家社会科学基金年度项目立项名单公示",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E8%82%87%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "title": "2026年国家社会科学基金年度项目立项名单公示",
+        "matchesEdition": false,
+        "characters": 870
+      },
+      {
+        "url": "https://gaokao.chsi.com.cn/z/gkbmfslq2026/cjcx.jsp",
+        "label": "2026年高考成绩查询_阳光高考",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E8%82%87%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "error": "HTTP_412"
+      }
+    ],
+    "relevantCandidates": [
+      {
+        "url": "https://m.thepaper.cn/newsDetail_forward_33846614",
+        "label": "来了!2026肇庆马拉松,今天14点开启报名!_澎湃号·政务_澎湃新闻-The Paper",
+        "sourceUrl": "https://www.so.com/s?q=2026%E8%82%87%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_candidate",
+        "verified": false,
+        "status": "unverified",
+        "error": "official_publisher_not_confirmed",
+        "title": "来了！2026肇庆马拉松，今天14点开启报名！"
+      },
+      {
+        "url": "https://www.thepaper.cn/newsDetail_forward_33824887",
+        "label": "2026肇庆马拉松,报名时间定了!_澎湃号·政务_澎湃新闻-The Paper",
+        "sourceUrl": "https://www.so.com/s?q=2026%E8%82%87%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_candidate",
+        "verified": false,
+        "status": "unverified",
+        "error": "official_publisher_not_confirmed",
+        "title": "2026肇庆马拉松，报名时间定了！"
+      },
+      {
+        "url": "https://pub.timedg.com/s/2026-08/21/AP6a882eade4b090a39fb55fff.html",
+        "label": "2026肇庆马拉松,报名时间定了!",
+        "sourceUrl": "https://www.so.com/s?q=2026%E8%82%87%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_candidate",
+        "verified": false,
+        "status": "unverified",
+        "error": "official_publisher_not_confirmed",
+        "title": "2026肇庆马拉松，报名时间定了！"
+      },
+      {
+        "url": "https://www.sohu.com/a/1067346043_122001006",
+        "label": "来了!2026肇庆马拉松,今天14点开启报名!_赛事_廖文奕_比赛",
+        "sourceUrl": "https://www.so.com/s?q=2026%E8%82%87%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_candidate",
+        "verified": false,
+        "status": "unverified",
+        "error": "official_publisher_not_confirmed",
+        "title": "来了！2026肇庆马拉松，今天14点开启报名！"
+      },
+      {
+        "url": "https://weibo.com/2/detail/5335854214022638",
+        "label": "2026肇庆马拉松开启报名 赛事定档11月29日",
+        "sourceUrl": "https://www.so.com/s?q=2026%E8%82%87%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_candidate",
+        "verified": false,
+        "status": "unverified",
+        "error": "official_publisher_not_confirmed",
+        "title": "2026肇庆马拉松开启报名 赛事定档11月29日"
+      }
+    ]
+  },
+  {
+    "id": "caa-1000454004",
+    "name": "2026绍兴马拉松",
+    "query": "2026绍兴马拉松 官方网站 竞赛规程 报名须知",
+    "checkedAt": "2026-11-17T17:52:16.678Z",
+    "sources": [
+      {
+        "url": "https://baike.baidu.com/item/2026%E5%B9%B4%E8",
+        "label": "2026年_百度百科",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E7%BB%8D%E5%85%B4%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://yz.chsi.com.cn/kyzx/zt/kyfs.shtml",
+        "label": "2026年研考分数查询及复试分数线汇总_中国研究生招生信息网",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E7%BB%8D%E5%85%B4%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://lol.qq.com/act/a20261115champion/preview.html?e_code=500130",
+        "label": "2026全球总决赛冠军-英雄联盟官方网站-腾讯游戏",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E7%BB%8D%E5%85%B4%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://fgc.suse.edu.cn/2026/1010/c5016a217143/page.htm",
+        "label": "2026年国家社会科学基金年度项目立项名单公示",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E7%BB%8D%E5%85%B4%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://gaokao.chsi.com.cn/z/gkbmfslq2026/cjcx.jsp",
+        "label": "2026年高考成绩查询_阳光高考",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E7%BB%8D%E5%85%B4%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.ithome.com/zt/apec2026",
+        "label": "2026 深圳 APEC 工商领导人峰会专题 - IT之家",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E7%BB%8D%E5%85%B4%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.rili.com.cn/wannianli/2026/",
+        "label": "万年历2026年日历表_日历网",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E7%BB%8D%E5%85%B4%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://sports.cctv.com/2026/11/15/ARTI5VvqhhtEckKGKjisvgy2261115.shtml",
+        "label": "BLG夺得S16全球总决赛冠军，LPL赛区时隔五年再度问鼎",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E7%BB%8D%E5%85%B4%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.gov.cn/zhengce/content/202511/content_7047090.htm",
+        "label": "国务院办公厅关于2026年部分节假日安排的通知_其他_中国 ...",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E7%BB%8D%E5%85%B4%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://2026dyylb.com.cn/",
+        "label": "2026电影一览表 - 2026年上映电影/国产剧集/短剧动漫片单全 ...",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E7%BB%8D%E5%85%B4%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://www.sxym.org.cn/",
+        "label": "绍兴马拉松",
+        "sourceUrl": "https://www.so.com/s?q=2026%E7%BB%8D%E5%85%B4%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.shaoxing.com.cn/xinwen/p/3462425.html",
+        "label": "抓紧了!2026绍兴马拉松,今天截止报名_绍兴网",
+        "sourceUrl": "https://www.so.com/s?q=2026%E7%BB%8D%E5%85%B4%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://www.sxym.org.cn/html/bmxz.html",
+        "label": "2026瑞丰银行绍兴马拉松报名须知-绍兴马拉松",
+        "sourceUrl": "https://www.so.com/s?q=2026%E7%BB%8D%E5%85%B4%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://www.sxym.org.cn/html/jsgc.html",
+        "label": "2026瑞丰银行绍兴马拉松竞赛规程-绍兴马拉松",
+        "sourceUrl": "https://www.so.com/s?q=2026%E7%BB%8D%E5%85%B4%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://weibo.com/2/detail/5334703956561524",
+        "label": "2026绍兴马拉松定档11月29日 8月26日开启报名",
+        "sourceUrl": "https://www.so.com/s?q=2026%E7%BB%8D%E5%85%B4%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://c.m.163.com/news/a/L536F5NM0556AF5F.html",
+        "label": "8月26日开启报名,2026绍兴马拉松,来了!",
+        "sourceUrl": "https://www.so.com/s?q=2026%E7%BB%8D%E5%85%B4%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://ai.so.com/search/so6691ecc9a519f0e2abe8c3de387d8650?search=2026%E7%BB%8D%E5%85%B4%E9%A9%AC%E6%8B%89%E6%9D%BE%E4%BA%8E8%E6%9C%8826%E6%97%A5%E5%90%AF%E5%8A%A8%E6%8A%A5%E5%90%8D%E5%B7%A5%E4%BD%9C&src=so_result_natural_news&srcg=so_result_natural_news",
+        "label": "2026绍兴马拉松于8月26日启动报名工作",
+        "sourceUrl": "https://www.so.com/s?q=2026%E7%BB%8D%E5%85%B4%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://info.so.com/feedback.html?src=know_side_nlp",
+        "label": "反馈",
+        "sourceUrl": "https://www.so.com/s?q=2026%E7%BB%8D%E5%85%B4%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://info.so.com/feedback.html?src=know_side_nlp",
+        "label": "反馈",
+        "sourceUrl": "https://www.so.com/s?q=2026%E7%BB%8D%E5%85%B4%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://info.so.com/feedback.html?src=know_side_nlp",
+        "label": "反馈",
+        "sourceUrl": "https://www.so.com/s?q=2026%E7%BB%8D%E5%85%B4%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://ranks.hao.360.com/?src=so_youce_title",
+        "label": "",
+        "sourceUrl": "https://www.so.com/s?q=2026%E7%BB%8D%E5%85%B4%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      }
+    ],
+    "failures": [
+      {
+        "url": "https://weixin.sogou.com/weixin?type=2&query=2026%E7%BB%8D%E5%85%B4%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "step": "source_search",
+        "error": "search_access_verification_required"
+      }
+    ],
+    "candidates": [
+      {
+        "url": "https://yz.chsi.com.cn/kyzx/zt/kyfs.shtml",
+        "label": "2026年研考分数查询及复试分数线汇总_中国研究生招生信息网",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E7%BB%8D%E5%85%B4%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "title": "2026年研考分数查询及复试分数线汇总_中国研究生招生信息网",
+        "matchesEdition": false,
+        "characters": 31
+      },
+      {
+        "url": "https://lol.qq.com/act/a20261115champion/preview.html?e_code=500130",
+        "label": "2026全球总决赛冠军-英雄联盟官方网站-腾讯游戏",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E7%BB%8D%E5%85%B4%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "title": "2026ȫ���ܾ����ھ�",
+        "matchesEdition": false,
+        "characters": 3779
+      },
+      {
+        "url": "https://fgc.suse.edu.cn/2026/1010/c5016a217143/page.htm",
+        "label": "2026年国家社会科学基金年度项目立项名单公示",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E7%BB%8D%E5%85%B4%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "title": "2026年国家社会科学基金年度项目立项名单公示",
+        "matchesEdition": false,
+        "characters": 870
+      },
+      {
+        "url": "https://gaokao.chsi.com.cn/z/gkbmfslq2026/cjcx.jsp",
+        "label": "2026年高考成绩查询_阳光高考",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E7%BB%8D%E5%85%B4%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "error": "HTTP_412"
+      }
+    ],
+    "relevantCandidates": [
+      {
+        "url": "http://www.sxym.org.cn/",
+        "label": "绍兴马拉松",
+        "sourceUrl": "https://www.so.com/s?q=2026%E7%BB%8D%E5%85%B4%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_candidate",
+        "verified": false,
+        "status": "rejected",
+        "error": "edition_name_or_locality_mismatch",
+        "title": "绍兴马拉松"
+      },
+      {
+        "url": "https://www.shaoxing.com.cn/xinwen/p/3462425.html",
+        "label": "抓紧了!2026绍兴马拉松,今天截止报名_绍兴网",
+        "sourceUrl": "https://www.so.com/s?q=2026%E7%BB%8D%E5%85%B4%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_candidate",
+        "verified": false,
+        "status": "unverified",
+        "error": "official_publisher_not_confirmed",
+        "title": "抓紧了！2026绍兴马拉松，今天截止报名_绍兴网"
+      },
+      {
+        "url": "http://www.sxym.org.cn/html/bmxz.html",
+        "label": "2026瑞丰银行绍兴马拉松报名须知-绍兴马拉松",
+        "sourceUrl": "https://www.so.com/s?q=2026%E7%BB%8D%E5%85%B4%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_candidate",
+        "verified": false,
+        "status": "unverified",
+        "error": "official_publisher_not_confirmed",
+        "title": "2026瑞丰银行绍兴马拉松报名须知-绍兴马拉松"
+      },
+      {
+        "url": "http://www.sxym.org.cn/html/jsgc.html",
+        "label": "2026瑞丰银行绍兴马拉松竞赛规程-绍兴马拉松",
+        "sourceUrl": "https://www.so.com/s?q=2026%E7%BB%8D%E5%85%B4%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_candidate",
+        "verified": false,
+        "status": "unverified",
+        "error": "official_publisher_not_confirmed",
+        "title": "2026瑞丰银行绍兴马拉松竞赛规程-绍兴马拉松"
+      },
+      {
+        "url": "https://weibo.com/2/detail/5334703956561524",
+        "label": "2026绍兴马拉松定档11月29日 8月26日开启报名",
+        "sourceUrl": "https://www.so.com/s?q=2026%E7%BB%8D%E5%85%B4%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_candidate",
+        "verified": false,
+        "status": "unverified",
+        "error": "official_publisher_not_confirmed",
+        "title": "2026绍兴马拉松定档11月29日 8月26日开启报名"
+      }
+    ]
+  },
+  {
+    "id": "zuiku-32373",
+    "name": "2027重庆马拉松",
+    "query": "2027重庆马拉松 官方网站 竞赛规程 报名须知",
+    "checkedAt": "2026-11-17T17:52:19.840Z",
+    "sources": [
+      {
+        "url": "https://baike.baidu.com/item/2027%E5%B9%B4/7710238",
+        "label": "2027年_百度百科",
+        "sourceUrl": "https://www.bing.com/search?q=2027%E9%87%8D%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.thepaper.cn/newsDetail_forward_34412735",
+        "label": "2027年放假安排出炉：调休减少，9天超长春节假期即将回归",
+        "sourceUrl": "https://www.bing.com/search?q=2027%E9%87%8D%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.gov.cn/zhengce/zhengceku/202611/content_7085102.htm",
+        "label": "国务院办公厅关于2027年部分节假日安排的通知_国务院文件 ...",
+        "sourceUrl": "https://www.bing.com/search?q=2027%E9%87%8D%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://chinacalendar.app/zh-cn",
+        "label": "2027日历表｜中国日历、农历、节假日、调休与 A4 打印",
+        "sourceUrl": "https://www.bing.com/search?q=2027%E9%87%8D%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://baike.baidu.com/item/%E5%9B%BD%E5%8A%A1%E9%99%A2%E5%8A%9E%E5%85%AC%E5%8E%85%E5%85%B3%E4%BA%8E2027%E5%B9%B4%E9%83%A8%E5%88%86%E8%8A%82%E5%81%87%E6%97%A5%E5%AE%89%E6%8E%92%E7%9A%84%E9%80%9A%E7%9F%A5/69620430",
+        "label": "国务院办公厅关于2027年部分节假日安排的通知_百度百科",
+        "sourceUrl": "https://www.bing.com/search?q=2027%E9%87%8D%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.news.cn/politics/20261105/f90cd6ad4df94ab4833b141e52ccfc13/c.html",
+        "label": "国务院办公厅关于2027年部分节假日安排的通知-新华网",
+        "sourceUrl": "https://www.bing.com/search?q=2027%E9%87%8D%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.5adanci.com/fangjia/",
+        "label": "2027年放假调休日历表 - 放假日历 - 周一开始 - 日历精灵",
+        "sourceUrl": "https://www.bing.com/search?q=2027%E9%87%8D%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.rili.com.cn/wannianli/2027/",
+        "label": "万年历2027年日历表_日历网",
+        "sourceUrl": "https://www.bing.com/search?q=2027%E9%87%8D%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://rili.zzhuangli.com/year/2027",
+        "label": "2027年日历全年完整图_带农历节假日放假安排_高清可打印 ...",
+        "sourceUrl": "https://www.bing.com/search?q=2027%E9%87%8D%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://news.qq.com/rain/a/20261105A0BT8G00",
+        "label": "调休减少！2027年放假时间安排公布！_腾讯新闻",
+        "sourceUrl": "https://www.bing.com/search?q=2027%E9%87%8D%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://cq.bendibao.com/xiuxian/2025818/157090.shtm",
+        "label": "2027重庆马拉松报名官网入口(附报名时间)- 重庆本地宝",
+        "sourceUrl": "https://www.so.com/s?q=2027%E9%87%8D%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://cq.bendibao.com/xiuxian/2025813/156939.shtm",
+        "label": "2027重庆马拉松直通成绩标准+名额+如何报名- 重庆本地宝",
+        "sourceUrl": "https://www.so.com/s?q=2027%E9%87%8D%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://cq.bendibao.com/xiuxian/2025818/157104.shtm",
+        "label": "2027重庆马拉松报名信息查询官网入口- 重庆本地宝",
+        "sourceUrl": "https://www.so.com/s?q=2027%E9%87%8D%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://cq.bendibao.com/xiuxian/2025813/156930.shtm",
+        "label": "2027重庆马拉松报名及抽签时间- 重庆本地宝",
+        "sourceUrl": "https://www.so.com/s?q=2027%E9%87%8D%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.cq.gov.cn/ywdt/bmts/202609/t20260901_16017305.html",
+        "label": "拼手速!2027重马预报名明日开启,1月10日开跑_重庆市人民政府网",
+        "sourceUrl": "https://www.so.com/s?q=2027%E9%87%8D%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://www.cqmarathon.com/",
+        "label": "重庆马拉松 - 首页",
+        "sourceUrl": "https://www.so.com/s?q=2027%E9%87%8D%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://cq.bendibao.com/xiuxian/202692/167486.shtm",
+        "label": "2027重庆马拉松几点开始报名?- 重庆本地宝",
+        "sourceUrl": "https://www.so.com/s?q=2027%E9%87%8D%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://info.so.com/feedback.html?src=know_side_nlp",
+        "label": "反馈",
+        "sourceUrl": "https://www.so.com/s?q=2027%E9%87%8D%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://info.so.com/feedback.html?src=know_side_nlp",
+        "label": "反馈",
+        "sourceUrl": "https://www.so.com/s?q=2027%E9%87%8D%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://info.so.com/feedback.html?src=know_side_nlp",
+        "label": "反馈",
+        "sourceUrl": "https://www.so.com/s?q=2027%E9%87%8D%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://ranks.hao.360.com/?src=so_youce_title",
+        "label": "",
+        "sourceUrl": "https://www.so.com/s?q=2027%E9%87%8D%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      }
+    ],
+    "failures": [
+      {
+        "url": "https://weixin.sogou.com/weixin?type=2&query=2027%E9%87%8D%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "step": "source_search",
+        "error": "search_access_verification_required"
+      }
+    ],
+    "candidates": [
+      {
+        "url": "https://www.thepaper.cn/newsDetail_forward_34412735",
+        "label": "2027年放假安排出炉：调休减少，9天超长春节假期即将回归",
+        "sourceUrl": "https://www.bing.com/search?q=2027%E9%87%8D%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "title": "2027年放假安排出炉：调休减少，9天超长春节假期即将回归",
+        "matchesEdition": false,
+        "characters": 848
+      },
+      {
+        "url": "https://www.gov.cn/zhengce/zhengceku/202611/content_7085102.htm",
+        "label": "国务院办公厅关于2027年部分节假日安排的通知_国务院文件 ...",
+        "sourceUrl": "https://www.bing.com/search?q=2027%E9%87%8D%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "title": "国务院办公厅关于2027年部分节假日安排的通知_国务院文件_中国政府网",
+        "matchesEdition": false,
+        "characters": 1903
+      },
+      {
+        "url": "https://chinacalendar.app/zh-cn",
+        "label": "2027日历表｜中国日历、农历、节假日、调休与 A4 打印",
+        "sourceUrl": "https://www.bing.com/search?q=2027%E9%87%8D%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "title": "查日历、算工作日、打印并订阅中国节假日。",
+        "matchesEdition": false,
+        "characters": 1383
+      },
+      {
+        "url": "https://www.news.cn/politics/20261105/f90cd6ad4df94ab4833b141e52ccfc13/c.html",
+        "label": "国务院办公厅关于2027年部分节假日安排的通知-新华网",
+        "sourceUrl": "https://www.bing.com/search?q=2027%E9%87%8D%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "title": "国务院办公厅关于2027年部分节假日安排的通知",
+        "matchesEdition": false,
+        "characters": 825
+      }
+    ],
+    "relevantCandidates": [
+      {
+        "url": "https://cq.bendibao.com/xiuxian/2025818/157090.shtm",
+        "label": "2027重庆马拉松报名官网入口(附报名时间)- 重庆本地宝",
+        "sourceUrl": "https://www.so.com/s?q=2027%E9%87%8D%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_candidate",
+        "verified": false,
+        "status": "rejected",
+        "error": "edition_name_or_locality_mismatch",
+        "title": "🧩 请完成拼图验证"
+      },
+      {
+        "url": "http://cq.bendibao.com/xiuxian/2025813/156939.shtm",
+        "label": "2027重庆马拉松直通成绩标准+名额+如何报名- 重庆本地宝",
+        "sourceUrl": "https://www.so.com/s?q=2027%E9%87%8D%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_candidate",
+        "verified": false,
+        "status": "rejected",
+        "error": "edition_name_or_locality_mismatch",
+        "title": "🧩 请完成拼图验证"
+      },
+      {
+        "url": "http://cq.bendibao.com/xiuxian/2025818/157104.shtm",
+        "label": "2027重庆马拉松报名信息查询官网入口- 重庆本地宝",
+        "sourceUrl": "https://www.so.com/s?q=2027%E9%87%8D%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_candidate",
+        "verified": false,
+        "status": "rejected",
+        "error": "edition_name_or_locality_mismatch",
+        "title": "🧩 请完成拼图验证"
+      },
+      {
+        "url": "http://cq.bendibao.com/xiuxian/2025813/156930.shtm",
+        "label": "2027重庆马拉松报名及抽签时间- 重庆本地宝",
+        "sourceUrl": "https://www.so.com/s?q=2027%E9%87%8D%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_candidate",
+        "verified": false,
+        "status": "rejected",
+        "error": "edition_name_or_locality_mismatch",
+        "title": "🧩 请完成拼图验证"
+      },
+      {
+        "url": "https://www.cq.gov.cn/ywdt/bmts/202609/t20260901_16017305.html",
+        "label": "拼手速!2027重马预报名明日开启,1月10日开跑_重庆市人民政府网",
+        "sourceUrl": "https://www.so.com/s?q=2027%E9%87%8D%E5%BA%86%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_announcement",
+        "verified": true,
+        "status": "verified",
+        "title": "拼手速！2027重马预报名明日开启，1月10日开跑_重庆市人民政府网"
+      }
+    ]
+  },
+  {
+    "id": "zuiku-41338",
+    "name": "2026冲峰赛-广州香雪站",
+    "query": "2026冲峰赛-广州香雪站 官方网站 竞赛规程 报名须知",
+    "checkedAt": "2026-11-17T17:52:20.403Z",
+    "sources": [
+      {
+        "url": "https://baike.baidu.com/item/2026%E5%B9%B4%E8",
+        "label": "2026年_百度百科",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E5%86%B2%E5%B3%B0%E8%B5%9B-%E5%B9%BF%E5%B7%9E%E9%A6%99%E9%9B%AA%E7%AB%99%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://yz.chsi.com.cn/kyzx/zt/kyfs.shtml",
+        "label": "2026年研考分数查询及复试分数线汇总_中国研究生招生信息网",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E5%86%B2%E5%B3%B0%E8%B5%9B-%E5%B9%BF%E5%B7%9E%E9%A6%99%E9%9B%AA%E7%AB%99%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://lol.qq.com/act/a20261115champion/preview.html?e_code=500130",
+        "label": "2026全球总决赛冠军-英雄联盟官方网站-腾讯游戏",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E5%86%B2%E5%B3%B0%E8%B5%9B-%E5%B9%BF%E5%B7%9E%E9%A6%99%E9%9B%AA%E7%AB%99%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://fgc.suse.edu.cn/2026/1010/c5016a217143/page.htm",
+        "label": "2026年国家社会科学基金年度项目立项名单公示",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E5%86%B2%E5%B3%B0%E8%B5%9B-%E5%B9%BF%E5%B7%9E%E9%A6%99%E9%9B%AA%E7%AB%99%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://gaokao.chsi.com.cn/z/gkbmfslq2026/cjcx.jsp",
+        "label": "2026年高考成绩查询_阳光高考",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E5%86%B2%E5%B3%B0%E8%B5%9B-%E5%B9%BF%E5%B7%9E%E9%A6%99%E9%9B%AA%E7%AB%99%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.ithome.com/zt/apec2026",
+        "label": "2026 深圳 APEC 工商领导人峰会专题 - IT之家",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E5%86%B2%E5%B3%B0%E8%B5%9B-%E5%B9%BF%E5%B7%9E%E9%A6%99%E9%9B%AA%E7%AB%99%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.rili.com.cn/wannianli/2026/",
+        "label": "万年历2026年日历表_日历网",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E5%86%B2%E5%B3%B0%E8%B5%9B-%E5%B9%BF%E5%B7%9E%E9%A6%99%E9%9B%AA%E7%AB%99%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://sports.cctv.com/2026/11/15/ARTI5VvqhhtEckKGKjisvgy2261115.shtml",
+        "label": "BLG夺得S16全球总决赛冠军，LPL赛区时隔五年再度问鼎",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E5%86%B2%E5%B3%B0%E8%B5%9B-%E5%B9%BF%E5%B7%9E%E9%A6%99%E9%9B%AA%E7%AB%99%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.gov.cn/zhengce/content/202511/content_7047090.htm",
+        "label": "国务院办公厅关于2026年部分节假日安排的通知_其他_中国 ...",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E5%86%B2%E5%B3%B0%E8%B5%9B-%E5%B9%BF%E5%B7%9E%E9%A6%99%E9%9B%AA%E7%AB%99%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://2026dyylb.com.cn/",
+        "label": "2026电影一览表 - 2026年上映电影/国产剧集/短剧动漫片单全 ...",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E5%86%B2%E5%B3%B0%E8%B5%9B-%E5%B9%BF%E5%B7%9E%E9%A6%99%E9%9B%AA%E7%AB%99%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://www.51sai.com/18878",
+        "label": "2026冲锋赛-广州香雪站 | 我要赛",
+        "sourceUrl": "https://www.so.com/s?q=2026%E5%86%B2%E5%B3%B0%E8%B5%9B-%E5%B9%BF%E5%B7%9E%E9%A6%99%E9%9B%AA%E7%AB%99%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://reg.zuicool.com/67140",
+        "label": "2026冲峰赛-广州香雪站 - 一键报名 - 最酷",
+        "sourceUrl": "https://www.so.com/s?q=2026%E5%86%B2%E5%B3%B0%E8%B5%9B-%E5%B9%BF%E5%B7%9E%E9%A6%99%E9%9B%AA%E7%AB%99%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://zuicool.com/event/41338",
+        "label": "2026冲峰赛-广州香雪站",
+        "sourceUrl": "https://www.so.com/s?q=2026%E5%86%B2%E5%B3%B0%E8%B5%9B-%E5%B9%BF%E5%B7%9E%E9%A6%99%E9%9B%AA%E7%AB%99%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://zuicool.com/events?where=guangshen",
+        "label": "赛事大全",
+        "sourceUrl": "https://www.so.com/s?q=2026%E5%86%B2%E5%B3%B0%E8%B5%9B-%E5%B9%BF%E5%B7%9E%E9%A6%99%E9%9B%AA%E7%AB%99%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://zuicool.com/event/58617",
+        "label": "2026黄埔马拉松",
+        "sourceUrl": "https://www.so.com/s?q=2026%E5%86%B2%E5%B3%B0%E8%B5%9B-%E5%B9%BF%E5%B7%9E%E9%A6%99%E9%9B%AA%E7%AB%99%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.weibo.com/u/3186551397?is_hot=1",
+        "label": "广州黄埔发布的微博_微博",
+        "sourceUrl": "https://www.so.com/s?q=2026%E5%86%B2%E5%B3%B0%E8%B5%9B-%E5%B9%BF%E5%B7%9E%E9%A6%99%E9%9B%AA%E7%AB%99%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.weibo.com/u/5695893336",
+        "label": "广州开发区发布的微博_微博",
+        "sourceUrl": "https://www.so.com/s?q=2026%E5%86%B2%E5%B3%B0%E8%B5%9B-%E5%B9%BF%E5%B7%9E%E9%A6%99%E9%9B%AA%E7%AB%99%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://info.so.com/feedback.html?src=know_side_nlp",
+        "label": "反馈",
+        "sourceUrl": "https://www.so.com/s?q=2026%E5%86%B2%E5%B3%B0%E8%B5%9B-%E5%B9%BF%E5%B7%9E%E9%A6%99%E9%9B%AA%E7%AB%99%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://info.so.com/feedback.html?src=know_side_nlp",
+        "label": "反馈",
+        "sourceUrl": "https://www.so.com/s?q=2026%E5%86%B2%E5%B3%B0%E8%B5%9B-%E5%B9%BF%E5%B7%9E%E9%A6%99%E9%9B%AA%E7%AB%99%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://info.so.com/feedback.html?src=know_side_nlp",
+        "label": "反馈",
+        "sourceUrl": "https://www.so.com/s?q=2026%E5%86%B2%E5%B3%B0%E8%B5%9B-%E5%B9%BF%E5%B7%9E%E9%A6%99%E9%9B%AA%E7%AB%99%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://ranks.hao.360.com/?src=so_youce_title",
+        "label": "",
+        "sourceUrl": "https://www.so.com/s?q=2026%E5%86%B2%E5%B3%B0%E8%B5%9B-%E5%B9%BF%E5%B7%9E%E9%A6%99%E9%9B%AA%E7%AB%99%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      }
+    ],
+    "failures": [
+      {
+        "url": "https://weixin.sogou.com/weixin?type=2&query=2026%E5%86%B2%E5%B3%B0%E8%B5%9B-%E5%B9%BF%E5%B7%9E%E9%A6%99%E9%9B%AA%E7%AB%99%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "step": "source_search",
+        "error": "search_access_verification_required"
+      }
+    ],
+    "candidates": [
+      {
+        "url": "https://yz.chsi.com.cn/kyzx/zt/kyfs.shtml",
+        "label": "2026年研考分数查询及复试分数线汇总_中国研究生招生信息网",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E5%86%B2%E5%B3%B0%E8%B5%9B-%E5%B9%BF%E5%B7%9E%E9%A6%99%E9%9B%AA%E7%AB%99%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "title": "2026年研考分数查询及复试分数线汇总_中国研究生招生信息网",
+        "matchesEdition": false,
+        "characters": 31
+      },
+      {
+        "url": "https://lol.qq.com/act/a20261115champion/preview.html?e_code=500130",
+        "label": "2026全球总决赛冠军-英雄联盟官方网站-腾讯游戏",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E5%86%B2%E5%B3%B0%E8%B5%9B-%E5%B9%BF%E5%B7%9E%E9%A6%99%E9%9B%AA%E7%AB%99%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "title": "2026ȫ���ܾ����ھ�",
+        "matchesEdition": false,
+        "characters": 3779
+      },
+      {
+        "url": "https://fgc.suse.edu.cn/2026/1010/c5016a217143/page.htm",
+        "label": "2026年国家社会科学基金年度项目立项名单公示",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E5%86%B2%E5%B3%B0%E8%B5%9B-%E5%B9%BF%E5%B7%9E%E9%A6%99%E9%9B%AA%E7%AB%99%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "title": "2026年国家社会科学基金年度项目立项名单公示",
+        "matchesEdition": false,
+        "characters": 870
+      },
+      {
+        "url": "https://gaokao.chsi.com.cn/z/gkbmfslq2026/cjcx.jsp",
+        "label": "2026年高考成绩查询_阳光高考",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E5%86%B2%E5%B3%B0%E8%B5%9B-%E5%B9%BF%E5%B7%9E%E9%A6%99%E9%9B%AA%E7%AB%99%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "error": "HTTP_412"
+      }
+    ],
+    "relevantCandidates": []
+  },
+  {
+    "id": "caa-1000479118",
+    "name": "2026海南儋州马拉松",
+    "query": "2026海南儋州马拉松 官方网站 竞赛规程 报名须知",
+    "checkedAt": "2026-11-17T17:52:22.739Z",
+    "sources": [
+      {
+        "url": "https://www.douyin.com/search/%E7%B3%96%E5%BF%83%E6%98%9F%E9%87%8E%E5%85%94%E8%B5%84%E6%96%99",
+        "label": "糖心星野兔资料 - 抖音",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E6%B5%B7%E5%8D%97%E5%84%8B%E5%B7%9E%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://music.163.com/song?id=1816288289",
+        "label": "星野demo - 特污兔-Dirtyrabbit2 - 单曲 - 网易云音乐",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E6%B5%B7%E5%8D%97%E5%84%8B%E5%B7%9E%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.barcodejp.com/1441/",
+        "label": "星野兔高清作品合集 322G 持续更新资源站 - 桃映写真社",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E6%B5%B7%E5%8D%97%E5%84%8B%E5%B7%9E%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://weibo.com/p/1005052483199780/home",
+        "label": "星野雪兔的微博_微博",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E6%B5%B7%E5%8D%97%E5%84%8B%E5%B7%9E%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.paomianz.com/5311.html",
+        "label": "星野咪兔MeetU的Cos神还原，我直接垂直入坑！ – 泡面站",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E6%B5%B7%E5%8D%97%E5%84%8B%E5%B7%9E%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.douyu.com/8807748",
+        "label": "星野兔ovo直播_星野兔ovo直播_星野兔ovoDOTA2直播_星 ...",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E6%B5%B7%E5%8D%97%E5%84%8B%E5%B7%9E%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://haikou.bendibao.com/news/2026916/85320.shtm",
+        "label": "2026海南儋州马拉松竞赛规程(路线+规程+奖金)- 海口本地宝",
+        "sourceUrl": "https://www.so.com/s?q=2026%E6%B5%B7%E5%8D%97%E5%84%8B%E5%B7%9E%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://haikou.bendibao.com/news/2026916/85326.shtm",
+        "label": "2026海南儋州马拉松报名时间及报名入口- 海口本地宝",
+        "sourceUrl": "https://www.so.com/s?q=2026%E6%B5%B7%E5%8D%97%E5%84%8B%E5%B7%9E%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://haikou.bendibao.com/news/2026916/85325.shtm",
+        "label": "2026海南儋州马拉松报名官网()- 海口本地宝",
+        "sourceUrl": "https://www.so.com/s?q=2026%E6%B5%B7%E5%8D%97%E5%84%8B%E5%B7%9E%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.sohu.com/a/1077645302_121106994",
+        "label": "报名答疑 | 2026海南儋州马拉松_参赛_项目_选手",
+        "sourceUrl": "https://www.so.com/s?q=2026%E6%B5%B7%E5%8D%97%E5%84%8B%E5%B7%9E%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://haikou.bendibao.com/news/2026922/85402.shtm",
+        "label": "2026海南儋州马拉松官方配速员招募(时间+入口+报名流程)- 海口本地宝",
+        "sourceUrl": "https://www.so.com/s?q=2026%E6%B5%B7%E5%8D%97%E5%84%8B%E5%B7%9E%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://haikou.bendibao.com/xiuxian/2026916/85321.shtm",
+        "label": "2026海南儋州马拉松赛(时间+地点+路线+赛事级别)- 海口本地宝",
+        "sourceUrl": "https://www.so.com/s?q=2026%E6%B5%B7%E5%8D%97%E5%84%8B%E5%B7%9E%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://weibo.com/2/detail/5343528314214802",
+        "label": "2026海南儋州马拉松定档12月20日 明日开启报名",
+        "sourceUrl": "https://www.so.com/s?q=2026%E6%B5%B7%E5%8D%97%E5%84%8B%E5%B7%9E%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://info.so.com/feedback.html?src=know_side_nlp",
+        "label": "反馈",
+        "sourceUrl": "https://www.so.com/s?q=2026%E6%B5%B7%E5%8D%97%E5%84%8B%E5%B7%9E%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://info.so.com/feedback.html?src=know_side_nlp",
+        "label": "反馈",
+        "sourceUrl": "https://www.so.com/s?q=2026%E6%B5%B7%E5%8D%97%E5%84%8B%E5%B7%9E%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://info.so.com/feedback.html?src=know_side_nlp",
+        "label": "反馈",
+        "sourceUrl": "https://www.so.com/s?q=2026%E6%B5%B7%E5%8D%97%E5%84%8B%E5%B7%9E%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://ranks.hao.360.com/?src=so_youce_title",
+        "label": "",
+        "sourceUrl": "https://www.so.com/s?q=2026%E6%B5%B7%E5%8D%97%E5%84%8B%E5%B7%9E%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      }
+    ],
+    "failures": [
+      {
+        "url": "https://weixin.sogou.com/weixin?type=2&query=2026%E6%B5%B7%E5%8D%97%E5%84%8B%E5%B7%9E%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "step": "source_search",
+        "error": "search_access_verification_required"
+      }
+    ],
+    "candidates": [
+      {
+        "url": "https://www.douyin.com/search/%E7%B3%96%E5%BF%83%E6%98%9F%E9%87%8E%E5%85%94%E8%B5%84%E6%96%99",
+        "label": "糖心星野兔资料 - 抖音",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E6%B5%B7%E5%8D%97%E5%84%8B%E5%B7%9E%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "error": "access_verification_required"
+      },
+      {
+        "url": "https://music.163.com/song?id=1816288289",
+        "label": "星野demo - 特污兔-Dirtyrabbit2 - 单曲 - 网易云音乐",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E6%B5%B7%E5%8D%97%E5%84%8B%E5%B7%9E%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "title": "星野demo - 特污兔-Dirtyrabbit2 - 单曲 - 网易云音乐",
+        "matchesEdition": false,
+        "characters": 98254
+      },
+      {
+        "url": "https://www.barcodejp.com/1441/",
+        "label": "星野兔高清作品合集 322G 持续更新资源站 - 桃映写真社",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E6%B5%B7%E5%8D%97%E5%84%8B%E5%B7%9E%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "title": "桃映写真社",
+        "matchesEdition": false,
+        "characters": 1583
+      },
+      {
+        "url": "https://weibo.com/p/1005052483199780/home",
+        "label": "星野雪兔的微博_微博",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E6%B5%B7%E5%8D%97%E5%84%8B%E5%B7%9E%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "title": "@星野雪兔 的个人主页",
+        "matchesEdition": false,
+        "characters": 444
+      }
+    ],
+    "relevantCandidates": [
+      {
+        "url": "http://haikou.bendibao.com/news/2026916/85320.shtm",
+        "label": "2026海南儋州马拉松竞赛规程(路线+规程+奖金)- 海口本地宝",
+        "sourceUrl": "https://www.so.com/s?q=2026%E6%B5%B7%E5%8D%97%E5%84%8B%E5%B7%9E%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_candidate",
+        "verified": false,
+        "status": "rejected",
+        "error": "edition_name_or_locality_mismatch",
+        "title": "🧩 请完成拼图验证"
+      },
+      {
+        "url": "http://haikou.bendibao.com/news/2026916/85326.shtm",
+        "label": "2026海南儋州马拉松报名时间及报名入口- 海口本地宝",
+        "sourceUrl": "https://www.so.com/s?q=2026%E6%B5%B7%E5%8D%97%E5%84%8B%E5%B7%9E%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_candidate",
+        "verified": false,
+        "status": "rejected",
+        "error": "edition_name_or_locality_mismatch",
+        "title": "🧩 请完成拼图验证"
+      },
+      {
+        "url": "http://haikou.bendibao.com/news/2026916/85325.shtm",
+        "label": "2026海南儋州马拉松报名官网()- 海口本地宝",
+        "sourceUrl": "https://www.so.com/s?q=2026%E6%B5%B7%E5%8D%97%E5%84%8B%E5%B7%9E%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_candidate",
+        "verified": false,
+        "status": "rejected",
+        "error": "edition_name_or_locality_mismatch",
+        "title": "🧩 请完成拼图验证"
+      },
+      {
+        "url": "https://www.sohu.com/a/1077645302_121106994",
+        "label": "报名答疑 | 2026海南儋州马拉松_参赛_项目_选手",
+        "sourceUrl": "https://www.so.com/s?q=2026%E6%B5%B7%E5%8D%97%E5%84%8B%E5%B7%9E%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_candidate",
+        "verified": false,
+        "status": "unverified",
+        "error": "official_publisher_not_confirmed",
+        "title": "报名答疑 | 2026海南儋州马拉松"
+      },
+      {
+        "url": "http://haikou.bendibao.com/news/2026922/85402.shtm",
+        "label": "2026海南儋州马拉松官方配速员招募(时间+入口+报名流程)- 海口本地宝",
+        "sourceUrl": "https://www.so.com/s?q=2026%E6%B5%B7%E5%8D%97%E5%84%8B%E5%B7%9E%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_candidate",
+        "verified": false,
+        "status": "rejected",
+        "error": "edition_name_or_locality_mismatch",
+        "title": "🧩 请完成拼图验证"
+      }
+    ]
+  },
+  {
+    "id": "zuiku-43816",
+    "name": "2026第七届洛带HAKKA50越野赛",
+    "query": "2026第七届洛带HAKKA50越野赛 官方网站 竞赛规程 报名须知",
+    "checkedAt": "2026-11-17T17:52:23.309Z",
+    "sources": [
+      {
+        "url": "https://baike.baidu.com/item/2026%E5%B9%B4%E8",
+        "label": "2026年_百度百科",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E7%AC%AC%E4%B8%83%E5%B1%8A%E6%B4%9B%E5%B8%A6HAKKA50%E8%B6%8A%E9%87%8E%E8%B5%9B%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://yz.chsi.com.cn/kyzx/zt/kyfs.shtml",
+        "label": "2026年研考分数查询及复试分数线汇总_中国研究生招生信息网",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E7%AC%AC%E4%B8%83%E5%B1%8A%E6%B4%9B%E5%B8%A6HAKKA50%E8%B6%8A%E9%87%8E%E8%B5%9B%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://lol.qq.com/act/a20261115champion/preview.html?e_code=500130",
+        "label": "2026全球总决赛冠军-英雄联盟官方网站-腾讯游戏",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E7%AC%AC%E4%B8%83%E5%B1%8A%E6%B4%9B%E5%B8%A6HAKKA50%E8%B6%8A%E9%87%8E%E8%B5%9B%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://fgc.suse.edu.cn/2026/1010/c5016a217143/page.htm",
+        "label": "2026年国家社会科学基金年度项目立项名单公示",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E7%AC%AC%E4%B8%83%E5%B1%8A%E6%B4%9B%E5%B8%A6HAKKA50%E8%B6%8A%E9%87%8E%E8%B5%9B%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://gaokao.chsi.com.cn/z/gkbmfslq2026/cjcx.jsp",
+        "label": "2026年高考成绩查询_阳光高考",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E7%AC%AC%E4%B8%83%E5%B1%8A%E6%B4%9B%E5%B8%A6HAKKA50%E8%B6%8A%E9%87%8E%E8%B5%9B%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.ithome.com/zt/apec2026",
+        "label": "2026 深圳 APEC 工商领导人峰会专题 - IT之家",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E7%AC%AC%E4%B8%83%E5%B1%8A%E6%B4%9B%E5%B8%A6HAKKA50%E8%B6%8A%E9%87%8E%E8%B5%9B%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.rili.com.cn/wannianli/2026/",
+        "label": "万年历2026年日历表_日历网",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E7%AC%AC%E4%B8%83%E5%B1%8A%E6%B4%9B%E5%B8%A6HAKKA50%E8%B6%8A%E9%87%8E%E8%B5%9B%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://sports.cctv.com/2026/11/15/ARTI5VvqhhtEckKGKjisvgy2261115.shtml",
+        "label": "BLG夺得S16全球总决赛冠军，LPL赛区时隔五年再度问鼎",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E7%AC%AC%E4%B8%83%E5%B1%8A%E6%B4%9B%E5%B8%A6HAKKA50%E8%B6%8A%E9%87%8E%E8%B5%9B%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.gov.cn/zhengce/content/202511/content_7047090.htm",
+        "label": "国务院办公厅关于2026年部分节假日安排的通知_其他_中国 ...",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E7%AC%AC%E4%B8%83%E5%B1%8A%E6%B4%9B%E5%B8%A6HAKKA50%E8%B6%8A%E9%87%8E%E8%B5%9B%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://2026dyylb.com.cn/",
+        "label": "2026电影一览表 - 2026年上映电影/国产剧集/短剧动漫片单全 ...",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E7%AC%AC%E4%B8%83%E5%B1%8A%E6%B4%9B%E5%B8%A6HAKKA50%E8%B6%8A%E9%87%8E%E8%B5%9B%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://zuicool.com/event/43816",
+        "label": "2026第七届洛带HAKKA50越野赛",
+        "sourceUrl": "https://www.so.com/s?q=2026%E7%AC%AC%E4%B8%83%E5%B1%8A%E6%B4%9B%E5%B8%A6HAKKA50%E8%B6%8A%E9%87%8E%E8%B5%9B%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://zuicool.com/news/archives/318923",
+        "label": "成都客家主题越野赛!2026第七届洛带HAKKA50越野赛 报名开启 - 最酷 ZUICOOL 马拉松报名",
+        "sourceUrl": "https://www.so.com/s?q=2026%E7%AC%AC%E4%B8%83%E5%B1%8A%E6%B4%9B%E5%B8%A6HAKKA50%E8%B6%8A%E9%87%8E%E8%B5%9B%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://www.cd100k.com/events?mid=69458",
+        "label": "HAKKA50-蜀巴古道系列 - 周末享跑-成都100系列赛",
+        "sourceUrl": "https://www.so.com/s?q=2026%E7%AC%AC%E4%B8%83%E5%B1%8A%E6%B4%9B%E5%B8%A6HAKKA50%E8%B6%8A%E9%87%8E%E8%B5%9B%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.douyin.com/video/7316465027173682442?source=360Spider",
+        "label": "12月24日,成都洛带HAKKA50,60公里组完赛。实跑63.5公里,爬升2600多米,8小时36分。赛道公路较多,越跑越觉得像山地马拉松☺️。 从洛带古镇(中国西部...",
+        "sourceUrl": "https://www.so.com/s?q=2026%E7%AC%AC%E4%B8%83%E5%B1%8A%E6%B4%9B%E5%B8%A6HAKKA50%E8%B6%8A%E9%87%8E%E8%B5%9B%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://www.douyin.com/video/7451231328500010276",
+        "label": "成都洛带HAKKA50越野赛全纪录,全程26公里,总爬升1385,各种路都让你体会一遍,又虐又好耍,比路跑好玩儿,耗时5:23:53安全玩赛。#运动女生#运动穿搭#...",
+        "sourceUrl": "https://www.so.com/s?q=2026%E7%AC%AC%E4%B8%83%E5%B1%8A%E6%B4%9B%E5%B8%A6HAKKA50%E8%B6%8A%E9%87%8E%E8%B5%9B%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://zuicool.com/event/5544494",
+        "label": "2022成都洛带・HAKKA50越野赛",
+        "sourceUrl": "https://www.so.com/s?q=2026%E7%AC%AC%E4%B8%83%E5%B1%8A%E6%B4%9B%E5%B8%A6HAKKA50%E8%B6%8A%E9%87%8E%E8%B5%9B%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://cd.bendibao.com/tour/20201125/117994.shtm",
+        "label": "2020成都洛带HAKKA50越野赛时间、地点、组别- 成都本地宝",
+        "sourceUrl": "https://www.so.com/s?q=2026%E7%AC%AC%E4%B8%83%E5%B1%8A%E6%B4%9B%E5%B8%A6HAKKA50%E8%B6%8A%E9%87%8E%E8%B5%9B%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://info.so.com/feedback.html?src=know_side_nlp",
+        "label": "反馈",
+        "sourceUrl": "https://www.so.com/s?q=2026%E7%AC%AC%E4%B8%83%E5%B1%8A%E6%B4%9B%E5%B8%A6HAKKA50%E8%B6%8A%E9%87%8E%E8%B5%9B%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://info.so.com/feedback.html?src=know_side_nlp",
+        "label": "反馈",
+        "sourceUrl": "https://www.so.com/s?q=2026%E7%AC%AC%E4%B8%83%E5%B1%8A%E6%B4%9B%E5%B8%A6HAKKA50%E8%B6%8A%E9%87%8E%E8%B5%9B%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "http://info.so.com/feedback.html?src=know_side_nlp",
+        "label": "反馈",
+        "sourceUrl": "https://www.so.com/s?q=2026%E7%AC%AC%E4%B8%83%E5%B1%8A%E6%B4%9B%E5%B8%A6HAKKA50%E8%B6%8A%E9%87%8E%E8%B5%9B%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      },
+      {
+        "url": "https://ranks.hao.360.com/?src=so_youce_title",
+        "label": "",
+        "sourceUrl": "https://www.so.com/s?q=2026%E7%AC%AC%E4%B8%83%E5%B1%8A%E6%B4%9B%E5%B8%A6HAKKA50%E8%B6%8A%E9%87%8E%E8%B5%9B%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5"
+      }
+    ],
+    "failures": [
+      {
+        "url": "https://weixin.sogou.com/weixin?type=2&query=2026%E7%AC%AC%E4%B8%83%E5%B1%8A%E6%B4%9B%E5%B8%A6HAKKA50%E8%B6%8A%E9%87%8E%E8%B5%9B%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "step": "source_search",
+        "error": "search_access_verification_required"
+      }
+    ],
+    "candidates": [
+      {
+        "url": "https://yz.chsi.com.cn/kyzx/zt/kyfs.shtml",
+        "label": "2026年研考分数查询及复试分数线汇总_中国研究生招生信息网",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E7%AC%AC%E4%B8%83%E5%B1%8A%E6%B4%9B%E5%B8%A6HAKKA50%E8%B6%8A%E9%87%8E%E8%B5%9B%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "title": "2026年研考分数查询及复试分数线汇总_中国研究生招生信息网",
+        "matchesEdition": false,
+        "characters": 31
+      },
+      {
+        "url": "https://lol.qq.com/act/a20261115champion/preview.html?e_code=500130",
+        "label": "2026全球总决赛冠军-英雄联盟官方网站-腾讯游戏",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E7%AC%AC%E4%B8%83%E5%B1%8A%E6%B4%9B%E5%B8%A6HAKKA50%E8%B6%8A%E9%87%8E%E8%B5%9B%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "title": "2026ȫ���ܾ����ھ�",
+        "matchesEdition": false,
+        "characters": 3779
+      },
+      {
+        "url": "https://fgc.suse.edu.cn/2026/1010/c5016a217143/page.htm",
+        "label": "2026年国家社会科学基金年度项目立项名单公示",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E7%AC%AC%E4%B8%83%E5%B1%8A%E6%B4%9B%E5%B8%A6HAKKA50%E8%B6%8A%E9%87%8E%E8%B5%9B%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "title": "2026年国家社会科学基金年度项目立项名单公示",
+        "matchesEdition": false,
+        "characters": 870
+      },
+      {
+        "url": "https://gaokao.chsi.com.cn/z/gkbmfslq2026/cjcx.jsp",
+        "label": "2026年高考成绩查询_阳光高考",
+        "sourceUrl": "https://www.bing.com/search?q=2026%E7%AC%AC%E4%B8%83%E5%B1%8A%E6%B4%9B%E5%B8%A6HAKKA50%E8%B6%8A%E9%87%8E%E8%B5%9B%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "error": "HTTP_412"
+      }
+    ],
+    "relevantCandidates": [
+      {
+        "url": "http://www.cd100k.com/events?mid=69458",
+        "label": "HAKKA50-蜀巴古道系列 - 周末享跑-成都100系列赛",
+        "sourceUrl": "https://www.so.com/s?q=2026%E7%AC%AC%E4%B8%83%E5%B1%8A%E6%B4%9B%E5%B8%A6HAKKA50%E8%B6%8A%E9%87%8E%E8%B5%9B%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_candidate",
+        "verified": false,
+        "status": "rejected",
+        "error": "edition_name_or_locality_mismatch",
+        "title": "周末享跑-成都100系列赛"
+      },
+      {
+        "url": "https://www.douyin.com/video/7316465027173682442?source=360Spider",
+        "label": "12月24日,成都洛带HAKKA50,60公里组完赛。实跑63.5公里,爬升2600多米,8小时36分。赛道公路较多,越跑越觉得像山地马拉松☺️。 从洛带古镇(中国西部...",
+        "sourceUrl": "https://www.so.com/s?q=2026%E7%AC%AC%E4%B8%83%E5%B1%8A%E6%B4%9B%E5%B8%A6HAKKA50%E8%B6%8A%E9%87%8E%E8%B5%9B%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_candidate",
+        "verified": false,
+        "status": "rejected",
+        "error": "edition_name_or_locality_mismatch",
+        "title": "第40集 | 12月24日，成都洛带HAKKA50，60公里组完赛。实跑63.5公里，爬升2600多米，8小时36分。赛道公路较多，越跑越觉得像山地马拉松。从洛带古镇（中国西部客家第一镇）出发，前4/5状态比较稳定，后来接了两个电话，节奏就有点乱了，最后10km，也不知道自己跑了个什么玩意，死拖活拽完成了。工作人员很热情，沿途也有一些好风光，特别是金龙长城。如果成都再办百公里，我会再去跑一次。#成都洛带hakka50越野赛"
+      },
+      {
+        "url": "https://www.douyin.com/video/7451231328500010276",
+        "label": "成都洛带HAKKA50越野赛全纪录,全程26公里,总爬升1385,各种路都让你体会一遍,又虐又好耍,比路跑好玩儿,耗时5:23:53安全玩赛。#运动女生#运动穿搭#...",
+        "sourceUrl": "https://www.so.com/s?q=2026%E7%AC%AC%E4%B8%83%E5%B1%8A%E6%B4%9B%E5%B8%A6HAKKA50%E8%B6%8A%E9%87%8E%E8%B5%9B%20%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%20%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B%20%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+        "provenance": "search_candidate",
+        "role": "official_candidate",
+        "verified": false,
+        "status": "rejected",
+        "error": "edition_name_or_locality_mismatch",
+        "title": "成都洛带HAKKA50越野赛全纪录，全程26公里，总爬升1385，各种路都让你体会一遍，又虐又好耍，比路跑好玩儿，耗时5：23：53安全玩赛。#运动女生#运动穿搭#成都洛带越野赛#跑步#越野"
+      }
+    ]
+  }
+]

@@ -36,6 +36,17 @@ test('an image-only capture without a checked transcription never clears a saved
   assert.equal(next.details.audit.imageReviews[0].status,'pending');
 });
 
+test('a long official text layer missing image tables cannot replace a saved full guide without reconciliation', () => {
+  const sections=[{title:'报名与费用',text:'外籍350元；本国200元。'},{title:'关门时间',text:'40公里5小时45分；终点6小时。'}];
+  const previous=writeDetails(sections.map(s=>'## '+s.title+'\n\n'+s.text).join('\n\n'),{...collected.details,sections});
+  const incoming={...collected,guideText:'官网已提取的长正文。'.repeat(100),details:{...collected.details,audit:{imageReviews:[{status:'pending',reason:'奖金和关门表仍为图片'}]}}};
+  const next=readDetails(reconcileGuide(previous,incoming).value);
+  assert.equal(next.text,readDetails(previous).text);
+  assert.deepEqual(next.details.sections,sections);
+  assert.equal(next.details.audit.replacementRequiresReconciliation,true);
+  assert.equal(readDetails(reconcileGuide(previous,{...incoming,verification:{reconcilesExistingGuide:true}}).value).text,incoming.guideText);
+});
+
 test('a later blocked package preserves complete group facts, family options and fee phases', () => {
   const previous = writeDetails('完整规程', { ...collected.details, groups: [
     { name:'10公里个人组', actualDistanceKm:13.5, ascentM:816, fees:[{label:'普通价',amount:98,unit:'人'},{label:'早鸟价',amount:88,unit:'人'}] },
