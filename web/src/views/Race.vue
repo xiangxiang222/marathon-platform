@@ -16,7 +16,7 @@
       <div class="pass-copy">
         <div class="race-hero-eyebrow"><span>{{ race.raceDate ? race.raceDate.slice(0, 4) + ' 年度赛事' : '赛事日历' }}</span><span class="pass-pill">{{ publicStage }}</span></div>
         <h1 id="race-title">{{ race.name }}</h1>
-        <p class="race-hero-date"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="3" y="4.5" width="14" height="13" rx="2"/><path d="M6 2.5v4m8-4v4M3 8.5h14"/></svg><strong>{{ race.raceDate || '比赛日期未录入' }}</strong><span v-if="race.startAt">{{ race.startAt }} 起跑</span></p>
+        <p class="race-hero-date"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="3" y="4.5" width="14" height="13" rx="2"/><path d="M6 2.5v4m8-4v4M3 8.5h14"/></svg><strong>{{ race.raceDateLabel || race.raceDate || '比赛日期未录入' }}</strong><span v-if="race.startAt">{{ race.startAt }} 起跑</span></p>
         <p class="race-hero-place"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 6c0 3.5-5 8-5 8S3 9.5 3 6a5 5 0 1 1 10 0Z"/><circle cx="8" cy="6" r="1.5"/></svg>{{ locationLine || '举办地点未录入' }}</p>
         <div v-if="projectLabels.length" class="race-hero-projects" aria-label="赛事项目"><span v-for="label in projectLabels" :key="label">{{ label }}</span></div><p v-else class="race-project-missing">赛事项目尚未录入</p>
         <button v-if="coverFailed" type="button" class="cover-retry" @click="coverFailed = false">封面暂时无法加载 · 重试</button>
@@ -357,8 +357,8 @@ const publicStage = computed(() => {
   if (!row) return '';
   const verified = registrationLabel(row);
   if (['cancelled', 'invalid'].includes(row.registrationStatus) && verified) return verified;
-  if (row.raceDate && row.raceDate < today()) return '已结束';
-  if (row.raceDate === today()) return '比赛日';
+  if (row.raceDate && (row.raceEndDate || row.raceDate) < today()) return '已结束';
+  if (row.raceDate <= today() && (row.raceEndDate || row.raceDate) >= today()) return row.raceEndDate > row.raceDate ? '比赛中' : '比赛日';
   if (verified) return verified;
   if (registrationScheduled(row, today())) return '报名未开始';
   if (!row.deadline) return '报名时间未录入';

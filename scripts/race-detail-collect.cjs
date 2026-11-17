@@ -42,6 +42,36 @@ function sameEdition(expected, actual) {
   const aa = bigrams(a), bb = bigrams(b), overlap = [...aa].filter(x => bb.has(x)).length;
   return overlap / Math.max(1, Math.min(aa.size, bb.size)) >= 0.5;
 }
+function bodyIdentityConflict(expected, doc) {
+  if (!expected) return null;
+  const text = clean(doc.text);
+  const labels = /(?:^|\n)\s*(?:赛事名称|比赛名称|活动名称)[：:\t ]*(?:\n[\t ]*)?([^\n]{4,160})/g;
+  let match;
+  while ((match = labels.exec(text))) {
+    const declared = clean(match[1]);
+    if (!/20\d{2}|马拉松|越野|挑战赛|骑游|长跑/.test(declared) || sameEdition(expected,declared)) continue;
+    // An explicit renaming notice may legitimately quote the former title.
+    if (/更名|名称.*(?:改为|变更)|名称从/.test(doc.header || '') && textKey(doc.header).includes(textKey(declared))) continue;
+    return {url:doc.url,step:'body_identity',error:'declared_race_name_mismatch',declaredName:declared,expectedName:expected};
+  }
+  return null;
+}
+function scheduleOfDocuments(docs) {
+  const day = (year,month,date) => {
+    const stamp=year+'-'+String(month).padStart(2,'0')+'-'+String(date).padStart(2,'0'), parsed=new Date(stamp+'T00:00:00Z');
+    return Number.isFinite(parsed.getTime()) && parsed.toISOString().slice(0,10)===stamp ? stamp : '';
+  };
+  // Only the current event header is authoritative here. Body paragraphs can
+  // retain an earlier date after postponement, or describe registration instead.
+  for (const doc of docs) for (const line of clean(doc.header).split('\n')) {
+    const match = /^\s*(?:赛事日期|比赛日期|活动日期)[：:\t ]*(20\d{2})[年.\/-]\s*(\d{1,2})[月.\/-]\s*(\d{1,2})日?(?:星期[一二三四五六日天]|[（(]周[一二三四五六日天][）)])?(?:\s*[-—～~–至]\s*(?:(20\d{2})[年.\/-]\s*)?(?:(\d{1,2})[月.\/-]\s*)?(\d{1,2})日?(?:星期[一二三四五六日天])?)?\s*$/.exec(line);
+    if (!match) continue;
+    const [,year,month,date,endYear,endMonth,endDay]=match;
+    const startDate=day(year,month,date),endDate=endDay ? day(endYear||year,endMonth||month,endDay) : startDate;
+    if (startDate && endDate && endDate>=startDate) return {startDate,endDate};
+  }
+  return null;
+}
 function registrationDates(text) {
   const empty = { opensAt: '', closesAt: '' };
   const value = clean(text);
@@ -323,13 +353,17 @@ class Collector {
   }
 }
 function assembleCollection({id = '',name = '',docs = [],groups = [],media = [],failures = []}) {
-    const texts = uniqueText(docs.map(d => d.text));
+    const bodyConflicts = docs.map(doc => bodyIdentityConflict(name,doc)).filter(Boolean);
+    const unsafeBodyUrls = new Set(bodyConflicts.map(conflict=>conflict.url));
+    const safeDocs = docs.filter(doc=>!unsafeBodyUrls.has(doc.url));
+    const safeMedia = media.filter(image=>!unsafeBodyUrls.has(image.sourceUrl));
+    const texts = uniqueText(safeDocs.map(d => d.text));
     // Exact/substantial duplicate summaries are removed, full rules are never character-truncated.
     const fullTexts = texts.filter((value, i) => !texts.some((other, j) => i !== j && other.length > value.length && textKey(other).includes(textKey(value))));
     const sections = fullTexts.flatMap((text, i) => splitSections(text, i ? '关联赛事资料' : '赛事概况'));
     const notices = uniqueText(docs.flatMap(doc => clean(doc.header).split('\n').map(clean).filter(line => /^(?:延期)?提示[：:]/.test(line))));
     if (notices.length) sections.unshift({title:'赛事公告',text:notices.join('\n')});
-    for (const image of media) if (image.ocr?.text) {
+    for (const image of safeMedia) if (image.ocr?.text) {
       const text = readableOcr(image.ocr); if (text.length < 20) continue;
       for (const section of splitSections(text, image.caption + '（原图识别）')) {
         if (!sections.some(s => textKey(s.text) === textKey(section.text))) sections.push({ ...section, sourceUrl: image.sourceUrl, imageUrl: image.url, ocr: true });
@@ -340,8 +374,10 @@ function assembleCollection({id = '',name = '',docs = [],groups = [],media = [],
     const cancelled = docs.some(d => statusOf(d.title + '\n' + d.header, { header:true }) === 'cancelled');
     const status = cancelled ? 'cancelled' : headerStatus && headerStatus !== 'unknown' ? headerStatus : groups.length && groups.every(g => g.status === 'closed') ? 'closed' : groups.length && groups.every(g => g.status === 'sold_out') ? 'sold_out' : 'unknown';
     const dates = registrationOfDocuments(docs, sections);
-    const details = { version: 1, registration: { status, channel: signupDoc ? '最酷' : '', url: signupDoc?.url || '', verified: !!signupDoc && signupDoc.capture.fresh, checkedAt: signupDoc?.capture.at || '', ...dates }, groups, sections,
-      media: media.filter(usefulMedia).map(({ ocr, ...item }) => ({ ...item, ocrText: ocr?.text || '', ocrEngine: ocr?.engine || '' })),
+    const schedule = scheduleOfDocuments(docs);
+    const details = { version: 1, ...(schedule ? {schedule} : {}), registration: { status, channel: signupDoc ? '最酷' : '', url: signupDoc?.url || '', verified: !!signupDoc && signupDoc.capture.fresh, checkedAt: signupDoc?.capture.at || '', ...dates }, groups, sections,
+      ...(bodyConflicts.length ? {audit:{bodyConflicts}} : {}),
+      media: safeMedia.filter(usefulMedia).map(({ ocr, ...item }) => ({ ...item, ocrText: ocr?.text || '', ocrEngine: ocr?.engine || '' })),
       sources: docs.map(d => ({ url: d.url, title: d.title, checkedAt: d.capture.at, method: d.capture.method, fresh: d.capture.fresh, error: d.capture.error })) };
     const fields = {};
     if (dates.opensAt) fields.reg_start = dates.opensAt;
@@ -351,7 +387,7 @@ function assembleCollection({id = '',name = '',docs = [],groups = [],media = [],
     const fee = groups.filter(g=>g.fees.length).map(g=>g.name+'：'+g.fees.map(f=>f.amount+'元/'+f.unit).join('、')).join('；');
     if (fee && fee.length <= 80) fields.fee = fee;
     return { id, name: name || docs[0]?.title || '', capturedAt: new Date().toISOString(), fields, details, guideText: sections.map(s => '## ' + s.title + '\n\n' + s.text).join('\n\n'), documents: docs,
-      imageEvidence: media.map(({ocr,...item}) => ({...item,ocrText:ocr?.text || '',ocrEngine:ocr?.engine || ''})), failures,
+      imageEvidence: media.map(({ocr,...item}) => ({...item,ocrText:ocr?.text || '',ocrEngine:ocr?.engine || ''})), failures:[...failures,...bodyConflicts],
       coverage: { pages: docs.length, packages: groups.length, images: media.length, imagesRead: media.filter(m => m.ocr?.text).length, usefulImages: media.filter(usefulMedia).length, textCharacters: sections.reduce((n,s) => n + s.text.length,0), sourcePlatforms: [...new Set(docs.map(d => new URL(d.url).hostname))] } };
 }
 
@@ -382,4 +418,4 @@ async function main() {
   } finally { await collector.stop(); }
 }
 if (require.main === module) main().catch(e => { console.error(e.stack); process.exitCode = 1; });
-module.exports = { Collector, groupOf, statusOf, sameEdition, registrationDates, registrationOfDocuments, readableOcr, ocrRows, usefulMedia, assembleCollection, splitSections, uniqueText, publicUrl, extractDocument, argsOf };
+module.exports = { Collector, groupOf, statusOf, sameEdition, bodyIdentityConflict, scheduleOfDocuments, registrationDates, registrationOfDocuments, readableOcr, ocrRows, usefulMedia, assembleCollection, splitSections, uniqueText, publicUrl, extractDocument, argsOf };

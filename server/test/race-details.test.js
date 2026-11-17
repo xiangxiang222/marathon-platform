@@ -75,6 +75,48 @@ test('an unverified existing entrance is retained as data without being advertis
   assert.equal(race.links.find(link=>link.key==='signup').url,row.signup_url);
 });
 
+test('multi-day lifecycle includes both boundary days and keeps registration independent', () => {
+  const schedule = { startDate: '2026-11-12', endDate: '2026-11-23' };
+  const source = { ...row, race_date: schedule.startDate, guide_text: writeDetails('多日赛事规程', { ...details, schedule }) };
+  for (const [instant, phase] of [
+    ['2026-11-11T23:59:59+08:00', '报名已截止'],
+    ['2026-11-12T00:00:00+08:00', '比赛中'],
+    ['2026-11-17T12:00:00+08:00', '比赛中'],
+    ['2026-11-23T23:59:59+08:00', '比赛中'],
+    ['2026-11-24T00:00:00+08:00', '已结束']
+  ]) {
+    const race = presentRace(source, new Date(instant));
+    assert.equal(race.regStatus, phase, instant);
+    assert.equal(race.registrationStatus, 'closed');
+    assert.equal(race.raceDateLabel, '2026-11-12 — 2026-11-23');
+    assert.equal(race.raceEndDate, '2026-11-23');
+  }
+  for (const endDate of ['2026-11-11', '2026-11-12', '2026-02-30', 'not-a-day']) {
+    const race = presentRace({ ...source, guide_text: writeDetails('规程', { ...details, schedule: { ...schedule, endDate } }) }, new Date('2026-11-17T00:00:00+08:00'));
+    assert.equal(race.regStatus, '已结束');
+    assert.equal(race.raceDateLabel, '2026-11-12');
+  }
+  assert.equal(presentRace(row, new Date('2026-11-21T12:00:00+08:00')).regStatus, '比赛中');
+});
+
+test('ongoing multi-day races remain in upcoming, live and overlapping calendar months', async () => {
+  const db = getDb(), previous = db.prepare('SELECT race_date,guide_text FROM races WHERE id=?').get('chaoyang');
+  const now = new Date(Date.now() + 8 * 3600000), today = now.toISOString().slice(0, 10);
+  const startDate = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() - 1, 28)).toISOString().slice(0, 10);
+  const endDate = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() + 1, 2)).toISOString().slice(0, 10);
+  try {
+    db.prepare('UPDATE races SET race_date=?,guide_text=? WHERE id=?').run(startDate, writeDetails('多日赛', { ...details, schedule: { startDate, endDate } }), 'chaoyang');
+    for (const query of ['status=upcoming', 'status=live', 'status=all&month=' + today.slice(0, 7)]) {
+      const response = await request(app).get('/marathon/api/races?' + query);
+      assert.equal(response.status, 200);
+      const race = response.body.races.find(item => item.id === 'chaoyang');
+      assert.ok(race, query);
+      assert.equal(race.regStatus, '比赛中');
+      assert.equal(race.raceEndDate, endDate);
+    }
+  } finally { db.prepare('UPDATE races SET race_date=?,guide_text=? WHERE id=?').run(previous.race_date, previous.guide_text, 'chaoyang'); }
+});
+
 test('cancelled and invalid entrances cannot serve generated signup QR codes', async () => {
   const db = getDb();
   const previous = db.prepare('SELECT signup_url,guide_text FROM races WHERE id=?').get('chaoyang');

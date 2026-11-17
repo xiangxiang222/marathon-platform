@@ -359,6 +359,13 @@ function linksOf(row) {
 function presentRace(row, now) {
   now = now || new Date();
   const guide = readDetails(field(row, "guideText", "guide_text"));
+  const baseDate = row.race_date || row.raceDate;
+  const schedule = guide.details?.schedule || {};
+  const validDay = value => /^\d{4}-\d{2}-\d{2}$/.test(value || '') && Number.isFinite(Date.parse(value)) && new Date(value).toISOString().slice(0, 10) === value;
+  const scheduleStart = validDay(schedule.startDate) ? schedule.startDate : baseDate;
+  const multipleDays = validDay(schedule.endDate) && schedule.endDate > scheduleStart;
+  const raceDate = multipleDays ? scheduleStart : baseDate;
+  const raceEndDate = multipleDays ? schedule.endDate : raceDate;
   const registration = registrationOf(row, guide.details, now);
   const generalDeadline = !/早鸟|精英|优惠/.test(field(row, 'deadlineName', 'deadline_name')) ? row.deadline : '';
   const meta = deadlineMeta(guide.details?.registration?.verified && guide.details.registration.closesAt || generalDeadline, now);
@@ -378,8 +385,8 @@ function presentRace(row, now) {
   const links = linksOf(row).filter(item => !blocked || item.key !== 'signup');
   const signup = guide.details?.registration?.entranceVerified === false ? null : signupTarget((links.find((item) => item.key === "signup") || {}).url);
   const today = new Date(now.getTime() + TZ).toISOString().slice(0, 10);
-  const future = (row.race_date || row.raceDate) > today;
-  let regStatus = phaseLabel(row.race_date || row.raceDate, meta, now, registrationScheduled);
+  const future = raceDate > today;
+  let regStatus = phaseLabel(raceDate, meta, now, registrationScheduled, raceEndDate);
   if (['cancelled', 'invalid'].includes(registration.status)) regStatus = registration.label;
   else if (future && registration.status !== 'unknown') regStatus = registration.status === 'not_open' ? '未开始' : registration.label;
   return {
@@ -391,7 +398,9 @@ function presentRace(row, now) {
     place: row.place,
     distances,
     distanceLabels: distances.map((d) => DISTANCE_LABEL[d] || d),
-    raceDate: row.race_date || row.raceDate,
+    raceDate,
+    raceEndDate,
+    raceDateLabel: multipleDays ? raceDate + ' — ' + raceEndDate : raceDate,
     deadline: row.deadline,
     deadlineName: meta.known ? field(row, "deadlineName", "deadline_name") || "报名截止" : "报名",
     regStart: field(row, "regStart", "reg_start"),
@@ -458,10 +467,10 @@ function inChannel(race, channel) {
   return false;
 }
 
-function phaseLabel(raceDate, meta, now, registrationScheduled = false) {
+function phaseLabel(raceDate, meta, now, registrationScheduled = false, raceEndDate = raceDate) {
   const today = new Date(now.getTime() + TZ).toISOString().slice(0, 10);
-  if (raceDate < today) return "已结束";
-  if (raceDate === today) return "比赛中";
+  if (raceEndDate < today) return "已结束";
+  if (raceDate <= today && raceEndDate >= today) return "比赛中";
   if (registrationScheduled) return "未开始";
   if (!meta.known) return "报名时间未录入";
   if (!meta.open) return "待开赛";
