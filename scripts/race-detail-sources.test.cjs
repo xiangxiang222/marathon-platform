@@ -128,3 +128,9 @@ test('a discovered announcement leads to its explicit current-edition website be
   assert.equal(result.sourceRoles[article],'public_source');
   assert.equal(result.sourceRoles[website],'official_website');
 });
+
+test('a website printed in the regulation contact text is opened and edition checked', async () => {
+  const result=await discoverRaceSources({name},{fetchCaa:false,documents:[{url:'https://reg.zuicool.com/123',text:'联系我们\n赛事官网：www.race.example/2026\n咨询电话：12345678',links:[]}],search:async()=>[],readDocument:async url=>page(url,{title:name})});
+  assert.equal(result.officialStatus,'verified');
+  assert.equal(result.sources[0].url,'http://www.race.example/2026');
+});

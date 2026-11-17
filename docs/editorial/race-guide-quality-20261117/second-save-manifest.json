@@ -273,7 +273,7 @@
         "identityReview": "人工核对当届标题、年份、赛事地点及本届原图；仅此明确页面验证，不授权站点全域",
         "characters": 7956,
         "bodySha256": "6dd84c1961df9ba994bd27851403c43890b400e5bbf739596e63b2fb8b14f2cb",
-        "checkedAt": "2026-11-17T17:53:57.996Z"
+        "checkedAt": "2026-11-17T18:03:29.245Z"
       },
       {
         "url": "https://www.cqmarathon.com/News/Detail/1CB916B2816F6C28",
@@ -283,7 +283,7 @@
         "identityReview": "人工核对当届标题、年份、赛事地点及本届原图；仅此明确页面验证，不授权站点全域",
         "characters": 3476,
         "bodySha256": "a2e3bd7df8355332fd3f8f66bebe3aaf6102d6c92f288eda8496aa6249090f38",
-        "checkedAt": "2026-11-17T17:53:57.996Z"
+        "checkedAt": "2026-11-17T18:03:29.245Z"
       }
     ],
     "stages": {
@@ -327,7 +327,7 @@
         "identityReview": "人工核对当届标题、年份、赛事地点及本届原图；仅此明确页面验证，不授权站点全域",
         "characters": 11428,
         "bodySha256": "48df102d7fd98a9f7e12ebd3753b30ce5e69fb34f423513800b445dbe047a459",
-        "checkedAt": "2026-11-17T17:53:57.996Z"
+        "checkedAt": "2026-11-17T18:03:29.245Z"
       },
       {
         "url": "http://sxym.org.cn/html/bmxz.html",
@@ -337,7 +337,7 @@
         "identityReview": "人工核对当届标题、年份、赛事地点及本届原图；仅此明确页面验证，不授权站点全域",
         "characters": 4244,
         "bodySha256": "8db5c2747fc8418e9be59639f3d89768d67ae11ba6e1f09874dff416cf3c1b6e",
-        "checkedAt": "2026-11-17T17:53:57.996Z"
+        "checkedAt": "2026-11-17T18:03:29.245Z"
       }
     ],
     "stages": {
@@ -386,7 +386,7 @@
         "identityReview": "人工核对当届标题、年份、赛事地点及本届原图；仅此明确页面验证，不授权站点全域",
         "characters": 10272,
         "bodySha256": "11b1d9064747f95e565fd4d86389a8025dc80b99619db59a2c96924d82051b74",
-        "checkedAt": "2026-11-17T17:53:57.996Z"
+        "checkedAt": "2026-11-17T18:03:29.245Z"
       },
       {
         "url": "http://www.danma.cn/page/Kn6NygxDqdk1mqPZebWM.html",
@@ -396,7 +396,7 @@
         "identityReview": "人工核对当届标题、年份、赛事地点及本届原图；仅此明确页面验证，不授权站点全域",
         "characters": 3730,
         "bodySha256": "1995dd566faa7a7f6cd8cc0f0e5f3cdd27397c2a31a0e6671a433d87d3f04b1b",
-        "checkedAt": "2026-11-17T17:53:57.996Z"
+        "checkedAt": "2026-11-17T18:03:29.245Z"
       }
     ],
     "stages": {
@@ -447,28 +447,17 @@
     "id": "zuiku-43816",
     "name": "2026第七届洛带HAKKA50越野赛",
     "status": "partially_verified",
-    "scope": "局部校对：仅edits逐项列出的原图、段落及表格已实际查看并核对；其他现有正文保持原值，不代表全篇已完成校对。",
+    "scope": "局部校对：本届官网正式规程文字及主参数/分段/25行日程/资格/费用/服务/装备/领物八张高清原表已核对；edits列明13处正式内容修订。现有赛事概况、宣传章节和四、赛事报名说明占位节保持原值，未标为全篇已校对。",
     "beforeBodyHash": "77d447b62394fa79d6dbfc31811043fb1051ff0b4c389562d2ebf583e769883f",
-    "savedBodyHash": "dc7e80070d62003667ac13df6285b0b2478c845fce9e68d3e3990fa099aaeab5",
+    "savedBodyHash": "ad40d019880f8a8b61a6dba2f209a7cecf2b9980d4b5cea3da0bd735627683ee",
     "bodyChanged": true,
-    "edits": 9,
-    "viewedImages": 5,
-    "pendingImages": 3,
+    "edits": 13,
+    "viewedImages": 12,
+    "pendingImages": 4,
     "chapters": 17,
     "groups": 5,
     "groupCorrections": 19,
     "questions": [
-      {
-        "status": "unconfirmed",
-        "question": "本页补给站点/分段关门时间表的部分站名、距离、累计升降及服务项目字号过小，未可靠转录；须保留该清晰度最高原图供查看。",
-        "reason": "已下载移除缩放参数的原图（仍750像素宽），分块放大3倍后仍不能逐格可靠辨认。",
-        "source": {
-          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/e97c22bf72733d8433e3739488c4c5bafb48150a.jpeg?imageView2/2/w/750",
-          "sourceUrl": "https://reg.zuicool.com/48197",
-          "sha256": "c86fbd815b8f15eaf9a9cf0e74fa6ae7fec56a5a50a064d8fe8c8f52338fbb1b",
-          "imageViewed": true
-        }
-      },
       {
         "status": "unconfirmed",
         "question": "9公里组资格表原图日期为2025年12月23日之后，而其他组为2025年12月13日之后。",
@@ -493,17 +482,36 @@
       },
       {
         "status": "unconfirmed",
-        "question": "报名费包含服务表部分品名字号过小，整表对应关系保留原图；未将不确定品名直接补入正文。",
-        "reason": "未缩放原图仍为750像素宽，已分块放大3倍；可确认项目之外的细字不能可靠逐字转录。",
-        "source": {
-          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/ad73d375dd828088b5aa9339fbea5dc1f5b06091.jpeg?imageView2/2/w/750",
-          "sourceUrl": "https://reg.zuicool.com/48197",
-          "sha256": "65d0bfb5e4e00c035948bca99d4d93acd0ed2b744eb555673c29ea6e7101dda9",
-          "imageViewed": true
-        }
+        "question": "QYLW-24公里组爬升，官网主参数表1140米，分段关门表终点1440米（下降也1440米），两张高清官方表存在差异。",
+        "reason": "已查看两张本届官网高清原图，不能据常识或另一数值修正其中一张。正文并列说明，结构原主表1140米暂保留。",
+        "sources": [
+          {
+            "url": "https://mmbiz.qpic.cn/mmbiz_png/JvPDmaiaZGHtUd7IzKUHr5a848q84N0US1iaEkDhiaWg86okpIuHxib2anxW8zK1xb2ASfUlBengloasZ8p4OYf0TEYTb9Cx1wfpgq1WQuZ8XQQ/0?wx_fmt=png&from=appmsg",
+            "sourceUrl": "http://www.cd100k.com/event?id=903855&mid=69458",
+            "sha256": "d13263ea58052d2b03a31b81c4371d7b335e048fae169deeb5ee231590055438",
+            "imageViewed": true,
+            "sourceType": "official-original-image"
+          },
+          {
+            "url": "https://mmbiz.qpic.cn/sz_mmbiz_png/JvPDmaiaZGHtJibhX7rVjkbJVKVNueyiaeibe6GCmGvql5WbWEz68H0E7D5f8YMc17FTLyVQuabgfTgJWW15qNbA0BvccxsAiawHdSAIPeaH1f1I/0?wx_fmt=png&from=appmsg",
+            "sourceUrl": "http://www.cd100k.com/event?id=903855&mid=69458",
+            "sha256": "270f08b51e01d084b3690f5173ba1bbe5ce1c944510ee644edb997409d5de3ae",
+            "imageViewed": true,
+            "sourceType": "official-original-image"
+          }
+        ]
       }
     ],
-    "officialDocuments": [],
+    "officialDocuments": [
+      {
+        "url": "http://www.cd100k.com/event?id=903855&mid=69458",
+        "title": "2026第七届洛带HAKKA50越野赛",
+        "role": "official_website",
+        "verified": true,
+        "checkedAt": "2026-11-17T18:03:29.245Z",
+        "identityReview": "从现有规程末尾公布的www.cd100k.com进入主办方官网，本届首页链接event?id=903855&mid=69458，HTTP实取200。HTTPS证书域名不匹配，未关闭证书校验。官网提供完整可复制规程文字及9张独立原始表图，均下载，本文使用到的8张表图已实际查看；优先用官方文字对照报名页长图，未发现PDF。"
+      }
+    ],
     "stages": {
       "reviewed": true,
       "saved": false,

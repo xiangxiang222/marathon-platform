@@ -102,8 +102,16 @@ function officialCandidates(race = {}, { caaDetails, documents = [] } = {}) {
   caaOfficialUrls(caaDetails).forEach(url => add(url, 'caa_web_url', CAA_DETAIL_URL));
   // Existing website values are leads, not a blind assertion of authority.
   [race.webUrl, race.web_url, race.event_url, race.eventUrl, race.official_url, race.officialUrl].filter(Boolean).forEach(url => add(url, 'existing_event_url'));
-  for (const doc of documents) for (const link of doc.links || []) {
-    if (/赛事官网|官方网站|官网入口|official\s+(?:website|site)/i.test(link.label || link.title || '')) add(link.url, 'explicit_official_link', doc.url);
+  for (const doc of documents) {
+    for (const link of doc.links || []) {
+      if (/赛事官网|官方网站|官网入口|official\s+(?:website|site)/i.test(link.label || link.title || '')) add(link.url, 'explicit_official_link', doc.url);
+    }
+    // Some regulations print a website as plain text in the contact section.
+    // Keep it as a lead and verify the edition and publisher after opening it.
+    for (const match of clean(doc.text).matchAll(/(?:赛事官网|官方网站|官网|官方网站地址|官方网站网址)\s*[:：]?\s*((?:https?:\/\/|www\.)[^\s<>，。；;）)]+)/gi)) {
+      const address = match[1];
+      add(/^www\./i.test(address)?'http://'+address:address,'explicit_official_link',doc.url);
+    }
   }
   return candidates;
 }
