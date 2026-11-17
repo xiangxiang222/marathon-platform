@@ -1,0 +1,205 @@
+{
+  "name": "任秀娟",
+  "worldAthleticsId": "14265419",
+  "gender": "women",
+  "cutoffDate": "2026-11-17",
+  "researchStatus": "sources_read_before_writing",
+  "identity": {
+    "countryCode": "CHN",
+    "birthDateRaw": "14 SEP 1974",
+    "sourceId": "S1"
+  },
+  "sources": [
+    {
+      "id": "S1",
+      "title": "任秀娟｜World Athletics官方人物资料",
+      "url": "https://worldathletics.org/athletes/athlete=14265419",
+      "publisher": "World Athletics",
+      "accessedAt": "2026-11-17",
+      "verification": "full_page_embedded_record_read"
+    }
+  ],
+  "recordEvidence": {
+    "personalBests": [
+      {
+        "discipline": "5000 Metres",
+        "mark": "15:39.68",
+        "date": "30 AUG 1996",
+        "venue": "Xi'an (CHN)",
+        "notLegal": false
+      },
+      {
+        "discipline": "10,000 Metres",
+        "mark": "31:13.21",
+        "date": "08 MAY 1996",
+        "venue": "Nanjing (CHN)",
+        "notLegal": false
+      },
+      {
+        "discipline": "10 Kilometres Road",
+        "mark": "36:30",
+        "date": "15 DEC 2024",
+        "venue": "Yangzhou (CHN)",
+        "notLegal": false
+      },
+      {
+        "discipline": "10 Kilometres Road",
+        "mark": "33:10",
+        "date": "07 AUG 1999",
+        "venue": "Cape Elizabeth, ME (USA)",
+        "notLegal": true
+      },
+      {
+        "discipline": "Half Marathon",
+        "mark": "1:10:39",
+        "date": "29 SEP 1996",
+        "venue": "Palma de Mallorca (ESP)",
+        "notLegal": false
+      },
+      {
+        "discipline": "Marathon",
+        "mark": "2:24:22",
+        "date": "14 OCT 2001",
+        "venue": "Beijing (CHN)",
+        "notLegal": false
+      }
+    ],
+    "marathonProgression": [
+      {
+        "mark": "2:35:59",
+        "date": "23 OCT 1994",
+        "venue": "Dalian (CHN)",
+        "competition": "Dalian Marathon",
+        "season": "1994"
+      },
+      {
+        "mark": "2:30:00",
+        "date": "05 OCT 1995",
+        "venue": "Beijing (CHN)",
+        "competition": "Beijing Marathon",
+        "season": "1995"
+      },
+      {
+        "mark": "2:27:13",
+        "date": "20 OCT 1996",
+        "venue": "Beijing (CHN)",
+        "competition": "Beijing Marathon",
+        "season": "1996"
+      },
+      {
+        "mark": "2:28:52",
+        "date": "04 OCT 1997",
+        "venue": "Beijing (CHN)",
+        "competition": "Beijing Marathon",
+        "season": "1997"
+      },
+      {
+        "mark": "2:33:58",
+        "date": "18 APR 1999",
+        "venue": "Nagano (JPN)",
+        "competition": "Nagano Marathon",
+        "season": "1999"
+      },
+      {
+        "mark": "2:25:32",
+        "date": "02 APR 2000",
+        "venue": "Jinan (CHN)",
+        "competition": "Chinese Marathon Championships",
+        "season": "2000"
+      },
+      {
+        "mark": "2:24:22",
+        "date": "14 OCT 2001",
+        "venue": "Beijing (CHN)",
+        "competition": "Beijing Marathon",
+        "season": "2001"
+      }
+    ],
+    "currentResults": [
+      {
+        "mark": "36:30",
+        "date": "15 DEC 2024",
+        "venue": "Yangzhou (CHN)",
+        "notLegal": false,
+        "competition": "Chinese Athletics Association 10Km Elite Series Yangzhou, Yangzhou",
+        "place": "6.",
+        "remark": "",
+        "discipline": "10 Kilometres Road"
+      }
+    ],
+    "honours": [
+      {
+        "discipline": "10,000 Metres",
+        "mark": "31:50.63",
+        "date": "05 AUG 1997",
+        "venue": "Olympic Stadium, Athina (GRE)",
+        "competition": "IAAF World Championships",
+        "place": "5.",
+        "category": "World Championships"
+      },
+      {
+        "discipline": "Half Marathon",
+        "mark": "1:10:39",
+        "date": "29 SEP 1996",
+        "venue": "Palma de Mallorca (ESP)",
+        "competition": "Palma de Mallorca IAAF World Half Marathon Championships",
+        "place": "1.",
+        "category": "World Half Marathon Championships"
+      },
+      {
+        "discipline": "Marathon",
+        "mark": "2:25:32",
+        "date": "02 APR 2000",
+        "venue": "Jinan (CHN)",
+        "competition": "Chinese Marathon Championships",
+        "place": "1.",
+        "category": "National Championships"
+      }
+    ]
+  },
+  "facts": [
+    {
+      "id": "F1",
+      "claim": "官方认可全马PB 2:24:22，14 OCT 2001，Beijing (CHN)。",
+      "sourceIds": [
+        "S1"
+      ]
+    }
+  ],
+  "activeEvidence": {
+    "formalResultsInLast24Months": [
+      {
+        "mark": "36:30",
+        "date": "15 DEC 2024",
+        "venue": "Yangzhou (CHN)",
+        "notLegal": false,
+        "competition": "Chinese Athletics Association 10Km Elite Series Yangzhou, Yangzhou",
+        "place": "6.",
+        "remark": "",
+        "discipline": "10 Kilometres Road"
+      }
+    ],
+    "sourceId": "S1",
+    "note": "现役按近24个月正式参赛口径；不据此推断国家队/专业队在队身份。"
+  },
+  "gaps": [
+    "缺少完整训练日志与代表马拉松官方分段，不编造配速变化和训练处方。",
+    "本稿不推断当前所属队伍、是否领工资、专业或大众报名身份。"
+  ],
+  "editorialQuestions": {
+    "memorableTrait": "世界半马冠军在50岁时仍有正式10公里结果。",
+    "definingRaceOrChoice": "1996半马世界冠军与2024扬州正式出赛形成跨阶段对照。",
+    "readerValue": "不同距离、合法性、当前参赛状态应分别记录。"
+  },
+  "centralQuestion": "不同距离、合法性、当前参赛状态应分别记录。",
+  "draftedAfterResearchCard": true,
+  "article": {
+    "title": "任秀娟：世界半马冠军，五十岁又交出一张十公里成绩单",
+    "lead": "1996年，她以1小时10分39秒赢得世界半程马拉松锦标赛。2024年冬天，官方记录里又出现她在扬州跑出的36分30秒。一个人的公路跑履历，可以比一张退役标签长得多。",
+    "body": "2024年12月15日，扬州，中国田径协会10公里精英赛。世界田联为任秀娟登记36分30秒、第六名，未标记为不合法成绩。她出生于1974年9月14日，比赛时已经50岁。[S1]\n\n这条正式记录，是她进入本专题活动筛选范围的依据。它既不说明她还在专业队，也不能替她宣布重新开始某个职业计划。能够核实的是：世界田联同一人物编号下，确实有一场发生在近24个月内的正式比赛。\n\n## 她的世界冠军，来自半程\n\n1996年9月29日，任秀娟在西班牙马略卡举行的世界半程马拉松锦标赛，以1小时10分39秒夺冠。同年10000米，她跑出31分13秒21；次年雅典世锦赛10000米31分50秒63、第五名。她的高水平竞技积累，横跨场地长跑与公路半程。[S1]\n\n她的全马PB则是2001年10月14日北京的2小时24分22秒。此前2000年济南全国马拉松锦标赛，她以2小时25分32秒夺冠。半程世界冠军与全马最好成绩来自不同年份，不能把它们合并成一次比赛的荣耀。[S1]\n\n本次没有获得这些代表比赛的完整分段和本人训练采访，无法说明她怎样安排从万米到半马、再到全马的转换。距离跨度是事实，具体训练因果仍需要证据。\n\n## 扬州36分30秒，应该怎样读\n\n36分30秒对应平均每公里3分39秒。它是一场10公里的实际结果，不能直接换算成她在2024年还能跑出怎样的全马成绩。本文PB排序仍采用2001年北京的2小时24分22秒；近期参赛记录则单独说明她仍有正式出赛。[S1]\n\n官方个人纪录栏还保留一项1999年美国10公里33分10秒，但带有notLegal标记。本文不把这一条作为合法PB，也不把合法36分30秒与它直接混算。这种标记差别，正是阅读运动员成绩时需要保留的细节。[S1]\n\n世界田联个人资料的年度记录有长时间间隔，资料缺失不等于她期间完全停止跑步。她的生活、工作与具体退队经过，本次没有取得足够可靠的公开叙述，不能由一张比赛表填补。\n\n对普通跑者，任秀娟提供的启发很具体：不同距离的成绩要分别保存，合法性与认证信息也要一起保留。年龄本身不应被当作自动删除一份正式成绩的理由，同样不构成人人都该模仿职业跑者速度的要求。\n\n把1996年的世界半马冠军和2024年的扬州成绩放在一起，我们看见的是两个已经证实的时刻。中间那些尚未被访谈照亮的岁月，可以继续研究；眼前这张新的十公里成绩单，已经足以让她的名字重新进入跑者的阅读。",
+    "version": 2,
+    "updatedAt": "2026-11-17",
+    "editorialStatus": "evidence_based_feature",
+    "characters": 754
+  }
+}

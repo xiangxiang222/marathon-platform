@@ -1,0 +1,1702 @@
+{
+  "cutoffDate": "2026-11-17",
+  "athletes": [
+    {
+      "name": "张新艳",
+      "worldAthleticsId": "14488655",
+      "gender": "women",
+      "cutoffDate": "2026-11-17",
+      "researchStatus": "sources_read_before_writing",
+      "identity": {
+        "countryCode": "CHN",
+        "birthDateRaw": "09 FEB 1994",
+        "sourceId": "S1"
+      },
+      "sources": [
+        {
+          "id": "S1",
+          "title": "张新艳｜World Athletics官方人物资料",
+          "url": "https://worldathletics.org/athletes/pr-of-china/xinyan-zhang-14488655",
+          "publisher": "World Athletics",
+          "accessedAt": "2026-11-17",
+          "verification": "full_page_embedded_record_read"
+        },
+        {
+          "id": "S2",
+          "title": "全运女5000米决赛张新艳夺冠 前三名相差不到半秒",
+          "url": "https://sports.cctv.com/2021/09/22/ARTIKGIntNR0NmhZGxGEcyUZ210922.shtml",
+          "publishedAt": "2021-09-22",
+          "accessedAt": "2026-11-17",
+          "verification": "full_article_read"
+        },
+        {
+          "id": "S3",
+          "title": "2026厦门马拉松⑤丨赛前运动员见面会举办 四大冠军悉数亮相",
+          "url": "https://local.cctv.com/2026/01/10/ARTI5IJVsSl6XoE0Tv8x1v3c260110.shtml",
+          "publishedAt": "2026-01-10",
+          "accessedAt": "2026-11-17",
+          "verification": "full_article_read"
+        },
+        {
+          "id": "S4",
+          "title": "名古屋女子马拉松开跑 张德顺创近11年最佳成绩",
+          "url": "https://sports.cctv.com/2023/03/13/ARTIj0WhDe31ghzVSKKVU3Hs230313.shtml",
+          "publishedAt": "2023-03-13",
+          "accessedAt": "2026-11-17",
+          "verification": "full_article_read"
+        },
+        {
+          "id": "S5",
+          "title": "厦门马拉松开跑 多项纪录告破",
+          "url": "https://local.cctv.com/2025/01/06/ARTImZ3BhO0pU5DuSVYRn6jr250106.shtml",
+          "publishedAt": "2025-01-06",
+          "accessedAt": "2026-11-17",
+          "verification": "full_article_read"
+        }
+      ],
+      "recordEvidence": {
+        "personalBests": [
+          {
+            "discipline": "800 Metres",
+            "mark": "2:10.17",
+            "date": "03 SEP 2014",
+            "venue": "Changbaishan (CHN)",
+            "notLegal": false
+          },
+          {
+            "discipline": "1500 Metres",
+            "mark": "4:15.84",
+            "date": "21 MAY 2016",
+            "venue": "Taiyuan (CHN)",
+            "notLegal": false
+          },
+          {
+            "discipline": "1500 Metres Short Track",
+            "mark": "4:24.28",
+            "date": "20 FEB 2017",
+            "venue": "Beijing (CHN) (i)",
+            "notLegal": false
+          },
+          {
+            "discipline": "2000 Metres",
+            "mark": "5:50.68",
+            "date": "13 SEP 2016",
+            "venue": "Marseille (FRA)",
+            "notLegal": false
+          },
+          {
+            "discipline": "5000 Metres",
+            "mark": "15:47.30",
+            "date": "07 SEP 2017",
+            "venue": "Tianjin (CHN)",
+            "notLegal": false
+          },
+          {
+            "discipline": "10,000 Metres",
+            "mark": "33:19.19",
+            "date": "27 SEP 2024",
+            "venue": "Changchun Sports Center Stadium, Changchun (CHN)",
+            "notLegal": false
+          },
+          {
+            "discipline": "3000 Metres Steeplechase",
+            "mark": "9:20.32",
+            "date": "08 APR 2021",
+            "venue": "Shaoxing (CHN)",
+            "notLegal": false
+          },
+          {
+            "discipline": "10 Kilometres Road",
+            "mark": "32:57",
+            "date": "17 OCT 2021",
+            "venue": "Shanghai (CHN)",
+            "notLegal": false
+          },
+          {
+            "discipline": "Half Marathon",
+            "mark": "1:13:01",
+            "date": "23 FEB 2025",
+            "venue": "Meishan (CHN)",
+            "notLegal": false
+          },
+          {
+            "discipline": "Marathon",
+            "mark": "2:26:56",
+            "date": "17 APR 2022",
+            "venue": "Hangzhou (CHN)",
+            "notLegal": false
+          }
+        ],
+        "marathonProgression": [
+          {
+            "mark": "3:00:01",
+            "date": "29 APR 2017",
+            "venue": "Tianjin (CHN)",
+            "competition": "Tianjin Marathon",
+            "season": "2017"
+          },
+          {
+            "mark": "2:26:56",
+            "date": "17 APR 2022",
+            "venue": "Hangzhou (CHN)",
+            "competition": "\"Exciting Hangzhou\" Marathon",
+            "season": "2022"
+          },
+          {
+            "mark": "2:32:19",
+            "date": "12 MAR 2023",
+            "venue": "Nagoya (JPN)",
+            "competition": "Nagoya Women's Marathon",
+            "season": "2023"
+          },
+          {
+            "mark": "2:29:32",
+            "date": "24 MAR 2024",
+            "venue": "Wuxi (CHN)",
+            "competition": "Wuxi Marathon",
+            "season": "2024"
+          },
+          {
+            "mark": "2:29:04",
+            "date": "05 JAN 2025",
+            "venue": "Xiamen (CHN)",
+            "competition": "C&D Xiamen Marathon",
+            "season": "2025"
+          },
+          {
+            "mark": "2:47:48",
+            "date": "11 JAN 2026",
+            "venue": "Xiamen (CHN)",
+            "competition": "C&D Xiamen Marathon",
+            "season": "2026"
+          }
+        ],
+        "currentResults": [
+          {
+            "mark": "2:47:48",
+            "date": "11 JAN 2026",
+            "venue": "Xiamen (CHN)",
+            "notLegal": false,
+            "competition": "C&D Xiamen Marathon, Xiamen",
+            "place": "15.",
+            "remark": "",
+            "discipline": "Marathon"
+          }
+        ],
+        "honours": [
+          {
+            "discipline": "3000 Metres Steeplechase",
+            "mark": "9:46.82",
+            "date": "06 JUN 2015",
+            "venue": "Wuhan (CHN)",
+            "competition": "Wuhan Asian Championships",
+            "place": "3.",
+            "category": "Asian Championships"
+          },
+          {
+            "discipline": "3000 Metres Steeplechase",
+            "mark": "9:46.30",
+            "date": "27 AUG 2018",
+            "venue": "Jakarta (INA)",
+            "competition": "Jakarta Asian Games",
+            "place": "4.",
+            "category": "Asian Games"
+          },
+          {
+            "discipline": "3000 Metres Steeplechase",
+            "mark": "9:57.99",
+            "date": "02 OCT 2023",
+            "venue": "HOC Stadium, Hangzhou (CHN)",
+            "competition": "19th Asian Games",
+            "place": "7.",
+            "category": "Asian Games"
+          },
+          {
+            "discipline": "Marathon",
+            "mark": "2:30:12",
+            "date": "30 MAR 2025",
+            "venue": "Jiaxing (CHN)",
+            "competition": "20th Asian Marathon Championships",
+            "place": "4.",
+            "category": "Asian Marathon Championships"
+          },
+          {
+            "discipline": "3000 Metres Steeplechase",
+            "mark": "9:57.63",
+            "date": "28 JUN 2023",
+            "venue": "Olympic Center, Shenyang (CHN)",
+            "competition": "Chinese Champinships",
+            "place": "1.",
+            "category": "National Championships"
+          },
+          {
+            "discipline": "3000 Metres Steeplechase",
+            "mark": "9:52.68",
+            "date": "11 JUL 2019",
+            "venue": "Shenyang (CHN)",
+            "competition": "Chinese Championships",
+            "place": "1.",
+            "category": "National Championships"
+          },
+          {
+            "discipline": "5000 Metres",
+            "mark": "16:01.39",
+            "date": "10 JUL 2019",
+            "venue": "Shenyang (CHN)",
+            "competition": "Chinese Championships",
+            "place": "1.",
+            "category": "National Championships"
+          },
+          {
+            "discipline": "3000 Metres Steeplechase",
+            "mark": "10:07.04",
+            "date": "16 MAY 2017",
+            "venue": "Jinan (CHN)",
+            "competition": "Chinese Championships",
+            "place": "1.",
+            "category": "National Championships"
+          }
+        ]
+      },
+      "facts": [
+        {
+          "id": "F1",
+          "claim": "官方认可全马PB 2:26:56，17 APR 2022，Hangzhou (CHN)。",
+          "sourceIds": [
+            "S1"
+          ]
+        },
+        {
+          "id": "F2",
+          "claim": "2021全运5000米15:53.92冠军，末100米冲刺领先张德顺15:54.30、许双双15:54.38。",
+          "sourceIds": [
+            "S2"
+          ]
+        },
+        {
+          "id": "F3",
+          "claim": "2026-01-10厦马赛前见面会本人称马拉松是不断挑战自我的过程，希望稳定发挥；报道确认其3000米障碍全国纪录保持者身份。",
+          "sourceIds": [
+            "S3"
+          ]
+        },
+        {
+          "id": "F4",
+          "claim": "2023名古屋马拉松2:32:19第19。",
+          "sourceIds": [
+            "S4"
+          ]
+        },
+        {
+          "id": "F5",
+          "claim": "2025-01-05厦门马拉松2:29:04中国籍女子冠军。",
+          "sourceIds": [
+            "S5"
+          ]
+        }
+      ],
+      "activeEvidence": {
+        "formalResultsInLast24Months": [
+          {
+            "mark": "2:47:48",
+            "date": "11 JAN 2026",
+            "venue": "Xiamen (CHN)",
+            "notLegal": false,
+            "competition": "C&D Xiamen Marathon, Xiamen",
+            "place": "15.",
+            "remark": "",
+            "discipline": "Marathon"
+          }
+        ],
+        "sourceId": "S1",
+        "note": "现役按近24个月正式参赛口径；不据此推断国家队/专业队在队身份。"
+      },
+      "gaps": [
+        "缺少完整训练日志与代表马拉松官方分段，不编造配速变化和训练处方。",
+        "本稿不推断当前所属队伍、是否领工资、专业或大众报名身份。"
+      ],
+      "editorialQuestions": {
+        "memorableTrait": "场地障碍与5000米冲刺能力并存的跨距离运动员。",
+        "definingRaceOrChoice": "2021全运5000米最后100米取胜，与后来全马成绩形成对照。",
+        "readerValue": "理解短距离优势如何需要在全马独立兑现，避免自动换算能力。"
+      },
+      "centralQuestion": "理解短距离优势如何需要在全马独立兑现，避免自动换算能力。",
+      "draftedAfterResearchCard": true,
+      "article": {
+        "title": "张新艳：跑过障碍的人，怎样走进马拉松",
+        "lead": "3000米障碍全国纪录、全运会5000米冠军、厦门马拉松中国籍女子冠军。张新艳的长跑版图跨过几个项目，而更长距离从未自动成为更容易的一项。",
+        "body": "2021年9月22日，全运会女子5000米决赛最后100米，张新艳、张德顺、许双双才真正分出先后。张新艳15分53秒92夺冠，张德顺15分54秒30，许双双15分54秒38，前三名相差不到半秒。央视赛况记下她在直道上强有力的冲刺。[S2]\n\n这是一段能够具体看见张新艳的比赛：她不只出现在成绩表上，而是在一次接近的竞争里，把最后的速度交给终点。几个月之后，她又走向另一种距离——2022年4月17日杭州马拉松，2小时26分56秒，成为世界田联至今登记的全马PB。[S1]\n\n## 她的履历里，不只有公路\n\n张新艳生于1994年2月9日。世界田联个人纪录中，3000米障碍一栏是2021年4月8日绍兴的9分20秒32，带有全国纪录标记。全运5000米冠军也发生在同一年。这些事实构成她进入马拉松叙事时最鲜明的背景：一个有场地速度、又跨越过障碍的运动员，继续尝试把能力带到更长的公路上。[S1][S2]\n\n但“跨越障碍”在这里首先是实实在在的田径项目，不能被拿来替她编写人生挫折。她何时开始训练，教练怎样决定不同项目之间的安排，本次没有获得足够完整的本人采访。我们能够确认项目履历，无法替她补上改项动机。\n\n杭州的2小时26分56秒，平均配速约为每公里3分29秒。这个平均速度需要维持42.195公里，与5000米终点前的冲刺是两种任务。它们可以共同描绘她的能力，却不能互相代替。缺少完整分段和训练日志，本文不能说全马突破完全来自某种障碍跑训练。[S1]\n\n## 厦门冠军，记录了另一种完成\n\n2023年名古屋，张新艳2小时32分19秒、第19名。2024年无锡，她跑出2小时29分32秒。2025年1月5日厦门，她又以2小时29分04秒获得中国籍女子冠军。[S1][S4][S5]\n\n厦门冠军比杭州PB慢2分08秒。这个差值不削弱冠军的真实性，它说明两场比赛有不同的比较对象：PB在与自己过去的最快成绩比较，组别冠军则由当场竞争决定。她在2025年厦门完成的是后一项任务。[S1][S5]\n\n到2026年1月10日的厦马赛前见面会，张新艳仍然出现在参赛运动员中。她谈到马拉松需要持续挑战自己，希望稳定发挥。这个表述来自她本人，不能延伸成“已经恢复巅峰”或“必将卫冕”的预言。[S3]\n\n次日比赛，世界田联记录她2小时47分48秒、第15名。与上一届相比，时间和名次都有明显变化；没有可靠材料说明原因，就不把它诊断为伤病，也不猜测训练是否失败。过去的纪录与当下的比赛，可以同时放在一个人的履历里。[S1]\n\n## 普通跑者可以借用的，是比较的方法\n\n张新艳的多项目经历，让人容易产生一种直觉：短距离跑得快，长距离自然会更好。她的真实成绩表让这种直觉变得复杂。障碍赛、5000米与马拉松分别检验不同的能力；某一项目的领先，仍需在另一项目的正式比赛中兑现。[S1]\n\n对普通跑者，适合借用的是把不同距离分别记录、分别复盘。短距离进步后，可以提出长距离耐力是否同步的问题，却不必立刻提高全马目标；赢得一次组别比赛后，也不必要求它同时承担PB的证明。\n\n记住张新艳，可以先记住那不到半秒的全运终点，再把画面拉远到厦门42.195公里的赛道。两种距离之间没有一条保证成功的捷径，她已经留下的，正是持续进入不同比赛、交出不同答案的真实轨迹。",
+        "version": 2,
+        "updatedAt": "2026-11-17",
+        "editorialStatus": "evidence_based_feature",
+        "characters": 1010
+      }
+    },
+    {
+      "name": "魏亚楠",
+      "worldAthleticsId": "14264959",
+      "gender": "women",
+      "cutoffDate": "2026-11-17",
+      "researchStatus": "sources_read_before_writing",
+      "identity": {
+        "countryCode": "CHN",
+        "birthDateRaw": "06 DEC 1981",
+        "sourceId": "S1"
+      },
+      "sources": [
+        {
+          "id": "S1",
+          "title": "魏亚楠｜World Athletics官方人物资料",
+          "url": "https://worldathletics.org/athletes/pr-of-china/yanan-wei-14264959",
+          "publisher": "World Athletics",
+          "accessedAt": "2026-11-17",
+          "verification": "full_page_embedded_record_read"
+        },
+        {
+          "id": "S2",
+          "title": "北京马拉松历届男女冠军：中国曾获女子22连冠",
+          "url": "https://sports.cctv.com/2018/09/14/ARTIcUmnbExkFGSOxh7nqyli180914.shtml",
+          "publishedAt": "2018-09-14",
+          "accessedAt": "2026-11-17",
+          "verification": "full_article_read"
+        }
+      ],
+      "recordEvidence": {
+        "personalBests": [
+          {
+            "discipline": "1500 Metres",
+            "mark": "4:18.66",
+            "date": "27 JUN 1999",
+            "venue": "Changchun (CHN)",
+            "notLegal": false
+          },
+          {
+            "discipline": "1500 Metres",
+            "mark": "4:18.66=",
+            "date": "15 OCT 1999",
+            "venue": "Huizhou (CHN)",
+            "notLegal": false
+          },
+          {
+            "discipline": "1500 Metres Short Track",
+            "mark": "4:28.69",
+            "date": "22 FEB 1999",
+            "venue": "Tianjin (CHN) (i)",
+            "notLegal": false
+          },
+          {
+            "discipline": "3000 Metres",
+            "mark": "9:08.55",
+            "date": "22 FEB 2000",
+            "venue": "Beijing (CHN) (i)",
+            "notLegal": false
+          },
+          {
+            "discipline": "3000 Metres Short Track",
+            "mark": "9:08.55",
+            "date": "22 FEB 2000",
+            "venue": "Beijing (CHN) (i)",
+            "notLegal": false
+          },
+          {
+            "discipline": "5000 Metres",
+            "mark": "15:15.75",
+            "date": "23 NOV 2001",
+            "venue": "Guangzhou (CHN)",
+            "notLegal": false
+          },
+          {
+            "discipline": "10,000 Metres",
+            "mark": "31:54.86",
+            "date": "19 NOV 2001",
+            "venue": "Guangzhou (CHN)",
+            "notLegal": false
+          },
+          {
+            "discipline": "10 Kilometres Road",
+            "mark": "31:49",
+            "date": "10 OCT 1999",
+            "venue": "Beijing (CHN)",
+            "notLegal": false
+          },
+          {
+            "discipline": "Half Marathon",
+            "mark": "1:11:54",
+            "date": "26 APR 2009",
+            "venue": "Yangzhou (CHN)",
+            "notLegal": false
+          },
+          {
+            "discipline": "Marathon",
+            "mark": "2:23:12",
+            "date": "18 MAR 2007",
+            "venue": "Seoul (KOR)",
+            "notLegal": false
+          }
+        ],
+        "marathonProgression": [
+          {
+            "mark": "2:26:34",
+            "date": "15 OCT 2000",
+            "venue": "Beijing (CHN)",
+            "competition": "Beijing Marathon",
+            "season": "2000"
+          },
+          {
+            "mark": "2:24:02",
+            "date": "14 OCT 2001",
+            "venue": "Beijing (CHN)",
+            "competition": "Beijing Marathon",
+            "season": "2001"
+          },
+          {
+            "mark": "2:25:06",
+            "date": "17 MAR 2002",
+            "venue": "Seoul (KOR)",
+            "competition": "Seoul Dong-A Marathon",
+            "season": "2002"
+          },
+          {
+            "mark": "2:45:23",
+            "date": "05 DEC 2004",
+            "venue": "Singapore (SGP)",
+            "competition": "Singapore Marathon",
+            "season": "2004"
+          },
+          {
+            "mark": "2:25:55",
+            "date": "13 MAR 2005",
+            "venue": "Seoul (KOR)",
+            "competition": "Seoul Marathon",
+            "season": "2005"
+          },
+          {
+            "mark": "2:31:43",
+            "date": "25 MAR 2006",
+            "venue": "Xiamen (CHN)",
+            "competition": "Xiamen International Marathon",
+            "season": "2006"
+          },
+          {
+            "mark": "2:23:12",
+            "date": "18 MAR 2007",
+            "venue": "Seoul (KOR)",
+            "competition": "Seoul International Marathon",
+            "season": "2007"
+          },
+          {
+            "mark": "2:25:10",
+            "date": "05 JAN 2008",
+            "venue": "Xiamen (CHN)",
+            "competition": "Xiamen International Marathon",
+            "season": "2008"
+          },
+          {
+            "mark": "2:27:49",
+            "date": "29 NOV 2009",
+            "venue": "Shanghai (CHN)",
+            "competition": "Shanghai International Marathon",
+            "season": "2009"
+          },
+          {
+            "mark": "2:30:46",
+            "date": "24 OCT 2010",
+            "venue": "Beijing (CHN)",
+            "competition": "Beijing International Marathon",
+            "season": "2010"
+          },
+          {
+            "mark": "2:27:13",
+            "date": "20 MAR 2011",
+            "venue": "Seoul (KOR)",
+            "competition": "Seoul Marathon",
+            "season": "2011"
+          },
+          {
+            "mark": "2:37:43",
+            "date": "25 NOV 2012",
+            "venue": "Beijing (CHN)",
+            "competition": "Beijing International Marathon",
+            "season": "2012"
+          },
+          {
+            "mark": "2:46:45",
+            "date": "11 JUN 2023",
+            "venue": "Jilin (CHN)",
+            "competition": "Jilin City International Marathon",
+            "season": "2023"
+          },
+          {
+            "mark": "2:57:04",
+            "date": "25 MAY 2025",
+            "venue": "Changchun (CHN)",
+            "competition": "Changchun Marathon",
+            "season": "2025"
+          },
+          {
+            "mark": "2:46:33",
+            "date": "13 SEP 2026",
+            "venue": "Harbin (CHN)",
+            "competition": "Harbin Marathon",
+            "season": "2026"
+          }
+        ],
+        "currentResults": [
+          {
+            "mark": "2:46:33",
+            "date": "13 SEP 2026",
+            "venue": "Harbin (CHN)",
+            "notLegal": false,
+            "competition": "Harbin Marathon, Harbin",
+            "place": "10.",
+            "remark": "",
+            "discipline": "Marathon"
+          }
+        ],
+        "honours": [
+          {
+            "discipline": "Marathon",
+            "mark": "2:29:52",
+            "date": "16 APR 2001",
+            "venue": "Boston, MA (USA)",
+            "competition": "Boston Marathon",
+            "place": "8.",
+            "category": "Major Marathon"
+          }
+        ]
+      },
+      "facts": [
+        {
+          "id": "F1",
+          "claim": "官方认可全马PB 2:23:12，18 MAR 2007，Seoul (KOR)。",
+          "sourceIds": [
+            "S1"
+          ]
+        },
+        {
+          "id": "F2",
+          "claim": "央视北京马拉松历史综述将魏亚楠列为曾夺女子冠军的中国长跑选手，姓名交叉核对。",
+          "sourceIds": [
+            "S2"
+          ]
+        }
+      ],
+      "activeEvidence": {
+        "formalResultsInLast24Months": [
+          {
+            "mark": "2:46:33",
+            "date": "13 SEP 2026",
+            "venue": "Harbin (CHN)",
+            "notLegal": false,
+            "competition": "Harbin Marathon, Harbin",
+            "place": "10.",
+            "remark": "",
+            "discipline": "Marathon"
+          }
+        ],
+        "sourceId": "S1",
+        "note": "现役按近24个月正式参赛口径；不据此推断国家队/专业队在队身份。"
+      },
+      "gaps": [
+        "缺少完整训练日志与代表马拉松官方分段，不编造配速变化和训练处方。",
+        "本稿不推断当前所属队伍、是否领工资、专业或大众报名身份。"
+      ],
+      "editorialQuestions": {
+        "memorableTrait": "2007首尔PB与2026正式全马相隔十九年的时间跨度。",
+        "definingRaceOrChoice": "2026哈尔滨结果让旧PB进入仍在正式出赛的生涯档案。",
+        "readerValue": "学习分别保存历史最好与当前阶段任务。"
+      },
+      "centralQuestion": "学习分别保存历史最好与当前阶段任务。",
+      "draftedAfterResearchCard": true,
+      "article": {
+        "title": "魏亚楠：最快的自己在首尔，新的成绩单在哈尔滨",
+        "lead": "2007年首尔2小时23分12秒，2026年哈尔滨2小时46分33秒。把这两个年份放在一起，魏亚楠的故事谈的不只是速度，也谈一个人怎样仍然出现在正式赛道上。",
+        "body": "2026年9月13日，哈尔滨马拉松女子成绩中，世界田联为魏亚楠登记了2小时46分33秒、第10名。她生于1981年12月6日，完成这场比赛时44岁。[S1]\n\n如果只看这一场，读者会看见一位能以平均每公里约3分57秒跑完全马的选手。再打开她的个人纪录，同一页上写着2007年首尔的2小时23分12秒。两场比赛相隔十九年，正式记录把两个时期的她放到了同一份档案里。[S1]\n\n## 她曾跑到怎样的位置\n\n世界田联收录的早期全马年度最佳，从2000年北京的2小时26分34秒开始。2001年北京2小时24分02秒，2007年3月18日首尔2小时23分12秒，成为她的全马PB。央视对北京马拉松历史的回顾，也将魏亚楠列在曾夺得女子冠军的中国长跑选手之中，中文姓名与国际资料形成交叉。[S1][S2]\n\n她在2001年波士顿马拉松以2小时29分52秒获得第八名；同年10000米跑出31分54秒86，5000米15分15秒75。她的早期竞技经历同时跨越场地与公路，不是一条只由某一场马拉松构成的成绩线。[S1]\n\n对于首尔PB，能够明确分析的是结果尺度：2小时23分12秒相当于全程平均每公里约3分24秒。本次未取得她当年的完整官方分段与可靠赛况，不为那场比赛安排未经证实的中途追赶，也不推测某一种训练方法造就纪录。[S1]\n\n## 记录的间隔，不是可以随意填补的生涯\n\n官方资料在2012年之后，下一条全马年度最佳出现在2023年吉林，2小时46分45秒；2025年长春2小时57分04秒，随后是2026年哈尔滨2小时46分33秒。资料表中存在长时间间隔，不能据此认定她在这段时间里完全没有跑步或没有参加任何其他赛事。[S1]\n\n同样，本文没有可靠材料确定她退出专业队的日期、之后的工作安排或当前报名的专业与大众类别。这里保留能够核实的身份边界：她的世界田联本人资料下，近24个月仍有正式比赛结果。专题采用这个参赛标准将她纳入，不表示她仍在国家队或专业队承担备战任务。\n\n2026年哈尔滨比她2023年吉林快12秒，比2025年长春快10分31秒。它们只是三个不同年份的比赛结果，不足以证明她执行了某个特定的“复出计划”。她怎样安排训练、怀着什么目标站上起点，仍应等待本人采访，而非由作者替她宣布。[S1]\n\n## 当PB不再是每次起跑的唯一任务\n\n魏亚楠在PB排序中靠前，是因为2小时23分12秒这项历史最好成绩；她最近的比赛表现则应看2026年的正式结果。把两者放开阅读，才能同时尊重她曾达到的竞技高度与现在的真实速度。\n\n对普通跑者，这份档案提供一种可用的复盘尺度：在不同人生阶段，分别记录当年的目标、能够投入的时间和正式成绩。旧PB可以保留，但不必让每一次起跑都背负复制它的任务。这是作者从记录中提出的阅读建议，并非魏亚楠本人公开的训练主张。\n\n十九年间速度变了，比赛仍在发生。记住她，可以同时记住首尔的2小时23分12秒，也记住哈尔滨那张新的成绩单。前一个数字属于已经跑到的高处，后一个数字说明这份档案还没有只剩历史。",
+        "version": 2,
+        "updatedAt": "2026-11-17",
+        "editorialStatus": "evidence_based_feature",
+        "characters": 938
+      }
+    },
+    {
+      "name": "白雪",
+      "worldAthleticsId": "14266777",
+      "gender": "women",
+      "cutoffDate": "2026-11-17",
+      "researchStatus": "sources_read_before_writing",
+      "identity": {
+        "countryCode": "CHN",
+        "birthDateRaw": "13 DEC 1988",
+        "sourceId": "S1"
+      },
+      "sources": [
+        {
+          "id": "S1",
+          "title": "白雪｜World Athletics官方人物资料",
+          "url": "https://worldathletics.org/athletes/pr-of-china/xue-bai-14266777",
+          "publisher": "World Athletics",
+          "accessedAt": "2026-11-17",
+          "verification": "full_page_embedded_record_read"
+        },
+        {
+          "id": "S2",
+          "title": "田径名宿变身解说嘉宾 中央电视台世锦赛报道“接地气”",
+          "url": "https://www.cctv.com/2015/08/25/ARTI1440470619532519.shtml",
+          "publishedAt": "2015-08-25",
+          "accessedAt": "2026-11-17",
+          "verification": "full_article_read"
+        }
+      ],
+      "recordEvidence": {
+        "personalBests": [
+          {
+            "discipline": "1500 Metres",
+            "mark": "4:24.51",
+            "date": "10 APR 2004",
+            "venue": "Yichun (CHN)",
+            "notLegal": false
+          },
+          {
+            "discipline": "3000 Metres",
+            "mark": "9:16.32",
+            "date": "12 APR 2004",
+            "venue": "Yichun (CHN)",
+            "notLegal": false
+          },
+          {
+            "discipline": "5000 Metres",
+            "mark": "15:09.84",
+            "date": "31 OCT 2007",
+            "venue": "Wuhan (CHN)",
+            "notLegal": false
+          },
+          {
+            "discipline": "10,000 Metres",
+            "mark": "31:17.62",
+            "date": "26 OCT 2009",
+            "venue": "Jinan (CHN)",
+            "notLegal": false
+          },
+          {
+            "discipline": "Marathon",
+            "mark": "2:23:27",
+            "date": "05 JAN 2008",
+            "venue": "Xiamen (CHN)",
+            "notLegal": false
+          }
+        ],
+        "marathonProgression": [
+          {
+            "mark": "2:37:07",
+            "date": "19 OCT 2003",
+            "venue": "Beijing (CHN)",
+            "competition": "Beijing Marathon",
+            "season": "2003"
+          },
+          {
+            "mark": "2:42:21",
+            "date": "07 NOV 2004",
+            "venue": "Seoul (KOR)",
+            "competition": "Seoul JoongAng Marathon",
+            "season": "2004"
+          },
+          {
+            "mark": "2:27:46",
+            "date": "21 OCT 2007",
+            "venue": "Beijing (CHN)",
+            "competition": "Beijing Marathon",
+            "season": "2007"
+          },
+          {
+            "mark": "2:23:27",
+            "date": "05 JAN 2008",
+            "venue": "Xiamen (CHN)",
+            "competition": "Xiamen International Marathon",
+            "season": "2008"
+          },
+          {
+            "mark": "2:25:15",
+            "date": "23 AUG 2009",
+            "venue": "Olympiastadion, Berlin (GER)",
+            "competition": "IAAF World Championships",
+            "season": "2009"
+          },
+          {
+            "mark": "2:25:18",
+            "date": "25 APR 2010",
+            "venue": "London (GBR)",
+            "competition": "London Marathon",
+            "season": "2010"
+          },
+          {
+            "mark": "2:43:27",
+            "date": "18 MAR 2012",
+            "venue": "Chongqing (CHN)",
+            "competition": "Chongqing Marathon",
+            "season": "2012"
+          },
+          {
+            "mark": "2:54:21",
+            "date": "31 AUG 2025",
+            "venue": "Harbin (CHN)",
+            "competition": "Harbin Marathon",
+            "season": "2025"
+          }
+        ],
+        "currentResults": [
+          {
+            "mark": "2:54:21",
+            "date": "31 AUG 2025",
+            "venue": "Harbin (CHN)",
+            "notLegal": false,
+            "competition": "Harbin Marathon, Harbin",
+            "place": "19.",
+            "remark": "",
+            "discipline": "Marathon"
+          }
+        ],
+        "honours": [
+          {
+            "discipline": "Marathon",
+            "mark": "2:25:15",
+            "date": "23 AUG 2009",
+            "venue": "Olympiastadion, Berlin (GER)",
+            "competition": "IAAF World Championships",
+            "place": "1.",
+            "category": "World Championships"
+          },
+          {
+            "discipline": "5000 Metres",
+            "mark": "15:37.12",
+            "date": "15 AUG 2006",
+            "venue": "Chaoyang Sport Center, Beijing (CHN)",
+            "competition": "Beijing IAAF World Junior Championships",
+            "place": "4.",
+            "category": "World U20 Championships"
+          },
+          {
+            "discipline": "5000 Metres",
+            "mark": "15:40.89",
+            "date": "03 SEP 2005",
+            "venue": "Incheon (KOR)",
+            "competition": "Incheon Asian Championships",
+            "place": "1.",
+            "category": "Asian Championships"
+          },
+          {
+            "discipline": "10,000 Metres",
+            "mark": "33:34.74",
+            "date": "01 SEP 2005",
+            "venue": "Incheon (KOR)",
+            "competition": "Incheon Asian Championships",
+            "place": "1.",
+            "category": "Asian Championships"
+          },
+          {
+            "discipline": "10,000 Metres",
+            "mark": "34:11.14",
+            "date": "14 NOV 2009",
+            "venue": "Guangzhou (CHN)",
+            "competition": "Guangzhou Asian Championships",
+            "place": "1.",
+            "category": "Asian Championships"
+          },
+          {
+            "discipline": "10,000 Metres",
+            "mark": "32:39.13",
+            "date": "21 NOV 2010",
+            "venue": "Guangzhou (CHN)",
+            "competition": "Guangzhou Asian Games",
+            "place": "8.",
+            "category": "Asian Games"
+          },
+          {
+            "discipline": "Marathon",
+            "mark": "2:25:18",
+            "date": "25 APR 2010",
+            "venue": "London (GBR)",
+            "competition": "London Marathon",
+            "place": "5.",
+            "category": "Major Marathon"
+          },
+          {
+            "discipline": "Marathon",
+            "mark": "2:42:21",
+            "date": "07 NOV 2004",
+            "venue": "Seoul (KOR)",
+            "competition": "Seoul JoongAng Marathon",
+            "place": "3.",
+            "category": "Asian Marathon Championships"
+          },
+          {
+            "discipline": "10,000 Metres",
+            "mark": "32:53.24",
+            "date": "08 AUG 2010",
+            "venue": "Jinan (CHN)",
+            "competition": "Chinese Championships",
+            "place": "1.",
+            "category": "National Championships"
+          },
+          {
+            "discipline": "5000 Metres",
+            "mark": "15:37.07",
+            "date": "23 MAY 2009",
+            "venue": "Suzhou (CHN)",
+            "competition": "Chinese Championships",
+            "place": "1.",
+            "category": "National Championships"
+          },
+          {
+            "discipline": "10,000 Metres",
+            "mark": "32:30.79",
+            "date": "13 OCT 2008",
+            "venue": "Shijiazhuang (CHN)",
+            "competition": "Chinese Championships",
+            "place": "1.",
+            "category": "National Championships"
+          },
+          {
+            "discipline": "5000 Metres",
+            "mark": "15:32.25",
+            "date": "11 OCT 2008",
+            "venue": "Shijiazhuang (CHN)",
+            "competition": "Chinese Championships",
+            "place": "1.",
+            "category": "National Championships"
+          },
+          {
+            "discipline": "10,000 Metres",
+            "mark": "33:33.49",
+            "date": "05 AUG 2007",
+            "venue": "Shijiazhuang (CHN)",
+            "competition": "Chinese Championships",
+            "place": "1.",
+            "category": "National Championships"
+          }
+        ]
+      },
+      "facts": [
+        {
+          "id": "F1",
+          "claim": "官方认可全马PB 2:23:27，05 JAN 2008，Xiamen (CHN)。",
+          "sourceIds": [
+            "S1"
+          ]
+        },
+        {
+          "id": "F2",
+          "claim": "2015年央视世锦赛报道列白雪为受邀解说嘉宾。该文的退役名宿概述不能单独证明她的准确退役时间。",
+          "sourceIds": [
+            "S2"
+          ]
+        }
+      ],
+      "activeEvidence": {
+        "formalResultsInLast24Months": [
+          {
+            "mark": "2:54:21",
+            "date": "31 AUG 2025",
+            "venue": "Harbin (CHN)",
+            "notLegal": false,
+            "competition": "Harbin Marathon, Harbin",
+            "place": "19.",
+            "remark": "",
+            "discipline": "Marathon"
+          }
+        ],
+        "sourceId": "S1",
+        "note": "现役按近24个月正式参赛口径；不据此推断国家队/专业队在队身份。"
+      },
+      "gaps": [
+        "缺少完整训练日志与代表马拉松官方分段，不编造配速变化和训练处方。",
+        "本稿不推断当前所属队伍、是否领工资、专业或大众报名身份。",
+        "2025哈尔滨的WA结果未显示专业/大众报名身份，未查得可靠当代访谈说明当前职业安排；只确认本人官方资料下的正式参赛。"
+      ],
+      "editorialQuestions": {
+        "memorableTrait": "2009世锦赛金牌和2025哈尔滨正式成绩并存。",
+        "definingRaceOrChoice": "柏林世界冠军比厦门PB慢，冠军价值无法用PB一个维度替代。",
+        "readerValue": "在尊重历史成绩时准确面对当前表现，不混淆专业队身份。"
+      },
+      "centralQuestion": "在尊重历史成绩时准确面对当前表现，不混淆专业队身份。",
+      "draftedAfterResearchCard": true,
+      "article": {
+        "title": "白雪：世界冠军之后，还有一张哈尔滨成绩单",
+        "lead": "2009年柏林世锦赛金牌，和2025年哈尔滨2小时54分21秒，属于同一位跑者。白雪的档案需要容纳竞技巅峰，也需要准确看见她后来仍参加的比赛。",
+        "body": "2025年8月31日，世界田联在白雪的本人资料下收录哈尔滨马拉松成绩：2小时54分21秒，第19名。她出生于1988年12月13日，比赛时36岁。[S1]\n\n这条记录把她带回本专题近24个月正式参赛的筛选窗口。它没有写她正在国家队训练，也没有给出专业或大众报名身份；本文据此确认的是正式参赛，不能把它包装成重返专业队或重新冲击世界冠军的声明。\n\n## 柏林，那块有明确位置的金牌\n\n2009年8月23日，白雪在柏林世锦赛女子马拉松以2小时25分15秒夺冠。世界田联的荣誉记录把冠军、时间与日期一并保留。这是她在中国马拉松史中最具辨识度的一场比赛。[S1]\n\n但她的全马PB来自另一场：2008年1月5日厦门2小时23分27秒。世锦赛夺冠的时间比PB慢1分48秒。只看速度，厦门更快；只看世界大赛的冠军结果，柏林又拥有无法被这个时间差消去的意义。[S1]\n\n柏林冠军时间的平均配速约为每公里3分27秒，厦门PB约为3分24秒。这里的计算帮助读者理解两场比赛的总速度，不能还原柏林每次集团分化与最终进攻。本次没有取得完整官方分段，因此不补写一个未经证实的突围地点。[S1]\n\n## 公路冠军背后，也有跑道\n\n白雪并非只有马拉松一种竞技经历。2005年亚洲田径锦标赛，她赢得5000米与10000米；2009年10000米跑出31分17秒62，世界田联将其列为个人最好成绩。场地与公路共同构成了她早期的长跑版图。[S1]\n\n这些记录说明她曾在多个距离参与高水平竞争，却不足以替她写出训练课表。她如何开始练跑、专业生涯中每次调整的原因，本次材料没有给出完整本人叙述。年龄和比赛地点都不能代替成长经历的证据。\n\n2015年，央视报道将白雪列在北京世锦赛受邀解说嘉宾之中。那份名单让读者看到，赛场之外她也曾通过解说角色参与田径传播。报道没有明确给出她本人准确的退役日期，不能把对一群体育名宿的概述当作个人职业状态证明。[S2]\n\n## 用两种时间阅读同一个人\n\n从柏林世锦赛到2025年哈尔滨，相隔十六年。哈尔滨的2小时54分21秒，比她2008年的PB慢30分54秒。这个时间差是真实的，但没有当代采访和训练资料，不能擅自用“为了某个目标复出”解释这次参赛。[S1]\n\n对她最基本的尊重，是既不隐藏当前成绩，也不让当前成绩覆盖过去的冠军。PB榜排列的是各人的历史最快合法全马结果，本专题的“现役”则按近24个月正式参赛判断，两者都不是当前国家队身份或综合实力的同义词。\n\n普通跑者可以从这里得到一个具体启发：把曾经最快的自己和今天能够完成的任务分开记录。两者可以相互照亮，未必需要每次都相互竞争。这是一种复盘建议，不是要求大众模仿她的训练或参赛频率。\n\n白雪值得被记住，首先因为那场有官方记录的世界大赛胜利；也因为多年之后，她的姓名仍出现在一张新的正式成绩单上。档案不需要替她宣布新的职业目标，只需要把这两个真实时刻，准确地交到读者手里。",
+        "version": 2,
+        "updatedAt": "2026-11-17",
+        "editorialStatus": "evidence_based_feature",
+        "characters": 951
+      }
+    },
+    {
+      "name": "朱晓琳",
+      "worldAthleticsId": "14264209",
+      "gender": "women",
+      "cutoffDate": "2026-11-17",
+      "researchStatus": "sources_read_before_writing",
+      "identity": {
+        "countryCode": "CHN",
+        "birthDateRaw": "20 FEB 1984",
+        "sourceId": "S1"
+      },
+      "sources": [
+        {
+          "id": "S1",
+          "title": "朱晓琳｜World Athletics官方人物资料",
+          "url": "https://worldathletics.org/athletes/athlete=14264209",
+          "publisher": "World Athletics",
+          "accessedAt": "2026-11-17",
+          "verification": "full_page_embedded_record_read"
+        },
+        {
+          "id": "S2",
+          "title": "2026雄安马拉松成功举办 仁青东知布获得“中国人保杯”",
+          "url": "https://sports.cctv.com/2026/04/13/ARTI5kmfQ2Y0FLmzLPHuwZD3260413.shtml",
+          "publishedAt": "2026-04-13",
+          "accessedAt": "2026-11-17",
+          "verification": "full_article_read"
+        }
+      ],
+      "recordEvidence": {
+        "personalBests": [
+          {
+            "discipline": "800 Metres",
+            "mark": "2:18.51",
+            "date": "20 AUG 2006",
+            "venue": "Birmingham (GBR)",
+            "notLegal": false
+          },
+          {
+            "discipline": "1500 Metres",
+            "mark": "4:12.73",
+            "date": "18 OCT 2005",
+            "venue": "Nanjing (CHN)",
+            "notLegal": false
+          },
+          {
+            "discipline": "1500 Metres Short Track",
+            "mark": "4:22.44",
+            "date": "19 FEB 2005",
+            "venue": "Shanghai (CHN) (i)",
+            "notLegal": false
+          },
+          {
+            "discipline": "3000 Metres",
+            "mark": "9:04.64",
+            "date": "10 MAR 2002",
+            "venue": "Shanghai (CHN) (i)",
+            "notLegal": false
+          },
+          {
+            "discipline": "3000 Metres Short Track",
+            "mark": "9:04.64",
+            "date": "10 MAR 2002",
+            "venue": "Shanghai (CHN) (i)",
+            "notLegal": false
+          },
+          {
+            "discipline": "5000 Metres",
+            "mark": "15:22.35",
+            "date": "22 OCT 2005",
+            "venue": "Nanjing (CHN)",
+            "notLegal": false
+          },
+          {
+            "discipline": "10,000 Metres",
+            "mark": "31:53.96",
+            "date": "22 MAY 2008",
+            "venue": "Beijing (CHN)",
+            "notLegal": false
+          },
+          {
+            "discipline": "10 Kilometres Road",
+            "mark": "32:38",
+            "date": "14 MAR 2010",
+            "venue": "Brescia (ITA)",
+            "notLegal": false
+          },
+          {
+            "discipline": "Half Marathon",
+            "mark": "1:10:07",
+            "date": "21 MAR 2010",
+            "venue": "Milano (ITA)",
+            "notLegal": false
+          },
+          {
+            "discipline": "Marathon",
+            "mark": "2:23:57",
+            "date": "13 OCT 2002",
+            "venue": "Beijing (CHN)",
+            "notLegal": false
+          }
+        ],
+        "marathonProgression": [
+          {
+            "mark": "2:23:57",
+            "date": "13 OCT 2002",
+            "venue": "Beijing (CHN)",
+            "competition": "Beijing Marathon",
+            "season": "2002"
+          },
+          {
+            "mark": "2:41:04",
+            "date": "27 MAR 2004",
+            "venue": "Xiamen (CHN)",
+            "competition": "Chinese Marathon Championships",
+            "season": "2004"
+          },
+          {
+            "mark": "2:32:27",
+            "date": "16 OCT 2005",
+            "venue": "Beijing (CHN)",
+            "competition": "Beijing International Marathon",
+            "season": "2005"
+          },
+          {
+            "mark": "2:28:27",
+            "date": "25 MAR 2006",
+            "venue": "Xiamen (CHN)",
+            "competition": "Xiamen International Marathon",
+            "season": "2006"
+          },
+          {
+            "mark": "2:26:08",
+            "date": "31 MAR 2007",
+            "venue": "Xiamen (CHN)",
+            "competition": "Xiamen International Marathon",
+            "season": "2007"
+          },
+          {
+            "mark": "2:27:16",
+            "date": "17 AUG 2008",
+            "venue": "National Stadium, Beijing (CHN)",
+            "competition": "The XXIX Olympic Games",
+            "season": "2008"
+          },
+          {
+            "mark": "2:26:08",
+            "date": "23 AUG 2009",
+            "venue": "Olympiastadion, Berlin (GER)",
+            "competition": "IAAF World Championships",
+            "season": "2009"
+          },
+          {
+            "mark": "2:26:35",
+            "date": "27 NOV 2010",
+            "venue": "Guangzhou (CHN)",
+            "competition": "Guangzhou Asian Games",
+            "season": "2010"
+          },
+          {
+            "mark": "2:26:28",
+            "date": "17 APR 2011",
+            "venue": "London (GBR)",
+            "competition": "London Marathon",
+            "season": "2011"
+          },
+          {
+            "mark": "2:24:19",
+            "date": "18 MAR 2012",
+            "venue": "Chongqing (CHN)",
+            "competition": "Chongqing Marathon",
+            "season": "2012"
+          },
+          {
+            "mark": "2:56:32",
+            "date": "24 MAR 2019",
+            "venue": "Wuxi (CHN)",
+            "competition": "Beverly Wuxi Marathon",
+            "season": "2019"
+          },
+          {
+            "mark": "2:44:28",
+            "date": "22 NOV 2020",
+            "venue": "Hangzhou (CHN)",
+            "competition": "Hangzhou Marathon",
+            "season": "2020"
+          },
+          {
+            "mark": "2:49:32",
+            "date": "20 NOV 2022",
+            "venue": "Hangzhou (CHN)",
+            "competition": "FAW Audi 2022 Hangzhou Marathon",
+            "season": "2022"
+          },
+          {
+            "mark": "2:41:42",
+            "date": "26 NOV 2023",
+            "venue": "Shaoxing (CHN)",
+            "competition": "Sleemon Shaoxing Marathon",
+            "season": "2023"
+          },
+          {
+            "mark": "2:43:17",
+            "date": "26 MAY 2024",
+            "venue": "Yingkou (CHN)",
+            "competition": "Yingkou - Bayuquan Marathon",
+            "season": "2024"
+          },
+          {
+            "mark": "2:38:12",
+            "date": "30 MAR 2025",
+            "venue": "Shijiazhuang (CHN)",
+            "competition": "Shijiazhuang Marathon",
+            "season": "2025"
+          }
+        ],
+        "currentResults": [
+          {
+            "mark": "2:38:12",
+            "date": "30 MAR 2025",
+            "venue": "Shijiazhuang (CHN)",
+            "notLegal": false,
+            "competition": "Shijiazhuang Marathon, Shijiazhuang",
+            "place": "3.",
+            "remark": "",
+            "discipline": "Marathon"
+          },
+          {
+            "mark": "2:43:06",
+            "date": "11 MAY 2025",
+            "venue": "Dalian (CHN)",
+            "notLegal": false,
+            "competition": "The 35th Dalian Marathon, Dalian",
+            "place": "13.",
+            "remark": "",
+            "discipline": "Marathon"
+          },
+          {
+            "mark": "2:42:13",
+            "date": "02 NOV 2025",
+            "venue": "Beijing (CHN)",
+            "notLegal": false,
+            "competition": "Beijing Marathon, Beijing",
+            "place": "17.",
+            "remark": "",
+            "discipline": "Marathon"
+          }
+        ],
+        "honours": [
+          {
+            "discipline": "Marathon",
+            "mark": "2:27:16",
+            "date": "17 AUG 2008",
+            "venue": "National Stadium, Beijing (CHN)",
+            "competition": "The XXIX Olympic Games",
+            "place": "4.",
+            "category": "Olympic Games"
+          },
+          {
+            "discipline": "Marathon",
+            "mark": "2:24:48",
+            "date": "05 AUG 2012",
+            "venue": "Olympic Stadium, London (GBR)",
+            "competition": "The XXX Olympic Games",
+            "place": "5.",
+            "category": "Olympic Games"
+          },
+          {
+            "discipline": "Marathon",
+            "mark": "2:31:21",
+            "date": "02 SEP 2007",
+            "venue": "Yanmar Stadium Nagai, Osaka (JPN)",
+            "competition": "IAAF World Championships",
+            "place": "4.",
+            "category": "World Championships"
+          },
+          {
+            "discipline": "Marathon",
+            "mark": "2:26:08",
+            "date": "23 AUG 2009",
+            "venue": "Olympiastadion, Berlin (GER)",
+            "competition": "IAAF World Championships",
+            "place": "5.",
+            "category": "World Championships"
+          },
+          {
+            "discipline": "Marathon",
+            "mark": "2:29:58",
+            "date": "27 AUG 2011",
+            "venue": "DS, Daegu (KOR)",
+            "competition": "IAAF World Championships",
+            "place": "6.",
+            "category": "World Championships"
+          },
+          {
+            "discipline": "Half Marathon",
+            "mark": "1:11:01",
+            "date": "16 OCT 2010",
+            "venue": "Nanning (CHN)",
+            "competition": "IAAF World Half Marathon Championships",
+            "place": "8.",
+            "category": "World Half Marathon Championships"
+          },
+          {
+            "discipline": "Marathon",
+            "mark": "2:26:35",
+            "date": "27 NOV 2010",
+            "venue": "Guangzhou (CHN)",
+            "competition": "Guangzhou Asian Games",
+            "place": "2.",
+            "category": "Asian Games"
+          },
+          {
+            "discipline": "3000 Metres Short Track",
+            "mark": "9:25.60",
+            "date": "11 FEB 2006",
+            "venue": "Pattaya (THA) (i)",
+            "competition": "Pattaya Asian Indoor Championships",
+            "place": "1.",
+            "category": "Asian Indoor Championships"
+          },
+          {
+            "discipline": "1500 Metres",
+            "mark": "4:19.75",
+            "date": "05 AUG 2006",
+            "venue": "Shijiazhuang (CHN)",
+            "competition": "Chinese Championships",
+            "place": "1.",
+            "category": "National Championships"
+          }
+        ]
+      },
+      "facts": [
+        {
+          "id": "F1",
+          "claim": "官方认可全马PB 2:23:57，13 OCT 2002，Beijing (CHN)。",
+          "sourceIds": [
+            "S1"
+          ]
+        },
+        {
+          "id": "F2",
+          "claim": "2026-04-12雄安马拉松报道朱晓琳2:45:29女子全马冠军；近窗身份活动以同一WAID的2025正式结果为主。",
+          "sourceIds": [
+            "S2"
+          ]
+        }
+      ],
+      "activeEvidence": {
+        "formalResultsInLast24Months": [
+          {
+            "mark": "2:38:12",
+            "date": "30 MAR 2025",
+            "venue": "Shijiazhuang (CHN)",
+            "notLegal": false,
+            "competition": "Shijiazhuang Marathon, Shijiazhuang",
+            "place": "3.",
+            "remark": "",
+            "discipline": "Marathon"
+          },
+          {
+            "mark": "2:43:06",
+            "date": "11 MAY 2025",
+            "venue": "Dalian (CHN)",
+            "notLegal": false,
+            "competition": "The 35th Dalian Marathon, Dalian",
+            "place": "13.",
+            "remark": "",
+            "discipline": "Marathon"
+          },
+          {
+            "mark": "2:42:13",
+            "date": "02 NOV 2025",
+            "venue": "Beijing (CHN)",
+            "notLegal": false,
+            "competition": "Beijing Marathon, Beijing",
+            "place": "17.",
+            "remark": "",
+            "discipline": "Marathon"
+          }
+        ],
+        "sourceId": "S1",
+        "note": "现役按近24个月正式参赛口径；不据此推断国家队/专业队在队身份。"
+      },
+      "gaps": [
+        "缺少完整训练日志与代表马拉松官方分段，不编造配速变化和训练处方。",
+        "本稿不推断当前所属队伍、是否领工资、专业或大众报名身份。"
+      ],
+      "conflicts": [
+        {
+          "issue": "伦敦2012历史新闻可能写第6；现WA honours显示第5。",
+          "decision": "使用当前官方数据库最终名次，并明确是现行记录，不推断更正原因。",
+          "sourceIds": [
+            "S1"
+          ]
+        }
+      ],
+      "editorialQuestions": {
+        "memorableTrait": "两届奥运、三届世锦赛持续前六的竞技履历。",
+        "definingRaceOrChoice": "2012伦敦比2008北京更快，名次却不同，说明时间与竞争的关系。",
+        "readerValue": "用多场大赛完成度理解生涯，而非只认PB。"
+      },
+      "centralQuestion": "用多场大赛完成度理解生涯，而非只认PB。",
+      "draftedAfterResearchCard": true,
+      "article": {
+        "title": "朱晓琳：从奥运会第四名，到仍在到来的起跑线",
+        "lead": "北京、伦敦、石家庄、雄安——朱晓琳的比赛地图跨越不同阶段。她的特点，不只在早年的快，也在多场世界大赛中留下的稳定位置。",
+        "body": "2008年8月17日，北京奥运会女子马拉松，朱晓琳以2小时27分16秒获得第四名。四年后的伦敦，她跑得更快，2小时24分48秒；世界田联现行荣誉记录列她为第五名。两场奥运会，都把她放在世界最强选手的前列。[S1]\n\n从这两行成绩理解朱晓琳，比简单贴一个“遗憾”的标签更准确。她在伦敦比北京快2分28秒，最终名次却在其后。时间与对手的位置，从来不是同一件事。伦敦名次采用当前官方记录，不沿用部分早期报道中的旧名次，也不猜测后续更正原因。[S1]\n\n## 一串世界大赛中的位置\n\n朱晓琳生于1984年2月20日，全马PB是2002年10月13日北京的2小时23分57秒。2007年大阪世锦赛，她2小时31分21秒、第四；2009年柏林世锦赛2小时26分08秒、第五；2011年大邱世锦赛2小时29分58秒、第六。[S1]\n\n几场比赛的时间差不小，名次却连续处于前六。这是她履历里很有辨识度的部分：在不同世界大赛中完成高位置的竞争。它不能自动证明某一项战术，但提示读者别只按PB之外有没有更快成绩来判断一段生涯。[S1]\n\n伦敦的2小时24分48秒，距离个人PB51秒，平均每公里约3分26秒。本次未取得她这场奥运会的完整分段与可靠训练记录，因此分析停留在结果尺度，不推断哪一公里改变了名次。\n\n## 后来的比赛，没有停在旧照片里\n\n2025年3月30日石家庄马拉松，世界田联登记她2小时38分12秒、第三名；同年大连2小时43分06秒，北京2小时42分13秒。这些成绩出现在同一世界田联编号之下，为她在近24个月内正式参赛提供了直接证据。[S1]\n\n2026年4月12日雄安马拉松，央视赛况又报道朱晓琳以2小时45分29秒赢得女子全马冠军。近年的比赛时间与早年巅峰之间有明显距离，而冠军仍然是一场有具体对手、具体终点的真实结果。[S2]\n\n她现在是否属于专业队、每天怎样训练，材料没有给出足够说明。专题以正式参赛判断活动状态，不据此称她正在国家队备战，也不为多年间的成绩变化补写伤病诊断。\n\n普通跑者从朱晓琳身上可以借用的，是为不同比赛保存不同任务：世界大赛的排名、最快全马的时间、后来某一场比赛的完成度，各有自己的坐标。旧PB不必被删掉，新的成绩也不需要躲在它后面。\n\n记住朱晓琳，可以记住她连续几届世界大赛里的前六名，也记住多年后石家庄和雄安的终点。前者说明她曾在怎样的竞争里跑到前面，后者说明这份履历仍然继续。",
+        "version": 2,
+        "updatedAt": "2026-11-17",
+        "editorialStatus": "evidence_based_feature",
+        "characters": 760
+      }
+    },
+    {
+      "name": "任秀娟",
+      "worldAthleticsId": "14265419",
+      "gender": "women",
+      "cutoffDate": "2026-11-17",
+      "researchStatus": "sources_read_before_writing",
+      "identity": {
+        "countryCode": "CHN",
+        "birthDateRaw": "14 SEP 1974",
+        "sourceId": "S1"
+      },
+      "sources": [
+        {
+          "id": "S1",
+          "title": "任秀娟｜World Athletics官方人物资料",
+          "url": "https://worldathletics.org/athletes/athlete=14265419",
+          "publisher": "World Athletics",
+          "accessedAt": "2026-11-17",
+          "verification": "full_page_embedded_record_read"
+        }
+      ],
+      "recordEvidence": {
+        "personalBests": [
+          {
+            "discipline": "5000 Metres",
+            "mark": "15:39.68",
+            "date": "30 AUG 1996",
+            "venue": "Xi'an (CHN)",
+            "notLegal": false
+          },
+          {
+            "discipline": "10,000 Metres",
+            "mark": "31:13.21",
+            "date": "08 MAY 1996",
+            "venue": "Nanjing (CHN)",
+            "notLegal": false
+          },
+          {
+            "discipline": "10 Kilometres Road",
+            "mark": "36:30",
+            "date": "15 DEC 2024",
+            "venue": "Yangzhou (CHN)",
+            "notLegal": false
+          },
+          {
+            "discipline": "10 Kilometres Road",
+            "mark": "33:10",
+            "date": "07 AUG 1999",
+            "venue": "Cape Elizabeth, ME (USA)",
+            "notLegal": true
+          },
+          {
+            "discipline": "Half Marathon",
+            "mark": "1:10:39",
+            "date": "29 SEP 1996",
+            "venue": "Palma de Mallorca (ESP)",
+            "notLegal": false
+          },
+          {
+            "discipline": "Marathon",
+            "mark": "2:24:22",
+            "date": "14 OCT 2001",
+            "venue": "Beijing (CHN)",
+            "notLegal": false
+          }
+        ],
+        "marathonProgression": [
+          {
+            "mark": "2:35:59",
+            "date": "23 OCT 1994",
+            "venue": "Dalian (CHN)",
+            "competition": "Dalian Marathon",
+            "season": "1994"
+          },
+          {
+            "mark": "2:30:00",
+            "date": "05 OCT 1995",
+            "venue": "Beijing (CHN)",
+            "competition": "Beijing Marathon",
+            "season": "1995"
+          },
+          {
+            "mark": "2:27:13",
+            "date": "20 OCT 1996",
+            "venue": "Beijing (CHN)",
+            "competition": "Beijing Marathon",
+            "season": "1996"
+          },
+          {
+            "mark": "2:28:52",
+            "date": "04 OCT 1997",
+            "venue": "Beijing (CHN)",
+            "competition": "Beijing Marathon",
+            "season": "1997"
+          },
+          {
+            "mark": "2:33:58",
+            "date": "18 APR 1999",
+            "venue": "Nagano (JPN)",
+            "competition": "Nagano Marathon",
+            "season": "1999"
+          },
+          {
+            "mark": "2:25:32",
+            "date": "02 APR 2000",
+            "venue": "Jinan (CHN)",
+            "competition": "Chinese Marathon Championships",
+            "season": "2000"
+          },
+          {
+            "mark": "2:24:22",
+            "date": "14 OCT 2001",
+            "venue": "Beijing (CHN)",
+            "competition": "Beijing Marathon",
+            "season": "2001"
+          }
+        ],
+        "currentResults": [
+          {
+            "mark": "36:30",
+            "date": "15 DEC 2024",
+            "venue": "Yangzhou (CHN)",
+            "notLegal": false,
+            "competition": "Chinese Athletics Association 10Km Elite Series Yangzhou, Yangzhou",
+            "place": "6.",
+            "remark": "",
+            "discipline": "10 Kilometres Road"
+          }
+        ],
+        "honours": [
+          {
+            "discipline": "10,000 Metres",
+            "mark": "31:50.63",
+            "date": "05 AUG 1997",
+            "venue": "Olympic Stadium, Athina (GRE)",
+            "competition": "IAAF World Championships",
+            "place": "5.",
+            "category": "World Championships"
+          },
+          {
+            "discipline": "Half Marathon",
+            "mark": "1:10:39",
+            "date": "29 SEP 1996",
+            "venue": "Palma de Mallorca (ESP)",
+            "competition": "Palma de Mallorca IAAF World Half Marathon Championships",
+            "place": "1.",
+            "category": "World Half Marathon Championships"
+          },
+          {
+            "discipline": "Marathon",
+            "mark": "2:25:32",
+            "date": "02 APR 2000",
+            "venue": "Jinan (CHN)",
+            "competition": "Chinese Marathon Championships",
+            "place": "1.",
+            "category": "National Championships"
+          }
+        ]
+      },
+      "facts": [
+        {
+          "id": "F1",
+          "claim": "官方认可全马PB 2:24:22，14 OCT 2001，Beijing (CHN)。",
+          "sourceIds": [
+            "S1"
+          ]
+        }
+      ],
+      "activeEvidence": {
+        "formalResultsInLast24Months": [
+          {
+            "mark": "36:30",
+            "date": "15 DEC 2024",
+            "venue": "Yangzhou (CHN)",
+            "notLegal": false,
+            "competition": "Chinese Athletics Association 10Km Elite Series Yangzhou, Yangzhou",
+            "place": "6.",
+            "remark": "",
+            "discipline": "10 Kilometres Road"
+          }
+        ],
+        "sourceId": "S1",
+        "note": "现役按近24个月正式参赛口径；不据此推断国家队/专业队在队身份。"
+      },
+      "gaps": [
+        "缺少完整训练日志与代表马拉松官方分段，不编造配速变化和训练处方。",
+        "本稿不推断当前所属队伍、是否领工资、专业或大众报名身份。"
+      ],
+      "editorialQuestions": {
+        "memorableTrait": "世界半马冠军在50岁时仍有正式10公里结果。",
+        "definingRaceOrChoice": "1996半马世界冠军与2024扬州正式出赛形成跨阶段对照。",
+        "readerValue": "不同距离、合法性、当前参赛状态应分别记录。"
+      },
+      "centralQuestion": "不同距离、合法性、当前参赛状态应分别记录。",
+      "draftedAfterResearchCard": true,
+      "article": {
+        "title": "任秀娟：世界半马冠军，五十岁又交出一张十公里成绩单",
+        "lead": "1996年，她以1小时10分39秒赢得世界半程马拉松锦标赛。2024年冬天，官方记录里又出现她在扬州跑出的36分30秒。一个人的公路跑履历，可以比一张退役标签长得多。",
+        "body": "2024年12月15日，扬州，中国田径协会10公里精英赛。世界田联为任秀娟登记36分30秒、第六名，未标记为不合法成绩。她出生于1974年9月14日，比赛时已经50岁。[S1]\n\n这条正式记录，是她进入本专题活动筛选范围的依据。它既不说明她还在专业队，也不能替她宣布重新开始某个职业计划。能够核实的是：世界田联同一人物编号下，确实有一场发生在近24个月内的正式比赛。\n\n## 她的世界冠军，来自半程\n\n1996年9月29日，任秀娟在西班牙马略卡举行的世界半程马拉松锦标赛，以1小时10分39秒夺冠。同年10000米，她跑出31分13秒21；次年雅典世锦赛10000米31分50秒63、第五名。她的高水平竞技积累，横跨场地长跑与公路半程。[S1]\n\n她的全马PB则是2001年10月14日北京的2小时24分22秒。此前2000年济南全国马拉松锦标赛，她以2小时25分32秒夺冠。半程世界冠军与全马最好成绩来自不同年份，不能把它们合并成一次比赛的荣耀。[S1]\n\n本次没有获得这些代表比赛的完整分段和本人训练采访，无法说明她怎样安排从万米到半马、再到全马的转换。距离跨度是事实，具体训练因果仍需要证据。\n\n## 扬州36分30秒，应该怎样读\n\n36分30秒对应平均每公里3分39秒。它是一场10公里的实际结果，不能直接换算成她在2024年还能跑出怎样的全马成绩。本文PB排序仍采用2001年北京的2小时24分22秒；近期参赛记录则单独说明她仍有正式出赛。[S1]\n\n官方个人纪录栏还保留一项1999年美国10公里33分10秒，但带有notLegal标记。本文不把这一条作为合法PB，也不把合法36分30秒与它直接混算。这种标记差别，正是阅读运动员成绩时需要保留的细节。[S1]\n\n世界田联个人资料的年度记录有长时间间隔，资料缺失不等于她期间完全停止跑步。她的生活、工作与具体退队经过，本次没有取得足够可靠的公开叙述，不能由一张比赛表填补。\n\n对普通跑者，任秀娟提供的启发很具体：不同距离的成绩要分别保存，合法性与认证信息也要一起保留。年龄本身不应被当作自动删除一份正式成绩的理由，同样不构成人人都该模仿职业跑者速度的要求。\n\n把1996年的世界半马冠军和2024年的扬州成绩放在一起，我们看见的是两个已经证实的时刻。中间那些尚未被访谈照亮的岁月，可以继续研究；眼前这张新的十公里成绩单，已经足以让她的名字重新进入跑者的阅读。",
+        "version": 2,
+        "updatedAt": "2026-11-17",
+        "editorialStatus": "evidence_based_feature",
+        "characters": 754
+      }
+    },
+    {
+      "name": "孙腊梅",
+      "worldAthleticsId": "14265279",
+      "gender": "women",
+      "cutoffDate": "2026-11-17",
+      "researchStatus": "sources_read_before_writing",
+      "identity": {
+        "countryCode": "CHN",
+        "birthDateRaw": "04 JAN 1991",
+        "sourceId": "S1"
+      },
+      "sources": [
+        {
+          "id": "S1",
+          "title": "孙腊梅｜World Athletics官方人物资料",
+          "url": "https://worldathletics.org/athletes/china/lamei-sun-14265279",
+          "publisher": "World Athletics",
+          "accessedAt": "2026-11-17",
+          "verification": "full_page_embedded_record_read"
+        }
+      ],
+      "recordEvidence": {
+        "personalBests": [
+          {
+            "discipline": "1500 Metres",
+            "mark": "4:15.06",
+            "date": "20 AUG 2009",
+            "venue": "Changsha (CHN)",
+            "notLegal": false
+          },
+          {
+            "discipline": "3000 Metres",
+            "mark": "9:14.68",
+            "date": "02 AUG 2007",
+            "venue": "Qiaozhong (CHN)",
+            "notLegal": false
+          },
+          {
+            "discipline": "5000 Metres",
+            "mark": "15:42.01",
+            "date": "06 AUG 2010",
+            "venue": "Jinan (CHN)",
+            "notLegal": false
+          },
+          {
+            "discipline": "10,000 Metres",
+            "mark": "33:34.82",
+            "date": "25 APR 2010",
+            "venue": "Suzhou (CHN)",
+            "notLegal": false
+          },
+          {
+            "discipline": "Half Marathon",
+            "mark": "1:12:59",
+            "date": "21 OCT 2007",
+            "venue": "Beijing (CHN)",
+            "notLegal": false
+          },
+          {
+            "discipline": "Marathon",
+            "mark": "2:27:55",
+            "date": "25 NOV 2012",
+            "venue": "Beijing (CHN)",
+            "notLegal": false
+          }
+        ],
+        "marathonProgression": [
+          {
+            "mark": "2:41:16",
+            "date": "23 MAY 2009",
+            "venue": "Dongying (CHN)",
+            "competition": "Dongying Marathon",
+            "season": "2009"
+          },
+          {
+            "mark": "2:27:55",
+            "date": "25 NOV 2012",
+            "venue": "Beijing (CHN)",
+            "competition": "Beijing International Marathon",
+            "season": "2012"
+          },
+          {
+            "mark": "2:54:08",
+            "date": "20 SEP 2015",
+            "venue": "Sydney (AUS)",
+            "competition": "Sydney Blackmores Marathon",
+            "season": "2015"
+          }
+        ],
+        "currentResults": [
+          {
+            "mark": "3:03:45",
+            "date": "22 DEC 2024",
+            "venue": "Shantou (CHN)",
+            "notLegal": false,
+            "competition": "Shantou Marathon, Shantou",
+            "place": "8.",
+            "remark": "UNC",
+            "discipline": "Marathon"
+          }
+        ],
+        "honours": []
+      },
+      "facts": [
+        {
+          "id": "F1",
+          "claim": "官方认可全马PB 2:27:55，25 NOV 2012，Beijing (CHN)。",
+          "sourceIds": [
+            "S1"
+          ]
+        }
+      ],
+      "activeEvidence": {
+        "formalResultsInLast24Months": [
+          {
+            "mark": "3:03:45",
+            "date": "22 DEC 2024",
+            "venue": "Shantou (CHN)",
+            "notLegal": false,
+            "competition": "Shantou Marathon, Shantou",
+            "place": "8.",
+            "remark": "UNC",
+            "discipline": "Marathon"
+          }
+        ],
+        "sourceId": "S1",
+        "note": "现役按近24个月正式参赛口径；不据此推断国家队/专业队在队身份。"
+      },
+      "gaps": [
+        "缺少完整训练日志与代表马拉松官方分段，不编造配速变化和训练处方。",
+        "本稿不推断当前所属队伍、是否领工资、专业或大众报名身份。",
+        "2024汕头结果附UNC标记且resultScore=0；仅作为参赛证据，不用该场成绩建立或替换合法PB。"
+      ],
+      "editorialQuestions": {
+        "memorableTrait": "从1500米4:15.06到全马2:27:55的多距离速度背景。",
+        "definingRaceOrChoice": "2024汕头带UNC标记的出赛，提醒阅读成绩也要读附注。",
+        "readerValue": "把近期活动与合法历史PB区分，不凭年龄和旧纪录定义今天。"
+      },
+      "centralQuestion": "把近期活动与合法历史PB区分，不凭年龄和旧纪录定义今天。",
+      "draftedAfterResearchCard": true,
+      "article": {
+        "title": "孙腊梅：速度留下的底色，与十二年后的全马记录",
+        "lead": "她的个人纪录里有4分15秒06的1500米，也有2小时27分55秒的马拉松。多年之后，新的参赛记录提示我们：一位运动员的故事，不必在旧PB那一栏停止。",
+        "body": "2012年11月25日北京马拉松，孙腊梅跑出2小时27分55秒。世界田联至今将其登记为合法全马PB。十二年后，2024年12月22日汕头马拉松，同一人物编号下又出现一场全马出赛记录：3小时03分45秒，第八名。[S1]\n\n汕头这条记录附有UNC标记，积分为零。本文保留这一原始标记，仅将该场用于确认她近24个月内曾正式参赛，不据此建立或改写合法PB，也不擅自解释标记的具体原因。[S1]\n\n## 全马之前，她也曾跑得更短\n\n孙腊梅生于1991年1月4日。世界田联个人纪录里，1500米是2009年长沙的4分15秒06，5000米是2010年济南的15分42秒01，10000米33分34秒82。2007年北京，她还跑出半程马拉松1小时12分59秒。[S1]\n\n这组事实让她的竞技底色更清楚：较短距离的速度与更长的公路跑，共同出现在履历中。不过，不能由成绩日期直接认定她在哪一年正式改项，也不能从个人纪录猜测教练怎样分配训练。\n\n北京2小时27分55秒，折算全程平均配速约为每公里3分30秒。这个数字说明她曾达到的全马速度；没有完整分段与原始比赛报道，不能说她当时如何起跑、在哪一公里提速、怎样处理补给。[S1]\n\n## 记录出现的那一天\n\n官方资料的近年比赛栏收录汕头出赛，但没有给出她当前的专业队身份、职业安排或参赛目标。因此，这份档案不替她宣布“职业复出”，也不根据比PB慢35分50秒的结果猜测伤病或训练状况。时间差可以计算，原因仍应由可靠材料解释。[S1]\n\n本专题采用近24个月正式参赛判断活动状态，PB排序则保留她历史认可的最好成绩。这两种信息需要一起阅读：它们分别回答“最近是否参赛”和“曾经最快跑过多少”，不能合成一句未经定义的当下实力判断。\n\n普通跑者可以从孙腊梅的成绩结构中借用一个办法：把1500米、5000米、半马与全马各自保留，观察自己在哪种距离有过积累。不同项目提供不同角度，不能靠一项旧速度直接给今天的全马定目标。\n\n关于她的成长、训练和多年间的调整，仍值得补充本人采访。现阶段能够准确交给读者的，是一位有场地速度记录、有全马2小时27分55秒，也在后来继续留下参赛记录的跑者。这个轮廓有边界，也有继续认识她的理由。",
+        "version": 2,
+        "updatedAt": "2026-11-17",
+        "editorialStatus": "evidence_based_feature",
+        "characters": 688
+      }
+    }
+  ]
+}

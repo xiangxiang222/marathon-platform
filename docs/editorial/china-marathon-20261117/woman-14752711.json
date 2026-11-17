@@ -1,0 +1,410 @@
+{
+  "name": "路颖",
+  "worldAthleticsId": "14752711",
+  "gender": "women",
+  "cutoffDate": "2026-11-17",
+  "researchStatus": "sources_read_before_writing",
+  "identity": {
+    "countryCode": "CHN",
+    "countryLabel": "PR of China",
+    "birthDateRaw": "13 OCT 1997",
+    "sourceId": "S1"
+  },
+  "sources": [
+    {
+      "id": "S1",
+      "title": "路颖｜World Athletics运动员资料",
+      "url": "https://worldathletics.org/athletes/pr-of-china/ying-lu-14752711",
+      "publisher": "World Athletics",
+      "kind": "official_athlete_record",
+      "accessedAt": "2026-11-17",
+      "verification": "full_page_and_embedded_competitor_json_read",
+      "publishedAt": null
+    },
+    {
+      "id": "S2",
+      "title": "4万人共赴太马：破纪录，交出城市治理与文旅融合新答卷",
+      "url": "https://local.cctv.com/2026/09/28/ARTIldVmNBReN2BO1z8n9gBZ260928.shtml",
+      "publisher": "央视网（具体原创机构见正文署名）",
+      "kind": "original_reporting_or_attributed_wire",
+      "publishedAt": "2026-09-28",
+      "accessedAt": "2026-11-17",
+      "verification": "full_article_read"
+    }
+  ],
+  "facts": [
+    {
+      "id": "F1",
+      "claim": "官方全马PB 2:24:24，日期 18 OCT 2026，地点 Beijing (CHN)；未标记notLegal。",
+      "sourceIds": [
+        "S1"
+      ]
+    },
+    {
+      "id": "F2",
+      "claim": "2026年9月27日太原马拉松中国籍女子冠军2:29:45，刘敏2:30:40、徐冰洁2:31:10；前三均超原中国籍女子赛会纪录。此为赛会纪录，非全国纪录。",
+      "sourceIds": [
+        "S2"
+      ]
+    }
+  ],
+  "recordEvidence": {
+    "personalBests": [
+      {
+        "discipline": "1500 Metres",
+        "mark": "4:43.81",
+        "date": "21 SEP 2019",
+        "venue": "Shenyang (CHN)",
+        "notLegal": false
+      },
+      {
+        "discipline": "5000 Metres",
+        "mark": "16:10.21",
+        "date": "22 AUG 2019",
+        "venue": "Daqing (CHN)",
+        "notLegal": false
+      },
+      {
+        "discipline": "10,000 Metres",
+        "mark": "33:28.24",
+        "date": "13 APR 2024",
+        "venue": "HOC Stadium, Hangzhou (CHN)",
+        "notLegal": false
+      },
+      {
+        "discipline": "Half Marathon",
+        "mark": "1:10:36",
+        "date": "15 MAR 2026",
+        "venue": "Meishan (CHN)",
+        "notLegal": false
+      },
+      {
+        "discipline": "Marathon",
+        "mark": "2:24:24",
+        "date": "18 OCT 2026",
+        "venue": "Beijing (CHN)",
+        "notLegal": false
+      }
+    ],
+    "marathonProgression": [
+      {
+        "mark": "2:41:01",
+        "date": "16 SEP 2018",
+        "venue": "Beijing (CHN)",
+        "competition": "Beijing Marathon",
+        "season": "2018"
+      },
+      {
+        "mark": "2:41:42",
+        "date": "03 NOV 2019",
+        "venue": "Beijing (CHN)",
+        "competition": "CFLD Beijing Marathon",
+        "season": "2019"
+      },
+      {
+        "mark": "2:42:29",
+        "date": "29 NOV 2020",
+        "venue": "Nanjing (CHN)",
+        "competition": "Marathon & Chinese Marathon Championships",
+        "season": "2020"
+      },
+      {
+        "mark": "2:32:38",
+        "date": "26 SEP 2021",
+        "venue": "Xi'an (CHN)",
+        "competition": "14th National Games",
+        "season": "2021"
+      },
+      {
+        "mark": "2:31:25",
+        "date": "17 APR 2022",
+        "venue": "Hangzhou (CHN)",
+        "competition": "\"Exciting Hangzhou\" Marathon",
+        "season": "2022"
+      },
+      {
+        "mark": "2:27:49",
+        "date": "29 OCT 2023",
+        "venue": "Beijing (CHN)",
+        "competition": "Beike Beijing Marathon",
+        "season": "2023"
+      },
+      {
+        "mark": "2:29:18",
+        "date": "24 MAR 2024",
+        "venue": "Wuxi (CHN)",
+        "competition": "Wuxi Marathon",
+        "season": "2024"
+      },
+      {
+        "mark": "2:27:30",
+        "date": "23 MAR 2025",
+        "venue": "Wuxi (CHN)",
+        "competition": "Wuxi Marathon",
+        "season": "2025"
+      },
+      {
+        "mark": "2:24:24",
+        "date": "18 OCT 2026",
+        "venue": "Beijing (CHN)",
+        "competition": "Bank of China Beijing Marathon",
+        "season": "2026"
+      }
+    ],
+    "currentResults": [
+      {
+        "mark": "16:29.98",
+        "date": "18 APR 2026",
+        "venue": "Henan Provincial Stadium, Zhengzhou (CHN)",
+        "notLegal": false,
+        "competition": "National Middle and Long Distance Running Meeting, Henan Provincial Stadium, Zhengzhou",
+        "place": "4.",
+        "discipline": "5000 Metres"
+      },
+      {
+        "mark": "16:57.96",
+        "date": "11 JUL 2026",
+        "venue": "Huludao (CHN)",
+        "notLegal": false,
+        "competition": "National Middle and Long Distance Running Meeting 3, Huludao",
+        "place": "3.",
+        "discipline": "5000 Metres"
+      },
+      {
+        "mark": "34:37.14",
+        "date": "19 APR 2026",
+        "venue": "Henan Provincial Stadium, Zhengzhou (CHN)",
+        "notLegal": false,
+        "competition": "National Middle and Long Distance Running Meeting, Henan Provincial Stadium, Zhengzhou",
+        "place": "4.",
+        "discipline": "10,000 Metres"
+      },
+      {
+        "mark": "35:13.31",
+        "date": "12 JUL 2026",
+        "venue": "Huludao (CHN)",
+        "notLegal": false,
+        "competition": "National Middle and Long Distance Running Meeting 3, Huludao",
+        "place": "2.",
+        "discipline": "10,000 Metres"
+      },
+      {
+        "mark": "1:10:36",
+        "date": "15 MAR 2026",
+        "venue": "Meishan (CHN)",
+        "notLegal": false,
+        "competition": "Meishan Renshou Half Marathon, Meishan",
+        "place": "9.",
+        "discipline": "Half Marathon"
+      },
+      {
+        "mark": "2:29:17",
+        "date": "11 JAN 2026",
+        "venue": "Xiamen (CHN)",
+        "notLegal": false,
+        "competition": "C&D Xiamen Marathon, Xiamen",
+        "place": "7.",
+        "discipline": "Marathon"
+      },
+      {
+        "mark": "2:26:35",
+        "date": "01 MAR 2026",
+        "venue": "Tokyo (JPN)",
+        "notLegal": false,
+        "competition": "Tokyo Marathon, Tokyo",
+        "place": "12.",
+        "discipline": "Marathon"
+      },
+      {
+        "mark": "2:31:06",
+        "date": "29 MAR 2026",
+        "venue": "Yancheng (CHN)",
+        "notLegal": false,
+        "competition": "Yancheng Marathon, Yancheng",
+        "place": "1.",
+        "discipline": "Marathon"
+      },
+      {
+        "mark": "2:36:53",
+        "date": "24 MAY 2026",
+        "venue": "Lanzhou (CHN)",
+        "notLegal": false,
+        "competition": "Lanzhou Marathon, Lanzhou",
+        "place": "5.",
+        "discipline": "Marathon"
+      },
+      {
+        "mark": "2:34:05",
+        "date": "31 MAY 2026",
+        "venue": "Jilin (CHN)",
+        "notLegal": false,
+        "competition": "Jilin City Marathon, Jilin",
+        "place": "2.",
+        "discipline": "Marathon"
+      },
+      {
+        "mark": "2:29:45",
+        "date": "27 SEP 2026",
+        "venue": "Taiyuan (CHN)",
+        "notLegal": false,
+        "competition": "Taiyuan Marathon, Taiyuan",
+        "place": "3.",
+        "discipline": "Marathon"
+      },
+      {
+        "mark": "2:24:24",
+        "date": "18 OCT 2026",
+        "venue": "Beijing (CHN)",
+        "notLegal": false,
+        "competition": "Bank of China Beijing Marathon, Beijing",
+        "place": "3.",
+        "discipline": "Marathon"
+      }
+    ]
+  },
+  "gaps": [
+    "未获得本人与教练完整训练日志，不写周跑量、心率区间、饮食和伤病诊断。",
+    "未获取代表全马比赛完整官方分段；平均配速只作算术说明，不伪写加速位置。",
+    "现役名单最终纳入待全历史PB筛选和退役公告审计。"
+  ],
+  "recordEvidenceSnapshotNote": "本轮已在线核读6人官方页面；重复请求后0字节，结构化事实快照采用既有2026-11-12采集JSON并与本轮已读内容核对。",
+  "activeEvidence": {
+    "formalResultsInLast24Months": [
+      {
+        "mark": "16:29.98",
+        "date": "18 APR 2026",
+        "venue": "Henan Provincial Stadium, Zhengzhou (CHN)",
+        "notLegal": false,
+        "competition": "National Middle and Long Distance Running Meeting, Henan Provincial Stadium, Zhengzhou",
+        "place": "4.",
+        "discipline": "5000 Metres"
+      },
+      {
+        "mark": "16:57.96",
+        "date": "11 JUL 2026",
+        "venue": "Huludao (CHN)",
+        "notLegal": false,
+        "competition": "National Middle and Long Distance Running Meeting 3, Huludao",
+        "place": "3.",
+        "discipline": "5000 Metres"
+      },
+      {
+        "mark": "34:37.14",
+        "date": "19 APR 2026",
+        "venue": "Henan Provincial Stadium, Zhengzhou (CHN)",
+        "notLegal": false,
+        "competition": "National Middle and Long Distance Running Meeting, Henan Provincial Stadium, Zhengzhou",
+        "place": "4.",
+        "discipline": "10,000 Metres"
+      },
+      {
+        "mark": "35:13.31",
+        "date": "12 JUL 2026",
+        "venue": "Huludao (CHN)",
+        "notLegal": false,
+        "competition": "National Middle and Long Distance Running Meeting 3, Huludao",
+        "place": "2.",
+        "discipline": "10,000 Metres"
+      },
+      {
+        "mark": "1:10:36",
+        "date": "15 MAR 2026",
+        "venue": "Meishan (CHN)",
+        "notLegal": false,
+        "competition": "Meishan Renshou Half Marathon, Meishan",
+        "place": "9.",
+        "discipline": "Half Marathon"
+      },
+      {
+        "mark": "2:29:17",
+        "date": "11 JAN 2026",
+        "venue": "Xiamen (CHN)",
+        "notLegal": false,
+        "competition": "C&D Xiamen Marathon, Xiamen",
+        "place": "7.",
+        "discipline": "Marathon"
+      },
+      {
+        "mark": "2:26:35",
+        "date": "01 MAR 2026",
+        "venue": "Tokyo (JPN)",
+        "notLegal": false,
+        "competition": "Tokyo Marathon, Tokyo",
+        "place": "12.",
+        "discipline": "Marathon"
+      },
+      {
+        "mark": "2:31:06",
+        "date": "29 MAR 2026",
+        "venue": "Yancheng (CHN)",
+        "notLegal": false,
+        "competition": "Yancheng Marathon, Yancheng",
+        "place": "1.",
+        "discipline": "Marathon"
+      },
+      {
+        "mark": "2:36:53",
+        "date": "24 MAY 2026",
+        "venue": "Lanzhou (CHN)",
+        "notLegal": false,
+        "competition": "Lanzhou Marathon, Lanzhou",
+        "place": "5.",
+        "discipline": "Marathon"
+      },
+      {
+        "mark": "2:34:05",
+        "date": "31 MAY 2026",
+        "venue": "Jilin (CHN)",
+        "notLegal": false,
+        "competition": "Jilin City Marathon, Jilin",
+        "place": "2.",
+        "discipline": "Marathon"
+      },
+      {
+        "mark": "2:29:45",
+        "date": "27 SEP 2026",
+        "venue": "Taiyuan (CHN)",
+        "notLegal": false,
+        "competition": "Taiyuan Marathon, Taiyuan",
+        "place": "3.",
+        "discipline": "Marathon"
+      },
+      {
+        "mark": "2:24:24",
+        "date": "18 OCT 2026",
+        "venue": "Beijing (CHN)",
+        "notLegal": false,
+        "competition": "Bank of China Beijing Marathon, Beijing",
+        "place": "3.",
+        "discipline": "Marathon"
+      }
+    ],
+    "sourceId": "S1",
+    "retirementAnnouncementCheck": "pending_final_roster_audit",
+    "note": "正式参赛记录已核实；不单凭世界田联页面断言未退役。"
+  },
+  "conflicts": [
+    {
+      "issue": "2021全运女子马拉松央视简报写路颖2:32:57第三；WA其同日年度最佳2:32:38。",
+      "conflictingSourceUrl": "https://sports.cctv.com/2021/09/26/ARTI09A9eFUan7qPpUMKRiGB210926.shtml",
+      "decision": "该场成绩及名次从正文排除，等待官方成绩册复核。"
+    }
+  ],
+  "editorialQuestions": {
+    "memorableTrait": "在2026赛季一连串全马比赛中把PB推进到2:24:24。",
+    "definingRaceOrChoice": "太原中国籍冠军与21天后的北马总第三，提示不同赛事标签的意义。",
+    "readerValue": "分清组别冠军、赛会纪录和PB，不只靠名次评价训练效果。"
+  },
+  "centralQuestion": "分清组别冠军、赛会纪录和PB，不只靠名次评价训练效果。",
+  "article": {
+    "title": "路颖：二十一天，两个终点怎样读懂一场突破",
+    "lead": "太原的中国籍女子冠军，北京的女子总第三。2026年秋天，路颖用相隔21天的两场比赛，把组别荣誉与个人极限放在读者面前。",
+    "body": "2026年9月27日，路颖在太原马拉松以2小时29分45秒获得中国籍女子冠军，并刷新该组赛会纪录。刘敏2小时30分40秒、徐冰洁2小时31分10秒分列其后，三人都超过了原有的中国籍女子赛会纪录。[S2]\n\n这是一场有明确边界的胜利：中国籍女子第一，纪录属于这项赛事的相应组别。世界田联记录路颖该场的女子总名次是第三。两个名次并不冲突，它们只是描述了不同范围的竞争。[S1][S2]\n\n21天后，路颖在北京马拉松同样获得女子总第三，成绩却变成2小时24分24秒。世界田联将其登记为全马PB，未标记为不合法成绩。她比太原快了5分21秒，也比自己2025年无锡年度最佳2小时27分30秒快3分06秒。[S1]\n\n两张成绩单合起来，路颖这一季的故事才足够完整：她既能在城市赛事里争取中国籍冠军，也能在另一条赛道上把个人时间边界往前推。\n\n## 北京，既是起点记录，也是新坐标\n\n世界田联的路颖全马年度最佳记录，最早可见2018年北京2小时41分01秒。2019年仍是北京，2小时41分42秒；2020年南京2小时42分29秒。随后她在2022年杭州达到2小时31分25秒，2023年北京2小时27分49秒。[S1]\n\n不能把最早收录记录当作她的首马，公开资料也尚不足以解释她何时入队、最初受谁训练。能够确认的是，在这份有来源的时间线中，北京多次成为她的比赛坐标。从2018年的2小时41分01秒，到2026年的2小时24分24秒，两个已收录成绩之间缩短16分37秒。[S1]\n\n中间也有回摆：2024年度最佳为2小时29分18秒，2025年才再度跑到2小时27分30秒。成长线是由具体赛事组成的，不是一条每年必然向下的直线。材料不足以把较慢年份归因于受伤或训练失误，这些空白不应被励志情节填满。[S1]\n\n## 2026赛季，怎样在不同结果中找到同一个人\n\n这一年，路颖先在厦门跑出2小时29分17秒，3月东京2小时26分35秒。东京的成绩已经比她2025年年度最佳快55秒，后来北京又在此基础上缩短2分11秒。她的秋季突破有一个春季已出现的前奏。[S1]\n\n而在其他比赛中，她有过盐城2小时31分06秒、兰州2小时36分53秒、吉林2小时34分05秒。成绩不同，是已经发生的事实；赛程安排是否服务某个训练周期、当时身体是否疲劳，公开材料没有给出足够说明。不能从比赛密集直接推断她的教练策略，更不能把这种安排推荐给大众跑者。[S1]\n\n北京2小时24分24秒，平均配速约为每公里3分25秒；太原平均约为每公里3分33秒。每公里约8秒的平均差，说明两场比赛在总速度上有明显不同，无法说明她在哪个路段采取了什么战术。本次没有取得完整官方分段、即时天气和个人补给资料，因此比赛分析到此为止，不为终点之前补写追逐场面。[S1]\n\n## 她的突破，为什么值得保存\n\n对于普通跑者，路颖这21天带来的首先是一种阅读成绩的方法。把名次写清楚范围，把纪录写清楚所属赛事，再把PB与自己过去的成绩比较，很多表面矛盾的标签就能各归其位。太原的中国籍冠军与北京总第三，都是有价值的成绩，不需要被揉成一个模糊的“实力更强”。[S1][S2]\n\n还可以留意突破之前的信号。她在东京已经跑得比2025年最佳更快，到了北京才把这一季的时间上限推得更远。这是从已发生记录作出的回看，不是说每个春季进步的人都必然在秋季刷新PB。\n\n路颖目前能被可靠材料照亮的，主要还是赛场。她训练中的性格、成长中的选择、怎样处理身体波动，都值得未来通过本人采访继续补足。现阶段，与其替她安排一段没有证据的心路，不如让读者先准确记住：一个在太原赢得组别荣誉的人，21天后又在北京把自己的最快纪录向前推进。\n\n第三名可以一样，时间可以不同。路颖这段秋季赛程的辨识度，就在这里。",
+    "version": 2,
+    "updatedAt": "2026-11-17",
+    "editorialStatus": "evidence_based_feature",
+    "analysisBoundary": "正文中的平均配速和时间差为作者按官方成绩计算；无完整分段处不推断战术。",
+    "characters": 1166
+  },
+  "draftedAfterResearchCard": true
+}

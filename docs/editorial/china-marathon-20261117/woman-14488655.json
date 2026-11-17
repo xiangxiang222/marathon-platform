@@ -1,0 +1,331 @@
+{
+  "name": "张新艳",
+  "worldAthleticsId": "14488655",
+  "gender": "women",
+  "cutoffDate": "2026-11-17",
+  "researchStatus": "sources_read_before_writing",
+  "identity": {
+    "countryCode": "CHN",
+    "birthDateRaw": "09 FEB 1994",
+    "sourceId": "S1"
+  },
+  "sources": [
+    {
+      "id": "S1",
+      "title": "张新艳｜World Athletics官方人物资料",
+      "url": "https://worldathletics.org/athletes/pr-of-china/xinyan-zhang-14488655",
+      "publisher": "World Athletics",
+      "accessedAt": "2026-11-17",
+      "verification": "full_page_embedded_record_read"
+    },
+    {
+      "id": "S2",
+      "title": "全运女5000米决赛张新艳夺冠 前三名相差不到半秒",
+      "url": "https://sports.cctv.com/2021/09/22/ARTIKGIntNR0NmhZGxGEcyUZ210922.shtml",
+      "publishedAt": "2021-09-22",
+      "accessedAt": "2026-11-17",
+      "verification": "full_article_read"
+    },
+    {
+      "id": "S3",
+      "title": "2026厦门马拉松⑤丨赛前运动员见面会举办 四大冠军悉数亮相",
+      "url": "https://local.cctv.com/2026/01/10/ARTI5IJVsSl6XoE0Tv8x1v3c260110.shtml",
+      "publishedAt": "2026-01-10",
+      "accessedAt": "2026-11-17",
+      "verification": "full_article_read"
+    },
+    {
+      "id": "S4",
+      "title": "名古屋女子马拉松开跑 张德顺创近11年最佳成绩",
+      "url": "https://sports.cctv.com/2023/03/13/ARTIj0WhDe31ghzVSKKVU3Hs230313.shtml",
+      "publishedAt": "2023-03-13",
+      "accessedAt": "2026-11-17",
+      "verification": "full_article_read"
+    },
+    {
+      "id": "S5",
+      "title": "厦门马拉松开跑 多项纪录告破",
+      "url": "https://local.cctv.com/2025/01/06/ARTImZ3BhO0pU5DuSVYRn6jr250106.shtml",
+      "publishedAt": "2025-01-06",
+      "accessedAt": "2026-11-17",
+      "verification": "full_article_read"
+    }
+  ],
+  "recordEvidence": {
+    "personalBests": [
+      {
+        "discipline": "800 Metres",
+        "mark": "2:10.17",
+        "date": "03 SEP 2014",
+        "venue": "Changbaishan (CHN)",
+        "notLegal": false
+      },
+      {
+        "discipline": "1500 Metres",
+        "mark": "4:15.84",
+        "date": "21 MAY 2016",
+        "venue": "Taiyuan (CHN)",
+        "notLegal": false
+      },
+      {
+        "discipline": "1500 Metres Short Track",
+        "mark": "4:24.28",
+        "date": "20 FEB 2017",
+        "venue": "Beijing (CHN) (i)",
+        "notLegal": false
+      },
+      {
+        "discipline": "2000 Metres",
+        "mark": "5:50.68",
+        "date": "13 SEP 2016",
+        "venue": "Marseille (FRA)",
+        "notLegal": false
+      },
+      {
+        "discipline": "5000 Metres",
+        "mark": "15:47.30",
+        "date": "07 SEP 2017",
+        "venue": "Tianjin (CHN)",
+        "notLegal": false
+      },
+      {
+        "discipline": "10,000 Metres",
+        "mark": "33:19.19",
+        "date": "27 SEP 2024",
+        "venue": "Changchun Sports Center Stadium, Changchun (CHN)",
+        "notLegal": false
+      },
+      {
+        "discipline": "3000 Metres Steeplechase",
+        "mark": "9:20.32",
+        "date": "08 APR 2021",
+        "venue": "Shaoxing (CHN)",
+        "notLegal": false
+      },
+      {
+        "discipline": "10 Kilometres Road",
+        "mark": "32:57",
+        "date": "17 OCT 2021",
+        "venue": "Shanghai (CHN)",
+        "notLegal": false
+      },
+      {
+        "discipline": "Half Marathon",
+        "mark": "1:13:01",
+        "date": "23 FEB 2025",
+        "venue": "Meishan (CHN)",
+        "notLegal": false
+      },
+      {
+        "discipline": "Marathon",
+        "mark": "2:26:56",
+        "date": "17 APR 2022",
+        "venue": "Hangzhou (CHN)",
+        "notLegal": false
+      }
+    ],
+    "marathonProgression": [
+      {
+        "mark": "3:00:01",
+        "date": "29 APR 2017",
+        "venue": "Tianjin (CHN)",
+        "competition": "Tianjin Marathon",
+        "season": "2017"
+      },
+      {
+        "mark": "2:26:56",
+        "date": "17 APR 2022",
+        "venue": "Hangzhou (CHN)",
+        "competition": "\"Exciting Hangzhou\" Marathon",
+        "season": "2022"
+      },
+      {
+        "mark": "2:32:19",
+        "date": "12 MAR 2023",
+        "venue": "Nagoya (JPN)",
+        "competition": "Nagoya Women's Marathon",
+        "season": "2023"
+      },
+      {
+        "mark": "2:29:32",
+        "date": "24 MAR 2024",
+        "venue": "Wuxi (CHN)",
+        "competition": "Wuxi Marathon",
+        "season": "2024"
+      },
+      {
+        "mark": "2:29:04",
+        "date": "05 JAN 2025",
+        "venue": "Xiamen (CHN)",
+        "competition": "C&D Xiamen Marathon",
+        "season": "2025"
+      },
+      {
+        "mark": "2:47:48",
+        "date": "11 JAN 2026",
+        "venue": "Xiamen (CHN)",
+        "competition": "C&D Xiamen Marathon",
+        "season": "2026"
+      }
+    ],
+    "currentResults": [
+      {
+        "mark": "2:47:48",
+        "date": "11 JAN 2026",
+        "venue": "Xiamen (CHN)",
+        "notLegal": false,
+        "competition": "C&D Xiamen Marathon, Xiamen",
+        "place": "15.",
+        "remark": "",
+        "discipline": "Marathon"
+      }
+    ],
+    "honours": [
+      {
+        "discipline": "3000 Metres Steeplechase",
+        "mark": "9:46.82",
+        "date": "06 JUN 2015",
+        "venue": "Wuhan (CHN)",
+        "competition": "Wuhan Asian Championships",
+        "place": "3.",
+        "category": "Asian Championships"
+      },
+      {
+        "discipline": "3000 Metres Steeplechase",
+        "mark": "9:46.30",
+        "date": "27 AUG 2018",
+        "venue": "Jakarta (INA)",
+        "competition": "Jakarta Asian Games",
+        "place": "4.",
+        "category": "Asian Games"
+      },
+      {
+        "discipline": "3000 Metres Steeplechase",
+        "mark": "9:57.99",
+        "date": "02 OCT 2023",
+        "venue": "HOC Stadium, Hangzhou (CHN)",
+        "competition": "19th Asian Games",
+        "place": "7.",
+        "category": "Asian Games"
+      },
+      {
+        "discipline": "Marathon",
+        "mark": "2:30:12",
+        "date": "30 MAR 2025",
+        "venue": "Jiaxing (CHN)",
+        "competition": "20th Asian Marathon Championships",
+        "place": "4.",
+        "category": "Asian Marathon Championships"
+      },
+      {
+        "discipline": "3000 Metres Steeplechase",
+        "mark": "9:57.63",
+        "date": "28 JUN 2023",
+        "venue": "Olympic Center, Shenyang (CHN)",
+        "competition": "Chinese Champinships",
+        "place": "1.",
+        "category": "National Championships"
+      },
+      {
+        "discipline": "3000 Metres Steeplechase",
+        "mark": "9:52.68",
+        "date": "11 JUL 2019",
+        "venue": "Shenyang (CHN)",
+        "competition": "Chinese Championships",
+        "place": "1.",
+        "category": "National Championships"
+      },
+      {
+        "discipline": "5000 Metres",
+        "mark": "16:01.39",
+        "date": "10 JUL 2019",
+        "venue": "Shenyang (CHN)",
+        "competition": "Chinese Championships",
+        "place": "1.",
+        "category": "National Championships"
+      },
+      {
+        "discipline": "3000 Metres Steeplechase",
+        "mark": "10:07.04",
+        "date": "16 MAY 2017",
+        "venue": "Jinan (CHN)",
+        "competition": "Chinese Championships",
+        "place": "1.",
+        "category": "National Championships"
+      }
+    ]
+  },
+  "facts": [
+    {
+      "id": "F1",
+      "claim": "官方认可全马PB 2:26:56，17 APR 2022，Hangzhou (CHN)。",
+      "sourceIds": [
+        "S1"
+      ]
+    },
+    {
+      "id": "F2",
+      "claim": "2021全运5000米15:53.92冠军，末100米冲刺领先张德顺15:54.30、许双双15:54.38。",
+      "sourceIds": [
+        "S2"
+      ]
+    },
+    {
+      "id": "F3",
+      "claim": "2026-01-10厦马赛前见面会本人称马拉松是不断挑战自我的过程，希望稳定发挥；报道确认其3000米障碍全国纪录保持者身份。",
+      "sourceIds": [
+        "S3"
+      ]
+    },
+    {
+      "id": "F4",
+      "claim": "2023名古屋马拉松2:32:19第19。",
+      "sourceIds": [
+        "S4"
+      ]
+    },
+    {
+      "id": "F5",
+      "claim": "2025-01-05厦门马拉松2:29:04中国籍女子冠军。",
+      "sourceIds": [
+        "S5"
+      ]
+    }
+  ],
+  "activeEvidence": {
+    "formalResultsInLast24Months": [
+      {
+        "mark": "2:47:48",
+        "date": "11 JAN 2026",
+        "venue": "Xiamen (CHN)",
+        "notLegal": false,
+        "competition": "C&D Xiamen Marathon, Xiamen",
+        "place": "15.",
+        "remark": "",
+        "discipline": "Marathon"
+      }
+    ],
+    "sourceId": "S1",
+    "note": "现役按近24个月正式参赛口径；不据此推断国家队/专业队在队身份。"
+  },
+  "gaps": [
+    "缺少完整训练日志与代表马拉松官方分段，不编造配速变化和训练处方。",
+    "本稿不推断当前所属队伍、是否领工资、专业或大众报名身份。"
+  ],
+  "editorialQuestions": {
+    "memorableTrait": "场地障碍与5000米冲刺能力并存的跨距离运动员。",
+    "definingRaceOrChoice": "2021全运5000米最后100米取胜，与后来全马成绩形成对照。",
+    "readerValue": "理解短距离优势如何需要在全马独立兑现，避免自动换算能力。"
+  },
+  "centralQuestion": "理解短距离优势如何需要在全马独立兑现，避免自动换算能力。",
+  "draftedAfterResearchCard": true,
+  "article": {
+    "title": "张新艳：跑过障碍的人，怎样走进马拉松",
+    "lead": "3000米障碍全国纪录、全运会5000米冠军、厦门马拉松中国籍女子冠军。张新艳的长跑版图跨过几个项目，而更长距离从未自动成为更容易的一项。",
+    "body": "2021年9月22日，全运会女子5000米决赛最后100米，张新艳、张德顺、许双双才真正分出先后。张新艳15分53秒92夺冠，张德顺15分54秒30，许双双15分54秒38，前三名相差不到半秒。央视赛况记下她在直道上强有力的冲刺。[S2]\n\n这是一段能够具体看见张新艳的比赛：她不只出现在成绩表上，而是在一次接近的竞争里，把最后的速度交给终点。几个月之后，她又走向另一种距离——2022年4月17日杭州马拉松，2小时26分56秒，成为世界田联至今登记的全马PB。[S1]\n\n## 她的履历里，不只有公路\n\n张新艳生于1994年2月9日。世界田联个人纪录中，3000米障碍一栏是2021年4月8日绍兴的9分20秒32，带有全国纪录标记。全运5000米冠军也发生在同一年。这些事实构成她进入马拉松叙事时最鲜明的背景：一个有场地速度、又跨越过障碍的运动员，继续尝试把能力带到更长的公路上。[S1][S2]\n\n但“跨越障碍”在这里首先是实实在在的田径项目，不能被拿来替她编写人生挫折。她何时开始训练，教练怎样决定不同项目之间的安排，本次没有获得足够完整的本人采访。我们能够确认项目履历，无法替她补上改项动机。\n\n杭州的2小时26分56秒，平均配速约为每公里3分29秒。这个平均速度需要维持42.195公里，与5000米终点前的冲刺是两种任务。它们可以共同描绘她的能力，却不能互相代替。缺少完整分段和训练日志，本文不能说全马突破完全来自某种障碍跑训练。[S1]\n\n## 厦门冠军，记录了另一种完成\n\n2023年名古屋，张新艳2小时32分19秒、第19名。2024年无锡，她跑出2小时29分32秒。2025年1月5日厦门，她又以2小时29分04秒获得中国籍女子冠军。[S1][S4][S5]\n\n厦门冠军比杭州PB慢2分08秒。这个差值不削弱冠军的真实性，它说明两场比赛有不同的比较对象：PB在与自己过去的最快成绩比较，组别冠军则由当场竞争决定。她在2025年厦门完成的是后一项任务。[S1][S5]\n\n到2026年1月10日的厦马赛前见面会，张新艳仍然出现在参赛运动员中。她谈到马拉松需要持续挑战自己，希望稳定发挥。这个表述来自她本人，不能延伸成“已经恢复巅峰”或“必将卫冕”的预言。[S3]\n\n次日比赛，世界田联记录她2小时47分48秒、第15名。与上一届相比，时间和名次都有明显变化；没有可靠材料说明原因，就不把它诊断为伤病，也不猜测训练是否失败。过去的纪录与当下的比赛，可以同时放在一个人的履历里。[S1]\n\n## 普通跑者可以借用的，是比较的方法\n\n张新艳的多项目经历，让人容易产生一种直觉：短距离跑得快，长距离自然会更好。她的真实成绩表让这种直觉变得复杂。障碍赛、5000米与马拉松分别检验不同的能力；某一项目的领先，仍需在另一项目的正式比赛中兑现。[S1]\n\n对普通跑者，适合借用的是把不同距离分别记录、分别复盘。短距离进步后，可以提出长距离耐力是否同步的问题，却不必立刻提高全马目标；赢得一次组别比赛后，也不必要求它同时承担PB的证明。\n\n记住张新艳，可以先记住那不到半秒的全运终点，再把画面拉远到厦门42.195公里的赛道。两种距离之间没有一条保证成功的捷径，她已经留下的，正是持续进入不同比赛、交出不同答案的真实轨迹。",
+    "version": 2,
+    "updatedAt": "2026-11-17",
+    "editorialStatus": "evidence_based_feature",
+    "characters": 1010
+  }
+}

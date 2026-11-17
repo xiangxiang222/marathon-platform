@@ -1,0 +1,1569 @@
+{
+  "version": 1,
+  "asOf": "2026-11-17",
+  "note": "先资料卡后写作；这是候选人物研究，最终入选由全历史PB及现役筛选单独决定。",
+  "athletes": [
+    {
+      "worldAthleticsId": "14913520",
+      "name": "丰配友",
+      "gender": "men",
+      "researchStatus": "evidence_card_precedes_article",
+      "cutoffDate": "2026-11-17",
+      "theme": "把30公里后的余量留到东京",
+      "centralQuestion": "从后程明显失速到东京后半程只比前半程慢22秒，他改变了什么？",
+      "representativeRace": "2026东京马拉松",
+      "readerValue": "用分段与本人训练反思，理解后程能力而非照搬强度。",
+      "sources": [
+        {
+          "id": "S1",
+          "title": "Peiyou FENG | World Athletics official athlete data",
+          "url": "https://worldathletics.org/athletes/athlete=14913520",
+          "publishedAt": "",
+          "checkedAt": "2026-11-17",
+          "verification": "official_embedded_data_read_today",
+          "snapshot": "sources/feng-worldathletics.json",
+          "originalPublisher": "World Athletics",
+          "sha256": "e7d28a7247be14069642340ca62f5f5836aaab6df73c49e83939ad8d7375e909",
+          "retrievalNote": "本人页本次获取成功"
+        },
+        {
+          "id": "S2",
+          "title": "一个00后跑者的时代答卷——专访马拉松全国纪录保持者丰配友",
+          "url": "https://people.cctv.com/2026/04/28/ARTITFPjxl2NrKgaXUpl9zGQ260428.shtml",
+          "publishedAt": "2026-04-28",
+          "checkedAt": "2026-11-17",
+          "verification": "full_text_read",
+          "snapshot": "sources/feng-cctv-20260428.txt",
+          "originalPublisher": "中国青年报，中青报·中青网记者梁璇；央视网转载",
+          "sha256": "bb747b79de6edfe7986a2c87a2b84b9b788238c7d850cd5b472e6351b5ecb2c0"
+        },
+        {
+          "id": "S3",
+          "title": "丰配友刷新男子马拉松全国纪录",
+          "url": "https://sports.cctv.com/2026/03/01/ARTIw1DZAEAnKpSjVwy7rSZK260301.shtml",
+          "publishedAt": "2026-03-01",
+          "checkedAt": "2026-11-17",
+          "verification": "full_text_read",
+          "snapshot": "sources/feng-cctv-20260301.txt",
+          "originalPublisher": "新华社；央视网转载",
+          "sha256": "1ad2fd92531e98f482053b221f03b3544b6c5499c3226efae35dffd12fd0e93b"
+        },
+        {
+          "id": "S4",
+          "title": "Tokyo Marathon 2026 RESULTS MARATHON (Elite MEN) ALL",
+          "url": "https://www.marathon.tokyo/en/about/past/2026/press-release/pdf/f9e9c812824822e2701ec65d550c8bf05c434cef.pdf",
+          "publishedAt": "2026-03-01",
+          "checkedAt": "2026-11-17",
+          "verification": "full_text_read",
+          "snapshot": "sources/tokyo-2026-elite-men.pdf",
+          "originalPublisher": "东京马拉松组委会官方成绩册",
+          "sha256": "e0aace2b036daf72444836b20670e9a37c30d7d1a73da38efcc5d000b1f174e3"
+        }
+      ],
+      "facts": [
+        {
+          "id": "F1",
+          "statement": "世界田联本人身份：Peiyou FENG，countryCode=CHN，出生日期01 AUG 2001",
+          "sourceIds": [
+            "S1"
+          ]
+        },
+        {
+          "id": "F2",
+          "statement": "合法全马PB 2:05:58，01 MAR 2026，Tokyo (JPN)",
+          "sourceIds": [
+            "S1"
+          ]
+        },
+        {
+          "id": "F3",
+          "statement": "近24个月正式完赛证据：26 SEP 2026 20th Asian Games, Municipal Mizuho Stadium, Nagoya 2:12:13，名次3.",
+          "sourceIds": [
+            "S1"
+          ]
+        },
+        {
+          "id": "F4",
+          "statement": "贵州遵义余庆成长，上学单程约3公里山路；本人回顾改变跑量与强度关系，并改善30公里后掉速。",
+          "sourceIds": [
+            "S2"
+          ]
+        },
+        {
+          "id": "F5",
+          "statement": "2021年首马2:16:28、2022年亚运选拔第9、2022年底厦门夺冠为采访自述及报道，首马不是WA年表的最早收录。",
+          "sourceIds": [
+            "S2"
+          ]
+        },
+        {
+          "id": "F6",
+          "statement": "东京2026官方106号丰配友：5km14:49、10km29:40、15km44:36、20km59:35、半程1:02:48、25km1:14:22、30km1:29:17、35km1:44:09、40km1:59:24、终点2:05:58；总第11。",
+          "sourceIds": [
+            "S4"
+          ]
+        },
+        {
+          "id": "F7",
+          "statement": "大迫杰东京2026：半程1:02:49、30km1:29:19、35km1:44:19、40km1:59:29、终点2:05:59。",
+          "sourceIds": [
+            "S4"
+          ]
+        },
+        {
+          "id": "F8",
+          "statement": "东京2026成绩较何杰2024全国纪录2:06:57提高59秒。",
+          "sourceIds": [
+            "S3"
+          ]
+        }
+      ],
+      "seasonProgression": [
+        {
+          "year": "2022",
+          "mark": "2:13:53",
+          "date": "27 NOV 2022",
+          "venue": "Xiamen (CHN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2023",
+          "mark": "2:08:07",
+          "date": "03 DEC 2023",
+          "venue": "Fukuoka (JPN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2024",
+          "mark": "2:07:06",
+          "date": "01 DEC 2024",
+          "venue": "Valencia (ESP)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2025",
+          "mark": "2:08:36",
+          "date": "30 NOV 2025",
+          "venue": "Shanghai (CHN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2026",
+          "mark": "2:05:58",
+          "date": "01 MAR 2026",
+          "venue": "Tokyo (JPN)",
+          "sourceId": "S1"
+        }
+      ],
+      "personalBest": {
+        "mark": "2:05:58",
+        "date": "2026-03-01",
+        "venue": "Tokyo (JPN)",
+        "sourceId": "S1"
+      },
+      "activeEvidence": {
+        "date": "2026-09-26",
+        "competition": "20th Asian Games, Municipal Mizuho Stadium, Nagoya",
+        "mark": "2:12:13",
+        "sourceId": "S1"
+      },
+      "retirementCheck": "本次所读资料中未见宣布退役；未穷尽所有个人社交媒体，不能将未检出写为终身保证。",
+      "gaps": [
+        "未获得完整训练计划、医学伤病档案；不据成绩逆推。",
+        "未在本卡核验东京逐时天气/完整路线起伏，不把配速变化归因为天气。"
+      ]
+    },
+    {
+      "worldAthleticsId": "14795227",
+      "name": "何杰",
+      "gender": "men",
+      "researchStatus": "evidence_card_precedes_article",
+      "cutoffDate": "2026-11-17",
+      "theme": "纪录之后，重新学会比赛",
+      "centralQuestion": "如何把一次比赛的成败从自我评价里分离出来？",
+      "representativeRace": "2024巴黎失意与2025全运夺冠",
+      "readerValue": "用成绩、官方处理结果与本人回顾，理解竞技表现的多重压力。",
+      "sources": [
+        {
+          "id": "S1",
+          "title": "Jie HE | World Athletics official athlete data",
+          "url": "https://worldathletics.org/athletes/athlete=14795227",
+          "publishedAt": "",
+          "checkedAt": "2026-11-17",
+          "verification": "official_embedded_data_read_today",
+          "snapshot": "sources/he-worldathletics.json",
+          "originalPublisher": "World Athletics",
+          "sha256": "af46ad09dbc05918cbb1d7aef433988d2d57e85983a1400070241fbd423e3f7a",
+          "retrievalNote": "本人页本次获取成功"
+        },
+        {
+          "id": "S2",
+          "title": "创造历史！何杰亚运会男子马拉松夺金：赛出中国人的霸气",
+          "url": "https://people.cctv.com/2023/10/05/ARTI4EYjfqBIfQD9BZDQoPqY231005.shtml",
+          "publishedAt": "2023-10-05",
+          "checkedAt": "2026-11-17",
+          "verification": "full_text_read",
+          "snapshot": "sources/he-cctv-20231005.txt",
+          "originalPublisher": "澎湃新闻；央视网转载",
+          "sha256": "63895307a44a69541ca3e7ce7dbc5702665391c6eb7f73ca1ab92941ea1a65ab"
+        },
+        {
+          "id": "S3",
+          "title": "中国马拉松纪录保持者何杰：等待“春天”归来",
+          "url": "https://people.cctv.com/2024/12/31/ARTILgBQwJEBggrHbaxN1SA9241231.shtml",
+          "publishedAt": "2024-12-31",
+          "checkedAt": "2026-11-17",
+          "verification": "full_text_read",
+          "snapshot": "sources/he-cctv-20241231.txt",
+          "originalPublisher": "中国青年报；央视网转载",
+          "sha256": "dd0887a30c998c9dd1779d41facb69af10673a0acd5bda649bb255355fc5dad7"
+        },
+        {
+          "id": "S4",
+          "title": "全运会历史首个跨境马拉松何杰夺冠",
+          "url": "https://people.cctv.com/2025/11/15/ARTI3yvw1obEEye0woDAqCX5251115.shtml",
+          "publishedAt": "2025-11-15",
+          "checkedAt": "2026-11-17",
+          "verification": "full_text_read",
+          "snapshot": "sources/he-cctv-20251115.txt",
+          "originalPublisher": "央视新闻",
+          "sha256": "22688424c57a4989796752b5270c58bfafa86ce7a57fc84236a248f9423cee39"
+        },
+        {
+          "id": "S5",
+          "title": "北京半马组委会公布男子组比赛调查处理结果",
+          "url": "https://news.cctv.com/2024/04/19/ARTII0Z4iZBjyv1H0zDzADdv240419.shtml",
+          "publishedAt": "2024-04-19",
+          "checkedAt": "2026-11-17",
+          "verification": "full_text_read",
+          "snapshot": "sources/he-beijing-half-decision.jpg",
+          "originalPublisher": "北京半程马拉松组委会决定原图；央视网转发",
+          "sha256": "f21ea7b372adbbb246ce43c6d05dd34135083d348dd963894c8550d124e6e9a8"
+        }
+      ],
+      "facts": [
+        {
+          "id": "F1",
+          "statement": "世界田联本人身份：Jie HE，countryCode=CHN，出生日期27 DEC 1998",
+          "sourceIds": [
+            "S1"
+          ]
+        },
+        {
+          "id": "F2",
+          "statement": "合法全马PB 2:06:57，24 MAR 2024，Wuxi (CHN)",
+          "sourceIds": [
+            "S1"
+          ]
+        },
+        {
+          "id": "F3",
+          "statement": "近24个月正式完赛证据：27 SEP 2026 BMW Berlin Marathon, Berlin 2:16:16，名次54.",
+          "sourceIds": [
+            "S1"
+          ]
+        },
+        {
+          "id": "F4",
+          "statement": "宁夏平罗县灵沙乡成长，2014进入专业队，经历山东陪练，回宁夏后改单长明指导下马拉松，2020–2021冬训开始跟肖丽。",
+          "sourceIds": [
+            "S2"
+          ]
+        },
+        {
+          "id": "F5",
+          "statement": "2023无锡2:07:30当时打破全国纪录；2023杭州亚运2:13:01男子金牌。",
+          "sourceIds": [
+            "S2"
+          ]
+        },
+        {
+          "id": "F6",
+          "statement": "2024巴黎2:22:31第67；胃痉挛、心理压力及冬训恢复均为2024年末本人采访回顾，不作独立诊断。",
+          "sourceIds": [
+            "S3"
+          ]
+        },
+        {
+          "id": "F7",
+          "statement": "2024北京半马结果被调查；4月19日组委会决定取消何杰及另外三名选手成绩，收回奖杯奖牌奖金。原图人工完整阅读。",
+          "sourceIds": [
+            "S5"
+          ]
+        },
+        {
+          "id": "F8",
+          "statement": "2025-11-15代表宁夏获得全运会男子马拉松冠军。",
+          "sourceIds": [
+            "S4"
+          ]
+        }
+      ],
+      "seasonProgression": [
+        {
+          "year": "2020",
+          "mark": "2:15:33",
+          "date": "29 NOV 2020",
+          "venue": "Nanjing (CHN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2021",
+          "mark": "2:12:00",
+          "date": "11 APR 2021",
+          "venue": "Xuzhou (CHN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2022",
+          "mark": "2:11:18",
+          "date": "25 SEP 2022",
+          "venue": "Berlin (GER)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2023",
+          "mark": "2:07:30",
+          "date": "19 MAR 2023",
+          "venue": "Wuxi (CHN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2024",
+          "mark": "2:06:57",
+          "date": "24 MAR 2024",
+          "venue": "Wuxi (CHN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2025",
+          "mark": "2:07:20",
+          "date": "02 MAR 2025",
+          "venue": "Tokyo (JPN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2026",
+          "mark": "2:08:15",
+          "date": "15 MAR 2026",
+          "venue": "Seoul (KOR)",
+          "sourceId": "S1"
+        }
+      ],
+      "personalBest": {
+        "mark": "2:06:57",
+        "date": "2024-03-24",
+        "venue": "Wuxi (CHN)",
+        "sourceId": "S1"
+      },
+      "activeEvidence": {
+        "date": "2026-09-27",
+        "competition": "BMW Berlin Marathon, Berlin",
+        "mark": "2:16:16",
+        "sourceId": "S1"
+      },
+      "retirementCheck": "本次所读资料中未见宣布退役；未穷尽所有个人社交媒体，不能将未检出写为终身保证。",
+      "gaps": [
+        "未获得完整训练计划、医学伤病档案；不据成绩逆推。"
+      ]
+    },
+    {
+      "worldAthleticsId": "14523268",
+      "name": "杨绍辉",
+      "gender": "men",
+      "researchStatus": "evidence_card_precedes_article",
+      "cutoffDate": "2026-11-17",
+      "theme": "把最后一次选择留在40.5公里",
+      "centralQuestion": "一个曾同时突破旧全国纪录的人，如何跑出属于自己的纪录？",
+      "representativeRace": "2023福冈马拉松",
+      "readerValue": "阅读后程跟跑与进攻时机。",
+      "sources": [
+        {
+          "id": "S1",
+          "title": "Shaohui YANG | World Athletics official athlete data",
+          "url": "https://worldathletics.org/athletes/athlete=14523268",
+          "publishedAt": "",
+          "checkedAt": "2026-11-17",
+          "verification": "official_embedded_data_read_today",
+          "snapshot": "sources/14523268-worldathletics.json",
+          "originalPublisher": "World Athletics",
+          "sha256": "94eb5b54141e93849d96d95875c7dde47489b51cae2c38435f19f6aec5323574",
+          "retrievalNote": "本人页本次获取成功"
+        },
+        {
+          "id": "S2",
+          "title": "2小时07分09秒 杨绍辉刷新中国男子马拉松纪录",
+          "url": "https://sports.cctv.com/2023/12/04/ARTIOWvjva8JK9tan3r7nqCV231204.shtml",
+          "publishedAt": "2023-12-04",
+          "checkedAt": "2026-11-17",
+          "verification": "full_text_read",
+          "snapshot": "sources/yang-cctv-20231204.txt",
+          "originalPublisher": "北京青年报，记者褚鹏；央视网转载",
+          "sha256": "747b3852fb4b2db3bc46e018ea20d194a847095df9ea62f16b9c2591f277ba29"
+        }
+      ],
+      "facts": [
+        {
+          "id": "F1",
+          "statement": "世界田联本人身份：Shaohui YANG，countryCode=CHN，出生日期09 JUL 1992",
+          "sourceIds": [
+            "S1"
+          ]
+        },
+        {
+          "id": "F2",
+          "statement": "合法全马PB 2:07:09，03 DEC 2023，Fukuoka (JPN)",
+          "sourceIds": [
+            "S1"
+          ]
+        },
+        {
+          "id": "F3",
+          "statement": "近24个月正式完赛证据：18 OCT 2026 Bank of China Beijing Marathon, Beijing 2:10:42，名次9.",
+          "sourceIds": [
+            "S1"
+          ]
+        },
+        {
+          "id": "F4",
+          "statement": "2023福冈2:07:09亚军并破当时全国纪录；报道记录半程63:00、31–35km六人集团、约40.5km提速。对手中文译名报道之间存在差异，正文不采用译名细节。",
+          "sourceIds": [
+            "S2"
+          ]
+        },
+        {
+          "id": "F5",
+          "statement": "2019北京全国冠军赛2:13:14是报道所称其首个全国大赛冠军；2021徐州2:11:19亚军进入东京奥运。",
+          "sourceIds": [
+            "S2"
+          ]
+        }
+      ],
+      "seasonProgression": [
+        {
+          "year": "2014",
+          "mark": "2:20:21",
+          "date": "19 OCT 2014",
+          "venue": "Beijing (CHN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2015",
+          "mark": "2:22:05",
+          "date": "22 MAR 2015",
+          "venue": "Chongqing (CHN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2016",
+          "mark": "2:21:46",
+          "date": "02 JAN 2016",
+          "venue": "Xiamen (CHN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2017",
+          "mark": "2:16:59",
+          "date": "26 NOV 2017",
+          "venue": "Dongguan (CHN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2018",
+          "mark": "2:17:42",
+          "date": "29 SEP 2018",
+          "venue": "Hengshui (CHN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2019",
+          "mark": "2:13:14",
+          "date": "03 NOV 2019",
+          "venue": "Beijing (CHN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2021",
+          "mark": "2:11:19",
+          "date": "11 APR 2021",
+          "venue": "Xuzhou (CHN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2022",
+          "mark": "2:11:52",
+          "date": "17 APR 2022",
+          "venue": "Hangzhou (CHN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2023",
+          "mark": "2:07:09",
+          "date": "03 DEC 2023",
+          "venue": "Fukuoka (JPN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2024",
+          "mark": "2:07:26",
+          "date": "24 MAR 2024",
+          "venue": "Wuxi (CHN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2025",
+          "mark": "2:08:07",
+          "date": "05 JAN 2025",
+          "venue": "Xiamen (CHN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2026",
+          "mark": "2:10:42",
+          "date": "18 OCT 2026",
+          "venue": "Beijing (CHN)",
+          "sourceId": "S1"
+        }
+      ],
+      "personalBest": {
+        "mark": "2:07:09",
+        "date": "2023-12-03",
+        "venue": "Fukuoka (JPN)",
+        "sourceId": "S1"
+      },
+      "activeEvidence": {
+        "date": "2026-10-18",
+        "competition": "Bank of China Beijing Marathon, Beijing",
+        "mark": "2:10:42",
+        "sourceId": "S1"
+      },
+      "retirementCheck": "本次所读资料中未见宣布退役；未穷尽所有个人社交媒体，不能将未检出写为终身保证。",
+      "gaps": [
+        "未获得完整训练计划、医学伤病档案；不据成绩逆推。"
+      ]
+    },
+    {
+      "worldAthleticsId": "14913625",
+      "name": "毛金虎",
+      "gender": "men",
+      "researchStatus": "evidence_card_precedes_article",
+      "cutoffDate": "2026-11-17",
+      "theme": "10公里冠军跑进全马207",
+      "centralQuestion": "短距离速度如何在全马成绩中找到新的位置？",
+      "representativeRace": "2026无锡马拉松",
+      "readerValue": "区分速度基础与全马耐力，不把换算当成绩保证。",
+      "sources": [
+        {
+          "id": "S1",
+          "title": "Jinhu MAO | World Athletics official athlete data",
+          "url": "https://worldathletics.org/athletes/athlete=14913625",
+          "publishedAt": "",
+          "checkedAt": "2026-11-17",
+          "verification": "official_embedded_data_read_today",
+          "snapshot": "sources/14913625-worldathletics.json",
+          "originalPublisher": "World Athletics",
+          "sha256": "02c515febca1f49483831873aa876946f19343ce87f16be9c25d8ad797f76252",
+          "retrievalNote": "本人页本次获取成功"
+        },
+        {
+          "id": "S2",
+          "title": "2026无锡马拉松鸣枪开跑 多人刷新马拉松项目个人最好成绩",
+          "url": "https://news.cctv.com/2026/03/22/ARTIFE8kFCGQio2oTQCoi5PH260322.shtml",
+          "publishedAt": "2026-03-22",
+          "checkedAt": "2026-11-17",
+          "verification": "full_text_read",
+          "snapshot": "sources/mao-cctv-20260322.txt",
+          "originalPublisher": "央视新闻，李筱",
+          "sha256": "809f4d3d6e3daa6a8ebc6e5a4063b52e5a9e8c2a7e3c64e58d0db1bcecc675d2"
+        },
+        {
+          "id": "S3",
+          "title": "张德顺刷新中国女子10公里路跑最好成绩",
+          "url": "https://sports.cctv.com/2025/12/29/ARTID8ZhBErGKPEtnBjJqckA251229.shtml",
+          "publishedAt": "2025-12-29",
+          "checkedAt": "2026-11-17",
+          "verification": "full_text_read",
+          "snapshot": "sources/mao-cctv-20251229.txt",
+          "originalPublisher": "新华社，肖世尧；央视网转载",
+          "sha256": "f4540c48b43cbc48b3647a48cb9be6de4aa647a9eb5d4e1a46d9eebf2ecd1f01"
+        },
+        {
+          "id": "S4",
+          "title": "田径亚锦赛：中国队首日收获5金2银",
+          "url": "https://sports.cctv.com/2025/05/28/ARTIHERLhoV7FoNkLGZ2eziI250528.shtml",
+          "publishedAt": "2025-05-28",
+          "checkedAt": "2026-11-17",
+          "verification": "full_text_read",
+          "snapshot": "sources/mao-cctv-20250528.txt",
+          "originalPublisher": "新华社，吴俊宽、王沁鸥；央视网转载",
+          "sha256": "a47dc83d102c8b62299efbd515b2baec39a49cb34d2f00f93ed60acc1efdf333"
+        }
+      ],
+      "facts": [
+        {
+          "id": "F1",
+          "statement": "世界田联本人身份：Jinhu MAO，countryCode=CHN，出生日期08 FEB 2002",
+          "sourceIds": [
+            "S1"
+          ]
+        },
+        {
+          "id": "F2",
+          "statement": "合法全马PB 2:07:36，22 MAR 2026，Wuxi (CHN)",
+          "sourceIds": [
+            "S1"
+          ]
+        },
+        {
+          "id": "F3",
+          "statement": "近24个月正式完赛证据：18 OCT 2026 Bank of China Beijing Marathon, Beijing 2:10:39，名次8.",
+          "sourceIds": [
+            "S1"
+          ]
+        },
+        {
+          "id": "F4",
+          "statement": "2025-12-28眉山10公里精英赛总决赛毛金虎28:59夺冠，蒋发坤、丰配友第二第三。",
+          "sourceIds": [
+            "S3"
+          ]
+        },
+        {
+          "id": "F5",
+          "statement": "2025亚洲田径锦标赛男子10000米第13。",
+          "sourceIds": [
+            "S4"
+          ]
+        },
+        {
+          "id": "F6",
+          "statement": "2026-03-22无锡2:07:36总亚军、个人最好成绩；冠军2:07:07。",
+          "sourceIds": [
+            "S2"
+          ]
+        }
+      ],
+      "seasonProgression": [
+        {
+          "year": "2026",
+          "mark": "2:07:36",
+          "date": "22 MAR 2026",
+          "venue": "Wuxi (CHN)",
+          "sourceId": "S1"
+        }
+      ],
+      "personalBest": {
+        "mark": "2:07:36",
+        "date": "2026-03-22",
+        "venue": "Wuxi (CHN)",
+        "sourceId": "S1"
+      },
+      "activeEvidence": {
+        "date": "2026-10-18",
+        "competition": "Bank of China Beijing Marathon, Beijing",
+        "mark": "2:10:39",
+        "sourceId": "S1"
+      },
+      "retirementCheck": "本次所读资料中未见宣布退役；未穷尽所有个人社交媒体，不能将未检出写为终身保证。",
+      "gaps": [
+        "未获得完整训练计划、医学伤病档案；不据成绩逆推。"
+      ]
+    },
+    {
+      "worldAthleticsId": "14430085",
+      "name": "吴向东",
+      "gender": "men",
+      "researchStatus": "evidence_card_precedes_article",
+      "cutoffDate": "2026-11-17",
+      "theme": "奥运赛道教会他的坡度课",
+      "centralQuestion": "为什么更快的PB不能替代特殊赛道上的能力？",
+      "representativeRace": "2024巴黎奥运会",
+      "readerValue": "把路线形态纳入备赛思考。",
+      "sources": [
+        {
+          "id": "S1",
+          "title": "Xiangdong WU | World Athletics official athlete data",
+          "url": "https://worldathletics.org/athletes/athlete=14430085",
+          "publishedAt": "",
+          "checkedAt": "2026-11-17",
+          "verification": "official_embedded_data_read_today",
+          "snapshot": "sources/14430085-worldathletics.json",
+          "originalPublisher": "World Athletics",
+          "sha256": "74e203bea8deb4f3f9955f97303cb129576beddbe97b2dfdcfbc89c096a6660b",
+          "retrievalNote": "本人页本次获取成功"
+        },
+        {
+          "id": "S2",
+          "title": "2小时12分34秒，吴向东创造中国马拉松奥运最好成绩",
+          "url": "https://www.thepaper.cn/newsDetail_forward_28372261",
+          "publishedAt": "2024-08-10",
+          "checkedAt": "2026-11-17",
+          "verification": "full_text_read",
+          "snapshot": "sources/wu-thepaper-20240810.txt",
+          "originalPublisher": "澎湃新闻，马作宇发自巴黎",
+          "sha256": "d0e12ed59916eb2f2c8294d3189e5ad786b0b6f2c10edd2b6fef11354c81007a"
+        }
+      ],
+      "facts": [
+        {
+          "id": "F1",
+          "statement": "世界田联本人身份：Xiangdong WU，countryCode=CHN，出生日期17 JAN 1994",
+          "sourceIds": [
+            "S1"
+          ]
+        },
+        {
+          "id": "F2",
+          "statement": "合法全马PB 2:07:55，27 SEP 2026，Berlin (GER)",
+          "sourceIds": [
+            "S1"
+          ]
+        },
+        {
+          "id": "F3",
+          "statement": "近24个月正式完赛证据：27 SEP 2026 BMW Berlin Marathon, Berlin 2:07:55，名次14.",
+          "sourceIds": [
+            "S1"
+          ]
+        },
+        {
+          "id": "F4",
+          "statement": "2024巴黎奥运会2:12:34第40，为当时中国男子奥运马拉松最好完赛时间；该报道同时记载杨绍辉东京第19，不能将最好用时写成最好名次。",
+          "sourceIds": [
+            "S2"
+          ]
+        },
+        {
+          "id": "F5",
+          "statement": "本人赛后指出最后5公里掉速与集中坡度训练适应的问题，表示希望继续参加下一届。",
+          "sourceIds": [
+            "S2"
+          ]
+        }
+      ],
+      "seasonProgression": [
+        {
+          "year": "2017",
+          "mark": "2:22:54",
+          "date": "29 APR 2017",
+          "venue": "Tianjin (CHN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2019",
+          "mark": "2:20:41",
+          "date": "29 SEP 2019",
+          "venue": "Hengshui (CHN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2020",
+          "mark": "2:12:50",
+          "date": "29 NOV 2020",
+          "venue": "Nanjing (CHN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2021",
+          "mark": "2:11:36",
+          "date": "11 APR 2021",
+          "venue": "Xuzhou (CHN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2022",
+          "mark": "2:14:08",
+          "date": "27 NOV 2022",
+          "venue": "Xiamen (CHN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2023",
+          "mark": "2:10:02",
+          "date": "19 MAR 2023",
+          "venue": "Wuxi (CHN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2023",
+          "mark": "2:10:02",
+          "date": "29 OCT 2023",
+          "venue": "Beijing (CHN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2024",
+          "mark": "2:08:04",
+          "date": "25 FEB 2024",
+          "venue": "Osaka (JPN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2025",
+          "mark": "2:12:20",
+          "date": "11 MAY 2025",
+          "venue": "Dalian (CHN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2026",
+          "mark": "2:07:55",
+          "date": "27 SEP 2026",
+          "venue": "Berlin (GER)",
+          "sourceId": "S1"
+        }
+      ],
+      "personalBest": {
+        "mark": "2:07:55",
+        "date": "2026-09-27",
+        "venue": "Berlin (GER)",
+        "sourceId": "S1"
+      },
+      "activeEvidence": {
+        "date": "2026-09-27",
+        "competition": "BMW Berlin Marathon, Berlin",
+        "mark": "2:07:55",
+        "sourceId": "S1"
+      },
+      "retirementCheck": "本次所读资料中未见宣布退役；未穷尽所有个人社交媒体，不能将未检出写为终身保证。",
+      "gaps": [
+        "未获得完整训练计划、医学伤病档案；不据成绩逆推。"
+      ]
+    },
+    {
+      "worldAthleticsId": "14694073",
+      "name": "陈天宇",
+      "gender": "men",
+      "researchStatus": "evidence_card_precedes_article",
+      "cutoffDate": "2026-11-17",
+      "theme": "三次北京，三种成绩的分量",
+      "centralQuestion": "同一座城市怎样留下PB、领奖台和赛季回升？",
+      "representativeRace": "2023、2024、2026北京马拉松",
+      "readerValue": "区分PB、名次和赛季表现的不同意义。",
+      "sources": [
+        {
+          "id": "S1",
+          "title": "Tianyu CHEN | World Athletics official athlete data",
+          "url": "https://worldathletics.org/athletes/athlete=14694073",
+          "publishedAt": "",
+          "checkedAt": "2026-11-17",
+          "verification": "official_embedded_data_read_today",
+          "snapshot": "sources/14694073-worldathletics.json",
+          "originalPublisher": "World Athletics",
+          "sha256": "eff038c4a3c287cc69ac4c706cc8b90e81a471bf032fc840a302f41ba41284bc",
+          "retrievalNote": "本人页本次获取成功"
+        },
+        {
+          "id": "S2",
+          "title": "中国选手陈天宇获季军！2024北京马拉松成绩出炉",
+          "url": "https://news.cctv.com/2024/11/03/ARTIqFtgJvXG0zniEkBUcdV1241103.shtml",
+          "publishedAt": "2024-11-03",
+          "checkedAt": "2026-11-17",
+          "verification": "full_text_read",
+          "snapshot": "sources/chen-cctv-20241103.txt",
+          "originalPublisher": "央视新闻，康骏驰、陈宝善",
+          "sha256": "ba3f27161f5f0b67f9f3fb23c4b14ca03a946150abe3b0ebdae5d793b2688701"
+        }
+      ],
+      "facts": [
+        {
+          "id": "F1",
+          "statement": "世界田联本人身份：Tianyu CHEN，countryCode=CHN，出生日期11 MAY 1997",
+          "sourceIds": [
+            "S1"
+          ]
+        },
+        {
+          "id": "F2",
+          "statement": "合法全马PB 2:08:11，29 OCT 2023，Beijing (CHN)",
+          "sourceIds": [
+            "S1"
+          ]
+        },
+        {
+          "id": "F3",
+          "statement": "近24个月正式完赛证据：18 OCT 2026 Bank of China Beijing Marathon, Beijing 2:09:09，名次5.",
+          "sourceIds": [
+            "S1"
+          ]
+        },
+        {
+          "id": "F4",
+          "statement": "2024北京马拉松2:09:48总第三，冠军2:09:16，亚军2:09:30。",
+          "sourceIds": [
+            "S2"
+          ]
+        }
+      ],
+      "seasonProgression": [
+        {
+          "year": "2018",
+          "mark": "2:18:14",
+          "date": "29 SEP 2018",
+          "venue": "Hengshui (CHN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2019",
+          "mark": "2:15:16",
+          "date": "03 NOV 2019",
+          "venue": "Beijing (CHN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2021",
+          "mark": "2:13:15",
+          "date": "11 APR 2021",
+          "venue": "Xuzhou (CHN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2022",
+          "mark": "2:22:52",
+          "date": "27 NOV 2022",
+          "venue": "Xiamen (CHN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2023",
+          "mark": "2:08:11",
+          "date": "29 OCT 2023",
+          "venue": "Beijing (CHN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2024",
+          "mark": "2:09:31",
+          "date": "08 DEC 2024",
+          "venue": "Guangzhou (CHN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2025",
+          "mark": "2:09:33",
+          "date": "24 FEB 2025",
+          "venue": "Osaka (JPN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2026",
+          "mark": "2:09:09",
+          "date": "18 OCT 2026",
+          "venue": "Beijing (CHN)",
+          "sourceId": "S1"
+        }
+      ],
+      "personalBest": {
+        "mark": "2:08:11",
+        "date": "2023-10-29",
+        "venue": "Beijing (CHN)",
+        "sourceId": "S1"
+      },
+      "activeEvidence": {
+        "date": "2026-10-18",
+        "competition": "Bank of China Beijing Marathon, Beijing",
+        "mark": "2:09:09",
+        "sourceId": "S1"
+      },
+      "retirementCheck": "本次所读资料中未见宣布退役；未穷尽所有个人社交媒体，不能将未检出写为终身保证。",
+      "gaps": [
+        "未获得完整训练计划、医学伤病档案；不据成绩逆推。"
+      ]
+    },
+    {
+      "worldAthleticsId": "14172732",
+      "name": "董国建",
+      "gender": "men",
+      "researchStatus": "evidence_card_precedes_article",
+      "cutoffDate": "2026-11-17",
+      "theme": "把个人最佳跑到36岁",
+      "centralQuestion": "长期参赛如何与晚来的PB同时成立？",
+      "representativeRace": "2024大阪马拉松",
+      "readerValue": "以实际成绩反思单一年龄叙事。",
+      "sources": [
+        {
+          "id": "S1",
+          "title": "Guojian DONG | World Athletics official athlete data",
+          "url": "https://worldathletics.org/athletes/athlete=14172732",
+          "publishedAt": "",
+          "checkedAt": "2026-11-17",
+          "verification": "official_embedded_data_read_today",
+          "snapshot": "sources/14172732-worldathletics.json",
+          "originalPublisher": "World Athletics",
+          "sha256": "b360ea7fa7394762b0b70fdb7ea7f4086c516c0b796057036c099ee2dee66b46",
+          "retrievalNote": "本人页本次获取成功"
+        },
+        {
+          "id": "S2",
+          "title": "云南选手董国建摘第13届全运会男子马拉松金牌",
+          "url": "https://sports.cctv.com/2017/04/29/ARTItpbueuluM6GjVAPgbgbv170429.shtml",
+          "publishedAt": "2017-04-29",
+          "checkedAt": "2026-11-17",
+          "verification": "full_text_read",
+          "snapshot": "sources/dong-cctv-20170429.txt",
+          "originalPublisher": "央视网",
+          "sha256": "f9940c0d57e76a062d555b1abbd72e8263482b24885888c3b2cba5ec9b1d5c5b"
+        },
+        {
+          "id": "S3",
+          "title": "4万人共赴太马：破纪录，交出城市治理与文旅融合新答卷",
+          "url": "https://local.cctv.com/2026/09/28/ARTIldVmNBReN2BO1z8n9gBZ260928.shtml",
+          "publishedAt": "2026-09-28",
+          "checkedAt": "2026-11-17",
+          "verification": "full_text_read",
+          "snapshot": "sources/wu-cctv-20260928.txt",
+          "originalPublisher": "央视网，王莉莉",
+          "sha256": "b1835a809457cb31bc6df79b3cb2238ff8d56cc670c6a2792580c326c5a1b2fd"
+        }
+      ],
+      "facts": [
+        {
+          "id": "F1",
+          "statement": "世界田联本人身份：Guojian DONG，countryCode=CHN，出生日期16 MAR 1987",
+          "sourceIds": [
+            "S1"
+          ]
+        },
+        {
+          "id": "F2",
+          "statement": "合法全马PB 2:08:12，25 FEB 2024，Osaka (JPN)",
+          "sourceIds": [
+            "S1"
+          ]
+        },
+        {
+          "id": "F3",
+          "statement": "近24个月正式完赛证据：18 OCT 2026 Xi'an Marathon, Xi'an 2:13:29，名次2.",
+          "sourceIds": [
+            "S1"
+          ]
+        },
+        {
+          "id": "F4",
+          "statement": "2017-04-29董国建获得全运会男子马拉松冠军，报道明确云南选手身份。",
+          "sourceIds": [
+            "S2"
+          ]
+        },
+        {
+          "id": "F5",
+          "statement": "2026-09-27太原中国籍男子第三；与赛事总排名不同。",
+          "sourceIds": [
+            "S3"
+          ]
+        }
+      ],
+      "seasonProgression": [
+        {
+          "year": "2010",
+          "mark": "2:13:23",
+          "date": "18 APR 2010",
+          "venue": "Dalian (CHN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2011",
+          "mark": "2:15:45",
+          "date": "04 SEP 2011",
+          "venue": "DS, Daegu (KOR)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2012",
+          "mark": "2:15:03",
+          "date": "18 MAR 2012",
+          "venue": "Chongqing (CHN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2015",
+          "mark": "2:17:04",
+          "date": "25 OCT 2015",
+          "venue": "Hefei (CHN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2016",
+          "mark": "2:11:41",
+          "date": "20 MAR 2016",
+          "venue": "Chongqing (CHN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2017",
+          "mark": "2:18:45",
+          "date": "29 APR 2017",
+          "venue": "Tianjin (CHN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2018",
+          "mark": "2:23:55",
+          "date": "25 AUG 2018",
+          "venue": "Jakarta (INA)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2019",
+          "mark": "2:08:28",
+          "date": "29 SEP 2019",
+          "venue": "Berlin (GER)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2020",
+          "mark": "2:12:59",
+          "date": "06 DEC 2020",
+          "venue": "Macao (MAC)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2021",
+          "mark": "2:11:20",
+          "date": "11 APR 2021",
+          "venue": "Xuzhou (CHN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2022",
+          "mark": "2:08:53",
+          "date": "09 OCT 2022",
+          "venue": "Chicago, IL (USA)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2023",
+          "mark": "2:09:29",
+          "date": "19 MAR 2023",
+          "venue": "Seoul (KOR)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2024",
+          "mark": "2:08:12",
+          "date": "25 FEB 2024",
+          "venue": "Osaka (JPN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2025",
+          "mark": "2:10:59",
+          "date": "23 MAR 2025",
+          "venue": "Wuxi (CHN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2026",
+          "mark": "2:12:22",
+          "date": "22 MAR 2026",
+          "venue": "Wuhan (CHN)",
+          "sourceId": "S1"
+        }
+      ],
+      "personalBest": {
+        "mark": "2:08:12",
+        "date": "2024-02-25",
+        "venue": "Osaka (JPN)",
+        "sourceId": "S1"
+      },
+      "activeEvidence": {
+        "date": "2026-10-18",
+        "competition": "Xi'an Marathon, Xi'an",
+        "mark": "2:13:29",
+        "sourceId": "S1"
+      },
+      "retirementCheck": "本次所读资料中未见宣布退役；未穷尽所有个人社交媒体，不能将未检出写为终身保证。",
+      "gaps": [
+        "未获得完整训练计划、医学伤病档案；不据成绩逆推。"
+      ],
+      "conflicts": [
+        {
+          "issue": "2017全运会冠军央视用时2:18:44，WA年表2:18:45，相差1秒。",
+          "adopted": "正文只写冠军；统计用WA，不作精确秒数叙事。"
+        }
+      ]
+    },
+    {
+      "worldAthleticsId": "14694176",
+      "name": "索朗才仁",
+      "gender": "men",
+      "researchStatus": "evidence_card_precedes_article",
+      "cutoffDate": "2026-11-17",
+      "theme": "从212到208的第二次加速",
+      "centralQuestion": "一次成绩平台之后的突破，应当怎样被观察？",
+      "representativeRace": "2026无锡马拉松",
+      "readerValue": "用多年年度最佳辨认进步的非线性。",
+      "sources": [
+        {
+          "id": "S1",
+          "title": "Cairen SUOLANG | World Athletics official athlete data",
+          "url": "https://worldathletics.org/athletes/athlete=14694176",
+          "publishedAt": "",
+          "checkedAt": "2026-11-17",
+          "verification": "official_embedded_data_read_today",
+          "snapshot": "sources/14694176-worldathletics.json",
+          "originalPublisher": "World Athletics",
+          "sha256": "a90e39e9f526976baebf0c0780e9645a3f5a65cad0abe3ec56e859a8a1617edc",
+          "retrievalNote": "本人页本次获取成功"
+        },
+        {
+          "id": "S2",
+          "title": "2022深圳马拉松开赛 中国选手夺冠",
+          "url": "https://local.cctv.com/2023/02/20/ARTIXLlduTs1p4w8mfKZHw0O230220.shtml",
+          "publishedAt": "2023-02-20",
+          "checkedAt": "2026-11-17",
+          "verification": "full_text_read",
+          "snapshot": "sources/suolang-cctv-20230220.txt",
+          "originalPublisher": "央视网，徐樾",
+          "sha256": "051714e29ecca1152bcb6265f990ca2c3542227cccd18e567a9e2f517d1249ad"
+        }
+      ],
+      "facts": [
+        {
+          "id": "F1",
+          "statement": "世界田联本人身份：Cairen SUOLANG，countryCode=CHN，出生日期28 JUL 1999",
+          "sourceIds": [
+            "S1"
+          ]
+        },
+        {
+          "id": "F2",
+          "statement": "合法全马PB 2:08:20，22 MAR 2026，Wuxi (CHN)",
+          "sourceIds": [
+            "S1"
+          ]
+        },
+        {
+          "id": "F3",
+          "statement": "近24个月正式完赛证据：18 OCT 2026 Bank of China Beijing Marathon, Beijing 2:14:03，名次33.",
+          "sourceIds": [
+            "S1"
+          ]
+        },
+        {
+          "id": "F4",
+          "statement": "2023-02-19实际举行的2022深圳马拉松中，索朗才仁获男子半程冠军；年份以举行日期计。",
+          "sourceIds": [
+            "S2"
+          ]
+        }
+      ],
+      "seasonProgression": [
+        {
+          "year": "2019",
+          "mark": "2:15:03",
+          "date": "29 SEP 2019",
+          "venue": "Berlin (GER)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2020",
+          "mark": "2:12:13",
+          "date": "29 NOV 2020",
+          "venue": "Nanjing (CHN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2021",
+          "mark": "2:14:26",
+          "date": "11 APR 2021",
+          "venue": "Xuzhou (CHN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2022",
+          "mark": "2:16:12",
+          "date": "17 APR 2022",
+          "venue": "Hangzhou (CHN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2023",
+          "mark": "2:12:47",
+          "date": "19 MAR 2023",
+          "venue": "Wuxi (CHN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2024",
+          "mark": "2:10:31",
+          "date": "24 MAR 2024",
+          "venue": "Wuxi (CHN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2025",
+          "mark": "2:12:10",
+          "date": "16 MAR 2025",
+          "venue": "Seoul (KOR)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2026",
+          "mark": "2:08:20",
+          "date": "22 MAR 2026",
+          "venue": "Wuxi (CHN)",
+          "sourceId": "S1"
+        }
+      ],
+      "personalBest": {
+        "mark": "2:08:20",
+        "date": "2026-03-22",
+        "venue": "Wuxi (CHN)",
+        "sourceId": "S1"
+      },
+      "activeEvidence": {
+        "date": "2026-10-18",
+        "competition": "Bank of China Beijing Marathon, Beijing",
+        "mark": "2:14:03",
+        "sourceId": "S1"
+      },
+      "retirementCheck": "本次所读资料中未见宣布退役；未穷尽所有个人社交媒体，不能将未检出写为终身保证。",
+      "gaps": [
+        "未获得完整训练计划、医学伤病档案；不据成绩逆推。"
+      ]
+    },
+    {
+      "worldAthleticsId": "15111707",
+      "name": "王佳浩",
+      "gender": "men",
+      "researchStatus": "evidence_card_precedes_article",
+      "cutoffDate": "2026-11-17",
+      "theme": "从城市冠军走向柏林",
+      "centralQuestion": "地方赛事的获胜经验与大赛PB如何放在同一条成长线上？",
+      "representativeRace": "2025宝鸡马拉松与2026柏林",
+      "readerValue": "分清获胜与跑快这两个目标。",
+      "sources": [
+        {
+          "id": "S1",
+          "title": "Jiahao WANG | World Athletics official athlete data",
+          "url": "https://worldathletics.org/athletes/china/jiahao-wang-15111707",
+          "publishedAt": "",
+          "checkedAt": "2026-11-17",
+          "verification": "official_embedded_data_read_today",
+          "snapshot": "sources/15111707-worldathletics.json",
+          "originalPublisher": "World Athletics",
+          "sha256": "081d887f4fddf51475e8b799a28aa2e4b3373d6d58ee301d8aa7a6528b4a5204",
+          "retrievalNote": "通过 /athletes/china/ 官方本人页入口本日获取成功；其他入口此前空202。"
+        },
+        {
+          "id": "S2",
+          "title": "一场马拉松激活一座城 宝鸡借力赛事跑出发展“加速度”",
+          "url": "https://sports.cctv.com/2025/10/27/ARTIrLMSBHbZsOQcA6kIZp15251027.shtml",
+          "publishedAt": "2025-10-27",
+          "checkedAt": "2026-11-17",
+          "verification": "full_text_read",
+          "snapshot": "sources/wang-cctv-20251027.txt",
+          "originalPublisher": "央视网",
+          "sha256": "6b67512d8bc94e658eef8b18934c36155d3b12e95f902ac5a7edb4fde24146d2"
+        },
+        {
+          "id": "S3",
+          "title": "50000人激情开跑！左海·2024福州马拉松燃爆全城",
+          "url": "https://sports.cctv.com/2024/12/15/ARTIq40BOuy36nXFfWT8KWpJ241215.shtml",
+          "publishedAt": "2024-12-15",
+          "checkedAt": "2026-11-17",
+          "verification": "full_text_read",
+          "snapshot": "sources/wang-cctv-20241215.txt",
+          "originalPublisher": "央视网",
+          "sha256": "c13dacb829291b3c0cbbdea508f45747996f9128ddf076379eabad7faa0e10f0"
+        }
+      ],
+      "facts": [
+        {
+          "id": "F1",
+          "statement": "世界田联本人身份：Jiahao WANG，countryCode=CHN，出生日期06 JUL 2000",
+          "sourceIds": [
+            "S1"
+          ]
+        },
+        {
+          "id": "F2",
+          "statement": "合法全马PB 2:08:21，27 SEP 2026，Berlin (GER)",
+          "sourceIds": [
+            "S1"
+          ]
+        },
+        {
+          "id": "F3",
+          "statement": "近24个月正式完赛证据：27 SEP 2026 BMW Berlin Marathon, Berlin 2:08:21，名次15.",
+          "sourceIds": [
+            "S1"
+          ]
+        },
+        {
+          "id": "F4",
+          "statement": "2025-10-26宝鸡全程冠军2:14:46，报道明确陕西渭南身份。",
+          "sourceIds": [
+            "S2"
+          ]
+        },
+        {
+          "id": "F5",
+          "statement": "2024-12-15福州中国籍男子第三，非总第三，报道不提供其成绩。",
+          "sourceIds": [
+            "S3"
+          ]
+        }
+      ],
+      "seasonProgression": [
+        {
+          "year": "2023",
+          "mark": "2:16:48",
+          "date": "17 DEC 2023",
+          "venue": "Hangzhou (CHN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2024",
+          "mark": "2:12:18",
+          "date": "01 DEC 2024",
+          "venue": "Suzhou (CHN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2025",
+          "mark": "2:13:03",
+          "date": "16 NOV 2025",
+          "venue": "Nanjing (CHN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2026",
+          "mark": "2:08:21",
+          "date": "27 SEP 2026",
+          "venue": "Berlin (GER)",
+          "sourceId": "S1"
+        }
+      ],
+      "personalBest": {
+        "mark": "2:08:21",
+        "date": "2026-09-27",
+        "venue": "Berlin (GER)",
+        "sourceId": "S1"
+      },
+      "activeEvidence": {
+        "date": "2026-09-27",
+        "competition": "BMW Berlin Marathon, Berlin",
+        "mark": "2:08:21",
+        "sourceId": "S1"
+      },
+      "retirementCheck": "本次所读资料中未见宣布退役；未穷尽所有个人社交媒体，不能将未检出写为终身保证。",
+      "gaps": [
+        "未获得完整训练计划、医学伤病档案；不据成绩逆推。"
+      ],
+      "conflicts": [
+        {
+          "issue": "央视2026-03-15南京半马报道列王佳浩亚军，但WA本人2026年表同日上海半马1:04:32第10，可能同名或报道误记；本次不认定南京报道对应该WA运动员。",
+          "adopted": "不写南京半马关联，采用有来源的宝鸡/福州及官方记录。",
+          "url": "https://local.cctv.com/2026/03/15/ARTIuy1X9rbQfSvMKh6LwyWw260315.shtml"
+        }
+      ]
+    },
+    {
+      "worldAthleticsId": "15182213",
+      "name": "李大林",
+      "gender": "men",
+      "researchStatus": "evidence_card_precedes_article",
+      "cutoffDate": "2026-11-17",
+      "theme": "三季成绩，走近208",
+      "centralQuestion": "一位新近进入208区间的选手，哪些变化已经能从记录看见？",
+      "representativeRace": "2026北京马拉松",
+      "readerValue": "以赛季进阶认识年轻选手，避免单场失利标签。",
+      "sources": [
+        {
+          "id": "S1",
+          "title": "Dalin LI | World Athletics official athlete data",
+          "url": "https://worldathletics.org/athletes/china/dalin-li-15182213",
+          "publishedAt": "",
+          "checkedAt": "2026-11-17",
+          "verification": "official_embedded_data_read_today",
+          "snapshot": "sources/15182213-worldathletics.json",
+          "originalPublisher": "World Athletics",
+          "sha256": "1d2d38d97cfe830cfe5184ab09f5fa46eb9f68ecee161b012e61e633d97611ec",
+          "retrievalNote": "通过 /athletes/china/ 官方本人页入口本日获取成功；其他入口此前空202。"
+        },
+        {
+          "id": "S2",
+          "title": "繁花胜景、彝海欢歌 2026楚雄马拉松盛大开跑",
+          "url": "https://sports.cctv.com/2026/08/03/ARTI7o0KBjjB1c9tMhkx6SdJ260803.shtml",
+          "publishedAt": "2026-08-03",
+          "checkedAt": "2026-11-17",
+          "verification": "full_text_read",
+          "snapshot": "sources/lidalin-cctv-20260803.txt",
+          "originalPublisher": "央视网",
+          "sha256": "5a294659997d5cf39d4e0f4ca43cef67c40b08edb9fbdd36c2f6740915814d82"
+        }
+      ],
+      "facts": [
+        {
+          "id": "F1",
+          "statement": "世界田联本人身份：Dalin LI，countryCode=CHN，出生日期08 AUG 2002",
+          "sourceIds": [
+            "S1"
+          ]
+        },
+        {
+          "id": "F2",
+          "statement": "合法全马PB 2:08:30，18 OCT 2026，Beijing (CHN)",
+          "sourceIds": [
+            "S1"
+          ]
+        },
+        {
+          "id": "F3",
+          "statement": "近24个月正式完赛证据：18 OCT 2026 Bank of China Beijing Marathon, Beijing 2:08:30，名次4.",
+          "sourceIds": [
+            "S1"
+          ]
+        },
+        {
+          "id": "F4",
+          "statement": "2026-08-02楚雄全程亚军2:21:47；冠军2:21:05，原赛会纪录2:22:55；报道没有说这是李大林个人最好。",
+          "sourceIds": [
+            "S2"
+          ]
+        }
+      ],
+      "seasonProgression": [
+        {
+          "year": "2024",
+          "mark": "2:14:45",
+          "date": "15 DEC 2024",
+          "venue": "Fuzhou (CHN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2025",
+          "mark": "2:11:26",
+          "date": "02 NOV 2025",
+          "venue": "Beijing (CHN)",
+          "sourceId": "S1"
+        },
+        {
+          "year": "2026",
+          "mark": "2:08:30",
+          "date": "18 OCT 2026",
+          "venue": "Beijing (CHN)",
+          "sourceId": "S1"
+        }
+      ],
+      "personalBest": {
+        "mark": "2:08:30",
+        "date": "2026-10-18",
+        "venue": "Beijing (CHN)",
+        "sourceId": "S1"
+      },
+      "activeEvidence": {
+        "date": "2026-10-18",
+        "competition": "Bank of China Beijing Marathon, Beijing",
+        "mark": "2:08:30",
+        "sourceId": "S1"
+      },
+      "retirementCheck": "本次所读资料中未见宣布退役；未穷尽所有个人社交媒体，不能将未检出写为终身保证。",
+      "gaps": [
+        "未获得完整训练计划、医学伤病档案；不据成绩逆推。"
+      ]
+    }
+  ]
+}

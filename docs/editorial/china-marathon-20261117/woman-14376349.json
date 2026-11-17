@@ -1,0 +1,363 @@
+{
+  "name": "李芷萱",
+  "worldAthleticsId": "14376349",
+  "gender": "women",
+  "cutoffDate": "2026-11-17",
+  "researchStatus": "sources_read_before_writing",
+  "identity": {
+    "countryCode": "CHN",
+    "countryLabel": "PR of China",
+    "birthDateRaw": "23 MAR 1994",
+    "sourceId": "S1"
+  },
+  "sources": [
+    {
+      "id": "S1",
+      "title": "李芷萱｜World Athletics运动员资料",
+      "url": "https://worldathletics.org/athletes/pr-of-china/zhixuan-li-14376349",
+      "publisher": "World Athletics",
+      "kind": "official_athlete_record",
+      "accessedAt": "2026-11-17",
+      "verification": "full_page_and_embedded_competitor_json_read",
+      "publishedAt": null
+    },
+    {
+      "id": "S2",
+      "title": "女子马拉松-张德顺获第11 埃塞俄比亚选手夺冠",
+      "url": "https://sports.cctv.com/2022/07/19/ARTIutVZHpCixwUycyqPpkxn220719.shtml",
+      "publisher": "央视网（具体原创机构见正文署名）",
+      "kind": "original_reporting_or_attributed_wire",
+      "publishedAt": "2022-07-19",
+      "accessedAt": "2026-11-17",
+      "verification": "full_article_read"
+    },
+    {
+      "id": "S3",
+      "title": "名古屋女子马拉松开跑 张德顺创近11年最佳成绩",
+      "url": "https://sports.cctv.com/2023/03/13/ARTIj0WhDe31ghzVSKKVU3Hs230313.shtml",
+      "publisher": "央视网（具体原创机构见正文署名）",
+      "kind": "original_reporting_or_attributed_wire",
+      "publishedAt": "2023-03-13",
+      "accessedAt": "2026-11-17",
+      "verification": "full_article_read"
+    },
+    {
+      "id": "S4",
+      "title": "2018上海国际女子10公里精英赛 中国选手夺冠",
+      "url": "https://sports.cctv.com/2018/12/02/ARTIBcsO1ODXpCIuYcIM6haI181202.shtml",
+      "publisher": "央视网（具体原创机构见正文署名）",
+      "kind": "original_reporting_or_attributed_wire",
+      "publishedAt": "2018-12-02",
+      "accessedAt": "2026-11-17",
+      "verification": "full_article_read"
+    },
+    {
+      "id": "S5",
+      "title": "用时1小时12分 李芷萱夺海沧半马女子冠军",
+      "url": "https://sports.cctv.com/2020/12/06/ARTIus3czLH0AtYBZyK3oQUV201206.shtml",
+      "publisher": "央视网（具体原创机构见正文署名）",
+      "kind": "original_reporting_or_attributed_wire",
+      "publishedAt": "2020-12-06",
+      "accessedAt": "2026-11-17",
+      "verification": "full_article_read"
+    }
+  ],
+  "facts": [
+    {
+      "id": "F1",
+      "claim": "官方全马PB 2:26:15，日期 10 MAR 2019，地点 Nagoya (JPN)；未标记notLegal。",
+      "sourceIds": [
+        "S1"
+      ]
+    },
+    {
+      "id": "F2",
+      "claim": "2022俄勒冈世锦赛2:31:20第22名。",
+      "sourceIds": [
+        "S2"
+      ]
+    },
+    {
+      "id": "F3",
+      "claim": "2023名古屋2:26:28第八，达到巴黎奥运标准。",
+      "sourceIds": [
+        "S3"
+      ]
+    },
+    {
+      "id": "F4",
+      "claim": "2018年12月2日上海女子10公里32:42夺冠；本人表示全马是未来重心、10公里以赛代练、接下来冬训。",
+      "sourceIds": [
+        "S4"
+      ]
+    },
+    {
+      "id": "F5",
+      "claim": "2020上海马拉松2:26:39、其第三次国内女子全马冠军；2020海沧半马夺冠。报道半马写约1:12:14，精确PB以WA为准。",
+      "sourceIds": [
+        "S5"
+      ]
+    }
+  ],
+  "recordEvidence": {
+    "personalBests": [
+      {
+        "discipline": "800 Metres",
+        "mark": "2:09.12",
+        "date": "03 SEP 2014",
+        "venue": "Changbaishan (CHN)",
+        "notLegal": false
+      },
+      {
+        "discipline": "1500 Metres",
+        "mark": "4:14.19",
+        "date": "18 MAY 2016",
+        "venue": "National Stadium, Beijing (CHN)",
+        "notLegal": false
+      },
+      {
+        "discipline": "1500 Metres Short Track",
+        "mark": "4:28.72",
+        "date": "04 MAR 2016",
+        "venue": "Nanjing (CHN) (i)",
+        "notLegal": false
+      },
+      {
+        "discipline": "3000 Metres",
+        "mark": "9:24.06",
+        "date": "10 JUL 2012",
+        "venue": "Estadio Olímpico, Barcelona (ESP)",
+        "notLegal": false
+      },
+      {
+        "discipline": "5000 Metres",
+        "mark": "15:41.19",
+        "date": "06 MAY 2016",
+        "venue": "Luoyang (CHN)",
+        "notLegal": false
+      },
+      {
+        "discipline": "10,000 Metres",
+        "mark": "33:12.09",
+        "date": "20 SEP 2021",
+        "venue": "Xi'an (CHN)",
+        "notLegal": false
+      },
+      {
+        "discipline": "10 Kilometres Road",
+        "mark": "33:29",
+        "date": "03 MAY 2025",
+        "venue": "Meijijingu Gaien area, Tokyo (JPN)",
+        "notLegal": false
+      },
+      {
+        "discipline": "Half Marathon",
+        "mark": "1:11:21",
+        "date": "20 APR 2025",
+        "venue": "Shanghai (CHN)",
+        "notLegal": false
+      },
+      {
+        "discipline": "Marathon",
+        "mark": "2:26:15",
+        "date": "10 MAR 2019",
+        "venue": "Nagoya (JPN)",
+        "notLegal": false
+      }
+    ],
+    "marathonProgression": [
+      {
+        "mark": "2:35:45",
+        "date": "12 NOV 2017",
+        "venue": "Shanghai (CHN)",
+        "competition": "Shanghai International Marathon",
+        "season": "2017"
+      },
+      {
+        "mark": "2:30:20",
+        "date": "18 NOV 2018",
+        "venue": "Shanghai (CHN)",
+        "competition": "Shanghai International Marathon",
+        "season": "2018"
+      },
+      {
+        "mark": "2:26:15",
+        "date": "10 MAR 2019",
+        "venue": "Nagoya (JPN)",
+        "competition": "Nagoya Women's Marathon",
+        "season": "2019"
+      },
+      {
+        "mark": "2:26:39",
+        "date": "29 NOV 2020",
+        "venue": "Shanghai (CHN)",
+        "competition": "Shanghai International Marathon",
+        "season": "2020"
+      },
+      {
+        "mark": "2:29:13",
+        "date": "11 APR 2021",
+        "venue": "Xuzhou (CHN)",
+        "competition": "Chinese Marathon Championships",
+        "season": "2021"
+      },
+      {
+        "mark": "2:31:20",
+        "date": "18 JUL 2022",
+        "venue": "Autzen Complex, Eugene, OR (USA)",
+        "competition": "World Athletics Championships, Oregon 2022",
+        "season": "2022"
+      },
+      {
+        "mark": "2:26:28",
+        "date": "12 MAR 2023",
+        "venue": "Nagoya (JPN)",
+        "competition": "Nagoya Women's Marathon",
+        "season": "2023"
+      },
+      {
+        "mark": "2:26:17",
+        "date": "17 NOV 2024",
+        "venue": "Nanjing (CHN)",
+        "competition": "Nanjing Marathon",
+        "season": "2024"
+      },
+      {
+        "mark": "2:28:51",
+        "date": "16 MAR 2025",
+        "venue": "Seoul (KOR)",
+        "competition": "Seoul Marathon",
+        "season": "2025"
+      },
+      {
+        "mark": "2:26:53",
+        "date": "01 MAR 2026",
+        "venue": "Tokyo (JPN)",
+        "competition": "Tokyo Marathon",
+        "season": "2026"
+      }
+    ],
+    "currentResults": [
+      {
+        "mark": "16:20.47",
+        "date": "25 OCT 2026",
+        "venue": "Komazawa Olympic Park Athletic Stadium, Tokyo (JPN)",
+        "notLegal": false,
+        "competition": "MDC FINAL supported by On, Komazawa Olympic Park Athletic Stadium, Tokyo",
+        "place": "8.",
+        "discipline": "5000 Metres"
+      },
+      {
+        "mark": "33:38",
+        "date": "26 APR 2026",
+        "venue": "Jiaxing (CHN)",
+        "notLegal": false,
+        "competition": "Chinese Athletics Association 10Km Elite Series Jiashan Dayun, Jiaxing",
+        "place": "1.",
+        "discipline": "10 Kilometres Road"
+      },
+      {
+        "mark": "1:12:24",
+        "date": "15 MAR 2026",
+        "venue": "Shanghai (CHN)",
+        "notLegal": false,
+        "competition": "Shanghai Half Marathon, Shanghai",
+        "place": "5.",
+        "discipline": "Half Marathon"
+      },
+      {
+        "mark": "1:13:25",
+        "date": "29 MAR 2026",
+        "venue": "Yangzhou (CHN)",
+        "notLegal": false,
+        "competition": "Yangzhou Half Marathon, Yangzhou",
+        "place": "10.",
+        "discipline": "Half Marathon"
+      },
+      {
+        "mark": "2:26:53",
+        "date": "01 MAR 2026",
+        "venue": "Tokyo (JPN)",
+        "notLegal": false,
+        "competition": "Tokyo Marathon, Tokyo",
+        "place": "13.",
+        "discipline": "Marathon"
+      }
+    ]
+  },
+  "gaps": [
+    "未获得本人与教练完整训练日志，不写周跑量、心率区间、饮食和伤病诊断。",
+    "未获取代表全马比赛完整官方分段；平均配速只作算术说明，不伪写加速位置。",
+    "现役名单最终纳入待全历史PB筛选和退役公告审计。"
+  ],
+  "recordEvidenceSnapshotNote": "本轮已在线核读6人官方页面；重复请求后0字节，结构化事实快照采用既有2026-11-12采集JSON并与本轮已读内容核对。",
+  "activeEvidence": {
+    "formalResultsInLast24Months": [
+      {
+        "mark": "16:20.47",
+        "date": "25 OCT 2026",
+        "venue": "Komazawa Olympic Park Athletic Stadium, Tokyo (JPN)",
+        "notLegal": false,
+        "competition": "MDC FINAL supported by On, Komazawa Olympic Park Athletic Stadium, Tokyo",
+        "place": "8.",
+        "discipline": "5000 Metres"
+      },
+      {
+        "mark": "33:38",
+        "date": "26 APR 2026",
+        "venue": "Jiaxing (CHN)",
+        "notLegal": false,
+        "competition": "Chinese Athletics Association 10Km Elite Series Jiashan Dayun, Jiaxing",
+        "place": "1.",
+        "discipline": "10 Kilometres Road"
+      },
+      {
+        "mark": "1:12:24",
+        "date": "15 MAR 2026",
+        "venue": "Shanghai (CHN)",
+        "notLegal": false,
+        "competition": "Shanghai Half Marathon, Shanghai",
+        "place": "5.",
+        "discipline": "Half Marathon"
+      },
+      {
+        "mark": "1:13:25",
+        "date": "29 MAR 2026",
+        "venue": "Yangzhou (CHN)",
+        "notLegal": false,
+        "competition": "Yangzhou Half Marathon, Yangzhou",
+        "place": "10.",
+        "discipline": "Half Marathon"
+      },
+      {
+        "mark": "2:26:53",
+        "date": "01 MAR 2026",
+        "venue": "Tokyo (JPN)",
+        "notLegal": false,
+        "competition": "Tokyo Marathon, Tokyo",
+        "place": "13.",
+        "discipline": "Marathon"
+      }
+    ],
+    "sourceId": "S1",
+    "retirementAnnouncementCheck": "pending_final_roster_audit",
+    "note": "正式参赛记录已核实；不单凭世界田联页面断言未退役。"
+  },
+  "editorialQuestions": {
+    "memorableTrait": "2019年的PB与2026年东京成绩只差38秒，长时间保持接近高峰的能力。",
+    "definingRaceOrChoice": "2018年10公里夺冠后明确全马重心，短距离成为长期目标的组成部分。",
+    "readerValue": "学会在PB之外用相对旧纪录的差值评价比赛。"
+  },
+  "centralQuestion": "学会在PB之外用相对旧纪录的差值评价比赛。",
+  "article": {
+    "title": "李芷萱：七年后，距离最快的自己还有38秒",
+    "lead": "2019年名古屋2小时26分15秒，2026年东京2小时26分53秒。两场比赛之间隔着七年，时间只差38秒。把李芷萱的履历展开，会发现长期竞争力有时就藏在PB旁边。",
+    "body": "2018年12月2日，上海女子10公里精英赛，李芷萱以32分42秒夺冠。比赛结束，她谈的却是更长的距离：未来重心仍放在全马，这次短距离比赛承担以赛代练的作用，之后要进入冬训。[S4]\n\n她当时已经是上海马拉松中国籍女子冠军。10公里的胜利因此有两种位置：它是一场独立比赛的冠军，也是通往全马目标的一段积累。她没有在采访中把每次获胜都说成终点，而是把冬训和接下来的竞争接在一起。[S4]\n\n几个月后，2019年3月10日，她在名古屋跑出2小时26分15秒。这条成绩至今仍是世界田联登记的全马PB。2026年3月1日东京，她完成2小时26分53秒，获得第13名；七年过去，距离旧PB是38秒。[S1]\n\n## 一条不只靠刷新纪录延续的路\n\n世界田联年度最佳记录表明，李芷萱的全马成绩并非只有2019年这一个亮点。2020年上海，她跑出2小时26分39秒；2023年名古屋，她以2小时26分28秒获得第八名，达到当时巴黎奥运会女子马拉松参赛标准。[S1][S3][S5]\n\n与PB相比，2020年差24秒，2023年差13秒，2026年差38秒。把这些差值写出来，会看到一种被“有没有PB”遮住的表现：不同年份里，她曾多次接近自己的最高水平。它不意味着每一季都同样顺利，也不能证明所有训练安排都正确，但说明她的竞技履历没有在旧纪录写下之后停止。[S1]\n\n她更早如何进入专业训练，本次没有获得足够完整的本人采访。2018年中新网现场报道已明确她是一名专业田径运动员，也记录了她对全马方向的选择。本文从这个可核实的选择谈起，不用出生地或赛地猜测成长经历。[S4]\n\n## 把东京这场比赛放大一点\n\n2026年东京的2小时26分53秒，平均配速约为每公里3分29秒。38秒分摊到42.195公里，约是每公里0.9秒。这个差值让“接近PB”有了可以理解的尺度：不是几分钟以上的距离，而是一整场极细的平均速度差。[S1]\n\n然而，接近并不等于只差一次冲刺。本文未取得李芷萱这场比赛完整官方分段，也没有核实她经过各个补给点的情况，因此不能说她把最后一公里跑快一点就能改写PB。总时间相近的两场比赛，过程完全可能不同；平均配速只说明结果，不说明身体如何分配能量。\n\n她在东京获得第13名，也不宜直接改写为“中国女子第13”或某种综合实力排序。世界田联个人资料收录的是该场总名次。PB榜则按个人最快合法全马成绩排列，目的与一场比赛的名次不同。[S1]\n\n## 更大的舞台，也会换一把尺子\n\n2022年俄勒冈世锦赛，李芷萱以2小时31分20秒获得第22名，张德顺2小时28分11秒列第11名。世锦赛的结果给她的履历增加了国际大赛中的实际坐标。[S2]\n\n2023年名古屋2小时26分28秒，比那届世锦赛快4分52秒。这个时间差是可核对的，原因却需要更多过程材料才能解释。对手构成、比赛目标、天气、路线及临场状况都可能影响结果；没有逐项证据，就不应把世锦赛较慢的成绩归结成某种心理弱点。[S1][S2][S3]\n\n李芷萱自己的公开训练表述，在2018年的短距离比赛后已经相当明确：10公里服务全马目标。这个方向有原始采访支撑，但不能被延伸成一份从2018年持续到今天、细节不变的训练计划。她是否在某年增加跑量、改变强度比例，本次材料不能回答。[S4]\n\n## 对一个长期跑步的人，38秒意味着什么\n\n李芷萱的故事适合留给那些已经拥有一个旧PB、之后几年却总差一点的人。她的例子首先让人看见，纪录之外还有另一类证据：距离旧纪录多远，在多少个年份仍能接近它，又在哪种比赛中完成了其他任务。\n\n普通跑者可以在自己的记录里增加一列“距PB差值”，并同时写明当场目标与条件。这是一种基于她成绩的复盘启发，不是借她的名字推荐具体训练量。没有PB的比赛，仍可以帮助识别节奏、耐力与恢复中的变化。\n\n当然，长期接近纪录也不自动保证下一场突破。她最近一次东京成绩与旧PB之间的38秒，属于已经发生的事实；下一次能否追回，要等下一张真实成绩单。\n\n回到2018年的上海，李芷萱在一场10公里胜利后谈起全马，那个清楚的方向比一句泛泛的坚持更容易被记住。多年以后，她仍在距离个人最好成绩很近的地方参赛。这段履历的重量，既在2小时26分15秒，也在旁边那些不断接近它的数字里。",
+    "version": 2,
+    "updatedAt": "2026-11-17",
+    "editorialStatus": "evidence_based_feature",
+    "analysisBoundary": "正文中的平均配速和时间差为作者按官方成绩计算；无完整分段处不推断战术。",
+    "characters": 1334
+  },
+  "draftedAfterResearchCard": true
+}

@@ -35,7 +35,9 @@
     "content:seed": "node scripts/import-content-starters.cjs",
     "content:sync": "node scripts/content-sync.cjs --publish",
     "test:content-sync": "node --test scripts/content-sync.test.cjs scripts/content-news-enrichment.test.cjs scripts/athlete-biography.test.cjs scripts/content-date.test.cjs server/test/pacer-people.test.js",
-    "test:mini-package": "node scripts/check-mini-package.cjs"
+    "test:mini-package": "node scripts/check-mini-package.cjs",
+    "content:athletes:build": "node scripts/build-marathon-feature.cjs && node scripts/render-marathon-feature.cjs",
+    "test:athlete-feature": "node --test --test-concurrency=1 --require ./server/test/setup-env.js server/test/athlete-feature.test.js && node scripts/content-mini-regression.cjs && npm run build && node scripts/marathon-feature-acceptance.cjs"
   },
   "devDependencies": {
     "concurrently": "^9.1.2",

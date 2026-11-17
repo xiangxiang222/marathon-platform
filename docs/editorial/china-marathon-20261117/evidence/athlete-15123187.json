@@ -1,0 +1,523 @@
+{
+  "sourceUrl": "https://worldathletics.org/athletes/china/qing-zhu-15123187",
+  "retrievedAt": "2026-11-17",
+  "competitor": {
+    "__typename": "singleCompetitor",
+    "_id": 15123187,
+    "primaryMediaId": null,
+    "primaryMediaId2": null,
+    "primaryMedia": null,
+    "basicData": {
+      "__typename": "AthleteNewData",
+      "id": null,
+      "friendlyName": null,
+      "fullName": null,
+      "friendlyNameLetter": null,
+      "friendlyNameFirst3Letter": null,
+      "sexCode": null,
+      "birthPlace": null,
+      "birthPlaceCountryName": null,
+      "sexNameUrlSlug": null,
+      "birthPlaceCountryUrlSlug": null,
+      "birthCountryCode": null,
+      "primaryMediaId": null,
+      "facebookUsername": null,
+      "twitterUsername": null,
+      "instagramUsername": null,
+      "countryFullName": "PR of China",
+      "familyName": "ZHU",
+      "givenName": "Qing",
+      "firstName": null,
+      "lastName": null,
+      "countryName": null,
+      "countryCode": "CHN",
+      "countryUrlSlug": null,
+      "birthDate": "19 JAN 1996",
+      "birthDateStr": null,
+      "urlSlug": null,
+      "representativeId": null,
+      "biography": null,
+      "twitterLink": null,
+      "instagramLink": null,
+      "facebookLink": null,
+      "transfersOfAllegiance": [],
+      "iaafId": null,
+      "aaId": 15123187,
+      "primaryMediaEdited": null,
+      "male": false,
+      "primaryMedia": null
+    },
+    "personalBests": {
+      "__typename": "personalBestsType",
+      "withWind": false,
+      "withRecords": false,
+      "results": [
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "half-marathon",
+          "typeNameUrlSlug": "road-running",
+          "discipline": "Half Marathon",
+          "linkToList": true,
+          "mark": "1:11:52",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "Shijiazhuang (CHN)",
+          "date": "29 MAR 2026",
+          "listPosition": null,
+          "resultScore": 1092,
+          "records": [],
+          "competitionId": "7245740",
+          "eventId": "10229541",
+          "eventName": null
+        },
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "marathon",
+          "typeNameUrlSlug": "road-running",
+          "discipline": "Marathon",
+          "linkToList": true,
+          "mark": "2:27:26",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "Beijing (CHN)",
+          "date": "18 OCT 2026",
+          "listPosition": "972",
+          "resultScore": 1141,
+          "records": [],
+          "competitionId": "7235591",
+          "eventId": "10229534",
+          "eventName": null
+        }
+      ]
+    },
+    "seasonsBests": {
+      "__typename": "seasonsBestsType",
+      "parameters": {
+        "__typename": "seasonsBestsParamsType",
+        "seasonsBestsSeason": 2026
+      },
+      "activeSeasons": [
+        "2026",
+        "2025",
+        "2024",
+        "2023"
+      ],
+      "withWind": false,
+      "withRecords": false,
+      "results": [
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "half-marathon",
+          "typeNameUrlSlug": "road-running",
+          "discipline": "Half Marathon",
+          "linkToList": true,
+          "mark": "1:11:52",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "Shijiazhuang (CHN)",
+          "date": "29 MAR 2026",
+          "listPosition": "377",
+          "resultScore": 1092,
+          "records": [],
+          "competitionId": "7245740",
+          "eventId": "10229541",
+          "competition": "Shijiazhuang Half Marathon"
+        },
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "marathon",
+          "typeNameUrlSlug": "road-running",
+          "discipline": "Marathon",
+          "linkToList": true,
+          "mark": "2:27:26",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "Beijing (CHN)",
+          "date": "18 OCT 2026",
+          "listPosition": "244",
+          "resultScore": 1141,
+          "records": [],
+          "competitionId": "7235591",
+          "eventId": "10229534",
+          "competition": "Bank of China Beijing Marathon"
+        }
+      ]
+    },
+    "progressionOfSeasonsBests": [
+      {
+        "__typename": "singleCompetitorProgression",
+        "indoor": false,
+        "disciplineCode": null,
+        "disciplineNameUrlSlug": "half-marathon",
+        "typeNameUrlSlug": "road-running",
+        "discipline": "Half Marathon",
+        "withWind": false,
+        "mainEvent": false,
+        "eventId": "10229541",
+        "results": [
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "2024",
+            "numericResult": 4413,
+            "mark": "1:13:33",
+            "wind": null,
+            "venue": "Shenzhen (CHN)",
+            "date": "15 DEC 2024",
+            "listPosition": 499,
+            "resultScore": 1058,
+            "competitionId": "7208882",
+            "competition": "Shenzhen Nanshan Half Marathon"
+          },
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "2025",
+            "numericResult": 4324,
+            "mark": "1:12:04",
+            "wind": null,
+            "venue": "Shenzhen (CHN)",
+            "date": "14 DEC 2025",
+            "listPosition": 388,
+            "resultScore": 1088,
+            "competitionId": "7221958",
+            "competition": "Shenzhen Nanshan Half Marathon"
+          },
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "2026",
+            "numericResult": 4312,
+            "mark": "1:11:52",
+            "wind": null,
+            "venue": "Shijiazhuang (CHN)",
+            "date": "29 MAR 2026",
+            "listPosition": 377,
+            "resultScore": 1092,
+            "competitionId": "7245740",
+            "competition": "Shijiazhuang Half Marathon"
+          }
+        ]
+      },
+      {
+        "__typename": "singleCompetitorProgression",
+        "indoor": false,
+        "disciplineCode": null,
+        "disciplineNameUrlSlug": "marathon",
+        "typeNameUrlSlug": "road-running",
+        "discipline": "Marathon",
+        "withWind": false,
+        "mainEvent": true,
+        "eventId": "10229534",
+        "results": [
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "2023",
+            "numericResult": 10095,
+            "mark": "2:48:15",
+            "wind": null,
+            "venue": "Shenzhen (CHN)",
+            "date": "31 DEC 2023",
+            "listPosition": null,
+            "resultScore": 954,
+            "competitionId": "7192044",
+            "competition": "Shenzhen Baoan International Marathon"
+          },
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "2024",
+            "numericResult": 9386,
+            "mark": "2:36:26",
+            "wind": null,
+            "venue": "Shenzhen (CHN)",
+            "date": "01 DEC 2024",
+            "listPosition": 617,
+            "resultScore": 1058,
+            "competitionId": "7207770",
+            "competition": "Shenzhen Marathon"
+          },
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "2025",
+            "numericResult": 9028,
+            "mark": "2:30:28",
+            "wind": null,
+            "venue": "Chongqing (CHN)",
+            "date": "02 MAR 2025",
+            "listPosition": 370,
+            "resultScore": 1113,
+            "competitionId": "7220362",
+            "competition": "Chang'an Automobile Chongqing Marathon"
+          },
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "2026",
+            "numericResult": 8846,
+            "mark": "2:27:26",
+            "wind": null,
+            "venue": "Beijing (CHN)",
+            "date": "18 OCT 2026",
+            "listPosition": 244,
+            "resultScore": 1141,
+            "competitionId": "7235591",
+            "competition": "Bank of China Beijing Marathon"
+          }
+        ]
+      }
+    ],
+    "worldRankings": {
+      "__typename": "worldRankingsType",
+      "parameters": {
+        "__typename": "worldRankingsParamsType",
+        "worldRankingsProgressionYear": null
+      },
+      "current": [
+        {
+          "__typename": "worldRankingCurrent",
+          "rankingCalculationId": "146124966",
+          "eventGroup": "Women's Marathon",
+          "male": false,
+          "urlSlug": "marathon",
+          "place": 187,
+          "rankingScore": 1166
+        },
+        {
+          "__typename": "worldRankingCurrent",
+          "rankingCalculationId": "146123404",
+          "eventGroup": "Women's Road Running",
+          "male": false,
+          "urlSlug": "road-running",
+          "place": 480,
+          "rankingScore": 1055
+        },
+        {
+          "__typename": "worldRankingCurrent",
+          "rankingCalculationId": "146180462",
+          "eventGroup": "Women's Overall Ranking",
+          "male": false,
+          "urlSlug": "overall-ranking",
+          "place": 868,
+          "rankingScore": 1188
+        }
+      ],
+      "best": [
+        {
+          "__typename": "worldRankingBest",
+          "eventGroup": "Women's Marathon",
+          "eventGroupId": 43,
+          "urlSlug": "marathon",
+          "place": "185",
+          "weeks": 2
+        },
+        {
+          "__typename": "worldRankingBest",
+          "eventGroup": "Women's Road Running",
+          "eventGroupId": 42,
+          "urlSlug": "road-running",
+          "place": "366",
+          "weeks": 1
+        },
+        {
+          "__typename": "worldRankingBest",
+          "eventGroup": "Women's Overall Ranking",
+          "eventGroupId": 47,
+          "urlSlug": "overall-ranking",
+          "place": "863",
+          "weeks": 1
+        }
+      ]
+    },
+    "honours": [],
+    "resultsByYear": {
+      "__typename": "resultsByYearType",
+      "parameters": {
+        "__typename": "resultByYearParamsType",
+        "resultsByYear": 2026,
+        "resultsByYearOrderBy": "discipline"
+      },
+      "activeYears": [
+        "2026",
+        "2025",
+        "2024",
+        "2023"
+      ],
+      "resultsByEvent": [
+        {
+          "__typename": "resultsByEvent",
+          "indoor": null,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": null,
+          "typeNameUrlSlug": null,
+          "discipline": "Half Marathon",
+          "withWind": null,
+          "results": [
+            {
+              "__typename": "resultsByEventResult",
+              "date": "29 MAR 2026",
+              "competition": "Shijiazhuang Half Marathon, Shijiazhuang",
+              "venue": "Shijiazhuang (CHN)",
+              "country": "CHN",
+              "category": "F",
+              "race": "F",
+              "place": "1.",
+              "mark": "1:11:52",
+              "wind": null,
+              "notLegal": false,
+              "resultScore": 1092,
+              "remark": "",
+              "competitionId": "7245740",
+              "eventId": "10229541",
+              "eventName": null
+            }
+          ]
+        },
+        {
+          "__typename": "resultsByEvent",
+          "indoor": null,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": null,
+          "typeNameUrlSlug": null,
+          "discipline": "Marathon",
+          "withWind": null,
+          "results": [
+            {
+              "__typename": "resultsByEventResult",
+              "date": "18 JAN 2026",
+              "competition": "Chang'an Automobile Chongqing Marathon, Chongqing",
+              "venue": "Chongqing (CHN)",
+              "country": "CHN",
+              "category": "A",
+              "race": "F",
+              "place": "3.",
+              "mark": "2:28:53",
+              "wind": null,
+              "notLegal": false,
+              "resultScore": 1128,
+              "remark": "",
+              "competitionId": "7235935",
+              "eventId": "10229534",
+              "eventName": null
+            },
+            {
+              "__typename": "resultsByEventResult",
+              "date": "22 MAR 2026",
+              "competition": "Bank of China Wuhan Marathon, Wuhan",
+              "venue": "Wuhan (CHN)",
+              "country": "CHN",
+              "category": "B",
+              "race": "F",
+              "place": "4.",
+              "mark": "2:28:45",
+              "wind": null,
+              "notLegal": false,
+              "resultScore": 1129,
+              "remark": "",
+              "competitionId": "7238456",
+              "eventId": "10229534",
+              "eventName": null
+            },
+            {
+              "__typename": "resultsByEventResult",
+              "date": "26 APR 2026",
+              "competition": "The 36th Dalian Marathon, Dalian",
+              "venue": "Dalian (CHN)",
+              "country": "CHN",
+              "category": "B",
+              "race": "F",
+              "place": "1.",
+              "mark": "2:29:02",
+              "wind": null,
+              "notLegal": false,
+              "resultScore": 1126,
+              "remark": "",
+              "competitionId": "7236080",
+              "eventId": "10229534",
+              "eventName": null
+            },
+            {
+              "__typename": "resultsByEventResult",
+              "date": "24 MAY 2026",
+              "competition": "Lanzhou Marathon, Lanzhou",
+              "venue": "Lanzhou (CHN)",
+              "country": "CHN",
+              "category": "A",
+              "race": "F",
+              "place": "6.",
+              "mark": "2:37:48",
+              "wind": null,
+              "notLegal": false,
+              "resultScore": 1046,
+              "remark": "",
+              "competitionId": "7235588",
+              "eventId": "10229534",
+              "eventName": null
+            },
+            {
+              "__typename": "resultsByEventResult",
+              "date": "06 SEP 2026",
+              "competition": "Shenyang Marathon, Shenyang",
+              "venue": "Shenyang (CHN)",
+              "country": "CHN",
+              "category": "B",
+              "race": "F",
+              "place": "3.",
+              "mark": "2:30:49",
+              "wind": null,
+              "notLegal": false,
+              "resultScore": 1110,
+              "remark": "",
+              "competitionId": "7238739",
+              "eventId": "10229534",
+              "eventName": null
+            },
+            {
+              "__typename": "resultsByEventResult",
+              "date": "27 SEP 2026",
+              "competition": "BMW Berlin Marathon, Berlin",
+              "venue": "Berlin (GER)",
+              "country": "GER",
+              "category": "GW",
+              "race": "F",
+              "place": "",
+              "mark": "DNF",
+              "wind": null,
+              "notLegal": false,
+              "resultScore": 0,
+              "remark": "",
+              "competitionId": "7235580",
+              "eventId": "10229534",
+              "eventName": null
+            },
+            {
+              "__typename": "resultsByEventResult",
+              "date": "18 OCT 2026",
+              "competition": "Bank of China Beijing Marathon, Beijing",
+              "venue": "Beijing (CHN)",
+              "country": "CHN",
+              "category": "A",
+              "race": "F",
+              "place": "4.",
+              "mark": "2:27:26",
+              "wind": null,
+              "notLegal": false,
+              "resultScore": 1141,
+              "remark": "",
+              "competitionId": "7235591",
+              "eventId": "10229534",
+              "eventName": null
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

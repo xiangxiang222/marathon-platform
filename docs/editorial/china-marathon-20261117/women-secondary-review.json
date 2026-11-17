@@ -1,0 +1,101 @@
+{
+  "asOf": "2026-11-17",
+  "results": [
+    {
+      "id": "14702479",
+      "name": "李美珍",
+      "officialPB": "2:25:06",
+      "sourceUrl": "https://worldathletics.org/athletes/china/meizhen-li-14702479",
+      "citationIds": [
+        "S1",
+        "S2"
+      ],
+      "result": "checked"
+    },
+    {
+      "id": "14811652",
+      "name": "吴冰",
+      "officialPB": "2:26:01",
+      "sourceUrl": "https://worldathletics.org/athletes/china/bing-wu-14811652",
+      "citationIds": [
+        "S1"
+      ],
+      "result": "checked"
+    },
+    {
+      "id": "14702490",
+      "name": "白丽",
+      "officialPB": "2:26:33",
+      "sourceUrl": "https://worldathletics.org/athletes/china/li-bai-14702490",
+      "citationIds": [
+        "S1",
+        "S2"
+      ],
+      "result": "checked"
+    },
+    {
+      "id": "14607905",
+      "name": "李丹",
+      "officialPB": "2:26:59",
+      "sourceUrl": "https://worldathletics.org/athletes/china/dan-li-14607905",
+      "citationIds": [
+        "S1",
+        "S2"
+      ],
+      "result": "checked"
+    },
+    {
+      "id": "14913613",
+      "name": "徐冰洁",
+      "officialPB": "2:27:11",
+      "sourceUrl": "https://worldathletics.org/athletes/china/bingjie-xu-14913613",
+      "citationIds": [
+        "S1",
+        "S2"
+      ],
+      "result": "checked"
+    },
+    {
+      "id": "14977274",
+      "name": "马秀珍",
+      "officialPB": "2:27:12",
+      "sourceUrl": "https://worldathletics.org/athletes/china/xiuzhen-ma-14977274",
+      "citationIds": [
+        "S1"
+      ],
+      "result": "checked"
+    },
+    {
+      "id": "15123187",
+      "name": "朱卿",
+      "officialPB": "2:27:26",
+      "sourceUrl": "https://worldathletics.org/athletes/china/qing-zhu-15123187",
+      "citationIds": [
+        "S1",
+        "S2"
+      ],
+      "result": "checked"
+    },
+    {
+      "id": "14908056",
+      "name": "刘敏",
+      "officialPB": "2:28:16",
+      "sourceUrl": "https://worldathletics.org/athletes/china/min-liu-14908056",
+      "citationIds": [
+        "S1"
+      ],
+      "result": "checked"
+    },
+    {
+      "id": "14534952",
+      "name": "许双双",
+      "officialPB": "2:28:25",
+      "sourceUrl": "https://worldathletics.org/athletes/china/shuangshuang-xu-14534952",
+      "citationIds": [
+        "S1",
+        "S2"
+      ],
+      "result": "checked"
+    }
+  ]
+}

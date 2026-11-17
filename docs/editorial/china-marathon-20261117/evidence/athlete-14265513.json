@@ -1,0 +1,342 @@
+{
+  "sourceUrl": "https://worldathletics.org/athletes/athlete=14265513",
+  "retrievedAt": "2026-11-17T01:28:36.613466+00:00",
+  "competitor": {
+    "__typename": "singleCompetitor",
+    "_id": 14265513,
+    "primaryMediaId": null,
+    "primaryMediaId2": null,
+    "primaryMedia": null,
+    "basicData": {
+      "__typename": "AthleteNewData",
+      "id": null,
+      "friendlyName": null,
+      "fullName": null,
+      "friendlyNameLetter": null,
+      "friendlyNameFirst3Letter": null,
+      "sexCode": null,
+      "birthPlace": null,
+      "birthPlaceCountryName": null,
+      "sexNameUrlSlug": null,
+      "birthPlaceCountryUrlSlug": null,
+      "birthCountryCode": null,
+      "primaryMediaId": null,
+      "facebookUsername": null,
+      "twitterUsername": null,
+      "instagramUsername": null,
+      "countryFullName": "PR of China",
+      "familyName": "PAN",
+      "givenName": "Jinhong",
+      "firstName": null,
+      "lastName": null,
+      "countryName": null,
+      "countryCode": "CHN",
+      "countryUrlSlug": null,
+      "birthDate": "18 AUG 1973",
+      "birthDateStr": null,
+      "urlSlug": null,
+      "representativeId": null,
+      "biography": null,
+      "twitterLink": null,
+      "instagramLink": null,
+      "facebookLink": null,
+      "transfersOfAllegiance": [],
+      "iaafId": 115544,
+      "aaId": 14265513,
+      "primaryMediaEdited": null,
+      "male": false,
+      "primaryMedia": null
+    },
+    "athleteRepresentative": null,
+    "personalBests": {
+      "__typename": "personalBestsType",
+      "withWind": false,
+      "withRecords": false,
+      "results": [
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "half-marathon",
+          "typeNameUrlSlug": "road-running",
+          "discipline": "Half Marathon",
+          "linkToList": true,
+          "mark": "1:15:56",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "Zürich (SUI)",
+          "date": "27 SEP 1998",
+          "listPosition": null,
+          "resultScore": 1011,
+          "records": [],
+          "competitionId": "6956810",
+          "eventId": "10229541",
+          "eventName": "7th IAAF World Half Marathon Championships"
+        },
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "marathon",
+          "typeNameUrlSlug": "road-running",
+          "discipline": "Marathon",
+          "linkToList": true,
+          "mark": "2:26:39",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "Beijing (CHN)",
+          "date": "04 OCT 1997",
+          "listPosition": "823",
+          "resultScore": 1149,
+          "records": [],
+          "competitionId": null,
+          "eventId": "10229534",
+          "eventName": null
+        }
+      ]
+    },
+    "seasonsBests": {
+      "__typename": "seasonsBestsType",
+      "parameters": {
+        "__typename": "seasonsBestsParamsType",
+        "seasonsBestsSeason": 2000
+      },
+      "activeSeasons": [
+        "2000",
+        "1998",
+        "1997",
+        "1996",
+        "1994",
+        "1992"
+      ],
+      "withWind": false,
+      "withRecords": false,
+      "results": [
+        {
+          "__typename": "singleCompetitorResult",
+          "indoor": false,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": "marathon",
+          "typeNameUrlSlug": "road-running",
+          "discipline": "Marathon",
+          "linkToList": false,
+          "mark": "2:41:47",
+          "combinedPerformances": null,
+          "wind": null,
+          "notLegal": false,
+          "venue": "Nagano (JPN)",
+          "date": "09 APR 2000",
+          "listPosition": null,
+          "resultScore": 1010,
+          "records": [],
+          "competitionId": null,
+          "eventId": "10229534",
+          "competition": "Nagano Marathon"
+        }
+      ]
+    },
+    "progressionOfSeasonsBests": [
+      {
+        "__typename": "singleCompetitorProgression",
+        "indoor": false,
+        "disciplineCode": null,
+        "disciplineNameUrlSlug": "half-marathon",
+        "typeNameUrlSlug": "road-running",
+        "discipline": "Half Marathon",
+        "withWind": false,
+        "mainEvent": false,
+        "eventId": "10229541",
+        "results": [
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1998",
+            "numericResult": 4556,
+            "mark": "1:15:56",
+            "wind": null,
+            "venue": "Zürich (SUI)",
+            "date": "27 SEP 1998",
+            "listPosition": null,
+            "resultScore": 1011,
+            "competitionId": "6956810",
+            "competition": "Zürich IAAF World Half Marathon Championships"
+          }
+        ]
+      },
+      {
+        "__typename": "singleCompetitorProgression",
+        "indoor": false,
+        "disciplineCode": null,
+        "disciplineNameUrlSlug": "marathon",
+        "typeNameUrlSlug": "road-running",
+        "discipline": "Marathon",
+        "withWind": false,
+        "mainEvent": true,
+        "eventId": "10229534",
+        "results": [
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1992",
+            "numericResult": 9408,
+            "mark": "2:36:48",
+            "wind": null,
+            "venue": "Beijing (CHN)",
+            "date": "11 OCT 1992",
+            "listPosition": null,
+            "resultScore": 1055,
+            "competitionId": null,
+            "competition": "Beijing"
+          },
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1994",
+            "numericResult": 9080,
+            "mark": "2:31:20",
+            "wind": null,
+            "venue": "Beijing (CHN)",
+            "date": "30 OCT 1994",
+            "listPosition": null,
+            "resultScore": 1105,
+            "competitionId": null,
+            "competition": "Beijing Marathon"
+          },
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1996",
+            "numericResult": 8980,
+            "mark": "2:29:40",
+            "wind": null,
+            "venue": "Beijing (CHN)",
+            "date": "20 OCT 1996",
+            "listPosition": null,
+            "resultScore": 1120,
+            "competitionId": null,
+            "competition": "Beijing Marathon"
+          },
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1997",
+            "numericResult": 8799,
+            "mark": "2:26:39",
+            "wind": null,
+            "venue": "Beijing (CHN)",
+            "date": "04 OCT 1997",
+            "listPosition": null,
+            "resultScore": 1149,
+            "competitionId": null,
+            "competition": "Beijing Marathon"
+          },
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "1998",
+            "numericResult": 9338,
+            "mark": "2:35:38",
+            "wind": null,
+            "venue": "London (GBR)",
+            "date": "26 APR 1998",
+            "listPosition": null,
+            "resultScore": 1065,
+            "competitionId": null,
+            "competition": "London Marathon"
+          },
+          {
+            "__typename": "singleCompetitorProgressionResult",
+            "season": "2000",
+            "numericResult": 9707,
+            "mark": "2:41:47",
+            "wind": null,
+            "venue": "Nagano (JPN)",
+            "date": "09 APR 2000",
+            "listPosition": null,
+            "resultScore": 1010,
+            "competitionId": null,
+            "competition": "Nagano Marathon"
+          }
+        ]
+      }
+    ],
+    "worldRankings": {
+      "__typename": "worldRankingsType",
+      "parameters": {
+        "__typename": "worldRankingsParamsType",
+        "worldRankingsProgressionYear": null
+      },
+      "current": [],
+      "best": []
+    },
+    "honours": [
+      {
+        "__typename": "honour",
+        "categoryName": "Asian Games",
+        "withWind": false,
+        "withDrop": true,
+        "results": [
+          {
+            "__typename": "honourResult",
+            "place": "4.",
+            "indoor": null,
+            "disciplineCode": null,
+            "disciplineNameUrlSlug": null,
+            "typeNameUrlSlug": null,
+            "discipline": "Marathon",
+            "competition": "Bangkok Asian Games",
+            "venue": "Bangkok (THA)",
+            "mark": "2:37:29",
+            "date": "06 DEC 1998",
+            "competitionId": "6959609",
+            "eventId": "10229534",
+            "eventName": null
+          }
+        ]
+      }
+    ],
+    "resultsByYear": {
+      "__typename": "resultsByYearType",
+      "parameters": {
+        "__typename": "resultByYearParamsType",
+        "resultsByYear": 2000,
+        "resultsByYearOrderBy": "discipline"
+      },
+      "activeYears": [
+        "2000",
+        "1998",
+        "1997",
+        "1996",
+        "1994",
+        "1992"
+      ],
+      "resultsByEvent": [
+        {
+          "__typename": "resultsByEvent",
+          "indoor": null,
+          "disciplineCode": null,
+          "disciplineNameUrlSlug": null,
+          "typeNameUrlSlug": null,
+          "discipline": "Marathon",
+          "withWind": null,
+          "results": [
+            {
+              "__typename": "resultsByEventResult",
+              "date": "09 APR 2000",
+              "competition": "Nagano Marathon, Nagano",
+              "venue": "Nagano (JPN)",
+              "country": "JPN",
+              "category": "C",
+              "race": "F",
+              "place": "6.",
+              "mark": "2:41:47",
+              "wind": null,
+              "notLegal": false,
+              "resultScore": 1010,
+              "remark": "",
+              "competitionId": null,
+              "eventId": null,
+              "eventName": null
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

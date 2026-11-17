@@ -105,7 +105,14 @@ function managed(base,row){
   return {...profile,status:state(row,base),revision:row?.revision||0,hasDraft:row?.draft_patch!=null,isPublic:row?row.public_state==='published':true,origin,baseVersion:baseVersion(fallback),updatedAt:row?.updated_at||fallback.verifiedAt||'',createdAt:row?.created_at||''};
 }
 function rowFor(db,id){return db.prepare('SELECT * FROM content_profiles WHERE id=?').get(id);}
-function published(base,row){if(row&&row.public_state!=='published')return null;return complete({...base,...(json(row?.published_patch)||{})},row?.origin||'collected',row?.published_patch!=null);}
+function published(base,row){
+  if(row&&row.public_state!=='published')return null;
+  const value={...base,...(json(row?.published_patch)||{})};
+  // A dated PB collection derives these fields from its audited source table.
+  // Apply prose edits without making a saved season-form change rewrite ranks.
+  if(base.feature)for(const key of ['gender','worldAthleticsId','personalBest','personalBestDisplay','pbRank','rank','eventDate','eventName','eventVenue','personalRecords'])value[key]=base[key];
+  return complete(value,row?.origin||'collected',row?.published_patch!=null);
+}
 function publicDataset(db,type,data){
   const canonical=type==='historicalAthlete'?'athlete':type;
   if(!TYPES.includes(canonical))return data;

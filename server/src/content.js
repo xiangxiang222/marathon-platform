@@ -70,7 +70,7 @@ const SELECT = 'SELECT a.*, c.name AS club_name FROM content_articles a LEFT JOI
 const PUBLIC = "a.status='published' AND a.published_at <= ? AND (a.club_id IS NULL OR (c.id IS NOT NULL AND c.public_status != 'restricted'))";
 
 function readProfileData(type) {
-  const filename = ['pacer','pacerRace'].includes(type) ? 'official-pacers.json' : type === 'privatePacer' ? 'pacer-profiles.json' : type === 'historicalAthlete' ? 'elite-athletes-history.json' : 'elite-athletes.json';
+  const filename = ['pacer','pacerRace'].includes(type) ? 'official-pacers.json' : type === 'privatePacer' ? 'pacer-profiles.json' : type === 'historicalAthlete' ? 'elite-athletes-history.json' : type === 'athleteFeature' ? 'china-marathon-feature.json' : 'elite-athletes.json';
   try {
     const runtimeFile = path.join(process.env.CONTENT_DATA_DIR || path.join(__dirname, '../data/content'), filename);
     let raw = JSON.parse(fs.readFileSync(fs.existsSync(runtimeFile) ? runtimeFile : path.join(__dirname, '../../shared', filename), 'utf8'));
@@ -78,6 +78,7 @@ function readProfileData(type) {
     const list = Array.isArray(raw) ? raw : raw.profiles || raw.athletes || raw.pacers || [];
     const meta = Array.isArray(raw) ? {} : Object.fromEntries(Object.entries(raw).filter(([key]) => !['profiles', 'athletes', 'pacers'].includes(key)));
     return { meta, profiles: list.map((p) => ({ ...p, type: ['privatePacer','pacerRace'].includes(type) ? 'pacer' : type === 'historicalAthlete' ? 'athlete' : type,
+      ...(type === 'athleteFeature' ? {type:'athlete'} : {}),
       gender: ['female', 'women', '女', 'F'].includes(p.gender) ? 'women' : ['male', 'men', '男', 'M'].includes(p.gender) ? 'men' : p.gender || '',
       personalBest: p.personalBestDisplay || p.personalBest || p.pb || '', bio: p.bio || p.summary || '',
       pacingEvidence: p.pacingEvidence || p.pacingExperience || p.pacingExperiences || [],
@@ -91,7 +92,17 @@ function readProfileData(type) {
 
 function mountContent(app, { BASE, getDb, userFrom, requireAdmin }) {
   const root = BASE + '/api';
-  mountProfiles(app,{root,getDb,requireAdmin,readBase:readProfileData});
+  // Keep the live season table and the dated PB editorial collection independent.
+  // The editor sees the researched article as its base, so a collector refresh
+  // cannot replace the feature with an automatically generated biography.
+  function editorialBase(type) {
+    const data=readProfileData(type);
+    if(type!=='athlete')return data;
+    const feature=readProfileData('athleteFeature'), byId=new Map(data.profiles.map(p=>[p.id,p]));
+    for(const p of feature.profiles)byId.set(p.id,{...byId.get(p.id),...p});
+    return {...data,profiles:[...byId.values()]};
+  }
+  mountProfiles(app,{root,getDb,requireAdmin,readBase:editorialBase});
   function fail(res, code, error) { return res.status(code).json({ error }); }
   function clubAccess(req, res) {
     const user = userFrom(req);
@@ -167,7 +178,12 @@ function mountContent(app, { BASE, getDb, userFrom, requireAdmin }) {
   app.delete(clubRoot + '/:id', (req,res) => { const a = clubAccess(req,res); if (a) archive(req,res,a.club.id); });
   app.get(root + '/content/profiles', (req,res) => {
     const types = ['athlete','pacer'].includes(req.query.type) ? [req.query.type] : ['athlete','pacer'];
-    const datasets = types.map(type=>publicDataset(getDb(),type,readProfileData(type))), meta = types.length === 1 ? datasets[0].meta : { athletes: datasets[0].meta, pacers: datasets[1].meta };
+    const featureRequested=types.length===1&&types[0]==='athlete'&&req.query.collection==='china-marathon';
+    const datasets = types.map(type=>{
+      const base=readProfileData(featureRequested?'athleteFeature':type),data=publicDataset(getDb(),type,base);
+      if(featureRequested){const ids=new Set(base.profiles.map(p=>p.id));data.profiles=data.profiles.filter(p=>ids.has(p.id));}
+      return data;
+    }), meta = types.length === 1 ? datasets[0].meta : { athletes: datasets[0].meta, pacers: datasets[1].meta };
     const q = String(req.query.q || '').trim().toLowerCase();
     const raceId=String(req.query.raceId||'').trim();
     const allProfiles=datasets.flatMap(d=>d.profiles);
@@ -186,11 +202,11 @@ function mountContent(app, { BASE, getDb, userFrom, requireAdmin }) {
     res.json({ profiles:page.rows,total:page.total,page:page.page,pages:page.pages,pageSize:page.pageSize,meta });
   });
   app.get(root + '/content/profiles/:id', (req,res) => {
-    const editorial=publicOne(getDb(),req.params.id,readProfileData);
+    const editorial=publicOne(getDb(),req.params.id,editorialBase);
     if(editorial===null)return fail(res,404,'没有这份人物档案');
     if(editorial)return res.json(editorial);
-    for (const type of ['athlete','pacer','pacerRace','privatePacer','historicalAthlete']) {
-      const data = publicDataset(getDb(),type,readProfileData(type)), profile = data.profiles.find(p => p.id === req.params.id);
+    for (const type of ['athleteFeature','athlete','pacer','pacerRace','privatePacer','historicalAthlete']) {
+      const data = publicDataset(getDb(),type==='athleteFeature'?'athlete':type,readProfileData(type)), profile = data.profiles.find(p => p.id === req.params.id);
       if (profile) return res.json({ profile,meta:data.meta });
     }
     fail(res,404,'没有这份人物档案');

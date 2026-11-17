@@ -1,0 +1,989 @@
+{
+  "asOf": "2026-11-17",
+  "exclusions": [
+    {
+      "nameEn": "Longyun REN",
+      "worldAthleticsId": "14171607",
+      "gender": "men",
+      "personalBest": "2:08:15",
+      "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/longyun-ren-14171607",
+      "evidenceFile": "docs/editorial/china-marathon-20261117/evidence/athlete-14171607.json",
+      "activeYears": [
+        "2013",
+        "2012",
+        "2011",
+        "2010",
+        "2009",
+        "2008",
+        "2007",
+        "2006",
+        "2005",
+        "2004"
+      ],
+      "latestRecordedEvent": {
+        "date": "2013-09-10",
+        "discipline": "10,000 Metres",
+        "mark": "29:03.83",
+        "competition": "Shenyang National Games, Shenyang",
+        "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/longyun-ren-14171607"
+      },
+      "reason": "No recorded start in the 24-month window in the checked official profile; not a finding of retirement."
+    },
+    {
+      "nameEn": "Han GANG",
+      "worldAthleticsId": "14172632",
+      "gender": "men",
+      "personalBest": "2:08:56",
+      "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/han-gang-14172632",
+      "evidenceFile": "docs/editorial/china-marathon-20261117/evidence/athlete-14172632.json",
+      "activeYears": [
+        "2013",
+        "2012",
+        "2011",
+        "2009",
+        "2008",
+        "2007",
+        "2006",
+        "2005",
+        "2004",
+        "2003",
+        "2002",
+        "2001",
+        "1997"
+      ],
+      "latestRecordedEvent": {
+        "date": "2013-05-31",
+        "discipline": "5000 Metres",
+        "mark": "15:04.05",
+        "competition": "Suzhou",
+        "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/han-gang-14172632"
+      },
+      "reason": "No recorded start in the 24-month window in the checked official profile; not a finding of retirement."
+    },
+    {
+      "nameEn": "Guangyu HU",
+      "worldAthleticsId": "14172461",
+      "gender": "men",
+      "personalBest": "2:09:18",
+      "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/guangyu-hu-14172461",
+      "evidenceFile": "docs/editorial/china-marathon-20261117/evidence/athlete-14172461.json",
+      "activeYears": [
+        "2001",
+        "2000",
+        "1997",
+        "1996",
+        "1995",
+        "1994",
+        "1993",
+        "1992"
+      ],
+      "latestRecordedEvent": {
+        "date": "2001-10-14",
+        "discipline": "Marathon",
+        "mark": "2:12:30",
+        "competition": "Beijing Marathon, Beijing",
+        "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/guangyu-hu-14172461"
+      },
+      "reason": "No recorded start in the 24-month window in the checked official profile; not a finding of retirement."
+    },
+    {
+      "nameEn": "Yingjie SUN",
+      "worldAthleticsId": "14265236",
+      "gender": "women",
+      "personalBest": "2:19:39",
+      "sourceUrl": "https://worldathletics.org/athletes/athlete=14265236",
+      "evidenceFile": "docs/editorial/china-marathon-20261117/evidence/athlete-14265236.json",
+      "activeYears": [
+        "2009",
+        "2008",
+        "2005",
+        "2004",
+        "2003",
+        "2002",
+        "2001",
+        "2000",
+        "1999",
+        "1998",
+        "1997"
+      ],
+      "latestRecordedEvent": {
+        "date": "2009-05-21",
+        "discipline": "10,000 Metres",
+        "mark": "36:07.45",
+        "competition": "Chinese Championships, Suzhou",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14265236"
+      },
+      "reason": "No recorded start in the 24-month window in the checked official profile; not a finding of retirement."
+    },
+    {
+      "nameEn": "Chunxiu ZHOU",
+      "worldAthleticsId": "14264260",
+      "gender": "women",
+      "personalBest": "2:19:51",
+      "sourceUrl": "https://worldathletics.org/athletes/athlete=14264260",
+      "evidenceFile": "docs/editorial/china-marathon-20261117/evidence/athlete-14264260.json",
+      "activeYears": [
+        "2013",
+        "2012",
+        "2011",
+        "2010",
+        "2009",
+        "2008",
+        "2007",
+        "2006",
+        "2005",
+        "2004",
+        "2003",
+        "2000",
+        "1999",
+        "1998"
+      ],
+      "latestRecordedEvent": {
+        "date": "2013-03-23",
+        "discipline": "Half Marathon",
+        "mark": "1:15:19",
+        "competition": "Chongqing Half Marathon, Chongqing",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14264260"
+      },
+      "reason": "No recorded start in the 24-month window in the checked official profile; not a finding of retirement."
+    },
+    {
+      "nameEn": "Yingying ZHANG",
+      "worldAthleticsId": "14264358",
+      "gender": "women",
+      "personalBest": "2:22:38",
+      "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/yingying-zhang-14264358",
+      "evidenceFile": "docs/editorial/china-marathon-20261117/sources/yingying-zhang-14264358.json",
+      "activeYears": [
+        "2017",
+        "2016",
+        "2015",
+        "2014",
+        "2013",
+        "2010",
+        "2009",
+        "2008",
+        "2007",
+        "2006",
+        "2005"
+      ],
+      "latestRecordedEvent": {
+        "date": "2017-04-29",
+        "discipline": "Marathon",
+        "mark": " - ",
+        "competition": "Tianjin Marathon, Tianjin",
+        "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/yingying-zhang-14264358"
+      },
+      "reason": "No recorded start in the 24-month window in the checked official profile; not a finding of retirement."
+    },
+    {
+      "nameEn": "Jiali WANG",
+      "worldAthleticsId": "14265125",
+      "gender": "women",
+      "personalBest": "2:22:41",
+      "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/jiali-wang-14265125",
+      "evidenceFile": "docs/editorial/china-marathon-20261117/sources/jiali-wang-14265125.json",
+      "activeYears": [
+        "2017",
+        "2016",
+        "2015",
+        "2012",
+        "2011",
+        "2010",
+        "2009",
+        "2008",
+        "2007"
+      ],
+      "latestRecordedEvent": {
+        "date": "2017-06-27",
+        "discipline": "10,000 Metres",
+        "mark": "33:29.29",
+        "competition": "Guiyang Chinese GP, Guiyang",
+        "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/jiali-wang-14265125"
+      },
+      "reason": "No recorded start in the 24-month window in the checked official profile; not a finding of retirement."
+    },
+    {
+      "nameEn": "Shujing ZHANG",
+      "worldAthleticsId": "14264390",
+      "gender": "women",
+      "personalBest": "2:23:17",
+      "sourceUrl": "https://worldathletics.org/athletes/athlete=14264390",
+      "evidenceFile": "docs/editorial/china-marathon-20261117/evidence/athlete-14264390.json",
+      "activeYears": [
+        "2017",
+        "2010",
+        "2009",
+        "2008",
+        "2007",
+        "2006",
+        "2005",
+        "2004",
+        "2003",
+        "2002",
+        "2001",
+        "2000",
+        "1999",
+        "1998",
+        "1997",
+        "1996"
+      ],
+      "latestRecordedEvent": {
+        "date": "2017-04-09",
+        "discipline": "Marathon",
+        "mark": "2:57:36",
+        "competition": "Xuzhou Marathon, Xuzhou",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14264390"
+      },
+      "reason": "No recorded start in the 24-month window in the checked official profile; not a finding of retirement."
+    },
+    {
+      "nameEn": "Min LIU",
+      "worldAthleticsId": "14265772",
+      "gender": "women",
+      "personalBest": "2:23:37",
+      "sourceUrl": "https://worldathletics.org/athletes/athlete=14265772",
+      "evidenceFile": "docs/editorial/china-marathon-20261117/evidence/athlete-14265772.json",
+      "activeYears": [
+        "2019",
+        "2018",
+        "2017",
+        "2007",
+        "2006",
+        "2004",
+        "2003",
+        "2002",
+        "2001",
+        "2000",
+        "1999"
+      ],
+      "latestRecordedEvent": {
+        "date": "2019-01-06",
+        "discipline": "Marathon",
+        "mark": "2:52:44",
+        "competition": "Xiamen International Marathon, Xiamen",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14265772"
+      },
+      "reason": "No recorded start in the 24-month window in the checked official profile; not a finding of retirement."
+    },
+    {
+      "nameEn": "Junxia WANG",
+      "worldAthleticsId": "14265107",
+      "gender": "women",
+      "personalBest": "2:24:07",
+      "sourceUrl": "https://worldathletics.org/athletes/athlete=14265107",
+      "evidenceFile": "docs/editorial/china-marathon-20261117/evidence/athlete-14265107.json",
+      "activeYears": [
+        "1996",
+        "1995",
+        "1994",
+        "1993",
+        "1992"
+      ],
+      "latestRecordedEvent": {
+        "date": "1996-08-02",
+        "discipline": "10,000 Metres",
+        "mark": "31:02.58",
+        "competition": "The XXVI Olympic Games, Olympic Stadium, Atlanta, GA",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14265107"
+      },
+      "reason": "No recorded start in the 24-month window in the checked official profile; not a finding of retirement."
+    },
+    {
+      "nameEn": "Yunxia QU",
+      "worldAthleticsId": "14265434",
+      "gender": "women",
+      "personalBest": "2:24:32",
+      "sourceUrl": "https://worldathletics.org/athletes/athlete=14265434",
+      "evidenceFile": "docs/editorial/china-marathon-20261117/evidence/athlete-14265434.json",
+      "activeYears": [
+        "1997",
+        "1996",
+        "1994",
+        "1993",
+        "1992",
+        "1991",
+        "1990"
+      ],
+      "latestRecordedEvent": {
+        "date": "1997-10-23",
+        "discipline": "5000 Metres",
+        "mark": "15:26.89",
+        "competition": "Shanghai Chinese Nat. Games, Shanghai",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14265434"
+      },
+      "reason": "No recorded start in the 24-month window in the checked official profile; not a finding of retirement."
+    },
+    {
+      "nameEn": "Yuanyuan HU",
+      "worldAthleticsId": "14266300",
+      "gender": "women",
+      "personalBest": "2:24:39",
+      "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/yuanyuan-hu-14266300",
+      "evidenceFile": "docs/editorial/china-marathon-20261117/evidence/athlete-14266300.json",
+      "activeYears": [
+        "2002"
+      ],
+      "latestRecordedEvent": {
+        "date": "2002-10-13",
+        "discipline": "Marathon",
+        "mark": "2:24:39",
+        "competition": "Beijing Marathon, Beijing",
+        "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/yuanyuan-hu-14266300"
+      },
+      "reason": "No recorded start in the 24-month window in the checked official profile; not a finding of retirement."
+    },
+    {
+      "nameEn": "Yanyan DAI",
+      "worldAthleticsId": "14266579",
+      "gender": "women",
+      "personalBest": "2:24:41",
+      "sourceUrl": "https://worldathletics.org/athletes/athlete=14266579",
+      "evidenceFile": "docs/editorial/china-marathon-20261117/evidence/athlete-14266579.json",
+      "activeYears": [
+        "2009",
+        "2008",
+        "2007",
+        "2006",
+        "2005",
+        "2004",
+        "2002",
+        "2001",
+        "2000"
+      ],
+      "latestRecordedEvent": {
+        "date": "2009-10-21",
+        "discipline": "5000 Metres",
+        "mark": "16:24.78",
+        "competition": "Jinan Chinese National Games, Jinan",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14266579"
+      },
+      "reason": "No recorded start in the 24-month window in the checked official profile; not a finding of retirement."
+    },
+    {
+      "nameEn": "Linli ZHANG",
+      "worldAthleticsId": "14344470",
+      "gender": "women",
+      "personalBest": "2:24:42",
+      "sourceUrl": "https://worldathletics.org/athletes/athlete=14344470",
+      "evidenceFile": "docs/editorial/china-marathon-20261117/evidence/athlete-14344470.json",
+      "activeYears": [
+        "1994",
+        "1993",
+        "1992"
+      ],
+      "latestRecordedEvent": {
+        "date": "1994-10-31",
+        "discipline": "Marathon",
+        "mark": "2:29:42",
+        "competition": "San Sebastián",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14344470"
+      },
+      "reason": "No recorded start in the 24-month window in the checked official profile; not a finding of retirement."
+    },
+    {
+      "nameEn": "Li-rong ZHANG",
+      "worldAthleticsId": "14432524",
+      "gender": "women",
+      "personalBest": "2:24:52",
+      "sourceUrl": "https://worldathletics.org/athletes/athlete=14432524",
+      "evidenceFile": "docs/editorial/china-marathon-20261117/evidence/athlete-14432524.json",
+      "activeYears": [
+        "1994",
+        "1993",
+        "1992",
+        "1991"
+      ],
+      "latestRecordedEvent": {
+        "date": "1994-10-31",
+        "discipline": "Marathon",
+        "mark": "2:29:45",
+        "competition": "San Sebastián",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14432524"
+      },
+      "reason": "No recorded start in the 24-month window in the checked official profile; not a finding of retirement."
+    },
+    {
+      "nameEn": "Weiwei SUN",
+      "worldAthleticsId": "14265257",
+      "gender": "women",
+      "personalBest": "2:25:15",
+      "sourceUrl": "https://worldathletics.org/athletes/athlete=14265257",
+      "evidenceFile": "docs/editorial/china-marathon-20261117/evidence/athlete-14265257.json",
+      "activeYears": [
+        "2018",
+        "2017",
+        "2016",
+        "2015",
+        "2013",
+        "2012",
+        "2011",
+        "2010",
+        "2009",
+        "2008",
+        "2007",
+        "2006",
+        "2005",
+        "2004",
+        "2003",
+        "2002"
+      ],
+      "latestRecordedEvent": {
+        "date": "2018-11-18",
+        "discipline": "Marathon",
+        "mark": "2:46:51",
+        "competition": "Shanghai International Marathon, Shanghai",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14265257"
+      },
+      "reason": "No recorded start in the 24-month window in the checked official profile; not a finding of retirement."
+    },
+    {
+      "nameEn": "Huandi ZHONG",
+      "worldAthleticsId": "14352900",
+      "gender": "women",
+      "personalBest": "2:25:36",
+      "sourceUrl": "https://worldathletics.org/athletes/athlete=14352900",
+      "evidenceFile": "docs/editorial/china-marathon-20261117/evidence/athlete-14352900.json",
+      "activeYears": [
+        "1994",
+        "1993",
+        "1992",
+        "1991",
+        "1990",
+        "1989",
+        "1988",
+        "1987"
+      ],
+      "latestRecordedEvent": {
+        "date": "1994-10-09",
+        "discipline": "Marathon",
+        "mark": "2:29:32",
+        "competition": "Hiroshima Asian Games, Hiroshima",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14352900"
+      },
+      "reason": "No recorded start in the 24-month window in the checked official profile; not a finding of retirement."
+    },
+    {
+      "nameEn": "Liyan MA",
+      "worldAthleticsId": "14343355",
+      "gender": "women",
+      "personalBest": "2:25:46",
+      "sourceUrl": "https://worldathletics.org/athletes/athlete=14343355",
+      "evidenceFile": "docs/editorial/china-marathon-20261117/evidence/athlete-14343355.json",
+      "activeYears": [
+        "1993"
+      ],
+      "latestRecordedEvent": {
+        "date": "1993-10-31",
+        "discipline": "Marathon",
+        "mark": "2:30:44",
+        "competition": "San Sebastián IAAF Marathon World Cup, San Sebastián",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14343355"
+      },
+      "reason": "No recorded start in the 24-month window in the checked official profile; not a finding of retirement."
+    },
+    {
+      "nameEn": "Li JIN",
+      "worldAthleticsId": "14266168",
+      "gender": "women",
+      "personalBest": "2:25:48",
+      "sourceUrl": "https://worldathletics.org/athletes/athlete=14266168",
+      "evidenceFile": "docs/editorial/china-marathon-20261117/evidence/athlete-14266168.json",
+      "activeYears": [
+        "2004",
+        "2003",
+        "2002",
+        "2001",
+        "2000",
+        "1999"
+      ],
+      "latestRecordedEvent": {
+        "date": "2004-03-27",
+        "discipline": "Marathon",
+        "mark": "2:46:45",
+        "competition": "Chinese Marathon Championships, Xiamen",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14266168"
+      },
+      "reason": "No recorded start in the 24-month window in the checked official profile; not a finding of retirement."
+    },
+    {
+      "nameEn": "Xueqin WANG",
+      "worldAthleticsId": "14265022",
+      "gender": "women",
+      "personalBest": "2:25:53",
+      "sourceUrl": "https://worldathletics.org/athletes/athlete=14265022",
+      "evidenceFile": "docs/editorial/china-marathon-20261117/evidence/athlete-14265022.json",
+      "activeYears": [
+        "2018",
+        "2017",
+        "2016",
+        "2015",
+        "2014",
+        "2013",
+        "2012",
+        "2011",
+        "2010",
+        "2009",
+        "2008",
+        "2007"
+      ],
+      "latestRecordedEvent": {
+        "date": "2018-11-11",
+        "discipline": "Marathon",
+        "mark": "DNF",
+        "competition": "Nanchang Marathon, Nanchang",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14265022"
+      },
+      "reason": "No recorded start in the 24-month window in the checked official profile; not a finding of retirement."
+    },
+    {
+      "nameEn": "Guixia ZHENG",
+      "worldAthleticsId": "14264303",
+      "gender": "women",
+      "personalBest": "2:25:55",
+      "sourceUrl": "https://worldathletics.org/athletes/athlete=14264303",
+      "evidenceFile": "docs/editorial/china-marathon-20261117/evidence/athlete-14264303.json",
+      "activeYears": [
+        "2003",
+        "2002",
+        "2001",
+        "2000",
+        "1999",
+        "1998",
+        "1997",
+        "1996",
+        "1995",
+        "1994",
+        "1992"
+      ],
+      "latestRecordedEvent": {
+        "date": "2003-03-09",
+        "discipline": "Half Marathon",
+        "mark": "1:10:21",
+        "competition": "Yamaguchi Half Marathon, Yamaguchi",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14264303"
+      },
+      "reason": "No recorded start in the 24-month window in the checked official profile; not a finding of retirement."
+    },
+    {
+      "nameEn": "Ruihuan LIU",
+      "worldAthleticsId": "14445727",
+      "gender": "women",
+      "personalBest": "2:26:13",
+      "sourceUrl": "https://worldathletics.org/athletes/china/ruihuan-liu-14445727",
+      "evidenceFile": "docs/editorial/china-marathon-20261117/evidence/athlete-14445727.json",
+      "activeYears": [
+        "2016",
+        "2015",
+        "2014",
+        "2013",
+        "2012",
+        "2011",
+        "2010"
+      ],
+      "latestRecordedEvent": {
+        "date": "2016-05-14",
+        "discipline": "10,000 Metres",
+        "mark": "32:15.40",
+        "competition": "Zhengzhou",
+        "sourceUrl": "https://worldathletics.org/athletes/china/ruihuan-liu-14445727"
+      },
+      "reason": "No recorded start in the 24-month window in the checked official profile; not a finding of retirement."
+    },
+    {
+      "nameEn": "Yanfang WANG",
+      "worldAthleticsId": "14265017",
+      "gender": "women",
+      "personalBest": "2:26:36",
+      "sourceUrl": "https://worldathletics.org/athletes/athlete=14265017",
+      "evidenceFile": "docs/editorial/china-marathon-20261117/evidence/athlete-14265017.json",
+      "activeYears": [
+        "2000",
+        "1999",
+        "1998",
+        "1997",
+        "1993"
+      ],
+      "latestRecordedEvent": {
+        "date": "2000-01-01",
+        "discipline": "Marathon",
+        "mark": "2:45:04",
+        "competition": "Roma Marathon, Roma",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14265017"
+      },
+      "reason": "No recorded start in the 24-month window in the checked official profile; not a finding of retirement."
+    },
+    {
+      "nameEn": "Lihua XIE",
+      "worldAthleticsId": "14347139",
+      "gender": "women",
+      "personalBest": "2:26:38",
+      "sourceUrl": "https://worldathletics.org/athletes/athlete=14347139",
+      "evidenceFile": "docs/editorial/china-marathon-20261117/evidence/athlete-14347139.json",
+      "activeYears": [
+        "1993",
+        "1992",
+        "1990",
+        "1989",
+        "1988",
+        "1987"
+      ],
+      "latestRecordedEvent": {
+        "date": "1993-04-04",
+        "discipline": "Marathon",
+        "mark": "2:26:38",
+        "competition": "Tianjin NG, Tianjin",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14347139"
+      },
+      "reason": "No recorded start in the 24-month window in the checked official profile; not a finding of retirement."
+    },
+    {
+      "nameEn": "Jinhong PAN",
+      "worldAthleticsId": "14265513",
+      "gender": "women",
+      "personalBest": "2:26:39",
+      "sourceUrl": "https://worldathletics.org/athletes/athlete=14265513",
+      "evidenceFile": "docs/editorial/china-marathon-20261117/evidence/athlete-14265513.json",
+      "activeYears": [
+        "2000",
+        "1998",
+        "1997",
+        "1996",
+        "1994",
+        "1992"
+      ],
+      "latestRecordedEvent": {
+        "date": "2000-04-09",
+        "discipline": "Marathon",
+        "mark": "2:41:47",
+        "competition": "Nagano Marathon, Nagano",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14265513"
+      },
+      "reason": "No recorded start in the 24-month window in the checked official profile; not a finding of retirement."
+    },
+    {
+      "nameEn": "Jie WEI",
+      "worldAthleticsId": "14483323",
+      "gender": "women",
+      "personalBest": "2:26:41",
+      "sourceUrl": "https://worldathletics.org/athletes/athlete=14483323",
+      "evidenceFile": "docs/editorial/china-marathon-20261117/evidence/athlete-14483323.json",
+      "activeYears": [
+        "2012",
+        "2011"
+      ],
+      "latestRecordedEvent": {
+        "date": "2012-11-25",
+        "discipline": "Marathon",
+        "mark": "2:37:08",
+        "competition": "Beijing International Marathon, Beijing",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14483323"
+      },
+      "reason": "No recorded start in the 24-month window in the checked official profile; not a finding of retirement."
+    },
+    {
+      "nameEn": "Rong CHEN",
+      "worldAthleticsId": "14266668",
+      "gender": "women",
+      "personalBest": "2:26:49",
+      "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/rong-chen-14266668",
+      "evidenceFile": "docs/editorial/china-marathon-20261117/sources/rong-chen-14266668.json",
+      "activeYears": [
+        "2013",
+        "2012",
+        "2011",
+        "2010",
+        "2009",
+        "2008",
+        "2007",
+        "2006",
+        "2005"
+      ],
+      "latestRecordedEvent": {
+        "date": "2013-09-11",
+        "discipline": "10,000 Metres",
+        "mark": "36:41.20",
+        "competition": "Shenyang National Games, Shenyang",
+        "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/rong-chen-14266668"
+      },
+      "reason": "No recorded start in the 24-month window in the checked official profile; not a finding of retirement."
+    },
+    {
+      "nameEn": "Jianfen WANG",
+      "worldAthleticsId": "14265122",
+      "gender": "women",
+      "personalBest": "2:26:58",
+      "sourceUrl": "https://worldathletics.org/athletes/athlete=14265122",
+      "evidenceFile": "docs/editorial/china-marathon-20261117/evidence/athlete-14265122.json",
+      "activeYears": [
+        "1998",
+        "1997",
+        "1996"
+      ],
+      "latestRecordedEvent": {
+        "date": "1998-04-11",
+        "discipline": "Marathon",
+        "mark": "2:33:20",
+        "competition": "Tianjin Chinese Marathon Ch., Tianjin",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14265122"
+      },
+      "reason": "No recorded start in the 24-month window in the checked official profile; not a finding of retirement."
+    },
+    {
+      "nameEn": "Helan LI",
+      "worldAthleticsId": "14266046",
+      "gender": "women",
+      "personalBest": "2:26:59",
+      "sourceUrl": "https://worldathletics.org/athletes/china/helan-li-14266046",
+      "evidenceFile": "docs/editorial/china-marathon-20261117/evidence/athlete-14266046.json",
+      "activeYears": [
+        "2005",
+        "2004",
+        "2003",
+        "2002",
+        "2001",
+        "2000",
+        "1997"
+      ],
+      "latestRecordedEvent": {
+        "date": "2005-10-17",
+        "discipline": "10,000 Metres",
+        "mark": "33:19.35",
+        "competition": "Nanjing Chinese National Games, Nanjing",
+        "sourceUrl": "https://worldathletics.org/athletes/china/helan-li-14266046"
+      },
+      "reason": "No recorded start in the 24-month window in the checked official profile; not a finding of retirement."
+    },
+    {
+      "nameEn": "Youfeng ZHAO",
+      "worldAthleticsId": "14347009",
+      "gender": "women",
+      "personalBest": "2:27:06",
+      "sourceUrl": "https://worldathletics.org/athletes/china/youfeng-zhao-14347009",
+      "evidenceFile": "docs/editorial/china-marathon-20261117/evidence/athlete-14347009.json",
+      "activeYears": [
+        "1990",
+        "1989",
+        "1988",
+        "1987",
+        "1986"
+      ],
+      "latestRecordedEvent": {
+        "date": "1990-09-30",
+        "discipline": "Marathon",
+        "mark": "2:35:19",
+        "competition": "Beijing Asian Games, Beijing",
+        "sourceUrl": "https://worldathletics.org/athletes/china/youfeng-zhao-14347009"
+      },
+      "reason": "No recorded start in the 24-month window in the checked official profile; not a finding of retirement."
+    },
+    {
+      "nameEn": "Dongmei AI",
+      "worldAthleticsId": "14266790",
+      "gender": "women",
+      "personalBest": "2:27:30",
+      "sourceUrl": "https://worldathletics.org/athletes/china/dongmei-ai-14266790",
+      "evidenceFile": "docs/editorial/china-marathon-20261117/evidence/athlete-14266790.json",
+      "activeYears": [
+        "2001",
+        "2000",
+        "1999",
+        "1998",
+        "1997"
+      ],
+      "latestRecordedEvent": {
+        "date": "2001-05-13",
+        "discipline": "5000 Metres",
+        "mark": "16:10.0h",
+        "competition": "Jinan National GP, Jinan",
+        "sourceUrl": "https://worldathletics.org/athletes/china/dongmei-ai-14266790"
+      },
+      "reason": "No recorded start in the 24-month window in the checked official profile; not a finding of retirement."
+    },
+    {
+      "nameEn": "Yinli HE",
+      "worldAthleticsId": "14264580",
+      "gender": "women",
+      "personalBest": "2:27:35",
+      "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/yinli-he-14264580",
+      "evidenceFile": "docs/editorial/china-marathon-20261117/sources/yinli-he-14264580.json",
+      "activeYears": [
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017",
+        "2016",
+        "2015",
+        "2014",
+        "2013",
+        "2012",
+        "2011",
+        "2010",
+        "2009",
+        "2008",
+        "2007"
+      ],
+      "latestRecordedEvent": {
+        "date": "2021-04-11",
+        "discipline": "Marathon",
+        "mark": "2:36:42",
+        "competition": "Chinese Marathon Championships, Xuzhou",
+        "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/yinli-he-14264580"
+      },
+      "reason": "No recorded start in the 24-month window in the checked official profile; not a finding of retirement."
+    },
+    {
+      "nameEn": "Cui LU",
+      "worldAthleticsId": "14265700",
+      "gender": "women",
+      "personalBest": "2:27:37",
+      "sourceUrl": "https://worldathletics.org/athletes/china/cui-lu-14265700",
+      "evidenceFile": "docs/editorial/china-marathon-20261117/evidence/athlete-14265700.json",
+      "activeYears": [
+        "2006",
+        "2002"
+      ],
+      "latestRecordedEvent": {
+        "date": "2006-06-29",
+        "discipline": "5000 Metres",
+        "mark": "17:06.50",
+        "competition": "Luohe Chinese Junior Championships, Luohe",
+        "sourceUrl": "https://worldathletics.org/athletes/china/cui-lu-14265700"
+      },
+      "reason": "No recorded start in the 24-month window in the checked official profile; not a finding of retirement."
+    },
+    {
+      "nameEn": "Chaofeng JIA",
+      "worldAthleticsId": "14266236",
+      "gender": "women",
+      "personalBest": "2:27:40",
+      "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/chaofeng-jia-14266236",
+      "evidenceFile": "docs/editorial/china-marathon-20261117/sources/chaofeng-jia-14266236.json",
+      "activeYears": [
+        "2015",
+        "2014",
+        "2013",
+        "2012",
+        "2011",
+        "2010",
+        "2009",
+        "2008",
+        "2007",
+        "2006",
+        "2005",
+        "2004"
+      ],
+      "latestRecordedEvent": {
+        "date": "2015-09-23",
+        "discipline": "5000 Metres",
+        "mark": "16:46.01",
+        "competition": "Chinese Championships, Suzhou",
+        "sourceUrl": "https://worldathletics.org/athletes/pr-of-china/chaofeng-jia-14266236"
+      },
+      "reason": "No recorded start in the 24-month window in the checked official profile; not a finding of retirement."
+    },
+    {
+      "nameEn": "YuanYuan YIN",
+      "worldAthleticsId": "14388887",
+      "gender": "women",
+      "personalBest": "2:27:55",
+      "sourceUrl": "https://worldathletics.org/athletes/china/yuanyuan-yin-14388887",
+      "evidenceFile": "docs/editorial/china-marathon-20261117/evidence/athlete-14388887.json",
+      "activeYears": [
+        "2017",
+        "2013",
+        "2012",
+        "2011",
+        "2010",
+        "2009"
+      ],
+      "latestRecordedEvent": {
+        "date": "2017-04-29",
+        "discipline": "Marathon",
+        "mark": "2:57:24",
+        "competition": "Tianjin Marathon, Tianjin",
+        "sourceUrl": "https://worldathletics.org/athletes/china/yuanyuan-yin-14388887"
+      },
+      "reason": "No recorded start in the 24-month window in the checked official profile; not a finding of retirement."
+    },
+    {
+      "nameEn": "Jingbo LU",
+      "worldAthleticsId": "14265694",
+      "gender": "women",
+      "personalBest": "2:28:00",
+      "sourceUrl": "https://worldathletics.org/athletes/china/jingbo-lu-14265694",
+      "evidenceFile": "docs/editorial/china-marathon-20261117/evidence/athlete-14265694.json",
+      "activeYears": [
+        "2002",
+        "2001",
+        "2000",
+        "1999",
+        "1998",
+        "1997"
+      ],
+      "latestRecordedEvent": {
+        "date": "2002-03-03",
+        "discipline": "3000 Metres Short Track",
+        "mark": "9:37.80",
+        "competition": "Tianjin Chinese Nnational GP, Tianjin (i)",
+        "sourceUrl": "https://worldathletics.org/athletes/china/jingbo-lu-14265694"
+      },
+      "reason": "No recorded start in the 24-month window in the checked official profile; not a finding of retirement."
+    },
+    {
+      "nameEn": "Yanmei DONG",
+      "worldAthleticsId": "14266534",
+      "gender": "women",
+      "personalBest": "2:28:09",
+      "sourceUrl": "https://worldathletics.org/athletes/china/yanmei-dong-14266534",
+      "evidenceFile": "docs/editorial/china-marathon-20261117/evidence/athlete-14266534.json",
+      "activeYears": [
+        "2002",
+        "2001",
+        "2000",
+        "1999",
+        "1998",
+        "1997",
+        "1996",
+        "1995"
+      ],
+      "latestRecordedEvent": {
+        "date": "2002-06-10",
+        "discipline": "10,000 Metres",
+        "mark": "32:58.28",
+        "competition": "Chinese Championships, Benxi",
+        "sourceUrl": "https://worldathletics.org/athletes/china/yanmei-dong-14266534"
+      },
+      "reason": "No recorded start in the 24-month window in the checked official profile; not a finding of retirement."
+    },
+    {
+      "nameEn": "Tian MEI",
+      "worldAthleticsId": "14265602",
+      "gender": "women",
+      "personalBest": "2:28:15",
+      "sourceUrl": "https://worldathletics.org/athletes/china/tian-mei-14265602",
+      "evidenceFile": "docs/editorial/china-marathon-20261117/evidence/athlete-14265602.json",
+      "activeYears": [
+        "2007",
+        "2001",
+        "2000",
+        "1999",
+        "1998",
+        "1997",
+        "1996",
+        "1994",
+        "1993",
+        "1992"
+      ],
+      "latestRecordedEvent": {
+        "date": "2007-08-04",
+        "discipline": "1500 Metres",
+        "mark": "4:21.92",
+        "competition": "Qiaozhong Chinese High School Championships, Qiaozhong",
+        "sourceUrl": "https://worldathletics.org/athletes/china/tian-mei-14265602"
+      },
+      "reason": "No recorded start in the 24-month window in the checked official profile; not a finding of retirement."
+    }
+  ]
+}

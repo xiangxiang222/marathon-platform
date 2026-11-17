@@ -1,0 +1,1317 @@
+[
+  {
+    "worldAthleticsId": "14702479",
+    "name": "李美珍",
+    "nameEn": "Meizhen LI",
+    "sources": [
+      {
+        "id": "S1",
+        "title": "World Athletics · Meizhen LI 官方运动员资料",
+        "url": "https://worldathletics.org/athletes/china/meizhen-li-14702479",
+        "checkedAt": "2026-11-17",
+        "verification": "official_embedded_data_read_today",
+        "snapshot": "evidence/athlete-14702479.json",
+        "retrievalNote": "本人身份、PB及2026结果通过/china官方入口重核。"
+      },
+      {
+        "id": "S2",
+        "title": "2026厦门马拉松⑦丨2026厦门马拉松鸣枪开跑  男女冠军首次双双卫冕",
+        "url": "https://local.cctv.com/2026/01/11/ARTIhQI0RYgDsehFcxkDv1ZV260111.shtml",
+        "publishedAt": "2026-01-11",
+        "checkedAt": "2026-11-17",
+        "verification": "full_article_read"
+      }
+    ],
+    "facts": [
+      {
+        "claim": "全程马拉松PB 2:25:06；2026-03-22；Wuxi (CHN)",
+        "sourceUrl": "https://worldathletics.org/athletes/china/meizhen-li-14702479",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-09-13 半程马拉松 哈尔滨半程马拉松 1:13:22 第1名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/meizhen-li-14702479",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-05-24 全程马拉松 兰州马拉松 2:40:46 第8名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/meizhen-li-14702479",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-05-03 10公里路跑 中国田径协会10公里精英赛 33:46 第1名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/meizhen-li-14702479",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-04-19 10公里路跑 中国田径协会10公里精英赛 32:57 第1名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/meizhen-li-14702479",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-03-29 半程马拉松 东亚半程马拉松锦标赛 1:10:37 第2名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/meizhen-li-14702479",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-03-22 全程马拉松 无锡马拉松 2:25:06 第2名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/meizhen-li-14702479",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-01-11 全程马拉松 厦门马拉松 2:27:24 第5名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/meizhen-li-14702479",
+        "kind": "result"
+      },
+      {
+        "claim": "2018年度最佳2:49:59；2018-11-03；西昌马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/china/meizhen-li-14702479",
+        "kind": "progression"
+      },
+      {
+        "claim": "2020年度最佳2:37:50；2020-11-29；全国马拉松锦标赛",
+        "sourceUrl": "https://worldathletics.org/athletes/china/meizhen-li-14702479",
+        "kind": "progression"
+      },
+      {
+        "claim": "2021年度最佳2:36:56；2021-09-26；第十四届全运会",
+        "sourceUrl": "https://worldathletics.org/athletes/china/meizhen-li-14702479",
+        "kind": "progression"
+      },
+      {
+        "claim": "2022年度最佳2:40:41；2022-04-17；杭州马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/china/meizhen-li-14702479",
+        "kind": "progression"
+      },
+      {
+        "claim": "2023年度最佳2:30:01；2023-03-19；无锡马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/china/meizhen-li-14702479",
+        "kind": "progression"
+      },
+      {
+        "claim": "2024年度最佳2:35:00；2024-12-01；上海马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/china/meizhen-li-14702479",
+        "kind": "progression"
+      },
+      {
+        "claim": "2025年度最佳2:27:51；2025-03-23；无锡马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/china/meizhen-li-14702479",
+        "kind": "progression"
+      },
+      {
+        "claim": "2026年度最佳2:25:06；2026-03-22；无锡马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/china/meizhen-li-14702479",
+        "kind": "progression"
+      },
+      {
+        "claim": "报道全文已核读；正文采用事项限定为2026厦门国内女子冠军2:27:24",
+        "sourceUrl": "https://local.cctv.com/2026/01/11/ARTIhQI0RYgDsehFcxkDv1ZV260111.shtml",
+        "kind": "reporting"
+      }
+    ],
+    "researchBoundary": "公开采访尚不足以核实入行、教练、训练负荷和伤病原因；正文只做成绩与赛程分析。",
+    "verification": "official_embedded_data_read_today",
+    "reviewedAt": "2026-11-17"
+  },
+  {
+    "worldAthleticsId": "14811652",
+    "name": "吴冰",
+    "nameEn": "Bing WU",
+    "sources": [
+      {
+        "id": "S1",
+        "title": "World Athletics · Bing WU 官方运动员资料",
+        "url": "https://worldathletics.org/athletes/china/bing-wu-14811652",
+        "checkedAt": "2026-11-17",
+        "verification": "official_embedded_data_read_today",
+        "snapshot": "evidence/athlete-14811652.json",
+        "retrievalNote": "本人身份、PB及2026结果通过/china官方入口重核。"
+      }
+    ],
+    "facts": [
+      {
+        "claim": "全程马拉松PB 2:26:01；2025-03-30；Jiaxing (CHN)",
+        "sourceUrl": "https://worldathletics.org/athletes/china/bing-wu-14811652",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-09-26 全程马拉松 亚运会 2:32:09 第8名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/bing-wu-14811652",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-06-28 10000米 全国田径比赛 34:15.03 第8名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/bing-wu-14811652",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-06-19 5000米 田径邀请赛 16:38.63 第1名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/bing-wu-14811652",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-05-31 10000米 全国田径大奖赛 33:59.74 第2名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/bing-wu-14811652",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-05-24 全程马拉松 兰州马拉松 2:35:20 第4名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/bing-wu-14811652",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-04-12 半程马拉松 南京仙林半程马拉松 1:12:44 第4名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/bing-wu-14811652",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-03-15 全程马拉松 首尔马拉松 2:32:25 第9名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/bing-wu-14811652",
+        "kind": "result"
+      },
+      {
+        "claim": "2023年度最佳2:33:50；2023-09-24；衡水湖马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/china/bing-wu-14811652",
+        "kind": "progression"
+      },
+      {
+        "claim": "2024年度最佳2:30:31；2024-03-24；无锡马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/china/bing-wu-14811652",
+        "kind": "progression"
+      },
+      {
+        "claim": "2025年度最佳2:26:01；2025-03-30；亚洲马拉松锦标赛",
+        "sourceUrl": "https://worldathletics.org/athletes/china/bing-wu-14811652",
+        "kind": "progression"
+      },
+      {
+        "claim": "2026年度最佳2:32:09；2026-09-26；亚运会",
+        "sourceUrl": "https://worldathletics.org/athletes/china/bing-wu-14811652",
+        "kind": "progression"
+      }
+    ],
+    "researchBoundary": "公开采访尚不足以核实入行、教练、训练负荷和伤病原因；正文只做成绩与赛程分析。",
+    "verification": "official_embedded_data_read_today",
+    "reviewedAt": "2026-11-17"
+  },
+  {
+    "worldAthleticsId": "14702490",
+    "name": "白丽",
+    "nameEn": "Li BAI",
+    "sources": [
+      {
+        "id": "S1",
+        "title": "World Athletics · Li BAI 官方运动员资料",
+        "url": "https://worldathletics.org/athletes/china/li-bai-14702490",
+        "checkedAt": "2026-11-17",
+        "verification": "official_embedded_data_read_today",
+        "snapshot": "evidence/athlete-14702490.json",
+        "retrievalNote": "本人身份、PB及2026结果通过/china官方入口重核。"
+      },
+      {
+        "id": "S2",
+        "title": "女子马拉松 肯尼亚选手杰普契奇尔摘金张德顺第47",
+        "url": "https://2020.cctv.com/2021/08/07/ARTIOWbCNncoYYIsSRyVkxHP210807.shtml",
+        "checkedAt": "2026-11-17",
+        "verification": "full_article_read"
+      }
+    ],
+    "facts": [
+      {
+        "claim": "全程马拉松PB 2:26:33；2023-03-19；Wuxi (CHN)",
+        "sourceUrl": "https://worldathletics.org/athletes/china/li-bai-14702490",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-10-18 全程马拉松 西安马拉松 2:46:36 第13名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/li-bai-14702490",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-09-27 全程马拉松 太原马拉松 2:45:37 第11名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/li-bai-14702490",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-03-01 全程马拉松 东京马拉松 2:37:19 第31名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/li-bai-14702490",
+        "kind": "result"
+      },
+      {
+        "claim": "2019年度最佳2:43:09；2019-09-29；衡水湖马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/china/li-bai-14702490",
+        "kind": "progression"
+      },
+      {
+        "claim": "2020年度最佳2:29:10；2020-11-29；全国马拉松锦标赛",
+        "sourceUrl": "https://worldathletics.org/athletes/china/li-bai-14702490",
+        "kind": "progression"
+      },
+      {
+        "claim": "2021年度最佳2:29:12；2021-04-11；全国马拉松锦标赛",
+        "sourceUrl": "https://worldathletics.org/athletes/china/li-bai-14702490",
+        "kind": "progression"
+      },
+      {
+        "claim": "2022年度最佳2:35:44；2022-04-17；杭州马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/china/li-bai-14702490",
+        "kind": "progression"
+      },
+      {
+        "claim": "2023年度最佳2:26:33；2023-03-19；无锡马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/china/li-bai-14702490",
+        "kind": "progression"
+      },
+      {
+        "claim": "2024年度最佳2:28:17；2024-03-24；无锡马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/china/li-bai-14702490",
+        "kind": "progression"
+      },
+      {
+        "claim": "2025年度最佳2:29:32；2025-03-09；名古屋女子马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/china/li-bai-14702490",
+        "kind": "progression"
+      },
+      {
+        "claim": "2026年度最佳2:37:19；2026-03-01；东京马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/china/li-bai-14702490",
+        "kind": "progression"
+      },
+      {
+        "claim": "2021东京奥运会第67名",
+        "sourceUrl": "https://2020.cctv.com/2021/08/07/ARTIOWbCNncoYYIsSRyVkxHP210807.shtml",
+        "kind": "reporting"
+      }
+    ],
+    "researchBoundary": "公开采访尚不足以核实入行、教练、训练负荷和伤病原因；正文只做成绩与赛程分析。",
+    "verification": "official_embedded_data_read_today",
+    "reviewedAt": "2026-11-17"
+  },
+  {
+    "worldAthleticsId": "14607905",
+    "name": "李丹",
+    "nameEn": "Dan LI",
+    "sources": [
+      {
+        "id": "S1",
+        "title": "World Athletics · Dan LI 官方运动员资料",
+        "url": "https://worldathletics.org/athletes/china/dan-li-14607905",
+        "checkedAt": "2026-11-17",
+        "verification": "official_embedded_data_read_today",
+        "snapshot": "evidence/athlete-14607905.json",
+        "retrievalNote": "本人身份、PB及2026结果通过/china官方入口重核。"
+      },
+      {
+        "id": "S2",
+        "title": "多布杰高温退赛非个例 户外项目近百人未完赛",
+        "url": "https://sports.cctv.com/2019/10/07/ARTIXhkBEicfs51ZDQ1fB6kd191007.shtml",
+        "checkedAt": "2026-11-17",
+        "verification": "full_article_read"
+      }
+    ],
+    "facts": [
+      {
+        "claim": "全程马拉松PB 2:26:59；2020-11-29；Nanjing (CHN)",
+        "sourceUrl": "https://worldathletics.org/athletes/china/dan-li-14607905",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-10-18 全程马拉松 北京马拉松 2:37:38 第30名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/dan-li-14607905",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-03-15 半程马拉松 上海半程马拉松 1:21:38 第17名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/dan-li-14607905",
+        "kind": "result"
+      },
+      {
+        "claim": "2016年度最佳2:33:38；2016-03-20；重庆马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/china/dan-li-14607905",
+        "kind": "progression"
+      },
+      {
+        "claim": "2017年度最佳2:35:53；2017-12-10；广州马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/china/dan-li-14607905",
+        "kind": "progression"
+      },
+      {
+        "claim": "2018年度最佳2:36:19；2018-11-11；合肥马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/china/dan-li-14607905",
+        "kind": "progression"
+      },
+      {
+        "claim": "2019年度最佳2:29:20；2019-11-03；北京马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/china/dan-li-14607905",
+        "kind": "progression"
+      },
+      {
+        "claim": "2020年度最佳2:26:59；2020-11-29；全国马拉松锦标赛",
+        "sourceUrl": "https://worldathletics.org/athletes/china/dan-li-14607905",
+        "kind": "progression"
+      },
+      {
+        "claim": "2021年度最佳2:35:47；2021-09-26；第十四届全运会",
+        "sourceUrl": "https://worldathletics.org/athletes/china/dan-li-14607905",
+        "kind": "progression"
+      },
+      {
+        "claim": "2022年度最佳2:39:24；2022-11-20；杭州马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/china/dan-li-14607905",
+        "kind": "progression"
+      },
+      {
+        "claim": "2023年度最佳2:32:40；2023-11-26；绍兴马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/china/dan-li-14607905",
+        "kind": "progression"
+      },
+      {
+        "claim": "2024年度最佳2:27:32；2024-03-24；无锡马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/china/dan-li-14607905",
+        "kind": "progression"
+      },
+      {
+        "claim": "2025年度最佳2:30:46；2025-03-09；名古屋女子马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/china/dan-li-14607905",
+        "kind": "progression"
+      },
+      {
+        "claim": "2026年度最佳2:37:38；2026-10-18；北京马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/china/dan-li-14607905",
+        "kind": "progression"
+      },
+      {
+        "claim": "2019多哈世锦赛女子马拉松DNF",
+        "sourceUrl": "http://sports.cctv.com/2019/10/07/ARTIXhkBEicfs51ZDQ1fB6kd191007.shtml",
+        "kind": "reporting"
+      }
+    ],
+    "researchBoundary": "公开采访尚不足以核实入行、教练、训练负荷和伤病原因；正文只做成绩与赛程分析。",
+    "verification": "official_embedded_data_read_today",
+    "reviewedAt": "2026-11-17"
+  },
+  {
+    "worldAthleticsId": "14913613",
+    "name": "徐冰洁",
+    "nameEn": "Bingjie XU",
+    "sources": [
+      {
+        "id": "S1",
+        "title": "World Athletics · Bingjie XU 官方运动员资料",
+        "url": "https://worldathletics.org/athletes/china/bingjie-xu-14913613",
+        "checkedAt": "2026-11-17",
+        "verification": "official_embedded_data_read_today",
+        "snapshot": "evidence/athlete-14913613.json",
+        "retrievalNote": "本人身份、PB及2026结果通过/china官方入口重核。"
+      },
+      {
+        "id": "S2",
+        "title": "4万人共赴太马：破纪录，交出城市治理与文旅融合新答卷",
+        "url": "https://local.cctv.com/2026/09/28/ARTIldVmNBReN2BO1z8n9gBZ260928.shtml",
+        "checkedAt": "2026-11-17",
+        "verification": "full_article_read"
+      }
+    ],
+    "facts": [
+      {
+        "claim": "全程马拉松PB 2:27:11；2025-03-23；Wuxi (CHN)",
+        "sourceUrl": "https://worldathletics.org/athletes/china/bingjie-xu-14913613",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-10-18 全程马拉松 西安马拉松 2:33:35 第4名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/bingjie-xu-14913613",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-09-27 全程马拉松 太原马拉松 2:31:10 第5名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/bingjie-xu-14913613",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-07-12 10000米 全国中长跑比赛 36:19.00 第6名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/bingjie-xu-14913613",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-07-11 5000米 全国中长跑比赛 17:28.51 第11名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/bingjie-xu-14913613",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-05-31 全程马拉松 吉林马拉松 2:36:31 第4名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/bingjie-xu-14913613",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-05-24 全程马拉松 兰州马拉松 2:41:05 第10名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/bingjie-xu-14913613",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-04-26 全程马拉松 密云马拉松 2:33:21 第5名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/bingjie-xu-14913613",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-04-19 10000米 全国中长跑比赛 34:17.16 第3名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/bingjie-xu-14913613",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-04-18 5000米 全国中长跑比赛 16:30.13 第5名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/bingjie-xu-14913613",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-03-29 全程马拉松 盐城马拉松 2:33:16 第2名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/bingjie-xu-14913613",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-03-15 半程马拉松 眉山仁寿半程马拉松 1:13:30 第24名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/bingjie-xu-14913613",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-03-01 全程马拉松 东京马拉松 2:34:26 第27名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/bingjie-xu-14913613",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-01-11 全程马拉松 厦门马拉松 2:32:30 第8名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/bingjie-xu-14913613",
+        "kind": "result"
+      },
+      {
+        "claim": "2023年度最佳2:32:33；2023-09-24；衡水湖马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/china/bingjie-xu-14913613",
+        "kind": "progression"
+      },
+      {
+        "claim": "2024年度最佳2:34:02；2024-11-03；北京马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/china/bingjie-xu-14913613",
+        "kind": "progression"
+      },
+      {
+        "claim": "2025年度最佳2:27:11；2025-03-23；无锡马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/china/bingjie-xu-14913613",
+        "kind": "progression"
+      },
+      {
+        "claim": "2026年度最佳2:31:10；2026-09-27；太原马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/china/bingjie-xu-14913613",
+        "kind": "progression"
+      },
+      {
+        "claim": "2026太原2:31:10中国籍第三，WA总第五，赛事纪录为中国籍赛会纪录",
+        "sourceUrl": "https://local.cctv.com/2026/09/28/ARTIldVmNBReN2BO1z8n9gBZ260928.shtml",
+        "kind": "reporting"
+      }
+    ],
+    "researchBoundary": "公开采访尚不足以核实入行、教练、训练负荷和伤病原因；正文只做成绩与赛程分析。",
+    "verification": "official_embedded_data_read_today",
+    "reviewedAt": "2026-11-17"
+  },
+  {
+    "worldAthleticsId": "14977274",
+    "name": "马秀珍",
+    "nameEn": "XiuZhen MA",
+    "sources": [
+      {
+        "id": "S1",
+        "title": "World Athletics · XiuZhen MA 官方运动员资料",
+        "url": "https://worldathletics.org/athletes/china/xiuzhen-ma-14977274",
+        "checkedAt": "2026-11-17",
+        "verification": "official_embedded_data_read_today",
+        "snapshot": "evidence/athlete-14977274.json",
+        "retrievalNote": "本人身份、PB及2026结果通过/china官方入口重核。"
+      }
+    ],
+    "facts": [
+      {
+        "claim": "全程马拉松PB 2:27:12；2026-03-22；Wuxi (CHN)",
+        "sourceUrl": "https://worldathletics.org/athletes/china/xiuzhen-ma-14977274",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-08-16 10000米 全国田径锦标赛 34:23.69 第6名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/xiuzhen-ma-14977274",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-08-12 5000米 全国田径锦标赛 16:04.91 第4名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/xiuzhen-ma-14977274",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-05-09 10000米 全国田径大奖赛 33:24.32 第3名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/xiuzhen-ma-14977274",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-04-29 10000米 田径邀请赛 33:07.67 第2名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/xiuzhen-ma-14977274",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-04-28 5000米 田径邀请赛 16:27.03 第3名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/xiuzhen-ma-14977274",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-04-12 10000米 田径邀请赛 33:10.32 第2名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/xiuzhen-ma-14977274",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-04-11 5000米 田径邀请赛 15:53.98 第1名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/xiuzhen-ma-14977274",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-03-22 全程马拉松 无锡马拉松 2:27:12 第5名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/xiuzhen-ma-14977274",
+        "kind": "result"
+      },
+      {
+        "claim": "2022年度最佳2:33:26；2022-04-17；杭州马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/china/xiuzhen-ma-14977274",
+        "kind": "progression"
+      },
+      {
+        "claim": "2025年度最佳2:34:41；2025-11-30；上海马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/china/xiuzhen-ma-14977274",
+        "kind": "progression"
+      },
+      {
+        "claim": "2026年度最佳2:27:12；2026-03-22；无锡马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/china/xiuzhen-ma-14977274",
+        "kind": "progression"
+      }
+    ],
+    "researchBoundary": "公开采访尚不足以核实入行、教练、训练负荷和伤病原因；正文只做成绩与赛程分析。",
+    "verification": "official_embedded_data_read_today",
+    "reviewedAt": "2026-11-17"
+  },
+  {
+    "worldAthleticsId": "15123187",
+    "name": "朱卿",
+    "nameEn": "Qing ZHU",
+    "sources": [
+      {
+        "id": "S1",
+        "title": "World Athletics · Qing ZHU 官方运动员资料",
+        "url": "https://worldathletics.org/athletes/china/qing-zhu-15123187",
+        "checkedAt": "2026-11-17",
+        "verification": "official_embedded_data_read_today",
+        "snapshot": "evidence/athlete-15123187.json",
+        "retrievalNote": "本人身份、PB及2026结果通过/china官方入口重核。"
+      },
+      {
+        "id": "S2",
+        "title": "2026重庆马拉松举办",
+        "url": "https://local.cctv.com/2026/01/19/ARTIWgWbxHluCTuBCdpttsHJ260119.shtml",
+        "publishedAt": "2026-01-19",
+        "checkedAt": "2026-11-17",
+        "verification": "full_article_read"
+      }
+    ],
+    "facts": [
+      {
+        "claim": "全程马拉松PB 2:27:26；2026-10-18；Beijing (CHN)",
+        "sourceUrl": "https://worldathletics.org/athletes/china/qing-zhu-15123187",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-10-18 全程马拉松 北京马拉松 2:27:26 第4名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/qing-zhu-15123187",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-09-06 全程马拉松 沈阳马拉松 2:30:49 第3名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/qing-zhu-15123187",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-05-24 全程马拉松 兰州马拉松 2:37:48 第6名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/qing-zhu-15123187",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-04-26 全程马拉松 大连马拉松 2:29:02 第1名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/qing-zhu-15123187",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-03-29 半程马拉松 石家庄半程马拉松 1:11:52 第1名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/qing-zhu-15123187",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-03-22 全程马拉松 武汉马拉松 2:28:45 第4名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/qing-zhu-15123187",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-01-18 全程马拉松 重庆马拉松 2:28:53 第3名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/qing-zhu-15123187",
+        "kind": "result"
+      },
+      {
+        "claim": "2023年度最佳2:48:15；2023-12-31；深圳马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/china/qing-zhu-15123187",
+        "kind": "progression"
+      },
+      {
+        "claim": "2024年度最佳2:36:26；2024-12-01；深圳马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/china/qing-zhu-15123187",
+        "kind": "progression"
+      },
+      {
+        "claim": "2025年度最佳2:30:28；2025-03-02；重庆马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/china/qing-zhu-15123187",
+        "kind": "progression"
+      },
+      {
+        "claim": "2026年度最佳2:27:26；2026-10-18；北京马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/china/qing-zhu-15123187",
+        "kind": "progression"
+      },
+      {
+        "claim": "报道全文已核读；正文采用事项限定为2026重庆2:28:53女子第三",
+        "sourceUrl": "https://local.cctv.com/2026/01/19/ARTIWgWbxHluCTuBCdpttsHJ260119.shtml",
+        "kind": "reporting"
+      }
+    ],
+    "researchBoundary": "公开采访尚不足以核实入行、教练、训练负荷和伤病原因；正文只做成绩与赛程分析。",
+    "verification": "official_embedded_data_read_today",
+    "reviewedAt": "2026-11-17"
+  },
+  {
+    "worldAthleticsId": "14908056",
+    "name": "刘敏",
+    "nameEn": "Min LIU",
+    "sources": [
+      {
+        "id": "S1",
+        "title": "World Athletics · Min LIU 官方运动员资料",
+        "url": "https://worldathletics.org/athletes/china/min-liu-14908056",
+        "checkedAt": "2026-11-17",
+        "verification": "official_embedded_data_read_today",
+        "snapshot": "evidence/athlete-14908056.json",
+        "retrievalNote": "本人身份、PB及2026结果通过/china官方入口重核。"
+      }
+    ],
+    "facts": [
+      {
+        "claim": "全程马拉松PB 2:28:16；2025-03-23；Wuxi (CHN)",
+        "sourceUrl": "https://worldathletics.org/athletes/china/min-liu-14908056",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-10-18 全程马拉松 北京马拉松 2:32:10 第14名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/min-liu-14908056",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-09-27 全程马拉松 太原马拉松 2:30:40 第4名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/min-liu-14908056",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-08-22 10公里路跑 中国田径协会10公里精英赛 34:25 第1名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/min-liu-14908056",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-08-16 10000米 全国田径锦标赛 34:33.69 第7名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/min-liu-14908056",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-08-12 5000米 全国田径锦标赛 16:05.74 第6名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/min-liu-14908056",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-06-28 10000米 全国田径比赛 34:47.80 第10名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/min-liu-14908056",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-06-26 5000米 全国田径比赛 16:05.39 第13名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/min-liu-14908056",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-05-16 10000米 田径邀请赛 33:36.66 第2名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/min-liu-14908056",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-05-15 5000米 田径邀请赛 16:10.07 第4名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/min-liu-14908056",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-04-12 半程马拉松 北京半程马拉松 1:10:54 第3名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/min-liu-14908056",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-04-06 10公里路跑 中国田径协会10公里精英赛 32:42 第1名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/min-liu-14908056",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-03-28 10公里路跑 中国田径协会10公里精英赛 33:50 第1名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/min-liu-14908056",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-03-22 全程马拉松 无锡马拉松 2:29:17 第8名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/min-liu-14908056",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-03-15 半程马拉松 眉山仁寿半程马拉松 1:09:48 第6名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/min-liu-14908056",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-03-01 全程马拉松 东京马拉松 2:30:03 第20名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/min-liu-14908056",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-01-18 全程马拉松 重庆马拉松 2:29:23 第4名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/min-liu-14908056",
+        "kind": "result"
+      },
+      {
+        "claim": "2023年度最佳2:32:05；2023-10-29；北京马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/china/min-liu-14908056",
+        "kind": "progression"
+      },
+      {
+        "claim": "2024年度最佳2:28:36；2024-11-03；北京马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/china/min-liu-14908056",
+        "kind": "progression"
+      },
+      {
+        "claim": "2025年度最佳2:28:16；2025-03-23；无锡马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/china/min-liu-14908056",
+        "kind": "progression"
+      },
+      {
+        "claim": "2026年度最佳2:29:17；2026-03-22；无锡马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/china/min-liu-14908056",
+        "kind": "progression"
+      }
+    ],
+    "researchBoundary": "公开采访尚不足以核实入行、教练、训练负荷和伤病原因；正文只做成绩与赛程分析。",
+    "verification": "official_embedded_data_read_today",
+    "reviewedAt": "2026-11-17"
+  },
+  {
+    "worldAthleticsId": "14534952",
+    "name": "许双双",
+    "nameEn": "Shuangshuang XU",
+    "sources": [
+      {
+        "id": "S1",
+        "title": "World Athletics · Shuangshuang XU 官方运动员资料",
+        "url": "https://worldathletics.org/athletes/china/shuangshuang-xu-14534952",
+        "checkedAt": "2026-11-17",
+        "verification": "official_embedded_data_read_today",
+        "snapshot": "evidence/athlete-14534952.json",
+        "retrievalNote": "本人身份、PB及2026结果通过/china官方入口重核。"
+      },
+      {
+        "id": "S2",
+        "title": "女3000障碍预赛许双双无缘决赛 巴林选手排名第一",
+        "url": "https://2020.cctv.com/2021/08/01/ARTIOyXjxIeSM8JE8mRJb186210801.shtml",
+        "publishedAt": "2021-08-01",
+        "checkedAt": "2026-11-17",
+        "verification": "full_article_read"
+      }
+    ],
+    "facts": [
+      {
+        "claim": "全程马拉松PB 2:28:25；2026-10-18；Beijing (CHN)",
+        "sourceUrl": "https://worldathletics.org/athletes/china/shuangshuang-xu-14534952",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-10-18 全程马拉松 北京马拉松 2:28:25 第7名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/shuangshuang-xu-14534952",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-04-12 半程马拉松 北京半程马拉松 1:09:54 第1名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/shuangshuang-xu-14534952",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-03-29 半程马拉松 东亚半程马拉松锦标赛 1:13:25 第5名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/shuangshuang-xu-14534952",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-03-15 半程马拉松 上海半程马拉松 1:09:34 第3名",
+        "sourceUrl": "https://worldathletics.org/athletes/china/shuangshuang-xu-14534952",
+        "kind": "result"
+      },
+      {
+        "claim": "2026年度最佳2:28:25；2026-10-18；北京马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/china/shuangshuang-xu-14534952",
+        "kind": "progression"
+      },
+      {
+        "claim": "报道全文已核读；正文采用事项限定为东京奥运3000米障碍预赛9:34.92总第28",
+        "sourceUrl": "https://2020.cctv.com/2021/08/01/ARTIOyXjxIeSM8JE8mRJb186210801.shtml",
+        "kind": "reporting"
+      }
+    ],
+    "researchBoundary": "公开采访尚不足以核实入行、教练、训练负荷和伤病原因；正文只做成绩与赛程分析。",
+    "verification": "official_embedded_data_read_today",
+    "reviewedAt": "2026-11-17"
+  },
+  {
+    "worldAthleticsId": "14647951",
+    "name": "郑小倩",
+    "nameEn": "Xiaoqian ZHENG",
+    "sources": [
+      {
+        "id": "S1",
+        "title": "World Athletics · Xiaoqian ZHENG 官方运动员资料",
+        "url": "https://worldathletics.org/athletes/athlete=14647951",
+        "checkedAt": "2026-11-17",
+        "verification": "prior_official_snapshot_2026-11-12"
+      },
+      {
+        "id": "S2",
+        "title": "全运女子1500米决赛王春雨夺冠 本届全运两金一银",
+        "url": "https://sports.cctv.com/2021/09/24/ARTIpWqmspuR6Z1SRL8bVDLc210924.shtml",
+        "publishedAt": "2021-09-24",
+        "checkedAt": "2026-11-17",
+        "verification": "full_article_read"
+      }
+    ],
+    "facts": [
+      {
+        "claim": "全程马拉松PB 2:28:45；2026-02-22；Osaka (JPN)",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14647951",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-09-06 全程马拉松 沈阳马拉松 2:35:21 第5名",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14647951",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-05-24 全程马拉松 兰州马拉松 2:43:09 第11名",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14647951",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-04-12 半程马拉松 北京半程马拉松 1:11:29 第6名",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14647951",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-03-29 半程马拉松 扬州半程马拉松 1:10:52 第8名",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14647951",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-02-22 全程马拉松 大阪马拉松 2:28:45 第7名",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14647951",
+        "kind": "result"
+      },
+      {
+        "claim": "2025年度最佳2:29:07；2025-11-16；南京马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14647951",
+        "kind": "progression"
+      },
+      {
+        "claim": "2026年度最佳2:28:45；2026-02-22；大阪马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14647951",
+        "kind": "progression"
+      },
+      {
+        "claim": "报道全文已核读；正文采用事项限定为2021全运会1500米4:17.60第三",
+        "sourceUrl": "https://sports.cctv.com/2021/09/24/ARTIpWqmspuR6Z1SRL8bVDLc210924.shtml",
+        "kind": "reporting"
+      }
+    ],
+    "researchBoundary": "公开采访尚不足以核实入行、教练、训练负荷和伤病原因；正文只做成绩与赛程分析。",
+    "verification": "prior_official_snapshot_2026-11-12",
+    "fetchError": "no identity-validated athlete body, HTTP 202"
+  },
+  {
+    "worldAthleticsId": "14893307",
+    "name": "沈妮",
+    "nameEn": "Ni SHEN",
+    "sources": [
+      {
+        "id": "S1",
+        "title": "World Athletics · Ni SHEN 官方运动员资料",
+        "url": "https://worldathletics.org/athletes/athlete=14893307",
+        "checkedAt": "2026-11-17",
+        "verification": "prior_official_snapshot_2026-11-12"
+      }
+    ],
+    "facts": [
+      {
+        "claim": "全程马拉松PB 2:28:47；2024-11-03；Beijing (CHN)",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14893307",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-06-26 5000米 全国田径比赛 16:06.24 第14名",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14893307",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-05-09 10000米 全国田径大奖赛 34:31.06 第7名",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14893307",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-04-29 10000米 田径邀请赛 34:37.35 第5名",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14893307",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-04-28 5000米 田径邀请赛 16:35.21 第4名",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14893307",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-03-29 全程马拉松 石家庄马拉松 2:38:46 第3名",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14893307",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-03-15 半程马拉松 上海半程马拉松 1:15:52 第8名",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14893307",
+        "kind": "result"
+      },
+      {
+        "claim": "2019年度最佳2:57:36；2019-11-10；合肥马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14893307",
+        "kind": "progression"
+      },
+      {
+        "claim": "2023年度最佳2:33:56；2023-10-29；北京马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14893307",
+        "kind": "progression"
+      },
+      {
+        "claim": "2024年度最佳2:28:47；2024-11-03；北京马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14893307",
+        "kind": "progression"
+      },
+      {
+        "claim": "2025年度最佳2:31:26；2025-09-21；全国马拉松锦标赛",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14893307",
+        "kind": "progression"
+      },
+      {
+        "claim": "2026年度最佳2:38:46；2026-03-29；石家庄马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14893307",
+        "kind": "progression"
+      }
+    ],
+    "researchBoundary": "公开采访尚不足以核实入行、教练、训练负荷和伤病原因；正文只做成绩与赛程分析。",
+    "verification": "prior_official_snapshot_2026-11-12",
+    "fetchError": "no identity-validated athlete body, HTTP 202"
+  },
+  {
+    "worldAthleticsId": "14983614",
+    "name": "杨以婷",
+    "nameEn": "Yiting YANG",
+    "sources": [
+      {
+        "id": "S1",
+        "title": "World Athletics · Yiting YANG 官方运动员资料",
+        "url": "https://worldathletics.org/athletes/athlete=14983614",
+        "checkedAt": "2026-11-17",
+        "verification": "prior_official_snapshot_2026-11-12"
+      }
+    ],
+    "facts": [
+      {
+        "claim": "全程马拉松PB 2:28:47；2026-10-18；Beijing (CHN)",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14983614",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-10-18 全程马拉松 北京马拉松 2:28:47 第8名",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14983614",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-09-20 半程马拉松 世界田联路跑锦标赛 1:12:57 第61名",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14983614",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-08-16 10000米 全国田径锦标赛 34:02.81 第4名",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14983614",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-08-14 3000米障碍 全国田径锦标赛 9:45.11 第2名",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14983614",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-08-12 5000米 全国田径锦标赛 16:05.51 第5名",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14983614",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-07-12 10000米 Asian U23 Athletics Championships, Sport Development Center Stadium, Ordos 33:43.54 第2名",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14983614",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-07-09 3000米障碍 Asian U23 Athletics Championships, Sport Development Center Stadium, Ordos 10:14.68 第1名",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14983614",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-06-28 10000米 全国田径比赛 33:55.50 第3名",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14983614",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-06-27 3000米障碍 全国田径比赛 9:48.39 第2名",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14983614",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-05-25 5000米 全国U23田径锦标赛 16:14.98 第1名",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14983614",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-05-23 3000米障碍 全国U23田径锦标赛 9:52.74 第1名",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14983614",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-04-12 10000米 田径邀请赛 33:30.97 第3名",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14983614",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-04-12 3000米障碍 田径邀请赛 10:08.41 第1名",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14983614",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-04-11 5000米 田径邀请赛 16:14.42 第3名",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14983614",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-03-29 室内3000米 Chinese Indoor Championships, Shandong Sports Training Center, Jinan (i) 9:12.49 第2名",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14983614",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-03-27 室内3000米 Chinese Indoor Championships, Shandong Sports Training Center, Jinan (i) 9:54.51 第3名",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14983614",
+        "kind": "result"
+      },
+      {
+        "claim": "2026年度最佳2:28:47；2026-10-18；北京马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14983614",
+        "kind": "progression"
+      }
+    ],
+    "researchBoundary": "公开采访尚不足以核实入行、教练、训练负荷和伤病原因；正文只做成绩与赛程分析。",
+    "verification": "prior_official_snapshot_2026-11-12",
+    "fetchError": "no identity-validated athlete body, HTTP 202"
+  },
+  {
+    "worldAthleticsId": "14920319",
+    "name": "张水华",
+    "nameEn": "Shuihua ZHANG",
+    "sources": [
+      {
+        "id": "S1",
+        "title": "World Athletics · Shuihua ZHANG 官方运动员资料",
+        "url": "https://worldathletics.org/athletes/athlete=14920319",
+        "checkedAt": "2026-11-17",
+        "verification": "prior_official_snapshot_2026-11-12"
+      },
+      {
+        "id": "S2",
+        "title": "离职后的张水华 撕掉旧标签：不让我跑步 我做不到",
+        "url": "https://people.cctv.com/2026/01/19/ARTIF8Ys8uZtVxVScOLj4onK260119.shtml",
+        "publishedAt": "2026-01-19",
+        "checkedAt": "2026-11-17",
+        "verification": "full_article_read"
+      }
+    ],
+    "facts": [
+      {
+        "claim": "全程马拉松PB 2:29:07；2026-10-18；Xi'an (CHN)",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14920319",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-10-18 全程马拉松 西安马拉松 2:29:07 第1名",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14920319",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-09-06 全程马拉松 沈阳马拉松 2:38:36 第6名",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14920319",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-03-08 全程马拉松 南京浦口马拉松 2:36:25 第2名",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14920319",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-01-18 全程马拉松 重庆马拉松 2:30:54 第6名",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14920319",
+        "kind": "result"
+      },
+      {
+        "claim": "2019年度最佳2:56:07；2019-11-10；南昌马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14920319",
+        "kind": "progression"
+      },
+      {
+        "claim": "2023年度最佳2:37:41；2023-09-24；衡水湖马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14920319",
+        "kind": "progression"
+      },
+      {
+        "claim": "2024年度最佳2:42:40；2024-12-15；福州马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14920319",
+        "kind": "progression"
+      },
+      {
+        "claim": "2025年度最佳2:33:43；2025-10-19；黄河口（东营）马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14920319",
+        "kind": "progression"
+      },
+      {
+        "claim": "2026年度最佳2:29:07；2026-10-18；西安马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14920319",
+        "kind": "progression"
+      },
+      {
+        "claim": "报道全文已核读；正文采用事项限定为2017马拉松志愿者后开始跑步；2026年1月离职；本文比赛时间采用WA枪声成绩而非报道净计时",
+        "sourceUrl": "https://people.cctv.com/2026/01/19/ARTIF8Ys8uZtVxVScOLj4onK260119.shtml",
+        "kind": "reporting"
+      }
+    ],
+    "researchBoundary": "公开采访尚不足以核实入行、教练、训练负荷和伤病原因；正文只做成绩与赛程分析。",
+    "verification": "prior_official_snapshot_2026-11-12",
+    "fetchError": "no identity-validated athlete body, HTTP 202"
+  },
+  {
+    "worldAthleticsId": "14796252",
+    "name": "张珊珊",
+    "nameEn": "Shanshan ZHANG",
+    "sources": [
+      {
+        "id": "S1",
+        "title": "World Athletics · Shanshan ZHANG 官方运动员资料",
+        "url": "https://worldathletics.org/athletes/athlete=14796252",
+        "checkedAt": "2026-11-17",
+        "verification": "prior_official_snapshot_2026-11-12"
+      }
+    ],
+    "facts": [
+      {
+        "claim": "全程马拉松PB 2:29:43；2026-03-22；Wuxi (CHN)",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14796252",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-10-18 全程马拉松 北京马拉松 2:33:46 第18名",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14796252",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-08-14 3000米障碍 全国田径锦标赛 9:47.05 第3名",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14796252",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-08-12 5000米 全国田径锦标赛 16:16.37 第11名",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14796252",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-06-27 3000米障碍 全国田径比赛 10:01.96 第6名",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14796252",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-06-14 全程马拉松 贵阳马拉松 2:49:04 第5名",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14796252",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-05-15 5000米 田径邀请赛 16:42.61 第1名",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14796252",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-05-15 3000米障碍 田径邀请赛 10:50.16 第2名",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14796252",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-05-09 3000米障碍 全国田径大奖赛 10:23.61 第2名",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14796252",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-03-22 全程马拉松 无锡马拉松 2:29:43 第9名",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14796252",
+        "kind": "result"
+      },
+      {
+        "claim": "2026-02-07 室内3000米 亚洲室内田径锦标赛 9:26.22 第7名",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14796252",
+        "kind": "result"
+      },
+      {
+        "claim": "2020年度最佳2:50:30；2020-11-29；全国马拉松锦标赛",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14796252",
+        "kind": "progression"
+      },
+      {
+        "claim": "2024年度最佳2:34:50；2024-09-22；衡水湖马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14796252",
+        "kind": "progression"
+      },
+      {
+        "claim": "2025年度最佳2:31:17；2025-03-23；无锡马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14796252",
+        "kind": "progression"
+      },
+      {
+        "claim": "2026年度最佳2:29:43；2026-03-22；无锡马拉松",
+        "sourceUrl": "https://worldathletics.org/athletes/athlete=14796252",
+        "kind": "progression"
+      }
+    ],
+    "researchBoundary": "公开采访尚不足以核实入行、教练、训练负荷和伤病原因；正文只做成绩与赛程分析。",
+    "verification": "prior_official_snapshot_2026-11-12",
+    "fetchError": "no identity-validated athlete body, HTTP 202"
+  }
+]
