@@ -256,13 +256,13 @@ app.get(BASE + "/api/races", (req, res) => {
     rows = rows.filter((r) => [r.name, r.city, r.place, r.province].some((part) => fold(part).includes(needle)));
   }
   if (!q && city) rows = rows.filter((r) => r.city === city || r.province === city);
-  if (!q && month) rows = rows.filter((r) => r.raceDate.slice(0, 7) === month);
+  if (!q && month) rows = rows.filter((r) => r.raceDate.slice(0, 7) <= month && (r.raceEndDate || r.raceDate).slice(0, 7) >= month);
   if (!q && distance) rows = rows.filter((r) => r.distances.includes(distance));
   if (!q && kind) rows = rows.filter((r) => inChannel(r, kind));
   if (!q && meet) rows = rows.filter((r) => r.meet === meet);
   if (!q && status === "upcoming") {
     const today = cstDay(now);
-    rows = rows.filter((r) => r.raceDate >= today);
+    rows = rows.filter((r) => (r.raceEndDate || r.raceDate) >= today);
   }
   if (!q && status === "open") rows = rows.filter((r) => r.regStatus === "报名中");
   if (!q && status === "wait") rows = rows.filter((r) => ['待开赛', '报名已截止', '报名已满'].includes(r.regStatus));
