@@ -337,18 +337,26 @@ const typeLabel = computed(() => {
   const labels = race.value?.kindLabels || [];
   return labels.length ? labels.join(' / ') : race.value?.kind === 'trail' ? '越野' : '路跑';
 });
+function registrationScheduled(row, date) {
+  // The API evaluates timestamps in China time. Do not replace that result
+  // with a day-only comparison that can turn a future start into a cutoff.
+  if (row.regStatus === '未开始') return true;
+  const start = String(row.regStart || '');
+  if (/^\d{4}-\d{2}-\d{2}$/.test(start)) return start > date;
+  return !row.regStatus && Number.isFinite(Date.parse(start)) && Date.parse(start) > Date.now();
+}
 const publicStage = computed(() => {
   const row = race.value;
   if (!row) return '';
   if (row.raceDate && row.raceDate < today()) return '已结束';
   if (row.raceDate === today()) return '比赛日';
-  if (row.regStart && row.regStart.slice(0, 10) > today()) return '报名未开始';
+  if (registrationScheduled(row, today())) return '报名未开始';
   if (!row.deadline) return '报名时间未录入';
   return row.open ? '报名中' : '报名已截止';
 });
 const sortedNodes = computed(() => [...(race.value?.nodes || [])].sort((a, b) => a.at.localeCompare(b.at)));
 const nextMoment = computed(() => {
-  const rows = sortedNodes.value.filter(node => !node.past || node.today);
+  const rows = sortedNodes.value.filter(node => !node.past || node.today && /^\d{4}-\d{2}-\d{2}$/.test(node.at));
   return rows.find(node => node.key !== 'race') || rows.find(node => node.key === 'race') || null;
 });
 const routeSheets = computed(() => (race.value && race.value.routeSheets) || []);
@@ -519,7 +527,7 @@ const primaryOfficial = computed(() => {
   const row = race.value, date = today();
   const find = key => officialLinks.value.find(link => link.key === key);
   const ended = row.regStatus === '已结束' || row.raceDate && row.raceDate < date;
-  const upcomingSignup = row.regStart && row.regStart.slice(0, 10) > date;
+  const upcomingSignup = registrationScheduled(row, date);
   const paymentPeriod = !ended && !upcomingSignup && row.payDeadline && row.payDeadline.slice(0, 10) >= date && row.drawAt && row.drawAt.slice(0, 10) <= date;
   let key = ended && find('result') ? 'result'
     : paymentPeriod && find('signup') ? 'signup'

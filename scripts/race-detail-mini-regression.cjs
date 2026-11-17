@@ -9,11 +9,15 @@ const root = path.resolve(__dirname, '..');
 const { race: baseRace, statuses } = require('./participation-mini-regression.cjs');
 const today = new Date(Date.now() + 8 * 3600000).toISOString().slice(0, 10);
 const day = offset => new Date(Date.now() + offset * 86400000 + 8 * 3600000).toISOString().slice(0, 10);
-function detailFixture(race, auth = true) {
+function detailFixture(race, auth = true, now) {
   const app = { globalData: { token: auth ? 'runner-a' : '', baseUrl: 'https://runner.example' } };
   const requests = [], scrolls = [], clipboard = [], previews = [], storage = {}, navigation = [];
   const data = { race, statuses, following: false, myStatus: '', sharedClubIds: [], myResults: [], clubs: [], cards: [] };
   const file = path.join(root, 'miniprogram/pages/race/race.js'), localRequire = createRequire(file);
+  const FixtureDate = now ? class extends Date {
+    constructor(...args) { super(...(args.length ? args : [now])); }
+    static now() { return Date.parse(now); }
+  } : Date;
   let definition;
   const wx = new Proxy({
     pageScrollTo(value) { scrolls.push(value); }, previewImage(value) { previews.push(value); },
@@ -22,7 +26,7 @@ function detailFixture(race, auth = true) {
     nextTick(fn) { fn(); }
   }, { get: (target, key) => target[key] || (() => {}) });
   vm.runInNewContext(fs.readFileSync(file, 'utf8'), {
-    Page(value) { definition = value; }, getApp: () => app, wx, console, Date, Promise, setTimeout, clearTimeout,
+    Page(value) { definition = value; }, getApp: () => app, wx, console, Date: FixtureDate, Promise, setTimeout, clearTimeout,
     require(id) {
       if (id === '../../utils/request') return { ready: () => !!app.globalData.token, request(url, method = 'GET', body) {
         requests.push({ url, method, body });
@@ -103,6 +107,54 @@ async function main() {
     assert.equal(f.page.data.phaseTitle, '报名时间尚未录入');
     assert.equal(f.scrolls.length, 0, 'ordinary expansions never request scrolling');
     checks.push('Future registration is labelled before opening; legacy unknown dates are shown as not recorded and personal/source summaries expand without scrolling');
+  }
+  {
+    const timed = { ...baseRace, raceDate: '2026-12-17', regStart: '2026-11-17T10:00:00+08:00', deadline: '2026-11-20', links };
+    const before = detailFixture({ ...timed, regStatus: '未开始', open: false }, true, '2026-11-17T09:59:59+08:00');
+    before.page.onLoad({ id: baseRace.id }); await before.page.load();
+    assert.equal(before.page.data.publicStatus, '报名未开始');
+    assert.equal(before.page.data.officialActions.find(item => item.key === 'signup').label, '报名安排');
+    assert.ok(before.page.data.phaseTitle.includes('2026-11-17 10:00（北京时间）'));
+    const after = detailFixture({ ...timed, regStatus: '报名中', open: true }, true, '2026-11-17T10:00:00+08:00');
+    after.page.onLoad({ id: baseRace.id }); await after.page.load();
+    assert.equal(after.page.data.publicStatus, '报名中');
+    assert.equal(after.page.data.officialActions[0].key, 'signup');
+    assert.equal(after.page.data.officialActions[0].label, '官方报名');
+    const serverAuthority = detailFixture({ ...timed, regStatus: '报名中', open: true }, true, '2026-11-17T08:00:00+08:00');
+    serverAuthority.page.onLoad({ id: baseRace.id }); await serverAuthority.page.load();
+    assert.equal(serverAuthority.page.data.publicStatus, '报名中', 'a device clock behind the server cannot override the API phase');
+    checks.push('Exact China-time opening is pending before the recorded instant and open afterwards; device day comparisons never override the server timestamp phase');
+  }
+  {
+    const timed = { ...baseRace, raceDate: '2026-12-17', regStart: '', deadline: '2026-11-17T18:00:00+08:00', drawAt: '2026-11-17T20:00:00+08:00', payDeadline: '2026-11-18T18:00:00+08:00', bibAt: '2026-11-19T09:00:00+08:00', links };
+    const before = detailFixture({ ...timed, regStatus: '报名中', open: true }, true, '2026-11-17T17:59:59+08:00');
+    before.page.onLoad({ id: baseRace.id }); await before.page.load();
+    assert.equal(before.page.data.phaseTitle, '报名截止 · 2026-11-17 18:00（北京时间）');
+    assert.equal(before.page.data.officialActions[0].label, '官方报名');
+    const cutoff = detailFixture({ ...timed, regStatus: '待开赛', open: false }, true, '2026-11-17T18:00:00+08:00');
+    cutoff.page.onLoad({ id: baseRace.id }); await cutoff.page.load();
+    assert.equal(cutoff.page.data.phaseTitle, '中签结果 · 2026-11-17 20:00（北京时间）', 'the exact cutoff no longer remains the next moment');
+    assert.equal(cutoff.page.data.officialActions.find(item => item.key === 'signup').label, '报名信息');
+    const drawn = detailFixture({ ...timed, regStatus: '待开赛', open: false }, true, '2026-11-17T20:00:00+08:00');
+    drawn.page.onLoad({ id: baseRace.id }); await drawn.page.load();
+    assert.equal(drawn.page.data.phaseTitle, '缴费截止 · 2026-11-18 18:00（北京时间）');
+    assert.equal(drawn.page.data.officialActions[0].key, 'draw', 'a timestamp query becomes available at its recorded instant');
+    const paid = detailFixture({ ...timed, regStatus: '待开赛', open: false }, true, '2026-11-18T18:00:00+08:00');
+    paid.page.onLoad({ id: baseRace.id }); await paid.page.load();
+    assert.equal(paid.page.data.phaseTitle, '号码公布 · 2026-11-19 09:00（北京时间）');
+    const numbered = detailFixture({ ...timed, regStatus: '待开赛', open: false }, true, '2026-11-19T09:00:00+08:00');
+    numbered.page.onLoad({ id: baseRace.id }); await numbered.page.load();
+    assert.equal(numbered.page.data.officialActions[0].key, 'bib');
+    const serverAuthority = detailFixture({ ...timed, regStatus: '待开赛', open: false, nodes: [{ key: 'deadline', past: true, today: true }, { key: 'draw', past: false, today: true }] }, true, '2026-11-17T17:00:00+08:00');
+    serverAuthority.page.onLoad({ id: baseRace.id }); await serverAuthority.page.load();
+    assert.ok(serverAuthority.page.data.phaseTitle.startsWith('中签结果'), 'server node precision overrides a device clock behind the cutoff');
+    const allDay = detailFixture({ ...timed, deadline: '2026-11-17', regStatus: '报名中', open: true }, true, '2026-11-17T23:59:00+08:00');
+    allDay.page.onLoad({ id: baseRace.id }); await allDay.page.load();
+    assert.equal(allDay.page.data.phaseTitle, '报名截止 · 2026-11-17', 'a date-only cutoff retains its full-day meaning');
+    const closed = detailFixture({ ...timed, drawAt: '', payDeadline: '', bibAt: '', regStatus: '待开赛', open: false }, true, '2026-11-17T18:00:01+08:00');
+    closed.page.onLoad({ id: baseRace.id }); await closed.page.load();
+    assert.equal(closed.page.data.phaseTitle, '报名已截止', 'a passed timestamp without another recorded moment cannot become an unknown date');
+    checks.push('Exact cutoff/draw/payment moments advance at their recorded instants, preserve API node authority and date-only full-day deadlines, and never retain a passed cutoff');
   }
   {
     const f = detailFixture({ ...baseRace, routeSheets: [{ id: 71 }], pacerSheets: [{ id: 72 }], guide: [{ id: 73 }], liveSheet: { id: 74 } });

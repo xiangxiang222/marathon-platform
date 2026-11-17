@@ -140,7 +140,7 @@
           <div class="edit-bar">
             <header class="edit-head">
               <div class="edit-id">
-                <p class="edit-kicker">{{ book.submissionId ? (book.status === "returned" ? "已打回" : "待审") : book.id ? "编辑赛事" : "新建赛事" }}</p>
+                <p class="edit-kicker">{{ book.submissionId ? (book.status === "published" ? "已审核发布" : book.status === "returned" ? "已打回" : "待审") : book.id ? "编辑赛事" : "新建赛事" }}</p>
                 <h2>{{ book.name.trim() || "未填写名称" }}</h2>
                 <p v-if="editMeta.length" class="edit-meta"><span v-for="part in editMeta" :key="part">{{ part }}</span></p>
               </div>
@@ -150,10 +150,11 @@
                 <button v-if="!book.id && !book.submissionId" class="text-btn" type="button" @click="closeEditor">取消</button>
                 <button type="button" class="editor-preview-toggle" :aria-pressed="previewOpen" @click="previewOpen = !previewOpen">{{ previewOpen ? '收起预览' : '预览展示' }}</button>
                 <button v-if="book.submissionId && book.status === 'pending'" class="save" type="button" :disabled="editorBusy" @click="publishBot(book)">{{ editorSaving ? '正在处理…' : '审核通过发布' }}</button>
-                <button class="save" type="submit" form="race-editor" :disabled="editorBusy">{{ editorSaving ? '正在保存…' : editorSaveLabel }}</button>
+                <button v-if="book.submissionId && book.status === 'published'" class="save" type="button" :disabled="editorBusy" @click="refreshPublishedEditor">重新加载已发布赛事</button>
+                <button v-else class="save" type="submit" form="race-editor" :disabled="editorBusy">{{ editorSaving ? '正在保存…' : editorSaveLabel }}</button>
               </div>
             </header>
-            <div class="editor-workflow"><p>{{ book.submissionId ? '保存只更新待审资料，审核通过后才展示在前台。' : book.id ? '已在赛历展示，保存修改会更新跑者看到的信息。' : '填写基础资料即可建赛，首次保存后直接展示在赛历。' }}</p><span :class="{changed:editorDirty}">{{ editorDirty ? '有未保存的修改' : !book.id && !book.submissionId ? '尚未发布' : '当前修改已保存' }}</span></div>
+            <div class="editor-workflow"><p>{{ book.status === 'published' ? '审核已通过，赛事已在赛历展示。重新加载后可继续编辑。' : book.submissionId ? '保存只更新待审资料，审核通过后才展示在前台。' : book.id ? '已在赛历展示，保存修改会更新跑者看到的信息。' : '填写基础资料即可建赛，首次保存后直接展示在赛历。' }}</p><span :class="{changed:editorDirty}">{{ editorDirty ? '有未保存的修改' : !book.id && !book.submissionId ? '尚未发布' : '当前修改已保存' }}</span></div>
             <nav class="editor-stages" aria-label="赛事编辑阶段"><div v-for="(stage,index) in editorStages" :key="stage.id" class="editor-stage" :class="{active:stage.tabs.includes(editTab)}"><button type="button" class="stage-heading" :disabled="editorBusy" :aria-pressed="stage.tabs.includes(editTab)" @click="selectEditorSection(stage.tabs[0])"><span>{{ index+1 }}</span><b>{{ stage.label }}<small>{{ index === 0 ? (sectionFilled('base') && sectionFilled('projects') ? '建赛必填已完成' : '建赛必填') : '选填 · ' + stage.tabs.filter(sectionFilled).length + '/' + stage.tabs.length + ' 项已录入' }}</small></b></button><div class="edit-nav" role="tablist" :aria-label="stage.label + '资料'"><button v-for="item in sections.filter(item=>stage.tabs.includes(item.id))" :key="item.id" type="button" role="tab" :aria-label="item.label" :aria-selected="editTab === item.id" :disabled="editorBusy" :class="{on:editTab===item.id,filled:sectionFilled(item.id),invalid:editorError?.tab===item.id}" @click="selectEditorSection(item.id)"><i aria-hidden="true"></i>{{ item.label }}<span class="section-status">{{ sectionFilled(item.id) ? '已录入' : '未录入' }}</span></button></div></div></nav>
           </div>
           <div v-if="editorError" class="editor-validation" role="alert"><b>还有一处需要核对</b><button type="button" @click="focusEditorError">{{ editorError.message }} <AdminIcon name="arrow" /></button></div>
@@ -164,7 +165,7 @@
             <label class="field"><span>打回原因</span><input v-model="book.returnNote" maxlength="200" placeholder="打回原因" /></label>
             <button class="undo" type="submit">打回</button>
           </form>
-          <form id="race-editor" class="check-form guide-form" @submit.prevent="saveGuide" @input="clearEditorError"><fieldset class="editor-fieldset" :disabled="editorBusy">
+          <form id="race-editor" class="check-form guide-form" @submit.prevent="saveGuide" @input="clearEditorError"><fieldset class="editor-fieldset" :disabled="editorBusy || book.status === 'published'">
             <section v-show="editorSectionVisible('base')" :id="'editor-section-base'" class="section">
               <h3>基本信息 <small>建赛必填</small></h3><p class="note">填写名称、日期和举办地点，再选择比赛项目。其余资料可在发布后补充。</p>
               <div class="pair">
@@ -1141,18 +1142,50 @@ const editorNodeFields=[
   {field:'bibAt',label:'号码公布',hint:'号码查询开放日，独立于领物安排。'}
 ];
 function originalNode(field){const fields=['regStart','deadline','drawAt','payDeadline','deadlineName'];return (nodeOrigin.value||'').split('|')[fields.indexOf(field)]||'';}
-const previewBook=computed(()=>{if(!book.value)return {};const row={...book.value};if(row.id&&!row.submissionId)for(const field of ['regStart','deadline','drawAt','payDeadline','deadlineName'])row[field]=row[field]||originalNode(field);return row;});
+const editorSourceBase=ref(null);
+const previewBook=computed(()=>{
+  if(!book.value)return {};
+  const row={...book.value},baseline=editorSourceBase.value;
+  if(row.submissionId&&baseline?.submissionId===row.submissionId){
+    // Review publishing keeps existing optional data when the submitted field is empty.
+    const stored=baseline.race||{};
+    row.rawNodeTimes={...row.rawNodeTimes};
+    for(const field of ['regStart','deadline','drawAt','payDeadline'])if(!row[field])row.rawNodeTimes[field]=stored.rawNodeTimes?.[field]||stored[field]||'';
+    for(const field of ['place','district','startAt','bibAt','fee','scale','phone','signupUrl','drawUrl','bibUrl','resultUrl','liveUrl','eventUrl','officialUrl','organizer','grade','route','pickup','pacers','guideText','regStart','deadline','drawAt','payDeadline','deadlineName'])row[field]=row[field]||stored[field]||'';
+    if(!row.officialUrl&&/^\d{1,12}$/.test(String(baseline.officialId||'')))row.officialUrl='https://www.runchina.org.cn/#/race/v/detail/'+baseline.officialId;
+    for(const field of ['coverSheet','liveSheet','guide','routeSheets','pacerSheets'])row[field]=stored[field]||row[field];
+  }else if(row.id&&!row.submissionId){
+    for(const field of ['regStart','deadline','drawAt','payDeadline','deadlineName'])row[field]=row[field]||originalNode(field);
+    let stored={};try{stored=JSON.parse(lastBaseSaved.value||'{}');}catch{}
+    for(const field of ['eventUrl','officialUrl'])row[field]=row[field]||(baseline?.raceId===row.id?baseline.race?.[field]:'')||stored[field]||'';
+  }
+  return row;
+});
 function editorSectionVisible(id){return editorStages.some(stage=>stage.tabs.includes(id)&&stage.tabs.includes(editTab.value));}
 function selectEditorSection(id){editTab.value=id;nextTick(()=>document.getElementById('editor-section-'+id)?.scrollIntoView({block:'start',behavior:'smooth'}));}
 const previewQueues=computed(()=>({guide:guideQueue.value,route:routeQueue.value,pacer:pacerQueue.value,live:liveQueue.value,cover:coverQueue.value}));
 const editorSaveLabel=computed(()=>book.value?.submissionId?'保存待审资料':book.value?.id?'保存修改':'新建并发布到赛历');
+const childBaselines=ref({});
+function childFormValue(kind){
+  if(kind==='news')return JSON.stringify(raceNewsDraft.value);
+  if(kind==='draw')return JSON.stringify([drawLabel.value,drawApplicants.value,drawQuota.value,drawSource.value]);
+  return JSON.stringify(draftPrize());
+}
+function markChildSaved(kind){childBaselines.value[kind]=childFormValue(kind);}
+function resetChildForms(){
+  raceNewsDraft.value=blankRaceNews();
+  drawLabel.value='';drawApplicants.value='';drawQuota.value='';drawSource.value='';
+  prizeDistance.value='full';prizeKind.value='age';prizeGender.value='';prizeAgeMin.value=0;prizeAgeMax.value=0;prizeProvince.value='';prizePlace.value=8;prizeBreak.value='';prizeAmount.value=0;prizeTax.value=0;prizeStack.value=false;prizeSource.value='';prizeCutoff.value='';prizeCutoffSource.value='';prizeNote.value='';
+  for(const kind of ['news','draw','prize'])markChildSaved(kind);
+}
+const childFormsDirty=computed(()=>['news','draw','prize'].some(kind=>childBaselines.value[kind]!=null&&childFormValue(kind)!==childBaselines.value[kind]));
 function editorFingerprint(){
   if(!book.value)return '';
   const row={...book.value};
   for(const field of ['guide','routeSheets','pacerSheets','liveSheet','coverSheet','returnNote'])delete row[field];
   return JSON.stringify({row,prizes:row.submissionId?prizes.value.map(prizeInput):[],draws:row.submissionId?draws.value.map(({label,applicants,quota,source})=>({label,applicants,quota,source})):[]});
 }
-const editorDirty=computed(()=>!!book.value&&(editorFingerprint()!==editorSnapshot.value||guideQueue.value.length>0||routeQueue.value.length>0||pacerQueue.value.length>0||!!liveQueue.value||!!coverQueue.value||saveSteps.value.some(step=>step.status==='failed')));
+const editorDirty=computed(()=>!!book.value&&(editorFingerprint()!==editorSnapshot.value||childFormsDirty.value||guideQueue.value.length>0||routeQueue.value.length>0||pacerQueue.value.length>0||!!liveQueue.value||!!coverQueue.value||saveSteps.value.some(step=>step.status==='failed')));
 function markEditorSaved(){editorSnapshot.value=editorFingerprint();}
 function canLeaveEditor(){
   if(editorBusy.value){message.value='赛事资料正在处理，请稍候。';saved.value=false;return false;}
@@ -2087,9 +2120,12 @@ async function openReview(item) {
   editorOpening.value=true;
   try {
     const row = await admin("/admin/bot-races/" + item.id);
+    const existing=row.raceId?await api('/races/'+row.raceId):null;
     clearQueues();
     editTab.value = "base";
     book.value = bookFromSubmission(row);
+    resetChildForms();
+    editorSourceBase.value={submissionId:row.id,raceId:row.raceId||'',officialId:row.officialId||'',race:existing?.race?blankBook(existing.race):null};
     prizes.value = (row.prizes || []).map((prize) => prizeView(prize));
     draws.value = (row.draws || []).map((draw) => drawView(draw));
     settlePlace();
@@ -2114,7 +2150,7 @@ async function loadBotReviews() {
   botPage.value = data.page || 1;
   pendingCount.value = data.pendingCount || 0;
   botReady.value = true;
-  if (book.value && book.value.submissionId && !botRows.value.some((row) => row.id === book.value.submissionId)) closeEditor();
+  if (!editorBusy.value && book.value?.submissionId && book.value.status !== 'published' && !botRows.value.some((row) => row.id === book.value.submissionId)) closeEditor();
 }
 
 function todayText() {
@@ -2357,19 +2393,32 @@ async function publishBot(item) {
       if (!ok) return;
     }
     editorSaving.value=true;
-    await admin("/admin/bot-races/" + id + "/publish", { method: "POST", body: "{}" });
-    const published=await admin('/admin/bot-races/'+id);
-    if(book.value?.submissionId===id&&published.raceId){
-      const data=await api('/races/'+published.raceId);book.value=blankBook(data.race);book.value.raceId=data.race.id;
-      nodeOrigin.value=nodesKey(book.value);lastBaseSaved.value=JSON.stringify(guideBody(book.value));markEditorSaved();
-      saveSteps.value=[{id:'approval',label:'审核通过并发布到赛历',status:'done'}];
-    }
+    const published=await admin("/admin/bot-races/" + id + "/publish", { method: "POST", body: "{}" });
+    if(book.value?.submissionId===id){book.value.status='published';book.value.raceId=published.raceId;markEditorSaved();}
+    saveSteps.value=[{id:'approval',label:'审核通过并发布到赛历',status:'done'}];
     saved.value = true;
     message.value = "审核已通过，赛事已发布到赛历。";
-    await Promise.all([loadBotReviews(), load(), loadCatalog()]);
+    const refreshed=await Promise.allSettled([readPublishedEditor(published.raceId),loadBotReviews(),load(),loadCatalog()]);
+    const errors=refreshed.filter(result=>result.status==='rejected').map(result=>result.reason.message);
+    if(errors.length)message.value+=' 最新资料刷新失败：'+[...new Set(errors)].join('；')+'。可重新加载已发布赛事或刷新列表，无需重复发布。';
   } catch (err) {
     fail(err);
   } finally {editorSaving.value=false;}
+}
+
+async function readPublishedEditor(id){
+  if(!id)return;
+  const data=await api('/races/'+id);
+  book.value=blankBook(data.race);book.value.raceId=id;
+  editorSourceBase.value={raceId:id,race:blankBook(data.race)};
+  nodeOrigin.value=nodesKey(book.value);lastBaseSaved.value=JSON.stringify(guideBody(book.value));markEditorSaved();
+}
+async function refreshPublishedEditor(){
+  if(editorBusy.value||!book.value?.raceId)return;
+  editorOpening.value=true;
+  try{await readPublishedEditor(book.value.raceId);saved.value=true;message.value='已重新加载已发布赛事，可继续编辑。';}
+  catch(error){saved.value=true;message.value='赛事已经发布，但最新资料仍未加载：'+error.message+'。请重试重新加载，无需重复发布。';}
+  finally{editorOpening.value=false;}
 }
 
 async function returnBot(item) {
@@ -2489,6 +2538,7 @@ function blankBook(race) {
     deadline: dayOf(race.deadline),
     drawAt: dayOf(race.drawAt),
     payDeadline: dayOf(race.payDeadline),
+    rawNodeTimes: Object.fromEntries(['regStart','deadline','drawAt','payDeadline'].map(field=>[field,race[field]||''])),
     deadlineName: race.known && race.deadlineName && race.deadlineName !== "报名" ? race.deadlineName : "",
     nodeSource: ""
   };
@@ -2721,6 +2771,7 @@ function startDraft() {
   clearQueues();
   editTab.value = "base";
   book.value = emptyBook();
+  resetChildForms();
   prizes.value = [];
   draws.value = [];
   raceNews.value = [];
@@ -2735,18 +2786,21 @@ function blankRaceNews() {
 }
 
 async function loadRaceNews(id) {
-  raceNewsDraft.value = blankRaceNews();
   if (!id) {
     raceNews.value = [];
     raceNewsWaiting.value = [];
+    raceNewsDraft.value=blankRaceNews();markChildSaved('news');
     return;
   }
   const data = await admin("/admin/races/" + id + "/news");
   raceNews.value = data.news || [];
   raceNewsWaiting.value = data.waiting || [];
+  raceNewsDraft.value=blankRaceNews();markChildSaved('news');
 }
 
 function editRaceNews(item) {
+  if(editorBusy.value)return;
+  if(childFormValue('news')!==childBaselines.value.news&&!window.confirm('这条资讯有未保存的修改，确定放弃并打开另一条吗？'))return;
   raceNewsDraft.value = {
     id: item.id,
     title: item.title,
@@ -2754,9 +2808,11 @@ function editRaceNews(item) {
     source: item.source,
     publishedAt: item.publishedAt
   };
+  markChildSaved('news');
 }
 
 async function saveRaceNews() {
+  if(editorBusy.value)return;
   const raceId = raceNewsId.value;
   const draft = raceNewsDraft.value;
   if (!raceId) return fail(new Error("这场还没进赛历，保存或通过后再挂资讯"));
@@ -2773,15 +2829,17 @@ async function saveRaceNews() {
     source: draft.source.trim(),
     publishedAt: draft.publishedAt
   };
+  editorSaving.value=true;
   try {
     const path = draft.id ? "/admin/news/" + draft.id : "/admin/news";
     await admin(path, { method: draft.id ? "PUT" : "POST", body: JSON.stringify(body) });
     saved.value = true;
-    message.value = "已挂在这场上";
-    await loadRaceNews(raceId);
+    message.value = "赛事资讯已保存并发布。";
+    raceNewsDraft.value=blankRaceNews();markChildSaved('news');
+    try{await loadRaceNews(raceId);}catch(error){message.value+=' 列表刷新失败：'+error.message+'，无需重复发布。';}
   } catch (err) {
     fail(err);
-  }
+  } finally{editorSaving.value=false;}
 }
 
 async function removeRaceNews(item) {
@@ -2903,7 +2961,7 @@ function draftPrize() {
 }
 
 async function createDraw() {
-  if (!book.value) return;
+  if (!book.value || editorBusy.value) return;
   if (book.value.submissionId) {
     const rule = {
       label: String(drawLabel.value || "").trim(),
@@ -2919,6 +2977,7 @@ async function createDraw() {
     drawApplicants.value = "";
     drawQuota.value = "";
     drawSource.value = "";
+    markChildSaved('draw');
     saved.value = false;
     message.value = "";
     return;
@@ -2926,6 +2985,7 @@ async function createDraw() {
   if (!book.value.id) return;
   message.value = "";
   saved.value = false;
+  editorSaving.value=true;
   try {
     await admin("/admin/races/" + book.value.id + "/draws", {
       method: "POST",
@@ -2940,11 +3000,13 @@ async function createDraw() {
     drawApplicants.value = "";
     drawQuota.value = "";
     drawSource.value = "";
+    markChildSaved('draw');
     saved.value = true;
-    await loadDraws(book.value.id);
+    message.value='历届中签资料已保存。';
+    try{await loadDraws(book.value.id);}catch(error){message.value+=' 列表刷新失败：'+error.message+'，无需重复提交。';}
   } catch (err) {
     fail(err);
-  }
+  } finally{editorSaving.value=false;}
 }
 
 async function removeDraw(item) {
@@ -2972,7 +3034,7 @@ async function loadPrizes(id) {
 }
 
 async function createPrize() {
-  if (!book.value) return;
+  if (!book.value || editorBusy.value) return;
   if (book.value.submissionId) {
     const rule = draftPrize();
     const error = prizeError(rule);
@@ -2981,6 +3043,7 @@ async function createPrize() {
     book.value.prizesSet = true;
     prizeSource.value = "";
     prizeNote.value = "";
+    markChildSaved('prize');
     saved.value = false;
     message.value = "";
     return;
@@ -2988,6 +3051,7 @@ async function createPrize() {
   if (!book.value.id) return;
   message.value = "";
   saved.value = false;
+  editorSaving.value=true;
   try {
     await admin("/admin/races/" + book.value.id + "/prizes", {
       method: "POST",
@@ -3011,11 +3075,13 @@ async function createPrize() {
     });
     prizeSource.value = "";
     prizeNote.value = "";
+    markChildSaved('prize');
     saved.value = true;
-    await loadPrizes(book.value.id);
+    message.value='奖项资料已保存。';
+    try{await loadPrizes(book.value.id);}catch(error){message.value+=' 列表刷新失败：'+error.message+'，无需重复提交。';}
   } catch (err) {
     fail(err);
-  }
+  } finally{editorSaving.value=false;}
 }
 
 async function removePrize(item) {
@@ -3111,6 +3177,8 @@ async function openGuide(id) {
     clearQueues();
     editTab.value = "base";
     book.value = blankBook(data.race);
+    resetChildForms();
+    editorSourceBase.value={raceId:data.race.id,race:blankBook(data.race)};
     await loadPrizes(data.race.id);
     await loadDraws(data.race.id);
     await loadRaceNews(data.race.id);
@@ -3183,10 +3251,10 @@ function submissionBody(row) {
 
 async function saveSubmission(quiet) {
   const row = book.value;
-  if (!row || !row.submissionId || editorBusy.value) return false;
+  if (!row || !row.submissionId || row.status==='published' || editorBusy.value) return false;
   message.value = "";
   saved.value = false;
-  const invalid=validateRaceEditor(row,{nodesTouched:true});if(invalid){setEditorError(invalid);return false;}
+  const invalid=validateRaceEditor(row,{nodesTouched:true,originalNodes:editorSourceBase.value?.race||{}});if(invalid){setEditorError(invalid);return false;}
   editorSaving.value=true;editorError.value=null;saveSteps.value=[];
   const step=saveStep('submission','保存待审资料');
   try {
@@ -3195,8 +3263,9 @@ async function saveSubmission(quiet) {
     saved.value = true;
     if (!quiet) message.value = "待审资料已保存，尚未发布到赛历。";
     nodeOrigin.value = nodesKey(row);
-    await loadBotReviews();
     markEditorSaved();
+    try{await loadBotReviews();}
+    catch(error){if(!quiet)message.value+=' 审核列表刷新失败：'+error.message+'。资料已保存，无需重复提交。';}
     return true;
   } catch (err) {
     step.status='failed';step.error=err.message;
@@ -3206,6 +3275,7 @@ async function saveSubmission(quiet) {
 }
 
 async function saveGuide() {
+  if(book.value?.status==='published')return;
   if (book.value && book.value.submissionId) return saveSubmission();
   if(editorBusy.value)return;
   message.value = "";
@@ -3213,7 +3283,9 @@ async function saveGuide() {
   const row = book.value;
   if(!row)return;
   const nodesTouched = nodesKey(row) !== nodeOrigin.value || row.nodeSource.trim();
-  const invalid=validateRaceEditor(row,{nodesTouched,originalNodes: Object.fromEntries(['regStart','deadline','drawAt','payDeadline'].map(field=>[field,originalNode(field)]))});if(invalid){setEditorError(invalid);return;}
+  let baseBefore={};try{baseBefore=JSON.parse(lastBaseSaved.value||'{}');}catch{}
+  const scheduleChanged=!!row.id&&(row.raceDate!==baseBefore.raceDate||row.meet!==baseBefore.meet);
+  const invalid=validateRaceEditor(row,{nodesTouched,scheduleChanged,originalNodes: Object.fromEntries(['regStart','deadline','drawAt','payDeadline'].map(field=>[field,originalNode(field)]))});if(invalid){setEditorError(invalid);return;}
   const creating = !row.id;
   let id = row.id;
   const baseBody=JSON.stringify(guideBody(row));
@@ -3237,7 +3309,7 @@ async function saveGuide() {
     const queues=[['cover',coverQueue.value],['guide',guideQueue.value],['route',routeQueue.value],['pacer',pacerQueue.value],['live',liveQueue.value]];
     const uploads=queues.filter(([,queue])=>Array.isArray(queue)?queue.length:!!queue);
     if(uploads.length)pending.push({id:'media',label:'上传赛事图片与资料',run:()=>uploadQueuedMedia(id)});
-    for(const item of pending){const step=saveStep(item.id,item.label);try{const result=await item.run();step.status='done';if(item.id==='nodes'){if(result?.race)for(const field of ['regStart','deadline','drawAt','payDeadline'])row[field]=dayOf(result.race[field]);nodeOrigin.value=nodesKey(row);row.nodeSource='';markEditorSaved();}}catch(error){step.status='failed';step.error=error.message;if(error.field)setEditorError(raceEditorError(error.field,error.message));}}
+    for(const item of pending){const step=saveStep(item.id,item.label);try{const result=await item.run();step.status='done';if(item.id==='nodes'){if(result?.race){row.rawNodeTimes={...row.rawNodeTimes};for(const field of ['regStart','deadline','drawAt','payDeadline']){row[field]=dayOf(result.race[field]);row.rawNodeTimes[field]=result.race[field]||'';}}nodeOrigin.value=nodesKey(row);row.nodeSource='';markEditorSaved();}}catch(error){step.status='failed';step.error=error.message;if(error.field)setEditorError(raceEditorError(error.field,error.message));}}
     let refreshError='';
     try{if(!saveSteps.value.some(item=>item.status==='failed')){const opened=await api('/races/'+id);const fresh=blankBook(opened.race);Object.assign(row,fresh);row.raceId=id;settlePlace();nodeOrigin.value=nodesKey(row);lastBaseSaved.value=JSON.stringify(guideBody(row));}}
     catch(error){refreshError=error.message;}

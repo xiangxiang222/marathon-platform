@@ -57,7 +57,8 @@ function httpsUrl(value) {
 function day(value) {
   const text = clip(value, 10);
   if (!text) return { text: "" };
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(text)) return { error: "日期须为 2026-10-28 这种格式" };
+  const date = new Date(text + "T00:00:00Z");
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(text) || !Number.isFinite(date.getTime()) || date.toISOString().slice(0, 10) !== text) return { error: "请填写真实的日期，格式如 2026-10-28" };
   return { text };
 }
 
@@ -169,10 +170,9 @@ function parseRace(body, now, options) {
   if (kinds.error) return kinds;
   const meet = meetOf(source.meet);
   if (meet.error) return meet;
-  const offRoad = kinds.kinds.includes("trail") || kinds.kinds.includes("ultra");
-  if (!distances.distances.length && !offRoad) return { error: "项目选全马、半马、10公里或5公里；越野和超马可以不选" };
   const groups = groupsOf(source);
   if (groups.error) return groups;
+  if (!distances.distances.length && !kinds.kinds.length && !groups.groups.length) return { error: "请至少选择一个项目，或填写其他组别" };
   const dates = {};
   for (const key of ["regStart", "deadline", "drawAt", "payDeadline", "bibAt"]) {
     const parsed = day(source[key]);

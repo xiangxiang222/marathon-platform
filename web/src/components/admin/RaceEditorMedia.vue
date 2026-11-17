@@ -11,17 +11,29 @@
       <div v-for="item in queue" :key="item.url" class="media-tile" :class="{ failed:item.status==='failed' }"><button class="media-preview" type="button" :aria-label="'预览待上传的' + label" @click="preview(item.url)"><img :src="item.url" :alt="'待上传的' + label" /><span>放大查看 ↗</span></button><span class="media-state"><i></i>{{ item.status==='uploading' ? '正在上传…' : item.status==='failed' ? '上传失败 · 文件已保留' : '待发布上传' }}</span><p v-if="item.error" class="media-error" role="alert">{{ item.error }}</p><div><button v-if="item.status==='failed' && existing" type="button" :disabled="busy" @click="$emit('retry',item)">重试上传</button><button type="button" :disabled="busy" @click="$emit('drop',item)">取消</button></div></div>
     </div>
     <label v-if="single || count < limit" class="media-upload" :class="{disabled:busy}"><span class="media-add" aria-hidden="true">＋</span><span>{{ busy ? '正在处理…' : single && count ? '替换' + label : '添加' + label }}</span><input type="file" accept="image/jpeg,image/png,image/webp" :disabled="busy" :aria-label="'上传' + label" @change="$emit('select',$event)" /></label>
-    <dialog ref="dialog" class="media-dialog" :aria-label="label + '大图预览'" @click="dismissBackdrop"><header><span>{{ label }} · 图片预览</span><button type="button" aria-label="关闭图片预览" @click="dialog.close()">关闭 ✕</button></header><img v-if="previewSrc" :src="previewSrc" :alt="label" /></dialog>
+    <dialog ref="dialog" class="media-dialog" :aria-label="label + '大图预览'" @click="dismissBackdrop" @close="restorePreviewPosition"><header><span>{{ label }} · 图片预览</span><button type="button" autofocus aria-label="关闭图片预览" @click="dialog.close()">关闭 ✕</button></header><img v-if="previewSrc" :src="previewSrc" :alt="label" /></dialog>
   </section>
 </template>
 <script setup>
-import { computed, reactive, ref } from 'vue';
+import { computed, onBeforeUnmount, reactive, ref } from 'vue';
 const props=defineProps({label:String,kind:String,sheets:{type:Array,default:()=>[]},queue:{type:Array,default:()=>[]},limit:{type:Number,default:1},busy:Boolean,existing:Boolean,sheetSrc:{type:Function,required:true}});
 defineEmits(['select','remove','drop','retry']);
 const single=computed(()=>['cover','live'].includes(props.kind));
 const count=computed(()=>single.value ? Number(!!(props.sheets.length||props.queue.length)) : props.sheets.length+props.queue.length);
 const broken=reactive({}),dialog=ref(null),previewSrc=ref('');
-function preview(src){previewSrc.value=src;dialog.value?.showModal();}
+let previewPosition=null,previousFocus=null,previousBodyOverflow='';
+function preview(src){
+  if(!dialog.value||dialog.value.open)return;
+  previewPosition={left:window.scrollX,top:window.scrollY};previousFocus=document.activeElement;previousBodyOverflow=document.body.style.overflow;
+  previewSrc.value=src;dialog.value.showModal();document.body.style.overflow='hidden';
+}
+function restorePreviewPosition(){
+  if(!previewPosition)return;
+  const position=previewPosition;previewPosition=null;document.body.style.overflow=previousBodyOverflow;
+  previousFocus?.focus?.({preventScroll:true});window.scrollTo({...position,behavior:'instant'});
+  requestAnimationFrame(()=>{if(!dialog.value?.open)window.scrollTo({...position,behavior:'instant'});});
+}
+onBeforeUnmount(()=>{if(previewPosition)document.body.style.overflow=previousBodyOverflow;});
 function dismissBackdrop(event){if(event.target!==dialog.value)return;const bounds=dialog.value.getBoundingClientRect();if(event.clientX<bounds.left||event.clientX>bounds.right||event.clientY<bounds.top||event.clientY>bounds.bottom)dialog.value.close();}
 </script>
 <style scoped>
