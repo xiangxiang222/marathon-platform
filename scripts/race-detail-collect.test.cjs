@@ -1,6 +1,6 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { groupOf, statusOf, splitSections, uniqueText, publicUrl, Collector, sameEdition, registrationDates, registrationOfDocuments, readableOcr, usefulMedia, assembleCollection } = require('./race-detail-collect.cjs');
+const { groupOf, statusOf, splitSections, uniqueText, publicUrl, Collector, sameEdition, bodyIdentityConflict, scheduleOfDocuments, registrationDates, registrationOfDocuments, readableOcr, usefulMedia, assembleCollection } = require('./race-detail-collect.cjs');
 
 test('actual trail distance and complete family package remain separate from advertised distance', () => {
   const group = groupOf({name:'10公里梯田筑梦组（亲子组1大1小）', description:'10公里梯田筑梦组（亲子组）：500人，出赛道里程13.5km，累计爬升816m，累计下降816m，发时间11月21日8:00，关门时间11月21日13:00，关门时长5h',price:'196.00',status:'已截止',url:'https://reg.zuicool.com/77675/244232'});
@@ -42,6 +42,18 @@ test('current registration deadline is read independently of the race-day and pr
   const documents = [{url:'https://reg.zuicool.com/64585',header:'延期提示：从2026年11月15日延期至2027年1月10日举办\n赛事日期：2027年1月10日星期日\n报名截止时间：2026年12月20日 23:59:59'}];
   const sections = [{title:'报名时间与费用',text:'延期提示：从2026年11月15日延期至2027年1月10日举办\n比赛时间：2027年1月9日-10日\n早鸟报名时间：2026年9月1日-9月2日'}];
   assert.deepEqual(registrationOfDocuments(documents,sections),{opensAt:'',closesAt:'2026-12-20T23:59:59+08:00'});
+});
+test('schedule comes only from an explicit current event-date header', () => {
+  assert.deepEqual(scheduleOfDocuments([{header:'2026烈火英雄线上马拉松 报名中\n赛事日期：2026年11月12日星期四 ~ 2026年11月23日星期一',text:'报名时间：2026年11月1日-11月22日\n延期提示：从10月25日延期至11月12日'}]),{startDate:'2026-11-12',endDate:'2026-11-23'});
+  assert.deepEqual(scheduleOfDocuments([{header:'2026赛事 报名中\n报名时间：2026年11月12日-11月23日',text:'比赛日期：2026年11月30日'}]),null);
+});
+test('a mismatched body event name is audited and excluded from the public guide', () => {
+  const bad={url:'https://zuicool.com/event/57989',header:'2026烈火英雄线上马拉松\n场次组别',text:'主办单位：全民一起跑\n赛事名称：2026跑遍中国线上系列赛-哈尔滨站\n赛事时间：2026.11.12 08:00--2026.11.23 12:00',packages:[],images:[],links:[],capture:{at:'now',method:'html',fresh:true}};
+  const good={url:'https://reg.zuicool.com/88340',header:'2026烈火英雄线上马拉松 报名中\n赛事日期：2026年11月12日星期四 ~ 2026年11月23日星期一',title:'2026烈火英雄线上马拉松',text:'赛事名称：2026烈火英雄线上马拉松\n赛事时间：2026.11.12 08:00--2026.11.23 12:00',packages:[{name:'10公里组',price:'39',status:'报名中',description:''}],images:[],links:[],capture:{at:'now',method:'html',fresh:true}};
+  assert.equal(bodyIdentityConflict('2026烈火英雄线上马拉松',bad).error,'declared_race_name_mismatch');
+  const result=assembleCollection({name:'2026烈火英雄线上马拉松',docs:[bad,good],groups:[groupOf(good.packages[0])] ,media:[]});
+  assert.match(result.guideText,/2026烈火英雄线上马拉松/); assert.doesNotMatch(result.guideText,/哈尔滨/);
+  assert.equal(result.details.audit.bodyConflicts[0].url,bad.url); assert.deepEqual(result.details.schedule,{startDate:'2026-11-12',endDate:'2026-11-23'});
 });
 test('OCR preserves fee-table row and column relationships and archives decorative evidence', () => {
   const table = {text:'报名费用\n25公里组\n早鸟价\n178元\n普通价\n198元',lines:[
