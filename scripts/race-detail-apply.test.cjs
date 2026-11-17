@@ -26,6 +26,16 @@ test('later collection preserves manual edits and stronger verified entrance not
   assert.equal(next.details.registration.status,'cancelled');
 });
 
+test('an image-only capture without a checked transcription never clears a saved guide', () => {
+  const previous = writeDetails('已确认：实际里程13.5公里，累计爬升816米。', {...collected.details,sections:[{title:'路线',text:'13.5公里，816米'}]});
+  const noText = {...collected,guideText:'',details:{...collected.details,sections:[],audit:{imageReviews:[{imageUrl:'https://example.org/route.jpg',status:'pending'}]}}};
+  const next = readDetails(reconcileGuide(previous,noText).value);
+  assert.equal(next.text,readDetails(previous).text);
+  assert.deepEqual(next.details.sections,readDetails(previous).details.sections);
+  assert.equal(next.details.audit.missingApprovedReplacement,true);
+  assert.equal(next.details.audit.imageReviews[0].status,'pending');
+});
+
 test('a later blocked package preserves complete group facts, family options and fee phases', () => {
   const previous = writeDetails('完整规程', { ...collected.details, groups: [
     { name:'10公里个人组', actualDistanceKm:13.5, ascentM:816, fees:[{label:'普通价',amount:98,unit:'人'},{label:'早鸟价',amount:88,unit:'人'}] },

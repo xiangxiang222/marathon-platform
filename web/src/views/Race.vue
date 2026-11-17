@@ -162,29 +162,24 @@
       </details>
     </template>
     <template v-if="race && tab === 'guide'">
-      <p v-if="!dayNotes.length && !routeSheets.length && !race.pacerSheets.length && !guideBlocks.length && !race.guide.length" class="block quiet-state">参赛指南尚未录入，后续资料将在这里更新。</p>
-      <nav class="guide-index" aria-label="参赛指南目录"><button v-for="section in guideSections" :key="section.id" type="button" @click="goToGuide(section.id)">{{ section.label }}<span :class="{ missing: !section.hasContent }">{{ section.hasContent ? '查看' : '未录入' }}</span></button></nav>
-      <section id="guide-route" class="block guide-section"><h2>赛道与路线</h2><p v-if="race.route" class="guide-note">{{ race.route }}</p><p v-if="!race.route && !routeSheets.length" class="src">路线资料尚未录入。</p><div class="pacer-photos"><RaceMedia v-for="(sheet, index) in routeSheets" :key="sheet.id" :src="sheetSrc(sheet.id)" :alt="'路线图 ' + (index + 1)" @open="openSheet(sheet.id)" /></div></section>
-      <section id="guide-pickup" class="block guide-section"><h2>领物与比赛日</h2><div v-if="race.startAt" class="row"><span>比赛日起跑</span><b>{{ race.startAt }}</b></div><p class="guide-note" :class="{ src: !race.pickup }">{{ race.pickup || '领物及比赛日安排尚未录入。' }}</p></section>
-      <section id="guide-pacers" class="block guide-section"><h2>配速与官方领跑员</h2><p v-if="race.pacers" class="guide-note">{{ race.pacers }}</p><p v-if="!race.pacers && !race.pacerSheets.length" class="src">配速资料尚未录入。</p><div class="pacer-photos"><RaceMedia v-for="(sheet, index) in race.pacerSheets" :key="sheet.id" :src="sheetSrc(sheet.id)" :alt="'配速资料 ' + (index + 1)" @open="openSheet(sheet.id)" /></div></section>
-
-      <div id="guide-rules" class="block guide-section">
-        <h2>竞赛规程</h2>
-        <p class="src">{{ guideBlocks.length || race.guide.length ? '参赛资格、奖励及关门安排，以组委会规程为准。' : '竞赛规程尚未录入。' }}</p>
-        <div v-if="guideBlocks.length" class="guide-md">
+      <p v-if="!guideSections.length" class="block quiet-state">参赛指南尚未录入，后续资料将在这里更新。</p>
+      <nav v-if="guideSections.length" class="guide-index" aria-label="参赛指南目录"><button v-for="section in guideSections" :key="section.id" type="button" @click="goToGuide(section.id)">{{ section.label }}<span aria-hidden="true">↓</span></button></nav>
+      <section v-if="guideBlocks.length" id="guide-rules" class="block guide-section guide-body">
+        <div class="guide-md">
           <template v-for="block in guideBlocks" :key="block.i">
-            <div v-if="block.kind === 'table'" class="guide-table-scroll" tabindex="0" role="region" aria-label="赛事资料表格"><table class="guide-table"><thead><tr><th v-for="cell in block.headers" :key="cell.j" scope="col"><span v-for="run in cell.runs" :key="run.j" :class="{ 'md-strong': run.strong }">{{ run.text }}</span></th></tr></thead><tbody><tr v-for="row in block.rows" :key="row.r"><td v-for="cell in row.cells" :key="cell.j"><span v-for="run in cell.runs" :key="run.j" :class="{ 'md-strong': run.strong }">{{ run.text }}</span></td></tr></tbody></table></div>
+            <div v-if="block.kind === 'table'" class="guide-table-wrap"><p class="guide-table-hint">可横向滑动查看完整表格</p><div class="guide-table-scroll" tabindex="0" role="region" aria-label="赛事资料表格，可横向滚动"><table class="guide-table" :style="{ minWidth: block.width + 'px' }"><thead><tr><th v-for="cell in block.headers" :key="cell.j" scope="col"><span v-for="run in cell.runs" :key="run.j" :class="{ 'md-strong': run.strong }">{{ run.text }}</span></th></tr></thead><tbody><tr v-for="row in block.rows" :key="row.r"><td v-for="cell in row.cells" :key="cell.j"><span v-for="run in cell.runs" :key="run.j" :class="{ 'md-strong': run.strong }">{{ run.text }}</span></td></tr></tbody></table></div></div>
             <RaceMedia v-else-if="block.kind === 'image'" :src="block.src" :alt="block.alt" @open="viewer = block.src" />
-            <component v-else :is="/^h[1-4]$/.test(block.kind) ? block.kind : 'p'" :class="'md md-' + block.kind"><span v-if="block.mark" class="md-mark">{{ block.mark }}</span><template v-for="run in block.runs" :key="run.j"><strong v-if="run.strong">{{ run.text }}</strong><template v-else>{{ run.text }}</template></template></component>
+            <component v-else :is="/^h[1-4]$/.test(block.kind) ? block.kind : 'p'" :id="'guide-chapter-' + block.i" :class="'md md-' + block.kind"><span v-if="block.mark" class="md-mark">{{ block.mark }}</span><template v-for="run in block.runs" :key="run.j"><strong v-if="run.strong">{{ run.text }}</strong><template v-else>{{ run.text }}</template></template></component>
           </template>
         </div>
-        <template v-if="race.guide.length">
-          <h3>原页</h3>
-          <p v-if="guideBlocks.length" class="src">正文在上面。原页留着对照。</p>
-          <p v-else class="src">正文还没整理，下面是组委会公布的原页。</p>
-          <RaceMedia v-for="(sheet, index) in race.guide" :key="sheet.id" :src="sheetSrc(sheet.id)" :alt="'竞赛规程 · 第 ' + (index + 1) + ' 页'" @open="openSheet(sheet.id)" />
-        </template>
-      </div>
+      </section>
+      <section v-if="guideExtras.pickup" id="guide-pickup" class="block guide-section"><h2>领物与比赛日</h2><p class="guide-note">{{ guideExtras.pickup }}</p></section>
+      <section v-if="guideExtras.route || extraRouteSheets.length" id="guide-route" class="block guide-section"><h2>赛道与路线</h2><p v-if="guideExtras.route" class="guide-note">{{ guideExtras.route }}</p><div class="pacer-photos"><RaceMedia v-for="(sheet, index) in extraRouteSheets" :key="sheet.id" :src="sheetSrc(sheet.id)" :alt="sheetCaption(race, sheet, '路线图 ' + (index + 1))" @open="openSheet(sheet.id)" /></div></section>
+      <section v-if="guideExtras.pacers || extraPacerSheets.length" id="guide-pacers" class="block guide-section"><h2>配速与官方领跑员</h2><p v-if="guideExtras.pacers" class="guide-note">{{ guideExtras.pacers }}</p><div class="pacer-photos"><RaceMedia v-for="(sheet, index) in extraPacerSheets" :key="sheet.id" :src="sheetSrc(sheet.id)" :alt="sheetCaption(race, sheet, '配速资料 ' + (index + 1))" @open="openSheet(sheet.id)" /></div></section>
+      <section v-if="extraGuideSheets.length" id="guide-originals" class="block guide-section guide-originals">
+        <button type="button" class="guide-originals-toggle" :aria-expanded="guideOriginalsOpen || !guideBlocks.length" aria-controls="guide-original-images" @click="guideOriginalsOpen = !guideOriginalsOpen"><span>规程原图参考<small>共 {{ extraGuideSheets.length }} 张 · 可放大核对</small></span><span aria-hidden="true">{{ guideOriginalsOpen || !guideBlocks.length ? '−' : '＋' }}</span></button>
+        <div id="guide-original-images" v-show="guideOriginalsOpen || !guideBlocks.length"><p class="src">{{ guideBlocks.length ? '保留有对照价值的原始资料，点击图片可放大查看。' : '以下为本届赛事原始资料，可点击查看原图。' }}</p><RaceMedia v-for="(sheet, index) in extraGuideSheets" :key="sheet.id" :src="sheetSrc(sheet.id)" :alt="sheetCaption(race, sheet, '竞赛规程 · 第 ' + (index + 1) + ' 页')" @open="openSheet(sheet.id)" /></div>
+      </section>
     </template>
     <template v-if="race && tab === 'news'">
       <p v-if="!articles.length && !race.liveSheet && !alternatives.length" class="block quiet-state">还没有发布相关资讯</p>
@@ -272,7 +267,7 @@ import { api, raceSheetSrc, resultProofSrc, signupSheetSrc, upload } from "../ap
 import { copyText } from "../copy";
 import { toneOf } from "../tone";
 import { parseGuide } from "../guide-md";
-import { groupCards, guideSource, registrationLabel, qrAvailable, qrHint } from "../race-detail-content";
+import { groupCards, guideSource, sheetCaption, guideLayout, registrationLabel, qrAvailable, qrHint } from "../race-detail-content";
 import FollowRaceButton from '../components/FollowRaceButton.vue';
 import RaceOutings from '../components/RaceOutings.vue';
 import RaceMedia from '../components/RaceMedia.vue';
@@ -371,32 +366,32 @@ const nextMoment = computed(() => {
 });
 const routeSheets = computed(() => (race.value && race.value.routeSheets) || []);
 const guideBlocks = computed(() => parseGuide(guideSource(race.value), { rich: true }));
-const dayNotes = computed(() => {
-  if (!race.value) return [];
-  return [
-    ["路线", race.value.route, routeSheets.value.length > 0],
-    ["领物", race.value.pickup, false],
-    ["配速员", race.value.pacers, false]
-  ].filter((item) => item[1] || item[2]).map(([label, text]) => ({ label, text }));
-});
+const guideExtras = computed(() => guideLayout(race.value, guideBlocks.value));
+const guideOriginalsOpen = ref(false);
+const withoutInlineImages = rows => rows.filter(sheet => !guideBlocks.value.some(block => block.kind === 'image' && block.src === sheetSrc(sheet.id)));
+const extraRouteSheets = computed(() => withoutInlineImages(routeSheets.value));
+const extraPacerSheets = computed(() => withoutInlineImages(race.value?.pacerSheets || []));
+const extraGuideSheets = computed(() => withoutInlineImages(race.value?.guide || []));
 const guideSections = computed(() => [
-  { id: 'route', label: '赛道路线', hasContent: !!race.value?.route || routeSheets.value.length > 0 },
-  { id: 'pickup', label: '领物安排', hasContent: !!race.value?.pickup },
-  { id: 'pacers', label: '配速资料', hasContent: !!race.value?.pacers || race.value?.pacerSheets?.length > 0 },
-  { id: 'rules', label: '竞赛规程', hasContent: guideBlocks.value.length > 0 || race.value?.guide?.length > 0 }
-]);
-function goToGuide(id) { document.getElementById('guide-' + id)?.scrollIntoView({ behavior: 'auto', block: 'start' }); }
+  ...guideExtras.value.chapters,
+  { id: 'rules', label: '参赛指南', hasContent: guideBlocks.value.length > 0 && !guideExtras.value.chapters.length },
+  { id: 'pickup', label: '领物与比赛日', hasContent: !!guideExtras.value.pickup },
+  { id: 'route', label: '赛道与路线', hasContent: !!guideExtras.value.route || extraRouteSheets.value.length > 0 },
+  { id: 'pacers', label: '配速资料', hasContent: !!guideExtras.value.pacers || extraPacerSheets.value.length > 0 },
+  { id: 'originals', label: '规程原图参考', hasContent: extraGuideSheets.value.length > 0 }
+].filter(section => section.hasContent !== false));
+function goToGuide(id) { if (id === 'originals') guideOriginalsOpen.value = true; nextTick(() => document.getElementById('guide-' + id)?.scrollIntoView({ behavior: 'auto', block: 'start' })); }
 const viewer = ref(''), viewerFailed = ref(false), viewerZoom = ref(false);
 const gallery = computed(() => {
   const row = race.value;
   if (!row) return [];
   return [
     ...(row.coverSheet ? [{ ...row.coverSheet, label: '赛事封面' }] : []),
-    ...routeSheets.value.map((sheet, index) => ({ ...sheet, label: '路线图 ' + (index + 1) })),
-    ...(row.pacerSheets || []).map((sheet, index) => ({ ...sheet, label: '配速资料 ' + (index + 1) })),
-    ...(row.guide || []).map((sheet, index) => ({ ...sheet, label: '竞赛规程 · 第 ' + (index + 1) + ' 页' })),
+    ...routeSheets.value.map((sheet, index) => ({ ...sheet, label: sheetCaption(row, sheet, '路线图 ' + (index + 1)) })),
+    ...(row.pacerSheets || []).map((sheet, index) => ({ ...sheet, label: sheetCaption(row, sheet, '配速资料 ' + (index + 1)) })),
+    ...(row.guide || []).map((sheet, index) => ({ ...sheet, label: sheetCaption(row, sheet, '竞赛规程 · 第 ' + (index + 1) + ' 页') })),
     ...(row.liveSheet ? [{ ...row.liveSheet, label: '直播二维码' }] : [])
-  ].map(sheet => ({ ...sheet, src: sheetSrc(sheet.id) })).concat(guideBlocks.value.filter(block => block.kind === 'image').map(block => ({ src: block.src, label: block.alt })), signupQr.value ? [{ src: signupQr.value, label: '本届赛事报名二维码' }] : []);
+  ].map(sheet => ({ ...sheet, src: sheetSrc(sheet.id) })).concat(guideBlocks.value.filter(block => block.kind === 'image').map(block => ({ src: block.src, label: block.alt })), signupQr.value ? [{ src: signupQr.value, label: '本届赛事报名二维码' }] : []).filter((sheet, index, all) => all.findIndex(other => other.src === sheet.src) === index);
 });
 const viewerIndex = computed(() => Math.max(0, gallery.value.findIndex(sheet => sheet.src === viewer.value)));
 const viewerLabel = computed(() => gallery.value[viewerIndex.value]?.label || '赛事图片');

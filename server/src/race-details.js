@@ -5,6 +5,86 @@ const MARKER = /\n?<!-- race-details:v1\n([\s\S]*?)\n-->\s*$/;
 const GUIDE_TEXT_MAX = 2000000;
 const LABELS = { open: '报名中', closed: '报名已截止', sold_out: '报名已满', not_open: '报名未开始', cancelled: '赛事已取消', invalid: '报名入口已失效', unknown: '' };
 
+// Rich details are assembled from official text, manually checked tables and
+// optional OCR notes. Keep the saved trailer intact, but normalize the copy
+// sent to clients so a repeated OCR block cannot show up twice. The comparison
+// deliberately ignores source URLs: the same verified row may cite more than
+// one official page, while different fees or group fields remain distinct.
+function normalizeCopy(value) {
+  return String(value == null ? '' : value)
+    .replace(/[\u200b\u200c\u200d\ufeff]/g, '')
+    .replace(/\r\n?/g, '\n')
+    .replace(/[ \t]+$/gm, '')
+    .trim();
+}
+
+function withoutSources(value) {
+  if (Array.isArray(value)) return value.map(withoutSources);
+  if (!value || typeof value !== 'object') return value;
+  return Object.keys(value).sort().reduce((out, key) => {
+    if (key !== 'sourceUrl') out[key] = withoutSources(value[key]);
+    return out;
+  }, {});
+}
+
+function fingerprint(value) {
+  return JSON.stringify(withoutSources(value));
+}
+
+function uniqueRows(rows, keyOf) {
+  const seen = new Set();
+  return rows.filter((row) => {
+    const key = keyOf(row);
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
+function normalizeDetails(details) {
+  if (!details || typeof details !== 'object' || Array.isArray(details)) return details;
+  const visible = { ...details };
+  if (Array.isArray(details.sections)) {
+    visible.sections = uniqueRows(details.sections.map((section) => ({
+      ...section,
+      title: normalizeCopy(section && section.title),
+      text: normalizeCopy(section && section.text)
+    })).filter((section) => section.title || section.text), (section) =>
+      section.title + '\n' + section.text);
+  }
+  if (Array.isArray(details.groups)) {
+    visible.groups = uniqueRows(details.groups.map((group) => {
+      if (!group || typeof group !== 'object') return group;
+      const next = { ...group };
+      if (next.name != null) next.name = normalizeCopy(next.name);
+      if (next.label != null) next.label = normalizeCopy(next.label);
+      if (Array.isArray(next.fees)) {
+        next.fees = uniqueRows(next.fees, fingerprint);
+      }
+      return next;
+    }).filter((group) => group && typeof group === 'object'), fingerprint);
+  }
+  if (Array.isArray(details.media)) {
+    visible.media = uniqueRows(details.media.filter((item) => item && typeof item === 'object').map((item) => ({
+      ...item,
+      caption: item.caption == null ? item.caption : normalizeCopy(item.caption)
+    })), (item) => item.sheetId != null ? 'sheet:' + item.sheetId : fingerprint(item));
+  }
+  if (Array.isArray(details.warnings)) {
+    visible.warnings = uniqueRows(details.warnings.map(normalizeCopy).filter(Boolean), (warning) => warning);
+  }
+  return visible;
+}
+
+function publicGuideText(guide) {
+  const sections = guide.details?.sections;
+  if (!Array.isArray(sections) || guide.details?.audit?.preservedEditorialGuide) return guide.text;
+  const assemble = rows => rows.map(section => '## ' + section.title + '\n\n' + section.text).join('\n\n');
+  // Only regenerate prose that is exactly the saved generated chapter body.
+  // An editor's independent text always takes precedence over its old trailer.
+  return guide.text === assemble(sections) ? assemble(normalizeDetails(guide.details).sections) : guide.text;
+}
+
 function readDetails(value) {
   const source = String(value || '');
   const match = MARKER.exec(source);
@@ -59,7 +139,8 @@ function registrationOf(row, details, now = new Date()) {
 function publicDetails(details) {
   if (!details) return null;
   // Source URLs and raw OCR diagnostics remain in the saved audit record.
-  const { sources, audit, warnings, ...visible } = details;
+  const normalized = normalizeDetails(details);
+  const { sources, audit, warnings, ...visible } = normalized;
   if (visible.registration) {
     const { sourceUrl, ...registration } = visible.registration;
     visible.registration = registration;
@@ -74,4 +155,4 @@ function publicDetails(details) {
   return visible;
 }
 
-module.exports = { GUIDE_TEXT_MAX, readDetails, writeDetails, mergeGuideText, registrationOf, publicDetails };
+module.exports = { GUIDE_TEXT_MAX, readDetails, writeDetails, mergeGuideText, registrationOf, publicDetails, publicGuideText, normalizeDetails };

@@ -232,13 +232,18 @@ function sheetsOf(db, raceId) {
 
 function attachGuide(db, race) {
   const rows = sheetsOf(db, race.id);
-  race.guide = rows.filter((row) => row.kind === "guide").map((row) => ({ id: row.id }));
-  race.routeSheets = rows.filter((row) => row.kind === "route").map((row) => ({ id: row.id }));
-  race.pacerSheets = rows.filter((row) => row.kind === "pacer").map((row) => ({ id: row.id }));
+  const captions = new Map((race.details?.media || []).map((item) => [String(item.sheetId), item.caption]));
+  const sheet = (row) => {
+    const caption = captions.get(String(row.id));
+    return caption ? { id: row.id, caption } : { id: row.id };
+  };
+  race.guide = rows.filter((row) => row.kind === "guide").map(sheet);
+  race.routeSheets = rows.filter((row) => row.kind === "route").map(sheet);
+  race.pacerSheets = rows.filter((row) => row.kind === "pacer").map(sheet);
   const live = rows.find((row) => row.kind === "live");
-  race.liveSheet = live ? { id: live.id } : null;
+  race.liveSheet = live ? sheet(live) : null;
   const cover = rows.find((row) => row.kind === "cover");
-  race.coverSheet = cover ? { id: cover.id } : null;
+  race.coverSheet = cover ? sheet(cover) : null;
   return race;
 }
 

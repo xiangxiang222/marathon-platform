@@ -58,6 +58,23 @@ function guideSource(race) {
   const parts = Array.isArray(sections) ? sections.filter(section => section && section.text).map(section => (section.title ? "## " + section.title + "\n" : "") + section.text) : [];
   return parts.length ? parts.join("\n\n") : race && race.guideText || "";
 }
+function sheetCaption(race, sheet, fallback) {
+  const media = race && race.details && race.details.media;
+  const saved = Array.isArray(media) && media.find(item => String(item.sheetId) === String(sheet.id));
+  return String(sheet.caption || saved && saved.caption || fallback || "赛事资料").trim();
+}
+function guideLayout(race, blocks) {
+  const textKey = value => String(value || "").replace(/\*\*|\s|[，。；：、,.!！?？:;（）()\-—]/g, "");
+  const prose = textKey(blocks.filter(block => block.kind !== "image").map(block => (block.runs || []).map(run => run.text).join("")).join("\n"));
+  const extra = value => !textKey(value) || prose.includes(textKey(value)) ? "" : value;
+  const chapters = blocks.filter(block => /^h[12]$/.test(block.kind)).map(block => ({ id: "chapter-" + block.i, label: block.runs.map(run => run.text).join("") }));
+  return {
+    chapters,
+    route: extra(race && race.route),
+    pickup: extra(race && race.pickup),
+    pacers: extra(race && race.pacers)
+  };
+}
 function registrationLabel(race) {
   const state = race && race.registrationStatus;
   return race && race.registrationLabel || ({ closed: "报名已截止", sold_out: "已报满", open: "报名中", not_open: "报名未开始", cancelled: "赛事已取消", invalid: "报名入口已失效" })[state] || "";
@@ -73,4 +90,4 @@ function qrHint(race) {
   return (channel ? channel + " · " : "") + (closed ? "报名已关闭，二维码可查看本届报名信息。" : "点击预览，长按或扫码打开本届报名页。");
 }
 
-export { groupCards, guideSource, registrationLabel, qrAvailable, qrHint };
+export { groupCards, guideSource, sheetCaption, guideLayout, registrationLabel, qrAvailable, qrHint };

@@ -100,6 +100,14 @@ const report = { kind: process.env.RACE_RICH_API ? 'Current Vue page with saved 
     await page.getByRole('tab', { name: '参赛指南', exact: true }).click();
     assert.match(await page.locator('.guide-md').innerText(), /参赛资格|年龄/);
     assert.ok(await page.locator('.guide-table').count() >= 1);
+    const table = await page.locator('.guide-table-scroll').first().evaluate(element => ({ width: element.clientWidth, content: element.scrollWidth }));
+    assert.ok(table.content >= table.width, 'wide tables retain a scroll region');
+    if (await page.locator('.guide-originals-toggle').count()) {
+      assert.equal(await page.locator('.guide-originals-toggle').getAttribute('aria-expanded'), 'false');
+      await shot('dianjiang-guide-folded-' + width);
+      await page.locator('.guide-originals-toggle').click();
+      assert.equal(await page.locator('.guide-originals-toggle').getAttribute('aria-expanded'), 'true');
+    }
     if (persistedPayload || process.env.RACE_RICH_API) {
       const images = page.locator('.guide-section img');
       assert.ok(await images.count() >= current.race.guide.length + current.race.routeSheets.length);

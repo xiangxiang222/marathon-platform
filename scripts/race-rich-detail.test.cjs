@@ -36,6 +36,31 @@ test('guide sections and tables retain their full rows without leaking collectio
   assert.equal(parseGuide('| 原有编辑预览 | 保留段落 |\n| --- | --- |').every(block => block.kind === 'p'), true);
 });
 
+test('guide chapters take priority, repeated summaries disappear and distinct notes remain', async () => {
+  const race = { guideText: '## 日程与领物\n11月20日领物。\n\n## 路线与补给\n| 组别 | 补给 |\n| --- | --- |\n| 亲子组 | 水<br>能量食品 |', pickup: '11月20日领物。', route: '路线仍以比赛日公告为准。', pacers: '', guide: [{ id: 81 }], details: { media: [{ sheetId: 81, caption: '日程与领物原图' }] } };
+  const blocks = parseGuide(race.guideText, { rich: true });
+  const layout = content.guideLayout(race, blocks);
+  assert.deepEqual(layout.chapters.map(item => item.label), ['日程与领物', '路线与补给']);
+  assert.equal(layout.pickup, '', 'an exact summary already in the full guide is shown once');
+  assert.equal(layout.route, race.route, 'different or unconfirmed notes are never hidden by a matching chapter title');
+  assert.equal(blocks.find(block => block.kind === 'table').rows[0].cells[1].runs[0].text, '水\n能量食品');
+  const web = await import('../web/src/race-detail-content.js');
+  assert.deepEqual(web.guideLayout(race, blocks), layout);
+  assert.equal(content.sheetCaption(race, race.guide[0], '原图'), '日程与领物原图');
+  const f = detailFixture({ ...sample, ...race });
+  f.page.onLoad({ id: sample.id }); await f.page.load();
+  assert.deepEqual(Array.from(f.page.data.guideSections, item => item.label), ['日程与领物', '路线与补给', '赛道与路线', '规程原图参考']);
+  assert.equal(f.page.data.guideOriginalsOpen, false);
+  f.page.goToGuide({ currentTarget: { dataset: { id: 'originals' } } });
+  assert.equal(f.page.data.guideOriginalsOpen, true);
+  assert.equal(f.scrolls[0].selector, '#guide-originals');
+  assert.equal(f.page.data.guide[0].caption, '日程与领物原图');
+  const current = f.page.data.guide[0].src;
+  f.page.retryMedia({ currentTarget: { dataset: { kind: 'guide', id: 81 } } });
+  f.page.previewGuide({ currentTarget: { dataset: { src: current } } });
+  assert.ok(f.previews[0].urls.includes(current), 'retry keeps the canonical original available');
+});
+
 test('closed registration remains a known status without a cutoff and QR previews only the selected entry', async () => {
   const f = detailFixture({ ...sample, deadline: '', regStart: '' });
   f.page.onLoad({ id: sample.id }); await f.page.load();

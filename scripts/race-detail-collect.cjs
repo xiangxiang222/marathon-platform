@@ -11,6 +11,7 @@ const path = require('node:path');
 const os = require('node:os');
 const crypto = require('node:crypto');
 const { spawnSync } = require('node:child_process');
+const { discoverRaceSources, rankSources, publicSourceUrl } = require('./race-detail-sources.cjs');
 const hash = value => crypto.createHash('sha256').update(value).digest('hex');
 const clean = value => String(value || '').replace(/\r/g, '').replace(/[ \t\u00a0]+/g, ' ').replace(/\n[ \t]*\n+/g, '\n\n').trim();
 const textKey = value => clean(value).replace(/[\s，,。.!！:：；;]/g, '');
@@ -19,7 +20,48 @@ function uniqueText(values) {
   return values.map(clean).filter(value => { const key = textKey(value); if (!key || seen.has(key)) return false; seen.add(key); return true; });
 }
 function publicUrl(value, base) {
-  try { const url = new URL(value, base); if (!['https:', 'http:'].includes(url.protocol) || url.username || url.password || /^(localhost|127\.|0\.|169\.254\.|10\.|192\.168\.|\[::)/i.test(url.hostname)) return ''; if (url.protocol === 'http:') url.protocol = 'https:'; return url.href; } catch (_) { return ''; }
+  return publicSourceUrl(value, base);
+}
+function sourceUrlsOf(race = {}, refs = []) {
+  const values = [
+    race.signup_url, race.signupUrl, race.event_url, race.eventUrl,
+    race.official_url, race.officialUrl, race.source_url, race.sourceUrl,
+    ...(Array.isArray(race.sourceUrls) ? race.sourceUrls : []),
+    ...refs.map(ref => typeof ref === 'string' ? ref : ref && (ref.url || ref.sourceUrl)).filter(Boolean)
+  ];
+  return [...new Set(values.map(value => publicUrl(value)).filter(Boolean))];
+}
+function searchResultUrls(html, expectedName = '') {
+  const urls = [];
+  const source = String(html || '');
+  for (const match of source.matchAll(/(?:href|url)=["']([^"']+)["']/gi)) {
+    let value = match[1];
+    for (let i = 0; i < 2; i++) {
+      try { value = decodeURIComponent(value); } catch (_) { break; }
+    }
+    let nested = '';
+    try { const redirect = new URL(value); nested = redirect.searchParams.get('url') || redirect.searchParams.get('u') || ''; } catch (_) { /* plain URL */ }
+    const url = publicUrl(nested || value);
+    if (!url) continue;
+    try {
+      const host = new URL(url).hostname;
+      if (!/^(?:mp\.)?weixin\.qq\.com$|^mp\.weixin\.qq\.com$|^www\.runchina\.org\.cn$/i.test(host)) continue;
+    } catch (_) { continue; }
+    if (/mp\.weixin\.qq\.com\/s\//i.test(url) || /runchina\.org\.cn\/#\/race\/v\/detail\//i.test(url)) urls.push(url);
+  }
+  return [...new Set(urls)].filter(url => !expectedName || !/搜狗|搜索|search/i.test(url));
+}
+async function discoverPublicSources(name, { fetchImpl = global.fetch, search = true } = {}) {
+  if (!search || !String(name || '').trim()) return { urls: [], failures: [] };
+  const query = encodeURIComponent(String(name).trim());
+  const endpoint = 'https://weixin.sogou.com/weixin?type=2&query=' + query;
+  try {
+    const response = await fetchImpl(endpoint, { headers: { 'user-agent': 'Mozilla/5.0 (compatible; MarathonRaceDetail/1.0)', accept: 'text/html' }, signal: AbortSignal.timeout(12000) });
+    if (!response.ok) return { urls: [], failures: [{ url: endpoint, step: 'source_search', error: 'HTTP_' + response.status }] };
+    return { urls: searchResultUrls(await response.text(), name), failures: [] };
+  } catch (error) {
+    return { urls: [], failures: [{ url: endpoint, step: 'source_search', error: error.message }] };
+  }
 }
 function statusOf(text, { header = false } = {}) {
   const value = clean(text);
@@ -124,10 +166,21 @@ function readableOcr(ocr) {
   return text;
 }
 function usefulMedia(image) {
-  const text = [image.alt,image.context,image.caption,image.ocr?.text,image.ocrText].filter(Boolean).join('\n');
+  const text = [image.alt,image.context,image.caption,image.textLayer,image.reviewedText,image.ocr?.text,image.ocrText].filter(Boolean).join('\n');
   if (/logo|avatar|wx-share|qrcode|icon|weixin|service|footer|bannerad/i.test(image.url || '')) return false;
   if (image.kind === 'route' || /路线|线路|赛道|海拔|爬升|日程|检录|领物|报到|报名|费用|竞赛规程|参赛资格|竞赛办法|关门|装备|奖励|退费|退赛|年龄要求|出发时间|补给|检查点|交通|停车|接驳/.test(text)) return true;
   return readableOcr(image.ocr || {text:image.ocrText}).length >= 350;
+}
+function reviewedImageText(image) {
+  // OCR is evidence, never approved prose. A separate corrected transcription
+  // and a record of actually viewing its source image are both required.
+  if (image.review?.status !== 'verified' || image.review?.imageViewed !== true) return '';
+  return clean(image.reviewedText);
+}
+function restrictedDocument(doc) {
+  const text = clean([doc.title, doc.text].filter(Boolean).join('\n'));
+  return /^(?:登录|登陆|用户登录|请先登录|验证码|安全验证)/.test(doc.title || '') ||
+    text.length < 1500 && /环境异常|完成验证后即可继续访问|访问过于频繁|请完成(?:安全)?验证|人机验证|enable javascript and cookies/i.test(text);
 }
 function registrationOfDocuments(docs, sections) {
   const dates = registrationDates(sections.map(section => section.title + '\n' + section.text).join('\n'));
@@ -199,7 +252,35 @@ async function extractDocument(page, html, url, render = false) {
       const clone = node.cloneNode(true);
       clone.querySelectorAll('script,style,noscript,nav,footer,.floating-guide,.wechat-service-btn,.navbar,.event-pkgs,.pkgs-list').forEach(x => x.remove());
       clone.querySelectorAll('br').forEach(e => e.replaceWith('\n'));
-      clone.querySelectorAll('tr').forEach(tr => { const cells = [...tr.querySelectorAll(':scope > th,:scope > td')]; tr.replaceWith('\n' + cells.map(c => clean(c.textContent)).join(' | ') + '\n'); });
+      // Expand explicit HTML row/column spans before serialization. Joining
+      // cells directly shifts later prices into the wrong project column.
+      for (const table of [...clone.querySelectorAll('table')].reverse()) {
+        const sourceRows = [...table.querySelectorAll('tr')].filter(tr => tr.closest('table') === table);
+        const matrix = [], headerRows = [];
+        sourceRows.forEach((tr, r) => {
+          matrix[r] ||= [];
+          let column = 0;
+          const cells = [...tr.querySelectorAll(':scope > th,:scope > td')];
+          if (cells.length && cells.every(cell => cell.tagName === 'TH')) headerRows.push(r);
+          for (const cell of cells) {
+            while (matrix[r][column] !== undefined) column++;
+            const value = clean(cell.textContent).replace(/\n+/g, ' / ').replace(/\|/g, '\\|');
+            const rowSpan = Math.max(1, Math.min(sourceRows.length - r, cell.rowSpan || 1));
+            const colSpan = Math.max(1, cell.colSpan || 1);
+            for (let y = r; y < r + rowSpan; y++) {
+              matrix[y] ||= [];
+              for (let x = column; x < column + colSpan; x++) matrix[y][x] = value;
+            }
+            column += colSpan;
+          }
+        });
+        if (!matrix.length) continue;
+        const columns = Math.max(...matrix.map(row => row.length));
+        const explicitHeaders = headerRows.filter((r, i) => r === i);
+        const headers = Array.from({length:columns}, (_, c) => explicitHeaders.length ? [...new Set(explicitHeaders.map(r => matrix[r][c]).filter(Boolean))].join(' / ') : '第' + (c + 1) + '列');
+        const rowText = row => '| ' + Array.from({length:columns}, (_, c) => row[c] || '').join(' | ') + ' |';
+        table.replaceWith('\n\n' + rowText(headers) + '\n' + rowText(Array(columns).fill('---')) + '\n' + matrix.slice(explicitHeaders.length).map(rowText).join('\n') + '\n\n');
+      }
       clone.querySelectorAll('p,div,h1,h2,h3,h4,h5,h6,li,section').forEach(e => e.append('\n'));
       return clean(clone.textContent);
     };
@@ -218,7 +299,7 @@ async function extractDocument(page, html, url, render = false) {
       alt: clean(img.getAttribute('alt')), width: Number(img.getAttribute('width') || img.naturalWidth), height: Number(img.getAttribute('height') || img.naturalHeight),
       context: clean(img.parentElement?.previousElementSibling?.textContent || '').slice(-200), sourceUrl: url
     })));
-    const links = [...document.querySelectorAll('a[href]')].map(a => ({ url: absolute(a.getAttribute('href')), label: clean(a.textContent) })).filter(a => /更多赛事信息|竞赛规程|报名须知|参赛指南|赛事规程|比赛规程|附件|下载|赛事详情/.test(a.label) || /\.(?:pdf|docx?)(?:\?|$)/i.test(a.url));
+    const links = [...document.querySelectorAll('a[href]')].map(a => ({ url: absolute(a.getAttribute('href')), label: clean(a.textContent) })).filter(a => /更多赛事信息|竞赛规程|报名须知|参赛指南|赛事规程|比赛规程|附件|下载|赛事详情|赛事官网|官方网站|官网入口|official\s+(?:website|site)/i.test(a.label) || /\.(?:pdf|docx?)(?:\?|$)/i.test(a.url));
     return { url, title, header, text: docs.join('\n\n'), packages, images, links, rendered: !!document.querySelector('script[src]') };
   }, { url });
 }
@@ -249,7 +330,9 @@ class Collector {
     }
   }
   async recognize(file) {
-    const key = hash(fs.readFileSync(file)), cache = path.join(this.root, 'ocr', key + '.json');
+    // Processing changes must invalidate earlier low-quality cached results.
+    const pipeline = process.platform === 'darwin' ? fs.readFileSync(path.join(__dirname, 'race-detail-ocr.swift')) : Buffer.from('tesseract-local-v1');
+    const key = hash(Buffer.concat([fs.readFileSync(file), pipeline])), cache = path.join(this.root, 'ocr', key + '.json');
     if (fs.existsSync(cache)) return JSON.parse(fs.readFileSync(cache));
     let result;
     if (process.platform === 'darwin') {
@@ -284,26 +367,68 @@ class Collector {
       const output=path.join(this.root,'documents',hash(downloaded.bytes));
       const run=spawnSync(binary,[downloaded.file,output],{encoding:'utf8',timeout:120000,maxBuffer:30*1024*1024});if(run.status!==0)throw new Error('pdf_reader_failed:'+run.stderr);
       const parsed=JSON.parse(run.stdout);
-      return {url,title:'',header:'',text:parsed.pages.map(p=>'第'+p.number+'页\n'+p.text).join('\n\n'),packages:[],images:parsed.pages.filter(p=>p.image).map(p=>({url:url+'#page='+p.number,sourceUrl:url,localFile:p.image,alt:'PDF第'+p.number+'页'})),links:[],capture:{at:new Date().toISOString(),method:'pdf-full-pages',file:downloaded.file,fresh:!downloaded.cached}};
+      return {url,title:'',header:'',text:parsed.pages.filter(p=>clean(p.text)).map(p=>p.text).join('\n\n'),packages:[],images:parsed.pages.filter(p=>p.image).map(p=>({url:url+'#page='+p.number,sourceUrl:url,localFile:p.image,alt:'PDF第'+p.number+'页',textLayer:clean(p.text),skipOcr:!!clean(p.text)})),links:[],capture:{at:new Date().toISOString(),method:'pdf-text-with-image-evidence',file:downloaded.file,fresh:!downloaded.cached}};
     }
     const page = await this.browser.newPage();
     try {
       const downloaded = await this.download(url, 'html', { cachedHtml });
       let doc = await extractDocument(page, downloaded.bytes.toString('utf8'), url);
       let mode = 'html';
-      if (!doc.text || doc.text.length < 100 && !doc.images.length) {
+      if (restrictedDocument(doc) || !doc.text || doc.text.length < 100 && !doc.images.length) {
         try { doc = await extractDocument(page, null, url, true); mode = 'rendered-scroll'; } catch (error) { this.failures.push({ url, step: 'render', error: error.message }); }
       }
-      return { ...doc, capture: { at: new Date().toISOString(), method: mode, file: downloaded.file, fresh: !downloaded.cached, error: downloaded.error || '' } };
+      if (restrictedDocument(doc)) throw new Error('access_verification_required');
+      if (mode === 'rendered-scroll') fs.writeFileSync(downloaded.file, await page.content());
+      return { ...doc, ...(mode === 'rendered-scroll' ? {finalUrl: page.url()} : {}), capture: { at: new Date().toISOString(), method: mode, file: downloaded.file, fresh: mode === 'rendered-scroll' || !downloaded.cached, error: downloaded.error || '' } };
     } finally { await page.close(); }
   }
-  async collect({ name = '', id = '', urls, cached = {} }) {
+  async searchSources(query) {
+    const sources = [], failures = [];
+    for (const endpoint of ['https://www.bing.com/search?q=', 'https://weixin.sogou.com/weixin?type=2&query=']) {
+      const searchUrl = endpoint + encodeURIComponent(query), page = await this.browser.newPage();
+      try {
+        await page.goto(searchUrl, {waitUntil:'domcontentloaded',timeout:20000});
+        const text = clean(await page.locator('body').innerText());
+        if (/此验证码用于确认|请完成验证|安全验证|人机验证|访问过于频繁/.test(text)) throw new Error('search_access_verification_required');
+        const hits = await page.locator('#b_results h2 a,h3 a').evaluateAll(links => links.map(a => ({url:a.href,label:a.textContent.trim()})));
+        for (const hit of hits.slice(0,12)) {
+          let candidate = publicUrl(hit.url); if (!candidate) continue;
+          const u = new URL(candidate);
+          if (/bing\.com$/.test(u.hostname) && u.pathname === '/ck/a') {
+            const encoded = u.searchParams.get('u') || '';
+            candidate = publicUrl(encoded.startsWith('a1') ? Buffer.from(encoded.slice(2),'base64').toString('utf8') : encoded);
+          }
+          if (candidate) sources.push({...hit,url:candidate,sourceUrl:searchUrl});
+        }
+        if (!hits.length && !/没有找到|没有搜索到|no results|did not match/i.test(text)) failures.push({url:searchUrl,step:'source_search',error:'search_results_unreadable'});
+      } catch (error) { failures.push({url:searchUrl,step:'source_search',error:error.message}); }
+      finally { await page.close(); }
+    }
+    return { sources, failures };
+  }
+  async collect({ name = '', id = '', urls = [], cached = {}, discoveryFailures = [], discover = false, race = {} }) {
     const failuresStart = this.failures.length, docs = [], queue = [...new Set(urls.map(u => publicUrl(u)).filter(Boolean))], visited = new Set();
-    const isZuicool = queue.some(u => /(?:reg\.)?zuicool\.com\//.test(u));
+    this.failures.push(...discoveryFailures);
+    let discovery;
+    if (discover) {
+      const memo = new Map();
+      const readDocument = async url => {
+        if (!memo.has(url)) memo.set(url, await this.document(url,cached[url]));
+        return memo.get(url);
+      };
+      const known = [];
+      for (const url of queue) { try { const doc = await readDocument(url); if (sameEdition(name,doc.title)) known.push(doc); } catch (error) { this.failures.push({url,step:'source_probe',error:error.message}); } }
+      const text = known.map(doc=>doc.text).join('\n');
+      const terms = {groups:/组别|比赛项目|赛事项目/,fees:/报名费|收费标准/,eligibility:/参赛资格|年龄要求|报名条件/,pickup:/领物|物品领取|参赛物品/,refund:/退费|退款|退出机制/};
+      discovery = await discoverRaceSources({...race,id,name,sourceUrls:urls},{documents:known,readDocument,search:query=>this.searchSources(query),missingFields:Object.keys(terms).filter(key=>!terms[key].test(text))});
+      this.failures.push(...discovery.failures);
+      queue.splice(0,queue.length,...discovery.urls);
+      this._discoveryDocuments = memo;
+    }
     while (queue.length) {
       const url = queue.shift(); if (visited.has(url)) continue; visited.add(url);
       try {
-        const doc = await this.document(url, cached[url]);
+        const doc = this._discoveryDocuments?.get(url) || await this.document(url, cached[url]);
         // Exact title identity prevents a linked login/generic calendar from replacing this event.
         if (/^(?:登录|登陆|用户登录|请先登录|验证码|安全验证)/.test(doc.title)) { this.failures.push({ url, step: 'access', error: 'login_or_verification_required', title: doc.title }); continue; }
         if (!sameEdition(name, doc.title)) { this.failures.push({ url, step: 'identity', error: 'edition_name_or_locality_mismatch', title: doc.title }); continue; }
@@ -325,8 +450,12 @@ class Collector {
         }
       } catch (error) { this.failures.push({ url, step: 'page', error: error.message }); }
     }
+    const roles = discovery?.sourceRoles || {};
+    const ordered = rankSources(docs.map(doc=>({url:doc.url,role:roles[doc.url],verified:/^official_(?:website|document|announcement)$/.test(roles[doc.url]||'')})));
+    docs.sort((a,b)=>ordered.findIndex(source=>source.url===a.url)-ordered.findIndex(source=>source.url===b.url));
+    for (const doc of docs) doc.sourceRole = roles[doc.url] || 'public_source';
     const groups = [], groupKeys = new Map();
-    for (const doc of docs.sort((a, b) => Number(/reg\.zuicool/.test(b.url)) - Number(/reg\.zuicool/.test(a.url)))) for (const raw of doc.packages) {
+    for (const doc of docs) for (const raw of doc.packages) {
       const group = groupOf(raw), key = textKey(group.name);
       if (!groupKeys.has(key)) { groupKeys.set(key, groups.length); groups.push(group); }
       else { const old = groups[groupKeys.get(key)]; if (old.status === 'unknown') old.status = group.status; if (!old.fees.length) old.fees = group.fees; }
@@ -339,7 +468,7 @@ class Collector {
       const entry = { ...image, sourceUrl: doc.url, kind: 'guide', caption: image.alt || '赛事图文资料', localFile: '', ocr: null };
       try {
         const downloaded = image.localFile && fs.existsSync(image.localFile) ? {file:image.localFile,bytes:fs.readFileSync(image.localFile)} : await this.download(image.url, 'image'); entry.localFile = downloaded.file; entry.sha256 = hash(downloaded.bytes);
-        if (this.ocr) {
+        if (this.ocr && !image.skipOcr) {
           entry.ocr = await this.recognize(downloaded.file);
           if (/赛道图|海拔图|线路图|路线图/.test(entry.ocr.text)) { entry.kind = 'route'; entry.caption = '分组路线与海拔资料'; }
           else if (/竞赛规程|参赛资格|竞赛办法/.test(entry.ocr.text)) entry.caption = '竞赛规程';
@@ -349,40 +478,130 @@ class Collector {
       } catch (error) { this.failures.push({ url: image.url, sourceUrl: doc.url, step: entry.localFile ? 'ocr' : 'image', error: error.message }); }
       media.push(entry);
     }
-    return assembleCollection({id,name,docs,groups,media,failures:this.failures.slice(failuresStart)});
+    this._discoveryDocuments = null;
+    const result = assembleCollection({id,name,docs,groups,media,failures:this.failures.slice(failuresStart)});
+    if (discovery) {
+      const { documents, ...audit } = discovery;
+      result.details.audit.sourceDiscovery = audit;
+      result.details.sources = result.details.sources.map(source=>({...source,role:roles[source.url]||'public_source'}));
+    }
+    return result;
   }
+}
+function sourceSectionTopics(title) {
+  const value = clean(title), topics = [];
+  const patterns = {
+    overview:/组织机构|赛事概况|比赛概况|赛事简介/,
+    groups:/项目组别|比赛项目|赛事项目|项目及规模|参赛项目/,
+    registration:/报名时间|报名方式|报名须知|报名流程|报名及报到|报名与费用/,
+    fees:/费用|报名费|收费|精英.*优惠/,
+    eligibility:/资格|年龄|健康|禁.*报名|参赛条件/,
+    schedule:/日程|赛程|时间安排/,
+    pickup:/领物|物品领取|参赛物品|参赛包|报到/,
+    route:/路线|线路|补给|检查点|关门/,
+    equipment:/装备/,
+    awards:/奖励|奖金|领奖|奖项/,
+    refund:/退费|退款|退改/,
+    rules:/竞赛办法|竞赛规则|比赛规则|计时|寄存|存包/,
+    penalties:/处罚|申诉/,
+    medical:/医疗|救援/,
+    insurance:/保险/,
+    environment:/环保|环境保护/,
+    safety:/安全|守则|特别说明|影像|版权|解释权/,
+    transport:/交通|接驳|住宿/,
+    contact:/联系方式|组委会联系/
+  };
+  for (const [topic, pattern] of Object.entries(patterns)) if (pattern.test(value)) topics.push(topic);
+  return topics;
+}
+function sourceSectionsOf(doc, fallback = '赛事概况') {
+  const sections = []; let title = fallback, lines = [];
+  const flush = () => { const text = clean(lines.join('\n')); if (text) sections.push({title,text,sourceUrl:doc.url,sourceRole:doc.sourceRole || 'public_source'}); lines = []; };
+  for (const raw of clean(doc.text).split('\n')) {
+    const line = raw.trim(), heading = /^(?:#{1,4}\s+|[一二三四五六七八九十]+[、．.]|[（(][一二三四五六七八九十]+[）)])\s*(.+)$/.exec(line);
+    if (heading && line.length < 65 && !/[：:]/.test(line) && sourceSectionTopics(heading[1]).length) { flush(); title = heading[1]; }
+    else lines.push(raw);
+  }
+  flush(); return sections;
+}
+function preferredSourceSections(docs, name) {
+  const supplementalReview = [];
+  // Prefer one full current-edition official body. Other versions remain source
+  // evidence; a different text or fee is never proof that it should be appended.
+  const primary = docs.find(doc => /^official_(?:website|document|announcement)$/.test(doc.sourceRole || '') && doc.capture?.fresh !== false && sameEdition(name,doc.title) &&
+    (doc.completeRegulations === true || clean(doc.text).length >= 300 && new Set(sourceSectionsOf(doc).flatMap(section=>sourceSectionTopics(section.title))).size >= 3));
+  if (!primary) {
+    const seen = new Set(), unique = docs.filter(doc => { const key = textKey(doc.text); if (!key || seen.has(key)) return false; seen.add(key); return true; });
+    const full = unique.filter(doc => !unique.some(other => other !== doc && textKey(other.text).length > textKey(doc.text).length && textKey(other.text).includes(textKey(doc.text))));
+    return {sections:full.flatMap((doc,i)=>sourceSectionsOf(doc,i?'关联赛事资料':'赛事概况')),supplementalReview,primary:null};
+  }
+  const sections = sourceSectionsOf(primary), covered = new Set(sections.flatMap(section=>sourceSectionTopics(section.title)));
+  for (const doc of docs) {
+    if (doc === primary) continue;
+    const parts = sourceSectionsOf(doc,'关联赛事资料');
+    for (const part of parts) {
+      const topics = sourceSectionTopics(part.title), duplicate = sections.some(section=>textKey(section.text).includes(textKey(part.text)));
+      const overlaps = topics.some(topic=>covered.has(topic));
+      const record = {sourceUrl:doc.url,sourceRole:doc.sourceRole || 'public_source',title:part.title,text:part.text,topics,status:'pending',reason:duplicate?'duplicate_of_primary':overlaps?'overlapping_primary_topics':'unknown_topic',primarySourceUrl:primary.url};
+      // A clearly labelled, unique chapter can fill an actual gap. Mixed
+      // overlapping/unique chapters stay pending because separating them would
+      // silently change clause context or apply an old fee to a new edition.
+      if (!duplicate && topics.length && !overlaps) {
+        sections.push({...part,supplemental:true}); topics.forEach(topic=>covered.add(topic));
+        record.status='included_supplement';record.reason='unique_labelled_topic';
+      }
+      supplementalReview.push(record);
+    }
+  }
+  return {sections,supplementalReview,primary};
 }
 function assembleCollection({id = '',name = '',docs = [],groups = [],media = [],failures = []}) {
     const bodyConflicts = docs.map(doc => bodyIdentityConflict(name,doc)).filter(Boolean);
     const unsafeBodyUrls = new Set(bodyConflicts.map(conflict=>conflict.url));
     const safeDocs = docs.filter(doc=>!unsafeBodyUrls.has(doc.url));
     const safeMedia = media.filter(image=>!unsafeBodyUrls.has(image.sourceUrl));
-    const texts = uniqueText(safeDocs.map(d => d.text));
-    // Exact/substantial duplicate summaries are removed, full rules are never character-truncated.
-    const fullTexts = texts.filter((value, i) => !texts.some((other, j) => i !== j && other.length > value.length && textKey(other).includes(textKey(value))));
-    const sections = fullTexts.flatMap((text, i) => splitSections(text, i ? '关联赛事资料' : '赛事概况'));
-    const notices = uniqueText(docs.flatMap(doc => clean(doc.header).split('\n').map(clean).filter(line => /^(?:延期)?提示[：:]/.test(line))));
+    const selected = preferredSourceSections(safeDocs,name), sections = selected.sections;
+    const notices = uniqueText((selected.primary ? [selected.primary] : docs).flatMap(doc => clean(doc.header).split('\n').map(clean).filter(line => /^(?:延期)?提示[：:]/.test(line))));
+    if (selected.primary) for (const doc of safeDocs.filter(doc=>doc!==selected.primary)) for (const notice of clean(doc.header).split('\n').filter(line=>/^(?:延期)?提示[：:]/.test(line))) {
+      selected.supplementalReview.push({sourceUrl:doc.url,title:'赛事公告',text:notice,status:'pending',reason:'supplemental_notice_requires_current_version_review',primarySourceUrl:selected.primary.url});
+    }
     if (notices.length) sections.unshift({title:'赛事公告',text:notices.join('\n')});
-    for (const image of safeMedia) if (image.ocr?.text) {
-      const text = readableOcr(image.ocr); if (text.length < 20) continue;
-      for (const section of splitSections(text, image.caption + '（原图识别）')) {
-        if (!sections.some(s => textKey(s.text) === textKey(section.text))) sections.push({ ...section, sourceUrl: image.sourceUrl, imageUrl: image.url, ocr: true });
+    const imageReviews = [];
+    for (const image of safeMedia) {
+      const text = reviewedImageText(image);
+      if (text) {
+        for (const section of splitSections(text, image.reviewedTitle || image.caption || '赛事资料')) {
+          // Prefer an existing reliable text source when it already contains
+          // this whole verified transcription. Do not concatenate two copies.
+          if (sections.some(s => textKey(s.text).includes(textKey(section.text)))) continue;
+          const topics = sourceSectionTopics(section.title), overlaps = topics.some(topic=>sections.some(s=>sourceSectionTopics(s.title).includes(topic)));
+          if (selected.primary && (!topics.length || overlaps)) selected.supplementalReview.push({sourceUrl:image.sourceUrl,imageUrl:image.url,title:section.title,text:section.text,topics,status:'pending',reason:overlaps?'overlapping_primary_topics':'unknown_topic',primarySourceUrl:selected.primary.url});
+          else sections.push({ ...section, sourceUrl: image.sourceUrl, imageUrl: image.url, ocr: true, reviewed: true });
+        }
+      } else if (usefulMedia(image) && !image.skipOcr) {
+        imageReviews.push({ sourceUrl:image.sourceUrl || '', imageUrl:image.url, sha256:image.sha256 || '', status:'pending',
+          reason:image.ocr?.text || image.ocrText ? 'OCR未逐图校对，未加入正文；需核对表头、合并单元格、数字与单位。' : '尚未取得可靠文字，保留原图供查看。',
+          questions:Array.isArray(image.review?.questions) ? image.review.questions : [] });
       }
     }
     const signupDoc = docs.find(d => /^https:\/\/reg\.zuicool\.com\/\d+\/?$/.test(d.url) && (d.packages.length || /赛事日期/.test(d.header)) && sameEdition(name,d.title));
     const headerStatus = signupDoc && statusOf(signupDoc.header, { header: true });
-    const cancelled = docs.some(d => statusOf(d.title + '\n' + d.header, { header:true }) === 'cancelled');
+    const cancelled = (selected.primary ? [selected.primary] : docs).some(d => statusOf(d.title + '\n' + d.header, { header:true }) === 'cancelled');
     const status = cancelled ? 'cancelled' : headerStatus && headerStatus !== 'unknown' ? headerStatus : groups.length && groups.every(g => g.status === 'closed') ? 'closed' : groups.length && groups.every(g => g.status === 'sold_out') ? 'sold_out' : 'unknown';
-    const dates = registrationOfDocuments(docs, sections);
-    const schedule = scheduleOfDocuments(docs);
+    // A platform header can retain an obsolete deadline after the official
+    // current-edition body changes. Only the selected official body and admitted
+    // unique supplements may provide dates once a primary source is established.
+    const dates = registrationOfDocuments(selected.primary ? [selected.primary] : docs, sections);
+    const schedule = scheduleOfDocuments(selected.primary ? [selected.primary] : docs);
     const details = { version: 1, ...(schedule ? {schedule} : {}), registration: { status, channel: signupDoc ? '最酷' : '', url: signupDoc?.url || '', verified: !!signupDoc && signupDoc.capture.fresh, checkedAt: signupDoc?.capture.at || '', ...dates }, groups, sections,
-      ...(bodyConflicts.length ? {audit:{bodyConflicts}} : {}),
+      audit:{ ...(bodyConflicts.length ? {bodyConflicts} : {}), ...(imageReviews.length ? {imageReviews} : {}), ...(selected.primary ? {primarySource:{url:selected.primary.url,role:selected.primary.sourceRole,reason:'current_edition_complete_official_body'}} : {}), ...(selected.supplementalReview.length ? {supplementalReview:selected.supplementalReview} : {}) },
       media: safeMedia.filter(usefulMedia).map(({ ocr, ...item }) => ({ ...item, ocrText: ocr?.text || '', ocrEngine: ocr?.engine || '' })),
       sources: docs.map(d => ({ url: d.url, title: d.title, checkedAt: d.capture.at, method: d.capture.method, fresh: d.capture.fresh, error: d.capture.error })) };
     const fields = {};
     if (dates.opensAt) fields.reg_start = dates.opensAt;
     if (dates.closesAt) fields.deadline = dates.closesAt;
-    const phone = /(?:报名咨询电话|联系电话|咨询电话)[：:\s]*([\d()（）+ -]{7,30})/.exec(signupDoc?.header || '');
+    const contactText = selected.primary ? selected.primary.text : signupDoc?.header || '';
+    const phone = /(?:报名咨询电话|联系电话|咨询电话)[：:\s]*([\d()（）+ /-]{7,50})/.exec(contactText);
     if (phone) fields.phone = phone[1].trim();
     const fee = groups.filter(g=>g.fees.length).map(g=>g.name+'：'+g.fees.map(f=>f.amount+'元/'+f.unit).join('、')).join('；');
     if (fee && fee.length <= 80) fields.fee = fee;
@@ -399,17 +618,27 @@ async function main() {
   await collector.start();
   try {
     if (args.url) {
-      const result = await collector.collect({ name: args.name || '', id: args.id || '', urls: String(args.url).split(',') });
+      const result = await collector.collect({ name: args.name || '', id: args.id || '', urls: String(args.url).split(','), discover: true });
       const out = args.out || path.join(directory, 'pilot.json'); fs.writeFileSync(out, JSON.stringify(result, null, 2)); console.log(JSON.stringify({ out, coverage: result.coverage, failures: result.failures }));
     } else if (args.targets || args.inventory && args.evidence) {
       const inventory = args.inventory ? JSON.parse(fs.readFileSync(args.inventory)) : {}, evidence = args.evidence ? JSON.parse(fs.readFileSync(args.evidence)) : {};
       const index = new Map();
       for (const e of evidence.results || []) for (const ref of e.refs || []) { const key = ref.table + ':' + ref.id; if (!index.has(key)) index.set(key, []); index.get(key).push(e); }
-      const targets = args.targets ? JSON.parse(fs.readFileSync(args.targets)) : (inventory.races || []).map(r => ({ id: r.id, name: r.name, urls: [...new Set([r.signup_url, r.event_url, ...(index.get('races:' + r.id) || []).map(e => e.url)].filter(u => /zuicool\.com\/(?:event\/)?\d+/.test(u || '')))], cached: Object.fromEntries((index.get('races:' + r.id) || []).map(e => [e.url, e.cachedHtml])) }));
+      const targets = args.targets ? JSON.parse(fs.readFileSync(args.targets)) : [];
+      if (!args.targets) for (const race of inventory.races || []) {
+        const refs = index.get('races:' + race.id) || [];
+        const urls = sourceUrlsOf(race, refs);
+        const target = { id: race.id, name: race.name, urls, cached: Object.fromEntries(refs.map(e => [e.url, e.cachedHtml]).filter(([url]) => url)) };
+        target.race = race;
+        target.discover = true;
+        target.urls = [...new Set(target.urls)];
+        targets.push(target);
+      }
       const report = [];
       for (const target of targets) {
+        target.discover = true;
         const file = path.join(directory, target.id.replace(/[^\w.-]/g, '_') + '.json');
-        if (!target.urls.length) { report.push({ id: target.id, name: target.name, skipped: 'no_supported_public_source', urls: [] }); continue; }
+        if (!target.urls.length && !target.name) { report.push({ id: target.id, name: target.name, skipped: 'missing_race_identity', urls: [] }); continue; }
         if (args.resume && fs.existsSync(file)) { const prior = JSON.parse(fs.readFileSync(file)); report.push({ id: target.id, coverage: prior.coverage, cachedResult: true }); continue; }
         const result = await collector.collect(target); fs.writeFileSync(file, JSON.stringify(result, null, 2)); const row = { id: target.id, name: target.name, coverage: result.coverage, failures: result.failures }; report.push(row); console.log(JSON.stringify(row));
         fs.writeFileSync(path.join(directory, args.report || 'collection-report.json'), JSON.stringify(report, null, 2));
@@ -418,4 +647,4 @@ async function main() {
   } finally { await collector.stop(); }
 }
 if (require.main === module) main().catch(e => { console.error(e.stack); process.exitCode = 1; });
-module.exports = { Collector, groupOf, statusOf, sameEdition, bodyIdentityConflict, scheduleOfDocuments, registrationDates, registrationOfDocuments, readableOcr, ocrRows, usefulMedia, assembleCollection, splitSections, uniqueText, publicUrl, extractDocument, argsOf };
+module.exports = { Collector, groupOf, statusOf, sameEdition, bodyIdentityConflict, scheduleOfDocuments, registrationDates, registrationOfDocuments, readableOcr, ocrRows, usefulMedia, reviewedImageText, assembleCollection, splitSections, uniqueText, publicUrl, sourceUrlsOf, searchResultUrls, discoverPublicSources, extractDocument, argsOf };

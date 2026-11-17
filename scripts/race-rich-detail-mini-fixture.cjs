@@ -5,7 +5,7 @@ const path = require('node:path');
 const { detailFixture } = require('./race-detail-mini-regression.cjs');
 const qr = require('../server/node_modules/qrcode');
 const sample = require('./race-rich-detail-fixture.cjs');
-const cases = ['base', 'guide', 'cancelled', 'invalid'].map(scenario => ({ route: 'pages/race/race', scenario }));
+const cases = ['base', 'guide', 'guide-originals', 'cancelled', 'invalid'].map(scenario => ({ route: 'pages/race/race', scenario }));
 async function prepare(unusedRoute, unusedData, scenario) {
   const payload = process.env.RACE_RICH_SAVED_API_JSON ? JSON.parse(fs.readFileSync(process.env.RACE_RICH_SAVED_API_JSON, 'utf8')) : { race: sample };
   const race = { guide: [], routeSheets: [], pacerSheets: [], nodes: [], links: [], groups: [], distanceLabels: [], kindLabels: [], ...payload.race };
@@ -23,7 +23,7 @@ async function prepare(unusedRoute, unusedData, scenario) {
   }
   const mediaRows = (rows, kind) => rows.map((media, i) => ({ ...media, src: localImage(pilot && pilot.details.media.filter(item => item.kind === kind)[i]) || fallback, state: 'ready' }));
   const guides = mediaRows(f.page.data.guide, 'guide');
-  f.page.setData({ tab: scenario === 'guide' ? 'guide' : 'signup', guide: guides, routeSheets: mediaRows(f.page.data.routeSheets, 'route'), pacerSheets: mediaRows(f.page.data.pacerSheets, 'pacer'), guideBlocks: f.page.data.guideBlocks.map(block => block.kind === 'image' ? { ...block, src: fallback } : block) });
+  f.page.setData({ tab: scenario.startsWith('guide') ? 'guide' : 'signup', guideOriginalsOpen: scenario === 'guide-originals', guide: guides, routeSheets: mediaRows(f.page.data.routeSheets, 'route'), pacerSheets: mediaRows(f.page.data.pacerSheets, 'pacer'), guideBlocks: f.page.data.guideBlocks.map(block => block.kind === 'image' ? { ...block, src: fallback } : block) });
   return { data: f.page.data, components: {}, css: '' };
 }
 async function audit({ page, scenario, metrics }) {
@@ -34,7 +34,13 @@ async function audit({ page, scenario, metrics }) {
     if (await page.locator('.official-actions,.official-foot').count()) errors.push('Duplicate signup actions remain.');
     if (!metrics.visibleText.includes('实际里程') || !metrics.visibleText.includes('13.5公里') || !metrics.visibleText.includes('196元')) errors.push('Sample distance or parent-child fee missing.');
   }
-  if (scenario === 'guide' && !await page.locator('.guide-table').count()) errors.push('Source tables must be rendered as tables.');
+  if (scenario.startsWith('guide')) {
+    if (!await page.locator('.guide-table').count()) errors.push('Source tables must be rendered as tables.');
+    if (!await page.locator('.guide-index').count()) errors.push('The current guide chapters must be navigable.');
+    const cells = await page.locator('.guide-table-cell').evaluateAll(items => items.map(item => item.getBoundingClientRect().width));
+    if (cells.some(width => width < 119)) errors.push('Source table columns must not collapse on small screens.');
+    if (scenario === 'guide' && await page.locator('.guide-originals .race-media').count()) errors.push('Reference originals should be folded after a full guide.');
+  }
   if (['cancelled', 'invalid'].includes(scenario) && await page.locator('.signup-entry .qr').count()) errors.push('Cancelled/invalid registration must have no QR.');
   return errors;
 }

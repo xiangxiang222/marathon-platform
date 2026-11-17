@@ -42,6 +42,37 @@ test('manual prose edits preserve group/status data and replace old collected ch
   assert.equal(edited.details.audit.preservedEditorialGuide, true);
 });
 
+test('the displayed generated body removes exact repeated chapters and retains independent manual prose', () => {
+  const sections = [{ title: '报名与费用', text: '个人98元；亲子196元。' }, { title: '报名与费用', text: '个人98元；亲子196元。' }];
+  const generated = sections.map(s => '## ' + s.title + '\n\n' + s.text).join('\n\n');
+  const rich = { ...details, sections };
+  assert.equal(presentRace({ ...row, guide_text: writeDetails(generated, rich) }).guideText, '## 报名与费用\n\n个人98元；亲子196元。');
+  assert.equal(presentRace({ ...row, guide_text: writeDetails('人工完整说明，含新领物安排。', rich) }).guideText, '人工完整说明，含新领物安排。');
+});
+
+test('public rich details remove exact OCR duplicates without merging distinct fee stages', () => {
+  const duplicateGroup = { ...details.groups[2], fees: [{ amount: 98 }, { amount: 128 }], sourceUrl: 'https://example.com/guide-2' };
+  const rich = writeDetails('已核对正文', {
+    ...details,
+    sections: [
+      { title: '报名与费用', text: '个人组 98 元。' },
+      { title: '报名与费用', text: '个人组 98 元。' },
+      { title: '参赛资格', text: '近三年完赛证明。' },
+    ],
+    groups: [
+      { ...details.groups[2], fees: [{ amount: 98 }, { amount: 98, sourceUrl: 'https://example.com/fee' }, { amount: 128 }] },
+      duplicateGroup,
+    ],
+    media: [{ sheetId: 31, kind: 'guide', caption: '原图' }, { sheetId: 31, kind: 'guide', caption: '原图（重复上传记录）' }]
+  });
+  const race = presentRace({ ...row, guide_text: rich }, new Date('2026-11-17T00:00:00Z'));
+  assert.equal(race.details.sections.length, 2);
+  assert.equal(race.details.groups.length, 1);
+  assert.deepEqual(race.details.groups[0].fees.map((fee) => fee.amount), [98, 128]);
+  assert.equal(race.details.media.length, 1);
+  assert.equal(race.groups.length, 1);
+});
+
 test('full long guides survive round trips and comment terminators cannot corrupt the trailer', () => {
   const prose = '完整规程'.repeat(14000);
   const source = writeDetails(prose, { version: 1, sections: [{ title: '说明', text: '-->' }] });
