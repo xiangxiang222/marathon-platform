@@ -68,6 +68,13 @@ test('an early-bird or elite cutoff cannot close general registration', () => {
   assert.equal(verified.registrationStatus, 'open');
 });
 
+test('an unverified existing entrance is retained as data without being advertised as a signup QR', () => {
+  const race = presentRace({ ...row, guide_text:writeDetails('报名入口尚未核实', {version:1,registration:{status:'unknown',entranceVerified:false}}) });
+  assert.equal(race.signupQrAvailable,false);
+  assert.equal(race.registrationStatus,'unknown');
+  assert.equal(race.links.find(link=>link.key==='signup').url,row.signup_url);
+});
+
 test('cancelled and invalid entrances cannot serve generated signup QR codes', async () => {
   const db = getDb();
   const previous = db.prepare('SELECT signup_url,guide_text FROM races WHERE id=?').get('chaoyang');

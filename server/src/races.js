@@ -376,7 +376,7 @@ function presentRace(row, now) {
   const nextNode = nodes.find((node) => node.key !== "race" && !node.past) || null;
   const blocked = ['cancelled', 'invalid'].includes(registration.status);
   const links = linksOf(row).filter(item => !blocked || item.key !== 'signup');
-  const signup = signupTarget((links.find((item) => item.key === "signup") || {}).url);
+  const signup = guide.details?.registration?.entranceVerified === false ? null : signupTarget((links.find((item) => item.key === "signup") || {}).url);
   const today = new Date(now.getTime() + TZ).toISOString().slice(0, 10);
   const future = (row.race_date || row.raceDate) > today;
   let regStatus = phaseLabel(row.race_date || row.raceDate, meta, now, registrationScheduled);
