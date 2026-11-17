@@ -1,0 +1,473 @@
+[
+  {
+    "id": "caa-1000452114",
+    "name": "2026福建永定土楼半程马拉松",
+    "status": "partially_verified",
+    "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+    "beforeBodyHash": "d6908baae96f9e5359b23ccd78e59e2925003331e19afc0440dae0b2f11a5dfa",
+    "savedBodyHash": "3aed6a9878d754d19ceb169e88e8f8a8d6ca4e7dd3790f6d40adcfadd8ed77bd",
+    "bodyChanged": true,
+    "edits": 3,
+    "viewedImages": 1,
+    "pendingImages": 9,
+    "chapters": 21,
+    "groups": 1,
+    "groupCorrections": 0,
+    "questions": [
+      "官网本届报名/竞赛规程现写报名截止2026年11月5日18:00，原报名长图及现存正文写10月31日18:00；本批仅恢复原图与官网一致的缺漏条款，不静默覆盖报名截止日期，需按本届后续官方延期公告确认并标注更新。",
+      "未审看本赛事其他3张规程长图，相关章节继续保留原值，不标全篇已校对。"
+    ],
+    "officialDocuments": [],
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "mini": false,
+      "physicalDevice": false,
+      "formalMiniRelease": false
+    }
+  },
+  {
+    "id": "caa-1000499000",
+    "name": "2026宁德马拉松",
+    "status": "partially_verified",
+    "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+    "beforeBodyHash": "1da4297f32e326e40bd72149f02e25e34bf3b09d9e1f2a0fc3f6aaef513ed99e",
+    "savedBodyHash": "db175178cbd62442680b62e8c7c5a558a8fc37bbf8b89f8c82f60a382a57a3c2",
+    "bodyChanged": true,
+    "edits": 4,
+    "viewedImages": 1,
+    "pendingImages": 6,
+    "chapters": 18,
+    "groups": 2,
+    "groupCorrections": 0,
+    "questions": [
+      "仅本届报名须知长图及对应官网文字完成局部校对；规程、奖项其他长图本批未逐项审完，保留原值。"
+    ],
+    "officialDocuments": [],
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "mini": false,
+      "physicalDevice": false,
+      "formalMiniRelease": false
+    }
+  },
+  {
+    "id": "caa-1000454034",
+    "name": "2026云浮新兴半程马拉松",
+    "status": "partially_verified",
+    "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+    "beforeBodyHash": "6c602e8a7f778f8b2ba7ebeb51101f4bc1076c047e5e2468971c67986bd40974",
+    "savedBodyHash": "d4454cbb5803ecfb86c80532a63663276c8d7f90a0bbfcfea95f2204629431de",
+    "bodyChanged": true,
+    "edits": 6,
+    "viewedImages": 1,
+    "pendingImages": 7,
+    "chapters": 13,
+    "groups": 1,
+    "groupCorrections": 0,
+    "questions": [
+      "未找到可访问的本届独立官网文字，使用报名页所载本届官方规程原图补充。仅本张原图所列局部完成校对，其他规程长图保留。"
+    ],
+    "officialDocuments": [],
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "mini": false,
+      "physicalDevice": false,
+      "formalMiniRelease": false
+    }
+  },
+  {
+    "id": "caa-1000472006",
+    "name": "2026防城港马拉松",
+    "status": "partially_verified",
+    "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+    "beforeBodyHash": "e71e44d7c7563f568cddb1b9b2078bbef4ba0c00cc122d54835265b51fc4eb32",
+    "savedBodyHash": "f07469b7721d43f4e3c82482579e926f2bf755cafbd36517a338c13b60024a3a",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 1,
+    "pendingImages": 8,
+    "chapters": 10,
+    "groups": 2,
+    "groupCorrections": 0,
+    "questions": [
+      "本张规程原图实际核对，其他报名宣传、健康和奖励长图未在本轮逐项审完。未取得可复制的本届独立官网文字。"
+    ],
+    "officialDocuments": [],
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "mini": false,
+      "physicalDevice": false,
+      "formalMiniRelease": false
+    }
+  },
+  {
+    "id": "caa-1000483001",
+    "name": "2026宁都红色半程马拉松",
+    "status": "partially_verified",
+    "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+    "beforeBodyHash": "eaf2069bfc8919272efb8732b820921fac61b9cef3b1affdb90c6acf7b925f80",
+    "savedBodyHash": "1081a1f15ea093fce5e3e55c0670feebe911b26029e8f1c4288bd7b1649918a5",
+    "bodyChanged": true,
+    "edits": 3,
+    "viewedImages": 1,
+    "pendingImages": 5,
+    "chapters": 8,
+    "groups": 2,
+    "groupCorrections": 0,
+    "questions": [
+      "未取得本届可复制官方文字；本张本届竞赛规程长图完成所列局部审图，其余长图未逐项核对。",
+      "另实际打开宁都城市通转发的2026年10月12日组委会延长报名公告，写10月25日24:00、来源“宁都红色马拉松”（http://www.ningdu.ccoo.cn/quan/cnews/news_show.aspx?id=60703034），与原规程10月9日24:00不同；未取得原始官方公告链接，保留原规程并记待确认，未从搜索摘要改日期。"
+    ],
+    "officialDocuments": [],
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "mini": false,
+      "physicalDevice": false,
+      "formalMiniRelease": false
+    }
+  },
+  {
+    "id": "caa-1000452094",
+    "name": "2026奉贤海湾森林半程马拉松",
+    "status": "partially_verified",
+    "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+    "beforeBodyHash": "f0cf13a62a0daa926e7b1e7475b7d48214bef29a24e6d53ecc10588ed2227b39",
+    "savedBodyHash": "0453c3389143ce5951bd66a4a8cfdd21043e3753193448bf2f6e91ddf1d6c4f0",
+    "bodyChanged": true,
+    "edits": 2,
+    "viewedImages": 1,
+    "pendingImages": 2,
+    "chapters": 7,
+    "groups": 1,
+    "groupCorrections": 0,
+    "questions": [
+      "原图年龄表述“当年1月1日年满18周岁”同时列“2007年12月31日（含）前出生”，两者边界可能不完全一致；保持原文，不自行推算生日边界。",
+      "仅本张竞赛规程原图局部审完；另张报名须知未在本轮逐条核对。未找到可复制本届独立官网正文。"
+    ],
+    "officialDocuments": [],
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "mini": false,
+      "physicalDevice": false,
+      "formalMiniRelease": false
+    }
+  },
+  {
+    "id": "caa-1000503000",
+    "name": "2026梅州马拉松",
+    "status": "partially_verified",
+    "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+    "beforeBodyHash": "43d4f822a153642f5f61b966c042ca9137836cbc5a10a3a8896045969bf16855",
+    "savedBodyHash": "8764a95eaa1b83b721b1be41892231acdf1d086f0126d19de3d86e3b6d396055",
+    "bodyChanged": true,
+    "edits": 7,
+    "viewedImages": 1,
+    "pendingImages": 6,
+    "chapters": 23,
+    "groups": 2,
+    "groupCorrections": 0,
+    "questions": [
+      "只审看本届报名原图中的费用与健康/退改局部；资格证书限定2024年9月30日至2026年9月30日保留原文，不根据报名日期重新推算。其余规程图尚未逐项校对。"
+    ],
+    "officialDocuments": [],
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "mini": false,
+      "physicalDevice": false,
+      "formalMiniRelease": false
+    }
+  },
+  {
+    "id": "caa-1000479060",
+    "name": "2026贵州铜仁·梵净山马拉松",
+    "status": "partially_verified",
+    "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+    "beforeBodyHash": "b521ce175eafbd90ee59e96afa76b7c7f46f5f3275a08a132ae358449a5f3994",
+    "savedBodyHash": "52697469c5653cee24d63474152e6503b3249c0385716e6a25e43d827693d911",
+    "bodyChanged": true,
+    "edits": 7,
+    "viewedImages": 1,
+    "pendingImages": 7,
+    "chapters": 20,
+    "groups": 2,
+    "groupCorrections": 0,
+    "questions": [
+      "关门原表将“马拉松/半程马拉松”项目列合并跨全部10行，没有进一步划定组别适用行；以原表完整列示并保留原图，不自行猜测补充规则。",
+      "年龄出生日期以原图2006年1月1日前、2008年1月1日前、1960年12月31日前保留，未推算或改变边界。",
+      "未取得可复制本届独立官网文字，仅本张规程原图所列局部审完，其他长图未逐项核对。"
+    ],
+    "officialDocuments": [],
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "mini": false,
+      "physicalDevice": false,
+      "formalMiniRelease": false
+    }
+  },
+  {
+    "id": "caa-1000452080",
+    "name": "2026南通马拉松",
+    "status": "partially_verified",
+    "scope": "仅 edits 指明章节、facts 数值和 imageReviews 对应原图已实际核对。其余已保存正文及原图保留；未声明未列章节逐条完成，亦未声明保存/部署/线上展示完成。",
+    "beforeBodyHash": "7f39c9092df323a77ee9936e8f429da50461f2f15160a5db033b05bbaa464b72",
+    "savedBodyHash": "4ca754aff54fe524dd2dd9e05cf115149b4119cda4e8e82d35e719204f3b3f96",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 6,
+    "pendingImages": 0,
+    "chapters": 11,
+    "groups": 2,
+    "groupCorrections": 1,
+    "questions": [
+      {
+        "issue": "平台原图页头装饰含2023，正文日期及本届官网为2026，采用本届正文身份；未使用装饰年份覆盖赛事年份。",
+        "status": "edition_verified_decorative_header_removed"
+      },
+      {
+        "issue": "官网关门表标注“暂定”，按官网保留，不推算未公布的三枪出发时刻。",
+        "status": "provisional_official_table_retained",
+        "sourceUrl": "https://web.irunner.mobi/home/common-banner?match_eng=6a681035f3ed9"
+      },
+      {
+        "issue": "官网仍写领物时间地点赛前发布；此候选仅恢复原规程，不把起点或往届地点补作领物地点。",
+        "status": "pickup_announcement_not_reviewed",
+        "sourceUrl": "https://web.irunner.mobi/home/common-banner?match_eng=6a681035f3ed9"
+      },
+      {
+        "issue": "公开接口为 irunner 多赛事服务，官网首页当前 match_eng 指向 match id 7973；仅此资源及其明确图片被确认。",
+        "status": "exact_public_api_verified",
+        "sourceUrl": "https://web.irunner.mobi/home/common-banner?match_eng=6a681035f3ed9"
+      }
+    ],
+    "officialDocuments": [
+      {
+        "url": "https://web.irunner.mobi/home/common-banner?match_eng=6a681035f3ed9",
+        "title": "2026江苏银行·南通马拉松竞赛规程",
+        "role": "official_website",
+        "verified": true,
+        "identityReview": "核对官方明确链接、当届标题/年份/举办地及对应原图；仅验证此页面或当前赛事标识明确的公开接口，不授权共享站点的整个域名。",
+        "characters": 8058,
+        "bodySha256": "8ffc8dbd5e2b3154fdefd3688132f855b7632acea87db125be3c684de027ff9d",
+        "checkedAt": "2026-11-17T18:15:32.191Z"
+      }
+    ],
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "mini": false,
+      "physicalDevice": false,
+      "formalMiniRelease": false
+    }
+  },
+  {
+    "id": "zuiku-66992",
+    "name": "2026黄石马拉松",
+    "status": "partially_verified",
+    "scope": "仅 edits 指明章节、facts 数值和 imageReviews 对应原图已实际核对。其余已保存正文及原图保留；未声明未列章节逐条完成，亦未声明保存/部署/线上展示完成。",
+    "beforeBodyHash": "348ca1da8ee837e1abd9ac5ed3d6c7a2d640b5f2de521edfca07eaa07c1f30fa",
+    "savedBodyHash": "9b24eee658dbf46ff1e15005354da7c37f020a5dfad644a61debcd324aaeb75d",
+    "bodyChanged": true,
+    "edits": 9,
+    "viewedImages": 4,
+    "pendingImages": 0,
+    "chapters": 14,
+    "groups": 2,
+    "groupCorrections": 1,
+    "questions": [
+      {
+        "issue": "破速奖文字“少于”与表格“≤”边界不一致。两者均保留并附准确说明，未自行选择含/不含。",
+        "status": "unconfirmed_conflicting_official_boundary",
+        "sourceUrl": "https://mp.weixin.qq.com/s/oEdpIbLPiiG21CFEVyDmkA",
+        "imageUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/11c3a91803d289f9480ddbf3b2ef5e70dba11391.jpeg?imageView2/2/w/1181"
+      },
+      {
+        "issue": "本届规程仅写领物时间/地点赛前一周公布，未审校后续领物公告；不补写地点。",
+        "status": "pickup_announcement_not_reviewed",
+        "sourceUrl": "https://mp.weixin.qq.com/s/oEdpIbLPiiG21CFEVyDmkA"
+      },
+      {
+        "issue": "官方正文主体是图片，可复制正文不足以覆盖规程；本轮使用已实际查看的官方图片与平台同版清晰图人工恢复。",
+        "status": "official_image_primary_with_manual_review",
+        "sourceUrl": "https://mp.weixin.qq.com/s/oEdpIbLPiiG21CFEVyDmkA"
+      }
+    ],
+    "officialDocuments": [
+      {
+        "url": "https://mp.weixin.qq.com/s/oEdpIbLPiiG21CFEVyDmkA",
+        "title": "2026黄石马拉松竞赛规程",
+        "role": "official_wechat_article",
+        "verified": true,
+        "identityReview": "2026黄石马拉松官网 https://huangshimarathon.com/ 的“竞赛规程”导航明确指向此篇；人工查看文章内两张规程原图确认赛事、2026年份与日期，不授权 mp.weixin.qq.com 其他文章或账号。",
+        "characters": 295,
+        "bodySha256": "ae7765dfbca4edfaf8bda60d15bafd6a43853e6b7b8b40543094e9c4d96b8cae",
+        "checkedAt": "2026-11-17T18:15:32.191Z"
+      }
+    ],
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "mini": false,
+      "physicalDevice": false,
+      "formalMiniRelease": false
+    }
+  },
+  {
+    "id": "zuiku-86038",
+    "name": "2027建发厦门马拉松赛",
+    "status": "partially_verified",
+    "scope": "仅 edits 指明章节、facts 数值和 imageReviews 对应原图已实际核对。其余已保存正文及原图保留；未声明未列章节逐条完成，亦未声明保存/部署/线上展示完成。",
+    "beforeBodyHash": "1c80f50b69ba83b54141caa23d787dd4ee1d4a49af6b28b28b909117af810a34",
+    "savedBodyHash": "0714d6f92833bc132dd27900db2b5a63cd3488d6fb7ffafdb86adfcbc1902113",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 16,
+    "pendingImages": 0,
+    "chapters": 12,
+    "groups": 1,
+    "groupCorrections": 1,
+    "questions": [
+      {
+        "issue": "报名须知把官方小程序称“文广体育”，规程联系方式称“文广赛事”；属于官方文本差异。分别按其上下文保留，不把二者擅自统一。",
+        "status": "official_channel_names_preserved",
+        "sourceUrl": "https://www.xmim.org/information/detail/2100792807301664769"
+      },
+      {
+        "issue": "体检“报名须知要求”与“规程建议二甲医院”表述不同；候选分别标明文件语境，不用建议替换要求。",
+        "status": "distinct_official_health_requirements_preserved",
+        "sourceUrl": "https://www.xmim.org/information/detail/2100793180791853058"
+      },
+      {
+        "issue": "具体领物日期地点将在赛前一周发布，未根据起终点或往届补齐。",
+        "status": "unconfirmed_not_yet_announced",
+        "sourceUrl": "https://www.xmim.org/information/detail/2100792807301664769"
+      },
+      {
+        "issue": "世界田联/国内最好成绩表以官方本届规程当前表为准；规程明说以2027-01-10前中国田协最新公布为准，保留动态条件。",
+        "status": "record_values_with_source_update_condition",
+        "sourceUrl": "https://www.xmim.org/information/detail/2100793180791853058"
+      }
+    ],
+    "officialDocuments": [
+      {
+        "url": "https://www.xmim.org/information/detail/2100793180791853058",
+        "title": "2027建发厦门马拉松竞赛规程",
+        "role": "official_website",
+        "verified": true,
+        "identityReview": "核对官方明确链接、当届标题/年份/举办地及对应原图；仅验证此页面或当前赛事标识明确的公开接口，不授权共享站点的整个域名。",
+        "characters": 8763,
+        "bodySha256": "fa841eb07432662bdbb07997a7240107132c306e1a42c41ef05c4092fde3c92f",
+        "checkedAt": "2026-11-17T18:15:32.191Z"
+      },
+      {
+        "url": "https://www.xmim.org/information/detail/2100792807301664769",
+        "title": "2027建发厦门马拉松报名须知",
+        "role": "official_website",
+        "verified": true,
+        "identityReview": "核对官方明确链接、当届标题/年份/举办地及对应原图；仅验证此页面或当前赛事标识明确的公开接口，不授权共享站点的整个域名。",
+        "characters": 4215,
+        "bodySha256": "e5f606345eda5086fe4ea6645543a33474277859b062d19f0649992bde6b179c",
+        "checkedAt": "2026-11-17T18:15:32.191Z"
+      }
+    ],
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "mini": false,
+      "physicalDevice": false,
+      "formalMiniRelease": false
+    }
+  },
+  {
+    "id": "zuiku-58600",
+    "name": "2026首届贵州茅台镇越野跑",
+    "status": "partially_verified",
+    "scope": "仅 edits 指明章节、facts 数值和 imageReviews 对应原图已实际核对。其余已保存正文及原图保留；未声明未列章节逐条完成，亦未声明保存/部署/线上展示完成。",
+    "beforeBodyHash": "f4e2fbb45aeede8d2b31278f51aa923a86e56bdc20ca5bf94dd6d8940ad8e1b8",
+    "savedBodyHash": "9f6bc9ae914550c965770cc962ad34a67df81d6bf7607a03b76cac431eeba9f6",
+    "bodyChanged": true,
+    "edits": 7,
+    "viewedImages": 6,
+    "pendingImages": 8,
+    "chapters": 25,
+    "groups": 4,
+    "groupCorrections": 4,
+    "questions": [
+      {
+        "issue": "官网是朗途体育“正常报名通道”明确赛事专页，同页面还有贡嘎专属/精英/邀请等其他通道；本次未混用其他通道费用或资格。",
+        "status": "specific_official_entry_verified",
+        "sourceUrl": "http://www.letoursports.com/event?id=905178&mid=72299"
+      },
+      {
+        "issue": "原路线图中细小站名及局部海拔数字本轮未逐项可靠确认，作为视觉原图保留；只转录四组完整参数和已看清的强装表。",
+        "status": "uncertain_visual_labels_retained_as_images",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/b26476e55f25807bfee9fce70960cd4eda0d855f.jpeg?imageView2/2/w/702",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/daee3300582ef0e70f21fc585ac70841d65498dd.jpeg?imageView2/2/w/702",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/9adb9a21cbcc69f4e2716f5120b9e88c1ea062a3.jpeg?imageView2/2/w/702",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/4d2f0eff11ec06d49f775392fab044b71c6a46c7.jpeg?imageView2/2/w/702"
+        ]
+      },
+      {
+        "issue": "官网年龄上限“不超过63周岁”与括号“1963年11月22日以后出生”的边界需进一步确认；本轮保留已有可靠正文原句，不用常识改出生日期。",
+        "status": "unconfirmed_official_age_boundary_retained",
+        "sourceUrl": "http://www.letoursports.com/event?id=905178&mid=72299"
+      },
+      {
+        "issue": "官网HTTP可直接读取本届全文，浏览器打开受本地客户端限制、HTTPS未成功；记录访问方式，不把访问问题误记为没有官网。",
+        "status": "public_http_text_retrieved_browser_limited",
+        "sourceUrl": "http://www.letoursports.com/event?id=905178&mid=72299"
+      }
+    ],
+    "officialDocuments": [
+      {
+        "url": "http://www.letoursports.com/event?id=905178&mid=72299",
+        "title": "首届贵州茅台镇越野跑｜正常报名通道（2026年11月22日）",
+        "role": "official_website",
+        "verified": true,
+        "identityReview": "核对官方明确链接、当届标题/年份/举办地及对应原图；仅验证此页面或当前赛事标识明确的公开接口，不授权共享站点的整个域名。",
+        "characters": 14687,
+        "bodySha256": "0826bade2d9da761568d0497559aab735162ecbdd1fcaaad3bbba7cdb5f1b4d1",
+        "checkedAt": "2026-11-17T18:15:32.191Z"
+      }
+    ],
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "mini": false,
+      "physicalDevice": false,
+      "formalMiniRelease": false
+    }
+  }
+]

@@ -1,0 +1,770 @@
+{
+  "checkedAt": "2026-11-17T18:17:55.710Z",
+  "codeCommit": "fe21c9c335e2e34b6f4e4b842de2cc2b0f59256e",
+  "saved": {
+    "checkedAt": "2026-11-17T18:16:23.964Z",
+    "rows": [
+      {
+        "id": "caa-1000452114",
+        "bodyHash": "3aed6a9878d754d19ceb169e88e8f8a8d6ca4e7dd3790f6d40adcfadd8ed77bd",
+        "groups": 1,
+        "media": 10
+      },
+      {
+        "id": "caa-1000499000",
+        "bodyHash": "db175178cbd62442680b62e8c7c5a558a8fc37bbf8b89f8c82f60a382a57a3c2",
+        "groups": 2,
+        "media": 7
+      },
+      {
+        "id": "caa-1000454034",
+        "bodyHash": "d4454cbb5803ecfb86c80532a63663276c8d7f90a0bbfcfea95f2204629431de",
+        "groups": 1,
+        "media": 8
+      },
+      {
+        "id": "caa-1000472006",
+        "bodyHash": "f07469b7721d43f4e3c82482579e926f2bf755cafbd36517a338c13b60024a3a",
+        "groups": 2,
+        "media": 9
+      },
+      {
+        "id": "caa-1000483001",
+        "bodyHash": "1081a1f15ea093fce5e3e55c0670feebe911b26029e8f1c4288bd7b1649918a5",
+        "groups": 2,
+        "media": 6
+      },
+      {
+        "id": "caa-1000452094",
+        "bodyHash": "0453c3389143ce5951bd66a4a8cfdd21043e3753193448bf2f6e91ddf1d6c4f0",
+        "groups": 1,
+        "media": 3
+      },
+      {
+        "id": "caa-1000503000",
+        "bodyHash": "8764a95eaa1b83b721b1be41892231acdf1d086f0126d19de3d86e3b6d396055",
+        "groups": 2,
+        "media": 7
+      },
+      {
+        "id": "caa-1000479060",
+        "bodyHash": "52697469c5653cee24d63474152e6503b3249c0385716e6a25e43d827693d911",
+        "groups": 2,
+        "media": 8
+      },
+      {
+        "id": "caa-1000452080",
+        "bodyHash": "4ca754aff54fe524dd2dd9e05cf115149b4119cda4e8e82d35e719204f3b3f96",
+        "groups": 2,
+        "media": 2
+      },
+      {
+        "id": "zuiku-66992",
+        "bodyHash": "9b24eee658dbf46ff1e15005354da7c37f020a5dfad644a61debcd324aaeb75d",
+        "groups": 2,
+        "media": 2
+      },
+      {
+        "id": "zuiku-86038",
+        "bodyHash": "0714d6f92833bc132dd27900db2b5a63cd3488d6fb7ffafdb86adfcbc1902113",
+        "groups": 1,
+        "media": 6
+      },
+      {
+        "id": "zuiku-58600",
+        "bodyHash": "9f6bc9ae914550c965770cc962ad34a67df81d6bf7607a03b76cac431eeba9f6",
+        "groups": 4,
+        "media": 14
+      }
+    ],
+    "races": 434,
+    "sheets": 1725,
+    "quickCheck": "ok",
+    "errors": []
+  },
+  "web": {
+    "startedAt": "2026-11-17T18:15:47.414Z",
+    "api": [
+      {
+        "id": "caa-1000452114",
+        "bodyMatches": true,
+        "groups": 1,
+        "characters": 12920
+      },
+      {
+        "id": "caa-1000499000",
+        "bodyMatches": true,
+        "groups": 2,
+        "characters": 13640
+      },
+      {
+        "id": "caa-1000454034",
+        "bodyMatches": true,
+        "groups": 1,
+        "characters": 9268
+      },
+      {
+        "id": "caa-1000472006",
+        "bodyMatches": true,
+        "groups": 2,
+        "characters": 11923
+      },
+      {
+        "id": "caa-1000483001",
+        "bodyMatches": true,
+        "groups": 2,
+        "characters": 8937
+      },
+      {
+        "id": "caa-1000452094",
+        "bodyMatches": true,
+        "groups": 1,
+        "characters": 8701
+      },
+      {
+        "id": "caa-1000503000",
+        "bodyMatches": true,
+        "groups": 2,
+        "characters": 17570
+      },
+      {
+        "id": "caa-1000479060",
+        "bodyMatches": true,
+        "groups": 2,
+        "characters": 15040
+      },
+      {
+        "id": "caa-1000452080",
+        "bodyMatches": true,
+        "groups": 2,
+        "characters": 10046
+      },
+      {
+        "id": "zuiku-66992",
+        "bodyMatches": true,
+        "groups": 2,
+        "characters": 10217
+      },
+      {
+        "id": "zuiku-86038",
+        "bodyMatches": true,
+        "groups": 1,
+        "characters": 13967
+      },
+      {
+        "id": "zuiku-58600",
+        "bodyMatches": true,
+        "groups": 4,
+        "characters": 16312
+      }
+    ],
+    "web": [
+      {
+        "id": "caa-1000452114",
+        "width": 320,
+        "characters": 13397,
+        "tables": [],
+        "overflow": false
+      },
+      {
+        "id": "caa-1000452114",
+        "width": 390,
+        "characters": 13397,
+        "tables": [],
+        "overflow": false
+      },
+      {
+        "id": "caa-1000499000",
+        "width": 320,
+        "characters": 14193,
+        "tables": [],
+        "overflow": false
+      },
+      {
+        "id": "caa-1000499000",
+        "width": 390,
+        "characters": 14193,
+        "tables": [],
+        "overflow": false
+      },
+      {
+        "id": "caa-1000454034",
+        "width": 320,
+        "characters": 9434,
+        "tables": [
+          {
+            "width": 252,
+            "scrollWidth": 252,
+            "tableWidth": 252,
+            "rows": 2
+          },
+          {
+            "width": 252,
+            "scrollWidth": 360,
+            "tableWidth": 360,
+            "rows": 9
+          },
+          {
+            "width": 252,
+            "scrollWidth": 360,
+            "tableWidth": 360,
+            "rows": 11
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "id": "caa-1000454034",
+        "width": 390,
+        "characters": 9434,
+        "tables": [
+          {
+            "width": 318,
+            "scrollWidth": 318,
+            "tableWidth": 318,
+            "rows": 2
+          },
+          {
+            "width": 318,
+            "scrollWidth": 360,
+            "tableWidth": 360,
+            "rows": 9
+          },
+          {
+            "width": 318,
+            "scrollWidth": 360,
+            "tableWidth": 360,
+            "rows": 11
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "id": "caa-1000472006",
+        "width": 320,
+        "characters": 12409,
+        "tables": [
+          {
+            "width": 252,
+            "scrollWidth": 360,
+            "tableWidth": 360,
+            "rows": 11
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "id": "caa-1000472006",
+        "width": 390,
+        "characters": 12409,
+        "tables": [
+          {
+            "width": 318,
+            "scrollWidth": 360,
+            "tableWidth": 360,
+            "rows": 11
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "id": "caa-1000483001",
+        "width": 320,
+        "characters": 9422,
+        "tables": [
+          {
+            "width": 252,
+            "scrollWidth": 252,
+            "tableWidth": 252,
+            "rows": 2
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "id": "caa-1000483001",
+        "width": 390,
+        "characters": 9422,
+        "tables": [
+          {
+            "width": 318,
+            "scrollWidth": 318,
+            "tableWidth": 318,
+            "rows": 2
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "id": "caa-1000452094",
+        "width": 320,
+        "characters": 8867,
+        "tables": [
+          {
+            "width": 252,
+            "scrollWidth": 480,
+            "tableWidth": 480,
+            "rows": 7
+          },
+          {
+            "width": 252,
+            "scrollWidth": 480,
+            "tableWidth": 480,
+            "rows": 10
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "id": "caa-1000452094",
+        "width": 390,
+        "characters": 8867,
+        "tables": [
+          {
+            "width": 318,
+            "scrollWidth": 480,
+            "tableWidth": 480,
+            "rows": 7
+          },
+          {
+            "width": 318,
+            "scrollWidth": 480,
+            "tableWidth": 480,
+            "rows": 10
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "id": "caa-1000503000",
+        "width": 320,
+        "characters": 18341,
+        "tables": [
+          {
+            "width": 252,
+            "scrollWidth": 252,
+            "tableWidth": 252,
+            "rows": 3
+          },
+          {
+            "width": 252,
+            "scrollWidth": 252,
+            "tableWidth": 252,
+            "rows": 3
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "id": "caa-1000503000",
+        "width": 390,
+        "characters": 18341,
+        "tables": [
+          {
+            "width": 318,
+            "scrollWidth": 318,
+            "tableWidth": 318,
+            "rows": 3
+          },
+          {
+            "width": 318,
+            "scrollWidth": 318,
+            "tableWidth": 318,
+            "rows": 3
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "id": "caa-1000479060",
+        "width": 320,
+        "characters": 15545,
+        "tables": [
+          {
+            "width": 252,
+            "scrollWidth": 252,
+            "tableWidth": 252,
+            "rows": 3
+          },
+          {
+            "width": 252,
+            "scrollWidth": 480,
+            "tableWidth": 480,
+            "rows": 11
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "id": "caa-1000479060",
+        "width": 390,
+        "characters": 15545,
+        "tables": [
+          {
+            "width": 318,
+            "scrollWidth": 318,
+            "tableWidth": 318,
+            "rows": 3
+          },
+          {
+            "width": 318,
+            "scrollWidth": 480,
+            "tableWidth": 480,
+            "rows": 11
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "id": "caa-1000452080",
+        "width": 320,
+        "characters": 9723,
+        "tables": [
+          {
+            "width": 252,
+            "scrollWidth": 600,
+            "tableWidth": 600,
+            "rows": 11
+          },
+          {
+            "width": 252,
+            "scrollWidth": 480,
+            "tableWidth": 480,
+            "rows": 17
+          },
+          {
+            "width": 252,
+            "scrollWidth": 360,
+            "tableWidth": 360,
+            "rows": 9
+          },
+          {
+            "width": 252,
+            "scrollWidth": 360,
+            "tableWidth": 360,
+            "rows": 9
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "id": "caa-1000452080",
+        "width": 390,
+        "characters": 9723,
+        "tables": [
+          {
+            "width": 318,
+            "scrollWidth": 600,
+            "tableWidth": 600,
+            "rows": 11
+          },
+          {
+            "width": 318,
+            "scrollWidth": 480,
+            "tableWidth": 480,
+            "rows": 17
+          },
+          {
+            "width": 318,
+            "scrollWidth": 360,
+            "tableWidth": 360,
+            "rows": 9
+          },
+          {
+            "width": 318,
+            "scrollWidth": 360,
+            "tableWidth": 360,
+            "rows": 9
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "id": "zuiku-66992",
+        "width": 320,
+        "characters": 9793,
+        "tables": [
+          {
+            "width": 252,
+            "scrollWidth": 480,
+            "tableWidth": 480,
+            "rows": 11
+          },
+          {
+            "width": 252,
+            "scrollWidth": 360,
+            "tableWidth": 360,
+            "rows": 2
+          },
+          {
+            "width": 252,
+            "scrollWidth": 360,
+            "tableWidth": 360,
+            "rows": 9
+          },
+          {
+            "width": 252,
+            "scrollWidth": 360,
+            "tableWidth": 360,
+            "rows": 9
+          },
+          {
+            "width": 252,
+            "scrollWidth": 600,
+            "tableWidth": 600,
+            "rows": 8
+          },
+          {
+            "width": 252,
+            "scrollWidth": 252,
+            "tableWidth": 252,
+            "rows": 5
+          },
+          {
+            "width": 252,
+            "scrollWidth": 360,
+            "tableWidth": 360,
+            "rows": 5
+          },
+          {
+            "width": 252,
+            "scrollWidth": 360,
+            "tableWidth": 360,
+            "rows": 5
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "id": "zuiku-66992",
+        "width": 390,
+        "characters": 9793,
+        "tables": [
+          {
+            "width": 318,
+            "scrollWidth": 480,
+            "tableWidth": 480,
+            "rows": 11
+          },
+          {
+            "width": 318,
+            "scrollWidth": 360,
+            "tableWidth": 360,
+            "rows": 2
+          },
+          {
+            "width": 318,
+            "scrollWidth": 360,
+            "tableWidth": 360,
+            "rows": 9
+          },
+          {
+            "width": 318,
+            "scrollWidth": 360,
+            "tableWidth": 360,
+            "rows": 9
+          },
+          {
+            "width": 318,
+            "scrollWidth": 600,
+            "tableWidth": 600,
+            "rows": 8
+          },
+          {
+            "width": 318,
+            "scrollWidth": 318,
+            "tableWidth": 318,
+            "rows": 5
+          },
+          {
+            "width": 318,
+            "scrollWidth": 360,
+            "tableWidth": 360,
+            "rows": 5
+          },
+          {
+            "width": 318,
+            "scrollWidth": 360,
+            "tableWidth": 360,
+            "rows": 5
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "id": "zuiku-86038",
+        "width": 320,
+        "characters": 13602,
+        "tables": [
+          {
+            "width": 252,
+            "scrollWidth": 360,
+            "tableWidth": 360,
+            "rows": 11
+          },
+          {
+            "width": 252,
+            "scrollWidth": 360,
+            "tableWidth": 360,
+            "rows": 11
+          },
+          {
+            "width": 252,
+            "scrollWidth": 360,
+            "tableWidth": 360,
+            "rows": 9
+          },
+          {
+            "width": 252,
+            "scrollWidth": 360,
+            "tableWidth": 360,
+            "rows": 13
+          },
+          {
+            "width": 252,
+            "scrollWidth": 360,
+            "tableWidth": 360,
+            "rows": 9
+          },
+          {
+            "width": 252,
+            "scrollWidth": 600,
+            "tableWidth": 600,
+            "rows": 3
+          },
+          {
+            "width": 252,
+            "scrollWidth": 600,
+            "tableWidth": 600,
+            "rows": 3
+          },
+          {
+            "width": 252,
+            "scrollWidth": 480,
+            "tableWidth": 480,
+            "rows": 3
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "id": "zuiku-86038",
+        "width": 390,
+        "characters": 13602,
+        "tables": [
+          {
+            "width": 318,
+            "scrollWidth": 360,
+            "tableWidth": 360,
+            "rows": 11
+          },
+          {
+            "width": 318,
+            "scrollWidth": 360,
+            "tableWidth": 360,
+            "rows": 11
+          },
+          {
+            "width": 318,
+            "scrollWidth": 360,
+            "tableWidth": 360,
+            "rows": 9
+          },
+          {
+            "width": 318,
+            "scrollWidth": 360,
+            "tableWidth": 360,
+            "rows": 13
+          },
+          {
+            "width": 318,
+            "scrollWidth": 360,
+            "tableWidth": 360,
+            "rows": 9
+          },
+          {
+            "width": 318,
+            "scrollWidth": 600,
+            "tableWidth": 600,
+            "rows": 3
+          },
+          {
+            "width": 318,
+            "scrollWidth": 600,
+            "tableWidth": 600,
+            "rows": 3
+          },
+          {
+            "width": 318,
+            "scrollWidth": 480,
+            "tableWidth": 480,
+            "rows": 3
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "id": "zuiku-58600",
+        "width": 320,
+        "characters": 16213,
+        "tables": [
+          {
+            "width": 252,
+            "scrollWidth": 720,
+            "tableWidth": 720,
+            "rows": 5
+          },
+          {
+            "width": 252,
+            "scrollWidth": 960,
+            "tableWidth": 960,
+            "rows": 13
+          },
+          {
+            "width": 252,
+            "scrollWidth": 252,
+            "tableWidth": 252,
+            "rows": 10
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "id": "zuiku-58600",
+        "width": 390,
+        "characters": 16213,
+        "tables": [
+          {
+            "width": 318,
+            "scrollWidth": 720,
+            "tableWidth": 720,
+            "rows": 5
+          },
+          {
+            "width": 318,
+            "scrollWidth": 960,
+            "tableWidth": 960,
+            "rows": 13
+          },
+          {
+            "width": 318,
+            "scrollWidth": 318,
+            "tableWidth": 318,
+            "rows": 10
+          }
+        ],
+        "overflow": false
+      }
+    ],
+    "errors": [],
+    "completedAt": "2026-11-17T18:16:24.471Z",
+    "passed": true
+  },
+  "scope": "12场所列条款局部校对、51处修订、7条组别集合/字段更正；40个已查看图像URL，其中含官网和平台同版对照，不作为独立文件数量。",
+  "mini": {
+    "status": "not_verified_for_third_batch",
+    "physicalDevice": false,
+    "formalRelease": false
+  },
+  "backup": "server/data/race-guide-quality-20261117/third-applied.json.before.sqlite"
+}
