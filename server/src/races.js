@@ -1,5 +1,5 @@
 const { signupTarget } = require("./signup-channel");
-const { readDetails, registrationOf, publicDetails } = require("./race-details");
+const { readDetails, registrationOf, publicDetails, publicGuideText } = require("./race-details");
 
 const RACES = [
   {
@@ -359,6 +359,9 @@ function linksOf(row) {
 function presentRace(row, now) {
   now = now || new Date();
   const guide = readDetails(field(row, "guideText", "guide_text"));
+  // Use the same de-duplicated rich data for the compact project labels and
+  // the full detail response. The stored trailer remains available to admins.
+  const visibleDetails = publicDetails(guide.details);
   const baseDate = row.race_date || row.raceDate;
   const schedule = guide.details?.schedule || {};
   const validDay = value => /^\d{4}-\d{2}-\d{2}$/.test(value || '') && Number.isFinite(Date.parse(value)) && new Date(value).toISOString().slice(0, 10) === value;
@@ -415,7 +418,7 @@ function presentRace(row, now) {
     eventUrl: field(row, "eventUrl", "event_url"),
     kinds,
     kindLabels: kinds.map((item) => KIND_LABEL[item] || item),
-    groups: guide.details?.groups?.length ? guide.details.groups.map(item => item.name).filter(Boolean) : listed(field(row, "groups", "groups")),
+    groups: visibleDetails?.groups?.length ? visibleDetails.groups.map(item => item.name).filter(Boolean) : listed(field(row, "groups", "groups")),
     startAt: field(row, "startAt", "start_at"),
     bibAt: field(row, "bibAt", "bib_at"),
     fee: field(row, "fee", "fee"),
@@ -424,8 +427,8 @@ function presentRace(row, now) {
     route: field(row, "route", "route"),
     pickup: field(row, "pickup", "pickup"),
     pacers: field(row, "pacers", "pacers"),
-    guideText: guide.text,
-    details: publicDetails(guide.details),
+    guideText: publicGuideText(guide),
+    details: visibleDetails,
     registrationStatus: registration.status,
     registrationLabel: registration.label,
     links,

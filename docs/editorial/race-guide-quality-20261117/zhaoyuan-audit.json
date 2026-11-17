@@ -1,0 +1,128 @@
+{
+  "id": "caa-1000480022",
+  "name": "2026招远黄金马拉松",
+  "verification": {
+    "reconcilesExistingGuide": true,
+    "imageViewed": true,
+    "method": "浏览器正常打开本届数字心动原文，取得可复制全文；与用户截图逐项核对；实际打开原始费用图核对表头和两行价格。",
+    "checkedAt": "2026-11-17T13:25:26.200Z",
+    "fees": true,
+    "eligibility": true,
+    "pickupRules": true
+  },
+  "coverage": {
+    "pages": 1,
+    "images": 1,
+    "imagesRead": 1,
+    "reviewed": "current_registration_announcement",
+    "textCharacters": 2287
+  },
+  "groups": [
+    {
+      "name": "马拉松",
+      "form": "individual",
+      "actualDistanceKm": 42.195,
+      "quota": 3000,
+      "fees": [
+        {
+          "label": "报名费",
+          "amount": 180,
+          "unit": "人",
+          "currency": "CNY",
+          "sourceUrl": "https://mp.weixin.qq.com/s/gNt4D6NcPAUi16s-HelcHg"
+        }
+      ],
+      "eligibility": "2026年1月1日年满20周岁；提交24个月内1次全马或2次半马比赛成绩。",
+      "sourceUrl": "https://mp.weixin.qq.com/s/gNt4D6NcPAUi16s-HelcHg"
+    },
+    {
+      "name": "半程马拉松",
+      "form": "individual",
+      "actualDistanceKm": 21.0975,
+      "quota": 9000,
+      "fees": [
+        {
+          "label": "报名费",
+          "amount": 160,
+          "unit": "人",
+          "currency": "CNY",
+          "sourceUrl": "https://mp.weixin.qq.com/s/gNt4D6NcPAUi16s-HelcHg"
+        }
+      ],
+      "eligibility": "2026年1月1日年满18周岁；提交24个月内2次10公里及以上距离比赛成绩。",
+      "sourceUrl": "https://mp.weixin.qq.com/s/gNt4D6NcPAUi16s-HelcHg"
+    }
+  ],
+  "audit": {
+    "review": {
+      "status": "verified_with_questions",
+      "imageViewed": true,
+      "method": "浏览器正常打开本届数字心动原文，取得可复制全文；与用户截图逐项核对；实际打开原始费用图核对表头和两行价格。",
+      "checkedAt": "2026-11-17T13:25:26.200Z"
+    },
+    "questions": [
+      {
+        "field": "赛前领物具体时间、地点与接驳",
+        "reason": "8月报名公告仅指引后续公告，待核对11月领物公告。",
+        "sourceUrl": "https://mp.weixin.qq.com/s/gNt4D6NcPAUi16s-HelcHg"
+      },
+      {
+        "field": "路线、关门、奖励等未在该公告给出内容",
+        "reason": "报名公告未包含完整竞赛规程，不据常识补写；继续查赛事官方最新规程。",
+        "sourceUrl": "https://mp.weixin.qq.com/s/gNt4D6NcPAUi16s-HelcHg"
+      },
+      {
+        "field": "报名二维码目标页面",
+        "reason": "已用Apple Vision解码官方原图得到数字心动本届raceId=1000481013；实际打开目标返回拼图安全验证，不能确认入口页面内容，保留目标在审计中，不宣传为已验证报名入口。",
+        "sourceUrl": "https://mp.weixin.qq.com/s/gNt4D6NcPAUi16s-HelcHg",
+        "url": "https://race.shuzixindong.com/offline/#/pages/race/detail?raceId=1000481013&f=d8c67"
+      }
+    ],
+    "sourceDiscovery": {
+      "officialStatus": "search_incomplete",
+      "associationLookup": {
+        "url": "https://api-changzheng.chinaath.com/changzheng-content-center-api/api/homePage/official/searchById",
+        "officialId": "1000480022",
+        "result": "本届协会公开接口未提供webUrl字段"
+      },
+      "searches": [
+        {
+          "provider": "Google",
+          "status": "timeout"
+        },
+        {
+          "provider": "Baidu",
+          "status": "empty_unreadable"
+        },
+        {
+          "provider": "搜狗微信",
+          "status": "access_verification_required"
+        }
+      ],
+      "reason": "搜索受限不等同于无官网；数字心动报名公告已正常取得全文。"
+    }
+  },
+  "images": [
+    {
+      "url": "https://mmbiz.qpic.cn/sz_mmbiz_png/WpSpPq4GK2rTWcDvMBffCUytjk0w4376ibgCytKIh6CzIibR0YssCe318KTaPhicSmkYLQsQhZe0gfWCJJ6KHicibz7tUicwgD2iaMwaYP0PXkibow4/640?wx_fmt=png#imgIndex=7",
+      "sourceUrl": "https://mp.weixin.qq.com/s/gNt4D6NcPAUi16s-HelcHg",
+      "kind": "guide",
+      "caption": "2026招远黄金马拉松报名费用原表（全马180元、半马160元）",
+      "review": {
+        "status": "verified",
+        "imageViewed": true,
+        "checkedAt": "2026-11-17T13:25:26.201Z"
+      },
+      "reviewedText": "马拉松180元；半程马拉松160元。"
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://mp.weixin.qq.com/s/gNt4D6NcPAUi16s-HelcHg",
+      "title": "报名广播 | 8月17日12:12大众报名开启，2026招远黄金马拉松，邀你踏金逐梦！",
+      "method": "browser-current-copyable-text",
+      "checkedAt": "2026-11-17T13:25:26.201Z",
+      "fresh": true
+    }
+  ]
+}

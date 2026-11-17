@@ -1,4 +1,5 @@
 function runs(text) {
+  text = text.replace(/<br\s*\/?>/gi, "\n");
   const pieces = [];
   const link = /\[([^\]]+)\]\((https:\/\/[^\s)]+)\)/g;
   let last = 0;

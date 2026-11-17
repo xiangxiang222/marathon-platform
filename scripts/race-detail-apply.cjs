@@ -40,6 +40,7 @@ function mergeGroups(previous = [], incoming = [], complete = false) {
 
 function reconcileGuide(previous, collected) {
   const old = readDetails(previous), details = structuredClone(collected.details);
+  details.audit = { ...(old.details?.audit || {}), ...(details.audit || {}) };
   // A failed package page must not erase facts saved during an earlier visit.
   // Removing/renaming a group requires an explicit, checked official adjustment.
   details.groups = mergeGroups(old.details?.groups, details.groups, collected.verification?.groupsReconciledByOfficial === true);
@@ -51,7 +52,16 @@ function reconcileGuide(previous, collected) {
   if (/^赛事已取消[。\s]/.test(old.text) && !collected.verification?.reinstatedByOfficial) {
     details.registration = { ...(details.registration || {}), status: 'cancelled', verified: true };
   }
-  const freshText = collected.guideText || details.sections.map(s => '## ' + s.title + '\n\n' + s.text).join('\n\n');
+  const freshText = collected.guideText || (details.sections || []).map(s => '## ' + s.title + '\n\n' + s.text).join('\n\n');
+  // Missing/failed recognition is not a retraction. Keep the prior prose and
+  // chapters when the new capture contains images or facts but no approved
+  // replacement body. Never erase a reliable guide after an OCR failure.
+  if (!String(freshText).trim() && old.text) {
+    details.sections = old.details?.sections || [];
+    details.audit.preservedExistingGuide = true;
+    details.audit.missingApprovedReplacement = true;
+    return { value: writeDetails(old.text, details), editorialPreserved: !!old.details?.audit?.preservedEditorialGuide || !old.details };
+  }
   // Earlier generated summary fields are replaced by the full source. A long
   // human-edited guide is retained unless the new document contains its prose.
   const legacyHeading = /(?:\n\n|^)原有(?:规程|资料)|(?:\n\n|^)##?\s*原有/.exec(old.text);
@@ -138,7 +148,7 @@ async function applyPlan(dbFile, plan, out, mediaRoot) {
             const saved = details.details.media.find(m => m.filename === image.filename); if (saved) saved.sheetId = sheetId;
           }
           const changes = { ...update.changes, guide_text: writeDetails(details.text,details.details) };
-          const allowedFields = new Set(['guide_text','updated_at','groups','organizer','phone','route','pickup','fee','scale','start_at','reg_start','deadline','deadline_name','signup_url']);
+          const allowedFields = new Set(['guide_text','updated_at','groups','organizer','phone','place','route','pickup','fee','scale','start_at','reg_start','deadline','deadline_name','signup_url']);
           if (Object.keys(changes).some(key => !allowedFields.has(key))) throw new Error('unsupported_update_field');
           db.prepare('UPDATE races SET ' + Object.keys(changes).map(key => key+'=?').join(',') + ' WHERE id=?').run(...Object.values(changes),update.id);
           record.savedHash = sha(changes.guide_text); record.groupCount = details.details.groups?.length || 0; record.sheetCount = media.length;

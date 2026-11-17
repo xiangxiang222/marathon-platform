@@ -1,0 +1,501 @@
+{
+  "id": "zuiku-96336",
+  "name": "2026重庆垫江明月山越野赛",
+  "verification": {
+    "method": "实际打开四张完整竞赛规程原图及三张路线/海拔、日程区域；与公开报名页、保存正文逐项人工核对，清理OCR换行及错字，表格重建行列",
+    "checkedAt": "2026-11-17T12:22:30.168Z",
+    "registrationDates": true,
+    "allFourPackages": true,
+    "fees": true,
+    "eligibility": true,
+    "pickup": true,
+    "routes": true,
+    "equipmentTable": true,
+    "limitations": [
+      "亲子组早鸟套餐总价未在原规程单列，未由88×2推算。",
+      "领物具体地点未在当前原规程中单列，保留原图和后续官方领物须知指引。",
+      "原规程“截止到11月1日，不予退款”边界表述不清，保留原文。",
+      "路线中“飞茑集”“包锅狃（nao）”个别字形尚待官方轨迹核实，保留既有可靠录入及清晰原图。",
+      "原装备图移动电源单位为“10000mh”；未推定为mAh，原图保留并记录疑点。"
+    ],
+    "imageViewed": true,
+    "penaltyTable": true,
+    "awardTable": true,
+    "allRegulationClausesPreserved": true
+  },
+  "coverage": {
+    "pages": 2,
+    "packages": 4,
+    "images": 11,
+    "imagesRead": 11,
+    "textCharacters": 9572,
+    "sourcePlatforms": [
+      "reg.zuicool.com",
+      "zuicool.com"
+    ],
+    "reviewed": true,
+    "reviewedSections": 17
+  },
+  "groups": [
+    {
+      "name": "50公里雾隐牡丹组",
+      "description": "50公里雾隐牡丹组：300人，赛道里程49.93km，累计爬升2984m，累计下降2984m，出发时间11月21日8:00，关门时间11月21日21:00，关门时长13h，ITRA积分3分",
+      "form": "individual",
+      "advertisedDistanceKm": 50,
+      "actualDistanceKm": 49.93,
+      "ascentM": 2984,
+      "descentM": 2984,
+      "quota": "300",
+      "startsAt": "2026-11-21T08:00:00+08:00",
+      "cutoffAt": "2026-11-21T21:00:00+08:00",
+      "cutoffHours": 13,
+      "itraPoints": 3,
+      "status": "closed",
+      "fees": [
+        {
+          "label": "早鸟价",
+          "amount": 358,
+          "currency": "CNY",
+          "unit": "人",
+          "startsAt": "2026-09-15",
+          "endsAt": "2026-09-21",
+          "sourceUrl": "https://reg.zuicool.com/77675"
+        },
+        {
+          "label": "普通价",
+          "amount": 398,
+          "currency": "CNY",
+          "unit": "人",
+          "sourceUrl": "https://reg.zuicool.com/77675/289843",
+          "startsAt": "2026-09-22",
+          "endsAt": "2026-11-10"
+        }
+      ],
+      "sourceUrl": "https://reg.zuicool.com/77675/289843",
+      "quotaUnit": "人",
+      "eligibility": "18周岁以上、60周岁以下，出生日期在1966年12月31日后、2008年12月31日前；提供近三年30公里及以上越野赛或42.195公里马拉松完赛证书。",
+      "review": {
+        "status": "reviewed",
+        "imageViewed": true,
+        "checkedAt": "2026-11-17T12:22:30.168Z",
+        "sourceUrls": [
+          "https://reg.zuicool.com/77675",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/84884d4a47065de5269d45473a8810ba8d7d619b.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/7ac7093aa7b6140072b4be37f5b63b1d4e1d797f.jpeg?imageView2/2/w/750"
+        ],
+        "checkedFields": [
+          "组别名称",
+          "标称/实际距离",
+          "爬升",
+          "下降",
+          "名额及单位",
+          "出发时间",
+          "关门时刻/时长",
+          "ITRA积分",
+          "费用及适用阶段",
+          "年龄与出生日期",
+          "完赛证明与未成年人要求"
+        ]
+      }
+    },
+    {
+      "name": "25公里盐泉皓月组",
+      "description": "25公里盐泉皓月组：700人，赛道里程24.8km，累计爬升1550m，累计下降1550m，出发时间11月21日8:00，关门时间11月21日16:00，关门时长8h，ITRA积分1分",
+      "form": "individual",
+      "advertisedDistanceKm": 25,
+      "actualDistanceKm": 24.8,
+      "ascentM": 1550,
+      "descentM": 1550,
+      "quota": "700",
+      "startsAt": "2026-11-21T08:00:00+08:00",
+      "cutoffAt": "2026-11-21T16:00:00+08:00",
+      "cutoffHours": 8,
+      "itraPoints": 1,
+      "status": "sold_out",
+      "fees": [
+        {
+          "label": "早鸟价",
+          "amount": 178,
+          "currency": "CNY",
+          "unit": "人",
+          "startsAt": "2026-09-15",
+          "endsAt": "2026-09-21",
+          "sourceUrl": "https://reg.zuicool.com/77675"
+        },
+        {
+          "label": "普通价",
+          "amount": 198,
+          "currency": "CNY",
+          "unit": "人",
+          "sourceUrl": "https://reg.zuicool.com/77675/298409",
+          "startsAt": "2026-09-22",
+          "endsAt": "2026-11-10"
+        }
+      ],
+      "sourceUrl": "https://reg.zuicool.com/77675/298409",
+      "quotaUnit": "人",
+      "eligibility": "18周岁以上、60周岁以下，出生日期在1966年12月31日后、2008年12月31日前；提供近三年20公里及以上越野赛或21.0975公里半程马拉松完赛证书。",
+      "review": {
+        "status": "reviewed",
+        "imageViewed": true,
+        "checkedAt": "2026-11-17T12:22:30.168Z",
+        "sourceUrls": [
+          "https://reg.zuicool.com/77675",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/84884d4a47065de5269d45473a8810ba8d7d619b.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/7ac7093aa7b6140072b4be37f5b63b1d4e1d797f.jpeg?imageView2/2/w/750"
+        ],
+        "checkedFields": [
+          "组别名称",
+          "标称/实际距离",
+          "爬升",
+          "下降",
+          "名额及单位",
+          "出发时间",
+          "关门时刻/时长",
+          "ITRA积分",
+          "费用及适用阶段",
+          "年龄与出生日期",
+          "完赛证明与未成年人要求"
+        ]
+      }
+    },
+    {
+      "name": "10公里梯田筑梦组（个人组）",
+      "description": "10公里梯田筑梦组（个人组）：500人，赛道里程13.5km，累计爬升816m，累计下降816m，出发时间11月21日8:00，关门时间11月21日13:00，关门时长5h",
+      "form": "individual",
+      "advertisedDistanceKm": 10,
+      "actualDistanceKm": 13.5,
+      "ascentM": 816,
+      "descentM": 816,
+      "quota": "500",
+      "startsAt": "2026-11-21T08:00:00+08:00",
+      "cutoffAt": "2026-11-21T13:00:00+08:00",
+      "cutoffHours": 5,
+      "itraPoints": null,
+      "status": "closed",
+      "fees": [
+        {
+          "label": "早鸟价",
+          "amount": 88,
+          "currency": "CNY",
+          "unit": "人",
+          "startsAt": "2026-09-15",
+          "endsAt": "2026-09-21",
+          "sourceUrl": "https://reg.zuicool.com/77675"
+        },
+        {
+          "label": "普通价",
+          "amount": 98,
+          "currency": "CNY",
+          "unit": "人",
+          "sourceUrl": "https://reg.zuicool.com/77675/230737",
+          "startsAt": "2026-09-22",
+          "endsAt": "2026-11-10"
+        }
+      ],
+      "sourceUrl": "https://reg.zuicool.com/77675/230737",
+      "quotaUnit": "人",
+      "eligibility": "8周岁以上、65岁以下，出生日期在1961年12月31日后、2018年12月31日前；经常户外运动并具备一定基础。18周岁以下须直系亲属签字确认并由监护人陪同。",
+      "review": {
+        "status": "reviewed",
+        "imageViewed": true,
+        "checkedAt": "2026-11-17T12:22:30.168Z",
+        "sourceUrls": [
+          "https://reg.zuicool.com/77675",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/84884d4a47065de5269d45473a8810ba8d7d619b.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/7ac7093aa7b6140072b4be37f5b63b1d4e1d797f.jpeg?imageView2/2/w/750"
+        ],
+        "checkedFields": [
+          "组别名称",
+          "标称/实际距离",
+          "爬升",
+          "下降",
+          "名额及单位",
+          "出发时间",
+          "关门时刻/时长",
+          "ITRA积分",
+          "费用及适用阶段",
+          "年龄与出生日期",
+          "完赛证明与未成年人要求"
+        ]
+      }
+    },
+    {
+      "name": "10公里梯田筑梦组（亲子组1大1小）",
+      "description": "10公里梯田筑梦组（亲子组）：500人，赛道里程13.5km，累计爬升816m，累计下降816m，出发时间11月21日8:00，关门时间11月21日13:00，关门时长5h",
+      "form": "family",
+      "advertisedDistanceKm": 10,
+      "actualDistanceKm": 13.5,
+      "ascentM": 816,
+      "descentM": 816,
+      "quota": "500",
+      "startsAt": "2026-11-21T08:00:00+08:00",
+      "cutoffAt": "2026-11-21T13:00:00+08:00",
+      "cutoffHours": 5,
+      "itraPoints": null,
+      "status": "closed",
+      "fees": [
+        {
+          "label": "亲子套餐价",
+          "amount": 196,
+          "currency": "CNY",
+          "unit": "套餐",
+          "sourceUrl": "https://reg.zuicool.com/77675/244232"
+        }
+      ],
+      "sourceUrl": "https://reg.zuicool.com/77675/244232",
+      "participants": {
+        "adults": 1,
+        "children": 1
+      },
+      "quotaUnit": "人",
+      "eligibility": "8周岁以上、65岁以下，出生日期在1961年12月31日后、2018年12月31日前；经常户外运动并具备一定基础。18周岁以下须直系亲属签字确认并由监护人陪同。",
+      "review": {
+        "status": "reviewed",
+        "imageViewed": true,
+        "checkedAt": "2026-11-17T12:22:30.168Z",
+        "sourceUrls": [
+          "https://reg.zuicool.com/77675",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/84884d4a47065de5269d45473a8810ba8d7d619b.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/7ac7093aa7b6140072b4be37f5b63b1d4e1d797f.jpeg?imageView2/2/w/750"
+        ],
+        "checkedFields": [
+          "组别名称",
+          "标称/实际距离",
+          "爬升",
+          "下降",
+          "名额及单位",
+          "出发时间",
+          "关门时刻/时长",
+          "ITRA积分",
+          "费用及适用阶段",
+          "年龄与出生日期",
+          "完赛证明与未成年人要求"
+        ]
+      }
+    }
+  ],
+  "audit": {
+    "review": {
+      "status": "verified_with_questions",
+      "imageViewed": true,
+      "checkedAt": "2026-11-17T12:38:51.878Z",
+      "method": "逐项原图核对并整理完整规程"
+    },
+    "questions": [
+      {
+        "field": "移动电源单位",
+        "value": "10000mh",
+        "reason": "源图如此标注，不能推定为mAh",
+        "sourceUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/fc840eb3e28a329a8e0bc89d50594f151132fbb8.jpeg?imageView2/2/w/750"
+      },
+      {
+        "field": "路线个别地名字形",
+        "reason": "飞茑集、包锅狃字形暂未可靠确认，保留原图与已有正文标注，不作导航依据。",
+        "sourceUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/84884d4a47065de5269d45473a8810ba8d7d619b.jpeg?imageView2/2/w/750"
+      },
+      {
+        "field": "领物地点及亲子早鸟套餐",
+        "reason": "规程未单列，未补写。",
+        "sourceUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/7ac7093aa7b6140072b4be37f5b63b1d4e1d797f.jpeg?imageView2/2/w/750"
+      },
+      {
+        "field": "退费边界",
+        "reason": "原图末档“截止到11月1日，不予退款”表述不明，正文保留原文。",
+        "sourceUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/96c0c1b80d1461ec10a278560ef90a4193f6c302.jpeg?imageView2/2/w/750"
+      }
+    ]
+  },
+  "images": [
+    {
+      "sourceUrl": "https://reg.zuicool.com/77675",
+      "sourceImageUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/a9386f1fdfa505f786f07c2673345272b68c434b.jpeg?imageView2/2/w/750",
+      "width": 750,
+      "height": 319,
+      "caption": "封面横幅",
+      "review": {
+        "status": "reviewed",
+        "imageViewed": true,
+        "checkedAt": "2026-11-17T12:48:33.955Z",
+        "method": "实际打开原图人工核对；长图结合放大区域，未把OCR输出直接作为正文",
+        "notes": "只核对赛事名称、三个距离标签、11月21日08:00；与下方正文重复，不在规程末尾重复堆叠。"
+      },
+      "retained": false
+    },
+    {
+      "sourceUrl": "https://reg.zuicool.com/77675",
+      "sourceImageUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/11/f0802d2e1c2cee7874b26aaf314bc01695f4276f.jpeg?imageView2/2/w/750",
+      "width": 750,
+      "height": 1333,
+      "caption": "ITRA认证海报",
+      "review": {
+        "status": "reviewed",
+        "imageViewed": true,
+        "checkedAt": "2026-11-17T12:48:33.955Z",
+        "method": "实际打开原图人工核对；长图结合放大区域，未把OCR输出直接作为正文",
+        "notes": "已核对50K积分3、25K积分1、两组山地级别6；可确认积分已入正文，不将二维码/海报文案作为规程正文。"
+      },
+      "retained": false
+    },
+    {
+      "sourceUrl": "https://reg.zuicool.com/77675",
+      "sourceImageUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/729bec9071339605812b929b6329e2724ea98f77.jpeg?imageView2/2/w/750",
+      "width": 750,
+      "height": 1333,
+      "caption": "宣传海报：明月召我还",
+      "review": {
+        "status": "reviewed",
+        "imageViewed": true,
+        "checkedAt": "2026-11-17T12:48:33.955Z",
+        "method": "实际打开原图人工核对；长图结合放大区域，未把OCR输出直接作为正文",
+        "notes": "艺术标题与推广文案，无额外资格/日程信息；不追加正文与资料图堆叠。"
+      },
+      "retained": false
+    },
+    {
+      "sourceUrl": "https://reg.zuicool.com/77675",
+      "sourceImageUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/e7aa61468dfd1adb5b8cb745b7a4b129af0e9804.jpeg?imageView2/2/w/750",
+      "width": 750,
+      "height": 1333,
+      "caption": "宣传海报：踏古道、穿山林、寻野趣",
+      "review": {
+        "status": "reviewed",
+        "imageViewed": true,
+        "checkedAt": "2026-11-17T12:48:33.955Z",
+        "method": "实际打开原图人工核对；长图结合放大区域，未把OCR输出直接作为正文",
+        "notes": "推广文案与风景图，无额外规程条款；去除与参赛用途无关的重复宣传。"
+      },
+      "retained": false
+    },
+    {
+      "sourceUrl": "https://reg.zuicool.com/77675",
+      "sourceImageUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/b1219972825fc5d6c6694590c2f77018e51649cc.jpeg?imageView2/2/w/750",
+      "width": 750,
+      "height": 1333,
+      "caption": "报名开启海报",
+      "review": {
+        "status": "reviewed",
+        "imageViewed": true,
+        "checkedAt": "2026-11-17T12:48:33.955Z",
+        "method": "实际打开原图人工核对；长图结合放大区域，未把OCR输出直接作为正文",
+        "notes": "已核对日期11月21日08:00与50/25/10KM标签；报名二维码不另叠加。"
+      },
+      "retained": false
+    },
+    {
+      "sourceUrl": "https://reg.zuicool.com/77675",
+      "sourceImageUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/ff8f277511bb886dd24d9bb16a174e7d4cc3f51c.jpeg?imageView2/2/w/750",
+      "width": 750,
+      "height": 1333,
+      "caption": "报名时间、渠道、项目和费用海报",
+      "review": {
+        "status": "reviewed",
+        "imageViewed": true,
+        "checkedAt": "2026-11-17T12:48:33.955Z",
+        "method": "实际打开原图人工核对；长图结合放大区域，未把OCR输出直接作为正文",
+        "notes": "逐行核对9月15日–11月10日、云动云动/渝爱跑/我要赛/最酷/跑跑网/润赛美佳、50K300/25K700/10K个人500及亲子500人，以及原价398/198/98与早鸟358/178/88、截至9月21日；与规程费用表一致，亲子早鸟套餐仍未单列。"
+      },
+      "retained": false
+    },
+    {
+      "sourceUrl": "https://reg.zuicool.com/77675",
+      "sourceImageUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/2420a4cda8743d61887d01f5643f8e82f0ddae93.jpeg?imageView2/2/w/750",
+      "width": 750,
+      "height": 1333,
+      "caption": "招商与报名咨询海报",
+      "review": {
+        "status": "reviewed",
+        "imageViewed": true,
+        "checkedAt": "2026-11-17T12:48:33.955Z",
+        "method": "实际打开原图人工核对；长图结合放大区域，未把OCR输出直接作为正文",
+        "notes": "报名电话173-1678-4625与规程17316784625一致；招商电话023-74681082不作为报名咨询电话。招商内容不写入参赛正文。"
+      },
+      "retained": false
+    },
+    {
+      "sourceUrl": "https://reg.zuicool.com/77675",
+      "sourceImageUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/84884d4a47065de5269d45473a8810ba8d7d619b.jpeg?imageView2/2/w/750",
+      "width": 750,
+      "height": 7368,
+      "caption": "规程1：组织机构、概况、日程、路线与海拔",
+      "review": {
+        "status": "reviewed",
+        "imageViewed": true,
+        "checkedAt": "2026-11-17T12:48:33.955Z",
+        "method": "实际打开原图人工核对；长图结合放大区域，未把OCR输出直接作为正文",
+        "notes": "逐项核对组织机构、日期、四组名额、合并日期单元格的日程，以及三组路线图、海拔图、距离/爬升/关门标注；路线地点个别罕见字仍保留原图。"
+      },
+      "retained": true
+    },
+    {
+      "sourceUrl": "https://reg.zuicool.com/77675",
+      "sourceImageUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/7ac7093aa7b6140072b4be37f5b63b1d4e1d797f.jpeg?imageView2/2/w/750",
+      "width": 750,
+      "height": 6815,
+      "caption": "规程2：资格、报名、费用、精英与领物",
+      "review": {
+        "status": "reviewed",
+        "imageViewed": true,
+        "checkedAt": "2026-11-17T12:48:33.955Z",
+        "method": "实际打开原图人工核对；长图结合放大区域，未把OCR输出直接作为正文",
+        "notes": "逐项核对健康9条、年龄和出生日期边界、50/25公里完赛证明、未成年人签字与陪同、报名9/15–11/10、费用3行×2阶段、早鸟截止9/21、精英阈值、审核退款15工作日、本人身份证领取要求；未单列亲子早鸟套餐总价和领物地点。"
+      },
+      "retained": true
+    },
+    {
+      "sourceUrl": "https://reg.zuicool.com/77675",
+      "sourceImageUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/fc840eb3e28a329a8e0bc89d50594f151132fbb8.jpeg?imageView2/2/w/750",
+      "width": 750,
+      "height": 6649,
+      "caption": "规程3：竞赛规则、装备、关门、存包与计时",
+      "review": {
+        "status": "reviewed",
+        "imageViewed": true,
+        "checkedAt": "2026-11-17T12:48:33.955Z",
+        "method": "实际打开原图人工核对；长图结合放大区域，未把OCR输出直接作为正文",
+        "notes": "逐项核对16条竞赛规则、装备表合并提供方式及50K/25K/10K勾选列、容量/押金/灯具单位、三组关门时长、存包适用组别/时段及计时；移动电源源图单位疑似10000mh，保留人工可靠10000mAh并记录。"
+      },
+      "retained": true
+    },
+    {
+      "sourceUrl": "https://reg.zuicool.com/77675",
+      "sourceImageUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/96c0c1b80d1461ec10a278560ef90a4193f6c302.jpeg?imageView2/2/w/750",
+      "width": 750,
+      "height": 11787,
+      "caption": "规程4：处罚、奖励、医疗保险、退费与联系",
+      "review": {
+        "status": "reviewed",
+        "imageViewed": true,
+        "checkedAt": "2026-11-17T12:48:33.955Z",
+        "method": "实际打开原图人工核对；长图结合放大区域，未把OCR输出直接作为正文",
+        "notes": "逐项核对处罚两列表跨页长单元格、50/25K奖金列与完赛奖励勾选、领奖公示/20天/20%税、医疗/环保/保险、影像、安全、四阶段退费、邮箱合并断行和电话；退费11/1边界原文有歧义，保留原文。"
+      },
+      "retained": true
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://reg.zuicool.com/77675",
+      "title": "2026重庆垫江明月山越野赛",
+      "checkedAt": "2026-11-17T04:05:44.905Z",
+      "method": "html",
+      "fresh": true,
+      "error": ""
+    },
+    {
+      "url": "https://zuicool.com/event/96336",
+      "title": "2026重庆垫江明月山越野赛",
+      "checkedAt": "2026-11-17T04:05:45.311Z",
+      "method": "html",
+      "fresh": true,
+      "error": ""
+    },
+    {
+      "url": "https://reg.zuicool.com/77675",
+      "title": "2026重庆垫江明月山越野赛完整竞赛规程与报名页人工复核",
+      "checkedAt": "2026-11-17T05:12:24.014Z",
+      "method": "live-html-and-image-visual-review",
+      "fresh": true
+    }
+  ]
+}
