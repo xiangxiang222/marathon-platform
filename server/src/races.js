@@ -1,4 +1,5 @@
 const { signupTarget } = require("./signup-channel");
+const { readDetails, registrationOf, publicDetails } = require("./race-details");
 
 const RACES = [
   {
@@ -356,17 +357,31 @@ function linksOf(row) {
 }
 
 function presentRace(row, now) {
-  const meta = deadlineMeta(row.deadline, now);
+  now = now || new Date();
+  const guide = readDetails(field(row, "guideText", "guide_text"));
+  const registration = registrationOf(row, guide.details, now);
+  const generalDeadline = !/早鸟|精英|优惠/.test(field(row, 'deadlineName', 'deadline_name')) ? row.deadline : '';
+  const meta = deadlineMeta(guide.details?.registration?.verified && guide.details.registration.closesAt || generalDeadline, now);
   const regStart = field(row, "regStart", "reg_start");
   const startInstant = /^\d{4}-\d{2}-\d{2}$/.test(regStart) ? Date.parse(regStart + "T00:00:00+08:00") : instant(regStart);
   const registrationScheduled = !!regStart && startInstant > now.getTime();
   if (registrationScheduled) meta.open = false;
+  if (registration.label) {
+    meta.open = registration.status === 'open';
+    if (!meta.known || ['closed', 'sold_out', 'cancelled', 'invalid'].includes(registration.status)) meta.deadlineLabel = registration.label;
+  }
   const distances = String(row.distances).split(",").filter(Boolean);
   const kinds = listed(field(row, "kinds", "kinds"), KIND_LABEL);
   const nodes = buildNodes(row, now);
   const nextNode = nodes.find((node) => node.key !== "race" && !node.past) || null;
-  const links = linksOf(row);
+  const blocked = ['cancelled', 'invalid'].includes(registration.status);
+  const links = linksOf(row).filter(item => !blocked || item.key !== 'signup');
   const signup = signupTarget((links.find((item) => item.key === "signup") || {}).url);
+  const today = new Date(now.getTime() + TZ).toISOString().slice(0, 10);
+  const future = (row.race_date || row.raceDate) > today;
+  let regStatus = phaseLabel(row.race_date || row.raceDate, meta, now, registrationScheduled);
+  if (['cancelled', 'invalid'].includes(registration.status)) regStatus = registration.label;
+  else if (future && registration.status !== 'unknown') regStatus = registration.status === 'not_open' ? '未开始' : registration.label;
   return {
     id: row.id,
     name: row.name,
@@ -391,7 +406,7 @@ function presentRace(row, now) {
     eventUrl: field(row, "eventUrl", "event_url"),
     kinds,
     kindLabels: kinds.map((item) => KIND_LABEL[item] || item),
-    groups: listed(field(row, "groups", "groups")),
+    groups: guide.details?.groups?.length ? guide.details.groups.map(item => item.name).filter(Boolean) : listed(field(row, "groups", "groups")),
     startAt: field(row, "startAt", "start_at"),
     bibAt: field(row, "bibAt", "bib_at"),
     fee: field(row, "fee", "fee"),
@@ -400,17 +415,29 @@ function presentRace(row, now) {
     route: field(row, "route", "route"),
     pickup: field(row, "pickup", "pickup"),
     pacers: field(row, "pacers", "pacers"),
-    guideText: field(row, "guideText", "guide_text"),
+    guideText: guide.text,
+    details: publicDetails(guide.details),
+    registrationStatus: registration.status,
+    registrationLabel: registration.label,
     links,
     signupChannel: signup ? signup.name : "",
     signupHost: signup ? signup.host : "",
+    signupQrAvailable: !!signup,
+    signupQrUrl: signup ? (process.env.BASE_PATH || '/marathon') + '/api/races/' + encodeURIComponent(row.id) + '/signup-qr' : '',
     nodes,
     nextNode,
-    regStatus: phaseLabel(row.race_date || row.raceDate, meta, now, registrationScheduled),
+    regStatus,
     kind: kinds.includes("trail") || KIND[row.id] === "trail" ? "trail" : "road",
     meet: field(row, "meet", "meet") === "online" ? "online" : "offline",
     ...meta
   };
+}
+
+function summarizeRace(race) {
+  // Full chapters and source images are fetched only when opening the detail.
+  // Carrying them through calendar/setData grows with every collected document.
+  const { guideText, details, ...summary } = race;
+  return summary;
 }
 
 const KIND = { huangyaguan: "trail" };
@@ -446,6 +473,7 @@ module.exports = {
   DISTANCE_LABEL,
   deadlineMeta,
   presentRace,
+  summarizeRace,
   inChannel,
   summarizeMarks,
   squadOf,

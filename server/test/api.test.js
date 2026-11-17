@@ -57,8 +57,9 @@ test("open races hide the finished sample and can filter city and distance", asy
   const byProvince = await request(app).get("/marathon/api/races?kind=trail&q=" + encodeURIComponent("浙江"));
   assert.ok(byProvince.body.races.some((r) => r.id === "closed-sample"));
   const future = all.body.races.find((r) => r.id === "huangyaguan");
-  assert.equal(future.open, true);
-  assert.match(future.deadlineLabel, /天后截止/);
+  assert.equal(future.open, false);
+  assert.equal(future.registrationStatus, 'unknown');
+  assert.equal(future.deadlineLabel, '报名时间未录入');
   assert.equal(future.source, "最酷，2026-09-07");
   assert.equal(future.regStart, "2026-09-07");
   assert.equal(future.nextNode.label, "早鸟截止");
@@ -1317,7 +1318,7 @@ test("a race missing from the official calendar can be added by hand", async () 
   const tooLong = await request(app).put("/marathon/api/admin/races/" + created.body.id + "/guide").set(admin).send({
     distances: ["10k"],
     kinds: ["family"],
-    guideText: "规".repeat(40001)
+    guideText: "规".repeat(2000001)
   });
   assert.equal(tooLong.status, 400);
   assert.equal((await request(app).get("/marathon/api/races/" + created.body.id)).body.race.guideText, "参赛须知：沿滨河公园环湖。");

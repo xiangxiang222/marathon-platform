@@ -30,14 +30,15 @@
       </div>
       <p v-for="item in conflicts" :key="item.text" class="warn">{{ item.text }}</p>
     </div>
-    <section v-if="race" class="official-actions" aria-labelledby="official-actions-title">
-      <div class="official-heading"><span id="official-actions-title">官方报名与查询</span><span class="official-stage">{{ publicStage }}</span></div><p v-if="nextMoment && nextMoment.key !== 'race'" class="official-moment"><span>{{ nextMoment.label }}</span><strong>{{ nextMoment.at }}</strong><small v-if="nextMoment.text">{{ nextMoment.text }}</small></p>
-      <a v-if="primaryOfficial" class="official-primary" :href="primaryOfficial.url" target="_blank" rel="noopener" @click="onOfficialOpen(primaryOfficial)"><span>{{ primaryOfficial.label }}</span><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h12m-5-5 5 5-5 5"/></svg></a>
+    <section v-if="race" class="official-actions signup-entry" aria-labelledby="official-actions-title">
+      <div class="official-heading"><span id="official-actions-title">报名信息</span><span class="official-stage">{{ registrationState || publicStage }}</span></div>
+      <p v-if="nextMoment && nextMoment.key !== 'race'" class="official-moment"><span>{{ nextMoment.label }}</span><strong>{{ nextMoment.at }}</strong><small v-if="nextMoment.text">{{ nextMoment.text }}</small></p>
+      <div v-if="signupQr" class="signup-code">
+        <button v-if="!qrFailed" type="button" class="signup-qr-preview" aria-label="预览本届赛事报名二维码" @click="viewer = signupQr"><img :src="signupQr" :alt="race.name + '报名二维码'" @error="qrFailed = true" /></button>
+        <p v-else class="src">二维码暂时无法加载。<button type="button" class="media-retry" @click="qrFailed = false">重试</button></p>
+        <p class="src signup-qr-hint">{{ signupHint }}</p>
+      </div>
       <p v-else class="official-unavailable">{{ officialHint }}</p>
-      <nav v-if="secondaryOfficial.length" class="official-secondary" aria-label="官方查询入口"><a v-for="link in secondaryOfficial" :key="link.key" :href="link.url" target="_blank" rel="noopener" @click="onOfficialOpen(link)">{{ link.label }}<span aria-hidden="true">›</span></a></nav>
-      <details v-if="signupQr" class="signup-code" @click="prepareFold"><summary>手机扫码报名<span aria-hidden="true">＋</span></summary><img v-if="!qrFailed" :src="signupQr" alt="官方报名页二维码" loading="lazy" @error="qrFailed = true" /><p v-else class="src">二维码暂时无法加载。<button type="button" class="media-retry" @click="qrFailed = false">重试</button></p><p class="src">扫描二维码前往已录入的官方报名页。</p></details>
-      <div v-if="askSignup" class="ask"><span>已在官方渠道提交报名？</span><button class="undo" type="button" :disabled="planBusy" @click="confirmSigned">{{ ready ? '记为已报名' : '登录后记录' }}</button><button class="undo" type="button" @click="askSignup = false">稍后再记</button></div>
-      <p class="official-note">报名与缴费在官方渠道完成，个人计划单独记录。</p>
     </section>
     <div v-if="tabs.length" class="tabs" role="tablist">
       <button v-for="item in tabs" :key="item.id" type="button" role="tab" :id="'race-tab-' + item.id" :aria-selected="tab === item.id" :tabindex="tab === item.id ? 0 : -1" aria-controls="race-content" class="tab" :class="{ on: tab === item.id }" @click="pickTab(item.id)" @keydown="moveTab($event, item.id)">{{ item.label }}</button>
@@ -56,12 +57,18 @@
       </div>
       <div class="block race-project-card">
         <h2>参赛项目与费用</h2>
-        <div class="row"><span>距离</span><b>{{ (race.distanceLabels || []).join(' / ') || '未录入' }}</b></div>
-        <div v-if="race.groups?.length" class="row"><span>其他组别</span><b>{{ race.groups.join(' / ') }}</b></div>
-        <div class="row"><span>报名费</span><b>{{ race.fee || '未录入' }}</b></div>
+        <div v-if="!detailGroups.length" class="row"><span>距离</span><b>{{ (race.distanceLabels || []).join(' / ') || '未录入' }}</b></div>
+        <div v-if="!detailGroups.length && race.groups?.length" class="row"><span>其他组别</span><b>{{ race.groups.join(' / ') }}</b></div>
+        <div v-if="!detailGroups.length && race.fee" class="row"><span>报名费</span><b>{{ race.fee }}</b></div>
+        <article v-for="group in detailGroups" :key="group.i" class="race-group">
+          <div class="race-group-heading"><h3>{{ group.name }}</h3><span v-if="group.status">{{ group.status }}</span></div>
+          <dl class="race-group-facts"><div v-for="field in group.fields" :key="field.i" :class="{ wide: field.wide }"><dt>{{ field.label }}</dt><dd>{{ field.value }}</dd></div></dl>
+          <ul v-if="group.fees.length" class="race-group-fees" aria-label="该组报名费用"><li v-for="fee in group.fees" :key="fee.i">{{ fee.text }}</li></ul>
+        </article>
         <div v-if="race.scale" class="row"><span>赛事规模</span><b>{{ race.scale }}</b></div>
         <div v-if="race.phone" class="row"><span>咨询电话</span><a :href="'tel:' + race.phone">{{ race.phone }}</a></div>
       </div>
+      <section v-if="queryLinks.length" class="block race-queries"><h2>参赛查询</h2><nav aria-label="参赛查询入口"><a v-for="link in queryLinks" :key="link.key" :href="link.url" target="_blank" rel="noopener">{{ link.label }} <span aria-hidden="true">↗</span></a></nav></section>
       <div v-if="drawRates.length" class="block">
         <h2>历年中签</h2>
         <p class="src">依据已公布的报名人数与名额计算。</p>
@@ -165,13 +172,11 @@
         <h2>竞赛规程</h2>
         <p class="src">{{ guideBlocks.length || race.guide.length ? '参赛资格、奖励及关门安排，以组委会规程为准。' : '竞赛规程尚未录入。' }}</p>
         <div v-if="guideBlocks.length" class="guide-md">
-          <p v-for="block in guideBlocks" :key="block.i" :class="'md md-' + block.kind">
-            <span v-if="block.mark" class="md-mark">{{ block.mark }}</span>
-            <template v-for="run in block.runs" :key="run.j">
-              <strong v-if="run.strong">{{ run.text }}</strong>
-              <template v-else>{{ run.text }}</template>
-            </template>
-          </p>
+          <template v-for="block in guideBlocks" :key="block.i">
+            <div v-if="block.kind === 'table'" class="guide-table-scroll" tabindex="0" role="region" aria-label="赛事资料表格"><table class="guide-table"><thead><tr><th v-for="cell in block.headers" :key="cell.j" scope="col"><span v-for="run in cell.runs" :key="run.j" :class="{ 'md-strong': run.strong }">{{ run.text }}</span></th></tr></thead><tbody><tr v-for="row in block.rows" :key="row.r"><td v-for="cell in row.cells" :key="cell.j"><span v-for="run in cell.runs" :key="run.j" :class="{ 'md-strong': run.strong }">{{ run.text }}</span></td></tr></tbody></table></div>
+            <RaceMedia v-else-if="block.kind === 'image'" :src="block.src" :alt="block.alt" @open="viewer = block.src" />
+            <component v-else :is="/^h[1-4]$/.test(block.kind) ? block.kind : 'p'" :class="'md md-' + block.kind"><span v-if="block.mark" class="md-mark">{{ block.mark }}</span><template v-for="run in block.runs" :key="run.j"><strong v-if="run.strong">{{ run.text }}</strong><template v-else>{{ run.text }}</template></template></component>
+          </template>
         </div>
         <template v-if="race.guide.length">
           <h3>原页</h3>
@@ -267,6 +272,7 @@ import { api, raceSheetSrc, resultProofSrc, signupSheetSrc, upload } from "../ap
 import { copyText } from "../copy";
 import { toneOf } from "../tone";
 import { parseGuide } from "../guide-md";
+import { groupCards, guideSource, registrationLabel, qrAvailable, qrHint } from "../race-detail-content";
 import FollowRaceButton from '../components/FollowRaceButton.vue';
 import RaceOutings from '../components/RaceOutings.vue';
 import RaceMedia from '../components/RaceMedia.vue';
@@ -332,7 +338,8 @@ const race = ref(null);
 const tone = computed(() => toneOf(race.value));
 const today = () => new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10);
 const locationLine = computed(() => [...new Set([race.value?.province, race.value?.city, race.value?.district, race.value?.place].filter(Boolean))].join(' · '));
-const projectLabels = computed(() => [...new Set([...(race.value?.distanceLabels || []), ...(race.value?.groups || [])])]);
+const detailGroups = computed(() => groupCards(race.value));
+const projectLabels = computed(() => [...new Set(detailGroups.value.length ? detailGroups.value.map(group => group.name) : [...(race.value?.distanceLabels || []), ...(race.value?.groups || [])])]);
 const typeLabel = computed(() => {
   const labels = race.value?.kindLabels || [];
   return labels.length ? labels.join(' / ') : race.value?.kind === 'trail' ? '越野' : '路跑';
@@ -348,8 +355,11 @@ function registrationScheduled(row, date) {
 const publicStage = computed(() => {
   const row = race.value;
   if (!row) return '';
+  const verified = registrationLabel(row);
+  if (['cancelled', 'invalid'].includes(row.registrationStatus) && verified) return verified;
   if (row.raceDate && row.raceDate < today()) return '已结束';
   if (row.raceDate === today()) return '比赛日';
+  if (verified) return verified;
   if (registrationScheduled(row, today())) return '报名未开始';
   if (!row.deadline) return '报名时间未录入';
   return row.open ? '报名中' : '报名已截止';
@@ -360,7 +370,7 @@ const nextMoment = computed(() => {
   return rows.find(node => node.key !== 'race') || rows.find(node => node.key === 'race') || null;
 });
 const routeSheets = computed(() => (race.value && race.value.routeSheets) || []);
-const guideBlocks = computed(() => parseGuide(race.value && race.value.guideText));
+const guideBlocks = computed(() => parseGuide(guideSource(race.value), { rich: true }));
 const dayNotes = computed(() => {
   if (!race.value) return [];
   return [
@@ -386,7 +396,7 @@ const gallery = computed(() => {
     ...(row.pacerSheets || []).map((sheet, index) => ({ ...sheet, label: '配速资料 ' + (index + 1) })),
     ...(row.guide || []).map((sheet, index) => ({ ...sheet, label: '竞赛规程 · 第 ' + (index + 1) + ' 页' })),
     ...(row.liveSheet ? [{ ...row.liveSheet, label: '直播二维码' }] : [])
-  ].map(sheet => ({ ...sheet, src: sheetSrc(sheet.id) }));
+  ].map(sheet => ({ ...sheet, src: sheetSrc(sheet.id) })).concat(guideBlocks.value.filter(block => block.kind === 'image').map(block => ({ src: block.src, label: block.alt })), signupQr.value ? [{ src: signupQr.value, label: '本届赛事报名二维码' }] : []);
 });
 const viewerIndex = computed(() => Math.max(0, gallery.value.findIndex(sheet => sheet.src === viewer.value)));
 const viewerLabel = computed(() => gallery.value[viewerIndex.value]?.label || '赛事图片');
@@ -518,32 +528,14 @@ const initialTab = () => ["signup", "guide", "news", "result"].includes(route.qu
 const tab = ref(initialTab());
 const raceTabPanel = ref(null);
 const tabContentMinHeight = ref(0);
-const signupQr = computed(() => race.value?.signupHost && officialLinks.value.some(link => link.key === 'signup') ? '/marathon/api/races/' + encodeURIComponent(race.value.id) + '/signup-qr' : '');
+const signupQr = computed(() => qrAvailable(race.value) ? race.value.signupQrUrl || '/marathon/api/races/' + encodeURIComponent(race.value.id) + '/signup-qr' : '');
+const signupHint = computed(() => qrHint(race.value));
+const registrationState = computed(() => registrationLabel(race.value));
 function safeOfficialUrl(value) { return typeof value === 'string' && /^https:\/\/[^\s]+$/i.test(value); }
 const officialLinks = computed(() => (race.value?.links || []).filter(item => safeOfficialUrl(item.url)));
 const officialResultLink = computed(() => officialLinks.value.find(item => item.key === 'result'));
-const primaryOfficial = computed(() => {
-  if (!race.value) return null;
-  const row = race.value, date = today();
-  const find = key => officialLinks.value.find(link => link.key === key);
-  const ended = row.regStatus === '已结束' || row.raceDate && row.raceDate < date;
-  const upcomingSignup = registrationScheduled(row, date);
-  const paymentPeriod = !ended && !upcomingSignup && row.payDeadline && row.payDeadline.slice(0, 10) >= date && row.drawAt && row.drawAt.slice(0, 10) <= date;
-  let key = ended && find('result') ? 'result'
-    : paymentPeriod && find('signup') ? 'signup'
-    : !upcomingSignup && !row.open && row.bibAt && row.bibAt.slice(0, 10) <= date && find('bib') ? 'bib'
-    : !upcomingSignup && !row.open && row.drawAt && row.drawAt.slice(0, 10) <= date && find('draw') ? 'draw'
-    : row.open && find('signup') ? 'signup' : null;
-  if (!key) key = ['signup', 'draw', 'bib', 'result', 'live'].find(key => find(key));
-  if (key) return { ...find(key), label: key === 'signup' ? paymentPeriod ? '查看官方报名与缴费信息' : row.open && !upcomingSignup && !ended ? '前往官方报名' : '查看官方报名信息' : { draw: '查询中签结果', bib: '查询参赛号码', result: '查询官方成绩与证书', live: '查看官方直播' }[key] };
-  const url = [row.eventUrl, row.officialUrl].find(safeOfficialUrl);
-  return url ? { key: 'website', label: '查看赛事官方信息', url } : null;
-});
-const secondaryOfficial = computed(() => officialLinks.value.filter(link => link.key !== primaryOfficial.value?.key).map(link => ({ ...link, label: { signup: '报名信息', draw: '中签查询', bib: '号码查询', result: '成绩与证书', live: '官方直播' }[link.key] || link.label })));
-const officialHint = computed(() => race.value?.open ? '官方报名链接尚未录入，可关注赛事，稍后再来查看。' : '官方报名与查询入口尚未录入。');
-function onOfficialOpen(link) {
-  if (link.key === 'signup' && race.value?.open) askSignup.value = true;
-}
+const queryLinks = computed(() => officialLinks.value.filter(link => link.key !== 'signup').map(link => ({ ...link, label: { draw: '中签查询', bib: '参赛号码', result: '官方成绩', live: '赛事直播' }[link.key] || link.label })));
+const officialHint = computed(() => registrationLabel(race.value) || '本届赛事报名入口尚未录入。');
 const tabs = computed(() => {
   if (!race.value) return [];
   const list = [{ id: "signup", label: "赛事信息" }];
@@ -595,10 +587,6 @@ watch(tabs, (list) => {
   if (list.length && !list.some((item) => item.id === tab.value)) tab.value = "signup";
 });
 
-function openSignup(url) {
-  askSignup.value = true;
-  window.open(url, "_blank", "noopener");
-}
 
 async function confirmSigned() {
   if (!ready.value) {

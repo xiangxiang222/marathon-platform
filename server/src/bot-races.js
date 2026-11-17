@@ -3,13 +3,14 @@ const { formatClock } = require("./career");
 const { compactName } = require("./official");
 const { readPage, finishPage, pageFields } = require("./page");
 const { readRule } = require("./radar");
+const { GUIDE_TEXT_MAX, mergeGuideText } = require("./race-details");
 
 const DISTANCES = ["full", "half", "10k", "5k"];
 const DISTANCE_LABEL = { full: "全马", half: "半马", "10k": "10公里", "5k": "5公里" };
 const KINDS = ["trail", "ultra", "family", "fun"];
 const KIND_LABEL = { trail: "越野", ultra: "超马", family: "亲子", fun: "欢乐跑" };
 const PRIZE_KIND = { place: "名次", age: "年龄组", local: "本地籍", break: "破时", club: "跑团" };
-const GUIDE_LIMIT = 40000;
+const GUIDE_LIMIT = GUIDE_TEXT_MAX;
 const URL_FIELDS = [
   ["signupUrl", "报名"],
   ["drawUrl", "抽签"],
@@ -117,8 +118,8 @@ function groupsOf(body) {
   for (const item of given) {
     const text = String(item || "").trim();
     if (!text) continue;
-    if (text.length > 16) return { error: "组别不超过 16 个字" };
-    if (picked.length >= 8) return { error: "组别最多 8 个" };
+    if (text.length > 256) return { error: "组别不超过 256 个字" };
+    if (picked.length >= 128) return { error: "组别最多 128 个" };
     picked.push(text);
   }
   return { groups: picked, groupsSet: picked.length > 0 };
@@ -528,7 +529,7 @@ function writeRace(db, race, payload, raceId) {
     route: keep(payload.route, current.route),
     pickup: keep(payload.pickup, current.pickup),
     pacers: keep(payload.pacers, current.pacers),
-    guideText: keep(payload.guideText, current.guide_text),
+    guideText: payload.guideText ? mergeGuideText(payload.guideText, current.guide_text) : current.guide_text || '',
     regStart: keep(payload.regStart, current.reg_start),
     deadline: keep(payload.deadline, current.deadline),
     drawAt: keep(payload.drawAt, current.draw_at),
