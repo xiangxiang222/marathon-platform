@@ -27,9 +27,12 @@
     "officialDocuments": [],
     "stages": {
       "reviewed": true,
-      "saved": false,
-      "displayed": false,
-      "deployedVerified": false
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "mini": "pending_second_batch_devtools_recheck",
+      "physicalDevice": false,
+      "formalMiniRelease": false
     }
   },
   {
@@ -65,9 +68,12 @@
     "officialDocuments": [],
     "stages": {
       "reviewed": true,
-      "saved": false,
-      "displayed": false,
-      "deployedVerified": false
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "mini": "pending_second_batch_devtools_recheck",
+      "physicalDevice": false,
+      "formalMiniRelease": false
     }
   },
   {
@@ -107,9 +113,12 @@
     "officialDocuments": [],
     "stages": {
       "reviewed": true,
-      "saved": false,
-      "displayed": false,
-      "deployedVerified": false
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "mini": "pending_second_batch_devtools_recheck",
+      "physicalDevice": false,
+      "formalMiniRelease": false
     }
   },
   {
@@ -141,9 +150,12 @@
     "officialDocuments": [],
     "stages": {
       "reviewed": true,
-      "saved": false,
-      "displayed": false,
-      "deployedVerified": false
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "mini": "pending_second_batch_devtools_recheck",
+      "physicalDevice": false,
+      "formalMiniRelease": false
     }
   },
   {
@@ -164,9 +176,12 @@
     "officialDocuments": [],
     "stages": {
       "reviewed": true,
-      "saved": false,
-      "displayed": false,
-      "deployedVerified": false
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "mini": "pending_second_batch_devtools_recheck",
+      "physicalDevice": false,
+      "formalMiniRelease": false
     }
   },
   {
@@ -187,9 +202,12 @@
     "officialDocuments": [],
     "stages": {
       "reviewed": true,
-      "saved": false,
-      "displayed": false,
-      "deployedVerified": false
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "mini": "pending_second_batch_devtools_recheck",
+      "physicalDevice": false,
+      "formalMiniRelease": false
     }
   },
   {
@@ -210,9 +228,12 @@
     "officialDocuments": [],
     "stages": {
       "reviewed": true,
-      "saved": false,
-      "displayed": false,
-      "deployedVerified": false
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "mini": "pending_second_batch_devtools_recheck",
+      "physicalDevice": false,
+      "formalMiniRelease": false
     }
   },
   {
@@ -233,9 +254,12 @@
     "officialDocuments": [],
     "stages": {
       "reviewed": true,
-      "saved": false,
-      "displayed": false,
-      "deployedVerified": false
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "mini": "pending_second_batch_devtools_recheck",
+      "physicalDevice": false,
+      "formalMiniRelease": false
     }
   },
   {
@@ -288,9 +312,12 @@
     ],
     "stages": {
       "reviewed": true,
-      "saved": false,
-      "displayed": false,
-      "deployedVerified": false
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "mini": "pending_second_batch_devtools_recheck",
+      "physicalDevice": false,
+      "formalMiniRelease": false
     }
   },
   {
@@ -342,9 +369,12 @@
     ],
     "stages": {
       "reviewed": true,
-      "saved": false,
-      "displayed": false,
-      "deployedVerified": false
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "mini": "pending_second_batch_devtools_recheck",
+      "physicalDevice": false,
+      "formalMiniRelease": false
     }
   },
   {
@@ -401,9 +431,12 @@
     ],
     "stages": {
       "reviewed": true,
-      "saved": false,
-      "displayed": false,
-      "deployedVerified": false
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "mini": "pending_second_batch_devtools_recheck",
+      "physicalDevice": false,
+      "formalMiniRelease": false
     }
   },
   {
@@ -438,9 +471,12 @@
     "officialDocuments": [],
     "stages": {
       "reviewed": true,
-      "saved": false,
-      "displayed": false,
-      "deployedVerified": false
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "mini": "pending_second_batch_devtools_recheck",
+      "physicalDevice": false,
+      "formalMiniRelease": false
     }
   },
   {
@@ -514,9 +550,12 @@
     ],
     "stages": {
       "reviewed": true,
-      "saved": false,
-      "displayed": false,
-      "deployedVerified": false
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "mini": "pending_second_batch_devtools_recheck",
+      "physicalDevice": false,
+      "formalMiniRelease": false
     }
   },
   {
@@ -626,9 +665,12 @@
     "officialDocuments": [],
     "stages": {
       "reviewed": true,
-      "saved": false,
-      "displayed": false,
-      "deployedVerified": false
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "mini": "pending_second_batch_devtools_recheck",
+      "physicalDevice": false,
+      "formalMiniRelease": false
     }
   }
 ]
