@@ -1352,7 +1352,8 @@ app.put(BASE + "/api/admin/races/:id", (req, res) => {
   if (source.length > 80) return res.status(400).json({ error: "来源不超过 80 个字" });
   if (deadlineName.length > 12) return res.status(400).json({ error: "截止说明不超过 12 个字" });
   const current = [race.reg_start, race.deadline, race.draw_at, race.pay_deadline];
-  const next = dates.map((value, index) => value || current[index]);
+  // Re-entering an unchanged calendar day preserves a stored exact official time.
+  const next = dates.map((value, index) => value && String(current[index] || '').includes('T') && value === current[index].slice(0, 10) ? current[index] : value || current[index]);
   const nodeLabels = ["报名开始", "报名截止", "中签公布", "缴费截止"];
   let previous = -1;
   for (let index = 0; index < next.length; index++) {

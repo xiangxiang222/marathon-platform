@@ -62,9 +62,15 @@ function keep(next, current) {
   return next ? next : current || "";
 }
 
+function validDay(value) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+  const date = new Date(value + "T00:00:00Z");
+  return Number.isFinite(date.getTime()) && date.toISOString().slice(0, 10) === value;
+}
+
 function parseGuide(body) {
   const raceDateText = body.raceDate == null ? "" : String(body.raceDate).trim();
-  if (raceDateText && !/^\d{4}-\d{2}-\d{2}$/.test(raceDateText)) return { status: 400, error: "比赛日期须为 2026-11-01 这种格式" };
+  if (raceDateText && !validDay(raceDateText)) return { status: 400, error: "请填写真实的比赛日期，格式如 2026-11-01", field: "raceDate" };
   const name = clip(body.name, 100);
   const city = clip(body.city, 20);
   const province = clip(body.province, 20);
@@ -91,7 +97,7 @@ function parseGuide(body) {
   if (startAt && /^([01]\d|2[0-3]):[0-5]\d:[0-5]\d$/.test(startAt)) startAt = startAt.slice(0, 5);
   if (startAt == null || (startAt && !/^([01]\d|2[0-3]):[0-5]\d$/.test(startAt))) return { status: 400, error: "起跑时间须为 07:00 这种格式" };
   const bibAt = clip(body.bibAt, 10);
-  if (bibAt == null || (bibAt && !/^\d{4}-\d{2}-\d{2}$/.test(bibAt))) return { status: 400, error: "号码公布日期须为 2026-12-10 这种格式" };
+  if (bibAt == null || (bibAt && !validDay(bibAt))) return { status: 400, error: "请填写真实的号码公布日期，格式如 2026-12-10", field: "bibAt" };
   const fee = clip(body.fee, 80);
   const scale = clip(body.scale, 80);
   const phone = clip(body.phone, 40);
@@ -164,6 +170,13 @@ function saveGuide(db, race, body) {
   const parsed = parseGuide(body);
   if (parsed.error) return parsed;
   const fields = parsed.fields;
+  const nextDate = fields.raceDateText || race.race_date;
+  const nextMeet = fields.meet || race.meet || 'offline';
+  if (nextMeet !== 'online' && (nextDate !== race.race_date || nextMeet !== race.meet)) {
+    for (const key of ['reg_start', 'deadline', 'draw_at', 'pay_deadline']) {
+      if (race[key] && String(race[key]).slice(0, 10) > nextDate) return { status: 400, error: '已有报名节点晚于新的比赛日，请先调整节点', field: 'raceDate' };
+    }
+  }
   const organizer = fields.organizerSet ? fields.organizer : race.organizer || "";
   const grade = fields.gradeSet ? fields.grade : race.grade || "";
   const guideText = fields.guideTextSet ? fields.guideText : race.guide_text || "";
@@ -432,7 +445,7 @@ function mountRaceGuide(app, { BASE, getDb, requireAdmin }) {
   app.post(BASE + "/api/admin/races", (req, res) => {
     if (!requireAdmin(req, res)) return;
     const created = createRace(getDb(), req.body || {});
-    if (created.error) return res.status(created.status).json({ error: created.error });
+    if (created.error) return res.status(created.status).json({ error: created.error, field: created.field });
     res.json({ id: created.id });
   });
 
@@ -448,7 +461,7 @@ function mountRaceGuide(app, { BASE, getDb, requireAdmin }) {
     const race = getDb().prepare("SELECT * FROM races WHERE id = ?").get(req.params.id);
     if (!race) return res.status(404).json({ error: "没有这场比赛" });
     const saved = saveGuide(getDb(), race, req.body || {});
-    if (saved.error) return res.status(saved.status).json({ error: saved.error });
+    if (saved.error) return res.status(saved.status).json({ error: saved.error, field: saved.field });
     const { presentRace } = require("./races");
     res.json({ ok: true, race: attachGuide(getDb(), presentRace(getDb().prepare("SELECT * FROM races WHERE id = ?").get(race.id), new Date())) });
   });
@@ -475,6 +488,12 @@ function mountRaceGuide(app, { BASE, getDb, requireAdmin }) {
     if (buffer.length > PHOTO_MAX) return res.status(413).json({ error: "照片不超过 8MB" });
     const db = getDb();
     const replacing = kind === "live" || kind === "cover";
+    // Body reads yield to other uploads, so enforce the limit again before the
+    // synchronous insert. Concurrent requests must share the remaining slots.
+    if (!replacing) {
+      const count = db.prepare("SELECT COUNT(*) AS n FROM race_sheets WHERE race_id = ? AND kind = ?").get(race.id, kind);
+      if (count.n >= SHEET_LIMIT[kind]) return res.status(400).json({ error: SHEET_FULL[kind] });
+    }
     const old = replacing ? db.prepare("SELECT * FROM race_sheets WHERE race_id = ? AND kind = ?").all(race.id, kind) : [];
     const sortRow = db.prepare("SELECT COALESCE(MAX(sort), 0) AS n FROM race_sheets WHERE race_id = ? AND kind = ?").get(race.id, kind);
     const info = db

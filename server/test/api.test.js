@@ -3767,7 +3767,7 @@ test("a trail upload stays offline and does not invent an official marathon page
       source: "最酷，2026-10-22"
     }]
   });
-  assert.match(bare.body.errors[0].error, /越野和超马可以不选/);
+  assert.match(bare.body.errors[0].error, /至少选择一个项目/);
 
   const uploaded = await request(app).post("/marathon/api/bot/races").set(bot).send({
     races: [{

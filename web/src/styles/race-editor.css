@@ -88,6 +88,7 @@
 .editor-save-steps button{min-width:44px;min-height:44px;padding:8px 10px;border:1px solid #efc6d2;border-radius:8px;background:#fff;color:#bf4564;font-size:12px}
 .editor-content>.race-publish-preview{align-self:start;margin-top:24px}
 .race-desk .editor .check-line{min-height:44px}
+.race-desk .editor .return-form .undo{min-width:44px;min-height:44px;height:auto;padding:10px 14px;line-height:1.7}
 @media(min-width:1200px){
  .race-desk.editing{grid-template-columns:minmax(195px,22%) 12px minmax(0,1fr)}
  .race-desk.editing>.desk-side{position:relative;top:0;max-height:none;overflow:visible}
@@ -101,7 +102,8 @@
  .race-desk .editor-content>.race-publish-preview{position:sticky;top:22px;max-height:calc(100vh - 44px);overflow:auto;scrollbar-width:thin}
  .race-desk .editor-content.previewing .pair{grid-template-columns:minmax(0,1fr)}
 }
-@media(min-width:1650px){.race-desk .editor-content.previewing .pair{grid-template-columns:repeat(2,minmax(0,1fr))}.race-desk .edit-head{flex-direction:row}.race-desk .edit-tools{flex:0 1 400px;justify-content:flex-end}}
+@media(min-width:1400px){.race-desk .editor-content.previewing .pair{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:1650px){.race-desk .edit-head{flex-direction:row}.race-desk .edit-tools{flex:0 1 400px;justify-content:flex-end}}
 @media(max-width:1199px){.race-desk.editing>.desk-side{width:100%}.race-desk .editor-content>.race-publish-preview{max-width:620px;margin:22px auto 0}.race-desk .editor-content.previewing{display:grid;grid-template-columns:minmax(0,1fr)}.race-desk.editing .desk-main{width:100%}}
 @media(max-width:650px){
  .race-desk .edit-bar{padding:18px 15px 0}.race-desk .edit-id h2{font-size:19px}.race-desk .edit-tools{gap:5px}.race-desk .edit-tools .text-btn{padding:7px}.race-desk .edit-tools .save{padding:9px 11px;font-size:12px}

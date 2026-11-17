@@ -5,15 +5,40 @@ const { parseGuide } = require("../../utils/guide-md");
 function raceTabs() {
   return [{ id: "signup", label: "赛事信息" }, { id: "guide", label: "参赛指南" }, { id: "news", label: "赛事资讯" }, { id: "result", label: "我的成绩" }];
 }
+function registrationScheduled(race, today) {
+  // Timestamp phases come from the API; comparing an ISO timestamp with a
+  // YYYY-MM-DD string would otherwise keep today's opening pending all day.
+  if (race.regStatus === "未开始") return true;
+  const start = String(race.regStart || "");
+  if (/^\d{4}-\d{2}-\d{2}$/.test(start)) return start > today;
+  return !race.regStatus && Number.isFinite(Date.parse(start)) && Date.parse(start) > Date.now();
+}
+function momentLabel(value) {
+  if (/^\d{4}-\d{2}-\d{2}$/.test(value || "")) return value;
+  const instant = Date.parse(value);
+  return Number.isFinite(instant) ? new Date(instant + 8 * 3600000).toISOString().slice(0, 16).replace("T", " ") + "（北京时间）" : value || "";
+}
+function momentPending(race, key, value, today) {
+  if (!value) return false;
+  if (/^\d{4}-\d{2}-\d{2}$/.test(value)) return value >= today;
+  // The API's exact phase remains authoritative when a device clock differs.
+  // Older responses without nodes still respect the recorded timestamp.
+  const node = (race.nodes || []).find(item => item.key === key);
+  if (node && typeof node.past === "boolean") return !node.past;
+  const instant = Date.parse(value);
+  return Number.isFinite(instant) && instant > Date.now();
+}
 function officialActions(race, today) {
-  const signupLabel = race.regStart && race.regStart > today ? "报名安排" : race.deadline && race.deadline < today || race.raceDate && race.raceDate < today ? "报名信息" : "官方报名";
+  const scheduled = registrationScheduled(race, today);
+  const deadlinePending = momentPending(race, "deadline", race.deadline, today);
+  const signupLabel = scheduled ? "报名安排" : race.regStatus === "待开赛" || race.deadline && !deadlinePending || race.raceDate && race.raceDate < today ? "报名信息" : "官方报名";
   const labels = { signup: signupLabel, draw: "中签查询", bib: "参赛号码", result: "官方成绩", live: "赛事直播" };
   const links = (race.links || []).filter(item => /^https:\/\/\S+$/i.test(item.url || "")).map(item => ({ ...item, label: labels[item.key] || item.label || "官方入口" }));
   const website = race.eventUrl || race.officialUrl;
   if (/^https:\/\/\S+$/i.test(website || "")) links.push({ key: "website", label: "赛事官网", url: website });
-  const due = value => /^\d{4}-\d{2}-\d{2}$/.test(value || "") && value <= today;
+  const due = (key, value) => /^\d{4}-\d{2}-\d{2}$/.test(value || "") ? value <= today : Number.isFinite(Date.parse(value)) && !momentPending(race, key, value, today);
   const ended = race.raceDate && race.raceDate < today;
-  const preferred = ended ? "result" : due(race.bibAt) ? "bib" : due(race.drawAt) ? "draw" : race.regStatus === "报名中" || !race.deadline || race.deadline >= today ? "signup" : "website";
+  const preferred = ended ? "result" : due("bib", race.bibAt) ? "bib" : due("draw", race.drawAt) ? "draw" : race.regStatus === "报名中" || !race.deadline || deadlinePending ? "signup" : "website";
   const first = links.find(item => item.key === preferred) || links.find(item => item.key === "website") || links.find(item => !ended || item.key !== "signup") || links[0];
   return first ? [first, ...links.filter(item => item !== first)].filter((item, index, all) => all.findIndex(other => other.url === item.url) === index) : [];
 }
@@ -22,12 +47,12 @@ function publicPhase(race, today) {
   const status = String(race.regStatus || "").replace(/未公布|待公布/g, "未录入");
   if (race.raceDate && race.raceDate < today) return { publicStatus: "已结束", phaseTitle: "比赛已结束", phaseDetail: "查看官方成绩，或记下自己的完赛故事。" };
   if (race.raceDate === today) return { publicStatus: "比赛日", phaseTitle: "今天开跑", phaseDetail: race.startAt ? "起跑时间 " + race.startAt + " · 出发前确认号码与比赛日资料。" : "出发前确认号码与比赛日资料。" };
-  if (race.regStart && race.regStart > today) return { publicStatus: "报名未开始", phaseTitle: race.regStart + " 开始报名", phaseDetail: "先关注比赛，按官方通知安排报名。" };
-  if (race.deadline && race.deadline >= today) return { publicStatus: status || "报名中", phaseTitle: (race.deadlineName || "报名截止") + " · " + race.deadline, phaseDetail: "请到官方渠道核对要求并完成报名与缴费。" };
-  if (race.drawAt && race.drawAt >= today) return { publicStatus: status || "待开赛", phaseTitle: "中签结果 · " + race.drawAt, phaseDetail: "请按官方时间查询，个人标记不会取得参赛资格。" };
-  if (race.payDeadline && race.payDeadline >= today) return { publicStatus: status || "待开赛", phaseTitle: "缴费截止 · " + race.payDeadline, phaseDetail: "中签与缴费结果以官方渠道为准。" };
-  if (race.bibAt && race.bibAt >= today) return { publicStatus: status || "待开赛", phaseTitle: "号码公布 · " + race.bibAt, phaseDetail: "领物、赛道与配速信息请看参赛指南。" };
-  if (race.deadline && race.deadline < today) return { publicStatus: status || "待开赛", phaseTitle: "报名已截止", phaseDetail: "查询参赛结果，提前阅读领物和比赛日安排。" };
+  if (registrationScheduled(race, today)) return { publicStatus: "报名未开始", phaseTitle: momentLabel(race.regStart) + " 开始报名", phaseDetail: "先关注比赛，按官方通知安排报名。" };
+  if (momentPending(race, "deadline", race.deadline, today)) return { publicStatus: status || "报名中", phaseTitle: (race.deadlineName || "报名截止") + " · " + momentLabel(race.deadline), phaseDetail: "请到官方渠道核对要求并完成报名与缴费。" };
+  if (momentPending(race, "draw", race.drawAt, today)) return { publicStatus: status || "待开赛", phaseTitle: "中签结果 · " + momentLabel(race.drawAt), phaseDetail: "请按官方时间查询，个人标记不会取得参赛资格。" };
+  if (momentPending(race, "pay", race.payDeadline, today)) return { publicStatus: status || "待开赛", phaseTitle: "缴费截止 · " + momentLabel(race.payDeadline), phaseDetail: "中签与缴费结果以官方渠道为准。" };
+  if (momentPending(race, "bib", race.bibAt, today)) return { publicStatus: status || "待开赛", phaseTitle: "号码公布 · " + momentLabel(race.bibAt), phaseDetail: "领物、赛道与配速信息请看参赛指南。" };
+  if (race.deadline) return { publicStatus: status || "待开赛", phaseTitle: "报名已截止", phaseDetail: "查询参赛结果，提前阅读领物和比赛日安排。" };
   return { publicStatus: status || "报名时间未录入", phaseTitle: "报名时间尚未录入", phaseDetail: "可前往赛事官网核对最新安排。" };
 }
 function mediaRows(items, previous) {

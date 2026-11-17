@@ -3,7 +3,7 @@
     <router-link class="race-card" :class="'tone-' + toneOf(race)" :to="'/races/' + race.id">
       <time class="date" :datetime="race.raceDate || undefined">
         <template v-if="parts.day"><span>{{ parts.month }}月</span><b>{{ parts.day }}</b><small v-if="year">{{ year }}</small></template>
-        <small v-else class="date-pending">日期<br />待公布</small>
+        <small v-else class="date-pending">日期<br />{{ pendingDateLabel }}</small>
       </time>
       <div class="body">
         <strong>{{ race.name }}</strong>
@@ -36,7 +36,8 @@ import planActiveIcon from '../assets/race-actions/plan-active.svg';
 defineEmits(['follow']);
 
 const props = defineProps({
-  race: { type: Object, required: true }
+  race: { type: Object, required: true },
+  pendingDateLabel: { type: String, default: '待公布' }
 });
 
 const parts = computed(() => dateParts(props.race.raceDate));
