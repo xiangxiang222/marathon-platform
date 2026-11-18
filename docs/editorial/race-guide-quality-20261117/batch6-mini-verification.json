@@ -1,0 +1,1078 @@
+{
+  "kind": "Actual WeChat DevTools rendering, production HTTPS API, no request/route mock; not physical phone or published mini-program",
+  "checkedAt": "2026-11-18T04:33:57.640Z",
+  "project": "/Users/mengxiangxiang/Documents/work/dev/marathon-platform/miniprogram",
+  "system": {
+    "success": true,
+    "systemInfo": {
+      "result": {
+        "brand": "devtools",
+        "model": "iPhone 12/13 (Pro)",
+        "system": "iOS 10.0.1",
+        "platform": "devtools",
+        "benchmarkLevel": -1,
+        "pixelRatio": 3,
+        "screenWidth": 390,
+        "screenHeight": 844,
+        "windowWidth": 390,
+        "windowHeight": 762,
+        "statusBarHeight": 47,
+        "safeArea": {
+          "top": 47,
+          "left": 0,
+          "right": 390,
+          "bottom": 810,
+          "width": 390,
+          "height": 763
+        },
+        "language": "zh_CN",
+        "version": "8.0.5",
+        "fontSizeSetting": 16,
+        "SDKVersion": "3.17.1",
+        "host": {
+          "env": "WeChat"
+        },
+        "enableDebug": false,
+        "mode": "default",
+        "deviceOrientation": "portrait",
+        "bluetoothEnabled": true,
+        "locationEnabled": true,
+        "wifiEnabled": true,
+        "albumAuthorized": true,
+        "cameraAuthorized": true,
+        "locationAuthorized": true,
+        "microphoneAuthorized": true,
+        "notificationAuthorized": true,
+        "notificationAlertAuthorized": true,
+        "notificationBadgeAuthorized": true,
+        "notificationSoundAuthorized": true,
+        "phoneCalendarAuthorized": true,
+        "bluetoothAuthorized": true,
+        "locationReducedAccuracy": true,
+        "devicePixelRatio": 3
+      }
+    }
+  },
+  "races": [
+    {
+      "id": "caa-1000496002",
+      "label": "jiaxing",
+      "apiUrl": "https://togetherbetter.cn/marathon/api/races/caa-1000496002",
+      "apiStatus": 200,
+      "proseExactlyMatchesProduction": true,
+      "groupsExactlyMatchPublicProduction": true,
+      "guideSha256": "dabe329f41a53dcb3ae947079bb3946657a708942919d2b3f7bfc899a0024337",
+      "guideCharacters": 9445,
+      "groupCount": 2,
+      "groups": [
+        {
+          "i": 0,
+          "name": "马拉松（42.195公里）",
+          "fields": [
+            {
+              "i": 0,
+              "label": "形式",
+              "value": "个人",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "名额",
+              "value": "8000人",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "标称距离",
+              "value": "42.195公里",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "出发时间",
+              "value": "2026-11-22 07:30",
+              "wide": false
+            },
+            {
+              "i": 4,
+              "label": "关门时间",
+              "value": "13:30",
+              "wide": false
+            },
+            {
+              "i": 5,
+              "label": "关门时长",
+              "value": "6小时",
+              "wide": false
+            },
+            {
+              "i": 6,
+              "label": "参赛条件",
+              "value": "20周岁及以上，2006年1月1日（含）前出生；报名截止前24个月内至少1次马拉松或2次半程成绩；仅认可中国马拉松网站可查询的线下比赛证明。；65岁及以上须本人及直系亲属共同签署风险确认书；体检须2026年1月1日后二甲以上医院或有资质专业体检机构出具，含病史、猝死家族史、血压与心电检查；血压过高或心电明显异常须加做心超，二者不能替代。",
+              "wide": true
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "报名费 · 150元/人"
+            }
+          ]
+        },
+        {
+          "i": 1,
+          "name": "半程马拉松（21.0975公里）",
+          "fields": [
+            {
+              "i": 0,
+              "label": "形式",
+              "value": "个人",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "名额",
+              "value": "12000人",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "标称距离",
+              "value": "21.0975公里",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "出发时间",
+              "value": "2026-11-22 07:30",
+              "wide": false
+            },
+            {
+              "i": 4,
+              "label": "关门时间",
+              "value": "10:30",
+              "wide": false
+            },
+            {
+              "i": 5,
+              "label": "关门时长",
+              "value": "3小时",
+              "wide": false
+            },
+            {
+              "i": 6,
+              "label": "参赛条件",
+              "value": "18周岁及以上，2008年1月1日（含）前出生；报名截止前24个月内至少2次10公里及以上距离比赛成绩；仅认可中国马拉松网站可查询的线下比赛证明。；65岁及以上须本人及直系亲属共同签署风险确认书；体检须2026年1月1日后二甲以上医院或有资质专业体检机构出具，含病史、猝死家族史、血压与心电检查；血压过高或心电明显异常须加做心超，二者不能替代。",
+              "wide": true
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "报名费 · 120元/人"
+            }
+          ]
+        }
+      ],
+      "chapters": [
+        {
+          "id": "chapter-0",
+          "label": "赛事概况"
+        },
+        {
+          "id": "chapter-4",
+          "label": "赛事组织"
+        },
+        {
+          "id": "chapter-15",
+          "label": "竞赛时间和地点"
+        },
+        {
+          "id": "chapter-18",
+          "label": "竞赛项目、规模及报名费"
+        },
+        {
+          "id": "chapter-24",
+          "label": "比赛路线"
+        },
+        {
+          "id": "chapter-30",
+          "label": "报名办法"
+        },
+        {
+          "id": "chapter-86",
+          "label": "身体状况要求"
+        },
+        {
+          "id": "chapter-99",
+          "label": "竞赛办法"
+        },
+        {
+          "id": "chapter-143",
+          "label": "奖励办法"
+        },
+        {
+          "id": "chapter-165",
+          "label": "处罚办法"
+        },
+        {
+          "id": "chapter-181",
+          "label": "参赛保险"
+        },
+        {
+          "id": "chapter-186",
+          "label": "自甘风险"
+        },
+        {
+          "id": "chapter-188",
+          "label": "技术代表、技术官员和裁判员"
+        },
+        {
+          "id": "chapter-190",
+          "label": "熔断机制"
+        },
+        {
+          "id": "chapter-193",
+          "label": "组委会联系方式"
+        },
+        {
+          "id": "chapter-201",
+          "label": "未尽事宜"
+        },
+        {
+          "id": "originals",
+          "label": "规程原图参考",
+          "hasContent": true
+        }
+      ],
+      "originalCount": 8,
+      "screenshots": [
+        "/private/tmp/race-guide-quality-20261117/batch6-mini-jiaxing-390-groups.png",
+        "/private/tmp/race-guide-quality-20261117/batch6-mini-jiaxing-390-table-before.png",
+        "/private/tmp/race-guide-quality-20261117/batch6-mini-jiaxing-390-table-after.png",
+        "/private/tmp/race-guide-quality-20261117/batch6-mini-jiaxing-390-original.png",
+        "/private/tmp/race-guide-quality-20261117/batch6-mini-jiaxing-390-preview.png"
+      ],
+      "tablesBefore": [
+        {
+          "left": 27,
+          "right": 363,
+          "top": 100,
+          "bottom": 315,
+          "width": 336,
+          "height": 215,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 233
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 3474.3984375,
+          "bottom": 3845.3984375,
+          "width": 336,
+          "height": 371,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 600,
+          "scrollHeight": 389
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 7114.390625,
+          "bottom": 7623.390625,
+          "width": 336,
+          "height": 509,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 527
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 9568.03125,
+          "bottom": 9687.03125,
+          "width": 336,
+          "height": 119,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 1080,
+          "scrollHeight": 137
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 9865.6015625,
+          "bottom": 9984.6015625,
+          "width": 336,
+          "height": 119,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 1200,
+          "scrollHeight": 137
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 10136.578125,
+          "bottom": 10255.578125,
+          "width": 336,
+          "height": 119,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 1080,
+          "scrollHeight": 137
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 10434.1484375,
+          "bottom": 10553.1484375,
+          "width": 336,
+          "height": 119,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 1200,
+          "scrollHeight": 137
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 10731.71875,
+          "bottom": 10921.71875,
+          "width": 336,
+          "height": 190,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 480,
+          "scrollHeight": 208
+        }
+      ],
+      "tablesAfter": [
+        {
+          "left": 27,
+          "right": 363,
+          "top": 100,
+          "bottom": 315,
+          "width": 336,
+          "height": 215,
+          "scrollLeft": 26,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 233
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 3474.3984375,
+          "bottom": 3845.3984375,
+          "width": 336,
+          "height": 371,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 600,
+          "scrollHeight": 389
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 7114.390625,
+          "bottom": 7623.390625,
+          "width": 336,
+          "height": 509,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 527
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 9568.03125,
+          "bottom": 9687.03125,
+          "width": 336,
+          "height": 119,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 1080,
+          "scrollHeight": 137
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 9865.6015625,
+          "bottom": 9984.6015625,
+          "width": 336,
+          "height": 119,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 1200,
+          "scrollHeight": 137
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 10136.578125,
+          "bottom": 10255.578125,
+          "width": 336,
+          "height": 119,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 1080,
+          "scrollHeight": 137
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 10434.1484375,
+          "bottom": 10553.1484375,
+          "width": 336,
+          "height": 119,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 1200,
+          "scrollHeight": 137
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 10731.71875,
+          "bottom": 10921.71875,
+          "width": 336,
+          "height": 190,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 480,
+          "scrollHeight": 208
+        }
+      ],
+      "actualHorizontalScrollVerified": true,
+      "originalImage": {
+        "left": 28,
+        "right": 362,
+        "top": 100.75,
+        "bottom": 278.1875,
+        "width": 334,
+        "height": 177.4375,
+        "mode": "widthFix",
+        "src": "https://togetherbetter.cn/marathon/api/race-sheets/736",
+        "showMenuByLongpress": true
+      },
+      "longpressActionSucceeded": true,
+      "nativeLongpressMenuVerified": false,
+      "nativePreviewClickSucceeded": true
+    },
+    {
+      "id": "zuiku-35657",
+      "label": "jinling",
+      "apiUrl": "https://togetherbetter.cn/marathon/api/races/zuiku-35657",
+      "apiStatus": 200,
+      "proseExactlyMatchesProduction": true,
+      "groupsExactlyMatchPublicProduction": true,
+      "guideSha256": "8e35e77d65b65037ed0d46db6a8abae1fa24024043583b9cde0727bae6f42e70",
+      "guideCharacters": 1347,
+      "groupCount": 8,
+      "groups": [
+        {
+          "i": 0,
+          "name": "11月28日-20km大环（大巴组）",
+          "fields": [
+            {
+              "i": 0,
+              "label": "标称距离",
+              "value": "20公里",
+              "wide": false
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "报名页价格 · 99元/人"
+            }
+          ]
+        },
+        {
+          "i": 1,
+          "name": "11月28日-20km大环（自驾组）",
+          "fields": [
+            {
+              "i": 0,
+              "label": "标称距离",
+              "value": "20公里",
+              "wide": false
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "报名页价格 · 69元/人"
+            }
+          ]
+        },
+        {
+          "i": 2,
+          "name": "11月28日-10km小环（大巴组）",
+          "fields": [
+            {
+              "i": 0,
+              "label": "标称距离",
+              "value": "10公里",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "参赛条件",
+              "value": "10km小环：自驾10:30集合；大巴安德门08:45—09:00、东大成贤学院09:30—09:35。自备午餐及饮用水，集合返程时间供参考。",
+              "wide": true
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "报名页价格 · 89元/人"
+            }
+          ]
+        },
+        {
+          "i": 3,
+          "name": "11月28日-10km小环（自驾组）",
+          "fields": [
+            {
+              "i": 0,
+              "label": "标称距离",
+              "value": "10公里",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "参赛条件",
+              "value": "10km小环：自驾10:30集合；大巴安德门08:45—09:00、东大成贤学院09:30—09:35。自备午餐及饮用水，集合返程时间供参考。",
+              "wide": true
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "报名页价格 · 59元/人"
+            }
+          ]
+        },
+        {
+          "i": 4,
+          "name": "11月29日-20km大环（大巴组）",
+          "fields": [
+            {
+              "i": 0,
+              "label": "标称距离",
+              "value": "20公里",
+              "wide": false
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "报名页价格 · 99元/人"
+            }
+          ]
+        },
+        {
+          "i": 5,
+          "name": "11月29日-20km大环（自驾组）",
+          "fields": [
+            {
+              "i": 0,
+              "label": "标称距离",
+              "value": "20公里",
+              "wide": false
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "报名页价格 · 69元/人"
+            }
+          ]
+        },
+        {
+          "i": 6,
+          "name": "11月29日-10km小环（大巴组）",
+          "fields": [
+            {
+              "i": 0,
+              "label": "标称距离",
+              "value": "10公里",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "参赛条件",
+              "value": "10km小环：自驾10:30集合；大巴安德门08:45—09:00、东大成贤学院09:30—09:35。自备午餐及饮用水，集合返程时间供参考。",
+              "wide": true
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "报名页价格 · 89元/人"
+            }
+          ]
+        },
+        {
+          "i": 7,
+          "name": "11月29日-10km小环（自驾组）",
+          "fields": [
+            {
+              "i": 0,
+              "label": "标称距离",
+              "value": "10公里",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "参赛条件",
+              "value": "10km小环：自驾10:30集合；大巴安德门08:45—09:00、东大成贤学院09:30—09:35。自备午餐及饮用水，集合返程时间供参考。",
+              "wide": true
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "报名页价格 · 59元/人"
+            }
+          ]
+        }
+      ],
+      "chapters": [
+        {
+          "id": "chapter-0",
+          "label": "赛事概况"
+        },
+        {
+          "id": "chapter-3",
+          "label": "赛事图文资料（原图识别）"
+        },
+        {
+          "id": "chapter-12",
+          "label": "赛事图文资料（原图识别）"
+        },
+        {
+          "id": "chapter-22",
+          "label": "项目费用、两日行程与集合安排"
+        },
+        {
+          "id": "originals",
+          "label": "规程原图参考",
+          "hasContent": true
+        }
+      ],
+      "originalCount": 3,
+      "screenshots": [
+        "/private/tmp/race-guide-quality-20261117/batch6-mini-jinling-390-groups.png",
+        "/private/tmp/race-guide-quality-20261117/batch6-mini-jinling-390-table-before.png",
+        "/private/tmp/race-guide-quality-20261117/batch6-mini-jinling-390-table-after.png",
+        "/private/tmp/race-guide-quality-20261117/batch6-mini-jinling-390-original.png",
+        "/private/tmp/race-guide-quality-20261117/batch6-mini-jinling-390-preview.png"
+      ],
+      "tablesBefore": [
+        {
+          "left": 27,
+          "right": 363,
+          "top": 100.078125,
+          "bottom": 265.078125,
+          "width": 336,
+          "height": 165,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 720,
+          "scrollHeight": 183
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 351.8671875,
+          "bottom": 591.8671875,
+          "width": 336,
+          "height": 240,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 480,
+          "scrollHeight": 258
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 678.65625,
+          "bottom": 843.65625,
+          "width": 336,
+          "height": 165,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 183
+        }
+      ],
+      "tablesAfter": [
+        {
+          "left": 27,
+          "right": 363,
+          "top": 100.078125,
+          "bottom": 265.078125,
+          "width": 336,
+          "height": 165,
+          "scrollLeft": 386,
+          "scrollTop": 0,
+          "scrollWidth": 720,
+          "scrollHeight": 183
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 351.8671875,
+          "bottom": 591.8671875,
+          "width": 336,
+          "height": 240,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 480,
+          "scrollHeight": 258
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 678.65625,
+          "bottom": 843.65625,
+          "width": 336,
+          "height": 165,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 183
+        }
+      ],
+      "actualHorizontalScrollVerified": true,
+      "originalImage": {
+        "left": 28,
+        "right": 362,
+        "top": 100.9765625,
+        "bottom": 546.3046875,
+        "width": 334,
+        "height": 445.328125,
+        "mode": "widthFix",
+        "src": "https://togetherbetter.cn/marathon/api/race-sheets/935",
+        "showMenuByLongpress": true
+      },
+      "longpressActionSucceeded": true,
+      "nativeLongpressMenuVerified": false,
+      "nativePreviewClickSucceeded": true,
+      "renderedGroupCount": 8,
+      "groupCardScreenshots": [
+        "/private/tmp/race-guide-quality-20261117/batch6-mini-jinling-390-group-0.png",
+        "/private/tmp/race-guide-quality-20261117/batch6-mini-jinling-390-group-3.png",
+        "/private/tmp/race-guide-quality-20261117/batch6-mini-jinling-390-group-6.png",
+        "/private/tmp/race-guide-quality-20261117/batch6-mini-jinling-390-group-7.png"
+      ],
+      "renderedGroupsConfirmed": true
+    },
+    {
+      "id": "zuiku-88269",
+      "label": "yuhang",
+      "apiUrl": "https://togetherbetter.cn/marathon/api/races/zuiku-88269",
+      "apiStatus": 200,
+      "proseExactlyMatchesProduction": true,
+      "groupsExactlyMatchPublicProduction": true,
+      "guideSha256": "5b1238149e340d9e0383e7794ea31f081ff9fc3d7b234f43ca7e3b48294e9463",
+      "guideCharacters": 1744,
+      "groupCount": 3,
+      "groups": [
+        {
+          "i": 0,
+          "name": "10KM个人健康跑",
+          "fields": [
+            {
+              "i": 0,
+              "label": "形式",
+              "value": "个人",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "标称距离",
+              "value": "10公里",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "参赛条件",
+              "value": "原图：14—65周岁；出生日期1961-01-01（含）至2011-12-31（含）；14—18岁须监护人签署责任书。年龄文字与出生年份边界差异待确认。",
+              "wide": true
+            }
+          ],
+          "status": "报名已截止",
+          "fees": [
+            {
+              "i": 0,
+              "text": "报名页价格 · 78元/人"
+            }
+          ]
+        },
+        {
+          "i": 1,
+          "name": "5KM亲子欢乐跑",
+          "fields": [
+            {
+              "i": 0,
+              "label": "形式",
+              "value": "亲子",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "标称距离",
+              "value": "5公里",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "参赛条件",
+              "value": "平台5KM独立报名要求14—65周岁；原图5KM总体为6—65周岁，未成年人签署及陪同要求见正文，年龄与出生年份差异待确认。",
+              "wide": true
+            }
+          ],
+          "status": "报名已截止",
+          "fees": [
+            {
+              "i": 0,
+              "text": "赛事服务费 · 48元/人"
+            }
+          ]
+        },
+        {
+          "i": 2,
+          "name": "5KM亲子欢乐跑（1大1小）",
+          "fields": [
+            {
+              "i": 0,
+              "label": "形式",
+              "value": "亲子",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "亲子人数",
+              "value": "1大1小",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "标称距离",
+              "value": "5公里",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "参赛条件",
+              "value": "原图：6—65周岁，出生1961-01-01（含）至2019-12-31（含）；18岁以下须监护人签署，6—13岁须家长陪同；年龄文字与出生年份差异待确认。",
+              "wide": true
+            }
+          ],
+          "status": "报名已截止",
+          "fees": [
+            {
+              "i": 0,
+              "text": "亲子套餐价 · 96元/套餐"
+            }
+          ]
+        }
+      ],
+      "chapters": [
+        {
+          "id": "chapter-0",
+          "label": "赛事概况"
+        },
+        {
+          "id": "chapter-3",
+          "label": "赛事组织"
+        },
+        {
+          "id": "chapter-6",
+          "label": "项目组别与报名费用"
+        },
+        {
+          "id": "chapter-10",
+          "label": "参赛资格"
+        },
+        {
+          "id": "chapter-20",
+          "label": "日程与领物"
+        },
+        {
+          "id": "chapter-23",
+          "label": "路线与奖励"
+        },
+        {
+          "id": "chapter-30",
+          "label": "联系方式"
+        },
+        {
+          "id": "route",
+          "label": "赛道与路线",
+          "hasContent": true
+        }
+      ],
+      "originalCount": 0,
+      "screenshots": [
+        "/private/tmp/race-guide-quality-20261117/batch6-mini-yuhang-390-groups.png",
+        "/private/tmp/race-guide-quality-20261117/batch6-mini-yuhang-390-table-before.png",
+        "/private/tmp/race-guide-quality-20261117/batch6-mini-yuhang-390-table-after.png",
+        "/private/tmp/race-guide-quality-20261117/batch6-mini-yuhang-390-original.png",
+        "/private/tmp/race-guide-quality-20261117/batch6-mini-yuhang-390-preview.png"
+      ],
+      "tablesBefore": [
+        {
+          "left": 27,
+          "right": 363,
+          "top": 99.9296875,
+          "bottom": 289.9296875,
+          "width": 336,
+          "height": 190,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 600,
+          "scrollHeight": 208
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 525.6953125,
+          "bottom": 841.6953125,
+          "width": 336,
+          "height": 316,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 480,
+          "scrollHeight": 334
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 1332.2109375,
+          "bottom": 1732.2109375,
+          "width": 336,
+          "height": 400,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 334,
+          "scrollHeight": 418
+        }
+      ],
+      "tablesAfter": [
+        {
+          "left": 27,
+          "right": 363,
+          "top": 99.9296875,
+          "bottom": 289.9296875,
+          "width": 336,
+          "height": 190,
+          "scrollLeft": 266,
+          "scrollTop": 0,
+          "scrollWidth": 600,
+          "scrollHeight": 208
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 525.6953125,
+          "bottom": 841.6953125,
+          "width": 336,
+          "height": 316,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 480,
+          "scrollHeight": 334
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 1332.2109375,
+          "bottom": 1732.2109375,
+          "width": 336,
+          "height": 400,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 334,
+          "scrollHeight": 418
+        }
+      ],
+      "actualHorizontalScrollVerified": true,
+      "originalImage": {
+        "left": 28,
+        "right": 362,
+        "top": 100.9765625,
+        "bottom": 3910.6640625,
+        "width": 334,
+        "height": 3809.6875,
+        "mode": "widthFix",
+        "src": "https://togetherbetter.cn/marathon/api/race-sheets/792",
+        "showMenuByLongpress": true
+      },
+      "longpressActionSucceeded": true,
+      "nativeLongpressMenuVerified": false,
+      "nativePreviewClickSucceeded": true,
+      "renderedGroupCount": 3,
+      "groupCardScreenshots": [
+        "/private/tmp/race-guide-quality-20261117/batch6-mini-yuhang-390-group-2.png"
+      ],
+      "renderedGroupsConfirmed": true
+    }
+  ],
+  "screenshots": [
+    "/private/tmp/race-guide-quality-20261117/batch6-mini-jiaxing-390-groups.png",
+    "/private/tmp/race-guide-quality-20261117/batch6-mini-jiaxing-390-table-before.png",
+    "/private/tmp/race-guide-quality-20261117/batch6-mini-jiaxing-390-table-after.png",
+    "/private/tmp/race-guide-quality-20261117/batch6-mini-jiaxing-390-original.png",
+    "/private/tmp/race-guide-quality-20261117/batch6-mini-jiaxing-390-preview.png",
+    "/private/tmp/race-guide-quality-20261117/batch6-mini-jinling-390-groups.png",
+    "/private/tmp/race-guide-quality-20261117/batch6-mini-jinling-390-table-before.png",
+    "/private/tmp/race-guide-quality-20261117/batch6-mini-jinling-390-table-after.png",
+    "/private/tmp/race-guide-quality-20261117/batch6-mini-jinling-390-original.png",
+    "/private/tmp/race-guide-quality-20261117/batch6-mini-jinling-390-preview.png",
+    "/private/tmp/race-guide-quality-20261117/batch6-mini-yuhang-390-groups.png",
+    "/private/tmp/race-guide-quality-20261117/batch6-mini-yuhang-390-table-before.png",
+    "/private/tmp/race-guide-quality-20261117/batch6-mini-yuhang-390-table-after.png",
+    "/private/tmp/race-guide-quality-20261117/batch6-mini-yuhang-390-original.png",
+    "/private/tmp/race-guide-quality-20261117/batch6-mini-yuhang-390-preview.png",
+    "/private/tmp/race-guide-quality-20261117/batch6-mini-jinling-390-group-0.png",
+    "/private/tmp/race-guide-quality-20261117/batch6-mini-jinling-390-group-3.png",
+    "/private/tmp/race-guide-quality-20261117/batch6-mini-jinling-390-group-6.png",
+    "/private/tmp/race-guide-quality-20261117/batch6-mini-jinling-390-group-7.png",
+    "/private/tmp/race-guide-quality-20261117/batch6-mini-yuhang-390-group-2.png"
+  ],
+  "pending": [
+    "Physical phone gesture zoom, save and native long-press menu",
+    "Official uploaded/published mini-program verification",
+    "320px actual DevTools profile switching: exposed automation tools provide no device switch; 390px is currently configured."
+  ],
+  "screenshotVisualReview": {
+    "checked": true,
+    "notes": [
+      "Screens visually inspected after closing preview overlay between races.",
+      "Jiaxing 150/120 fee table fits 336px scroll container; scrollLeft 24 reveals clipped edge.",
+      "Jinling eight real cards rendered; Nov28/29 and 20km/10km bus/self-drive choices retained; 99/69/89/59 fees, full date and pickup timetable horizontal scrolling verified.",
+      "Yuhang 78 per person,48 per person and96 per 1adult+1child; explicit age/year discrepancy retained and visible.",
+      "Original images have proportional widthFix layout and native preview actually opened; long-press dispatch succeeds but native long-press menu not verified."
+    ]
+  }
+}

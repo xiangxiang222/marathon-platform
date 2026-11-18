@@ -118,6 +118,25 @@ function buildPlan(inventory, scope, directory) {
   return { version: 1, createdAt: new Date().toISOString(), authorizedIds: inventory.races.map(r => r.id), plans };
 }
 
+function preserveMediaSelections(previous, incoming) {
+  const oldAudit = previous?.audit || {}, nextAudit = incoming?.audit || {};
+  const oldSelection = oldAudit.mediaChanges, nextSelection = nextAudit.mediaChanges;
+  if (!Array.isArray(oldSelection?.before) || !Array.isArray(oldSelection?.after)) return;
+  incoming.audit = { ...nextAudit };
+  // Later reviews see the already selected media. Retain earlier exclusions,
+  // while an explicit new after-list can deliberately restore an old image.
+  incoming.audit.mediaChanges = Array.isArray(nextSelection?.before) && Array.isArray(nextSelection?.after)
+    ? { ...nextSelection, before: [...new Set([...oldSelection.before, ...nextSelection.before])] }
+    : structuredClone(oldSelection);
+  const key = item => item.imageUrl || item.url || (item.sheetId ? 'sheet:' + item.sheetId : '');
+  const reviews = new Map();
+  for (const item of [...(oldAudit.imageReviews || []), ...(nextAudit.imageReviews || [])]) {
+    const id = key(item);
+    if (id) reviews.set(id, { ...(reviews.get(id) || {}), ...item });
+  }
+  incoming.audit.imageReviews = [...reviews.values()];
+}
+
 async function applyPlan(dbFile, plan, out, mediaRoot) {
   const db = new Database(dbFile), log = { startedAt: new Date().toISOString(), rows: [], backup: out + '.before.sqlite' };
   const schema = () => sha(JSON.stringify(db.prepare('SELECT type,name,tbl_name,sql FROM sqlite_master ORDER BY type,name').all()));
@@ -142,6 +161,7 @@ async function applyPlan(dbFile, plan, out, mediaRoot) {
         }
         db.transaction(() => {
           const details = readDetails(update.changes.guide_text);
+          preserveMediaSelections(readDetails(current.guide_text).details, details.details);
           for (let i=0;i<media.length;i++) {
             const image = media[i];
             const previous = db.prepare('SELECT id FROM race_sheets WHERE race_id=? AND filename=?').get(update.id,image.filename);

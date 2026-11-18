@@ -1,0 +1,63 @@
+{
+  "at": "2026-11-18T04:27:26.857Z",
+  "commit": "728a305ee0f933ec65bd64fdf0471f47aca4ebf1",
+  "deployedFile": "server/src/race-guide.js",
+  "sha256": "837d838a5322aefbfbc13910c976291fd2132666c9229a99553ffde972b86336",
+  "checks": [
+    {
+      "id": "zuiku-49863",
+      "width": 320,
+      "guideImages": 2,
+      "routeImages": 0,
+      "captions": [
+        "Outopia深圳五个报名选项、标准赛包及三组路线海拔原图",
+        "Outopia深圳领物、完赛及名次奖励、退款原图"
+      ],
+      "previewOpened": true,
+      "originalZoomVerified": true,
+      "imageLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "zuiku-49863",
+      "width": 390,
+      "guideImages": 2,
+      "routeImages": 0,
+      "captions": [
+        "Outopia深圳五个报名选项、标准赛包及三组路线海拔原图",
+        "Outopia深圳领物、完赛及名次奖励、退款原图"
+      ],
+      "previewOpened": true,
+      "originalZoomVerified": true,
+      "imageLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "zuiku-59237",
+      "width": 320,
+      "guideImages": 1,
+      "routeImages": 1,
+      "captions": [
+        "宁都欢乐跑规程后半部分（逐公里关门、补给、处罚及保险）"
+      ],
+      "previewOpened": true,
+      "originalZoomVerified": true,
+      "imageLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "zuiku-59237",
+      "width": 390,
+      "guideImages": 1,
+      "routeImages": 1,
+      "captions": [
+        "宁都欢乐跑规程后半部分（逐公里关门、补给、处罚及保险）"
+      ],
+      "previewOpened": true,
+      "originalZoomVerified": true,
+      "imageLoaded": true,
+      "overflow": false
+    }
+  ],
+  "passed": true
+}

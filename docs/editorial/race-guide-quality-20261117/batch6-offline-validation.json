@@ -1,0 +1,9 @@
+{
+  "checkedAt": "2026-11-18T05:39:33.193Z",
+  "command": "node --test scripts/race-detail-collect.test.cjs scripts/race-detail-apply.test.cjs scripts/race-detail-sources.test.cjs",
+  "tests": 40,
+  "passed": 40,
+  "failed": 0,
+  "newRegression": "SQLite successive image selections preserve prior exclusions, keep sheet rows and explicitly restore requested images",
+  "scope": "Offline code validation only; batch6 new race corrections not saved yet"
+}
