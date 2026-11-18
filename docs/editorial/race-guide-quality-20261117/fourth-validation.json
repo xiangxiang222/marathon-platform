@@ -1,0 +1,101 @@
+{
+  "raceCount": 8,
+  "editCount": 26,
+  "viewedUniqueImages": 10,
+  "groupCorrectionCount": 10,
+  "checks": [
+    {
+      "id": "zuiku-99229",
+      "reviewLevel": "partial",
+      "edits": 5,
+      "sectionCountBefore": 22,
+      "sectionCountAfter": 22,
+      "untouchedSectionsPreserved": true,
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/11/6f0cdb230343e80d111a9a0b5cdf76b3cfff1726.jpeg?imageView2/2/w/750",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/11/4ed1c96f327f2da18cab57fadae1ace47cec16d3.jpeg?imageView2/2/w/750",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/11/da377ef332a193cc8abb6074344499d686ee44a4.jpeg?imageView2/2/w/750"
+      ]
+    },
+    {
+      "id": "zuiku-81550",
+      "reviewLevel": "partial",
+      "edits": 5,
+      "sectionCountBefore": 22,
+      "sectionCountAfter": 22,
+      "untouchedSectionsPreserved": true,
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/11/6f0cdb230343e80d111a9a0b5cdf76b3cfff1726.jpeg?imageView2/2/w/750",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/11/4ed1c96f327f2da18cab57fadae1ace47cec16d3.jpeg?imageView2/2/w/750",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/11/da377ef332a193cc8abb6074344499d686ee44a4.jpeg?imageView2/2/w/750"
+      ]
+    },
+    {
+      "id": "zuiku-54272",
+      "reviewLevel": "partial",
+      "edits": 1,
+      "sectionCountBefore": 29,
+      "sectionCountAfter": 29,
+      "untouchedSectionsPreserved": true,
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/07/d68fce01bb28ac3641cf713a22cfc4ef5e00c9be.jpeg?imageView2/2/w/750"
+      ]
+    },
+    {
+      "id": "zuiku-80201",
+      "reviewLevel": "partial",
+      "edits": 3,
+      "sectionCountBefore": 29,
+      "sectionCountAfter": 29,
+      "untouchedSectionsPreserved": true,
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/08/ece621d8d2853ea546ceb529a4ece237adfaf05d.jpeg?imageView2/2/w/750"
+      ]
+    },
+    {
+      "id": "zuiku-84761",
+      "reviewLevel": "partial",
+      "edits": 6,
+      "sectionCountBefore": 18,
+      "sectionCountAfter": 18,
+      "untouchedSectionsPreserved": true,
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/10/c6de22453b7f723c136a911aa397f9049a594185.jpeg?imageView2/2/w/1200"
+      ]
+    },
+    {
+      "id": "zuiku-11747",
+      "reviewLevel": "partial",
+      "edits": 3,
+      "sectionCountBefore": 37,
+      "sectionCountAfter": 37,
+      "untouchedSectionsPreserved": true,
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/10/38917a8af83e46191926435eb2d55684127c5356.jpeg?imageView2/2/w/750"
+      ]
+    },
+    {
+      "id": "zuiku-34162",
+      "reviewLevel": "partial",
+      "edits": 2,
+      "sectionCountBefore": 11,
+      "sectionCountAfter": 11,
+      "untouchedSectionsPreserved": true,
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/10/e3fe8b7cf1d3657f4171943a5ef880a15662a3ca.jpeg?imageView2/2/w/1200",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/10/17550d65c5203e74f3243ef4b6710a42ab26687f.jpeg?imageView2/2/w/1200"
+      ]
+    },
+    {
+      "id": "zuiku-94604",
+      "reviewLevel": "partial",
+      "edits": 1,
+      "sectionCountBefore": 24,
+      "sectionCountAfter": 24,
+      "untouchedSectionsPreserved": true,
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/07/33f655956c29185aee4a1ef2e70e501b7a1e49f5.jpeg?imageView2/2/w/1024"
+      ]
+    }
+  ]
+}

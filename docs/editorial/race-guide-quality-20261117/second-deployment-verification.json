@@ -1254,8 +1254,101 @@
     }
   },
   "mini": {
-    "status": "pending_second_batch_devtools_recheck",
-    "physicalDevice": "not_verified",
-    "formalMiniRelease": "not_uploaded_or_released"
+    "kind": "Actual logged-in WeChat DevTools simulator; production API",
+    "width": 390,
+    "passed": true,
+    "races": [
+      {
+        "raceId": "zuiku-41338",
+        "groups": 6,
+        "tables": 12,
+        "exactProductionSections": true,
+        "feesVisible": true,
+        "mixedFamilyFormsVisible": true,
+        "cutoffConflictInRenderedFields": true
+      },
+      {
+        "raceId": "zuiku-43816",
+        "groups": 5,
+        "tables": 9,
+        "exactProductionSections": true,
+        "actualDistances": [
+          62.1,
+          45.1,
+          23.7,
+          9.3,
+          9.3
+        ],
+        "allFiveEligibilityFieldsRendered": true,
+        "ascentConflictVisible": "1140/1440",
+        "firstTableNativeScroll": {
+          "width": 336,
+          "scrollWidth": 960,
+          "scrollLeft": 624
+        }
+      }
+    ],
+    "originalImages": {
+      "widthFix": true,
+      "longpressProperty": true,
+      "dimensions": [
+        {
+          "src": "https://togetherbetter.cn/marathon/api/race-sheets/1364",
+          "width": 334,
+          "height": 2777.09375
+        },
+        {
+          "src": "https://togetherbetter.cn/marathon/api/race-sheets/1368",
+          "width": 334,
+          "height": 6649.7109375
+        },
+        {
+          "src": "https://togetherbetter.cn/marathon/api/race-sheets/1362",
+          "width": 334,
+          "height": 3225.1015625
+        },
+        {
+          "src": "https://togetherbetter.cn/marathon/api/race-sheets/1724",
+          "width": 334,
+          "height": 134.703125
+        },
+        {
+          "src": "https://togetherbetter.cn/marathon/api/race-sheets/1363",
+          "width": 334,
+          "height": 2727.6640625
+        },
+        {
+          "src": "https://togetherbetter.cn/marathon/api/race-sheets/1725",
+          "width": 334,
+          "height": 146
+        },
+        {
+          "src": "https://togetherbetter.cn/marathon/api/race-sheets/1365",
+          "width": 334,
+          "height": 4713.8515625
+        },
+        {
+          "src": "https://togetherbetter.cn/marathon/api/race-sheets/1366",
+          "width": 334,
+          "height": 320.6328125
+        },
+        {
+          "src": "https://togetherbetter.cn/marathon/api/race-sheets/1367",
+          "width": 334,
+          "height": 219.5703125
+        },
+        {
+          "src": "https://togetherbetter.cn/marathon/api/race-sheets/1369",
+          "width": 334,
+          "height": 5447.7578125
+        }
+      ],
+      "nativePreviewXSByButton": true,
+      "nativePreviewOfficialCpByHandler": true
+    },
+    "notes": [
+      "香雪费用表原始左侧列和两种三人亲子形式已实际查看；该表独立横滑动作未成功定位，未将工具成功响应算作横滑证据。洛带首个组别表已用scrollLeft=624及前后截图验证相同表格组件横滑。",
+      "Native preview remains open after page navigation in DevTools; simulator_refresh cleared it before final group-card/table screenshots, which were then recaptured and actually viewed."
+    ]
   }
 }

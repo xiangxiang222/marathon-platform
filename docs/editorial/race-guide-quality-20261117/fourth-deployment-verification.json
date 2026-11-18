@@ -1,0 +1,614 @@
+{
+  "checkedAt": "2026-11-17T23:58:16.226Z",
+  "codeCommit": "fe21c9c335e2e34b6f4e4b842de2cc2b0f59256e",
+  "saved": {
+    "checkedAt": "2026-11-17T23:57:44.595Z",
+    "rows": [
+      {
+        "id": "zuiku-99229",
+        "bodyHash": "cd31a8d14bb898723f97b79656a19509495636c5f9f8645e254424a031152128",
+        "groups": 9,
+        "media": 20
+      },
+      {
+        "id": "zuiku-81550",
+        "bodyHash": "79fdeb3f2d877bb82ab1396914423ebe26b2b5b841e85323d4fd254b40816f00",
+        "groups": 3,
+        "media": 20
+      },
+      {
+        "id": "zuiku-54272",
+        "bodyHash": "f28071693f8d0cbc2eb7bd6b7323e8c96225b5d58c860014417121576c8ccaad",
+        "groups": 4,
+        "media": 28
+      },
+      {
+        "id": "zuiku-80201",
+        "bodyHash": "d596da02bd0aeb788fbb8ac64fbe67c06609d74137e74ee8bedcde15891340b7",
+        "groups": 6,
+        "media": 13
+      },
+      {
+        "id": "zuiku-84761",
+        "bodyHash": "2739932e3c97329b33770def92de1da8b15d7096fbecb1ecd729b9782f7a3c17",
+        "groups": 12,
+        "media": 11
+      },
+      {
+        "id": "zuiku-11747",
+        "bodyHash": "80e5b5fe7c3d44e58aa45aea5524fbde8a4904e0f8ed190630c0e2268c575f61",
+        "groups": 7,
+        "media": 32
+      },
+      {
+        "id": "zuiku-34162",
+        "bodyHash": "9c3622b949fb7f7bd147b0b4d4f76ecedc9d81d763eb86f55beb5c4abf03e3fb",
+        "groups": 3,
+        "media": 12
+      },
+      {
+        "id": "zuiku-94604",
+        "bodyHash": "f26787cd093abec7055ab9fc782dd6da45f50bd5f67b84700c9889ab71fec6b9",
+        "groups": 10,
+        "media": 23
+      }
+    ],
+    "races": 434,
+    "sheets": 1725,
+    "quickCheck": "ok",
+    "errors": []
+  },
+  "web": {
+    "startedAt": "2026-11-17T23:57:21.734Z",
+    "api": [
+      {
+        "id": "zuiku-99229",
+        "bodyMatches": true,
+        "groups": 9,
+        "characters": 18797
+      },
+      {
+        "id": "zuiku-81550",
+        "bodyMatches": true,
+        "groups": 3,
+        "characters": 18798
+      },
+      {
+        "id": "zuiku-54272",
+        "bodyMatches": true,
+        "groups": 4,
+        "characters": 21647
+      },
+      {
+        "id": "zuiku-80201",
+        "bodyMatches": true,
+        "groups": 6,
+        "characters": 36515
+      },
+      {
+        "id": "zuiku-84761",
+        "bodyMatches": true,
+        "groups": 12,
+        "characters": 13075
+      },
+      {
+        "id": "zuiku-11747",
+        "bodyMatches": true,
+        "groups": 7,
+        "characters": 15770
+      },
+      {
+        "id": "zuiku-34162",
+        "bodyMatches": true,
+        "groups": 3,
+        "characters": 4991
+      },
+      {
+        "id": "zuiku-94604",
+        "bodyMatches": true,
+        "groups": 10,
+        "characters": 9512
+      }
+    ],
+    "web": [
+      {
+        "id": "zuiku-99229",
+        "width": 320,
+        "characters": 19156,
+        "tables": [
+          {
+            "width": 252,
+            "scrollWidth": 720,
+            "tableWidth": 720,
+            "rows": 3
+          },
+          {
+            "width": 252,
+            "scrollWidth": 600,
+            "tableWidth": 600,
+            "rows": 4
+          },
+          {
+            "width": 252,
+            "scrollWidth": 252,
+            "tableWidth": 252,
+            "rows": 10
+          },
+          {
+            "width": 252,
+            "scrollWidth": 360,
+            "tableWidth": 360,
+            "rows": 3
+          },
+          {
+            "width": 252,
+            "scrollWidth": 840,
+            "tableWidth": 840,
+            "rows": 5
+          },
+          {
+            "width": 252,
+            "scrollWidth": 840,
+            "tableWidth": 840,
+            "rows": 4
+          },
+          {
+            "width": 252,
+            "scrollWidth": 840,
+            "tableWidth": 840,
+            "rows": 4
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "id": "zuiku-99229",
+        "width": 390,
+        "characters": 19156,
+        "tables": [
+          {
+            "width": 318,
+            "scrollWidth": 720,
+            "tableWidth": 720,
+            "rows": 3
+          },
+          {
+            "width": 318,
+            "scrollWidth": 600,
+            "tableWidth": 600,
+            "rows": 4
+          },
+          {
+            "width": 318,
+            "scrollWidth": 318,
+            "tableWidth": 318,
+            "rows": 10
+          },
+          {
+            "width": 318,
+            "scrollWidth": 360,
+            "tableWidth": 360,
+            "rows": 3
+          },
+          {
+            "width": 318,
+            "scrollWidth": 840,
+            "tableWidth": 840,
+            "rows": 5
+          },
+          {
+            "width": 318,
+            "scrollWidth": 840,
+            "tableWidth": 840,
+            "rows": 4
+          },
+          {
+            "width": 318,
+            "scrollWidth": 840,
+            "tableWidth": 840,
+            "rows": 4
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "id": "zuiku-81550",
+        "width": 320,
+        "characters": 19157,
+        "tables": [
+          {
+            "width": 252,
+            "scrollWidth": 720,
+            "tableWidth": 720,
+            "rows": 3
+          },
+          {
+            "width": 252,
+            "scrollWidth": 600,
+            "tableWidth": 600,
+            "rows": 4
+          },
+          {
+            "width": 252,
+            "scrollWidth": 252,
+            "tableWidth": 252,
+            "rows": 10
+          },
+          {
+            "width": 252,
+            "scrollWidth": 360,
+            "tableWidth": 360,
+            "rows": 3
+          },
+          {
+            "width": 252,
+            "scrollWidth": 840,
+            "tableWidth": 840,
+            "rows": 5
+          },
+          {
+            "width": 252,
+            "scrollWidth": 840,
+            "tableWidth": 840,
+            "rows": 4
+          },
+          {
+            "width": 252,
+            "scrollWidth": 840,
+            "tableWidth": 840,
+            "rows": 4
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "id": "zuiku-81550",
+        "width": 390,
+        "characters": 19157,
+        "tables": [
+          {
+            "width": 318,
+            "scrollWidth": 720,
+            "tableWidth": 720,
+            "rows": 3
+          },
+          {
+            "width": 318,
+            "scrollWidth": 600,
+            "tableWidth": 600,
+            "rows": 4
+          },
+          {
+            "width": 318,
+            "scrollWidth": 318,
+            "tableWidth": 318,
+            "rows": 10
+          },
+          {
+            "width": 318,
+            "scrollWidth": 360,
+            "tableWidth": 360,
+            "rows": 3
+          },
+          {
+            "width": 318,
+            "scrollWidth": 840,
+            "tableWidth": 840,
+            "rows": 5
+          },
+          {
+            "width": 318,
+            "scrollWidth": 840,
+            "tableWidth": 840,
+            "rows": 4
+          },
+          {
+            "width": 318,
+            "scrollWidth": 840,
+            "tableWidth": 840,
+            "rows": 4
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "id": "zuiku-54272",
+        "width": 320,
+        "characters": 22690,
+        "tables": [
+          {
+            "width": 252,
+            "scrollWidth": 600,
+            "tableWidth": 600,
+            "rows": 5
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "id": "zuiku-54272",
+        "width": 390,
+        "characters": 22690,
+        "tables": [
+          {
+            "width": 318,
+            "scrollWidth": 600,
+            "tableWidth": 600,
+            "rows": 5
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "id": "zuiku-80201",
+        "width": 320,
+        "characters": 37497,
+        "tables": [
+          {
+            "width": 252,
+            "scrollWidth": 720,
+            "tableWidth": 720,
+            "rows": 4
+          },
+          {
+            "width": 252,
+            "scrollWidth": 360,
+            "tableWidth": 360,
+            "rows": 6
+          },
+          {
+            "width": 252,
+            "scrollWidth": 720,
+            "tableWidth": 720,
+            "rows": 4
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "id": "zuiku-80201",
+        "width": 390,
+        "characters": 37497,
+        "tables": [
+          {
+            "width": 318,
+            "scrollWidth": 720,
+            "tableWidth": 720,
+            "rows": 4
+          },
+          {
+            "width": 318,
+            "scrollWidth": 360,
+            "tableWidth": 360,
+            "rows": 6
+          },
+          {
+            "width": 318,
+            "scrollWidth": 720,
+            "tableWidth": 720,
+            "rows": 4
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "id": "zuiku-84761",
+        "width": 320,
+        "characters": 13418,
+        "tables": [
+          {
+            "width": 252,
+            "scrollWidth": 600,
+            "tableWidth": 600,
+            "rows": 4
+          },
+          {
+            "width": 252,
+            "scrollWidth": 600,
+            "tableWidth": 600,
+            "rows": 7
+          },
+          {
+            "width": 252,
+            "scrollWidth": 600,
+            "tableWidth": 600,
+            "rows": 3
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "id": "zuiku-84761",
+        "width": 390,
+        "characters": 13418,
+        "tables": [
+          {
+            "width": 318,
+            "scrollWidth": 600,
+            "tableWidth": 600,
+            "rows": 4
+          },
+          {
+            "width": 318,
+            "scrollWidth": 600,
+            "tableWidth": 600,
+            "rows": 7
+          },
+          {
+            "width": 318,
+            "scrollWidth": 600,
+            "tableWidth": 600,
+            "rows": 3
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "id": "zuiku-11747",
+        "width": 320,
+        "characters": 16046,
+        "tables": [
+          {
+            "width": 252,
+            "scrollWidth": 840,
+            "tableWidth": 840,
+            "rows": 3
+          },
+          {
+            "width": 252,
+            "scrollWidth": 840,
+            "tableWidth": 840,
+            "rows": 4
+          },
+          {
+            "width": 252,
+            "scrollWidth": 600,
+            "tableWidth": 600,
+            "rows": 6
+          },
+          {
+            "width": 252,
+            "scrollWidth": 252,
+            "tableWidth": 252,
+            "rows": 6
+          },
+          {
+            "width": 252,
+            "scrollWidth": 720,
+            "tableWidth": 720,
+            "rows": 12
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "id": "zuiku-11747",
+        "width": 390,
+        "characters": 16046,
+        "tables": [
+          {
+            "width": 318,
+            "scrollWidth": 840,
+            "tableWidth": 840,
+            "rows": 3
+          },
+          {
+            "width": 318,
+            "scrollWidth": 840,
+            "tableWidth": 840,
+            "rows": 4
+          },
+          {
+            "width": 318,
+            "scrollWidth": 600,
+            "tableWidth": 600,
+            "rows": 6
+          },
+          {
+            "width": 318,
+            "scrollWidth": 318,
+            "tableWidth": 318,
+            "rows": 6
+          },
+          {
+            "width": 318,
+            "scrollWidth": 720,
+            "tableWidth": 720,
+            "rows": 12
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "id": "zuiku-34162",
+        "width": 320,
+        "characters": 5002,
+        "tables": [
+          {
+            "width": 252,
+            "scrollWidth": 600,
+            "tableWidth": 600,
+            "rows": 4
+          },
+          {
+            "width": 252,
+            "scrollWidth": 252,
+            "tableWidth": 252,
+            "rows": 4
+          },
+          {
+            "width": 252,
+            "scrollWidth": 252,
+            "tableWidth": 252,
+            "rows": 4
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "id": "zuiku-34162",
+        "width": 390,
+        "characters": 5002,
+        "tables": [
+          {
+            "width": 318,
+            "scrollWidth": 600,
+            "tableWidth": 600,
+            "rows": 4
+          },
+          {
+            "width": 318,
+            "scrollWidth": 318,
+            "tableWidth": 318,
+            "rows": 4
+          },
+          {
+            "width": 318,
+            "scrollWidth": 318,
+            "tableWidth": 318,
+            "rows": 4
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "id": "zuiku-94604",
+        "width": 320,
+        "characters": 9708,
+        "tables": [
+          {
+            "width": 252,
+            "scrollWidth": 600,
+            "tableWidth": 600,
+            "rows": 11
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "id": "zuiku-94604",
+        "width": 390,
+        "characters": 9708,
+        "tables": [
+          {
+            "width": 318,
+            "scrollWidth": 600,
+            "tableWidth": 600,
+            "rows": 11
+          }
+        ],
+        "overflow": false
+      }
+    ],
+    "errors": [],
+    "completedAt": "2026-11-17T23:57:47.730Z",
+    "passed": true
+  },
+  "scope": "8场26项定向正文修订及19项组卡字段纠正/补充，10张唯一原图、13个赛事-图片核对对应，全部局部校对。",
+  "mini": {
+    "status": "not_verified_for_fourth_batch",
+    "physicalDevice": false,
+    "formalRelease": false
+  },
+  "backup": "server/data/race-guide-quality-20261117/fourth-applied.json.before.sqlite"
+}

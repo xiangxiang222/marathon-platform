@@ -1,0 +1,236 @@
+[
+  {
+    "id": "zuiku-99229",
+    "name": "2026户外特工广州山野小勇士赛知识城站",
+    "status": "partially_verified",
+    "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+    "beforeBodyHash": "1d4ca0485388abe63ec6cf08a7e5f5583aac5631ee2e9420255ecb1b45258bb5",
+    "savedBodyHash": "cd31a8d14bb898723f97b79656a19509495636c5f9f8645e254424a031152128",
+    "bodyChanged": true,
+    "edits": 5,
+    "viewedImages": 3,
+    "pendingImages": 17,
+    "chapters": 22,
+    "groups": 9,
+    "groupCorrections": 19,
+    "questions": [
+      "总表与路线详情原图真实冲突，13KM实际距离11.6/13.4km、12/8/6KM爬升581/439/433与585/433/213m均不能据常识择一；正文明确标明差异，structured groups相关既有值不覆盖。",
+      "原图表头写累计爬升/下降，但分行数值可能为分段值；保留原表标签及数值，不重新累加。",
+      "正文末尾官方延期微信已实际访问但返回访问限制，未取得可复制公告正文；日期以已看本届更新图2027年1月9—10日为证，其他旧图、旧规则尚未全篇校对。"
+    ],
+    "officialDocuments": [],
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "mini": false,
+      "physicalDevice": false,
+      "formalMiniRelease": false
+    }
+  },
+  {
+    "id": "zuiku-81550",
+    "name": "2026黄埔知识城越野赛暨户外特工广州山野挑战赛知识城站",
+    "status": "partially_verified",
+    "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+    "beforeBodyHash": "d19ca5aee944aeeddfbde930d9bec4b6ec61c36917d418969cd4a31fc41db3da",
+    "savedBodyHash": "79fdeb3f2d877bb82ab1396914423ebe26b2b5b841e85323d4fd254b40816f00",
+    "bodyChanged": true,
+    "edits": 5,
+    "viewedImages": 3,
+    "pendingImages": 17,
+    "chapters": 22,
+    "groups": 3,
+    "groupCorrections": 0,
+    "questions": [
+      "总表与路线详情原图真实冲突，13KM实际距离11.6/13.4km、12/8/6KM爬升581/439/433与585/433/213m均不能据常识择一；正文明确标明差异，structured groups相关既有值不覆盖。",
+      "原图表头写累计爬升/下降，但分行数值可能为分段值；保留原表标签及数值，不重新累加。",
+      "正文末尾官方延期微信已实际访问但返回访问限制，未取得可复制公告正文；日期以已看本届更新图2027年1月9—10日为证，其他旧图、旧规则尚未全篇校对。"
+    ],
+    "officialDocuments": [],
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "mini": false,
+      "physicalDevice": false,
+      "formalMiniRelease": false
+    }
+  },
+  {
+    "id": "zuiku-54272",
+    "name": "2026广东从化一百越野赛",
+    "status": "partially_verified",
+    "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+    "beforeBodyHash": "0c6c45a067c2a1ddd5df595488f099ae4ba34bc83a012e8f0c7c4ef916ee2694",
+    "savedBodyHash": "f28071693f8d0cbc2eb7bd6b7323e8c96225b5d58c860014417121576c8ccaad",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 1,
+    "pendingImages": 27,
+    "chapters": 29,
+    "groups": 4,
+    "groupCorrections": 0,
+    "questions": [
+      "本届原图早鸟截止8月31日，但当前报名页可复制描述写10月31日前早鸟价；可能为后续延期优惠，未取得官方延期说明，不把卡片早鸟金额改成正常价，不据旧图覆盖现售价格。",
+      "仅本张费用原图局部完成审图，路线、资格和强制装备其他长图尚未逐项审完。"
+    ],
+    "officialDocuments": [],
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "mini": false,
+      "physicalDevice": false,
+      "formalMiniRelease": false
+    }
+  },
+  {
+    "id": "zuiku-80201",
+    "name": "霞路相逢·三山五岳 拓路者2026南岳衡山越野赛",
+    "status": "partially_verified",
+    "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+    "beforeBodyHash": "8194c36886ea8a419d63d8c10fca8ff665302649fa9c7c42f0fe6338226c33c0",
+    "savedBodyHash": "d596da02bd0aeb788fbb8ac64fbe67c06609d74137e74ee8bedcde15891340b7",
+    "bodyChanged": true,
+    "edits": 3,
+    "viewedImages": 1,
+    "pendingImages": 12,
+    "chapters": 29,
+    "groups": 6,
+    "groupCorrections": 0,
+    "questions": [
+      "仅本张资格/费用规程原图完成局部审图，其他路线、奖项、退款及装备表本批尚未逐项审完；未凭当前OCR修改其他邮箱或金额。"
+    ],
+    "officialDocuments": [],
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "mini": false,
+      "physicalDevice": false,
+      "formalMiniRelease": false
+    }
+  },
+  {
+    "id": "zuiku-84761",
+    "name": "2027楠溪江跑山赛",
+    "status": "partially_verified",
+    "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+    "beforeBodyHash": "2e1ab4ffea4135208c2ac57f63164f190f3ea1bfd90f7cf55477303bf4d209bc",
+    "savedBodyHash": "2739932e3c97329b33770def92de1da8b15d7096fbecb1ecd729b9782f7a3c17",
+    "bodyChanged": true,
+    "edits": 6,
+    "viewedImages": 1,
+    "pendingImages": 10,
+    "chapters": 18,
+    "groups": 12,
+    "groupCorrections": 0,
+    "questions": [
+      "原图退费条款写11月30日23:59前退50%、12月1日23:59起不受理，12月1日白天的处理边界未明确；按原文保留，不猜成12月1日0点。",
+      "本张顶部40KM关门表表头在前页，本批尚未核前页，保留原有站点文字；本张尾部奖品注释跨后图，保留原尾句，未根据上下文补齐。",
+      "仅本张资格/费用/奖励长图局部已审；其余路线、装备、退赛长图尚未逐项校对。"
+    ],
+    "officialDocuments": [],
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "mini": false,
+      "physicalDevice": false,
+      "formalMiniRelease": false
+    }
+  },
+  {
+    "id": "zuiku-11747",
+    "name": "2026第七届宁波逐野四明·问秋行",
+    "status": "partially_verified",
+    "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+    "beforeBodyHash": "1ca82d52a094d2d7dcb399cff592f0b980da2fb409fb481451df6e1b7b0616a4",
+    "savedBodyHash": "80e5b5fe7c3d44e58aa45aea5524fbde8a4904e0f8ed190630c0e2268c575f61",
+    "bodyChanged": true,
+    "edits": 3,
+    "viewedImages": 1,
+    "pendingImages": 31,
+    "chapters": 37,
+    "groups": 7,
+    "groupCorrections": 0,
+    "questions": [
+      "原图一口价截止10月18日24时，本届官方28日/29日报名页面可复制正文写10月28日24时；暂不推断覆盖日期，正文明确列来源差异。",
+      "原图装备表内小标题误写第六届，外层标题与本届官网均为第七届；正文使用中性装备标题，保留原图作证。",
+      "卡片U13名额13、U10名额10疑似把年龄组数字误作人数，本图和官网正文未载配额，尚无可靠数字替换，保留原值并列待核。",
+      "本赛事其他31张图片本批未全部逐项审完，旧重复规程和后续物资/安全条款仍保留，不能标全篇已校对。"
+    ],
+    "officialDocuments": [],
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "mini": false,
+      "physicalDevice": false,
+      "formalMiniRelease": false
+    }
+  },
+  {
+    "id": "zuiku-34162",
+    "name": "2026新奇天·富春雪岭越野赛",
+    "status": "partially_verified",
+    "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+    "beforeBodyHash": "82c275e99cc7446f06d00e1451f6accdd2f17764dfedddcbd982c7da0fab6ea3",
+    "savedBodyHash": "9c3622b949fb7f7bd147b0b4d4f76ecedc9d81d763eb86f55beb5c4abf03e3fb",
+    "bodyChanged": true,
+    "edits": 2,
+    "viewedImages": 2,
+    "pendingImages": 10,
+    "chapters": 11,
+    "groups": 3,
+    "groupCorrections": 0,
+    "questions": [
+      "仅组别设置图和报名/退费图已逐项核对；线路分段、资格与强制装备其他图未在本批逐项审完。精英要求原文写分数800/680，未自行补加未载符号。"
+    ],
+    "officialDocuments": [],
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "mini": false,
+      "physicalDevice": false,
+      "formalMiniRelease": false
+    }
+  },
+  {
+    "id": "zuiku-94604",
+    "name": "2026 XTERRA 太湖越野挑战赛",
+    "status": "partially_verified",
+    "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+    "beforeBodyHash": "4210ba5a18de704394f936617c2800fecd110dc8bf39125a3971ca557c35b1e3",
+    "savedBodyHash": "f26787cd093abec7055ab9fc782dd6da45f50bd5f67b84700c9889ab71fec6b9",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 1,
+    "pendingImages": 22,
+    "chapters": 24,
+    "groups": 10,
+    "groupCorrections": 0,
+    "questions": [
+      "仅本张赛事项目/收费原图已逐项看图核对，路线图、资格、日程、退费和强制装备其余图片本批尚未逐项审完；未用未审图填55/35KM缺失爬升字段。"
+    ],
+    "officialDocuments": [],
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "mini": false,
+      "physicalDevice": false,
+      "formalMiniRelease": false
+    }
+  }
+]
