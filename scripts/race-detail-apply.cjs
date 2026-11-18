@@ -169,7 +169,7 @@ async function applyPlan(dbFile, plan, out, mediaRoot) {
             const saved = details.details.media.find(m => m.filename === image.filename); if (saved) saved.sheetId = sheetId;
           }
           const changes = { ...update.changes, guide_text: writeDetails(details.text,details.details) };
-          const allowedFields = new Set(['guide_text','updated_at','groups','organizer','phone','place','route','pickup','fee','scale','start_at','reg_start','deadline','deadline_name','signup_url']);
+          const allowedFields = new Set(['guide_text','updated_at','groups','organizer','phone','place','route','pickup','fee','scale','race_date','start_at','reg_start','deadline','deadline_name','signup_url']);
           if (Object.keys(changes).some(key => !allowedFields.has(key))) throw new Error('unsupported_update_field');
           db.prepare('UPDATE races SET ' + Object.keys(changes).map(key => key+'=?').join(',') + ' WHERE id=?').run(...Object.values(changes),update.id);
           record.savedHash = sha(changes.guide_text); record.groupCount = details.details.groups?.length || 0; record.sheetCount = media.length;
