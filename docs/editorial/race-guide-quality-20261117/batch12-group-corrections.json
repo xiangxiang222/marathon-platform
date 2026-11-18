@@ -1,0 +1,383 @@
+[
+  {
+    "raceId": "zuiku-25991",
+    "groupIndex": 0,
+    "field": "startsAt",
+    "before": "",
+    "after": "2027-01-17 08:00",
+    "source": {
+      "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/910d72ce4bf7e1e4479ee22d24170ccf2415f191.jpeg?imageView2/2/w/1024",
+      "sourceUrl": "https://reg.zuicool.com/35176",
+      "sha256": "2e1431496d5b6e80cee11ee3211698dc0e69bbfa0c48f8c33e2fde2f6120b982",
+      "localFile": "/tmp/race-guide-quality-20261117/batch10-root/zuiku-25991-0.jpg",
+      "imageViewed": true,
+      "textReviewed": false,
+      "viewedCrops": [
+        "/tmp/race-guide-quality-20261117/batch10-root/zuiku-25991-0-0.png",
+        "/tmp/race-guide-quality-20261117/batch10-root/zuiku-25991-0-1700.png",
+        "/tmp/race-guide-quality-20261117/batch10-root/zuiku-25991-0-3400.png",
+        "/tmp/race-guide-quality-20261117/batch10-root/zuiku-25991-0-5100.png",
+        "/tmp/race-guide-quality-20261117/batch10-root/zuiku-25991-0-6800.png"
+      ]
+    },
+    "imageViewed": true,
+    "textReviewed": false,
+    "reason": "原图项目表明示出发日期时间"
+  },
+  {
+    "raceId": "zuiku-25991",
+    "groupIndex": 0,
+    "field": "cutoffAt",
+    "before": "6小时",
+    "after": "2027-01-17 14:00",
+    "source": {
+      "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/910d72ce4bf7e1e4479ee22d24170ccf2415f191.jpeg?imageView2/2/w/1024",
+      "sourceUrl": "https://reg.zuicool.com/35176",
+      "sha256": "2e1431496d5b6e80cee11ee3211698dc0e69bbfa0c48f8c33e2fde2f6120b982",
+      "localFile": "/tmp/race-guide-quality-20261117/batch10-root/zuiku-25991-0.jpg",
+      "imageViewed": true,
+      "textReviewed": false,
+      "viewedCrops": [
+        "/tmp/race-guide-quality-20261117/batch10-root/zuiku-25991-0-0.png",
+        "/tmp/race-guide-quality-20261117/batch10-root/zuiku-25991-0-1700.png",
+        "/tmp/race-guide-quality-20261117/batch10-root/zuiku-25991-0-3400.png",
+        "/tmp/race-guide-quality-20261117/batch10-root/zuiku-25991-0-5100.png",
+        "/tmp/race-guide-quality-20261117/batch10-root/zuiku-25991-0-6800.png"
+      ]
+    },
+    "imageViewed": true,
+    "textReviewed": false,
+    "reason": "原图项目表明示关门日期时间，6小时移入时长字段"
+  },
+  {
+    "raceId": "zuiku-25991",
+    "groupIndex": 0,
+    "field": "cutoffHours",
+    "before": null,
+    "after": 6,
+    "source": {
+      "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/910d72ce4bf7e1e4479ee22d24170ccf2415f191.jpeg?imageView2/2/w/1024",
+      "sourceUrl": "https://reg.zuicool.com/35176",
+      "sha256": "2e1431496d5b6e80cee11ee3211698dc0e69bbfa0c48f8c33e2fde2f6120b982",
+      "localFile": "/tmp/race-guide-quality-20261117/batch10-root/zuiku-25991-0.jpg",
+      "imageViewed": true,
+      "textReviewed": false,
+      "viewedCrops": [
+        "/tmp/race-guide-quality-20261117/batch10-root/zuiku-25991-0-0.png",
+        "/tmp/race-guide-quality-20261117/batch10-root/zuiku-25991-0-1700.png",
+        "/tmp/race-guide-quality-20261117/batch10-root/zuiku-25991-0-3400.png",
+        "/tmp/race-guide-quality-20261117/batch10-root/zuiku-25991-0-5100.png",
+        "/tmp/race-guide-quality-20261117/batch10-root/zuiku-25991-0-6800.png"
+      ]
+    },
+    "imageViewed": true,
+    "textReviewed": false,
+    "reason": "原图时限6h"
+  },
+  {
+    "raceId": "zuiku-25991",
+    "groupIndex": 0,
+    "field": "fees",
+    "before": [
+      {
+        "label": "报名页价格",
+        "amount": 520,
+        "currency": "CNY",
+        "unit": "人",
+        "sourceUrl": "https://reg.zuicool.com/35176/284650"
+      }
+    ],
+    "after": [
+      {
+        "label": "早鸟价（原图限2026年11月8日12:00）",
+        "amount": 480,
+        "currency": "CNY",
+        "unit": "人",
+        "sourceUrl": "https://reg.zuicool.com/35176"
+      },
+      {
+        "label": "正常价（限2026年12月31日前）",
+        "amount": 520,
+        "currency": "CNY",
+        "unit": "人",
+        "sourceUrl": "https://reg.zuicool.com/35176"
+      }
+    ],
+    "source": {
+      "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/bf25c81245a227eee1604010f79a6e597538eb91.jpeg?imageView2/2/w/1024",
+      "sourceUrl": "https://reg.zuicool.com/35176",
+      "sha256": "71d5d51d4934fd08778146960623589a935965cb505aa330461bdfed1bb9544b",
+      "localFile": "/tmp/race-guide-quality-20261117/batch10-root/zuiku-25991-1.jpg",
+      "imageViewed": true,
+      "textReviewed": false,
+      "viewedCrops": [
+        "/tmp/race-guide-quality-20261117/batch10-root/zuiku-25991-1-0.png",
+        "/tmp/race-guide-quality-20261117/batch10-root/zuiku-25991-1-1700.png",
+        "/tmp/race-guide-quality-20261117/batch10-root/zuiku-25991-1-3400.png",
+        "/tmp/race-guide-quality-20261117/batch10-root/zuiku-25991-1-5100.png",
+        "/tmp/race-guide-quality-20261117/batch10-root/zuiku-25991-1-6800.png"
+      ]
+    },
+    "imageViewed": true,
+    "textReviewed": false,
+    "reason": "实看费用表按阶段保留480/520元"
+  },
+  {
+    "raceId": "zuiku-65276",
+    "field": "groups",
+    "before": [],
+    "after": [
+      {
+        "name": "160K",
+        "description": "起终点白鹿音乐广场；累计爬升约9300米。",
+        "form": "individual",
+        "advertisedDistanceKm": 160,
+        "actualDistanceKm": null,
+        "ascentM": 9300,
+        "descentM": null,
+        "quota": "",
+        "startsAt": "2027-03-26 15:30",
+        "cutoffAt": "",
+        "cutoffHours": 46,
+        "itraPoints": null,
+        "status": "unknown",
+        "fees": [
+          {
+            "label": "报名费",
+            "amount": 1880,
+            "currency": "CNY",
+            "unit": "人",
+            "sourceUrl": "https://zuicool.com/news/archives/317988"
+          }
+        ],
+        "sourceUrl": "https://zuicool.com/news/archives/317988"
+      },
+      {
+        "name": "105K",
+        "description": "起终点白鹿音乐广场；累计爬升约5550米。",
+        "form": "individual",
+        "advertisedDistanceKm": 105,
+        "actualDistanceKm": null,
+        "ascentM": 5550,
+        "descentM": null,
+        "quota": "",
+        "startsAt": "2027-03-27 06:00",
+        "cutoffAt": "",
+        "cutoffHours": 29,
+        "itraPoints": null,
+        "status": "unknown",
+        "fees": [
+          {
+            "label": "报名费",
+            "amount": 1080,
+            "currency": "CNY",
+            "unit": "人",
+            "sourceUrl": "https://zuicool.com/news/archives/317988"
+          }
+        ],
+        "sourceUrl": "https://zuicool.com/news/archives/317988"
+      },
+      {
+        "name": "85K³",
+        "description": "海窝子古镇至白鹿音乐广场；累计爬升约4600米。原图1760元/2人、2400元/3人与官网1760元/人冲突，须确认。",
+        "form": "team",
+        "advertisedDistanceKm": 85,
+        "actualDistanceKm": null,
+        "ascentM": 4600,
+        "descentM": null,
+        "quota": "",
+        "startsAt": "2027-03-27 10:00",
+        "cutoffAt": "",
+        "cutoffHours": 24,
+        "itraPoints": null,
+        "status": "unknown",
+        "fees": [
+          {
+            "label": "原图2人队",
+            "amount": 1760,
+            "currency": "CNY",
+            "unit": "队",
+            "sourceUrl": "https://zuicool.com/news/archives/317988"
+          },
+          {
+            "label": "原图3人队",
+            "amount": 2400,
+            "currency": "CNY",
+            "unit": "队",
+            "sourceUrl": "https://zuicool.com/news/archives/317988"
+          },
+          {
+            "label": "官网公开选项（单位冲突待确认）",
+            "amount": 1760,
+            "currency": "CNY",
+            "unit": "人",
+            "sourceUrl": "https://www.tsaigu.com/events?mid=58097"
+          }
+        ],
+        "sourceUrl": "https://zuicool.com/news/archives/317988"
+      },
+      {
+        "name": "60K",
+        "description": "龙门山镇宝山广场至白鹿音乐广场；累计爬升约2600米，分枪出发。",
+        "form": "individual",
+        "advertisedDistanceKm": 60,
+        "actualDistanceKm": null,
+        "ascentM": 2600,
+        "descentM": null,
+        "quota": "",
+        "startsAt": "2027-03-27 08:00 / 08:30 / 09:00",
+        "cutoffAt": "",
+        "cutoffHours": 12.5,
+        "itraPoints": null,
+        "status": "unknown",
+        "fees": [
+          {
+            "label": "报名费",
+            "amount": 680,
+            "currency": "CNY",
+            "unit": "人",
+            "sourceUrl": "https://zuicool.com/news/archives/317988"
+          }
+        ],
+        "sourceUrl": "https://zuicool.com/news/archives/317988"
+      },
+      {
+        "name": "25K",
+        "description": "起终点白鹿音乐广场；累计爬升约1100米，分枪出发。",
+        "form": "individual",
+        "advertisedDistanceKm": 25,
+        "actualDistanceKm": null,
+        "ascentM": 1100,
+        "descentM": null,
+        "quota": "",
+        "startsAt": "2027-03-28 09:00 / 09:30 / 10:00",
+        "cutoffAt": "",
+        "cutoffHours": 6.5,
+        "itraPoints": null,
+        "status": "unknown",
+        "fees": [
+          {
+            "label": "报名费",
+            "amount": 380,
+            "currency": "CNY",
+            "unit": "人",
+            "sourceUrl": "https://zuicool.com/news/archives/317988"
+          }
+        ],
+        "sourceUrl": "https://zuicool.com/news/archives/317988"
+      }
+    ],
+    "source": {
+      "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/5e2279934fd3cb197f30148b4634e094392fb6fd.jpeg?imageView2/2/w/750",
+      "sourceUrl": "https://zuicool.com/news/archives/317988",
+      "sha256": "2509c6356a508f91e6b42789ca5d95f314f192782232b02d0e97e436a8f51481",
+      "localFile": "/tmp/race-guide-quality-20261117/batch10-root/zuiku-65276-0.jpg",
+      "imageViewed": true,
+      "textReviewed": false,
+      "viewedCrops": [
+        "/tmp/race-guide-quality-20261117/batch10-root/zuiku-65276-0-0.png",
+        "/tmp/race-guide-quality-20261117/batch10-root/zuiku-65276-0-10200.png",
+        "/tmp/race-guide-quality-20261117/batch10-root/zuiku-65276-0-11900.png",
+        "/tmp/race-guide-quality-20261117/batch10-root/zuiku-65276-0-1700.png",
+        "/tmp/race-guide-quality-20261117/batch10-root/zuiku-65276-0-3400.png",
+        "/tmp/race-guide-quality-20261117/batch10-root/zuiku-65276-0-5100.png",
+        "/tmp/race-guide-quality-20261117/batch10-root/zuiku-65276-0-6800.png",
+        "/tmp/race-guide-quality-20261117/batch10-root/zuiku-65276-0-8500.png"
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/5e2279934fd3cb197f30148b4634e094392fb6fd.jpeg?imageView2/2/w/750",
+        "sourceUrl": "https://zuicool.com/news/archives/317988",
+        "sha256": "2509c6356a508f91e6b42789ca5d95f314f192782232b02d0e97e436a8f51481",
+        "localFile": "/tmp/race-guide-quality-20261117/batch10-root/zuiku-65276-0.jpg",
+        "imageViewed": true,
+        "textReviewed": false,
+        "viewedCrops": [
+          "/tmp/race-guide-quality-20261117/batch10-root/zuiku-65276-0-0.png",
+          "/tmp/race-guide-quality-20261117/batch10-root/zuiku-65276-0-10200.png",
+          "/tmp/race-guide-quality-20261117/batch10-root/zuiku-65276-0-11900.png",
+          "/tmp/race-guide-quality-20261117/batch10-root/zuiku-65276-0-1700.png",
+          "/tmp/race-guide-quality-20261117/batch10-root/zuiku-65276-0-3400.png",
+          "/tmp/race-guide-quality-20261117/batch10-root/zuiku-65276-0-5100.png",
+          "/tmp/race-guide-quality-20261117/batch10-root/zuiku-65276-0-6800.png",
+          "/tmp/race-guide-quality-20261117/batch10-root/zuiku-65276-0-8500.png"
+        ]
+      },
+      {
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/078551a726774986ccacb2df15361ecc2ac6944e.jpeg?imageView2/2/w/750",
+        "sourceUrl": "https://zuicool.com/news/archives/317988",
+        "sha256": "dd46b2f22e8011f3fa06f485bbf23e8274f84440632cd4a7e29538fb4aa3a3f4",
+        "localFile": "/tmp/race-guide-quality-20261117/batch10-root/zuiku-65276-1.jpg",
+        "imageViewed": true,
+        "textReviewed": false,
+        "viewedCrops": [
+          "/tmp/race-guide-quality-20261117/batch10-root/zuiku-65276-1-0.png",
+          "/tmp/race-guide-quality-20261117/batch10-root/zuiku-65276-1-10200.png",
+          "/tmp/race-guide-quality-20261117/batch10-root/zuiku-65276-1-11900.png",
+          "/tmp/race-guide-quality-20261117/batch10-root/zuiku-65276-1-1700.png",
+          "/tmp/race-guide-quality-20261117/batch10-root/zuiku-65276-1-3400.png",
+          "/tmp/race-guide-quality-20261117/batch10-root/zuiku-65276-1-5100.png",
+          "/tmp/race-guide-quality-20261117/batch10-root/zuiku-65276-1-6800.png",
+          "/tmp/race-guide-quality-20261117/batch10-root/zuiku-65276-1-8500.png"
+        ]
+      },
+      {
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/448ce4e1ba6c5ca59e7e0fce7c753140ee00acfc.jpeg?imageView2/2/w/750",
+        "sourceUrl": "https://zuicool.com/news/archives/317988",
+        "sha256": "904637cb6de39bdeaaad86b5cdf9ab9d86c1a30b31febb446900ecf27477699f",
+        "localFile": "/tmp/race-guide-quality-20261117/batch10-root/zuiku-65276-2.jpg",
+        "imageViewed": true,
+        "textReviewed": false,
+        "viewedCrops": [
+          "/tmp/race-guide-quality-20261117/batch10-root/zuiku-65276-2-0.png",
+          "/tmp/race-guide-quality-20261117/batch10-root/zuiku-65276-2-1700.png",
+          "/tmp/race-guide-quality-20261117/batch10-root/zuiku-65276-2-3400.png",
+          "/tmp/race-guide-quality-20261117/batch10-root/zuiku-65276-2-5100.png",
+          "/tmp/race-guide-quality-20261117/batch10-root/zuiku-65276-2-6800.png"
+        ]
+      },
+      {
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/dbdb848d9d48afc647d092ede67e2bfa3f459057.jpeg?imageView2/2/w/750",
+        "sourceUrl": "https://zuicool.com/news/archives/317986",
+        "sha256": "5df843f093d878b0e0fea061e91063917aaf26215ac4681a834178e5072a1f31",
+        "localFile": "/tmp/race-guide-quality-20261117/batch10-root/zuiku-65276-3.jpg",
+        "imageViewed": true,
+        "textReviewed": false,
+        "viewedCrops": [
+          "/tmp/race-guide-quality-20261117/batch10-root/zuiku-65276-3-0.png",
+          "/tmp/race-guide-quality-20261117/batch10-root/zuiku-65276-3-1700.png",
+          "/tmp/race-guide-quality-20261117/batch10-root/zuiku-65276-3-3400.png",
+          "/tmp/race-guide-quality-20261117/batch10-root/zuiku-65276-3-5100.png",
+          "/tmp/race-guide-quality-20261117/batch10-root/zuiku-65276-3-6800.png"
+        ]
+      },
+      {
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/83653d7b61960b61a23518ddfa093ae42cf4de28.jpeg?imageView2/2/w/750",
+        "sourceUrl": "https://zuicool.com/news/archives/317984",
+        "sha256": "c955c6dfd6c0d7a3e25992fa3bd86a5c0ed352837675ee163a2d7a8c019e7e5b",
+        "localFile": "/tmp/race-guide-quality-20261117/batch10-root/zuiku-65276-4.jpg",
+        "imageViewed": true,
+        "textReviewed": false,
+        "viewedCrops": [
+          "/tmp/race-guide-quality-20261117/batch10-root/zuiku-65276-4-0.png",
+          "/tmp/race-guide-quality-20261117/batch10-root/zuiku-65276-4-1700.png",
+          "/tmp/race-guide-quality-20261117/batch10-root/zuiku-65276-4-3400.png",
+          "/tmp/race-guide-quality-20261117/batch10-root/zuiku-65276-4-5100.png"
+        ]
+      },
+      {
+        "url": "https://www.tsaigu.com/events?mid=58097",
+        "sourceUrl": "https://www.tsaigu.com",
+        "localFile": "/tmp/race-guide-quality-20261117/panda-official-events.html",
+        "sha256": "11788ef6b9ba28ad89a3185901dbb3bd90a5c3b22649844ddc18de3c55a242e7",
+        "imageViewed": false,
+        "textReviewed": true,
+        "reviewScope": "本届身份、公开batches及正文仅状态查询二维码；不声明完整规程"
+      }
+    ],
+    "imageViewed": true,
+    "textReviewed": true,
+    "reason": "原groups为空，实看本届规程五组、起终点、爬升/时长/分枪与费用，官网公开价格交叉核对并保留85K³单位冲突；未推算关门钟点和实际测量距离。"
+  }
+]

@@ -1,0 +1,71 @@
+{
+  "at": "2026-11-18T19:24:47.859Z",
+  "checks": [
+    {
+      "id": "zuiku-25991",
+      "width": 320,
+      "needle": "480",
+      "table": {
+        "width": 252,
+        "scrollWidth": 840,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 588,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "报名时间与费用\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-25991",
+      "width": 390,
+      "needle": "480",
+      "table": {
+        "width": 318,
+        "scrollWidth": 840,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 522,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "报名时间与费用\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-65276",
+      "width": 320,
+      "needle": "1760",
+      "table": {
+        "width": 252,
+        "scrollWidth": 720,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 468,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "竞赛规程\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-65276",
+      "width": 390,
+      "needle": "1760",
+      "table": {
+        "width": 318,
+        "scrollWidth": 720,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 402,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "竞赛规程\n查看原图 ↗",
+      "overflow": false
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-11-18T19:25:09.357Z"
+}

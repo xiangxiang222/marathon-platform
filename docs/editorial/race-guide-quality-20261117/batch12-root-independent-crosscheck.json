@@ -1,0 +1,19 @@
+{
+  "at": "2026-11-18T19:20:44.819Z",
+  "scope": "Root independently viewed key sources in addition to agent full-image review; no full independent duplicate audit claim",
+  "actuallyViewed": [
+    "batch10-root/zuiku-25991-0-1700.png",
+    "batch10-root/zuiku-25991-0-6800.png",
+    "batch10-root/zuiku-25991-1-0.png",
+    "batch10-root/zuiku-65276-0-0.png",
+    "batch10-root/zuiku-65276-0-1700.png",
+    "batch10-root/zuiku-65276-equipment-readable.png"
+  ],
+  "checks": [
+    "24K1106m6h with拟ITRA1 kept uncertified",
+    "early480 normal520 and service merged column preserved",
+    "Panda5groups ascent9300/5550/4600/2600/1100 and cutoff46/29/24/12.5/6.5, individual start not copied from public batch window",
+    "Panda16equipment rows and5group matrix against actual enlarged original"
+  ],
+  "passed": true
+}

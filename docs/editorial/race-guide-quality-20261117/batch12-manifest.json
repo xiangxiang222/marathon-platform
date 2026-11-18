@@ -1,0 +1,91 @@
+[
+  {
+    "id": "zuiku-25991",
+    "name": "户外特工·2027西宏越野系列赛之打鼓岭站",
+    "status": "partially_verified",
+    "scope": "列明原图已连续实看；原图内冲突按源保留，不能据此声明未公布的赛前最终资料已确认。",
+    "beforeBodyHash": "47e6c29e88f372fa30a58a8c53a501ddfd63ad77d4e05ec6d8836641caab8c6a",
+    "savedBodyHash": "cf50d86d4bca91f8df336de3647729df01fb615e79c571814ee891811b96dadc",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 3,
+    "pendingImages": 0,
+    "chapters": 10,
+    "groups": 1,
+    "groupCorrections": 4,
+    "questions": [
+      "连续实看3张全部原图，恢复原OCR漏掉的晚宴19:00—20:00、早鸟480元、参赛T恤/号码簿、交通17公里/20分钟及36公里/49分钟、免责声明缺失疾病项。",
+      "早鸟栏仅写“限2026年11月8日12:00”，原样保留；不可抗力12月17日当天归属未明。",
+      "拟ITRA1分不写入已认证积分；2026免责声明、宏潭乡/美溪乡分歧保留。"
+    ],
+    "officialDocuments": [],
+    "sourceDiscovery": {
+      "officialUrls": [
+        "微信公众号：西宏168"
+      ],
+      "notes": [
+        "原图明确官方公众号西宏168为第一权威；完整条款主体为3张图。",
+        "现行最酷35176可复制部分已核对本届延期/日期/520元；未找到可复制的公众号本届完整规程。",
+        "web搜索工具404；独立Bing限定官方名及本届日期搜索无有效结果。搜索失败不等于无官网。"
+      ],
+      "searchEvidence": "/tmp/race-guide-quality-20261117/last-two-xihong-search.json"
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true
+    }
+  },
+  {
+    "id": "zuiku-65276",
+    "name": "2027熊猫蜀道山超级越野赛",
+    "status": "partially_verified",
+    "scope": "列明原图已连续实看；原图内冲突按源保留，不能据此声明未公布的赛前最终资料已确认。",
+    "beforeBodyHash": "215e1185271636819646c5509fb99a24d84ee086d4e8dc7b180dfec630a16f5c",
+    "savedBodyHash": "bfe3db350cb68ac8094c728a6808e9b27021a57a932f8afb61a12fdfe0929b69",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 5,
+    "pendingImages": 0,
+    "chapters": 18,
+    "groups": 5,
+    "groupCorrections": 1,
+    "questions": [
+      "实际连续查看5张全部原图（8+8+5+5+4分块），装备和处罚表另放大复核；不以OCR结果冒充实看。",
+      "同日竞赛规程与报名须知资格条件冲突：160/105/85/60 ITRA条件是否须附证明、25K 20km证明的连接方式、特邀年龄例外均按源分述。",
+      "85K³原图1760元/2人、2400元/3人与官网1760元/人单位冲突并列保留；不换算。",
+      "25K精英ITRA780/650与π745/620分别保留；精英12月报名原图没单写年份。",
+      "领物日期地点、各CP距离关门表、最终路线海拔、奖金金额、85K³超过2分钟具体罚额尚未在已审材料公布；不推断。"
+    ],
+    "officialDocuments": [
+      {
+        "url": "https://www.tsaigu.com/events?mid=58097",
+        "title": "2027熊猫蜀道山超级越野赛",
+        "role": "official_current_registration_identity_and_public_fees",
+        "verified": true,
+        "identityReview": "原图官网网址→官网导航熊猫蜀道山→2027本届；eventId741200；正文仅状态/海报查询二维码；单位冲突保留。",
+        "checkedAt": "2026-11-18T19:18:41.238Z"
+      }
+    ],
+    "sourceDiscovery": {
+      "officialUrls": [
+        "https://www.tsaigu.com",
+        "https://www.tsaigu.com/events?mid=58097"
+      ],
+      "notes": [
+        "从原图官网网址到官网导航定位2027本届页面，标题/五组匹配。",
+        "官网本届公开HTML含batches，仅取其公开费用与单位；共用startTime/endTime属于赛事窗口，不用作各组发枪或关门。",
+        "官网正文仅报名状态查询二维码，无可复制完整规程；三最酷本届文章均为同版5张长图，已连续核对。",
+        "独立搜索和网页工具异常不能作为无官网的证据；实际官网已找到。"
+      ],
+      "evidence": "/tmp/race-guide-quality-20261117/last-two-discovery-summary.json"
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true
+    }
+  }
+]

@@ -1,0 +1,148 @@
+{
+  "at": "2026-11-18T19:16:18.899Z",
+  "raceCount": 2,
+  "allReviewLevel": "partial",
+  "sourceImagesActuallyViewed": 8,
+  "originalContinuousCropsActuallyViewed": 41,
+  "additionalTableZoomsActuallyViewed": 2,
+  "unreviewedImageRanges": [],
+  "sectionCount": 28,
+  "sectionReplayGuardsPassed": true,
+  "exactBeforeReplayCount": 2,
+  "groupCorrectionCount": 5,
+  "groupBeforeGuardsPassed": true,
+  "groupCount": 6,
+  "guideHeadingConcatPassed": true,
+  "tableRowsChecked": 97,
+  "numericAssertionsPassed": 36,
+  "sourceHashesChecked": 10,
+  "sourceChecks": [
+    {
+      "raceId": "zuiku-25991",
+      "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/910d72ce4bf7e1e4479ee22d24170ccf2415f191.jpeg?imageView2/2/w/1024",
+      "sha256": "2e1431496d5b6e80cee11ee3211698dc0e69bbfa0c48f8c33e2fde2f6120b982",
+      "localFile": "/tmp/race-guide-quality-20261117/batch10-root/zuiku-25991-0.jpg",
+      "imageViewed": true,
+      "textReviewed": false
+    },
+    {
+      "raceId": "zuiku-25991",
+      "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/bf25c81245a227eee1604010f79a6e597538eb91.jpeg?imageView2/2/w/1024",
+      "sha256": "71d5d51d4934fd08778146960623589a935965cb505aa330461bdfed1bb9544b",
+      "localFile": "/tmp/race-guide-quality-20261117/batch10-root/zuiku-25991-1.jpg",
+      "imageViewed": true,
+      "textReviewed": false
+    },
+    {
+      "raceId": "zuiku-25991",
+      "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/2efa6b67ad3cdd7fdbbaa59039373488a8ccbc7e.jpeg?imageView2/2/w/1024",
+      "sha256": "aec39b3003845a6f9abb8c3e7ecf61a922036ac834974f365c09cbb666bb439d",
+      "localFile": "/tmp/race-guide-quality-20261117/batch10-root/zuiku-25991-2.jpg",
+      "imageViewed": true,
+      "textReviewed": false
+    },
+    {
+      "raceId": "zuiku-25991",
+      "url": "https://reg.zuicool.com/35176",
+      "sha256": "6ee06f3313ef92b18bb488554d0ba4cbe63b79eb1769f000f30ba478578c65e1",
+      "localFile": "/tmp/race-guide-quality-20261117/batch10-root/zuiku-25991-current.txt",
+      "imageViewed": false,
+      "textReviewed": true
+    },
+    {
+      "raceId": "zuiku-65276",
+      "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/5e2279934fd3cb197f30148b4634e094392fb6fd.jpeg?imageView2/2/w/750",
+      "sha256": "2509c6356a508f91e6b42789ca5d95f314f192782232b02d0e97e436a8f51481",
+      "localFile": "/tmp/race-guide-quality-20261117/batch10-root/zuiku-65276-0.jpg",
+      "imageViewed": true,
+      "textReviewed": false
+    },
+    {
+      "raceId": "zuiku-65276",
+      "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/078551a726774986ccacb2df15361ecc2ac6944e.jpeg?imageView2/2/w/750",
+      "sha256": "dd46b2f22e8011f3fa06f485bbf23e8274f84440632cd4a7e29538fb4aa3a3f4",
+      "localFile": "/tmp/race-guide-quality-20261117/batch10-root/zuiku-65276-1.jpg",
+      "imageViewed": true,
+      "textReviewed": false
+    },
+    {
+      "raceId": "zuiku-65276",
+      "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/448ce4e1ba6c5ca59e7e0fce7c753140ee00acfc.jpeg?imageView2/2/w/750",
+      "sha256": "904637cb6de39bdeaaad86b5cdf9ab9d86c1a30b31febb446900ecf27477699f",
+      "localFile": "/tmp/race-guide-quality-20261117/batch10-root/zuiku-65276-2.jpg",
+      "imageViewed": true,
+      "textReviewed": false
+    },
+    {
+      "raceId": "zuiku-65276",
+      "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/dbdb848d9d48afc647d092ede67e2bfa3f459057.jpeg?imageView2/2/w/750",
+      "sha256": "5df843f093d878b0e0fea061e91063917aaf26215ac4681a834178e5072a1f31",
+      "localFile": "/tmp/race-guide-quality-20261117/batch10-root/zuiku-65276-3.jpg",
+      "imageViewed": true,
+      "textReviewed": false
+    },
+    {
+      "raceId": "zuiku-65276",
+      "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/83653d7b61960b61a23518ddfa093ae42cf4de28.jpeg?imageView2/2/w/750",
+      "sha256": "c955c6dfd6c0d7a3e25992fa3bd86a5c0ed352837675ee163a2d7a8c019e7e5b",
+      "localFile": "/tmp/race-guide-quality-20261117/batch10-root/zuiku-65276-4.jpg",
+      "imageViewed": true,
+      "textReviewed": false
+    },
+    {
+      "raceId": "zuiku-65276",
+      "url": "https://www.tsaigu.com/events?mid=58097",
+      "sha256": "11788ef6b9ba28ad89a3185901dbb3bd90a5c3b22649844ddc18de3c55a242e7",
+      "localFile": "/tmp/race-guide-quality-20261117/panda-official-events.html",
+      "imageViewed": false,
+      "textReviewed": true
+    }
+  ],
+  "hashes": [
+    {
+      "file": "last-two-reviewed.json",
+      "sha256": "d38d8e9b89419c03baebff3723b294eb6753072d91dec31dfecfca2b70a1f3b0",
+      "bytes": 215305
+    },
+    {
+      "file": "last-two-group-corrections.json",
+      "sha256": "f871b143321f46c60c672602eea448f17ba8d28e5da9844be431caa96e90915e",
+      "bytes": 16150
+    },
+    {
+      "file": "last-two-reviewed.frozen.json",
+      "sha256": "d38d8e9b89419c03baebff3723b294eb6753072d91dec31dfecfca2b70a1f3b0",
+      "bytes": 215305
+    },
+    {
+      "file": "last-two-group-corrections.frozen.json",
+      "sha256": "f871b143321f46c60c672602eea448f17ba8d28e5da9844be431caa96e90915e",
+      "bytes": 16150
+    }
+  ],
+  "productionWritten": false,
+  "repositoryWritten": false,
+  "unconfirmed": [
+    {
+      "raceId": "zuiku-25991",
+      "items": [
+        "免责声明仍写2026，赛事主体为2027",
+        "报名页宏潭乡与赛事原图美溪乡不同",
+        "ITRA拟1分未最终认证",
+        "早鸟时限原文未写前字，取消政策未说明12月17日当天归属",
+        "赛前最终路线/关门仍可调整"
+      ]
+    },
+    {
+      "raceId": "zuiku-65276",
+      "items": [
+        "规程与报名须知ITRA附证明/25K连接条件/特邀年龄例外冲突",
+        "85K³原图队价与官网人价单位冲突",
+        "精英12月报名图未单写年份；25K两体系精英门槛不同但原样保留",
+        "领物日期时段地点、详细路线海拔/各CP表、站台奖金金额未公布",
+        "85K³超2分钟打卡的具体罚额未公布",
+        "最终赛程仍可能因施工天气调整"
+      ]
+    }
+  ]
+}
