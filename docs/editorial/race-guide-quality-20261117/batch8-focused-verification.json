@@ -1,0 +1,135 @@
+{
+  "at": "2026-11-18T08:13:14.360Z",
+  "checks": [
+    {
+      "id": "zuiku-22412",
+      "width": 320,
+      "needle": "强制",
+      "table": {
+        "width": 252,
+        "scrollWidth": 360,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 108,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "赛事图文资料\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-22412",
+      "width": 390,
+      "needle": "强制",
+      "table": {
+        "width": 318,
+        "scrollWidth": 360,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 42,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "赛事图文资料\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-29268",
+      "width": 320,
+      "needle": "180",
+      "table": {
+        "width": 252,
+        "scrollWidth": 720,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 468,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "赛事图文资料\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-29268",
+      "width": 390,
+      "needle": "180",
+      "table": {
+        "width": 318,
+        "scrollWidth": 720,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 402,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "赛事图文资料\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-94116",
+      "width": 320,
+      "needle": "06:00",
+      "table": {
+        "width": 252,
+        "scrollWidth": 840,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 588,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "南北湖站2026年10月9日官方延期公告：原11月22日暂定改至12月6日及退款说明\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-94116",
+      "width": 390,
+      "needle": "06:00",
+      "table": {
+        "width": 318,
+        "scrollWidth": 840,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 522,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "南北湖站2026年10月9日官方延期公告：原11月22日暂定改至12月6日及退款说明\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-39209",
+      "width": 320,
+      "needle": "198",
+      "table": {
+        "width": 252,
+        "scrollWidth": 600,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 348,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "WSE珠海站10月23日官方延期通知：12月20日、自动改期与转站退费\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-39209",
+      "width": 390,
+      "needle": "198",
+      "table": {
+        "width": 318,
+        "scrollWidth": 600,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 282,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "WSE珠海站10月23日官方延期通知：12月20日、自动改期与转站退费\n查看原图 ↗",
+      "overflow": false
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-11-18T08:13:41.913Z"
+}

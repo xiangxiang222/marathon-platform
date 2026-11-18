@@ -1,0 +1,44 @@
+{
+  "status": "passed",
+  "sourceFile": "/tmp/race-guide-quality-20261117/batch8-root-reviewed.json",
+  "sourceSha256": "bc066c2f5e5ff4a7f1a58d61fbcb44fca474f0ee150acdc98bf97b11422f2b64",
+  "draftModified": false,
+  "productionWrites": false,
+  "issues": [],
+  "passes": [
+    {
+      "scope": "station_template_leak",
+      "result": "未发现其他城市路线、海口补贴方案或桂林2027年优惠码混入；唯一2027提及为明确不擅自延长优惠码至2027年。"
+    },
+    {
+      "scope": "notice",
+      "result": "实际查看2块公告：11/22→12/20、地点不变、自动改期、需主动联系客服转站/退费、尽快对接核实、两客服及周二至周六09:00—17:30均一致。"
+    },
+    {
+      "scope": "promotional_and_rewards",
+      "result": "实际查看7块宣传：12/20格力海岸公园、四项目、至唐家湾沙滩路线、2.5/7.5KM及1.5KM标识、1000/600/300分站奖励、3000/1000大会破纪录、500年龄组、5KM优惠码2026年任一站、官方服装要求均一致。"
+    },
+    {
+      "scope": "common_regulation",
+      "sha256": "15c73860d71196fd0647c4c4bbb29cb3d4c9e56f0da7e5825d024f00982be1f4",
+      "result": "下载文件SHA与已独立实际查看的batch7共用规程完全一致；稿保留完整矩阵、年龄年份疑点、亲子、医检、领物、退改、医疗保险、奖励税费/公示/领取期限。"
+    },
+    {
+      "scope": "registration_groups",
+      "result": "现行报名页四组出生日期与稿description/eligibility一致；无旧11/22出生日期；费用138/138/198/198一致。"
+    }
+  ],
+  "actuallyViewedCrops": [
+    "/tmp/race-guide-quality-20261117/batch8-root/zuiku-39209-0-0.png",
+    "/tmp/race-guide-quality-20261117/batch8-root/zuiku-39209-0-1700.png",
+    "/tmp/race-guide-quality-20261117/batch8-root/zuiku-39209-1-0.png",
+    "/tmp/race-guide-quality-20261117/batch8-root/zuiku-39209-1-1700.png",
+    "/tmp/race-guide-quality-20261117/batch8-root/zuiku-39209-1-3400.png",
+    "/tmp/race-guide-quality-20261117/batch8-root/zuiku-39209-1-5100.png",
+    "/tmp/race-guide-quality-20261117/batch8-root/zuiku-39209-1-6800.png",
+    "/tmp/race-guide-quality-20261117/batch8-root/zuiku-39209-1-8500.png",
+    "/tmp/race-guide-quality-20261117/batch8-root/zuiku-39209-1-10200.png"
+  ],
+  "commonImageReusedVisualReview": "batch7-independent-review.json",
+  "limits": "官网API416的额外图片未再次逐图终审；未把现行平台截止与官网截止混合。"
+}

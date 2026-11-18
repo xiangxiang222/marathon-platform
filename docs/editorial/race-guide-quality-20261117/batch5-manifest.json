@@ -38,9 +38,14 @@
     "sourceDiscovery": {},
     "stages": {
       "reviewed": true,
-      "saved": false,
-      "displayed": false,
-      "deployedVerified": false
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webEvidence": "batch5-web-verification.json",
+      "deploymentEvidence": "batch5-deployment-verification.json",
+      "miniDevtools390": false,
+      "physicalPhone": false,
+      "miniPublished": false
     }
   },
   {
@@ -73,9 +78,14 @@
     "sourceDiscovery": {},
     "stages": {
       "reviewed": true,
-      "saved": false,
-      "displayed": false,
-      "deployedVerified": false
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webEvidence": "batch5-web-verification.json",
+      "deploymentEvidence": "batch5-deployment-verification.json",
+      "miniDevtools390": false,
+      "physicalPhone": false,
+      "miniPublished": false
     }
   },
   {
@@ -109,9 +119,14 @@
     "sourceDiscovery": {},
     "stages": {
       "reviewed": true,
-      "saved": false,
-      "displayed": false,
-      "deployedVerified": false
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webEvidence": "batch5-web-verification.json",
+      "deploymentEvidence": "batch5-deployment-verification.json",
+      "miniDevtools390": false,
+      "physicalPhone": false,
+      "miniPublished": false
     }
   },
   {
@@ -151,9 +166,14 @@
     "sourceDiscovery": {},
     "stages": {
       "reviewed": true,
-      "saved": false,
-      "displayed": false,
-      "deployedVerified": false
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webEvidence": "batch5-web-verification.json",
+      "deploymentEvidence": "batch5-deployment-verification.json",
+      "miniDevtools390": false,
+      "physicalPhone": false,
+      "miniPublished": false
     }
   },
   {
@@ -186,9 +206,14 @@
     },
     "stages": {
       "reviewed": true,
-      "saved": false,
-      "displayed": false,
-      "deployedVerified": false
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webEvidence": "batch5-web-verification.json",
+      "deploymentEvidence": "batch5-deployment-verification.json",
+      "miniDevtools390": false,
+      "physicalPhone": false,
+      "miniPublished": false
     }
   },
   {
@@ -219,9 +244,14 @@
     },
     "stages": {
       "reviewed": true,
-      "saved": false,
-      "displayed": false,
-      "deployedVerified": false
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webEvidence": "batch5-web-verification.json",
+      "deploymentEvidence": "batch5-deployment-verification.json",
+      "miniDevtools390": false,
+      "physicalPhone": false,
+      "miniPublished": false
     }
   },
   {
@@ -255,9 +285,14 @@
     },
     "stages": {
       "reviewed": true,
-      "saved": false,
-      "displayed": false,
-      "deployedVerified": false
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webEvidence": "batch5-web-verification.json",
+      "deploymentEvidence": "batch5-deployment-verification.json",
+      "miniDevtools390": false,
+      "physicalPhone": false,
+      "miniPublished": false
     }
   },
   {
@@ -288,9 +323,14 @@
     },
     "stages": {
       "reviewed": true,
-      "saved": false,
-      "displayed": false,
-      "deployedVerified": false
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webEvidence": "batch5-web-verification.json",
+      "deploymentEvidence": "batch5-deployment-verification.json",
+      "miniDevtools390": false,
+      "physicalPhone": false,
+      "miniPublished": false
     }
   },
   {
@@ -322,9 +362,14 @@
     },
     "stages": {
       "reviewed": true,
-      "saved": false,
-      "displayed": false,
-      "deployedVerified": false
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webEvidence": "batch5-web-verification.json",
+      "deploymentEvidence": "batch5-deployment-verification.json",
+      "miniDevtools390": false,
+      "physicalPhone": false,
+      "miniPublished": false
     }
   },
   {
@@ -357,9 +402,14 @@
     },
     "stages": {
       "reviewed": true,
-      "saved": false,
-      "displayed": false,
-      "deployedVerified": false
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webEvidence": "batch5-web-verification.json",
+      "deploymentEvidence": "batch5-deployment-verification.json",
+      "miniDevtools390": false,
+      "physicalPhone": false,
+      "miniPublished": false
     }
   },
   {
@@ -394,9 +444,14 @@
     },
     "stages": {
       "reviewed": true,
-      "saved": false,
-      "displayed": false,
-      "deployedVerified": false
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webEvidence": "batch5-web-verification.json",
+      "deploymentEvidence": "batch5-deployment-verification.json",
+      "miniDevtools390": false,
+      "physicalPhone": false,
+      "miniPublished": false
     }
   },
   {
@@ -429,9 +484,14 @@
     },
     "stages": {
       "reviewed": true,
-      "saved": false,
-      "displayed": false,
-      "deployedVerified": false
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webEvidence": "batch5-web-verification.json",
+      "deploymentEvidence": "batch5-deployment-verification.json",
+      "miniDevtools390": false,
+      "physicalPhone": false,
+      "miniPublished": false
     }
   },
   {
@@ -463,9 +523,14 @@
     },
     "stages": {
       "reviewed": true,
-      "saved": false,
-      "displayed": false,
-      "deployedVerified": false
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webEvidence": "batch5-web-verification.json",
+      "deploymentEvidence": "batch5-deployment-verification.json",
+      "miniDevtools390": false,
+      "physicalPhone": false,
+      "miniPublished": false
     }
   },
   {
@@ -500,9 +565,14 @@
     },
     "stages": {
       "reviewed": true,
-      "saved": false,
-      "displayed": false,
-      "deployedVerified": false
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webEvidence": "batch5-web-verification.json",
+      "deploymentEvidence": "batch5-deployment-verification.json",
+      "miniDevtools390": false,
+      "physicalPhone": false,
+      "miniPublished": false
     }
   },
   {
@@ -535,9 +605,14 @@
     },
     "stages": {
       "reviewed": true,
-      "saved": false,
-      "displayed": false,
-      "deployedVerified": false
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webEvidence": "batch5-web-verification.json",
+      "deploymentEvidence": "batch5-deployment-verification.json",
+      "miniDevtools390": false,
+      "physicalPhone": false,
+      "miniPublished": false
     }
   },
   {
@@ -570,9 +645,14 @@
     },
     "stages": {
       "reviewed": true,
-      "saved": false,
-      "displayed": false,
-      "deployedVerified": false
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webEvidence": "batch5-web-verification.json",
+      "deploymentEvidence": "batch5-deployment-verification.json",
+      "miniDevtools390": false,
+      "physicalPhone": false,
+      "miniPublished": false
     }
   },
   {
@@ -605,9 +685,14 @@
     },
     "stages": {
       "reviewed": true,
-      "saved": false,
-      "displayed": false,
-      "deployedVerified": false
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webEvidence": "batch5-web-verification.json",
+      "deploymentEvidence": "batch5-deployment-verification.json",
+      "miniDevtools390": false,
+      "physicalPhone": false,
+      "miniPublished": false
     }
   },
   {
@@ -640,9 +725,14 @@
     },
     "stages": {
       "reviewed": true,
-      "saved": false,
-      "displayed": false,
-      "deployedVerified": false
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webEvidence": "batch5-web-verification.json",
+      "deploymentEvidence": "batch5-deployment-verification.json",
+      "miniDevtools390": false,
+      "physicalPhone": false,
+      "miniPublished": false
     }
   },
   {
@@ -678,9 +768,14 @@
     },
     "stages": {
       "reviewed": true,
-      "saved": false,
-      "displayed": false,
-      "deployedVerified": false
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webEvidence": "batch5-web-verification.json",
+      "deploymentEvidence": "batch5-deployment-verification.json",
+      "miniDevtools390": false,
+      "physicalPhone": false,
+      "miniPublished": false
     }
   },
   {
@@ -713,9 +808,14 @@
     },
     "stages": {
       "reviewed": true,
-      "saved": false,
-      "displayed": false,
-      "deployedVerified": false
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webEvidence": "batch5-web-verification.json",
+      "deploymentEvidence": "batch5-deployment-verification.json",
+      "miniDevtools390": false,
+      "physicalPhone": false,
+      "miniPublished": false
     }
   },
   {
@@ -762,9 +862,14 @@
     },
     "stages": {
       "reviewed": true,
-      "saved": false,
-      "displayed": false,
-      "deployedVerified": false
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webEvidence": "batch5-web-verification.json",
+      "deploymentEvidence": "batch5-deployment-verification.json",
+      "miniDevtools390": false,
+      "physicalPhone": false,
+      "miniPublished": false
     }
   },
   {
@@ -808,9 +913,14 @@
     },
     "stages": {
       "reviewed": true,
-      "saved": false,
-      "displayed": false,
-      "deployedVerified": false
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webEvidence": "batch5-web-verification.json",
+      "deploymentEvidence": "batch5-deployment-verification.json",
+      "miniDevtools390": "see batch6-mini-verification.json",
+      "physicalPhone": false,
+      "miniPublished": false
     }
   },
   {
@@ -854,9 +964,14 @@
     },
     "stages": {
       "reviewed": true,
-      "saved": false,
-      "displayed": false,
-      "deployedVerified": false
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webEvidence": "batch5-web-verification.json",
+      "deploymentEvidence": "batch5-deployment-verification.json",
+      "miniDevtools390": "see batch6-mini-verification.json",
+      "physicalPhone": false,
+      "miniPublished": false
     }
   },
   {
@@ -894,9 +1009,14 @@
     },
     "stages": {
       "reviewed": true,
-      "saved": false,
-      "displayed": false,
-      "deployedVerified": false
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webEvidence": "batch5-web-verification.json",
+      "deploymentEvidence": "batch5-deployment-verification.json",
+      "miniDevtools390": false,
+      "physicalPhone": false,
+      "miniPublished": false
     }
   },
   {
@@ -940,9 +1060,14 @@
     },
     "stages": {
       "reviewed": true,
-      "saved": false,
-      "displayed": false,
-      "deployedVerified": false
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webEvidence": "batch5-web-verification.json",
+      "deploymentEvidence": "batch5-deployment-verification.json",
+      "miniDevtools390": false,
+      "physicalPhone": false,
+      "miniPublished": false
     }
   },
   {
@@ -990,9 +1115,14 @@
     },
     "stages": {
       "reviewed": true,
-      "saved": false,
-      "displayed": false,
-      "deployedVerified": false
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webEvidence": "batch5-web-verification.json",
+      "deploymentEvidence": "batch5-deployment-verification.json",
+      "miniDevtools390": false,
+      "physicalPhone": false,
+      "miniPublished": false
     }
   },
   {
@@ -1039,9 +1169,14 @@
     },
     "stages": {
       "reviewed": true,
-      "saved": false,
-      "displayed": false,
-      "deployedVerified": false
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webEvidence": "batch5-web-verification.json",
+      "deploymentEvidence": "batch5-deployment-verification.json",
+      "miniDevtools390": false,
+      "physicalPhone": false,
+      "miniPublished": false
     }
   },
   {
@@ -1117,9 +1252,14 @@
     },
     "stages": {
       "reviewed": true,
-      "saved": false,
-      "displayed": false,
-      "deployedVerified": false
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webEvidence": "batch5-web-verification.json",
+      "deploymentEvidence": "batch5-deployment-verification.json",
+      "miniDevtools390": "see batch6-mini-verification.json",
+      "physicalPhone": false,
+      "miniPublished": false
     }
   },
   {
@@ -1151,9 +1291,14 @@
     },
     "stages": {
       "reviewed": true,
-      "saved": false,
-      "displayed": false,
-      "deployedVerified": false
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webEvidence": "batch5-web-verification.json",
+      "deploymentEvidence": "batch5-deployment-verification.json",
+      "miniDevtools390": false,
+      "physicalPhone": false,
+      "miniPublished": false
     }
   },
   {
@@ -1186,9 +1331,14 @@
     },
     "stages": {
       "reviewed": true,
-      "saved": false,
-      "displayed": false,
-      "deployedVerified": false
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webEvidence": "batch5-web-verification.json",
+      "deploymentEvidence": "batch5-deployment-verification.json",
+      "miniDevtools390": false,
+      "physicalPhone": false,
+      "miniPublished": false
     }
   },
   {
@@ -1221,9 +1371,14 @@
     },
     "stages": {
       "reviewed": true,
-      "saved": false,
-      "displayed": false,
-      "deployedVerified": false
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webEvidence": "batch5-web-verification.json",
+      "deploymentEvidence": "batch5-deployment-verification.json",
+      "miniDevtools390": false,
+      "physicalPhone": false,
+      "miniPublished": false
     }
   },
   {
@@ -1255,9 +1410,14 @@
     },
     "stages": {
       "reviewed": true,
-      "saved": false,
-      "displayed": false,
-      "deployedVerified": false
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webEvidence": "batch5-web-verification.json",
+      "deploymentEvidence": "batch5-deployment-verification.json",
+      "miniDevtools390": false,
+      "physicalPhone": false,
+      "miniPublished": false
     }
   },
   {
@@ -1290,9 +1450,14 @@
     },
     "stages": {
       "reviewed": true,
-      "saved": false,
-      "displayed": false,
-      "deployedVerified": false
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webEvidence": "batch5-web-verification.json",
+      "deploymentEvidence": "batch5-deployment-verification.json",
+      "miniDevtools390": false,
+      "physicalPhone": false,
+      "miniPublished": false
     }
   },
   {
@@ -1325,9 +1490,14 @@
     },
     "stages": {
       "reviewed": true,
-      "saved": false,
-      "displayed": false,
-      "deployedVerified": false
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webEvidence": "batch5-web-verification.json",
+      "deploymentEvidence": "batch5-deployment-verification.json",
+      "miniDevtools390": false,
+      "physicalPhone": false,
+      "miniPublished": false
     }
   },
   {
@@ -1360,9 +1530,14 @@
     },
     "stages": {
       "reviewed": true,
-      "saved": false,
-      "displayed": false,
-      "deployedVerified": false
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webEvidence": "batch5-web-verification.json",
+      "deploymentEvidence": "batch5-deployment-verification.json",
+      "miniDevtools390": false,
+      "physicalPhone": false,
+      "miniPublished": false
     }
   },
   {
@@ -1394,9 +1569,14 @@
     },
     "stages": {
       "reviewed": true,
-      "saved": false,
-      "displayed": false,
-      "deployedVerified": false
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webEvidence": "batch5-web-verification.json",
+      "deploymentEvidence": "batch5-deployment-verification.json",
+      "miniDevtools390": false,
+      "physicalPhone": false,
+      "miniPublished": false
     }
   }
 ]

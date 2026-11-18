@@ -1,0 +1,147 @@
+{
+  "at": "2026-11-18T08:13:14.360Z",
+  "checks": [
+    {
+      "id": "zuiku-48246",
+      "width": 320,
+      "paragraphs": 81,
+      "tableRows": 27,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-46116",
+      "width": 320,
+      "paragraphs": 254,
+      "tableRows": 39,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-62889",
+      "width": 320,
+      "paragraphs": 118,
+      "tableRows": 53,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-65585",
+      "width": 320,
+      "paragraphs": 104,
+      "tableRows": 20,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-40538",
+      "width": 320,
+      "paragraphs": 208,
+      "tableRows": 10,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-77766",
+      "width": 320,
+      "paragraphs": 338,
+      "tableRows": 24,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-51045",
+      "width": 320,
+      "paragraphs": 465,
+      "tableRows": 52,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-50491",
+      "width": 320,
+      "paragraphs": 427,
+      "tableRows": 77,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-65890",
+      "width": 320,
+      "paragraphs": 26,
+      "tableRows": 24,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-48445",
+      "width": 320,
+      "paragraphs": 16,
+      "tableRows": 12,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-21955",
+      "width": 320,
+      "paragraphs": 69,
+      "tableRows": 26,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-20666",
+      "width": 320,
+      "paragraphs": 48,
+      "tableRows": 27,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-88146",
+      "width": 320,
+      "paragraphs": 82,
+      "tableRows": 52,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-29268",
+      "width": 320,
+      "paragraphs": 82,
+      "tableRows": 26,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-22412",
+      "width": 320,
+      "paragraphs": 49,
+      "tableRows": 36,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-59944",
+      "width": 320,
+      "paragraphs": 140,
+      "tableRows": 20,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-39209",
+      "width": 320,
+      "paragraphs": 120,
+      "tableRows": 53,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-12344",
+      "width": 320,
+      "paragraphs": 38,
+      "tableRows": 13,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-46518",
+      "width": 320,
+      "paragraphs": 34,
+      "tableRows": 24,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-94116",
+      "width": 320,
+      "paragraphs": 42,
+      "tableRows": 29,
+      "fullRenderedContentMatchesProduction": true
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-11-18T08:13:57.476Z"
+}

@@ -1,0 +1,24 @@
+{
+  "at": "2026-11-18T08:12:32.720Z",
+  "backup": "server/data/race-guide-quality-20261117/batch8-image-kinds.before.sqlite",
+  "rows": [
+    {
+      "id": "zuiku-39209",
+      "sheetId": 718,
+      "imageUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/ca93e344e03d1c1fdaecfe8e2441da7cc6c234b8.jpeg?imageView2/2/w/1024",
+      "sha256": "15c73860d71196fd0647c4c4bbb29cb3d4c9e56f0da7e5825d024f00982be1f4",
+      "imageViewed": true,
+      "before": "route",
+      "after": "guide",
+      "reason": "实际完整查看的同版通用规程仅为文字、表格，不是路线图；修正错误分类，使其进入规程原图参考折叠区。",
+      "checkedAt": "2026-11-18T08:12:32.720Z",
+      "bodyUnchanged": true,
+      "groupsUnchanged": true
+    }
+  ],
+  "races": 434,
+  "sheets": 1735,
+  "schemaUnchanged": true,
+  "quickCheck": "ok",
+  "passed": true
+}

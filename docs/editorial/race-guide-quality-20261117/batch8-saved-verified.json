@@ -1,0 +1,131 @@
+{
+  "at": "2026-11-18T08:10:22.289Z",
+  "rows": [
+    {
+      "id": "zuiku-48246",
+      "bodyAndGroupsMatch": true,
+      "guideSha256": "cf931a0a1d7d7805567682a85924001ba4d4a9279ad54e88e8fe9465df31ddcc",
+      "existingCollectedImageReferences": 6
+    },
+    {
+      "id": "zuiku-46116",
+      "bodyAndGroupsMatch": true,
+      "guideSha256": "e95d426db20cc874e2fe8e6de19e4725dc0be88ff3ae7fd661dc420fa6ab3a3b",
+      "existingCollectedImageReferences": 8
+    },
+    {
+      "id": "zuiku-62889",
+      "bodyAndGroupsMatch": true,
+      "guideSha256": "c2ff1b13d9e42f69ba6cbed8c9e2132bc84c513b4616972fc7fea7c8c3cec695",
+      "existingCollectedImageReferences": 7
+    },
+    {
+      "id": "zuiku-65585",
+      "bodyAndGroupsMatch": true,
+      "guideSha256": "43f3f2f79c427dbb51103900b1dcd5e24729126d9392ef04c46df042a081871c",
+      "existingCollectedImageReferences": 3
+    },
+    {
+      "id": "zuiku-40538",
+      "bodyAndGroupsMatch": true,
+      "guideSha256": "50f46b9320f544507a3a66b611b4a20c6e43bb226b4ce6be5a5445e08234c9c0",
+      "existingCollectedImageReferences": 8
+    },
+    {
+      "id": "zuiku-77766",
+      "bodyAndGroupsMatch": true,
+      "guideSha256": "b990434fb2bccd2a1717fa520f258ce4eccd2732bd2331ad1f7af1ffb536aba1",
+      "existingCollectedImageReferences": 7
+    },
+    {
+      "id": "zuiku-51045",
+      "bodyAndGroupsMatch": true,
+      "guideSha256": "3f9ec435f2a23876f63556f080442cca7418e48d1529ddf5b599d70b769eb929",
+      "existingCollectedImageReferences": 21
+    },
+    {
+      "id": "zuiku-50491",
+      "bodyAndGroupsMatch": true,
+      "guideSha256": "4cb272f3f75e087be99a7a1c7a6ffe712da53f46a69b1982fdf4f1da92f791a2",
+      "existingCollectedImageReferences": 27
+    },
+    {
+      "id": "zuiku-65890",
+      "bodyAndGroupsMatch": true,
+      "guideSha256": "2ef8223c701a19860122f379d6b66d9eeb92e2284d9489cfd36a9bb8a9c0c7c6",
+      "existingCollectedImageReferences": 4
+    },
+    {
+      "id": "zuiku-48445",
+      "bodyAndGroupsMatch": true,
+      "guideSha256": "ef0894bcce7c4a02961059e2187ec590fa11ef83d63d89c85362231fb6197b29",
+      "existingCollectedImageReferences": 2
+    },
+    {
+      "id": "zuiku-21955",
+      "bodyAndGroupsMatch": true,
+      "guideSha256": "75ae3d82cd1f8f928cc8135671813bb203080b4e9269780499fa2df819e0452e",
+      "existingCollectedImageReferences": 1
+    },
+    {
+      "id": "zuiku-20666",
+      "bodyAndGroupsMatch": true,
+      "guideSha256": "1a5f7dd8aba118c675eae403a38049580b2f4e092cbe83455e8d3fb4211764bb",
+      "existingCollectedImageReferences": 5
+    },
+    {
+      "id": "zuiku-88146",
+      "bodyAndGroupsMatch": true,
+      "guideSha256": "0103daba1a98405489f62081c9dc98498bed532d904c4c7506bf704ac90560bb",
+      "existingCollectedImageReferences": 6
+    },
+    {
+      "id": "zuiku-29268",
+      "bodyAndGroupsMatch": true,
+      "guideSha256": "deeccb09bc171221d4d84a02471be02265eeb231b02e2a5a36453ae96d0e1b72",
+      "existingCollectedImageReferences": 5
+    },
+    {
+      "id": "zuiku-22412",
+      "bodyAndGroupsMatch": true,
+      "guideSha256": "bf9234dbe3723d3911a05f563215c289beb30480945e8441066cf8c28589ec26",
+      "existingCollectedImageReferences": 9
+    },
+    {
+      "id": "zuiku-59944",
+      "bodyAndGroupsMatch": true,
+      "guideSha256": "d57e7abf2509713890d4ece84fc9f3729a3c03086625fbb6077a1b0880d1a67d",
+      "existingCollectedImageReferences": 5
+    },
+    {
+      "id": "zuiku-39209",
+      "bodyAndGroupsMatch": true,
+      "guideSha256": "ed1528adc8b696aa9f3aeed42a1da9fa52fee50cb03c3188afb1260c6a17c77f",
+      "existingCollectedImageReferences": 3
+    },
+    {
+      "id": "zuiku-12344",
+      "bodyAndGroupsMatch": true,
+      "guideSha256": "f2f81413eb007d24379f7e44248a5162105a42999ccc0f84fd654d9d085c2c5c",
+      "existingCollectedImageReferences": 5
+    },
+    {
+      "id": "zuiku-46518",
+      "bodyAndGroupsMatch": true,
+      "guideSha256": "2cb3c9834822a046194a940eb0be727c3f81291cc33eae225033d7e2eeb39db1",
+      "existingCollectedImageReferences": 4
+    },
+    {
+      "id": "zuiku-94116",
+      "bodyAndGroupsMatch": true,
+      "guideSha256": "78626079f393dc808e0254128a16c4511b021b45a8ce223121883bb87fd9c890",
+      "existingCollectedImageReferences": 8
+    }
+  ],
+  "races": 434,
+  "sheets": 1735,
+  "quickCheck": "ok",
+  "saved": 20,
+  "passed": true,
+  "imageCountNote": "existingCollectedImageReferences统计既有collected媒体引用，非本批新增图片；本批新增0，图片总数1735保持。"
+}
