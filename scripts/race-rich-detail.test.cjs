@@ -20,6 +20,24 @@ test('full options preserve parent-child price and distinguish branded and actua
   assert.deepEqual(web.groupCards(sample), groups);
 });
 
+test('legacy cutoff durations never appear as clock times or erase conflicting values', async () => {
+  const race = { details: { groups: [
+    { name: '重复时长', cutoffAt: '5.5小时', cutoffHours: 5.5 },
+    { name: '只有时长', cutoffTime: '3h30m' },
+    { name: '实际时刻', cutoffAt: '2026-11-01 14:30', cutoffHours: 5.5 },
+    { name: '两种来源值', cutoffAt: '6小时', cutoffHours: 5.5 },
+    { name: '复合时长', cutoffAt: '3小时30分钟' }
+  ] } };
+  const cards = content.groupCards(race);
+  assert.deepEqual(cards[0].fields.map(({ label, value }) => [label, value]), [['关门时长', '5.5小时']]);
+  assert.deepEqual(cards[1].fields.map(({ label, value }) => [label, value]), [['关门时长', '3h30m']]);
+  assert.deepEqual(cards[2].fields.map(({ label, value }) => [label, value]), [['关门时间', '2026-11-01 14:30'], ['关门时长', '5.5小时']]);
+  assert.deepEqual(cards[3].fields.map(({ label, value }) => [label, value]), [['关门时长', '5.5小时'], ['关门时长（原时间字段）', '6小时']]);
+  assert.deepEqual(cards[4].fields.map(({ label, value }) => [label, value]), [['关门时长', '3小时30分钟']]);
+  const web = await import('../web/src/race-detail-content.js');
+  assert.deepEqual(web.groupCards(race), cards);
+});
+
 test('guide sections and tables retain their full rows without leaking collection metadata', async () => {
   const source = content.guideSource(sample);
   assert.match(source, /参赛资格/);
