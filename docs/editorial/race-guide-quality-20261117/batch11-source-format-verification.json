@@ -1,0 +1,398 @@
+{
+  "at": "2026-11-18T18:44:42.084Z",
+  "inputSha256": "f6f06aa53587c9146b8dbf089ffe14710d0ec8104261cba2408f14e9dc3b2131",
+  "changes": [
+    {
+      "id": "zuiku-21601",
+      "sectionIndex": 2,
+      "title": "2026年11月10日延期公告",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-21601",
+      "sectionIndex": 3,
+      "title": "活动详情、报名费用与退费政策",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-21601",
+      "sectionIndex": 4,
+      "title": "活动物料、参赛装备与完整活动规则",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-26274",
+      "sectionIndex": 0,
+      "title": "赛事概况",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-26274",
+      "sectionIndex": 1,
+      "title": "报名办法",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-26274",
+      "sectionIndex": 2,
+      "title": "报名费用、物资、竞赛规则与保障条款",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-68796",
+      "sectionIndex": 1,
+      "title": "赛事海报与基本信息",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-68796",
+      "sectionIndex": 2,
+      "title": "赛事项目、报名资格与六类报名费用",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-68796",
+      "sectionIndex": 3,
+      "title": "退费政策与分组路线",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-68796",
+      "sectionIndex": 4,
+      "title": "完赛奖励",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-68796",
+      "sectionIndex": 5,
+      "title": "交通、参赛资格与服务安排",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-68796",
+      "sectionIndex": 6,
+      "title": "健康要求",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-68796",
+      "sectionIndex": 7,
+      "title": "装备寄存服务",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-68796",
+      "sectionIndex": 8,
+      "title": "比赛规则、竞赛装备与处罚",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-68796",
+      "sectionIndex": 9,
+      "title": "参赛声明",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-65465",
+      "sectionIndex": 0,
+      "title": "赛事概况",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-65465",
+      "sectionIndex": 2,
+      "title": "赛事组别、出发时间与路线",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-65465",
+      "sectionIndex": 3,
+      "title": "沿途风景",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-65465",
+      "sectionIndex": 4,
+      "title": "报名费用与团报",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-65465",
+      "sectionIndex": 5,
+      "title": "参赛资格与竞赛规则",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-65465",
+      "sectionIndex": 6,
+      "title": "物资领取与装备清单",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-65465",
+      "sectionIndex": 7,
+      "title": "赛事奖励",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-37167",
+      "sectionIndex": 1,
+      "title": "活动详情、路线、参赛福利与名次奖励",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-37167",
+      "sectionIndex": 2,
+      "title": "报名费用与退费规则",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-37167",
+      "sectionIndex": 3,
+      "title": "报名资格、竞赛装备、活动规则与保障",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-37167",
+      "sectionIndex": 4,
+      "title": "训练赛常见问题",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-98987",
+      "sectionIndex": 1,
+      "title": "赛事信息与组别",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-98987",
+      "sectionIndex": 2,
+      "title": "20K与8K路线及检查点",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-98987",
+      "sectionIndex": 3,
+      "title": "8K与5K路线及赛事日程",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-98987",
+      "sectionIndex": 4,
+      "title": "报名要求、健康条件与免责声明",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-98987",
+      "sectionIndex": 5,
+      "title": "报名费用、参赛服尺码、退费与比赛奖励",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-98987",
+      "sectionIndex": 6,
+      "title": "起跑、双人组、号码布与计时规则",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-98987",
+      "sectionIndex": 7,
+      "title": "寄存、关门、赛道、竞赛装备与申诉",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-98987",
+      "sectionIndex": 8,
+      "title": "退赛规则与组委会信息",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-26531",
+      "sectionIndex": 0,
+      "title": "赛事概况",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-26531",
+      "sectionIndex": 1,
+      "title": "赛事图文资料（原图识别）",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-26531",
+      "sectionIndex": 2,
+      "title": "各组路线与海拔资料",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-26531",
+      "sectionIndex": 3,
+      "title": "参赛年龄与完赛经历要求",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-26531",
+      "sectionIndex": 4,
+      "title": "健康条件、计时奖励、报名费用与取消政策",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-26531",
+      "sectionIndex": 5,
+      "title": "领物安排、竞赛装备与检查要求",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-26531",
+      "sectionIndex": 6,
+      "title": "赛事图文资料（原图识别）",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-26531",
+      "sectionIndex": 7,
+      "title": "赛事图文资料（原图识别）",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-26531",
+      "sectionIndex": 8,
+      "title": "参赛须知与身体条件要求",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-26531",
+      "sectionIndex": 10,
+      "title": "报名资格",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-26531",
+      "sectionIndex": 12,
+      "title": "报名价格、团报与取消政策",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-26531",
+      "sectionIndex": 13,
+      "title": "退费邮件要求、领物安排与竞赛装备",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-26531",
+      "sectionIndex": 14,
+      "title": "竞赛装备检查要求",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-26531",
+      "sectionIndex": 15,
+      "title": "竞赛处罚细则",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-26531",
+      "sectionIndex": 16,
+      "title": "裁判仲裁、取消规则与号码布存包",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-26531",
+      "sectionIndex": 17,
+      "title": "急救医疗、检查点与补给站",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-26531",
+      "sectionIndex": 18,
+      "title": "退赛、路线标识、保险与联系方式",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-91091",
+      "sectionIndex": 1,
+      "title": "赛事信息与组织单位",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-91091",
+      "sectionIndex": 2,
+      "title": "报名时间、费用与参赛物资",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-91091",
+      "sectionIndex": 3,
+      "title": "赛事交通与特别注意事项",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-91091",
+      "sectionIndex": 4,
+      "title": "名额禁止转让",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-91091",
+      "sectionIndex": 5,
+      "title": "报名费服务、退费政策与第一名奖励",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-91091",
+      "sectionIndex": 6,
+      "title": "第二至第六名奖励与颁奖办法",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-91091",
+      "sectionIndex": 7,
+      "title": "赛事路线、竞赛装备与处罚",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-91091",
+      "sectionIndex": 8,
+      "title": "领物时间地点",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-91091",
+      "sectionIndex": 9,
+      "title": "参赛年龄与健康要求",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-91091",
+      "sectionIndex": 10,
+      "title": "安全须知与风险",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-91091",
+      "sectionIndex": 11,
+      "title": "保险、医疗救助与竞赛办法",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-91091",
+      "sectionIndex": 12,
+      "title": "起跑、寄存、计时与赛道指引",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-91091",
+      "sectionIndex": 13,
+      "title": "违规行为与退出比赛",
+      "nonWhitespaceExactlyPreserved": true
+    },
+    {
+      "id": "zuiku-91091",
+      "sectionIndex": 14,
+      "title": "赛事取消变更与组委会联系方式",
+      "nonWhitespaceExactlyPreserved": true
+    }
+  ],
+  "allNonWhitespaceCharactersPreserved": true,
+  "passed": true
+}

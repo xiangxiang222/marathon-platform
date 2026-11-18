@@ -1,0 +1,601 @@
+{
+  "startedAt": "2026-11-18T17:20:25.651Z",
+  "kind": "Actual 390px WeChat DevTools production-page render check; no mocked network; excludes physical phone, gestures and formal release",
+  "races": [
+    {
+      "id": "zuiku-54685",
+      "actualViewport": 390,
+      "guideCharacters": 2653,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 4,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1134.4296875,
+        "bottom": 5487.25,
+        "width": 366,
+        "height": 4352.8203125,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 4,
+      "tableRowsIncludingHeaders": 19,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336
+      ],
+      "previewGestureChecks": "Separate representative evidence: batch11-mini-verification.json"
+    },
+    {
+      "id": "zuiku-47062",
+      "actualViewport": 390,
+      "guideCharacters": 3280,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 2,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1065.140625,
+        "bottom": 6733.609375,
+        "width": 366,
+        "height": 5668.46875,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 3,
+      "tableRowsIncludingHeaders": 12,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336
+      ],
+      "previewGestureChecks": "Separate representative evidence: batch11-mini-verification.json"
+    },
+    {
+      "id": "zuiku-34068",
+      "actualViewport": 390,
+      "guideCharacters": 4843,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 4,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1194.6171875,
+        "bottom": 9132.7578125,
+        "width": 366,
+        "height": 7938.140625,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 7,
+      "tableRowsIncludingHeaders": 36,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336
+      ],
+      "previewGestureChecks": "Separate representative evidence: batch11-mini-verification.json"
+    },
+    {
+      "id": "zuiku-18752",
+      "actualViewport": 390,
+      "guideCharacters": 2206,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 4,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1131.1484375,
+        "bottom": 4986.359375,
+        "width": 366,
+        "height": 3855.2109375,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 3,
+      "tableRowsIncludingHeaders": 10,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336
+      ],
+      "previewGestureChecks": "Separate representative evidence: batch11-mini-verification.json"
+    },
+    {
+      "id": "zuiku-61099",
+      "actualViewport": 390,
+      "guideCharacters": 11371,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 2,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1527.984375,
+        "bottom": 20699.25,
+        "width": 366,
+        "height": 19171.265625,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 9,
+      "tableRowsIncludingHeaders": 71,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336
+      ],
+      "previewGestureChecks": "Separate representative evidence: batch11-mini-verification.json"
+    },
+    {
+      "id": "zuiku-84282",
+      "actualViewport": 390,
+      "guideCharacters": 20274,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 2,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1782.921875,
+        "bottom": 37240.4609375,
+        "width": 366,
+        "height": 35457.5390625,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 12,
+      "tableRowsIncludingHeaders": 77,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336
+      ],
+      "previewGestureChecks": "Separate representative evidence: batch11-mini-verification.json"
+    },
+    {
+      "id": "zuiku-58029",
+      "actualViewport": 390,
+      "guideCharacters": 3097,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 5,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1201.90625,
+        "bottom": 6201.578125,
+        "width": 366,
+        "height": 4999.671875,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 3,
+      "tableRowsIncludingHeaders": 12,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336
+      ],
+      "previewGestureChecks": "Separate representative evidence: batch11-mini-verification.json"
+    },
+    {
+      "id": "zuiku-98335",
+      "actualViewport": 390,
+      "guideCharacters": 6664,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 5,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1344.375,
+        "bottom": 12224.8671875,
+        "width": 366,
+        "height": 10880.4921875,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 6,
+      "tableRowsIncludingHeaders": 35,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336,
+        336,
+        336
+      ],
+      "previewGestureChecks": "Separate representative evidence: batch11-mini-verification.json"
+    },
+    {
+      "id": "zuiku-62184",
+      "actualViewport": 390,
+      "guideCharacters": 5511,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 5,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1271.8125,
+        "bottom": 10221.4765625,
+        "width": 366,
+        "height": 8949.6640625,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 6,
+      "tableRowsIncludingHeaders": 36,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336,
+        336,
+        336
+      ],
+      "previewGestureChecks": "Separate representative evidence: batch11-mini-verification.json"
+    },
+    {
+      "id": "zuiku-30317",
+      "actualViewport": 390,
+      "guideCharacters": 7463,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 7,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1311.7109375,
+        "bottom": 13750.578125,
+        "width": 366,
+        "height": 12438.8671875,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 4,
+      "tableRowsIncludingHeaders": 24,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336
+      ],
+      "previewGestureChecks": "Separate representative evidence: batch11-mini-verification.json"
+    },
+    {
+      "id": "zuiku-41594",
+      "actualViewport": 390,
+      "guideCharacters": 3095,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 1,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1007.953125,
+        "bottom": 6633.3515625,
+        "width": 366,
+        "height": 5625.3984375,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 3,
+      "tableRowsIncludingHeaders": 20,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336
+      ],
+      "previewGestureChecks": "Separate representative evidence: batch11-mini-verification.json"
+    },
+    {
+      "id": "zuiku-87662",
+      "actualViewport": 390,
+      "guideCharacters": 3515,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 1,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1177.609375,
+        "bottom": 7697.390625,
+        "width": 366,
+        "height": 6519.78125,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 4,
+      "tableRowsIncludingHeaders": 25,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336
+      ],
+      "previewGestureChecks": "Separate representative evidence: batch11-mini-verification.json"
+    },
+    {
+      "id": "zuiku-87535",
+      "actualViewport": 390,
+      "guideCharacters": 2886,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 2,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1103.234375,
+        "bottom": 6154.3515625,
+        "width": 366,
+        "height": 5051.1171875,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 8,
+      "tableRowsIncludingHeaders": 39,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336
+      ],
+      "previewGestureChecks": "Separate representative evidence: batch11-mini-verification.json"
+    },
+    {
+      "id": "zuiku-45857",
+      "actualViewport": 390,
+      "guideCharacters": 3828,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 2,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1090.234375,
+        "bottom": 7828.5546875,
+        "width": 366,
+        "height": 6738.3203125,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 6,
+      "tableRowsIncludingHeaders": 30,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336,
+        336,
+        336
+      ],
+      "previewGestureChecks": "Separate representative evidence: batch11-mini-verification.json"
+    },
+    {
+      "id": "zuiku-16303",
+      "actualViewport": 390,
+      "guideCharacters": 6386,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 1,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1191.796875,
+        "bottom": 11635.71875,
+        "width": 366,
+        "height": 10443.921875,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 5,
+      "tableRowsIncludingHeaders": 26,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336,
+        336
+      ],
+      "previewGestureChecks": "Separate representative evidence: batch11-mini-verification.json"
+    },
+    {
+      "id": "zuiku-76218",
+      "actualViewport": 390,
+      "guideCharacters": 10718,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 3,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1329.1796875,
+        "bottom": 20013.8671875,
+        "width": 366,
+        "height": 18684.6875,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 8,
+      "tableRowsIncludingHeaders": 75,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336
+      ],
+      "previewGestureChecks": "Separate representative evidence: batch11-mini-verification.json"
+    },
+    {
+      "id": "zuiku-95315",
+      "actualViewport": 390,
+      "guideCharacters": 9745,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 10,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1347.375,
+        "bottom": 16603.8046875,
+        "width": 366,
+        "height": 15256.4296875,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 7,
+      "tableRowsIncludingHeaders": 59,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336
+      ],
+      "previewGestureChecks": "Separate representative evidence: batch11-mini-verification.json"
+    },
+    {
+      "id": "zuiku-32840",
+      "actualViewport": 390,
+      "guideCharacters": 13775,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 5,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1376.3671875,
+        "bottom": 22694.25,
+        "width": 366,
+        "height": 21317.8828125,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 8,
+      "tableRowsIncludingHeaders": 57,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336
+      ],
+      "previewGestureChecks": "Separate representative evidence: batch11-mini-verification.json"
+    }
+  ],
+  "errors": [],
+  "passed": true,
+  "previousErrors": [
+    "SyntaxError: Unterminated string in JSON at position 30755 (line 383 column 23)\n    at JSON.parse (<anonymous>)\n    at call (/private/tmp/race-guide-quality-20261117/verify-batch10-mini-all-render.cjs:1:533)\n    at ev (/private/tmp/race-guide-quality-20261117/verify-batch10-mini-all-render.cjs:1:702)\n    at /private/tmp/race-guide-quality-20261117/verify-batch10-mini-all-render.cjs:2:844\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)"
+  ],
+  "system": {
+    "success": true,
+    "systemInfo": {
+      "result": {
+        "brand": "devtools",
+        "model": "iPhone 12/13 (Pro)",
+        "system": "iOS 10.0.1",
+        "platform": "devtools",
+        "benchmarkLevel": -1,
+        "pixelRatio": 3,
+        "screenWidth": 390,
+        "screenHeight": 844,
+        "windowWidth": 390,
+        "windowHeight": 762,
+        "statusBarHeight": 47,
+        "safeArea": {
+          "top": 47,
+          "left": 0,
+          "right": 390,
+          "bottom": 810,
+          "width": 390,
+          "height": 763
+        },
+        "language": "zh_CN",
+        "version": "8.0.5",
+        "fontSizeSetting": 16,
+        "SDKVersion": "3.17.1",
+        "host": {
+          "env": "WeChat"
+        },
+        "enableDebug": false,
+        "mode": "default",
+        "deviceOrientation": "portrait",
+        "bluetoothEnabled": true,
+        "locationEnabled": true,
+        "wifiEnabled": true,
+        "albumAuthorized": true,
+        "cameraAuthorized": true,
+        "locationAuthorized": true,
+        "microphoneAuthorized": true,
+        "notificationAuthorized": true,
+        "notificationAlertAuthorized": true,
+        "notificationBadgeAuthorized": true,
+        "notificationSoundAuthorized": true,
+        "phoneCalendarAuthorized": true,
+        "bluetoothAuthorized": true,
+        "locationReducedAccuracy": true,
+        "devicePixelRatio": 3
+      }
+    }
+  },
+  "completedAt": "2026-11-18T17:23:35.438Z"
+}

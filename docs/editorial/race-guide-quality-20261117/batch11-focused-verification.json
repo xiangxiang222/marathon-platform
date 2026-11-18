@@ -1,0 +1,199 @@
+{
+  "at": "2026-11-18T18:56:08.110Z",
+  "checks": [
+    {
+      "id": "zuiku-73329",
+      "width": 320,
+      "needle": "418",
+      "table": {
+        "width": 252,
+        "scrollWidth": 480,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 228,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "赛事图文资料\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-73329",
+      "width": 390,
+      "needle": "418",
+      "table": {
+        "width": 318,
+        "scrollWidth": 480,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 162,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "赛事图文资料\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-22160",
+      "width": 320,
+      "needle": "港币",
+      "table": {
+        "width": 252,
+        "scrollWidth": 720,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 468,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "赛事图文资料\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-22160",
+      "width": 390,
+      "needle": "港币",
+      "table": {
+        "width": 318,
+        "scrollWidth": 720,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 402,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "赛事图文资料\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-26531",
+      "width": 320,
+      "needle": "兴奋剂",
+      "table": {
+        "width": 252,
+        "scrollWidth": 840,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 588,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "赛事图文资料\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-26531",
+      "width": 390,
+      "needle": "兴奋剂",
+      "table": {
+        "width": 318,
+        "scrollWidth": 840,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 522,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "赛事图文资料\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-68796",
+      "width": 320,
+      "needle": "479",
+      "table": {
+        "width": 252,
+        "scrollWidth": 840,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 588,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "赛事图文资料\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-68796",
+      "width": 390,
+      "needle": "479",
+      "table": {
+        "width": 318,
+        "scrollWidth": 840,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 522,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "赛事图文资料\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-85293",
+      "width": 320,
+      "needle": "15个工作日",
+      "table": {
+        "width": 252,
+        "scrollWidth": 960,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 708,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "报名时间与费用\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-85293",
+      "width": 390,
+      "needle": "15个工作日",
+      "table": {
+        "width": 318,
+        "scrollWidth": 960,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 642,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "报名时间与费用\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-16852",
+      "width": 320,
+      "needle": "11:30",
+      "table": {
+        "width": 252,
+        "scrollWidth": 960,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 708,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "赛事图文资料\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-16852",
+      "width": 390,
+      "needle": "11:30",
+      "table": {
+        "width": 318,
+        "scrollWidth": 960,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 642,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "赛事图文资料\n查看原图 ↗",
+      "overflow": false
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-11-18T18:57:04.110Z"
+}

@@ -1,0 +1,56 @@
+{
+  "at": "2026-11-18T19:04:37.123Z",
+  "kind": "production guide data update with existing deployed UI",
+  "saved": 20,
+  "guideEdits": 175,
+  "groupCorrections": 195,
+  "reviewedImageCorrespondences": 124,
+  "databaseBackup": "server/data/race-guide-quality-20261117/batch11-applied.json.before.sqlite",
+  "races": 434,
+  "sheets": 1735,
+  "schemaUnchanged": true,
+  "quickCheck": "ok",
+  "savedProseAndGroupsExactlyMatch": true,
+  "web": {
+    "pages": 40,
+    "widths": [
+      320,
+      390
+    ],
+    "overflow": false,
+    "fullBodyBlocks": 4349,
+    "fullTableRows": 741,
+    "allSourceCellsMatch": true,
+    "focusedChecks": 12
+  },
+  "stages": {
+    "reviewed": true,
+    "saved": true,
+    "webDisplayed": true,
+    "productionWebVerified": true,
+    "mini": {
+      "actualDevTools390": true,
+      "races": 20,
+      "groups": 81,
+      "tables": 93,
+      "tableRowsIncludingHeaders": 741,
+      "bodyAndGroupsMatchProduction": true,
+      "physicalPhone": false,
+      "actualDevTools320": false,
+      "formalPublication": false,
+      "representativeInteractionRaces": [
+        "zuiku-22160",
+        "zuiku-26531",
+        "zuiku-16852"
+      ],
+      "representativeInteractionEvidence": "batch12-mini-verification.json"
+    }
+  },
+  "pending": [
+    "All races remain partial; other chapters and original-image curation still need review",
+    "Actual 320px mini DevTools and physical phone gestures/native long-press menu",
+    "Formal mini-program publication and subsequent actual-page verification",
+    "Hong Kong/Fengqing original native previews initially still loading after10sec; reopening+15sec displayed, initial latency unresolved"
+  ],
+  "miniEvidence": "batch11-all-mini-render-verification.json"
+}
