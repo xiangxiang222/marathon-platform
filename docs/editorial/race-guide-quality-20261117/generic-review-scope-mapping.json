@@ -1,0 +1,2292 @@
+[
+  {
+    "id": "bishan",
+    "name": "2026重庆璧山马拉松",
+    "reviewScope": "仅列出的已查看原图、可复制本届来源及字段已校对；其他完整条款保持原值，尚未逐条校对。",
+    "documentedNotes": [],
+    "latestAudit": "batch6-reviewed-audit.json",
+    "currentSectionCount": 12,
+    "currentMediaCount": 7,
+    "officialSources": [],
+    "reviewedImageUrls": [],
+    "candidateMedia": [
+      {
+        "index": 0,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/e7138a9b8cbc8a9038aea0ba33646636555f8b80.jpeg?imageView2/2/w/750",
+        "caption": "赛事图文资料",
+        "sha256": "25dec6aa075abc8254a647e117b0dfbdcbeb34dc3d91de74b4292be6b5ea94c0",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/47924"
+      },
+      {
+        "index": 1,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/0fedf6e25af17820b4e01ef2b8f766b717e11a12.jpeg?imageView2/2/w/750",
+        "caption": "赛事图文资料",
+        "sha256": "1149974274295514492afedde70b98ef7685b193b56ea3899ca70757e57aa9cd",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/47924"
+      },
+      {
+        "index": 2,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/d01d020a127f2e42d17a9babcb0205ddd37d4089.jpeg?imageView2/2/w/750",
+        "caption": "赛事图文资料",
+        "sha256": "b44ada9de2c48fc412f20ee2932388c92a1b5bd32cd3b4ce990da1388f5f392e",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/47924"
+      },
+      {
+        "index": 3,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/977327f65611850711c5f398f272e3950e5e3ccb.jpeg?imageView2/2/w/750",
+        "caption": "分组路线与海拔资料",
+        "sha256": "e7181f952fbd2ba737068c3b1714ca9eff45739e549106e2f1ce68ef8bccfa11",
+        "kind": "route",
+        "sourceUrl": "https://reg.zuicool.com/47924"
+      },
+      {
+        "index": 4,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/8b114a7bcfd4609ae21834d9325f137399f11242.jpeg?imageView2/2/w/750",
+        "caption": "赛事图文资料",
+        "sha256": "755b12f457ba692d819639af7b77d7e8cda102e71e2dd848e6886bbd3507e6e5",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/47924"
+      },
+      {
+        "index": 5,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/11621e2df01e5ef93f6a86bff1ad0d64db491543.jpeg?imageView2/2/w/750",
+        "caption": "竞赛规程",
+        "sha256": "ebcab4e99042d6d1407bddc08df4c1c910a4551bfb33c7c604f791fd7e6f3060",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/47924"
+      },
+      {
+        "index": 6,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/6873d039e12154f8cc9dbba2f5fb06f3c2fc6f02.png?imageView2/2/w/750",
+        "caption": "分组路线与海拔资料",
+        "sha256": "62069a39a2529e9baceda6e94bb06011d6f2f77057210391b31fbc7829e29410",
+        "kind": "route",
+        "sourceUrl": "https://reg.zuicool.com/47924"
+      }
+    ],
+    "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+    "documentedNotCompleted": [
+      "整场所有条款与后续公告全面核验"
+    ],
+    "taskKind": "scope_mapping_needed",
+    "instruction": "记录为笼统未列章节/持续核验，尚无精确缺项；先对照逐项edits覆盖范围和当前章节映射，不把全场重新识别或无限partial当作完成条件。"
+  },
+  {
+    "id": "huangyaguan",
+    "name": "2027天津黄崖关长城马拉松",
+    "reviewScope": "本届官网首页、Local Package可复制文字与报名页、日程/服装尺码/路线原图已实际查看；官网通用页含不一致截止日，不能据此补全。",
+    "documentedNotes": [],
+    "latestAudit": "batch6-reviewed-audit.json",
+    "currentSectionCount": 7,
+    "currentMediaCount": 2,
+    "officialSources": [
+      {
+        "url": "http://www.great-wall-marathon.com.cn",
+        "title": "The Great Wall Marathon",
+        "role": "official_website",
+        "verified": true,
+        "identityReview": "官网首页本届2027-05-15与报名页黄崖关地点一致；各通用页具体版本问题单独记录",
+        "characters": 1948,
+        "bodySha256": "f17d23b8871c83979c9695e3f9c9c7cda08e8e9d91017929854f414fa39ac11c",
+        "checkedAt": "2026-11-18T05:48:25.253Z"
+      },
+      {
+        "url": "https://great-wall-marathon.com.cn/local-package-race-only/",
+        "title": "Local Package – Race Only",
+        "role": "official_website",
+        "verified": true,
+        "identityReview": "官网首页本届2027-05-15与报名页黄崖关地点一致；各通用页具体版本问题单独记录",
+        "characters": 1494,
+        "bodySha256": "021d3dfa15763bb0c8cf69a2fdb7d4d410ee15c153ac6cbfbafca4a921894b71",
+        "checkedAt": "2026-11-18T05:48:25.253Z"
+      },
+      {
+        "url": "https://great-wall-marathon.com.cn/?lang=zh-hans",
+        "title": "长城马拉松挑战你的极限",
+        "role": "official_website",
+        "verified": true,
+        "identityReview": "官网首页本届2027-05-15与报名页黄崖关地点一致；各通用页具体版本问题单独记录",
+        "characters": 939,
+        "bodySha256": "aa4ce398185a3f79357225e51a74ffcd594e645f319b5f74ae02ecdb6bec33bd",
+        "checkedAt": "2026-11-18T05:48:25.253Z"
+      }
+    ],
+    "reviewedImageUrls": [],
+    "candidateMedia": [
+      {
+        "index": 0,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/21e8a33d6b5d638bf599acf0a279e7feff74f469.png?imageView2/2/w/750",
+        "caption": "黄崖关5月13日踩线、15日比赛及16日晚宴完整日程原表",
+        "sha256": "953a5334e830d971a43bf932cf5ff34f7b0acb0c71b7706d58f3350c7466cfa7",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/14063"
+      },
+      {
+        "index": 1,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/9d58b757cc95579f3922e2ec5b0f64938d8f8aca.png?imageView2/2/w/750",
+        "caption": "黄崖关平台所附三组路线参考图（非2027最终测量确认）",
+        "sha256": "71b3b66d0ec65577a2c9cc74dcdaa0873143467d54bee7a78949fcd53e27ebfb",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/14063"
+      }
+    ],
+    "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+    "documentedNotCompleted": [
+      "完整当届2027参赛声明及官方路线版本再次核验"
+    ],
+    "taskKind": "scope_mapping_needed",
+    "instruction": "记录为笼统未列章节/持续核验，尚无精确缺项；先对照逐项edits覆盖范围和当前章节映射，不把全场重新识别或无限partial当作完成条件。"
+  },
+  {
+    "id": "caa-1000454004",
+    "name": "2026绍兴马拉松",
+    "reviewScope": "仅 edits 列出的章节、facts 列出的数值及 imageReviews 对应原图实际核对；其他已保存正文及原图保留，未声明全篇逐条人工校对、保存或线上展示。",
+    "documentedNotes": [],
+    "latestAudit": "second-reviewed-audit.json",
+    "currentSectionCount": 13,
+    "currentMediaCount": 4,
+    "officialSources": [
+      {
+        "url": "http://sxym.org.cn/html/jsgc.html",
+        "title": "2026瑞丰银行绍兴马拉松竞赛规程-绍兴马拉松",
+        "role": "official_website",
+        "verified": true,
+        "identityReview": "人工核对当届标题、年份、赛事地点及本届原图；仅此明确页面验证，不授权站点全域",
+        "characters": 11428,
+        "bodySha256": "48df102d7fd98a9f7e12ebd3753b30ce5e69fb34f423513800b445dbe047a459",
+        "checkedAt": "2026-11-17T18:03:29.245Z"
+      },
+      {
+        "url": "http://sxym.org.cn/html/bmxz.html",
+        "title": "2026瑞丰银行绍兴马拉松报名须知-绍兴马拉松",
+        "role": "official_website",
+        "verified": true,
+        "identityReview": "人工核对当届标题、年份、赛事地点及本届原图；仅此明确页面验证，不授权站点全域",
+        "characters": 4244,
+        "bodySha256": "8db5c2747fc8418e9be59639f3d89768d67ae11ba6e1f09874dff416cf3c1b6e",
+        "checkedAt": "2026-11-17T18:03:29.245Z"
+      }
+    ],
+    "reviewedImageUrls": [],
+    "candidateMedia": [
+      {
+        "index": 0,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/0440f45d0ecd464ddbc7299abb9115398580326d.jpeg?imageView2/2/w/750",
+        "caption": "竞赛规程",
+        "sha256": "809796ebb82fc4601acfbc892e595a71ab0fd770ea7b57a666f272e88e103e69",
+        "kind": "guide",
+        "sourceUrl": "https://zuicool.com/news/archives/312701"
+      },
+      {
+        "index": 1,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/1fd1b535b09351627e464299dc86361503973407.jpeg?imageView2/2/w/750",
+        "caption": "竞赛规程",
+        "sha256": "6360060460d8b14ecc52a2008956f11a75fb2976122d336daecc4a05890498c3",
+        "kind": "guide",
+        "sourceUrl": "https://zuicool.com/news/archives/312701"
+      },
+      {
+        "index": 2,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/27d7a61ed3c73306fb07198ad214597ba049d3d9.jpeg?imageView2/2/w/750",
+        "caption": "竞赛规程",
+        "sha256": "67383f349d7a532c98e94d977a46de48c3c5370871a833b16321ce0f8f6ecea3",
+        "kind": "guide",
+        "sourceUrl": "https://zuicool.com/news/archives/312701"
+      },
+      {
+        "index": 3,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/2782b2698254984b8e829e64944ce63fc26df5cd.jpeg?imageView2/2/w/750",
+        "caption": "竞赛规程",
+        "sha256": "6e0bb61ea6aa6f64f6506fea06cbc82aa1000c39df92d12c20134e342ef3f18e",
+        "kind": "guide",
+        "sourceUrl": "https://zuicool.com/news/archives/312701"
+      }
+    ],
+    "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+    "documentedNotCompleted": [
+      "未列出章节的逐条完整人工校对"
+    ],
+    "taskKind": "scope_mapping_needed",
+    "instruction": "记录为笼统未列章节/持续核验，尚无精确缺项；先对照逐项edits覆盖范围和当前章节映射，不把全场重新识别或无限partial当作完成条件。"
+  },
+  {
+    "id": "caa-1000452080",
+    "name": "2026南通马拉松",
+    "reviewScope": "仅 edits 指明章节、facts 数值和 imageReviews 对应原图已实际核对。其余已保存正文及原图保留；未声明未列章节逐条完成，亦未声明保存/部署/线上展示完成。",
+    "documentedNotes": [],
+    "latestAudit": "third-reviewed-audit.json",
+    "currentSectionCount": 11,
+    "currentMediaCount": 2,
+    "officialSources": [
+      {
+        "url": "https://web.irunner.mobi/home/common-banner?match_eng=6a681035f3ed9",
+        "title": "2026江苏银行·南通马拉松竞赛规程",
+        "role": "official_website",
+        "verified": true,
+        "identityReview": "核对官方明确链接、当届标题/年份/举办地及对应原图；仅验证此页面或当前赛事标识明确的公开接口，不授权共享站点的整个域名。",
+        "characters": 8058,
+        "bodySha256": "8ffc8dbd5e2b3154fdefd3688132f855b7632acea87db125be3c684de027ff9d",
+        "checkedAt": "2026-11-17T18:15:32.191Z"
+      }
+    ],
+    "reviewedImageUrls": [],
+    "candidateMedia": [
+      {
+        "index": 0,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/e554b745a52bffc4e88476714a50f758f083625e.jpeg?imageView2/2/w/750",
+        "caption": "竞赛规程",
+        "sha256": "488893a5b8093c7e954774862a2e0ca5af5e073e4839a23916b37ab9ad415325",
+        "kind": "guide",
+        "sourceUrl": "https://zuicool.com/news/archives/311079"
+      },
+      {
+        "index": 1,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/bf7a4d75d2f54a02378c44e5614b029a61d1a779.jpeg?imageView2/2/w/750",
+        "caption": "竞赛规程",
+        "sha256": "5a22e62caf1779ca949b7a4c94901b96d65203f0799ee9850bf84d170ebefb35",
+        "kind": "guide",
+        "sourceUrl": "https://zuicool.com/news/archives/311079"
+      }
+    ],
+    "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+    "documentedNotCompleted": [
+      "未列章节及未查看原图的逐条人工核对"
+    ],
+    "taskKind": "scope_mapping_needed",
+    "instruction": "记录为笼统未列章节/持续核验，尚无精确缺项；先对照逐项edits覆盖范围和当前章节映射，不把全场重新识别或无限partial当作完成条件。"
+  },
+  {
+    "id": "caa-1000467006",
+    "name": "2026扬州高邮大运河半程马拉松",
+    "reviewScope": "仅列出的已查看原图、可复制本届来源及字段已校对；其他完整条款保持原值，尚未逐条校对。",
+    "documentedNotes": [],
+    "latestAudit": "batch6-reviewed-audit.json",
+    "currentSectionCount": 12,
+    "currentMediaCount": 5,
+    "officialSources": [],
+    "reviewedImageUrls": [],
+    "candidateMedia": [
+      {
+        "index": 0,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/ef4347a37a24afeeb58298cc39d683329f976b08.jpeg?imageView2/2/w/1242",
+        "caption": "竞赛规程",
+        "sha256": "6200e4c9098cd0343e04a63fe055899eb0a1c60b0af0fd8adc9dac7948fd6dcc",
+        "kind": "guide",
+        "sourceUrl": "https://zuicool.com/news/archives/310598"
+      },
+      {
+        "index": 1,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/899627866e80c79752fc502d8239f56c904b31f1.jpeg?imageView2/2/w/1242",
+        "caption": "竞赛规程",
+        "sha256": "bd01825f2564363d9424f3c7069ca9e2a9b3034935468e27100009c8a60a4ae9",
+        "kind": "guide",
+        "sourceUrl": "https://zuicool.com/news/archives/310598"
+      },
+      {
+        "index": 2,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/8332cc128f5b10c90cbcfded3cdb1ed056a8f7fd.jpeg?imageView2/2/w/1242",
+        "caption": "竞赛规程",
+        "sha256": "4c87a6a6167973305c0a725a4f335b545f9a0c1dd426c8b303c1f07dddea117a",
+        "kind": "guide",
+        "sourceUrl": "https://zuicool.com/news/archives/310598"
+      },
+      {
+        "index": 3,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/973f312e942139dfa678f614d375c999b7220fdf.jpeg?imageView2/2/w/1242",
+        "caption": "赛事图文资料",
+        "sha256": "e0a5e0458a2184ef4ddbc862f4ec1259d2e15f3b2b65e2e7a522d584dc1a5b81",
+        "kind": "guide",
+        "sourceUrl": "https://zuicool.com/news/archives/310598"
+      },
+      {
+        "index": 4,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/6bd63c9a3e9de595916e03153e7a760b67f62f77.jpeg?imageView2/2/w/1242",
+        "caption": "竞赛规程",
+        "sha256": "9ae568ac5417e99e63dc572ed47c8ac1989bc1d28f46d041a05c458eab09b749",
+        "kind": "guide",
+        "sourceUrl": "https://zuicool.com/news/archives/310595"
+      }
+    ],
+    "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+    "documentedNotCompleted": [
+      "整场所有条款与后续公告全面核验"
+    ],
+    "taskKind": "scope_mapping_needed",
+    "instruction": "记录为笼统未列章节/持续核验，尚无精确缺项；先对照逐项edits覆盖范围和当前章节映射，不把全场重新识别或无限partial当作完成条件。"
+  },
+  {
+    "id": "caa-1000454030",
+    "name": "2026贺州半程马拉松",
+    "reviewScope": "仅列出的已查看原图分块和可靠可复制当届文字条款已校对；其他既有文字及原图保留，不声明全场全部章节逐条复核完成。",
+    "documentedNotes": [],
+    "latestAudit": "batch7-reviewed-audit.json",
+    "currentSectionCount": 10,
+    "currentMediaCount": 2,
+    "officialSources": [
+      {
+        "url": "https://reg.zuicool.com/65962",
+        "title": "东城雅院·2026贺州半程马拉松 竞赛规程",
+        "role": "current_registration_platform_regulation",
+        "verified": true,
+        "identityReview": "本届赛事报名平台发布的完整可复制规程；赛事日期、项目、组别与本届一致；不是独立官网。",
+        "bodySha256": "407580500bd00a79a2dccf66f8625ed155f5f641c1a6b6628e62c13e60e4b2a2",
+        "checkedAt": "2026-11-18T07:07:32.331Z"
+      }
+    ],
+    "reviewedImageUrls": [],
+    "candidateMedia": [
+      {
+        "index": 0,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/866e6f0b1308e54db77556431901a73760cfdec0.jpeg?imageView2/2/w/750",
+        "caption": "赛事图文资料",
+        "sha256": "103de7547484653b95e9483045ac62dd76224acab6917b8fec0def1589d276aa",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/65962"
+      },
+      {
+        "index": 1,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/f537d173d312d671be80b79d70d200a139c57763.jpeg?imageView2/2/w/750",
+        "caption": "赛事图文资料",
+        "sha256": "46126b1e33a452fbb636ee158cd36165343f455f87265eae8696c04f4abe0b93",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/65962"
+      }
+    ],
+    "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+    "documentedNotCompleted": [
+      "未列出分块的完整章节尚未逐项核对；保留原文及原图。"
+    ],
+    "taskKind": "scope_mapping_needed",
+    "instruction": "记录为笼统未列章节/持续核验，尚无精确缺项；先对照逐项edits覆盖范围和当前章节映射，不把全场重新识别或无限partial当作完成条件。"
+  },
+  {
+    "id": "caa-1000450007",
+    "name": "2026德阳市广汉三星堆半程马拉松暨跑遍四川（德阳站）",
+    "reviewScope": "仅列出的已查看原图分块和可靠可复制当届文字条款已校对；其他既有文字及原图保留，不声明全场全部章节逐条复核完成。",
+    "documentedNotes": [],
+    "latestAudit": "batch7-reviewed-audit.json",
+    "currentSectionCount": 13,
+    "currentMediaCount": 8,
+    "officialSources": [
+      {
+        "url": "http://www.guanghan-marathon.com/html/rnotice.html",
+        "title": "2026长城华西银行丨德阳市广汉三星堆半程马拉松暨“跑遍四川”德阳站 报名须知",
+        "role": "official_current_registration_notice",
+        "verified": true,
+        "identityReview": "赛事专属官网，当届报名须知正文标题与2026年11月1日广汉赛事一致；HTML可复制文字及表格。",
+        "bodySha256": "d040c0a247b86c3dc8e3cc3585f0e24c5241b92bd462d107d5d383f61799298e",
+        "checkedAt": "2026-11-18T07:07:32.331Z"
+      }
+    ],
+    "reviewedImageUrls": [],
+    "candidateMedia": [
+      {
+        "index": 0,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/07/1a91bdae122cd636042c1c8d669cee5ddc836049.jpeg?imageView2/2/w/750",
+        "caption": "赛事图文资料",
+        "sha256": "6ce4e05988ccb6f262ea2250fbd233becc563005e1680618be68b1a34e9e0505",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/71275"
+      },
+      {
+        "index": 1,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/07/3e8d6065d97326e5030f5ac8589c7d0e322e13a2.jpeg?imageView2/2/w/750",
+        "caption": "赛事图文资料",
+        "sha256": "d03b59463955143af0bdbe43c6ce6ee0bbf38c0e0abff082324285e2ce809ffa",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/71275"
+      },
+      {
+        "index": 2,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/07/9c6347693c574df722cb6e2566c0f11bd6b5967d.jpeg?imageView2/2/w/750",
+        "caption": "赛事图文资料",
+        "sha256": "b35a4617c8cca45d4f41655eda2beae3175b7bddeead16c0ce2dd55995277a89",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/71275"
+      },
+      {
+        "index": 3,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/07/4df287e86e26042c2716a35b84137577d3b8b726.jpeg?imageView2/2/w/750",
+        "caption": "赛事图文资料",
+        "sha256": "9099667f6c47704d1268ac94493ed771525955885d12349eec402568e4917f4a",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/71275"
+      },
+      {
+        "index": 4,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/07/2dd26fd5b49d72be28dacb85cc09f8af5007ae45.jpeg?imageView2/2/w/750",
+        "caption": "赛事图文资料",
+        "sha256": "3d292ef2d1a697ea4a03d5ea4cef10e9d34fcd3735cf5f970b78c0932adb607a",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/71275"
+      },
+      {
+        "index": 5,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/07/259e1b64e029d7b009bb5579990c9d46a9046626.jpeg?imageView2/2/w/750",
+        "caption": "竞赛规程",
+        "sha256": "a0f47c12598b367013576c97b9995dd6f73ff899d85da202649f6e14f59a5774",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/71275"
+      },
+      {
+        "index": 6,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/07/47f7f2fa957b363879ab788bc3c7c14ceded48d9.jpeg?imageView2/2/w/750",
+        "caption": "赛事图文资料",
+        "sha256": "37f496e5bb1adfbe6e298355ce53650ed554a1b2f633ee5b6100678cd2f8098d",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/71275"
+      },
+      {
+        "index": 7,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/07/0364f486a748fc0e60ed95324e106b1eae7345d3.jpeg?imageView2/2/w/750",
+        "caption": "赛事图文资料",
+        "sha256": "95eb7c28ee09af2bfa1f8f5aa7d0b73d3d2f97c618feaba21d096c37544d010b",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/71275"
+      }
+    ],
+    "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+    "documentedNotCompleted": [
+      "未列出分块的完整章节尚未逐项核对；保留原文及原图。"
+    ],
+    "taskKind": "scope_mapping_needed",
+    "instruction": "记录为笼统未列章节/持续核验，尚无精确缺项；先对照逐项edits覆盖范围和当前章节映射，不把全场重新识别或无限partial当作完成条件。"
+  },
+  {
+    "id": "caa-1000418257",
+    "name": "2026马鞍山·采石矶半程马拉松",
+    "reviewScope": "仅列出的已查看原图分块和可靠可复制当届文字条款已校对；其他既有文字及原图保留，不声明全场全部章节逐条复核完成。",
+    "documentedNotes": [],
+    "latestAudit": "batch7-reviewed-audit.json",
+    "currentSectionCount": 14,
+    "currentMediaCount": 5,
+    "officialSources": [],
+    "reviewedImageUrls": [],
+    "candidateMedia": [
+      {
+        "index": 0,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/06/fd38d9c39786438a3494d2d0bcbb40449c57e5b2.jpeg?imageView2/2/w/1242",
+        "caption": "竞赛规程",
+        "sha256": "e25359a8c108ff562c25c553787846650caaf4d306a7ab73b575f2eb52fc4a81",
+        "kind": "guide",
+        "sourceUrl": "https://zuicool.com/news/archives/304470"
+      },
+      {
+        "index": 1,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/06/6c4ad17db4aa9b1e66185fbee68669d09aa6003c.jpeg?imageView2/2/w/1242",
+        "caption": "竞赛规程",
+        "sha256": "8d08b0d072d5563ff39c047aac2c984e3e9295189c795b250ac367f7301f9a28",
+        "kind": "guide",
+        "sourceUrl": "https://zuicool.com/news/archives/304467"
+      },
+      {
+        "index": 2,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/06/2a04a30cad72c5cbf9afdc6079b693d6252249de.jpeg?imageView2/2/w/1242",
+        "caption": "竞赛规程",
+        "sha256": "5dfd28f790cad8554deea5834e8f3992551e335e05c8a87e7b8ff3b30954e484",
+        "kind": "guide",
+        "sourceUrl": "https://zuicool.com/news/archives/304467"
+      },
+      {
+        "index": 3,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/06/faf93e65050dd36ee8cd8077f79cb044478a69e6.jpeg?imageView2/2/w/1242",
+        "caption": "竞赛规程",
+        "sha256": "496f83c73bef61ae86e972967fbb1673219a66b88f46463f25b72137bcd037e1",
+        "kind": "guide",
+        "sourceUrl": "https://zuicool.com/news/archives/304467"
+      },
+      {
+        "index": 4,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/06/5191648011594edc62a9870e49f5a0488d9b666a.jpeg?imageView2/2/w/1242",
+        "caption": "竞赛规程",
+        "sha256": "7e59ef09d1059adf34ad4f4b25ed55fbf7952736f201d1131139128fa9600243",
+        "kind": "guide",
+        "sourceUrl": "https://zuicool.com/news/archives/304467"
+      }
+    ],
+    "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+    "documentedNotCompleted": [
+      "未列出分块的完整章节尚未逐项核对；保留原文及原图。"
+    ],
+    "taskKind": "scope_mapping_needed",
+    "instruction": "记录为笼统未列章节/持续核验，尚无精确缺项；先对照逐项edits覆盖范围和当前章节映射，不把全场重新识别或无限partial当作完成条件。"
+  },
+  {
+    "id": "caa-1000479118",
+    "name": "2026海南儋州马拉松",
+    "reviewScope": "仅 edits 列出的章节、facts 列出的数值及 imageReviews 对应原图实际核对；其他已保存正文及原图保留，未声明全篇逐条人工校对、保存或线上展示。",
+    "documentedNotes": [],
+    "latestAudit": "second-reviewed-audit.json",
+    "currentSectionCount": 18,
+    "currentMediaCount": 3,
+    "officialSources": [
+      {
+        "url": "http://www.danma.cn/page/P1Y3kqE0N8rOD5BwMlze.html",
+        "title": "2026海南儋州马拉松竞赛规程 | 2026海南儋州马拉松",
+        "role": "official_website",
+        "verified": true,
+        "identityReview": "人工核对当届标题、年份、赛事地点及本届原图；仅此明确页面验证，不授权站点全域",
+        "characters": 10272,
+        "bodySha256": "11b1d9064747f95e565fd4d86389a8025dc80b99619db59a2c96924d82051b74",
+        "checkedAt": "2026-11-17T18:03:29.245Z"
+      },
+      {
+        "url": "http://www.danma.cn/page/Kn6NygxDqdk1mqPZebWM.html",
+        "title": "2026海南儋州马拉松报名须知 | 2026海南儋州马拉松",
+        "role": "official_website",
+        "verified": true,
+        "identityReview": "人工核对当届标题、年份、赛事地点及本届原图；仅此明确页面验证，不授权站点全域",
+        "characters": 3730,
+        "bodySha256": "1995dd566faa7a7f6cd8cc0f0e5f3cdd27397c2a31a0e6671a433d87d3f04b1b",
+        "checkedAt": "2026-11-17T18:03:29.245Z"
+      }
+    ],
+    "reviewedImageUrls": [],
+    "candidateMedia": [
+      {
+        "index": 0,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/dbe846bbfc950402a40f19936cf0ed1a851f4f04.jpeg?imageView2/2/w/750",
+        "caption": "竞赛规程",
+        "sha256": "d8c7b6ee17c65f19595f0186e2eaef79b291bb70790c624ebd34122c0ed90f5d",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/55770"
+      },
+      {
+        "index": 1,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/bafbf12bdd06bb6dad3e0017b78bbf16379b321e.jpeg?imageView2/2/w/750",
+        "caption": "竞赛规程",
+        "sha256": "020874af460ee2df071f44035d3a3a9ef015631742ab5379b223a9b5fc29be3a",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/55770"
+      },
+      {
+        "index": 2,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/a527b844e39ec4c999d6fdfce46db31df4fc25e0.jpeg?imageView2/2/w/750",
+        "caption": "竞赛规程",
+        "sha256": "91583b7e830c27df3a220ca5a8a21144b24813f5b0ae8a860e319c0399551b08",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/55770"
+      }
+    ],
+    "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+    "documentedNotCompleted": [
+      "未列出章节的逐条完整人工校对"
+    ],
+    "taskKind": "scope_mapping_needed",
+    "instruction": "记录为笼统未列章节/持续核验，尚无精确缺项；先对照逐项edits覆盖范围和当前章节映射，不把全场重新识别或无限partial当作完成条件。"
+  },
+  {
+    "id": "caa-1000479142",
+    "name": "2026玉林马拉松",
+    "reviewScope": "仅列出的 edits、facts、groupCorrections 和 viewedCrops 已人工核对；其余已保存章节保持原值，不声明全场完整规程逐条复核完成。",
+    "documentedNotes": [],
+    "latestAudit": "batch6-reviewed-audit.json",
+    "currentSectionCount": 25,
+    "currentMediaCount": 7,
+    "officialSources": [],
+    "reviewedImageUrls": [],
+    "candidateMedia": [
+      {
+        "index": 0,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/c3efc02bfe37a3f0334163b3d603d02b4db5024b.jpeg?imageView2/2/w/750",
+        "caption": "赛事图文资料",
+        "sha256": "8e4e5cc5bbc24b0d0e8847d7fd343b093bc444034eb9609c642be46262339639",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/80050"
+      },
+      {
+        "index": 1,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/ce36340685f6dbac3c0e9e349c9d7be0fead5eff.jpeg?imageView2/2/w/750",
+        "caption": "报名时间与费用",
+        "sha256": "f9c65ea3ce1eebe51b0c824835e9ea81b8b0da2d76512ffd6a1651e7f8969124",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/80050"
+      },
+      {
+        "index": 2,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/ef8a3f6919d5405f1a2cb736f5ee26a6fb7eff1b.jpeg?imageView2/2/w/750",
+        "caption": "赛事图文资料",
+        "sha256": "0f43c8ccf7240e04407acbcd154735f3dd0211e0cbc48728dd40da195fafeee3",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/80050"
+      },
+      {
+        "index": 3,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/3c0800e9acaeffe441b9afa2ff96c6aa6ad06f00.jpeg?imageView2/2/w/750",
+        "caption": "赛事图文资料",
+        "sha256": "004f1871d27cd47fdab034b2c3ae899f90fe2641f85f2a2644e2406dccc09843",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/80050"
+      },
+      {
+        "index": 4,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/a8cedb1433b002a98d4338315cc626b035e72aed.jpeg?imageView2/2/w/1024",
+        "caption": "竞赛规程",
+        "sha256": "ea5244a72de364a6730c7585bf2c3d4843f8a9277cc2d0d4ea6b5ad45de64294",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/80050"
+      },
+      {
+        "index": 5,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/8a18daf7ad0056cdeb618bc19c88fd450afe7807.jpeg?imageView2/2/w/1024",
+        "caption": "竞赛规程",
+        "sha256": "30935bd5a043ac41f1164abc7a2f116ca040ec236b7de7e1521ae94dfe66155c",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/80050"
+      },
+      {
+        "index": 6,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/994af12abe61d8f7bc199904bda8144af7734ee2.jpeg?imageView2/2/w/1024",
+        "caption": "竞赛规程",
+        "sha256": "725dd897ed3e07a189af4e0d7ac61910932ff16fa89471b57facd3fe889f1904",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/80050"
+      }
+    ],
+    "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+    "documentedNotCompleted": [
+      "未列章节及原图区域的逐条人工核对"
+    ],
+    "taskKind": "scope_mapping_needed",
+    "instruction": "记录为笼统未列章节/持续核验，尚无精确缺项；先对照逐项edits覆盖范围和当前章节映射，不把全场重新识别或无限partial当作完成条件。"
+  },
+  {
+    "id": "caa-1000480114",
+    "name": "2026江门马拉松",
+    "reviewScope": "仅列出的 edits、facts、groupCorrections 和 viewedCrops 已人工核对；其余已保存章节保持原值，不声明全场完整规程逐条复核完成。",
+    "documentedNotes": [],
+    "latestAudit": "batch6-reviewed-audit.json",
+    "currentSectionCount": 25,
+    "currentMediaCount": 11,
+    "officialSources": [
+      {
+        "url": "https://jiangmen.sport-china.cn/doc/1048/8189",
+        "title": "江门马拉松 - 广东新中体育集团有限公司",
+        "role": "official_website",
+        "verified": true,
+        "identityReview": "当届标题、日期及赛事所在地匹配；仅验证所列明确赛事页面。",
+        "characters": 10679,
+        "bodySha256": "f6ca60f0db6154c4f1df7cfb6b9f7b36111e2f20fc9b827ecc1cda50ba9706d9",
+        "checkedAt": "2026-11-18T05:48:25.253Z"
+      },
+      {
+        "url": "https://jiangmen.sport-china.cn/doc/1048/8190",
+        "title": "江门马拉松 - 广东新中体育集团有限公司",
+        "role": "official_website",
+        "verified": true,
+        "identityReview": "当届标题、日期及赛事所在地匹配；仅验证所列明确赛事页面。",
+        "characters": 5400,
+        "bodySha256": "77d895c030aad9bdcbdd9308893c80ffa04e40a57932c8df6258dc4c39735160",
+        "checkedAt": "2026-11-18T05:48:25.253Z"
+      }
+    ],
+    "reviewedImageUrls": [],
+    "candidateMedia": [
+      {
+        "index": 0,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/27f4ee63ab3443f398fc1902090e2558d89d6b6f.jpeg?imageView2/2/w/750",
+        "caption": "报名时间与费用",
+        "sha256": "acc991c097a96d5b68ede0226441d9387bf90f76357976e1264feb152a022d69",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/77991"
+      },
+      {
+        "index": 1,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/c48a196e80d4b9f52f81f5f8b5b1a2df2506fa4e.jpeg?imageView2/2/w/750",
+        "caption": "报名时间与费用",
+        "sha256": "8536c699442d67179b6cb0857375493273e3779d85f44ba8fdbb960ff42a4d3b",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/77991"
+      },
+      {
+        "index": 2,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/3820628fb14913cbfae5546130a94add492e5462.jpeg?imageView2/2/w/750",
+        "caption": "赛事图文资料",
+        "sha256": "45398cfb0bf44b4f3f9b3b4d78fa8a366c88ff55aa243e34c8f5f3bc7e79d112",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/77991"
+      },
+      {
+        "index": 3,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/ad7b9c022aba6072788d82f891e209a392437377.jpeg?imageView2/2/w/750",
+        "caption": "赛事图文资料",
+        "sha256": "2639b88f46e7e30b831ad8d1cb8d75674c6351d198d26e38531e756477be9cdb",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/77991"
+      },
+      {
+        "index": 4,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/5bb5cc164f9ce734efa3e5a75c1e8c4a93cdc897.jpeg?imageView2/2/w/750",
+        "caption": "赛事图文资料",
+        "sha256": "b2c69b30d715ec74da9076102d12725dc2f6f509d01cc710c1700ae5e7f83c48",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/77991"
+      },
+      {
+        "index": 5,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/a8f73cc4a75fd2fabdbe2e1c6a20bd972a9fb9d6.jpeg?imageView2/2/w/750",
+        "caption": "竞赛规程",
+        "sha256": "99f77e7486ad6e595ec55cf68a72cb1dc4114f4b6527f92e3e025418b6ff5695",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/77991"
+      },
+      {
+        "index": 6,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/e66c83f7eba35b667f4c3952b7379c1a3a705951.jpeg?imageView2/2/w/750",
+        "caption": "竞赛规程",
+        "sha256": "fe54b0b0fff64356307a3558e0584361adc3423f359b3ffef42784ecee72e6a4",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/77991"
+      },
+      {
+        "index": 7,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/e003a7392e6c7bce4b604cc91a5b0b7bd5be5622.jpeg?imageView2/2/w/750",
+        "caption": "竞赛规程",
+        "sha256": "3987b4080b4916cea47f1a42a1e6e5cfd907593952b55a7f7dfa8a399ead55d8",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/77991"
+      },
+      {
+        "index": 8,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/37a479434b86deec04a4fb1ab4552c81001f33f4.jpeg?imageView2/2/w/750",
+        "caption": "竞赛规程",
+        "sha256": "84330a171e9bad624146b47b6be1f8769094132e5bb8693c6f2f46d1bf752e6a",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/77991"
+      },
+      {
+        "index": 9,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/809e95a68dd25cbf0d06c66f265c1db05f2a8e8f.jpeg?imageView2/2/w/750",
+        "caption": "竞赛规程",
+        "sha256": "edee31eac8cdb5391c9b75ae3971e468cec101546acbfc99343aa8cda08d6a4c",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/77991"
+      },
+      {
+        "index": 10,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/ea03d3f4ad4b70d2dd8ecb7d8836e24fad20bdc0.jpeg?imageView2/2/w/750",
+        "caption": "竞赛规程",
+        "sha256": "becc9da7247f6f7451524ce7cd15b9bba36ca6979fb254828f5f3b69f20d36c5",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/77991"
+      }
+    ],
+    "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+    "documentedNotCompleted": [
+      "未列章节及原图区域的逐条人工核对"
+    ],
+    "taskKind": "scope_mapping_needed",
+    "instruction": "记录为笼统未列章节/持续核验，尚无精确缺项；先对照逐项edits覆盖范围和当前章节映射，不把全场重新识别或无限partial当作完成条件。"
+  },
+  {
+    "id": "caa-1000479023",
+    "name": "2026海南东方半程马拉松",
+    "reviewScope": "仅列出的 edits、facts、groupCorrections 和 viewedCrops 已人工核对；其余已保存章节保持原值，不声明全场完整规程逐条复核完成。",
+    "documentedNotes": [],
+    "latestAudit": "batch6-reviewed-audit.json",
+    "currentSectionCount": 22,
+    "currentMediaCount": 12,
+    "officialSources": [
+      {
+        "url": "https://m.irunner.mobi/mix-race-apply/index.html?match_eng=6a86648469163#/regulation",
+        "title": "2026海南东方半程马拉松",
+        "role": "official_registration",
+        "verified": true,
+        "identityReview": "官方主页“赛事信息→竞赛规程”明确链接match_eng=6a86648469163；标题2026海南东方半程马拉松、11月22日07:30匹配，仅此URL及本届规程图核验。",
+        "characters": 42,
+        "bodySha256": "ded6deb5639ce1dc536a7739ccbae3e60c99f66753d0039ed0a194508574bb4d",
+        "checkedAt": "2026-11-18T05:48:25.253Z"
+      }
+    ],
+    "reviewedImageUrls": [],
+    "candidateMedia": [
+      {
+        "index": 0,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/e74e065a044f44d308dcbc38a8891b2db4b99324.jpeg?imageView2/2/w/750",
+        "caption": "赛事图文资料",
+        "sha256": "6065adf02209df76d7c34a6c3fa492a7973c0da409983b88d07ac9bd4563f031",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/19529"
+      },
+      {
+        "index": 1,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/535923389e6bba549b8ca49a4844af143b9ce0c9.jpeg?imageView2/2/w/750",
+        "caption": "赛事图文资料",
+        "sha256": "e37f8b640087c3055ff483337dff672dd2ec4a733e8402c0803a17c73bc365fe",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/19529"
+      },
+      {
+        "index": 2,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/386ea90e5be9797e406cfb2295f6d0010bf4803d.jpeg?imageView2/2/w/750",
+        "caption": "赛事图文资料",
+        "sha256": "e6f32fff61c98e9fdb07e35808efd3f676f98bfe064a7f9b5eec158352f56230",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/19529"
+      },
+      {
+        "index": 3,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/abe56cc4bc7310865112722bbabe5c4d8fb9b324.jpeg?imageView2/2/w/750",
+        "caption": "赛事图文资料",
+        "sha256": "fecce816f809439ae3164360464e82adb84ee2c2970e8d32f88410748a922a0a",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/19529"
+      },
+      {
+        "index": 4,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/0aec09fe55cee0831dbb1d7e783bf6a3fe7aa1c3.jpeg?imageView2/2/w/750",
+        "caption": "竞赛规程",
+        "sha256": "52519e1c58a9b4b7fed1c106e372469bba46df3794a618ba4cccc9f34f800537",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/19529"
+      },
+      {
+        "index": 5,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/0c1e509b4487e6b3fe4989af379388345f4f526e.jpeg?imageView2/2/w/750",
+        "caption": "竞赛规程",
+        "sha256": "a56f79fbd7ff665831fc76271d522805b4397c6ec56c6e34be6ac54536dd13d9",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/19529"
+      },
+      {
+        "index": 6,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/9ecf8217c906e7aec94c9aa2474297f5de57891c.jpeg?imageView2/2/w/750",
+        "caption": "竞赛规程",
+        "sha256": "921e15a5eb8ae5588eabd8b6c3c92e4baa22898ad12362940188d0c926a9fee7",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/19529"
+      },
+      {
+        "index": 7,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/3ace78ba8828ecb4fdc445102b0f6a4567037576.jpeg?imageView2/2/w/750",
+        "caption": "赛事图文资料",
+        "sha256": "ca21eea8e3d045d5256523f6cd596ba863d920365cc51b3599f7dc6921ac8a14",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/19529"
+      },
+      {
+        "index": 8,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/554fcf3ab3b0280a766b888489532c476537906b.png?imageView2/2/w/750",
+        "caption": "竞赛规程",
+        "sha256": "a4f72934a4d572a9fcf63daf0f338dadeb3d59c09a190008d91cf2f7d311e795",
+        "kind": "guide",
+        "sourceUrl": "https://zuicool.com/news/archives/314046"
+      },
+      {
+        "index": 9,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/5853d7a4b6c274bfdb8da831a5d64d7a49d28191.png?imageView2/2/w/750",
+        "caption": "竞赛规程",
+        "sha256": "f9aa2e3d63ff40a7c3753321a0df1ca8561563e721cf30510ad194410b7e50f9",
+        "kind": "guide",
+        "sourceUrl": "https://zuicool.com/news/archives/314046"
+      },
+      {
+        "index": 10,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/807a565c1cbb4f11d255fb7fb6e901c2bedb4777.png?imageView2/2/w/750",
+        "caption": "赛事图文资料",
+        "sha256": "a075f8dcbec967c0c3ef36ad37b753bca1e9eb49704ae41d07de3ed59ed41719",
+        "kind": "guide",
+        "sourceUrl": "https://zuicool.com/news/archives/314046"
+      },
+      {
+        "index": 11,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/e758281d91cce9ce0f1aa33bce4477cf3c0cd095.jpeg?imageView2/2/w/750",
+        "caption": "竞赛规程",
+        "sha256": "52519e1c58a9b4b7fed1c106e372469bba46df3794a618ba4cccc9f34f800537",
+        "kind": "guide",
+        "sourceUrl": "https://zuicool.com/news/archives/314042"
+      }
+    ],
+    "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+    "documentedNotCompleted": [
+      "未列章节及原图区域的逐条人工核对"
+    ],
+    "taskKind": "scope_mapping_needed",
+    "instruction": "记录为笼统未列章节/持续核验，尚无精确缺项；先对照逐项edits覆盖范围和当前章节映射，不把全场重新识别或无限partial当作完成条件。"
+  },
+  {
+    "id": "caa-1000476007",
+    "name": "2026罗城半程马拉松",
+    "reviewScope": "仅列出的 edits、facts、groupCorrections 和 viewedCrops 已人工核对；其余已保存章节保持原值，不声明全场完整规程逐条复核完成。",
+    "documentedNotes": [],
+    "latestAudit": "batch6-reviewed-audit.json",
+    "currentSectionCount": 16,
+    "currentMediaCount": 5,
+    "officialSources": [],
+    "reviewedImageUrls": [],
+    "candidateMedia": [
+      {
+        "index": 0,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/456d3c4a2ea0a6196809cea428d1cfadaed631b4.jpeg?imageView2/2/w/750",
+        "caption": "赛事图文资料",
+        "sha256": "1ecb8d321c242e003c51cb449a25354ed9a0c103a70be02bcc803ccefe74d383",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/47808"
+      },
+      {
+        "index": 1,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/7762919c83e707694517748a2f18f77323fb79e9.jpeg?imageView2/2/w/750",
+        "caption": "赛事图文资料",
+        "sha256": "fd576f6726c2fcffc0efef2c25dcc64bdc02986913758d8642606ec1a0dde066",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/47808"
+      },
+      {
+        "index": 2,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/a3f94f4572e83fac6e8aa6a2c1cbe50d643d853c.jpeg?imageView2/2/w/750",
+        "caption": "赛事图文资料",
+        "sha256": "f87e194f5d7e67ae464ae065d626d384f05048d10d14cdda685a50da0efbd0d1",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/47808"
+      },
+      {
+        "index": 3,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/d0a1f04e8d023bce9c34ad017e608b4bb949b56a.jpeg?imageView2/2/w/750",
+        "caption": "竞赛规程",
+        "sha256": "452230e6faed69171edee2eed2d98e0bfb3320b62312cbc0dad0daf5e3ff7bfe",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/47808"
+      },
+      {
+        "index": 4,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/2811760a1a615f8518512bd83c7d7a7aef8aef19.jpeg?imageView2/2/w/750",
+        "caption": "竞赛规程",
+        "sha256": "503d658b9ea01e2129033b528af0b8bf51955b876ca2cfd8edfc90fcd5f10033",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/47808"
+      }
+    ],
+    "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+    "documentedNotCompleted": [
+      "未列章节及原图区域的逐条人工核对"
+    ],
+    "taskKind": "scope_mapping_needed",
+    "instruction": "记录为笼统未列章节/持续核验，尚无精确缺项；先对照逐项edits覆盖范围和当前章节映射，不把全场重新识别或无限partial当作完成条件。"
+  },
+  {
+    "id": "caa-1000496002",
+    "name": "2026嘉兴马拉松",
+    "reviewScope": "仅本轮列出的原图与字段已人工校对，未列出内容保留，不代表全篇完成。",
+    "documentedNotes": [],
+    "latestAudit": "batch5-reviewed-audit.json",
+    "currentSectionCount": 16,
+    "currentMediaCount": 8,
+    "officialSources": [
+      {
+        "url": "http://jiaxingmarathon.umaysports.cn/index/Page/index.html?cate=15",
+        "title": "2026嘉兴马拉松竞赛规程",
+        "verified": true,
+        "checkedAt": "2026-11-18T02:12:30.758Z"
+      },
+      {
+        "url": "http://jiaxingmarathon.umaysports.cn/index/Page/index.html?cate=16",
+        "title": "2026嘉兴马拉松报名须知",
+        "verified": true,
+        "checkedAt": "2026-11-18T02:12:30.758Z"
+      }
+    ],
+    "reviewedImageUrls": [],
+    "candidateMedia": [
+      {
+        "index": 0,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/b2d4172f9044bb2cc3f7858f5f8af060908b035d.png?imageView2/2/w/640",
+        "caption": "嘉兴马拉松官网直通成绩标准原表（按年龄、性别和项目对应）",
+        "sha256": "17b3020e02cff80d8a61d03f26de474d58c242b0a3e14e6a5ca46fc67b539911",
+        "kind": "guide",
+        "sourceUrl": "https://zuicool.com/news/archives/318122"
+      },
+      {
+        "index": 1,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/311c66f1016341a8404a74231bbe70842ae3d10f.png?imageView2/2/w/640",
+        "caption": "嘉兴马拉松官网分段关门原表（枪声07:30起算）",
+        "sha256": "ec90fb693ba753ad232fdf010efecbafbfaf00d12df92e0b32f4902e641aab02",
+        "kind": "guide",
+        "sourceUrl": "https://zuicool.com/news/archives/318122"
+      },
+      {
+        "index": 2,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/747ab9f5e8147f84063a0f4c55cf83d1767ae860.png?imageView2/2/w/640",
+        "caption": "嘉兴马拉松官网赛会纪录原表",
+        "sha256": "401f0b3c410cb6ce1ef845271cab82b05db460c492b5e92cc01157c97a7ba415",
+        "kind": "guide",
+        "sourceUrl": "https://zuicool.com/news/archives/318122"
+      },
+      {
+        "index": 3,
+        "url": "http://jiaxingmarathon.umaysports.cn/uploads/20261007/2ce96c71331d31f40c55d59f5f5943ce.png",
+        "caption": "官网报名费原表（全马150元、半马120元）",
+        "sha256": "7459ac6bf35ed93782eaf4e4cf59a17cfa6fbda8151a0cf0740614c9c7952731",
+        "kind": "guide",
+        "review": {
+          "status": "verified",
+          "imageViewed": true,
+          "checkedAt": "2026-11-18T02:12:30.758Z",
+          "scope": "仅本图完整表格，已逐行逐列核对正文。"
+        },
+        "sourceUrl": "http://jiaxingmarathon.umaysports.cn/index/Page/index.html?cate=15"
+      },
+      {
+        "index": 4,
+        "url": "http://jiaxingmarathon.umaysports.cn/uploads/20261007/d87d6a4d538aa958e0141cf98ceb9fe6.png",
+        "caption": "官网马拉松男女前八名奖金原表",
+        "sha256": "5bfa8bae88732154a12b7a7c4e90451ae658f851d2695b019d0411b2bc6e5753",
+        "kind": "guide",
+        "review": {
+          "status": "verified",
+          "imageViewed": true,
+          "checkedAt": "2026-11-18T02:12:30.758Z",
+          "scope": "仅本图完整表格，已逐行逐列核对正文。"
+        },
+        "sourceUrl": "http://jiaxingmarathon.umaysports.cn/index/Page/index.html?cate=15"
+      },
+      {
+        "index": 5,
+        "url": "http://jiaxingmarathon.umaysports.cn/uploads/20261007/30db332f4a1269b6cdb1b245e02808f4.png",
+        "caption": "官网马拉松嘉兴籍男女前五十名奖金原表",
+        "sha256": "f9c0016406fb4cdfe99d0e81f55c8bd9bc05baa1b3099c517c2bf132ddb8ec58",
+        "kind": "guide",
+        "review": {
+          "status": "verified",
+          "imageViewed": true,
+          "checkedAt": "2026-11-18T02:12:30.758Z",
+          "scope": "仅本图完整表格，已逐行逐列核对正文。"
+        },
+        "sourceUrl": "http://jiaxingmarathon.umaysports.cn/index/Page/index.html?cate=15"
+      },
+      {
+        "index": 6,
+        "url": "http://jiaxingmarathon.umaysports.cn/uploads/20261007/ff845f627dc41ad60850272d30ad81f0.png",
+        "caption": "官网半程男女前八名奖金原表",
+        "sha256": "09aeacdb90bc4ca0866c93b906d372a45badf773e06dbb96b510a3a295f4faad",
+        "kind": "guide",
+        "review": {
+          "status": "verified",
+          "imageViewed": true,
+          "checkedAt": "2026-11-18T02:12:30.758Z",
+          "scope": "仅本图完整表格，已逐行逐列核对正文。"
+        },
+        "sourceUrl": "http://jiaxingmarathon.umaysports.cn/index/Page/index.html?cate=15"
+      },
+      {
+        "index": 7,
+        "url": "http://jiaxingmarathon.umaysports.cn/uploads/20261007/72fe229ee894245b10a5b6e5d0cb7f94.png",
+        "caption": "官网半程嘉兴籍男女前五十名奖金原表",
+        "sha256": "7e9a4d6500ef3794429b4326a362dc9e0d7e3ce3dceb3ca4ce11282cba917e1b",
+        "kind": "guide",
+        "review": {
+          "status": "verified",
+          "imageViewed": true,
+          "checkedAt": "2026-11-18T02:12:30.758Z",
+          "scope": "仅本图完整表格，已逐行逐列核对正文。"
+        },
+        "sourceUrl": "http://jiaxingmarathon.umaysports.cn/index/Page/index.html?cate=15"
+      }
+    ],
+    "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+    "documentedNotCompleted": [
+      "整场规程的所有材料及后续公告持续核验"
+    ],
+    "taskKind": "scope_mapping_needed",
+    "instruction": "记录为笼统未列章节/持续核验，尚无精确缺项；先对照逐项edits覆盖范围和当前章节映射，不把全场重新识别或无限partial当作完成条件。"
+  },
+  {
+    "id": "caa-1000480094",
+    "name": "2026中国田径协会10公里精英赛（蚌埠站）",
+    "reviewScope": "仅列出的已查看原图分块和可靠可复制当届文字条款已校对；其他既有文字及原图保留，不声明全场全部章节逐条复核完成。",
+    "documentedNotes": [],
+    "latestAudit": "batch7-reviewed-audit.json",
+    "currentSectionCount": 10,
+    "currentMediaCount": 9,
+    "officialSources": [],
+    "reviewedImageUrls": [],
+    "candidateMedia": [
+      {
+        "index": 0,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/123e6631210af846822e7c10f3324c013c020aaa.jpeg?imageView2/2/w/750",
+        "caption": "赛事图文资料",
+        "sha256": "37d134a24abaa51d69f77749e1161890470d540b56bc780d9838cc2d904a166a",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/59568"
+      },
+      {
+        "index": 1,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/a59a0738b3291974bc9da984b68a5715b1146377.jpeg?imageView2/2/w/750",
+        "caption": "赛事图文资料",
+        "sha256": "fdd28a8a6a42d2e46b6913ff3724fa510ea2f7e24d1040cca8c98206f79a95e2",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/59568"
+      },
+      {
+        "index": 2,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/50f77dbe24f04ace36de0267d37d3b9869c28109.jpeg?imageView2/2/w/750",
+        "caption": "报名时间与费用",
+        "sha256": "66daa064de6fe0fc1dbf253060e731a64902ac4e17186911935173b0a55e097b",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/59568"
+      },
+      {
+        "index": 3,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/fa3ada86319db064e9e5324af4aecbed53bb2b83.jpeg?imageView2/2/w/750",
+        "caption": "报名时间与费用",
+        "sha256": "2b51523e749f1bceb7f312d85756bd264397f91992b4264fadfe8f07bc2e2fc7",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/59568"
+      },
+      {
+        "index": 4,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/2e99213e1eea9efe1a1cf1d9c8afe7d10233785a.jpeg?imageView2/2/w/750",
+        "caption": "报名时间与费用",
+        "sha256": "24caf4bcedd76dff2c0102f6531a9e0511bf60c4b2472a5180980a0baa017f5c",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/59568"
+      },
+      {
+        "index": 5,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/c517ef9e76f232d63c771d74a504b19e5bdbd618.jpeg?imageView2/2/w/750",
+        "caption": "赛事图文资料",
+        "sha256": "0e14eb729f89389874bd4e1fdb4e254b653c14f41a8cf54aa1bf87a0154e9e66",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/59568"
+      },
+      {
+        "index": 6,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/ae127a19a759903c63967fc4c073cd6ecc3b076d.jpeg?imageView2/2/w/750",
+        "caption": "竞赛规程",
+        "sha256": "f2e6f99eff648e61d285ae92165c411ce56b42dc9b62ae7cd815f0f0d2159665",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/59568"
+      },
+      {
+        "index": 7,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/5a951ac258a7f3237cf9a0208d238914879dc34e.jpeg?imageView2/2/w/750",
+        "caption": "竞赛规程",
+        "sha256": "0cae6f8f37a9591001ff133d2cb1580795e59804839bc5e1bbdc4fa12f3e1808",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/59568"
+      },
+      {
+        "index": 8,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/f1506e5f4b2b0d64bd07feb6bc1e07b08cc12668.jpeg?imageView2/2/w/750",
+        "caption": "竞赛规程",
+        "sha256": "e40d3cdb4f3403392b2529d3c722e35ebed35fad3ac245f37b13452837e70495",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/59568"
+      }
+    ],
+    "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+    "documentedNotCompleted": [
+      "未列出分块的完整章节尚未逐项核对；保留原文及原图。"
+    ],
+    "taskKind": "scope_mapping_needed",
+    "instruction": "记录为笼统未列章节/持续核验，尚无精确缺项；先对照逐项edits覆盖范围和当前章节映射，不把全场重新识别或无限partial当作完成条件。"
+  },
+  {
+    "id": "zuiku-12344",
+    "name": "2026 UTO助力首百越野训练赛·南京老山站",
+    "reviewScope": "本届提供的5张原图已逐块完整实际查看，现行报名平台文字已交叉核对。清晰规程条款完整整理，地图细小标签不猜写；未独立确认组委会官网及其额外规程，因此不宣称全部官方来源终审。",
+    "documentedNotes": [],
+    "latestAudit": "batch8-reviewed-audit.json",
+    "currentSectionCount": 10,
+    "currentMediaCount": 5,
+    "officialSources": [],
+    "reviewedImageUrls": [
+      "https://zc3wp-uploads.bkt.zuicool.com/2026/09/f172424db79f9f6023477289bd1b7c6b9a371c7f.jpeg?imageView2/2/w/750",
+      "https://zc3wp-uploads.bkt.zuicool.com/2026/09/b14bfd50ca0c2e277742b796987d80e6d6a9a085.jpeg?imageView2/2/w/750",
+      "https://zc3wp-uploads.bkt.zuicool.com/2026/09/5baa0febd0ddbd613d6cfae919d9c98aacf8da65.jpeg?imageView2/2/w/750",
+      "https://zc3wp-uploads.bkt.zuicool.com/2026/09/86f07727396280c2bd49ab0070acaf47446a2473.jpeg?imageView2/2/w/750",
+      "https://zc3wp-uploads.bkt.zuicool.com/2026/09/5aafb3f3ae08235985575377d8dd5a739952bf96.jpeg?imageView2/2/w/750"
+    ],
+    "candidateMedia": [
+      {
+        "index": 0,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/f172424db79f9f6023477289bd1b7c6b9a371c7f.jpeg?imageView2/2/w/750",
+        "caption": "本站宣传封面、组织和组别原图",
+        "sha256": "a477e1dce4dfc26538906eab4a15fedf9200193955a35a02c37e24876e28ec83",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/25139"
+      },
+      {
+        "index": 1,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/b14bfd50ca0c2e277742b796987d80e6d6a9a085.jpeg?imageView2/2/w/750",
+        "caption": "本站完整报名、路线、资格、装备、奖励、退费及领物原图（按原图顺序保留）",
+        "sha256": "0d94f8a933863efe8092456c744195d1cb2c6d1b47e56f82063d7f3ce49bc528",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/25139"
+      },
+      {
+        "index": 2,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/5baa0febd0ddbd613d6cfae919d9c98aacf8da65.jpeg?imageView2/2/w/750",
+        "caption": "本站完整报名、路线、资格、装备、奖励、退费及领物原图（按原图顺序保留）",
+        "sha256": "bae4b7b2bd6c536697678fe2105a1d5e67b7a27ea99e1200f2248a734833736d",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/25139"
+      },
+      {
+        "index": 3,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/86f07727396280c2bd49ab0070acaf47446a2473.jpeg?imageView2/2/w/750",
+        "caption": "本站完整报名、路线、资格、装备、奖励、退费及领物原图（按原图顺序保留）",
+        "sha256": "09eb27ecf15c21552ae3292c2d167a33a123ae0258cc4177de4707ea5825f89b",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/25139"
+      },
+      {
+        "index": 4,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/5aafb3f3ae08235985575377d8dd5a739952bf96.jpeg?imageView2/2/w/750",
+        "caption": "本站完整报名、路线、资格、装备、奖励、退费及领物原图（按原图顺序保留）",
+        "sha256": "04730ba5c05e839be2b478f6983a341d16c92b623d402a349844ff7c826718a5",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/25139"
+      }
+    ],
+    "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+    "documentedNotCompleted": [
+      "独立组委会官网及额外规程未确认；搜索故障或无关结果不代表没有官网。"
+    ],
+    "taskKind": "scope_mapping_needed",
+    "instruction": "记录为笼统未列章节/持续核验，尚无精确缺项；先对照逐项edits覆盖范围和当前章节映射，不把全场重新识别或无限partial当作完成条件。"
+  },
+  {
+    "id": "zuiku-59237",
+    "name": "2026宁都欢乐跑",
+    "reviewScope": "仅本轮列出的原图与字段已人工校对，未列出内容保留，不代表全篇完成。",
+    "documentedNotes": [],
+    "latestAudit": "batch5-reviewed-audit.json",
+    "currentSectionCount": 6,
+    "currentMediaCount": 2,
+    "officialSources": [],
+    "reviewedImageUrls": [],
+    "candidateMedia": [
+      {
+        "index": 0,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/566248533e22a0564356898e711f5e101d246003.jpeg?imageView2/2/w/750",
+        "caption": "宁都欢乐跑规程前半部分（路线、年龄、报名、领物与检录）",
+        "sha256": "cedd2138a0f9be6a5e29f04513ab3527c0fcaccdb432b62ea4fa9dca501aac68",
+        "kind": "route",
+        "sourceUrl": "https://reg.zuicool.com/36247"
+      },
+      {
+        "index": 1,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/a2d9dc637d705aed6fe4379b668836a258630103.jpeg?imageView2/2/w/750",
+        "caption": "宁都欢乐跑规程后半部分（逐公里关门、补给、处罚及保险）",
+        "sha256": "5f1f69f28087e624ed3a5e743d24f3701523ba7d202d5c6babc145ebddcb27b6",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/36247"
+      }
+    ],
+    "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+    "documentedNotCompleted": [
+      "整场规程的所有材料及后续公告持续核验"
+    ],
+    "taskKind": "scope_mapping_needed",
+    "instruction": "记录为笼统未列章节/持续核验，尚无精确缺项；先对照逐项edits覆盖范围和当前章节映射，不把全场重新识别或无限partial当作完成条件。"
+  },
+  {
+    "id": "zuiku-49863",
+    "name": "2026 Outopia山野来赛·深圳秋季特别版",
+    "reviewScope": "仅本轮列出的原图与字段已人工校对，未列出内容保留，不代表全篇完成。",
+    "documentedNotes": [],
+    "latestAudit": "batch5-reviewed-audit.json",
+    "currentSectionCount": 5,
+    "currentMediaCount": 2,
+    "officialSources": [],
+    "reviewedImageUrls": [],
+    "candidateMedia": [
+      {
+        "index": 0,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/4a9f88299a3ac57c2d400d779352bd7b516bee89.jpeg?imageView2/2/w/750",
+        "caption": "Outopia深圳五个报名选项、标准赛包及三组路线海拔原图",
+        "sha256": "b826d24146065040e30f23d815e7bb059d3555e7413f2cec61a7feab69c519bb",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/83017"
+      },
+      {
+        "index": 1,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/30b459aa4839efca6007fd083d1ef9960ac648a6.jpeg?imageView2/2/w/750",
+        "caption": "Outopia深圳领物、完赛及名次奖励、退款原图",
+        "sha256": "17dacdc191f80760d13add510c708427d92c7d7d8942a4c08e33f7c9afa030bb",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/83017"
+      }
+    ],
+    "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+    "documentedNotCompleted": [
+      "整场规程的所有材料及后续公告持续核验"
+    ],
+    "taskKind": "scope_mapping_needed",
+    "instruction": "记录为笼统未列章节/持续核验，尚无精确缺项；先对照逐项edits覆盖范围和当前章节映射，不把全场重新识别或无限partial当作完成条件。"
+  },
+  {
+    "id": "zuiku-39209",
+    "name": "2026 WSE 10KM OPEN 珠海站",
+    "reviewScope": "实际查看珠海官方延期公告2分块、本站宣传7分块；规程与上批已完整查看原图SHA256完全一致，按完整共用规程校对。官网416及本届报名页确认日期/渠道截止。额外官网图片仍待逐图终审。",
+    "documentedNotes": [],
+    "latestAudit": "batch8-reviewed-audit.json",
+    "currentSectionCount": 14,
+    "currentMediaCount": 3,
+    "officialSources": [
+      {
+        "url": "https://www.wse.run/api/h5/match/416",
+        "title": "WSE珠海站416本届公开接口",
+        "role": "official-current-event-api",
+        "verified": true,
+        "identityReview": "官网列表先排除2026年1月3日珠海287，416日期地点与现行延期通知一致。",
+        "characters": 1273,
+        "bodySha256": "f303ede6d8dc0eeec4d88fe79486e046c66a55a4f82de7e436387ff056b31025",
+        "checkedAt": "2026-11-18T07:56:16.092Z"
+      }
+    ],
+    "reviewedImageUrls": [
+      "https://zc3wp-uploads.bkt.zuicool.com/2026/10/2ce63ad4c6473a5ae9b3462bb3eca965836f0558.jpeg?imageView2/2/w/750",
+      "https://zc3wp-uploads.bkt.zuicool.com/2026/10/92250bc82d222ed009a36e646f63c55a8e05b82d.jpeg?imageView2/2/w/750",
+      "https://zc3wp-uploads.bkt.zuicool.com/2026/10/ca93e344e03d1c1fdaecfe8e2441da7cc6c234b8.jpeg?imageView2/2/w/1024"
+    ],
+    "candidateMedia": [
+      {
+        "index": 0,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/2ce63ad4c6473a5ae9b3462bb3eca965836f0558.jpeg?imageView2/2/w/750",
+        "caption": "WSE珠海站10月23日官方延期通知：12月20日、自动改期与转站退费",
+        "sha256": "942fa84fae0e15e3cd479d68329e8d7dd121befd9c0e396ca59bfe018846e478",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/44223"
+      },
+      {
+        "index": 1,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/92250bc82d222ed009a36e646f63c55a8e05b82d.jpeg?imageView2/2/w/750",
+        "caption": "WSE珠海站现行12月20日宣传、路线与分站奖励原图",
+        "sha256": "6eab300764723b8a399d02fcf9ea008ea0813418e659ae5cf3eaf1e889c7f1fb",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/44223"
+      },
+      {
+        "index": 2,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/ca93e344e03d1c1fdaecfe8e2441da7cc6c234b8.jpeg?imageView2/2/w/1024",
+        "caption": "WSE四项目完整通用规程：组别、费用、资格、领物、关门、处罚、保险与退款",
+        "sha256": "15c73860d71196fd0647c4c4bbb29cb3d4c9e56f0da7e5825d024f00982be1f4",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/44223"
+      }
+    ],
+    "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+    "documentedNotCompleted": [
+      "官网额外原图尚未逐图复核"
+    ],
+    "taskKind": "scope_mapping_needed",
+    "instruction": "记录为笼统未列章节/持续核验，尚无精确缺项；先对照逐项edits覆盖范围和当前章节映射，不把全场重新识别或无限partial当作完成条件。"
+  },
+  {
+    "id": "zuiku-88269",
+    "name": "2026绿跑中国全民健康大赛（浙江·余杭站）",
+    "reviewScope": "仅本轮列出的原图与字段已人工校对，未列出内容保留，不代表全篇完成。",
+    "documentedNotes": [],
+    "latestAudit": "batch5-reviewed-audit.json",
+    "currentSectionCount": 7,
+    "currentMediaCount": 1,
+    "officialSources": [],
+    "reviewedImageUrls": [],
+    "candidateMedia": [
+      {
+        "index": 0,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/567cea8407dcc343f25a45739ea1f5f956109262.jpeg?imageView2/2/w/1024",
+        "caption": "绿跑中国余杭站规程与两组路线原图（年龄文字与出生年份边界差异待确认）",
+        "sha256": "3bcf5a87a1d9d518d16d5eeedd536ddce0348ca4bffd464cf7b7accbd546eb08",
+        "kind": "route",
+        "sourceUrl": "https://reg.zuicool.com/57267"
+      }
+    ],
+    "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+    "documentedNotCompleted": [
+      "整场规程的所有材料及后续公告持续核验"
+    ],
+    "taskKind": "scope_mapping_needed",
+    "instruction": "记录为笼统未列章节/持续核验，尚无精确缺项；先对照逐项edits覆盖范围和当前章节映射，不把全场重新识别或无限partial当作完成条件。"
+  },
+  {
+    "id": "zuiku-55956",
+    "name": "BIGK•2026兵圣故里·秋阅江南亲子欢乐跑",
+    "reviewScope": "对已保存新版的保险第4条漏句单独增量补全，其他正文保持原值。",
+    "documentedNotes": [],
+    "latestAudit": "batch6-reviewed-audit.json",
+    "currentSectionCount": 10,
+    "currentMediaCount": 3,
+    "officialSources": [],
+    "reviewedImageUrls": [],
+    "candidateMedia": [
+      {
+        "index": 0,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/f46352d31fdec542a648b236da421077c4e94c80.jpeg?imageView2/2/w/1024",
+        "caption": "路线与海拔图（实际约5.6公里、爬升及下降各约213米）",
+        "sha256": "707f6dba35562215ef2cddc91138e232c022652ed17e47b88814636db85253e9",
+        "kind": "route",
+        "sourceUrl": "https://reg.zuicool.com/26369"
+      },
+      {
+        "index": 1,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/de0de3fb7d54ad3c46cd2006ec930e4789b279ac.jpeg?imageView2/2/w/1042",
+        "caption": "报名须知原图（含费用、年龄、退款与联系方式，供对照）",
+        "sha256": "332b7f0792c71125a8fb9782fdbe91af733aac1468a00a5d947e2705cf3f3f65",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/26369"
+      },
+      {
+        "index": 2,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/3974b95e0fe24037396a0e6509e12b4b36e2dd6c.jpeg?imageView2/2/w/1024",
+        "caption": "活动规程原图（含路线、检录、处罚及保险条款，供对照）",
+        "sha256": "ea07b34e622be331a4524d94cc2a97e9519d4c88ca9190428eff776974cb5110",
+        "kind": "route",
+        "sourceUrl": "https://reg.zuicool.com/26369"
+      }
+    ],
+    "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+    "documentedNotCompleted": [
+      "整场规程的所有材料及后续公告持续核验"
+    ],
+    "taskKind": "scope_mapping_needed",
+    "instruction": "记录为笼统未列章节/持续核验，尚无精确缺项；先对照逐项edits覆盖范围和当前章节映射，不把全场重新识别或无限partial当作完成条件。"
+  },
+  {
+    "id": "zuiku-33143",
+    "name": "2026凯乐石FUGA训练赛-南京站（11月）",
+    "reviewScope": "仅本轮列出的原图与字段已人工校对，未列出内容保留，不代表全篇完成。",
+    "documentedNotes": [],
+    "latestAudit": "batch5-reviewed-audit.json",
+    "currentSectionCount": 10,
+    "currentMediaCount": 1,
+    "officialSources": [],
+    "reviewedImageUrls": [],
+    "candidateMedia": [
+      {
+        "index": 0,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/916c1d8f3dad347a189af579e5449510419e2525.jpeg?imageView2/2/w/750",
+        "caption": "FUGA南京11月训练赛规程原图（含组别费用、奖品、领物、装备和退赛）",
+        "sha256": "5783a67c42eb9081c9290b13ba8faab6ae023a94500e21765252c782f276dec5",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/55087"
+      }
+    ],
+    "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+    "documentedNotCompleted": [
+      "整场规程的所有材料及后续公告持续核验"
+    ],
+    "taskKind": "scope_mapping_needed",
+    "instruction": "记录为笼统未列章节/持续核验，尚无精确缺项；先对照逐项edits覆盖范围和当前章节映射，不把全场重新识别或无限partial当作完成条件。"
+  },
+  {
+    "id": "zuiku-35657",
+    "name": "2026第四届金陵秋色登山节",
+    "reviewScope": "仅本轮列出的原图与字段已人工校对，未列出内容保留，不代表全篇完成。",
+    "documentedNotes": [],
+    "latestAudit": "batch5-reviewed-audit.json",
+    "currentSectionCount": 4,
+    "currentMediaCount": 3,
+    "officialSources": [],
+    "reviewedImageUrls": [],
+    "candidateMedia": [
+      {
+        "index": 0,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/fc38cbd294d017e4ebae8ae29a0658abacd5a09c.jpeg?imageView2/2/w/750",
+        "caption": "10km踏秋小环线原图（路线图及路况说明）",
+        "sha256": "52b2f0fb7e8f6f19761943b7a84d92b44a9a132dd80fe66b8c2354e292d3cdf4",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/94853"
+      },
+      {
+        "index": 1,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/166be6caf8b74aa164fcc2d69c5534b7ee9c138c.jpeg?imageView2/2/w/750",
+        "caption": "20km燃秋大环线原图（路线图及路况说明）",
+        "sha256": "1e75c8892109ea185ee93280f34354489e0f551be3e1a0d78a3ebf8fabcda294",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/94853"
+      },
+      {
+        "index": 2,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/d289174f656d6f9d414d56df3a96a55688784019.jpeg?imageView2/2/w/750",
+        "caption": "金陵秋色登山节两日行程原图（分组集合与四种费用）",
+        "sha256": "52df8f3b7c730d585610ab0575926b9f987eb401c645b55f3162e1735132bb4a",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/94853"
+      }
+    ],
+    "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+    "documentedNotCompleted": [
+      "整场规程的所有材料及后续公告持续核验"
+    ],
+    "taskKind": "scope_mapping_needed",
+    "instruction": "记录为笼统未列章节/持续核验，尚无精确缺项；先对照逐项edits覆盖范围和当前章节映射，不把全场重新识别或无限partial当作完成条件。"
+  },
+  {
+    "id": "zuiku-67689",
+    "name": "2026 SALT广州贤江环线越野训练跑",
+    "reviewScope": "仅本轮列出的原图与字段已人工校对，未列出内容保留，不代表全篇完成。",
+    "documentedNotes": [],
+    "latestAudit": "batch5-reviewed-audit.json",
+    "currentSectionCount": 4,
+    "currentMediaCount": 1,
+    "officialSources": [],
+    "reviewedImageUrls": [],
+    "candidateMedia": [
+      {
+        "index": 0,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/23e54a78b00cd1c32485acac2dfc24df4d9199b1.jpeg?imageView2/2/w/750",
+        "caption": "贤江环线训练跑信息原图（含海拔图、领物、退款和咨询二维码）",
+        "sha256": "6c57402dfd19dbb887ce3d6b0141045faade383fd0bcaf68dbd0c3931bcb1eb8",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/25078"
+      }
+    ],
+    "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+    "documentedNotCompleted": [
+      "整场规程的所有材料及后续公告持续核验"
+    ],
+    "taskKind": "scope_mapping_needed",
+    "instruction": "记录为笼统未列章节/持续核验，尚无精确缺项；先对照逐项edits覆盖范围和当前章节映射，不把全场重新识别或无限partial当作完成条件。"
+  },
+  {
+    "id": "zuiku-46518",
+    "name": "2026 UTO助力首百越野训练赛-江阴站",
+    "reviewScope": "本届提供的4张原图已逐块完整实际查看，现行报名平台文字已交叉核对。清晰规程条款完整整理，地图细小标签不猜写；未独立确认组委会官网及其额外规程，因此不宣称全部官方来源终审。",
+    "documentedNotes": [],
+    "latestAudit": "batch8-reviewed-audit.json",
+    "currentSectionCount": 10,
+    "currentMediaCount": 4,
+    "officialSources": [],
+    "reviewedImageUrls": [
+      "https://zc3wp-uploads.bkt.zuicool.com/2026/10/a10c100958faa8ba1ff603195b8809089c52f03e.jpeg?imageView2/2/w/750",
+      "https://zc3wp-uploads.bkt.zuicool.com/2026/10/ef2cc53ea48ff47528024409b5b14054981555a4.jpeg?imageView2/2/w/750",
+      "https://zc3wp-uploads.bkt.zuicool.com/2026/10/751a80aad8fe8505925e50ba6001ea2c8415eb25.jpeg?imageView2/2/w/750",
+      "https://zc3wp-uploads.bkt.zuicool.com/2026/10/d10529057f7fc90da41062c435e7bf1b88b973e6.jpeg?imageView2/2/w/750"
+    ],
+    "candidateMedia": [
+      {
+        "index": 0,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/a10c100958faa8ba1ff603195b8809089c52f03e.jpeg?imageView2/2/w/750",
+        "caption": "本站宣传封面、组织和组别原图",
+        "sha256": "fc980cb3939f10891495d26055257c9f835e2df6666eb87577eb66c79834549c",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/37076"
+      },
+      {
+        "index": 1,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/ef2cc53ea48ff47528024409b5b14054981555a4.jpeg?imageView2/2/w/750",
+        "caption": "本站完整报名、路线、资格、装备、奖励、退费及领物原图（按原图顺序保留）",
+        "sha256": "2009876d0400f8496bc7ad961e77539d55b5cac00c96daf73f22166cfe140718",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/37076"
+      },
+      {
+        "index": 2,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/751a80aad8fe8505925e50ba6001ea2c8415eb25.jpeg?imageView2/2/w/750",
+        "caption": "本站完整报名、路线、资格、装备、奖励、退费及领物原图（按原图顺序保留）",
+        "sha256": "9e342e14b666cd765151c5119d9f8fc3c494b1365a324746349ea96936616a38",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/37076"
+      },
+      {
+        "index": 3,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/d10529057f7fc90da41062c435e7bf1b88b973e6.jpeg?imageView2/2/w/750",
+        "caption": "本站完整报名、路线、资格、装备、奖励、退费及领物原图（按原图顺序保留）",
+        "sha256": "f7fb2e3e9620641c5410ffa41a0170eace2ac53379841ab9dfe5ab1d744fb79a",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/37076"
+      }
+    ],
+    "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+    "documentedNotCompleted": [
+      "独立组委会官网及额外规程未确认；搜索故障或无关结果不代表没有官网。",
+      "路线图细小CP时刻和分段数据未可靠逐项确认，原图保留。"
+    ],
+    "taskKind": "scope_mapping_needed",
+    "instruction": "记录为笼统未列章节/持续核验，尚无精确缺项；先对照逐项edits覆盖范围和当前章节映射，不把全场重新识别或无限partial当作完成条件。"
+  },
+  {
+    "id": "zuiku-95294",
+    "name": "2026爱徒野成都“秋天的童话”为爱奔跑",
+    "reviewScope": "实际完整查看5张原图共15分块，保留可靠原概况，逐项恢复全部文字条款、费用/奖金/日程表，现行报名页文字交叉核对。待确认项保留原图；未取得可核验本届独立官网文字，搜索及候选403另记。",
+    "documentedNotes": [],
+    "latestAudit": "batch9-reviewed-audit.json",
+    "currentSectionCount": 10,
+    "currentMediaCount": 4,
+    "officialSources": [],
+    "reviewedImageUrls": [
+      "https://zc3wp-uploads.bkt.zuicool.com/2026/07/91e796a63004be60e2c414d475b3ccd8228f943f.jpeg?imageView2/2/w/750",
+      "https://zc3wp-uploads.bkt.zuicool.com/2026/07/2c2ba11def8962edeb6a45ef5d4866943d5c3f28.jpeg?imageView2/2/w/750",
+      "https://zc3wp-uploads.bkt.zuicool.com/2026/07/9451dd21324487a598a406648f1f8822b72fc6aa.jpeg?imageView2/2/w/750",
+      "https://zc3wp-uploads.bkt.zuicool.com/2026/07/7df55d94733a1c137e41c217dc75570313e1a2f6.jpeg?imageView2/2/w/750",
+      "https://zc3wp-uploads.bkt.zuicool.com/2026/07/866a569e0656b73499eef10758d47aeeb34c7a1d.jpeg?imageView2/2/w/750"
+    ],
+    "candidateMedia": [
+      {
+        "index": 0,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/07/2c2ba11def8962edeb6a45ef5d4866943d5c3f28.jpeg?imageView2/2/w/750",
+        "caption": "成都秋天的童话赛事安排、两组规模及男女前三奖金原图",
+        "sha256": "ae4fb8bcf4f33848a36f7adf5da5ac2ebffd780ab19ea6a6d2d7cab80181bd94",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/33530"
+      },
+      {
+        "index": 1,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/07/9451dd21324487a598a406648f1f8822b72fc6aa.jpeg?imageView2/2/w/750",
+        "caption": "完整报名须知：费用、年龄、健康禁忌、参赛声明及通知",
+        "sha256": "897ea87bbda250f47f533a85b08777d7719a3bd4b0f36e00828398a46ddd373c",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/33530"
+      },
+      {
+        "index": 2,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/07/7df55d94733a1c137e41c217dc75570313e1a2f6.jpeg?imageView2/2/w/750",
+        "caption": "参赛服奖牌、领物日程及两组发令结束时间原图",
+        "sha256": "953c4372cc507791b0c43bafaee4851542b0e3e20de23f0949dbfa2469cd6865",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/33530"
+      },
+      {
+        "index": 3,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/07/866a569e0656b73499eef10758d47aeeb34c7a1d.jpeg?imageView2/2/w/750",
+        "caption": "赛道示意、检录关门、补给、处罚申诉及安全保险原图",
+        "sha256": "26a0da7b74af437b166687d15670aff1a8d7f681445be6fa269a7af3d90acddf",
+        "kind": "route",
+        "sourceUrl": "https://reg.zuicool.com/33530"
+      }
+    ],
+    "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+    "documentedNotCompleted": [
+      "本届独立官网身份及可复制规程尚未确认"
+    ],
+    "taskKind": "scope_mapping_needed",
+    "instruction": "记录为笼统未列章节/持续核验，尚无精确缺项；先对照逐项edits覆盖范围和当前章节映射，不把全场重新识别或无限partial当作完成条件。"
+  },
+  {
+    "id": "zuiku-95805",
+    "name": "2026福达揭阳马拉松",
+    "reviewScope": "仅列出的 edits、facts、groupCorrections 和 viewedCrops 已人工核对；其余已保存章节保持原值，不声明全场完整规程逐条复核完成。",
+    "documentedNotes": [],
+    "latestAudit": "batch5-reviewed-audit.json",
+    "currentSectionCount": 8,
+    "currentMediaCount": 4,
+    "officialSources": [],
+    "reviewedImageUrls": [],
+    "candidateMedia": [
+      {
+        "index": 0,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/0339b948119a0ce594da2795faece263597b6023.jpeg?imageView2/2/w/750",
+        "caption": "赛事图文资料",
+        "sha256": "e67d692de40189872290ad606eb1c4608b9e6ee919a37e3d950251e1e7b00fb2",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/98207"
+      },
+      {
+        "index": 1,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/4b0a5f73f44e2a4b4975c79c909ee248a90bab7a.jpeg?imageView2/2/w/750",
+        "caption": "赛事图文资料",
+        "sha256": "aa1391387538bbefc295e7c5cc2f504fe0eb8833563a1d776d923d3309dac7e2",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/98207"
+      },
+      {
+        "index": 2,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/8251d135660c3f1b30b3df93d85b12c187ff6aeb.jpeg?imageView2/2/w/1024",
+        "caption": "竞赛规程",
+        "sha256": "444183363835e9338a2c914b357937dc8c843ed7deeca8899cff053d6d555f46",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/98207"
+      },
+      {
+        "index": 3,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/68a44d121d39985f43282acaec9707fa19b7c824.jpeg?imageView2/2/w/1024",
+        "caption": "竞赛规程",
+        "sha256": "9771ed8d84298695ab810ce2a94e1d7c49f9aad15bcbb0dc6ac0174d58ea0166",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/98207"
+      }
+    ],
+    "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+    "documentedNotCompleted": [
+      "未列章节及原图区域的逐条人工核对"
+    ],
+    "taskKind": "scope_mapping_needed",
+    "instruction": "记录为笼统未列章节/持续核验，尚无精确缺项；先对照逐项edits覆盖范围和当前章节映射，不把全场重新识别或无限partial当作完成条件。"
+  },
+  {
+    "id": "zuiku-28718",
+    "name": "龙江岁月·2026漳州半程马拉松",
+    "reviewScope": "仅列出的 edits、facts、groupCorrections 和 viewedCrops 已人工核对；其余已保存章节保持原值，不声明全场完整规程逐条复核完成。",
+    "documentedNotes": [],
+    "latestAudit": "batch5-reviewed-audit.json",
+    "currentSectionCount": 16,
+    "currentMediaCount": 8,
+    "officialSources": [],
+    "reviewedImageUrls": [],
+    "candidateMedia": [
+      {
+        "index": 0,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/7b602e75e4fb14714f091d8392050534d876837c.jpeg?imageView2/2/w/750",
+        "caption": "赛事图文资料",
+        "sha256": "607d50334d72732162818a32418c83e939309a27c1c18a6aae8991633078bceb",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/87614"
+      },
+      {
+        "index": 1,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/1b6881f303d88504c36487439d9c9db0d2605dbc.jpeg?imageView2/2/w/750",
+        "caption": "赛事图文资料",
+        "sha256": "954d993675c11bb184ac28a80c59513fab5e4db38acdd0f0c39fdd1a36900994",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/87614"
+      },
+      {
+        "index": 2,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/e60f13e253dc9eae834b02605dc7767829554e5d.jpeg?imageView2/2/w/750",
+        "caption": "赛事图文资料",
+        "sha256": "0fda67d9f1bd83ac7530ddb147fe2a5f3110c05084723e4c5dc978df89ab4cc8",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/87614"
+      },
+      {
+        "index": 3,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/0ff40b5c82c8d39fe27dcd83fc22eca4a1c0c72b.jpeg?imageView2/2/w/750",
+        "caption": "赛事图文资料",
+        "sha256": "79ee26e038beb1fb31e624cdf3b53b0f62e7d227418743975d7ad24cc35bd0ae",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/87614"
+      },
+      {
+        "index": 4,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/11c49228ed99251457d8cc24028e2c61315d6102.jpeg?imageView2/2/w/750",
+        "caption": "赛事图文资料",
+        "sha256": "153149e110648ce0604ceed38fcb3b5413c2daba619615dd9bf866aef08d78a9",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/87614"
+      },
+      {
+        "index": 5,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/7fc3bba3ebd8c5b1cd918f761d4dfc695f30aa9c.jpeg?imageView2/2/w/1190",
+        "caption": "分组路线与海拔资料",
+        "sha256": "ae58a6ee77b9322434461dc51de83b546fa38e23eb7cab3397745ca2ee0acfa7",
+        "kind": "route",
+        "sourceUrl": "https://reg.zuicool.com/87614"
+      },
+      {
+        "index": 6,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/e94375e64ab877b1c7acebe18e03b7eff814b0a2.jpeg?imageView2/2/w/1190",
+        "caption": "竞赛规程",
+        "sha256": "693628dbcf2970447ed347c336c8c5a7510870a1e5aca67ff91f912283867294",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/87614"
+      },
+      {
+        "index": 7,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/2ce332800308f1661863a607669bd07503aa7776.jpeg?imageView2/2/w/1190",
+        "caption": "竞赛规程",
+        "sha256": "c83f8009ee73ed755e6bbb03af227dbb102aaa56fab62e3f1532f344d07fda37",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/87614"
+      }
+    ],
+    "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+    "documentedNotCompleted": [
+      "未列章节及原图区域的逐条人工核对"
+    ],
+    "taskKind": "scope_mapping_needed",
+    "instruction": "记录为笼统未列章节/持续核验，尚无精确缺项；先对照逐项edits覆盖范围和当前章节映射，不把全场重新识别或无限partial当作完成条件。"
+  },
+  {
+    "id": "zuiku-94116",
+    "name": "2026 UTO助力首百越野训练赛·南北湖站",
+    "reviewScope": "本届提供的8张原图已逐块完整实际查看，现行报名平台文字已交叉核对。清晰规程条款完整整理，地图细小标签不猜写；未独立确认组委会官网及其额外规程，因此不宣称全部官方来源终审。",
+    "documentedNotes": [],
+    "latestAudit": "batch8-reviewed-audit.json",
+    "currentSectionCount": 13,
+    "currentMediaCount": 8,
+    "officialSources": [],
+    "reviewedImageUrls": [
+      "https://zc3wp-uploads.bkt.zuicool.com/2026/10/9c678fdd6518192e30c30e55d6ab61794bcf106c.jpeg?imageView2/2/w/750",
+      "https://zc3wp-uploads.bkt.zuicool.com/2026/10/cd9984ed6c4944ad5bf81a735e8b5d52b691e399.jpeg?imageView2/2/w/750",
+      "https://zc3wp-uploads.bkt.zuicool.com/2026/10/d461d4c7d4a4892f473471a28ec5fc59cbe36db0.jpeg?imageView2/2/w/750",
+      "https://zc3wp-uploads.bkt.zuicool.com/2026/10/b9bcd9843ec9424495055a2e401f2f0773bac0f0.jpeg?imageView2/2/w/750",
+      "https://zc3wp-uploads.bkt.zuicool.com/2026/10/0d099d85dfa37b4749cc9b8dcea8a874d681b8e0.jpeg?imageView2/2/w/750",
+      "https://zc3wp-uploads.bkt.zuicool.com/2026/10/b6e04962a76fe20234bbcd08ecbb9ae99bb8166d.jpeg?imageView2/2/w/750",
+      "https://zc3wp-uploads.bkt.zuicool.com/2026/10/d43bb08f7512420bb99f0cdd4265b8aa6f7a2237.jpeg?imageView2/2/w/750",
+      "https://zc3wp-uploads.bkt.zuicool.com/2026/10/59570b9c7092320cc3f304accea27c5e16845afb.jpeg?imageView2/2/w/750"
+    ],
+    "candidateMedia": [
+      {
+        "index": 0,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/9c678fdd6518192e30c30e55d6ab61794bcf106c.jpeg?imageView2/2/w/750",
+        "caption": "南北湖站2026年10月9日官方延期公告：原11月22日暂定改至12月6日及退款说明",
+        "sha256": "efca60882a1bf6cff48a3fa6643507a1e40a5c14d895bb065f9c2fee7e0dcf30",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/34572"
+      },
+      {
+        "index": 1,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/cd9984ed6c4944ad5bf81a735e8b5d52b691e399.jpeg?imageView2/2/w/750",
+        "caption": "本站完整报名、路线、资格、装备、奖励、退费及领物原图（按原图顺序保留）",
+        "sha256": "ebc1de676fe52038df78ffcd390bd233230fc4de4807f51f62c2760cd452a376",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/34572"
+      },
+      {
+        "index": 2,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/d461d4c7d4a4892f473471a28ec5fc59cbe36db0.jpeg?imageView2/2/w/750",
+        "caption": "本站完整报名、路线、资格、装备、奖励、退费及领物原图（按原图顺序保留）",
+        "sha256": "009f28d958834437341c8398c7575bf10ea9c623f633dc794707da1533c8c22d",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/34572"
+      },
+      {
+        "index": 3,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/b9bcd9843ec9424495055a2e401f2f0773bac0f0.jpeg?imageView2/2/w/750",
+        "caption": "本站完整报名、路线、资格、装备、奖励、退费及领物原图（按原图顺序保留）",
+        "sha256": "16797cdfc7a46c25b7701d6976f22d0a7bd4172e5857d311ec0fa4319d210e6d",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/34572"
+      },
+      {
+        "index": 4,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/0d099d85dfa37b4749cc9b8dcea8a874d681b8e0.jpeg?imageView2/2/w/750",
+        "caption": "本站完整报名、路线、资格、装备、奖励、退费及领物原图（按原图顺序保留）",
+        "sha256": "98b8dc0624a7e3fe23b5cf10a162b641fa0f228ee696ea4d336784836a647c2e",
+        "kind": "route",
+        "sourceUrl": "https://reg.zuicool.com/34572"
+      },
+      {
+        "index": 5,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/b6e04962a76fe20234bbcd08ecbb9ae99bb8166d.jpeg?imageView2/2/w/750",
+        "caption": "本站完整报名、路线、资格、装备、奖励、退费及领物原图（按原图顺序保留）",
+        "sha256": "39439fe65838f8bbf65a16623dfc3fbf7c4151c4980c0938dc93533d81fe58d4",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/34572"
+      },
+      {
+        "index": 6,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/d43bb08f7512420bb99f0cdd4265b8aa6f7a2237.jpeg?imageView2/2/w/750",
+        "caption": "本站完整报名、路线、资格、装备、奖励、退费及领物原图（按原图顺序保留）",
+        "sha256": "dab00be936070ee241dc8ec03e7d9211eff9949a1a97843e5f9f27730cdda64e",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/34572"
+      },
+      {
+        "index": 7,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/59570b9c7092320cc3f304accea27c5e16845afb.jpeg?imageView2/2/w/750",
+        "caption": "本站完整报名、路线、资格、装备、奖励、退费及领物原图（按原图顺序保留）",
+        "sha256": "84b4a3f42b84a279d2a08a51b73d73de77970e153d5035570b175a5776c64620",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/34572"
+      }
+    ],
+    "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+    "documentedNotCompleted": [
+      "独立组委会官网及额外规程未确认；搜索故障或无关结果不代表没有官网。"
+    ],
+    "taskKind": "scope_mapping_needed",
+    "instruction": "记录为笼统未列章节/持续核验，尚无精确缺项；先对照逐项edits覆盖范围和当前章节映射，不把全场重新识别或无限partial当作完成条件。"
+  },
+  {
+    "id": "zuiku-61737",
+    "name": "2026爱徒野昆明滇池“冬季恋歌”为爱奔跑",
+    "reviewScope": "实际完整查看本场全部原图连续分块，恢复全部文字条款和表格；独立重新取得当前报名页交叉核对。独立官网域名未确认，未称搜索无果等于不存在官网。",
+    "documentedNotes": [],
+    "latestAudit": "batch9-reviewed-audit.json",
+    "currentSectionCount": 10,
+    "currentMediaCount": 5,
+    "officialSources": [],
+    "reviewedImageUrls": [
+      "https://zc3wp-uploads.bkt.zuicool.com/2026/07/8b2495d9eab319e4bb8b20a8e7e8e790a600a3d6.jpeg?imageView2/2/w/750",
+      "https://zc3wp-uploads.bkt.zuicool.com/2026/07/85cbed10438c5afd8cba045423951817e15e340d.jpeg?imageView2/2/w/750",
+      "https://zc3wp-uploads.bkt.zuicool.com/2026/07/edb84323532081dfac98be6e18a786e19550d4ae.jpeg?imageView2/2/w/750",
+      "https://zc3wp-uploads.bkt.zuicool.com/2026/07/a1231b922f4974e93ded8cb9e5ae5807b4200a5f.jpeg?imageView2/2/w/750",
+      "https://zc3wp-uploads.bkt.zuicool.com/2026/07/9ff69db1dd9d2c7f2c19cd250cfe995cdfd349d5.jpeg?imageView2/2/w/750"
+    ],
+    "candidateMedia": [
+      {
+        "index": 0,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/07/8b2495d9eab319e4bb8b20a8e7e8e790a600a3d6.jpeg?imageView2/2/w/750",
+        "caption": "报名海报（报名日期来源）",
+        "sha256": "672bb20a7c204d532915a331dd2fdc57bd8b2cfe9a0eb30368367be033d04e77",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/36514"
+      },
+      {
+        "index": 1,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/07/85cbed10438c5afd8cba045423951817e15e340d.jpeg?imageView2/2/w/750",
+        "caption": "组织、项目规模及奖金表",
+        "sha256": "baeea5770546b74bd8f564abe399c8be7c5600876eee5db261f47cff65a020cb",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/36514"
+      },
+      {
+        "index": 2,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/07/edb84323532081dfac98be6e18a786e19550d4ae.jpeg?imageView2/2/w/750",
+        "caption": "报名须知、费用、战队积分抵费、年龄及健康要求",
+        "sha256": "92a33c847d0e9ba8914eb19ac14a074a7131ca1fe3cb85236d0e63d75e3e2bbc",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/36514"
+      },
+      {
+        "index": 3,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/07/a1231b922f4974e93ded8cb9e5ae5807b4200a5f.jpeg?imageView2/2/w/750",
+        "caption": "参赛服、奖牌、领物日程及赛道图",
+        "sha256": "afb4c3f7caead0ad7c6c581517ecf044ebd81848d2533117694ca19fe8c1ab92",
+        "kind": "route",
+        "sourceUrl": "https://reg.zuicool.com/36514"
+      },
+      {
+        "index": 4,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/07/9ff69db1dd9d2c7f2c19cd250cfe995cdfd349d5.jpeg?imageView2/2/w/750",
+        "caption": "完整竞赛、补给、处罚、安全及退改条款",
+        "sha256": "63e2ae592df3d2020eb0b5c4a1580d89c78bca1de99915da323c0feb98b7571e",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/36514"
+      }
+    ],
+    "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+    "documentedNotCompleted": [
+      "未取得可核验独立组委会官网域名及本届独立官网文字，故reviewLevel保持partial。",
+      "领物地点原图待定，未将赛地填作领物地址。"
+    ],
+    "taskKind": "scope_mapping_needed",
+    "instruction": "记录为笼统未列章节/持续核验，尚无精确缺项；先对照逐项edits覆盖范围和当前章节映射，不把全场重新识别或无限partial当作完成条件。"
+  },
+  {
+    "id": "zuiku-47641",
+    "name": "2026爱徒野成都“冬季恋歌”为爱奔跑",
+    "reviewScope": "实际完整查看本场全部原图连续分块，恢复全部文字条款和表格；独立重新取得当前报名页交叉核对。独立官网域名未确认，未称搜索无果等于不存在官网。",
+    "documentedNotes": [],
+    "latestAudit": "batch9-reviewed-audit.json",
+    "currentSectionCount": 10,
+    "currentMediaCount": 5,
+    "officialSources": [],
+    "reviewedImageUrls": [
+      "https://zc3wp-uploads.bkt.zuicool.com/2026/08/165b33b7adfdd80498764f003c09b3ebc62e0049.jpeg?imageView2/2/w/750",
+      "https://zc3wp-uploads.bkt.zuicool.com/2026/08/54fc66a208c4d5ccaadd150e139322d513b1acba.jpeg?imageView2/2/w/750",
+      "https://zc3wp-uploads.bkt.zuicool.com/2026/08/2dcb501f96f519e828d61d93a22a1f4125278a18.jpeg?imageView2/2/w/750",
+      "https://zc3wp-uploads.bkt.zuicool.com/2026/08/5212dc216821a2b70372e4618ec43a15646a85f3.jpeg?imageView2/2/w/750",
+      "https://zc3wp-uploads.bkt.zuicool.com/2026/08/9810acf0c8ab88e9c628ca4330279bd8338b373e.jpeg?imageView2/2/w/750"
+    ],
+    "candidateMedia": [
+      {
+        "index": 0,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/165b33b7adfdd80498764f003c09b3ebc62e0049.jpeg?imageView2/2/w/750",
+        "caption": "报名海报（报名日期来源）",
+        "sha256": "47b74430bfb08dc6741e88e536b7e6b0b3ccfbf5a30c4639ffb9b26827b05902",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/75661"
+      },
+      {
+        "index": 1,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/54fc66a208c4d5ccaadd150e139322d513b1acba.jpeg?imageView2/2/w/750",
+        "caption": "组织、项目规模及奖金表",
+        "sha256": "320f38ea3c635b1668111a42c52292a237f8837de1b5bc49fd74c76ff57b33c8",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/75661"
+      },
+      {
+        "index": 2,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/2dcb501f96f519e828d61d93a22a1f4125278a18.jpeg?imageView2/2/w/750",
+        "caption": "报名须知、费用、年龄及健康要求",
+        "sha256": "d3ca445a4984e20d0ad47d9d695a7fb3c2a1ab4ead68b476b14e020dc17a16aa",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/75661"
+      },
+      {
+        "index": 3,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/5212dc216821a2b70372e4618ec43a15646a85f3.jpeg?imageView2/2/w/750",
+        "caption": "参赛服、奖牌、领物日程及赛道图",
+        "sha256": "deb937f4c84e8ae07277ce61a8f888bc240d447972c6c59a301c308f2ce85e71",
+        "kind": "route",
+        "sourceUrl": "https://reg.zuicool.com/75661"
+      },
+      {
+        "index": 4,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/9810acf0c8ab88e9c628ca4330279bd8338b373e.jpeg?imageView2/2/w/750",
+        "caption": "完整竞赛、补给、处罚、安全及退改条款",
+        "sha256": "499c8edc87c54acc2960cbaf90e6dab9d6bff26cecfb3aac2244e39286522fb5",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/75661"
+      }
+    ],
+    "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+    "documentedNotCompleted": [
+      "未取得可核验独立组委会官网域名及本届独立官网文字，故reviewLevel保持partial。",
+      "领物地点原图待定，未将赛地填作领物地址。"
+    ],
+    "taskKind": "scope_mapping_needed",
+    "instruction": "记录为笼统未列章节/持续核验，尚无精确缺项；先对照逐项edits覆盖范围和当前章节映射，不把全场重新识别或无限partial当作完成条件。"
+  },
+  {
+    "id": "zuiku-86038",
+    "name": "2027建发厦门马拉松赛",
+    "reviewScope": "仅 edits 指明章节、facts 数值和 imageReviews 对应原图已实际核对。其余已保存正文及原图保留；未声明未列章节逐条完成，亦未声明保存/部署/线上展示完成。",
+    "documentedNotes": [],
+    "latestAudit": "third-reviewed-audit.json",
+    "currentSectionCount": 12,
+    "currentMediaCount": 6,
+    "officialSources": [
+      {
+        "url": "https://www.xmim.org/information/detail/2100793180791853058",
+        "title": "2027建发厦门马拉松竞赛规程",
+        "role": "official_website",
+        "verified": true,
+        "identityReview": "核对官方明确链接、当届标题/年份/举办地及对应原图；仅验证此页面或当前赛事标识明确的公开接口，不授权共享站点的整个域名。",
+        "characters": 8763,
+        "bodySha256": "fa841eb07432662bdbb07997a7240107132c306e1a42c41ef05c4092fde3c92f",
+        "checkedAt": "2026-11-17T18:15:32.191Z"
+      },
+      {
+        "url": "https://www.xmim.org/information/detail/2100792807301664769",
+        "title": "2027建发厦门马拉松报名须知",
+        "role": "official_website",
+        "verified": true,
+        "identityReview": "核对官方明确链接、当届标题/年份/举办地及对应原图；仅验证此页面或当前赛事标识明确的公开接口，不授权共享站点的整个域名。",
+        "characters": 4215,
+        "bodySha256": "e5f606345eda5086fe4ea6645543a33474277859b062d19f0649992bde6b179c",
+        "checkedAt": "2026-11-17T18:15:32.191Z"
+      }
+    ],
+    "reviewedImageUrls": [],
+    "candidateMedia": [
+      {
+        "index": 0,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/b13f17296f96737583abd949e8af5bff3be88e3e.jpeg?imageView2/2/w/750",
+        "caption": "竞赛规程",
+        "sha256": "144aa574f17b6d4dd3967b85731674aebc0277db0bdba441eef2f43759d8f862",
+        "kind": "guide",
+        "sourceUrl": "https://zuicool.com/news/archives/316719"
+      },
+      {
+        "index": 1,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/d28e81e7df51a988380c918ccca5107bb729c79b.jpeg?imageView2/2/w/750",
+        "caption": "竞赛规程",
+        "sha256": "6c9dc8fe93ed831945f95e32fe028eae6817112c88dce45847882a8d9afdf38f",
+        "kind": "guide",
+        "sourceUrl": "https://zuicool.com/news/archives/316719"
+      },
+      {
+        "index": 2,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/da9afbd0a97cd05ddd71e619e57ce3e4fdf3f380.jpeg?imageView2/2/w/750",
+        "caption": "竞赛规程",
+        "sha256": "a9ce8cfb78b4ec39c45d587024cd04d0d76dae820c25de9eb42510497d04c918",
+        "kind": "guide",
+        "sourceUrl": "https://zuicool.com/news/archives/316713"
+      },
+      {
+        "index": 3,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/ee26d49465e0e81436334b9fdf920ef3a405e147.jpeg?imageView2/2/w/750",
+        "caption": "竞赛规程",
+        "sha256": "3ac268de784d167d6c6cb3922e3d538d8391edfcd34579d3b65077f6b310fcf3",
+        "kind": "guide",
+        "sourceUrl": "https://zuicool.com/news/archives/316713"
+      },
+      {
+        "index": 4,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/72005c5dc8c2aaf8bf3094c46c5b49f7687b295f.jpeg?imageView2/2/w/750",
+        "caption": "赛事图文资料",
+        "sha256": "a1bd85f1602392e0f71e067dd437cc54f6d82bdfe2057a42bfaca1046fc02248",
+        "kind": "guide",
+        "sourceUrl": "https://zuicool.com/news/archives/316713"
+      },
+      {
+        "index": 5,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/76a49a0fa9bbdb060c7bcbee60e6d8e9c9af9f47.jpeg?imageView2/2/w/750",
+        "caption": "竞赛规程",
+        "sha256": "dff5e1b3f3858c46b9d6198cd35f74d9be7050d3e9fe4146f6ea8e82cc35b8d0",
+        "kind": "guide",
+        "sourceUrl": "https://zuicool.com/news/archives/316713"
+      }
+    ],
+    "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+    "documentedNotCompleted": [
+      "未列章节及未查看原图的逐条人工核对"
+    ],
+    "taskKind": "scope_mapping_needed",
+    "instruction": "记录为笼统未列章节/持续核验，尚无精确缺项；先对照逐项edits覆盖范围和当前章节映射，不把全场重新识别或无限partial当作完成条件。"
+  },
+  {
+    "id": "zuiku-87902",
+    "name": "2027爱徒野昆明滇池“新年跑”为爱奔跑",
+    "reviewScope": "实际完整查看本场全部原图连续分块，恢复全部文字条款和表格；独立重新取得当前报名页交叉核对。独立官网域名未确认，未称搜索无果等于不存在官网。",
+    "documentedNotes": [],
+    "latestAudit": "batch9-reviewed-audit.json",
+    "currentSectionCount": 10,
+    "currentMediaCount": 4,
+    "officialSources": [],
+    "reviewedImageUrls": [
+      "https://zc3wp-uploads.bkt.zuicool.com/2026/09/2775cfdb4c0cc5b37ecd0314bd860dc60350daf2.jpeg?imageView2/2/w/750",
+      "https://zc3wp-uploads.bkt.zuicool.com/2026/09/ca22e1b153b629fab08fafa4900d72a99348b0c3.jpeg?imageView2/2/w/750",
+      "https://zc3wp-uploads.bkt.zuicool.com/2026/09/93262464666d34ee54f5cdb3a5afdb358fb7dc46.jpeg?imageView2/2/w/750",
+      "https://zc3wp-uploads.bkt.zuicool.com/2026/09/17639a4d245ee89f3e85e8faf46b368e7166ca95.jpeg?imageView2/2/w/750"
+    ],
+    "candidateMedia": [
+      {
+        "index": 0,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/2775cfdb4c0cc5b37ecd0314bd860dc60350daf2.jpeg?imageView2/2/w/750",
+        "caption": "报名海报（报名日期来源）",
+        "sha256": "535a8df68309749de1a897d728d42b911b3c6c854697d5fef6a1c811e96f342c",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/90931"
+      },
+      {
+        "index": 1,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/ca22e1b153b629fab08fafa4900d72a99348b0c3.jpeg?imageView2/2/w/750",
+        "caption": "组织、项目规模及奖金表",
+        "sha256": "800f1da7d086a11be98aa09cbe647a8369c47e2358d667d29b2c0bc1ab28b303",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/90931"
+      },
+      {
+        "index": 2,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/93262464666d34ee54f5cdb3a5afdb358fb7dc46.jpeg?imageView2/2/w/750",
+        "caption": "报名须知、年龄健康、物资、领物日程及赛道图",
+        "sha256": "823fef785441ee18dcfa9870ed58752bdc696472c2e9232874b49ce2ca889021",
+        "kind": "route",
+        "sourceUrl": "https://reg.zuicool.com/90931"
+      },
+      {
+        "index": 3,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/17639a4d245ee89f3e85e8faf46b368e7166ca95.jpeg?imageView2/2/w/750",
+        "caption": "完整竞赛、补给、处罚、安全及退改条款",
+        "sha256": "5fb3fc034057967d496fcfcc3ba14e9009bdc617313eab0f995bf66dbeb37e54",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/90931"
+      }
+    ],
+    "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+    "documentedNotCompleted": [
+      "未取得可核验独立组委会官网域名及本届独立官网文字，故reviewLevel保持partial。",
+      "领物地点原图待定，未将赛地填作领物地址。"
+    ],
+    "taskKind": "scope_mapping_needed",
+    "instruction": "记录为笼统未列章节/持续核验，尚无精确缺项；先对照逐项edits覆盖范围和当前章节映射，不把全场重新识别或无限partial当作完成条件。"
+  },
+  {
+    "id": "zuiku-32373",
+    "name": "2027重庆马拉松",
+    "reviewScope": "仅 edits 列出的章节、facts 列出的数值及 imageReviews 对应原图实际核对；其他已保存正文及原图保留，未声明全篇逐条人工校对、保存或线上展示。",
+    "documentedNotes": [],
+    "latestAudit": "second-reviewed-audit.json",
+    "currentSectionCount": 10,
+    "currentMediaCount": 4,
+    "officialSources": [
+      {
+        "url": "https://www.cqmarathon.com/News/Detail/21070C87897D1015",
+        "title": "2027重庆马拉松竞赛规程",
+        "role": "official_website",
+        "verified": true,
+        "identityReview": "人工核对当届标题、年份、赛事地点及本届原图；仅此明确页面验证，不授权站点全域",
+        "characters": 7956,
+        "bodySha256": "6dd84c1961df9ba994bd27851403c43890b400e5bbf739596e63b2fb8b14f2cb",
+        "checkedAt": "2026-11-17T18:03:29.245Z"
+      },
+      {
+        "url": "https://www.cqmarathon.com/News/Detail/1CB916B2816F6C28",
+        "title": "2027重庆马拉松报名须知",
+        "role": "official_website",
+        "verified": true,
+        "identityReview": "人工核对当届标题、年份、赛事地点及本届原图；仅此明确页面验证，不授权站点全域",
+        "characters": 3476,
+        "bodySha256": "a2e3bd7df8355332fd3f8f66bebe3aaf6102d6c92f288eda8496aa6249090f38",
+        "checkedAt": "2026-11-17T18:03:29.245Z"
+      }
+    ],
+    "reviewedImageUrls": [],
+    "candidateMedia": [
+      {
+        "index": 0,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/19cb76cf576e5c877f7a38db006fa61b7f7d381d.jpeg?imageView2/2/w/750",
+        "caption": "竞赛规程",
+        "sha256": "47492a9c3e5c049625f4f48beab61e36065caac85f9618505fdaa9c6328005c1",
+        "kind": "guide",
+        "sourceUrl": "https://zuicool.com/news/archives/313734"
+      },
+      {
+        "index": 1,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/d10b762d4ab0f590e187f7aee7b14d16e16f1671.jpeg?imageView2/2/w/750",
+        "caption": "竞赛规程",
+        "sha256": "cd9c8e42b31bb9630d9749458f65d549ae60863eb88165d06abbbbbee4695620",
+        "kind": "guide",
+        "sourceUrl": "https://zuicool.com/news/archives/313734"
+      },
+      {
+        "index": 2,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/f223cbefba80c6d44bd718f88993ee687869a11b.jpeg?imageView2/2/w/750",
+        "caption": "竞赛规程",
+        "sha256": "d78dca0852ef4bc51d83f757a6163738b2fcf4b1189ccdf6e1d0096aa7dfe843",
+        "kind": "guide",
+        "sourceUrl": "https://zuicool.com/news/archives/313734"
+      },
+      {
+        "index": 3,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/f595d99f02c73638fca383c63d114e04cd6fdcb6.jpeg?imageView2/2/w/750",
+        "caption": "赛事图文资料",
+        "sha256": "3e5818a2e91132ef60ea13757ba76614136298e82503afd44c279c36d766e1b2",
+        "kind": "guide",
+        "sourceUrl": "https://zuicool.com/news/archives/313734"
+      }
+    ],
+    "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+    "documentedNotCompleted": [
+      "未列出章节的逐条完整人工校对"
+    ],
+    "taskKind": "scope_mapping_needed",
+    "instruction": "记录为笼统未列章节/持续核验，尚无精确缺项；先对照逐项edits覆盖范围和当前章节映射，不把全场重新识别或无限partial当作完成条件。"
+  },
+  {
+    "id": "zuiku-11904",
+    "name": "2027爱徒野成都“新年跑”为爱奔跑",
+    "reviewScope": "实际完整查看本场全部原图连续分块，恢复全部文字条款和表格；独立重新取得当前报名页交叉核对。独立官网域名未确认，未称搜索无果等于不存在官网。",
+    "documentedNotes": [],
+    "latestAudit": "batch9-reviewed-audit.json",
+    "currentSectionCount": 10,
+    "currentMediaCount": 4,
+    "officialSources": [],
+    "reviewedImageUrls": [
+      "https://zc3wp-uploads.bkt.zuicool.com/2026/09/37adb1a4c6af3c8bd6482035337ef117e414f599.jpeg?imageView2/2/w/750",
+      "https://zc3wp-uploads.bkt.zuicool.com/2026/09/8bb4f5d056b9d60266ec08bb143031b072f5d8a9.jpeg?imageView2/2/w/750",
+      "https://zc3wp-uploads.bkt.zuicool.com/2026/09/649068961cbd9cf1ca1f568fb2b4e819609e71fa.jpeg?imageView2/2/w/750",
+      "https://zc3wp-uploads.bkt.zuicool.com/2026/09/1c9f264c764004559d65fdc4c381f643ee6ded06.jpeg?imageView2/2/w/750"
+    ],
+    "candidateMedia": [
+      {
+        "index": 0,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/37adb1a4c6af3c8bd6482035337ef117e414f599.jpeg?imageView2/2/w/750",
+        "caption": "报名海报（报名日期来源）",
+        "sha256": "77cbc9842d3ccce35fd0cc557ac6b905f3246f2c177c160fe435cdea1cead754",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/63077"
+      },
+      {
+        "index": 1,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/8bb4f5d056b9d60266ec08bb143031b072f5d8a9.jpeg?imageView2/2/w/750",
+        "caption": "组织、项目规模及奖金表",
+        "sha256": "bcba5ce5cb119c389c54b3e20817d92f05c648fd4bb506be559b8ce3cdafdc61",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/63077"
+      },
+      {
+        "index": 2,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/649068961cbd9cf1ca1f568fb2b4e819609e71fa.jpeg?imageView2/2/w/750",
+        "caption": "报名须知、费用、年龄健康、物资、领物日程及赛道图",
+        "sha256": "d28c08df084afda4e504e6baafa3c325e71df30db9103d266fbb102499e5af55",
+        "kind": "route",
+        "sourceUrl": "https://reg.zuicool.com/63077"
+      },
+      {
+        "index": 3,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/1c9f264c764004559d65fdc4c381f643ee6ded06.jpeg?imageView2/2/w/750",
+        "caption": "完整竞赛、补给、处罚、安全及退改条款",
+        "sha256": "6e634954dd968268e257ef8dbbdd127fe4524d4bb896c65dae203d50fbdba18c",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/63077"
+      }
+    ],
+    "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+    "documentedNotCompleted": [
+      "未取得可核验独立组委会官网域名及本届独立官网文字，故reviewLevel保持partial。",
+      "领物地点原图待定，未将赛地填作领物地址。"
+    ],
+    "taskKind": "scope_mapping_needed",
+    "instruction": "记录为笼统未列章节/持续核验，尚无精确缺项；先对照逐项edits覆盖范围和当前章节映射，不把全场重新识别或无限partial当作完成条件。"
+  }
+]

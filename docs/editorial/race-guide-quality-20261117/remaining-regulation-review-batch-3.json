@@ -1,0 +1,1038 @@
+{
+  "createdAt": "2026-11-18T19:12:00.158Z",
+  "baseline": "batch12-all-inventory.json",
+  "baselineAt": "2026-11-18T19:07:38.631Z",
+  "owner": "unassigned remaining queue",
+  "mutuallyExclusiveAcross": "remaining-regulation-review-batch-{1,2,3}.json",
+  "assignments": [
+    {
+      "id": "zuiku-22160",
+      "name": "2026-2027香港跨年越野赛",
+      "reviewScope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "documentedNotes": [
+        "原图3的47.2km为路线实际距离，组名/宣传仍50km；起跑23:59与原人工描述23:59:59均保留。ITRA未获本次原图确认，不改空值。仅图3/4/5/6/10已完整连续分块查看，图0/1/2/7/8/9/11—16未审；其他规程、奖励、医疗、环境原文均保留，未宣称完整赛事校对。"
+      ],
+      "latestAudit": "batch11-reviewed-audit.json",
+      "currentSectionCount": 16,
+      "currentMediaCount": 17,
+      "officialSources": [],
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/10/92ebd18dceabf8b1b970f13f50214211b7858f7b.jpeg?imageView2/2/w/1280",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/10/241bc6dc4ecd62eda0d2ec619ad97064d253c9fa.png?imageView2/2/w/1280",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/10/76389a9e2b96a9160f101148005e6c3911118f41.png?imageView2/2/w/1280",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/10/86bd12f9a5651a2f63c59b9c6999b6ebb1f41974.png?imageView2/2/w/2400",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/10/406c1ab44d6c317fdf46c18860ecdc63a84b7830.png?imageView2/2/w/1280"
+      ],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "原图3的47.2km为路线实际距离，组名/宣传仍50km；起跑23:59与原人工描述23:59:59均保留。ITRA未获本次原图确认，不改空值。仅图3/4/5/6/10已完整连续分块查看，图0/1/2/7/8/9/11—16未审；其他规程、奖励、医疗、环境原文均保留，未宣称完整赛事校对。",
+      "priority": 4
+    },
+    {
+      "id": "zuiku-88804",
+      "name": "崃户外·2026古道越野训练赛",
+      "reviewScope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "documentedNotes": [
+        "完整查看图1/2/3/4/5/6；仅图0封面与图7后续处罚/保障未审原文保留。图中800人、表列各200人与原人工700人/沐光500人冲突；图4小时与人工3.5小时冲突；日程亲子9:05与组别9:00冲突，均明示保留，不覆原组别人数和时长。图5健康可声明替代与图6强制体检相互不一致，两个完整条款都保留。健康11项已补全妊娠；保险50万元/5万元及不同保障时段完整保留。"
+      ],
+      "latestAudit": "batch11-reviewed-audit.json",
+      "currentSectionCount": 16,
+      "currentMediaCount": 8,
+      "officialSources": [],
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/11/1b265f6f42f63f22a3c85d483d2296a5a2a1f554.jpeg?imageView2/2/w/1024",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/ebf4d15810799b1e4de56ea1ce1fb1ad91f6b0bc.png?imageView2/2/w/750",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/b0a083f3a0a532819be994394c44ed7061cbb108.png?imageView2/2/w/750",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/c1e0d1170f50727c6bda51ccb616d2a96cc5bd7c.jpeg?imageView2/2/w/750",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/03800e249db90ba65ecb9aa449b6fd139347d8c1.jpeg?imageView2/2/w/750",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/11/52c0a6e3a5d8d18e028b115232b55c08ef1c76ed.jpeg?imageView2/2/w/1024"
+      ],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "完整查看图1/2/3/4/5/6；仅图0封面与图7后续处罚/保障未审原文保留。图中800人、表列各200人与原人工700人/沐光500人冲突；图4小时与人工3.5小时冲突；日程亲子9:05与组别9:00冲突，均明示保留，不覆原组别人数和时长。图5健康可声明替代与图6强制体检相互不一致，两个完整条款都保留。健康11项已补全妊娠；保险50万元/5万元及不同保障时段完整保留。",
+      "priority": 5
+    },
+    {
+      "id": "zuiku-85841",
+      "name": "2027大K探索系列赛 | 第二届西施壁湖越野挑战赛",
+      "reviewScope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "documentedNotes": [
+        "逐图核对图片2、4、5、6、7、8、9、10、11、14、19全部连续裁图。赛道图12/13、赛事日程图3及其它未列图片未审，现有章节不动；未将本次局部校对宣称为全篇。"
+      ],
+      "latestAudit": "batch11-reviewed-audit.json",
+      "currentSectionCount": 22,
+      "currentMediaCount": 21,
+      "officialSources": [],
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/10/1d1919a999f2bdba0ef7b8aefd3db9b144f29c16.jpeg?imageView2/2/w/1080",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/10/25af708e955387fb08525bbdc4ff6bcf88200e26.jpeg?imageView2/2/w/1080",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/10/f833ab9659bc768ed1d9e09eb21bcc38687c6734.jpeg?imageView2/2/w/1080",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/10/43a2e1eda89186d912ebf7949ee3a55b459b06d7.jpeg?imageView2/2/w/1080",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/10/1b2a620386a176daa9e1549c1b3a4567d4f60079.jpeg?imageView2/2/w/1080",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/10/6cde2267a1acccdb9f7c2aa6ee5215fff2ef248c.jpeg?imageView2/2/w/1080",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/10/b852322b0268bb7339b9a3594bb18226115eb15f.jpeg?imageView2/2/w/1080",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/10/31991dc9c1a601f728b1d414c90d8706d70b50e8.jpeg?imageView2/2/w/1080",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/10/cef055454c78ba9ddfdd2f1e36b89e4c2bb7d1c9.jpeg?imageView2/2/w/1080",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/10/d6ff23f895e83f05c044a963a82facc260d3e3e6.jpeg?imageView2/2/w/1080",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/10/b4124f4284f16088700986f60f06f292b44e19a6.jpeg?imageView2/2/w/1080"
+      ],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "逐图核对图片2、4、5、6、7、8、9、10、11、14、19全部连续裁图。赛道图12/13、赛事日程图3及其它未列图片未审，现有章节不动；未将本次局部校对宣称为全篇。",
+      "priority": 6
+    },
+    {
+      "id": "zuiku-31314",
+      "name": "2027普洱思茅马拉松",
+      "reviewScope": "仅列出的 edits、facts、groupCorrections 和 viewedCrops 已人工核对；其余已保存章节保持原值，不声明全场完整规程逐条复核完成。",
+      "documentedNotes": [
+        "{\"issue\":\"18节末尾、19节存在另一版健康条款续文，与10节交叠；为避免未经核对删除完整条款，本轮保留未审旧文，后续需整段对照去重。奖励和处罚全段亦未完成逐条审查。\",\"status\":\"duplicate_health_and_remaining_sections_pending\"}"
+      ],
+      "latestAudit": "batch6-reviewed-audit.json",
+      "currentSectionCount": 24,
+      "currentMediaCount": 9,
+      "officialSources": [
+        {
+          "url": "https://www.sichuanbojiesports.com/races/2027-pu-er-si-mao-marathon",
+          "title": "扫码报名",
+          "role": "official_website",
+          "verified": true,
+          "identityReview": "承办方官网当届赛事页面2027普洱思茅马拉松、2027年1月10日08:00明确，页面链接规程306与报名须知305。",
+          "characters": 521,
+          "bodySha256": "85ad04c8ef77f27a7dd5eadcb70f3377b520cc7520edd338c65318ece5f1e5e7",
+          "checkedAt": "2026-11-18T05:48:25.253Z"
+        },
+        {
+          "url": "https://www.sichuanbojiesports.com/articles/306",
+          "title": "竞赛规程|赛事官网|博捷体育",
+          "role": "official_website",
+          "verified": true,
+          "identityReview": "官网本届赛事明确链接articles/306，规程为图片，实际查看0/1700/3400裁切，未将搜索摘要作为正文。",
+          "characters": 34,
+          "bodySha256": "10b73a206c8509d768b4e046ec8599f987283b6c22c578e7a86a6f6305e62c72",
+          "checkedAt": "2026-11-18T05:48:25.253Z"
+        },
+        {
+          "url": "https://www.sichuanbojiesports.com/articles/305",
+          "title": "报名须知|赛事官网|博捷体育",
+          "role": "official_website",
+          "verified": true,
+          "identityReview": "本届赛事明确链接articles/305报名须知，图片中费用、首周8折、报名时间与本届身份匹配。",
+          "characters": 34,
+          "bodySha256": "eb029463d31d53fca454b2add2e7d948bec2c0fb63bdba2bd504a9eee927e193",
+          "checkedAt": "2026-11-18T05:48:25.253Z"
+        }
+      ],
+      "reviewedImageUrls": [],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "{\"issue\":\"18节末尾、19节存在另一版健康条款续文，与10节交叠；为避免未经核对删除完整条款，本轮保留未审旧文，后续需整段对照去重。奖励和处罚全段亦未完成逐条审查。\",\"status\":\"duplicate_health_and_remaining_sections_pending\"}",
+      "priority": 7
+    },
+    {
+      "id": "zuiku-67371",
+      "name": "2026国际垂直马拉松总决赛广州周大福金融中心站",
+      "reviewScope": "局部校对（partial）：列出的已实际查看长图按完整章节清理，资格、费用阶段、流程及表格不截断；其余既有可靠正文和人工资料原样保留。源冲突及最终通知缺失见auditNotes。",
+      "documentedNotes": [
+        "本轮仅图7和图10已完整整理；图11/12退款、T恤/背心尺码、奖励/赛程及处罚未逐项看，保留原值并标partial；不得把未审图内已有坏表称已校对。"
+      ],
+      "latestAudit": "batch7-reviewed-audit.json",
+      "currentSectionCount": 16,
+      "currentMediaCount": 11,
+      "officialSources": [],
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/ff7b770ec624ef6076cb69ac939e16c8cca206f4.jpeg?imageView2/2/w/750",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/ba64c25909506cee546f02eb557491a075f6037a.jpeg?imageView2/2/w/750"
+      ],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "本轮仅图7和图10已完整整理；图11/12退款、T恤/背心尺码、奖励/赛程及处罚未逐项看，保留原值并标partial；不得把未审图内已有坏表称已校对。",
+      "priority": 8
+    },
+    {
+      "id": "zuiku-75827",
+      "name": "“古堰画乡”BIGK·2026莲都100越野挑战赛",
+      "reviewScope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "documentedNotes": [
+        "仅上述完整表格和资格已校；激励返现、住宿自媒体福利、强制装备、完整医疗/处罚及全部退改条款尚未全篇审完，原文及原图保留。"
+      ],
+      "latestAudit": "batch6-reviewed-audit.json",
+      "currentSectionCount": 15,
+      "currentMediaCount": 10,
+      "officialSources": [],
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/08/13e9451c3faccbd2f1044f1ca8de4a0e052ea6cd.jpeg?imageView2/2/w/750",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/08/2b15c93296424da2a2b995d21a650a98d3398f0a.jpeg?imageView2/2/w/750",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/08/80d45321963b83b06ea5d287cb8afd45e1359f0b.jpeg?imageView2/2/w/750"
+      ],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "仅上述完整表格和资格已校；激励返现、住宿自媒体福利、强制装备、完整医疗/处罚及全部退改条款尚未全篇审完，原文及原图保留。",
+      "priority": 9
+    },
+    {
+      "id": "zuiku-50491",
+      "name": "拓路者·2026烟台城市越野赛",
+      "reviewScope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "documentedNotes": [
+        "本轮实际看10张原图（3组地图／站点表、报名、资格、健康、奖励、战队、联赛、装备），6／8／10／11—17整章处理；其他宣传与后半规则／日程／退赛／申诉未审原图，保持全部原文，仍partial。"
+      ],
+      "latestAudit": "batch8-reviewed-audit.json",
+      "currentSectionCount": 27,
+      "currentMediaCount": 27,
+      "officialSources": [],
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/fe14c91db72e87770889e8a260653a27e4f44248.png?imageView2/2/w/640",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/fe7faa055477a04c3de886d9b6ed4d34d988807c.png?imageView2/2/w/640",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/79eeb72d1bdf649a04d6181105434841546de80c.png?imageView2/2/w/640",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/a3a6e57bc3627c18de6566791471042abc10c3da.png?imageView2/2/w/640",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/928155a450a9b7e523e7545da049a551b6c86326.png?imageView2/2/w/640",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/58bbc89839b93ecb759223318756f5c494bb6fe2.png?imageView2/2/w/640",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/e2703ba4de6421be2226390f8b08ead516a87e47.png?imageView2/2/w/640",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/e3cd52039ffb97a09dd53e6799c284f0217dc4c4.jpeg?imageView2/2/w/640",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/3b4a3fb26303d6fb1715c56418be215b75ac93a4.jpeg?imageView2/2/w/640",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/4826561419415891ae400fb2cf37efa91e299ff8.jpeg?imageView2/2/w/640"
+      ],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "本轮实际看10张原图（3组地图／站点表、报名、资格、健康、奖励、战队、联赛、装备），6／8／10／11—17整章处理；其他宣传与后半规则／日程／退赛／申诉未审原图，保持全部原文，仍partial。",
+      "priority": 10
+    },
+    {
+      "id": "zuiku-14679",
+      "name": "2026西山越野荟·北京模式口站",
+      "reviewScope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "documentedNotes": [
+        "三张实际查看（新日期封面、第一长图、第二长图）；后两张法律/竞赛规程长图尚未逐条复核，现值保留。"
+      ],
+      "latestAudit": "batch6-reviewed-audit.json",
+      "currentSectionCount": 15,
+      "currentMediaCount": 7,
+      "officialSources": [],
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/ac26b6894e47959827b447157927cbf2d1e3263b.jpeg?imageView2/2/w/750",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/dd9df1ca227b6c74b7ab53251399dc764b826dd4.jpeg?imageView2/2/w/750",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/9c051386a92b2441b9933a18361b733e095cdfb4.jpeg?imageView2/2/w/750"
+      ],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "三张实际查看（新日期封面、第一长图、第二长图）；后两张法律/竞赛规程长图尚未逐条复核，现值保留。",
+      "priority": 11
+    },
+    {
+      "id": "caa-1000485007",
+      "name": "2026惠州马拉松",
+      "reviewScope": "仅列出的 edits、facts、groupCorrections 和 viewedCrops 已人工核对；其余已保存章节保持原值，不声明全场完整规程逐条复核完成。",
+      "documentedNotes": [
+        "{\"issue\":\"长图8500像素之后奖金、处罚及联系方式本轮未逐条查看，保留旧正文，不标整场规程已完整审校。\",\"status\":\"remaining_long_image_sections_pending\"}"
+      ],
+      "latestAudit": "batch5-reviewed-audit.json",
+      "currentSectionCount": 12,
+      "currentMediaCount": 1,
+      "officialSources": [],
+      "reviewedImageUrls": [],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "{\"issue\":\"长图8500像素之后奖金、处罚及联系方式本轮未逐条查看，保留旧正文，不标整场规程已完整审校。\",\"status\":\"remaining_long_image_sections_pending\"}",
+      "priority": 13
+    },
+    {
+      "id": "zuiku-73329",
+      "name": "2026长汀千年古城越野赛",
+      "reviewScope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "documentedNotes": [
+        "本次仅完整查看原图2/3（组织、路线、流程、报名、健康、退改、装备），未审图片1/4/5/6/7及对应章节全部原样保留。"
+      ],
+      "latestAudit": "batch11-reviewed-audit.json",
+      "currentSectionCount": 7,
+      "currentMediaCount": 8,
+      "officialSources": [],
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/10/fc7cbaa5d5be899d266a0ea055d2c5f1c08a779d.jpeg?imageView2/2/w/750",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/10/95993db1801ec0ee7508e2510a1a52b4acbf658b.jpeg?imageView2/2/w/750"
+      ],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "本次仅完整查看原图2/3（组织、路线、流程、报名、健康、退改、装备），未审图片1/4/5/6/7及对应章节全部原样保留。",
+      "priority": 15
+    },
+    {
+      "id": "zuiku-35462",
+      "name": "2026 FUGA训练赛东莞年度总决赛",
+      "reviewScope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "documentedNotes": [
+        "本轮仅1张规程长图第8—16节局部校对；最新路线更新、领物物资矩阵、奖品表及处罚长规程未逐项审完，保留旧文及原图。",
+        "24km卡片6h关门13:30与比赛日程07:30起跑、13:30关门相符；其他旧路线段可能写14:30，本批未据未审图修卡片。"
+      ],
+      "latestAudit": "batch5-reviewed-audit.json",
+      "currentSectionCount": 20,
+      "currentMediaCount": 8,
+      "officialSources": [],
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/8f341e8c4aca7fe0b044f981a78467358978b084.jpeg?imageView2/2/w/750"
+      ],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "本轮仅1张规程长图第8—16节局部校对；最新路线更新、领物物资矩阵、奖品表及处罚长规程未逐项审完，保留旧文及原图。\n24km卡片6h关门13:30与比赛日程07:30起跑、13:30关门相符；其他旧路线段可能写14:30，本批未据未审图修卡片。",
+      "priority": 16
+    },
+    {
+      "id": "zuiku-60343",
+      "name": "2026鲲鹏勇士·坪山40越野赛",
+      "reviewScope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "documentedNotes": [
+        "本轮实际查看并放大规程/路线分段长图1张，完成第4—9节局部；后续强装、罚则、领物、奖励等未逐条审完，保留原文和所有路线图。"
+      ],
+      "latestAudit": "batch5-reviewed-audit.json",
+      "currentSectionCount": 13,
+      "currentMediaCount": 6,
+      "officialSources": [],
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/10/454fd6d83df677721db3692f7f29e53d5e001116.jpeg?imageView2/2/w/1024"
+      ],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "本轮实际查看并放大规程/路线分段长图1张，完成第4—9节局部；后续强装、罚则、领物、奖励等未逐条审完，保留原文和所有路线图。",
+      "priority": 17
+    },
+    {
+      "id": "caa-1000452082",
+      "name": "2026池州马拉松",
+      "reviewScope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "documentedNotes": [
+        "本轮只核本届竞赛规程中的报名规模、关门、补给及奖励表。其他宣传、报名须知、领物原图和处罚段落尚未全篇审完；保留原值，不标整场完成。"
+      ],
+      "latestAudit": "batch5-reviewed-audit.json",
+      "currentSectionCount": 15,
+      "currentMediaCount": 12,
+      "officialSources": [],
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/08/7ae7ea410ff7e0a370114ec9815577c5c7cbaa18.jpeg?imageView2/2/w/750",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/08/62d3a3f72036fed257f39253b1fbc2eff26263e0.jpeg?imageView2/2/w/750"
+      ],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "本轮只核本届竞赛规程中的报名规模、关门、补给及奖励表。其他宣传、报名须知、领物原图和处罚段落尚未全篇审完；保留原值，不标整场完成。",
+      "priority": 18
+    },
+    {
+      "id": "caa-1000452094",
+      "name": "2026奉贤海湾森林半程马拉松",
+      "reviewScope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "documentedNotes": [
+        "仅本张竞赛规程原图局部审完；另张报名须知未在本轮逐条核对。未找到可复制本届独立官网正文。"
+      ],
+      "latestAudit": "third-reviewed-audit.json",
+      "currentSectionCount": 7,
+      "currentMediaCount": 3,
+      "officialSources": [],
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/08/035af93a1a9055e08b142f3b80ba2ffc7c3875ee.jpeg?imageView2/2/w/750"
+      ],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "仅本张竞赛规程原图局部审完；另张报名须知未在本轮逐条核对。未找到可复制本届独立官网正文。",
+      "priority": 19
+    },
+    {
+      "id": "caa-1000452114",
+      "name": "2026福建永定土楼半程马拉松",
+      "reviewScope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "documentedNotes": [
+        "未审看本赛事其他3张规程长图，相关章节继续保留原值，不标全篇已校对。"
+      ],
+      "latestAudit": "third-reviewed-audit.json",
+      "currentSectionCount": 21,
+      "currentMediaCount": 10,
+      "officialSources": [],
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/9e6a57e6fae10167006fd13ae8be2bd93a926a80.jpeg?imageView2/2/w/750"
+      ],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "未审看本赛事其他3张规程长图，相关章节继续保留原值，不标全篇已校对。",
+      "priority": 20
+    },
+    {
+      "id": "caa-1000453054",
+      "name": "2026连云港·连岛半程马拉松",
+      "reviewScope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "documentedNotes": [
+        "只审第一张竞赛规程关门/补给表；后续年龄、资格、跑团赛及奖励表尚未逐项审完，保留既有内容和原图。"
+      ],
+      "latestAudit": "batch5-reviewed-audit.json",
+      "currentSectionCount": 7,
+      "currentMediaCount": 3,
+      "officialSources": [],
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/08/676413ea24ec6aa6a854149abd3963b07987bcdd.jpeg?imageView2/2/w/750"
+      ],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "只审第一张竞赛规程关门/补给表；后续年龄、资格、跑团赛及奖励表尚未逐项审完，保留既有内容和原图。",
+      "priority": 21
+    },
+    {
+      "id": "caa-1000454068",
+      "name": "2026象山半程马拉松",
+      "reviewScope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "documentedNotes": [
+        "仅上述四张表已逐格核，原年龄/出生日期、免费报名、领物、保险与联系方式等段落未全篇审完，保留原值。"
+      ],
+      "latestAudit": "batch5-reviewed-audit.json",
+      "currentSectionCount": 9,
+      "currentMediaCount": 1,
+      "officialSources": [],
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/08/5455413ed48525c8f8b1dffa32b41dd98d1c45f3.jpeg?imageView2/2/w/750"
+      ],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "仅上述四张表已逐格核，原年龄/出生日期、免费报名、领物、保险与联系方式等段落未全篇审完，保留原值。",
+      "priority": 22
+    },
+    {
+      "id": "caa-1000456006",
+      "name": "2026西昌邛海湿地马拉松暨跑遍四川（凉山·西昌站）",
+      "reviewScope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "documentedNotes": [
+        "仅关门/补给完整表、直通漏句、领物时段及组别发令/时长已核；年龄、健康和全部奖金表仍未逐项复核，保留原值和原图。"
+      ],
+      "latestAudit": "batch6-reviewed-audit.json",
+      "currentSectionCount": 13,
+      "currentMediaCount": 6,
+      "officialSources": [],
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/f3ba5e5168537b9e54483043ebae220de845c463.jpeg?imageView2/2/w/1024",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/9c083dce10e11a58429c3224e378d1de8f022790.jpeg?imageView2/2/w/1024",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/4c72efe575da980e51d474cad4656a8b7ce3e99b.jpeg?imageView2/2/w/1024"
+      ],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "仅关门/补给完整表、直通漏句、领物时段及组别发令/时长已核；年龄、健康和全部奖金表仍未逐项复核，保留原值和原图。",
+      "priority": 23
+    },
+    {
+      "id": "caa-1000472006",
+      "name": "2026防城港马拉松",
+      "reviewScope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "documentedNotes": [
+        "本张规程原图实际核对，其他报名宣传、健康和奖励长图未在本轮逐项审完。未取得可复制的本届独立官网文字。"
+      ],
+      "latestAudit": "third-reviewed-audit.json",
+      "currentSectionCount": 10,
+      "currentMediaCount": 9,
+      "officialSources": [],
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/92b00cc3a30e6efdf6ad823a87be77ae198e771f.jpeg?imageView2/2/w/750"
+      ],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "本张规程原图实际核对，其他报名宣传、健康和奖励长图未在本轮逐项审完。未取得可复制的本届独立官网文字。",
+      "priority": 24
+    },
+    {
+      "id": "caa-1000477009",
+      "name": "2026黄冈半程马拉松",
+      "reviewScope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "documentedNotes": [
+        "本轮仅费用/奖励长图1张实际查看，含完整3表及后续处罚保险联系方式；前序路线/健康/关门表未全部逐图审完。"
+      ],
+      "latestAudit": "batch6-reviewed-audit.json",
+      "currentSectionCount": 11,
+      "currentMediaCount": 5,
+      "officialSources": [],
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/10/3b4d22d5fcd5cd01769781633983e1eb668942ab.jpeg?imageView2/2/w/750"
+      ],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "本轮仅费用/奖励长图1张实际查看，含完整3表及后续处罚保险联系方式；前序路线/健康/关门表未全部逐图审完。",
+      "priority": 25
+    },
+    {
+      "id": "caa-1000479060",
+      "name": "2026贵州铜仁·梵净山马拉松",
+      "reviewScope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "documentedNotes": [
+        "未取得可复制本届独立官网文字，仅本张规程原图所列局部审完，其他长图未逐项核对。"
+      ],
+      "latestAudit": "third-reviewed-audit.json",
+      "currentSectionCount": 20,
+      "currentMediaCount": 8,
+      "officialSources": [],
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/c014d0e05576141d5733ee19e5be834e3700ec4c.jpeg?imageView2/2/w/750"
+      ],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "未取得可复制本届独立官网文字，仅本张规程原图所列局部审完，其他长图未逐项核对。",
+      "priority": 26
+    },
+    {
+      "id": "caa-1000483001",
+      "name": "2026宁都红色半程马拉松",
+      "reviewScope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "documentedNotes": [
+        "未取得本届可复制官方文字；本张本届竞赛规程长图完成所列局部审图，其余长图未逐项核对。"
+      ],
+      "latestAudit": "third-reviewed-audit.json",
+      "currentSectionCount": 8,
+      "currentMediaCount": 6,
+      "officialSources": [],
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/49bafb26c45cb178bd1d4b5606adb53096ae1be0.jpeg?imageView2/2/w/750"
+      ],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "未取得本届可复制官方文字；本张本届竞赛规程长图完成所列局部审图，其余长图未逐项核对。",
+      "priority": 27
+    },
+    {
+      "id": "caa-1000499000",
+      "name": "2026宁德马拉松",
+      "reviewScope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "documentedNotes": [
+        "仅本届报名须知长图及对应官网文字完成局部校对；规程、奖项其他长图本批未逐项审完，保留原值。"
+      ],
+      "latestAudit": "third-reviewed-audit.json",
+      "currentSectionCount": 18,
+      "currentMediaCount": 7,
+      "officialSources": [],
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/8572d08e5931c22da410668c44b211c383249f23.jpeg?imageView2/2/w/750"
+      ],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "仅本届报名须知长图及对应官网文字完成局部校对；规程、奖项其他长图本批未逐项审完，保留原值。",
+      "priority": 28
+    },
+    {
+      "id": "caa-1000503000",
+      "name": "2026梅州马拉松",
+      "reviewScope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "documentedNotes": [
+        "只审看本届报名原图中的费用与健康/退改局部；资格证书限定2024年9月30日至2026年9月30日保留原文，不根据报名日期重新推算。其余规程图尚未逐项校对。"
+      ],
+      "latestAudit": "third-reviewed-audit.json",
+      "currentSectionCount": 23,
+      "currentMediaCount": 7,
+      "officialSources": [],
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/10/2ee1d20c184645262e4edb3a4ff7c969ccd15c1e.png?imageView2/2/w/751"
+      ],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "只审看本届报名原图中的费用与健康/退改局部；资格证书限定2024年9月30日至2026年9月30日保留原文，不根据报名日期重新推算。其余规程图尚未逐项校对。",
+      "priority": 29
+    },
+    {
+      "id": "zuiku-11747",
+      "name": "2026第七届宁波逐野四明·问秋行",
+      "reviewScope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "documentedNotes": [
+        "本赛事其他31张图片本批未全部逐项审完，旧重复规程和后续物资/安全条款仍保留，不能标全篇已校对。"
+      ],
+      "latestAudit": "fourth-reviewed-audit.json",
+      "currentSectionCount": 37,
+      "currentMediaCount": 32,
+      "officialSources": [],
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/10/38917a8af83e46191926435eb2d55684127c5356.jpeg?imageView2/2/w/750"
+      ],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "本赛事其他31张图片本批未全部逐项审完，旧重复规程和后续物资/安全条款仍保留，不能标全篇已校对。",
+      "priority": 30
+    },
+    {
+      "id": "zuiku-16715",
+      "name": "2026第三届中国·十八洞山地越野挑战赛",
+      "reviewScope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "documentedNotes": [
+        "本轮3张图完成所列局部，规程后续领奖、判罚等未全部逐条审完。"
+      ],
+      "latestAudit": "batch5-reviewed-audit.json",
+      "currentSectionCount": 7,
+      "currentMediaCount": 6,
+      "officialSources": [],
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/10/7c6586096010673816dc4d737168756afe62c63a.jpeg?imageView2/2/w/750",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/10/9e497722680c5e33f1e19f069aff220b6d6a43be.jpeg?imageView2/2/w/750",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/10/a11f13bbf78fddae6855181d12e637c9a6a2f95c.jpeg?imageView2/2/w/750"
+      ],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "本轮3张图完成所列局部，规程后续领奖、判罚等未全部逐条审完。",
+      "priority": 31
+    },
+    {
+      "id": "zuiku-27643",
+      "name": "2026第六届武汉东湖山径赛",
+      "reviewScope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "documentedNotes": [
+        "路线地图主体和海拔图不转全文，原图保留；本轮未将其余奖励、交通及联系方式未审段落标全篇完成。"
+      ],
+      "latestAudit": "batch6-reviewed-audit.json",
+      "currentSectionCount": 11,
+      "currentMediaCount": 5,
+      "officialSources": [],
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/1ed930853ab177628e3c077a33f726f63fe16a98.jpeg?imageView2/2/w/750",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/35b0632fb407b055dceb1eae21f06725429bd76a.jpeg?imageView2/2/w/750",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/4c8de21ea91dbf742c3848bd26e0330709317086.jpeg?imageView2/2/w/750",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/0d1eb8c995d6b9b5fbda7a2452bc7e0ffcef3c9b.png?imageView2/2/w/750"
+      ],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "路线地图主体和海拔图不转全文，原图保留；本轮未将其余奖励、交通及联系方式未审段落标全篇完成。",
+      "priority": 32
+    },
+    {
+      "id": "zuiku-30642",
+      "name": "2026 UTO助力首百越野训练赛·杭州所前站（青化山越野赛）",
+      "reviewScope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "documentedNotes": [
+        "费用228/168/118来自当前报名页，原图强装无收费阶段，不计算、不新增阶段；其他服装尺码/多奖品复杂表本轮尚未逐格看图核完，保留现值供后续。"
+      ],
+      "latestAudit": "batch6-reviewed-audit.json",
+      "currentSectionCount": 5,
+      "currentMediaCount": 5,
+      "officialSources": [],
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/10/6b7d0e2f433ba50c2a4af06f94e98f0e0713cc5b.jpeg?imageView2/2/w/750"
+      ],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "费用228/168/118来自当前报名页，原图强装无收费阶段，不计算、不新增阶段；其他服装尺码/多奖品复杂表本轮尚未逐格看图核完，保留现值供后续。",
+      "priority": 33
+    },
+    {
+      "id": "zuiku-32919",
+      "name": "2026第五届·1390海岛越野赛",
+      "reviewScope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "documentedNotes": [
+        "本轮3张原图局部已看，100KM/17KM路线及其他装备资格未逐项审核，不标全篇。"
+      ],
+      "latestAudit": "batch5-reviewed-audit.json",
+      "currentSectionCount": 14,
+      "currentMediaCount": 15,
+      "officialSources": [],
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/11/2a88368e49e7ea043941b2125481898effc7cf78.png?imageView2/2/w/750",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/11/af6ed4626862e1b421efd7c6ce1124d1f6b45e34.png?imageView2/2/w/750",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/11/a1df54911d7756d6e8f4257de6e648e1e81461fe.png?imageView2/2/w/750"
+      ],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "本轮3张原图局部已看，100KM/17KM路线及其他装备资格未逐项审核，不标全篇。",
+      "priority": 34
+    },
+    {
+      "id": "zuiku-33682",
+      "name": "2026 Keep超跑节",
+      "reviewScope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "documentedNotes": [
+        "本轮实际查看总规程两张长图；补录PLUS/10KM专属规程图片未逐条审完，不用旧总规程覆盖补录11月2日退费日期。"
+      ],
+      "latestAudit": "batch6-reviewed-audit.json",
+      "currentSectionCount": 12,
+      "currentMediaCount": 8,
+      "officialSources": [],
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/10/c4f83b6b571b562c722dff6a918cea4c989a5fb0.jpeg?imageView2/2/w/1024",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/10/fbaf41ba6d506d6ce65eed2e9a5fd636f97adf04.jpeg?imageView2/2/w/1024"
+      ],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "本轮实际查看总规程两张长图；补录PLUS/10KM专属规程图片未逐条审完，不用旧总规程覆盖补录11月2日退费日期。",
+      "priority": 35
+    },
+    {
+      "id": "zuiku-34162",
+      "name": "2026新奇天·富春雪岭越野赛",
+      "reviewScope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "documentedNotes": [
+        "仅组别设置图和报名/退费图已逐项核对；线路分段、资格与强制装备其他图未在本批逐项审完。精英要求原文写分数800/680，未自行补加未载符号。"
+      ],
+      "latestAudit": "fourth-reviewed-audit.json",
+      "currentSectionCount": 11,
+      "currentMediaCount": 12,
+      "officialSources": [],
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/10/e3fe8b7cf1d3657f4171943a5ef880a15662a3ca.jpeg?imageView2/2/w/1200",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/10/17550d65c5203e74f3243ef4b6710a42ab26687f.jpeg?imageView2/2/w/1200"
+      ],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "仅组别设置图和报名/退费图已逐项核对；线路分段、资格与强制装备其他图未在本批逐项审完。精英要求原文写分数800/680，未自行补加未载符号。",
+      "priority": 36
+    },
+    {
+      "id": "zuiku-54272",
+      "name": "2026广东从化一百越野赛",
+      "reviewScope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "documentedNotes": [
+        "仅本张费用原图局部完成审图，路线、资格和强制装备其他长图尚未逐项审完。"
+      ],
+      "latestAudit": "fourth-reviewed-audit.json",
+      "currentSectionCount": 29,
+      "currentMediaCount": 28,
+      "officialSources": [],
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/07/d68fce01bb28ac3641cf713a22cfc4ef5e00c9be.jpeg?imageView2/2/w/750"
+      ],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "仅本张费用原图局部完成审图，路线、资格和强制装备其他长图尚未逐项审完。",
+      "priority": 37
+    },
+    {
+      "id": "zuiku-58332",
+      "name": "拓路者2026第八届镇江南山越野赛",
+      "reviewScope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "documentedNotes": [
+        "仅2张日期/报名原图完成所列局部校对，强制装备与4张路线图尚未逐项审完；原规程报名更正截止10月31日及不退费条款保留，不自行延长。"
+      ],
+      "latestAudit": "batch5-reviewed-audit.json",
+      "currentSectionCount": 14,
+      "currentMediaCount": 10,
+      "officialSources": [],
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/10/8843c80d42d6b3e745fbb483dbe8ecc2cad9e710.jpeg?imageView2/2/w/1024",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/10/03eb7ee82946358620055e14c444647d512448ef.jpeg?imageView2/2/w/1024"
+      ],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "仅2张日期/报名原图完成所列局部校对，强制装备与4张路线图尚未逐项审完；原规程报名更正截止10月31日及不退费条款保留，不自行延长。",
+      "priority": 38
+    },
+    {
+      "id": "zuiku-71615",
+      "name": "2026第十届武汉姚家山越野跑挑战赛",
+      "reviewScope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "documentedNotes": [
+        "原规程处罚列有亲子组字样而本届仅两组，属于原文自身问题，不猜删条款。费用328/208及10人团报九折本轮对应图片尚未审完，保留可靠当前原值。"
+      ],
+      "latestAudit": "batch6-reviewed-audit.json",
+      "currentSectionCount": 12,
+      "currentMediaCount": 4,
+      "officialSources": [],
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/804f0ed44331d8209d6dec300a6769d0d24b2aa8.jpeg?imageView2/2/w/750",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/11/7654fc5b9d2c947e6a2c5b6ca5bb45e4a39a1c12.png?imageView2/2/w/640"
+      ],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "原规程处罚列有亲子组字样而本届仅两组，属于原文自身问题，不猜删条款。费用328/208及10人团报九折本轮对应图片尚未审完，保留可靠当前原值。",
+      "priority": 39
+    },
+    {
+      "id": "zuiku-72712",
+      "name": "2026贺州姑婆山越野赛",
+      "reviewScope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "documentedNotes": [
+        "实际查看第5、6两张完整规程长图，清理所含第5—7章；其余赛事规则/强装图片未逐条审完，保留原值。"
+      ],
+      "latestAudit": "batch6-reviewed-audit.json",
+      "currentSectionCount": 12,
+      "currentMediaCount": 9,
+      "officialSources": [],
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/06/2a6c623c2999116ef0d0af89e63f85d1d40bd510.jpeg?imageView2/2/w/750",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/06/c542782191faeecae83556ac1e9c327cf5d928bd.jpeg?imageView2/2/w/750"
+      ],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "实际查看第5、6两张完整规程长图，清理所含第5—7章；其余赛事规则/强装图片未逐条审完，保留原值。",
+      "priority": 40
+    },
+    {
+      "id": "zuiku-73285",
+      "name": "“重走长征路·奋进新征程”2026甘泉县红色越野挑战赛",
+      "reviewScope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "documentedNotes": [
+        "本轮实际查看1张赛事奖励长图；可靠原文1—4节完整保留未清空，体检、资格、强装、起跑9:30和关门时长的其他文字来源未在本轮逐图审完，不标全篇校对。"
+      ],
+      "latestAudit": "batch5-reviewed-audit.json",
+      "currentSectionCount": 6,
+      "currentMediaCount": 3,
+      "officialSources": [],
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/10/a804af01a002d4303388395a823a60ec2a287f81.jpeg?imageView2/2/w/750"
+      ],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "本轮实际查看1张赛事奖励长图；可靠原文1—4节完整保留未清空，体检、资格、强装、起跑9:30和关门时长的其他文字来源未在本轮逐图审完，不标全篇校对。",
+      "priority": 41
+    },
+    {
+      "id": "zuiku-77580",
+      "name": "2026第二届“山海杯”千岛湖大峡谷登山大会",
+      "reviewScope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "documentedNotes": [
+        "本轮实际看1张完整文字长图，恢复列出段落；路线及尺码图片尚未逐格审完。"
+      ],
+      "latestAudit": "batch5-reviewed-audit.json",
+      "currentSectionCount": 5,
+      "currentMediaCount": 4,
+      "officialSources": [],
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/57bf72cc60c121d00319dffcf87e93fc3e7f5808.jpeg?imageView2/2/w/750"
+      ],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "本轮实际看1张完整文字长图，恢复列出段落；路线及尺码图片尚未逐格审完。",
+      "priority": 42
+    },
+    {
+      "id": "zuiku-80201",
+      "name": "霞路相逢·三山五岳 拓路者2026南岳衡山越野赛",
+      "reviewScope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "documentedNotes": [
+        "仅本张资格/费用规程原图完成局部审图，其他路线、奖项、退款及装备表本批尚未逐项审完；未凭当前OCR修改其他邮箱或金额。"
+      ],
+      "latestAudit": "fourth-reviewed-audit.json",
+      "currentSectionCount": 29,
+      "currentMediaCount": 13,
+      "officialSources": [],
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/08/ece621d8d2853ea546ceb529a4ece237adfaf05d.jpeg?imageView2/2/w/750"
+      ],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "仅本张资格/费用规程原图完成局部审图，其他路线、奖项、退款及装备表本批尚未逐项审完；未凭当前OCR修改其他邮箱或金额。",
+      "priority": 43
+    },
+    {
+      "id": "zuiku-81646",
+      "name": "2026爱徒野大理洱海“秋天的童话”为爱奔跑",
+      "reviewScope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "documentedNotes": [
+        "4.3km同图上文10:00和下表11:00矛盾；不填写cutoffAt或以算术裁决。其他报名资格和安全完整规程本轮未逐图审完。"
+      ],
+      "latestAudit": "batch5-reviewed-audit.json",
+      "currentSectionCount": 5,
+      "currentMediaCount": 5,
+      "officialSources": [],
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/8394714cf4444f29cd3c58ddce5438442a89cdf4.jpeg?imageView2/2/w/750",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/07831734dab48f60392363f4d01c056528265339.jpeg?imageView2/2/w/750",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/3c95d1060405445f8e1d9fc4f4359b564c0a1f21.jpeg?imageView2/2/w/750"
+      ],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "4.3km同图上文10:00和下表11:00矛盾；不填写cutoffAt或以算术裁决。其他报名资格和安全完整规程本轮未逐图审完。",
+      "priority": 44
+    },
+    {
+      "id": "zuiku-82566",
+      "name": "伯希和·2026崇义100超级越野赛",
+      "reviewScope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "documentedNotes": [
+        "两张完整规程长图已实际查看，列出的局部逐格完成；第三张后续补充图未审完，保留原文及原图。"
+      ],
+      "latestAudit": "batch6-reviewed-audit.json",
+      "currentSectionCount": 14,
+      "currentMediaCount": 3,
+      "officialSources": [],
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/11/f39159b165a6c5ef677642c6dbfb712bbc7d6767.jpeg?imageView2/2/w/1024",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/11/c2c91a37254001a1d2036fe6b2853112182d42e1.jpeg?imageView2/2/w/1024"
+      ],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "两张完整规程长图已实际查看，列出的局部逐格完成；第三张后续补充图未审完，保留原文及原图。",
+      "priority": 45
+    },
+    {
+      "id": "zuiku-84761",
+      "name": "2027楠溪江跑山赛",
+      "reviewScope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "documentedNotes": [
+        "仅本张资格/费用/奖励长图局部已审；其余路线、装备、退赛长图尚未逐项校对。"
+      ],
+      "latestAudit": "fourth-reviewed-audit.json",
+      "currentSectionCount": 18,
+      "currentMediaCount": 11,
+      "officialSources": [],
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/10/c6de22453b7f723c136a911aa397f9049a594185.jpeg?imageView2/2/w/1200"
+      ],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "仅本张资格/费用/奖励长图局部已审；其余路线、装备、退赛长图尚未逐项校对。",
+      "priority": 46
+    },
+    {
+      "id": "zuiku-88270",
+      "name": "2026重庆梁平百里竹海古蜀道越野赛",
+      "reviewScope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "documentedNotes": [
+        "本轮仅2张规程长图的资格/费用/装备局部已看；路线、完整后续奖励、领物等未全部逐条审完。"
+      ],
+      "latestAudit": "batch5-reviewed-audit.json",
+      "currentSectionCount": 20,
+      "currentMediaCount": 11,
+      "officialSources": [],
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/b0c7f852ce396e871cee02280154bbb3207e849b.jpeg?imageView2/2/w/750",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/aa966a4d6e4b8530e28bfdfbabcab0fc24339c3f.jpeg?imageView2/2/w/750"
+      ],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "本轮仅2张规程长图的资格/费用/装备局部已看；路线、完整后续奖励、领物等未全部逐条审完。",
+      "priority": 47
+    },
+    {
+      "id": "zuiku-88485",
+      "name": "2026第二届“山海之径”苍南168黄金海岸线越野挑战赛",
+      "reviewScope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "documentedNotes": [
+        "本批2张图完成所列局部校对；竞赛规程长图、其余路线及装备未逐项审完。"
+      ],
+      "latestAudit": "batch5-reviewed-audit.json",
+      "currentSectionCount": 13,
+      "currentMediaCount": 6,
+      "officialSources": [],
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/f3b16aceb90a44088b06b051d92c8d62bb49a292.jpeg?imageView2/2/w/750",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/fdac2008f26f982c18544f9ecba1b78f9fc567dd.jpeg?imageView2/2/w/750"
+      ],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "本批2张图完成所列局部校对；竞赛规程长图、其余路线及装备未逐项审完。",
+      "priority": 48
+    },
+    {
+      "id": "zuiku-94253",
+      "name": "2026井冈山越野赛",
+      "reviewScope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "documentedNotes": [
+        "报名费更新图72/57/38/10km正常价799/699/499/99与卡片相符；本轮未逐项校对后续装备、罚则及全部取消公告，保留原文，不能标全篇。"
+      ],
+      "latestAudit": "batch5-reviewed-audit.json",
+      "currentSectionCount": 21,
+      "currentMediaCount": 8,
+      "officialSources": [],
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/efd782fea98eb1429508867b13826151f0d59c3b.jpeg?imageView2/2/w/750",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/9b7500a83d00ec0055d2508634bcffe7956f3837.jpeg?imageView2/2/w/750"
+      ],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "报名费更新图72/57/38/10km正常价799/699/499/99与卡片相符；本轮未逐项校对后续装备、罚则及全部取消公告，保留原文，不能标全篇。",
+      "priority": 49
+    },
+    {
+      "id": "zuiku-94604",
+      "name": "2026 XTERRA 太湖越野挑战赛",
+      "reviewScope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "documentedNotes": [
+        "仅本张赛事项目/收费原图已逐项看图核对，路线图、资格、日程、退费和强制装备其余图片本批尚未逐项审完；未用未审图填55/35KM缺失爬升字段。"
+      ],
+      "latestAudit": "fourth-reviewed-audit.json",
+      "currentSectionCount": 24,
+      "currentMediaCount": 23,
+      "officialSources": [],
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/07/33f655956c29185aee4a1ef2e70e501b7a1e49f5.jpeg?imageView2/2/w/1024"
+      ],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "仅本张赛事项目/收费原图已逐项看图核对，路线图、资格、日程、退费和强制装备其余图片本批尚未逐项审完；未用未审图填55/35KM缺失爬升字段。",
+      "priority": 50
+    },
+    {
+      "id": "zuiku-96415",
+      "name": "2026中国冷极半程马拉松",
+      "reviewScope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "documentedNotes": [
+        "只审关门、存衣漏句、年龄断尾和奖金；全篇健康及报名规则尚未逐项完校，保留原值和原图。"
+      ],
+      "latestAudit": "batch6-reviewed-audit.json",
+      "currentSectionCount": 19,
+      "currentMediaCount": 5,
+      "officialSources": [],
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/10/acfff1d63c5650bf29b39b4de5ecdf12876b831d.jpeg?imageView2/2/w/750",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/10/b23f5229d7c250623364be9a40fc04a07bdb121f.jpeg?imageView2/2/w/750",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/10/a233bfd000231ad8d8d5ec5e4e83760e89602d28.jpeg?imageView2/2/w/750"
+      ],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "只审关门、存衣漏句、年龄断尾和奖金；全篇健康及报名规则尚未逐项完校，保留原值和原图。",
+      "priority": 51
+    },
+    {
+      "id": "zuiku-97568",
+      "name": "2026\"人机共享”天津长跑嘉年华",
+      "reviewScope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "documentedNotes": [
+        "费用、关门、服装尺码复杂表本轮尚未逐格审完，原值保留；1大1小318元单位人可能歧义，未凭159×2计算改套餐。"
+      ],
+      "latestAudit": "batch6-reviewed-audit.json",
+      "currentSectionCount": 12,
+      "currentMediaCount": 7,
+      "officialSources": [],
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/10/f6e7423f1dd92a72f78a82eb7efbc74286572935.png?imageView2/2/w/750",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/10/22e0f912d53b60e594271b21c26e0acc2dd59824.png?imageView2/2/w/750",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/10/36339a122cbe393cabbda5605978ef59f9804045.png?imageView2/2/w/750"
+      ],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "费用、关门、服装尺码复杂表本轮尚未逐格审完，原值保留；1大1小318元单位人可能歧义，未凭159×2计算改套餐。",
+      "priority": 52
+    },
+    {
+      "id": "zuiku-98272",
+      "name": "泰兰尼斯见山青少年跑山赛2026年度总决赛",
+      "reviewScope": "局部校对（partial）：列出的已实际查看长图按完整章节清理，资格、费用阶段、流程及表格不截断；其余既有可靠正文和人工资料原样保留。源冲突及最终通知缺失见auditNotes。",
+      "documentedNotes": [
+        "仅所列图片已查看，未逐项审查剩余宣传页、全部保险原图或官方最终通知；保留原有未审章节，标partial。"
+      ],
+      "latestAudit": "batch7-reviewed-audit.json",
+      "currentSectionCount": 18,
+      "currentMediaCount": 16,
+      "officialSources": [],
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/4575352baf0414db092088bf9ac700d1dbed5cd2.jpeg?imageView2/2/w/640",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/04eae8d0428766338cf0eb82b63f9eff78afbd75.jpeg?imageView2/2/w/640",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/165db4fd93a6c405dc9d138ebc93ee244106aa93.jpeg?imageView2/2/w/640",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/2f508746dff5c14101ffb068155d7ac2b89a1202.jpeg?imageView2/2/w/640",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/df48bbe9ab6dadd0d6e86abfcbd122717fcb973c.jpeg?imageView2/2/w/640",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/78f4c2660f75d2f091f2dc7a3998d94f7d189d29.jpeg?imageView2/2/w/640",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/5a68b80d2e69534e5f7fd738dd8b262a63b01fbf.jpeg?imageView2/2/w/640",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/4a343788f63e42451af57a8f269d6a744a38a3df.jpeg?imageView2/2/w/640"
+      ],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "仅所列图片已查看，未逐项审查剩余宣传页、全部保险原图或官方最终通知；保留原有未审章节，标partial。",
+      "priority": 53
+    },
+    {
+      "id": "zuiku-98499",
+      "name": "拓路者·2026临沂苍马山跑山赛暨“中国体育彩票”第十一届山东省万人登高健步行活动",
+      "reviewScope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "documentedNotes": [
+        "实际查看本地规程两张长图以及当届官网前两张高清规程图，共4张；第4—14章按已看完整资料一起清理，后续保障/声明/风险提示尚未逐条审完，现值保留。"
+      ],
+      "latestAudit": "batch6-reviewed-audit.json",
+      "currentSectionCount": 19,
+      "currentMediaCount": 9,
+      "officialSources": [],
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/48261a265fd1e72c5c99ff169351f89baea9d1c7.jpeg?imageView2/2/w/750",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/14c45ffd37c7ae01af54fa8080f2d911b54fc5d3.jpeg?imageView2/2/w/750",
+        "https://img.saihuitong.com/5821/img/10332409/large/1a0c2ee33d7ef6e.jpg",
+        "https://img.saihuitong.com/5821/img/10332409/large/1a0c2ef347a4294.jpg"
+      ],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "实际查看本地规程两张长图以及当届官网前两张高清规程图，共4张；第4—14章按已看完整资料一起清理，后续保障/声明/风险提示尚未逐条审完，现值保留。",
+      "priority": 54
+    }
+  ],
+  "raceInventoryPath": "/tmp/race-guide-quality-20261117/remaining-regulation-review-inventory-3.json"
+}

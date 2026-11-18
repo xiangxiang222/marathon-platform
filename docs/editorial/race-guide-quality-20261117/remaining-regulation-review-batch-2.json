@@ -1,0 +1,51 @@
+{
+  "createdAt": "2026-11-18T19:12:00.154Z",
+  "baseline": "batch12-all-inventory.json",
+  "baselineAt": "2026-11-18T19:07:38.631Z",
+  "owner": "batch11_documentation/supplement-a assigned2",
+  "mutuallyExclusiveAcross": "remaining-regulation-review-batch-{1,2,3}.json",
+  "assignments": [
+    {
+      "id": "zuiku-14449",
+      "name": "2027北京世园公园UTP100春季嘉年华",
+      "reviewScope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "documentedNotes": [
+        "仅原图9、10、11（活动章程版）完整连续分块实看，共15块；原图1—8的竞赛规则版未复核并完整保留，不能宣称全篇已审。"
+      ],
+      "latestAudit": "batch11-reviewed-audit.json",
+      "currentSectionCount": 16,
+      "currentMediaCount": 12,
+      "officialSources": [],
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/19bf066eb773765205f3372d2ea668078db4b291.jpeg?imageView2/2/w/1024",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/7ec80f18102ce611243083ae64f82fc8030c0dd3.jpeg?imageView2/2/w/1024",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/09/dcec0db6a01dda3cce8631913c6f1d1cba1c7155.jpeg?imageView2/2/w/1024"
+      ],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "仅原图9、10、11（活动章程版）完整连续分块实看，共15块；原图1—8的竞赛规则版未复核并完整保留，不能宣称全篇已审。",
+      "priority": 2
+    },
+    {
+      "id": "zuiku-31546",
+      "name": "天河三山MAX越野系列赛之中体∙OGGO 2027火龙凤越野挑战赛",
+      "reviewScope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "documentedNotes": [
+        "仅3、4号原图已连续全图查看；正式规程6—8号图未审条款保留。认证中与原人工ITRA字段2/1并列保留，不擅自认定认证已完成；精英答复期限宣传3日与既有正式规程7日差异已明示。重复收费表依据原图4更正，其余正式规程不是全章已审。"
+      ],
+      "latestAudit": "batch11-reviewed-audit.json",
+      "currentSectionCount": 14,
+      "currentMediaCount": 9,
+      "officialSources": [],
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/10/bf6cf1c7b7ef7703f0f83a5453b79212fac1a15b.jpeg?imageView2/2/w/750",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/10/26768b6a3b970a325fb6a8fffb3781f287b4d8fc.jpeg?imageView2/2/w/750"
+      ],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "仅3、4号原图已连续全图查看；正式规程6—8号图未审条款保留。认证中与原人工ITRA字段2/1并列保留，不擅自认定认证已完成；精英答复期限宣传3日与既有正式规程7日差异已明示。重复收费表依据原图4更正，其余正式规程不是全章已审。",
+      "priority": 3
+    }
+  ],
+  "raceInventoryPath": "/tmp/race-guide-quality-20261117/remaining-regulation-review-inventory-2.json"
+}
