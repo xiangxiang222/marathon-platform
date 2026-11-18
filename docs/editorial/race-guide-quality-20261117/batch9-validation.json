@@ -1,0 +1,154 @@
+{
+  "at": "2026-11-18T09:06:59.850Z",
+  "passed": true,
+  "rows": [
+    {
+      "id": "zuiku-94906",
+      "file": "twelfth-backend-reviewed.json",
+      "edits": 2,
+      "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-57989",
+      "file": "twelfth-backend-reviewed.json",
+      "edits": 3,
+      "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-94423",
+      "file": "twelfth-backend-reviewed.json",
+      "edits": 4,
+      "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-82931",
+      "file": "twelfth-backend-reviewed.json",
+      "edits": 3,
+      "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-30920",
+      "file": "twelfth-backend-reviewed.json",
+      "edits": 5,
+      "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-17740",
+      "file": "twelfth-backend-reviewed.json",
+      "edits": 11,
+      "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-17487",
+      "file": "twelfth-backend-reviewed.json",
+      "edits": 9,
+      "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-16072",
+      "file": "twelfth-backend-reviewed.json",
+      "edits": 8,
+      "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-95294",
+      "file": "batch9-root-reviewed.json",
+      "edits": 1,
+      "scope": "实际完整查看5张原图共15分块，保留可靠原概况，逐项恢复全部文字条款、费用/奖金/日程表，现行报名页文字交叉核对。待确认项保留原图；未取得可核验本届独立官网文字，搜索及候选403另记。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-61737",
+      "file": "batch9-source-aituye-reviewed.json",
+      "edits": 1,
+      "scope": "实际完整查看本场全部原图连续分块，恢复全部文字条款和表格；独立重新取得当前报名页交叉核对。独立官网域名未确认，未称搜索无果等于不存在官网。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-47641",
+      "file": "batch9-source-aituye-reviewed.json",
+      "edits": 1,
+      "scope": "实际完整查看本场全部原图连续分块，恢复全部文字条款和表格；独立重新取得当前报名页交叉核对。独立官网域名未确认，未称搜索无果等于不存在官网。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-87902",
+      "file": "batch9-source-aituye-reviewed.json",
+      "edits": 1,
+      "scope": "实际完整查看本场全部原图连续分块，恢复全部文字条款和表格；独立重新取得当前报名页交叉核对。独立官网域名未确认，未称搜索无果等于不存在官网。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-11904",
+      "file": "batch9-source-aituye-reviewed.json",
+      "edits": 1,
+      "scope": "实际完整查看本场全部原图连续分块，恢复全部文字条款和表格；独立重新取得当前报名页交叉核对。独立官网域名未确认，未称搜索无果等于不存在官网。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-58251",
+      "file": "thirteenth-backend-reviewed.json",
+      "edits": 11,
+      "scope": "局部校对：实际看5张原图，整理其活动、资格、费用、健康、退款、16项奖品、报到及完整附件日程／路线；独立官方最新版与源文冲突未确认，不能称全篇终审。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-57220",
+      "file": "thirteenth-backend-reviewed.json",
+      "edits": 8,
+      "scope": "局部校对：实际查看7张原图，1—7章全部重排并核对四选项、两路线、四退款阶段、公益资格、男女奖金、安全保险；延期后的退款修订和官方独立最新源未确认。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-49507",
+      "file": "thirteenth-backend-reviewed.json",
+      "edits": 2,
+      "scope": "局部校对：仅2张路线／海拔图及对应10—11章、观光组描述已核对。0—9可复制完整规程与人工正文原样保留，资格／费用／保险／处罚未本轮逐图复核。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-33292",
+      "file": "thirteenth-backend-reviewed.json",
+      "edits": 24,
+      "scope": "局部校对：实际看5张原图（本届日程、费用、正式规程前3长图，含16K曲线），2—17章节完整整理；1及18—21后续规则、处罚等未本轮看图，原样保留，非整场终审。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-34065",
+      "file": "thirteenth-backend-reviewed.json",
+      "edits": 8,
+      "scope": "局部校对：本报名页全部5张原图实际看过，1—7章全章整理，0及两白虎组爬升纠正；路线图内细小CP参数未逐格终审，独立官方最新可复制规程未取得，仍标partial。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-21641",
+      "file": "thirteenth-backend-reviewed.json",
+      "edits": 7,
+      "scope": "局部校对：实际看4张原图（冠名、基础费用、完整资格奖励退费、客服），2—8章完整整理；1及9—13装备／路线／完整正式规程未本轮逐图核完，保留不改。官方公开列表API仅用于交叉本届日期，不据受限详情补数字。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-46373",
+      "file": "thirteenth-backend-reviewed.json",
+      "edits": 8,
+      "scope": "局部校对：实际看4张原图，19／21／23／24完整整理、0旧爬升表四值纠正；可靠人工0—16其余完整规程保留，其他图及后续处罚保险未本轮逐图核完。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-82101",
+      "file": "thirteenth-backend-reviewed.json",
+      "edits": 6,
+      "scope": "局部校对：实际看5张规程长图，5—9整章整理及0早鸟冲突说明、13.14亲子实际距离纠正；1—4赛事源起／宣传图未本轮逐图核，全部保留。",
+      "explicitImageReview": true
+    }
+  ],
+  "races": 21
+}

@@ -1,0 +1,322 @@
+[
+  {
+    "id": "zuiku-54685",
+    "name": "2026徽黄之路第三届秋季徒步大会",
+    "ocr": 4,
+    "sections": 5,
+    "chars": 1595,
+    "media": 13
+  },
+  {
+    "id": "zuiku-47062",
+    "name": "2026爱徒野昆明滇池“看海鸥”为爱奔跑",
+    "ocr": 3,
+    "sections": 4,
+    "chars": 4176,
+    "media": 3
+  },
+  {
+    "id": "zuiku-34068",
+    "name": "2026第二十六届京西三峰连穿越野赛",
+    "ocr": 6,
+    "sections": 7,
+    "chars": 4692,
+    "media": 5
+  },
+  {
+    "id": "zuiku-18752",
+    "name": "2026野鸭湖冬季健康跑",
+    "ocr": 7,
+    "sections": 8,
+    "chars": 2345,
+    "media": 6
+  },
+  {
+    "id": "zuiku-61099",
+    "name": "“泉城济南”2026济南南山越野赛",
+    "ocr": 20,
+    "sections": 21,
+    "chars": 10281,
+    "media": 22
+  },
+  {
+    "id": "zuiku-84282",
+    "name": "崃户外·2026丝路山水超级越野赛",
+    "ocr": 28,
+    "sections": 29,
+    "chars": 19833,
+    "media": 15
+  },
+  {
+    "id": "zuiku-58029",
+    "name": "杨时故里·2026将乐100越野挑战赛",
+    "ocr": 3,
+    "sections": 6,
+    "chars": 3021,
+    "media": 7
+  },
+  {
+    "id": "zuiku-98335",
+    "name": "全民健康跑系列活动-2026第三届京南长跑节",
+    "ocr": 8,
+    "sections": 11,
+    "chars": 6207,
+    "media": 5
+  },
+  {
+    "id": "zuiku-21601",
+    "name": "无锡走马观湖马山行",
+    "ocr": 3,
+    "sections": 5,
+    "chars": 3496,
+    "media": 3
+  },
+  {
+    "id": "zuiku-68796",
+    "name": "2026第十五届海淀之巅三峰越野赛",
+    "ocr": 12,
+    "sections": 13,
+    "chars": 9106,
+    "media": 8
+  },
+  {
+    "id": "zuiku-26274",
+    "name": "2026长白山林海雪原穿越赛",
+    "ocr": 3,
+    "sections": 6,
+    "chars": 5625,
+    "media": 3
+  },
+  {
+    "id": "zuiku-65465",
+    "name": "“环浙步道 山海乐清”2026第二届“山海乐清”徒步大会暨越野赛",
+    "ocr": 4,
+    "sections": 6,
+    "chars": 3320,
+    "media": 6
+  },
+  {
+    "id": "zuiku-37167",
+    "name": "拓路者2026北京香山爬坡赛",
+    "ocr": 4,
+    "sections": 5,
+    "chars": 4356,
+    "media": 4
+  },
+  {
+    "id": "zuiku-26531",
+    "name": "2026七彩云南户外运动挑战赛（凤庆站）暨2026云南凤庆滇红越野赛",
+    "ocr": 23,
+    "sections": 24,
+    "chars": 12905,
+    "media": 23
+  },
+  {
+    "id": "zuiku-98987",
+    "name": "2026 Outopia好野姐妹莫干山冬季赛",
+    "ocr": 9,
+    "sections": 10,
+    "chars": 6192,
+    "media": 9
+  },
+  {
+    "id": "zuiku-91091",
+    "name": "西施100∣2026西施壁湖山径训练赛",
+    "ocr": 14,
+    "sections": 15,
+    "chars": 6472,
+    "media": 14
+  },
+  {
+    "id": "zuiku-41594",
+    "name": "2026 FUGA训练赛-树山站",
+    "ocr": 3,
+    "sections": 4,
+    "chars": 3240,
+    "media": 4
+  },
+  {
+    "id": "zuiku-87662",
+    "name": "2026 FUGA训练赛·杭州如意尖越野赛（杭州站年度总赛）",
+    "ocr": 7,
+    "sections": 8,
+    "chars": 3201,
+    "media": 8
+  },
+  {
+    "id": "zuiku-87535",
+    "name": "2026 SALOMON军嶂古道山川行",
+    "ocr": 6,
+    "sections": 7,
+    "chars": 2483,
+    "media": 8
+  },
+  {
+    "id": "zuiku-76218",
+    "name": "2026剑门关越野挑战赛（白龙站）",
+    "ocr": 11,
+    "sections": 12,
+    "chars": 9786,
+    "media": 13
+  },
+  {
+    "id": "zuiku-45857",
+    "name": "2026深圳大G大利跑山赛",
+    "ocr": 4,
+    "sections": 6,
+    "chars": 3813,
+    "media": 5
+  },
+  {
+    "id": "zuiku-16303",
+    "name": "户外特工·2026西宏越野系列赛之西递站",
+    "ocr": 8,
+    "sections": 9,
+    "chars": 6178,
+    "media": 3
+  },
+  {
+    "id": "zuiku-95315",
+    "name": "2026 GO野社区赛·惊鸥卷雪",
+    "ocr": 10,
+    "sections": 11,
+    "chars": 8715,
+    "media": 7
+  },
+  {
+    "id": "zuiku-32840",
+    "name": "2026文成百丈漈越野挑战赛",
+    "ocr": 14,
+    "sections": 15,
+    "chars": 18645,
+    "media": 12
+  },
+  {
+    "id": "zuiku-16852",
+    "name": "2026禅茶径山越野赛",
+    "ocr": 4,
+    "sections": 5,
+    "chars": 2988,
+    "media": 5
+  },
+  {
+    "id": "zuiku-85293",
+    "name": "2026酷爱龙坞·麒麟越野赛",
+    "ocr": 6,
+    "sections": 8,
+    "chars": 7826,
+    "media": 9
+  },
+  {
+    "id": "zuiku-73329",
+    "name": "2026长汀千年古城越野赛",
+    "ocr": 6,
+    "sections": 7,
+    "chars": 9668,
+    "media": 8
+  },
+  {
+    "id": "zuiku-22160",
+    "name": "2026-2027香港跨年越野赛",
+    "ocr": 14,
+    "sections": 16,
+    "chars": 8067,
+    "media": 17
+  },
+  {
+    "id": "zuiku-62184",
+    "name": "2027天成悦行第四届奥森迎新跑",
+    "ocr": 6,
+    "sections": 7,
+    "chars": 6168,
+    "media": 3
+  },
+  {
+    "id": "zuiku-92819",
+    "name": "2027江阴暨阳花山新年越野跑",
+    "ocr": 4,
+    "sections": 5,
+    "chars": 2482,
+    "media": 4
+  },
+  {
+    "id": "zuiku-31546",
+    "name": "天河三山MAX越野系列赛之中体∙OGGO 2027火龙凤越野挑战赛",
+    "ocr": 13,
+    "sections": 14,
+    "chars": 15518,
+    "media": 9
+  },
+  {
+    "id": "zuiku-88804",
+    "name": "崃户外·2026古道越野训练赛",
+    "ocr": 14,
+    "sections": 16,
+    "chars": 14741,
+    "media": 8
+  },
+  {
+    "id": "zuiku-37493",
+    "name": "锐进四季·2027第三届元旦迎新跑",
+    "ocr": 8,
+    "sections": 9,
+    "chars": 7298,
+    "media": 3
+  },
+  {
+    "id": "zuiku-69042",
+    "name": "2027西双版纳勐海越野赛",
+    "ocr": 13,
+    "sections": 20,
+    "chars": 16876,
+    "media": 12
+  },
+  {
+    "id": "zuiku-16673",
+    "name": "2027中国田径协会10公里精英赛（湖州·吴兴）暨航兴杯西山漾10公里精英赛",
+    "ocr": 16,
+    "sections": 19,
+    "chars": 14326,
+    "media": 5
+  },
+  {
+    "id": "zuiku-25991",
+    "name": "户外特工·2027西宏越野系列赛之打鼓岭站",
+    "ocr": 8,
+    "sections": 10,
+    "chars": 5732,
+    "media": 3
+  },
+  {
+    "id": "zuiku-30317",
+    "name": "2027第十届长春冰马嘉年华",
+    "ocr": 1,
+    "sections": 4,
+    "chars": 7030,
+    "media": 1
+  },
+  {
+    "id": "zuiku-85841",
+    "name": "2027大K探索系列赛 | 第二届西施壁湖越野挑战赛",
+    "ocr": 21,
+    "sections": 22,
+    "chars": 10063,
+    "media": 21
+  },
+  {
+    "id": "zuiku-65276",
+    "name": "2027熊猫蜀道山超级越野赛",
+    "ocr": 9,
+    "sections": 13,
+    "chars": 11813,
+    "media": 5
+  },
+  {
+    "id": "zuiku-14449",
+    "name": "2027北京世园公园UTP100春季嘉年华",
+    "ocr": 15,
+    "sections": 16,
+    "chars": 17324,
+    "media": 12
+  }
+]
