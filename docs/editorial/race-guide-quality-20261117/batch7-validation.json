@@ -1,0 +1,189 @@
+{
+  "at": "2026-11-18T07:07:32.127Z",
+  "passed": true,
+  "rows": [
+    {
+      "id": "zuiku-76003",
+      "file": "tenth-backend-reviewed.json",
+      "edits": 4,
+      "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-16069",
+      "file": "tenth-backend-reviewed.json",
+      "edits": 6,
+      "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-35984",
+      "file": "tenth-backend-reviewed.json",
+      "edits": 5,
+      "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-95241",
+      "file": "tenth-backend-reviewed.json",
+      "edits": 7,
+      "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-90601",
+      "file": "tenth-backend-reviewed.json",
+      "edits": 11,
+      "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-78664",
+      "file": "tenth-backend-reviewed.json",
+      "edits": 13,
+      "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-52309",
+      "file": "tenth-backend-reviewed.json",
+      "edits": 12,
+      "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-39867",
+      "file": "tenth-backend-reviewed.json",
+      "edits": 8,
+      "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-15387",
+      "file": "seventh-frontend-reviewed.json",
+      "edits": 6,
+      "scope": "局部校对（partial）：列出的已实际查看长图按完整章节清理，资格、费用阶段、流程及表格不截断；其余既有可靠正文和人工资料原样保留。源冲突及最终通知缺失见auditNotes。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-98272",
+      "file": "seventh-frontend-reviewed.json",
+      "edits": 10,
+      "scope": "局部校对（partial）：列出的已实际查看长图按完整章节清理，资格、费用阶段、流程及表格不截断；其余既有可靠正文和人工资料原样保留。源冲突及最终通知缺失见auditNotes。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-46913",
+      "file": "seventh-frontend-reviewed.json",
+      "edits": 18,
+      "scope": "局部校对（partial）：列出的已实际查看长图按完整章节清理，资格、费用阶段、流程及表格不截断；其余既有可靠正文和人工资料原样保留。源冲突及最终通知缺失见auditNotes。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-48670",
+      "file": "seventh-frontend-reviewed.json",
+      "edits": 8,
+      "scope": "局部校对（partial）：列出的已实际查看长图按完整章节清理，资格、费用阶段、流程及表格不截断；其余既有可靠正文和人工资料原样保留。源冲突及最终通知缺失见auditNotes。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-17874",
+      "file": "seventh-frontend-reviewed.json",
+      "edits": 12,
+      "scope": "局部校对（partial）：列出的已实际查看长图按完整章节清理，资格、费用阶段、流程及表格不截断；其余既有可靠正文和人工资料原样保留。源冲突及最终通知缺失见auditNotes。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-37616",
+      "file": "seventh-frontend-reviewed.json",
+      "edits": 4,
+      "scope": "局部校对（partial）：列出的已实际查看长图按完整章节清理，资格、费用阶段、流程及表格不截断；其余既有可靠正文和人工资料原样保留。源冲突及最终通知缺失见auditNotes。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-67371",
+      "file": "seventh-frontend-reviewed.json",
+      "edits": 6,
+      "scope": "局部校对（partial）：列出的已实际查看长图按完整章节清理，资格、费用阶段、流程及表格不截断；其余既有可靠正文和人工资料原样保留。源冲突及最终通知缺失见auditNotes。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-85156",
+      "file": "seventh-frontend-reviewed.json",
+      "edits": 12,
+      "scope": "局部校对（partial）：列出的已实际查看长图按完整章节清理，资格、费用阶段、流程及表格不截断；其余既有可靠正文和人工资料原样保留。源冲突及最终通知缺失见auditNotes。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "caa-1000454030",
+      "file": "sixth-source-extra-reviewed.json",
+      "edits": 3,
+      "scope": "仅列出的已查看原图分块和可靠可复制当届文字条款已校对；其他既有文字及原图保留，不声明全场全部章节逐条复核完成。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "caa-1000450007",
+      "file": "sixth-source-extra-reviewed.json",
+      "edits": 6,
+      "scope": "仅列出的已查看原图分块和可靠可复制当届文字条款已校对；其他既有文字及原图保留，不声明全场全部章节逐条复核完成。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "caa-1000418257",
+      "file": "sixth-source-extra-reviewed.json",
+      "edits": 14,
+      "scope": "仅列出的已查看原图分块和可靠可复制当届文字条款已校对；其他既有文字及原图保留，不声明全场全部章节逐条复核完成。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "caa-1000480094",
+      "file": "sixth-source-extra-reviewed.json",
+      "edits": 13,
+      "scope": "仅列出的已查看原图分块和可靠可复制当届文字条款已校对；其他既有文字及原图保留，不声明全场全部章节逐条复核完成。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-66826",
+      "file": "batch7-root-reviewed.json",
+      "edits": 1,
+      "scope": "已逐块查看两张现存原图的完整规程与本站宣传；官网公开接口及现行报名页交叉核对日期/地点/报名条件。仍保留年龄年份、领物时段、退款边界与个别单站奖励冲突，官网额外宣传图未逐图终审。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-44150",
+      "file": "batch7-root-reviewed.json",
+      "edits": 1,
+      "scope": "已逐块查看两张现存原图的完整规程与本站宣传；官网公开接口及现行报名页交叉核对日期/地点/报名条件。仍保留年龄年份、领物时段、退款边界与个别单站奖励冲突，官网额外宣传图未逐图终审。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-15544",
+      "file": "batch7-root-reviewed.json",
+      "edits": 1,
+      "scope": "已逐块查看两张现存原图的完整规程与本站宣传；官网公开接口及现行报名页交叉核对日期/地点/报名条件。仍保留年龄年份、领物时段、退款边界与个别单站奖励冲突，官网额外宣传图未逐图终审。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-46010",
+      "file": "batch7-root-reviewed.json",
+      "edits": 1,
+      "scope": "已逐块查看两张现存原图的完整规程与本站宣传；官网公开接口及现行报名页交叉核对日期/地点/报名条件。仍保留年龄年份、领物时段、退款边界与个别单站奖励冲突，官网额外宣传图未逐图终审。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-35270",
+      "file": "batch7-root-reviewed.json",
+      "edits": 1,
+      "scope": "已逐块查看两张现存原图的完整规程与本站宣传；官网公开接口及现行报名页交叉核对日期/地点/报名条件。仍保留年龄年份、领物时段、退款边界与个别单站奖励冲突，官网额外宣传图未逐图终审。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-76264",
+      "file": "batch7-root-reviewed.json",
+      "edits": 1,
+      "scope": "已逐块查看两张现存原图的完整规程与本站宣传；官网公开接口及现行报名页交叉核对日期/地点/报名条件。仍保留年龄年份、领物时段、退款边界与个别单站奖励冲突，官网额外宣传图未逐图终审。",
+      "explicitImageReview": true
+    }
+  ],
+  "races": 26
+}

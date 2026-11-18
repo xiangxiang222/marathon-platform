@@ -1,0 +1,71 @@
+{
+  "at": "2026-11-18T07:26:34.422Z",
+  "checks": [
+    {
+      "id": "zuiku-35270",
+      "width": 320,
+      "needle": "198",
+      "table": {
+        "width": 252,
+        "scrollWidth": 600,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 348,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "WSE桂林站11月17日官方延期通知：自动改期、转站退费及客服\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-35270",
+      "width": 390,
+      "needle": "198",
+      "table": {
+        "width": 318,
+        "scrollWidth": 600,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 282,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "WSE桂林站11月17日官方延期通知：自动改期、转站退费及客服\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-46010",
+      "width": 320,
+      "needle": "300",
+      "table": {
+        "width": 252,
+        "scrollWidth": 480,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 228,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "WSE四项目通用规程原图：完整组别、费用、资格、领物、关门、处罚、保险及退款\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-46010",
+      "width": 390,
+      "needle": "300",
+      "table": {
+        "width": 318,
+        "scrollWidth": 480,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 162,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "WSE四项目通用规程原图：完整组别、费用、资格、领物、关门、处罚、保险及退款\n查看原图 ↗",
+      "overflow": false
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-11-18T07:26:49.808Z"
+}

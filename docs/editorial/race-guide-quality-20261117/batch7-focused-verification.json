@@ -1,0 +1,135 @@
+{
+  "at": "2026-11-18T07:16:20.907Z",
+  "checks": [
+    {
+      "id": "zuiku-35270",
+      "width": 320,
+      "needle": "198",
+      "table": {
+        "width": 252,
+        "scrollWidth": 600,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 348,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "WSE桂林站11月17日官方延期通知：自动改期、转站退费及客服\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-35270",
+      "width": 390,
+      "needle": "198",
+      "table": {
+        "width": 318,
+        "scrollWidth": 600,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 282,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "WSE桂林站11月17日官方延期通知：自动改期、转站退费及客服\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-46010",
+      "width": 320,
+      "needle": "300",
+      "table": {
+        "width": 252,
+        "scrollWidth": 480,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 228,
+      "horizontalScrollVerified": true,
+      "previewOpened": false,
+      "originalLoaded": false,
+      "caption": "",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-46010",
+      "width": 390,
+      "needle": "300",
+      "table": {
+        "width": 318,
+        "scrollWidth": 480,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 162,
+      "horizontalScrollVerified": true,
+      "previewOpened": false,
+      "originalLoaded": false,
+      "caption": "",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-46913",
+      "width": 320,
+      "needle": "128",
+      "table": {
+        "width": 252,
+        "scrollWidth": 480,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 228,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "赛事图文资料\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-46913",
+      "width": 390,
+      "needle": "128",
+      "table": {
+        "width": 318,
+        "scrollWidth": 480,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 162,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "赛事图文资料\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "caa-1000450007",
+      "width": 320,
+      "needle": "14:30",
+      "table": {
+        "width": 252,
+        "scrollWidth": 252,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 0,
+      "horizontalScrollVerified": null,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "赛事图文资料\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "caa-1000450007",
+      "width": 390,
+      "needle": "14:30",
+      "table": {
+        "width": 318,
+        "scrollWidth": 318,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 0,
+      "horizontalScrollVerified": null,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "赛事图文资料\n查看原图 ↗",
+      "overflow": false
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-11-18T07:16:24.773Z"
+}

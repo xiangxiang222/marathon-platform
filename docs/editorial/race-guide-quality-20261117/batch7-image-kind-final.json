@@ -1,0 +1,133 @@
+{
+  "at": "2026-11-18T07:33:55.915Z",
+  "checks": [
+    {
+      "id": "zuiku-23390",
+      "width": 320,
+      "heroDate": "2026-11-07",
+      "guideSheet": 192,
+      "regulationInOriginalReference": true,
+      "fullyLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "zuiku-23390",
+      "width": 390,
+      "heroDate": "2026-11-07",
+      "guideSheet": 192,
+      "regulationInOriginalReference": true,
+      "fullyLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "zuiku-66826",
+      "width": 320,
+      "heroDate": "2026-11-08\n07:00 起跑",
+      "guideSheet": 268,
+      "regulationInOriginalReference": true,
+      "fullyLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "zuiku-66826",
+      "width": 390,
+      "heroDate": "2026-11-08\n07:00 起跑",
+      "guideSheet": 268,
+      "regulationInOriginalReference": true,
+      "fullyLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "zuiku-44150",
+      "width": 320,
+      "heroDate": "2026-11-15",
+      "guideSheet": 497,
+      "regulationInOriginalReference": true,
+      "fullyLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "zuiku-44150",
+      "width": 390,
+      "heroDate": "2026-11-15",
+      "guideSheet": 497,
+      "regulationInOriginalReference": true,
+      "fullyLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "zuiku-15544",
+      "width": 320,
+      "heroDate": "2026-11-28",
+      "guideSheet": 865,
+      "regulationInOriginalReference": true,
+      "fullyLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "zuiku-15544",
+      "width": 390,
+      "heroDate": "2026-11-28",
+      "guideSheet": 865,
+      "regulationInOriginalReference": true,
+      "fullyLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "zuiku-46010",
+      "width": 320,
+      "heroDate": "2026-11-29\n07:00 起跑",
+      "guideSheet": 966,
+      "regulationInOriginalReference": true,
+      "fullyLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "zuiku-46010",
+      "width": 390,
+      "heroDate": "2026-11-29\n07:00 起跑",
+      "guideSheet": 966,
+      "regulationInOriginalReference": true,
+      "fullyLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "zuiku-35270",
+      "width": 320,
+      "heroDate": "2027-03-14",
+      "guideSheet": 1401,
+      "regulationInOriginalReference": true,
+      "fullyLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "zuiku-35270",
+      "width": 390,
+      "heroDate": "2027-03-14",
+      "guideSheet": 1401,
+      "regulationInOriginalReference": true,
+      "fullyLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "zuiku-76264",
+      "width": 320,
+      "heroDate": "2026-12-27\n07:00 起跑",
+      "guideSheet": 1515,
+      "regulationInOriginalReference": true,
+      "fullyLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "zuiku-76264",
+      "width": 390,
+      "heroDate": "2026-12-27\n07:00 起跑",
+      "guideSheet": 1515,
+      "regulationInOriginalReference": true,
+      "fullyLoaded": true,
+      "overflow": false
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-11-18T07:35:05.684Z"
+}
