@@ -1,0 +1,301 @@
+{
+  "at": "2026-11-18T05:48:24.889Z",
+  "passed": true,
+  "rows": [
+    {
+      "id": "zuiku-46767",
+      "file": "seventh-backend-reviewed.json",
+      "edits": 10,
+      "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "caa-1000420171",
+      "file": "seventh-backend-reviewed.json",
+      "edits": 1,
+      "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "caa-1000419241",
+      "file": "seventh-backend-reviewed.json",
+      "edits": 2,
+      "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "caa-1000418248",
+      "file": "seventh-backend-reviewed.json",
+      "edits": 2,
+      "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "caa-1000481048",
+      "file": "seventh-backend-reviewed.json",
+      "edits": 18,
+      "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "caa-1000477009",
+      "file": "seventh-backend-reviewed.json",
+      "edits": 9,
+      "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-22212",
+      "file": "seventh-backend-reviewed.json",
+      "edits": 1,
+      "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-30642",
+      "file": "seventh-backend-reviewed.json",
+      "edits": 3,
+      "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-82566",
+      "file": "eighth-backend-reviewed.json",
+      "edits": 14,
+      "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-94101",
+      "file": "eighth-backend-reviewed.json",
+      "edits": 3,
+      "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-88032",
+      "file": "eighth-backend-reviewed.json",
+      "edits": 10,
+      "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-33682",
+      "file": "eighth-backend-reviewed.json",
+      "edits": 11,
+      "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-97568",
+      "file": "eighth-backend-reviewed.json",
+      "edits": 4,
+      "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-52623",
+      "file": "eighth-backend-reviewed.json",
+      "edits": 14,
+      "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-49311",
+      "file": "eighth-backend-reviewed.json",
+      "edits": 11,
+      "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-71615",
+      "file": "eighth-backend-reviewed.json",
+      "edits": 10,
+      "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "caa-1000456006",
+      "file": "sixth-frontend-reviewed.json",
+      "edits": 4,
+      "scope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-23390",
+      "file": "sixth-frontend-reviewed.json",
+      "edits": 6,
+      "scope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-96415",
+      "file": "sixth-frontend-reviewed.json",
+      "edits": 7,
+      "scope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-97402",
+      "file": "sixth-frontend-reviewed.json",
+      "edits": 4,
+      "scope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-51279",
+      "file": "sixth-frontend-reviewed.json",
+      "edits": 3,
+      "scope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-27643",
+      "file": "sixth-frontend-reviewed.json",
+      "edits": 8,
+      "scope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-35186",
+      "file": "sixth-frontend-reviewed.json",
+      "edits": 5,
+      "scope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-75827",
+      "file": "sixth-frontend-reviewed.json",
+      "edits": 6,
+      "scope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "caa-1000479142",
+      "file": "fourth-source-reviewed-draft-2.json",
+      "edits": 5,
+      "scope": "仅列出的 edits、facts、groupCorrections 和 viewedCrops 已人工核对；其余已保存章节保持原值，不声明全场完整规程逐条复核完成。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "caa-1000480114",
+      "file": "fourth-source-reviewed-draft-2.json",
+      "edits": 5,
+      "scope": "仅列出的 edits、facts、groupCorrections 和 viewedCrops 已人工核对；其余已保存章节保持原值，不声明全场完整规程逐条复核完成。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "caa-1000476007",
+      "file": "fourth-source-reviewed-draft-2.json",
+      "edits": 5,
+      "scope": "仅列出的 edits、facts、groupCorrections 和 viewedCrops 已人工核对；其余已保存章节保持原值，不声明全场完整规程逐条复核完成。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "caa-1000479023",
+      "file": "fourth-source-reviewed-draft-2.json",
+      "edits": 8,
+      "scope": "仅列出的 edits、facts、groupCorrections 和 viewedCrops 已人工核对；其余已保存章节保持原值，不声明全场完整规程逐条复核完成。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-31314",
+      "file": "fourth-source-reviewed-draft-2.json",
+      "edits": 6,
+      "scope": "仅列出的 edits、facts、groupCorrections 和 viewedCrops 已人工核对；其余已保存章节保持原值，不声明全场完整规程逐条复核完成。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "bishan",
+      "file": "sixth-root-reviewed.json",
+      "edits": 2,
+      "scope": "仅列出的已查看原图、可复制本届来源及字段已校对；其他完整条款保持原值，尚未逐条校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "caa-1000467006",
+      "file": "sixth-root-reviewed.json",
+      "edits": 1,
+      "scope": "仅列出的已查看原图、可复制本届来源及字段已校对；其他完整条款保持原值，尚未逐条校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "huangyaguan",
+      "file": "sixth-root-reviewed.json",
+      "edits": 1,
+      "scope": "本届官网首页、Local Package可复制文字与报名页、日程/服装尺码/路线原图已实际查看；官网通用页含不一致截止日，不能据此补全。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "caa-1000481065",
+      "file": "sixth-root-reviewed.json",
+      "edits": 9,
+      "scope": "实际访问本届官网公开文章接口，报名须知2张及竞赛规程首张全部分块已查看；校对资格、费用、领物、保险、路线、检录、关门与补给，后两张竞赛规程奖金处罚等尚未逐项核对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-93379",
+      "file": "ninth-backend-reviewed.json",
+      "edits": 6,
+      "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-14679",
+      "file": "ninth-backend-reviewed.json",
+      "edits": 2,
+      "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-73719",
+      "file": "ninth-backend-reviewed.json",
+      "edits": 7,
+      "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-14689",
+      "file": "ninth-backend-reviewed.json",
+      "edits": 1,
+      "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-72712",
+      "file": "ninth-backend-reviewed.json",
+      "edits": 4,
+      "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-42118",
+      "file": "ninth-backend-reviewed.json",
+      "edits": 4,
+      "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-38236",
+      "file": "ninth-backend-reviewed.json",
+      "edits": 6,
+      "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-98499",
+      "file": "ninth-backend-reviewed.json",
+      "edits": 13,
+      "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-55956",
+      "file": "batch6-bingsheng-increment-reviewed.json",
+      "edits": 1,
+      "scope": "对已保存新版的保险第4条漏句单独增量补全，其他正文保持原值。",
+      "explicitImageReview": true
+    }
+  ],
+  "races": 42
+}
