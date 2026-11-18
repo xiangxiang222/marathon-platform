@@ -1,0 +1,14 @@
+{
+  "at": "2026-11-18T16:09:25.991Z",
+  "officialLongClausesPreserved": 58,
+  "officialTables": 3,
+  "sourceImageActuallyViewedNote": "天成3张连续图18分块、官网抽2分块；长春旧路线1图与HTML2表实际查看。仅所列范围。",
+  "passed": true,
+  "viewedEvidence": {
+    "tianchengPlatformOriginalImages": 3,
+    "tianchengPlatformCrops": 18,
+    "tianchengOfficialLongImageCheckedCrops": 2,
+    "changchunPriorYearReferenceRouteImages": 1,
+    "changchunOfficialHtmlTableScreenshots": 2
+  }
+}

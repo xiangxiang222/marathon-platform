@@ -1,0 +1,18 @@
+{
+  "startedAt": "2026-11-18T16:59:06.417Z",
+  "rows": [
+    {
+      "id": "zuiku-32840",
+      "ok": true,
+      "copiedImages": 0,
+      "editorialPreserved": false,
+      "savedHash": "8de1b058e5c9c63df3b9cba2375544427e364f0b28435f09f8bd3ffe4c2e45b7",
+      "groupCount": 5,
+      "sheetCount": 0
+    }
+  ],
+  "backup": "server/data/race-guide-quality-20261117/batch10-caption-applied.json.before.sqlite",
+  "schemaUnchanged": true,
+  "quickCheck": "ok",
+  "completedAt": "2026-11-18T16:59:06.518Z"
+}
