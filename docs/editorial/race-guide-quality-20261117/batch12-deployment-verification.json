@@ -1,0 +1,51 @@
+{
+  "at": "2026-11-18T19:33:32.002Z",
+  "productionBackup": "server/data/race-guide-quality-20261117/batch12-applied.json.before.sqlite",
+  "saved": 2,
+  "races": 434,
+  "sheets": 1735,
+  "schemaUnchanged": true,
+  "quickCheck": "ok",
+  "web": {
+    "pages": 4,
+    "widths": [
+      320,
+      390
+    ],
+    "bodyChecks": [
+      {
+        "id": "zuiku-25991",
+        "width": 320,
+        "paragraphs": 64,
+        "tableRows": 24,
+        "fullRenderedContentMatchesProduction": true
+      },
+      {
+        "id": "zuiku-65276",
+        "width": 320,
+        "paragraphs": 97,
+        "tableRows": 60,
+        "fullRenderedContentMatchesProduction": true
+      }
+    ]
+  },
+  "mini": {
+    "actualDevToolsWidth": 390,
+    "races": 2,
+    "groups": 6,
+    "tables": 13,
+    "rows": 84,
+    "originalPreviewActuallyDisplayed": 2,
+    "physicalPhoneVerified": false,
+    "actual320Verified": false,
+    "formalReleaseVerified": false
+  },
+  "stages": {
+    "reviewed": true,
+    "saved": true,
+    "displayed": true,
+    "productionWebVerified": true
+  },
+  "remainingInitialSaves": 0,
+  "knownRemainingRegulationRaces": 54
+}

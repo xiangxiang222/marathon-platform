@@ -1,0 +1,187 @@
+[
+  {
+    "id": "zuiku-58600",
+    "name": "2026首届贵州茅台镇越野跑",
+    "reviewScope": "仅列出的 edits、facts、groupCorrections 和 viewedCrops 已人工核对；其余已保存章节保持原值，不声明全场完整规程逐条复核完成。",
+    "documentedNotes": [
+      "{\"issue\":\"原路线图中细小站名及局部海拔数字本轮未逐项可靠确认，作为视觉原图保留；只转录四组完整参数和已看清的强装表。\",\"status\":\"uncertain_visual_labels_retained_as_images\",\"imageUrls\":[\"https://zc3wp-uploads.bkt.zuicool.com/2026/10/b26476e55f25807bfee9fce70960cd4eda0d855f.jpeg?imageView2/2/w/702\",\"https://zc3wp-uploads.bkt.zuicool.com/2026/10/daee3300582ef0e70f21fc585ac70841d65498dd.jpeg?imageView2/2/w/702\",\"https://zc3wp-uploads.bkt.zuicool.com/2026/10/9adb9a21cbcc69f4e2716f5120b9e88c1ea062a3.jpeg?imageView2/2/w/702\",\"https://zc3wp-uploads.bkt.zuicool.com/2026/10/4d2f0eff11ec06d49f775392fab044b71c6a46c7.jpeg?imageView2/2/w/702\"]}"
+    ],
+    "latestAudit": "batch5-reviewed-audit.json",
+    "currentSectionCount": 25,
+    "currentMediaCount": 14,
+    "officialSources": [
+      {
+        "url": "http://www.letoursports.com/event?id=905178&mid=72299",
+        "title": "朗途体育赛事官网",
+        "role": "official_website",
+        "verified": true,
+        "identityReview": "2026首届贵州茅台镇越野跑正常报名专页；未混入精英、贡嘎、邀请通道。",
+        "bodySha256": "0826bade2d9da761568d0497559aab735162ecbdd1fcaaad3bbba7cdb5f1b4d1",
+        "checkedAt": "2026-11-18T02:12:30.758Z"
+      }
+    ],
+    "reviewedImageUrls": [],
+    "candidateMedia": [
+      {
+        "index": 0,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/1181397b9f6cb59fc11255dc073035fb9aac5ff3.jpeg?imageView2/2/w/750",
+        "caption": "赛事图文资料",
+        "sha256": "686a4dcb660236c7a54d3d48f42c205a84daaf10124032f165d6a80d20d066f4",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/31632"
+      },
+      {
+        "index": 1,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/74f6f6be1ff9853b36f4dbe58dd2a6b5518f1390.jpeg?imageView2/2/w/750",
+        "caption": "分组路线与海拔资料",
+        "sha256": "1db4a78a3026bfcd3a7c41b7b0c051d8788b8ed522c8a38a927f5f6848717b3e",
+        "kind": "route",
+        "sourceUrl": "https://reg.zuicool.com/31632"
+      },
+      {
+        "index": 2,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/ec5b88b940748b94f20b2d514ff6e0363b88309f.jpeg?imageView2/2/w/750",
+        "caption": "赛事图文资料",
+        "sha256": "94f63cfb624a6c09cad0a35685799372f49f6c61bcb7e65bba5322386aa28706",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/31632"
+      },
+      {
+        "index": 3,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/2cd5cf6287a9f56e33e971c49c9eedaeafc7ef8c.jpeg?imageView2/2/w/750",
+        "caption": "赛事图文资料",
+        "sha256": "e0231b86b98da01a11f358889c9fc78f1fe76ef6c1d09ddedbcf4b46085df5ef",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/31632"
+      },
+      {
+        "index": 4,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/2b41bb552828c8ad139de4b539e3de8a28d3cf89.jpeg?imageView2/2/w/750",
+        "caption": "赛事图文资料",
+        "sha256": "dad6890b832cd7ad32e960dd499912bce5d47dc910576e7b35f600833f92ba26",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/31632"
+      },
+      {
+        "index": 5,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/3061f262fbcaa2d0828139e889a59131d04b6707.jpeg?imageView2/2/w/750",
+        "caption": "赛事图文资料",
+        "sha256": "c9591d9fcb0b018a40e6897b99fb6732522a922f0a4d1e725a9c057fd298c546",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/31632"
+      },
+      {
+        "index": 6,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/e0b38f6ca41cd548c0466e4ae348cd496af25188.jpeg?imageView2/2/w/750",
+        "caption": "竞赛规程",
+        "sha256": "a5d0b209841d2f3b1c4801892b537f43f5cb3a98cc5da85688e8917349c2e921",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/31632"
+      },
+      {
+        "index": 7,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/f29ba4788d66a5176012db73c4cbd5fd499483e8.png?imageView2/2/w/702",
+        "caption": "比赛日程",
+        "sha256": "9d08f16cf0b3a53dbb3cc80ed202a8ed09b7d04a5b5d17f7b16a6bbe27d7cc90",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/31632"
+      },
+      {
+        "index": 8,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/b26476e55f25807bfee9fce70960cd4eda0d855f.jpeg?imageView2/2/w/702",
+        "caption": "赛事图文资料",
+        "sha256": "8c52468da6acb2cba669660910d0d543acd2066d8b00cb3581cfb5d9942967c1",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/31632"
+      },
+      {
+        "index": 9,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/daee3300582ef0e70f21fc585ac70841d65498dd.jpeg?imageView2/2/w/702",
+        "caption": "赛事图文资料",
+        "sha256": "3da471759497537b86cc31ce3069f13fa73d55cddf2a4bedaac36e613e5072a8",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/31632"
+      },
+      {
+        "index": 10,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/9adb9a21cbcc69f4e2716f5120b9e88c1ea062a3.jpeg?imageView2/2/w/702",
+        "caption": "分组路线与海拔资料",
+        "sha256": "c4cf9e7e2dec6ddd1e826d993c0c8db0c4904f458151cf5df0ca4da09843fbcb",
+        "kind": "route",
+        "sourceUrl": "https://reg.zuicool.com/31632"
+      },
+      {
+        "index": 11,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/4d2f0eff11ec06d49f775392fab044b71c6a46c7.jpeg?imageView2/2/w/702",
+        "caption": "分组路线与海拔资料",
+        "sha256": "11788e48df45abc533ede78dfe750fa9fa5aa6bb23a10bae711930afec7d803b",
+        "kind": "route",
+        "sourceUrl": "https://reg.zuicool.com/31632"
+      },
+      {
+        "index": 12,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/251637a53e2898850d0227ddda89b78c28ce1dfe.png?imageView2/2/w/702",
+        "caption": "赛事图文资料",
+        "sha256": "d0c5a4d789311d8a92abc0e73a557f79d0fef48cf9c062c26006cbf258127828",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/31632"
+      },
+      {
+        "index": 13,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/dc348ae8b1987fd9e793dd92247a13767042e2a1.png?imageView2/2/w/413",
+        "caption": "赛事图文资料",
+        "sha256": "140b1b1acdb0738c1ae369131ae8b24c670dce6e7f8d0227470ae9859aede642",
+        "kind": "guide",
+        "sourceUrl": "https://reg.zuicool.com/31632"
+      }
+    ],
+    "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+    "taskKind": "source_uncertainty_or_followup_announcement",
+    "instruction": "原图细小地名/海拔无法可靠确认，保留视觉原图，非要求猜写；不能把已阅但辨认不清当成未看图。"
+  },
+  {
+    "id": "zuiku-66992",
+    "name": "2026黄石马拉松",
+    "reviewScope": "仅 edits 指明章节、facts 数值和 imageReviews 对应原图已实际核对。其余已保存正文及原图保留；未声明未列章节逐条完成，亦未声明保存/部署/线上展示完成。",
+    "documentedNotes": [
+      "{\"issue\":\"本届规程仅写领物时间/地点赛前一周公布，未审校后续领物公告；不补写地点。\",\"status\":\"pickup_announcement_not_reviewed\",\"sourceUrl\":\"https://mp.weixin.qq.com/s/oEdpIbLPiiG21CFEVyDmkA\"}"
+    ],
+    "latestAudit": "third-reviewed-audit.json",
+    "currentSectionCount": 14,
+    "currentMediaCount": 2,
+    "officialSources": [
+      {
+        "url": "https://mp.weixin.qq.com/s/oEdpIbLPiiG21CFEVyDmkA",
+        "title": "2026黄石马拉松竞赛规程",
+        "role": "official_wechat_article",
+        "verified": true,
+        "identityReview": "2026黄石马拉松官网 https://huangshimarathon.com/ 的“竞赛规程”导航明确指向此篇；人工查看文章内两张规程原图确认赛事、2026年份与日期，不授权 mp.weixin.qq.com 其他文章或账号。",
+        "characters": 295,
+        "bodySha256": "ae7765dfbca4edfaf8bda60d15bafd6a43853e6b7b8b40543094e9c4d96b8cae",
+        "checkedAt": "2026-11-17T18:15:32.191Z"
+      }
+    ],
+    "reviewedImageUrls": [],
+    "candidateMedia": [
+      {
+        "index": 0,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/131bf56176bf08f1864059faa0074d838184aa84.jpeg?imageView2/2/w/1181",
+        "caption": "竞赛规程",
+        "sha256": "8ecbf4491c38263f0cb689c5eed44f0198771dc60724e7c2271fce5923b96815",
+        "kind": "guide",
+        "sourceUrl": "https://zuicool.com/news/archives/316949"
+      },
+      {
+        "index": 1,
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/11c3a91803d289f9480ddbf3b2ef5e70dba11391.jpeg?imageView2/2/w/1181",
+        "caption": "竞赛规程",
+        "sha256": "fb41a4aff4838fae673880ee38ee65fb5254addcc0c49f2e00a73243d7b2aef0",
+        "kind": "guide",
+        "sourceUrl": "https://zuicool.com/news/archives/316949"
+      }
+    ],
+    "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+    "taskKind": "source_uncertainty_or_followup_announcement",
+    "instruction": "后续领物公告未取得/未审，独立搜索本届官方后续通知；原规程已说赛前一周公布，不能补地点。"
+  }
+]

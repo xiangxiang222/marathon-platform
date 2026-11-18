@@ -1,0 +1,211 @@
+{
+  "at": "2026-11-18T19:10:04.250Z",
+  "kind": "Read-only diagnostic; no mini automation, code changes, cache injection, image conversion or production mutation",
+  "rootObservedNativePreview": {
+    "hongkong": {
+      "first10SecondScreenshot": "still loading",
+      "reopened15SecondScreenshot": "full original displayed",
+      "cause": "unconfirmed"
+    },
+    "fengqing": {
+      "first10SecondScreenshot": "still loading",
+      "reopened15SecondScreenshot": "full original displayed",
+      "cause": "unconfirmed"
+    },
+    "jingshan": {
+      "rootReported": "native preview displayed promptly",
+      "cause": "not diagnosed"
+    }
+  },
+  "httpChecks": [
+    {
+      "id": 1575,
+      "raceId": "zuiku-22160",
+      "label": "Hong Kong first original",
+      "bytes": 571493,
+      "width": 1080,
+      "height": 1920,
+      "timeStartTransferSeconds": 0.054878,
+      "timeTotalSeconds": 2.558231,
+      "speedBytesPerSecond": 223393,
+      "serverSha256": "7200b3d1f91799481f686f8593f4da6d12a6b8f9c5c1aa5027ec22b53f9c4c20",
+      "url": "https://togetherbetter.cn/marathon/api/race-sheets/1575",
+      "httpStatus": 200,
+      "redirectCount": 0,
+      "downloadFile": "/tmp/race-guide-quality-20261117/preview-diagnostic-1575.img",
+      "downloadSha256": "7200b3d1f91799481f686f8593f4da6d12a6b8f9c5c1aa5027ec22b53f9c4c20",
+      "downloadExactlyMatchesServer": true,
+      "contentType": "image/jpeg",
+      "contentLengthMatchesBytes": true,
+      "cacheControl": "public, max-age=86400",
+      "acceptRanges": "bytes",
+      "headerFile": "/tmp/race-guide-quality-20261117/preview-diagnostic-1575.headers"
+    },
+    {
+      "id": 1324,
+      "raceId": "zuiku-26531",
+      "label": "Fengqing first visible route original",
+      "bytes": 861174,
+      "width": 750,
+      "height": 6660,
+      "timeStartTransferSeconds": 0.053558,
+      "timeTotalSeconds": 1.559343,
+      "speedBytesPerSecond": 552267,
+      "serverSha256": "606e207aedebb3a8712d8d65256238b3cf775bb7f8a9f3ff3a5f8bcb5c1815d2",
+      "url": "https://togetherbetter.cn/marathon/api/race-sheets/1324",
+      "httpStatus": 200,
+      "redirectCount": 0,
+      "downloadFile": "/tmp/race-guide-quality-20261117/preview-diagnostic-1324.img",
+      "downloadSha256": "606e207aedebb3a8712d8d65256238b3cf775bb7f8a9f3ff3a5f8bcb5c1815d2",
+      "downloadExactlyMatchesServer": true,
+      "contentType": "image/jpeg",
+      "contentLengthMatchesBytes": true,
+      "cacheControl": "public, max-age=86400",
+      "acceptRanges": "bytes",
+      "headerFile": "/tmp/race-guide-quality-20261117/preview-diagnostic-1324.headers"
+    },
+    {
+      "id": 1548,
+      "raceId": "zuiku-16852",
+      "label": "Jingshan first original",
+      "bytes": 91770,
+      "width": 1063,
+      "height": 452,
+      "timeStartTransferSeconds": 0.054962,
+      "timeTotalSeconds": 0.079441,
+      "speedBytesPerSecond": 1155196,
+      "serverSha256": "dc3a79c782a165be5608dd540e99b91ce4f58d99aa221b25069b1eccc87bf399",
+      "url": "https://togetherbetter.cn/marathon/api/race-sheets/1548",
+      "httpStatus": 200,
+      "redirectCount": 0,
+      "downloadFile": "/tmp/race-guide-quality-20261117/preview-diagnostic-1548.img",
+      "downloadSha256": "dc3a79c782a165be5608dd540e99b91ce4f58d99aa221b25069b1eccc87bf399",
+      "downloadExactlyMatchesServer": true,
+      "contentType": "image/jpeg",
+      "contentLengthMatchesBytes": true,
+      "cacheControl": "public, max-age=86400",
+      "acceptRanges": "bytes",
+      "headerFile": "/tmp/race-guide-quality-20261117/preview-diagnostic-1548.headers"
+    }
+  ],
+  "productionImageMetadataFile": "/tmp/race-guide-quality-20261117/preview-diagnostic-server-metadata.json",
+  "magicCheck": {
+    "file": "/tmp/race-guide-quality-20261117/preview-diagnostic-server-magic.json",
+    "checkedImages": 45,
+    "mimeMismatchCount": 0
+  },
+  "galleryLoadPotential": [
+    {
+      "raceId": "zuiku-22160",
+      "imageCount": 17,
+      "totalBytes": 17043714,
+      "totalPixels": 85199800,
+      "maxHeight": 5294,
+      "ids": [
+        1575,
+        1576,
+        1577,
+        1578,
+        1579,
+        1580,
+        1581,
+        1582,
+        1583,
+        1584,
+        1585,
+        1586,
+        1587,
+        1588,
+        1589,
+        1590,
+        1591
+      ],
+      "theoreticalRawRGBABytesIfAllDecodedTogether": 340799200,
+      "rawEstimateCaveat": "Arithmetic only, not measured WeChat memory and not evidence that native viewer eagerly decodes all images."
+    },
+    {
+      "raceId": "zuiku-26531",
+      "imageCount": 23,
+      "totalBytes": 7366859,
+      "totalPixels": 38488500,
+      "maxHeight": 7395,
+      "ids": [
+        1323,
+        1324,
+        1325,
+        1326,
+        1327,
+        1328,
+        1329,
+        1330,
+        1331,
+        1332,
+        1333,
+        1334,
+        1335,
+        1336,
+        1337,
+        1338,
+        1339,
+        1340,
+        1341,
+        1342,
+        1343,
+        1344,
+        1345
+      ],
+      "theoreticalRawRGBABytesIfAllDecodedTogether": 153954000,
+      "rawEstimateCaveat": "Arithmetic only, not measured WeChat memory and not evidence that native viewer eagerly decodes all images."
+    },
+    {
+      "raceId": "zuiku-16852",
+      "imageCount": 5,
+      "totalBytes": 1451321,
+      "totalPixels": 17928558,
+      "maxHeight": 6063,
+      "ids": [
+        1548,
+        1549,
+        1550,
+        1551,
+        1552
+      ],
+      "theoreticalRawRGBABytesIfAllDecodedTogether": 71714232,
+      "rawEstimateCaveat": "Arithmetic only, not measured WeChat memory and not evidence that native viewer eagerly decodes all images."
+    }
+  ],
+  "codeFindings": [
+    {
+      "file": "server/src/race-guide.js",
+      "line": 540,
+      "finding": "Public sheet endpoint reads SQLite filename, checks local file, sets image MIME by extension plus one-day public caching and sends local file. No request-time OCR or image transformation."
+    },
+    {
+      "file": "miniprogram/pages/race/race.js",
+      "line": 79,
+      "finding": "previewGuide forwards remote current URL plus deduplicated cover/guide/route/pacer/live/Markdown image URLs to wx.previewImage. It does not download current image to a local temporary file or record viewer-image-ready timing; wx API success alone cannot certify a rendered original."
+    }
+  ],
+  "officialReference": {
+    "url": "https://developers.weixin.qq.com/miniprogram/dev/api/media/image/wx.previewImage.html",
+    "httpStatus": 200,
+    "localText": "/tmp/race-guide-quality-20261117/preview-diagnostic-wechat-preview-doc.txt",
+    "observation": "Official API describes current image and URL list; success/fail callbacks are call results, no documented original-image-rendered event here."
+  },
+  "conclusion": {
+    "network": "These three independent public HTTP requests succeeded with correct files and normal first-byte latency. This sample did not reproduce a 10-second endpoint delay and does not establish the native-viewer network state.",
+    "size": "Each selected current image is below1MB. The full gallery passed to native preview is larger, especially Hong Kong17 images/17MB, but prefetch/decode involvement is an inference.",
+    "rootCause": "Unconfirmed. Root reproduced eventual correct native display after reopen and15-second wait. Do not classify as permanent image failure or verified network/server bug."
+  },
+  "recommendations": [
+    "Retain first loading screenshots and subsequent actual displayed screenshots; label delayed first preview honestly.",
+    "No code patch justified by the current evidence. Preserve clear originals and do not reduce fidelity merely to hide delay.",
+    "If delay recurs on a physical device, collect native network/runtime timing and compare current-image download versus viewer rendering before choosing a fix. Do not infer a server defect from wx.previewImage success or from one waiting screenshot.",
+    "A future isolated experiment could compare the same original in a one-image URL list versus its full gallery, without changing source data; it would test gallery involvement, not prove it in advance."
+  ],
+  "limitations": [
+    "HTTP timings are from this workstation, not native preview instrumentation or the physical-device network.",
+    "Root actual screenshot review is reported by parent; this diagnostic agent did not operate or inspect mini automation.",
+    "No physical-phone zoom, save, long-press native menu or formal-release verification."
+  ]
+}
