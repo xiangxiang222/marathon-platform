@@ -1,0 +1,8 @@
+{
+  "checkedAt": "2026-11-18T06:37:12.799Z",
+  "tests": 41,
+  "passed": 41,
+  "failed": 0,
+  "command": "node --test scripts/race-detail-collect.test.cjs scripts/race-detail-apply.test.cjs scripts/race-detail-sources.test.cjs",
+  "newRegression": "Explicit reviewed postponement saves race_date and guide in the existing guarded transaction; stale replay rejected; backup/schema/count verified"
+}

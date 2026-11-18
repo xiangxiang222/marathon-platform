@@ -124,3 +124,29 @@ test('successive saved selections keep excluded guide images hidden and allow ex
     fs.rmSync(dir, { recursive: true, force: true });
   }
 });
+
+test('an explicitly reviewed postponement saves its date with the guide and rejects a stale replay', async () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'race-reviewed-date-'));
+  const dbFile = path.join(dir, 'app.sqlite'), db = new Database(dbFile);
+  try {
+    db.exec('CREATE TABLE races(id TEXT PRIMARY KEY,guide_text TEXT,race_date TEXT,deadline TEXT)');
+    db.prepare('INSERT INTO races VALUES(?,?,?,?)').run('existing', '原规程', '2026-12-13', '2026-11-30');
+    const before = db.prepare('SELECT * FROM races').get();
+    const guide = writeDetails('已核对官方延期通知：2027年3月14日举办。', collected.details);
+    const plan = { authorizedIds: ['existing'], plans: [{ updates: [{ id: 'existing', before, changes: { guide_text: guide, race_date: '2027-03-14', deadline: '2027-03-01' }, media: [] }] }] };
+    const log = await applyPlan(dbFile, plan, path.join(dir, 'applied.json'), path.join(dir, 'media'));
+    assert.equal(log.rows[0].ok, true);
+    assert.equal(log.schemaUnchanged, true);
+    assert.ok(fs.existsSync(log.backup));
+    const saved = db.prepare('SELECT * FROM races').get();
+    assert.equal(saved.race_date, '2027-03-14');
+    assert.equal(saved.deadline, '2027-03-01');
+    assert.equal(readDetails(saved.guide_text).text, readDetails(guide).text);
+    const replay = await applyPlan(dbFile, plan, path.join(dir, 'replay.json'), path.join(dir, 'media'));
+    assert.equal(replay.rows[0].error, 'race_changed_since_snapshot');
+    assert.equal(db.prepare('SELECT count(*) n FROM races').get().n, 1);
+  } finally {
+    db.close();
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
+});
