@@ -1,0 +1,133 @@
+{
+  "at": "2026-11-18T16:31:26.605Z",
+  "passed": true,
+  "rows": [
+    {
+      "id": "zuiku-54685",
+      "file": "ninth-frontend-reviewed.json",
+      "edits": 4,
+      "scope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-47062",
+      "file": "ninth-frontend-reviewed.json",
+      "edits": 3,
+      "scope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-34068",
+      "file": "ninth-frontend-reviewed.json",
+      "edits": 6,
+      "scope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-18752",
+      "file": "ninth-frontend-reviewed.json",
+      "edits": 7,
+      "scope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-61099",
+      "file": "ninth-frontend-reviewed.json",
+      "edits": 20,
+      "scope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-84282",
+      "file": "ninth-frontend-reviewed.json",
+      "edits": 26,
+      "scope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-58029",
+      "file": "ninth-frontend-reviewed.json",
+      "edits": 5,
+      "scope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-98335",
+      "file": "ninth-frontend-reviewed.json",
+      "edits": 8,
+      "scope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-62184",
+      "file": "batch10-root-reviewed.json",
+      "edits": 1,
+      "scope": "本轮列明原图和条款已实际核对，未审资料及来源冲突保留；不声明最终赛程全部确认。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-30317",
+      "file": "batch10-root-reviewed.json",
+      "edits": 1,
+      "scope": "本轮列明原图和条款已实际核对，未审资料及来源冲突保留；不声明最终赛程全部确认。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-41594",
+      "file": "fourteenth-root-adjusted-reviewed.json",
+      "edits": 4,
+      "scope": "局部校对：4张图片实际查看，1—3完整规程章重建，0人工概况保留。原图爬升1350+未标单位，保留原写法；ITRA拟1不当已认证积分。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-87662",
+      "file": "fourteenth-root-adjusted-reviewed.json",
+      "edits": 8,
+      "scope": "局部校对：4张规程长图实际看，2—7整章重建，保留0人工概况及1、其余宣传／尺码图片。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-87535",
+      "file": "fourteenth-root-adjusted-reviewed.json",
+      "edits": 7,
+      "scope": "局部校对：5张规程图实际查看，2—6完整整理；0人工概况和1宣传图保留。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-45857",
+      "file": "fourteenth-root-adjusted-reviewed.json",
+      "edits": 6,
+      "scope": "局部校对：4张原图实际完整查看，2—5整章校对；0延期提示及1人工概况保留。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-16303",
+      "file": "fourteenth-root-adjusted-reviewed.json",
+      "edits": 15,
+      "scope": "局部校对：3张完整原图实际查看，1宣传和2—8整章规程整理，0可靠人工概况保留；未宣称独立官网终审。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-76218",
+      "file": "fourteenth-root-adjusted-reviewed.json",
+      "edits": 13,
+      "scope": "局部校对：9张原图实际完整查看，2—11整章规程整理并修0早鸟时点误导；1宣传和其他照片本轮未逐图，保留。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-95315",
+      "file": "fourteenth-root-adjusted-reviewed.json",
+      "edits": 10,
+      "scope": "局部校对：4张完整规程／须知图片实际查看，2—10整章整理；0人工概况、1宣传和其他照片未本轮逐图保留。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-32840",
+      "file": "fourteenth-root-adjusted-reviewed.json",
+      "edits": 18,
+      "scope": "局部校对：本轮12张原图实际完整查看，1—14对应全图内容完整整理，0仅纠已核实早鸟与旧日期；未宣称独立官方网页全文终审或赛前未公布资料已确认。新公告替代旧日期、费用节点及22KM关门，其他完整资格处罚保留。",
+      "explicitImageReview": true
+    }
+  ],
+  "races": 18
+}

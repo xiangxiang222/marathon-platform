@@ -1,0 +1,26 @@
+{
+  "at": "2026-11-18T16:31:26.420Z",
+  "ids": [
+    "zuiku-32840",
+    "zuiku-76218"
+  ],
+  "actuallyViewedCrops": [
+    "fourteenth-wc-new-0.jpg",
+    "fourteenth-wc-new-1.jpg",
+    "fourteenth-wc-new-2.jpg",
+    "fourteenth-wc-new-3.jpg",
+    "fourteenth-wc-new-5.jpg",
+    "fourteenth-wc-new-6.jpg",
+    "fourteenth-wc-new-7.jpg",
+    "fourteenth-jmg-group-crop.jpg",
+    "fourteenth-jmg-day-crop.jpg"
+  ],
+  "checks": [
+    "百丈漈五身份两阶段十价格、7小时与13:00、11/2早鸟及12/9截止、奖金区间",
+    "剑门关24/14公里关门5/4h、爬升535/281米、12/19及12/20七行日程"
+  ],
+  "correction": "14KM积分格保留原表斜线，未推断无积分",
+  "originalDraftSha256": "395bb00856c2201037dd5c652d3c540f662871e0055af925479ef32a600cc8f8",
+  "adjustedDraftSha256": "01d72024eaeceedde996ab433d8035b3cb4c363fc05a800359be837829aa3d02",
+  "passed": true
+}

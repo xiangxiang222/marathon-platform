@@ -1,0 +1,70 @@
+{
+  "at": "2026-11-18T16:45:21.054Z",
+  "kind": "production data update using previously deployed guide UI code",
+  "saved": 18,
+  "proseAndGroupFieldsExactlyReadBack": true,
+  "databaseBackup": "server/data/race-guide-quality-20261117/batch10-applied.json.before.sqlite",
+  "races": 434,
+  "sheets": 1735,
+  "schemaUnchanged": true,
+  "quickCheck": "ok",
+  "web": {
+    "actualLivePages": 36,
+    "widths": [
+      320,
+      390
+    ],
+    "overflow": false,
+    "fullBodyBlocks": 2150,
+    "fullTableRows": 663,
+    "allSourceCellsMatched": true,
+    "focusedChecks": 10
+  },
+  "stages": {
+    "reviewed": true,
+    "saved": true,
+    "webDisplayed": true,
+    "productionWebValidated": true,
+    "mini": "Actual 390px WeChat DevTools: Jingxi, Changchun and Baizhangji verified against production HTTPS API; not formal publication or physical phone"
+  },
+  "pending": [
+    "Already-processed guides still contain unreviewed chapters; all races remain partial",
+    "Physical phone, actual 320px DevTools and official mini-program publication verification"
+  ],
+  "mini": {
+    "races": [
+      "zuiku-34068",
+      "zuiku-30317",
+      "zuiku-32840"
+    ],
+    "groups": 16,
+    "tables": 19,
+    "rows": 117,
+    "allRowsRendered": true,
+    "wideTableScrollVerifiedFor": [
+      "zuiku-34068",
+      "zuiku-32840"
+    ],
+    "changchunFirstTableFitsViewport": true,
+    "changchunLaterWideTableScrollNotExercised": true,
+    "originalImagePreviewClicked": true,
+    "nativePreviewScreenshotsRequireVisualReview": false,
+    "nativePreviewVisuallyVerifiedFor": [
+      "zuiku-34068",
+      "zuiku-30317",
+      "zuiku-32840"
+    ],
+    "initialPreviewLatency": "Baizhangji first 10-second screenshot was loading; reopened and later full-image screenshot actually verified. No time-to-load claim."
+  },
+  "captionCorrection": {
+    "id": "zuiku-32840",
+    "count": 1,
+    "backup": "server/data/race-guide-quality-20261117/batch10-caption-applied.json.before.sqlite",
+    "webWidths": [
+      320,
+      390
+    ],
+    "actualMiniWidth": 390,
+    "verification": "batch10-caption-verification.json"
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "at": "2026-11-18T16:37:00.439Z",
+  "checks": [
+    {
+      "id": "zuiku-54685",
+      "width": 320,
+      "paragraphs": 47,
+      "tableRows": 19,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-47062",
+      "width": 320,
+      "paragraphs": 64,
+      "tableRows": 12,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-34068",
+      "width": 320,
+      "paragraphs": 71,
+      "tableRows": 36,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-18752",
+      "width": 320,
+      "paragraphs": 42,
+      "tableRows": 10,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-61099",
+      "width": 320,
+      "paragraphs": 202,
+      "tableRows": 71,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-84282",
+      "width": 320,
+      "paragraphs": 488,
+      "tableRows": 77,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-58029",
+      "width": 320,
+      "paragraphs": 44,
+      "tableRows": 12,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-98335",
+      "width": 320,
+      "paragraphs": 82,
+      "tableRows": 35,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-62184",
+      "width": 320,
+      "paragraphs": 91,
+      "tableRows": 36,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-30317",
+      "width": 320,
+      "paragraphs": 157,
+      "tableRows": 24,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-41594",
+      "width": 320,
+      "paragraphs": 75,
+      "tableRows": 20,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-87662",
+      "width": 320,
+      "paragraphs": 72,
+      "tableRows": 25,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-87535",
+      "width": 320,
+      "paragraphs": 48,
+      "tableRows": 39,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-45857",
+      "width": 320,
+      "paragraphs": 70,
+      "tableRows": 30,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-16303",
+      "width": 320,
+      "paragraphs": 115,
+      "tableRows": 26,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-76218",
+      "width": 320,
+      "paragraphs": 162,
+      "tableRows": 75,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-95315",
+      "width": 320,
+      "paragraphs": 143,
+      "tableRows": 59,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-32840",
+      "width": 320,
+      "paragraphs": 177,
+      "tableRows": 57,
+      "fullRenderedContentMatchesProduction": true
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-11-18T16:37:26.496Z"
+}
