@@ -1,0 +1,135 @@
+{
+  "at": "2026-11-18T05:59:21.858Z",
+  "checks": [
+    {
+      "id": "zuiku-82566",
+      "width": 320,
+      "needle": "赛组（不区分男女）",
+      "table": {
+        "width": 252,
+        "scrollWidth": 360,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 108,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "竞赛规程\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-82566",
+      "width": 390,
+      "needle": "赛组（不区分男女）",
+      "table": {
+        "width": 318,
+        "scrollWidth": 360,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 42,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "竞赛规程\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-75827",
+      "width": 320,
+      "needle": "472",
+      "table": {
+        "width": 252,
+        "scrollWidth": 720,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 468,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "赛事图文资料\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-75827",
+      "width": 390,
+      "needle": "472",
+      "table": {
+        "width": 318,
+        "scrollWidth": 720,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 402,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "赛事图文资料\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "huangyaguan",
+      "width": 320,
+      "needle": "07:50",
+      "table": {
+        "width": 252,
+        "scrollWidth": 252,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 0,
+      "horizontalScrollVerified": null,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "黄崖关5月13日踩线、15日比赛及16日晚宴完整日程原表\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "huangyaguan",
+      "width": 390,
+      "needle": "07:50",
+      "table": {
+        "width": 318,
+        "scrollWidth": 318,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 0,
+      "horizontalScrollVerified": null,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "黄崖关5月13日踩线、15日比赛及16日晚宴完整日程原表\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "caa-1000481065",
+      "width": 320,
+      "needle": "150元",
+      "table": {
+        "width": 252,
+        "scrollWidth": 360,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 108,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "澄迈官网竞赛规程第1张：路线、检录、关门及补给完整原表\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "caa-1000481065",
+      "width": 390,
+      "needle": "150元",
+      "table": {
+        "width": 318,
+        "scrollWidth": 360,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 42,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "澄迈官网竞赛规程第1张：路线、检录、关门及补给完整原表\n查看原图 ↗",
+      "overflow": false
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-11-18T06:00:07.244Z"
+}

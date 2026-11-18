@@ -1,0 +1,11 @@
+{
+  "at": "2026-11-18T05:51:07.417Z",
+  "pr": "https://github.com/xiangxiang222/marathon-platform/pull/182",
+  "commit": "ca14be9287e2abb32aa16fe09654e30aacae5846",
+  "file": "scripts/race-detail-apply.cjs",
+  "sha256": "3595960f589a3ce3b57263ad34c386e9cfd039e5afd509d84e0e212e88a6986c",
+  "productionSha256Matches": true,
+  "productionSyntaxCheck": true,
+  "backup": "server/data/race-guide-quality-20261117/batch6-code-backup/race-detail-apply.cjs",
+  "scope": "Only changed offline script copied; no dependency install or configuration change; no process restart required"
+}

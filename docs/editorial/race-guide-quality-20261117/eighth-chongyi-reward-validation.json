@@ -1,0 +1,31 @@
+{
+  "backup": "/tmp/race-guide-quality-20261117/eighth-backend-reviewed-before-chongyi-reward-af43a8a3d14c.json",
+  "beforeSha256": "af43a8a3d14c83124cdf69db5bfc7c5714226279f6854391cc80bfe769ab18b7",
+  "afterSha256": "e95c3bd8ac141bde064389d540d6942c4803102125a83b3d824faf1f8ccead5a",
+  "raceCount": 8,
+  "totalEdits": 77,
+  "chongyiEditCount": 14,
+  "addedEdits": 1,
+  "replayPassed": true,
+  "fullChapterClausesRetained": true,
+  "sourceImageActuallyViewed": "https://zc3wp-uploads.bkt.zuicool.com/2026/11/f39159b165a6c5ef677642c6dbfb712bbc7d6767.jpeg?imageView2/2/w/1024",
+  "sourceImageSha256": "9547c341bab9a2336b745662a96f8bdcb7dda9a39e4611aa76c5fc391a11c100",
+  "tableShapes": [
+    [
+      6,
+      7
+    ],
+    [
+      6,
+      3
+    ],
+    [
+      6,
+      3
+    ],
+    [
+      9,
+      4
+    ]
+  ]
+}
