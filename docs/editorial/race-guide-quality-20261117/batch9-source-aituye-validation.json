@@ -1,0 +1,48 @@
+{
+  "status": "passed",
+  "checkedAt": "2026-11-18T08:43:56.950Z",
+  "races": [
+    {
+      "id": "zuiku-61737",
+      "originalImages": 5,
+      "viewedCrops": 18,
+      "sections": 10,
+      "tables": 3,
+      "groupCorrections": 12,
+      "sourceBytesHashesVerified": true,
+      "noProductionWrites": true
+    },
+    {
+      "id": "zuiku-47641",
+      "originalImages": 5,
+      "viewedCrops": 17,
+      "sections": 10,
+      "tables": 3,
+      "groupCorrections": 12,
+      "sourceBytesHashesVerified": true,
+      "noProductionWrites": true
+    },
+    {
+      "id": "zuiku-87902",
+      "originalImages": 4,
+      "viewedCrops": 16,
+      "sections": 10,
+      "tables": 3,
+      "groupCorrections": 12,
+      "sourceBytesHashesVerified": true,
+      "noProductionWrites": true
+    },
+    {
+      "id": "zuiku-11904",
+      "originalImages": 4,
+      "viewedCrops": 16,
+      "sections": 10,
+      "tables": 3,
+      "groupCorrections": 12,
+      "sourceBytesHashesVerified": true,
+      "noProductionWrites": true
+    }
+  ],
+  "problems": [],
+  "productionWrites": false
+}

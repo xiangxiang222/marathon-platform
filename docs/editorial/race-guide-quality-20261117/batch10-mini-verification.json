@@ -1,0 +1,2972 @@
+{
+  "kind": "Actual WeChat DevTools rendering, production HTTPS API, no request/route mock; not physical phone or published mini-program",
+  "checkedAt": "2026-11-18T09:14:16.286Z",
+  "project": "/Users/mengxiangxiang/Documents/work/dev/marathon-platform/miniprogram",
+  "system": {
+    "success": true,
+    "systemInfo": {
+      "result": {
+        "brand": "devtools",
+        "model": "iPhone 12/13 (Pro)",
+        "system": "iOS 10.0.1",
+        "platform": "devtools",
+        "benchmarkLevel": -1,
+        "pixelRatio": 3,
+        "screenWidth": 390,
+        "screenHeight": 844,
+        "windowWidth": 390,
+        "windowHeight": 762,
+        "statusBarHeight": 47,
+        "safeArea": {
+          "top": 47,
+          "left": 0,
+          "right": 390,
+          "bottom": 810,
+          "width": 390,
+          "height": 763
+        },
+        "language": "zh_CN",
+        "version": "8.0.5",
+        "fontSizeSetting": 16,
+        "SDKVersion": "3.17.1",
+        "host": {
+          "env": "WeChat"
+        },
+        "enableDebug": false,
+        "mode": "default",
+        "deviceOrientation": "portrait",
+        "bluetoothEnabled": true,
+        "locationEnabled": true,
+        "wifiEnabled": true,
+        "albumAuthorized": true,
+        "cameraAuthorized": true,
+        "locationAuthorized": true,
+        "microphoneAuthorized": true,
+        "notificationAuthorized": true,
+        "notificationAlertAuthorized": true,
+        "notificationBadgeAuthorized": true,
+        "notificationSoundAuthorized": true,
+        "phoneCalendarAuthorized": true,
+        "bluetoothAuthorized": true,
+        "locationReducedAccuracy": true,
+        "devicePixelRatio": 3
+      }
+    }
+  },
+  "races": [
+    {
+      "id": "zuiku-34065",
+      "label": "tonglu",
+      "apiUrl": "https://togetherbetter.cn/marathon/api/races/zuiku-34065",
+      "apiStatus": 200,
+      "proseExactlyMatchesProduction": true,
+      "groupsExactlyMatchPublicProduction": true,
+      "guideSha256": "feeacf34bd8901165875485ea1ebb0a0af0d38c3d79a2c4256617266ae73eb47",
+      "guideCharacters": 8925,
+      "groupCount": 8,
+      "groups": [
+        {
+          "i": 0,
+          "name": "玄武组100KM（男子）",
+          "fields": [
+            {
+              "i": 0,
+              "label": "名额",
+              "value": "400人",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "标称距离",
+              "value": "100公里",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "累计爬升",
+              "value": "5423米",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "出发时间",
+              "value": "12月5日14:30",
+              "wide": false
+            },
+            {
+              "i": 4,
+              "label": "关门时间",
+              "value": "12月6日18:30",
+              "wide": false
+            },
+            {
+              "i": 5,
+              "label": "关门时长",
+              "value": "28小时",
+              "wide": false
+            },
+            {
+              "i": 6,
+              "label": "ITRA积分",
+              "value": "4分",
+              "wide": false
+            },
+            {
+              "i": 7,
+              "label": "参赛条件",
+              "value": "18—63周岁（含）；特邀除外；一年内1次60公里及以上或2次50公里及以上跑步比赛完赛证明。报到必须提供一年内县级以上医疗机构体检（含心电图），签装备承诺与自愿声明，停赛期不得报名。",
+              "wide": true
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "报名页价格 · 1199元/人"
+            }
+          ]
+        },
+        {
+          "i": 1,
+          "name": "朱雀组60KM（男子）",
+          "fields": [
+            {
+              "i": 0,
+              "label": "名额",
+              "value": "600人",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "标称距离",
+              "value": "60公里",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "累计爬升",
+              "value": "2506米",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "出发时间",
+              "value": "12月6日5:30",
+              "wide": false
+            },
+            {
+              "i": 4,
+              "label": "关门时间",
+              "value": "12月6日19:30",
+              "wide": false
+            },
+            {
+              "i": 5,
+              "label": "关门时长",
+              "value": "14小时",
+              "wide": false
+            },
+            {
+              "i": 6,
+              "label": "ITRA积分",
+              "value": "3分",
+              "wide": false
+            },
+            {
+              "i": 7,
+              "label": "参赛条件",
+              "value": "18—63周岁（含）；特邀除外；一年内1次50公里及以上或2次40公里及以上比赛完赛证明。报到必须提供一年内县级以上医疗机构体检（含心电图），签装备承诺与自愿声明，停赛期不得报名。",
+              "wide": true
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "报名页价格 · 699元/人"
+            }
+          ]
+        },
+        {
+          "i": 2,
+          "name": "青龙组45KM（男子）",
+          "fields": [
+            {
+              "i": 0,
+              "label": "名额",
+              "value": "800人",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "标称距离",
+              "value": "45公里",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "累计爬升",
+              "value": "1536米",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "出发时间",
+              "value": "12月6日6:00",
+              "wide": false
+            },
+            {
+              "i": 4,
+              "label": "关门时间",
+              "value": "12月6日17:00",
+              "wide": false
+            },
+            {
+              "i": 5,
+              "label": "关门时长",
+              "value": "11小时",
+              "wide": false
+            },
+            {
+              "i": 6,
+              "label": "ITRA积分",
+              "value": "2分",
+              "wide": false
+            },
+            {
+              "i": 7,
+              "label": "参赛条件",
+              "value": "18—65周岁（含）；特邀除外；一年内1次50公里及以上或2次40公里及以上比赛完赛证明。报到必须提供一年内县级以上医疗机构体检（含心电图），签装备承诺与自愿声明，停赛期不得报名。",
+              "wide": true
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "报名页价格 · 499元/人"
+            }
+          ]
+        },
+        {
+          "i": 3,
+          "name": "白虎组20KM（男子）",
+          "fields": [
+            {
+              "i": 0,
+              "label": "名额",
+              "value": "700人",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "标称距离",
+              "value": "20公里",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "累计爬升",
+              "value": "851米",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "累计下降",
+              "value": "649米",
+              "wide": false
+            },
+            {
+              "i": 4,
+              "label": "出发时间",
+              "value": "12月6日8:00",
+              "wide": false
+            },
+            {
+              "i": 5,
+              "label": "关门时间",
+              "value": "12月6日13:30",
+              "wide": false
+            },
+            {
+              "i": 6,
+              "label": "关门时长",
+              "value": "5.5小时",
+              "wide": false
+            },
+            {
+              "i": 7,
+              "label": "ITRA积分",
+              "value": "1分",
+              "wide": false
+            },
+            {
+              "i": 8,
+              "label": "参赛条件",
+              "value": "18—65周岁（含）；特邀除外；经常户外运动，有体能，至少提供5公里以上徒步或跑步轨迹。报到必须提供一年内县级以上医疗机构体检（含心电图），签装备承诺与自愿声明，停赛期不得报名。",
+              "wide": true
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "报名页价格 · 299元/人"
+            }
+          ]
+        },
+        {
+          "i": 4,
+          "name": "玄武组100KM（女子）",
+          "fields": [
+            {
+              "i": 0,
+              "label": "名额",
+              "value": "400人",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "标称距离",
+              "value": "100公里",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "累计爬升",
+              "value": "5423米",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "出发时间",
+              "value": "12月5日14:30",
+              "wide": false
+            },
+            {
+              "i": 4,
+              "label": "关门时间",
+              "value": "12月6日18:30",
+              "wide": false
+            },
+            {
+              "i": 5,
+              "label": "关门时长",
+              "value": "28小时",
+              "wide": false
+            },
+            {
+              "i": 6,
+              "label": "ITRA积分",
+              "value": "4分",
+              "wide": false
+            },
+            {
+              "i": 7,
+              "label": "参赛条件",
+              "value": "18—63周岁（含）；特邀除外；一年内1次60公里及以上或2次50公里及以上跑步比赛完赛证明。报到必须提供一年内县级以上医疗机构体检（含心电图），签装备承诺与自愿声明，停赛期不得报名。",
+              "wide": true
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "报名页价格 · 1199元/人"
+            }
+          ]
+        },
+        {
+          "i": 5,
+          "name": "朱雀组60KM（女子）",
+          "fields": [
+            {
+              "i": 0,
+              "label": "名额",
+              "value": "600人",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "标称距离",
+              "value": "60公里",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "累计爬升",
+              "value": "2506米",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "出发时间",
+              "value": "12月6日5:30",
+              "wide": false
+            },
+            {
+              "i": 4,
+              "label": "关门时间",
+              "value": "12月6日19:30",
+              "wide": false
+            },
+            {
+              "i": 5,
+              "label": "关门时长",
+              "value": "14小时",
+              "wide": false
+            },
+            {
+              "i": 6,
+              "label": "ITRA积分",
+              "value": "3分",
+              "wide": false
+            },
+            {
+              "i": 7,
+              "label": "参赛条件",
+              "value": "18—63周岁（含）；特邀除外；一年内1次50公里及以上或2次40公里及以上比赛完赛证明。报到必须提供一年内县级以上医疗机构体检（含心电图），签装备承诺与自愿声明，停赛期不得报名。",
+              "wide": true
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "报名页价格 · 699元/人"
+            }
+          ]
+        },
+        {
+          "i": 6,
+          "name": "青龙组45KM（女子）",
+          "fields": [
+            {
+              "i": 0,
+              "label": "名额",
+              "value": "800人",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "标称距离",
+              "value": "45公里",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "累计爬升",
+              "value": "1536米",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "出发时间",
+              "value": "12月6日6:00",
+              "wide": false
+            },
+            {
+              "i": 4,
+              "label": "关门时间",
+              "value": "12月6日17:00",
+              "wide": false
+            },
+            {
+              "i": 5,
+              "label": "关门时长",
+              "value": "11小时",
+              "wide": false
+            },
+            {
+              "i": 6,
+              "label": "ITRA积分",
+              "value": "2分",
+              "wide": false
+            },
+            {
+              "i": 7,
+              "label": "参赛条件",
+              "value": "18—65周岁（含）；特邀除外；一年内1次50公里及以上或2次40公里及以上比赛完赛证明。报到必须提供一年内县级以上医疗机构体检（含心电图），签装备承诺与自愿声明，停赛期不得报名。",
+              "wide": true
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "报名页价格 · 499元/人"
+            }
+          ]
+        },
+        {
+          "i": 7,
+          "name": "白虎组20KM（女子）",
+          "fields": [
+            {
+              "i": 0,
+              "label": "名额",
+              "value": "700人",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "标称距离",
+              "value": "20公里",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "累计爬升",
+              "value": "851米",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "累计下降",
+              "value": "649米",
+              "wide": false
+            },
+            {
+              "i": 4,
+              "label": "出发时间",
+              "value": "12月6日8:00",
+              "wide": false
+            },
+            {
+              "i": 5,
+              "label": "关门时间",
+              "value": "12月6日13:30",
+              "wide": false
+            },
+            {
+              "i": 6,
+              "label": "关门时长",
+              "value": "5.5小时",
+              "wide": false
+            },
+            {
+              "i": 7,
+              "label": "ITRA积分",
+              "value": "1分",
+              "wide": false
+            },
+            {
+              "i": 8,
+              "label": "参赛条件",
+              "value": "18—65周岁（含）；特邀除外；经常户外运动，有体能，至少提供5公里以上徒步或跑步轨迹。报到必须提供一年内县级以上医疗机构体检（含心电图），签装备承诺与自愿声明，停赛期不得报名。",
+              "wide": true
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "报名页价格 · 299元/人"
+            }
+          ]
+        }
+      ],
+      "chapters": [
+        {
+          "id": "chapter-0",
+          "label": "赛事概况"
+        },
+        {
+          "id": "chapter-7",
+          "label": "参赛服及限量完赛物资"
+        },
+        {
+          "id": "chapter-11",
+          "label": "完整组别资格、竞赛及玄武奖励"
+        },
+        {
+          "id": "chapter-47",
+          "label": "完整朱雀、青龙、白虎奖励及装备矩阵"
+        },
+        {
+          "id": "chapter-60",
+          "label": "号码布、完整日程及路线参数"
+        },
+        {
+          "id": "chapter-71",
+          "label": "报名渠道、名额与路线数据说明"
+        },
+        {
+          "id": "chapter-77",
+          "label": "完整收费、七项优惠及退改政策"
+        },
+        {
+          "id": "chapter-98",
+          "label": "服务、五条保险、申诉与联系"
+        },
+        {
+          "id": "originals",
+          "label": "规程原图参考",
+          "hasContent": true
+        }
+      ],
+      "originalCount": 5,
+      "screenshots": [
+        "/private/tmp/race-guide-quality-20261117/batch10-mini-tonglu-390-groups.png",
+        "/private/tmp/race-guide-quality-20261117/batch10-mini-tonglu-390-table-before.png",
+        "/private/tmp/race-guide-quality-20261117/batch10-mini-tonglu-390-table-after.png",
+        "/private/tmp/race-guide-quality-20261117/batch10-mini-tonglu-390-original.png",
+        "/private/tmp/race-guide-quality-20261117/batch10-mini-tonglu-390-preview.png"
+      ],
+      "tablesBefore": [
+        {
+          "left": 27,
+          "right": 363,
+          "top": 99.90625,
+          "bottom": 558.90625,
+          "width": 336,
+          "height": 459,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 480,
+          "scrollHeight": 477
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 1072.421875,
+          "bottom": 1329.421875,
+          "width": 336,
+          "height": 257,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 600,
+          "scrollHeight": 275
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 2753.7421875,
+          "bottom": 2939.7421875,
+          "width": 336,
+          "height": 186,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 204
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 3026.53125,
+          "bottom": 4522.53125,
+          "width": 336,
+          "height": 1496,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 480,
+          "scrollHeight": 1514
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 4665.515625,
+          "bottom": 5128.515625,
+          "width": 336,
+          "height": 463,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 480,
+          "scrollHeight": 481
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 5280.4921875,
+          "bottom": 8225.4921875,
+          "width": 336,
+          "height": 2945,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 600,
+          "scrollHeight": 2963
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 8410.0625,
+          "bottom": 9284.0625,
+          "width": 336,
+          "height": 874,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 600,
+          "scrollHeight": 892
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 9966.140625,
+          "bottom": 10601.140625,
+          "width": 336,
+          "height": 635,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 480,
+          "scrollHeight": 653
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 10785.7109375,
+          "bottom": 11042.7109375,
+          "width": 336,
+          "height": 257,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 1080,
+          "scrollHeight": 275
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 11624.015625,
+          "bottom": 11856.015625,
+          "width": 336,
+          "height": 232,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 334,
+          "scrollHeight": 250
+        }
+      ],
+      "tablesAfter": [
+        {
+          "left": 27,
+          "right": 363,
+          "top": 99.90625,
+          "bottom": 558.90625,
+          "width": 336,
+          "height": 459,
+          "scrollLeft": 146,
+          "scrollTop": 0,
+          "scrollWidth": 480,
+          "scrollHeight": 477
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 1072.421875,
+          "bottom": 1329.421875,
+          "width": 336,
+          "height": 257,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 600,
+          "scrollHeight": 275
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 2753.7421875,
+          "bottom": 2939.7421875,
+          "width": 336,
+          "height": 186,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 204
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 3026.53125,
+          "bottom": 4522.53125,
+          "width": 336,
+          "height": 1496,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 480,
+          "scrollHeight": 1514
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 4665.515625,
+          "bottom": 5128.515625,
+          "width": 336,
+          "height": 463,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 480,
+          "scrollHeight": 481
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 5280.4921875,
+          "bottom": 8225.4921875,
+          "width": 336,
+          "height": 2945,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 600,
+          "scrollHeight": 2963
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 8410.0625,
+          "bottom": 9284.0625,
+          "width": 336,
+          "height": 874,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 600,
+          "scrollHeight": 892
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 9966.140625,
+          "bottom": 10601.140625,
+          "width": 336,
+          "height": 635,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 480,
+          "scrollHeight": 653
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 10785.7109375,
+          "bottom": 11042.7109375,
+          "width": 336,
+          "height": 257,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 1080,
+          "scrollHeight": 275
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 11624.015625,
+          "bottom": 11856.015625,
+          "width": 336,
+          "height": 232,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 334,
+          "scrollHeight": 250
+        }
+      ],
+      "actualHorizontalScrollVerified": true,
+      "originalImage": {
+        "left": 28,
+        "right": 362,
+        "top": 390.84375,
+        "bottom": 5244.53125,
+        "width": 334,
+        "height": 4853.6875,
+        "mode": "widthFix",
+        "src": "https://togetherbetter.cn/marathon/api/race-sheets/1149",
+        "showMenuByLongpress": true
+      },
+      "longpressActionSucceeded": true,
+      "nativeLongpressMenuVerified": false,
+      "nativePreviewClickSucceeded": true,
+      "hero": {
+        "date": "2026-12-05",
+        "heroDate": "12.05",
+        "year": "2026",
+        "guideCount": 5,
+        "routeCount": 0
+      },
+      "tableContent": [
+        {
+          "headers": [
+            "组别",
+            "限额",
+            "完赛物资",
+            "图示商品参考价"
+          ],
+          "rows": [
+            [
+              "玄武100KM",
+              "前200名",
+              "云羚全地型越野跑鞋（二代）＋小笼包15L越野背包",
+              "799元＋399元"
+            ],
+            [
+              "朱雀60KM",
+              "前300名",
+              "拓路者新雪丽3m轻量棉衣套装，男款黑色／女款紫色",
+              "499元"
+            ],
+            [
+              "青龙45KM",
+              "前300名",
+              "拓路者波浪纹抓绒衣",
+              "319元"
+            ],
+            [
+              "白虎20KM",
+              "前400名",
+              "拓路者轻量化斜挎包",
+              "159元"
+            ]
+          ]
+        },
+        {
+          "headers": [
+            "组别",
+            "人数（男女合计）",
+            "项目",
+            "实际距离",
+            "关门时长"
+          ],
+          "rows": [
+            [
+              "玄武100KM",
+              "400",
+              "山地越野跑",
+              "约101公里",
+              "28小时"
+            ],
+            [
+              "朱雀60KM",
+              "600",
+              "山地越野跑",
+              "约59.2公里",
+              "14小时"
+            ],
+            [
+              "青龙45KM",
+              "800",
+              "山地越野跑",
+              "约43.6公里",
+              "11小时"
+            ],
+            [
+              "白虎20KM",
+              "700",
+              "山地越野跑",
+              "约19公里",
+              "5.5小时"
+            ]
+          ]
+        },
+        {
+          "headers": [
+            "名次",
+            "男子奖金",
+            "女子奖金"
+          ],
+          "rows": [
+            [
+              "1",
+              "10000元",
+              "11000元"
+            ],
+            [
+              "2",
+              "8000元",
+              "9000元"
+            ],
+            [
+              "3",
+              "6000元",
+              "7000元"
+            ]
+          ]
+        },
+        {
+          "headers": [
+            "出生日期区间",
+            "名次",
+            "男子",
+            "女子"
+          ],
+          "rows": [
+            [
+              "1963年12月6日—1973年12月5日",
+              "1",
+              "500元",
+              "500元"
+            ],
+            [
+              "1963年12月6日—1973年12月5日",
+              "2",
+              "300元",
+              "300元"
+            ],
+            [
+              "1963年12月6日—1973年12月5日",
+              "3—10",
+              "200元",
+              "200元"
+            ],
+            [
+              "1973年12月6日—1983年12月5日",
+              "1",
+              "500元",
+              "500元"
+            ],
+            [
+              "1973年12月6日—1983年12月5日",
+              "2",
+              "300元",
+              "300元"
+            ],
+            [
+              "1973年12月6日—1983年12月5日",
+              "3—10",
+              "200元",
+              "200元"
+            ],
+            [
+              "1983年12月6日—1993年12月5日",
+              "1",
+              "500元",
+              "500元"
+            ],
+            [
+              "1983年12月6日—1993年12月5日",
+              "2",
+              "300元",
+              "300元"
+            ],
+            [
+              "1983年12月6日—1993年12月5日",
+              "3—10",
+              "200元",
+              "200元"
+            ],
+            [
+              "1993年12月6日—2003年12月5日",
+              "1",
+              "500元",
+              "500元"
+            ],
+            [
+              "1993年12月6日—2003年12月5日",
+              "2",
+              "300元",
+              "300元"
+            ],
+            [
+              "1993年12月6日—2003年12月5日",
+              "3—10",
+              "200元",
+              "200元"
+            ],
+            [
+              "2003年12月6日—2008年12月5日",
+              "1",
+              "500元",
+              "500元"
+            ],
+            [
+              "2003年12月6日—2008年12月5日",
+              "2",
+              "300元",
+              "300元"
+            ],
+            [
+              "2003年12月6日—2008年12月5日",
+              "3—10",
+              "200元",
+              "200元"
+            ]
+          ]
+        },
+        {
+          "headers": [
+            "组别",
+            "名次",
+            "男子奖金",
+            "女子奖金"
+          ],
+          "rows": [
+            [
+              "朱雀60KM",
+              "1",
+              "5000元",
+              "6000元"
+            ],
+            [
+              "朱雀60KM",
+              "2",
+              "4000元",
+              "5000元"
+            ],
+            [
+              "朱雀60KM",
+              "3",
+              "3000元",
+              "4000元"
+            ],
+            [
+              "青龙45KM",
+              "1",
+              "3000元",
+              "4000元"
+            ],
+            [
+              "青龙45KM",
+              "2",
+              "2000元",
+              "3000元"
+            ],
+            [
+              "青龙45KM",
+              "3",
+              "1000元",
+              "2000元"
+            ],
+            [
+              "白虎20KM",
+              "1",
+              "1000元",
+              "1100元"
+            ],
+            [
+              "白虎20KM",
+              "2",
+              "800元",
+              "900元"
+            ],
+            [
+              "白虎20KM",
+              "3",
+              "600元",
+              "700元"
+            ]
+          ]
+        },
+        {
+          "headers": [
+            "组别",
+            "出生日期区间",
+            "名次",
+            "男子",
+            "女子"
+          ],
+          "rows": [
+            [
+              "朱雀60KM",
+              "1963年12月6日—1973年12月5日",
+              "1",
+              "300元",
+              "300元"
+            ],
+            [
+              "朱雀60KM",
+              "1963年12月6日—1973年12月5日",
+              "2",
+              "200元",
+              "200元"
+            ],
+            [
+              "朱雀60KM",
+              "1963年12月6日—1973年12月5日",
+              "3—10",
+              "100元",
+              "100元"
+            ],
+            [
+              "朱雀60KM",
+              "1973年12月6日—1983年12月5日",
+              "1",
+              "300元",
+              "300元"
+            ],
+            [
+              "朱雀60KM",
+              "1973年12月6日—1983年12月5日",
+              "2",
+              "200元",
+              "200元"
+            ],
+            [
+              "朱雀60KM",
+              "1973年12月6日—1983年12月5日",
+              "3—10",
+              "100元",
+              "100元"
+            ],
+            [
+              "朱雀60KM",
+              "1983年12月6日—1993年12月5日",
+              "1",
+              "300元",
+              "300元"
+            ],
+            [
+              "朱雀60KM",
+              "1983年12月6日—1993年12月5日",
+              "2",
+              "200元",
+              "200元"
+            ],
+            [
+              "朱雀60KM",
+              "1983年12月6日—1993年12月5日",
+              "3—10",
+              "100元",
+              "100元"
+            ],
+            [
+              "朱雀60KM",
+              "1993年12月6日—2003年12月5日",
+              "1",
+              "300元",
+              "300元"
+            ],
+            [
+              "朱雀60KM",
+              "1993年12月6日—2003年12月5日",
+              "2",
+              "200元",
+              "200元"
+            ],
+            [
+              "朱雀60KM",
+              "1993年12月6日—2003年12月5日",
+              "3—10",
+              "100元",
+              "100元"
+            ],
+            [
+              "朱雀60KM",
+              "2003年12月6日—2008年12月5日",
+              "1",
+              "300元",
+              "300元"
+            ],
+            [
+              "朱雀60KM",
+              "2003年12月6日—2008年12月5日",
+              "2",
+              "200元",
+              "200元"
+            ],
+            [
+              "朱雀60KM",
+              "2003年12月6日—2008年12月5日",
+              "3—10",
+              "100元",
+              "100元"
+            ],
+            [
+              "青龙45KM",
+              "1963年12月6日—1973年12月5日",
+              "1",
+              "300元",
+              "300元"
+            ],
+            [
+              "青龙45KM",
+              "1963年12月6日—1973年12月5日",
+              "2",
+              "200元",
+              "200元"
+            ],
+            [
+              "青龙45KM",
+              "1963年12月6日—1973年12月5日",
+              "3—10",
+              "100元",
+              "100元"
+            ],
+            [
+              "青龙45KM",
+              "1973年12月6日—1983年12月5日",
+              "1",
+              "300元",
+              "300元"
+            ],
+            [
+              "青龙45KM",
+              "1973年12月6日—1983年12月5日",
+              "2",
+              "200元",
+              "200元"
+            ],
+            [
+              "青龙45KM",
+              "1973年12月6日—1983年12月5日",
+              "3—10",
+              "100元",
+              "100元"
+            ],
+            [
+              "青龙45KM",
+              "1983年12月6日—1993年12月5日",
+              "1",
+              "300元",
+              "300元"
+            ],
+            [
+              "青龙45KM",
+              "1983年12月6日—1993年12月5日",
+              "2",
+              "200元",
+              "200元"
+            ],
+            [
+              "青龙45KM",
+              "1983年12月6日—1993年12月5日",
+              "3—10",
+              "100元",
+              "100元"
+            ],
+            [
+              "青龙45KM",
+              "1993年12月6日—2003年12月5日",
+              "1",
+              "300元",
+              "300元"
+            ],
+            [
+              "青龙45KM",
+              "1993年12月6日—2003年12月5日",
+              "2",
+              "200元",
+              "200元"
+            ],
+            [
+              "青龙45KM",
+              "1993年12月6日—2003年12月5日",
+              "3—10",
+              "100元",
+              "100元"
+            ],
+            [
+              "青龙45KM",
+              "2003年12月6日—2008年12月5日",
+              "1",
+              "300元",
+              "300元"
+            ],
+            [
+              "青龙45KM",
+              "2003年12月6日—2008年12月5日",
+              "2",
+              "200元",
+              "200元"
+            ],
+            [
+              "青龙45KM",
+              "2003年12月6日—2008年12月5日",
+              "3—10",
+              "100元",
+              "100元"
+            ]
+          ]
+        },
+        {
+          "headers": [
+            "装备",
+            "玄武100KM",
+            "朱雀60KM",
+            "青龙45KM",
+            "白虎20KM"
+          ],
+          "rows": [
+            [
+              "含芯片号码布（组委会提供）",
+              "必须",
+              "必须",
+              "必须",
+              "必须"
+            ],
+            [
+              "电子轨迹（组委会发布）",
+              "必须",
+              "必须",
+              "必须",
+              "必须"
+            ],
+            [
+              "满电智能手机",
+              "必须",
+              "必须",
+              "必须",
+              "必须"
+            ],
+            [
+              "满电头灯",
+              "必须，另带一组备用电源",
+              "必须",
+              "必须",
+              "／"
+            ],
+            [
+              "防雨防寒衣裤",
+              "防水10000以上带帽压胶冲锋衣",
+              "防水5000以上带帽压胶冲锋衣",
+              "建议长衣长裤",
+              "建议长衣长裤"
+            ],
+            [
+              "急救保温毯",
+              "必须",
+              "必须",
+              "必须",
+              "必须"
+            ],
+            [
+              "背包或腰包",
+              "必须",
+              "必须",
+              "必须",
+              "必须"
+            ],
+            [
+              "便携水杯（不少于500mL）",
+              "必须",
+              "必须",
+              "必须",
+              "必须"
+            ],
+            [
+              "一次性雨披（组委会提供）",
+              "必须",
+              "必须",
+              "必须",
+              "必须"
+            ],
+            [
+              "卫星定位仪（组委会提供）",
+              "必须",
+              "必须",
+              "须下载环浙APP轨迹定位",
+              "／"
+            ],
+            [
+              "充电宝（不小于10000mAh）",
+              "必须",
+              "建议",
+              "建议",
+              "建议"
+            ],
+            [
+              "急救药包",
+              "必须",
+              "建议",
+              "建议",
+              "建议"
+            ],
+            [
+              "适量食品",
+              "必须",
+              "建议",
+              "建议",
+              "建议"
+            ]
+          ]
+        },
+        {
+          "headers": [
+            "日期",
+            "时间",
+            "事项",
+            "地点"
+          ],
+          "rows": [
+            [
+              "12月5日",
+              "11:00",
+              "公布技术文件",
+              "微信公众号"
+            ],
+            [
+              "12月5日",
+              "12:00—20:00",
+              "报到、领物",
+              "桐庐未来湖公园"
+            ],
+            [
+              "12月5日",
+              "14:00—14:30",
+              "玄武检录、暖场",
+              "凤川停车场"
+            ],
+            [
+              "12月5日",
+              "14:30",
+              "玄武起跑",
+              "凤川停车场"
+            ],
+            [
+              "12月6日",
+              "05:00—05:30",
+              "朱雀检录、暖场",
+              "凤川停车场"
+            ],
+            [
+              "12月6日",
+              "05:30",
+              "朱雀起跑",
+              "凤川停车场"
+            ],
+            [
+              "12月6日",
+              "05:30—06:00",
+              "青龙检录、暖场",
+              "凤川停车场"
+            ],
+            [
+              "12月6日",
+              "06:00",
+              "青龙起跑",
+              "凤川停车场"
+            ],
+            [
+              "12月6日",
+              "07:30—08:00",
+              "白虎检录、暖场、开幕式",
+              "凤川停车场"
+            ],
+            [
+              "12月6日",
+              "08:00",
+              "白虎起跑",
+              "凤川停车场"
+            ]
+          ]
+        },
+        {
+          "headers": [
+            "项目",
+            "实际距离",
+            "最高／最低海拔",
+            "累计爬升",
+            "累计下降（源文）",
+            "起跑",
+            "终点关门",
+            "时长",
+            "ITRA图示"
+          ],
+          "rows": [
+            [
+              "玄武100KM",
+              "约101公里",
+              "861／57米",
+              "5423米",
+              "未列",
+              "12月5日14:30",
+              "12月6日18:30",
+              "28小时",
+              "4"
+            ],
+            [
+              "朱雀60KM",
+              "约59.2公里",
+              "861／57米",
+              "2506米",
+              "未列",
+              "12月6日05:30",
+              "12月6日19:30",
+              "14小时",
+              "3"
+            ],
+            [
+              "青龙45KM",
+              "约43.6公里",
+              "861／57米",
+              "1536米",
+              "未列",
+              "12月6日06:00",
+              "12月6日17:00",
+              "11小时",
+              "2"
+            ],
+            [
+              "白虎20KM",
+              "约19公里",
+              "861／57米",
+              "851米",
+              "649米",
+              "12月6日08:00",
+              "12月6日13:30",
+              "5.5小时",
+              "1"
+            ]
+          ]
+        },
+        {
+          "headers": [
+            "组别",
+            "赛事服务费"
+          ],
+          "rows": [
+            [
+              "玄武100KM",
+              "1199元"
+            ],
+            [
+              "朱雀60KM",
+              "699元"
+            ],
+            [
+              "青龙45KM",
+              "499元"
+            ],
+            [
+              "白虎20KM",
+              "299元"
+            ]
+          ]
+        }
+      ],
+      "renderedTableCount": 10,
+      "renderedTableRowsIncludingHeaders": 106,
+      "allTableRowsRendered": true
+    },
+    {
+      "id": "zuiku-82101",
+      "label": "fuyang",
+      "apiUrl": "https://togetherbetter.cn/marathon/api/races/zuiku-82101",
+      "apiStatus": 200,
+      "proseExactlyMatchesProduction": true,
+      "groupsExactlyMatchPublicProduction": true,
+      "guideSha256": "f4b5bc50f7a07643d768bac4e92c35806e0292192f88f7ec767852137ae57001",
+      "guideCharacters": 10100,
+      "groupCount": 7,
+      "groups": [
+        {
+          "i": 0,
+          "name": "42KM",
+          "fields": [
+            {
+              "i": 0,
+              "label": "标称距离",
+              "value": "42公里",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "实际里程",
+              "value": "41.88公里",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "累计爬升",
+              "value": "2430米",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "出发时间",
+              "value": "12月6日8:00",
+              "wide": false
+            },
+            {
+              "i": 4,
+              "label": "关门时长",
+              "value": "11小时",
+              "wide": false
+            },
+            {
+              "i": 5,
+              "label": "ITRA积分",
+              "value": "2分",
+              "wide": false
+            },
+            {
+              "i": 6,
+              "label": "参赛条件",
+              "value": "18—65周岁（1961—2008年出生）；2年内25公里以上越野或全马完赛证书。",
+              "wide": true
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "正常价 · 498元/人"
+            },
+            {
+              "i": 1,
+              "text": "早鸟价（图10/16，报名文字11/6，截止待核） · 458元/人"
+            }
+          ]
+        },
+        {
+          "i": 1,
+          "name": "30KM",
+          "fields": [
+            {
+              "i": 0,
+              "label": "标称距离",
+              "value": "30公里",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "实际里程",
+              "value": "33.44公里",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "累计爬升",
+              "value": "1750米",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "出发时间",
+              "value": "12月6日8:00",
+              "wide": false
+            },
+            {
+              "i": 4,
+              "label": "关门时长",
+              "value": "10小时",
+              "wide": false
+            },
+            {
+              "i": 5,
+              "label": "ITRA积分",
+              "value": "1分",
+              "wide": false
+            },
+            {
+              "i": 6,
+              "label": "参赛条件",
+              "value": "18—65周岁（1961—2008年出生）；2年内20公里以上越野或半马完赛证明。",
+              "wide": true
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "正常价 · 378元/人"
+            },
+            {
+              "i": 1,
+              "text": "早鸟价（图10/16，报名文字11/6，截止待核） · 348元/人"
+            }
+          ]
+        },
+        {
+          "i": 2,
+          "name": "21KM",
+          "fields": [
+            {
+              "i": 0,
+              "label": "标称距离",
+              "value": "21公里",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "实际里程",
+              "value": "20.27公里",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "累计爬升",
+              "value": "1200米",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "出发时间",
+              "value": "12月6日8:00",
+              "wide": false
+            },
+            {
+              "i": 4,
+              "label": "关门时长",
+              "value": "9小时",
+              "wide": false
+            },
+            {
+              "i": 5,
+              "label": "ITRA积分",
+              "value": "1分",
+              "wide": false
+            },
+            {
+              "i": 6,
+              "label": "参赛条件",
+              "value": "18—65周岁（1961—2008年出生）；2年内10公里以上越野轨迹截图，或更长距离路跑／越野完赛证书。",
+              "wide": true
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "正常价 · 268元/人"
+            },
+            {
+              "i": 1,
+              "text": "早鸟价（图10/16，报名文字11/6，截止待核） · 248元/人"
+            }
+          ]
+        },
+        {
+          "i": 3,
+          "name": "13.14KM",
+          "fields": [
+            {
+              "i": 0,
+              "label": "标称距离",
+              "value": "13.14公里",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "实际里程",
+              "value": "13.14公里",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "累计爬升",
+              "value": "950米",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "出发时间",
+              "value": "12月6日8:00",
+              "wide": false
+            },
+            {
+              "i": 4,
+              "label": "关门时长",
+              "value": "8小时",
+              "wide": false
+            },
+            {
+              "i": 5,
+              "label": "参赛条件",
+              "value": "8—65周岁（1961—2018年出生），14周岁以下至少1名监护人全程陪同，监护人须报名参赛。",
+              "wide": true
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "正常价 · 198元/人"
+            },
+            {
+              "i": 1,
+              "text": "早鸟价（图10/16，报名文字11/6，截止待核） · 178元/人"
+            }
+          ]
+        },
+        {
+          "i": 4,
+          "name": "13.14KM（1大1小）",
+          "fields": [
+            {
+              "i": 0,
+              "label": "亲子人数",
+              "value": "1大1小",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "标称距离",
+              "value": "13.14公里",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "实际里程",
+              "value": "13.14公里",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "累计爬升",
+              "value": "950米",
+              "wide": false
+            },
+            {
+              "i": 4,
+              "label": "出发时间",
+              "value": "12月6日8:00",
+              "wide": false
+            },
+            {
+              "i": 5,
+              "label": "关门时长",
+              "value": "8小时",
+              "wide": false
+            },
+            {
+              "i": 6,
+              "label": "参赛条件",
+              "value": "8—65周岁（1961—2018年出生），14周岁以下至少1名监护人全程陪同，监护人须报名参赛。",
+              "wide": true
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "报名页价格 · 396元/人"
+            }
+          ]
+        },
+        {
+          "i": 5,
+          "name": "5.20KM",
+          "fields": [
+            {
+              "i": 0,
+              "label": "标称距离",
+              "value": "5.2公里",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "实际里程",
+              "value": "5.2公里",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "累计爬升",
+              "value": "520米",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "出发时间",
+              "value": "12月6日8:00",
+              "wide": false
+            },
+            {
+              "i": 4,
+              "label": "关门时长",
+              "value": "7小时",
+              "wide": false
+            },
+            {
+              "i": 5,
+              "label": "参赛条件",
+              "value": "8—65周岁（1961—2018年出生），14周岁以下至少1名监护人全程陪同，监护人须报名参赛。",
+              "wide": true
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "正常价 · 150元/人"
+            },
+            {
+              "i": 1,
+              "text": "早鸟价（图10/16，报名文字11/6，截止待核） · 135元/人"
+            }
+          ]
+        },
+        {
+          "i": 6,
+          "name": "5.20KM（1大1小）",
+          "fields": [
+            {
+              "i": 0,
+              "label": "亲子人数",
+              "value": "1大1小",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "标称距离",
+              "value": "5.2公里",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "实际里程",
+              "value": "5.2公里",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "累计爬升",
+              "value": "520米",
+              "wide": false
+            },
+            {
+              "i": 4,
+              "label": "出发时间",
+              "value": "12月6日8:00",
+              "wide": false
+            },
+            {
+              "i": 5,
+              "label": "关门时长",
+              "value": "7小时",
+              "wide": false
+            },
+            {
+              "i": 6,
+              "label": "参赛条件",
+              "value": "8—65周岁（1961—2018年出生），14周岁以下至少1名监护人全程陪同，监护人须报名参赛。",
+              "wide": true
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "报名页价格 · 300元/人"
+            }
+          ]
+        }
+      ],
+      "chapters": [
+        {
+          "id": "chapter-0",
+          "label": "赛事概况"
+        },
+        {
+          "id": "chapter-8",
+          "label": "赛事图文资料（原图识别）"
+        },
+        {
+          "id": "chapter-30",
+          "label": "赛事图文资料（原图识别）"
+        },
+        {
+          "id": "chapter-57",
+          "label": "赛事图文资料（原图识别）"
+        },
+        {
+          "id": "chapter-61",
+          "label": "赛事图文资料（原图识别）"
+        },
+        {
+          "id": "chapter-137",
+          "label": "完整赛事项目、路线、领物与日程"
+        },
+        {
+          "id": "chapter-179",
+          "label": "完整奖励、处罚、年龄资格及报名须知"
+        },
+        {
+          "id": "chapter-220",
+          "label": "完整报名阶段费用、安全与保险"
+        },
+        {
+          "id": "chapter-237",
+          "label": "完整赛事办法、装备、13项违规与退赛"
+        },
+        {
+          "id": "chapter-267",
+          "label": "赛事变更及官方联系方式"
+        },
+        {
+          "id": "originals",
+          "label": "规程原图参考",
+          "hasContent": true
+        }
+      ],
+      "originalCount": 10,
+      "screenshots": [
+        "/private/tmp/race-guide-quality-20261117/batch10-mini-fuyang-390-groups.png",
+        "/private/tmp/race-guide-quality-20261117/batch10-mini-fuyang-390-table-before.png",
+        "/private/tmp/race-guide-quality-20261117/batch10-mini-fuyang-390-table-after.png",
+        "/private/tmp/race-guide-quality-20261117/batch10-mini-fuyang-390-original.png",
+        "/private/tmp/race-guide-quality-20261117/batch10-mini-fuyang-390-preview.png"
+      ],
+      "tablesBefore": [
+        {
+          "left": 27,
+          "right": 363,
+          "top": 99.890625,
+          "bottom": 835.890625,
+          "width": 336,
+          "height": 736,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 754
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 922.6796875,
+          "bottom": 1200.6796875,
+          "width": 336,
+          "height": 278,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 334,
+          "scrollHeight": 296
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 1586.4140625,
+          "bottom": 1910.4140625,
+          "width": 336,
+          "height": 324,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 600,
+          "scrollHeight": 342
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 2563.296875,
+          "bottom": 3320.296875,
+          "width": 336,
+          "height": 757,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 775
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 5303.53125,
+          "bottom": 5581.53125,
+          "width": 336,
+          "height": 278,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 296
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 7520.734375,
+          "bottom": 8558.734375,
+          "width": 336,
+          "height": 1038,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 600,
+          "scrollHeight": 1056
+        }
+      ],
+      "tablesAfter": [
+        {
+          "left": 27,
+          "right": 363,
+          "top": 99.890625,
+          "bottom": 835.890625,
+          "width": 336,
+          "height": 736,
+          "scrollLeft": 26,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 754
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 922.6796875,
+          "bottom": 1200.6796875,
+          "width": 336,
+          "height": 278,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 334,
+          "scrollHeight": 296
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 1586.4140625,
+          "bottom": 1910.4140625,
+          "width": 336,
+          "height": 324,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 600,
+          "scrollHeight": 342
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 2563.296875,
+          "bottom": 3320.296875,
+          "width": 336,
+          "height": 757,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 775
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 5303.53125,
+          "bottom": 5581.53125,
+          "width": 336,
+          "height": 278,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 296
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 7520.734375,
+          "bottom": 8558.734375,
+          "width": 336,
+          "height": 1038,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 600,
+          "scrollHeight": 1056
+        }
+      ],
+      "actualHorizontalScrollVerified": true,
+      "originalImage": {
+        "left": 28,
+        "right": 362,
+        "top": 101.21875,
+        "bottom": 1298.2734375,
+        "width": 334,
+        "height": 1197.0546875,
+        "mode": "widthFix",
+        "src": "https://togetherbetter.cn/marathon/api/race-sheets/1217",
+        "showMenuByLongpress": true
+      },
+      "longpressActionSucceeded": true,
+      "nativeLongpressMenuVerified": false,
+      "nativePreviewClickSucceeded": true,
+      "hero": {
+        "date": "2026-12-06",
+        "heroDate": "12.06",
+        "year": "2026",
+        "guideCount": 10,
+        "routeCount": 0
+      },
+      "tableContent": [
+        {
+          "headers": [
+            "时间",
+            "内容",
+            "备注"
+          ],
+          "rows": [
+            [
+              "06:00—07:30",
+              "签到存包",
+              "检录分枪组别"
+            ],
+            [
+              "07:30—07:55",
+              "暖场表演",
+              "主持人暖场、选手热身"
+            ],
+            [
+              "07:55—08:00",
+              "发枪仪式",
+              "嘉宾讲话发枪"
+            ],
+            [
+              "08:00",
+              "正式比赛",
+              "原表写3个组别同时发枪，与正文五组别表述不同，待确认"
+            ],
+            [
+              "08:00—08:15",
+              "维持秩序",
+              "工作人员维持起跑秩序"
+            ],
+            [
+              "10:00",
+              "颁奖仪式",
+              "该组别男女前六到达即颁奖"
+            ],
+            [
+              "11:00",
+              "选手感言",
+              "邀请选手上台发表活动感言"
+            ],
+            [
+              "13:00",
+              "赛后拉伸",
+              "专业教练带操"
+            ],
+            [
+              "19:00",
+              "赛事关门",
+              "限时11小时"
+            ],
+            [
+              "19:15",
+              "完美收官",
+              "清理现场、人员离场"
+            ]
+          ]
+        },
+        {
+          "headers": [
+            "实际路线距离",
+            "关门时长"
+          ],
+          "rows": [
+            [
+              "5.20公里",
+              "7小时"
+            ],
+            [
+              "13.14公里",
+              "8小时"
+            ],
+            [
+              "20.27公里",
+              "9小时"
+            ],
+            [
+              "33.44公里",
+              "10小时"
+            ],
+            [
+              "41.88公里",
+              "11小时"
+            ]
+          ]
+        },
+        {
+          "headers": [
+            "名次",
+            "42KM组",
+            "30KM组",
+            "21KM组",
+            "13.14KM组"
+          ],
+          "rows": [
+            [
+              "1",
+              "2000",
+              "1500",
+              "1000",
+              "700"
+            ],
+            [
+              "2",
+              "1500",
+              "1000",
+              "600",
+              "500"
+            ],
+            [
+              "3",
+              "1000",
+              "500",
+              "400",
+              "300"
+            ],
+            [
+              "4",
+              "700",
+              "400",
+              "200",
+              "无"
+            ],
+            [
+              "5",
+              "500",
+              "300",
+              "150",
+              "无"
+            ],
+            [
+              "6",
+              "300",
+              "200",
+              "100",
+              "无"
+            ]
+          ]
+        },
+        {
+          "headers": [
+            "组别",
+            "年龄／出生年（原图）",
+            "完整要求"
+          ],
+          "rows": [
+            [
+              "5.20KM",
+              "8—65周岁（1961—2018年出生）",
+              "健康、有运动基础；14周岁以下须至少1名已报名监护人全程陪同"
+            ],
+            [
+              "13.14KM",
+              "8—65周岁（1961—2018年出生）",
+              "健康、有运动基础；14周岁以下须至少1名已报名监护人全程陪同"
+            ],
+            [
+              "21KM",
+              "18—65周岁（1961—2008年出生）",
+              "2年内10公里以上越野轨迹截图，或更长距离路跑／越野完赛证书"
+            ],
+            [
+              "30KM",
+              "18—65周岁（1961—2008年出生）",
+              "2年内20公里以上越野或半程马拉松完赛证明"
+            ],
+            [
+              "42KM",
+              "18—65周岁（1961—2008年出生）",
+              "2年内25公里以上越野或全程马拉松完赛证明"
+            ]
+          ]
+        },
+        {
+          "headers": [
+            "组别",
+            "早鸟价",
+            "正常价"
+          ],
+          "rows": [
+            [
+              "42KM",
+              "458元",
+              "498元"
+            ],
+            [
+              "30KM",
+              "348元",
+              "378元"
+            ],
+            [
+              "21KM",
+              "248元",
+              "268元"
+            ],
+            [
+              "13.14KM",
+              "178元",
+              "198元"
+            ],
+            [
+              "5.20KM",
+              "135元",
+              "150元"
+            ]
+          ]
+        },
+        {
+          "headers": [
+            "装备",
+            "42KM",
+            "30KM",
+            "21KM",
+            "13.14KM"
+          ],
+          "rows": [
+            [
+              "号码布",
+              "必须",
+              "必须",
+              "必须",
+              "必须"
+            ],
+            [
+              "下载GPX的手机，开机且报名同号；两步路／手表可导入",
+              "必须",
+              "必须",
+              "必须",
+              "建议"
+            ],
+            [
+              "能容纳全部强装的越野包",
+              "必须",
+              "必须",
+              "必须",
+              "建议"
+            ],
+            [
+              "不少于500mL水",
+              "必须",
+              "必须",
+              "必须",
+              "建议"
+            ],
+            [
+              "高频救援哨子",
+              "必须",
+              "必须",
+              "必须",
+              "建议"
+            ],
+            [
+              "反光急救毯",
+              "必须",
+              "必须",
+              "必须",
+              "建议"
+            ],
+            [
+              "简易急救包（绑带、创口贴、碘伏棉签）",
+              "必须",
+              "必须",
+              "必须",
+              "建议"
+            ],
+            [
+              "充电宝",
+              "必须",
+              "必须",
+              "必须",
+              "建议"
+            ],
+            [
+              "防暑药物",
+              "必须",
+              "必须",
+              "必须",
+              "必须"
+            ],
+            [
+              "头灯",
+              "必须",
+              "无",
+              "无",
+              "无"
+            ],
+            [
+              "防风外套",
+              "必须",
+              "必须",
+              "建议",
+              "建议"
+            ],
+            [
+              "防滑底越野跑鞋",
+              "强烈建议",
+              "强烈建议",
+              "强烈建议",
+              "强烈建议"
+            ],
+            [
+              "太阳眼镜",
+              "建议",
+              "建议",
+              "建议",
+              "建议"
+            ],
+            [
+              "运动帽或太阳帽",
+              "建议",
+              "建议",
+              "建议",
+              "建议"
+            ],
+            [
+              "登山杖",
+              "建议",
+              "建议",
+              "建议",
+              "建议"
+            ],
+            [
+              "垃圾袋",
+              "建议",
+              "建议",
+              "建议",
+              "建议"
+            ]
+          ]
+        }
+      ],
+      "renderedTableCount": 6,
+      "renderedTableRowsIncludingHeaders": 53,
+      "allTableRowsRendered": true
+    },
+    {
+      "id": "zuiku-95294",
+      "label": "chengdu",
+      "apiUrl": "https://togetherbetter.cn/marathon/api/races/zuiku-95294",
+      "apiStatus": 200,
+      "proseExactlyMatchesProduction": true,
+      "groupsExactlyMatchPublicProduction": true,
+      "guideSha256": "faf110da6ac4ca0aa55aa7f4886e2856d96f30a0f06fc319d173625b63c7976b",
+      "guideCharacters": 3298,
+      "groupCount": 2,
+      "groups": [
+        {
+          "i": 0,
+          "name": "21公里",
+          "fields": [
+            {
+              "i": 0,
+              "label": "名额",
+              "value": "200人",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "标称距离",
+              "value": "21公里",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "出发时间",
+              "value": "2026-11-29 09:00",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "关门时间",
+              "value": "2026-11-29 12:00",
+              "wide": false
+            },
+            {
+              "i": 4,
+              "label": "关门时长",
+              "value": "3小时",
+              "wide": false
+            },
+            {
+              "i": 5,
+              "label": "参赛条件",
+              "value": "18岁以上、60岁以下中国居民。本人持有效身份证件报名，未满18岁/60岁以上监护人签署要求及健康条件见正文。",
+              "wide": true
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "报名页价格 · 195元/人"
+            }
+          ]
+        },
+        {
+          "i": 1,
+          "name": "10公里（无计时/无成绩证书）",
+          "fields": [
+            {
+              "i": 0,
+              "label": "名额",
+              "value": "60人",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "标称距离",
+              "value": "10公里",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "出发时间",
+              "value": "2026-11-29 09:00",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "关门时间",
+              "value": "2026-11-29 11:00",
+              "wide": false
+            },
+            {
+              "i": 4,
+              "label": "关门时长",
+              "value": "2小时",
+              "wide": false
+            },
+            {
+              "i": 5,
+              "label": "参赛条件",
+              "value": "16岁以上、62岁以下中国居民。本人持有效身份证件报名，未满18岁/60岁以上监护人签署要求及健康条件见正文。",
+              "wide": true
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "报名页价格 · 155元/人"
+            }
+          ]
+        }
+      ],
+      "chapters": [
+        {
+          "id": "chapter-0",
+          "label": "赛事概况"
+        },
+        {
+          "id": "chapter-3",
+          "label": "赛事组织与联系方式"
+        },
+        {
+          "id": "chapter-6",
+          "label": "项目组别与报名费用"
+        },
+        {
+          "id": "chapter-11",
+          "label": "参赛资格与健康要求"
+        },
+        {
+          "id": "chapter-30",
+          "label": "报名流程、通知与领物"
+        },
+        {
+          "id": "chapter-38",
+          "label": "参赛物资与奖励"
+        },
+        {
+          "id": "chapter-42",
+          "label": "路线与补给"
+        },
+        {
+          "id": "chapter-46",
+          "label": "竞赛、关门与退赛"
+        },
+        {
+          "id": "chapter-54",
+          "label": "处罚、申诉与转让限制"
+        },
+        {
+          "id": "chapter-60",
+          "label": "安全、保险、环保及退改政策"
+        },
+        {
+          "id": "route",
+          "label": "赛道与路线",
+          "hasContent": true
+        },
+        {
+          "id": "originals",
+          "label": "规程原图参考",
+          "hasContent": true
+        }
+      ],
+      "originalCount": 3,
+      "screenshots": [
+        "/private/tmp/race-guide-quality-20261117/batch10-mini-chengdu-390-groups.png",
+        "/private/tmp/race-guide-quality-20261117/batch10-mini-chengdu-390-table-before.png",
+        "/private/tmp/race-guide-quality-20261117/batch10-mini-chengdu-390-table-after.png",
+        "/private/tmp/race-guide-quality-20261117/batch10-mini-chengdu-390-original.png",
+        "/private/tmp/race-guide-quality-20261117/batch10-mini-chengdu-390-preview.png"
+      ],
+      "tablesBefore": [
+        {
+          "left": 27,
+          "right": 363,
+          "top": 100.234375,
+          "bottom": 240.234375,
+          "width": 336,
+          "height": 140,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 720,
+          "scrollHeight": 158
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 2152.6640625,
+          "bottom": 2481.6640625,
+          "width": 336,
+          "height": 329,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 347
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 2744.0234375,
+          "bottom": 2888.0234375,
+          "width": 336,
+          "height": 144,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 480,
+          "scrollHeight": 162
+        }
+      ],
+      "tablesAfter": [
+        {
+          "left": 27,
+          "right": 363,
+          "top": 100.234375,
+          "bottom": 240.234375,
+          "width": 336,
+          "height": 140,
+          "scrollLeft": 386,
+          "scrollTop": 0,
+          "scrollWidth": 720,
+          "scrollHeight": 158
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 2152.6640625,
+          "bottom": 2481.6640625,
+          "width": 336,
+          "height": 329,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 347
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 2744.0234375,
+          "bottom": 2888.0234375,
+          "width": 336,
+          "height": 144,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 480,
+          "scrollHeight": 162
+        }
+      ],
+      "actualHorizontalScrollVerified": true,
+      "originalImage": {
+        "left": 28,
+        "right": 362,
+        "top": 101.1484375,
+        "bottom": 3240.296875,
+        "width": 334,
+        "height": 3139.1484375,
+        "mode": "widthFix",
+        "src": "https://togetherbetter.cn/marathon/api/race-sheets/1011",
+        "showMenuByLongpress": true
+      },
+      "longpressActionSucceeded": true,
+      "nativeLongpressMenuVerified": false,
+      "nativePreviewClickSucceeded": true,
+      "hero": {
+        "date": "2026-11-29",
+        "heroDate": "11.29",
+        "year": "2026",
+        "guideCount": 3,
+        "routeCount": 1
+      },
+      "tableContent": [
+        {
+          "headers": [
+            "组别",
+            "规模",
+            "报名费",
+            "发令",
+            "结束",
+            "关门时长"
+          ],
+          "rows": [
+            [
+              "21公里组",
+              "200人",
+              "195元/人",
+              "09:00",
+              "12:00",
+              "3小时"
+            ],
+            [
+              "10公里组",
+              "60人",
+              "155元/人",
+              "09:00",
+              "11:00",
+              "2小时"
+            ]
+          ]
+        },
+        {
+          "headers": [
+            "日期",
+            "时间",
+            "安排"
+          ],
+          "rows": [
+            [
+              "11月28日",
+              "10:00—18:00",
+              "发放参赛物资"
+            ],
+            [
+              "11月29日",
+              "08:30",
+              "赛前检录、热身"
+            ],
+            [
+              "11月29日",
+              "09:00",
+              "所有组别鸣枪起跑"
+            ],
+            [
+              "11月29日",
+              "11:00",
+              "10公里组结束"
+            ],
+            [
+              "11月29日",
+              "12:00",
+              "21公里组结束"
+            ]
+          ]
+        },
+        {
+          "headers": [
+            "21公里组奖金（男子、女子分别）",
+            "第一名",
+            "第二名",
+            "第三名"
+          ],
+          "rows": [
+            [
+              "奖金",
+              "1000元",
+              "500元",
+              "200元"
+            ]
+          ]
+        }
+      ],
+      "renderedTableCount": 3,
+      "renderedTableRowsIncludingHeaders": 11,
+      "allTableRowsRendered": true
+    }
+  ],
+  "screenshots": [
+    "/private/tmp/race-guide-quality-20261117/batch10-mini-tonglu-390-groups.png",
+    "/private/tmp/race-guide-quality-20261117/batch10-mini-tonglu-390-table-before.png",
+    "/private/tmp/race-guide-quality-20261117/batch10-mini-tonglu-390-table-after.png",
+    "/private/tmp/race-guide-quality-20261117/batch10-mini-tonglu-390-original.png",
+    "/private/tmp/race-guide-quality-20261117/batch10-mini-tonglu-390-preview.png",
+    "/private/tmp/race-guide-quality-20261117/batch10-mini-fuyang-390-groups.png",
+    "/private/tmp/race-guide-quality-20261117/batch10-mini-fuyang-390-table-before.png",
+    "/private/tmp/race-guide-quality-20261117/batch10-mini-fuyang-390-table-after.png",
+    "/private/tmp/race-guide-quality-20261117/batch10-mini-fuyang-390-original.png",
+    "/private/tmp/race-guide-quality-20261117/batch10-mini-fuyang-390-preview.png",
+    "/private/tmp/race-guide-quality-20261117/batch10-mini-chengdu-390-groups.png",
+    "/private/tmp/race-guide-quality-20261117/batch10-mini-chengdu-390-table-before.png",
+    "/private/tmp/race-guide-quality-20261117/batch10-mini-chengdu-390-table-after.png",
+    "/private/tmp/race-guide-quality-20261117/batch10-mini-chengdu-390-original.png",
+    "/private/tmp/race-guide-quality-20261117/batch10-mini-chengdu-390-preview.png"
+  ],
+  "pending": [
+    "Physical phone gesture zoom, save and native long-press menu",
+    "Official uploaded/published mini-program verification",
+    "320px actual DevTools profile switching: exposed automation tools provide no device switch; 390px is currently configured."
+  ],
+  "rootActuallyViewedScreenshots": [
+    "batch10-mini-tonglu-390-table-after.png",
+    "batch10-mini-fuyang-390-groups.png",
+    "batch10-mini-chengdu-390-preview.png"
+  ]
+}

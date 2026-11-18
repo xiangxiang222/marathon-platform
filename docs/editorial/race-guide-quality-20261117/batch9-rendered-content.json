@@ -1,0 +1,154 @@
+{
+  "at": "2026-11-18T09:12:35.961Z",
+  "checks": [
+    {
+      "id": "zuiku-94906",
+      "width": 320,
+      "paragraphs": 87,
+      "tableRows": 16,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-57989",
+      "width": 320,
+      "paragraphs": 38,
+      "tableRows": 0,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-94423",
+      "width": 320,
+      "paragraphs": 255,
+      "tableRows": 45,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-82931",
+      "width": 320,
+      "paragraphs": 101,
+      "tableRows": 23,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-30920",
+      "width": 320,
+      "paragraphs": 154,
+      "tableRows": 32,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-17740",
+      "width": 320,
+      "paragraphs": 106,
+      "tableRows": 66,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-17487",
+      "width": 320,
+      "paragraphs": 481,
+      "tableRows": 33,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-16072",
+      "width": 320,
+      "paragraphs": 599,
+      "tableRows": 16,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-95294",
+      "width": 320,
+      "paragraphs": 66,
+      "tableRows": 11,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-61737",
+      "width": 320,
+      "paragraphs": 69,
+      "tableRows": 11,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-47641",
+      "width": 320,
+      "paragraphs": 68,
+      "tableRows": 11,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-87902",
+      "width": 320,
+      "paragraphs": 69,
+      "tableRows": 11,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-11904",
+      "width": 320,
+      "paragraphs": 69,
+      "tableRows": 11,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-58251",
+      "width": 320,
+      "paragraphs": 53,
+      "tableRows": 24,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-57220",
+      "width": 320,
+      "paragraphs": 50,
+      "tableRows": 21,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-49507",
+      "width": 320,
+      "paragraphs": 148,
+      "tableRows": 11,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-33292",
+      "width": 320,
+      "paragraphs": 462,
+      "tableRows": 87,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-34065",
+      "width": 320,
+      "paragraphs": 107,
+      "tableRows": 106,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-21641",
+      "width": 320,
+      "paragraphs": 523,
+      "tableRows": 17,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-46373",
+      "width": 320,
+      "paragraphs": 599,
+      "tableRows": 27,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-82101",
+      "width": 320,
+      "paragraphs": 270,
+      "tableRows": 53,
+      "fullRenderedContentMatchesProduction": true
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-11-18T09:13:05.264Z"
+}

@@ -1,0 +1,24 @@
+{
+  "at": "2026-11-18T09:11:24.963Z",
+  "mergeCommit": "0bc203c3613ad714fe768cb03c0408666dcf3de4",
+  "backup": "server/data/race-guide-quality-20261117/cutoff-duration-code.before.tar.gz",
+  "archive": "server/data/race-guide-quality-20261117/cutoff-duration-deploy.tar.gz",
+  "archiveSha256": "b238633989de6c3e62133b1fc9fe3f34d5fef9c04f2a78b59c89aeac93283de0",
+  "fileHashes": {
+    "web/dist/index.html": "cf9d9a8ecf865a0a3fb0882853ee008ca0b6a2907197b86321857729121c36a7",
+    "web/src/race-detail-content.js": "ab3c7e091315647969edf7a9e0208cf5767dda9f797707ce0ea269df79049fcf",
+    "miniprogram/utils/race-detail-content.js": "ba8efb867254ecc19b4a05f49c0729722e0003c173df5fd1e47c081676cc9b3f",
+    "scripts/race-rich-detail.test.cjs": "25b2a0756a4f763f2670219c16930212d7f421e0b1b64023ba3f1f3b30b61ba8"
+  },
+  "scope": "Only built web static files and guide-renderer source/test; existing static assets retained; no installs, configuration, schema or process restart",
+  "productionPageVerified": true,
+  "evidence": [
+    "cutoff-duration-web-verification.json",
+    "cutoff-duration-mini-verification.json"
+  ],
+  "sourceHashesExactlyMatchMergedLocalFiles": true,
+  "actuallyViewedScreenshots": [
+    "cutoff-duration-mini-liangping-390.png",
+    "cutoff-duration-web-liangping-320.png"
+  ]
+}
