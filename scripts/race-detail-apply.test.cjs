@@ -87,3 +87,40 @@ test('the update plan stays within fixed scope, backs up, preserves prior values
     db.close();
   } finally { fs.rmSync(dir,{recursive:true,force:true}); }
 });
+
+test('successive saved selections keep excluded guide images hidden and allow explicit restoration', async () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'race-media-selection-'));
+  const dbFile = path.join(dir, 'app.sqlite'), db = new Database(dbFile);
+  try {
+    db.exec('CREATE TABLE races(id TEXT PRIMARY KEY,guide_text TEXT);CREATE TABLE race_sheets(id INTEGER PRIMARY KEY,race_id TEXT,kind TEXT,filename TEXT,sort INTEGER,created_at TEXT)');
+    const urls = ['https://example.org/a.jpg', 'https://example.org/b.jpg', 'https://example.org/c.jpg'];
+    const reviews = urls.map((imageUrl, i) => ({ imageUrl, sheetId: i + 1, imageViewed: true }));
+    for (let i = 0; i < 3; i++) db.prepare('INSERT INTO race_sheets VALUES(?,?,?,?,?,?)').run(i + 1, 'existing', 'guide', i + '.jpg', i, '2026-11-18');
+    db.prepare('INSERT INTO races VALUES(?,?)').run('existing', writeDetails('已校对正文', { ...collected.details, audit: { mediaChanges: { before: urls, after: urls.slice(0, 2) }, imageReviews: reviews } }));
+    async function save(after, withSelection = true) {
+      const before = db.prepare('SELECT * FROM races').get();
+      const details = { ...collected.details, audit: { imageReviews: reviews.filter(r => after.includes(r.imageUrl)), ...(withSelection ? { mediaChanges: { before: urls.slice(0, 2), after } } : {}) } };
+      const log = await applyPlan(dbFile, { authorizedIds: ['existing'], plans: [{ updates: [{ id: 'existing', before, changes: { guide_text: writeDetails('已校对正文', details) }, media: [] }] }] }, path.join(dir, 'apply-' + after.length + '-' + withSelection + '.json'), path.join(dir, 'media'));
+      assert.equal(log.rows[0].ok, true);
+      return readDetails(db.prepare('SELECT guide_text FROM races').get().guide_text).details;
+    }
+    const { attachGuide } = require('../server/src/race-guide');
+    const guideIds = () => {
+      const race = { id: 'existing' };
+      attachGuide(db, race);
+      return race.guide.map(sheet => sheet.id);
+    };
+    const second = await save([urls[0]]);
+    assert.deepEqual(second.audit.mediaChanges.before, urls);
+    assert.equal(second.audit.imageReviews.length, 3);
+    assert.deepEqual(guideIds(), [1]);
+    await save([urls[0]], false);
+    assert.deepEqual(guideIds(), [1]);
+    await save([urls[0], urls[2]]);
+    assert.deepEqual(guideIds(), [1, 3]);
+    assert.equal(db.prepare('SELECT count(*) AS n FROM race_sheets').get().n, 3);
+  } finally {
+    db.close();
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
+});
