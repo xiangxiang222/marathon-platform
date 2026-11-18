@@ -1,0 +1,189 @@
+{
+  "at": "2026-11-18T07:12:45.812Z",
+  "checks": [
+    {
+      "id": "zuiku-76003",
+      "width": 320,
+      "paragraphs": 24,
+      "tableRows": 15,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-16069",
+      "width": 320,
+      "paragraphs": 75,
+      "tableRows": 21,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-35984",
+      "width": 320,
+      "paragraphs": 169,
+      "tableRows": 42,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-95241",
+      "width": 320,
+      "paragraphs": 57,
+      "tableRows": 42,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-90601",
+      "width": 320,
+      "paragraphs": 78,
+      "tableRows": 23,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-78664",
+      "width": 320,
+      "paragraphs": 107,
+      "tableRows": 95,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-52309",
+      "width": 320,
+      "paragraphs": 136,
+      "tableRows": 43,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-39867",
+      "width": 320,
+      "paragraphs": 122,
+      "tableRows": 59,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-15387",
+      "width": 320,
+      "paragraphs": 72,
+      "tableRows": 18,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-98272",
+      "width": 320,
+      "paragraphs": 210,
+      "tableRows": 34,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-46913",
+      "width": 320,
+      "paragraphs": 136,
+      "tableRows": 30,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-48670",
+      "width": 320,
+      "paragraphs": 245,
+      "tableRows": 18,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-17874",
+      "width": 320,
+      "paragraphs": 293,
+      "tableRows": 6,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-37616",
+      "width": 320,
+      "paragraphs": 520,
+      "tableRows": 16,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-67371",
+      "width": 320,
+      "paragraphs": 465,
+      "tableRows": 10,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-85156",
+      "width": 320,
+      "paragraphs": 141,
+      "tableRows": 14,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "caa-1000454030",
+      "width": 320,
+      "paragraphs": 165,
+      "tableRows": 27,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "caa-1000450007",
+      "width": 320,
+      "paragraphs": 271,
+      "tableRows": 29,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "caa-1000418257",
+      "width": 320,
+      "paragraphs": 510,
+      "tableRows": 36,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "caa-1000480094",
+      "width": 320,
+      "paragraphs": 484,
+      "tableRows": 28,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-66826",
+      "width": 320,
+      "paragraphs": 112,
+      "tableRows": 53,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-44150",
+      "width": 320,
+      "paragraphs": 116,
+      "tableRows": 53,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-15544",
+      "width": 320,
+      "paragraphs": 116,
+      "tableRows": 53,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-46010",
+      "width": 320,
+      "paragraphs": 114,
+      "tableRows": 53,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-35270",
+      "width": 320,
+      "paragraphs": 116,
+      "tableRows": 53,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-76264",
+      "width": 320,
+      "paragraphs": 112,
+      "tableRows": 53,
+      "fullRenderedContentMatchesProduction": true
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-11-18T07:13:21.280Z"
+}

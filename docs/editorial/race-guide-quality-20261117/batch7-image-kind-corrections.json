@@ -1,0 +1,102 @@
+{
+  "at": "2026-11-18T07:25:59.299Z",
+  "backup": "server/data/race-guide-quality-20261117/batch7-image-kinds.before.sqlite",
+  "rows": [
+    {
+      "id": "zuiku-23390",
+      "sheetId": 192,
+      "imageUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/10c851c3283b75bc70ddc12940fa9dc5781b9570.jpeg?imageView2/2/w/1024",
+      "sha256": "15c73860d71196fd0647c4c4bbb29cb3d4c9e56f0da7e5825d024f00982be1f4",
+      "imageViewed": true,
+      "before": "route",
+      "after": "guide",
+      "reason": "实际完整查看的同版通用规程仅为文字、表格，不是路线图；修正错误分类，使其进入规程原图参考折叠区。",
+      "checkedAt": "2026-11-18T07:25:59.299Z",
+      "bodyUnchanged": true,
+      "groupsUnchanged": true
+    },
+    {
+      "id": "zuiku-66826",
+      "sheetId": 268,
+      "imageUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/10c851c3283b75bc70ddc12940fa9dc5781b9570.jpeg?imageView2/2/w/1024",
+      "sha256": "15c73860d71196fd0647c4c4bbb29cb3d4c9e56f0da7e5825d024f00982be1f4",
+      "imageViewed": true,
+      "before": "route",
+      "after": "guide",
+      "reason": "实际完整查看的同版通用规程仅为文字、表格，不是路线图；修正错误分类，使其进入规程原图参考折叠区。",
+      "checkedAt": "2026-11-18T07:25:59.299Z",
+      "bodyUnchanged": true,
+      "groupsUnchanged": true
+    },
+    {
+      "id": "zuiku-44150",
+      "sheetId": 497,
+      "imageUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/10c851c3283b75bc70ddc12940fa9dc5781b9570.jpeg?imageView2/2/w/1024",
+      "sha256": "15c73860d71196fd0647c4c4bbb29cb3d4c9e56f0da7e5825d024f00982be1f4",
+      "imageViewed": true,
+      "before": "route",
+      "after": "guide",
+      "reason": "实际完整查看的同版通用规程仅为文字、表格，不是路线图；修正错误分类，使其进入规程原图参考折叠区。",
+      "checkedAt": "2026-11-18T07:25:59.299Z",
+      "bodyUnchanged": true,
+      "groupsUnchanged": true
+    },
+    {
+      "id": "zuiku-15544",
+      "sheetId": 865,
+      "imageUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/10c851c3283b75bc70ddc12940fa9dc5781b9570.jpeg?imageView2/2/w/1024",
+      "sha256": "15c73860d71196fd0647c4c4bbb29cb3d4c9e56f0da7e5825d024f00982be1f4",
+      "imageViewed": true,
+      "before": "route",
+      "after": "guide",
+      "reason": "实际完整查看的同版通用规程仅为文字、表格，不是路线图；修正错误分类，使其进入规程原图参考折叠区。",
+      "checkedAt": "2026-11-18T07:25:59.299Z",
+      "bodyUnchanged": true,
+      "groupsUnchanged": true
+    },
+    {
+      "id": "zuiku-46010",
+      "sheetId": 966,
+      "imageUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/10c851c3283b75bc70ddc12940fa9dc5781b9570.jpeg?imageView2/2/w/1024",
+      "sha256": "15c73860d71196fd0647c4c4bbb29cb3d4c9e56f0da7e5825d024f00982be1f4",
+      "imageViewed": true,
+      "before": "route",
+      "after": "guide",
+      "reason": "实际完整查看的同版通用规程仅为文字、表格，不是路线图；修正错误分类，使其进入规程原图参考折叠区。",
+      "checkedAt": "2026-11-18T07:25:59.299Z",
+      "bodyUnchanged": true,
+      "groupsUnchanged": true
+    },
+    {
+      "id": "zuiku-35270",
+      "sheetId": 1401,
+      "imageUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/10c851c3283b75bc70ddc12940fa9dc5781b9570.jpeg?imageView2/2/w/1024",
+      "sha256": "15c73860d71196fd0647c4c4bbb29cb3d4c9e56f0da7e5825d024f00982be1f4",
+      "imageViewed": true,
+      "before": "route",
+      "after": "guide",
+      "reason": "实际完整查看的同版通用规程仅为文字、表格，不是路线图；修正错误分类，使其进入规程原图参考折叠区。",
+      "checkedAt": "2026-11-18T07:25:59.299Z",
+      "bodyUnchanged": true,
+      "groupsUnchanged": true
+    },
+    {
+      "id": "zuiku-76264",
+      "sheetId": 1515,
+      "imageUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/10c851c3283b75bc70ddc12940fa9dc5781b9570.jpeg?imageView2/2/w/1024",
+      "sha256": "15c73860d71196fd0647c4c4bbb29cb3d4c9e56f0da7e5825d024f00982be1f4",
+      "imageViewed": true,
+      "before": "route",
+      "after": "guide",
+      "reason": "实际完整查看的同版通用规程仅为文字、表格，不是路线图；修正错误分类，使其进入规程原图参考折叠区。",
+      "checkedAt": "2026-11-18T07:25:59.299Z",
+      "bodyUnchanged": true,
+      "groupsUnchanged": true
+    }
+  ],
+  "races": 434,
+  "sheets": 1735,
+  "schemaUnchanged": true,
+  "quickCheck": "ok",
+  "passed": true
+}

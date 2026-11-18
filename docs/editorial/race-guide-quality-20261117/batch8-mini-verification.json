@@ -1,0 +1,1717 @@
+{
+  "kind": "Actual WeChat DevTools rendering, production HTTPS API, no request/route mock; not physical phone or published mini-program",
+  "checkedAt": "2026-11-18T07:22:56.648Z",
+  "project": "/Users/mengxiangxiang/Documents/work/dev/marathon-platform/miniprogram",
+  "system": {
+    "success": true,
+    "systemInfo": {
+      "result": {
+        "brand": "devtools",
+        "model": "iPhone 12/13 (Pro)",
+        "system": "iOS 10.0.1",
+        "platform": "devtools",
+        "benchmarkLevel": -1,
+        "pixelRatio": 3,
+        "screenWidth": 390,
+        "screenHeight": 844,
+        "windowWidth": 390,
+        "windowHeight": 762,
+        "statusBarHeight": 47,
+        "safeArea": {
+          "top": 47,
+          "left": 0,
+          "right": 390,
+          "bottom": 810,
+          "width": 390,
+          "height": 763
+        },
+        "language": "zh_CN",
+        "version": "8.0.5",
+        "fontSizeSetting": 16,
+        "SDKVersion": "3.17.1",
+        "host": {
+          "env": "WeChat"
+        },
+        "enableDebug": false,
+        "mode": "default",
+        "deviceOrientation": "portrait",
+        "bluetoothEnabled": true,
+        "locationEnabled": true,
+        "wifiEnabled": true,
+        "albumAuthorized": true,
+        "cameraAuthorized": true,
+        "locationAuthorized": true,
+        "microphoneAuthorized": true,
+        "notificationAuthorized": true,
+        "notificationAlertAuthorized": true,
+        "notificationBadgeAuthorized": true,
+        "notificationSoundAuthorized": true,
+        "phoneCalendarAuthorized": true,
+        "bluetoothAuthorized": true,
+        "locationReducedAccuracy": true,
+        "devicePixelRatio": 3
+      }
+    }
+  },
+  "races": [
+    {
+      "id": "zuiku-35270",
+      "label": "guilin",
+      "apiUrl": "https://togetherbetter.cn/marathon/api/races/zuiku-35270",
+      "apiStatus": 200,
+      "proseExactlyMatchesProduction": true,
+      "groupsExactlyMatchPublicProduction": true,
+      "guideSha256": "d4d85ed6aec878be0b9143ea6a924a7ce6944ba17dda9f9b884eb20dce4b79e1",
+      "guideCharacters": 7495,
+      "groupCount": 4,
+      "groups": [
+        {
+          "i": 0,
+          "name": "十公里精英赛（7点起跑）",
+          "fields": [
+            {
+              "i": 0,
+              "label": "形式",
+              "value": "个人",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "名额",
+              "value": "400人（计划）",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "标称距离",
+              "value": "10公里",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "关门时长",
+              "value": "1.5小时",
+              "wide": false
+            },
+            {
+              "i": 4,
+              "label": "参赛条件",
+              "value": "07:00—09:00：10K精英赛，不同组别分枪出发；出生日期1947.03.14—2017.1.1；其他体检、陪跑及监护要求见正文；2026通用规程年份边界对延期场次的适用待确认。",
+              "wide": true
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "报名页价格 · 138元/人"
+            }
+          ]
+        },
+        {
+          "i": 1,
+          "name": "五公里精英赛（9点起跑）",
+          "fields": [
+            {
+              "i": 0,
+              "label": "形式",
+              "value": "个人",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "名额",
+              "value": "400人（计划）",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "标称距离",
+              "value": "5公里",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "关门时长",
+              "value": "1小时",
+              "wide": false
+            },
+            {
+              "i": 4,
+              "label": "参赛条件",
+              "value": "09:00—10:00：5K精英赛，不同组别分枪出发；出生日期1942.03.14—2020.1.1；其他体检、陪跑及监护要求见正文；2026通用规程年份边界对延期场次的适用待确认。",
+              "wide": true
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "报名页价格 · 138元/人"
+            }
+          ]
+        },
+        {
+          "i": 2,
+          "name": "五公里亲子跑（9点半起跑）（一大一小）",
+          "fields": [
+            {
+              "i": 0,
+              "label": "形式",
+              "value": "亲子",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "亲子人数",
+              "value": "1大1小",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "名额",
+              "value": "50队（计划）",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "标称距离",
+              "value": "5公里",
+              "wide": false
+            },
+            {
+              "i": 4,
+              "label": "关门时长",
+              "value": "1小时",
+              "wide": false
+            },
+            {
+              "i": 5,
+              "label": "参赛条件",
+              "value": "09:30—10:30：5K亲子赛，不同组别分枪出发；儿童出生日期2019.1.1—2023.1.1，须监护人陪同报名并参赛。其他体检、陪跑及监护要求见正文；2026通用规程年份边界对延期场次的适用待确认。",
+              "wide": true
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "亲子套餐价 · 198元/套餐"
+            }
+          ]
+        },
+        {
+          "i": 3,
+          "name": "三公里亲子跑（10点起跑）（一大一小）",
+          "fields": [
+            {
+              "i": 0,
+              "label": "形式",
+              "value": "亲子",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "亲子人数",
+              "value": "1大1小",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "名额",
+              "value": "50队（计划）",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "标称距离",
+              "value": "3公里",
+              "wide": false
+            },
+            {
+              "i": 4,
+              "label": "关门时长",
+              "value": "1小时",
+              "wide": false
+            },
+            {
+              "i": 5,
+              "label": "参赛条件",
+              "value": "10:00—11:00：3K亲子赛，不同组别分枪出发；儿童出生日期2019.1.1—2024.1.1，须监护人陪同报名并参赛。其他体检、陪跑及监护要求见正文；2026通用规程年份边界对延期场次的适用待确认。",
+              "wide": true
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "亲子套餐价 · 198元/套餐"
+            }
+          ]
+        }
+      ],
+      "chapters": [
+        {
+          "id": "chapter-0",
+          "label": "赛事概况与延期通知"
+        },
+        {
+          "id": "chapter-7",
+          "label": "赛事组织"
+        },
+        {
+          "id": "chapter-9",
+          "label": "项目组别与报名费用"
+        },
+        {
+          "id": "chapter-15",
+          "label": "本站报名选项与出生日期"
+        },
+        {
+          "id": "chapter-29",
+          "label": "参赛资格与健康要求"
+        },
+        {
+          "id": "chapter-45",
+          "label": "报名流程与通知"
+        },
+        {
+          "id": "chapter-51",
+          "label": "日程、领物与检录"
+        },
+        {
+          "id": "chapter-59",
+          "label": "本站路线、物资与来源说明"
+        },
+        {
+          "id": "chapter-65",
+          "label": "竞赛、关门与赛道服务"
+        },
+        {
+          "id": "chapter-81",
+          "label": "比赛奖励"
+        },
+        {
+          "id": "chapter-87",
+          "label": "处罚办法"
+        },
+        {
+          "id": "chapter-105",
+          "label": "医疗与保险"
+        },
+        {
+          "id": "chapter-117",
+          "label": "退改与熔断"
+        },
+        {
+          "id": "chapter-121",
+          "label": "联系方式"
+        },
+        {
+          "id": "route",
+          "label": "赛道与路线",
+          "hasContent": true
+        },
+        {
+          "id": "originals",
+          "label": "规程原图参考",
+          "hasContent": true
+        }
+      ],
+      "originalCount": 2,
+      "screenshots": [
+        "/private/tmp/race-guide-quality-20261117/batch8-mini-guilin-390-groups.png",
+        "/private/tmp/race-guide-quality-20261117/batch8-mini-guilin-390-table-before.png",
+        "/private/tmp/race-guide-quality-20261117/batch8-mini-guilin-390-table-after.png",
+        "/private/tmp/race-guide-quality-20261117/batch8-mini-guilin-390-original.png",
+        "/private/tmp/race-guide-quality-20261117/batch8-mini-guilin-390-preview.png"
+      ],
+      "tablesBefore": [
+        {
+          "left": 27,
+          "right": 363,
+          "top": 100.0625,
+          "bottom": 408.0625,
+          "width": 336,
+          "height": 308,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 600,
+          "scrollHeight": 326
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 566.0390625,
+          "bottom": 1676.0390625,
+          "width": 336,
+          "height": 1110,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 480,
+          "scrollHeight": 1128
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 4309.140625,
+          "bottom": 4495.140625,
+          "width": 336,
+          "height": 186,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 334,
+          "scrollHeight": 204
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 4538.3359375,
+          "bottom": 4871.3359375,
+          "width": 336,
+          "height": 333,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 334,
+          "scrollHeight": 351
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 7769.5546875,
+          "bottom": 7934.5546875,
+          "width": 336,
+          "height": 165,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 480,
+          "scrollHeight": 183
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 7977.75,
+          "bottom": 8579.75,
+          "width": 336,
+          "height": 602,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 620
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 10706.34375,
+          "bottom": 10938.34375,
+          "width": 336,
+          "height": 232,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 334,
+          "scrollHeight": 250
+        }
+      ],
+      "tablesAfter": [
+        {
+          "left": 27,
+          "right": 363,
+          "top": 100.0625,
+          "bottom": 408.0625,
+          "width": 336,
+          "height": 308,
+          "scrollLeft": 266,
+          "scrollTop": 0,
+          "scrollWidth": 600,
+          "scrollHeight": 326
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 566.0390625,
+          "bottom": 1676.0390625,
+          "width": 336,
+          "height": 1110,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 480,
+          "scrollHeight": 1128
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 4309.140625,
+          "bottom": 4495.140625,
+          "width": 336,
+          "height": 186,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 334,
+          "scrollHeight": 204
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 4538.3359375,
+          "bottom": 4871.3359375,
+          "width": 336,
+          "height": 333,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 334,
+          "scrollHeight": 351
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 7769.5546875,
+          "bottom": 7934.5546875,
+          "width": 336,
+          "height": 165,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 480,
+          "scrollHeight": 183
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 7977.75,
+          "bottom": 8579.75,
+          "width": 336,
+          "height": 602,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 620
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 10706.34375,
+          "bottom": 10938.34375,
+          "width": 336,
+          "height": 232,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 334,
+          "scrollHeight": 250
+        }
+      ],
+      "actualHorizontalScrollVerified": true,
+      "originalImage": {
+        "left": 28,
+        "right": 362,
+        "top": 100.8515625,
+        "bottom": 2909.515625,
+        "width": 334,
+        "height": 2808.6640625,
+        "mode": "widthFix",
+        "src": "https://togetherbetter.cn/marathon/api/race-sheets/1401",
+        "showMenuByLongpress": true
+      },
+      "longpressActionSucceeded": true,
+      "nativeLongpressMenuVerified": false,
+      "nativePreviewClickSucceeded": true,
+      "hero": {
+        "date": "2027-03-14",
+        "heroDate": "03.14",
+        "year": "2027",
+        "guideCount": 3,
+        "routeCount": 0
+      },
+      "dateScreenshot": "/private/tmp/race-guide-quality-20261117/batch8-mini-guilin-390-date-after-kind-fix.png",
+      "tableContent": [
+        {
+          "headers": [
+            "项目",
+            "计划起跑",
+            "计划规模",
+            "报名费",
+            "关门时长（各组发令后）"
+          ],
+          "rows": [
+            [
+              "10KM精英赛",
+              "07:00",
+              "400人",
+              "138元/人",
+              "90分钟"
+            ],
+            [
+              "5KM精英赛",
+              "09:00",
+              "400人",
+              "138元/人",
+              "60分钟"
+            ],
+            [
+              "5KM亲子赛",
+              "09:30",
+              "50队",
+              "198元/队（一大一小）",
+              "60分钟"
+            ],
+            [
+              "3KM亲子赛",
+              "10:00",
+              "50队",
+              "198元/队（一大一小）",
+              "60分钟"
+            ]
+          ]
+        },
+        {
+          "headers": [
+            "10KM",
+            "5KM",
+            "5KM亲子",
+            "3KM亲子"
+          ],
+          "rows": [
+            [
+              "",
+              "",
+              "",
+              "U3混合"
+            ],
+            [
+              "",
+              "",
+              "U4混合",
+              "U4混合"
+            ],
+            [
+              "",
+              "",
+              "U5混合",
+              "U5混合"
+            ],
+            [
+              "",
+              "",
+              "U6男女",
+              "U6男女"
+            ],
+            [
+              "",
+              "U7男女",
+              "U7男女",
+              "U7男女"
+            ],
+            [
+              "",
+              "U8男女",
+              "U8男女",
+              "U8男女"
+            ],
+            [
+              "",
+              "U9男女",
+              "",
+              ""
+            ],
+            [
+              "U10男女",
+              "U10男女",
+              "",
+              ""
+            ],
+            [
+              "U12男女",
+              "U12男女",
+              "",
+              ""
+            ],
+            [
+              "U15男女",
+              "U15男女",
+              "",
+              ""
+            ],
+            [
+              "U18男女",
+              "U18男女",
+              "",
+              ""
+            ],
+            [
+              "公开男女",
+              "公开男女",
+              "",
+              ""
+            ],
+            [
+              "M30男 W30女",
+              "M30男 W30女",
+              "",
+              ""
+            ],
+            [
+              "M35男 W35女",
+              "M35男 W35女",
+              "",
+              ""
+            ],
+            [
+              "M40男 W40女",
+              "M40男 W40女",
+              "",
+              ""
+            ],
+            [
+              "M45男 W45女",
+              "M45男 W45女",
+              "",
+              ""
+            ],
+            [
+              "M50男 W50女",
+              "M50男 W50女",
+              "",
+              ""
+            ],
+            [
+              "M55男 W55女",
+              "M55男 W55女",
+              "",
+              ""
+            ],
+            [
+              "M60男 W60女",
+              "M60男 W60女",
+              "",
+              ""
+            ],
+            [
+              "M65男 W65女",
+              "M65男 W65女",
+              "",
+              ""
+            ],
+            [
+              "M70男 W70女",
+              "M70男 W70女",
+              "",
+              ""
+            ],
+            [
+              "M75男 W75女",
+              "M75男 W75女",
+              "",
+              ""
+            ],
+            [
+              "",
+              "M80男 W80女",
+              "",
+              ""
+            ]
+          ]
+        },
+        {
+          "headers": [
+            "计划时间",
+            "环节"
+          ],
+          "rows": [
+            [
+              "06:30—09:00",
+              "签到领物"
+            ],
+            [
+              "07:00—12:00",
+              "检录比赛"
+            ],
+            [
+              "08:30—12:00",
+              "完成项目颁奖"
+            ]
+          ]
+        },
+        {
+          "headers": [
+            "计划比赛窗口",
+            "项目"
+          ],
+          "rows": [
+            [
+              "07:00—09:00",
+              "10KM精英赛，不同组别分枪出发"
+            ],
+            [
+              "09:00—10:00",
+              "5KM精英赛，不同组别分枪出发"
+            ],
+            [
+              "09:30—10:30",
+              "5KM亲子赛，不同组别分枪出发"
+            ],
+            [
+              "10:00—11:00",
+              "3KM亲子赛，不同组别分枪出发"
+            ]
+          ]
+        },
+        {
+          "headers": [
+            "10KM分站奖励（不分年龄）",
+            "冠军",
+            "亚军",
+            "季军"
+          ],
+          "rows": [
+            [
+              "男子",
+              "1000元",
+              "600元",
+              "300元"
+            ],
+            [
+              "女子",
+              "1000元",
+              "600元",
+              "300元"
+            ]
+          ]
+        },
+        {
+          "headers": [
+            "通用规程破纪录奖励",
+            "条件",
+            "奖励"
+          ],
+          "rows": [
+            [
+              "10KM大会男子",
+              "不分年龄的冠军破大会男子纪录",
+              "另奖励3000元"
+            ],
+            [
+              "10KM大会女子",
+              "不分年龄的冠军破大会女子纪录",
+              "另奖励3000元"
+            ],
+            [
+              "5KM大会男子",
+              "不分年龄的冠军破大会男子纪录",
+              "另奖励1000元"
+            ],
+            [
+              "5KM大会女子",
+              "不分年龄的冠军破大会女子纪录",
+              "另奖励1000元"
+            ],
+            [
+              "10KM年龄组",
+              "年龄组冠军破本组纪录",
+              "500元"
+            ],
+            [
+              "5KM年龄组",
+              "年龄组冠军破本组纪录",
+              "一个免费路跑参加名额"
+            ]
+          ]
+        },
+        {
+          "headers": [
+            "申请退款时间（距比赛）",
+            "可退比例"
+          ],
+          "rows": [
+            [
+              "比赛前30—17天",
+              "90%"
+            ],
+            [
+              "比赛前17—12天",
+              "80%"
+            ],
+            [
+              "比赛前12—10天",
+              "50%"
+            ],
+            [
+              "比赛前低于10天",
+              "不可退"
+            ]
+          ]
+        }
+      ],
+      "renderedTableCount": 7,
+      "renderedTableRowsIncludingHeaders": 53,
+      "allTableRowsRendered": true,
+      "currentMedia": {
+        "guide": [
+          {
+            "id": 1734,
+            "caption": "WSE桂林站11月17日官方延期通知：自动改期、转站退费及客服",
+            "state": "ready"
+          },
+          {
+            "id": 1401,
+            "caption": "WSE四项目通用规程原图：完整组别、费用、资格、领物、关门、处罚、保险及退款",
+            "state": "ready"
+          },
+          {
+            "id": 1735,
+            "caption": "WSE桂林站现行2027年3月14日宣传、路线及奖励原图",
+            "state": "ready"
+          }
+        ],
+        "route": []
+      },
+      "currentNoticeScreenshot": "/private/tmp/race-guide-quality-20261117/batch8-mini-guilin-390-notice-original.png"
+    },
+    {
+      "id": "zuiku-46913",
+      "label": "baoan",
+      "apiUrl": "https://togetherbetter.cn/marathon/api/races/zuiku-46913",
+      "apiStatus": 200,
+      "proseExactlyMatchesProduction": true,
+      "groupsExactlyMatchPublicProduction": true,
+      "guideSha256": "cd1d741bd68b69843f1d9b7b93bea36458cedb6f77cbed628aacf05a4b7237d5",
+      "guideCharacters": 5916,
+      "groupCount": 1,
+      "groups": [
+        {
+          "i": 0,
+          "name": "10公里个人赛",
+          "fields": [
+            {
+              "i": 0,
+              "label": "形式",
+              "value": "个人",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "标称距离",
+              "value": "10公里",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "关门时长",
+              "value": "1.5小时",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "参赛条件",
+              "value": "16周岁以上（原图2010年01月01日前出生，含当日）至65周岁以下（原图1961年01月01日后出生，含当日）。原规程同时写“18周岁以下、65周岁以上需健康证明及家属陪同”，与上限65周岁以下存在冲突，需组委会确认；不据此放开65岁以上。18周岁以下（原文2008年01月01日以后出生）须监护人或法定代理人知晓同意规程，并在领物时签署免责声明。\n身体健康，具长期长跑基础，活动前12个月内二甲以上正规医疗机构体检含心电图，结合报告自评；建议至少检查血压和心电图。不得有规程11项禁忌。轮椅、婴儿车、轮滑及其他特殊人群不适宜；受田协或组委会禁赛者不予报名。领物须本人有效证件和免责声明。",
+              "wide": true
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "10公里达标赛【送竞速鞋】 · 198元/人"
+            },
+            {
+              "i": 1,
+              "text": "10公里达标赛【无跑鞋】 · 128元/人"
+            }
+          ]
+        }
+      ],
+      "chapters": [
+        {
+          "id": "chapter-0",
+          "label": "赛事概况"
+        },
+        {
+          "id": "chapter-4",
+          "label": "赛事概况"
+        },
+        {
+          "id": "chapter-7",
+          "label": "组织、时间与地点"
+        },
+        {
+          "id": "chapter-13",
+          "label": "二、参赛资格"
+        },
+        {
+          "id": "chapter-17",
+          "label": "健康要求及年龄分组"
+        },
+        {
+          "id": "chapter-33",
+          "label": "四、报名缴费办法"
+        },
+        {
+          "id": "chapter-44",
+          "label": "报名与费用：规程及官方报名选项"
+        },
+        {
+          "id": "chapter-54",
+          "label": "竞赛办法、检录与号码布"
+        },
+        {
+          "id": "chapter-73",
+          "label": "装备要求"
+        },
+        {
+          "id": "chapter-76",
+          "label": "达标标准与证书"
+        },
+        {
+          "id": "chapter-80",
+          "label": "积分、奖励、医疗保险及处罚"
+        },
+        {
+          "id": "chapter-123",
+          "label": "领物与组委会联系方式"
+        },
+        {
+          "id": "originals",
+          "label": "规程原图参考",
+          "hasContent": true
+        }
+      ],
+      "originalCount": 6,
+      "screenshots": [
+        "/private/tmp/race-guide-quality-20261117/batch8-mini-baoan-390-groups.png",
+        "/private/tmp/race-guide-quality-20261117/batch8-mini-baoan-390-table-before.png",
+        "/private/tmp/race-guide-quality-20261117/batch8-mini-baoan-390-table-after.png",
+        "/private/tmp/race-guide-quality-20261117/batch8-mini-baoan-390-original.png",
+        "/private/tmp/race-guide-quality-20261117/batch8-mini-baoan-390-preview.png"
+      ],
+      "tablesBefore": [
+        {
+          "left": 27,
+          "right": 363,
+          "top": 99.921875,
+          "bottom": 528.921875,
+          "width": 336,
+          "height": 429,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 480,
+          "scrollHeight": 447
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 2241.6171875,
+          "bottom": 2943.6171875,
+          "width": 336,
+          "height": 702,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 720
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 3161.78125,
+          "bottom": 3695.78125,
+          "width": 336,
+          "height": 534,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 552
+        }
+      ],
+      "tablesAfter": [
+        {
+          "left": 27,
+          "right": 363,
+          "top": 99.921875,
+          "bottom": 528.921875,
+          "width": 336,
+          "height": 429,
+          "scrollLeft": 146,
+          "scrollTop": 0,
+          "scrollWidth": 480,
+          "scrollHeight": 447
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 2241.6171875,
+          "bottom": 2943.6171875,
+          "width": 336,
+          "height": 702,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 720
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 3161.78125,
+          "bottom": 3695.78125,
+          "width": 336,
+          "height": 534,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 552
+        }
+      ],
+      "actualHorizontalScrollVerified": true,
+      "originalImage": {
+        "left": 28,
+        "right": 362,
+        "top": 333.359375,
+        "bottom": 921.640625,
+        "width": 334,
+        "height": 588.28125,
+        "mode": "widthFix",
+        "src": "https://togetherbetter.cn/marathon/api/race-sheets/976",
+        "showMenuByLongpress": true
+      },
+      "longpressActionSucceeded": true,
+      "nativeLongpressMenuVerified": false,
+      "nativePreviewClickSucceeded": true,
+      "hero": {
+        "date": "2026-11-29",
+        "heroDate": "11.29",
+        "year": "2026",
+        "guideCount": 6,
+        "routeCount": 0
+      },
+      "tableContent": [
+        {
+          "headers": [
+            "选项",
+            "报名页年龄限制",
+            "价格",
+            "报名页起跑时段"
+          ],
+          "rows": [
+            [
+              "10公里达标赛【送竞速鞋】",
+              "16周岁以上",
+              "198元/人",
+              "以具体分枪通知为准"
+            ],
+            [
+              "10公里达标赛【无跑鞋】",
+              "16周岁以上",
+              "128元/人",
+              "以具体分枪通知为准"
+            ],
+            [
+              "5公里组欢乐跑【送慢跑鞋】",
+              "12周岁以上",
+              "168元",
+              "14:30—15:30开跑"
+            ],
+            [
+              "5公里组欢乐跑【无跑鞋】",
+              "12周岁以上",
+              "88元",
+              "14:30—15:30开跑"
+            ],
+            [
+              "3公里亲子跑【无跑鞋】",
+              "12周岁以下",
+              "88元",
+              "14:30—15:30开跑"
+            ]
+          ]
+        },
+        {
+          "headers": [
+            "类别",
+            "标准/项目",
+            "赛事积分"
+          ],
+          "rows": [
+            [
+              "技术等级标准",
+              "精英一级",
+              "500"
+            ],
+            [
+              "技术等级标准",
+              "精英二级",
+              "400"
+            ],
+            [
+              "技术等级标准",
+              "大众一级",
+              "300"
+            ],
+            [
+              "技术等级标准",
+              "大众二级",
+              "200"
+            ],
+            [
+              "技术等级标准",
+              "大众三级",
+              "100"
+            ],
+            [
+              "锻炼等级标准",
+              "优秀",
+              "300"
+            ],
+            [
+              "锻炼等级标准",
+              "良好",
+              "200"
+            ],
+            [
+              "锻炼等级标准",
+              "合格",
+              "100"
+            ],
+            [
+              "完赛",
+              "每场",
+              "50"
+            ],
+            [
+              "完赛",
+              "每项",
+              "50"
+            ],
+            [
+              "非标准项目",
+              "每场（不涉及达标，无达标证书）",
+              "50"
+            ],
+            [
+              "非标准项目",
+              "每项（不涉及达标，无达标证书）",
+              "50"
+            ]
+          ]
+        },
+        {
+          "headers": [
+            "名次",
+            "男子个人名次奖（元）",
+            "女子个人名次奖（元）"
+          ],
+          "rows": [
+            [
+              "1",
+              "1000",
+              "1000"
+            ],
+            [
+              "2",
+              "800",
+              "800"
+            ],
+            [
+              "3",
+              "600",
+              "600"
+            ],
+            [
+              "4",
+              "500",
+              "500"
+            ],
+            [
+              "5",
+              "300",
+              "300"
+            ],
+            [
+              "6",
+              "200",
+              "200"
+            ],
+            [
+              "7",
+              "200",
+              "200"
+            ],
+            [
+              "8",
+              "200",
+              "200"
+            ],
+            [
+              "9",
+              "200",
+              "200"
+            ],
+            [
+              "10",
+              "200",
+              "200"
+            ]
+          ]
+        }
+      ],
+      "renderedTableCount": 3,
+      "renderedTableRowsIncludingHeaders": 30,
+      "allTableRowsRendered": true
+    },
+    {
+      "id": "zuiku-15387",
+      "label": "ruijin",
+      "apiUrl": "https://togetherbetter.cn/marathon/api/races/zuiku-15387",
+      "apiStatus": 200,
+      "proseExactlyMatchesProduction": true,
+      "groupsExactlyMatchPublicProduction": true,
+      "guideSha256": "65aa6603b80d125a96f3660ad5b1df607747092e325fe5766c4af03eb73c3be8",
+      "guideCharacters": 3827,
+      "groupCount": 2,
+      "groups": [
+        {
+          "i": 0,
+          "name": "亲子2人一圈组（约5.3公里）",
+          "fields": [
+            {
+              "i": 0,
+              "label": "形式",
+              "value": "亲子",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "标称距离",
+              "value": "5.3公里",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "出发时间",
+              "value": "2027-01-01 09:00",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "关门时间",
+              "value": "2027-01-01 10:10",
+              "wide": false
+            },
+            {
+              "i": 4,
+              "label": "参赛条件",
+              "value": "亲子一圈组未成年人年龄限5周岁至15周岁，原图同时写“2022年1月1日及以前出生至2010年12月31日之后出生”；成年人年龄限18周岁至70周岁。年龄文字与出生日期边界的对应存在疑点，暂按原文并列保留，请向组委会确认。未成年人须由监护人或法定代理人签署声明；65岁以上（原图：1962年1月1日前出生）高龄选手需提供近期体检证明，并由直系亲属签署免责声明；身份证实际年龄须符合规程要求。\n以组合为单位报名；领物前成年人提交本人签字、未成年人提交监护人签字的《健康安全责任承诺书》。应有经常跑步基础并结合正规体检报告自评，无规程所列不宜参加的健康情况。",
+              "wide": true
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "亲子套餐价 · 238元/套餐"
+            }
+          ]
+        },
+        {
+          "i": 1,
+          "name": "亲子3人一圈组（约5.3公里）",
+          "fields": [
+            {
+              "i": 0,
+              "label": "形式",
+              "value": "亲子",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "标称距离",
+              "value": "5.3公里",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "出发时间",
+              "value": "2027-01-01 09:00",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "关门时间",
+              "value": "2027-01-01 10:10",
+              "wide": false
+            },
+            {
+              "i": 4,
+              "label": "参赛条件",
+              "value": "亲子一圈组未成年人年龄限5周岁至15周岁，原图同时写“2022年1月1日及以前出生至2010年12月31日之后出生”；成年人年龄限18周岁至70周岁。年龄文字与出生日期边界的对应存在疑点，暂按原文并列保留，请向组委会确认。未成年人须由监护人或法定代理人签署声明；65岁以上（原图：1962年1月1日前出生）高龄选手需提供近期体检证明，并由直系亲属签署免责声明；身份证实际年龄须符合规程要求。\n以组合为单位报名；领物前成年人提交本人签字、未成年人提交监护人签字的《健康安全责任承诺书》。应有经常跑步基础并结合正规体检报告自评，无规程所列不宜参加的健康情况。",
+              "wide": true
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "亲子套餐价 · 357元/套餐"
+            }
+          ]
+        }
+      ],
+      "chapters": [
+        {
+          "id": "chapter-0",
+          "label": "赛事概况"
+        },
+        {
+          "id": "chapter-2",
+          "label": "项目组别与参赛资格"
+        },
+        {
+          "id": "chapter-13",
+          "label": "日程、活动办法与健康要求"
+        },
+        {
+          "id": "chapter-53",
+          "label": "报名费用"
+        },
+        {
+          "id": "chapter-55",
+          "label": "退费机制"
+        },
+        {
+          "id": "chapter-60",
+          "label": "可选包与服装尺码"
+        },
+        {
+          "id": "chapter-67",
+          "label": "活动物品领取"
+        },
+        {
+          "id": "route",
+          "label": "赛道与路线",
+          "hasContent": true
+        },
+        {
+          "id": "originals",
+          "label": "规程原图参考",
+          "hasContent": true
+        }
+      ],
+      "originalCount": 1,
+      "screenshots": [
+        "/private/tmp/race-guide-quality-20261117/batch8-mini-ruijin-390-groups.png",
+        "/private/tmp/race-guide-quality-20261117/batch8-mini-ruijin-390-table-before.png",
+        "/private/tmp/race-guide-quality-20261117/batch8-mini-ruijin-390-table-after.png",
+        "/private/tmp/race-guide-quality-20261117/batch8-mini-ruijin-390-original.png",
+        "/private/tmp/race-guide-quality-20261117/batch8-mini-ruijin-390-preview.png"
+      ],
+      "tablesBefore": [
+        {
+          "left": 27,
+          "right": 363,
+          "top": 100.046875,
+          "bottom": 240.046875,
+          "width": 336,
+          "height": 140,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 158
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 1056.09375,
+          "bottom": 1288.09375,
+          "width": 336,
+          "height": 232,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 334,
+          "scrollHeight": 250
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 3479.078125,
+          "bottom": 4022.078125,
+          "width": 336,
+          "height": 543,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 561
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 4625.9765625,
+          "bottom": 4975.9765625,
+          "width": 336,
+          "height": 350,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 1320,
+          "scrollHeight": 368
+        }
+      ],
+      "tablesAfter": [
+        {
+          "left": 27,
+          "right": 363,
+          "top": 100.046875,
+          "bottom": 240.046875,
+          "width": 336,
+          "height": 140,
+          "scrollLeft": 26,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 158
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 1056.09375,
+          "bottom": 1288.09375,
+          "width": 336,
+          "height": 232,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 334,
+          "scrollHeight": 250
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 3479.078125,
+          "bottom": 4022.078125,
+          "width": 336,
+          "height": 543,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 561
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 4625.9765625,
+          "bottom": 4975.9765625,
+          "width": 336,
+          "height": 350,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 1320,
+          "scrollHeight": 368
+        }
+      ],
+      "actualHorizontalScrollVerified": true,
+      "originalImage": {
+        "left": 28,
+        "right": 362,
+        "top": 101.140625,
+        "bottom": 6224.0234375,
+        "width": 334,
+        "height": 6122.8828125,
+        "mode": "widthFix",
+        "src": "https://togetherbetter.cn/marathon/api/race-sheets/1620",
+        "showMenuByLongpress": true
+      },
+      "longpressActionSucceeded": true,
+      "nativeLongpressMenuVerified": false,
+      "nativePreviewClickSucceeded": true,
+      "hero": {
+        "date": "2027-01-01",
+        "heroDate": "01.01",
+        "year": "2027",
+        "guideCount": 1,
+        "routeCount": 1
+      },
+      "tableContent": [
+        {
+          "headers": [
+            "组别",
+            "距离",
+            "报名费"
+          ],
+          "rows": [
+            [
+              "亲子2人一圈组",
+              "约5.3公里",
+              "238元/组"
+            ],
+            [
+              "亲子3人一圈组",
+              "约5.3公里",
+              "357元/组"
+            ]
+          ]
+        },
+        {
+          "headers": [
+            "时间",
+            "安排"
+          ],
+          "rows": [
+            [
+              "08:00—09:00",
+              "存包、检录、热身、奏国歌"
+            ],
+            [
+              "09:00",
+              "发枪、活动开始"
+            ],
+            [
+              "10:10",
+              "活动颁奖"
+            ],
+            [
+              "10:10",
+              "活动结束"
+            ]
+          ]
+        },
+        {
+          "headers": [
+            "活动项目",
+            "报名费",
+            "费用包含"
+          ],
+          "rows": [
+            [
+              "亲子2人一圈组",
+              "238元/组",
+              "活动保险、活动服装、手套、抽绳包、计时芯片、号码布、奖牌、活动补给、完赛能量包、摄影、一次性雨衣"
+            ],
+            [
+              "亲子3人一圈组",
+              "357元/组",
+              "活动保险、活动服装、手套、抽绳包、计时芯片、号码布、奖牌、活动补给、完赛能量包、摄影、一次性雨衣"
+            ]
+          ]
+        },
+        {
+          "headers": [
+            "部位/规格",
+            "130",
+            "140",
+            "150",
+            "XS",
+            "S",
+            "M",
+            "L",
+            "XL",
+            "2XL",
+            "3XL"
+          ],
+          "rows": [
+            [
+              "衣长",
+              "50",
+              "53",
+              "56",
+              "62",
+              "64",
+              "66",
+              "68",
+              "70",
+              "72",
+              "74"
+            ],
+            [
+              "胸围",
+              "38",
+              "41",
+              "44",
+              "44",
+              "46",
+              "48",
+              "50",
+              "52",
+              "54",
+              "56"
+            ],
+            [
+              "肩宽",
+              "33",
+              "35",
+              "37",
+              "40.5",
+              "42",
+              "43.5",
+              "45",
+              "46.5",
+              "48",
+              "49.5"
+            ],
+            [
+              "领宽",
+              "15",
+              "15.5",
+              "16",
+              "17.5",
+              "18",
+              "18.5",
+              "19",
+              "19.5",
+              "20",
+              "20.5"
+            ],
+            [
+              "建议身高（cm）",
+              "130",
+              "140",
+              "150",
+              "150—160",
+              "160—165",
+              "165—170",
+              "170—175",
+              "175—180",
+              "180—185",
+              "185—190"
+            ],
+            [
+              "建议体重（斤）",
+              "100以下",
+              "100以下",
+              "100以下",
+              "100以下",
+              "100—110",
+              "110—120",
+              "120—140",
+              "140—160",
+              "160—180",
+              "180—200"
+            ]
+          ]
+        }
+      ],
+      "renderedTableCount": 4,
+      "renderedTableRowsIncludingHeaders": 18,
+      "allTableRowsRendered": true
+    }
+  ],
+  "screenshots": [
+    "/private/tmp/race-guide-quality-20261117/batch8-mini-guilin-390-groups.png",
+    "/private/tmp/race-guide-quality-20261117/batch8-mini-guilin-390-table-before.png",
+    "/private/tmp/race-guide-quality-20261117/batch8-mini-guilin-390-table-after.png",
+    "/private/tmp/race-guide-quality-20261117/batch8-mini-guilin-390-original.png",
+    "/private/tmp/race-guide-quality-20261117/batch8-mini-guilin-390-preview.png",
+    "/private/tmp/race-guide-quality-20261117/batch8-mini-baoan-390-groups.png",
+    "/private/tmp/race-guide-quality-20261117/batch8-mini-baoan-390-table-before.png",
+    "/private/tmp/race-guide-quality-20261117/batch8-mini-baoan-390-table-after.png",
+    "/private/tmp/race-guide-quality-20261117/batch8-mini-baoan-390-original.png",
+    "/private/tmp/race-guide-quality-20261117/batch8-mini-baoan-390-preview.png",
+    "/private/tmp/race-guide-quality-20261117/batch8-mini-ruijin-390-groups.png",
+    "/private/tmp/race-guide-quality-20261117/batch8-mini-ruijin-390-table-before.png",
+    "/private/tmp/race-guide-quality-20261117/batch8-mini-ruijin-390-table-after.png",
+    "/private/tmp/race-guide-quality-20261117/batch8-mini-ruijin-390-original.png",
+    "/private/tmp/race-guide-quality-20261117/batch8-mini-ruijin-390-preview.png"
+  ],
+  "pending": [
+    "Physical phone gesture zoom, save and native long-press menu",
+    "Official uploaded/published mini-program verification",
+    "320px actual DevTools profile switching: exposed automation tools provide no device switch; 390px is currently configured."
+  ],
+  "screenshotsActuallyViewedByRoot": [
+    "batch8-mini-guilin-390-groups.png",
+    "batch8-mini-baoan-390-table-after.png",
+    "batch8-mini-ruijin-390-table-after.png",
+    "batch8-mini-guilin-390-preview.png",
+    "batch8-mini-baoan-390-preview.png",
+    "batch8-mini-ruijin-390-preview.png"
+  ]
+}

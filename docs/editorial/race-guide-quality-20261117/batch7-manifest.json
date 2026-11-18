@@ -1,0 +1,1295 @@
+[
+  {
+    "id": "zuiku-76003",
+    "name": "2026开野越野训练赛·安吉年终站",
+    "status": "partially_verified",
+    "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+    "beforeBodyHash": "e3c90e472666fcf3131d6580e5f32decf6f38254918896093fc86c1097de7090",
+    "savedBodyHash": "743fe5858c42f2cad82f8b88718b1f6219f118332b3345456a97276f3b4261ff",
+    "bodyChanged": true,
+    "edits": 4,
+    "viewedImages": 4,
+    "pendingImages": 0,
+    "chapters": 5,
+    "groups": 3,
+    "groupCorrections": 12,
+    "questions": [
+      "实际查看4张全部现存图，全部图片识别章节1—4整章整理；可靠赛事概况0保留。仍标partial：未取得独立官方最新全文，不能宣称全场最新公告已穷尽。",
+      "原图6—8/9—11/12—14及2011/2014/2017/2020的日期边界存在年龄对应差异，照原图呈现，未算术改年；还包括6岁以下亲子不排名行，现报名页无相应报名选项，不新增选项。",
+      "500份为总报名名额，未写进每组quota。360完整名查询出现最酷当届报道与另一站资料，未将其他站或搜索摘要作为正文。"
+    ],
+    "officialDocuments": [],
+    "sourceDiscovery": {
+      "officialUrls": [],
+      "notes": [
+        "已访问当前报名页并检查正文末尾官网/公众号与链接，已做全名和简名360检索；多数HTTP200但实际为访问异常页面，不能据此断言无官网。安吉找到最酷本届6月17日稿并取回，正文仅可靠简要文字+同组规程图片；广德检出2025南山南徒步，排除旧届，未混入。独立当前官方完整可复制规程未取得，仍按partial准确记录。"
+      ],
+      "textCrossCheck": {
+        "url": "https://zuicool.com/news/archives/304654",
+        "title": "报名 | 2026开野越野训练赛·安吉年终站",
+        "published": "2026-06-17",
+        "retrievedFile": "/tmp/race-guide-quality-20261117/tenth-open-anji-news.html",
+        "scope": "本届转载简要正文，仅交叉9.5km/370m及13—16点，不当官方最新全文"
+      },
+      "checksFile": "/tmp/race-guide-quality-20261117/tenth-source-checks.json",
+      "discoveryFile": "/tmp/race-guide-quality-20261117/tenth-discovery.json",
+      "additionalDiscoveryFile": "/tmp/race-guide-quality-20261117/tenth-short-discovery.json"
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webSmallScreenWidths": [
+        320,
+        390
+      ],
+      "miniDevtools390": false,
+      "miniPublished": false,
+      "physicalPhone": false
+    }
+  },
+  {
+    "id": "zuiku-16069",
+    "name": "2026 UTO助力首百越野训练赛·金华南山站",
+    "status": "partially_verified",
+    "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+    "beforeBodyHash": "c963a0e8c94e929598d7ce4408339834efc5f6a4a75dc02899d88521db326d6e",
+    "savedBodyHash": "59880767a24993588bde77409deb2d4ab7db6695901e71f3e6e604c3284debd5",
+    "bodyChanged": true,
+    "edits": 6,
+    "viewedImages": 5,
+    "pendingImages": 0,
+    "chapters": 7,
+    "groups": 3,
+    "groupCorrections": 2,
+    "questions": [
+      "5张现存图全部实际查看，图片识别章节1—6均按整章整理，可靠概况保留；未取得独立最新官方全文，仍partial。",
+      "7公里正文距离7.18km、海拔图截图7.19公里差异已说明，保留正文及卡片原值；年龄日期只到月份，不补日。",
+      "亲子8—12岁与出生日期见可靠现报名页概况，图片一般7公里12岁以上条款未覆盖亲子现值，亲子体检例外则图有明文。",
+      "原图运动员群括注为邮箱形式1512768748@qq.com且称微信，未猜作新的微信号；正文保留已确认赛事邮箱与电话。"
+    ],
+    "officialDocuments": [],
+    "sourceDiscovery": {
+      "officialUrls": [],
+      "notes": [
+        "已访问当前报名页并检查正文末尾官网/公众号与链接，已做全名和简名360检索；多数HTTP200但实际为访问异常页面，不能据此断言无官网。安吉找到最酷本届6月17日稿并取回，正文仅可靠简要文字+同组规程图片；广德检出2025南山南徒步，排除旧届，未混入。独立当前官方完整可复制规程未取得，仍按partial准确记录。"
+      ],
+      "checksFile": "/tmp/race-guide-quality-20261117/tenth-source-checks.json",
+      "discoveryFile": "/tmp/race-guide-quality-20261117/tenth-discovery.json",
+      "additionalDiscoveryFile": "/tmp/race-guide-quality-20261117/tenth-short-discovery.json"
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webSmallScreenWidths": [
+        320,
+        390
+      ],
+      "miniDevtools390": false,
+      "miniPublished": false,
+      "physicalPhone": false
+    }
+  },
+  {
+    "id": "zuiku-35984",
+    "name": "拓路者2026第十一届戴村山地越野赛",
+    "status": "partially_verified",
+    "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+    "beforeBodyHash": "4cae9539082baeb2f5edff0c611ec881c25a8fd97453c1a4638a66ce89641497",
+    "savedBodyHash": "227ab001b39a8e275b740252540939c2f56d1036ebece4fd3004187a44c7befa",
+    "bodyChanged": true,
+    "edits": 5,
+    "viewedImages": 5,
+    "pendingImages": 3,
+    "chapters": 8,
+    "groups": 3,
+    "groupCorrections": 9,
+    "questions": [
+      "实际查看调整公告、组织日程、三组路线、资格费用、装备退改5张完整长图，整理第3—7章；第2章宣传长图及关联资料未全图复核，保留。",
+      "装备表首列36km与37km组名不一致，充电宝5000MA单位异常，均明确原图保留；不改写mAh，不推算新的关门时刻。",
+      "独立最新官网未取得；360访问异常，本届原图盖章调整公告与现报名页日期均为11月29日，未据旧11月14宣传改回日期。"
+    ],
+    "officialDocuments": [],
+    "sourceDiscovery": {
+      "officialUrls": [],
+      "notes": [
+        "已访问当前报名页并检查正文末尾官网/公众号与链接，已做全名和简名360检索；多数HTTP200但实际为访问异常页面，不能据此断言无官网。安吉找到最酷本届6月17日稿并取回，正文仅可靠简要文字+同组规程图片；广德检出2025南山南徒步，排除旧届，未混入。独立当前官方完整可复制规程未取得，仍按partial准确记录。"
+      ],
+      "checksFile": "/tmp/race-guide-quality-20261117/tenth-source-checks.json",
+      "discoveryFile": "/tmp/race-guide-quality-20261117/tenth-discovery.json",
+      "additionalDiscoveryFile": "/tmp/race-guide-quality-20261117/tenth-short-discovery.json"
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webSmallScreenWidths": [
+        320,
+        390
+      ],
+      "miniDevtools390": false,
+      "miniPublished": false,
+      "physicalPhone": false
+    }
+  },
+  {
+    "id": "zuiku-95241",
+    "name": "2026第三届西塞山霞幕雄鹰越野跑",
+    "status": "partially_verified",
+    "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+    "beforeBodyHash": "5450d6c22b713a6b4ac0978e5c5d24f45fc47c73ce094bb9056717762a5e6d98",
+    "savedBodyHash": "9ad70997f108c9f41b1e6d9ed36b36289f7ef6a0f0c4aced2d34892463c6d645",
+    "bodyChanged": true,
+    "edits": 7,
+    "viewedImages": 8,
+    "pendingImages": 0,
+    "chapters": 8,
+    "groups": 3,
+    "groupCorrections": 9,
+    "questions": [
+      "8张现存图全部实际查看，图片识别章节1—7整章整理；可靠0章保留。未取得独立官方最新全文，仍partial，不宣称站点冲突已解决。",
+      "日程SP1 9:15、CP1 10:45，分组图27K为9:00/10:30、15K为9:15/10:15，不选一覆盖，已在正文并列。陆羽之道正文13.9与曲线13.99精度不同保留。",
+      "官方公众号名称图片字形存在弧/孤疑点，未猜字，清晰原图保留；联系方式已从第7联系图实际核实。"
+    ],
+    "officialDocuments": [],
+    "sourceDiscovery": {
+      "officialUrls": [],
+      "notes": [
+        "已访问当前报名页并检查正文末尾官网/公众号与链接，已做全名和简名360检索；多数HTTP200但实际为访问异常页面，不能据此断言无官网。安吉找到最酷本届6月17日稿并取回，正文仅可靠简要文字+同组规程图片；广德检出2025南山南徒步，排除旧届，未混入。独立当前官方完整可复制规程未取得，仍按partial准确记录。"
+      ],
+      "checksFile": "/tmp/race-guide-quality-20261117/tenth-source-checks.json",
+      "discoveryFile": "/tmp/race-guide-quality-20261117/tenth-discovery.json",
+      "additionalDiscoveryFile": "/tmp/race-guide-quality-20261117/tenth-short-discovery.json"
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webSmallScreenWidths": [
+        320,
+        390
+      ],
+      "miniDevtools390": false,
+      "miniPublished": false,
+      "physicalPhone": false
+    }
+  },
+  {
+    "id": "zuiku-90601",
+    "name": "2026滁州越野赛·秋季赛",
+    "status": "partially_verified",
+    "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+    "beforeBodyHash": "0abb9384173dcf4c6347329ffd984dabedb5565d02545f885ad4a05ded69335d",
+    "savedBodyHash": "c1be2e449109e73948dfa6b22bb3e9b735ee4c7c0a53d069155b06f554a0dbc4",
+    "bodyChanged": true,
+    "edits": 11,
+    "viewedImages": 9,
+    "pendingImages": 1,
+    "chapters": 13,
+    "groups": 2,
+    "groupCorrections": 6,
+    "questions": [
+      "实际查看9张正文图（费用、4张路线、组别、装备、资格退费、服务），完成原图章节2—12整章整理，可靠公告0和概况1保留。封面宣传图0未审。",
+      "现报名页明确30/40公里取消，正文将旧四组价格、路线、装备表标历史资料，不新增取消组选项；现25/10价258/138与原图正常价一致。",
+      "早鸟9月30日截止、11月1日恢复，10月阶段未说明；退款10月29日前/10月30日起存在边界疑点，原图保留。10公里曲线终点11.19仅截图刻度，不替换组名或猜实际距离。",
+      "360检索访问异常，未取得独立最新官网全文；本届可复制报名页取消通知与原图交叉，partial。"
+    ],
+    "officialDocuments": [],
+    "sourceDiscovery": {
+      "officialUrls": [],
+      "notes": [
+        "已访问当前报名页并检查正文末尾官网/公众号与链接，已做全名和简名360检索；多数HTTP200但实际为访问异常页面，不能据此断言无官网。安吉找到最酷本届6月17日稿并取回，正文仅可靠简要文字+同组规程图片；广德检出2025南山南徒步，排除旧届，未混入。独立当前官方完整可复制规程未取得，仍按partial准确记录。"
+      ],
+      "checksFile": "/tmp/race-guide-quality-20261117/tenth-source-checks.json",
+      "discoveryFile": "/tmp/race-guide-quality-20261117/tenth-discovery.json",
+      "additionalDiscoveryFile": "/tmp/race-guide-quality-20261117/tenth-short-discovery.json"
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webSmallScreenWidths": [
+        320,
+        390
+      ],
+      "miniDevtools390": false,
+      "miniPublished": false,
+      "physicalPhone": false
+    }
+  },
+  {
+    "id": "zuiku-78664",
+    "name": "中国·余姚2026四明山越野赛",
+    "status": "partially_verified",
+    "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+    "beforeBodyHash": "73e037db63c68d7634f94f9006ffe131442e2fe8e52f6f43f601e8edfd388c90",
+    "savedBodyHash": "d42dafa6fe3064faa0eee66afec42a4bbca51141d7c9c8e0c188e4c5588d5d4d",
+    "bodyChanged": true,
+    "edits": 13,
+    "viewedImages": 10,
+    "pendingImages": 2,
+    "chapters": 13,
+    "groups": 4,
+    "groupCorrections": 12,
+    "questions": [
+      "实际查看10张完整正文图：封面、资格、奖励装备、日程、4张路线、报名退费保险、申诉机构，全部章节按对应整图清理；未审定位小图和品牌图，仍partial。",
+      "概况圣贤里15KM与同页报名选项、本届组表及20KM图不一致，仅把该确定错字改20KM，其余可靠资料不覆盖。封面11月28—29含报到；100KM关门11月30日05:00采用本届可复制报名项目明文。",
+      "原图充电宝10000毫安单位按原文保留；卫星定位仪表注明组委会提供但一般说明说其他装备自带，两处同时保留，待官方确认。未把SP空白关门按前后CP补齐。",
+      "360检索访问异常，未取得独立最新官网全文，图为报名页本届资料；不宣称后续技术会议参数已确认。"
+    ],
+    "officialDocuments": [],
+    "sourceDiscovery": {
+      "officialUrls": [],
+      "notes": [
+        "已访问当前报名页并检查正文末尾官网/公众号与链接，已做全名和简名360检索；多数HTTP200但实际为访问异常页面，不能据此断言无官网。安吉找到最酷本届6月17日稿并取回，正文仅可靠简要文字+同组规程图片；广德检出2025南山南徒步，排除旧届，未混入。独立当前官方完整可复制规程未取得，仍按partial准确记录。"
+      ],
+      "checksFile": "/tmp/race-guide-quality-20261117/tenth-source-checks.json",
+      "discoveryFile": "/tmp/race-guide-quality-20261117/tenth-discovery.json",
+      "additionalDiscoveryFile": "/tmp/race-guide-quality-20261117/tenth-short-discovery.json"
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webSmallScreenWidths": [
+        320,
+        390
+      ],
+      "miniDevtools390": false,
+      "miniPublished": false,
+      "physicalPhone": false
+    }
+  },
+  {
+    "id": "zuiku-52309",
+    "name": "2026 GO野社区赛·苏皖步道跑山赛",
+    "status": "partially_verified",
+    "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+    "beforeBodyHash": "3c87b53acd9ccfc15439ce95dd2c1d7c0c0bb530e5036acb142b39bba3561bd9",
+    "savedBodyHash": "3af39ea7b10b6b9d4e3ca94e12b06ade30355f68c562075331c778fcebbeee13",
+    "bodyChanged": true,
+    "edits": 12,
+    "viewedImages": 6,
+    "pendingImages": 2,
+    "chapters": 13,
+    "groups": 2,
+    "groupCorrections": 4,
+    "questions": [
+      "实际查看6张完整长图（引言、活动路线、报名资格装备、三张正式规程），对应章节1—12整章清理，重复资格/费用集中呈现但所有独有条款保留；0可靠概况未动，封面及二维码未审，partial。",
+      "本届地图15公里14.73、规程项目14.9、站点14.96；24公里图24.9、站表24.92。Start表08:15与日程地图08:00不一致，SP2表沈溪岕/图深溪岕也不同，全部按源并列，不改当前distance/start卡片。",
+      "宣传退款最后时点11月10日17:00、正式规程10月30日17:00；最终熔断章全额退与前章按10月30日扣装备政策范围有差异，均保留未猜。",
+      "原始报名截止11月9日00:00和年龄界日11月28日按图保留。申请ITRA不等于已认证，现表现分描述不写新积分数。360访问异常，未取得独立最新全文或11月最终赛道。"
+    ],
+    "officialDocuments": [],
+    "sourceDiscovery": {
+      "officialUrls": [],
+      "notes": [
+        "已访问当前报名页并检查正文末尾官网/公众号与链接，已做全名和简名360检索；多数HTTP200但实际为访问异常页面，不能据此断言无官网。安吉找到最酷本届6月17日稿并取回，正文仅可靠简要文字+同组规程图片；广德检出2025南山南徒步，排除旧届，未混入。独立当前官方完整可复制规程未取得，仍按partial准确记录。"
+      ],
+      "checksFile": "/tmp/race-guide-quality-20261117/tenth-source-checks.json",
+      "discoveryFile": "/tmp/race-guide-quality-20261117/tenth-discovery.json",
+      "additionalDiscoveryFile": "/tmp/race-guide-quality-20261117/tenth-short-discovery.json"
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webSmallScreenWidths": [
+        320,
+        390
+      ],
+      "miniDevtools390": false,
+      "miniPublished": false,
+      "physicalPhone": false
+    }
+  },
+  {
+    "id": "zuiku-39867",
+    "name": "2026广德“岳飞六捷”山径系列赛·新杭南山南站",
+    "status": "partially_verified",
+    "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+    "beforeBodyHash": "8be0bb33df912f702acb346e59e67a9fed4e98e784544a4ce534bb605178d595",
+    "savedBodyHash": "501ce98df63cac83b7e9ac4b116b0cba7a1dfb3568b1b2cc0498c0ddb0bdd0c8",
+    "bodyChanged": true,
+    "edits": 8,
+    "viewedImages": 7,
+    "pendingImages": 1,
+    "chapters": 9,
+    "groups": 4,
+    "groupCorrections": 8,
+    "questions": [
+      "实际查看7张完整正文图（宣传引言、信息、组别须知、奖励、正式规程、地图、完整规则），并放大装备及40公里站点；正文1—8整章整理，0可靠概况不动。二维码未审，仍partial。",
+      "原正式项目表8KM349+m，而两地图324m，保留当前组卡349不覆盖；40地图41与项目40.98为精度差异并列。",
+      "宣传退费邮箱18956313632@189.cn与正式/最终359020803@qq.com不同；正式强装体检备注2025/11/8、宣传2025/11/28且均写一年内；能量备注30K非本届组名，源文保留待官方确认。",
+      "地图CP2、CP4及SP1地名字形虽放大仍不稳，不猜字，保留原图和全部可确认数字；已下载无缩图参数原图但仍750宽，未获得更清晰版本。",
+      "360查得当前报名页与旧2025徒步资料，已排除旧年；未取得独立本届官方全文/赛前最终版，原文官方公众号皖美新杭、广德教育体育已保留。"
+    ],
+    "officialDocuments": [],
+    "sourceDiscovery": {
+      "officialUrls": [],
+      "notes": [
+        "已访问当前报名页并检查正文末尾官网/公众号与链接，已做全名和简名360检索；多数HTTP200但实际为访问异常页面，不能据此断言无官网。安吉找到最酷本届6月17日稿并取回，正文仅可靠简要文字+同组规程图片；广德检出2025南山南徒步，排除旧届，未混入。独立当前官方完整可复制规程未取得，仍按partial准确记录。"
+      ],
+      "checksFile": "/tmp/race-guide-quality-20261117/tenth-source-checks.json",
+      "discoveryFile": "/tmp/race-guide-quality-20261117/tenth-discovery.json",
+      "additionalDiscoveryFile": "/tmp/race-guide-quality-20261117/tenth-short-discovery.json"
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webSmallScreenWidths": [
+        320,
+        390
+      ],
+      "miniDevtools390": false,
+      "miniPublished": false,
+      "physicalPhone": false
+    }
+  },
+  {
+    "id": "zuiku-15387",
+    "name": "锐进四季—2027第三届元旦亲子迎新跑",
+    "status": "partially_verified",
+    "scope": "局部校对（partial）：列出的已实际查看长图按完整章节清理，资格、费用阶段、流程及表格不截断；其余既有可靠正文和人工资料原样保留。源冲突及最终通知缺失见auditNotes。",
+    "beforeBodyHash": "e4f5707ba0e23b5b137937d449e378c511e1701f9cfd3330ecebeb61eb091c8f",
+    "savedBodyHash": "65aa6603b80d125a96f3660ad5b1df607747092e325fe5766c4af03eb73c3be8",
+    "bodyChanged": true,
+    "edits": 6,
+    "viewedImages": 2,
+    "pendingImages": 0,
+    "chapters": 7,
+    "groups": 2,
+    "groupCorrections": 6,
+    "questions": [
+      "未成年人5—15周岁与2010-12-31后至2022-01-01及以前出生的对应存在疑点，保留原图边界并请主办方确认；不按常识改成另一年份。",
+      "亲子2/3人组合未明确成人儿童配比，不猜一大一小/两大一小。",
+      "本场两张长图已整章清理，本轮仍统一partial：官网独立可复制本届文字未取得，领物最终地点时间及原文附件未给出，待正式通知。"
+    ],
+    "officialDocuments": [],
+    "sourceDiscovery": {
+      "officialUrls": [],
+      "notes": [
+        "已检查本届报名页已有链接，并独立作公开搜索（Bing RSS及360）；Bing结果多不相关，360部分访问异常，均未将搜索失败当作没有官方资料的证据。记录：seventh-frontend-independent-search.json、seventh-frontend-independent-search2.json、seventh-frontend-official-fetch.json、seventh-frontend-official-discovery2.json；极速宝安另获本届官方可复制规程和5报名选项。"
+      ]
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webSmallScreenWidths": [
+        320,
+        390
+      ],
+      "miniDevtools390": true,
+      "miniPublished": false,
+      "physicalPhone": false
+    }
+  },
+  {
+    "id": "zuiku-98272",
+    "name": "泰兰尼斯见山青少年跑山赛2026年度总决赛",
+    "status": "partially_verified",
+    "scope": "局部校对（partial）：列出的已实际查看长图按完整章节清理，资格、费用阶段、流程及表格不截断；其余既有可靠正文和人工资料原样保留。源冲突及最终通知缺失见auditNotes。",
+    "beforeBodyHash": "52295f538ae94c1eaf2974f4428332c0752de9f4f9cd84420aea89a3223534a2",
+    "savedBodyHash": "4ab8245fb445e4669f5d1ca5e8acb6643d6ee0d13da15a3dc7ec7cae134c55b1",
+    "bodyChanged": true,
+    "edits": 10,
+    "viewedImages": 8,
+    "pendingImages": 8,
+    "chapters": 18,
+    "groups": 1,
+    "groupCorrections": 4,
+    "questions": [
+      "距离10/11公里、爬升435/562米、规模150/400、年龄基准日1月1日/比赛日/报名页出生日期、中文周日/英文Tuesday均为源图原有差异，未擅自消除。",
+      "仅所列图片已查看，未逐项审查剩余宣传页、全部保险原图或官方最终通知；保留原有未审章节，标partial。"
+    ],
+    "officialDocuments": [],
+    "sourceDiscovery": {
+      "officialUrls": [],
+      "notes": [
+        "已检查本届报名页已有链接，并独立作公开搜索（Bing RSS及360）；Bing结果多不相关，360部分访问异常，均未将搜索失败当作没有官方资料的证据。记录：seventh-frontend-independent-search.json、seventh-frontend-independent-search2.json、seventh-frontend-official-fetch.json、seventh-frontend-official-discovery2.json；极速宝安另获本届官方可复制规程和5报名选项。"
+      ]
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webSmallScreenWidths": [
+        320,
+        390
+      ],
+      "miniDevtools390": false,
+      "miniPublished": false,
+      "physicalPhone": false
+    }
+  },
+  {
+    "id": "zuiku-46913",
+    "name": "2026中国田径大众达标系列赛暨“极速宝安”城市超跑",
+    "status": "partially_verified",
+    "scope": "局部校对（partial）：列出的已实际查看长图按完整章节清理，资格、费用阶段、流程及表格不截断；其余既有可靠正文和人工资料原样保留。源冲突及最终通知缺失见auditNotes。",
+    "beforeBodyHash": "0823fa198f33c86da34ea98d91f0e1bc97d5a0a88634b601d381bcc55beb8b11",
+    "savedBodyHash": "cd1d741bd68b69843f1d9b7b93bea36458cedb6f77cbed628aacf05a4b7237d5",
+    "bodyChanged": true,
+    "edits": 18,
+    "viewedImages": 2,
+    "pendingImages": 4,
+    "chapters": 12,
+    "groups": 1,
+    "groupCorrections": 3,
+    "questions": [
+      "年龄总则65周岁以下与注释65周岁以上需健康证明存在源冲突，保留并提示；出生日期以原图照录不重算。",
+      "原规程检录章节写胸前背后各一块大号码布，末页清单写一大一小；本轮保留两处原文未唯一化。",
+      "已完整查看两张正式规程图，其他宣传图片未逐一校对，统一partial；官网访问与独立搜索记录另附。",
+      "官网报名页有5选项，原结构卡片只有10公里。正文已完整呈现5行，卡片仅校正现有10公里双版本费用；5公里/3公里全部资格与对应关门未获完整规程，不擅自把10公里资格继承给它们。",
+      "官方规程文末落款2026年04月，但赛事标题/日期均指本届11月29日；官方报名页与规程选项不完全一致，来源分别保留。"
+    ],
+    "officialDocuments": [],
+    "sourceDiscovery": {
+      "officialUrls": [
+        "http://www.cityrun.cc/front/marathon/index/uid/15186.html",
+        "http://www.cityrun.cc/front/marathon/content/uid/15186/id/1166.html",
+        "http://www.cityrun.cc/front/marathon/detail/uid/15186/id/1166.html"
+      ],
+      "notes": [
+        "已检查本届报名页已有链接，并独立作公开搜索（Bing RSS及360）；Bing结果多不相关，360部分访问异常，均未将搜索失败当作没有官方资料的证据。记录：seventh-frontend-independent-search.json、seventh-frontend-independent-search2.json、seventh-frontend-official-fetch.json、seventh-frontend-official-discovery2.json；极速宝安另获本届官方可复制规程和5报名选项。"
+      ]
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webSmallScreenWidths": [
+        320,
+        390
+      ],
+      "miniDevtools390": true,
+      "miniPublished": false,
+      "physicalPhone": false
+    }
+  },
+  {
+    "id": "zuiku-48670",
+    "name": "2026拱墅大运河10公里挑战赛",
+    "status": "partially_verified",
+    "scope": "局部校对（partial）：列出的已实际查看长图按完整章节清理，资格、费用阶段、流程及表格不截断；其余既有可靠正文和人工资料原样保留。源冲突及最终通知缺失见auditNotes。",
+    "beforeBodyHash": "a007d2517aecbd995fc46c51d6951ac313f20dfd5de3e753d0538e26222a264b",
+    "savedBodyHash": "24d8731be54996ac0e6aea1d9b621651983d0c595362f5ab9ffff15cbfd31f1c",
+    "bodyChanged": true,
+    "edits": 8,
+    "viewedImages": 2,
+    "pendingImages": 8,
+    "chapters": 14,
+    "groups": 3,
+    "groupCorrections": 9,
+    "questions": [
+      "宣传概况出现1大1小或2大1小，正式规程只接受一大一小，正文及卡片保留冲突说明，未扩组或猜第三人收费。",
+      "本轮仅正式规程图片11/12对应六章已整章整理，宣传长图、地图及速览页未全篇校对，保留原有可靠值并标partial。"
+    ],
+    "officialDocuments": [],
+    "sourceDiscovery": {
+      "officialUrls": [],
+      "notes": [
+        "已检查本届报名页已有链接，并独立作公开搜索（Bing RSS及360）；Bing结果多不相关，360部分访问异常，均未将搜索失败当作没有官方资料的证据。记录：seventh-frontend-independent-search.json、seventh-frontend-independent-search2.json、seventh-frontend-official-fetch.json、seventh-frontend-official-discovery2.json；极速宝安另获本届官方可复制规程和5报名选项。"
+      ]
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webSmallScreenWidths": [
+        320,
+        390
+      ],
+      "miniDevtools390": false,
+      "miniPublished": false,
+      "physicalPhone": false
+    }
+  },
+  {
+    "id": "zuiku-17874",
+    "name": "2026苏州太湖10K精英赛·QueenRun10K精英赛",
+    "status": "partially_verified",
+    "scope": "局部校对（partial）：列出的已实际查看长图按完整章节清理，资格、费用阶段、流程及表格不截断；其余既有可靠正文和人工资料原样保留。源冲突及最终通知缺失见auditNotes。",
+    "beforeBodyHash": "47c90c1f9c1bc96890cae0778fc6655e9bc4ebc10147282f19f69087427a87e1",
+    "savedBodyHash": "3f97c3b86742fd8325475ef3a812c506d38a25024cc4277e8944413d14eeb6f0",
+    "bodyChanged": true,
+    "edits": 12,
+    "viewedImages": 2,
+    "pendingImages": 3,
+    "chapters": 14,
+    "groups": 1,
+    "groupCorrections": 4,
+    "questions": [
+      "本轮完整查看报名须知图4及正式规程图5，图6奖励/医疗/保险等未实际查看保留旧值，仍有需后续校对段落，标partial。",
+      "领物具体日期地点尚未公布，照原文另行通知，不根据比赛日期倒推。"
+    ],
+    "officialDocuments": [],
+    "sourceDiscovery": {
+      "officialUrls": [],
+      "notes": [
+        "已检查本届报名页已有链接，并独立作公开搜索（Bing RSS及360）；Bing结果多不相关，360部分访问异常，均未将搜索失败当作没有官方资料的证据。记录：seventh-frontend-independent-search.json、seventh-frontend-independent-search2.json、seventh-frontend-official-fetch.json、seventh-frontend-official-discovery2.json；极速宝安另获本届官方可复制规程和5报名选项。"
+      ]
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webSmallScreenWidths": [
+        320,
+        390
+      ],
+      "miniDevtools390": false,
+      "miniPublished": false,
+      "physicalPhone": false
+    }
+  },
+  {
+    "id": "zuiku-37616",
+    "name": "2026中山翠亨新区半程马拉松",
+    "status": "partially_verified",
+    "scope": "局部校对（partial）：列出的已实际查看长图按完整章节清理，资格、费用阶段、流程及表格不截断；其余既有可靠正文和人工资料原样保留。源冲突及最终通知缺失见auditNotes。",
+    "beforeBodyHash": "77f9f0d15dbdc67960177db02ceb658841dab8327a3036cf238de496a9bf6306",
+    "savedBodyHash": "01b2eb0733cd6703931990a83792c9d809643014644a8131ef4c539491937c06",
+    "bodyChanged": true,
+    "edits": 4,
+    "viewedImages": 2,
+    "pendingImages": 3,
+    "chapters": 17,
+    "groups": 1,
+    "groupCorrections": 4,
+    "questions": [
+      "本轮仅报名须知图3和风险提示图5已完整校对，前两张规程/宣传版本及承诺书图4未全审保留，不宣称整场完成。",
+      "名单公示时间线11月13日至20日与抽签规则3个工作日同图并存，保留待组委会确认。"
+    ],
+    "officialDocuments": [],
+    "sourceDiscovery": {
+      "officialUrls": [],
+      "notes": [
+        "已检查本届报名页已有链接，并独立作公开搜索（Bing RSS及360）；Bing结果多不相关，360部分访问异常，均未将搜索失败当作没有官方资料的证据。记录：seventh-frontend-independent-search.json、seventh-frontend-independent-search2.json、seventh-frontend-official-fetch.json、seventh-frontend-official-discovery2.json；极速宝安另获本届官方可复制规程和5报名选项。"
+      ]
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webSmallScreenWidths": [
+        320,
+        390
+      ],
+      "miniDevtools390": false,
+      "miniPublished": false,
+      "physicalPhone": false
+    }
+  },
+  {
+    "id": "zuiku-67371",
+    "name": "2026国际垂直马拉松总决赛广州周大福金融中心站",
+    "status": "partially_verified",
+    "scope": "局部校对（partial）：列出的已实际查看长图按完整章节清理，资格、费用阶段、流程及表格不截断；其余既有可靠正文和人工资料原样保留。源冲突及最终通知缺失见auditNotes。",
+    "beforeBodyHash": "0b38942acfcda919cb71aed265a612c3d3ec6995a5f69529c2b4c15dc42ebf7c",
+    "savedBodyHash": "0e617f2e43692f982e055242d98e9f55d4850da30fc9d0d63476b8f82661e0db",
+    "bodyChanged": true,
+    "edits": 6,
+    "viewedImages": 2,
+    "pendingImages": 9,
+    "chapters": 16,
+    "groups": 1,
+    "groupCorrections": 4,
+    "questions": [
+      "ITRA申请标准10月31日与录取10月15日为同图源冲突；宣传珠江新城东路6号与正式珠江东路6号并列保留。",
+      "本轮仅图7和图10已完整整理；图11/12退款、T恤/背心尺码、奖励/赛程及处罚未逐项看，保留原值并标partial；不得把未审图内已有坏表称已校对。",
+      "垂马官网主页可访问，官网站内搜2026周大福未返回本届12月竞赛规程；未据此推断本届没有官方资料。"
+    ],
+    "officialDocuments": [],
+    "sourceDiscovery": {
+      "officialUrls": [
+        "http://www.verticalmarathon.cn",
+        "http://www.verticalmarathon.cn/News?key=2026%20%E5%91%A8%E5%A4%A7%E7%A6%8F"
+      ],
+      "notes": [
+        "已检查本届报名页已有链接，并独立作公开搜索（Bing RSS及360）；Bing结果多不相关，360部分访问异常，均未将搜索失败当作没有官方资料的证据。记录：seventh-frontend-independent-search.json、seventh-frontend-independent-search2.json、seventh-frontend-official-fetch.json、seventh-frontend-official-discovery2.json；极速宝安另获本届官方可复制规程和5报名选项。"
+      ]
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webSmallScreenWidths": [
+        320,
+        390
+      ],
+      "miniDevtools390": false,
+      "miniPublished": false,
+      "physicalPhone": false
+    }
+  },
+  {
+    "id": "zuiku-85156",
+    "name": "Biobor贝欧宝·2026环东湖“丽人18”女子10KM（武汉站）",
+    "status": "partially_verified",
+    "scope": "局部校对（partial）：列出的已实际查看长图按完整章节清理，资格、费用阶段、流程及表格不截断；其余既有可靠正文和人工资料原样保留。源冲突及最终通知缺失见auditNotes。",
+    "beforeBodyHash": "25f63b8c334986375155878613f4718080078ea0ca8566bcf984106a83cd5255",
+    "savedBodyHash": "8362158723c37cdf209dcb45e86ecb620b0fd799a7beba1125654a2dd9b4ef67",
+    "bodyChanged": true,
+    "edits": 12,
+    "viewedImages": 2,
+    "pendingImages": 1,
+    "chapters": 17,
+    "groups": 2,
+    "groupCorrections": 9,
+    "questions": [
+      "女子16—18岁条款写2008-01-01含以前出生，与年龄段方向不符，保留请官方确认；不改成人工推算边界。",
+      "配速员须先报名与无需自行报名同图冲突，完整呈现，不选一条覆盖另一条。",
+      "同规程复制文字已完整保留；OCR重复9—15章去重而原图未删除，原图新增每2.5km医疗站准确补入。",
+      "本场两个规程/招募长图完整看过，正文仍统一partial：年龄日期/官兔报名顺序无官方统一回复；公众号最终领物时间地点尚未取得。"
+    ],
+    "officialDocuments": [],
+    "sourceDiscovery": {
+      "officialUrls": [],
+      "notes": [
+        "已检查本届报名页已有链接，并独立作公开搜索（Bing RSS及360）；Bing结果多不相关，360部分访问异常，均未将搜索失败当作没有官方资料的证据。记录：seventh-frontend-independent-search.json、seventh-frontend-independent-search2.json、seventh-frontend-official-fetch.json、seventh-frontend-official-discovery2.json；极速宝安另获本届官方可复制规程和5报名选项。"
+      ]
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webSmallScreenWidths": [
+        320,
+        390
+      ],
+      "miniDevtools390": false,
+      "miniPublished": false,
+      "physicalPhone": false
+    }
+  },
+  {
+    "id": "caa-1000454030",
+    "name": "2026贺州半程马拉松",
+    "status": "partially_verified",
+    "scope": "仅列出的已查看原图分块和可靠可复制当届文字条款已校对；其他既有文字及原图保留，不声明全场全部章节逐条复核完成。",
+    "beforeBodyHash": "b02a21bd2be13693344c05a37560fc02b2639fe11829cf33ac45a84875b6682d",
+    "savedBodyHash": "a0f61092f0f0a02c44fff6535cbdd7436a313ec2f3c80fa4ad9d8e566e110d34",
+    "bodyChanged": true,
+    "edits": 3,
+    "viewedImages": 1,
+    "pendingImages": 1,
+    "chapters": 10,
+    "groups": 1,
+    "groupCorrections": 5,
+    "questions": [
+      {
+        "status": "pending",
+        "question": "独立检索被验证码拦截，未确认本届独立官网；采用本届报名平台完整可复制规程，不能据此断言无官网。领物逐日时段、具体地址须以奥盈体育后续公告为准，现有规程仅写赛前两天。",
+        "source": "https://reg.zuicool.com/65962"
+      }
+    ],
+    "officialDocuments": [
+      {
+        "url": "https://reg.zuicool.com/65962",
+        "title": "东城雅院·2026贺州半程马拉松 竞赛规程",
+        "role": "current_registration_platform_regulation",
+        "verified": true,
+        "identityReview": "本届赛事报名平台发布的完整可复制规程；赛事日期、项目、组别与本届一致；不是独立官网。",
+        "bodySha256": "407580500bd00a79a2dccf66f8625ed155f5f641c1a6b6628e62c13e60e4b2a2",
+        "checkedAt": "2026-11-18T07:07:32.331Z"
+      }
+    ],
+    "sourceDiscovery": {
+      "independentSearch": {
+        "query": "2026 贺州半程马拉松 官网 规程",
+        "url": "https://www.so.com/s?q=2026%20%E8%B4%BA%E5%B7%9E%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E7%BD%91%20%E8%A7%84%E7%A8%8B",
+        "status": "captcha_blocked",
+        "checkedAt": "2026-11-18T04:29:54.699Z"
+      },
+      "officialSite": {
+        "status": "not_independently_confirmed",
+        "meaning": "本次未确认，不代表无官网；保留本届平台文字及原图。"
+      }
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webSmallScreenWidths": [
+        320,
+        390
+      ],
+      "miniDevtools390": false,
+      "miniPublished": false,
+      "physicalPhone": false
+    }
+  },
+  {
+    "id": "caa-1000450007",
+    "name": "2026德阳市广汉三星堆半程马拉松暨跑遍四川（德阳站）",
+    "status": "partially_verified",
+    "scope": "仅列出的已查看原图分块和可靠可复制当届文字条款已校对；其他既有文字及原图保留，不声明全场全部章节逐条复核完成。",
+    "beforeBodyHash": "87365d428ad400702b38ef1294bc42527313777b4a3f139ef37ce9d2d89d0f26",
+    "savedBodyHash": "02190276835d7c099cd9e49afd75d2bef9439caf7a70f0e148790832e63ec50b",
+    "bodyChanged": true,
+    "edits": 6,
+    "viewedImages": 1,
+    "pendingImages": 7,
+    "chapters": 13,
+    "groups": 1,
+    "groupCorrections": 3,
+    "questions": [
+      {
+        "status": "source_conflict",
+        "question": "官网“参赛当年1月1日年满65周岁”与括号“1962年1月1日之前出生”不一致，保留原文，不推算改年。",
+        "source": "http://www.guanghan-marathon.com/html/rnotice.html"
+      },
+      {
+        "status": "pending",
+        "question": "官网报名须知未列关门表；本轮已查看宣传图亦未列，无法确认关门时间。具体领物日期/时段/地点待官方后续公告，不补猜。HTTP官网可访问，HTTPS证书域名不匹配；仅把实际取得的HTTP本届正文列为官网证据。",
+        "source": "http://www.guanghan-marathon.com/html/rnotice.html"
+      }
+    ],
+    "officialDocuments": [
+      {
+        "url": "http://www.guanghan-marathon.com/html/rnotice.html",
+        "title": "2026长城华西银行丨德阳市广汉三星堆半程马拉松暨“跑遍四川”德阳站 报名须知",
+        "role": "official_current_registration_notice",
+        "verified": true,
+        "identityReview": "赛事专属官网，当届报名须知正文标题与2026年11月1日广汉赛事一致；HTML可复制文字及表格。",
+        "bodySha256": "d040c0a247b86c3dc8e3cc3585f0e24c5241b92bd462d107d5d383f61799298e",
+        "checkedAt": "2026-11-18T07:07:32.331Z"
+      }
+    ],
+    "sourceDiscovery": {
+      "independentSearch": {
+        "query": "2026 广汉 三星堆 马拉松 官网",
+        "url": "https://www.so.com/s?q=2026%20%E5%B9%BF%E6%B1%89%20%E4%B8%89%E6%98%9F%E5%A0%86%20%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E7%BD%91",
+        "status": "captcha_blocked",
+        "checkedAt": "2026-11-18T04:29:54.701Z"
+      },
+      "officialSite": {
+        "url": "http://www.guanghan-marathon.com/html/rnotice.html",
+        "status": "confirmed_current_copyable_notice"
+      }
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webSmallScreenWidths": [
+        320,
+        390
+      ],
+      "miniDevtools390": false,
+      "miniPublished": false,
+      "physicalPhone": false
+    }
+  },
+  {
+    "id": "caa-1000418257",
+    "name": "2026马鞍山·采石矶半程马拉松",
+    "status": "partially_verified",
+    "scope": "仅列出的已查看原图分块和可靠可复制当届文字条款已校对；其他既有文字及原图保留，不声明全场全部章节逐条复核完成。",
+    "beforeBodyHash": "330c7925c919fd7350441a60bdd81812efdebe5c93f16a994c5742e9f27a4e69",
+    "savedBodyHash": "bd75470422f2048d4f7e8a9389e386f44799d7b42e27e24396d768c4b09811bb",
+    "bodyChanged": true,
+    "edits": 14,
+    "viewedImages": 3,
+    "pendingImages": 2,
+    "chapters": 14,
+    "groups": 1,
+    "groupCorrections": 1,
+    "questions": [
+      {
+        "status": "pending",
+        "question": "未独立确认本届官网，原图明确官方公众号“采石矶马拉松”及报名“汇赛通”。领物逐日时段、具体地点待该公众号后续公告。处罚后段及未列出的图片/章节保持原文原图。",
+        "source": "https://zuicool.com/news/archives/304470"
+      }
+    ],
+    "officialDocuments": [],
+    "sourceDiscovery": {
+      "independentSearch": {
+        "query": "2026 采石矶 马拉松 官网 规程",
+        "url": "https://www.so.com/s?q=2026%20%E9%87%87%E7%9F%B3%E7%9F%B6%20%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E5%AE%98%E7%BD%91%20%E8%A7%84%E7%A8%8B",
+        "status": "captcha_blocked",
+        "checkedAt": "2026-11-18T04:29:54.701Z"
+      },
+      "officialSite": {
+        "status": "not_independently_confirmed",
+        "meaning": "本次未确认，不代表无官网；保留本届平台文字及原图。"
+      }
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webSmallScreenWidths": [
+        320,
+        390
+      ],
+      "miniDevtools390": false,
+      "miniPublished": false,
+      "physicalPhone": false
+    }
+  },
+  {
+    "id": "caa-1000480094",
+    "name": "2026中国田径协会10公里精英赛（蚌埠站）",
+    "status": "partially_verified",
+    "scope": "仅列出的已查看原图分块和可靠可复制当届文字条款已校对；其他既有文字及原图保留，不声明全场全部章节逐条复核完成。",
+    "beforeBodyHash": "1a4c5485a73c11e01507eb31fda2c04baaf743fe5d55e639589615367bb6b1c0",
+    "savedBodyHash": "32d165cdfff38ce4222d5066668d28933689be3b8a55050c451f222b85642b4b",
+    "bodyChanged": true,
+    "edits": 13,
+    "viewedImages": 3,
+    "pendingImages": 6,
+    "chapters": 10,
+    "groups": 3,
+    "groupCorrections": 12,
+    "questions": [
+      {
+        "status": "source_conflict",
+        "question": "计时原图写“先通过起点计时地毯，再通过起点计时地毯”，属于源文重复，未经组委会确认不擅自更改。",
+        "source": "https://reg.zuicool.com/59568"
+      },
+      {
+        "status": "source_conflict",
+        "question": "规程写赛后48小时查询成绩，日程轴写11月29日下午查询、12月1日证书；保留各自原文待确认。欢乐跑原图年龄以“1—79周岁”及括号倒序日期原样保留，不自行修出生日期。",
+        "sources": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/5a951ac258a7f3237cf9a0208d238914879dc34e.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/c517ef9e76f232d63c771d74a504b19e5bdbd618.jpeg?imageView2/2/w/750"
+        ]
+      },
+      {
+        "status": "pending",
+        "question": "未独立确认本届官网；原图指定官方公众号“蚌马”。日程轴仅明确11月28日领物，具体时段、地点需后续公告。1大1小报名包100元保留原套餐，不能把每人50元当作每组50元。",
+        "source": "https://reg.zuicool.com/59568"
+      }
+    ],
+    "officialDocuments": [],
+    "sourceDiscovery": {
+      "independentSearch": {
+        "query": "2026 蚌埠 10公里 精英赛 规程",
+        "url": "https://www.so.com/s?q=2026%20%E8%9A%8C%E5%9F%A0%2010%E5%85%AC%E9%87%8C%20%E7%B2%BE%E8%8B%B1%E8%B5%9B%20%E8%A7%84%E7%A8%8B",
+        "status": "captcha_blocked",
+        "checkedAt": "2026-11-18T04:29:54.714Z"
+      },
+      "officialSite": {
+        "status": "not_independently_confirmed",
+        "meaning": "本次未确认，不代表无官网；保留本届平台文字及原图。"
+      }
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webSmallScreenWidths": [
+        320,
+        390
+      ],
+      "miniDevtools390": false,
+      "miniPublished": false,
+      "physicalPhone": false
+    }
+  },
+  {
+    "id": "zuiku-66826",
+    "name": "2026 WSE 10KM OPEN 郑州站",
+    "status": "partially_verified",
+    "scope": "已逐块查看两张现存原图的完整规程与本站宣传；官网公开接口及现行报名页交叉核对日期/地点/报名条件。仍保留年龄年份、领物时段、退款边界与个别单站奖励冲突，官网额外宣传图未逐图终审。",
+    "beforeBodyHash": "376f4012f4eaafb50eff70b8aa57f32de47dd698f97797d3bd9663de1e309c14",
+    "savedBodyHash": "0a73d2733c679b68ef8a6cefcb7a20f638afdd6d151396fbd02475a0390ad82b",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 2,
+    "pendingImages": 0,
+    "chapters": 14,
+    "groups": 4,
+    "groupCorrections": 18,
+    "questions": [
+      "通用规程65周岁与1960年12月31日、未成年2008年边界不一致，原文并列未算术改写。",
+      "签到总表06:30—09:00与细则比赛日07:00起、检录前60分钟不一致，完整保留。",
+      "退款17天/12天边界重叠，自助退款3工作日与阶段退款1—7工作日未擅自统一。",
+      "计划发令窗口不是个人最终赛程，未将窗口结束时刻填作关门时刻。",
+      "独立复核补齐宣传图5KM年龄组破纪录奖的优惠码形式及2026年任一赛站范围。"
+    ],
+    "officialDocuments": [
+      {
+        "url": "https://www.wse.run/api/h5/match/364",
+        "title": "WSE郑州站本届公开接口",
+        "role": "official-current-event-api",
+        "verified": true,
+        "identityReview": "WSE官网真实公开接口，本届城市/场地与现行报名页逐项对照；排除同城年初站。",
+        "characters": 1547,
+        "bodySha256": "65b0c41dcad090c0d197401022a460e745b972256c44ca56e8a27c2a797d6e70",
+        "checkedAt": "2026-11-18T07:07:32.331Z"
+      }
+    ],
+    "sourceDiscovery": {
+      "officialUrls": [
+        "https://www.wseopen.com/p/index",
+        "https://www.wse.run/api/h5/match/364"
+      ],
+      "searchEvidence": "batch7-root-search.json",
+      "notes": "独立搜索取得官网，先查官网API。本届rules为图片，没有把通用first_event_price等字段当分组票价。"
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webSmallScreenWidths": [
+        320,
+        390
+      ],
+      "miniDevtools390": false,
+      "miniPublished": false,
+      "physicalPhone": false
+    },
+    "imageKindCorrection": {
+      "saved": true,
+      "webVerifiedWidths": [
+        320,
+        390
+      ],
+      "evidence": "batch7-image-kind-corrections.json"
+    }
+  },
+  {
+    "id": "zuiku-44150",
+    "name": "2026 WSE 10KM OPEN 济南站",
+    "status": "partially_verified",
+    "scope": "已逐块查看两张现存原图的完整规程与本站宣传；官网公开接口及现行报名页交叉核对日期/地点/报名条件。仍保留年龄年份、领物时段、退款边界与个别单站奖励冲突，官网额外宣传图未逐图终审。",
+    "beforeBodyHash": "c022102fa5715895b11bdd62df59dc6af9bbe9e2093aac13cc59aeee2d2a9214",
+    "savedBodyHash": "d29eaef5888152bcd232408ecb0188675ca2d10c8f74856ab8a0f06e2b583590",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 2,
+    "pendingImages": 0,
+    "chapters": 14,
+    "groups": 4,
+    "groupCorrections": 18,
+    "questions": [
+      "通用规程65周岁与1960年12月31日、未成年2008年边界不一致，原文并列未算术改写。",
+      "签到总表06:30—09:00与细则比赛日07:00起、检录前60分钟不一致，完整保留。",
+      "退款17天/12天边界重叠，自助退款3工作日与阶段退款1—7工作日未擅自统一。",
+      "计划发令窗口不是个人最终赛程，未将窗口结束时刻填作关门时刻。",
+      "独立复核补齐宣传图5KM年龄组破纪录奖的优惠码形式及2026年任一赛站范围。"
+    ],
+    "officialDocuments": [
+      {
+        "url": "https://www.wse.run/api/h5/match/453",
+        "title": "WSE济南站本届公开接口",
+        "role": "official-current-event-api",
+        "verified": true,
+        "identityReview": "WSE官网真实公开接口，本届城市/场地与现行报名页逐项对照；排除同城年初站。",
+        "characters": 1299,
+        "bodySha256": "499f6085c33449f417a809ac6c9c80a7c0cbaa89307e514b9c48d2970bfced96",
+        "checkedAt": "2026-11-18T07:07:32.331Z"
+      }
+    ],
+    "sourceDiscovery": {
+      "officialUrls": [
+        "https://www.wseopen.com/p/index",
+        "https://www.wse.run/api/h5/match/453"
+      ],
+      "searchEvidence": "batch7-root-search.json",
+      "notes": "独立搜索取得官网，先查官网API。本届rules为图片，没有把通用first_event_price等字段当分组票价。"
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webSmallScreenWidths": [
+        320,
+        390
+      ],
+      "miniDevtools390": false,
+      "miniPublished": false,
+      "physicalPhone": false
+    },
+    "imageKindCorrection": {
+      "saved": true,
+      "webVerifiedWidths": [
+        320,
+        390
+      ],
+      "evidence": "batch7-image-kind-corrections.json"
+    }
+  },
+  {
+    "id": "zuiku-15544",
+    "name": "2026 WSE 10KM OPEN 武汉站",
+    "status": "partially_verified",
+    "scope": "已逐块查看两张现存原图的完整规程与本站宣传；官网公开接口及现行报名页交叉核对日期/地点/报名条件。仍保留年龄年份、领物时段、退款边界与个别单站奖励冲突，官网额外宣传图未逐图终审。",
+    "beforeBodyHash": "9dd1423348ce7be273b2a95b47331461fb0be11cc6a23cb4f843a34bcae7cb29",
+    "savedBodyHash": "9cdfcd6073877b9ad6df9bda9b8c5e5806e459840627cd4912319a0e01ef2752",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 2,
+    "pendingImages": 0,
+    "chapters": 14,
+    "groups": 4,
+    "groupCorrections": 18,
+    "questions": [
+      "通用规程65周岁与1960年12月31日、未成年2008年边界不一致，原文并列未算术改写。",
+      "签到总表06:30—09:00与细则比赛日07:00起、检录前60分钟不一致，完整保留。",
+      "退款17天/12天边界重叠，自助退款3工作日与阶段退款1—7工作日未擅自统一。",
+      "计划发令窗口不是个人最终赛程，未将窗口结束时刻填作关门时刻。",
+      "独立复核补齐宣传图5KM年龄组破纪录奖的优惠码形式及2026年任一赛站范围。"
+    ],
+    "officialDocuments": [
+      {
+        "url": "https://www.wse.run/api/h5/match/501",
+        "title": "WSE武汉站本届公开接口",
+        "role": "official-current-event-api",
+        "verified": true,
+        "identityReview": "WSE官网真实公开接口，本届城市/场地与现行报名页逐项对照；排除同城年初站。",
+        "characters": 1524,
+        "bodySha256": "2f1bf688081bce6b94722b6e47d181de3ff8963e935c27e3d1e4f03d6738e9cc",
+        "checkedAt": "2026-11-18T07:07:32.331Z"
+      }
+    ],
+    "sourceDiscovery": {
+      "officialUrls": [
+        "https://www.wseopen.com/p/index",
+        "https://www.wse.run/api/h5/match/501"
+      ],
+      "searchEvidence": "batch7-root-search.json",
+      "notes": "独立搜索取得官网，先查官网API。本届rules为图片，没有把通用first_event_price等字段当分组票价。"
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webSmallScreenWidths": [
+        320,
+        390
+      ],
+      "miniDevtools390": false,
+      "miniPublished": false,
+      "physicalPhone": false
+    },
+    "imageKindCorrection": {
+      "saved": true,
+      "webVerifiedWidths": [
+        320,
+        390
+      ],
+      "evidence": "batch7-image-kind-corrections.json"
+    }
+  },
+  {
+    "id": "zuiku-46010",
+    "name": "2026 WSE 10KM OPEN 海口站",
+    "status": "partially_verified",
+    "scope": "已逐块查看两张现存原图的完整规程与本站宣传；官网公开接口及现行报名页交叉核对日期/地点/报名条件。仍保留年龄年份、领物时段、退款边界与个别单站奖励冲突，官网额外宣传图未逐图终审。",
+    "beforeBodyHash": "9f21cf4b2bebe0ef1ccded10c9d5b1b6cb1df27d90b30e14950aed01a8ececfa",
+    "savedBodyHash": "8def95b965f4a0f8019b8fa95fa02afce0597533d663a528f5468e79160decfc",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 2,
+    "pendingImages": 0,
+    "chapters": 14,
+    "groups": 4,
+    "groupCorrections": 14,
+    "questions": [
+      "海口单站10KM年龄组300元+优惠码与通用规程500元不一致，未统一金额或把补贴改称奖金。",
+      "通用规程65周岁与1960年12月31日、未成年2008年边界不一致，原文并列未算术改写。",
+      "签到总表06:30—09:00与细则比赛日07:00起、检录前60分钟不一致，完整保留。",
+      "退款17天/12天边界重叠，自助退款3工作日与阶段退款1—7工作日未擅自统一。",
+      "计划发令窗口不是个人最终赛程，未将窗口结束时刻填作关门时刻。"
+    ],
+    "officialDocuments": [
+      {
+        "url": "https://www.wse.run/api/h5/match/387",
+        "title": "WSE海口站本届公开接口",
+        "role": "official-current-event-api",
+        "verified": true,
+        "identityReview": "WSE官网真实公开接口，本届城市/场地与现行报名页逐项对照；排除同城年初站。",
+        "characters": 1567,
+        "bodySha256": "eaa0146ee37eb50426d064cf6635dc41eb5b494d8e30e2140130aabbf8dfc2ed",
+        "checkedAt": "2026-11-18T07:07:32.331Z"
+      }
+    ],
+    "sourceDiscovery": {
+      "officialUrls": [
+        "https://www.wseopen.com/p/index",
+        "https://www.wse.run/api/h5/match/387"
+      ],
+      "searchEvidence": "batch7-root-search.json",
+      "notes": "独立搜索取得官网，先查官网API。本届rules为图片，没有把通用first_event_price等字段当分组票价。"
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webSmallScreenWidths": [
+        320,
+        390
+      ],
+      "miniDevtools390": false,
+      "miniPublished": false,
+      "physicalPhone": false
+    },
+    "imageKindCorrection": {
+      "saved": true,
+      "webVerifiedWidths": [
+        320,
+        390
+      ],
+      "evidence": "batch7-image-kind-corrections.json"
+    }
+  },
+  {
+    "id": "zuiku-35270",
+    "name": "2026 WSE 10KM OPEN 桂林站",
+    "status": "partially_verified",
+    "scope": "已逐块查看两张现存原图的完整规程与本站宣传；官网公开接口及现行报名页交叉核对日期/地点/报名条件。仍保留年龄年份、领物时段、退款边界与个别单站奖励冲突，官网额外宣传图未逐图终审。",
+    "beforeBodyHash": "d6d818d46a802fbf07921792d5cef007e2f4582397cc501ed14072dca37ccb7a",
+    "savedBodyHash": "d4d85ed6aec878be0b9143ea6a924a7ce6944ba17dda9f9b884eb20dce4b79e1",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 5,
+    "pendingImages": 0,
+    "chapters": 14,
+    "groups": 4,
+    "groupCorrections": 26,
+    "questions": [
+      "桂林已取得同一报名URL明确延期提示及官网436现行日期，新图更新为2027年3月14日；通用资格年份未擅自跨年改写。",
+      "通用规程65周岁与1960年12月31日、未成年2008年边界不一致，原文并列未算术改写。",
+      "签到总表06:30—09:00与细则比赛日07:00起、检录前60分钟不一致，完整保留。",
+      "退款17天/12天边界重叠，自助退款3工作日与阶段退款1—7工作日未擅自统一。",
+      "计划发令窗口不是个人最终赛程，未将窗口结束时刻填作关门时刻。",
+      "已实际查看11月17日官方延期通知完整2分块、新日期横图及新宣传长图完整6分块；通知明确自动改期、原渠道退费/转站、赛道不变，优先于旧图。",
+      "独立复核发现4组description仍为旧出生日期；已按现行延期后报名选项分别更新，与eligibility保持一致。"
+    ],
+    "officialDocuments": [
+      {
+        "url": "https://www.wse.run/api/h5/match/436",
+        "title": "WSE桂林站本届公开接口",
+        "role": "official-current-event-api",
+        "verified": true,
+        "identityReview": "WSE官网真实公开接口，本届城市/场地与现行报名页逐项对照；排除同城年初站。",
+        "characters": 1229,
+        "bodySha256": "ee07b21cd4499c2e6a77b039b3f017514446e3e304e119ec0ef749331c59464b",
+        "checkedAt": "2026-11-18T07:07:32.331Z"
+      }
+    ],
+    "sourceDiscovery": {
+      "officialUrls": [
+        "https://www.wseopen.com/p/index",
+        "https://www.wse.run/api/h5/match/436"
+      ],
+      "searchEvidence": "batch7-root-search.json",
+      "notes": "独立搜索取得官网，先查官网API。本届rules为图片，没有把通用first_event_price等字段当分组票价。"
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webSmallScreenWidths": [
+        320,
+        390
+      ],
+      "miniDevtools390": true,
+      "miniPublished": false,
+      "physicalPhone": false
+    },
+    "imageKindCorrection": {
+      "saved": true,
+      "webVerifiedWidths": [
+        320,
+        390
+      ],
+      "evidence": "batch7-image-kind-corrections.json"
+    }
+  },
+  {
+    "id": "zuiku-76264",
+    "name": "2026 WSE 10KM OPEN 佛山站",
+    "status": "partially_verified",
+    "scope": "已逐块查看两张现存原图的完整规程与本站宣传；官网公开接口及现行报名页交叉核对日期/地点/报名条件。仍保留年龄年份、领物时段、退款边界与个别单站奖励冲突，官网额外宣传图未逐图终审。",
+    "beforeBodyHash": "447d2510c847d2e13f37fb3f1a275d0b214acb0df411ef7537eefb9859d0a45b",
+    "savedBodyHash": "14ccc879417252f0a22220644127fc107c47a4abe6ed055a4ebc5905deb45a63",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 2,
+    "pendingImages": 0,
+    "chapters": 14,
+    "groups": 4,
+    "groupCorrections": 14,
+    "questions": [
+      "通用规程65周岁与1960年12月31日、未成年2008年边界不一致，原文并列未算术改写。",
+      "签到总表06:30—09:00与细则比赛日07:00起、检录前60分钟不一致，完整保留。",
+      "退款17天/12天边界重叠，自助退款3工作日与阶段退款1—7工作日未擅自统一。",
+      "计划发令窗口不是个人最终赛程，未将窗口结束时刻填作关门时刻。",
+      "独立复核补齐宣传图5KM年龄组破纪录奖的优惠码形式及2026年任一赛站范围。"
+    ],
+    "officialDocuments": [
+      {
+        "url": "https://www.wse.run/api/h5/match/405",
+        "title": "WSE佛山站本届公开接口",
+        "role": "official-current-event-api",
+        "verified": true,
+        "identityReview": "WSE官网真实公开接口，本届城市/场地与现行报名页逐项对照；排除同城年初站。",
+        "characters": 1371,
+        "bodySha256": "595b0d16fc5a56f7ad1bf6f20243522c63df115c874e7d9d2f88acdb218bb40c",
+        "checkedAt": "2026-11-18T07:07:32.331Z"
+      }
+    ],
+    "sourceDiscovery": {
+      "officialUrls": [
+        "https://www.wseopen.com/p/index",
+        "https://www.wse.run/api/h5/match/405"
+      ],
+      "searchEvidence": "batch7-root-search.json",
+      "notes": "独立搜索取得官网，先查官网API。本届rules为图片，没有把通用first_event_price等字段当分组票价。"
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "webSmallScreenWidths": [
+        320,
+        390
+      ],
+      "miniDevtools390": false,
+      "miniPublished": false,
+      "physicalPhone": false
+    },
+    "imageKindCorrection": {
+      "saved": true,
+      "webVerifiedWidths": [
+        320,
+        390
+      ],
+      "evidence": "batch7-image-kind-corrections.json"
+    }
+  }
+]

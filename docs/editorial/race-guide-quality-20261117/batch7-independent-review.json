@@ -1,0 +1,149 @@
+{
+  "reviewedAt": "2026-11-18T07:05:50.249616+00:00",
+  "sourceFile": "/tmp/race-guide-quality-20261117/batch7-root-reviewed.json",
+  "sourceSha256": "ab4a4e88713bef66e4b184f6fa213ea141b40e4f848dad1d84d0774a4e4dc855",
+  "status": "changes_requested",
+  "productionWrites": false,
+  "draftModified": false,
+  "issues": [
+    {
+      "id": "wse-2026-voucher-year-scope",
+      "severity": "medium",
+      "raceIds": [
+        "zuiku-66826",
+        "zuiku-44150",
+        "zuiku-15544",
+        "zuiku-76264"
+      ],
+      "section": "比赛奖励",
+      "finding": "郑州、济南、武汉、佛山5KM年龄组冠军破本组纪录奖励遗漏免费报名优惠码的2026年任一赛站适用范围。稿件仅写一个免费路跑参加名额，未保留限制年份及优惠码形式。",
+      "sourceText": "WSE10K公开赛免费报名优惠码一个（免费报名26年任何一个赛站）",
+      "sourceImageCrops": [
+        "/tmp/race-guide-quality-20261117/batch7-root/zuiku-66826-0-6800.png",
+        "/tmp/race-guide-quality-20261117/batch7-root/zuiku-44150-0-6800.png",
+        "/tmp/race-guide-quality-20261117/batch7-root/zuiku-15544-0-6800.png",
+        "/tmp/race-guide-quality-20261117/batch7-root/zuiku-76264-0-6800.png"
+      ],
+      "suggestedCorrection": "对应4站补充单站宣传图：5KM年龄组冠军破本组纪录获WSE10K公开赛免费报名优惠码一个，可免费报名2026年任一赛站。不要把2026年限制带入桂林；桂林现行图为2027年。"
+    }
+  ],
+  "passes": [
+    {
+      "scope": "six_station_cash_rewards",
+      "raceIds": [
+        "zuiku-66826",
+        "zuiku-44150",
+        "zuiku-15544",
+        "zuiku-46010",
+        "zuiku-35270",
+        "zuiku-76264"
+      ],
+      "result": "实际查看6站奖励原图关键分块；10KM大会男女前三1000/600/300、10KM大会男女冠军破纪录3000、5KM大会男女冠军破纪录1000与各稿一致。"
+    },
+    {
+      "scope": "haikou_reward_exception",
+      "raceIds": [
+        "zuiku-46010"
+      ],
+      "result": "海口宣传图称交通补贴；10KM年龄组破纪录300元+免费报名优惠码、5KM年龄组免费名额（免费报名2026年任一赛站）均已在稿件差异段保留，与通用规程500元冲突未抹平。"
+    },
+    {
+      "scope": "guilin_current_notice_and_rewards",
+      "raceIds": [
+        "zuiku-35270"
+      ],
+      "result": "实际查看11月17日延期通知2块、新日期横图和新宣传奖励3块。2027-03-14、场地赛道不变、自动改期、官方小程序转站/退费、第三方原渠道操作均保留；5KM优惠码2027年任一赛站已保留。"
+    },
+    {
+      "scope": "common_age_matrix",
+      "raceIds": [
+        "zuiku-66826",
+        "zuiku-44150",
+        "zuiku-15544",
+        "zuiku-46010",
+        "zuiku-35270",
+        "zuiku-76264"
+      ],
+      "result": "实际逐格查看共用原图年龄矩阵：3KM亲子独有U3，5KM亲子从U4开始；5KM精英U7/U8/U9，10KM从U10；10KM无M80/W80，5KM有M80/W80。6稿矩阵及空格一致。6份共用原图SHA256一致。"
+    },
+    {
+      "scope": "common_parent_child_rules",
+      "raceIds": [
+        "zuiku-66826",
+        "zuiku-44150",
+        "zuiku-15544",
+        "zuiku-46010",
+        "zuiku-35270",
+        "zuiku-76264"
+      ],
+      "result": "实际查看共用原图：一大一小198元/队、50队计划、以儿童成绩排名、儿童号码牌/成人无号码牌、成人须为合格监护人、禁止辅助/干扰、违规取消儿童成绩、陪跑保险自理及赛事保险不含陪跑人员已完整保留。"
+    },
+    {
+      "scope": "common_refund_and_interruption",
+      "raceIds": [
+        "zuiku-66826",
+        "zuiku-44150",
+        "zuiku-15544",
+        "zuiku-46010",
+        "zuiku-35270",
+        "zuiku-76264"
+      ],
+      "result": "实际查看共用原图退款及熔断条款：30—17天90%、17—12天80%、12—10天50%、低于10天不退，1—7工作日原路返回，自助退款路径及3工作日原路退回，赛前48小时前部分退款/不补偿交通住宿、赛中不退均一致。原图重叠边界和时间冲突保留。"
+    },
+    {
+      "scope": "common_prize_distribution",
+      "raceIds": [
+        "zuiku-66826",
+        "zuiku-44150",
+        "zuiku-15544",
+        "zuiku-46010",
+        "zuiku-35270",
+        "zuiku-76264"
+      ],
+      "result": "实际查看共用原图奖励全文：一人一枚奖牌、各组有效前三奖杯、电子证书路径、20%税、现场不发奖金、10日公示、兴奋剂等待、违规取消且不递增、账号信息和30天领奖期限均保留。"
+    },
+    {
+      "scope": "guilin_group_descriptions",
+      "raceIds": [
+        "zuiku-35270"
+      ],
+      "result": "复核当前稿4组description与eligibility及正文所列新出生日期一致，未残留旧出生日期。通用2026资格年份冲突已有说明。"
+    }
+  ],
+  "actuallyViewedCrops": [
+    "/tmp/race-guide-quality-20261117/batch7-root/zuiku-66826-0-5100.png",
+    "/tmp/race-guide-quality-20261117/batch7-root/zuiku-66826-0-6800.png",
+    "/tmp/race-guide-quality-20261117/batch7-root/zuiku-44150-0-5100.png",
+    "/tmp/race-guide-quality-20261117/batch7-root/zuiku-44150-0-6800.png",
+    "/tmp/race-guide-quality-20261117/batch7-root/zuiku-15544-0-5100.png",
+    "/tmp/race-guide-quality-20261117/batch7-root/zuiku-15544-0-6800.png",
+    "/tmp/race-guide-quality-20261117/batch7-root/zuiku-46010-0-5100.png",
+    "/tmp/race-guide-quality-20261117/batch7-root/zuiku-46010-0-6800.png",
+    "/tmp/race-guide-quality-20261117/batch7-root/zuiku-76264-0-5100.png",
+    "/tmp/race-guide-quality-20261117/batch7-root/zuiku-76264-0-6800.png",
+    "/tmp/race-guide-quality-20261117/batch7-root/guilin-current-0-0.png",
+    "/tmp/race-guide-quality-20261117/batch7-root/guilin-current-0-1700.png",
+    "/tmp/race-guide-quality-20261117/batch7-root/guilin-current-1-0.png",
+    "/tmp/race-guide-quality-20261117/batch7-root/guilin-current-2-5100.png",
+    "/tmp/race-guide-quality-20261117/batch7-root/guilin-current-2-6800.png",
+    "/tmp/race-guide-quality-20261117/batch7-root/guilin-current-2-8500.png",
+    "/tmp/race-guide-quality-20261117/batch7-root/zuiku-66826-1-0.png",
+    "/tmp/race-guide-quality-20261117/batch7-root/zuiku-66826-1-1700.png",
+    "/tmp/race-guide-quality-20261117/batch7-root/zuiku-66826-1-5100.png",
+    "/tmp/race-guide-quality-20261117/batch7-root/zuiku-66826-1-6800.png",
+    "/tmp/race-guide-quality-20261117/batch7-root/zuiku-66826-1-8500.png"
+  ],
+  "limits": "仅复核稿件及提供的原图关键分块；未将官网其他未终审图片认定为已审。未重读巨大inventory。",
+  "resolution": {
+    "at": "2026-11-18T07:08:23.703Z",
+    "status": "all_reported_issues_corrected",
+    "ids": [
+      "zuiku-66826",
+      "zuiku-44150",
+      "zuiku-15544",
+      "zuiku-76264"
+    ],
+    "changes": "补足5KM优惠码形式及2026年任一赛站范围；已重新通过26场验证、保存演练。",
+    "resolvedDraftSha256": "94140bd0f3688402ac120aaba8032c30c34868c91c0a30212bf18cb85f6159f8"
+  }
+}
