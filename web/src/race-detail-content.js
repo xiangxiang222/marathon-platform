@@ -33,6 +33,13 @@ function feeText(fee) {
 }
 function groupCards(race) {
   return ((race && race.details && race.details.groups) || []).map((group, index) => {
+    const cutoff = readable(valueOf(group, ["cutoffAt", "cutoffTime"]));
+    const duration = quantity(valueOf(group, ["cutoffHours", "cutoffDuration"]), "小时");
+    const cutoffIsDuration = /^(?:\d+(?:\.\d+)?\s*(?:小时|分钟|秒|hours?|hrs?|h|minutes?|mins?|m|seconds?|secs?|s)\s*)+$/i.test(cutoff.trim());
+    const durationKey = value => value.replace(/\s/g, "").replace(/(?:hours?|hrs?|h)/gi, "小时");
+    const cutoffFields = cutoffIsDuration
+      ? [["关门时长", duration || cutoff], ...(duration && durationKey(duration) !== durationKey(cutoff) ? [["关门时长（原时间字段）", cutoff]] : [])]
+      : [["关门时间", localMoment(cutoff)], ["关门时长", duration]];
     const fields = [
       ["形式", ({ individual: "个人", family: "亲子", parent_child: "亲子", team: "团队" })[valueOf(group, ["format", "form", "type"])] || readable(valueOf(group, ["format", "form", "type"]))],
       ["亲子人数", readable(valueOf(group, ["participants", "familySize", "familyComposition"]))],
@@ -42,8 +49,7 @@ function groupCards(race) {
       ["累计爬升", quantity(valueOf(group, ["ascentM", "elevationGainM", "ascent"]), "米")],
       ["累计下降", quantity(valueOf(group, ["descentM", "elevationLossM", "descent"]), "米")],
       ["出发时间", localMoment(valueOf(group, ["startAt", "startsAt", "startTime"]))],
-      ["关门时间", localMoment(valueOf(group, ["cutoffAt", "cutoffTime"]))],
-      ["关门时长", quantity(valueOf(group, ["cutoffHours", "cutoffDuration"]), "小时")],
+      ...cutoffFields,
       ["ITRA积分", quantity(valueOf(group, ["itraPoints", "itra"]), "分")],
       ["参赛条件", readable(valueOf(group, ["eligibility", "requirements"]))]
     ].filter(field => field[1] !== "").map(([label, value], i) => ({ i, label, value, wide: label === "参赛条件" || value.length > 50 }));
