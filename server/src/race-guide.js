@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const { likeParams } = require("./search-like");
 const { readPage, finishPage, pageFields } = require("./page");
-const { GUIDE_TEXT_MAX, mergeGuideText } = require("./race-details");
+const { GUIDE_TEXT_MAX, mergeGuideText, readDetails } = require("./race-details");
 
 const DISTANCES = ["full", "half", "10k", "5k"];
 const KINDS = ["trail", "ultra", "family", "fun"];
@@ -231,7 +231,16 @@ function sheetsOf(db, raceId) {
 }
 
 function attachGuide(db, race) {
-  const rows = sheetsOf(db, race.id);
+  const saved = readDetails(db.prepare("SELECT guide_text FROM races WHERE id = ?").get(race.id)?.guide_text).details;
+  const selection = saved?.audit?.mediaChanges;
+  const excludedUrls = new Set(Array.isArray(selection?.before) && Array.isArray(selection?.after)
+    ? selection.before.filter(url => !selection.after.includes(url)) : []);
+  const excludedSheets = new Set((saved?.audit?.imageReviews || [])
+    .filter(item => excludedUrls.has(item.imageUrl || item.url) && item.sheetId != null)
+    .map(item => String(item.sheetId)));
+  // Apply only an explicit reviewed selection. Unlisted manual uploads and all
+  // route/pacer/cover material remain available; the original files stay saved.
+  const rows = sheetsOf(db, race.id).filter(row => row.kind !== "guide" || !excludedSheets.has(String(row.id)));
   const captions = new Map((race.details?.media || []).map((item) => [String(item.sheetId), item.caption]));
   const sheet = (row) => {
     const caption = captions.get(String(row.id));

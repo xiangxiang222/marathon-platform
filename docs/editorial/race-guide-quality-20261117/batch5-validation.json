@@ -1,0 +1,295 @@
+{
+  "checkedAt": "2026-11-18T02:01:51.132Z",
+  "passed": true,
+  "races": 36,
+  "rows": [
+    {
+      "id": "zuiku-58600",
+      "file": "fourth-source-reviewed-draft-1.json",
+      "edits": 1,
+      "imageViewed": true,
+      "specificScope": "仅列出的 edits、facts、groupCorrections 和 viewedCrops 已人工核对；其余已保存章节保持原值，不声明全场完整规程逐条复核完成。",
+      "checkedEditSources": 1
+    },
+    {
+      "id": "caa-1000485007",
+      "file": "fourth-source-reviewed-draft-1.json",
+      "edits": 4,
+      "imageViewed": true,
+      "specificScope": "仅列出的 edits、facts、groupCorrections 和 viewedCrops 已人工核对；其余已保存章节保持原值，不声明全场完整规程逐条复核完成。",
+      "checkedEditSources": 4
+    },
+    {
+      "id": "zuiku-95805",
+      "file": "fourth-source-reviewed-draft-1.json",
+      "edits": 2,
+      "imageViewed": true,
+      "specificScope": "仅列出的 edits、facts、groupCorrections 和 viewedCrops 已人工核对；其余已保存章节保持原值，不声明全场完整规程逐条复核完成。",
+      "checkedEditSources": 2
+    },
+    {
+      "id": "zuiku-28718",
+      "file": "fourth-source-reviewed-draft-1.json",
+      "edits": 2,
+      "imageViewed": true,
+      "specificScope": "仅列出的 edits、facts、groupCorrections 和 viewedCrops 已人工核对；其余已保存章节保持原值，不声明全场完整规程逐条复核完成。",
+      "checkedEditSources": 2
+    },
+    {
+      "id": "zuiku-88485",
+      "file": "fifth-backend-reviewed.json",
+      "edits": 5,
+      "imageViewed": true,
+      "specificScope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "checkedEditSources": 5
+    },
+    {
+      "id": "zuiku-58332",
+      "file": "fifth-backend-reviewed.json",
+      "edits": 2,
+      "imageViewed": true,
+      "specificScope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "checkedEditSources": 2
+    },
+    {
+      "id": "zuiku-97297",
+      "file": "fifth-backend-reviewed.json",
+      "edits": 5,
+      "imageViewed": true,
+      "specificScope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "checkedEditSources": 5
+    },
+    {
+      "id": "zuiku-62536",
+      "file": "fifth-backend-reviewed.json",
+      "edits": 6,
+      "imageViewed": true,
+      "specificScope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "checkedEditSources": 6
+    },
+    {
+      "id": "zuiku-60343",
+      "file": "fifth-backend-reviewed.json",
+      "edits": 8,
+      "imageViewed": true,
+      "specificScope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "checkedEditSources": 8
+    },
+    {
+      "id": "zuiku-32919",
+      "file": "fifth-backend-reviewed.json",
+      "edits": 1,
+      "imageViewed": true,
+      "specificScope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "checkedEditSources": 1
+    },
+    {
+      "id": "zuiku-94253",
+      "file": "fifth-backend-reviewed.json",
+      "edits": 13,
+      "imageViewed": true,
+      "specificScope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "checkedEditSources": 13
+    },
+    {
+      "id": "zuiku-35462",
+      "file": "fifth-backend-reviewed.json",
+      "edits": 6,
+      "imageViewed": true,
+      "specificScope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "checkedEditSources": 6
+    },
+    {
+      "id": "caa-1000452082",
+      "file": "fifth-frontend-reviewed.json",
+      "edits": 8,
+      "imageViewed": true,
+      "specificScope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "checkedEditSources": 8
+    },
+    {
+      "id": "caa-1000418247",
+      "file": "fifth-frontend-reviewed.json",
+      "edits": 2,
+      "imageViewed": true,
+      "specificScope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "checkedEditSources": 2
+    },
+    {
+      "id": "caa-1000476001",
+      "file": "fifth-frontend-reviewed.json",
+      "edits": 3,
+      "imageViewed": true,
+      "specificScope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "checkedEditSources": 3
+    },
+    {
+      "id": "caa-1000473000",
+      "file": "fifth-frontend-reviewed.json",
+      "edits": 2,
+      "imageViewed": true,
+      "specificScope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "checkedEditSources": 2
+    },
+    {
+      "id": "caa-1000454068",
+      "file": "fifth-frontend-reviewed.json",
+      "edits": 4,
+      "imageViewed": true,
+      "specificScope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "checkedEditSources": 4
+    },
+    {
+      "id": "caa-1000453054",
+      "file": "fifth-frontend-reviewed.json",
+      "edits": 2,
+      "imageViewed": true,
+      "specificScope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "checkedEditSources": 2
+    },
+    {
+      "id": "caa-1000453046",
+      "file": "fifth-frontend-reviewed.json",
+      "edits": 12,
+      "imageViewed": true,
+      "specificScope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "checkedEditSources": 12
+    },
+    {
+      "id": "caa-1000453002",
+      "file": "fifth-frontend-reviewed.json",
+      "edits": 1,
+      "imageViewed": true,
+      "specificScope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "checkedEditSources": 1
+    },
+    {
+      "id": "zuiku-55956",
+      "file": "fifth-root-reviewed.json",
+      "edits": 2,
+      "imageViewed": true,
+      "specificScope": "仅本轮列出的原图与字段已人工校对，未列出内容保留，不代表全篇完成。",
+      "checkedEditSources": 2
+    },
+    {
+      "id": "zuiku-35657",
+      "file": "fifth-root-reviewed.json",
+      "edits": 2,
+      "imageViewed": true,
+      "specificScope": "仅本轮列出的原图与字段已人工校对，未列出内容保留，不代表全篇完成。",
+      "checkedEditSources": 2
+    },
+    {
+      "id": "zuiku-88269",
+      "file": "fifth-root-reviewed.json",
+      "edits": 1,
+      "imageViewed": true,
+      "specificScope": "仅本轮列出的原图与字段已人工校对，未列出内容保留，不代表全篇完成。",
+      "checkedEditSources": 1
+    },
+    {
+      "id": "zuiku-33143",
+      "file": "fifth-root-reviewed.json",
+      "edits": 1,
+      "imageViewed": true,
+      "specificScope": "仅本轮列出的原图与字段已人工校对，未列出内容保留，不代表全篇完成。",
+      "checkedEditSources": 1
+    },
+    {
+      "id": "zuiku-67689",
+      "file": "fifth-root-reviewed.json",
+      "edits": 1,
+      "imageViewed": true,
+      "specificScope": "仅本轮列出的原图与字段已人工校对，未列出内容保留，不代表全篇完成。",
+      "checkedEditSources": 1
+    },
+    {
+      "id": "zuiku-49863",
+      "file": "fifth-root-reviewed.json",
+      "edits": 3,
+      "imageViewed": true,
+      "specificScope": "仅本轮列出的原图与字段已人工校对，未列出内容保留，不代表全篇完成。",
+      "checkedEditSources": 3
+    },
+    {
+      "id": "zuiku-59237",
+      "file": "fifth-root-reviewed.json",
+      "edits": 5,
+      "imageViewed": true,
+      "specificScope": "仅本轮列出的原图与字段已人工校对，未列出内容保留，不代表全篇完成。",
+      "checkedEditSources": 5
+    },
+    {
+      "id": "caa-1000496002",
+      "file": "fifth-root-reviewed.json",
+      "edits": 1,
+      "imageViewed": true,
+      "specificScope": "仅本轮列出的原图与字段已人工校对，未列出内容保留，不代表全篇完成。",
+      "checkedEditSources": 1
+    },
+    {
+      "id": "zuiku-76108",
+      "file": "sixth-backend-reviewed.json",
+      "edits": 3,
+      "imageViewed": true,
+      "specificScope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "checkedEditSources": 3
+    },
+    {
+      "id": "zuiku-81646",
+      "file": "sixth-backend-reviewed.json",
+      "edits": 3,
+      "imageViewed": true,
+      "specificScope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "checkedEditSources": 3
+    },
+    {
+      "id": "zuiku-77580",
+      "file": "sixth-backend-reviewed.json",
+      "edits": 6,
+      "imageViewed": true,
+      "specificScope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "checkedEditSources": 6
+    },
+    {
+      "id": "zuiku-66722",
+      "file": "sixth-backend-reviewed.json",
+      "edits": 3,
+      "imageViewed": true,
+      "specificScope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "checkedEditSources": 3
+    },
+    {
+      "id": "zuiku-16715",
+      "file": "sixth-backend-reviewed.json",
+      "edits": 9,
+      "imageViewed": true,
+      "specificScope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "checkedEditSources": 9
+    },
+    {
+      "id": "zuiku-88270",
+      "file": "sixth-backend-reviewed.json",
+      "edits": 5,
+      "imageViewed": true,
+      "specificScope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "checkedEditSources": 5
+    },
+    {
+      "id": "zuiku-14369",
+      "file": "sixth-backend-reviewed.json",
+      "edits": 2,
+      "imageViewed": true,
+      "specificScope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "checkedEditSources": 2
+    },
+    {
+      "id": "zuiku-73285",
+      "file": "sixth-backend-reviewed.json",
+      "edits": 1,
+      "imageViewed": true,
+      "specificScope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "checkedEditSources": 1
+    }
+  ]
+}

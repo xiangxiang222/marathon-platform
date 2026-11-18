@@ -5,6 +5,30 @@ const { readDetails, writeDetails, mergeGuideText } = require('../src/race-detai
 const { presentRace } = require('../src/races');
 const { app } = require('../src/index');
 const { getDb } = require('../src/db');
+const { attachGuide } = require('../src/race-guide');
+const Database = require('better-sqlite3');
+
+test('reviewed image selection removes only named guide sheets and preserves manual and visual material', () => {
+  const db = new Database(':memory:');
+  try {
+    db.exec('CREATE TABLE races(id TEXT PRIMARY KEY, guide_text TEXT); CREATE TABLE race_sheets(id INTEGER PRIMARY KEY,race_id TEXT,kind TEXT,filename TEXT,sort INTEGER)');
+    const metadata = { version: 1, media: [{ sheetId: 1, caption: '费用原表' }], audit: {
+      mediaChanges: { before: ['fees', 'shopping', 'route'], after: ['fees'] },
+      imageReviews: [{ imageUrl: 'fees', sheetId: 1 }, { imageUrl: 'shopping', sheetId: 2 }, { imageUrl: 'route', sheetId: 3 }]
+    } };
+    db.prepare('INSERT INTO races VALUES(?,?)').run('selection', writeDetails('校对正文', metadata));
+    const insert = db.prepare('INSERT INTO race_sheets VALUES(?,?,?,?,?)');
+    for (const [id, kind] of [[1, 'guide'], [2, 'guide'], [3, 'route'], [4, 'guide'], [5, 'pacer'], [6, 'cover']]) insert.run(id, 'selection', kind, id + '.jpg', id);
+    const displayed = attachGuide(db, presentRace({ id: 'selection', guide_text: writeDetails('校对正文', metadata) }));
+    assert.deepEqual(displayed.guide, [{ id: 1, caption: '费用原表' }, { id: 4 }]);
+    assert.deepEqual(displayed.routeSheets, [{ id: 3 }]);
+    assert.deepEqual(displayed.pacerSheets, [{ id: 5 }]);
+    assert.deepEqual(displayed.coverSheet, { id: 6 });
+    assert.equal(db.prepare('SELECT COUNT(*) n FROM race_sheets').get().n, 6);
+    db.prepare('UPDATE races SET guide_text=?').run(writeDetails('人工编辑正文', { version: 1 }));
+    assert.deepEqual(attachGuide(db, { id: 'selection' }).guide.map(sheet => sheet.id), [1, 2, 4]);
+  } finally { db.close(); }
+});
 
 const details = { version: 1, registration: { status: 'closed', verified: true, sourceUrl: 'https://reg.zuicool.com/77675' }, groups: [
   { name: '50公里雾隐牡丹组', actualDistanceKm: 49.93, fees: [{ amount: 398 }] },

@@ -1,0 +1,2145 @@
+{
+  "checkedAt": "2026-11-18T02:20:12.417Z",
+  "passed": true,
+  "api": [
+    {
+      "id": "zuiku-58600",
+      "bodyMatches": true,
+      "groups": 4,
+      "characters": 16400
+    },
+    {
+      "id": "caa-1000485007",
+      "bodyMatches": true,
+      "groups": 2,
+      "characters": 8745
+    },
+    {
+      "id": "zuiku-95805",
+      "bodyMatches": true,
+      "groups": 2,
+      "characters": 8719
+    },
+    {
+      "id": "zuiku-28718",
+      "bodyMatches": true,
+      "groups": 1,
+      "characters": 8737
+    },
+    {
+      "id": "zuiku-88485",
+      "bodyMatches": true,
+      "groups": 10,
+      "characters": 9980
+    },
+    {
+      "id": "zuiku-58332",
+      "bodyMatches": true,
+      "groups": 6,
+      "characters": 5238
+    },
+    {
+      "id": "zuiku-97297",
+      "bodyMatches": true,
+      "groups": 4,
+      "characters": 12173
+    },
+    {
+      "id": "zuiku-62536",
+      "bodyMatches": true,
+      "groups": 4,
+      "characters": 5454
+    },
+    {
+      "id": "zuiku-60343",
+      "bodyMatches": true,
+      "groups": 4,
+      "characters": 11719
+    },
+    {
+      "id": "zuiku-32919",
+      "bodyMatches": true,
+      "groups": 4,
+      "characters": 7243
+    },
+    {
+      "id": "zuiku-94253",
+      "bodyMatches": true,
+      "groups": 5,
+      "characters": 16964
+    },
+    {
+      "id": "zuiku-35462",
+      "bodyMatches": true,
+      "groups": 3,
+      "characters": 13563
+    },
+    {
+      "id": "caa-1000452082",
+      "bodyMatches": true,
+      "groups": 2,
+      "characters": 16382
+    },
+    {
+      "id": "caa-1000418247",
+      "bodyMatches": true,
+      "groups": 0,
+      "characters": 15923
+    },
+    {
+      "id": "caa-1000476001",
+      "bodyMatches": true,
+      "groups": 0,
+      "characters": 4903
+    },
+    {
+      "id": "caa-1000473000",
+      "bodyMatches": true,
+      "groups": 0,
+      "characters": 11989
+    },
+    {
+      "id": "caa-1000454068",
+      "bodyMatches": true,
+      "groups": 0,
+      "characters": 7519
+    },
+    {
+      "id": "caa-1000453054",
+      "bodyMatches": true,
+      "groups": 0,
+      "characters": 7892
+    },
+    {
+      "id": "caa-1000453046",
+      "bodyMatches": true,
+      "groups": 2,
+      "characters": 15096
+    },
+    {
+      "id": "caa-1000453002",
+      "bodyMatches": true,
+      "groups": 2,
+      "characters": 17924
+    },
+    {
+      "id": "zuiku-55956",
+      "bodyMatches": true,
+      "groups": 2,
+      "characters": 4011
+    },
+    {
+      "id": "zuiku-35657",
+      "bodyMatches": true,
+      "groups": 8,
+      "characters": 1347
+    },
+    {
+      "id": "zuiku-88269",
+      "bodyMatches": true,
+      "groups": 3,
+      "characters": 1744
+    },
+    {
+      "id": "zuiku-33143",
+      "bodyMatches": true,
+      "groups": 3,
+      "characters": 2675
+    },
+    {
+      "id": "zuiku-67689",
+      "bodyMatches": true,
+      "groups": 1,
+      "characters": 906
+    },
+    {
+      "id": "zuiku-49863",
+      "bodyMatches": true,
+      "groups": 5,
+      "characters": 2208
+    },
+    {
+      "id": "zuiku-59237",
+      "bodyMatches": true,
+      "groups": 2,
+      "characters": 5503
+    },
+    {
+      "id": "caa-1000496002",
+      "bodyMatches": true,
+      "groups": 2,
+      "characters": 9445
+    },
+    {
+      "id": "zuiku-76108",
+      "bodyMatches": true,
+      "groups": 1,
+      "characters": 967
+    },
+    {
+      "id": "zuiku-81646",
+      "bodyMatches": true,
+      "groups": 2,
+      "characters": 4501
+    },
+    {
+      "id": "zuiku-77580",
+      "bodyMatches": true,
+      "groups": 8,
+      "characters": 4348
+    },
+    {
+      "id": "zuiku-66722",
+      "bodyMatches": true,
+      "groups": 6,
+      "characters": 4859
+    },
+    {
+      "id": "zuiku-16715",
+      "bodyMatches": true,
+      "groups": 2,
+      "characters": 9935
+    },
+    {
+      "id": "zuiku-88270",
+      "bodyMatches": true,
+      "groups": 4,
+      "characters": 12868
+    },
+    {
+      "id": "zuiku-14369",
+      "bodyMatches": true,
+      "groups": 2,
+      "characters": 5307
+    },
+    {
+      "id": "zuiku-73285",
+      "bodyMatches": true,
+      "groups": 2,
+      "characters": 3083
+    }
+  ],
+  "web": [
+    {
+      "id": "zuiku-58600",
+      "width": 320,
+      "characters": 16210,
+      "tables": [
+        {
+          "width": 252,
+          "scrollWidth": 600,
+          "tableWidth": 600,
+          "rows": 6
+        },
+        {
+          "width": 252,
+          "scrollWidth": 720,
+          "tableWidth": 720,
+          "rows": 5
+        },
+        {
+          "width": 252,
+          "scrollWidth": 960,
+          "tableWidth": 960,
+          "rows": 13
+        },
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 10
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-58600",
+      "width": 390,
+      "characters": 16210,
+      "tables": [
+        {
+          "width": 318,
+          "scrollWidth": 600,
+          "tableWidth": 600,
+          "rows": 6
+        },
+        {
+          "width": 318,
+          "scrollWidth": 720,
+          "tableWidth": 720,
+          "rows": 5
+        },
+        {
+          "width": 318,
+          "scrollWidth": 960,
+          "tableWidth": 960,
+          "rows": 13
+        },
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 10
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "caa-1000485007",
+      "width": 320,
+      "characters": 8767,
+      "tables": [
+        {
+          "width": 252,
+          "scrollWidth": 600,
+          "tableWidth": 600,
+          "rows": 11
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 2
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 5
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "caa-1000485007",
+      "width": 390,
+      "characters": 8767,
+      "tables": [
+        {
+          "width": 318,
+          "scrollWidth": 600,
+          "tableWidth": 600,
+          "rows": 11
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 2
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 5
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-95805",
+      "width": 320,
+      "characters": 8840,
+      "tables": [
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 3
+        },
+        {
+          "width": 252,
+          "scrollWidth": 600,
+          "tableWidth": 600,
+          "rows": 12
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-95805",
+      "width": 390,
+      "characters": 8840,
+      "tables": [
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 3
+        },
+        {
+          "width": 318,
+          "scrollWidth": 600,
+          "tableWidth": 600,
+          "rows": 12
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-28718",
+      "width": 320,
+      "characters": 8889,
+      "tables": [
+        {
+          "width": 252,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 6
+        },
+        {
+          "width": 252,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 9
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-28718",
+      "width": 390,
+      "characters": 8889,
+      "tables": [
+        {
+          "width": 318,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 6
+        },
+        {
+          "width": 318,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 9
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-88485",
+      "width": 320,
+      "characters": 10171,
+      "tables": [
+        {
+          "width": 252,
+          "scrollWidth": 600,
+          "tableWidth": 600,
+          "rows": 4
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 7
+        },
+        {
+          "width": 252,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 3
+        },
+        {
+          "width": 252,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 2
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-88485",
+      "width": 390,
+      "characters": 10171,
+      "tables": [
+        {
+          "width": 318,
+          "scrollWidth": 600,
+          "tableWidth": 600,
+          "rows": 4
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 7
+        },
+        {
+          "width": 318,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 3
+        },
+        {
+          "width": 318,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 2
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-58332",
+      "width": 320,
+      "characters": 5256,
+      "tables": [
+        {
+          "width": 252,
+          "scrollWidth": 600,
+          "tableWidth": 600,
+          "rows": 5
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 7
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-58332",
+      "width": 390,
+      "characters": 5256,
+      "tables": [
+        {
+          "width": 318,
+          "scrollWidth": 600,
+          "tableWidth": 600,
+          "rows": 5
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 7
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-97297",
+      "width": 320,
+      "characters": 12414,
+      "tables": [
+        {
+          "width": 252,
+          "scrollWidth": 840,
+          "tableWidth": 840,
+          "rows": 4
+        },
+        {
+          "width": 252,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 10
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-97297",
+      "width": 390,
+      "characters": 12414,
+      "tables": [
+        {
+          "width": 318,
+          "scrollWidth": 840,
+          "tableWidth": 840,
+          "rows": 4
+        },
+        {
+          "width": 318,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 10
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-62536",
+      "width": 320,
+      "characters": 5384,
+      "tables": [
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 4
+        },
+        {
+          "width": 252,
+          "scrollWidth": 600,
+          "tableWidth": 600,
+          "rows": 15
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-62536",
+      "width": 390,
+      "characters": 5384,
+      "tables": [
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 4
+        },
+        {
+          "width": 318,
+          "scrollWidth": 600,
+          "tableWidth": 600,
+          "rows": 15
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-60343",
+      "width": 320,
+      "characters": 10896,
+      "tables": [
+        {
+          "width": 252,
+          "scrollWidth": 1080,
+          "tableWidth": 1080,
+          "rows": 9
+        },
+        {
+          "width": 252,
+          "scrollWidth": 1080,
+          "tableWidth": 1080,
+          "rows": 9
+        },
+        {
+          "width": 252,
+          "scrollWidth": 1080,
+          "tableWidth": 1080,
+          "rows": 8
+        },
+        {
+          "width": 252,
+          "scrollWidth": 1080,
+          "tableWidth": 1080,
+          "rows": 6
+        },
+        {
+          "width": 252,
+          "scrollWidth": 600,
+          "tableWidth": 600,
+          "rows": 5
+        },
+        {
+          "width": 252,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 4
+        },
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 5
+        },
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 5
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 5
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 5
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-60343",
+      "width": 390,
+      "characters": 10896,
+      "tables": [
+        {
+          "width": 318,
+          "scrollWidth": 1080,
+          "tableWidth": 1080,
+          "rows": 9
+        },
+        {
+          "width": 318,
+          "scrollWidth": 1080,
+          "tableWidth": 1080,
+          "rows": 9
+        },
+        {
+          "width": 318,
+          "scrollWidth": 1080,
+          "tableWidth": 1080,
+          "rows": 8
+        },
+        {
+          "width": 318,
+          "scrollWidth": 1080,
+          "tableWidth": 1080,
+          "rows": 6
+        },
+        {
+          "width": 318,
+          "scrollWidth": 600,
+          "tableWidth": 600,
+          "rows": 5
+        },
+        {
+          "width": 318,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 4
+        },
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 5
+        },
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 5
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 5
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 5
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-32919",
+      "width": 320,
+      "characters": 7384,
+      "tables": [
+        {
+          "width": 252,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 6
+        },
+        {
+          "width": 252,
+          "scrollWidth": 600,
+          "tableWidth": 600,
+          "rows": 8
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-32919",
+      "width": 390,
+      "characters": 7384,
+      "tables": [
+        {
+          "width": 318,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 6
+        },
+        {
+          "width": 318,
+          "scrollWidth": 600,
+          "tableWidth": 600,
+          "rows": 8
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-94253",
+      "width": 320,
+      "characters": 17210,
+      "tables": [
+        {
+          "width": 252,
+          "scrollWidth": 600,
+          "tableWidth": 600,
+          "rows": 9
+        },
+        {
+          "width": 252,
+          "scrollWidth": 600,
+          "tableWidth": 600,
+          "rows": 4
+        },
+        {
+          "width": 252,
+          "scrollWidth": 600,
+          "tableWidth": 600,
+          "rows": 11
+        },
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 3
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 14
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 5
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-94253",
+      "width": 390,
+      "characters": 17210,
+      "tables": [
+        {
+          "width": 318,
+          "scrollWidth": 600,
+          "tableWidth": 600,
+          "rows": 9
+        },
+        {
+          "width": 318,
+          "scrollWidth": 600,
+          "tableWidth": 600,
+          "rows": 4
+        },
+        {
+          "width": 318,
+          "scrollWidth": 600,
+          "tableWidth": 600,
+          "rows": 11
+        },
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 3
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 14
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 5
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-35462",
+      "width": 320,
+      "characters": 13940,
+      "tables": [
+        {
+          "width": 252,
+          "scrollWidth": 600,
+          "tableWidth": 600,
+          "rows": 4
+        },
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 4
+        },
+        {
+          "width": 252,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 15
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-35462",
+      "width": 390,
+      "characters": 13940,
+      "tables": [
+        {
+          "width": 318,
+          "scrollWidth": 600,
+          "tableWidth": 600,
+          "rows": 4
+        },
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 4
+        },
+        {
+          "width": 318,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 15
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "caa-1000452082",
+      "width": 320,
+      "characters": 16251,
+      "tables": [
+        {
+          "width": 252,
+          "scrollWidth": 600,
+          "tableWidth": 600,
+          "rows": 11
+        },
+        {
+          "width": 252,
+          "scrollWidth": 600,
+          "tableWidth": 600,
+          "rows": 23
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 3
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 14
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 13
+        },
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 9
+        },
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 9
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 9
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "caa-1000452082",
+      "width": 390,
+      "characters": 16251,
+      "tables": [
+        {
+          "width": 318,
+          "scrollWidth": 600,
+          "tableWidth": 600,
+          "rows": 11
+        },
+        {
+          "width": 318,
+          "scrollWidth": 600,
+          "tableWidth": 600,
+          "rows": 23
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 3
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 14
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 13
+        },
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 9
+        },
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 9
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 9
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "caa-1000418247",
+      "width": 320,
+      "characters": 16404,
+      "tables": [
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 12
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "caa-1000418247",
+      "width": 390,
+      "characters": 16404,
+      "tables": [
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 12
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "caa-1000476001",
+      "width": 320,
+      "characters": 5019,
+      "tables": [
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 3
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "caa-1000476001",
+      "width": 390,
+      "characters": 5019,
+      "tables": [
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 3
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "caa-1000473000",
+      "width": 320,
+      "characters": 12238,
+      "tables": [
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 12
+        },
+        {
+          "width": 252,
+          "scrollWidth": 600,
+          "tableWidth": 600,
+          "rows": 16
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "caa-1000473000",
+      "width": 390,
+      "characters": 12238,
+      "tables": [
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 12
+        },
+        {
+          "width": 318,
+          "scrollWidth": 600,
+          "tableWidth": 600,
+          "rows": 16
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "caa-1000454068",
+      "width": 320,
+      "characters": 7386,
+      "tables": [
+        {
+          "width": 252,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 6
+        },
+        {
+          "width": 252,
+          "scrollWidth": 600,
+          "tableWidth": 600,
+          "rows": 9
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 9
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 10
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "caa-1000454068",
+      "width": 390,
+      "characters": 7386,
+      "tables": [
+        {
+          "width": 318,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 6
+        },
+        {
+          "width": 318,
+          "scrollWidth": 600,
+          "tableWidth": 600,
+          "rows": 9
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 9
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 10
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "caa-1000453054",
+      "width": 320,
+      "characters": 8235,
+      "tables": [
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 6
+        },
+        {
+          "width": 252,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 8
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "caa-1000453054",
+      "width": 390,
+      "characters": 8235,
+      "tables": [
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 6
+        },
+        {
+          "width": 318,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 8
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "caa-1000453046",
+      "width": 320,
+      "characters": 15210,
+      "tables": [
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 3
+        },
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 3
+        },
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 3
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 12
+        },
+        {
+          "width": 252,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 16
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 9
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 9
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "caa-1000453046",
+      "width": 390,
+      "characters": 15210,
+      "tables": [
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 3
+        },
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 3
+        },
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 3
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 12
+        },
+        {
+          "width": 318,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 16
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 9
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 9
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "caa-1000453002",
+      "width": 320,
+      "characters": 18298,
+      "tables": [
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 8
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "caa-1000453002",
+      "width": 390,
+      "characters": 18298,
+      "tables": [
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 8
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-55956",
+      "width": 320,
+      "characters": 3854,
+      "tables": [
+        {
+          "width": 252,
+          "scrollWidth": 720,
+          "tableWidth": 720,
+          "rows": 3
+        },
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 3
+        },
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 5
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-55956",
+      "width": 390,
+      "characters": 3854,
+      "tables": [
+        {
+          "width": 318,
+          "scrollWidth": 720,
+          "tableWidth": 720,
+          "rows": 3
+        },
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 3
+        },
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 5
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-35657",
+      "width": 320,
+      "characters": 1192,
+      "tables": [
+        {
+          "width": 252,
+          "scrollWidth": 720,
+          "tableWidth": 720,
+          "rows": 3
+        },
+        {
+          "width": 252,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 3
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 3
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-35657",
+      "width": 390,
+      "characters": 1192,
+      "tables": [
+        {
+          "width": 318,
+          "scrollWidth": 720,
+          "tableWidth": 720,
+          "rows": 3
+        },
+        {
+          "width": 318,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 3
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 3
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-88269",
+      "width": 320,
+      "characters": 1579,
+      "tables": [
+        {
+          "width": 252,
+          "scrollWidth": 600,
+          "tableWidth": 600,
+          "rows": 3
+        },
+        {
+          "width": 252,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 3
+        },
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 7
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-88269",
+      "width": 390,
+      "characters": 1579,
+      "tables": [
+        {
+          "width": 318,
+          "scrollWidth": 600,
+          "tableWidth": 600,
+          "rows": 3
+        },
+        {
+          "width": 318,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 3
+        },
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 7
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-33143",
+      "width": 320,
+      "characters": 2525,
+      "tables": [
+        {
+          "width": 252,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 4
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 7
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-33143",
+      "width": 390,
+      "characters": 2525,
+      "tables": [
+        {
+          "width": 318,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 4
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 7
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-67689",
+      "width": 320,
+      "characters": 810,
+      "tables": [
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 2
+        },
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 6
+        },
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 4
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-67689",
+      "width": 390,
+      "characters": 810,
+      "tables": [
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 2
+        },
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 6
+        },
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 4
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-49863",
+      "width": 320,
+      "characters": 2080,
+      "tables": [
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 6
+        },
+        {
+          "width": 252,
+          "scrollWidth": 720,
+          "tableWidth": 720,
+          "rows": 4
+        },
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 6
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-49863",
+      "width": 390,
+      "characters": 2080,
+      "tables": [
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 6
+        },
+        {
+          "width": 318,
+          "scrollWidth": 720,
+          "tableWidth": 720,
+          "rows": 4
+        },
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 6
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-59237",
+      "width": 320,
+      "characters": 5524,
+      "tables": [
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 2
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 6
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 4
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-59237",
+      "width": 390,
+      "characters": 5524,
+      "tables": [
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 2
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 6
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 4
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "caa-1000496002",
+      "width": 320,
+      "characters": 8492,
+      "tables": [
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 3
+        },
+        {
+          "width": 252,
+          "scrollWidth": 600,
+          "tableWidth": 600,
+          "rows": 8
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 11
+        },
+        {
+          "width": 252,
+          "scrollWidth": 1080,
+          "tableWidth": 1080,
+          "rows": 2
+        },
+        {
+          "width": 252,
+          "scrollWidth": 1200,
+          "tableWidth": 1200,
+          "rows": 2
+        },
+        {
+          "width": 252,
+          "scrollWidth": 1080,
+          "tableWidth": 1080,
+          "rows": 2
+        },
+        {
+          "width": 252,
+          "scrollWidth": 1200,
+          "tableWidth": 1200,
+          "rows": 2
+        },
+        {
+          "width": 252,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 3
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "caa-1000496002",
+      "width": 390,
+      "characters": 8492,
+      "tables": [
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 3
+        },
+        {
+          "width": 318,
+          "scrollWidth": 600,
+          "tableWidth": 600,
+          "rows": 8
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 11
+        },
+        {
+          "width": 318,
+          "scrollWidth": 1080,
+          "tableWidth": 1080,
+          "rows": 2
+        },
+        {
+          "width": 318,
+          "scrollWidth": 1200,
+          "tableWidth": 1200,
+          "rows": 2
+        },
+        {
+          "width": 318,
+          "scrollWidth": 1080,
+          "tableWidth": 1080,
+          "rows": 2
+        },
+        {
+          "width": 318,
+          "scrollWidth": 1200,
+          "tableWidth": 1200,
+          "rows": 2
+        },
+        {
+          "width": 318,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 3
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-76108",
+      "width": 320,
+      "characters": 912,
+      "tables": [
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 5
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-76108",
+      "width": 390,
+      "characters": 912,
+      "tables": [
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 5
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-81646",
+      "width": 320,
+      "characters": 4613,
+      "tables": [
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 3
+        },
+        {
+          "width": 252,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 2
+        },
+        {
+          "width": 252,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 3
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-81646",
+      "width": 390,
+      "characters": 4613,
+      "tables": [
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 3
+        },
+        {
+          "width": 318,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 2
+        },
+        {
+          "width": 318,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 3
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-77580",
+      "width": 320,
+      "characters": 4475,
+      "tables": [
+        {
+          "width": 252,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 3
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-77580",
+      "width": 390,
+      "characters": 4475,
+      "tables": [
+        {
+          "width": 318,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 3
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-66722",
+      "width": 320,
+      "characters": 4982,
+      "tables": [
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 5
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 7
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-66722",
+      "width": 390,
+      "characters": 4982,
+      "tables": [
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 5
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 7
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-16715",
+      "width": 320,
+      "characters": 9810,
+      "tables": [
+        {
+          "width": 252,
+          "scrollWidth": 1200,
+          "tableWidth": 1200,
+          "rows": 9
+        },
+        {
+          "width": 252,
+          "scrollWidth": 1200,
+          "tableWidth": 1200,
+          "rows": 5
+        },
+        {
+          "width": 252,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 3
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 2
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 13
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-16715",
+      "width": 390,
+      "characters": 9810,
+      "tables": [
+        {
+          "width": 318,
+          "scrollWidth": 1200,
+          "tableWidth": 1200,
+          "rows": 9
+        },
+        {
+          "width": 318,
+          "scrollWidth": 1200,
+          "tableWidth": 1200,
+          "rows": 5
+        },
+        {
+          "width": 318,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 3
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 2
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 13
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-88270",
+      "width": 320,
+      "characters": 13212,
+      "tables": [
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 4
+        },
+        {
+          "width": 252,
+          "scrollWidth": 720,
+          "tableWidth": 720,
+          "rows": 12
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-88270",
+      "width": 390,
+      "characters": 13212,
+      "tables": [
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 4
+        },
+        {
+          "width": 318,
+          "scrollWidth": 720,
+          "tableWidth": 720,
+          "rows": 12
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-14369",
+      "width": 320,
+      "characters": 5402,
+      "tables": [
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 3
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 6
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-14369",
+      "width": 390,
+      "characters": 5402,
+      "tables": [
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 3
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 6
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-73285",
+      "width": 320,
+      "characters": 3175,
+      "tables": [],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-73285",
+      "width": 390,
+      "characters": 3175,
+      "tables": [],
+      "overflow": false
+    }
+  ],
+  "errors": [],
+  "scope": "生产浏览器分别320/390；仅核本批已列图表/条款，不代表所有赛事完整规程验收；截图为实际线上页面。",
+  "miniStatus": "本批未逐场DevTools验证，实机及正式小程序发布未完成"
+}
