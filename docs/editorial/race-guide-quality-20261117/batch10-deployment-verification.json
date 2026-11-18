@@ -54,7 +54,19 @@
       "zuiku-30317",
       "zuiku-32840"
     ],
-    "initialPreviewLatency": "Baizhangji first 10-second screenshot was loading; reopened and later full-image screenshot actually verified. No time-to-load claim."
+    "initialPreviewLatency": "Baizhangji first 10-second screenshot was loading; reopened and later full-image screenshot actually verified. No time-to-load claim.",
+    "allBatchRenderChecks": {
+      "races": 18,
+      "width": 390,
+      "groups": 65,
+      "tables": 106,
+      "rows": 663,
+      "allBodiesAndGroupFieldsMatchProduction": true,
+      "allRowsActuallyRendered": true,
+      "bodyBoundsFitViewport": true,
+      "evidence": "batch10-all-mini-render-verification.json",
+      "gesturesAndPreviews": "remain representative only; not all 18"
+    }
   },
   "captionCorrection": {
     "id": "zuiku-32840",

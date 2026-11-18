@@ -1,0 +1,147 @@
+{
+  "at": "2026-11-18T18:52:34.950Z",
+  "passed": true,
+  "rows": [
+    {
+      "id": "zuiku-21601",
+      "file": "batch11-source-formatted-reviewed.json",
+      "edits": 6,
+      "scope": "局部校对：本清单edits逐项标注已核对原图或本届可复制报名正文；未审章节完整保留，未声明整篇完成。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-26274",
+      "file": "batch11-source-formatted-reviewed.json",
+      "edits": 9,
+      "scope": "局部校对：本清单edits逐项标注已核对原图或本届可复制报名正文；未审章节完整保留，未声明整篇完成。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-68796",
+      "file": "batch11-source-formatted-reviewed.json",
+      "edits": 10,
+      "scope": "局部校对：本清单edits逐项标注已核对原图或本届可复制报名正文；未审章节完整保留，未声明整篇完成。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-65465",
+      "file": "batch11-source-formatted-reviewed.json",
+      "edits": 8,
+      "scope": "局部校对：本清单edits逐项标注已核对原图或本届可复制报名正文；未审章节完整保留，未声明整篇完成。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-37167",
+      "file": "batch11-source-formatted-reviewed.json",
+      "edits": 8,
+      "scope": "局部校对：本清单edits逐项标注已核对原图或本届可复制报名正文；未审章节完整保留，未声明整篇完成。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-98987",
+      "file": "batch11-source-formatted-reviewed.json",
+      "edits": 16,
+      "scope": "局部校对：本清单edits逐项标注已核对原图或本届可复制报名正文；未审章节完整保留，未声明整篇完成。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-26531",
+      "file": "batch11-source-formatted-reviewed.json",
+      "edits": 18,
+      "scope": "局部校对：本清单edits逐项标注已核对原图或本届可复制报名正文；未审章节完整保留，未声明整篇完成。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-91091",
+      "file": "batch11-source-formatted-reviewed.json",
+      "edits": 28,
+      "scope": "局部校对：本清单edits逐项标注已核对原图或本届可复制报名正文；未审章节完整保留，未声明整篇完成。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-73329",
+      "file": "batch11-front-normalized-reviewed.json",
+      "edits": 2,
+      "scope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-22160",
+      "file": "batch11-front-normalized-reviewed.json",
+      "edits": 4,
+      "scope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-31546",
+      "file": "batch11-front-normalized-reviewed.json",
+      "edits": 5,
+      "scope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-88804",
+      "file": "batch11-front-normalized-reviewed.json",
+      "edits": 11,
+      "scope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-69042",
+      "file": "batch11-front-normalized-reviewed.json",
+      "edits": 13,
+      "scope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-16673",
+      "file": "batch11-front-normalized-reviewed.json",
+      "edits": 14,
+      "scope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-85841",
+      "file": "batch11-front-normalized-reviewed.json",
+      "edits": 12,
+      "scope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-14449",
+      "file": "batch11-front-normalized-reviewed.json",
+      "edits": 7,
+      "scope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-16852",
+      "file": "last-four-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "仅本轮列明来源与条款实际审校；资料冲突和未核细节保留疑点，不表示全量终审。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-92819",
+      "file": "last-four-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "仅本轮列明来源与条款实际审校；资料冲突和未核细节保留疑点，不表示全量终审。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-37493",
+      "file": "last-four-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "仅本轮列明来源与条款实际审校；资料冲突和未核细节保留疑点，不表示全量终审。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-85293",
+      "file": "last-four-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "仅本轮列明来源与条款实际审校；资料冲突和未核细节保留疑点，不表示全量终审。",
+      "explicitImageReview": true
+    }
+  ],
+  "races": 20
+}

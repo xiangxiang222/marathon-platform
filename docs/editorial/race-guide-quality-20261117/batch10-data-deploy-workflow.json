@@ -1,0 +1,13 @@
+{
+  "pr": 189,
+  "startedAt": "2026-11-18T17:11:58.376Z",
+  "commit": "56ea8de93e1378f6b6df1165caed86d9c2d6281b",
+  "run": {
+    "conclusion": "",
+    "databaseId": 44356143206,
+    "headSha": "56ea8de93e1378f6b6df1165caed86d9c2d6281b",
+    "status": "queued",
+    "url": "https://github.com/xiangxiang222/marathon-platform/actions/runs/44356143206"
+  },
+  "cancelRequestedAt": "2026-11-18T17:13:04.518Z"
+}

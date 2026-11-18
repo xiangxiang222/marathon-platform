@@ -1,0 +1,2382 @@
+{
+  "kind": "Actual WeChat DevTools rendering, production HTTPS API, no request/route mock; not physical phone or published mini-program",
+  "checkedAt": "2026-11-18T19:02:21.947Z",
+  "project": "/Users/mengxiangxiang/Documents/work/dev/marathon-platform/miniprogram",
+  "system": {
+    "success": true,
+    "systemInfo": {
+      "result": {
+        "brand": "devtools",
+        "model": "iPhone 12/13 (Pro)",
+        "system": "iOS 10.0.1",
+        "platform": "devtools",
+        "benchmarkLevel": -1,
+        "pixelRatio": 3,
+        "screenWidth": 390,
+        "screenHeight": 844,
+        "windowWidth": 390,
+        "windowHeight": 762,
+        "statusBarHeight": 47,
+        "safeArea": {
+          "top": 47,
+          "left": 0,
+          "right": 390,
+          "bottom": 810,
+          "width": 390,
+          "height": 763
+        },
+        "language": "zh_CN",
+        "version": "8.0.5",
+        "fontSizeSetting": 16,
+        "SDKVersion": "3.17.1",
+        "host": {
+          "env": "WeChat"
+        },
+        "enableDebug": false,
+        "mode": "default",
+        "deviceOrientation": "portrait",
+        "bluetoothEnabled": true,
+        "locationEnabled": true,
+        "wifiEnabled": true,
+        "albumAuthorized": true,
+        "cameraAuthorized": true,
+        "locationAuthorized": true,
+        "microphoneAuthorized": true,
+        "notificationAuthorized": true,
+        "notificationAlertAuthorized": true,
+        "notificationBadgeAuthorized": true,
+        "notificationSoundAuthorized": true,
+        "phoneCalendarAuthorized": true,
+        "bluetoothAuthorized": true,
+        "locationReducedAccuracy": true,
+        "devicePixelRatio": 3
+      }
+    }
+  },
+  "races": [
+    {
+      "id": "zuiku-22160",
+      "label": "hongkong",
+      "apiUrl": "https://togetherbetter.cn/marathon/api/races/zuiku-22160",
+      "apiStatus": 200,
+      "proseExactlyMatchesProduction": true,
+      "groupsExactlyMatchPublicProduction": true,
+      "guideSha256": "e1b1d5b5c5420bcb39d725892bffa5ba0530609b6c7f1e4159c335e94000f7a0",
+      "guideCharacters": 8362,
+      "groupCount": 1,
+      "groups": [
+        {
+          "i": 0,
+          "name": "逐光50KM",
+          "fields": [
+            {
+              "i": 0,
+              "label": "名额",
+              "value": "500人",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "标称距离",
+              "value": "50公里",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "实际里程",
+              "value": "47.2公里",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "累计爬升",
+              "value": "2540米",
+              "wide": false
+            },
+            {
+              "i": 4,
+              "label": "累计下降",
+              "value": "2540米",
+              "wide": false
+            },
+            {
+              "i": 5,
+              "label": "关门时间",
+              "value": "2027-01-01 14:00",
+              "wide": false
+            },
+            {
+              "i": 6,
+              "label": "关门时长",
+              "value": "14小时",
+              "wide": false
+            },
+            {
+              "i": 7,
+              "label": "参赛条件",
+              "value": "须具备足够越野跑经验并做好充分准备；比赛当日18周岁以上，年龄较小者须事先联系主办方并获批准。身体要求： 1. 越野赛具有较大强度和风险，选手作为个人健康安全的第一责任人，应在报名参赛前认真评估自身身体条件、健康状况、运动能力，秉持安全为先，健康参赛原则。 2. 选手报名即代表自甘风险、对规则无异议、对自身行为负责，特别是自愿承担不正确评估身体健康状况、运动能力、甚至隐瞒健康状况可能导致的一切法律和经济责任。 3. 赛前请保持良好的睡眠及健康饮食，健康参赛，安全回家。",
+              "wide": true
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "原价 · 999元/人"
+            },
+            {
+              "i": 1,
+              "text": "早鸟价/预报名9折（截至2026-10-20 00:00） · 899.1元/人"
+            },
+            {
+              "i": 2,
+              "text": "团报9.5折 · 949.05元/人"
+            }
+          ]
+        }
+      ],
+      "chapters": [
+        {
+          "id": "chapter-0",
+          "label": "赛事概况"
+        },
+        {
+          "id": "chapter-3",
+          "label": "关联赛事资料"
+        },
+        {
+          "id": "chapter-6",
+          "label": "赛事图文资料（原图识别）"
+        },
+        {
+          "id": "chapter-13",
+          "label": "逐光50公里路线与站点（原图核对）"
+        },
+        {
+          "id": "chapter-17",
+          "label": "报名费用、退款及咨询（原图核对）"
+        },
+        {
+          "id": "chapter-28",
+          "label": "报名资格、风险提示与身体要求（原图核对）"
+        },
+        {
+          "id": "chapter-49",
+          "label": "赛事图文资料（原图识别）"
+        },
+        {
+          "id": "chapter-64",
+          "label": "赛事图文资料（原图识别）"
+        },
+        {
+          "id": "chapter-79",
+          "label": "赛事图文资料（原图识别）"
+        },
+        {
+          "id": "chapter-111",
+          "label": "强制装备及逐项处罚（原图核对）"
+        },
+        {
+          "id": "chapter-122",
+          "label": "竞赛规程（原图识别）"
+        },
+        {
+          "id": "chapter-166",
+          "label": "比赛日程（原图识别）"
+        },
+        {
+          "id": "chapter-220",
+          "label": "赛事图文资料（原图识别）"
+        },
+        {
+          "id": "chapter-232",
+          "label": "5.参赛包内不允许存放贵重物品以及易碎、易燃、易"
+        },
+        {
+          "id": "chapter-277",
+          "label": "赛事图文资料（原图识别）"
+        },
+        {
+          "id": "chapter-312",
+          "label": "赛事图文资料（原图识别）"
+        },
+        {
+          "id": "originals",
+          "label": "规程原图参考",
+          "hasContent": true
+        }
+      ],
+      "originalCount": 17,
+      "screenshots": [
+        "/private/tmp/race-guide-quality-20261117/batch12-mini-hongkong-390-groups.png",
+        "/private/tmp/race-guide-quality-20261117/batch12-mini-hongkong-390-table-before.png",
+        "/private/tmp/race-guide-quality-20261117/batch12-mini-hongkong-390-table-after.png",
+        "/private/tmp/race-guide-quality-20261117/batch12-mini-hongkong-390-original.png",
+        "/private/tmp/race-guide-quality-20261117/batch12-mini-hongkong-390-preview.png"
+      ],
+      "tablesBefore": [
+        {
+          "left": 27,
+          "right": 363,
+          "top": 100.1484375,
+          "bottom": 802.1484375,
+          "width": 336,
+          "height": 702,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 720,
+          "scrollHeight": 720
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 972.7265625,
+          "bottom": 1233.7265625,
+          "width": 336,
+          "height": 261,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 279
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 6167.2421875,
+          "bottom": 7050.2421875,
+          "width": 336,
+          "height": 883,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 480,
+          "scrollHeight": 901
+        }
+      ],
+      "tablesAfter": [
+        {
+          "left": 27,
+          "right": 363,
+          "top": 100.1484375,
+          "bottom": 802.1484375,
+          "width": 336,
+          "height": 702,
+          "scrollLeft": 386,
+          "scrollTop": 0,
+          "scrollWidth": 720,
+          "scrollHeight": 720
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 972.7265625,
+          "bottom": 1233.7265625,
+          "width": 336,
+          "height": 261,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 279
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 6167.2421875,
+          "bottom": 7050.2421875,
+          "width": 336,
+          "height": 883,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 480,
+          "scrollHeight": 901
+        }
+      ],
+      "actualHorizontalScrollVerified": true,
+      "originalImage": {
+        "left": 28,
+        "right": 362,
+        "top": 100.8046875,
+        "bottom": 100.8046875,
+        "width": 334,
+        "height": 0,
+        "mode": "widthFix",
+        "src": "https://togetherbetter.cn/marathon/api/race-sheets/1575",
+        "showMenuByLongpress": true
+      },
+      "longpressActionSucceeded": true,
+      "nativeLongpressMenuVerified": false,
+      "nativePreviewClickSucceeded": true,
+      "hero": {
+        "date": "2026-12-31",
+        "heroDate": "12.31",
+        "year": "2026",
+        "guideCount": 17,
+        "routeCount": 0
+      },
+      "tableContent": [
+        {
+          "headers": [
+            "站点",
+            "地名",
+            "距离（km）",
+            "分段爬升（m）",
+            "分段下降（m）",
+            "关门时间（h，原表）"
+          ],
+          "rows": [
+            [
+              "START",
+              "大潭郊野公园 Tai Tam Country Park",
+              "0",
+              "/",
+              "/",
+              "/"
+            ],
+            [
+              "CP1",
+              "布力径 Blacks Link",
+              "12.8",
+              "865",
+              "856",
+              "3:30"
+            ],
+            [
+              "CP2",
+              "卢吉道 Lugard Road",
+              "21.3",
+              "447",
+              "298",
+              "6:00"
+            ],
+            [
+              "CP3",
+              "香港仔水塘道 Aberdeen Reservoir Road",
+              "33.1",
+              "436",
+              "648",
+              "9:30"
+            ],
+            [
+              "CP4",
+              "黄泥涌峡道儿童游乐场 Wong Nai Chung Gap Children Playground",
+              "39.4",
+              "275",
+              "243",
+              "11:30"
+            ],
+            [
+              "FINISH",
+              "大潭郊野公园 Tai Tam Country Park",
+              "47.2",
+              "517",
+              "495",
+              "14:00"
+            ]
+          ]
+        },
+        {
+          "headers": [
+            "项目",
+            "价格（人民币元/人）",
+            "说明"
+          ],
+          "rows": [
+            [
+              "原价",
+              "999",
+              ""
+            ],
+            [
+              "早鸟价/预报名9折",
+              "899.1",
+              "早鸟报名截止至2026年10月20日0点"
+            ],
+            [
+              "团报9.5折",
+              "949.05",
+              ""
+            ]
+          ]
+        },
+        {
+          "headers": [
+            "序号",
+            "缺失处罚",
+            "强制装备清单",
+            "50公里要求"
+          ],
+          "rows": [
+            [
+              "1",
+              "退赛",
+              "号码布＋赛事手环＋计时芯片",
+              "组委会提供"
+            ],
+            [
+              "2",
+              "退赛",
+              "可通信手机（下载赛事轨迹和“Running派”APP，赛事导航与定位）",
+              "赛时须打开Running派进行定位"
+            ],
+            [
+              "3",
+              "退赛",
+              "可正常使用的光源（手机光源不算）及备用电池",
+              "1套"
+            ],
+            [
+              "4",
+              "罚时1小时",
+              "能容纳所有装备的背包/腰包",
+              "—"
+            ],
+            [
+              "5",
+              "罚时1小时",
+              "非一次性的可密封水壶/水袋",
+              "≥1L"
+            ],
+            [
+              "6",
+              "退赛",
+              "连帽冲锋衣",
+              "防水系数10000+"
+            ],
+            [
+              "7",
+              "罚时30分",
+              "应急能量品",
+              "≥800大卡"
+            ],
+            [
+              "8",
+              "罚时1小时",
+              "高频救生哨",
+              "—"
+            ],
+            [
+              "9",
+              "退赛",
+              "反光急救毯",
+              "—"
+            ],
+            [
+              "10",
+              "罚时30分",
+              "垃圾袋",
+              "—"
+            ],
+            [
+              "11",
+              "罚时1小时",
+              "≥200港币的现金",
+              "应急现金"
+            ]
+          ]
+        }
+      ],
+      "renderedTableCount": 3,
+      "renderedTableRowsIncludingHeaders": 23,
+      "allTableRowsRendered": true,
+      "initialPreviewActuallyDisplayed": false,
+      "initialPreviewEvidence": "10-second screenshot still loading",
+      "retestFirstImage": {
+        "left": 28,
+        "right": 362,
+        "top": 100.8046875,
+        "bottom": 694.578125,
+        "width": 334,
+        "height": 593.7734375,
+        "mode": "widthFix",
+        "src": "https://togetherbetter.cn/marathon/api/race-sheets/1575"
+      },
+      "previewRetestScreenshot": "/tmp/race-guide-quality-20261117/batch12-mini-hongkong-390-preview-retest.png",
+      "nativePreviewActuallyDisplayed": true,
+      "screenshotActuallyReviewedByRootAt": "2026-11-18T19:08:17.884Z",
+      "previewReview": "Initial10sec capture loading; reopened without mocks, 15sec retest actually displays original. Initial delay remains unresolved."
+    },
+    {
+      "id": "zuiku-26531",
+      "label": "fengqing",
+      "apiUrl": "https://togetherbetter.cn/marathon/api/races/zuiku-26531",
+      "apiStatus": 200,
+      "proseExactlyMatchesProduction": true,
+      "groupsExactlyMatchPublicProduction": true,
+      "guideSha256": "9a734470e339b6cd7e2c10ed9f5b1c5df9561972bed8d49b01012890790b8dea",
+      "guideCharacters": 11802,
+      "groupCount": 7,
+      "groups": [
+        {
+          "i": 0,
+          "name": "凤庆70KM单人组",
+          "fields": [
+            {
+              "i": 0,
+              "label": "名额",
+              "value": "400人",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "标称距离",
+              "value": "70公里",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "实际里程",
+              "value": "69公里",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "累计爬升",
+              "value": "3570米",
+              "wide": false
+            },
+            {
+              "i": 4,
+              "label": "累计下降",
+              "value": "3560米",
+              "wide": false
+            },
+            {
+              "i": 5,
+              "label": "出发时间",
+              "value": "12月12日6:00",
+              "wide": false
+            },
+            {
+              "i": 6,
+              "label": "关门时间",
+              "value": "12月13日00:00",
+              "wide": false
+            },
+            {
+              "i": 7,
+              "label": "关门时长",
+              "value": "18小时",
+              "wide": false
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "报名页价格 · 799元/人"
+            }
+          ]
+        },
+        {
+          "i": 1,
+          "name": "凤庆70KM双人组",
+          "fields": [
+            {
+              "i": 0,
+              "label": "形式",
+              "value": "pair",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "名额",
+              "value": "400人",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "标称距离",
+              "value": "70公里",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "实际里程",
+              "value": "69公里",
+              "wide": false
+            },
+            {
+              "i": 4,
+              "label": "累计爬升",
+              "value": "3570米",
+              "wide": false
+            },
+            {
+              "i": 5,
+              "label": "累计下降",
+              "value": "3560米",
+              "wide": false
+            },
+            {
+              "i": 6,
+              "label": "出发时间",
+              "value": "12月12日6:00",
+              "wide": false
+            },
+            {
+              "i": 7,
+              "label": "关门时间",
+              "value": "12月13日00:00",
+              "wide": false
+            },
+            {
+              "i": 8,
+              "label": "关门时长",
+              "value": "18小时",
+              "wide": false
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "报名页价格 · 1598元"
+            }
+          ]
+        },
+        {
+          "i": 2,
+          "name": "滇红50KM",
+          "fields": [
+            {
+              "i": 0,
+              "label": "名额",
+              "value": "500人",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "标称距离",
+              "value": "50公里",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "实际里程",
+              "value": "49公里",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "累计爬升",
+              "value": "2626米",
+              "wide": false
+            },
+            {
+              "i": 4,
+              "label": "累计下降",
+              "value": "2626米",
+              "wide": false
+            },
+            {
+              "i": 5,
+              "label": "出发时间",
+              "value": "12月12日7:30",
+              "wide": false
+            },
+            {
+              "i": 6,
+              "label": "关门时间",
+              "value": "12月12日21:00",
+              "wide": false
+            },
+            {
+              "i": 7,
+              "label": "关门时长",
+              "value": "13.5小时",
+              "wide": false
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "报名页价格 · 599元/人"
+            }
+          ]
+        },
+        {
+          "i": 3,
+          "name": "顺宁35KM",
+          "fields": [
+            {
+              "i": 0,
+              "label": "名额",
+              "value": "600人",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "标称距离",
+              "value": "35公里",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "实际里程",
+              "value": "34.8公里",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "累计爬升",
+              "value": "1751米",
+              "wide": false
+            },
+            {
+              "i": 4,
+              "label": "累计下降",
+              "value": "1761米",
+              "wide": false
+            },
+            {
+              "i": 5,
+              "label": "出发时间",
+              "value": "12月12日7:30",
+              "wide": false
+            },
+            {
+              "i": 6,
+              "label": "关门时间",
+              "value": "12月12日17:00",
+              "wide": false
+            },
+            {
+              "i": 7,
+              "label": "关门时长",
+              "value": "9.5小时",
+              "wide": false
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "报名页价格 · 399元/人"
+            }
+          ]
+        },
+        {
+          "i": 4,
+          "name": "觅茶15KM",
+          "fields": [
+            {
+              "i": 0,
+              "label": "名额",
+              "value": "500人",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "标称距离",
+              "value": "15公里",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "实际里程",
+              "value": "13.5公里",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "累计爬升",
+              "value": "514米",
+              "wide": false
+            },
+            {
+              "i": 4,
+              "label": "累计下降",
+              "value": "508米",
+              "wide": false
+            },
+            {
+              "i": 5,
+              "label": "出发时间",
+              "value": "12月12日8:00",
+              "wide": false
+            },
+            {
+              "i": 6,
+              "label": "关门时间",
+              "value": "12月12日12:30",
+              "wide": false
+            },
+            {
+              "i": 7,
+              "label": "关门时长",
+              "value": "4.5小时",
+              "wide": false
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "报名页价格 · 220元/人"
+            }
+          ]
+        },
+        {
+          "i": 5,
+          "name": "欢乐跑6KM",
+          "fields": [
+            {
+              "i": 0,
+              "label": "名额",
+              "value": "1300人",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "标称距离",
+              "value": "6公里",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "实际里程",
+              "value": "6.4公里",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "累计爬升",
+              "value": "180米",
+              "wide": false
+            },
+            {
+              "i": 4,
+              "label": "累计下降",
+              "value": "180米",
+              "wide": false
+            },
+            {
+              "i": 5,
+              "label": "出发时间",
+              "value": "12月12日8:15",
+              "wide": false
+            },
+            {
+              "i": 6,
+              "label": "关门时间",
+              "value": "12月12日10:15",
+              "wide": false
+            },
+            {
+              "i": 7,
+              "label": "关门时长",
+              "value": "2小时",
+              "wide": false
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "报名页价格 · 60元/人"
+            }
+          ]
+        },
+        {
+          "i": 6,
+          "name": "欢乐跑6KM（1大1小）",
+          "fields": [
+            {
+              "i": 0,
+              "label": "形式",
+              "value": "亲子",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "亲子人数",
+              "value": "1大1小",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "名额",
+              "value": "1300人",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "标称距离",
+              "value": "6公里",
+              "wide": false
+            },
+            {
+              "i": 4,
+              "label": "实际里程",
+              "value": "6.4公里",
+              "wide": false
+            },
+            {
+              "i": 5,
+              "label": "累计爬升",
+              "value": "180米",
+              "wide": false
+            },
+            {
+              "i": 6,
+              "label": "累计下降",
+              "value": "180米",
+              "wide": false
+            },
+            {
+              "i": 7,
+              "label": "出发时间",
+              "value": "12月12日8:15",
+              "wide": false
+            },
+            {
+              "i": 8,
+              "label": "关门时间",
+              "value": "12月12日10:15",
+              "wide": false
+            },
+            {
+              "i": 9,
+              "label": "关门时长",
+              "value": "2小时",
+              "wide": false
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "报名页价格 · 120元/人"
+            }
+          ]
+        }
+      ],
+      "chapters": [
+        {
+          "id": "chapter-0",
+          "label": "赛事概况"
+        },
+        {
+          "id": "chapter-2",
+          "label": "赛事图文资料（原图识别）"
+        },
+        {
+          "id": "chapter-4",
+          "label": "各组路线与海拔资料"
+        },
+        {
+          "id": "chapter-10",
+          "label": "参赛年龄与完赛经历要求"
+        },
+        {
+          "id": "chapter-19",
+          "label": "健康条件、计时奖励、报名费用与取消政策"
+        },
+        {
+          "id": "chapter-58",
+          "label": "领物安排、竞赛装备与检查要求"
+        },
+        {
+          "id": "chapter-65",
+          "label": "赛事图文资料（原图识别）"
+        },
+        {
+          "id": "chapter-67",
+          "label": "赛事图文资料（原图识别）"
+        },
+        {
+          "id": "chapter-69",
+          "label": "参赛须知与身体条件要求"
+        },
+        {
+          "id": "chapter-85",
+          "label": "组别规模、起跑关门与70KM路线"
+        },
+        {
+          "id": "chapter-88",
+          "label": "报名资格"
+        },
+        {
+          "id": "chapter-97",
+          "label": "报名资格第9条"
+        },
+        {
+          "id": "chapter-99",
+          "label": "报名价格、团报与取消政策"
+        },
+        {
+          "id": "chapter-108",
+          "label": "退费邮件要求、领物安排与竞赛装备"
+        },
+        {
+          "id": "chapter-112",
+          "label": "竞赛装备检查要求"
+        },
+        {
+          "id": "chapter-115",
+          "label": "竞赛处罚细则"
+        },
+        {
+          "id": "chapter-118",
+          "label": "裁判仲裁、取消规则与号码布存包"
+        },
+        {
+          "id": "chapter-128",
+          "label": "急救医疗、检查点与补给站"
+        },
+        {
+          "id": "chapter-139",
+          "label": "退赛、路线标识、保险与联系方式"
+        },
+        {
+          "id": "route",
+          "label": "赛道与路线",
+          "hasContent": true
+        },
+        {
+          "id": "originals",
+          "label": "规程原图参考",
+          "hasContent": true
+        }
+      ],
+      "originalCount": 17,
+      "screenshots": [
+        "/private/tmp/race-guide-quality-20261117/batch12-mini-fengqing-390-groups.png",
+        "/private/tmp/race-guide-quality-20261117/batch12-mini-fengqing-390-table-before.png",
+        "/private/tmp/race-guide-quality-20261117/batch12-mini-fengqing-390-table-after.png",
+        "/private/tmp/race-guide-quality-20261117/batch12-mini-fengqing-390-original.png",
+        "/private/tmp/race-guide-quality-20261117/batch12-mini-fengqing-390-preview.png"
+      ],
+      "tablesBefore": [
+        {
+          "left": 27,
+          "right": 363,
+          "top": 99.984375,
+          "bottom": 453.984375,
+          "width": 336,
+          "height": 354,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 840,
+          "scrollHeight": 372
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 1689.34375,
+          "bottom": 2668.34375,
+          "width": 336,
+          "height": 979,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 600,
+          "scrollHeight": 997
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 4591.5703125,
+          "bottom": 4920.5703125,
+          "width": 336,
+          "height": 329,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 960,
+          "scrollHeight": 347
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 7175.34375,
+          "bottom": 12291.34375,
+          "width": 336,
+          "height": 5116,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 5134
+        }
+      ],
+      "tablesAfter": [
+        {
+          "left": 27,
+          "right": 363,
+          "top": 99.984375,
+          "bottom": 453.984375,
+          "width": 336,
+          "height": 354,
+          "scrollLeft": 506,
+          "scrollTop": 0,
+          "scrollWidth": 840,
+          "scrollHeight": 372
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 1689.34375,
+          "bottom": 2668.34375,
+          "width": 336,
+          "height": 979,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 600,
+          "scrollHeight": 997
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 4591.5703125,
+          "bottom": 4920.5703125,
+          "width": 336,
+          "height": 329,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 960,
+          "scrollHeight": 347
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 7175.34375,
+          "bottom": 12291.34375,
+          "width": 336,
+          "height": 5116,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 5134
+        }
+      ],
+      "actualHorizontalScrollVerified": true,
+      "originalImage": {
+        "left": 28,
+        "right": 362,
+        "top": 100.8671875,
+        "bottom": 3066.78125,
+        "width": 334,
+        "height": 2965.9140625,
+        "mode": "widthFix",
+        "src": "https://togetherbetter.cn/marathon/api/race-sheets/1324",
+        "showMenuByLongpress": true
+      },
+      "longpressActionSucceeded": true,
+      "nativeLongpressMenuVerified": false,
+      "nativePreviewClickSucceeded": true,
+      "hero": {
+        "date": "2026-12-12",
+        "heroDate": "12.12",
+        "year": "2026",
+        "guideCount": 17,
+        "routeCount": 6
+      },
+      "tableContent": [
+        {
+          "headers": [
+            "价格",
+            "凤庆70KM单人组",
+            "凤庆70KM双人组",
+            "滇红50KM",
+            "顺宁35KM",
+            "觅茶15KM",
+            "欢乐跑6KM"
+          ],
+          "rows": [
+            [
+              "正常价",
+              "799",
+              "1598",
+              "599",
+              "399",
+              "220",
+              "60"
+            ],
+            [
+              "早鸟价",
+              "725",
+              "1450",
+              "520",
+              "360",
+              "199",
+              "60"
+            ],
+            [
+              "团报价",
+              "699",
+              "1398",
+              "499",
+              "340",
+              "180",
+              "60"
+            ],
+            [
+              "2025年70/50KM组选手",
+              "650",
+              "同上",
+              "450",
+              "300",
+              "同上",
+              "60"
+            ],
+            [
+              "忠实跑者",
+              "600",
+              "同上",
+              "400",
+              "260",
+              "150",
+              "60"
+            ]
+          ]
+        },
+        {
+          "headers": [
+            "装备名称",
+            "凤庆70KM",
+            "滇红50KM",
+            "顺宁35KM",
+            "觅茶15KM"
+          ],
+          "rows": [
+            [
+              "号码布带芯片（组委会提供）",
+              "必须",
+              "必须",
+              "必须",
+              "必须"
+            ],
+            [
+              "下载有赛事轨迹的电子设备",
+              "必须",
+              "必须",
+              "必须",
+              "必须"
+            ],
+            [
+              "GPS定位器（组委会提供，需缴纳押金）",
+              "必须",
+              "必须",
+              "/",
+              "/"
+            ],
+            [
+              "手机且比赛期间保持开机",
+              "必须",
+              "必须",
+              "必须",
+              "必须"
+            ],
+            [
+              "水具",
+              "容量不少于1L",
+              "容量不少于1L",
+              "容量不少于1L",
+              "容量不少于500ML"
+            ],
+            [
+              "1张急救毯",
+              "必须",
+              "必须",
+              "必须",
+              "必须"
+            ],
+            [
+              "能量食品（1份）",
+              "必须",
+              "必须",
+              "必须",
+              "必须"
+            ],
+            [
+              "连帽全压胶防水冲锋衣（防水系数10000+）",
+              "必须",
+              "必须",
+              "必须",
+              "/"
+            ],
+            [
+              "保暖长袖",
+              "必须",
+              "/",
+              "/",
+              "/"
+            ],
+            [
+              "1只救生哨",
+              "必须",
+              "必须",
+              "必须",
+              "必须"
+            ],
+            [
+              "包含包扎绷带、创可贴与碘伏棉签棒等的急救包",
+              "必须",
+              "必须",
+              "必须",
+              "/"
+            ],
+            [
+              "1套头灯及备用电池",
+              "必须",
+              "必须",
+              "/",
+              "/"
+            ]
+          ]
+        },
+        {
+          "headers": [
+            "组别",
+            "规模",
+            "起跑时间",
+            "关门时长",
+            "关门时间",
+            "实际距离",
+            "累计爬升",
+            "累计下降"
+          ],
+          "rows": [
+            [
+              "凤庆70KM",
+              "400人",
+              "12月12日06:00",
+              "18小时",
+              "12月13日00:00",
+              "69KM",
+              "3570M",
+              "3560M"
+            ],
+            [
+              "滇红50KM",
+              "500人",
+              "12月12日07:30",
+              "13.5小时",
+              "12月12日21:00",
+              "49KM",
+              "2626M",
+              "2626M"
+            ],
+            [
+              "顺宁35KM",
+              "600人",
+              "12月12日07:30",
+              "9.5小时",
+              "12月12日17:00",
+              "34.8KM",
+              "1751M",
+              "1761M"
+            ],
+            [
+              "觅茶15KM",
+              "500人",
+              "12月12日08:00",
+              "4.5小时",
+              "12月12日12:30",
+              "13.5KM",
+              "514M",
+              "508M"
+            ],
+            [
+              "欢乐跑6KM",
+              "1300人",
+              "12月12日08:15",
+              "2小时",
+              "12月12日10:15",
+              "6.4KM",
+              "180M",
+              "180M"
+            ]
+          ]
+        },
+        {
+          "headers": [
+            "序号",
+            "违规情况",
+            "处罚等级"
+          ],
+          "rows": [
+            [
+              "1",
+              "参赛选手无意犯规",
+              "口头警告"
+            ],
+            [
+              "2",
+              "存在不文明的行为",
+              "口头警告"
+            ],
+            [
+              "3",
+              "裁判员/工作人员认为危险动作/犯规行为可能发生",
+              "口头警告"
+            ],
+            [
+              "4",
+              "参赛选手犯规，但并未获利",
+              "口头警告"
+            ],
+            [
+              "5",
+              "未正确佩戴号码布",
+              "口头警告"
+            ],
+            [
+              "6",
+              "累计警告3次依次累加",
+              "罚时10分钟"
+            ],
+            [
+              "7",
+              "更改、涂污或修改比赛号码",
+              "罚时10分钟"
+            ],
+            [
+              "8",
+              "将补给点内难以降解的物品（如食品塑料包装、纸杯、矿泉水瓶等）带出，且不听劝阻",
+              "罚时10分钟"
+            ],
+            [
+              "9",
+              "收到口头警告后仍不按照裁判/工作人员指示执行",
+              "罚时1小时"
+            ],
+            [
+              "10",
+              "接受未经许可的帮助（补给站外的私补）",
+              "罚时1小时"
+            ],
+            [
+              "11",
+              "未按照既定轨迹方向行进",
+              "罚时1小时"
+            ],
+            [
+              "12",
+              "不尊重他人与组委会",
+              "罚时2小时"
+            ],
+            [
+              "13",
+              "未给需要紧急救助的参赛者提供帮助",
+              "罚时2小时"
+            ],
+            [
+              "14",
+              "双人组，两名选手终点计时成绩差距超过1分钟",
+              "终止比赛、取消成绩"
+            ],
+            [
+              "15",
+              "故意未按照规定的赛道轨迹进行比赛，通过走捷径（抄近路）获利的作弊行为",
+              "终止比赛、取消成绩"
+            ],
+            [
+              "16",
+              "缺少个人竞赛装备或携带不符合赛事规定的个人竞赛装备（含强制装备）",
+              "终止比赛、取消成绩"
+            ],
+            [
+              "17",
+              "通过借用他人装备以蒙混竞赛装备检查，借用人与出借人均取消比赛成绩",
+              "终止比赛、取消成绩"
+            ],
+            [
+              "18",
+              "利用虚假信息等不正当手段获取参赛资格者",
+              "终止比赛、取消成绩"
+            ],
+            [
+              "19",
+              "拒绝接受强制装备检查、抽查",
+              "终止比赛、取消成绩"
+            ],
+            [
+              "20",
+              "超过出发时间15分钟、不按规定的起跑顺序在非指定区域和时间起跑",
+              "终止比赛、取消成绩"
+            ],
+            [
+              "21",
+              "携带火种进入赛道，在赛道（含站点）抽烟",
+              "终止比赛、取消成绩"
+            ],
+            [
+              "22",
+              "在赛道中随意丢弃垃圾的行为",
+              "终止比赛、取消成绩"
+            ],
+            [
+              "23",
+              "于赛道预先隐藏然后利用各类物资（包括食物、饮料及其他辅助工具）",
+              "终止比赛、取消成绩"
+            ],
+            [
+              "24",
+              "故意阻挡或阻碍其他参赛选手的行为",
+              "终止比赛、取消成绩"
+            ],
+            [
+              "25",
+              "未按照顺序依次经过计时点的行为，存在打卡点位缺少的情况",
+              "终止比赛、取消成绩"
+            ],
+            [
+              "26",
+              "收到罚时处置后仍不按照裁判指示执行",
+              "终止比赛、取消成绩"
+            ],
+            [
+              "27",
+              "替跑、故意佩戴多人计时芯片参赛的行为，佩戴者及获利者均将受到处罚",
+              "终止比赛、取消成绩"
+            ],
+            [
+              "28",
+              "以接力方式完成比赛",
+              "终止比赛、取消成绩"
+            ],
+            [
+              "29",
+              "借助交通工具或其他外力等帮助自己或他人获利的作弊行为（团队赛允许本组队员间相互牵引）",
+              "终止比赛、取消成绩"
+            ],
+            [
+              "30",
+              "蓄意破坏、移动赛道引导系统的行为，赛道引导系统包括但不限于：路标、反光条、警戒带、指示牌、旗",
+              "取消成绩/禁赛"
+            ],
+            [
+              "31",
+              "破坏赛道途经的文物古迹的行为",
+              "取消成绩/禁赛"
+            ],
+            [
+              "32",
+              "故意或恶意占用医疗急救和救援资源的行为",
+              "取消成绩/禁赛"
+            ],
+            [
+              "33",
+              "擅自退赛离开赛道未通知组委会者",
+              "取消成绩/禁赛"
+            ],
+            [
+              "34",
+              "关门时间到后不听劝阻、不停止比赛或退出比赛后又进入比赛",
+              "取消成绩/禁赛"
+            ],
+            [
+              "35",
+              "不服从赛事工作人员指挥和管理，干扰赛事秩序，聚众闹事、打架斗殴",
+              "取消成绩/禁赛"
+            ],
+            [
+              "36",
+              "拒绝配合并不执行组委会裁判决定的行为",
+              "取消成绩/禁赛"
+            ],
+            [
+              "37",
+              "不按规定重复通过终点、未跑完全程私自通过终点领取完赛物品、完赛奖牌",
+              "取消成绩/禁赛"
+            ],
+            [
+              "38",
+              "私自伪造号码布、利用其它赛事或往届赛事号码布、未佩戴号码布通过终点领取完赛物品、完赛奖牌",
+              "取消成绩/禁赛"
+            ],
+            [
+              "39",
+              "有可能危害到其他选手人身安全、严重影响赛事运行、妨碍防疫措施执行、危害国家或公共安全的行为",
+              "取消成绩/禁赛"
+            ],
+            [
+              "40",
+              "服用兴奋剂",
+              "取消成绩/禁赛"
+            ],
+            [
+              "41",
+              "其他违反法律法规的行为",
+              "取消成绩/禁赛"
+            ]
+          ]
+        }
+      ],
+      "renderedTableCount": 4,
+      "renderedTableRowsIncludingHeaders": 67,
+      "allTableRowsRendered": true,
+      "initialPreviewActuallyDisplayed": false,
+      "initialPreviewEvidence": "10-second screenshot still loading",
+      "retestFirstImage": {
+        "left": 28,
+        "right": 362,
+        "top": 100.8671875,
+        "bottom": 3066.78125,
+        "width": 334,
+        "height": 2965.9140625,
+        "mode": "widthFix",
+        "src": "https://togetherbetter.cn/marathon/api/race-sheets/1324"
+      },
+      "previewRetestScreenshot": "/tmp/race-guide-quality-20261117/batch12-mini-fengqing-390-preview-retest.png",
+      "nativePreviewActuallyDisplayed": true,
+      "screenshotActuallyReviewedByRootAt": "2026-11-18T19:08:17.885Z",
+      "previewReview": "Initial10sec capture loading; reopened without mocks, 15sec retest actually displays original. Initial delay remains unresolved."
+    },
+    {
+      "id": "zuiku-16852",
+      "label": "jingshan",
+      "apiUrl": "https://togetherbetter.cn/marathon/api/races/zuiku-16852",
+      "apiStatus": 200,
+      "proseExactlyMatchesProduction": true,
+      "groupsExactlyMatchPublicProduction": true,
+      "guideSha256": "bebbfcff0321b13456ef8d06260f6a35d0d6ee2f34bc4f45ea9af4fffe25ec18",
+      "guideCharacters": 6697,
+      "groupCount": 2,
+      "groups": [
+        {
+          "i": 0,
+          "name": "挑战组-21KM",
+          "fields": [
+            {
+              "i": 0,
+              "label": "名额",
+              "value": "500人",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "标称距离",
+              "value": "21公里",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "实际里程",
+              "value": "21公里",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "累计爬升",
+              "value": "1100米",
+              "wide": false
+            },
+            {
+              "i": 4,
+              "label": "出发时间",
+              "value": "12月27日7:30",
+              "wide": false
+            },
+            {
+              "i": 5,
+              "label": "关门时间",
+              "value": "12月27日13:30（6小时）",
+              "wide": false
+            },
+            {
+              "i": 6,
+              "label": "关门时长",
+              "value": "6小时",
+              "wide": false
+            },
+            {
+              "i": 7,
+              "label": "ITRA积分",
+              "value": "1分",
+              "wide": false
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "早鸟价（2026-10-22—2026-11-08） · 599元/人"
+            },
+            {
+              "i": 1,
+              "text": "正常价（2026-11-09—2026-11-30） · 699元/人"
+            }
+          ]
+        },
+        {
+          "i": 1,
+          "name": "祈福组-13KM",
+          "fields": [
+            {
+              "i": 0,
+              "label": "名额",
+              "value": "400人",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "标称距离",
+              "value": "13公里",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "实际里程",
+              "value": "13公里",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "累计爬升",
+              "value": "520米",
+              "wide": false
+            },
+            {
+              "i": 4,
+              "label": "出发时间",
+              "value": "12月27日8:00",
+              "wide": false
+            },
+            {
+              "i": 5,
+              "label": "关门时间",
+              "value": "12月27日11:30（3.5小时）",
+              "wide": false
+            },
+            {
+              "i": 6,
+              "label": "ITRA积分",
+              "value": "0分",
+              "wide": false
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "早鸟价（2026-10-22—2026-11-08） · 499元/人"
+            },
+            {
+              "i": 1,
+              "text": "正常价（2026-11-09—2026-11-30） · 599元/人"
+            }
+          ]
+        }
+      ],
+      "chapters": [
+        {
+          "id": "chapter-0",
+          "label": "赛事概况"
+        },
+        {
+          "id": "chapter-5",
+          "label": "赛事组织、组别、路线与关门"
+        },
+        {
+          "id": "chapter-11",
+          "label": "报名费用、流程与完整退改政策"
+        },
+        {
+          "id": "chapter-18",
+          "label": "完整年龄、健康和经验资格"
+        },
+        {
+          "id": "chapter-22",
+          "label": "完整强制与建议装备"
+        },
+        {
+          "id": "chapter-38",
+          "label": "领物、代领及寄存完整规则"
+        },
+        {
+          "id": "chapter-42",
+          "label": "计时与完整奖励办法"
+        },
+        {
+          "id": "chapter-46",
+          "label": "违规行为、投诉与退赛"
+        },
+        {
+          "id": "chapter-64",
+          "label": "完整参赛规则23项"
+        },
+        {
+          "id": "chapter-88",
+          "label": "安全、保险、取消变更、版权及联系"
+        },
+        {
+          "id": "chapter-95",
+          "label": "参赛服尺寸与完整推荐表"
+        },
+        {
+          "id": "originals",
+          "label": "规程原图参考",
+          "hasContent": true
+        }
+      ],
+      "originalCount": 5,
+      "screenshots": [
+        "/private/tmp/race-guide-quality-20261117/batch12-mini-jingshan-390-groups.png",
+        "/private/tmp/race-guide-quality-20261117/batch12-mini-jingshan-390-table-before.png",
+        "/private/tmp/race-guide-quality-20261117/batch12-mini-jingshan-390-table-after.png",
+        "/private/tmp/race-guide-quality-20261117/batch12-mini-jingshan-390-original.png",
+        "/private/tmp/race-guide-quality-20261117/batch12-mini-jingshan-390-preview.png"
+      ],
+      "tablesBefore": [
+        {
+          "left": 27,
+          "right": 363,
+          "top": 99.9453125,
+          "bottom": 339.9453125,
+          "width": 336,
+          "height": 240,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 960,
+          "scrollHeight": 258
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 383.140625,
+          "bottom": 812.140625,
+          "width": 336,
+          "height": 429,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 600,
+          "scrollHeight": 447
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 1127.6875,
+          "bottom": 1292.6875,
+          "width": 336,
+          "height": 165,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 183
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 7279.5078125,
+          "bottom": 7696.5078125,
+          "width": 336,
+          "height": 417,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 960,
+          "scrollHeight": 435
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 7849.484375,
+          "bottom": 8127.484375,
+          "width": 336,
+          "height": 278,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 1080,
+          "scrollHeight": 296
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 8215.2734375,
+          "bottom": 8539.2734375,
+          "width": 336,
+          "height": 324,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 1320,
+          "scrollHeight": 342
+        }
+      ],
+      "tablesAfter": [
+        {
+          "left": 27,
+          "right": 363,
+          "top": 99.9453125,
+          "bottom": 339.9453125,
+          "width": 336,
+          "height": 240,
+          "scrollLeft": 626,
+          "scrollTop": 0,
+          "scrollWidth": 960,
+          "scrollHeight": 258
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 383.140625,
+          "bottom": 812.140625,
+          "width": 336,
+          "height": 429,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 600,
+          "scrollHeight": 447
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 1127.6875,
+          "bottom": 1292.6875,
+          "width": 336,
+          "height": 165,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 183
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 7279.5078125,
+          "bottom": 7696.5078125,
+          "width": 336,
+          "height": 417,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 960,
+          "scrollHeight": 435
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 7849.484375,
+          "bottom": 8127.484375,
+          "width": 336,
+          "height": 278,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 1080,
+          "scrollHeight": 296
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 8215.2734375,
+          "bottom": 8539.2734375,
+          "width": 336,
+          "height": 324,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 1320,
+          "scrollHeight": 342
+        }
+      ],
+      "actualHorizontalScrollVerified": true,
+      "originalImage": {
+        "left": 28,
+        "right": 362,
+        "top": 249.03125,
+        "bottom": 391.046875,
+        "width": 334,
+        "height": 142.015625,
+        "mode": "widthFix",
+        "src": "https://togetherbetter.cn/marathon/api/race-sheets/1548",
+        "showMenuByLongpress": true
+      },
+      "longpressActionSucceeded": true,
+      "nativeLongpressMenuVerified": false,
+      "nativePreviewClickSucceeded": true,
+      "hero": {
+        "date": "2026-12-27",
+        "heroDate": "12.27",
+        "year": "2026",
+        "guideCount": 5,
+        "routeCount": 0
+      },
+      "tableContent": [
+        {
+          "headers": [
+            "组别",
+            "距离",
+            "累计爬升",
+            "名额",
+            "集结截止",
+            "发枪",
+            "终点关门",
+            "ITRA"
+          ],
+          "rows": [
+            [
+              "挑战组",
+              "约21公里",
+              "约1100米",
+              "500人",
+              "12月27日07:20前",
+              "07:30",
+              "13:30（6小时）",
+              "1分，另有个人表现分"
+            ],
+            [
+              "祈福组",
+              "约13公里",
+              "约520米",
+              "400人",
+              "12月27日07:50前",
+              "08:00",
+              "首页及长图11:30（3.5小时），PDF站点表11:00",
+              "0分，但有个人表现分"
+            ]
+          ]
+        },
+        {
+          "headers": [
+            "组别",
+            "站点",
+            "名称",
+            "累计距离",
+            "关门"
+          ],
+          "rows": [
+            [
+              "挑战组",
+              "CP1",
+              "径山寺顶",
+              "6公里",
+              "09:30（发枪后2小时）"
+            ],
+            [
+              "挑战组",
+              "CP2",
+              "里锡康",
+              "10.5公里",
+              "11:00（发枪后3.5小时）"
+            ],
+            [
+              "挑战组",
+              "终点",
+              "径山村",
+              "21公里",
+              "13:30"
+            ],
+            [
+              "祈福组",
+              "CP1",
+              "径山寺顶",
+              "6公里",
+              "10:00（发枪后2小时）"
+            ],
+            [
+              "祈福组",
+              "终点",
+              "径山村",
+              "13公里",
+              "PDF第5页11:00，与首页11:30冲突，须向组委会确认"
+            ]
+          ]
+        },
+        {
+          "headers": [
+            "组别",
+            "早鸟价：10月22日—11月8日",
+            "正常价：11月9日—11月30日"
+          ],
+          "rows": [
+            [
+              "挑战组21KM",
+              "599元/人",
+              "699元/人"
+            ],
+            [
+              "祈福组13KM",
+              "499元/人",
+              "599元/人"
+            ]
+          ]
+        },
+        {
+          "headers": [
+            "性别",
+            "尺码",
+            "号型",
+            "胸围",
+            "衣长",
+            "袖长",
+            "腰围",
+            "下摆围"
+          ],
+          "rows": [
+            [
+              "女",
+              "S",
+              "160/80A",
+              "85",
+              "56",
+              "69.5",
+              "78",
+              "89"
+            ],
+            [
+              "女",
+              "M",
+              "165/84A",
+              "89",
+              "58",
+              "71",
+              "82",
+              "93"
+            ],
+            [
+              "女",
+              "L",
+              "170/88A",
+              "93",
+              "60",
+              "72.5",
+              "86",
+              "97"
+            ],
+            [
+              "女",
+              "XL",
+              "175/92A",
+              "97",
+              "62",
+              "74",
+              "90",
+              "101"
+            ],
+            [
+              "男",
+              "M",
+              "170/92A",
+              "100",
+              "66",
+              "75.5",
+              "96",
+              "98"
+            ],
+            [
+              "男",
+              "L",
+              "175/96A",
+              "104",
+              "68",
+              "77",
+              "100",
+              "102"
+            ],
+            [
+              "男",
+              "XL",
+              "180/100A",
+              "108",
+              "70",
+              "78.5",
+              "104",
+              "106"
+            ],
+            [
+              "男",
+              "2XL",
+              "185/104A",
+              "112",
+              "72",
+              "80",
+              "108",
+              "110"
+            ]
+          ]
+        },
+        {
+          "headers": [
+            "身高/体重",
+            "40",
+            "45",
+            "50",
+            "55",
+            "60",
+            "65",
+            "70",
+            "75"
+          ],
+          "rows": [
+            [
+              "155",
+              "S",
+              "S",
+              "S",
+              "M",
+              "L",
+              "—",
+              "—",
+              "—"
+            ],
+            [
+              "160",
+              "S",
+              "S",
+              "M",
+              "M",
+              "L",
+              "XL",
+              "—",
+              "—"
+            ],
+            [
+              "165",
+              "—",
+              "S",
+              "M",
+              "M",
+              "L",
+              "XL",
+              "XL",
+              "—"
+            ],
+            [
+              "170",
+              "—",
+              "—",
+              "M",
+              "M",
+              "L",
+              "L",
+              "XL",
+              "XL"
+            ],
+            [
+              "175",
+              "—",
+              "—",
+              "—",
+              "L",
+              "L",
+              "L",
+              "XL",
+              "XL"
+            ]
+          ]
+        },
+        {
+          "headers": [
+            "身高/体重",
+            "45",
+            "50",
+            "55",
+            "60",
+            "65",
+            "70",
+            "75",
+            "80",
+            "85",
+            "90"
+          ],
+          "rows": [
+            [
+              "165",
+              "M",
+              "M",
+              "M",
+              "M",
+              "L",
+              "—",
+              "—",
+              "—",
+              "—",
+              "—"
+            ],
+            [
+              "170",
+              "—",
+              "M",
+              "M",
+              "M",
+              "L",
+              "L",
+              "—",
+              "—",
+              "—",
+              "—"
+            ],
+            [
+              "175",
+              "—",
+              "—",
+              "M",
+              "L",
+              "L",
+              "L",
+              "L",
+              "XL",
+              "XL",
+              "—"
+            ],
+            [
+              "180",
+              "—",
+              "—",
+              "—",
+              "—",
+              "L",
+              "L",
+              "XL",
+              "XL",
+              "XL",
+              "—"
+            ],
+            [
+              "185",
+              "—",
+              "—",
+              "—",
+              "—",
+              "—",
+              "XL",
+              "XL",
+              "2XL",
+              "2XL",
+              "2XL"
+            ],
+            [
+              "190",
+              "—",
+              "—",
+              "—",
+              "—",
+              "—",
+              "—",
+              "2XL",
+              "2XL",
+              "2XL",
+              "—"
+            ]
+          ]
+        }
+      ],
+      "renderedTableCount": 6,
+      "renderedTableRowsIncludingHeaders": 34,
+      "allTableRowsRendered": true,
+      "nativePreviewActuallyDisplayed": true,
+      "screenshotActuallyReviewedByRootAt": "2026-11-18T19:08:17.885Z",
+      "previewReview": "Actual initial screenshot displays green header original; long-image preview coverage comes from Fengqing"
+    }
+  ],
+  "screenshots": [
+    "/private/tmp/race-guide-quality-20261117/batch12-mini-hongkong-390-groups.png",
+    "/private/tmp/race-guide-quality-20261117/batch12-mini-hongkong-390-table-before.png",
+    "/private/tmp/race-guide-quality-20261117/batch12-mini-hongkong-390-table-after.png",
+    "/private/tmp/race-guide-quality-20261117/batch12-mini-hongkong-390-original.png",
+    "/private/tmp/race-guide-quality-20261117/batch12-mini-hongkong-390-preview.png",
+    "/private/tmp/race-guide-quality-20261117/batch12-mini-fengqing-390-groups.png",
+    "/private/tmp/race-guide-quality-20261117/batch12-mini-fengqing-390-table-before.png",
+    "/private/tmp/race-guide-quality-20261117/batch12-mini-fengqing-390-table-after.png",
+    "/private/tmp/race-guide-quality-20261117/batch12-mini-fengqing-390-original.png",
+    "/private/tmp/race-guide-quality-20261117/batch12-mini-fengqing-390-preview.png",
+    "/private/tmp/race-guide-quality-20261117/batch12-mini-jingshan-390-groups.png",
+    "/private/tmp/race-guide-quality-20261117/batch12-mini-jingshan-390-table-before.png",
+    "/private/tmp/race-guide-quality-20261117/batch12-mini-jingshan-390-table-after.png",
+    "/private/tmp/race-guide-quality-20261117/batch12-mini-jingshan-390-original.png",
+    "/private/tmp/race-guide-quality-20261117/batch12-mini-jingshan-390-preview.png"
+  ],
+  "pending": [
+    "Physical phone gesture zoom, save and native long-press menu",
+    "Official uploaded/published mini-program verification",
+    "320px actual DevTools profile switching: exposed automation tools provide no device switch; 390px is currently configured."
+  ],
+  "completedAt": "2026-11-18T19:08:17.885Z",
+  "actualScreenshotReview": true
+}

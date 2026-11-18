@@ -1,0 +1,891 @@
+[
+  {
+    "id": "zuiku-21601",
+    "name": "无锡走马观湖马山行",
+    "status": "partially_verified",
+    "scope": "局部校对：本清单edits逐项标注已核对原图或本届可复制报名正文；未审章节完整保留，未声明整篇完成。",
+    "beforeBodyHash": "374c9393b648961340a338b388a8feca1cd149020f866b5b67158f3dcac7eed9",
+    "savedBodyHash": "a315c026af69d5ce312f94a5843aba816af63aa82684a3236e50c5b3d7debc17",
+    "bodyChanged": true,
+    "edits": 6,
+    "viewedImages": 3,
+    "pendingImages": 0,
+    "chapters": 5,
+    "groups": 3,
+    "groupCorrections": 0,
+    "questions": [
+      "实际连续查看原图0的0/1700/3400、原图1的0/1700/3400/5100、原图2的0/1700/3400/5100裁图。",
+      "官微延期公告直链实际返回环境异常验证页，不能当作全文抓取成功；报名页对应延期公告图片完整保留。",
+      "亲子正常价表格单位与图首/报名页冲突，正文并列原值；不猜测更改表格单位。",
+      "补全OCR漏掉的严重恐高者、名额不可转让及存取衣物全文。"
+    ],
+    "officialDocuments": [],
+    "sourceDiscovery": [
+      {
+        "url": "https://reg.zuicool.com/36861",
+        "result": "已读取本届可复制报名文本，延期至2027-03-28"
+      },
+      {
+        "url": "https://mp.weixin.qq.com/s/nJbS3K7QEpcM2_KLDMDZMQ",
+        "result": "实际访问200但为环境异常验证页；当届身份由标题/报名页所附2026-11-10公告图核验"
+      },
+      {
+        "query": "2027 无锡 走马观湖 马山行 延期 野莱赛",
+        "result": "独立web检索接口404，已有搜索HTML未给出可核验有效结果；未据此断言无官网"
+      }
+    ],
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true
+    },
+    "webWidths": [
+      320,
+      390
+    ],
+    "productionRenderingVerifiedAt": "2026-11-18T18:57:07.973Z"
+  },
+  {
+    "id": "zuiku-26274",
+    "name": "2026长白山林海雪原穿越赛",
+    "status": "partially_verified",
+    "scope": "局部校对：本清单edits逐项标注已核对原图或本届可复制报名正文；未审章节完整保留，未声明整篇完成。",
+    "beforeBodyHash": "355c7bb36d6e0087d038c05f042026cbeaf337be234c3f0eab13bf509aaa20cc",
+    "savedBodyHash": "6ec5461c3246dcbf0967cd8da7f23a6b11f83c8de68434bbf1e84458a8074b62",
+    "bodyChanged": true,
+    "edits": 9,
+    "viewedImages": 3,
+    "pendingImages": 0,
+    "chapters": 6,
+    "groups": 5,
+    "groupCorrections": 13,
+    "questions": [
+      "实际打开原图0/1/2（21、10、5公里路线）核验；完整费用、资格、健康、强制装备、竞赛处罚、奖励、医疗保险与肖像权可复制正文保留。",
+      "官网http主页实际访问成功但为通用动态首页模板，未显示本届比赛正文；https主域名证书不匹配，不能称已取得本届官网全文。",
+      "10公里/5公里图示折返点标记与项目名存在表面差异，保留原图原值，不用折返点推算改写距离。",
+      "报名页年龄与出生年（2008/1961/2018）按源文保留，不自行消解边界歧义；团体10人以上9折及报名费不退条款完整保留。",
+      "最终补核本届官网875291完整DOM全文；与已有草稿条款基本一致，改为直接使用官网正文（参赛服为21KM独享，芯片21/10，5KM限1小时30分；21KM男女各前三2000/1000/800元户外装备+万达房券1张）。平台官网路线参考图继续保留，官网标题与概况一致，非长春890496赛事。"
+    ],
+    "officialDocuments": [],
+    "sourceDiscovery": [
+      {
+        "url": "https://reg.zuicool.com/43590",
+        "result": "已读取本届全文，明确2026-12-06、强制装备、处罚及奖励"
+      },
+      {
+        "url": "http://www.ccfreeman.cn",
+        "result": "实际200为自游人体育通用动态主页，缺少本届规程正文；未将主页当作本届全文"
+      },
+      {
+        "url": "https://www.ccfreeman.cn",
+        "result": "证书hostname mismatch，未获得正文"
+      },
+      {
+        "query": "2026 长白山 林海雪原 穿越赛 自游人 官网",
+        "result": "独立web检索接口404，搜索HTML无相关赛事有效结果；未据此断言无官网"
+      },
+      {
+        "url": "https://freeman.saihuitong.com/event?id=875291&mid=30543",
+        "result": "根通过官网活动列表发现本届，已读取完整可复制官方规程（5440字、3表），与平台同届身份相符；优先以官网完整正文恢复福利/关门/奖励表与长条款。"
+      }
+    ],
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true
+    },
+    "webWidths": [
+      320,
+      390
+    ],
+    "productionRenderingVerifiedAt": "2026-11-18T18:57:07.973Z"
+  },
+  {
+    "id": "zuiku-68796",
+    "name": "2026第十五届海淀之巅三峰越野赛",
+    "status": "partially_verified",
+    "scope": "局部校对：本清单edits逐项标注已核对原图或本届可复制报名正文；未审章节完整保留，未声明整篇完成。",
+    "beforeBodyHash": "d33c5728e64c73d5f2d1c8ffe6e27f10a1eb06130199e60b1c3d01f434bd4acb",
+    "savedBodyHash": "78f8be4488dd772699fe4f041fbc15d835d22c9567124b39130117beeb3946ad",
+    "bodyChanged": true,
+    "edits": 10,
+    "viewedImages": 8,
+    "pendingImages": 0,
+    "chapters": 10,
+    "groups": 4,
+    "groupCorrections": 12,
+    "questions": [
+      "全部8张原图按连续1700步长裁图实际打开。补齐六列费用/亲子单位、精英门槛、四组发枪关门表、完整路线表、健康漏项、14项装备勾选、完整补给表及22行处罚表。",
+      "原图总报名截止11月20日，但费用表正常价列截止11月10日24点；保留两原值。老鸟价原图写42公里459，与本届40公里组名不同，按原文保留。",
+      "40/22/10公里简介爬升2900/1800/900与路线图2960/1720/844不同；ITRA截图距离41.22/23.06/9.38与路线图41.2/22/9.4不同，正文并列并保留原图。",
+      "历史三峰破三榜与百强榜的旧OCR仍保留为图文转录；小字历史名单未认证为逐字完整，reviewLevel保持partial。"
+    ],
+    "officialDocuments": [],
+    "sourceDiscovery": [
+      {
+        "url": "https://reg.zuicool.com/48592",
+        "result": "本届可复制报名概况已读取，规程主要为8张图片，已逐张连续裁图核验"
+      },
+      {
+        "query": "2026 第十五届 海淀之巅 三峰越野赛 竞赛规程",
+        "result": "独立web检索接口404，搜索HTML仅无关结果；未据此断言无官网"
+      }
+    ],
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true
+    },
+    "webWidths": [
+      320,
+      390
+    ],
+    "productionRenderingVerifiedAt": "2026-11-18T18:57:07.973Z"
+  },
+  {
+    "id": "zuiku-65465",
+    "name": "“环浙步道 山海乐清”2026第二届“山海乐清”徒步大会暨越野赛",
+    "status": "partially_verified",
+    "scope": "局部校对：本清单edits逐项标注已核对原图或本届可复制报名正文；未审章节完整保留，未声明整篇完成。",
+    "beforeBodyHash": "2f21bd198cad1b82a37b13360ee1a7a7fd9c8ab0eee187c0128f886b2c6d37d6",
+    "savedBodyHash": "7258dbb46c2c9b905b9fda1be85aa2fce1ea82c12d53e00b143487f745d0f44a",
+    "bodyChanged": true,
+    "edits": 8,
+    "viewedImages": 6,
+    "pendingImages": 0,
+    "chapters": 8,
+    "groups": 4,
+    "groupCorrections": 4,
+    "questions": [
+      "全部6张原图连续裁图实际打开。恢复全部四行费用及团报88折，完整三条路线、领物、12项装备及奖品奖励。",
+      "强制装备图表列头写37km，与本届25km不同；保留原值并记录；勾号含义按原图“组委会提供”转录，不能把空白误读为非强制。",
+      "参赛资格和退费阶梯/转让/不可抗力处理全文保留，未借用其他赛事条款。"
+    ],
+    "officialDocuments": [],
+    "sourceDiscovery": [
+      {
+        "url": "https://reg.zuicool.com/98568",
+        "result": "已读取本届概况/四报名选项，6张规程图已逐张核验"
+      },
+      {
+        "query": "2026 山海乐清 第二届 徒步大会 越野赛 规程",
+        "result": "独立web接口404，搜索HTML无可核验结果；未据此断言无官网"
+      }
+    ],
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true
+    },
+    "webWidths": [
+      320,
+      390
+    ],
+    "productionRenderingVerifiedAt": "2026-11-18T18:57:07.973Z"
+  },
+  {
+    "id": "zuiku-37167",
+    "name": "拓路者2026北京香山爬坡赛",
+    "status": "partially_verified",
+    "scope": "局部校对：本清单edits逐项标注已核对原图或本届可复制报名正文；未审章节完整保留，未声明整篇完成。",
+    "beforeBodyHash": "1f598d3ef197a5091c3ec269974a7ff56c276a1de8514280f554362c3582205e",
+    "savedBodyHash": "18fd300b6c2ecd9c9c2bc2c2c353f3ea8e53b7456ef637a2f1c973d057e49110",
+    "bodyChanged": true,
+    "edits": 8,
+    "viewedImages": 4,
+    "pendingImages": 0,
+    "chapters": 5,
+    "groups": 1,
+    "groupCorrections": 2,
+    "questions": [
+      "全部4张原图按连续裁图实际打开。补全正文漏失的18KM/6小时/拟1分、路线单圈6.02km/548m、前三名奖品、救生口哨和冲锋衣，修复投诉邮箱。",
+      "报名图退款期限原写10月1日10:00，报名截止图写11月6日10:00；按原图保留，不猜测日期。活动概况18KM与路线图单圈6.02KM×3并列保留；ITRA明确为拟1分，不认证已授分。",
+      "装备尺寸、资格健康、取消成绩/罚时半小时、保险及邮寄/转让规则全文保留。",
+      "接续代理实际复看4张原图全部连续裁图（0:0至11900，1:0，2:0至8500，3:0至5100）；补上原图“官方客服”标签，尺码表补Markdown分隔行。"
+    ],
+    "officialDocuments": [],
+    "sourceDiscovery": [
+      {
+        "url": "https://reg.zuicool.com/91588",
+        "result": "本届文字概况已读取，4张原图逐张核对"
+      },
+      {
+        "query": "拓路者 2026 北京香山爬坡赛 香百文化 12月6日",
+        "result": "前序独立搜索HTML未提供有效官方结果；本轮原图明确官方公众号香百文化，未据搜索失败断言无官网"
+      }
+    ],
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true
+    },
+    "webWidths": [
+      320,
+      390
+    ],
+    "productionRenderingVerifiedAt": "2026-11-18T18:57:07.973Z"
+  },
+  {
+    "id": "zuiku-98987",
+    "name": "2026 Outopia好野姐妹莫干山冬季赛",
+    "status": "partially_verified",
+    "scope": "局部校对：本清单edits逐项标注已核对原图或本届可复制报名正文；未审章节完整保留，未声明整篇完成。",
+    "beforeBodyHash": "2e09ee799dfffda5e0f51455b0d16ba37cf289e110cfe11c446a3755e04e611f",
+    "savedBodyHash": "8d1223cd0d0555877d984958dc269abf827aac26974eea3b2f3e369da356cc30",
+    "bodyChanged": true,
+    "edits": 16,
+    "viewedImages": 8,
+    "pendingImages": 1,
+    "chapters": 10,
+    "groups": 5,
+    "groupCorrections": 10,
+    "questions": [
+      "实际打开原图0–7原图（每次不超过2张），完整核对所编辑的赛事信息、路线、日程、费用/尺码/退费/奖励和装备/申诉章节；品牌门店原图8未审，原章节9完整保留。",
+      "恢复20K起点9:00与SP1内王11.5km列归属；8K/5K项目距离和累计爬升按图保留，所有参考赛道数据含±。",
+      "尺码矩阵8行×6列和奖励4行完整重建；退费7条及禁止名额转让原条款保留；双人组30秒/末位队员规则保留。",
+      "强制装备表只有20K/8K两列且均勾选，未外推至捡拾5K；补回赛道指引标题与申诉最终表决句尾。",
+      "ITRA源内差异：概况/海报为拟1分，路线图为1分，保留差异，不认证正式授分。",
+      "本轮按内容修正已核对章节标题；原图未核对的章节保留原标题和正文。逐行OCR换行尚有保留，未宣称排版已全部清理。"
+    ],
+    "officialDocuments": [],
+    "sourceDiscovery": [
+      {
+        "url": "https://reg.zuicool.com/37580",
+        "result": "本届可复制概况与5组报名套餐已读取；图片0–7实际打开核对"
+      },
+      {
+        "query": "2026 Outopia 好野姐妹 莫干山 冬季赛 官方 12月13日",
+        "result": "独立web搜索工具实际404；已有本届报名页明确官方公众号菰城越野，未将搜索失败当作无官方来源"
+      }
+    ],
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true
+    },
+    "webWidths": [
+      320,
+      390
+    ],
+    "productionRenderingVerifiedAt": "2026-11-18T18:57:07.973Z"
+  },
+  {
+    "id": "zuiku-26531",
+    "name": "2026七彩云南户外运动挑战赛（凤庆站）暨2026云南凤庆滇红越野赛",
+    "status": "partially_verified",
+    "scope": "局部校对：本清单edits逐项标注已核对原图或本届可复制报名正文；未审章节完整保留，未声明整篇完成。",
+    "beforeBodyHash": "7e3a72aa41e3ff63b9d2b2b5316801072cbc9b1e5c7bc4e978149e8aaaca148a",
+    "savedBodyHash": "9a734470e339b6cd7e2c10ed9f5b1c5df9561972bed8d49b01012890790b8dea",
+    "bodyChanged": true,
+    "edits": 18,
+    "viewedImages": 19,
+    "pendingImages": 4,
+    "chapters": 19,
+    "groups": 7,
+    "groupCorrections": 8,
+    "questions": [
+      "实际查看原图1全4裁图、2全3裁图、3原图及7–22原图；本轮修订限于可复制概况和已查看图中的路线、资格、健康、费用、装备、处罚、医疗/保险条款。未审宣传图0/4/5/6及其章节原样保留。",
+      "报名页顶部截止11月29日23:59:59，与概况/原图11月22日不同；不覆盖旧值，记录源内冲突。年龄/出生日期边界及70KM资格中的2024年12月11日按图保留。",
+      "欢乐跑图正文6.4KM/180M与地图角标6.3km/111m冲突并列保留，不用路线角标更改groups。15KM正文SP1与图中CP1标号差异原值保留。",
+      "费用6列、装备12行×4组和处罚41行补齐；欢乐跑60为跨价格行合并格；“同上”未推断展开；双人组总价与源表元/人单位差异未擅改。",
+      "退款图邮箱跨行原文yzhd-dada@163.com，与copyable联系栏及保险末图yzhddada@163.com不同；各处原值保留并记录，不猜哪个生效。",
+      "补回完整保险、联络方式和解释权原图22文字；此前导入遗漏，不清空其他条款。",
+      "本轮按内容修正已核对章节标题；原图未核对的章节保留原标题和正文。逐行OCR换行尚有保留，未宣称排版已全部清理。",
+      "安全去重：后文装备表与费用表逐字重复前文部分改为引用；4个路线章节与完赛奖励章节逐字完整出现于前文，删除后处；其余退款邮箱/版本差异未合并。"
+    ],
+    "officialDocuments": [],
+    "sourceDiscovery": [
+      {
+        "url": "https://reg.zuicool.com/28495",
+        "result": "已读本届可复制文本与报名套餐，公众号去跑去野；图片详见审计备注"
+      },
+      {
+        "query": "2026 云南 凤庆 滇红越野赛 官方 12月12日",
+        "result": "独立web搜索工具实际404；未将搜索失败当作无官方来源"
+      }
+    ],
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true
+    },
+    "webWidths": [
+      320,
+      390
+    ],
+    "productionRenderingVerifiedAt": "2026-11-18T18:57:07.973Z"
+  },
+  {
+    "id": "zuiku-91091",
+    "name": "西施100∣2026西施壁湖山径训练赛",
+    "status": "partially_verified",
+    "scope": "局部校对：本清单edits逐项标注已核对原图或本届可复制报名正文；未审章节完整保留，未声明整篇完成。",
+    "beforeBodyHash": "1f629c0c3d3184af3fbe9049e279448a58ae9996681b69ab0bcb648e60163574",
+    "savedBodyHash": "1a3543292476991016f338da90fc9751e04cb99fa92dc9e2cec0088f4c6b3118",
+    "bodyChanged": true,
+    "edits": 28,
+    "viewedImages": 14,
+    "pendingImages": 0,
+    "chapters": 15,
+    "groups": 1,
+    "groupCorrections": 4,
+    "questions": [
+      "实际逐张打开14张原图0–13，每次至多2张；本轮编辑对应原图1–13章节及可复制概况。原图0宣传照片已看但未添加宣传文本。",
+      "补回赛事主办单位/起终点/EXPO，报名费用3列及服务第4、10项；新增被导入遗漏的交通章节完整接驳时间/路线/20元。",
+      "强制装备表原图标题残留东白山赛事名，按源标明；处罚逐项恢复。第7–23行右侧合并格明确为建议装备，未猜作强制。",
+      "源内差异：资格年龄16–65岁与图中出生日期1962-12-13至2011-12-13并存，按原图完整保留；退款首项原文“2026年10月30日前8点前”保留，不自行重写日期。",
+      "路线图角标6H与赛事信息7小时冲突，图示并列说明，groups按本届信息9:00–16:00、7小时；ITRA仍为拟1分，不填正式积分。",
+      "奖励原文写奖金，但实际图示列奖品套餐；保留原文及实际图示奖品，不折算奖金。原图编号（1）（3）（4）（5）（6）未补造不存在第2条。保险医疗免责、退赛和取消条款未删减。",
+      "本轮按内容修正已核对章节标题；原图未核对的章节保留原标题和正文。逐行OCR换行尚有保留，未宣称排版已全部清理。"
+    ],
+    "officialDocuments": [],
+    "sourceDiscovery": [
+      {
+        "url": "https://reg.zuicool.com/92636",
+        "result": "已读本届可复制报名文本与20KM套餐，公众号烟雾体育，原图0–13均实际打开核对"
+      },
+      {
+        "query": "2026 西施 壁湖 山径 训练赛 烟雾体育",
+        "result": "独立web搜索工具实际404；未据此判定无官网，官方公众号与邮箱按源保留"
+      }
+    ],
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true
+    },
+    "webWidths": [
+      320,
+      390
+    ],
+    "productionRenderingVerifiedAt": "2026-11-18T18:57:07.973Z"
+  },
+  {
+    "id": "zuiku-73329",
+    "name": "2026长汀千年古城越野赛",
+    "status": "partially_verified",
+    "scope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+    "beforeBodyHash": "fd0193ee1ed22f39f2d5c7922e16c20317824f18cf330461f36914d360441e15",
+    "savedBodyHash": "4387c0a718c551f42ee3dcf0be12ff8f0cd9b75cb472ca04b52671985f9fafba",
+    "bodyChanged": true,
+    "edits": 2,
+    "viewedImages": 2,
+    "pendingImages": 6,
+    "chapters": 7,
+    "groups": 4,
+    "groupCorrections": 7,
+    "questions": [
+      "本次仅完整查看原图2/3（组织、路线、流程、报名、健康、退改、装备），未审图片1/4/5/6/7及对应章节全部原样保留。",
+      "官网和当期报名验证页未取得可复制正文；公开检索结果不能当官网缺失。",
+      "ITRA和UTMB均拟定，不写认证；原亲子316元/人可能单位疑点，但本图只给8km每人价、未明列316套餐，不擅改亲子价格字段。"
+    ],
+    "officialDocuments": [],
+    "sourceDiscovery": {
+      "officialUrls": [],
+      "notes": [
+        "先检查本届报名页面和已有链接，并独立使用公开搜索；独立检索当前本届官网和现有公开链接；搜索失败或不相关结果不视为官网不存在。搜索过程存tenth-frontend-discovery.json；其他发现逐条补充。",
+        "先查现届报名链接及公开独立搜索；报名请求返回验证页，未取得可复制现届官网全文。原图通知渠道为醒龙军团、越我体育公众号，不以检索失败声称官网不存在。"
+      ],
+      "discoveryFiles": [
+        "/private/tmp/race-guide-quality-20261117/tenth-frontend-discovery.json",
+        "/private/tmp/race-guide-quality-20261117/tenth-frontend-google-search.json",
+        "/private/tmp/race-guide-quality-20261117/tenth-frontend-final-search.json"
+      ]
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true
+    },
+    "webWidths": [
+      320,
+      390
+    ],
+    "productionRenderingVerifiedAt": "2026-11-18T18:57:07.973Z"
+  },
+  {
+    "id": "zuiku-22160",
+    "name": "2026-2027香港跨年越野赛",
+    "status": "partially_verified",
+    "scope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+    "beforeBodyHash": "396a9bb8f5f923d1ceb98af072ed342ac1bcb321124052363664d42b4ee73b96",
+    "savedBodyHash": "e1b1d5b5c5420bcb39d725892bffa5ba0530609b6c7f1e4159c335e94000f7a0",
+    "bodyChanged": true,
+    "edits": 4,
+    "viewedImages": 5,
+    "pendingImages": 12,
+    "chapters": 16,
+    "groups": 1,
+    "groupCorrections": 8,
+    "questions": [
+      "原图3的47.2km为路线实际距离，组名/宣传仍50km；起跑23:59与原人工描述23:59:59均保留。ITRA未获本次原图确认，不改空值。仅图3/4/5/6/10已完整连续分块查看，图0/1/2/7/8/9/11—16未审；其他规程、奖励、医疗、环境原文均保留，未宣称完整赛事校对。"
+    ],
+    "officialDocuments": [],
+    "sourceDiscovery": {
+      "officialUrls": [],
+      "notes": [
+        "先检查本届报名页面和已有链接，并独立使用公开搜索；独立检索当前本届官网和现有公开链接；搜索失败或不相关结果不视为官网不存在。搜索过程存tenth-frontend-discovery.json；其他发现逐条补充。",
+        "报名页请求返回验证页，独立公开检索未取得可核验的本届官网文字；本次逐块查看 3、4、5、6、10 号原图，其余原章节保留未审。"
+      ],
+      "discoveryFiles": [
+        "/private/tmp/race-guide-quality-20261117/tenth-frontend-discovery.json",
+        "/private/tmp/race-guide-quality-20261117/tenth-frontend-google-search.json",
+        "/private/tmp/race-guide-quality-20261117/tenth-frontend-final-search.json"
+      ]
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true
+    },
+    "webWidths": [
+      320,
+      390
+    ],
+    "productionRenderingVerifiedAt": "2026-11-18T18:57:07.973Z"
+  },
+  {
+    "id": "zuiku-31546",
+    "name": "天河三山MAX越野系列赛之中体∙OGGO 2027火龙凤越野挑战赛",
+    "status": "partially_verified",
+    "scope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+    "beforeBodyHash": "259264af597032860fe73f13ab1952e2353315a0aaf1812bc6db1df462ba2986",
+    "savedBodyHash": "e7e8347fbe4231da9c85c1697024fd0486778a6d21cf35bb66b857ea6130c431",
+    "bodyChanged": true,
+    "edits": 5,
+    "viewedImages": 2,
+    "pendingImages": 7,
+    "chapters": 14,
+    "groups": 6,
+    "groupCorrections": 24,
+    "questions": [
+      "仅3、4号原图已连续全图查看；正式规程6—8号图未审条款保留。认证中与原人工ITRA字段2/1并列保留，不擅自认定认证已完成；精英答复期限宣传3日与既有正式规程7日差异已明示。重复收费表依据原图4更正，其余正式规程不是全章已审。"
+    ],
+    "officialDocuments": [],
+    "sourceDiscovery": {
+      "officialUrls": [],
+      "notes": [
+        "先检查本届报名页面和已有链接，并独立使用公开搜索；独立检索当前本届官网和现有公开链接；搜索失败或不相关结果不视为官网不存在。搜索过程存tenth-frontend-discovery.json；其他发现逐条补充。",
+        "本届报名链接返回验证页；独立检索未取得可核验的本届官网正文。本次完整查看3、4号原图，修复赛事信息、全部路线与收费退费。其他长图未审原文保留。"
+      ],
+      "discoveryFiles": [
+        "/private/tmp/race-guide-quality-20261117/tenth-frontend-discovery.json",
+        "/private/tmp/race-guide-quality-20261117/tenth-frontend-google-search.json",
+        "/private/tmp/race-guide-quality-20261117/tenth-frontend-final-search.json"
+      ]
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true
+    },
+    "webWidths": [
+      320,
+      390
+    ],
+    "productionRenderingVerifiedAt": "2026-11-18T18:57:07.973Z"
+  },
+  {
+    "id": "zuiku-88804",
+    "name": "崃户外·2026古道越野训练赛",
+    "status": "partially_verified",
+    "scope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+    "beforeBodyHash": "4e7c7070d8c3826729aa1657084dbb9b6682f926ee76be97906448019d9028dd",
+    "savedBodyHash": "54bed89ed813f740faefd6879e6a7988600621f62a43a9dded704d61c54eff07",
+    "bodyChanged": true,
+    "edits": 11,
+    "viewedImages": 6,
+    "pendingImages": 2,
+    "chapters": 16,
+    "groups": 3,
+    "groupCorrections": 3,
+    "questions": [
+      "完整查看图1/2/3/4/5/6；仅图0封面与图7后续处罚/保障未审原文保留。图中800人、表列各200人与原人工700人/沐光500人冲突；图4小时与人工3.5小时冲突；日程亲子9:05与组别9:00冲突，均明示保留，不覆原组别人数和时长。图5健康可声明替代与图6强制体检相互不一致，两个完整条款都保留。健康11项已补全妊娠；保险50万元/5万元及不同保障时段完整保留。"
+    ],
+    "officialDocuments": [],
+    "sourceDiscovery": {
+      "officialUrls": [],
+      "notes": [
+        "先检查本届报名页面和已有链接，并独立使用公开搜索；独立检索当前本届官网和现有公开链接；搜索失败或不相关结果不视为官网不存在。搜索过程存tenth-frontend-discovery.json；其他发现逐条补充。",
+        "当前报名链接返回验证页。独立公开检索未得到本届官网可复制规程；原图给出官方“崃户外”小程序/公众号。本次实际完整查看图1—6，图0、7未审保留。"
+      ],
+      "discoveryFiles": [
+        "/private/tmp/race-guide-quality-20261117/tenth-frontend-discovery.json",
+        "/private/tmp/race-guide-quality-20261117/tenth-frontend-google-search.json",
+        "/private/tmp/race-guide-quality-20261117/tenth-frontend-final-search.json"
+      ]
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true
+    },
+    "webWidths": [
+      320,
+      390
+    ],
+    "productionRenderingVerifiedAt": "2026-11-18T18:57:07.973Z"
+  },
+  {
+    "id": "zuiku-69042",
+    "name": "2027西双版纳勐海越野赛",
+    "status": "partially_verified",
+    "scope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+    "beforeBodyHash": "3a56122da61d8c6b7105fe0f8acedcd3c88bd8eb830b264a09e6c521932d1fe3",
+    "savedBodyHash": "337e4606f1b227196bb266d71d9adf24e0e95291dce886049d6503e0348419e2",
+    "bodyChanged": true,
+    "edits": 13,
+    "viewedImages": 5,
+    "pendingImages": 7,
+    "chapters": 20,
+    "groups": 5,
+    "groupCorrections": 10,
+    "questions": [
+      "实际完整查看图2/8/9/10/11，图0/1/3—7路线宣传图未审保留；官方DOCX完整可复制规程已对照现有章节1—6（含完整中国登山协会规则及处罚）保留修复。原人工组别人数/实际距离不因规程2000人或60km终点62.03km而覆盖。6km官方1月1日15:00、表内16:00、宣传1月2日15:00冲突，未改人工起跑日期。100km门槛、体检90天/1年和装备差异均保留。"
+    ],
+    "officialDocuments": [],
+    "sourceDiscovery": {
+      "officialUrls": [
+        "https://qr61.cn/oeOd22/qHtqDEd",
+        "https://ncstatic.clewm.net/rsrc/2026/1013/11/2c94b42f02d749d68c15336e88261cc3.docx"
+      ],
+      "notes": [
+        "先检查本届报名页面和已有链接，并独立使用公开搜索；独立检索当前本届官网和现有公开链接；搜索失败或不相关结果不视为官网不存在。搜索过程存tenth-frontend-discovery.json；其他发现逐条补充。",
+        "独立检索后，从已实际查看原图11的“竞赛规程完整版”二维码解出 https://qr61.cn/oeOd22/qHtqDEd，浏览器取到2027现届官方DOCX公示稿并下载正文，优先核对可复制文字。",
+        "原图二维码指向本届规程DOCX，2026-10-13路径；原图11完整查看，浏览器网络与下载记录另存sources/69042-*。规程文字与宣传图资格、健康、装备和6公里日期有差异，分别保留。"
+      ],
+      "discoveryFiles": [
+        "/private/tmp/race-guide-quality-20261117/tenth-frontend-discovery.json",
+        "/private/tmp/race-guide-quality-20261117/tenth-frontend-google-search.json",
+        "/private/tmp/race-guide-quality-20261117/tenth-frontend-final-search.json"
+      ]
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true
+    },
+    "webWidths": [
+      320,
+      390
+    ],
+    "productionRenderingVerifiedAt": "2026-11-18T18:57:07.973Z"
+  },
+  {
+    "id": "zuiku-16673",
+    "name": "2027中国田径协会10公里精英赛（湖州·吴兴）暨航兴杯西山漾10公里精英赛",
+    "status": "partially_verified",
+    "scope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+    "beforeBodyHash": "96ad59e21addb6b7f595b9b328620545e409db17d6b0e0cb93035e9220ca9313",
+    "savedBodyHash": "336fa09d18d6203400aa58e6a1c437c472cc15e1bbad65f554c5bcaeecfdacf4",
+    "bodyChanged": true,
+    "edits": 14,
+    "viewedImages": 4,
+    "pendingImages": 1,
+    "chapters": 19,
+    "groups": 9,
+    "groupCorrections": 9,
+    "questions": [
+      "图0/2/3/4完整连续分块实看；宣传图1仅首块查看，不计为已审。原图未列无包优惠，不改原人工60元/家庭50元每人方案。家庭每组最多4人与组别quota字段4语义不同，未擅自改总配额；正式规程允许港澳台和外籍，与原报名渠道仅中国籍限制分别保留。补齐10项健康禁忌、8项心电图异常、19项处罚、16项奖金。"
+    ],
+    "officialDocuments": [],
+    "sourceDiscovery": {
+      "officialUrls": [],
+      "notes": [
+        "先检查本届报名页面和已有链接，并独立使用公开搜索；独立检索当前本届官网和现有公开链接；搜索失败或不相关结果不视为官网不存在。搜索过程存tenth-frontend-discovery.json；其他发现逐条补充。",
+        "独立检索及报名链接尝试后未取得现届官网可复制正文；官方渠道为QueenRun公众号、坤悦健康APP/小程序。本次完整查看图0、2、3、4，宣传图1只查看首块未审其全文。"
+      ],
+      "discoveryFiles": [
+        "/private/tmp/race-guide-quality-20261117/tenth-frontend-discovery.json",
+        "/private/tmp/race-guide-quality-20261117/tenth-frontend-google-search.json",
+        "/private/tmp/race-guide-quality-20261117/tenth-frontend-final-search.json"
+      ]
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true
+    },
+    "webWidths": [
+      320,
+      390
+    ],
+    "productionRenderingVerifiedAt": "2026-11-18T18:57:07.973Z"
+  },
+  {
+    "id": "zuiku-85841",
+    "name": "2027大K探索系列赛 | 第二届西施壁湖越野挑战赛",
+    "status": "partially_verified",
+    "scope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+    "beforeBodyHash": "75ab3fb6687a70feb7b7d122f255264bd8ad391c5e28bf6a82050f34fbc9e3a7",
+    "savedBodyHash": "7ac0b6dad5c2ffd84d1dc2849be73f1606a43fc70a8f4c85ca3b370b20699743",
+    "bodyChanged": true,
+    "edits": 12,
+    "viewedImages": 11,
+    "pendingImages": 10,
+    "chapters": 22,
+    "groups": 3,
+    "groupCorrections": 13,
+    "questions": [
+      "逐图核对图片2、4、5、6、7、8、9、10、11、14、19全部连续裁图。赛道图12/13、赛事日程图3及其它未列图片未审，现有章节不动；未将本次局部校对宣称为全篇。",
+      "保留人工描述与原图20K积分差异；里程表累计爬升/下降为合并列，未擅自推算下降。"
+    ],
+    "officialDocuments": [],
+    "sourceDiscovery": {
+      "officialUrls": [],
+      "notes": [
+        "先检查本届报名页面和已有链接，并独立使用公开搜索；独立检索当前本届官网和现有公开链接；搜索失败或不相关结果不视为官网不存在。搜索过程存tenth-frontend-discovery.json；其他发现逐条补充。",
+        "已连续分块查看图片2、4—11、14、19（零基下标）；其他赛道图及条款图片未逐图复核，保留原文。报名页当前访问受验证页限制，独立检索未获得可确认的本届官方可复制全文。"
+      ],
+      "discoveryFiles": [
+        "/private/tmp/race-guide-quality-20261117/tenth-frontend-discovery.json",
+        "/private/tmp/race-guide-quality-20261117/tenth-frontend-google-search.json",
+        "/private/tmp/race-guide-quality-20261117/tenth-frontend-final-search.json"
+      ]
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true
+    },
+    "webWidths": [
+      320,
+      390
+    ],
+    "productionRenderingVerifiedAt": "2026-11-18T18:57:07.973Z"
+  },
+  {
+    "id": "zuiku-14449",
+    "name": "2027北京世园公园UTP100春季嘉年华",
+    "status": "partially_verified",
+    "scope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+    "beforeBodyHash": "5d04760e9b8f6572399089cbb00e27134e081fb2714cf73d3550bcf920a8bf7b",
+    "savedBodyHash": "f85c8cdcab319cb62fb9d31eadb2a2cc25c2249ede94b2a1b9c7478eb53191bb",
+    "bodyChanged": true,
+    "edits": 7,
+    "viewedImages": 3,
+    "pendingImages": 9,
+    "chapters": 16,
+    "groups": 10,
+    "groupCorrections": 34,
+    "questions": [
+      "仅原图9、10、11（活动章程版）完整连续分块实看，共15块；原图1—8的竞赛规则版未复核并完整保留，不能宣称全篇已审。",
+      "接力原图“5人/组、25组150人”及总规模约1900人有算术差异，原文保留。接力报名渠道价格1295/695与规程259/139元每人、亲子套餐119/238与规程119元每人分别保留，不覆盖单位、不推算新价格。",
+      "本届章程100km个人资质的“50公里以上”及50km个人“30公里及以上”保留原文，不混用大于/大于等于。"
+    ],
+    "officialDocuments": [],
+    "sourceDiscovery": {
+      "officialUrls": [],
+      "notes": [
+        "先检查本届报名页面和已有链接，并独立使用公开搜索；独立检索当前本届官网和现有公开链接；搜索失败或不相关结果不视为官网不存在。搜索过程存tenth-frontend-discovery.json；其他发现逐条补充。",
+        "完整连续分块查看本届《活动章程》三张原图9—11；较早的图1—8竞赛规则版本未逐图复核，独立保留，不把两版规程拼接。独立公开检索和报名页访问未获得可确认的现届官网可复制正文；web搜索服务返回404，不能据此判断官网不存在。"
+      ],
+      "discoveryFiles": [
+        "/private/tmp/race-guide-quality-20261117/tenth-frontend-discovery.json",
+        "/private/tmp/race-guide-quality-20261117/tenth-frontend-google-search.json",
+        "/private/tmp/race-guide-quality-20261117/tenth-frontend-final-search.json"
+      ]
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true
+    },
+    "webWidths": [
+      320,
+      390
+    ],
+    "productionRenderingVerifiedAt": "2026-11-18T18:57:07.973Z"
+  },
+  {
+    "id": "zuiku-16852",
+    "name": "2026禅茶径山越野赛",
+    "status": "partially_verified",
+    "scope": "仅本轮列明来源与条款实际审校；资料冲突和未核细节保留疑点，不表示全量终审。",
+    "beforeBodyHash": "582dd4644679365c2582674d95de1e08477337a26dc171bda4a54db86f5b52f0",
+    "savedBodyHash": "bebbfcff0321b13456ef8d06260f6a35d0d6ee2f34bc4f45ea9af4fffe25ec18",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 5,
+    "pendingImages": 1,
+    "chapters": 11,
+    "groups": 2,
+    "groupCorrections": 7,
+    "questions": [
+      "已实际连续查看长图1—4及官方PDF全部14页，恢复C心肌炎、错列尺码、两阶段费用和官方全文新增条款。",
+      "13KM关门有11:30/11:00内在冲突，保留双方不改组别关门字段。",
+      "官方PDF沿途不设补给与正文设补给冲突，保留原文及具体疑点；11月2—8日退费比例原文不明，未猜补。"
+    ],
+    "officialDocuments": [
+      {
+        "url": "https://ncstatic.clewm.net/rsrc/2026/1021/20/2d94b83593554fa094d8c43059dc1b2c.pdf",
+        "title": "【竞赛规则】2026禅茶径山越野赛",
+        "role": "official_rules_pdf",
+        "verified": true,
+        "checkedAt": "2026-11-18T18:54:23.573Z"
+      }
+    ],
+    "sourceDiscovery": {
+      "officialUrls": [
+        "https://qr61.cn/odeklY/q9iKhGb",
+        "https://ncstatic.clewm.net/rsrc/2026/1021/20/2d94b83593554fa094d8c43059dc1b2c.pdf"
+      ],
+      "notes": [
+        "实际解码官方长图竞赛规程二维码，获取草料页面Markdown及直链14页PDF；PDF文本字体映射失真，已渲染并真实逐页核对全部14页。",
+        "独立Bing搜索未获得本届可核的新官方正文，留存原始结果；web搜索工具404另用直接HTTP搜索，未据失败断言无官网。"
+      ]
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true
+    },
+    "webWidths": [
+      320,
+      390
+    ],
+    "productionRenderingVerifiedAt": "2026-11-18T18:57:07.973Z"
+  },
+  {
+    "id": "zuiku-92819",
+    "name": "2027江阴暨阳花山新年越野跑",
+    "status": "partially_verified",
+    "scope": "仅本轮列明来源与条款实际审校；资料冲突和未核细节保留疑点，不表示全量终审。",
+    "beforeBodyHash": "ffa84df0579bf3a876a27dbc81d53b8d86227b3ed40924b08b9f33ac647a9b6b",
+    "savedBodyHash": "3ad79553add46b6b6d5ce5a22c1019d1108357142816e7fbb6ef53eed78a7f72",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 4,
+    "pendingImages": 0,
+    "chapters": 7,
+    "groups": 3,
+    "groupCorrections": 12,
+    "questions": [
+      "已连续实际查看全部4张长图，完整恢复正常价/早鸟价/团报、12项规则、亲子条件、80/50/0退费及医疗例外。",
+      "ITRA20KM仅拟定1分不改为已获1分；actualDistanceKm留null，保留地图/海拔横轴差异；报名页与长图截止差异未擅自覆盖。"
+    ],
+    "officialDocuments": [],
+    "sourceDiscovery": {
+      "officialUrls": [],
+      "notes": [
+        "现行报名页面逐项核对身份、三个组别、亲子人数和价格。原图指定官方公众号野莱赛体育与联系人；Google请求超时，独立Bing精确标题搜索未找到可核验本届官网/PDF，保存结果，不据此断言不存在。",
+        "未发现可复制官方规程；本轮完整查看已刊4幅资料及现行网页，范围为partial。"
+      ]
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true
+    },
+    "webWidths": [
+      320,
+      390
+    ],
+    "productionRenderingVerifiedAt": "2026-11-18T18:57:07.973Z"
+  },
+  {
+    "id": "zuiku-37493",
+    "name": "锐进四季·2027第三届元旦迎新跑",
+    "status": "partially_verified",
+    "scope": "仅本轮列明来源与条款实际审校；资料冲突和未核细节保留疑点，不表示全量终审。",
+    "beforeBodyHash": "6d6babbfc94fdd5d7b50eacc2db0baa6f7b5ae30f2912e4b46c229f81dc8fd46",
+    "savedBodyHash": "cb9f8ba636d586778898ccd575bb06bbd0119a18cc40f3b522e91d630a9bb6f2",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 3,
+    "pendingImages": 0,
+    "chapters": 11,
+    "groups": 3,
+    "groupCorrections": 9,
+    "questions": [
+      "真实连续查看3张长图全部分块，原图无奖金/排名表，不补写其他场次规则。",
+      "生日严格以前/之后措辞保留；电话图文不同均留待确认；延期全退与不可抗力调整不退并列，未推断优先级。"
+    ],
+    "officialDocuments": [],
+    "sourceDiscovery": {
+      "officialUrls": [],
+      "notes": [
+        "先检查现行报名页及原图官方公众号、邮箱、微信，未得可复制独立官网或PDF；独立Google查询超时，Bing精确本届搜索返回无关内容，保存原始搜索，不据此推断无官网。",
+        "三个整幅长图已连续分块实际查看，健康安全责任承诺书附件亦已核读；没有把另一场奥森活动的奖励或亲子组移入。"
+      ]
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true
+    },
+    "webWidths": [
+      320,
+      390
+    ],
+    "productionRenderingVerifiedAt": "2026-11-18T18:57:07.973Z"
+  },
+  {
+    "id": "zuiku-85293",
+    "name": "2026酷爱龙坞·麒麟越野赛",
+    "status": "partially_verified",
+    "scope": "仅本轮列明来源与条款实际审校；资料冲突和未核细节保留疑点，不表示全量终审。",
+    "beforeBodyHash": "c004af1b326110949389a4b37529144fdf818f28533e8ee56dcc9d4af2cfbde9",
+    "savedBodyHash": "80bc27a66df719e5b359e4b403ec61c3ea938bcbaacaa1d7f3339ac0a3c36702",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 9,
+    "pendingImages": 0,
+    "chapters": 12,
+    "groups": 2,
+    "groupCorrections": 6,
+    "questions": [
+      "本赛已取消；原定规程完整保留为历史资料，所有退款以2026年11月8日全额原路退款公告为准。",
+      "35K两版等额装备奖品不同；保留双表及对应来源，待组委会确认历史版本，不臆定金额。",
+      "原规程存包尾句自身截断，未补写；体重单位、男女奖励分榜、代领与赛日领物未列，未推断。",
+      "两张装备表均沿用25K能量备注，与实际21K/35K组别不一致，明确作为原注保留；出生日期倒序边界不擅改含/不含。"
+    ],
+    "officialDocuments": [
+      {
+        "url": "https://mp.weixin.qq.com/s/f7V1rwam5ZD1htxk_umnzA",
+        "title": "关于取消2026酷爱龙坞·麒麟越野赛的公告",
+        "checkedAt": "2026-11-18T18:54:23.573Z"
+      }
+    ],
+    "sourceDiscovery": {
+      "officialUrls": [
+        "https://mp.weixin.qq.com/s/f7V1rwam5ZD1htxk_umnzA"
+      ],
+      "notes": [
+        "现行报名页直接提供取消公告链接；独立HTTP打开遭微信验证页，保留响应，不声称正文已独立抓取；报名页所附官方取消公告原文截图完整连续查看并与页面取消状态交叉核对。",
+        "浏览工具搜索返回http404；另用Bing精确查询保存原始搜索，不将搜索失败当作无官网。",
+        "9张源图全部实际查看，长图按0/1700/3400等连续重叠分块；小程序码为最酷报名，未发现可直接打开的额外规程文件；完整规程末尾公众号二维码未成功解码。"
+      ]
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true
+    },
+    "webWidths": [
+      320,
+      390
+    ],
+    "productionRenderingVerifiedAt": "2026-11-18T18:57:07.973Z"
+  }
+]
