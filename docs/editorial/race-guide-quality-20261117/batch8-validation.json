@@ -1,0 +1,147 @@
+{
+  "at": "2026-11-18T07:56:15.941Z",
+  "passed": true,
+  "rows": [
+    {
+      "id": "zuiku-48246",
+      "file": "eleventh-backend-reviewed.json",
+      "edits": 3,
+      "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-46116",
+      "file": "eleventh-backend-reviewed.json",
+      "edits": 6,
+      "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-62889",
+      "file": "eleventh-backend-reviewed.json",
+      "edits": 7,
+      "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-65585",
+      "file": "eleventh-backend-reviewed.json",
+      "edits": 5,
+      "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-40538",
+      "file": "eleventh-backend-reviewed.json",
+      "edits": 5,
+      "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-77766",
+      "file": "eleventh-backend-reviewed.json",
+      "edits": 12,
+      "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-51045",
+      "file": "eleventh-backend-reviewed.json",
+      "edits": 13,
+      "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-50491",
+      "file": "eleventh-backend-reviewed.json",
+      "edits": 10,
+      "scope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-65890",
+      "file": "eighth-frontend-reviewed.json",
+      "edits": 1,
+      "scope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-48445",
+      "file": "eighth-frontend-reviewed.json",
+      "edits": 2,
+      "scope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-21955",
+      "file": "eighth-frontend-reviewed.json",
+      "edits": 3,
+      "scope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-20666",
+      "file": "eighth-frontend-reviewed.json",
+      "edits": 5,
+      "scope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-88146",
+      "file": "eighth-frontend-reviewed.json",
+      "edits": 6,
+      "scope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-29268",
+      "file": "eighth-frontend-reviewed.json",
+      "edits": 10,
+      "scope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-22412",
+      "file": "eighth-frontend-reviewed.json",
+      "edits": 5,
+      "scope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-59944",
+      "file": "eighth-frontend-reviewed.json",
+      "edits": 5,
+      "scope": "局部校对：仅本清单列出的表格、流程及资格字段已逐项核对；其余既有正文和人工资料保留，未宣称全篇已校对。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-39209",
+      "file": "batch8-root-reviewed.json",
+      "edits": 1,
+      "scope": "实际查看珠海官方延期公告2分块、本站宣传7分块；规程与上批已完整查看原图SHA256完全一致，按完整共用规程校对。官网416及本届报名页确认日期/渠道截止。额外官网图片仍待逐图终审。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-12344",
+      "file": "batch8-source-uto-reviewed.json",
+      "edits": 1,
+      "scope": "本届提供的5张原图已逐块完整实际查看，现行报名平台文字已交叉核对。清晰规程条款完整整理，地图细小标签不猜写；未独立确认组委会官网及其额外规程，因此不宣称全部官方来源终审。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-46518",
+      "file": "batch8-source-uto-reviewed.json",
+      "edits": 1,
+      "scope": "本届提供的4张原图已逐块完整实际查看，现行报名平台文字已交叉核对。清晰规程条款完整整理，地图细小标签不猜写；未独立确认组委会官网及其额外规程，因此不宣称全部官方来源终审。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-94116",
+      "file": "batch8-source-uto-reviewed.json",
+      "edits": 1,
+      "scope": "本届提供的8张原图已逐块完整实际查看，现行报名平台文字已交叉核对。清晰规程条款完整整理，地图细小标签不猜写；未独立确认组委会官网及其额外规程，因此不宣称全部官方来源终审。",
+      "explicitImageReview": true
+    }
+  ],
+  "races": 20
+}

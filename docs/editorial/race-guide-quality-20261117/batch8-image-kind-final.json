@@ -1,0 +1,25 @@
+{
+  "at": "2026-11-18T08:28:26.376Z",
+  "checks": [
+    {
+      "id": "zuiku-39209",
+      "width": 320,
+      "heroDate": "2026-12-20\n07:00 起跑",
+      "guideSheet": 718,
+      "regulationInOriginalReference": true,
+      "fullyLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "zuiku-39209",
+      "width": 390,
+      "heroDate": "2026-12-20\n07:00 起跑",
+      "guideSheet": 718,
+      "regulationInOriginalReference": true,
+      "fullyLoaded": true,
+      "overflow": false
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-11-18T08:28:40.307Z"
+}
