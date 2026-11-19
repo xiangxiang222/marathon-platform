@@ -1,0 +1,62 @@
+{
+  "at": "2026-11-19T18:48:49.892Z",
+  "passed": true,
+  "checks": [
+    {
+      "id": "zuiku-80201",
+      "width": 320,
+      "sheetId": 1780,
+      "sha256": "2ac679628e4642f4240a2550b5127df1c624774313fb1563455fa79812d86a62",
+      "mime": "jpg",
+      "caption": "11 月 19 日组委会领物流程图：本人核验、强装检查和 GPS 领取",
+      "dims": {
+        "w": 715,
+        "h": 1498
+      },
+      "previewOpened": true,
+      "originalZoomOpened": true
+    },
+    {
+      "id": "zuiku-80201",
+      "width": 320,
+      "sheetId": 1781,
+      "sha256": "543e1ee731a59ea58ff93dd11876b73c312471b6bfc45811838d4e7db55033c2",
+      "mime": "png",
+      "caption": "11 月 19 日组委会强制装备原图：GPS 仅 60K、40K",
+      "dims": {
+        "w": 1080,
+        "h": 1493
+      },
+      "previewOpened": true,
+      "originalZoomOpened": true
+    },
+    {
+      "id": "zuiku-80201",
+      "width": 390,
+      "sheetId": 1780,
+      "sha256": "2ac679628e4642f4240a2550b5127df1c624774313fb1563455fa79812d86a62",
+      "mime": "jpg",
+      "caption": "11 月 19 日组委会领物流程图：本人核验、强装检查和 GPS 领取",
+      "dims": {
+        "w": 715,
+        "h": 1498
+      },
+      "previewOpened": true,
+      "originalZoomOpened": true
+    },
+    {
+      "id": "zuiku-80201",
+      "width": 390,
+      "sheetId": 1781,
+      "sha256": "543e1ee731a59ea58ff93dd11876b73c312471b6bfc45811838d4e7db55033c2",
+      "mime": "png",
+      "caption": "11 月 19 日组委会强制装备原图：GPS 仅 60K、40K",
+      "dims": {
+        "w": 1080,
+        "h": 1493
+      },
+      "previewOpened": true,
+      "originalZoomOpened": true
+    }
+  ]
+}

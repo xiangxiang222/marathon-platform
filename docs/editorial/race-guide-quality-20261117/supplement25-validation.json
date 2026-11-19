@@ -1,0 +1,21 @@
+{
+  "at": "2026-11-19T18:32:04.335Z",
+  "passed": true,
+  "rows": [
+    {
+      "id": "zuiku-81646",
+      "file": "supplement-aituye-dali-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "核完5个已存媒体、当届报名页联系图和同页二维码/横幅；逐片审查完整报名、流程、路线和竞赛原图，补索爱徒野官网、当届后发通知、成绩。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-82566",
+      "file": "supplement-chongyi100-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "三张本届组委会竞赛规程逐片校对并链到章节原图，核对八种报名选项和四类基础组；补当前政府采购公示、县融媒赛事预告、公开组委会通知。",
+      "explicitImageReview": true
+    }
+  ],
+  "races": 2
+}

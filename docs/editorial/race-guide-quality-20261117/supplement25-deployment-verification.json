@@ -1,0 +1,49 @@
+{
+  "at": "2026-11-19T18:35:14.827Z",
+  "stages": {
+    "reviewed": true,
+    "saved": true,
+    "webDisplayed": true,
+    "webDeployedVerified": true,
+    "miniDisplayed": true,
+    "miniDevToolsVerified": true,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "races": 2,
+  "completedCurrentSources": 2,
+  "exactGroupFieldCorrections": 22,
+  "exactRaceFieldCorrections": 1,
+  "scheduleFieldCorrections": 0,
+  "originalsReviewedByUrl": 16,
+  "backup": "server/data/race-guide-quality-20261117/supplement25-applied.json.before.sqlite",
+  "counts": {
+    "races": 434,
+    "sheets": 1779
+  },
+  "schemaUnchanged": true,
+  "quickCheck": "ok",
+  "web": {
+    "pages": 4,
+    "viewports": [
+      320,
+      390
+    ],
+    "fullExactComparisonViewport": 320,
+    "fullTextBlocks": 66,
+    "rows": 77,
+    "focusActualPages": 4,
+    "actualNewImageInstances": 0
+  },
+  "newUsefulOriginalImages": 0,
+  "mini": {
+    "status": "devtools_390_verified",
+    "actualRaces": 2,
+    "rows": 77,
+    "detail": "Exact production guide, groups and rendered table rows verified in the real 390px WeChat DevTools runtime. Formal release, 320px, physical phone and gestures remain unverified."
+  },
+  "remaining": {
+    "specificEvents": 10,
+    "coverageEvidenceUnknown": 0,
+    "sourceFollowup": 2
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "startedAt": "2026-11-19T18:33:38.371Z",
+  "kind": "Actual WeChat DevTools 390px production-page; no mock; physical phone, gestures and formal release excluded",
+  "races": [
+    {
+      "id": "zuiku-81646",
+      "actualViewport": 390,
+      "guideCharacters": 2518,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 2,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1120.859375,
+        "bottom": 5188.0390625,
+        "width": 366,
+        "height": 4067.1796875,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 3,
+      "tableRowsIncludingHeaders": 13,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336
+      ]
+    },
+    {
+      "id": "zuiku-82566",
+      "actualViewport": 390,
+      "guideCharacters": 5907,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 8,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1291.640625,
+        "bottom": 10239.9140625,
+        "width": 366,
+        "height": 8948.2734375,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 8,
+      "tableRowsIncludingHeaders": 64,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336
+      ]
+    }
+  ],
+  "previousErrors": [],
+  "intermittent": [],
+  "errors": [],
+  "passed": true,
+  "completedAt": "2026-11-19T18:34:02.205Z"
+}

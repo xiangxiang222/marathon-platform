@@ -1,0 +1,207 @@
+[
+  {
+    "id": "zuiku-81646",
+    "name": "2026爱徒野大理洱海“秋天的童话”为爱奔跑",
+    "status": "current_source_content_checked_with_questions",
+    "scope": "核完5个已存媒体、当届报名页联系图和同页二维码/横幅；逐片审查完整报名、流程、路线和竞赛原图，补索爱徒野官网、当届后发通知、成绩。",
+    "beforeBodyHash": "2f06b5a7d8fec9394648ac5f06fa935aa51f371e9e9377d06a76172614dafa80",
+    "savedBodyHash": "afcdb5da3ca27d45461e23e9e46d84f0a26bb9b3aebb0e7b4676a3d394eeb3e9",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 9,
+    "pendingImages": 0,
+    "chapters": 8,
+    "groups": 2,
+    "groupCorrections": 6,
+    "questions": [
+      {
+        "status": "conflicting_registration_dates",
+        "topic": "报名起止",
+        "sourceUrl": "https://reg.zuicool.com/40227",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/3c95d1060405445f8e1d9fc4f4359b564c0a1f21.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/0630e8b037311f0a57562d8801f8429541c60440.jpeg?imageView2/2/w/750"
+        ],
+        "detail": "当届开报海报9月12日—10月26日，报名须知9月16日—10月25日。当前赛事和报名页仅确认已截止；搜索引擎一条历史目录摘要给10月25日23:59，但原目录当前不含当届，摘要不能消解冲突，不填起止。"
+      },
+      {
+        "status": "conflicting_short_cutoff",
+        "topic": "4.3公里关门",
+        "sourceUrl": "https://reg.zuicool.com/40227",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/07831734dab48f60392363f4d01c056528265339.jpeg?imageView2/2/w/750"
+        ],
+        "detail": "同图上方明确一小时和10:00，下方附表11:00。未取得组委会后发澄清，组别截止时点和时长均保留空白；半程12:00、3小时一致，已更正。"
+      },
+      {
+        "status": "official_site_no_current_detail",
+        "topic": "官网、成绩及是否按计划举行",
+        "sourceUrl": "http://www.aituye.com.cn/",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/bc2930fbb3a8eb8ba73cfddcc9f5e3c5c04da87a.jpeg?imageView2/2/w/750"
+        ],
+        "detail": "当届联系图为 .com.cn，HTTP主站、报名、赛事、完赛、新闻及通用查询已到达；未定位本届公开资料或专属成绩入口。相似 .com 是无关衣服定制站；我要赛摘要标举办成功但原文未核实，不能独立确认赛果。公开报名可确认关闭，正文时间仍标赛前计划。"
+      },
+      {
+        "status": "route_and_source_conventions",
+        "topic": "标称距离、补给点与组别细则",
+        "sourceUrl": "https://reg.zuicool.com/40227",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/0630e8b037311f0a57562d8801f8429541c60440.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/07831734dab48f60392363f4d01c056528265339.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/1be785be90e80f40bc60470b9b1e4455eaf3d6da.jpeg?imageView2/2/w/750"
+        ],
+        "detail": "21与4.3公里系报名标称；往返4.3公里及半程5次是线路说明，不能乘算成实测。规程称有6个补给站，示意图标三处复合点；不推断6个独立地理站点。按规程实际内容重组标题，保留违规处分不设上诉与正式申诉条款各自表述。未见本届实测、爬升、ITRA、GPS或物流额外通知。"
+      }
+    ],
+    "officialDocuments": [
+      {
+        "url": "http://www.aituye.com.cn/",
+        "title": "爱徒野组织网站（主办方，未列本届）",
+        "role": "organizer_official_site_identity_only",
+        "verified": true,
+        "identityReview": "当届联系原图指明此域名；可访问，页脚署主办单位上海雨波文化传媒有限公司。主页和赛事栏目未显示本届，不能作本届细则证据。",
+        "characters": 1163,
+        "bodySha256": "744eea42007cfbe228e293fca15cc78724881c7f6225447d25e0d482ad7de6c4",
+        "checkedAt": "2026-11-19T18:32:04.377Z"
+      }
+    ],
+    "sourceDiscovery": {
+      "officialUrls": [
+        "http://www.aituye.com.cn/",
+        "http://www.aituye.com.cn/ssdq.html",
+        "http://www.aituye.com.cn/yjbm.html",
+        "http://www.aituye.com.cn/rmss.html",
+        "http://www.aituye.com.cn/news.html",
+        "http://www.aituye.com.cn/wsjj.html",
+        "http://www.aituye.com.cn/chengji.html",
+        "http://www.aituye.com.cn/bmcx.html"
+      ],
+      "currentOrganizerEventUrls": [],
+      "searchResultsPath": "/private/tmp/race-guide-quality-20261117/supp24-aituye/source-discovery.json",
+      "discoveryFile": "/private/tmp/race-guide-quality-20261117/supp24-aituye/discover.json",
+      "sourcePriority": "已核实爱徒野主办方官网身份；无可读本届官网正文，采用当前最酷报名文字与报名同页组委会发布逐图复核，搜索摘要仅作线索。",
+      "notes": "已逐图查看同页两条通用横幅并排除赛事证据。所有5个现存媒体保留原标识、排序、种类、上传文件，仅修标题。"
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_and_mini_devtools_390",
+      "miniDisplayed": true,
+      "formalMiniProgramReleaseVerified": false
+    }
+  },
+  {
+    "id": "zuiku-82566",
+    "name": "伯希和·2026崇义100超级越野赛",
+    "status": "current_source_content_checked_with_questions",
+    "scope": "三张本届组委会竞赛规程逐片校对并链到章节原图，核对八种报名选项和四类基础组；补当前政府采购公示、县融媒赛事预告、公开组委会通知。",
+    "beforeBodyHash": "872f0b9738f882e605d892e1a42f16a99bb05080a2cc802c27f72419fd257890",
+    "savedBodyHash": "59039e818f1b7e9d3ff1ccbbf48fcde75ed6cb872a0265daf6df381bff3a7da1",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 7,
+    "pendingImages": 0,
+    "chapters": 11,
+    "groups": 8,
+    "groupCorrections": 16,
+    "questions": [
+      {
+        "status": "early_registration_vs_refund",
+        "topic": "早鸟时刻、报名全局截止与退改",
+        "sourceUrl": "https://reg.zuicool.com/75013",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/11/f39159b165a6c5ef677642c6dbfb712bbc7d6767.jpeg?imageView2/2/w/1024",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/11/c2c91a37254001a1d2036fe6b2853112182d42e1.jpeg?imageView2/2/w/1024"
+        ],
+        "detail": "精准竞赛规程早鸟10月30日18:00，开报简讯写10月31日前；个人退改另为10月31日18:00。官方报名已结束；结束具体时刻未直接核实，不填顶层当前截止。"
+      },
+      {
+        "status": "final_certification_and_route_unverified",
+        "topic": "分组认证、赛道轨迹、实际长度与爬降",
+        "sourceUrl": "https://reg.zuicool.com/75013",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/11/f39159b165a6c5ef677642c6dbfb712bbc7d6767.jpeg?imageView2/2/w/1024",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/11/c2c91a37254001a1d2036fe6b2853112182d42e1.jpeg?imageView2/2/w/1024"
+        ],
+        "detail": "保留规程ITRA拟4/3/1。搜获Sohu双认证稿、ITRA门户返回202，无独立当届逐组详情；UTMB、最终ITRA、原始分段轨迹/实测长度与下降均未以可读当届原文核实。规程要求参赛者查组委会官方公众号的当届轨迹。"
+      },
+      {
+        "status": "police_notice_original_blocked",
+        "topic": "公安赛时交通、文旅优惠与最新赛前通知",
+        "sourceUrl": "https://mp.weixin.qq.com/s?__biz=MzIzOTA5Mjk2MQ%3D%3D&mid=2650740554&idx=1&sn=1cc2112d3b2de0dcd46806891e9f1d6f",
+        "detail": "搜索发现11月18日崇义公安及11月19日崇义文旅当届信息；微信公众号公开地址实取遇验证页，未取得全文，不发布路段、时段或优惠明细。崇义发布的直接官方微博和政府采购公示可读。本届未见可读独立选手手册。"
+      },
+      {
+        "status": "safety_wording_and_schedule",
+        "topic": "站间退赛、次日关门和颁奖",
+        "sourceUrl": "https://reg.zuicool.com/75013",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/11/f39159b165a6c5ef677642c6dbfb712bbc7d6767.jpeg?imageView2/2/w/1024",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/11/c2c91a37254001a1d2036fe6b2853112182d42e1.jpeg?imageView2/2/w/1024",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/11/002d071b3ced45fbd1ac6b415b1fc6fcb61b670a.jpeg?imageView2/2/w/1024"
+        ],
+        "detail": "三图明确两日赛程，表内颁奖11月21日11:00—20:00与100公里次日关门并列，不能据此指定所有组颁奖日。站间退赛有向下一站及赴最近站两个表述，均保留；提示先联系组委会和工作人员。"
+      },
+      {
+        "status": "contact_and_result",
+        "topic": "参赛咨询与成绩链接",
+        "sourceUrl": "https://reg.zuicool.com/75013",
+        "detail": "最酷当届报名原页给耐吉赛事公众号，未给公共业务电话号码；采购单位、代理、成交供应商电话用途不同，不填。比赛尚未结束，不填正式结果。"
+      }
+    ],
+    "officialDocuments": [
+      {
+        "url": "https://weibo.com/2/detail/5365269176259438",
+        "title": "崇义发布：本届赛事预告",
+        "role": "county_media_official_post",
+        "verified": true,
+        "identityReview": "崇义县融媒体中心官方账号崇义发布于2026-11-14 21:35公布本届11月21—22日赛事。",
+        "characters": 2011,
+        "bodySha256": "9da66c1913adc00c60206c256f40f731d989364fc0adb5d4e589ea605a5f0e72",
+        "checkedAt": "2026-11-19T18:32:04.377Z"
+      },
+      {
+        "url": "https://www.ccgp.gov.cn/cggg/dfgg/zbgg/202611/t20261111_27659109.htm",
+        "title": "中国政府采购网：本届赛事服务成交公告",
+        "role": "government_procurement_conclusion",
+        "verified": true,
+        "identityReview": "中国政府采购网11月11日本届成交公告，确认采购单位及两家赛事服务供应商；采购联系人非报名服务联系方式。",
+        "characters": 1433,
+        "bodySha256": "0dd7a5ff0c2611024d7bc7cb39828cd8358fb1156586e26dd59c875ed213bf6e",
+        "checkedAt": "2026-11-19T18:32:04.377Z"
+      },
+      {
+        "url": "https://m.sohu.com/a/1100024224_121124399",
+        "title": "组委会当届志愿者公告转载",
+        "role": "current_committee_republication",
+        "verified": true,
+        "identityReview": "11月11日组委会志愿者招募转载，正文署来源崇义100组委会，确认当届报到、物资、组别起终点在崇义。",
+        "characters": 1242,
+        "bodySha256": "af1706514d4c4b31f4654939dc5d67ec86bd3b0d893d553262a87a4ed0e0f57b",
+        "checkedAt": "2026-11-19T18:32:04.377Z"
+      }
+    ],
+    "sourceDiscovery": {
+      "officialUrls": [
+        "https://weibo.com/2/detail/5365269176259438",
+        "https://www.ccgp.gov.cn/cggg/dfgg/zbgg/202611/t20261111_27659109.htm"
+      ],
+      "searchResultsPath": "/private/tmp/race-guide-quality-20261117/supp25-chongyi/source-discovery.json",
+      "discoveryFile": "/private/tmp/race-guide-quality-20261117/supp25-chongyi/discover.json",
+      "sourcePriority": "县融媒当届预告和政府采购原文分别用于核实赛期及服务供应商；竞赛项目、时间、费用、强装及罚则采用最酷本届报名页的组委会签署规程及结构化报名文字。未取得的官方微信及第三方全文外证据不据以补录。",
+      "notes": "逐片实际查看三张规程及报名页宣传、二维码和通用横幅。分组口径分基础、双人、两日，证据中的规程扫描件共覆盖组织到第十三章。"
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_and_mini_devtools_390",
+      "miniDisplayed": true,
+      "formalMiniProgramReleaseVerified": false
+    }
+  }
+]
