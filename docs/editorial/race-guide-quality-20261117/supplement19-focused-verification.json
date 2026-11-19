@@ -1,0 +1,103 @@
+{
+  "at": "2026-11-19T11:19:13.339Z",
+  "checks": [
+    {
+      "id": "bishan",
+      "width": 320,
+      "needle": "14:00",
+      "table": {
+        "width": 252,
+        "scrollWidth": 480,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 228,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "本届最酷报名海报（9 月发布时认证进行中）\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "bishan",
+      "width": 390,
+      "needle": "14:00",
+      "table": {
+        "width": 318,
+        "scrollWidth": 480,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 162,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "本届最酷报名海报（9 月发布时认证进行中）\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-30642",
+      "width": 320,
+      "needle": "14:00—20:00",
+      "table": {
+        "width": 252,
+        "scrollWidth": 360,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 108,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "参赛服尺码、完赛奖牌、三组男女前六名和抽奖奖品原图\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-30642",
+      "width": 390,
+      "needle": "14:00—20:00",
+      "table": {
+        "width": 318,
+        "scrollWidth": 360,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 42,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "参赛服尺码、完赛奖牌、三组男女前六名和抽奖奖品原图\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "caa-1000454004",
+      "width": 320,
+      "needle": "180 元/人",
+      "table": {
+        "width": 252,
+        "scrollWidth": 600,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 348,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "组委会领物流程图：证件核验、号码布、参赛服和芯片检测\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "caa-1000454004",
+      "width": 390,
+      "needle": "180 元/人",
+      "table": {
+        "width": 318,
+        "scrollWidth": 600,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 282,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "组委会领物流程图：证件核验、号码布、参赛服和芯片检测\n查看原图 ↗",
+      "overflow": false
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-11-19T11:19:39.863Z"
+}

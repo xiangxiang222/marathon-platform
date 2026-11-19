@@ -1,0 +1,90 @@
+{
+  "at": "2026-11-19T11:19:48.423Z",
+  "passed": true,
+  "checks": [
+    {
+      "id": "caa-1000454004",
+      "width": 320,
+      "sheetId": 1774,
+      "sha256": "e0b3c5a91aba52abb93c2795f533b939e52c0bf6978a54d0009eb4fc3f8feb9c",
+      "mime": "jpg",
+      "caption": "官方比赛线路图：红色全程、蓝色半程，含各公里点、补给与全马海拔剖面",
+      "dims": {
+        "w": 1600,
+        "h": 1091
+      },
+      "previewOpened": true,
+      "originalZoomOpened": true
+    },
+    {
+      "id": "caa-1000454004",
+      "width": 320,
+      "sheetId": 1775,
+      "sha256": "c78e6c8cc4f87a390ae08cfde84bd411aabdacf6e3494db4b8573ee63978075a",
+      "mime": "png",
+      "caption": "组委会领物流程图：证件核验、号码布、参赛服和芯片检测",
+      "dims": {
+        "w": 500,
+        "h": 866
+      },
+      "previewOpened": true,
+      "originalZoomOpened": true
+    },
+    {
+      "id": "caa-1000454004",
+      "width": 320,
+      "sheetId": 1776,
+      "sha256": "33f9e09f14e72818fce539eae04f5227ad6b98e846dfc6c3592d71720a631d99",
+      "mime": "png",
+      "caption": "组委会参赛物资领取确认单二维码",
+      "dims": {
+        "w": 400,
+        "h": 400
+      },
+      "previewOpened": true,
+      "originalZoomOpened": true
+    },
+    {
+      "id": "caa-1000454004",
+      "width": 390,
+      "sheetId": 1774,
+      "sha256": "e0b3c5a91aba52abb93c2795f533b939e52c0bf6978a54d0009eb4fc3f8feb9c",
+      "mime": "jpg",
+      "caption": "官方比赛线路图：红色全程、蓝色半程，含各公里点、补给与全马海拔剖面",
+      "dims": {
+        "w": 1600,
+        "h": 1091
+      },
+      "previewOpened": true,
+      "originalZoomOpened": true
+    },
+    {
+      "id": "caa-1000454004",
+      "width": 390,
+      "sheetId": 1775,
+      "sha256": "c78e6c8cc4f87a390ae08cfde84bd411aabdacf6e3494db4b8573ee63978075a",
+      "mime": "png",
+      "caption": "组委会领物流程图：证件核验、号码布、参赛服和芯片检测",
+      "dims": {
+        "w": 500,
+        "h": 866
+      },
+      "previewOpened": true,
+      "originalZoomOpened": true
+    },
+    {
+      "id": "caa-1000454004",
+      "width": 390,
+      "sheetId": 1776,
+      "sha256": "33f9e09f14e72818fce539eae04f5227ad6b98e846dfc6c3592d71720a631d99",
+      "mime": "png",
+      "caption": "组委会参赛物资领取确认单二维码",
+      "dims": {
+        "w": 400,
+        "h": 400
+      },
+      "previewOpened": true,
+      "originalZoomOpened": true
+    }
+  ]
+}
