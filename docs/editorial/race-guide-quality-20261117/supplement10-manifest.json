@@ -1,0 +1,280 @@
+[
+  {
+    "id": "caa-1000479142",
+    "name": "2026玉林马拉松",
+    "status": "current_source_content_checked_with_questions",
+    "scope": "完成现有 7 张原图及报名页 3 张额外图片全高实看；完整对照本届报名须知、竞赛规程和承办单位 2026 可复制公告。恢复此前遗漏路线、补给、保障、奖金及处罚，不复用 2025 内容。保留团报资料冲突、领物地点时间、实测路线等具体待核来源问题。",
+    "beforeBodyHash": "252e0ab37ce89a20bff0f659802f17837d3d58d95f351b8a2c08b7ff6d462447",
+    "savedBodyHash": "ee7d8afdc564082f1dc9a80419600075016bd16a70df87816363dad27c523c34",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 10,
+    "pendingImages": 0,
+    "chapters": 15,
+    "groups": 2,
+    "groupCorrections": 2,
+    "questions": [
+      {
+        "status": "team_discount_boundaries_conflict",
+        "issue": "本届报名公告图与报名须知原图一致写“20人（含）—49人以上”八折；承办单位可复制公告写“10人（含）—49人以上”。两版均保留，次档下限冲突且“49人以上”边界不清，不纠正为 20–49 或填结构化假值；请组委会或第一赛道确认。十至十九九折，五十及以上七折。",
+        "sourceUrl": "http://whxwcbgdj.yulin.gov.cn/zwyw/t28245063.shtml",
+        "additionalSourceUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/ce36340685f6dbac3c0e9e349c9d7be0fead5eff.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/a8cedb1433b002a98d4338315cc626b035e72aed.jpeg?imageView2/2/w/1024"
+        ]
+      },
+      {
+        "status": "awaiting_current_pickup_publication",
+        "issue": "当届报名须知仅写本人持报名时有效证件、不可代领及不寄参赛包。未找到 2026 领物时间、地点或领物接驳等后续说明。官网相关指引仍为 2025，不使用往届场馆。存取衣（含自费邮寄存衣）和领参赛包不同。",
+        "sourceUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/a8cedb1433b002a98d4338315cc626b035e72aed.jpeg?imageView2/2/w/1024",
+        "additionalSourceUrls": [
+          "https://yulin.sport-china.cn/news/1",
+          "https://yulin.sport-china.cn/news/2"
+        ]
+      },
+      {
+        "status": "final_measured_route_not_yet_confirmed",
+        "issue": "本届报名和规程公布完整拟定道路序列，市文旅局写路线以中国田径协会实地丈量后发布为准。未见同届后发实测图、GPX 或爬升数据；结构化实际距离与海拔维持空值。",
+        "sourceUrl": "http://whxwcbgdj.yulin.gov.cn/zwyw/t28245063.shtml",
+        "additionalSourceUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/a8cedb1433b002a98d4338315cc626b035e72aed.jpeg?imageView2/2/w/1024",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/8a18daf7ad0056cdeb618bc19c88fd450afe7807.jpeg?imageView2/2/w/1024"
+        ]
+      },
+      {
+        "status": "independent_current_official_wechat_verification_required",
+        "issue": "市文旅局链接到本届竞赛规程、报名须知、风险提示和参赛声明；四页均返回微信环境验证，未读取声明及风险提示独立正文。本届规程两图及报名须知长图已全部对照，未见另有公开可复制全文或同届 PDF。",
+        "sourceUrl": "http://whxwcbgdj.yulin.gov.cn/zwyw/t28245063.shtml",
+        "additionalSourceUrls": [
+          "https://mp.weixin.qq.com/s?__biz=MzYyMTcyNzMzMg==&mid=2247486110&idx=1&sn=e13dc3ab2fec8571175609387f9722cb&scene=21#wechat_redirect",
+          "https://mp.weixin.qq.com/s?__biz=MzYyMTcyNzMzMg==&mid=2247486110&idx=2&sn=e70fc6de3bb13b54d71a6cf4ec6d4771&scene=21#wechat_redirect",
+          "https://mp.weixin.qq.com/s?__biz=MzYyMTcyNzMzMg==&mid=2247486110&idx=4&sn=2d9c80f4d8c51be70c64c2c3bd7aa571&scene=21#wechat_redirect",
+          "https://mp.weixin.qq.com/s?__biz=MzYyMTcyNzMzMg==&mid=2247486110&idx=3&sn=455781fa0f6812f3386efde8e8661eeb&scene=21#wechat_redirect"
+        ]
+      },
+      {
+        "status": "first_prize_digit_grouping_normalized",
+        "issue": "全马男子第一原图数字写“2,0000”，只有位分隔异常，五位数字与女子 20,000 一致；以 20,000 元展示并保留原图记法。",
+        "sourceUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/994af12abe61d8f7bc199904bda8144af7734ee2.jpeg?imageView2/2/w/1024"
+      }
+    ],
+    "officialDocuments": [
+      {
+        "url": "http://whxwcbgdj.yulin.gov.cn/zwyw/t28245063.shtml",
+        "title": "2026 玉林马拉松，报名开启！速来→",
+        "role": "current-government-registration-announcement",
+        "verified": true,
+        "identityReview": "承办单位玉林市文化广电体育和旅游局 2026-10-20 发布；时间、规模、费用、起终点、最终路线以丈量为准及四份公众号文件入口。团报第二档与本届报名原图冲突。",
+        "characters": 1788,
+        "bodySha256": "89e3ba28dfc8b113c2de601a1ed8adc582c232fbabe3c12e0808324c28121eee",
+        "checkedAt": "2026-11-19T06:09:56.833Z"
+      },
+      {
+        "url": "https://www.runchina.org.cn/#/race/v/detail/1000479142",
+        "title": "中国马拉松信息平台本届档案",
+        "role": "current-caa-record",
+        "verified": true,
+        "identityReview": "此前公开中国田协平台 API 本届档案，日期、主办和 A 类；官网报名规程原图仍标拟认证。",
+        "characters": 0,
+        "bodySha256": "fad6d6b9504e9a66c463923ed2f82321e5bf60fdad20173ce8d46f9dd83a3bd9",
+        "checkedAt": "2026-11-19T06:09:56.833Z"
+      },
+      {
+        "url": "https://yulin.sport-china.cn/",
+        "title": "2026玉林马拉松",
+        "role": "official_website",
+        "verified": true,
+        "checkedAt": "2026-11-19T06:09:56.833Z",
+        "identityReview": "独立检索并实际读取承办单位 2026-10-20 可复制公告；检查联系官网、公告新闻索引和往届文档年份、当前公开第一赛道/微信报名入口、田协记录及同届 PDF/领物检索。当前规程与须知使用本届完整原图。"
+      }
+    ],
+    "sourceDiscovery": {
+      "currentOfficialGovernmentAnnouncement": "http://whxwcbgdj.yulin.gov.cn/zwyw/t28245063.shtml",
+      "officialEventHome": "https://yulin.sport-china.cn/",
+      "checkedOfficialNewsAndNotices": [
+        "https://yulin.sport-china.cn/news/1",
+        "https://yulin.sport-china.cn/news/2"
+      ],
+      "excludedPreviousEditionUrls": [
+        "https://yulin.sport-china.cn/doc/716/5801",
+        "https://yulin.sport-china.cn/doc/716/5802"
+      ],
+      "currentOfficialWechatRefs": [
+        {
+          "url": "https://mp.weixin.qq.com/s?__biz=MzYyMTcyNzMzMg==&mid=2247486110&idx=1&sn=e13dc3ab2fec8571175609387f9722cb&scene=21#wechat_redirect",
+          "role": "竞赛规程",
+          "discoveredFrom": "http://whxwcbgdj.yulin.gov.cn/zwyw/t28245063.shtml",
+          "access": "http_200_wechat_environment_verification_not_article",
+          "textReviewed": false,
+          "sha256": "cf26e0c6c095336e8a8212bfb7c2608d51ee918bd3b180e113f8482e6704cc5a"
+        },
+        {
+          "url": "https://mp.weixin.qq.com/s?__biz=MzYyMTcyNzMzMg==&mid=2247486110&idx=2&sn=e70fc6de3bb13b54d71a6cf4ec6d4771&scene=21#wechat_redirect",
+          "role": "报名须知",
+          "discoveredFrom": "http://whxwcbgdj.yulin.gov.cn/zwyw/t28245063.shtml",
+          "access": "http_200_wechat_environment_verification_not_article",
+          "textReviewed": false,
+          "sha256": "ef3d37a7f26647141e3075bfa6c9cb9d64b3321bd738dc6965fdfc975955f49a"
+        },
+        {
+          "url": "https://mp.weixin.qq.com/s?__biz=MzYyMTcyNzMzMg==&mid=2247486110&idx=4&sn=2d9c80f4d8c51be70c64c2c3bd7aa571&scene=21#wechat_redirect",
+          "role": "风险提示",
+          "discoveredFrom": "http://whxwcbgdj.yulin.gov.cn/zwyw/t28245063.shtml",
+          "access": "http_200_wechat_environment_verification_not_article",
+          "textReviewed": false,
+          "sha256": "235288279f2f07ebf706733fe0d559bd91c87c7d222a16ee762569b222534cc1"
+        },
+        {
+          "url": "https://mp.weixin.qq.com/s?__biz=MzYyMTcyNzMzMg==&mid=2247486110&idx=3&sn=455781fa0f6812f3386efde8e8661eeb&scene=21#wechat_redirect",
+          "role": "参赛声明",
+          "discoveredFrom": "http://whxwcbgdj.yulin.gov.cn/zwyw/t28245063.shtml",
+          "access": "http_200_wechat_environment_verification_not_article",
+          "textReviewed": false,
+          "sha256": "d90a3eed8a025906c66f103d02b8d53b02e9ebfe10fa4d0c9f4d1ca992361b91"
+        }
+      ],
+      "searchEvidence": "独立检索 2026 当届竞赛规程、第一赛道、PDF、领物公告，以市文旅局网站、赛事官网、公开田协档案与报名页查得资料为准；未见同届公开可复制全规程、后发领物或实测路线。",
+      "currentRegistrationStatusObservation": {
+        "url": "https://reg.zuicool.com/80050",
+        "pageText": "报名中",
+        "overallRegistrationAlreadyOpen": true,
+        "groupStatusNotInferred": true
+      }
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_and_mini_devtools_390",
+      "miniDisplayed": true,
+      "formalMiniProgramReleaseVerified": false
+    }
+  },
+  {
+    "id": "caa-1000476007",
+    "name": "2026罗城半程马拉松",
+    "status": "current_source_content_checked_with_questions",
+    "scope": "当届田协公开记录、最酷报名可复制文字优先，官网实际检查为2025旧届后不采。逐项实看本届全部5张原图18块，报名须知及竞赛规程全部章节，核对关门、补给、奖金，补回处罚、救护、保险及联络。",
+    "beforeBodyHash": "81dc02121a37b8482bd089d1c4ccac73b5d0d19e2fdeddd496e6bd9e07b1ad33",
+    "savedBodyHash": "74bf0b8151892e6f603181f06a6cdad8d23ad5ec5f546490d4aaf25376465e8d",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 5,
+    "pendingImages": 0,
+    "chapters": 17,
+    "groups": 1,
+    "groupCorrections": 2,
+    "questions": [
+      {
+        "topic": "官网旧届、本届领物地点与时间未核实",
+        "status": "source_not_confirmed",
+        "sourceUrl": "https://luocheng.sport-china.cn/",
+        "sourceUrls": [
+          "https://luocheng.sport-china.cn/",
+          "https://luocheng.sport-china.cn/doc/715/5794",
+          "https://luocheng.sport-china.cn/doc/715/5795",
+          "https://reg.zuicool.com/47808"
+        ],
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/d0a1f04e8d023bce9c34ad017e608b4bb949b56a.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/2811760a1a615f8518512bd83c7d7a7aef8aef19.jpeg?imageView2/2/w/750"
+        ],
+        "detail": "当届原图和最酷可复制产品确认官网域名。官网首页、竞赛规程和报名须知实际访问均显示2025前届，不把2025年11月9日、3500人或民族团结跑等口径混入。本届两张组委会原图仅给出本人携报名有效证件、不代领、不邮寄，并称正式时间地点另发；未获得本届正式通知。"
+      },
+      {
+        "topic": "同届两份原图退改截止措辞差异",
+        "status": "source_basis_retained",
+        "sourceUrl": "https://reg.zuicool.com/47808",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/d0a1f04e8d023bce9c34ad017e608b4bb949b56a.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/2811760a1a615f8518512bd83c7d7a7aef8aef19.jpeg?imageView2/2/w/750"
+        ],
+        "detail": "竞赛规程在2026退改段明列11月1日18:00，同时后半句简写11月1日不再受理；报名须知写“11月1日前”及“11月1日退款服务系统关闭”。正文并列并以提前提交保守提示，不保证11月1日当日申请成功。"
+      },
+      {
+        "topic": "年龄与保险口径",
+        "status": "source_basis_retained",
+        "sourceUrl": "https://reg.zuicool.com/47808",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/d0a1f04e8d023bce9c34ad017e608b4bb949b56a.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/2811760a1a615f8518512bd83c7d7a7aef8aef19.jpeg?imageView2/2/w/750"
+        ],
+        "detail": "年龄写2026年1月1日满18，65岁参赛者出生写1961年1月1日及以前，组委会原文不额外改成不同包容边界。保险保单生效时承保18至80，70至80相关保额减半，单列，未推定赛事有最高报名年龄。"
+      },
+      {
+        "topic": "恢复原规程尾章并核对表行",
+        "status": "corrected",
+        "sourceUrl": "https://reg.zuicool.com/47808",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/2811760a1a615f8518512bd83c7d7a7aef8aef19.jpeg?imageView2/2/w/750"
+        ],
+        "detail": "复核5行关门、7行补给、男女同额8行奖金与枪声/净计时、2个性别纪录门槛、18项处罚、保险年龄、医疗救护和联络。10:30按规程以7:30发令加3小时换算。"
+      },
+      {
+        "topic": "无本届海拔和额外测量",
+        "status": "not_published_as_numbers",
+        "sourceUrl": "https://reg.zuicool.com/47808",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/d0a1f04e8d023bce9c34ad017e608b4bb949b56a.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/2811760a1a615f8518512bd83c7d7a7aef8aef19.jpeg?imageView2/2/w/750"
+        ],
+        "detail": "当届原图有可读走线路线描述，无官方可采信当届路线/海拔图或非标准实测里程与爬升；官网目前发布的赛道图为2025，不用旧图。仅显示标准距离。"
+      }
+    ],
+    "officialDocuments": [
+      {
+        "url": "https://www.runchina.org.cn/#/race/v/detail/1000476007",
+        "title": "中国田径协会本届赛事资料",
+        "role": "national_association_event_record",
+        "verified": true,
+        "identityReview": "赛事名、日期、单项半程和A级匹配。",
+        "checkedAt": "2026-11-19T06:09:56.833Z"
+      },
+      {
+        "url": "https://luocheng.sport-china.cn/",
+        "title": "2026竞赛规程列出的罗城半马官网",
+        "role": "official_event_site",
+        "verified": true,
+        "identityReview": "本届管理方原图列明同域名，当前栏目为2025旧届，不作为本届具体安排证据。",
+        "checkedAt": "2026-11-19T06:09:56.833Z"
+      },
+      {
+        "url": "https://reg.zuicool.com/47808",
+        "title": "2026罗城半程马拉松合作报名页及组委会原图",
+        "role": "authorized_registration_partner",
+        "verified": true,
+        "identityReview": "本届时间、地点、报名费、项目与本届原图一致。",
+        "checkedAt": "2026-11-19T06:09:56.833Z"
+      }
+    ],
+    "sourceDiscovery": {
+      "officialUrl": "https://luocheng.sport-china.cn/",
+      "officialKind": "2026原规程标明的赛事官网，访问时仅2025旧届规程和领物可读；另查中国田协本届记录",
+      "registrationUrl": "https://reg.zuicool.com/47808",
+      "partnerEventUrl": "https://zuicool.com/event/56479",
+      "partnerAnnouncementUrl": "https://zuicool.com/news/archives/318793",
+      "organizerPublicAccount": "罗城半程马拉松",
+      "checkedFiles": [
+        "/tmp/race-guide-quality-20261117/supplement-h-caa/fetch-results.json",
+        "/tmp/race-guide-quality-20261117/supplement-h-caa/selected-results.json",
+        "/tmp/race-guide-quality-20261117/supplement-h-caa/luo-site.html",
+        "/tmp/race-guide-quality-20261117/supplement-h-caa/luo-official-rules.html",
+        "/tmp/race-guide-quality-20261117/supplement-h-caa/luo-official-signup.html",
+        "/tmp/race-guide-quality-20261117/supplement-h-caa/luo-wxso1.html",
+        "/tmp/race-guide-quality-20261117/supplement-h-caa/luo-announcement.html",
+        "/tmp/race-guide-quality-20261117/supplement-h-caa/caa-1000476007-reg.html"
+      ],
+      "outcome": "本届身份证明取田协公开和合作产品；本届组委会图为资格、退改和规程来源，官方域名可打开但旧届内容不采用。另搜索本届信息，仅确认报名，未确认本届最终领物安排。"
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_and_mini_devtools_390",
+      "miniDisplayed": true,
+      "formalMiniProgramReleaseVerified": false
+    }
+  }
+]

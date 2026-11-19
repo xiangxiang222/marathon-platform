@@ -1,0 +1,71 @@
+{
+  "at": "2026-11-19T06:14:32.224Z",
+  "checks": [
+    {
+      "id": "caa-1000479142",
+      "width": 320,
+      "needle": "13:00",
+      "table": {
+        "width": 252,
+        "scrollWidth": 600,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 348,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "2026 玉林马拉松主视觉、赛事概览和报名二维码\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "caa-1000479142",
+      "width": 390,
+      "needle": "13:00",
+      "table": {
+        "width": 318,
+        "scrollWidth": 600,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 282,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "2026 玉林马拉松主视觉、赛事概览和报名二维码\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "caa-1000476007",
+      "width": 320,
+      "needle": "10:30",
+      "table": {
+        "width": 252,
+        "scrollWidth": 720,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 468,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "2026罗城半程马拉松报名须知原图：团体优惠、资格、退改和领物凭证\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "caa-1000476007",
+      "width": 390,
+      "needle": "10:30",
+      "table": {
+        "width": 318,
+        "scrollWidth": 720,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 402,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "2026罗城半程马拉松报名须知原图：团体优惠、资格、退改和领物凭证\n查看原图 ↗",
+      "overflow": false
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-11-19T06:14:43.211Z"
+}
