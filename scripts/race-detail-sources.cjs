@@ -24,7 +24,7 @@ function platformRole(url) {
   const safe = publicSourceUrl(url); if (!safe) return '';
   const { hostname, pathname } = new URL(safe);
   if (!PLATFORM_HOSTS.some(host => isHost(hostname, host))) return '';
-  return /^reg\./.test(hostname) || /register|signup|enroll|\/reg\//i.test(pathname) ? 'registration_platform' : 'discovery_platform';
+  return /(?:^|-)registration\.|^reg\./i.test(hostname) || /register|signup|enroll|\/reg\/|\/signlist\.html$/i.test(pathname) ? 'registration_platform' : 'discovery_platform';
 }
 function registryUrl(url) {
   const safe = publicSourceUrl(url); if (!safe) return false;
@@ -108,7 +108,7 @@ function officialCandidates(race = {}, { caaDetails, documents = [] } = {}) {
     }
     // Some regulations print a website as plain text in the contact section.
     // Keep it as a lead and verify the edition and publisher after opening it.
-    for (const match of clean(doc.text).matchAll(/(?:赛事官网|官方网站|官网|官方网站地址|官方网站网址)\s*[:：]?\s*((?:https?:\/\/|www\.)[^\s<>，。；;）)]+)/gi)) {
+    for (const match of clean(doc.text).matchAll(/(?:赛事官网|官方网站|官网)(?:地址|网址)?\s*[:：]?\s*[（(]?\s*((?:https?:\/\/|www\.)[^\s<>，。；;）)]+)/gi)) {
       const address = match[1];
       add(/^www\./i.test(address)?'http://'+address:address,'explicit_official_link',doc.url);
     }
@@ -163,11 +163,13 @@ async function verifyOfficialCandidate(candidate, { name, readDocument, matchesE
   }
 }
 
-const FIELD_TERMS = { groups: '项目 组别 实际距离 爬升 关门时间', fees: '报名费 早鸟价 收费阶段', eligibility: '参赛资格 年龄 出生日期 完赛证明', pickup: '领物须知 时间 地点 身份证', schedule: '比赛日程 多日 时间', route: '路线图 海拔 补给', equipment: '强制装备', refund: '退费 退改政策', phone: '组委会 联系方式' };
-function missingSourceQueries(name, missingFields = [], { officialVerified = false } = {}) {
+const FIELD_TERMS = { registration: '报名时间 报名入口', groups: '项目 组别 实际距离 爬升 关门时间', fees: '报名费 早鸟价 收费阶段', eligibility: '参赛资格 年龄 出生日期 完赛证明', pickup: '领物须知 时间 地点 身份证', schedule: '比赛日程 多日 时间', route: '路线图 海拔 补给', equipment: '强制装备', refund: '退费 退改政策', phone: '组委会 联系方式' };
+function missingSourceQueries(name, missingFields = [], { officialVerified = false, raceDate = '' } = {}) {
   const prefix = clean(name); if (!prefix) return [];
   const queries = [];
   if (!officialVerified) queries.push(prefix + ' 官方网站 官网');
+  const date = /^20\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/.exec(raceDate);
+  if (date && missingFields.includes('registration')) queries.push(prefix + ' 报名 ' + Number(date[1]) + '月' + Number(date[2]) + '日');
   if (!missingFields.length && !officialVerified) queries.push(prefix + ' 官方 竞赛规程 报名须知');
   for (const field of [...new Set(missingFields)]) queries.push(prefix + ' 官方 ' + (FIELD_TERMS[field] || clean(field)));
   return [...new Set(queries)];
@@ -183,7 +185,7 @@ async function discoverRaceSources(race = {}, options = {}) {
   const checked = [];
   for (const candidate of candidates) checked.push(await verifyOfficialCandidate(candidate, { ...options, name }));
   const hasVerified = () => checked.some(source => source.verified);
-  const queries = missingSourceQueries(name, options.missingFields || [], { officialVerified: hasVerified() });
+  const queries = missingSourceQueries(name, options.missingFields || [], { officialVerified: hasVerified(), raceDate: race.raceDate || race.race_date });
   const discovered = [];
   if (queries.length && typeof options.search !== 'function') failures.push({ step: 'source_search', error: 'search_not_configured', queries });
   for (const query of queries) {

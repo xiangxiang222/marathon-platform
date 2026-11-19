@@ -121,7 +121,7 @@ test('source collector avoids non-public and non-HTTP entries', () => {
   assert.equal(publicUrl('https://192.168.1.2/a'),'');
   assert.equal(publicUrl('/77675','https://reg.zuicool.com'),'https://reg.zuicool.com/77675');
 });
-test('independent search continues after access failures and reads direct destination links', async t => {
+test('independent search reads Baidu destination URLs and keeps other engines when access is restricted', async t => {
   const fs=require('node:fs'), executablePath=process.platform==='darwin'?'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome':'/usr/bin/google-chrome';
   if(!fs.existsSync(executablePath))return t.skip('Chrome is unavailable for the search browser check');
   const collector=new Collector({browser:executablePath,cacheDir:fs.mkdtempSync(require('node:path').join(require('node:os').tmpdir(),'race-search-test-'))});
@@ -129,9 +129,17 @@ test('independent search continues after access failures and reads direct destin
   const browser=collector.browser;
   collector.browser=await browser.newContext();
   try{
-    await collector.browser.route('**/*',route=>route.fulfill({contentType:'text/html; charset=utf-8',body:route.request().url().includes('www.so.com/s?')?'<h3><a href="https://www.so.com/link?tracking=1" data-mdurl="https://race.example/2026/rules">2026测试赛竞赛规程</a></h3><h3><a data-mdurl="http://127.0.0.1/private">无关链接</a></h3>':'<body>请完成验证</body>'}));
-    const result=await collector.searchSources('2026测试赛 官网 规程');
-    assert.deepEqual(result.sources.map(s=>s.url),['https://race.example/2026/rules']);
+    await collector.browser.route('**/*',route=>{
+      const host=new URL(route.request().url()).hostname;
+      const body=host==='www.baidu.com'
+        ? '<div id="content_left"><div class="c-container" mu="https://races.gov.cn/2026/notice.html"><h3><a href="https://www.baidu.com/link?url=opaque">2026测试赛报名公告</a></h3></div><div class="c-container"><h3><a href="https://www.baidu.com/link?url=opaque">无公开目标</a></h3></div></div>'
+        : host==='www.so.com'
+          ? '<h3><a href="https://www.so.com/link?tracking=1" data-mdurl="https://race.example/2026/rules">2026测试赛竞赛规程</a></h3><h3><a data-mdurl="http://127.0.0.1/private">无关链接</a></h3>'
+          : '<body>请完成验证</body>';
+      return route.fulfill({contentType:'text/html; charset=utf-8',body});
+    });
+    const result=await collector.searchSources('2026测试赛 报名 12月27日');
+    assert.deepEqual(result.sources.map(s=>s.url),['https://races.gov.cn/2026/notice.html','https://race.example/2026/rules']);
     assert.equal(result.failures.length,2);
     assert.ok(result.failures.every(f=>f.error==='search_access_verification_required'),JSON.stringify(result.failures));
   }finally{await collector.stop();await browser.close();}
@@ -143,6 +151,23 @@ test('source discovery keeps official, signup and public WeChat candidates for r
   assert.deepEqual(searchResultUrls(html, '2026招远黄金马拉松'), ['https://mp.weixin.qq.com/s/abc123']);
   const found = await discoverPublicSources('2026招远黄金马拉松', { fetchImpl: async () => ({ ok: true, text: async () => html }) });
   assert.deepEqual(found.urls, ['https://mp.weixin.qq.com/s/abc123']);
+});
+test('current platform registration articles are followed and can lead to the edition website', async () => {
+  const fs=require('node:fs'),path=require('node:path'),os=require('node:os');
+  const collector=new Collector({cacheDir:fs.mkdtempSync(path.join(os.tmpdir(),'race-linked-article-test-'))});
+  const event='https://zuicool.com/event/86520', article='https://zuicool.com/news/archives/319640', previous='https://zuicool.com/news/archives/319195', site='http://www.event.example/';
+  const calls=[];
+  collector.searchSources=async()=>[];
+  collector.document=async url=>{
+    calls.push(url);
+    const links=url===event?[{url:article,label:'2026测试马拉松，10月20日开启报名'},{url:previous,label:'2025测试马拉松，10月20日开启报名'}]:[];
+    return {url,title:'2026测试马拉松',header:'',text:url===article?'报名公告。官网（www.event.example）':url===site?'本届官方赛事规程。':'赛历摘要。',packages:[],images:[],links,capture:{fresh:true}};
+  };
+  const result=await collector.collect({name:'2026测试马拉松',urls:[event],discover:true});
+  assert.ok(result.documents.some(doc=>doc.url===article&&doc.sourceRole==='discovery_platform'));
+  assert.ok(result.documents.some(doc=>doc.url===site&&doc.sourceRole==='official_website'));
+  assert.equal(calls.includes(previous),false);
+  assert.equal(calls.filter(url=>url===article).length,1);
 });
 test('collector preserves more than three groups and lazy image documents', async () => {
   const collector = new Collector({cacheDir: require('node:fs').mkdtempSync(require('node:path').join(require('node:os').tmpdir(),'race-document-test-'))});
