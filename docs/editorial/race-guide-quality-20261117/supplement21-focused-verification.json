@@ -1,0 +1,39 @@
+{
+  "at": "2026-11-19T15:31:47.543Z",
+  "checks": [
+    {
+      "id": "zuiku-34162",
+      "width": 320,
+      "needle": "20.84",
+      "table": {
+        "width": 252,
+        "scrollWidth": 480,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 228,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "初版章程 01／12：封面与目录\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-34162",
+      "width": 390,
+      "needle": "20.84",
+      "table": {
+        "width": 318,
+        "scrollWidth": 480,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 162,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "初版章程 01／12：封面与目录\n查看原图 ↗",
+      "overflow": false
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-11-19T15:31:58.566Z"
+}

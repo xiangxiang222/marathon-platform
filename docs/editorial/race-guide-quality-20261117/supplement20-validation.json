@@ -1,0 +1,21 @@
+{
+  "at": "2026-11-19T13:55:53.849Z",
+  "passed": true,
+  "rows": [
+    {
+      "id": "zuiku-33682",
+      "file": "supplement-f9-zuiku-33682-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "逐块实看当前库存全部8张原图（分块无遗漏），并核对本届Keep赛事可检索官方账号资料、可复制报名页面和9个报名选项；整理原规程完整年龄/报名/费用/物资/处罚条款，并单独保留补录适用条款。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-32919",
+      "file": "supplement-k2-1390haidao-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "逐看十五张库存图及两张同届报名文章补图，校对两日两会场、四主组、亲子与老兵，恢复价目、资格、装备矩阵、邀请、奖金及熔断；标明相互不一致的原始读数。",
+      "explicitImageReview": true
+    }
+  ],
+  "races": 2
+}

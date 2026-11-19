@@ -1,0 +1,21 @@
+{
+  "at": "2026-11-19T14:24:49.301Z",
+  "checks": [
+    {
+      "id": "zuiku-33682",
+      "width": 320,
+      "paragraphs": 50,
+      "tableRows": 63,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-32919",
+      "width": 320,
+      "paragraphs": 41,
+      "tableRows": 80,
+      "fullRenderedContentMatchesProduction": true
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-11-19T14:24:54.175Z"
+}

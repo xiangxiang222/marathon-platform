@@ -1,0 +1,71 @@
+{
+  "at": "2026-11-19T14:24:32.034Z",
+  "checks": [
+    {
+      "id": "zuiku-33682",
+      "width": 320,
+      "needle": "两枪各700人",
+      "table": {
+        "width": 252,
+        "scrollWidth": 480,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 228,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "超跑PLUS补录规程：分组线路、发枪和关门、补录退费及该组承诺书二维码。\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-33682",
+      "width": 390,
+      "needle": "两枪各700人",
+      "table": {
+        "width": 318,
+        "scrollWidth": 480,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 162,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "超跑PLUS补录规程：分组线路、发枪和关门、补录退费及该组承诺书二维码。\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-32919",
+      "width": 320,
+      "needle": "99.2",
+      "table": {
+        "width": 252,
+        "scrollWidth": 960,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 708,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "100K穿越组：99.2公里、爬升5938米，附分站和海拔；下方爬升另值见正文\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-32919",
+      "width": 390,
+      "needle": "99.2",
+      "table": {
+        "width": 318,
+        "scrollWidth": 960,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 642,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "100K穿越组：99.2公里、爬升5938米，附分站和海拔；下方爬升另值见正文\n查看原图 ↗",
+      "overflow": false
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-11-19T14:25:01.176Z"
+}

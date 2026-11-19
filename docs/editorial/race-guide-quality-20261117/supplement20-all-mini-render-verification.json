@@ -1,0 +1,86 @@
+{
+  "startedAt": "2026-11-19T15:19:33.227Z",
+  "kind": "Actual WeChat DevTools 390px production-page; no mock; physical phone, gestures and formal release excluded",
+  "races": [
+    {
+      "id": "zuiku-33682",
+      "actualViewport": 390,
+      "guideCharacters": 5554,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 9,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1271.3515625,
+        "bottom": 10611.453125,
+        "width": 366,
+        "height": 9340.1015625,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 10,
+      "tableRowsIncludingHeaders": 63,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336
+      ]
+    },
+    {
+      "id": "zuiku-32919",
+      "actualViewport": 390,
+      "guideCharacters": 6350,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 4,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1237.953125,
+        "bottom": 12041.34375,
+        "width": 366,
+        "height": 10803.390625,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 12,
+      "tableRowsIncludingHeaders": 80,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336
+      ]
+    }
+  ],
+  "previousErrors": [
+    {
+      "message": "spawnSync /Applications/wechatwebdevtools.app/Contents/MacOS/wechatide ETIMEDOUT"
+    },
+    {
+      "message": "spawnSync /Applications/wechatwebdevtools.app/Contents/MacOS/wechatide ETIMEDOUT"
+    }
+  ],
+  "intermittent": [],
+  "errors": [],
+  "passed": true,
+  "completedAt": "2026-11-19T15:19:56.483Z"
+}

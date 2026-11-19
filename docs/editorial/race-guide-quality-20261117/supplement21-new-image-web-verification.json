@@ -1,0 +1,62 @@
+{
+  "at": "2026-11-19T15:32:00.278Z",
+  "passed": true,
+  "checks": [
+    {
+      "id": "zuiku-34162",
+      "width": 320,
+      "sheetId": 1777,
+      "sha256": "b7f40910c4c585ea296fa301a1450640cb57134cb589edb5e7c868ecb071c9c1",
+      "mime": "jpg",
+      "caption": "2026 富春雪岭新版路线：两条赛道、海拔剖面及检查点分段表",
+      "dims": {
+        "w": 1024,
+        "h": 1574
+      },
+      "previewOpened": true,
+      "originalZoomOpened": true
+    },
+    {
+      "id": "zuiku-34162",
+      "width": 320,
+      "sheetId": 1778,
+      "sha256": "7b96d5e2b6095818b55ae5b21057345f2a34dc45d87f9def90e7d8b953a13629",
+      "mime": "jpg",
+      "caption": "2026 富春雪岭新版发枪及终点关门时刻表",
+      "dims": {
+        "w": 1024,
+        "h": 1554
+      },
+      "previewOpened": true,
+      "originalZoomOpened": true
+    },
+    {
+      "id": "zuiku-34162",
+      "width": 390,
+      "sheetId": 1777,
+      "sha256": "b7f40910c4c585ea296fa301a1450640cb57134cb589edb5e7c868ecb071c9c1",
+      "mime": "jpg",
+      "caption": "2026 富春雪岭新版路线：两条赛道、海拔剖面及检查点分段表",
+      "dims": {
+        "w": 1024,
+        "h": 1574
+      },
+      "previewOpened": true,
+      "originalZoomOpened": true
+    },
+    {
+      "id": "zuiku-34162",
+      "width": 390,
+      "sheetId": 1778,
+      "sha256": "7b96d5e2b6095818b55ae5b21057345f2a34dc45d87f9def90e7d8b953a13629",
+      "mime": "jpg",
+      "caption": "2026 富春雪岭新版发枪及终点关门时刻表",
+      "dims": {
+        "w": 1024,
+        "h": 1554
+      },
+      "previewOpened": true,
+      "originalZoomOpened": true
+    }
+  ]
+}
