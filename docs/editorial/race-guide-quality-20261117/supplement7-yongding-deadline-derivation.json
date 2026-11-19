@@ -1,0 +1,16 @@
+{
+  "inputUnchanged": true,
+  "frozenSha256": "1fad5ac82ca9bc33ceca23ad21e42a4eb87348d5f894a7b639d923dab8007c2e",
+  "approvedCorrection": {
+    "field": "deadline",
+    "before": "2026-10-31T18:00:00+08:00",
+    "after": "2026-11-05T18:00:00+08:00",
+    "source": {
+      "url": "https://yongding.sport-china.cn/doc/1049/8196",
+      "secondOfficialSource": "https://yongding.sport-china.cn/doc/1049/8197",
+      "textReviewed": true,
+      "reason": "官网两份可复制文一致；最酷10月31日单独标来源及渠道。"
+    }
+  },
+  "rationale": "Both current edition official texts confirm 11/5, older platform record remains documented. Keep the existing CAA credential link in official_url; independent current organizer website is already represented in the guide source details."
+}

@@ -1,0 +1,257 @@
+[
+  {
+    "id": "caa-1000452082",
+    "name": "2026池州马拉松",
+    "status": "current_source_content_checked_with_questions",
+    "scope": "12 张当前已保存原图全高实看（46 连续裁图），另查看历史移出 3 图确认是封面、发布会口号、重复报名费用。逐章核报名须知 1–6 章与竞赛规程 1–18 章；八张原表逐格复核，政府公示和田协本届文字优先取其覆盖事项。",
+    "beforeBodyHash": "ad04e38c6e2aaf97609864f1d088553a883e17c53bbabb394c439c5926d47f26",
+    "savedBodyHash": "b2b5c3db1c0949b3634f345870c910c679147827d8a02c920070a6b8ce0edf28",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 12,
+    "pendingImages": 0,
+    "chapters": 15,
+    "groups": 2,
+    "groupCorrections": 2,
+    "questions": [
+      {
+        "item": "单独的赛前领物指南、交通指南和官方手册",
+        "sources": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/08/946a1d15b6abd011193b34f2091f9ab53ed382ee.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/08/64d4b2431aed4aacb2de8efa0617cb78f0d13eb8.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/08/7ae7ea410ff7e0a370114ec9815577c5c7cbaa18.jpeg?imageView2/2/w/750",
+          "https://www.chizhou.gov.cn/Content/show/787734.html",
+          "https://www.chizhou.gov.cn/Search/?siteId=0&keyword=%E6%B1%A0%E5%B7%9E%E9%A9%AC%E6%8B%89%E6%9D%BE%E9%A2%86%E7%89%A9"
+        ],
+        "unconfirmed": "本届报名须知、规程和日程一致确认11月13–14日领物并注明比赛日不能领物。政府站群、教体局站内和独立搜索核到抽签公告与运营商赛前索引；独立领物、出行和参赛手册正文受访问校验，不能核实每日具体时段、地点、凭证、接驳班次与最终认证版路线图。拟定路线如原文标注，未挪用2025届交通指南。"
+      },
+      {
+        "item": "是否有本届独立赛事官网可复制全篇",
+        "sources": [
+          "https://www.runchina.org.cn/#/race/v/detail/1000452082",
+          "https://www.chizhou.gov.cn/Content/show/787734.html",
+          "https://czsjtj.chizhou.gov.cn/",
+          "https://zuicool.com/event/11365",
+          "https://reg.zuicool.com/55411"
+        ],
+        "unconfirmed": "确认本届田协公开登记和池州市人民政府可复制文字；报名页、原规程及政府公告指向赛事官方微信公众号，未找到可核的独立本届官网全文、官方可复制PDF或本届官方路线图。当前可得规程已逐图核全。"
+      },
+      {
+        "item": "两个生日临界日",
+        "sources": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/08/946a1d15b6abd011193b34f2091f9ab53ed382ee.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/08/523530d4bab9539a9761b9576cf033b877eb4012.jpeg?imageView2/2/w/750"
+        ],
+        "unconfirmed": "两份正式原图分别写20周岁及以上（2006年1月1日前出生）和18周岁及以上（2008年1月1日前出生）。保留原文“前出生”，不自行改写成包含1月1日；未找到额外官方边界解释。"
+      }
+    ],
+    "officialDocuments": [
+      {
+        "url": "https://www.runchina.org.cn/#/race/v/detail/1000452082",
+        "title": "中国田径协会本届赛事查询",
+        "role": "official_caa_registry",
+        "verified": true,
+        "identityReview": "本届田协公开原始接口返回比赛日期2026.11.15、池州市人民政府、马拉松和半程及赛事等级A。",
+        "characters": 762,
+        "bodySha256": "a9a9868f2982b46c6b7de5bd1dbb8b6472a8c3c1d3be2a2d92dfaedacb7c88f9",
+        "checkedAt": "2026-11-19T05:26:46.703Z"
+      },
+      {
+        "url": "https://www.chizhou.gov.cn/Content/show/787734.html",
+        "title": "池州市人民政府：2026池州马拉松抽签结果揭晓",
+        "role": "official_host_current_notice",
+        "verified": true,
+        "identityReview": "主办单位政府网站可复制本届公告全文，9月20日已抽签、两组3000/9000和12000人总规模、两组均通过抽签、7工作日按缴费账户退款，短信/官微/数字心动App/汇赛通小程序查询。",
+        "characters": 1528,
+        "bodySha256": "c6fa3f15e3c2127ee0d67e0c164103ab86a10feec2a1d9a23ced0619ee3be60d",
+        "checkedAt": "2026-11-19T05:26:46.703Z"
+      },
+      {
+        "url": "https://reg.zuicool.com/55411",
+        "title": "最酷本届报名页面",
+        "role": "platform_current_options",
+        "verified": true,
+        "identityReview": "核2026池州马拉松、11月15日、两组选项及费用120/100，以及先缴费后抽签和原图来源。",
+        "characters": 1016,
+        "bodySha256": "07656a63de9683ce16812f5453f67a0479f303a3c0f9e8c2fc653b0daf8f7342",
+        "checkedAt": "2026-11-19T05:26:46.703Z"
+      },
+      {
+        "url": "https://zuicool.com/event/11365",
+        "title": "最酷本届赛事详情",
+        "role": "platform_current_event",
+        "verified": true,
+        "identityReview": "本届详情页确认11月15日、池州市贵池区起终点、两组及原入口；原图及政府本届公示用于具体条款。",
+        "characters": 2226,
+        "bodySha256": "5fa403cf339c0b10e18503586517fc0f653003999c05b072a5e2ec74a31ff97c",
+        "checkedAt": "2026-11-19T05:26:46.703Z"
+      }
+    ],
+    "sourceDiscovery": {
+      "priority": "本届田协公开登记确认等级和主办，主办单位池州市人民政府本届抽签公告确认中签途径和退费；本届公开组委会正式图文补足全规程，最酷本届页面核选项、再独立搜索领物、交通和路线。",
+      "officialSite": {
+        "standaloneConfirmed": false,
+        "verifiedHostGovernment": "https://www.chizhou.gov.cn/",
+        "verifiedHostNotice": "https://www.chizhou.gov.cn/Content/show/787734.html",
+        "verifiedEducationSportsDepartment": "https://czsjtj.chizhou.gov.cn/",
+        "why": "政府、教体局网站可访问，同届抽签公告已读；本届正式报名须知及规程引向赛事官微，未发现可用本届独立官网可复制规程。"
+      },
+      "searches": [
+        "政府站群/教体局站内：池州马拉松",
+        "政府站群：池州马拉松领物、2026池州马拉松期间主城区交通管制",
+        "2026 池州马拉松 11月15日 池州市 体育局",
+        "2026北京同仁堂池州马拉松 领物指南 波动大众马拉松",
+        "2026 池州马拉松 赛事路线图",
+        "2026北京同仁堂池州马拉松 交通出行指南 接驳"
+      ],
+      "sourceArtifacts": [
+        "lookup.json",
+        "search-follow.json",
+        "exact-lookups.json",
+        "cz-government-lookups.json",
+        "cz-current-find.json",
+        "cz-specific-searches.json",
+        "cz-gov-draw.html",
+        "cz-gov-draw.txt"
+      ]
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_only",
+      "miniDisplayed": false,
+      "formalMiniProgramReleaseVerified": false
+    }
+  },
+  {
+    "id": "caa-1000477009",
+    "name": "2026黄冈半程马拉松",
+    "status": "current_source_content_checked_with_questions",
+    "scope": "本届协会名单、官网可读页面异常核对和最酷可复制产品信息优先；实看平台5张原图与全部11裁片，补完整竞赛规程，核对报名渠道日期、双枪关门及补给和排名，不凭过往赛事补领物。",
+    "beforeBodyHash": "6dfd712f8bdd48cc26495ef8e3960933825b11ea250b34401005c232a11e8dd5",
+    "savedBodyHash": "15b120fe25bf99ccc329b0a1ac0c3eeb9784299d3e5fa425610f4cad7fe612cc",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 5,
+    "pendingImages": 0,
+    "chapters": 19,
+    "groups": 1,
+    "groupCorrections": 5,
+    "questions": [
+      {
+        "topic": "公开报名日期差异",
+        "status": "source_conflict_resolved_for_guide",
+        "sourceUrl": "https://reg.zuicool.com/67718",
+        "sourceUrls": [
+          "https://reg.zuicool.com/67718",
+          "https://zuicool.com/news/archives/318213"
+        ],
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/b9df576901aa2563e26cfe7770a51da452dc6b27.png?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/3b4d22d5fcd5cd01769781633983e1eb668942ab.jpeg?imageView2/2/w/750"
+        ],
+        "detail": "同一届最酷报名页和可复制报名公告把报名截止写为10月25日18:00，早期报名海报和官方印刷规程写10月22日18:00，规程团队报名也写至22日。已区分具体来源；没有可核更晚团报截止或明确延期公告，不把25日用于团队报名。"
+      },
+      {
+        "topic": "官网领物栏目为空，不沿用旧届",
+        "status": "source_not_confirmed",
+        "sourceUrl": "http://huanggangmarathon.com/api/H5/website/nav_info?website_id=23&id=337&type=1",
+        "sourceUrls": [
+          "http://huanggangmarathon.com/web/pc_website_template/index?website_id=23",
+          "http://huanggangmarathon.com/web/pc_website_template/detail?website_id=23&id=337&type=1",
+          "http://huanggangmarathon.com/api/H5/website/nav_list?website_id=23&nav_id=339&page=1&page_size=20"
+        ],
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/3b4d22d5fcd5cd01769781633983e1eb668942ab.jpeg?imageView2/2/w/750"
+        ],
+        "detail": "本届官网公开API赛事名匹配2026，但领物API正文为“暂未开放”，新闻栏目含2025，SEO内容也仍有2025，未取得本届最终时间、场地与证件清单。到场要求由当届后续通知确认。"
+      },
+      {
+        "topic": "关门时长与关门时钟口径",
+        "status": "source_basis_retained",
+        "sourceUrl": "https://reg.zuicool.com/67718",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/63912571bbcd41bffe74d939750c2f9b2e7f8bb7.jpeg?imageView2/2/w/750"
+        ],
+        "detail": "首枪08:00、第二枪08:08；原表终点列3小时，实际关门11:08。刊登两种数据，不把任一参赛者的计时等同于统一关门，不由首枪推算11:00。"
+      },
+      {
+        "topic": "海拔曲线与实测里程",
+        "status": "not_published_as_numbers",
+        "sourceUrl": "https://reg.zuicool.com/67718",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/63912571bbcd41bffe74d939750c2f9b2e7f8bb7.jpeg?imageView2/2/w/750"
+        ],
+        "detail": "原规程上篇内含路线图和海拔曲线，但没有一处可可靠核实累计爬升或实测距离。保留整幅图查看；使用组别标准距离21.0975公里。"
+      },
+      {
+        "topic": "居民奖与遗漏尾章",
+        "status": "corrected",
+        "sourceUrl": "https://reg.zuicool.com/67718",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/3b4d22d5fcd5cd01769781633983e1eb668942ab.jpeg?imageView2/2/w/750"
+        ],
+        "detail": "实读男子女子均第6—12名500元、13—20名300元、21—50名100元。恢复两性奖金列、赛会纪录和完整处罚、保险及联系尾章。规程图和综合报名页中的重复段合并，原数值无覆盖。"
+      }
+    ],
+    "officialDocuments": [
+      {
+        "url": "http://huanggangmarathon.com/web/pc_website_template/index?website_id=23",
+        "title": "2026黄冈半程马拉松官网",
+        "role": "official_event_site",
+        "verified": true,
+        "identityReview": "本届报名页明确此域名，公开模板 get_detail 返回本届赛事精确名称；旧栏目不作本届。",
+        "checkedAt": "2026-11-19T05:26:46.703Z"
+      },
+      {
+        "url": "https://www.runchina.org.cn/#/race/v/detail/1000477009",
+        "title": "中国田径协会本届赛事查询",
+        "role": "national_association_event_record",
+        "verified": true,
+        "identityReview": "名称、日期、黄冈市主办与A级。",
+        "checkedAt": "2026-11-19T05:26:46.703Z"
+      },
+      {
+        "url": "https://reg.zuicool.com/67718",
+        "title": "最酷本届报名产品与组委会规程原图",
+        "role": "authorized_registration_partner",
+        "verified": true,
+        "identityReview": "本届比赛日期、场地、唯一项目和报名费一致。",
+        "checkedAt": "2026-11-19T05:26:46.703Z"
+      }
+    ],
+    "sourceDiscovery": {
+      "officialUrl": "http://huanggangmarathon.com/web/pc_website_template/index?website_id=23",
+      "officialKind": "本届 RockySports 官网，经公共站点数据验证赛事名称；领物页面未开放，新闻栏含旧届",
+      "registrationUrl": "https://reg.zuicool.com/67718",
+      "partnerEventUrl": "https://zuicool.com/event/82881",
+      "partnerAnnouncementUrl": "https://zuicool.com/news/archives/318213",
+      "organizerPublicAccount": "黄冈马拉松",
+      "checkedFiles": [
+        "/tmp/race-guide-quality-20261117/supplement-g-caa/fetch-results.json",
+        "/tmp/race-guide-quality-20261117/supplement-g-caa/selected-results.json",
+        "/tmp/race-guide-quality-20261117/supplement-g-caa/huang-content-results.json",
+        "/tmp/race-guide-quality-20261117/supplement-g-caa/huang-target-results.json",
+        "/tmp/race-guide-quality-20261117/supplement-g-caa/huang-api-detail.json",
+        "/tmp/race-guide-quality-20261117/supplement-g-caa/huang-api-nav.json",
+        "/tmp/race-guide-quality-20261117/supplement-g-caa/huang-api-pickup.json",
+        "/tmp/race-guide-quality-20261117/supplement-g-caa/huang-api-list339.json",
+        "/tmp/race-guide-quality-20261117/supplement-g-caa/huang-api-banner.json",
+        "/tmp/race-guide-quality-20261117/supplement-g-caa/huang-announcement.html",
+        "/tmp/race-guide-quality-20261117/supplement-g-caa/caa-1000477009-reg.html"
+      ],
+      "outcome": "官网首页使用公开的赛事模板，公开API确认本届名称。未找到本届可复制竞赛规程，当届原图逐段取文字；最酷后续报名正文用于其入口截止和抽签。独立查询本届领物、开赛和报名差异，未采用旧届或搜索摘要。"
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_only",
+      "miniDisplayed": false,
+      "formalMiniProgramReleaseVerified": false
+    }
+  }
+]

@@ -1,0 +1,42 @@
+{
+  "at": "2026-11-19T05:07:31.705Z",
+  "passed": true,
+  "rows": [
+    {
+      "id": "zuiku-58600",
+      "file": "supplement-maotai-followup-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "二次查看四张现有路线原图：恢复已确认的赛道关门点、保留全部实物图，未宣称本轮重审其他规程。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-66992",
+      "file": "supplement-huangshi-format-frozen-reviewed.json",
+      "edits": 2,
+      "scope": "已核黄石本届规程、最新路图和分区稿的官网名称排版复核。无信息值或图片变化。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "caa-1000503000",
+      "file": "supplement-f5-caa-1000503000-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "7张当前已保存原图均全幅实看（28连续块）。逐章核本届报名须知11章、正式竞赛规程17章、参赛声明18项和正文、风险提示全文，核4种奖金表、10行关门、15行补给、两项费用及团报价。对照官方旧站及本届田协原始资料。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "caa-1000452114",
+      "file": "supplement7-yongding-derived-reviewed.json",
+      "edits": 1,
+      "scope": "本届赛事官网两份可复制规程和两份签署/风险说明优先，复查已上传10张图共27裁片，恢复归类七张官方表及已核条款，处理早期报名日期冲突、重复宣传和段落断裂。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "caa-1000480114",
+      "file": "supplement-jiangmen-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "完整补审当前公开同届竞赛规程、报名须知、时间安排、联赛、风险/声明及视觉资料；保全两组人工确认字段与原图，重复文本一次归并，恢复逐格表和完整处罚、保险、救护。现有来源已审，未发后续事项和版本差异单列。",
+      "explicitImageReview": true
+    }
+  ],
+  "races": 5
+}

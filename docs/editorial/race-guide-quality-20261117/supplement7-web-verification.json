@@ -1,0 +1,660 @@
+{
+  "startedAt": "2026-11-19T05:14:08.443Z",
+  "api": [
+    {
+      "id": "zuiku-58600",
+      "bodyMatches": true,
+      "groups": 4,
+      "characters": 16530
+    },
+    {
+      "id": "zuiku-66992",
+      "bodyMatches": true,
+      "groups": 2,
+      "characters": 11180
+    },
+    {
+      "id": "caa-1000503000",
+      "bodyMatches": true,
+      "groups": 2,
+      "characters": 7653
+    },
+    {
+      "id": "caa-1000452114",
+      "bodyMatches": true,
+      "groups": 1,
+      "characters": 6458
+    },
+    {
+      "id": "caa-1000480114",
+      "bodyMatches": true,
+      "groups": 2,
+      "characters": 8811
+    }
+  ],
+  "web": [
+    {
+      "id": "zuiku-58600",
+      "width": 320,
+      "characters": 16156,
+      "tables": [
+        {
+          "width": 252,
+          "scrollWidth": 600,
+          "tableWidth": 600,
+          "rows": 6
+        },
+        {
+          "width": 252,
+          "scrollWidth": 720,
+          "tableWidth": 720,
+          "rows": 5
+        },
+        {
+          "width": 252,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 18
+        },
+        {
+          "width": 252,
+          "scrollWidth": 960,
+          "tableWidth": 960,
+          "rows": 13
+        },
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 10
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-58600",
+      "width": 390,
+      "characters": 16156,
+      "tables": [
+        {
+          "width": 318,
+          "scrollWidth": 600,
+          "tableWidth": 600,
+          "rows": 6
+        },
+        {
+          "width": 318,
+          "scrollWidth": 720,
+          "tableWidth": 720,
+          "rows": 5
+        },
+        {
+          "width": 318,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 18
+        },
+        {
+          "width": 318,
+          "scrollWidth": 960,
+          "tableWidth": 960,
+          "rows": 13
+        },
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 10
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-66992",
+      "width": 320,
+      "characters": 10037,
+      "tables": [
+        {
+          "width": 252,
+          "scrollWidth": 720,
+          "tableWidth": 720,
+          "rows": 3
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 6
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 3
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 11
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 6
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 9
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 9
+        },
+        {
+          "width": 252,
+          "scrollWidth": 600,
+          "tableWidth": 600,
+          "rows": 8
+        },
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 5
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 5
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 5
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-66992",
+      "width": 390,
+      "characters": 10037,
+      "tables": [
+        {
+          "width": 318,
+          "scrollWidth": 720,
+          "tableWidth": 720,
+          "rows": 3
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 6
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 3
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 11
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 6
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 9
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 9
+        },
+        {
+          "width": 318,
+          "scrollWidth": 600,
+          "tableWidth": 600,
+          "rows": 8
+        },
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 5
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 5
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 5
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "caa-1000503000",
+      "width": 320,
+      "characters": 6772,
+      "tables": [
+        {
+          "width": 252,
+          "scrollWidth": 720,
+          "tableWidth": 720,
+          "rows": 3
+        },
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 3
+        },
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 3
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 6
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 11
+        },
+        {
+          "width": 252,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 16
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 9
+        },
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 4
+        },
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 6
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "caa-1000503000",
+      "width": 390,
+      "characters": 6772,
+      "tables": [
+        {
+          "width": 318,
+          "scrollWidth": 720,
+          "tableWidth": 720,
+          "rows": 3
+        },
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 3
+        },
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 3
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 6
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 11
+        },
+        {
+          "width": 318,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 16
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 9
+        },
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 4
+        },
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 6
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "caa-1000452114",
+      "width": 320,
+      "characters": 5520,
+      "tables": [
+        {
+          "width": 252,
+          "scrollWidth": 720,
+          "tableWidth": 720,
+          "rows": 2
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 3
+        },
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 5
+        },
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 4
+        },
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 5
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 6
+        },
+        {
+          "width": 252,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 10
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 9
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 3
+        },
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 7
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 12
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 6
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "caa-1000452114",
+      "width": 390,
+      "characters": 5520,
+      "tables": [
+        {
+          "width": 318,
+          "scrollWidth": 720,
+          "tableWidth": 720,
+          "rows": 2
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 3
+        },
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 5
+        },
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 4
+        },
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 5
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 6
+        },
+        {
+          "width": 318,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 10
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 9
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 3
+        },
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 7
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 12
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 6
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "caa-1000480114",
+      "width": 320,
+      "characters": 8024,
+      "tables": [
+        {
+          "width": 252,
+          "scrollWidth": 720,
+          "tableWidth": 720,
+          "rows": 3
+        },
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 4
+        },
+        {
+          "width": 252,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 11
+        },
+        {
+          "width": 252,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 16
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 10
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 12
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 9
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 7
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "caa-1000480114",
+      "width": 390,
+      "characters": 8024,
+      "tables": [
+        {
+          "width": 318,
+          "scrollWidth": 720,
+          "tableWidth": 720,
+          "rows": 3
+        },
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 4
+        },
+        {
+          "width": 318,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 11
+        },
+        {
+          "width": 318,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 16
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 10
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 12
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 9
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 7
+        }
+      ],
+      "overflow": false
+    }
+  ],
+  "errors": [],
+  "completedAt": "2026-11-19T05:15:02.496Z",
+  "passed": true
+}

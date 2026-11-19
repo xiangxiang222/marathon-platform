@@ -1,0 +1,71 @@
+{
+  "at": "2026-11-19T05:53:51.844Z",
+  "checks": [
+    {
+      "id": "caa-1000479118",
+      "width": 320,
+      "needle": "13:30",
+      "table": {
+        "width": 252,
+        "scrollWidth": 600,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 348,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "报名须知原图：年龄、成绩、健康、报名、跑团、领物及客服；旧图报名截止以平台所示\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "caa-1000479118",
+      "width": 390,
+      "needle": "13:30",
+      "table": {
+        "width": 318,
+        "scrollWidth": 600,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 282,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "报名须知原图：年龄、成绩、健康、报名、跑团、领物及客服；旧图报名截止以平台所示\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "caa-1000472006",
+      "width": 320,
+      "needle": "09:30—21:00",
+      "table": {
+        "width": 252,
+        "scrollWidth": 252,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 0,
+      "horizontalScrollVerified": null,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "参赛物品现场领取流程图，含本人验件、扫码签署、领取号码布和服装、芯片检测及保险核对\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "caa-1000472006",
+      "width": 390,
+      "needle": "09:30—21:00",
+      "table": {
+        "width": 318,
+        "scrollWidth": 318,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 0,
+      "horizontalScrollVerified": null,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "参赛物品现场领取流程图，含本人验件、扫码签署、领取号码布和服装、芯片检测及保险核对\n查看原图 ↗",
+      "overflow": false
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-11-19T05:54:13.716Z"
+}

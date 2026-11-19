@@ -1,0 +1,21 @@
+{
+  "at": "2026-11-19T05:26:46.651Z",
+  "passed": true,
+  "rows": [
+    {
+      "id": "caa-1000452082",
+      "file": "supplement-f5-caa-1000452082-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "12 张当前已保存原图全高实看（46 连续裁图），另查看历史移出 3 图确认是封面、发布会口号、重复报名费用。逐章核报名须知 1–6 章与竞赛规程 1–18 章；八张原表逐格复核，政府公示和田协本届文字优先取其覆盖事项。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "caa-1000477009",
+      "file": "supplement-g1-huanggang-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "本届协会名单、官网可读页面异常核对和最酷可复制产品信息优先；实看平台5张原图与全部11裁片，补完整竞赛规程，核对报名渠道日期、双枪关门及补给和排名，不凭过往赛事补领物。",
+      "explicitImageReview": true
+    }
+  ],
+  "races": 2
+}

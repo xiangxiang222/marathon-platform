@@ -1,0 +1,71 @@
+{
+  "at": "2026-11-19T05:32:31.344Z",
+  "checks": [
+    {
+      "id": "caa-1000452082",
+      "width": 320,
+      "needle": "120",
+      "table": {
+        "width": 252,
+        "scrollWidth": 720,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 468,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "官方赛程节点：报名与抽签、参赛号、领物、比赛、成绩证书\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "caa-1000452082",
+      "width": 390,
+      "needle": "120",
+      "table": {
+        "width": 318,
+        "scrollWidth": 720,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 402,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "官方赛程节点：报名与抽签、参赛号、领物、比赛、成绩证书\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "caa-1000477009",
+      "width": 320,
+      "needle": "11:08",
+      "table": {
+        "width": 252,
+        "scrollWidth": 600,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 348,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "黄冈半马规程下篇，含早期报名日期、参赛资格、三类奖、处罚与保险\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "caa-1000477009",
+      "width": 390,
+      "needle": "11:08",
+      "table": {
+        "width": 318,
+        "scrollWidth": 600,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 282,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "黄冈半马规程下篇，含早期报名日期、参赛资格、三类奖、处罚与保险\n查看原图 ↗",
+      "overflow": false
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-11-19T05:32:41.341Z"
+}

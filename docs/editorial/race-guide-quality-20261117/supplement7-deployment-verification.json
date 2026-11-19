@@ -1,0 +1,49 @@
+{
+  "at": "2026-11-19T05:23:04.227Z",
+  "stages": {
+    "reviewed": true,
+    "saved": true,
+    "webDisplayed": true,
+    "webDeployedVerified": true,
+    "miniDisplayed": false,
+    "miniDevToolsVerified": false,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "races": 5,
+  "fullCurrentSourceRacePackages": 3,
+  "priorSourceFollowupsImproved": 2,
+  "exactGroupFieldCorrections": 15,
+  "exactRaceFieldCorrections": {
+    "caa-1000452114": [
+      "deadline"
+    ]
+  },
+  "backup": "server/data/race-guide-quality-20261117/supplement7-applied.json.before.sqlite",
+  "counts": {
+    "races": 434,
+    "sheets": 1760
+  },
+  "schemaUnchanged": true,
+  "quickCheck": "ok",
+  "web": {
+    "pages": 10,
+    "viewports": [
+      320,
+      390
+    ],
+    "fullExactComparisonViewport": 320,
+    "fullTextBlocks": 845,
+    "rows": 327,
+    "focusActualPages": 10
+  },
+  "mini": {
+    "status": "not_completed",
+    "actualRaces": 0,
+    "evidence": "supplement7-mini-status.json"
+  },
+  "remaining": {
+    "specificEvents": 44,
+    "coverageEvidenceUnknown": 0,
+    "sourceFollowup": 2
+  }
+}
