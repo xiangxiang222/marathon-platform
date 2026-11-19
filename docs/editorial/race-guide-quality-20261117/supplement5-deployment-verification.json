@@ -1,0 +1,50 @@
+{
+  "at": "2026-11-19T04:52:49.132Z",
+  "kind": "Production data update from manually checked available current regulations. Visual web and app evidence scoped separately.",
+  "stages": {
+    "reviewed": true,
+    "saved": true,
+    "webDisplayed": true,
+    "webDeployedVerified": true,
+    "miniDisplayed": true,
+    "miniDevToolsVerified": true,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "races": 5,
+  "exactGroupFieldCorrections": 18,
+  "originalsViewed": 56,
+  "backup": "server/data/race-guide-quality-20261117/supplement5-applied.json.before.sqlite",
+  "counts": {
+    "races": 434,
+    "sheets": 1759
+  },
+  "schemaUnchanged": true,
+  "quickCheck": "ok",
+  "newUsefulOriginalImages": 0,
+  "web": {
+    "pages": 10,
+    "viewports": [
+      320,
+      390
+    ],
+    "fullExactComparisonViewport": 320,
+    "fullTextBlocks": 503,
+    "rows": 319,
+    "focusActualPages": 10
+  },
+  "mini": {
+    "status": "actual_390px_rendered_pass",
+    "actualRaces": 5,
+    "evidence": "supplement5-all-mini-render-verification.json"
+  },
+  "remaining": {
+    "specificEvents": 51,
+    "coverageEvidenceUnknown": 0,
+    "sourceFollowup": 2
+  },
+  "pending": [
+    "Actual 320px mini app",
+    "Physical gestures and native longpress menu/zoom",
+    "Formal WeChat release and verification"
+  ]
+}

@@ -1,0 +1,167 @@
+{
+  "at": "2026-11-19T03:28:16.178Z",
+  "checks": [
+    {
+      "id": "zuiku-95805",
+      "width": 320,
+      "needle": "09:50",
+      "table": {
+        "width": 252,
+        "scrollWidth": 600,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 348,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "2026福达揭阳马拉松本届海报：11月29日，揭阳古城。\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-95805",
+      "width": 390,
+      "needle": "09:50",
+      "table": {
+        "width": 318,
+        "scrollWidth": 600,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 282,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "2026福达揭阳马拉松本届海报：11月29日，揭阳古城。\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-14679",
+      "width": 320,
+      "needle": "两大一小",
+      "table": {
+        "width": 252,
+        "scrollWidth": 840,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 588,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "本届公布赛道及日程：23、13、6公里路线、海拔图和宣传颁奖时间\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-14679",
+      "width": 390,
+      "needle": "两大一小",
+      "table": {
+        "width": 318,
+        "scrollWidth": 840,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 522,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "本届公布赛道及日程：23、13、6公里路线、海拔图和宣传颁奖时间\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-28718",
+      "width": 320,
+      "needle": "120元/人",
+      "table": {
+        "width": 252,
+        "scrollWidth": 600,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 348,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "10月9日报名延期原公告：截止为11月1日18:00；抽签日期见现行规程\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-28718",
+      "width": 390,
+      "needle": "120元/人",
+      "table": {
+        "width": 318,
+        "scrollWidth": 600,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 282,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "10月9日报名延期原公告：截止为11月1日18:00；抽签日期见现行规程\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-32373",
+      "width": 320,
+      "needle": "350元/人",
+      "table": {
+        "width": 252,
+        "scrollWidth": 360,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 108,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "规程原图一：马拉松路线及海拔图、关门和补给表\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-32373",
+      "width": 390,
+      "needle": "350元/人",
+      "table": {
+        "width": 318,
+        "scrollWidth": 360,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 42,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "规程原图一：马拉松路线及海拔图、关门和补给表\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-50491",
+      "width": 320,
+      "needle": "351",
+      "table": {
+        "width": 252,
+        "scrollWidth": 840,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 588,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "报名渠道、三组费用、团报与退费原表\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-50491",
+      "width": 390,
+      "needle": "351",
+      "table": {
+        "width": 318,
+        "scrollWidth": 840,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 522,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "报名渠道、三组费用、团报与退费原表\n查看原图 ↗",
+      "overflow": false
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-11-19T03:28:46.350Z"
+}

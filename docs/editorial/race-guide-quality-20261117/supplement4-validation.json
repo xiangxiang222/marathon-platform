@@ -1,0 +1,56 @@
+{
+  "at": "2026-11-19T02:24:09.563Z",
+  "passed": true,
+  "rows": [
+    {
+      "id": "zuiku-67689",
+      "file": "supplement4-root-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "完整实际查看唯一13550像素长图连续8段和本届报名页其余3图；以可复制报名页核日期、里程、累计爬升及关门，补18—50岁、ITRA表现分说明及组卡实际距离／爬升／关门，清宣传重复并保留完整领物、退款及路线原图。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-33143",
+      "file": "supplement4-root-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "实际查看19581像素原图12连续分块、重复封面及推广图；本届可复制报名选项对照全部14项规程，恢复计时/保险/保障与全程监控；已核组别关门、起跑补组卡，删除重复宣传导语，完整资格、装备、奖励、领物及退改保留。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-39209",
+      "file": "supplement4-root-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "重新读取本届官网416公开接口并实际逐一看4张此前未审官方原图。完整指引沿用已核珠海延期与共用完整规程；组卡不动，将四报名项出生日期／费用整理为同表，移除概况重复分枪和纯宣传。不重复附同内容低分辨率图。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-49863",
+      "file": "supplement-f2-zuiku-49863-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "本届报名页全部7个已取得原图已逐一实际查看（2张主规程6连续块，联系电话和品牌尾图4连续块，其余图含F1宣传3连续块）；费用路线领物奖励退费逐条校对。独立官网/最终规程未取得，不视为已获核。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-59237",
+      "file": "supplement-f2-zuiku-59237-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "原报名页3张原图和县教体局本届路线公告内嵌图均已实际查看。完整补审既有规程前后2长图8块、所有14个编号章；复用F1逐图与两份本届官方公告证据。微信最新领物原文仍无法读取，独立记疑。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-75827",
+      "file": "supplement-e3-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "逐块实际核对报名平台五张完整当届规程共22块及四组高清路线图，用区融媒体中心可复制报名须知确认年龄边界、四线路、录取和联系人。核对20个报名选项、三类费用和各组装备用表，恢复完整奖励、退赛、13条参赛须知、15项装备、15项处罚、保险及争议处理；原文分歧并列记录。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-35657",
+      "file": "supplement4-jinling-derived-reviewed.json",
+      "edits": 4,
+      "scope": "现有本届公开来源与完整活动图片已审；在 auditNotes 保留逐条可核实差异及来源缺项。",
+      "explicitImageReview": true
+    }
+  ],
+  "races": 7
+}

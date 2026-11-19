@@ -1,0 +1,572 @@
+[
+  {
+    "id": "zuiku-67689",
+    "name": "2026 SALT广州贤江环线越野训练跑",
+    "status": "current_source_content_checked_with_questions",
+    "scope": "完整实际查看唯一13550像素长图连续8段和本届报名页其余3图；以可复制报名页核日期、里程、累计爬升及关门，补18—50岁、ITRA表现分说明及组卡实际距离／爬升／关门，清宣传重复并保留完整领物、退款及路线原图。",
+    "beforeBodyHash": "204ef7342054f991fbe6b72c984629b96537fb769a1f828b1dc171f3a6a8e9db",
+    "savedBodyHash": "7086eeb94d798e3ed83ddfa4b42885e57c5d05ec2c9f685c76a72866517752fb",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 4,
+    "pendingImages": 0,
+    "chapters": 7,
+    "groups": 1,
+    "groupCorrections": 5,
+    "questions": [
+      "原图8段与报名页2封面、1推广图均实际看完；宣传叙事清理，保留林间路线说明与全部活动信息。",
+      "组名15KM与实际约14.8公里区分；660米来自宣传文字与报名页，未用海拔图纵轴推算。",
+      "ITRA表现分未给积分点数/条件；不填写整数积分。团报五人以上是否含5人未具体写明。",
+      "领物章07:55与流程预览07:50各保留原适用事项。报名截止不是退款边界。",
+      "独立搜索Google响应429及微信搜狗验证页；未取得更可靠独立官网，不将访问受限当成无官网。"
+    ],
+    "officialDocuments": [
+      {
+        "url": "https://reg.zuicool.com/25078",
+        "title": "贤江环线本届可复制报名页",
+        "role": "current_registration_copyable",
+        "verified": true,
+        "identityReview": "本届日期、组别及正文身份匹配；实际阅读网页可复制文字",
+        "characters": 30188,
+        "bodySha256": "20360a8084ea0573e299d4d08c252a6353c450c97a9b4acb5a4d3c9c31794df5",
+        "checkedAt": "2026-11-19T02:24:09.624Z"
+      }
+    ],
+    "sourceDiscovery": {
+      "method": "可复制本届最酷报名正文和报名选项优先；独立搜索本届官网但遭访问验证，未确认更可靠文字来源。",
+      "platformUrl": "https://reg.zuicool.com/25078",
+      "verification": "https://www.google.com/search?q=2026+SALT+广州+贤江+赛事"
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_and_actual_mini_390",
+      "miniDisplayed": true,
+      "formalMiniProgramReleaseVerified": false
+    }
+  },
+  {
+    "id": "zuiku-33143",
+    "name": "2026凯乐石FUGA训练赛-南京站（11月）",
+    "status": "current_source_content_checked_with_questions",
+    "scope": "实际查看19581像素原图12连续分块、重复封面及推广图；本届可复制报名选项对照全部14项规程，恢复计时/保险/保障与全程监控；已核组别关门、起跑补组卡，删除重复宣传导语，完整资格、装备、奖励、领物及退改保留。",
+    "beforeBodyHash": "a855cec976a31739c1300738a6ca730bbf0fecba04f12a7971e408d434eabf52",
+    "savedBodyHash": "5fb3b4459eca169460d38e19f3cf11908729054562d3e390302b33c00af2d452",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 3,
+    "pendingImages": 0,
+    "chapters": 10,
+    "groups": 3,
+    "groupCorrections": 6,
+    "questions": [
+      "按原图PART01—14重新逐一核对；既有238/218/398元、亲子1大1小、成人18—65周岁均含、儿童6—18周岁、本人福利及邮寄、6项装备、完整分组奖励与退改均保留。",
+      "20KM拟1分、成人10KM拟表现分、亲子10KM无表现分分别保留；实际赛道里程及积分认证结果未确认，未填空值。",
+      "后续轨迹于11月25日18:00后按公告渠道发布；本轮保留下载路径，不猜尚未取得的轨迹数据。",
+      "未取得更权威独立官网；历史微信搜索验证限制不作不存在判断，使用经确认本届报名正文及完整原图。"
+    ],
+    "officialDocuments": [
+      {
+        "url": "https://reg.zuicool.com/55087",
+        "title": "FUGA训练赛南京11月本站报名文字",
+        "role": "current_registration_copyable",
+        "verified": true,
+        "identityReview": "本届日期、组别及正文身份匹配；实际阅读网页可复制文字",
+        "characters": 31722,
+        "bodySha256": "d05bea91000b4180e408a6c29aeeb7c6b28d1d965172fc9bbb9b05d1d58cc604",
+        "checkedAt": "2026-11-19T02:24:09.624Z"
+      }
+    ],
+    "sourceDiscovery": {
+      "method": "本届最酷公开文字（时间/赛事名称/费用/报名选项）优先，完整原图补充；此前独立搜索有验证限制，未取得本届独立官方全文。",
+      "platformUrl": "https://reg.zuicool.com/55087"
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_and_actual_mini_390",
+      "miniDisplayed": true,
+      "formalMiniProgramReleaseVerified": false
+    }
+  },
+  {
+    "id": "zuiku-39209",
+    "name": "2026 WSE 10KM OPEN 珠海站",
+    "status": "current_source_content_checked_with_questions",
+    "scope": "重新读取本届官网416公开接口并实际逐一看4张此前未审官方原图。完整指引沿用已核珠海延期与共用完整规程；组卡不动，将四报名项出生日期／费用整理为同表，移除概况重复分枪和纯宣传。不重复附同内容低分辨率图。",
+    "beforeBodyHash": "85ccf425da4735dd01f0938a3573beed8f547701793aa2ccf9ecd77c7d00e296",
+    "savedBodyHash": "ee9ffe71333499b6ea69f98b5d679f6612e707385e530e62a3a01b3031e0d954",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 7,
+    "pendingImages": 0,
+    "chapters": 14,
+    "groups": 4,
+    "groupCorrections": 0,
+    "questions": [
+      "额外4张官网rules图全部实际查看，直接对应已有长图的概览、路线、奖励、日期尾页；旧有长图分辨率更高，保留历史图、图注与后台另外4张来源，不叠加前台。",
+      "已核官网416的12月20日、海岸公园和12月10日23:59:59；最酷11月20日23:59:59报名渠道仍区分。",
+      "官网图与已校珠海图同为前三1000/600/300，10K男女各纪录3000、各年龄组500，5K男女各纪录1000、年龄组2026赛站优惠码，不扩大使用年份。",
+      "比赛服必须穿，路线站点和所有已核规则保留；本届分枪/领物最终公告仍需后续确认，旧版日期、年龄、退款边界疑点照录。"
+    ],
+    "officialDocuments": [
+      {
+        "url": "https://www.wse.run/api/h5/match/416",
+        "title": "WSE珠海站416本届公开接口",
+        "role": "official-current-event-api",
+        "verified": true,
+        "identityReview": "核对本届ID416、12月20日、地点、12月10日渠道截止及4张rules原图URL",
+        "characters": 498,
+        "bodySha256": "f1332047b22cd6c9cdcbb8f42da83e6803468c49f4f071fd597562b28b2c8eed",
+        "checkedAt": "2026-11-19T02:24:09.624Z"
+      }
+    ],
+    "sourceDiscovery": {
+      "method": "官方416公开接口优先确认日期地点及报名截止；官网4张原图实际逐一交叉复核，最酷同届选项独立保留。",
+      "officialUrl": "https://www.wse.run/api/h5/match/416",
+      "platformUrl": "https://reg.zuicool.com/44223"
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_and_actual_mini_390",
+      "miniDisplayed": true,
+      "formalMiniProgramReleaseVerified": false
+    }
+  },
+  {
+    "id": "zuiku-49863",
+    "name": "2026 Outopia山野来赛·深圳秋季特别版",
+    "status": "current_source_content_checked_with_questions",
+    "scope": "本届报名页全部7个已取得原图已逐一实际查看（2张主规程6连续块，联系电话和品牌尾图4连续块，其余图含F1宣传3连续块）；费用路线领物奖励退费逐条校对。独立官网/最终规程未取得，不视为已获核。",
+    "beforeBodyHash": "67394c4b29e5e6ade8a97a2e4251676bf972af2e2fe2d0aa2f11ba05b11734b2",
+    "savedBodyHash": "329af2b4595acfcf419b672b583af95d3935ccb73eaea1324d49fdbb87e642fc",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 7,
+    "pendingImages": 0,
+    "chapters": 7,
+    "groups": 5,
+    "groupCorrections": 3,
+    "questions": [
+      {
+        "question": "退款11月11日当天边界、首野装备指定金额、确切领物时间未明确，不补写；具体奖品及最终规程待发布。",
+        "status": "needs_organizer_confirmation",
+        "sources": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/4a9f88299a3ac57c2d400d779352bd7b516bee89.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/30b459aa4839efca6007fd083d1ef9960ac648a6.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/52441e3cd28e1f7e5250e69447432d308add7f8d.jpeg?imageView2/2/w/750"
+        ]
+      },
+      {
+        "status": "promotional_original_fully_checked",
+        "question": "原图个人11.5KM/24KM、双人11.5KM/24KM和4人接力24KM清晰，旧正文孤立“人接力24KM”系OCR断句。五个选项已在既有费用表列明，本次不重复堆写；恢复人生首野报名问项及三类赛前活动和发布渠道。",
+        "sources": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/b3f437df73f52f1bc9601e343b76a075585dda3c.jpeg?imageView2/2/w/750"
+        ]
+      },
+      {
+        "status": "not_announced_in_viewed_original",
+        "question": "宣传原图未提供上述3类赛前活动的确定时间、地点；不把计划或首野欢迎文案扩大为所有资格豁免，也不推定免费装备指定金额或最终竞赛规程已发布。",
+        "sources": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/b3f437df73f52f1bc9601e343b76a075585dda3c.jpeg?imageView2/2/w/750"
+        ]
+      },
+      {
+        "status": "signup_price_units_verified_from_original",
+        "question": "本届报名主页可复制选项及金额与原图一致，三团队项目原图明确按组收费。报名子页匿名访问跳登录；原组卡空白或默认「人」来自采集解析，不是报名页明示单位。",
+        "sources": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/4a9f88299a3ac57c2d400d779352bd7b516bee89.jpeg?imageView2/2/w/750",
+          "https://reg.zuicool.com/83017"
+        ]
+      },
+      {
+        "status": "not_announced_in_viewed_original",
+        "question": "当前公开图片未给接力累计爬升、明确领物时刻、首野装备金额及单独年龄区间/强装条款；11月11日当天的退款边界不清。保留原图和已明确的时刻/金额/条款。",
+        "sources": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/4a9f88299a3ac57c2d400d779352bd7b516bee89.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/30b459aa4839efca6007fd083d1ef9960ac648a6.jpeg?imageView2/2/w/750"
+        ]
+      }
+    ],
+    "officialDocuments": [],
+    "sourceDiscovery": {
+      "checkedAt": "2026-11-19T00:37:55.899Z",
+      "officialIndependentEventSiteConfirmed": false,
+      "publicSearches": [
+        {
+          "sha256": "18a965b155e53b7513a107423669759a3754a00ac5b51a4b6aa7d8674c14576b"
+        },
+        {
+          "sha256": "d01a8096cfbe591b49c4b6b07d3fb56bbbcf84273f9e28a845842ad153bfbd45"
+        },
+        {
+          "sha256": "59302aae4058fdb1f12c12a9cee60da204d2da01664c1980529b05ff5998d731"
+        },
+        {
+          "sha256": "c15db5dc0f7c081fa78695fbd9a3377f836dcda89c89a270a590e5c2eb11d74c"
+        },
+        {
+          "sha256": "3e7b7e799f623d9730a1cfcf29927b888837fadc41add05c4a46676988d21b21"
+        }
+      ],
+      "toolWebSearchFailure": "web__run search returned HTTP404; retained as tool failure, not proof no official site",
+      "result": "本届报名页与宣传图身份一致，独立搜索本届官网/品牌官方/运营方来源；结果多为春季3月22日及他站，已排除，不套用资格/路线/领物。独立本届官网或可核验官方秋季详情尚未取得，不能宣称不存在官网。"
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_and_actual_mini_390",
+      "miniDisplayed": true,
+      "formalMiniProgramReleaseVerified": false
+    }
+  },
+  {
+    "id": "zuiku-59237",
+    "name": "2026宁都欢乐跑",
+    "status": "current_source_content_checked_with_questions",
+    "scope": "原报名页3张原图和县教体局本届路线公告内嵌图均已实际查看。完整补审既有规程前后2长图8块、所有14个编号章；复用F1逐图与两份本届官方公告证据。微信最新领物原文仍无法读取，独立记疑。",
+    "beforeBodyHash": "ed4fefe9f1c1634c0b61dae548a58a8fc6c4ddc5c85d46f5fba4782320939109",
+    "savedBodyHash": "14028766fa2b38d722a1d978572dd13dc9fdb169fd82ec9d0970ce3c0fda0340",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 4,
+    "pendingImages": 0,
+    "chapters": 11,
+    "groups": 2,
+    "groupCorrections": 1,
+    "questions": [
+      {
+        "question": "规程只提官网未给出URL；独立检索受限，不能确认不存在官网。领物具体地点未给出，不推定。介绍图客服与规程不同，正文保留不同来源；未把介绍往届照片的2025当本届年份。",
+        "status": "needs_organizer_confirmation",
+        "sources": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/566248533e22a0564356898e711f5e101d246003.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/a2d9dc637d705aed6fe4379b668836a258630103.jpeg?imageView2/2/w/750"
+        ]
+      },
+      {
+        "status": "verified_official_update",
+        "question": "9月30日县教体局路线已与原活动规程不同，采用州城文化街终点及新路线，图文已实际核对；未改既有组卡距离/爬升。",
+        "sources": [
+          "https://www.ningdu.gov.cn/ndxxxgk/c105275v/202610/40fe27d97d224c2c819b20dda326b0e7.shtml",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/566248533e22a0564356898e711f5e101d246003.jpeg?imageView2/2/w/750"
+        ]
+      },
+      {
+        "status": "verified_official_update",
+        "question": "10月12日组委会公告将官方报名通道延长至10月25日24:00，正文同步更新；不将此前10月10日继续当现行官方截止。",
+        "sources": [
+          "https://www.ningdu.gov.cn/ndxxxgk/c105275v/202610/784d0e4b8e4046b28556b9948ba8fdf7.shtml"
+        ]
+      },
+      {
+        "status": "source_contacts_kept_separate",
+        "question": "宣传图官方客服17770033006与活动规程18702590827分别保留各自时间；宣传商务合作号17770025532不作为参赛客服电话，旧OCR17770025582删除。",
+        "sources": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/da3910fa5e20b1effdd49fd33a74d191ea443b52.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/a2d9dc637d705aed6fe4379b668836a258630103.jpeg?imageView2/2/w/750"
+        ],
+        "zoom": "/tmp/race-guide-quality-20261117/supplement-f1/ningdu-contact-zoom.png"
+      },
+      {
+        "status": "official_pickup_notice_discovered_but_primary_content_access_restricted",
+        "question": "独立搜到今日宁都/宁都政务及官方“宁都红色马拉松”本届领物通知，故不能说未发布。搜索页面显示11月19–20日09:00—18:00、州城文化街（宁都起义纪念馆旁），但微信原文直链及搜狗跳转进入环境/验证码验证，未取得可核原文及领物流转图；本轮未把搜索展示整文直接当最终正文，原可靠领物要求仍保留。",
+        "evidenceFiles": [
+          "/tmp/race-guide-quality-20261117/supplement-f1/ningdu-wechat.html",
+          "/tmp/race-guide-quality-20261117/supplement-f1/ningdu-sogou-web.html",
+          "/tmp/race-guide-quality-20261117/supplement-f1/ningdu-pickup-document.json"
+        ],
+        "sources": [
+          "https://mp.weixin.qq.com/s?src=11&timestamp=1795048006&ver=7097&signature=ZIa5cT9PBLayMrw3buBmn392X7dELuq2KlLhWpTFaoPwMUTys7FAlmFgBzoRkEakBJkywqPhjMUflCTJZvLtt6sbKhMlS5A6tvKm8KydUkEubamNFBhYahkC1W8sWWTS&new=1"
+        ]
+      },
+      {
+        "status": "fully_compared_existing_regulation",
+        "question": "既有规程前后两张共8个连续块从顶到底核清；全14个编号章及其中年龄、资格、参赛流程、关门补给、医疗、处罚、保险等条款均已纳入结构化正文，沿用两份本届官方更新。原罚则4项印作「退出比跑道」，同页关门段明示退出跑道，正文按该句还原为退出跑道后返回。",
+        "sources": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/566248533e22a0564356898e711f5e101d246003.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/a2d9dc637d705aed6fe4379b668836a258630103.jpeg?imageView2/2/w/750"
+        ]
+      },
+      {
+        "status": "registration_option_price_no_explicit_unit",
+        "question": "最酷本届报名页明确「1大1小」选项100.00，未写每人；原规程为欢乐跑50元/人，平台子页匿名跳登录。暂只增加该选项页面金额，原组卡此项按人属于解析缺省，独立提请去除不可靠的单位；不猜新的收费阶段或领物单据。",
+        "sources": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/566248533e22a0564356898e711f5e101d246003.jpeg?imageView2/2/w/750",
+          "https://reg.zuicool.com/36247",
+          "https://reg.zuicool.com/36247/252368"
+        ]
+      }
+    ],
+    "officialDocuments": [
+      {
+        "url": "https://www.ningdu.gov.cn/ndxxxgk/c105275v/202610/40fe27d97d224c2c819b20dda326b0e7.shtml",
+        "title": "县教育体育局2026-09-30本届路线公告",
+        "verified": true,
+        "checkedAt": "2026-11-19T02:24:09.624Z"
+      },
+      {
+        "url": "https://www.ningdu.gov.cn/ndxxxgk/c105275v/202610/784d0e4b8e4046b28556b9948ba8fdf7.shtml",
+        "title": "组委会2026-10-12延长本届官方报名公告",
+        "verified": true,
+        "checkedAt": "2026-11-19T02:24:09.624Z"
+      }
+    ],
+    "sourceDiscovery": {
+      "checkedAt": "2026-11-19T00:37:55.886Z",
+      "officialIndependentEventSiteConfirmed": false,
+      "publicSearches": [
+        {
+          "sha256": "18a965b155e53b7513a107423669759a3754a00ac5b51a4b6aa7d8674c14576b"
+        },
+        {
+          "sha256": "d01a8096cfbe591b49c4b6b07d3fb56bbbcf84273f9e28a845842ad153bfbd45"
+        },
+        {
+          "sha256": "59302aae4058fdb1f12c12a9cee60da204d2da01664c1980529b05ff5998d731"
+        },
+        {
+          "sha256": "c15db5dc0f7c081fa78695fbd9a3377f836dcda89c89a270a590e5c2eb11d74c"
+        },
+        {
+          "sha256": "3e7b7e799f623d9730a1cfcf29927b888837fadc41add05c4a46676988d21b21"
+        }
+      ],
+      "toolWebSearchFailure": "web__run search returned HTTP404; retained as tool failure, not proof no official site",
+      "result": "已取得主办方政府官网/县教体局本届路线及组委会延期报名两份可复制正文，并实际核对内嵌路线图；独立赛事官网URL仍未确认。最新领物公告已发现，微信原文访问需验证，未假装已读。",
+      "officialSources": [
+        "https://www.ningdu.gov.cn/ndxxxgk/c105275v/202610/40fe27d97d224c2c819b20dda326b0e7.shtml",
+        "https://www.ningdu.gov.cn/ndxxxgk/c105275v/202610/784d0e4b8e4046b28556b9948ba8fdf7.shtml"
+      ]
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_and_actual_mini_390",
+      "miniDisplayed": true,
+      "formalMiniProgramReleaseVerified": false
+    }
+  },
+  {
+    "id": "zuiku-75827",
+    "name": "“古堰画乡”BIGK·2026莲都100越野挑战赛",
+    "status": "current_source_content_checked_with_questions",
+    "scope": "逐块实际核对报名平台五张完整当届规程共22块及四组高清路线图，用区融媒体中心可复制报名须知确认年龄边界、四线路、录取和联系人。核对20个报名选项、三类费用和各组装备用表，恢复完整奖励、退赛、13条参赛须知、15项装备、15项处罚、保险及争议处理；原文分歧并列记录。",
+    "beforeBodyHash": "4d03ced44b0038c6f5645e592f7a2d505f419461a71fe516374b5860ff4a78f0",
+    "savedBodyHash": "e78b8a8132f156bcbbed43296580fb2d003d757dc3551e9a73204a5bb8873846",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 14,
+    "pendingImages": 0,
+    "chapters": 32,
+    "groups": 20,
+    "groupCorrections": 16,
+    "questions": [
+      "12公里图终点为11.66公里，侧栏实际距离为11.6公里，结构化实际距离保持空白，正文并列两处标注；郑地村、真济头与岭下村补水点未标里程、钟点的格不填猜测。",
+      "正式规程总表把12公里09:30重复标为第二枪；报名日程、装备核对时段与路线关门图均明确09:30为第三枪，正文按三份一致来源。",
+      "正式规程联系人第二号13395786649；宣传图和莲都区融媒体中心报名公告为13396786649，原图均保留并优先展示共同可确认的18057888815与邮箱。",
+      "规程领物时间、地点待定；报名宣传另有11月6日、7日10:00—22:00报到时段，未找到后续权威领物公告。两处来源及各自口径分开。",
+      "多人同行终点时差同时写≤1分钟和≥1分钟取消队伍资格，恰好1分钟未确认；CP通过时差规则单独保留。",
+      "12公里表列参与表现分（拟），完赛条款明确不发ITRA积分；其他三项均为拟定ITRA分数，不转成确认积分。",
+      "装备表30公里、12公里个人水杯栏为斜杠，补给通则要求参赛者携带至少150毫升杯状容器。防水裤原括注“冲锋衣”，充电宝容量原文写“10000毫安”，原表保留，不猜单位或天气通知。",
+      "报名报道与正式规程的协办/运营角色不完全相同；组委会正式规程组织表按原列，报名报道独立指引。赛后政府报道笼统描述7日清晨率先出发，不作为50公里计划07:00的替换依据。"
+    ],
+    "officialDocuments": [
+      {
+        "url": "https://www.newsld.cn/xwzx/ldxw/202608/t20260820_7636509.shtml",
+        "title": "莲都区融媒体中心：2026莲都100越野挑战赛报名公告",
+        "role": "organizer_attributed_registration_notice",
+        "verified": true,
+        "identityReview": "当前赛事日期、地点、组别一致，署名丽水市莲都区融媒体中心／综合浙江健一体育。",
+        "characters": 2889,
+        "bodySha256": "f3f57c4f3cf5dd2b2efa1abfe991f0fbaeaf215edce8149e7ee8afa0bfe43340",
+        "checkedAt": "2026-11-19T02:24:09.624Z"
+      },
+      {
+        "url": "https://reg.zuicool.com/33218",
+        "title": "最酷：莲都100越野挑战赛本届报名及竞赛规程",
+        "role": "official_registration_partner",
+        "verified": true,
+        "identityReview": "实际读取20个本届报名产品和五张现行完整竞赛规程。",
+        "checkedAt": "2026-11-19T02:24:09.624Z"
+      }
+    ],
+    "sourceDiscovery": {
+      "officialUrl": null,
+      "registrationUrl": "https://reg.zuicool.com/33218",
+      "officialEditorReportUrl": "https://www.newsld.cn/xwzx/ldxw/202608/t20260820_7636509.shtml",
+      "governmentRecapUrl": "https://www.lishui.gov.cn/col/col1229218391/art/2026/art_eece68ac179e419db21a3540bf8c56da.html",
+      "checkedFiles": [
+        "/tmp/race-guide-quality-20261117/supplement-e/liandu-official-link.html",
+        "/tmp/race-guide-quality-20261117/supplement-e/liandu-registration.html",
+        "/tmp/race-guide-quality-20261117/supplement-e/liandu-official-localnews.html",
+        "/tmp/race-guide-quality-20261117/supplement-e/liandu-official-recap.html",
+        "/tmp/race-guide-quality-20261117/supplement-e/liandu-reg-search.html",
+        "/tmp/race-guide-quality-20261117/supplement-e/liandu-pickup-search.html"
+      ],
+      "outcome": "聚合平台标为官网的跳转实际回到最酷赛事页；未发现独立本届赛事网站或完整可复制正式规程。莲都区融媒体中心刊发并注明综合浙江健一体育的报名公告可复制，主用其中四线路、年龄边界、无抽签及联系；五张完整规程为报名平台主办方转载，已逐块实看。"
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_only",
+      "miniDisplayed": false,
+      "formalMiniProgramReleaseVerified": false
+    }
+  },
+  {
+    "id": "zuiku-35657",
+    "name": "2026第四届金陵秋色登山节",
+    "status": "current_source_content_checked_with_questions",
+    "scope": "现有本届公开来源与完整活动图片已审；在 auditNotes 保留逐条可核实差异及来源缺项。",
+    "beforeBodyHash": "8e35e77d65b65037ed0d46db6a8abae1fa24024043583b9cde0727bae6f42e70",
+    "savedBodyHash": "9b9daef755973f65a3a59c88d04b6a24bd27a58048d75f404943daa7b4a83983",
+    "bodyChanged": true,
+    "edits": 4,
+    "viewedImages": 19,
+    "pendingImages": 0,
+    "chapters": 4,
+    "groups": 8,
+    "groupCorrections": 0,
+    "questions": [
+      "完整查看最酷本届11张活动源图，既有图0/1路线确认，图2全长复核；官网4个不同内容原图另实看（大/小环各有字节相同重复网址），同页常规广告与分享码非本届规程。",
+      "同步核对游侠客南京官网、官方两组行程/退款及四产品两天公共批次数据。无锡/苏州异地团只确认身份，不套其价格、线路、返程；晋级和竞技排名不适用于本届活动。",
+      "东大成贤学院站两套来源有2号口/3号口矛盾；小环最酷选项误套大环时间，原人工已依法定来源分组纠正，保留8个组别原值；集合以最终领队或出行通知为准。",
+      "两组关门时刻、小环爬升和具体补给点里程未给出；小环费用说明提无奖牌批次只发徽章，未查到对应日期或交通选项。批次后台字段500不当作实际活动限额或座位数。",
+      "只增加一张有路线方向及两环对照用途的主办方原图；现有3图全部保留，第三届/2023奖牌和往届照片、重复图不入前台。"
+    ],
+    "officialDocuments": [
+      {
+        "url": "https://reg.zuicool.com/94853",
+        "checkedAt": "2026-11-19T02:24:09.624Z"
+      },
+      {
+        "url": "https://www.youxiake.com/lines.html?id=65034",
+        "checkedAt": "2026-11-19T02:24:09.624Z"
+      },
+      {
+        "url": "https://www.youxiake.com/lines.html?id=65025",
+        "checkedAt": "2026-11-19T02:24:09.624Z"
+      },
+      {
+        "url": "https://www.youxiake.com/lines.html?id=50492",
+        "checkedAt": "2026-11-19T02:24:09.624Z"
+      },
+      {
+        "url": "https://www.youxiake.com/lines/getdailydata?pid=50492&did=31541",
+        "checkedAt": "2026-11-19T02:24:09.624Z"
+      },
+      {
+        "url": "https://www.youxiake.com/lines/getdailydata?pid=50492&did=44698",
+        "checkedAt": "2026-11-19T02:24:09.624Z"
+      },
+      {
+        "url": "https://www.youxiake.com/api/product/line/getdailypkgreminder?pid=50492",
+        "checkedAt": "2026-11-19T02:24:09.624Z"
+      },
+      {
+        "url": "https://www.youxiake.com/lines/calendar?id=50492",
+        "checkedAt": "2026-11-19T02:24:09.624Z"
+      },
+      {
+        "url": "https://www.youxiake.com/lines/getbatchs?pid=50492&pkgid=50735",
+        "checkedAt": "2026-11-19T02:24:09.624Z"
+      },
+      {
+        "url": "https://www.youxiake.com/lines/getbatchs?pid=50492&pkgid=50736",
+        "checkedAt": "2026-11-19T02:24:09.624Z"
+      },
+      {
+        "url": "https://www.youxiake.com/lines/getbatchs?pid=50492&pkgid=62798",
+        "checkedAt": "2026-11-19T02:24:09.624Z"
+      },
+      {
+        "url": "https://www.youxiake.com/lines/getbatchs?pid=50492&pkgid=62799",
+        "checkedAt": "2026-11-19T02:24:09.624Z"
+      },
+      {
+        "url": "https://zuicool.com/event/35657",
+        "checkedAt": "2026-11-19T02:24:09.624Z"
+      },
+      {
+        "url": "https://zuicool.com/news/archives/319605",
+        "checkedAt": "2026-11-19T02:24:09.624Z"
+      }
+    ],
+    "sourceDiscovery": {
+      "status": "official_current_readable_text_and_images",
+      "officialUrls": [
+        "https://www.youxiake.com/lines.html?id=50492"
+      ],
+      "officialChannels": [
+        "游侠客江苏站",
+        "youxiake2008"
+      ],
+      "currentSignupReviewed": {
+        "url": "https://reg.zuicool.com/94853",
+        "file": "/tmp/race-guide-quality-20261117/zuiku-35657-supp-next-current-signup.html",
+        "sha256": "0095e4be81b9ac187f46d294fb0bfa06a09667a674e01f8695ebe5a5017400d3",
+        "imageUrls": [
+          "https://reg.zuicool.com/94853/qrcode",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/2257d4e92c669f7560a665d2720adc87e41b44d0.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/fc38cbd294d017e4ebae8ae29a0658abacd5a09c.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/166be6caf8b74aa164fcc2d69c5534b7ee9c138c.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/d977978e2a8d0fadced47b5997d5f6c5df756d78.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/531cd1deaf206a8e31608b5e626c732a7afdf337.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/12b55118a7ea78838f5da359eed4ab1108e6d1e9.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/1af4e27a811f34a79c878124bb694f6e955b4675.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/28bb29a93e4a3fa31ce663d224542670c4969769.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/6fce521cea8980a5d7cb7dec094252b423cbbac5.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/ab08f5f6636061690336184615a593409e20fbef.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/d289174f656d6f9d414d56df3a96a55688784019.jpeg?imageView2/2/w/750",
+          "http://zc3wp-uploads.bkt.zuicool.com/legacy/804701d2dc9307a04b7bedeb0ebafe90895eb778.jpeg",
+          "https://zc3wp-uploads.bkt.zuicool.com/2024/09/5dced399f7287bda2ed28eca34e710214a9972ff.jpeg"
+        ]
+      },
+      "independentSearchEvidence": [
+        "/tmp/race-guide-quality-20261117/supp-next-independent-discovery.json",
+        "/tmp/race-guide-quality-20261117/supp-next-followed-discovery.json",
+        "/tmp/race-guide-quality-20261117/supp-next-official-line-matches.json"
+      ],
+      "officialPublicData": {
+        "calendar": "https://www.youxiake.com/lines/calendar?id=50492",
+        "itinerary": {
+          "large": "https://www.youxiake.com/lines/getdailydata?pid=50492&did=31541",
+          "small": "https://www.youxiake.com/lines/getdailydata?pid=50492&did=44698"
+        },
+        "refund": "https://www.youxiake.com/api/product/line/getdailypkgreminder?pid=50492",
+        "batchPrices": [
+          "https://www.youxiake.com/lines/getbatchs?pid=50492&pkgid=50735",
+          "https://www.youxiake.com/lines/getbatchs?pid=50492&pkgid=50736",
+          "https://www.youxiake.com/lines/getbatchs?pid=50492&pkgid=62798",
+          "https://www.youxiake.com/lines/getbatchs?pid=50492&pkgid=62799"
+        ]
+      },
+      "notes": [
+        "官网导航自身搜索结果确认本届南京线路，主要条款可复制；官方同届无锡/苏州产品另列，不混入现有南京组别。",
+        "官网两套#2/#3集合点、未明确奖牌例外与关门时间按来源保留。"
+      ]
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_only",
+      "miniDisplayed": false,
+      "formalMiniProgramReleaseVerified": false
+    }
+  }
+]

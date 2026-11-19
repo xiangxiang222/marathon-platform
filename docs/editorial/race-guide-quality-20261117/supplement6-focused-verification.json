@@ -1,0 +1,167 @@
+{
+  "at": "2026-11-19T04:44:52.105Z",
+  "checks": [
+    {
+      "id": "zuiku-66992",
+      "width": 320,
+      "needle": "11:15",
+      "table": {
+        "width": 252,
+        "scrollWidth": 360,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 108,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "9月竞赛规程原图（上）：比赛办法；线路以11月12日新版为准\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-66992",
+      "width": 390,
+      "needle": "11:15",
+      "table": {
+        "width": 318,
+        "scrollWidth": 360,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 42,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "9月竞赛规程原图（上）：比赛办法；线路以11月12日新版为准\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "caa-1000483001",
+      "width": 320,
+      "needle": "108",
+      "table": {
+        "width": 252,
+        "scrollWidth": 480,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 228,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "半程竞赛规程中篇：检录、关门和补给原表\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "caa-1000483001",
+      "width": 390,
+      "needle": "108",
+      "table": {
+        "width": 318,
+        "scrollWidth": 480,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 162,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "半程竞赛规程中篇：检录、关门和补给原表\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "caa-1000499000",
+      "width": 320,
+      "needle": "13:30",
+      "table": {
+        "width": 252,
+        "scrollWidth": 600,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 348,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "报名须知原图：资格、团报、退费及官方联系方式\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "caa-1000499000",
+      "width": 390,
+      "needle": "13:30",
+      "table": {
+        "width": 318,
+        "scrollWidth": 600,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 282,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "报名须知原图：资格、团报、退费及官方联系方式\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "caa-1000479023",
+      "width": 320,
+      "needle": "09:40",
+      "table": {
+        "width": 252,
+        "scrollWidth": 360,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 108,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "2026东方半马报名开启海报：先报先得、额满即止；最酷入口现已关闭。\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "caa-1000479023",
+      "width": 390,
+      "needle": "09:40",
+      "table": {
+        "width": 318,
+        "scrollWidth": 360,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 42,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "2026东方半马报名开启海报：先报先得、额满即止；最酷入口现已关闭。\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "caa-1000452094",
+      "width": 320,
+      "needle": "报名费的50%",
+      "table": {
+        "width": 252,
+        "scrollWidth": 252,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 0,
+      "horizontalScrollVerified": null,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "奉贤海湾森林半马规程上篇：赛道、分区检录、关门、补给及部分参赛要求\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "caa-1000452094",
+      "width": 390,
+      "needle": "报名费的50%",
+      "table": {
+        "width": 318,
+        "scrollWidth": 318,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 0,
+      "horizontalScrollVerified": null,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "奉贤海湾森林半马规程上篇：赛道、分区检录、关门、补给及部分参赛要求\n查看原图 ↗",
+      "overflow": false
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-11-19T04:45:43.491Z"
+}

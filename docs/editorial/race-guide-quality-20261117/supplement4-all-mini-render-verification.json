@@ -1,0 +1,160 @@
+{
+  "startedAt": "2026-11-19T04:41:51.837Z",
+  "kind": "Actual WeChat DevTools 390px production-page; no mock; physical phone, gestures and formal release excluded",
+  "races": [
+    {
+      "id": "zuiku-67689",
+      "actualViewport": 390,
+      "guideCharacters": 950,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 1,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1074.859375,
+        "bottom": 2930.875,
+        "width": 366,
+        "height": 1856.015625,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 3,
+      "tableRowsIncludingHeaders": 12,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336
+      ],
+      "previewGestureChecks": "Separate interaction verification"
+    },
+    {
+      "id": "zuiku-33143",
+      "actualViewport": 390,
+      "guideCharacters": 2517,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 3,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1212.2421875,
+        "bottom": 5657.1796875,
+        "width": 366,
+        "height": 4444.9375,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 2,
+      "tableRowsIncludingHeaders": 11,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336
+      ],
+      "previewGestureChecks": "Separate interaction verification"
+    },
+    {
+      "id": "zuiku-39209",
+      "actualViewport": 390,
+      "guideCharacters": 7387,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 4,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1318.4296875,
+        "bottom": 13253.9765625,
+        "width": 366,
+        "height": 11935.546875,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 8,
+      "tableRowsIncludingHeaders": 58,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336
+      ],
+      "previewGestureChecks": "Separate interaction verification"
+    },
+    {
+      "id": "zuiku-49863",
+      "actualViewport": 390,
+      "guideCharacters": 1587,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 5,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1120.2421875,
+        "bottom": 3886.9140625,
+        "width": 366,
+        "height": 2766.671875,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 3,
+      "tableRowsIncludingHeaders": 16,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336
+      ],
+      "previewGestureChecks": "Separate interaction verification"
+    },
+    {
+      "id": "zuiku-59237",
+      "actualViewport": 390,
+      "guideCharacters": 4098,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 2,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1206.140625,
+        "bottom": 8199.8203125,
+        "width": 366,
+        "height": 6993.6796875,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 4,
+      "tableRowsIncludingHeaders": 17,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336
+      ],
+      "previewGestureChecks": "Separate interaction verification"
+    }
+  ],
+  "previousErrors": [
+    "Error: Command failed: /Applications/wechatwebdevtools.app/Contents/MacOS/wechatide -c Codex automation_evaluate --project /Users/mengxiangxiang/Documents/work/dev/marathon-platform/miniprogram --fn-source function(){const b=getCurrentPages().slice(-1)[0].data.guideBlocks.filter(b=>b.kind===\"table\")[12];return {headers:b.headers.map(c=>c.runs.map(r=>r.text).join(\"\")),rows:b.rows.map(r=>r.cells.map(c=>c.runs.map(r=>r.text).join(\"\")))};}\n[wechatide] skill-call: client=Codex tool=automation_evaluate\n\n    at genericNodeError (node:internal/errors:983:15)\n    at wrappedFn (node:internal/errors:537:14)\n    at checkExecSyncError (node:child_process:892:11)\n    at execFileSync (node:child_process:928:15)\n    at call (/private/tmp/race-guide-quality-20261117/verify-supplements4-5-mini-progress.cjs:1:547)\n    at ev (/private/tmp/race-guide-quality-20261117/verify-supplements4-5-mini-progress.cjs:1:790)\n    at /private/tmp/race-guide-quality-20261117/verify-supplements4-5-mini-progress.cjs:2:1828\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)",
+    {
+      "message": "automation_element_action: waitForSelector timeout: .tab[data-id=\"guide\"]"
+    }
+  ],
+  "intermittent": [],
+  "errors": [
+    {
+      "message": "spawnSync /Applications/wechatwebdevtools.app/Contents/MacOS/wechatide ETIMEDOUT"
+    }
+  ],
+  "passed": false,
+  "completedAt": "2026-11-19T04:42:29.028Z"
+}

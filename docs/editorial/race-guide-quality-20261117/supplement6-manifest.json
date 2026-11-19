@@ -1,0 +1,765 @@
+[
+  {
+    "id": "zuiku-66992",
+    "name": "2026黄石马拉松",
+    "status": "current_source_content_checked_with_questions",
+    "scope": "本届官方两张竞赛规程所有条款，11月4日分区/选号正文和分区表，11月12日新版路线文字及路线图。按主办方最新确认内容替换旧路线，保留规程其他条款和两张原图。未确认实际领物地点、分枪分区对应和源内矛盾。",
+    "beforeBodyHash": "9b24eee658dbf46ff1e15005354da7c37f020a5dfad644a61debcd324aaeb75d",
+    "savedBodyHash": "b2c8acca9726299dd1bb71c9c633c1f5d385dd530072d7f573a33b5ed1f3f772",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 6,
+    "pendingImages": 0,
+    "chapters": 13,
+    "groups": 2,
+    "groupCorrections": 1,
+    "questions": [
+      {
+        "issue": "11/19检查本届官网领物栏仍为“待更新”；独立搜索与官网新闻中未取得可核的本届领物时段、地点。只保存规程的身份证件及物品要求，不套旧届。",
+        "status": "pickup_announcement_unconfirmed",
+        "sourceUrl": "http://huangshimarathon.com/index.php?catid=15"
+      },
+      {
+        "issue": "新版11/12路线正文与地图均改为半马人民广场、全马奥体中心田径场，旧长图对应第4章保留历史对照，不当当前路线。",
+        "status": "official_newer_notice_supersedes_old_route",
+        "sourceUrl": "https://mp.weixin.qq.com/s/2MyoyG6SoBNuvo7bqb0dVA",
+        "imageUrl": "https://mmbiz.qpic.cn/sz_mmbiz_png/DEKlUhFP5glNW6XyYrKpiaC8uibNiaXWt5WPxGqxMsodXQDyOSItRmcYLeE4ur9TkhriaBRJmMXbqavn7vjl4MS3EnXRzIcoic4TOqBp264KeTIw/640?wx_fmt=png&from=appmsg#imgIndex=1"
+      },
+      {
+        "issue": "11/12路线图标全马参考两枪08:00／08:15；半程规程终点11:00，图中全马21.0975公里11:15不是半马终点时刻；未获分枪与具体分区分配通知。",
+        "status": "official_timing_scope_separated",
+        "sourceUrl": "https://mp.weixin.qq.com/s/2MyoyG6SoBNuvo7bqb0dVA",
+        "imageUrl": "https://mmbiz.qpic.cn/sz_mmbiz_png/DEKlUhFP5glNW6XyYrKpiaC8uibNiaXWt5WPxGqxMsodXQDyOSItRmcYLeE4ur9TkhriaBRJmMXbqavn7vjl4MS3EnXRzIcoic4TOqBp264KeTIw/640?wx_fmt=png&from=appmsg#imgIndex=1"
+      },
+      {
+        "issue": "全马参考图19公里“最慢到达用时”原图看作1:57:00，与10:57的最慢到达时刻不匹配，维持原图未自行推算。",
+        "status": "unconfirmed_map_row_inconsistent",
+        "sourceUrl": "https://mp.weixin.qq.com/s/2MyoyG6SoBNuvo7bqb0dVA",
+        "imageUrl": "https://mmbiz.qpic.cn/sz_mmbiz_png/DEKlUhFP5glNW6XyYrKpiaC8uibNiaXWt5WPxGqxMsodXQDyOSItRmcYLeE4ur9TkhriaBRJmMXbqavn7vjl4MS3EnXRzIcoic4TOqBp264KeTIw/640?wx_fmt=png&from=appmsg#imgIndex=1"
+      },
+      {
+        "issue": "官网页面倒计时脚本是09:00，竞赛规程和11/12实际路线图首枪为08:00；保留正文实证及现有08:00，不采用倒计时。",
+        "status": "non_regulatory_site_countdown_differs",
+        "sourceUrl": "http://huangshimarathon.com/"
+      },
+      {
+        "issue": "“破速”奖正文少于、原表≤；原图和明确疑点同时保留。",
+        "status": "unconfirmed_conflicting_official_boundary",
+        "sourceUrl": "https://mp.weixin.qq.com/s/oEdpIbLPiiG21CFEVyDmkA",
+        "imageUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/11c3a91803d289f9480ddbf3b2ef5e70dba11391.jpeg?imageView2/2/w/1181"
+      },
+      {
+        "issue": "接驳链接只是11/7发出的调查问卷，未获得赛日正式车辆班次站点。",
+        "status": "transport_schedule_not_confirmed",
+        "sourceUrl": "https://mp.weixin.qq.com/s/K071a6OvpbdNFpq39ulq5A"
+      }
+    ],
+    "officialDocuments": [
+      {
+        "url": "https://mp.weixin.qq.com/s/oEdpIbLPiiG21CFEVyDmkA",
+        "title": "2026黄石马拉松竞赛规程",
+        "role": "official_wechat_article",
+        "verified": true,
+        "identityReview": "赛事官网竞赛规程直接链接，9月23日发布，双长图实看。",
+        "characters": 295,
+        "bodySha256": "ae7765dfbca4edfaf8bda60d15bafd6a43853e6b7b8b40543094e9c4d96b8cae",
+        "checkedAt": "2026-11-19T04:39:46.683Z"
+      },
+      {
+        "url": "https://mp.weixin.qq.com/s/2MyoyG6SoBNuvo7bqb0dVA",
+        "title": "路线官宣｜2026黄石马拉松路线图正式揭晓！",
+        "role": "official_course_update",
+        "verified": true,
+        "identityReview": "赛事官网新闻直接链接的11月12日同届官方路线公告，正式地图写明起终点及参考时刻。",
+        "characters": 772,
+        "bodySha256": "eb95664bd4311dafe18a95bb2eeacad01bc8a917bf43ee1442a3a87980ff2afa",
+        "checkedAt": "2026-11-19T04:39:46.683Z"
+      },
+      {
+        "url": "https://mp.weixin.qq.com/s/1EKzW5Z6hZt2KiIAoPE8EQ",
+        "title": "2026黄石马拉松分区查询&自助选号攻略",
+        "role": "official_start_zones",
+        "verified": true,
+        "identityReview": "赛事官网新闻直接链接的11月4日官方分区和选号攻略。",
+        "characters": 1264,
+        "bodySha256": "6c427cb76dff7808fababc49b70cd411139efa76f6e37ae2c2a461e5d7e3cffa",
+        "checkedAt": "2026-11-19T04:39:46.683Z"
+      },
+      {
+        "url": "https://mp.weixin.qq.com/s/PZu-Xv0jChZNd-a8jStI4g",
+        "title": "湖北省首个终点进体育场的马拉松！2026黄石马拉松赛道丈量工作圆满完成！",
+        "role": "official_course_measure",
+        "verified": true,
+        "identityReview": "11月6日量距确认体育场全马终点；实际线路取11月12日公告。",
+        "characters": 775,
+        "bodySha256": "ce77b1c33d05d83dda2015e6b4302efe019b4ecd465303ba96668fb9b1a4db94",
+        "checkedAt": "2026-11-19T04:39:46.683Z"
+      },
+      {
+        "url": "http://huangshimarathon.com/",
+        "title": "2026黄石马拉松官网",
+        "role": "official_website",
+        "verified": true,
+        "identityReview": "赛事名、届次、组织方、本届11/22比赛在官网与官微匹配。",
+        "checkedAt": "2026-11-19T04:39:46.683Z"
+      }
+    ],
+    "sourceDiscovery": {
+      "officialUrl": "http://huangshimarathon.com/",
+      "method": "从本届官网当前新闻、领物入口导航确认主办方和适用届次，再独立搜索黄石马拉松本届11月领物、接驳、号码及线路。收录实际可访问的官方内容；搜索验证拦截或非本届资料没有被当作依据。",
+      "news": "http://huangshimarathon.com/index.php?catid=17",
+      "pickup": "http://huangshimarathon.com/index.php?catid=15"
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_only",
+      "miniDisplayed": false,
+      "formalMiniProgramReleaseVerified": false
+    }
+  },
+  {
+    "id": "caa-1000483001",
+    "name": "2026宁都红色半程马拉松",
+    "status": "current_source_content_checked_with_questions",
+    "scope": "6张上架原图实际看全，三张竞赛规程22连续块核全部章节与合并单元格。县政府延期公告第一条、完整报名页两个选项、原图和中国田协同届身份交叉核。宁都欢乐跑是独立活动，无路线/领物/资格借用。",
+    "beforeBodyHash": "1081a1f15ea093fce5e3e55c0670feebe911b26029e8f1c4288bd7b1649918a5",
+    "savedBodyHash": "e72cab28befb66dea05bd77feb2572ea7972d92e11b72de9a10caa8c085f2665",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 6,
+    "pendingImages": 0,
+    "chapters": 12,
+    "groups": 2,
+    "groupCorrections": 6,
+    "questions": [
+      {
+        "item": "半程赛道一个地名差异",
+        "sources": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/49bafb26c45cb178bd1d4b5606adb53096ae1be0.jpeg?imageView2/2/w/750"
+        ],
+        "unconfirmed": "同一原图正文在环西路后写龙溪路，图例小字写龙湖路；后段折返均写龙溪路。未搜到本届半程新的可核路线文字，正文据主文字并标出处，保留路线海拔原图；政府已核欢乐跑路线不适用于本半程。"
+      },
+      {
+        "item": "半程领物具体地点及新版要求",
+        "sources": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/49bafb26c45cb178bd1d4b5606adb53096ae1be0.jpeg?imageView2/2/w/750",
+          "https://weixin.sogou.com/weixin?type=2&query=2026%E5%AE%81%E9%83%BD%E7%BA%A2%E8%89%B2%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E9%A2%86%E7%89%A9"
+        ],
+        "unconfirmed": "已检到本届半程组委会「领物须知」及宁都农投的相关标题，原文跳转需要验证，未采任何搜索摘要补地点。现行保存用原规程明确的三天时段、证件、不得代领，不套用欢乐跑地点。"
+      },
+      {
+        "item": "报名截止和赛号查询时点",
+        "sources": [
+          "https://www.ningdu.gov.cn/ndxxxgk/c105275v/202610/784d0e4b8e4046b28556b9948ba8fdf7.shtml",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/f15377330f54ba4b3c1303835bc9dea3b5be31ad.png?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/49bafb26c45cb178bd1d4b5606adb53096ae1be0.jpeg?imageView2/2/w/750",
+          "https://reg.zuicool.com/10795"
+        ],
+        "unconfirmed": "已核县政府10月12日公告第一条将半程官方通道延期至10月25日24:00；图和平台旧文字为10月9日24:00。不能据延期揣测不同合作平台开放状态，11月5日09:00为原规程查询安排，未核实际公开时点。"
+      },
+      {
+        "item": "售后联系方式时段",
+        "sources": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/f6921b127e16ef550e3309da37c74bdc40342c71.jpeg?imageView2/2/w/750",
+          "https://reg.zuicool.com/10795"
+        ],
+        "unconfirmed": "规程正文及最酷页面均列14:30–17:00，规程页底联系图小字列14:00–17:00。号码17770033006清晰，18702590827为规程团报及平台服务电话。未确认下午更早开始服务的时间。"
+      },
+      {
+        "item": "老兵赛中赛附加奖励及折扣",
+        "sources": [
+          "https://reg.zuicool.com/10795",
+          "https://reg.zuicool.com/10795/282986",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/f6921b127e16ef550e3309da37c74bdc40342c71.jpeg?imageView2/2/w/750"
+        ],
+        "unconfirmed": "当前报名页明确108元及退役证明要求，规程未另列老兵奖、单列名额或团报折扣叠加；子入口匿名登录限制，未找到更多官方原文，不猜。"
+      }
+    ],
+    "officialDocuments": [
+      {
+        "url": "https://www.ningdu.gov.cn/ndxxxgk/c105275v/202610/784d0e4b8e4046b28556b9948ba8fdf7.shtml",
+        "title": "宁都县政府：关于延长2026宁都红色半程马拉松及2026宁都欢乐跑报名时间的公告",
+        "role": "current_organizer_extension",
+        "verified": true,
+        "identityReview": "县教体局政府信息公开，联合落款两组委会2026年10月12日，第一条单独写明半程官方报名通道延长到10月25日24:00；第二条才是欢乐跑。已保存的200原文完整可复查，重新访问出现504。",
+        "characters": 908,
+        "bodySha256": "719284e0d669b93f34c4ee34a0d9ed5016caceb0652913b1cab661179d33fa10",
+        "checkedAt": "2026-11-19T04:39:46.683Z"
+      },
+      {
+        "url": "https://www.runchina.org.cn/#/race/v/detail/1000483001",
+        "title": "中国田径协会本届赛事查询",
+        "role": "official_registry",
+        "verified": true,
+        "identityReview": "返回2026宁都红色半程马拉松、宁都县人民政府、2026-11-22、半程项目和等级B；赛事资料链接为空。申办原规程标注拟认证，日历数据用于赛事识别和等级公示。",
+        "characters": 763,
+        "bodySha256": "3a16f403723323626ae9a2e7ceca5045ee3456514d360cd3cfeee6a8addd89e2",
+        "checkedAt": "2026-11-19T04:39:46.683Z"
+      },
+      {
+        "url": "https://reg.zuicool.com/10795",
+        "title": "2026宁都红色半程马拉松最酷报名页",
+        "role": "active_platform_options_and_contact",
+        "verified": true,
+        "identityReview": "同届日期、场地和两报名选项；报名页已关闭，半程普通档120、老兵赛中赛108及资格可以直接阅读，旧截止日期按更新官方公告纠正。两报名子页匿名重定向登录。",
+        "characters": 1075,
+        "bodySha256": "24b3e742194cd3672040184f7a45864512a3c8eb6fa8b0790c5908f86ba58b7c",
+        "checkedAt": "2026-11-19T04:39:46.683Z"
+      }
+    ],
+    "sourceDiscovery": {
+      "priority": "宁都县政府/组委会可复制新公告优先；最酷本届报名详情补选项；其余完整规程实际核原图。",
+      "officialSite": {
+        "confirmed": false,
+        "governmentDisclosure": "https://www.ningdu.gov.cn/ndxxxgk/c105275v/202610/784d0e4b8e4046b28556b9948ba8fdf7.shtml",
+        "registry": "https://www.runchina.org.cn/#/race/v/detail/1000483001",
+        "reason": "规程提及赛事官网但未取得可复核的本届独立赛事站；县政府新公告和组委会公众号确认。"
+      },
+      "searches": [
+        "2026 宁都红色半程马拉松 领物 11月19日 宁都体育中心",
+        "宁都半程路线 2026 龙湖路 龙溪路",
+        "2026宁都红色半程马拉松 老兵赛中赛 108",
+        "红了翠岗杯 2026宁都红色半程马拉松 领物须知"
+      ],
+      "verifiedSourceSeparation": "县政府延长公告明分两场；只用半程第一条。9月30日政府路线公告内容是宁都欢乐跑，不作为半程依据。"
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_only",
+      "miniDisplayed": false,
+      "formalMiniProgramReleaseVerified": false
+    }
+  },
+  {
+    "id": "caa-1000499000",
+    "name": "2026宁德马拉松",
+    "status": "current_source_content_checked_with_questions",
+    "scope": "本届官网赛事规程与报名须知优先，同届全部7张收费/报名须知/规程原图按25块连续实际核对。官网两项独立补充文件、组委会本届报名原文、中国田协等级及最酷两组选项同时查清来源。",
+    "beforeBodyHash": "db175178cbd62442680b62e8c7c5a558a8fc37bbf8b89f8c82f60a382a57a3c2",
+    "savedBodyHash": "3245d1d8e8d378b56236a601caf92ebe4823d4fa8f79719b1e0d676eaa7a21bd",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 7,
+    "pendingImages": 0,
+    "chapters": 15,
+    "groups": 2,
+    "groupCorrections": 8,
+    "questions": [
+      {
+        "item": "团报满50人的折扣实际比例",
+        "sources": [
+          "https://ningde.sport-china.cn/doc/1091/8523",
+          "https://ningde.sport-china.cn/doc/1091/8524",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/8572d08e5931c22da410668c44b211c383249f23.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/5b92ff7c2ebb311005742f2d0ff35faff973a7ab.jpeg?imageView2/2/w/750"
+        ],
+        "unconfirmed": "本届官网两份正文与两张原图均写「85折」，没有写小数点或百分号。查官网资讯与通知、组委会报名官宣及本届团报检索，未找到独立官方更正，不能按常见用法补成8.5折；正文保留50人条件和原表述并提示向组委会确认。"
+      },
+      {
+        "item": "65岁签署人与边界",
+        "sources": [
+          "https://ningde.sport-china.cn/doc/1091/8523",
+          "https://ningde.sport-china.cn/doc/1091/8524",
+          "https://ningde.sport-china.cn/doc/1091/8526",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/8572d08e5931c22da410668c44b211c383249f23.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/5b92ff7c2ebb311005742f2d0ff35faff973a7ab.jpeg?imageView2/2/w/750"
+        ],
+        "unconfirmed": "年龄条款写65周岁及以上（1961年1月1日前出生）及监护人或法定代理人；报名须知重要事项另写65周岁以上须直系家属签名，官网声明为65周岁及以上另列监护人、管理人或法定代理人签名栏。保留各处确证措辞，1961年1月1日出生和具体签署人请组委会确认。"
+      },
+      {
+        "item": "赛前领物、最终分区及路线图公告",
+        "sources": [
+          "https://ningde.sport-china.cn/doc/1091/8523",
+          "https://ningde.sport-china.cn/news/2",
+          "https://ningde.sport-china.cn/news/1",
+          "https://mp.weixin.qq.com/s/RSfTpnbCkGB745R9TnLfbw",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/11b32203262f333996bd250ee664e87dba87fcd2.jpeg?imageView2/2/w/750"
+        ],
+        "unconfirmed": "本届规程仅明确去指定点领物及另行公告，以赛前电子手册为准。官网现有2026两篇九月开报文，另查公众号公开索引未取得可核领物公告。当前新版赛道/奖牌的转载检索入口和摄影招募文章跳转要求访问验证，未采摘要或旧届路线图。最终分区也等待组委会赛前发布。"
+      },
+      {
+        "item": "成绩分区的范围",
+        "sources": [
+          "https://ningde.sport-china.cn/doc/1091/8523",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/f4f463b911e363864a261a74885f252c8967137c.jpeg?imageView2/2/w/750",
+          "https://mp.weixin.qq.com/s/RSfTpnbCkGB745R9TnLfbw"
+        ],
+        "unconfirmed": "组委会开报图文只明确半马按成绩分区，竞赛规程写本次比赛按成绩分区，未明确仅限半马。分区参考期起始2024年11月20日含当日，成绩资质另有2024年11月20日以后表述。保留各自用途和准确措辞，实际分区按赛前公告，未将半马解释外推为全马确定划区标准。"
+      },
+      {
+        "item": "最酷报名状态和组委会时间",
+        "sources": [
+          "https://reg.zuicool.com/83345",
+          "https://ningde.sport-china.cn/doc/1091/8524",
+          "https://mp.weixin.qq.com/s/RSfTpnbCkGB745R9TnLfbw"
+        ],
+        "unconfirmed": "本次取的最酷总页200且两项标关；组委会官网及官方公告公布9/30 10:00到11/20 18:00且满额即止，未验第一赛道及数字心动实时剩余。正文分渠道说明，排除因一渠道关闭而统一更改全站报名状态或日期。"
+      },
+      {
+        "item": "健康风险提示与正式规程的饮酒表述",
+        "sources": [
+          "https://ningde.sport-china.cn/doc/1091/8525",
+          "https://ningde.sport-china.cn/doc/1091/8523"
+        ],
+        "unconfirmed": "规程限制文字为赛前一晚大量饮用烈性酒或睡眠不足，独立风险提示写赛前一晚饮酒或睡眠不足；正文分别标出处并保留官方链接。"
+      }
+    ],
+    "officialDocuments": [
+      {
+        "url": "https://ningde.sport-china.cn/doc/1091/8523",
+        "title": "2026宁德马拉松竞赛规程",
+        "role": "official_current_edition_rules",
+        "verified": true,
+        "identityReview": "官网链接标题确为竞赛规程：本届比赛日12月12日、07:30起跑，马拉松及半程两组。现取正文HTML与前次公开版本逐字符相同，所有13章和6原表已对读。",
+        "characters": 9717,
+        "bodySha256": "37fcc902b4075fc1c2dd2f5f10371a7de338bce4f4555a0d86146bf9efa86395",
+        "checkedAt": "2026-11-19T04:39:46.683Z"
+      },
+      {
+        "url": "https://ningde.sport-china.cn/doc/1091/8524",
+        "title": "2026宁德马拉松报名须知",
+        "role": "official_current_edition_registration",
+        "verified": true,
+        "identityReview": "官网标题确为报名须知：本届比赛日和两个组别匹配；现取正文HTML与前次公开版本逐字符相同，全部内容对读。",
+        "characters": 3598,
+        "bodySha256": "f4dc9be90d7341bc88c367a8dc06261bded15020e603956b406e6fff1450d274",
+        "checkedAt": "2026-11-19T04:39:46.683Z"
+      },
+      {
+        "url": "https://ningde.sport-china.cn/doc/1091/8525",
+        "title": "2026宁德马拉松参赛风险",
+        "role": "official_current_edition_risk",
+        "verified": true,
+        "identityReview": "同届官网赛事信息菜单，末署宁德马拉松组委会、二〇二六年九月。健康条件、风险、赛中及医疗建议已读，作为报名条款补充链接，不替代竞赛规程。",
+        "characters": 1738,
+        "bodySha256": "763549d59486cad547637d14dcc703cfd4264d371db81b7f506a70e90d19c738",
+        "checkedAt": "2026-11-19T04:39:46.683Z"
+      },
+      {
+        "url": "https://ningde.sport-china.cn/doc/1091/8526",
+        "title": "2026宁德马拉松参赛声明",
+        "role": "official_current_edition_declaration",
+        "verified": true,
+        "identityReview": "正文首段明示2026宁德马拉松；核18个声明条款与65周岁及以上单独签字栏。",
+        "characters": 1920,
+        "bodySha256": "3a2d350e2e72ba03937c75a974cc85ec9df6fb3da2ee3d01fd092c54f1ee4f8e",
+        "checkedAt": "2026-11-19T04:39:46.683Z"
+      },
+      {
+        "url": "https://mp.weixin.qq.com/s/RSfTpnbCkGB745R9TnLfbw",
+        "title": "宁德马拉松组委会本届报名官宣",
+        "role": "official_registration_announcement",
+        "verified": true,
+        "identityReview": "本届官网链接指向的赛事公众号正文实际读取，明列两项、原价、整体报名前后时点，并明述半程按成绩分区。",
+        "characters": 1059,
+        "bodySha256": "315aab35bbb09ae22fecf2cadd074f692fa78b1aaa1b51dac2cbfe6ba8bae7d4",
+        "checkedAt": "2026-11-19T04:39:46.683Z"
+      },
+      {
+        "url": "https://ningde.sport-china.cn/",
+        "title": "宁德马拉松赛事官网",
+        "role": "official_homepage",
+        "verified": true,
+        "identityReview": "首页主视觉赛事日期2026.12.12及当前官网规程/报名须知链接。首页仍混有2025资讯，未套用旧届公告。",
+        "characters": 897,
+        "bodySha256": "66b970206f6cb0df9b7afd36b24ee2b3f53507b2e9c154db2243d5766ce9c40f",
+        "checkedAt": "2026-11-19T04:39:46.683Z"
+      },
+      {
+        "url": "https://ningde.sport-china.cn/news/2",
+        "title": "宁德马拉松官网通知公告",
+        "role": "official_notice_index_checked",
+        "verified": true,
+        "identityReview": "打开当前官网栏目，无可核本届领物或分区的独立通知。",
+        "characters": 420,
+        "bodySha256": "0431780431ee09853d9723495c05523f672bade5a97d4e50e72f0fc091b4b4d2",
+        "checkedAt": "2026-11-19T04:39:46.683Z"
+      },
+      {
+        "url": "https://ningde.sport-china.cn/news/1",
+        "title": "宁德马拉松官网赛事资讯",
+        "role": "official_news_index_checked",
+        "verified": true,
+        "identityReview": "官网当前赛事资讯中本届两篇均为九月开报，其余相邻内容为2025年；未见本届新领物、团购更正或最终分区公告。",
+        "characters": 1080,
+        "bodySha256": "d6c80579dc068044845095dd394bcc6e4445095f9e4721f33cb81400d7bb2cde",
+        "checkedAt": "2026-11-19T04:39:46.683Z"
+      },
+      {
+        "url": "https://www.runchina.org.cn/#/race/v/detail/1000499000",
+        "title": "中国田径协会本届赛事查询",
+        "role": "official_caa_registry",
+        "verified": true,
+        "identityReview": "查询返回2026宁德马拉松、2026.12.12、宁德市人民政府、全程半程、certifieFlag a 与 raceGrade A。",
+        "characters": 762,
+        "bodySha256": "24bada225ac7fd6516183f5a52ec6c0f9ac6359460ac4e7da03f43ee4197b8c9",
+        "checkedAt": "2026-11-19T04:39:46.683Z"
+      },
+      {
+        "url": "https://reg.zuicool.com/83345",
+        "title": "最酷本届报名页",
+        "role": "platform_current_channel",
+        "verified": true,
+        "identityReview": "本届两报名选项、168/139元、最酷中国籍（含港澳台）条件和地址复核。当前页面两组显示已截止；这是该渠道状态。",
+        "characters": 1152,
+        "bodySha256": "42ebab62501b5ff8880954ef4552eda985ce3f0df53689edbc75c91935cef5a2",
+        "checkedAt": "2026-11-19T04:39:46.683Z"
+      }
+    ],
+    "sourceDiscovery": {
+      "priority": "本届宁德马拉松官网竞赛规程、报名须知为主；组委会开报原文确认发布时间和半马分区，中国田协查询确认A类；最酷验证渠道资格和两报名选项，原图用于精确行列、标点、疑点核实。",
+      "officialSite": {
+        "confirmed": true,
+        "url": "https://ningde.sport-china.cn/",
+        "officialDocuments": [
+          "https://ningde.sport-china.cn/doc/1091/8523",
+          "https://ningde.sport-china.cn/doc/1091/8524",
+          "https://ningde.sport-china.cn/doc/1091/8525",
+          "https://ningde.sport-china.cn/doc/1091/8526"
+        ],
+        "news": [
+          "https://ningde.sport-china.cn/news/1",
+          "https://ningde.sport-china.cn/news/2"
+        ],
+        "foundVia": "最酷本届报名页公开赛事官网，再核页面赛事日、官方链接、主办及组委会公众号。"
+      },
+      "searches": [
+        "神行2026宁德马拉松12月12日领物、参赛指南、赛道",
+        "神行2026宁德马拉松 第一赛道 团报 50人 8.5折",
+        "2026宁德马拉松团报50人优惠",
+        "宁德马拉松2026发布会赛道奖牌宁德马拉松12月12日"
+      ],
+      "webAccessNotes": [
+        "官网资讯/通知、官方开报公众号和最酷直接200，全文已取。",
+        "搜索索引中新版奖牌赛道转载和招募条目跳转提示验证，未采其原文未核内容。"
+      ],
+      "freshEvidence": {
+        "network": "ningde-follow-final.json",
+        "articleLookup": "ningde-launch-check.json",
+        "archiveBodiesMatched": true
+      }
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_only",
+      "miniDisplayed": false,
+      "formalMiniProgramReleaseVerified": false
+    }
+  },
+  {
+    "id": "caa-1000479023",
+    "name": "2026海南东方半程马拉松",
+    "status": "current_source_content_checked_with_questions",
+    "scope": "完整实看12个现存图源（两处报名须知同SHA）、最酷横幅、官网规程3张及组委会团报3张操作图，逐项合并当前规程、报名须知与相关公告的独有条款，完整保留6个关门点、全部奖金、9类健康情形、20项处罚、5条保险、领物和退款规则；组卡既有数值与原图文件不改。",
+    "beforeBodyHash": "c4146e4dd1ce922d222124d65bb3b68add7892bf17c2fc4f7e76f140dd123aa8",
+    "savedBodyHash": "bb325dbaa691078aa2d5afac6666beec82dbd730e0d1777f1e4362f52b2cad05",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 22,
+    "pendingImages": 0,
+    "chapters": 13,
+    "groups": 1,
+    "groupCorrections": 0,
+    "questions": [
+      {
+        "issue": "东方官网公告两页共12条，截至10月30日最新是急救跑者；东方市政府站带赛事名称检索见往届，没有核到本届领物地点、逐日时段、交通接驳或最终丈量图及独立《参赛指南》；规程只写指定地点、赛前两天。保留原话及官方核对入口，不将往期安排套入本届。",
+        "status": "current_pickup_specifics_not_verified",
+        "sourceUrl": "https://dongfang.jinshensports.com/website/#/template3/notice/6a86648469163"
+      },
+      {
+        "issue": "官网报名须知与号码查询入口需要绑定手机号；组委会双站联报文章另链的微信公众号规程、报名须知入口当前返回环境验证。现有完整竞赛规程源图与最酷两处同哈希报名须知已覆盖；未把绑定/验证页当成文件内容。未核到可复制PDF。",
+        "status": "alternate_portals_require_verification",
+        "sourceUrl": "https://m.irunner.mobi/mix-race-apply/index.html?match_eng=6a86648469163#/notice"
+      },
+      {
+        "issue": "报名须知末条“如退役运动员违规参赛，将取”在两份同一原图中均被版式截断。正文依据同图前段和本届官网竞赛规程明确的“取消其成绩及其他与比赛有关的收益”，未补造残缺字符串。",
+        "status": "original_line_clipped_cross_checked",
+        "sourceUrl": "https://zuicool.com/news/archives/314042"
+      },
+      {
+        "issue": "规程存衣段引用第十七条查办公地址，末章只列联系方式，未给实际地址；奖项条款未说明名次奖与自贸港特别奖能否兼得；年龄只按原文明示“日前”保留，不擅自为边界日期加含当日。",
+        "status": "source_details_not_specified",
+        "sourceUrl": "https://m.irunner.mobi/mix-race-apply/index.html?match_eng=6a86648469163#/regulation"
+      },
+      {
+        "issue": "教师120元公告未列教师证件要求、截止、叠加规则，按已核公告独立显示，未作为现行通用档或变更原有组卡三档。联报名单所述现场抽奖地是澄迈领物现场，不作为东方领物地址。",
+        "status": "campaign_context_preserved",
+        "sourceUrl": "https://mp.weixin.qq.com/s/Bsiut0ING1n2ibeP8LJUgw"
+      }
+    ],
+    "officialDocuments": [
+      {
+        "url": "https://dongfang.jinshensports.com/",
+        "title": "2026海南东方半程马拉松官网",
+        "role": "official_website",
+        "verified": true,
+        "identityReview": "本届官网首页：核对正式赛事名称、11月22日07:30与赛事导航。",
+        "characters": 0,
+        "bodySha256": "f95093905a99f6e581d7e181e80f859cc9eeb0a5566378d92ee94628af0213aa",
+        "checkedAt": "2026-11-19T04:39:46.683Z"
+      },
+      {
+        "url": "https://m.irunner.mobi/mix-race-apply/index.html?match_eng=6a86648469163#/regulation",
+        "title": "2026海南东方半程马拉松竞赛规程",
+        "role": "official_current_regulation",
+        "verified": true,
+        "identityReview": "官网赛事信息导航进入本届竞赛规程页；该页正文原件为两张长图，另有主视觉。",
+        "characters": 0,
+        "bodySha256": "169172ece1f4baec920cda71a2b8c0359a9a5aeff0b4a0bc402d7823afa33957",
+        "checkedAt": "2026-11-19T04:39:46.683Z"
+      },
+      {
+        "url": "https://dongfang.jinshensports.com/website/#/template3/notice/6a86648469163",
+        "title": "官网赛事公告列表第1页及公告入口。",
+        "role": "official_announcement_index",
+        "verified": true,
+        "identityReview": "官网赛事公告列表第1页及公告入口。",
+        "characters": 0,
+        "bodySha256": "0ecb1132a0379840fcf3db4bfe1541cff21f4fd7b4602ab07ae1d74ba39a338d",
+        "checkedAt": "2026-11-19T04:39:46.683Z"
+      },
+      {
+        "url": "https://mp.weixin.qq.com/s/NzqEe7gHt2ywHpdKI2F33A",
+        "title": "团报优惠抢先看｜2026海南东方半程马拉松",
+        "role": "organizer_announcement",
+        "verified": true,
+        "identityReview": "本届组委会团报正文、价格、人数、资格及三张操作图。",
+        "characters": 0,
+        "bodySha256": "8fb9f49c4944ebc189981bdf1f5d390da85f2ea60cc8a5320ade3aa9c35fcf53",
+        "checkedAt": "2026-11-19T04:39:46.683Z"
+      },
+      {
+        "url": "https://mp.weixin.qq.com/s/pI9N8jTfvFr3ps_Snxn9Gg",
+        "title": "报名启动｜2026海南东方半程马拉松报名通道开启！",
+        "role": "organizer_announcement",
+        "verified": true,
+        "identityReview": "本届组委会报名启动公告：宁马权益、团报名单与统一付款。",
+        "characters": 0,
+        "bodySha256": "21a5e5ce793a573222d96beb35580bd6eccc0f716cda395f0ad7143d851f827a",
+        "checkedAt": "2026-11-19T04:39:46.683Z"
+      },
+      {
+        "url": "https://mp.weixin.qq.com/s/Bsiut0ING1n2ibeP8LJUgw",
+        "title": "2026海南东方半程马拉松教师节专属福利",
+        "role": "organizer_announcement",
+        "verified": true,
+        "identityReview": "本届组委会教师节公告，明确教师专属120元，细则以实际入口为准。",
+        "characters": 0,
+        "bodySha256": "f8c9c1a351bacfc44c2f978d937885ed16f73fdba01b48514896451a7ff9b5d0",
+        "checkedAt": "2026-11-19T04:39:46.683Z"
+      },
+      {
+        "url": "https://mp.weixin.qq.com/s/ex1e_szJJkUKFBsFGxFx2w",
+        "title": "东方×澄迈｜因为热爱，所以拼搏！",
+        "role": "organizer_announcement",
+        "verified": true,
+        "identityReview": "双站联报名额的联名背包和计划发放地点；组织者公告。",
+        "characters": 0,
+        "bodySha256": "04f5cacfd14bd7c20dba46fda5cb1371a0b2e4c19967165550529e15816ded55",
+        "checkedAt": "2026-11-19T04:39:46.683Z"
+      },
+      {
+        "url": "https://mp.weixin.qq.com/s/MfZbn0hplB3o0XfABvhaDw",
+        "title": "联报福利第二弹｜好礼继续！百份奖品现场抽！",
+        "role": "organizer_announcement",
+        "verified": true,
+        "identityReview": "本届组委会双站联动第二公告：抽奖资格、地点、先到先得及与背包兼享。",
+        "characters": 0,
+        "bodySha256": "95c109081dcd6bc76012e93df82971fbef3c6cb65af85ca05078ef431b594df0",
+        "checkedAt": "2026-11-19T04:39:46.683Z"
+      },
+      {
+        "url": "https://mp.weixin.qq.com/s/QVOs9ugy3A4OPXIzKp08uw",
+        "title": "官宣定档｜2026海南东方半程马拉松",
+        "role": "organizer_announcement",
+        "verified": true,
+        "identityReview": "本届定档主办、运营公司全称、男女组规模与日期。",
+        "characters": 0,
+        "bodySha256": "17fd5fa4e0aa68a74689eeeef9633b10fa833f6bca15b733b6413d11a65ad2f9",
+        "checkedAt": "2026-11-19T04:39:46.683Z"
+      },
+      {
+        "url": "https://m.irunner.mobi/mix-race-apply/index.html?match_eng=6a86648469163#/bibsearch",
+        "title": "官方赛事导航的号码查询入口；实名手机号绑定，不提交个人资料。",
+        "role": "official_bib_search",
+        "verified": true,
+        "identityReview": "官方赛事导航的号码查询入口；实名手机号绑定，不提交个人资料。",
+        "characters": 0,
+        "bodySha256": "9d84ff9d6680327866227156e29c5518fb7dbf34146d5e7a79b947ebbeac4b97",
+        "checkedAt": "2026-11-19T04:39:46.683Z"
+      },
+      {
+        "url": "https://dongfang.jinshensports.com/",
+        "title": "2026海南东方半程马拉松",
+        "role": "official_website",
+        "verified": true,
+        "checkedAt": "2026-11-19T04:39:46.683Z",
+        "identityReview": "与组委会公告互链，由当届官网赛事信息导航、公开公告接口和规程原图共同核验。"
+      }
+    ],
+    "sourceDiscovery": {
+      "independentOfficialSite": "https://dongfang.jinshensports.com/",
+      "officialRegulation": "https://m.irunner.mobi/mix-race-apply/index.html?match_eng=6a86648469163#/regulation",
+      "noticeIndex": "https://dongfang.jinshensports.com/website/#/template3/notice/6a86648469163",
+      "publishedAnnouncementCount": 12,
+      "latestAnnouncement": "2026海南东方半程马拉松急救跑者名单公示",
+      "latestAnnouncementAt": "2026-10-30 14:23:13",
+      "bibSearch": {
+        "url": "https://m.irunner.mobi/mix-race-apply/index.html?match_eng=6a86648469163#/bibsearch",
+        "state": "bind_phone_required"
+      },
+      "registrationNotice": {
+        "url": "https://m.irunner.mobi/mix-race-apply/index.html?match_eng=6a86648469163#/notice",
+        "state": "bind_phone_required"
+      },
+      "governmentSearches": [
+        {
+          "url": "https://dongfang.hainan.gov.cn/wzss/search.html?siteId=39&pageSize=10&searchWord=%E6%B5%B7%E5%8D%97%E4%B8%9C%E6%96%B9%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE",
+          "currentPickupVerified": false
+        },
+        {
+          "url": "https://dongfang.hainan.gov.cn/wzss/search.html?siteId=39&pageSize=10&searchWord=%E6%B5%B7%E5%8D%97%E4%B8%9C%E6%96%B9%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E9%A2%86%E7%89%A9",
+          "currentPickupVerified": false
+        },
+        {
+          "url": "https://dongfang.hainan.gov.cn/wzss/search.html?siteId=39&pageSize=10&searchWord=%E6%B5%B7%E5%8D%97%E4%B8%9C%E6%96%B9%E5%8D%8A%E7%A8%8B%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E4%BA%A4%E9%80%9A%E7%AE%A1%E5%88%B6",
+          "currentPickupVerified": false
+        }
+      ],
+      "pdfOrFinalRouteMapVerified": false,
+      "rasterAlignmentEvidence": "df-raster-comparison.txt"
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_only",
+      "miniDisplayed": false,
+      "formalMiniProgramReleaseVerified": false
+    }
+  },
+  {
+    "id": "caa-1000452094",
+    "name": "2026奉贤海湾森林半程马拉松",
+    "status": "current_source_content_checked_with_questions",
+    "scope": "本届政府报名发布、对应官图和当届可复制组织方案优先；两张竞赛规程、报名海报全图逐段逐表校对，以正式规程替换识别正文、恢复合并表项、遗漏尾章和段落，区别暂定领物和报名转载的边界。",
+    "beforeBodyHash": "0453c3389143ce5951bd66a4a8cfdd21043e3753193448bf2f6e91ddf1d6c4f0",
+    "savedBodyHash": "d082efc00e5339165951ed3bd309dbc7d20b4fe552ae1f7dd2d1852424c08b8b",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 4,
+    "pendingImages": 0,
+    "chapters": 18,
+    "groups": 1,
+    "groupCorrections": 5,
+    "questions": [
+      {
+        "topic": "正式领物公告尚未得到",
+        "status": "source_not_confirmed",
+        "sourceUrl": "https://www.fengxian.gov.cn/zwgk/hwz/zfwj/zc/zd/2026/222/5368.html",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/08/035af93a1a9055e08b142f3b80ba2ffc7c3875ee.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/08/2c73fc677c271e749b00311a451b9251e94dacf7.jpeg?imageView2/2/w/750"
+        ],
+        "detail": "本届区政府组织方案将11月27—28日09:00—16:30、奉贤区体育中心、二代身份证及个人参赛和安全责任书列为拟定领物安排；最终规程只指向赛前官微。正文标拟定，不能作为最终地址写结构化字段。独立检索赛前领物、拟定日期和同届官微，公开图码为公众号入口，未得可核验的当届最终领物通知。"
+      },
+      {
+        "topic": "18周岁截止边界",
+        "status": "source_conflict",
+        "sourceUrl": "https://reg.zuicool.com/51085",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/08/035af93a1a9055e08b142f3b80ba2ffc7c3875ee.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/08/2c73fc677c271e749b00311a451b9251e94dacf7.jpeg?imageView2/2/w/750"
+        ],
+        "detail": "同段同时声称2007年12月31日（含）前出生，以及2026年1月1日时年满18周岁；未自行认定2008年1月1日是否合格。上限保留原规程1951年11月28日后出生，不改成按自然年截点。"
+      },
+      {
+        "topic": "中签退费切换时点",
+        "status": "source_boundary_unspecified",
+        "sourceUrl": "https://sh.bendibao.com/news/2026820/308575.shtm",
+        "detail": "同届可复制转载的80%与50%均列10月15日且无具体时刻，截止10月30日也没有时刻。正文如实列两个可验证阶段，提示边界看实际订单，不使用10月30日18:00跑团组队截止替代退费时间。"
+      },
+      {
+        "topic": "早期组织方案和最终规程不同",
+        "status": "source_conflict_resolved",
+        "sourceUrl": "https://www.fengxian.gov.cn/zwgk/hwz/zfwj/zc/zd/2026/222/5368.html",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/08/035af93a1a9055e08b142f3b80ba2ffc7c3875ee.jpeg?imageView2/2/w/750"
+        ],
+        "detail": "政府立项稿报名9月待定、赛前1.5小时检录、路线含海古路；较晚当届报名通知明确8月18日10:00起、竞赛规程规定检录07:00、路线经过沿海堤路，正文按后者。未发现本届可独立验证的最终路线图或实测里程，保留标准项目距离、两张规程对照图。"
+      },
+      {
+        "topic": "男女奖金合并重复列与尾部缺段",
+        "status": "corrected",
+        "sourceUrl": "https://reg.zuicool.com/51085",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/08/2c73fc677c271e749b00311a451b9251e94dacf7.jpeg?imageView2/2/w/750"
+        ],
+        "detail": "逐格视读男女各8行均为7500、5000、2500、1000、800、600、400、200元，跑团另5行；补出完整18项处罚、保险及特别声明尾段。第一张补给表逐行核对9站每一列。"
+      }
+    ],
+    "officialDocuments": [
+      {
+        "url": "https://www.shanghai.gov.cn/nw17239/20260819/677a426972e749f8ae7e3110e5e3291f.html",
+        "title": "上海市政府：2026奉贤海湾森林半程马拉松报名开启",
+        "role": "government_current_announcement",
+        "verified": true,
+        "identityReview": "页面嵌图与11月29日、上海海湾国家森林公园和同一比赛一致。",
+        "checkedAt": "2026-11-19T04:39:46.683Z"
+      },
+      {
+        "url": "https://www.fengxian.gov.cn/zwgk/hwz/zfwj/zc/zd/2026/222/5368.html",
+        "title": "奉贤区：本届赛事立项请示及2026竞赛组织方案",
+        "role": "government_current_event_planning",
+        "verified": true,
+        "identityReview": "本届同一比赛，领物仍为拟方案；晚版规程及报名优先。",
+        "checkedAt": "2026-11-19T04:39:46.683Z"
+      },
+      {
+        "url": "https://reg.zuicool.com/51085",
+        "title": "本届最酷报名及组委会竞赛规程原图",
+        "role": "official_registration_partner",
+        "verified": true,
+        "identityReview": "报名字段、11月29日、组别、规模、原图对应。",
+        "checkedAt": "2026-11-19T04:39:46.683Z"
+      }
+    ],
+    "sourceDiscovery": {
+      "officialUrl": "https://www.shanghai.gov.cn/nw17239/20260819/677a426972e749f8ae7e3110e5e3291f.html",
+      "organizerGovernmentUrl": "https://www.fengxian.gov.cn/zwgk/hwz/zfwj/zc/zd/2026/222/5368.html",
+      "registrationUrl": "https://reg.zuicool.com/51085",
+      "officialRegistrationQrTarget": "https://race.shuzixindong.com/offline/#/pages/race/detail?raceId=1000481011&f=7f646",
+      "partnerEventUrl": "https://zuicool.com/event/53139",
+      "organizerPublicAccount": "奉贤海湾森林半程马拉松",
+      "checkedFiles": [
+        "/tmp/race-guide-quality-20261117/supplement-f-caa/fetch-results.json",
+        "/tmp/race-guide-quality-20261117/supplement-f-caa/fengxian-direct-results.json",
+        "/tmp/race-guide-quality-20261117/supplement-f-caa/dig-results.json",
+        "/tmp/race-guide-quality-20261117/supplement-f-caa/fengxian-digital.html",
+        "/tmp/race-guide-quality-20261117/supplement-f-caa/fengxian-shgov.html",
+        "/tmp/race-guide-quality-20261117/supplement-f-caa/fengxian-gov-request.html",
+        "/tmp/race-guide-quality-20261117/supplement-f-caa/fengxian-copy-lottery.html"
+      ],
+      "outcome": "实读上海政府当届公告图，按二维码确认数字心动本届入口，实读奉贤区政府立项计划及最酷可复制报名详情；另独立补查赛前领物、公众号和中签退费，未取到最终领物通知。"
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_only",
+      "miniDisplayed": false,
+      "formalMiniProgramReleaseVerified": false
+    }
+  }
+]

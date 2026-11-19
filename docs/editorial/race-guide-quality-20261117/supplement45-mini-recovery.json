@@ -1,0 +1,26 @@
+{
+  "at": "2026-11-19T04:52:49.118Z",
+  "opened": true,
+  "firstPage": true,
+  "expectedWidth": 390,
+  "firstCase": true,
+  "initialIssue": "read ECONNRESET",
+  "results": {
+    "fourth": {
+      "passed": 5,
+      "total": 7,
+      "errors": [
+        {
+          "message": "spawnSync /Applications/wechatwebdevtools.app/Contents/MacOS/wechatide ETIMEDOUT"
+        }
+      ]
+    },
+    "fifth": {
+      "passed": 5,
+      "total": 5,
+      "interactionsNotCompleted": true,
+      "latestInteractionError": "simulator_open_page: read ECONNRESET"
+    }
+  },
+  "changesToConfig": false
+}

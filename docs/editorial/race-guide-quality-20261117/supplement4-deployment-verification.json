@@ -1,0 +1,51 @@
+{
+  "at": "2026-11-19T04:52:49.118Z",
+  "kind": "Independent production data update with manual complete obtained-current-source review. Actual frontend verifications separately scoped.",
+  "stages": {
+    "reviewed": true,
+    "saved": true,
+    "webDisplayed": true,
+    "webDeployedVerified": true,
+    "miniDisplayed": false,
+    "miniDevToolsVerified": false,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "races": 7,
+  "exactGroupFieldCorrections": 31,
+  "backup": "server/data/race-guide-quality-20261117/supplement4-applied.json.before.sqlite",
+  "counts": {
+    "races": 434,
+    "sheets": 1759
+  },
+  "schemaUnchanged": true,
+  "quickCheck": "ok",
+  "newUsefulOriginalImages": 5,
+  "web": {
+    "pages": 14,
+    "viewports": [
+      320,
+      390
+    ],
+    "fullTextBlocks": 462,
+    "rows": 267,
+    "focusActualPages": 8
+  },
+  "mini": {
+    "status": "partially_verified_at_390px",
+    "actualRaces": 5,
+    "evidence": "supplement4-all-mini-render-verification.json",
+    "recovery": "supplement45-mini-recovery.json",
+    "blockedIfNotCompleted": "Repeated development tool session failures on remaining events"
+  },
+  "remaining": {
+    "specificEvents": 56,
+    "coverageEvidenceUnknown": 0,
+    "sourceFollowup": 2
+  },
+  "pending": [
+    "Actual 320px mini app",
+    "Physical gestures including native longpress menu/zoom",
+    "Formal WeChat release and verification",
+    "Supplement4 2 actual mini renders and interaction checks"
+  ]
+}

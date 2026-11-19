@@ -1,0 +1,31 @@
+{
+  "at": "2026-11-19T02:43:05.547Z",
+  "configurationReadOnlyValid": true,
+  "checks": [
+    {
+      "tool": "check_wechatide_status",
+      "ok": true,
+      "code": "",
+      "message": "",
+      "loginExpired": false,
+      "listedAppId": false
+    },
+    {
+      "tool": "get_user_appids",
+      "ok": false,
+      "code": "ECONNRESET",
+      "message": "read ECONNRESET",
+      "loginExpired": null,
+      "listedAppId": false
+    },
+    {
+      "tool": "automation_runtime_info",
+      "ok": false,
+      "code": "APPID_ERROR",
+      "message": "read ECONNRESET",
+      "loginExpired": null,
+      "listedAppId": false
+    }
+  ],
+  "changesToConfig": false
+}
