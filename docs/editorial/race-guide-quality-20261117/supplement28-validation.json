@@ -1,0 +1,21 @@
+{
+  "at": "2026-11-19T19:06:53.225Z",
+  "passed": true,
+  "rows": [
+    {
+      "id": "zuiku-84761",
+      "file": "supplement-nanxijiang-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "核对本届公开报名的 12 个选项、四档费用，检查全部 11 张存档原图的页级内容与关键表格；保留规则、路线图及明确冲突。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-88485",
+      "file": "supplement-cangnan-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "按官方日历、最酷公开报名及 9 月 9 日公告、组委会全规程原图逐项核对；六张入库原图全部 24 块、两张补充宣传原图，并对低清站名和年龄合并表放大；复核三个项目、十个报名选项及三日领物/比赛时间。",
+      "explicitImageReview": true
+    }
+  ],
+  "races": 2
+}

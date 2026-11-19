@@ -1,0 +1,134 @@
+[
+  {
+    "id": "zuiku-88270",
+    "name": "2026重庆梁平百里竹海古蜀道越野赛",
+    "status": "current_source_content_checked_with_questions",
+    "scope": "核对11张当届基线原图及报名文字；区分同场徒步和越野、查证官方实际举办与公开名次，保留未经证实的领物地点、最终轨迹和完整成果入口为未知。",
+    "beforeBodyHash": "01a9c952c5f2c273b690cc11f228306a6fc784acf7f33a6dae735dbb05eb31da",
+    "savedBodyHash": "333ccc0c3d66e672e18619b9ebfa37108c7b909a640597aa53423c7fa081cc73",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 16,
+    "pendingImages": 0,
+    "chapters": 9,
+    "groups": 4,
+    "groupCorrections": 6,
+    "questions": [
+      {
+        "status": "same_site_two_events",
+        "topic": "同场徒步与越野、人数及公开成绩",
+        "sourceUrl": "http://www.cqlp.gov.cn/zwxx_178/qxdt/202611/t20261104_16350527.html",
+        "detail": "政府赛报2000余人与华龙网近2000均为同场两项活动；正文采用区政府口径。徒步8公里与16公里问峰远行、越野16公里踏竹和35公里问道互有不同范围，不能把16公里徒步算作另一个最酷竞赛收费选项；报道仅有部分名单，未核实官方全场成绩专链。"
+      },
+      {
+        "status": "late_logistics_not_obtained",
+        "topic": "后发领物地点、技术手册与最终轨迹",
+        "sourceUrl": "http://www.mcloudsports.com/",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/29bd6666e6ff3cf2402566fa495d48f5c34a3699.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/b0c7f852ce396e871cee02280154bbb3207e849b.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/aa966a4d6e4b8530e28bfdfbabcab0fc24339c3f.jpeg?imageView2/2/w/750"
+        ],
+        "detail": "规程报到和装备检查时间可读，领物规定写另行通知，未查到可读的独立领物地和完整后发手册，不从起终点倒推。云动体育官网独立邮寄卡片只见标题，未核到点击正文。仅35公里赛道示意标出35公里和双向爬降2003米，没有最终GPX或其他组别里程、爬降。"
+      },
+      {
+        "status": "original_wording_conflict",
+        "topic": "8公里年龄、亲子费用单位和退费边界",
+        "sourceUrl": "https://reg.zuicool.com/47354",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/5be2a9b6a809b65f5f664b6251ff3152e6c64c30.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/b0c7f852ce396e871cee02280154bbb3207e849b.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/f18b9d0ab7ddbfff97fa8c4debdb56267b5b4e33.jpeg?imageView2/2/w/750"
+        ],
+        "detail": "8公里年龄与出生年份不完全一致，历史退费条文一处写20日区间退60%，另一处写截止到20日不退，均照列说明；亲子138元没有可核计价单位。"
+      },
+      {
+        "status": "historical_qr_and_operator",
+        "topic": "报名二维码与运营者联系",
+        "sourceUrl": "https://reg.zuicool.com/47354",
+        "detail": "原报名码和精英申请码只作历史资料，选手群码不新增为公共媒体。报名页明确列云动重庆资讯、组委会电话和招商电话，规程末又另列报名咨询；网站归属云动体育，仅用已读取的当届记录。"
+      }
+    ],
+    "officialDocuments": [
+      {
+        "url": "http://www.cqlp.gov.cn/zwxx_178/qxdt/202611/t20261104_16350527.html",
+        "title": "梁平区人民政府：本届赛后报道",
+        "role": "county_government_event_report",
+        "verified": true,
+        "identityReview": "梁平区人民政府网站、梁平日报本届11月4日赛后报道，记11月1日两项同场举办及08:00首发、27省市2000余名。",
+        "characters": 3299,
+        "bodySha256": "21b59edaa54176765a65440c1df366be91ba67abf3868de2beba3a7e843f639f",
+        "checkedAt": "2026-11-19T18:55:04.862Z"
+      },
+      {
+        "url": "https://wap.cq.gov.cn/zwgk/zfxxgkml/zdlyxxgk/ggwh/ly/zxdt/202609/t20260920_16108086.html",
+        "title": "重庆市人民政府：本届预告",
+        "role": "municipal_government_preview",
+        "verified": true,
+        "identityReview": "重庆市人民政府门户本届9月20日预告，展示当届赛事名称和计划日期。",
+        "characters": 3463,
+        "bodySha256": "5740ff261a6c5f664d89465f5c008c7f799ae8c59afb629f1693ba65a3fac8cf",
+        "checkedAt": "2026-11-19T18:55:04.862Z"
+      },
+      {
+        "url": "https://weibo.com/2/detail/5360713245656231",
+        "title": "梁平发布：本届赛后报道",
+        "role": "county_media_event_report",
+        "verified": true,
+        "identityReview": "梁平官方融媒11月2日本届赛报，确认四位组别冠军姓名与总规模。",
+        "characters": 2066,
+        "bodySha256": "dab7cebf7fbe3eb2068c15cfe4a5b2f1bf343f7ff65ba47de852e900b023a344",
+        "checkedAt": "2026-11-19T18:55:04.862Z"
+      },
+      {
+        "url": "https://www.cqnews.net/web/content_1566499463867752448.html",
+        "title": "华龙网／重庆之声：本届部分公开成绩",
+        "role": "municipal_media_primary_results",
+        "verified": true,
+        "identityReview": "重庆之声现场记者及主办方供图的本届11月1日赛报；区分徒步与竞赛项目、公布35公里男女前三与16公里冠军。",
+        "characters": 723,
+        "bodySha256": "a4b0c7a697b71e31b6d9d5339949cc478adedee52b864b83f3ec7067e8a447ff",
+        "checkedAt": "2026-11-19T18:55:04.862Z"
+      },
+      {
+        "url": "http://www.mcloudsports.com/",
+        "title": "云动体育：本届独立弃赛邮寄条目",
+        "role": "operator_website_index",
+        "verified": true,
+        "identityReview": "云动体育运营域名列10月28日本届越野赛与同场徒步两项弃赛邮寄条目的标题；正文没有可读独立链接。",
+        "characters": 727,
+        "bodySha256": "a143fd97e78148aa80727e65a89e989be0ed5c006bc8357ee317a262c9160055",
+        "checkedAt": "2026-11-19T18:55:04.862Z"
+      },
+      {
+        "url": "http://www.mcloudsports.com/",
+        "title": "2026重庆梁平百里竹海古蜀道越野赛",
+        "role": "official_website",
+        "verified": true,
+        "checkedAt": "2026-11-19T18:55:04.862Z",
+        "identityReview": "云动体育官网本届弃赛邮寄索引；独立本届赛事主页未见。区政府与官方媒体有当届直接报道。"
+      }
+    ],
+    "sourceDiscovery": {
+      "officialUrls": [
+        "http://www.cqlp.gov.cn/zwxx_178/qxdt/202611/t20261104_16350527.html",
+        "https://wap.cq.gov.cn/zwgk/zfxxgkml/zdlyxxgk/ggwh/ly/zxdt/202609/t20260920_16108086.html",
+        "https://weibo.com/2/detail/5360713245656231",
+        "http://www.mcloudsports.com/"
+      ],
+      "searchResultsPath": "/private/tmp/race-guide-quality-20261117/supp25-liangping/source-discovery.json",
+      "discoveryFile": "/private/tmp/race-guide-quality-20261117/supp25-liangping/discover.json",
+      "sourcePriority": "梁平区政府、官方梁平发布与重庆之声赛后报道确认赛果和同场范围。最酷当届结构化报名及已逐片核的签署规程为组别、费用、技师会、领物规则、装备、退费依据；运营方网页仅核已展示信息。",
+      "notes": "11张基线原件均实际查看，35连续切片（含成对展示）和2张全幅；另实际查看5张附图接触表，通用广告排除出内容。"
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_and_mini_devtools_390",
+      "miniDisplayed": true,
+      "formalMiniProgramReleaseVerified": false
+    }
+  }
+]

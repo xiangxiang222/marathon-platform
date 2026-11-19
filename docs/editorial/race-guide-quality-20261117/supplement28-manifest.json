@@ -1,0 +1,194 @@
+[
+  {
+    "id": "zuiku-84761",
+    "name": "2027楠溪江跑山赛",
+    "status": "current_source_content_checked_with_questions",
+    "scope": "核对本届公开报名的 12 个选项、四档费用，检查全部 11 张存档原图的页级内容与关键表格；保留规则、路线图及明确冲突。",
+    "beforeBodyHash": "2739932e3c97329b33770def92de1da8b15d7096fbecb1ecd729b9782f7a3c17",
+    "savedBodyHash": "19cc991969172c66190e928d6b9dcc3fd965836af65edaf8ff251b1544316852",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 11,
+    "pendingImages": 0,
+    "chapters": 11,
+    "groups": 12,
+    "groupCorrections": 74,
+    "questions": [
+      "路线里程：规程项目总表标 40/20/6；40K 站点表及海拔图终点 39.6；20K 站点表 24、路线图 22；6K 路线图 6.6。尚无可核定的最终 GPX，不填实际里程。",
+      "6K 爬升：报名页及开报表 35 米、正式规程“极低”、路线图终点标 D+65；保留现有 35 的发布口径，原图差异明确记录。",
+      "岙底村分站：40K 图标 CP5/SP5 16:00，20K 图标 CP2/SP2 13:30；两规程补给表不列单站关门、站名均写 SP5。未找到较新定稿，不自动以一者补另一者。",
+      "第一行领物印作 2027 年 12 月 31 日（周四）14:00–18:00，晚于比赛；1 月 1 日 09:00–20:00 独立正常。不自行把错误年份改为 2026。",
+      "6K 检录：规程段落 06:00–07:15，赛程表 06:30–07:30，发枪皆为 07:30。未找到较新公告选择其一。",
+      "退款：明确 11 月 30 日 23:59 前 50%，自 12 月 1 日 23:59 起不退。12 月 1 日前 23 小时 59 分政策未公布，不推断。",
+      "ITRA 40K/20K 为拟报 2/1；UTMB 同为申报，未找到可核实的本届最终认证。组织方当前给出的渠道为“扬瓯体育”公众号，未找到可读取的独立本届官网或赛前最终更新。"
+    ],
+    "officialDocuments": [],
+    "sourceDiscovery": {
+      "method": "从平台活动介绍、报名入口和原始发布公告查官方身份；以当届赛事全称、合作方公众号和领物等关键词查独立同届官网与更正；360/百度/搜狗部分返回验证，Google 超时，直接打开的报名、赛讯及转载公告均核对正文。",
+      "officialWebsiteStatus": "no_verified_current_edition_standalone_url_found",
+      "organizerContact": "扬瓯体育（公众号原图）；lyxy999",
+      "independentQueries": [
+        "2027 楠溪江跑山赛 竞赛规程 永嘉 官网",
+        "2027 楠溪江跑山赛 扬瓯体育 领物 官网",
+        "楠溪江跑山赛 扬瓯体育 领物 2027 12月31日"
+      ],
+      "registrationOptions": 12
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_and_mini_devtools_390",
+      "miniDisplayed": true,
+      "formalMiniProgramReleaseVerified": false
+    }
+  },
+  {
+    "id": "zuiku-88485",
+    "name": "2026第二届“山海之径”苍南168黄金海岸线越野挑战赛",
+    "status": "current_source_content_checked_with_questions",
+    "scope": "按官方日历、最酷公开报名及 9 月 9 日公告、组委会全规程原图逐项核对；六张入库原图全部 24 块、两张补充宣传原图，并对低清站名和年龄合并表放大；复核三个项目、十个报名选项及三日领物/比赛时间。",
+    "beforeBodyHash": "a64bb44968359126b94689149e59d7af722787ee499a0932bbde57f01ddb27de",
+    "savedBodyHash": "657eada58f112b5292c82ec5d71e081647a34c08b46524615b3f80e8bb73faa2",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 8,
+    "pendingImages": 0,
+    "chapters": 10,
+    "groups": 10,
+    "groupCorrections": 24,
+    "questions": [
+      {
+        "field": "40K 项目名称与路线里程／爬升",
+        "reason": "报名卡与物料号码布写“海之魂”，规程及部分海报题头写“海之魄”；结构化名称保留报名用字，正文两种注明。报名页 vs 路线图 vs 规程的实际里程/爬升存在差异。报名页为 39.4/1895、19.84/831、7.32/211；40K路线图39.54/1895；分站表为39.1/1865、19.5/840、7.2/235；宣传头图另列爬升 2000/850/240 米。未查得赛前最终轨迹或版本说明。",
+        "sources": [
+          "https://reg.zuicool.com/24779",
+          "https://zuicool.com/news/archives/314718",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/e54c8c5b2bce1c365472865f3025aec4352142f6.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/fdac2008f26f982c18544f9ecba1b78f9fc567dd.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/4bfcfb1a5cd6307ba54660ee18503692bac1a7e4.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/970253eec85938737e8580a3c2055c69d45789ad.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/d2def2b12d52c62045ff2274b91e0e960180077f.jpeg?imageView2/2/w/750"
+        ]
+      },
+      {
+        "field": "40K CP3 汉字、SP4 站名",
+        "reason": "CP3 关门14:00、累计27.5公里明确；长规程和地图局部放大后首字仍难可靠区分园/圆，公开保留清晰原图，表正文不用推测站名。SP4 规程与 20K 图为罗家山，40K 图为罗家村，两个写法和来源并列；无独立关门。",
+        "sources": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/e54c8c5b2bce1c365472865f3025aec4352142f6.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/fdac2008f26f982c18544f9ecba1b78f9fc567dd.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/4bfcfb1a5cd6307ba54660ee18503692bac1a7e4.jpeg?imageView2/2/w/750"
+        ],
+        "focusedReview": [
+          {
+            "sha256": "66a5e93f1aa3b155fe5186528ac6025909f165254631ed7f0569ee678f8e4e49",
+            "imageViewed": true
+          },
+          {
+            "sha256": "8c4a7e0877b983beba9f5d46def23fac207be4a6eae0a3f79ca5dcc52d0becd4",
+            "imageViewed": true
+          }
+        ]
+      },
+      {
+        "field": "20K 极简年龄、8K 参赛和获奖界线",
+        "reason": "报名页 20K 极简卡附与8K同样的儿童说明，竞赛规程20K和40K年龄合并单元格明确18–65，两件套不扩大20K年龄。8K 5–17 岁是报名年龄；5–14 岁是奖项年龄，不得拿奖项海报限制覆盖报名。出生日期按原显示并建议边界向组委会核实，不推算新日期。",
+        "sources": [
+          "https://reg.zuicool.com/24779",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/e54c8c5b2bce1c365472865f3025aec4352142f6.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/f3b16aceb90a44088b06b051d92c8d62bb49a292.jpeg?imageView2/2/w/750"
+        ],
+        "focusedReview": [
+          {
+            "sha256": "3ad8607757223b110389a794eb87ca0f542190d8e2ebc78651c3a9042e389e5b",
+            "imageViewed": true
+          }
+        ]
+      },
+      {
+        "field": "20K ITRA 关门",
+        "reason": "ITRA 当届登记录入6小时，与组委会规程和最酷报名均为5小时抵触，现场时间使用更直接的规程13:00，积分用官方2/1，认证距离与爬升不替换报名值。ITRA 赛事介绍混有往届内容，未使用该介绍。",
+        "sources": [
+          "https://itra.run/Races/RaceDetails/ULTRA.TRAIL.CANGNAN.20KM/2026/125739",
+          "https://itra.run/Races/RaceDetails/ULTRA.TRAIL.CANGNAN.40KM/2026/125738",
+          "https://reg.zuicool.com/24779",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/e54c8c5b2bce1c365472865f3025aec4352142f6.jpeg?imageView2/2/w/750"
+        ]
+      },
+      {
+        "field": "领物细则及救援电话",
+        "reason": "正式竞赛规程核实三天赛程、领物地和20K/40K体检要求；暂未发现公开的本届补充领物通知、代领/证件说明、独立客服电话或实际赛事紧急号码。海报号码布为设计稿，不从图稿推断救援电话；以实领号码布及组委会公告为准。",
+        "sources": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/e54c8c5b2bce1c365472865f3025aec4352142f6.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/fdac2008f26f982c18544f9ecba1b78f9fc567dd.jpeg?imageView2/2/w/750",
+          "https://reg.zuicool.com/24779",
+          "https://zuicool.com/news/archives/tag/event88485"
+        ]
+      },
+      {
+        "field": "组合档其他费用、取消及选手规模",
+        "reason": "公开同期报名页确认四个两日组合所示常规价，没有组合早鸟档或单独关门；不以单项目加总推定优惠和统计参数。规程列退费阶梯，没有不可抗力取消专门退款比例或本届分组总名额。",
+        "sources": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/e54c8c5b2bce1c365472865f3025aec4352142f6.jpeg?imageView2/2/w/750",
+          "https://reg.zuicool.com/24779",
+          "https://zuicool.com/news/archives/314718"
+        ]
+      }
+    ],
+    "officialDocuments": [
+      {
+        "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/e54c8c5b2bce1c365472865f3025aec4352142f6.jpeg?imageView2/2/w/750",
+        "title": "组委会本届竞赛规程长图",
+        "role": "organizer_current_regulation_original",
+        "verified": true,
+        "identityReview": "原图标题、年份、比赛地点、主承办和比赛日期一致。查看了全长各章节、站点表、年龄、强装、奖励，另行记录同届源文异文。",
+        "bodySha256": "ee0bd35f5bc199da97aa2b0dc0ad2ab34dd4e5136e26c1be7cef74136022299d",
+        "checkedAt": "2026-11-19T19:06:53.265Z"
+      },
+      {
+        "url": "https://itra.run/Races/RaceDetails/ULTRA.TRAIL.CANGNAN.40KM/2026/125738",
+        "title": "ITRA 本届 40K 官方详情",
+        "role": "itra_official_current_event",
+        "verified": true,
+        "identityReview": "年份、组别名、苍南赛事、赛日和发枪时刻一致，只取官方积分；比赛日现场参数依规程。",
+        "bodySha256": "51403450112ba1d1e598561419fdd1f6308e030a0e2d75087136de126ef9d4c7",
+        "checkedAt": "2026-11-19T19:06:53.265Z"
+      },
+      {
+        "url": "https://itra.run/Races/RaceDetails/ULTRA.TRAIL.CANGNAN.20KM/2026/125739",
+        "title": "ITRA 本届 20K 官方详情",
+        "role": "itra_official_current_event",
+        "verified": true,
+        "identityReview": "年份、组别名、苍南赛事、赛日和发枪时刻一致，只取官方积分；比赛日现场参数依规程。",
+        "bodySha256": "1f348a36cfb900d584be967bf8ec8fde0204146aa8b96a872cd959b806151f89",
+        "checkedAt": "2026-11-19T19:06:53.265Z"
+      }
+    ],
+    "sourceDiscovery": {
+      "officialUrl": "",
+      "method": "检索本届公告、组委会、山海100、苍南县人民政府、温州市人民政府、温州市体育局，未确认另有可公开读取的赛事官网或更晚领物/改期公告；留意几个搜索渠道返回访问挑战，不据此认定没有公告。",
+      "notes": [
+        "检索本届公告、组委会、山海100、苍南县人民政府、温州市人民政府、温州市体育局，未确认另有可公开读取的赛事官网或更晚领物/改期公告；留意几个搜索渠道返回访问挑战，不据此认定没有公告。",
+        "ITRA当届路线数据与参赛规程口径不同，20K分别为6小时和5小时；赛时采用指定报名页、当届组委会规程，ITRA只用于积分交叉核验。ITRA赛事简介混有2025与6K，不能当作本届规程。",
+        "指定报名页的20K极简条目把8K儿童年龄复制到了20K，年龄需依据组委会原图。"
+      ],
+      "knownCurrentArticles": [
+        "https://zuicool.com/news/archives/314718",
+        "https://zuicool.com/news/archives/tag/event88485",
+        "https://itra.run/Races/RaceDetails/ULTRA.TRAIL.CANGNAN.40KM/2026/125738",
+        "https://itra.run/Races/RaceDetails/ULTRA.TRAIL.CANGNAN.20KM/2026/125739"
+      ],
+      "searchEvidence": "/private/tmp/race-guide-quality-20261117/audit-cangnan-source/verified-evidence.json"
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_and_mini_devtools_390",
+      "miniDisplayed": true,
+      "formalMiniProgramReleaseVerified": false
+    }
+  }
+]

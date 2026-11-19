@@ -1,0 +1,71 @@
+{
+  "at": "2026-11-19T19:11:05.479Z",
+  "checks": [
+    {
+      "id": "zuiku-84761",
+      "width": 320,
+      "needle": "39.6",
+      "table": {
+        "width": 252,
+        "scrollWidth": 960,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 708,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "开报发布：三组爬升、发枪与关门时长\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-84761",
+      "width": 390,
+      "needle": "39.6",
+      "table": {
+        "width": 318,
+        "scrollWidth": 960,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 642,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "开报发布：三组爬升、发枪与关门时长\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-88485",
+      "width": 320,
+      "needle": "13:00",
+      "table": {
+        "width": 252,
+        "scrollWidth": 840,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 588,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "组委会完整竞赛规程原图：分站、领物日程、年龄、装备与比赛规则\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-88485",
+      "width": 390,
+      "needle": "13:00",
+      "table": {
+        "width": 318,
+        "scrollWidth": 840,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 522,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "组委会完整竞赛规程原图：分站、领物日程、年龄、装备与比赛规则\n查看原图 ↗",
+      "overflow": false
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-11-19T19:11:44.105Z"
+}
