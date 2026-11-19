@@ -1,0 +1,116 @@
+{
+  "startedAt": "2026-11-19T20:04:38.265Z",
+  "api": [
+    {
+      "id": "zuiku-98499",
+      "bodyMatches": true,
+      "groups": 3,
+      "characters": 6570
+    }
+  ],
+  "web": [
+    {
+      "id": "zuiku-98499",
+      "width": 320,
+      "characters": 5945,
+      "tables": [
+        {
+          "width": 252,
+          "scrollWidth": 840,
+          "tableWidth": 840,
+          "rows": 4
+        },
+        {
+          "width": 252,
+          "scrollWidth": 600,
+          "tableWidth": 600,
+          "rows": 4
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 4
+        },
+        {
+          "width": 252,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 9
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 11
+        },
+        {
+          "width": 252,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 7
+        },
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 5
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-98499",
+      "width": 390,
+      "characters": 5945,
+      "tables": [
+        {
+          "width": 318,
+          "scrollWidth": 840,
+          "tableWidth": 840,
+          "rows": 4
+        },
+        {
+          "width": 318,
+          "scrollWidth": 600,
+          "tableWidth": 600,
+          "rows": 4
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 4
+        },
+        {
+          "width": 318,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 9
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 11
+        },
+        {
+          "width": 318,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 7
+        },
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 5
+        }
+      ],
+      "overflow": false
+    }
+  ],
+  "errors": [],
+  "completedAt": "2026-11-19T20:05:04.269Z",
+  "passed": true
+}

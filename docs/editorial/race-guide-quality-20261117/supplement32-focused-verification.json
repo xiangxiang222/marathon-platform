@@ -1,0 +1,39 @@
+{
+  "at": "2026-11-19T20:06:45.607Z",
+  "checks": [
+    {
+      "id": "zuiku-94604",
+      "width": 320,
+      "needle": "54.2",
+      "table": {
+        "width": 252,
+        "scrollWidth": 720,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 468,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "成人与青少年 T 恤尺码和量身示意\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-94604",
+      "width": 390,
+      "needle": "54.2",
+      "table": {
+        "width": 318,
+        "scrollWidth": 720,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 402,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "成人与青少年 T 恤尺码和量身示意\n查看原图 ↗",
+      "overflow": false
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-11-19T20:06:53.858Z"
+}

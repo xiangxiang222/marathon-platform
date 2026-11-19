@@ -1,0 +1,439 @@
+{
+  "at": "2026-11-19T20:07:56.143Z",
+  "basis": "Completed guides were removed only after reading and checking the currently available editions and verifying their actual production pages. Targeted updates still leave races in the full-review queue.",
+  "counts": {
+    "original54Remaining": 0,
+    "original8CurationRemaining": 0,
+    "mappedConcrete": 0,
+    "mappedCoverageUnknown": 0,
+    "knownDistinctConcreteRemaining": 0,
+    "sourceFollowupOnly": 0
+  },
+  "remainingConcrete": [],
+  "imageCurationOnlyBacklog": [],
+  "coverageUnknown": [],
+  "sourceUncertaintyOrFollowupOnly": [],
+  "reviewedDraftsNotYetSaved": [],
+  "globalPending": [
+    "Actual 320px mini viewport",
+    "Physical phone zoom/save/long-press menu",
+    "Formal mini release and verification"
+  ],
+  "supplement3": {
+    "reviewed": 6,
+    "saved": 6,
+    "webActualPagesPassed": 12,
+    "fullRenderedContentMatchesProduction": true,
+    "miniRaces": 6,
+    "miniStatus": "actual_390px_full_render_verified",
+    "nativePreviewLatest": "not_completed"
+  },
+  "completedCurrentSourcesThisSupplement": 1,
+  "supplement4": {
+    "reviewed": 7,
+    "saved": 7,
+    "webActualPagesPassed": 14,
+    "miniStatus": "waiting_for_devtools_connection"
+  },
+  "supplement5": {
+    "ids": [
+      "zuiku-95805",
+      "zuiku-14679",
+      "zuiku-28718",
+      "zuiku-32373",
+      "zuiku-50491"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 5,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "supplement6": {
+    "ids": [
+      "zuiku-66992",
+      "caa-1000483001",
+      "caa-1000499000",
+      "caa-1000479023",
+      "caa-1000452094"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 0,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "supplement7": {
+    "ids": [
+      "zuiku-58600",
+      "zuiku-66992",
+      "caa-1000503000",
+      "caa-1000452114",
+      "caa-1000480114"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 0,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "supplement8": {
+    "ids": [
+      "caa-1000452082",
+      "caa-1000477009"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 0,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "supplement9": {
+    "ids": [
+      "caa-1000479118",
+      "caa-1000472006"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 0,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "supplement10": {
+    "ids": [
+      "caa-1000479142",
+      "caa-1000476007"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 2,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "supplement11": {
+    "ids": [
+      "caa-1000453054",
+      "zuiku-35462",
+      "caa-1000479060"
+    ],
+    "fullReviewIds": [
+      "caa-1000453054",
+      "caa-1000479060"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 3,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "supplement12": {
+    "ids": [
+      "caa-1000454068"
+    ],
+    "fullReviewIds": [
+      "caa-1000454068"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 1,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "supplement13": {
+    "ids": [
+      "caa-1000456006"
+    ],
+    "fullReviewIds": [
+      "caa-1000456006"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 1,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "supplement14": {
+    "ids": [
+      "caa-1000467006",
+      "zuiku-11747",
+      "caa-1000454030"
+    ],
+    "fullReviewIds": [
+      "caa-1000467006",
+      "zuiku-11747",
+      "caa-1000454030"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 3,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "supplement15": {
+    "ids": [
+      "zuiku-60343"
+    ],
+    "fullReviewIds": [
+      "zuiku-60343"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 1,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "supplement16": {
+    "ids": [
+      "caa-1000454030"
+    ],
+    "fullReviewIds": [],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 1,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "supplement17": {
+    "ids": [
+      "caa-1000418257",
+      "zuiku-27643"
+    ],
+    "fullReviewIds": [
+      "caa-1000418257",
+      "zuiku-27643"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 2,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "supplement18": {
+    "ids": [
+      "zuiku-16715",
+      "caa-1000450007",
+      "caa-1000480094",
+      "zuiku-27643"
+    ],
+    "fullReviewIds": [
+      "zuiku-16715",
+      "caa-1000450007",
+      "caa-1000480094"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 4,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "supplement19": {
+    "ids": [
+      "bishan",
+      "zuiku-30642",
+      "caa-1000454004"
+    ],
+    "fullReviewIds": [
+      "bishan",
+      "zuiku-30642",
+      "caa-1000454004"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 3,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "supplement20": {
+    "ids": [
+      "zuiku-33682",
+      "zuiku-32919"
+    ],
+    "fullReviewIds": [
+      "zuiku-33682",
+      "zuiku-32919"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 2,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "supplement21": {
+    "ids": [
+      "zuiku-34162"
+    ],
+    "fullReviewIds": [
+      "zuiku-34162"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 1,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "supplement22": {
+    "ids": [
+      "zuiku-71615"
+    ],
+    "fullReviewIds": [
+      "zuiku-71615"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 1,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "supplement23": {
+    "ids": [
+      "zuiku-72712",
+      "zuiku-58332",
+      "zuiku-35462"
+    ],
+    "fullReviewIds": [
+      "zuiku-72712",
+      "zuiku-58332",
+      "zuiku-35462"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 3,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "supplement24": {
+    "ids": [
+      "zuiku-73285",
+      "zuiku-54272",
+      "zuiku-77580"
+    ],
+    "fullReviewIds": [
+      "zuiku-73285",
+      "zuiku-54272",
+      "zuiku-77580"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 3,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "supplement25": {
+    "ids": [
+      "zuiku-81646",
+      "zuiku-82566"
+    ],
+    "fullReviewIds": [
+      "zuiku-81646",
+      "zuiku-82566"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 2,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "supplement26": {
+    "ids": [
+      "zuiku-80201"
+    ],
+    "fullReviewIds": [
+      "zuiku-80201"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 1,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "supplement27": {
+    "ids": [
+      "zuiku-88270"
+    ],
+    "fullReviewIds": [
+      "zuiku-88270"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 1,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "supplement28": {
+    "ids": [
+      "zuiku-84761",
+      "zuiku-88485"
+    ],
+    "fullReviewIds": [
+      "zuiku-84761",
+      "zuiku-88485"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 2,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "supplement29": {
+    "ids": [
+      "zuiku-94253",
+      "zuiku-96415",
+      "zuiku-97568"
+    ],
+    "fullReviewIds": [
+      "zuiku-94253",
+      "zuiku-96415",
+      "zuiku-97568"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 3,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "resolvedSourceFollowupsThisSupplement": [
+    "zuiku-58600",
+    "zuiku-66992"
+  ],
+  "supplement30": {
+    "ids": [
+      "zuiku-98272",
+      "zuiku-66992",
+      "zuiku-58600"
+    ],
+    "fullReviewIds": [
+      "zuiku-98272"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 3,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "supplement31": {
+    "ids": [
+      "zuiku-98499"
+    ],
+    "fullReviewIds": [
+      "zuiku-98499"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 1,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "supplement32": {
+    "ids": [
+      "zuiku-94604"
+    ],
+    "fullReviewIds": [
+      "zuiku-94604"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 1,
+    "formalMiniProgramReleaseVerified": false
+  }
+}

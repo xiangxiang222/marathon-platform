@@ -1,0 +1,39 @@
+{
+  "at": "2026-11-19T20:04:38.695Z",
+  "checks": [
+    {
+      "id": "zuiku-98499",
+      "width": 320,
+      "needle": "40.48",
+      "table": {
+        "width": 252,
+        "scrollWidth": 840,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 588,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "组委会竞赛规程原图：三组资格、出生日期、报名收费与奖项\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-98499",
+      "width": 390,
+      "needle": "40.48",
+      "table": {
+        "width": 318,
+        "scrollWidth": 840,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 522,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "组委会竞赛规程原图：三组资格、出生日期、报名收费与奖项\n查看原图 ↗",
+      "overflow": false
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-11-19T20:05:10.439Z"
+}

@@ -1,0 +1,103 @@
+[
+  {
+    "id": "zuiku-98499",
+    "name": "拓路者·2026临沂苍马山跑山赛暨“中国体育彩票”第十一届山东省万人登高健步行活动",
+    "status": "current_source_content_checked_with_questions",
+    "scope": "先核山东蒙跑体育本届官网的可读报价和当届规程，再核最酷报名/公告与 ITRA 当届目录。逐块查看 9 张现存图片和 4 张官网规程图，核三组、四档收费、年龄领物、8 站、装备合并格、奖励和全部竞赛保障条款；顾及认证、年龄和公告缺项，保留路线、资格、装备、签署对照图。",
+    "beforeBodyHash": "047598c90384a725ee7701b9228a59e4d4fb61a683173cbecc9c39306ff0af42",
+    "savedBodyHash": "1b62648b593a4ce017531478f099411c3619dda0bf769108d276f7c94317ff89",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 13,
+    "pendingImages": 0,
+    "chapters": 11,
+    "groups": 3,
+    "groupCorrections": 0,
+    "questions": [
+      "两版官方认证与参赛规程：ITRA 40K 列 40.41km/+1199m/10h，25K 为 24.57km/+853m/6h；组委会和指定报名资料为 40.48km/+1043m/8h、24.61km/+781m/6h。分别标记认证与现场口径，不替换结构化现有数据。UTMB 的 50K/20K 属级别，独立公开目录未定位本届。",
+      "组委会规程三组年龄上限为 65 周岁、出生日期另写 1962-11-29 后；不同组的“年满”和出生日期“前”也有边界差异，原文与指南并列。通用 18–60 岁体检说明和 7K 60 岁及以上条款重叠，未替组委会裁定。保留资格原图。",
+      "现行本届领物日期、时段、地点、7K 专项装备表及分站关门未找到。站内 2020–2021 年旧日程以及 2025 年推文不作本届材料。日程仅录组委会正式已核的发令、检录、三组时限和领物手续，保留官方入口以便复查后续公告。",
+      "最酷本届 3 个选项显示已截止；官网 40K/25K 当届页面另有可点击的正式价格批次，未用报名操作确认最终名额及截止时间，也未找到本届官网 7K 独立批次。分渠道陈列，保留最酷原状态及已知三个组别。",
+      "7K 只有 SP1 标记，不从其他组移植站点名或关门；7K 规定时间完赛有奖牌，奖项章的赛后线上成绩证书明确排除 7K。"
+    ],
+    "officialDocuments": [
+      {
+        "url": "http://www.mengpaosports.com/event?id=898138",
+        "title": "山东蒙跑体育本届活动及附录规程",
+        "role": "organizer_current_edition_site",
+        "verified": true,
+        "identityReview": "主办规程明确指向蒙跑体育官网。2026-11-29 官网活动标题、地点、四个报价批次可读，四张正式规程大图全部逐块读；页面报名按钮仅列 40K/25K。",
+        "bodySha256": "4a344ffc1e4b8de8134100e27a06198cd9884b509c6acbf2bccc7e12a503cd3a",
+        "checkedAt": "2026-11-19T20:04:04.049Z"
+      },
+      {
+        "url": "http://www.mengpaosports.com/articles?mid=56832",
+        "title": "蒙跑体育苍马山赛事栏目",
+        "role": "organizer_archive_index",
+        "verified": true,
+        "identityReview": "赛事栏目显示本届横幅，但日程、路线旧公告发表于 2020–2021 年，不能用作 2026 日程。",
+        "bodySha256": "fa8aa42b805e168a8bb1b0179e8b0891fbf4d9023b55097ec2d00aad8e61b1ea",
+        "checkedAt": "2026-11-19T20:04:04.049Z"
+      },
+      {
+        "url": "https://itra.run/Races/RaceDetails/Linyi.Cangmashan..Off.road.Race.40km/2026/123483",
+        "title": "ITRA 本届 40K 认证目录",
+        "role": "itra_current_edition_course",
+        "verified": true,
+        "identityReview": "图标 2 积分；目录 40.41 km、+1199 m、时限 10 小时，为认证口径，不替换组委会规程和现场关门。",
+        "bodySha256": "731cd6d7031f1e2167fda825321ec3c3aa9e1a49381536af928db128bc5b1ccd",
+        "checkedAt": "2026-11-19T20:04:04.049Z"
+      },
+      {
+        "url": "https://itra.run/Races/RaceDetails/Linyi.Cangmashan..Off.road.Race.25km/2026/123482",
+        "title": "ITRA 本届 25K 认证目录",
+        "role": "itra_current_edition_course",
+        "verified": true,
+        "identityReview": "图标 1 积分；目录 24.57 km、+853 m、时限 6 小时，不替换组委会现场参数。",
+        "bodySha256": "171a9b729959195fe8bbdab163eb7ab09413d76de435630b9ce44a9a9996c8a3",
+        "checkedAt": "2026-11-19T20:04:04.049Z"
+      },
+      {
+        "url": "http://www.mengpaosports.com/event?id=898138",
+        "title": "拓路者·2026临沂苍马山跑山赛暨“中国体育彩票”第十一届山东省万人登高健步行活动",
+        "role": "official_website",
+        "verified": true,
+        "checkedAt": "2026-11-19T20:04:04.049Z",
+        "identityReview": "原图明确标注山东蒙跑体育官网；读当届官网活动、嵌入可复制价格及四张正式竞赛规程。查官网栏目、临沭县政府、公开检索、最酷报名公告和 ITRA 当前目录，并排除过往届日程。"
+      }
+    ],
+    "sourceDiscovery": {
+      "main": "/private/tmp/race-guide-quality-20261117/audit-cangma/search-index.json",
+      "followup": "/private/tmp/race-guide-quality-20261117/audit-cangma/official-index.json",
+      "officialUrl": "http://www.mengpaosports.com/event?id=898138",
+      "method": "原图明确标注山东蒙跑体育官网；读当届官网活动、嵌入可复制价格及四张正式竞赛规程。查官网栏目、临沭县政府、公开检索、最酷报名公告和 ITRA 当前目录，并排除过往届日程。",
+      "officialUrls": [
+        "http://www.mengpaosports.com/event?id=898138",
+        "http://www.mengpaosports.com/articles?mid=56832",
+        "https://itra.run/Races/RaceDetails/Linyi.Cangmashan..Off.road.Race.40km/2026/123483",
+        "https://itra.run/Races/RaceDetails/Linyi.Cangmashan..Off.road.Race.25km/2026/123482"
+      ],
+      "knownCurrentArticles": [
+        "http://www.mengpaosports.com/event?id=898138",
+        "https://reg.zuicool.com/64294",
+        "https://zuicool.com/event/98499",
+        "https://zuicool.com/news/archives/316452",
+        "https://itra.run/Races/RaceDetails/Linyi.Cangmashan..Off.road.Race.40km/2026/123483",
+        "https://itra.run/Races/RaceDetails/Linyi.Cangmashan..Off.road.Race.25km/2026/123482"
+      ],
+      "notes": [
+        "主办方原公布地址通过 HTTP 可访问，HTTPS 的 SSL 主机证书不匹配；取现有 HTTP 网址，没有绕过 HTTPS 验证。",
+        "没有查到本届可复制的完整规程 PDF 或最终领物公告，使用已目视复核的组委会正式原图正文。"
+      ]
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_and_mini_devtools_390",
+      "miniDisplayed": true,
+      "formalMiniProgramReleaseVerified": false
+    }
+  }
+]
