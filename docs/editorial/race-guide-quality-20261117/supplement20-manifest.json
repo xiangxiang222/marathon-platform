@@ -1,0 +1,185 @@
+[
+  {
+    "id": "zuiku-33682",
+    "name": "2026 Keep超跑节",
+    "status": "current_source_content_checked_with_questions",
+    "scope": "逐块实看当前库存全部8张原图（分块无遗漏），并核对本届Keep赛事可检索官方账号资料、可复制报名页面和9个报名选项；整理原规程完整年龄/报名/费用/物资/处罚条款，并单独保留补录适用条款。",
+    "beforeBodyHash": "1ad23e4f30af0776d0fcd5b9428e64f9d7ebf0e93e60e81eb8d370a3ca610b9d",
+    "savedBodyHash": "7510d102ebf4e8e1ddc3075fa361cf8f802d9dea5b4cdc10dc20823711fce81b",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 8,
+    "pendingImages": 0,
+    "chapters": 11,
+    "groups": 9,
+    "groupCorrections": 20,
+    "questions": [
+      "报名页面当前列出9个选项，已逐项核对名称、费用、截止状态和亲子套餐。当前页面显示的单人5KM为239元，而正式规程折扣表为199元；两来源并列披露，不擅自判定哪项为错。",
+      "官方PB目标时段表原样列出相邻区间；例如10KM第一段含00:40:00、第二段从00:40:00开始，若干段之间也未覆盖所有秒数。本文按表逐项列录，未自行合并或推断边界。",
+      "原积分表给亲子列列出第1至20名积分，竞赛办法却明确亲子跑不设名次和奖励。冲突保留待组委会解释，正文不承诺亲子名次积分。",
+      "规程要求具体领物地点和时间以短信通知；在可访问的本届页面及图片材料中未找到可独立验证的正式领物日期、地点，因此未补写。Keep赛事公众号搜索可见赛后活动/完赛礼文章标题与摘要，但打开原文遇到平台验证页，不能作为具体赛前领物证据。",
+      "超跑PLUS规模及线路有载明，表中实际距离为横杠；未从地图圈数推算距离。现有路线图不是海拔图，未将其描述为海拔资料。"
+    ],
+    "officialDocuments": [
+      {
+        "url": "https://reg.zuicool.com/40763",
+        "title": "2026 Keep超跑节报名页面",
+        "role": "registration listing",
+        "verified": true,
+        "identityReview": "The current event listing contains nine separately named registration options and the organizer contact.",
+        "characters": 2433,
+        "bodySha256": "3568cc757eff848baf7daabc3831405aaba9d7cc801a6d553ca5cf0e94e01360",
+        "checkedAt": "2026-11-19T13:55:53.895Z"
+      },
+      {
+        "url": "https://qr61.cn/oe9QxW/q7KkaHs",
+        "title": "承诺书-2026 超跑节.pdf",
+        "role": "承诺书二维码目标页",
+        "verified": true,
+        "identityReview": "由对应规程原图二维码独立解码；HTTP 200，核验目标页面公开可读标题。未发送资料，也未将此页面作为领物地点或时间的来源。",
+        "characters": 10873,
+        "bodySha256": "8893d0c0ed0402ba2feaae87f4c9dabcb44fbd6ed37fad37bcbdf5103c6a4fa9",
+        "checkedAt": "2026-11-19T13:55:53.895Z"
+      },
+      {
+        "url": "https://qr61.cn/oe9QxW/qQP1ri4",
+        "title": "承诺书-2026 超跑节 · 超跑PLUS.pdf",
+        "role": "承诺书二维码目标页",
+        "verified": true,
+        "identityReview": "由对应规程原图二维码独立解码；HTTP 200，核验目标页面公开可读标题。未发送资料，也未将此页面作为领物地点或时间的来源。",
+        "characters": 10891,
+        "bodySha256": "7b763b0a289311dee8cb4315352cd3272823b59c2c3db69aeda2c44e87e2dc28",
+        "checkedAt": "2026-11-19T13:55:53.895Z"
+      },
+      {
+        "url": "https://qr61.cn/oe9QxW/qfZBwHP",
+        "title": "承诺书-2026 超跑节 · 10KM.pdf",
+        "role": "承诺书二维码目标页",
+        "verified": true,
+        "identityReview": "由对应规程原图二维码独立解码；HTTP 200，核验目标页面公开可读标题。未发送资料，也未将此页面作为领物地点或时间的来源。",
+        "characters": 10887,
+        "bodySha256": "8e25b00e0e804c345b76c5575857dfcfbfd9ec3244aca215956fb2dfbfe9ce1c",
+        "checkedAt": "2026-11-19T13:55:53.895Z"
+      }
+    ],
+    "sourceDiscovery": {
+      "officialFirst": [
+        "Keep官网",
+        "Keep赛事公开公众号检索结果",
+        "最酷本届赛事报名详情及关联规程原图"
+      ],
+      "verifiedCurrentEventSources": [
+        "https://reg.zuicool.com/40763"
+      ],
+      "registrationPagePublisher": "最酷赛事报名（并非官方域名；页面明示本届主办方、官方微信公众号、电话和邮件，列出当前报名选项）",
+      "officialAccountFindings": "公开公众号检索显示发布账号为“Keep赛事”，可见本届倒计时/赛后活动/完赛礼相关标题与摘要；原文跳转遇到平台验证页，未将摘要当作领物时间地点依据。",
+      "note": "未检索到可独立访问的Keep本届赛事官方网站页面。规程图片由本届报名页面关联提供，逐张原图查看后作为竞赛条款依据；页面文字用于当前九项报名选项和联系方式交叉核对。"
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_and_mini_devtools_390",
+      "miniDisplayed": true,
+      "formalMiniProgramReleaseVerified": false
+    }
+  },
+  {
+    "id": "zuiku-32919",
+    "name": "2026第五届·1390海岛越野赛",
+    "status": "current_source_content_checked_with_questions",
+    "scope": "逐看十五张库存图及两张同届报名文章补图，校对两日两会场、四主组、亲子与老兵，恢复价目、资格、装备矩阵、邀请、奖金及熔断；标明相互不一致的原始读数。",
+    "beforeBodyHash": "0eeb834f06496169eeff6ce083284c37ab7813b3f4ea08398ab2b8dd6840b9c1",
+    "savedBodyHash": "bfa0b12fb60687bfd69b3c330c8ce9c3371615fa183998833f689e5c1a077054",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 17,
+    "pendingImages": 0,
+    "chapters": 14,
+    "groups": 4,
+    "groupCorrections": 16,
+    "questions": [
+      {
+        "topic": "路程、爬升和关门版本",
+        "status": "source_basis_retained",
+        "sourceUrl": "https://reg.zuicool.com/80374",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/11/e830946f2f2da0b4b04716ca506238b268f4bbfe.png?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/11/af6ed4626862e1b421efd7c6ce1124d1f6b45e34.png?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/11/a1df54911d7756d6e8f4257de6e648e1e81461fe.png?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/11/21c278afbb11c49c7285aeda26a45055d4d6a8ff.png?imageView2/2/w/750"
+        ],
+        "detail": "报名卡及地图分别同99.2、65.8、33.5、16.5和5938、3779、1331、529；下方图文字另写6367、3741、1346、578。66K图02:00/18.5小时，报名卡和图下01:30/18小时；33K图题8小时但图上终点17:00，卡及图下8.5小时。体验原图800、报名300，均保留来源。"
+      },
+      {
+        "topic": "强装头灯的点位编号",
+        "status": "source_basis_retained",
+        "sourceUrl": "https://reg.zuicool.com/80374",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/11/a1df54911d7756d6e8f4257de6e648e1e81461fe.png?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/11/76c44de3ea510cccc07c52b962bda47a42514c95.png?imageView2/2/w/750"
+        ],
+        "detail": "强装脚注写15:00后CP9（王毛山水库），33K图标王毛山水库CP8（且图示关门15:00）。不在正文统一编号，用户可核原图。"
+      },
+      {
+        "topic": "报名早鸟截止、亲子费用单位、双日赛",
+        "status": "source_basis_retained",
+        "sourceUrl": "https://reg.zuicool.com/80374",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/11/07bae3abbb9ae9bf95e2935967de9c5038f35c98.png?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/11/b169e5794720815617b4e3f16605ac4005c1c43e.png?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/11/2a88368e49e7ea043941b2125481898effc7cf78.png?imageView2/2/w/750"
+        ],
+        "detail": "平台实际截止12月5日23:59:59，组织方图写至12月6日；早鸟文11月10日前、图11月11日前。亲子原图海草99元/队，沙滩和岛屿99元/人；仍同为一大一小，原图总日程双天且子页只12月13日。双日赛17K原图99元/人，另外两阶段为合并斜杠；未找到专项报名项、资格与最终场次。"
+      },
+      {
+        "topic": "主办方独立网页及最后路线通知",
+        "status": "source_basis_retained",
+        "sourceUrl": "https://zuicool.com/news/archives/317948",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/11/e4ab8654c4656826af7a79633495df10869b8d2c.png?imageView2/2/w/750"
+        ],
+        "detail": "查询舟山市政府、官方公众号、微信索引、其他报名平台及赛事专名。查到组委会图文和报名文字、可核验团报表，但没有公开可独立核实的当届政府规程、专项领物证明清单、赛前最后GPX、ITRA最终核定或追风少年细则。未用2021、2023、翌届或同市越野东海比赛补填。"
+      },
+      {
+        "topic": "优惠、名次、邀请与熔断合并复位",
+        "status": "corrected",
+        "sourceUrl": "https://zuicool.com/news/archives/317948",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/11/b169e5794720815617b4e3f16605ac4005c1c43e.png?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/11/2a88368e49e7ea043941b2125481898effc7cf78.png?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/11/00ad4a174024754d735eec471189e98d17d0e11c.png?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/11/cda21b907ef721e481cd4fde174363b219daf071.png?imageView2/2/w/750"
+        ],
+        "detail": "主赛四组和老兵四组分别读合并单元格，体验大众团报189、老兵后期191分开；六类邀请的额外门槛，明确男子精英820、女子680，赛前及赛中两种熔断和退款均复位。"
+      }
+    ],
+    "officialDocuments": [],
+    "sourceDiscovery": {
+      "officialUrl": null,
+      "officialKind": "未见独立当届官网，舟山组织方当届规程原图由指定报名渠道最酷发布；其团报表可独立复核届名",
+      "primaryUrls": [
+        "https://reg.zuicool.com/80374",
+        "https://zuicool.com/news/archives/317948",
+        "https://qr61.cn/oA5qFH/qBTMiZY"
+      ],
+      "alternativeUrls": [
+        "https://zuicool.com/event/32919"
+      ],
+      "registrationDeadline": {
+        "value": "2026-12-05T23:59:59+08:00",
+        "sourceUrl": "https://reg.zuicool.com/80374"
+      }
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_and_mini_devtools_390",
+      "miniDisplayed": true,
+      "formalMiniProgramReleaseVerified": false
+    }
+  }
+]

@@ -1,0 +1,135 @@
+[
+  {
+    "id": "zuiku-34162",
+    "name": "2026新奇天·富春雪岭越野赛",
+    "status": "current_source_content_checked_with_questions",
+    "scope": "以 supplement18 全量快照为基线。人眼逐张核对现有初版 12 张和报名渠道 11 月新版 18 张图各自完整画幅，核对本届三份同源可复制报名文字及历史开报时刻。优先现行报名操作正文与新版组委会图，旧版独有技术条款标明版次与缺项，留 12 张原图身份并增加新版路线、时刻原图。后发独立全文、站点关门、电子轨迹与 ITRA 独立确认不视为已核。",
+    "beforeBodyHash": "9c3622b949fb7f7bd147b0b4d4f76ecedc9d81d763eb86f55beb5c4abf03e3fb",
+    "savedBodyHash": "27cfaac49d8b4bf28a38f227f427c7749ecfd135ad00396d7b669456bd51e736",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 30,
+    "pendingImages": 0,
+    "chapters": 12,
+    "groups": 3,
+    "groupCorrections": 25,
+    "questions": [
+      {
+        "status": "latest_public_operational_text_preferred",
+        "topic": "起终点、分枪及组别新旧口径",
+        "sourceUrl": "https://reg.zuicool.com/20313",
+        "additionalSourceUrls": [
+          "https://zuicool.com/event/34162",
+          "https://zuicool.com/news/archives/318828"
+        ],
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/11/4114c528a2979f563dbf9e8180bb79cb75161234.jpeg?imageView2/2/w/1024",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/11/60e0f09e86502323e9102132c66fb793b368c042.jpeg?imageView2/2/w/1024",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/11/6a93cfe82449d223135cb72ba3d332bbc085e11c.jpeg?imageView2/2/w/1024",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/11/c6f1d9e06509e92642849bc8a4e18bcf2155fd85.jpeg?imageView2/2/w/1024",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/11/d6959748f2ec3c7f4b676bafdb8271afe66544d2.jpeg?imageView2/2/w/1024",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/e3fe8b7cf1d3657f4171943a5ef880a15662a3ca.jpeg?imageView2/2/w/1200"
+        ],
+        "detail": "最酷报名页、赛事页、资讯正文同源：起点龙门校场、终点龙门牌坊、38.29／38.29／20.84、公示积分 2／2／1；新版表确认里程、累计爬升和分组发枪。新版基本信息起点行的“起终点和赛事服务区”与紧邻独立终点行矛盾；路线章节引页仍写牌坊起终点，缩略宣传图印旧 20.85、袖章样品印 39.14。按新版报名操作正文及新版组别表；赛事 ITRA 积分归属未取得 ITRA 独立确认。"
+      },
+      {
+        "status": "new_route_tables_internally_inconsistent",
+        "topic": "长短线末段合计及检查点更新",
+        "sourceUrl": "https://reg.zuicool.com/20313",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/11/30aff9e6bdf52a184ca0ffb2a6bce088c42403c7.jpeg?imageView2/2/w/1024",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/fd5fb135b4aa9499edf5486c89bbb848a2d360f9.jpeg?imageView2/2/w/1200",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/ab2631d27a10f5b4afa5e81ff987b26932911e9a.jpeg?imageView2/2/w/1200",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/6d21f1019ddf443f6d986da8bf058148623678b8.jpeg?imageView2/2/w/1200"
+        ],
+        "detail": "长线 30.90 + 7.35 = 38.25 而公布 38.29；短线 14.44 + 5.78 = 20.22 而公布 20.84。逐格保留新版数值并提示待发布最终分段。长线新 CP4 为火炉圈林区，初版 CP4 高田坎未列、旧 CP5 火炉圈的新站号勿混入；短线 CP5 不变。"
+      },
+      {
+        "status": "current_logistics_unconfirmed",
+        "topic": "后发领物、逐站补给、关门和电子轨迹",
+        "sourceUrl": "https://reg.zuicool.com/20313",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/11/4114c528a2979f563dbf9e8180bb79cb75161234.jpeg?imageView2/2/w/1024",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/11/30aff9e6bdf52a184ca0ffb2a6bce088c42403c7.jpeg?imageView2/2/w/1024",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/6d21f1019ddf443f6d986da8bf058148623678b8.jpeg?imageView2/2/w/1200",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/d9334dbc2f92e51814c0a9c372678762f231c64a.jpeg?imageView2/2/w/1200"
+        ],
+        "detail": "新版图与正文确认 12 月 19 日报到、12 月 20 日开赛、新路线检查点；未确认详细领物时段及细则、最终逐站补给和关门、GPX 下载链接。组委会执行方公众号搜索索引可见“考生请出示准考证”“难点！请勿拆封期末试卷”等同届标题，但未核完整公众号正文，不作为事实来源。已看初版操作条款，补给、装备、退赛等按既有章程列，并区分最终公告。"
+      },
+      {
+        "status": "historical_refund_and_current_awards_separate",
+        "topic": "退款适用版次与奖学金、奖金发放",
+        "sourceUrl": "https://reg.zuicool.com/20313",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/17550d65c5203e74f3243ef4b6710a42ab26687f.jpeg?imageView2/2/w/1200",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/11/b7cfbc037d36d7bf72d041e65a29bd648e7d28e8.jpeg?imageView2/2/w/1024",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/11/bb1c525242331a7486472a99b58c803417d16ebf.jpeg?imageView2/2/w/1024",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/11/f4a6d81c8ba363aa38d2d7b764538134467152fc.jpeg?imageView2/2/w/1024"
+        ],
+        "detail": "新版重申各组费用、团体及精英条款，并新增各组完赛 100 元奖学金；未重列初版退费或奖学金发放流程。按初版标明退费来源，不按奖学金推导退费。新版峰巅组奖金转款时间标注待核实。"
+      },
+      {
+        "status": "no_independent_official_portal_confirmed",
+        "topic": "官方身份与覆盖边界",
+        "sourceUrl": "https://reg.zuicool.com/20313",
+        "additionalSourceUrls": [
+          "https://zuicool.com/event/34162",
+          "https://zuicool.com/news/archives/318828"
+        ],
+        "detail": "报名渠道确认赛事身份，11 月图由赛事组委会署名发布、在两个最酷页面同序同文件；未确认独立主办方政府赛事官网或完备的后发可复制正式章程。不把平台官网/公众号索引称为独立当前官方全文。"
+      }
+    ],
+    "officialDocuments": [
+      {
+        "url": "https://reg.zuicool.com/20313",
+        "title": "最酷本届报名入口（载新版赛事资料）",
+        "role": "current-designated-registration-copyable-text",
+        "verified": true,
+        "identityReview": "本届报名入口核验，当前组委会署名新版图在此发布；属于指定报名平台，并非独立赛事官网。",
+        "characters": 1313,
+        "bodySha256": "94b44cea6f8355a61746542626233aaf0ee2bedb54ed59da0f568dea9d083af8",
+        "checkedAt": "2026-11-19T15:19:33.538Z"
+      },
+      {
+        "url": "https://zuicool.com/news/archives/318828",
+        "title": "最酷本届报名资讯（现行版本）",
+        "role": "current-platform-announcement-with-organizer-material",
+        "verified": true,
+        "identityReview": "同一渠道发布本届同一套组委会原图，与报名页同源。",
+        "characters": 1372,
+        "bodySha256": "d7d548f24ef7c809f1e31b295c47ab294692492a7a147ef281f764ce59eca549",
+        "checkedAt": "2026-11-19T15:19:33.538Z"
+      }
+    ],
+    "sourceDiscovery": {
+      "status": "accessible_current_organizer_material_reviewed_with_questions",
+      "registration": "https://reg.zuicool.com/20313",
+      "platformEvent": "https://zuicool.com/event/34162",
+      "currentLinkedRegistrationAnnouncement": "https://zuicool.com/news/archives/318828",
+      "organizerMaterialIdentity": "报名入口与其赛事页所链资讯共享 18 张 11 月版视觉原图；新版第 08／11 页说明物资由 ALLREADAY 新奇天赛事组委会提供，图同标本届赛事及主办、执行单位。",
+      "independentGovernmentOrOrganizerSiteConfirmed": false,
+      "originalOctoberMedia": 12,
+      "currentNovemberImages": 18,
+      "newerImageSourceCount": 2,
+      "publicOperationalTextPages": 3,
+      "samePlatformCorroboration": true,
+      "topLevelFollowupFields": [
+        "start_at",
+        "place",
+        "fee",
+        "scale",
+        "organizer"
+      ],
+      "limits": "没有核到独立主办方官网、直接可读的公众号后发手册或 ITRA 独立档案；当前发布的同届报名正文、组织方初版整套技术章程和新版整套报名资料均已阅。"
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_and_mini_devtools_390",
+      "miniDisplayed": true,
+      "formalMiniProgramReleaseVerified": false
+    }
+  }
+]

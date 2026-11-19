@@ -1,0 +1,45 @@
+{
+  "startedAt": "2026-11-19T15:56:25.650Z",
+  "kind": "Actual WeChat DevTools 390px production-page; no mock; physical phone, gestures and formal release excluded",
+  "races": [
+    {
+      "id": "zuiku-34162",
+      "actualViewport": 390,
+      "guideCharacters": 4540,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 3,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1208.9609375,
+        "bottom": 8322.359375,
+        "width": 366,
+        "height": 7113.3984375,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 7,
+      "tableRowsIncludingHeaders": 41,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336
+      ]
+    }
+  ],
+  "previousErrors": [
+    {
+      "message": "spawnSync /Applications/wechatwebdevtools.app/Contents/MacOS/wechatide ETIMEDOUT"
+    }
+  ],
+  "intermittent": [],
+  "errors": [],
+  "passed": true,
+  "completedAt": "2026-11-19T15:56:36.881Z"
+}
