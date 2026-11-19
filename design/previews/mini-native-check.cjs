@@ -7,7 +7,15 @@ const mini = path.join(root, "miniprogram");
 const { parse } = require(path.join(root, "web/node_modules/@babel/parser"));
 const postcss = require(path.join(root, "web/node_modules/postcss"));
 const output = fs.mkdtempSync(path.join(os.tmpdir(), "marathon-mini-compile-"));
-const compiler = process.env.WECHAT_COMPILER_PATH || "/Applications/wechatwebdevtools.app/Contents/Resources/app.asar.unpacked/node_modules/wcc-exec";
+const compilerCandidates = process.platform === 'win32' ? [
+  'C:/Program Files (x86)/Tencent/微信web开发者工具/code/package.nw/node_modules/wcc-exec',
+  'C:/Program Files/Tencent/微信web开发者工具/code/package.nw/node_modules/wcc-exec',
+  'D:/Program Files (x86)/Tencent/微信web开发者工具/code/package.nw/node_modules/wcc-exec'
+] : ['/Applications/wechatwebdevtools.app/Contents/Resources/app.asar.unpacked/node_modules/wcc-exec'];
+const compiler = process.env.WECHAT_COMPILER_PATH || compilerCandidates.find(directory => fs.existsSync(directory)) || compilerCandidates[0];
+function compilerBinary(tool) {
+  return [path.join(compiler, tool + (process.platform === 'win32' ? '.exe' : '')), path.join(compiler, 'bin', process.platform, tool + (process.platform === 'win32' ? '.exe' : '')), path.join(compiler, tool)].find(file => fs.existsSync(file)) || path.join(compiler, tool + (process.platform === 'win32' ? '.exe' : ''));
+}
 const files = (dir) => fs.readdirSync(dir, { withFileTypes: true }).flatMap((item) => item.isDirectory() ? (item.name === "node_modules" ? [] : files(path.join(dir, item.name))) : [path.join(dir, item.name)]);
 const all = files(mini);
 const report = { kind: "Strict source syntax plus WeChat native offline compilation; this is not a device test", startedAt: new Date().toISOString(), validationContract: "Native compiler exit 0 alone is insufficient: every WXSS must pass strict PostCSS parsing; wcsc receives -pc for every input page; native tools must finish without diagnostics and create nonempty artifacts.", js: [], json: [], wxss: [], wxssFixtureChecks: [], nativeSyntaxProbe: null, nativeCoverageProbe: null, references: [], moduleReferences: [], moduleFixtureChecks: [], compile: [] };
@@ -24,7 +32,7 @@ function strictWxss(source, file) {
 function compile(tool, input, directory, artifact, options = {}) {
   const pageCount = tool === "wcsc" && !options.legacyArguments ? input.length : null;
   const args = [...(tool === "wcsc" ? ["-js", ...(options.legacyArguments ? [] : ["-lc", "-pc", String(pageCount)])] : []), "-o", artifact, ...input];
-  const result = spawnSync(path.join(compiler, tool), args, { cwd: directory, encoding: "utf8", maxBuffer: 16 * 1024 * 1024 });
+  const result = spawnSync(compilerBinary(tool), args, { cwd: directory, encoding: "utf8", maxBuffer: 16 * 1024 * 1024 });
   const diagnostics = ((result.stderr || "") + (result.stdout || "")).trim();
   let artifactBytes = 0;
   try { if (fs.statSync(artifact).isFile()) artifactBytes = fs.statSync(artifact).size; } catch (_) {}
@@ -141,11 +149,14 @@ for (const [tool, ext] of [["wcc", ".wxml"], ["wcsc", ".wxss"]]) {
   const input = all.filter((file) => file.endsWith(ext)).map((file) => path.relative(mini, file).split(path.sep).join("/"));
   report.compile.push(compile(tool, input, mini, path.join(output, tool + ".js")));
 }
-report.passed = report.js.every((item) => item.exit === 0) && report.json.every((item) => item.ok) && report.wxss.every(item => item.ok) && report.wxssFixtureChecks.every(item => item.passed) && report.nativeSyntaxProbe.passed && report.nativeCoverageProbe.passed && !report.references.length && report.moduleReferences.every(item => item.ok) && report.moduleFixtureChecks.every(item => item.passed) && report.compile.every((item) => item.ok);
+report.sourcePassed = report.js.every((item) => item.exit === 0) && report.json.every((item) => item.ok) && report.wxss.every(item => item.ok) && report.wxssFixtureChecks.every(item => item.passed) && !report.references.length && report.moduleReferences.every(item => item.ok) && report.moduleFixtureChecks.every(item => item.passed);
+report.nativeAvailable = ['wcc','wcsc'].every(tool => fs.existsSync(compilerBinary(tool)));
+report.nativePassed = report.nativeAvailable && report.nativeSyntaxProbe.passed && report.nativeCoverageProbe.passed && report.compile.every((item) => item.ok);
+report.passed = report.sourcePassed && report.nativePassed;
 report.finishedAt = new Date().toISOString();
 const reportFile = process.env.MINI_NATIVE_REPORT ? path.resolve(root, process.env.MINI_NATIVE_REPORT) : path.join(__dirname, "mini-native-check-report.json");
 fs.mkdirSync(path.dirname(reportFile), { recursive: true });
 fs.writeFileSync(reportFile, JSON.stringify(report, null, 2));
-console.log(JSON.stringify({ passed: report.passed, js: report.js.length, json: report.json.length, wxss: report.wxss.length, wxssErrors: report.wxss.filter(item => !item.ok), wxssFixtureChecks: report.wxssFixtureChecks, nativeSyntaxProbe: report.nativeSyntaxProbe, nativeCoverageProbe: report.nativeCoverageProbe, references: report.references, moduleReferences: report.moduleReferences.length, moduleErrors: report.moduleReferences.filter(item => !item.ok), moduleFixtureChecks: report.moduleFixtureChecks, compile: report.compile }, null, 2));
+console.log(JSON.stringify({ passed: report.passed, sourcePassed: report.sourcePassed, nativeAvailable: report.nativeAvailable, nativePassed: report.nativePassed, compiler, js: report.js.length, json: report.json.length, wxss: report.wxss.length, wxssErrors: report.wxss.filter(item => !item.ok), wxssFixtureChecks: report.wxssFixtureChecks, nativeSyntaxProbe: report.nativeSyntaxProbe, nativeCoverageProbe: report.nativeCoverageProbe, references: report.references, moduleReferences: report.moduleReferences.length, moduleErrors: report.moduleReferences.filter(item => !item.ok), moduleFixtureChecks: report.moduleFixtureChecks, compile: report.compile }, null, 2));
 fs.rmSync(output, { recursive: true, force: true });
 if (!report.passed) process.exitCode = 1;

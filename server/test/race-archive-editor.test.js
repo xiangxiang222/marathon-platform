@@ -31,7 +31,7 @@ test('archive editor restricts all mutations and source records to platform admi
   const session = loginAdmin(db, 'archive_club_admin', 'archive-editor-pass123');
   await request(app).get(editor + '/beijing').set('Authorization', 'Bearer ' + session.token).expect(403);
   const result = await request(app).get(editor).set(auth).expect(200);
-  assert.deepEqual(result.body.races.map(item => item.id), ['beijing', 'shanghai', 'xiamen']);
+  assert.deepEqual(result.body.races.map(item => item.id), require('../../shared/race-catalog.json').races.map(item => item.id));
   await request(app).get(editor + '/unknown').set(auth).expect(404);
   await request(app).put(editor + '/__proto__').set(auth).send({}).expect(404);
 });
@@ -176,4 +176,44 @@ test('persisted duplicate image confirmations keep the first valid confirmation 
   assert.equal(response.body.archive.news[0].images[0].mediaRights.confirmedAt, original);
   const repeat = await request(app).put(editor + '/beijing').set(auth).send({ ...response.body, mediaConfirmed: false }).expect(200);
   assert.equal(repeat.body.archive.hero.mediaRights.confirmedAt, original);
+});
+
+test('historical facts, records, project scopes and newly authored sources survive an editor round trip', async () => {
+  const value = (await request(app).get(editor + '/beijing').set(auth).expect(200)).body;
+  const source = { id: 'editor-evidence', title: '本地回归来源', publisher: '测试发布者', url: 'https://example.com/official-result', publishedAt: '2026-10', applicableYears: ['2026'], accessedAt: '2026-11-18', verifiedAt: '2026-11-18' };
+  value.archive.sources.push(source);
+  value.archive.profile.entryNotes = '仅适用于2026届的测试报名说明';
+  value.archive.profile.entrySourceIds = [source.id];
+  value.archive.history = [{ date: '2026-10', title: '历史节点', body: '带月份精度的节点', sourceIds: [source.id] }];
+  value.archive.records = [{ category: '赛会纪录', project: '马拉松', group: '男子', athlete: '本地回归选手', time: '02:03:00', timing: '枪时', editionId: 'beijing-2026', achievedAt: '2026-10-18', verifiedThroughEditionId: 'beijing-2026', verifiedAt: '2026-11-18', sourceIds: [source.id] }];
+  value.archive.editions[0].events = [{ project: '马拉松', distanceKm: 42.195, plannedParticipants: 32000, fee: '', sourceIds: [source.id] }];
+  value.archive.gaps = [{ fields: ['registration.lotteryRate'], reason: '本地回归缺口说明' }];
+  const result = (await request(app).put(editor + '/beijing').set(auth).send(value).expect(200)).body;
+  const reread = (await request(app).get(editor + '/beijing').set(auth).expect(200)).body;
+  assert.equal(result.archive.schemaVersion, 2);
+  assert.deepEqual(reread.archive.history, result.archive.history);
+  assert.deepEqual(reread.archive.records, result.archive.records);
+  assert.equal(reread.archive.sources.find(item => item.id === source.id).publishedAt, '2026-10');
+  assert.equal(reread.archive.editions[0].events[0].plannedParticipants, 32000);
+  const publicView = (await request(app).get(API + '/race-catalog/beijing').expect(200)).body;
+  assert.equal(publicView.archive.profile.entryNotes, value.archive.profile.entryNotes);
+  assert.equal(publicView.archive.records[0].athlete, '本地回归选手');
+  const invalid = clone(reread); invalid.archive.history[0].sourceIds = ['missing-source'];
+  await request(app).put(editor + '/beijing').set(auth).send(invalid).expect(400);
+  assert.deepEqual(readArchiveEdit(getDb(), 'beijing').archive.history, reread.archive.history);
+});
+
+test('legacy maintenance records receive missing archive structure while preserving edited text and images', async () => {
+  const seed = (await request(app).get(editor + '/beijing').set(auth).expect(200)).body;
+  const legacy = clone(seed);
+  for (const key of ['schemaVersion', 'history', 'records', 'gaps', 'profile', 'introSourceIds']) delete legacy.archive[key];
+  legacy.archive.intro = '需要保留的人工介绍';
+  legacy.archive.highlights = [];
+  getDb().prepare('INSERT INTO race_archive_edits(race_id,payload,updated_at,updated_by) VALUES(?,?,?,?)').run('beijing', JSON.stringify(legacy), '2026-11-14', 'fixture');
+  const current = (await request(app).get(editor + '/beijing').set(auth).expect(200)).body;
+  assert.equal(current.archive.intro, '需要保留的人工介绍');
+  assert.deepEqual(current.archive.highlights, []);
+  assert.deepEqual(current.archive.history, seed.archive.history);
+  assert.deepEqual(current.archive.profile, seed.archive.profile);
+  assert.deepEqual((await request(app).get(API + '/race-catalog/beijing').expect(200)).body.archive.history, seed.archive.history);
 });

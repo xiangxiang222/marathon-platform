@@ -1,21 +1,38 @@
 const catalog = require('../../shared/race-catalog.json');
 const archives = Object.fromEntries(catalog.races.map(race => [race.id, require('../../shared/race-archives/' + race.id + '.json')]));
 const { readArchiveEdit } = require('./race-archive-editor');
+const { mergeArchiveRecord } = require('./race-archive-schema');
 
 function archiveBaseline(id) {
   const race = catalog.races.find(item => item.id === id);
   return race ? JSON.parse(JSON.stringify({ race, archive: archives[id] })) : null;
 }
-function archiveRecord(id, db) { return readArchiveEdit(db, id) || archiveBaseline(id); }
+function archiveRecord(id, db) { return mergeArchiveRecord(archiveBaseline(id), readArchiveEdit(db, id)); }
 
 function raceArchiveId(race) {
-  if (!race || race.meet === 'online' || /(?:half|trail)/.test(String(race.kind || race.kinds || ''))) return '';
+  if (!race || race.meet === 'online' || /trail/.test(String(race.kind || race.kinds || ''))) return '';
   const distances = Array.isArray(race.distances) ? race.distances : String(race.distances || '').split(',').filter(Boolean);
   if (distances.length && !distances.includes('full')) return '';
   const name = String(race.name || '').replace(/[\s·・•]/g, '');
   // A city's half marathon and an online spin-off are distinct events.
   if (/(?:半程|半马|越野|线上|10公里|10千米|\d+k(?:m)?\b|接力|欢乐跑)/i.test(name)) return '';
-  const match = catalog.races.find(item => name.includes(item.name));
+  const city = String(race.city || '').replace(/市$/, '');
+  const officialId = String(race.officialId || race.official_id || '');
+  const match = catalog.races.find(item => {
+    if (city && city !== String(item.city).replace(/市$/, '')) return false;
+    if (officialId && (item.identity?.officialIds || []).some(value => String(typeof value === 'object' ? value.id : value) === officialId)) return true;
+    const names = [item.name, ...(item.aliases || []), ...(item.identity?.raceNames || [])];
+    // A verified brand must end the title (optional championship suffix). City
+    // search aliases such as “东营” never grant an automatic race association.
+    return names.some(value => {
+      const normalized = String(value).replace(/[\s·・•]/g, '');
+      const variants = [normalized, normalized.replace(/赛$/, '')];
+      return variants.some(variant => {
+        const index = name.lastIndexOf(variant);
+        return index >= 0 && /^(?:赛)?(?:暨全国马拉松锦标赛.*)?$/.test(name.slice(index + variant.length));
+      });
+    });
+  });
   return match ? match.id : '';
 }
 
@@ -29,11 +46,13 @@ function listCatalog(query = {}, db) {
   const q = String(query.q || '').trim().toLowerCase().slice(0, 100);
   const wa = String(query.wa || '').trim();
   const caa = String(query.caa || '').trim();
-  const races = catalog.races.map(item => archiveRecord(item.id, db)).filter(({ race }) =>
-    (!q || [race.name, race.shortName, race.city, race.province].some(value => String(value || '').toLowerCase().includes(q))) &&
-    (!wa || race.worldAthletics.label === wa) && (!caa || race.caa.label === caa)
+  const records = catalog.races.map(item => archiveRecord(item.id, db));
+  const filterOptions = Object.fromEntries(['worldAthletics', 'caa'].map(key => [key, [...new Set(records.map(({ race }) => race[key]?.label).filter(Boolean))]]));
+  const races = records.filter(({ race }) =>
+    (!q || [race.name, race.shortName, race.city, race.province, ...(race.aliases || [])].some(value => String(value || '').toLowerCase().includes(q))) &&
+    (!wa || race.worldAthletics?.label === wa) && (!caa || race.caa?.label === caa)
   ).map(({ race, archive }) => archiveSummary(race, archive));
-  return { ...catalog, updatedAt: '2026-11-14', selectionNote: '北京、上海、厦门三场赛事档案，按编辑顺序展示，不代表排名。年度资料以各届公开来源为准，尚未核验的统计不记为零。', races };
+  return { ...catalog, filterOptions, featuredIds: catalog.featuredIds || ['beijing', 'shanghai', 'xiamen'], races };
 }
 
 function editionCoverage(edition, archive) {
@@ -103,7 +122,7 @@ function mountRaceCatalog(app, { BASE, getDb }) {
   // Also prevent direct access to old cached images whose reuse is unconfirmed.
   const publicImages = new Set(Object.values(archives).flatMap(archive => archive.editions.flatMap(edition => [
     mediaCanPublish(edition.route?.mediaRights) ? edition.route.mapUrl : '',
-    ...edition.gear.filter(item => mediaCanPublish(item.mediaRights)).map(item => item.imageUrl)
+    ...(edition.gear || []).filter(item => mediaCanPublish(item.mediaRights)).map(item => item.imageUrl)
   ])).filter(url => url.startsWith('/marathon/images/race-archives/')));
   app.use(BASE + '/images/race-archives', (req, res, next) => {
     if (!publicImages.has('/marathon/images/race-archives' + req.path)) return res.status(404).end();
