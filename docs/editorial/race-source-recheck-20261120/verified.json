@@ -1,0 +1,3060 @@
+{
+  "summary": {
+    "snapshotAt": "2026-11-19T21:42:19.763Z",
+    "inventory": 434,
+    "actual": 412,
+    "synthetic": 22,
+    "upcoming": 185,
+    "initialPriorityCounts": {
+      "EXCLUDE_SYNTHETIC": 22,
+      "KEEP_CANCELLED_VERIFY_FOLLOWUP": 2,
+      "P1_UPCOMING_SHORT_OR_EMPTY": 24,
+      "P2_UPCOMING_FIELD_GAPS": 26,
+      "P3_HISTORY_SHORT_OR_EMPTY": 128,
+      "P4_HISTORY_FIELD_GAPS": 15,
+      "P5_REFRESH_OR_SOURCE_CHECK": 217
+    },
+    "initialSourceTiers": {
+      "DIRECTORY_ONLY": 152,
+      "PLATFORM_TRACEABLE": 185,
+      "POSSIBLE_OFFICIAL_EVENT_SITE": 12,
+      "VERIFIED_DETAIL_SOURCE": 63
+    },
+    "zuicoolPublicList": {
+      "url": "https://zuicool.com/events",
+      "listingDetailPages": 100,
+      "inventoryRows": 434,
+      "exactNameAndDateRows": 48,
+      "uniqueInventoryIdsMatched": 48,
+      "matchingP1P2Rows": 11,
+      "sameNameDifferentDate": 1,
+      "noExactInventoryName": 51
+    },
+    "priorityResults": {
+      "已校对、已保存、已验证生产网页与小程序开发者工具": 27,
+      "仍待查找可核资料": 8,
+      "已定位来源，关键字段待核": 9,
+      "已排除往届官网，未找到本届规程": 1,
+      "已有本届指南和领物，当前无需报名入口": 2,
+      "报名已核，按活动性质复看物资安排": 3
+    },
+    "updatedUnique": 27,
+    "durableWrites": 34,
+    "web320And390Latest": 27,
+    "mini390Latest": 27,
+    "originalWebOpenAndZooms": 84,
+    "latestImageTotal": 1826
+  },
+  "sampleDianjiang": {
+    "id": "zuiku-96336",
+    "preservedExistingBody": true,
+    "web": {
+      "kind": "Deployed web page and production API; Chrome mobile viewports, not a WeChat device or published mini program.",
+      "startedAt": "2026-11-19T22:38:53.010Z",
+      "passed": true,
+      "checks": [
+        "Saved four options, fees, actual distances, climbs, cutoffs, dates, eligibility, pickup and guide chapters.",
+        "Every selected pilot image is served and decoded in the deployed page at 320/390px.",
+        "One QR preview and truthful closed status; actual cancelled events suppress registration QR.",
+        "Calendar avoids full rich documents and stays below 1 MiB for the first 40 items."
+      ],
+      "errors": [],
+      "savedImagesVerified": 8,
+      "expectedQrTarget": "https://reg.zuicool.com/77675",
+      "calendarBytes": 69827,
+      "completedAt": "2026-11-19T22:39:29.515Z"
+    },
+    "miniDevTools": {
+      "id": "zuiku-96336",
+      "actualViewport": 390,
+      "guideCharacters": 9572,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 4,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1392.34375,
+        "bottom": 18355.015625,
+        "width": 366,
+        "height": 16962.671875,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 9,
+      "tableRowsIncludingHeaders": 79,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336
+      ]
+    },
+    "miniInteraction": {
+      "id": "zuiku-96336",
+      "width": 390,
+      "text": {
+        "fontSize": "14px",
+        "lineHeight": "21px"
+      },
+      "horizontalTable": {
+        "viewportWidth": 336,
+        "contentWidth": 1080,
+        "scrollLeftBefore": 0,
+        "scrollLeftAfter": 144
+      },
+      "original": {
+        "mode": "widthFix",
+        "longPressEnabled": true,
+        "file": 1,
+        "clickExecuted": true,
+        "visualPreviewLoaded": true,
+        "verification": "Inspected actual native viewer screenshot; long press configuration verified, physical gesture excluded."
+      }
+    },
+    "complexSampleKinds": [
+      "亲子组",
+      "多阶段收费",
+      "分组关门",
+      "长规程与原图"
+    ]
+  },
+  "batches": [
+    {
+      "batch": 1,
+      "backupFile": "batch1-applied.json.before.sqlite",
+      "saved": 2,
+      "failed": 0,
+      "at": "2026-11-19T21:56:55.323Z",
+      "raceRecords": 434,
+      "sheetRecords": 1785,
+      "newImagePreviews": 2,
+      "allNewImagePreviewsVerified": true,
+      "races": [
+        {
+          "id": "caa-1000454048",
+          "name": "2026横琴马拉松",
+          "reviewScope": "确认本届已关闭的全马和半马报名，仍无领物和完整规程；不纳入未经组委会验证的退款比例。",
+          "sectionCount": 7,
+          "tableCount": 1,
+          "groupCount": 2,
+          "registrationStatus": "closed",
+          "sourceUrls": [
+            "https://www.hengqin.gov.cn/livelihood/zwdt/hdyg/content/post_3959349.html",
+            "https://hq-registration.mararun.com/signlist.html?matchID=ODk0NzI5MzAwMDYwNzQ4NA%3D%3D",
+            "https://saas-user-gw.mararun.com/v1/match/detail?matchID=8947293000607484",
+            "https://pub-zhtb.hizh.cn/a/202608/18/AP6a844af6e4b07d0cf771fa1a.html",
+            "https://m.zh.bendibao.com/xiuxian/106220.shtm",
+            "https://m.zh.bendibao.com/xiuxian/106353.shtm",
+            "https://www.hengqin.gov.cn/img/0/710/710549/3959349.png"
+          ],
+          "questions": [
+            {
+              "status": "organizer_website_temporarily_unreachable",
+              "issue": "组委会接口和当届发布会明确官网；本机与云服务器对 www／无 www、HTTP／HTTPS 均未取得页面。保留协会入口和有效的本届马拉马拉报名页，官网作为出处线索不作唯一入口。",
+              "sourceUrl": "https://www.hengqinmarathon.com/"
+            },
+            {
+              "status": "final_pickup_route_cutoff_not_confirmed",
+              "issue": "公开报名接口收集时间及领物地址为空。未取得组委会最终领物、各组折返/终点及分段关门的正式原件，未用历年资料推断。",
+              "sourceUrl": "https://saas-user-gw.mararun.com/v1/match/detail?matchID=8947293000607484"
+            },
+            {
+              "status": "refund_policy_not_confirmed_from_primary",
+              "issue": "地方攻略转述11月16日之后另有邮件处理和退费比例；报名接口只确认11月16日00:00结束系统退出。未取得组委会正式文字核实人工退款，正文不承诺退款。",
+              "sourceUrl": "https://m.zh.bendibao.com/xiuxian/106353.shtm"
+            },
+            {
+              "status": "platform_internal_timestamp_not_public_start",
+              "issue": "接口内部 applyBeginTime 为8月18日09:59:30；本届发布稿对公众公布的是10:00，以公开时间录入。接口分组截止字段有日期、明细内部支付时间与公开公告并非同一语义，因此不填顶层缴费截止。",
+              "sourceUrl": "https://saas-user-gw.mararun.com/v1/match/detail?matchID=8947293000607484"
+            },
+            {
+              "status": "secondary_qualification_and_group_scale",
+              "issue": "本届报名攻略刊出起点、分组人数、成绩材料与体检；组委会可读页面仅证实年龄、费、起跑、项目。正文标明出处，待完整官方规程再核。",
+              "sourceUrl": "https://m.zh.bendibao.com/xiuxian/106220.shtm"
+            }
+          ],
+          "updatedFields": [
+            "groups",
+            "reg_start",
+            "deadline",
+            "deadline_name",
+            "signup_url",
+            "start_at",
+            "scale",
+            "fee",
+            "phone"
+          ],
+          "saved": {
+            "bodyAndGroupsMatch": true,
+            "guideSha256": "c9f497ddcd9f1f5d1f233b31a4bb29db29d4bd14357a4fae91af050cb4367e5b"
+          },
+          "web": {
+            "actualPageWidths": [
+              320,
+              390
+            ],
+            "fullRenderedContentVerifiedAt320": true,
+            "tableRowsIncludingHeaders": 3,
+            "imagePreviews": []
+          },
+          "miniDevTools": {
+            "actualViewport": 390,
+            "bodyExactlyMatchesProduction": true,
+            "groupsExactlyMatchProduction": true,
+            "tableRowsIncludingHeaders": 3,
+            "allRowsActuallyRendered": true
+          }
+        },
+        {
+          "id": "caa-1000479094",
+          "name": "2026上海马拉松",
+          "reviewScope": "本届可用报名资料与指南缺项复核；待发布内容见questions。",
+          "sectionCount": 10,
+          "tableCount": 7,
+          "groupCount": 2,
+          "registrationStatus": "closed",
+          "sourceUrls": [
+            "https://api-changzheng.chinaath.com/changzheng-content-center-api/api/homePage/official/searchById",
+            "https://static.shang-ma.com/static/mobile/eventDescription.html?id=3280",
+            "https://static.shang-ma.com/static/mobile/eventDescription.html?id=3288",
+            "https://static.shang-ma.com/static/mobile/eventDescription.html?id=3363",
+            "https://static.shang-ma.com/static/mobile/eventDescription.html?id=3272",
+            "https://static.shang-ma.com/static/mobile/eventDescription.html?id=3289"
+          ],
+          "questions": [
+            {
+              "status": "official_sources_use_different_schedule_units",
+              "issue": "官方规程区分06:45竞速轮椅及07:00马拉松；赛事公开列表和路线图上的06:45是赛事开场，不能套为马拉松起跑；各枪具体时刻未列。",
+              "sourceUrl": "https://static.shang-ma.com/static/mobile/eventDescription.html?id=3280"
+            },
+            {
+              "status": "official_abstract_and_payment_record_differ",
+              "issue": "4月发布的规程及报名须知列6月30日出签后至7月20日12:00缴费，官网公开赛事接口另有7月28日15:30至8月4日17:00的系统窗口字段，但未证实该字段适用全部跑者；不推定为大众缴费期。",
+              "sourceUrl": "https://apih5.shang-ma.com/app/event/event/web/query/0"
+            },
+            {
+              "status": "route_map_adds_one_intermediate_cutoff",
+              "issue": "5公里08:10只在赛事路线图标注，竞赛规程表从10公里开始；各自来源标在表中。",
+              "sourceUrl": "https://static.shang-ma.com/static/mobile/eventDescription.html?id=3289"
+            },
+            {
+              "status": "planimetric_figures_pending",
+              "issue": "本届官网赛事详情接口的起终点平面图文章写敬请期待；已保存正式赛道图，不用往届平面图。",
+              "sourceUrl": "https://apih5.shang-ma.com/app/web/newsPosts/eventsNews/232"
+            }
+          ],
+          "updatedFields": [
+            "groups",
+            "reg_start",
+            "deadline",
+            "deadline_name",
+            "start_at",
+            "fee",
+            "scale",
+            "phone",
+            "pickup"
+          ],
+          "saved": {
+            "bodyAndGroupsMatch": true,
+            "guideSha256": "1b9d4fbd761d3198024a7f7ce05ccebf88c398d2994c854753cb990a0ccdaf9c"
+          },
+          "web": {
+            "actualPageWidths": [
+              320,
+              390
+            ],
+            "fullRenderedContentVerifiedAt320": true,
+            "tableRowsIncludingHeaders": 43,
+            "imagePreviews": [
+              {
+                "width": 320,
+                "sheetId": 1785,
+                "dims": {
+                  "w": 5686,
+                  "h": 7885
+                },
+                "caption": "上海马拉松官方赛道与海拔图：外滩至徐家汇体育公园",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 390,
+                "sheetId": 1785,
+                "dims": {
+                  "w": 5686,
+                  "h": 7885
+                },
+                "caption": "上海马拉松官方赛道与海拔图：外滩至徐家汇体育公园",
+                "originalZoomOpened": true
+              }
+            ]
+          },
+          "miniDevTools": {
+            "actualViewport": 390,
+            "bodyExactlyMatchesProduction": true,
+            "groupsExactlyMatchProduction": true,
+            "tableRowsIncludingHeaders": 43,
+            "allRowsActuallyRendered": true
+          }
+        }
+      ]
+    },
+    {
+      "batch": 2,
+      "backupFile": "batch2-applied.json.before.sqlite",
+      "saved": 3,
+      "failed": 0,
+      "at": "2026-11-19T22:02:00.568Z",
+      "raceRecords": 434,
+      "sheetRecords": 1786,
+      "newImagePreviews": 2,
+      "allNewImagePreviewsVerified": true,
+      "races": [
+        {
+          "id": "caa-1000454013",
+          "name": "2026黄埔马拉松",
+          "reviewScope": "本届可用报名资料与指南缺项复核；待发布内容见questions。",
+          "sectionCount": 10,
+          "tableCount": 5,
+          "groupCount": 2,
+          "registrationStatus": "closed",
+          "sourceUrls": [
+            "http://hp-marathon.com/",
+            "https://app.sport-china.cn/race/#/offline/detail/1111",
+            "https://matchapi.gusto.cn/api/offline/race/detail?raceId=1111&magicCode=&channelVerifyCode=",
+            "https://app.sport-china.cn/race/#/offline/doc/1111/8663",
+            "https://app.sport-china.cn/race/#/offline/doc/1111/8664",
+            "https://app.sport-china.cn/race/#/offline/doc/1111/8665",
+            "https://app.sport-china.cn/race/#/offline/doc/1111/8666",
+            "https://app.sport-china.cn/race/#/offline/doc/1111/8667"
+          ],
+          "questions": [
+            "官网竞赛规程、报名须知均有可复制 HTML；用原 DOM 的 rowSpan 核对 21.0975 公里为两组共用关门点，25 公里以后的点仅属全马。已查看本届赛程长图原图；资格和费用来自 HTML。",
+            "第一赛道报名页实际渲染显示大众报名已截止、仍有邀请码通道；公开接口中的内部 signEndTime 不视为大众报名截止。报名截止字段用公开 showSignEndTime 及官方须知。",
+            "赛道起终点/路线、领物最终日期地址未在查阅文件中公布；不填。黄埔欢乐跑为独立赛事，不增加赛事或将名额并入本届全半马。客服图为二维码，无可证实联系电话。"
+          ],
+          "updatedFields": [
+            "groups",
+            "reg_start",
+            "deadline",
+            "deadline_name",
+            "signup_url",
+            "start_at",
+            "scale",
+            "fee",
+            "pickup"
+          ],
+          "saved": {
+            "bodyAndGroupsMatch": true,
+            "guideSha256": "9455650401fe02b3332666d1563d5d337299727b47ab47d1137fe7f52477bdb1"
+          },
+          "web": {
+            "actualPageWidths": [
+              320,
+              390
+            ],
+            "fullRenderedContentVerifiedAt320": true,
+            "tableRowsIncludingHeaders": 45,
+            "imagePreviews": [
+              {
+                "width": 320,
+                "sheetId": 1786,
+                "dims": {
+                  "w": 3750,
+                  "h": 5001
+                },
+                "caption": "2026黄埔马拉松官方赛程：报名、抽签、参赛号码查询及比赛日",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 390,
+                "sheetId": 1786,
+                "dims": {
+                  "w": 3750,
+                  "h": 5001
+                },
+                "caption": "2026黄埔马拉松官方赛程：报名、抽签、参赛号码查询及比赛日",
+                "originalZoomOpened": true
+              }
+            ]
+          },
+          "miniDevTools": {
+            "actualViewport": 390,
+            "bodyExactlyMatchesProduction": true,
+            "groupsExactlyMatchProduction": true,
+            "tableRowsIncludingHeaders": 45,
+            "allRowsActuallyRendered": true
+          }
+        },
+        {
+          "id": "caa-1000480076",
+          "name": "2026河源万绿湖马拉松",
+          "reviewScope": "本届可用报名资料与指南缺项复核；待发布内容见questions。",
+          "sectionCount": 8,
+          "tableCount": 1,
+          "groupCount": 2,
+          "registrationStatus": "open",
+          "sourceUrls": [
+            "https://www.sohu.com/a/1101915807_121106875",
+            "https://www.nfnews.com/content/834pwVV73d.html"
+          ],
+          "questions": [
+            "组委会公告顺延11月30日18:00；原公告所列公众号/小程序为报名入口，暂未验证独立网页直达，不把转载页面或中田协赛历当报名 URL。",
+            "公告同时写“年满65周岁”与1961年1月1日（含）作为高龄领物同意书条件，保持原规则并标明两种表述，不按比赛日重算。",
+            "仍未证实领取日期及地址、独立直达网页、关门时间和报名咨询电话。逐张查看报名公告原图，其中招商图电话仅属招商用途，不用作报名电话。"
+          ],
+          "updatedFields": [
+            "groups",
+            "reg_start",
+            "deadline",
+            "deadline_name",
+            "start_at",
+            "scale",
+            "fee",
+            "route"
+          ],
+          "saved": {
+            "bodyAndGroupsMatch": true,
+            "guideSha256": "2a642520fcbeeee3f14c43ec93a824a5d9ad7a9e6a236e4f81969c08e7dd1b31"
+          },
+          "web": {
+            "actualPageWidths": [
+              320,
+              390
+            ],
+            "fullRenderedContentVerifiedAt320": true,
+            "tableRowsIncludingHeaders": 3,
+            "imagePreviews": []
+          },
+          "miniDevTools": {
+            "actualViewport": 390,
+            "bodyExactlyMatchesProduction": true,
+            "groupsExactlyMatchProduction": true,
+            "tableRowsIncludingHeaders": 3,
+            "allRowsActuallyRendered": true
+          }
+        },
+        {
+          "id": "caa-1000480074",
+          "name": "2026莆田马拉松",
+          "reviewScope": "本届可用报名资料与指南缺项复核；待发布内容见questions。",
+          "sectionCount": 7,
+          "tableCount": 2,
+          "groupCount": 2,
+          "registrationStatus": "closed",
+          "sourceUrls": [
+            "https://www.sohu.com/a/1098170278_121106994"
+          ],
+          "questions": [
+            "莆田市体育局发布账号“莆田体育”2026-11-06 页面核验 HTML；已目视该通知唯一视觉附件为赛事题字横幅，仅核对赛事届次和名称，不重复展示。",
+            "半程马拉松线路官方通知在八二一街折返点前写“延寿南街”、返程写“延寿南路”；未找到可目视核对本段的正式赛道图，不擅自修订该字。",
+            "仅正式报名须知明确比赛总时段，不能据此给两个组别都填6小时；领物日程、补给、奖励与分组关门未在该须知发布，微信官方报名渠道未验证独立网页直达。"
+          ],
+          "updatedFields": [
+            "groups",
+            "reg_start",
+            "deadline",
+            "deadline_name",
+            "start_at",
+            "scale",
+            "fee",
+            "route"
+          ],
+          "saved": {
+            "bodyAndGroupsMatch": true,
+            "guideSha256": "a4e68f03cc108d1c920e7a58349fe77dbf9de54ff2c419084a4cd4ffd7e8104b"
+          },
+          "web": {
+            "actualPageWidths": [
+              320,
+              390
+            ],
+            "fullRenderedContentVerifiedAt320": true,
+            "tableRowsIncludingHeaders": 8,
+            "imagePreviews": []
+          },
+          "miniDevTools": {
+            "actualViewport": 390,
+            "bodyExactlyMatchesProduction": true,
+            "groupsExactlyMatchProduction": true,
+            "tableRowsIncludingHeaders": 8,
+            "allRowsActuallyRendered": true
+          }
+        }
+      ]
+    },
+    {
+      "batch": 3,
+      "backupFile": "batch3-applied.json.before.sqlite",
+      "saved": 6,
+      "failed": 0,
+      "at": "2026-11-19T22:11:23.495Z",
+      "raceRecords": 434,
+      "sheetRecords": 1794,
+      "newImagePreviews": 16,
+      "allNewImagePreviewsVerified": true,
+      "races": [
+        {
+          "id": "caa-1000480077",
+          "name": "2026虎门半程马拉松",
+          "reviewScope": "官网14章竞赛规程及5张内嵌表全部逐项核对；报名原图连续4块、二维码原图已看；未宣称赛前公告已发布或整份报名转载长图已另核。",
+          "sectionCount": 10,
+          "tableCount": 7,
+          "groupCount": 1,
+          "registrationStatus": "closed",
+          "sourceUrls": [
+            "https://sport.luojiweiye.com/web/weibu/#/pages/event/inquiryRegistration?nav_id=5505&game_id=7607&title=%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B",
+            "https://sport.luojiweiye.com/web/weibu/#/pages/event/gameDetailGuide?id=7607",
+            "https://sport.luojiweiye.com/api/get_nav_c?nav_id=5505&game_id=7607&api_token=&platform=&app_version=&lang=&web_version=1.3.2",
+            "https://zuicool.com/news/archives/319437"
+          ],
+          "questions": [
+            {
+              "status": "final_pickup_not_yet_verified",
+              "issue": "官网明确赛前到指定博览会报到，正式物资领取地点、时间、证件及代领办法另发公告，未填未知项。",
+              "sourceUrl": "https://sport.luojiweiye.com/web/weibu/#/pages/event/inquiryRegistration?nav_id=5505&game_id=7607&title=%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B"
+            },
+            {
+              "status": "draw_exact_notice_not_found",
+              "issue": "比赛规程写报名截止后7个工作日，报名转载写11月下旬；未获取实际中签公告，不自行推日期。",
+              "sourceUrl": "https://sport.luojiweiye.com/web/weibu/#/pages/event/inquiryRegistration?nav_id=5505&game_id=7607&title=%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B"
+            },
+            {
+              "status": "direct_quota_source_conflict",
+              "issue": "10800大众（含精英直通）、800赞助及400其他直通，与直通总额至多1200文字未完全对齐，不补推精英人数。",
+              "sourceUrl": "https://sport.luojiweiye.com/web/weibu/#/pages/event/inquiryRegistration?nav_id=5505&game_id=7607&title=%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B",
+              "imageUrl": "https://cdn.rockysports.cn/7607/image/20261013/Fk6zq6dZnPXSz8sOcS2xzcrB3qD-.png"
+            },
+            {
+              "status": "rule_discovery_not_route_map",
+              "issue": "本届官网已提供路线道路文字及5张表，不把上述表格归为路线图；待最终道路、图示及领物公告。",
+              "sourceUrl": "https://sport.luojiweiye.com/web/weibu/#/pages/event/inquiryRegistration?nav_id=5505&game_id=7607&title=%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B"
+            }
+          ],
+          "updatedFields": [
+            "groups",
+            "signup_url",
+            "phone",
+            "route"
+          ],
+          "saved": {
+            "bodyAndGroupsMatch": true,
+            "guideSha256": "69c816e47c5bcfece031fa47fe61195add3871ddab5089992a01c66e2ba3ddf9"
+          },
+          "web": {
+            "actualPageWidths": [
+              320,
+              390
+            ],
+            "fullRenderedContentVerifiedAt320": true,
+            "tableRowsIncludingHeaders": 42,
+            "imagePreviews": [
+              {
+                "width": 320,
+                "sheetId": 1787,
+                "dims": {
+                  "w": 694,
+                  "h": 157
+                },
+                "caption": "精英直通成绩参考原表（含全马及半马成绩线）",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 320,
+                "sheetId": 1788,
+                "dims": {
+                  "w": 661,
+                  "h": 281
+                },
+                "caption": "半程马拉松分段及终点关门原表",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 320,
+                "sheetId": 1789,
+                "dims": {
+                  "w": 542,
+                  "h": 208
+                },
+                "caption": "半程马拉松各站补给原表",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 320,
+                "sheetId": 1790,
+                "dims": {
+                  "w": 675,
+                  "h": 101
+                },
+                "caption": "半程马拉松男、女前八名奖金原表",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 390,
+                "sheetId": 1787,
+                "dims": {
+                  "w": 694,
+                  "h": 157
+                },
+                "caption": "精英直通成绩参考原表（含全马及半马成绩线）",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 390,
+                "sheetId": 1788,
+                "dims": {
+                  "w": 661,
+                  "h": 281
+                },
+                "caption": "半程马拉松分段及终点关门原表",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 390,
+                "sheetId": 1789,
+                "dims": {
+                  "w": 542,
+                  "h": 208
+                },
+                "caption": "半程马拉松各站补给原表",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 390,
+                "sheetId": 1790,
+                "dims": {
+                  "w": 675,
+                  "h": 101
+                },
+                "caption": "半程马拉松男、女前八名奖金原表",
+                "originalZoomOpened": true
+              }
+            ]
+          },
+          "miniDevTools": {
+            "actualViewport": 390,
+            "bodyExactlyMatchesProduction": true,
+            "groupsExactlyMatchProduction": true,
+            "tableRowsIncludingHeaders": 42,
+            "allRowsActuallyRendered": true
+          }
+        },
+        {
+          "id": "caa-1000481025",
+          "name": "2026南充嘉陵江半程马拉松暨跑遍四川（南充站）",
+          "reviewScope": "本届可用报名资料与指南缺项复核；待发布内容见questions。",
+          "sectionCount": 10,
+          "tableCount": 5,
+          "groupCount": 1,
+          "registrationStatus": "closed",
+          "sourceUrls": [
+            "https://zuicool.com/event/54172",
+            "https://app.sport-china.cn/race/#/offline/document/8264",
+            "https://app.sport-china.cn/race/#/offline/detail/1056",
+            "https://app.sport-china.cn/race/#/offline/document/8265",
+            "https://app.sport-china.cn/race/#/offline/document/8269",
+            "https://zuicool.com/news/archives/315882"
+          ],
+          "questions": [
+            {
+              "status": "official_schedule_difference",
+              "issue": "竞赛规程、报名须知、组委会活动图和本届开报报道均列08:30起跑；第一赛道事件卡面比赛时间为08:00。沿用四份一致的起跑时间，未猜测卡面08:00的用途。",
+              "sourceUrl": "https://app.sport-china.cn/race/#/offline/detail/1056"
+            },
+            {
+              "status": "official_application_dates_differ",
+              "issue": "本届竞赛规程和开报报道列9月17日10:00，报名须知另列9月15日10:00，事件卡面列9月17日00:00–11月12日20:32但同页又说额满即止。本届大众开放按竞赛规程和开报公告一致字段，最终统一报名截止日未填；入口直接显示已结束。",
+              "sourceUrl": "https://app.sport-china.cn/race/#/offline/document/8265"
+            },
+            {
+              "status": "pickup_notice_not_located",
+              "issue": "当前公开规程仅称赛前2天、官网另行通知；第一赛道事件页面未列正式领物专页。地点及时段未确认。",
+              "sourceUrl": "https://app.sport-china.cn/race/#/offline/document/8264"
+            },
+            {
+              "status": "official_age_signer_wording_differs",
+              "issue": "65周岁边界文字与括号的1961年1月1日前出生并存；报名须知比竞赛规程多一直系家属选项。未自行补充年龄边界和签字资格。",
+              "sourceUrl": "https://app.sport-china.cn/race/#/offline/document/8265"
+            },
+            {
+              "status": "contact_hours_differ",
+              "issue": "本届竞赛规程公布19980816949和09:30–11:30、14:30–17:00；第一赛道宣传图同号码但时间09:30–12:00、14:00–17:30。正文标明引用竞赛规程时段。",
+              "sourceUrl": "https://app.sport-china.cn/race/#/offline/document/8264"
+            },
+            {
+              "status": "route_version_retained",
+              "issue": "规程路线称拟定；官方单独发布路线图的沿路细节略更多，正文只写共同确认的主要经过点并保留路线图。",
+              "sourceUrl": "https://app.sport-china.cn/race/#/offline/document/8269"
+            }
+          ],
+          "updatedFields": [
+            "groups",
+            "signup_url",
+            "phone",
+            "pickup"
+          ],
+          "saved": {
+            "bodyAndGroupsMatch": true,
+            "guideSha256": "69cc82e36abb495a66ee56cc93ce2f2f584ab6fe7461d55dd14fd6db9e6dfa47"
+          },
+          "web": {
+            "actualPageWidths": [
+              320,
+              390
+            ],
+            "fullRenderedContentVerifiedAt320": true,
+            "tableRowsIncludingHeaders": 30,
+            "imagePreviews": [
+              {
+                "width": 320,
+                "sheetId": 1791,
+                "dims": {
+                  "w": 6667,
+                  "h": 3750
+                },
+                "caption": "南充嘉陵江半程马拉松官方路线图：高坪金融广场起终点及沿途补给",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 390,
+                "sheetId": 1791,
+                "dims": {
+                  "w": 6667,
+                  "h": 3750
+                },
+                "caption": "南充嘉陵江半程马拉松官方路线图：高坪金融广场起终点及沿途补给",
+                "originalZoomOpened": true
+              }
+            ]
+          },
+          "miniDevTools": {
+            "actualViewport": 390,
+            "bodyExactlyMatchesProduction": true,
+            "groupsExactlyMatchProduction": true,
+            "tableRowsIncludingHeaders": 30,
+            "allRowsActuallyRendered": true
+          }
+        },
+        {
+          "id": "zuiku-61722",
+          "name": "2026青浦新城半程马拉松赛",
+          "reviewScope": "本届可用报名资料与指南缺项复核；待发布内容见questions。",
+          "sectionCount": 10,
+          "tableCount": 5,
+          "groupCount": 1,
+          "registrationStatus": "closed",
+          "sourceUrls": [
+            "https://zuicool.com/event/61722",
+            "https://zuicool.com/news/archives/319749"
+          ],
+          "questions": [
+            {
+              "status": "registration_page_requires_verification",
+              "issue": "组委会海报二维码指向数字心动实际报名详情，直接打开触发滑块，未证实网页当前按钮；最终期限由组委会竞赛规程原图和本届开报报道双方核对，未填受阻入口。",
+              "sourceUrl": "https://race.shuzixindong.com/offline/#/pages/race/detail?raceId=1000479217&f=c4b26"
+            },
+            {
+              "status": "pickup_address_not_located",
+              "issue": "完整竞赛规程只有两日领物申明及各自精确时刻，没有地点或证件细目。未以往届地点替代。",
+              "sourceUrl": "https://zuicool.com/news/archives/319749"
+            },
+            {
+              "status": "official_age_boundary_as_written",
+              "issue": "规程注明18周岁以上（2008年1月1日前出生），未擅自改为包含1月1日。",
+              "sourceUrl": "https://zuicool.com/news/archives/319749"
+            }
+          ],
+          "updatedFields": [
+            "groups",
+            "organizer",
+            "phone",
+            "pickup"
+          ],
+          "saved": {
+            "bodyAndGroupsMatch": true,
+            "guideSha256": "7ebed0eca49df389fd2fd4df55b0ef906c850faca9ca9c79238c4ce0c733361d"
+          },
+          "web": {
+            "actualPageWidths": [
+              320,
+              390
+            ],
+            "fullRenderedContentVerifiedAt320": true,
+            "tableRowsIncludingHeaders": 24,
+            "imagePreviews": [
+              {
+                "width": 320,
+                "sheetId": 1792,
+                "dims": {
+                  "w": 713,
+                  "h": 420
+                },
+                "caption": "青浦新城半程马拉松路线图（截取自赛事说明长图）",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 320,
+                "sheetId": 1793,
+                "dims": {
+                  "w": 750,
+                  "h": 9433
+                },
+                "caption": "组委会完整竞赛规程及个人健康风险筛查表",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 390,
+                "sheetId": 1792,
+                "dims": {
+                  "w": 713,
+                  "h": 420
+                },
+                "caption": "青浦新城半程马拉松路线图（截取自赛事说明长图）",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 390,
+                "sheetId": 1793,
+                "dims": {
+                  "w": 750,
+                  "h": 9433
+                },
+                "caption": "组委会完整竞赛规程及个人健康风险筛查表",
+                "originalZoomOpened": true
+              }
+            ]
+          },
+          "miniDevTools": {
+            "actualViewport": 390,
+            "bodyExactlyMatchesProduction": true,
+            "groupsExactlyMatchProduction": true,
+            "tableRowsIncludingHeaders": 24,
+            "allRowsActuallyRendered": true
+          }
+        },
+        {
+          "id": "caa-1000498001",
+          "name": "2026汕头马拉松",
+          "reviewScope": "本届可用报名资料与指南缺项复核；待发布内容见questions。",
+          "sectionCount": 5,
+          "tableCount": 1,
+          "groupCount": 2,
+          "registrationStatus": "closed",
+          "sourceUrls": [
+            "https://www.shantou.gov.cn/cnst/ywdt/styw/content/post_2565567.html"
+          ],
+          "questions": [
+            "市政府公告所载发布会确认赛事日期、鸣枪时间、分组名额和公众抽签日期，媒体转载或旧届公告不替代本届竞赛规程。",
+            "可读公告未给小时级报名时间、组别费率、半程精确里程、资格、领物、分段路线和关门，不作无依据补齐。"
+          ],
+          "updatedFields": [
+            "groups",
+            "reg_start",
+            "deadline",
+            "deadline_name",
+            "start_at",
+            "scale"
+          ],
+          "saved": {
+            "bodyAndGroupsMatch": true,
+            "guideSha256": "75d4541ba7bf15319efbe953e47a4cc0a282beaa88fd63df58819c30d4e7dc3c"
+          },
+          "web": {
+            "actualPageWidths": [
+              320,
+              390
+            ],
+            "fullRenderedContentVerifiedAt320": true,
+            "tableRowsIncludingHeaders": 3,
+            "imagePreviews": []
+          },
+          "miniDevTools": {
+            "actualViewport": 390,
+            "bodyExactlyMatchesProduction": true,
+            "groupsExactlyMatchProduction": true,
+            "tableRowsIncludingHeaders": 3,
+            "allRowsActuallyRendered": true
+          }
+        },
+        {
+          "id": "caa-1000479122",
+          "name": "“跑遍四川”总决赛·2026年雅安雨城半程马拉松",
+          "reviewScope": "本届可用报名资料与指南缺项复核；待发布内容见questions。",
+          "sectionCount": 3,
+          "tableCount": 0,
+          "groupCount": 0,
+          "registrationStatus": "unknown",
+          "sourceUrls": [
+            "https://www.sohu.com/a/995769221_121106884",
+            "https://www.sohu.com/a/1103264607_121119642"
+          ],
+          "questions": [
+            "四川体育同届公告确认12月27日、雅安雨城区、8,000人；中国马拉松汇总列报名窗口但明确以组委会公告为准，未把汇总页作为直达入口，未把窗口映射成已经实查开放的报名状态。",
+            "现有公开团体费率为待核线索；不把团体费率写入个人组，不套用2025年赛事发枪、名单或领物。尚待本届正式组别、资格、费用及领物日程原件。"
+          ],
+          "updatedFields": [
+            "reg_start",
+            "deadline",
+            "scale"
+          ],
+          "saved": {
+            "bodyAndGroupsMatch": true,
+            "guideSha256": "36c4b4079a1f784de0694050ad9f7512ce32c9571475b4d52ba505bc6786f1ee"
+          },
+          "web": {
+            "actualPageWidths": [],
+            "fullRenderedContentVerifiedAt320": true,
+            "tableRowsIncludingHeaders": 0,
+            "imagePreviews": []
+          },
+          "miniDevTools": {
+            "actualViewport": 390,
+            "bodyExactlyMatchesProduction": true,
+            "groupsExactlyMatchProduction": true,
+            "tableRowsIncludingHeaders": 0,
+            "allRowsActuallyRendered": true
+          }
+        },
+        {
+          "id": "caa-1000452016",
+          "name": "2026南宁马拉松",
+          "reviewScope": "逐项核对当届组委会报名须知全文、连续两块正式日程原图及官网和数字心动报名二维码目标；原概要明确实用事实已保留，移除营销形容和无可核实际补给承诺。",
+          "sectionCount": 7,
+          "tableCount": 4,
+          "groupCount": 2,
+          "registrationStatus": "closed",
+          "sourceUrls": [
+            "https://zuicool.com/news/archives/319640",
+            "https://zc3wp-uploads.bkt.zuicool.com/2026/10/5161f3d2e351892b5fe429996aecb534159480fe.jpeg?imageView2/2/w/640",
+            "https://www.nanning-marathon.com/",
+            "https://race.shuzixindong.com/offline/#/pages/race/detail?raceId=1000465006&f=b5767"
+          ],
+          "questions": [
+            {
+              "issue": "赛事官网连接失败，数字心动目标需安全验证；已核报名关闭，不将平台验证页写入公开报名按钮。"
+            },
+            {
+              "issue": "未取得后续正式精确领物时地、逐段关门和路线图。"
+            },
+            {
+              "issue": "报名须知的“满20／18”及“1月1日之前出生”在临界生日表述不同；以组委会确认。"
+            }
+          ],
+          "updatedFields": [
+            "groups",
+            "phone",
+            "pickup"
+          ],
+          "saved": {
+            "bodyAndGroupsMatch": true,
+            "guideSha256": "2f15a058807379191cffd83c406f118a40b1425d7c332defb2c643f549dd7057"
+          },
+          "web": {
+            "actualPageWidths": [
+              320,
+              390
+            ],
+            "fullRenderedContentVerifiedAt320": true,
+            "tableRowsIncludingHeaders": 22,
+            "imagePreviews": [
+              {
+                "width": 320,
+                "sheetId": 1794,
+                "dims": {
+                  "w": 640,
+                  "h": 2927
+                },
+                "caption": "南宁马拉松本届日程原图：抽签、领物与全半程终点关门",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 390,
+                "sheetId": 1794,
+                "dims": {
+                  "w": 640,
+                  "h": 2927
+                },
+                "caption": "南宁马拉松本届日程原图：抽签、领物与全半程终点关门",
+                "originalZoomOpened": true
+              }
+            ]
+          },
+          "miniDevTools": {
+            "actualViewport": 390,
+            "bodyExactlyMatchesProduction": true,
+            "groupsExactlyMatchProduction": true,
+            "tableRowsIncludingHeaders": 22,
+            "allRowsActuallyRendered": true
+          }
+        }
+      ]
+    },
+    {
+      "batch": 4,
+      "backupFile": "batch4-applied.json.before.sqlite",
+      "saved": 3,
+      "failed": 0,
+      "at": "2026-11-19T22:15:44.196Z",
+      "raceRecords": 434,
+      "sheetRecords": 1803,
+      "newImagePreviews": 18,
+      "allNewImagePreviewsVerified": true,
+      "races": [
+        {
+          "id": "zuiku-54552",
+          "name": "2026银河娱乐澳门国际马拉松",
+          "reviewScope": "本届可用报名资料与指南缺项复核；待发布内容见questions。",
+          "sectionCount": 10,
+          "tableCount": 6,
+          "groupCount": 3,
+          "registrationStatus": "sold_out",
+          "sourceUrls": [
+            "https://www.macaomarathon.com/zh/information",
+            "https://www.macaomarathon.com/zh/registration",
+            "https://www.macaomarathon.com/zh/regulation",
+            "https://www.macaomarathon.com/zh/awards",
+            "https://www.macaomarathon.com/zh/coursemap",
+            "https://www.macaomarathon.com/zh/contact"
+          ],
+          "questions": [
+            "公开原行为最酷转载转换正文，报名信息在奖项下重复了一遍；已用本届赛事官方六页对应内容重组，并保留报名类别、证件、性别与年龄子组、成绩计时、奖励、规则。主办单位以当届官网“文化体育局”更新。",
+            "已目视三张官网赛道图。迷你官网基本资料为约5公里，而该届赛道图写约5.5公里，两种原始表述分别呈现，并留原图，待组委会说明；actualDistanceKm 暂空。官方奖项页破澳门纪录介绍一句仅写马拉松，表中同时列半马；两列原表信息保留，正文提醒以组委会奖项页为准。",
+            "官网报名实时显示全部已额满；10月3日仅全、半起报，迷你10月4日起，未公布统一具体额满时间，不把10月30日改项期限当截止。"
+          ],
+          "updatedFields": [
+            "groups",
+            "signup_url",
+            "organizer",
+            "phone",
+            "pickup",
+            "fee"
+          ],
+          "saved": {
+            "bodyAndGroupsMatch": true,
+            "guideSha256": "2e70380b22dde2ebe0235588a105d151d9e2b80a823c42f137d2f7d00cb1b582"
+          },
+          "web": {
+            "actualPageWidths": [
+              320,
+              390
+            ],
+            "fullRenderedContentVerifiedAt320": true,
+            "tableRowsIncludingHeaders": 40,
+            "imagePreviews": [
+              {
+                "width": 320,
+                "sheetId": 1795,
+                "dims": {
+                  "w": 550,
+                  "h": 778
+                },
+                "caption": "马拉松官方赛道图（42.195公里；红、蓝分别标出第一和第二阶段）",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 320,
+                "sheetId": 1796,
+                "dims": {
+                  "w": 550,
+                  "h": 778
+                },
+                "caption": "半程马拉松官方赛道图（21.0975公里；绿色线路）",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 320,
+                "sheetId": 1797,
+                "dims": {
+                  "w": 550,
+                  "h": 778
+                },
+                "caption": "迷你马拉松官方赛道图（图中文字标为约5.5公里；紫色线路）",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 390,
+                "sheetId": 1795,
+                "dims": {
+                  "w": 550,
+                  "h": 778
+                },
+                "caption": "马拉松官方赛道图（42.195公里；红、蓝分别标出第一和第二阶段）",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 390,
+                "sheetId": 1796,
+                "dims": {
+                  "w": 550,
+                  "h": 778
+                },
+                "caption": "半程马拉松官方赛道图（21.0975公里；绿色线路）",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 390,
+                "sheetId": 1797,
+                "dims": {
+                  "w": 550,
+                  "h": 778
+                },
+                "caption": "迷你马拉松官方赛道图（图中文字标为约5.5公里；紫色线路）",
+                "originalZoomOpened": true
+              }
+            ]
+          },
+          "miniDevTools": {
+            "actualViewport": 390,
+            "bodyExactlyMatchesProduction": true,
+            "groupsExactlyMatchProduction": true,
+            "tableRowsIncludingHeaders": 40,
+            "allRowsActuallyRendered": true
+          }
+        },
+        {
+          "id": "zuiku-19368",
+          "name": "2026中国·黔南“世遗荔波”小七孔森氧穿越跑",
+          "reviewScope": "本届可用报名资料与指南缺项复核；待发布内容见questions。",
+          "sectionCount": 10,
+          "tableCount": 6,
+          "groupCount": 5,
+          "registrationStatus": "closed",
+          "sourceUrls": [
+            "https://zuicool.com/event/19368",
+            "https://moganshan.saihuitong.com/event?id=901924&mid=65474",
+            "https://moganshan.saihuitong.com/event?id=901925&mid=65474",
+            "https://moganshan.saihuitong.com/event?id=902012&mid=65474",
+            "https://zuicool.com/news/archives/318131"
+          ],
+          "questions": [
+            {
+              "status": "official_course_elevation_differs",
+              "issue": "官网同届规程总表8km累计爬升96米，官方8km单列路线文字和图均为175米；旧值同样175米。保留原值且明确标图示，最终实测待确认。",
+              "sourceUrl": "https://moganshan.saihuitong.com/event?id=901924&mid=65474"
+            },
+            {
+              "status": "pickup_schedule_preliminary",
+              "issue": "12/3–4 14:00–21:00仅初步时段；168km在12/4 12:00发令，未从本届官网搜得更新后的分组领物、证件或代领公告。",
+              "sourceUrl": "https://moganshan.saihuitong.com/event?id=901924&mid=65474"
+            },
+            {
+              "status": "checkup_upload_channel_pending",
+              "issue": "规程仅写待官方渠道公布具体体检上传方式，未查到可确认的新链接及期限。8km年龄含6岁以上，不推断该组为亲子报名。",
+              "sourceUrl": "https://moganshan.saihuitong.com/event?id=901924&mid=65474"
+            },
+            {
+              "status": "elite_portal_group_scope_differs",
+              "issue": "精英须知写可报任意组别且限报一组，但现场精英入口下拉菜单仅列168、100、50、30公里，不将8公里标记为精英免费。",
+              "sourceUrl": "https://moganshan.saihuitong.com/event?id=901925&mid=65474"
+            },
+            {
+              "status": "official_route_points_differ",
+              "issue": "50km路文字末段为CP5，但官方50km路线图标签显示CP7。保留两种原始信息，不在指引表猜站点编号。",
+              "sourceUrl": "https://moganshan.saihuitong.com/event?id=901924&mid=65474"
+            },
+            {
+              "status": "unpublished_details_preserved",
+              "issue": "未找到本届有效对外联系电话、各组名额、赛事对应ITRA积分、报名确切开始日；不从往届推定。精英报名门槛的ITRA表现分不当作完赛赛事积分。",
+              "sourceUrl": "https://moganshan.saihuitong.com/event?id=901924&mid=65474"
+            }
+          ],
+          "updatedFields": [
+            "groups",
+            "deadline",
+            "deadline_name",
+            "signup_url",
+            "fee",
+            "start_at",
+            "pickup"
+          ],
+          "saved": {
+            "bodyAndGroupsMatch": true,
+            "guideSha256": "86ecd30771e1d0913aef8ea716263ab3580b265a1ff68c42518cc4d22e03ac1b"
+          },
+          "web": {
+            "actualPageWidths": [
+              320,
+              390
+            ],
+            "fullRenderedContentVerifiedAt320": true,
+            "tableRowsIncludingHeaders": 41,
+            "imagePreviews": [
+              {
+                "width": 320,
+                "sheetId": 1798,
+                "dims": {
+                  "w": 2954,
+                  "h": 4371
+                },
+                "caption": "世遗荔波168km官方路线与海拔图",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 320,
+                "sheetId": 1799,
+                "dims": {
+                  "w": 2954,
+                  "h": 4371
+                },
+                "caption": "绿宝石100km官方路线与海拔图",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 320,
+                "sheetId": 1800,
+                "dims": {
+                  "w": 2954,
+                  "h": 4371
+                },
+                "caption": "瑶山古寨50km官方路线与海拔图",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 320,
+                "sheetId": 1801,
+                "dims": {
+                  "w": 2954,
+                  "h": 4371
+                },
+                "caption": "大小七孔30km官方路线与海拔图",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 320,
+                "sheetId": 1802,
+                "dims": {
+                  "w": 2954,
+                  "h": 4371
+                },
+                "caption": "小七孔8km官方路线与海拔图",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 320,
+                "sheetId": 1803,
+                "dims": {
+                  "w": 5550,
+                  "h": 4490
+                },
+                "caption": "本届组委会强制装备清单原图（五组）",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 390,
+                "sheetId": 1798,
+                "dims": {
+                  "w": 2954,
+                  "h": 4371
+                },
+                "caption": "世遗荔波168km官方路线与海拔图",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 390,
+                "sheetId": 1799,
+                "dims": {
+                  "w": 2954,
+                  "h": 4371
+                },
+                "caption": "绿宝石100km官方路线与海拔图",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 390,
+                "sheetId": 1800,
+                "dims": {
+                  "w": 2954,
+                  "h": 4371
+                },
+                "caption": "瑶山古寨50km官方路线与海拔图",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 390,
+                "sheetId": 1801,
+                "dims": {
+                  "w": 2954,
+                  "h": 4371
+                },
+                "caption": "大小七孔30km官方路线与海拔图",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 390,
+                "sheetId": 1802,
+                "dims": {
+                  "w": 2954,
+                  "h": 4371
+                },
+                "caption": "小七孔8km官方路线与海拔图",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 390,
+                "sheetId": 1803,
+                "dims": {
+                  "w": 5550,
+                  "h": 4490
+                },
+                "caption": "本届组委会强制装备清单原图（五组）",
+                "originalZoomOpened": true
+              }
+            ]
+          },
+          "miniDevTools": {
+            "actualViewport": 390,
+            "bodyExactlyMatchesProduction": true,
+            "groupsExactlyMatchProduction": true,
+            "tableRowsIncludingHeaders": 41,
+            "allRowsActuallyRendered": true
+          }
+        },
+        {
+          "id": "caa-1000479122",
+          "name": "“跑遍四川”总决赛·2026年雅安雨城半程马拉松",
+          "reviewScope": "本届可用报名资料与指南缺项复核；待发布内容见questions。",
+          "sectionCount": 5,
+          "tableCount": 0,
+          "groupCount": 1,
+          "registrationStatus": "unknown",
+          "sourceUrls": [
+            "https://www.sohu.com/a/995769221_121106884",
+            "https://www.sohu.com/a/1103264607_121119642",
+            "https://m.cd.bendibao.com/xiuxian/215628.shtm",
+            "https://imgbdb3.bendibao.com/cdbdb/xiuxian/202611/02/20261102153630_13466.jpg",
+            "https://imgbdb3.bendibao.com/cdbdb/xiuxian/202611/02/20261102153629_35634.png"
+          ],
+          "questions": [
+            "四川体育同届公告确认12月27日、雅安雨城区、8,000人；中国马拉松汇总列报名窗口但明确以组委会公告为准，未把汇总页作为直达入口，未把窗口映射成已经实查开放的报名状态。",
+            "现有公开团体费率为待核线索；不把团体费率写入个人组，不套用2025年赛事发枪、名单或领物。尚待本届正式组别、资格、费用及领物日程原件。",
+            "已实开成都本地宝团体报名文章；两张原图（团体报名页面、官方小程序码）已目视。团体费率、资格、名额和奖励据该指南整理，个报详情页及路线页目前访问需拼图验证，不把团体费率写入个人组，也不照搬2025年资料；不公布未核实的发枪时间、领物。"
+          ],
+          "updatedFields": [
+            "groups"
+          ],
+          "saved": {
+            "bodyAndGroupsMatch": true,
+            "guideSha256": "6b785b1c4bf0bf8d47f73a0b3b5c31a0db2116fefbdbd4634ac12937978ff707"
+          },
+          "web": {
+            "actualPageWidths": [
+              320,
+              390
+            ],
+            "fullRenderedContentVerifiedAt320": true,
+            "tableRowsIncludingHeaders": 0,
+            "imagePreviews": []
+          },
+          "miniDevTools": {
+            "actualViewport": 390,
+            "bodyExactlyMatchesProduction": true,
+            "groupsExactlyMatchProduction": true,
+            "tableRowsIncludingHeaders": 0,
+            "allRowsActuallyRendered": true
+          }
+        }
+      ]
+    },
+    {
+      "batch": 5,
+      "backupFile": "batch5-applied.json.before.sqlite",
+      "saved": 1,
+      "failed": 0,
+      "at": "2026-11-19T22:27:43.157Z",
+      "raceRecords": 434,
+      "sheetRecords": 1806,
+      "newImagePreviews": 6,
+      "allNewImagePreviewsVerified": true,
+      "races": [
+        {
+          "id": "caa-1000481059",
+          "name": "2026福州马拉松",
+          "reviewScope": "本届主赛报名须知、两组资格及费用、发布会披露奖励、官网路线原图及配套欢乐跑报名；主赛完整竞赛规程、领物和关门未确认。",
+          "sectionCount": 9,
+          "tableCount": 5,
+          "groupCount": 2,
+          "registrationStatus": "closed",
+          "sourceUrls": [
+            "https://www.fuzhou-marathon.com/",
+            "https://m.fznews.com.cn/fzyw/20260911/3zq9ma53B2.shtml",
+            "https://news.fznews.com.cn/fzyw/20260910/316129C4V6.shtml",
+            "https://news.fznews.com.cn/fzyw/20261105/P8PZ98Krv3.shtml",
+            "https://zuicool.com/news/archives/314889",
+            "https://zc3wp-uploads.bkt.zuicool.com/2026/09/ed4a4580d85498b43ea5891991d73e02a7fbb55c.jpeg?imageView2/2/w/750",
+            "https://zc3wp-uploads.bkt.zuicool.com/2026/09/46e6df894b1f4295de441c949893f8812ea65fd7.jpeg?imageView2/2/w/750",
+            "https://www.fuzhou-marathon.com/t/icon/202609/202609101853106432.jpg"
+          ],
+          "questions": [
+            "官网首页为当届，含 2026 路线原图和联系信息，同时轮播混有 2025 海报；仅取当届并已人工确认标题。另一转载海报把官网漏短横线，使用报名须知写出的可访问 HTTPS 域名。",
+            "领物只确认另行通知，未写入未经当届组委会核实的时间、地点或材料。本届主赛可访问规程中暂未可靠确认关门时间、完整奖金名次细则。已在报名正文保留原始图片链接；官网广告不重复展示。",
+            "配套乐跑有独立报名、日期、名额和组别，作为本届相关活动列示，不加入 12 月 27 日的主赛结构化组别，也不增赛事或误改主赛报名状态。",
+            "报名是福云赛事微信小程序，没找到可复用的公开 H5 直达；不把官网首页或媒体页当作报名直链。"
+          ],
+          "updatedFields": [
+            "groups",
+            "phone",
+            "route"
+          ],
+          "saved": {
+            "bodyAndGroupsMatch": true,
+            "guideSha256": "5a840bf39c265846403116809f62b93b30a4b8951a611309cf31dc18ae1e4e94"
+          },
+          "web": {
+            "actualPageWidths": [
+              320,
+              390
+            ],
+            "fullRenderedContentVerifiedAt320": true,
+            "tableRowsIncludingHeaders": 20,
+            "imagePreviews": [
+              {
+                "width": 320,
+                "sheetId": 1804,
+                "dims": {
+                  "w": 4961,
+                  "h": 3508
+                },
+                "caption": "2026左海·福州马拉松官方路线图：含全马与半马的路线、海拔曲线、计时点、饮水与医疗等服务点位。",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 320,
+                "sheetId": 1805,
+                "dims": {
+                  "w": 750,
+                  "h": 8454
+                },
+                "caption": "组委会报名须知第一部分",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 320,
+                "sheetId": 1806,
+                "dims": {
+                  "w": 750,
+                  "h": 5972
+                },
+                "caption": "组委会报名须知第二部分",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 390,
+                "sheetId": 1804,
+                "dims": {
+                  "w": 4961,
+                  "h": 3508
+                },
+                "caption": "2026左海·福州马拉松官方路线图：含全马与半马的路线、海拔曲线、计时点、饮水与医疗等服务点位。",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 390,
+                "sheetId": 1805,
+                "dims": {
+                  "w": 750,
+                  "h": 8454
+                },
+                "caption": "组委会报名须知第一部分",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 390,
+                "sheetId": 1806,
+                "dims": {
+                  "w": 750,
+                  "h": 5972
+                },
+                "caption": "组委会报名须知第二部分",
+                "originalZoomOpened": true
+              }
+            ]
+          },
+          "miniDevTools": {
+            "actualViewport": 390,
+            "bodyExactlyMatchesProduction": true,
+            "groupsExactlyMatchProduction": true,
+            "tableRowsIncludingHeaders": 20,
+            "allRowsActuallyRendered": true
+          }
+        }
+      ]
+    },
+    {
+      "batch": 6,
+      "backupFile": "batch6-applied.json.before.sqlite",
+      "saved": 5,
+      "failed": 0,
+      "at": "2026-11-19T22:36:44.494Z",
+      "raceRecords": 434,
+      "sheetRecords": 1817,
+      "newImagePreviews": 22,
+      "allNewImagePreviewsVerified": true,
+      "races": [
+        {
+          "id": "caa-1000453053",
+          "name": "2026佛山市环两江稻田马拉松",
+          "reviewScope": "第一赛道与组委会联署本届报名须知和规程由最酷公开转载；已核分组、个人与团报、起跑检录及关门表。未拿到单发领物公告。",
+          "sectionCount": 7,
+          "tableCount": 4,
+          "groupCount": 2,
+          "registrationStatus": "closed",
+          "sourceUrls": [
+            "https://zuicool.com/news/archives/311278",
+            "https://zuicool.com/event/84669"
+          ],
+          "questions": [
+            "独立搜索未找到可访问的分立官网或本届后发领物公告；报名须知指向第一赛道 App 和公众号，未用其他赛事入口替代。原规程左列合并全马和半马，21.0975 公里是半马终点而非全马关门，分别入表。后续规程页在最酷图文原件可查。"
+          ],
+          "updatedFields": [
+            "groups",
+            "reg_start",
+            "deadline",
+            "deadline_name",
+            "fee",
+            "start_at"
+          ],
+          "saved": {
+            "bodyAndGroupsMatch": true,
+            "guideSha256": "140c9e2ae10f6dd877a802aa40533af7a6cc0ba3173c777f95905e29384ad94e"
+          },
+          "web": {
+            "actualPageWidths": [
+              320,
+              390
+            ],
+            "fullRenderedContentVerifiedAt320": true,
+            "tableRowsIncludingHeaders": 20,
+            "imagePreviews": [
+              {
+                "width": 320,
+                "sheetId": 1807,
+                "dims": {
+                  "w": 750,
+                  "h": 5025
+                },
+                "caption": "佛山稻田本届报名须知：个人及团报价格、资格与退改",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 320,
+                "sheetId": 1808,
+                "dims": {
+                  "w": 750,
+                  "h": 6421
+                },
+                "caption": "佛山稻田竞赛规程第一部分：赛程、分组、检录及完整关门表",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 390,
+                "sheetId": 1807,
+                "dims": {
+                  "w": 750,
+                  "h": 5025
+                },
+                "caption": "佛山稻田本届报名须知：个人及团报价格、资格与退改",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 390,
+                "sheetId": 1808,
+                "dims": {
+                  "w": 750,
+                  "h": 6421
+                },
+                "caption": "佛山稻田竞赛规程第一部分：赛程、分组、检录及完整关门表",
+                "originalZoomOpened": true
+              }
+            ]
+          },
+          "miniDevTools": {
+            "actualViewport": 390,
+            "bodyExactlyMatchesProduction": true,
+            "groupsExactlyMatchProduction": true,
+            "tableRowsIncludingHeaders": 20,
+            "allRowsActuallyRendered": true
+          }
+        },
+        {
+          "id": "caa-1000480111",
+          "name": "2026义乌半程马拉松",
+          "reviewScope": "官网本届领物公告（可复制）、报名查询及关闭页面；按组委会须知、竞赛规程原图逐项核对资格、费用和分区关门；本届官方拟定路线图。",
+          "sectionCount": 8,
+          "tableCount": 4,
+          "groupCount": 1,
+          "registrationStatus": "closed",
+          "sourceUrls": [
+            "https://www.yiwumls.com/",
+            "https://www.yiwumls.com/p/hzim/match/textsignup.jsf?match=762189945",
+            "https://www.yiwumls.com/p/hzim/match/textrule.jsf?match=762189945",
+            "https://www.yiwumls.com/sb/articleview.jsf?code=762189945&article=771921616",
+            "https://www.yiwumls.com/p/hzim/match/itemstepbyafter.jsf?objid=712449291",
+            "https://www.yiwumls.com/p/hzim/match/querybibnumbers.jsf?match=762189945",
+            "https://www.yiwumls.com/p/hzim/match/textpath.jsf?match=762189945"
+          ],
+          "questions": [
+            "报名须知原图允许 2008 年 1 月 1 日及以前出生，竞赛规程写 1 月 1 日前；保留两种表述，避免猜测。9月24日17:00为跑团赛中赛组队截止，18:00为大众半马报名截止。官网保留上届成绩入口，未用作当届参赛查号。",
+            "组委会须知与竞赛规程为分开发布的长图，含报到、全部奖金、处罚和残疾参赛条款，作为原件按链接保留。官方原图 https://cd.mls.66han.com/s/f/image/2026/09/03/17/20260903172625633-beca66f6-7945-4c64-91b9-2b3daad8c17f.jpg；https://cd.mls.66han.com/s/f/image/2026/09/03/17/20260903172527202-cf3f2820-f89f-4e4f-a88d-60c654f214a1.jpg"
+          ],
+          "updatedFields": [
+            "groups",
+            "reg_start",
+            "deadline",
+            "deadline_name",
+            "signup_url",
+            "start_at",
+            "fee",
+            "phone",
+            "pickup"
+          ],
+          "saved": {
+            "bodyAndGroupsMatch": true,
+            "guideSha256": "eaf7404a391dd53ae5c4250c9adc570afff1de0017b5f0494754e739dba085af"
+          },
+          "web": {
+            "actualPageWidths": [
+              320,
+              390
+            ],
+            "fullRenderedContentVerifiedAt320": true,
+            "tableRowsIncludingHeaders": 15,
+            "imagePreviews": [
+              {
+                "width": 320,
+                "sheetId": 1809,
+                "dims": {
+                  "w": 3000,
+                  "h": 3360
+                },
+                "caption": "义乌半马官方拟定线路与海拔、补给点图",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 390,
+                "sheetId": 1809,
+                "dims": {
+                  "w": 3000,
+                  "h": 3360
+                },
+                "caption": "义乌半马官方拟定线路与海拔、补给点图",
+                "originalZoomOpened": true
+              }
+            ]
+          },
+          "miniDevTools": {
+            "actualViewport": 390,
+            "bodyExactlyMatchesProduction": true,
+            "groupsExactlyMatchProduction": true,
+            "tableRowsIncludingHeaders": 15,
+            "allRowsActuallyRendered": true
+          }
+        },
+        {
+          "id": "caa-1000479013",
+          "name": "2026六安马拉松",
+          "reviewScope": "本届可用报名资料与指南缺项复核；待发布内容见questions。",
+          "sectionCount": 10,
+          "tableCount": 9,
+          "groupCount": 2,
+          "registrationStatus": "closed",
+          "sourceUrls": [
+            "https://api-changzheng.chinaath.com/changzheng-content-center-api/api/homePage/official/searchById",
+            "https://zuicool.com/news/archives/314362",
+            "https://zuicool.com/event/53402",
+            "https://reg.zuicool.com/62312"
+          ],
+          "questions": [
+            {
+              "status": "pickup_notice_not_located",
+              "issue": "竞赛规程指示另行关注官方微信公众号通知领物，未查得本届领物具体时间、地址、证件、代领和邮寄规则。",
+              "sourceUrl": "https://zuicool.com/news/archives/314362"
+            },
+            {
+              "status": "official_route_map_not_located",
+              "issue": "可校对规程内全程和半程文字路线，但本届公开的最酷赛事公告与四页规则附件未附独立路线地图；未添加未经查证地图或往届图。",
+              "sourceUrl": "https://zuicool.com/news/archives/314362"
+            },
+            {
+              "status": "current_gear_list_not_provided",
+              "issue": "本届规程中未设单独强制装备清单；赛事手册有其他安排，按现有规程不作装备猜测。",
+              "sourceUrl": "https://zuicool.com/news/archives/314362"
+            }
+          ],
+          "updatedFields": [
+            "groups",
+            "reg_start",
+            "deadline",
+            "deadline_name",
+            "signup_url",
+            "start_at",
+            "scale",
+            "fee",
+            "pickup"
+          ],
+          "saved": {
+            "bodyAndGroupsMatch": true,
+            "guideSha256": "fe2183df78816b5ea6ef4a25ec8140d512da52e32a51f8e32e463cfc79ad56fc"
+          },
+          "web": {
+            "actualPageWidths": [
+              320,
+              390
+            ],
+            "fullRenderedContentVerifiedAt320": true,
+            "tableRowsIncludingHeaders": 68,
+            "imagePreviews": [
+              {
+                "width": 320,
+                "sheetId": 1810,
+                "dims": {
+                  "w": 750,
+                  "h": 4133
+                },
+                "caption": "组委会竞赛规程原图 1/4：日程、路线与健康要求",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 320,
+                "sheetId": 1811,
+                "dims": {
+                  "w": 750,
+                  "h": 5576
+                },
+                "caption": "组委会竞赛规程原图 2/4：报名及竞赛规则",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 320,
+                "sheetId": 1812,
+                "dims": {
+                  "w": 750,
+                  "h": 7947
+                },
+                "caption": "组委会竞赛规程原图 3/4：关门、补给与奖励表",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 320,
+                "sheetId": 1813,
+                "dims": {
+                  "w": 750,
+                  "h": 6743
+                },
+                "caption": "组委会竞赛规程原图 4/4：竞赛纪律、医疗与联系方式",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 390,
+                "sheetId": 1810,
+                "dims": {
+                  "w": 750,
+                  "h": 4133
+                },
+                "caption": "组委会竞赛规程原图 1/4：日程、路线与健康要求",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 390,
+                "sheetId": 1811,
+                "dims": {
+                  "w": 750,
+                  "h": 5576
+                },
+                "caption": "组委会竞赛规程原图 2/4：报名及竞赛规则",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 390,
+                "sheetId": 1812,
+                "dims": {
+                  "w": 750,
+                  "h": 7947
+                },
+                "caption": "组委会竞赛规程原图 3/4：关门、补给与奖励表",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 390,
+                "sheetId": 1813,
+                "dims": {
+                  "w": 750,
+                  "h": 6743
+                },
+                "caption": "组委会竞赛规程原图 4/4：竞赛纪律、医疗与联系方式",
+                "originalZoomOpened": true
+              }
+            ]
+          },
+          "miniDevTools": {
+            "actualViewport": 390,
+            "bodyExactlyMatchesProduction": true,
+            "groupsExactlyMatchProduction": true,
+            "tableRowsIncludingHeaders": 68,
+            "allRowsActuallyRendered": true
+          }
+        },
+        {
+          "id": "caa-1000481087",
+          "name": "2026温州马拉松",
+          "reviewScope": "本届可用报名资料与指南缺项复核；待发布内容见questions。",
+          "sectionCount": 5,
+          "tableCount": 2,
+          "groupCount": 2,
+          "registrationStatus": "closed",
+          "sourceUrls": [
+            "https://api-changzheng.chinaath.com/changzheng-content-center-api/api/homePage/official/searchById",
+            "https://zuicool.com/news/archives/314353",
+            "https://zuicool.com/event/68782"
+          ],
+          "questions": [
+            {
+              "status": "source_registration_dates_differ",
+              "issue": "组委会开报图列9月20日17:00，同篇转载正文和最酷同届赛事详情列9月24日17:00；无独立晚期直接公告证明最终截止或明示延期，不设置统一截止字段。两来源一致9/8 10:00启动，最酷页面明示已截止。",
+              "sourceUrl": "https://zuicool.com/news/archives/314353"
+            },
+            {
+              "status": "current_full_regulation_not_located",
+              "issue": "组委会公众号二维码只到微信账号，报名渠道为京东健康小程序。公开搜查温州市政府、报名平台、其他本届资料未证实完整规程、年龄、关门、具体起跑和领物安排。未套用往届。",
+              "sourceUrl": "http://weixin.qq.com/r/mp/lixqcgbEA1t8rUIR93mE"
+            }
+          ],
+          "updatedFields": [
+            "groups",
+            "reg_start",
+            "scale",
+            "fee",
+            "phone"
+          ],
+          "saved": {
+            "bodyAndGroupsMatch": true,
+            "guideSha256": "aac4bcff40159eca310de1c242c943145b02960b0c2f9fa2727737a170474b80"
+          },
+          "web": {
+            "actualPageWidths": [
+              320,
+              390
+            ],
+            "fullRenderedContentVerifiedAt320": true,
+            "tableRowsIncludingHeaders": 6,
+            "imagePreviews": [
+              {
+                "width": 320,
+                "sheetId": 1814,
+                "dims": {
+                  "w": 750,
+                  "h": 2552
+                },
+                "caption": "温州马拉松当届报名海报：两组人数、费用和起终点",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 390,
+                "sheetId": 1814,
+                "dims": {
+                  "w": 750,
+                  "h": 2552
+                },
+                "caption": "温州马拉松当届报名海报：两组人数、费用和起终点",
+                "originalZoomOpened": true
+              }
+            ]
+          },
+          "miniDevTools": {
+            "actualViewport": 390,
+            "bodyExactlyMatchesProduction": true,
+            "groupsExactlyMatchProduction": true,
+            "tableRowsIncludingHeaders": 6,
+            "allRowsActuallyRendered": true
+          }
+        },
+        {
+          "id": "caa-1000453005",
+          "name": "2026厦门环东半程马拉松",
+          "reviewScope": "据本届组委会正式竞赛规程16页、报名须知7页、路线图、招募页、赛事官网入口及厦门市体育局公告整理；所有关门、收费、日期、年龄和名次金额已按原图表格人工复核。",
+          "sectionCount": 11,
+          "tableCount": 7,
+          "groupCount": 1,
+          "registrationStatus": "closed",
+          "sourceUrls": [
+            "https://xiamenhuandongmarathon.com/web/pc_website_template/index?website_id=57",
+            "https://sport.luojiweiye.com/web/new_website/detail?website_id=57&type=1&id=811&name=%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B",
+            "https://sport.luojiweiye.com/web/new_website/detail?website_id=57&type=1&id=927&name=%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+            "https://sport.luojiweiye.com/web/new_website/detail?website_id=57&type=1&id=813&name=%E8%B5%9B%E4%BA%8B%E8%B7%AF%E7%BA%BF%E5%9B%BE",
+            "https://sport.luojiweiye.com/web/new_website/detail?website_id=57&type=1&id=818&name=%E7%AB%8B%E5%8D%B3%E6%8A%A5%E5%90%8D",
+            "https://sport.luojiweiye.com/web/new_website/detail?website_id=57&type=1&id=823&name=%E8%81%94%E7%B3%BB%E6%88%91%E4%BB%AC",
+            "https://sports.xm.gov.cn/tyxw/202609/t20260915_3017383.htm",
+            "https://zuicool.com/news/archives/315692",
+            "https://cdn.rockysports.cn/default/image/20260916/FgasozFdKdZ2WmeylShn4czZ1sAp.jpg",
+            "https://cdn.rockysports.cn/default/image/20260916/FjPeHtD3cLnmugTxQVAgNXQVOFsa.jpg",
+            "https://cdn.rockysports.cn/default/image/20260916/Fq0ZOkDOZnDdDYxUFbG5nqjcJPq3.jpg",
+            "https://cdn.rockysports.cn/default/image/20260916/Fvf-xZKI7I3G6KkNoZNIkIwm3hT2.jpg",
+            "https://cdn.rockysports.cn/default/image/20260916/FnpY-QlWvlQLso4PKP6HJ-Qrk55I.jpg",
+            "https://cdn.rockysports.cn/default/image/20260916/FqUvCEzxolK45KDbyzpoPzEcSxFH.jpg",
+            "https://cdn.rockysports.cn/default/image/20260916/Fs45RwQ1igL42mEwRLlR_z7mBWR0.jpg",
+            "https://cdn.rockysports.cn/default/image/20260916/FvM-rbmkmMcOjugm7tCad3MCcm5w.jpg",
+            "https://cdn.rockysports.cn/default/image/20260916/FgOej6UiWLpYMOv7pE-bL71mfqEU.jpg",
+            "https://cdn.rockysports.cn/default/image/20260916/FgUxqEMN6KMM2_c6w-fu5oUBfeXX.jpg",
+            "https://cdn.rockysports.cn/default/image/20260916/FpXVKaspDydrnX_5ZhX_7lch4E14.jpg",
+            "https://cdn.rockysports.cn/default/image/20260916/FkgDGrDJlULc5zHeBrVREtqNg0aT.jpg",
+            "https://cdn.rockysports.cn/default/image/20260916/FoeOcXjlLQZiJkV2t4rWs14H0aV0.jpg",
+            "https://cdn.rockysports.cn/default/image/20260916/FucaRc2IE250JHj0ArW-AcHw7Sxz.jpg",
+            "https://cdn.rockysports.cn/default/image/20260916/FjE3IEIa0h4tKASoaFpMNj4GJFfc.jpg",
+            "https://cdn.rockysports.cn/default/image/20260916/FhVFRJFomE7cnwYbRB-faOe-goQy.jpg",
+            "https://cdn.rockysports.cn/default/image/20260916/FlKgceOa4nyU57ekV3vQVEQOmYgQ.jpg",
+            "https://cdn.rockysports.cn/default/image/20260916/FrQbWT5SXZGP_n0Plgwu2qsfIxN5.jpg",
+            "https://cdn.rockysports.cn/default/image/20260916/Fnd7Zbsyu95Y6535KR3UgDBAJehb.jpg",
+            "https://cdn.rockysports.cn/default/image/20260916/Fsfmyk0mblfrrOzpuCiRYXmLAxbp.jpg",
+            "https://cdn.rockysports.cn/default/image/20260916/FpjqCg00nd-xbIqa4lAFHhZfcJVq.jpg",
+            "https://cdn.rockysports.cn/default/image/20260916/Fi94kYq8gFJOKlSK9JXAofoy4ZVc.jpg",
+            "https://cdn.rockysports.cn/default/image/20260916/FhxxZR7oxn8LWfLG6lXNAWh3tOtw.jpg",
+            "https://cdn.rockysports.cn/default/image/20260911/Fqc8foqBlOG2PeVXPmlIFVU17gx-.jpg"
+          ],
+          "questions": [
+            "日期与届次：组委会9月正式竞赛规程及报名须知均为2026年12月20日届。2026年11月20日查询时本届尚未举行；首页虽同时显示“圆满落幕”新闻卡片，但倒计时指向2026年12月20日，首页新闻字样不作为本届已完赛证据。",
+            "来源可靠性：通过组委会官网直接读取2026竞赛规程、报名须知及路线图的图片原件，逐页目视原图；厦门市体育局同届报名公告与官方招募海报交叉确认日期。官网的独立报名入口仅显示微信小程序码，官网的另一些报名查询链接仍是2025，不用作2026直达链接；规程明确官方微信报名小程序，当前报名已截止。官网首页 TLS 有问题，优先提供赛事技术运营商平台里与官网模块逐页一致的公开镜像；平台域名 TLS 验证通过。",
+            "旧 guide 只有半马距离、比赛日期/时间、报名起止和抽签日期；未记录赛事正式规模、180元人民币和50美元费用、组委会电话、起终点、领物窗口、起点和5/10/15/21.0975公里关门时间、完整资格与奖励条款。本稿均按本届官方规程补齐，不拼入历届规则。",
+            "原图关门时间表头明确标注“各分枪发令后的时间”；以此表述限制，不倒算单一绝对终点时间。年龄真值按原句“2008年12月31日前出生”保留，规程此项未写“含”，不推测该日生日如何处理。正式规程把07:30/07:40/07:50写作初步发枪计划，可能以后续补充通知为准。",
+            "官方原图有路线海拔图但没有文字版总爬升值，本稿保留图并不自行估算。官网页面通用元信息为2.5万人，但同届组委会竞赛规程和报名须知均为2万人，采用规程明确值。通用联系页营业时段与同届两份规程不同，正文标注同届文件中的联系时段。领物只确认12月18至19日，地点和每日时段待组委会后续《物资领取须知》。"
+          ],
+          "updatedFields": [
+            "groups",
+            "phone",
+            "route",
+            "fee",
+            "scale",
+            "pickup"
+          ],
+          "saved": {
+            "bodyAndGroupsMatch": true,
+            "guideSha256": "d7d80ead2eb997ac61718e52f818f8dc0697c18605b4e4a4627314bbe5e34714"
+          },
+          "web": {
+            "actualPageWidths": [
+              320,
+              390
+            ],
+            "fullRenderedContentVerifiedAt320": true,
+            "tableRowsIncludingHeaders": 30,
+            "imagePreviews": [
+              {
+                "width": 320,
+                "sheetId": 1815,
+                "dims": {
+                  "w": 2482,
+                  "h": 3227
+                },
+                "caption": "2026特步厦门环东半程马拉松组委会路线图：原比例展示21.0975公里路线、计时、补给与医疗服务点位及海拔曲线。",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 320,
+                "sheetId": 1816,
+                "dims": {
+                  "w": 2481,
+                  "h": 3509
+                },
+                "caption": "本届竞赛规程关门时间原表：按各分枪发令后起算，5、10、15公里及半程终点各点对应不同限时。",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 320,
+                "sheetId": 1817,
+                "dims": {
+                  "w": 1280,
+                  "h": 1280
+                },
+                "caption": "赛事官方微信小程序码：报名已截止，可进入“厦门文旅体育赛事助手”查询本届赛事。",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 390,
+                "sheetId": 1815,
+                "dims": {
+                  "w": 2482,
+                  "h": 3227
+                },
+                "caption": "2026特步厦门环东半程马拉松组委会路线图：原比例展示21.0975公里路线、计时、补给与医疗服务点位及海拔曲线。",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 390,
+                "sheetId": 1816,
+                "dims": {
+                  "w": 2481,
+                  "h": 3509
+                },
+                "caption": "本届竞赛规程关门时间原表：按各分枪发令后起算，5、10、15公里及半程终点各点对应不同限时。",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 390,
+                "sheetId": 1817,
+                "dims": {
+                  "w": 1280,
+                  "h": 1280
+                },
+                "caption": "赛事官方微信小程序码：报名已截止，可进入“厦门文旅体育赛事助手”查询本届赛事。",
+                "originalZoomOpened": true
+              }
+            ]
+          },
+          "miniDevTools": {
+            "actualViewport": 390,
+            "bodyExactlyMatchesProduction": true,
+            "groupsExactlyMatchProduction": true,
+            "tableRowsIncludingHeaders": 30,
+            "allRowsActuallyRendered": true
+          }
+        }
+      ]
+    },
+    {
+      "batch": 7,
+      "backupFile": "batch7-applied.json.before.sqlite",
+      "saved": 2,
+      "failed": 0,
+      "at": "2026-11-19T22:42:08.238Z",
+      "raceRecords": 434,
+      "sheetRecords": 1818,
+      "newImagePreviews": 2,
+      "allNewImagePreviewsVerified": true,
+      "races": [
+        {
+          "id": "caa-1000496003",
+          "name": "2026衢州马拉松",
+          "reviewScope": "本届可用报名资料与指南缺项复核；待发布内容见questions。",
+          "sectionCount": 9,
+          "tableCount": 6,
+          "groupCount": 2,
+          "registrationStatus": "closed",
+          "sourceUrls": [
+            "https://m.irunner.mobi/mix-race-apply/index.html?match_eng=6a9e7bea2ec37#/grid",
+            "https://mix-api.irunner.mobi/match/match-info?match_eng=6a9e7bea2ec37&app_type=",
+            "https://zuicool.com/news/archives/314349"
+          ],
+          "questions": [
+            "实际浏览4张最酷原图。报名二维码解出 iRunner 官方入口，浏览器标题显示“2026衢州马拉松”，需手机号登录才可继续查看操作；公开 match-info API 返回本届可复制规程。证据保留 API 的 HTML 规程与公开字段表格，未把接口内部字段写入指南。",
+            "最酷9月7日转载规程把两组起终点列作“衢州市体育中心”，与官方公开接口当前版本不一致。正文、地址与两组路线采用官方信息“三江东路紫薇南路路口”，不混入早期路线。",
+            "竞赛规程 HTML 的发令时间是跨10行合并单元格（07:30），表尾为跨4列的说明，重建关门表未把说明重复。21.0975公里/10:30为半马终点，原表未按项目分列；全马计时点也包括21.0975公里。",
+            "官方预报名窗口至9月30日23:59；可能顺延至10月31日或满额为止。两日期均已过，未证实是否实际顺延，结构截止只指规程发布的预报名窗口。",
+            "浙江马拉松急救跑者半价名额规程标题称85名，正文称前50名，未补写固定名额。原文“保险”一节只重复“自甘风险”，不推断保险险种或保障内容。年龄与出生日期界限依规程照录，不改为含当日。",
+            "未在已阅本届规程和公告中核实领物日期、地点、证件、代领要求；存取衣时间和物资领取时间区分。未找到本届最后确定的路线图或领物公告，不使用旧路线地图。"
+          ],
+          "updatedFields": [
+            "groups",
+            "reg_start",
+            "deadline",
+            "deadline_name",
+            "signup_url",
+            "start_at",
+            "scale",
+            "fee",
+            "route"
+          ],
+          "saved": {
+            "bodyAndGroupsMatch": true,
+            "guideSha256": "6d25fc5c253d63feed0166b03ba2be317e9edcaa19e21c6f28c71a01f40c429d"
+          },
+          "web": {
+            "actualPageWidths": [
+              320,
+              390
+            ],
+            "fullRenderedContentVerifiedAt320": true,
+            "tableRowsIncludingHeaders": 42,
+            "imagePreviews": []
+          },
+          "miniDevTools": {
+            "actualViewport": 390,
+            "bodyExactlyMatchesProduction": true,
+            "groupsExactlyMatchProduction": true,
+            "tableRowsIncludingHeaders": 42,
+            "allRowsActuallyRendered": true
+          }
+        },
+        {
+          "id": "caa-1000479040",
+          "name": "2026长荡湖马拉松",
+          "reviewScope": "本届可用报名资料与指南缺项复核；待发布内容见questions。",
+          "sectionCount": 9,
+          "tableCount": 7,
+          "groupCount": 2,
+          "registrationStatus": "closed",
+          "sourceUrls": [
+            "http://changdanghumarathon.umaysports.cn/",
+            "http://changdanghumarathon.umaysports.cn/index/Page/index.html?cate=15",
+            "http://changdanghumarathon.umaysports.cn/index/Page/index.html?cate=16",
+            "http://changdanghumarathon.umaysports.cn/index/Page/index.html?cate=17",
+            "http://changdanghumarathon.umaysports.cn/index/Product/info.html?cate=8&id=10",
+            "http://changdanghumarathon.umaysports.cn/index/Article/index.html?cate=5",
+            "https://qr61.cn/ocERP7/qcU1v8x",
+            "https://ncstatic.clewm.net/rsrc/2026/0827/13/4785efbaac584763aa99e3faeb3f26cb.pdf",
+            "https://zuicool.com/news/archives/312872"
+          ],
+          "questions": [
+            "核对了最酷11幅原图与官网7张原图，官网供给表半程图缺表头，是全程补给表同栏延续。另有本届官方可复制的17页 PDF，已对照官网条款和表格。",
+            "官网规程列“20周岁及以上/18周岁及以上”与“2006年/2008年1月1日前出生”，保留原文出生日期边界，不把该日期擅自改为含当日。",
+            "规程按项目供给8,000/7,000个名额，另列四个性别排名组；未把名额和收费拆成四个报名选项。07:30是赛事起始时间，组委会另定各分枪安排，未推断关门北京时间。",
+            "已查官网赛事公告、新闻、竞赛规程、报名须知，未证实最终领物时间、地点、证件、能否代领或本届手册发布地址；不把比赛日存取衣时间当领物时间。",
+            "官网为官方文档所列 HTTP 地址，HTTPS 证书验证未通过，保留官方 HTTP 链接。官网“我要报名”实为当前年小程序二维码；报名已过官方截止，但未登录小程序尝试提交。宣传图“海拔落差约7米”并非累计爬升，结构字段不填爬升。"
+          ],
+          "updatedFields": [
+            "groups",
+            "reg_start",
+            "deadline",
+            "deadline_name",
+            "start_at",
+            "scale",
+            "fee",
+            "route"
+          ],
+          "saved": {
+            "bodyAndGroupsMatch": true,
+            "guideSha256": "2237a67e24333e27c47c4ccbe7e194ea70de5485f0f7be1717947e768cf23eaf"
+          },
+          "web": {
+            "actualPageWidths": [
+              320,
+              390
+            ],
+            "fullRenderedContentVerifiedAt320": true,
+            "tableRowsIncludingHeaders": 54,
+            "imagePreviews": [
+              {
+                "width": 320,
+                "sheetId": 1818,
+                "dims": {
+                  "w": 750,
+                  "h": 1991
+                },
+                "caption": "2026长荡湖马拉松官方赛事信息图：全马、半马起终点和赛道走向",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 390,
+                "sheetId": 1818,
+                "dims": {
+                  "w": 750,
+                  "h": 1991
+                },
+                "caption": "2026长荡湖马拉松官方赛事信息图：全马、半马起终点和赛道走向",
+                "originalZoomOpened": true
+              }
+            ]
+          },
+          "miniDevTools": {
+            "actualViewport": 390,
+            "bodyExactlyMatchesProduction": true,
+            "groupsExactlyMatchProduction": true,
+            "tableRowsIncludingHeaders": 54,
+            "allRowsActuallyRendered": true
+          }
+        }
+      ]
+    },
+    {
+      "batch": 8,
+      "backupFile": "batch8-applied.json.before.sqlite",
+      "saved": 4,
+      "failed": 0,
+      "at": "2026-11-19T22:45:40.656Z",
+      "raceRecords": 434,
+      "sheetRecords": 1818,
+      "newImagePreviews": 0,
+      "allNewImagePreviewsVerified": true,
+      "races": [
+        {
+          "id": "caa-1000453005",
+          "name": "2026厦门环东半程马拉松",
+          "reviewScope": "厦门官方完整文件地址明文保留，便于从官网核对整份规程。",
+          "sectionCount": 11,
+          "tableCount": 7,
+          "groupCount": 1,
+          "registrationStatus": "closed",
+          "sourceUrls": [
+            "https://xiamenhuandongmarathon.com/web/pc_website_template/index?website_id=57",
+            "https://sport.luojiweiye.com/web/new_website/detail?website_id=57&type=1&id=811&name=%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B",
+            "https://sport.luojiweiye.com/web/new_website/detail?website_id=57&type=1&id=927&name=%E6%8A%A5%E5%90%8D%E9%A1%BB%E7%9F%A5",
+            "https://sport.luojiweiye.com/web/new_website/detail?website_id=57&type=1&id=813&name=%E8%B5%9B%E4%BA%8B%E8%B7%AF%E7%BA%BF%E5%9B%BE",
+            "https://sport.luojiweiye.com/web/new_website/detail?website_id=57&type=1&id=818&name=%E7%AB%8B%E5%8D%B3%E6%8A%A5%E5%90%8D",
+            "https://sport.luojiweiye.com/web/new_website/detail?website_id=57&type=1&id=823&name=%E8%81%94%E7%B3%BB%E6%88%91%E4%BB%AC",
+            "https://sports.xm.gov.cn/tyxw/202609/t20260915_3017383.htm",
+            "https://zuicool.com/news/archives/315692",
+            "https://cdn.rockysports.cn/default/image/20260916/FgasozFdKdZ2WmeylShn4czZ1sAp.jpg",
+            "https://cdn.rockysports.cn/default/image/20260916/FjPeHtD3cLnmugTxQVAgNXQVOFsa.jpg",
+            "https://cdn.rockysports.cn/default/image/20260916/Fq0ZOkDOZnDdDYxUFbG5nqjcJPq3.jpg",
+            "https://cdn.rockysports.cn/default/image/20260916/Fvf-xZKI7I3G6KkNoZNIkIwm3hT2.jpg",
+            "https://cdn.rockysports.cn/default/image/20260916/FnpY-QlWvlQLso4PKP6HJ-Qrk55I.jpg",
+            "https://cdn.rockysports.cn/default/image/20260916/FqUvCEzxolK45KDbyzpoPzEcSxFH.jpg",
+            "https://cdn.rockysports.cn/default/image/20260916/Fs45RwQ1igL42mEwRLlR_z7mBWR0.jpg",
+            "https://cdn.rockysports.cn/default/image/20260916/FvM-rbmkmMcOjugm7tCad3MCcm5w.jpg",
+            "https://cdn.rockysports.cn/default/image/20260916/FgOej6UiWLpYMOv7pE-bL71mfqEU.jpg",
+            "https://cdn.rockysports.cn/default/image/20260916/FgUxqEMN6KMM2_c6w-fu5oUBfeXX.jpg",
+            "https://cdn.rockysports.cn/default/image/20260916/FpXVKaspDydrnX_5ZhX_7lch4E14.jpg",
+            "https://cdn.rockysports.cn/default/image/20260916/FkgDGrDJlULc5zHeBrVREtqNg0aT.jpg",
+            "https://cdn.rockysports.cn/default/image/20260916/FoeOcXjlLQZiJkV2t4rWs14H0aV0.jpg",
+            "https://cdn.rockysports.cn/default/image/20260916/FucaRc2IE250JHj0ArW-AcHw7Sxz.jpg",
+            "https://cdn.rockysports.cn/default/image/20260916/FjE3IEIa0h4tKASoaFpMNj4GJFfc.jpg",
+            "https://cdn.rockysports.cn/default/image/20260916/FhVFRJFomE7cnwYbRB-faOe-goQy.jpg",
+            "https://cdn.rockysports.cn/default/image/20260916/FlKgceOa4nyU57ekV3vQVEQOmYgQ.jpg",
+            "https://cdn.rockysports.cn/default/image/20260916/FrQbWT5SXZGP_n0Plgwu2qsfIxN5.jpg",
+            "https://cdn.rockysports.cn/default/image/20260916/Fnd7Zbsyu95Y6535KR3UgDBAJehb.jpg",
+            "https://cdn.rockysports.cn/default/image/20260916/Fsfmyk0mblfrrOzpuCiRYXmLAxbp.jpg",
+            "https://cdn.rockysports.cn/default/image/20260916/FpjqCg00nd-xbIqa4lAFHhZfcJVq.jpg",
+            "https://cdn.rockysports.cn/default/image/20260916/Fi94kYq8gFJOKlSK9JXAofoy4ZVc.jpg",
+            "https://cdn.rockysports.cn/default/image/20260916/FhxxZR7oxn8LWfLG6lXNAWh3tOtw.jpg",
+            "https://cdn.rockysports.cn/default/image/20260911/Fqc8foqBlOG2PeVXPmlIFVU17gx-.jpg"
+          ],
+          "questions": [
+            "日期与届次：组委会9月正式竞赛规程及报名须知均为2026年12月20日届。2026年11月20日查询时本届尚未举行；首页虽同时显示“圆满落幕”新闻卡片，但倒计时指向2026年12月20日，首页新闻字样不作为本届已完赛证据。",
+            "来源可靠性：通过组委会官网直接读取2026竞赛规程、报名须知及路线图的图片原件，逐页目视原图；厦门市体育局同届报名公告与官方招募海报交叉确认日期。官网的独立报名入口仅显示微信小程序码，官网的另一些报名查询链接仍是2025，不用作2026直达链接；规程明确官方微信报名小程序，当前报名已截止。官网首页 TLS 有问题，优先提供赛事技术运营商平台里与官网模块逐页一致的公开镜像；平台域名 TLS 验证通过。",
+            "旧 guide 只有半马距离、比赛日期/时间、报名起止和抽签日期；未记录赛事正式规模、180元人民币和50美元费用、组委会电话、起终点、领物窗口、起点和5/10/15/21.0975公里关门时间、完整资格与奖励条款。本稿均按本届官方规程补齐，不拼入历届规则。",
+            "原图关门时间表头明确标注“各分枪发令后的时间”；以此表述限制，不倒算单一绝对终点时间。年龄真值按原句“2008年12月31日前出生”保留，规程此项未写“含”，不推测该日生日如何处理。正式规程把07:30/07:40/07:50写作初步发枪计划，可能以后续补充通知为准。",
+            "官方原图有路线海拔图但没有文字版总爬升值，本稿保留图并不自行估算。官网页面通用元信息为2.5万人，但同届组委会竞赛规程和报名须知均为2万人，采用规程明确值。通用联系页营业时段与同届两份规程不同，正文标注同届文件中的联系时段。领物只确认12月18至19日，地点和每日时段待组委会后续《物资领取须知》。"
+          ],
+          "updatedFields": [
+            "groups"
+          ],
+          "saved": {
+            "bodyAndGroupsMatch": true,
+            "guideSha256": "12d1b4b1d38dc3b8db36da69e455929c9340695267eadb04e20289176d5c87ff"
+          },
+          "web": {
+            "actualPageWidths": [
+              320,
+              390
+            ],
+            "fullRenderedContentVerifiedAt320": true,
+            "tableRowsIncludingHeaders": 30,
+            "imagePreviews": []
+          },
+          "miniDevTools": {
+            "actualViewport": 390,
+            "bodyExactlyMatchesProduction": true,
+            "groupsExactlyMatchProduction": true,
+            "tableRowsIncludingHeaders": 30,
+            "allRowsActuallyRendered": true
+          }
+        },
+        {
+          "id": "caa-1000479040",
+          "name": "2026长荡湖马拉松",
+          "reviewScope": "复验长荡湖两组关门时长的展示，保留官方完整 PDF 地址。",
+          "sectionCount": 9,
+          "tableCount": 7,
+          "groupCount": 2,
+          "registrationStatus": "closed",
+          "sourceUrls": [
+            "http://changdanghumarathon.umaysports.cn/",
+            "http://changdanghumarathon.umaysports.cn/index/Page/index.html?cate=15",
+            "http://changdanghumarathon.umaysports.cn/index/Page/index.html?cate=16",
+            "http://changdanghumarathon.umaysports.cn/index/Page/index.html?cate=17",
+            "http://changdanghumarathon.umaysports.cn/index/Product/info.html?cate=8&id=10",
+            "http://changdanghumarathon.umaysports.cn/index/Article/index.html?cate=5",
+            "https://qr61.cn/ocERP7/qcU1v8x",
+            "https://ncstatic.clewm.net/rsrc/2026/0827/13/4785efbaac584763aa99e3faeb3f26cb.pdf",
+            "https://zuicool.com/news/archives/312872"
+          ],
+          "questions": [
+            "核对了最酷11幅原图与官网7张原图，官网供给表半程图缺表头，是全程补给表同栏延续。另有本届官方可复制的17页 PDF，已对照官网条款和表格。",
+            "官网规程列“20周岁及以上/18周岁及以上”与“2006年/2008年1月1日前出生”，保留原文出生日期边界，不把该日期擅自改为含当日。",
+            "规程按项目供给8,000/7,000个名额，另列四个性别排名组；未把名额和收费拆成四个报名选项。07:30是赛事起始时间，组委会另定各分枪安排，未推断关门北京时间。",
+            "已查官网赛事公告、新闻、竞赛规程、报名须知，未证实最终领物时间、地点、证件、能否代领或本届手册发布地址；不把比赛日存取衣时间当领物时间。",
+            "官网为官方文档所列 HTTP 地址，HTTPS 证书验证未通过，保留官方 HTTP 链接。官网“我要报名”实为当前年小程序二维码；报名已过官方截止，但未登录小程序尝试提交。宣传图“海拔落差约7米”并非累计爬升，结构字段不填爬升。"
+          ],
+          "updatedFields": [
+            "groups"
+          ],
+          "saved": {
+            "bodyAndGroupsMatch": true,
+            "guideSha256": "15a3fdf87d782a9348e75136d1a8ff95c7091510dcc0a85127c7b73a2f9e699f"
+          },
+          "web": {
+            "actualPageWidths": [
+              320,
+              390
+            ],
+            "fullRenderedContentVerifiedAt320": true,
+            "tableRowsIncludingHeaders": 54,
+            "imagePreviews": []
+          },
+          "miniDevTools": {
+            "actualViewport": 390,
+            "bodyExactlyMatchesProduction": true,
+            "groupsExactlyMatchProduction": true,
+            "tableRowsIncludingHeaders": 54,
+            "allRowsActuallyRendered": true
+          }
+        },
+        {
+          "id": "caa-1000480111",
+          "name": "2026义乌半程马拉松",
+          "reviewScope": "义乌本届官网、领物公告与两份完整规程提供可复制的对应地址。",
+          "sectionCount": 8,
+          "tableCount": 4,
+          "groupCount": 1,
+          "registrationStatus": "closed",
+          "sourceUrls": [
+            "https://www.yiwumls.com/",
+            "https://www.yiwumls.com/p/hzim/match/textsignup.jsf?match=762189945",
+            "https://www.yiwumls.com/p/hzim/match/textrule.jsf?match=762189945",
+            "https://www.yiwumls.com/sb/articleview.jsf?code=762189945&article=771921616",
+            "https://www.yiwumls.com/p/hzim/match/itemstepbyafter.jsf?objid=712449291",
+            "https://www.yiwumls.com/p/hzim/match/querybibnumbers.jsf?match=762189945",
+            "https://www.yiwumls.com/p/hzim/match/textpath.jsf?match=762189945"
+          ],
+          "questions": [
+            "报名须知原图允许 2008 年 1 月 1 日及以前出生，竞赛规程写 1 月 1 日前；保留两种表述，避免猜测。9月24日17:00为跑团赛中赛组队截止，18:00为大众半马报名截止。官网保留上届成绩入口，未用作当届参赛查号。",
+            "组委会须知与竞赛规程为分开发布的长图，含报到、全部奖金、处罚和残疾参赛条款，作为原件按链接保留。官方原图 https://cd.mls.66han.com/s/f/image/2026/09/03/17/20260903172625633-beca66f6-7945-4c64-91b9-2b3daad8c17f.jpg；https://cd.mls.66han.com/s/f/image/2026/09/03/17/20260903172527202-cf3f2820-f89f-4e4f-a88d-60c654f214a1.jpg"
+          ],
+          "updatedFields": [
+            "groups"
+          ],
+          "saved": {
+            "bodyAndGroupsMatch": true,
+            "guideSha256": "7de7718166ebca7922caf335883737af7bbaddc28d21778fd0cc98007a9f518e"
+          },
+          "web": {
+            "actualPageWidths": [
+              320,
+              390
+            ],
+            "fullRenderedContentVerifiedAt320": true,
+            "tableRowsIncludingHeaders": 15,
+            "imagePreviews": []
+          },
+          "miniDevTools": {
+            "actualViewport": 390,
+            "bodyExactlyMatchesProduction": true,
+            "groupsExactlyMatchProduction": true,
+            "tableRowsIncludingHeaders": 15,
+            "allRowsActuallyRendered": true
+          }
+        },
+        {
+          "id": "caa-1000496003",
+          "name": "2026衢州马拉松",
+          "reviewScope": "衢州半马终点单独标明，公开竞赛规程来源与报名页分列。",
+          "sectionCount": 9,
+          "tableCount": 6,
+          "groupCount": 2,
+          "registrationStatus": "closed",
+          "sourceUrls": [
+            "https://m.irunner.mobi/mix-race-apply/index.html?match_eng=6a9e7bea2ec37#/grid",
+            "https://mix-api.irunner.mobi/match/match-info?match_eng=6a9e7bea2ec37&app_type=",
+            "https://zuicool.com/news/archives/314349"
+          ],
+          "questions": [
+            "实际浏览4张最酷原图。报名二维码解出 iRunner 官方入口，浏览器标题显示“2026衢州马拉松”，需手机号登录才可继续查看操作；公开 match-info API 返回本届可复制规程。证据保留 API 的 HTML 规程与公开字段表格，未把接口内部字段写入指南。",
+            "最酷9月7日转载规程把两组起终点列作“衢州市体育中心”，与官方公开接口当前版本不一致。正文、地址与两组路线采用官方信息“三江东路紫薇南路路口”，不混入早期路线。",
+            "竞赛规程 HTML 的发令时间是跨10行合并单元格（07:30），表尾为跨4列的说明，重建关门表未把说明重复。21.0975公里/10:30为半马终点，原表未按项目分列；全马计时点也包括21.0975公里。",
+            "官方预报名窗口至9月30日23:59；可能顺延至10月31日或满额为止。两日期均已过，未证实是否实际顺延，结构截止只指规程发布的预报名窗口。",
+            "浙江马拉松急救跑者半价名额规程标题称85名，正文称前50名，未补写固定名额。原文“保险”一节只重复“自甘风险”，不推断保险险种或保障内容。年龄与出生日期界限依规程照录，不改为含当日。",
+            "未在已阅本届规程和公告中核实领物日期、地点、证件、代领要求；存取衣时间和物资领取时间区分。未找到本届最后确定的路线图或领物公告，不使用旧路线地图。"
+          ],
+          "updatedFields": [
+            "groups"
+          ],
+          "saved": {
+            "bodyAndGroupsMatch": true,
+            "guideSha256": "0e20fb52c5e96186200de505bc00398427f5f8dad45070745546c71650f18642"
+          },
+          "web": {
+            "actualPageWidths": [
+              320,
+              390
+            ],
+            "fullRenderedContentVerifiedAt320": true,
+            "tableRowsIncludingHeaders": 42,
+            "imagePreviews": []
+          },
+          "miniDevTools": {
+            "actualViewport": 390,
+            "bodyExactlyMatchesProduction": true,
+            "groupsExactlyMatchProduction": true,
+            "tableRowsIncludingHeaders": 42,
+            "allRowsActuallyRendered": true
+          }
+        }
+      ]
+    },
+    {
+      "batch": 9,
+      "backupFile": "batch9-applied.json.before.sqlite",
+      "saved": 4,
+      "failed": 0,
+      "at": "2026-11-19T22:56:49.604Z",
+      "raceRecords": 434,
+      "sheetRecords": 1824,
+      "newImagePreviews": 12,
+      "allNewImagePreviewsVerified": true,
+      "races": [
+        {
+          "id": "caa-1000479037",
+          "name": "2026玉环半程马拉松",
+          "reviewScope": "本届可用报名资料与指南缺项复核；待发布内容见questions。",
+          "sectionCount": 10,
+          "tableCount": 5,
+          "groupCount": 2,
+          "registrationStatus": "closed",
+          "sourceUrls": [
+            "https://api-changzheng.chinaath.com/changzheng-content-center-api/api/homePage/official/searchById",
+            "https://yuhuanhalf.zjim.org/p/hzim/match/textrule.jsf?match=756457407",
+            "https://yuhuanhalf.zjim.org/",
+            "https://yuhuanhalf.zjim.org/p/hzim/match/item.jsf?match=756457407",
+            "https://yuhuanhalf.zjim.org/sb/articleview.jsf?code=756457407&article=762360881",
+            "https://yuhuanhalf.zjim.org/p/hzim/match/textpath.jsf?match=756457407",
+            "https://yuhuanhalf.zjim.org/p/hzim/match/textnote.jsf?match=756457407",
+            "https://zuicool.com/news/archives/313795"
+          ],
+          "questions": [
+            {
+              "status": "source_age_boundary_differs",
+              "issue": "官规原图写“2008年1月1日前出生”，两组官网报名入口均写“2008年1月1日(含)前出生”；不自动推断当天出生是否可报名，正文明确两处分歧。",
+              "sourceUrl": "https://yuhuanhalf.zjim.org/p/hzim/match/item.jsf?match=756457407"
+            },
+            {
+              "status": "current_pickup_placeholder",
+              "issue": "官规原图称具体领物时间地点赛前一周发布，官网领物栏仍是“敬请期待”，已有证件要求保留。",
+              "sourceUrl": "https://yuhuanhalf.zjim.org/p/hzim/match/textnote.jsf?match=756457407"
+            },
+            {
+              "status": "current_route_placeholder",
+              "issue": "官网路线图栏的342×381源图已查看，仍是“敬请期待”占位，不当作比赛路线图；正文保留规程逐路段说明。",
+              "sourceUrl": "https://yuhuanhalf.zjim.org/p/hzim/match/textpath.jsf?match=756457407"
+            }
+          ],
+          "updatedFields": [
+            "groups",
+            "reg_start",
+            "deadline",
+            "deadline_name",
+            "signup_url",
+            "scale",
+            "fee",
+            "phone",
+            "start_at"
+          ],
+          "saved": {
+            "bodyAndGroupsMatch": true,
+            "guideSha256": "b262a2b79e838f326a15324c88416f86dc209714f6a64558cc46f7b612a06be7"
+          },
+          "web": {
+            "actualPageWidths": [
+              320,
+              390
+            ],
+            "fullRenderedContentVerifiedAt320": true,
+            "tableRowsIncludingHeaders": 29,
+            "imagePreviews": [
+              {
+                "width": 320,
+                "sheetId": 1819,
+                "dims": {
+                  "w": 1587,
+                  "h": 23912
+                },
+                "caption": "玉环半程马拉松官方竞赛规程原图：组别、资格、关门、补给和奖励",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 390,
+                "sheetId": 1819,
+                "dims": {
+                  "w": 1587,
+                  "h": 23912
+                },
+                "caption": "玉环半程马拉松官方竞赛规程原图：组别、资格、关门、补给和奖励",
+                "originalZoomOpened": true
+              }
+            ]
+          },
+          "miniDevTools": {
+            "actualViewport": 390,
+            "bodyExactlyMatchesProduction": true,
+            "groupsExactlyMatchProduction": true,
+            "tableRowsIncludingHeaders": 29,
+            "allRowsActuallyRendered": true
+          }
+        },
+        {
+          "id": "caa-1000476004",
+          "name": "2026广安马拉松",
+          "reviewScope": "本届可用报名资料与指南缺项复核；待发布内容见questions。",
+          "sectionCount": 10,
+          "tableCount": 7,
+          "groupCount": 2,
+          "registrationStatus": "closed",
+          "sourceUrls": [
+            "https://api-changzheng.chinaath.com/changzheng-content-center-api/api/homePage/official/searchById",
+            "https://guangan.marathon.org.cn/page/r5vKA2RDzXKN0nGwWq8b.html",
+            "https://guangan.marathon.org.cn/page/JlrPG3eDQ85PmYWbQMv8.html",
+            "https://guangan.marathon.org.cn/",
+            "https://guangan.marathon.org.cn/page/AgWXrnZ0MJrKmwzQ5a9G.html",
+            "https://reg.zuicool.com/92195",
+            "https://zuicool.com/news/archives/317453",
+            "https://guangan.marathon.org.cn/list-31qM4G6eD24O0YpZzn2B.html"
+          ],
+          "questions": [
+            {
+              "status": "registration_channel_dates_differ",
+              "issue": "独立官网报名须知与竞赛规程均列11月8日10:00；最酷合作报名正文、开报海报明确列11月1日10:00，按官网作为赛事公众报名截止，正文区分合作渠道日期并记录证据。官网联系电话028-86042195，合作旧稿另列4009942195，主电话采用官网。",
+              "sourceUrl": "https://zuicool.com/news/archives/317453"
+            },
+            {
+              "status": "no_pickup_time_address_or_current_route_diagram_located",
+              "issue": "官网规则、报名须知仅列本人领取和戴手环、证件要求，具体时间地点另行发布；官网新闻目录截至核对仅列开报定档。尚未找到当届独立赛道路图，正文使用官网的逐路段文字；不把宣传或往届活动图当作路线图。",
+              "sourceUrl": "https://guangan.marathon.org.cn/page/r5vKA2RDzXKN0nGwWq8b.html"
+            }
+          ],
+          "updatedFields": [
+            "groups",
+            "reg_start",
+            "deadline",
+            "deadline_name",
+            "signup_url",
+            "scale",
+            "fee",
+            "phone",
+            "start_at"
+          ],
+          "saved": {
+            "bodyAndGroupsMatch": true,
+            "guideSha256": "15c11aeb1f6f8c172d9c389d0de037c7d562bd09f80bba872ee29a49ec172e7e"
+          },
+          "web": {
+            "actualPageWidths": [
+              320,
+              390
+            ],
+            "fullRenderedContentVerifiedAt320": true,
+            "tableRowsIncludingHeaders": 37,
+            "imagePreviews": [
+              {
+                "width": 320,
+                "sheetId": 1820,
+                "dims": {
+                  "w": 1000,
+                  "h": 777
+                },
+                "caption": "广安马拉松组委会关门表：起点、两组共用公里点及全马后段",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 320,
+                "sheetId": 1821,
+                "dims": {
+                  "w": 1000,
+                  "h": 1280
+                },
+                "caption": "广安马拉松组委会补给点表：饮料／饮水、用水和食品／能量",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 390,
+                "sheetId": 1820,
+                "dims": {
+                  "w": 1000,
+                  "h": 777
+                },
+                "caption": "广安马拉松组委会关门表：起点、两组共用公里点及全马后段",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 390,
+                "sheetId": 1821,
+                "dims": {
+                  "w": 1000,
+                  "h": 1280
+                },
+                "caption": "广安马拉松组委会补给点表：饮料／饮水、用水和食品／能量",
+                "originalZoomOpened": true
+              }
+            ]
+          },
+          "miniDevTools": {
+            "actualViewport": 390,
+            "bodyExactlyMatchesProduction": true,
+            "groupsExactlyMatchProduction": true,
+            "tableRowsIncludingHeaders": 37,
+            "allRowsActuallyRendered": true
+          }
+        },
+        {
+          "id": "caa-1000480024",
+          "name": "2026仙游马拉松",
+          "reviewScope": "本届可用报名资料与指南缺项复核；待发布内容见questions。",
+          "sectionCount": 10,
+          "tableCount": 11,
+          "groupCount": 2,
+          "registrationStatus": "closed",
+          "sourceUrls": [
+            "https://zuicool.com/news/archives/316972",
+            "https://zc3wp-uploads.bkt.zuicool.com/2026/09/f4b8458456ccd23dbb99cfe0e25e049037817677.jpeg",
+            "https://www.hxdsb.com/html/content/bm/75570a8516364081b0e1c80bad811168.shtml",
+            "https://zuicool.com/event/40740"
+          ],
+          "questions": [
+            "最酷同届报名文三张源图全部查看，竞赛规程源图750×17,633像素人工分成12块逐块查看，结合现有 Vision 辅助，已清理重叠内容，原图保持完整。全/半程、补给和5项原奖金表逐行列对照。福建/莆田/仙游市民奖原图明确分全、半程及男女；每项目男女金额逐行相同才合并展示。",
+            "媒体与组委会原图均为中国古典工艺博览城，最酷摘要及页面所写“中国古典公益博览城”为错字。原图注明中国田径协会（认证中），最酷摘要称A类，暂不把A类认证落定。",
+            "报名原图上“八闽名赛”二维码解析为微信公众号关注入口，并非本届报名网页；官规另列福云赛事系统。尚未验证赛事独立官网地址、可直达网页报名链接或同届小程序路径，不写 signup_url；最酷详情没有同届报名提交入口，不把该页当报名入口。",
+            "已核实11月27—28日、本人的有效证件、不可代领；原图明确每日时段及地址详见八闽名赛赛前通知。已尝试县、市政府和公开新闻、领物精准检索，未核实本届赛前领物通知。福州市台江区西环南路128号仅为组委会联系地址。",
+            "规程仅列可复制转写路线及各点补给，未找到本届官方独立赛道图或正式公布实际里程、累计爬升；无旧年填补。报名宣传海报与公众号二维码为重复内容，赛后用途有限，不在正文堆叠。"
+          ],
+          "updatedFields": [
+            "groups",
+            "reg_start",
+            "deadline",
+            "deadline_name",
+            "start_at",
+            "scale",
+            "fee",
+            "pickup",
+            "route"
+          ],
+          "saved": {
+            "bodyAndGroupsMatch": true,
+            "guideSha256": "2b1aeaef6977c080c886a955e8daaa84a72bb63e8360ad46d152e351eb01c249"
+          },
+          "web": {
+            "actualPageWidths": [
+              320,
+              390
+            ],
+            "fullRenderedContentVerifiedAt320": true,
+            "tableRowsIncludingHeaders": 84,
+            "imagePreviews": [
+              {
+                "width": 320,
+                "sheetId": 1822,
+                "dims": {
+                  "w": 750,
+                  "h": 17633
+                },
+                "caption": "2026仙艺杯·仙游马拉松组委会完整竞赛规程原图（含报名、领物、补给和奖励表）",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 390,
+                "sheetId": 1822,
+                "dims": {
+                  "w": 750,
+                  "h": 17633
+                },
+                "caption": "2026仙艺杯·仙游马拉松组委会完整竞赛规程原图（含报名、领物、补给和奖励表）",
+                "originalZoomOpened": true
+              }
+            ]
+          },
+          "miniDevTools": {
+            "actualViewport": 390,
+            "bodyExactlyMatchesProduction": true,
+            "groupsExactlyMatchProduction": true,
+            "tableRowsIncludingHeaders": 84,
+            "allRowsActuallyRendered": true
+          }
+        },
+        {
+          "id": "caa-1000492007",
+          "name": "2026乐山双遗马拉松暨跑遍四川（乐山站）",
+          "reviewScope": "实际目视四张原图，其中两张长图裁为 18 个有重叠的原尺寸分块并逐格核读；报名、距离、费用、联系人与现届关闭报名页交叉；合并表格行列逐项对应，完整规程以标注上/下篇的原图供放大对照。",
+          "sectionCount": 11,
+          "tableCount": 6,
+          "groupCount": 2,
+          "registrationStatus": "closed",
+          "sourceUrls": [
+            "https://zc3wp-uploads.bkt.zuicool.com/2026/11/6e794f5d7b99589f2118eecb84f04e4fc63568a3.jpeg",
+            "https://zc3wp-uploads.bkt.zuicool.com/2026/11/bb2e50cc288f21346e287bd25820bb0dabc0c20a.jpeg",
+            "https://reg.zuicool.com/37000",
+            "https://zuicool.com/event/75759",
+            "https://zuicool.com/news/archives/311287"
+          ],
+          "questions": [
+            {
+              "status": "official_site_not_found",
+              "issue": "组委会规程引用赛事官方网站做赛后公示，却只给中国田径协会主页及官方公众号 ZTDJK306。搜索乐山市政府、四川体育、跑遍四川、赛事运营公司及主流平台，未核实本届独立官网或公开文字/PDF 版；优先采用赛事组委会当届署名的完整原图与授权报名文字。田协赛历只提供概况。",
+              "sourceUrl": "https://www.runchina.org.cn/#/race/v/detail/1000492007"
+            },
+            {
+              "status": "operator_pickup_primary_body_not_accessible",
+              "issue": "中体大健康 11 月 18 日领物指南检索摘要显示世豪广场 1 号门、比赛日无现场领物，搜狗微信对直达原文返回人工验证码，未以摘要填入 1 号门或领物细化条款；正文按已目视规程。",
+              "sourceUrl": "https://weixin.sogou.com/weixin?type=2&query=2026%20%E4%B9%90%E5%B1%B1%E5%8F%8C%E9%81%97%E9%A9%AC%E6%8B%89%E6%9D%BE%20%E9%A2%86%E7%89%A9%20%E4%B8%AD%E4%BD%93%E5%A4%A7%E5%81%A5%E5%BA%B7"
+            },
+            {
+              "status": "source_conflicting_health_phrase",
+              "issue": "规程报名第九条（一）1 原文写“近30天无发热、咳嗽等症状出现，未痊愈的及身体不适者。”语义衔接有缺句，保留原图；正文只列 30 天筛查和未愈/身体不适，不推定日期或临床规则。",
+              "sourceUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/11/bb2e50cc288f21346e287bd25820bb0dabc0c20a.jpeg"
+            },
+            {
+              "status": "no_verified_map_or_elevation",
+              "issue": "当届公开来源有文字路线、补给和关门原表，未找到组委会认可的独立线路图、爬升海拔图、赛事积分表，无猜测数值。",
+              "sourceUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/11/6e794f5d7b99589f2118eecb84f04e4fc63568a3.jpeg"
+            }
+          ],
+          "updatedFields": [
+            "groups",
+            "reg_start",
+            "deadline",
+            "deadline_name",
+            "signup_url",
+            "start_at",
+            "fee",
+            "scale",
+            "phone",
+            "route",
+            "pickup"
+          ],
+          "saved": {
+            "bodyAndGroupsMatch": true,
+            "guideSha256": "3b467387433aae224043874f96bccdda479350c718c6b3c74daa44935856cff4"
+          },
+          "web": {
+            "actualPageWidths": [
+              320,
+              390
+            ],
+            "fullRenderedContentVerifiedAt320": true,
+            "tableRowsIncludingHeaders": 43,
+            "imagePreviews": [
+              {
+                "width": 320,
+                "sheetId": 1823,
+                "dims": {
+                  "w": 1024,
+                  "h": 10032
+                },
+                "caption": "组委会完整竞赛规程（上）：路线、分枪、分段关门与补给原表",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 320,
+                "sheetId": 1824,
+                "dims": {
+                  "w": 1024,
+                  "h": 10104
+                },
+                "caption": "组委会完整竞赛规程（下）：报名资格、领物、奖励、保险与联系方式",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 390,
+                "sheetId": 1823,
+                "dims": {
+                  "w": 1024,
+                  "h": 10032
+                },
+                "caption": "组委会完整竞赛规程（上）：路线、分枪、分段关门与补给原表",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 390,
+                "sheetId": 1824,
+                "dims": {
+                  "w": 1024,
+                  "h": 10104
+                },
+                "caption": "组委会完整竞赛规程（下）：报名资格、领物、奖励、保险与联系方式",
+                "originalZoomOpened": true
+              }
+            ]
+          },
+          "miniDevTools": {
+            "actualViewport": 390,
+            "bodyExactlyMatchesProduction": true,
+            "groupsExactlyMatchProduction": true,
+            "tableRowsIncludingHeaders": 43,
+            "allRowsActuallyRendered": true
+          }
+        }
+      ]
+    },
+    {
+      "batch": 10,
+      "backupFile": "batch10-applied.json.before.sqlite",
+      "saved": 4,
+      "failed": 0,
+      "at": "2026-11-19T23:10:17.167Z",
+      "raceRecords": 434,
+      "sheetRecords": 1826,
+      "newImagePreviews": 4,
+      "allNewImagePreviewsVerified": true,
+      "races": [
+        {
+          "id": "caa-1000480024",
+          "name": "2026仙游马拉松",
+          "reviewScope": "保留上批已核实全文与原图，本次复阅原规程将芯片条款明确为不收押金、不回收。",
+          "sectionCount": 10,
+          "tableCount": 11,
+          "groupCount": 2,
+          "registrationStatus": "closed",
+          "sourceUrls": [
+            "https://zuicool.com/news/archives/316972",
+            "https://zc3wp-uploads.bkt.zuicool.com/2026/09/f4b8458456ccd23dbb99cfe0e25e049037817677.jpeg",
+            "https://www.hxdsb.com/html/content/bm/75570a8516364081b0e1c80bad811168.shtml",
+            "https://zuicool.com/event/40740"
+          ],
+          "questions": [
+            "最酷同届报名文三张源图全部查看，竞赛规程源图750×17,633像素人工分成12块逐块查看，结合现有 Vision 辅助，已清理重叠内容，原图保持完整。全/半程、补给和5项原奖金表逐行列对照。福建/莆田/仙游市民奖原图明确分全、半程及男女；每项目男女金额逐行相同才合并展示。",
+            "媒体与组委会原图均为中国古典工艺博览城，最酷摘要及页面所写“中国古典公益博览城”为错字。原图注明中国田径协会（认证中），最酷摘要称A类，暂不把A类认证落定。",
+            "报名原图上“八闽名赛”二维码解析为微信公众号关注入口，并非本届报名网页；官规另列福云赛事系统。尚未验证赛事独立官网地址、可直达网页报名链接或同届小程序路径，不写 signup_url；最酷详情没有同届报名提交入口，不把该页当报名入口。",
+            "已核实11月27—28日、本人的有效证件、不可代领；原图明确每日时段及地址详见八闽名赛赛前通知。已尝试县、市政府和公开新闻、领物精准检索，未核实本届赛前领物通知。福州市台江区西环南路128号仅为组委会联系地址。",
+            "规程仅列可复制转写路线及各点补给，未找到本届官方独立赛道图或正式公布实际里程、累计爬升；无旧年填补。报名宣传海报与公众号二维码为重复内容，赛后用途有限，不在正文堆叠。"
+          ],
+          "updatedFields": [
+            "groups"
+          ],
+          "saved": {
+            "bodyAndGroupsMatch": true,
+            "guideSha256": "f2d3983125e40864fce6a1870576aef7f16d21f0f965e1ba12cf86eab524973e"
+          },
+          "web": {
+            "actualPageWidths": [
+              320,
+              390
+            ],
+            "fullRenderedContentVerifiedAt320": true,
+            "tableRowsIncludingHeaders": 84,
+            "imagePreviews": []
+          },
+          "miniDevTools": {
+            "actualViewport": 390,
+            "bodyExactlyMatchesProduction": true,
+            "groupsExactlyMatchProduction": true,
+            "tableRowsIncludingHeaders": 84,
+            "allRowsActuallyRendered": true
+          }
+        },
+        {
+          "id": "caa-1000496002",
+          "name": "2026嘉兴马拉松",
+          "reviewScope": "本届可用报名资料与指南缺项复核；待发布内容见questions。",
+          "sectionCount": 10,
+          "tableCount": 10,
+          "groupCount": 2,
+          "registrationStatus": "closed",
+          "sourceUrls": [
+            "https://zuicool.com/event/22702",
+            "https://zuicool.com/news/archives/318122",
+            "http://jiaxingmarathon.umaysports.cn/index/Page/index.html?cate=15",
+            "http://jiaxingmarathon.umaysports.cn/index/Page/index.html?cate=16",
+            "http://jiaxingmarathon.umaysports.cn/index/Article/info.html?cate=5&id=64",
+            "https://mp.weixin.qq.com/s?__biz=MzIyMjI4MDY2Mw==&mid=2650683049&idx=1&sn=9444b5814898cfbb28270039049ad39c&chksm=f1ce4d8dd19f2a3da9b179ee06ee7103c61a94914b98444d1109f32d6a8c65c2826e92c54ef1&scene=27",
+            "https://gaj.jiaxing.gov.cn/col/col1666383/art/2026/art_8530382d80c746019ce5054e0d22952b.html",
+            "http://jiaxingmarathon.umaysports.cn/index/Page/index.html?cate=17",
+            "http://jiaxingmarathon.umaysports.cn/index/Article/index.html?cate=5",
+            "https://m.sohu.com/a/1101292371_122387568/?pvid=000115_3w_a"
+          ],
+          "questions": [
+            {
+              "status": "current_notice_and_official_rules_checked",
+              "issue": "领物指引写赛前12个月内二甲以上医院体检；竞赛规程对中签上传明确为2026年1月1日后由二甲以上医院或有资质专业体检机构出具。两条适用语境不同，均保留。分枪的具体出发批次时刻尚无公开确认，不将赛事发令时刻当作半马实际出发。关于公开退费和退出没有可验证细则，交通管制公告不是独立路线图。",
+              "sourceUrl": "https://mp.weixin.qq.com/s?__biz=MzIyMjI4MDY2Mw==&mid=2650683049&idx=1&sn=9444b5814898cfbb28270039049ad39c&chksm=f1ce4d8dd19f2a3da9b179ee06ee7103c61a94914b98444d1109f32d6a8c65c2826e92c54ef1&scene=27"
+            },
+            {
+              "status": "unverified_map_and_refund",
+              "issue": "官网仅有文字路线，公安当前通告确认起终点及接驳。独立官方路线图与具体退款条款未找到；官网“我要报名”功能页日期为 2022，不能当成本届直接提交页。",
+              "sourceUrl": "http://jiaxingmarathon.umaysports.cn/index/Article/index.html?cate=5"
+            }
+          ],
+          "updatedFields": [
+            "groups",
+            "phone",
+            "pickup"
+          ],
+          "saved": {
+            "bodyAndGroupsMatch": true,
+            "guideSha256": "9591afb2feda2e9566121fdfdc7f313ea40ecbec40d7f7f2d3bea59917df8900"
+          },
+          "web": {
+            "actualPageWidths": [
+              320,
+              390
+            ],
+            "fullRenderedContentVerifiedAt320": true,
+            "tableRowsIncludingHeaders": 43,
+            "imagePreviews": [
+              {
+                "width": 320,
+                "sheetId": 1825,
+                "dims": {
+                  "w": 1280,
+                  "h": 1920
+                },
+                "caption": "嘉兴马拉松组委会领物流程图：预约码、证件核验和领取顺序",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 320,
+                "sheetId": 1826,
+                "dims": {
+                  "w": 708,
+                  "h": 510
+                },
+                "caption": "嘉兴马拉松组委会官方逐公里关门表",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 390,
+                "sheetId": 1825,
+                "dims": {
+                  "w": 1280,
+                  "h": 1920
+                },
+                "caption": "嘉兴马拉松组委会领物流程图：预约码、证件核验和领取顺序",
+                "originalZoomOpened": true
+              },
+              {
+                "width": 390,
+                "sheetId": 1826,
+                "dims": {
+                  "w": 708,
+                  "h": 510
+                },
+                "caption": "嘉兴马拉松组委会官方逐公里关门表",
+                "originalZoomOpened": true
+              }
+            ]
+          },
+          "miniDevTools": {
+            "actualViewport": 390,
+            "bodyExactlyMatchesProduction": true,
+            "groupsExactlyMatchProduction": true,
+            "tableRowsIncludingHeaders": 43,
+            "allRowsActuallyRendered": true
+          }
+        },
+        {
+          "id": "songshanhu",
+          "name": "2026东阳光药·东莞（松山湖）马拉松",
+          "reviewScope": "仅校对赛历日期和报名字段；保留原指南正文、组别和原图。组委会两张原图与东莞广播电视台本届报道互证。",
+          "sectionCount": 22,
+          "tableCount": null,
+          "groupCount": 0,
+          "registrationStatus": "closed",
+          "sourceUrls": [
+            "https://sport.luojiweiye.com/web/weibu/#/pages/event/inquiryRegistration?nav_id=5368&game_id=7415&title=%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B",
+            "https://sport.luojiweiye.com/web/weibu/#/pages/event/gameDetail?tab=0&id=7415&title=%E6%8A%A5%E5%90%8D",
+            "https://sport.luojiweiye.com/web/weibu/#/pages/event/gameDetailGuide?id=7415",
+            "https://zuicool.com/news/archives/318006",
+            "https://zuicool.com/news/archives/318002",
+            "https://webzdg.sun0769.com/web/video/content/942039",
+            "https://webzdg.sun0769.com/web/video/content/945207",
+            "https://zuicool.com/event/11596"
+          ],
+          "questions": [
+            {
+              "field": "领物及全文 OCR",
+              "reason": "本次只按组委会原图与东莞广播电视台校正比赛和预报名日期。最终领物时段、地点及其余长规程的排版未在本轮重审。",
+              "sourceUrl": "https://sport.luojiweiye.com/web/weibu/#/pages/event/inquiryRegistration?nav_id=5368&game_id=7415&title=%E7%AB%9E%E8%B5%9B%E8%A7%84%E7%A8%8B"
+            }
+          ],
+          "updatedFields": [
+            "race_date",
+            "reg_start",
+            "deadline",
+            "deadline_name",
+            "signup_url"
+          ],
+          "saved": {
+            "bodyAndGroupsMatch": true,
+            "guideSha256": "f37932a396d75658e423d3ce16ebd35cc82db7d6a8562c6eb8e0934e09cf4b74"
+          },
+          "web": {
+            "actualPageWidths": [
+              320,
+              390
+            ],
+            "verifiedDisplayedRaceDate": "2026-12-06",
+            "fullRenderedContentVerifiedAt320": true,
+            "tableRowsIncludingHeaders": 9,
+            "imagePreviews": []
+          },
+          "miniDevTools": {
+            "verifiedDisplayedRaceDate": "2026-12-06",
+            "actualViewport": 390,
+            "bodyExactlyMatchesProduction": true,
+            "groupsExactlyMatchProduction": true,
+            "tableRowsIncludingHeaders": 9,
+            "allRowsActuallyRendered": true
+          }
+        },
+        {
+          "id": "caa-1000492007",
+          "name": "2026乐山双遗马拉松暨跑遍四川（乐山站）",
+          "reviewScope": "更新日程与领物正文、领物字段；其余 10 章、2 张长期规程原图、报名与组别完全保留。",
+          "sectionCount": 11,
+          "tableCount": 6,
+          "groupCount": 2,
+          "registrationStatus": "closed",
+          "sourceUrls": [
+            "https://m.sohu.com/a/1103308176_121106884/",
+            "https://tyj.sc.gov.cn/sctyj/sjxw/2026/3/12/9506154064d54e8da6cbf0fe40d9996f.shtml",
+            "https://q5.itc.cn/q_70/images03/20261118/50d354e62d474d41adcf4adbe5ec94c7.png",
+            "https://zc3wp-uploads.bkt.zuicool.com/2026/11/6e794f5d7b99589f2118eecb84f04e4fc63568a3.jpeg",
+            "https://zc3wp-uploads.bkt.zuicool.com/2026/11/bb2e50cc288f21346e287bd25820bb0dabc0c20a.jpeg",
+            "https://reg.zuicool.com/37000",
+            "https://zuicool.com/event/75759",
+            "https://zuicool.com/news/archives/311287"
+          ],
+          "questions": [
+            {
+              "status": "official_site_not_found",
+              "issue": "组委会规程引用赛事官方网站做赛后公示，却只给中国田径协会主页及官方公众号 ZTDJK306。搜索乐山市政府、四川体育、跑遍四川、赛事运营公司及主流平台，未核实本届独立官网或公开文字/PDF 版；优先采用赛事组委会当届署名的完整原图与授权报名文字。田协赛历只提供概况。",
+              "sourceUrl": "https://www.runchina.org.cn/#/race/v/detail/1000492007"
+            },
+            {
+              "status": "source_conflicting_health_phrase",
+              "issue": "规程报名第九条（一）1 原文写“近30天无发热、咳嗽等症状出现，未痊愈的及身体不适者。”语义衔接有缺句，保留原图；正文只列 30 天筛查和未愈/身体不适，不推定日期或临床规则。",
+              "sourceUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/11/bb2e50cc288f21346e287bd25820bb0dabc0c20a.jpeg"
+            },
+            {
+              "status": "no_verified_map_or_elevation",
+              "issue": "当届公开来源有文字路线、补给和关门原表，未找到组委会认可的独立线路图、爬升海拔图、赛事积分表，无猜测数值。",
+              "sourceUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/11/6e794f5d7b99589f2118eecb84f04e4fc63568a3.jpeg"
+            },
+            {
+              "field": "领物公告原图",
+              "reason": "正式领物公告全文已实际核查；微信原文未能直接打开，搜狐镜像的声明二维码、流程图及领物专线没有可复核的正文或清晰原图，保留明确可见的官方公众号和已核组委会联系方式；不猜测。",
+              "sourceUrl": "https://m.sohu.com/a/1103308176_121106884/"
+            },
+            {
+              "field": "竞赛规程与后发领物公告的证件范围",
+              "reason": "9 月竞赛规程允许身份证或户口簿复印件等证明；11 月 18 日专项领物指南对全马、半马都明确要求本人身份证原件，并明确先扫码签署声明，采用较晚的专项公告。",
+              "sourceUrl": "https://m.sohu.com/a/1103308176_121106884/"
+            }
+          ],
+          "updatedFields": [
+            "pickup"
+          ],
+          "saved": {
+            "bodyAndGroupsMatch": true,
+            "guideSha256": "c212f719677d3e9d17d9e56e52c1209368c04f21e5e559776f4bba6266e96cac"
+          },
+          "web": {
+            "actualPageWidths": [
+              320,
+              390
+            ],
+            "fullRenderedContentVerifiedAt320": true,
+            "tableRowsIncludingHeaders": 43,
+            "imagePreviews": []
+          },
+          "miniDevTools": {
+            "actualViewport": 390,
+            "bodyExactlyMatchesProduction": true,
+            "groupsExactlyMatchProduction": true,
+            "tableRowsIncludingHeaders": 43,
+            "allRowsActuallyRendered": true
+          }
+        }
+      ]
+    }
+  ]
+}
