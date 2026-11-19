@@ -1,0 +1,656 @@
+{
+  "raceId": "wuhan",
+  "updatedAt": "2026-11-18",
+  "intro": "武汉马拉松首届于2016年4月10日举行。赛事以跨江越湖的城市穿行呈现武汉三镇，春季樱花与江湖景观构成鲜明体验；2026届终点移至青山江滩，说明汉马路线也在持续更新。",
+  "introSourceIds": [
+    "wh-history",
+    "wh-reg-2026"
+  ],
+  "profile": {
+    "foundingYear": "2016",
+    "foundingYearSourceIds": [
+      "wh-history"
+    ],
+    "positioning": "以武汉三镇、长江桥梁和湖泊景观为舞台的城市路跑赛事。",
+    "positioningSourceIds": [
+      "wh-history",
+      "wh-reg-2026",
+      "wuhan-caa-2026"
+    ],
+    "entryNotes": "汉马近届采用超额抽签，并按项目区分出发与终点。2026取消13公里跑后仅设全马、半马；不可沿用2025的项目选择、终点和关门表。",
+    "entrySourceIds": [
+      "wh-reg-2026",
+      "wh-reg-2025",
+      "wh-entry-2026"
+    ]
+  },
+  "highlights": [
+    {
+      "title": "从江滩到江滩的2026新路线",
+      "body": "2026起点仍在沿江大道三阳路口，马拉松终点改为青山江滩；官方城市回顾说明该届首次串联全部七个中心城区。此变化不能套用至2024、2025届。",
+      "sourceIds": [
+        "wh-history",
+        "wh-reg-2026"
+      ],
+      "applicableYears": [
+        "2026"
+      ]
+    },
+    {
+      "title": "樱花与城市风味",
+      "body": "2024、2025组委会回顾记录沿江大道、东湖等春日风景以及音乐加油、热干面和樱花糕点等特色活动。特色补给为当届安排，跑者仍需按个人训练中的补给方案参赛。",
+      "sourceIds": [
+        "wh-result-2024",
+        "wh-result-2025"
+      ],
+      "applicableYears": [
+        "2024",
+        "2025"
+      ]
+    }
+  ],
+  "history": [
+    {
+      "date": "2016-04-10",
+      "title": "首届武汉马拉松",
+      "body": "官方城市回顾记载首届于这一天举行。",
+      "sourceIds": [
+        "wh-history"
+      ]
+    },
+    {
+      "date": "2025",
+      "title": "项目总规模扩大",
+      "body": "该届规程设全马15000人、半马10000人和13公里跑15000人；不同项目应分别理解。",
+      "sourceIds": [
+        "wh-reg-2025"
+      ]
+    },
+    {
+      "date": "2026",
+      "title": "终点进入青山江滩",
+      "body": "项目缩为全马和半马，终点与发枪安排发生变化。",
+      "sourceIds": [
+        "wh-history",
+        "wh-reg-2026"
+      ]
+    }
+  ],
+  "records": [
+    {
+      "category": "赛会纪录（核至2026届）",
+      "project": "马拉松",
+      "group": "女子",
+      "athlete": "VERONICAH NJERI MAINA",
+      "time": "02:24:14",
+      "timing": "",
+      "editionId": "wuhan-2026",
+      "achievedAt": "2026-03-22",
+      "verifiedThroughEditionId": "wuhan-2026",
+      "verifiedAt": "2026-11-18",
+      "sourceIds": [
+        "wh-result-2026"
+      ]
+    },
+    {
+      "category": "历史赛会纪录（2025届）",
+      "project": "马拉松",
+      "group": "男子",
+      "athlete": "ASEFA MENGSTU NEGEWO",
+      "time": "02:08:51",
+      "timing": "",
+      "editionId": "wuhan-2025",
+      "achievedAt": "2025-03-23",
+      "verifiedThroughEditionId": "wuhan-2025",
+      "verifiedAt": "2026-11-18",
+      "sourceIds": [
+        "wh-result-2025"
+      ]
+    },
+    {
+      "category": "中国籍女子赛会纪录（核至2026届）",
+      "project": "马拉松",
+      "group": "女子",
+      "athlete": "朱卿",
+      "time": "02:28:45",
+      "timing": "",
+      "editionId": "wuhan-2026",
+      "achievedAt": "2026-03-22",
+      "verifiedThroughEditionId": "wuhan-2026",
+      "verifiedAt": "2026-11-18",
+      "sourceIds": [
+        "wh-result-2026"
+      ]
+    }
+  ],
+  "editions": [
+    {
+      "year": "2026",
+      "editionId": "wuhan-2026",
+      "editionName": "2026武汉马拉松",
+      "status": "completed",
+      "date": "2026-03-22",
+      "dateSourceIds": [
+        "wh-reg-2026"
+      ],
+      "distance": "马拉松、半程马拉松",
+      "events": [
+        {
+          "project": "马拉松",
+          "distanceKm": 42.195,
+          "plannedParticipants": "17000人",
+          "fee": "",
+          "sourceIds": [
+            "wh-reg-2026",
+            "wh-entry-2026"
+          ]
+        },
+        {
+          "project": "半程马拉松",
+          "distanceKm": 21.0975,
+          "plannedParticipants": "13000人",
+          "fee": "",
+          "sourceIds": [
+            "wh-reg-2026",
+            "wh-entry-2026"
+          ]
+        }
+      ],
+      "route": {
+        "summary": "全马经武汉中心城区抵达青山江滩；半程终点为书卷路。",
+        "start": "沿江大道三阳路口",
+        "finish": "青山江滩",
+        "mapUrl": "",
+        "mapSourceUrl": "",
+        "changes": "2026相较2025取消13公里跑，全马与半马终点调整。",
+        "analysis": [],
+        "sourceIds": [
+          "wh-reg-2026"
+        ]
+      },
+      "registration": {
+        "method": "官方渠道个人报名，超过限定名额以抽签确定；直通条件以本届须知为准。",
+        "opens": "",
+        "closes": "",
+        "drawDate": "",
+        "fee": "中国籍全马、半马均200元人民币；外国籍50美元或360元人民币",
+        "qualification": "",
+        "applicants": "",
+        "eligibleApplicants": "",
+        "lotteryPool": "",
+        "drawQuota": "",
+        "directQuota": "",
+        "lotteryRate": "",
+        "lotteryNote": "未取得同口径抽签池与实际抽签名额，不计算中签率。",
+        "note": "",
+        "sourceIds": [
+          "wh-reg-2026",
+          "wh-entry-2026"
+        ]
+      },
+      "participation": {
+        "planned": "30000人（赛事总规模）",
+        "starters": "",
+        "finishers": "",
+        "finishRate": "",
+        "note": "不等同于经芯片统计的实际起跑或完赛人数。",
+        "sourceIds": [
+          "wh-reg-2026"
+        ]
+      },
+      "results": [
+        {
+          "group": "马拉松男子冠军",
+          "athlete": "JOHN MBURU MUIRURI",
+          "time": "02:10:16",
+          "timing": "",
+          "sourceIds": [
+            "wh-result-2026"
+          ]
+        },
+        {
+          "group": "马拉松女子冠军",
+          "athlete": "VERONICAH NJERI MAINA",
+          "time": "02:24:14",
+          "timing": "",
+          "sourceIds": [
+            "wh-result-2026"
+          ]
+        }
+      ],
+      "gear": [],
+      "logistics": {
+        "collection": {
+          "time": "",
+          "place": "",
+          "requirements": "",
+          "sourceIds": []
+        },
+        "transport": {
+          "start": "",
+          "finish": "",
+          "expo": "",
+          "sourceIds": []
+        },
+        "raceDay": {
+          "startTime": "全马07:30；半马07:45，分两枪发令。",
+          "timeLimit": "全马6小时，13:30关门；半马3小时，10:45关门；同时遵守各分段关门。",
+          "bagDrop": "",
+          "aidStations": "",
+          "toilets": "",
+          "medical": "",
+          "sourceIds": [
+            "wh-reg-2026"
+          ]
+        },
+        "tips": [
+          {
+            "title": "分别安排赛后会合",
+            "body": "全马终点青山江滩、半马终点书卷路；亲友接应与住宿返程应按所报项目规划。",
+            "sourceIds": [
+              "wh-reg-2026"
+            ]
+          }
+        ]
+      },
+      "notes": []
+    },
+    {
+      "year": "2025",
+      "editionId": "wuhan-2025",
+      "editionName": "2025武汉马拉松",
+      "status": "completed",
+      "date": "2025-03-23",
+      "dateSourceIds": [
+        "wh-reg-2025"
+      ],
+      "distance": "马拉松、半程马拉松、13公里跑",
+      "events": [
+        {
+          "project": "马拉松",
+          "distanceKm": 42.195,
+          "plannedParticipants": "15000人",
+          "fee": "",
+          "sourceIds": [
+            "wh-reg-2025"
+          ]
+        },
+        {
+          "project": "半程马拉松",
+          "distanceKm": 21.0975,
+          "plannedParticipants": "10000人",
+          "fee": "",
+          "sourceIds": [
+            "wh-reg-2025"
+          ]
+        },
+        {
+          "project": "13公里跑",
+          "distanceKm": 13.0,
+          "plannedParticipants": "15000人",
+          "fee": "",
+          "sourceIds": [
+            "wh-reg-2025"
+          ]
+        }
+      ],
+      "route": {
+        "summary": "全马经武汉中心城区抵达武汉欢乐谷；半程终点为松竹路。",
+        "start": "沿江大道三阳路口",
+        "finish": "武汉欢乐谷",
+        "mapUrl": "",
+        "mapSourceUrl": "",
+        "changes": "",
+        "analysis": [],
+        "sourceIds": [
+          "wh-reg-2025"
+        ]
+      },
+      "registration": {
+        "method": "官方渠道个人报名，超过限定名额以抽签确定；直通条件以本届须知为准。",
+        "opens": "",
+        "closes": "",
+        "drawDate": "",
+        "fee": "",
+        "qualification": "",
+        "applicants": "",
+        "eligibleApplicants": "",
+        "lotteryPool": "",
+        "drawQuota": "",
+        "directQuota": "",
+        "lotteryRate": "",
+        "lotteryNote": "未取得同口径抽签池与实际抽签名额，不计算中签率。",
+        "note": "",
+        "sourceIds": [
+          "wh-reg-2025"
+        ]
+      },
+      "participation": {
+        "planned": "40000人（赛事总规模）",
+        "starters": "",
+        "finishers": "",
+        "finishRate": "",
+        "note": "不等同于经芯片统计的实际起跑或完赛人数。",
+        "sourceIds": [
+          "wh-reg-2025"
+        ]
+      },
+      "results": [
+        {
+          "group": "马拉松男子冠军",
+          "athlete": "ASEFA MENGSTU NEGEWO",
+          "time": "02:08:51",
+          "timing": "",
+          "sourceIds": [
+            "wh-result-2025"
+          ]
+        },
+        {
+          "group": "马拉松女子冠军",
+          "athlete": "GUTENI SHONE IMANA",
+          "time": "02:24:47",
+          "timing": "",
+          "sourceIds": [
+            "wh-result-2025"
+          ]
+        }
+      ],
+      "gear": [],
+      "logistics": {
+        "collection": {
+          "time": "",
+          "place": "",
+          "requirements": "",
+          "sourceIds": []
+        },
+        "transport": {
+          "start": "",
+          "finish": "",
+          "expo": "",
+          "sourceIds": []
+        },
+        "raceDay": {
+          "startTime": "",
+          "timeLimit": "",
+          "bagDrop": "",
+          "aidStations": "",
+          "toilets": "",
+          "medical": "",
+          "sourceIds": []
+        },
+        "tips": []
+      },
+      "notes": []
+    },
+    {
+      "year": "2024",
+      "editionId": "wuhan-2024",
+      "editionName": "2024武汉马拉松",
+      "status": "completed",
+      "date": "2024-03-24",
+      "dateSourceIds": [
+        "wh-reg-2024"
+      ],
+      "distance": "马拉松、半程马拉松、13公里跑",
+      "events": [
+        {
+          "project": "马拉松",
+          "distanceKm": 42.195,
+          "plannedParticipants": "",
+          "fee": "",
+          "sourceIds": [
+            "wh-reg-2024"
+          ]
+        },
+        {
+          "project": "半程马拉松",
+          "distanceKm": 21.0975,
+          "plannedParticipants": "",
+          "fee": "",
+          "sourceIds": [
+            "wh-reg-2024"
+          ]
+        },
+        {
+          "project": "13公里跑",
+          "distanceKm": 13.0,
+          "plannedParticipants": "",
+          "fee": "",
+          "sourceIds": [
+            "wh-reg-2024"
+          ]
+        }
+      ],
+      "route": {
+        "summary": "组委会赛后回顾记录汉口江滩、武汉大学、磨山樱园等沿线景观。",
+        "start": "",
+        "finish": "",
+        "mapUrl": "",
+        "mapSourceUrl": "",
+        "changes": "",
+        "analysis": [],
+        "sourceIds": [
+          "wh-result-2024"
+        ]
+      },
+      "registration": {
+        "method": "官方渠道个人报名，超过限定名额以抽签确定；直通条件以本届须知为准。",
+        "opens": "",
+        "closes": "",
+        "drawDate": "",
+        "fee": "",
+        "qualification": "",
+        "applicants": "",
+        "eligibleApplicants": "",
+        "lotteryPool": "",
+        "drawQuota": "",
+        "directQuota": "",
+        "lotteryRate": "",
+        "lotteryNote": "未取得同口径抽签池与实际抽签名额，不计算中签率。",
+        "note": "",
+        "sourceIds": [
+          "wh-reg-2024"
+        ]
+      },
+      "participation": {
+        "planned": "30000人（赛事总规模）",
+        "starters": "",
+        "finishers": "",
+        "finishRate": "",
+        "note": "不等同于经芯片统计的实际起跑或完赛人数。",
+        "sourceIds": [
+          "wh-result-2024"
+        ]
+      },
+      "results": [
+        {
+          "group": "马拉松男子冠军",
+          "athlete": "约翰·姆布鲁·姆伊鲁利",
+          "time": "02:09:13",
+          "timing": "",
+          "sourceIds": [
+            "wh-result-2024"
+          ]
+        },
+        {
+          "group": "马拉松女子冠军",
+          "athlete": "马尔·迪巴巴·胡萨",
+          "time": "02:25:12",
+          "timing": "",
+          "sourceIds": [
+            "wh-result-2024"
+          ]
+        }
+      ],
+      "gear": [],
+      "logistics": {
+        "collection": {
+          "time": "",
+          "place": "",
+          "requirements": "",
+          "sourceIds": []
+        },
+        "transport": {
+          "start": "",
+          "finish": "",
+          "expo": "",
+          "sourceIds": []
+        },
+        "raceDay": {
+          "startTime": "",
+          "timeLimit": "",
+          "bagDrop": "",
+          "aidStations": "",
+          "toilets": "",
+          "medical": "",
+          "sourceIds": []
+        },
+        "tips": []
+      },
+      "notes": []
+    }
+  ],
+  "stories": [],
+  "sources": [
+    {
+      "id": "wh-reg-2026",
+      "title": "2026中国银行武汉马拉松竞赛规程",
+      "url": "https://www.wuhanmarathon.org/subject.html?detailId=5462609319408028&topicId=5337775675307853",
+      "publisher": "武汉马拉松组委会",
+      "publishedAt": "",
+      "accessedAt": "2026-11-18",
+      "verifiedAt": "2026-11-18",
+      "applicableYears": [
+        "2026"
+      ],
+      "evidence": "已读取官网公开CMS detailArticle/5462609319408028.json 的正文。"
+    },
+    {
+      "id": "wh-entry-2026",
+      "title": "2026武汉马拉松报名须知",
+      "url": "https://www.wuhanmarathon.org/subject.html?detailId=5337548243347356&topicId=5337775943743322",
+      "publisher": "武汉马拉松组委会",
+      "publishedAt": "",
+      "accessedAt": "2026-11-18",
+      "verifiedAt": "2026-11-18",
+      "applicableYears": [
+        "2026"
+      ],
+      "evidence": "已读取官网公开CMS detailArticle/5337548243347356.json 的正文。"
+    },
+    {
+      "id": "wh-reg-2025",
+      "title": "中国银行2025武汉马拉松竞赛规程",
+      "url": "https://www.wuhanmarathon.org/subject.html?detailId=8072975668553989&topicId=5337791093570390",
+      "publisher": "武汉马拉松组委会",
+      "publishedAt": "2024-11-26",
+      "accessedAt": "2026-11-18",
+      "verifiedAt": "2026-11-18",
+      "applicableYears": [
+        "2025"
+      ],
+      "evidence": "已读取官网公开CMS detailArticle/8072975668553989.json 的正文。"
+    },
+    {
+      "id": "wh-reg-2024",
+      "title": "2024武汉马拉松竞赛规程",
+      "url": "https://www.wuhanmarathon.org/subject.html?detailId=7606120088937565&topicId=5337791093570390",
+      "publisher": "武汉马拉松组委会",
+      "publishedAt": "2024-01-09",
+      "accessedAt": "2026-11-18",
+      "verifiedAt": "2026-11-18",
+      "applicableYears": [
+        "2024"
+      ],
+      "evidence": "已读取官网公开CMS detailArticle/7606120088937565.json 的正文。"
+    },
+    {
+      "id": "wh-result-2025",
+      "title": "樱花三月竞江城｜中国银行2025武汉马拉松浪漫开跑，四项赛会纪录被打破",
+      "url": "https://www.wuhanmarathon.org/subject.html?detailId=8244380985028419&topicId=5337790892243788",
+      "publisher": "武汉马拉松组委会",
+      "publishedAt": "2025-03-23",
+      "accessedAt": "2026-11-18",
+      "verifiedAt": "2026-11-18",
+      "applicableYears": [
+        "2025"
+      ],
+      "evidence": "已读取官网公开CMS detailArticle/8244380985028419.json 的正文。"
+    },
+    {
+      "id": "wh-result-2024",
+      "title": "“樱”为有你更精彩｜中国银行2024武汉马拉松两项赛会纪录被破",
+      "url": "https://www.wuhanmarathon.org/subject.html?detailId=7715205765312998&topicId=5337790892243788",
+      "publisher": "武汉马拉松组委会",
+      "publishedAt": "2024-03-24",
+      "accessedAt": "2026-11-18",
+      "verifiedAt": "2026-11-18",
+      "applicableYears": [
+        "2024"
+      ],
+      "evidence": "已读取官网公开CMS detailArticle/7715205765312998.json 的正文。"
+    },
+    {
+      "id": "wh-history",
+      "title": "汉马之变：一座城的奔跑与跨越",
+      "url": "https://www.wuhan.gov.cn/sy/whyw/202603/t20260321_2743239.shtml",
+      "publisher": "武汉市人民政府门户网站（长江日报）",
+      "publishedAt": "2026-03-21",
+      "accessedAt": "2026-11-18",
+      "verifiedAt": "2026-11-18",
+      "applicableYears": [
+        "2016",
+        "2026"
+      ]
+    },
+    {
+      "id": "wh-result-2026",
+      "title": "2026中国银行武汉马拉松激情开跑 两项赛会纪录被打破",
+      "url": "https://hb.cri.cn/n/20260323/e24ba985-a629-2ad1-bdac-5a7ea87f89f9.html",
+      "publisher": "中央广播电视总台国际在线",
+      "publishedAt": "2026-03-23",
+      "accessedAt": "2026-11-18",
+      "verifiedAt": "2026-11-18",
+      "applicableYears": [
+        "2026"
+      ]
+    },
+    {
+      "id": "wuhan-caa-2026",
+      "title": "中国马拉松：武汉马拉松2026赛事认证详情",
+      "url": "https://www.runchina.org.cn/#/race/v/detail/1000361016",
+      "publisher": "中国田径协会",
+      "publishedAt": "",
+      "accessedAt": "2026-11-18",
+      "verifiedAt": "2026-11-18",
+      "applicableYears": [
+        "2026"
+      ],
+      "evidence": "已读取中国马拉松官网公开查询接口 searchById（POST，id=1000361016，type=SS）；返回赛事名称、日期、举办城市、主办单位和 officialRaceGrade=A。仅适用于2026届，不由徽标推定世界田联等级。"
+    }
+  ],
+  "gaps": [
+    {
+      "fields": [
+        "records[].timing",
+        "editions[].participation.finishers",
+        "editions[2024].registration"
+      ],
+      "reason": "新闻时间未明确逐项计时口径；实际完赛人数和2024报名细节尚未逐表复核。纪录仅按所标核验届次展示。"
+    },
+    {
+      "fields": [
+        "editions[].route.mapUrl",
+        "editions[].gear[].imageUrl"
+      ],
+      "reason": "未取得可公开再分发的图片许可；仅保留来源链接，不接入赛道图或物资实物图片。"
+    },
+    {
+      "fields": [
+        "worldAthletics"
+      ],
+      "reason": "尚未取得可逐年核实的世界田联标牌依据，不沿用旧目录的认证快照。"
+    }
+  ],
+  "conflicts": []
+}

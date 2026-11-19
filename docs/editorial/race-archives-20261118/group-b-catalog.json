@@ -1,0 +1,869 @@
+[
+  {
+    "id": "taiyuan",
+    "name": "太原马拉松",
+    "shortName": "太马",
+    "city": "太原",
+    "province": "山西",
+    "tagline": "沿迎泽大街，奔向汾河与晋阳湖",
+    "summary": "以迎泽大街和汾河两岸连接城市记忆，保存不同起点和分枪组织的年度变化。",
+    "officialUrl": "https://www.taiyuan.gov.cn/tytt/20250623/30227473.html",
+    "aliases": [
+      "太原马拉松",
+      "太马"
+    ],
+    "identity": {
+      "officialIds": [
+        "1000447000"
+      ],
+      "scope": "由中国田径协会赛事条目 1000447000 对应的太原城市马拉松；不自动归并同城其他路跑赛事。",
+      "sourceIds": [
+        "taiyuan-caa-2026"
+      ]
+    },
+    "worldAthletics": {
+      "label": "金标",
+      "year": "2026",
+      "sourceIds": [
+        "taiyuan-wa-2026"
+      ]
+    },
+    "caa": {
+      "label": "A类",
+      "year": "2026",
+      "sourceIds": [
+        "taiyuan-caa-2026"
+      ]
+    },
+    "sources": [
+      {
+        "id": "ty-preview-2025",
+        "title": "赛事规模4万人 2025太原马拉松赛今日开启报名",
+        "url": "https://www.taiyuan.gov.cn/tytt/20250623/30227473.html",
+        "publisher": "太原市人民政府／太原新闻网",
+        "publishedAt": "2025-06-23",
+        "accessedAt": "2026-11-18",
+        "verifiedAt": "2026-11-18",
+        "applicableYears": [
+          "2010",
+          "2013",
+          "2019",
+          "2025"
+        ]
+      },
+      {
+        "id": "ty-report-2025",
+        "title": "2025年太原马拉松赛起跑",
+        "url": "https://tyj.shanxi.gov.cn/syxw/jrtt/sjtt/202509/t20250922_9962932.shtml",
+        "publisher": "山西省体育局／省体育发展中心",
+        "publishedAt": "2025-09-21",
+        "accessedAt": "2026-11-18",
+        "verifiedAt": "2026-11-18",
+        "applicableYears": [
+          "2025"
+        ]
+      },
+      {
+        "id": "ty-route-2024",
+        "title": "2024太原马拉松全新线路图发布",
+        "url": "https://www.shanxi.gov.cn/ywdt/zwlb/gsdt/202407/t20240729_9618418.shtml",
+        "publisher": "山西省人民政府／山西日报",
+        "publishedAt": "2024-07-29",
+        "accessedAt": "2026-11-18",
+        "verifiedAt": "2026-11-18",
+        "applicableYears": [
+          "2024"
+        ]
+      },
+      {
+        "id": "ty-report-2026",
+        "title": "2026太原马拉松赛刷新多项赛会纪录",
+        "url": "https://tyj.shanxi.gov.cn/syxw/jrtt/sjtt/202609/t20260928_10228226.shtml",
+        "publisher": "山西省体育局／省体育发展中心",
+        "publishedAt": "2026-09-28",
+        "accessedAt": "2026-11-18",
+        "verifiedAt": "2026-11-18",
+        "applicableYears": [
+          "2026"
+        ]
+      },
+      {
+        "id": "taiyuan-caa-2026",
+        "title": "中国马拉松：2026太原马拉松",
+        "url": "https://www.runchina.org.cn/#/race/v/detail/1000447000",
+        "publisher": "中国田径协会",
+        "publishedAt": "",
+        "accessedAt": "2026-11-18",
+        "verifiedAt": "2026-11-18",
+        "applicableYears": [
+          "2026"
+        ],
+        "evidence": {
+          "endpoint": "https://api-changzheng.chinaath.com/changzheng-content-center-api/api/homePage/official/searchById",
+          "method": "POST",
+          "request": {
+            "id": "1000447000",
+            "type": "SS"
+          },
+          "observed": {
+            "name": "2026太原马拉松",
+            "raceGrade": "A",
+            "gameDate": "2026.09.27",
+            "project": "全程,半程",
+            "compNameOrganizer": "山西省体育局,太原市人民政府"
+          }
+        }
+      },
+      {
+        "id": "taiyuan-wa-2026",
+        "title": "World Athletics Label Road Races 2026 Calendar",
+        "url": "https://worldathletics.org/competitions/world-athletics-label-road-races/calendar-results",
+        "publisher": "世界田联",
+        "publishedAt": "",
+        "accessedAt": "2026-11-18",
+        "verifiedAt": "2026-11-18",
+        "applicableYears": [
+          "2026"
+        ],
+        "evidence": {
+          "eventId": "7235590",
+          "competitionName": "Taiyuan Marathon",
+          "category": "Gold",
+          "calendarDate": "2026-09-27"
+        }
+      }
+    ]
+  },
+  {
+    "id": "changsha",
+    "name": "长沙马拉松",
+    "shortName": "长马",
+    "city": "长沙",
+    "province": "湖南",
+    "tagline": "沿湘江奔跑，读橘洲与岳麓秋色",
+    "summary": "以湘江、橘子洲和岳麓山为识别点，逐届记录起点、半程终点及项目调整。",
+    "officialUrl": "https://www.marathonchangsha.com/",
+    "aliases": [
+      "长沙马拉松",
+      "长马"
+    ],
+    "identity": {
+      "officialIds": [
+        "1000418247"
+      ],
+      "scope": "由中国田径协会赛事条目 1000418247 对应的长沙城市马拉松；不自动归并同城其他路跑赛事。",
+      "sourceIds": [
+        "changsha-caa-2026"
+      ]
+    },
+    "worldAthletics": {
+      "label": "",
+      "year": "",
+      "sourceIds": []
+    },
+    "caa": {
+      "label": "A类",
+      "year": "2026",
+      "sourceIds": [
+        "changsha-caa-2026"
+      ]
+    },
+    "sources": [
+      {
+        "id": "cs-history-2024",
+        "title": "长沙马拉松激发城市发展新活力",
+        "url": "https://www.sport.gov.cn/n20001280/n20001265/n20067664/c28195692/content.html",
+        "publisher": "国家体育总局／中国体育报",
+        "publishedAt": "2024-10-23",
+        "accessedAt": "2026-11-18",
+        "verifiedAt": "2026-11-18",
+        "applicableYears": [
+          "2015",
+          "2017",
+          "2023",
+          "2024"
+        ]
+      },
+      {
+        "id": "cs-preview-2025",
+        "title": "长沙银行·2025长沙马拉松新闻发布会",
+        "url": "https://www.changsha.gov.cn/jdhy/xwfbh/zxbd/202507/t20250730_11935305.html",
+        "publisher": "长沙市人民政府／长沙市体育局",
+        "publishedAt": "2025-07-30",
+        "accessedAt": "2026-11-18",
+        "verifiedAt": "2026-11-18",
+        "applicableYears": [
+          "2024",
+          "2025"
+        ]
+      },
+      {
+        "id": "cs-preview-2026",
+        "title": "总报名人数达192052人，2026长沙马拉松11月15日开跑",
+        "url": "https://www.changsha.gov.cn/bmrl/bmrlbsfw/202610/t20261019_12591874.html",
+        "publisher": "长沙市人民政府／长沙晚报",
+        "publishedAt": "2026-10-19",
+        "accessedAt": "2026-11-18",
+        "verifiedAt": "2026-11-18",
+        "applicableYears": [
+          "2026"
+        ]
+      },
+      {
+        "id": "changsha-caa-2026",
+        "title": "中国马拉松：2026长沙马拉松",
+        "url": "https://www.runchina.org.cn/#/race/v/detail/1000418247",
+        "publisher": "中国田径协会",
+        "publishedAt": "",
+        "accessedAt": "2026-11-18",
+        "verifiedAt": "2026-11-18",
+        "applicableYears": [
+          "2026"
+        ],
+        "evidence": {
+          "endpoint": "https://api-changzheng.chinaath.com/changzheng-content-center-api/api/homePage/official/searchById",
+          "method": "POST",
+          "request": {
+            "id": "1000418247",
+            "type": "SS"
+          },
+          "observed": {
+            "name": "2026长沙马拉松",
+            "raceGrade": "A",
+            "gameDate": "2026.11.15",
+            "project": "全程,半程",
+            "compNameOrganizer": "湖南省体育局,长沙市人民政府"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "chengdu",
+    "name": "成都马拉松",
+    "shortName": "成马",
+    "city": "成都",
+    "province": "四川",
+    "tagline": "从金沙出发，跑过成都古今",
+    "summary": "从金沙遗址连接老城文化地标与城南新城，按年记录赛道优化和分枪出发。",
+    "officialUrl": "https://chengdu-marathon.mararun.com/",
+    "aliases": [
+      "成都马拉松",
+      "成都国际马拉松",
+      "成马"
+    ],
+    "identity": {
+      "officialIds": [
+        "1000419219"
+      ],
+      "scope": "由中国田径协会赛事条目 1000419219 对应的成都城市马拉松；不自动归并同城其他路跑赛事。",
+      "sourceIds": [
+        "chengdu-caa-2026"
+      ]
+    },
+    "worldAthletics": {
+      "label": "标牌",
+      "year": "2026",
+      "sourceIds": [
+        "chengdu-wa-2026"
+      ]
+    },
+    "caa": {
+      "label": "A类",
+      "year": "2026",
+      "sourceIds": [
+        "chengdu-caa-2026"
+      ]
+    },
+    "sources": [
+      {
+        "id": "cd-founding",
+        "title": "成都马拉松组委会公布处罚决定",
+        "url": "https://news.bjd.com.cn/2026/10/28/12009287.shtml",
+        "publisher": "北京日报报业集团／长安街知事",
+        "publishedAt": "2026-10-28",
+        "accessedAt": "2026-11-18",
+        "verifiedAt": "2026-11-18",
+        "applicableYears": [
+          "2017",
+          "2026"
+        ]
+      },
+      {
+        "id": "cd-report-2025",
+        "title": "乐跑公园城市，畅游金秋成马！2025成都马拉松鸣枪开跑",
+        "url": "https://tyj.sc.gov.cn/sctyj/qzty/2025/10/26/f20a14b8cdaf43c981a40211bd25cf81.shtml",
+        "publisher": "四川省体育局",
+        "publishedAt": "2025-10-26",
+        "accessedAt": "2026-11-18",
+        "verifiedAt": "2026-11-18",
+        "applicableYears": [
+          "2025"
+        ]
+      },
+      {
+        "id": "cd-preview-2026",
+        "title": "今起报名！2026年成都马拉松定档10月25日",
+        "url": "https://scnews.newssc.org/system/20260610/001618616.html",
+        "publisher": "四川新闻网／川观新闻",
+        "publishedAt": "2026-06-10",
+        "accessedAt": "2026-11-18",
+        "verifiedAt": "2026-11-18",
+        "applicableYears": [
+          "2026"
+        ]
+      },
+      {
+        "id": "chengdu-caa-2026",
+        "title": "中国马拉松：2026成都马拉松",
+        "url": "https://www.runchina.org.cn/#/race/v/detail/1000419219",
+        "publisher": "中国田径协会",
+        "publishedAt": "",
+        "accessedAt": "2026-11-18",
+        "verifiedAt": "2026-11-18",
+        "applicableYears": [
+          "2026"
+        ],
+        "evidence": {
+          "endpoint": "https://api-changzheng.chinaath.com/changzheng-content-center-api/api/homePage/official/searchById",
+          "method": "POST",
+          "request": {
+            "id": "1000419219",
+            "type": "SS"
+          },
+          "observed": {
+            "name": "2026成都马拉松",
+            "raceGrade": "A",
+            "gameDate": "2026.10.25",
+            "project": "全程,半程",
+            "compNameOrganizer": "成都市人民政府"
+          }
+        }
+      },
+      {
+        "id": "chengdu-wa-2026",
+        "title": "World Athletics Label Road Races 2026 Calendar",
+        "url": "https://worldathletics.org/competitions/world-athletics-label-road-races/calendar-results",
+        "publisher": "世界田联",
+        "publishedAt": "",
+        "accessedAt": "2026-11-18",
+        "verifiedAt": "2026-11-18",
+        "applicableYears": [
+          "2026"
+        ],
+        "evidence": {
+          "eventId": "7244018",
+          "competitionName": "Chengdu Marathon",
+          "category": "Label",
+          "calendarDate": "2026-10-25"
+        }
+      }
+    ]
+  },
+  {
+    "id": "dalian",
+    "name": "大连马拉松",
+    "shortName": "大马",
+    "city": "大连",
+    "province": "辽宁",
+    "tagline": "穿城越海，跑过滨城广场",
+    "summary": "1987年创办，从东港海景连接城市广场和街区建筑，保留近年赛期变化。",
+    "officialUrl": "https://www.dl.gov.cn/art/2026/4/16/art_1438_2508615.html",
+    "aliases": [
+      "大连马拉松",
+      "大连国际马拉松",
+      "大马"
+    ],
+    "identity": {
+      "officialIds": [
+        "1000388027"
+      ],
+      "scope": "由中国田径协会赛事条目 1000388027 对应的大连城市马拉松；不自动归并同城其他路跑赛事。",
+      "sourceIds": [
+        "dalian-caa-2026"
+      ]
+    },
+    "worldAthletics": {
+      "label": "精英标牌",
+      "year": "2026",
+      "sourceIds": [
+        "dalian-wa-2026"
+      ]
+    },
+    "caa": {
+      "label": "A类",
+      "year": "2026",
+      "sourceIds": [
+        "dalian-caa-2026"
+      ]
+    },
+    "sources": [
+      {
+        "id": "dl-preview-2024",
+        "title": "大连马拉松赛10月20日开跑",
+        "url": "https://www.ln.gov.cn/web/ywdt/zymtkln/2024101409121848634/index.shtml",
+        "publisher": "辽宁省人民政府／新华网",
+        "publishedAt": "2024-10-14",
+        "accessedAt": "2026-11-18",
+        "verifiedAt": "2026-11-18",
+        "applicableYears": [
+          "2024"
+        ]
+      },
+      {
+        "id": "dl-report-2025",
+        "title": "第35届大连马拉松赛昨日起跑",
+        "url": "https://www.dldj.gov.cn/art/2025/5/12/art_9266_2439060.html",
+        "publisher": "大连党建网／大连日报",
+        "publishedAt": "2025-05-12",
+        "accessedAt": "2026-11-18",
+        "verifiedAt": "2026-11-18",
+        "applicableYears": [
+          "1987",
+          "2025"
+        ]
+      },
+      {
+        "id": "dl-preview-2026",
+        "title": "2026大连马拉松赛4月26日鸣枪起跑",
+        "url": "https://www.dl.gov.cn/art/2026/4/16/art_1438_2508615.html",
+        "publisher": "大连市人民政府／大连日报",
+        "publishedAt": "2026-04-16",
+        "accessedAt": "2026-11-18",
+        "verifiedAt": "2026-11-18",
+        "applicableYears": [
+          "2026"
+        ]
+      },
+      {
+        "id": "dalian-caa-2026",
+        "title": "中国马拉松：2026大连马拉松",
+        "url": "https://www.runchina.org.cn/#/race/v/detail/1000388027",
+        "publisher": "中国田径协会",
+        "publishedAt": "",
+        "accessedAt": "2026-11-18",
+        "verifiedAt": "2026-11-18",
+        "applicableYears": [
+          "2026"
+        ],
+        "evidence": {
+          "endpoint": "https://api-changzheng.chinaath.com/changzheng-content-center-api/api/homePage/official/searchById",
+          "method": "POST",
+          "request": {
+            "id": "1000388027",
+            "type": "SS"
+          },
+          "observed": {
+            "name": "2026大连马拉松",
+            "raceGrade": "A",
+            "gameDate": "2026.04.26",
+            "project": "全程,半程",
+            "compNameOrganizer": "大连市人民政府"
+          }
+        }
+      },
+      {
+        "id": "dalian-wa-2026",
+        "title": "World Athletics Label Road Races 2026 Calendar",
+        "url": "https://worldathletics.org/competitions/world-athletics-label-road-races/calendar-results",
+        "publisher": "世界田联",
+        "publishedAt": "",
+        "accessedAt": "2026-11-18",
+        "verifiedAt": "2026-11-18",
+        "applicableYears": [
+          "2026"
+        ],
+        "evidence": {
+          "eventId": "7236080",
+          "competitionName": "The 36th Dalian Marathon",
+          "category": "Elite",
+          "calendarDate": "2026-04-26"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lanzhou",
+    "name": "兰州马拉松",
+    "shortName": "兰马",
+    "city": "兰州",
+    "province": "甘肃",
+    "tagline": "沿黄河风情线，体验亚高原兰马",
+    "summary": "以黄河、城市地标和沿途助威形成辨识度，保留体检、候补及中国籍纪录的年度证据。",
+    "officialUrl": "https://www.lzmarathon.com/",
+    "aliases": [
+      "兰州马拉松",
+      "兰州国际马拉松",
+      "兰马"
+    ],
+    "identity": {
+      "officialIds": [
+        "1000396024"
+      ],
+      "scope": "由中国田径协会赛事条目 1000396024 对应的兰州城市马拉松；不自动归并同城其他路跑赛事。",
+      "sourceIds": [
+        "lanzhou-caa-2026"
+      ]
+    },
+    "worldAthletics": {
+      "label": "金标",
+      "year": "2026",
+      "sourceIds": [
+        "lanzhou-wa-2026"
+      ]
+    },
+    "caa": {
+      "label": "A类",
+      "year": "2026",
+      "sourceIds": [
+        "lanzhou-caa-2026"
+      ]
+    },
+    "sources": [
+      {
+        "id": "lz-history",
+        "title": "赛事简介",
+        "url": "https://www.lzmarathon.com/news/detailNews.html?id=705",
+        "publisher": "兰州马拉松组委会",
+        "publishedAt": "2021-06-25",
+        "accessedAt": "2026-11-18",
+        "verifiedAt": "2026-11-18",
+        "applicableYears": [
+          "2011",
+          "2017",
+          "2019",
+          "2020",
+          "2021"
+        ],
+        "evidence": {
+          "endpoint": "https://www.lzmarathon.com/api/v1/domain/news/705/detail.json",
+          "note": "官网公开新闻正文；show_time为2021年，正文含此后更新痕迹，仅采用明确年份的创办等历史事实。"
+        }
+      },
+      {
+        "id": "lz-report-2025",
+        "title": "2025兰州马拉松正式开跑，奇瑞风云A9L携手跑者共赴热爱征程",
+        "url": "https://www.lzmarathon.com/news/detailNews.html?id=3927",
+        "publisher": "兰州马拉松组委会官网",
+        "publishedAt": "2025-05-26",
+        "accessedAt": "2026-11-18",
+        "verifiedAt": "2026-11-18",
+        "applicableYears": [
+          "2025"
+        ],
+        "evidence": {
+          "endpoint": "https://www.lzmarathon.com/api/v1/domain/news/3927/detail.json",
+          "note": "官网合作伙伴稿，仅用于实际开赛日期与城市线路，不采用产品宣传。"
+        }
+      },
+      {
+        "id": "lz-report-2026",
+        "title": "2026兰州马拉松今日开赛",
+        "url": "https://www.lzmarathon.com/news/detailNews.html?id=5135",
+        "publisher": "兰州马拉松组委会",
+        "publishedAt": "2026-05-24",
+        "accessedAt": "2026-11-18",
+        "verifiedAt": "2026-11-18",
+        "applicableYears": [
+          "2026"
+        ],
+        "evidence": {
+          "endpoint": "https://www.lzmarathon.com/api/v1/domain/news/5135/detail.json"
+        }
+      },
+      {
+        "id": "lanzhou-caa-2026",
+        "title": "中国马拉松：2026兰州马拉松",
+        "url": "https://www.runchina.org.cn/#/race/v/detail/1000396024",
+        "publisher": "中国田径协会",
+        "publishedAt": "",
+        "accessedAt": "2026-11-18",
+        "verifiedAt": "2026-11-18",
+        "applicableYears": [
+          "2026"
+        ],
+        "evidence": {
+          "endpoint": "https://api-changzheng.chinaath.com/changzheng-content-center-api/api/homePage/official/searchById",
+          "method": "POST",
+          "request": {
+            "id": "1000396024",
+            "type": "SS"
+          },
+          "observed": {
+            "name": "2026兰州马拉松",
+            "raceGrade": "A",
+            "gameDate": "2026.05.24",
+            "project": "全程,半程",
+            "compNameOrganizer": "甘肃省体育局,兰州市人民政府"
+          }
+        }
+      },
+      {
+        "id": "lanzhou-wa-2026",
+        "title": "World Athletics Label Road Races 2026 Calendar",
+        "url": "https://worldathletics.org/competitions/world-athletics-label-road-races/calendar-results",
+        "publisher": "世界田联",
+        "publishedAt": "",
+        "accessedAt": "2026-11-18",
+        "verifiedAt": "2026-11-18",
+        "applicableYears": [
+          "2026"
+        ],
+        "evidence": {
+          "eventId": "7235588",
+          "competitionName": "Lanzhou Marathon",
+          "category": "Gold",
+          "calendarDate": "2026-05-24"
+        }
+      }
+    ]
+  },
+  {
+    "id": "shenzhen",
+    "name": "深圳马拉松",
+    "shortName": "深马",
+    "city": "深圳",
+    "province": "广东",
+    "tagline": "沿深南大道，连接深圳湾与前海",
+    "summary": "从市民中心出发，经城市大道与滨海景观至宝安；2026届尚未举办，逐年保留安排。",
+    "officialUrl": "http://wtl.sz.gov.cn/ztzl_78228/tszl/2025marathon/index.html",
+    "aliases": [
+      "深圳马拉松",
+      "深马"
+    ],
+    "identity": {
+      "officialIds": [
+        "1000454026"
+      ],
+      "scope": "由中国田径协会赛事条目 1000454026 对应的深圳城市马拉松；不自动归并同城其他路跑赛事。",
+      "sourceIds": [
+        "shenzhen-caa-2026"
+      ]
+    },
+    "worldAthletics": {
+      "label": "金标",
+      "year": "2026",
+      "sourceIds": [
+        "shenzhen-wa-2026"
+      ]
+    },
+    "caa": {
+      "label": "A类",
+      "year": "2026",
+      "sourceIds": [
+        "shenzhen-caa-2026"
+      ]
+    },
+    "sources": [
+      {
+        "id": "sz-history-2024",
+        "title": "深圳：马拉松蝉联世界田联金标赛事",
+        "url": "https://tyj.gd.gov.cn/qmjs_qmjs/content/post_4380840.html",
+        "publisher": "广东省体育局／深圳晚报",
+        "publishedAt": "2024-02-23",
+        "accessedAt": "2026-11-18",
+        "verifiedAt": "2026-11-18",
+        "applicableYears": [
+          "2013",
+          "2023",
+          "2024"
+        ]
+      },
+      {
+        "id": "sz-report-2024",
+        "title": "2024深圳马拉松顺利完赛 感受南山城区与美丽自然相互交融",
+        "url": "http://www.sz.gov.cn/cn/xxgk/zfxxgj/gqdt/content/post_11836143.html",
+        "publisher": "深圳市人民政府／南山区",
+        "publishedAt": "2024-12-02",
+        "accessedAt": "2026-11-18",
+        "verifiedAt": "2026-11-18",
+        "applicableYears": [
+          "2024"
+        ]
+      },
+      {
+        "id": "sz-regulations-2025",
+        "title": "2025深圳马拉松竞赛规程",
+        "url": "http://wtl.sz.gov.cn/ztzl_78228/tszl/2025marathon/content/post_12489345.html",
+        "publisher": "深圳市文化广电旅游体育局／深圳马拉松组委会",
+        "publishedAt": "2025-11-13",
+        "accessedAt": "2026-11-18",
+        "verifiedAt": "2026-11-18",
+        "applicableYears": [
+          "2025"
+        ]
+      },
+      {
+        "id": "shenzhen-caa-2026",
+        "title": "中国马拉松：2026深圳马拉松",
+        "url": "https://www.runchina.org.cn/#/race/v/detail/1000454026",
+        "publisher": "中国田径协会",
+        "publishedAt": "",
+        "accessedAt": "2026-11-18",
+        "verifiedAt": "2026-11-18",
+        "applicableYears": [
+          "2026"
+        ],
+        "evidence": {
+          "endpoint": "https://api-changzheng.chinaath.com/changzheng-content-center-api/api/homePage/official/searchById",
+          "method": "POST",
+          "request": {
+            "id": "1000454026",
+            "type": "SS"
+          },
+          "observed": {
+            "name": "2026深圳马拉松",
+            "raceGrade": "A",
+            "gameDate": "2026.12.06",
+            "project": "全程",
+            "compNameOrganizer": "深圳市人民政府"
+          }
+        }
+      },
+      {
+        "id": "shenzhen-wa-2026",
+        "title": "World Athletics Label Road Races 2026 Calendar",
+        "url": "https://worldathletics.org/competitions/world-athletics-label-road-races/calendar-results",
+        "publisher": "世界田联",
+        "publishedAt": "",
+        "accessedAt": "2026-11-18",
+        "verifiedAt": "2026-11-18",
+        "applicableYears": [
+          "2026"
+        ],
+        "evidence": {
+          "eventId": "7235585",
+          "competitionName": "Shenzhen Marathon",
+          "category": "Gold",
+          "calendarDate": "2026-12-06"
+        }
+      }
+    ]
+  },
+  {
+    "id": "hangzhou",
+    "name": "杭州马拉松",
+    "shortName": "杭马",
+    "city": "杭州",
+    "province": "浙江",
+    "tagline": "跑过西湖秋色，连接运河与钱塘江",
+    "summary": "1987年起步的杭马，以西湖、桂花与钱塘江形成记忆，2026年增加大运河线路。",
+    "officialUrl": "https://hm.zhetiyu.cn/",
+    "aliases": [
+      "杭州马拉松",
+      "杭州国际马拉松",
+      "杭马"
+    ],
+    "identity": {
+      "officialIds": [
+        "1000454064"
+      ],
+      "scope": "由中国田径协会赛事条目 1000454064 对应的杭州城市马拉松；不自动归并同城其他路跑赛事。",
+      "sourceIds": [
+        "hangzhou-caa-2026"
+      ]
+    },
+    "worldAthletics": {
+      "label": "金标",
+      "year": "2026",
+      "sourceIds": [
+        "hangzhou-wa-2026"
+      ]
+    },
+    "caa": {
+      "label": "A类",
+      "year": "2026",
+      "sourceIds": [
+        "hangzhou-caa-2026"
+      ]
+    },
+    "sources": [
+      {
+        "id": "hz-report-2024",
+        "title": "37岁的杭州马拉松跑向更美赛道",
+        "url": "https://www.sport.gov.cn/n20001280/n20001265/n20067664/c28232150/content.html",
+        "publisher": "国家体育总局／中国体育报",
+        "publishedAt": "2024-11-06",
+        "accessedAt": "2026-11-18",
+        "verifiedAt": "2026-11-18",
+        "applicableYears": [
+          "1987",
+          "2011",
+          "2014",
+          "2024"
+        ]
+      },
+      {
+        "id": "hz-registration-2026",
+        "title": "2026年杭马报名开启",
+        "url": "https://www.hangzhou.gov.cn/col/col812270/art/2026/art_fca1930c042d4efdb72cc9ded8d8ee89.html",
+        "publisher": "杭州市人民政府／杭州日报",
+        "publishedAt": "2026-06-24",
+        "accessedAt": "2026-11-18",
+        "verifiedAt": "2026-11-18",
+        "applicableYears": [
+          "1987",
+          "2025",
+          "2026"
+        ]
+      },
+      {
+        "id": "hz-route-2026",
+        "title": "新线路的杭马，更多元的体验",
+        "url": "https://tyj.zj.gov.cn/col/col1347213/art/2026/art_626dce84ad834392800c63ebfa624f31.html",
+        "publisher": "浙江省体育局",
+        "publishedAt": "2026-11-02",
+        "accessedAt": "2026-11-18",
+        "verifiedAt": "2026-11-18",
+        "applicableYears": [
+          "2026"
+        ]
+      },
+      {
+        "id": "hangzhou-caa-2026",
+        "title": "中国马拉松：2026杭州马拉松",
+        "url": "https://www.runchina.org.cn/#/race/v/detail/1000454064",
+        "publisher": "中国田径协会",
+        "publishedAt": "",
+        "accessedAt": "2026-11-18",
+        "verifiedAt": "2026-11-18",
+        "applicableYears": [
+          "2026"
+        ],
+        "evidence": {
+          "endpoint": "https://api-changzheng.chinaath.com/changzheng-content-center-api/api/homePage/official/searchById",
+          "method": "POST",
+          "request": {
+            "id": "1000454064",
+            "type": "SS"
+          },
+          "observed": {
+            "name": "2026杭州马拉松",
+            "raceGrade": "A",
+            "gameDate": "2026.11.01",
+            "project": "全程,半程",
+            "compNameOrganizer": "浙江省体育局,杭州市人民政府"
+          }
+        }
+      },
+      {
+        "id": "hangzhou-wa-2026",
+        "title": "World Athletics Label Road Races 2026 Calendar",
+        "url": "https://worldathletics.org/competitions/world-athletics-label-road-races/calendar-results",
+        "publisher": "世界田联",
+        "publishedAt": "",
+        "accessedAt": "2026-11-18",
+        "verifiedAt": "2026-11-18",
+        "applicableYears": [
+          "2026"
+        ],
+        "evidence": {
+          "eventId": "7235594",
+          "competitionName": "Hangzhou Marathon",
+          "category": "Gold",
+          "calendarDate": "2026-11-01"
+        }
+      }
+    ]
+  }
+]
