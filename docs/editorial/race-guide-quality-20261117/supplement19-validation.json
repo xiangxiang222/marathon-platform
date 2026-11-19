@@ -1,0 +1,28 @@
+{
+  "at": "2026-11-19T10:58:30.373Z",
+  "passed": true,
+  "rows": [
+    {
+      "id": "bishan",
+      "file": "supplement-bishan-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "主办区政府及中国田协当前公开档案为实际发枪、赛事等级、组织单位和累计爬升来源。取本届报名页可复制完整 18 章竞赛规程；既存 7 原图逐张人工核对，4 张长图以 12 个连续原宽分块看完。只更新有证据的组别发枪、关门、爬升和组委会电话，原媒体身份保持。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-30642",
+      "file": "supplement-k1-qinghuashan-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "逐读五张原图及本届文字报名卡和公告；核费用、报名口径与原图赛道冲突、领物、全套尺码与奖励、违规、计时、保险和联系方式。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "caa-1000454004",
+      "file": "supplement19-shaoxing-frozen-joined.json",
+      "edits": 1,
+      "scope": "重开并逐条核对本届官网竞赛规程18章、报名须知、正式领物须知，以及原规程4张23块全部范围；对照官网9张原表、另读FAQ/保险/声明和3张本届视觉资料。实际已发布的规程已审，具体分枪时间等候官方补充。",
+      "explicitImageReview": true
+    }
+  ],
+  "races": 3
+}

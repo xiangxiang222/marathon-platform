@@ -1,0 +1,28 @@
+{
+  "at": "2026-11-19T11:19:39.497Z",
+  "checks": [
+    {
+      "id": "bishan",
+      "width": 320,
+      "paragraphs": 81,
+      "tableRows": 74,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-30642",
+      "width": 320,
+      "paragraphs": 39,
+      "tableRows": 59,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "caa-1000454004",
+      "width": 320,
+      "paragraphs": 108,
+      "tableRows": 135,
+      "fullRenderedContentMatchesProduction": true
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-11-19T11:19:48.991Z"
+}
