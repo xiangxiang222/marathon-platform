@@ -1,0 +1,35 @@
+{
+  "at": "2026-11-19T09:03:38.714Z",
+  "passed": true,
+  "rows": [
+    {
+      "id": "zuiku-16715",
+      "file": "supplement-j2-shibadong-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "逐图覆盖10月8日调整、资格、装备、计时、奖项、处罚；补查到组委会指定频道本届14章可复制全文及两组独立路线图，恢复医疗、收容、保险与熔断，纠正终点和分段关门。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "caa-1000450007",
+      "file": "supplement-guanghan-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "以中国田协档案、赛事官网可复制报名须知和同届官方竞赛规程正文、五张原表为主；另直接核对赛前手册的六幅有操作内容跨页原图、参赛指南和领物公告。以赛前两枪安排和 11:06 全场关门更新早版。逐一复核 8 个存档原图；新增一张主管方发布的完整赛道图。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "caa-1000480094",
+      "file": "supplement-f8-caa-1000480094-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "当届报名12张原图逐张完整看（平台现存9张及历史3张），连续36块；规程16章完整核读，关门、补给、男女奖金三表逐格核准，日程海报及报名HTML表交叉。未写生产/仓库。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-27643",
+      "file": "supplement-donghu-cp-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "专项复核武汉东湖路线站点名称，原分段、关门、组别与费用不变。",
+      "explicitImageReview": true
+    }
+  ],
+  "races": 4
+}

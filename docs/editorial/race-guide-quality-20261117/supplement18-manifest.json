@@ -1,0 +1,417 @@
+[
+  {
+    "id": "zuiku-16715",
+    "name": "2026第三届中国·十八洞山地越野挑战赛",
+    "status": "current_source_content_checked_with_questions",
+    "scope": "逐图覆盖10月8日调整、资格、装备、计时、奖项、处罚；补查到组委会指定频道本届14章可复制全文及两组独立路线图，恢复医疗、收容、保险与熔断，纠正终点和分段关门。",
+    "beforeBodyHash": "9e8b0265acf8d266f5ae6dd9aaee8ef744771432d5f1603ab9688668c85465fd",
+    "savedBodyHash": "db776628e279696ae8c5a0aa5a0170ca28499feaa41d3ca0dd319edbdf5a700d",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 12,
+    "pendingImages": 0,
+    "chapters": 13,
+    "groups": 2,
+    "groupCorrections": 10,
+    "questions": [
+      {
+        "topic": "更正50、23公里终点和CP6关门",
+        "status": "corrected",
+        "sourceUrl": "https://saixunw.saihuitong.com/event?id=906029&mid=35403",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/a11f13bbf78fddae6855181d12e637c9a6a2f95c.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/8d76ff3fb4fceb54e2b754c14ca6c59e514c0e3c.jpeg?imageView2/2/w/750",
+          "https://img.saihuitong.com/4225/richtext/3879676/1a11ad959effd92.png",
+          "https://img.saihuitong.com/4225/richtext/3879676/1a11ad9b454b35c.png"
+        ],
+        "detail": "最酷旧导语将两组终点互换；10月8日赛事组委会调整图及赛讯网赛事日程一致，50KM到古苗河游客服务中心，23KM在十八洞游客中心；恢复CP6的18:00关门及红色全表、ITRA2／1和UTMB50K／20K。"
+      },
+      {
+        "topic": "早鸟日期、退款邮箱分来源",
+        "status": "source_basis_retained",
+        "sourceUrl": "https://saixunw.saihuitong.com/event?id=906029&mid=35403",
+        "sourceUrls": [
+          "https://reg.zuicool.com/73786"
+        ],
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/7c6586096010673816dc4d737168756afe62c63a.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/9e497722680c5e33f1e19f069aff220b6d6a43be.jpeg?imageView2/2/w/750",
+          "https://img.saihuitong.com/4225/richtext/3879676/1a11ada1766ee6d.png"
+        ],
+        "detail": "赛讯网和最酷正式费用图均写10/7 17:00，最酷导语另写10/17 17:00；未查到延长期。组委会公开两版退款地址不同，优先赛讯网并注明最酷原规程的凌鹰邮箱，记录已看到两版来源。"
+      },
+      {
+        "topic": "23公里最高海拔及分站数据",
+        "status": "source_basis_retained",
+        "sourceUrl": "https://saixunw.saihuitong.com/event?id=906029&mid=35403",
+        "sourceUrls": [
+          "https://m.voc.com.cn/xhn/news/202610/34068463.html"
+        ],
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/a11f13bbf78fddae6855181d12e637c9a6a2f95c.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/8d76ff3fb4fceb54e2b754c14ca6c59e514c0e3c.jpeg?imageView2/2/w/750",
+          "https://img.saihuitong.com/4225/richtext/3879676/1a11ad9b454b35c.png"
+        ],
+        "detail": "赛讯网同届可复制文字1013米，赛道图说明及三湘都市报781米，而图剖面曲线高于900米且781也是CP2标签。不能确认实际最高点，不把任一数当结论。分站海拔按10月8日数据表；绘图点位极少数不同，图保留。50公里CP4正式新版图、数字表为岩寨村，词法一致。"
+      },
+      {
+        "topic": "奖项及遗漏后段条款",
+        "status": "corrected",
+        "sourceUrl": "https://saixunw.saihuitong.com/event?id=906029&mid=35403",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/b708dec04ff3631a9e383f9985160f951ee31ddc.jpeg?imageView2/2/w/750",
+          "https://img.saihuitong.com/4225/richtext/3879676/1a11adc11fd9feb.png"
+        ],
+        "detail": "核奖项男女4行10列共7.48万元；恢复漏识别的误遗垃圾警告、三次警告加10分钟、拒不颁奖取消资格与1—2年禁赛。最酷原图到申诉为止，赛讯网恢复原图没有的第12—14章（医疗、收容、熔断、保险、官方联络及轨迹）。"
+      }
+    ],
+    "officialDocuments": [],
+    "sourceDiscovery": {
+      "officialUrl": "https://saixunw.saihuitong.com/event?id=906029&mid=35403",
+      "officialKind": "组委会指定报名渠道赛讯网发布的本届十四章竞赛规程及轨迹附件；没找到独立主办站完整页",
+      "primaryUrls": [
+        "https://saixunw.saihuitong.com/event?id=906029&mid=35403",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/10/a11f13bbf78fddae6855181d12e637c9a6a2f95c.jpeg?imageView2/2/w/750"
+      ],
+      "alternativeUrls": [
+        "https://reg.zuicool.com/73786",
+        "https://m.voc.com.cn/xhn/news/202610/34068463.html"
+      ],
+      "registrationDeadline": {
+        "value": "2026-10-23T17:00:00+08:00",
+        "sourceUrl": "https://saixunw.saihuitong.com/event?id=906029&mid=35403"
+      }
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_and_mini_devtools_390",
+      "miniDisplayed": true,
+      "formalMiniProgramReleaseVerified": false
+    }
+  },
+  {
+    "id": "caa-1000450007",
+    "name": "2026德阳市广汉三星堆半程马拉松暨跑遍四川（德阳站）",
+    "status": "current_source_content_checked_with_questions",
+    "scope": "以中国田协档案、赛事官网可复制报名须知和同届官方竞赛规程正文、五张原表为主；另直接核对赛前手册的六幅有操作内容跨页原图、参赛指南和领物公告。以赛前两枪安排和 11:06 全场关门更新早版。逐一复核 8 个存档原图；新增一张主管方发布的完整赛道图。",
+    "beforeBodyHash": "02190276835d7c099cd9e49afd75d2bef9439caf7a70f0e148790832e63ec50b",
+    "savedBodyHash": "91d2e841fdac9b2ed0d81c452cd37c3c7a1cf4db4c79c54b362c876afb3e5e8f",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 27,
+    "pendingImages": 0,
+    "chapters": 14,
+    "groups": 1,
+    "groupCorrections": 2,
+    "questions": [
+      {
+        "status": "late_two_waves_preferred",
+        "topic": "现场发枪、存衣和关门",
+        "sourceUrl": "https://mp.weixin.qq.com/s/E2vktMWJi_BRH6s8e9XOow",
+        "additionalSourceUrls": [
+          "https://mp.weixin.qq.com/s/t5Qu29yit1qSC3OQcQRGMg",
+          "https://mp.weixin.qq.com/s/8guP7GkK-Oolpe83GUY9Hg"
+        ],
+        "imageUrls": [
+          "https://mmbiz.qpic.cn/sz_mmbiz_png/5VXWibbBiaOacwicq7qRxcCnibEE0THrKy5a6aa0ibDFJeYYJ5WnO7sNK3KjJf41EmZYViaDOdHn8cDOd3J6ibeldq9EazIpgmAplY62TLQuIZfxkw/640?wx_fmt=png&from=appmsg",
+          "https://mmbiz.qpic.cn/sz_mmbiz_png/5VXWibbBiaOaehtP4icqFBonC8y8ycZE1M5mKXAbic8oVf5nXuYENHeAOIibDNse1rBibdWhD2cmHxbmRwwpDz0Wvp63dib6bTN8SgwjkfyG6eqOeI/640?wx_fmt=png&from=appmsg",
+          "https://mmbiz.qpic.cn/mmbiz_png/5VXWibbBiaOafdJAkbdibdsyH6aGqfZN6uPSyAyHIY7QmiaibNpUV3kQrm5rGxLXhE6MdvfAicuUjNKbFtgD00mVrhrklAv2kKyqEyUDOo9YTdlTw/640?wx_fmt=png&from=appmsg",
+          "https://mmbiz.qpic.cn/mmbiz_png/5VXWibbBiaOaf8YkTkA6q3ZIF9X4V7Kvkhj9JqUkpjkeib69F15zwGeibKricib6GmBmsskBmFhrDDtSKfMtpAo5eDtTJ44QtYFicZvtw8am6C54cs/640?wx_fmt=png&from=appmsg"
+        ],
+        "detail": "早规程为 08:00 一枪及 11:00 终点；手册确认后发 A 区 08:00、B 区 08:06，赛事全场 11:06 关门。手册仍以 55 分钟、1:30、2:10、2:50、3:00 为分段时长，未列分区中途绝对时刻；明标中途自然时刻为早版参考，不推算 B 区时刻。"
+      },
+      {
+        "status": "source_wording_preserved",
+        "topic": "年龄和咨询时段",
+        "sourceUrl": "https://mp.weixin.qq.com/s/8guP7GkK-Oolpe83GUY9Hg",
+        "additionalSourceUrls": [
+          "http://www.guanghan-marathon.com/html/rnotice.html",
+          "https://mp.weixin.qq.com/s/E2vktMWJi_BRH6s8e9XOow"
+        ],
+        "detail": "资格年龄同时保留官方按当年 1 月 1 日计算和出生日期括注，标明 65 岁口径冲突。官网报名须知咨询只列下午，规程与赛前指南列上午和下午。"
+      },
+      {
+        "status": "actual_draw_and_results_not_verified",
+        "topic": "实际抽签结果发布日期、赛事实际获奖结果和路线测量",
+        "sourceUrl": "http://www.guanghan-marathon.com/html/rnotice.html",
+        "additionalSourceUrls": [
+          "https://www.runchina.org.cn/#/race/v/detail/1000450007",
+          "https://mp.weixin.qq.com/s/E2vktMWJi_BRH6s8e9XOow"
+        ],
+        "detail": "报名须知只明确 9 月下旬；未核实实际抽签发布日期及完整赛后获奖成绩。已验证官方静态赛道图有海拔曲线，但未核实原始 GPX、实测距离或总爬升。手册收容表简写“三星大道”，正式路线和指南写“三星堆大道”，正文统一用正式指南路名。"
+      }
+    ],
+    "officialDocuments": [
+      {
+        "url": "https://www.runchina.org.cn/#/race/v/detail/1000450007",
+        "title": "中国马拉松信息平台 2026 广汉档案",
+        "role": "current-caa-public-record",
+        "verified": true,
+        "identityReview": "田协公开档案同届赛事号、日期、地点、主办方和 A 类",
+        "characters": 0,
+        "bodySha256": "dbfc752995e1ca871830e6d7faf2d7b8950c34de6aef1be3d021f8109e06e478",
+        "checkedAt": "2026-11-19T09:03:38.775Z"
+      },
+      {
+        "url": "http://www.guanghan-marathon.com/html/rnotice.html",
+        "title": "广汉三星堆半马官网本届报名须知",
+        "role": "official-current-registration-notice",
+        "verified": true,
+        "identityReview": "赛事官网报名须知可复制原文：参赛资格、报名、团队赛、奖项和联系方式",
+        "characters": 5932,
+        "bodySha256": "4d0adcbebe8cca1a18e55efd2486507f846ed5cd186ea3bd4f2ced3fff24b24a",
+        "checkedAt": "2026-11-19T09:03:38.775Z"
+      },
+      {
+        "url": "https://mp.weixin.qq.com/s/8guP7GkK-Oolpe83GUY9Hg",
+        "title": "组委会 2026 竞赛规程",
+        "role": "official-current-competition-rules",
+        "verified": true,
+        "identityReview": "官网 22717 链接的当届正式竞赛规程正文，含 5 张补给、关门、奖项原表",
+        "characters": 6592,
+        "bodySha256": "c65d476f047e51398b13116b026deae7efc32f5ebdb851721805a86dd644c665",
+        "checkedAt": "2026-11-19T09:03:38.775Z"
+      },
+      {
+        "url": "https://mp.weixin.qq.com/s/wDexzSt2wPSVVS5Kl0qBfw",
+        "title": "组委会 2026 报名须知",
+        "role": "official-current-signup-publication",
+        "verified": true,
+        "identityReview": "官网 22716 链接的同届 7 月报名须知正文及 4 原表",
+        "characters": 4013,
+        "bodySha256": "7c4b6eb6c8adf70969acf71f5912e3a84ee8c624d43329f8bb578d8e71770460",
+        "checkedAt": "2026-11-19T09:03:38.775Z"
+      },
+      {
+        "url": "https://mp.weixin.qq.com/s/6eWZ-BrQvuVnK5XMz6KPjA",
+        "title": "组委会本届参赛声明",
+        "role": "official-current-participant-statement",
+        "verified": true,
+        "identityReview": "官网 22715 链接的当届参赛声明，含报名、健康、保险、反兴奋剂和影像条款",
+        "characters": 1564,
+        "bodySha256": "7c4b831c25867e8a94830484d9b67b016c517fda707f06bd3917912d43ce8422",
+        "checkedAt": "2026-11-19T09:03:38.775Z"
+      },
+      {
+        "url": "https://mp.weixin.qq.com/s/E2vktMWJi_BRH6s8e9XOow",
+        "title": "组委会 10 月 31 日参赛指南",
+        "role": "official-current-late-operations-guide",
+        "verified": true,
+        "identityReview": "官网 22778 链接的 10 月 31 日同届参赛指南，含检录正文、存衣和发枪表、地图",
+        "characters": 1586,
+        "bodySha256": "be0ea3c73cf2b11b750203187ba207ae86d5fc333c977defd8395f1a91851783",
+        "checkedAt": "2026-11-19T09:03:38.775Z"
+      },
+      {
+        "url": "https://mp.weixin.qq.com/s/t5Qu29yit1qSC3OQcQRGMg",
+        "title": "组委会 2026 参赛手册",
+        "role": "official-current-late-handbook-container",
+        "verified": true,
+        "identityReview": "官网 22773 链接的本届参赛手册页面；正文联系信息外的操作页为原图，采用的 6 跨页单列逐图证据",
+        "characters": 642,
+        "bodySha256": "4719443e2245edf3fda2b58a50ac4d145a75fc307bb3e09ddcebb3fbd6ef7848",
+        "checkedAt": "2026-11-19T09:03:38.775Z"
+      },
+      {
+        "url": "https://mp.weixin.qq.com/s/3cofXkZdzUZJhfInoGz9WQ",
+        "title": "组委会 10 月 30 日现场领物公告",
+        "role": "official-current-pickup-live-notice",
+        "verified": true,
+        "identityReview": "官网 22776 链接的 10 月 30 日实际发放报道、流程原图和现场交通信息",
+        "characters": 1164,
+        "bodySha256": "43721d19dd9fdd820de19220e94a9b9525eb02de513121d036b1aec904f544c2",
+        "checkedAt": "2026-11-19T09:03:38.775Z"
+      },
+      {
+        "url": "https://mp.weixin.qq.com/s/BEv4XhaVst0bnVtPQnXErg",
+        "title": "组委会本届领物和邮寄公告",
+        "role": "official-current-pickup-mail-notice",
+        "verified": true,
+        "identityReview": "官网 22772 链接的同届公告，含逐日领物时段、证件、接驳、邮寄截止、方式和热线",
+        "characters": 2350,
+        "bodySha256": "6d5f17e2523ce3a2439e851b32ef858362533aa608c2e24e223ac8ad6cde3c61",
+        "checkedAt": "2026-11-19T09:03:38.775Z"
+      },
+      {
+        "url": "http://www.guanghan-marathon.com/",
+        "title": "2026德阳市广汉三星堆半程马拉松暨跑遍四川（德阳站）",
+        "role": "official_website",
+        "verified": true,
+        "checkedAt": "2026-11-19T09:03:38.775Z",
+        "identityReview": "官网当届索引、田协公开档案与微信公众号原文交叉核验；操作新值优先采用赛前公告及参赛手册。"
+      }
+    ],
+    "sourceDiscovery": {
+      "status": "accessible_current_sources_reviewed_with_questions",
+      "currentCaaRecord": "https://www.runchina.org.cn/#/race/v/detail/1000450007",
+      "officialSite": "http://www.guanghan-marathon.com/",
+      "officialAnnouncementIndex": "http://www.guanghan-marathon.com/html/news.html",
+      "sourcePages": {
+        "rules": "http://www.guanghan-marathon.com/html/page-22717.html",
+        "signup": "http://www.guanghan-marathon.com/html/page-22716.html",
+        "statement": "http://www.guanghan-marathon.com/html/page-22715.html",
+        "latestGuide": "http://www.guanghan-marathon.com/html/page-22778.html",
+        "pickupLive": "http://www.guanghan-marathon.com/html/page-22776.html",
+        "handbook": "http://www.guanghan-marathon.com/html/page-22773.html",
+        "pickupMail": "http://www.guanghan-marathon.com/html/page-22772.html"
+      },
+      "regulationSourceBasis": "以赛事官网可复制报名须知、官网转链的同届组委会可复制规程和 5 张正式原表为主，能核验时以赛前手册和 10 月 31 日参赛指南题示更新覆盖早版。",
+      "handbookPages": {
+        "directlyViewedOriginals": 6,
+        "imageCount": 27,
+        "scope": "采用正文的人工直看片为 04–07、14、16–17、20–23；所余页面 OCR 仅定位，不以未直看图作证，不声明全册图版审完。"
+      },
+      "platformImages": {
+        "directFullFrame": 7,
+        "continuousCrops": 2,
+        "baselineMediaIds": [
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75
+        ],
+        "scope": "8 个 SHA 原文件重新核对，7 张按海报、宣传图或二维码整图分类，唯一报名和赛道长图分段读完；三张纯宣传长图仅缩略全景分类。"
+      },
+      "limits": "赛事官网 HTTP 可读；直接 HTTPS 域名证书不匹配。独立接驳微信页返回验证，通过官网链接的完整手册对应页面确认接驳，不引用未读正文。往届公告只用于排除。"
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_and_mini_devtools_390",
+      "miniDisplayed": true,
+      "formalMiniProgramReleaseVerified": false
+    }
+  },
+  {
+    "id": "caa-1000480094",
+    "name": "2026中国田径协会10公里精英赛（蚌埠站）",
+    "status": "current_source_content_checked_with_questions",
+    "scope": "当届报名12张原图逐张完整看（平台现存9张及历史3张），连续36块；规程16章完整核读，关门、补给、男女奖金三表逐格核准，日程海报及报名HTML表交叉。未写生产/仓库。",
+    "beforeBodyHash": "32d165cdfff38ce4222d5066668d28933689be3b8a55050c451f222b85642b4b",
+    "savedBodyHash": "4f82d344035fab286da385f62b848c31940da76c18ec16f8f73191ea73cba54a",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 12,
+    "pendingImages": 0,
+    "chapters": 10,
+    "groups": 3,
+    "groupCorrections": 1,
+    "questions": [
+      "7张宣传/信息/日程图与3张完整规程原图逐读；公开登记实际12张共36块，9张现存；其余3张历史封面或城市推广也实际查看。现行规程的16章逐条校对。",
+      "欢乐跑1大1小费是报名页一个组合的100元，规程欢乐跑50元/人，两人组总额一致；总量4000，非个人和亲子分别4000。",
+      "规程年龄原文按年份固定日期，欢乐跑范围原按2025年1月1日到1947年1月1日倒序列；正文只按日期顺序排列，不推断边界逾日另有资格。个人入口13周岁以上原措辞保留。",
+      "计时第11章（七）第一条在原图中连续重复写两次起点计时地毯；去重保留通过起点计时毯开始感应计时、检查全部下游计时地毯，不猜另一地毯。",
+      "日程海报写11月29日下午开放查询、12月1日证书；正式规程写赛后48小时查成绩与下载证书，明确两来源，正式规程为准。",
+      "田协公开详情行政区为蚌山区；报名海报定位卡显示龙子湖区。两公开来源对区级描述不同，正文只用共同明确的滨河南路延安路大桥东侧，不改现有行政区字段。",
+      "11月28日领物：确切时段、地点与现场材料清单尚未找到当届组委会公开后发公告；11月29日开跑前，公众号“蚌马”发布为准。专项报名须知及独立官方手册未获取可读原文，不扩写材料。",
+      "正式规程未附可核实的独立本届路线图、欢乐跑专属补给点或电话号码，线路采用原图可读文字，不把赛道宣传/照片当路线图。"
+    ],
+    "officialDocuments": [
+      {
+        "url": "https://www.runchina.org.cn/#/race/v/detail/1000480094",
+        "title": "中国田径协会：2026中国田径协会10公里精英赛（蚌埠站）",
+        "role": "official_federation_event",
+        "verified": true,
+        "identityReview": "全国协会与赛事共同主办方的公开详情，核赛事时间、组别类型、系列赛与主办。协会详情登记地区为蚌山区，与报名海报地图卡龙子湖区字段分属不同口径，正文只用竞赛规程明确起终点。",
+        "characters": 790,
+        "bodySha256": "c63f6dadf3b68cf8315fe7fa9cc2ec6ec5693b6862eb542ee3768db39adedcc6",
+        "checkedAt": "2026-11-19T09:03:38.775Z"
+      },
+      {
+        "url": "https://reg.zuicool.com/59568",
+        "title": "中国田径协会10公里精英赛（蚌埠站）官方授权报名页",
+        "role": "registration_partner_current_options",
+        "verified": true,
+        "identityReview": "实际HTML比对三项表行：精英100、欢乐个人50、1大1小组合100。与组委会规程的欢乐跑每人50元交叉确认组合为100元/组；个人报名和儿童监护门槛按授权通道。子入口本次需登录，只用无需登录的公开总报名表，无凭推断。",
+        "characters": 2973,
+        "bodySha256": "8a086990151adda5a67ccb22ece78780543f0c051c7c51d810748d005c95f2e9",
+        "checkedAt": "2026-11-19T09:03:38.775Z"
+      },
+      {
+        "url": "https://zuicool.com/event/67788",
+        "title": "中国田径协会10公里精英赛（蚌埠站）最酷公开赛事页",
+        "role": "registration_partner_event_summary",
+        "verified": true,
+        "identityReview": "公开正文核10月12日10:00–11月1日10:00报名、11月4日18:00抽签、支付退回和总计8000。",
+        "characters": 6074,
+        "bodySha256": "2874ff98a554632649b4cea67fbf6863933fcedaaf1a47cfa8cca244de4b955d",
+        "checkedAt": "2026-11-19T09:03:38.775Z"
+      }
+    ],
+    "sourceDiscovery": {
+      "method": "先查中国田径协会本届公开赛事详情、蚌埠市政府站内检索及同届主办发布，再查最酷授权报名页和报名活动页的可复制表、官方蚌马与运营方资料的开放检索。",
+      "officialHomepageSearch": "未确认独立本届官网，田协全国官网优先核赛事身份；未找到蚌埠市政府站内发布的本次领物详情；授权报名页对三组价格优先；详细竞赛规程用组织方三张原图逐项核。",
+      "governmentSearch": "https://www.bengbu.gov.cn/site/search/6795621?keywords=10%E5%85%AC%E9%87%8C%E7%B2%BE%E8%8B%B1%E8%B5%9B",
+      "documentsChecked": [
+        "https://www.runchina.org.cn/#/race/v/detail/1000480094",
+        "https://reg.zuicool.com/59568",
+        "https://zuicool.com/event/67788"
+      ]
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_and_mini_devtools_390",
+      "miniDisplayed": true,
+      "formalMiniProgramReleaseVerified": false
+    }
+  },
+  {
+    "id": "zuiku-27643",
+    "name": "2026第六届武汉东湖山径赛",
+    "status": "current_source_content_checked_with_questions",
+    "scope": "专项复核武汉东湖路线站点名称，原分段、关门、组别与费用不变。",
+    "beforeBodyHash": "538dc946ed5a77fc699277db9603025625f550ddee906e994abc3ee7076be3ba",
+    "savedBodyHash": "093b195c6158939d6370510726e9571a8d5de97d392b1a27fb3b77b9615227bd",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 1,
+    "pendingImages": 0,
+    "chapters": 12,
+    "groups": 2,
+    "groupCorrections": 0,
+    "questions": [
+      {
+        "item": "CP1/SP1名称",
+        "status": "verified_in_enlarged_original",
+        "source": "https://zc3wp-uploads.bkt.zuicool.com/2026/09/35b0632fb407b055dceb1eae21f06725429bd76a.jpeg?imageView2/2/w/750",
+        "treatment": "公开正文写圃林路。路线图图注用CP编号。"
+      }
+    ],
+    "officialDocuments": [],
+    "sourceDiscovery": {
+      "officialUrl": null,
+      "officialKind": "未找到独立官网；武汉脚度体育当届正式规程原图由指定最酷入口发布",
+      "primaryUrls": [
+        "https://reg.zuicool.com/23787"
+      ],
+      "alternativeUrls": [
+        "https://zuicool.com/event/27643"
+      ],
+      "registrationDeadline": {
+        "value": "2026-10-31",
+        "sourceUrl": "https://reg.zuicool.com/23787"
+      }
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_and_mini_devtools_390",
+      "miniDisplayed": true,
+      "formalMiniProgramReleaseVerified": false
+    }
+  }
+]

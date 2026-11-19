@@ -1,0 +1,71 @@
+{
+  "at": "2026-11-19T08:44:41.946Z",
+  "checks": [
+    {
+      "id": "caa-1000418257",
+      "width": 320,
+      "needle": "11:10",
+      "table": {
+        "width": 252,
+        "scrollWidth": 600,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 348,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "起点布局图（赛前），含三个集结分区及安检、存衣。\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "caa-1000418257",
+      "width": 390,
+      "needle": "11:10",
+      "table": {
+        "width": 318,
+        "scrollWidth": 600,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 282,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "起点布局图（赛前），含三个集结分区及安检、存衣。\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-27643",
+      "width": 320,
+      "needle": "06:50—07:40",
+      "table": {
+        "width": 252,
+        "scrollWidth": 360,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 108,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "乐野组东湖山径路线与海拔：14.2公里，沿途团林路和汇贤路两站\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-27643",
+      "width": 390,
+      "needle": "06:50—07:40",
+      "table": {
+        "width": 318,
+        "scrollWidth": 360,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 42,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "乐野组东湖山径路线与海拔：14.2公里，沿途团林路和汇贤路两站\n查看原图 ↗",
+      "overflow": false
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-11-19T08:45:02.583Z"
+}

@@ -1,0 +1,21 @@
+{
+  "at": "2026-11-19T08:39:30.635Z",
+  "passed": true,
+  "rows": [
+    {
+      "id": "caa-1000418257",
+      "file": "supplement-f8-caa-1000418257-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "平台保存5/5张本届报名须知与完整规程原图连续34块核读，实际核表4张；核对中国田协认证文字、马鞍山体育赛前攻略文字及配图10/10，核政府媒体与文旅部门当届动态。分清竞赛初版与实际赛前双枪更新。未保存生产。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-27643",
+      "file": "supplement-j1-donghu-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "逐读五张原图和最酷报名资料，完整恢复本届九项规程；分开乐野与一大一小亲子资格、费用、路线及奖励；保留原图爬升冲突和退费边界。",
+      "explicitImageReview": true
+    }
+  ],
+  "races": 2
+}

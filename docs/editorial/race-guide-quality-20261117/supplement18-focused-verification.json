@@ -1,0 +1,135 @@
+{
+  "at": "2026-11-19T09:08:39.180Z",
+  "checks": [
+    {
+      "id": "zuiku-16715",
+      "width": 320,
+      "needle": "23.2",
+      "table": {
+        "width": 252,
+        "scrollWidth": 1200,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 948,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "赛事报名、资格和装备原规程，含两个项目年龄、体检和定位卡\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-16715",
+      "width": 390,
+      "needle": "23.2",
+      "table": {
+        "width": 318,
+        "scrollWidth": 1200,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 882,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "赛事报名、资格和装备原规程，含两个项目年龄、体检和定位卡\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "caa-1000450007",
+      "width": 320,
+      "needle": "11:06",
+      "table": {
+        "width": 252,
+        "scrollWidth": 360,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 108,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "2026 广汉三星堆半马赛事横幅\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "caa-1000450007",
+      "width": 390,
+      "needle": "11:06",
+      "table": {
+        "width": 318,
+        "scrollWidth": 360,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 42,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "2026 广汉三星堆半马赛事横幅\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "caa-1000480094",
+      "width": 320,
+      "needle": "100 元/组",
+      "table": {
+        "width": 252,
+        "scrollWidth": 720,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 468,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "10 公里精英赛完赛奖牌正背面（欢乐跑另发纪念奖牌）\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "caa-1000480094",
+      "width": 390,
+      "needle": "100 元/组",
+      "table": {
+        "width": 318,
+        "scrollWidth": 720,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 402,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "10 公里精英赛完赛奖牌正背面（欢乐跑另发纪念奖牌）\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-27643",
+      "width": 320,
+      "needle": "圃林路",
+      "table": {
+        "width": 252,
+        "scrollWidth": 720,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 468,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "乐野组东湖山径路线与海拔：14.2公里，沿途CP1/SP1和汇贤路两站\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-27643",
+      "width": 390,
+      "needle": "圃林路",
+      "table": {
+        "width": 318,
+        "scrollWidth": 720,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 402,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "乐野组东湖山径路线与海拔：14.2公里，沿途CP1/SP1和汇贤路两站\n查看原图 ↗",
+      "overflow": false
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-11-19T09:09:18.134Z"
+}
