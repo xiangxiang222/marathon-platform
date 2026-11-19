@@ -1,0 +1,42 @@
+{
+  "at": "2026-11-19T00:06:59.277Z",
+  "passed": true,
+  "rows": [
+    {
+      "id": "caa-1000481065",
+      "file": "supplement-b-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "实际补看官网竞赛规程后两张长图；修复误挂报名费下的奖励、医疗、处罚等整章；核实两张宣传图后清除宣传OCR正文，合并收费/保险/联系重复，保留所有独特条款。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "caa-1000419241",
+      "file": "supplement-b-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "官网报名须知可复制文字与完整规程长图逐条交叉核对；修正医疗站2.5公里，重建分项目关门/补给/五项奖励表，完整拆分资格、报名、路线、领物、处罚、保险、申诉和联系；清除已实看的宣传OCR及重复导语。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "caa-1000473000",
+      "file": "supplement-b-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "从本届官网公开API定位现届配置，四张完整规程原图逐块实看并用本届中文报名须知/路线可复制全文优先校对；补齐健康漏项、错断路线、分枪合并表、奖金/市民奖、20%税、处罚宠物漏项及保险残句，完整重建两项目组别和章节。；追加官网公告链11月4日正式领物须知，核对三天开放时刻、会展10号馆/4号5号门、本人原件和人脸识别、不得代领、酒店已付服务包及36行服装尺码；官方候补时间矛盾保留。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-26531",
+      "file": "supplement-d-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "本轮补齐全部剩余原图，连同第11批已审原图及本届可靠文字，当前已发布资料累计全部核对；保留源内具体疑点。未认领保存、线上展示、部署或真机验证。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-69042",
+      "file": "supplement-d-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "本轮补齐全部剩余原图，连同第11批已审原图及本届可靠文字，当前已发布资料累计全部核对；保留源内具体疑点。未认领保存、线上展示、部署或真机验证。",
+      "explicitImageReview": true
+    }
+  ],
+  "races": 5
+}

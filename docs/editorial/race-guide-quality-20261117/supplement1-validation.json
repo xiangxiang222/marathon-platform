@@ -1,0 +1,84 @@
+{
+  "at": "2026-11-18T20:13:32.590Z",
+  "passed": true,
+  "rows": [
+    {
+      "id": "zuiku-14449",
+      "file": "supplement-a-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "本轮连续实看原图0—8全部块，补齐竞赛规则版；9—11沿用第11批逐块核验正文并对日程/组织另抽核。两版全14章内容已逐项对应，重复章节移为一次完整正文，差异独立说明；不是来源矛盾已获组委会确认或真机/正式发布已完成。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-31546",
+      "file": "supplement-a-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "9张本届图片累计全部连续实看：本轮新核0/1/2/5及正式规程6/7/8，3/4沿用第11批全图核对并另复核费用。完整正式规程一至八章均校对；原图冲突逐项标明，未推定谁覆盖谁。原人工组别字段未擅改。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-48246",
+      "file": "supplement-root-curation-reviewed.json",
+      "edits": 1,
+      "scope": "本轮仅完成此前未审宣传/二维码/品牌图的视觉分类与筛选；全部参赛规程的逐图复核范围沿用此前清单，源文冲突继续保留。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-52309",
+      "file": "supplement-root-curation-reviewed.json",
+      "edits": 0,
+      "scope": "本轮仅完成此前未审宣传/二维码/品牌图的视觉分类与筛选；全部参赛规程的逐图复核范围沿用此前清单，源文冲突继续保留。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-39867",
+      "file": "supplement-root-curation-reviewed.json",
+      "edits": 0,
+      "scope": "本轮仅完成此前未审宣传/二维码/品牌图的视觉分类与筛选；全部参赛规程的逐图复核范围沿用此前清单，源文冲突继续保留。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-90601",
+      "file": "supplement-root-curation-reviewed.json",
+      "edits": 0,
+      "scope": "本轮仅完成此前未审宣传/二维码/品牌图的视觉分类与筛选；全部参赛规程的逐图复核范围沿用此前清单，源文冲突继续保留。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-78664",
+      "file": "supplement-root-curation-reviewed.json",
+      "edits": 0,
+      "scope": "本轮仅完成此前未审宣传/二维码/品牌图的视觉分类与筛选；全部参赛规程的逐图复核范围沿用此前清单，源文冲突继续保留。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-98987",
+      "file": "supplement-root-curation-reviewed.json",
+      "edits": 1,
+      "scope": "本轮仅完成此前未审宣传/二维码/品牌图的视觉分类与筛选；全部参赛规程的逐图复核范围沿用此前清单，源文冲突继续保留。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "caa-1000485007",
+      "file": "supplement-root-huizhou-reviewed.json",
+      "edits": 1,
+      "scope": "当前唯一规程原图全图10块逐项实看，恢复完整路线、报名限制、奖励两表、处罚及保险等后半条款；保留人工概况与此前已核费用年龄资格/关门表。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-88804",
+      "file": "supplement-c1-frozen-reviewed.json",
+      "edits": 3,
+      "scope": "已完成现有来源审校，源内冲突与未公布信息逐条保留；不把疑点当作尚未查看。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-73329",
+      "file": "supplement-c1-frozen-reviewed.json",
+      "edits": 4,
+      "scope": "已完成现有来源审校，源内冲突与未公布信息逐条保留；不把疑点当作尚未查看。",
+      "explicitImageReview": true
+    }
+  ],
+  "races": 11
+}

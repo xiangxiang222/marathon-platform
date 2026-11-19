@@ -1,0 +1,221 @@
+{
+  "startedAt": "2026-11-19T00:16:15.771Z",
+  "kind": "Actual 390px WeChat DevTools production-page render check; no mocked network; excludes physical phone, gestures and formal release",
+  "races": [
+    {
+      "id": "caa-1000481065",
+      "actualViewport": 390,
+      "guideCharacters": 9896,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 1,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1298.140625,
+        "bottom": 17019.375,
+        "width": 366,
+        "height": 15721.234375,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 5,
+      "tableRowsIncludingHeaders": 37,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336,
+        336
+      ],
+      "previewGestureChecks": "Separate representative evidence: supplement2-mini-verification.json"
+    },
+    {
+      "id": "caa-1000419241",
+      "actualViewport": 390,
+      "guideCharacters": 9732,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 4,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1636.53125,
+        "bottom": 19035.5078125,
+        "width": 366,
+        "height": 17398.9765625,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 9,
+      "tableRowsIncludingHeaders": 81,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336
+      ],
+      "previewGestureChecks": "Separate representative evidence: supplement2-mini-verification.json"
+    },
+    {
+      "id": "caa-1000473000",
+      "actualViewport": 390,
+      "guideCharacters": 16284,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 2,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1499.5234375,
+        "bottom": 28276.4296875,
+        "width": 366,
+        "height": 26776.90625,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 10,
+      "tableRowsIncludingHeaders": 116,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336
+      ],
+      "previewGestureChecks": "Separate representative evidence: supplement2-mini-verification.json"
+    },
+    {
+      "id": "zuiku-26531",
+      "actualViewport": 390,
+      "guideCharacters": 9500,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 7,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1384.71875,
+        "bottom": 17914.203125,
+        "width": 366,
+        "height": 16529.484375,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 4,
+      "tableRowsIncludingHeaders": 67,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336
+      ],
+      "previewGestureChecks": "Separate representative evidence: supplement2-mini-verification.json"
+    },
+    {
+      "id": "zuiku-69042",
+      "actualViewport": 390,
+      "guideCharacters": 17560,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 5,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1448.4609375,
+        "bottom": 30935.734375,
+        "width": 366,
+        "height": 29487.2734375,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 13,
+      "tableRowsIncludingHeaders": 105,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336
+      ],
+      "previewGestureChecks": "Separate representative evidence: supplement2-mini-verification.json"
+    }
+  ],
+  "errors": [],
+  "passed": true,
+  "system": {
+    "success": true,
+    "systemInfo": {
+      "result": {
+        "brand": "devtools",
+        "model": "iPhone 12/13 (Pro)",
+        "system": "iOS 10.0.1",
+        "platform": "devtools",
+        "benchmarkLevel": -1,
+        "pixelRatio": 3,
+        "screenWidth": 390,
+        "screenHeight": 844,
+        "windowWidth": 390,
+        "windowHeight": 762,
+        "statusBarHeight": 47,
+        "safeArea": {
+          "top": 47,
+          "left": 0,
+          "right": 390,
+          "bottom": 810,
+          "width": 390,
+          "height": 763
+        },
+        "language": "zh_CN",
+        "version": "8.0.5",
+        "fontSizeSetting": 16,
+        "SDKVersion": "3.17.1",
+        "host": {
+          "env": "WeChat"
+        },
+        "enableDebug": false,
+        "mode": "default",
+        "deviceOrientation": "portrait",
+        "bluetoothEnabled": true,
+        "locationEnabled": true,
+        "wifiEnabled": true,
+        "albumAuthorized": true,
+        "cameraAuthorized": true,
+        "locationAuthorized": true,
+        "microphoneAuthorized": true,
+        "notificationAuthorized": true,
+        "notificationAlertAuthorized": true,
+        "notificationBadgeAuthorized": true,
+        "notificationSoundAuthorized": true,
+        "phoneCalendarAuthorized": true,
+        "bluetoothAuthorized": true,
+        "locationReducedAccuracy": true,
+        "devicePixelRatio": 3
+      }
+    }
+  },
+  "completedAt": "2026-11-19T00:17:54.191Z"
+}

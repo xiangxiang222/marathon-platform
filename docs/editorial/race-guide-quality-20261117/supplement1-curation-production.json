@@ -1,0 +1,111 @@
+{
+  "at": "2026-11-18T20:22:00.371Z",
+  "passed": true,
+  "races": [
+    {
+      "id": "zuiku-48246",
+      "hiddenGuideSheetIds": [
+        485,
+        486,
+        487
+      ],
+      "guideSheetIds": [
+        489,
+        490
+      ],
+      "routeSheetIds": [
+        488
+      ]
+    },
+    {
+      "id": "zuiku-52309",
+      "hiddenGuideSheetIds": [
+        947,
+        948
+      ],
+      "guideSheetIds": [
+        949,
+        950,
+        951,
+        952,
+        954
+      ],
+      "routeSheetIds": [
+        953
+      ]
+    },
+    {
+      "id": "zuiku-39867",
+      "hiddenGuideSheetIds": [
+        989
+      ],
+      "guideSheetIds": [
+        985,
+        986,
+        987,
+        988,
+        990,
+        992
+      ],
+      "routeSheetIds": [
+        991
+      ]
+    },
+    {
+      "id": "zuiku-90601",
+      "hiddenGuideSheetIds": [
+        997
+      ],
+      "guideSheetIds": [
+        998,
+        999,
+        1000,
+        1001,
+        1002,
+        1003,
+        1004,
+        1005,
+        1006
+      ],
+      "routeSheetIds": []
+    },
+    {
+      "id": "zuiku-78664",
+      "hiddenGuideSheetIds": [
+        1083,
+        1090
+      ],
+      "guideSheetIds": [
+        1079,
+        1080,
+        1081,
+        1082,
+        1084,
+        1085,
+        1086,
+        1087,
+        1088,
+        1089
+      ],
+      "routeSheetIds": []
+    },
+    {
+      "id": "zuiku-98987",
+      "hiddenGuideSheetIds": [
+        1399
+      ],
+      "guideSheetIds": [
+        1391,
+        1392,
+        1393,
+        1394,
+        1395,
+        1396,
+        1398
+      ],
+      "routeSheetIds": [
+        1397
+      ]
+    }
+  ]
+}

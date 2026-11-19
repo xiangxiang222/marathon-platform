@@ -1,0 +1,24 @@
+{
+  "at": "2026-11-19T00:26:43.009Z",
+  "backup": "server/data/race-guide-quality-20261117/supplement2-image-kinds.before.sqlite",
+  "rows": [
+    {
+      "id": "caa-1000473000",
+      "sheetId": 1739,
+      "imageUrl": "https://img.shuzixindong.com/node-images/7C71114003376A60-20260819144414972.jpg",
+      "sha256": "62dfe19061f5e5b40013f4274ab577e49d7223d2fd2d012ff90be4e4ec821a72",
+      "imageViewed": true,
+      "before": "route",
+      "after": "guide",
+      "reason": "实际查看本届官网规程第1张，包括赛事项目、路线图及参赛资格；混合规程长图归入完整规程参考区，图中路线视觉资料继续保留。未修改既有手工路线图316。",
+      "checkedAt": "2026-11-19T00:26:43.009Z",
+      "bodyUnchanged": true,
+      "groupsUnchanged": true
+    }
+  ],
+  "races": 434,
+  "sheets": 1746,
+  "schemaUnchanged": true,
+  "quickCheck": "ok",
+  "passed": true
+}

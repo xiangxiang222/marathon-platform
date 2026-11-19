@@ -1,0 +1,410 @@
+{
+  "startedAt": "2026-11-18T20:20:11.717Z",
+  "kind": "Actual 390px WeChat DevTools production-page render check; no mocked network; excludes physical phone, gestures and formal release",
+  "races": [
+    {
+      "id": "zuiku-14449",
+      "actualViewport": 390,
+      "guideCharacters": 10417,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 10,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1539.6171875,
+        "bottom": 19527.015625,
+        "width": 366,
+        "height": 17987.3984375,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 8,
+      "tableRowsIncludingHeaders": 68,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336
+      ],
+      "previewGestureChecks": "Separate representative evidence: supplement1-mini-verification.json"
+    },
+    {
+      "id": "zuiku-31546",
+      "actualViewport": 390,
+      "guideCharacters": 14494,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 6,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1335.8984375,
+        "bottom": 24051.265625,
+        "width": 366,
+        "height": 22715.3671875,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 10,
+      "tableRowsIncludingHeaders": 97,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336
+      ],
+      "previewGestureChecks": "Separate representative evidence: supplement1-mini-verification.json"
+    },
+    {
+      "id": "zuiku-48246",
+      "actualViewport": 390,
+      "guideCharacters": 3533,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 2,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1043.046875,
+        "bottom": 6990.6171875,
+        "width": 366,
+        "height": 5947.5703125,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 5,
+      "tableRowsIncludingHeaders": 27,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336,
+        336
+      ],
+      "previewGestureChecks": "Separate representative evidence: supplement1-mini-verification.json"
+    },
+    {
+      "id": "zuiku-52309",
+      "actualViewport": 390,
+      "guideCharacters": 6954,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 2,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1315.609375,
+        "bottom": 12764.2421875,
+        "width": 366,
+        "height": 11448.6328125,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 8,
+      "tableRowsIncludingHeaders": 43,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336
+      ],
+      "previewGestureChecks": "Separate representative evidence: supplement1-mini-verification.json"
+    },
+    {
+      "id": "zuiku-39867",
+      "actualViewport": 390,
+      "guideCharacters": 7253,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 4,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1254.8046875,
+        "bottom": 13209.1484375,
+        "width": 366,
+        "height": 11954.34375,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 11,
+      "tableRowsIncludingHeaders": 59,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336
+      ],
+      "previewGestureChecks": "Separate representative evidence: supplement1-mini-verification.json"
+    },
+    {
+      "id": "zuiku-90601",
+      "actualViewport": 390,
+      "guideCharacters": 3674,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 2,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1234.515625,
+        "bottom": 7795.8359375,
+        "width": 366,
+        "height": 6561.3203125,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 4,
+      "tableRowsIncludingHeaders": 23,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336
+      ],
+      "previewGestureChecks": "Separate representative evidence: supplement1-mini-verification.json"
+    },
+    {
+      "id": "zuiku-78664",
+      "actualViewport": 390,
+      "guideCharacters": 7139,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 4,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1237.3359375,
+        "bottom": 13486.7734375,
+        "width": 366,
+        "height": 12249.4375,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 11,
+      "tableRowsIncludingHeaders": 95,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336
+      ],
+      "previewGestureChecks": "Separate representative evidence: supplement1-mini-verification.json"
+    },
+    {
+      "id": "zuiku-98987",
+      "actualViewport": 390,
+      "guideCharacters": 5852,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 5,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1288.8203125,
+        "bottom": 9942.078125,
+        "width": 366,
+        "height": 8653.2578125,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 4,
+      "tableRowsIncludingHeaders": 28,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336
+      ],
+      "previewGestureChecks": "Separate representative evidence: supplement1-mini-verification.json"
+    },
+    {
+      "id": "caa-1000485007",
+      "actualViewport": 390,
+      "guideCharacters": 9113,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 2,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 965.1484375,
+        "bottom": 15332.3203125,
+        "width": 366,
+        "height": 14367.171875,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 6,
+      "tableRowsIncludingHeaders": 40,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336,
+        336,
+        336
+      ],
+      "previewGestureChecks": "Separate representative evidence: supplement1-mini-verification.json"
+    },
+    {
+      "id": "zuiku-88804",
+      "actualViewport": 390,
+      "guideCharacters": 16955,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 3,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1391.171875,
+        "bottom": 28350.65625,
+        "width": 366,
+        "height": 26959.484375,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 12,
+      "tableRowsIncludingHeaders": 93,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336
+      ],
+      "previewGestureChecks": "Separate representative evidence: supplement1-mini-verification.json"
+    },
+    {
+      "id": "zuiku-73329",
+      "actualViewport": 390,
+      "guideCharacters": 9427,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 4,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1128.328125,
+        "bottom": 16309.3203125,
+        "width": 366,
+        "height": 15180.9921875,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 7,
+      "tableRowsIncludingHeaders": 67,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336
+      ],
+      "previewGestureChecks": "Separate representative evidence: supplement1-mini-verification.json"
+    }
+  ],
+  "errors": [],
+  "passed": true,
+  "system": {
+    "success": true,
+    "systemInfo": {
+      "result": {
+        "brand": "devtools",
+        "model": "iPhone 12/13 (Pro)",
+        "system": "iOS 10.0.1",
+        "platform": "devtools",
+        "benchmarkLevel": -1,
+        "pixelRatio": 3,
+        "screenWidth": 390,
+        "screenHeight": 844,
+        "windowWidth": 390,
+        "windowHeight": 762,
+        "statusBarHeight": 47,
+        "safeArea": {
+          "top": 47,
+          "left": 0,
+          "right": 390,
+          "bottom": 810,
+          "width": 390,
+          "height": 763
+        },
+        "language": "zh_CN",
+        "version": "8.0.5",
+        "fontSizeSetting": 16,
+        "SDKVersion": "3.17.1",
+        "host": {
+          "env": "WeChat"
+        },
+        "enableDebug": false,
+        "mode": "default",
+        "deviceOrientation": "portrait",
+        "bluetoothEnabled": true,
+        "locationEnabled": true,
+        "wifiEnabled": true,
+        "albumAuthorized": true,
+        "cameraAuthorized": true,
+        "locationAuthorized": true,
+        "microphoneAuthorized": true,
+        "notificationAuthorized": true,
+        "notificationAlertAuthorized": true,
+        "notificationBadgeAuthorized": true,
+        "notificationSoundAuthorized": true,
+        "phoneCalendarAuthorized": true,
+        "bluetoothAuthorized": true,
+        "locationReducedAccuracy": true,
+        "devicePixelRatio": 3
+      }
+    }
+  },
+  "completedAt": "2026-11-18T20:23:18.293Z"
+}

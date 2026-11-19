@@ -1,0 +1,72 @@
+{
+  "at": "2026-11-19T00:37:02.640Z",
+  "kind": "Production data update using already deployed code; full obtained current-source scope per manifest, source questions retained",
+  "stages": {
+    "reviewed": true,
+    "saved": true,
+    "displayed": true,
+    "deployedVerified": true,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "races": 5,
+  "backup": "server/data/race-guide-quality-20261117/supplement2-applied.json.before.sqlite",
+  "imageKindBackup": "server/data/race-guide-quality-20261117/supplement2-image-kinds.before.sqlite",
+  "counts": {
+    "races": 434,
+    "sheets": 1746
+  },
+  "newSourceImages": 11,
+  "racesAddedOrDeleted": 0,
+  "schemaUnchanged": true,
+  "quickCheck": "ok",
+  "web": {
+    "actualPages": 10,
+    "widths": [
+      320,
+      390
+    ],
+    "fullTextBlocks": 1069,
+    "tableRows": 406,
+    "focusPages": 8,
+    "hefeiImageKindRecheckedPages": 2
+  },
+  "mini": {
+    "actualViewport": 390,
+    "races": 5,
+    "groups": 19,
+    "tables": 41,
+    "tableRows": 406,
+    "fullBodyAndCellsMatchProduction": true,
+    "nativeOriginalPreviewActuallyViewed": [
+      "caa-1000419241",
+      "zuiku-69042",
+      "caa-1000473000"
+    ],
+    "hefeiPreviewRetest": "supplement2-hefei-image-kind-mini.json",
+    "physicalGestureVerified": false
+  },
+  "sourceCorrections": [
+    "仙女湖医疗站间距5公里改为2.5公里；普通与情侣套餐分列、不推断情侣计费单位",
+    "合肥按本届中文公开接口及11月4日领物公告补全；两组分枪、三天领物时刻及36行尺码，排除其他赛事英文模板",
+    "澄迈公开/自贸港奖励及医疗处罚尾章恢复；凤庆正常费用及41项处罚完整；勐海6公里爬升312米恢复，其余官方版本差异保留"
+  ],
+  "media": {
+    "hefeiMixedRegulationImage1739": "route→guide with separate backup; existing manual route316 retained",
+    "fengqingPromotionalImagesExcluded": 10,
+    "menghaiPromotionalImagesExcluded": 2,
+    "recordsAndFilesDeleted": 0
+  },
+  "remaining": {
+    "original54Remaining": 46,
+    "original8CurationRemaining": 0,
+    "mappedConcrete": 19,
+    "mappedCoverageUnknown": 2,
+    "knownDistinctConcreteRemaining": 65,
+    "sourceFollowupOnly": 2
+  },
+  "limitations": [
+    "Full obtained regulations reviewed does not resolve source internal contradictions or prove later notices obtained",
+    "Actual 390px DevTools verification is not a formal mini release or a physical-device gesture verification",
+    "Actual 320px mini, physical zoom/longpress menu and formal release checks remain incomplete"
+  ]
+}
