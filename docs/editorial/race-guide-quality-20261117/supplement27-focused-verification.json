@@ -1,0 +1,39 @@
+{
+  "at": "2026-11-19T19:03:47.520Z",
+  "checks": [
+    {
+      "id": "zuiku-88270",
+      "width": 320,
+      "needle": "08:20",
+      "table": {
+        "width": 252,
+        "scrollWidth": 840,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 588,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "当届开报海报（报名已结束）\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-88270",
+      "width": 390,
+      "needle": "08:20",
+      "table": {
+        "width": 318,
+        "scrollWidth": 840,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 522,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "当届开报海报（报名已结束）\n查看原图 ↗",
+      "overflow": false
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-11-19T19:04:34.087Z"
+}
