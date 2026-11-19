@@ -1,0 +1,28 @@
+{
+  "at": "2026-11-19T18:10:15.376Z",
+  "passed": true,
+  "rows": [
+    {
+      "id": "zuiku-73285",
+      "file": "supplement24-ganquan-joined.json",
+      "edits": 1,
+      "scope": "逐图复核3个已存当届原件及8个辅助图；全文检查报名规程1—10章，优先采用甘泉县政府赛后报告和组委会赛前领物、摆渡与CP3公告。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-54272",
+      "file": "supplement24-conghua-joined.json",
+      "edits": 1,
+      "scope": "以 supplement22 完整生产快照为基线，逐张核对同届最酷现有 28 原图（技术图连续分段）、承办方希必恩体育当届完整可复制原文及原文 13 附图，并与微步转载、广东省社训中心 11 月赛历、当前最酷报名状态及显示价互校。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-77580",
+      "file": "supplement-qiandaohu-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "核本届指定报名页可复制文字，人工横纵校对 4 张现有原图（含两张长图共 9 个连续片段）和公告附图，完整重编两组八个报名组合、两日安排、路线、尺码、物流、费用及退费章节。",
+      "explicitImageReview": true
+    }
+  ],
+  "races": 3
+}

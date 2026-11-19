@@ -1,0 +1,40 @@
+{
+  "startedAt": "2026-11-19T17:02:42.753Z",
+  "kind": "Actual WeChat DevTools 390px production-page; no mock; physical phone, gestures and formal release excluded",
+  "races": [
+    {
+      "id": "zuiku-71615",
+      "actualViewport": 390,
+      "guideCharacters": 2842,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 2,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 894.0546875,
+        "bottom": 5444.1328125,
+        "width": 366,
+        "height": 4550.078125,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 6,
+      "tableRowsIncludingHeaders": 23,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336,
+        336,
+        336
+      ]
+    }
+  ],
+  "previousErrors": [],
+  "intermittent": [],
+  "errors": [],
+  "passed": true,
+  "completedAt": "2026-11-19T17:02:54.221Z"
+}

@@ -1,0 +1,103 @@
+{
+  "at": "2026-11-19T18:16:45.095Z",
+  "checks": [
+    {
+      "id": "zuiku-73285",
+      "width": 320,
+      "needle": "24公里",
+      "table": {
+        "width": 252,
+        "scrollWidth": 600,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 348,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "本届注册海报：指导、主办、承办、运营、组别、奖励及景区权益\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-73285",
+      "width": 390,
+      "needle": "24公里",
+      "table": {
+        "width": 318,
+        "scrollWidth": 600,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 282,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "本届注册海报：指导、主办、承办、运营、组别、奖励及景区权益\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-54272",
+      "width": 320,
+      "needle": "11 月 29 日 11:00",
+      "table": {
+        "width": 252,
+        "scrollWidth": 720,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 468,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "赛事页视觉横幅\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-54272",
+      "width": 390,
+      "needle": "11 月 29 日 11:00",
+      "table": {
+        "width": 318,
+        "scrollWidth": 720,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 402,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "赛事页视觉横幅\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-77580",
+      "width": 320,
+      "needle": "766",
+      "table": {
+        "width": 252,
+        "scrollWidth": 720,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 468,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "两条路线、海拔、服装尺码与住宿原图：15K 约 14 公里，10K 约 11 公里\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-77580",
+      "width": 390,
+      "needle": "766",
+      "table": {
+        "width": 318,
+        "scrollWidth": 720,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 402,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "两条路线、海拔、服装尺码与住宿原图：15K 约 14 公里，10K 约 11 公里\n查看原图 ↗",
+      "overflow": false
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-11-19T18:17:04.809Z"
+}

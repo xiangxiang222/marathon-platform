@@ -1,0 +1,127 @@
+{
+  "productionOrigin": "https://togetherbetter.cn/marathon",
+  "merge": "c19c196ccb11db46c23826aa21e26197cd0aa1f9",
+  "deployRun": 44587330029,
+  "api": [
+    {
+      "id": "zuiku-58332",
+      "route": [
+        1186,
+        1187,
+        1188,
+        1189
+      ],
+      "excludedFromOriginals": [
+        1186,
+        1187,
+        1188,
+        1189
+      ]
+    },
+    {
+      "id": "zuiku-35462",
+      "route": [
+        696,
+        697
+      ],
+      "excludedFromOriginals": [
+        696
+      ]
+    }
+  ],
+  "web": [
+    {
+      "id": "zuiku-58332",
+      "width": 320,
+      "sizes": [
+        {
+          "sheetId": 1186,
+          "caption": "8.5K 沐光组路线和海拔图：高崇寺打卡，累计爬升 218 米",
+          "w": 1024,
+          "h": 1901
+        },
+        {
+          "sheetId": 1187,
+          "caption": "17K 凌云组路线和海拔图：高崇寺打卡，累计爬升 854 米",
+          "w": 1024,
+          "h": 1908
+        },
+        {
+          "sheetId": 1188,
+          "caption": "28K 逐日组路线和海拔图：观音山、高崇寺打卡，累计爬升 1304 米",
+          "w": 1024,
+          "h": 1908
+        },
+        {
+          "sheetId": 1189,
+          "caption": "42K 追风组路线和海拔原图：累计爬升 2235 米，分段数据及完整点位待组委会确认",
+          "w": 1024,
+          "h": 1904
+        }
+      ],
+      "previewOpened": true,
+      "originalOpened": true
+    },
+    {
+      "id": "zuiku-58332",
+      "width": 390,
+      "sizes": [
+        {
+          "sheetId": 1186,
+          "caption": "8.5K 沐光组路线和海拔图：高崇寺打卡，累计爬升 218 米",
+          "w": 1024,
+          "h": 1901
+        },
+        {
+          "sheetId": 1187,
+          "caption": "17K 凌云组路线和海拔图：高崇寺打卡，累计爬升 854 米",
+          "w": 1024,
+          "h": 1908
+        },
+        {
+          "sheetId": 1188,
+          "caption": "28K 逐日组路线和海拔图：观音山、高崇寺打卡，累计爬升 1304 米",
+          "w": 1024,
+          "h": 1908
+        },
+        {
+          "sheetId": 1189,
+          "caption": "42K 追风组路线和海拔原图：累计爬升 2235 米，分段数据及完整点位待组委会确认",
+          "w": 1024,
+          "h": 1904
+        }
+      ],
+      "previewOpened": true,
+      "originalOpened": true
+    },
+    {
+      "id": "zuiku-35462",
+      "width": 320,
+      "sizes": [
+        {
+          "sheetId": 696,
+          "caption": "组委会后发路线：24公里组路线、海拔、检查点及上半段路书",
+          "w": 750,
+          "h": 11297
+        }
+      ],
+      "previewOpened": true,
+      "originalOpened": true
+    },
+    {
+      "id": "zuiku-35462",
+      "width": 390,
+      "sizes": [
+        {
+          "sheetId": 696,
+          "caption": "组委会后发路线：24公里组路线、海拔、检查点及上半段路书",
+          "w": 750,
+          "h": 11297
+        }
+      ],
+      "previewOpened": true,
+      "originalOpened": true
+    }
+  ],
+  "passed": true
+}

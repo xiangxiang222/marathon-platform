@@ -1,0 +1,128 @@
+[
+  {
+    "id": "zuiku-71615",
+    "name": "2026第十届武汉姚家山越野跑挑战赛",
+    "status": "current_source_content_checked_with_questions",
+    "scope": "最新生产快照 supplement21：直接核对公告全幅及赛前规程三张连续原宽分块，清稿使用当届主办方官网完整 9 章旧规程和六张原表、最酷当届关闭正文、组委会正式取消公告。公告置首，正文覆盖旧版完整历史章程并注明未执行。保持四原媒体身份。",
+    "beforeBodyHash": "46b397aeac26296c0418966305efc4c59126ec5e5b3bd61837e726c259966bc0",
+    "savedBodyHash": "b2cb8afb6ba72417d430967c43d50e8229249684219a1afe7c8f295be57ba32a",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 17,
+    "pendingImages": 0,
+    "chapters": 8,
+    "groups": 2,
+    "groupCorrections": 16,
+    "questions": [
+      {
+        "status": "signed_cancellation_supersedes_pre_event_refund",
+        "topic": "取消和退款的现行口径",
+        "sourceUrl": "https://reg.zuicool.com/93835",
+        "additionalSourceUrls": [
+          "https://zuicool.com/event/71615",
+          "https://zuicool.com/news/archives/314995",
+          "https://dcpt.360jlb.cn/event?id=390092&mid=20637"
+        ],
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/11/7654fc5b9d2c947e6a2c5b6ca5bb45e4a39a1c12.png?imageView2/2/w/640",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/804f0ed44331d8209d6dec300a6769d0d24b2aa8.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/1ee7dc682acf5fd7d47dd482fb5e20fa4a85f9bd.jpeg?imageView2/2/w/750"
+        ],
+        "detail": "11/12 组委会盖章公告明确原定 11/22 正式取消，所有渠道全额退款；只承诺脚度体育渠道 3 个工作日，合作平台协调后及时原路退回。脚度体育官网仍有“活动进行中”旧模板，最酷页面底部仍有开报旧导语；公告优先。旧规程不可抗力不退费与个人退出 80%/50%/不退（11/10 日前、11/11–15、11/16 之后）均不适用本次整体取消。公告未说明取消后的参赛物资发放、改期或退款实绩。"
+      },
+      {
+        "status": "historical_route_original_inconsistencies",
+        "topic": "历史路线的分段及拟定积分",
+        "sourceUrl": "https://dcpt.360jlb.cn/event?id=390092&mid=20637",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/2063b55aa1c656e5d8287cd9ccf0f67f93947e02.jpeg?imageView2/2/w/750",
+          "https://img.saihuitong.com/2560/richtext/91432/1a089e1a7d365f2.png",
+          "https://img.saihuitong.com/2560/richtext/91432/1a089e287bca91d.png"
+        ],
+        "detail": "两组 30、13 是报名标称，旧表“实际距离”28.8、12.6 是原计划的赛道长度，不能当成完赛实测。揽胜 SP1 累计爬升 480，CP1 累计爬升 470 低于前站；长线 20.2+6.5 非 28.8，短线 5.6+6.6 非 12.6；整理保留原数。总览称 ITRA 2 分，细分站点前路线章节明确“2 分（拟）”，两组不填赛事积分，取消不产生本届积分。"
+      },
+      {
+        "status": "organizer_editorial_template_anomaly",
+        "topic": "赛前亲子组与补给站规则",
+        "sourceUrl": "https://dcpt.360jlb.cn/event?id=390092&mid=20637",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/804f0ed44331d8209d6dec300a6769d0d24b2aa8.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/2063b55aa1c656e5d8287cd9ccf0f67f93947e02.jpeg?imageView2/2/w/750"
+        ],
+        "detail": "处罚第 10 条出现“亲子组”陪同但本届原报名、主办原规程赛项、日程只设揽胜与观光。正文记录为原规程旁注，不建组。一般规则称各补给站有关门，明细两组 SP1 均划线，保留未单列，不猜时间。"
+      },
+      {
+        "status": "official_site_recovered_not_gpx",
+        "topic": "主办方原文及当届官方轨迹地址",
+        "sourceUrl": "https://dcpt.360jlb.cn/event?id=390092&mid=20637",
+        "additionalSourceUrls": [
+          "https://www.51sai.com/18879"
+        ],
+        "imageUrls": [
+          "https://img.saihuitong.com/2560/richtext/91432/1a089e1a7d365f2.png",
+          "https://img.saihuitong.com/2560/richtext/91432/1a089e287bca91d.png"
+        ],
+        "detail": "通过两组赛道图二维码读到同一个主办方官网活动页；原规程只列“两步路户外助手：2026第十届姚家山越野跑挑战赛官方轨迹”，未见 GPX 链接。搜索命中有期次不同的旧赛轨迹，未混入。未见可独立读取的后发主办方公众号取消正文或政务公告；采用已直接查看的组委会盖章原件及现行报名渠道关闭提示。"
+      }
+    ],
+    "officialDocuments": [
+      {
+        "url": "https://dcpt.360jlb.cn/event?id=390092&mid=20637",
+        "title": "脚度体育官网当届竞赛规程（取消前）",
+        "role": "organizer-original-pre-cancellation-rules",
+        "verified": true,
+        "identityReview": "两组当届官方地图同一原 QR 解出，脚度体育官网同届活动，完整可复制旧规程和六张原表。活动页面状态和赛前退费条款未追更，均不得覆盖 11 月 12 日盖章公告。",
+        "characters": 3687,
+        "bodySha256": "e37bf819e51b9c20b4d84bc050482e18f703d4cd0f881e84561904b58766d1df",
+        "checkedAt": "2026-11-19T16:45:59.370Z"
+      },
+      {
+        "url": "https://reg.zuicool.com/93835",
+        "title": "最酷本届报名页（取消状态）",
+        "role": "current-registration-channel-cancellation-text",
+        "verified": true,
+        "identityReview": "最酷当前报名入口，明确活动取消、两项目关闭、客服电话以及附有盖章公告。正文下部赛前宣传未更新。",
+        "characters": 1197,
+        "bodySha256": "cd32cffd193ed59f7fe18bfdc329621703550a6ece998ce93d955f7f066a719e",
+        "checkedAt": "2026-11-19T16:45:59.370Z"
+      },
+      {
+        "url": "https://dcpt.360jlb.cn/event?id=390092&mid=20637",
+        "title": "2026第十届武汉姚家山越野跑挑战赛",
+        "role": "official_website",
+        "verified": true,
+        "checkedAt": "2026-11-19T16:45:59.370Z",
+        "identityReview": "两组赛道图原二维码确认的脚度体育本届官网；现存网页为取消前历史规程，现行情况以已复核的 11 月 12 日组委会盖章公告为准。"
+      }
+    ],
+    "sourceDiscovery": {
+      "status": "current_cancellation_and_accessible_historical_regulation_reviewed",
+      "organizerOfficialEvent": "https://dcpt.360jlb.cn/event?id=390092&mid=20637",
+      "signedCancellationImage": "https://zc3wp-uploads.bkt.zuicool.com/2026/11/7654fc5b9d2c947e6a2c5b6ca5bb45e4a39a1c12.png?imageView2/2/w/640",
+      "currentRegistration": "https://reg.zuicool.com/93835",
+      "currentEvent": "https://zuicool.com/event/71615",
+      "currentLinkedAnnouncement": "https://zuicool.com/news/archives/314995",
+      "partnerHistoricalRules": "https://www.51sai.com/18879",
+      "otherReviewedImageScopes": {
+        "https://zuicool.com/news/archives/314995": 3,
+        "https://dcpt.360jlb.cn/event?id=390092&mid=20637": 10
+      },
+      "organizerOfficialIdentity": "两组原图右上二维码都解为 dcpt.360jlb.cn 同一个本届页面，页头、主办、联系方式均为脚度体育；取原文六表。",
+      "publicFacts": "当届盖章公告当前有效；官网赛前规程状态未更新，仅作历史档案。",
+      "topLevelFollowupFields": [
+        "start_at",
+        "organizer"
+      ],
+      "limits": "未取可独立阅读的主办公众号取消正文、取消后物资安排、当前退款实绩或独立 GPX。仅将同届官网/最酷范围内的活动图审读，不把往届照片作赛道材料。"
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_and_mini_devtools_390",
+      "miniDisplayed": true,
+      "formalMiniProgramReleaseVerified": false
+    }
+  }
+]

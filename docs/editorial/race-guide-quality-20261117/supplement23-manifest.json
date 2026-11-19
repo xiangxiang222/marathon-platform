@@ -1,0 +1,483 @@
+[
+  {
+    "id": "zuiku-72712",
+    "name": "2026贺州姑婆山越野赛",
+    "status": "current_source_content_checked_with_questions",
+    "scope": "本届已存9张原图全部实看；四张竞赛规程图逐段核至1—9章，路线关门、奖励、报名、强制装备、竞赛规则、医疗保险与申诉完成；补入11月17日组委会领物和免费摆渡、15公里赛道最新信息并标冲突。 补11月17日100公里赛道正式通告及图表。",
+    "beforeBodyHash": "b54da2e10d8106b680b60e8b6f28ef2966fa9b8745302ee20ccb9e725f742764",
+    "savedBodyHash": "0f4e2d5f58dfe032883e368847a226c34f47b5dd487c96ddd3ecadab56d06055",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 17,
+    "pendingImages": 0,
+    "chapters": 12,
+    "groups": 6,
+    "groupCorrections": 34,
+    "questions": [
+      {
+        "status": "route_discrepancy",
+        "topic": "5公里爬升",
+        "sourceUrl": "https://reg.zuicool.com/51987",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/06/2a6c623c2999116ef0d0af89e63f85d1d40bd510.jpeg?imageView2/2/w/750"
+        ],
+        "detail": "规程正文与最酷、赛会通均写约170米，原路线图左下明确总累计爬升550米；没有取到能解决矛盾的更新，5公里两组结构化爬升均留空。"
+      },
+      {
+        "status": "same_notice_conflict",
+        "topic": "15公里首次CP1与CP16关门",
+        "sourceUrl": "https://mp.weixin.qq.com/s?__biz=MzA5MDcyNzg0MA==&mid=2653138706&idx=6&sn=d867dbf651245b62ac5a9e629489472d",
+        "imageUrls": [
+          "https://mmbiz.qpic.cn/mmbiz_jpg/1eJfbDM7rBV23rMccTNXNZYkYuJmmkkxJzkwW6HiatVNf1vRmRyflE00kg3180yb3aBibD9xKCnGny7Gsa4G7pMVhDNviaBrEoTPcjRm13HKvQ/640?wx_fmt=jpeg&from=appmsg",
+          "https://mmbiz.qpic.cn/sz_mmbiz_jpg/1eJfbDM7rBUaNQR0wy6VqwXu6d19fDCeExFP5GzqnRibBYYZLCAicgBfhdiadrXk8fWhyQKtvwpuQZYY8OjYV7tfBESk4YiaHX2Gyn3rA5rpmSo/640?wx_fmt=jpeg&from=appmsg"
+        ],
+        "detail": "11月17日同一官文路线图示首次CP1 10:30、CP16 14:00，分段数据表为首次CP1 10:00、CP16 13:00、回程CP1 14:30，两份均显示终点15:00。正文列两组来源，不覆盖终点结构且提醒以较早时刻规划并遵守正式通知。"
+      },
+      {
+        "status": "regulation_original_value",
+        "topic": "25公里资格文件中的半马里程及出生日期用语",
+        "sourceUrl": "https://www.360paobu.com/event?id=877406",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/06/c542782191faeecae83556ac1e9c327cf5d928bd.jpeg?imageView2/2/w/750"
+        ],
+        "detail": "竞赛规程原件和赛会通复制版写21.195km，无更新资格解释，不改写为另一里程。年龄与出生日期起止边界按图文字保留。"
+      },
+      {
+        "status": "current_sources_limit",
+        "topic": "未取得全部更晚组别公告与数字积分认证",
+        "sourceUrl": "https://mp.weixin.qq.com/s?__biz=MzA5MDcyNzg0MA==&mid=2653138706&idx=6&sn=d867dbf651245b62ac5a9e629489472d",
+        "detail": "已取得11月17日100和15公里组委会公开逐段赛道通告，100公里组较晚通告列ITRA 4分。25、50仅定位公号搜索摘要，5未获更晚完整技术公告。50、25分值仍拟，15、5无积分；未核ITRA最终认证记录，不写入结构化最终积分。"
+      },
+      {
+        "status": "registration_end_not_exact",
+        "topic": "报名关闭、截止时点、赛事网站和主办字段",
+        "sourceUrl": "https://reg.zuicool.com/51987",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/06/6c47285de9ecdc4b439259950b8d730d07c1b007.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/06/2b2f9968b04cb2377528beb8a51944992e043551.jpeg?imageView2/2/w/750"
+        ],
+        "detail": "六个本届选项均已关闭；未见确切截止时刻或独立赛事官网，政府转载报导不当成独立组委会网站，网站页脚主办单位不当成赛事主办。海报写2026-06-28 10:00开报名，旧报名二维码仅留作证据。"
+      }
+    ],
+    "officialDocuments": [
+      {
+        "url": "http://wlj.gxhz.gov.cn/xxfb/xxzx/t27828353.shtml",
+        "title": "贺州市文广旅局当届开报通知",
+        "role": "government_event_opening_announcement",
+        "verified": true,
+        "identityReview": "贺州市文广旅局当届发布，确认届次、日期、地点；不是赛会独立官网",
+        "characters": 1347,
+        "bodySha256": "b3ce081c1f962c1e4419a1cc517a73e618884d36e5365e0f4b987f9eed3a8d59",
+        "checkedAt": "2026-11-19T17:39:22.410Z"
+      },
+      {
+        "url": "https://mp.weixin.qq.com/s?__biz=MzA5MDcyNzg0MA==&mid=2653138706&idx=1&sn=6b7ef83818f4a52cb6f91935e5c87b9b",
+        "title": "奥盈体育：本届领物、免费摆渡车及预约",
+        "role": "organizer_pickup_and_shuttle_notice",
+        "verified": true,
+        "identityReview": "平桂发布账号，原文落款来源奥盈体育，经当届年月、全名、组别和领物公告身份校验",
+        "characters": 2911,
+        "bodySha256": "a28ece24b629335aa4714845264f5d6bf64e1ea350c6195432d7185c2f40d6d0",
+        "checkedAt": "2026-11-19T17:39:22.410Z"
+      },
+      {
+        "url": "https://mp.weixin.qq.com/s?__biz=MzA5MDcyNzg0MA==&mid=2653138706&idx=6&sn=d867dbf651245b62ac5a9e629489472d",
+        "title": "奥盈体育：15公里组路线图、轨迹、赛道解析及数据表",
+        "role": "organizer_route_notice",
+        "verified": true,
+        "identityReview": "平桂发布账号，原文落款奥盈体育；日期、命名、五届赛事标记一致",
+        "characters": 1532,
+        "bodySha256": "25127ab42bd9b4285d46b6b2590051adaf86e9f2b07b0dc51350fb1c11f10860",
+        "checkedAt": "2026-11-19T17:39:22.410Z"
+      },
+      {
+        "url": "https://mp.weixin.qq.com/s?__biz=MzA5MDcyNzg0MA==&mid=2653138829&idx=3&sn=c1d3f942487129f0d4b62a4a70e479ff",
+        "title": "奥盈体育：本届精英选手公告",
+        "role": "organizer_upcoming_race_notice",
+        "verified": true,
+        "identityReview": "平桂发布账号，原文落款奥盈体育；当届11/19赛前公告",
+        "characters": 412,
+        "bodySha256": "8a77fe4fd0c9ac4568f52b223e08a91e675979d3fbb37be70dd95498c2fa5e70",
+        "checkedAt": "2026-11-19T17:39:22.410Z"
+      },
+      {
+        "url": "https://mp.weixin.qq.com/s?__biz=MzA5MDcyNzg0MA==&mid=2653138706&idx=3&sn=a891740e8c1bcb08b23a5bd9dc3cdab6",
+        "title": "奥盈体育：100公里组路线图、轨迹下载、赛道解析和数据表",
+        "role": "organizer_100km_route_notice",
+        "verified": true,
+        "identityReview": "平桂发布原文来源奥盈体育；当届11月17日赛前公告，五届赛事标记、分组、日期一致",
+        "characters": 3744,
+        "bodySha256": "6620c649881cb1d64c8a589ec0e0e065c00dcc8782953f4d062b6f76e280c839",
+        "checkedAt": "2026-11-19T17:39:22.410Z"
+      }
+    ],
+    "sourceDiscovery": {
+      "officialUrls": [
+        "http://wlj.gxhz.gov.cn/xxfb/xxzx/t27828353.shtml",
+        "https://mp.weixin.qq.com/s?__biz=MzA5MDcyNzg0MA==&mid=2653138706&idx=1&sn=6b7ef83818f4a52cb6f91935e5c87b9b",
+        "https://mp.weixin.qq.com/s?__biz=MzA5MDcyNzg0MA==&mid=2653138706&idx=6&sn=d867dbf651245b62ac5a9e629489472d",
+        "https://mp.weixin.qq.com/s?__biz=MzA5MDcyNzg0MA==&mid=2653138829&idx=3&sn=c1d3f942487129f0d4b62a4a70e479ff"
+      ],
+      "sourcePriority": "11月17日/19日当届组委会资料经平桂发布 > 6月市文广旅局发布及当届最酷/赛会通可复制文本 > 当届原图。已直接核对图5–8规程全部1—9章；对宣传、联系方式、历史报名二维码按用途核查。",
+      "discoveryFile": "/private/tmp/race-guide-quality-20261117/supp21-guposh/discover.json",
+      "independentSourceReview": "/private/tmp/race-guide-quality-20261117/supp21-guposh/source-agent/current-sources-summary.txt",
+      "independentVisualReview": "/private/tmp/race-guide-quality-20261117/supp21-guposh/source-agent/i7-i8-review.txt",
+      "notes": "未把旧届指南、不相关旅游推广、酒店推荐、搜索摘要、图片 OCR 或微信登录页当成本届规则；当前官文新增图片仅引用核实内容，不重复上传原图。"
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_and_mini_devtools_390",
+      "miniDisplayed": true,
+      "formalMiniProgramReleaseVerified": false
+    }
+  },
+  {
+    "id": "zuiku-58332",
+    "name": "拓路者2026第八届镇江南山越野赛",
+    "status": "current_source_content_checked_with_questions",
+    "scope": "本届报名入口和赛事公告可复制文字优先；逐项复核 10 张现有原图及报名页额外奖励与封面图，两日四项目、六报名选项、全部规程章节及可确认点位；保留亲子年龄、ITRA、路线里程和未公告事项差异。",
+    "beforeBodyHash": "5af52c105ef3bf4a877eac082f34f220cb62ade282707ba617652c747d7c07e5",
+    "savedBodyHash": "fd7a197d43bb1c18162d4019f9854d8fd1fd627646748fbea5fe03e1e72fd363",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 12,
+    "pendingImages": 0,
+    "chapters": 10,
+    "groups": 6,
+    "groupCorrections": 2,
+    "questions": [
+      {
+        "field": "亲子年龄条件",
+        "reason": "两个亲子报名选项正文写至少 1 名 8–18 周岁，列 2008-12-05 至 2018-12-05；同届报名指南原图写至少 1 名 8–16 周岁。未取得组委会勘误或统一通知。",
+        "sources": [
+          "https://reg.zuicool.com/93938",
+          "https://zuicool.com/event/58332",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/03eb7ee82946358620055e14c444647d512448ef.jpeg?imageView2/2/w/1024"
+        ]
+      },
+      {
+        "field": "ITRA 最终积分",
+        "reason": "路线规程总述写积分已申请通过，但逐组和当前报名文字仍列 2／1／1 分为拟值，沐光未载分值。未查得可核对同届项目的 ITRA 官方条目。",
+        "sources": [
+          "https://reg.zuicool.com/93938",
+          "https://zuicool.com/news/archives/318486",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/ce4137fdb9b984dd38285daefff5d977d4054166.jpeg?imageView2/2/w/1024"
+        ]
+      },
+      {
+        "field": "42K 实跑里程、第四个 CP 及分段",
+        "reason": "规程称 4 个 CP，现有图只标 3 个；图中文字 CP1 13.5+32.9、CP2 28.6+17.7、CP3 40.9+5.36 公里分别合计约 46.4、46.3、46.26，与组名/横轴标注 42K 不同。保留原图，不把这些值当作比赛实际里程或正式分段。",
+        "sources": [
+          "https://reg.zuicool.com/93938",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/8843c80d42d6b3e745fbb483dbe8ecc2cad9e710.jpeg?imageView2/2/w/1024",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/4e6a691d4844b2cad44aa77b58b0cf64dd0f3489.jpeg?imageView2/2/w/1024"
+        ]
+      },
+      {
+        "field": "17K 实跑里程",
+        "reason": "报名文字和原规程列 17 公里，海拔图横轴终点标为 17.4 公里。公开区分报名标注与图示，不写成测量确认的实跑里程。",
+        "sources": [
+          "https://reg.zuicool.com/93938",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/ce4137fdb9b984dd38285daefff5d977d4054166.jpeg?imageView2/2/w/1024",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/5a6ff2f23eb115279199a900d102407ada4f50cd.jpeg?imageView2/2/w/1024"
+        ]
+      },
+      {
+        "field": "领物详细地址、协议酒店及各 CP 关门",
+        "reason": "当前规程说领物地点约提前 5 天公布、协议酒店稍后公布，CP 时间由赛道介绍说明；本届可访问资料未刊出弥补公告。",
+        "sources": [
+          "https://reg.zuicool.com/93938",
+          "https://zuicool.com/news/archives/318486",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/8843c80d42d6b3e745fbb483dbe8ecc2cad9e710.jpeg?imageView2/2/w/1024",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/03eb7ee82946358620055e14c444647d512448ef.jpeg?imageView2/2/w/1024"
+        ]
+      },
+      {
+        "field": "奖金细则",
+        "reason": "独立奖励图可核名次与金额，未载明男女分别计算的规则，未自行补写。",
+        "sources": [
+          "https://zuicool.com/news/archives/318486",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/03f0afb3c8098f790efe0e09b52637de4dbe88ad.jpeg?imageView2/2/w/1024"
+        ]
+      }
+    ],
+    "officialDocuments": [
+      {
+        "url": "https://reg.zuicool.com/93938",
+        "title": "最酷本届公开报名页",
+        "role": "designated_registration",
+        "verified": true,
+        "identityReview": "本届最酷正式报名入口；赛事页和报名公告均链接同一入口。",
+        "bodySha256": "ea849522d59e86d81f158a2d49c2ff2a53baf65f9dffd6e8d65350f3684ae10c",
+        "checkedAt": "2026-11-19T17:39:22.410Z"
+      },
+      {
+        "url": "https://zuicool.com/news/archives/318486",
+        "title": "最酷本届报名公告",
+        "role": "registration_platform_source_notice",
+        "verified": true,
+        "identityReview": "本届报名渠道发布的完整规程图库；赛事页直接关联。非赛事独立官网。",
+        "bodySha256": "48bc7e3bd959843007fc66b2da8f5f1d19615c13c191fc5de61070c6925bbbf8",
+        "checkedAt": "2026-11-19T17:39:22.410Z"
+      }
+    ],
+    "sourceDiscovery": {
+      "officialUrl": "",
+      "notes": "先查镇江市体育局公开网站、主办名称、赛事全名、赛事公众号和 ITRA 同届记录；未找到可核验独立官网或正式积分条目。组委会公众号名称可核验，但公开搜索未找到可打开的同届公告。按可靠次序使用最酷指定报名入口的可复制字段，交叉核对平台详情及本届公告，并人工查全部 12 原图。搜狗验证页面及百度部分查询被阻，不当无信息证据。",
+      "checked": [
+        {
+          "index": "entry",
+          "url": "https://reg.zuicool.com/93938",
+          "status": 200,
+          "size": 41050
+        },
+        {
+          "index": "event",
+          "url": "https://zuicool.com/event/58332",
+          "status": 200,
+          "size": 68515
+        },
+        {
+          "index": "eventarticles",
+          "url": "https://zuicool.com/news/archives/tag/event58332",
+          "status": 200,
+          "size": 15264
+        },
+        {
+          "index": "gov",
+          "url": "https://tyj.zhenjiang.gov.cn/",
+          "status": 200,
+          "size": 9195
+        },
+        {
+          "index": "itra",
+          "url": "https://itra.run/Races?name=Zhenjiang",
+          "error": "HTTP Error 404: Not Found"
+        },
+        {
+          "index": "sogou0",
+          "url": "https://www.sogou.com/web?query=%22%E7%AC%AC%E5%85%AB%E5%B1%8A%E9%95%87%E6%B1%9F%E5%8D%97%E5%B1%B1%E8%B6%8A%E9%87%8E%E8%B5%9B%22",
+          "status": 200,
+          "size": 4133
+        },
+        {
+          "index": "bing0",
+          "url": "https://cn.bing.com/search?q=%22%E7%AC%AC%E5%85%AB%E5%B1%8A%E9%95%87%E6%B1%9F%E5%8D%97%E5%B1%B1%E8%B6%8A%E9%87%8E%E8%B5%9B%22",
+          "status": 200,
+          "size": 105577
+        },
+        {
+          "index": "baidu0",
+          "url": "https://www.baidu.com/s?wd=%22%E7%AC%AC%E5%85%AB%E5%B1%8A%E9%95%87%E6%B1%9F%E5%8D%97%E5%B1%B1%E8%B6%8A%E9%87%8E%E8%B5%9B%22",
+          "status": 200,
+          "size": 1001061
+        },
+        {
+          "index": "weixin0",
+          "url": "https://weixin.sogou.com/weixin?query=%22%E7%AC%AC%E5%85%AB%E5%B1%8A%E9%95%87%E6%B1%9F%E5%8D%97%E5%B1%B1%E8%B6%8A%E9%87%8E%E8%B5%9B%22&type=2",
+          "status": 200,
+          "size": 5616
+        },
+        {
+          "index": "sogou1",
+          "url": "https://www.sogou.com/web?query=2026+%E9%95%87%E6%B1%9F+%E5%8D%97%E5%B1%B1%E8%B6%8A%E9%87%8E%E8%B5%9B+%E9%A2%86%E7%89%A9+%E8%8F%9C%E8%8F%9C%E9%B8%9F",
+          "status": 200,
+          "size": 4153
+        },
+        {
+          "index": "bing1",
+          "url": "https://cn.bing.com/search?q=2026+%E9%95%87%E6%B1%9F+%E5%8D%97%E5%B1%B1%E8%B6%8A%E9%87%8E%E8%B5%9B+%E9%A2%86%E7%89%A9+%E8%8F%9C%E8%8F%9C%E9%B8%9F",
+          "status": 200,
+          "size": 106669
+        },
+        {
+          "index": "baidu1",
+          "url": "https://www.baidu.com/s?wd=2026+%E9%95%87%E6%B1%9F+%E5%8D%97%E5%B1%B1%E8%B6%8A%E9%87%8E%E8%B5%9B+%E9%A2%86%E7%89%A9+%E8%8F%9C%E8%8F%9C%E9%B8%9F",
+          "status": 200,
+          "size": 1105242
+        },
+        {
+          "index": "weixin1",
+          "url": "https://weixin.sogou.com/weixin?query=2026+%E9%95%87%E6%B1%9F+%E5%8D%97%E5%B1%B1%E8%B6%8A%E9%87%8E%E8%B5%9B+%E9%A2%86%E7%89%A9+%E8%8F%9C%E8%8F%9C%E9%B8%9F&type=2",
+          "status": 200,
+          "size": 5636
+        },
+        {
+          "index": "sogou2",
+          "url": "https://www.sogou.com/web?query=%22%E7%AC%AC%E5%85%AB%E5%B1%8A%E9%95%87%E6%B1%9F%E5%8D%97%E5%B1%B1%E8%B6%8A%E9%87%8E%E8%B5%9B%22+site%3Azhenjiang.gov.cn",
+          "status": 200,
+          "size": 4157
+        },
+        {
+          "index": "bing2",
+          "url": "https://cn.bing.com/search?q=%22%E7%AC%AC%E5%85%AB%E5%B1%8A%E9%95%87%E6%B1%9F%E5%8D%97%E5%B1%B1%E8%B6%8A%E9%87%8E%E8%B5%9B%22+site%3Azhenjiang.gov.cn",
+          "status": 200,
+          "size": 107795
+        },
+        {
+          "index": "baidu2",
+          "url": "https://www.baidu.com/s?wd=%22%E7%AC%AC%E5%85%AB%E5%B1%8A%E9%95%87%E6%B1%9F%E5%8D%97%E5%B1%B1%E8%B6%8A%E9%87%8E%E8%B5%9B%22+site%3Azhenjiang.gov.cn",
+          "status": 200,
+          "size": 2689
+        },
+        {
+          "index": "weixin2",
+          "url": "https://weixin.sogou.com/weixin?query=%22%E7%AC%AC%E5%85%AB%E5%B1%8A%E9%95%87%E6%B1%9F%E5%8D%97%E5%B1%B1%E8%B6%8A%E9%87%8E%E8%B5%9B%22+site%3Azhenjiang.gov.cn&type=2",
+          "status": 200,
+          "size": 5640
+        },
+        {
+          "index": "sogou3",
+          "url": "https://www.sogou.com/web?query=2026+%E9%95%87%E6%B1%9F%E5%8D%97%E5%B1%B1%E8%B6%8A%E9%87%8E%E8%B5%9B+%E8%8F%9C%E8%8F%9C%E9%B8%9F+iNRace",
+          "status": 200,
+          "size": 4140
+        },
+        {
+          "index": "bing3",
+          "url": "https://cn.bing.com/search?q=2026+%E9%95%87%E6%B1%9F%E5%8D%97%E5%B1%B1%E8%B6%8A%E9%87%8E%E8%B5%9B+%E8%8F%9C%E8%8F%9C%E9%B8%9F+iNRace",
+          "status": 200,
+          "size": 106498
+        },
+        {
+          "index": "baidu3",
+          "url": "https://www.baidu.com/s?wd=2026+%E9%95%87%E6%B1%9F%E5%8D%97%E5%B1%B1%E8%B6%8A%E9%87%8E%E8%B5%9B+%E8%8F%9C%E8%8F%9C%E9%B8%9F+iNRace",
+          "status": 200,
+          "size": 2689
+        },
+        {
+          "index": "weixin3",
+          "url": "https://weixin.sogou.com/weixin?query=2026+%E9%95%87%E6%B1%9F%E5%8D%97%E5%B1%B1%E8%B6%8A%E9%87%8E%E8%B5%9B+%E8%8F%9C%E8%8F%9C%E9%B8%9F+iNRace&type=2",
+          "status": 200,
+          "size": 5623
+        },
+        {
+          "index": "sogou4",
+          "url": "https://www.sogou.com/web?query=2026%E9%95%87%E6%B1%9F%E5%8D%97%E5%B1%B1%E8%B6%8A%E9%87%8E%E8%B5%9B+%E8%B5%9B%E9%81%93+%E5%A5%96%E9%87%91",
+          "status": 200,
+          "size": 4142
+        },
+        {
+          "index": "bing4",
+          "url": "https://cn.bing.com/search?q=2026%E9%95%87%E6%B1%9F%E5%8D%97%E5%B1%B1%E8%B6%8A%E9%87%8E%E8%B5%9B+%E8%B5%9B%E9%81%93+%E5%A5%96%E9%87%91",
+          "status": 200,
+          "size": 107715
+        },
+        {
+          "index": "baidu4",
+          "url": "https://www.baidu.com/s?wd=2026%E9%95%87%E6%B1%9F%E5%8D%97%E5%B1%B1%E8%B6%8A%E9%87%8E%E8%B5%9B+%E8%B5%9B%E9%81%93+%E5%A5%96%E9%87%91",
+          "status": 200,
+          "size": 2689
+        },
+        {
+          "index": "weixin4",
+          "url": "https://weixin.sogou.com/weixin?query=2026%E9%95%87%E6%B1%9F%E5%8D%97%E5%B1%B1%E8%B6%8A%E9%87%8E%E8%B5%9B+%E8%B5%9B%E9%81%93+%E5%A5%96%E9%87%91&type=2",
+          "status": 200,
+          "size": 5625
+        }
+      ],
+      "otherSources": [
+        "https://reg.zuicool.com/93938",
+        "https://zuicool.com/event/58332",
+        "https://zuicool.com/news/archives/318486"
+      ],
+      "workingEvidenceFile": "/tmp/race-guide-quality-20261117/audit-nanshan/discovery.json"
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_and_mini_devtools_390",
+      "miniDisplayed": true,
+      "formalMiniProgramReleaseVerified": false
+    }
+  },
+  {
+    "id": "zuiku-35462",
+    "name": "2026 FUGA训练赛东莞年度总决赛",
+    "status": "current_source_content_checked_with_questions",
+    "scope": "8张库存图片分块逐图复核；优先本届可复制报名来源及署组委会范围的后发路线；逐项核发枪、关门、分段、报名费、年龄、资格、领物、装备、奖励及联系方式。",
+    "beforeBodyHash": "4bb4b367236f89ab887e8a0c69b49d9ea184c710175a329dc778820a7acb967b",
+    "savedBodyHash": "310246df433d3546510a9e089fd3fd360bb6264f40cef04064be7dcfe2419488",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 8,
+    "pendingImages": 0,
+    "chapters": 12,
+    "groups": 3,
+    "groupCorrections": 3,
+    "questions": [
+      {
+        "subject": "24公里关门及路书字段",
+        "issue": "新版终点14:30／7小时；旧规程13:30／6小时，最酷文字14:30／6小时。新版各分段时长和站点时刻并不逐一累加，按原列保留。",
+        "sources": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/4e286ffc966a2d7cfebb8b62e4d105ac9403cc46.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/731a3959cdb810c4339f17582d162d54ddb01141.jpeg?imageView2/2/w/750",
+          "https://reg.zuicool.com/98503"
+        ]
+      },
+      {
+        "subject": "13公里途中关门、轨迹统计差异",
+        "issue": "旧表经风柜口路，麒麟亭08:55、大板驿站09:45；后发路线改经林科园，新版未确认途中时刻。COROS预览24K 24.05km/+1547/−1531，13K 13.02km/+618/−616；与正式赛道表或海拔图不同。正文采用组别图文，保留轨迹原图、旧表和链接。",
+        "sources": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/169837c9c0881608b54d436939dfab9a5ddfc581.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/731a3959cdb810c4339f17582d162d54ddb01141.jpeg?imageView2/2/w/750",
+          "https://apicn.coros.com/coros/data/share-track?regionId=2&id=481202293927280640",
+          "https://apicn.coros.com/coros/data/share-track?regionId=2&id=481215467663622144"
+        ]
+      },
+      {
+        "subject": "10公里实际参数及费用",
+        "issue": "旧路线示意411／413米，明细表与可复制报名页410／410米；278元列在团体报名列，备注一大一小，旧组卡误列每人。总规模原文为150人未改为组。",
+        "sources": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/731a3959cdb810c4339f17582d162d54ddb01141.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/8f341e8c4aca7fe0b044f981a78467358978b084.jpeg?imageView2/2/w/750",
+          "https://reg.zuicool.com/98503"
+        ]
+      },
+      {
+        "subject": "领物地点时间、全场实际结束、少年专项奖",
+        "issue": "本届规程只说赛前一天和比赛日可领，正式时地未获得。旧日程14:00早于新24K关门，未推断新的全场结束时间。少年组前五物资奖励未取得后发细目。",
+        "sources": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/731a3959cdb810c4339f17582d162d54ddb01141.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/ab6c8794e7e6e4ba2cc8026faa4a562c6b7cc2fe.jpeg?imageView2/2/w/750",
+          "https://reg.zuicool.com/98503"
+        ]
+      },
+      {
+        "subject": "退款邮件主题及年龄边界",
+        "issue": "报名须知邮件主题顺序和竞赛规程不同，正文采用竞赛规程。24/13组按原文年龄及出生日期原值并列，不自行换算边界。",
+        "sources": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/b20a69db4f112fc997237faba6d57f3121cf0210.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/8f341e8c4aca7fe0b044f981a78467358978b084.jpeg?imageView2/2/w/750"
+        ]
+      }
+    ],
+    "officialDocuments": [],
+    "sourceDiscovery": {
+      "queries": [
+        "本届赛事名加官网、领物和组委会",
+        "莞百体育＋2026东莞年度总决赛",
+        "原图轨迹二维码"
+      ],
+      "primaryRegistration": "https://reg.zuicool.com/98503",
+      "independentEditionWebsite": "官网全文及正式领物公告未取得，采用最酷本届可复制报名和组委会原图",
+      "organizerTrackShares": [
+        "https://apicn.coros.com/coros/data/share-track?regionId=2&id=481202293927280640",
+        "https://apicn.coros.com/coros/data/share-track?regionId=2&id=481215467663622144"
+      ]
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_and_mini_devtools_390",
+      "miniDisplayed": true,
+      "formalMiniProgramReleaseVerified": false
+    }
+  }
+]
