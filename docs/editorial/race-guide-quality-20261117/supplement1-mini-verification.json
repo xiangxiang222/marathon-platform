@@ -1,0 +1,1428 @@
+{
+  "kind": "Actual WeChat DevTools rendering, production HTTPS API, no request/route mock; not physical phone or published mini-program",
+  "checkedAt": "2026-11-18T20:23:55.578Z",
+  "project": "/Users/mengxiangxiang/Documents/work/dev/marathon-platform/miniprogram",
+  "system": {
+    "success": true,
+    "systemInfo": {
+      "result": {
+        "brand": "devtools",
+        "model": "iPhone 12/13 (Pro)",
+        "system": "iOS 10.0.1",
+        "platform": "devtools",
+        "benchmarkLevel": -1,
+        "pixelRatio": 3,
+        "screenWidth": 390,
+        "screenHeight": 844,
+        "windowWidth": 390,
+        "windowHeight": 762,
+        "statusBarHeight": 47,
+        "safeArea": {
+          "top": 47,
+          "left": 0,
+          "right": 390,
+          "bottom": 810,
+          "width": 390,
+          "height": 763
+        },
+        "language": "zh_CN",
+        "version": "8.0.5",
+        "fontSizeSetting": 16,
+        "SDKVersion": "3.17.1",
+        "host": {
+          "env": "WeChat"
+        },
+        "enableDebug": false,
+        "mode": "default",
+        "deviceOrientation": "portrait",
+        "bluetoothEnabled": true,
+        "locationEnabled": true,
+        "wifiEnabled": true,
+        "albumAuthorized": true,
+        "cameraAuthorized": true,
+        "locationAuthorized": true,
+        "microphoneAuthorized": true,
+        "notificationAuthorized": true,
+        "notificationAlertAuthorized": true,
+        "notificationBadgeAuthorized": true,
+        "notificationSoundAuthorized": true,
+        "phoneCalendarAuthorized": true,
+        "bluetoothAuthorized": true,
+        "locationReducedAccuracy": true,
+        "devicePixelRatio": 3
+      }
+    }
+  },
+  "races": [
+    {
+      "id": "zuiku-31546",
+      "label": "fire",
+      "apiUrl": "https://togetherbetter.cn/marathon/api/races/zuiku-31546",
+      "apiStatus": 200,
+      "proseExactlyMatchesProduction": true,
+      "groupsExactlyMatchPublicProduction": true,
+      "guideSha256": "773a4dd310da106876b1d8c7cd78aad0ae4040811a58eb1482b5086669f19dd6",
+      "guideCharacters": 14494,
+      "groupCount": 6,
+      "groups": [
+        {
+          "i": 0,
+          "name": "40km",
+          "fields": [
+            {
+              "i": 0,
+              "label": "标称距离",
+              "value": "40公里",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "实际里程",
+              "value": "39.2公里",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "累计爬升",
+              "value": "2090米",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "出发时间",
+              "value": "2027-01-01 07:00",
+              "wide": false
+            },
+            {
+              "i": 4,
+              "label": "关门时间",
+              "value": "2027-01-01 18:00",
+              "wide": false
+            },
+            {
+              "i": 5,
+              "label": "关门时长",
+              "value": "11小时",
+              "wide": false
+            },
+            {
+              "i": 6,
+              "label": "ITRA积分",
+              "value": "2分",
+              "wide": false
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "正常价 · 499元/人"
+            },
+            {
+              "i": 1,
+              "text": "早鸟价（截至2026-10-31 18:00） · 439元/人"
+            },
+            {
+              "i": 2,
+              "text": "满10人团报价 · 449元/人"
+            },
+            {
+              "i": 3,
+              "text": "满10人早鸟团报价 · 395元/人"
+            }
+          ]
+        },
+        {
+          "i": 1,
+          "name": "30km",
+          "fields": [
+            {
+              "i": 0,
+              "label": "标称距离",
+              "value": "30公里",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "实际里程",
+              "value": "28.5公里",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "累计爬升",
+              "value": "1478米",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "出发时间",
+              "value": "2027-01-01 08:00",
+              "wide": false
+            },
+            {
+              "i": 4,
+              "label": "关门时间",
+              "value": "2027-01-01 17:00",
+              "wide": false
+            },
+            {
+              "i": 5,
+              "label": "关门时长",
+              "value": "9小时",
+              "wide": false
+            },
+            {
+              "i": 6,
+              "label": "ITRA积分",
+              "value": "1分",
+              "wide": false
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "正常价 · 399元/人"
+            },
+            {
+              "i": 1,
+              "text": "早鸟价（截至2026-10-31 18:00） · 351元/人"
+            },
+            {
+              "i": 2,
+              "text": "满10人团报价 · 359元/人"
+            },
+            {
+              "i": 3,
+              "text": "满10人早鸟团报价 · 316元/人"
+            }
+          ]
+        },
+        {
+          "i": 2,
+          "name": "12km",
+          "fields": [
+            {
+              "i": 0,
+              "label": "标称距离",
+              "value": "12公里",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "实际里程",
+              "value": "12.4公里",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "累计爬升",
+              "value": "640米",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "出发时间",
+              "value": "2027-01-01 09:00",
+              "wide": false
+            },
+            {
+              "i": 4,
+              "label": "关门时间",
+              "value": "2027-01-01 13:00",
+              "wide": false
+            },
+            {
+              "i": 5,
+              "label": "关门时长",
+              "value": "4小时",
+              "wide": false
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "正常价 · 269元/人"
+            },
+            {
+              "i": 1,
+              "text": "早鸟价（截至2026-10-31 18:00） · 237元/人"
+            },
+            {
+              "i": 2,
+              "text": "满10人团报价 · 242元/人"
+            },
+            {
+              "i": 3,
+              "text": "满10人早鸟团报价 · 213元/人"
+            }
+          ]
+        },
+        {
+          "i": 3,
+          "name": "12km（1大1小）",
+          "fields": [
+            {
+              "i": 0,
+              "label": "亲子人数",
+              "value": "1大1小",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "标称距离",
+              "value": "12公里",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "实际里程",
+              "value": "12.4公里",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "累计爬升",
+              "value": "640米",
+              "wide": false
+            },
+            {
+              "i": 4,
+              "label": "出发时间",
+              "value": "2027-01-01 09:00",
+              "wide": false
+            },
+            {
+              "i": 5,
+              "label": "关门时间",
+              "value": "2027-01-01 13:00",
+              "wide": false
+            },
+            {
+              "i": 6,
+              "label": "关门时长",
+              "value": "4小时",
+              "wide": false
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "正常价 · 504元/家庭"
+            },
+            {
+              "i": 1,
+              "text": "早鸟价（截至2026-10-31 18:00） · 443元/家庭"
+            },
+            {
+              "i": 2,
+              "text": "满10人团报价 · 453元/家庭"
+            },
+            {
+              "i": 3,
+              "text": "满10人早鸟团报价 · 399元/家庭"
+            }
+          ]
+        },
+        {
+          "i": 4,
+          "name": "12km（1大2小或2大1小）",
+          "fields": [
+            {
+              "i": 0,
+              "label": "亲子人数",
+              "value": "1大2小",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "标称距离",
+              "value": "12公里",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "实际里程",
+              "value": "12.4公里",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "累计爬升",
+              "value": "640米",
+              "wide": false
+            },
+            {
+              "i": 4,
+              "label": "出发时间",
+              "value": "2027-01-01 09:00",
+              "wide": false
+            },
+            {
+              "i": 5,
+              "label": "关门时间",
+              "value": "2027-01-01 13:00",
+              "wide": false
+            },
+            {
+              "i": 6,
+              "label": "关门时长",
+              "value": "4小时",
+              "wide": false
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "正常价 · 756元/家庭"
+            },
+            {
+              "i": 1,
+              "text": "早鸟价（截至2026-10-31 18:00） · 665元/家庭"
+            },
+            {
+              "i": 2,
+              "text": "满10人团报价 · 680元/家庭"
+            },
+            {
+              "i": 3,
+              "text": "满10人早鸟团报价 · 598元/家庭"
+            }
+          ]
+        },
+        {
+          "i": 5,
+          "name": "5km（少儿专属）",
+          "fields": [
+            {
+              "i": 0,
+              "label": "标称距离",
+              "value": "5公里",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "实际里程",
+              "value": "4.6公里",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "累计爬升",
+              "value": "252米",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "出发时间",
+              "value": "2027-01-01 09:30",
+              "wide": false
+            },
+            {
+              "i": 4,
+              "label": "关门时间",
+              "value": "2027-01-01 12:00",
+              "wide": false
+            },
+            {
+              "i": 5,
+              "label": "关门时长",
+              "value": "2.5小时",
+              "wide": false
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "正常价 · 178元/人"
+            },
+            {
+              "i": 1,
+              "text": "早鸟价（截至2026-10-31 18:00） · 157元/人"
+            },
+            {
+              "i": 2,
+              "text": "满10人团报价 · 160元/人"
+            },
+            {
+              "i": 3,
+              "text": "满10人早鸟团报价 · 141元/人"
+            }
+          ]
+        }
+      ],
+      "chapters": [
+        {
+          "id": "chapter-0",
+          "label": "赛事概况"
+        },
+        {
+          "id": "chapter-8",
+          "label": "资料版本与待确认事项"
+        },
+        {
+          "id": "chapter-12",
+          "label": "赛事组织、报名及项目年龄"
+        },
+        {
+          "id": "chapter-34",
+          "label": "日程与领物时间"
+        },
+        {
+          "id": "chapter-43",
+          "label": "路线、补给站与关门时间"
+        },
+        {
+          "id": "chapter-47",
+          "label": "报名费用与团报"
+        },
+        {
+          "id": "chapter-56",
+          "label": "系列赛联动优惠"
+        },
+        {
+          "id": "chapter-63",
+          "label": "精英申请与奖励"
+        },
+        {
+          "id": "chapter-75",
+          "label": "参赛资格、健康及报名领物规定"
+        },
+        {
+          "id": "chapter-117",
+          "label": "参赛服尺码"
+        },
+        {
+          "id": "chapter-119",
+          "label": "竞赛装备与检查"
+        },
+        {
+          "id": "chapter-125",
+          "label": "完整比赛规则与处罚"
+        },
+        {
+          "id": "chapter-189",
+          "label": "退赛、延期取消政策与联系方式"
+        },
+        {
+          "id": "originals",
+          "label": "规程原图参考",
+          "hasContent": true
+        }
+      ],
+      "originalCount": 6,
+      "screenshots": [
+        "/private/tmp/race-guide-quality-20261117/supplement1-mini-fire-390-groups.png",
+        "/private/tmp/race-guide-quality-20261117/supplement1-mini-fire-390-table-before.png",
+        "/private/tmp/race-guide-quality-20261117/supplement1-mini-fire-390-table-after.png",
+        "/private/tmp/race-guide-quality-20261117/supplement1-mini-fire-390-original.png",
+        "/private/tmp/race-guide-quality-20261117/supplement1-mini-fire-390-preview.png"
+      ],
+      "tablesBefore": [
+        {
+          "left": 27,
+          "right": 363,
+          "top": 99.796875,
+          "bottom": 780.796875,
+          "width": 336,
+          "height": 681,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 480,
+          "scrollHeight": 699
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 2291.7265625,
+          "bottom": 2523.7265625,
+          "width": 336,
+          "height": 232,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 334,
+          "scrollHeight": 250
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 2786.0859375,
+          "bottom": 3043.0859375,
+          "width": 336,
+          "height": 257,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 600,
+          "scrollHeight": 275
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 3086.28125,
+          "bottom": 4280.28125,
+          "width": 336,
+          "height": 1194,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 600,
+          "scrollHeight": 1212
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 4595.828125,
+          "bottom": 5020.828125,
+          "width": 336,
+          "height": 425,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 720,
+          "scrollHeight": 443
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 6672.5078125,
+          "bottom": 6950.5078125,
+          "width": 336,
+          "height": 278,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 296
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 10838.71875,
+          "bottom": 11486.71875,
+          "width": 336,
+          "height": 648,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 840,
+          "scrollHeight": 666
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 11586.109375,
+          "bottom": 12830.109375,
+          "width": 336,
+          "height": 1244,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 600,
+          "scrollHeight": 1262
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 15611.9375,
+          "bottom": 16129.9375,
+          "width": 336,
+          "height": 518,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 334,
+          "scrollHeight": 536
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 16217.7265625,
+          "bottom": 17045.7265625,
+          "width": 336,
+          "height": 828,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 334,
+          "scrollHeight": 846
+        }
+      ],
+      "tablesAfter": [
+        {
+          "left": 27,
+          "right": 363,
+          "top": 99.796875,
+          "bottom": 780.796875,
+          "width": 336,
+          "height": 681,
+          "scrollLeft": 146,
+          "scrollTop": 0,
+          "scrollWidth": 480,
+          "scrollHeight": 699
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 2291.7265625,
+          "bottom": 2523.7265625,
+          "width": 336,
+          "height": 232,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 334,
+          "scrollHeight": 250
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 2786.0859375,
+          "bottom": 3043.0859375,
+          "width": 336,
+          "height": 257,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 600,
+          "scrollHeight": 275
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 3086.28125,
+          "bottom": 4280.28125,
+          "width": 336,
+          "height": 1194,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 600,
+          "scrollHeight": 1212
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 4595.828125,
+          "bottom": 5020.828125,
+          "width": 336,
+          "height": 425,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 720,
+          "scrollHeight": 443
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 6672.5078125,
+          "bottom": 6950.5078125,
+          "width": 336,
+          "height": 278,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 296
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 10838.71875,
+          "bottom": 11486.71875,
+          "width": 336,
+          "height": 648,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 840,
+          "scrollHeight": 666
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 11586.109375,
+          "bottom": 12830.109375,
+          "width": 336,
+          "height": 1244,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 600,
+          "scrollHeight": 1262
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 15611.9375,
+          "bottom": 16129.9375,
+          "width": 336,
+          "height": 518,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 334,
+          "scrollHeight": 536
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 16217.7265625,
+          "bottom": 17045.7265625,
+          "width": 336,
+          "height": 828,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 334,
+          "scrollHeight": 846
+        }
+      ],
+      "actualHorizontalScrollVerified": true,
+      "originalImage": {
+        "left": 28,
+        "right": 362,
+        "top": 101.0546875,
+        "bottom": 1470.8984375,
+        "width": 334,
+        "height": 1369.84375,
+        "mode": "widthFix",
+        "src": "https://togetherbetter.cn/marathon/api/race-sheets/1600",
+        "showMenuByLongpress": true
+      },
+      "longpressActionSucceeded": true,
+      "nativeLongpressMenuVerified": false,
+      "nativePreviewClickSucceeded": true,
+      "nativePreviewImageActuallyObserved": true
+    },
+    {
+      "id": "caa-1000485007",
+      "label": "huizhou",
+      "apiUrl": "https://togetherbetter.cn/marathon/api/races/caa-1000485007",
+      "apiStatus": 200,
+      "proseExactlyMatchesProduction": true,
+      "groupsExactlyMatchPublicProduction": true,
+      "guideSha256": "8b99583a9159dc7a8e3280fced1c5ba1408b81327af8605c5603d73bdb39ceaa",
+      "guideCharacters": 9113,
+      "groupCount": 2,
+      "groups": [
+        {
+          "i": 0,
+          "name": "马拉松",
+          "fields": [
+            {
+              "i": 0,
+              "label": "名额",
+              "value": "5000人",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "标称距离",
+              "value": "42.195公里",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "出发时间",
+              "value": "2026年12月27日07:30",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "关门时间",
+              "value": "2026年12月27日13:30",
+              "wide": false
+            },
+            {
+              "i": 4,
+              "label": "关门时长",
+              "value": "6小时",
+              "wide": false
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "报名费 · 198元/人"
+            }
+          ]
+        },
+        {
+          "i": 1,
+          "name": "半程马拉松",
+          "fields": [
+            {
+              "i": 0,
+              "label": "名额",
+              "value": "11000人",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "标称距离",
+              "value": "21.0975公里",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "出发时间",
+              "value": "2026年12月27日07:30",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "关门时间",
+              "value": "2026年12月27日10:30",
+              "wide": false
+            },
+            {
+              "i": 4,
+              "label": "关门时长",
+              "value": "3小时",
+              "wide": false
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "报名费 · 188元/人"
+            }
+          ]
+        }
+      ],
+      "chapters": [
+        {
+          "id": "chapter-0",
+          "label": "赛事概况"
+        },
+        {
+          "id": "chapter-5",
+          "label": "赛事组织与项目"
+        },
+        {
+          "id": "chapter-10",
+          "label": "参赛资格、年龄与健康要求"
+        },
+        {
+          "id": "chapter-33",
+          "label": "报名、费用与直通名额"
+        },
+        {
+          "id": "chapter-48",
+          "label": "领物要求"
+        },
+        {
+          "id": "chapter-50",
+          "label": "比赛路线"
+        },
+        {
+          "id": "chapter-56",
+          "label": "竞赛办法、关门时间与赛道服务"
+        },
+        {
+          "id": "chapter-95",
+          "label": "参赛注意事项"
+        },
+        {
+          "id": "chapter-100",
+          "label": "名次录取与奖励"
+        },
+        {
+          "id": "chapter-114",
+          "label": "处罚办法"
+        },
+        {
+          "id": "chapter-129",
+          "label": "风险、保险与赛事调整"
+        },
+        {
+          "id": "chapter-140",
+          "label": "联系方式"
+        },
+        {
+          "id": "originals",
+          "label": "规程原图参考",
+          "hasContent": true
+        }
+      ],
+      "originalCount": 1,
+      "screenshots": [
+        "/private/tmp/race-guide-quality-20261117/supplement1-mini-huizhou-390-groups.png",
+        "/private/tmp/race-guide-quality-20261117/supplement1-mini-huizhou-390-table-before.png",
+        "/private/tmp/race-guide-quality-20261117/supplement1-mini-huizhou-390-table-after.png",
+        "/private/tmp/race-guide-quality-20261117/supplement1-mini-huizhou-390-original.png",
+        "/private/tmp/race-guide-quality-20261117/supplement1-mini-huizhou-390-preview.png"
+      ],
+      "tablesBefore": [
+        {
+          "left": 27,
+          "right": 363,
+          "top": 100.203125,
+          "bottom": 240.203125,
+          "width": 336,
+          "height": 140,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 158
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 2546.7578125,
+          "bottom": 2639.7578125,
+          "width": 336,
+          "height": 93,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 111
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 3017.484375,
+          "bottom": 3249.484375,
+          "width": 336,
+          "height": 232,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 250
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 5733.203125,
+          "bottom": 6343.203125,
+          "width": 336,
+          "height": 610,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 600,
+          "scrollHeight": 628
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 9156.2265625,
+          "bottom": 9690.2265625,
+          "width": 336,
+          "height": 534,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 552
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 9948.578125,
+          "bottom": 10344.578125,
+          "width": 336,
+          "height": 396,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 414
+        }
+      ],
+      "tablesAfter": [
+        {
+          "left": 27,
+          "right": 363,
+          "top": 100.203125,
+          "bottom": 240.203125,
+          "width": 336,
+          "height": 140,
+          "scrollLeft": 26,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 158
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 2546.7578125,
+          "bottom": 2639.7578125,
+          "width": 336,
+          "height": 93,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 111
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 3017.484375,
+          "bottom": 3249.484375,
+          "width": 336,
+          "height": 232,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 250
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 5733.203125,
+          "bottom": 6343.203125,
+          "width": 336,
+          "height": 610,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 600,
+          "scrollHeight": 628
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 9156.2265625,
+          "bottom": 9690.2265625,
+          "width": 336,
+          "height": 534,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 552
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 9948.578125,
+          "bottom": 10344.578125,
+          "width": 336,
+          "height": 396,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 414
+        }
+      ],
+      "actualHorizontalScrollVerified": true,
+      "originalImage": {
+        "left": 28,
+        "right": 362,
+        "top": 623.109375,
+        "bottom": 623.109375,
+        "width": 334,
+        "height": 0,
+        "mode": "widthFix",
+        "src": "https://togetherbetter.cn/marathon/api/race-sheets/1516",
+        "showMenuByLongpress": true
+      },
+      "longpressActionSucceeded": true,
+      "nativeLongpressMenuVerified": false,
+      "nativePreviewClickSucceeded": true,
+      "nativePreviewImageActuallyObserved": true
+    },
+    {
+      "id": "zuiku-48246",
+      "label": "huishan",
+      "apiUrl": "https://togetherbetter.cn/marathon/api/races/zuiku-48246",
+      "apiStatus": 200,
+      "proseExactlyMatchesProduction": true,
+      "groupsExactlyMatchPublicProduction": true,
+      "guideSha256": "6cad4e16ba5f381610c30a92d029f1a669f0f99136d01613e0a782be915a7167",
+      "guideCharacters": 3533,
+      "groupCount": 2,
+      "groups": [
+        {
+          "i": 0,
+          "name": "挑战组18公里",
+          "fields": [
+            {
+              "i": 0,
+              "label": "标称距离",
+              "value": "18公里",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "实际里程",
+              "value": "17.2公里",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "累计爬升",
+              "value": "1450米",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "出发时间",
+              "value": "11月15日8:00",
+              "wide": false
+            },
+            {
+              "i": 4,
+              "label": "关门时长",
+              "value": "6小时",
+              "wide": false
+            },
+            {
+              "i": 5,
+              "label": "参赛条件",
+              "value": "16—65周岁，健康，经常参加跑步、登山等体育活动；不适宜参赛疾病及自我评估要求见完整竞赛办法。",
+              "wide": true
+            }
+          ],
+          "status": "报名已截止",
+          "fees": [
+            {
+              "i": 0,
+              "text": "报名页价格 · 228元/人"
+            }
+          ]
+        },
+        {
+          "i": 1,
+          "name": "体验组9公里",
+          "fields": [
+            {
+              "i": 0,
+              "label": "标称距离",
+              "value": "9公里",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "实际里程",
+              "value": "8.76公里",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "累计爬升",
+              "value": "500米",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "出发时间",
+              "value": "11月15日8:00",
+              "wide": false
+            },
+            {
+              "i": 4,
+              "label": "关门时长",
+              "value": "3小时",
+              "wide": false
+            },
+            {
+              "i": 5,
+              "label": "参赛条件",
+              "value": "16—65周岁，健康，经常参加跑步、登山等体育活动；不适宜参赛疾病及自我评估要求见完整竞赛办法。",
+              "wide": true
+            }
+          ],
+          "status": "报名已截止",
+          "fees": [
+            {
+              "i": 0,
+              "text": "报名页价格 · 168元/人"
+            }
+          ]
+        }
+      ],
+      "chapters": [
+        {
+          "id": "chapter-0",
+          "label": "赛事概况"
+        },
+        {
+          "id": "chapter-5",
+          "label": "赛事项目、日程与路线"
+        },
+        {
+          "id": "chapter-13",
+          "label": "装备、奖励与报名费用"
+        },
+        {
+          "id": "chapter-29",
+          "label": "竞赛办法、资格与联系方式"
+        },
+        {
+          "id": "route",
+          "label": "赛道与路线",
+          "hasContent": true
+        },
+        {
+          "id": "originals",
+          "label": "规程原图参考",
+          "hasContent": true
+        }
+      ],
+      "originalCount": 2,
+      "screenshots": [
+        "/private/tmp/race-guide-quality-20261117/supplement1-mini-huishan-390-groups.png",
+        "/private/tmp/race-guide-quality-20261117/supplement1-mini-huishan-390-table-before.png",
+        "/private/tmp/race-guide-quality-20261117/supplement1-mini-huishan-390-table-after.png",
+        "/private/tmp/race-guide-quality-20261117/supplement1-mini-huishan-390-original.png",
+        "/private/tmp/race-guide-quality-20261117/supplement1-mini-huishan-390-preview.png"
+      ],
+      "tablesBefore": [
+        {
+          "left": 27,
+          "right": 363,
+          "top": 99.8203125,
+          "bottom": 239.8203125,
+          "width": 336,
+          "height": 140,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 480,
+          "scrollHeight": 158
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 326.609375,
+          "bottom": 823.609375,
+          "width": 336,
+          "height": 497,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 515
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 1220.34375,
+          "bottom": 1712.34375,
+          "width": 336,
+          "height": 492,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 480,
+          "scrollHeight": 510
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 1950.1015625,
+          "bottom": 2287.1015625,
+          "width": 336,
+          "height": 337,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 355
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 2710.421875,
+          "bottom": 2850.421875,
+          "width": 336,
+          "height": 140,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 158
+        }
+      ],
+      "tablesAfter": [
+        {
+          "left": 27,
+          "right": 363,
+          "top": 99.8203125,
+          "bottom": 239.8203125,
+          "width": 336,
+          "height": 140,
+          "scrollLeft": 146,
+          "scrollTop": 0,
+          "scrollWidth": 480,
+          "scrollHeight": 158
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 326.609375,
+          "bottom": 823.609375,
+          "width": 336,
+          "height": 497,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 515
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 1220.34375,
+          "bottom": 1712.34375,
+          "width": 336,
+          "height": 492,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 480,
+          "scrollHeight": 510
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 1950.1015625,
+          "bottom": 2287.1015625,
+          "width": 336,
+          "height": 337,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 355
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 2710.421875,
+          "bottom": 2850.421875,
+          "width": 336,
+          "height": 140,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 158
+        }
+      ],
+      "actualHorizontalScrollVerified": true,
+      "originalImage": {
+        "left": 28,
+        "right": 362,
+        "top": 101.1171875,
+        "bottom": 2602.546875,
+        "width": 334,
+        "height": 2501.4296875,
+        "mode": "widthFix",
+        "src": "https://togetherbetter.cn/marathon/api/race-sheets/488",
+        "showMenuByLongpress": true
+      },
+      "longpressActionSucceeded": true,
+      "nativeLongpressMenuVerified": false,
+      "nativePreviewClickSucceeded": true,
+      "nativePreviewImageActuallyObserved": true
+    }
+  ],
+  "screenshots": [
+    "/private/tmp/race-guide-quality-20261117/supplement1-mini-fire-390-groups.png",
+    "/private/tmp/race-guide-quality-20261117/supplement1-mini-fire-390-table-before.png",
+    "/private/tmp/race-guide-quality-20261117/supplement1-mini-fire-390-table-after.png",
+    "/private/tmp/race-guide-quality-20261117/supplement1-mini-fire-390-original.png",
+    "/private/tmp/race-guide-quality-20261117/supplement1-mini-fire-390-preview.png",
+    "/private/tmp/race-guide-quality-20261117/supplement1-mini-huizhou-390-groups.png",
+    "/private/tmp/race-guide-quality-20261117/supplement1-mini-huizhou-390-table-before.png",
+    "/private/tmp/race-guide-quality-20261117/supplement1-mini-huizhou-390-table-after.png",
+    "/private/tmp/race-guide-quality-20261117/supplement1-mini-huizhou-390-original.png",
+    "/private/tmp/race-guide-quality-20261117/supplement1-mini-huizhou-390-preview.png",
+    "/private/tmp/race-guide-quality-20261117/supplement1-mini-huishan-390-groups.png",
+    "/private/tmp/race-guide-quality-20261117/supplement1-mini-huishan-390-table-before.png",
+    "/private/tmp/race-guide-quality-20261117/supplement1-mini-huishan-390-table-after.png",
+    "/private/tmp/race-guide-quality-20261117/supplement1-mini-huishan-390-original.png",
+    "/private/tmp/race-guide-quality-20261117/supplement1-mini-huishan-390-preview.png"
+  ],
+  "pending": [
+    "Physical phone gesture zoom, save and native long-press menu",
+    "Official uploaded/published mini-program verification",
+    "320px actual DevTools profile switching: exposed automation tools provide no device switch; 390px is currently configured."
+  ],
+  "previewEvidenceReview": {
+    "at": "2026-11-18T21:20:10.715Z",
+    "method": "Root actually viewed all three native-preview screenshots; original images loaded, not spinners",
+    "doesNotVerifyPhysicalGestures": true
+  }
+}

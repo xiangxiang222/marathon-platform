@@ -1,0 +1,39 @@
+{
+  "at": "2026-11-19T00:31:37.362Z",
+  "checks": [
+    {
+      "id": "caa-1000473000",
+      "width": 320,
+      "needle": "60000",
+      "table": {
+        "width": 252,
+        "scrollWidth": 480,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 228,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "合肥官网规程第1张：项目、完整路线图与参赛资格\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "caa-1000473000",
+      "width": 390,
+      "needle": "60000",
+      "table": {
+        "width": 318,
+        "scrollWidth": 480,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 162,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "合肥官网规程第1张：项目、完整路线图与参赛资格\n查看原图 ↗",
+      "overflow": false
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-11-19T00:31:59.779Z"
+}

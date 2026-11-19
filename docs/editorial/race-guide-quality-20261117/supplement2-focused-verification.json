@@ -1,0 +1,135 @@
+{
+  "at": "2026-11-19T00:22:54.858Z",
+  "checks": [
+    {
+      "id": "caa-1000473000",
+      "width": 320,
+      "needle": "60000",
+      "table": {
+        "width": 252,
+        "scrollWidth": 480,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 228,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "合肥官网规程第2张：报名、残疾人要求、检录与分枪原表\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "caa-1000473000",
+      "width": 390,
+      "needle": "60000",
+      "table": {
+        "width": 318,
+        "scrollWidth": 480,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 162,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "合肥官网规程第2张：报名、残疾人要求、检录与分枪原表\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "caa-1000419241",
+      "width": 320,
+      "needle": "20000",
+      "table": {
+        "width": 252,
+        "scrollWidth": 360,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 108,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "2026新余仙女湖马拉松官网完整竞赛规程：路线、资格、关门、补给、奖励、处罚、保险及联系\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "caa-1000419241",
+      "width": 390,
+      "needle": "20000",
+      "table": {
+        "width": 318,
+        "scrollWidth": 360,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 42,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "2026新余仙女湖马拉松官网完整竞赛规程：路线、资格、关门、补给、奖励、处罚、保险及联系\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-69042",
+      "width": 320,
+      "needle": "312",
+      "table": {
+        "width": 252,
+        "scrollWidth": 720,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 468,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "本届宣传日程与领物；6KM日期与官方DOCX不一致\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-69042",
+      "width": 390,
+      "needle": "312",
+      "table": {
+        "width": 318,
+        "scrollWidth": 720,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 402,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "本届宣传日程与领物；6KM日期与官方DOCX不一致\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-26531",
+      "width": 320,
+      "needle": "799",
+      "table": {
+        "width": 252,
+        "scrollWidth": 840,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 588,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "报名资格、健康、计时奖励、费用及取消政策原图\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-26531",
+      "width": 390,
+      "needle": "799",
+      "table": {
+        "width": 318,
+        "scrollWidth": 840,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 522,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "报名资格、健康、计时奖励、费用及取消政策原图\n查看原图 ↗",
+      "overflow": false
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-11-19T00:24:09.146Z"
+}

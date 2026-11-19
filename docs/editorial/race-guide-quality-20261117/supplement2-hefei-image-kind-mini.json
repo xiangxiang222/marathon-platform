@@ -1,0 +1,60 @@
+{
+  "at": "2026-11-19T00:29:44.275Z",
+  "guide": [
+    {
+      "id": 1739,
+      "src": "https://togetherbetter.cn/marathon/api/race-sheets/1739",
+      "caption": "合肥官网规程第1张：项目、完整路线图与参赛资格"
+    },
+    {
+      "id": 1740,
+      "src": "https://togetherbetter.cn/marathon/api/race-sheets/1740",
+      "caption": "合肥官网规程第2张：报名、残疾人要求、检录与分枪原表"
+    },
+    {
+      "id": 1741,
+      "src": "https://togetherbetter.cn/marathon/api/race-sheets/1741",
+      "caption": "合肥官网规程第3张：关门、存取衣、补给及全部奖励表"
+    },
+    {
+      "id": 1742,
+      "src": "https://togetherbetter.cn/marathon/api/race-sheets/1742",
+      "caption": "合肥官网规程第4张：20项处罚、申诉、保险医疗及联系"
+    },
+    {
+      "id": 1743,
+      "src": "https://togetherbetter.cn/marathon/api/race-sheets/1743",
+      "caption": "合肥11月4日官方领物流程图：证件核验、芯片检测及各窗口顺序"
+    },
+    {
+      "id": 1744,
+      "src": "https://togetherbetter.cn/marathon/api/race-sheets/1744",
+      "caption": "合肥官方免责声明线上签署二维码（领物时须本人核验）"
+    },
+    {
+      "id": 1745,
+      "src": "https://togetherbetter.cn/marathon/api/race-sheets/1745",
+      "caption": "合肥官方参赛服尺码原表：男女短T与背心，单位cm"
+    },
+    {
+      "id": 1746,
+      "src": "https://togetherbetter.cn/marathon/api/race-sheets/1746",
+      "caption": "合肥官方选手日程轴：9月4日候补开始17:30与官网报名须知17:00存在差异，待确认"
+    }
+  ],
+  "route": [
+    {
+      "id": 316,
+      "src": "https://togetherbetter.cn/marathon/api/race-sheets/316"
+    }
+  ],
+  "body": 16284,
+  "screenshot": "/private/tmp/race-guide-quality-20261117/supplement2-mini-hefei-390-preview-retest.png",
+  "nativePreviewActuallyObserved": true,
+  "physicalGestureVerified": false,
+  "imageInspection": {
+    "at": "2026-11-19T00:37:02.640Z",
+    "observer": "root",
+    "result": "Actual screenshot viewed: fully loaded purple official regulation image with route embedded; no loading spinner. Native preview fit-to-screen is visible; physical zoom and longpress menu unverified."
+  }
+}

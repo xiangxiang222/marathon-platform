@@ -1,0 +1,69 @@
+{
+  "at": "2026-11-19T00:17:58.915Z",
+  "passed": true,
+  "totalRaces": 35,
+  "baselineGuideHashSectionMediaCountChecks": 35,
+  "currentMediaUrlShaIndexChecks": 167,
+  "pendingSectionIndexTitleChecks": 132,
+  "mutuallyExclusiveStatusCounts": {
+    "total": 35,
+    "currentRegulationCheckedSourceQuestionsOnly": 14,
+    "currentRegulationCheckedAdditionalOfficialImagesPending": 1,
+    "specificCurrentScopePending": 18,
+    "reviewCoverageEvidenceUnresolved": 2
+  },
+  "currentRegulationTextCheckedTotal": 15,
+  "knownConcretePendingRaceCount": 19,
+  "coverageUnresolvedRaceCount": 2,
+  "extraOfficialWseImages": 4,
+  "orphanPromotionalOcrSectionsVerified": [
+    "zuiku-59237:1",
+    "zuiku-49863:1"
+  ],
+  "specialCasesChecked": [
+    "嘉兴8张官方表图证据不漏计",
+    "兵圣亲子完整审稿与保险增量累计",
+    "东方相同SHA图片只继承局部裁图覆盖",
+    "玉林3400裁块缺口按实际文件尺寸记录",
+    "网页/小程序/保存/部署状态未凭本映射建立"
+  ],
+  "cropDimensionEvidenceCount": 200,
+  "cropDimensionsParsed": 198,
+  "cropDimensionsNotParsed": [
+    {
+      "path": "/tmp/race-guide-quality-20261117/batch8-root/zuiku-46518-1-contact-detail.jpg",
+      "reason": "non_png_not_parsed",
+      "note": "具名细节放大JPEG不用于纵轴像素缺口，完整原图连续PNG仍单独有证据；未新增依赖。"
+    },
+    {
+      "path": "/tmp/race-guide-quality-20261117/batch8-root/zuiku-94116-7-pickup-detail.jpg",
+      "reason": "non_png_not_parsed",
+      "note": "具名细节放大JPEG不用于纵轴像素缺口，完整原图连续PNG仍单独有证据；未新增依赖。"
+    }
+  ],
+  "notPerformed": [
+    "new manual original-image review",
+    "content editing",
+    "production save",
+    "deployment",
+    "actual mini-program device verification"
+  ],
+  "files": [
+    {
+      "file": "generic-scope-resolved.json",
+      "sha256": "bf458bc1d062ddfdb5d15370854127c27d2a4aa370b9efbe0e35695be086333b"
+    },
+    {
+      "file": "generic-scope-resolved-summary.md",
+      "sha256": "bae79ae1fd8abc72c613326d840859d97d349d919ac0f4a5946961f5dea24c78"
+    },
+    {
+      "file": "resolve-generic-scope.cjs",
+      "sha256": "50c95815b37f37f8d65b4204b9a25b9197b32c076baa9a2f76e739ff0810d5b8"
+    },
+    {
+      "file": "generic-scope-crop-dimensions.json",
+      "sha256": "3629d3b6a809b904b0657d3997d2a3be322227d4165d517dcb11e0d87f888413"
+    }
+  ]
+}

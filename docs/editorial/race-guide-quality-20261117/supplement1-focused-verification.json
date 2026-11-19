@@ -1,0 +1,135 @@
+{
+  "at": "2026-11-18T20:25:15.811Z",
+  "checks": [
+    {
+      "id": "zuiku-14449",
+      "width": 320,
+      "needle": "999",
+      "table": {
+        "width": 252,
+        "scrollWidth": 360,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 108,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "彩色竞赛规则：组织、项目与两日日程（领物地点和适用选手有版本差异）\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-14449",
+      "width": 390,
+      "needle": "999",
+      "table": {
+        "width": 318,
+        "scrollWidth": 360,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 42,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "彩色竞赛规则：组织、项目与两日日程（领物地点和适用选手有版本差异）\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-31546",
+      "width": 320,
+      "needle": "453",
+      "table": {
+        "width": 252,
+        "scrollWidth": 720,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 468,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "系列赛专属优惠：免费及7.5折资格、资格码查询与报名要求\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-31546",
+      "width": 390,
+      "needle": "453",
+      "table": {
+        "width": 318,
+        "scrollWidth": 720,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 402,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "系列赛专属优惠：免费及7.5折资格、资格码查询与报名要求\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "caa-1000485007",
+      "width": 320,
+      "needle": "10000",
+      "table": {
+        "width": 252,
+        "scrollWidth": 360,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 108,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "竞赛规程\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "caa-1000485007",
+      "width": 390,
+      "needle": "10000",
+      "table": {
+        "width": 318,
+        "scrollWidth": 360,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 42,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "竞赛规程\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-48246",
+      "width": 320,
+      "needle": "1450",
+      "table": {
+        "width": 252,
+        "scrollWidth": 480,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 228,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "竞赛规程\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-48246",
+      "width": 390,
+      "needle": "1450",
+      "table": {
+        "width": 318,
+        "scrollWidth": 480,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 162,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "竞赛规程\n查看原图 ↗",
+      "overflow": false
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-11-18T20:25:48.860Z"
+}

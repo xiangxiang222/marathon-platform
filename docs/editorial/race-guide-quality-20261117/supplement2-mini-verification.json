@@ -1,0 +1,1815 @@
+{
+  "kind": "Actual WeChat DevTools rendering, production HTTPS API, no request/route mock; not physical phone or published mini-program",
+  "checkedAt": "2026-11-19T00:20:40.946Z",
+  "project": "/Users/mengxiangxiang/Documents/work/dev/marathon-platform/miniprogram",
+  "system": {
+    "success": true,
+    "systemInfo": {
+      "result": {
+        "brand": "devtools",
+        "model": "iPhone 12/13 (Pro)",
+        "system": "iOS 10.0.1",
+        "platform": "devtools",
+        "benchmarkLevel": -1,
+        "pixelRatio": 3,
+        "screenWidth": 390,
+        "screenHeight": 844,
+        "windowWidth": 390,
+        "windowHeight": 753,
+        "statusBarHeight": 47,
+        "safeArea": {
+          "top": 47,
+          "left": 0,
+          "right": 390,
+          "bottom": 810,
+          "width": 390,
+          "height": 763
+        },
+        "language": "zh_CN",
+        "version": "8.0.5",
+        "fontSizeSetting": 16,
+        "SDKVersion": "3.17.1",
+        "host": {
+          "env": "WeChat"
+        },
+        "enableDebug": false,
+        "mode": "default",
+        "deviceOrientation": "portrait",
+        "bluetoothEnabled": true,
+        "locationEnabled": true,
+        "wifiEnabled": true,
+        "albumAuthorized": true,
+        "cameraAuthorized": true,
+        "locationAuthorized": true,
+        "microphoneAuthorized": true,
+        "notificationAuthorized": true,
+        "notificationAlertAuthorized": true,
+        "notificationBadgeAuthorized": true,
+        "notificationSoundAuthorized": true,
+        "phoneCalendarAuthorized": true,
+        "bluetoothAuthorized": true,
+        "locationReducedAccuracy": true,
+        "devicePixelRatio": 3
+      }
+    }
+  },
+  "races": [
+    {
+      "id": "caa-1000473000",
+      "label": "hefei",
+      "apiUrl": "https://togetherbetter.cn/marathon/api/races/caa-1000473000",
+      "apiStatus": 200,
+      "proseExactlyMatchesProduction": true,
+      "groupsExactlyMatchPublicProduction": true,
+      "guideSha256": "24f5c235f351e523798eeadddbe4a1a595d890ade23459ec6118434e310c5448",
+      "guideCharacters": 16284,
+      "groupCount": 2,
+      "groups": [
+        {
+          "i": 0,
+          "name": "马拉松（42.195公里）",
+          "fields": [
+            {
+              "i": 0,
+              "label": "名额",
+              "value": "18000人",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "标称距离",
+              "value": "42.195公里",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "关门时长",
+              "value": "6小时",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "参赛条件",
+              "value": "20周岁及以上（2006年1月1日前出生）；报名截止日前24个月内1次马拉松或2次半程马拉松成绩；中签缴费后上传12个月内二甲以上医院体检。",
+              "wide": true
+            }
+          ],
+          "status": "报名已截止",
+          "fees": [
+            {
+              "i": 0,
+              "text": "官网报名费 · 180元/人"
+            }
+          ]
+        },
+        {
+          "i": 1,
+          "name": "半程马拉松（21.0975公里）",
+          "fields": [
+            {
+              "i": 0,
+              "label": "名额",
+              "value": "12000人",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "标称距离",
+              "value": "21.0975公里",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "关门时长",
+              "value": "3小时",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "参赛条件",
+              "value": "18周岁及以上（2008年1月1日前出生）；报名截止日前24个月内1次马拉松或1次半程马拉松或2次10公里及以上距离赛事活动成绩；中签缴费后上传12个月内二甲以上医院体检。",
+              "wide": true
+            }
+          ],
+          "status": "报名已截止",
+          "fees": [
+            {
+              "i": 0,
+              "text": "官网报名费 · 150元/人"
+            }
+          ]
+        }
+      ],
+      "chapters": [
+        {
+          "id": "chapter-0",
+          "label": "赛事概况"
+        },
+        {
+          "id": "chapter-5",
+          "label": "组织机构"
+        },
+        {
+          "id": "chapter-9",
+          "label": "项目组别"
+        },
+        {
+          "id": "chapter-12",
+          "label": "报名入口"
+        },
+        {
+          "id": "chapter-21",
+          "label": "报名时间"
+        },
+        {
+          "id": "chapter-25",
+          "label": "报名费"
+        },
+        {
+          "id": "chapter-28",
+          "label": "报名流程"
+        },
+        {
+          "id": "chapter-39",
+          "label": "免抽签条件"
+        },
+        {
+          "id": "chapter-44",
+          "label": "参赛年龄要求"
+        },
+        {
+          "id": "chapter-47",
+          "label": "成绩要求"
+        },
+        {
+          "id": "chapter-49",
+          "label": "参赛健康要求"
+        },
+        {
+          "id": "chapter-65",
+          "label": "赛前体检（中签缴费后须上传体检报告）"
+        },
+        {
+          "id": "chapter-77",
+          "label": "残疾人选手报名办法"
+        },
+        {
+          "id": "chapter-83",
+          "label": "不予报名参赛运动员"
+        },
+        {
+          "id": "chapter-87",
+          "label": "日程与领物"
+        },
+        {
+          "id": "chapter-110",
+          "label": "领物交通攻略"
+        },
+        {
+          "id": "chapter-131",
+          "label": "参赛服尺码"
+        },
+        {
+          "id": "chapter-134",
+          "label": "赛事路线"
+        },
+        {
+          "id": "chapter-142",
+          "label": "竞赛规则、反兴奋剂与号码布"
+        },
+        {
+          "id": "chapter-148",
+          "label": "检录、分区与安全要求"
+        },
+        {
+          "id": "chapter-154",
+          "label": "分枪起跑日程"
+        },
+        {
+          "id": "chapter-157",
+          "label": "计时办法"
+        },
+        {
+          "id": "chapter-161",
+          "label": "分项目关门距离与时长"
+        },
+        {
+          "id": "chapter-165",
+          "label": "存取衣"
+        },
+        {
+          "id": "chapter-170",
+          "label": "路线补给站"
+        },
+        {
+          "id": "chapter-173",
+          "label": "卫生间与官方手册"
+        },
+        {
+          "id": "chapter-176",
+          "label": "名次、纪录及合肥籍市民奖励"
+        },
+        {
+          "id": "chapter-192",
+          "label": "赛风赛纪、处罚与申诉"
+        },
+        {
+          "id": "chapter-221",
+          "label": "保险和医疗救护"
+        },
+        {
+          "id": "chapter-232",
+          "label": "技术官员和裁判员"
+        },
+        {
+          "id": "chapter-234",
+          "label": "自甘风险"
+        },
+        {
+          "id": "chapter-237",
+          "label": "赛事熔断机制"
+        },
+        {
+          "id": "chapter-239",
+          "label": "报名信息及退改注意事项"
+        },
+        {
+          "id": "chapter-245",
+          "label": "组委会联系方式"
+        },
+        {
+          "id": "route",
+          "label": "赛道与路线",
+          "hasContent": true
+        },
+        {
+          "id": "originals",
+          "label": "规程原图参考",
+          "hasContent": true
+        }
+      ],
+      "originalCount": 7,
+      "screenshots": [
+        "/private/tmp/race-guide-quality-20261117/supplement2-mini-hefei-390-groups.png",
+        "/private/tmp/race-guide-quality-20261117/supplement2-mini-hefei-390-table-before.png",
+        "/private/tmp/race-guide-quality-20261117/supplement2-mini-hefei-390-table-after.png",
+        "/private/tmp/race-guide-quality-20261117/supplement2-mini-hefei-390-original.png",
+        "/private/tmp/race-guide-quality-20261117/supplement2-mini-hefei-390-preview.png"
+      ],
+      "tablesBefore": [
+        {
+          "left": 27,
+          "right": 363,
+          "top": 99.7734375,
+          "bottom": 289.7734375,
+          "width": 336,
+          "height": 190,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 600,
+          "scrollHeight": 208
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 875.078125,
+          "bottom": 1229.078125,
+          "width": 336,
+          "height": 354,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 334,
+          "scrollHeight": 372
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 1518.03125,
+          "bottom": 1658.03125,
+          "width": 336,
+          "height": 140,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 334,
+          "scrollHeight": 158
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 6107.984375,
+          "bottom": 6293.984375,
+          "width": 336,
+          "height": 186,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 334,
+          "scrollHeight": 204
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 9167.8515625,
+          "bottom": 11331.8515625,
+          "width": 336,
+          "height": 2164,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 480,
+          "scrollHeight": 2182
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 14202.265625,
+          "bottom": 14392.265625,
+          "width": 336,
+          "height": 190,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 600,
+          "scrollHeight": 208
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 15151.3203125,
+          "bottom": 15883.3203125,
+          "width": 336,
+          "height": 732,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 750
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 16720.5625,
+          "bottom": 17636.5625,
+          "width": 336,
+          "height": 916,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 600,
+          "scrollHeight": 934
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 18057.8984375,
+          "bottom": 18751.8984375,
+          "width": 336,
+          "height": 694,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 480,
+          "scrollHeight": 712
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 19119.03125,
+          "bottom": 19931.03125,
+          "width": 336,
+          "height": 812,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 830
+        }
+      ],
+      "tablesAfter": [
+        {
+          "left": 27,
+          "right": 363,
+          "top": 99.7734375,
+          "bottom": 289.7734375,
+          "width": 336,
+          "height": 190,
+          "scrollLeft": 266,
+          "scrollTop": 0,
+          "scrollWidth": 600,
+          "scrollHeight": 208
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 875.078125,
+          "bottom": 1229.078125,
+          "width": 336,
+          "height": 354,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 334,
+          "scrollHeight": 372
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 1518.03125,
+          "bottom": 1658.03125,
+          "width": 336,
+          "height": 140,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 334,
+          "scrollHeight": 158
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 6107.984375,
+          "bottom": 6293.984375,
+          "width": 336,
+          "height": 186,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 334,
+          "scrollHeight": 204
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 9167.8515625,
+          "bottom": 11331.8515625,
+          "width": 336,
+          "height": 2164,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 480,
+          "scrollHeight": 2182
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 14202.265625,
+          "bottom": 14392.265625,
+          "width": 336,
+          "height": 190,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 600,
+          "scrollHeight": 208
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 15151.3203125,
+          "bottom": 15883.3203125,
+          "width": 336,
+          "height": 732,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 750
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 16720.5625,
+          "bottom": 17636.5625,
+          "width": 336,
+          "height": 916,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 600,
+          "scrollHeight": 934
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 18057.8984375,
+          "bottom": 18751.8984375,
+          "width": 336,
+          "height": 694,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 480,
+          "scrollHeight": 712
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 19119.03125,
+          "bottom": 19931.03125,
+          "width": 336,
+          "height": 812,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 830
+        }
+      ],
+      "actualHorizontalScrollVerified": true,
+      "originalImage": {
+        "left": 28,
+        "right": 362,
+        "top": 100.9296875,
+        "bottom": 3117.6171875,
+        "width": 334,
+        "height": 3016.6875,
+        "mode": "widthFix",
+        "src": "https://togetherbetter.cn/marathon/api/race-sheets/316",
+        "showMenuByLongpress": true
+      },
+      "longpressActionSucceeded": true,
+      "nativeLongpressMenuVerified": false,
+      "nativePreviewClickSucceeded": true
+    },
+    {
+      "id": "caa-1000419241",
+      "label": "xinyu",
+      "apiUrl": "https://togetherbetter.cn/marathon/api/races/caa-1000419241",
+      "apiStatus": 200,
+      "proseExactlyMatchesProduction": true,
+      "groupsExactlyMatchPublicProduction": true,
+      "guideSha256": "5c340a1e396e915fd6136e32e855f7e91c59332c600dbd5b739bb7b2ee22e476",
+      "guideCharacters": 9732,
+      "groupCount": 4,
+      "groups": [
+        {
+          "i": 0,
+          "name": "马拉松（42.195公里）",
+          "fields": [
+            {
+              "i": 0,
+              "label": "名额",
+              "value": "3000人",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "标称距离",
+              "value": "42.195公里",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "关门时长",
+              "value": "6小时",
+              "wide": false
+            }
+          ],
+          "status": "报名已截止",
+          "fees": [
+            {
+              "i": 0,
+              "text": "报名页价格 · 180元/人"
+            }
+          ]
+        },
+        {
+          "i": 1,
+          "name": "半程马拉松（21.0975公里）",
+          "fields": [
+            {
+              "i": 0,
+              "label": "名额",
+              "value": "12000人",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "标称距离",
+              "value": "21.0975公里",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "关门时长",
+              "value": "3小时",
+              "wide": false
+            }
+          ],
+          "status": "报名已截止",
+          "fees": [
+            {
+              "i": 0,
+              "text": "报名页价格 · 150元/人"
+            }
+          ]
+        },
+        {
+          "i": 2,
+          "name": "马拉松情侣跑（一男一女）（42.195公里）",
+          "fields": [
+            {
+              "i": 0,
+              "label": "形式",
+              "value": "pair",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "标称距离",
+              "value": "42.195公里",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "关门时长",
+              "value": "6小时",
+              "wide": false
+            }
+          ],
+          "status": "报名已截止",
+          "fees": [
+            {
+              "i": 0,
+              "text": "报名页价格 · 377元"
+            }
+          ]
+        },
+        {
+          "i": 3,
+          "name": "半程马拉松情侣跑（一男一女）（21.0975公里）",
+          "fields": [
+            {
+              "i": 0,
+              "label": "形式",
+              "value": "pair",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "标称距离",
+              "value": "21.0975公里",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "关门时长",
+              "value": "3小时",
+              "wide": false
+            }
+          ],
+          "status": "报名已截止",
+          "fees": [
+            {
+              "i": 0,
+              "text": "报名页价格 · 317元"
+            }
+          ]
+        }
+      ],
+      "chapters": [
+        {
+          "id": "chapter-0",
+          "label": "赛事概况"
+        },
+        {
+          "id": "chapter-4",
+          "label": "组织架构"
+        },
+        {
+          "id": "chapter-15",
+          "label": "项目组别与规模"
+        },
+        {
+          "id": "chapter-18",
+          "label": "报名时间、费用与退改"
+        },
+        {
+          "id": "chapter-32",
+          "label": "参赛年龄、健康与体检"
+        },
+        {
+          "id": "chapter-51",
+          "label": "残疾人参赛要求"
+        },
+        {
+          "id": "chapter-57",
+          "label": "赛事路线"
+        },
+        {
+          "id": "chapter-68",
+          "label": "竞赛规则"
+        },
+        {
+          "id": "chapter-70",
+          "label": "兴奋剂检查"
+        },
+        {
+          "id": "chapter-72",
+          "label": "检录办法"
+        },
+        {
+          "id": "chapter-78",
+          "label": "起跑方式"
+        },
+        {
+          "id": "chapter-82",
+          "label": "计时办法"
+        },
+        {
+          "id": "chapter-86",
+          "label": "关门时间"
+        },
+        {
+          "id": "chapter-91",
+          "label": "存取衣"
+        },
+        {
+          "id": "chapter-96",
+          "label": "饮水、饮料、用水、能量补给站"
+        },
+        {
+          "id": "chapter-98",
+          "label": "参赛服装"
+        },
+        {
+          "id": "chapter-100",
+          "label": "参赛号码"
+        },
+        {
+          "id": "chapter-102",
+          "label": "竞赛物品领取"
+        },
+        {
+          "id": "chapter-106",
+          "label": "成绩查询"
+        },
+        {
+          "id": "chapter-108",
+          "label": "医疗救护"
+        },
+        {
+          "id": "chapter-115",
+          "label": "奖励办法"
+        },
+        {
+          "id": "chapter-136",
+          "label": "赛风赛纪"
+        },
+        {
+          "id": "chapter-163",
+          "label": "保险"
+        },
+        {
+          "id": "chapter-169",
+          "label": "自甘风险"
+        },
+        {
+          "id": "chapter-171",
+          "label": "技术官员和裁判员"
+        },
+        {
+          "id": "chapter-173",
+          "label": "申诉"
+        },
+        {
+          "id": "chapter-175",
+          "label": "熔断机制"
+        },
+        {
+          "id": "chapter-177",
+          "label": "新余仙女湖马拉松组委会"
+        },
+        {
+          "id": "originals",
+          "label": "规程原图参考",
+          "hasContent": true
+        }
+      ],
+      "originalCount": 2,
+      "screenshots": [
+        "/private/tmp/race-guide-quality-20261117/supplement2-mini-xinyu-390-groups.png",
+        "/private/tmp/race-guide-quality-20261117/supplement2-mini-xinyu-390-table-before.png",
+        "/private/tmp/race-guide-quality-20261117/supplement2-mini-xinyu-390-table-after.png",
+        "/private/tmp/race-guide-quality-20261117/supplement2-mini-xinyu-390-original.png",
+        "/private/tmp/race-guide-quality-20261117/supplement2-mini-xinyu-390-preview.png"
+      ],
+      "tablesBefore": [
+        {
+          "left": 27,
+          "right": 363,
+          "top": 100.21875,
+          "bottom": 412.21875,
+          "width": 336,
+          "height": 312,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 330
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 609.390625,
+          "bottom": 891.390625,
+          "width": 336,
+          "height": 282,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 334,
+          "scrollHeight": 300
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 934.5859375,
+          "bottom": 1292.5859375,
+          "width": 336,
+          "height": 358,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 480,
+          "scrollHeight": 376
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 6411.6328125,
+          "bottom": 7059.6328125,
+          "width": 336,
+          "height": 648,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 666
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 7653.53125,
+          "bottom": 8716.53125,
+          "width": 336,
+          "height": 1063,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 600,
+          "scrollHeight": 1081
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 10190.6796875,
+          "bottom": 10607.6796875,
+          "width": 336,
+          "height": 417,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 435
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 10905.625,
+          "bottom": 11183.625,
+          "width": 336,
+          "height": 278,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 296
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 11363.1953125,
+          "bottom": 11780.1953125,
+          "width": 336,
+          "height": 417,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 435
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 11986.359375,
+          "bottom": 12289.359375,
+          "width": 336,
+          "height": 303,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 321
+        }
+      ],
+      "tablesAfter": [
+        {
+          "left": 27,
+          "right": 363,
+          "top": 100.21875,
+          "bottom": 412.21875,
+          "width": 336,
+          "height": 312,
+          "scrollLeft": 26,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 330
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 609.390625,
+          "bottom": 891.390625,
+          "width": 336,
+          "height": 282,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 334,
+          "scrollHeight": 300
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 934.5859375,
+          "bottom": 1292.5859375,
+          "width": 336,
+          "height": 358,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 480,
+          "scrollHeight": 376
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 6411.6328125,
+          "bottom": 7059.6328125,
+          "width": 336,
+          "height": 648,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 666
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 7653.53125,
+          "bottom": 8716.53125,
+          "width": 336,
+          "height": 1063,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 600,
+          "scrollHeight": 1081
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 10190.6796875,
+          "bottom": 10607.6796875,
+          "width": 336,
+          "height": 417,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 435
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 10905.625,
+          "bottom": 11183.625,
+          "width": 336,
+          "height": 278,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 296
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 11363.1953125,
+          "bottom": 11780.1953125,
+          "width": 336,
+          "height": 417,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 435
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 11986.359375,
+          "bottom": 12289.359375,
+          "width": 336,
+          "height": 303,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 321
+        }
+      ],
+      "actualHorizontalScrollVerified": true,
+      "originalImage": {
+        "left": 28,
+        "right": 362,
+        "top": 100.796875,
+        "bottom": 100.796875,
+        "width": 334,
+        "height": 0,
+        "mode": "widthFix",
+        "src": "https://togetherbetter.cn/marathon/api/race-sheets/1738",
+        "showMenuByLongpress": true
+      },
+      "longpressActionSucceeded": true,
+      "nativeLongpressMenuVerified": false,
+      "nativePreviewClickSucceeded": true
+    },
+    {
+      "id": "zuiku-69042",
+      "label": "menghai",
+      "apiUrl": "https://togetherbetter.cn/marathon/api/races/zuiku-69042",
+      "apiStatus": 200,
+      "proseExactlyMatchesProduction": true,
+      "groupsExactlyMatchPublicProduction": true,
+      "guideSha256": "b159698ba32faf691aebaabb8405233ebb5c651425848b80bcb449eb162993af",
+      "guideCharacters": 17560,
+      "groupCount": 5,
+      "groups": [
+        {
+          "i": 0,
+          "name": "茶马100KM",
+          "fields": [
+            {
+              "i": 0,
+              "label": "名额",
+              "value": "500人",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "标称距离",
+              "value": "100公里",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "实际里程",
+              "value": "108.92公里",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "累计爬升",
+              "value": "5497米",
+              "wide": false
+            },
+            {
+              "i": 4,
+              "label": "累计下降",
+              "value": "5812米",
+              "wide": false
+            },
+            {
+              "i": 5,
+              "label": "出发时间",
+              "value": "2027年1月2日7:00",
+              "wide": false
+            },
+            {
+              "i": 6,
+              "label": "关门时长",
+              "value": "30小时",
+              "wide": false
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "早鸟价（10月13日—10月20日） · 1095元/人"
+            },
+            {
+              "i": 1,
+              "text": "报名费 · 1288元/人"
+            }
+          ]
+        },
+        {
+          "i": 1,
+          "name": "雨林60KM",
+          "fields": [
+            {
+              "i": 0,
+              "label": "名额",
+              "value": "800人",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "标称距离",
+              "value": "60公里",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "实际里程",
+              "value": "62.82公里",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "累计爬升",
+              "value": "3537米",
+              "wide": false
+            },
+            {
+              "i": 4,
+              "label": "累计下降",
+              "value": "3533米",
+              "wide": false
+            },
+            {
+              "i": 5,
+              "label": "出发时间",
+              "value": "2027年1月2日8:00",
+              "wide": false
+            },
+            {
+              "i": 6,
+              "label": "关门时长",
+              "value": "16小时",
+              "wide": false
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "早鸟价（10月13日—10月20日） · 755元/人"
+            },
+            {
+              "i": 1,
+              "text": "报名费 · 888元/人"
+            }
+          ]
+        },
+        {
+          "i": 2,
+          "name": "勐海30KM",
+          "fields": [
+            {
+              "i": 0,
+              "label": "名额",
+              "value": "800人",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "标称距离",
+              "value": "30公里",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "实际里程",
+              "value": "30.97公里",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "累计爬升",
+              "value": "1648米",
+              "wide": false
+            },
+            {
+              "i": 4,
+              "label": "累计下降",
+              "value": "1644米",
+              "wide": false
+            },
+            {
+              "i": 5,
+              "label": "出发时间",
+              "value": "2027年1月2日9:00",
+              "wide": false
+            },
+            {
+              "i": 6,
+              "label": "关门时长",
+              "value": "8小时",
+              "wide": false
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "早鸟价（10月13日—10月20日） · 499元/人"
+            },
+            {
+              "i": 1,
+              "text": "报名费 · 588元/人"
+            }
+          ]
+        },
+        {
+          "i": 3,
+          "name": "黎明18KM",
+          "fields": [
+            {
+              "i": 0,
+              "label": "名额",
+              "value": "600人",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "标称距离",
+              "value": "18公里",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "实际里程",
+              "value": "17.92公里",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "累计爬升",
+              "value": "901米",
+              "wide": false
+            },
+            {
+              "i": 4,
+              "label": "累计下降",
+              "value": "898米",
+              "wide": false
+            },
+            {
+              "i": 5,
+              "label": "出发时间",
+              "value": "2027年1月2日11:00",
+              "wide": false
+            },
+            {
+              "i": 6,
+              "label": "关门时长",
+              "value": "5小时",
+              "wide": false
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "早鸟价（10月13日—10月20日） · 270元/人"
+            },
+            {
+              "i": 1,
+              "text": "报名费 · 318元/人"
+            }
+          ]
+        },
+        {
+          "i": 4,
+          "name": "紫鹃6KM",
+          "fields": [
+            {
+              "i": 0,
+              "label": "名额",
+              "value": "300人",
+              "wide": false
+            },
+            {
+              "i": 1,
+              "label": "标称距离",
+              "value": "6公里",
+              "wide": false
+            },
+            {
+              "i": 2,
+              "label": "实际里程",
+              "value": "6.58公里",
+              "wide": false
+            },
+            {
+              "i": 3,
+              "label": "累计爬升",
+              "value": "312米",
+              "wide": false
+            },
+            {
+              "i": 4,
+              "label": "累计下降",
+              "value": "318米",
+              "wide": false
+            },
+            {
+              "i": 5,
+              "label": "出发时间",
+              "value": "2027年1月2日15:00",
+              "wide": false
+            },
+            {
+              "i": 6,
+              "label": "关门时长",
+              "value": "2小时",
+              "wide": false
+            }
+          ],
+          "status": "",
+          "fees": [
+            {
+              "i": 0,
+              "text": "早鸟价（10月13日—10月20日） · 168元/人"
+            },
+            {
+              "i": 1,
+              "text": "报名费 · 198元/人"
+            }
+          ]
+        }
+      ],
+      "chapters": [
+        {
+          "id": "chapter-0",
+          "label": "赛事概况"
+        },
+        {
+          "id": "chapter-4",
+          "label": "资料版本与待确认差异"
+        },
+        {
+          "id": "chapter-8",
+          "label": "赛事名称、时间与规模（官方规程）"
+        },
+        {
+          "id": "chapter-17",
+          "label": "比赛日程与领物（宣传原图）"
+        },
+        {
+          "id": "chapter-20",
+          "label": "报名时间、费用与退费"
+        },
+        {
+          "id": "chapter-34",
+          "label": "路线参数与原图说明"
+        },
+        {
+          "id": "chapter-39",
+          "label": "各组路线、关门点与补给（官方规程）"
+        },
+        {
+          "id": "chapter-93",
+          "label": "参赛年龄、健康与资格（官方规程）"
+        },
+        {
+          "id": "chapter-133",
+          "label": "宣传资格补充与风险准备（对照资料）"
+        },
+        {
+          "id": "chapter-165",
+          "label": "强制装备与竞赛要求（官方规程）"
+        },
+        {
+          "id": "chapter-173",
+          "label": "装备分类与检查（官方规则附件）"
+        },
+        {
+          "id": "chapter-186",
+          "label": "宣传计时与装备差异（对照资料）"
+        },
+        {
+          "id": "chapter-204",
+          "label": "排名奖励与精英申请"
+        },
+        {
+          "id": "chapter-211",
+          "label": "保险、申诉与其他规定（官方规程）"
+        },
+        {
+          "id": "chapter-232",
+          "label": "中国登山协会规则附件：总则、行为及计时"
+        },
+        {
+          "id": "chapter-292",
+          "label": "中国登山协会规则附件：导航、起终点、补给与完整罚则"
+        },
+        {
+          "id": "chapter-371",
+          "label": "组委会联系与原规程入口"
+        },
+        {
+          "id": "originals",
+          "label": "规程原图参考",
+          "hasContent": true
+        }
+      ],
+      "originalCount": 10,
+      "screenshots": [
+        "/private/tmp/race-guide-quality-20261117/supplement2-mini-menghai-390-groups.png",
+        "/private/tmp/race-guide-quality-20261117/supplement2-mini-menghai-390-table-before.png",
+        "/private/tmp/race-guide-quality-20261117/supplement2-mini-menghai-390-table-after.png",
+        "/private/tmp/race-guide-quality-20261117/supplement2-mini-menghai-390-original.png",
+        "/private/tmp/race-guide-quality-20261117/supplement2-mini-menghai-390-preview.png"
+      ],
+      "tablesBefore": [
+        {
+          "left": 27,
+          "right": 363,
+          "top": 99.859375,
+          "bottom": 1225.859375,
+          "width": 336,
+          "height": 1126,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 1144
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 1797.9765625,
+          "bottom": 2638.9765625,
+          "width": 336,
+          "height": 841,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 859
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 2874.7421875,
+          "bottom": 3152.7421875,
+          "width": 336,
+          "height": 278,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 296
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 3734.4453125,
+          "bottom": 4012.4453125,
+          "width": 336,
+          "height": 278,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 720,
+          "scrollHeight": 296
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 4837.3046875,
+          "bottom": 5451.3046875,
+          "width": 336,
+          "height": 614,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 480,
+          "scrollHeight": 632
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 6024.40625,
+          "bottom": 6353.40625,
+          "width": 336,
+          "height": 329,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 480,
+          "scrollHeight": 347
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 6793.5390625,
+          "bottom": 7025.5390625,
+          "width": 336,
+          "height": 232,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 480,
+          "scrollHeight": 250
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 7382.484375,
+          "bottom": 7568.484375,
+          "width": 336,
+          "height": 186,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 480,
+          "scrollHeight": 204
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 7925.4296875,
+          "bottom": 8111.4296875,
+          "width": 336,
+          "height": 186,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 480,
+          "scrollHeight": 204
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 10853.515625,
+          "bottom": 11190.515625,
+          "width": 336,
+          "height": 337,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 355
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 12919.59375,
+          "bottom": 14734.59375,
+          "width": 336,
+          "height": 1815,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 840,
+          "scrollHeight": 1833
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 16819.1796875,
+          "bottom": 18386.1796875,
+          "width": 336,
+          "height": 1567,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 840,
+          "scrollHeight": 1585
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 19072.8515625,
+          "bottom": 19396.8515625,
+          "width": 336,
+          "height": 324,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 600,
+          "scrollHeight": 342
+        }
+      ],
+      "tablesAfter": [
+        {
+          "left": 27,
+          "right": 363,
+          "top": 99.859375,
+          "bottom": 1225.859375,
+          "width": 336,
+          "height": 1126,
+          "scrollLeft": 26,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 1144
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 1797.9765625,
+          "bottom": 2638.9765625,
+          "width": 336,
+          "height": 841,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 859
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 2874.7421875,
+          "bottom": 3152.7421875,
+          "width": 336,
+          "height": 278,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 296
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 3734.4453125,
+          "bottom": 4012.4453125,
+          "width": 336,
+          "height": 278,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 720,
+          "scrollHeight": 296
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 4837.3046875,
+          "bottom": 5451.3046875,
+          "width": 336,
+          "height": 614,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 480,
+          "scrollHeight": 632
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 6024.40625,
+          "bottom": 6353.40625,
+          "width": 336,
+          "height": 329,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 480,
+          "scrollHeight": 347
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 6793.5390625,
+          "bottom": 7025.5390625,
+          "width": 336,
+          "height": 232,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 480,
+          "scrollHeight": 250
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 7382.484375,
+          "bottom": 7568.484375,
+          "width": 336,
+          "height": 186,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 480,
+          "scrollHeight": 204
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 7925.4296875,
+          "bottom": 8111.4296875,
+          "width": 336,
+          "height": 186,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 480,
+          "scrollHeight": 204
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 10853.515625,
+          "bottom": 11190.515625,
+          "width": 336,
+          "height": 337,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 360,
+          "scrollHeight": 355
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 12919.59375,
+          "bottom": 14734.59375,
+          "width": 336,
+          "height": 1815,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 840,
+          "scrollHeight": 1833
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 16819.1796875,
+          "bottom": 18386.1796875,
+          "width": 336,
+          "height": 1567,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 840,
+          "scrollHeight": 1585
+        },
+        {
+          "left": 27,
+          "right": 363,
+          "top": 19072.8515625,
+          "bottom": 19396.8515625,
+          "width": 336,
+          "height": 324,
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "scrollWidth": 600,
+          "scrollHeight": 342
+        }
+      ],
+      "actualHorizontalScrollVerified": true,
+      "originalImage": {
+        "left": 28,
+        "right": 362,
+        "top": 101.0234375,
+        "bottom": 101.0234375,
+        "width": 334,
+        "height": 0,
+        "mode": "widthFix",
+        "src": "https://togetherbetter.cn/marathon/api/race-sheets/1634",
+        "showMenuByLongpress": true
+      },
+      "longpressActionSucceeded": true,
+      "nativeLongpressMenuVerified": false,
+      "nativePreviewClickSucceeded": true
+    }
+  ],
+  "screenshots": [
+    "/private/tmp/race-guide-quality-20261117/supplement2-mini-hefei-390-groups.png",
+    "/private/tmp/race-guide-quality-20261117/supplement2-mini-hefei-390-table-before.png",
+    "/private/tmp/race-guide-quality-20261117/supplement2-mini-hefei-390-table-after.png",
+    "/private/tmp/race-guide-quality-20261117/supplement2-mini-hefei-390-original.png",
+    "/private/tmp/race-guide-quality-20261117/supplement2-mini-hefei-390-preview.png",
+    "/private/tmp/race-guide-quality-20261117/supplement2-mini-xinyu-390-groups.png",
+    "/private/tmp/race-guide-quality-20261117/supplement2-mini-xinyu-390-table-before.png",
+    "/private/tmp/race-guide-quality-20261117/supplement2-mini-xinyu-390-table-after.png",
+    "/private/tmp/race-guide-quality-20261117/supplement2-mini-xinyu-390-original.png",
+    "/private/tmp/race-guide-quality-20261117/supplement2-mini-xinyu-390-preview.png",
+    "/private/tmp/race-guide-quality-20261117/supplement2-mini-menghai-390-groups.png",
+    "/private/tmp/race-guide-quality-20261117/supplement2-mini-menghai-390-table-before.png",
+    "/private/tmp/race-guide-quality-20261117/supplement2-mini-menghai-390-table-after.png",
+    "/private/tmp/race-guide-quality-20261117/supplement2-mini-menghai-390-original.png",
+    "/private/tmp/race-guide-quality-20261117/supplement2-mini-menghai-390-preview.png"
+  ],
+  "pending": [
+    "Physical phone gesture zoom, save and native long-press menu",
+    "Official uploaded/published mini-program verification",
+    "320px actual DevTools profile switching: exposed automation tools provide no device switch; 390px is currently configured."
+  ],
+  "imageInspection": {
+    "at": "2026-11-19T00:37:02.640Z",
+    "observer": "root",
+    "actuallyViewedLoadedPreviews": [
+      "caa-1000419241",
+      "zuiku-69042",
+      "caa-1000473000"
+    ],
+    "hefeiFirstCapture": "15-second initial capture showed loading spinner; not accepted as displayed",
+    "hefeiRetest": "supplement2-hefei-image-kind-mini.json",
+    "physicalGesturesVerified": false
+  }
+}

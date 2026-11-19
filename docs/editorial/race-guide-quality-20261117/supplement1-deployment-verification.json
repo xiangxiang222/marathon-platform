@@ -1,0 +1,64 @@
+{
+  "at": "2026-11-19T00:03:00.849Z",
+  "kind": "Production data update using already deployed code; source-review scope explicit per manifest",
+  "stages": {
+    "reviewed": true,
+    "saved": true,
+    "displayed": true,
+    "deployedVerified": true,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "races": 11,
+  "regulationSupplementRaces": 5,
+  "curationOnlyRaces": 6,
+  "backup": "server/data/race-guide-quality-20261117/supplement1-applied.json.before.sqlite",
+  "counts": {
+    "races": 434,
+    "sheets": 1735
+  },
+  "schemaUnchanged": true,
+  "quickCheck": "ok",
+  "web": {
+    "actualPages": 22,
+    "widths": [
+      320,
+      390
+    ],
+    "fullTextBlocks": 1453,
+    "tableRows": 640,
+    "focusPages": 8
+  },
+  "mini": {
+    "actualViewport": 390,
+    "races": 11,
+    "groups": 44,
+    "tables": 86,
+    "tableRows": 640,
+    "nativeOriginalPreviewActuallyViewed": [
+      "zuiku-31546",
+      "caa-1000485007",
+      "zuiku-48246"
+    ],
+    "gestureEvidence": "supplement1-mini-verification.json",
+    "extraFeeTableCheck": {
+      "status": "not_passed_additional_targeting",
+      "error": "DevTools recovered using simulator_open_page. Its element query did not target the requested later table; selector screenshots show first table. No product change or data mutation; no pass claimed. All-race exact cell comparisons and representative first-table scroll/preview remain passed."
+    }
+  },
+  "curation": {
+    "hiddenGuideImages": 10,
+    "recordsAndFilesDeleted": 0,
+    "advertisingSectionsRemoved": 2
+  },
+  "remaining": {
+    "original54RegulationQueue": 49,
+    "original8CurationQueue": 2,
+    "genericScopeMapping": 35,
+    "sourceUncertaintyFollowup": 2,
+    "physicalPhoneAnd320ActualMiniAndFormalRelease": "not_completed"
+  },
+  "limitations": [
+    "Current source content reviewed does not prove source internal contradictions resolved or all future notices obtained",
+    "web and actual mini DevTools verification does not equal published mini-program or physical phone verification"
+  ]
+}
