@@ -1,0 +1,84 @@
+{
+  "at": "2026-11-19T00:39:27.173Z",
+  "frozenSourceUnchanged": true,
+  "races": [
+    {
+      "id": "zuiku-85841",
+      "keptExisting": 21,
+      "additional": [
+        {
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/ad0adf406de523f55223344fbf4c9f88a787d0d0.jpeg?imageView2/2/w/1080",
+          "caption": "本届2027年3月21日日期海报与历史嘉年华现场；历史背景板不作为本届组织名单"
+        }
+      ],
+      "additionalExcluded": [
+        {
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/1b4e43ec30fb980bd7da21846a876de49ca1fce8.jpeg?imageView2/2/w/1080",
+          "caption": "本届报名二维码及太白峰1197.4米风车、日出景观",
+          "reason": "New source already visually classified; repeated poster/scenery/business image has no additional participation or comparison value; preserved in audit only"
+        },
+        {
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/5d52e7e148082eda2d02cd896ed57c4a87d4f67c.jpeg?imageView2/2/w/1080",
+          "caption": "西施壁湖、陈宅山水及山林古村视觉资料",
+          "reason": "New source already visually classified; repeated poster/scenery/business image has no additional participation or comparison value; preserved in audit only"
+        },
+        {
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/abdac4c7b9877a92c15cdf4c8a56b57d4997fd82.jpeg?imageView2/2/w/1080",
+          "caption": "本届3月21日报名海报与历届运动场景",
+          "reason": "New source already visually classified; repeated poster/scenery/business image has no additional participation or comparison value; preserved in audit only"
+        }
+      ],
+      "frozenInputSha256": "d5f981e8be846258285c6c127dddf747232c09a1530be59c166b70d2a1da7bbf"
+    },
+    {
+      "id": "zuiku-22160",
+      "keptExisting": 17,
+      "additional": [
+        {
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/b10df54a8ce6caca4be95d67da4b660ac2776c18.png?imageView2/2/w/1280",
+          "caption": "逐光50KM完整路线、高程概览与香港仔/龙虎山/薄扶林/大潭赛道视觉"
+        },
+        {
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/d3321f13386b0e56e68e3eaae7c5d7ecf7803e0c.png?imageView2/2/w/2400",
+          "caption": "赛事信息：12月31日23:59:59、起终点大潭郊野公园烧烤场、500人、5人战队"
+        },
+        {
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/7ed37e761ce780758480e67bb21df332c1e76e2b.png?imageView2/2/w/2400",
+          "caption": "保险原文：公众责任险不含个人意外险，建议选手自行购买"
+        },
+        {
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/c89541c514e606f7e91ba91a1999bdc51e575082.jpeg?imageView2/2/w/1080",
+          "caption": "主办世界华人越野协会、协办山东省登山户外运动协会、承办北京落基体育科技有限公司；客服17305356641"
+        }
+      ],
+      "additionalExcluded": [
+        {
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/6d92dd0a1a9bd737591d8b9c3d97c122d001df5c.jpeg?imageView2/2/w/1080",
+          "caption": "本届报名封面横幅",
+          "reason": "New source already visually classified; repeated poster/scenery/business image has no additional participation or comparison value; preserved in audit only"
+        },
+        {
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/1d3bce2159fee45dec4ae560a0dc511d9f1b9336.png?imageView2/2/w/1280",
+          "caption": "23:59:59起跑、大潭郊野公园烧烤场与城市山海场景",
+          "reason": "New source already visually classified; repeated poster/scenery/business image has no additional participation or comparison value; preserved in audit only"
+        },
+        {
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/2f85aa2ad87e98f08f38ccd3339d1807e95e552d.png?imageView2/2/w/1280",
+          "caption": "10月10日10:00报名开放海报及最酷报名二维码",
+          "reason": "New source already visually classified; repeated poster/scenery/business image has no additional participation or comparison value; preserved in audit only"
+        },
+        {
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/29c9aa6d088cb54231f8015b10511ec7d4e109e9.png?imageView2/2/w/2400",
+          "caption": "落基体育赛事解释、未尽事宜另行通知的原文",
+          "reason": "New source already visually classified; repeated poster/scenery/business image has no additional participation or comparison value; preserved in audit only"
+        },
+        {
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/10/9d018102ca7ceba5c174f21567a8bc9765233248.jpeg?imageView2/2/w/1080",
+          "caption": "落基体育社交媒体及商务二维码；参赛咨询使用官方客服17305356641",
+          "reason": "New source already visually classified; repeated poster/scenery/business image has no additional participation or comparison value; preserved in audit only"
+        }
+      ],
+      "frozenInputSha256": "d5f981e8be846258285c6c127dddf747232c09a1530be59c166b70d2a1da7bbf"
+    }
+  ]
+}

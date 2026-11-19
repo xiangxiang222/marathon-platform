@@ -1,0 +1,252 @@
+{
+  "startedAt": "2026-11-19T01:58:12.028Z",
+  "kind": "Actual 390px WeChat DevTools production-page render check; no mocked network; excludes physical phone, gestures and formal release",
+  "races": [
+    {
+      "id": "zuiku-85841",
+      "actualViewport": 390,
+      "guideCharacters": 12454,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 3,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1570.546875,
+        "bottom": 22627.5859375,
+        "width": 366,
+        "height": 21057.0390625,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 11,
+      "tableRowsIncludingHeaders": 101,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336
+      ],
+      "previewGestureChecks": "Separate representative evidence: supplement3-mini-verification.json"
+    },
+    {
+      "id": "zuiku-22160",
+      "actualViewport": 390,
+      "guideCharacters": 8594,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 1,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1409.359375,
+        "bottom": 15499.9296875,
+        "width": 366,
+        "height": 14090.5703125,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 5,
+      "tableRowsIncludingHeaders": 38,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336,
+        336
+      ],
+      "previewGestureChecks": "Separate representative evidence: supplement3-mini-verification.json"
+    },
+    {
+      "id": "zuiku-67371",
+      "actualViewport": 390,
+      "guideCharacters": 8732,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 1,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1503.046875,
+        "bottom": 18068.3515625,
+        "width": 366,
+        "height": 16565.3046875,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 10,
+      "tableRowsIncludingHeaders": 109,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336
+      ],
+      "previewGestureChecks": "Separate representative evidence: supplement3-mini-verification.json"
+    },
+    {
+      "id": "zuiku-31314",
+      "actualViewport": 390,
+      "guideCharacters": 12632,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 2,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1708.703125,
+        "bottom": 22053.859375,
+        "width": 366,
+        "height": 20345.15625,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 12,
+      "tableRowsIncludingHeaders": 98,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336
+      ],
+      "previewGestureChecks": "Separate representative evidence: supplement3-mini-verification.json"
+    },
+    {
+      "id": "zuiku-59237",
+      "actualViewport": 390,
+      "guideCharacters": 5367,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 2,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1082.328125,
+        "bottom": 11797.71875,
+        "width": 366,
+        "height": 10715.390625,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 4,
+      "tableRowsIncludingHeaders": 15,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336
+      ],
+      "previewGestureChecks": "Separate representative evidence: supplement3-mini-verification.json"
+    },
+    {
+      "id": "zuiku-49863",
+      "actualViewport": 390,
+      "guideCharacters": 1789,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 5,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1088.4296875,
+        "bottom": 4203.4296875,
+        "width": 366,
+        "height": 3115,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 3,
+      "tableRowsIncludingHeaders": 16,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336
+      ],
+      "previewGestureChecks": "Separate representative evidence: supplement3-mini-verification.json"
+    }
+  ],
+  "errors": [],
+  "passed": true,
+  "previousErrors": [
+    "Error: Command failed: /Applications/wechatwebdevtools.app/Contents/MacOS/wechatide -c Codex close_project_window --project /Users/mengxiangxiang/Documents/work/dev/marathon-platform/miniprogram\n[wechatide] skill-call: client=Codex tool=close_project_window\n\n    at genericNodeError (node:internal/errors:983:15)\n    at wrappedFn (node:internal/errors:537:14)\n    at checkExecSyncError (node:child_process:892:11)\n    at execFileSync (node:child_process:928:15)\n    at call (/private/tmp/race-guide-quality-20261117/verify-supplement3-mini-all-render.cjs:1:459)\n    at /private/tmp/race-guide-quality-20261117/verify-supplement3-mini-all-render.cjs:2:439\n    at Object.<anonymous> (/private/tmp/race-guide-quality-20261117/verify-supplement3-mini-all-render.cjs:2:3782)\n    at Module._compile (node:internal/modules/cjs/loader:1692:14)\n    at Object..js (node:internal/modules/cjs/loader:1824:10)\n    at Module.load (node:internal/modules/cjs/loader:1427:32)"
+  ],
+  "system": {
+    "success": true,
+    "systemInfo": {
+      "result": {
+        "brand": "devtools",
+        "model": "iPhone 12/13 (Pro)",
+        "system": "iOS 10.0.1",
+        "platform": "devtools",
+        "benchmarkLevel": -1,
+        "pixelRatio": 3,
+        "screenWidth": 390,
+        "screenHeight": 844,
+        "windowWidth": 390,
+        "windowHeight": 762,
+        "statusBarHeight": 47,
+        "safeArea": {
+          "top": 47,
+          "left": 0,
+          "right": 390,
+          "bottom": 810,
+          "width": 390,
+          "height": 763
+        },
+        "language": "zh_CN",
+        "version": "8.0.5",
+        "fontSizeSetting": 16,
+        "SDKVersion": "3.17.1",
+        "host": {
+          "env": "WeChat"
+        },
+        "enableDebug": false,
+        "mode": "default",
+        "deviceOrientation": "portrait",
+        "bluetoothEnabled": true,
+        "locationEnabled": true,
+        "wifiEnabled": true,
+        "albumAuthorized": true,
+        "cameraAuthorized": true,
+        "locationAuthorized": true,
+        "microphoneAuthorized": true,
+        "notificationAuthorized": true,
+        "notificationAlertAuthorized": true,
+        "notificationBadgeAuthorized": true,
+        "notificationSoundAuthorized": true,
+        "phoneCalendarAuthorized": true,
+        "bluetoothAuthorized": true,
+        "locationReducedAccuracy": true,
+        "devicePixelRatio": 3
+      }
+    }
+  },
+  "completedAt": "2026-11-19T02:00:08.351Z"
+}

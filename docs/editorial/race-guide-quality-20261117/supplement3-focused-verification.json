@@ -1,0 +1,135 @@
+{
+  "at": "2026-11-19T01:55:39.566Z",
+  "checks": [
+    {
+      "id": "zuiku-67371",
+      "width": 320,
+      "needle": "94",
+      "table": {
+        "width": 252,
+        "scrollWidth": 840,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 588,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "广州垂马宣传说明：认证、赛道纪录及年度积分奖金池（截至宣传发布时数据）\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-67371",
+      "width": 390,
+      "needle": "94",
+      "table": {
+        "width": 318,
+        "scrollWidth": 840,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 522,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "广州垂马宣传说明：认证、赛道纪录及年度积分奖金池（截至宣传发布时数据）\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-31314",
+      "width": 320,
+      "needle": "800",
+      "table": {
+        "width": 252,
+        "scrollWidth": 600,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 348,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "官网竞赛规程完整长图：关门、补给、资格、全部奖励、处罚及保险\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-31314",
+      "width": 390,
+      "needle": "800",
+      "table": {
+        "width": 318,
+        "scrollWidth": 600,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 282,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "官网竞赛规程完整长图：关门、补给、资格、全部奖励、处罚及保险\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-22160",
+      "width": 320,
+      "needle": "899.1",
+      "table": {
+        "width": 252,
+        "scrollWidth": 360,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 108,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "本届封面：2026年12月31日23:59:59、大潭郊野公园烧烤场\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-22160",
+      "width": 390,
+      "needle": "899.1",
+      "table": {
+        "width": 318,
+        "scrollWidth": 360,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 42,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "本届封面：2026年12月31日23:59:59、大潭郊野公园烧烤场\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-85841",
+      "width": 320,
+      "needle": "19:30",
+      "table": {
+        "width": 252,
+        "scrollWidth": 480,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 228,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "2027大K探索系列赛第二届西施壁湖越野挑战赛封面\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-85841",
+      "width": 390,
+      "needle": "19:30",
+      "table": {
+        "width": 318,
+        "scrollWidth": 480,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 162,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "2027大K探索系列赛第二届西施壁湖越野挑战赛封面\n查看原图 ↗",
+      "overflow": false
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-11-19T01:56:30.818Z"
+}
