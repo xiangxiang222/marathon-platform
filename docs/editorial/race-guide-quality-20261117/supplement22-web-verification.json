@@ -1,0 +1,104 @@
+{
+  "startedAt": "2026-11-19T17:02:42.916Z",
+  "api": [
+    {
+      "id": "zuiku-71615",
+      "bodyMatches": true,
+      "groups": 2,
+      "characters": 2842
+    }
+  ],
+  "web": [
+    {
+      "id": "zuiku-71615",
+      "width": 320,
+      "characters": 2580,
+      "tables": [
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 3
+        },
+        {
+          "width": 252,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 3
+        },
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 3
+        },
+        {
+          "width": 252,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 6
+        },
+        {
+          "width": 252,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 4
+        },
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 4
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-71615",
+      "width": 390,
+      "characters": 2580,
+      "tables": [
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 3
+        },
+        {
+          "width": 318,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 3
+        },
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 3
+        },
+        {
+          "width": 318,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 6
+        },
+        {
+          "width": 318,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 4
+        },
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 4
+        }
+      ],
+      "overflow": false
+    }
+  ],
+  "errors": [],
+  "completedAt": "2026-11-19T17:02:47.069Z",
+  "passed": true
+}

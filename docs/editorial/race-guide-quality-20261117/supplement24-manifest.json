@@ -1,0 +1,531 @@
+[
+  {
+    "id": "zuiku-73285",
+    "name": "“重走长征路·奋进新征程”2026甘泉县红色越野挑战赛",
+    "status": "current_source_content_checked_with_questions",
+    "scope": "逐图复核3个已存当届原件及8个辅助图；全文检查报名规程1—10章，优先采用甘泉县政府赛后报告和组委会赛前领物、摆渡与CP3公告。",
+    "beforeBodyHash": "0f36afd66004a9834deb56726e1cea2137961795ab5629d69519d5aa5aebeaeb",
+    "savedBodyHash": "b762a99d420ef78f15898e46f640fbd7dd4b9b7c453946b653996160086907e3",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 11,
+    "pendingImages": 0,
+    "chapters": 10,
+    "groups": 2,
+    "groupCorrections": 9,
+    "questions": [
+      {
+        "status": "advertised_distance_versus_postrace",
+        "topic": "挑战组长度与赛后规模",
+        "sourceUrl": "https://www.ganquanxian.gov.cn/zfxxgk/fdzdgknr/msly/wtly/2117427194455891970.html",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/a804af01a002d4303388395a823a60ec2a287f81.jpeg?imageView2/2/w/750",
+          "https://www.ganquanxian.gov.cn/upload/ganquanxian/2026/11/03/202611030918498572_show.png"
+        ],
+        "detail": "最酷竞赛规程及当届开报原图均标称25公里、计划1500，县政府赛后称挑战24、体验10、参赛1500余。报名组名、标称、原计划人数保留，另填赛后公布距离；无GPX或实测报告。"
+      },
+      {
+        "status": "age_clause_ambiguity",
+        "topic": "体验组年龄边界及65岁以上体检",
+        "sourceUrl": "https://reg.zuicool.com/65364",
+        "detail": "本届报名规程同一条写16–65周岁，又写65周岁以上者报名须提交近1年完整体检。未取到额外的资审说明，按原文分别保留，勿推断一律禁报或放宽。"
+      },
+      {
+        "status": "results_and_route_limits",
+        "topic": "完整成绩公示、实际起跑时间、最终ITRA及GPX",
+        "sourceUrl": "http://m.cnwest.com/sxzwzx/a/2026/11/02/23465424.html",
+        "detail": "西部网赛后现场采访确认挑战组男、女冠军；未核实正式完整成绩/证书入口，不填result_url。分批冲出起点的现场描述不证实规程之外新的发枪时间，09:30明确为规划。赛前公告称轨迹已开放，但可见正文未提供可直接验证的当届链接；未核实最终ITRA与爬降，不填。"
+      },
+      {
+        "status": "closed_registration_deadline",
+        "topic": "当届报名已结束及截止时间",
+        "sourceUrl": "https://reg.zuicool.com/65364",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/f1266567c44102ca75c9e16dbd648e13aab31342.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/10/dc09f9602c527378b9917193d2293096bda3114f.jpeg?imageView2/2/w/750"
+        ],
+        "detail": "报名页总入口及两产品动作均已截止，体验组名称标已报满。10月28日赛前转载附“报名最后一天”，未直列准确截止时刻或开报名时刻，不填顶层。留原报名及规程码作为历史媒体。"
+      },
+      {
+        "status": "organizer_notice_priority",
+        "topic": "后发装备、赛道与交通公告",
+        "sourceUrl": "https://m.sohu.com/a/1094015240_120584313",
+        "detail": "开报规程列四项含佩戴的号码布；10月28日后发指南列检查的三项：手机、组委会发保温毯和防风防雨外套；号码布全程佩戴仍成立。返程依后发公告的体验组可返县城或去旧址。赛道以实际现场路标与指引为准，规程一般应急变更条款仍保留。"
+      }
+    ],
+    "officialDocuments": [
+      {
+        "url": "https://www.ganquanxian.gov.cn/zfxxgk/fdzdgknr/msly/wtly/2117427194455891970.html",
+        "title": "甘泉县人民政府：本届红色越野挑战赛圆满完赛",
+        "role": "government_host_postrace_report",
+        "verified": true,
+        "identityReview": "举办地主办单位官网，实际举办后报导，含两组赛后长度、起终点、参赛人次及官方赛后图",
+        "characters": 1981,
+        "bodySha256": "538f8a08f94909dbc2bb856fafbb64d416a036e377fa1628c20854772bb32811",
+        "checkedAt": "2026-11-19T18:10:15.420Z"
+      },
+      {
+        "url": "https://m.sohu.com/a/1094015240_120584313",
+        "title": "组委会：领物须知与参赛必读",
+        "role": "organizer_announcement_republished_by_county_media",
+        "verified": true,
+        "identityReview": "官方甘泉融媒账号转载陕野观察署名的本届组委会通知，已读全文、确认日期和本届赛名",
+        "characters": 1526,
+        "bodySha256": "f3d0f761fc91968aaa5c157abdec10cdf1daa287cb29c0e70baae68b02cc284e",
+        "checkedAt": "2026-11-19T18:10:15.420Z"
+      },
+      {
+        "url": "https://m.sohu.com/a/1090605236_120584313",
+        "title": "甘泉融媒：本届免费摆渡说明",
+        "role": "organizer_shuttle_announcement_republished_by_county_media",
+        "verified": true,
+        "identityReview": "官方甘泉融媒账号直接发布本届组委会摆渡、领物及出行安排，较晚领物须知优先用于返程细节",
+        "characters": 1281,
+        "bodySha256": "7ba827c5748c914a944050c13c69627d789b167ade8a5d4e9529078612ff699a",
+        "checkedAt": "2026-11-19T18:10:15.420Z"
+      },
+      {
+        "url": "http://sn.cma.gov.cn/dsqx/yaqx/yaqxyw/yaxjdt/202611/t20261104_8126671.html",
+        "title": "延安气象：本届赛事专项气象保障",
+        "role": "government_meteorological_service_postrace_report",
+        "verified": true,
+        "identityReview": "陕西省气象局所属延安气象赛后发布，直接参与保障",
+        "characters": 1073,
+        "bodySha256": "f64cbb0676805523c68ec2ab205a1b5c942f5490606d663323e1c168417ae74d",
+        "checkedAt": "2026-11-19T18:10:15.420Z"
+      }
+    ],
+    "sourceDiscovery": {
+      "officialUrls": [
+        "https://www.ganquanxian.gov.cn/zfxxgk/fdzdgknr/msly/wtly/2117427194455891970.html",
+        "https://m.sohu.com/a/1094015240_120584313",
+        "https://m.sohu.com/a/1090605236_120584313",
+        "http://sn.cma.gov.cn/dsqx/yaqx/yaqxyw/yaxjdt/202611/t20261104_8126671.html"
+      ],
+      "searchResultsPath": "/private/tmp/race-guide-quality-20261117/supp22-ganquan/govsearch.json",
+      "discoveryFile": "/private/tmp/race-guide-quality-20261117/supp22-ganquan/discover.json",
+      "sourcePriority": "主办单位政府当届赛后报告 > 组委会当届后发通知和可复制报名竞赛规程 > 当届发布原图；赛后现场采访仅用于署名确认前两位冠军。",
+      "notes": "逐切长图和原尺寸规程/报名码；附图按附件属性查看。承办协会的搜索摘要未得原文，不承载关键字段。最酷新闻同稿仅交叉检索，不等同后发独立公告。"
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_and_mini_devtools_390",
+      "miniDisplayed": true,
+      "formalMiniProgramReleaseVerified": false
+    }
+  },
+  {
+    "id": "zuiku-54272",
+    "name": "2026广东从化一百越野赛",
+    "status": "current_source_content_checked_with_questions",
+    "scope": "以 supplement22 完整生产快照为基线，逐张核对同届最酷现有 28 原图（技术图连续分段）、承办方希必恩体育当届完整可复制原文及原文 13 附图，并与微步转载、广东省社训中心 11 月赛历、当前最酷报名状态及显示价互校。",
+    "beforeBodyHash": "f28071693f8d0cbc2eb7bd6b7323e8c96225b5d58c860014417121576c8ccaad",
+    "savedBodyHash": "35c2c849e73a85592de80ca07ea1e931da6fbb3472e78084bf106f11464ffecc",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 28,
+    "pendingImages": 0,
+    "chapters": 10,
+    "groups": 4,
+    "groupCorrections": 5,
+    "questions": [
+      {
+        "status": "current_platform_closed",
+        "topic": "报名阶段与平台显示价",
+        "reason": "组织者 7/31–8/31 早鸟、9/1–10/31 正常报名。最酷旧模板仍称 10/31 前早鸟；当前实际显示已关闭，保留四个历史平台显示价、另列主办方费率。",
+        "sourceUrl": "https://mp.weixin.qq.com/s?__biz=Mzg3NTE0ODg0MA==&mid=2247506171&idx=1&sn=f99a7cc009d28b251ab8a217bedba59a&scene=27&chksm=191cc83cf487c7c52771a507e27928d64b6621eff4dfc4c35ae14cd246ae66473215824fe60e&scene=27",
+        "additionalSourceUrls": [
+          "https://reg.zuicool.com/54950",
+          "https://mp.weixin.qq.com/s?mid=2247593668&sn=21e9f3407e8904e3a5bede02605f58cf&idx=5&__biz=MzkyNTMyMTk2Nw==&chksm=c1cb7144f6bcf8528fb05d3c742868169b057497e8e4c56f9ff6b6d916ca693bbf82bef6c2b7&scene=27"
+        ],
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/07/d68fce01bb28ac3641cf713a22cfc4ef5e00c9be.jpeg?imageView2/2/w/750",
+          "https://mmbiz.qpic.cn/sz_mmbiz_png/CTqN18Kxd2spicYa4dPejQIhicmWcgeZcJnxRPjdAxhcdYib313BA3zXNoeLAIM94icyPsxsibv5eL9avC3icw5hK2LOzxuZZRBibG2JZYic82zqL5Q/640?wx_fmt=png"
+        ]
+      },
+      {
+        "status": "caution_first_checkpoint_conflict",
+        "topic": "50KM 首站南/北岸",
+        "reason": "组织者正文与平台内条款写五指山月牙湖南岸；同文独立原图及报名图均标月牙湖北岸（CP1/11.9KM）。正文仅使用月牙湖并提示以最终轨迹为准。",
+        "sourceUrl": "https://mp.weixin.qq.com/s?__biz=Mzg3NTE0ODg0MA==&mid=2247506171&idx=1&sn=f99a7cc009d28b251ab8a217bedba59a&scene=27&chksm=191cc83cf487c7c52771a507e27928d64b6621eff4dfc4c35ae14cd246ae66473215824fe60e&scene=27",
+        "additionalSourceUrls": [
+          "https://reg.zuicool.com/54950",
+          "https://mp.weixin.qq.com/s?mid=2247593668&sn=21e9f3407e8904e3a5bede02605f58cf&idx=5&__biz=MzkyNTMyMTk2Nw==&chksm=c1cb7144f6bcf8528fb05d3c742868169b057497e8e4c56f9ff6b6d916ca693bbf82bef6c2b7&scene=27"
+        ],
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/07/20a195d952e6849abd2c002b85343b08d1bd1def.jpeg?imageView2/2/w/750",
+          "https://mmbiz.qpic.cn/sz_mmbiz_png/CTqN18Kxd2uiaU5W4awbZ41NGxrzMycN44riaPibwToiaxpic9ZlhU9aznCdwicozoz1fyLRw3tqRmaMIzbl8w6J7RyASlfe0ZOc163xNGVFbY57U/640?wx_fmt=png"
+        ]
+      },
+      {
+        "status": "provisional_pickup_schedule",
+        "topic": "拟定领物、最终交通及 GPX",
+        "reason": "规程拟定 11/27 11:00–21:00 在生态设计小镇；未确认单独发布的最终领物、分枪名单、进场交通与 GPX，无预填接驳站点。",
+        "sourceUrl": "https://mp.weixin.qq.com/s?__biz=Mzg3NTE0ODg0MA==&mid=2247506171&idx=1&sn=f99a7cc009d28b251ab8a217bedba59a&scene=27&chksm=191cc83cf487c7c52771a507e27928d64b6621eff4dfc4c35ae14cd246ae66473215824fe60e&scene=27",
+        "additionalSourceUrls": [
+          "https://reg.zuicool.com/54950",
+          "https://mp.weixin.qq.com/s?mid=2247593668&sn=21e9f3407e8904e3a5bede02605f58cf&idx=5&__biz=MzkyNTMyMTk2Nw==&chksm=c1cb7144f6bcf8528fb05d3c742868169b057497e8e4c56f9ff6b6d916ca693bbf82bef6c2b7&scene=27"
+        ],
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/07/7bba688b616ceed2b352920c055885dd7ae9ea4b.jpeg?imageView2/2/w/750"
+        ]
+      },
+      {
+        "status": "contact_discrepancy",
+        "topic": "官方邮箱",
+        "reason": "组委会原文和官方规程翻印图明确 cbnrace@163.com，最酷页面文本为 bnrace@163.com。采用原文邮箱，未填公开电话号码。",
+        "sourceUrl": "https://mp.weixin.qq.com/s?__biz=Mzg3NTE0ODg0MA==&mid=2247506171&idx=1&sn=f99a7cc009d28b251ab8a217bedba59a&scene=27&chksm=191cc83cf487c7c52771a507e27928d64b6621eff4dfc4c35ae14cd246ae66473215824fe60e&scene=27",
+        "additionalSourceUrls": [
+          "https://reg.zuicool.com/54950",
+          "https://mp.weixin.qq.com/s?mid=2247593668&sn=21e9f3407e8904e3a5bede02605f58cf&idx=5&__biz=MzkyNTMyMTk2Nw==&chksm=c1cb7144f6bcf8528fb05d3c742868169b057497e8e4c56f9ff6b6d916ca693bbf82bef6c2b7&scene=27"
+        ],
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/07/b7e68c4619712044b095d1e510198dfbbc93c63d.jpeg?imageView2/2/w/750"
+        ]
+      },
+      {
+        "status": "overlapping_published_deadlines",
+        "topic": "退款分档边界及退赛包邮寄",
+        "reason": "原规程将 8/15 同时列作全额和 80%；窗口均已过。退款段邮寄为 12/1 前，领物提示为赛后一周内，保留原始差别，指引按较早日期。",
+        "sourceUrl": "https://mp.weixin.qq.com/s?__biz=Mzg3NTE0ODg0MA==&mid=2247506171&idx=1&sn=f99a7cc009d28b251ab8a217bedba59a&scene=27&chksm=191cc83cf487c7c52771a507e27928d64b6621eff4dfc4c35ae14cd246ae66473215824fe60e&scene=27",
+        "additionalSourceUrls": [
+          "https://reg.zuicool.com/54950",
+          "https://mp.weixin.qq.com/s?mid=2247593668&sn=21e9f3407e8904e3a5bede02605f58cf&idx=5&__biz=MzkyNTMyMTk2Nw==&chksm=c1cb7144f6bcf8528fb05d3c742868169b057497e8e4c56f9ff6b6d916ca693bbf82bef6c2b7&scene=27"
+        ],
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/07/b7e68c4619712044b095d1e510198dfbbc93c63d.jpeg?imageView2/2/w/750"
+        ]
+      },
+      {
+        "status": "group_specific_medical_requirement",
+        "topic": "体检范围",
+        "reason": "100/50/30 明确须赛前线上上传报告的时间、单位与项目；总则另外提专业体检机构；领取总则用全体措辞，10K 现场提交材料等待最后领物公告。",
+        "sourceUrl": "https://mp.weixin.qq.com/s?__biz=Mzg3NTE0ODg0MA==&mid=2247506171&idx=1&sn=f99a7cc009d28b251ab8a217bedba59a&scene=27&chksm=191cc83cf487c7c52771a507e27928d64b6621eff4dfc4c35ae14cd246ae66473215824fe60e&scene=27",
+        "additionalSourceUrls": [
+          "https://reg.zuicool.com/54950",
+          "https://mp.weixin.qq.com/s?mid=2247593668&sn=21e9f3407e8904e3a5bede02605f58cf&idx=5&__biz=MzkyNTMyMTk2Nw==&chksm=c1cb7144f6bcf8528fb05d3c742868169b057497e8e4c56f9ff6b6d916ca693bbf82bef6c2b7&scene=27"
+        ],
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/07/5951d34b661c4551420341b10b986afc631676ae.jpeg?imageView2/2/w/750"
+        ]
+      }
+    ],
+    "officialDocuments": [
+      {
+        "url": "https://mp.weixin.qq.com/s?__biz=Mzg3NTE0ODg0MA==&mid=2247506171&idx=1&sn=f99a7cc009d28b251ab8a217bedba59a&scene=27&chksm=191cc83cf487c7c52771a507e27928d64b6621eff4dfc4c35ae14cd246ae66473215824fe60e&scene=27",
+        "title": "赛事规程 | 2026广东从化一百越野赛",
+        "role": "organizer-current-edition-regulation",
+        "verified": true,
+        "identityReview": "本届赛事承办方首发完整可复制规程：四组基本数据、资格、分枪、拟定领物、押金、弃赛收容、计时判罚及医疗保险。路线图、费用表、装备表和尺码表亦在原文。",
+        "characters": 15973,
+        "bodySha256": "29a6d91493cafb2bab8d4f6bcdab74c25e975191822f1d193d90ff77f0dd9e39",
+        "checkedAt": "2026-11-19T18:10:15.420Z"
+      },
+      {
+        "url": "https://mp.weixin.qq.com/s?__biz=MzkwMzY3ODIxNw==&mid=2247521475&idx=2&sn=2054e85c5576d5aa4aba8247cf256aa6&chksm=c09044a5f7e7cdb30e5b43a0f3c6253b24587ff59451755d288fabb0f15478ac99ab441c4334&scene=27",
+        "title": "赛事规程 | 2026广东从化一百越野赛",
+        "role": "registration-partner-same-edition-mirror",
+        "verified": true,
+        "identityReview": "同日发布的报名伙伴完整规程镜像，赛名、地点、日期及规程一致，较原始承办方正文次。",
+        "characters": 15979,
+        "bodySha256": "8d82b701cc9728c15340c7b9335a980e265af151dd486791b35c935a79ead86c",
+        "checkedAt": "2026-11-19T18:10:15.420Z"
+      },
+      {
+        "url": "https://mp.weixin.qq.com/s?mid=2247593668&sn=21e9f3407e8904e3a5bede02605f58cf&idx=5&__biz=MzkyNTMyMTk2Nw==&chksm=c1cb7144f6bcf8528fb05d3c742868169b057497e8e4c56f9ff6b6d916ca693bbf82bef6c2b7&scene=27",
+        "title": "赛历速递｜海洋运动会、国际赛事、马拉松……广东11月精彩不断！",
+        "role": "provincial-sport-calendar-date-confirmation",
+        "verified": true,
+        "identityReview": "11 月 12 日赛历确认从化区 11 月 28 日至 29 日，未公告领物、交通、赛道变更或取消。",
+        "characters": 2136,
+        "bodySha256": "ef39a0979a95fe6f0c627f7fde42dab82206983be2e16e1f43126da69c90b1ef",
+        "checkedAt": "2026-11-19T18:10:15.420Z"
+      }
+    ],
+    "sourceDiscovery": {
+      "status": "organizer_full_current_regulation_and_visuals_reviewed_with_questions",
+      "organizerOfficialEvent": "https://mp.weixin.qq.com/s?__biz=Mzg3NTE0ODg0MA==&mid=2247506171&idx=1&sn=f99a7cc009d28b251ab8a217bedba59a&scene=27&chksm=191cc83cf487c7c52771a507e27928d64b6621eff4dfc4c35ae14cd246ae66473215824fe60e&scene=27",
+      "registrationCurrent": "https://reg.zuicool.com/54950",
+      "eventCurrent": "https://zuicool.com/event/54272",
+      "calendarConfirmation": "https://mp.weixin.qq.com/s?mid=2247593668&sn=21e9f3407e8904e3a5bede02605f58cf&idx=5&__biz=MzkyNTMyMTk2Nw==&chksm=c1cb7144f6bcf8528fb05d3c742868169b057497e8e4c56f9ff6b6d916ca693bbf82bef6c2b7&scene=27",
+      "method": "官号主体、同届名地日期、固定标题、原图及报名平台交叉核验；检索领物、接驳、交通、手册、取消、延期、站点和轨迹，排除春季同名相近赛事及 2025 回顾。",
+      "officialAttachedImageAuditFile": "/private/tmp/race-guide-quality-20261117/supp23-conghua/official-image-audit.json"
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_and_mini_devtools_390",
+      "miniDisplayed": true,
+      "formalMiniProgramReleaseVerified": false
+    }
+  },
+  {
+    "id": "zuiku-77580",
+    "name": "2026第二届“山海杯”千岛湖大峡谷登山大会",
+    "status": "current_source_content_checked_with_questions",
+    "scope": "核本届指定报名页可复制文字，人工横纵校对 4 张现有原图（含两张长图共 9 个连续片段）和公告附图，完整重编两组八个报名组合、两日安排、路线、尺码、物流、费用及退费章节。",
+    "beforeBodyHash": "da3a3b3cfcdd47453972d4388cb5fecbdd069dd617598d7ad039bf4323cf2c99",
+    "savedBodyHash": "ce63d93677fa24f9c1b80e3068b5264b5d180c52231df73e0383a7f3125b63fd",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 9,
+    "pendingImages": 0,
+    "chapters": 10,
+    "groups": 8,
+    "groupCorrections": 36,
+    "questions": [
+      {
+        "field": "本届独立官网及后续领物攻略",
+        "reason": "游侠客官网站内用全名、山海杯、下姜村登山大会等检索，找到 2025 首届回顾并剔除，未取得 2026 官方活动页面或赛前一周另发的通知；以当前指定报名页和活动规程原图为准。",
+        "sources": [
+          "https://reg.zuicool.com/56879",
+          "https://zuicool.com/news/archives/314296",
+          "https://www.youxiake.com/",
+          "https://bbs.youxiake.com/y/1076763.html"
+        ]
+      },
+      {
+        "field": "实际轨迹、精确里程及路线名称",
+        "reason": "路线海拔图横轴终点写 15K 组 14 公里、10K 组 10 公里，文字明确预计实际约 14/11 公里；保留文字估值与组名的区别，不保存为精测里程。路线图 CP 写“公山尖”，叙述处另写“公尖山”，仅按图标示 CP，不合并两名。未取到赛前更新的轨迹。",
+        "sources": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/0e7f9e195c8271800aaca14c2e84db90b07deaa0.jpeg?imageView2/2/w/750"
+        ]
+      },
+      {
+        "field": "救援号码与组别总名额",
+        "reason": "原规程提醒可拨打应急救援电话，但未列号码；公开的两个电话为组委会咨询。原报名页 2人/间系住宿安排，采集脚本的 num+人 松散规则误作名额，不能作为报名配额；未找到各组总名额。",
+        "sources": [
+          "https://reg.zuicool.com/56879",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/57bf72cc60c121d00319dffcf87e93fc3e7f5808.jpeg?imageView2/2/w/750"
+        ]
+      },
+      {
+        "field": "出生日期、单项退费的集合日基准",
+        "reason": "只公布 7–65 岁、未成年人须成年人陪同报名，无出生日期边界；保留退费天数和百分比，不对前晚住宿与当日方案自行换算日期。",
+        "sources": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/57bf72cc60c121d00319dffcf87e93fc3e7f5808.jpeg?imageView2/2/w/750",
+          "https://reg.zuicool.com/56879"
+        ]
+      }
+    ],
+    "officialDocuments": [
+      {
+        "url": "https://reg.zuicool.com/56879",
+        "title": "最酷本届公开报名页",
+        "role": "designated_registration",
+        "verified": true,
+        "identityReview": "本届八个报名入口及同届正式活动图文。",
+        "checkedAt": "2026-11-19T18:10:15.420Z"
+      },
+      {
+        "url": "https://zuicool.com/news/archives/314296",
+        "title": "最酷本届报名公告",
+        "role": "registration_platform_source_notice",
+        "verified": true,
+        "identityReview": "本届最酷关联报名公告，同步分组和活动原图。",
+        "checkedAt": "2026-11-19T18:10:15.420Z"
+      }
+    ],
+    "sourceDiscovery": {
+      "officialUrl": "",
+      "notes": "先检查淳安县政府网、游侠客官网站内四个关键词和公开索引。游侠客站内精确搜索只列可核 2025 首届回顾，没有找到可访问的 2026 规程。继续查最酷指定报名页、对应赛事详情和本届公告；未将搜索拦截或上届资料当本届证据。",
+      "checked": [
+        {
+          "index": "entry",
+          "url": "https://reg.zuicool.com/56879",
+          "status": 200,
+          "size": 42588
+        },
+        {
+          "index": "event",
+          "url": "https://zuicool.com/event/77580",
+          "status": 200,
+          "size": 70890
+        },
+        {
+          "index": "eventarticles",
+          "url": "https://zuicool.com/news/archives/tag/event77580",
+          "status": 200,
+          "size": 15189
+        },
+        {
+          "index": "gov",
+          "url": "https://www.qdh.gov.cn/",
+          "status": 200,
+          "size": 133775
+        },
+        {
+          "index": "youxiake",
+          "url": "https://www.youxiake.com/",
+          "status": 200,
+          "size": 156248
+        },
+        {
+          "index": "sogou0",
+          "url": "https://www.sogou.com/web?query=%22%E5%8D%83%E5%B2%9B%E6%B9%96%E5%A4%A7%E5%B3%A1%E8%B0%B7%E7%99%BB%E5%B1%B1%E5%A4%A7%E4%BC%9A%22+2026",
+          "status": 200,
+          "size": 4138
+        },
+        {
+          "index": "bing0",
+          "url": "https://cn.bing.com/search?q=%22%E5%8D%83%E5%B2%9B%E6%B9%96%E5%A4%A7%E5%B3%A1%E8%B0%B7%E7%99%BB%E5%B1%B1%E5%A4%A7%E4%BC%9A%22+2026",
+          "status": 200,
+          "size": 108380
+        },
+        {
+          "index": "baidu0",
+          "url": "https://www.baidu.com/s?wd=%22%E5%8D%83%E5%B2%9B%E6%B9%96%E5%A4%A7%E5%B3%A1%E8%B0%B7%E7%99%BB%E5%B1%B1%E5%A4%A7%E4%BC%9A%22+2026",
+          "status": 200,
+          "size": 2689
+        },
+        {
+          "index": "weixin0",
+          "url": "https://weixin.sogou.com/weixin?query=%22%E5%8D%83%E5%B2%9B%E6%B9%96%E5%A4%A7%E5%B3%A1%E8%B0%B7%E7%99%BB%E5%B1%B1%E5%A4%A7%E4%BC%9A%22+2026&type=2",
+          "status": 200,
+          "size": 5621
+        },
+        {
+          "index": "sogou1",
+          "url": "https://www.sogou.com/web?query=%22%E5%8D%83%E5%B2%9B%E6%B9%96%E5%A4%A7%E5%B3%A1%E8%B0%B7%E7%99%BB%E5%B1%B1%E5%A4%A7%E4%BC%9A%22+%22%E6%B8%B8%E4%BE%A0%E5%AE%A2%22",
+          "status": 200,
+          "size": 4167
+        },
+        {
+          "index": "bing1",
+          "url": "https://cn.bing.com/search?q=%22%E5%8D%83%E5%B2%9B%E6%B9%96%E5%A4%A7%E5%B3%A1%E8%B0%B7%E7%99%BB%E5%B1%B1%E5%A4%A7%E4%BC%9A%22+%22%E6%B8%B8%E4%BE%A0%E5%AE%A2%22",
+          "status": 200,
+          "size": 108893
+        },
+        {
+          "index": "baidu1",
+          "url": "https://www.baidu.com/s?wd=%22%E5%8D%83%E5%B2%9B%E6%B9%96%E5%A4%A7%E5%B3%A1%E8%B0%B7%E7%99%BB%E5%B1%B1%E5%A4%A7%E4%BC%9A%22+%22%E6%B8%B8%E4%BE%A0%E5%AE%A2%22",
+          "status": 200,
+          "size": 2689
+        },
+        {
+          "index": "weixin1",
+          "url": "https://weixin.sogou.com/weixin?query=%22%E5%8D%83%E5%B2%9B%E6%B9%96%E5%A4%A7%E5%B3%A1%E8%B0%B7%E7%99%BB%E5%B1%B1%E5%A4%A7%E4%BC%9A%22+%22%E6%B8%B8%E4%BE%A0%E5%AE%A2%22&type=2",
+          "status": 200,
+          "size": 5650
+        },
+        {
+          "index": "sogou2",
+          "url": "https://www.sogou.com/web?query=%E6%B8%B8%E4%BE%A0%E5%AE%A2%E4%BD%93%E8%82%B2+%E5%8D%83%E5%B2%9B%E6%B9%96%E5%A4%A7%E5%B3%A1%E8%B0%B7+%E7%99%BB%E5%B1%B1%E5%A4%A7%E4%BC%9A+11%E6%9C%881%E6%97%A5+%E4%B8%8B%E5%A7%9C%E6%9D%91",
+          "status": 200,
+          "size": 4224
+        },
+        {
+          "index": "bing2",
+          "url": "https://cn.bing.com/search?q=%E6%B8%B8%E4%BE%A0%E5%AE%A2%E4%BD%93%E8%82%B2+%E5%8D%83%E5%B2%9B%E6%B9%96%E5%A4%A7%E5%B3%A1%E8%B0%B7+%E7%99%BB%E5%B1%B1%E5%A4%A7%E4%BC%9A+11%E6%9C%881%E6%97%A5+%E4%B8%8B%E5%A7%9C%E6%9D%91",
+          "status": 200,
+          "size": 107535
+        },
+        {
+          "index": "baidu2",
+          "url": "https://www.baidu.com/s?wd=%E6%B8%B8%E4%BE%A0%E5%AE%A2%E4%BD%93%E8%82%B2+%E5%8D%83%E5%B2%9B%E6%B9%96%E5%A4%A7%E5%B3%A1%E8%B0%B7+%E7%99%BB%E5%B1%B1%E5%A4%A7%E4%BC%9A+11%E6%9C%881%E6%97%A5+%E4%B8%8B%E5%A7%9C%E6%9D%91",
+          "status": 200,
+          "size": 2689
+        },
+        {
+          "index": "weixin2",
+          "url": "https://weixin.sogou.com/weixin?query=%E6%B8%B8%E4%BE%A0%E5%AE%A2%E4%BD%93%E8%82%B2+%E5%8D%83%E5%B2%9B%E6%B9%96%E5%A4%A7%E5%B3%A1%E8%B0%B7+%E7%99%BB%E5%B1%B1%E5%A4%A7%E4%BC%9A+11%E6%9C%881%E6%97%A5+%E4%B8%8B%E5%A7%9C%E6%9D%91&type=2",
+          "status": 200,
+          "size": 5707
+        },
+        {
+          "index": "sogou3",
+          "url": "https://www.sogou.com/web?query=%22%E5%8D%83%E5%B2%9B%E6%B9%96%E5%A4%A7%E5%B3%A1%E8%B0%B7%E7%99%BB%E5%B1%B1%E5%A4%A7%E4%BC%9A%22+%222026%22+site%3Ayouxiake.com",
+          "status": 200,
+          "size": 4164
+        },
+        {
+          "index": "bing3",
+          "url": "https://cn.bing.com/search?q=%22%E5%8D%83%E5%B2%9B%E6%B9%96%E5%A4%A7%E5%B3%A1%E8%B0%B7%E7%99%BB%E5%B1%B1%E5%A4%A7%E4%BC%9A%22+%222026%22+site%3Ayouxiake.com",
+          "status": 200,
+          "size": 107772
+        },
+        {
+          "index": "baidu3",
+          "url": "https://www.baidu.com/s?wd=%22%E5%8D%83%E5%B2%9B%E6%B9%96%E5%A4%A7%E5%B3%A1%E8%B0%B7%E7%99%BB%E5%B1%B1%E5%A4%A7%E4%BC%9A%22+%222026%22+site%3Ayouxiake.com",
+          "status": 200,
+          "size": 2689
+        },
+        {
+          "index": "weixin3",
+          "url": "https://weixin.sogou.com/weixin?query=%22%E5%8D%83%E5%B2%9B%E6%B9%96%E5%A4%A7%E5%B3%A1%E8%B0%B7%E7%99%BB%E5%B1%B1%E5%A4%A7%E4%BC%9A%22+%222026%22+site%3Ayouxiake.com&type=2",
+          "status": 200,
+          "size": 5647
+        },
+        {
+          "index": "sogou4",
+          "url": "https://www.sogou.com/web?query=2026+%E5%B1%B1%E6%B5%B7%E6%9D%AF+%E5%8D%83%E5%B2%9B%E6%B9%96%E5%A4%A7%E5%B3%A1%E8%B0%B7+%E7%99%BB%E5%B1%B1%E5%A4%A7%E4%BC%9A+site%3Achunan.gov.cn",
+          "status": 200,
+          "size": 4182
+        },
+        {
+          "index": "bing4",
+          "url": "https://cn.bing.com/search?q=2026+%E5%B1%B1%E6%B5%B7%E6%9D%AF+%E5%8D%83%E5%B2%9B%E6%B9%96%E5%A4%A7%E5%B3%A1%E8%B0%B7+%E7%99%BB%E5%B1%B1%E5%A4%A7%E4%BC%9A+site%3Achunan.gov.cn",
+          "status": 200,
+          "size": 108434
+        },
+        {
+          "index": "baidu4",
+          "url": "https://www.baidu.com/s?wd=2026+%E5%B1%B1%E6%B5%B7%E6%9D%AF+%E5%8D%83%E5%B2%9B%E6%B9%96%E5%A4%A7%E5%B3%A1%E8%B0%B7+%E7%99%BB%E5%B1%B1%E5%A4%A7%E4%BC%9A+site%3Achunan.gov.cn",
+          "status": 200,
+          "size": 2689
+        },
+        {
+          "index": "weixin4",
+          "url": "https://weixin.sogou.com/weixin?query=2026+%E5%B1%B1%E6%B5%B7%E6%9D%AF+%E5%8D%83%E5%B2%9B%E6%B9%96%E5%A4%A7%E5%B3%A1%E8%B0%B7+%E7%99%BB%E5%B1%B1%E5%A4%A7%E4%BC%9A+site%3Achunan.gov.cn&type=2",
+          "status": 200,
+          "size": 5665
+        },
+        {
+          "index": "sogou5",
+          "url": "https://www.sogou.com/web?query=%E5%8D%83%E5%B2%9B%E6%B9%96+%E5%B1%B1%E6%B5%B7%E6%9D%AF+%E7%99%BB%E5%B1%B1%E5%A4%A7%E4%BC%9A+11%E6%9C%881%E6%97%A5+2026+%E8%B5%9B%E5%90%8E+%E4%B8%8B%E5%A7%9C%E6%9D%91",
+          "status": 200,
+          "size": 4203
+        },
+        {
+          "index": "bing5",
+          "url": "https://cn.bing.com/search?q=%E5%8D%83%E5%B2%9B%E6%B9%96+%E5%B1%B1%E6%B5%B7%E6%9D%AF+%E7%99%BB%E5%B1%B1%E5%A4%A7%E4%BC%9A+11%E6%9C%881%E6%97%A5+2026+%E8%B5%9B%E5%90%8E+%E4%B8%8B%E5%A7%9C%E6%9D%91",
+          "status": 200,
+          "size": 109562
+        },
+        {
+          "index": "baidu5",
+          "url": "https://www.baidu.com/s?wd=%E5%8D%83%E5%B2%9B%E6%B9%96+%E5%B1%B1%E6%B5%B7%E6%9D%AF+%E7%99%BB%E5%B1%B1%E5%A4%A7%E4%BC%9A+11%E6%9C%881%E6%97%A5+2026+%E8%B5%9B%E5%90%8E+%E4%B8%8B%E5%A7%9C%E6%9D%91",
+          "status": 200,
+          "size": 2689
+        },
+        {
+          "index": "weixin5",
+          "url": "https://weixin.sogou.com/weixin?query=%E5%8D%83%E5%B2%9B%E6%B9%96+%E5%B1%B1%E6%B5%B7%E6%9D%AF+%E7%99%BB%E5%B1%B1%E5%A4%A7%E4%BC%9A+11%E6%9C%881%E6%97%A5+2026+%E8%B5%9B%E5%90%8E+%E4%B8%8B%E5%A7%9C%E6%9D%91&type=2",
+          "status": 200,
+          "size": 5686
+        }
+      ],
+      "youxiakeActualSearch": [
+        "('https://www.youxiake.com/search/api/select?keyword=%E5%8D%83%E5%B2%9B%E6%B9%96%E5%A4%A7%E5%B3%A1%E8%B0%B7%E7%99%BB%E5%B1%B1%E5%A4%A7%E4%BC%9A&select=0', 'https://www.youxiake.com/search/index?keyword=%E5%8D%83%E5%B2%9B%E6%B9%96%E5%A4%A7%E5%B3%A1%E8%B0%B7%E7%99%BB%E5%B1%B1%E5%A4%A7%E4%BC%9A&select=0', 200, 94756, b'<!DOCTYPE html>\\n<html>\\n<head>\\n\\n    <meta property=\"qc:admins\" content=\"155324732761750113563757\"/>\\n ')",
+        "('https://www.youxiake.com/search/api/select?keyword=%E5%B1%B1%E6%B5%B7%E6%9D%AF&select=0', 'https://www.youxiake.com/search/index?keyword=%E5%B1%B1%E6%B5%B7%E6%9D%AF&select=0', 200, 84414, b'<!DOCTYPE html>\\n<html>\\n<head>\\n\\n    <meta property=\"qc:admins\" content=\"155324732761750113563757\"/>\\n ')",
+        "('https://www.youxiake.com/search/api/select?keyword=%E4%B8%8B%E5%A7%9C%E6%9D%91%E7%99%BB%E5%B1%B1%E5%A4%A7%E4%BC%9A&select=0', 'https://www.youxiake.com/search/index?keyword=%E4%B8%8B%E5%A7%9C%E6%9D%91%E7%99%BB%E5%B1%B1%E5%A4%A7%E4%BC%9A&select=0', 200, 90187, b'<!DOCTYPE html>\\n<html>\\n<head>\\n\\n    <meta property=\"qc:admins\" content=\"155324732761750113563757\"/>\\n ')",
+        "('https://www.youxiake.com/search/api/select?keyword=%E5%8D%83%E5%B2%9B%E6%B9%96%E5%A4%A7%E5%B3%A1%E8%B0%B7&select=0', 'https://www.youxiake.com/search/index?keyword=%E5%8D%83%E5%B2%9B%E6%B9%96%E5%A4%A7%E5%B3%A1%E8%B0%B7&select=0', 200, 102928, b'<!DOCTYPE html>\\n<html>\\n<head>\\n\\n    <meta property=\"qc:admins\" content=\"155324732761750113563757\"/>\\n ')"
+      ],
+      "workingEvidenceFile": "/private/tmp/race-guide-quality-20261117/audit-qiandaohu/discovery.json"
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_and_mini_devtools_390",
+      "miniDisplayed": true,
+      "formalMiniProgramReleaseVerified": false
+    }
+  }
+]

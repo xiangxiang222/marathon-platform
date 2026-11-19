@@ -1,0 +1,28 @@
+{
+  "at": "2026-11-19T17:39:22.365Z",
+  "passed": true,
+  "rows": [
+    {
+      "id": "zuiku-72712",
+      "file": "supplement23-guposhan-joined.json",
+      "edits": 1,
+      "scope": "本届已存9张原图全部实看；四张竞赛规程图逐段核至1—9章，路线关门、奖励、报名、强制装备、竞赛规则、医疗保险与申诉完成；补入11月17日组委会领物和免费摆渡、15公里赛道最新信息并标冲突。 补11月17日100公里赛道正式通告及图表。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-58332",
+      "file": "supplement-nanshan-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "本届报名入口和赛事公告可复制文字优先；逐项复核 10 张现有原图及报名页额外奖励与封面图，两日四项目、六报名选项、全部规程章节及可确认点位；保留亲子年龄、ITRA、路线里程和未公告事项差异。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-35462",
+      "file": "supplement-fuga-full-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "8张库存图片分块逐图复核；优先本届可复制报名来源及署组委会范围的后发路线；逐项核发枪、关门、分段、报名费、年龄、资格、领物、装备、奖励及联系方式。",
+      "explicitImageReview": true
+    }
+  ],
+  "races": 3
+}

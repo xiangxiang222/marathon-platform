@@ -1,0 +1,39 @@
+{
+  "at": "2026-11-19T17:02:43.800Z",
+  "checks": [
+    {
+      "id": "zuiku-71615",
+      "width": 320,
+      "needle": "全额退还",
+      "table": {
+        "width": 252,
+        "scrollWidth": 252,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 0,
+      "horizontalScrollVerified": null,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "组委会盖章取消公告及退款安排（2026 年 11 月 12 日）\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-71615",
+      "width": 390,
+      "needle": "全额退还",
+      "table": {
+        "width": 318,
+        "scrollWidth": 318,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 0,
+      "horizontalScrollVerified": null,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "组委会盖章取消公告及退款安排（2026 年 11 月 12 日）\n查看原图 ↗",
+      "overflow": false
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-11-19T17:02:49.857Z"
+}

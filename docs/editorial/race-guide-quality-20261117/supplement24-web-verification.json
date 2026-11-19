@@ -1,0 +1,268 @@
+{
+  "startedAt": "2026-11-19T18:16:44.507Z",
+  "api": [
+    {
+      "id": "zuiku-73285",
+      "bodyMatches": true,
+      "groups": 2,
+      "characters": 2843
+    },
+    {
+      "id": "zuiku-54272",
+      "bodyMatches": true,
+      "groups": 4,
+      "characters": 4714
+    },
+    {
+      "id": "zuiku-77580",
+      "bodyMatches": true,
+      "groups": 8,
+      "characters": 2962
+    }
+  ],
+  "web": [
+    {
+      "id": "zuiku-73285",
+      "width": 320,
+      "characters": 2661,
+      "tables": [
+        {
+          "width": 252,
+          "scrollWidth": 600,
+          "tableWidth": 600,
+          "rows": 3
+        },
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 3
+        },
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 5
+        },
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 3
+        },
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 5
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-73285",
+      "width": 390,
+      "characters": 2661,
+      "tables": [
+        {
+          "width": 318,
+          "scrollWidth": 600,
+          "tableWidth": 600,
+          "rows": 3
+        },
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 3
+        },
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 5
+        },
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 3
+        },
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 5
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-54272",
+      "width": 320,
+      "characters": 4352,
+      "tables": [
+        {
+          "width": 252,
+          "scrollWidth": 720,
+          "tableWidth": 720,
+          "rows": 5
+        },
+        {
+          "width": 252,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 5
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 4
+        },
+        {
+          "width": 252,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 8
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-54272",
+      "width": 390,
+      "characters": 4352,
+      "tables": [
+        {
+          "width": 318,
+          "scrollWidth": 720,
+          "tableWidth": 720,
+          "rows": 5
+        },
+        {
+          "width": 318,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 5
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 4
+        },
+        {
+          "width": 318,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 8
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-77580",
+      "width": 320,
+      "characters": 2515,
+      "tables": [
+        {
+          "width": 252,
+          "scrollWidth": 720,
+          "tableWidth": 720,
+          "rows": 3
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 5
+        },
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 3
+        },
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 6
+        },
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 8
+        },
+        {
+          "width": 252,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 8
+        },
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 5
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-77580",
+      "width": 390,
+      "characters": 2515,
+      "tables": [
+        {
+          "width": 318,
+          "scrollWidth": 720,
+          "tableWidth": 720,
+          "rows": 3
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 5
+        },
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 3
+        },
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 6
+        },
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 8
+        },
+        {
+          "width": 318,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 8
+        },
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 5
+        }
+      ],
+      "overflow": false
+    }
+  ],
+  "errors": [],
+  "completedAt": "2026-11-19T18:17:06.636Z",
+  "passed": true
+}

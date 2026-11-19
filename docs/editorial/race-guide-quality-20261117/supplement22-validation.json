@@ -1,0 +1,14 @@
+{
+  "at": "2026-11-19T16:45:59.331Z",
+  "passed": true,
+  "rows": [
+    {
+      "id": "zuiku-71615",
+      "file": "supplement22-yaojiashan-joined.json",
+      "edits": 1,
+      "scope": "最新生产快照 supplement21：直接核对公告全幅及赛前规程三张连续原宽分块，清稿使用当届主办方官网完整 9 章旧规程和六张原表、最酷当届关闭正文、组委会正式取消公告。公告置首，正文覆盖旧版完整历史章程并注明未执行。保持四原媒体身份。",
+      "explicitImageReview": true
+    }
+  ],
+  "races": 1
+}

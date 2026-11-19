@@ -1,0 +1,424 @@
+{
+  "startedAt": "2026-11-19T17:45:14.077Z",
+  "api": [
+    {
+      "id": "zuiku-72712",
+      "bodyMatches": true,
+      "groups": 6,
+      "characters": 6767
+    },
+    {
+      "id": "zuiku-58332",
+      "bodyMatches": true,
+      "groups": 6,
+      "characters": 4149
+    },
+    {
+      "id": "zuiku-35462",
+      "bodyMatches": true,
+      "groups": 3,
+      "characters": 6778
+    }
+  ],
+  "web": [
+    {
+      "id": "zuiku-72712",
+      "width": 320,
+      "characters": 5810,
+      "tables": [
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 3
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 5
+        },
+        {
+          "width": 252,
+          "scrollWidth": 960,
+          "tableWidth": 960,
+          "rows": 6
+        },
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 5
+        },
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 7
+        },
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 5
+        },
+        {
+          "width": 252,
+          "scrollWidth": 840,
+          "tableWidth": 840,
+          "rows": 14
+        },
+        {
+          "width": 252,
+          "scrollWidth": 600,
+          "tableWidth": 600,
+          "rows": 28
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-72712",
+      "width": 390,
+      "characters": 5810,
+      "tables": [
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 3
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 5
+        },
+        {
+          "width": 318,
+          "scrollWidth": 960,
+          "tableWidth": 960,
+          "rows": 6
+        },
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 5
+        },
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 7
+        },
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 5
+        },
+        {
+          "width": 318,
+          "scrollWidth": 840,
+          "tableWidth": 840,
+          "rows": 14
+        },
+        {
+          "width": 318,
+          "scrollWidth": 600,
+          "tableWidth": 600,
+          "rows": 28
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-58332",
+      "width": 320,
+      "characters": 3551,
+      "tables": [
+        {
+          "width": 252,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 5
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 7
+        },
+        {
+          "width": 252,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 5
+        },
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 3
+        },
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 8
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 5
+        },
+        {
+          "width": 252,
+          "scrollWidth": 720,
+          "tableWidth": 720,
+          "rows": 10
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 8
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-58332",
+      "width": 390,
+      "characters": 3551,
+      "tables": [
+        {
+          "width": 318,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 5
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 7
+        },
+        {
+          "width": 318,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 5
+        },
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 3
+        },
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 8
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 5
+        },
+        {
+          "width": 318,
+          "scrollWidth": 720,
+          "tableWidth": 720,
+          "rows": 10
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 8
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-35462",
+      "width": 320,
+      "characters": 5728,
+      "tables": [
+        {
+          "width": 252,
+          "scrollWidth": 960,
+          "tableWidth": 960,
+          "rows": 4
+        },
+        {
+          "width": 252,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 4
+        },
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 4
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 4
+        },
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 9
+        },
+        {
+          "width": 252,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 6
+        },
+        {
+          "width": 252,
+          "scrollWidth": 840,
+          "tableWidth": 840,
+          "rows": 7
+        },
+        {
+          "width": 252,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 7
+        },
+        {
+          "width": 252,
+          "scrollWidth": 840,
+          "tableWidth": 840,
+          "rows": 5
+        },
+        {
+          "width": 252,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 15
+        },
+        {
+          "width": 252,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 4
+        },
+        {
+          "width": 252,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 6
+        },
+        {
+          "width": 252,
+          "scrollWidth": 252,
+          "tableWidth": 252,
+          "rows": 7
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "id": "zuiku-35462",
+      "width": 390,
+      "characters": 5728,
+      "tables": [
+        {
+          "width": 318,
+          "scrollWidth": 960,
+          "tableWidth": 960,
+          "rows": 4
+        },
+        {
+          "width": 318,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 4
+        },
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 4
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 4
+        },
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 9
+        },
+        {
+          "width": 318,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 6
+        },
+        {
+          "width": 318,
+          "scrollWidth": 840,
+          "tableWidth": 840,
+          "rows": 7
+        },
+        {
+          "width": 318,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 7
+        },
+        {
+          "width": 318,
+          "scrollWidth": 840,
+          "tableWidth": 840,
+          "rows": 5
+        },
+        {
+          "width": 318,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 15
+        },
+        {
+          "width": 318,
+          "scrollWidth": 480,
+          "tableWidth": 480,
+          "rows": 4
+        },
+        {
+          "width": 318,
+          "scrollWidth": 360,
+          "tableWidth": 360,
+          "rows": 6
+        },
+        {
+          "width": 318,
+          "scrollWidth": 318,
+          "tableWidth": 318,
+          "rows": 7
+        }
+      ],
+      "overflow": false
+    }
+  ],
+  "errors": [],
+  "completedAt": "2026-11-19T17:46:13.956Z",
+  "passed": true
+}

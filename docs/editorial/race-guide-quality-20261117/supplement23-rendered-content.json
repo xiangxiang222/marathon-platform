@@ -1,0 +1,28 @@
+{
+  "at": "2026-11-19T17:46:14.475Z",
+  "checks": [
+    {
+      "id": "zuiku-72712",
+      "width": 320,
+      "paragraphs": 41,
+      "tableRows": 73,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-58332",
+      "width": 320,
+      "paragraphs": 62,
+      "tableRows": 51,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-35462",
+      "width": 320,
+      "paragraphs": 45,
+      "tableRows": 82,
+      "fullRenderedContentMatchesProduction": true
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-11-19T17:46:27.754Z"
+}
