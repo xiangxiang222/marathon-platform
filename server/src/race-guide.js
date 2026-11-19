@@ -233,14 +233,24 @@ function sheetsOf(db, raceId) {
 function attachGuide(db, race) {
   const saved = readDetails(db.prepare("SELECT guide_text FROM races WHERE id = ?").get(race.id)?.guide_text).details;
   const selection = saved?.audit?.mediaChanges;
+  const selectedUrls = new Set(Array.isArray(selection?.after) ? selection.after : []);
   const excludedUrls = new Set(Array.isArray(selection?.before) && Array.isArray(selection?.after)
     ? selection.before.filter(url => !selection.after.includes(url)) : []);
-  const excludedSheets = new Set((saved?.audit?.imageReviews || [])
+  const reviews = saved?.audit?.imageReviews || [];
+  const excludedSheets = new Set(reviews
     .filter(item => excludedUrls.has(item.imageUrl || item.url) && item.sheetId != null)
+    .map(item => String(item.sheetId)));
+  const reviewedRouteSheets = new Set(reviews
+    .filter(item => item.imageViewed === true && selectedUrls.has(item.imageUrl || item.url) && item.sheetId != null)
+    .map(item => String(item.sheetId)));
+  const promotedRoutes = new Set((saved?.media || [])
+    .filter(item => item.kind === 'route' && selectedUrls.has(item.url) && reviewedRouteSheets.has(String(item.sheetId)))
     .map(item => String(item.sheetId)));
   // Apply only an explicit reviewed selection. Unlisted manual uploads and all
   // route/pacer/cover material remain available; the original files stay saved.
-  const rows = sheetsOf(db, race.id).filter(row => row.kind !== "guide" || !excludedSheets.has(String(row.id)));
+  const rows = sheetsOf(db, race.id)
+    .filter(row => row.kind !== "guide" || !excludedSheets.has(String(row.id)))
+    .map(row => row.kind === 'guide' && promotedRoutes.has(String(row.id)) ? { ...row, kind: 'route' } : row);
   const captions = new Map((race.details?.media || []).map((item) => [String(item.sheetId), item.caption]));
   const sheet = (row) => {
     const caption = captions.get(String(row.id));
