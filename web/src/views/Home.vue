@@ -177,7 +177,8 @@ async function loadCatalog() {
   catalogError.value = false;
   try {
     const data = await api("/race-catalog");
-    catalogRaces.value = data.races || [];
+    const featured = data.featuredIds || ['beijing', 'shanghai', 'xiamen'];
+    catalogRaces.value = featured.map(id => (data.races || []).find(race => race.id === id)).filter(Boolean).slice(0, 3);
   } catch {
     catalogError.value = true;
   } finally {

@@ -1,19 +1,32 @@
 {
   "raceId": "xiamen",
-  "updatedAt": "2026-11-14",
-  "intro": "以环岛南路、演武大桥和鹭江道连接城市与海岸的开年马拉松。2024—2026三届资料按当年规程、官方路线图与赛后报告归档，可直接比较路线变化、抽签机制和真实起跑完赛人数。",
+  "updatedAt": "2026-11-18",
+  "intro": "厦门马拉松创办于2003年，近年以会展中心、环岛南路、演武大桥和鹭江道连接城市与海岸。档案保留2024—2026三届路线、抽签与真实起跑完赛统计，既看海岸赛道的变化，也区分计划规模与实际参赛人数。2025年的男女赛会纪录与2026年的卫冕成绩分别呈现。",
   "highlights": [
     {
       "title": "起跑人数和计划规模分开看",
-      "body": "2024计划30000人、起跑26805人；2025计划35000人、起跑30119人；2026计划35000人、起跑31769人。赛前规模不等于实际参赛。"
+      "body": "2024计划30000人、起跑26805人；2025计划35000人、起跑30119人；2026计划35000人、起跑31769人。赛前规模不等于实际参赛。",
+      "sourceIds": [
+        "1745784693592096770",
+        "1878052644084228097",
+        "2036623740794052610"
+      ]
     },
     {
       "title": "2026路线有明确调整",
-      "body": "新增云顶南路与湖滨西路折返，保留会展中心起终点和演武大桥的往返结构。"
+      "body": "新增云顶南路与湖滨西路折返，保留会展中心起终点和演武大桥的往返结构。",
+      "sourceIds": [
+        "1968008740563611649"
+      ]
     },
     {
       "title": "奖牌也记录城市变化",
-      "body": "2025“无限”采用三角梅与盲文，2026“韵动”结合海浪、白鹭和琴键。"
+      "body": "2025“无限”采用三角梅与盲文，2026“韵动”结合海浪、白鹭和琴键。",
+      "sourceIds": [
+        "1840380167564754945",
+        "1972276851752071169",
+        "2009262164021878786"
+      ]
     }
   ],
   "editions": [
@@ -241,7 +254,11 @@
             ]
           }
         ]
-      }
+      },
+      "editionId": "xiamen-2026",
+      "editionName": "2026厦门马拉松",
+      "events": [],
+      "status": "completed"
     },
     {
       "year": "2025",
@@ -464,7 +481,11 @@
             ]
           }
         ]
-      }
+      },
+      "editionId": "xiamen-2025",
+      "editionName": "2025厦门马拉松",
+      "events": [],
+      "status": "completed"
     },
     {
       "year": "2024",
@@ -686,7 +707,11 @@
             ]
           }
         ]
-      }
+      },
+      "editionId": "xiamen-2024",
+      "editionName": "2024厦门马拉松",
+      "events": [],
+      "status": "completed"
     }
   ],
   "stories": [
@@ -720,7 +745,11 @@
       "url": "https://www.xmim.org/information/detail/1967605540232654849",
       "publisher": "厦门马拉松赛组委会",
       "publishedAt": "2025-09-15",
-      "accessedAt": "2026-11-14"
+      "accessedAt": "2026-11-14",
+      "applicableYears": [
+        "2026"
+      ],
+      "verifiedAt": "2026-11-14"
     },
     {
       "id": "1967596390115209217",
@@ -728,7 +757,11 @@
       "url": "https://www.xmim.org/information/detail/1967596390115209217",
       "publisher": "厦门马拉松赛组委会",
       "publishedAt": "2025-09-15",
-      "accessedAt": "2026-11-14"
+      "accessedAt": "2026-11-14",
+      "applicableYears": [
+        "2026"
+      ],
+      "verifiedAt": "2026-11-14"
     },
     {
       "id": "1968008740563611649",
@@ -736,7 +769,11 @@
       "url": "https://www.xmim.org/information/detail/1968008740563611649",
       "publisher": "厦门马拉松赛组委会",
       "publishedAt": "2025-09-17",
-      "accessedAt": "2026-11-14"
+      "accessedAt": "2026-11-14",
+      "applicableYears": [
+        "2026"
+      ],
+      "verifiedAt": "2026-11-14"
     },
     {
       "id": "2036623740794052610",
@@ -744,7 +781,11 @@
       "url": "https://www.xmim.org/information/detail/2036623740794052610",
       "publisher": "厦门马拉松赛组委会",
       "publishedAt": "2026-01-17",
-      "accessedAt": "2026-11-14"
+      "accessedAt": "2026-11-14",
+      "applicableYears": [
+        "2026"
+      ],
+      "verifiedAt": "2026-11-14"
     },
     {
       "id": "2036706401130651649",
@@ -752,7 +793,15 @@
       "url": "https://www.xmim.org/information/detail/2036706401130651649",
       "publisher": "厦门马拉松赛组委会",
       "publishedAt": "2026-01-11",
-      "accessedAt": "2026-11-14"
+      "accessedAt": "2026-11-18",
+      "applicableYears": [
+        "2026"
+      ],
+      "verifiedAt": "2026-11-18",
+      "evidence": {
+        "endpoint": "https://www.xmim.org/api/brand-website/websitecontent/getHomeWebsiteContentDetail?id=2036706401130651649",
+        "note": "读取官网公开正文接口，核对纪录创造及保持者说明"
+      }
     },
     {
       "id": "1972276851752071169",
@@ -760,7 +809,11 @@
       "url": "https://www.xmim.org/information/detail/1972276851752071169",
       "publisher": "厦门马拉松赛组委会",
       "publishedAt": "2025-09-28",
-      "accessedAt": "2026-11-14"
+      "accessedAt": "2026-11-14",
+      "applicableYears": [
+        "2026"
+      ],
+      "verifiedAt": "2026-11-14"
     },
     {
       "id": "2009262164021878786",
@@ -768,7 +821,11 @@
       "url": "https://www.xmim.org/information/detail/2009262164021878786",
       "publisher": "厦门马拉松赛组委会",
       "publishedAt": "2026-01-08",
-      "accessedAt": "2026-11-14"
+      "accessedAt": "2026-11-14",
+      "applicableYears": [
+        "2026"
+      ],
+      "verifiedAt": "2026-11-14"
     },
     {
       "id": "1838580734443323394",
@@ -776,7 +833,11 @@
       "url": "https://www.xmim.org/information/detail/1838580734443323394",
       "publisher": "厦门马拉松赛组委会",
       "publishedAt": "2024-09-24",
-      "accessedAt": "2026-11-14"
+      "accessedAt": "2026-11-14",
+      "applicableYears": [
+        "2025"
+      ],
+      "verifiedAt": "2026-11-14"
     },
     {
       "id": "1838581002731978754",
@@ -784,7 +845,11 @@
       "url": "https://www.xmim.org/information/detail/1838581002731978754",
       "publisher": "厦门马拉松赛组委会",
       "publishedAt": "2024-09-24",
-      "accessedAt": "2026-11-14"
+      "accessedAt": "2026-11-14",
+      "applicableYears": [
+        "2025"
+      ],
+      "verifiedAt": "2026-11-14"
     },
     {
       "id": "1838619639494410242",
@@ -792,7 +857,11 @@
       "url": "https://www.xmim.org/information/detail/1838619639494410242",
       "publisher": "厦门马拉松赛组委会",
       "publishedAt": "2024-09-25",
-      "accessedAt": "2026-11-14"
+      "accessedAt": "2026-11-14",
+      "applicableYears": [
+        "2025"
+      ],
+      "verifiedAt": "2026-11-14"
     },
     {
       "id": "1878052644084228097",
@@ -800,7 +869,11 @@
       "url": "https://www.xmim.org/information/detail/1878052644084228097",
       "publisher": "厦门马拉松赛组委会",
       "publishedAt": "2025-01-10",
-      "accessedAt": "2026-11-14"
+      "accessedAt": "2026-11-14",
+      "applicableYears": [
+        "2025"
+      ],
+      "verifiedAt": "2026-11-14"
     },
     {
       "id": "1891675869708001281",
@@ -808,7 +881,15 @@
       "url": "https://www.xmim.org/information/detail/1891675869708001281",
       "publisher": "厦门马拉松赛组委会",
       "publishedAt": "2025-01-05",
-      "accessedAt": "2026-11-14"
+      "accessedAt": "2026-11-18",
+      "applicableYears": [
+        "2025"
+      ],
+      "verifiedAt": "2026-11-18",
+      "evidence": {
+        "endpoint": "https://www.xmim.org/api/brand-website/websitecontent/getHomeWebsiteContentDetail?id=1891675869708001281",
+        "note": "读取官网公开正文接口，核对纪录创造及保持者说明"
+      }
     },
     {
       "id": "1847983557065035778",
@@ -816,7 +897,11 @@
       "url": "https://www.xmim.org/information/detail/1847983557065035778",
       "publisher": "厦门马拉松赛组委会",
       "publishedAt": "2024-10-21",
-      "accessedAt": "2026-11-14"
+      "accessedAt": "2026-11-14",
+      "applicableYears": [
+        "2025"
+      ],
+      "verifiedAt": "2026-11-14"
     },
     {
       "id": "1840380167564754945",
@@ -824,7 +909,11 @@
       "url": "https://www.xmim.org/information/detail/1840380167564754945",
       "publisher": "厦门马拉松赛组委会",
       "publishedAt": "2024-09-29",
-      "accessedAt": "2026-11-14"
+      "accessedAt": "2026-11-14",
+      "applicableYears": [
+        "2025"
+      ],
+      "verifiedAt": "2026-11-14"
     },
     {
       "id": "1715914221550784514",
@@ -832,7 +921,11 @@
       "url": "https://www.xmim.org/information/detail/1715914221550784514",
       "publisher": "厦门马拉松赛组委会",
       "publishedAt": "2023-10-22",
-      "accessedAt": "2026-11-14"
+      "accessedAt": "2026-11-14",
+      "applicableYears": [
+        "2024"
+      ],
+      "verifiedAt": "2026-11-14"
     },
     {
       "id": "1715922153927561217",
@@ -840,7 +933,11 @@
       "url": "https://www.xmim.org/information/detail/1715922153927561217",
       "publisher": "厦门马拉松赛组委会",
       "publishedAt": "2023-10-22",
-      "accessedAt": "2026-11-14"
+      "accessedAt": "2026-11-14",
+      "applicableYears": [
+        "2024"
+      ],
+      "verifiedAt": "2026-11-14"
     },
     {
       "id": "1715916650283163649",
@@ -848,7 +945,11 @@
       "url": "https://www.xmim.org/information/detail/1715916650283163649",
       "publisher": "厦门马拉松赛组委会",
       "publishedAt": "2023-10-22",
-      "accessedAt": "2026-11-14"
+      "accessedAt": "2026-11-14",
+      "applicableYears": [
+        "2024"
+      ],
+      "verifiedAt": "2026-11-14"
     },
     {
       "id": "1745784693592096770",
@@ -856,7 +957,11 @@
       "url": "https://www.xmim.org/information/detail/1745784693592096770",
       "publisher": "厦门马拉松赛组委会",
       "publishedAt": "2024-01-12",
-      "accessedAt": "2026-11-14"
+      "accessedAt": "2026-11-14",
+      "applicableYears": [
+        "2024"
+      ],
+      "verifiedAt": "2026-11-14"
     },
     {
       "id": "1744609880382361601",
@@ -864,7 +969,11 @@
       "url": "https://www.xmim.org/information/detail/1744609880382361601",
       "publisher": "厦门马拉松赛组委会",
       "publishedAt": "2024-01-07",
-      "accessedAt": "2026-11-14"
+      "accessedAt": "2026-11-14",
+      "applicableYears": [
+        "2024"
+      ],
+      "verifiedAt": "2026-11-14"
     },
     {
       "id": "2008104708776402946",
@@ -872,7 +981,11 @@
       "url": "https://www.xmim.org/information/detail/2008104708776402946",
       "publisher": "厦门马拉松赛组委会",
       "publishedAt": "2026-01-04",
-      "accessedAt": "2026-11-14"
+      "accessedAt": "2026-11-14",
+      "applicableYears": [
+        "2026"
+      ],
+      "verifiedAt": "2026-11-14"
     },
     {
       "id": "2007284368600997889",
@@ -880,7 +993,11 @@
       "url": "https://www.xmim.org/information/detail/2007284368600997889",
       "publisher": "厦门马拉松赛组委会",
       "publishedAt": "2026-01-03",
-      "accessedAt": "2026-11-14"
+      "accessedAt": "2026-11-14",
+      "applicableYears": [
+        "2026"
+      ],
+      "verifiedAt": "2026-11-14"
     },
     {
       "id": "1977772046518087681",
@@ -888,7 +1005,11 @@
       "url": "https://www.xmim.org/information/detail/1977772046518087681",
       "publisher": "厦门马拉松赛组委会",
       "publishedAt": "2025-10-14",
-      "accessedAt": "2026-11-14"
+      "accessedAt": "2026-11-14",
+      "applicableYears": [
+        "2026"
+      ],
+      "verifiedAt": "2026-11-14"
     },
     {
       "id": "1871160873081348098",
@@ -896,7 +1017,11 @@
       "url": "https://www.xmim.org/information/detail/1871160873081348098",
       "publisher": "厦门马拉松赛组委会",
       "publishedAt": "2024-12-24",
-      "accessedAt": "2026-11-14"
+      "accessedAt": "2026-11-14",
+      "applicableYears": [
+        "2025"
+      ],
+      "verifiedAt": "2026-11-14"
     },
     {
       "id": "1871199225604186114",
@@ -904,7 +1029,11 @@
       "url": "https://www.xmim.org/information/detail/1871199225604186114",
       "publisher": "厦门马拉松赛组委会",
       "publishedAt": "2024-12-24",
-      "accessedAt": "2026-11-14"
+      "accessedAt": "2026-11-14",
+      "applicableYears": [
+        "2025"
+      ],
+      "verifiedAt": "2026-11-14"
     },
     {
       "id": "1874977416378556417",
@@ -912,7 +1041,11 @@
       "url": "https://www.xmim.org/information/detail/1874977416378556417",
       "publisher": "厦门马拉松赛组委会",
       "publishedAt": "2025-01-02",
-      "accessedAt": "2026-11-14"
+      "accessedAt": "2026-11-14",
+      "applicableYears": [
+        "2025"
+      ],
+      "verifiedAt": "2026-11-14"
     },
     {
       "id": "1740846203153670145",
@@ -920,7 +1053,11 @@
       "url": "https://www.xmim.org/information/detail/1740846203153670145",
       "publisher": "厦门马拉松赛组委会",
       "publishedAt": "2023-12-30",
-      "accessedAt": "2026-11-14"
+      "accessedAt": "2026-11-14",
+      "applicableYears": [
+        "2024"
+      ],
+      "verifiedAt": "2026-11-14"
     },
     {
       "id": "1740853336784953346",
@@ -928,7 +1065,11 @@
       "url": "https://www.xmim.org/information/detail/1740853336784953346",
       "publisher": "厦门马拉松赛组委会",
       "publishedAt": "2023-12-30",
-      "accessedAt": "2026-11-14"
+      "accessedAt": "2026-11-14",
+      "applicableYears": [
+        "2024"
+      ],
+      "verifiedAt": "2026-11-14"
     },
     {
       "id": "1742889570969481218",
@@ -936,7 +1077,132 @@
       "url": "https://www.xmim.org/information/detail/1742889570969481218",
       "publisher": "厦门马拉松赛组委会",
       "publishedAt": "2024-01-04",
-      "accessedAt": "2026-11-14"
+      "accessedAt": "2026-11-14",
+      "applicableYears": [
+        "2024"
+      ],
+      "verifiedAt": "2026-11-14"
+    },
+    {
+      "id": "xm-history-2022",
+      "title": "一个多月连办两届厦门马拉松",
+      "url": "https://xm.cnr.cn/yw/20221122/t20221122_526069587.shtml",
+      "publisher": "央广网",
+      "publishedAt": "2022-11-22",
+      "accessedAt": "2026-11-18",
+      "verifiedAt": "2026-11-18",
+      "applicableYears": [
+        "2003",
+        "2014",
+        "2022"
+      ]
+    }
+  ],
+  "schemaVersion": 2,
+  "history": [
+    {
+      "date": "2003-03-30",
+      "title": "首届厦门马拉松举办",
+      "body": "央广网回顾明确记载首届于2003年3月30日举行，当时与全国马拉松锦标赛合办。",
+      "sourceIds": [
+        "xm-history-2022"
+      ]
+    },
+    {
+      "date": "2014",
+      "title": "再度与全国锦标赛合办",
+      "body": "2014年全国马拉松锦标赛再次在厦门举行，属于赛事发展中的重要办赛节点。",
+      "sourceIds": [
+        "xm-history-2022"
+      ]
+    },
+    {
+      "date": "2025",
+      "title": "男女赛会纪录同时改写",
+      "body": "Dawit Wolde Arega与Ruti Aga Sora分别将男、女纪录提高至2:06:06和2:18:46。",
+      "sourceIds": [
+        "1891675869708001281"
+      ]
+    },
+    {
+      "date": "2026",
+      "title": "两位纪录保持者卫冕",
+      "body": "2026赛后报道继续称两人为赛会纪录保持者，并记录各自在该届的卫冕成绩。",
+      "sourceIds": [
+        "2036706401130651649"
+      ]
+    }
+  ],
+  "records": [
+    {
+      "category": "赛会纪录",
+      "project": "马拉松",
+      "group": "男子",
+      "athlete": "Dawit Wolde AREGA",
+      "time": "02:06:06",
+      "timing": "",
+      "editionId": "xiamen-2025",
+      "achievedAt": "2025",
+      "verifiedThroughEditionId": "xiamen-2026",
+      "verifiedAt": "2026-11-18",
+      "sourceIds": [
+        "1891675869708001281",
+        "2036706401130651649"
+      ]
+    },
+    {
+      "category": "赛会纪录",
+      "project": "马拉松",
+      "group": "女子",
+      "athlete": "Ruti Aga SORA",
+      "time": "02:18:46",
+      "timing": "",
+      "editionId": "xiamen-2025",
+      "achievedAt": "2025",
+      "verifiedThroughEditionId": "xiamen-2026",
+      "verifiedAt": "2026-11-18",
+      "sourceIds": [
+        "1891675869708001281",
+        "2036706401130651649"
+      ]
+    }
+  ],
+  "conflicts": [],
+  "profile": {
+    "foundingYear": "2003",
+    "foundingYearSourceIds": [
+      "xm-history-2022"
+    ],
+    "positioning": "以海岸道路和开年赛事记忆为特色，赛会成绩与大众参赛数据共同保留。",
+    "positioningSourceIds": [
+      "2036706401130651649",
+      "1968008740563611649"
+    ],
+    "entryNotes": "2025、2026届均有预报名、抽签和候补安排，官方公布中签率限定了适用群体。档案保留原口径，不能解释为所有报名者的相同概率。",
+    "entrySourceIds": [
+      "1847983557065035778",
+      "1977772046518087681"
+    ]
+  },
+  "introSourceIds": [
+    "xm-history-2022",
+    "1968008740563611649",
+    "1891675869708001281",
+    "2036706401130651649"
+  ],
+  "gaps": [
+    {
+      "fields": [
+        "registration.2024.applicants",
+        "registration.2024.lotteryRate"
+      ],
+      "reason": "2024报名人数与官方公布中签率仍缺可靠依据；不以规模和报名传闻推算。"
+    },
+    {
+      "fields": [
+        "media"
+      ],
+      "reason": "官方路线及实物图片未确认本站转载使用条件，继续以原生道路顺序和物品文字展示。"
     }
   ]
 }
