@@ -1,0 +1,632 @@
+{
+  "at": "2026-11-19T20:05:26.624Z",
+  "basis": "Completed guides were removed only after reading and checking the currently available editions and verifying their actual production pages. Targeted updates still leave races in the full-review queue.",
+  "counts": {
+    "original54Remaining": 1,
+    "original8CurationRemaining": 0,
+    "mappedConcrete": 0,
+    "mappedCoverageUnknown": 0,
+    "knownDistinctConcreteRemaining": 1,
+    "sourceFollowupOnly": 0
+  },
+  "remainingConcrete": [
+    {
+      "id": "zuiku-94604",
+      "name": "2026 XTERRA 太湖越野挑战赛",
+      "reviewScope": "局部校对：仅列出的原图及字段/表格已人工核对，其他正文保留；不代表全篇已完成校对。",
+      "documentedNotes": [
+        "仅本张赛事项目/收费原图已逐项看图核对，路线图、资格、日程、退费和强制装备其余图片本批尚未逐项审完；未用未审图填55/35KM缺失爬升字段。"
+      ],
+      "latestAudit": "fourth-reviewed-audit.json",
+      "currentSectionCount": 24,
+      "currentMediaCount": 23,
+      "officialSources": [],
+      "reviewedImageUrls": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/07/33f655956c29185aee4a1ef2e70e501b7a1e49f5.jpeg?imageView2/2/w/1024"
+      ],
+      "candidateMedia": [
+        {
+          "index": 0,
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/07/eaa5fe0bd9fd22380cb6069e04fff2c109da2f98.jpeg?imageView2/2/w/750",
+          "caption": "赛事图文资料",
+          "sha256": "7820e8ec4060f30a01223dcc542546d4c5f03e7051ae055501d90856671fe951",
+          "kind": "guide",
+          "sourceUrl": "https://reg.zuicool.com/35355"
+        },
+        {
+          "index": 1,
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/07/432edded0e784b3cfa7fd75305c634be0951a6b0.jpeg?imageView2/2/w/750",
+          "caption": "赛事图文资料",
+          "sha256": "642b1cb293cb8a1a5ff88f26e9ca721194f5ea9e1c585bac63d1cd5f03882ff0",
+          "kind": "guide",
+          "sourceUrl": "https://reg.zuicool.com/35355"
+        },
+        {
+          "index": 2,
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/07/26215825d0446e2bd8a10759dd5b50816d127d1c.jpeg?imageView2/2/w/750",
+          "caption": "赛事图文资料",
+          "sha256": "cdc0ffd218ee8d0bf8b50b7f5df37066b303e98bd342c73853038b6232f7b60c",
+          "kind": "guide",
+          "sourceUrl": "https://reg.zuicool.com/35355"
+        },
+        {
+          "index": 3,
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/07/b82d6703458b932c6ad6a6c5c4824c6edc6b94d7.jpeg?imageView2/2/w/750",
+          "caption": "赛事图文资料",
+          "sha256": "e19a052ea26a56b669cf3cde63467de28f2f7427037df3fc1ca08070c79cd5a0",
+          "kind": "guide",
+          "sourceUrl": "https://reg.zuicool.com/35355"
+        },
+        {
+          "index": 4,
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/07/33f655956c29185aee4a1ef2e70e501b7a1e49f5.jpeg?imageView2/2/w/1024",
+          "caption": "赛事图文资料",
+          "sha256": "69154a37ef33f6d1f94a56b00a5c2b3130b72955ebd2ff8d70db7492bc2391be",
+          "kind": "guide",
+          "sourceUrl": "https://reg.zuicool.com/35355"
+        },
+        {
+          "index": 5,
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/07/731a53628860b7dd0ba43b21a9665a57fb92456c.jpeg?imageView2/2/w/1024",
+          "caption": "赛事图文资料",
+          "sha256": "f740fd4b4563b3e5deae1b034db534ae4259fbc945edb1cc8bd43b8112d5ab62",
+          "kind": "guide",
+          "sourceUrl": "https://reg.zuicool.com/35355"
+        },
+        {
+          "index": 6,
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/07/25bb8c1273787a0e914617650b0e7aa0b153b997.jpeg?imageView2/2/w/1024",
+          "caption": "分组路线与海拔资料",
+          "sha256": "f917dc44faab3f3a10be7895abdebcc4b0368746d63e835a9d95fb2c1652b6f7",
+          "kind": "route",
+          "sourceUrl": "https://reg.zuicool.com/35355"
+        },
+        {
+          "index": 7,
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/07/40f4ef4cbd9e574d5fdf6728c8565842b1ffbfd1.jpeg?imageView2/2/w/1024",
+          "caption": "赛事图文资料",
+          "sha256": "43c1384b6a0d8eb22e2bc19bacb79b505166d94f8c66a13afb1f202ad65e3c9d",
+          "kind": "guide",
+          "sourceUrl": "https://reg.zuicool.com/35355"
+        },
+        {
+          "index": 8,
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/07/7024a6d9758e9916320f45a2e80c96ae03d5123f.jpeg?imageView2/2/w/1024",
+          "caption": "赛事图文资料",
+          "sha256": "c702bc09537fb46dc692e9d3ecb689e9aa1f8b12f1e391ef9b4006e29fdda624",
+          "kind": "guide",
+          "sourceUrl": "https://reg.zuicool.com/35355"
+        },
+        {
+          "index": 9,
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/07/9bbcd3aebcbe918d4b5f17c2c87a9ae453d151c8.jpeg?imageView2/2/w/1024",
+          "caption": "赛事图文资料",
+          "sha256": "11541a1cbbf4141cd34ee9c603cd5b3f9febe8c217467c7cc32851fc95d4c098",
+          "kind": "guide",
+          "sourceUrl": "https://reg.zuicool.com/35355"
+        },
+        {
+          "index": 10,
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/07/06084eeb8f074eccb8467572623ad7865702dc6d.jpeg?imageView2/2/w/1024",
+          "caption": "赛事图文资料",
+          "sha256": "8daa909156eb95864e4392468d52636e71becf560ea9a24b707fd61d5cd69a30",
+          "kind": "guide",
+          "sourceUrl": "https://reg.zuicool.com/35355"
+        },
+        {
+          "index": 11,
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/07/6425e2bf9aa8ff987178acf46147ba8180ba8889.jpeg?imageView2/2/w/1024",
+          "caption": "赛事图文资料",
+          "sha256": "b69202231f227f545bba4da7d8a6ea5e3bc012b6cf477dfa6537ffab44b75cf3",
+          "kind": "guide",
+          "sourceUrl": "https://reg.zuicool.com/35355"
+        },
+        {
+          "index": 12,
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/07/b9e2f80f1821ce5a7f53a04a3a205e5e97340a95.jpeg?imageView2/2/w/1024",
+          "caption": "竞赛规程",
+          "sha256": "0e11622e5ecdef99108cb18adfd10f7f09c326dd7fc17c1832a15af0b7bed1d6",
+          "kind": "guide",
+          "sourceUrl": "https://reg.zuicool.com/35355"
+        },
+        {
+          "index": 13,
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/07/dc686b3046e7cce27cca850b6a3f14293e75dc89.jpeg?imageView2/2/w/1024",
+          "caption": "竞赛规程",
+          "sha256": "fe441ee560fababd7f93ec762283e9766d341dacfcd6e44bd89d7e527e5119c0",
+          "kind": "guide",
+          "sourceUrl": "https://reg.zuicool.com/35355"
+        },
+        {
+          "index": 14,
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/07/0a4cd9e661edcde1bc61710b23297fda9f829145.jpeg?imageView2/2/w/1024",
+          "caption": "竞赛规程",
+          "sha256": "8b95d77bbda2f13a59f7b40fdf442237193525a270def8b40beda65f967e8ce8",
+          "kind": "guide",
+          "sourceUrl": "https://reg.zuicool.com/35355"
+        },
+        {
+          "index": 15,
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/07/32e8f52e4e66a3ad8fa4d24ebf949ed2402323e4.jpeg?imageView2/2/w/1024",
+          "caption": "赛事图文资料",
+          "sha256": "42303d81d15445fda651338824d1bac137771952b204a5c4978e94a2448c50d8",
+          "kind": "guide",
+          "sourceUrl": "https://reg.zuicool.com/35355"
+        },
+        {
+          "index": 16,
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/07/b48d46243a87eab5432af38dfd22506400775e4b.jpeg?imageView2/2/w/1024",
+          "caption": "赛事图文资料",
+          "sha256": "b18d2eeae51efe12ceec8fb7c269b2f6b0482a552e255abdf4825e0f787bbe31",
+          "kind": "guide",
+          "sourceUrl": "https://reg.zuicool.com/35355"
+        },
+        {
+          "index": 17,
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/07/156ebb61c310f8ea1827d398c97c2af580c0326f.jpeg?imageView2/2/w/1024",
+          "caption": "赛事图文资料",
+          "sha256": "feb31b361dd7eace487b71ee35b8b249338f1bc9ce998d003d73b950a388eb07",
+          "kind": "guide",
+          "sourceUrl": "https://reg.zuicool.com/35355"
+        },
+        {
+          "index": 18,
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/07/0816690c8b22dbdfa0fbfe542c5de55b3272d278.jpeg?imageView2/2/w/1024",
+          "caption": "赛事图文资料",
+          "sha256": "eb9300e1615a2ecbbadea0dac1461adb392ce2675ae78978b474e5cfba9bf3f1",
+          "kind": "guide",
+          "sourceUrl": "https://reg.zuicool.com/35355"
+        },
+        {
+          "index": 19,
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/07/bf511111924356ebbb3d35d4f130438de535c850.jpeg?imageView2/2/w/1024",
+          "caption": "竞赛规程",
+          "sha256": "d4c399e53474b84dcd30972f86847cfff00ef7ac593ebc1d1304118c9d3ad805",
+          "kind": "guide",
+          "sourceUrl": "https://reg.zuicool.com/35355"
+        },
+        {
+          "index": 20,
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/07/75fd0cc00c707a3cebcaa445a5560f809c5e0bdd.jpeg?imageView2/2/w/1024",
+          "caption": "赛事图文资料",
+          "sha256": "21eb27ef221a81235f2aad9718b25682388c6093a2721a47a71ed06c4053b1e7",
+          "kind": "guide",
+          "sourceUrl": "https://reg.zuicool.com/35355"
+        },
+        {
+          "index": 21,
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/07/8de073e58f6d0ea4d9f5bd290ad8e7b4274fb28a.jpeg?imageView2/2/w/1024",
+          "caption": "赛事图文资料",
+          "sha256": "ed680951b5d5c1f1b6d0e685ed8d2122694e93197b3ab00ed645246f797a71f9",
+          "kind": "guide",
+          "sourceUrl": "https://reg.zuicool.com/35355"
+        },
+        {
+          "index": 22,
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/07/64eab69403e2f45fe5482d9fc4b072d1fb7084dd.jpeg?imageView2/2/w/1024",
+          "caption": "竞赛规程",
+          "sha256": "b6e92d8aa0c03d4d103640a38f3c5e17186c279920fcb4febac3b28ecf979f31",
+          "kind": "guide",
+          "sourceUrl": "https://reg.zuicool.com/35355"
+        }
+      ],
+      "actualScopeReviewInstruction": "以任务列出的未审章节/图像为起点，先核本届官网及可靠可复制文字，再实际逐块看原图。既有已核内容保持，保留完整独有条款；仅源文冲突无法确认者记录待确认，不为清除partial标记猜写。",
+      "taskKind": "regulation_review",
+      "instruction": "仅本张赛事项目/收费原图已逐项看图核对，路线图、资格、日程、退费和强制装备其余图片本批尚未逐项审完；未用未审图填55/35KM缺失爬升字段。",
+      "priority": 50
+    }
+  ],
+  "imageCurationOnlyBacklog": [],
+  "coverageUnknown": [],
+  "sourceUncertaintyOrFollowupOnly": [],
+  "reviewedDraftsNotYetSaved": [],
+  "globalPending": [
+    "Actual 320px mini viewport",
+    "Physical phone zoom/save/long-press menu",
+    "Formal mini release and verification"
+  ],
+  "supplement3": {
+    "reviewed": 6,
+    "saved": 6,
+    "webActualPagesPassed": 12,
+    "fullRenderedContentMatchesProduction": true,
+    "miniRaces": 6,
+    "miniStatus": "actual_390px_full_render_verified",
+    "nativePreviewLatest": "not_completed"
+  },
+  "completedCurrentSourcesThisSupplement": 1,
+  "supplement4": {
+    "reviewed": 7,
+    "saved": 7,
+    "webActualPagesPassed": 14,
+    "miniStatus": "waiting_for_devtools_connection"
+  },
+  "supplement5": {
+    "ids": [
+      "zuiku-95805",
+      "zuiku-14679",
+      "zuiku-28718",
+      "zuiku-32373",
+      "zuiku-50491"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 5,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "supplement6": {
+    "ids": [
+      "zuiku-66992",
+      "caa-1000483001",
+      "caa-1000499000",
+      "caa-1000479023",
+      "caa-1000452094"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 0,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "supplement7": {
+    "ids": [
+      "zuiku-58600",
+      "zuiku-66992",
+      "caa-1000503000",
+      "caa-1000452114",
+      "caa-1000480114"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 0,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "supplement8": {
+    "ids": [
+      "caa-1000452082",
+      "caa-1000477009"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 0,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "supplement9": {
+    "ids": [
+      "caa-1000479118",
+      "caa-1000472006"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 0,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "supplement10": {
+    "ids": [
+      "caa-1000479142",
+      "caa-1000476007"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 2,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "supplement11": {
+    "ids": [
+      "caa-1000453054",
+      "zuiku-35462",
+      "caa-1000479060"
+    ],
+    "fullReviewIds": [
+      "caa-1000453054",
+      "caa-1000479060"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 3,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "supplement12": {
+    "ids": [
+      "caa-1000454068"
+    ],
+    "fullReviewIds": [
+      "caa-1000454068"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 1,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "supplement13": {
+    "ids": [
+      "caa-1000456006"
+    ],
+    "fullReviewIds": [
+      "caa-1000456006"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 1,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "supplement14": {
+    "ids": [
+      "caa-1000467006",
+      "zuiku-11747",
+      "caa-1000454030"
+    ],
+    "fullReviewIds": [
+      "caa-1000467006",
+      "zuiku-11747",
+      "caa-1000454030"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 3,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "supplement15": {
+    "ids": [
+      "zuiku-60343"
+    ],
+    "fullReviewIds": [
+      "zuiku-60343"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 1,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "supplement16": {
+    "ids": [
+      "caa-1000454030"
+    ],
+    "fullReviewIds": [],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 1,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "supplement17": {
+    "ids": [
+      "caa-1000418257",
+      "zuiku-27643"
+    ],
+    "fullReviewIds": [
+      "caa-1000418257",
+      "zuiku-27643"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 2,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "supplement18": {
+    "ids": [
+      "zuiku-16715",
+      "caa-1000450007",
+      "caa-1000480094",
+      "zuiku-27643"
+    ],
+    "fullReviewIds": [
+      "zuiku-16715",
+      "caa-1000450007",
+      "caa-1000480094"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 4,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "supplement19": {
+    "ids": [
+      "bishan",
+      "zuiku-30642",
+      "caa-1000454004"
+    ],
+    "fullReviewIds": [
+      "bishan",
+      "zuiku-30642",
+      "caa-1000454004"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 3,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "supplement20": {
+    "ids": [
+      "zuiku-33682",
+      "zuiku-32919"
+    ],
+    "fullReviewIds": [
+      "zuiku-33682",
+      "zuiku-32919"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 2,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "supplement21": {
+    "ids": [
+      "zuiku-34162"
+    ],
+    "fullReviewIds": [
+      "zuiku-34162"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 1,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "supplement22": {
+    "ids": [
+      "zuiku-71615"
+    ],
+    "fullReviewIds": [
+      "zuiku-71615"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 1,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "supplement23": {
+    "ids": [
+      "zuiku-72712",
+      "zuiku-58332",
+      "zuiku-35462"
+    ],
+    "fullReviewIds": [
+      "zuiku-72712",
+      "zuiku-58332",
+      "zuiku-35462"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 3,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "supplement24": {
+    "ids": [
+      "zuiku-73285",
+      "zuiku-54272",
+      "zuiku-77580"
+    ],
+    "fullReviewIds": [
+      "zuiku-73285",
+      "zuiku-54272",
+      "zuiku-77580"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 3,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "supplement25": {
+    "ids": [
+      "zuiku-81646",
+      "zuiku-82566"
+    ],
+    "fullReviewIds": [
+      "zuiku-81646",
+      "zuiku-82566"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 2,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "supplement26": {
+    "ids": [
+      "zuiku-80201"
+    ],
+    "fullReviewIds": [
+      "zuiku-80201"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 1,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "supplement27": {
+    "ids": [
+      "zuiku-88270"
+    ],
+    "fullReviewIds": [
+      "zuiku-88270"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 1,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "supplement28": {
+    "ids": [
+      "zuiku-84761",
+      "zuiku-88485"
+    ],
+    "fullReviewIds": [
+      "zuiku-84761",
+      "zuiku-88485"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 2,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "supplement29": {
+    "ids": [
+      "zuiku-94253",
+      "zuiku-96415",
+      "zuiku-97568"
+    ],
+    "fullReviewIds": [
+      "zuiku-94253",
+      "zuiku-96415",
+      "zuiku-97568"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 3,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "resolvedSourceFollowupsThisSupplement": [
+    "zuiku-58600",
+    "zuiku-66992"
+  ],
+  "supplement30": {
+    "ids": [
+      "zuiku-98272",
+      "zuiku-66992",
+      "zuiku-58600"
+    ],
+    "fullReviewIds": [
+      "zuiku-98272"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 3,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "supplement31": {
+    "ids": [
+      "zuiku-98499"
+    ],
+    "fullReviewIds": [
+      "zuiku-98499"
+    ],
+    "reviewed": true,
+    "saved": true,
+    "productionWebVerified": true,
+    "mini390Verified": 1,
+    "formalMiniProgramReleaseVerified": false
+  }
+}

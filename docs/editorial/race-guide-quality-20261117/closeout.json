@@ -1,0 +1,287 @@
+{
+  "originalOcrReviewedAndSaved": 220,
+  "what220Means": "All originally flagged events have documented review and saved corrections within the inspected scope. It does not mean every guide across the platform was audited or every official source question was resolved.",
+  "platformRaces": 434,
+  "sourceImageRows": 1784,
+  "eventCountUnchanged": true,
+  "databaseSchemaUnchanged": true,
+  "final20": {
+    "reviewed": 20,
+    "saved": 20,
+    "productionWebValidated": 20,
+    "miniDevTools390Validated": 20,
+    "remaining": 0,
+    "races": [
+      {
+        "id": "zuiku-35462",
+        "name": "2026 FUGA训练赛东莞年度总决赛",
+        "batch": 23,
+        "sourceReview": "current_source_content_checked_with_questions",
+        "stages": {
+          "reviewed": true,
+          "saved": true,
+          "productionWeb320And390": true,
+          "miniDevTools390": true
+        }
+      },
+      {
+        "id": "zuiku-34162",
+        "name": "2026新奇天·富春雪岭越野赛",
+        "batch": 21,
+        "sourceReview": "current_source_content_checked_with_questions",
+        "stages": {
+          "reviewed": true,
+          "saved": true,
+          "productionWeb320And390": true,
+          "miniDevTools390": true
+        }
+      },
+      {
+        "id": "zuiku-54272",
+        "name": "2026广东从化一百越野赛",
+        "batch": 24,
+        "sourceReview": "current_source_content_checked_with_questions",
+        "stages": {
+          "reviewed": true,
+          "saved": true,
+          "productionWeb320And390": true,
+          "miniDevTools390": true
+        }
+      },
+      {
+        "id": "zuiku-58332",
+        "name": "拓路者2026第八届镇江南山越野赛",
+        "batch": 23,
+        "sourceReview": "current_source_content_checked_with_questions",
+        "stages": {
+          "reviewed": true,
+          "saved": true,
+          "productionWeb320And390": true,
+          "miniDevTools390": true
+        }
+      },
+      {
+        "id": "zuiku-71615",
+        "name": "2026第十届武汉姚家山越野跑挑战赛",
+        "batch": 22,
+        "sourceReview": "current_source_content_checked_with_questions",
+        "stages": {
+          "reviewed": true,
+          "saved": true,
+          "productionWeb320And390": true,
+          "miniDevTools390": true
+        }
+      },
+      {
+        "id": "zuiku-72712",
+        "name": "2026贺州姑婆山越野赛",
+        "batch": 23,
+        "sourceReview": "current_source_content_checked_with_questions",
+        "stages": {
+          "reviewed": true,
+          "saved": true,
+          "productionWeb320And390": true,
+          "miniDevTools390": true
+        }
+      },
+      {
+        "id": "zuiku-73285",
+        "name": "“重走长征路·奋进新征程”2026甘泉县红色越野挑战赛",
+        "batch": 24,
+        "sourceReview": "current_source_content_checked_with_questions",
+        "stages": {
+          "reviewed": true,
+          "saved": true,
+          "productionWeb320And390": true,
+          "miniDevTools390": true
+        }
+      },
+      {
+        "id": "zuiku-77580",
+        "name": "2026第二届“山海杯”千岛湖大峡谷登山大会",
+        "batch": 24,
+        "sourceReview": "current_source_content_checked_with_questions",
+        "stages": {
+          "reviewed": true,
+          "saved": true,
+          "productionWeb320And390": true,
+          "miniDevTools390": true
+        }
+      },
+      {
+        "id": "zuiku-80201",
+        "name": "霞路相逢·三山五岳 拓路者2026南岳衡山越野赛",
+        "batch": 26,
+        "sourceReview": "current_source_content_checked_with_questions",
+        "stages": {
+          "reviewed": true,
+          "saved": true,
+          "productionWeb320And390": true,
+          "miniDevTools390": true
+        }
+      },
+      {
+        "id": "zuiku-81646",
+        "name": "2026爱徒野大理洱海“秋天的童话”为爱奔跑",
+        "batch": 25,
+        "sourceReview": "current_source_content_checked_with_questions",
+        "stages": {
+          "reviewed": true,
+          "saved": true,
+          "productionWeb320And390": true,
+          "miniDevTools390": true
+        }
+      },
+      {
+        "id": "zuiku-82566",
+        "name": "伯希和·2026崇义100超级越野赛",
+        "batch": 25,
+        "sourceReview": "current_source_content_checked_with_questions",
+        "stages": {
+          "reviewed": true,
+          "saved": true,
+          "productionWeb320And390": true,
+          "miniDevTools390": true
+        }
+      },
+      {
+        "id": "zuiku-84761",
+        "name": "2027楠溪江跑山赛",
+        "batch": 28,
+        "sourceReview": "current_source_content_checked_with_questions",
+        "stages": {
+          "reviewed": true,
+          "saved": true,
+          "productionWeb320And390": true,
+          "miniDevTools390": true
+        }
+      },
+      {
+        "id": "zuiku-88270",
+        "name": "2026重庆梁平百里竹海古蜀道越野赛",
+        "batch": 27,
+        "sourceReview": "current_source_content_checked_with_questions",
+        "stages": {
+          "reviewed": true,
+          "saved": true,
+          "productionWeb320And390": true,
+          "miniDevTools390": true
+        }
+      },
+      {
+        "id": "zuiku-88485",
+        "name": "2026第二届“山海之径”苍南168黄金海岸线越野挑战赛",
+        "batch": 28,
+        "sourceReview": "current_source_content_checked_with_questions",
+        "stages": {
+          "reviewed": true,
+          "saved": true,
+          "productionWeb320And390": true,
+          "miniDevTools390": true
+        }
+      },
+      {
+        "id": "zuiku-94253",
+        "name": "2026井冈山越野赛",
+        "batch": 29,
+        "sourceReview": "current_source_content_checked_with_questions",
+        "stages": {
+          "reviewed": true,
+          "saved": true,
+          "productionWeb320And390": true,
+          "miniDevTools390": true
+        }
+      },
+      {
+        "id": "zuiku-94604",
+        "name": "2026 XTERRA 太湖越野挑战赛",
+        "batch": 32,
+        "sourceReview": "current_source_content_checked_with_questions",
+        "stages": {
+          "reviewed": true,
+          "saved": true,
+          "productionWeb320And390": true,
+          "miniDevTools390": true
+        }
+      },
+      {
+        "id": "zuiku-96415",
+        "name": "2026中国冷极半程马拉松",
+        "batch": 29,
+        "sourceReview": "current_source_content_checked_with_questions",
+        "stages": {
+          "reviewed": true,
+          "saved": true,
+          "productionWeb320And390": true,
+          "miniDevTools390": true
+        }
+      },
+      {
+        "id": "zuiku-97568",
+        "name": "2026\"人机共享”天津长跑嘉年华",
+        "batch": 29,
+        "sourceReview": "current_source_content_checked_with_questions",
+        "stages": {
+          "reviewed": true,
+          "saved": true,
+          "productionWeb320And390": true,
+          "miniDevTools390": true
+        }
+      },
+      {
+        "id": "zuiku-98272",
+        "name": "泰兰尼斯见山青少年跑山赛2026年度总决赛",
+        "batch": 30,
+        "sourceReview": "current_source_content_checked_with_questions",
+        "stages": {
+          "reviewed": true,
+          "saved": true,
+          "productionWeb320And390": true,
+          "miniDevTools390": true
+        }
+      },
+      {
+        "id": "zuiku-98499",
+        "name": "拓路者·2026临沂苍马山跑山赛暨“中国体育彩票”第十一届山东省万人登高健步行活动",
+        "batch": 31,
+        "sourceReview": "current_source_content_checked_with_questions",
+        "stages": {
+          "reviewed": true,
+          "saved": true,
+          "productionWeb320And390": true,
+          "miniDevTools390": true
+        }
+      }
+    ]
+  },
+  "otherTargetedFollowups": [
+    {
+      "id": "zuiku-66992",
+      "name": "2026黄石马拉松",
+      "batch": 30,
+      "sourceReview": "current_source_content_checked_with_questions",
+      "stages": {
+        "reviewed": true,
+        "saved": true,
+        "productionWeb320And390": true,
+        "miniDevTools390": true
+      }
+    },
+    {
+      "id": "zuiku-58600",
+      "name": "2026首届贵州茅台镇越野跑",
+      "batch": 30,
+      "sourceReview": "partially_verified",
+      "stages": {
+        "reviewed": true,
+        "saved": true,
+        "productionWeb320And390": true,
+        "miniDevTools390": true
+      }
+    }
+  ],
+  "pendingSourceQuestionsByEventRecorded": true,
+  "formalMiniProgramReleaseVerified": false,
+  "mini320Verified": false,
+  "physicalMiniGesturesVerified": false
+}
