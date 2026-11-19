@@ -1,0 +1,193 @@
+[
+  {
+    "id": "caa-1000418257",
+    "name": "2026马鞍山·采石矶半程马拉松",
+    "status": "current_source_content_checked_with_questions",
+    "scope": "平台保存5/5张本届报名须知与完整规程原图连续34块核读，实际核表4张；核对中国田协认证文字、马鞍山体育赛前攻略文字及配图10/10，核政府媒体与文旅部门当届动态。分清竞赛初版与实际赛前双枪更新。未保存生产。",
+    "beforeBodyHash": "bd75470422f2048d4f7e8a9389e386f44799d7b42e27e24396d768c4b09811bb",
+    "savedBodyHash": "735a5316ce9d63a31c5cf83a2eccd988977015193725d049077d9f33659e61f6",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 15,
+    "pendingImages": 0,
+    "chapters": 12,
+    "groups": 1,
+    "groupCorrections": 2,
+    "questions": [
+      "6月竞赛规程的单枪与10月31日马鞍山体育赛前公告冲突；新双枪时间、检录、存衣、分区界限、关门逐格以最新公告原图为准，总距离、人数、价格、时长不变。",
+      "路线图标示海拔曲线但未提供累计爬升数值，不把海拔高度猜为累计爬升。",
+      "马鞍山体育公告公开转载末句「赛后可以邮寄参赛物资么」之后截断；尚无可核实本届未出赛参赛包邮寄细则，保留明确可核的赛后存衣邮寄条款，不混用。"
+    ],
+    "officialDocuments": [
+      {
+        "url": "https://www.runchina.org.cn/#/race/v/detail/1000418257",
+        "title": "中国田径协会：2026马鞍山·采石矶半程马拉松",
+        "role": "national_federation_certificate",
+        "verified": true,
+        "identityReview": "官方公开赛事详情确认 11月1日、A类和主办单位。",
+        "characters": 768,
+        "bodySha256": "d6f1c73ad8aca903bcc5f1b7541d30f679b9e1bb144a4c4d346fbaeebd190b31",
+        "checkedAt": "2026-11-19T08:39:30.680Z"
+      },
+      {
+        "url": "https://m.sohu.com/a/1095416138_121106832/",
+        "title": "马鞍山体育 10月31日：开赛在即！2026采马参赛全攻略来了！",
+        "role": "official_city_sports_pretournament_guide_public_mirror",
+        "verified": true,
+        "identityReview": "马鞍山体育公开账号的可复制全文和10件配套原图，11月1日实际分枪、关门、检录、配速及补给优先于6月单枪规程。原文微信地址见审计。",
+        "characters": 5519,
+        "bodySha256": "c421a6aeddc3729a837a6e0c43084e4a7246d668792ecb73b2bb2bc83beec196",
+        "checkedAt": "2026-11-19T08:39:30.680Z"
+      },
+      {
+        "url": "https://m.sohu.com/a/1095445072_121106832/",
+        "title": "马鞍山发布 10月31日：明日8:00，鸣枪！万人开跑！",
+        "role": "official_city_announcement_public_mirror",
+        "verified": true,
+        "identityReview": "市官方媒体发文交叉核对会展中心领物、开赛时间、A类、规模及分区。",
+        "characters": 1733,
+        "bodySha256": "4643be68e32c2129743423b254d1f3d962156cb11296b3ca7a3b0514dff07f6a",
+        "checkedAt": "2026-11-19T08:39:30.680Z"
+      },
+      {
+        "url": "https://m.sohu.com/a/1092237102_121106832/",
+        "title": "马鞍山文旅：2026采马赛前领物与赛事日免费摆渡专线详情",
+        "role": "official_city_tourism_public_mirror",
+        "verified": true,
+        "identityReview": "来源署名采石矶马拉松，核领物两日4线、比赛11线及常规公交调整。",
+        "characters": 1177,
+        "bodySha256": "a080c6b83084f62cc3ec232ba53f014561765412af2191616fe4c6026074b49b",
+        "checkedAt": "2026-11-19T08:39:30.680Z"
+      },
+      {
+        "url": "https://m.sohu.com/a/1093566835_122387568/",
+        "title": "2026马鞍山采石矶半程马拉松路线图公布",
+        "role": "secondary_corroboration_only",
+        "verified": true,
+        "identityReview": "用于交叉检查后发领物具体时刻，非第一方规程。会展中心 B 馆定位由市官方及组委会领物通知公开搜索索引交叉。",
+        "characters": 1012,
+        "bodySha256": "a0bfc0351a44c247e44860013a87a90475d8fa9f3838bc2ca0f5bd5739d8af30",
+        "checkedAt": "2026-11-19T08:39:30.680Z"
+      },
+      {
+        "url": "https://zuicool.com/event/69909",
+        "title": "最酷本届赛事公开资料",
+        "role": "registration_partner_event_text",
+        "verified": true,
+        "identityReview": "本届预报名时间、抽签、金额、三个报名渠道；报名须知及规程完整规则以组委会原图。",
+        "characters": 5277,
+        "bodySha256": "41992d26021c0dd596744df8bbb906c405cfe42d5097b5880f5e629d52f7cc1d",
+        "checkedAt": "2026-11-19T08:39:30.680Z"
+      }
+    ],
+    "sourceDiscovery": {
+      "method": "先查中国田协认证和马鞍山体育局与市政府官网，再从本届赛事关键词独立检索马鞍山发布、马鞍山体育、马鞍山文旅和采石矶马拉松官方账号；公开原文快照可追溯。",
+      "officialHomepageSearch": "未确认独立当届赛事官网；单一事实优先官方中国田协、马鞍山体育、市政府发布与文旅后发告知；详细规程为公开转载的组委会原图。",
+      "officialGuideOriginal": {
+        "url": "https://mp.weixin.qq.com/s?__biz=MzAwODU2NDczOQ==&mid=2659527295&idx=1&sn=06bca10b6d8566de9e4d508a40d1313d",
+        "result": "Sohu官方账号公开版含可复制文字及实际原图，末尾邮寄答复不全。"
+      },
+      "documentsChecked": [
+        "https://www.runchina.org.cn/#/race/v/detail/1000418257",
+        "https://m.sohu.com/a/1095416138_121106832/",
+        "https://m.sohu.com/a/1095445072_121106832/",
+        "https://m.sohu.com/a/1092237102_121106832/",
+        "https://m.sohu.com/a/1093566835_122387568/",
+        "https://zuicool.com/event/69909"
+      ]
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_and_mini_devtools_390",
+      "miniDisplayed": true,
+      "formalMiniProgramReleaseVerified": false
+    }
+  },
+  {
+    "id": "zuiku-27643",
+    "name": "2026第六届武汉东湖山径赛",
+    "status": "current_source_content_checked_with_questions",
+    "scope": "逐读五张原图和最酷报名资料，完整恢复本届九项规程；分开乐野与一大一小亲子资格、费用、路线及奖励；保留原图爬升冲突和退费边界。",
+    "beforeBodyHash": "09375514ba5df7c043c4cc903c475429401dfc0356082395e222c12ee1f82225",
+    "savedBodyHash": "538dc946ed5a77fc699277db9603025625f550ddee906e994abc3ee7076be3ba",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 5,
+    "pendingImages": 0,
+    "chapters": 12,
+    "groups": 2,
+    "groupCorrections": 0,
+    "questions": [
+      {
+        "topic": "乐野与亲子里程、爬升值来源冲突",
+        "status": "source_basis_retained",
+        "sourceUrl": "https://reg.zuicool.com/23787",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/1ed930853ab177628e3c077a33f726f63fe16a98.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/f86cdf069e2e01b06226b6deac04477b6d2fb75e.png?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/35b0632fb407b055dceb1eae21f06725429bd76a.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/0d1eb8c995d6b9b5fbda7a2452bc7e0ffcef3c9b.png?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/4c8de21ea91dbf742c3848bd26e0330709317086.jpeg?imageView2/2/w/750"
+        ],
+        "detail": "报名页和规程正文乐野标称15/实际14.2、累计升降560；站点表终点580/580。亲子标称8/实际7.4、规程及站点表230/230、图题245。站点滚动表用原表累计值；在正文和亲子海拔图图注解释差异，未另确认实际升降。"
+      },
+      {
+        "topic": "成年及亲子资格与双人同步",
+        "status": "corrected",
+        "sourceUrl": "https://reg.zuicool.com/23787",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/1ed930853ab177628e3c077a33f726f63fe16a98.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/4c8de21ea91dbf742c3848bd26e0330709317086.jpeg?imageView2/2/w/750"
+        ],
+        "detail": "成人有闭区间生日及10公里活动经历；亲子一大一小、50组100人、2019-11-07含以前而2008-11-07不含以后、陪同并一起打卡及完赛。原“体验组”仅出现在亲子路线小标题，无独立报名价或名额，没有另立赛事组别。"
+      },
+      {
+        "topic": "交通、手环、获奖及退款日端点",
+        "status": "source_basis_retained",
+        "sourceUrl": "https://reg.zuicool.com/23787",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/1ed930853ab177628e3c077a33f726f63fe16a98.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/4c8de21ea91dbf742c3848bd26e0330709317086.jpeg?imageView2/2/w/750"
+        ],
+        "detail": "恢复8件交通及住宿信息、起点领物与检录各自窗口；确认50元为无押金手环的遗失或损坏赔偿。亲子以儿童性别排名，前3奖杯。原退费写“10月31日之前”和“11月5日之后”，未查到这两天边界的明确说明。"
+      },
+      {
+        "topic": "官网全文和赛道轨迹未独立确认",
+        "status": "source_basis_retained",
+        "sourceUrl": "https://reg.zuicool.com/23787",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/1ed930853ab177628e3c077a33f726f63fe16a98.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/4c8de21ea91dbf742c3848bd26e0330709317086.jpeg?imageView2/2/w/750"
+        ],
+        "detail": "先按赛事全名、主办方脚度体育、日期、政府/景区域及官方轨迹名搜索。未找到可独立核验本届官网全文或轨迹直链；保留主办方规程原图明示的公众号和轨迹检索名。"
+      }
+    ],
+    "officialDocuments": [],
+    "sourceDiscovery": {
+      "officialUrl": null,
+      "officialKind": "未找到独立官网；武汉脚度体育当届正式规程原图由指定最酷入口发布",
+      "primaryUrls": [
+        "https://reg.zuicool.com/23787"
+      ],
+      "alternativeUrls": [
+        "https://zuicool.com/event/27643"
+      ],
+      "registrationDeadline": {
+        "value": "2026-10-31",
+        "sourceUrl": "https://reg.zuicool.com/23787"
+      }
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_and_mini_devtools_390",
+      "miniDisplayed": true,
+      "formalMiniProgramReleaseVerified": false
+    }
+  }
+]

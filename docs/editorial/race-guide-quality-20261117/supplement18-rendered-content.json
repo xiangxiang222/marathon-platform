@@ -1,0 +1,35 @@
+{
+  "at": "2026-11-19T09:09:09.254Z",
+  "checks": [
+    {
+      "id": "zuiku-16715",
+      "width": 320,
+      "paragraphs": 43,
+      "tableRows": 68,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "caa-1000450007",
+      "width": 320,
+      "paragraphs": 73,
+      "tableRows": 52,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "caa-1000480094",
+      "width": 320,
+      "paragraphs": 57,
+      "tableRows": 32,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-27643",
+      "width": 320,
+      "paragraphs": 43,
+      "tableRows": 39,
+      "fullRenderedContentMatchesProduction": true
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-11-19T09:09:24.815Z"
+}

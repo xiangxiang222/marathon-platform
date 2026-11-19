@@ -1,0 +1,90 @@
+{
+  "at": "2026-11-19T09:09:41.812Z",
+  "passed": true,
+  "checks": [
+    {
+      "id": "zuiku-16715",
+      "width": 320,
+      "sheetId": 1771,
+      "sha256": "0c8b971c19509e87e0a3a9bd1244b58d718fd680c5a5a58bf7f481bb2da4069c",
+      "mime": "jpg",
+      "caption": "十八洞50公里组赛道及海拔图：六个检查补给点，终点古苗河游客服务中心",
+      "dims": {
+        "w": 2339,
+        "h": 2563
+      },
+      "previewOpened": true,
+      "originalZoomOpened": true
+    },
+    {
+      "id": "zuiku-16715",
+      "width": 320,
+      "sheetId": 1772,
+      "sha256": "12bae6c9c5316c779bd3a9e5a379e033a70b5e9c9e1db0be77d0d7c2ac052ac4",
+      "mime": "jpg",
+      "caption": "十八洞23公里组路线及海拔：起终点均为十八洞游客中心；最高海拔来源有差异",
+      "dims": {
+        "w": 2339,
+        "h": 2563
+      },
+      "previewOpened": true,
+      "originalZoomOpened": true
+    },
+    {
+      "id": "zuiku-16715",
+      "width": 390,
+      "sheetId": 1771,
+      "sha256": "0c8b971c19509e87e0a3a9bd1244b58d718fd680c5a5a58bf7f481bb2da4069c",
+      "mime": "jpg",
+      "caption": "十八洞50公里组赛道及海拔图：六个检查补给点，终点古苗河游客服务中心",
+      "dims": {
+        "w": 2339,
+        "h": 2563
+      },
+      "previewOpened": true,
+      "originalZoomOpened": true
+    },
+    {
+      "id": "zuiku-16715",
+      "width": 390,
+      "sheetId": 1772,
+      "sha256": "12bae6c9c5316c779bd3a9e5a379e033a70b5e9c9e1db0be77d0d7c2ac052ac4",
+      "mime": "jpg",
+      "caption": "十八洞23公里组路线及海拔：起终点均为十八洞游客中心；最高海拔来源有差异",
+      "dims": {
+        "w": 2339,
+        "h": 2563
+      },
+      "previewOpened": true,
+      "originalZoomOpened": true
+    },
+    {
+      "id": "caa-1000450007",
+      "width": 320,
+      "sheetId": 1773,
+      "sha256": "611c75f70d95aaec799c552899ada5792f5b3a51fbed4d22247d5f8038eee9da",
+      "mime": "jpg",
+      "caption": "2026 广汉三星堆半马官方赛道图（含海拔曲线和沿线服务）",
+      "dims": {
+        "w": 1080,
+        "h": 1228
+      },
+      "previewOpened": true,
+      "originalZoomOpened": true
+    },
+    {
+      "id": "caa-1000450007",
+      "width": 390,
+      "sheetId": 1773,
+      "sha256": "611c75f70d95aaec799c552899ada5792f5b3a51fbed4d22247d5f8038eee9da",
+      "mime": "jpg",
+      "caption": "2026 广汉三星堆半马官方赛道图（含海拔曲线和沿线服务）",
+      "dims": {
+        "w": 1080,
+        "h": 1228
+      },
+      "previewOpened": true,
+      "originalZoomOpened": true
+    }
+  ]
+}

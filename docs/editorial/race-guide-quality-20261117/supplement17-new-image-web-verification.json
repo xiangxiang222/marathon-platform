@@ -1,0 +1,90 @@
+{
+  "at": "2026-11-19T08:45:12.809Z",
+  "passed": true,
+  "checks": [
+    {
+      "id": "caa-1000418257",
+      "width": 320,
+      "sheetId": 1768,
+      "sha256": "12d7f87c3c66d23b102056f1fa11a82edb08c46645ef0098184272352c9c50bb",
+      "mime": "jpg",
+      "caption": "采石矶半程马拉松官方路线与海拔图，标注折返点、补给、医疗点和厕所。",
+      "dims": {
+        "w": 1080,
+        "h": 1528
+      },
+      "previewOpened": true,
+      "originalZoomOpened": true
+    },
+    {
+      "id": "caa-1000418257",
+      "width": 320,
+      "sheetId": 1769,
+      "sha256": "eaaa12ad009e2ff6c7dc48d3fa7f988e9001f719ea819a3a10015bb7c223f340",
+      "mime": "jpg",
+      "caption": "起点布局图（赛前），含三个集结分区及安检、存衣。",
+      "dims": {
+        "w": 1080,
+        "h": 764
+      },
+      "previewOpened": true,
+      "originalZoomOpened": true
+    },
+    {
+      "id": "caa-1000418257",
+      "width": 320,
+      "sheetId": 1770,
+      "sha256": "c1fb5c465783d818e74909c3e9c66bb8ebb9a3ccbbaeef5aadb135606060f8dc",
+      "mime": "jpg",
+      "caption": "采石矶半程终点布局，标注赛后动线、完赛物品及取衣位置。",
+      "dims": {
+        "w": 1080,
+        "h": 764
+      },
+      "previewOpened": true,
+      "originalZoomOpened": true
+    },
+    {
+      "id": "caa-1000418257",
+      "width": 390,
+      "sheetId": 1768,
+      "sha256": "12d7f87c3c66d23b102056f1fa11a82edb08c46645ef0098184272352c9c50bb",
+      "mime": "jpg",
+      "caption": "采石矶半程马拉松官方路线与海拔图，标注折返点、补给、医疗点和厕所。",
+      "dims": {
+        "w": 1080,
+        "h": 1528
+      },
+      "previewOpened": true,
+      "originalZoomOpened": true
+    },
+    {
+      "id": "caa-1000418257",
+      "width": 390,
+      "sheetId": 1769,
+      "sha256": "eaaa12ad009e2ff6c7dc48d3fa7f988e9001f719ea819a3a10015bb7c223f340",
+      "mime": "jpg",
+      "caption": "起点布局图（赛前），含三个集结分区及安检、存衣。",
+      "dims": {
+        "w": 1080,
+        "h": 764
+      },
+      "previewOpened": true,
+      "originalZoomOpened": true
+    },
+    {
+      "id": "caa-1000418257",
+      "width": 390,
+      "sheetId": 1770,
+      "sha256": "c1fb5c465783d818e74909c3e9c66bb8ebb9a3ccbbaeef5aadb135606060f8dc",
+      "mime": "jpg",
+      "caption": "采石矶半程终点布局，标注赛后动线、完赛物品及取衣位置。",
+      "dims": {
+        "w": 1080,
+        "h": 764
+      },
+      "previewOpened": true,
+      "originalZoomOpened": true
+    }
+  ]
+}
