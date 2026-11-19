@@ -1,0 +1,49 @@
+{
+  "at": "2026-11-19T00:41:18.519Z",
+  "passed": true,
+  "rows": [
+    {
+      "id": "zuiku-85841",
+      "file": "supplement3-c2-derived-reviewed.json",
+      "edits": 9,
+      "scope": "已完成现有来源审校，源内冲突与未公布信息逐条保留；不把疑点当作尚未查看。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-22160",
+      "file": "supplement3-c2-derived-reviewed.json",
+      "edits": 11,
+      "scope": "已完成现有来源审校，源内冲突与未公布信息逐条保留；不把疑点当作尚未查看。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-67371",
+      "file": "supplement-e1-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "补齐后两张完整规程并重看首张，核对全部退款、16行服装尺码、6名奖金、10档奖金池和51档积分、体检、起跑、保险及12项处罚；清理宣传逐字OCR和重复，保留独有周边条件与源文矛盾。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-31314",
+      "file": "supplement-e2-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "以本届官网竞赛规程、报名须知完整长图及可复制参赛声明为准，全篇分块实看校对，保留已有可靠资格/关门/补给；补齐两项目全部8档奖励、8年龄段、团队奖及17项处罚，清除重复摘要、宣传和页眉页脚OCR。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-59237",
+      "file": "supplement-f1-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "连续实际查看完整宣传长图5块及客服2倍放大图，移除重复宣传/往届照片/“不分年龄”口号和OCR残文；保留独有官方客服并与实际查看的活动规程末块分别列来源。本届政府官网优先，逐项核对9月30日新路线和10月12日报名延长原文，精确修正终点、路线和官方截止；资格/健康/费用/处罚/保险等其余可靠文字保留。本轮完成指定遗留宣传章节，既有规程按历史字段审稿保持；不能据本轮称整场所有来源终审。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-49863",
+      "file": "supplement-f1-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "连续实际查看全部5039像素宣传图3块；清掉逐行宣传、断句和重复五组标题，恢复首野报名问项及首野会客厅/小课堂/趣体验独有参赛信息和发布渠道。费用、路线、领物、奖励、退款和咨询既有可靠3章逐字保留，按项目→首野准备→领物奖励退改→咨询顺序排列。本轮完成指定遗留宣传章节，既有规程按历史字段审稿保持；不能据本轮称整场所有来源终审。",
+      "explicitImageReview": true
+    }
+  ],
+  "races": 6
+}

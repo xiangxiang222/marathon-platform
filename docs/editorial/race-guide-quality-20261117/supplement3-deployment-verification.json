@@ -1,0 +1,68 @@
+{
+  "at": "2026-11-19T02:23:11.197Z",
+  "kind": "Supplement3 independent production data update and actual rendered checks; earlier existing representative previews do not prove all races latest interactions",
+  "stages": {
+    "reviewed": true,
+    "saved": true,
+    "displayed": true,
+    "deployedVerified": true,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "reviewScope": {
+    "completeObtainedCurrentSources": 4,
+    "selectedScopeStillRetainedInBacklog": 2
+  },
+  "backup": "server/data/race-guide-quality-20261117/supplement3-applied.json.before.sqlite",
+  "counts": {
+    "races": 434,
+    "sheets": 1754
+  },
+  "schemaUnchanged": true,
+  "quickCheck": "ok",
+  "newUsefulOriginalImages": 8,
+  "web": {
+    "pages": 12,
+    "viewports": [
+      320,
+      390
+    ],
+    "fullTextBlocks": 835,
+    "rows": 377,
+    "focusActualPages": 8,
+    "verifiedAfterMergedPriorDocsWorkflow": true
+  },
+  "mini": {
+    "actualViewport": 390,
+    "races": 6,
+    "groups": 14,
+    "tables": 45,
+    "rows": 377,
+    "transientRenderFailure": "Race page transient connectivity error; restarted project fixture via existing tools, six render checks passed with no mock.",
+    "latestRepresentativePreview": {
+      "status": "not_completed",
+      "reason": "Hong Kong native preview action dispatched after actual table checks, capture and subsequent DevTools remote AppID checks returned read ECONNRESET; cannot confirm preview loaded. 390px complete render checks unaffected.",
+      "screenshotBefore": "/private/tmp/race-guide-quality-20261117/supplement3-mini-hongkong-390-table-before.png",
+      "screenshotAfter": "/private/tmp/race-guide-quality-20261117/supplement3-mini-hongkong-390-table-after.png",
+      "previewAttempts": []
+    }
+  },
+  "previousAuditMerge": {
+    "pullRequest": 192,
+    "sha": "0f5dc20cdd038f00d574bfebd053422d2534b1ab",
+    "deployRun": 44431410147,
+    "conclusion": "success",
+    "ranSyncAndRestart": true,
+    "note": "Repository automatic workflow completed while prior turn was interrupted. It rebuilt/restarted existing application; no config source changes in this PR. Database entry counts and these six pages rechecked after run."
+  },
+  "remaining": {
+    "specificEvents": 61,
+    "coverageEvidenceUnknown": 2,
+    "sourceFollowup": 2
+  },
+  "pending": [
+    "Actual 320px mini app",
+    "Physical gestures including native longpress menu and zoom",
+    "Formal WeChat release and verification",
+    "Supplement3 latest native image preview screenshot recovery"
+  ]
+}
