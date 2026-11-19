@@ -1,0 +1,402 @@
+[
+  {
+    "id": "caa-1000454068",
+    "name": "2026象山半程马拉松",
+    "status": "current_source_content_checked_with_questions",
+    "scope": "实际逐图核完既有1张竞赛规程长图（6段连续裁图）和正式规程1–15章；与数字心动本届报名发布的3张高清同版规程（11段）及本届报名公告14张原图（20段）交叉核对。报名公告使用可复制文字与原图双校，不把旅游广告、轨道交通预告或往届图接入本届规程。",
+    "beforeBodyHash": "20b81db97a1548be43d879f5273bdc7228ef5e9e3fe9ea1d66c837c8ad6b7392",
+    "savedBodyHash": "c48b052cd8de2607301018fea38bf0d819c6fb1374cfe47cc6eef75f0398c097",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 1,
+    "pendingImages": 0,
+    "chapters": 14,
+    "groups": 0,
+    "groupCorrections": 0,
+    "questions": [
+      {
+        "item": "客服邮箱和办公时间冲突已核定",
+        "status": "verified_conflict_resolved",
+        "source": "官方竞赛规程（保存原图及数字心动3页全章）和本届报名须知均为 @126.com、工作日14:00–17:30；最酷赛事页写 @163.com、17:00。",
+        "treatment": "正文用互相印证的组委会两份原件；平台旧值仅留后台，不擅改结构化来源或电话。"
+      },
+      {
+        "item": "最终领物公告及地点、最终路线图和接驳",
+        "status": "later_announcement_not_verified",
+        "source": "原规程要求等待官网/官方公众号最终领物、路线和手册。最新公众号攻略索引找得到，但原文访问未能通过验证。报名宣传轨道交通线路为“即将通车”，无当日实际运营确认。",
+        "treatment": "保留已确认的领物证件、号码布和芯片要求、存取衣以及规程路线，不采用索引残句或宣传预测作为终版。"
+      },
+      {
+        "item": "年龄生日边界及高水平选手标准",
+        "status": "source_wording_preserved",
+        "source": "数字心动本届官方原规程与保存长图都写2008年1月1日前出生、高水平例外、65周岁以上（1961年当年及以前出生）。",
+        "treatment": "保持来源写法，不补出含当日、高水平的判定办法或不同年份。"
+      },
+      {
+        "item": "本届最酷公开活动页与官方报名入口地域",
+        "status": "official_entry_content_limited",
+        "source": "博润本届QR打开官方域名；公开活动详情接口响应业务码600并转通用产品页；数字心动本届公开内容接口返回完整原规程图集。",
+        "treatment": "正文链接可查看的本届报名原图发布页，保留原图，不把不可读的博润详情或平台旧值当官方文本。"
+      },
+      {
+        "item": "奖项办理逾期的具体截止日",
+        "status": "later_announcement_not_verified",
+        "source": "原规程注明逾期未办理按弃奖处理，未写日期；另有公众号公示索引，全文未能可靠访问。",
+        "treatment": "保留原规程公示10个工作日及逾期规则，不另填最后日期。"
+      }
+    ],
+    "officialDocuments": [
+      {
+        "url": "https://www.runchina.org.cn/#/race/v/detail/1000454068",
+        "title": "中国田径协会本届赛事信息查询",
+        "role": "仅认证信息与届次",
+        "verified": true,
+        "identityReview": "标题、主办方、2026.11.08、A类确证，规程原图为申报拟认证",
+        "characters": 761,
+        "bodySha256": "bffcf04e57f4c7ba47d0da4c37a66a3e3abad1646e4e29a01586952c7560953b",
+        "checkedAt": "2026-11-19T07:00:29.944Z"
+      },
+      {
+        "url": "https://api-changzheng.chinaath.com/changzheng-race-center-api/api/race/query/h5/new/content?raceId=1000481033",
+        "title": "数字心动本届公开报名详情资料接口",
+        "role": "本届报名核验与官方高分辨率规程图片清单",
+        "verified": true,
+        "identityReview": "从本届报名海报公开二维码追溯到数字心动赛事1000481033，接口返回同届同规程3张；接口内无全文可复制文字，三张画面实际全文实看",
+        "characters": 593,
+        "bodySha256": "4fa67cdf3bb134a57b2ba2731f0d12696052bdadd7afcce3448a9c8b09103778",
+        "checkedAt": "2026-11-19T07:00:29.944Z"
+      },
+      {
+        "url": "https://zuicool.com/news/archives/312550",
+        "title": "本届象山半程马拉松报名发布页",
+        "role": "可复制报名费额、时段、抽签、报名渠道、未中签退费基本事实",
+        "verified": true,
+        "identityReview": "2026-08-24赛事发行页与同届日期地点、四个公开渠道QR一致",
+        "characters": 1576,
+        "bodySha256": "55b5171081b0f28f45822a1de617f847a62f96614eec5b233b4a526ac94bf507",
+        "checkedAt": "2026-11-19T07:00:29.944Z"
+      },
+      {
+        "url": "https://zuicool.com/news/archives/312566",
+        "title": "本届组委会竞赛规程所在发布页",
+        "role": "既有正式竞赛规程长图及届次",
+        "verified": true,
+        "identityReview": "标题、2026-08-24与平台中留存原图同源",
+        "characters": 942,
+        "bodySha256": "1cd34b41d5b1738870941bf24bb655ead02710db6630b123c65fe6cec07e83ca",
+        "checkedAt": "2026-11-19T07:00:29.944Z"
+      },
+      {
+        "url": "https://zuicool.com/event/91179",
+        "title": "最酷本届赛事资料页",
+        "role": "平台概况以及旧联系方式冲突证据",
+        "verified": true,
+        "identityReview": "页上日期、规模、官方活动名称与规程匹配；保留与组委会原图冲突的旧邮箱/办公时间用于后台审计，不引用为已核定联系方式",
+        "characters": 2099,
+        "bodySha256": "4ffaf18e504857d95d8215609ed23f19e531eff0a7cf06bb7ecfffaaf1ac04b4",
+        "checkedAt": "2026-11-19T07:00:29.944Z"
+      }
+    ],
+    "sourceDiscovery": {
+      "priority": [
+        "中国田径协会本届认证官方查询",
+        "本届博润官方报名入口",
+        "数字心动本届报名通道及正式规程原图",
+        "本届报名发布页可复制基本事项及公告原图",
+        "生产规程保存图和最酷赛事资料页"
+      ],
+      "officialEntry": "https://wx.iborun.cn/mobile/#/activeInfo?gid=693",
+      "organizerPublicAccount": "象山马拉松",
+      "registrationNotice": "https://zuicool.com/news/archives/312550",
+      "partnerOfficialEntry": "https://race.shuzixindong.com/offline/#/pages/race/detail?raceId=1000481033&f=1c909",
+      "partnerPublicContent": "https://api-changzheng.chinaath.com/changzheng-race-center-api/api/race/query/h5/new/content?raceId=1000481033",
+      "relatedOriginalsChecked": [
+        {
+          "url": "https://img.shuzixindong.com/changzheng/a143846a8e424f1092f21f64380bb814.jpg",
+          "sourceUrl": "https://api-changzheng.chinaath.com/changzheng-race-center-api/api/race/query/h5/new/content?raceId=1000481033",
+          "imageUrl": "https://img.shuzixindong.com/changzheng/a143846a8e424f1092f21f64380bb814.jpg",
+          "title": "数字心动高分原规程 1/3：第1–5章",
+          "sha256": "aa35481f6b42f086f35f6071ad3e27fe235b318b303785153b73bccc31449cf3",
+          "width": 1240,
+          "height": 5244,
+          "viewedCrops": [
+            "/tmp/race-guide-quality-20261117/supplement-f6/xs-szx-extra-i0-0.png",
+            "/tmp/race-guide-quality-20261117/supplement-f6/xs-szx-extra-i0-1700.png",
+            "/tmp/race-guide-quality-20261117/supplement-f6/xs-szx-extra-i0-3400.png",
+            "/tmp/race-guide-quality-20261117/supplement-f6/xs-szx-extra-i0-5100.png"
+          ],
+          "fullImageViewed": true,
+          "imageViewed": true,
+          "textReviewed": true
+        },
+        {
+          "url": "https://img.shuzixindong.com/changzheng/63eccf5be83f4e9597599b1d56f24fb2.jpg",
+          "sourceUrl": "https://api-changzheng.chinaath.com/changzheng-race-center-api/api/race/query/h5/new/content?raceId=1000481033",
+          "imageUrl": "https://img.shuzixindong.com/changzheng/63eccf5be83f4e9597599b1d56f24fb2.jpg",
+          "title": "数字心动高分原规程 2/3：第6–7章",
+          "sha256": "8b4703df277b2d50b4b489efc23ff82b0904d4a14a569816dbee6117a281f2bf",
+          "width": 1251,
+          "height": 5716,
+          "viewedCrops": [
+            "/tmp/race-guide-quality-20261117/supplement-f6/xs-szx-extra-i1-0.png",
+            "/tmp/race-guide-quality-20261117/supplement-f6/xs-szx-extra-i1-1700.png",
+            "/tmp/race-guide-quality-20261117/supplement-f6/xs-szx-extra-i1-3400.png",
+            "/tmp/race-guide-quality-20261117/supplement-f6/xs-szx-extra-i1-5100.png"
+          ],
+          "fullImageViewed": true,
+          "imageViewed": true,
+          "textReviewed": true
+        },
+        {
+          "url": "https://img.shuzixindong.com/changzheng/e64981018ecf4064a0c7ccd53e8bc596.jpg",
+          "sourceUrl": "https://api-changzheng.chinaath.com/changzheng-race-center-api/api/race/query/h5/new/content?raceId=1000481033",
+          "imageUrl": "https://img.shuzixindong.com/changzheng/e64981018ecf4064a0c7ccd53e8bc596.jpg",
+          "title": "数字心动高分原规程 3/3：第8–15章",
+          "sha256": "6d788a1ab4ee0c41ef64acc8d62bd9e0b7bbac7584a9045a168a898a3e2219a4",
+          "width": 1251,
+          "height": 3968,
+          "viewedCrops": [
+            "/tmp/race-guide-quality-20261117/supplement-f6/xs-szx-extra-i2-0.png",
+            "/tmp/race-guide-quality-20261117/supplement-f6/xs-szx-extra-i2-1700.png",
+            "/tmp/race-guide-quality-20261117/supplement-f6/xs-szx-extra-i2-3400.png"
+          ],
+          "fullImageViewed": true,
+          "imageViewed": true,
+          "textReviewed": true
+        },
+        {
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/74c15eb6a012be086825a3239de086e658f0871e.jpeg?imageView2/2/w/640",
+          "sourceUrl": "https://zuicool.com/news/archives/312550",
+          "imageUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/74c15eb6a012be086825a3239de086e658f0871e.jpeg?imageView2/2/w/640",
+          "title": "报名封面",
+          "sha256": "9a839345013c97e8724636f1ac908dfb340577f12f3ca7a30806d50a8f03d3ac",
+          "width": 640,
+          "height": 139,
+          "viewedCrops": [
+            "/tmp/race-guide-quality-20261117/supplement-f6/xs-open-extra-i0-0.png"
+          ],
+          "fullImageViewed": true,
+          "imageViewed": true,
+          "textReviewed": true
+        },
+        {
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/8de5f020a6454d9e36742cb6828634c6a99af4ec.jpeg?imageView2/2/w/300",
+          "sourceUrl": "https://zuicool.com/news/archives/312550",
+          "imageUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/8de5f020a6454d9e36742cb6828634c6a99af4ec.jpeg?imageView2/2/w/300",
+          "title": "组委会公众号二维码",
+          "sha256": "b50c104bced8c0fdee4304821b003a0ec6eea76e43344c8abd8b0ac7b921d024",
+          "width": 300,
+          "height": 301,
+          "viewedCrops": [
+            "/tmp/race-guide-quality-20261117/supplement-f6/xs-open-extra-i1-0.png"
+          ],
+          "fullImageViewed": true,
+          "imageViewed": true,
+          "textReviewed": true
+        },
+        {
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/0f307734b20d0a88246e154f0d44df877161098e.png?imageView2/2/w/300",
+          "sourceUrl": "https://zuicool.com/news/archives/312550",
+          "imageUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/0f307734b20d0a88246e154f0d44df877161098e.png?imageView2/2/w/300",
+          "title": "润跑智联小程序码",
+          "sha256": "129f1c09b24ef749c01fb26b7237dd766921624993301e700d78aed8ad936df1",
+          "width": 300,
+          "height": 300,
+          "viewedCrops": [
+            "/tmp/race-guide-quality-20261117/supplement-f6/xs-open-extra-i2-0.png"
+          ],
+          "fullImageViewed": true,
+          "imageViewed": true,
+          "textReviewed": true
+        },
+        {
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/9e9ea41821e6b60176c6aab4258190df3f7e166d.png?imageView2/2/w/300",
+          "sourceUrl": "https://zuicool.com/news/archives/312550",
+          "imageUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/9e9ea41821e6b60176c6aab4258190df3f7e166d.png?imageView2/2/w/300",
+          "title": "博润官方系统二维码",
+          "sha256": "7bc77150d961b377fc01b51c04159a252c8016f158728010ca79bc6e0c18cbe6",
+          "width": 300,
+          "height": 298,
+          "viewedCrops": [
+            "/tmp/race-guide-quality-20261117/supplement-f6/xs-open-extra-i3-0.png"
+          ],
+          "fullImageViewed": true,
+          "imageViewed": true,
+          "textReviewed": true
+        },
+        {
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/9460ef693afdeaec622871b3e490a1e902e9c71d.png?imageView2/2/w/300",
+          "sourceUrl": "https://zuicool.com/news/archives/312550",
+          "imageUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/9460ef693afdeaec622871b3e490a1e902e9c71d.png?imageView2/2/w/300",
+          "title": "数字心动二维码",
+          "sha256": "60a26b1a24d3e087f4ebe938795ec73303b585f4d8139d8c13594e9d7305295d",
+          "width": 300,
+          "height": 300,
+          "viewedCrops": [
+            "/tmp/race-guide-quality-20261117/supplement-f6/xs-open-extra-i4-0.png"
+          ],
+          "fullImageViewed": true,
+          "imageViewed": true,
+          "textReviewed": true
+        },
+        {
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/4b1646a2871eccfd243b60c4bad923b0b184da83.jpeg?imageView2/2/w/750",
+          "sourceUrl": "https://zuicool.com/news/archives/312550",
+          "imageUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/4b1646a2871eccfd243b60c4bad923b0b184da83.jpeg?imageView2/2/w/750",
+          "title": "报名日期总海报",
+          "sha256": "3d6c4ce010922d7efd18b921b58a928e6137cbaacb8efb39ec174d205cd2fc01",
+          "width": 750,
+          "height": 1333,
+          "viewedCrops": [
+            "/tmp/race-guide-quality-20261117/supplement-f6/xs-open-extra-i5-0.png"
+          ],
+          "fullImageViewed": true,
+          "imageViewed": true,
+          "textReviewed": true
+        },
+        {
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/52af0462233b95cc2bc7ac5347520acae753a186.jpeg?imageView2/2/w/750",
+          "sourceUrl": "https://zuicool.com/news/archives/312550",
+          "imageUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/52af0462233b95cc2bc7ac5347520acae753a186.jpeg?imageView2/2/w/750",
+          "title": "赛事宣传与号码现场服务说明",
+          "sha256": "0b04aebd9a3f5ab7b023f5e45f38ae6e95ddfc1da530ddfc910e3a5b34fbe56a",
+          "width": 750,
+          "height": 6387,
+          "viewedCrops": [
+            "/tmp/race-guide-quality-20261117/supplement-f6/xs-open-extra-i6-0.png",
+            "/tmp/race-guide-quality-20261117/supplement-f6/xs-open-extra-i6-1700.png",
+            "/tmp/race-guide-quality-20261117/supplement-f6/xs-open-extra-i6-3400.png",
+            "/tmp/race-guide-quality-20261117/supplement-f6/xs-open-extra-i6-5100.png"
+          ],
+          "fullImageViewed": true,
+          "imageViewed": true,
+          "textReviewed": true
+        },
+        {
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/a6362e6948d6d95e74da4fb6c1d54761a9fbfc06.jpeg?imageView2/2/w/750",
+          "sourceUrl": "https://zuicool.com/news/archives/312550",
+          "imageUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/a6362e6948d6d95e74da4fb6c1d54761a9fbfc06.jpeg?imageView2/2/w/750",
+          "title": "报名须知、比赛参数、报名及客服二维码",
+          "sha256": "4d06ae5ecc456a08b714609554bc2c74ce722073715a7ffd0a12f0fd2360b29c",
+          "width": 750,
+          "height": 4683,
+          "viewedCrops": [
+            "/tmp/race-guide-quality-20261117/supplement-f6/xs-open-extra-i7-0.png",
+            "/tmp/race-guide-quality-20261117/supplement-f6/xs-open-extra-i7-1700.png",
+            "/tmp/race-guide-quality-20261117/supplement-f6/xs-open-extra-i7-3400.png"
+          ],
+          "fullImageViewed": true,
+          "imageViewed": true,
+          "textReviewed": true
+        },
+        {
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/49f37d1ee41d8d2353a92cec045f1942a5baf601.jpeg?imageView2/2/w/750",
+          "sourceUrl": "https://zuicool.com/news/archives/312550",
+          "imageUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/49f37d1ee41d8d2353a92cec045f1942a5baf601.jpeg?imageView2/2/w/750",
+          "title": "定档预热文字",
+          "sha256": "0721821b12202b018cd53634fbc22a81b80a78a5180102b390fad08711260ab6",
+          "width": 750,
+          "height": 1006,
+          "viewedCrops": [
+            "/tmp/race-guide-quality-20261117/supplement-f6/xs-open-extra-i8-0.png"
+          ],
+          "fullImageViewed": true,
+          "imageViewed": true,
+          "textReviewed": true
+        },
+        {
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/e064fa587ef025c937ab14600ca8b35d26f78802.jpeg?imageView2/2/w/750",
+          "sourceUrl": "https://zuicool.com/news/archives/312550",
+          "imageUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/e064fa587ef025c937ab14600ca8b35d26f78802.jpeg?imageView2/2/w/750",
+          "title": "往届照片及沿海道路宣传",
+          "sha256": "ab871443411a2371b61c7635ae349a394421920ba358edd0f409c0e77c188f30",
+          "width": 750,
+          "height": 3181,
+          "viewedCrops": [
+            "/tmp/race-guide-quality-20261117/supplement-f6/xs-open-extra-i9-0.png",
+            "/tmp/race-guide-quality-20261117/supplement-f6/xs-open-extra-i9-1700.png"
+          ],
+          "fullImageViewed": true,
+          "imageViewed": true,
+          "textReviewed": true
+        },
+        {
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/c0a36e1f8490380bc71cde64cc19d12cf92c58c6.jpeg?imageView2/2/w/750",
+          "sourceUrl": "https://zuicool.com/news/archives/312550",
+          "imageUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/c0a36e1f8490380bc71cde64cc19d12cf92c58c6.jpeg?imageView2/2/w/750",
+          "title": "轨道交通拟开通宣传",
+          "sha256": "dd69a41e32d6fb8e50046de54c9a04dc4312bbe47f9b3aa54f8f6b10cbda90f7",
+          "width": 750,
+          "height": 267,
+          "viewedCrops": [
+            "/tmp/race-guide-quality-20261117/supplement-f6/xs-open-extra-i10-0.png"
+          ],
+          "fullImageViewed": true,
+          "imageViewed": true,
+          "textReviewed": true
+        },
+        {
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/3a61fb005642394a0f874d148b3da038a36e05c5.jpeg?imageView2/2/w/750",
+          "sourceUrl": "https://zuicool.com/news/archives/312550",
+          "imageUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/3a61fb005642394a0f874d148b3da038a36e05c5.jpeg?imageView2/2/w/750",
+          "title": "轨道交通站点预告及宣传照片",
+          "sha256": "b9f8871e265c23b0f7891396c18741c854c3cb0b02055bf0a374b4d6cc4b8af4",
+          "width": 750,
+          "height": 972,
+          "viewedCrops": [
+            "/tmp/race-guide-quality-20261117/supplement-f6/xs-open-extra-i11-0.png"
+          ],
+          "fullImageViewed": true,
+          "imageViewed": true,
+          "textReviewed": true
+        },
+        {
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/02e0544d204ff2088c922673c5adb4849e543fe3.jpeg?imageView2/2/w/750",
+          "sourceUrl": "https://zuicool.com/news/archives/312550",
+          "imageUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/02e0544d204ff2088c922673c5adb4849e543fe3.jpeg?imageView2/2/w/750",
+          "title": "结尾宣传",
+          "sha256": "06e50bb745ebde30b4a1221d459629bdb4d75d5c4e9402503a74d4a897a95bc4",
+          "width": 750,
+          "height": 213,
+          "viewedCrops": [
+            "/tmp/race-guide-quality-20261117/supplement-f6/xs-open-extra-i12-0.png"
+          ],
+          "fullImageViewed": true,
+          "imageViewed": true,
+          "textReviewed": true
+        },
+        {
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/5ef38d6c206483da3b92ad196fc03dc7cf310957.jpeg?imageView2/2/w/750",
+          "sourceUrl": "https://zuicool.com/news/archives/312550",
+          "imageUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/5ef38d6c206483da3b92ad196fc03dc7cf310957.jpeg?imageView2/2/w/750",
+          "title": "预报名开始／截止／抽签时刻",
+          "sha256": "83e9a0828559f2198aa3b721131e2a3504141dcc0a60b56a86310757d5ec8cad",
+          "width": 750,
+          "height": 602,
+          "viewedCrops": [
+            "/tmp/race-guide-quality-20261117/supplement-f6/xs-open-extra-i13-0.png"
+          ],
+          "fullImageViewed": true,
+          "imageViewed": true,
+          "textReviewed": true
+        }
+      ],
+      "searchQueries": [
+        "2026象山半程马拉松 官网 博润 体育 竞赛规程",
+        "2026象山半程马拉松 11月8日 领物须知 人民广场 接驳",
+        "2026象山农商银行象山半程马拉松 赛前攻略 领物 积分",
+        "组委会报名二维码、数字心动本届公开资料接口"
+      ],
+      "outcome": "已检查主办地政府、博润官网及官方二维码；未取得博润可复制本届竞赛规程，官方合作报名平台取得更清晰同版原件，逐章逐表实看。组委会报名须知和原规程均校对联系方式，区分与较低优先平台的冲突。"
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_and_mini_devtools_390",
+      "miniDisplayed": true,
+      "formalMiniProgramReleaseVerified": false
+    }
+  }
+]

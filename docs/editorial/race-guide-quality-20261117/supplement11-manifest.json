@@ -1,0 +1,469 @@
+[
+  {
+    "id": "caa-1000453054",
+    "name": "2026连云港·连岛半程马拉松",
+    "status": "current_source_content_checked_with_questions",
+    "scope": "完整逐段核对当前3张既有竞赛规程原图（21段连续裁图）、原规程第1–15章、报名公告的6图和本届报名须知1–7章。优先采用组委会可复制规程并互校其5个表图；重复个人表只呈现一次。主办方市政府报道补充交通。现有赛期、税费、成绩期限及组卡未覆盖。",
+    "beforeBodyHash": "edee79c55d180a4f9c245f0f59724ba331417acca2656cb00ea5b1b396635328",
+    "savedBodyHash": "28b2f33ef4a3dd0ec5e6a6285310b6a545ad303d15b55331fd21387dfa8819fa",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 3,
+    "pendingImages": 0,
+    "chapters": 15,
+    "groups": 0,
+    "groupCorrections": 0,
+    "questions": [
+      {
+        "item": "正式领物须知的时段和地点、最终号码及抽签公布日期",
+        "status": "later_announcement_not_verified",
+        "source": "组委会规程及报名须知写明另行公告；独立检索找到了本届原公众号索引，但微信原文访问未能通过；其他来源不足以完整核定",
+        "treatment": "保留已核验的本人原证件、相关凭证、承诺书和不得代领；不猜精确日程或地点。"
+      },
+      {
+        "item": "跑团赛中赛付款流程",
+        "status": "source_internal_scope_ambiguous",
+        "source": "官方规程第8章先给团体奖表，紧随的奖费条款却将上述奖项称为个人赛奖励。",
+        "treatment": "团奖排名金额按原表，个人赛公示/银行/税款/期限用个人范围；未擅自归入团体兑付手续。"
+      },
+      {
+        "item": "65岁和1962年出生截止表述",
+        "status": "source_wording_preserved",
+        "source": "组委会汇赛通规程与报名须知都写“65周岁及以上（1962年1月1日前出生）”。",
+        "treatment": "按原文保留两个条件的表述，不自行以年份换算或加含当日。"
+      }
+    ],
+    "officialDocuments": [
+      {
+        "url": "https://mix-api.irunner.mobi/match/match-info?match_eng=6a6ab810df1b4",
+        "title": "组委会汇赛通公开接口：《2026连云港·连岛半程马拉松竞赛规程》",
+        "role": "第一方正文；与源图互校",
+        "verified": true,
+        "identityReview": "从本届报名须知公开二维码进入，响应含完整本届标题、日期及运营短信签名；只归档公开 H5 规程正文",
+        "characters": 6940,
+        "bodySha256": "94d598ea211d43463f4710a099066b3b1bbd2518d3ff80bba98d6817ca324e0a",
+        "checkedAt": "2026-11-19T06:53:21.747Z"
+      },
+      {
+        "url": "https://www.lyg.gov.cn/zglygzfmhwz/tpxwa/content/ea5dc05d-0282-484d-b466-fb96490fac18.html",
+        "title": "连云港市人民政府门户：本届比赛举办报道",
+        "role": "主办方政府信息；实赛日期、规模、交通和医疗安排",
+        "verified": true,
+        "identityReview": "2026-11-09发布，明确11月8日的本届连岛半马",
+        "characters": 1214,
+        "bodySha256": "c71b7932e37ffd1c0b9044ddcd923674ecb8ac387de2ac51ab3cfa90b8bf19ef",
+        "checkedAt": "2026-11-19T06:53:21.747Z"
+      },
+      {
+        "url": "https://zuicool.com/news/archives/311083",
+        "title": "本届报名公告与《报名须知》原图发布页",
+        "role": "报名入口及补充原图定位",
+        "verified": true,
+        "identityReview": "标题、报名日期、项目费额与第一方竞赛规程和保存原图相符",
+        "characters": 1352,
+        "bodySha256": "3087ebb7bbe99a3e10e2978e60772488281e7bfe130af92dcb6c13256929f172",
+        "checkedAt": "2026-11-19T06:53:21.747Z"
+      },
+      {
+        "url": "https://www.runchina.org.cn/#/race/v/detail/1000453054",
+        "title": "中国田径协会赛事信息查询：2026连云港·连岛半程马拉松",
+        "role": "认证等级记录",
+        "verified": true,
+        "identityReview": "本届标题、主办方、2026.11.08、B类相符",
+        "characters": 767,
+        "bodySha256": "127e1afd1a4dae10a4140ac2308f8dd9af29fa422d2730d04d057bbf6ea33989",
+        "checkedAt": "2026-11-19T06:53:21.747Z"
+      }
+    ],
+    "sourceDiscovery": {
+      "priority": [
+        "本届组委会汇赛通公开接口完整规程",
+        "主办方市政府本届比赛报道",
+        "中国田径协会本届赛事等级查询",
+        "本届报名发布页及《报名须知》七章原图",
+        "现有3张原规程长图"
+      ],
+      "officialEntry": "https://m.irunner.mobi/mix-race-apply/?match_eng=6a6ab810df1b4#/grid",
+      "registrationNotice": "https://zuicool.com/news/archives/311083",
+      "relatedOriginalsChecked": [
+        {
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/f7d0d2ed5425e1b30c83601860a09e13b61bcaa1.jpeg?imageView2/2/w/750",
+          "sourceUrl": "https://zuicool.com/news/archives/311083",
+          "imageUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/f7d0d2ed5425e1b30c83601860a09e13b61bcaa1.jpeg?imageView2/2/w/750",
+          "title": "赛事封面",
+          "sha256": "861009bf37c6cb6b140ccc64a7931799ba3677db02dd40bea0e08981d9bfcc17",
+          "width": 750,
+          "height": 500,
+          "viewedCrops": [
+            "/tmp/race-guide-quality-20261117/supplement-f6/ld-open-extra-i0-0.png"
+          ],
+          "fullImageViewed": true,
+          "imageViewed": true,
+          "textReviewed": true
+        },
+        {
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/a73fa4006bc721196395e8c93f0a2cd58ebbf466.jpeg?imageView2/2/w/300",
+          "sourceUrl": "https://zuicool.com/news/archives/311083",
+          "imageUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/a73fa4006bc721196395e8c93f0a2cd58ebbf466.jpeg?imageView2/2/w/300",
+          "title": "报名入口二维码",
+          "sha256": "e109e29cf7b3384bf638a16a405984a974f3249d6d1de272d25d87f6b45d2052",
+          "width": 300,
+          "height": 303,
+          "viewedCrops": [
+            "/tmp/race-guide-quality-20261117/supplement-f6/ld-open-extra-i1-0.png"
+          ],
+          "fullImageViewed": true,
+          "imageViewed": true,
+          "textReviewed": true
+        },
+        {
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/d436ce6f1a022d2cc1334d5ff2d69eeae17f1c0f.jpeg?imageView2/2/w/750",
+          "sourceUrl": "https://zuicool.com/news/archives/311083",
+          "imageUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/d436ce6f1a022d2cc1334d5ff2d69eeae17f1c0f.jpeg?imageView2/2/w/750",
+          "title": "报名日期海报",
+          "sha256": "f2963f8dd32490193bd327ceed3379b38da20eb3b0ad4b5c779996993455d8d6",
+          "width": 750,
+          "height": 1415,
+          "viewedCrops": [
+            "/tmp/race-guide-quality-20261117/supplement-f6/ld-open-extra-i2-0.png"
+          ],
+          "fullImageViewed": true,
+          "imageViewed": true,
+          "textReviewed": true
+        },
+        {
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/5ee6fef0b4c28438c086348f6329c568fae11c7e.jpeg?imageView2/2/w/750",
+          "sourceUrl": "https://zuicool.com/news/archives/311083",
+          "imageUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/5ee6fef0b4c28438c086348f6329c568fae11c7e.jpeg?imageView2/2/w/750",
+          "title": "活动宣传及往届照片",
+          "sha256": "f1e24ac4f07ba70326b64122ccd2476917461538ca68dbc282914dfc8210f8dc",
+          "width": 750,
+          "height": 5819,
+          "viewedCrops": [
+            "/tmp/race-guide-quality-20261117/supplement-f6/ld-open-extra-i3-0.png",
+            "/tmp/race-guide-quality-20261117/supplement-f6/ld-open-extra-i3-1700.png",
+            "/tmp/race-guide-quality-20261117/supplement-f6/ld-open-extra-i3-3400.png",
+            "/tmp/race-guide-quality-20261117/supplement-f6/ld-open-extra-i3-5100.png"
+          ],
+          "fullImageViewed": true,
+          "imageViewed": true,
+          "textReviewed": true
+        },
+        {
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/6c9cd748a19474ace58f213f61d115940be24807.jpeg?imageView2/2/w/750",
+          "sourceUrl": "https://zuicool.com/news/archives/311083",
+          "imageUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/6c9cd748a19474ace58f213f61d115940be24807.jpeg?imageView2/2/w/750",
+          "title": "本届赛事参数及报名入口",
+          "sha256": "ba64589d9e3057a7f7118f086be2a936e98deadf8ff4e89f15b6bf184aff86ce",
+          "width": 750,
+          "height": 1637,
+          "viewedCrops": [
+            "/tmp/race-guide-quality-20261117/supplement-f6/ld-open-extra-i4-0.png"
+          ],
+          "fullImageViewed": true,
+          "imageViewed": true,
+          "textReviewed": true
+        },
+        {
+          "url": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/fa864f75a84fc43ccf1e079f11424441f4e0f545.jpeg?imageView2/2/w/750",
+          "sourceUrl": "https://zuicool.com/news/archives/311083",
+          "imageUrl": "https://zc3wp-uploads.bkt.zuicool.com/2026/08/fa864f75a84fc43ccf1e079f11424441f4e0f545.jpeg?imageView2/2/w/750",
+          "title": "组委会本届《报名须知》全7章",
+          "sha256": "d3a25b7711c8d79d268142a6e9ae47f5d5996546d84099fb9d19ac05cf622c84",
+          "width": 750,
+          "height": 12629,
+          "viewedCrops": [
+            "/tmp/race-guide-quality-20261117/supplement-f6/ld-open-extra-i5-0.png",
+            "/tmp/race-guide-quality-20261117/supplement-f6/ld-open-extra-i5-1700.png",
+            "/tmp/race-guide-quality-20261117/supplement-f6/ld-open-extra-i5-3400.png",
+            "/tmp/race-guide-quality-20261117/supplement-f6/ld-open-extra-i5-5100.png",
+            "/tmp/race-guide-quality-20261117/supplement-f6/ld-open-extra-i5-6800.png",
+            "/tmp/race-guide-quality-20261117/supplement-f6/ld-open-extra-i5-8500.png",
+            "/tmp/race-guide-quality-20261117/supplement-f6/ld-open-extra-i5-10200.png",
+            "/tmp/race-guide-quality-20261117/supplement-f6/ld-open-extra-i5-11900.png"
+          ],
+          "fullImageViewed": true,
+          "imageViewed": true,
+          "textReviewed": true
+        },
+        {
+          "url": "https://event.oss.irunner.mobi/7976/Upload/175b30bc4dcd49ec4d106ed08283a1e8.png",
+          "sourceUrl": "https://mix-api.irunner.mobi/match/match-info?match_eng=6a6ab810df1b4",
+          "imageUrl": "https://event.oss.irunner.mobi/7976/Upload/175b30bc4dcd49ec4d106ed08283a1e8.png",
+          "title": "半马关门时间",
+          "sha256": "cb24d0be5eb02a168715e0e1af6899c28f277ea1ee1006242641168ba45e1e83",
+          "width": 848,
+          "height": 380,
+          "imageViewed": true,
+          "textReviewed": true,
+          "fullImageViewed": true,
+          "viewedCrops": [
+            "/tmp/race-guide-quality-20261117/supplement-f6/ld-irunner-table-0.png"
+          ]
+        },
+        {
+          "url": "https://event.oss.irunner.mobi/7976/Upload/90eee2aab373df92c57c7acca29ef9f0.png",
+          "sourceUrl": "https://mix-api.irunner.mobi/match/match-info?match_eng=6a6ab810df1b4",
+          "imageUrl": "https://event.oss.irunner.mobi/7976/Upload/90eee2aab373df92c57c7acca29ef9f0.png",
+          "title": "补给设置",
+          "sha256": "577b0ba18e7579a7c111ccc189148aeee090ba657738158429f6d12204bc5aa4",
+          "width": 794,
+          "height": 504,
+          "imageViewed": true,
+          "textReviewed": true,
+          "fullImageViewed": true,
+          "viewedCrops": [
+            "/tmp/race-guide-quality-20261117/supplement-f6/ld-irunner-table-1.png"
+          ]
+        },
+        {
+          "url": "https://event.oss.irunner.mobi/7976/Upload/403f180a2dc4913ed530ed90dd5806ab.png",
+          "sourceUrl": "https://mix-api.irunner.mobi/match/match-info?match_eng=6a6ab810df1b4",
+          "imageUrl": "https://event.oss.irunner.mobi/7976/Upload/403f180a2dc4913ed530ed90dd5806ab.png",
+          "title": "个人奖金",
+          "sha256": "ca1370c210598ca968f297a90d637f8d6ab9d7d12a5932fb9b441c1cf4bbef78",
+          "width": 900,
+          "height": 816,
+          "imageViewed": true,
+          "textReviewed": true,
+          "fullImageViewed": true,
+          "viewedCrops": [
+            "/tmp/race-guide-quality-20261117/supplement-f6/ld-irunner-table-2.png"
+          ]
+        },
+        {
+          "url": "https://event.oss.irunner.mobi/7976/Upload/8c497318f7766c1297f15a1827ce0697.png",
+          "sourceUrl": "https://mix-api.irunner.mobi/match/match-info?match_eng=6a6ab810df1b4",
+          "imageUrl": "https://event.oss.irunner.mobi/7976/Upload/8c497318f7766c1297f15a1827ce0697.png",
+          "title": "个人奖金（正文重复版本）",
+          "sha256": "f9a1741309a022159a41b0fed9a1baa851ec52c4cc93ac15ca021ac1c5cb019f",
+          "width": 884,
+          "height": 822,
+          "imageViewed": true,
+          "textReviewed": true,
+          "fullImageViewed": true,
+          "viewedCrops": [
+            "/tmp/race-guide-quality-20261117/supplement-f6/ld-irunner-table-3.png"
+          ]
+        },
+        {
+          "url": "https://event.oss.irunner.mobi/7976/Upload/1f7ec13533505c7a94dfb89ccbaa0321.png",
+          "sourceUrl": "https://mix-api.irunner.mobi/match/match-info?match_eng=6a6ab810df1b4",
+          "imageUrl": "https://event.oss.irunner.mobi/7976/Upload/1f7ec13533505c7a94dfb89ccbaa0321.png",
+          "title": "跑团奖金",
+          "sha256": "3db6a7403f9af893c507b7d9c28c6a43aae91c141b23e5a2e39e496efb94c67a",
+          "width": 814,
+          "height": 968,
+          "imageViewed": true,
+          "textReviewed": true,
+          "fullImageViewed": true,
+          "viewedCrops": [
+            "/tmp/race-guide-quality-20261117/supplement-f6/ld-irunner-table-4.png"
+          ]
+        }
+      ],
+      "queries": [
+        "2026 连云港 连岛半程马拉松 官方 竞赛规程 报名须知",
+        "连岛马拉松 2026 领物须知 11月6日 11月7日",
+        "连云港市政府 2026 连岛半程马拉松 11月8日 交通接驳",
+        "连岛马拉松 2026 抽签 公布 领物 参赛号码",
+        "报名公告二维码实际解码及前端公开赛事信息接口"
+      ],
+      "identityChecks": [
+        "2026年11月8日、8时发令、在海一方公园、江苏飞睿体育文化",
+        "中国田径协会本届B类、同日/同项目"
+      ]
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_and_mini_devtools_390",
+      "miniDisplayed": true,
+      "formalMiniProgramReleaseVerified": false
+    }
+  },
+  {
+    "id": "zuiku-35462",
+    "name": "2026 FUGA训练赛东莞年度总决赛",
+    "status": "partially_verified",
+    "scope": "本轮先校正当届24K路线更新后的关门和分站表，以及正文的旧版时刻标识；其余章节及另外两组仍在完整复审。",
+    "beforeBodyHash": "1c98b8bf2593e76ff43170dbd17b1bb723db802ef0d172d64065f3bd9561225e",
+    "savedBodyHash": "4bb4b367236f89ab887e8a0c69b49d9ea184c710175a329dc778820a7acb967b",
+    "bodyChanged": true,
+    "edits": 5,
+    "viewedImages": 4,
+    "pendingImages": 3,
+    "chapters": 20,
+    "groups": 3,
+    "groupCorrections": 2,
+    "questions": [
+      {
+        "item": "24K终点关门版本",
+        "status": "superseding_update_identified",
+        "source": "本届组委会路线更新图公布14:30及7小时；旧规程13:30/6小时；最酷的可复制项目描述14:30和6小时。",
+        "treatment": "明确采用更新图，并在早期表和报名页说明处保留出处。"
+      },
+      {
+        "item": "更改后的全场结束时刻、本届正式领物地点与时间",
+        "status": "not_verified",
+        "source": "早期图写14:00赛事结束且领物后续通知。",
+        "treatment": "不推算新结束时刻，后续继续核。"
+      },
+      {
+        "item": "24K新表中的分段关门时长与时刻差",
+        "status": "separate_columns_retained",
+        "source": "更新表11:30和13:00两个墙钟时刻，对应行分段时长均写2:00。",
+        "treatment": "按照片独立抄录，并列时刻供参赛者查看。"
+      }
+    ],
+    "officialDocuments": [],
+    "sourceDiscovery": {
+      "strategy": "查同届官网和主办方发布后回到最酷报名页；未找到可独立验证的官网全文。读取同届可复制报名信息，对照报名页所附组委会轨迹更新原图与早期规程原图。",
+      "registrationUrl": "https://reg.zuicool.com/98503",
+      "routeUpdate": [
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/10/4e286ffc966a2d7cfebb8b62e4d105ac9403cc46.jpeg?imageView2/2/w/750",
+        "https://zc3wp-uploads.bkt.zuicool.com/2026/10/169837c9c0881608b54d436939dfab9a5ddfc581.jpeg?imageView2/2/w/750"
+      ]
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_and_mini_devtools_390",
+      "miniDisplayed": true,
+      "formalMiniProgramReleaseVerified": false
+    }
+  },
+  {
+    "id": "caa-1000479060",
+    "name": "2026贵州铜仁·梵净山马拉松",
+    "status": "current_source_content_checked_with_questions",
+    "scope": "本届赛事官网主源：竞赛规程、报名须知、高校联赛全文；核对当届田协、省政府和最酷实报页面。实看8张原图28块，报名、路线、关门、补给、奖金、联赛、保险、救护、处罚及咨询条款均已对照。去掉重复宣传和二维码，保留报名、两张规则及文旅权益原图。",
+    "beforeBodyHash": "52697469c5653cee24d63474152e6503b3249c0385716e6a25e43d827693d911",
+    "savedBodyHash": "65c74e375f3d7dd86bd3abbbf3e9f4b30db4db5a0664a94fcd186341be284a0a",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 8,
+    "pendingImages": 0,
+    "chapters": 19,
+    "groups": 2,
+    "groupCorrections": 10,
+    "questions": [
+      {
+        "topic": "报名年龄同届文件边界不一致",
+        "status": "source_basis_retained",
+        "sourceUrl": "https://tongren.sport-china.cn/doc/1052/8232",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/1312050dc607597e5f7b45decc49061f44c6b637.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/c014d0e05576141d5733ee19e5be834e3700ec4c.jpeg?imageView2/2/w/750"
+        ],
+        "detail": "官网竞赛规程与报名须知全文一致写2006/2008年1月1日前出生。报名须知原图写2026年1月1日年满20/18，依官网主源且提示恰好生日需核实；大众65岁写1960年12月31日前，高校比赛日口径为1961年1月1日前，不混用。"
+      },
+      {
+        "topic": "团队人数30重叠、7/15工作日冲突",
+        "status": "source_not_confirmed",
+        "sourceUrl": "https://tongren.sport-china.cn/doc/1052/8232",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/1312050dc607597e5f7b45decc49061f44c6b637.jpeg?imageView2/2/w/750"
+        ],
+        "detail": "官网和报名原图均保留 10人（含）至30人9折、30人（含）以上8.5折，恰好30未界定。同一报名须知的折扣表脚注称赛后7个工作日，团队报名正文称赛后15个工作日内差额原路返。未推定取较低折扣或到账承诺。"
+      },
+      {
+        "topic": "第一赛道资格跑适用渠道",
+        "status": "source_basis_retained",
+        "sourceUrl": "https://tongren.sport-china.cn/doc/1052/8232",
+        "sourceUrls": [
+          "https://tongren.sport-china.cn/doc/1052/8231",
+          "https://zuicool.com/news/archives/314218",
+          "https://reg.zuicool.com/35197"
+        ],
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/1312050dc607597e5f7b45decc49061f44c6b637.jpeg?imageView2/2/w/750"
+        ],
+        "detail": "官网两篇文字要求当届各组24个月比赛成绩，实际最酷两个报名产品及组委会报名原图则并列资格跑证书。保留原可靠组别说明并将附加证书明确归于相应渠道，以实际审核为准。"
+      },
+      {
+        "topic": "高校联赛审核未通过的退款到账时点",
+        "status": "source_not_confirmed",
+        "sourceUrl": "https://tongren.sport-china.cn/doc/1052/8253",
+        "detail": "同届联赛规程分别出现报名结束后7个工作日、赛事结束后15个工作日及“抽签结果公布后7个工作日”，不可自行选一个数字；最终资质审核失败原路退回已确认。大众退改截止10/25 23:59，与高校10/25 18:00分列。"
+      },
+      {
+        "topic": "本届领物最终时间与地点",
+        "status": "source_not_confirmed",
+        "sourceUrl": "https://tongren.sport-china.cn",
+        "sourceUrls": [
+          "https://tongren.sport-china.cn/doc/1052/8232",
+          "https://tongren.sport-china.cn/doc/1052/8231"
+        ],
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/1312050dc607597e5f7b45decc49061f44c6b637.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/c014d0e05576141d5733ee19e5be834e3700ec4c.jpeg?imageView2/2/w/750"
+        ],
+        "detail": "本届官网可复制规则和两张原图一致只确认本人持有效报名证件、无代领无参赛包邮寄，详细时间地点称后发。检查官网新闻及通知栏目，独立检索，未找到可核验本届正式领物通知。"
+      },
+      {
+        "topic": "路线与海拔",
+        "status": "source_not_confirmed",
+        "sourceUrl": "https://tongren.sport-china.cn/doc/1052/8231",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/aa50b69763d3c732e04b6d07afcf0f8cc1d3200c.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/c014d0e05576141d5733ee19e5be834e3700ec4c.jpeg?imageView2/2/w/750"
+        ],
+        "detail": "恢复两条官网路线描述与原图一致的路线转折。沿途宣传图不是地图；没有可核实当届路线图、海拔图、额外实际里程、爬升或积分，不以往届或照片补全。"
+      },
+      {
+        "topic": "本届各景区文旅优惠",
+        "status": "source_basis_retained",
+        "sourceUrl": "https://www.guizhou.gov.cn/ztzl/hxxcwf/fjs/xgyd/202609/t20260908_90834388.html",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/c2c3a7209586079b0ab9e65dc08f47cbd5837833.jpeg?imageView2/2/w/750"
+        ],
+        "detail": "省政府总则：本人免首道门票、5名以内同行首道五折，2026年11月1日到2027年3月30日。组委会景区原表含约30项，部分景区列具体票价或附加项目另付，例如部分万山景区40元、石阡两个景区各有138和268元优惠。保留表原图供查看适用细则，未把概述套用到每个景区或推断空白合并格。"
+      },
+      {
+        "topic": "双组关门、补给、获奖表与处置流程核正",
+        "status": "corrected",
+        "sourceUrl": "https://tongren.sport-china.cn/doc/1052/8231",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/c014d0e05576141d5733ee19e5be834e3700ec4c.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/a443b4821755a90f079c63ec1550448db1a88d0b.jpeg?imageView2/2/w/750"
+        ],
+        "detail": "核原图10行关门、16个补给点、全半各两套名次奖。21.0975半马终点3h，42.195全马终点6h；有两个分别列出的20公里补给点，35公里无食品；恢复两项净计时规则、申诉、保险、医疗和14项处罚。官网承办标题与原图协办的名称相同，采用官网。"
+      }
+    ],
+    "officialDocuments": [],
+    "sourceDiscovery": {
+      "officialUrl": "https://tongren.sport-china.cn",
+      "officialKind": "承办运营方本届赛事网站；首页日期2026年11月29日",
+      "primaryUrls": [
+        "https://tongren.sport-china.cn/doc/1052/8231",
+        "https://tongren.sport-china.cn/doc/1052/8232",
+        "https://tongren.sport-china.cn/doc/1052/8253",
+        "https://www.runchina.org.cn/#/race/v/detail/1000479060",
+        "https://www.guizhou.gov.cn/ztzl/hxxcwf/fjs/xgyd/202609/t20260908_90834388.html"
+      ],
+      "alternativeUrls": [
+        "https://reg.zuicool.com/35197",
+        "https://zuicool.com/news/archives/314218"
+      ],
+      "registrationDeadline": {
+        "value": "2026-10-20T17:00:00+08:00",
+        "sourceUrl": "https://tongren.sport-china.cn/doc/1052/8232",
+        "scope": "大众报名；高校联赛专用截止为18:00"
+      }
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_and_mini_devtools_390",
+      "miniDisplayed": true,
+      "formalMiniProgramReleaseVerified": false
+    }
+  }
+]

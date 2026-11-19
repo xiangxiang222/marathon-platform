@@ -1,0 +1,17 @@
+{
+  "at": "2026-11-19T06:53:23.024Z",
+  "saved": 3,
+  "failed": 0,
+  "before": {
+    "races": 434,
+    "sheets": 1765
+  },
+  "after": {
+    "races": 434,
+    "sheets": 1765
+  },
+  "schemaUnchanged": true,
+  "quickCheck": "ok",
+  "bodyAndGroupsMatch": true,
+  "backup": "/tmp/race-guide-quality-20261117/supplement11-rehearsal-applied.json.before.sqlite"
+}
