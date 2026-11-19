@@ -91,6 +91,23 @@ test('a discovered platform race still searches independently for the website an
   assert.equal(missingSourceQueries(name, ['fees', 'fees'], { officialVerified: true }).length, 1);
 });
 
+test('a directory-only race can find an official site from a dated registration search', async () => {
+  const name='2026测试马拉松', calendar='https://www.runchina.org.cn/#/race/v/detail/1000';
+  const news='https://public.example/2026/news', site='http://www.race.example/';
+  const entry='https://test-registration.mararun.com/signlist.html';
+  const queries=[];
+  const result=await discoverRaceSources({name,race_date:'2026-12-27',official_url:calendar},{
+    fetchCaa:false,missingFields:['registration'],
+    search:async query=>{queries.push(query);return query.includes('12月27日')?[news,entry]:[];},
+    readDocument:async url=>page(url,{title:name+(url===site?'':'启动报名'),text:'活动公告：赛事官方网站（www.race.example）'})
+  });
+  assert.ok(queries.includes(name+' 报名 12月27日'));
+  assert.equal(result.sourceRoles[site],'official_website');
+  assert.equal(result.sourceRoles[calendar],'official_registry');
+  assert.equal(result.sourceRoles[entry],'registration_platform');
+  assert.equal(result.sourceRoles[news],'public_source');
+});
+
 test('WeChat official status requires a provenance anchor for the exact article, not a snippet or shared origin', async () => {
   const url = 'https://mp.weixin.qq.com/s/official-article';
   const options = { name, readDocument: async value => page(value) };

@@ -31,6 +31,12 @@ function sourceUrlsOf(race = {}, refs = []) {
   ];
   return [...new Set(values.map(value => publicUrl(value)).filter(Boolean))];
 }
+function sameEventPlatformArticle(name, current, { url, label }) {
+  const safe = publicUrl(url, current); if (!safe || !name) return false;
+  const next = new URL(safe), host = new URL(current).hostname;
+  return /^(?:www\.)?zuicool\.com$/.test(next.hostname) && next.hostname === host &&
+    /^\/news\/archives\/\d+\/?$/.test(next.pathname) && /报名|规程|领物|路线|参赛手册/.test(label) && sameEdition(name, label);
+}
 function searchResultUrls(html, expectedName = '') {
   const urls = [];
   const source = String(html || '');
@@ -301,7 +307,8 @@ async function extractDocument(page, html, url, render = false) {
       alt: clean(img.getAttribute('alt')), width: Number(img.getAttribute('width') || img.naturalWidth), height: Number(img.getAttribute('height') || img.naturalHeight),
       context: clean(img.parentElement?.previousElementSibling?.textContent || '').slice(-200), sourceUrl: url
     })));
-    const links = [...document.querySelectorAll('a[href]')].map(a => ({ url: absolute(a.getAttribute('href')), label: clean(a.textContent) })).filter(a => /更多赛事信息|竞赛规程|报名须知|参赛指南|赛事规程|比赛规程|附件|下载|赛事详情|赛事官网|官方网站|官网入口|official\s+(?:website|site)/i.test(a.label) || /\.(?:pdf|docx?)(?:\?|$)/i.test(a.url));
+    const links = [...document.querySelectorAll('a[href]')].map(a => ({ url: absolute(a.getAttribute('href')), label: clean(a.textContent) })).filter(a => /更多赛事信息|竞赛规程|报名须知|参赛指南|赛事规程|比赛规程|附件|下载|赛事详情|赛事官网|官方网站|官网入口|official\s+(?:website|site)/i.test(a.label) || /\.(?:pdf|docx?)(?:\?|$)/i.test(a.url) ||
+      /^https?:\/\/(?:www\.)?zuicool\.com\/news\/archives\/\d+(?:[/?#]|$)/i.test(a.url) && /报名|规程|领物|路线|参赛手册/.test(a.label));
     return { url, title, header, text: docs.join('\n\n'), packages, images, links, rendered: !!document.querySelector('script[src]') };
   }, { url });
 }
@@ -385,28 +392,47 @@ class Collector {
     } finally { await page.close(); }
   }
   async searchSources(query) {
-    const sources = [], failures = [];
-    for (const endpoint of ['https://www.bing.com/search?q=', 'https://weixin.sogou.com/weixin?type=2&query=', 'https://www.so.com/s?q=']) {
-      const searchUrl = endpoint + encodeURIComponent(query), page = await this.browser.newPage();
+    const engines = [
+      ['https://www.baidu.com/s?wd=', '#content_left .c-container h3 a'],
+      ['https://www.bing.com/search?q=', '#b_results h2 a'],
+      ['https://weixin.sogou.com/weixin?type=2&query=', 'h3 a'],
+      ['https://www.so.com/s?q=', 'h3 a']
+    ];
+    const results = await Promise.all(engines.map(async ([endpoint, selector]) => {
+      const searchUrl = endpoint + encodeURIComponent(query), sources = [], failures = [];
+      let page;
       try {
-        await page.goto(searchUrl, {waitUntil:'domcontentloaded',timeout:20000});
+        page = await this.browser.newPage();
+        const response = await page.goto(searchUrl, {waitUntil:'domcontentloaded',timeout:20000});
         const text = clean(await page.locator('body').innerText());
-        if (/此验证码用于确认|请完成验证|安全验证|人机验证|访问过于频繁/.test(text)) throw new Error('search_access_verification_required');
-        const hits = await page.locator('#b_results h2 a,h3 a').evaluateAll(links => links.map(a => ({url:a.getAttribute('data-mdurl') || a.href,label:a.textContent.trim()})));
+        if (/此验证码用于确认|请完成验证|安全验证|人机验证|访问过于频繁/.test(text) || [401,403,429].includes(response?.status())) throw new Error('search_access_verification_required');
+        if (response && !response.ok()) throw new Error('HTTP_' + response.status());
+        const hits = await page.locator(selector).evaluateAll(links => links.map(a => ({
+          url: a.getAttribute('data-mdurl') || a.closest('.c-container[mu]')?.getAttribute('mu') || a.href,
+          label: a.textContent.trim()
+        })));
         for (const hit of hits.slice(0,12)) {
           let candidate = publicUrl(hit.url); if (!candidate) continue;
           const u = new URL(candidate);
-          if (/bing\.com$/.test(u.hostname) && u.pathname === '/ck/a') {
+          if (/(?:^|\.)bing\.com$/.test(u.hostname) && u.pathname === '/ck/a') {
             const encoded = u.searchParams.get('u') || '';
             candidate = publicUrl(encoded.startsWith('a1') ? Buffer.from(encoded.slice(2),'base64').toString('utf8') : encoded);
           }
+          if (/(?:^|\.)(?:baidu|so|sogou)\.com$/.test(u.hostname) && /^\/(?:link|link\.php)\/?$/.test(u.pathname)) {
+            candidate = publicUrl(u.searchParams.get('url') || u.searchParams.get('u') || '');
+          }
           if (candidate) sources.push({...hit,url:candidate,sourceUrl:searchUrl});
         }
-        if (!hits.length && !/没有找到|没有搜索到|no results|did not match/i.test(text)) failures.push({url:searchUrl,step:'source_search',error:'search_results_unreadable'});
+        if (!sources.length && !/没有找到|没有搜索到|no results|did not match/i.test(text)) failures.push({url:searchUrl,step:'source_search',error:'search_results_unreadable'});
       } catch (error) { failures.push({url:searchUrl,step:'source_search',error:error.message}); }
-      finally { await page.close(); }
-    }
-    return { sources, failures };
+      finally { await page?.close(); }
+      return { sources, failures };
+    }));
+    const seen = new Set();
+    return {
+      sources: results.flatMap(result => result.sources).filter(source => !seen.has(source.url) && seen.add(source.url)),
+      failures: results.flatMap(result => result.failures)
+    };
   }
   async collect({ name = '', id = '', urls = [], cached = {}, discoveryFailures = [], discover = false, race = {} }) {
     const failuresStart = this.failures.length, docs = [], queue = [...new Set(urls.map(u => publicUrl(u)).filter(Boolean))], visited = new Set();
@@ -420,9 +446,18 @@ class Collector {
       };
       const known = [];
       for (const url of queue) { try { const doc = await readDocument(url); if (sameEdition(name,doc.title)) known.push(doc); } catch (error) { this.failures.push({url,step:'source_probe',error:error.message}); } }
+      const related = [...new Set(known.flatMap(doc => (doc.links || []).filter(link => sameEventPlatformArticle(name,doc.url,link)).map(link => publicUrl(link.url,doc.url))))];
+      for (const url of related.filter(url=>!memo.has(url)).slice(0,5)) {
+        try { const doc = await readDocument(url); if (sameEdition(name,doc.title)) known.push(doc); }
+        catch (error) { this.failures.push({url,step:'source_probe',error:error.message}); }
+      }
       const text = known.map(doc=>doc.text).join('\n');
       const terms = {groups:/组别|比赛项目|赛事项目/,fees:/报名费|收费标准/,eligibility:/参赛资格|年龄要求|报名条件/,pickup:/领物|物品领取|参赛物品/,refund:/退费|退款|退出机制/};
-      discovery = await discoverRaceSources({...race,id,name,sourceUrls:urls},{documents:known,readDocument,search:query=>this.searchSources(query),missingFields:Object.keys(terms).filter(key=>!terms[key].test(text))});
+      const missingFields = Object.keys(terms).filter(key=>!terms[key].test(text));
+      // The association may list the race and its date without a public entry.
+      // Require an existing entry or a source with actual registration options.
+      if (!publicUrl(race.signup_url || race.signupUrl) && !known.some(doc=>doc.packages?.length)) missingFields.unshift('registration');
+      discovery = await discoverRaceSources({...race,id,name,sourceUrls:urls},{documents:known,readDocument,search:query=>this.searchSources(query),missingFields});
       this.failures.push(...discovery.failures);
       queue.splice(0,queue.length,...discovery.urls);
       this._discoveryDocuments = memo;
@@ -443,8 +478,9 @@ class Collector {
         for (const link of doc.links) {
           const candidate = publicUrl(link.url, url);
           if (!candidate || visited.has(candidate) || queue.includes(candidate)) continue;
+          const next = new URL(candidate), currentHost = new URL(url).hostname;
           // Relevant same-site documents, or explicit official attachments. Never crawl navigation/search feeds.
-          if (/\.(?:pdf)(?:\?|$)/i.test(candidate) || /\/event\/\d+\/?$/.test(new URL(candidate).pathname) || new URL(candidate).hostname === new URL(url).hostname && /规程|须知|指南|附件|下载|详情/.test(link.label)) queue.push(candidate);
+          if (sameEventPlatformArticle(name,url,link) || /\.(?:pdf)(?:\?|$)/i.test(candidate) || /\/event\/\d+\/?$/.test(next.pathname) || next.hostname === currentHost && /规程|须知|指南|附件|下载|详情/.test(link.label)) queue.push(candidate);
         }
         if (visited.size >= 20 && queue.length) {
           const deferred = queue.filter(next => !/^https:\/\/reg\.zuicool\.com\/\d+\/\d+\/?$/.test(next));
