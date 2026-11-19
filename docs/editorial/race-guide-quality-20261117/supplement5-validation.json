@@ -1,0 +1,42 @@
+{
+  "at": "2026-11-19T02:56:56.882Z",
+  "passed": true,
+  "rows": [
+    {
+      "id": "zuiku-95805",
+      "file": "supplement5-jieyang-derived-reviewed.json",
+      "edits": 8,
+      "scope": "现有本届公开来源与完整活动图片已审；在 auditNotes 保留逐条可核实差异及来源缺项。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-14679",
+      "file": "supplement-e4-moshikou-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "两张完整当届规程及两张报名、路线长图均逐块实看；保留延期新档、两种亲子套餐、已核费用与奖励，补齐全部路线、出生边界、报到体检、环境守则、存包、14项违规、退赛、应急、保险，分开记载原文冲突。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-28718",
+      "file": "supplement-f3-zuiku-28718-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "9张报名来源原图连续实际阅读（其中三张正式规程均10,098像素）；逐条核上、中、下全部规程、路线及所有表格。独立查本届站点、政府来源和新旧报名原文；保留报名政策、公式证件边界、既有分组及媒体链接中已核值。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-32373",
+      "file": "supplement-f3-zuiku-32373-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "同届官方可复制竞赛规程第1至17章及报名须知第1至9章实读。最酷上架4张正式规程长图共25个连续块逐页查看，新增实看公式和企微各一唯一图并核验官网两文嵌图同字节。完整核对所有已知当届已发布规程，其余赛前公告和未给条款按疑点记录。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-50491",
+      "file": "supplement-e5-yantai-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "市体育局和报名页可复制文字优先；本届27张原图均实看，逐项更正三组站点和费用，补齐7行补给、精英政策、计时和48小时补报、10条退赛、5条保险、存包和环保，保留3幅路线海拔及有核对价值的规程原图；无空白新增字段。",
+      "explicitImageReview": true
+    }
+  ],
+  "races": 5
+}

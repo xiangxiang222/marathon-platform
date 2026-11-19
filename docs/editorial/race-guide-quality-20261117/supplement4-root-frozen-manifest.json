@@ -1,0 +1,29 @@
+{
+  "at": "2026-11-19T02:19:19.197Z",
+  "reviewed": [
+    {
+      "id": "zuiku-67689",
+      "chapters": 7,
+      "sources": 4,
+      "corrections": 5,
+      "beforeGuideHash": "9f230f524c73976f68027be06f17c1a8b9f6c78200366c69e52e1c110a3bf982"
+    },
+    {
+      "id": "zuiku-33143",
+      "chapters": 10,
+      "sources": 3,
+      "corrections": 6,
+      "beforeGuideHash": "344b57bf9e969e5451561934921d2eb5f6ee98a9e9d5c04dad7866858fe9c742"
+    },
+    {
+      "id": "zuiku-39209",
+      "chapters": 14,
+      "sources": 7,
+      "corrections": 0,
+      "beforeGuideHash": "3c764c1f128ebd5eff1d8a591ac37331a0beaf55f34511fbd8c8d09b74e4f412"
+    }
+  ],
+  "outputSha": "8c47e80b3e9f8179382ef3bb0ce96dc617f6ef24fcf636d0af50a2bf7ca4cc8a",
+  "checkedAllCurrentObtainedSources": true,
+  "productionWrites": 0
+}

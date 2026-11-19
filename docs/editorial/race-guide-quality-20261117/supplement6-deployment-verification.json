@@ -1,0 +1,57 @@
+{
+  "at": "2026-11-19T04:52:49.118Z",
+  "kind": "Production data update based on current regulations; four backlog events and one source follow-up separately documented.",
+  "stages": {
+    "reviewed": true,
+    "saved": true,
+    "webDisplayed": true,
+    "webDeployedVerified": true,
+    "miniDisplayed": false,
+    "miniDevToolsVerified": false,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "races": 5,
+  "exactGroupFieldCorrections": 20,
+  "exactRaceFieldCorrections": {
+    "caa-1000483001": [
+      "deadline"
+    ]
+  },
+  "originalsReviewedByUrl": 45,
+  "backup": "server/data/race-guide-quality-20261117/supplement6-applied.json.before.sqlite",
+  "counts": {
+    "races": 434,
+    "sheets": 1760
+  },
+  "schemaUnchanged": true,
+  "quickCheck": "ok",
+  "newUsefulOriginalImages": 1,
+  "web": {
+    "pages": 10,
+    "viewports": [
+      320,
+      390
+    ],
+    "fullExactComparisonViewport": 320,
+    "fullTextBlocks": 560,
+    "rows": 279,
+    "focusActualPages": 10,
+    "additionalActualRoutePreviewPages": 2
+  },
+  "mini": {
+    "status": "not_completed",
+    "actualRaces": 0,
+    "evidence": "supplement45-mini-recovery.json"
+  },
+  "remaining": {
+    "specificEvents": 47,
+    "coverageEvidenceUnknown": 0,
+    "sourceFollowup": 2
+  },
+  "pending": [
+    "Actual 320px mini app",
+    "Physical gestures and native longpress menu/zoom",
+    "Formal WeChat release and verification",
+    "Remaining actual mini rendering and gestures"
+  ]
+}

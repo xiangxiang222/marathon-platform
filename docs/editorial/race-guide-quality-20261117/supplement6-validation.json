@@ -1,0 +1,42 @@
+{
+  "at": "2026-11-19T04:39:46.629Z",
+  "passed": true,
+  "rows": [
+    {
+      "id": "zuiku-66992",
+      "file": "supplement-huangshi-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "本届官方两张竞赛规程所有条款，11月4日分区/选号正文和分区表，11月12日新版路线文字及路线图。按主办方最新确认内容替换旧路线，保留规程其他条款和两张原图。未确认实际领物地点、分枪分区对应和源内矛盾。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "caa-1000483001",
+      "file": "supplement-f4-caa-1000483001-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "6张上架原图实际看全，三张竞赛规程22连续块核全部章节与合并单元格。县政府延期公告第一条、完整报名页两个选项、原图和中国田协同届身份交叉核。宁都欢乐跑是独立活动，无路线/领物/资格借用。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "caa-1000499000",
+      "file": "supplement-f4-caa-1000499000-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "本届官网赛事规程与报名须知优先，同届全部7张收费/报名须知/规程原图按25块连续实际核对。官网两项独立补充文件、组委会本届报名原文、中国田协等级及最酷两组选项同时查清来源。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "caa-1000479023",
+      "file": "supplement-dongfang-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "完整实看12个现存图源（两处报名须知同SHA）、最酷横幅、官网规程3张及组委会团报3张操作图，逐项合并当前规程、报名须知与相关公告的独有条款，完整保留6个关门点、全部奖金、9类健康情形、20项处罚、5条保险、领物和退款规则；组卡既有数值与原图文件不改。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "caa-1000452094",
+      "file": "supplement-f1-fengxian-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "本届政府报名发布、对应官图和当届可复制组织方案优先；两张竞赛规程、报名海报全图逐段逐表校对，以正式规程替换识别正文、恢复合并表项、遗漏尾章和段落，区别暂定领物和报名转载的边界。",
+      "explicitImageReview": true
+    }
+  ],
+  "races": 5
+}

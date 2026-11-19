@@ -1,0 +1,8 @@
+{
+  "at": "2026-11-19T02:24:09.310Z",
+  "frozenInputUnchanged": true,
+  "frozenInputSha256": "ee8f455e1bb7921c9478f7811e37817ea323dfa967eea6f9b71a254c696eecd4",
+  "verifiedUniqueOriginalFiles": 15,
+  "reviewedSourceUrls": 19,
+  "derivation": "Count 19 official/platform URL references as 15 distinct SHA-matched sources, every original file checked; unchanged content and group values."
+}

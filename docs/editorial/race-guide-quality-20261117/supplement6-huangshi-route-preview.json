@@ -1,0 +1,28 @@
+{
+  "at": "2026-11-19T04:48:19.065Z",
+  "passed": true,
+  "checks": [
+    {
+      "id": "zuiku-66992",
+      "width": 320,
+      "dims": {
+        "w": 1080,
+        "h": 832
+      },
+      "caption": "组委会11月12日发布的全马、半马路线图，含全马分枪关门时间参考表\n查看原图 ↗",
+      "previewOpened": true,
+      "originalZoomOpened": true
+    },
+    {
+      "id": "zuiku-66992",
+      "width": 390,
+      "dims": {
+        "w": 1080,
+        "h": 832
+      },
+      "caption": "组委会11月12日发布的全马、半马路线图，含全马分枪关门时间参考表\n查看原图 ↗",
+      "previewOpened": true,
+      "originalZoomOpened": true
+    }
+  ]
+}

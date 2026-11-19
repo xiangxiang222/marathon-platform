@@ -1,0 +1,9 @@
+{
+  "at": "2026-11-19T04:50:08.024Z",
+  "id": "zuiku-14679",
+  "environment": "actual WeChat DevTools, production endpoints",
+  "stage": "started",
+  "passed": false,
+  "physicalGestureVerified": false,
+  "error": "simulator_open_page: read ECONNRESET"
+}

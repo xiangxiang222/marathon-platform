@@ -1,0 +1,56 @@
+{
+  "at": "2026-11-19T02:29:54.957Z",
+  "checks": [
+    {
+      "id": "zuiku-67689",
+      "width": 320,
+      "paragraphs": 15,
+      "tableRows": 12,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-33143",
+      "width": 320,
+      "paragraphs": 56,
+      "tableRows": 11,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-39209",
+      "width": 320,
+      "paragraphs": 103,
+      "tableRows": 58,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-49863",
+      "width": 320,
+      "paragraphs": 27,
+      "tableRows": 16,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-59237",
+      "width": 320,
+      "paragraphs": 84,
+      "tableRows": 17,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-75827",
+      "width": 320,
+      "paragraphs": 141,
+      "tableRows": 140,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-35657",
+      "width": 320,
+      "paragraphs": 36,
+      "tableRows": 13,
+      "fullRenderedContentMatchesProduction": true
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-11-19T02:30:17.885Z"
+}

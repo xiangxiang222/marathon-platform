@@ -1,0 +1,135 @@
+{
+  "at": "2026-11-19T02:29:54.929Z",
+  "checks": [
+    {
+      "id": "zuiku-75827",
+      "width": 320,
+      "needle": "关门",
+      "table": {
+        "width": 252,
+        "scrollWidth": 840,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 588,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "报名宣传时间表：报到时段、分枪起跑及组别参数（公布的最终领物地点另待核实）\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-75827",
+      "width": 390,
+      "needle": "关门",
+      "table": {
+        "width": 318,
+        "scrollWidth": 840,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 522,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "报名宣传时间表：报到时段、分枪起跑及组别参数（公布的最终领物地点另待核实）\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-49863",
+      "width": 320,
+      "needle": "299",
+      "table": {
+        "width": 252,
+        "scrollWidth": 252,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 0,
+      "horizontalScrollVerified": null,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "Outopia深圳五个报名选项、标准赛包及三组路线海拔原图\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-49863",
+      "width": 390,
+      "needle": "299",
+      "table": {
+        "width": 318,
+        "scrollWidth": 318,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 0,
+      "horizontalScrollVerified": null,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "Outopia深圳五个报名选项、标准赛包及三组路线海拔原图\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-59237",
+      "width": 320,
+      "needle": "50元",
+      "table": {
+        "width": 252,
+        "scrollWidth": 252,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 0,
+      "horizontalScrollVerified": null,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "活动规程后半部分（关门、补给、处罚、保险及规程咨询方式）\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-59237",
+      "width": 390,
+      "needle": "50元",
+      "table": {
+        "width": 318,
+        "scrollWidth": 318,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 0,
+      "horizontalScrollVerified": null,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "活动规程后半部分（关门、补给、处罚、保险及规程咨询方式）\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-39209",
+      "width": 320,
+      "needle": "1946.12.20",
+      "table": {
+        "width": 252,
+        "scrollWidth": 480,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 228,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "WSE珠海站10月23日官方延期通知：12月20日、自动改期与转站退费\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-39209",
+      "width": 390,
+      "needle": "1946.12.20",
+      "table": {
+        "width": 318,
+        "scrollWidth": 480,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 162,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "WSE珠海站10月23日官方延期通知：12月20日、自动改期与转站退费\n查看原图 ↗",
+      "overflow": false
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-11-19T02:30:30.432Z"
+}
