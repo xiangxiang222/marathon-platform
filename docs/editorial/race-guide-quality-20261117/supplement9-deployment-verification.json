@@ -1,0 +1,45 @@
+{
+  "at": "2026-11-19T05:55:35.811Z",
+  "stages": {
+    "reviewed": true,
+    "saved": true,
+    "webDisplayed": true,
+    "webDeployedVerified": true,
+    "miniDisplayed": false,
+    "miniDevToolsVerified": false,
+    "formalMiniProgramReleaseVerified": false
+  },
+  "races": 2,
+  "exactGroupFieldCorrections": 22,
+  "originalsReviewedByUrl": 29,
+  "backup": "server/data/race-guide-quality-20261117/supplement9-applied.json.before.sqlite",
+  "counts": {
+    "races": 434,
+    "sheets": 1765
+  },
+  "schemaUnchanged": true,
+  "quickCheck": "ok",
+  "web": {
+    "pages": 4,
+    "viewports": [
+      320,
+      390
+    ],
+    "fullExactComparisonViewport": 320,
+    "fullTextBlocks": 190,
+    "rows": 132,
+    "focusActualPages": 4,
+    "actualNewImageInstances": 10
+  },
+  "newUsefulOriginalImages": 5,
+  "mini": {
+    "status": "not_completed",
+    "actualRaces": 0,
+    "detail": "Prior 390px evidence for earlier supplements remains valid. This batch has not been verified in a real mini program runtime."
+  },
+  "remaining": {
+    "specificEvents": 40,
+    "coverageEvidenceUnknown": 0,
+    "sourceFollowup": 2
+  }
+}

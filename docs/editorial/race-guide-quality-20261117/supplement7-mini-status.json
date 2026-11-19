@@ -1,0 +1,12 @@
+{
+  "at": "2026-11-19T05:23:04.227Z",
+  "kind": "No further mini verification performed in supplement7 after the targeted local project reopen during supplement6 returned a connection reset.",
+  "sharedReopen": {
+    "ok": false,
+    "tool": "open_project_window",
+    "code": "APPID_ERROR",
+    "message": "read ECONNRESET"
+  },
+  "appConfigChanged": false,
+  "priorResultsStillValid": true
+}

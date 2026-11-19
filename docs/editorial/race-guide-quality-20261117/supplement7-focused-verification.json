@@ -1,0 +1,167 @@
+{
+  "at": "2026-11-19T05:15:36.450Z",
+  "checks": [
+    {
+      "id": "zuiku-58600",
+      "width": 320,
+      "needle": "50.37",
+      "table": {
+        "width": 252,
+        "scrollWidth": 480,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 228,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "赛事图文资料\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-58600",
+      "width": 390,
+      "needle": "50.37",
+      "table": {
+        "width": 318,
+        "scrollWidth": 480,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 162,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "赛事图文资料\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-66992",
+      "width": 320,
+      "needle": "11:15",
+      "table": {
+        "width": 252,
+        "scrollWidth": 360,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 108,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "9月竞赛规程原图（上）：比赛办法；线路以11月12日新版为准\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-66992",
+      "width": 390,
+      "needle": "11:15",
+      "table": {
+        "width": 318,
+        "scrollWidth": 360,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 42,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "9月竞赛规程原图（上）：比赛办法；线路以11月12日新版为准\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "caa-1000503000",
+      "width": 320,
+      "needle": "180",
+      "table": {
+        "width": 252,
+        "scrollWidth": 720,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 468,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "报名须知原图：报名、路线、固定资质日期、费用、退改与领物\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "caa-1000503000",
+      "width": 390,
+      "needle": "180",
+      "table": {
+        "width": 318,
+        "scrollWidth": 720,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 402,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "报名须知原图：报名、路线、固定资质日期、费用、退改与领物\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "caa-1000452114",
+      "width": 320,
+      "needle": "18:00",
+      "table": {
+        "width": 252,
+        "scrollWidth": 252,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 0,
+      "horizontalScrollVerified": null,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "永定土楼半马早期报名须知原图：报名、领物与资格；报名截止请对照本届官网\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "caa-1000452114",
+      "width": 390,
+      "needle": "18:00",
+      "table": {
+        "width": 318,
+        "scrollWidth": 318,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 0,
+      "horizontalScrollVerified": null,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "永定土楼半马早期报名须知原图：报名、领物与资格；报名截止请对照本届官网\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "caa-1000480114",
+      "width": 320,
+      "needle": "14:00–21:00",
+      "table": {
+        "width": 252,
+        "scrollWidth": 252,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 0,
+      "horizontalScrollVerified": null,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "2026 江门马拉松报名主视觉：比赛日及报名日期，时刻按同届 24 小时制须知\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "caa-1000480114",
+      "width": 390,
+      "needle": "14:00–21:00",
+      "table": {
+        "width": 318,
+        "scrollWidth": 318,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 0,
+      "horizontalScrollVerified": null,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "2026 江门马拉松报名主视觉：比赛日及报名日期，时刻按同届 24 小时制须知\n查看原图 ↗",
+      "overflow": false
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-11-19T05:16:21.237Z"
+}

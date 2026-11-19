@@ -1,0 +1,21 @@
+{
+  "at": "2026-11-19T05:50:00.975Z",
+  "checks": [
+    {
+      "id": "caa-1000479118",
+      "width": 320,
+      "paragraphs": 91,
+      "tableRows": 63,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "caa-1000472006",
+      "width": 320,
+      "paragraphs": 99,
+      "tableRows": 69,
+      "fullRenderedContentMatchesProduction": true
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-11-19T05:50:05.806Z"
+}

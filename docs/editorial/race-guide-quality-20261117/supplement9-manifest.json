@@ -1,0 +1,311 @@
+[
+  {
+    "id": "caa-1000479118",
+    "name": "2026海南儋州马拉松",
+    "status": "current_source_content_checked_with_questions",
+    "scope": "完成当前公开 2026 竞赛及报名原文逐条审校、三张现有整页图/七张官网数表/路线图对照；分渠道日期，合并重叠年龄资格、退费和保障，保留旧图及此前可靠审校值。领物地点及少数原文字面问题待组委会公告。",
+    "beforeBodyHash": "737b36495f8c5a6164e0501ef27127bc77799712703a8120f46172150ff8ec55",
+    "savedBodyHash": "fc501546942653ed57d9d8a462164eeb35d9796a270fee9e55dd42994576e3c5",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 15,
+    "pendingImages": 0,
+    "chapters": 14,
+    "groups": 4,
+    "groupCorrections": 12,
+    "questions": [
+      {
+        "status": "registration_channel_dates_distinct",
+        "issue": "本届官方竞赛规程与报名须知均为 2026-11-12 24:00；最酷报名页及 2 张原图为 2026-10-30 24:00。按渠道保留，均已过；不将主报名行原平台截止替换为官网。跑团截止 11/10 按独立条款。",
+        "sourceUrl": "http://www.danma.cn/page/Kn6NygxDqdk1mqPZebWM.html",
+        "additionalSourceUrls": [
+          "http://www.danma.cn/page/P1Y3kqE0N8rOD5BwMlze.html",
+          "https://reg.zuicool.com/55770",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/dbe846bbfc950402a40f19936cf0ed1a851f4f04.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/a527b844e39ec4c999d6fdfce46db31df4fc25e0.jpeg?imageView2/2/w/750"
+        ]
+      },
+      {
+        "status": "awaiting_current_pickup_location",
+        "issue": "两份本届官方稿列 12/18 10:00–20:00、12/19 09:00–22:00；本人原证件无代领。地点写另行通知；当前公告目录未见当届领物须知，不以起终点或往届领物地点补齐。",
+        "sourceUrl": "http://www.danma.cn/page/P1Y3kqE0N8rOD5BwMlze.html",
+        "additionalSourceUrls": [
+          "http://www.danma.cn/page/Kn6NygxDqdk1mqPZebWM.html",
+          "http://www.danma.cn/list-527.html"
+        ]
+      },
+      {
+        "status": "consulting_hours_source_conflict",
+        "issue": "当前报名须知正文及平台原图为工作日下午 14:30–17:00，官网页脚是 14:00–17:00，沿用当届报名须知正文并注明差异。",
+        "sourceUrl": "http://www.danma.cn/page/Kn6NygxDqdk1mqPZebWM.html",
+        "additionalSourceUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/dbe846bbfc950402a40f19936cf0ed1a851f4f04.jpeg?imageView2/2/w/750",
+          "http://www.danma.cn/"
+        ]
+      },
+      {
+        "status": "published_current_route_map_found",
+        "issue": "主规程正文仍写地图另发，但官网同届赛道页已公开带 2026 标识的双路线和海拔原图；图为媒体保留，不推算累计爬升或 GPX。",
+        "sourceUrl": "http://www.danma.cn/page/4Q6N7BemPyrzDnkgGY1d.html",
+        "additionalSourceUrls": [
+          "https://stor.ihuipao.com/image/e96eb685d24667525bb50f8699626663.jpg"
+        ]
+      },
+      {
+        "status": "age_group_wording_and_policy_followup",
+        "issue": "全马最高奖组写 65 岁以上，半马写 65 岁及以上；保留原文差异。高龄保险风险同意书取决承保结果，尚无绝对保额或独立赛前细则。",
+        "sourceUrl": "http://www.danma.cn/page/P1Y3kqE0N8rOD5BwMlze.html",
+        "additionalSourceUrls": [
+          "http://www.danma.cn/page/Kn6NygxDqdk1mqPZebWM.html"
+        ]
+      }
+    ],
+    "officialDocuments": [
+      {
+        "url": "http://www.danma.cn/page/P1Y3kqE0N8rOD5BwMlze.html",
+        "title": "2026 海南儋州马拉松竞赛规程",
+        "role": "current-official-regulation",
+        "verified": true,
+        "identityReview": "当届可复制 16 章，官网图表与平台原图逐格交叉；报名截止官网更新至 11/12",
+        "characters": 9112,
+        "bodySha256": "3065c38bd5d101685ca857245748072bd0540de357ff10191a85c9d1a01d49d8",
+        "checkedAt": "2026-11-19T05:39:41.883Z"
+      },
+      {
+        "url": "http://www.danma.cn/page/Kn6NygxDqdk1mqPZebWM.html",
+        "title": "2026 海南儋州马拉松报名须知",
+        "role": "current-official-registration",
+        "verified": true,
+        "identityReview": "当届可复制 8 章：资格、报名、退改、跑团、领物、熔断及咨询",
+        "characters": 4233,
+        "bodySha256": "a626113a756cdc733a1e6ee301c50df8c4c952115100a5c90d35b4c8bf316a60",
+        "checkedAt": "2026-11-19T05:39:41.883Z"
+      },
+      {
+        "url": "http://www.danma.cn/page/4Q6N7BemPyrzDnkgGY1d.html",
+        "title": "2026 海南儋州马拉松赛道地图",
+        "role": "current-official-course-map",
+        "verified": true,
+        "identityReview": "当届官网赛道地图页及真实发布原图；图中两个距离、逆行、折返和海拔",
+        "characters": 480,
+        "bodySha256": "d737b9421f4f84cf710ad90855204fb2a6718ea61125471047f5d400c979c169",
+        "checkedAt": "2026-11-19T05:39:41.883Z"
+      },
+      {
+        "url": "http://www.danma.cn/",
+        "title": "海南儋州马拉松官网",
+        "role": "official-current-index",
+        "verified": true,
+        "identityReview": "当届身份、规程、报名须知、赛道图和公告导航",
+        "characters": 844,
+        "bodySha256": "86defa0859b71c51b07a2331b6a842d0acf5dfe0a2dfd318759ad8b89a53c7da",
+        "checkedAt": "2026-11-19T05:39:41.883Z"
+      },
+      {
+        "url": "https://www.runchina.org.cn/#/race/v/detail/1000479118",
+        "title": "中国马拉松信息平台本届档案",
+        "role": "current-caa-record",
+        "verified": true,
+        "identityReview": "此前公开中国田协平台 API 本届档案，日期、主办和 A 类",
+        "characters": 0,
+        "bodySha256": "ebba3fde60e6fa96ff506f234af0b9048fc1d1476ff81e2131f16844b7fa8ee0",
+        "checkedAt": "2026-11-19T05:39:41.883Z"
+      },
+      {
+        "url": "http://www.danma.cn/",
+        "title": "2026海南儋州马拉松",
+        "role": "official_website",
+        "verified": true,
+        "checkedAt": "2026-11-19T05:39:41.883Z",
+        "identityReview": "本届赛事最酷说明、儋州组委会官网各页和田协档案一致。逐页验证当届身份、公开后续目录、地图原图与完整当前规程。"
+      }
+    ],
+    "sourceDiscovery": {
+      "currentOfficialHome": "http://www.danma.cn/",
+      "primaryCopyableRegulation": "http://www.danma.cn/page/P1Y3kqE0N8rOD5BwMlze.html",
+      "primaryCopyableRegistration": "http://www.danma.cn/page/Kn6NygxDqdk1mqPZebWM.html",
+      "officialMap": "http://www.danma.cn/page/4Q6N7BemPyrzDnkgGY1d.html",
+      "checkedCurrentPublicNotices": [
+        "http://www.danma.cn/list-527.html",
+        "http://www.danma.cn/list-526.html"
+      ],
+      "searchEvidence": "现场查验官网 2026 可复制文与公告、路线、查询入口，外部检索未找到可读的同届单独 PDF/更晚领物指引，公开 JSON 田协身份档案；无个人查询。"
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_only",
+      "miniDisplayed": false,
+      "formalMiniProgramReleaseVerified": false
+    }
+  },
+  {
+    "id": "caa-1000472006",
+    "name": "2026防城港马拉松",
+    "status": "current_source_content_checked_with_questions",
+    "scope": "中国田径协会和防城港市政府本届最新可读资料优先，使用最酷本届报名页与举办方竞赛规程逐项核对；原9图32片及政府图5张全部实视，独立搜索未用往届；分开发布两个枪次、终点关门与领物，恢复全部奖表、完整19条赛纪等。",
+    "beforeBodyHash": "f07469b7721d43f4e3c82482579e926f2bf755cafbd36517a338c13b60024a3a",
+    "savedBodyHash": "5c28366e0c9a227e2a796fc26abf7ad6d3de61e4c4df46f92ac7aae5385ccf17",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 14,
+    "pendingImages": 0,
+    "chapters": 21,
+    "groups": 2,
+    "groupCorrections": 10,
+    "questions": [
+      {
+        "topic": "全马折返点以11月公安通告为准",
+        "status": "source_conflict_resolved_for_guide",
+        "sourceUrl": "https://www.fcgs.gov.cn/zxzx/tzgg/t28339278.shtml",
+        "sourceUrls": [
+          "https://www.fcgs.gov.cn/zxzx/tzgg/t28339278.shtml",
+          "https://www.fcgs.gov.cn/zxzx/bmtx/t28340845.shtml"
+        ],
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/668aeee1faea80a63a7720901620b0636f7f1787.jpeg?imageView2/2/w/750",
+          "https://www.fcgs.gov.cn/zxzx/bmtx/W020261116314117345892.webp"
+        ],
+        "detail": "9月竞赛规程把全马西湾环海大道折返点写作“彩虹桥头”，11月13日公安交通通告写作“大王江中桥”。正文及路线链接以赛事临近时发布的当届政府通告为准；旧图留作规程原文对照，不拼接两条路线。"
+      },
+      {
+        "topic": "赛前体检与报名提交文件",
+        "status": "source_basis_retained",
+        "sourceUrl": "https://reg.zuicool.com/67420",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/665fb8b76a9d22e1e686ce8a4dfbf2c519078630.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/668aeee1faea80a63a7720901620b0636f7f1787.jpeg?imageView2/2/w/750"
+        ],
+        "detail": "报名宣传图明确报名不要求上传体检或以往成绩；竞赛规程仍要求选手在赛前12个月内体检。两条分别适用报名上传与健康责任，正文保留并说明。"
+      },
+      {
+        "topic": "市民奖日期与大众报名截止不同",
+        "status": "source_basis_retained",
+        "sourceUrl": "https://reg.zuicool.com/67420",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/7b4c16f22db0e29d35250516eff24d642b4dbc42.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/b7feacce4278d60bdc644f33d9ef3f48ff3a90a4.jpeg?imageView2/2/w/750"
+        ],
+        "detail": "主报名2026年10月14日16:00截止；9月早期规程的市民奖段落印2026年9月30日为户籍判断日期。分别注明，不把两者改成同一天；未见后发市民奖资格通知，重复核对保留规程口径。"
+      },
+      {
+        "topic": "海拔与里程口径",
+        "status": "not_published_as_numbers",
+        "sourceUrl": "https://www.fcgs.gov.cn/zxzx/bmtx/t28340845.shtml",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/665fb8b76a9d22e1e686ce8a4dfbf2c519078630.jpeg?imageView2/2/w/750",
+          "https://www.fcgs.gov.cn/zxzx/bmtx/W020261116314117345892.webp"
+        ],
+        "detail": "已实看官方路线海拔图，标注标准距离，没有明确累计爬升总数或不同的实测里程。赛事介绍只明确半程约30米，正文注明估计出处、不把数值当作最终测量，也不填全程累计爬升和额外里程。"
+      },
+      {
+        "topic": "新增正式领物、缺少组委会电话",
+        "status": "source_not_confirmed",
+        "sourceUrl": "https://www.fcgs.gov.cn/zxzx/bmtx/t28340937.shtml",
+        "sourceUrls": [
+          "https://www.fcgs.gov.cn/zxzx/bmtx/t28340937.shtml",
+          "https://reg.zuicool.com/67420"
+        ],
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/7824a58a224fbe03d9dd918866d586e0a49abf45.jpeg?imageView2/2/w/750",
+          "https://www.fcgs.gov.cn/zxzx/bmtx/W020261116320680237089.webp"
+        ],
+        "detail": "市政府本届领物通知与原图明确场地、签署和证件及窗口。竞赛规程联系方式仅列邮箱、公众号、地址和时间，没有电话；警方交通应急点公开联系不是赛事组委会电话。"
+      },
+      {
+        "topic": "补给、奖项、赛纪尾章通过原图纠错",
+        "status": "corrected",
+        "sourceUrl": "https://reg.zuicool.com/67420",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/92b00cc3a30e6efdf6ad823a87be77ae198e771f.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/7b4c16f22db0e29d35250516eff24d642b4dbc42.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/7824a58a224fbe03d9dd918866d586e0a49abf45.jpeg?imageView2/2/w/750"
+        ],
+        "detail": "复原10行关门和15行补给，与组别逐行匹配；补回全马第6/7名分别6000/5000元，区分纪录、男/女名次、市民奖，补回原OCR遗漏的处罚第17项宠物伴跑及沿途每2.5公里固定医疗点。"
+      }
+    ],
+    "officialDocuments": [
+      {
+        "url": "https://www.fcgs.gov.cn/zxzx/bmtx/t28340937.shtml",
+        "title": "2026防城港马拉松领物须知",
+        "role": "government_current_pickup_notice",
+        "verified": true,
+        "identityReview": "市政府门户转载本届组委会领物通知并发布现场原图。",
+        "checkedAt": "2026-11-19T05:39:41.883Z"
+      },
+      {
+        "url": "https://www.fcgs.gov.cn/zxzx/bmtx/t28340845.shtml",
+        "title": "2026防城港马拉松路线图、布局图",
+        "role": "government_current_route_notice",
+        "verified": true,
+        "identityReview": "本届起终点布局和全/半马路线图。",
+        "checkedAt": "2026-11-19T05:39:41.883Z"
+      },
+      {
+        "url": "https://www.fcgs.gov.cn/zxzx/tzgg/t28339278.shtml",
+        "title": "防城港市公安局交通管理支队关于对2026防城港马拉松道路交通实施临时管控的通告",
+        "role": "government_current_route_traffic_notice",
+        "verified": true,
+        "identityReview": "署名公安交管支队，11月13日，精确到全马和半马折返点及路段。",
+        "checkedAt": "2026-11-19T05:39:41.883Z"
+      },
+      {
+        "url": "https://www.fcgs.gov.cn/zxzx/bmtx/t28345191.shtml",
+        "title": "2026防城港马拉松着装和行为规范",
+        "role": "government_current_pre_race_notice",
+        "verified": true,
+        "identityReview": "开赛倒计时6天的本届市政府通知。",
+        "checkedAt": "2026-11-19T05:39:41.883Z"
+      },
+      {
+        "url": "https://www.runchina.org.cn/#/race/v/detail/1000472006",
+        "title": "中国田径协会本届赛事查询",
+        "role": "national_association_event_record",
+        "verified": true,
+        "identityReview": "名称、日期、主办、项目与A类均与本届匹配。",
+        "checkedAt": "2026-11-19T05:39:41.883Z"
+      },
+      {
+        "url": "https://reg.zuicool.com/67420",
+        "title": "最酷本届报名产品和组委会竞赛规程",
+        "role": "authorized_registration_partner",
+        "verified": true,
+        "identityReview": "可复制的本届产品页与九月盖题竞赛规程原图；早期全马折返点被后发当届公安通告更新。",
+        "checkedAt": "2026-11-19T05:39:41.883Z"
+      }
+    ],
+    "sourceDiscovery": {
+      "officialUrl": "https://www.fcgs.gov.cn/zxzx/bmtx/t28340937.shtml",
+      "officialKind": "防城港市政府正式政府门户中本届领物、路线、公安管制、着装和行为通知；中国田协公开详情另核认证及举办",
+      "registrationUrl": "https://reg.zuicool.com/67420",
+      "partnerEventUrl": "https://zuicool.com/event/19686",
+      "partnerAnnouncementUrl": "https://zuicool.com/news/archives/315359",
+      "organizerPublicAccount": "中国东盟马拉松",
+      "checkedFiles": [
+        "/tmp/race-guide-quality-20261117/supplement-g-caa/fetch-results.json",
+        "/tmp/race-guide-quality-20261117/supplement-g-caa/selected-results.json",
+        "/tmp/race-guide-quality-20261117/supplement-g-caa/fang-gov-home.html",
+        "/tmp/race-guide-quality-20261117/supplement-g-caa/fang-announcement.html",
+        "/tmp/race-guide-quality-20261117/supplement-g-caa/fang-latest-pickup.html",
+        "/tmp/race-guide-quality-20261117/supplement-g-caa/fang-latest-route.html",
+        "/tmp/race-guide-quality-20261117/supplement-g-caa/fang-gov-clothing.html",
+        "/tmp/race-guide-quality-20261117/supplement-g-caa/fang-gov-traffic.html",
+        "/tmp/race-guide-quality-20261117/supplement-g-caa/fang-wxso0.html",
+        "/tmp/race-guide-quality-20261117/supplement-g-caa/fang-baidu0.html",
+        "/tmp/race-guide-quality-20261117/supplement-g-caa/caa-1000472006-reg.html"
+      ],
+      "outcome": "正式当届政府发布的文字可复制，作为线路和领物的第一来源，并逐图核官方5张及最酷9张。有用文本入正文，原规程保留，未找到当届单独最终手册或组委会电话，不以2025补齐。"
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_only",
+      "miniDisplayed": false,
+      "formalMiniProgramReleaseVerified": false
+    }
+  }
+]

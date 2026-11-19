@@ -1,0 +1,21 @@
+{
+  "at": "2026-11-19T05:39:41.835Z",
+  "passed": true,
+  "rows": [
+    {
+      "id": "caa-1000479118",
+      "file": "supplement-danzhou-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "完成当前公开 2026 竞赛及报名原文逐条审校、三张现有整页图/七张官网数表/路线图对照；分渠道日期，合并重叠年龄资格、退费和保障，保留旧图及此前可靠审校值。领物地点及少数原文字面问题待组委会公告。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "caa-1000472006",
+      "file": "supplement-g2-fangchenggang-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "中国田径协会和防城港市政府本届最新可读资料优先，使用最酷本届报名页与举办方竞赛规程逐项核对；原9图32片及政府图5张全部实视，独立搜索未用往届；分开发布两个枪次、终点关门与领物，恢复全部奖表、完整19条赛纪等。",
+      "explicitImageReview": true
+    }
+  ],
+  "races": 2
+}

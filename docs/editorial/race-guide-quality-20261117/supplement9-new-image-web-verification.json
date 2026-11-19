@@ -1,0 +1,146 @@
+{
+  "at": "2026-11-19T05:50:25.583Z",
+  "passed": true,
+  "checks": [
+    {
+      "id": "caa-1000479118",
+      "width": 320,
+      "sheetId": 1761,
+      "sha256": "55fd6334885226aa3ec5ed9b87907124aa5caef8d449d3f3793ed48622b28162",
+      "mime": "jpg",
+      "caption": "2026 海南儋州马拉松官网赛道图：全马/半马、公里点、折返与逆行段，附两组海拔剖面",
+      "dims": {
+        "w": 2480,
+        "h": 3358
+      },
+      "previewOpened": true,
+      "originalZoomOpened": true
+    },
+    {
+      "id": "caa-1000479118",
+      "width": 390,
+      "sheetId": 1761,
+      "sha256": "55fd6334885226aa3ec5ed9b87907124aa5caef8d449d3f3793ed48622b28162",
+      "mime": "jpg",
+      "caption": "2026 海南儋州马拉松官网赛道图：全马/半马、公里点、折返与逆行段，附两组海拔剖面",
+      "dims": {
+        "w": 2480,
+        "h": 3358
+      },
+      "previewOpened": true,
+      "originalZoomOpened": true
+    },
+    {
+      "id": "caa-1000472006",
+      "width": 320,
+      "sheetId": 1762,
+      "sha256": "81b2acbf764c3dae79806ed2cfb5f8de44b2a625b81b4f6fe840a272ccaba3e8",
+      "mime": "webp",
+      "caption": "参赛物品现场领取流程图，含本人验件、扫码签署、领取号码布和服装、芯片检测及保险核对",
+      "dims": {
+        "w": 1080,
+        "h": 2160
+      },
+      "previewOpened": true,
+      "originalZoomOpened": true
+    },
+    {
+      "id": "caa-1000472006",
+      "width": 320,
+      "sheetId": 1763,
+      "sha256": "75312e5284fcb03747097c2597c7185a16021631e0589e82665f0b89be05aaf1",
+      "mime": "webp",
+      "caption": "2026防城港马拉松路线和海拔图：红线全马、蓝线半马，附补给、医疗和厕所图标",
+      "dims": {
+        "w": 1080,
+        "h": 1663
+      },
+      "previewOpened": true,
+      "originalZoomOpened": true
+    },
+    {
+      "id": "caa-1000472006",
+      "width": 320,
+      "sheetId": 1764,
+      "sha256": "4899d8020660ace96d638c14044740181cf96378cf9b1b018eaed364893d3e3b",
+      "mime": "webp",
+      "caption": "2026防城港马拉松起点布局，含A区全马、B/C区半马、检录和存衣位置",
+      "dims": {
+        "w": 1080,
+        "h": 764
+      },
+      "previewOpened": true,
+      "originalZoomOpened": true
+    },
+    {
+      "id": "caa-1000472006",
+      "width": 320,
+      "sheetId": 1765,
+      "sha256": "34ae60f5941f967f06eaabbd863390b959de7196d98ac80d21295fb934cdfee0",
+      "mime": "webp",
+      "caption": "2026防城港马拉松终点布局，含路线分流、领物、取衣及赛后服务",
+      "dims": {
+        "w": 1080,
+        "h": 764
+      },
+      "previewOpened": true,
+      "originalZoomOpened": true
+    },
+    {
+      "id": "caa-1000472006",
+      "width": 390,
+      "sheetId": 1762,
+      "sha256": "81b2acbf764c3dae79806ed2cfb5f8de44b2a625b81b4f6fe840a272ccaba3e8",
+      "mime": "webp",
+      "caption": "参赛物品现场领取流程图，含本人验件、扫码签署、领取号码布和服装、芯片检测及保险核对",
+      "dims": {
+        "w": 1080,
+        "h": 2160
+      },
+      "previewOpened": true,
+      "originalZoomOpened": true
+    },
+    {
+      "id": "caa-1000472006",
+      "width": 390,
+      "sheetId": 1763,
+      "sha256": "75312e5284fcb03747097c2597c7185a16021631e0589e82665f0b89be05aaf1",
+      "mime": "webp",
+      "caption": "2026防城港马拉松路线和海拔图：红线全马、蓝线半马，附补给、医疗和厕所图标",
+      "dims": {
+        "w": 1080,
+        "h": 1663
+      },
+      "previewOpened": true,
+      "originalZoomOpened": true
+    },
+    {
+      "id": "caa-1000472006",
+      "width": 390,
+      "sheetId": 1764,
+      "sha256": "4899d8020660ace96d638c14044740181cf96378cf9b1b018eaed364893d3e3b",
+      "mime": "webp",
+      "caption": "2026防城港马拉松起点布局，含A区全马、B/C区半马、检录和存衣位置",
+      "dims": {
+        "w": 1080,
+        "h": 764
+      },
+      "previewOpened": true,
+      "originalZoomOpened": true
+    },
+    {
+      "id": "caa-1000472006",
+      "width": 390,
+      "sheetId": 1765,
+      "sha256": "34ae60f5941f967f06eaabbd863390b959de7196d98ac80d21295fb934cdfee0",
+      "mime": "webp",
+      "caption": "2026防城港马拉松终点布局，含路线分流、领物、取衣及赛后服务",
+      "dims": {
+        "w": 1080,
+        "h": 764
+      },
+      "previewOpened": true,
+      "originalZoomOpened": true
+    }
+  ]
+}
