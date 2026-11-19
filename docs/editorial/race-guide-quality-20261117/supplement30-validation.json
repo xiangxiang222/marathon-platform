@@ -1,0 +1,28 @@
+{
+  "at": "2026-11-19T19:53:55.532Z",
+  "passed": true,
+  "rows": [
+    {
+      "id": "zuiku-98272",
+      "file": "supplement-jianshan-final-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "全查16张本届原件：组委会2026年9月规程一至十四章、当届海报和报名。区分报名年龄、排名年龄、实际领物待通知与成年人禁止陪跑；双路线和名额冲突留可核文字。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-66992",
+      "file": "supplement-huangshi-pickup-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "仅补黄石当届政府版领物须知；核两天时地、代领及申请邮寄，保留比赛日存衣及全部其他赛事资料。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-58600",
+      "file": "supplement-maotai-cp2-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "仅勘误 20 公里组 CP2 神龙洞、16.58 公里和原有 13:00，并用官方同版高清图替换该组旧低清独立公示图。",
+      "explicitImageReview": true
+    }
+  ],
+  "races": 3
+}

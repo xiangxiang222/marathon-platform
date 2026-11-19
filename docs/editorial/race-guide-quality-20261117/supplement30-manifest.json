@@ -1,0 +1,204 @@
+[
+  {
+    "id": "zuiku-98272",
+    "name": "泰兰尼斯见山青少年跑山赛2026年度总决赛",
+    "status": "current_source_content_checked_with_questions",
+    "scope": "全查16张本届原件：组委会2026年9月规程一至十四章、当届海报和报名。区分报名年龄、排名年龄、实际领物待通知与成年人禁止陪跑；双路线和名额冲突留可核文字。",
+    "beforeBodyHash": "4ab8245fb445e4669f5d1ca5e8acb6643d6ee0d13da15a3dc7ec7cae134c55b1",
+    "savedBodyHash": "4c9c45ec9b08153deaf7568fe8b28c0d50d02f35a0d61483fa3cfe3e0c746589",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 21,
+    "pendingImages": 0,
+    "chapters": 6,
+    "groups": 1,
+    "groupCorrections": 2,
+    "questions": [
+      {
+        "status": "same_document_route_conflict",
+        "topic": "比赛标称、实距及爬升",
+        "sourceUrl": "https://reg.zuicool.com/25513",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/d5a34c14cbe2789f3e3b686272ab1946ce863337.jpeg?imageView2/2/w/640",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/78f4c2660f75d2f091f2dc7a3998d94f7d189d29.jpeg?imageView2/2/w/640",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/4575352baf0414db092088bf9ac700d1dbed5cd2.jpeg?imageView2/2/w/640"
+        ],
+        "detail": "本届最酷报名、规程项目参数表及官方路线图10公里/435米；同一规程路线文字11公里/562米，项目年龄说明标题11公里。保留平台标称10与真实差异，actualDistanceKm和ascentM、route字段均不填。"
+      },
+      {
+        "status": "same_document_scale_conflict",
+        "topic": "当前最终规模",
+        "sourceUrl": "https://reg.zuicool.com/25513",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/04eae8d0428766338cf0eb82b63f9eff78afbd75.jpeg?imageView2/2/w/640",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/4575352baf0414db092088bf9ac700d1dbed5cd2.jpeg?imageView2/2/w/640"
+        ],
+        "detail": "开报海报同一页明写150与400（英文同400）、规程表400。无独立统一公告，不填结构化实际名额。海报英文将当届日期误写Tuesday；中文及2026日历均为周日。"
+      },
+      {
+        "status": "inclusive_age_and_adult_race_rules",
+        "topic": "年龄基准与禁止陪跑",
+        "sourceUrl": "https://reg.zuicool.com/25513",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/04eae8d0428766338cf0eb82b63f9eff78afbd75.jpeg?imageView2/2/w/640",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/2f508746dff5c14101ffb068155d7ac2b89a1202.jpeg?imageView2/2/w/640",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/78f4c2660f75d2f091f2dc7a3998d94f7d189d29.jpeg?imageView2/2/w/640",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/4575352baf0414db092088bf9ac700d1dbed5cd2.jpeg?imageView2/2/w/640",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/4a343788f63e42451af57a8f269d6a744a38a3df.jpeg?imageView2/2/w/640"
+        ],
+        "detail": "前端组别标题7—15周岁，具体三种日期表达不完全一致，保留原值；正式中文明确无亲子组、赛道成人陪跑可判取消成绩和禁赛两年，中英装备页的家长措辞不解读为许可。"
+      },
+      {
+        "status": "later_guide_and_results_unavailable",
+        "topic": "后发领物、最终路线及成绩",
+        "sourceUrl": "https://reg.zuicool.com/25513",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/5a68b80d2e69534e5f7fd738dd8b262a63b01fbf.jpeg?imageView2/2/w/640",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/1d41c36726e7506f02d1b97752d7e9e16467ecba.jpeg?imageView2/2/w/640"
+        ],
+        "detail": "组委会署名规程确证预计12月5日、监护人签名要求及一周前公布领物细项；未发现确切后发时地。当前未比赛；成绩和证书从FKT Sports及指定入口发布，未核实当届直链。"
+      },
+      {
+        "status": "exact_identity_official_channel_no_independent_current_text",
+        "topic": "独立官网或当届公众号直链",
+        "sourceUrl": "https://reg.zuicool.com/25513",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/78f4c2660f75d2f091f2dc7a3998d94f7d189d29.jpeg?imageView2/2/w/640",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/1d41c36726e7506f02d1b97752d7e9e16467ecba.jpeg?imageView2/2/w/640"
+        ],
+        "detail": "签署原件载山童主办、长埭村村委协办、官方渠道FKT Sports及小红书赛事名。定向查找发现多场同一主办者的其他赛事和往届总决赛，不可补进本届。未取得本届独立官网、政府专项公告、可读当届公众号地址；不填假官网。"
+      }
+    ],
+    "officialDocuments": [],
+    "sourceDiscovery": {
+      "officialUrls": [],
+      "searchResultsPath": "/private/tmp/race-guide-quality-20261117/supp29-jianshan/source-discovery.json",
+      "discoveryFile": "/private/tmp/race-guide-quality-20261117/supp29-jianshan/discover.json",
+      "sourcePriority": "组委会当前签署原规程、当届平台可复制报名文字和本届原图对照；按本届源的适用范围区分报名标称、规程详细以及冲突，未用往届资料补。",
+      "notes": "已实际逐项查看16张原件，11幅全帧＋8个连续切片；另看5张附图。"
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_and_mini_devtools_390",
+      "miniDisplayed": true,
+      "formalMiniProgramReleaseVerified": false
+    }
+  },
+  {
+    "id": "zuiku-66992",
+    "name": "2026黄石马拉松",
+    "status": "current_source_content_checked_with_questions",
+    "scope": "仅补黄石当届政府版领物须知；核两天时地、代领及申请邮寄，保留比赛日存衣及全部其他赛事资料。",
+    "beforeBodyHash": "ba848f28573c86830add6600581e529c4fd14ec74a04647b2ba5e3ce82d1ec9d",
+    "savedBodyHash": "ac93f49994a16e17f50fc492d1523c8656dee28032f2f6303675f4ee9532e0ec",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 8,
+    "pendingImages": 0,
+    "chapters": 13,
+    "groups": 2,
+    "groupCorrections": 0,
+    "questions": [
+      {
+        "issue": "黄石市人民政府网站11月15日本届领物须知已核实：黄石体育馆3号门，11月20日10:00—18:00、21日10:00—21:00；官方赛事站旧菜单仍写待更新。",
+        "status": "pickup_announcement_confirmed",
+        "sourceUrl": "https://www.huangshi.gov.cn/xwdt/tt/202611/t20261115_1373849.html"
+      }
+    ],
+    "officialDocuments": [
+      {
+        "url": "https://www.huangshi.gov.cn/xwdt/tt/202611/t20261115_1373849.html",
+        "title": "选手们注意！黄石马拉松领物须知",
+        "role": "government_current_pickup_notice",
+        "verified": true,
+        "identityReview": "黄石市人民政府网站2026年11月15日发布，标来源东楚晚报；本届全半马领物时地、本人及代领材料、邮寄。",
+        "characters": 1463,
+        "bodySha256": "b9bdf1ddd5fc26c1e3ef865e7128d5cc7d988a79b4d49e01b5e4e4752f4494b2",
+        "checkedAt": "2026-11-19T19:54:11.542Z"
+      }
+    ],
+    "sourceDiscovery": {
+      "officialUrls": [
+        "https://www.huangshi.gov.cn/xwdt/tt/202611/t20261115_1373849.html",
+        "http://huangshimarathon.com/index.php?catid=15"
+      ],
+      "verifiedGovernmentPublication": {
+        "url": "https://www.huangshi.gov.cn/xwdt/tt/202611/t20261115_1373849.html",
+        "sourceUrl": "https://www.huangshi.gov.cn/xwdt/tt/202611/t20261115_1373849.html",
+        "role": "government_current_pickup_notice",
+        "title": "选手们注意！黄石马拉松领物须知",
+        "scope": "黄石市人民政府网站2026年11月15日发布，标来源东楚晚报；本届全半马领物时地、本人及代领材料、邮寄。",
+        "imageViewed": false,
+        "textReviewed": true,
+        "publishedAt": "2026-11-15",
+        "sha256": "05385c2e24dd5aeead50849a99b19f220915140e62e6585feeeff82438082d75"
+      },
+      "oldMenu": {
+        "url": "http://huangshimarathon.com/index.php?catid=15",
+        "sha256": "edad847a52ec9aec88042598a3b731f4e93d58116cea9825489e4cac3e3c77b4",
+        "status": "placeholder"
+      },
+      "searchEvidence": "/private/tmp/race-guide-quality-20261117/supp29-huangshi-pickup/baidu-results.json",
+      "sourcesChecked": "/private/tmp/race-guide-quality-20261117/supp29-huangshi-pickup/followup.json"
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_and_mini_devtools_390",
+      "miniDisplayed": true,
+      "formalMiniProgramReleaseVerified": false
+    }
+  },
+  {
+    "id": "zuiku-58600",
+    "name": "2026首届贵州茅台镇越野跑",
+    "status": "partially_verified",
+    "scope": "仅勘误 20 公里组 CP2 神龙洞、16.58 公里和原有 13:00，并用官方同版高清图替换该组旧低清独立公示图。",
+    "beforeBodyHash": "5be83dba7d1ca80d93a5f73bc1cc72c416d4e27f8bc866f796306d0d1af148d9",
+    "savedBodyHash": "676a4be2b8b5dcb72c6f56281bfefdc40e60edbf8a6d57eb52dae2f46da31203",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 1,
+    "pendingImages": 8,
+    "chapters": 22,
+    "groups": 4,
+    "groupCorrections": 0,
+    "questions": [
+      {
+        "issue": "赛事官网同版 20 公里高清路线图清楚标出 CP2 神龙洞、累计 16.58 公里、关门 13:00。只补既有途中站点表这一处；其他路线的小字和非本专项范围保持此前审校处理。",
+        "status": "official_hd_map_20km_cp2_verified",
+        "sourceUrl": "http://www.letoursports.com/event?id=905178&mid=72299",
+        "imageUrl": "https://img.saihuitong.com/4717/richtext/13044845/sht/1a144a59d993086.jpg"
+      }
+    ],
+    "officialDocuments": [
+      {
+        "url": "http://www.letoursports.com/event?id=905178&mid=72299",
+        "title": "朗途体育赛事官网",
+        "role": "official_website",
+        "verified": true,
+        "identityReview": "2026首届贵州茅台镇越野跑正常报名专页；未混入精英、贡嘎、邀请通道。",
+        "bodySha256": "0826bade2d9da761568d0497559aab735162ecbdd1fcaaad3bbba7cdb5f1b4d1",
+        "checkedAt": "2026-11-19T19:54:11.542Z"
+      }
+    ],
+    "sourceDiscovery": {
+      "officialUrl": "http://www.letoursports.com/event?id=905178&mid=72299",
+      "method": "优先核赛事主办方正常报名专页，使用平台仅有的本届路线图补回关门信息及清晰距离。下载无缩略参数版本后确认分辨率无提升。"
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_and_mini_devtools_390",
+      "miniDisplayed": true,
+      "formalMiniProgramReleaseVerified": false
+    }
+  }
+]

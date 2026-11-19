@@ -1,0 +1,103 @@
+{
+  "at": "2026-11-19T19:30:01.845Z",
+  "checks": [
+    {
+      "id": "zuiku-94253",
+      "width": 320,
+      "needle": "10:00—18:00",
+      "table": {
+        "width": 252,
+        "scrollWidth": 360,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 108,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "组委会9月8日改期、退费与奖励公告（72公里为当时方案）\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-94253",
+      "width": 390,
+      "needle": "10:00—18:00",
+      "table": {
+        "width": 318,
+        "scrollWidth": 360,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 42,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "组委会9月8日改期、退费与奖励公告（72公里为当时方案）\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-96415",
+      "width": 320,
+      "needle": "10:50",
+      "table": {
+        "width": 252,
+        "scrollWidth": 600,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 348,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "11 月 6 日政府赛前攻略原图：最终发令时刻、领物点与存取衣\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-96415",
+      "width": 390,
+      "needle": "10:50",
+      "table": {
+        "width": 318,
+        "scrollWidth": 600,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 282,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "11 月 6 日政府赛前攻略原图：最终发令时刻、领物点与存取衣\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-97568",
+      "width": 320,
+      "needle": "318 元/组",
+      "table": {
+        "width": 252,
+        "scrollWidth": 600,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 348,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "盖章延期通知：改期、资格顺延及延期退款\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-97568",
+      "width": 390,
+      "needle": "318 元/组",
+      "table": {
+        "width": 318,
+        "scrollWidth": 600,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 282,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "盖章延期通知：改期、资格顺延及延期退款\n查看原图 ↗",
+      "overflow": false
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-11-19T19:30:36.963Z"
+}
