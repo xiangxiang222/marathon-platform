@@ -1,0 +1,28 @@
+{
+  "at": "2026-11-19T08:14:35.741Z",
+  "checks": [
+    {
+      "id": "caa-1000467006",
+      "width": 320,
+      "paragraphs": 83,
+      "tableRows": 30,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "zuiku-11747",
+      "width": 320,
+      "paragraphs": 47,
+      "tableRows": 80,
+      "fullRenderedContentMatchesProduction": true
+    },
+    {
+      "id": "caa-1000454030",
+      "width": 320,
+      "paragraphs": 73,
+      "tableRows": 36,
+      "fullRenderedContentMatchesProduction": true
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-11-19T08:14:46.651Z"
+}

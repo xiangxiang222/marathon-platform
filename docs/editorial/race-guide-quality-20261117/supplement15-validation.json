@@ -1,0 +1,14 @@
+{
+  "at": "2026-11-19T08:17:28.495Z",
+  "passed": true,
+  "rows": [
+    {
+      "id": "zuiku-60343",
+      "file": "supplement-pingshan-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "逐段校对本届六张原图、17章竞赛规程及最酷当届可复制四组。核分组时刻与累计参数、四组各档费用、资格、检录关门、四张分段表、装备勾选、奖励、申诉及服务电话。",
+      "explicitImageReview": true
+    }
+  ],
+  "races": 1
+}

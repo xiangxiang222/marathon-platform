@@ -1,0 +1,39 @@
+{
+  "at": "2026-11-19T08:35:02.234Z",
+  "checks": [
+    {
+      "id": "caa-1000454030",
+      "width": 320,
+      "needle": "09:00–22:00",
+      "table": {
+        "width": 252,
+        "scrollWidth": 360,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 108,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "2026贺州半程马拉松领物原图：10月30、31日的领物时间、地址及摆渡车\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "caa-1000454030",
+      "width": 390,
+      "needle": "09:00–22:00",
+      "table": {
+        "width": 318,
+        "scrollWidth": 360,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 42,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "2026贺州半程马拉松领物原图：10月30、31日的领物时间、地址及摆渡车\n查看原图 ↗",
+      "overflow": false
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-11-19T08:35:11.704Z"
+}

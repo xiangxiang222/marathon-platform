@@ -1,0 +1,101 @@
+{
+  "startedAt": "2026-11-19T08:14:16.634Z",
+  "kind": "Actual WeChat DevTools 390px production-page; no mock; physical phone, gestures and formal release excluded",
+  "races": [
+    {
+      "id": "caa-1000467006",
+      "actualViewport": 390,
+      "guideCharacters": 6227,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 0,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1032.0546875,
+        "bottom": 10301.5,
+        "width": 366,
+        "height": 9269.4453125,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 4,
+      "tableRowsIncludingHeaders": 30,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336
+      ]
+    },
+    {
+      "id": "zuiku-11747",
+      "actualViewport": 390,
+      "guideCharacters": 6517,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 7,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1398.4453125,
+        "bottom": 11930.5234375,
+        "width": 366,
+        "height": 10532.078125,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 11,
+      "tableRowsIncludingHeaders": 80,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336
+      ]
+    },
+    {
+      "id": "caa-1000454030",
+      "actualViewport": 390,
+      "guideCharacters": 4853,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 1,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1177.765625,
+        "bottom": 8902.0703125,
+        "width": 366,
+        "height": 7724.3046875,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 6,
+      "tableRowsIncludingHeaders": 36,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336,
+        336,
+        336
+      ]
+    }
+  ],
+  "previousErrors": [],
+  "intermittent": [],
+  "errors": [],
+  "passed": true,
+  "completedAt": "2026-11-19T08:14:46.993Z"
+}
