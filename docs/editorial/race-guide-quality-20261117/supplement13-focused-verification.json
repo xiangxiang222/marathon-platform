@@ -1,0 +1,39 @@
+{
+  "at": "2026-11-19T07:40:19.348Z",
+  "checks": [
+    {
+      "id": "caa-1000456006",
+      "width": 320,
+      "needle": "10:55",
+      "table": {
+        "width": 252,
+        "scrollWidth": 720,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 468,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "2026西昌马拉松竞赛规程（一）：起终点、路线、检录、分枪及关门\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "caa-1000456006",
+      "width": 390,
+      "needle": "10:55",
+      "table": {
+        "width": 318,
+        "scrollWidth": 720,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 402,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "2026西昌马拉松竞赛规程（一）：起终点、路线、检录、分枪及关门\n查看原图 ↗",
+      "overflow": false
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-11-19T07:40:31.705Z"
+}
