@@ -1,0 +1,598 @@
+{
+  "schemaVersion": 2,
+  "raceId": "changsha",
+  "updatedAt": "2026-11-18",
+  "intro": "长沙马拉松自2015年创办，将湘江、橘子洲、岳麓山与洋湖等景观带入城市跑步线路。长马的阅读重点是沿江起跑与跨江路段的年度组织：2025年调整起点并延后进入橘子洲，2026年半程终点转到渔人码头，项目也收敛为全马和半马。",
+  "introSourceIds": [
+    "cs-history-2024",
+    "cs-preview-2025",
+    "cs-preview-2026"
+  ],
+  "profile": {
+    "foundingYear": "2015",
+    "foundingYearSourceIds": [
+      "cs-history-2024"
+    ],
+    "positioning": "依托湘江两岸、橘子洲与岳麓文化景观的城市马拉松。2026年中国田协条目为A类；世界田联等级未核实，暂不标注。",
+    "positioningSourceIds": [
+      "cs-history-2024",
+      "changsha-caa-2026"
+    ],
+    "entryNotes": "2026年预报名超过19万人，需区分报名总数、抽签资格人数与实际抽签名额；领物须预约并本人到场。",
+    "entrySourceIds": [
+      "cs-preview-2026",
+      "cs-collection-2026"
+    ]
+  },
+  "highlights": [
+    {
+      "title": "进橘子洲的节奏曾被调整",
+      "body": "2025年起点移至杜甫江阁旁，官方解释将进入橘子洲延后至约10公里，以减轻早段拥挤。",
+      "sourceIds": [
+        "cs-preview-2025"
+      ],
+      "applicableYears": [
+        "2025"
+      ]
+    },
+    {
+      "title": "半马终点要按年份确认",
+      "body": "2025年发布会写明西湖公园东门，2026年则为渔人码头；同行人员接应和住宿安排应随届更新。",
+      "sourceIds": [
+        "cs-preview-2025",
+        "cs-preview-2026"
+      ],
+      "applicableYears": [
+        "2025",
+        "2026"
+      ]
+    },
+    {
+      "title": "湖湘景观与城市助威",
+      "body": "2026年赛后报道记录橘子洲头、岳麓山、洋湖湿地等景观，以及68处助威点；属于该届现场体验。",
+      "sourceIds": [
+        "cs-report-2026"
+      ],
+      "applicableYears": [
+        "2026"
+      ]
+    }
+  ],
+  "history": [
+    {
+      "date": "2015",
+      "title": "长马创办",
+      "body": "2015年创办，并在首届获得中国田协铜牌赛事评价。",
+      "sourceIds": [
+        "cs-history-2024"
+      ]
+    },
+    {
+      "date": "2017",
+      "title": "获中国田协金牌评价",
+      "body": "官方回顾记载2017年进入中国田协金牌赛事行列。",
+      "sourceIds": [
+        "cs-history-2024"
+      ]
+    },
+    {
+      "date": "2024-10-20",
+      "title": "十年长马的线下相聚",
+      "body": "赛事以30000人规模举办；国家体育总局回顾称截至当时累计7届线下与3届线上，不将两者混算为线下届次。",
+      "sourceIds": [
+        "cs-history-2024"
+      ]
+    },
+    {
+      "date": "2025-07-30",
+      "title": "宣布起点与橘子洲路段调整",
+      "body": "发布会公布起点移至湘江中路、延后进入橘子洲的方案。",
+      "sourceIds": [
+        "cs-preview-2025"
+      ]
+    },
+    {
+      "date": "2026-11-15",
+      "title": "全马与半马两项目举行",
+      "body": "2026年全马18000人、半马17000人，赛事报道确认实际开赛。",
+      "sourceIds": [
+        "cs-report-2026"
+      ]
+    }
+  ],
+  "records": [],
+  "editions": [
+    {
+      "year": "2026",
+      "editionId": "changsha-2026",
+      "editionName": "2026长沙马拉松",
+      "status": "completed",
+      "date": "2026-11-15",
+      "dateSourceIds": [
+        "cs-preview-2026",
+        "cs-report-2026"
+      ],
+      "distance": "马拉松、半程马拉松",
+      "events": [
+        {
+          "project": "马拉松",
+          "distanceKm": 42.195,
+          "plannedParticipants": "18000人",
+          "fee": "",
+          "sourceIds": [
+            "cs-preview-2026",
+            "cs-report-2026"
+          ]
+        },
+        {
+          "project": "半程马拉松",
+          "distanceKm": 21.0975,
+          "plannedParticipants": "17000人",
+          "fee": "",
+          "sourceIds": [
+            "cs-preview-2026",
+            "cs-report-2026"
+          ]
+        }
+      ],
+      "route": {
+        "summary": "自杜甫江阁旁的湘江中路出发，赛事报道列举橘子洲头、岳麓山、洋湖湿地与第一师范等沿线景观。",
+        "start": "湘江中路（杜甫江阁旁）",
+        "finish": "全马：贺龙体育场南广场；半马：渔人码头",
+        "mapUrl": "",
+        "changes": "半程终点为渔人码头，不沿用2025年西湖公园东门信息；本届仅设置全马与半马。",
+        "analysis": [],
+        "sourceIds": [
+          "cs-preview-2026",
+          "cs-report-2026"
+        ]
+      },
+      "registration": {
+        "method": "预报名后抽签，并按缴费空缺安排候补；具体批次以当届公告为准。",
+        "opens": "2026-08-04 10:00",
+        "closes": "2026-08-11 17:00",
+        "drawDate": "",
+        "fee": "",
+        "qualification": "",
+        "applicants": "总报名192052人；全马75912人、半马116140人",
+        "eligibleApplicants": "",
+        "lotteryPool": "",
+        "drawQuota": "",
+        "directQuota": "",
+        "lotteryRate": "",
+        "lotteryNote": "报名人数不等于抽签池，缺少扣除直通等名额后的同口径数据，不计算中签率。",
+        "note": "",
+        "sourceIds": [
+          "cs-preview-2026"
+        ]
+      },
+      "participation": {
+        "planned": "35000人：全马18000、半马17000",
+        "starters": "",
+        "finishers": "",
+        "finishRate": "",
+        "note": "报道的赛事规模，未获得同口径的实际起跑人数与完赛人数。",
+        "sourceIds": [
+          "cs-preview-2026",
+          "cs-report-2026"
+        ]
+      },
+      "results": [],
+      "gear": [
+        {
+          "title": "红枫色参赛服",
+          "body": "2026年参赛服采用红橙色调，灵感取自爱晚亭红枫等城市意象。",
+          "imageUrl": "",
+          "sourceIds": [
+            "cs-report-2026"
+          ]
+        }
+      ],
+      "notes": [],
+      "logistics": {
+        "collection": {
+          "time": "11月12—13日11:00—20:00；11月14日09:00—22:00",
+          "place": "长沙国际会展中心2号北登录厅W1馆",
+          "requirements": "预约领物；本人持有效证件核验，不接受代领；比赛当日不领物。",
+          "sourceIds": [
+            "cs-collection-2026"
+          ]
+        },
+        "transport": {
+          "start": "",
+          "finish": "",
+          "expo": "",
+          "sourceIds": []
+        },
+        "raceDay": {
+          "startTime": "07:00",
+          "timeLimit": "",
+          "bagDrop": "",
+          "aidStations": "",
+          "toilets": "",
+          "medical": "",
+          "sourceIds": [
+            "cs-report-2026"
+          ]
+        },
+        "tips": [
+          {
+            "title": "跨江城市赛道的行程安排",
+            "body": "领物在长沙国际会展中心，比赛起点在湘江中路；应分别安排领物和比赛当天的往返，不能按同一地点预订接驳。",
+            "sourceIds": [
+              "cs-collection-2026",
+              "cs-report-2026"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "year": "2025",
+      "editionId": "changsha-2025",
+      "editionName": "2025长沙马拉松",
+      "status": "archived",
+      "date": "2025-10-26",
+      "dateSourceIds": [
+        "cs-preview-2025"
+      ],
+      "distance": "马拉松、半程马拉松、欢乐跑",
+      "events": [
+        {
+          "project": "马拉松",
+          "distanceKm": 42.195,
+          "plannedParticipants": "15000人",
+          "fee": "",
+          "sourceIds": [
+            "cs-preview-2025"
+          ]
+        },
+        {
+          "project": "半程马拉松",
+          "distanceKm": 21.0975,
+          "plannedParticipants": "16000人",
+          "fee": "",
+          "sourceIds": [
+            "cs-preview-2025"
+          ]
+        },
+        {
+          "project": "欢乐跑",
+          "distanceKm": "",
+          "plannedParticipants": "4000人",
+          "fee": "",
+          "sourceIds": [
+            "cs-preview-2025"
+          ]
+        }
+      ],
+      "route": {
+        "summary": "湘江中路杜甫江阁旁起跑，经湘江路折返后登橘子洲大桥；新闻发布会说明进橘子洲的距离延长至约10公里处。",
+        "start": "湘江中路（杜甫江阁旁）",
+        "finish": "全马：贺龙体育场南广场；半马：西湖公园东门；欢乐跑：开福寺广场",
+        "mapUrl": "",
+        "changes": "2025年起点由贺龙体育场东广场调整至湘江中路，并延后进入橘子洲以疏解前段拥挤。",
+        "analysis": [],
+        "sourceIds": [
+          "cs-preview-2025"
+        ]
+      },
+      "registration": {
+        "method": "官方报名渠道；完整抽签、付费规则待补原始公告。",
+        "opens": "2025-07-31 10:00",
+        "closes": "",
+        "drawDate": "",
+        "fee": "",
+        "qualification": "",
+        "applicants": "",
+        "eligibleApplicants": "",
+        "lotteryPool": "",
+        "drawQuota": "",
+        "directQuota": "",
+        "lotteryRate": "",
+        "lotteryNote": "",
+        "note": "",
+        "sourceIds": [
+          "cs-preview-2025"
+        ]
+      },
+      "participation": {
+        "planned": "计划35000人：全马15000、半马16000、欢乐跑4000",
+        "starters": "",
+        "finishers": "",
+        "finishRate": "",
+        "note": "发布会计划规模；尚未补齐本届赛后统计。",
+        "sourceIds": [
+          "cs-preview-2025"
+        ]
+      },
+      "results": [],
+      "gear": [],
+      "notes": [
+        "目前本届路线、规模和日期依据赛前新闻发布会归档，未取得完整赛后结果原文。"
+      ],
+      "logistics": {
+        "collection": {
+          "time": "",
+          "place": "",
+          "requirements": "",
+          "sourceIds": []
+        },
+        "transport": {
+          "start": "",
+          "finish": "",
+          "expo": "",
+          "sourceIds": []
+        },
+        "raceDay": {
+          "startTime": "07:00",
+          "timeLimit": "",
+          "bagDrop": "",
+          "aidStations": "",
+          "toilets": "",
+          "medical": "",
+          "sourceIds": [
+            "cs-preview-2025"
+          ]
+        },
+        "tips": []
+      }
+    },
+    {
+      "year": "2024",
+      "editionId": "changsha-2024",
+      "editionName": "2024长沙马拉松",
+      "status": "completed",
+      "date": "2024-10-20",
+      "dateSourceIds": [
+        "cs-history-2024"
+      ],
+      "distance": "马拉松、半程马拉松、欢乐跑",
+      "events": [
+        {
+          "project": "马拉松",
+          "distanceKm": 42.195,
+          "plannedParticipants": "12000人",
+          "fee": "",
+          "sourceIds": [
+            "cs-history-2024"
+          ]
+        },
+        {
+          "project": "半程马拉松",
+          "distanceKm": 21.0975,
+          "plannedParticipants": "13000人",
+          "fee": "",
+          "sourceIds": [
+            "cs-history-2024"
+          ]
+        },
+        {
+          "project": "欢乐跑",
+          "distanceKm": "",
+          "plannedParticipants": "5000人",
+          "fee": "",
+          "sourceIds": [
+            "cs-history-2024"
+          ]
+        }
+      ],
+      "route": {
+        "summary": "官方回顾列举湘江风光带、橘子洲、岳麓山与洋湖等城市景观，未提供完整道路顺序。",
+        "start": "",
+        "finish": "",
+        "mapUrl": "",
+        "changes": "",
+        "analysis": [],
+        "sourceIds": [
+          "cs-history-2024"
+        ]
+      },
+      "registration": {
+        "method": "",
+        "opens": "",
+        "closes": "",
+        "drawDate": "",
+        "fee": "",
+        "qualification": "",
+        "applicants": "",
+        "eligibleApplicants": "",
+        "lotteryPool": "",
+        "drawQuota": "",
+        "directQuota": "",
+        "lotteryRate": "",
+        "lotteryNote": "",
+        "note": "",
+        "sourceIds": []
+      },
+      "participation": {
+        "planned": "30000人：全马12000、半马13000、欢乐跑5000",
+        "starters": "",
+        "finishers": "",
+        "finishRate": "",
+        "note": "报道的赛事规模，未获得同口径的实际起跑人数与完赛人数。",
+        "sourceIds": [
+          "cs-history-2024",
+          "cs-preview-2025"
+        ]
+      },
+      "results": [],
+      "gear": [],
+      "notes": [],
+      "logistics": {
+        "collection": {
+          "time": "",
+          "place": "",
+          "requirements": "",
+          "sourceIds": []
+        },
+        "transport": {
+          "start": "",
+          "finish": "",
+          "expo": "",
+          "sourceIds": []
+        },
+        "raceDay": {
+          "startTime": "",
+          "timeLimit": "",
+          "bagDrop": "",
+          "aidStations": "",
+          "toilets": "",
+          "medical": "",
+          "sourceIds": []
+        },
+        "tips": []
+      }
+    }
+  ],
+  "stories": [],
+  "sources": [
+    {
+      "id": "cs-history-2024",
+      "title": "长沙马拉松激发城市发展新活力",
+      "url": "https://www.sport.gov.cn/n20001280/n20001265/n20067664/c28195692/content.html",
+      "publisher": "国家体育总局／中国体育报",
+      "publishedAt": "2024-10-23",
+      "accessedAt": "2026-11-18",
+      "verifiedAt": "2026-11-18",
+      "applicableYears": [
+        "2015",
+        "2017",
+        "2023",
+        "2024"
+      ]
+    },
+    {
+      "id": "cs-report-2024",
+      "title": "十年长马跑出新天地",
+      "url": "https://www.changsha.gov.cn/bmrl/bmrlwhzx/202410/t20241021_11626898.html",
+      "publisher": "长沙市人民政府／长沙晚报",
+      "publishedAt": "2024-10-21",
+      "accessedAt": "2026-11-18",
+      "verifiedAt": "2026-11-18",
+      "applicableYears": [
+        "2015",
+        "2024"
+      ]
+    },
+    {
+      "id": "cs-preview-2025",
+      "title": "长沙银行·2025长沙马拉松新闻发布会",
+      "url": "https://www.changsha.gov.cn/jdhy/xwfbh/zxbd/202507/t20250730_11935305.html",
+      "publisher": "长沙市人民政府／长沙市体育局",
+      "publishedAt": "2025-07-30",
+      "accessedAt": "2026-11-18",
+      "verifiedAt": "2026-11-18",
+      "applicableYears": [
+        "2024",
+        "2025"
+      ]
+    },
+    {
+      "id": "cs-preview-2026",
+      "title": "总报名人数达192052人，2026长沙马拉松11月15日开跑",
+      "url": "https://www.changsha.gov.cn/bmrl/bmrlbsfw/202610/t20261019_12591874.html",
+      "publisher": "长沙市人民政府／长沙晚报",
+      "publishedAt": "2026-10-19",
+      "accessedAt": "2026-11-18",
+      "verifiedAt": "2026-11-18",
+      "applicableYears": [
+        "2026"
+      ]
+    },
+    {
+      "id": "cs-collection-2026",
+      "title": "为期三天，2026长沙马拉松领物工作12日开启",
+      "url": "https://www.changsha.gov.cn/bmrl/bmrlbsfw/202611/t20261110_12612883.html",
+      "publisher": "长沙市人民政府／长沙晚报",
+      "publishedAt": "2026-11-10",
+      "accessedAt": "2026-11-18",
+      "verifiedAt": "2026-11-18",
+      "applicableYears": [
+        "2026"
+      ]
+    },
+    {
+      "id": "cs-report-2026",
+      "title": "一江秋色，满城热爱｜2026长沙马拉松鸣枪开跑",
+      "url": "http://csty.changsha.gov.cn/zfxxgk/zwyw/202611/t20261117_12618443.html",
+      "publisher": "长沙市体育局／长沙马拉松",
+      "publishedAt": "2026-11-17",
+      "accessedAt": "2026-11-18",
+      "verifiedAt": "2026-11-18",
+      "applicableYears": [
+        "2026"
+      ]
+    },
+    {
+      "id": "cs-official",
+      "title": "长沙马拉松官方网站",
+      "url": "https://www.marathonchangsha.com/",
+      "publisher": "长沙马拉松组委会",
+      "publishedAt": "",
+      "accessedAt": "2026-11-18",
+      "verifiedAt": "2026-11-18",
+      "applicableYears": [
+        "2026"
+      ]
+    },
+    {
+      "id": "changsha-caa-2026",
+      "title": "中国马拉松：2026长沙马拉松",
+      "url": "https://www.runchina.org.cn/#/race/v/detail/1000418247",
+      "publisher": "中国田径协会",
+      "publishedAt": "",
+      "accessedAt": "2026-11-18",
+      "verifiedAt": "2026-11-18",
+      "applicableYears": [
+        "2026"
+      ],
+      "evidence": {
+        "endpoint": "https://api-changzheng.chinaath.com/changzheng-content-center-api/api/homePage/official/searchById",
+        "method": "POST",
+        "request": {
+          "id": "1000418247",
+          "type": "SS"
+        },
+        "observed": {
+          "name": "2026长沙马拉松",
+          "raceGrade": "A",
+          "gameDate": "2026.11.15",
+          "project": "全程,半程",
+          "compNameOrganizer": "湖南省体育局,长沙市人民政府"
+        }
+      }
+    }
+  ],
+  "gaps": [
+    {
+      "fields": [
+        "records",
+        "editions.results"
+      ],
+      "reason": "未取得可核对的官方完整成绩和历届赛会纪录表；不以新闻中未附成绩的冠军姓名补造纪录。"
+    },
+    {
+      "fields": [
+        "worldAthletics"
+      ],
+      "reason": "本轮世界田联2026日历未检出长沙主赛事条目，未确认当届等级；历史“双金”宣传不代替当届核验。"
+    },
+    {
+      "fields": [
+        "editions.2024.registration",
+        "editions.2025.results",
+        "editions.2026.registration.fee"
+      ],
+      "reason": "2024报名须知、2025赛后原文及2026费用等细则尚待补充。"
+    },
+    {
+      "fields": [
+        "images",
+        "editions.route.mapUrl"
+      ],
+      "reason": "未取得官方图片、路线图的明确转载许可，暂不展示图片；可通过资料来源查看官方原图。"
+    }
+  ],
+  "conflicts": []
+}

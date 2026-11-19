@@ -1,0 +1,514 @@
+{
+  "schemaVersion": 2,
+  "raceId": "dalian",
+  "updatedAt": "2026-11-18",
+  "intro": "大连马拉松创办于1987年。东港的海港景观与中山广场、人民广场等城市广场建筑群，是大马鲜明的辨识点。路线强调山海相连、穿城而行；赛期近年从2024年10月转到2025年5月、2026年4月，不能把某一年的季节写成赛事永久安排。",
+  "introSourceIds": [
+    "dl-report-2025",
+    "dl-preview-2026",
+    "dl-preview-2024"
+  ],
+  "profile": {
+    "foundingYear": "1987",
+    "foundingYearSourceIds": [
+      "dl-report-2025",
+      "dl-report-2026"
+    ],
+    "positioning": "历史较长的沿海城市马拉松，以海港、城市广场和街区建筑串联的赛道呈现大连风貌；2026年世界田联日历为精英标牌。",
+    "positioningSourceIds": [
+      "dl-preview-2026",
+      "dalian-wa-2026"
+    ],
+    "entryNotes": "报名总量与赛事规模不能直接计算中签率；具体抽签、资格、费用和领物时段须以当届规程为准。",
+    "entrySourceIds": [
+      "dl-report-2025"
+    ]
+  },
+  "highlights": [
+    {
+      "title": "海港与广场建筑群",
+      "body": "2026年从东港出发，沿线包括东方水城、中山广场、人民广场和南山风情街等地标；这些是景观节点，不能替代道路导航。",
+      "sourceIds": [
+        "dl-preview-2026"
+      ],
+      "applicableYears": [
+        "2026"
+      ]
+    },
+    {
+      "title": "赛期并非固定季节",
+      "body": "2024年官方预告为10月20日，2025年5月11日举办，2026年第36届于4月26日举办。",
+      "sourceIds": [
+        "dl-preview-2024",
+        "dl-report-2025",
+        "dl-report-2026"
+      ],
+      "applicableYears": [
+        "2024",
+        "2025",
+        "2026"
+      ]
+    },
+    {
+      "title": "刻字奖牌与海洋意象",
+      "body": "2026年奖牌以海浪和灯塔为主题，并延续刻字服务，把大连的海洋风貌带入完赛纪念。",
+      "sourceIds": [
+        "dl-preview-2026"
+      ],
+      "applicableYears": [
+        "2026"
+      ]
+    }
+  ],
+  "history": [
+    {
+      "date": "1987",
+      "title": "大马创办",
+      "body": "大连马拉松于1987年创办。",
+      "sourceIds": [
+        "dl-report-2025",
+        "dl-report-2026"
+      ]
+    },
+    {
+      "date": "2024-10",
+      "title": "第34届赛前方案归档",
+      "body": "第34届计划于10月20日举办，设全马、半马和欢乐跑。",
+      "sourceIds": [
+        "dl-preview-2024"
+      ]
+    },
+    {
+      "date": "2025-05-11",
+      "title": "第35届在东港起跑",
+      "body": "官方赛后报道记录33000人规模，穆尼耶和玛莎分获男女全马冠军。",
+      "sourceIds": [
+        "dl-report-2025"
+      ]
+    },
+    {
+      "date": "2026-04-26",
+      "title": "第36届与城市体验联动",
+      "body": "第36届举行，赛前领物及马拉松博览会设在大连世界博览广场。",
+      "sourceIds": [
+        "dl-report-2026"
+      ]
+    }
+  ],
+  "records": [],
+  "editions": [
+    {
+      "year": "2026",
+      "editionId": "dalian-2026",
+      "editionName": "第36届大连马拉松",
+      "status": "completed",
+      "date": "2026-04-26",
+      "dateSourceIds": [
+        "dl-preview-2026",
+        "dl-report-2026"
+      ],
+      "distance": "马拉松、半程马拉松",
+      "events": [],
+      "route": {
+        "summary": "东港港浦路与珠荷街交汇处出发，串联东方水城、港湾广场、中山广场、人民广场及南山风情街等地标；官方概括为穿城越海、起伏有致。",
+        "start": "东港商务区港浦路／珠荷街交汇处",
+        "finish": "",
+        "mapUrl": "",
+        "changes": "2026年发布会称延续经典路线，未公布本轮可读取的全程坡度和累计爬升数据。",
+        "analysis": [],
+        "sourceIds": [
+          "dl-preview-2026"
+        ]
+      },
+      "registration": {
+        "method": "",
+        "opens": "",
+        "closes": "",
+        "drawDate": "",
+        "fee": "",
+        "qualification": "",
+        "applicants": "",
+        "eligibleApplicants": "",
+        "lotteryPool": "",
+        "drawQuota": "",
+        "directQuota": "",
+        "lotteryRate": "",
+        "lotteryNote": "",
+        "note": "",
+        "sourceIds": []
+      },
+      "participation": {
+        "planned": "30000人（赛事报道规模）",
+        "starters": "",
+        "finishers": "",
+        "finishRate": "",
+        "note": "报道的赛事规模，未获得同口径的实际起跑人数与完赛人数。",
+        "sourceIds": [
+          "dl-report-2026"
+        ]
+      },
+      "results": [],
+      "gear": [
+        {
+          "title": "灯塔与海浪奖牌",
+          "body": "2026年奖牌将灯塔、海浪和城市地标融入圆环造型，挂绳配以深海蓝与槐花纹样；组委会延续奖牌刻字服务。",
+          "imageUrl": "",
+          "sourceIds": [
+            "dl-preview-2026"
+          ]
+        }
+      ],
+      "notes": [],
+      "logistics": {
+        "collection": {
+          "time": "2026年4月23—25日；具体时段待补",
+          "place": "大连世界博览广场",
+          "requirements": "",
+          "sourceIds": [
+            "dl-report-2026"
+          ]
+        },
+        "transport": {
+          "start": "",
+          "finish": "",
+          "expo": "",
+          "sourceIds": []
+        },
+        "raceDay": {
+          "startTime": "07:30",
+          "timeLimit": "",
+          "bagDrop": "",
+          "aidStations": "",
+          "toilets": "",
+          "medical": "",
+          "sourceIds": [
+            "dl-preview-2026",
+            "dl-report-2026"
+          ]
+        },
+        "tips": [
+          {
+            "title": "把领物与起点分开安排",
+            "body": "2026年领物位于世界博览广场，比赛从东港出发，两者位置不同；应分别核对当天交通与入场指引。",
+            "sourceIds": [
+              "dl-report-2026",
+              "dl-preview-2026"
+            ]
+          },
+          {
+            "title": "留意起伏与城市转向",
+            "body": "官方将2026路线概括为“起伏有致”；尚无可核验的高程数据，不给出爬升数字或PB难度评级。",
+            "sourceIds": [
+              "dl-preview-2026"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "year": "2025",
+      "editionId": "dalian-2025",
+      "editionName": "第35届大连马拉松",
+      "status": "completed",
+      "date": "2025-05-11",
+      "dateSourceIds": [
+        "dl-report-2025"
+      ],
+      "distance": "马拉松、半程马拉松",
+      "events": [],
+      "route": {
+        "summary": "东港商务区起跑；本轮赛后报道未给出可逐路段核对的完整路线。",
+        "start": "东港商务区",
+        "finish": "",
+        "mapUrl": "",
+        "changes": "",
+        "analysis": [],
+        "sourceIds": [
+          "dl-report-2025"
+        ]
+      },
+      "registration": {
+        "method": "",
+        "opens": "",
+        "closes": "",
+        "drawDate": "",
+        "fee": "",
+        "qualification": "",
+        "applicants": "超过10万人（报道概数）",
+        "eligibleApplicants": "",
+        "lotteryPool": "",
+        "drawQuota": "",
+        "directQuota": "",
+        "lotteryRate": "",
+        "lotteryNote": "仅有报名概数，缺少可比的抽签池与实际抽签名额，不计算中签率。",
+        "note": "",
+        "sourceIds": [
+          "dl-report-2025"
+        ]
+      },
+      "participation": {
+        "planned": "33000人（赛事报道规模）",
+        "starters": "",
+        "finishers": "",
+        "finishRate": "",
+        "note": "报道的赛事规模，未获得同口径的实际起跑人数与完赛人数。",
+        "sourceIds": [
+          "dl-report-2025"
+        ]
+      },
+      "results": [
+        {
+          "group": "马拉松男子冠军",
+          "athlete": "穆尼耶",
+          "time": "02:10:33",
+          "timing": "",
+          "sourceIds": [
+            "dl-report-2025"
+          ]
+        },
+        {
+          "group": "马拉松女子冠军",
+          "athlete": "玛莎",
+          "time": "02:29:20",
+          "timing": "",
+          "sourceIds": [
+            "dl-report-2025"
+          ]
+        }
+      ],
+      "gear": [],
+      "notes": [
+        "本届设跑团赛中赛，按前20名成员净计时合计等规则排名；不将其成绩口径与个人冠军计时混用。"
+      ],
+      "logistics": {
+        "collection": {
+          "time": "",
+          "place": "",
+          "requirements": "",
+          "sourceIds": []
+        },
+        "transport": {
+          "start": "",
+          "finish": "",
+          "expo": "",
+          "sourceIds": []
+        },
+        "raceDay": {
+          "startTime": "07:30",
+          "timeLimit": "",
+          "bagDrop": "",
+          "aidStations": "",
+          "toilets": "",
+          "medical": "",
+          "sourceIds": [
+            "dl-report-2025"
+          ]
+        },
+        "tips": []
+      }
+    },
+    {
+      "year": "2024",
+      "editionId": "dalian-2024",
+      "editionName": "2024大连马拉松",
+      "status": "archived",
+      "date": "2024-10-20",
+      "dateSourceIds": [
+        "dl-preview-2024"
+      ],
+      "distance": "马拉松、半程马拉松、欢乐跑",
+      "events": [],
+      "route": {
+        "summary": "赛前介绍从东港出发，将中山广场、人民路、中山路等城市建筑与街道纳入赛事景观；完整道路顺序未核实。",
+        "start": "东港商务区",
+        "finish": "",
+        "mapUrl": "",
+        "changes": "",
+        "analysis": [],
+        "sourceIds": [
+          "dl-preview-2024"
+        ]
+      },
+      "registration": {
+        "method": "",
+        "opens": "",
+        "closes": "",
+        "drawDate": "",
+        "fee": "",
+        "qualification": "",
+        "applicants": "",
+        "eligibleApplicants": "",
+        "lotteryPool": "",
+        "drawQuota": "",
+        "directQuota": "",
+        "lotteryRate": "",
+        "lotteryNote": "",
+        "note": "",
+        "sourceIds": []
+      },
+      "participation": {
+        "planned": "计划30000人",
+        "starters": "",
+        "finishers": "",
+        "finishRate": "",
+        "note": "2024赛前公告计划规模，尚未取得本届赛后统计。",
+        "sourceIds": [
+          "dl-preview-2024"
+        ]
+      },
+      "results": [],
+      "gear": [],
+      "notes": [
+        "本届资料来自赛前官方媒体介绍；没有据此补写实际完赛人数或成绩。"
+      ],
+      "logistics": {
+        "collection": {
+          "time": "",
+          "place": "",
+          "requirements": "",
+          "sourceIds": []
+        },
+        "transport": {
+          "start": "",
+          "finish": "",
+          "expo": "",
+          "sourceIds": []
+        },
+        "raceDay": {
+          "startTime": "",
+          "timeLimit": "",
+          "bagDrop": "",
+          "aidStations": "",
+          "toilets": "",
+          "medical": "",
+          "sourceIds": []
+        },
+        "tips": []
+      }
+    }
+  ],
+  "stories": [],
+  "sources": [
+    {
+      "id": "dl-preview-2024",
+      "title": "大连马拉松赛10月20日开跑",
+      "url": "https://www.ln.gov.cn/web/ywdt/zymtkln/2024101409121848634/index.shtml",
+      "publisher": "辽宁省人民政府／新华网",
+      "publishedAt": "2024-10-14",
+      "accessedAt": "2026-11-18",
+      "verifiedAt": "2026-11-18",
+      "applicableYears": [
+        "2024"
+      ]
+    },
+    {
+      "id": "dl-report-2025",
+      "title": "第35届大连马拉松赛昨日起跑",
+      "url": "https://www.dldj.gov.cn/art/2025/5/12/art_9266_2439060.html",
+      "publisher": "大连党建网／大连日报",
+      "publishedAt": "2025-05-12",
+      "accessedAt": "2026-11-18",
+      "verifiedAt": "2026-11-18",
+      "applicableYears": [
+        "1987",
+        "2025"
+      ]
+    },
+    {
+      "id": "dl-preview-2026",
+      "title": "2026大连马拉松赛4月26日鸣枪起跑",
+      "url": "https://www.dl.gov.cn/art/2026/4/16/art_1438_2508615.html",
+      "publisher": "大连市人民政府／大连日报",
+      "publishedAt": "2026-04-16",
+      "accessedAt": "2026-11-18",
+      "verifiedAt": "2026-11-18",
+      "applicableYears": [
+        "2026"
+      ]
+    },
+    {
+      "id": "dl-report-2026",
+      "title": "解码辽宁｜“老牌”马拉松如何跑好人气经济“新赛道”",
+      "url": "https://www.ln.gov.cn/web/ywdt/zymtkln/2026042809122866254/index.shtml",
+      "publisher": "辽宁省人民政府／新华网",
+      "publishedAt": "2026-04-28",
+      "accessedAt": "2026-11-18",
+      "verifiedAt": "2026-11-18",
+      "applicableYears": [
+        "1987",
+        "2026"
+      ]
+    },
+    {
+      "id": "dalian-caa-2026",
+      "title": "中国马拉松：2026大连马拉松",
+      "url": "https://www.runchina.org.cn/#/race/v/detail/1000388027",
+      "publisher": "中国田径协会",
+      "publishedAt": "",
+      "accessedAt": "2026-11-18",
+      "verifiedAt": "2026-11-18",
+      "applicableYears": [
+        "2026"
+      ],
+      "evidence": {
+        "endpoint": "https://api-changzheng.chinaath.com/changzheng-content-center-api/api/homePage/official/searchById",
+        "method": "POST",
+        "request": {
+          "id": "1000388027",
+          "type": "SS"
+        },
+        "observed": {
+          "name": "2026大连马拉松",
+          "raceGrade": "A",
+          "gameDate": "2026.04.26",
+          "project": "全程,半程",
+          "compNameOrganizer": "大连市人民政府"
+        }
+      }
+    },
+    {
+      "id": "dalian-wa-2026",
+      "title": "World Athletics Label Road Races 2026 Calendar",
+      "url": "https://worldathletics.org/competitions/world-athletics-label-road-races/calendar-results",
+      "publisher": "世界田联",
+      "publishedAt": "",
+      "accessedAt": "2026-11-18",
+      "verifiedAt": "2026-11-18",
+      "applicableYears": [
+        "2026"
+      ],
+      "evidence": {
+        "eventId": "7236080",
+        "competitionName": "The 36th Dalian Marathon",
+        "category": "Elite",
+        "calendarDate": "2026-04-26"
+      }
+    }
+  ],
+  "gaps": [
+    {
+      "fields": [
+        "records",
+        "editions.2024.results",
+        "editions.2026.results"
+      ],
+      "reason": "未获得官方历届纪录表及2024、2026完整成绩原文，赛会纪录暂不填。"
+    },
+    {
+      "fields": [
+        "editions.registration",
+        "editions.route.finish",
+        "editions.logistics.collection.requirements"
+      ],
+      "reason": "三届报名规程、精确终点及领物身份要求尚待原始公告补充；不将往届规则沿用到2026。"
+    },
+    {
+      "fields": [
+        "images",
+        "editions.route.mapUrl"
+      ],
+      "reason": "未取得官方图片、路线图的明确转载许可，暂不展示图片；可通过资料来源查看官方原图。"
+    }
+  ],
+  "conflicts": []
+}

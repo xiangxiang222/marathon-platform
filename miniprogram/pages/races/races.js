@@ -180,7 +180,9 @@ Page({
     this.setData({ catalogLoading: true, catalogError: "" });
     return request("/race-catalog")
       .then((data) => {
-        const catalogRaces = (Array.isArray(data.races) ? data.races : []).slice(0, 3).map((race) => {
+        const featured = data.featuredIds || ['beijing', 'shanghai', 'xiamen'];
+        const available = Array.isArray(data.races) ? data.races : [];
+        const catalogRaces = featured.map(id => available.find(race => race.id === id)).filter(Boolean).slice(0, 3).map((race) => {
           const wa = race.worldAthletics || {}, caa = race.caa || {};
           const sameYear = wa.label && caa.label && wa.year && String(wa.year) === String(caa.year);
           return {

@@ -1,19 +1,31 @@
 {
   "raceId": "beijing",
-  "updatedAt": "2026-11-14",
+  "updatedAt": "2026-11-18",
   "intro": "北京马拉松创办于1981年。以天安门起跑、奥林匹克区域冲线为城市记忆，档案按届保存资格、路线、竞赛成绩与赛事物品，帮助跑者分辨每年变化。",
   "highlights": [
     {
       "title": "从城市地标出发",
-      "body": "近年从天安门广场出发，终点设于奥林匹克区域；每届实际起终点和道路按当年规程记录。"
+      "body": "近年从天安门广场出发，终点设于奥林匹克区域；每届实际起终点和道路按当年规程记录。",
+      "sourceIds": [
+        "bj-reg-2026",
+        "bj-reg-2025"
+      ]
     },
     {
       "title": "年度规则持续变化",
-      "body": "2025年按上一届北马成绩及年龄组标准提供直通；2026年成绩要求调整为近24个月内1次全马或2次半马，并新增存包选择。"
+      "body": "2025年按上一届北马成绩及年龄组标准提供直通；2026年成绩要求调整为近24个月内1次全马或2次半马，并新增存包选择。",
+      "sourceIds": [
+        "bj-notice-2025",
+        "bj-notice-2026"
+      ]
     },
     {
       "title": "报名热度逐年留档",
-      "body": "2023年131239人报名，2024年182949人提交报名信息。报名总数与实际参加抽签人数分别记录。"
+      "body": "2023年131239人报名，2024年182949人提交报名信息。报名总数与实际参加抽签人数分别记录。",
+      "sourceIds": [
+        "bj-release-2023",
+        "bj-release-2024"
+      ]
     }
   ],
   "editions": [
@@ -195,7 +207,11 @@
             ]
           }
         ]
-      }
+      },
+      "editionId": "beijing-2026",
+      "editionName": "2026北京马拉松",
+      "events": [],
+      "status": "completed"
     },
     {
       "year": "2025",
@@ -400,7 +416,11 @@
             ]
           }
         ]
-      }
+      },
+      "editionId": "beijing-2025",
+      "editionName": "2025北京马拉松",
+      "events": [],
+      "status": "completed"
     },
     {
       "year": "2024",
@@ -579,7 +599,11 @@
             ]
           }
         ]
-      }
+      },
+      "editionId": "beijing-2024",
+      "editionName": "2024北京马拉松",
+      "events": [],
+      "status": "completed"
     },
     {
       "year": "2023",
@@ -776,7 +800,11 @@
             ]
           }
         ]
-      }
+      },
+      "editionId": "beijing-2023",
+      "editionName": "2023北京马拉松",
+      "events": [],
+      "status": "completed"
     }
   ],
   "stories": [
@@ -816,7 +844,11 @@
       "url": "https://www.beijing-marathon.com/subject.html?detailId=7837960762814478&topicId=7793646346787704",
       "publisher": "北京马拉松组委会",
       "publishedAt": "2023-10-11",
-      "accessedAt": "2026-11-14"
+      "accessedAt": "2026-11-14",
+      "applicableYears": [
+        "2023"
+      ],
+      "verifiedAt": "2026-11-14"
     },
     {
       "id": "bj-intro",
@@ -824,7 +856,9 @@
       "url": "https://www.beijing-marathon.com/subject.html?detailId=7843824231772565&topicId=7793653947229092",
       "publisher": "北京马拉松组委会",
       "publishedAt": "",
-      "accessedAt": "2026-11-14"
+      "accessedAt": "2026-11-14",
+      "applicableYears": [],
+      "verifiedAt": "2026-11-14"
     },
     {
       "id": "bj-map-2026",
@@ -832,7 +866,11 @@
       "url": "https://www.beijing-marathon.com/subject.html?detailId=7992140408205034&topicId=7793644601957146",
       "publisher": "北京马拉松组委会",
       "publishedAt": "2026-09-28",
-      "accessedAt": "2026-11-14"
+      "accessedAt": "2026-11-14",
+      "applicableYears": [
+        "2026"
+      ],
+      "verifiedAt": "2026-11-14"
     },
     {
       "id": "bj-reg-2026",
@@ -840,7 +878,11 @@
       "url": "https://www.beijing-marathon.com/subject.html?detailId=9024241433441439&topicId=7793646850104219",
       "publisher": "北京马拉松组委会",
       "publishedAt": "",
-      "accessedAt": "2026-11-14"
+      "accessedAt": "2026-11-14",
+      "applicableYears": [
+        "2026"
+      ],
+      "verifiedAt": "2026-11-14"
     },
     {
       "id": "bj-notice-2026",
@@ -848,7 +890,11 @@
       "url": "https://www.beijing-marathon.com/subject.html?detailId=9024245728409368&topicId=7793646850104219",
       "publisher": "北京马拉松组委会",
       "publishedAt": "",
-      "accessedAt": "2026-11-14"
+      "accessedAt": "2026-11-14",
+      "applicableYears": [
+        "2026"
+      ],
+      "verifiedAt": "2026-11-14"
     },
     {
       "id": "bj-result-men-2026",
@@ -856,7 +902,11 @@
       "url": "https://www.beijing-marathon.com/subject.html?detailId=9076287477911197&topicId=7793646850104219",
       "publisher": "北京马拉松组委会",
       "publishedAt": "",
-      "accessedAt": "2026-11-14"
+      "accessedAt": "2026-11-14",
+      "applicableYears": [
+        "2026"
+      ],
+      "verifiedAt": "2026-11-14"
     },
     {
       "id": "bj-result-women-2026",
@@ -864,7 +914,11 @@
       "url": "https://www.beijing-marathon.com/subject.html?detailId=9076288115445470&topicId=7793646850104219",
       "publisher": "北京马拉松组委会",
       "publishedAt": "",
-      "accessedAt": "2026-11-14"
+      "accessedAt": "2026-11-14",
+      "applicableYears": [
+        "2026"
+      ],
+      "verifiedAt": "2026-11-14"
     },
     {
       "id": "bj-reg-2025",
@@ -872,7 +926,11 @@
       "url": "https://www.beijing-marathon.com/subject.html?detailId=8486678159362470&topicId=7793646850104219",
       "publisher": "北京马拉松组委会",
       "publishedAt": "",
-      "accessedAt": "2026-11-14"
+      "accessedAt": "2026-11-14",
+      "applicableYears": [
+        "2025"
+      ],
+      "verifiedAt": "2026-11-14"
     },
     {
       "id": "bj-notice-2025",
@@ -880,7 +938,11 @@
       "url": "https://www.beijing-marathon.com/subject.html?detailId=8486680524950121&topicId=7793646850104219",
       "publisher": "北京马拉松组委会",
       "publishedAt": "",
-      "accessedAt": "2026-11-14"
+      "accessedAt": "2026-11-14",
+      "applicableYears": [
+        "2025"
+      ],
+      "verifiedAt": "2026-11-14"
     },
     {
       "id": "bj-result-men-2025",
@@ -888,7 +950,11 @@
       "url": "https://www.beijing-marathon.com/subject.html?detailId=8569945378133372&topicId=7793646850104219",
       "publisher": "北京马拉松组委会",
       "publishedAt": "",
-      "accessedAt": "2026-11-14"
+      "accessedAt": "2026-11-14",
+      "applicableYears": [
+        "2025"
+      ],
+      "verifiedAt": "2026-11-14"
     },
     {
       "id": "bj-result-women-2025",
@@ -896,7 +962,11 @@
       "url": "https://www.beijing-marathon.com/subject.html?detailId=8569944438609218&topicId=7793646850104219",
       "publisher": "北京马拉松组委会",
       "publishedAt": "",
-      "accessedAt": "2026-11-14"
+      "accessedAt": "2026-11-14",
+      "applicableYears": [
+        "2025"
+      ],
+      "verifiedAt": "2026-11-14"
     },
     {
       "id": "bj-reg-2024",
@@ -904,7 +974,11 @@
       "url": "https://www.beijing-marathon.com/subject.html?detailId=7992119268562291&topicId=7793646850104219",
       "publisher": "北京马拉松组委会",
       "publishedAt": "",
-      "accessedAt": "2026-11-14"
+      "accessedAt": "2026-11-14",
+      "applicableYears": [
+        "2024"
+      ],
+      "verifiedAt": "2026-11-14"
     },
     {
       "id": "bj-notice-2024",
@@ -912,7 +986,11 @@
       "url": "https://www.beijing-marathon.com/subject.html?detailId=7992123412534890&topicId=7793646850104219",
       "publisher": "北京马拉松组委会",
       "publishedAt": "",
-      "accessedAt": "2026-11-14"
+      "accessedAt": "2026-11-14",
+      "applicableYears": [
+        "2024"
+      ],
+      "verifiedAt": "2026-11-14"
     },
     {
       "id": "bj-result-men-2024",
@@ -920,7 +998,11 @@
       "url": "https://www.beijing-marathon.com/subject.html?detailId=8040868875493392&topicId=7793646850104219",
       "publisher": "北京马拉松组委会",
       "publishedAt": "",
-      "accessedAt": "2026-11-14"
+      "accessedAt": "2026-11-14",
+      "applicableYears": [
+        "2024"
+      ],
+      "verifiedAt": "2026-11-14"
     },
     {
       "id": "bj-result-women-2024",
@@ -928,7 +1010,11 @@
       "url": "https://www.beijing-marathon.com/subject.html?detailId=8040866493128627&topicId=7793646850104219",
       "publisher": "北京马拉松组委会",
       "publishedAt": "",
-      "accessedAt": "2026-11-14"
+      "accessedAt": "2026-11-14",
+      "applicableYears": [
+        "2024"
+      ],
+      "verifiedAt": "2026-11-14"
     },
     {
       "id": "bj-reg-2023",
@@ -936,7 +1022,11 @@
       "url": "https://www.beijing-marathon.com/subject.html?detailId=7838141151201938&topicId=7793646850104219",
       "publisher": "北京马拉松组委会",
       "publishedAt": "",
-      "accessedAt": "2026-11-14"
+      "accessedAt": "2026-11-14",
+      "applicableYears": [
+        "2023"
+      ],
+      "verifiedAt": "2026-11-14"
     },
     {
       "id": "bj-notice-2023",
@@ -944,7 +1034,11 @@
       "url": "https://www.beijing-marathon.com/subject.html?detailId=7838142124245395&topicId=7793646850104219",
       "publisher": "北京马拉松组委会",
       "publishedAt": "",
-      "accessedAt": "2026-11-14"
+      "accessedAt": "2026-11-14",
+      "applicableYears": [
+        "2023"
+      ],
+      "verifiedAt": "2026-11-14"
     },
     {
       "id": "bj-release-2024",
@@ -952,7 +1046,11 @@
       "url": "https://tyj.beijing.gov.cn/bjsports/gzdt84/jtdt/543439442/index.html",
       "publisher": "北京市体育局（赛事发布会信息）",
       "publishedAt": "2024-10-25",
-      "accessedAt": "2026-11-14"
+      "accessedAt": "2026-11-14",
+      "applicableYears": [
+        "2024"
+      ],
+      "verifiedAt": "2026-11-14"
     },
     {
       "id": "bj-route-release-2025",
@@ -960,7 +1058,11 @@
       "url": "https://tyj.beijing.gov.cn/bjsports/gzdt84/zwdt/743751776/index.html",
       "publisher": "北京市体育局（赛事报名发布信息）",
       "publishedAt": "2025-09-10",
-      "accessedAt": "2026-11-14"
+      "accessedAt": "2026-11-14",
+      "applicableYears": [
+        "2025"
+      ],
+      "verifiedAt": "2026-11-14"
     },
     {
       "id": "bj-race-report-2023",
@@ -968,7 +1070,11 @@
       "url": "https://tyj.beijing.gov.cn/bjsports/gzdt84/jtdt/436263504/index.html",
       "publisher": "北京市体育竞赛管理和国际交流中心",
       "publishedAt": "2023-10-30",
-      "accessedAt": "2026-11-14"
+      "accessedAt": "2026-11-14",
+      "applicableYears": [
+        "2023"
+      ],
+      "verifiedAt": "2026-11-14"
     },
     {
       "id": "bj-race-report-2025",
@@ -976,7 +1082,11 @@
       "url": "https://tyj.beijing.gov.cn/bjsports/gzdt84/zwdt/743819569/index.html",
       "publisher": "北京市体育局（中国体育报）",
       "publishedAt": "2025-11-03",
-      "accessedAt": "2026-11-14"
+      "accessedAt": "2026-11-14",
+      "applicableYears": [
+        "2025"
+      ],
+      "verifiedAt": "2026-11-14"
     },
     {
       "id": "bj-collection-2025",
@@ -984,7 +1094,11 @@
       "url": "https://www.beijing-marathon.com/subject.html?detailId=8559756960753579&topicId=7793646850104219",
       "publisher": "北京马拉松组委会",
       "publishedAt": "2025-10-28",
-      "accessedAt": "2026-11-14"
+      "accessedAt": "2026-11-14",
+      "applicableYears": [
+        "2025"
+      ],
+      "verifiedAt": "2026-11-14"
     },
     {
       "id": "bj-draw-2026",
@@ -992,7 +1106,96 @@
       "url": "https://www.beijing-marathon.com/subject.html?detailId=9046029550949938&topicId=7793646850104219",
       "publisher": "北京马拉松组委会",
       "publishedAt": "2026-09-28",
-      "accessedAt": "2026-11-14"
+      "accessedAt": "2026-11-14",
+      "applicableYears": [
+        "2026"
+      ],
+      "verifiedAt": "2026-11-14"
+    },
+    {
+      "id": "bj-history-2022",
+      "title": "海淀区圆满完成北京马拉松属地服务保障任务",
+      "url": "https://www.bjhd.gov.cn/ztzx/2022/hdwl/wtlvxdx/dtxx/202211/t20221107_4562009.shtml",
+      "publisher": "北京市海淀区人民政府",
+      "publishedAt": "2022-11-07",
+      "accessedAt": "2026-11-18",
+      "verifiedAt": "2026-11-18",
+      "applicableYears": [
+        "1981",
+        "2022"
+      ]
+    }
+  ],
+  "schemaVersion": 2,
+  "history": [
+    {
+      "date": "1981",
+      "title": "赛事创办",
+      "body": "海淀区政府回顾资料将北京马拉松创办时间追溯至1981年。",
+      "sourceIds": [
+        "bj-history-2022"
+      ]
+    },
+    {
+      "date": "2022",
+      "title": "恢复线下举办",
+      "body": "2022年政府保障工作记录了时隔三年的赛事回归。",
+      "sourceIds": [
+        "bj-history-2022"
+      ]
+    },
+    {
+      "date": "2023",
+      "title": "中国男子赛会纪录节点",
+      "body": "陈天宇在2023届以2:08:11刷新当时中国男子选手赛会纪录；这是历史节点，不作为未经全历史复核的当前纪录。",
+      "sourceIds": [
+        "bj-race-report-2023"
+      ]
+    },
+    {
+      "date": "2025",
+      "title": "规模与赛道服务调整",
+      "body": "2025报名发布介绍了扩至3.2万人的计划规模与赛道服务升级，变化只适用于该届。",
+      "sourceIds": [
+        "bj-route-release-2025"
+      ]
+    }
+  ],
+  "records": [],
+  "conflicts": [],
+  "profile": {
+    "foundingYear": "1981",
+    "foundingYearSourceIds": [
+      "bj-history-2022"
+    ],
+    "positioning": "从天安门广场走向奥林匹克区域，以城市地标与长期办赛历史形成辨识度。近年的路线与资格变化按届记录。",
+    "positioningSourceIds": [
+      "bj-history-2022",
+      "bj-route-release-2025"
+    ],
+    "entryNotes": "2025与2026届都保留抽签和直通路径，但资格标准与存包安排有变化。查看近年报名热度时，应把提交信息人数、抽签池与实际名额分开。",
+    "entrySourceIds": [
+      "bj-notice-2025",
+      "bj-notice-2026"
+    ]
+  },
+  "introSourceIds": [
+    "bj-history-2022",
+    "bj-route-release-2025"
+  ],
+  "gaps": [
+    {
+      "fields": [
+        "records"
+      ],
+      "reason": "现有逐届冠军及2023中国男子纪录节点已保留；尚缺足以确认完整赛事历史现行男女纪录的原始材料，不以所收录冠军最快值推算。"
+    },
+    {
+      "fields": [
+        "participation",
+        "registration.lotteryRate"
+      ],
+      "reason": "部分年度实际起跑、完赛与同口径中签统计未核实；详见对应年份的空值和说明。"
     }
   ]
 }

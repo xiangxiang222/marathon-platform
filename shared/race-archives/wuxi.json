@@ -1,0 +1,510 @@
+{
+  "raceId": "wuxi",
+  "updatedAt": "2026-11-18",
+  "intro": "无锡马拉松于2014年起跑，以蠡湖、太湖沿岸和江南大学等城市景观串起江南赛道。候补退出、身份核验与参赛助手是其服务演进的重要线索；路线和报名分组按届次保存，避免把某年的规则写成固定承诺。",
+  "introSourceIds": [
+    "wx-history-2024",
+    "wx-regulations-2026"
+  ],
+  "profile": {
+    "foundingYear": "2014",
+    "foundingYearSourceIds": [
+      "wx-history-2024"
+    ],
+    "positioning": "无锡市人民政府主办的城市马拉松，以湖岸风景、跑者服务和大众竞赛组织形成辨识度。",
+    "positioningSourceIds": [
+      "wx-history-2024",
+      "wx-regulations-2026",
+      "wuxi-caa-2026"
+    ],
+    "entryNotes": "2026届全马按A/B/C/D组分别抽签，半马统一抽签，并设置候补与退出机制。成绩分组和资格门槛须重读当届报名须知；历届未中签不等于下一届自动获得资格。",
+    "entrySourceIds": [
+      "wx-registration-2026"
+    ]
+  },
+  "highlights": [
+    {
+      "title": "湖岸、湿地与大学校园",
+      "body": "2024官方城市报道列出蠡湖之光、鼋头渚、十里芳径、长广溪湿地、江南大学、贡湖湾等沿线景观。2026规程仍可确认十里芳堤、江南大学、贡湖湾这一关键顺序，完整道路以该届规程为准。",
+      "sourceIds": [
+        "wx-history-2024",
+        "wx-regulations-2026"
+      ],
+      "applicableYears": [
+        "2024",
+        "2026"
+      ]
+    },
+    {
+      "title": "服务机制逐步迭代",
+      "body": "官方十年回顾记录2015年引入候补退出机制，2017年采用人脸识别核验，2018年上线参赛助手，2024年采用分枪起跑。它们是具体年份的运营节点。",
+      "sourceIds": [
+        "wx-history-2024"
+      ],
+      "applicableYears": [
+        "2015",
+        "2017",
+        "2018",
+        "2024"
+      ]
+    }
+  ],
+  "history": [
+    {
+      "date": "2014-04-13",
+      "title": "首届起跑",
+      "body": "官方十年回顾以2014年4月13日为起点。",
+      "sourceIds": [
+        "wx-history-2024"
+      ]
+    },
+    {
+      "date": "2015",
+      "title": "候补退出机制",
+      "body": "开始引入候补和退出安排，后来发展为锡马报名服务的一项特点。",
+      "sourceIds": [
+        "wx-history-2024"
+      ]
+    },
+    {
+      "date": "2018",
+      "title": "参赛助手上线",
+      "body": "通过小程序推进参赛者服务。",
+      "sourceIds": [
+        "wx-history-2024"
+      ]
+    },
+    {
+      "date": "2024",
+      "title": "十年节点与分枪起跑",
+      "body": "该届计划33000人；官方回顾记录报名26.59万人，不能据此计算抽签中签率。",
+      "sourceIds": [
+        "wx-history-2024"
+      ]
+    }
+  ],
+  "records": [],
+  "editions": [
+    {
+      "year": "2026",
+      "editionId": "wuxi-2026",
+      "editionName": "2026海澜之家无锡马拉松",
+      "status": "completed",
+      "date": "2026-03-22",
+      "dateSourceIds": [
+        "wx-regulations-2026"
+      ],
+      "distance": "马拉松、半程马拉松",
+      "events": [
+        {
+          "project": "马拉松",
+          "distanceKm": 42.195,
+          "plannedParticipants": "27000人",
+          "fee": "",
+          "sourceIds": [
+            "wx-registration-2026",
+            "wx-regulations-2026"
+          ]
+        },
+        {
+          "project": "半程马拉松",
+          "distanceKm": 21.0975,
+          "plannedParticipants": "8000人",
+          "fee": "",
+          "sourceIds": [
+            "wx-registration-2026",
+            "wx-regulations-2026"
+          ]
+        }
+      ],
+      "route": {
+        "project": "马拉松",
+        "start": "太湖大道隐秀路路口",
+        "finish": "无锡太湖国际博览中心",
+        "summary": "太湖大道隐秀路路口 → 十里芳堤 → 江南大学 → 贡湖湾湿地公园 → 无锡太湖国际博览中心",
+        "summaryNote": "依据2026年规程节选的关键地标顺序，不是完整道路清单或导航轨迹；半马路线须另列。",
+        "changes": "",
+        "analysis": [],
+        "mapUrl": "",
+        "sourceIds": [
+          "wx-regulations-2026"
+        ]
+      },
+      "registration": {
+        "method": "2026届各项目超额后采用抽签加候补；全马分段抽签，具体资格按当届报名须知。",
+        "opens": "",
+        "closes": "",
+        "drawDate": "",
+        "fee": "",
+        "qualification": "",
+        "applicants": "",
+        "eligibleApplicants": "",
+        "lotteryPool": "",
+        "drawQuota": "",
+        "lotteryRate": "",
+        "directQuota": "",
+        "sourceIds": [
+          "wx-registration-2026"
+        ]
+      },
+      "participation": {
+        "planned": "马拉松27000人、半程马拉松8000人（2026规程计划规模）",
+        "starters": "",
+        "finishers": "",
+        "finishRate": "",
+        "sourceIds": [
+          "wx-regulations-2026"
+        ]
+      },
+      "results": [],
+      "gear": [],
+      "logistics": {
+        "collection": {
+          "time": "2026年3月19日至21日，按当届报到须知分时预约",
+          "place": "无锡太湖国际博览中心",
+          "requirements": "本人领取并进行人证核验，不接受代领；以2026届报到须知为依据。",
+          "sourceIds": [
+            "wx-collection-2026"
+          ]
+        },
+        "transport": {},
+        "raceDay": {},
+        "tips": [
+          {
+            "title": "安排能本人到场的领物行程",
+            "body": "基于2026届预约及本人领取要求，外地跑者安排到达日期时应预留领物时间，再核对自己的预约时段。其他届次需重新查看当届规则。",
+            "kind": "editorial-advice",
+            "applicableYears": [
+              "2026"
+            ],
+            "sourceIds": [
+              "wx-collection-2026"
+            ]
+          }
+        ]
+      },
+      "notes": [
+        "此处只示范已核对的2026规程和须知，不表示完整档案已经采集。",
+        "比赛日期已经过去，本示例尚未核实赛后举办状态、成绩与实际人数，不能据规程推填。",
+        "收录的是赛前规程及领物安排，尚未收录本届正式成绩与实到人数。"
+      ]
+    },
+    {
+      "year": "2025",
+      "editionId": "wuxi-2025",
+      "editionName": "2025无锡马拉松",
+      "status": "completed",
+      "date": "2025-03-23",
+      "dateSourceIds": [
+        "wx-race-2025"
+      ],
+      "distance": "马拉松",
+      "events": [
+        {
+          "project": "马拉松",
+          "distanceKm": 42.195,
+          "plannedParticipants": "",
+          "fee": "",
+          "sourceIds": [
+            "wx-race-2025"
+          ]
+        }
+      ],
+      "route": {
+        "summary": "",
+        "start": "",
+        "finish": "",
+        "mapUrl": "",
+        "mapSourceUrl": "",
+        "changes": "",
+        "analysis": [],
+        "sourceIds": []
+      },
+      "registration": {
+        "method": "",
+        "opens": "",
+        "closes": "",
+        "drawDate": "",
+        "fee": "",
+        "qualification": "",
+        "applicants": "",
+        "eligibleApplicants": "",
+        "lotteryPool": "",
+        "drawQuota": "",
+        "directQuota": "",
+        "lotteryRate": "",
+        "lotteryNote": "未取得同口径抽签池与实际抽签名额，不计算中签率。",
+        "note": "",
+        "sourceIds": []
+      },
+      "participation": {
+        "planned": "",
+        "starters": "",
+        "finishers": "",
+        "finishRate": "",
+        "note": "已核实开赛日期；该条央视视频简介未提供可核验的项目细分、路线、费用与成绩时间。",
+        "sourceIds": [
+          "wx-race-2025"
+        ]
+      },
+      "results": [],
+      "gear": [],
+      "logistics": {
+        "collection": {
+          "time": "",
+          "place": "",
+          "requirements": "",
+          "sourceIds": []
+        },
+        "transport": {
+          "start": "",
+          "finish": "",
+          "expo": "",
+          "sourceIds": []
+        },
+        "raceDay": {
+          "startTime": "",
+          "timeLimit": "",
+          "bagDrop": "",
+          "aidStations": "",
+          "toilets": "",
+          "medical": "",
+          "sourceIds": []
+        },
+        "tips": []
+      },
+      "notes": [
+        "央视视频简介记载海莱米卡尔夺得男子组冠军，但未提供成绩时间，暂不形成成绩表。"
+      ]
+    },
+    {
+      "year": "2024",
+      "editionId": "wuxi-2024",
+      "editionName": "2024无锡马拉松",
+      "status": "completed",
+      "date": "2024-03-24",
+      "dateSourceIds": [
+        "wx-history-2024"
+      ],
+      "distance": "马拉松、半程马拉松",
+      "events": [
+        {
+          "project": "马拉松",
+          "distanceKm": "",
+          "plannedParticipants": "",
+          "fee": "",
+          "sourceIds": [
+            "wx-history-2024"
+          ]
+        },
+        {
+          "project": "半程马拉松",
+          "distanceKm": "",
+          "plannedParticipants": "",
+          "fee": "",
+          "sourceIds": [
+            "wx-history-2024"
+          ]
+        }
+      ],
+      "route": {
+        "summary": "代表性景观包括蠡湖之光、鼋头渚、十里芳径、长广溪湿地、江南大学、贡湖湾与太湖国际博览中心；此为景观概览，非完整道路导航。",
+        "start": "",
+        "finish": "",
+        "mapUrl": "",
+        "mapSourceUrl": "",
+        "changes": "",
+        "analysis": [],
+        "sourceIds": [
+          "wx-history-2024"
+        ]
+      },
+      "registration": {
+        "method": "",
+        "opens": "",
+        "closes": "",
+        "drawDate": "",
+        "fee": "",
+        "qualification": "",
+        "applicants": "26.59万人（官方报道的报名量，四舍五入口径）",
+        "eligibleApplicants": "",
+        "lotteryPool": "",
+        "drawQuota": "",
+        "directQuota": "",
+        "lotteryRate": "",
+        "lotteryNote": "未取得同口径抽签池与实际抽签名额，不计算中签率。",
+        "note": "",
+        "sourceIds": [
+          "wx-history-2024"
+        ]
+      },
+      "participation": {
+        "planned": "33000人（赛前计划总规模）",
+        "starters": "",
+        "finishers": "",
+        "finishRate": "",
+        "note": "来源为赛前报道，未核实实际起跑及完赛人数。",
+        "sourceIds": [
+          "wx-history-2024"
+        ]
+      },
+      "results": [],
+      "gear": [],
+      "logistics": {
+        "collection": {
+          "time": "",
+          "place": "",
+          "requirements": "",
+          "sourceIds": []
+        },
+        "transport": {
+          "start": "",
+          "finish": "",
+          "expo": "",
+          "sourceIds": []
+        },
+        "raceDay": {
+          "startTime": "",
+          "timeLimit": "",
+          "bagDrop": "",
+          "aidStations": "",
+          "toilets": "",
+          "medical": "",
+          "sourceIds": []
+        },
+        "tips": []
+      },
+      "notes": []
+    }
+  ],
+  "stories": [],
+  "sources": [
+    {
+      "id": "wx-regulations-2026",
+      "title": "2026海澜之家无锡马拉松竞赛规程",
+      "url": "https://www.wuximarathon.com/page/wZ2dP3y0a5OB0oGp46LA.html",
+      "publisher": "无锡马拉松组委会",
+      "publishedAt": "2025-12",
+      "publishedAtPrecision": "month",
+      "applicableYears": [
+        "2026"
+      ],
+      "accessedAt": "2026-11-18",
+      "verifiedAt": "2026-11-18",
+      "evidence": {
+        "sections": [
+          "一、主办单位",
+          "五、竞赛日期和地点",
+          "六、竞赛项目及规模",
+          "八、比赛路线"
+        ],
+        "note": "原文署名仅为2025年12月，未补造具体发布日期。"
+      }
+    },
+    {
+      "id": "wx-registration-2026",
+      "title": "2026海澜之家无锡马拉松报名须知",
+      "url": "https://www.wuximarathon.com/page/6LN7OlWmEZ31D2dKbJB3.html",
+      "publisher": "无锡马拉松组委会",
+      "publishedAt": "2025-12",
+      "publishedAtPrecision": "month",
+      "applicableYears": [
+        "2026"
+      ],
+      "accessedAt": "2026-11-18",
+      "verifiedAt": "2026-11-18",
+      "evidence": {
+        "sections": [
+          "三、报名相关事项"
+        ],
+        "note": "抽签与候补依据正文；报名费为图片，本示例未完成图片内容核验。"
+      }
+    },
+    {
+      "id": "wx-collection-2026",
+      "title": "2026海澜之家无锡马拉松报到须知",
+      "url": "https://www.wuximarathon.com/page/bl6P4EemXz5oj3zVGYgd.html",
+      "publisher": "无锡马拉松组委会",
+      "publishedAt": "",
+      "applicableYears": [
+        "2026"
+      ],
+      "accessedAt": "2026-11-18",
+      "verifiedAt": "2026-11-18",
+      "evidence": {
+        "sections": [
+          "一、报到时间与地点",
+          "二、特别重要事项",
+          "六、温馨提示"
+        ],
+        "note": "用于核对领物日期、预约、本人领取及核验要求。"
+      }
+    },
+    {
+      "id": "wx-history-2024",
+      "title": "锡马｜十年新期盼，刷出“热辣滚烫”新赛道！",
+      "url": "https://tyj.wuxi.gov.cn/doc/2024/03/20/4253807.shtml",
+      "publisher": "无锡市体育局（转载无锡日报）",
+      "publishedAt": "2024-03-20",
+      "accessedAt": "2026-11-18",
+      "verifiedAt": "2026-11-18",
+      "applicableYears": [
+        "2014",
+        "2015",
+        "2017",
+        "2018",
+        "2024"
+      ]
+    },
+    {
+      "id": "wx-race-2025",
+      "title": "[田径]2025无锡马拉松",
+      "url": "https://sports.cctv.com/2025/03/23/VIDELCimfXMYgdohrQ3mMXK1250323.shtml",
+      "publisher": "中央广播电视总台央视网",
+      "publishedAt": "2025-03-23",
+      "accessedAt": "2026-11-18",
+      "verifiedAt": "2026-11-18",
+      "applicableYears": [
+        "2025"
+      ]
+    },
+    {
+      "id": "wuxi-caa-2026",
+      "title": "中国马拉松：无锡马拉松2026赛事认证详情",
+      "url": "https://www.runchina.org.cn/#/race/v/detail/1000371021",
+      "publisher": "中国田径协会",
+      "publishedAt": "",
+      "accessedAt": "2026-11-18",
+      "verifiedAt": "2026-11-18",
+      "applicableYears": [
+        "2026"
+      ],
+      "evidence": "已读取中国马拉松官网公开查询接口 searchById（POST，id=1000371021，type=SS）；返回赛事名称、日期、举办城市、主办单位和 officialRaceGrade=A。仅适用于2026届，不由徽标推定世界田联等级。"
+    }
+  ],
+  "gaps": [
+    {
+      "fields": [
+        "records",
+        "editions[2025].registration",
+        "editions[2025].route",
+        "editions[].results"
+      ],
+      "reason": "未取得可读取的正式成绩名单及2025届完整规程；不把新闻标题或赛前破纪录奖金门槛当作当前赛会纪录。"
+    },
+    {
+      "fields": [
+        "editions[].route.mapUrl",
+        "editions[].gear[].imageUrl"
+      ],
+      "reason": "未取得可公开再分发的图片许可；仅保留来源链接，不接入赛道图或物资实物图片。"
+    },
+    {
+      "fields": [
+        "worldAthletics"
+      ],
+      "reason": "尚未取得可逐年核实的世界田联标牌依据，不沿用旧目录的认证快照。"
+    }
+  ],
+  "conflicts": []
+}

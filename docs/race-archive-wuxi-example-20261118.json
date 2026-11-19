@@ -1,0 +1,217 @@
+{
+  "proposalOnly": true,
+  "schemaNote": "第一阶段结构示例，不接入公开目录；新增字段需在第二阶段同步适配后台、API和双端。空值表示本示例尚未核实。",
+  "race": {
+    "id": "wuxi",
+    "name": "无锡马拉松",
+    "shortName": "",
+    "aliases": [],
+    "city": "无锡",
+    "province": "江苏",
+    "officialUrl": "https://www.wuximarathon.com/",
+    "worldAthletics": {
+      "label": "",
+      "year": "",
+      "sourceIds": []
+    },
+    "caa": {
+      "label": "",
+      "year": "",
+      "sourceIds": []
+    },
+    "identity": {
+      "officialEditionName": "2026海澜之家无锡马拉松",
+      "applicableYears": ["2026"],
+      "organizer": "无锡市人民政府",
+      "sourceIds": ["wx-regulations-2026"]
+    }
+  },
+  "archive": {
+    "raceId": "wuxi",
+    "updatedAt": "2026-11-18",
+    "intro": "无锡马拉松在江苏无锡举办。本示例先收录2026届的项目、路线与报名规则；长期赛事历史将在后续核验后补入。",
+    "introSourceIds": ["wx-regulations-2026"],
+    "profile": {
+      "foundingYear": "",
+      "foundingYearSourceIds": [],
+      "positioning": "",
+      "positioningSourceIds": []
+    },
+    "highlights": [
+      {
+        "title": "2026：太湖沿线的道路与地标",
+        "body": "2026年全马路线经过十里芳堤、江南大学及贡湖湾湿地公园等路段；这些地标用于理解这一届赛道，不能直接当作其他年份路线。",
+        "applicableYears": ["2026"],
+        "sourceIds": ["wx-regulations-2026"]
+      },
+      {
+        "title": "2026：抽签之外还有候补",
+        "body": "2026届超额报名采用抽签与候补办法，全马设置分段抽签规则。资格条件及候补安排按这一届报名须知核对。",
+        "applicableYears": ["2026"],
+        "sourceIds": ["wx-registration-2026"]
+      }
+    ],
+    "history": [],
+    "records": [],
+    "editions": [
+      {
+        "year": "2026",
+        "editionId": "wuxi-2026",
+        "editionName": "2026海澜之家无锡马拉松",
+        "editionNumber": "",
+        "status": "",
+        "date": "2026-03-22",
+        "dateSourceIds": ["wx-regulations-2026"],
+        "distance": "马拉松、半程马拉松",
+        "events": [
+          {
+            "project": "马拉松",
+            "distanceKm": 42.195,
+            "plannedParticipants": 27000,
+            "fee": "",
+            "sourceIds": ["wx-regulations-2026"]
+          },
+          {
+            "project": "半程马拉松",
+            "distanceKm": 21.0975,
+            "plannedParticipants": 8000,
+            "fee": "",
+            "sourceIds": ["wx-regulations-2026"]
+          }
+        ],
+        "route": {
+          "project": "马拉松",
+          "start": "太湖大道隐秀路路口",
+          "finish": "无锡太湖国际博览中心",
+          "summary": "太湖大道隐秀路路口 → 十里芳堤 → 江南大学 → 贡湖湾湿地公园 → 无锡太湖国际博览中心",
+          "summaryNote": "依据2026年规程节选的关键地标顺序，不是完整道路清单或导航轨迹；半马路线须另列。",
+          "changes": "",
+          "analysis": [],
+          "mapUrl": "",
+          "sourceIds": ["wx-regulations-2026"]
+        },
+        "registration": {
+          "method": "2026届各项目超额后采用抽签加候补；全马分段抽签，具体资格按当届报名须知。",
+          "opens": "",
+          "closes": "",
+          "drawDate": "",
+          "fee": "",
+          "qualification": "",
+          "applicants": "",
+          "eligibleApplicants": "",
+          "lotteryPool": "",
+          "drawQuota": "",
+          "lotteryRate": "",
+          "directQuota": "",
+          "sourceIds": ["wx-registration-2026"]
+        },
+        "participation": {
+          "planned": "马拉松27000人、半程马拉松8000人（2026规程计划规模）",
+          "starters": "",
+          "finishers": "",
+          "finishRate": "",
+          "sourceIds": ["wx-regulations-2026"]
+        },
+        "results": [],
+        "gear": [],
+        "logistics": {
+          "collection": {
+            "time": "2026年3月19日至21日，按当届报到须知分时预约",
+            "place": "无锡太湖国际博览中心",
+            "requirements": "本人领取并进行人证核验，不接受代领；以2026届报到须知为依据。",
+            "sourceIds": ["wx-collection-2026"]
+          },
+          "transport": {},
+          "raceDay": {},
+          "tips": [
+            {
+              "title": "安排能本人到场的领物行程",
+              "body": "基于2026届预约及本人领取要求，外地跑者安排到达日期时应预留领物时间，再核对自己的预约时段。其他届次需重新查看当届规则。",
+              "kind": "editorial-advice",
+              "applicableYears": ["2026"],
+              "sourceIds": ["wx-collection-2026"]
+            }
+          ]
+        },
+        "notes": [
+          "此处只示范已核对的2026规程和须知，不表示完整档案已经采集。",
+          "比赛日期已经过去，本示例尚未核实赛后举办状态、成绩与实际人数，不能据规程推填。"
+        ]
+      }
+    ],
+    "stories": [],
+    "sources": [
+      {
+        "id": "wx-regulations-2026",
+        "title": "2026海澜之家无锡马拉松竞赛规程",
+        "url": "https://www.wuximarathon.com/page/wZ2dP3y0a5OB0oGp46LA.html",
+        "publisher": "无锡马拉松组委会",
+        "publishedAt": "2025-12",
+        "publishedAtPrecision": "month",
+        "applicableYears": ["2026"],
+        "accessedAt": "2026-11-18",
+        "verifiedAt": "2026-11-18",
+        "evidence": {
+          "sections": ["一、主办单位", "五、竞赛日期和地点", "六、竞赛项目及规模", "八、比赛路线"],
+          "note": "原文署名仅为2025年12月，未补造具体发布日期。"
+        }
+      },
+      {
+        "id": "wx-registration-2026",
+        "title": "2026海澜之家无锡马拉松报名须知",
+        "url": "https://www.wuximarathon.com/page/6LN7OlWmEZ31D2dKbJB3.html",
+        "publisher": "无锡马拉松组委会",
+        "publishedAt": "2025-12",
+        "publishedAtPrecision": "month",
+        "applicableYears": ["2026"],
+        "accessedAt": "2026-11-18",
+        "verifiedAt": "2026-11-18",
+        "evidence": {
+          "sections": ["三、报名相关事项"],
+          "note": "抽签与候补依据正文；报名费为图片，本示例未完成图片内容核验。"
+        }
+      },
+      {
+        "id": "wx-collection-2026",
+        "title": "2026海澜之家无锡马拉松报到须知",
+        "url": "https://www.wuximarathon.com/page/bl6P4EemXz5oj3zVGYgd.html",
+        "publisher": "无锡马拉松组委会",
+        "publishedAt": "",
+        "applicableYears": ["2026"],
+        "accessedAt": "2026-11-18",
+        "verifiedAt": "2026-11-18",
+        "evidence": {
+          "sections": ["一、报到时间与地点", "二、特别重要事项", "六、温馨提示"],
+          "note": "用于核对领物日期、预约、本人领取及核验要求。"
+        }
+      }
+    ],
+    "conflicts": [],
+    "gaps": [
+      {
+        "fields": ["profile.foundingYear", "profile.positioning", "history", "records"],
+        "reason": "本阶段尚未收集足够的长期历史、定位及纪录证据；第二阶段专项核实。"
+      },
+      {
+        "fields": ["race.worldAthletics", "race.caa"],
+        "reason": "本示例未核实认证机构对应年度条目；技术认证单位的署名不能代替具体认证等级。"
+      },
+      {
+        "fields": ["editions[0].events[*].fee", "editions[0].registration.fee"],
+        "reason": "官网费用表为图片，尚未识读核验。"
+      },
+      {
+        "fields": ["editions[0].status", "editions[0].participation.starters", "editions[0].participation.finishers", "editions[0].results"],
+        "reason": "规程不是赛后结果证明；本示例尚未核实赛后来源。"
+      },
+      {
+        "fields": ["editions[0].events[1].route", "editions[0].registration.qualification", "editions[0].registration.opens", "editions[0].registration.closes"],
+        "reason": "结构示例节选范围外的半马路线、具体资格及报名时间尚未转录入档；不代表官方未公布。"
+      },
+      {
+        "fields": ["hero.imageUrl", "editions[0].route.mapUrl", "photoAlbums"],
+        "reason": "图片使用依据尚未确认，本示例不公开图片。"
+      }
+    ]
+  }
+}
