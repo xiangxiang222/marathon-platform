@@ -3,10 +3,6 @@
   "packOptions": {
     "ignore": [
       {
-        "type": "file",
-        "value": "images/race-covers/beijing.jpg"
-      },
-      {
         "type": "suffix",
         "value": ".svg"
       },

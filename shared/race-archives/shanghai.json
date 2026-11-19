@@ -1,29 +1,19 @@
 {
   "raceId": "shanghai",
-  "updatedAt": "2026-11-18",
+  "updatedAt": "2026-11-14",
   "intro": "上马始于1996年的上海国际市民马拉松赛。它把外滩、中心城区与海派文化串在一场42.195公里的奔跑中：2020年获得世界田联白金标，2024年进入雅培世界马拉松大满贯候选评估。年度档案分别记录规则、装备与成绩，避免把某一届的体验当成永久承诺。",
   "highlights": [
     {
       "title": "从外滩进入城市腹地",
-      "body": "2024年路线以外滩金牛广场为起点、徐家汇体育公园为终点，串起南京路、静安寺、新天地等城市记忆。",
-      "sourceIds": [
-        "sh-2024-preview"
-      ]
+      "body": "2024年路线以外滩金牛广场为起点、徐家汇体育公园为终点，串起南京路、静安寺、新天地等城市记忆。"
     },
     {
       "title": "中签热度有官方口径",
-      "body": "2025赛前官方发布预报名356589人、全程中签率7.2%；报名人数与可抽签人数、计划规模并非同一概念。",
-      "sourceIds": [
-        "sh-2025-preview"
-      ]
+      "body": "2025赛前官方发布预报名356589人、全程中签率7.2%；报名人数与可抽签人数、计划规模并非同一概念。"
     },
     {
       "title": "藏在参赛包里的城市温度",
-      "body": "定制地铁卡、完赛拖鞋与从回收水瓶再制的冰袖，让上马的服务故事有了可触摸的载体。",
-      "sourceIds": [
-        "sh-2025-recap",
-        "sh-2025-preview"
-      ]
+      "body": "定制地铁卡、完赛拖鞋与从回收水瓶再制的冰袖，让上马的服务故事有了可触摸的载体。"
     }
   ],
   "editions": [
@@ -115,11 +105,7 @@
             ]
           }
         ]
-      },
-      "editionId": "shanghai-2026",
-      "editionName": "2026上海马拉松",
-      "events": [],
-      "status": "scheduled"
+      }
     },
     {
       "year": "2025",
@@ -339,11 +325,7 @@
             ]
           }
         ]
-      },
-      "editionId": "shanghai-2025",
-      "editionName": "2025上海马拉松",
-      "events": [],
-      "status": "completed"
+      }
     },
     {
       "year": "2024",
@@ -559,11 +541,7 @@
             ]
           }
         ]
-      },
-      "editionId": "shanghai-2024",
-      "editionName": "2024上海马拉松",
-      "events": [],
-      "status": "completed"
+      }
     }
   ],
   "stories": [
@@ -598,11 +576,7 @@
       "url": "https://tyj.sh.gov.cn/gzdt2/20241010/2c86b36362ef41298749e63c8ffced20.html",
       "publisher": "上海市体育局",
       "publishedAt": "2024-10-10",
-      "accessedAt": "2026-11-18",
-      "applicableYears": [
-        "2024"
-      ],
-      "verifiedAt": "2026-11-18"
+      "accessedAt": "2026-11-14"
     },
     {
       "id": "sh-2024-preview",
@@ -610,11 +584,7 @@
       "url": "https://tyj.sh.gov.cn/gzdt2/20241129/254fca84d8ca47bb91286d1a5687c4a3.html",
       "publisher": "上海市体育局",
       "publishedAt": "2024-11-29",
-      "accessedAt": "2026-11-14",
-      "applicableYears": [
-        "2024"
-      ],
-      "verifiedAt": "2026-11-14"
+      "accessedAt": "2026-11-14"
     },
     {
       "id": "sh-2025-preview",
@@ -622,11 +592,7 @@
       "url": "https://tyj.sh.gov.cn/gzdt2/20251125/211fd0e3baff438589adb8e77cd567ea.html",
       "publisher": "上海市体育局",
       "publishedAt": "2025-11-25",
-      "accessedAt": "2026-11-14",
-      "applicableYears": [
-        "2025"
-      ],
-      "verifiedAt": "2026-11-14"
+      "accessedAt": "2026-11-14"
     },
     {
       "id": "sh-2025-recap",
@@ -634,11 +600,7 @@
       "url": "https://tyj.sh.gov.cn/gzdt2/20251201/2c23205acebe424499cddb9c7fee41b3.html",
       "publisher": "上海市体育局",
       "publishedAt": "2025-12-01",
-      "accessedAt": "2026-11-18",
-      "applicableYears": [
-        "2025"
-      ],
-      "verifiedAt": "2026-11-18"
+      "accessedAt": "2026-11-14"
     },
     {
       "id": "sh-wa-2026",
@@ -646,11 +608,7 @@
       "url": "https://worldathletics.org/competitions/world-athletics-label-road-races/calendar-results",
       "publisher": "世界田联",
       "publishedAt": "",
-      "accessedAt": "2026-11-14",
-      "applicableYears": [
-        "2026"
-      ],
-      "verifiedAt": "2026-11-14"
+      "accessedAt": "2026-11-14"
     },
     {
       "id": "sh-2024-preview-gallery",
@@ -658,11 +616,7 @@
       "url": "https://tyj.sh.gov.cn/tpxw1/20241129/7cb432efd6ea40a8b1eb84f712a445a8.html",
       "publisher": "上海市体育局",
       "publishedAt": "2024-11-29",
-      "accessedAt": "2026-11-14",
-      "applicableYears": [
-        "2024"
-      ],
-      "verifiedAt": "2026-11-14"
+      "accessedAt": "2026-11-14"
     },
     {
       "id": "sh-2026-reg-en",
@@ -670,11 +624,7 @@
       "url": "https://english.shanghai.gov.cn/en-SportsEvents/20260427/8152288074a44b44a7efbfd4b0b67797.html",
       "publisher": "上海市人民政府（英文网）",
       "publishedAt": "2026-04-27",
-      "accessedAt": "2026-11-14",
-      "applicableYears": [
-        "2026"
-      ],
-      "verifiedAt": "2026-11-14"
+      "accessedAt": "2026-11-14"
     },
     {
       "id": "sh-2025-reg-en",
@@ -682,11 +632,7 @@
       "url": "https://english.shanghai.gov.cn/en-SportsEvents/20250626/03a5bb05269847f893e8095ef72e5dad.html",
       "publisher": "上海市人民政府（英文网）",
       "publishedAt": "2025-06-26",
-      "accessedAt": "2026-11-14",
-      "applicableYears": [
-        "2025"
-      ],
-      "verifiedAt": "2026-11-14"
+      "accessedAt": "2026-11-14"
     },
     {
       "id": "sh-2025-guide-en",
@@ -694,11 +640,7 @@
       "url": "https://english.shanghai.gov.cn/en-SportsEvents/20251125/1426d8969f3b4e609ef63ad318cf9d5b.html",
       "publisher": "上海市人民政府（英文网）",
       "publishedAt": "2025-11-25",
-      "accessedAt": "2026-11-14",
-      "applicableYears": [
-        "2025"
-      ],
-      "verifiedAt": "2026-11-14"
+      "accessedAt": "2026-11-14"
     },
     {
       "id": "sh-2025-traffic-en",
@@ -706,11 +648,7 @@
       "url": "https://english.shanghai.gov.cn/en-SportsEvents/20251126/a6e344731a7746eca884c1f103b6591c.html",
       "publisher": "上海市人民政府（英文网）",
       "publishedAt": "2025-11-26",
-      "accessedAt": "2026-11-14",
-      "applicableYears": [
-        "2025"
-      ],
-      "verifiedAt": "2026-11-14"
+      "accessedAt": "2026-11-14"
     },
     {
       "id": "sh-2025-recap-en",
@@ -718,11 +656,7 @@
       "url": "https://english.shanghai.gov.cn/en-SportsEvents/20251130/49c6844fe78b4bd68243d80aa3cf308d.html",
       "publisher": "上海市人民政府（英文网）",
       "publishedAt": "2025-11-30",
-      "accessedAt": "2026-11-14",
-      "applicableYears": [
-        "2025"
-      ],
-      "verifiedAt": "2026-11-14"
+      "accessedAt": "2026-11-14"
     },
     {
       "id": "sh-2024-kit-en",
@@ -730,11 +664,7 @@
       "url": "https://english.shanghai.gov.cn/en-SportsEvents/20241125/450d499bb99c4508a65855df4df360ff.html",
       "publisher": "上海市人民政府（英文网）",
       "publishedAt": "2024-11-25",
-      "accessedAt": "2026-11-14",
-      "applicableYears": [
-        "2024"
-      ],
-      "verifiedAt": "2026-11-14"
+      "accessedAt": "2026-11-14"
     },
     {
       "id": "sh-2024-reg-en",
@@ -742,11 +672,7 @@
       "url": "https://english.shanghai.gov.cn/en-SportsEvents/20241011/cca043382d254b848ce8ac59c581e72d.html",
       "publisher": "上海市人民政府（英文网）",
       "publishedAt": "2024-10-11",
-      "accessedAt": "2026-11-14",
-      "applicableYears": [
-        "2024"
-      ],
-      "verifiedAt": "2026-11-14"
+      "accessedAt": "2026-11-14"
     },
     {
       "id": "sh-2024-city-results",
@@ -754,11 +680,7 @@
       "url": "https://www.shanghai.gov.cn/nw4411/20241202/e6b20e9280ef4d2a9e8a05385596267a.html",
       "publisher": "上海市人民政府（转载解放日报）",
       "publishedAt": "2024-12-02",
-      "accessedAt": "2026-11-14",
-      "applicableYears": [
-        "2024"
-      ],
-      "verifiedAt": "2026-11-14"
+      "accessedAt": "2026-11-14"
     },
     {
       "id": "sh-2024-city-preview",
@@ -766,121 +688,7 @@
       "url": "https://www.shanghai.gov.cn/nw4411/20241123/afa2a9852da74f7baa357b1684b556a4.html",
       "publisher": "上海市人民政府（转载解放日报）",
       "publishedAt": "2024-11-23",
-      "accessedAt": "2026-11-14",
-      "applicableYears": [
-        "2024"
-      ],
-      "verifiedAt": "2026-11-14"
-    }
-  ],
-  "schemaVersion": 2,
-  "history": [
-    {
-      "date": "1996",
-      "title": "从国际市民马拉松起步",
-      "body": "上海市体育局的赛事回顾记载，上海国际市民马拉松赛于1996年诞生，是如今上马的前身。",
-      "sourceIds": [
-        "sh-2024-launch"
-      ]
-    },
-    {
-      "date": "2020",
-      "title": "取得世界田联白金标",
-      "body": "2024年体育局回顾明确记录上马在2020年初取得白金标的历史节点，当前等级另看对应年度认证。",
-      "sourceIds": [
-        "sh-2024-launch"
-      ]
-    },
-    {
-      "date": "2024",
-      "title": "进入大满贯候选评估",
-      "body": "2024启动仪式宣布成为雅培世界马拉松大满贯候选赛事；候选身份不等同正式成员。",
-      "sourceIds": [
-        "sh-2024-launch"
-      ]
-    },
-    {
-      "date": "2025",
-      "title": "女子赛会纪录刷新",
-      "body": "Brigid Kosgei以2:16:36夺冠，官方赛后报道确认刷新女子赛会纪录。",
-      "sourceIds": [
-        "sh-2025-recap"
-      ]
-    }
-  ],
-  "records": [
-    {
-      "category": "赛会纪录",
-      "project": "马拉松",
-      "group": "男子",
-      "athlete": "Philimon Kiptoo KIPCHUMBA",
-      "time": "02:05:35",
-      "timing": "",
-      "editionId": "shanghai-2023",
-      "achievedAt": "2023",
-      "verifiedThroughEditionId": "shanghai-2024",
-      "verifiedAt": "2026-11-18",
-      "sourceIds": [
-        "sh-2024-launch"
-      ]
-    },
-    {
-      "category": "赛会纪录",
-      "project": "马拉松",
-      "group": "女子",
-      "athlete": "Brigid KOSGEI",
-      "time": "02:16:36",
-      "timing": "",
-      "editionId": "shanghai-2025",
-      "achievedAt": "2025",
-      "verifiedThroughEditionId": "shanghai-2025",
-      "verifiedAt": "2026-11-18",
-      "sourceIds": [
-        "sh-2025-recap"
-      ]
-    }
-  ],
-  "conflicts": [],
-  "profile": {
-    "foundingYear": "1996",
-    "foundingYearSourceIds": [
-      "sh-2024-launch"
-    ],
-    "positioning": "从上海国际市民马拉松赛发展而来，外滩起跑与中心城区路线承载海派城市记忆；2024年正式进入世界马拉松大满贯候选评估。",
-    "positioningSourceIds": [
-      "sh-2024-launch"
-    ],
-    "entryNotes": "2024—2026报名与资格分别留档。2025官方披露预报名热度与全程中签率，不能把计划规模直接视作抽签名额；2026安排也不能自动复用2025路线与服务。",
-    "entrySourceIds": [
-      "sh-2025-preview",
-      "sh-2026-reg-en"
-    ]
-  },
-  "introSourceIds": [
-    "sh-2024-launch",
-    "sh-2024-preview"
-  ],
-  "gaps": [
-    {
-      "fields": [
-        "editions.2026.route",
-        "editions.2026.gear"
-      ],
-      "reason": "2026届尚未举行，完整路线和物品按当前已核验材料展示；未核实部分不复制2025届。"
-    },
-    {
-      "fields": [
-        "participation.starters",
-        "participation.finishers",
-        "registration.fee"
-      ],
-      "reason": "部分年度精确起跑完赛及费用口径尚未取得充分依据。"
-    },
-    {
-      "fields": [
-        "records"
-      ],
-      "reason": "纪录逐条注明已确认截至的届次，男子记录据2024回顾、女子据2025赛后报告，不能解读为此后无需复核。"
+      "accessedAt": "2026-11-14"
     }
   ]
 }
