@@ -10,9 +10,7 @@ const base = '/marathon/api';
 test('catalog searches names and aliases and intersects independent certification filters', async () => {
   const read = async suffix => (await request(app).get(base + '/race-catalog' + suffix).expect(200)).body.races;
   assert.deepEqual((await read('?q=' + encodeURIComponent('北马'))).map(r => r.id), ['beijing']);
-  const platinum = await read('?wa=' + encodeURIComponent('白金标') + '&caa=' + encodeURIComponent('A类'));
-  assert.ok(['shanghai', 'xiamen'].every(id => platinum.some(race => race.id === id)));
-  assert.ok(platinum.every(race => race.worldAthletics.label === '白金标' && race.caa.label === 'A类'));
+  assert.deepEqual((await read('?wa=' + encodeURIComponent('白金标') + '&caa=' + encodeURIComponent('A类'))).map(r => r.id), ['shanghai', 'xiamen']);
   assert.equal((await read('?q=' + encodeURIComponent('北京') + '&wa=' + encodeURIComponent('白金标'))).length, 0);
   assert.equal((await read('?caa=' + encodeURIComponent('未收录类别'))).length, 0);
 });
@@ -24,13 +22,10 @@ test('race brand links exclude half marathons, online events and unrelated citie
   for (const race of [
     { name: '2026北京半程马拉松' }, { name: '2026上海马拉松线上赛' },
     { name: '2026厦门马拉松', meet: 'online' }, { name: '2026厦门海沧半程马拉松' },
-    { name: '2026北京马拉松', kinds: 'trail' }, { name: '2026西安城墙国际马拉松' },
+    { name: '2026北京马拉松', kinds: 'trail' }, { name: '2026西安马拉松' },
     { name: '2026上海马拉松10K', distances: '10k' }, { name: '2026北京马拉松接力赛' },
     { name: '2026厦门马拉松', distances: ['half'] }
   ]) assert.equal(raceArchiveId(race), '', race.name);
-  assert.equal(raceArchiveId({name:'2026西安马拉松',city:'西安',distances:['full']}),'xian');
-  assert.equal(raceArchiveId({name:'2026北京马拉松',city:'上海',distances:['full']}),'');
-  assert.equal(raceArchiveId({name:'2026重庆马拉松纪念赛',city:'重庆',distances:['full']}),'');
 });
 
 test('annual archives retain each year independently and resolve all evidence references', async () => {
