@@ -1,0 +1,14 @@
+{
+  "at": "2026-11-19T18:42:35.724Z",
+  "passed": true,
+  "rows": [
+    {
+      "id": "zuiku-80201",
+      "file": "supplement-hengshan-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "组委会署名完整规程、11 月 19 日赛前领物公告优先，并核 ITRA 同届四项官方积分；逐项比对 13 张在库图的全部 40 个连续分块和赛前公告 5 张附图，五项目六报名选项，保留原规程异文和路线。",
+      "explicitImageReview": true
+    }
+  ],
+  "races": 1
+}

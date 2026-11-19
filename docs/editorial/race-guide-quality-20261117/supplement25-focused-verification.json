@@ -1,0 +1,71 @@
+{
+  "at": "2026-11-19T18:33:39.068Z",
+  "checks": [
+    {
+      "id": "zuiku-81646",
+      "width": 320,
+      "needle": "155元/人",
+      "table": {
+        "width": 252,
+        "scrollWidth": 480,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 228,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "当届开报海报：海报报名日期与须知不一致\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-81646",
+      "width": 390,
+      "needle": "155元/人",
+      "table": {
+        "width": 318,
+        "scrollWidth": 480,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 162,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "当届开报海报：海报报名日期与须知不一致\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-82566",
+      "width": 320,
+      "needle": "758元/人",
+      "table": {
+        "width": 252,
+        "scrollWidth": 360,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 108,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "本届竞赛规程（一）：组织、项目、费用、奖励、日程与资格\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-82566",
+      "width": 390,
+      "needle": "758元/人",
+      "table": {
+        "width": 318,
+        "scrollWidth": 360,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 42,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "本届竞赛规程（一）：组织、项目、费用、奖励、日程与资格\n查看原图 ↗",
+      "overflow": false
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-11-19T18:33:54.954Z"
+}

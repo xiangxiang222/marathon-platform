@@ -1,0 +1,167 @@
+[
+  {
+    "id": "zuiku-80201",
+    "name": "霞路相逢·三山五岳 拓路者2026南岳衡山越野赛",
+    "status": "current_source_content_checked_with_questions",
+    "scope": "组委会署名完整规程、11 月 19 日赛前领物公告优先，并核 ITRA 同届四项官方积分；逐项比对 13 张在库图的全部 40 个连续分块和赛前公告 5 张附图，五项目六报名选项，保留原规程异文和路线。",
+    "beforeBodyHash": "d596da02bd0aeb788fbb8ac64fbe67c06609d74137e74ee8bedcde15891340b7",
+    "savedBodyHash": "4f259e73c721b76170825394b04b0a469caa18638f27ba7d8abbe6e16508a83f",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 18,
+    "pendingImages": 0,
+    "chapters": 10,
+    "groups": 6,
+    "groupCorrections": 20,
+    "questions": [
+      {
+        "field": "60K 累计爬升",
+        "reason": "早期宣传（8/19、8/23）及旧报名摘要列 3826 米；当前指定报名选项、技术规程分组/分站表、公开路线图均列 3628 米。正文采用相互印证的 3628 米；ITRA 的测算另见下一条。",
+        "sources": [
+          "https://reg.zuicool.com/44801",
+          "https://zuicool.com/news/archives/312496",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/08/a5f7880abd00da8cc4e5e5189021b4096ee34920.jpeg?imageView2/2/w/750",
+          "https://zuicool.com/news/archives/311998",
+          "https://zuicool.com/news/archives/312489"
+        ]
+      },
+      {
+        "field": "40K 实际里程及当日轨迹",
+        "reason": "现行报名选项和分组宣传图定为 41.3；组委会署名技术规程总表及分站表列 41.4 公里。未取得可验证的 11 月最终赛道更新，公开标两种来源，不静默覆盖原值。ITRA 四项目里程／爬升与组委会发布的赛道数据口径不同，仅凭 ITRA 核实积分。",
+        "sources": [
+          "https://reg.zuicool.com/44801",
+          "https://zuicool.com/news/archives/312496",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/08/a5f7880abd00da8cc4e5e5189021b4096ee34920.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/08/915e3998eeded7a8898c0aae7c6c0d2ea4362646.jpeg?imageView2/2/w/750",
+          "https://itra.run/Races/RaceDetails/2026.XIA.RACE.Nanyue.Hengshan.Trail.Running.Fangguang.Xunyou.60km/2026/126716",
+          "https://itra.run/Races/RaceDetails/2026.XIA.RACE.Nanyue.Hengshan.Trail.Running.Fanyin.Lingfeng.40km/2026/126718",
+          "https://itra.run/Races/RaceDetails/2026.XIA.RACE.Nanyue.Hengshan.Trail.Running.Cangjing.Lanxiu.30km/2026/126719",
+          "https://itra.run/Races/RaceDetails/2026.XIA.RACE.Nanyue.Hengshan.Trail.Running.Tianzhu.Wangyue.20km/2026/126720"
+        ]
+      },
+      {
+        "field": "60K 光明村 CP2 海拔",
+        "reason": "分站表写海拔 263 米、本段上升 641 米；路线图把 641 米标作 ALT。累计／分段距离和关门时刻两处一致。保留原图及经过核对的列关系，不猜测实际海拔。",
+        "sources": [
+          "https://zuicool.com/news/archives/312496",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/08/a5f7880abd00da8cc4e5e5189021b4096ee34920.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/08/915e3998eeded7a8898c0aae7c6c0d2ea4362646.jpeg?imageView2/2/w/750"
+        ]
+      },
+      {
+        "field": "GPS 强装与 10K 报到",
+        "reason": "8 月两张图片的 GPS 栏把 30K 勾列；完整文字规程、11 月 19 日组委会领物通知及装备图仅列 60K、40K。10K 不过强装检查台，赛事手机等装备仍列在最新表。已按最新来源解决。",
+        "sources": [
+          "https://mp.weixin.qq.com/s?__biz=MzAxMjI3NDA2NA==&mid=2247575151&idx=2&sn=f579013c26a9d9a9eaa0579bf204a2aa&chksm=9ab131fa6c6d91999c0e3d5633767579af8e3ac77f47a5ecfb2192479ccc3655fdcc785e67d4&scene=27",
+          "https://mmbiz.qpic.cn/mmbiz_png/Jz2zYvIj2DYnZIWf5uE50jHDiaB73YqatuG3iaQ8xW5p24yMVfkXbnPV9vJdyE7mJ5yazKic1BMT19oGqcB7vsiaNy6ua0bTgnxZ9XkgUWva0Vg/640?from=appmsg&tp=wxpic&wxfrom=5&wx_lazy=1#imgIndex=3",
+          "https://zuicool.com/news/archives/312496",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/08/c8c27d7b475394b7c47830a52d9683b8de3624fd.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/08/ece621d8d2853ea546ceb529a4ece237adfaf05d.jpeg?imageView2/2/w/750"
+        ]
+      },
+      {
+        "field": "不可抗力退款、宣传版 24 小时条款",
+        "reason": "关键条款、退赛退款、应急预案三处口径不同，具体原句含无退费、前后分档及报名期突发取消/延期可全退。8 月摘要另写报名后 24 小时全退，完整规程未列；未查得明确统一公告，分开保留。",
+        "sources": [
+          "https://zuicool.com/news/archives/312496",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/08/c8c27d7b475394b7c47830a52d9683b8de3624fd.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/08/915e3998eeded7a8898c0aae7c6c0d2ea4362646.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/08/ece621d8d2853ea546ceb529a4ece237adfaf05d.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/08/9f15554763054e330fcdfdb2eaff036c65a3ccd0.jpeg?imageView2/2/w/750"
+        ]
+      },
+      {
+        "field": "10K 临时水站、比赛日实时调整、奖项类别",
+        "reason": "规则说 10K 中段临时补水视情况；无可验证新增水站或比赛日调整公告。10K 组别奖项表不区分亲子和个人的名次，未猜测分别计奖。",
+        "sources": [
+          "https://zuicool.com/news/archives/312496",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/08/b5d478af6530ed1a4df1b765dd50148688cd5661.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/08/915e3998eeded7a8898c0aae7c6c0d2ea4362646.jpeg?imageView2/2/w/750",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/08/9f15554763054e330fcdfdb2eaff036c65a3ccd0.jpeg?imageView2/2/w/750"
+        ]
+      }
+    ],
+    "officialDocuments": [
+      {
+        "url": "https://zuicool.com/news/archives/312496",
+        "title": "组委会署名 8 月 24 日竞赛规程（最酷发布）",
+        "role": "organizer_current_edition_rules_copyable_text",
+        "verified": true,
+        "identityReview": "组委会落款 2026-08-24 的技术规程，有独立分项、奖项和装备表。",
+        "bodySha256": "20456db33b4d21e7e3bc8ff0b28aa0151cd9e7435741e10822648160853ca35f",
+        "checkedAt": "2026-11-19T18:42:35.764Z"
+      },
+      {
+        "url": "https://mp.weixin.qq.com/s?__biz=MzAxMjI3NDA2NA==&mid=2247575151&idx=2&sn=f579013c26a9d9a9eaa0579bf204a2aa&chksm=9ab131fa6c6d91999c0e3d5633767579af8e3ac77f47a5ecfb2192479ccc3655fdcc785e67d4&scene=27",
+        "title": "赛前领物须知 | 11月21日，南岳万寿广场，只有一天，拓路者2026南岳衡山越野赛",
+        "role": "南岳区融媒体中心「天下南岳」发布，正文注明来源为组委会「霞小客赛事」",
+        "verified": true,
+        "identityReview": "南岳融媒「天下南岳」转载霞小客赛事同届正式领物公告。",
+        "bodySha256": "bc643535d502c3a187e0fdd6e73daced218b8881b224138102319d3c71e5d073",
+        "checkedAt": "2026-11-19T18:42:35.764Z"
+      },
+      {
+        "url": "https://itra.run/Races/RaceDetails/2026.XIA.RACE.Nanyue.Hengshan.Trail.Running.Fangguang.Xunyou.60km/2026/126716",
+        "title": "Fangguang Xunyou 60km — ITRA",
+        "role": "itra_official_current_event",
+        "verified": true,
+        "identityReview": "名称、赛事日期、城市与同届组别一致；本次用于核实认证积分。",
+        "bodySha256": "c865601918bdfdea1b12fbfbb2666ac54d8a6145dc7c3159a2210409ee4fbeb6",
+        "checkedAt": "2026-11-19T18:42:35.764Z"
+      },
+      {
+        "url": "https://itra.run/Races/RaceDetails/2026.XIA.RACE.Nanyue.Hengshan.Trail.Running.Fanyin.Lingfeng.40km/2026/126718",
+        "title": "Fanyin Lingfeng 40km — ITRA",
+        "role": "itra_official_current_event",
+        "verified": true,
+        "identityReview": "名称、赛事日期、城市与同届组别一致；本次用于核实认证积分。",
+        "bodySha256": "cc46d53b82ac552e20db009fb19d31af1fc208a1d6c6e8f6e446cb7135f33f4e",
+        "checkedAt": "2026-11-19T18:42:35.764Z"
+      },
+      {
+        "url": "https://itra.run/Races/RaceDetails/2026.XIA.RACE.Nanyue.Hengshan.Trail.Running.Cangjing.Lanxiu.30km/2026/126719",
+        "title": "Cangjing Lanxiu 30km — ITRA",
+        "role": "itra_official_current_event",
+        "verified": true,
+        "identityReview": "名称、赛事日期、城市与同届组别一致；本次用于核实认证积分。",
+        "bodySha256": "9931038b02790951db42490a5ec37a2054fd416ed65144f97653e0d76cfc6d3d",
+        "checkedAt": "2026-11-19T18:42:35.764Z"
+      },
+      {
+        "url": "https://itra.run/Races/RaceDetails/2026.XIA.RACE.Nanyue.Hengshan.Trail.Running.Tianzhu.Wangyue.20km/2026/126720",
+        "title": "Tianzhu Wangyue 20km — ITRA",
+        "role": "itra_official_current_event",
+        "verified": true,
+        "identityReview": "名称、赛事日期、城市与同届组别一致；本次用于核实认证积分。",
+        "bodySha256": "06e70cc2dc3b36ffab5d5768a1815a2c4acfdb9176ff967dd31f138e9bb60441",
+        "checkedAt": "2026-11-19T18:42:35.764Z"
+      }
+    ],
+    "sourceDiscovery": {
+      "main": "/tmp/race-guide-quality-20261117/audit-hengshan-source/search-index.json",
+      "followup": "/tmp/race-guide-quality-20261117/audit-hengshan-source/late-scan-index.json",
+      "itraOfficial": "/tmp/race-guide-quality-20261117/audit-hengshan-source/itra-race-details.json",
+      "officialUrl": "",
+      "officialSiteCandidate": "http://www.xxkwl.com/sy",
+      "notes": "查官方主办方及政府、霞小客赛事官方公告、ITRA 官历、微信原文以及独立搜索；ITRA 所列组织方网站 www.xxkwl.com/sy 已实测，未获取可核实的本届正文；采用组委会 8 月 24 日正式技术规程、南岳融媒转载组委会 11 月 19 日通知和 ITRA 同届条目。未查得可核对的 11 月定版路线。",
+      "knownCurrentArticles": [
+        "https://mp.weixin.qq.com/s?__biz=MzAxMjI3NDA2NA==&mid=2247575151&idx=2&sn=f579013c26a9d9a9eaa0579bf204a2aa&chksm=9ab131fa6c6d91999c0e3d5633767579af8e3ac77f47a5ecfb2192479ccc3655fdcc785e67d4&scene=27",
+        "https://zuicool.com/news/archives/312496",
+        "https://zuicool.com/event/80201",
+        "https://itra.run/Races/RaceDetails/2026.XIA.RACE.Nanyue.Hengshan.Trail.Running.Fangguang.Xunyou.60km/2026/126716",
+        "https://itra.run/Races/RaceDetails/2026.XIA.RACE.Nanyue.Hengshan.Trail.Running.Fanyin.Lingfeng.40km/2026/126718",
+        "https://itra.run/Races/RaceDetails/2026.XIA.RACE.Nanyue.Hengshan.Trail.Running.Cangjing.Lanxiu.30km/2026/126719",
+        "https://itra.run/Races/RaceDetails/2026.XIA.RACE.Nanyue.Hengshan.Trail.Running.Tianzhu.Wangyue.20km/2026/126720"
+      ]
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_and_mini_devtools_390",
+      "miniDisplayed": true,
+      "formalMiniProgramReleaseVerified": false
+    }
+  }
+]

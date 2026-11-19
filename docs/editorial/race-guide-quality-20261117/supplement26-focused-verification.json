@@ -1,0 +1,39 @@
+{
+  "at": "2026-11-19T18:48:18.101Z",
+  "checks": [
+    {
+      "id": "zuiku-80201",
+      "width": 320,
+      "needle": "23:00",
+      "table": {
+        "width": 252,
+        "scrollWidth": 252,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 0,
+      "horizontalScrollVerified": null,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "11 月 19 日组委会领物流程图：本人核验、强装检查和 GPS 领取\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-80201",
+      "width": 390,
+      "needle": "23:00",
+      "table": {
+        "width": 318,
+        "scrollWidth": 318,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 0,
+      "horizontalScrollVerified": null,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "11 月 19 日组委会领物流程图：本人核验、强装检查和 GPS 领取\n查看原图 ↗",
+      "overflow": false
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-11-19T18:48:52.104Z"
+}
