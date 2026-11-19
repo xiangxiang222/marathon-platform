@@ -1,0 +1,167 @@
+{
+  "startedAt": "2026-11-19T06:32:29.793Z",
+  "kind": "Actual WeChat DevTools 390px production-page; no mock; physical phone, gestures and formal release excluded",
+  "races": [
+    {
+      "id": "zuiku-66992",
+      "actualViewport": 390,
+      "guideCharacters": 11180,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 2,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 982.7734375,
+        "bottom": 18434.0859375,
+        "width": 366,
+        "height": 17451.3125,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 11,
+      "tableRowsIncludingHeaders": 70,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336
+      ]
+    },
+    {
+      "id": "caa-1000483001",
+      "actualViewport": 390,
+      "guideCharacters": 5272,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 2,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1208.9609375,
+        "bottom": 9937.3046875,
+        "width": 366,
+        "height": 8728.34375,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 8,
+      "tableRowsIncludingHeaders": 40,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336
+      ]
+    },
+    {
+      "id": "caa-1000499000",
+      "actualViewport": 390,
+      "guideCharacters": 8827,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 2,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1223.765625,
+        "bottom": 15417.5859375,
+        "width": 366,
+        "height": 14193.8203125,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 10,
+      "tableRowsIncludingHeaders": 90,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336
+      ]
+    },
+    {
+      "id": "caa-1000479023",
+      "actualViewport": 390,
+      "guideCharacters": 6708,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 1,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1220.328125,
+        "bottom": 11570.5859375,
+        "width": 366,
+        "height": 10350.2578125,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 4,
+      "tableRowsIncludingHeaders": 31,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336
+      ]
+    },
+    {
+      "id": "caa-1000452094",
+      "actualViewport": 390,
+      "guideCharacters": 5896,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 1,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1350.859375,
+        "bottom": 11117.90625,
+        "width": 366,
+        "height": 9767.046875,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 8,
+      "tableRowsIncludingHeaders": 48,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336
+      ]
+    }
+  ],
+  "previousErrors": [],
+  "intermittent": [],
+  "errors": [],
+  "passed": true,
+  "completedAt": "2026-11-19T06:33:16.810Z"
+}

@@ -1,0 +1,103 @@
+{
+  "at": "2026-11-19T06:56:46.986Z",
+  "checks": [
+    {
+      "id": "caa-1000453054",
+      "width": 320,
+      "needle": "11:00",
+      "table": {
+        "width": 252,
+        "scrollWidth": 720,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 468,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "官方竞赛规程 1/3｜路线、计时、关门和补给表\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "caa-1000453054",
+      "width": 390,
+      "needle": "11:00",
+      "table": {
+        "width": 318,
+        "scrollWidth": 720,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 402,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "官方竞赛规程 1/3｜路线、计时、关门和补给表\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-35462",
+      "width": 320,
+      "needle": "14:30",
+      "table": {
+        "width": 252,
+        "scrollWidth": 840,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 588,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "赛事图文资料\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-35462",
+      "width": 390,
+      "needle": "14:30",
+      "table": {
+        "width": 318,
+        "scrollWidth": 840,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 522,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "赛事图文资料\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "caa-1000479060",
+      "width": 320,
+      "needle": "13:30",
+      "table": {
+        "width": 252,
+        "scrollWidth": 720,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 468,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "2026梵净山马拉松参赛文旅权益原表：景区、适用凭证、门票优惠及另收费项目\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "caa-1000479060",
+      "width": 390,
+      "needle": "13:30",
+      "table": {
+        "width": 318,
+        "scrollWidth": 720,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 402,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "2026梵净山马拉松参赛文旅权益原表：景区、适用凭证、门票优惠及另收费项目\n查看原图 ↗",
+      "overflow": false
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-11-19T06:57:15.334Z"
+}

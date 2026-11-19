@@ -1,0 +1,39 @@
+{
+  "at": "2026-11-19T07:03:20.896Z",
+  "checks": [
+    {
+      "id": "caa-1000454068",
+      "width": 320,
+      "needle": "10:30",
+      "table": {
+        "width": 252,
+        "scrollWidth": 720,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 468,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "组委会竞赛规程原图｜关门、补给、资格、领物及奖金表\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "caa-1000454068",
+      "width": 390,
+      "needle": "10:30",
+      "table": {
+        "width": 318,
+        "scrollWidth": 720,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 402,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "组委会竞赛规程原图｜关门、补给、资格、领物及奖金表\n查看原图 ↗",
+      "overflow": false
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-11-19T07:03:28.521Z"
+}

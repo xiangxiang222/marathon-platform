@@ -1,0 +1,28 @@
+{
+  "at": "2026-11-19T06:53:21.674Z",
+  "passed": true,
+  "rows": [
+    {
+      "id": "caa-1000453054",
+      "file": "supplement-f6-caa-1000453054-frozen-reviewed-source-url-corrected.json",
+      "edits": 1,
+      "scope": "完整逐段核对当前3张既有竞赛规程原图（21段连续裁图）、原规程第1–15章、报名公告的6图和本届报名须知1–7章。优先采用组委会可复制规程并互校其5个表图；重复个人表只呈现一次。主办方市政府报道补充交通。现有赛期、税费、成绩期限及组卡未覆盖。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-35462",
+      "file": "supplement-fuga-cutoff-frozen-reviewed.json",
+      "edits": 5,
+      "scope": "本轮先校正当届24K路线更新后的关门和分站表，以及正文的旧版时刻标识；其余章节及另外两组仍在完整复审。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "caa-1000479060",
+      "file": "supplement-h2-fanjingshan-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "本届赛事官网主源：竞赛规程、报名须知、高校联赛全文；核对当届田协、省政府和最酷实报页面。实看8张原图28块，报名、路线、关门、补给、奖金、联赛、保险、救护、处罚及咨询条款均已对照。去掉重复宣传和二维码，保留报名、两张规则及文旅权益原图。",
+      "explicitImageReview": true
+    }
+  ],
+  "races": 3
+}

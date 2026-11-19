@@ -1,0 +1,171 @@
+{
+  "startedAt": "2026-11-19T06:31:36.984Z",
+  "kind": "Actual WeChat DevTools 390px production-page; no mock; physical phone, gestures and formal release excluded",
+  "races": [
+    {
+      "id": "zuiku-58600",
+      "actualViewport": 390,
+      "guideCharacters": 16530,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 4,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1639.640625,
+        "bottom": 29789.5078125,
+        "width": 366,
+        "height": 28149.8671875,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 5,
+      "tableRowsIncludingHeaders": 52,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336,
+        336
+      ]
+    },
+    {
+      "id": "zuiku-66992",
+      "actualViewport": 390,
+      "guideCharacters": 11180,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 2,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 982.7734375,
+        "bottom": 18434.0859375,
+        "width": 366,
+        "height": 17451.3125,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 11,
+      "tableRowsIncludingHeaders": 70,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336
+      ]
+    },
+    {
+      "id": "caa-1000503000",
+      "actualViewport": 390,
+      "guideCharacters": 7653,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 2,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1223.765625,
+        "bottom": 13606.234375,
+        "width": 366,
+        "height": 12382.46875,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 9,
+      "tableRowsIncludingHeaders": 61,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336
+      ]
+    },
+    {
+      "id": "caa-1000452114",
+      "actualViewport": 390,
+      "guideCharacters": 6458,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 1,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1442.859375,
+        "bottom": 12601.71875,
+        "width": 366,
+        "height": 11158.859375,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 12,
+      "tableRowsIncludingHeaders": 72,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336
+      ]
+    },
+    {
+      "id": "caa-1000480114",
+      "actualViewport": 390,
+      "guideCharacters": 8811,
+      "bodyExactlyMatchesProduction": true,
+      "groupsExactlyMatchProduction": true,
+      "groupCount": 2,
+      "bodyBounds": {
+        "left": 12,
+        "right": 378,
+        "top": 1237.953125,
+        "bottom": 14359.6328125,
+        "width": 366,
+        "height": 13121.6796875,
+        "font-size": "14px",
+        "line-height": "21px"
+      },
+      "tableCount": 8,
+      "tableRowsIncludingHeaders": 72,
+      "allRowsActuallyRendered": true,
+      "tableViewportWidths": [
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336,
+        336
+      ]
+    }
+  ],
+  "previousErrors": [],
+  "intermittent": [],
+  "errors": [],
+  "passed": true,
+  "completedAt": "2026-11-19T06:32:29.792Z"
+}
