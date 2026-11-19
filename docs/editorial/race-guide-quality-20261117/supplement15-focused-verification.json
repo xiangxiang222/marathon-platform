@@ -1,0 +1,39 @@
+{
+  "at": "2026-11-19T08:21:32.105Z",
+  "checks": [
+    {
+      "id": "zuiku-60343",
+      "width": 320,
+      "needle": "10000mAh",
+      "table": {
+        "width": 252,
+        "scrollWidth": 600,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 348,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "40KM穿山越岭与30KM寻幽探秘：赛道和海拔图\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-60343",
+      "width": 390,
+      "needle": "10000mAh",
+      "table": {
+        "width": 318,
+        "scrollWidth": 600,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 282,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "40KM穿山越岭与30KM寻幽探秘：赛道和海拔图\n查看原图 ↗",
+      "overflow": false
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-11-19T08:21:56.514Z"
+}

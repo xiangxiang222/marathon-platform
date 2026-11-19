@@ -1,0 +1,103 @@
+{
+  "at": "2026-11-19T08:14:17.723Z",
+  "checks": [
+    {
+      "id": "caa-1000467006",
+      "width": 320,
+      "needle": "11:00",
+      "table": {
+        "width": 252,
+        "scrollWidth": 360,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 108,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "竞赛规程 1/4：组织单位、路线、体检和报名\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "caa-1000467006",
+      "width": 390,
+      "needle": "11:00",
+      "table": {
+        "width": 318,
+        "scrollWidth": 360,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 42,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "竞赛规程 1/4：组织单位、路线、体检和报名\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-11747",
+      "width": 320,
+      "needle": "18.4",
+      "table": {
+        "width": 252,
+        "scrollWidth": 960,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 708,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "25公里组路线、站点标记和海拔，实测24公里\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-11747",
+      "width": 390,
+      "needle": "18.4",
+      "table": {
+        "width": 318,
+        "scrollWidth": 960,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 642,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "25公里组路线、站点标记和海拔，实测24公里\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "caa-1000454030",
+      "width": 320,
+      "needle": "09:00–22:00",
+      "table": {
+        "width": 252,
+        "scrollWidth": 360,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 108,
+      "horizontalScrollVerified": true,
+      "previewOpened": false,
+      "originalLoaded": false,
+      "caption": "",
+      "overflow": false
+    },
+    {
+      "id": "caa-1000454030",
+      "width": 390,
+      "needle": "09:00–22:00",
+      "table": {
+        "width": 318,
+        "scrollWidth": 360,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 42,
+      "horizontalScrollVerified": true,
+      "previewOpened": false,
+      "originalLoaded": false,
+      "caption": "",
+      "overflow": false
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-11-19T08:14:45.279Z"
+}

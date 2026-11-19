@@ -1,0 +1,14 @@
+{
+  "at": "2026-11-19T08:30:55.529Z",
+  "passed": true,
+  "rows": [
+    {
+      "id": "caa-1000454030",
+      "file": "supplement-hezhou-shuttle-photo-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "实际小屏核验后补上贺州领物、摆渡安排的清晰可放大原图，已审正文和列表保持。",
+      "explicitImageReview": true
+    }
+  ],
+  "races": 1
+}

@@ -1,0 +1,28 @@
+{
+  "at": "2026-11-19T08:09:51.497Z",
+  "passed": true,
+  "rows": [
+    {
+      "id": "caa-1000467006",
+      "file": "supplement-gaoyou-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "以扬州市体育局本届赛后可复制正文和中国马拉松信息平台本届公开档案确定赛事事实，用最酷同届可复制报名正文，并按组委会竞赛规程 4 图和报名须知 1 图共 30 连续分块校对细则。附带核查报名宣传文内 8 图，保留 5 张既存原图的身份及顺序，不补没有可靠来源的公告项。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-11747",
+      "file": "supplement-i2-siming-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "逐章核对同届独立官网两天赛程、最酷七项报名及32张源图；拆分关门、费用渠道和领物日期，保留装备、两天奖项、物料、住宿、17条处罚及高价值原图。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "caa-1000454030",
+      "file": "supplement-f7-caa-1000454030-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "逐张完整实看平台保存2/2原图及原报名页另3张历史原图，重新逐条核对当届完整12章竞赛规程全部条款、4张HTML原表及本届赛前指南可取得文字和领物公告原图。本次工作只冻结候选，未保存或展示验证。",
+      "explicitImageReview": true
+    }
+  ],
+  "races": 3
+}

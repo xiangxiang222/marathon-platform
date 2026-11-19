@@ -1,0 +1,60 @@
+[
+  {
+    "id": "zuiku-60343",
+    "name": "2026鲲鹏勇士·坪山40越野赛",
+    "status": "current_source_content_checked_with_questions",
+    "scope": "逐段校对本届六张原图、17章竞赛规程及最酷当届可复制四组。核分组时刻与累计参数、四组各档费用、资格、检录关门、四张分段表、装备勾选、奖励、申诉及服务电话。",
+    "beforeBodyHash": "612d7fbf31b2826b60b477ad6f8fdf0b283643e31e377abf43ad2c656b1efe06",
+    "savedBodyHash": "151ac49605695e86e97c00a88e90a41f58c97927afcabc1a4fe5f320068ba4e0",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 6,
+    "pendingImages": 0,
+    "chapters": 13,
+    "groups": 4,
+    "groupCorrections": 12,
+    "questions": [
+      {
+        "item": "本届正式领物具体时间和地点",
+        "status": "not_verified",
+        "source": "本届竞赛规程第十章（七）写明以后续通知为准。主会场及出发场地不是领物地点的证据。",
+        "treatment": "保留有效身份证件、体检及赛后另行邮寄条款，暂不补数。"
+      },
+      {
+        "item": "40KM越野成绩门槛的24公里边界",
+        "status": "same_document_wording",
+        "source": "报名规程第九章参赛经验写24km及以上；资质审查写24公里以上。",
+        "treatment": "正文按原章并列，临界以组委会资格审核为准。"
+      },
+      {
+        "item": "个别分段时长和关门钟点无法按相邻时刻重算",
+        "status": "same_table_columns_preserved",
+        "source": "本届四个分段表（规程第二张）分别印刷赛段时长与关门时间。",
+        "treatment": "保留各列、原图和空缺，本届最终比赛日手册未获取。"
+      }
+    ],
+    "officialDocuments": [
+      {
+        "url": "https://reg.zuicool.com/86874",
+        "title": "本届最酷报名页与组别信息",
+        "role": "organizer_registration_platform",
+        "verified": true,
+        "checkedAt": "2026-11-19T08:17:28.540Z"
+      }
+    ],
+    "sourceDiscovery": {
+      "registrationUrl": "https://reg.zuicool.com/86874",
+      "eventUrl": "https://zuicool.com/event/60343",
+      "method": "独立查主办方官网、深圳坪山区政府和公开公众号；本届协会域名无法打开，未取得可核本届全文。以当届报名页可复制项目资料及其所附主办方规程相互校验。"
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_and_mini_devtools_390",
+      "miniDisplayed": true,
+      "formalMiniProgramReleaseVerified": false
+    }
+  }
+]

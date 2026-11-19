@@ -1,0 +1,101 @@
+[
+  {
+    "id": "caa-1000454030",
+    "name": "2026贺州半程马拉松",
+    "status": "current_source_content_checked_with_questions",
+    "scope": "实际小屏核验后补上贺州领物、摆渡安排的清晰可放大原图，已审正文和列表保持。",
+    "beforeBodyHash": "c7a27e6fe3d18d726a8575ab579d22e044a2a8869641c1003d6414f973781845",
+    "savedBodyHash": "529571fa1a8bdb258eda84cbccec91543afa6341d9d22622a82b6390914283ee",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 1,
+    "pendingImages": 0,
+    "chapters": 13,
+    "groups": 1,
+    "groupCorrections": 0,
+    "questions": [
+      {
+        "item": "领物摆渡原图展示",
+        "status": "verified_image_retained",
+        "source": "https://m.sohu.com/a/1090355618_121124421/",
+        "treatment": "按校对后的同一文件生成带准确图注的原图预览，无需依赖外链点击。"
+      }
+    ],
+    "officialDocuments": [
+      {
+        "url": "https://reg.zuicool.com/65962",
+        "title": "东城雅院·2026贺州半程马拉松竞赛规程",
+        "role": "organizer_regulation_via_official_registration_partner",
+        "verified": true,
+        "identityReview": "本届组委会完整十二章竞赛规程；逐读正文及实际 HTML 四表（关门、补给、报名标准、名次费），恢复行组，报名渠道限制回查实际组别页。",
+        "characters": 5937,
+        "bodySha256": "46dfde4580a2e93e579954fbf12989c75bafdc6f30e8ffde5ea36d4ee626fe9f",
+        "checkedAt": "2026-11-19T08:30:55.570Z"
+      },
+      {
+        "url": "http://www.gxhz.gov.cn/ywzx/bmdt/t28288734.shtml",
+        "title": "2026贺州半程马拉松燃情开跑",
+        "role": "official_local_sports_bureau",
+        "verified": true,
+        "identityReview": "贺州市体育局本届赛后报道，核实赛事已于11月1日举行、认证、组别、实际21.0975公里与经过贺江、园博园、爱莲湖。",
+        "characters": 5890,
+        "bodySha256": "caf4b83503bb01099daa43b9e61e3660f2102a5e29eb1e3ffa65eb5ecb98c62f",
+        "checkedAt": "2026-11-19T08:30:55.570Z"
+      },
+      {
+        "url": "https://www.runchina.org.cn/#/race/v/detail/1000454030",
+        "title": "中国田径协会路跑赛事：2026贺州半程马拉松",
+        "role": "national_federation_certificate",
+        "verified": true,
+        "identityReview": "公开认证详情核实日期、级别A、项目半程、主办贺州市人民政府。",
+        "characters": 765,
+        "bodySha256": "59795e669d49fd8b8e19a1c0d2e3a457d888ec1d9774656406c8db0404758f28",
+        "checkedAt": "2026-11-19T08:30:55.570Z"
+      },
+      {
+        "url": "https://m.sohu.com/a/1095293099_121124421/",
+        "title": "开赛倒计时1天｜东城雅院·2026贺州半程马拉松参赛必读指南",
+        "role": "later_organizer_material_syndicated",
+        "verified": true,
+        "identityReview": "Sohu全文为10月31日赛前资料的公开转载，页面含奥盈体育微信原文链接、10月28日正式落款及赛前大会安排；原微信遇访问验证。文字已逐读，转载内正文另有未取到的独立视觉附件。",
+        "characters": 1822,
+        "bodySha256": "51b9d72b33ee34023d2e138e1d223770f8b7cac94d6e31e57d59a35828fb8c57",
+        "checkedAt": "2026-11-19T08:30:55.570Z"
+      },
+      {
+        "url": "https://m.sohu.com/a/1090355618_121124421/",
+        "title": "东城雅院·2026贺州半程马拉松领物摆渡车安排",
+        "role": "organizer_shuttle_poster_syndicated",
+        "verified": true,
+        "identityReview": "奥盈体育参赛助手与本届组委会摆渡安排的公开转载，原图全看。实际领物时间与摆渡车辆时间分开，不将同期徒步大会写成半马组别。",
+        "characters": 251,
+        "bodySha256": "a056cbd0257403faaae031bf8f2c79c8aa5575ec5ae6726c37892e3d3d719e8a",
+        "checkedAt": "2026-11-19T08:30:55.570Z"
+      }
+    ],
+    "sourceDiscovery": {
+      "method": "从CAA公开认证、最酷报名及组选手页出发，再独立按赛事全名、主办政府、运营官方账号、时间、领物、摆渡及路线组合搜索；只采用可实际核对的本届材料。",
+      "officialHomepageSearch": "未确认本届独立官网；市体育局正式发布赛后事实，认证以中国田协公开详情，详细同届竞赛规程使用组委会授权公开报名页；赛前操作细则通过组织方公众号材料的公共转载。",
+      "officialGuideOriginal": {
+        "url": "https://mp.weixin.qq.com/s?__biz=MzIxMzI3ODQzMg==&mid=2247573680&idx=1&sn=56117a2fb9c0804b7cc389e7255306a9",
+        "result": "访问验证，未看全文；使用本届公开转载核可复制部分。"
+      },
+      "documentsChecked": [
+        "https://reg.zuicool.com/65962",
+        "http://www.gxhz.gov.cn/ywzx/bmdt/t28288734.shtml",
+        "https://www.runchina.org.cn/#/race/v/detail/1000454030",
+        "https://m.sohu.com/a/1095293099_121124421/",
+        "https://m.sohu.com/a/1090355618_121124421/"
+      ]
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_and_mini_devtools_390",
+      "miniDisplayed": true,
+      "formalMiniProgramReleaseVerified": false
+    }
+  }
+]
