@@ -1,0 +1,21 @@
+{
+  "at": "2026-11-19T06:09:56.787Z",
+  "passed": true,
+  "rows": [
+    {
+      "id": "caa-1000479142",
+      "file": "supplement-yulin-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "完成现有 7 张原图及报名页 3 张额外图片全高实看；完整对照本届报名须知、竞赛规程和承办单位 2026 可复制公告。恢复此前遗漏路线、补给、保障、奖金及处罚，不复用 2025 内容。保留团报资料冲突、领物地点时间、实测路线等具体待核来源问题。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "caa-1000476007",
+      "file": "supplement-h1-luocheng-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "当届田协公开记录、最酷报名可复制文字优先，官网实际检查为2025旧届后不采。逐项实看本届全部5张原图18块，报名须知及竞赛规程全部章节，核对关门、补给、奖金，补回处罚、救护、保险及联络。",
+      "explicitImageReview": true
+    }
+  ],
+  "races": 2
+}
