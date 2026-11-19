@@ -1,0 +1,62 @@
+{
+  "at": "2026-11-19T19:30:46.865Z",
+  "passed": true,
+  "checks": [
+    {
+      "id": "zuiku-96415",
+      "width": 320,
+      "sheetId": 1782,
+      "sha256": "1a7a53523cc7d40192e3e81ab9fe33b4c8cb8804a1f85b240cb3c1bdae6e147b",
+      "mime": "jpg",
+      "caption": "11 月 6 日政府赛前攻略原图：最终发令时刻、领物点与存取衣",
+      "dims": {
+        "w": 636,
+        "h": 2179
+      },
+      "previewOpened": true,
+      "originalZoomOpened": true
+    },
+    {
+      "id": "zuiku-96415",
+      "width": 320,
+      "sheetId": 1783,
+      "sha256": "00e507c72855791f5688710cd741c22d93676ab0af352054246c6d967cd9d60d",
+      "mime": "jpg",
+      "caption": "11 月 6 日政府安全提醒原图：防寒装备、医疗与赛事求助",
+      "dims": {
+        "w": 634,
+        "h": 3171
+      },
+      "previewOpened": true,
+      "originalZoomOpened": true
+    },
+    {
+      "id": "zuiku-96415",
+      "width": 390,
+      "sheetId": 1782,
+      "sha256": "1a7a53523cc7d40192e3e81ab9fe33b4c8cb8804a1f85b240cb3c1bdae6e147b",
+      "mime": "jpg",
+      "caption": "11 月 6 日政府赛前攻略原图：最终发令时刻、领物点与存取衣",
+      "dims": {
+        "w": 636,
+        "h": 2179
+      },
+      "previewOpened": true,
+      "originalZoomOpened": true
+    },
+    {
+      "id": "zuiku-96415",
+      "width": 390,
+      "sheetId": 1783,
+      "sha256": "00e507c72855791f5688710cd741c22d93676ab0af352054246c6d967cd9d60d",
+      "mime": "jpg",
+      "caption": "11 月 6 日政府安全提醒原图：防寒装备、医疗与赛事求助",
+      "dims": {
+        "w": 634,
+        "h": 3171
+      },
+      "previewOpened": true,
+      "originalZoomOpened": true
+    }
+  ]
+}

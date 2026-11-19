@@ -1,0 +1,34 @@
+{
+  "passed": true,
+  "source": "390px WeChat DevTools through production API",
+  "checks": [
+    {
+      "id": "zuiku-84761",
+      "width": 390,
+      "routeIds": [
+        1623,
+        1624,
+        1625
+      ],
+      "originalsExcluded": [
+        1623,
+        1624,
+        1625
+      ],
+      "visibleRouteFigures": 3,
+      "visibleCaptions": 3
+    },
+    {
+      "id": "zuiku-97568",
+      "width": 390,
+      "routeIds": [
+        722
+      ],
+      "originalsExcluded": [
+        722
+      ],
+      "visibleRouteFigures": 1,
+      "visibleCaptions": 1
+    }
+  ]
+}

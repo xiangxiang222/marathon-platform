@@ -1,0 +1,274 @@
+[
+  {
+    "id": "zuiku-94253",
+    "name": "2026井冈山越野赛",
+    "status": "current_source_content_checked_with_questions",
+    "scope": "按本届官网和赛事公众号原文逐项核规程，再对照最酷当前取消、截止与费用；保留8原图并核12张官网规则拆分图。",
+    "beforeBodyHash": "1980ab8fb1c793e05f44b93ac39ff9658f2e0d6c8824d331c773189231988c0b",
+    "savedBodyHash": "2e81bfa6ebd7c2b608634abb0873fe5753bf04d3276843d64d228c7947bff428",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 24,
+    "pendingImages": 0,
+    "chapters": 9,
+    "groups": 5,
+    "groupCorrections": 18,
+    "questions": [
+      {
+        "status": "category_cancelled_more_recent",
+        "topic": "72公里已取消，其他项目仍有赛前安排",
+        "sourceUrl": "https://reg.zuicool.com/36916",
+        "detail": "最酷报名页和赛事页具体选项均明确取消；9月8日公告、9月10日公众号规程和官网较早赛程仍展示该组。当前稿不把该组旧时间和参数列为可运行，未取得该组取消独立原公告及退款、改组细则。还保留官网11月28—29日全场计划日期。"
+      },
+      {
+        "status": "pickup_schedule_verified_special_guide_unavailable",
+        "topic": "本人领物、技术会与单独赛事手册",
+        "sourceUrl": "https://m.irunner.mobi/mix-race-apply/index.html?match_eng=6a7d2a4a93f82#/regulation",
+        "imageUrls": [
+          "https://event.oss.irunner.mobi/8005/Upload/b4c66ab91b71e7835a8e4d94305c54e9.png",
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/0d48cc7840f4710284dd50a6750f31665a7f9020.jpeg?imageView2/2/w/750"
+        ],
+        "detail": "组委会官网和9月10日公众号已可读，领物地点和时段、体检证明和装备核查可直接核实；未发现覆盖原规程的后发领物、邮寄、交通或技术会单独公告，不推断技术会具体房间。"
+      },
+      {
+        "status": "registration_phases_not_refund",
+        "topic": "11月18日最酷截止、10月31日旧公告及退费",
+        "sourceUrl": "https://mp.weixin.qq.com/s/4roFtlnekg_u_Yf3O-YYsg",
+        "imageUrls": [
+          "https://zc3wp-uploads.bkt.zuicool.com/2026/09/efd782fea98eb1429508867b13826151f0d59c3b.jpeg?imageView2/2/w/750",
+          "https://event.oss.irunner.mobi/8005/Upload/ed37aac73a480f162eee83ec3e9148d0.png"
+        ],
+        "detail": "保留生产行已确认11月18日截止和最新公开已关闭；10月31日是9月8日公告当时历史计划，退费或旧改期补偿不能据此展延，72公里取消专属安排未知。"
+      },
+      {
+        "status": "route_cert_and_results",
+        "topic": "站点称谓、最终轨迹、认证和赛后成绩",
+        "sourceUrl": "https://m.irunner.mobi/mix-race-apply/index.html?match_eng=6a7d2a4a93f82#/regulation",
+        "detail": "57及38首个CP正文与地图称谓不同，保留正文路线顺序并标明。ITRA 3/2仅为当届官网及报名标注，未核到承认组织的本届记录；无独立最终轨迹和赛前成绩专链。赛后证书官方公众号路径有明文。"
+      }
+    ],
+    "officialDocuments": [
+      {
+        "url": "https://mp.weixin.qq.com/s/4roFtlnekg_u_Yf3O-YYsg",
+        "title": "组委会9月8日重要调整原文",
+        "role": "organizer_original_change_notice",
+        "verified": true,
+        "identityReview": "赛事专属公众号「星火征途 井冈山越野赛」9月8日21时组委会署名原公告，报名原图同篇；当日仍有72公里，晚于该公告的报名组别变更优先。",
+        "characters": 2500,
+        "bodySha256": "e16dd45515fcd52c2dbc7c0b8b4731b5cb1b68f6deaa19789b9caf13a3adfebf",
+        "checkedAt": "2026-11-19T19:23:44.981Z"
+      },
+      {
+        "url": "https://m.irunner.mobi/mix-race-apply/index.html?match_eng=6a7d2a4a93f82#/grid",
+        "title": "组委会井冈山本届官网",
+        "role": "organizer-current-edition-portal",
+        "verified": true,
+        "identityReview": "由9月8日组委会通告「进入官网」二维码解得本届标识6a7d2a4a93f82；直接浏览确认本届专题入口、规程、报名和官方新闻。",
+        "characters": 284,
+        "bodySha256": "6c6eaa4cdda977074b48df69630794412722e0c0735454c1652cb9f85ce8e37c",
+        "checkedAt": "2026-11-19T19:23:44.981Z"
+      },
+      {
+        "url": "https://m.irunner.mobi/mix-race-apply/index.html?match_eng=6a7d2a4a93f82#/regulation",
+        "title": "组委会本届官网竞赛规程",
+        "role": "organizer-current-edition-regulation",
+        "verified": true,
+        "identityReview": "本届官网竞赛规程公开文字，组织架构、报到、技术会、项目、器材、路线、排名、存包等；其中72公里与最新最酷明示取消冲突。",
+        "characters": 9229,
+        "bodySha256": "a91f39b1dff461c5f5d70b311783e72ded913d77f6c7cbcdedadc38c3d8e3820",
+        "checkedAt": "2026-11-19T19:23:44.981Z"
+      },
+      {
+        "url": "https://mp.weixin.qq.com/s/jBaMgVFdQtKMBxGWiSjjkw",
+        "title": "组委会官方公众号当届竞赛规程",
+        "role": "organizer_original_regulation_public_account",
+        "verified": true,
+        "identityReview": "本届组委会公众号9月10日10:30直接规程原文，入口在官网新闻；以较新的组别状态覆盖旧表。",
+        "characters": 9100,
+        "bodySha256": "c1493e51079b02de902e637f0355871d9d6047695e93cf3c9ea295b8a81a7c7c",
+        "checkedAt": "2026-11-19T19:23:44.981Z"
+      },
+      {
+        "url": "https://m.irunner.mobi/mix-race-apply/index.html?match_eng=6a7d2a4a93f82#/grid",
+        "title": "2026井冈山越野赛",
+        "role": "official_website",
+        "verified": true,
+        "checkedAt": "2026-11-19T19:23:44.981Z",
+        "identityReview": "组委会官方公众号原公告发布并标「进入官网」二维码；直接公开网页及同届规程。"
+      }
+    ],
+    "sourceDiscovery": {
+      "officialUrls": [
+        "https://m.irunner.mobi/mix-race-apply/index.html?match_eng=6a7d2a4a93f82#/grid",
+        "https://m.irunner.mobi/mix-race-apply/index.html?match_eng=6a7d2a4a93f82#/regulation",
+        "https://mp.weixin.qq.com/s/4roFtlnekg_u_Yf3O-YYsg",
+        "https://mp.weixin.qq.com/s/jBaMgVFdQtKMBxGWiSjjkw"
+      ],
+      "searchResultsPath": "/private/tmp/race-guide-quality-20261117/supp27-jinggang/source-discovery.json",
+      "discoveryFile": "/private/tmp/race-guide-quality-20261117/supp27-jinggang/discover.json",
+      "sourcePriority": "组委会当届官网和公众号原文用于规程、组织、领物、装备和退费；最新最酷当届两页确认结构化取消及截止；大江网当届报到窗口作补充。",
+      "notes": "已实际查看8张基线原图53连续切片，官网规程12拆分图及最酷4附图。官网旧72时间不用于当前。"
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_and_mini_devtools_390",
+      "miniDisplayed": true,
+      "formalMiniProgramReleaseVerified": false
+    }
+  },
+  {
+    "id": "zuiku-96415",
+    "name": "2026中国冷极半程马拉松",
+    "status": "current_source_content_checked_with_questions",
+    "scope": "呼伦贝尔市体育局完整可复制竞赛规程优先；逐条核 5 张现存图的 32 个连续分块、根河市政府 11 月 6 日赛前攻略和安全提醒的 5 个分块。更新最终起跑、存衣、检录、终点及领物，核全部条款、三张正式表及退款异文。",
+    "beforeBodyHash": "df08f4ae987f6cf8189da9853ef59a747e8c687690a65430c3c860a77239e457",
+    "savedBodyHash": "6ffd3c281a2934e471e2899fc37b1a069aa6963bd3517d30c411a8b5d494a5ed",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 7,
+    "pendingImages": 0,
+    "chapters": 10,
+    "groups": 1,
+    "groupCorrections": 2,
+    "questions": [
+      "退款日期：9 月 29 日官网前期规程为 10 月 24 日前；10 月报名原图列 11 月 1 日前，且同条又说报名截止后不再受理。未找到最终适用口径，保留报名原图和邮箱，不给唯一日期。",
+      "组委会电话和邮箱已由官网与两张报名资料同证；下午开始办公时间：9 月官方 13:00，10 月两张原图 14:00；未查到最后服务公告，正文注明版本区别。",
+      "奖金条款载 20 个工作日公示，竞赛仲裁条款载成绩公示 10 个工作日内申诉；均同时见官方 HTML 和正式规程原图，照两类事项分别陈列，不替组委会统一期限。未查到本届具体奖金公示页。",
+      "早期官方规则与报名页的 10:30、9:00–10:00、10:00–10:20、16:00 及领物地点待定，已被根河官网 11 月 6 日攻略的 10:50、09:20–10:20、10:20–10:40、16:20、根河一中体育馆取代。报名有效期采用 10 月实际报名阶段原图，不把 9 月前期日期当作实际。",
+      "分段里程关门采用正式规则相对发令时长，最新攻略只另确认 13:50 终点关门；不凭推算增加逐段重新公布时刻。未查得明确分组配额、累计爬升、积分、出生日期区间以及公开路线图；既有图片也没有这些数据，不补写。"
+    ],
+    "officialDocuments": [
+      {
+        "url": "https://tyj.hlbe.gov.cn/News/show/1458223.html",
+        "title": "呼伦贝尔市体育局 9 月 29 日办赛通知及完整竞赛规程",
+        "role": "government_current_edition_rules",
+        "verified": true,
+        "identityReview": "读取规程全部 17 节及三张比赛表。报名、开跑、领物、存衣和部分联系时间另按本届后续资料辨版本。",
+        "bodySha256": "47abc4e8becf947dfa9b7b95bf8964c2af662918c802f4b5d02a82915de7aa5a",
+        "checkedAt": "2026-11-19T19:23:44.981Z"
+      },
+      {
+        "url": "https://tyj.hlbe.gov.cn/News/show/1463976.html",
+        "title": "呼伦贝尔市体育局 11 月 5 日赛前协调对接",
+        "role": "organizer_pre_race_meeting",
+        "verified": true,
+        "identityReview": "独立交叉确认主办/举办地、赛事日期和赛前调整背景。",
+        "bodySha256": "5525d353e03c67830b7600c37c6e4d91e8aa9a70d4552d362d0ac987177f9652",
+        "checkedAt": "2026-11-19T19:23:44.981Z"
+      },
+      {
+        "url": "https://www.genhe.gov.cn/News/show/1464175.html",
+        "title": "根河市人民政府 11 月 6 日最终赛前攻略",
+        "role": "government_final_race_guide_page",
+        "verified": true,
+        "identityReview": "识别机关、来源及发布时间，正文为原图，由对应 JPEG 逐行核时间和地址。",
+        "bodySha256": "0b46897d7f74ce05f3b922297a51c5d1cf92e416f1d8a47d64dd40682ea4a397",
+        "checkedAt": "2026-11-19T19:23:44.981Z"
+      },
+      {
+        "url": "https://www.genhe.gov.cn/News/show/1464174.html",
+        "title": "根河市人民政府 11 月 6 日赛前安全提醒",
+        "role": "government_safety_guide_page",
+        "verified": true,
+        "identityReview": "识别机关、来源及发布时间，正文为原图，由对应 JPEG 逐行核装备、补给和求助电话。",
+        "bodySha256": "df89223cc038ebefca5a55253298fcaf02abb6c4849e25e2f10f91cc3b67db2a",
+        "checkedAt": "2026-11-19T19:23:44.981Z"
+      },
+      {
+        "url": "https://www.genhe.gov.cn/News/show/1464572.html",
+        "title": "根河市人民政府 11 月 9 日赛事及冬旅启动总结",
+        "role": "government_post_race_recap",
+        "verified": true,
+        "identityReview": "交叉验赛事已经举办及起点，报道未给出发令分秒和非历史报名规则。",
+        "bodySha256": "2efa7d4495559bd212c0f364f6fb2402387c95a1a5714d2806b91cd800f38382",
+        "checkedAt": "2026-11-19T19:23:44.981Z"
+      },
+      {
+        "url": "https://tyj.hlbe.gov.cn/News/show/1458223.html",
+        "title": "2026中国冷极半程马拉松",
+        "role": "official_website",
+        "verified": true,
+        "checkedAt": "2026-11-19T19:23:44.981Z",
+        "identityReview": "主办/承办单位主管部门官方 HTML 公告，含 17 节可搜索规程、逐格下载 HTML 表；承办方根河市政府官网补 11 月 6 日定版攻略及安全通知。"
+      }
+    ],
+    "sourceDiscovery": {
+      "main": "/private/tmp/race-guide-quality-20261117/audit-coldpole/search-index.json",
+      "followup": "/private/tmp/race-guide-quality-20261117/audit-coldpole/gov-api-overview.json",
+      "officialUrl": "https://tyj.hlbe.gov.cn/News/show/1458223.html",
+      "method": "主办/承办单位主管部门官方 HTML 公告，含 17 节可搜索规程、逐格下载 HTML 表；承办方根河市政府官网补 11 月 6 日定版攻略及安全通知。",
+      "officialUrls": [
+        "https://tyj.hlbe.gov.cn/News/show/1458223.html",
+        "https://tyj.hlbe.gov.cn/News/show/1463976.html",
+        "https://www.genhe.gov.cn/News/show/1464175.html",
+        "https://www.genhe.gov.cn/News/show/1464174.html",
+        "https://www.genhe.gov.cn/News/show/1464572.html"
+      ],
+      "knownCurrentArticles": [
+        "https://tyj.hlbe.gov.cn/News/show/1458223.html",
+        "https://tyj.hlbe.gov.cn/News/show/1463976.html",
+        "https://www.genhe.gov.cn/News/show/1464175.html",
+        "https://www.genhe.gov.cn/News/show/1464174.html",
+        "https://www.genhe.gov.cn/News/show/1464572.html",
+        "https://reg.zuicool.com/44688",
+        "https://zuicool.com/event/96415",
+        "https://zuicool.com/news/archives/317726"
+      ],
+      "notes": [
+        "先找承办方官网，核呼伦贝尔市体育局及根河市政府公开站内索引，并读 11 月 6 日当地融媒官方攻略。然后查指定报名平台、关联公告和公开报道，用于核报名阶段及明确疑点。"
+      ]
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_and_mini_devtools_390",
+      "miniDisplayed": true,
+      "formalMiniProgramReleaseVerified": false
+    }
+  },
+  {
+    "id": "zuiku-97568",
+    "name": "2026\"人机共享”天津长跑嘉年华",
+    "status": "current_source_content_checked_with_questions",
+    "scope": "校对全部7张当届原图与报名文字，三组金额、日期、关门、亲子年龄与区间、领物、成人儿童尺码，区分延期渠道和通常退款。",
+    "beforeBodyHash": "1e4eaca51a15da7c3b8cd83ff4f7e6ac347f56b6d942711b0ef0f56340fbdffc",
+    "savedBodyHash": "28e90e7546dffe87b9e92ebd965740e408026c047a73de9ea067bbee60c25b13",
+    "bodyChanged": true,
+    "edits": 1,
+    "viewedImages": 7,
+    "pendingImages": 0,
+    "chapters": 6,
+    "groups": 3,
+    "groupCorrections": 14,
+    "questions": [
+      "未找到比加盖公章延期通知及最酷当届图文更晚的独立官网/领物公告；已查组委会公众号索引，网页返回校验，现存来源明确领物时段与南门内地点。",
+      "规程对成人尺码的肩宽、胸围、衣长和参考身高未标单位；正文不补测量单位，原图保留。",
+      "亲子年龄文字和出生区间分别按当届报名卡保留；遇与实际周岁边界不合，请组委会审核。",
+      "两项目的实测里程、爬升、获奖具体名额未发布在现有材料，不推算。"
+    ],
+    "officialDocuments": [],
+    "sourceDiscovery": {
+      "method": "按赛事准确现名及旧名核对最酷活动与报名页、赛事转载原公告，继续按向阳致远体育及领物查找官网、市区官网、公众号；仅取得主办当届盖章原图及平台当前版本。",
+      "officialWebsiteStatus": "no_verified_standalone_current_edition_site_found",
+      "organizer": "北京向阳致远体育有限公司",
+      "queries": [
+        "2026 人机共享 天津长跑嘉年华 11月22日 领物 赛事官网",
+        "向阳致远体育 天津 长跑嘉年华 11月22日 水西公园 官方 领物"
+      ]
+    },
+    "stages": {
+      "reviewed": true,
+      "saved": true,
+      "displayed": true,
+      "deployedVerified": true,
+      "displayedScope": "web_320_390_and_mini_devtools_390",
+      "miniDisplayed": true,
+      "formalMiniProgramReleaseVerified": false
+    }
+  }
+]

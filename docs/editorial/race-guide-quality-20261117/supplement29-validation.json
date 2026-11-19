@@ -1,0 +1,28 @@
+{
+  "at": "2026-11-19T19:23:44.932Z",
+  "passed": true,
+  "rows": [
+    {
+      "id": "zuiku-94253",
+      "file": "supplement-jinggangshan-integrated.json",
+      "edits": 1,
+      "scope": "按本届官网和赛事公众号原文逐项核规程，再对照最酷当前取消、截止与费用；保留8原图并核12张官网规则拆分图。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-96415",
+      "file": "supplement-coldpole-integrated.json",
+      "edits": 1,
+      "scope": "呼伦贝尔市体育局完整可复制竞赛规程优先；逐条核 5 张现存图的 32 个连续分块、根河市政府 11 月 6 日赛前攻略和安全提醒的 5 个分块。更新最终起跑、存衣、检录、终点及领物，核全部条款、三张正式表及退款异文。",
+      "explicitImageReview": true
+    },
+    {
+      "id": "zuiku-97568",
+      "file": "supplement-tianjin-frozen-reviewed.json",
+      "edits": 1,
+      "scope": "校对全部7张当届原图与报名文字，三组金额、日期、关门、亲子年龄与区间、领物、成人儿童尺码，区分延期渠道和通常退款。",
+      "explicitImageReview": true
+    }
+  ],
+  "races": 3
+}

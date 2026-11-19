@@ -1,0 +1,37 @@
+{
+  "checks": [
+    {
+      "batch": 4,
+      "evidence": "supplement4-all-mini-render-verification.json",
+      "races": 7,
+      "tableRows": 267
+    },
+    {
+      "batch": 6,
+      "evidence": "supplement6-all-mini-render-verification.json",
+      "races": 5,
+      "tableRows": 279
+    },
+    {
+      "batch": 7,
+      "evidence": "supplement7-all-mini-render-verification.json",
+      "races": 5,
+      "tableRows": 327
+    },
+    {
+      "batch": 8,
+      "evidence": "supplement8-all-mini-render-verification.json",
+      "races": 2,
+      "tableRows": 158
+    },
+    {
+      "batch": 9,
+      "evidence": "supplement9-all-mini-render-verification.json",
+      "races": 2,
+      "tableRows": 132
+    }
+  ],
+  "totalRaces": 21,
+  "actualViewport": 390,
+  "physicalPhoneAndFormalReleaseNotVerified": true
+}

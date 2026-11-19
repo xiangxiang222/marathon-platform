@@ -1,0 +1,103 @@
+{
+  "at": "2026-11-19T19:55:01.048Z",
+  "checks": [
+    {
+      "id": "zuiku-98272",
+      "width": 320,
+      "needle": "399",
+      "table": {
+        "width": 252,
+        "scrollWidth": 840,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 588,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "本届年度总决赛海报（2026年12月6日）\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-98272",
+      "width": 390,
+      "needle": "399",
+      "table": {
+        "width": 318,
+        "scrollWidth": 840,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 522,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "本届年度总决赛海报（2026年12月6日）\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-66992",
+      "width": 320,
+      "needle": "黄石体育馆，从3号门",
+      "table": {
+        "width": 252,
+        "scrollWidth": 252,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 0,
+      "horizontalScrollVerified": null,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "9月竞赛规程原图（上）：比赛办法；线路以11月12日新版为准\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-66992",
+      "width": 390,
+      "needle": "黄石体育馆，从3号门",
+      "table": {
+        "width": 318,
+        "scrollWidth": 318,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 0,
+      "horizontalScrollVerified": null,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "9月竞赛规程原图（上）：比赛办法；线路以11月12日新版为准\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-58600",
+      "width": 320,
+      "needle": "16.58",
+      "table": {
+        "width": 252,
+        "scrollWidth": 480,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 228,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "赛事图文资料\n查看原图 ↗",
+      "overflow": false
+    },
+    {
+      "id": "zuiku-58600",
+      "width": 390,
+      "needle": "16.58",
+      "table": {
+        "width": 318,
+        "scrollWidth": 480,
+        "scrollLeft": 0
+      },
+      "scrollLeftAfter": 162,
+      "horizontalScrollVerified": true,
+      "previewOpened": true,
+      "originalLoaded": true,
+      "caption": "赛事图文资料\n查看原图 ↗",
+      "overflow": false
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-11-19T19:56:34.200Z"
+}

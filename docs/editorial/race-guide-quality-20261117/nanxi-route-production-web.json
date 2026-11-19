@@ -1,0 +1,75 @@
+{
+  "productionOrigin": "https://togetherbetter.cn/marathon",
+  "merge": "c19c196ccb11db46c23826aa21e26197cd0aa1f9",
+  "deployRun": 44587330029,
+  "api": [
+    {
+      "id": "zuiku-84761",
+      "route": [
+        1623,
+        1624,
+        1625
+      ],
+      "excludedFromOriginals": [
+        1623,
+        1624,
+        1625
+      ]
+    }
+  ],
+  "web": [
+    {
+      "id": "zuiku-84761",
+      "width": 320,
+      "sizes": [
+        {
+          "sheetId": 1623,
+          "caption": "幽篁·40 公里：路线、海拔与参赛物资",
+          "w": 1200,
+          "h": 5269
+        },
+        {
+          "sheetId": 1624,
+          "caption": "潺湲·20 公里：路线、海拔与参赛物资",
+          "w": 1200,
+          "h": 5319
+        },
+        {
+          "sheetId": 1625,
+          "caption": "清晖·6 公里：路线、海拔与参赛物资",
+          "w": 1200,
+          "h": 4409
+        }
+      ],
+      "previewOpened": true,
+      "originalOpened": true
+    },
+    {
+      "id": "zuiku-84761",
+      "width": 390,
+      "sizes": [
+        {
+          "sheetId": 1623,
+          "caption": "幽篁·40 公里：路线、海拔与参赛物资",
+          "w": 1200,
+          "h": 5269
+        },
+        {
+          "sheetId": 1624,
+          "caption": "潺湲·20 公里：路线、海拔与参赛物资",
+          "w": 1200,
+          "h": 5319
+        },
+        {
+          "sheetId": 1625,
+          "caption": "清晖·6 公里：路线、海拔与参赛物资",
+          "w": 1200,
+          "h": 4409
+        }
+      ],
+      "previewOpened": true,
+      "originalOpened": true
+    }
+  ],
+  "passed": true
+}
