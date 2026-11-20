@@ -232,6 +232,78 @@
           "sourceIds": [
             "xa-results-2026"
           ]
+        },
+        {
+          "group": "全马男子亚军",
+          "athlete": "董国建",
+          "time": "02:13:29",
+          "timing": "枪声成绩",
+          "sourceIds": [
+            "xa-results-2026"
+          ]
+        },
+        {
+          "group": "全马男子季军",
+          "athlete": "桑吉东知",
+          "time": "02:14:03",
+          "timing": "枪声成绩",
+          "sourceIds": [
+            "xa-results-2026"
+          ]
+        },
+        {
+          "group": "全马女子亚军",
+          "athlete": "冯丹",
+          "time": "02:30:22",
+          "timing": "枪声成绩",
+          "sourceIds": [
+            "xa-results-2026"
+          ]
+        },
+        {
+          "group": "全马女子季军",
+          "athlete": "焦安静",
+          "time": "02:31:02",
+          "timing": "枪声成绩",
+          "sourceIds": [
+            "xa-results-2026"
+          ]
+        },
+        {
+          "group": "半马男子亚军",
+          "athlete": "YESSENBOL ZHANGABEK",
+          "time": "01:03:22",
+          "timing": "净计时",
+          "sourceIds": [
+            "xa-results-2026"
+          ]
+        },
+        {
+          "group": "半马男子季军",
+          "athlete": "房博",
+          "time": "01:05:40",
+          "timing": "净计时",
+          "sourceIds": [
+            "xa-results-2026"
+          ]
+        },
+        {
+          "group": "半马女子亚军",
+          "athlete": "杨柳静",
+          "time": "01:20:40",
+          "timing": "净计时",
+          "sourceIds": [
+            "xa-results-2026"
+          ]
+        },
+        {
+          "group": "半马女子季军",
+          "athlete": "田风霞",
+          "time": "01:25:14",
+          "timing": "净计时",
+          "sourceIds": [
+            "xa-results-2026"
+          ]
         }
       ],
       "gear": [
@@ -289,13 +361,13 @@
         ]
       },
       "notes": [
-        "人民网报道男女全马冠军均打破赛会纪录，但成绩表为图片，未核实具体时间，因此不抄录数值。"
+        "本届全马成绩按组委会公示的枪声成绩，半马按净计时；公示原页使用组委会公布的 HTTP 地址。"
       ],
       "officialResources": [
         {
           "category": "route-map",
           "title": "2026全马与半马官方线路图",
-          "url": "https://xi-ma.com/page/6LN7OlWmEZ8AD2dKbJB3.html",
+          "url": "http://xi-ma.com/page/6LN7OlWmEZ8AD2dKbJB3.html",
           "sourceIds": [
             "xa-map-2026"
           ]
@@ -303,7 +375,7 @@
         {
           "category": "shirt",
           "title": "2026官方参赛服发布",
-          "url": "https://xi-ma.com/post/9Vbyv6BjrN1Lj1nYg48Z.html",
+          "url": "http://xi-ma.com/post/9Vbyv6BjrN1Lj1nYg48Z.html",
           "sourceIds": [
             "xa-kit-2026"
           ]
@@ -311,9 +383,25 @@
         {
           "category": "medal",
           "title": "2026全马与半马奖牌发布",
-          "url": "https://xi-ma.com/post/9Vbyv6BjrN1Lj1nYg48Z.html",
+          "url": "http://xi-ma.com/post/9Vbyv6BjrN1Lj1nYg48Z.html",
           "sourceIds": [
             "xa-kit-2026"
+          ]
+        },
+        {
+          "category": "results",
+          "title": "世界田联 2026 西安全马成绩",
+          "url": "https://worldathletics.org/competition/calendar-results/results/7236089",
+          "sourceIds": [
+            "xa-wa-results-2026"
+          ]
+        },
+        {
+          "category": "results",
+          "title": "2026组委会全马与半马成绩公示",
+          "url": "http://xi-ma.com/post-JlrPG3eDQNAxjYWbQMv8.html",
+          "sourceIds": [
+            "xa-results-2026"
           ]
         }
       ]
@@ -396,7 +484,18 @@
           "xa-race-2025"
         ]
       },
-      "results": [],
+      "results": [
+        {
+          "group": "全程马拉松女子冠军",
+          "athlete": "黄菲",
+          "time": "02:31:02",
+          "timing": "",
+          "sourceIds": [
+            "xa-huang-wa-2025",
+            "xa-huang-cctv-2025"
+          ]
+        }
+      ],
       "gear": [],
       "logistics": {
         "collection": {
@@ -432,7 +531,9 @@
           }
         ]
       },
-      "notes": []
+      "notes": [
+        "已核对全马女子冠军及世界田联年度最佳用时；当届完整公示和其计时类型仍待核。"
+      ]
     },
     {
       "year": "2024",
@@ -666,7 +767,7 @@
     {
       "id": "xa-map-2026",
       "title": "2026度小满西安马拉松赛线路图",
-      "url": "https://xi-ma.com/page/6LN7OlWmEZ8AD2dKbJB3.html",
+      "url": "http://xi-ma.com/page/6LN7OlWmEZ8AD2dKbJB3.html",
       "publisher": "西安马拉松赛组委会",
       "publishedAt": "",
       "accessedAt": "2026-11-20",
@@ -679,7 +780,7 @@
     {
       "id": "xa-kit-2026",
       "title": "「2026度小满西安马拉松赛」奖牌、参赛服公布！",
-      "url": "https://xi-ma.com/post/9Vbyv6BjrN1Lj1nYg48Z.html",
+      "url": "http://xi-ma.com/post/9Vbyv6BjrN1Lj1nYg48Z.html",
       "publisher": "西安马拉松赛组委会",
       "publishedAt": "2026-10-01",
       "accessedAt": "2026-11-20",
@@ -692,7 +793,7 @@
     {
       "id": "xa-entry-2026",
       "title": "2026度小满西安马拉松赛报名须知",
-      "url": "https://xi-ma.com/page/kwvqQxBj12rz0GM9Aya4.html",
+      "url": "http://xi-ma.com/page/kwvqQxBj12rz0GM9Aya4.html",
       "publisher": "西安马拉松赛组委会",
       "publishedAt": "",
       "accessedAt": "2026-11-20",
@@ -705,7 +806,7 @@
     {
       "id": "xa-applicants-2026",
       "title": "2026度小满西安马拉松赛，报名数据出炉",
-      "url": "https://xi-ma.com/post/L51XZa20wA1zDAM6vG98.html",
+      "url": "http://xi-ma.com/post/L51XZa20wA1zDAM6vG98.html",
       "publisher": "西安马拉松赛组委会",
       "publishedAt": "2026-08-21",
       "accessedAt": "2026-11-20",
@@ -718,7 +819,7 @@
     {
       "id": "xa-results-2026",
       "title": "成绩查询 / 成绩公示 | 2026度小满西安马拉松赛",
-      "url": "https://xi-ma.com/post/JlrPG3eDQNAxjYWbQMv8.html",
+      "url": "http://xi-ma.com/post-JlrPG3eDQNAxjYWbQMv8.html",
       "publisher": "西安马拉松赛组委会",
       "publishedAt": "2026-10-19",
       "accessedAt": "2026-11-20",
@@ -758,6 +859,32 @@
         "2026"
       ],
       "evidence": "与官网公示交叉核对全马男子2:10:16、女子2:29:07及选手身份。"
+    },
+    {
+      "id": "xa-huang-wa-2025",
+      "title": "黄菲：世界田联全马各年度最佳",
+      "url": "https://worldathletics.org/athletes/pr-of-china/fei-huang-14865815",
+      "publisher": "世界田联",
+      "publishedAt": "",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2025"
+      ],
+      "evidence": "世界田联年度最佳档案收录2025-10-19西安全马2:31:02；成绩口径未载明。"
+    },
+    {
+      "id": "xa-huang-cctv-2025",
+      "title": "央视网转载报道：黄菲的2025西安马拉松女子冠军",
+      "url": "https://news.cctv.com/2026/01/07/ARTI8PhOOQow8UEZvSNXYuCb260107.shtml",
+      "publisher": "央视网（转载澎湃新闻）",
+      "publishedAt": "2026-01-07",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2025"
+      ],
+      "evidence": "报道用于核对2025女子冠军；成绩时间用世界田联。"
     }
   ],
   "gaps": [
@@ -769,7 +896,7 @@
         "editions[2026].logistics.collection",
         "editions[2026].registration.lotteryRate"
       ],
-      "reason": "已补2026官方报名与成绩资料；2024、2025原始规程与成绩资料、2025项目人数拆分、2026领物与分池抽签分母仍待核实。"
+      "reason": "2025已补女子全马冠军；2024成绩、2025其余组别完整原表、2024和2025原始规程、2026领物及分池抽签人数仍待核实。"
     },
     {
       "fields": [

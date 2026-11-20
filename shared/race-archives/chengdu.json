@@ -197,7 +197,10 @@
           "cd-signup-2026",
           "cd-draw-1-2026",
           "cd-draw-2-2026"
-        ]
+        ],
+        "payment": "首轮至2026年8月5日18:00；二次至9月13日18:00。",
+        "waitlist": "第二轮从首轮未中签且报名时选择补录的选手中抽取。",
+        "direct": "全马成绩直通按年龄组入围比例分配，最多5000人。"
       },
       "participation": {
         "planned": "35000人：全马25000、半马10000",
@@ -249,6 +252,78 @@
           "timing": "枪声成绩",
           "sourceIds": [
             "cd-report-2026",
+            "cd-official-results-2026"
+          ]
+        },
+        {
+          "group": "马拉松男子亚军",
+          "athlete": "洪跃",
+          "time": "02:13:23",
+          "timing": "枪时",
+          "sourceIds": [
+            "cd-official-results-2026"
+          ]
+        },
+        {
+          "group": "马拉松男子季军",
+          "athlete": "黄永政",
+          "time": "02:13:30",
+          "timing": "枪时",
+          "sourceIds": [
+            "cd-official-results-2026"
+          ]
+        },
+        {
+          "group": "马拉松女子亚军",
+          "athlete": "张水华",
+          "time": "02:32:07",
+          "timing": "枪时",
+          "sourceIds": [
+            "cd-official-results-2026"
+          ]
+        },
+        {
+          "group": "马拉松女子季军",
+          "athlete": "张珊珊",
+          "time": "02:35:30",
+          "timing": "枪时",
+          "sourceIds": [
+            "cd-official-results-2026"
+          ]
+        },
+        {
+          "group": "半程马拉松男子亚军",
+          "athlete": "陈中平",
+          "time": "01:07:48",
+          "timing": "枪时",
+          "sourceIds": [
+            "cd-official-results-2026"
+          ]
+        },
+        {
+          "group": "半程马拉松男子季军",
+          "athlete": "王嘉豪",
+          "time": "01:08:26",
+          "timing": "枪时",
+          "sourceIds": [
+            "cd-official-results-2026"
+          ]
+        },
+        {
+          "group": "半程马拉松女子亚军",
+          "athlete": "黄彦凤",
+          "time": "01:17:04",
+          "timing": "枪时",
+          "sourceIds": [
+            "cd-official-results-2026"
+          ]
+        },
+        {
+          "group": "半程马拉松女子季军",
+          "athlete": "Riine Ringi",
+          "time": "01:17:07",
+          "timing": "枪时",
+          "sourceIds": [
             "cd-official-results-2026"
           ]
         }
@@ -360,6 +435,22 @@
           "sourceIds": [
             "cd-gear-release-2026"
           ]
+        },
+        {
+          "category": "results",
+          "title": "查看2026成马组委会成绩公示",
+          "url": "https://chengdumarathon.cn/column/articleDetail/158?column_id=70&lang=cn",
+          "sourceIds": [
+            "cd-official-results-2026"
+          ]
+        },
+        {
+          "category": "guide",
+          "title": "2026极氪汽车成都马拉松参赛物品领取须知",
+          "url": "https://chengdumarathon.cn/column/articleDetail/138?column_id=80&lang=cn",
+          "sourceIds": [
+            "cd-pickup-2026"
+          ]
         }
       ]
     },
@@ -425,7 +516,9 @@
         "note": "未中签且不参与候补者7个工作日内全额退费；未候补成功者在9月14日后退费。",
         "sourceIds": [
           "cd-signup-2025"
-        ]
+        ],
+        "payment": "预报名时缴费；未中签按当届须知退款。",
+        "waitlist": "未中签且不参与候补者7个工作日内退款；未候补成功者在9月14日后退款。"
       },
       "participation": {
         "planned": "35000人（报道赛事规模）",
@@ -510,6 +603,42 @@
           "sourceIds": [
             "cd-official-results-2025"
           ]
+        },
+        {
+          "group": "半程马拉松男子亚军",
+          "athlete": "勒格达且",
+          "time": "01:09:21",
+          "timing": "净时",
+          "sourceIds": [
+            "cd-official-results-2025"
+          ]
+        },
+        {
+          "group": "半程马拉松男子季军",
+          "athlete": "陈菲",
+          "time": "01:10:42",
+          "timing": "净时",
+          "sourceIds": [
+            "cd-official-results-2025"
+          ]
+        },
+        {
+          "group": "半程马拉松女子亚军",
+          "athlete": "舒梦",
+          "time": "01:21:20",
+          "timing": "净时",
+          "sourceIds": [
+            "cd-official-results-2025"
+          ]
+        },
+        {
+          "group": "半程马拉松女子季军",
+          "athlete": "龙晓容",
+          "time": "01:24:08",
+          "timing": "净时",
+          "sourceIds": [
+            "cd-official-results-2025"
+          ]
         }
       ],
       "gear": [],
@@ -561,6 +690,22 @@
           "url": "https://chengdumarathon.cn/column/articleDetail/44?column_id=69&lang=cn",
           "sourceIds": [
             "cd-map-2025"
+          ]
+        },
+        {
+          "category": "results",
+          "title": "查看2025成马组委会成绩公示",
+          "url": "https://chengdumarathon.cn/column/articleDetail/93?column_id=70&lang=cn",
+          "sourceIds": [
+            "cd-official-results-2025"
+          ]
+        },
+        {
+          "category": "guide",
+          "title": "2025成都马拉松领物须知",
+          "url": "https://chengdumarathon.cn/column/articleDetail/30?column_id=70&lang=cn",
+          "sourceIds": [
+            "cd-pickup-2025"
           ]
         }
       ]

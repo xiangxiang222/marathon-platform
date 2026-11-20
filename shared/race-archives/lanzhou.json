@@ -113,13 +113,14 @@
       "group": "男子",
       "athlete": "丰配友",
       "time": "02:14:09",
-      "timing": "",
+      "timing": "枪时",
       "editionId": "lanzhou-2026",
       "achievedAt": "2026-05-24",
       "verifiedThroughEditionId": "lanzhou-2026",
       "verifiedAt": "2026-11-18",
       "sourceIds": [
-        "lz-report-2026"
+        "lz-report-2026",
+        "lz-podium-2026"
       ]
     },
     {
@@ -128,13 +129,14 @@
       "group": "女子",
       "athlete": "次仁措姆",
       "time": "02:29:59",
-      "timing": "",
+      "timing": "枪时",
       "editionId": "lanzhou-2026",
       "achievedAt": "2026-05-24",
       "verifiedThroughEditionId": "lanzhou-2026",
       "verifiedAt": "2026-11-18",
       "sourceIds": [
-        "lz-report-2026"
+        "lz-report-2026",
+        "lz-podium-2026"
       ]
     },
     {
@@ -195,8 +197,10 @@
         ],
         "sourceIds": [
           "lz-regulations-2026",
-          "lz-course-map-2026"
-        ]
+          "lz-course-map-2026",
+          "lz-course-original-2026"
+        ],
+        "mapSourceUrl": "https://image.spoorts.cn/196_0_340377_09105709669435577.jpg"
       },
       "registration": {
         "method": "超额时抽签及候补；中签后提交体检报告，审核通过再缴费。",
@@ -215,7 +219,10 @@
         "note": "首次审核通过后于3月15日10:00至3月17日17:00缴费；二次抽签审核通过后于3月27日10:00至3月29日17:00缴费。",
         "sourceIds": [
           "lz-regulations-2026"
-        ]
+        ],
+        "payment": "首轮审核通过：3月15日10:00至3月17日17:00；二次审核通过：3月27日10:00至3月29日17:00。",
+        "waitlist": "3月19日10:00公布二次抽签及候补结果；3月30日起按序通知候补。",
+        "plannedQuota": "33000人：全马25000、半马8000。"
       },
       "participation": {
         "planned": "33000人：全马25000、半马8000",
@@ -232,40 +239,164 @@
           "group": "马拉松男子冠军",
           "athlete": "加尔巴·拜塔·迪巴巴（GERBA BEYATA DIBABA）",
           "time": "02:11:52",
-          "timing": "",
+          "timing": "枪时",
           "sourceIds": [
             "lz-report-2026",
-            "lz-wa-results-2026"
+            "lz-wa-results-2026",
+            "lz-podium-2026"
           ]
         },
         {
           "group": "马拉松女子冠军",
           "athlete": "海伦·海鲁·德塞（HAVEN HAILU DESSE）",
-          "time": "02:29:53",
-          "timing": "",
+          "time": "02:29:54",
+          "timing": "枪时",
           "sourceIds": [
-            "lz-report-2026",
-            "lz-wa-results-2026"
+            "lz-podium-2026"
           ]
         },
         {
-          "group": "中国籍男子冠军",
-          "athlete": "丰配友",
-          "time": "02:14:09",
-          "timing": "",
+          "group": "马拉松男子亚军",
+          "athlete": "Haftu Teklu ASEFA",
+          "time": "02:12:51",
+          "timing": "枪时",
           "sourceIds": [
-            "lz-report-2026",
-            "lz-wa-results-2026"
+            "lz-podium-2026"
           ]
         },
         {
-          "group": "中国籍女子冠军",
+          "group": "马拉松男子季军",
+          "athlete": "Mekuant Ayenew GEBRE",
+          "time": "02:12:54",
+          "timing": "枪时",
+          "sourceIds": [
+            "lz-podium-2026"
+          ]
+        },
+        {
+          "group": "马拉松女子亚军",
           "athlete": "次仁措姆",
           "time": "02:29:59",
-          "timing": "",
+          "timing": "枪时",
           "sourceIds": [
-            "lz-report-2026",
-            "lz-wa-results-2026"
+            "lz-podium-2026"
+          ]
+        },
+        {
+          "group": "马拉松女子季军",
+          "athlete": "Medina Deme ARMINO",
+          "time": "02:30:26",
+          "timing": "枪时",
+          "sourceIds": [
+            "lz-podium-2026"
+          ]
+        },
+        {
+          "group": "半程马拉松男子冠军",
+          "athlete": "张国富",
+          "time": "01:07:48",
+          "timing": "净时",
+          "sourceIds": [
+            "lz-podium-2026"
+          ]
+        },
+        {
+          "group": "半程马拉松男子亚军",
+          "athlete": "丁承旭",
+          "time": "01:08:15",
+          "timing": "净时",
+          "sourceIds": [
+            "lz-podium-2026"
+          ]
+        },
+        {
+          "group": "半程马拉松男子季军",
+          "athlete": "阿卜杜拉·阿布力提普",
+          "time": "01:08:44",
+          "timing": "净时",
+          "sourceIds": [
+            "lz-podium-2026"
+          ]
+        },
+        {
+          "group": "半程马拉松女子冠军",
+          "athlete": "黄彦凤",
+          "time": "01:17:51",
+          "timing": "净时",
+          "sourceIds": [
+            "lz-podium-2026"
+          ]
+        },
+        {
+          "group": "半程马拉松女子亚军",
+          "athlete": "唐晓芬",
+          "time": "01:19:09",
+          "timing": "净时",
+          "sourceIds": [
+            "lz-podium-2026"
+          ]
+        },
+        {
+          "group": "半程马拉松女子季军",
+          "athlete": "肖晶",
+          "time": "01:19:27",
+          "timing": "净时",
+          "sourceIds": [
+            "lz-podium-2026"
+          ]
+        },
+        {
+          "group": "马拉松中国籍男子第一名",
+          "athlete": "丰配友",
+          "time": "02:14:09",
+          "timing": "枪时",
+          "sourceIds": [
+            "lz-podium-2026"
+          ]
+        },
+        {
+          "group": "马拉松中国籍男子第二名",
+          "athlete": "贾俄仁加",
+          "time": "02:17:15",
+          "timing": "枪时",
+          "sourceIds": [
+            "lz-podium-2026"
+          ]
+        },
+        {
+          "group": "马拉松中国籍男子第三名",
+          "athlete": "扎西次仁",
+          "time": "02:18:30",
+          "timing": "枪时",
+          "sourceIds": [
+            "lz-podium-2026"
+          ]
+        },
+        {
+          "group": "马拉松中国籍女子第一名",
+          "athlete": "次仁措姆",
+          "time": "02:29:59",
+          "timing": "枪时",
+          "sourceIds": [
+            "lz-podium-2026"
+          ]
+        },
+        {
+          "group": "马拉松中国籍女子第二名",
+          "athlete": "吴冰",
+          "time": "02:35:20",
+          "timing": "枪时",
+          "sourceIds": [
+            "lz-podium-2026"
+          ]
+        },
+        {
+          "group": "马拉松中国籍女子第三名",
+          "athlete": "路颖",
+          "time": "02:36:53",
+          "timing": "枪时",
+          "sourceIds": [
+            "lz-podium-2026"
           ]
         }
       ],
@@ -283,10 +414,12 @@
       "notes": [],
       "logistics": {
         "collection": {
-          "time": "",
-          "place": "",
-          "requirements": "",
-          "sourceIds": []
+          "time": "5月21、22日09:00—19:00；5月23日09:00—21:00（全马、半马）。",
+          "place": "兰州奥体中心郁金香综合馆羽毛球馆",
+          "requirements": "本人持有效证件原件领取，不可代领；所有选手签参赛承诺书，65周岁及以上由监护人或直系亲属共同签署。",
+          "sourceIds": [
+            "lz-collection-2026"
+          ]
         },
         "transport": {
           "start": "2026年5月22—24日可凭号码布走地铁绿色通道；公交免费政策有线路例外，须按当届公告核对。",
@@ -319,19 +452,43 @@
       },
       "officialResources": [
         {
-          "category": "route-map",
-          "title": "官方比赛线路图（核验时为2026届）",
-          "url": "https://www.lzmarathon.com/news/detailNews.html?id=2469",
-          "sourceIds": [
-            "lz-course-map-2026"
-          ]
-        },
-        {
           "category": "medal",
           "title": "2026完赛奖牌实物（赛报「丝路铃响」段）",
           "url": "https://www.lzmarathon.com/news/detailNews.html?id=5135",
           "sourceIds": [
             "lz-report-2026"
+          ]
+        },
+        {
+          "category": "route-map",
+          "title": "2026兰州马拉松官方赛道图原图（固定届次）",
+          "url": "https://image.spoorts.cn/196_0_340377_09105709669435577.jpg",
+          "sourceIds": [
+            "lz-course-original-2026"
+          ]
+        },
+        {
+          "category": "results",
+          "title": "成绩查询｜2026兰州马拉松成绩查询及证书下载",
+          "url": "https://www.lzmarathon.com/news/detailNews.html?id=5137",
+          "sourceIds": [
+            "lz-official-query-2026"
+          ]
+        },
+        {
+          "category": "guide",
+          "title": "2026兰州马拉松领物须知",
+          "url": "https://www.lzmarathon.com/news/detailNews.html?id=5102",
+          "sourceIds": [
+            "lz-collection-2026"
+          ]
+        },
+        {
+          "category": "results",
+          "title": "2026兰州马拉松成绩公示",
+          "url": "https://www.lzmarathon.com/news/detailNews.html?id=5139",
+          "sourceIds": [
+            "lz-podium-2026"
           ]
         }
       ]
@@ -347,7 +504,44 @@
         "lz-report-2025"
       ],
       "distance": "马拉松、半程马拉松、健康跑、家庭跑",
-      "events": [],
+      "events": [
+        {
+          "project": "马拉松",
+          "distanceKm": 42.195,
+          "plannedParticipants": 20000,
+          "fee": "200元",
+          "sourceIds": [
+            "lz-entry-rules-2025"
+          ]
+        },
+        {
+          "project": "半程马拉松",
+          "distanceKm": 21.0975,
+          "plannedParticipants": 6000,
+          "fee": "160元",
+          "sourceIds": [
+            "lz-entry-rules-2025"
+          ]
+        },
+        {
+          "project": "健康跑",
+          "distanceKm": "",
+          "plannedParticipants": 8000,
+          "fee": "60元",
+          "sourceIds": [
+            "lz-entry-rules-2025"
+          ]
+        },
+        {
+          "project": "家庭跑",
+          "distanceKm": "",
+          "plannedParticipants": 6000,
+          "fee": "60元",
+          "sourceIds": [
+            "lz-entry-rules-2025"
+          ]
+        }
+      ],
       "route": {
         "summary": "从奥体中心片区奥体中路起跑，沿黄河风情线经过中山铁桥、白塔山、黄河楼等景观。",
         "start": "兰州奥体中心／奥体中路",
@@ -365,8 +559,8 @@
         "opens": "2025-03-06 10:00",
         "closes": "2025-03-15 17:00",
         "drawDate": "2025-03-17 10:00",
-        "fee": "",
-        "qualification": "全马、半马中签者须提交公告规定的体检报告；已有完赛证明不能替代体检报告。",
+        "fee": "全马200元，半马160元，健康跑、家庭跑各60元。",
+        "qualification": "全马20周岁、半马16周岁、健康跑13周岁起；家庭跑和其他年龄要求按须知。全马、半马中签须依须知提交体检报告。",
         "applicants": "311352人；全马101745人、半马93146人、健康跑及家庭跑116461人",
         "eligibleApplicants": "",
         "lotteryPool": "",
@@ -377,34 +571,211 @@
         "note": "2025年不设成绩直通；新晋终身号要求此前累计完成8届兰州马拉松全马并通过审核。报名时须勾选候补意愿。",
         "sourceIds": [
           "lz-registration-2025",
-          "lz-applicants-2025"
-        ]
+          "lz-applicants-2025",
+          "lz-waitlist-2025",
+          "lz-payment-2025",
+          "lz-entry-rules-2025"
+        ],
+        "payment": "全马、半马中签且体检审核通过后：3月24日10:00至3月26日17:00；健康跑、家庭跑：3月17日10:00至3月21日17:00。",
+        "waitlist": "报名时须主动勾选。全马、半马3月27日起通知；收到短信5日内提交体检，审核通过后3日内缴费。健康跑、家庭跑3月22日起通知。",
+        "direct": "当届不设大众成绩直通；新晋终身号须累计完成8届兰州马拉松全马并通过审核。公益名额全马100、半马50。",
+        "plannedQuota": "全马20000、半马6000、健康跑8000、家庭跑6000，共40000人。"
       },
       "participation": {
-        "planned": "4万余人（官网合作伙伴赛后稿的概数）",
+        "planned": "全马20000、半马6000、健康跑8000、家庭跑6000，共40000人。",
         "starters": "",
         "finishers": "",
         "finishRate": "",
-        "note": "这是赛后报道规模概数，不填作实际起跑人数或精确计划名额。",
+        "note": "报名须知的计划规模；合作伙伴赛后稿报道4万余人，未核实分别起跑及完赛人数。",
         "sourceIds": [
-          "lz-report-2025"
+          "lz-report-2025",
+          "lz-entry-rules-2025"
         ]
       },
-      "results": [],
+      "results": [
+        {
+          "group": "马拉松男子冠军",
+          "athlete": "Getaneh Molla TAMIRE",
+          "time": "02:11:45",
+          "timing": "枪时",
+          "sourceIds": [
+            "lz-podium-2025"
+          ]
+        },
+        {
+          "group": "马拉松男子亚军",
+          "athlete": "Leul Gebresilase ALEME",
+          "time": "02:11:50",
+          "timing": "枪时",
+          "sourceIds": [
+            "lz-podium-2025"
+          ]
+        },
+        {
+          "group": "马拉松男子季军",
+          "athlete": "Gossa Ambelu CHALLA",
+          "time": "02:12:06",
+          "timing": "枪时",
+          "sourceIds": [
+            "lz-podium-2025"
+          ]
+        },
+        {
+          "group": "马拉松女子冠军",
+          "athlete": "Degitu Azimeraw ASIRES",
+          "time": "02:24:12",
+          "timing": "枪时",
+          "sourceIds": [
+            "lz-podium-2025"
+          ]
+        },
+        {
+          "group": "马拉松女子亚军",
+          "athlete": "Waganesh Mekasha AMARE",
+          "time": "02:24:18",
+          "timing": "枪时",
+          "sourceIds": [
+            "lz-podium-2025"
+          ]
+        },
+        {
+          "group": "马拉松女子季军",
+          "athlete": "Aamelmal Birara TAGEL",
+          "time": "02:24:38",
+          "timing": "枪时",
+          "sourceIds": [
+            "lz-podium-2025"
+          ]
+        },
+        {
+          "group": "半程马拉松男子冠军",
+          "athlete": "武明瑶",
+          "time": "01:05:55",
+          "timing": "净时",
+          "sourceIds": [
+            "lz-podium-2025"
+          ]
+        },
+        {
+          "group": "半程马拉松男子亚军",
+          "athlete": "田宝强",
+          "time": "01:06:59",
+          "timing": "净时",
+          "sourceIds": [
+            "lz-podium-2025"
+          ]
+        },
+        {
+          "group": "半程马拉松男子季军",
+          "athlete": "洪跃",
+          "time": "01:07:53",
+          "timing": "净时",
+          "sourceIds": [
+            "lz-podium-2025"
+          ]
+        },
+        {
+          "group": "半程马拉松女子冠军",
+          "athlete": "李美珍",
+          "time": "01:15:34",
+          "timing": "净时",
+          "sourceIds": [
+            "lz-podium-2025"
+          ]
+        },
+        {
+          "group": "半程马拉松女子亚军",
+          "athlete": "朱冰莹",
+          "time": "01:17:55",
+          "timing": "净时",
+          "sourceIds": [
+            "lz-podium-2025"
+          ]
+        },
+        {
+          "group": "半程马拉松女子季军",
+          "athlete": "黄彦凤",
+          "time": "01:18:27",
+          "timing": "净时",
+          "sourceIds": [
+            "lz-podium-2025"
+          ]
+        },
+        {
+          "group": "马拉松中国籍男子第一名",
+          "athlete": "贾俄仁加",
+          "time": "02:14:26",
+          "timing": "枪时",
+          "sourceIds": [
+            "lz-podium-2025"
+          ]
+        },
+        {
+          "group": "马拉松中国籍男子第二名",
+          "athlete": "桑吉东知",
+          "time": "02:19:14",
+          "timing": "枪时",
+          "sourceIds": [
+            "lz-podium-2025"
+          ]
+        },
+        {
+          "group": "马拉松中国籍男子第三名",
+          "athlete": "高成亮",
+          "time": "02:19:14",
+          "timing": "枪时",
+          "sourceIds": [
+            "lz-podium-2025"
+          ]
+        },
+        {
+          "group": "马拉松中国籍女子第一名",
+          "athlete": "焦安静",
+          "time": "02:40:22",
+          "timing": "枪时",
+          "sourceIds": [
+            "lz-podium-2025"
+          ]
+        },
+        {
+          "group": "马拉松中国籍女子第二名",
+          "athlete": "邓书佳",
+          "time": "02:41:32",
+          "timing": "枪时",
+          "sourceIds": [
+            "lz-podium-2025"
+          ]
+        },
+        {
+          "group": "马拉松中国籍女子第三名",
+          "athlete": "周昊",
+          "time": "02:45:46",
+          "timing": "枪时",
+          "sourceIds": [
+            "lz-podium-2025"
+          ]
+        }
+      ],
       "gear": [],
-      "notes": [],
+      "notes": [
+        "2025全马中国籍男子第二、三名的原表分别为2:19:14.45与2:19:14.94；档案成绩列显示到秒，保留公示名次顺序。"
+      ],
       "logistics": {
         "collection": {
-          "time": "",
-          "place": "",
-          "requirements": "",
-          "sourceIds": []
+          "time": "5月22日09:00—19:00；5月23、24日09:00—21:00。",
+          "place": "兰州奥体中心郁金香综合馆",
+          "requirements": "本人持证件原件领取，不可代领；未满18周岁、65周岁以上选手按通知共同签署承诺书。",
+          "sourceIds": [
+            "lz-collection-2025"
+          ]
         },
         "transport": {
           "start": "",
           "finish": "",
-          "expo": "",
-          "sourceIds": []
+          "expo": "地铁1号线奥体中心站3或6号口出站；5月22—24日有中川机场T3至奥体中心专线，10:30—19:30约每小时一班。",
+          "sourceIds": [
+            "lz-collection-2025"
+          ]
         },
         "raceDay": {
           "startTime": "07:30",
@@ -433,7 +804,25 @@
             ]
           }
         ]
-      }
+      },
+      "officialResources": [
+        {
+          "category": "guide",
+          "title": "2025兰州马拉松领物须知",
+          "url": "https://www.lzmarathon.com/news/detailNews.html?id=3877",
+          "sourceIds": [
+            "lz-collection-2025"
+          ]
+        },
+        {
+          "category": "results",
+          "title": "2025兰州马拉松成绩公示",
+          "url": "https://www.lzmarathon.com/news/detailNews.html?id=3928",
+          "sourceIds": [
+            "lz-podium-2025"
+          ]
+        }
+      ]
     },
     {
       "year": "2024",
@@ -445,25 +834,63 @@
         "lz-report-2024"
       ],
       "distance": "马拉松、半程马拉松及群众跑项目",
-      "events": [],
+      "events": [
+        {
+          "project": "马拉松",
+          "distanceKm": 42.195,
+          "plannedParticipants": 20000,
+          "fee": "160元",
+          "sourceIds": [
+            "lz-entry-rules-2024"
+          ]
+        },
+        {
+          "project": "半程马拉松",
+          "distanceKm": 21.0975,
+          "plannedParticipants": 6000,
+          "fee": "120元",
+          "sourceIds": [
+            "lz-entry-rules-2024"
+          ]
+        },
+        {
+          "project": "健康跑",
+          "distanceKm": "",
+          "plannedParticipants": 8000,
+          "fee": "60元",
+          "sourceIds": [
+            "lz-entry-rules-2024"
+          ]
+        },
+        {
+          "project": "家庭跑",
+          "distanceKm": "",
+          "plannedParticipants": 6000,
+          "fee": "60元",
+          "sourceIds": [
+            "lz-entry-rules-2024"
+          ]
+        }
+      ],
       "route": {
-        "summary": "兰州奥体中心起跑，沿百里黄河风情线展开；半程终点调整到南滨河路东段。",
+        "summary": "全马和半马从兰州奥体中心出发。全马上金雁大桥，沿黄河北岸折返，经过银滩黄河大桥回到南岸；半马沿南岸跑，经过读者大道折返后在雁白大桥站附近完赛。",
         "start": "兰州奥体中心",
-        "finish": "半马：南滨河路东段；全马终点待核实",
+        "finish": "全马：兰州奥体中心；半马：南滨河东路（雁白大桥站附近）；健康跑、家庭跑：马滩北路十字。",
         "mapUrl": "",
         "changes": "2024年半程终点调整，并首次采用全马与半马混合按成绩分区出发。",
         "analysis": [],
         "sourceIds": [
-          "lz-report-2024"
+          "lz-report-2024",
+          "lz-competition-rules-2024"
         ]
       },
       "registration": {
-        "method": "",
-        "opens": "",
-        "closes": "",
-        "drawDate": "",
-        "fee": "",
-        "qualification": "",
+        "method": "赛事官网等渠道报名后抽签；全马、半马中签者须先提交体检材料再缴费。",
+        "opens": "2024-04-02 10:00",
+        "closes": "2024-04-06 17:00",
+        "drawDate": "2024-04-07 10:00",
+        "fee": "全马160元，半马120元，健康跑、家庭跑各60元。",
+        "qualification": "全马20周岁、半马16周岁、健康跑13周岁起；家庭跑和其他年龄要求按须知。全马、半马中签须依须知提交体检报告。",
         "applicants": "",
         "eligibleApplicants": "",
         "lotteryPool": "",
@@ -472,7 +899,13 @@
         "lotteryRate": "",
         "lotteryNote": "",
         "note": "",
-        "sourceIds": []
+        "sourceIds": [
+          "lz-entry-rules-2024"
+        ],
+        "payment": "全马、半马中签且体检审核通过后：4月15日10:00至4月17日17:00；健康跑、家庭跑：4月7日10:00至4月11日17:00。",
+        "waitlist": "报名须主动勾选。全马、半马4月18—30日陆续短信通知；健康跑、家庭跑4月12日10:00公布候补结果。",
+        "direct": "再次报名全马时，累计完成8届并通过审核可获终身号；全马、半马各设50个公益名额。",
+        "plannedQuota": "全马20000、半马6000、健康跑8000、家庭跑6000，共40000人。"
       },
       "participation": {
         "planned": "40000人（赛事报道规模）",
@@ -528,10 +961,12 @@
       ],
       "logistics": {
         "collection": {
-          "time": "",
-          "place": "",
-          "requirements": "",
-          "sourceIds": []
+          "time": "5月23、24日09:00—18:00；5月25日09:00—22:00。",
+          "place": "兰州奥体中心郁金香体育综合馆",
+          "requirements": "须本人持有效证件原件领取，不可代领；当场核对物资。",
+          "sourceIds": [
+            "lz-collection-2024"
+          ]
         },
         "transport": {
           "start": "",
@@ -540,18 +975,45 @@
           "sourceIds": []
         },
         "raceDay": {
-          "startTime": "07:30",
-          "timeLimit": "",
-          "bagDrop": "",
+          "startTime": "07:30；07:00前按项目及号码布分区检录。",
+          "timeLimit": "半马10:45关门（3小时15分）；全马13:40关门（6小时10分）。",
+          "bagDrop": "起点07:15停止存衣；半马11:30前、全马14:30前在终点取衣。",
           "aidStations": "",
           "toilets": "",
           "medical": "",
           "sourceIds": [
-            "lz-report-2024"
+            "lz-report-2024",
+            "lz-competition-rules-2024"
           ]
         },
         "tips": []
-      }
+      },
+      "officialResources": [
+        {
+          "category": "results",
+          "title": "成绩查询｜2024兰州马拉松成绩查询及证书下载",
+          "url": "https://www.lzmarathon.com/news/detailNews.html?id=2937",
+          "sourceIds": [
+            "lz-official-query-2024"
+          ]
+        },
+        {
+          "category": "guide",
+          "title": "2024兰州马拉松领物须知",
+          "url": "https://www.lzmarathon.com/news/detailNews.html?id=2890",
+          "sourceIds": [
+            "lz-collection-2024"
+          ]
+        },
+        {
+          "category": "results",
+          "title": "2024兰州马拉松成绩公示",
+          "url": "https://www.lzmarathon.com/news/detailNews.html?id=2935",
+          "sourceIds": [
+            "lz-podium-2024"
+          ]
+        }
+      ]
     }
   ],
   "stories": [
@@ -780,6 +1242,174 @@
         "verifiedEdition": "2026",
         "observed": "核验时图头为2026，标注全马和半马分线、公里点、海拔、饮水补给和医疗站；官网导航页可能随届次更新。"
       }
+    },
+    {
+      "id": "lz-course-original-2026",
+      "title": "2026兰州马拉松官方赛道图原图（固定届次）",
+      "url": "https://image.spoorts.cn/196_0_340377_09105709669435577.jpg",
+      "publisher": "兰州马拉松组委会",
+      "publishedAt": "",
+      "applicableYears": [
+        "2026"
+      ],
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "lz-official-query-2026",
+      "title": "成绩查询｜2026兰州马拉松成绩查询及证书下载",
+      "url": "https://www.lzmarathon.com/news/detailNews.html?id=5137",
+      "publisher": "兰州马拉松组委会",
+      "publishedAt": "2026-05-26",
+      "applicableYears": [
+        "2026"
+      ],
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "lz-official-query-2024",
+      "title": "成绩查询｜2024兰州马拉松成绩查询及证书下载",
+      "url": "https://www.lzmarathon.com/news/detailNews.html?id=2937",
+      "publisher": "兰州马拉松组委会",
+      "publishedAt": "2024-05-27",
+      "applicableYears": [
+        "2024"
+      ],
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "lz-collection-2026",
+      "title": "2026兰州马拉松领物须知",
+      "url": "https://www.lzmarathon.com/news/detailNews.html?id=5102",
+      "publisher": "兰州马拉松组委会",
+      "publishedAt": "",
+      "applicableYears": [
+        "2026"
+      ],
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "lz-collection-2025",
+      "title": "2025兰州马拉松领物须知",
+      "url": "https://www.lzmarathon.com/news/detailNews.html?id=3877",
+      "publisher": "兰州马拉松组委会",
+      "publishedAt": "",
+      "applicableYears": [
+        "2025"
+      ],
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "lz-collection-2024",
+      "title": "2024兰州马拉松领物须知",
+      "url": "https://www.lzmarathon.com/news/detailNews.html?id=2890",
+      "publisher": "兰州马拉松组委会",
+      "publishedAt": "",
+      "applicableYears": [
+        "2024"
+      ],
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "lz-waitlist-2025",
+      "title": "即日起陆续通知候补中签，请注意查收短信",
+      "url": "https://www.lzmarathon.com/news/detailNews.html?id=3670",
+      "publisher": "兰州马拉松组委会",
+      "publishedAt": "2025-03-27",
+      "applicableYears": [
+        "2025"
+      ],
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "lz-payment-2025",
+      "title": "通过审核的中签选手，今日10点开始缴费",
+      "url": "https://www.lzmarathon.com/news/detailNews.html?id=3657",
+      "publisher": "兰州马拉松组委会",
+      "publishedAt": "2025-03-24",
+      "applicableYears": [
+        "2025"
+      ],
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "lz-podium-2026",
+      "title": "2026兰州马拉松成绩公示",
+      "url": "https://www.lzmarathon.com/news/detailNews.html?id=5139",
+      "publisher": "兰州马拉松组委会",
+      "publishedAt": "2026-05-26",
+      "applicableYears": [
+        "2026"
+      ],
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "lz-podium-2025",
+      "title": "2025兰州马拉松成绩公示",
+      "url": "https://www.lzmarathon.com/news/detailNews.html?id=3928",
+      "publisher": "兰州马拉松组委会",
+      "publishedAt": "",
+      "applicableYears": [
+        "2025"
+      ],
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "lz-podium-2024",
+      "title": "2024兰州马拉松成绩公示",
+      "url": "https://www.lzmarathon.com/news/detailNews.html?id=2935",
+      "publisher": "兰州马拉松组委会",
+      "publishedAt": "",
+      "applicableYears": [
+        "2024"
+      ],
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "lz-entry-rules-2025",
+      "title": "2025兰州马拉松报名须知",
+      "url": "https://www.lzmarathon.com/news/detailNews.html?id=3572",
+      "publisher": "兰州马拉松组委会",
+      "publishedAt": "",
+      "applicableYears": [
+        "2025"
+      ],
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "lz-entry-rules-2024",
+      "title": "2024兰州马拉松报名须知",
+      "url": "https://www.lzmarathon.com/news/detailNews.html?id=2694",
+      "publisher": "兰州马拉松组委会",
+      "publishedAt": "",
+      "applicableYears": [
+        "2024"
+      ],
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "lz-competition-rules-2024",
+      "title": "2024兰州马拉松竞赛规程",
+      "url": "https://www.lzmarathon.com/news/detailNews.html?id=2693",
+      "publisher": "兰州马拉松组委会",
+      "publishedAt": "",
+      "applicableYears": [
+        "2024"
+      ],
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20"
     }
   ],
   "gaps": [
@@ -794,10 +1424,10 @@
     {
       "fields": [
         "records.现行公开组纪录",
-        "editions.2025.results",
-        "editions.2024.registration"
+        "editions.2024.registration.lotteryRate",
+        "editions.2025.registration.lotteryRate"
       ],
-      "reason": "尚未取得完整历届纪录及2025成绩原始表，公开组现行纪录暂缺；2024纪录只确认至2024届。"
+      "reason": "已补2024报名须知及2025官方成绩；未核得历届完整纪录表与同口径实际抽签人数、名额。2024女子02:24:46是当届历史纪录，2025公开组前三已跑得更快。"
     },
     {
       "fields": [
@@ -805,8 +1435,20 @@
         "editions[].gear[].imageUrl",
         "editions.2026.officialResources.shirt"
       ],
-      "reason": "图片转载许可尚未确认；2026路线、奖牌提供官方网页链接，可查看原图。未核得可明确识别为公开参赛服发布的原页。"
+      "reason": "2026赛道用带届次的官方原图链接，2026奖牌用官网赛报链接。尚未核实公开转载授权、2026参赛服发布原页和2024/2025赛道图、装备原图。"
     }
   ],
-  "conflicts": []
+  "conflicts": [
+    {
+      "fields": [
+        "editions.2026.results.马拉松女子冠军"
+      ],
+      "description": "组委会开赛报道刊出女子公开组冠军成绩02:29:53，同届名次公示列02:29:54。",
+      "resolution": "采用随后发布的组委会名次公示（枪声成绩02:29:54）。",
+      "sourceIds": [
+        "lz-report-2026",
+        "lz-podium-2026"
+      ]
+    }
+  ]
 }

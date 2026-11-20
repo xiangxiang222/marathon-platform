@@ -2,14 +2,15 @@ const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
 const { sniffMedia } = require('./runner-center');
-const { mergeArchiveRecord, OFFICIAL_RESOURCE_CATEGORIES, officialResourceUrl } = require('./race-archive-schema');
+const { mergeArchiveRecord, snapshotArchiveSeed, OFFICIAL_RESOURCE_CATEGORIES, officialResourceUrl } = require('./race-archive-schema');
+const previousSeeds = require('./race-archive-previous-seed.json');
 
 const MAX_IMAGE = 8 * 1024 * 1024;
 const MAX_PAYLOAD = 2 * 1024 * 1024;
 const STORED_IMAGE = /^[a-f0-9]{64}\.(?:jpg|png|webp)$/;
 const RACE_FIELDS = { name: 80, shortName: 30, city: 40, province: 40, tagline: 160, summary: 1200 };
 const ROUTE_FIELDS = ['summary', 'summaryNote', 'project', 'start', 'finish', 'changes', 'versionId', 'versionTitle'];
-const REGISTRATION_FIELDS = ['method', 'opens', 'closes', 'drawDate', 'fee', 'qualification', 'applicants', 'eligibleApplicants', 'lotteryPool', 'drawQuota', 'directQuota', 'lotteryRate', 'lotteryNote', 'note'];
+const REGISTRATION_FIELDS = ['method', 'opens', 'closes', 'drawDate', 'fee', 'qualification', 'plannedQuota', 'direct', 'waitlist', 'payment', 'applicants', 'eligibleApplicants', 'lotteryPool', 'drawQuota', 'directQuota', 'lotteryRate', 'lotteryNote', 'note'];
 const PARTICIPATION_FIELDS = ['planned', 'starters', 'finishers', 'finishRate', 'note'];
 
 function error(message, status = 400) { return Object.assign(new Error(message), { status }); }
@@ -173,8 +174,8 @@ function validateArchiveInput(body, current, db, id, base) {
     return result;
   });
   if (new Set(sources.map(source => source.id)).size !== sources.length) throw error('来源标识不能重复');
-  const knownRefs = new Set([...(current.race.sources || []), ...sources].map(item => item.id));
-  const refs = value => texts(value, '资料标识').map(ref => { if (!knownRefs.has(ref)) throw error('找不到资料来源：' + ref); return ref; });
+  const sourceById = new Map([...(current.race.sources || []), ...sources].map(item => [item.id, item]));
+  const refs = value => texts(value, '资料标识').map(ref => { if (!sourceById.has(ref)) throw error('找不到资料来源：' + ref); return ref; });
   const applicableYears = value => texts(value, '适用年份').map(value => year(value));
   function partialDate(value, label) {
     const result = text(value, label, 10);
@@ -246,13 +247,13 @@ function validateArchiveInput(body, current, db, id, base) {
         items: texts(g.items, '物品清单', 60), imageUrl: image, images: media(g.images, '物品图片组'), sourceIds: refs(g.sourceIds), sourceUrl: prior.sourceUrl || '',
         mediaRights: image && image.startsWith(uploadPrefix) ? rightsFor(image) : prior.mediaRights };
     });
-    const officialResources = list(item.officialResources ?? previous.officialResources, '官方原图入口', 30).map(resource => {
-      object(resource, '官方原图入口');
+    const officialResources = list(item.officialResources ?? previous.officialResources, '当届官方资料入口', 30).map(resource => {
+      object(resource, '当届官方资料入口');
       const category = text(resource.category, '入口类型', 40);
       const title = text(resource.title, '入口标题', 160);
       const url = officialResourceUrl(text(resource.url, '入口链接', 2000));
       const sourceIds = refs(resource.sourceIds);
-      if (!OFFICIAL_RESOURCE_CATEGORIES.has(category) || !title || !url || !sourceIds.length) throw error('官方原图入口须有类型、标题、有效链接和资料来源');
+      if (!OFFICIAL_RESOURCE_CATEGORIES.has(category) || !title || !url || !sourceIds.some(id => sourceById.get(id)?.applicableYears?.includes(y))) throw error('官方资料入口须有类型、标题、有效链接和适用当届的资料来源');
       return { category, title, url, sourceIds };
     });
     const logistics = Object.fromEntries([
@@ -335,7 +336,7 @@ function mountArchiveEditor(app, { BASE, getDb, requireAdmin, oneUpload, baselin
     if (!requireAdmin(req, res)) return;
     const current = baseline(req.params.id);
     if (!current) return res.status(404).json({ error: '没有这场赛事档案' });
-    res.json(mergeArchiveRecord(current, readArchiveEdit(getDb(), req.params.id)));
+    res.json(mergeArchiveRecord(current, readArchiveEdit(getDb(), req.params.id), previousSeeds[req.params.id]));
   });
   app.put(BASE + '/api/admin/race-archives/:id', (req, res) => {
     if (!requireAdmin(req, res)) return;
@@ -343,11 +344,13 @@ function mountArchiveEditor(app, { BASE, getDb, requireAdmin, oneUpload, baselin
     if (!initial) return res.status(404).json({ error: '没有这场赛事档案' });
     try {
       const db = getDb(); installArchiveEditor(db);
-      const current = mergeArchiveRecord(initial, readArchiveEdit(db, id));
+      const current = mergeArchiveRecord(initial, readArchiveEdit(db, id), previousSeeds[id]);
       const value = validateArchiveInput(req.body, current, db, id, BASE);
+      const normalizedSeed = validateArchiveInput(initial, initial, db, id, BASE);
+      const stored = { ...value, seedHashes: snapshotArchiveSeed(normalizedSeed) };
       db.prepare(`INSERT INTO race_archive_edits(race_id,payload,updated_at,updated_by) VALUES(?,?,?,?)
         ON CONFLICT(race_id) DO UPDATE SET payload=excluded.payload,updated_at=excluded.updated_at,updated_by=excluded.updated_by`)
-        .run(id, JSON.stringify(value), new Date().toISOString(), req.adminUser || 'admin');
+        .run(id, JSON.stringify(stored), new Date().toISOString(), req.adminUser || 'admin');
       res.json({ ok: true, ...value });
     } catch (err) { if (!err.status) throw err; res.status(err.status).json({ error: err.message }); }
   });

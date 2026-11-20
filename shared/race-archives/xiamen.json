@@ -223,8 +223,27 @@
           "time": "02:09:18",
           "timing": "枪时",
           "sourceIds": [
+            "2014181844889116673",
             "2036706401130651649",
             "1967596390115209217"
+          ]
+        },
+        {
+          "group": "男子亚军",
+          "athlete": "HAILEMARYAM KIROS KEBEDEW",
+          "time": "02:09:20",
+          "timing": "枪时",
+          "sourceIds": [
+            "2014181844889116673"
+          ]
+        },
+        {
+          "group": "男子季军",
+          "athlete": "ADDISU GOBENA AGA",
+          "time": "02:09:22",
+          "timing": "枪时",
+          "sourceIds": [
+            "2014181844889116673"
           ]
         },
         {
@@ -233,8 +252,27 @@
           "time": "02:22:45",
           "timing": "枪时",
           "sourceIds": [
+            "2014181844889116673",
             "2036706401130651649",
             "1967596390115209217"
+          ]
+        },
+        {
+          "group": "女子亚军",
+          "athlete": "MESERET ABEBAYEHU ALEMU",
+          "time": "02:25:15",
+          "timing": "枪时",
+          "sourceIds": [
+            "2014181844889116673"
+          ]
+        },
+        {
+          "group": "女子季军",
+          "athlete": "FIKRTE WERETA ADMASU",
+          "time": "02:25:31",
+          "timing": "枪时",
+          "sourceIds": [
+            "2014181844889116673"
           ]
         },
         {
@@ -243,8 +281,27 @@
           "time": "02:11:14",
           "timing": "净时",
           "sourceIds": [
+            "2014181844889116673",
             "2036706401130651649",
             "1967596390115209217"
+          ]
+        },
+        {
+          "group": "中国籍男子第二",
+          "athlete": "仁青东知布",
+          "time": "02:12:19",
+          "timing": "净时",
+          "sourceIds": [
+            "2014181844889116673"
+          ]
+        },
+        {
+          "group": "中国籍男子第三",
+          "athlete": "李大林",
+          "time": "02:13:23",
+          "timing": "净时",
+          "sourceIds": [
+            "2014181844889116673"
           ]
         },
         {
@@ -253,8 +310,27 @@
           "time": "02:27:24",
           "timing": "净时",
           "sourceIds": [
+            "2014181844889116673",
             "2036706401130651649",
             "1967596390115209217"
+          ]
+        },
+        {
+          "group": "中国籍女子第二",
+          "athlete": "路颖",
+          "time": "02:29:17",
+          "timing": "净时",
+          "sourceIds": [
+            "2014181844889116673"
+          ]
+        },
+        {
+          "group": "中国籍女子第三",
+          "athlete": "徐冰洁",
+          "time": "02:32:30",
+          "timing": "净时",
+          "sourceIds": [
+            "2014181844889116673"
           ]
         }
       ],
@@ -388,7 +464,17 @@
       },
       "editionId": "xiamen-2026",
       "editionName": "2026厦门马拉松",
-      "events": [],
+      "events": [
+        {
+          "project": "马拉松",
+          "distanceKm": 42.195,
+          "plannedParticipants": 35000,
+          "fee": "中国籍（含港澳台）200元；外籍80美元；永久号及特邀运动员免报名费",
+          "sourceIds": [
+            "1967605540232654849"
+          ]
+        }
+      ],
       "status": "completed",
       "officialResources": [
         {
@@ -413,6 +499,22 @@
           "url": "https://www.xmim.org/information/detail/2009262164021878786",
           "sourceIds": [
             "2009262164021878786"
+          ]
+        },
+        {
+          "category": "results",
+          "title": "2026厦马名次奖获奖名单及领奖办法（公示期满后名单）",
+          "url": "https://www.xmim.org/information/detail/2014181844889116673",
+          "sourceIds": [
+            "2014181844889116673"
+          ]
+        },
+        {
+          "category": "guide",
+          "title": "领物须知 | 2026建发厦门马拉松赛1月8日-10日开放领物！",
+          "url": "https://www.xmim.org/information/detail/2008104708776402946",
+          "sourceIds": [
+            "2008104708776402946"
           ]
         }
       ]
@@ -641,7 +743,17 @@
       },
       "editionId": "xiamen-2025",
       "editionName": "2025厦门马拉松",
-      "events": [],
+      "events": [
+        {
+          "project": "马拉松",
+          "distanceKm": 42.195,
+          "plannedParticipants": 35000,
+          "fee": "中国籍（含港澳台）200元；外籍50美元；公益跑2000元",
+          "sourceIds": [
+            "1838580734443323394"
+          ]
+        }
+      ],
       "status": "completed",
       "officialResources": [
         {
@@ -663,6 +775,22 @@
         {
           "category": "shirt",
           "title": "2025厦马参赛服（领物须知附实物图）",
+          "url": "https://www.xmim.org/information/detail/1871160873081348098",
+          "sourceIds": [
+            "1871160873081348098"
+          ]
+        },
+        {
+          "category": "results",
+          "title": "2025建发厦门马拉松赛圆满落幕 ！男女冠军双双破赛会纪录！",
+          "url": "https://www.xmim.org/information/detail/1891675869708001281",
+          "sourceIds": [
+            "1891675869708001281"
+          ]
+        },
+        {
+          "category": "guide",
+          "title": "领物须知 | 2025建发厦门马拉松赛1月2日-4日开放领物！",
           "url": "https://www.xmim.org/information/detail/1871160873081348098",
           "sourceIds": [
             "1871160873081348098"
@@ -893,7 +1021,17 @@
       },
       "editionId": "xiamen-2024",
       "editionName": "2024厦门马拉松",
-      "events": [],
+      "events": [
+        {
+          "project": "马拉松",
+          "distanceKm": 42.195,
+          "plannedParticipants": 30000,
+          "fee": "中国籍（含港澳台）200元；外籍50美元；公益跑2000元",
+          "sourceIds": [
+            "1715914221550784514"
+          ]
+        }
+      ],
       "status": "completed",
       "officialResources": [
         {
@@ -919,6 +1057,22 @@
           "sourceIds": [
             "1744609880382361601"
           ]
+        },
+        {
+          "category": "results",
+          "title": "2024建发厦门马拉松赛圆满落幕！董国建破中国籍男子选手赛会纪录！2347人破三！",
+          "url": "https://www.xmim.org/information/detail/1744609880382361601",
+          "sourceIds": [
+            "1744609880382361601"
+          ]
+        },
+        {
+          "category": "guide",
+          "title": "【领物须知】2024建发厦门马拉松赛1月4日-6日领取参赛包",
+          "url": "https://www.xmim.org/information/detail/1740846203153670145",
+          "sourceIds": [
+            "1740846203153670145"
+          ]
         }
       ]
     }
@@ -929,14 +1083,16 @@
       "body": "2025“无限”奖牌不只用三角梅表达欢迎，还刻下“厦门马拉松”盲文，让赛事记忆有了触摸阅读的入口。",
       "sourceIds": [
         "1840380167564754945"
-      ]
+      ],
+      "editionYear": "2025"
     },
     {
       "title": "夺冠之外，也看普通跑者",
       "body": "2026官网赛后大数据记录31769人出发、30581人完赛，总完赛率96.26%。这一组数据比宣传中的35000人规模，更适合回答“到底多少人跑完”。",
       "sourceIds": [
         "2036623740794052610"
-      ]
+      ],
+      "editionYear": "2026"
     },
     {
       "title": "2025双双刷新纪录，2026双双卫冕",
@@ -944,7 +1100,8 @@
       "sourceIds": [
         "1891675869708001281",
         "2036706401130651649"
-      ]
+      ],
+      "editionYear": "2026"
     },
     {
       "title": "熟悉的会展中心，调整后的环岛东路",
@@ -953,7 +1110,8 @@
         "2100793180791853058",
         "2100796320794628098",
         "xm-route-recap-2027"
-      ]
+      ],
+      "editionYear": "2027"
     }
   ],
   "sources": [
@@ -1398,6 +1556,17 @@
       "applicableYears": [
         "2027"
       ]
+    },
+    {
+      "id": "2014181844889116673",
+      "title": "2026厦马名次奖获奖名单及领奖办法（公示期满后名单）",
+      "publisher": "厦门马拉松赛组委会",
+      "url": "https://www.xmim.org/information/detail/2014181844889116673",
+      "applicableYears": [
+        "2026"
+      ],
+      "verifiedAt": "2026-11-20",
+      "publishedAt": "2026-01-26"
     }
   ],
   "schemaVersion": 2,
@@ -1513,6 +1682,13 @@
         "editions.2027.registration.lotteryRate"
       ],
       "reason": "2027尚未举行；已确认赛前奖牌、规则和官方抽签入口，最终领物公告、参赛服及同口径中签率尚未核实。"
+    },
+    {
+      "fields": [
+        "editions.2024.results.公开组及中国籍组未录完整名次",
+        "editions.2025.results.公开组及中国籍组未录完整名次"
+      ],
+      "reason": "2026已按最终获奖名单录入两类男女前三；2024、2025仍需以名次奖公示原件核对未录名次及枪时或净时口径。"
     }
   ]
 }

@@ -173,6 +173,57 @@
   ],
   "editions": [
     {
+      "year": "2027",
+      "editionId": "changsha-2027",
+      "editionName": "2027长沙马拉松",
+      "status": "scheduled",
+      "date": "",
+      "dateSourceIds": [],
+      "distance": "",
+      "events": [],
+      "route": {
+        "summary": "",
+        "start": "",
+        "finish": "",
+        "mapUrl": "",
+        "mapSourceUrl": "",
+        "changes": "",
+        "analysis": [],
+        "sourceIds": []
+      },
+      "registration": {
+        "sourceIds": [
+          "cs-direct-2027"
+        ],
+        "direct": "2026届赛后匿名问卷截止于11月22日，从完整填写的跑者中随机抽取10人，各赠送一个2027直通名额。"
+      },
+      "participation": {
+        "planned": "",
+        "starters": "",
+        "finishers": "",
+        "finishRate": "",
+        "note": "",
+        "sourceIds": []
+      },
+      "results": [],
+      "gear": [],
+      "notes": [
+        "组委会仅公布了赛后问卷赠送的10个直通名额；2027正式日期、报名规则与各项目名额尚未核实。"
+      ],
+      "logistics": {
+        "collection": {
+          "sourceIds": []
+        },
+        "transport": {
+          "sourceIds": []
+        },
+        "raceDay": {
+          "sourceIds": []
+        },
+        "tips": []
+      }
+    },
+    {
       "year": "2026",
       "editionId": "changsha-2026",
       "editionName": "2026长沙马拉松",
@@ -235,8 +286,13 @@
         "note": "首轮8月25日10:00公布，中签或选择候补均须在8月31日17:00前按原报名平台缴费；第二轮候补9月8日10:00公布。",
         "sourceIds": [
           "cs-preview-2026",
-          "cs-entry-2026"
-        ]
+          "cs-entry-2026",
+          "cs-draw3-2026",
+          "cs-kit-2026"
+        ],
+        "payment": "首次中签及选择候补的选手须在8月31日17:00前从原平台缴费。",
+        "waitlist": "9月8日10:00公布第二轮候补；10月24日16:00公布随机抽取的最后一轮候补，未中签原路退费。",
+        "plannedQuota": "全马18000人；半马17000人。"
       },
       "participation": {
         "planned": "35000人：全马18000、半马17000",
@@ -285,6 +341,24 @@
           "sourceIds": [
             "cs-race-official-2026"
           ]
+        },
+        {
+          "group": "全程马拉松男子亚军",
+          "athlete": "洪跃",
+          "time": "02:13:58",
+          "timing": "",
+          "sourceIds": [
+            "cs-race-official-2026"
+          ]
+        },
+        {
+          "group": "全程马拉松男子季军",
+          "athlete": "王杰",
+          "time": "02:14:04",
+          "timing": "",
+          "sourceIds": [
+            "cs-race-official-2026"
+          ]
         }
       ],
       "gear": [
@@ -315,7 +389,8 @@
           "place": "长沙国际会展中心2号北登录厅W1馆",
           "requirements": "预约领物；本人持有效证件核验，不接受代领；比赛当日不领物。",
           "sourceIds": [
-            "cs-collection-2026"
+            "cs-collection-2026",
+            "cs-guide-2026"
           ]
         },
         "transport": {
@@ -357,18 +432,34 @@
         },
         {
           "category": "shirt",
-          "title": "2026参赛服发布（长沙市政府）",
-          "url": "https://www.changsha.gov.cn/bmrl/bmrlbsfw/202610/t20261019_12591874.html",
+          "title": "2026组委会参赛服发布",
+          "url": "https://www.marathonchangsha.com/Detail/411",
           "sourceIds": [
-            "cs-preview-2026"
+            "cs-kit-2026"
           ]
         },
         {
           "category": "medal",
-          "title": "2026完赛奖牌发布（长沙市政府）",
-          "url": "https://www.changsha.gov.cn/bmrl/bmrlbsfw/202610/t20261019_12591874.html",
+          "title": "2026组委会完赛奖牌发布",
+          "url": "https://www.marathonchangsha.com/Detail/411",
           "sourceIds": [
-            "cs-preview-2026"
+            "cs-kit-2026"
+          ]
+        },
+        {
+          "category": "guide",
+          "title": "2026长沙马拉松领物须知",
+          "url": "https://www.marathonchangsha.com/Detail/437",
+          "sourceIds": [
+            "cs-guide-2026"
+          ]
+        },
+        {
+          "category": "results",
+          "title": "2026官方个人成绩查询（请选当届）",
+          "url": "https://www.marathonchangsha.com/score",
+          "sourceIds": [
+            "cs-score"
           ]
         }
       ]
@@ -415,32 +506,42 @@
       "route": {
         "summary": "湘江中路杜甫江阁旁起跑，经湘江路折返后登橘子洲大桥；新闻发布会说明进橘子洲的距离延长至约10公里处。",
         "start": "湘江中路（杜甫江阁旁）",
-        "finish": "全马：贺龙体育场南广场；半马：西湖公园东门；欢乐跑：开福寺广场",
+        "finish": "全马：贺龙体育场南广场；半马：渔人码头；欢乐跑：开福寺广场",
         "mapUrl": "",
-        "changes": "2025年起点由贺龙体育场东广场调整至湘江中路，并延后进入橘子洲以疏解前段拥挤。",
+        "changes": "起点移至湘江中路，延后进入橘子洲；组委会赛前将半程终点由西湖公园东门调整为渔人码头。",
         "analysis": [],
         "sourceIds": [
-          "cs-preview-2025"
+          "cs-preview-2025",
+          "cs-map-2025",
+          "cs-guide-2025"
         ]
       },
       "registration": {
-        "method": "官方报名渠道；完整抽签、付费规则待补原始公告。",
+        "method": "预报名时预缴，人数超额抽签；报名时可选择参加候补。",
         "opens": "2025-07-31 10:00",
-        "closes": "",
-        "drawDate": "",
-        "fee": "",
+        "closes": "2025-08-06 17:00",
+        "drawDate": "2025-08-27 10:00（首轮）",
+        "fee": "中国籍：全马200元、半马180元、欢乐跑80元；外籍或护照报名对应430元、400元、220元；公益跑1600元。",
         "qualification": "",
-        "applicants": "",
+        "applicants": "超过21万人（组委会公布的总报名）",
         "eligibleApplicants": "",
         "lotteryPool": "",
         "drawQuota": "",
-        "directQuota": "",
+        "directQuota": "公益跑各100个名额（全马、半马）；忠实跑者及大众精英分配数未公布。",
         "lotteryRate": "",
         "lotteryNote": "",
         "note": "",
         "sourceIds": [
-          "cs-preview-2025"
-        ]
+          "cs-preview-2025",
+          "cs-entry-2025",
+          "cs-applicants-2025",
+          "cs-draw-2025",
+          "cs-wait-2025"
+        ],
+        "plannedQuota": "全马15000人、半马16000人、欢乐跑4000人。",
+        "direct": "2015—2024任意五年完赛的忠实跑者，以及符合当届A类成绩标准的大众精英，经报名和审核可直通；全、半项目成绩直通不互通。",
+        "payment": "大众选手预报名期内缴费；首轮未中签且未选择候补的，抽签公布后10个工作日内原路退款。",
+        "waitlist": "报名时选择候补者进入随机补抽；9月28日公布候补结果。"
       },
       "participation": {
         "planned": "计划35000人：全马15000、半马16000、欢乐跑4000",
@@ -488,38 +589,195 @@
           "sourceIds": [
             "cs-results-official-2025"
           ]
+        },
+        {
+          "group": "全程马拉松男子亚军",
+          "athlete": "杨定宏",
+          "time": "02:17:47",
+          "timing": "枪声成绩",
+          "sourceIds": [
+            "cs-results-official-2025"
+          ]
+        },
+        {
+          "group": "全程马拉松男子季军",
+          "athlete": "王涛",
+          "time": "02:18:25",
+          "timing": "枪声成绩",
+          "sourceIds": [
+            "cs-results-official-2025"
+          ]
+        },
+        {
+          "group": "全程马拉松女子亚军",
+          "athlete": "杨俊婷",
+          "time": "02:42:42",
+          "timing": "枪声成绩",
+          "sourceIds": [
+            "cs-results-official-2025"
+          ]
+        },
+        {
+          "group": "全程马拉松女子季军",
+          "athlete": "肖艳",
+          "time": "02:43:23",
+          "timing": "枪声成绩",
+          "sourceIds": [
+            "cs-results-official-2025"
+          ]
+        },
+        {
+          "group": "半程马拉松男子亚军",
+          "athlete": "叶尔安·叶列吾斯孜",
+          "time": "01:05:26",
+          "timing": "净计时",
+          "sourceIds": [
+            "cs-results-official-2025"
+          ]
+        },
+        {
+          "group": "半程马拉松男子季军",
+          "athlete": "陶江义",
+          "time": "01:06:12",
+          "timing": "净计时",
+          "sourceIds": [
+            "cs-results-official-2025"
+          ]
+        },
+        {
+          "group": "半程马拉松女子亚军",
+          "athlete": "何芳",
+          "time": "01:18:08",
+          "timing": "净计时",
+          "sourceIds": [
+            "cs-results-official-2025"
+          ]
+        },
+        {
+          "group": "半程马拉松女子季军",
+          "athlete": "韩梦",
+          "time": "01:18:58",
+          "timing": "净计时",
+          "sourceIds": [
+            "cs-results-official-2025"
+          ]
+        },
+        {
+          "group": "马拉松湘籍特别奖男子第一",
+          "athlete": "朱昌荣",
+          "time": "02:21:59",
+          "timing": "净计时",
+          "sourceIds": [
+            "cs-results-official-2025"
+          ]
+        },
+        {
+          "group": "马拉松湘籍特别奖女子第一",
+          "athlete": "黄菲",
+          "time": "02:38:40",
+          "timing": "净计时",
+          "sourceIds": [
+            "cs-results-official-2025"
+          ]
         }
       ],
-      "gear": [],
+      "gear": [
+        {
+          "category": "参赛服",
+          "name": "2025长马红色参赛服",
+          "description": "官方发布了红色背心及短袖，衣身印有当届标识。",
+          "imageUrl": "",
+          "sourceIds": [
+            "cs-shirt-2025"
+          ]
+        },
+        {
+          "category": "奖牌",
+          "name": "2025长沙马拉松完赛奖牌",
+          "description": "全马奖牌以长沙地标和奔跑人物做浮雕，搭配红色挂带。",
+          "imageUrl": "",
+          "sourceIds": [
+            "cs-medal-2025"
+          ]
+        }
+      ],
       "notes": [
-        "目前本届路线、规模和日期依据赛前新闻发布会归档，未取得完整赛后结果原文。"
+        "领物须知和10月19日路线图采用调整后的半马终点渔人码头。"
       ],
       "logistics": {
         "collection": {
-          "time": "",
-          "place": "",
-          "requirements": "",
-          "sourceIds": []
+          "time": "10月23日至24日11:00—20:00；10月25日09:00—22:00。",
+          "place": "白沙广场",
+          "requirements": "先预约；全马、半马及欢乐跑个人组选手本人携报名证件原件领取。欢乐跑家庭组按领物须知例外。",
+          "sourceIds": [
+            "cs-guide-2025"
+          ]
         },
         "transport": {
-          "start": "",
+          "start": "比赛日地铁首班车05:00。",
           "finish": "",
-          "expo": "",
-          "sourceIds": []
+          "expo": "地铁侯家塘站3号口，步行约700米至白沙广场。",
+          "sourceIds": [
+            "cs-guide-2025",
+            "cs-transport-2025"
+          ]
         },
         "raceDay": {
-          "startTime": "07:00",
-          "timeLimit": "",
+          "startTime": "05:30开始检录，07:00起分区发枪；设S、A、B、C、D、E、F、H共8个集结区。",
+          "timeLimit": "全马6小时15分、半马3小时10分（相应分区发令后）；欢乐跑1小时30分。",
           "bagDrop": "",
           "aidStations": "",
           "toilets": "",
           "medical": "",
           "sourceIds": [
-            "cs-preview-2025"
+            "cs-map-2025",
+            "cs-transport-2025"
           ]
         },
         "tips": []
-      }
+      },
+      "officialResources": [
+        {
+          "category": "route-map",
+          "title": "2025长沙马拉松分枪通知与最终路线图",
+          "url": "https://www.marathonchangsha.com/Detail/333",
+          "sourceIds": [
+            "cs-map-2025"
+          ]
+        },
+        {
+          "category": "shirt",
+          "title": "2025长沙马拉松参赛服正式亮相",
+          "url": "https://www.marathonchangsha.com/Detail/337",
+          "sourceIds": [
+            "cs-shirt-2025"
+          ]
+        },
+        {
+          "category": "medal",
+          "title": "2025长沙马拉松完赛奖牌正式亮相",
+          "url": "https://www.marathonchangsha.com/Detail/312",
+          "sourceIds": [
+            "cs-medal-2025"
+          ]
+        },
+        {
+          "category": "guide",
+          "title": "2025长沙马拉松领物须知",
+          "url": "https://www.marathonchangsha.com/Detail/331",
+          "sourceIds": [
+            "cs-guide-2025"
+          ]
+        },
+        {
+          "category": "results",
+          "title": "长沙银行·2025长沙马拉松圆满收官！各组别成绩正式公布",
+          "url": "https://www.marathonchangsha.com/Detail/358",
+          "sourceIds": [
+            "cs-results-official-2025"
+          ]
+        }
+      ]
     },
     {
       "year": "2024",
@@ -572,10 +830,10 @@
         ]
       },
       "registration": {
-        "method": "",
-        "opens": "",
-        "closes": "",
-        "drawDate": "",
+        "method": "预报名并完成缴费后参与抽签，落签按规定退款。",
+        "opens": "2024-07-23 15:00",
+        "closes": "2024-07-28 17:00",
+        "drawDate": "2024-08-20 10:00",
         "fee": "",
         "qualification": "",
         "applicants": "约15万人（总报名，国家体育总局报道口径）",
@@ -587,8 +845,12 @@
         "lotteryNote": "",
         "note": "",
         "sourceIds": [
-          "cs-history-2024"
-        ]
+          "cs-history-2024",
+          "cs-entry-2024",
+          "cs-draw-2024"
+        ],
+        "payment": "预报名期间于原报名渠道缴费；未中签且未选择候补者，抽签公布后10个工作日内退回。",
+        "waitlist": "未中签且报名时选择候补者参与后续候补抽签。"
       },
       "participation": {
         "planned": "30000人：全马12000、半马13000、欢乐跑5000",
@@ -637,7 +899,17 @@
           "sourceIds": []
         },
         "tips": []
-      }
+      },
+      "officialResources": [
+        {
+          "category": "results",
+          "title": "2024官方个人成绩查询（请选当届）",
+          "url": "https://www.marathonchangsha.com/score",
+          "sourceIds": [
+            "cs-score"
+          ]
+        }
+      ]
     }
   ],
   "stories": [
@@ -857,6 +1129,217 @@
         "2026"
       ],
       "evidence": "官网人物报道，核对当届急救跑者分组、配速组和训练经历。"
+    },
+    {
+      "id": "cs-kit-2026",
+      "title": "2026长沙马拉松：完赛奖牌、参赛服首次亮相",
+      "url": "https://www.marathonchangsha.com/Detail/411",
+      "publisher": "长沙马拉松组委会",
+      "publishedAt": "2026-10-16",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ],
+      "evidence": "正文与图6参赛服展示、图7两款完赛奖牌实物。"
+    },
+    {
+      "id": "cs-guide-2026",
+      "title": "2026长沙马拉松领物须知",
+      "url": "https://www.marathonchangsha.com/Detail/437",
+      "publisher": "长沙马拉松组委会",
+      "publishedAt": "2026-11-08",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ],
+      "evidence": "最终领物时间、室内场地、身份核验和延时领物。"
+    },
+    {
+      "id": "cs-draw3-2026",
+      "title": "2026长沙马拉松第三次（候补）抽签结果",
+      "url": "https://www.marathonchangsha.com/Detail/417",
+      "publisher": "长沙马拉松组委会",
+      "publishedAt": "2026-10-23",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ],
+      "evidence": "10月24日16:00公布，随机抽取，为最后一次候补。"
+    },
+    {
+      "id": "cs-direct-2027",
+      "title": "长沙马拉松赛后问卷：2027直通名额",
+      "url": "https://www.marathonchangsha.com/Detail/471",
+      "publisher": "长沙马拉松组委会",
+      "publishedAt": "2026-11-15",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2026",
+        "2027"
+      ],
+      "evidence": "官方仅公布问卷赠送的10个直通名额，不是2027总体分配或报名时间。"
+    },
+    {
+      "id": "cs-entry-2025",
+      "title": "2025长沙马拉松八大核心赛事信息",
+      "url": "https://www.marathonchangsha.com/Detail/254",
+      "publisher": "长沙马拉松组委会",
+      "publishedAt": "2025-07-30",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2025"
+      ],
+      "evidence": "核对报名日程、参赛组别、直通规则及报名费图表。"
+    },
+    {
+      "id": "cs-applicants-2025",
+      "title": "2025长沙马拉松报名圆满落幕",
+      "url": "https://www.marathonchangsha.com/Detail/263",
+      "publisher": "长沙马拉松组委会",
+      "publishedAt": "2025-08-07",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2025"
+      ],
+      "evidence": "公布超过21万总报名；非抽签池。"
+    },
+    {
+      "id": "cs-draw-2025",
+      "title": "2025长沙马拉松首轮抽签结果查询",
+      "url": "https://www.marathonchangsha.com/Detail/276",
+      "publisher": "长沙马拉松组委会",
+      "publishedAt": "2025-08-27",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2025"
+      ],
+      "evidence": "核对首轮抽签时间和候补方式。"
+    },
+    {
+      "id": "cs-wait-2025",
+      "title": "2025长沙马拉松候补中签公告",
+      "url": "https://www.marathonchangsha.com/Detail/315",
+      "publisher": "长沙马拉松组委会",
+      "publishedAt": "2025-09-28",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2025"
+      ],
+      "evidence": "候补结果已公布，说明退费方式。"
+    },
+    {
+      "id": "cs-guide-2025",
+      "title": "2025长沙马拉松领物须知",
+      "url": "https://www.marathonchangsha.com/Detail/331",
+      "publisher": "长沙马拉松组委会",
+      "publishedAt": "2025-10-18",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2025"
+      ],
+      "evidence": "白沙广场领物分日时段、要求和交通方式。"
+    },
+    {
+      "id": "cs-map-2025",
+      "title": "2025长沙马拉松分枪通知与最终路线图",
+      "url": "https://www.marathonchangsha.com/Detail/333",
+      "publisher": "长沙马拉松组委会",
+      "publishedAt": "2025-10-19",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2025"
+      ],
+      "evidence": "核对长图为2025届、标记半马终点渔人码头；通知核对各项目关门。"
+    },
+    {
+      "id": "cs-transport-2025",
+      "title": "2025长沙马拉松集结与赛后疏散指引",
+      "url": "https://www.marathonchangsha.com/Detail/349",
+      "publisher": "长沙马拉松组委会",
+      "publishedAt": "2025-10-25",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2025"
+      ],
+      "evidence": "检录和地铁开行时间，最终交通指引。"
+    },
+    {
+      "id": "cs-shirt-2025",
+      "title": "2025长沙马拉松参赛服正式亮相",
+      "url": "https://www.marathonchangsha.com/Detail/337",
+      "publisher": "长沙马拉松组委会",
+      "publishedAt": "2025-10-19",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2025"
+      ],
+      "evidence": "核对背心与短袖原图。"
+    },
+    {
+      "id": "cs-medal-2025",
+      "title": "2025长沙马拉松完赛奖牌正式亮相",
+      "url": "https://www.marathonchangsha.com/Detail/312",
+      "publisher": "长沙马拉松组委会",
+      "publishedAt": "2025-09-26",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2025"
+      ],
+      "evidence": "核对奖牌原图及图中届次。"
+    },
+    {
+      "id": "cs-entry-2024",
+      "title": "2024长沙马拉松报名通道公告",
+      "url": "https://www.marathonchangsha.com/Detail/193",
+      "publisher": "长沙马拉松组委会",
+      "publishedAt": "2024-07-22",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2024"
+      ],
+      "evidence": "核对预报名起止、缴费及抽签流程。"
+    },
+    {
+      "id": "cs-draw-2024",
+      "title": "2024长沙马拉松抽签结果查询",
+      "url": "https://www.marathonchangsha.com/Detail/199",
+      "publisher": "长沙马拉松组委会",
+      "publishedAt": "2024-08-19",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2024"
+      ],
+      "evidence": "证实抽签时间、候补选择和退款时限。"
+    },
+    {
+      "id": "cs-score",
+      "title": "长沙马拉松历年成绩查询",
+      "url": "https://www.marathonchangsha.com/score",
+      "publisher": "长沙马拉松组委会",
+      "publishedAt": "",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2024",
+        "2025",
+        "2026"
+      ],
+      "evidence": "查询视图有2024、2025和2026届选项，个人成绩按页提示查询。"
     }
   ],
   "gaps": [
@@ -881,7 +1364,7 @@
         "editions[].route.mapUrl",
         "editions[].gear[].imageUrl"
       ],
-      "reason": "2024、2025报名细则和各届同口径中签率仍缺。2026已有路线图与服装、奖牌发布页；图片公开转载许可尚未确认，使用原文链接。"
+      "reason": "2024已补报名日期、抽签及缴费，仍缺报名费和完整资格；2025、2026未核得同口径中签率及完整抽签池。2026有官方路线、装备原页，2025有最终路线和实物原页；图片转载许可未确认。"
     }
   ],
   "conflicts": []

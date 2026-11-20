@@ -57,6 +57,34 @@ test('all published event topics expose six categories with independent local ye
   }
 });
 
+test('every edition can open its own evidence and copy official links', async () => {
+  for (const race of catalog.races) {
+    const { page, clipboard } = fixture();
+    page.onLoad({ id: race.id }); await settle();
+    for (const edition of archives[race.id].editions) {
+      const resources = edition.officialResources || [];
+      for (const [id, selected, category, links] of [['route','routeYear','route-map','routeResources'],['participation','resultsYear','results','resultLinks'],['logistics','entryYear','guide','guideLinks']]) {
+        page.openEdition(event({ id, year: edition.year }));
+        assert.equal(page.data[selected], edition.year);
+        for (const resource of resources.filter(item => item.category === category)) {
+          assert.ok(page.data[links].some(item => new URL(item.url).href === new URL(resource.url).href), race.id + ' ' + edition.year + ' ' + category);
+          const link = page.data[links].find(item => new URL(item.url).href === new URL(resource.url).href);
+          page.copyResource(event({ url: link.url }));
+          assert.equal(clipboard.at(-1), link.url);
+        }
+      }
+      page.openEdition(event({ id:'shirt', year:edition.year }));
+      for (const [label, category] of [['参赛服','shirt'],['奖牌','medal']]) {
+        page.pickGallery(event({ id:label }));
+        assert.ok(page.data.galleryGroups.every(group => group.year === edition.year));
+        for (const resource of resources.filter(item => item.category === category)) assert.ok(page.data.galleryGroups.flatMap(group => group.resources).some(item => new URL(item.url).href === new URL(resource.url).href));
+      }
+      page.openEdition(event({ id:'stories', year:edition.year }));
+      assert.ok(page.data.stories.every(item => String(item.editionYear) === edition.year));
+    }
+  }
+});
+
 test('results default to latest completed results, routes group only explicitly known near versions, legacy links remain usable',async()=>{
   const f=fixture();f.page.onLoad({id:'shanghai'});await settle();
   assert.equal(f.page.data.entryYear,'2026');assert.equal(f.page.data.resultsYear,'2025');

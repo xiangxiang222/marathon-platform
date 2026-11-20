@@ -210,12 +210,13 @@
         },
         "raceDay": {
           "startTime": "07:00 A/B区；07:10 C/D区；07:20 E/F区；07:30 G/H区。",
-          "timeLimit": "",
+          "timeLimit": "从各自分枪发令起计时：5公里55分钟、半程3小时、30公里4小时15分、全程6小时。",
           "bagDrop": "",
           "aidStations": "",
           "toilets": "",
           "medical": "",
           "sourceIds": [
+            "gz-reg-2026-indexed",
             "gz-reg-2026"
           ]
         },
@@ -247,14 +248,16 @@
         }
       ],
       "route": {
-        "summary": "天河体育中心出发，沿珠江一江两岸抵达海心沙。",
+        "summary": "天河体育中心出发，沿珠江两岸抵达海心沙环岛路。",
         "start": "天河体育中心南广场",
-        "finish": "海心沙",
+        "finish": "海心沙环岛路",
         "mapUrl": "",
         "mapSourceUrl": "",
-        "changes": "",
+        "changes": "延长阅江中路折返距离，取消人民桥下折返，终点移至海心沙环岛路。",
         "analysis": [],
         "sourceIds": [
+          "gz-course-story-2025",
+          "gz-map-2025",
           "gz-reg-2025"
         ]
       },
@@ -303,17 +306,6 @@
           ]
         },
         {
-          "group": "马拉松女子冠军",
-          "athlete": "Joyce Chepkemoi Tele",
-          "time": "02:22:40",
-          "timing": "枪时",
-          "sourceIds": [
-            "gz-results-2025",
-            "gz-wa-2025",
-            "gz-awards-2025"
-          ]
-        },
-        {
           "group": "马拉松男子亚军",
           "athlete": "Felix KIRWA",
           "time": "02:12:25",
@@ -336,6 +328,35 @@
           ]
         },
         {
+          "group": "马拉松女子冠军",
+          "athlete": "Joyce Chepkemoi Tele",
+          "time": "02:22:40",
+          "timing": "枪时",
+          "sourceIds": [
+            "gz-awards-2025",
+            "gz-wa-2025",
+            "gz-results-2025"
+          ]
+        },
+        {
+          "group": "马拉松女子亚军",
+          "athlete": "Betelihem Afenigus YEMER",
+          "time": "02:27:52",
+          "timing": "枪时",
+          "sourceIds": [
+            "gz-awards-2025"
+          ]
+        },
+        {
+          "group": "马拉松女子季军",
+          "athlete": "Chaltu Chimdesa KUMSA",
+          "time": "02:31:37",
+          "timing": "枪时",
+          "sourceIds": [
+            "gz-awards-2025"
+          ]
+        },
+        {
           "group": "马拉松中国籍女子第一",
           "athlete": "丁常琴",
           "time": "02:35:40",
@@ -349,16 +370,20 @@
       "gear": [],
       "logistics": {
         "collection": {
-          "time": "",
-          "place": "",
-          "requirements": "",
-          "sourceIds": []
+          "time": "2025年12月18日10:00—17:00、19日10:00—19:00、20日10:00—21:00。",
+          "place": "广交会展馆D区17.1馆",
+          "requirements": "本人携报名证件原件及签署的参赛承诺书领取；在现场选择人脸识别或证件查验。",
+          "sourceIds": [
+            "gz-guide-2025"
+          ]
         },
         "transport": {
           "start": "",
           "finish": "",
-          "expo": "",
-          "sourceIds": []
+          "expo": "地铁8号线新港东站A口，步行至D区展馆6号门。",
+          "sourceIds": [
+            "gz-guide-2025"
+          ]
         },
         "raceDay": {
           "startTime": "精英及A/B/C区07:30；D/E/F区07:50。",
@@ -376,14 +401,6 @@
       "notes": [],
       "officialResources": [
         {
-          "category": "route-map",
-          "title": "组委会发布的2025广州马拉松赛道图",
-          "url": "https://www.guangzhou-marathon.com/subject.html?detailId=7951518221333696&topicId=7810378834711341",
-          "sourceIds": [
-            "gz-map-2025"
-          ]
-        },
-        {
           "category": "medal",
           "title": "2025广马完赛奖牌（组委会发布）",
           "url": "https://mp.weixin.qq.com/s/_CwVZ0rtTN6MvHq7QcS4Iw",
@@ -399,6 +416,38 @@
           "sourceIds": [
             "gz-official-kit-2025",
             "gz-kit-2025"
+          ]
+        },
+        {
+          "category": "results",
+          "title": "2025广州马拉松赛男、女前8名成绩公示（枪时）",
+          "url": "https://www.guangzhou-marathon.com/subject.html?detailId=8639698129976619&topicId=7810377408647936",
+          "sourceIds": [
+            "gz-awards-2025"
+          ]
+        },
+        {
+          "category": "guide",
+          "title": "2025广州马拉松博览会：领物须知、交通与电子参赛手册",
+          "url": "https://mp.weixin.qq.com/s/CFeiSx8zlsyvbDrndNNOKg",
+          "sourceIds": [
+            "gz-guide-2025"
+          ]
+        },
+        {
+          "category": "route-map",
+          "title": "2025广州马拉松赛官方比赛路线图",
+          "url": "https://www.guangzhou-marathon.com/subject.html?detailId=7951518221333696&topicId=7810378834711341",
+          "sourceIds": [
+            "gz-map-2025"
+          ]
+        },
+        {
+          "category": "route-map",
+          "title": "2025广马路线丈量、变化与路线原图（组委会公众号）",
+          "url": "https://mp.weixin.qq.com/s/ij58IVcyuZUlV3T8DMV9WQ",
+          "sourceIds": [
+            "gz-course-story-2025"
           ]
         }
       ]
@@ -479,6 +528,24 @@
           ]
         },
         {
+          "group": "马拉松男子亚军",
+          "athlete": "BELAY ZIKU ASFAW",
+          "time": "02:07:00",
+          "timing": "枪时",
+          "sourceIds": [
+            "gz-awards-2024"
+          ]
+        },
+        {
+          "group": "马拉松男子季军",
+          "athlete": "ASEFA MENGSTU NEGEWO",
+          "time": "02:07:01",
+          "timing": "枪时",
+          "sourceIds": [
+            "gz-awards-2024"
+          ]
+        },
+        {
           "group": "马拉松女子冠军",
           "athlete": "Anchialem HAYMANOT",
           "time": "02:25:13",
@@ -486,6 +553,24 @@
           "sourceIds": [
             "gz-city-review-2024",
             "gz-wa-2024",
+            "gz-awards-2024"
+          ]
+        },
+        {
+          "group": "马拉松女子亚军",
+          "athlete": "CHERNET MISGANAW TAKELE",
+          "time": "02:25:20",
+          "timing": "枪时",
+          "sourceIds": [
+            "gz-awards-2024"
+          ]
+        },
+        {
+          "group": "马拉松女子季军",
+          "athlete": "ROMAN GIDEY BERHE",
+          "time": "02:25:22",
+          "timing": "枪时",
+          "sourceIds": [
             "gz-awards-2024"
           ]
         },
@@ -515,16 +600,20 @@
       "gear": [],
       "logistics": {
         "collection": {
-          "time": "",
-          "place": "",
-          "requirements": "",
-          "sourceIds": []
+          "time": "2024年12月5日10:00—16:00、6日10:00—18:00、7日10:00—20:00。",
+          "place": "广交会展馆B区11.1馆（海珠区阅江中路382号）",
+          "requirements": "提前预约；本人携原报名证件及签名的纸质健康安全责任承诺书领取，不可代领。",
+          "sourceIds": [
+            "gz-pickup-2024"
+          ]
         },
         "transport": {
           "start": "",
           "finish": "",
-          "expo": "",
-          "sourceIds": []
+          "expo": "地铁8号线琶洲站A口或B口。",
+          "sourceIds": [
+            "gz-pickup-2024"
+          ]
         },
         "raceDay": {
           "startTime": "",
@@ -554,6 +643,22 @@
           "sourceIds": [
             "gz-kit-2024"
           ]
+        },
+        {
+          "category": "results",
+          "title": "2024广州马拉松赛男、女前8名成绩公示（枪时）",
+          "url": "https://www.guangzhou-marathon.com/subject.html?detailId=8090891873170201&topicId=7810377408647936",
+          "sourceIds": [
+            "gz-awards-2024"
+          ]
+        },
+        {
+          "category": "guide",
+          "title": "2024广州马拉松赛参赛号码查询与领物须知",
+          "url": "https://www.guangzhou-marathon.com/subject.html?detailId=8072824589705021&topicId=7810377408647936",
+          "sourceIds": [
+            "gz-pickup-2024"
+          ]
         }
       ]
     }
@@ -564,7 +669,8 @@
       "body": "沃德腾塞先冲线，科瓦两秒后抵达海心沙。扎西次仁以2小时14分06秒获得男子第三；当届男子前八名有五位中国选手。这场比赛把国际选手的冲刺和中国选手的整体表现留在了同一张成绩单上。",
       "sourceIds": [
         "gz-results-2025"
-      ]
+      ],
+      "editionYear": "2025"
     },
     {
       "title": "2025：随脚步流动的珠江",
@@ -572,7 +678,8 @@
       "sourceIds": [
         "gz-kit-2025",
         "gz-map-2025"
-      ]
+      ],
+      "editionYear": "2025"
     },
     {
       "title": "2024：男子前五名跑进旧纪录",
@@ -580,6 +687,15 @@
       "sourceIds": [
         "gz-city-review-2024",
         "gz-wa-2024"
+      ],
+      "editionYear": "2024"
+    },
+    {
+      "title": "给42.195公里的终点钉一枚钉子",
+      "editionYear": "2025",
+      "body": "2025届延长了阅江中路的折返段，取消人民桥下折返，终点移到海心沙环岛路。开赛前，路跑丈量员王相英深夜骑装有计数器的自行车，从天河体育中心逐公里核对路线，最后在海心沙用一枚钉子定位终点线。",
+      "sourceIds": [
+        "gz-course-story-2025"
       ]
     }
   ],
@@ -851,6 +967,46 @@
         "2024"
       ],
       "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "gz-pickup-2024",
+      "title": "2024广州马拉松赛参赛号码查询与领物须知",
+      "publisher": "广州马拉松赛组委会",
+      "url": "https://www.guangzhou-marathon.com/subject.html?detailId=8072824589705021&topicId=7810377408647936",
+      "applicableYears": [
+        "2024"
+      ],
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "gz-guide-2025",
+      "title": "2025广州马拉松博览会：领物须知、交通与电子参赛手册",
+      "publisher": "广州马拉松赛组委会",
+      "url": "https://mp.weixin.qq.com/s/CFeiSx8zlsyvbDrndNNOKg",
+      "applicableYears": [
+        "2025"
+      ],
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "gz-reg-2026-indexed",
+      "title": "2026广州马拉松赛竞赛规程（带届次标题）",
+      "publisher": "广州马拉松赛组委会",
+      "url": "https://www.guangzhou-marathon.com/subject.html?detailId=9006283588065150&topicId=7810377408647936",
+      "applicableYears": [
+        "2026"
+      ],
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "gz-course-story-2025",
+      "title": "赛道已完成精准丈量，2025广马路线图正式发布",
+      "publisher": "广州马拉松赛组委会",
+      "url": "https://mp.weixin.qq.com/s/ij58IVcyuZUlV3T8DMV9WQ",
+      "applicableYears": [
+        "2025"
+      ],
+      "verifiedAt": "2026-11-20"
     }
   ],
   "gaps": [
@@ -869,6 +1025,13 @@
         "editions[].gear[].imageUrl"
       ],
       "reason": "未取得可公开再分发的图片许可；仅保留来源链接，不接入赛道图或物资实物图片。"
+    },
+    {
+      "fields": [
+        "editions.2024.officialResources.赛道图",
+        "editions.2026.officialResources.赛道图参赛服奖牌"
+      ],
+      "reason": "赛事网站另一个同名“比赛路线”页实际展示2023原图，不能给2024或2026使用；2026已公布文字规程，但赛道图及实物发布页待核验。"
     }
   ],
   "conflicts": [

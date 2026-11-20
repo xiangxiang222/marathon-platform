@@ -184,8 +184,10 @@
         "note": "日程与流程据赛事报名渠道和条款的转载报道。原始规程未取得，未填写费用、成绩门槛和中签率。",
         "sourceIds": [
           "dl-signup-2026",
-          "dl-draw-2026"
-        ]
+          "dl-draw-2026",
+          "dl-results-2026"
+        ],
+        "plannedQuota": "全马16000人、半马14000人，共30000人。"
       },
       "participation": {
         "planned": "30000人：全马16000人、半马14000人（赛后报道赛事规模）",
@@ -242,6 +244,123 @@
           "group": "半程马拉松女子冠军",
           "athlete": "陈佳慧",
           "time": "01:18:38",
+          "timing": "",
+          "sourceIds": [
+            "dl-results-2026"
+          ]
+        },
+        {
+          "group": "马拉松男子亚军",
+          "athlete": "Philemon RONO CHEROP",
+          "time": "02:10:51",
+          "timing": "",
+          "sourceIds": [
+            "dl-results-2026"
+          ]
+        },
+        {
+          "group": "马拉松男子季军",
+          "athlete": "张晓鸿",
+          "time": "02:11:17",
+          "timing": "",
+          "sourceIds": [
+            "dl-results-2026"
+          ]
+        },
+        {
+          "group": "马拉松女子亚军",
+          "athlete": "Ri Kwang Ok",
+          "time": "02:29:20",
+          "timing": "",
+          "sourceIds": [
+            "dl-results-2026"
+          ]
+        },
+        {
+          "group": "马拉松女子季军",
+          "athlete": "Deborah SAMUM",
+          "time": "02:30:53",
+          "timing": "",
+          "sourceIds": [
+            "dl-results-2026"
+          ]
+        },
+        {
+          "group": "半程马拉松男子亚军",
+          "athlete": "房博",
+          "time": "01:08:36",
+          "timing": "",
+          "sourceIds": [
+            "dl-results-2026"
+          ]
+        },
+        {
+          "group": "半程马拉松男子季军",
+          "athlete": "王军",
+          "time": "01:09:41",
+          "timing": "",
+          "sourceIds": [
+            "dl-results-2026"
+          ]
+        },
+        {
+          "group": "半程马拉松女子亚军",
+          "athlete": "张柳青",
+          "time": "01:19:42",
+          "timing": "",
+          "sourceIds": [
+            "dl-results-2026"
+          ]
+        },
+        {
+          "group": "半程马拉松女子季军",
+          "athlete": "韩清",
+          "time": "01:21:06",
+          "timing": "",
+          "sourceIds": [
+            "dl-results-2026"
+          ]
+        },
+        {
+          "group": "马拉松中国籍男子亚军",
+          "athlete": "武明瑶",
+          "time": "02:13:42",
+          "timing": "",
+          "sourceIds": [
+            "dl-results-2026"
+          ]
+        },
+        {
+          "group": "马拉松中国籍男子季军",
+          "athlete": "王连正",
+          "time": "02:18:29",
+          "timing": "",
+          "sourceIds": [
+            "dl-results-2026"
+          ]
+        },
+        {
+          "group": "马拉松中国籍女子冠军",
+          "athlete": "朱卿",
+          "time": "02:29:02",
+          "timing": "",
+          "sourceIds": [
+            "dl-results-2026"
+          ]
+        },
+        {
+          "group": "马拉松中国籍女子亚军",
+          "athlete": "卢亚晶",
+          "time": "02:42:22",
+          "timing": "",
+          "sourceIds": [
+            "dl-results-2026"
+          ]
+        },
+        {
+          "group": "马拉松中国籍女子季军",
+          "athlete": "邓春艳",
+          "time": "02:43:10",
           "timing": "",
           "sourceIds": [
             "dl-results-2026"
@@ -328,7 +447,7 @@
       "officialResources": [
         {
           "category": "shirt",
-          "title": "2026蒙牛大连马拉松新闻发布会召开，奖牌、参赛服、文创亮相",
+          "title": "2026大连马拉松全马背心、半马短袖发布图（媒体转载）",
           "url": "https://www.bjnews.com.cn/detail/1776318303129072.html",
           "sourceIds": [
             "dl-gear-release-2026"
@@ -344,10 +463,18 @@
         },
         {
           "category": "medal",
-          "title": "2026大连马拉松奖牌揭晓现场（含全马、半马款）",
+          "title": "2026大连马拉松全马、半马奖牌设计图（媒体转载）",
           "url": "https://www.bjnews.com.cn/detail/1776318303129072.html",
           "sourceIds": [
             "dl-gear-release-2026"
+          ]
+        },
+        {
+          "category": "guide",
+          "title": "2026大连马拉松领物指南（转载）",
+          "url": "http://dl.bendibao.com/xiuxian/2026417/88617.shtm",
+          "sourceIds": [
+            "dl-collection-2026"
           ]
         }
       ]
@@ -390,8 +517,10 @@
         "lotteryNote": "仅有报名概数，缺少可比的抽签池与实际抽签名额，不计算中签率。",
         "note": "另在大众抽签后开放全马及半马合计200个公益名额，先到先得、免抽签。",
         "sourceIds": [
-          "dl-signup-qa-2025"
-        ]
+          "dl-signup-qa-2025",
+          "dl-report-2025"
+        ],
+        "direct": "成绩直通按年龄与性别分组，取指定区间中国田协A类赛事同项目个人最好净成绩；全马、半马另合计200个公益名额。"
       },
       "participation": {
         "planned": "33000人（赛事报道规模）",
@@ -425,7 +554,9 @@
       ],
       "gear": [],
       "notes": [
-        "本届设跑团赛中赛，按前20名成员净计时合计等规则排名；不将其成绩口径与个人冠军计时混用。"
+        "本届设跑团赛中赛，按前20名成员净计时合计等规则排名；不将其成绩口径与个人冠军计时混用。",
+        "大连日报公布中国籍组男子冠军吴向东、女子冠军沈妮，稿件没有列两人的完成时间。",
+        "2025沿途设置34个文化加油站，设京剧演奏和武术展演，并在全马、半马分别开设跑团赛中赛。"
       ],
       "logistics": {
         "collection": {
@@ -541,6 +672,18 @@
       "sourceIds": [
         "dl-preview-2026",
         "dl-results-2026"
+      ],
+      "editionYear": "2026"
+    },
+    {
+      "id": "dl-club-race-2025",
+      "editionYear": "2025",
+      "tag": "赛事故事",
+      "title": "跑团把大连的全马和半马变成团体赛",
+      "summary": "2025届分别在全马、半马开设跑团赛中赛。",
+      "body": "报名成功的跑者可以创建或加入跑团，跑团名次依据成员净计时。凭个人冲线顺序不能判断跑团成绩；赛道沿途另布置了34处文化加油站，跑者经过时能听到京剧、看到武术展演。",
+      "sourceIds": [
+        "dl-report-2025"
       ]
     }
   ],

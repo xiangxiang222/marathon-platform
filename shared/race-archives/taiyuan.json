@@ -217,13 +217,76 @@
           ]
         },
         {
-          "group": "中国籍女子冠军",
+          "group": "马拉松女子季军／中国籍女子冠军",
           "athlete": "路颖",
           "time": "02:29:45",
           "timing": "",
           "sourceIds": [
             "ty-report-2026",
             "ty-wa-results-2026"
+          ]
+        },
+        {
+          "group": "马拉松男子亚军",
+          "athlete": "Benard KIPKORIR",
+          "time": "02:10:13",
+          "timing": "",
+          "sourceIds": [
+            "ty-wa-results-2026"
+          ]
+        },
+        {
+          "group": "马拉松男子季军",
+          "athlete": "Tafere ADISU",
+          "time": "02:10:19",
+          "timing": "",
+          "sourceIds": [
+            "ty-wa-results-2026"
+          ]
+        },
+        {
+          "group": "马拉松女子亚军",
+          "athlete": "Chernet MISGANAW",
+          "time": "02:27:37",
+          "timing": "",
+          "sourceIds": [
+            "ty-wa-results-2026"
+          ]
+        },
+        {
+          "group": "中国籍男子亚军",
+          "athlete": "武明瑶",
+          "time": "02:12:36",
+          "timing": "",
+          "sourceIds": [
+            "ty-report-2026"
+          ]
+        },
+        {
+          "group": "中国籍男子季军",
+          "athlete": "董国建",
+          "time": "02:13:21",
+          "timing": "",
+          "sourceIds": [
+            "ty-report-2026"
+          ]
+        },
+        {
+          "group": "中国籍女子亚军",
+          "athlete": "刘敏",
+          "time": "02:30:40",
+          "timing": "",
+          "sourceIds": [
+            "ty-report-2026"
+          ]
+        },
+        {
+          "group": "中国籍女子季军",
+          "athlete": "徐冰洁",
+          "time": "02:31:10",
+          "timing": "",
+          "sourceIds": [
+            "ty-report-2026"
           ]
         }
       ],
@@ -245,13 +308,15 @@
           "sourceIds": []
         },
         "raceDay": {
-          "startTime": "",
+          "startTime": "五一广场起跑，设9个集结区、分4枪出发，检录使用人脸识别。",
           "timeLimit": "",
           "bagDrop": "",
           "aidStations": "",
           "toilets": "",
           "medical": "",
-          "sourceIds": []
+          "sourceIds": [
+            "ty-report-2026"
+          ]
         },
         "tips": [
           {
@@ -262,7 +327,17 @@
             ]
           }
         ]
-      }
+      },
+      "officialResources": [
+        {
+          "category": "results",
+          "title": "Taiyuan Marathon | Results",
+          "url": "https://worldathletics.org/competition/calendar-results/results/7235590",
+          "sourceIds": [
+            "ty-wa-results-2026"
+          ]
+        }
+      ]
     },
     {
       "year": "2025",
@@ -345,7 +420,8 @@
         "note": "提交报名后须在15分钟内缴费；未中签者按公告办理退款。",
         "sourceIds": [
           "ty-preview-2025"
-        ]
+        ],
+        "payment": "提交报名后15分钟内缴费；未中签按公告退费。"
       },
       "participation": {
         "planned": "计划40000人：全马15000、半马18000、健康跑3000、欢乐跑4000",
@@ -774,7 +850,7 @@
         "images",
         "editions.route.mapUrl"
       ],
-      "reason": "未取得官方图片、路线图的明确转载许可，暂不展示图片；可通过资料来源查看官方原图。"
+      "reason": "2024省政府发布页只列文字路线；目前未核得可打开的太马历届赛道图、服装和奖牌实物原页或可转载许可。"
     }
   ],
   "conflicts": []

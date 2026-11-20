@@ -91,7 +91,25 @@
       ]
     }
   ],
-  "records": [],
+  "records": [
+    {
+      "category": "赛会纪录（女子，核至2026届）",
+      "project": "马拉松",
+      "group": "女子",
+      "athlete": "Kuftu Tahir DADISO",
+      "time": "02:23:42",
+      "timing": "",
+      "editionId": "wuxi-2025",
+      "achievedAt": "2025-03-23",
+      "verifiedThroughEditionId": "wuxi-2026",
+      "verifiedAt": "2026-11-20",
+      "sourceIds": [
+        "wx-recap-2025",
+        "wx-wa-2025",
+        "wx-results-2026"
+      ]
+    }
+  ],
   "editions": [
     {
       "year": "2026",
@@ -142,20 +160,22 @@
         "method": "2026届各项目超额后采用抽签加候补；全马分段抽签，具体资格按当届报名须知。",
         "opens": "2025-12-19 10:00（北京时间）",
         "closes": "2025-12-25 17:00（北京时间）",
-        "drawDate": "2026-01-05（报名须知公布日期）",
+        "drawDate": "2026-01-05",
         "fee": "马拉松、半程马拉松均为200元人民币/人",
         "qualification": "全马限比赛当年满20周岁、半马限当年满18周岁。全马参赛者满70周岁及以上，须由直系亲属线上签署知情同意书，并提交一位已完成预报名的全程伴跑者信息。",
-        "applicants": "",
-        "eligibleApplicants": "",
-        "lotteryPool": "",
-        "drawQuota": "",
-        "lotteryRate": "",
-        "directQuota": "报名须知列出成绩直通门槛，全马男子2:30:00以内、女子2:50:00以内；未披露实际直通人数。",
+        "applicants": "520317人提交预报名",
+        "eligibleApplicants": "495635人（排除重复和无效信息后；全马243803人、半马251832人）",
+        "lotteryPool": "全马243440人（A段8164、B段25390、C段149020、D段60866人）；半马251832人",
+        "drawQuota": "全马24180个（A段4836、B段7254、C段10881、D段1209个）；半马7272个",
+        "lotteryRate": "官方公告：全马9.9%（A段59.2%、B段28.6%、C段7.3%、D段2%）；半马2.9%",
+        "directQuota": "全马成绩直通363人，条件为2023-12-17至2025-12-16的中国田协A1全马成绩男子2:30或更快、女子2:50或更快。",
         "sourceIds": [
+          "wx-pre-2026-count",
+          "wx-draw-2026",
           "wx-registration-2026"
         ],
-        "lotteryNote": "全马A、B、C、D四段分别分配可抽签名额的20%、30%、45%、5%；这些是名额分配比例，不是各段中签率。半程统一抽签。",
-        "note": "中签选手及选择候补的选手均需在2026-01-10 17:00前按报名须知缴费。全马候补按同一分段递补。"
+        "lotteryNote": "全马2457个、半马728个精英和特邀名额单列；报名提交量、有效报名和实际抽签人数口径不同。",
+        "note": "中签者（含成绩直通）和选择候补的选手须在2026-01-10 17:00前缴费；全马按原抽签分段候补。"
       },
       "participation": {
         "planned": "马拉松27000人、半程马拉松8000人（2026规程计划规模）",
@@ -178,9 +198,49 @@
           ]
         },
         {
+          "group": "马拉松男子亚军",
+          "athlete": "毛金虎",
+          "time": "02:07:36",
+          "timing": "枪时",
+          "sourceIds": [
+            "wx-results-2026",
+            "wx-wa-2026"
+          ]
+        },
+        {
+          "group": "马拉松男子季军",
+          "athlete": "Victor KIPCHIRCHIR",
+          "time": "02:07:58",
+          "timing": "枪时",
+          "sourceIds": [
+            "wx-results-2026",
+            "wx-wa-2026"
+          ]
+        },
+        {
           "group": "马拉松女子冠军",
           "athlete": "Amid Fozya JEMAL",
           "time": "02:24:14",
+          "timing": "枪时",
+          "sourceIds": [
+            "wx-results-2026",
+            "wx-wa-2026"
+          ]
+        },
+        {
+          "group": "马拉松女子亚军",
+          "athlete": "李美珍",
+          "time": "02:25:06",
+          "timing": "枪时",
+          "sourceIds": [
+            "wx-results-2026",
+            "wx-wa-2026"
+          ]
+        },
+        {
+          "group": "马拉松女子季军",
+          "athlete": "Sisay Meseret GOLA",
+          "time": "02:26:20",
           "timing": "枪时",
           "sourceIds": [
             "wx-results-2026",
@@ -198,6 +258,24 @@
           ]
         },
         {
+          "group": "马拉松中国籍男子第二",
+          "athlete": "丰配友",
+          "time": "02:08:10",
+          "timing": "枪时",
+          "sourceIds": [
+            "wx-results-2026"
+          ]
+        },
+        {
+          "group": "马拉松中国籍男子第三",
+          "athlete": "索朗才仁",
+          "time": "02:08:20",
+          "timing": "枪时",
+          "sourceIds": [
+            "wx-results-2026"
+          ]
+        },
+        {
           "group": "马拉松中国籍女子第一",
           "athlete": "李美珍",
           "time": "02:25:06",
@@ -208,9 +286,99 @@
           ]
         },
         {
+          "group": "马拉松中国籍女子第二",
+          "athlete": "丁常琴",
+          "time": "02:26:29",
+          "timing": "枪时",
+          "sourceIds": [
+            "wx-results-2026"
+          ]
+        },
+        {
+          "group": "马拉松中国籍女子第三",
+          "athlete": "马秀针",
+          "time": "02:27:12",
+          "timing": "枪时",
+          "sourceIds": [
+            "wx-results-2026"
+          ]
+        },
+        {
+          "group": "马拉松中国籍大众男子第一",
+          "athlete": "洪跃",
+          "time": "02:08:49",
+          "timing": "净时",
+          "sourceIds": [
+            "wx-results-2026"
+          ]
+        },
+        {
+          "group": "马拉松中国籍大众男子第二",
+          "athlete": "陈裕金",
+          "time": "02:10:35",
+          "timing": "净时",
+          "sourceIds": [
+            "wx-results-2026"
+          ]
+        },
+        {
+          "group": "马拉松中国籍大众男子第三",
+          "athlete": "解云策",
+          "time": "02:10:38",
+          "timing": "净时",
+          "sourceIds": [
+            "wx-results-2026"
+          ]
+        },
+        {
+          "group": "马拉松中国籍大众女子第一",
+          "athlete": "马秀针",
+          "time": "02:27:12",
+          "timing": "净时",
+          "sourceIds": [
+            "wx-results-2026"
+          ]
+        },
+        {
+          "group": "马拉松中国籍大众女子第二",
+          "athlete": "张珊珊",
+          "time": "02:29:42",
+          "timing": "净时",
+          "sourceIds": [
+            "wx-results-2026"
+          ]
+        },
+        {
+          "group": "马拉松中国籍大众女子第三",
+          "athlete": "通拉嘎",
+          "time": "02:29:51",
+          "timing": "净时",
+          "sourceIds": [
+            "wx-results-2026"
+          ]
+        },
+        {
           "group": "半程马拉松男子冠军",
           "athlete": "陈中平",
           "time": "01:06:22",
+          "timing": "净时",
+          "sourceIds": [
+            "wx-results-2026"
+          ]
+        },
+        {
+          "group": "半程马拉松男子亚军",
+          "athlete": "贺应兵",
+          "time": "01:08:33",
+          "timing": "净时",
+          "sourceIds": [
+            "wx-results-2026"
+          ]
+        },
+        {
+          "group": "半程马拉松男子季军",
+          "athlete": "曾一桓",
+          "time": "01:19:37",
           "timing": "净时",
           "sourceIds": [
             "wx-results-2026"
@@ -224,9 +392,46 @@
           "sourceIds": [
             "wx-results-2026"
           ]
+        },
+        {
+          "group": "半程马拉松女子亚军",
+          "athlete": "张小杰",
+          "time": "01:15:59",
+          "timing": "净时",
+          "sourceIds": [
+            "wx-results-2026"
+          ]
+        },
+        {
+          "group": "半程马拉松女子季军",
+          "athlete": "杨海",
+          "time": "01:16:07",
+          "timing": "净时",
+          "sourceIds": [
+            "wx-results-2026"
+          ]
         }
       ],
-      "gear": [],
+      "gear": [
+        {
+          "category": "参赛服",
+          "name": "李宁男女款粉色参赛背心",
+          "description": "官网展示男女款背心及细节；粉色参赛背心自2015年起成为锡马传统。",
+          "imageUrl": "",
+          "sourceIds": [
+            "wx-shirt-2026"
+          ]
+        },
+        {
+          "category": "奖牌",
+          "name": "全程、半程完赛奖牌",
+          "description": "两款均有粉色绶带和花瓣轮廓。按下背面的玉飞凤按键，内侧会亮起；绶带靠近奖牌处有可读取赛事数据的NFC感应区。",
+          "imageUrl": "",
+          "sourceIds": [
+            "wx-recap-2026"
+          ]
+        }
+      ],
       "logistics": {
         "collection": {
           "time": "2026年3月19日至21日，按当届报到须知分时预约",
@@ -236,8 +441,21 @@
             "wx-collection-2026"
           ]
         },
-        "transport": {},
-        "raceDay": {},
+        "transport": {
+          "start": "地铁4号线西园弄站3号口。赛前地铁1—4号线提前约1小时开行，4号线当时不停靠体育中心站。",
+          "finish": "全马：地铁4号线博览中心站；半马：地铁1号线江南大学站。",
+          "sourceIds": [
+            "wx-preparation-2026"
+          ]
+        },
+        "raceDay": {
+          "timeLimit": "按分枪计：第一、第二、第三枪起点分别07:15、07:35、07:55关门；全马终点分别13:00、13:20、13:40。半马第二、第三枪终点分别10:20、10:40。",
+          "sourceIds": [
+            "wx-preparation-2026"
+          ],
+          "startTime": "07:00????S?A+?A?B???07:20????C?E???07:40????F?H???各分区前设置检录计时地毯，按本人分区出发并依次通过前方地毯和起点地毯。",
+          "bagDrop": "05:30???????????????15????????????????11:25???14:25???????"
+        },
         "tips": [
           {
             "title": "安排能本人到场的领物行程",
@@ -265,6 +483,46 @@
           "sourceIds": [
             "wx-map-2026"
           ]
+        },
+        {
+          "category": "results",
+          "title": "2026无锡马拉松成绩公示",
+          "url": "https://www.wuximarathon.com/post-q97BYe8DO6WrmL54MpQv.html",
+          "sourceIds": [
+            "wx-results-2026"
+          ]
+        },
+        {
+          "category": "guide",
+          "title": "2026海澜之家无锡马拉松报到须知",
+          "url": "https://www.wuximarathon.com/page/bl6P4EemXz5oj3zVGYgd.html",
+          "sourceIds": [
+            "wx-collection-2026"
+          ]
+        },
+        {
+          "category": "guide",
+          "title": "2026无锡马拉松赛前提醒",
+          "url": "https://www.wuximarathon.com/post-XrYE2g8DvQN8m647y53e.html",
+          "sourceIds": [
+            "wx-preparation-2026"
+          ]
+        },
+        {
+          "category": "shirt",
+          "title": "2026无锡马拉松李宁参赛背心亮相",
+          "url": "https://www.wuximarathon.com/post-XrYE2g8DvQyGm647y53e.html",
+          "sourceIds": [
+            "wx-shirt-2026"
+          ]
+        },
+        {
+          "category": "medal",
+          "title": "2026无锡马拉松赛后回顾：全马和半马完赛奖牌实物",
+          "url": "https://www.wuximarathon.com/post-bwkarNB0GEA8DR1LMg4A.html",
+          "sourceIds": [
+            "wx-recap-2026"
+          ]
         }
       ]
     },
@@ -282,10 +540,28 @@
         {
           "project": "马拉松",
           "distanceKm": 42.195,
-          "plannedParticipants": "",
+          "plannedParticipants": 25000,
           "fee": "",
           "sourceIds": [
-            "wx-race-2025"
+            "wx-draw-2025-report"
+          ]
+        },
+        {
+          "project": "半程马拉松",
+          "distanceKm": 21.0975,
+          "plannedParticipants": 8000,
+          "fee": "",
+          "sourceIds": [
+            "wx-draw-2025-report"
+          ]
+        },
+        {
+          "project": "欢乐跑",
+          "distanceKm": "",
+          "plannedParticipants": 2000,
+          "fee": "",
+          "sourceIds": [
+            "wx-draw-2025-report"
           ]
         }
       ],
@@ -300,30 +576,32 @@
         "sourceIds": []
       },
       "registration": {
-        "method": "",
+        "method": "大众按项目抽签；另设挚爱、公益、年龄组和成绩四类直通（各自适用项目按当届规则）。",
         "opens": "",
         "closes": "",
-        "drawDate": "",
+        "drawDate": "2025-01-10上午",
         "fee": "",
         "qualification": "",
-        "applicants": "",
+        "applicants": "429447人（全马221509、半马175186、欢乐跑32752人）",
         "eligibleApplicants": "",
-        "lotteryPool": "",
-        "drawQuota": "",
-        "directQuota": "",
+        "lotteryPool": "全马213297人，半马174726人，欢乐跑32734人",
+        "drawQuota": "全马12802个，半马5704个，欢乐跑1504个",
+        "directQuota": "符合直通资格共14990人（全马12198、半马2296、欢乐跑496人）",
         "lotteryRate": "",
-        "lotteryNote": "未取得同口径抽签池与实际抽签名额，不计算中签率。",
+        "lotteryNote": "报名、参与抽签、抽签名额及直通资格数据来自扬子晚报抽签当日报道；未取得组委会原版中签率，未填中签率字段。",
         "note": "",
-        "sourceIds": []
+        "sourceIds": [
+          "wx-draw-2025-report"
+        ]
       },
       "participation": {
-        "planned": "",
+        "planned": "全马25000人、半马8000人、欢乐跑2000人（赛前名额）",
         "starters": "",
         "finishers": "",
         "finishRate": "",
         "note": "已核实开赛日期；该条央视视频简介未提供可核验的项目细分、路线、费用与成绩时间。",
         "sourceIds": [
-          "wx-race-2025"
+          "wx-draw-2025-report"
         ]
       },
       "results": [
@@ -337,9 +615,18 @@
           ]
         },
         {
-          "group": "马拉松中国籍男子第一",
-          "athlete": "杨绍辉",
-          "time": "02:09:49",
+          "group": "马拉松男子亚军",
+          "athlete": "Gaddisa TAFA",
+          "time": "02:07:02",
+          "timing": "",
+          "sourceIds": [
+            "wx-wa-2025"
+          ]
+        },
+        {
+          "group": "马拉松男子季军",
+          "athlete": "Chalu DESO",
+          "time": "02:07:07",
           "timing": "",
           "sourceIds": [
             "wx-wa-2025"
@@ -355,12 +642,93 @@
           ]
         },
         {
+          "group": "马拉松女子亚军",
+          "athlete": "Asimarech NAGA",
+          "time": "02:24:21",
+          "timing": "",
+          "sourceIds": [
+            "wx-wa-2025"
+          ]
+        },
+        {
+          "group": "马拉松女子季军",
+          "athlete": "Gete DUKALE",
+          "time": "02:26:08",
+          "timing": "",
+          "sourceIds": [
+            "wx-wa-2025"
+          ]
+        },
+        {
+          "group": "马拉松中国籍男子第一",
+          "athlete": "杨绍辉",
+          "time": "02:09:49",
+          "timing": "",
+          "sourceIds": [
+            "wx-wa-2025"
+          ]
+        },
+        {
           "group": "马拉松中国籍女子第一",
           "athlete": "Bingjie XU",
           "time": "02:27:11",
           "timing": "",
           "sourceIds": [
             "wx-wa-2025"
+          ]
+        },
+        {
+          "group": "马拉松全国锦标赛第1站男子冠军",
+          "athlete": "杨绍辉",
+          "time": "02:09:49",
+          "timing": "",
+          "sourceIds": [
+            "wx-recap-2025"
+          ]
+        },
+        {
+          "group": "马拉松全国锦标赛第1站男子亚军",
+          "athlete": "董国建",
+          "time": "02:10:59",
+          "timing": "",
+          "sourceIds": [
+            "wx-recap-2025"
+          ]
+        },
+        {
+          "group": "马拉松全国锦标赛第1站男子季军",
+          "athlete": "杨春龙",
+          "time": "02:11:23",
+          "timing": "",
+          "sourceIds": [
+            "wx-recap-2025"
+          ]
+        },
+        {
+          "group": "马拉松全国锦标赛第1站女子冠军",
+          "athlete": "徐冰洁",
+          "time": "02:27:11",
+          "timing": "",
+          "sourceIds": [
+            "wx-recap-2025"
+          ]
+        },
+        {
+          "group": "马拉松全国锦标赛第1站女子亚军",
+          "athlete": "路颖",
+          "time": "02:27:30",
+          "timing": "",
+          "sourceIds": [
+            "wx-recap-2025"
+          ]
+        },
+        {
+          "group": "马拉松全国锦标赛第1站女子季军",
+          "athlete": "李美珍",
+          "time": "02:27:51",
+          "timing": "",
+          "sourceIds": [
+            "wx-recap-2025"
           ]
         }
       ],
@@ -391,6 +759,16 @@
       },
       "notes": [
         "央视视频简介记载海莱米卡尔夺得男子组冠军，但未提供成绩时间，暂不形成成绩表。"
+      ],
+      "officialResources": [
+        {
+          "category": "results",
+          "title": "2025无锡马拉松正式成绩（马拉松）",
+          "url": "https://worldathletics.org/competition/calendar-results/results/7220359",
+          "sourceIds": [
+            "wx-wa-2025"
+          ]
+        }
       ]
     },
     {
@@ -475,8 +853,17 @@
           ]
         },
         {
-          "group": "马拉松中国籍男子第一",
-          "athlete": "何杰",
+          "group": "马拉松男子亚军",
+          "athlete": "Abay ALEMU",
+          "time": "02:06:50",
+          "timing": "",
+          "sourceIds": [
+            "wx-wa-2024"
+          ]
+        },
+        {
+          "group": "马拉松男子季军",
+          "athlete": "Nicholas KIRWA",
           "time": "02:06:57",
           "timing": "",
           "sourceIds": [
@@ -487,6 +874,33 @@
           "group": "马拉松女子冠军",
           "athlete": "Veronica MAINA",
           "time": "02:24:46",
+          "timing": "",
+          "sourceIds": [
+            "wx-wa-2024"
+          ]
+        },
+        {
+          "group": "马拉松女子亚军",
+          "athlete": "Rodah Jepkorir TANUI",
+          "time": "02:26:24",
+          "timing": "",
+          "sourceIds": [
+            "wx-wa-2024"
+          ]
+        },
+        {
+          "group": "马拉松女子季军",
+          "athlete": "Monica CHEBET",
+          "time": "02:26:30",
+          "timing": "",
+          "sourceIds": [
+            "wx-wa-2024"
+          ]
+        },
+        {
+          "group": "马拉松中国籍男子第一",
+          "athlete": "何杰",
+          "time": "02:06:57",
           "timing": "",
           "sourceIds": [
             "wx-wa-2024"
@@ -527,7 +941,17 @@
         },
         "tips": []
       },
-      "notes": []
+      "notes": [],
+      "officialResources": [
+        {
+          "category": "results",
+          "title": "2024无锡马拉松正式成绩（马拉松）",
+          "url": "https://worldathletics.org/competition/calendar-results/results/7207353",
+          "sourceIds": [
+            "wx-wa-2024"
+          ]
+        }
+      ]
     }
   ],
   "stories": [
@@ -536,7 +960,8 @@
       "body": "无锡市体育局刊载的赛前报道记录了两段不同的备赛路线：新加坡椰风跑团十多位跑友沿狮城海滨做了32公里长距离训练；从洛杉矶回到无锡的跑者老金，则与老朋友绕蠡湖训练。他特地回到家乡参加锡马。",
       "sourceIds": [
         "wx-history-2024"
-      ]
+      ],
+      "editionYear": "2024"
     },
     {
       "title": "2026：跑团比的也是配合",
@@ -544,6 +969,15 @@
       "sourceIds": [
         "wx-regulations-2026",
         "wx-results-2026"
+      ],
+      "editionYear": "2026"
+    },
+    {
+      "title": "锡马奖牌里藏着一扇会亮的窗",
+      "editionYear": "2026",
+      "body": "2026锡马把江南窗格做进全马与半马的完赛牌。按下背面的玉飞凤按键，内层亮起；把手机贴近绶带上的NFC感应区，还能查看参赛者的完赛数据。",
+      "sourceIds": [
+        "wx-recap-2026"
       ]
     }
   ],
@@ -715,17 +1149,92 @@
         "2026"
       ],
       "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "wx-preparation-2026",
+      "title": "2026无锡马拉松赛前提醒",
+      "publisher": "无锡马拉松组委会",
+      "url": "https://www.wuximarathon.com/post-XrYE2g8DvQN8m647y53e.html",
+      "applicableYears": [
+        "2026"
+      ],
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "wx-shirt-2026",
+      "title": "2026无锡马拉松李宁参赛背心亮相",
+      "publisher": "无锡马拉松组委会",
+      "url": "https://www.wuximarathon.com/post-XrYE2g8DvQyGm647y53e.html",
+      "applicableYears": [
+        "2026"
+      ],
+      "verifiedAt": "2026-11-20",
+      "publishedAt": "2025-12-24"
+    },
+    {
+      "id": "wx-recap-2026",
+      "title": "2026无锡马拉松赛后回顾：全马和半马完赛奖牌实物",
+      "publisher": "无锡马拉松组委会",
+      "url": "https://www.wuximarathon.com/post-bwkarNB0GEA8DR1LMg4A.html",
+      "applicableYears": [
+        "2026"
+      ],
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "wx-draw-2026",
+      "title": "2026无锡马拉松抽签及候补公告（分段人数、名额与中签率）",
+      "publisher": "无锡马拉松组委会",
+      "url": "https://www.wuximarathon.com/post-AgWXrnZ0MWv5DwzQ5a9G.html",
+      "applicableYears": [
+        "2026"
+      ],
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "wx-pre-2026-count",
+      "title": "2026无锡马拉松预报名结束，520317人提交预报名",
+      "publisher": "无锡马拉松组委会",
+      "url": "https://www.wuximarathon.com/post-JlrPG3eDQNzOjYWbQMv8.html",
+      "applicableYears": [
+        "2026"
+      ],
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "wx-draw-2025-report",
+      "title": "2025锡马抽签结果揭晓（各项目人数、直通与抽签名额）",
+      "publisher": "扬子晚报 / 紫牛新闻",
+      "url": "https://k.sina.com.cn/article_1653603955_628ffe7302001pdaa.html",
+      "applicableYears": [
+        "2025"
+      ],
+      "verifiedAt": "2026-11-20",
+      "publishedAt": "2025-01-10"
+    },
+    {
+      "id": "wx-recap-2025",
+      "title": "2025无锡马拉松赛后回顾：女子赛会纪录、全国锦标赛成绩",
+      "publisher": "新浪新闻",
+      "url": "https://news.sina.com.cn/sx/2025-03-27/detail-ineraiqs0813951.shtml",
+      "applicableYears": [
+        "2025"
+      ],
+      "verifiedAt": "2026-11-20",
+      "publishedAt": "2025-03-27"
     }
   ],
   "gaps": [
     {
       "fields": [
-        "records",
-        "editions[2025].registration",
-        "editions[2025].route",
-        "editions[2024,2025].results.半程"
+        "records.男子赛会纪录",
+        "editions.2025.registration.开始截止费用资格缴费",
+        "editions.2025.officialResources.赛道图参赛服奖牌",
+        "editions.2024.officialResources.赛道图参赛服奖牌",
+        "editions.2024.results.半程",
+        "editions.2025.results.半程"
       ],
-      "reason": "所收2024、2025全马成绩用世界田联正式成绩表核验；两届半马成绩、2025报名规程和逐届明确认定的赛会纪录仍待核实。"
+      "reason": "2025项目规模和抽签人数由扬子晚报同日报道核验，组委会当届完整报名须知尚待核验；2024、2025图源和半马成绩，以及明确认定的男子赛会纪录仍缺。"
     },
     {
       "fields": [
@@ -733,6 +1242,12 @@
         "editions[].gear[].imageUrl"
       ],
       "reason": "未取得可公开再分发的图片许可；仅保留来源链接，不接入赛道图或物资实物图片。"
+    },
+    {
+      "fields": [
+        "editions.2027"
+      ],
+      "reason": "截至核验日未找到可确认的2027无锡马拉松主办方规程、路线或报名公告。"
     }
   ],
   "conflicts": []
