@@ -490,6 +490,14 @@
           "sourceIds": [
             "lz-podium-2026"
           ]
+        },
+        {
+          "category": "shirt",
+          "title": "2026兰州马拉松参赛背心与短袖图（甘肃经济日报）",
+          "url": "https://www.gsjb.com/system/2026/03/27/031344317.shtml",
+          "sourceIds": [
+            "lz26-shirts-gsjb"
+          ]
         }
       ]
     },
@@ -585,11 +593,12 @@
         "planned": "全马20000、半马6000、健康跑8000、家庭跑6000，共40000人。",
         "starters": "",
         "finishers": "",
-        "finishRate": "",
-        "note": "报名须知的计划规模；合作伙伴赛后稿报道4万余人，未核实分别起跑及完赛人数。",
+        "finishRate": "98.5%",
+        "note": "计划规模来自报名须知；兰州日报引述组委会公布本届完赛率98.5%，报道未列实际起跑、完赛人数和分项目统计。",
         "sourceIds": [
           "lz-report-2025",
-          "lz-entry-rules-2025"
+          "lz-entry-rules-2025",
+          "lz25-finish-rate-lzrb"
         ]
       },
       "results": [
@@ -821,6 +830,30 @@
           "sourceIds": [
             "lz-podium-2025"
           ]
+        },
+        {
+          "category": "medal",
+          "title": "2025兰州马拉松完赛奖牌图（新甘肃）",
+          "url": "https://gansu.gscn.com.cn/system/2025/04/02/013305223.shtml",
+          "sourceIds": [
+            "lz25-kit-gscn"
+          ]
+        },
+        {
+          "category": "shirt",
+          "title": "2025兰州马拉松参赛服发布图（新甘肃）",
+          "url": "https://gansu.gscn.com.cn/system/2025/04/02/013305223.shtml",
+          "sourceIds": [
+            "lz25-kit-gscn"
+          ]
+        },
+        {
+          "category": "route-map",
+          "title": "2025兰州马拉松整届赛道图（转载赛事图）",
+          "url": "https://m.lz.bendibao.com/xiuxian/70911.shtm",
+          "sourceIds": [
+            "lz25-course-reprint"
+          ]
         }
       ]
     },
@@ -1011,6 +1044,30 @@
           "url": "https://www.lzmarathon.com/news/detailNews.html?id=2935",
           "sourceIds": [
             "lz-podium-2024"
+          ]
+        },
+        {
+          "category": "medal",
+          "title": "2024兰州马拉松完赛奖牌发布图（兰州晚报）",
+          "url": "https://finance.sina.com.cn/jjxw/2024-04-30/doc-inatpvpi2474069.shtml",
+          "sourceIds": [
+            "lz24-kit-lzwb"
+          ]
+        },
+        {
+          "category": "shirt",
+          "title": "2024兰州马拉松全马、半马参赛服图（兰州晚报）",
+          "url": "https://finance.sina.com.cn/jjxw/2024-04-30/doc-inatpvpi2474069.shtml",
+          "sourceIds": [
+            "lz24-kit-lzwb"
+          ]
+        },
+        {
+          "category": "route-map",
+          "title": "2024兰州马拉松整届赛道图（转载赛事图）",
+          "url": "https://lz.bendibao.com/xiuxian/202447/66171.shtm",
+          "sourceIds": [
+            "lz24-course-reprint"
           ]
         }
       ]
@@ -1410,6 +1467,84 @@
       ],
       "accessedAt": "2026-11-20",
       "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "lz26-shirts-gsjb",
+      "title": "2026兰州马拉松奖牌、参赛服正式亮相",
+      "publisher": "甘肃经济日报",
+      "url": "https://www.gsjb.com/system/2026/03/27/031344317.shtml",
+      "publishedAt": "2026-03-27",
+      "applicableYears": [
+        "2026"
+      ],
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "note": "现场发布报道中可看到金黄色短袖与全马背心的正、背面设计图。"
+    },
+    {
+      "id": "lz25-kit-gscn",
+      "title": "2025兰州马拉松奖牌、参赛服正式亮相",
+      "publisher": "新甘肃客户端／中国甘肃网",
+      "url": "https://gansu.gscn.com.cn/system/2025/04/02/013305223.shtml",
+      "publishedAt": "2025-04-02",
+      "applicableYears": [
+        "2025"
+      ],
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "note": "发布会现场报道，正文有奖牌正背面、蓝色全马及半马竞赛背心、红色健康跑及家庭跑短袖图。"
+    },
+    {
+      "id": "lz25-course-reprint",
+      "title": "2025兰州马拉松赛道路线图",
+      "publisher": "兰州本地宝（署名兰州马拉松）",
+      "url": "https://m.lz.bendibao.com/xiuxian/70911.shtm",
+      "publishedAt": "2025-05-24",
+      "applicableYears": [
+        "2025"
+      ],
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "note": "正文首图头标明兰州银行杯2025兰州马拉松，包含全马、半马及健康跑、家庭跑路线、海拔和补给。"
+    },
+    {
+      "id": "lz24-kit-lzwb",
+      "title": "2024兰马参赛服和完赛奖牌揭晓",
+      "publisher": "兰州晚报／新浪财经",
+      "url": "https://finance.sina.com.cn/jjxw/2024-04-30/doc-inatpvpi2474069.shtml",
+      "publishedAt": "2024-04-30",
+      "applicableYears": [
+        "2024"
+      ],
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "note": "图头写明2024年5月26日，正文展示全马和半马完赛奖牌与两款项目参赛服。"
+    },
+    {
+      "id": "lz24-course-reprint",
+      "title": "兰州马拉松赛道路线图公里数2024",
+      "publisher": "兰州本地宝（转载当届赛事路线图）",
+      "url": "https://lz.bendibao.com/xiuxian/202447/66171.shtm",
+      "publishedAt": "2024-04-07",
+      "applicableYears": [
+        "2024"
+      ],
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "note": "查看正文第一幅原图，图头标明2024，含各项目路线、海拔和赛道服务标记。"
+    },
+    {
+      "id": "lz25-finish-rate-lzrb",
+      "title": "2025兰州马拉松完赛率高达98.5%",
+      "publisher": "兰州日报／中国甘肃网",
+      "url": "https://gansu.gscn.com.cn/system/2025/06/02/013334133.shtml",
+      "publishedAt": "2025-06-02",
+      "applicableYears": [
+        "2025"
+      ],
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "note": "记者6月1日从兰州马拉松组委会获得完赛率，报道未列实际起跑、完赛人数及分项目统计。"
     }
   ],
   "gaps": [
@@ -1432,10 +1567,9 @@
     {
       "fields": [
         "editions[].route.mapUrl",
-        "editions[].gear[].imageUrl",
-        "editions.2026.officialResources.shirt"
+        "editions[].gear[].imageUrl"
       ],
-      "reason": "2026赛道用带届次的官方原图链接，2026奖牌用官网赛报链接。尚未核实公开转载授权、2026参赛服发布原页和2024/2025赛道图、装备原图。"
+      "reason": "2024至2026赛道图、参赛服及奖牌已提供出处，刊载图件的再分发依据待核实。"
     }
   ],
   "conflicts": [

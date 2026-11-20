@@ -455,6 +455,22 @@
           "sourceIds": [
             "dy-guide-2026"
           ]
+        },
+        {
+          "category": "results",
+          "title": "2026东马获奖成绩公示（齐鲁网转载）",
+          "url": "https://dongying.iqilu.com/dyyaowen/2026/1021/5954230.shtml",
+          "sourceIds": [
+            "dy-public-awards-2026"
+          ]
+        },
+        {
+          "category": "results",
+          "title": "2026东马个人成绩与完赛证书查询说明",
+          "url": "http://k.sina.com.cn/article_1893761531_70e081fb02003a0ze.html",
+          "sourceIds": [
+            "dy-personal-results-2026"
+          ]
         }
       ]
     },
@@ -639,6 +655,22 @@
           "url": "https://worldathletics.org/competition/calendar-results/results/7220351",
           "sourceIds": [
             "dy-wa-2025"
+          ]
+        },
+        {
+          "category": "route-map",
+          "title": "2025黄河口马拉松全程赛道图（东营快讯）",
+          "url": "https://www.sohu.com/a/935974280_120632845",
+          "sourceIds": [
+            "dy-route-kit-kuaixun-2025"
+          ]
+        },
+        {
+          "category": "medal",
+          "title": "2025黄河口马拉松全马、半马奖牌正反面（东营快讯）",
+          "url": "https://www.sohu.com/a/935974280_120632845",
+          "sourceIds": [
+            "dy-route-kit-kuaixun-2025"
           ]
         }
       ]
@@ -1077,6 +1109,45 @@
         "2026"
       ],
       "evidence": "二次抽签开查及缴费时间。"
+    },
+    {
+      "id": "dy-public-awards-2026",
+      "title": "2026中国万达・黄河口（东营）马拉松获奖成绩公示",
+      "url": "https://dongying.iqilu.com/dyyaowen/2026/1021/5954230.shtml",
+      "publisher": "齐鲁网·闪电新闻（转发组委会公示）",
+      "publishedAt": "2026-10-21",
+      "accessedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ],
+      "verifiedAt": "2026-11-20",
+      "note": "媒体转载的组委会当届获奖成绩，含全马、半马和中国籍运动员奖。"
+    },
+    {
+      "id": "dy-personal-results-2026",
+      "title": "2026黄河口（东营）马拉松成绩查询及证书下载通道开放",
+      "url": "http://k.sina.com.cn/article_1893761531_70e081fb02003a0ze.html",
+      "publisher": "齐鲁网·闪电新闻／新浪新闻转载",
+      "publishedAt": "2026-10-19",
+      "accessedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ],
+      "verifiedAt": "2026-11-20",
+      "note": "选手可在第一赛道 App 的完赛证书栏目查询个人成绩。"
+    },
+    {
+      "id": "dy-route-kit-kuaixun-2025",
+      "title": "最新发布！事关2025黄河口（东营）马拉松赛道路线图、完赛奖牌……",
+      "url": "https://www.sohu.com/a/935974280_120632845",
+      "publisher": "东营快讯（搜狐号）",
+      "publishedAt": "2025-09-17",
+      "accessedAt": "2026-11-21",
+      "verifiedAt": "2026-11-21",
+      "applicableYears": [
+        "2025"
+      ],
+      "evidence": "报道转刊2025当届组委会发布的高清赛道图、主会场图及全马、半马奖牌正反面。"
     }
   ],
   "gaps": [
@@ -1086,7 +1157,7 @@
         "editions[2024].registration",
         "editions[].participation.finishers"
       ],
-      "reason": "2026四组公开前三和全马中国籍前三已有公示，2025全马公开组前三已有世界田联结果。2025半马、2024报名、女子赛会纪录、各届实际完赛人数和两届装备实物原页仍待核。"
+      "reason": "2026四组公开前三和全马中国籍前三已有公示，2025全马公开组前三已有世界田联结果。2025已补赛道图及奖牌正反面；2025半马、2024报名、女子赛会纪录、各届实际完赛人数及2025、2026参赛服原图仍待核。"
     },
     {
       "fields": [

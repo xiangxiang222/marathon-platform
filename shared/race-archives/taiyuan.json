@@ -296,10 +296,12 @@
       ],
       "logistics": {
         "collection": {
-          "time": "",
-          "place": "",
-          "requirements": "",
-          "sourceIds": []
+          "time": "9月24、25日09:30–17:30；9月26日09:30–20:00",
+          "place": "晋阳湖国际会展中心",
+          "requirements": "持报名时使用的有效身份证件原件，由本人现场核验领取。比赛当天停止领物。",
+          "sourceIds": [
+            "ty-handbook-2026"
+          ]
         },
         "transport": {
           "start": "",
@@ -308,14 +310,14 @@
           "sourceIds": []
         },
         "raceDay": {
-          "startTime": "五一广场起跑，设9个集结区、分4枪出发，检录使用人脸识别。",
-          "timeLimit": "",
-          "bagDrop": "",
+          "startTime": "07:30、07:38、07:46、07:54四枪",
+          "timeLimit": "按第四枪计时：半马10:54、全马13:54关门。",
+          "bagDrop": "06:00–07:20存衣，14:40前到终点指定区域取衣。",
           "aidStations": "",
           "toilets": "",
           "medical": "",
           "sourceIds": [
-            "ty-report-2026"
+            "ty-handbook-2026"
           ]
         },
         "tips": [
@@ -335,6 +337,62 @@
           "url": "https://worldathletics.org/competition/calendar-results/results/7235590",
           "sourceIds": [
             "ty-wa-results-2026"
+          ]
+        },
+        {
+          "category": "results",
+          "title": "2026太马获奖选手名次公示",
+          "url": "https://mp.weixin.qq.com/s/tiyMAPI-Y_mqf4cOXKAh6g",
+          "sourceIds": [
+            "ty-awards-2026"
+          ]
+        },
+        {
+          "category": "results",
+          "title": "2026太马个人成绩与完赛证书查询说明",
+          "url": "https://mp.weixin.qq.com/s/QGpmE5hQBlBh7MlpWcXj_w",
+          "sourceIds": [
+            "ty-certificate-2026"
+          ]
+        },
+        {
+          "category": "guide",
+          "title": "2026太马参赛手册（PDF）",
+          "url": "https://www.tymarathon.cn/upload/1/2026cssc/3d6e/a46b/914d6319c443ef503f586ab.pdf",
+          "sourceIds": [
+            "ty-handbook-2026"
+          ]
+        },
+        {
+          "category": "guide",
+          "title": "2026太马竞赛规程（PDF）",
+          "url": "https://www.tymarathon.cn/upload/1/jsgc-2026/1510/f9cb/ff529f87e5841742abcc3ab.pdf",
+          "sourceIds": [
+            "ty-rules-2026"
+          ]
+        },
+        {
+          "category": "route-map",
+          "title": "2026太马全程、半程赛道图（官方手册第17页）",
+          "url": "https://www.tymarathon.cn/upload/1/2026cssc/3d6e/a46b/914d6319c443ef503f586ab.pdf#page=29",
+          "sourceIds": [
+            "ty-handbook-2026"
+          ]
+        },
+        {
+          "category": "medal",
+          "title": "2026太马完赛奖牌正反面（新华网）",
+          "url": "http://sx.news.cn/20260714/35ba2c8527f44a01b4d5d786b61f4854/c.html",
+          "sourceIds": [
+            "ty-medal-xinhua-2026"
+          ]
+        },
+        {
+          "category": "shirt",
+          "title": "2026太马参赛短袖与背心照片（赛事官方微博）",
+          "url": "https://weibo.com/2/detail/5347678303291196",
+          "sourceIds": [
+            "ty-shirt-weibo-2026"
           ]
         }
       ]
@@ -506,7 +564,33 @@
             ]
           }
         ]
-      }
+      },
+      "officialResources": [
+        {
+          "category": "shirt",
+          "title": "2025太马全马背心及其他组别短袖（慧跑）",
+          "url": "https://news.sohu.com/a/912651836_487948",
+          "sourceIds": [
+            "ty-kit-huipao-2025"
+          ]
+        },
+        {
+          "category": "medal",
+          "title": "2025太马全马、半马完赛奖牌（慧跑）",
+          "url": "https://news.sohu.com/a/912651836_487948",
+          "sourceIds": [
+            "ty-kit-huipao-2025"
+          ]
+        },
+        {
+          "category": "route-map",
+          "title": "2025太马赛事线路图（山西农民报）",
+          "url": "https://www.sohu.com/a/934037477_121475771",
+          "sourceIds": [
+            "ty-map-farmers-2025"
+          ]
+        }
+      ]
     },
     {
       "year": "2024",
@@ -605,7 +689,8 @@
           "time": "02:08:30",
           "timing": "",
           "sourceIds": [
-            "ty-report-2024"
+            "ty-report-2024",
+            "ty-podium-2024"
           ]
         },
         {
@@ -614,7 +699,8 @@
           "time": "02:26:43",
           "timing": "",
           "sourceIds": [
-            "ty-report-2024"
+            "ty-report-2024",
+            "ty-podium-2024"
           ]
         },
         {
@@ -623,7 +709,8 @@
           "time": "01:08:24",
           "timing": "",
           "sourceIds": [
-            "ty-report-2024"
+            "ty-report-2024",
+            "ty-podium-2024"
           ]
         },
         {
@@ -632,7 +719,80 @@
           "time": "01:15:21",
           "timing": "",
           "sourceIds": [
-            "ty-report-2024"
+            "ty-report-2024",
+            "ty-podium-2024"
+          ]
+        },
+        {
+          "group": "马拉松男子亚军",
+          "athlete": "Dejene Debela Gonfa",
+          "time": "02:09:33",
+          "timing": "",
+          "sourceIds": [
+            "ty-podium-2024"
+          ]
+        },
+        {
+          "group": "马拉松男子季军",
+          "athlete": "Asefa Tefera Mengisa",
+          "time": "02:09:38",
+          "timing": "",
+          "sourceIds": [
+            "ty-podium-2024"
+          ]
+        },
+        {
+          "group": "马拉松女子亚军",
+          "athlete": "Fantu Zewude Jifar",
+          "time": "02:26:46",
+          "timing": "",
+          "sourceIds": [
+            "ty-podium-2024"
+          ]
+        },
+        {
+          "group": "马拉松女子季军",
+          "athlete": "Monica Chebet Chepkwony",
+          "time": "02:27:48",
+          "timing": "",
+          "sourceIds": [
+            "ty-podium-2024"
+          ]
+        },
+        {
+          "group": "半程马拉松男子亚军",
+          "athlete": "高金升",
+          "time": "01:09:17",
+          "timing": "",
+          "sourceIds": [
+            "ty-podium-2024"
+          ]
+        },
+        {
+          "group": "半程马拉松男子季军",
+          "athlete": "姚腾",
+          "time": "01:09:45",
+          "timing": "",
+          "sourceIds": [
+            "ty-podium-2024"
+          ]
+        },
+        {
+          "group": "半程马拉松女子亚军",
+          "athlete": "王巧霞",
+          "time": "01:16:23",
+          "timing": "",
+          "sourceIds": [
+            "ty-podium-2024"
+          ]
+        },
+        {
+          "group": "半程马拉松女子季军",
+          "athlete": "安玉霞",
+          "time": "01:24:58",
+          "timing": "",
+          "sourceIds": [
+            "ty-podium-2024"
           ]
         }
       ],
@@ -663,7 +823,17 @@
           ]
         },
         "tips": []
-      }
+      },
+      "officialResources": [
+        {
+          "category": "results",
+          "title": "2024全马、半马男女前三（黄河新闻网）",
+          "url": "https://society.yunnan.cn/system/2024/09/22/033239544.shtml",
+          "sourceIds": [
+            "ty-podium-2024"
+          ]
+        }
+      ]
     }
   ],
   "stories": [
@@ -827,6 +997,123 @@
         "2026"
       ],
       "evidence": "核对公开组与中国籍男女冠军成绩；英文运动员名按世界田联采用 Ablelom MARYO 和 Tigist GASHAW，与山西体育局中文报名名对应。未标枪时或净时。"
+    },
+    {
+      "id": "ty-podium-2024",
+      "title": "2024太原马拉松赛成绩单公布（附高清大图）",
+      "url": "https://society.yunnan.cn/system/2024/09/22/033239544.shtml",
+      "publisher": "黄河新闻网／云南网转载",
+      "publishedAt": "2024-09-22",
+      "accessedAt": "2026-11-20",
+      "applicableYears": [
+        "2024"
+      ],
+      "verifiedAt": "2026-11-20",
+      "note": "太原现场报道列出全马、半马男子和女子的前三成绩；正文未注明计时口径。"
+    },
+    {
+      "id": "ty-awards-2026",
+      "title": "2026太马获奖选手名次公示及奖金发放领取公告",
+      "url": "https://mp.weixin.qq.com/s/tiyMAPI-Y_mqf4cOXKAh6g",
+      "publisher": "太原马拉松组委会",
+      "publishedAt": "2026-09-30",
+      "accessedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ],
+      "verifiedAt": "2026-11-20",
+      "note": "太原马拉松官方网站2026年公告栏中的固定发布链接。"
+    },
+    {
+      "id": "ty-certificate-2026",
+      "title": "一键查收2026太马专属记忆：成绩证书、赛事照片",
+      "url": "https://mp.weixin.qq.com/s/QGpmE5hQBlBh7MlpWcXj_w",
+      "publisher": "太原马拉松组委会",
+      "publishedAt": "2026-09-27",
+      "accessedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ],
+      "verifiedAt": "2026-11-20",
+      "note": "组委会官网2026届赛后新闻链接，供查阅本人完赛成绩和证书。"
+    },
+    {
+      "id": "ty-handbook-2026",
+      "title": "2026九牛牧业太原马拉松参赛手册",
+      "url": "https://www.tymarathon.cn/upload/1/2026cssc/3d6e/a46b/914d6319c443ef503f586ab.pdf",
+      "publisher": "太原马拉松组委会",
+      "publishedAt": "2026-09-24",
+      "accessedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ],
+      "verifiedAt": "2026-11-20",
+      "note": "第3节列领物流程和日期，第5、6节分枪和关门，第10节印刷页码17（PDF第29页）刊载当届全程和半程路线原图。"
+    },
+    {
+      "id": "ty-rules-2026",
+      "title": "2026太原马拉松赛竞赛规程",
+      "url": "https://www.tymarathon.cn/upload/1/jsgc-2026/1510/f9cb/ff529f87e5841742abcc3ab.pdf",
+      "publisher": "太原马拉松组委会",
+      "publishedAt": "2026-07-14",
+      "accessedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ],
+      "verifiedAt": "2026-11-20",
+      "note": "赛事官网公告区提供的当届竞赛规程 PDF。"
+    },
+    {
+      "id": "ty-medal-xinhua-2026",
+      "title": "2026年太原马拉松7月15日启动报名",
+      "url": "http://sx.news.cn/20260714/35ba2c8527f44a01b4d5d786b61f4854/c.html",
+      "publisher": "山西晚报（新华网转载）",
+      "publishedAt": "2026-07-14",
+      "accessedAt": "2026-11-21",
+      "verifiedAt": "2026-11-21",
+      "applicableYears": [
+        "2026"
+      ],
+      "evidence": "报道附正反面奖牌图，图上印有2026及赛事全名。"
+    },
+    {
+      "id": "ty-kit-huipao-2025",
+      "title": "你只管安心夏训，其他的交给2025太原马拉松！",
+      "url": "https://news.sohu.com/a/912651836_487948",
+      "publisher": "慧跑（搜狐号）",
+      "publishedAt": "2025-07-10",
+      "accessedAt": "2026-11-21",
+      "verifiedAt": "2026-11-21",
+      "applicableYears": [
+        "2025"
+      ],
+      "evidence": "正文的赛事发布图标注2025太原马拉松，分别展示全马背心、其他项目短袖和全马、半马奖牌。"
+    },
+    {
+      "id": "ty-map-farmers-2025",
+      "title": "9月21日鸣枪起跑 2025太原马拉松赛事亮点抢先看",
+      "url": "https://www.sohu.com/a/934037477_121475771",
+      "publisher": "山西农民报（搜狐号）",
+      "publishedAt": "2025-09-11",
+      "accessedAt": "2026-11-21",
+      "verifiedAt": "2026-11-21",
+      "applicableYears": [
+        "2025"
+      ],
+      "evidence": "赛前发布会报道附标有2025年、五一广场起点的赛事线路图。"
+    },
+    {
+      "id": "ty-shirt-weibo-2026",
+      "title": "2026太原马拉松参赛服 轻盈速干兼具时尚功能性",
+      "url": "https://weibo.com/2/detail/5347678303291196",
+      "publisher": "太原马拉松赛官方微博",
+      "publishedAt": "2026-09-27",
+      "accessedAt": "2026-11-21",
+      "verifiedAt": "2026-11-21",
+      "applicableYears": [
+        "2026"
+      ],
+      "evidence": "赛事官方微博以实际参赛者照片展示橙色短袖和橙黄背心；正文明确为2026太原马拉松参赛服。"
     }
   ],
   "gaps": [
@@ -843,14 +1130,14 @@
         "editions.2026.registration",
         "editions.logistics.collection"
       ],
-      "reason": "2024已核实开放时间和官方所述报名峰值，费用、抽签与领物细则仍待核实；2026须知和2025费用暂未确认。"
+      "reason": "2024已核实开放时间和报道所述报名峰值，费用、抽签与领物细则仍待核实；2026参赛手册已补领物、分枪和关门，2025费用仍待核实。"
     },
     {
       "fields": [
         "images",
         "editions.route.mapUrl"
       ],
-      "reason": "2024省政府发布页只列文字路线；目前未核得可打开的太马历届赛道图、服装和奖牌实物原页或可转载许可。"
+      "reason": "2026组委会参赛手册和2025山西农民报均有完整线路图。2025、2026参赛服及完赛奖牌图已找到；2024赛道图与装备图待补。"
     }
   ],
   "conflicts": []

@@ -201,10 +201,12 @@ async function main() {
           }
           for (const key of ['planned','starters','finishers','finishRate']) if (edition.participation[key]) assert.ok(resultText.includes(edition.participation[key]), race.id + ' ' + year + ' participation: ' + key);
           await page.getByRole('button', { name: '赛道', exact: true }).click();
-          await page.locator('.version-card').filter({has:page.getByText(String(year),{exact:true})}).first().click();
-          if(await page.getByLabel('选择版本内年份').count())await page.getByLabel('选择版本内年份').selectOption(String(year));
-          const routeText=await page.locator('.road-order').innerText();
-          for(const stage of String(edition.route.summary||'').split('→').map(value=>value.trim()).filter(Boolean))assert.ok(routeText.includes(stage),race.id+' '+year+' correct route');
+          await page.getByLabel('选择赛道年份').selectOption(String(year));
+          const stages = String(edition.route.summary||'').split('→').map(value=>value.trim()).filter(Boolean);
+          if(stages.length){
+            const routeText=await page.locator('.road-order').innerText();
+            for(const stage of stages)assert.ok(routeText.includes(stage),race.id+' '+year+' correct route');
+          }
           for(const item of (edition.officialResources||[]).filter(item=>item.category==='route-map')) {
             assert.equal(await page.getByRole('link',{name:item.title+' ↗',exact:true}).getAttribute('href'),item.url);
           }
@@ -218,7 +220,7 @@ async function main() {
         assert.equal(await page.getByLabel('选择成绩年份').inputValue(), selectedYear, 'Entry year does not change result year');
         await page.waitForFunction(year=>new URL(location.href).searchParams.get('year')===year,selectedYear);
         await page.getByRole('button', { name: '图鉴', exact: true }).click();
-        assert.equal(await page.locator('.page-content select').count(), 0, 'Gallery presents annual groups directly');
+        assert.equal(await page.getByLabel('选择图鉴年份').inputValue(), '', 'Gallery defaults to all years');
         for (const category of ['参赛服','奖牌','参赛包','完赛包']) {
           await page.getByRole('button', { name: category, exact:true }).click();
           const resourceCategory = {'参赛服':'shirt','奖牌':'medal'}[category];

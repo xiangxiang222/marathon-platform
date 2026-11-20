@@ -486,11 +486,21 @@
       },
       "results": [
         {
+          "group": "全程马拉松男子冠军",
+          "athlete": "王红伟",
+          "time": "02:13:25",
+          "timing": "枪声成绩",
+          "sourceIds": [
+            "xa-podium-2025"
+          ]
+        },
+        {
           "group": "全程马拉松女子冠军",
           "athlete": "黄菲",
           "time": "02:31:02",
-          "timing": "",
+          "timing": "枪声成绩",
           "sourceIds": [
+            "xa-podium-2025",
             "xa-huang-wa-2025",
             "xa-huang-cctv-2025"
           ]
@@ -533,6 +543,16 @@
       },
       "notes": [
         "已核对全马女子冠军及世界田联年度最佳用时；当届完整公示和其计时类型仍待核。"
+      ],
+      "officialResources": [
+        {
+          "category": "results",
+          "title": "2025西安全马男女冠军（西安市体育局）",
+          "url": "https://xatyj.xa.gov.cn/xwzx/tpxw/1980111308111515649.html",
+          "sourceIds": [
+            "xa-podium-2025"
+          ]
+        }
       ]
     },
     {
@@ -613,7 +633,170 @@
           "xa-race-2024"
         ]
       },
-      "results": [],
+      "results": [
+        {
+          "group": "全程马拉松男子冠军",
+          "athlete": "贾俄仁加",
+          "time": "02:12:13",
+          "timing": "枪声成绩",
+          "sourceIds": [
+            "xa-lookup-2024"
+          ]
+        },
+        {
+          "group": "全程马拉松女子冠军",
+          "athlete": "Derartu Hailu Gerefa",
+          "time": "02:29:37",
+          "timing": "枪声成绩",
+          "sourceIds": [
+            "xa-lookup-2024"
+          ]
+        },
+        {
+          "group": "全程马拉松男子亚军",
+          "athlete": "Adisu Tesfahun Tafere",
+          "time": "02:12:14",
+          "timing": "枪声成绩",
+          "sourceIds": [
+            "xa-lookup-2024"
+          ]
+        },
+        {
+          "group": "全程马拉松男子季军",
+          "athlete": "杨绍辉",
+          "time": "02:12:28",
+          "timing": "枪声成绩",
+          "sourceIds": [
+            "xa-lookup-2024"
+          ]
+        },
+        {
+          "group": "全程马拉松女子亚军",
+          "athlete": "Pamela Rotich",
+          "time": "02:31:37",
+          "timing": "枪声成绩",
+          "sourceIds": [
+            "xa-lookup-2024"
+          ]
+        },
+        {
+          "group": "全程马拉松女子季军",
+          "athlete": "潘素芳",
+          "time": "02:33:32",
+          "timing": "枪声成绩",
+          "sourceIds": [
+            "xa-lookup-2024"
+          ]
+        },
+        {
+          "group": "半程马拉松男子冠军",
+          "athlete": "张校瑞",
+          "time": "01:07:31",
+          "timing": "净计时",
+          "sourceIds": [
+            "xa-lookup-2024"
+          ]
+        },
+        {
+          "group": "半程马拉松男子亚军",
+          "athlete": "刘艾岩",
+          "time": "01:07:55",
+          "timing": "净计时",
+          "sourceIds": [
+            "xa-lookup-2024"
+          ]
+        },
+        {
+          "group": "半程马拉松男子季军",
+          "athlete": "阿奴拜克·库弯",
+          "time": "01:09:03",
+          "timing": "净计时",
+          "sourceIds": [
+            "xa-lookup-2024"
+          ]
+        },
+        {
+          "group": "半程马拉松女子冠军",
+          "athlete": "肖晶",
+          "time": "01:17:10",
+          "timing": "净计时",
+          "sourceIds": [
+            "xa-lookup-2024"
+          ]
+        },
+        {
+          "group": "半程马拉松女子亚军",
+          "athlete": "郭利亚",
+          "time": "01:17:16",
+          "timing": "净计时",
+          "sourceIds": [
+            "xa-lookup-2024"
+          ]
+        },
+        {
+          "group": "半程马拉松女子季军",
+          "athlete": "王巧霞",
+          "time": "01:18:47",
+          "timing": "净计时",
+          "sourceIds": [
+            "xa-lookup-2024"
+          ]
+        },
+        {
+          "group": "全马中国籍男子冠军",
+          "athlete": "贾俄仁加",
+          "time": "02:12:12",
+          "timing": "净计时",
+          "sourceIds": [
+            "xa-lookup-2024"
+          ]
+        },
+        {
+          "group": "全马中国籍男子亚军",
+          "athlete": "杨绍辉",
+          "time": "02:12:27",
+          "timing": "净计时",
+          "sourceIds": [
+            "xa-lookup-2024"
+          ]
+        },
+        {
+          "group": "全马中国籍男子季军",
+          "athlete": "杨章兴",
+          "time": "02:14:05",
+          "timing": "净计时",
+          "sourceIds": [
+            "xa-lookup-2024"
+          ]
+        },
+        {
+          "group": "全马中国籍女子冠军",
+          "athlete": "潘素芳",
+          "time": "02:33:27",
+          "timing": "净计时",
+          "sourceIds": [
+            "xa-lookup-2024"
+          ]
+        },
+        {
+          "group": "全马中国籍女子亚军",
+          "athlete": "张珊珊",
+          "time": "02:37:27",
+          "timing": "净计时",
+          "sourceIds": [
+            "xa-lookup-2024"
+          ]
+        },
+        {
+          "group": "全马中国籍女子季军",
+          "athlete": "熊娟",
+          "time": "02:38:26",
+          "timing": "净计时",
+          "sourceIds": [
+            "xa-lookup-2024"
+          ]
+        }
+      ],
       "gear": [],
       "logistics": {
         "collection": {
@@ -649,7 +832,17 @@
           }
         ]
       },
-      "notes": []
+      "notes": [],
+      "officialResources": [
+        {
+          "category": "results",
+          "title": "2024西马组委会成绩公示长图与个人查询说明",
+          "url": "https://xa.bendibao.com/xiuxian/2024114/134354.shtm",
+          "sourceIds": [
+            "xa-lookup-2024"
+          ]
+        }
+      ]
     }
   ],
   "stories": [
@@ -885,6 +1078,32 @@
         "2025"
       ],
       "evidence": "报道用于核对2025女子冠军；成绩时间用世界田联。"
+    },
+    {
+      "id": "xa-lookup-2024",
+      "title": "2024西安马拉松比赛成绩查询与证书下载入口",
+      "url": "https://xa.bendibao.com/xiuxian/2024114/134354.shtm",
+      "publisher": "西安本地宝",
+      "publishedAt": "2024-11-04",
+      "accessedAt": "2026-11-20",
+      "applicableYears": [
+        "2024"
+      ],
+      "verifiedAt": "2026-11-20",
+      "note": "正文收录组委会原成绩公示长图。全马公开组按枪声、半马公开组及全马中国籍组按净计时；正文附个人成绩与证书查询方法。"
+    },
+    {
+      "id": "xa-podium-2025",
+      "title": "2025西安马拉松赛圆满举办",
+      "url": "https://xatyj.xa.gov.cn/xwzx/tpxw/1980111308111515649.html",
+      "publisher": "西安市体育局",
+      "publishedAt": "2025-10-20",
+      "accessedAt": "2026-11-20",
+      "applicableYears": [
+        "2025"
+      ],
+      "verifiedAt": "2026-11-20",
+      "note": "西安市体育局赛后公告明确运动员姓名和冠军枪声成绩。"
     }
   ],
   "gaps": [
@@ -896,7 +1115,7 @@
         "editions[2026].logistics.collection",
         "editions[2026].registration.lotteryRate"
       ],
-      "reason": "2025已补女子全马冠军；2024成绩、2025其余组别完整原表、2024和2025原始规程、2026领物及分池抽签人数仍待核实。"
+      "reason": "2024公示长图已补全马公开组、半马公开组和全马中国籍组的代表性名次；2025已收录全马男女冠军枪声成绩。2025其余组别完整原表、2024和2025原始规程、2026领物及分池抽签人数仍待核实。"
     },
     {
       "fields": [

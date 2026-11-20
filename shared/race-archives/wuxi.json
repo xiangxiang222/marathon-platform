@@ -768,6 +768,22 @@
           "sourceIds": [
             "wx-wa-2025"
           ]
+        },
+        {
+          "category": "route-map",
+          "title": "2025无锡马拉松赛道图（媒体转引）",
+          "url": "https://www.sohu.com/a/842346954_100048098",
+          "sourceIds": [
+            "wx25-route-press"
+          ]
+        },
+        {
+          "category": "medal",
+          "title": "2025无锡马拉松完赛奖牌图（无锡发布）",
+          "url": "https://www.thepaper.cn/newsDetail_forward_30443829",
+          "sourceIds": [
+            "wx25-medal-city"
+          ]
         }
       ]
     },
@@ -949,6 +965,14 @@
           "url": "https://worldathletics.org/competition/calendar-results/results/7207353",
           "sourceIds": [
             "wx-wa-2024"
+          ]
+        },
+        {
+          "category": "medal",
+          "title": "2024无锡马拉松完赛奖牌图（媒体转引）",
+          "url": "https://www.sohu.com/a/766221861_100048098",
+          "sourceIds": [
+            "wx24-medal-press"
           ]
         }
       ]
@@ -1222,6 +1246,45 @@
       ],
       "verifiedAt": "2026-11-20",
       "publishedAt": "2025-03-27"
+    },
+    {
+      "id": "wx25-route-press",
+      "title": "2025无锡马拉松报名及赛道图",
+      "publisher": "跑步之声／搜狐（图载无锡马拉松、汇跑赛事标志）",
+      "url": "https://www.sohu.com/a/842346954_100048098",
+      "publishedAt": "2024-12-27",
+      "applicableYears": [
+        "2025"
+      ],
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "note": "正文的届次赛道图标明2025海澜之家无锡马拉松，具备线路和沿途服务标记。"
+    },
+    {
+      "id": "wx25-medal-city",
+      "title": "2025锡马奖牌揭晓",
+      "publisher": "无锡发布／澎湃号·政务",
+      "url": "https://www.thepaper.cn/newsDetail_forward_30443829",
+      "publishedAt": "2025-03-20",
+      "applicableYears": [
+        "2025"
+      ],
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "note": "逐图比对汇跑赛事图件，图中展示玫瑰金全马奖牌和月光银半马、欢乐跑奖牌。"
+    },
+    {
+      "id": "wx24-medal-press",
+      "title": "步步高丨2024无锡马拉松完赛奖牌揭晓",
+      "publisher": "跑步之声／搜狐（图载无锡马拉松、汇跑赛事标志）",
+      "url": "https://www.sohu.com/a/766221861_100048098",
+      "publishedAt": "2024-03-23",
+      "applicableYears": [
+        "2024"
+      ],
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "note": "图可见2024届字样、奖牌正背面及全马、半马和欢乐跑的不同版本。"
     }
   ],
   "gaps": [
@@ -1229,12 +1292,12 @@
       "fields": [
         "records.男子赛会纪录",
         "editions.2025.registration.开始截止费用资格缴费",
-        "editions.2025.officialResources.赛道图参赛服奖牌",
-        "editions.2024.officialResources.赛道图参赛服奖牌",
+        "editions.2025.officialResources.shirt",
+        "editions.2024.officialResources.赛道图参赛服",
         "editions.2024.results.半程",
         "editions.2025.results.半程"
       ],
-      "reason": "2025项目规模和抽签人数由扬子晚报同日报道核验，组委会当届完整报名须知尚待核验；2024、2025图源和半马成绩，以及明确认定的男子赛会纪录仍缺。"
+      "reason": "2025赛道图和2024、2025完赛奖牌图已收录；2025组委会完整报名须知、参赛服当届发布图、2024路线图和参赛服、两届半马成绩及男子赛会纪录仍待核验。"
     },
     {
       "fields": [

@@ -659,6 +659,14 @@
           "sourceIds": [
             "gz-pickup-2024"
           ]
+        },
+        {
+          "category": "route-map",
+          "title": "2024广州马拉松新版赛道图（广州日报转引）",
+          "url": "https://m.gmw.cn/2024-11/28/content_1303908732.htm",
+          "sourceIds": [
+            "gz24-gzdaily-course"
+          ]
         }
       ]
     }
@@ -1007,6 +1015,19 @@
         "2025"
       ],
       "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "gz24-gzdaily-course",
+      "title": "2024广州马拉松赛新版线路图公布",
+      "publisher": "广州日报／光明网",
+      "url": "https://m.gmw.cn/2024-11/28/content_1303908732.htm",
+      "publishedAt": "2024-11-28",
+      "applicableYears": [
+        "2024"
+      ],
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "note": "正文刊载由广州马拉松发布、图头标明2024届的红底全程线路图。"
     }
   ],
   "gaps": [
@@ -1028,10 +1049,9 @@
     },
     {
       "fields": [
-        "editions.2024.officialResources.赛道图",
         "editions.2026.officialResources.赛道图参赛服奖牌"
       ],
-      "reason": "赛事网站另一个同名“比赛路线”页实际展示2023原图，不能给2024或2026使用；2026已公布文字规程，但赛道图及实物发布页待核验。"
+      "reason": "2024新版赛道图已由广州日报报道补齐。2026已公布文字规程，同名旧路线页实际是2023原图，2026对应地图及实物图待核验。"
     }
   ],
   "conflicts": [

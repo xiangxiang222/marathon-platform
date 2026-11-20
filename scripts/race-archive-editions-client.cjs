@@ -14,6 +14,22 @@ async function links(locator, urls) {
   const actual = await locator.evaluateAll(elements => elements.map(element => element.href));
   for (const url of urls) assert.ok(actual.includes(url), 'missing ' + url);
 }
+async function checkEntryControls(page) {
+  const switcher = page.getByRole('navigation', { name: '参赛资料' });
+  const geometry = await switcher.evaluate(element => {
+    const rect = element.getBoundingClientRect();
+    const year = document.querySelector('[aria-label="选择参赛年份"]').getBoundingClientRect();
+    const buttons = [...element.querySelectorAll('button')].map(button => button.getBoundingClientRect());
+    return {
+      left: rect.left, right: rect.right, top: rect.top, yearBottom: year.bottom,
+      fits: element.scrollWidth <= element.clientWidth && buttons.every(button => button.left >= rect.left && button.right <= rect.right && button.height >= 44),
+      equal: Math.abs(buttons[0].width - buttons[1].width) < 1,
+      viewport: document.documentElement.clientWidth
+    };
+  });
+  assert.ok(geometry.fits && geometry.left >= 0 && geometry.right <= geometry.viewport, 'Entry controls fit on screen without scrolling');
+  assert.ok(geometry.equal && geometry.top - geometry.yearBottom < 32, 'Both controls sit directly below the year on one row');
+}
 async function run() {
   const browser = await chromium.launch(chrome ? { executablePath: chrome, headless: true } : { headless: true });
   const errors = [], views = [];
@@ -31,6 +47,12 @@ async function run() {
       await page.getByText('逐届资料与缺项', { exact: true }).click();
       for (const [tab, label, selector] of [['entry','参赛','选择参赛年份'],['results','成绩','选择成绩年份'],['gallery','图鉴','选择图鉴年份'],['updates','动态','选择故事年份']]) {
         await tabs.getByRole('button', { name: label, exact: true }).click();
+        if (tab === 'entry') {
+          await checkEntryControls(page);
+          await page.setViewportSize({ width: 320, height: 900 });
+          await checkEntryControls(page);
+          await page.setViewportSize({ width: 390, height: 900 });
+        }
         for (const edition of archive.editions) {
           await page.getByLabel(selector).selectOption(String(edition.year));
           const resources = category => edition.officialResources.filter(item => item.category === category).map(item => item.url);
@@ -43,6 +65,9 @@ async function run() {
           } else if (tab === 'results') {
             assert.equal(await page.locator('.champion,.result-row').count(), edition.results.length);
             await links(page.locator('.section a.official-resource'), resources('results'));
+            if (!edition.results.length && !edition.coverage.upcoming && resources('results').length) {
+              assert.ok(await page.getByRole('heading', { name: '可通过下方链接查询本届成绩', exact: true }).isVisible());
+            }
             const displayed = await page.locator('.champion,.result-row').allTextContents();
             for (const row of edition.results) assert.ok(displayed.some(text => text.includes(row.athlete) && (!row.timing || text.includes(row.timing))));
           } else if (tab === 'gallery') {
@@ -59,8 +84,7 @@ async function run() {
       }
       await tabs.getByRole('button', { name: '赛道', exact: true }).click();
       for (const edition of archive.editions) {
-        await page.locator('.version-card').filter({ has: page.getByText(String(edition.year), { exact: true }) }).first().click();
-        if (await page.getByLabel('选择版本内年份').count()) await page.getByLabel('选择版本内年份').selectOption(String(edition.year));
+        await page.getByLabel('选择赛道年份').selectOption(String(edition.year));
         assert.ok(await page.getByRole('heading', { name: edition.year + ' 年赛道图', exact: true }).isVisible());
         await links(page.locator('.section a.official-resource'), edition.officialResources.filter(item => item.category === 'route-map').map(item => item.url));
       }

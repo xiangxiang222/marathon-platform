@@ -247,13 +247,13 @@ function validateArchiveInput(body, current, db, id, base) {
         items: texts(g.items, '物品清单', 60), imageUrl: image, images: media(g.images, '物品图片组'), sourceIds: refs(g.sourceIds), sourceUrl: prior.sourceUrl || '',
         mediaRights: image && image.startsWith(uploadPrefix) ? rightsFor(image) : prior.mediaRights };
     });
-    const officialResources = list(item.officialResources ?? previous.officialResources, '当届官方资料入口', 30).map(resource => {
-      object(resource, '当届官方资料入口');
+    const officialResources = list(item.officialResources ?? previous.officialResources, '当届资料入口', 30).map(resource => {
+      object(resource, '当届资料入口');
       const category = text(resource.category, '入口类型', 40);
       const title = text(resource.title, '入口标题', 160);
       const url = officialResourceUrl(text(resource.url, '入口链接', 2000));
       const sourceIds = refs(resource.sourceIds);
-      if (!OFFICIAL_RESOURCE_CATEGORIES.has(category) || !title || !url || !sourceIds.some(id => sourceById.get(id)?.applicableYears?.includes(y))) throw error('官方资料入口须有类型、标题、有效链接和适用当届的资料来源');
+      if (!OFFICIAL_RESOURCE_CATEGORIES.has(category) || !title || !url || !sourceIds.some(id => sourceById.get(id)?.applicableYears?.includes(y))) throw error('资料入口须有类型、标题、有效链接和适用当届的资料来源');
       return { category, title, url, sourceIds };
     });
     const logistics = Object.fromEntries([

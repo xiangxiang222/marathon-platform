@@ -405,6 +405,14 @@
           "sourceIds": [
             "cq-collection-2026"
           ]
+        },
+        {
+          "category": "route-map",
+          "title": "2026重马赛道图（重庆本地宝刊载赛事图）",
+          "url": "https://m.cq.bendibao.com/xiuxian/148472.shtm",
+          "sourceIds": [
+            "cq-route-bendibao-2026"
+          ]
         }
       ]
     },
@@ -431,7 +439,7 @@
         },
         {
           "project": "迷你跑",
-          "distanceKm": 5.0,
+          "distanceKm": 5,
           "plannedParticipants": 10000,
           "fee": "",
           "sourceIds": [
@@ -622,6 +630,14 @@
           "sourceIds": [
             "cq-collection-2025"
           ]
+        },
+        {
+          "category": "route-map",
+          "title": "2025重马赛道图（央广网，主办方供图）",
+          "url": "https://cq.cnr.cn/xwsd/20241205/t20241205_527000163.shtml",
+          "sourceIds": [
+            "cq-route-cnr-2025"
+          ]
         }
       ]
     },
@@ -648,7 +664,7 @@
         },
         {
           "project": "迷你跑",
-          "distanceKm": 5.0,
+          "distanceKm": 5,
           "plannedParticipants": 15000,
           "fee": "",
           "sourceIds": [
@@ -1058,6 +1074,30 @@
         "2025"
       ],
       "evidence": "核对南坪领物安排。"
+    },
+    {
+      "id": "cq-route-cnr-2025",
+      "title": "2025长安汽车重庆马拉松赛事发布",
+      "url": "https://cq.cnr.cn/xwsd/20241205/t20241205_527000163.shtml",
+      "publisher": "央广网",
+      "publishedAt": "2024-12-05",
+      "accessedAt": "2026-11-20",
+      "applicableYears": [
+        "2025"
+      ],
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "cq-route-bendibao-2026",
+      "title": "2026重庆马拉松比赛路线图",
+      "url": "https://m.cq.bendibao.com/xiuxian/148472.shtm",
+      "publisher": "重庆本地宝",
+      "publishedAt": "2025-08-18",
+      "accessedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ],
+      "verifiedAt": "2026-11-20"
     }
   ],
   "gaps": [
@@ -1067,14 +1107,14 @@
         "editions[].participation.finishers",
         "editions[].officialResources"
       ],
-      "reason": "2024至2026全马已有世界田联结果；2025、2026参赛服见组委会领物公告。公开组男子纪录沿革、实际完赛人数、最近两届赛道图及奖牌原页仍待核。"
+      "reason": "2024至2026全马已有世界田联结果；2025、2026参赛服见组委会领物公告，赛道图可通过媒体刊载的赛事图查阅。公开组男子纪录沿革、实际完赛人数和最近两届大众完赛奖牌原页仍待核。"
     },
     {
       "fields": [
         "editions[].route.mapUrl",
         "editions[].gear[].imageUrl"
       ],
-      "reason": "未取得可公开再分发的图片许可；仅保留来源链接，不接入赛道图或物资实物图片。"
+      "reason": "赛道图与装备原图通过来源页面查阅，图片转载许可待核。"
     }
   ],
   "conflicts": [

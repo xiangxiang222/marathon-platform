@@ -123,6 +123,7 @@ test('template presents local years, collapsible evidence and no synthetic items
   assert.match(template,/toggleSources/);assert.match(template,/copySource/);assert.match(template,/toggleHistory/);assert.match(template,/toggleCoverage/);assert.match(template,/archive-records/);
   for(const id of ['overview','entry','route','results','gallery','updates'])assert.ok(template.includes("tab === '"+id+"'"));
   assert.match(template,/piece.images/);assert.match(template,/data-images/);assert.match(template,/previewAlbum/);assert.match(template,/非导航地图/);assert.match(template,/archive-image-credit/);
+  assert.match(template,/resultLinks\.length \? '可通过下方链接查询本届成绩'/);
   const css=fs.readFileSync(path.join(ROOT,'miniprogram/pages/race-archive/race-archive.wxss'),'utf8');assert.doesNotMatch(css,/font-size:(?:[0-9]|1[01])px/);assert.match(css,/#ff1838/);
 });
 

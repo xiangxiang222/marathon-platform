@@ -666,12 +666,14 @@ test("a race without a signup deadline is not shown as closed", () => {
 test("official races stay in review until published, and do not overwrite a known deadline", async () => {
   process.env.ADMIN_TOKEN = "test-admin";
   const admin = { Authorization: "Bearer test-admin" };
+  const futureDay = days => new Date(Date.now() + (8 + days * 24) * 3600000).toISOString().slice(0, 10);
+  const registrationDeadline = futureDay(7);
   const before = await request(app).get("/marathon/api/races/bishan");
   const deadline = before.body.race.deadline;
   const pages = [
     [
       { raceId: 1000481014, raceName: "2026重庆璧山马拉松", raceGrade: "A", raceTime: "2026-11-15", raceAddress: "重庆市/重庆市/", raceItem: '["全程","半程"]' },
-      { raceId: 4242, raceName: "2026后台测试马拉松", raceGrade: "B", raceTime: "2026-12-01", raceAddress: "浙江省/杭州市/西湖区", raceItem: '["全程"]' },
+      { raceId: 4242, raceName: "后台测试马拉松", raceGrade: "B", raceTime: futureDay(14), raceAddress: "浙江省/杭州市/西湖区", raceItem: '["全程"]' },
       { raceId: 7, raceName: "2020旧比赛", raceGrade: "C", raceTime: "2020-01-01", raceAddress: "北京市/北京市/", raceItem: '["半程"]' }
     ]
   ];
@@ -715,7 +717,7 @@ test("official races stay in review until published, and do not overwrite a know
   const still = await request(app).get("/marathon/api/races/bishan");
   assert.equal(still.body.race.deadline, deadline);
 
-  const sourced = await request(app).put("/marathon/api/admin/races/caa-4242").set(admin).send({ deadline: "2026-11-20", source: "规程，2026-10-09" });
+  const sourced = await request(app).put("/marathon/api/admin/races/caa-4242").set(admin).send({ deadline: registrationDeadline, source: "规程，2026-10-09" });
   assert.equal(sourced.status, 200);
   assert.equal(sourced.body.race.regStatus, "报名中");
   assert.equal(sourced.body.race.source, "规程，2026-10-09");

@@ -409,6 +409,22 @@
           "sourceIds": [
             "sh-2025-guide-en"
           ]
+        },
+        {
+          "category": "shirt",
+          "title": "2025上马参赛服、完赛服和破三风衣（新浪图集）",
+          "url": "https://k.sina.com.cn/article_5693194807_p1535742370270222ho.html",
+          "sourceIds": [
+            "sh-kit-sina-2025"
+          ]
+        },
+        {
+          "category": "medal",
+          "title": "2025上马大众完赛奖牌正反面（搜狐号刊载）",
+          "url": "https://m.sohu.com/a/958747067_121124668",
+          "sourceIds": [
+            "sh-medal-sohu-2025"
+          ]
         }
       ]
     },
@@ -931,6 +947,30 @@
       "applicableYears": [
         "2026"
       ]
+    },
+    {
+      "id": "sh-kit-sina-2025",
+      "title": "2025上海马拉松参赛服装全面升级，首次区分男女款破三风衣",
+      "url": "https://k.sina.com.cn/article_5693194807_p1535742370270222ho.html",
+      "publisher": "新浪图片",
+      "publishedAt": "2025-11-26",
+      "accessedAt": "2026-11-20",
+      "applicableYears": [
+        "2025"
+      ],
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "sh-medal-sohu-2025",
+      "title": "重磅发布，2025上海马拉松奖牌详解！",
+      "url": "https://m.sohu.com/a/958747067_121124668",
+      "publisher": "体育帮帮忙（搜狐号）",
+      "publishedAt": "2025-11-26",
+      "accessedAt": "2026-11-20",
+      "applicableYears": [
+        "2025"
+      ],
+      "verifiedAt": "2026-11-20"
     }
   ],
   "schemaVersion": 2,
@@ -1050,13 +1090,6 @@
         "records"
       ],
       "reason": "男子纪录由2024发布会和2025赛后成绩交叉核对，2025男子冠军2:06:25慢于现纪录；女子赛会纪录在2025刷新。两条均核至2025已赛届次。"
-    },
-    {
-      "fields": [
-        "editions.2025.officialResources.参赛服",
-        "editions.2025.officialResources.完赛奖牌"
-      ],
-      "reason": "2025市体育局发布会报道描述大众完赛奖牌设计，页面照片为活动场景；尚未核实能清楚查看实物的原始页面。"
     },
     {
       "fields": [
