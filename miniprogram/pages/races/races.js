@@ -1,10 +1,6 @@
 const { request, ready } = require("../../utils/request");
 function accountToken() { return typeof getApp === "function" ? (getApp().globalData || {}).token || "" : ""; }
-const landmarks = {
-  beijing: '/images/race-landmarks/beijing.png',
-  shanghai: '/images/race-landmarks/shanghai.png',
-  xiamen: '/images/race-landmarks/xiamen.png'
-};
+const { landmarkSrc } = require('../../utils/race-landmarks');
 
 function pageNumbers(page, pages) {
   const total = Math.max(1, Number(pages) || 1);
@@ -187,7 +183,7 @@ Page({
           const sameYear = wa.label && caa.label && wa.year && String(wa.year) === String(caa.year);
           return {
             ...race,
-            landmarkSrc: landmarks[race.id] || "",
+            landmarkSrc: landmarkSrc(race.id),
             waLabel: wa.label || "待核实",
             caaLabel: caa.label || "待核实",
             certificationYear: sameYear ? String(wa.year) : "",

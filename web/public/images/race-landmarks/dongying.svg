@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="96" viewBox="0 0 120 96" fill="none">
+  <title>东营黄河口湿地地标图标</title>
+  <g stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9 41c14-16 34-22 52-24 26-1 40 11 50 28v29c-10 9-30 14-51 14S22 83 9 74Z" fill="#dbf2f0" stroke="#81b4ac"/>
+    <path d="M9 41c16-17 36-22 55-23-7 5-6 10 4 14l9 3c7 5 4 11-6 14l-9 4c-6 3-7 6-3 10l5 6c-17 5-35 4-55 5Z" fill="#f9dfac" stroke="#b98e58"/>
+    <path d="M33 23c5 8 15 11 25 15 9 4 9 8 0 11-10 4-21 8-18 15l6 8m2-38c0 7-8 11-18 12l-12 1m40 2c19-4 30-3 41 2m-60 9c-10 3-15 7-16 13" stroke="#85b6af" stroke-width="2"/>
+    <path d="M65 67c8-7 16-10 29-9l7 4c-14 4-22 6-36 5Z" fill="#b9d9ac" stroke="#7fa784"/>
+    <path d="M29 56c2-6 8-9 17-8m-31 14c2-3 7-5 12-5m40 21h19m9-6h8" stroke="#9fb486"/>
+    <circle cx="92" cy="26" r="5" fill="#ffc47a" stroke="#d5996a"/>
+    <path d="M93 26h.1" stroke="#ff1838" stroke-width="2"/>
+  </g>
+</svg>

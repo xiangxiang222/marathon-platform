@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="96" viewBox="0 0 120 96" fill="none">
+  <title>武汉黄鹤楼与长江地标图标</title>
+  <g stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M10 74c22-6 37-4 50 0 18 6 34 3 50 0" stroke="#87b7c4" stroke-width="2"/>
+    <path d="M12 82c17-4 27-3 44 0 19 4 37 4 52-1m-85 8h20m7 0h25m7 0h16" stroke="#a2c9d4"/>
+    <path d="M30 71h60v7H30z" fill="#e9b89f" stroke="#a65e47"/>
+    <g fill="#fff0d5" stroke="#a65e47">
+      <path d="M36 59h48v12H36zM41 46h38v12H41zM46 34h28v11H46zM51 23h18v10H51z"/>
+      <path d="M44 63v7m8-7v7m16-7v7m8-7v7M49 48v7m11-7v7m11-7v7M53 36v6m7-6v6m7-6v6m-7-16v5" stroke="#bf7658"/>
+    </g>
+    <g fill="#ffc672" stroke="#a65e47">
+      <path d="M45 23c5-1 9-4 12-9h6c3 5 7 8 12 9l-4 3H49Z"/>
+      <path d="M40 34c6 0 9-3 12-7h16c3 4 6 7 12 7l-4 3H44Z"/>
+      <path d="M34 46c7 0 11-3 14-8h24c3 5 7 8 14 8l-4 3H38Z"/>
+      <path d="M27 59c8 0 13-4 17-9h32c4 5 9 9 17 9l-5 3H32Z"/>
+    </g>
+    <path d="M56 71v-4a4 4 0 0 1 8 0v4" fill="#c37b5e" stroke="#a65e47"/>
+    <path d="M60 9v5" stroke="#ff1838" stroke-width="2"/>
+    <path d="M88 28q3-4 6 0 3-4 6 0" stroke="#87b7c4"/>
+  </g>
+</svg>

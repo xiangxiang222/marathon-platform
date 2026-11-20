@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="96" viewBox="0 0 120 96" fill="none">
+  <title>兰州中山铁桥与白塔山地标图标</title>
+  <g stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M7 54c17-6 24-20 41-24 12-4 19-1 26 5 11-6 20-1 39 17v12H7Z" fill="#e4d5c0" stroke="#c4aa8c"/>
+    <path d="M47 33h18m-15-2 2-15h8l2 15m-12-8h12m-11-4h10m-9-4 4-5 4 5" fill="#fff4dc" stroke="#a18a78"/>
+    <path d="M56 9v4" stroke="#ff1838" stroke-width="2"/>
+    <path d="M12 69q10-27 20 0 10-27 20 0 10-27 20 0 10-27 20 0 8-25 16 0" stroke="#786b7a" stroke-width="2.5"/>
+    <path d="m12 69 10-13 10 13 10-13 10 13 10-13 10 13 10-13 10 13 8-12 8 12m-91-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m10-7v7m9-7v7m8-7v7" stroke="#918194"/>
+    <path d="M9 68h102v7H9z" fill="#b39ca6" stroke="#786b7a"/>
+    <path d="M17 75h7v8h-7zm36 0h7v8h-7zm37 0h7v8h-7z" fill="#dfc8b8" stroke="#ab8d80"/>
+    <path d="M7 85c11-3 16 3 27 0s16 3 26 0 15 3 26 0 16 3 27 0m-93 6h20m7 0h22m7 0h22" stroke="#d7ac69"/>
+  </g>
+</svg>

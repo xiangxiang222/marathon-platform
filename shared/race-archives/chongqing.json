@@ -1,6 +1,6 @@
 {
   "raceId": "chongqing",
-  "updatedAt": "2026-11-18",
+  "updatedAt": "2026-11-20",
   "intro": "重庆马拉松首届于2011年3月19日在南滨路开赛，代表性赛道沿长江南岸的南滨路、巴滨路往返。路线串起海棠烟雨公园与沿江桥梁景观，历届档案重点记录项目增减、发枪时间和直通资格的变化。",
   "introSourceIds": [
     "cq-first",
@@ -76,11 +76,57 @@
       "sourceIds": [
         "cq-entry-2026",
         "cq-home",
-        "chongqing-caa-2026"
+        "chongqing-caa-2026",
+        "cq-wa-calendar-2026"
+      ]
+    },
+    {
+      "date": "2026",
+      "title": "世界田联金标（Gold）",
+      "body": "世界田联2026年度标牌路跑赛历将本届列为金标（Gold）。级别仅对应2026届。",
+      "sourceIds": [
+        "cq-wa-calendar-2026"
       ]
     }
   ],
-  "records": [],
+  "records": [
+    {
+      "category": "中国籍男子赛会纪录（核至2026届）",
+      "project": "马拉松",
+      "group": "中国籍男子",
+      "athlete": "丰配友",
+      "time": "02:10:22",
+      "timing": "枪时",
+      "editionId": "chongqing-2026",
+      "achievedAt": "2026-01-18",
+      "verifiedThroughEditionId": "chongqing-2026",
+      "verifiedAt": "2026-11-20",
+      "sourceIds": [
+        "cq-results-2026",
+        "cq-domestic-record-2026",
+        "cq-wa-2026"
+      ]
+    },
+    {
+      "category": "赛会纪录（女子，核至2026届）",
+      "project": "马拉松",
+      "group": "女子",
+      "athlete": "Jackline SAKILU",
+      "time": "02:21:27",
+      "timing": "",
+      "editionId": "chongqing-2024",
+      "achievedAt": "2024-03-24",
+      "verifiedThroughEditionId": "chongqing-2026",
+      "verifiedAt": "2026-11-20",
+      "sourceIds": [
+        "cq-xinhua-2024",
+        "cq-people-2024",
+        "cq-wa-2024",
+        "cq-wa-2025",
+        "cq-wa-2026"
+      ]
+    }
+  ],
   "editions": [
     {
       "year": "2026",
@@ -96,7 +142,7 @@
         {
           "project": "马拉松",
           "distanceKm": 42.195,
-          "plannedParticipants": "25000人",
+          "plannedParticipants": 25000,
           "fee": "",
           "sourceIds": [
             "cq-entry-2026",
@@ -147,7 +193,48 @@
           "chongqing-caa-2026"
         ]
       },
-      "results": [],
+      "results": [
+        {
+          "group": "马拉松男子冠军",
+          "athlete": "ADISU TESFAHUN TAFERE",
+          "time": "02:08:28",
+          "timing": "枪时",
+          "sourceIds": [
+            "cq-results-2026",
+            "cq-wa-2026"
+          ]
+        },
+        {
+          "group": "马拉松女子冠军",
+          "athlete": "Kebebush Yisma ZEWOLDEMARIAM",
+          "time": "02:24:48",
+          "timing": "枪时",
+          "sourceIds": [
+            "cq-results-2026",
+            "cq-wa-2026"
+          ]
+        },
+        {
+          "group": "马拉松男子亚军／中国籍男子第一",
+          "athlete": "丰配友",
+          "time": "02:10:22",
+          "timing": "枪时",
+          "sourceIds": [
+            "cq-results-2026",
+            "cq-domestic-record-2026",
+            "cq-wa-2026"
+          ]
+        },
+        {
+          "group": "马拉松女子季军／中国籍女子第一",
+          "athlete": "朱卿",
+          "time": "02:28:53",
+          "timing": "枪时",
+          "sourceIds": [
+            "cq-wa-2026"
+          ]
+        }
+      ],
       "gear": [],
       "logistics": {
         "collection": {
@@ -193,7 +280,7 @@
         {
           "project": "马拉松",
           "distanceKm": 42.195,
-          "plannedParticipants": "25000人",
+          "plannedParticipants": 25000,
           "fee": "",
           "sourceIds": [
             "cq-entry-2025",
@@ -203,7 +290,7 @@
         {
           "project": "迷你跑",
           "distanceKm": 5.0,
-          "plannedParticipants": "10000人",
+          "plannedParticipants": 10000,
           "fee": "",
           "sourceIds": [
             "cq-entry-2025",
@@ -252,7 +339,45 @@
           "cq-reg-2025"
         ]
       },
-      "results": [],
+      "results": [
+        {
+          "group": "马拉松男子冠军",
+          "athlete": "Boaz KIPKEMEI",
+          "time": "02:07:18",
+          "timing": "",
+          "sourceIds": [
+            "cq-wa-2025"
+          ]
+        },
+        {
+          "group": "马拉松女子冠军",
+          "athlete": "Tigist GASHAW",
+          "time": "02:24:44",
+          "timing": "",
+          "sourceIds": [
+            "cq-wa-2025"
+          ]
+        },
+        {
+          "group": "马拉松中国籍男子第一",
+          "athlete": "尹顺金",
+          "time": "02:13:46",
+          "timing": "",
+          "sourceIds": [
+            "cq-wa-2025",
+            "cq-yin-2025"
+          ]
+        },
+        {
+          "group": "马拉松中国籍女子第一",
+          "athlete": "丁常琴",
+          "time": "02:29:09",
+          "timing": "",
+          "sourceIds": [
+            "cq-wa-2025"
+          ]
+        }
+      ],
       "gear": [],
       "logistics": {
         "collection": {
@@ -296,7 +421,7 @@
         {
           "project": "马拉松",
           "distanceKm": 42.195,
-          "plannedParticipants": "15000人",
+          "plannedParticipants": 15000,
           "fee": "",
           "sourceIds": [
             "cq-entry-2024",
@@ -306,7 +431,7 @@
         {
           "project": "迷你跑",
           "distanceKm": 5.0,
-          "plannedParticipants": "15000人",
+          "plannedParticipants": 15000,
           "fee": "",
           "sourceIds": [
             "cq-entry-2024",
@@ -333,16 +458,18 @@
         "drawDate": "2023-12-25",
         "fee": "全马中国籍200元人民币；外籍350元人民币；迷你跑如当届设置则另按须知。",
         "qualification": "",
-        "applicants": "",
+        "applicants": "全马预报名151662人（人民网；未将迷你跑纳入）",
         "eligibleApplicants": "",
         "lotteryPool": "",
         "drawQuota": "",
         "directQuota": "",
-        "lotteryRate": "",
-        "lotteryNote": "未取得同口径抽签池与实际抽签名额，不计算中签率。",
-        "note": "本届不设成绩直通；为历史保留名额预留8000人，系列赛直通另行规定。",
+        "lotteryRate": "3.98%（新华社报道的当届全马中签率）",
+        "lotteryNote": "人民网报道的全马预报名数与新华社公布的中签率均按原文记录；两个来源均未披露实际抽签池和抽签配额，不能据此复算。",
+        "note": "本届不设成绩直通；为历史保留名额预留8000人，系列赛直通另行规定。 保留名额及实际抽签池不等同于全马计划参赛规模。",
         "sourceIds": [
-          "cq-entry-2024"
+          "cq-entry-2024",
+          "cq-xinhua-2024",
+          "cq-people-2024"
         ]
       },
       "participation": {
@@ -355,7 +482,26 @@
           "cq-reg-2024"
         ]
       },
-      "results": [],
+      "results": [
+        {
+          "group": "马拉松男子冠军",
+          "athlete": "Josphat BOIT",
+          "time": "02:07:53",
+          "timing": "",
+          "sourceIds": [
+            "cq-wa-2024"
+          ]
+        },
+        {
+          "group": "马拉松女子冠军",
+          "athlete": "Jackline SAKILU",
+          "time": "02:21:27",
+          "timing": "",
+          "sourceIds": [
+            "cq-wa-2024"
+          ]
+        }
+      ],
       "gear": [],
       "logistics": {
         "collection": {
@@ -394,7 +540,31 @@
       "notes": []
     }
   ],
-  "stories": [],
+  "stories": [
+    {
+      "title": "2024：从龙门浩老街跑向慈云寺",
+      "body": "2024届全马沿南滨路江岸，从海棠烟雨公园起跑，经过龙门浩老街、故宫文物南迁纪念馆和慈云寺。赛道的变化很小，同一届却见证此前分别保持多年的男女赛会纪录同时改写。",
+      "sourceIds": [
+        "cq-xinhua-2024",
+        "cq-people-2024"
+      ]
+    },
+    {
+      "title": "2025：最后百米才分出胜负",
+      "body": "据青海省体育局赛后介绍，2025重马的中国籍男子组争夺一直持续到终点前。青海选手尹顺金在最后约100米超过杨定宏，拿到中国籍男子第一。",
+      "sourceIds": [
+        "cq-yin-2025"
+      ]
+    },
+    {
+      "title": "2026：全场第二改写中国籍男子纪录",
+      "body": "丰配友在2026届以公开组第二名完赛，赛后贵州省体育局确认他刷新了重马中国籍男子赛会纪录。",
+      "sourceIds": [
+        "cq-domestic-record-2026",
+        "cq-results-2026"
+      ]
+    }
+  ],
   "sources": [
     {
       "id": "cq-first",
@@ -506,15 +676,115 @@
         "2026"
       ],
       "evidence": "已读取中国马拉松官网公开查询接口 searchById（POST，id=1000302013，type=SS）；返回赛事名称、日期、举办城市、主办单位和 officialRaceGrade=A。仅适用于2026届，不由徽标推定世界田联等级。"
+    },
+    {
+      "id": "cq-results-2026",
+      "title": "2026重庆马拉松赛况与冠军成绩",
+      "url": "https://app.cqrb.cn/wenlv/shangyou/2026-01-18/2541406_pc.html",
+      "publisher": "重庆日报",
+      "publishedAt": "2026-01-18",
+      "applicableYears": [
+        "2026"
+      ],
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "cq-domestic-record-2026",
+      "title": "2026重庆马拉松 贵州健儿丰配友获国际亚军、国内冠军",
+      "url": "https://tyj.guizhou.gov.cn/ywgz/jjty/202601/t20260118_89308350.html",
+      "publisher": "贵州省体育局",
+      "publishedAt": "2026-01-18",
+      "applicableYears": [
+        "2026"
+      ],
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "cq-yin-2025",
+      "title": "2025重庆马拉松比赛 青海省长跑运动员尹顺金夺冠",
+      "url": "https://www.cnr.cn/qhfw/jjqh/20250305/t20250305_527090253.shtml",
+      "publisher": "西海都市报（央广网转载，记者向青海省体育局核实）",
+      "publishedAt": "2025-03-05",
+      "applicableYears": [
+        "2025"
+      ],
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "cq-xinhua-2024",
+      "title": "重庆马拉松：男女赛会纪录双双被破",
+      "url": "http://ent.people.com.cn/n1/2024/0325/c1012-40202468.html",
+      "publisher": "新华社（人民网转载）",
+      "publishedAt": "2024-03-25",
+      "applicableYears": [
+        "2024"
+      ],
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "cq-people-2024",
+      "title": "2024重庆马拉松鸣枪开跑 3万名跑者竞逐山城",
+      "url": "http://cq.people.com.cn/n2/2024/0324/c365402-40786531.html",
+      "publisher": "人民网重庆频道",
+      "publishedAt": "2024-03-24",
+      "applicableYears": [
+        "2024"
+      ],
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "cq-wa-2026",
+      "title": "2026重庆马拉松正式成绩（马拉松）",
+      "url": "https://worldathletics.org/competition/calendar-results/results/7235935",
+      "publisher": "世界田联",
+      "publishedAt": "",
+      "applicableYears": [
+        "2026"
+      ],
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "cq-wa-2025",
+      "title": "2025重庆马拉松正式成绩（马拉松）",
+      "url": "https://worldathletics.org/competition/calendar-results/results/7220362",
+      "publisher": "世界田联",
+      "publishedAt": "",
+      "applicableYears": [
+        "2025"
+      ],
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "cq-wa-2024",
+      "title": "2024重庆马拉松正式成绩（马拉松）",
+      "url": "https://worldathletics.org/competition/calendar-results/results/7207747",
+      "publisher": "世界田联",
+      "publishedAt": "",
+      "applicableYears": [
+        "2024"
+      ],
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "cq-wa-calendar-2026",
+      "title": "2026世界田联标牌路跑赛历（重庆马拉松）",
+      "url": "https://worldathletics.org/competitions/world-athletics-label-road-races/calendar-results",
+      "publisher": "世界田联",
+      "publishedAt": "",
+      "applicableYears": [
+        "2026"
+      ],
+      "verifiedAt": "2026-11-20"
     }
   ],
   "gaps": [
     {
       "fields": [
-        "records",
-        "editions[].results"
+        "records.男子公开组历届沿革",
+        "editions[].participation.finishers",
+        "editions[].officialResources"
       ],
-      "reason": "未取得可读取的赛后正式成绩表；规程的破纪录奖金门槛不直接用作当前纪录。未收录2027未来届次结果。"
+      "reason": "2024至2026全马成绩已用世界田联结果核验；女子此前纪录刷新有报道依据。男子公开组历届纪录沿革、实际完赛人数、组委会历届赛道图和物资发布原页仍待核。"
     },
     {
       "fields": [
@@ -522,12 +792,6 @@
         "editions[].gear[].imageUrl"
       ],
       "reason": "未取得可公开再分发的图片许可；仅保留来源链接，不接入赛道图或物资实物图片。"
-    },
-    {
-      "fields": [
-        "worldAthletics"
-      ],
-      "reason": "尚未取得可逐年核实的世界田联标牌依据，不沿用旧目录的认证快照。"
     }
   ],
   "conflicts": [
@@ -543,6 +807,30 @@
         "cq-entry-2026",
         "cq-home",
         "chongqing-caa-2026"
+      ]
+    },
+    {
+      "fields": [
+        "editions[2024].results",
+        "records"
+      ],
+      "description": "新华社写2024男子冠军02:07:52、女子冠军02:21:26；人民网重庆频道分别写02:07:53、02:21:27。两篇均确认冠军和纪录被刷新。",
+      "resolution": "采用世界田联正式成绩的02:07:53、02:21:27，与人民网重庆频道一致；新华社留作纪录历史与当届抽签报道的补充来源。",
+      "sourceIds": [
+        "cq-xinhua-2024",
+        "cq-people-2024",
+        "cq-wa-2024"
+      ]
+    },
+    {
+      "fields": [
+        "editions[2025].results"
+      ],
+      "description": "西海都市报转引青海省体育局写尹顺金获中国籍男子第一，成绩为02:13:45；世界田联男子公开组结果为02:13:46（全场第9）。",
+      "resolution": "档案以世界田联正式表记录成绩和公开组名次；青海报道作为最后百米经过的来源。未核实一秒差异的计时口径，不自行推定。",
+      "sourceIds": [
+        "cq-wa-2025",
+        "cq-yin-2025"
       ]
     }
   ]

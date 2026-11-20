@@ -1,3 +1,13 @@
+const OFFICIAL_RESOURCE_CATEGORIES = new Set(['route-map', 'shirt', 'medal']);
+
+function officialResourceUrl(value) {
+  if (typeof value !== 'string') return '';
+  try {
+    const url = new URL(value);
+    return ['https:', 'http:'].includes(url.protocol) && !url.username && !url.password ? url.href : '';
+  } catch { return ''; }
+}
+
 // Upgrade missing structure only. Existing editorial text, images and explicit
 // empty arrays in a current schema remain authoritative over the seed JSON.
 function mergeArchiveRecord(baseline, edited) {
@@ -7,6 +17,11 @@ function mergeArchiveRecord(baseline, edited) {
   const sources = new Map((seed.sources || []).map(source => [source.id, source]));
   for (const source of saved.sources || []) sources.set(source.id, source);
   const archive = { ...seed, ...saved, profile: { ...seed.profile, ...saved.profile }, sources: [...sources.values()] };
+  if (saved.editions) archive.editions = saved.editions.map(edition => {
+    if (edition.officialResources != null) return edition;
+    const initial = seed.editions.find(item => String(item.year) === String(edition.year));
+    return initial?.officialResources ? { ...edition, officialResources: initial.officialResources } : edition;
+  });
   if ((saved.schemaVersion || 1) < 2) {
     const uncited = [];
     if (saved.intro !== undefined && saved.intro !== seed.intro && !saved.introSourceIds) {
@@ -32,4 +47,4 @@ function mergeArchiveRecord(baseline, edited) {
   return { race: { ...baseline.race, ...edited.race }, archive };
 }
 
-module.exports = { mergeArchiveRecord };
+module.exports = { mergeArchiveRecord, OFFICIAL_RESOURCE_CATEGORIES, officialResourceUrl };

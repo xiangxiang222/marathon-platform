@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "raceId": "dalian",
-  "updatedAt": "2026-11-18",
+  "updatedAt": "2026-11-20",
   "intro": "大连马拉松创办于1987年。东港的海港景观与中山广场、人民广场等城市广场建筑群，是大马鲜明的辨识点。路线强调山海相连、穿城而行；赛期近年从2024年10月转到2025年5月、2026年4月，不能把某一年的季节写成赛事永久安排。",
   "introSourceIds": [
     "dl-report-2025",
@@ -93,9 +93,35 @@
       "sourceIds": [
         "dl-report-2026"
       ]
+    },
+    {
+      "date": "2026-04-26",
+      "title": "第36届刷新男子赛会纪录",
+      "body": "郎加特（Francis Kipkorir LANGAT）以2:09:29获得全马男子冠军，朱卿获全马女子冠军。",
+      "sourceIds": [
+        "dl-results-2026",
+        "dl-wa-results-2026"
+      ]
     }
   ],
-  "records": [],
+  "records": [
+    {
+      "category": "赛会纪录",
+      "project": "马拉松",
+      "group": "男子",
+      "athlete": "Francis Kipkorir LANGAT",
+      "time": "02:09:29",
+      "timing": "",
+      "editionId": "dalian-2026",
+      "achievedAt": "2026-04-26",
+      "verifiedThroughEditionId": "dalian-2026",
+      "verifiedAt": "2026-11-20",
+      "sourceIds": [
+        "dl-wa-results-2026",
+        "dl-results-2026"
+      ]
+    }
+  ],
   "editions": [
     {
       "year": "2026",
@@ -108,23 +134,44 @@
         "dl-report-2026"
       ],
       "distance": "马拉松、半程马拉松",
-      "events": [],
+      "events": [
+        {
+          "project": "马拉松",
+          "distanceKm": 42.195,
+          "plannedParticipants": 16000,
+          "fee": "",
+          "sourceIds": [
+            "dl-results-2026"
+          ]
+        },
+        {
+          "project": "半程马拉松",
+          "distanceKm": 21.0975,
+          "plannedParticipants": 14000,
+          "fee": "",
+          "sourceIds": [
+            "dl-results-2026"
+          ]
+        }
+      ],
       "route": {
-        "summary": "东港港浦路与珠荷街交汇处出发，串联东方水城、港湾广场、中山广场、人民广场及南山风情街等地标；官方概括为穿城越海、起伏有致。",
+        "summary": "全程与半程共用东港起点，沿人民路、中山路至星海湾；半马就近完赛，全马经南山、港湾和华乐街折返，再回到东港。",
         "start": "东港商务区港浦路／珠荷街交汇处",
-        "finish": "",
+        "finish": "全马：东港商务区港浦路／珠荷街交汇处；半马：星海湾会展路／会展东路交汇处",
         "mapUrl": "",
         "changes": "2026年发布会称延续经典路线，未公布本轮可读取的全程坡度和累计爬升数据。",
         "analysis": [],
         "sourceIds": [
-          "dl-preview-2026"
+          "dl-preview-2026",
+          "dl-course-roads-2026",
+          "dl-route-map-2026"
         ]
       },
       "registration": {
-        "method": "",
-        "opens": "",
-        "closes": "",
-        "drawDate": "",
+        "method": "大众选手预报名后抽签，中签缴费；精英选手由组委会定向邀请。",
+        "opens": "2026-02-07 10:00",
+        "closes": "2026-02-12 18:00",
+        "drawDate": "2026-03-06 10:00",
         "fee": "",
         "qualification": "",
         "applicants": "",
@@ -133,39 +180,112 @@
         "drawQuota": "",
         "directQuota": "",
         "lotteryRate": "",
-        "lotteryNote": "",
-        "note": "",
-        "sourceIds": []
+        "lotteryNote": "首轮中签及候补缴费截止3月10日18:00；3月13日14:00开放候补结果查询。",
+        "note": "日程与流程据赛事报名渠道和条款的转载报道。原始规程未取得，未填写费用、成绩门槛和中签率。",
+        "sourceIds": [
+          "dl-signup-2026",
+          "dl-draw-2026"
+        ]
       },
       "participation": {
-        "planned": "30000人（赛事报道规模）",
+        "planned": "30000人：全马16000人、半马14000人（赛后报道赛事规模）",
         "starters": "",
         "finishers": "",
         "finishRate": "",
         "note": "报道的赛事规模，未获得同口径的实际起跑人数与完赛人数。",
         "sourceIds": [
-          "dl-report-2026"
+          "dl-report-2026",
+          "dl-results-2026"
         ]
       },
-      "results": [],
+      "results": [
+        {
+          "group": "马拉松男子冠军",
+          "athlete": "Francis Kipkorir LANGAT",
+          "time": "02:09:29",
+          "timing": "",
+          "sourceIds": [
+            "dl-wa-results-2026",
+            "dl-results-2026"
+          ]
+        },
+        {
+          "group": "马拉松女子冠军",
+          "athlete": "朱卿",
+          "time": "02:29:02",
+          "timing": "",
+          "sourceIds": [
+            "dl-wa-results-2026",
+            "dl-results-2026"
+          ]
+        },
+        {
+          "group": "马拉松中国籍男子冠军",
+          "athlete": "张晓鸿",
+          "time": "02:11:17",
+          "timing": "",
+          "sourceIds": [
+            "dl-wa-results-2026",
+            "dl-results-2026"
+          ]
+        },
+        {
+          "group": "半程马拉松男子冠军",
+          "athlete": "李勇杰",
+          "time": "01:07:31",
+          "timing": "",
+          "sourceIds": [
+            "dl-results-2026"
+          ]
+        },
+        {
+          "group": "半程马拉松女子冠军",
+          "athlete": "陈佳慧",
+          "time": "01:18:38",
+          "timing": "",
+          "sourceIds": [
+            "dl-results-2026"
+          ]
+        }
+      ],
       "gear": [
         {
-          "title": "灯塔与海浪奖牌",
-          "body": "2026年奖牌将灯塔、海浪和城市地标融入圆环造型，挂绳配以深海蓝与槐花纹样；组委会延续奖牌刻字服务。",
+          "category": "奖牌",
+          "name": "“浪涌滨城，灯塔领航”完赛奖牌",
+          "description": "以海浪和灯塔为主图案，边缘哑光与正面浮雕构成对比，深海蓝绶带融入槐花纹样。",
+          "items": [
+            "奖牌"
+          ],
           "imageUrl": "",
+          "sourceUrl": "https://www.bjnews.com.cn/detail/1776318303129072.html",
           "sourceIds": [
-            "dl-preview-2026"
+            "dl-preview-2026",
+            "dl-gear-release-2026"
+          ]
+        },
+        {
+          "category": "参赛服",
+          "name": "融入星海湾大桥线条的参赛服",
+          "description": "以深海蓝和粉色为主色；全马发轻量背心，半马发短袖。",
+          "items": [
+            "参赛服"
+          ],
+          "imageUrl": "",
+          "sourceUrl": "https://www.bjnews.com.cn/detail/1776318303129072.html",
+          "sourceIds": [
+            "dl-gear-release-2026"
           ]
         }
       ],
       "notes": [],
       "logistics": {
         "collection": {
-          "time": "2026年4月23—25日；具体时段待补",
-          "place": "大连世界博览广场",
-          "requirements": "",
+          "time": "2026年4月23—25日，分时段预约。",
+          "place": "大连世界博览广场C馆（星海广场10号）",
+          "requirements": "本人持报名时使用的有效证件原件领取，不可代领。",
           "sourceIds": [
-            "dl-report-2026"
+            "dl-report-2026",
+            "dl-collection-2026"
           ]
         },
         "transport": {
@@ -180,10 +300,11 @@
           "bagDrop": "",
           "aidStations": "",
           "toilets": "",
-          "medical": "",
+          "medical": "赛事设23个医疗站（点），配21辆救护车、110台AED（赛后报道口径）。",
           "sourceIds": [
             "dl-preview-2026",
-            "dl-report-2026"
+            "dl-report-2026",
+            "dl-results-2026"
           ]
         },
         "tips": [
@@ -203,7 +324,33 @@
             ]
           }
         ]
-      }
+      },
+      "officialResources": [
+        {
+          "category": "shirt",
+          "title": "2026蒙牛大连马拉松新闻发布会召开，奖牌、参赛服、文创亮相",
+          "url": "https://www.bjnews.com.cn/detail/1776318303129072.html",
+          "sourceIds": [
+            "dl-gear-release-2026"
+          ]
+        },
+        {
+          "category": "route-map",
+          "title": "2026大连马拉松官方路线图（转载报道）",
+          "url": "https://news.qq.com/rain/a/20260418A06HFM00",
+          "sourceIds": [
+            "dl-route-map-2026"
+          ]
+        },
+        {
+          "category": "medal",
+          "title": "2026大连马拉松奖牌揭晓现场（含全马、半马款）",
+          "url": "https://www.bjnews.com.cn/detail/1776318303129072.html",
+          "sourceIds": [
+            "dl-gear-release-2026"
+          ]
+        }
+      ]
     },
     {
       "year": "2025",
@@ -228,12 +375,12 @@
         ]
       },
       "registration": {
-        "method": "",
+        "method": "大众报名后抽签，符合年龄组成绩标准者可直通。",
         "opens": "",
         "closes": "",
         "drawDate": "",
         "fee": "",
-        "qualification": "",
+        "qualification": "成绩直通采用中国马拉松信息平台2023年1月1日至2025年2月28日期间的A类赛事同项目最好净成绩；标准按年龄组区分。",
         "applicants": "超过10万人（报道概数）",
         "eligibleApplicants": "",
         "lotteryPool": "",
@@ -241,9 +388,9 @@
         "directQuota": "",
         "lotteryRate": "",
         "lotteryNote": "仅有报名概数，缺少可比的抽签池与实际抽签名额，不计算中签率。",
-        "note": "",
+        "note": "另在大众抽签后开放全马及半马合计200个公益名额，先到先得、免抽签。",
         "sourceIds": [
-          "dl-report-2025"
+          "dl-signup-qa-2025"
         ]
       },
       "participation": {
@@ -311,7 +458,7 @@
       "year": "2024",
       "editionId": "dalian-2024",
       "editionName": "2024大连马拉松",
-      "status": "archived",
+      "status": "completed",
       "date": "2024-10-20",
       "dateSourceIds": [
         "dl-preview-2024"
@@ -387,7 +534,16 @@
       }
     }
   ],
-  "stories": [],
+  "stories": [
+    {
+      "title": "一场比赛，32个加油站",
+      "body": "2026年大马把32处文化加油站多设在城市地标附近。对跑者而言，赛前可把中山广场、人民广场等景观作为路线记忆点；这份报道并未给出逐站公里数。",
+      "sourceIds": [
+        "dl-preview-2026",
+        "dl-results-2026"
+      ]
+    }
+  ],
   "sources": [
     {
       "id": "dl-preview-2024",
@@ -421,7 +577,7 @@
       "publisher": "大连市人民政府／大连日报",
       "publishedAt": "2026-04-16",
       "accessedAt": "2026-11-18",
-      "verifiedAt": "2026-11-18",
+      "verifiedAt": "2026-11-20",
       "applicableYears": [
         "2026"
       ]
@@ -483,24 +639,132 @@
         "category": "Elite",
         "calendarDate": "2026-04-26"
       }
+    },
+    {
+      "id": "dl-results-2026",
+      "title": "2026蒙牛大连马拉松鸣枪起跑",
+      "url": "https://www.stdaily.com/web/gdxw/2026-04/26/content_508499.html",
+      "publisher": "科技日报",
+      "publishedAt": "2026-04-26",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ]
+    },
+    {
+      "id": "dl-wa-results-2026",
+      "title": "World Athletics：第36届大连马拉松成绩",
+      "url": "https://worldathletics.org/competition/calendar-results/results/7236080",
+      "publisher": "世界田联",
+      "publishedAt": "",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ]
+    },
+    {
+      "id": "dl-gear-release-2026",
+      "title": "2026蒙牛大连马拉松新闻发布会召开，奖牌、参赛服、文创亮相",
+      "url": "https://www.bjnews.com.cn/detail/1776318303129072.html",
+      "publisher": "新京报企业资讯（赛事发布会材料）",
+      "publishedAt": "2026-04-16",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ]
+    },
+    {
+      "id": "dl-signup-2026",
+      "title": "2026大连马拉松报名时间及入口",
+      "url": "https://dl.bendibao.com/xiuxian/202629/88132.shtm",
+      "publisher": "大连本地宝",
+      "publishedAt": "2026-02-09",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ]
+    },
+    {
+      "id": "dl-draw-2026",
+      "title": "2026大连马拉松抽签结果公布及候补流程",
+      "url": "https://news.sohu.com/a/993228276_100071965",
+      "publisher": "马拉松报名网（搜狐号）",
+      "publishedAt": "2026-03-06",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ]
+    },
+    {
+      "id": "dl-course-roads-2026",
+      "title": "2026大连马拉松赛比赛路线",
+      "url": "https://dl.bendibao.com/xiuxian/2026210/88140.shtm",
+      "publisher": "大连本地宝",
+      "publishedAt": "2026-02-10",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ]
+    },
+    {
+      "id": "dl-collection-2026",
+      "title": "2026大连马拉松领物指南",
+      "url": "http://dl.bendibao.com/xiuxian/2026417/88617.shtm",
+      "publisher": "大连本地宝",
+      "publishedAt": "2026-04-17",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ]
+    },
+    {
+      "id": "dl-signup-qa-2025",
+      "title": "参加大连马拉松赛可网上报名：组委会报名答疑",
+      "url": "https://news.qq.com/rain/a/20250312A035XK00",
+      "publisher": "半岛晨报／39度视频（腾讯转载）",
+      "publishedAt": "2025-03-12",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2025"
+      ]
+    },
+    {
+      "id": "dl-route-map-2026",
+      "title": "2026大连马拉松比赛时间及线路图",
+      "url": "https://news.qq.com/rain/a/20260418A06HFM00",
+      "publisher": "大连本地宝（腾讯转载；路线图源：大连马拉松赛）",
+      "publishedAt": "2026-04-18",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ]
     }
   ],
   "gaps": [
     {
       "fields": [
-        "records",
-        "editions.2024.results",
-        "editions.2026.results"
+        "records.女子",
+        "editions.2024.results"
       ],
-      "reason": "未获得官方历届纪录表及2024、2026完整成绩原文，赛会纪录暂不填。"
+      "reason": "2026男子赛会纪录已用科技日报和世界田联交叉核对；女子现行纪录与2024成绩原表仍未找到。"
     },
     {
       "fields": [
-        "editions.registration",
-        "editions.route.finish",
-        "editions.logistics.collection.requirements"
+        "editions.2026.registration.fee",
+        "editions.2026.registration.qualification",
+        "editions.2025.registration.drawDate",
+        "editions.2024.registration"
       ],
-      "reason": "三届报名规程、精确终点及领物身份要求尚待原始公告补充；不将往届规则沿用到2026。"
+      "reason": "2026报名与抽签日程、全半马终点和领物身份要求已补；报名原始规程、同口径中签数据及部分旧届详细日程待补。"
     },
     {
       "fields": [

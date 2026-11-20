@@ -1,7 +1,7 @@
 const catalog = require('../../shared/race-catalog.json');
 const archives = Object.fromEntries(catalog.races.map(race => [race.id, require('../../shared/race-archives/' + race.id + '.json')]));
 const { readArchiveEdit } = require('./race-archive-editor');
-const { mergeArchiveRecord } = require('./race-archive-schema');
+const { mergeArchiveRecord, OFFICIAL_RESOURCE_CATEGORIES, officialResourceUrl } = require('./race-archive-schema');
 
 function archiveBaseline(id) {
   const race = catalog.races.find(item => item.id === id);
@@ -58,7 +58,9 @@ function listCatalog(query = {}, db) {
 function editionCoverage(edition, archive) {
   const asOf = archive.updatedAt || '2026-11-14';
   const route = edition.route || {}, registration = edition.registration || {}, participation = edition.participation || {};
-  const gear = edition.gear || [], logistics = edition.logistics || {};
+  const gear = edition.gear || [], logistics = edition.logistics || {}, resources = edition.officialResources || [];
+  const hasResource = category => resources.some(item => item.category === category);
+  const hasGearImage = name => gear.some(item => item.category === name && (item.imageUrl || item.images?.length));
   const hasLogistics = ['collection', 'transport', 'raceDay'].some(key =>
     Object.entries(logistics[key] || {}).some(([field, value]) => field !== 'sourceIds' && typeof value === 'string' && value.trim())
   );
@@ -67,19 +69,19 @@ function editionCoverage(edition, archive) {
     ['registration', '报名中签', registration.method],
     ['logistics', '参赛指南', hasLogistics],
     ['participation', '参赛成绩', participation.starters || participation.finishers || (edition.results || []).length],
-    ['gear', '赛事物品', gear.length],
-    ['stories', '赛事故事', (archive.stories || []).length]
+    ['gear', '赛事物品', gear.length || hasResource('shirt') || hasResource('medal')],
+    ['stories', '赛事故事', archive.stories?.length || archive.updates?.length]
   ].filter(([, , known]) => known).map(([id, label]) => ({ id, label }));
   const missing = [
-    ['官方路线图', route.mapUrl],
+    ['官方路线图', route.mapUrl || route.images?.length || hasResource('route-map')],
     ['报名起止时间', registration.opens && registration.closes],
     ['报名费用', registration.fee],
     ['报名人数', registration.applicants],
     ['官方中签率', registration.lotteryRate],
     ...(edition.date > asOf ? [] : [['实际起跑人数', participation.starters], ['完赛人数', participation.finishers]]),
     ['领物时间与地点', logistics.collection?.time && logistics.collection?.place],
-    ['参赛服图片', gear.some(item => /参赛服|参赛T恤/.test(item.category + item.name) && item.imageUrl)],
-    ['奖牌图片', gear.some(item => /奖牌/.test(item.category + item.name) && item.imageUrl)]
+    ['参赛服图片', hasGearImage('参赛服') || hasResource('shirt')],
+    ['奖牌图片', hasGearImage('奖牌') || hasResource('medal')]
   ].filter(([, known]) => !known).map(([label]) => label);
   return { available, missing, asOf, upcoming: Boolean(edition.date && edition.date > asOf) };
 }
@@ -96,7 +98,14 @@ function publicEdition(edition, archive) {
   const publicImages = images => (images || []).filter(item => mediaCanPublish(item.mediaRights));
   const route = { ...edition.route, mapUrl: mediaCanPublish(edition.route?.mediaRights) ? edition.route.mapUrl : '', images: publicImages(edition.route?.images) };
   const gear = (edition.gear || []).map(item => ({ ...item, imageUrl: mediaCanPublish(item.mediaRights) ? item.imageUrl : '', images: publicImages(item.images) }));
-  const visible = { ...edition, route, gear };
+  const knownSources = new Set((archive.sources || []).map(item => item.id));
+  const officialResources = (edition.officialResources || []).flatMap(item => {
+    const url = officialResourceUrl(item.url);
+    if (!url || !item.title || !OFFICIAL_RESOURCE_CATEGORIES.has(item.category)) return [];
+    if (!Array.isArray(item.sourceIds) || !item.sourceIds.length || !item.sourceIds.every(id => knownSources.has(id))) return [];
+    return [{ category: item.category, title: item.title, url, sourceIds: item.sourceIds }];
+  });
+  const visible = { ...edition, route, gear, officialResources };
   return { ...visible, coverage: editionCoverage(visible, archive) };
 }
 
@@ -110,7 +119,7 @@ function getArchive(id, db) {
     .map(({ id, name, raceDate }) => ({ id, name, raceDate }));
   // Both basic certification sources and annual sources are local to this race.
   const sources = [...(race.sources || []), ...(archive.sources || []).filter(source => !(race.sources || []).some(item => item.id === source.id))];
-  const editions = archive.editions.map(edition => publicEdition(edition, archive));
+  const editions = archive.editions.map(edition => publicEdition(edition, { ...archive, sources }));
   const publicMedia = items => (items || []).filter(item => mediaCanPublish(item.mediaRights));
   const hero = archive.hero ? { ...archive.hero, imageUrl: mediaCanPublish(archive.hero.mediaRights) ? archive.hero.imageUrl : '' } : undefined;
   const photoAlbums = (archive.photoAlbums || []).map(album => ({ ...album, media: publicMedia(album.media) }));

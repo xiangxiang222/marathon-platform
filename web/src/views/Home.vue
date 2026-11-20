@@ -132,6 +132,7 @@ import clubsIcon from "../assets/quick/clubs.svg";
 import newsIcon from "../assets/quick/news.svg";
 import filterIcon from "../assets/race-actions/filter.svg";
 import { regions as places } from "../regions";
+import { landmarkUrl } from "../race-landmarks";
 
 const base = import.meta.env.BASE_URL;
 const route = useRoute();
@@ -166,7 +167,6 @@ const quickLinks = [
 ];
 const catalogRaces = ref([]), catalogLoading = ref(true), catalogError = ref(false);
 const failedLandmarks = ref({});
-function landmarkUrl(id) { return ['beijing', 'shanghai', 'xiamen'].includes(id) ? base + 'images/race-landmarks/' + id + '.svg' : ''; }
 function commonCertificationYear(race) { const year = race.worldAthletics?.year; return year && year === race.caa?.year ? year : ''; }
 function certificationLabel(value) {
   if (!value || !value.label) return "待核实";

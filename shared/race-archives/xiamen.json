@@ -1,6 +1,6 @@
 {
   "raceId": "xiamen",
-  "updatedAt": "2026-11-18",
+  "updatedAt": "2026-11-20",
   "intro": "厦门马拉松创办于2003年，近年以会展中心、环岛南路、演武大桥和鹭江道连接城市与海岸。档案保留2024—2026三届路线、抽签与真实起跑完赛统计，既看海岸赛道的变化，也区分计划规模与实际参赛人数。2025年的男女赛会纪录与2026年的卫冕成绩分别呈现。",
   "highlights": [
     {
@@ -30,6 +30,137 @@
     }
   ],
   "editions": [
+    {
+      "year": "2027",
+      "date": "2027-01-10",
+      "dateSourceIds": [
+        "2100793180791853058"
+      ],
+      "distance": "马拉松（42.195公里）",
+      "route": {
+        "summary": "厦门国际会展中心出发，经环岛东路、环岛南路、演武大桥、鹭江道，至湖滨南路与湖滨西路折返后回到会展中心。",
+        "start": "厦门国际会展中心",
+        "finish": "厦门国际会展中心",
+        "mapUrl": "",
+        "mapSourceUrl": "",
+        "changes": "赛前发布会说明，相较2026届，云顶南路路段调整至环岛东路。",
+        "analysis": [],
+        "sourceIds": [
+          "2100793180791853058",
+          "2100796320794628098",
+          "xm-route-recap-2027"
+        ]
+      },
+      "registration": {
+        "method": "普通报名抽签；设成绩直通及厦门市民、女性、连续未中签跑者等专项名额。",
+        "opens": "2026-09-23 10:00",
+        "closes": "2026-10-14 18:00",
+        "drawDate": "2026-10-22 10:00",
+        "fee": "境内（含港澳台）200元人民币，境外80美元；符合条件的永久号选手和受邀选手免缴。",
+        "qualification": "参赛年龄须满20周岁；65周岁及以上选手另按报名须知签署健康承诺。",
+        "applicants": "",
+        "eligibleApplicants": "",
+        "lotteryPool": "",
+        "drawQuota": "",
+        "directQuota": "成绩直通限额10000人。",
+        "lotteryRate": "",
+        "lotteryNote": "首轮中签缴费截止10月25日18:00；10月28日可查询候补抽签结果，11月2日至12月25日18:00按候补规则递补。",
+        "note": "成绩直通按年龄段名额比例分配；厦门市民、女性和连续未中签专项名额按组委会规定抽取。",
+        "sourceIds": [
+          "2100792807301664769",
+          "2113600446687432706",
+          "2115310572465115137"
+        ]
+      },
+      "participation": {
+        "planned": "全程马拉松35000人（计划）",
+        "starters": "",
+        "finishers": "",
+        "finishRate": "",
+        "note": "",
+        "sourceIds": [
+          "2100793180791853058"
+        ]
+      },
+      "results": [],
+      "gear": [
+        {
+          "category": "奖牌",
+          "name": "“迭跃”完赛奖牌",
+          "description": "组委会于2026年10月发布完赛奖牌，主题名为“迭跃”。通过原始公告查看设计。",
+          "items": [
+            "奖牌"
+          ],
+          "imageUrl": "",
+          "sourceUrl": "https://www.xmim.org/information/detail/2113599667721293826",
+          "sourceIds": [
+            "2113599667721293826"
+          ]
+        }
+      ],
+      "notes": [
+        "本届比赛尚未举行。公布的日期、路线、报名和装备信息均为赛前安排。"
+      ],
+      "logistics": {
+        "collection": {
+          "time": "",
+          "place": "",
+          "requirements": "",
+          "sourceIds": []
+        },
+        "transport": {
+          "start": "",
+          "finish": "",
+          "expo": "",
+          "sourceIds": []
+        },
+        "raceDay": {
+          "startTime": "计划07:00鸣枪",
+          "timeLimit": "",
+          "bagDrop": "",
+          "aidStations": "",
+          "toilets": "",
+          "medical": "",
+          "sourceIds": [
+            "2100793180791853058"
+          ]
+        },
+        "tips": []
+      },
+      "editionId": "xiamen-2027",
+      "editionName": "2027建发厦门马拉松赛",
+      "events": [
+        {
+          "project": "马拉松",
+          "distanceKm": 42.195,
+          "plannedParticipants": 35000,
+          "fee": "境内200元人民币；境外80美元",
+          "sourceIds": [
+            "2100793180791853058",
+            "2100792807301664769"
+          ]
+        }
+      ],
+      "status": "scheduled",
+      "officialResources": [
+        {
+          "category": "route-map",
+          "title": "2027厦马官方路线图",
+          "url": "https://www.xmim.org/information/detail/2100796320794628098",
+          "sourceIds": [
+            "2100796320794628098"
+          ]
+        },
+        {
+          "category": "medal",
+          "title": "2027厦马完赛奖牌“迭跃”",
+          "url": "https://www.xmim.org/information/detail/2113599667721293826",
+          "sourceIds": [
+            "2113599667721293826"
+          ]
+        }
+      ]
+    },
     {
       "year": "2026",
       "date": "2026-01-11",
@@ -258,7 +389,33 @@
       "editionId": "xiamen-2026",
       "editionName": "2026厦门马拉松",
       "events": [],
-      "status": "completed"
+      "status": "completed",
+      "officialResources": [
+        {
+          "category": "route-map",
+          "title": "2026厦马官方路线图",
+          "url": "https://www.xmim.org/information/detail/1968008740563611649",
+          "sourceIds": [
+            "1968008740563611649"
+          ]
+        },
+        {
+          "category": "shirt",
+          "title": "2026厦马完赛奖牌与参赛服",
+          "url": "https://www.xmim.org/information/detail/2009262164021878786",
+          "sourceIds": [
+            "2009262164021878786"
+          ]
+        },
+        {
+          "category": "medal",
+          "title": "2026厦马完赛奖牌及参赛服",
+          "url": "https://www.xmim.org/information/detail/2009262164021878786",
+          "sourceIds": [
+            "2009262164021878786"
+          ]
+        }
+      ]
     },
     {
       "year": "2025",
@@ -485,7 +642,33 @@
       "editionId": "xiamen-2025",
       "editionName": "2025厦门马拉松",
       "events": [],
-      "status": "completed"
+      "status": "completed",
+      "officialResources": [
+        {
+          "category": "route-map",
+          "title": "2025厦马官方路线图",
+          "url": "https://www.xmim.org/information/detail/1838619639494410242",
+          "sourceIds": [
+            "1838619639494410242"
+          ]
+        },
+        {
+          "category": "medal",
+          "title": "2025厦马完赛奖牌发布",
+          "url": "https://www.xmim.org/information/detail/1840380167564754945",
+          "sourceIds": [
+            "1840380167564754945"
+          ]
+        },
+        {
+          "category": "shirt",
+          "title": "2025厦马参赛服（领物须知附实物图）",
+          "url": "https://www.xmim.org/information/detail/1871160873081348098",
+          "sourceIds": [
+            "1871160873081348098"
+          ]
+        }
+      ]
     },
     {
       "year": "2024",
@@ -711,7 +894,33 @@
       "editionId": "xiamen-2024",
       "editionName": "2024厦门马拉松",
       "events": [],
-      "status": "completed"
+      "status": "completed",
+      "officialResources": [
+        {
+          "category": "route-map",
+          "title": "2024厦马官方路线图",
+          "url": "https://www.xmim.org/information/detail/1715916650283163649",
+          "sourceIds": [
+            "1715916650283163649"
+          ]
+        },
+        {
+          "category": "shirt",
+          "title": "2024厦马参赛服（领物须知附实物图）",
+          "url": "https://www.xmim.org/information/detail/1740846203153670145",
+          "sourceIds": [
+            "1740846203153670145"
+          ]
+        },
+        {
+          "category": "medal",
+          "title": "2024厦马完赛奖牌“光芒之勋”赛后实物照片",
+          "url": "https://www.xmim.org/information/detail/1744609880382361601",
+          "sourceIds": [
+            "1744609880382361601"
+          ]
+        }
+      ]
     }
   ],
   "stories": [
@@ -735,6 +944,15 @@
       "sourceIds": [
         "1891675869708001281",
         "2036706401130651649"
+      ]
+    },
+    {
+      "title": "熟悉的会展中心，调整后的环岛东路",
+      "body": "2027届计划仍在厦门国际会展中心起终点，但赛前公布把此前的云顶南路路段改到环岛东路。看台接应与折返点安排应打开当届官方图，不能直接使用2026年的截图。",
+      "sourceIds": [
+        "2100793180791853058",
+        "2100796320794628098",
+        "xm-route-recap-2027"
       ]
     }
   ],
@@ -1096,6 +1314,90 @@
         "2014",
         "2022"
       ]
+    },
+    {
+      "id": "2100793180791853058",
+      "title": "2027建发厦门马拉松赛竞赛规程",
+      "url": "https://www.xmim.org/information/detail/2100793180791853058",
+      "publisher": "厦门马拉松赛组委会",
+      "publishedAt": "2026-09-23",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2027"
+      ]
+    },
+    {
+      "id": "2100792807301664769",
+      "title": "2027建发厦门马拉松赛报名须知",
+      "url": "https://www.xmim.org/information/detail/2100792807301664769",
+      "publisher": "厦门马拉松赛组委会",
+      "publishedAt": "2026-09-23",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2027"
+      ]
+    },
+    {
+      "id": "2100796320794628098",
+      "title": "2027建发厦门马拉松比赛路线图",
+      "url": "https://www.xmim.org/information/detail/2100796320794628098",
+      "publisher": "厦门马拉松赛组委会",
+      "publishedAt": "2026-09-23",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2027"
+      ]
+    },
+    {
+      "id": "2113599667721293826",
+      "title": "厦马奖牌亮相：山海为途，乘风“迭跃”",
+      "url": "https://www.xmim.org/information/detail/2113599667721293826",
+      "publisher": "厦门马拉松赛组委会",
+      "publishedAt": "2026-10-13",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2027"
+      ]
+    },
+    {
+      "id": "2113600446687432706",
+      "title": "2027厦马报名抽签结果揭晓",
+      "url": "https://www.xmim.org/information/detail/2113600446687432706",
+      "publisher": "厦门马拉松赛组委会",
+      "publishedAt": "2026-10-22",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2027"
+      ]
+    },
+    {
+      "id": "2115310572465115137",
+      "title": "2027厦马候补抽签结果查询公告",
+      "url": "https://www.xmim.org/information/detail/2115310572465115137",
+      "publisher": "厦门马拉松赛组委会",
+      "publishedAt": "2026-10-28",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2027"
+      ]
+    },
+    {
+      "id": "xm-route-recap-2027",
+      "title": "2027建发厦门马拉松赛开启预报名",
+      "url": "https://xm.fjsen.com/2026-09/24/content_32258566.htm",
+      "publisher": "东南网",
+      "publishedAt": "2026-09-24",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2027"
+      ]
     }
   ],
   "schemaVersion": 2,
@@ -1203,6 +1505,14 @@
         "media"
       ],
       "reason": "官方路线及实物图片未确认本站转载使用条件，继续以原生道路顺序和物品文字展示。"
+    },
+    {
+      "fields": [
+        "editions.2027.gear.参赛服",
+        "editions.2027.logistics.collection",
+        "editions.2027.registration.lotteryRate"
+      ],
+      "reason": "2027尚未举行；已确认赛前奖牌、规则和官方抽签入口，最终领物公告、参赛服及同口径中签率尚未核实。"
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "raceId": "hengshuihu",
-  "updatedAt": "2026-11-18",
+  "updatedAt": "2026-11-20",
   "intro": "衡水湖马拉松于2012年首次举办，环湖生态景观与竞技路跑共同构成赛事特色。赛事多次与全国马拉松锦标赛同场，近届着重记录大众PB体验、分枪组织和环保实践，不能把宣传中的“快”当作个人成绩保证。",
   "introSourceIds": [
     "hs-history",
@@ -19,9 +19,11 @@
       "hs-race-2025",
       "hengshuihu-caa-2026"
     ],
-    "entryNotes": "2026规程列全马12000人、20周岁及以上，报名截止前24个月内1次全马或2次半马成绩；A/B类成绩可按规程免上传证明。报名费、抽签和领物仍须读取该届完整须知。",
+    "entryNotes": "2026仅设全马，预报名超额后抽签，普通报名费150元；报名截止前24个月内至少1次全马或2次半马完赛。",
     "entrySourceIds": [
-      "hs-reg-2026"
+      "hs-reg-2026",
+      "hs-signup-2026",
+      "hs-draw-2026"
     ]
   },
   "highlights": [
@@ -133,10 +135,11 @@
         {
           "project": "马拉松",
           "distanceKm": 42.195,
-          "plannedParticipants": "12000人",
-          "fee": "",
+          "plannedParticipants": 12000,
+          "fee": "150元",
           "sourceIds": [
-            "hs-reg-2026"
+            "hs-reg-2026",
+            "hs-signup-2026"
           ]
         }
       ],
@@ -153,12 +156,12 @@
         ]
       },
       "registration": {
-        "method": "",
-        "opens": "",
-        "closes": "",
-        "drawDate": "",
-        "fee": "",
-        "qualification": "20周岁及以上；65周岁参赛者需直系亲属签名；报名截止前24个月内有1次全马或2次半马成绩。",
+        "method": "官网或官方公众号预报名，超额后抽签，中签缴费方为报名成功；未中签者按须知等待二次抽签。",
+        "opens": "2026-07-24 10:00",
+        "closes": "2026-07-30 18:00",
+        "drawDate": "2026-08-11 10:00",
+        "fee": "全马150元；官方招募的急救跑者、配速员免报名费。",
+        "qualification": "全马年满20周岁，65周岁及以上需直系亲属签名；报名截止前24个月内至少1次全马或2次半马完赛，田协A/B类赛事成绩可按须知免上传证明。",
         "applicants": "",
         "eligibleApplicants": "",
         "lotteryPool": "",
@@ -166,8 +169,10 @@
         "directQuota": "",
         "lotteryRate": "",
         "lotteryNote": "未取得同口径抽签池与实际抽签名额，不计算中签率。",
-        "note": "已人工读取规程第1、2页；未读取的报名费、抽签时间、完整领物安排不由旧年推断。",
+        "note": "2026终身号按连续五届全马完赛核定；计算时跳过2020、2022年。终身号选手仍须网上预报名。",
         "sourceIds": [
+          "hs-signup-2026",
+          "hs-draw-2026",
           "hs-reg-2026"
         ]
       },
@@ -181,20 +186,53 @@
           "hs-reg-2026"
         ]
       },
-      "results": [],
-      "gear": [],
+      "results": [
+        {
+          "group": "马拉松男子冠军（公示）",
+          "athlete": "李子成",
+          "time": "02:15:08",
+          "timing": "枪声成绩",
+          "sourceIds": [
+            "hs-result-2026"
+          ]
+        },
+        {
+          "group": "马拉松女子冠军（公示）",
+          "athlete": "冯丹",
+          "time": "02:34:07",
+          "timing": "枪声成绩",
+          "sourceIds": [
+            "hs-result-2026"
+          ]
+        }
+      ],
+      "gear": [
+        {
+          "category": "奖牌",
+          "name": "2026衡马十五周年完赛奖牌",
+          "description": "组委会同时发布十五周年完赛奖牌和个人最好成绩（PB）纪念礼，两者用途不同。",
+          "imageUrl": "",
+          "sourceIds": [
+            "hs-medal-2026"
+          ]
+        }
+      ],
       "logistics": {
         "collection": {
-          "time": "",
-          "place": "",
-          "requirements": "",
-          "sourceIds": []
+          "time": "9月25日09:00至18:00；9月26日09:00至21:00",
+          "place": "衡水市滏阳生态文化公园（桃城区河阳东路2号）",
+          "requirements": "分时预约，仅限本人凭有效身份证件原件领取，现场核验，不能代领。",
+          "sourceIds": [
+            "hs-collection-2026"
+          ]
         },
         "transport": {
           "start": "",
           "finish": "",
-          "expo": "",
-          "sourceIds": []
+          "expo": "领物现场未设停车位；官网建议乘公交到场，从衡水站或衡水北站可参考8路公交。",
+          "sourceIds": [
+            "hs-collection-2026"
+          ]
         },
         "raceDay": {
           "startTime": "07:30开赛，分区和发枪补充安排待补。",
@@ -211,6 +249,16 @@
       },
       "notes": [
         "组委会2026-09-28成绩公示确认赛事已结束；名次表为图片，本档案未抄录成绩数值。"
+      ],
+      "officialResources": [
+        {
+          "category": "medal",
+          "title": "2026十五周年完赛奖牌及PB纪念礼发布",
+          "url": "http://hengshuilakemarathon.com/news/detailNews.html?id=5208",
+          "sourceIds": [
+            "hs-medal-2026"
+          ]
+        }
       ]
     },
     {
@@ -227,7 +275,7 @@
         {
           "project": "马拉松",
           "distanceKm": 42.195,
-          "plannedParticipants": "12000人",
+          "plannedParticipants": 12000,
           "fee": "",
           "sourceIds": [
             "hs-race-2025"
@@ -235,8 +283,8 @@
         },
         {
           "project": "健康跑",
-          "distanceKm": 5.0,
-          "plannedParticipants": "8000人",
+          "distanceKm": 5,
+          "plannedParticipants": 8000,
           "fee": "",
           "sourceIds": [
             "hs-race-2025"
@@ -252,7 +300,8 @@
         "changes": "",
         "analysis": [],
         "sourceIds": [
-          "hs-start-2025"
+          "hs-start-2025",
+          "hs-course-guide-2025"
         ]
       },
       "registration": {
@@ -282,7 +331,17 @@
           "hs-race-2025"
         ]
       },
-      "results": [],
+      "results": [
+        {
+          "group": "全国马拉松锦标赛女子冠军",
+          "athlete": "徐冰洁",
+          "time": "02:28:10",
+          "timing": "",
+          "sourceIds": [
+            "hs-race-2025"
+          ]
+        }
+      ],
       "gear": [],
       "logistics": {
         "collection": {
@@ -301,17 +360,19 @@
           "startTime": "07:30锦标赛及全马A区；07:38全马B区；07:45全马C区及健康跑。",
           "timeLimit": "",
           "bagDrop": "",
-          "aidStations": "",
+          "aidStations": "2025组委会赛道攻略列出约14公里至41公里间12组赛道喷淋，另在完赛通道前设1组。",
           "toilets": "",
           "medical": "",
           "sourceIds": [
-            "hs-start-2025"
+            "hs-start-2025",
+            "hs-course-guide-2025"
           ]
         },
         "tips": []
       },
       "notes": [
-        "新华社等报道的锦标赛排名与大众全马总排名需分别核对，本档案不混列。"
+        "新华社等报道的锦标赛排名与大众全马总排名需分别核对，本档案不混列。",
+        "人民网／人民日报报道全国马拉松锦标赛（第二站）男子冠军为解云策，未给出其成绩；赛事总排名与锦标赛名次不混用。"
       ]
     },
     {
@@ -419,7 +480,17 @@
           ]
         }
       ],
-      "gear": [],
+      "gear": [
+        {
+          "category": "奖牌",
+          "name": "2024衡水湖马拉松完赛奖牌",
+          "description": "组委会发布图展示金色花形与蓝绿色主体。",
+          "imageUrl": "",
+          "sourceIds": [
+            "hs-medal-2024"
+          ]
+        }
+      ],
       "logistics": {
         "collection": {
           "time": "",
@@ -444,10 +515,63 @@
         },
         "tips": []
       },
-      "notes": []
+      "notes": [],
+      "officialResources": [
+        {
+          "category": "route-map",
+          "title": "2024赛道线路图（官方赛道解读长图下部）",
+          "url": "http://hengshuilakemarathon.com/news/detailNews.html?id=3152",
+          "sourceIds": [
+            "hs-course-map-2024"
+          ]
+        },
+        {
+          "category": "medal",
+          "title": "2024完赛奖牌发布",
+          "url": "http://hengshuilakemarathon.com/news/detailNews.html?id=3106",
+          "sourceIds": [
+            "hs-medal-2024"
+          ]
+        }
+      ]
     }
   ],
-  "stories": [],
+  "stories": [
+    {
+      "id": "hs-story-lake-start-2025",
+      "editionYear": "2025",
+      "tag": "赛事故事",
+      "title": "环湖起跑从一枪变成三枪",
+      "summary": "2025衡马首次分三枪起跑，把全马和健康跑按时间分流。",
+      "body": "跑者从衡水湖马拉松广场出发，发枪分别定在7:30、7:38和7:45，现场引入赛道智能语音播报。当天同时举办全国马拉松锦标赛第二站，因此新闻中的锦标赛冠军和大众组赛事总名次需要按各自口径阅读。",
+      "sourceIds": [
+        "hs-start-2025",
+        "hs-race-2025"
+      ]
+    },
+    {
+      "id": "hs-story-pb-2024",
+      "editionYear": "2024",
+      "tag": "赛事故事",
+      "title": "大赛成绩之外，还有3853次自己的纪录",
+      "summary": "2024衡马报告把赛会名次与跑者个人最好成绩同时写进赛后回顾。",
+      "body": "组委会称当年3853人刷新个人最好成绩，并分别列出赛事总排名与全国锦标赛优胜者。女子总排名第一的成绩为2:23:39；这项赛会纪录仅标为核实至2024届，不由这篇回顾推定后续年份的数据。",
+      "sourceIds": [
+        "hs-race-2024"
+      ]
+    },
+    {
+      "id": "hs-lifetime-bib-2026",
+      "editionYear": "2026",
+      "tag": "赛事故事",
+      "title": "两年不计，连续五届才算终身号",
+      "summary": "衡马十五周年报名须知用连续完赛记录认定终身号资格。",
+      "body": "2026衡马报名须知为终身号列出可核对的年份：2019、2021、2023、2024、2025五届全马均按时完赛可获资格，2020和2022不计入连续届次。持终身号的选手仍须预报名，之后按系统流程缴费和选号。",
+      "sourceIds": [
+        "hs-signup-2026"
+      ]
+    }
+  ],
   "sources": [
     {
       "id": "hs-history",
@@ -491,11 +615,14 @@
       "publisher": "衡水湖马拉松组委会",
       "publishedAt": "2026-09-28",
       "accessedAt": "2026-11-18",
-      "verifiedAt": "2026-11-18",
+      "verifiedAt": "2026-11-20",
       "applicableYears": [
         "2026"
       ],
-      "evidence": "已读取官网公开接口正文；名次表为图片，未抄录未核验成绩。"
+      "evidence": {
+        "status": "赛后名次奖公示（2026-09-28至2026-10-07）",
+        "observed": "官网附件男女各公示前8名，前3名为枪声成绩，挑战组或个人页面不混填。"
+      }
     },
     {
       "id": "hs-race-2024",
@@ -546,24 +673,109 @@
         "2026"
       ],
       "evidence": "已读取中国马拉松官网公开查询接口 searchById（POST，id=1000418281，type=SS）；返回赛事名称、日期、举办城市、主办单位和 officialRaceGrade=A。仅适用于2026届，不由徽标推定世界田联等级。"
+    },
+    {
+      "id": "hs-signup-2026",
+      "title": "2026六个核桃植物奶衡水湖马拉松报名须知",
+      "url": "http://hengshuilakemarathon.com/news/detailNews.html?id=2992",
+      "publisher": "衡水湖马拉松组委会",
+      "publishedAt": "",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ]
+    },
+    {
+      "id": "hs-draw-2026",
+      "title": "赛讯｜2026衡马抽签结果今日10时开放查询",
+      "url": "http://hengshuilakemarathon.com/news/detailNews.html?id=5232",
+      "publisher": "衡水湖马拉松组委会",
+      "publishedAt": "2026-08-11",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ]
+    },
+    {
+      "id": "hs-collection-2026",
+      "title": "参赛指南｜2026衡马领物须知请查收，PB纪念礼视频同步发布",
+      "url": "http://hengshuilakemarathon.com/news/detailNews.html?id=5345",
+      "publisher": "衡水湖马拉松组委会",
+      "publishedAt": "2026-09-20",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ]
+    },
+    {
+      "id": "hs-medal-2026",
+      "title": "赛讯｜PB礼、完赛奖牌，衡马十五周年双重好礼为超越与坚持而来",
+      "url": "http://hengshuilakemarathon.com/news/detailNews.html?id=5208",
+      "publisher": "衡水湖马拉松组委会",
+      "publishedAt": "2026-07-28",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ]
+    },
+    {
+      "id": "hs-course-map-2024",
+      "title": "衡马PB手册（四）：衡马赛道解读",
+      "url": "http://hengshuilakemarathon.com/news/detailNews.html?id=3152",
+      "publisher": "衡水湖马拉松组委会",
+      "publishedAt": "2024-09-07",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2024"
+      ]
+    },
+    {
+      "id": "hs-medal-2024",
+      "title": "2024衡马完赛奖牌公布！细节之处巧思多！",
+      "url": "http://hengshuilakemarathon.com/news/detailNews.html?id=3106",
+      "publisher": "衡水湖马拉松组委会",
+      "publishedAt": "2024-08-30",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2024"
+      ]
+    },
+    {
+      "id": "hs-course-guide-2025",
+      "title": "2025衡马赛道攻略请查收",
+      "url": "http://hengshuilakemarathon.com/news/detailNews.html?id=4375",
+      "publisher": "衡水湖马拉松组委会",
+      "publishedAt": "2025-09-17",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2025"
+      ]
     }
   ],
   "gaps": [
     {
       "fields": [
         "records（截至2026的当前纪录）",
-        "editions[2026].registration.fee",
-        "editions[2026].logistics.collection",
-        "editions[2025,2026].results"
+        "editions.2025.results",
+        "editions.2026.registration.lotteryRate"
       ],
-      "reason": "2026规程及成绩表部分为长图，已读部分之外的费用、领物和名次数据待逐页核验；2024纪录仅展示截至该届历史状态。"
+      "reason": "2026已按组委会公示录入全马男女冠军的枪声成绩，并补报名、抽签与领物安排；2025锦标赛男子用时和赛事总排名仍缺。2024纪录仅确认至该届，没有用公示的名次替代完整历史纪录。"
     },
     {
       "fields": [
         "editions[].route.mapUrl",
-        "editions[].gear[].imageUrl"
+        "editions[].gear[].imageUrl",
+        "editions.2026.officialResources.route-map",
+        "editions.2026.officialResources.shirt"
       ],
-      "reason": "未取得可公开再分发的图片许可；仅保留来源链接，不接入赛道图或物资实物图片。"
+      "reason": "2024官方赛道地图和2024、2026奖牌发布可从档案打开；2026未核得完整赛道图或专门发布的参赛服原页。图片转载许可尚未确认，档案不复制图片。"
     },
     {
       "fields": [

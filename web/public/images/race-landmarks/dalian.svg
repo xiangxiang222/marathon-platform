@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="96" viewBox="0 0 120 96" fill="none">
+  <title>大连东港与东方水城地标图标</title>
+  <g stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 51h31v28H12zM78 53h30v26H78z" fill="#ffe4cb" stroke="#b68a70"/>
+    <path d="m10 51 16-11 18 11H10Zm66 2 16-12 18 12H76Z" fill="#eaaa99" stroke="#b68a70"/>
+    <path d="M18 59h5m8 0h5m48 1h5m8 0h5m-83 6h4m76 0h4" stroke="#ba8775"/>
+    <path d="M45 32h27v47H45z" fill="#f6ceab" stroke="#9a7c72"/>
+    <path d="M43 32c1-5 4-7 8-7 0-5 4-8 7-11 4 3 8 6 8 11 4 0 7 2 8 7H43Z" fill="#a3bfd0" stroke="#7290a6"/>
+    <path d="M58 14V9" stroke="#9a7c72"/>
+    <path d="M58 9h7" stroke="#ff1838" stroke-width="2"/>
+    <path d="M54 46v-4a4.5 4.5 0 0 1 9 0v4z" fill="#f6f0e1" stroke="#9a7c72"/>
+    <path d="M20 79v-5a4 4 0 0 1 8 0v5m24 0v-9a6.5 6.5 0 0 1 13 0v9m25 0v-5a4 4 0 0 1 8 0v5" fill="#b98e7b" stroke="#9a7c72"/>
+    <path d="M7 79h106" stroke="#b68a70"/>
+    <path d="M8 85c10-3 15 3 25 0s15 3 25 0 15 3 25 0 15 3 25 0m-85 6h18m7 0h24m7 0h20" stroke="#77bccf"/>
+  </g>
+</svg>

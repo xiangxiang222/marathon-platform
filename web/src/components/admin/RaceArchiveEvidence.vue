@@ -6,6 +6,16 @@
       <button type="button" @click="edition.events.push({project:'',distanceKm:'',plannedParticipants:'',fee:'',sourceIds:[]})">添加项目</button>
       <div v-for="(event,index) in edition.events" :key="index" class="evidence-row"><label v-for="f in eventFields" :key="f[0]">{{ f[1] }}<input v-model="event[f[0]]" /></label><label>来源标识<input :value="join(event.sourceIds)" @input="event.sourceIds=split($event.target.value)" /></label><button type="button" @click="edition.events.splice(index,1)">移除项目</button></div>
     </details>
+    <details v-if="mode==='route' && edition"><summary>官方赛道图、参赛服与奖牌出处</summary>
+      <p>填入能查看当届官方原图的发布页，并注明已登记的资料来源。</p>
+      <div v-for="(item,index) in edition.officialResources || []" :key="index">
+        <label>类型 <select v-model="item.category"><option value="route-map">赛道图</option><option value="shirt">参赛服</option><option value="medal">奖牌</option></select></label>
+        <label>标题 <input v-model="item.title" /></label><label>链接 <input v-model="item.url" type="url" /></label>
+        <label>资料来源 <select v-model="item.sourceIds" multiple><option v-for="source in archive.sources" :key="source.id" :value="source.id">{{ source.title || source.id }}</option></select></label>
+        <button type="button" @click="edition.officialResources.splice(index,1)">移除入口</button>
+      </div>
+      <button type="button" @click="(edition.officialResources ||= []).push({category:'route-map',title:'',url:'',sourceIds:[]})">添加官方原图入口</button>
+    </details>
     <details v-if="mode==='entry' && edition"><summary>该届实用参赛建议</summary>
       <button type="button" @click="edition.logistics.tips.push({title:'',body:'',kind:'editorial-advice',sourceIds:[]})">添加建议</button>
       <div v-for="(tip,index) in edition.logistics.tips" :key="index" class="evidence-row"><label>标题<input v-model="tip.title" /></label><label>内容<textarea v-model="tip.body" rows="3" /></label><label>性质<select v-model="tip.kind"><option value="editorial-advice">编辑建议</option><option value="official">官方要求</option><option value="">未分类</option></select></label><label>来源标识<input :value="join(tip.sourceIds)" @input="tip.sourceIds=split($event.target.value)" /></label><button type="button" @click="edition.logistics.tips.splice(index,1)">移除建议</button></div>

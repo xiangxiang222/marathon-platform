@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "raceId": "chengdu",
-  "updatedAt": "2026-11-18",
+  "updatedAt": "2026-11-20",
   "intro": "成都马拉松创办于2017年。近年从金沙遗址博物馆出发，穿过老城街区，再向城南的新城地标延伸。2025年减少下穿隧道与公园内部路段，2026年加入杜甫草堂、四川博物院、青羊宫和琴台路，让这条线路的古蜀、诗意街巷与现代城市层次更加清晰。",
   "introSourceIds": [
     "cd-founding",
@@ -129,60 +129,74 @@
       "date": "2026-10-25",
       "dateSourceIds": [
         "cd-preview-2026",
-        "cd-report-2026"
+        "cd-report-2026",
+        "cd-rules-2026"
       ],
       "distance": "马拉松、半程马拉松",
       "events": [
         {
           "project": "马拉松",
           "distanceKm": 42.195,
-          "plannedParticipants": "25000人",
-          "fee": "",
+          "plannedParticipants": 25000,
+          "fee": "200元/人",
           "sourceIds": [
             "cd-preview-2026",
-            "cd-report-2026"
+            "cd-report-2026",
+            "cd-rules-2026",
+            "cd-signup-2026"
           ]
         },
         {
           "project": "半程马拉松",
           "distanceKm": 21.0975,
-          "plannedParticipants": "10000人",
-          "fee": "",
+          "plannedParticipants": 10000,
+          "fee": "200元/人",
           "sourceIds": [
             "cd-preview-2026",
-            "cd-report-2026"
+            "cd-report-2026",
+            "cd-rules-2026",
+            "cd-signup-2026"
           ]
         }
       ],
       "route": {
-        "summary": "金沙遗址博物馆出发，新增杜甫草堂、四川博物院、青羊宫、琴台路等点位，连接天府广场、春熙路；半马在川大望江校区冲线，全马继续前往世纪城。",
+        "summary": "金沙遗址博物馆 → 杜甫草堂、四川博物院与青羊宫一带 → 天府广场 → 春熙路 → 天府熊猫塔周边 → 望江楼公园周边 → 世纪城新国际会展中心",
         "start": "金沙遗址博物馆",
         "finish": "全马：世纪城新国际会展中心；半马：四川大学望江校区",
         "mapUrl": "",
-        "changes": "对出发后约6公里等路段优化，新增四处文化地标；不将景点清单视为逐路段导航。",
-        "analysis": [],
+        "changes": "前6公里新串联杜甫草堂、四川博物院、青羊宫及琴台路一带；成华区折返缩至双林北横路，城南部分改走环球中心前下穿隧道。",
+        "analysis": [
+          "全马和半马共用金沙起点，望江方向后分流；看清路牌和号码布项目。",
+          "路线图同时标注了补给点、上坡和隧道路段，可结合海拔栏制定配速。"
+        ],
         "sourceIds": [
           "cd-preview-2026",
-          "cd-report-2026"
-        ]
+          "cd-report-2026",
+          "cd-map-2026",
+          "cd-gear-release-2026"
+        ],
+        "summaryNote": "按官方图整理的全马沿线地标；半马终点为四川大学望江校区。",
+        "mapSourceUrl": "https://chengdumarathon.cn/column/articleDetail/130?column_id=68&lang=cn"
       },
       "registration": {
-        "method": "先报名、再抽签，中签后缴费；设置申请退赛的窗口。",
+        "method": "通过赛事官网或官方合作应用报名，超额抽签，中签后缴费。第二轮仅从首轮未中签且报名时选择补录的选手中抽取。",
         "opens": "2026-06-10 10:00",
         "closes": "2026-06-24 18:00",
-        "drawDate": "",
-        "fee": "",
-        "qualification": "",
-        "applicants": "",
+        "drawDate": "2026-07-30 10:00（首轮）；09-07 10:00（第二轮）",
+        "fee": "全马、半马均为200元/人。",
+        "qualification": "全马按2026年1月1日年满20岁审核，半马同口径年满18岁；详细成绩要求与证明按项目见官方须知。",
+        "applicants": "239282份报名（组委会首轮公告）",
         "eligibleApplicants": "",
         "lotteryPool": "",
         "drawQuota": "",
-        "directQuota": "",
+        "directQuota": "全马成绩直通上限5000人，按年龄组入围比例分配。",
         "lotteryRate": "",
-        "lotteryNote": "",
-        "note": "2026年调整了以往报名即缴费、未中签退款的流程；退赛具体时段以组委会后续通知为准。",
+        "lotteryNote": "未核实两轮实际抽出名额和各池有效人数，不用计划规模估计中签率。",
+        "note": "首轮缴费至8月5日18:00，第二轮缴费至9月13日18:00。报名结束后不能再更改是否参加补录。",
         "sourceIds": [
-          "cd-preview-2026"
+          "cd-signup-2026",
+          "cd-draw-1-2026",
+          "cd-draw-2-2026"
         ]
       },
       "participation": {
@@ -193,7 +207,8 @@
         "note": "报道的赛事规模，未获得同口径的实际起跑人数与完赛人数。",
         "sourceIds": [
           "cd-preview-2026",
-          "cd-report-2026"
+          "cd-report-2026",
+          "cd-rules-2026"
         ]
       },
       "results": [
@@ -201,75 +216,152 @@
           "group": "马拉松男子冠军",
           "athlete": "赵长虹",
           "time": "02:13:01",
-          "timing": "",
+          "timing": "枪声成绩",
           "sourceIds": [
-            "cd-report-2026"
+            "cd-report-2026",
+            "cd-official-results-2026"
           ]
         },
         {
           "group": "马拉松女子冠军",
           "athlete": "丁常琴",
           "time": "02:31:47",
-          "timing": "",
+          "timing": "枪声成绩",
           "sourceIds": [
-            "cd-report-2026"
+            "cd-report-2026",
+            "cd-official-results-2026"
           ]
         },
         {
           "group": "半程马拉松男子冠军",
           "athlete": "谢开宠",
           "time": "01:06:51",
-          "timing": "",
+          "timing": "枪声成绩",
           "sourceIds": [
-            "cd-report-2026"
+            "cd-report-2026",
+            "cd-official-results-2026"
           ]
         },
         {
           "group": "半程马拉松女子冠军",
           "athlete": "李福银",
           "time": "01:16:01",
-          "timing": "",
+          "timing": "枪声成绩",
           "sourceIds": [
-            "cd-report-2026"
+            "cd-report-2026",
+            "cd-official-results-2026"
           ]
         }
       ],
-      "gear": [],
+      "gear": [
+        {
+          "category": "参赛服",
+          "name": "2026成马参赛服",
+          "description": "亮橙色为主，以奔跑回望的熊猫和成都拼音首字母“CD”构成图案。",
+          "items": [],
+          "imageUrl": "",
+          "sourceUrl": "https://chengdumarathon.cn/column/articleDetail/131?column_id=69&lang=cn",
+          "sourceIds": [
+            "cd-gear-release-2026"
+          ]
+        },
+        {
+          "category": "奖牌",
+          "name": "2026成马完赛奖牌",
+          "description": "以熊猫、芙蓉花造型和太阳神鸟金箔纹样串联城市元素；全马为金色、半马为银色。",
+          "items": [],
+          "imageUrl": "",
+          "sourceUrl": "https://chengdumarathon.cn/column/articleDetail/131?column_id=69&lang=cn",
+          "sourceIds": [
+            "cd-gear-release-2026"
+          ]
+        },
+        {
+          "category": "参赛包",
+          "name": "2026成马参赛物品",
+          "description": "全马与半马均为号码布（含芯片，一大一小）、参赛服一件、参赛包一个。",
+          "items": [
+            "号码布（含芯片）",
+            "参赛服",
+            "参赛包"
+          ],
+          "imageUrl": "",
+          "sourceUrl": "",
+          "sourceIds": [
+            "cd-pickup-2026"
+          ]
+        }
+      ],
       "notes": [],
       "logistics": {
         "collection": {
-          "time": "",
-          "place": "",
-          "requirements": "",
-          "sourceIds": []
+          "time": "10月22日、23日12:00—20:00；10月24日10:00—22:00",
+          "place": "成都世纪城新国际会展中心8号馆",
+          "requirements": "先在官网或官方合作应用预约。本人持有效证件原件、电子领物单及已签字的纸质《参赛承诺书》办理，不能代领。",
+          "sourceIds": [
+            "cd-pickup-2026"
+          ]
         },
         "transport": {
           "start": "",
           "finish": "",
-          "expo": "",
-          "sourceIds": []
+          "expo": "地铁1号线、18号线世纪城站E口；亦可选新会展中心南侧站、北侧站公交。",
+          "sourceIds": [
+            "cd-pickup-2026"
+          ]
         },
         "raceDay": {
-          "startTime": "07:30精英及全马A/B/C区；07:50全马D/E区；08:10半马F/G区",
-          "timeLimit": "",
-          "bagDrop": "",
-          "aidStations": "",
-          "toilets": "",
-          "medical": "",
+          "startTime": "10月25日，首枪07:30。按号码布所属分区检录集结，禁止跨区起跑。",
+          "timeLimit": "按规程分段关门，分项目及公里点见官方时间表。",
+          "bagDrop": "选择存包者在起点凭号码布寄存；终点取包全马至15:00、半马至12:10。",
+          "aidStations": "具体饮水、补给与喷淋点见赛道图。",
+          "toilets": "起终点、沿途2、3、4公里处，及5公里起每隔2.5公里设置。",
+          "medical": "起终点及沿途设固定医疗站，并有移动AED与医护人员。",
           "sourceIds": [
-            "cd-preview-2026"
+            "cd-rules-2026",
+            "cd-map-2026"
           ]
         },
         "tips": [
           {
-            "title": "按分枪时刻出发",
-            "body": "全马和半马分三枪出发，半马计划08:10起跑；应查本人分区安排入场，不把第一枪时间当成全部选手发枪时间。",
+            "title": "预约后按时领物",
+            "body": "官方提示周五晚与周六常是领物高峰。带齐证件、电子单和纸质承诺书后按预约时段去8号馆。",
+            "kind": "当届提醒",
+            "applicableYears": [
+              "2026"
+            ],
             "sourceIds": [
-              "cd-preview-2026"
+              "cd-pickup-2026"
             ]
           }
         ]
-      }
+      },
+      "officialResources": [
+        {
+          "category": "route-map",
+          "title": "查看2026成马全马及半马路线图",
+          "url": "https://chengdumarathon.cn/column/articleDetail/130?column_id=68&lang=cn",
+          "sourceIds": [
+            "cd-map-2026"
+          ]
+        },
+        {
+          "category": "shirt",
+          "title": "查看2026成马参赛服发布图",
+          "url": "https://chengdumarathon.cn/column/articleDetail/131?column_id=69&lang=cn",
+          "sourceIds": [
+            "cd-gear-release-2026"
+          ]
+        },
+        {
+          "category": "medal",
+          "title": "查看2026成马全马和半马完赛奖牌",
+          "url": "https://chengdumarathon.cn/column/articleDetail/131?column_id=69&lang=cn",
+          "sourceIds": [
+            "cd-gear-release-2026"
+          ]
+        }
+      ]
     },
     {
       "year": "2025",
@@ -281,7 +373,28 @@
         "cd-report-2025"
       ],
       "distance": "马拉松、半程马拉松",
-      "events": [],
+      "events": [
+        {
+          "project": "马拉松",
+          "distanceKm": 42.195,
+          "plannedParticipants": 25000,
+          "fee": "200元/人",
+          "sourceIds": [
+            "cd-rules-2025",
+            "cd-signup-2025"
+          ]
+        },
+        {
+          "project": "半程马拉松",
+          "distanceKm": 21.0975,
+          "plannedParticipants": 10000,
+          "fee": "200元/人",
+          "sourceIds": [
+            "cd-rules-2025",
+            "cd-signup-2025"
+          ]
+        }
+      ],
       "route": {
         "summary": "从金沙遗址博物馆东门起跑，经过中心城区与城南新城；沿线景观包括宽窄巷子、春熙路、天府熊猫塔与望江楼公园。",
         "start": "金沙遗址博物馆东门",
@@ -290,25 +403,29 @@
         "changes": "2025年减少两处下穿隧道，取消桂溪生态公园内部路段。",
         "analysis": [],
         "sourceIds": [
-          "cd-report-2025"
-        ]
+          "cd-report-2025",
+          "cd-map-2025"
+        ],
+        "mapSourceUrl": "https://chengdumarathon.cn/column/articleDetail/44?column_id=69&lang=cn"
       },
       "registration": {
-        "method": "",
-        "opens": "",
-        "closes": "",
-        "drawDate": "",
-        "fee": "",
-        "qualification": "",
+        "method": "官网或官方合作应用报名，先缴费后抽签；选择参与候补的未中签者按签位进入候补。",
+        "opens": "2025-04-15 10:00",
+        "closes": "2025-05-15 22:00",
+        "drawDate": "2025-06-15（报名须知所列公布日期）",
+        "fee": "全马、半马均为200元/人；公益捐赠费1500元。",
+        "qualification": "大众抽签按A、B、C类递减；A、B类分别对应指定有效期内全马6小时或半马3小时内完赛。",
         "applicants": "",
         "eligibleApplicants": "",
         "lotteryPool": "",
         "drawQuota": "",
         "directQuota": "",
         "lotteryRate": "",
-        "lotteryNote": "",
-        "note": "",
-        "sourceIds": []
+        "lotteryNote": "未核实官方同口径中签率和各档抽签池，不按总规模推算。",
+        "note": "未中签且不参与候补者7个工作日内全额退费；未候补成功者在9月14日后退费。",
+        "sourceIds": [
+          "cd-signup-2025"
+        ]
       },
       "participation": {
         "planned": "35000人（报道赛事规模）",
@@ -317,26 +434,104 @@
         "finishRate": "",
         "note": "报道的赛事规模，未获得同口径的实际起跑人数与完赛人数。",
         "sourceIds": [
-          "cd-report-2025"
+          "cd-report-2025",
+          "cd-rules-2025"
         ]
       },
-      "results": [],
+      "results": [
+        {
+          "group": "马拉松男子冠军",
+          "athlete": "管油胜",
+          "time": "02:16:28",
+          "timing": "枪声成绩",
+          "sourceIds": [
+            "cd-official-results-2025"
+          ]
+        },
+        {
+          "group": "马拉松女子冠军",
+          "athlete": "邓春艳",
+          "time": "02:37:19",
+          "timing": "枪声成绩",
+          "sourceIds": [
+            "cd-official-results-2025"
+          ]
+        },
+        {
+          "group": "半程马拉松男子冠军",
+          "athlete": "胡萨拜克·托库",
+          "time": "01:08:03",
+          "timing": "净成绩",
+          "sourceIds": [
+            "cd-official-results-2025"
+          ]
+        },
+        {
+          "group": "半程马拉松女子冠军",
+          "athlete": "宋璇",
+          "time": "01:20:09",
+          "timing": "净成绩",
+          "sourceIds": [
+            "cd-official-results-2025"
+          ]
+        },
+        {
+          "group": "马拉松男子亚军",
+          "athlete": "沙正友",
+          "time": "02:17:02",
+          "timing": "枪声成绩",
+          "sourceIds": [
+            "cd-official-results-2025"
+          ]
+        },
+        {
+          "group": "马拉松男子季军",
+          "athlete": "岑万江",
+          "time": "02:17:28",
+          "timing": "枪声成绩",
+          "sourceIds": [
+            "cd-official-results-2025"
+          ]
+        },
+        {
+          "group": "马拉松女子亚军",
+          "athlete": "王敏",
+          "time": "02:38:50",
+          "timing": "枪声成绩",
+          "sourceIds": [
+            "cd-official-results-2025"
+          ]
+        },
+        {
+          "group": "马拉松女子季军",
+          "athlete": "朱冰莹",
+          "time": "02:41:17",
+          "timing": "枪声成绩",
+          "sourceIds": [
+            "cd-official-results-2025"
+          ]
+        }
+      ],
       "gear": [],
       "notes": [
-        "省体育局报道男子冠军为管油胜、女子冠军为邓春艳，但未给出成绩，成绩表暂留空。"
+        "全马名次以枪声成绩呈现；半马按组委会名次奖公布的净成绩呈现。"
       ],
       "logistics": {
         "collection": {
-          "time": "",
-          "place": "",
-          "requirements": "",
-          "sourceIds": []
+          "time": "10月23日、24日12:00—20:00；10月25日10:00—22:00",
+          "place": "成都世纪城新国际会展中心8—9号馆",
+          "requirements": "仅选手本人领取，须携带报名时使用的有效证件原件。",
+          "sourceIds": [
+            "cd-pickup-2025"
+          ]
         },
         "transport": {
           "start": "",
           "finish": "",
-          "expo": "",
-          "sourceIds": []
+          "expo": "可乘地铁1号线、18号线至世纪城站。",
+          "sourceIds": [
+            "cd-pickup-2025"
+          ]
         },
         "raceDay": {
           "startTime": "07:30",
@@ -358,7 +553,17 @@
             ]
           }
         ]
-      }
+      },
+      "officialResources": [
+        {
+          "category": "route-map",
+          "title": "查看2025成马全马及半马路线图",
+          "url": "https://chengdumarathon.cn/column/articleDetail/44?column_id=69&lang=cn",
+          "sourceIds": [
+            "cd-map-2025"
+          ]
+        }
+      ]
     },
     {
       "year": "2024",
@@ -459,7 +664,43 @@
       }
     }
   ],
-  "stories": [],
+  "stories": [
+    {
+      "id": "cd-tenth-kit-2026",
+      "title": "十年成马，熊猫跑进了奖牌和参赛服",
+      "tag": "装备故事",
+      "editionYear": "2026",
+      "summary": "一对金银色奖牌、一件橙色参赛服，都留下了蓉城的熊猫印记。",
+      "body": "2017年，成都举办了首届成马。十年后的发布会上，组委会用黑白分明的熊猫形态做设计：在奖牌上刻进芙蓉花与太阳神鸟，在橙色参赛服上让熊猫跑动回头。组委会还把虚拟赛道做进终点体验，扫码识别完赛奖牌后可回看沿路的动画。",
+      "sourceIds": [
+        "cd-history-2017",
+        "cd-gear-release-2026"
+      ]
+    },
+    {
+      "id": "cd-story-underpass-2025",
+      "editionYear": "2025",
+      "tag": "赛事故事",
+      "title": "路面少了两段下穿",
+      "summary": "2025成马保留金沙到世纪城的城市路线，同时让跑者少进两处下穿隧道。",
+      "body": "四川省体育局赛后回顾记载，2025路线取消了两处下穿和桂溪生态公园内部路段。第二年发布会又公布杜甫草堂、四川博物院、青羊宫和琴台路等新增点位。路线改善和城市景观不是同一个指标，读图时值得一起看，也要按自己的参赛年份分开。",
+      "sourceIds": [
+        "cd-report-2025",
+        "cd-preview-2026"
+      ]
+    },
+    {
+      "id": "cd-story-draw-2026",
+      "editionYear": "2026",
+      "tag": "赛事故事",
+      "title": "先抽签，再决定是否缴费",
+      "summary": "2026成都马拉松调整报名流程，中签后才进入缴费阶段。",
+      "body": "在以前报名时缴费、落签再退款的流程下，跑者先付钱再等结果。2026发布会公布改为报名后抽签，中签者限期缴费，另设退赛窗口。对隔年参赛的人来说，这项变化比沿用上一次保存的报名攻略更值得关注。",
+      "sourceIds": [
+        "cd-preview-2026"
+      ]
+    }
+  ],
   "sources": [
     {
       "id": "cd-history-2017",
@@ -578,31 +819,185 @@
         "category": "Label",
         "calendarDate": "2026-10-25"
       }
+    },
+    {
+      "id": "cd-rules-2026",
+      "title": "2026极氪汽车成都马拉松竞赛规程",
+      "url": "https://chengdumarathon.cn/column/articleDetail/95?column_id=66&lang=cn",
+      "publisher": "成都马拉松组委会",
+      "publishedAt": "",
+      "applicableYears": [
+        "2026"
+      ],
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "cd-signup-2026",
+      "title": "2026极氪汽车成都马拉松报名须知",
+      "url": "https://chengdumarathon.cn/column/articleDetail/96?column_id=67&lang=cn",
+      "publisher": "成都马拉松组委会",
+      "publishedAt": "",
+      "applicableYears": [
+        "2026"
+      ],
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "cd-map-2026",
+      "title": "2026极氪汽车成都马拉松比赛路线图",
+      "url": "https://chengdumarathon.cn/column/articleDetail/130?column_id=68&lang=cn",
+      "publisher": "成都马拉松组委会",
+      "publishedAt": "",
+      "applicableYears": [
+        "2026"
+      ],
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "note": "图头署名与届次明确，可核对全马、半马、计时、补给和左右分线。"
+    },
+    {
+      "id": "cd-pickup-2026",
+      "title": "2026极氪汽车成都马拉松参赛物品领取须知",
+      "url": "https://chengdumarathon.cn/column/articleDetail/138?column_id=80&lang=cn",
+      "publisher": "成都马拉松组委会",
+      "publishedAt": "2026-10-13",
+      "applicableYears": [
+        "2026"
+      ],
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "cd-draw-1-2026",
+      "title": "2026极氪汽车成都马拉松抽签结果公布",
+      "url": "https://chengdumarathon.cn/column/articleDetail/115?column_id=70&lang=cn",
+      "publisher": "成都马拉松组委会",
+      "publishedAt": "2026-07-30",
+      "applicableYears": [
+        "2026"
+      ],
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "cd-draw-2-2026",
+      "title": "2026极氪汽车成都马拉松二次抽签结果公布",
+      "url": "https://chengdumarathon.cn/column/articleDetail/124?column_id=70&lang=cn",
+      "publisher": "成都马拉松组委会",
+      "publishedAt": "2026-09-07",
+      "applicableYears": [
+        "2026"
+      ],
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "cd-official-results-2026",
+      "title": "2026极氪汽车成都马拉松成绩公示",
+      "url": "https://chengdumarathon.cn/column/articleDetail/158?column_id=70&lang=cn",
+      "publisher": "成都马拉松组委会",
+      "publishedAt": "2026-10-26",
+      "applicableYears": [
+        "2026"
+      ],
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "cd-gear-release-2026",
+      "title": "十年成马焕新出发：2026新闻发布会、完赛奖牌与参赛服",
+      "url": "https://chengdumarathon.cn/column/articleDetail/131?column_id=69&lang=cn",
+      "publisher": "成都马拉松组委会",
+      "publishedAt": "2026-09-23",
+      "applicableYears": [
+        "2026"
+      ],
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "cd-map-2025",
+      "title": "2025成都马拉松赛事路线发布",
+      "url": "https://chengdumarathon.cn/column/articleDetail/44?column_id=69&lang=cn",
+      "publisher": "成都马拉松组委会",
+      "publishedAt": "",
+      "applicableYears": [
+        "2025"
+      ],
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "note": "官方新版网站保留老届路线图；图上署明2025，网页后台时间为后续迁移，不当作赛事发布时间。"
+    },
+    {
+      "id": "cd-rules-2025",
+      "title": "2025成都马拉松竞赛规程",
+      "url": "https://chengdumarathon.cn/column/articleDetail/94?column_id=70&lang=cn",
+      "publisher": "成都马拉松组委会",
+      "publishedAt": "",
+      "applicableYears": [
+        "2025"
+      ],
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "note": ""
+    },
+    {
+      "id": "cd-signup-2025",
+      "title": "2025成都马拉松报名须知",
+      "url": "https://chengdumarathon.cn/column/articleDetail/32?column_id=70&lang=cn",
+      "publisher": "成都马拉松组委会",
+      "publishedAt": "",
+      "applicableYears": [
+        "2025"
+      ],
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "note": ""
+    },
+    {
+      "id": "cd-pickup-2025",
+      "title": "2025成都马拉松领物须知",
+      "url": "https://chengdumarathon.cn/column/articleDetail/30?column_id=70&lang=cn",
+      "publisher": "成都马拉松组委会",
+      "publishedAt": "",
+      "applicableYears": [
+        "2025"
+      ],
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "note": ""
+    },
+    {
+      "id": "cd-official-results-2025",
+      "title": "2025成都马拉松名次及获奖成绩公示",
+      "url": "https://chengdumarathon.cn/column/articleDetail/93?column_id=70&lang=cn",
+      "publisher": "成都马拉松组委会",
+      "publishedAt": "",
+      "applicableYears": [
+        "2025"
+      ],
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "note": "三个原表分别列全马名次的枪声成绩、全马中国籍特别奖的净成绩、半马名次的净成绩。"
     }
   ],
   "gaps": [
     {
       "fields": [
         "records.现行纪录",
-        "editions.2025.results"
+        "editions.2024.registration"
       ],
-      "reason": "2024纪录仅确认到该届；2025冠军报道未给出成绩，故不能断言2024成绩仍为截至2026年的现行纪录。"
+      "reason": "2024男子纪录按当届确认；现行历届公开组纪录与2024报名规程仍待补。2025/2026已经接入组委会名次公示。"
     },
     {
       "fields": [
-        "editions.2024.registration",
-        "editions.2025.registration",
-        "editions.2026.registration.fee",
-        "editions.logistics.collection"
+        "registration.lotteryRate",
+        "participation.finishers",
+        "images"
       ],
-      "reason": "尚未取得三届完整规程和领物公告，缺失字段留空。"
-    },
-    {
-      "fields": [
-        "images",
-        "editions.route.mapUrl"
-      ],
-      "reason": "未取得官方图片、路线图的明确转载许可，暂不展示图片；可通过资料来源查看官方原图。"
+      "reason": "尚未核实2026两轮同口径抽签名额、各组实际完赛人数；2025/2026官方图件按届提供原页，未确认转载授权。"
     }
   ],
   "conflicts": []
