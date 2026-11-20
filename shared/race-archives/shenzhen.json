@@ -166,7 +166,10 @@
         "sourceIds": [
           "sz-entry-2026",
           "sz-draw2-2026"
-        ]
+        ],
+        "payment": "首轮至10月22日17:00；二次至10月31日17:00。",
+        "waitlist": "首轮未中签者可于10月29日10:00起查询二次抽签。",
+        "direct": "大众精英限3000人且超额抽签；至少8届线下深马计时项目完赛者可按须知申请免抽签。"
       },
       "participation": {
         "planned": "全程马拉松30000人（计划）",
@@ -236,6 +239,14 @@
           "sourceIds": [
             "sz-map-2026"
           ]
+        },
+        {
+          "category": "guide",
+          "title": "2026深圳马拉松竞赛规程（含领物与赛时安排）",
+          "url": "https://shenzhenmarathon.org.cn/subject.html?detailId=7447924346894135&topicId=6990420672320300",
+          "sourceIds": [
+            "sz-regulations-2026"
+          ]
         }
       ]
     },
@@ -276,7 +287,7 @@
         "method": "个人预报名后抽签，中签后缴费；按空缺安排候补。",
         "opens": "2025-10-30 10:00",
         "closes": "2025-11-02 17:00",
-        "drawDate": "2025-11-10 10:00",
+        "drawDate": "2025年11月10日10:00（首轮公布）；11月15日10:00（已缴费候补可查询补录）。",
         "fee": "人民币200元／人",
         "qualification": "年满20周岁；70岁及以上须按规程要求提交本人和家属签署的承诺。",
         "applicants": "",
@@ -288,8 +299,15 @@
         "lotteryNote": "",
         "note": "中签缴费为11月10日10:00—11月12日17:00；另设精英通道，容量3000人且超额仍需抽签，不等同无条件成绩直通。",
         "sourceIds": [
-          "sz-regulations-2025"
-        ]
+          "sz-regulations-2025",
+          "sz-signup-2025",
+          "sz-draw-2025",
+          "sz-waitlist-2025"
+        ],
+        "payment": "首轮中签及愿意候补的未中签者均须在11月12日17:00前缴费。",
+        "waitlist": "报名时选择候补；未中签者缴费后进入候补池，组委会从中补录，结果自11月15日10:00可查。",
+        "direct": "精英通道限3000名，达标者超额仍抽签；未中签精英转入普通抽签池。",
+        "plannedQuota": "马拉松30000人（竞赛规程）。"
       },
       "participation": {
         "planned": "计划30000人",
@@ -341,6 +359,24 @@
             "sz-recap-2025",
             "sz-regulations-2025"
           ]
+        },
+        {
+          "group": "马拉松中国籍男子第一名",
+          "athlete": "高鹏",
+          "time": "02:13:59",
+          "timing": "",
+          "sourceIds": [
+            "sz-government-report-2025"
+          ]
+        },
+        {
+          "group": "马拉松中国籍女子第一名",
+          "athlete": "夏雨雨",
+          "time": "02:34:15",
+          "timing": "",
+          "sourceIds": [
+            "sz-government-report-2025"
+          ]
         }
       ],
       "gear": [
@@ -382,16 +418,18 @@
           ]
         },
         "transport": {
-          "start": "",
-          "finish": "",
+          "start": "多条地铁线路首班提前至05:30，参赛选手可兑换虚拟票。",
+          "finish": "赛道路段分时解封，赛事交通请核对当届指引。",
           "expo": "",
-          "sourceIds": []
+          "sourceIds": [
+            "sz-government-report-2025"
+          ]
         },
         "raceDay": {
           "startTime": "07:30",
-          "timeLimit": "",
+          "timeLimit": "按最后一枪起计；半程点3小时，终点6小时15分钟，其他点位见规程关门时长表。",
           "bagDrop": "起点存包06:00—07:10；终点取包截止14:45",
-          "aidStations": "",
+          "aidStations": "每5公里设补给站，7.5公里起间隔设置饮水或食品点；喷淋点以规程原表为准。",
           "toilets": "",
           "medical": "沿途约每2.5公里设医疗点，具体按规程及现场标识。",
           "sourceIds": [
@@ -415,6 +453,22 @@
           "url": "https://pub.mararun.com/cms/pic/shenzhenMarathon/1c72ee70d96972d0a0f079c467df8d58.png",
           "sourceIds": [
             "sz-medal-2025"
+          ]
+        },
+        {
+          "category": "results",
+          "title": "查询深圳马拉松个人成绩（选择2025届）",
+          "url": "https://shenzhen-registration.mararun.com/score.html",
+          "sourceIds": [
+            "sz-score-lookup-2025"
+          ]
+        },
+        {
+          "category": "guide",
+          "title": "荣耀·2025深圳马拉松领物须知",
+          "url": "https://shenzhenmarathon.org.cn/contentDetail.html?detailId=8613771409002754&topicId=6990423356675002&appKey=shenzhenMarathon",
+          "sourceIds": [
+            "sz-kit-2025"
           ]
         }
       ]
@@ -469,7 +523,10 @@
         "note": "组委会公告的马拉松规模20000人含团体200队，不另行相加。",
         "sourceIds": [
           "sz-entry-2024"
-        ]
+        ],
+        "payment": "首轮团体与个人缴费至10月8日17:00。",
+        "plannedQuota": "20000人，含团体200队。",
+        "direct": "符合公告规定的精英成绩或历届完赛条件者可按须知获参赛资格。"
       },
       "participation": {
         "planned": "20000人（含团体200队）",
@@ -592,6 +649,14 @@
           "sourceIds": [
             "sz-gear-2024"
           ]
+        },
+        {
+          "category": "guide",
+          "title": "2024深圳马拉松参赛物资领取须知",
+          "url": "https://shenzhenmarathon.org.cn/contentDetail.html?detailId=8077435421624413&topicId=6990423356675002&appKey=shenzhenMarathon",
+          "sourceIds": [
+            "sz-kit-2024"
+          ]
         }
       ]
     }
@@ -601,15 +666,18 @@
       "title": "同一条赛道上的两次发令",
       "body": "2025年深圳马拉松与全国残特奥会马拉松共用赛道：残特奥会选手06:30起跑，深马选手07:30起跑。赛道服务共用，两个赛事的成绩、分组和纪录仍各自记录。",
       "sourceIds": [
-        "sz-recap-2025"
-      ]
+        "sz-recap-2025",
+        "sz-government-report-2025"
+      ],
+      "editionYear": "2025"
     },
     {
       "title": "八届完赛如何变成深马免抽签资格",
       "body": "2026年报名须知为累计参加至少八届线下深圳马拉松、保有计时项目完赛成绩的跑者设置免抽签资格。资格按赛事官方历史数据和中国马拉松平台成绩核对；同在深圳举行的其他马拉松不能替代深马记录。",
       "sourceIds": [
         "sz-entry-2026"
-      ]
+      ],
+      "editionYear": "2026"
     }
   ],
   "sources": [
@@ -840,6 +908,66 @@
       "applicableYears": [
         "2025"
       ]
+    },
+    {
+      "id": "sz-signup-2025",
+      "title": "2025深圳马拉松报名须知",
+      "url": "https://wtl.sz.gov.cn/ztzl_78228/tszl/2025marathon/content/post_12489327.html",
+      "publisher": "深圳市文化广电旅游体育局／深圳马拉松组委会",
+      "publishedAt": "2025-11-13",
+      "applicableYears": [
+        "2025"
+      ],
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "sz-draw-2025",
+      "title": "中签｜荣耀·2025深圳马拉松抽签结果公布",
+      "url": "https://mp.weixin.qq.com/s/Sy7MGv8lRNyKV6Vx96sSTA",
+      "publisher": "深圳马拉松组委会",
+      "publishedAt": "2025-11-10",
+      "applicableYears": [
+        "2025"
+      ],
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "sz-waitlist-2025",
+      "title": "荣耀·2025深圳马拉松补录公告",
+      "url": "https://mp.weixin.qq.com/s/Mo5T5aX3UYlYqF5zZ3X3Ug",
+      "publisher": "深圳马拉松组委会",
+      "publishedAt": "",
+      "applicableYears": [
+        "2025"
+      ],
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "sz-government-report-2025",
+      "title": "3万名跑者用脚步丈量创新深圳",
+      "url": "https://wtl.sz.gov.cn/ztzl_78228/tszl/2025marathon/mnews/content/post_12535905.html",
+      "publisher": "深圳市文化广电旅游体育局",
+      "publishedAt": "2025-12-08",
+      "applicableYears": [
+        "2025"
+      ],
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "sz-score-lookup-2025",
+      "title": "深圳马拉松个人成绩查询（由2025政府赛事专题链接）",
+      "url": "https://shenzhen-registration.mararun.com/score.html",
+      "publisher": "深圳马拉松组委会／马拉马拉",
+      "publishedAt": "",
+      "applicableYears": [
+        "2025"
+      ],
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20"
     }
   ],
   "gaps": [
@@ -860,9 +988,11 @@
     {
       "fields": [
         "editions.2025.officialResources.参赛服",
-        "editions.2024.registration.lotteryRate"
+        "editions.2024.registration.lotteryRate",
+        "editions.2025.officialResources.route-map",
+        "editions.2024.officialResources.route-map"
       ],
-      "reason": "已核实2024双包发布的参赛服及奖牌、2025奖牌与两届领物须知；2025参赛服实物发布及2024同口径中签率仍待核实。"
+      "reason": "已核实2024双包发布的参赛服及奖牌、2025奖牌与两届领物须知；2025领物公告内只有博览会布局和流程，竞赛规程附图是关门、补给和奖金表。仍缺2024、2025赛道原图、2025参赛服实物发布及同口径中签统计。"
     }
   ],
   "conflicts": [

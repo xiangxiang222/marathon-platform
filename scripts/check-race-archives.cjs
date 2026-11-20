@@ -6,6 +6,7 @@ const path = require('node:path');
 const root = path.resolve(__dirname, '..');
 const catalog = require('../shared/race-catalog.json');
 const { OFFICIAL_RESOURCE_CATEGORIES, officialResourceUrl } = require('../server/src/race-archive-schema');
+const { validateArchiveInput } = require('../server/src/race-archive-editor');
 const expected = ['beijing','shanghai','xiamen','wuxi','wuhan','guangzhou','chongqing','dongying','hengshuihu','xian','taiyuan','changsha','chengdu','dalian','lanzhou','shenzhen','hangzhou'];
 assert.deepEqual([...catalog.races.map(r=>r.id)].sort(), [...expected].sort());
 assert.equal(new Set(catalog.races.map(r=>r.id)).size,17);
@@ -14,6 +15,8 @@ const report=[];
 for(const race of catalog.races){
   const archive=JSON.parse(fs.readFileSync(path.join(root,'shared/race-archives',race.id+'.json'),'utf8'));
   assert.equal(archive.raceId,race.id);
+  const seed = { race, archive };
+  validateArchiveInput(seed, seed, null, race.id, '/marathon');
   assert.ok(fs.existsSync(path.join(root,'web/public/images/race-landmarks',race.id+'.svg')));
   assert.ok(fs.existsSync(path.join(root,'miniprogram/images/race-landmarks',race.id+'.png')));
   assert.ok(race.name&&race.city&&race.summary&&race.tagline);
@@ -40,9 +43,13 @@ for(const race of catalog.races){
     assert.ok(e.gear.every(item=>['参赛服','奖牌','参赛包','完赛包'].includes(item.category)), race.id+' '+e.year+' invalid gallery category');
     if(e.date)assert.ok(e.dateSourceIds.length,race.id+' date evidence '+e.year);
     if(e.status==='scheduled' || (e.date && e.date>(archive.updatedAt||catalog.updatedAt))){assert.equal(e.results.length,0);assert.ok(!e.participation.starters&&!e.participation.finishers)}
+    const resultKeys = new Set();
     for (const row of e.results) {
       assert.ok(row.group && row.athlete && row.sourceIds?.length, race.id+' '+e.year+' result needs evidence');
       assert.match(row.time,/^\d{1,2}:[0-5]\d:[0-5]\d$/);
+      const key = row.group + ':' + row.athlete;
+      assert.ok(!resultKeys.has(key), race.id+' '+e.year+' duplicate result: '+key);
+      resultKeys.add(key);
     }
     for(const event of (e.events||[])){
       assert.ok(event.project, race.id+' '+e.year+' event project');
@@ -62,6 +69,8 @@ for(const race of catalog.races){
   }
   const editions = archive.editions;
   const editionsWith = category => editions.filter(e=>e.officialResources?.some(item=>item.category===category)).map(e=>e.year);
-  report.push({id:race.id,name:race.name,years:[...years],sources:sources.size,history:archive.history.length,stories:new Set([...(archive.stories||[]),...(archive.updates||[])].map(item=>item.title)).size,records:archive.records.length,results:editions.filter(e=>e.results?.length).map(e=>e.year),signup:editions.filter(e=>e.registration?.opens && e.registration?.closes).map(e=>e.year),draw:editions.filter(e=>e.registration?.drawDate).map(e=>e.year),drawRate:editions.filter(e=>e.registration?.lotteryRate).map(e=>e.year),routeMap:editionsWith('route-map'),shirt:editionsWith('shirt'),medal:editionsWith('medal'),gaps:archive.gaps.length});
+  const yearsWith = check => editions.filter(check).map(e=>e.year);
+  const stories = [...(archive.stories||[]),...(archive.updates||[])];
+  report.push({id:race.id,name:race.name,years:[...years],sources:sources.size,history:archive.history.length,stories:new Set(stories.map(item=>item.title)).size,storyYears:yearsWith(e=>stories.some(item=>String(item.editionYear)===e.year)),records:archive.records.length,recordYears:yearsWith(e=>archive.records.some(item=>item.editionId===e.editionId)),results:yearsWith(e=>e.results?.length),resultRows:editions.reduce((n,e)=>n+(e.results?.length||0),0),resultLinks:editionsWith('results'),signup:yearsWith(e=>e.registration?.opens && e.registration?.closes),draw:yearsWith(e=>e.registration?.drawDate),drawRate:yearsWith(e=>e.registration?.lotteryRate),guide:yearsWith(e=>e.officialResources?.some(item=>item.category==='guide') || Object.values(e.logistics||{}).some(item=>item?.sourceIds?.length)),routeMap:editionsWith('route-map'),shirt:editionsWith('shirt'),medal:editionsWith('medal'),gaps:archive.gaps.length});
 }
 console.log(JSON.stringify({passed:true,races:report.length,editions:report.reduce((n,r)=>n+r.years.length,0),sources:report.reduce((n,r)=>n+r.sources,0),coverage:report},null,2));

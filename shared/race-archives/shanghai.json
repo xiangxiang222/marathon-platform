@@ -151,6 +151,14 @@
           "sourceIds": [
             "sh-map-2026-cn"
           ]
+        },
+        {
+          "category": "guide",
+          "title": "2026上海马拉松参赛装备领取须知",
+          "url": "https://static.shang-ma.com/web/notesDetail/index.html?id=3363",
+          "sourceIds": [
+            "sh-kit-2026-cn"
+          ]
         }
       ]
     },
@@ -381,6 +389,22 @@
         {
           "category": "route-map",
           "title": "2025上马跑者指南及路线图",
+          "url": "https://english.shanghai.gov.cn/en-SportsEvents/20251125/1426d8969f3b4e609ef63ad318cf9d5b.html",
+          "sourceIds": [
+            "sh-2025-guide-en"
+          ]
+        },
+        {
+          "category": "results",
+          "title": "2025上马圆满完赛 女子组赛会纪录被刷新",
+          "url": "https://tyj.sh.gov.cn/gzdt2/20251201/2c23205acebe424499cddb9c7fee41b3.html",
+          "sourceIds": [
+            "sh-2025-recap"
+          ]
+        },
+        {
+          "category": "guide",
+          "title": "2025上海马拉松跑者指南及路线图（上海市政府英文网）",
           "url": "https://english.shanghai.gov.cn/en-SportsEvents/20251125/1426d8969f3b4e609ef63ad318cf9d5b.html",
           "sourceIds": [
             "sh-2025-guide-en"
@@ -617,16 +641,24 @@
           ]
         },
         {
-          "category": "medal",
-          "title": "2024上马奖牌揭晓图集",
-          "url": "https://tyj.sh.gov.cn/tpxw1/20241129/7cb432efd6ea40a8b1eb84f712a445a8.html",
+          "category": "shirt",
+          "title": "2024上马荧光黄参赛服（领物指南附实物图）",
+          "url": "https://english.shanghai.gov.cn/en-SportsEvents/20241125/450d499bb99c4508a65855df4df360ff.html",
           "sourceIds": [
-            "sh-2024-preview-gallery"
+            "sh-2024-kit-en"
           ]
         },
         {
-          "category": "shirt",
-          "title": "2024上马荧光黄参赛服（领物指南附实物图）",
+          "category": "results",
+          "title": "2024上马赛后成绩与服务回顾",
+          "url": "https://www.shanghai.gov.cn/nw4411/20241202/e6b20e9280ef4d2a9e8a05385596267a.html",
+          "sourceIds": [
+            "sh-2024-city-results"
+          ]
+        },
+        {
+          "category": "guide",
+          "title": "2024上海马拉松装备领取指南与参赛包实物图（上海市政府英文网）",
           "url": "https://english.shanghai.gov.cn/en-SportsEvents/20241125/450d499bb99c4508a65855df4df360ff.html",
           "sourceIds": [
             "sh-2024-kit-en"
@@ -642,7 +674,8 @@
       "sourceIds": [
         "sh-2025-preview",
         "sh-2025-recap"
-      ]
+      ],
+      "editionYear": "2025"
     },
     {
       "title": "大众奖牌与Tiffany奖项是两回事",
@@ -657,7 +690,8 @@
       "body": "2025年，上马志愿者“小马达”品牌迎来十周年。近4400名志愿者在检录、补给、存衣、医疗协助等岗位服务，官方还制作了十周年纪念徽章。",
       "sourceIds": [
         "sh-2025-recap"
-      ]
+      ],
+      "editionYear": "2025"
     },
     {
       "title": "东方明珠和黄浦江藏在字母里",
@@ -665,7 +699,8 @@
       "sourceIds": [
         "sh-brand-2026",
         "sh-reg-2026-cn"
-      ]
+      ],
+      "editionYear": "2026"
     }
   ],
   "sources": [
@@ -951,10 +986,11 @@
       "timing": "",
       "editionId": "shanghai-2023",
       "achievedAt": "2023",
-      "verifiedThroughEditionId": "shanghai-2024",
-      "verifiedAt": "2026-11-18",
+      "verifiedThroughEditionId": "shanghai-2025",
+      "verifiedAt": "2026-11-20",
       "sourceIds": [
-        "sh-2024-launch"
+        "sh-2024-launch",
+        "sh-2025-recap"
       ]
     },
     {
@@ -1013,7 +1049,7 @@
       "fields": [
         "records"
       ],
-      "reason": "纪录逐条注明已确认截至的届次，男子记录据2024回顾、女子据2025赛后报告，不能解读为此后无需复核。"
+      "reason": "男子纪录由2024发布会和2025赛后成绩交叉核对，2025男子冠军2:06:25慢于现纪录；女子赛会纪录在2025刷新。两条均核至2025已赛届次。"
     },
     {
       "fields": [
@@ -1021,6 +1057,21 @@
         "editions.2025.officialResources.完赛奖牌"
       ],
       "reason": "2025市体育局发布会报道描述大众完赛奖牌设计，页面照片为活动场景；尚未核实能清楚查看实物的原始页面。"
+    },
+    {
+      "fields": [
+        "editions.2024.officialResources.完赛奖牌"
+      ],
+      "reason": "体育局图集为发布会现场照片，奖牌仅出现在屏幕背景；未核实单独展示当届大众完赛奖牌的官方原页。"
+    },
+    {
+      "fields": [
+        "editions.2024.results.公开组二三名与轮椅",
+        "editions.2025.results.公开组二三名与轮椅",
+        "editions.2024.results.官方个人查询",
+        "editions.2025.results.官方个人查询"
+      ],
+      "reason": "体育局和市政府赛后报道确认主要冠军，未在赛事官网定位仍有效的对应届次公开成绩总表和个人查询页；轮椅不能套用全马公开组。"
     }
   ]
 }

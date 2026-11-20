@@ -129,6 +129,89 @@
   ],
   "editions": [
     {
+      "year": "2027",
+      "editionId": "chongqing-2027",
+      "editionName": "2027重庆马拉松",
+      "status": "scheduled",
+      "date": "2027-01-10",
+      "dateSourceIds": [
+        "cq-reg-2027"
+      ],
+      "distance": "马拉松",
+      "events": [
+        {
+          "project": "马拉松",
+          "distanceKm": 42.195,
+          "plannedParticipants": 26000,
+          "fee": "中国籍200元；外籍350元",
+          "sourceIds": [
+            "cq-entry-2027",
+            "cq-reg-2027"
+          ]
+        }
+      ],
+      "route": {
+        "summary": "南滨路、巴滨路沿江往返，经朝天门大桥、李家沱大桥，设朝天门大桥下和融汇江山路口两处折返。",
+        "start": "海棠烟雨公园",
+        "finish": "海棠烟雨公园",
+        "mapUrl": "",
+        "mapSourceUrl": "",
+        "changes": "",
+        "analysis": [],
+        "sourceIds": [
+          "cq-reg-2027"
+        ]
+      },
+      "registration": {
+        "sourceIds": [
+          "cq-entry-2027"
+        ],
+        "method": "官网或官方公众号预报名，报名预缴后抽签。",
+        "opens": "2026-09-02",
+        "closes": "2026-09-13",
+        "drawDate": "2026-09-23（须知公布日程）",
+        "fee": "中国籍（含港澳台）200元；外籍350元。",
+        "qualification": "2027年1月1日前满20周岁；2024年9月14日至2026年9月13日完成过中国田协认证赛事1次全马或2次半马，线上成绩无效。",
+        "plannedQuota": "全马26000人。",
+        "drawQuota": "大众抽签计划12500人。",
+        "directQuota": "成绩直通10000人；长嘉汇半马系列赛1000人；赞助与合作媒体2500人。",
+        "direct": "成绩直通按年龄分组入围；超额时按分组名额和净成绩排序。长嘉汇半马男女各前500名符合资格后可在11月13日至20日报名缴费。",
+        "payment": "大众报名预缴；未中签于参赛资格公布后5个工作日内原路退款。"
+      },
+      "participation": {
+        "planned": "全马26000人",
+        "starters": "",
+        "finishers": "",
+        "finishRate": "",
+        "note": "",
+        "sourceIds": [
+          "cq-reg-2027"
+        ]
+      },
+      "results": [],
+      "gear": [],
+      "notes": [
+        "尚未核验到当届赛道图、服装、奖牌、完整领物指南或同口径抽签统计；赛前尚无赛会成绩。"
+      ],
+      "logistics": {
+        "collection": {
+          "sourceIds": []
+        },
+        "transport": {
+          "sourceIds": []
+        },
+        "raceDay": {
+          "sourceIds": [
+            "cq-reg-2027"
+          ],
+          "startTime": "08:00开赛，07:00起分区检录；最后一枪后10分钟停止入场。",
+          "timeLimit": "最后一枪后6小时关门，各公里点的关门时限见规程。",
+          "bagDrop": "07:40前完成存包，15:00前取回。"
+        },
+        "tips": []
+      }
+    },
+    {
       "year": "2026",
       "editionId": "chongqing-2026",
       "editionName": "2026长安汽车重庆马拉松",
@@ -167,7 +250,7 @@
         "opens": "2025-08-18",
         "closes": "2025-08-24",
         "drawDate": "2025-09-04",
-        "fee": "全马中国籍200元人民币；外籍350元人民币；迷你跑如当届设置则另按须知。",
+        "fee": "全马中国籍200元；外籍350元。原迷你跑取消。",
         "qualification": "全马20岁以上；2023-01-01至2025-07-31期间有中国马拉松网站可查询的全马或半马成绩，线上无效。",
         "applicants": "",
         "eligibleApplicants": "",
@@ -179,7 +262,10 @@
         "note": "成绩直通超额时按年龄组分配、排序；2026迷你跑已于2025-11-11公告取消。",
         "sourceIds": [
           "cq-entry-2026"
-        ]
+        ],
+        "payment": "预报名全额缴费；未中签于抽签后5个工作日内原路退回。",
+        "direct": "年龄组成绩直通超额时按年龄组分配、排序；2025长嘉汇半马男女各前500名须于2025年12月1日至7日报名缴费。",
+        "plannedQuota": "全马25000人；原迷你跑已取消。"
       },
       "participation": {
         "planned": "全马25000人；原迷你跑计划已取消",
@@ -233,15 +319,45 @@
           "sourceIds": [
             "cq-wa-2026"
           ]
+        },
+        {
+          "group": "马拉松男子季军",
+          "athlete": "Benard KIPKORIR",
+          "time": "02:10:26",
+          "timing": "",
+          "sourceIds": [
+            "cq-wa-2026"
+          ]
+        },
+        {
+          "group": "马拉松女子亚军",
+          "athlete": "Derartu HAILU",
+          "time": "02:24:53",
+          "timing": "",
+          "sourceIds": [
+            "cq-wa-2026"
+          ]
         }
       ],
-      "gear": [],
+      "gear": [
+        {
+          "category": "参赛服",
+          "name": "2026重庆马拉松参赛服",
+          "description": "领物通知的当届参赛物资长图展示了红色参赛背心的正面和背面。",
+          "imageUrl": "",
+          "sourceIds": [
+            "cq-collection-2026"
+          ]
+        }
+      ],
       "logistics": {
         "collection": {
-          "time": "",
-          "place": "",
-          "requirements": "",
-          "sourceIds": []
+          "time": "1月15、16日09:30—17:30；1月17日09:00—20:00",
+          "place": "重庆国际会议展览中心（南坪）",
+          "requirements": "按组委会领物通知核验本人参赛资格及证件。",
+          "sourceIds": [
+            "cq-collection-2026"
+          ]
         },
         "transport": {
           "start": "",
@@ -264,6 +380,32 @@
       },
       "notes": [
         "官网初版规程和报名须知仍保留迷你跑10000人文字；本档案按后续取消公告及田协2026仅全马的项目详情处理。"
+      ],
+      "officialResources": [
+        {
+          "category": "guide",
+          "title": "2026重庆马拉松领物通知",
+          "url": "https://mp.weixin.qq.com/s/mn6IPj12rIB38SSV2B8H1A",
+          "sourceIds": [
+            "cq-collection-2026"
+          ]
+        },
+        {
+          "category": "results",
+          "title": "2026重庆马拉松正式成绩（马拉松）",
+          "url": "https://worldathletics.org/competition/calendar-results/results/7235935",
+          "sourceIds": [
+            "cq-wa-2026"
+          ]
+        },
+        {
+          "category": "shirt",
+          "title": "2026参赛服（领物公告物资图）",
+          "url": "https://mp.weixin.qq.com/s/mn6IPj12rIB38SSV2B8H1A",
+          "sourceIds": [
+            "cq-collection-2026"
+          ]
+        }
       ]
     },
     {
@@ -316,18 +458,20 @@
         "closes": "2024-11-15",
         "drawDate": "2024-12-05",
         "fee": "全马中国籍200元人民币；外籍350元人民币；迷你跑如当届设置则另按须知。",
-        "qualification": "",
+        "qualification": "全马年满20周岁；须在2022年1月1日至2024年10月31日完成过中国田协认证赛事的全马或半马，线上马拉松不计。迷你跑不限年龄，未成年人按须知签声明及陪跑。",
         "applicants": "",
         "eligibleApplicants": "",
         "lotteryPool": "",
         "drawQuota": "",
-        "directQuota": "",
+        "directQuota": "2020、2021历史保留名额预留6000个；2024长嘉汇半马男女净成绩各前500名按须知可直接报名。",
         "lotteryRate": "",
         "lotteryNote": "未取得同口径抽签池与实际抽签名额，不计算中签率。",
         "note": "本届不设成绩直通；2020、2021保留名额预留6000人，具体超额规则见须知。",
         "sourceIds": [
           "cq-entry-2025"
-        ]
+        ],
+        "payment": "预报名全额缴费；未中签于抽签后5个工作日内原路退回。",
+        "direct": "未设成绩直通；历史保留资格报名逾6000人时抽签。长嘉汇半马男女各前500名须于11月15日24:00前报名、缴费。"
       },
       "participation": {
         "planned": "全马25000人、迷你跑10000人",
@@ -376,15 +520,63 @@
           "sourceIds": [
             "cq-wa-2025"
           ]
+        },
+        {
+          "group": "马拉松男子亚军",
+          "athlete": "Benard KIPKORIR",
+          "time": "02:08:12",
+          "timing": "",
+          "sourceIds": [
+            "cq-wa-2025"
+          ]
+        },
+        {
+          "group": "马拉松男子季军",
+          "athlete": "Lotory WOLDEGIORGIS",
+          "time": "02:08:39",
+          "timing": "",
+          "sourceIds": [
+            "cq-wa-2025"
+          ]
+        },
+        {
+          "group": "马拉松女子亚军",
+          "athlete": "Burtukan YIFRU",
+          "time": "02:25:15",
+          "timing": "",
+          "sourceIds": [
+            "cq-wa-2025"
+          ]
+        },
+        {
+          "group": "马拉松女子季军",
+          "athlete": "Chernet MISGANAW",
+          "time": "02:25:43",
+          "timing": "",
+          "sourceIds": [
+            "cq-wa-2025"
+          ]
         }
       ],
-      "gear": [],
+      "gear": [
+        {
+          "category": "参赛服",
+          "name": "2025重庆马拉松参赛服",
+          "description": "领物通知的参赛物资区分别展示全马红色背心、迷你跑红色短袖及当届号码布。",
+          "imageUrl": "",
+          "sourceIds": [
+            "cq-collection-2025"
+          ]
+        }
+      ],
       "logistics": {
         "collection": {
-          "time": "",
-          "place": "",
-          "requirements": "",
-          "sourceIds": []
+          "time": "2月27、28日09:30—17:30；3月1日09:00—20:00",
+          "place": "重庆国际会议展览中心（南坪）",
+          "requirements": "按组委会领物通知核验本人参赛资格及证件。",
+          "sourceIds": [
+            "cq-collection-2025"
+          ]
         },
         "transport": {
           "start": "",
@@ -405,7 +597,33 @@
         },
         "tips": []
       },
-      "notes": []
+      "notes": [],
+      "officialResources": [
+        {
+          "category": "guide",
+          "title": "2025重庆马拉松领物通知",
+          "url": "https://mp.weixin.qq.com/s/ud4SCwB9-lJcpfK8CBksqw",
+          "sourceIds": [
+            "cq-collection-2025"
+          ]
+        },
+        {
+          "category": "results",
+          "title": "2025重庆马拉松正式成绩（马拉松）",
+          "url": "https://worldathletics.org/competition/calendar-results/results/7220362",
+          "sourceIds": [
+            "cq-wa-2025"
+          ]
+        },
+        {
+          "category": "shirt",
+          "title": "2025参赛服（领物公告物资图）",
+          "url": "https://mp.weixin.qq.com/s/ud4SCwB9-lJcpfK8CBksqw",
+          "sourceIds": [
+            "cq-collection-2025"
+          ]
+        }
+      ]
     },
     {
       "year": "2024",
@@ -537,7 +755,17 @@
           }
         ]
       },
-      "notes": []
+      "notes": [],
+      "officialResources": [
+        {
+          "category": "results",
+          "title": "2024重庆马拉松正式成绩（马拉松）",
+          "url": "https://worldathletics.org/competition/calendar-results/results/7207747",
+          "sourceIds": [
+            "cq-wa-2024"
+          ]
+        }
+      ]
     }
   ],
   "stories": [
@@ -547,14 +775,16 @@
       "sourceIds": [
         "cq-xinhua-2024",
         "cq-people-2024"
-      ]
+      ],
+      "editionYear": "2024"
     },
     {
       "title": "2025：最后百米才分出胜负",
       "body": "据青海省体育局赛后介绍，2025重马的中国籍男子组争夺一直持续到终点前。青海选手尹顺金在最后约100米超过杨定宏，拿到中国籍男子第一。",
       "sourceIds": [
         "cq-yin-2025"
-      ]
+      ],
+      "editionYear": "2025"
     },
     {
       "title": "2026：全场第二改写中国籍男子纪录",
@@ -562,7 +792,8 @@
       "sourceIds": [
         "cq-domestic-record-2026",
         "cq-results-2026"
-      ]
+      ],
+      "editionYear": "2026"
     }
   ],
   "sources": [
@@ -775,6 +1006,58 @@
         "2026"
       ],
       "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "cq-reg-2027",
+      "title": "2027重庆马拉松竞赛规程",
+      "url": "https://www.cqmarathon.com/News/Detail/21070C87897D1015",
+      "publisher": "重庆马拉松组委会",
+      "publishedAt": "2026-08-26",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2027"
+      ],
+      "evidence": "确认比赛时间、规模、路线文字、检录和关门安排。"
+    },
+    {
+      "id": "cq-entry-2027",
+      "title": "2027重庆马拉松报名须知",
+      "url": "https://www.cqmarathon.com/News/Detail/1CB916B2816F6C28",
+      "publisher": "重庆马拉松组委会",
+      "publishedAt": "2026-09-01",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2027"
+      ],
+      "evidence": "按正文署名日期登记；核对报名、资格、直通及付费。"
+    },
+    {
+      "id": "cq-collection-2026",
+      "title": "2026重庆马拉松领物通知",
+      "url": "https://mp.weixin.qq.com/s/mn6IPj12rIB38SSV2B8H1A",
+      "publisher": "重庆马拉松组委会",
+      "publishedAt": "2026-01-08",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ],
+      "evidence": "核对南坪领物安排。"
+    },
+    {
+      "id": "cq-collection-2025",
+      "title": "2025重庆马拉松领物通知",
+      "url": "https://mp.weixin.qq.com/s/ud4SCwB9-lJcpfK8CBksqw",
+      "publisher": "重庆马拉松组委会",
+      "publishedAt": "2025-02-26",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2025"
+      ],
+      "evidence": "核对南坪领物安排。"
     }
   ],
   "gaps": [
@@ -784,7 +1067,7 @@
         "editions[].participation.finishers",
         "editions[].officialResources"
       ],
-      "reason": "2024至2026全马成绩已用世界田联结果核验；女子此前纪录刷新有报道依据。男子公开组历届纪录沿革、实际完赛人数、组委会历届赛道图和物资发布原页仍待核。"
+      "reason": "2024至2026全马已有世界田联结果；2025、2026参赛服见组委会领物公告。公开组男子纪录沿革、实际完赛人数、最近两届赛道图及奖牌原页仍待核。"
     },
     {
       "fields": [

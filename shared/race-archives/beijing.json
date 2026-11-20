@@ -98,16 +98,6 @@
           ]
         },
         {
-          "group": "女子冠军",
-          "athlete": "Anchinalu Dessie GENANEH",
-          "time": "02:20:36",
-          "timing": "枪时",
-          "sourceIds": [
-            "bj-result-women-2026",
-            "bj-wa-results-2026"
-          ]
-        },
-        {
           "group": "男子亚军",
           "athlete": "Muktar EDRIS",
           "time": "02:04:34",
@@ -123,6 +113,34 @@
           "timing": "枪时",
           "sourceIds": [
             "bj-wa-results-2026"
+          ]
+        },
+        {
+          "group": "女子冠军",
+          "athlete": "Anchinalu Dessie GENANEH",
+          "time": "02:20:36",
+          "timing": "枪时",
+          "sourceIds": [
+            "bj-result-women-2026",
+            "bj-wa-results-2026"
+          ]
+        },
+        {
+          "group": "女子亚军／中国籍第一",
+          "athlete": "次仁措姆",
+          "time": "02:23:48",
+          "timing": "枪时",
+          "sourceIds": [
+            "bj-result-women-2026"
+          ]
+        },
+        {
+          "group": "女子季军",
+          "athlete": "路颖",
+          "time": "02:24:24",
+          "timing": "枪时",
+          "sourceIds": [
+            "bj-result-women-2026"
           ]
         },
         {
@@ -244,7 +262,18 @@
       },
       "editionId": "beijing-2026",
       "editionName": "2026北京马拉松",
-      "events": [],
+      "events": [
+        {
+          "project": "马拉松",
+          "distanceKm": 42.195,
+          "plannedParticipants": 32000,
+          "fee": "人民币200元/人",
+          "sourceIds": [
+            "bj-reg-2026",
+            "bj-notice-2026"
+          ]
+        }
+      ],
       "status": "completed",
       "officialResources": [
         {
@@ -269,6 +298,38 @@
           "url": "https://mp.weixin.qq.com/s/mWbR8RYU0pSlZ7IOd4Y0pQ",
           "sourceIds": [
             "bj-gear-release-2026"
+          ]
+        },
+        {
+          "category": "results",
+          "title": "2026北京马拉松男子前八名枪时成绩公示",
+          "url": "https://www.beijing-marathon.com/subject.html?detailId=9076287477911197&topicId=7793646850104219",
+          "sourceIds": [
+            "bj-result-men-2026"
+          ]
+        },
+        {
+          "category": "results",
+          "title": "2026北京马拉松女子前八名枪时成绩公示",
+          "url": "https://www.beijing-marathon.com/subject.html?detailId=9076288115445470&topicId=7793646850104219",
+          "sourceIds": [
+            "bj-result-women-2026"
+          ]
+        },
+        {
+          "category": "guide",
+          "title": "2026中国银行北京马拉松暨全国马拉松锦标赛参赛物品领取须知",
+          "url": "https://www.beijing-marathon.com/subject.html?detailId=7992139938442932&topicId=7793644937862476",
+          "sourceIds": [
+            "bj-pickup-2026"
+          ]
+        },
+        {
+          "category": "guide",
+          "title": "2026北京马拉松参赛指南",
+          "url": "https://mp.weixin.qq.com/s/izWV15YCyC1SeUnqc5auRw",
+          "sourceIds": [
+            "bj-guide-2026"
           ]
         }
       ]
@@ -338,9 +399,45 @@
           ]
         },
         {
+          "group": "男子亚军",
+          "athlete": "Desalegn Girma Debel",
+          "time": "02:09:27",
+          "timing": "枪时",
+          "sourceIds": [
+            "bj-result-men-2025"
+          ]
+        },
+        {
+          "group": "男子季军",
+          "athlete": "Han Il Ryong",
+          "time": "02:09:47",
+          "timing": "枪时",
+          "sourceIds": [
+            "bj-result-men-2025"
+          ]
+        },
+        {
           "group": "女子冠军",
           "athlete": "Anchinalu Dessie Genaneh",
           "time": "02:26:08",
+          "timing": "枪时",
+          "sourceIds": [
+            "bj-result-women-2025"
+          ]
+        },
+        {
+          "group": "女子亚军",
+          "athlete": "Marion Jepkonga Kibor",
+          "time": "02:26:15",
+          "timing": "枪时",
+          "sourceIds": [
+            "bj-result-women-2025"
+          ]
+        },
+        {
+          "group": "女子季军",
+          "athlete": "Kuftu Tahir Dadiso",
+          "time": "02:27:21",
           "timing": "枪时",
           "sourceIds": [
             "bj-result-women-2025"
@@ -479,9 +576,45 @@
       },
       "editionId": "beijing-2025",
       "editionName": "2025北京马拉松",
-      "events": [],
+      "events": [
+        {
+          "project": "马拉松",
+          "distanceKm": 42.195,
+          "plannedParticipants": 32000,
+          "fee": "人民币200元/人",
+          "sourceIds": [
+            "bj-reg-2025",
+            "bj-notice-2025"
+          ]
+        }
+      ],
       "status": "completed",
-      "officialResources": []
+      "officialResources": [
+        {
+          "category": "results",
+          "title": "2025北京马拉松男子前八名枪时成绩公示",
+          "url": "https://www.beijing-marathon.com/subject.html?detailId=8569945378133372&topicId=7793646850104219",
+          "sourceIds": [
+            "bj-result-men-2025"
+          ]
+        },
+        {
+          "category": "results",
+          "title": "2025北京马拉松女子前八名枪时成绩公示",
+          "url": "https://www.beijing-marathon.com/subject.html?detailId=8569944438609218&topicId=7793646850104219",
+          "sourceIds": [
+            "bj-result-women-2025"
+          ]
+        },
+        {
+          "category": "guide",
+          "title": "2025中国银行北京马拉松参赛物品领取须知",
+          "url": "https://www.beijing-marathon.com/subject.html?detailId=8559756960753579&topicId=7793646850104219",
+          "sourceIds": [
+            "bj-collection-2025"
+          ]
+        }
+      ]
     },
     {
       "year": "2024",
@@ -547,9 +680,54 @@
           ]
         },
         {
+          "group": "男子亚军",
+          "athlete": "Bethwel Kibet Chumba",
+          "time": "02:09:30",
+          "timing": "枪时",
+          "sourceIds": [
+            "bj-result-men-2024"
+          ]
+        },
+        {
+          "group": "男子季军／中国籍第一",
+          "athlete": "陈天宇",
+          "time": "02:09:48",
+          "timing": "枪时",
+          "sourceIds": [
+            "bj-result-men-2024"
+          ]
+        },
+        {
           "group": "女子冠军",
           "athlete": "Vicoty Chepngeno",
           "time": "02:21:56",
+          "timing": "枪时",
+          "sourceIds": [
+            "bj-result-women-2024"
+          ]
+        },
+        {
+          "group": "女子亚军",
+          "athlete": "Rahma Tusa",
+          "time": "02:24:31",
+          "timing": "枪时",
+          "sourceIds": [
+            "bj-result-women-2024"
+          ]
+        },
+        {
+          "group": "女子季军",
+          "athlete": "Angela Jemesunde Tanui",
+          "time": "02:25:41",
+          "timing": "枪时",
+          "sourceIds": [
+            "bj-result-women-2024"
+          ]
+        },
+        {
+          "group": "中国籍女子第一（公开组第5）",
+          "athlete": "刘敏",
+          "time": "02:28:36",
           "timing": "枪时",
           "sourceIds": [
             "bj-result-women-2024"
@@ -663,7 +841,18 @@
       },
       "editionId": "beijing-2024",
       "editionName": "2024北京马拉松",
-      "events": [],
+      "events": [
+        {
+          "project": "马拉松",
+          "distanceKm": 42.195,
+          "plannedParticipants": 30000,
+          "fee": "人民币200元/人；未中签者可按规则申请2000元公益名额",
+          "sourceIds": [
+            "bj-reg-2024",
+            "bj-notice-2024"
+          ]
+        }
+      ],
       "status": "completed",
       "officialResources": [
         {
@@ -672,6 +861,22 @@
           "url": "https://tyj.beijing.gov.cn/bjsports/gzdt84/jtdt/543439442/index.html",
           "sourceIds": [
             "bj-release-2024"
+          ]
+        },
+        {
+          "category": "results",
+          "title": "2024北京马拉松男子前八名枪时成绩公示",
+          "url": "https://www.beijing-marathon.com/subject.html?detailId=8040868875493392&topicId=7793646850104219",
+          "sourceIds": [
+            "bj-result-men-2024"
+          ]
+        },
+        {
+          "category": "results",
+          "title": "2024北京马拉松女子前八名枪时成绩公示",
+          "url": "https://www.beijing-marathon.com/subject.html?detailId=8040866493128627&topicId=7793646850104219",
+          "sourceIds": [
+            "bj-result-women-2024"
           ]
         }
       ]
@@ -874,7 +1079,18 @@
       },
       "editionId": "beijing-2023",
       "editionName": "2023北京马拉松",
-      "events": [],
+      "events": [
+        {
+          "project": "马拉松",
+          "distanceKm": 42.195,
+          "plannedParticipants": 30000,
+          "fee": "人民币200元/人；未中签者可按规则申请2000元公益名额",
+          "sourceIds": [
+            "bj-reg-2023",
+            "bj-notice-2023"
+          ]
+        }
+      ],
       "status": "completed",
       "officialResources": [
         {
@@ -883,6 +1099,22 @@
           "url": "https://www.beijing-marathon.com/subject.html?detailId=7837960762814478&topicId=7793646346787704",
           "sourceIds": [
             "bj-release-2023"
+          ]
+        },
+        {
+          "category": "results",
+          "title": "2023北京马拉松男子前八名成绩公示",
+          "url": "https://www.beijing-marathon.com/subject.html?detailId=7992146481208140&topicId=7793646850104219",
+          "sourceIds": [
+            "bj-result-men-2023"
+          ]
+        },
+        {
+          "category": "results",
+          "title": "2023北京马拉松女子前八名成绩公示",
+          "url": "https://www.beijing-marathon.com/subject.html?detailId=7992149618547726&topicId=7793646850104219",
+          "sourceIds": [
+            "bj-result-women-2023"
           ]
         }
       ]
@@ -913,28 +1145,32 @@
       "body": "2023年奖牌把中轴线建筑与可滑动的城门结构结合，红色流沙形成动态效果；这是一件有明确官方设计说明的年度完赛纪念物。",
       "sourceIds": [
         "bj-release-2023"
-      ]
+      ],
+      "editionYear": "2023"
     },
     {
       "title": "2026：存包选择不改变抽签机会",
       "body": "报名时增加是否存包选项，选择不存包可获纪念物资。官方须知明确，这个选择不影响中签概率。",
       "sourceIds": [
         "bj-notice-2026"
-      ]
+      ],
+      "editionYear": "2026"
     },
     {
       "title": "2023：2402位跑者“破三”",
       "body": "赛事官方赛后通报记录2402人于3小时内完赛；陈天宇以2:08:11夺得全国锦标赛男子冠军，并刷新当时北马中国男子选手赛会纪录。",
       "sourceIds": [
         "bj-race-report-2023"
-      ]
+      ],
+      "editionYear": "2023"
     },
     {
       "title": "从受邀参赛到大众预报名",
       "body": "1981年首届只有80余名男子选手，1998年面向大众开放，2014年引入预报名。2026年报名超过26.5万人。四个阶段说明，北马今天的抽签并不是从创办时就有的安排。",
       "sourceIds": [
         "bj-review-2026"
-      ]
+      ],
+      "editionYear": "2026"
     },
     {
       "title": "不存包跑者如何走进起点",
@@ -942,7 +1178,8 @@
       "sourceIds": [
         "bj-review-2026",
         "bj-notice-2026"
-      ]
+      ],
+      "editionYear": "2026"
     }
   ],
   "sources": [
@@ -1300,6 +1537,36 @@
       ],
       "accessedAt": "2026-11-20",
       "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "bj-result-men-2023",
+      "title": "2023北京马拉松男子前八名成绩公示",
+      "publisher": "北京马拉松组委会",
+      "url": "https://www.beijing-marathon.com/subject.html?detailId=7992146481208140&topicId=7793646850104219",
+      "applicableYears": [
+        "2023"
+      ],
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "bj-result-women-2023",
+      "title": "2023北京马拉松女子前八名成绩公示",
+      "publisher": "北京马拉松组委会",
+      "url": "https://www.beijing-marathon.com/subject.html?detailId=7992149618547726&topicId=7793646850104219",
+      "applicableYears": [
+        "2023"
+      ],
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "bj-guide-2026",
+      "title": "2026北京马拉松参赛指南",
+      "publisher": "北京马拉松组委会",
+      "url": "https://mp.weixin.qq.com/s/izWV15YCyC1SeUnqc5auRw",
+      "applicableYears": [
+        "2026"
+      ],
+      "verifiedAt": "2026-11-20"
     }
   ],
   "schemaVersion": 2,
@@ -1415,6 +1682,14 @@
         "registration.lotteryRate"
       ],
       "reason": "部分年度实际起跑、完赛与同口径中签统计未核实；详见对应年份的空值和说明。"
+    },
+    {
+      "fields": [
+        "editions.2025.officialResources.赛道图参赛服",
+        "editions.2024.officialResources.赛道图参赛服",
+        "editions.2027"
+      ],
+      "reason": "2025体育局公布赛道变化，领物原文附场馆图，均不能作为全程路线原图；2024、2025清楚地显示参赛服的原页及2027安排未核验。"
     }
   ]
 }

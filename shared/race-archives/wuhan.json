@@ -111,12 +111,13 @@
       "group": "男子",
       "athlete": "ASEFA MENGSTU NEGEWO",
       "time": "02:08:51",
-      "timing": "",
+      "timing": "枪时",
       "editionId": "wuhan-2025",
       "achievedAt": "2025-03-23",
       "verifiedThroughEditionId": "wuhan-2026",
       "verifiedAt": "2026-11-20",
       "sourceIds": [
+        "wh-award-2025",
         "wh-result-2025",
         "wh-wa-2025",
         "wh-wa-2026"
@@ -145,12 +146,13 @@
       "group": "中国籍男子",
       "athlete": "何杰",
       "time": "02:10:29",
-      "timing": "",
+      "timing": "枪时",
       "editionId": "wuhan-2025",
       "achievedAt": "2025-03-23",
       "verifiedThroughEditionId": "wuhan-2026",
       "verifiedAt": "2026-11-20",
       "sourceIds": [
+        "wh-award-2025",
         "wh-result-2025",
         "wh-wa-2025",
         "wh-award-2026",
@@ -217,8 +219,9 @@
         "directQuota": "",
         "lotteryRate": "",
         "lotteryNote": "未取得同口径抽签池与实际抽签名额，不计算中签率。",
-        "note": "中签选手须在1月9日24:00前缴费，逾期名额作废。",
+        "note": "首轮中签2026年1月9日24:00前缴费；二次抽签中签者于1月13日24:00前缴费。逾期视为放弃。",
         "sourceIds": [
+          "wh-draw-2026-round2",
           "wh-reg-2026",
           "wh-entry-2026",
           "wh-draw-2026",
@@ -242,9 +245,27 @@
           "time": "02:10:16",
           "timing": "枪时",
           "sourceIds": [
-            "wh-result-2026",
             "wh-award-2026",
+            "wh-result-2026",
             "wh-wa-2026"
+          ]
+        },
+        {
+          "group": "马拉松男子亚军",
+          "athlete": "DEKEBA GADDISA TAFA",
+          "time": "02:10:23",
+          "timing": "枪时",
+          "sourceIds": [
+            "wh-award-2026"
+          ]
+        },
+        {
+          "group": "马拉松男子季军",
+          "athlete": "MUSA KIPSOYAN MITEI",
+          "time": "02:10:30",
+          "timing": "枪时",
+          "sourceIds": [
+            "wh-award-2026"
           ]
         },
         {
@@ -253,9 +274,27 @@
           "time": "02:24:14",
           "timing": "枪时",
           "sourceIds": [
-            "wh-result-2026",
             "wh-award-2026",
+            "wh-result-2026",
             "wh-wa-2026"
+          ]
+        },
+        {
+          "group": "马拉松女子亚军",
+          "athlete": "TAMIR AGERE ADERA",
+          "time": "02:25:47",
+          "timing": "枪时",
+          "sourceIds": [
+            "wh-award-2026"
+          ]
+        },
+        {
+          "group": "马拉松女子季军",
+          "athlete": "JALETA LENSA DEBELE",
+          "time": "02:28:44",
+          "timing": "枪时",
+          "sourceIds": [
+            "wh-award-2026"
           ]
         },
         {
@@ -264,9 +303,27 @@
           "time": "02:10:56",
           "timing": "枪时",
           "sourceIds": [
-            "wh-result-2026",
             "wh-award-2026",
+            "wh-result-2026",
             "wh-wa-2026"
+          ]
+        },
+        {
+          "group": "马拉松中国籍男子第二",
+          "athlete": "董国建",
+          "time": "02:12:22",
+          "timing": "枪时",
+          "sourceIds": [
+            "wh-award-2026"
+          ]
+        },
+        {
+          "group": "马拉松中国籍男子第三",
+          "athlete": "苏飞",
+          "time": "02:16:08",
+          "timing": "枪时",
+          "sourceIds": [
+            "wh-award-2026"
           ]
         },
         {
@@ -275,9 +332,27 @@
           "time": "02:28:45",
           "timing": "枪时",
           "sourceIds": [
-            "wh-result-2026",
             "wh-award-2026",
+            "wh-result-2026",
             "wh-wa-2026"
+          ]
+        },
+        {
+          "group": "马拉松中国籍女子第二",
+          "athlete": "李春霞",
+          "time": "02:34:16",
+          "timing": "枪时",
+          "sourceIds": [
+            "wh-award-2026"
+          ]
+        },
+        {
+          "group": "马拉松中国籍女子第三",
+          "athlete": "刘晶娅",
+          "time": "02:34:19",
+          "timing": "枪时",
+          "sourceIds": [
+            "wh-award-2026"
           ]
         },
         {
@@ -286,7 +361,25 @@
           "time": "01:07:20",
           "timing": "枪时",
           "sourceIds": [
-            "wh-result-2026",
+            "wh-award-2026",
+            "wh-result-2026"
+          ]
+        },
+        {
+          "group": "半程马拉松男子亚军",
+          "athlete": "ORMANGALI",
+          "time": "01:07:27",
+          "timing": "枪时",
+          "sourceIds": [
+            "wh-award-2026"
+          ]
+        },
+        {
+          "group": "半程马拉松男子季军",
+          "athlete": "曹欢",
+          "time": "01:08:29",
+          "timing": "枪时",
+          "sourceIds": [
             "wh-award-2026"
           ]
         },
@@ -296,7 +389,25 @@
           "time": "01:15:47",
           "timing": "枪时",
           "sourceIds": [
-            "wh-result-2026",
+            "wh-award-2026",
+            "wh-result-2026"
+          ]
+        },
+        {
+          "group": "半程马拉松女子亚军",
+          "athlete": "ISABELLA CAPOSIENO",
+          "time": "01:16:07",
+          "timing": "枪时",
+          "sourceIds": [
+            "wh-award-2026"
+          ]
+        },
+        {
+          "group": "半程马拉松女子季军",
+          "athlete": "赵娜",
+          "time": "01:16:44",
+          "timing": "枪时",
+          "sourceIds": [
             "wh-award-2026"
           ]
         }
@@ -304,25 +415,31 @@
       "gear": [],
       "logistics": {
         "collection": {
-          "time": "",
-          "place": "",
-          "requirements": "",
-          "sourceIds": []
+          "time": "2026年3月19—20日10:30—19:00，3月21日10:00—21:30",
+          "place": "武汉国际会展中心（江汉区解放大道696号）",
+          "requirements": "本人携报名证件原件，先通过比赛助手预约时段并签署文件，再核验领物；不可代领。",
+          "sourceIds": [
+            "wh-pickup-2026"
+          ]
         },
         "transport": {
           "start": "",
           "finish": "",
-          "expo": "",
-          "sourceIds": []
+          "expo": "地铁2号线中山公园站B1口，步行约350米。",
+          "sourceIds": [
+            "wh-pickup-2026"
+          ]
         },
         "raceDay": {
-          "startTime": "全马07:30；半马07:45，分两枪发令。",
-          "timeLimit": "全马6小时，13:30关门；半马3小时，10:45关门；同时遵守各分段关门。",
+          "startTime": "07:30马拉松S、A—E区；07:45半马F—H区。",
+          "timeLimit": "全马13:30、半马10:45关门，起点07:55关门；全马25、30、35和40公里点分别11:05、11:45、12:30、13:10关门。以组委会变更通知为准。",
           "bagDrop": "",
           "aidStations": "",
           "toilets": "",
           "medical": "",
           "sourceIds": [
+            "wh-reg-amend-2026",
+            "wh-pickup-2026",
             "wh-reg-2026"
           ]
         },
@@ -360,6 +477,30 @@
           "url": "https://www.wuhan.gov.cn/sy/whyw/202603/t20260305_2735852.shtml",
           "sourceIds": [
             "wh-kit-2026"
+          ]
+        },
+        {
+          "category": "results",
+          "title": "2026中国银行武汉马拉松前八名成绩公示",
+          "url": "https://www.wuhanmarathon.org/subject.html?detailId=8773169791988718&topicId=5337791093570390",
+          "sourceIds": [
+            "wh-award-2026"
+          ]
+        },
+        {
+          "category": "guide",
+          "title": "2026武汉马拉松参赛物品领取须知",
+          "url": "https://www.wuhanmarathon.org/subject.html?detailId=8757217494845086&topicId=5337791093570390",
+          "sourceIds": [
+            "wh-pickup-2026"
+          ]
+        },
+        {
+          "category": "guide",
+          "title": "2026武汉马拉松竞赛规程部分条款变更通知",
+          "url": "https://www.wuhanmarathon.org/subject.html?detailId=8758714291059469&topicId=5337791093570390",
+          "sourceIds": [
+            "wh-reg-amend-2026"
           ]
         }
       ]
@@ -429,8 +570,10 @@
         "directQuota": "",
         "lotteryRate": "",
         "lotteryNote": "未取得同口径抽签池与实际抽签名额，不计算中签率。",
-        "note": "首轮中签者须在2024-12-24 24:00前缴费；组委会按首轮缴费情况公布二次抽签。",
+        "note": "首轮中签2024年12月24日24:00前缴费；二次抽签于12月25日14:00公布，12月28日24:00截止缴费，逾期不递补。公益报名12月25日14:30开放，同项目未中签者先到先得。",
         "sourceIds": [
+          "wh-draw-2025-official",
+          "wh-draw-2025-round2",
           "wh-reg-2025",
           "wh-draw-2025",
           "wh-entry-2025"
@@ -451,87 +594,225 @@
           "group": "马拉松男子冠军",
           "athlete": "ASEFA MENGSTU NEGEWO",
           "time": "02:08:51",
-          "timing": "",
+          "timing": "枪时",
           "sourceIds": [
+            "wh-award-2025",
             "wh-result-2025",
             "wh-wa-2025"
+          ]
+        },
+        {
+          "group": "马拉松男子亚军",
+          "athlete": "JOHN MBURU MUIRURI",
+          "time": "02:09:21",
+          "timing": "枪时",
+          "sourceIds": [
+            "wh-award-2025"
+          ]
+        },
+        {
+          "group": "马拉松男子季军",
+          "athlete": "MICHAEL KIMANI KAMAU",
+          "time": "02:09:28",
+          "timing": "枪时",
+          "sourceIds": [
+            "wh-award-2025"
           ]
         },
         {
           "group": "马拉松女子冠军",
           "athlete": "GUTENI SHONE IMANA",
           "time": "02:24:47",
-          "timing": "",
+          "timing": "枪时",
           "sourceIds": [
+            "wh-award-2025",
             "wh-result-2025",
             "wh-wa-2025"
+          ]
+        },
+        {
+          "group": "马拉松女子亚军",
+          "athlete": "ASHETE BEKERE DIDO",
+          "time": "02:24:58",
+          "timing": "枪时",
+          "sourceIds": [
+            "wh-award-2025"
+          ]
+        },
+        {
+          "group": "马拉松女子季军",
+          "athlete": "HIWOT GEBREKIDAN GEBREMARYYAM",
+          "time": "02:26:28",
+          "timing": "枪时",
+          "sourceIds": [
+            "wh-award-2025"
           ]
         },
         {
           "group": "马拉松中国籍男子第一",
           "athlete": "何杰",
           "time": "02:10:29",
-          "timing": "",
+          "timing": "枪时",
           "sourceIds": [
+            "wh-award-2025",
             "wh-result-2025",
             "wh-wa-2025"
+          ]
+        },
+        {
+          "group": "马拉松中国籍男子第二",
+          "athlete": "张学康",
+          "time": "02:15:15",
+          "timing": "枪时",
+          "sourceIds": [
+            "wh-award-2025"
+          ]
+        },
+        {
+          "group": "马拉松中国籍男子第三",
+          "athlete": "李政跃",
+          "time": "02:15:55",
+          "timing": "枪时",
+          "sourceIds": [
+            "wh-award-2025"
           ]
         },
         {
           "group": "马拉松中国籍女子第一",
           "athlete": "丁常琴",
           "time": "02:29:54",
-          "timing": "",
+          "timing": "枪时",
           "sourceIds": [
+            "wh-award-2025",
             "wh-result-2025",
             "wh-wa-2025"
+          ]
+        },
+        {
+          "group": "马拉松中国籍女子第二",
+          "athlete": "王开丽",
+          "time": "02:33:19",
+          "timing": "枪时",
+          "sourceIds": [
+            "wh-award-2025"
+          ]
+        },
+        {
+          "group": "马拉松中国籍女子第三",
+          "athlete": "李春霞",
+          "time": "02:34:31",
+          "timing": "枪时",
+          "sourceIds": [
+            "wh-award-2025"
           ]
         },
         {
           "group": "半程马拉松男子冠军",
           "athlete": "张治豪",
           "time": "01:07:37",
-          "timing": "",
+          "timing": "净时",
           "sourceIds": [
+            "wh-award-2025",
             "wh-result-2025"
+          ]
+        },
+        {
+          "group": "半程马拉松男子亚军",
+          "athlete": "曹欢",
+          "time": "01:07:42",
+          "timing": "净时",
+          "sourceIds": [
+            "wh-award-2025"
+          ]
+        },
+        {
+          "group": "半程马拉松男子季军",
+          "athlete": "喻桐",
+          "time": "01:08:44",
+          "timing": "净时",
+          "sourceIds": [
+            "wh-award-2025"
           ]
         },
         {
           "group": "半程马拉松女子冠军",
           "athlete": "朱卿",
           "time": "01:14:32",
-          "timing": "",
+          "timing": "净时",
           "sourceIds": [
+            "wh-award-2025",
             "wh-result-2025"
+          ]
+        },
+        {
+          "group": "半程马拉松女子亚军",
+          "athlete": "王文田",
+          "time": "01:18:22",
+          "timing": "净时",
+          "sourceIds": [
+            "wh-award-2025"
+          ]
+        },
+        {
+          "group": "半程马拉松女子季军",
+          "athlete": "尹亭",
+          "time": "01:19:04",
+          "timing": "净时",
+          "sourceIds": [
+            "wh-award-2025"
           ]
         }
       ],
       "gear": [],
       "logistics": {
         "collection": {
-          "time": "",
-          "place": "",
-          "requirements": "",
-          "sourceIds": []
+          "time": "2025年3月20—21日09:30—17:00，3月22日09:00—21:30",
+          "place": "武汉国际会展中心（江汉区解放大道696号）",
+          "requirements": "本人携报名证件原件，先通过比赛助手预约时段并签署文件，再核验领物；不可代领。",
+          "sourceIds": [
+            "wh-pickup-2025"
+          ]
         },
         "transport": {
           "start": "",
           "finish": "",
-          "expo": "",
-          "sourceIds": []
+          "expo": "地铁2号线中山公园站B2口，步行约350米。",
+          "sourceIds": [
+            "wh-pickup-2025"
+          ]
         },
         "raceDay": {
-          "startTime": "",
+          "startTime": "07:30马拉松S、A—E区；07:40半马F、G区；07:50 13公里跑H区。",
           "timeLimit": "",
           "bagDrop": "",
           "aidStations": "",
           "toilets": "",
           "medical": "",
-          "sourceIds": []
+          "sourceIds": [
+            "wh-pickup-2025"
+          ]
         },
         "tips": []
       },
-      "notes": []
+      "notes": [],
+      "officialResources": [
+        {
+          "category": "results",
+          "title": "2025武汉马拉松前八名成绩公示",
+          "url": "https://www.wuhanmarathon.org/subject.html?detailId=8244412542974823&topicId=5337791093570390",
+          "sourceIds": [
+            "wh-award-2025"
+          ]
+        },
+        {
+          "category": "guide",
+          "title": "2025武汉马拉松参赛物品领取须知",
+          "url": "https://www.wuhanmarathon.org/subject.html?detailId=8226677180321091&topicId=5337791093570390",
+          "sourceIds": [
+            "wh-pickup-2025"
+          ]
+        }
+      ]
     },
     {
       "year": "2024",
@@ -623,8 +904,9 @@
           "group": "马拉松男子冠军",
           "athlete": "约翰·姆布鲁·姆伊鲁利",
           "time": "02:09:13",
-          "timing": "",
+          "timing": "枪时",
           "sourceIds": [
+            "wh-award-2024",
             "wh-result-2024",
             "wh-wa-2024"
           ]
@@ -633,8 +915,9 @@
           "group": "马拉松女子冠军",
           "athlete": "马尔·迪巴巴·胡萨",
           "time": "02:25:12",
-          "timing": "",
+          "timing": "枪时",
           "sourceIds": [
+            "wh-award-2024",
             "wh-result-2024",
             "wh-wa-2024"
           ]
@@ -643,8 +926,9 @@
           "group": "马拉松中国籍男子第一",
           "athlete": "杨定宏",
           "time": "02:12:06",
-          "timing": "",
+          "timing": "枪时",
           "sourceIds": [
+            "wh-award-2024",
             "wh-result-2024",
             "wh-wa-2024"
           ]
@@ -653,8 +937,9 @@
           "group": "半程马拉松男子冠军",
           "athlete": "张德成",
           "time": "01:07:07",
-          "timing": "",
+          "timing": "净时",
           "sourceIds": [
+            "wh-award-2024",
             "wh-result-2024"
           ]
         },
@@ -662,8 +947,9 @@
           "group": "半程马拉松女子冠军",
           "athlete": "王巧霞",
           "time": "01:15:40",
-          "timing": "",
+          "timing": "净时",
           "sourceIds": [
+            "wh-award-2024",
             "wh-result-2024"
           ]
         }
@@ -671,16 +957,20 @@
       "gear": [],
       "logistics": {
         "collection": {
-          "time": "",
-          "place": "",
-          "requirements": "",
-          "sourceIds": []
+          "time": "2024年3月21—22日10:00—17:00，3月23日09:00—21:30。",
+          "place": "武汉国际会展中心（江汉区解放大道696号）",
+          "requirements": "本人预约领物时段，凭参赛报名证件原件到场领取。",
+          "sourceIds": [
+            "wh-pickup-2024"
+          ]
         },
         "transport": {
           "start": "",
           "finish": "",
-          "expo": "",
-          "sourceIds": []
+          "expo": "地铁2号线中山公园站B2口。",
+          "sourceIds": [
+            "wh-pickup-2024"
+          ]
         },
         "raceDay": {
           "startTime": "",
@@ -693,7 +983,25 @@
         },
         "tips": []
       },
-      "notes": []
+      "notes": [],
+      "officialResources": [
+        {
+          "category": "results",
+          "title": "2024武汉马拉松前八名成绩公示",
+          "url": "https://www.wuhanmarathon.org/subject.html?detailId=7718356845566645&topicId=5337791093570390",
+          "sourceIds": [
+            "wh-award-2024"
+          ]
+        },
+        {
+          "category": "guide",
+          "title": "2024武汉马拉松参赛物品领取须知",
+          "url": "https://www.wuhanmarathon.org/subject.html?detailId=7709282183242311&topicId=5337790892243788",
+          "sourceIds": [
+            "wh-pickup-2024"
+          ]
+        }
+      ]
     }
   ],
   "stories": [
@@ -702,21 +1010,24 @@
       "body": "武汉市政府网站在2026届赛前报道了艾斌的备赛：膝盖骨折、韧带断裂后，他逐步重拾运动，在2025届完成13公里跑，把奖牌、号码布和证书装框留念。到2026年，他为自己定下了半马目标。",
       "sourceIds": [
         "wh-history"
-      ]
+      ],
+      "editionYear": "2026"
     },
     {
       "title": "2024：用编钟和楚剧为选手加油",
       "body": "2024届赛道沿线设置了40多个音乐加油站，编钟、楚剧和汉味乐队各有一站。男子冠军约翰·姆布鲁·姆伊鲁利在赛后提到，沿途的音乐、舞蹈和跑友的加油声给他留下了很深的印象。",
       "sourceIds": [
         "wh-result-2024"
-      ]
+      ],
+      "editionYear": "2024"
     },
     {
       "title": "2026：把明金锭和漆盘放进一枚奖牌",
       "body": "完赛奖牌主体参考湖北省博物馆馆藏明金锭；内圈借鉴花瓣形漆盘，红黑相间，还可以转动。赛事把两种不同材质和年代感的元素结合起来，让跑者把荆楚文物的细节带回家。",
       "sourceIds": [
         "wh-kit-2026"
-      ]
+      ],
+      "editionYear": "2026"
     }
   ],
   "sources": [
@@ -967,16 +1278,108 @@
         "2025"
       ],
       "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "wh-award-2025",
+      "title": "2025武汉马拉松前八名成绩公示",
+      "publisher": "武汉马拉松组委会",
+      "url": "https://www.wuhanmarathon.org/subject.html?detailId=8244412542974823&topicId=5337791093570390",
+      "applicableYears": [
+        "2025"
+      ],
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "wh-award-2024",
+      "title": "2024武汉马拉松前八名成绩公示",
+      "publisher": "武汉马拉松组委会",
+      "url": "https://www.wuhanmarathon.org/subject.html?detailId=7718356845566645&topicId=5337791093570390",
+      "applicableYears": [
+        "2024"
+      ],
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "wh-pickup-2026",
+      "title": "2026武汉马拉松参赛物品领取须知",
+      "publisher": "武汉马拉松组委会",
+      "url": "https://www.wuhanmarathon.org/subject.html?detailId=8757217494845086&topicId=5337791093570390",
+      "applicableYears": [
+        "2026"
+      ],
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "wh-pickup-2025",
+      "title": "2025武汉马拉松参赛物品领取须知",
+      "publisher": "武汉马拉松组委会",
+      "url": "https://www.wuhanmarathon.org/subject.html?detailId=8226677180321091&topicId=5337791093570390",
+      "applicableYears": [
+        "2025"
+      ],
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "wh-pickup-2024",
+      "title": "2024武汉马拉松参赛物品领取须知",
+      "publisher": "武汉马拉松组委会",
+      "url": "https://www.wuhanmarathon.org/subject.html?detailId=7709282183242311&topicId=5337790892243788",
+      "applicableYears": [
+        "2024"
+      ],
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "wh-draw-2025-official",
+      "title": "2025武汉马拉松首轮抽签结果",
+      "publisher": "武汉马拉松组委会",
+      "url": "https://www.wuhanmarathon.org/subject.html?detailId=8107860919659627&topicId=5337790892243788",
+      "applicableYears": [
+        "2025"
+      ],
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "wh-draw-2025-round2",
+      "title": "2025武汉马拉松二次抽签与公益报名",
+      "publisher": "武汉马拉松组委会",
+      "url": "https://www.wuhanmarathon.org/subject.html?detailId=8118116915647087&topicId=5337790892243788",
+      "applicableYears": [
+        "2025"
+      ],
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "wh-draw-2026-round2",
+      "title": "2026武汉马拉松二次抽签结果",
+      "publisher": "武汉马拉松组委会",
+      "url": "https://mp.weixin.qq.com/s/OtMi6T4Gsu7ABO70Wt1OsA",
+      "applicableYears": [
+        "2026"
+      ],
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "wh-reg-amend-2026",
+      "title": "2026武汉马拉松竞赛规程部分条款变更通知",
+      "publisher": "武汉马拉松组委会",
+      "url": "https://www.wuhanmarathon.org/subject.html?detailId=8758714291059469&topicId=5337791093570390",
+      "applicableYears": [
+        "2026"
+      ],
+      "verifiedAt": "2026-11-20"
     }
   ],
   "gaps": [
     {
       "fields": [
-        "records[].timing",
+        "editions[].participation.starters",
         "editions[].participation.finishers",
+        "editions[].registration.lotteryPool",
+        "editions[].registration.drawQuota",
         "editions[].registration.lotteryRate"
       ],
-      "reason": "2026组委会公示明确所录排名的枪声计时；2024、2025稿件未逐项明确计时。实际起跑和完赛人数、同口径抽签池与名额仍待核。"
+      "reason": "2024、2025全马为枪时、半马为净时，2026两项均为枪时。分项目实际起跑和完赛人数、各抽签池实际名额及参与人数仍待核验。"
     },
     {
       "fields": [
@@ -984,6 +1387,14 @@
         "editions[].gear[].imageUrl"
       ],
       "reason": "未取得可公开再分发的图片许可；仅保留来源链接，不接入赛道图或物资实物图片。"
+    },
+    {
+      "fields": [
+        "editions.2024.officialResources.赛道图参赛服奖牌",
+        "editions.2025.officialResources.赛道图参赛服奖牌",
+        "editions.2027"
+      ],
+      "reason": "2024、2025已取领物原公告，路线规程及领物示意不作赛道图；对应路线、服装、奖牌实物官方原页及2027安排未核实。"
     }
   ],
   "conflicts": []

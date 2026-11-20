@@ -248,7 +248,7 @@
         "tips": []
       },
       "notes": [
-        "组委会2026-09-28成绩公示确认赛事已结束；名次表为图片，本档案未抄录成绩数值。"
+        "组委会2026-09-28公示；本档案所录全马男女冠军为枪声成绩。"
       ],
       "officialResources": [
         {
@@ -257,6 +257,22 @@
           "url": "http://hengshuilakemarathon.com/news/detailNews.html?id=5208",
           "sourceIds": [
             "hs-medal-2026"
+          ]
+        },
+        {
+          "category": "results",
+          "title": "2026衡水湖马拉松成绩公示",
+          "url": "http://hengshuilakemarathon.com/news/detailNews.html?id=5365",
+          "sourceIds": [
+            "hs-result-2026"
+          ]
+        },
+        {
+          "category": "guide",
+          "title": "参赛指南｜2026衡马领物须知请查收，PB纪念礼视频同步发布",
+          "url": "http://hengshuilakemarathon.com/news/detailNews.html?id=5345",
+          "sourceIds": [
+            "hs-collection-2026"
           ]
         }
       ]
@@ -373,6 +389,16 @@
       "notes": [
         "新华社等报道的锦标赛排名与大众全马总排名需分别核对，本档案不混列。",
         "人民网／人民日报报道全国马拉松锦标赛（第二站）男子冠军为解云策，未给出其成绩；赛事总排名与锦标赛名次不混用。"
+      ],
+      "officialResources": [
+        {
+          "category": "guide",
+          "title": "2025衡马赛道攻略请查收",
+          "url": "http://hengshuilakemarathon.com/news/detailNews.html?id=4375",
+          "sourceIds": [
+            "hs-course-guide-2025"
+          ]
+        }
       ]
     },
     {

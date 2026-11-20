@@ -162,7 +162,7 @@
         "drawDate": "首轮2026-07-12 10:18；二次2026-07-25 10:18",
         "fee": "全马180元人民币；半马150元人民币",
         "qualification": "全马20周岁及以上，半马18周岁及以上；全马须24个月内1次全马或2次半马证明，半马须1次半马或2次10公里及以上证明，另接受须知规定的第一赛道资格测试证书。",
-        "applicants": "超过6.6万人（组委会赛后披露报名总数）",
+        "applicants": "66571人（9月29日发布会披露总报名）",
         "eligibleApplicants": "",
         "lotteryPool": "",
         "drawQuota": "",
@@ -172,8 +172,14 @@
         "note": "全马与半马成绩直通不交叉；7月28日（含）前退赛不收手续费，9月14日（含）前退赛收20元，之后关闭。 报名总数不等同于剔除直通和未通过资格审查后的抽签人数。",
         "sourceIds": [
           "dy-entry-2026",
-          "dy-review-2026"
-        ]
+          "dy-kit-2026",
+          "dy-draw-2026",
+          "dy-draw2-2026"
+        ],
+        "direct": "发布会披露8992名直通选手报名；这是报名人数，非直通名额或通过人数。全马、半马成绩直通标准分开。",
+        "plannedQuota": "全马13000人；半马17000人。",
+        "payment": "首轮7月12日10:18至7月16日23:59；二次7月25日10:18至7月28日23:59。",
+        "waitlist": "首轮未中签且未主动退出者进入二次抽签；7月25日10:18查询二次结果。"
       },
       "participation": {
         "planned": "30000人（全马13000、半马17000）",
@@ -227,33 +233,191 @@
             "dy-review-2026",
             "dy-results-2026"
           ]
+        },
+        {
+          "group": "马拉松男子亚军",
+          "athlete": "Afewerk Mesfin Woldetensae",
+          "time": "02:11:01",
+          "timing": "枪声成绩",
+          "sourceIds": [
+            "dy-top3-2026",
+            "dy-results-2026"
+          ]
+        },
+        {
+          "group": "马拉松男子季军",
+          "athlete": "Gossa Ambelu Challa",
+          "time": "02:11:06",
+          "timing": "枪声成绩",
+          "sourceIds": [
+            "dy-top3-2026",
+            "dy-results-2026"
+          ]
+        },
+        {
+          "group": "马拉松女子亚军",
+          "athlete": "Volha MAZURONAK",
+          "time": "02:28:14",
+          "timing": "枪声成绩",
+          "sourceIds": [
+            "dy-top3-2026",
+            "dy-results-2026"
+          ]
+        },
+        {
+          "group": "马拉松女子季军",
+          "athlete": "Medina Deme Armino",
+          "time": "02:28:19",
+          "timing": "枪声成绩",
+          "sourceIds": [
+            "dy-top3-2026",
+            "dy-results-2026"
+          ]
+        },
+        {
+          "group": "半程马拉松男子亚军",
+          "athlete": "李昊阳",
+          "time": "01:08:20",
+          "timing": "枪声成绩",
+          "sourceIds": [
+            "dy-top3-2026",
+            "dy-results-2026"
+          ]
+        },
+        {
+          "group": "半程马拉松男子季军",
+          "athlete": "莫翠龙",
+          "time": "01:08:30",
+          "timing": "枪声成绩",
+          "sourceIds": [
+            "dy-top3-2026",
+            "dy-results-2026"
+          ]
+        },
+        {
+          "group": "半程马拉松女子亚军",
+          "athlete": "殷晓雨",
+          "time": "01:16:32",
+          "timing": "枪声成绩",
+          "sourceIds": [
+            "dy-top3-2026",
+            "dy-results-2026"
+          ]
+        },
+        {
+          "group": "半程马拉松女子季军",
+          "athlete": "张冬冬",
+          "time": "01:19:10",
+          "timing": "枪声成绩",
+          "sourceIds": [
+            "dy-top3-2026",
+            "dy-results-2026"
+          ]
+        },
+        {
+          "group": "马拉松中国籍男子第一",
+          "athlete": "苏逸",
+          "time": "02:15:21",
+          "timing": "净成绩",
+          "sourceIds": [
+            "dy-results-2026"
+          ]
+        },
+        {
+          "group": "马拉松中国籍男子第二",
+          "athlete": "李子成",
+          "time": "02:15:52",
+          "timing": "净成绩",
+          "sourceIds": [
+            "dy-results-2026"
+          ]
+        },
+        {
+          "group": "马拉松中国籍男子第三",
+          "athlete": "多斯包勒·哈布利江恩",
+          "time": "02:16:32",
+          "timing": "净成绩",
+          "sourceIds": [
+            "dy-results-2026"
+          ]
+        },
+        {
+          "group": "马拉松中国籍女子第一",
+          "athlete": "王盼盼",
+          "time": "02:31:31",
+          "timing": "净成绩",
+          "sourceIds": [
+            "dy-results-2026"
+          ]
+        },
+        {
+          "group": "马拉松中国籍女子第二",
+          "athlete": "赵娜",
+          "time": "02:34:54",
+          "timing": "净成绩",
+          "sourceIds": [
+            "dy-results-2026"
+          ]
+        },
+        {
+          "group": "马拉松中国籍女子第三",
+          "athlete": "邓春艳",
+          "time": "02:37:39",
+          "timing": "净成绩",
+          "sourceIds": [
+            "dy-results-2026"
+          ]
         }
       ],
-      "gear": [],
+      "gear": [
+        {
+          "category": "参赛服",
+          "name": "2026全马、半马参赛服",
+          "description": "全马为蓝色系，半马为玫红色系，衣服下缘采用 DongYing 文字图形。",
+          "imageUrl": "",
+          "sourceIds": [
+            "dy-kit-2026"
+          ]
+        },
+        {
+          "category": "奖牌",
+          "name": "2026全马、半马完赛奖牌",
+          "description": "两款都用花瓣叠层表现黄河入海；全马为鎏金色，半马为银色。",
+          "imageUrl": "",
+          "sourceIds": [
+            "dy-kit-2026"
+          ]
+        }
+      ],
       "logistics": {
         "collection": {
-          "time": "",
-          "place": "",
+          "time": "10月15日14:00—18:00；10月16日09:30—18:00；10月17日09:30—21:30（10月13日官方手册）。",
+          "place": "东营奥体中心体育馆",
           "requirements": "本人持报名有效证件领取，不接受代领、不设参赛包邮寄。",
           "sourceIds": [
-            "dy-entry-2026"
+            "dy-entry-2026",
+            "dy-guide-2026"
           ]
         },
         "transport": {
-          "start": "",
-          "finish": "",
-          "expo": "",
-          "sourceIds": []
+          "start": "比赛日从东营区及垦利区共六个站点免费接驳。",
+          "finish": "10:30起从胜利大街（运河路以南）提供返程接驳。",
+          "expo": "10月15日至17日，济南机场、济南西站、淄博站、青州站分时提供城际接驳。",
+          "sourceIds": [
+            "dy-kit-2026",
+            "dy-guide-2026"
+          ]
         },
         "raceDay": {
-          "startTime": "07:30起；采用分区分枪，具体分枪按赛前补充通知。",
-          "timeLimit": "全马360分钟、半马180分钟；按各项目最后一枪计，同时遵守分段关门。",
+          "startTime": "全马07:30（S/A/B/C区）；半马07:50（D/E区）、08:05（F/G区）。",
+          "timeLimit": "全马13:30、半马11:05关门，分段时限按官方手册。",
           "bagDrop": "",
           "aidStations": "",
           "toilets": "",
           "medical": "",
           "sourceIds": [
-            "dy-reg-2026"
+            "dy-kit-2026",
+            "dy-guide-2026"
           ]
         },
         "tips": [
@@ -274,6 +438,22 @@
           "url": "https://www.hhkmls.com/document/7470",
           "sourceIds": [
             "dy-map-2026"
+          ]
+        },
+        {
+          "category": "results",
+          "title": "2026黄河口（东营）马拉松成绩公示",
+          "url": "https://mp.weixin.qq.com/s/0hLTotpPypbW7-BiElNrWA",
+          "sourceIds": [
+            "dy-results-2026"
+          ]
+        },
+        {
+          "category": "guide",
+          "title": "2026东马官方手册",
+          "url": "https://mp.weixin.qq.com/s/Rqg0oBAs6IFMoZ-d3IBhBw",
+          "sourceIds": [
+            "dy-guide-2026"
           ]
         }
       ]
@@ -397,6 +577,33 @@
           "sourceIds": [
             "dy-wa-2025"
           ]
+        },
+        {
+          "group": "马拉松男子亚军",
+          "athlete": "Mike Kiptum BOIT",
+          "time": "02:08:32",
+          "timing": "",
+          "sourceIds": [
+            "dy-wa-2025"
+          ]
+        },
+        {
+          "group": "马拉松男子季军",
+          "athlete": "Tsedat Abeje AYANA",
+          "time": "02:11:13",
+          "timing": "",
+          "sourceIds": [
+            "dy-wa-2025"
+          ]
+        },
+        {
+          "group": "马拉松公开组男子第四（世界田联标为中国籍）",
+          "athlete": "洪跃",
+          "time": "02:15:01",
+          "timing": "",
+          "sourceIds": [
+            "dy-wa-2025"
+          ]
         }
       ],
       "gear": [],
@@ -424,7 +631,17 @@
         },
         "tips": []
       },
-      "notes": []
+      "notes": [],
+      "officialResources": [
+        {
+          "category": "results",
+          "title": "2025黄河口（东营）马拉松正式成绩（马拉松）",
+          "url": "https://worldathletics.org/competition/calendar-results/results/7220351",
+          "sourceIds": [
+            "dy-wa-2025"
+          ]
+        }
+      ]
     },
     {
       "year": "2024",
@@ -570,7 +787,17 @@
         },
         "tips": []
       },
-      "notes": []
+      "notes": [],
+      "officialResources": [
+        {
+          "category": "results",
+          "title": "2024黄河口（东营）马拉松正式成绩（马拉松）",
+          "url": "https://worldathletics.org/competition/calendar-results/results/7208921",
+          "sourceIds": [
+            "dy-wa-2024"
+          ]
+        }
+      ]
     }
   ],
   "stories": [
@@ -581,14 +808,16 @@
         "dy-race-2024",
         "dy-wa-2025",
         "dy-wa-2026"
-      ]
+      ],
+      "editionYear": "2024"
     },
     {
       "title": "2025：沿线的83支助威队伍招募计划",
       "body": "东营市体育局在2025届比赛前招募83支沿途助威队伍，每队40至50人，可报名带来乐队、舞蹈、拉拉操等表演。83支是招募目标；公开公告没有列出最终到场名单。",
       "sourceIds": [
         "dy-cheering-2025"
-      ]
+      ],
+      "editionYear": "2025"
     },
     {
       "title": "2026：全马先发，两批半马接力出发",
@@ -596,14 +825,16 @@
       "sourceIds": [
         "dy-review-2026",
         "dy-map-2026"
-      ]
+      ],
+      "editionYear": "2026"
     },
     {
       "title": "2025：两位女子选手成绩表上同秒",
       "body": "世界田联成绩表上，穆卢哈布特·策加和阿费拉·戈德法伊都跑出2小时26分36秒，名次依然分列第一、第二；中国跑者黄雪梅列第三。",
       "sourceIds": [
         "dy-wa-2025"
-      ]
+      ],
+      "editionYear": "2025"
     }
   ],
   "sources": [
@@ -781,6 +1012,71 @@
         "2026"
       ],
       "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "dy-kit-2026",
+      "title": "2026黄河口（东营）马拉松发布会：参赛服、完赛奖牌亮相",
+      "url": "https://mp.weixin.qq.com/s/4Qom_DOVd3K1OEhZnDkuOw",
+      "publisher": "黄河口（东营）马拉松组委会",
+      "publishedAt": "2026-09-29",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ],
+      "evidence": "东营市政府新闻办发布会资料；核对服装与奖牌设计说明、总报名、名额、接驳和分枪。页面照片仅为发布会现场，不作为实物图。"
+    },
+    {
+      "id": "dy-guide-2026",
+      "title": "2026东马官方手册",
+      "url": "https://mp.weixin.qq.com/s/Rqg0oBAs6IFMoZ-d3IBhBw",
+      "publisher": "黄河口（东营）马拉松组委会",
+      "publishedAt": "2026-10-13",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ],
+      "evidence": "核对领物、比赛日交通及赛道。"
+    },
+    {
+      "id": "dy-top3-2026",
+      "title": "2026东马各组别男女前三名成绩",
+      "url": "https://mp.weixin.qq.com/s/HlXpyFDkPqWYrKcOY1PLog",
+      "publisher": "黄河口（东营）马拉松组委会",
+      "publishedAt": "2026-10-18",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ],
+      "evidence": "全程及半程各组前三；成绩计时类型以公示规则为准。"
+    },
+    {
+      "id": "dy-draw-2026",
+      "title": "2026东马首轮抽签结果公示",
+      "url": "https://mp.weixin.qq.com/s/7KSFLX6bgfS7Bl87V1So_w",
+      "publisher": "黄河口（东营）马拉松组委会",
+      "publishedAt": "2026-07-12",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ],
+      "evidence": "首轮开查及缴费时间。"
+    },
+    {
+      "id": "dy-draw2-2026",
+      "title": "2026东马二次抽签结果公示",
+      "url": "https://mp.weixin.qq.com/s/noGmACpEDH7hjdg4GUZ5eA",
+      "publisher": "黄河口（东营）马拉松组委会",
+      "publishedAt": "2026-07-25",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ],
+      "evidence": "二次抽签开查及缴费时间。"
     }
   ],
   "gaps": [
@@ -790,7 +1086,7 @@
         "editions[2024].registration",
         "editions[].participation.finishers"
       ],
-      "reason": "2024至2026全马和2026半马冠军有正式成绩；男子纪录核至2026届。女子历届赛会纪录、2024报名及完赛人数仍待补。"
+      "reason": "2026四组公开前三和全马中国籍前三已有公示，2025全马公开组前三已有世界田联结果。2025半马、2024报名、女子赛会纪录、各届实际完赛人数和两届装备实物原页仍待核。"
     },
     {
       "fields": [

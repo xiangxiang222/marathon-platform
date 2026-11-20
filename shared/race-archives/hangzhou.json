@@ -251,7 +251,10 @@
         "sourceIds": [
           "hz-notice-2026",
           "hz-registration-2026"
-        ]
+        ],
+        "direct": "全马男子2:45:00、女子3:00:00以内可申请成绩直通，另有永久号和部分赛事名次直通。",
+        "waitlist": "组委会按首轮情况从未中签者中组织二次抽签。",
+        "plannedQuota": "全马22000人、半马14000人，共36000人。"
       },
       "participation": {
         "planned": "36000人：全马22000、半马14000",
@@ -315,6 +318,114 @@
           "athlete": "丁常琴",
           "time": "01:13:02",
           "timing": "枪时",
+          "sourceIds": [
+            "hz-results-2026"
+          ]
+        },
+        {
+          "group": "马拉松男子亚军",
+          "athlete": "Mustapha HOUDADI",
+          "time": "02:12:03",
+          "timing": "枪时",
+          "sourceIds": [
+            "hz-results-2026"
+          ]
+        },
+        {
+          "group": "马拉松男子季军",
+          "athlete": "Nicholas KIRWA",
+          "time": "02:12:49",
+          "timing": "枪时",
+          "sourceIds": [
+            "hz-results-2026"
+          ]
+        },
+        {
+          "group": "马拉松女子亚军",
+          "athlete": "Amid Fozya JEMAL",
+          "time": "02:29:05",
+          "timing": "枪时",
+          "sourceIds": [
+            "hz-results-2026"
+          ]
+        },
+        {
+          "group": "马拉松女子季军",
+          "athlete": "Mercy Jerop KWAMBAI",
+          "time": "02:30:25",
+          "timing": "枪时",
+          "sourceIds": [
+            "hz-results-2026"
+          ]
+        },
+        {
+          "group": "半程马拉松男子亚军",
+          "athlete": "许宽田",
+          "time": "01:05:26",
+          "timing": "枪时",
+          "sourceIds": [
+            "hz-results-2026"
+          ]
+        },
+        {
+          "group": "半程马拉松男子季军",
+          "athlete": "陈中平",
+          "time": "01:05:44",
+          "timing": "枪时",
+          "sourceIds": [
+            "hz-results-2026"
+          ]
+        },
+        {
+          "group": "半程马拉松女子亚军",
+          "athlete": "朱闰",
+          "time": "01:15:44",
+          "timing": "枪时",
+          "sourceIds": [
+            "hz-results-2026"
+          ]
+        },
+        {
+          "group": "半程马拉松女子季军",
+          "athlete": "张小杰",
+          "time": "01:15:46",
+          "timing": "枪时",
+          "sourceIds": [
+            "hz-results-2026"
+          ]
+        },
+        {
+          "group": "马拉松中国籍男子第二名",
+          "athlete": "武明瑶",
+          "time": "02:15:10",
+          "timing": "净时",
+          "sourceIds": [
+            "hz-results-2026"
+          ]
+        },
+        {
+          "group": "马拉松中国籍男子第三名",
+          "athlete": "赵长虹",
+          "time": "02:15:29",
+          "timing": "净时",
+          "sourceIds": [
+            "hz-results-2026"
+          ]
+        },
+        {
+          "group": "马拉松中国籍女子第二名",
+          "athlete": "夏雨雨",
+          "time": "02:35:10",
+          "timing": "净时",
+          "sourceIds": [
+            "hz-results-2026"
+          ]
+        },
+        {
+          "group": "马拉松中国籍女子第三名",
+          "athlete": "周昊",
+          "time": "02:41:28",
+          "timing": "净时",
           "sourceIds": [
             "hz-results-2026"
           ]
@@ -390,6 +501,22 @@
           "url": "https://hm.zhetiyu.cn/rich-text?id=2061724559532855297",
           "sourceIds": [
             "hz-map-2026"
+          ]
+        },
+        {
+          "category": "results",
+          "title": "2026吉利汽车杭州马拉松成绩公示",
+          "url": "https://hm.zhetiyu.cn/newsDetail/2117521167551229954",
+          "sourceIds": [
+            "hz-results-2026"
+          ]
+        },
+        {
+          "category": "guide",
+          "title": "2026吉利汽车杭州马拉松官方手册",
+          "url": "https://hm.zhetiyu.cn/newsDetail/2115641267453485058",
+          "sourceIds": [
+            "hz-handbook-2026"
           ]
         }
       ]
@@ -548,6 +675,96 @@
           "sourceIds": [
             "hz25-results"
           ]
+        },
+        {
+          "group": "马拉松女子亚军",
+          "athlete": "Emily Chepkemoi ARUSIO",
+          "time": "02:24:38",
+          "timing": "枪时",
+          "sourceIds": [
+            "hz25-results"
+          ]
+        },
+        {
+          "group": "马拉松女子季军",
+          "athlete": "Rodah JEPKORIR",
+          "time": "02:25:08",
+          "timing": "枪时",
+          "sourceIds": [
+            "hz25-results"
+          ]
+        },
+        {
+          "group": "半程马拉松男子亚军",
+          "athlete": "赵香波",
+          "time": "01:04:55",
+          "timing": "枪时",
+          "sourceIds": [
+            "hz25-results"
+          ]
+        },
+        {
+          "group": "半程马拉松男子季军",
+          "athlete": "马瑞",
+          "time": "01:04:56",
+          "timing": "枪时",
+          "sourceIds": [
+            "hz25-results"
+          ]
+        },
+        {
+          "group": "半程马拉松女子亚军",
+          "athlete": "蒋洪美",
+          "time": "01:15:59",
+          "timing": "枪时",
+          "sourceIds": [
+            "hz25-results"
+          ]
+        },
+        {
+          "group": "半程马拉松女子季军",
+          "athlete": "张小杰",
+          "time": "01:16:19",
+          "timing": "枪时",
+          "sourceIds": [
+            "hz25-results"
+          ]
+        },
+        {
+          "group": "马拉松中国籍男子第二名",
+          "athlete": "武明瑶",
+          "time": "02:16:37",
+          "timing": "净时",
+          "sourceIds": [
+            "hz25-results"
+          ]
+        },
+        {
+          "group": "马拉松中国籍男子第三名",
+          "athlete": "粟国雄",
+          "time": "02:18:28",
+          "timing": "净时",
+          "sourceIds": [
+            "hz25-results"
+          ]
+        },
+        {
+          "group": "马拉松中国籍女子第二名",
+          "athlete": "陈林明",
+          "time": "02:37:14",
+          "timing": "净时",
+          "sourceIds": [
+            "hz25-results"
+          ]
+        },
+        {
+          "group": "马拉松中国籍女子第三名",
+          "athlete": "唐晓芳",
+          "time": "02:37:37",
+          "timing": "净时",
+          "sourceIds": [
+            "hz25-results"
+          ]
         }
       ],
       "gear": [
@@ -574,7 +791,8 @@
       ],
       "notes": [
         "早期计划分项目为全马20000人、半马12000人、欢乐跑4000人；欢乐跑未实际举行，这些数字均不是起跑或完赛人数。",
-        "2025年10月17日组委会正式取消欢乐跑，全程、半程项目照常举行。"
+        "2025年10月17日组委会正式取消欢乐跑，全程、半程项目照常举行。",
+        "组委会公示男子前三枪时均为02:11:15，名次依公示顺序。该公示将季军英文名拼作 Bonface KIMUTAI KIPLIMO，档案沿用常见拼写 Boniface。"
       ],
       "logistics": {
         "collection": {
@@ -638,6 +856,22 @@
           "sourceIds": [
             "hz25-route"
           ]
+        },
+        {
+          "category": "results",
+          "title": "吉利汽车·2025 杭州马拉松前八名成绩公示",
+          "url": "https://hm.zhetiyu.cn/newsDetail/2061738347523706881",
+          "sourceIds": [
+            "hz25-results"
+          ]
+        },
+        {
+          "category": "guide",
+          "title": "2025杭州马拉松领物须知",
+          "url": "https://hm.zhetiyu.cn/newsDetail/2061738774130823170",
+          "sourceIds": [
+            "hz25-kit"
+          ]
         }
       ]
     },
@@ -685,7 +919,7 @@
         "start": "浙江黄龙体育中心",
         "finish": "全马：杭州奥体中心；半马：杭州市民广场；欢乐跑：平湖秋月",
         "mapUrl": "",
-        "changes": "2024年全马终点设在杭州奥体中心；不据此补写半马终点或完整道路序列。",
+        "changes": "全马终点重回杭州奥体中心体育场；半马到市民广场，欢乐跑到平湖秋月。",
         "analysis": [],
         "sourceIds": [
           "hz-report-2024",
@@ -795,14 +1029,16 @@
       "body": "2025年的“杭马十景”把太极、古筝和诗词朗诵带到路线旁。北山雅集、岳庙《满江红》等节目随城市地点布置，让西湖路段的文化看点有了明确位置。",
       "sourceIds": [
         "hz-recap-2025"
-      ]
+      ],
+      "editionYear": "2025"
     },
     {
       "title": "机器人跟跑曾出现在西湖边",
       "body": "2024年杭马首次设置四足机器人配速展示，较大的在半马担任“关门兔”，较小的在欢乐跑担任“陪跑兔”。这是该届赛事的服务尝试，后续届次是否保留以当届公告为准。",
       "sourceIds": [
         "hz-recap-2024"
-      ]
+      ],
+      "editionYear": "2024"
     }
   ],
   "sources": [
