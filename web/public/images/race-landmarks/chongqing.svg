@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="96" viewBox="0 0 120 96" fill="none">
+  <title>重庆南滨路沿江桥梁地标图标</title>
+  <g stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M10 66c11-4 24-14 35-19 14-7 21 5 39 5 10 0 20 5 26 14" fill="#e4efe7" stroke="#9ab7a5"/>
+    <path d="M18 62V48h10V39h8v9h8v12m2-2V42h8V29h10v28m5-1V37h9v18m6 1V48h8v12m4 1V51h9v13" fill="#dae7e9" stroke="#83a6ab"/>
+    <path d="M32 45v8m27-19v15m14-8v7" stroke="#83a6ab"/>
+    <path d="M10 70c15 0 24-7 50-6 25 1 32 7 50 5v13c-16 3-33 7-50 7s-37-4-50-7Z" fill="#d9f3f5" stroke="#87b9b9"/>
+    <path d="M14 66h92v5H14Z" fill="#f2c0a3" stroke="#ac624e"/>
+    <path d="M24 65c8-24 24-35 36-35s28 11 36 35h-5C82 44 70 35 60 35s-22 9-31 30Z" fill="#ffb6a4" stroke="#ac624e"/>
+    <path d="M36 52v13m12-24v24m12-30v30m12-24v24m12-13v13m-60 6v7m72-7v7" stroke="#ac624e"/>
+    <path d="M56 30.5a18 18 0 0 1 8 0" stroke="#ff1838" stroke-width="2"/>
+    <path d="M19 81h20m8 0h25m8 0h20" stroke="#87b9b9"/>
+  </g>
+</svg>

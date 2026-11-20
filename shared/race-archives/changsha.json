@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "raceId": "changsha",
-  "updatedAt": "2026-11-18",
+  "updatedAt": "2026-11-20",
   "intro": "长沙马拉松自2015年创办，将湘江、橘子洲、岳麓山与洋湖等景观带入城市跑步线路。长马的阅读重点是沿江起跑与跨江路段的年度组织：2025年调整起点并延后进入橘子洲，2026年半程终点转到渔人码头，项目也收敛为全马和半马。",
   "introSourceIds": [
     "cs-history-2024",
@@ -98,9 +98,79 @@
       "sourceIds": [
         "cs-report-2026"
       ]
+    },
+    {
+      "date": "2026-11-15",
+      "title": "三项不同口径的赛会纪录更新",
+      "body": "组委会确认武明瑶和通拉嘎刷新全马国内选手纪录，徐冰洁刷新女子半马赛会纪录。",
+      "sourceIds": [
+        "cs-race-official-2026"
+      ]
     }
   ],
-  "records": [],
+  "records": [
+    {
+      "category": "男子全马国内选手赛会纪录",
+      "project": "马拉松",
+      "group": "中国籍男子",
+      "athlete": "武明瑶",
+      "time": "02:13:11",
+      "timing": "",
+      "editionId": "changsha-2026",
+      "achievedAt": "2026-11-15",
+      "verifiedThroughEditionId": "changsha-2026",
+      "verifiedAt": "2026-11-20",
+      "sourceIds": [
+        "cs-race-official-2026"
+      ]
+    },
+    {
+      "category": "女子全马国内选手赛会纪录",
+      "project": "马拉松",
+      "group": "中国籍女子",
+      "athlete": "通拉嘎",
+      "time": "02:34:51",
+      "timing": "",
+      "editionId": "changsha-2026",
+      "achievedAt": "2026-11-15",
+      "verifiedThroughEditionId": "changsha-2026",
+      "verifiedAt": "2026-11-20",
+      "sourceIds": [
+        "cs-race-official-2026"
+      ]
+    },
+    {
+      "category": "男子半马赛会纪录",
+      "project": "半程马拉松",
+      "group": "男子",
+      "athlete": "张校瑞",
+      "time": "01:04:59",
+      "timing": "净计时",
+      "editionId": "changsha-2025",
+      "achievedAt": "2025-10-26",
+      "verifiedThroughEditionId": "changsha-2026",
+      "verifiedAt": "2026-11-20",
+      "sourceIds": [
+        "cs-results-official-2025",
+        "cs-race-official-2026"
+      ]
+    },
+    {
+      "category": "女子半马赛会纪录",
+      "project": "半程马拉松",
+      "group": "女子",
+      "athlete": "徐冰洁",
+      "time": "01:12:43",
+      "timing": "",
+      "editionId": "changsha-2026",
+      "achievedAt": "2026-11-15",
+      "verifiedThroughEditionId": "changsha-2026",
+      "verifiedAt": "2026-11-20",
+      "sourceIds": [
+        "cs-race-official-2026"
+      ]
+    }
+  ],
   "editions": [
     {
       "year": "2026",
@@ -117,7 +187,7 @@
         {
           "project": "马拉松",
           "distanceKm": 42.195,
-          "plannedParticipants": "18000人",
+          "plannedParticipants": 18000,
           "fee": "",
           "sourceIds": [
             "cs-preview-2026",
@@ -127,7 +197,7 @@
         {
           "project": "半程马拉松",
           "distanceKm": 21.0975,
-          "plannedParticipants": "17000人",
+          "plannedParticipants": 17000,
           "fee": "",
           "sourceIds": [
             "cs-preview-2026",
@@ -144,16 +214,17 @@
         "analysis": [],
         "sourceIds": [
           "cs-preview-2026",
-          "cs-report-2026"
+          "cs-report-2026",
+          "cs-map-2026"
         ]
       },
       "registration": {
         "method": "预报名后抽签，并按缴费空缺安排候补；具体批次以当届公告为准。",
         "opens": "2026-08-04 10:00",
         "closes": "2026-08-11 17:00",
-        "drawDate": "",
-        "fee": "",
-        "qualification": "",
+        "drawDate": "2026-08-25 10:00",
+        "fee": "中国籍（含港澳台）：全马200元/人、半马180元/人；报名须知“护照或外籍选手”栏：全马430元/人、半马400元/人。",
+        "qualification": "全马20周岁以上，报名截止前24个月内有1次全马或2次半马成绩；半马18周岁以上，须有2次10公里及以上成绩。65周岁及以上按须知提交家属签署的确认文件。",
         "applicants": "总报名192052人；全马75912人、半马116140人",
         "eligibleApplicants": "",
         "lotteryPool": "",
@@ -161,9 +232,10 @@
         "directQuota": "",
         "lotteryRate": "",
         "lotteryNote": "报名人数不等于抽签池，缺少扣除直通等名额后的同口径数据，不计算中签率。",
-        "note": "",
+        "note": "首轮8月25日10:00公布，中签或选择候补均须在8月31日17:00前按原报名平台缴费；第二轮候补9月8日10:00公布。",
         "sourceIds": [
-          "cs-preview-2026"
+          "cs-preview-2026",
+          "cs-entry-2026"
         ]
       },
       "participation": {
@@ -177,14 +249,62 @@
           "cs-report-2026"
         ]
       },
-      "results": [],
+      "results": [
+        {
+          "group": "全程马拉松男子冠军",
+          "athlete": "武明瑶",
+          "time": "02:13:11",
+          "timing": "",
+          "sourceIds": [
+            "cs-race-official-2026"
+          ]
+        },
+        {
+          "group": "全程马拉松女子冠军",
+          "athlete": "通拉嘎",
+          "time": "02:34:51",
+          "timing": "",
+          "sourceIds": [
+            "cs-race-official-2026"
+          ]
+        },
+        {
+          "group": "半程马拉松男子冠军",
+          "athlete": "赵长虹",
+          "time": "01:05:03",
+          "timing": "",
+          "sourceIds": [
+            "cs-race-official-2026"
+          ]
+        },
+        {
+          "group": "半程马拉松女子冠军",
+          "athlete": "徐冰洁",
+          "time": "01:12:43",
+          "timing": "",
+          "sourceIds": [
+            "cs-race-official-2026"
+          ]
+        }
+      ],
       "gear": [
         {
-          "title": "红枫色参赛服",
-          "body": "2026年参赛服采用红橙色调，灵感取自爱晚亭红枫等城市意象。",
+          "category": "参赛服",
+          "name": "2026爱晚亭红枫主题参赛服",
+          "description": "参赛服用红橙渐变，底纹取自爱晚亭红枫。",
           "imageUrl": "",
           "sourceIds": [
+            "cs-preview-2026",
             "cs-report-2026"
+          ]
+        },
+        {
+          "category": "奖牌",
+          "name": "2026爱晚亭主题完赛奖牌",
+          "description": "以爱晚亭为中心，融入马王堆西汉云纹、红枫与湘江浪纹。",
+          "imageUrl": "",
+          "sourceIds": [
+            "cs-preview-2026"
           ]
         }
       ],
@@ -225,13 +345,39 @@
             ]
           }
         ]
-      }
+      },
+      "officialResources": [
+        {
+          "category": "route-map",
+          "title": "2026长沙马拉松官方路线图",
+          "url": "https://www.marathonchangsha.com/Detail/32",
+          "sourceIds": [
+            "cs-map-2026"
+          ]
+        },
+        {
+          "category": "shirt",
+          "title": "2026参赛服发布（长沙市政府）",
+          "url": "https://www.changsha.gov.cn/bmrl/bmrlbsfw/202610/t20261019_12591874.html",
+          "sourceIds": [
+            "cs-preview-2026"
+          ]
+        },
+        {
+          "category": "medal",
+          "title": "2026完赛奖牌发布（长沙市政府）",
+          "url": "https://www.changsha.gov.cn/bmrl/bmrlbsfw/202610/t20261019_12591874.html",
+          "sourceIds": [
+            "cs-preview-2026"
+          ]
+        }
+      ]
     },
     {
       "year": "2025",
       "editionId": "changsha-2025",
       "editionName": "2025长沙马拉松",
-      "status": "archived",
+      "status": "completed",
       "date": "2025-10-26",
       "dateSourceIds": [
         "cs-preview-2025"
@@ -241,7 +387,7 @@
         {
           "project": "马拉松",
           "distanceKm": 42.195,
-          "plannedParticipants": "15000人",
+          "plannedParticipants": 15000,
           "fee": "",
           "sourceIds": [
             "cs-preview-2025"
@@ -250,7 +396,7 @@
         {
           "project": "半程马拉松",
           "distanceKm": 21.0975,
-          "plannedParticipants": "16000人",
+          "plannedParticipants": 16000,
           "fee": "",
           "sourceIds": [
             "cs-preview-2025"
@@ -259,7 +405,7 @@
         {
           "project": "欢乐跑",
           "distanceKm": "",
-          "plannedParticipants": "4000人",
+          "plannedParticipants": 4000,
           "fee": "",
           "sourceIds": [
             "cs-preview-2025"
@@ -306,7 +452,44 @@
           "cs-preview-2025"
         ]
       },
-      "results": [],
+      "results": [
+        {
+          "group": "全程马拉松男子冠军",
+          "athlete": "拉先加",
+          "time": "02:16:31",
+          "timing": "枪声成绩",
+          "sourceIds": [
+            "cs-results-official-2025"
+          ]
+        },
+        {
+          "group": "全程马拉松女子冠军",
+          "athlete": "黄菲",
+          "time": "02:38:41",
+          "timing": "枪声成绩",
+          "sourceIds": [
+            "cs-results-official-2025"
+          ]
+        },
+        {
+          "group": "半程马拉松男子冠军",
+          "athlete": "张校瑞",
+          "time": "01:04:59",
+          "timing": "净计时",
+          "sourceIds": [
+            "cs-results-official-2025"
+          ]
+        },
+        {
+          "group": "半程马拉松女子冠军",
+          "athlete": "朱卿",
+          "time": "01:13:39",
+          "timing": "净计时",
+          "sourceIds": [
+            "cs-results-official-2025"
+          ]
+        }
+      ],
       "gear": [],
       "notes": [
         "目前本届路线、规模和日期依据赛前新闻发布会归档，未取得完整赛后结果原文。"
@@ -352,7 +535,7 @@
         {
           "project": "马拉松",
           "distanceKm": 42.195,
-          "plannedParticipants": "12000人",
+          "plannedParticipants": 12000,
           "fee": "",
           "sourceIds": [
             "cs-history-2024"
@@ -361,7 +544,7 @@
         {
           "project": "半程马拉松",
           "distanceKm": 21.0975,
-          "plannedParticipants": "13000人",
+          "plannedParticipants": 13000,
           "fee": "",
           "sourceIds": [
             "cs-history-2024"
@@ -370,7 +553,7 @@
         {
           "project": "欢乐跑",
           "distanceKm": "",
-          "plannedParticipants": "5000人",
+          "plannedParticipants": 5000,
           "fee": "",
           "sourceIds": [
             "cs-history-2024"
@@ -395,7 +578,7 @@
         "drawDate": "",
         "fee": "",
         "qualification": "",
-        "applicants": "",
+        "applicants": "约15万人（总报名，国家体育总局报道口径）",
         "eligibleApplicants": "",
         "lotteryPool": "",
         "drawQuota": "",
@@ -403,7 +586,9 @@
         "lotteryRate": "",
         "lotteryNote": "",
         "note": "",
-        "sourceIds": []
+        "sourceIds": [
+          "cs-history-2024"
+        ]
       },
       "participation": {
         "planned": "30000人：全马12000、半马13000、欢乐跑5000",
@@ -417,7 +602,17 @@
         ]
       },
       "results": [],
-      "gear": [],
+      "gear": [
+        {
+          "category": "奖牌",
+          "name": "2024长马十周年奖牌",
+          "description": "奖牌用十片旋转火苗组成，背面顶部的可拆火苗以磁铁固定，跑友可以在上面刻姓名。",
+          "imageUrl": "",
+          "sourceIds": [
+            "cs-history-2024"
+          ]
+        }
+      ],
       "notes": [],
       "logistics": {
         "collection": {
@@ -445,7 +640,42 @@
       }
     }
   ],
-  "stories": [],
+  "stories": [
+    {
+      "id": "cs-story-anniversary-medal",
+      "editionYear": "2024",
+      "tag": "赛事故事",
+      "title": "十片火苗围成十周年",
+      "summary": "2024长马十周年奖牌上的火苗，是一枚可以刻名字的小纪念。",
+      "body": "十片火苗朝奖牌中心旋转，正面留出十周年标识。最上方的火苗背面装有磁铁，可以拆下刻姓名。两年后，组委会又面向历届跑者征集奖牌、号码布和老照片，让旧奖牌有机会带着主人记得的那一段赛道再次亮相。",
+      "sourceIds": [
+        "cs-history-2024",
+        "cs-preview-2026"
+      ]
+    },
+    {
+      "id": "cs-story-isle-2025",
+      "editionYear": "2025",
+      "tag": "赛事故事",
+      "title": "把进橘子洲的时刻往后移",
+      "summary": "2025长马将进入橘子洲的路段安排到约10公里。",
+      "body": "起点从贺龙体育场东广场移到杜甫江阁旁后，跑者先在湘江路完成路段和折返，再经橘子洲大桥上岛。发布会把缓解赛道前段拥挤列为调整原因。橘子洲仍是长马的标志景观，但它在跑者比赛节奏中的位置可以随届改变。",
+      "sourceIds": [
+        "cs-preview-2025"
+      ]
+    },
+    {
+      "id": "cs-story-medical-pacer",
+      "editionYear": "2026",
+      "tag": "赛事人物",
+      "title": "给需要帮忙的跑者留一点余力",
+      "summary": "曾和跑友绕橘子洲夜跑的郑曦，2026年第四次成为长马急救跑者。",
+      "body": "郑曦从和跑友绕橘子洲夜跑起步，后来参加岳麓区红十字会培训，从2022年开始以急救跑者身份参赛。2026年他在3小时50分左右的队列服务。组委会的人物稿记录了配速分组和赛前三次培训：这些跑者把速度留在自己的纪录之外，把位置留在人群之中。",
+      "sourceIds": [
+        "cs-story-official-2026"
+      ]
+    }
+  ],
   "sources": [
     {
       "id": "cs-history-2024",
@@ -562,15 +792,81 @@
           "compNameOrganizer": "湖南省体育局,长沙市人民政府"
         }
       }
+    },
+    {
+      "id": "cs-map-2026",
+      "title": "2026长沙马拉松路线图",
+      "url": "https://www.marathonchangsha.com/Detail/32",
+      "publisher": "长沙马拉松组委会",
+      "publishedAt": "",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ],
+      "evidence": "人工核对官网图片明确标注2026并分全马、半马，给出对应终点及高程示意。此为官网栏目页，以2026图片为本次核验对象。"
+    },
+    {
+      "id": "cs-entry-2026",
+      "title": "长沙银行·2026长沙马拉松报名须知",
+      "url": "https://www.marathonchangsha.com/Detail/27",
+      "publisher": "长沙马拉松组委会",
+      "publishedAt": "",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ],
+      "evidence": "人工核读官网2026报名须知图的资格、价格表、首轮与候补抽签日期。此为按届更新的官网栏目页。"
+    },
+    {
+      "id": "cs-race-official-2026",
+      "title": "一江秋色，满城热爱｜长沙银行·2026长沙马拉松鸣枪开跑！",
+      "url": "https://www.marathonchangsha.com/Detail/468",
+      "publisher": "长沙马拉松组委会",
+      "publishedAt": "2026-11-15",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ],
+      "evidence": "官网赛后稿正文列出全马、半马各冠军并明确区分全马国内选手纪录与女子半马赛会纪录；未标注枪时、净时。"
+    },
+    {
+      "id": "cs-results-official-2025",
+      "title": "长沙银行·2025长沙马拉松圆满收官！各组别成绩正式公布",
+      "url": "https://www.marathonchangsha.com/Detail/358",
+      "publisher": "长沙马拉松组委会",
+      "publishedAt": "",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2025"
+      ],
+      "evidence": "人工核对官网正式成绩长图中全马男女枪声成绩、半马男女净计时名单首名。"
+    },
+    {
+      "id": "cs-story-official-2026",
+      "title": "【长马十二年·奔跑的刻度】急救跑者郑曦：他给自己留了二十分钟",
+      "url": "https://www.marathonchangsha.com/Detail/461",
+      "publisher": "长沙马拉松组委会",
+      "publishedAt": "2026-11-13",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ],
+      "evidence": "官网人物报道，核对当届急救跑者分组、配速组和训练经历。"
     }
   ],
   "gaps": [
     {
       "fields": [
-        "records",
-        "editions.results"
+        "records.全马公开组",
+        "editions[2024].results",
+        "editions[2026].results[].timing"
       ],
-      "reason": "未取得可核对的官方完整成绩和历届赛会纪录表；不以新闻中未附成绩的冠军姓名补造纪录。"
+      "reason": "已补2025和2026男女全马、半马冠军，以及2026官方确认的国内选手与半马纪录；全马公开组历届纪录、2024完整成绩及2026各组计时类型仍待原始表核验。"
     },
     {
       "fields": [
@@ -580,18 +876,12 @@
     },
     {
       "fields": [
-        "editions.2024.registration",
-        "editions.2025.results",
-        "editions.2026.registration.fee"
+        "editions[2024,2025].registration",
+        "editions[2026].registration.lotteryRate",
+        "editions[].route.mapUrl",
+        "editions[].gear[].imageUrl"
       ],
-      "reason": "2024报名须知、2025赛后原文及2026费用等细则尚待补充。"
-    },
-    {
-      "fields": [
-        "images",
-        "editions.route.mapUrl"
-      ],
-      "reason": "未取得官方图片、路线图的明确转载许可，暂不展示图片；可通过资料来源查看官方原图。"
+      "reason": "2024、2025报名细则和各届同口径中签率仍缺。2026已有路线图与服装、奖牌发布页；图片公开转载许可尚未确认，使用原文链接。"
     }
   ],
   "conflicts": []

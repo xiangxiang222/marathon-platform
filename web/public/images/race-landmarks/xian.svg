@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="96" viewBox="0 0 120 96" fill="none">
+  <title>西安城墙与永宁门地标图标</title>
+  <g stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M10 57h7v5h7v-5h7v5h8v-9h42v9h8v-5h7v5h7v-5h7v25H10Z" fill="#ded4c9" stroke="#84776b"/>
+    <path d="M10 70h37m26 0h37M10 76h36m28 0h36m-86-6v6m10 0v6m48-12v6m13 0v6" stroke="#ad9e91"/>
+    <path d="M48 82V72a12 12 0 0 1 24 0v10Z" fill="#897367" stroke="#756358"/>
+    <path d="M53 80v-7a7 7 0 0 1 14 0v7" stroke="#b89b85"/>
+    <path d="M36 41h48v14H36z" fill="#d69479" stroke="#9b5d50"/>
+    <path d="M43 29h34v11H43z" fill="#e9b194" stroke="#9b5d50"/>
+    <path d="M30 40c7 1 13-3 17-8h26c4 5 10 9 17 8l-5 5H35Z" fill="#8f9c95" stroke="#616f67"/>
+    <path d="M37 28c8 0 13-4 16-10h14c3 6 8 10 16 10l-5 4H42Z" fill="#a8b4a4" stroke="#616f67"/>
+    <path d="M44 46v7m8-7v7m8-7v7m8-7v7m8-7v7" stroke="#9b5d50"/>
+    <path d="M57 18h6" stroke="#ff1838" stroke-width="2"/>
+    <path d="M7 83h106M20 88h80" stroke="#a99a8d"/>
+  </g>
+</svg>

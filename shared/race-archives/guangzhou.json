@@ -1,6 +1,6 @@
 {
   "raceId": "guangzhou",
-  "updatedAt": "2026-11-18",
+  "updatedAt": "2026-11-20",
   "intro": "广州马拉松赛创办于2012年，以珠江“一江两岸”为代表性城市路线。赛道将天河体育中心、珠江桥梁与滨江城市景观连接起来；2023的全半马设置与近届全马赛事不同，项目和终点需逐年阅读。",
   "introSourceIds": [
     "gz-intro",
@@ -78,11 +78,55 @@
       "title": "全马计划规模增至30000人",
       "body": "截至核验日赛事尚未举办，档案收录赛前公告，不录入结果。",
       "sourceIds": [
-        "gz-reg-2026"
+        "gz-reg-2026",
+        "gz-wa-calendar-2026"
+      ]
+    },
+    {
+      "date": "2026",
+      "title": "世界田联金标（Gold）",
+      "body": "世界田联2026年度标牌路跑赛历将本届列为金标（Gold）。级别仅对应2026届。",
+      "sourceIds": [
+        "gz-wa-calendar-2026"
       ]
     }
   ],
-  "records": [],
+  "records": [
+    {
+      "category": "赛会纪录（男子，核至2025届）",
+      "project": "马拉松",
+      "group": "男子",
+      "athlete": "Gebise DEBELE",
+      "time": "02:06:28",
+      "timing": "枪时",
+      "editionId": "guangzhou-2024",
+      "achievedAt": "2024-12-08",
+      "verifiedThroughEditionId": "guangzhou-2025",
+      "verifiedAt": "2026-11-20",
+      "sourceIds": [
+        "gz-city-review-2024",
+        "gz-wa-2024",
+        "gz-wa-2025",
+        "gz-awards-2024"
+      ]
+    },
+    {
+      "category": "赛会纪录（女子，核至2025届）",
+      "project": "马拉松",
+      "group": "女子",
+      "athlete": "Joyce Chepkemoi TELE",
+      "time": "02:22:40",
+      "timing": "枪时",
+      "editionId": "guangzhou-2025",
+      "achievedAt": "2025-12-21",
+      "verifiedThroughEditionId": "guangzhou-2025",
+      "verifiedAt": "2026-11-20",
+      "sourceIds": [
+        "gz-awards-2025",
+        "gz-wa-2025"
+      ]
+    }
+  ],
   "editions": [
     {
       "year": "2026",
@@ -98,8 +142,8 @@
         {
           "project": "马拉松",
           "distanceKm": 42.195,
-          "plannedParticipants": "30000人",
-          "fee": "",
+          "plannedParticipants": 30000,
+          "fee": "大众运动员180元人民币/人",
           "sourceIds": [
             "gz-entry-2026",
             "gz-reg-2026"
@@ -122,7 +166,7 @@
         "method": "官方个人报名；超额抽签，未中签者按须知进入后续补录安排。",
         "opens": "2026-09-02 10:00（北京时间）",
         "closes": "2026-09-11 18:00（北京时间）",
-        "drawDate": "",
+        "drawDate": "2026-09-22 15:00（当地资讯网站转述）",
         "fee": "大众运动员180元人民币/人",
         "qualification": "20周岁及以上；报名前24个月内1次全马或2次半马成绩，线上成绩无效。65周岁及以上另需本人和家庭成员签署承诺书。",
         "applicants": "",
@@ -132,10 +176,11 @@
         "directQuota": "",
         "lotteryRate": "",
         "lotteryNote": "未取得同口径抽签池与实际抽签名额，不计算中签率。",
-        "note": "是否选择存包不影响中签概率；抽签与补录的后续实际公告未逐一收录。",
+        "note": "是否选择存包不影响中签概率；当地资讯网站整理的首轮缴费截止时间为2026-09-28 18:00，补录实际公告待补。",
         "sourceIds": [
           "gz-entry-2026",
-          "gz-reg-2026"
+          "gz-reg-2026",
+          "gz-draw-2026"
         ]
       },
       "participation": {
@@ -194,8 +239,8 @@
         {
           "project": "马拉松",
           "distanceKm": 42.195,
-          "plannedParticipants": "26000人",
-          "fee": "",
+          "plannedParticipants": 26000,
+          "fee": "160元人民币/人",
           "sourceIds": [
             "gz-reg-2025"
           ]
@@ -214,12 +259,12 @@
         ]
       },
       "registration": {
-        "method": "",
-        "opens": "",
-        "closes": "",
-        "drawDate": "",
-        "fee": "",
-        "qualification": "",
+        "method": "官方网站或官方合作通道报名，超额后抽签。",
+        "opens": "2025-09-23 10:00（北京时间）",
+        "closes": "2025-09-28 18:00（北京时间）",
+        "drawDate": "2025-10-28 15:00首轮；2025-11-25二次抽签公告",
+        "fee": "160元人民币/人",
+        "qualification": "2023-01-01至2025-09-21有符合规程的马拉松或半程马拉松完赛成绩，线上成绩无效。",
         "applicants": "",
         "eligibleApplicants": "",
         "lotteryPool": "",
@@ -227,8 +272,13 @@
         "directQuota": "",
         "lotteryRate": "",
         "lotteryNote": "未取得同口径抽签池与实际抽签名额，不计算中签率。",
-        "note": "",
-        "sourceIds": []
+        "note": "首轮结果公布后开放查询与缴费。组委会另设成绩、忠实跑者及城市赛事互通等直通安排。",
+        "sourceIds": [
+          "gz-reg-2025",
+          "gz-entry-2025",
+          "gz-draw-2025",
+          "gz-draw-2-2025"
+        ]
       },
       "participation": {
         "planned": "26000人（赛事规模）",
@@ -240,7 +290,62 @@
           "gz-reg-2025"
         ]
       },
-      "results": [],
+      "results": [
+        {
+          "group": "马拉松男子冠军",
+          "athlete": "Afewerk Mesfin Woldetensae",
+          "time": "02:12:23",
+          "timing": "枪时",
+          "sourceIds": [
+            "gz-results-2025",
+            "gz-wa-2025",
+            "gz-awards-2025"
+          ]
+        },
+        {
+          "group": "马拉松女子冠军",
+          "athlete": "Joyce Chepkemoi Tele",
+          "time": "02:22:40",
+          "timing": "枪时",
+          "sourceIds": [
+            "gz-results-2025",
+            "gz-wa-2025",
+            "gz-awards-2025"
+          ]
+        },
+        {
+          "group": "马拉松男子亚军",
+          "athlete": "Felix KIRWA",
+          "time": "02:12:25",
+          "timing": "枪时",
+          "sourceIds": [
+            "gz-results-2025",
+            "gz-wa-2025",
+            "gz-awards-2025"
+          ]
+        },
+        {
+          "group": "马拉松男子季军／中国籍男子第一",
+          "athlete": "扎西次仁",
+          "time": "02:14:06",
+          "timing": "枪时",
+          "sourceIds": [
+            "gz-results-2025",
+            "gz-wa-2025",
+            "gz-awards-2025"
+          ]
+        },
+        {
+          "group": "马拉松中国籍女子第一",
+          "athlete": "丁常琴",
+          "time": "02:35:40",
+          "timing": "枪时",
+          "sourceIds": [
+            "gz-wa-2025",
+            "gz-awards-2025"
+          ]
+        }
+      ],
       "gear": [],
       "logistics": {
         "collection": {
@@ -268,7 +373,35 @@
         },
         "tips": []
       },
-      "notes": []
+      "notes": [],
+      "officialResources": [
+        {
+          "category": "route-map",
+          "title": "组委会发布的2025广州马拉松赛道图",
+          "url": "https://www.guangzhou-marathon.com/subject.html?detailId=7951518221333696&topicId=7810378834711341",
+          "sourceIds": [
+            "gz-map-2025"
+          ]
+        },
+        {
+          "category": "medal",
+          "title": "2025广马完赛奖牌（组委会发布）",
+          "url": "https://mp.weixin.qq.com/s/_CwVZ0rtTN6MvHq7QcS4Iw",
+          "sourceIds": [
+            "gz-official-kit-2025",
+            "gz-kit-2025"
+          ]
+        },
+        {
+          "category": "shirt",
+          "title": "2025广马参赛服（组委会发布）",
+          "url": "https://mp.weixin.qq.com/s/_CwVZ0rtTN6MvHq7QcS4Iw",
+          "sourceIds": [
+            "gz-official-kit-2025",
+            "gz-kit-2025"
+          ]
+        }
+      ]
     },
     {
       "year": "2024",
@@ -284,10 +417,11 @@
         {
           "project": "马拉松",
           "distanceKm": 42.195,
-          "plannedParticipants": "26000人",
-          "fee": "",
+          "plannedParticipants": 26000,
+          "fee": "160元人民币/人",
           "sourceIds": [
-            "gz-race-2024"
+            "gz-race-2024",
+            "gz-entry-2024"
           ]
         }
       ],
@@ -304,12 +438,12 @@
         ]
       },
       "registration": {
-        "method": "",
-        "opens": "",
-        "closes": "",
-        "drawDate": "",
-        "fee": "",
-        "qualification": "",
+        "method": "官方网站或官方合作APP个人报名，超额抽签。首轮缴费后若有缺额，安排二轮抽签。",
+        "opens": "2024-09-10 15:00（北京时间）",
+        "closes": "2024-09-19 17:00（北京时间）",
+        "drawDate": "2024年10月中旬（报名启动公告计划）",
+        "fee": "160元人民币/人",
+        "qualification": "2022-01-01至2024-09-09有规程认可的马拉松或半程马拉松完赛成绩，线上成绩无效。",
         "applicants": "",
         "eligibleApplicants": "",
         "lotteryPool": "",
@@ -317,8 +451,10 @@
         "directQuota": "",
         "lotteryRate": "",
         "lotteryNote": "未取得同口径抽签池与实际抽签名额，不计算中签率。",
-        "note": "",
-        "sourceIds": []
+        "note": "二轮缴费后开放300席公益慈善名额，限已报名未中签者，先到先得；不计入大众抽签名额。",
+        "sourceIds": [
+          "gz-entry-2024"
+        ]
       },
       "participation": {
         "planned": "26000人（赛事规模）",
@@ -330,7 +466,52 @@
           "gz-race-2024"
         ]
       },
-      "results": [],
+      "results": [
+        {
+          "group": "马拉松男子冠军",
+          "athlete": "Gebise DEBELE",
+          "time": "02:06:28",
+          "timing": "枪时",
+          "sourceIds": [
+            "gz-city-review-2024",
+            "gz-wa-2024",
+            "gz-awards-2024"
+          ]
+        },
+        {
+          "group": "马拉松女子冠军",
+          "athlete": "Anchialem HAYMANOT",
+          "time": "02:25:13",
+          "timing": "枪时",
+          "sourceIds": [
+            "gz-city-review-2024",
+            "gz-wa-2024",
+            "gz-awards-2024"
+          ]
+        },
+        {
+          "group": "马拉松中国籍男子第一",
+          "athlete": "陈天宇",
+          "time": "02:09:31",
+          "timing": "枪时",
+          "sourceIds": [
+            "gz-city-review-2024",
+            "gz-wa-2024",
+            "gz-awards-2024"
+          ]
+        },
+        {
+          "group": "马拉松中国籍女子第一",
+          "athlete": "黄菲",
+          "time": "02:35:00",
+          "timing": "枪时",
+          "sourceIds": [
+            "gz-city-review-2024",
+            "gz-wa-2024",
+            "gz-awards-2024"
+          ]
+        }
+      ],
       "gear": [],
       "logistics": {
         "collection": {
@@ -356,10 +537,52 @@
         },
         "tips": []
       },
-      "notes": []
+      "notes": [],
+      "officialResources": [
+        {
+          "category": "shirt",
+          "title": "2024广马参赛服（组委会发布）",
+          "url": "https://mp.weixin.qq.com/s/s__2myu_tAQyV0aDDrsTpA",
+          "sourceIds": [
+            "gz-kit-2024"
+          ]
+        },
+        {
+          "category": "medal",
+          "title": "2024广马完赛奖牌（组委会发布）",
+          "url": "https://mp.weixin.qq.com/s/s__2myu_tAQyV0aDDrsTpA",
+          "sourceIds": [
+            "gz-kit-2024"
+          ]
+        }
+      ]
     }
   ],
-  "stories": [],
+  "stories": [
+    {
+      "title": "2025：两秒定胜负",
+      "body": "沃德腾塞先冲线，科瓦两秒后抵达海心沙。扎西次仁以2小时14分06秒获得男子第三；当届男子前八名有五位中国选手。这场比赛把国际选手的冲刺和中国选手的整体表现留在了同一张成绩单上。",
+      "sourceIds": [
+        "gz-results-2025"
+      ]
+    },
+    {
+      "title": "2025：随脚步流动的珠江",
+      "body": "2025届完赛奖牌把广州的建筑群留在正面，以流沙表现江水；背面用立体线条勾勒广州塔。那届赛道亦沿用珠江两岸，从天河体育中心跑向海心沙。",
+      "sourceIds": [
+        "gz-kit-2025",
+        "gz-map-2025"
+      ]
+    },
+    {
+      "title": "2024：男子前五名跑进旧纪录",
+      "body": "该届全马规模为26000人，也是终点迁至海心沙的一年。格比塞·德贝莱以2小时06分28秒夺冠；组委会赛后回顾指出，男子前五名均快于此前广马赛会纪录。",
+      "sourceIds": [
+        "gz-city-review-2024",
+        "gz-wa-2024"
+      ]
+    }
+  ],
   "sources": [
     {
       "id": "gz-intro",
@@ -452,17 +675,193 @@
         "2026"
       ],
       "evidence": "已读取中国马拉松官网公开查询接口 searchById（POST，id=1000483000，type=SS）；返回赛事名称、日期、举办城市、主办单位和 officialRaceGrade=A。仅适用于2026届，不由徽标推定世界田联等级。"
+    },
+    {
+      "id": "gz-results-2025",
+      "title": "2025广马赛后成绩：男女组前八与国内选手",
+      "url": "https://news.dayoo.com/sports/202512/21/140001_54908239.htm",
+      "publisher": "广州日报大洋网",
+      "publishedAt": "2025-12-21",
+      "applicableYears": [
+        "2025"
+      ],
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "gz-map-2025",
+      "title": "2025广州马拉松赛事路线图",
+      "url": "https://www.guangzhou-marathon.com/subject.html?detailId=7951518221333696&topicId=7810378834711341",
+      "publisher": "广州马拉松赛事官网",
+      "publishedAt": "",
+      "applicableYears": [
+        "2025"
+      ],
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "gz-kit-2025",
+      "title": "2025广州马拉松赛新闻发布会：参赛服与完赛奖牌发布",
+      "url": "https://sports.sohu.com/a/964563043_222493",
+      "publisher": "南方网（组委会发布会现场报道）",
+      "publishedAt": "2025-12-12",
+      "applicableYears": [
+        "2025"
+      ],
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "gz-wa-2025",
+      "title": "2025广州马拉松正式成绩（马拉松）",
+      "url": "https://worldathletics.org/competition/calendar-results/results/7220889",
+      "publisher": "世界田联",
+      "publishedAt": "",
+      "applicableYears": [
+        "2025"
+      ],
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "gz-wa-2024",
+      "title": "2024广州马拉松正式成绩（马拉松）",
+      "url": "https://worldathletics.org/competition/calendar-results/results/7208924",
+      "publisher": "世界田联",
+      "publishedAt": "",
+      "applicableYears": [
+        "2024"
+      ],
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "gz-wa-calendar-2026",
+      "title": "2026世界田联标牌路跑赛历（广州马拉松）",
+      "url": "https://worldathletics.org/competitions/world-athletics-label-road-races/calendar-results",
+      "publisher": "世界田联",
+      "publishedAt": "",
+      "applicableYears": [
+        "2026"
+      ],
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "gz-city-review-2024",
+      "title": "广汽丰田·2024广州马拉松赛圆满落幕",
+      "url": "https://www.gz.gov.cn/zwgk/zdly/shgysyjs/ggwhty/ggty/content/post_10017871.html",
+      "publisher": "广州马拉松组委会（广州市政府网站转载）",
+      "publishedAt": "2024-12-10",
+      "applicableYears": [
+        "2024"
+      ],
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "gz-kit-2024",
+      "title": "完赛奖牌及参赛服正式亮相：2024广州马拉松赛新闻发布会",
+      "url": "https://mp.weixin.qq.com/s/s__2myu_tAQyV0aDDrsTpA",
+      "publisher": "广州马拉松组委会（官网新闻索引）",
+      "publishedAt": "2024-11-29",
+      "applicableYears": [
+        "2024"
+      ],
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "gz-official-kit-2025",
+      "title": "2025广马完赛奖牌及参赛服亮相",
+      "url": "https://mp.weixin.qq.com/s/_CwVZ0rtTN6MvHq7QcS4Iw",
+      "publisher": "广州马拉松组委会（官网新闻索引）",
+      "publishedAt": "2025-12-12",
+      "applicableYears": [
+        "2025"
+      ],
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "gz-entry-2025",
+      "title": "广汽丰田·2025广州马拉松赛报名须知",
+      "url": "https://www.guangzhou-marathon.com/subject.html?detailId=8509034118423517&topicId=7810377408647936",
+      "publisher": "广州马拉松赛事官网",
+      "publishedAt": "2025-09-23",
+      "applicableYears": [
+        "2025"
+      ],
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "gz-draw-2025",
+      "title": "2025广州马拉松赛抽签结果今日15时公布",
+      "url": "https://mp.weixin.qq.com/s/SvtfrTFp0WRvCZIeahPMoQ",
+      "publisher": "广州马拉松组委会（官网新闻索引）",
+      "publishedAt": "2025-10-28",
+      "applicableYears": [
+        "2025"
+      ],
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "gz-draw-2-2025",
+      "title": "2025广州马拉松赛二次抽签结果公布",
+      "url": "https://mp.weixin.qq.com/s/92C_zR7hyGFuOXWpafEvQw",
+      "publisher": "广州马拉松组委会（官网新闻索引）",
+      "publishedAt": "2025-11-25",
+      "applicableYears": [
+        "2025"
+      ],
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "gz-draw-2026",
+      "title": "2026广州马拉松赛抽签结果及缴费指南",
+      "url": "https://gz.bendibao.com/tour/2026922/ly372450.shtml",
+      "publisher": "广州本地宝（整理组委会通知）",
+      "publishedAt": "2026-09-22",
+      "applicableYears": [
+        "2026"
+      ],
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "gz-awards-2024",
+      "title": "2024广州马拉松赛男、女前8名成绩公示（枪时）",
+      "url": "https://www.guangzhou-marathon.com/subject.html?detailId=8090891873170201&topicId=7810377408647936",
+      "publisher": "广州马拉松赛事官网",
+      "publishedAt": "2024-12-08",
+      "applicableYears": [
+        "2024"
+      ],
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "gz-awards-2025",
+      "title": "2025广州马拉松赛男、女前8名成绩公示（枪时）",
+      "url": "https://www.guangzhou-marathon.com/subject.html?detailId=8639698129976619&topicId=7810377408647936",
+      "publisher": "广州马拉松赛事官网",
+      "publishedAt": "2025-12-22",
+      "applicableYears": [
+        "2025"
+      ],
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "gz-entry-2024",
+      "title": "广马来啦！9月10日15时，2024广州马拉松赛启动报名",
+      "url": "https://www.guangzhou-marathon.com/subject.html?detailId=7961325863144863&topicId=7810376636895973",
+      "publisher": "广州马拉松赛事官网",
+      "publishedAt": "2024-09-10",
+      "applicableYears": [
+        "2024"
+      ],
+      "verifiedAt": "2026-11-20"
     }
   ],
   "gaps": [
     {
       "fields": [
-        "records",
-        "editions[].results",
-        "editions[2024].registration",
-        "editions[2026].logistics.collection"
+        "editions[2024].registration.抽签实发",
+        "editions[2026].logistics.collection",
+        "editions[2026].registration.二次抽签",
+        "editions[].registration.lotteryRate"
       ],
-      "reason": "官网部分赛后报道跳转微信公众号，未取得正式成绩表；2024报名全文与2026领物细节待补，2026结果尚不存在。"
+      "reason": "男子、女子纪录有组委会枪时公示和世界田联成绩支持。2024实际抽签日、2026领物与二次抽签原文、各届同口径中签率待补；2026尚未开赛。"
     },
     {
       "fields": [
@@ -470,13 +869,19 @@
         "editions[].gear[].imageUrl"
       ],
       "reason": "未取得可公开再分发的图片许可；仅保留来源链接，不接入赛道图或物资实物图片。"
-    },
-    {
-      "fields": [
-        "worldAthletics"
-      ],
-      "reason": "未取得世界田联官方逐届目录或认证页面；历史金标叙述来自赛事/政府/媒体来源，未作为2026认证结论。"
     }
   ],
-  "conflicts": []
+  "conflicts": [
+    {
+      "fields": [
+        "editions[2025].results"
+      ],
+      "description": "2025广马组委会女子公示与世界田联均确认冠军为Joyce Chepkemoi TELE、02:22:40；组委会图片国籍栏标为埃塞俄比亚，世界田联成绩表标为肯尼亚。",
+      "resolution": "以一致的姓名、名次与成绩入档，组委会公示的CR用于认定赛会纪录；不填有冲突的国籍。",
+      "sourceIds": [
+        "gz-awards-2025",
+        "gz-wa-2025"
+      ]
+    }
+  ]
 }

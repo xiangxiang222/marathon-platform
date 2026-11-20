@@ -23,7 +23,7 @@ function fixture(pageName = 'race-archive') {
   };
   vm.runInNewContext(fs.readFileSync(path.join(ROOT,'miniprogram/pages',pageName,pageName+'.js'),'utf8'),{
     Page(value){definition=value;},getApp:()=>({globalData:{baseUrl:'https://runner.example'}}),
-    require(name){assert.equal(name,'../../utils/request');return {request(url){requests.push(url);return Promise.resolve().then(()=>reply(url));}};},
+    require(name){if(name==='../../utils/race-landmarks')return require('../miniprogram/utils/race-landmarks');assert.equal(name,'../../utils/request');return {request(url){requests.push(url);return Promise.resolve().then(()=>reply(url));}};},
     wx:{setNavigationBarTitle(){},previewImage(value){previews.push(value);},setClipboardData(value){clipboard.push(value.data);}}
   },{filename:pageName+'.js'});
   const page={...definition,data:copy(definition.data),setData(patch){patches.push(copy(patch));for(const [key,value] of Object.entries(patch))this.data[key]=value;}};
@@ -34,6 +34,8 @@ test('all published event topics expose six categories with independent local ye
   for(const race of catalog.races){
     const {page}=fixture();page.onLoad({id:race.id});await settle();
     assert.equal(page.data.loading,false);assert.equal(page.data.race.id,race.id);
+    assert.equal(page.data.landmarkSrc,'/images/race-landmarks/'+race.id+'.png');
+    assert.ok(fs.existsSync(path.join(ROOT,'miniprogram',page.data.landmarkSrc)));
     assert.deepEqual(copy(page.data.tabs.map(t=>t.id)),['overview','entry','route','results','gallery','updates']);
     assert.equal('year' in page.data,false,'No global edition selection');
     const latest=page.data.years[0],old=page.data.years.at(-1),resultYear=page.data.resultsYear;
@@ -47,10 +49,11 @@ test('all published event topics expose six categories with independent local ye
     page.pickTab(event({id:'results'}));page.pickYear(event({scope:'results'},String(otherIndex)));
     assert.equal(page.data.resultsEdition.year,otherYear);assert.equal(page.data.routeYear,old);
     page.pickTab(event({id:'gallery'}));
-    assert.equal(page.data.galleryGroups.length,archives[race.id].editions.filter(e=>(e.gear || []).some(g=>g.category==='参赛服')).length);
+    assert.equal(page.data.galleryGroups.length,archives[race.id].editions.filter(e=>e.gear?.some(g=>g.category==='参赛服') || e.officialResources?.some(item=>item.category==='shirt')).length);
     page.pickGallery(event({id:'奖牌'}));assert.ok(page.data.galleryGroups.every(group=>group.items.every(g=>g.category==='奖牌')));
     assert.equal(page.data.entryYear,old);assert.equal(page.data.resultsYear,otherYear);
-    page.pickTab(event({id:'updates'}));assert.equal(page.data.stories.length,(archives[race.id].updates?.length?archives[race.id].updates:archives[race.id].stories||[]).length);
+    const archive=archives[race.id];
+    page.pickTab(event({id:'updates'}));assert.equal(page.data.stories.length,new Set([...(archive.updates||[]),...(archive.stories||[])].map(item=>item.title)).size);
   }
 });
 
@@ -72,7 +75,8 @@ test('uploaded cover, annual multi-image groups, albums and stories use actual p
   const group=f.page.data.galleryGroups[0].items[0];assert.deepEqual(copy(group.images.map(i=>i.caption)),['正面','背面']);
   f.page.previewImage(event({url:group.images[1].url,images:group.images}));assert.equal(f.previews[0].current,'https://runner.example'+second);assert.equal(f.previews[0].urls.length,2);
   f.page.pickGallery(event({id:'官方图集'}));f.page.previewAlbum(event({id:'photos-2026'}));assert.equal(f.previews[1].urls.length,2);
-  assert.equal(f.page.data.stories.length,1,'Admin updates replace legacy story fallback');
+  assert.ok(f.page.data.stories.some(story=>story.id==='new-story'));
+  for(const story of raw.stories)assert.ok(f.page.data.stories.some(item=>item.title===story.title),'Admin updates and researched stories stay visible');
   f.page.openArticle(event({id:'new-story',type:'stories'}));assert.equal(f.page.data.activeArticle.body,'真实内容');f.page.closeArticle();assert.equal(f.page.data.activeArticle,null);
   f.page.pickUpdateType(event({id:'news'}));f.page.openArticle(event({id:'new-news',type:'news'}));assert.equal(f.page.data.activeArticle.body,'正文');
   const count=f.previews.length;for(const url of ['javascript:alert(1)','data:text/html,no','//evil.example/image','http://evil.example/image','/marathon/api/race-archive-media/beijing/../../secret.png'])f.page.previewImage(event({url}));assert.equal(f.previews.length,count);
@@ -105,13 +109,17 @@ test('new city archive preserves history, records, year-specific advice and safe
   const history=Array.from({length:7},(_,i)=>({date:String(2014+i),title:'历史节点'+i,body:'已核验的节点内容',sourceIds:['official']}));
   const record={group:'男子赛会纪录',project:'马拉松',athlete:'Test Runner',time:'02:08:01',editionId:'wuxi-2025',verifiedThroughEditionId:'wuxi-2025',verifiedAt:'2026-11-18'};
   const edition={year:'2025',editionName:'2025赛事',date:'2025-03-23',status:'completed',events:[{project:'马拉松',plannedParticipants:20000,fee:'以该届公告为准'}],route:{summary:'起点 → 城市公园 → 终点'},registration:{method:'2025抽签'},participation:{},results:[],gear:[],logistics:{tips:[{title:'提前安排领物',body:'依据2025公告预留本人领物时间',kind:'editorial-advice'}]}};
+  const mapLink = { category:'route-map', title:'查看2025年官方赛道图', url:source.url, sourceIds:[source.id] };
+  edition.officialResources = [mapLink,{...mapLink,url:'javascript:alert(1)'}];
   f.setReply(()=>({race:{id:'wuxi',name:'无锡马拉松',city:'无锡'},archive:{intro:'赛事简介',profile:{foundingYear:'2014',entryNotes:['2025报名设候补']},history,records:[record],editions:[edition],sources:[source,{...source,id:'unsafe',url:'javascript:alert(1)'}],gaps:[{reason:'历史费用待核实'}]},relatedRaces:[]}));
   f.page.onLoad({id:'wuxi',q:'锡马',wa:'金标'});await settle();
-  assert.equal(f.page.data.heroUrl,'');assert.equal(f.page.data.landmarkSrc,'');assert.equal(f.page.data.visibleHistory.length,5);assert.equal(f.page.data.sourcesExpanded,false);
+  assert.equal(f.page.data.heroUrl,'');assert.equal(f.page.data.landmarkSrc,'/images/race-landmarks/wuxi.png');assert.equal(f.page.data.visibleHistory.length,5);assert.equal(f.page.data.sourcesExpanded,false);
   f.page.toggleHistory();assert.equal(f.page.data.visibleHistory.length,7);f.page.toggleHistory();assert.equal(f.page.data.visibleHistory.length,5);
   assert.equal(f.page.data.records[0].time,'02:08:01');assert.deepEqual(copy(f.page.data.entryNotes),['2025报名设候补']);assert.equal(f.page.data.entryTips.length,1);assert.equal(f.page.data.entryEvents[0].plannedParticipants,20000);assert.equal(f.page.data.entryStatus,'已举办');
   assert.ok(f.page.data.directoryUrl.includes(encodeURIComponent('锡马')));assert.equal(f.page.data.sources[0].yearsLabel,'2025');f.page.toggleSources();assert.equal(f.page.data.sourcesExpanded,true);
   f.page.copySource(event({id:'official'}));f.page.copySource(event({id:'unsafe'}));assert.deepEqual(f.clipboard,[source.url]);
+  assert.deepEqual(copy(f.page.data.routeResources),[mapLink]);
+  f.page.copyResource(event({url:mapLink.url}));f.page.copyResource(event({url:'javascript:alert(1)'}));assert.deepEqual(f.clipboard,[source.url,mapLink.url]);
   f.page.toggleCoverage();assert.equal(f.page.data.coverageExpanded,true);assert.equal(f.page.data.gaps[0].reason,'历史费用待核实');
   const media='/marathon/api/race-archive-media/wuxi/'+('a'.repeat(64))+'.png';f.page.previewImage(event({url:media}));assert.equal(f.previews.at(-1).current,'https://runner.example'+media);
   const before=f.previews.length;f.page.previewImage(event({url:media.replace('/wuxi/','/unknown/')}));assert.equal(f.previews.length,before);

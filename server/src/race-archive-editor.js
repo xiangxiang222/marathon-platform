@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
 const { sniffMedia } = require('./runner-center');
-const { mergeArchiveRecord } = require('./race-archive-schema');
+const { mergeArchiveRecord, OFFICIAL_RESOURCE_CATEGORIES, officialResourceUrl } = require('./race-archive-schema');
 
 const MAX_IMAGE = 8 * 1024 * 1024;
 const MAX_PAYLOAD = 2 * 1024 * 1024;
@@ -246,6 +246,15 @@ function validateArchiveInput(body, current, db, id, base) {
         items: texts(g.items, '物品清单', 60), imageUrl: image, images: media(g.images, '物品图片组'), sourceIds: refs(g.sourceIds), sourceUrl: prior.sourceUrl || '',
         mediaRights: image && image.startsWith(uploadPrefix) ? rightsFor(image) : prior.mediaRights };
     });
+    const officialResources = list(item.officialResources ?? previous.officialResources, '官方原图入口', 30).map(resource => {
+      object(resource, '官方原图入口');
+      const category = text(resource.category, '入口类型', 40);
+      const title = text(resource.title, '入口标题', 160);
+      const url = officialResourceUrl(text(resource.url, '入口链接', 2000));
+      const sourceIds = refs(resource.sourceIds);
+      if (!OFFICIAL_RESOURCE_CATEGORIES.has(category) || !title || !url || !sourceIds.length) throw error('官方原图入口须有类型、标题、有效链接和资料来源');
+      return { category, title, url, sourceIds };
+    });
     const logistics = Object.fromEntries([
       ['collection', ['time', 'place', 'requirements']], ['transport', ['start', 'finish', 'expo']],
       ['raceDay', ['startTime', 'timeLimit', 'bagDrop', 'aidStations', 'toilets', 'medical']]
@@ -274,7 +283,7 @@ function validateArchiveInput(body, current, db, id, base) {
     return { year: y, editionId: text(item.editionId || id + '-' + y, '届次标识', 100), editionName: text(item.editionName, '当届名称', 160), editionNumber: text(item.editionNumber, '届数', 20), status, events,
       date: date(item.date, '比赛日期'), distance: text(item.distance, '比赛项目', 120), dateSourceIds: refs(item.dateSourceIds),
       route, registration: { ...fields(item.registration, REGISTRATION_FIELDS, '报名'), sourceIds: refs(item.registration?.sourceIds) },
-      participation: { ...fields(item.participation, PARTICIPATION_FIELDS, '参赛完赛'), sourceIds: refs(item.participation?.sourceIds) }, results, gear, notes: texts(item.notes, '年度说明', 20), logistics };
+      participation: { ...fields(item.participation, PARTICIPATION_FIELDS, '参赛完赛'), sourceIds: refs(item.participation?.sourceIds) }, results, gear, officialResources, notes: texts(item.notes, '年度说明', 20), logistics };
   });
   if (new Set(editions.map(item => item.year)).size !== editions.length) throw error('同一年份只能保存一份年度资料');
   const heroImage = upload(input.hero?.imageUrl, '封面');

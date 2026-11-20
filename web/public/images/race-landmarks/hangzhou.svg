@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="96" viewBox="0 0 120 96" fill="none">
+  <title>杭州西湖三潭印月地标图标</title>
+  <g stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M7 65c12-5 19-13 29-15 8-2 15 1 24 6 9-10 18-16 27-17 8 0 17 12 26 21v8H7Z" fill="#dcebe1" stroke="#a3c4b4"/>
+    <circle cx="75" cy="23" r="8" fill="#ffe4ab" stroke="#e6bd75"/>
+    <path d="M7 72c11-3 16 3 27 0s16 3 26 0 15 3 26 0 16 3 27 0M13 80h15m10 0h14m18 0h13m11 0h13m-86 8h23m9 0h20m9 0h20" stroke="#83bbc5"/>
+    <g fill="#f3dfb9" stroke="#a38d70">
+      <path d="M20 75h18v4H20zM25 75v-3c-7-6-2-12 1-13l1-4h4l1 4c3 1 8 7 1 13v3Z"/>
+      <path d="M48 71h23v5H48zM54 71v-5c-9-7-4-16 1-18l1-5h7l1 5c5 2 10 11 1 18v5Z"/>
+      <path d="M81 76h19v4H81zM86 76v-4c-7-6-2-12 1-13l1-4h4l1 4c4 1 9 7 2 13v4Z"/>
+    </g>
+    <g fill="#a38d70">
+      <circle cx="29" cy="66" r="1.25"/><circle cx="55" cy="58" r="1.3"/><circle cx="59.5" cy="55" r="1.3"/><circle cx="64" cy="58" r="1.3"/><circle cx="90" cy="66" r="1.25"/>
+    </g>
+    <path d="M59.5 40v3" stroke="#ff1838" stroke-width="2"/>
+  </g>
+</svg>

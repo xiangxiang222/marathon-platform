@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="96" viewBox="0 0 120 96" fill="none">
+  <title>太原迎泽大桥与汾河地标图标</title>
+  <g stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9 52c9-9 16-6 22 0 8-14 22-14 30 0 10-12 20-10 28-1 7-8 17-7 22 1" fill="#e5eff0" stroke="#a6c6ca"/>
+    <path d="M16 48V29m-4 9h8m-3-9c-6-5-9-2-9 4m86 15V28m-4 9h8m-3-9c6-5 9-2 9 4" stroke="#8397a1"/>
+    <path d="M16 30h8l-2 3 2 3h-8" fill="#ff1838" stroke="#ff1838"/>
+    <path d="M10 55h100v25H99v-7a8 8 0 0 0-16 0v7h-6v-8a7 7 0 0 0-14 0v8h-6v-8a7 7 0 0 0-14 0v8h-6v-7a8 8 0 0 0-16 0v7H10Z" fill="#c2d8e1" stroke="#718f9e"/>
+    <path d="M9 50h102v8H9z" fill="#e8f0f2" stroke="#718f9e"/>
+    <path d="M15 50v-5h90v5m-80-5v5m10-5v5m10-5v5m10-5v5m10-5v5m10-5v5m10-5v5m10-5v5" stroke="#90a9b5"/>
+    <path d="M7 84c8-3 13 2 21 0s13 2 21 0 13 2 21 0 13 2 21 0 13 2 22 0m-94 6h30m10 0h18m8 0h18" stroke="#7bc1d2"/>
+  </g>
+</svg>

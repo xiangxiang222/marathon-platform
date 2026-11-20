@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="96" viewBox="0 0 120 96" fill="none">
+  <title>深圳市民中心与城市天际线地标图标</title>
+  <g stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M16 70V47h14v23m0 0V36h14v34m34 0V28h11v42m0 0V44h14v26" fill="#def0f3" stroke="#8bb6c6"/>
+    <path d="M21 53h4m-4 6h4m10-17h4m-4 6h4m-4 6h4m44-20h3m-3 7h3m8 9h5m-5 6h5m-5 6h5" stroke="#9bc6d0"/>
+    <path d="M47 72 52 28 60 10l8 18 5 44Z" fill="#b5d6e5" stroke="#6996b1"/>
+    <path d="M60 11v61m-9-31h18m-19 9h20m-21 10h22m-18-32h14" stroke="#86adbf"/>
+    <path d="M60 10v5" stroke="#ff1838" stroke-width="2"/>
+    <path d="M18 67h84v15H18z" fill="#f6e6d0" stroke="#ad887f"/>
+    <path d="M29 69v13m12-13v13m19-13v13m19-13v13m12-13v13" stroke="#b79289"/>
+    <path d="M10 62c22 0 32 9 50 9s28-9 50-9l-7 6c-18 1-26 10-43 10S35 69 17 68Z" fill="#f4b7a4" stroke="#b56e69"/>
+    <path d="M9 82h102m-92 6h27m7 0h25m8 0h16" stroke="#83bece"/>
+  </g>
+</svg>

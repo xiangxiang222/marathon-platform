@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "raceId": "lanzhou",
-  "updatedAt": "2026-11-18",
+  "updatedAt": "2026-11-20",
   "intro": "兰州马拉松创办于2011年，以黄河风情线和亚高原城市体验形成鲜明识别。中山铁桥、白塔山、黄河楼与沿途市民助威，把竞赛带入兰州的城市生活。近年奥体中心成为赛事起点，2026年中国籍男女赛会纪录同时更新，终点牛肉面与黄河文化纪念物则留下另一种完赛记忆。",
   "introSourceIds": [
     "lz-history",
@@ -18,7 +18,7 @@
       "lz-registration-2025",
       "lz-report-2025"
     ],
-    "entryNotes": "2025年先抽签、提交体检报告后缴费，未设成绩直通；候补、退出及终身号要求按当届公告核对。2026规程为图片，未核实的具体数值暂不填。",
+    "entryNotes": "2026年全马200元、半马180元，超额时抽签及候补，中签后提交体检报告并通过审核再缴费；2025年终身号规则另按当届公告。",
     "entrySourceIds": [
       "lz-registration-2025",
       "lz-regulations-2026"
@@ -164,42 +164,68 @@
         "lz-report-2026"
       ],
       "distance": "马拉松、半程马拉松",
-      "events": [],
+      "events": [
+        {
+          "project": "马拉松",
+          "distanceKm": 42.195,
+          "plannedParticipants": 25000,
+          "fee": "200元",
+          "sourceIds": [
+            "lz-regulations-2026"
+          ]
+        },
+        {
+          "project": "半程马拉松",
+          "distanceKm": 21.0975,
+          "plannedParticipants": 8000,
+          "fee": "180元",
+          "sourceIds": [
+            "lz-regulations-2026"
+          ]
+        }
+      ],
       "route": {
-        "summary": "从兰州奥体中心起跑，官方赛后报道以黄河城市文化为体验主线；完整道路顺序与各项目终点待补规程图文。",
-        "start": "兰州奥体中心",
-        "finish": "",
+        "summary": "全马和半马都从兰州奥体中心出发。全马沿南滨河路，经金雁大桥至北岸，在深安黄河大桥附近折返，经银滩黄河大桥回到南岸；半马沿南岸跑，在读者大道折返后继续前往雁白大桥站附近。",
+        "start": "兰州奥体中心（奥体中路）",
+        "finish": "全马：兰州奥体中心；半马：南滨河东路（轨道交通2号线雁白大桥站附近）",
         "mapUrl": "",
         "changes": "",
-        "analysis": [],
+        "analysis": [
+          "赛道海拔与补给：官方线图以约1505至1535米为纵轴，展示各公里点的起伏，同时标出补给和医疗位置；纵轴是海拔标尺，不能当作累计爬升。"
+        ],
         "sourceIds": [
-          "lz-report-2026"
+          "lz-regulations-2026",
+          "lz-course-map-2026"
         ]
       },
       "registration": {
-        "method": "",
-        "opens": "",
-        "closes": "",
-        "drawDate": "",
-        "fee": "",
-        "qualification": "",
+        "method": "超额时抽签及候补；中签后提交体检报告，审核通过再缴费。",
+        "opens": "2026-02-26 10:00",
+        "closes": "2026-03-04 17:00",
+        "drawDate": "2026-03-06 10:00",
+        "fee": "全马200元；半马180元。",
+        "qualification": "全马年满20周岁，半马年满18周岁。报名截止前24个月内，全马需1次全马或2次半马成绩，半马需2次10公里及以上比赛成绩。中签后按规程提交体检资料。",
         "applicants": "",
         "eligibleApplicants": "",
         "lotteryPool": "",
         "drawQuota": "",
         "directQuota": "",
         "lotteryRate": "",
-        "lotteryNote": "",
-        "note": "",
-        "sourceIds": []
+        "lotteryNote": "3月19日10:00公布二次抽签及候补结果；3月30日起按序通知候补。未获得同口径的实际抽签人数和名额。",
+        "note": "首次审核通过后于3月15日10:00至3月17日17:00缴费；二次抽签审核通过后于3月27日10:00至3月29日17:00缴费。",
+        "sourceIds": [
+          "lz-regulations-2026"
+        ]
       },
       "participation": {
-        "planned": "",
+        "planned": "33000人：全马25000、半马8000",
         "starters": "",
         "finishers": "",
         "finishRate": "",
-        "note": "",
-        "sourceIds": []
+        "note": "竞赛规程名额。尚未获得同口径的实际起跑和完赛人数。",
+        "sourceIds": [
+          "lz-regulations-2026"
+        ]
       },
       "results": [
         {
@@ -208,7 +234,8 @@
           "time": "02:11:52",
           "timing": "",
           "sourceIds": [
-            "lz-report-2026"
+            "lz-report-2026",
+            "lz-wa-results-2026"
           ]
         },
         {
@@ -217,7 +244,8 @@
           "time": "02:29:53",
           "timing": "",
           "sourceIds": [
-            "lz-report-2026"
+            "lz-report-2026",
+            "lz-wa-results-2026"
           ]
         },
         {
@@ -226,7 +254,8 @@
           "time": "02:14:09",
           "timing": "",
           "sourceIds": [
-            "lz-report-2026"
+            "lz-report-2026",
+            "lz-wa-results-2026"
           ]
         },
         {
@@ -235,14 +264,16 @@
           "time": "02:29:59",
           "timing": "",
           "sourceIds": [
-            "lz-report-2026"
+            "lz-report-2026",
+            "lz-wa-results-2026"
           ]
         }
       ],
       "gear": [
         {
-          "title": "黄河主题奖牌与PB证书",
-          "body": "2026年奖牌以黄河为脉络；本届设PB成绩展示与专属证书，终点提供牛肉面等补给服务。",
+          "category": "奖牌",
+          "name": "2026黄河主题完赛奖牌",
+          "description": "2026年奖牌以黄河为脉络；本届另设PB成绩展示与专属证书。",
           "imageUrl": "",
           "sourceIds": [
             "lz-report-2026"
@@ -285,7 +316,25 @@
             ]
           }
         ]
-      }
+      },
+      "officialResources": [
+        {
+          "category": "route-map",
+          "title": "官方比赛线路图（核验时为2026届）",
+          "url": "https://www.lzmarathon.com/news/detailNews.html?id=2469",
+          "sourceIds": [
+            "lz-course-map-2026"
+          ]
+        },
+        {
+          "category": "medal",
+          "title": "2026完赛奖牌实物（赛报「丝路铃响」段）",
+          "url": "https://www.lzmarathon.com/news/detailNews.html?id=5135",
+          "sourceIds": [
+            "lz-report-2026"
+          ]
+        }
+      ]
     },
     {
       "year": "2025",
@@ -505,7 +554,31 @@
       }
     }
   ],
-  "stories": [],
+  "stories": [
+    {
+      "id": "lz-story-yellow-river-2026",
+      "editionYear": "2026",
+      "tag": "赛事故事",
+      "title": "奖牌上的黄河，终点的一碗面",
+      "summary": "2026兰马把黄河文化一路带到完赛区。",
+      "body": "当年奖牌设计以黄河为脉络，完赛区提供牛肉面等补给，组委会还设置个人最好成绩展示及专属证书。对跑过中山铁桥、白塔山等地标的跑者，这些是另一种完赛记忆。地标来自2025线路报道，实际途经地点仍须按当年路线确认。",
+      "sourceIds": [
+        "lz-report-2025",
+        "lz-report-2026"
+      ]
+    },
+    {
+      "id": "lz-story-lifetime-2025",
+      "editionYear": "2025",
+      "tag": "赛事故事",
+      "title": "第八次跑完兰马之后",
+      "summary": "2025兰马的新晋终身号，需要累计完成八届兰马全马并审核。",
+      "body": "2025报名公告分别列出公益名额、终身号及面向普通报名者的抽签流程。终身号衡量的是对这一场赛事的长期参与，当年的规则并没有设置以速度或单场成绩换取名额的成绩直通。不能把终身号名额和实际随机抽签名额混为一谈。",
+      "sourceIds": [
+        "lz-registration-2025"
+      ]
+    }
+  ],
   "sources": [
     {
       "id": "lz-history",
@@ -625,7 +698,7 @@
       "publisher": "兰州马拉松组委会",
       "publishedAt": "2026-02-25",
       "accessedAt": "2026-11-18",
-      "verifiedAt": "2026-11-18",
+      "verifiedAt": "2026-11-20",
       "applicableYears": [
         "2026"
       ],
@@ -678,16 +751,45 @@
         "category": "Gold",
         "calendarDate": "2026-05-24"
       }
+    },
+    {
+      "id": "lz-wa-results-2026",
+      "title": "Lanzhou Marathon | Results",
+      "url": "https://worldathletics.org/competition/calendar-results/results/7235588",
+      "publisher": "世界田联",
+      "publishedAt": "",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ],
+      "evidence": "与组委会报道交叉核验公开组头名及中国籍男女头名完赛成绩。世界田联结果表未标枪时/净时。"
+    },
+    {
+      "id": "lz-course-map-2026",
+      "title": "比赛线路：2026「兰州银行」兰州马拉松赛道线路图",
+      "url": "https://www.lzmarathon.com/news/detailNews.html?id=2469",
+      "publisher": "兰州马拉松组委会",
+      "publishedAt": "",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ],
+      "evidence": {
+        "verifiedEdition": "2026",
+        "observed": "核验时图头为2026，标注全马和半马分线、公里点、海拔、饮水补给和医疗站；官网导航页可能随届次更新。"
+      }
     }
   ],
   "gaps": [
     {
       "fields": [
-        "editions.2026.registration",
-        "editions.2026.route.finish",
-        "editions.2026.participation"
+        "editions.2026.registration.lotteryRate",
+        "editions.2026.participation.starters",
+        "editions.2026.participation.finishers"
       ],
-      "reason": "2026竞赛规程和路线以图片为主，本轮未人工逐页核读，费用、名额及完整道路不依赖OCR臆填。"
+      "reason": "2026名额、赛道及报名流程已按规程与地图核准，实际抽签口径、起跑及完赛人数仍缺。"
     },
     {
       "fields": [
@@ -699,10 +801,11 @@
     },
     {
       "fields": [
-        "images",
-        "editions.route.mapUrl"
+        "editions[].route.mapUrl",
+        "editions[].gear[].imageUrl",
+        "editions.2026.officialResources.shirt"
       ],
-      "reason": "未取得官方图片、路线图的明确转载许可，暂不展示图片；可通过资料来源查看官方原图。"
+      "reason": "图片转载许可尚未确认；2026路线、奖牌提供官方网页链接，可查看原图。未核得可明确识别为公开参赛服发布的原页。"
     }
   ],
   "conflicts": []

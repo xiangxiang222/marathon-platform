@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-18",
+  "updatedAt": "2026-11-20",
   "selectionNote": "已收录17场热门赛事档案，首页精选与目录分开展示；赛事按编辑顺序展示，不代表排名。年度资料以各届公开来源为准，尚未核验的统计不记为零。",
   "races": [
     {
@@ -214,9 +214,11 @@
         ]
       },
       "worldAthletics": {
-        "label": "",
-        "year": "",
-        "sourceIds": []
+        "label": "金标",
+        "year": "2026",
+        "sourceIds": [
+          "wuxi-wa-2026"
+        ]
       },
       "caa": {
         "label": "A类赛事",
@@ -327,6 +329,19 @@
             "2026"
           ],
           "evidence": "已读取中国马拉松官网公开查询接口 searchById（POST，id=1000371021，type=SS）；返回赛事名称、日期、举办城市、主办单位和 officialRaceGrade=A。仅适用于2026届，不由徽标推定世界田联等级。"
+        },
+        {
+          "id": "wuxi-wa-2026",
+          "title": "世界田联标牌路跑赛历：2026无锡马拉松",
+          "url": "https://worldathletics.org/competitions/world-athletics-label-road-races/calendar-results",
+          "publisher": "世界田联",
+          "publishedAt": "",
+          "applicableYears": [
+            "2026"
+          ],
+          "accessedAt": "2026-11-20",
+          "verifiedAt": "2026-11-20",
+          "note": "公开赛历内嵌数据：赛事编号 7235574，2026-03-22，字段 competitionSubgroup 为 Gold。"
         }
       ]
     },
@@ -356,9 +371,11 @@
         ]
       },
       "worldAthletics": {
-        "label": "",
-        "year": "",
-        "sourceIds": []
+        "label": "精英标牌",
+        "year": "2026",
+        "sourceIds": [
+          "wuhan-wa-2026"
+        ]
       },
       "caa": {
         "label": "A类赛事",
@@ -483,6 +500,19 @@
             "2026"
           ],
           "evidence": "已读取中国马拉松官网公开查询接口 searchById（POST，id=1000361016，type=SS）；返回赛事名称、日期、举办城市、主办单位和 officialRaceGrade=A。仅适用于2026届，不由徽标推定世界田联等级。"
+        },
+        {
+          "id": "wuhan-wa-2026",
+          "title": "世界田联标牌路跑赛历：2026武汉马拉松",
+          "url": "https://worldathletics.org/competitions/world-athletics-label-road-races/calendar-results",
+          "publisher": "世界田联",
+          "publishedAt": "",
+          "applicableYears": [
+            "2026"
+          ],
+          "accessedAt": "2026-11-20",
+          "verifiedAt": "2026-11-20",
+          "note": "公开赛历内嵌数据：赛事编号 7238456，2026-03-22，字段 competitionSubgroup 为 Elite。"
         }
       ]
     },
@@ -512,9 +542,11 @@
         ]
       },
       "worldAthletics": {
-        "label": "",
-        "year": "",
-        "sourceIds": []
+        "label": "金标",
+        "year": "2026",
+        "sourceIds": [
+          "guangzhou-wa-2026"
+        ]
       },
       "caa": {
         "label": "A类赛事",
@@ -615,6 +647,19 @@
             "2026"
           ],
           "evidence": "已读取中国马拉松官网公开查询接口 searchById（POST，id=1000483000，type=SS）；返回赛事名称、日期、举办城市、主办单位和 officialRaceGrade=A。仅适用于2026届，不由徽标推定世界田联等级。"
+        },
+        {
+          "id": "guangzhou-wa-2026",
+          "title": "世界田联标牌路跑赛历：2026广州马拉松赛",
+          "url": "https://worldathletics.org/competitions/world-athletics-label-road-races/calendar-results",
+          "publisher": "世界田联",
+          "publishedAt": "",
+          "applicableYears": [
+            "2026"
+          ],
+          "accessedAt": "2026-11-20",
+          "verifiedAt": "2026-11-20",
+          "note": "公开赛历内嵌数据：赛事编号 7235586，2026-12-20，字段 competitionSubgroup 为 Gold。"
         }
       ]
     },
@@ -644,9 +689,11 @@
         ]
       },
       "worldAthletics": {
-        "label": "",
-        "year": "",
-        "sourceIds": []
+        "label": "金标",
+        "year": "2026",
+        "sourceIds": [
+          "chongqing-wa-2026"
+        ]
       },
       "caa": {
         "label": "A类赛事",
@@ -766,6 +813,19 @@
             "2026"
           ],
           "evidence": "已读取中国马拉松官网公开查询接口 searchById（POST，id=1000302013，type=SS）；返回赛事名称、日期、举办城市、主办单位和 officialRaceGrade=A。仅适用于2026届，不由徽标推定世界田联等级。"
+        },
+        {
+          "id": "chongqing-wa-2026",
+          "title": "世界田联标牌路跑赛历：2026重庆马拉松",
+          "url": "https://worldathletics.org/competitions/world-athletics-label-road-races/calendar-results",
+          "publisher": "世界田联",
+          "publishedAt": "",
+          "applicableYears": [
+            "2026"
+          ],
+          "accessedAt": "2026-11-20",
+          "verifiedAt": "2026-11-20",
+          "note": "公开赛历内嵌数据：赛事编号 7235935，2026-01-18，字段 competitionSubgroup 为 Gold。"
         }
       ]
     },
@@ -797,9 +857,11 @@
         ]
       },
       "worldAthletics": {
-        "label": "",
-        "year": "",
-        "sourceIds": []
+        "label": "金标",
+        "year": "2026",
+        "sourceIds": [
+          "dongying-wa-2026"
+        ]
       },
       "caa": {
         "label": "A类赛事",
@@ -884,6 +946,19 @@
             "2026"
           ],
           "evidence": "已读取中国马拉松官网公开查询接口 searchById（POST，id=1000454044，type=SS）；返回赛事名称、日期、举办城市、主办单位和 officialRaceGrade=A。仅适用于2026届，不由徽标推定世界田联等级。"
+        },
+        {
+          "id": "dongying-wa-2026",
+          "title": "世界田联标牌路跑赛历：2026黄河口（东营）马拉松",
+          "url": "https://worldathletics.org/competitions/world-athletics-label-road-races/calendar-results",
+          "publisher": "世界田联",
+          "publishedAt": "",
+          "applicableYears": [
+            "2026"
+          ],
+          "accessedAt": "2026-11-20",
+          "verifiedAt": "2026-11-20",
+          "note": "公开赛历内嵌数据：赛事编号 7235592，2026-10-18，字段 competitionSubgroup 为 Gold。"
         }
       ]
     },
@@ -1051,9 +1126,11 @@
         ]
       },
       "worldAthletics": {
-        "label": "",
-        "year": "",
-        "sourceIds": []
+        "label": "标牌",
+        "year": "2026",
+        "sourceIds": [
+          "xian-wa-2026"
+        ]
       },
       "caa": {
         "label": "A类赛事",
@@ -1149,6 +1226,19 @@
             "2026"
           ],
           "evidence": "已读取中国马拉松官网公开查询接口 searchById（POST，id=1000453008，type=SS）；返回赛事名称、日期、举办城市、主办单位和 officialRaceGrade=A。仅适用于2026届，不由徽标推定世界田联等级。"
+        },
+        {
+          "id": "xian-wa-2026",
+          "title": "世界田联标牌路跑赛历：Xi’an Marathon",
+          "url": "https://worldathletics.org/competitions/world-athletics-label-road-races/calendar-results",
+          "publisher": "世界田联",
+          "publishedAt": "",
+          "applicableYears": [
+            "2026"
+          ],
+          "accessedAt": "2026-11-20",
+          "verifiedAt": "2026-11-20",
+          "note": "公开赛历内嵌数据：赛事编号 7236089，2026-10-18，字段 competitionSubgroup 为 Label。"
         }
       ]
     },

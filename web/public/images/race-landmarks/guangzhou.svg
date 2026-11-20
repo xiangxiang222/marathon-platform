@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="96" viewBox="0 0 120 96" fill="none">
+  <title>广州塔与珠江地标图标</title>
+  <defs>
+    <clipPath id="gz-lattice"><path d="M43 78c10-15 14-27 11-40l-5-16 19 3c-3 10-4 17-2 26 2 10 7 19 14 27Z"/></clipPath>
+  </defs>
+  <g stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M10 78V68h11v10m1 0V61h11v17m52 0V63h10v15m3 0V69h12v9" fill="#f0e5f0" stroke="#b49ab8"/>
+    <path d="M9 80h102m-93 7h22m8 0h27m8 0h20" stroke="#8eafb9"/>
+    <path d="M43 78c10-15 14-27 11-40l-5-16 19 3c-3 10-4 17-2 26 2 10 7 19 14 27Z" fill="#efd4e1" stroke="#936287"/>
+    <g clip-path="url(#gz-lattice)" stroke="#ab779b">
+      <path d="m42 17 33 41-29 22m1-57 24 19-23 24 29 15m-33 0 30-16-26-26 24-15m-7-1L42 62l37 16"/>
+      <path d="m47 30 24 3M51 43h17M49 55h23M45 68h33" stroke-width="1"/>
+    </g>
+    <path d="M49 22l19 3m-27 53h41M58 22l3-13" stroke="#936287"/>
+    <path d="m61 9 .7-4" stroke="#ff1838" stroke-width="2"/>
+    <path d="M85 37h8m-4-4v8" stroke="#eac389"/>
+  </g>
+</svg>

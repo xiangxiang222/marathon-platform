@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="96" viewBox="0 0 120 96" fill="none">
+  <title>成都天府熊猫塔地标图标</title>
+  <g stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M14 80V62h12v18m0 0V54h14v26m42 0V61h12v19m0 0V68h12v12" fill="#def0f0" stroke="#9dbcc4"/>
+    <path d="M18 68h4m-4 5h4m9-13h5m-5 5h5m50 2h4m-4 5h4m8 2h4" stroke="#a4c6cc"/>
+    <path d="M57 20h6v61h-6z" fill="#f3d8c3" stroke="#9c7d79"/>
+    <path d="M60 8v12" stroke="#9c7d79"/>
+    <path d="M60 8v5" stroke="#ff1838" stroke-width="2"/>
+    <path d="M56 58 37 81h10l13-17 13 17h10L64 58" fill="#f4cdb3" stroke="#9c7d79"/>
+    <path d="M45 37q15-5 30 0l-3 11q-12 5-24 0Z" fill="#83bdce" stroke="#618da4"/>
+    <path d="M45 37q15-6 30 0-15 5-30 0Z" fill="#d2f1f3" stroke="#618da4"/>
+    <path d="M50 41h20m-18 4h16m-12-3v5m8-5v5" stroke="#578aa4"/>
+    <path d="M47 50q13 5 26 0l-3 5q-10 4-20 0Z" fill="#f2ae99" stroke="#aa6c6c"/>
+    <path d="M31 81h58v5H31z" fill="#f2dfcf" stroke="#a9897f"/>
+    <path d="M9 86h102m-92 5h25m8 0h17m8 0h25" stroke="#a4c6cc"/>
+  </g>
+</svg>

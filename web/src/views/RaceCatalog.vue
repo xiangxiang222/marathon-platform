@@ -30,12 +30,12 @@
 import { onBeforeUnmount, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { api } from '../api';
+import { landmarkUrl } from '../race-landmarks';
 const route=useRoute(),router=useRouter();
 const draft=ref(String(route.query.q||'')),query=ref(draft.value),wa=ref(String(route.query.wa||'')),caa=ref(String(route.query.caa||''));
 const waOptions=ref([]),caaOptions=ref([]);
 const races=ref([]),loading=ref(false),error=ref(''),selectionNote=ref('');let sequence=0;
 const failedLandmarks=ref({});
-function landmarkUrl(id){return ['beijing','shanghai','xiamen'].includes(id)?import.meta.env.BASE_URL+'images/race-landmarks/'+id+'.svg':'';}
 function archiveYears(race){const years=race.years||[];return years.length?(years.length===1?years[0]:Math.min(...years)+'—'+Math.max(...years))+' · 收录 '+years.length+' 届':'年度资料待补充';}
 function certification(v){return v&&v.label?v.label+(v.year?' · '+v.year:''):'待核实';}
 async function load(){const seq=++sequence;loading.value=true;error.value='';try{const p=new URLSearchParams({q:query.value,wa:wa.value,caa:caa.value});const d=await api('/race-catalog?'+p);if(seq!==sequence)return;races.value=Array.isArray(d.races)?d.races:[];waOptions.value=[...new Set([...(d.filterOptions?.worldAthletics||waOptions.value),...races.value.map(r=>r.worldAthletics?.label),wa.value].filter(Boolean))];caaOptions.value=[...new Set([...(d.filterOptions?.caa||caaOptions.value),...races.value.map(r=>r.caa?.label),caa.value].filter(Boolean))];selectionNote.value=d.selectionNote||'';}catch(e){if(seq===sequence)error.value=e.message||'暂时无法加载赛事档案';}finally{if(seq===sequence)loading.value=false;}}

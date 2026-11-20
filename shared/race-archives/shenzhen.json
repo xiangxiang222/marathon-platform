@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "raceId": "shenzhen",
-  "updatedAt": "2026-11-18",
+  "updatedAt": "2026-11-20",
   "intro": "深圳马拉松创办于2013年。近年线路从市民中心沿深南大道展开，再进入深圳湾与前海，将现代城市大道、滨海休闲带和宝安终点连接起来。2024年为两万人全马，2025年规程计划扩至三万人；2026年比赛仍在筹备日期内，档案明确区分已发生的成绩与尚待确认的安排。",
   "introSourceIds": [
     "sz-history-2024",
@@ -93,6 +93,14 @@
       ]
     },
     {
+      "date": "2025-12-07",
+      "title": "深马与残特奥会马拉松分时起跑",
+      "body": "两项比赛在深圳共用赛道，按不同发枪时刻进行。",
+      "sourceIds": [
+        "sz-recap-2025"
+      ]
+    },
+    {
       "date": "2026-12-06",
       "title": "下一届日历安排",
       "body": "截至核验日尚未举办；此为世界田联与中国田协日历日期。",
@@ -112,66 +120,94 @@
       "date": "2026-12-06",
       "dateSourceIds": [
         "shenzhen-caa-2026",
-        "shenzhen-wa-2026"
+        "shenzhen-wa-2026",
+        "sz-regulations-2026"
       ],
       "distance": "马拉松",
       "events": [
         {
           "project": "马拉松",
           "distanceKm": 42.195,
-          "plannedParticipants": "",
-          "fee": "",
+          "plannedParticipants": 30000,
+          "fee": "人民币200元",
           "sourceIds": [
-            "shenzhen-caa-2026",
-            "shenzhen-wa-2026"
+            "sz-regulations-2026",
+            "sz-entry-2026"
           ]
         }
       ],
       "route": {
-        "summary": "",
-        "start": "",
-        "finish": "",
+        "summary": "深圳市民中心出发，沿深南大道向西，经望海路、深圳湾运动公园、金铜沙河西立交附近、前海石公园等折返路段，终点在宝安区海滨广场。",
+        "start": "深圳市民中心",
+        "finish": "宝安区海滨广场",
         "mapUrl": "",
         "changes": "",
         "analysis": [],
-        "sourceIds": []
+        "sourceIds": [
+          "sz-regulations-2026",
+          "sz-map-2026"
+        ]
       },
       "registration": {
-        "method": "",
-        "opens": "",
-        "closes": "",
-        "drawDate": "",
-        "fee": "",
-        "qualification": "",
+        "method": "官网或马拉马拉APP预报名；超额抽签；另设大众精英和历届完赛选手通道。",
+        "opens": "2026-09-20 14:00",
+        "closes": "2026-09-28 17:00",
+        "drawDate": "2026-10-16 10:00",
+        "fee": "人民币200元。",
+        "qualification": "年龄20岁以上（2006年1月1日以前出生）；截至报名截止日前24个月，须有中国马拉松信息平台可查的A类赛事一次全马或两次半马完赛成绩。",
         "applicants": "",
         "eligibleApplicants": "",
         "lotteryPool": "",
         "drawQuota": "",
-        "directQuota": "",
+        "directQuota": "大众精英限额3000人；达标人数超过限额时，该通道也需抽签。",
         "lotteryRate": "",
-        "lotteryNote": "",
-        "note": "",
-        "sourceIds": []
+        "lotteryNote": "首轮缴费截止10月22日17:00。首轮未中签选手可于10月29日10:00起查二次抽签，二次中签缴费截止10月31日17:00。",
+        "note": "按官网要求在报名时选择精英直通等类别。累计至少8届线下深圳马拉松并有计时项目完赛成绩者可申请免抽签。",
+        "sourceIds": [
+          "sz-entry-2026",
+          "sz-draw2-2026"
+        ]
       },
       "participation": {
-        "planned": "",
+        "planned": "全程马拉松30000人（计划）",
         "starters": "",
         "finishers": "",
         "finishRate": "",
         "note": "",
-        "sourceIds": []
+        "sourceIds": [
+          "sz-regulations-2026"
+        ]
       },
       "results": [],
-      "gear": [],
+      "gear": [
+        {
+          "category": "参赛包",
+          "name": "2026报名须知所列基础物资",
+          "description": "报名费所含基础物资，最终发放及实物见后续公告。",
+          "items": [
+            "参赛T恤",
+            "盛衣包",
+            "号码布",
+            "一次性感应计时芯片"
+          ],
+          "imageUrl": "",
+          "sourceUrl": "https://shenzhenmarathon.org.cn/subject.html?detailId=7950944105110077&topicId=6990421846725475",
+          "sourceIds": [
+            "sz-entry-2026"
+          ]
+        }
+      ],
       "notes": [
-        "截至2026年11月18日，12月6日比赛尚未举行。日期、项目依据中国田协与世界田联日历；其余安排待补当届组委会公告，不沿用2025规程。"
+        "比赛尚未举行。章程的领物时间为赛前安排，组委会未在该规程中公布具体领物地点。"
       ],
       "logistics": {
         "collection": {
-          "time": "",
+          "time": "规程列12月3—5日10:00—18:00；5日延长至22:00。",
           "place": "",
-          "requirements": "",
-          "sourceIds": []
+          "requirements": "最终地点及领取要求以组委会后续领物公告为准。",
+          "sourceIds": [
+            "sz-regulations-2026"
+          ]
         },
         "transport": {
           "start": "",
@@ -180,32 +216,45 @@
           "sourceIds": []
         },
         "raceDay": {
-          "startTime": "",
-          "timeLimit": "",
-          "bagDrop": "",
+          "startTime": "07:00发令；05:30—06:45检录。",
+          "timeLimit": "全马关门时长6小时，按各分枪发令计算。",
+          "bagDrop": "05:30—06:40存包，赛后14:00前领取。",
           "aidStations": "",
           "toilets": "",
           "medical": "",
-          "sourceIds": []
+          "sourceIds": [
+            "sz-regulations-2026"
+          ]
         },
         "tips": []
-      }
+      },
+      "officialResources": [
+        {
+          "category": "route-map",
+          "title": "2026深圳马拉松官方路线图",
+          "url": "https://shenzhenmarathon.org.cn/subject.html?detailId=6991596822309459&topicId=6990421074973494",
+          "sourceIds": [
+            "sz-map-2026"
+          ]
+        }
+      ]
     },
     {
       "year": "2025",
       "editionId": "shenzhen-2025",
       "editionName": "2025深圳马拉松",
-      "status": "archived",
+      "status": "completed",
       "date": "2025-12-07",
       "dateSourceIds": [
-        "sz-regulations-2025"
+        "sz-regulations-2025",
+        "sz-recap-2025"
       ],
       "distance": "马拉松",
       "events": [
         {
           "project": "马拉松",
           "distanceKm": 42.195,
-          "plannedParticipants": "30000人",
+          "plannedParticipants": 30000,
           "fee": "",
           "sourceIds": [
             "sz-regulations-2025"
@@ -252,27 +301,85 @@
           "sz-regulations-2025"
         ]
       },
-      "results": [],
-      "gear": [
+      "results": [
         {
-          "title": "参赛包与完赛纪念",
-          "body": "规程列有参赛包、参赛服、号码布与计时芯片；按要求完赛后领取完赛物品及奖牌。",
-          "imageUrl": "",
+          "group": "马拉松男子冠军",
+          "athlete": "Kemal HUSEN GEBI",
+          "time": "02:09:12",
+          "timing": "枪时",
           "sourceIds": [
+            "sz-recap-2025",
+            "sz-regulations-2025"
+          ]
+        },
+        {
+          "group": "马拉松男子亚军",
+          "athlete": "Tadu ABATE DEME",
+          "time": "02:09:43",
+          "timing": "枪时",
+          "sourceIds": [
+            "sz-recap-2025",
+            "sz-regulations-2025"
+          ]
+        },
+        {
+          "group": "马拉松男子季军",
+          "athlete": "高鹏",
+          "time": "02:13:59",
+          "timing": "枪时",
+          "sourceIds": [
+            "sz-recap-2025",
+            "sz-regulations-2025"
+          ]
+        },
+        {
+          "group": "马拉松女子冠军",
+          "athlete": "Foyza JEMAL AMI",
+          "time": "02:26:14",
+          "timing": "枪时",
+          "sourceIds": [
+            "sz-recap-2025",
             "sz-regulations-2025"
           ]
         }
       ],
+      "gear": [
+        {
+          "category": "参赛包",
+          "name": "2025深马参赛物品",
+          "description": "规程列有参赛包、参赛服、号码布与计时芯片；按要求完赛后领取完赛物品及奖牌。",
+          "items": [],
+          "imageUrl": "",
+          "sourceIds": [
+            "sz-regulations-2025"
+          ]
+        },
+        {
+          "category": "奖牌",
+          "name": "2025深马完赛奖牌",
+          "description": "官方展示图为圆形金色奖牌，中心为赛事标识，外圈呈放射状。",
+          "items": [
+            "奖牌"
+          ],
+          "imageUrl": "",
+          "sourceUrl": "https://pub.mararun.com/cms/pic/shenzhenMarathon/1c72ee70d96972d0a0f079c467df8d58.png",
+          "sourceIds": [
+            "sz-medal-2025"
+          ]
+        }
+      ],
       "notes": [
-        "规程规定男女前8名按枪声计时，大众选手以净计时计分；本轮未取得赛后成绩表。",
+        "规程规定男女前8名按枪声计时，大众选手以净计时计分；官方报道含公开组前三冲线及对应成绩，前三名计时按当届规程。",
         "赛前规程中的领物地点写明待定，不据此补写最终地点。"
       ],
       "logistics": {
         "collection": {
-          "time": "",
-          "place": "",
-          "requirements": "",
-          "sourceIds": []
+          "time": "2025年12月4日14:00—20:00、5日10:00—18:00、6日10:00—22:00。",
+          "place": "深圳市体育中心",
+          "requirements": "本人持报名使用的有效证件原件及签字纸质《报名确认函》领取，按报名尺码领参赛服，不可代领。",
+          "sourceIds": [
+            "sz-kit-2025"
+          ]
         },
         "transport": {
           "start": "",
@@ -300,7 +407,17 @@
             ]
           }
         ]
-      }
+      },
+      "officialResources": [
+        {
+          "category": "medal",
+          "title": "2025深圳马拉松完赛奖牌官方展示原图",
+          "url": "https://pub.mararun.com/cms/pic/shenzhenMarathon/1c72ee70d96972d0a0f079c467df8d58.png",
+          "sourceIds": [
+            "sz-medal-2025"
+          ]
+        }
+      ]
     },
     {
       "year": "2024",
@@ -316,10 +433,11 @@
         {
           "project": "马拉松",
           "distanceKm": 42.195,
-          "plannedParticipants": "20000人",
-          "fee": "",
+          "plannedParticipants": 20000,
+          "fee": "人民币200元／人",
           "sourceIds": [
-            "sz-report-2024"
+            "sz-report-2024",
+            "sz-entry-2024"
           ]
         }
       ],
@@ -335,21 +453,23 @@
         ]
       },
       "registration": {
-        "method": "",
-        "opens": "",
-        "closes": "",
-        "drawDate": "",
-        "fee": "",
-        "qualification": "",
+        "method": "个人赛或团体赛择一预报名；名额不足时抽签，符合精英成绩或历届完赛条件者可直通。",
+        "opens": "2024-09-03 10:00",
+        "closes": "2024-09-18 17:00",
+        "drawDate": "团体赛2024-09-26 10:00；个人赛2024-09-27 10:00",
+        "fee": "马拉松（含团体赛）人民币200元／人。",
+        "qualification": "20岁以上（2004年12月31日以前出生）；组委会要求正规医疗机构体检，含心电图和心脏彩超。",
         "applicants": "",
         "eligibleApplicants": "",
         "lotteryPool": "",
         "drawQuota": "",
         "directQuota": "",
         "lotteryRate": "",
-        "lotteryNote": "",
-        "note": "",
-        "sourceIds": []
+        "lotteryNote": "首轮团体赛及个人赛缴费均于10月8日17:00截止。团体未中签者自动转入个人赛抽签，符合精英标准者按须知获资格。",
+        "note": "组委会公告的马拉松规模20000人含团体200队，不另行相加。",
+        "sourceIds": [
+          "sz-entry-2024"
+        ]
       },
       "participation": {
         "planned": "20000人（含团体200队）",
@@ -399,14 +519,43 @@
           ]
         }
       ],
-      "gear": [],
+      "gear": [
+        {
+          "category": "参赛服",
+          "name": "2024深马浅蓝参赛服",
+          "description": "当届双包发布图文附浅蓝色参赛短袖上身展示。",
+          "items": [
+            "参赛服"
+          ],
+          "imageUrl": "",
+          "sourceUrl": "https://shenzhenmarathon.org.cn/contentDetail.html?detailId=8072758907166982&topicId=6990424010986444&appKey=shenzhenMarathon",
+          "sourceIds": [
+            "sz-gear-2024"
+          ]
+        },
+        {
+          "category": "奖牌",
+          "name": "2024深马完赛奖牌",
+          "description": "当届官方完赛包图文展示圆形金色奖牌；参赛包中的十周年挂件另计。",
+          "items": [
+            "奖牌"
+          ],
+          "imageUrl": "",
+          "sourceUrl": "https://shenzhenmarathon.org.cn/contentDetail.html?detailId=8072758907166982&topicId=6990424010986444&appKey=shenzhenMarathon",
+          "sourceIds": [
+            "sz-gear-2024"
+          ]
+        }
+      ],
       "notes": [],
       "logistics": {
         "collection": {
-          "time": "",
-          "place": "",
-          "requirements": "",
-          "sourceIds": []
+          "time": "2024年11月28—29日10:00—18:00，30日10:00—22:00。",
+          "place": "深圳市市民中心广场",
+          "requirements": "本人持报名使用的有效证件原件及签字纸质《报名确认函》领取，不可代领。",
+          "sourceIds": [
+            "sz-kit-2024"
+          ]
         },
         "transport": {
           "start": "",
@@ -426,10 +575,43 @@
           ]
         },
         "tips": []
-      }
+      },
+      "officialResources": [
+        {
+          "category": "shirt",
+          "title": "2024深圳马拉松参赛短袖实物图（双包发布）",
+          "url": "https://shenzhenmarathon.org.cn/contentDetail.html?detailId=8072758907166982&topicId=6990424010986444&appKey=shenzhenMarathon",
+          "sourceIds": [
+            "sz-gear-2024"
+          ]
+        },
+        {
+          "category": "medal",
+          "title": "2024深圳马拉松完赛奖牌展示（双包发布）",
+          "url": "https://shenzhenmarathon.org.cn/contentDetail.html?detailId=8072758907166982&topicId=6990424010986444&appKey=shenzhenMarathon",
+          "sourceIds": [
+            "sz-gear-2024"
+          ]
+        }
+      ]
     }
   ],
-  "stories": [],
+  "stories": [
+    {
+      "title": "同一条赛道上的两次发令",
+      "body": "2025年深圳马拉松与全国残特奥会马拉松共用赛道：残特奥会选手06:30起跑，深马选手07:30起跑。赛道服务共用，两个赛事的成绩、分组和纪录仍各自记录。",
+      "sourceIds": [
+        "sz-recap-2025"
+      ]
+    },
+    {
+      "title": "八届完赛如何变成深马免抽签资格",
+      "body": "2026年报名须知为累计参加至少八届线下深圳马拉松、保有计时项目完赛成绩的跑者设置免抽签资格。资格按赛事官方历史数据和中国马拉松平台成绩核对；同在深圳举行的其他马拉松不能替代深马记录。",
+      "sourceIds": [
+        "sz-entry-2026"
+      ]
+    }
+  ],
   "sources": [
     {
       "id": "sz-history-2024",
@@ -538,6 +720,126 @@
         "category": "Gold",
         "calendarDate": "2026-12-06"
       }
+    },
+    {
+      "id": "sz-recap-2025",
+      "title": "2025深圳马拉松圆满收官 中国选手高鹏拿下男子第三",
+      "url": "https://www.sznews.com/news/content/2025-12/07/content_31799944.htm",
+      "publisher": "深圳新闻网",
+      "publishedAt": "2025-12-07",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2025"
+      ]
+    },
+    {
+      "id": "sz-regulations-2026",
+      "title": "2026深圳马拉松竞赛规程",
+      "url": "https://shenzhenmarathon.org.cn/subject.html?detailId=7447924346894135&topicId=6990420672320300",
+      "publisher": "深圳马拉松组委会",
+      "publishedAt": "",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ]
+    },
+    {
+      "id": "sz-entry-2026",
+      "title": "2026深圳马拉松报名须知",
+      "url": "https://shenzhenmarathon.org.cn/subject.html?detailId=7950944105110077&topicId=6990421846725475",
+      "publisher": "深圳马拉松组委会",
+      "publishedAt": "",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ]
+    },
+    {
+      "id": "sz-map-2026",
+      "title": "2026深圳马拉松官方路线图",
+      "url": "https://shenzhenmarathon.org.cn/subject.html?detailId=6991596822309459&topicId=6990421074973494",
+      "publisher": "深圳马拉松组委会",
+      "publishedAt": "",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ]
+    },
+    {
+      "id": "sz-draw2-2026",
+      "title": "提醒｜2026深圳马拉松二次抽签公告",
+      "url": "https://shenzhenmarathon.org.cn/contentDetail.html?detailId=9089175030649546&topicId=6990423356675002&appKey=shenzhenMarathon",
+      "publisher": "深圳马拉松组委会",
+      "publishedAt": "2026-10-28",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ]
+    },
+    {
+      "id": "sz-entry-2024",
+      "title": "2024深圳马拉松报名须知",
+      "url": "https://shenzhenmarathon.org.cn/contentDetail.html?detailId=7950990997529729&topicId=6990423356675002&appKey=shenzhenMarathon",
+      "publisher": "深圳马拉松组委会",
+      "publishedAt": "",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2024"
+      ]
+    },
+    {
+      "id": "sz-kit-2024",
+      "title": "2024深圳马拉松参赛物资领取须知",
+      "url": "https://shenzhenmarathon.org.cn/contentDetail.html?detailId=8077435421624413&topicId=6990423356675002&appKey=shenzhenMarathon",
+      "publisher": "深圳马拉松组委会",
+      "publishedAt": "2024-11-27",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2024"
+      ]
+    },
+    {
+      "id": "sz-gear-2024",
+      "title": "深马好礼｜2024深马参赛包及完赛包揭晓",
+      "url": "https://shenzhenmarathon.org.cn/contentDetail.html?detailId=8072758907166982&topicId=6990424010986444&appKey=shenzhenMarathon",
+      "publisher": "深圳马拉松组委会",
+      "publishedAt": "",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2024"
+      ]
+    },
+    {
+      "id": "sz-kit-2025",
+      "title": "荣耀·2025深圳马拉松领物须知",
+      "url": "https://shenzhenmarathon.org.cn/contentDetail.html?detailId=8613771409002754&topicId=6990423356675002&appKey=shenzhenMarathon",
+      "publisher": "深圳马拉松组委会",
+      "publishedAt": "",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2025"
+      ]
+    },
+    {
+      "id": "sz-medal-2025",
+      "title": "荣耀·2025深圳马拉松完赛奖牌发布（官方展示图）",
+      "url": "https://pub.mararun.com/cms/pic/shenzhenMarathon/1c72ee70d96972d0a0f079c467df8d58.png",
+      "publisher": "深圳马拉松组委会",
+      "publishedAt": "",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2025"
+      ]
     }
   ],
   "gaps": [
@@ -545,30 +847,22 @@
       "fields": [
         "records"
       ],
-      "reason": "2025规程列破纪录奖励门槛，但未附纪录运动员、创造日期与完整纪录表，不据奖励门槛补造赛会纪录。"
+      "reason": "现有规程列出破纪录奖励门槛，未附纪录保持者与创造日期；不将奖金门槛当纪录表。"
     },
     {
       "fields": [
-        "editions.2026.registration",
-        "editions.2026.route",
-        "editions.2026.participation"
+        "editions.2026.logistics.collection.place",
+        "editions.2026.gear.实物",
+        "editions.2026.registration.lotteryRate"
       ],
-      "reason": "2026届尚未举办，且本轮未取得当届完整规程；不复制2025日期以外的安排。"
+      "reason": "已核对两次抽签安排、赛道图与规程；最终领物地点、装备原图及中签统计暂缺，赛事尚未举行。"
     },
     {
       "fields": [
-        "editions.2025.results",
-        "editions.2025.logistics.collection",
-        "editions.2024.registration"
+        "editions.2025.officialResources.参赛服",
+        "editions.2024.registration.lotteryRate"
       ],
-      "reason": "2025赛后成绩与最终领物公告、2024报名规程仍待补齐。"
-    },
-    {
-      "fields": [
-        "images",
-        "editions.route.mapUrl"
-      ],
-      "reason": "未取得官方图片、路线图的明确转载许可，暂不展示图片；可通过资料来源查看官方原图。"
+      "reason": "已核实2024双包发布的参赛服及奖牌、2025奖牌与两届领物须知；2025参赛服实物发布及2024同口径中签率仍待核实。"
     }
   ],
   "conflicts": [

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "raceId": "hangzhou",
-  "updatedAt": "2026-11-18",
+  "updatedAt": "2026-11-20",
   "intro": "杭州马拉松始于1987年，其历史与西湖桂花国际马拉松、国际友好西湖马拉松赛相连。西湖、秋日桂花和钱塘江是杭马长期的城市记忆；2026年线路再连接京杭大运河，跨江改走彭埠大桥。档案按年保留项目计划、终点与报名机制变化，让经典景观与实际参赛安排分开阅读。",
   "introSourceIds": [
     "hz-report-2024",
@@ -94,6 +94,30 @@
       ]
     },
     {
+      "date": "2024-11-03",
+      "title": "公开组男女赛会纪录同日刷新",
+      "body": "全马男子前三、女子前二均快于赛前纪录；男女冠军分别为Moses Kibet和Helah Jelagat Kiprop。",
+      "sourceIds": [
+        "hz-recap-2024"
+      ]
+    },
+    {
+      "date": "2025-10-17",
+      "title": "组委会取消欢乐跑",
+      "body": "2025赛事保留全马与半马，已报名欢乐跑选手按公告获原路退款。",
+      "sourceIds": [
+        "hz25-cancel"
+      ]
+    },
+    {
+      "date": "2025-11-02",
+      "title": "赵朝传刷新中国籍男子赛会纪录",
+      "body": "赵朝传以2:12:54获得中国籍男子第一名，并刷新赛前保持的2:13:24纪录。",
+      "sourceIds": [
+        "hz-recap-2025"
+      ]
+    },
+    {
       "date": "2026-06-23",
       "title": "新一届报名与二次抽签",
       "body": "开启报名，项目规模全马22000、半马14000，新增二次抽签机制。",
@@ -111,7 +135,59 @@
       ]
     }
   ],
-  "records": [],
+  "records": [
+    {
+      "category": "中国籍赛会纪录",
+      "project": "马拉松",
+      "group": "男子",
+      "athlete": "赵朝传",
+      "time": "02:12:54",
+      "timing": "净时",
+      "editionId": "hangzhou-2025",
+      "achievedAt": "2025-11-02",
+      "verifiedThroughEditionId": "hangzhou-2026",
+      "verifiedAt": "2026-11-20",
+      "sourceIds": [
+        "hz-recap-2025",
+        "hz25-results",
+        "hz-results-2026"
+      ]
+    },
+    {
+      "category": "赛会纪录",
+      "project": "马拉松",
+      "group": "男子",
+      "athlete": "Moses Kibet",
+      "time": "02:07:47",
+      "timing": "",
+      "editionId": "hangzhou-2024",
+      "achievedAt": "2024-11-03",
+      "verifiedThroughEditionId": "hangzhou-2026",
+      "verifiedAt": "2026-11-20",
+      "sourceIds": [
+        "hz-recap-2024",
+        "hz25-results",
+        "hz-results-2026"
+      ]
+    },
+    {
+      "category": "赛会纪录",
+      "project": "马拉松",
+      "group": "女子",
+      "athlete": "Helah Jelagat Kiprop",
+      "time": "02:22:57",
+      "timing": "",
+      "editionId": "hangzhou-2024",
+      "achievedAt": "2024-11-03",
+      "verifiedThroughEditionId": "hangzhou-2026",
+      "verifiedAt": "2026-11-20",
+      "sourceIds": [
+        "hz-recap-2024",
+        "hz25-results",
+        "hz-results-2026"
+      ]
+    }
+  ],
   "editions": [
     {
       "year": "2026",
@@ -128,53 +204,52 @@
         {
           "project": "马拉松",
           "distanceKm": 42.195,
-          "plannedParticipants": "22000人",
-          "fee": "",
+          "plannedParticipants": 22000,
+          "fee": "人民币200元",
           "sourceIds": [
-            "hz-registration-2026",
-            "hz-report-2026"
+            "hz-notice-2026"
           ]
         },
         {
           "project": "半程马拉松",
           "distanceKm": 21.0975,
-          "plannedParticipants": "14000人",
-          "fee": "",
+          "plannedParticipants": 14000,
+          "fee": "人民币150元",
           "sourceIds": [
-            "hz-registration-2026",
-            "hz-report-2026"
+            "hz-notice-2026"
           ]
         }
       ],
       "route": {
-        "summary": "黄龙体育中心起跑，连接西湖、京杭大运河与钱塘江，经彭埠大桥前往江南亚运新城；全马在大莲花、半马在市民广场完赛。",
-        "start": "黄龙体育中心",
-        "finish": "全马：杭州奥体中心体育场（大莲花）；半马：市民广场",
+        "summary": "黄龙路起跑，经北山街、杨公堤、虎跑路转向之江路。全马经彭埠大桥至钱塘江南岸，终点为杭州奥体中心体育场；半马由之江路转新业路，终点为市民广场。",
+        "start": "黄龙路（黄龙体育中心）",
+        "finish": "全马：杭州奥体中心体育场；半马：市民广场",
         "mapUrl": "",
         "changes": "跨江路段由复兴大桥调整为彭埠大桥，延长之江路路段并加入江河汇、大运河，减少折返。",
         "analysis": [],
         "sourceIds": [
-          "hz-registration-2026",
-          "hz-report-2026",
-          "hz-route-2026"
+          "hz-map-2026",
+          "hz-route-2026",
+          "hz26-additional"
         ]
       },
       "registration": {
         "method": "官方网站、微信公众号、浙体育小程序等报名，新增二次抽签与境外选手专属通道。",
         "opens": "2026-06-23 10:00",
-        "closes": "",
+        "closes": "2026-07-15 17:00",
         "drawDate": "2026年7月下旬（公告计划）",
-        "fee": "",
-        "qualification": "",
+        "fee": "全马人民币200元，半马人民币150元。",
+        "qualification": "全马年满20周岁，报名截止前24个月至少1次全马或2次半马线下成绩；半马年满18周岁，同期至少2次10公里及以上线下比赛成绩。中签后须提交2025年11月1日（含）以后的血压和心电图体检证明。",
         "applicants": "",
         "eligibleApplicants": "",
         "lotteryPool": "",
         "drawQuota": "",
         "directQuota": "",
         "lotteryRate": "",
-        "lotteryNote": "",
-        "note": "本轮未取得最终中签、缴费和二次抽签公告，具体执行日期暂不填。",
+        "lotteryNote": "中签后完成缴费、体检材料审核；组委会根据首轮情况在未中签者中组织二次抽签。",
+        "note": "全马成绩达标可按须知走直通，男2:45:00（含）以内、女3:00:00（含）以内；另设永久号和部分赛事名次直通。",
         "sourceIds": [
+          "hz-notice-2026",
           "hz-registration-2026"
         ]
       },
@@ -194,56 +269,81 @@
           "group": "马拉松男子冠军",
           "athlete": "Kemal HUSEN GEBI",
           "time": "02:11:16",
-          "timing": "",
+          "timing": "枪时",
           "sourceIds": [
-            "hz-report-2026"
+            "hz-results-2026"
           ]
         },
         {
           "group": "马拉松女子冠军",
           "athlete": "Kuftu TAHIR DADISO",
           "time": "02:26:03",
-          "timing": "",
+          "timing": "枪时",
           "sourceIds": [
-            "hz-report-2026"
+            "hz-results-2026"
           ]
         },
         {
-          "group": "中国籍男子冠军",
+          "group": "马拉松中国籍男子第一名",
           "athlete": "高鹏",
           "time": "02:13:19",
-          "timing": "",
+          "timing": "净时",
           "sourceIds": [
-            "hz-report-2026"
+            "hz-results-2026"
           ]
         },
         {
-          "group": "中国籍女子冠军",
+          "group": "马拉松中国籍女子第一名",
           "athlete": "郑小倩",
           "time": "02:34:00",
-          "timing": "",
+          "timing": "净时",
           "sourceIds": [
-            "hz-report-2026"
+            "hz-results-2026"
+          ]
+        },
+        {
+          "group": "半程马拉松男子冠军",
+          "athlete": "罗肖",
+          "time": "01:04:29",
+          "timing": "枪时",
+          "sourceIds": [
+            "hz-results-2026"
+          ]
+        },
+        {
+          "group": "半程马拉松女子冠军",
+          "athlete": "丁常琴",
+          "time": "01:13:02",
+          "timing": "枪时",
+          "sourceIds": [
+            "hz-results-2026"
           ]
         }
       ],
       "gear": [
         {
-          "title": "桂花与NFC完赛纪念",
-          "body": "2026年完赛奖牌加入NFC功能，赛事以桂花香与杭州秋日文化呼应完赛体验。",
+          "category": "奖牌",
+          "name": "桂花与NFC完赛纪念",
+          "description": "2026年完赛奖牌加入NFC功能，赛事以桂花香与杭州秋日文化呼应完赛体验。",
+          "items": [],
           "imageUrl": "",
           "sourceIds": [
             "hz-report-2026"
           ]
         }
       ],
-      "notes": [],
+      "notes": [
+        "成绩按组委会成绩公示：全马和半马名次奖为枪时，全马中国籍名次奖按净时。"
+      ],
       "logistics": {
         "collection": {
-          "time": "",
-          "place": "",
-          "requirements": "",
-          "sourceIds": []
+          "time": "2026年10月29—31日",
+          "place": "黄龙体育中心体育场北塔",
+          "requirements": "本人持报名证件原件领取，不可代领。",
+          "sourceIds": [
+            "hz-handbook-2026",
+            "hz-kit-details-2026"
+          ]
         },
         "transport": {
           "start": "",
@@ -252,14 +352,16 @@
           "sourceIds": []
         },
         "raceDay": {
-          "startTime": "07:00",
-          "timeLimit": "",
-          "bagDrop": "",
+          "startTime": "全马07:00、07:15两枪；半马07:40。",
+          "timeLimit": "全马13:15关门，半马10:40关门；按对应项目最后一枪发令计算。",
+          "bagDrop": "全马05:00—06:45；半马05:00—06:55。",
           "aidStations": "15处补给站（2026赛后报道）",
           "toilets": "1562个移动厕所及相关设置（2026报道口径）",
           "medical": "",
           "sourceIds": [
-            "hz-report-2026"
+            "hz-report-2026",
+            "hz-map-2026",
+            "hz26-additional"
           ]
         },
         "tips": [
@@ -272,24 +374,43 @@
             ]
           }
         ]
-      }
+      },
+      "officialResources": [
+        {
+          "category": "medal",
+          "title": "2026杭马完赛奖牌介绍",
+          "url": "https://tyj.zj.gov.cn/col/col1347253/art/2026/art_ac03fd6fd03a4e998ec8e6c6aa963d10.html",
+          "sourceIds": [
+            "hz-report-2026"
+          ]
+        },
+        {
+          "category": "route-map",
+          "title": "2026吉利汽车杭州马拉松比赛路线图",
+          "url": "https://hm.zhetiyu.cn/rich-text?id=2061724559532855297",
+          "sourceIds": [
+            "hz-map-2026"
+          ]
+        }
+      ]
     },
     {
       "year": "2025",
       "editionId": "hangzhou-2025",
       "editionName": "2025杭州马拉松",
-      "status": "archived",
+      "status": "completed",
       "date": "2025-11-02",
       "dateSourceIds": [
         "hz-registration-2025",
-        "hz-preview-2025"
+        "hz-preview-2025",
+        "hz-recap-2025"
       ],
-      "distance": "马拉松、半程马拉松；欢乐跑为早期报名计划，最终安排待补正式通知",
+      "distance": "马拉松、半程马拉松",
       "events": [
         {
           "project": "马拉松",
           "distanceKm": 42.195,
-          "plannedParticipants": "早期计划20000人",
+          "plannedParticipants": "",
           "fee": "",
           "sourceIds": [
             "hz-registration-2025",
@@ -300,7 +421,7 @@
         {
           "project": "半程马拉松",
           "distanceKm": 21.0975,
-          "plannedParticipants": "早期计划12000人",
+          "plannedParticipants": "",
           "fee": "",
           "sourceIds": [
             "hz-registration-2025",
@@ -310,14 +431,16 @@
         }
       ],
       "route": {
-        "summary": "赛前发布会说明在经典线路基础上微调折返点，未将早期报名公告附带的往届路线直接写成本届最终路线。",
-        "start": "",
-        "finish": "",
+        "summary": "从黄龙体育中心出发，经西湖、杨公堤与钱塘江沿岸；全马通过复兴大桥跨江，至杭州奥体中心体育场完赛。",
+        "start": "浙江黄龙体育中心",
+        "finish": "全马：杭州奥体中心体育场（大莲花）",
         "mapUrl": "",
-        "changes": "",
+        "changes": "组委会赛前公告将全马两个折返点分别改到之江路与解放东路交汇处、飞虹路；半马路线不变。",
         "analysis": [],
         "sourceIds": [
-          "hz-preview-2025"
+          "hz-preview-2025",
+          "hz-recap-2025",
+          "hz25-route"
         ]
       },
       "registration": {
@@ -345,30 +468,122 @@
         "starters": "",
         "finishers": "",
         "finishRate": "",
-        "note": "2026年政府回顾称2025赛事规模3.2万人，与8月含欢乐跑的3.6万初始计划口径不同；最终项目调整公告待补，不将3.2万记作实际起跑人数。",
+        "note": "2026市政府发布会回顾2025赛事规模3.2万人；早期计划3.6万含后续取消的欢乐跑。两者均不作为实际起跑人数。",
         "sourceIds": [
           "hz-registration-2025",
-          "hz-registration-2026"
+          "hz-registration-2026",
+          "hz-recap-2025",
+          "hz25-cancel"
         ]
       },
-      "results": [],
+      "results": [
+        {
+          "group": "马拉松男子冠军",
+          "athlete": "Chalu DESO GELMISA",
+          "time": "02:11:15",
+          "timing": "枪时",
+          "sourceIds": [
+            "hz25-results"
+          ]
+        },
+        {
+          "group": "马拉松男子亚军",
+          "athlete": "Nicholas Kirwa",
+          "time": "02:11:15",
+          "timing": "枪时",
+          "sourceIds": [
+            "hz25-results"
+          ]
+        },
+        {
+          "group": "马拉松男子季军",
+          "athlete": "Boniface KIMUTAI KIPLIMO",
+          "time": "02:11:15",
+          "timing": "枪时",
+          "sourceIds": [
+            "hz25-results"
+          ]
+        },
+        {
+          "group": "马拉松女子冠军",
+          "athlete": "Ruti Aga",
+          "time": "02:24:29",
+          "timing": "枪时",
+          "sourceIds": [
+            "hz25-results"
+          ]
+        },
+        {
+          "group": "马拉松中国籍男子第一名",
+          "athlete": "赵朝传",
+          "time": "02:12:54",
+          "timing": "净时",
+          "sourceIds": [
+            "hz25-results"
+          ]
+        },
+        {
+          "group": "马拉松中国籍女子第一名",
+          "athlete": "朱卿",
+          "time": "02:32:48",
+          "timing": "净时",
+          "sourceIds": [
+            "hz25-results"
+          ]
+        },
+        {
+          "group": "半程马拉松男子冠军",
+          "athlete": "张校瑞",
+          "time": "01:04:53",
+          "timing": "枪时",
+          "sourceIds": [
+            "hz25-results"
+          ]
+        },
+        {
+          "group": "半程马拉松女子冠军",
+          "athlete": "周文香",
+          "time": "01:12:54",
+          "timing": "枪时",
+          "sourceIds": [
+            "hz25-results"
+          ]
+        }
+      ],
       "gear": [
         {
-          "title": "西湖意象与首次吉祥物",
-          "body": "2025年参赛服主题为湖光奔涌，首次吉祥物“跃跃”灵感来自西湖醋鱼；奖牌结合书法、篆刻与楹联。",
+          "category": "参赛服",
+          "name": "2025杭马参赛服",
+          "description": "参赛服主题为“湖光奔涌”；初次登场的吉祥物“跃跃”取意于西湖醋鱼。",
+          "items": [],
+          "imageUrl": "",
+          "sourceIds": [
+            "hz-preview-2025"
+          ]
+        },
+        {
+          "category": "奖牌",
+          "name": "2025杭马完赛奖牌",
+          "description": "奖牌融汇书法、篆刻与楹联。",
+          "items": [],
           "imageUrl": "",
           "sourceIds": [
             "hz-preview-2025"
           ]
         }
       ],
-      "notes": [],
+      "notes": [
+        "早期计划分项目为全马20000人、半马12000人、欢乐跑4000人；欢乐跑未实际举行，这些数字均不是起跑或完赛人数。",
+        "2025年10月17日组委会正式取消欢乐跑，全程、半程项目照常举行。"
+      ],
       "logistics": {
         "collection": {
-          "time": "",
-          "place": "",
-          "requirements": "",
-          "sourceIds": []
+          "time": "2025年10月30日14:00—20:00、10月31日10:00—20:00、11月1日10:00—21:00。",
+          "place": "黄龙体育中心体育场",
+          "requirements": "持报名时所用本人有效证件原件现场领取。",
+          "sourceIds": [
+            "hz25-kit"
+          ]
         },
         "transport": {
           "start": "",
@@ -377,7 +592,7 @@
           "sourceIds": []
         },
         "raceDay": {
-          "startTime": "07:00",
+          "startTime": "07:00、07:10、07:25三枪分区出发",
           "timeLimit": "",
           "bagDrop": "",
           "aidStations": "",
@@ -385,7 +600,8 @@
           "medical": "",
           "sourceIds": [
             "hz-registration-2025",
-            "hz-preview-2025"
+            "hz-preview-2025",
+            "hz-recap-2025"
           ]
         },
         "tips": [
@@ -397,7 +613,33 @@
             ]
           }
         ]
-      }
+      },
+      "officialResources": [
+        {
+          "category": "medal",
+          "title": "2025杭马奖牌与参赛服发布",
+          "url": "https://www.hangzhou.gov.cn/col/col812270/art/2025/art_3d79af22005d4fb4a2c2db0b264de061.html",
+          "sourceIds": [
+            "hz-preview-2025"
+          ]
+        },
+        {
+          "category": "shirt",
+          "title": "2025杭马参赛服发布",
+          "url": "https://www.hangzhou.gov.cn/col/col812270/art/2025/art_3d79af22005d4fb4a2c2db0b264de061.html",
+          "sourceIds": [
+            "hz-preview-2025"
+          ]
+        },
+        {
+          "category": "route-map",
+          "title": "2025杭马官方路线图（调整后）",
+          "url": "https://hm.zhetiyu.cn/newsDetail/2061738364427276289",
+          "sourceIds": [
+            "hz25-route"
+          ]
+        }
+      ]
     },
     {
       "year": "2024",
@@ -413,7 +655,7 @@
         {
           "project": "马拉松",
           "distanceKm": 42.195,
-          "plannedParticipants": "20000人",
+          "plannedParticipants": 20000,
           "fee": "",
           "sourceIds": [
             "hz-report-2024"
@@ -422,7 +664,7 @@
         {
           "project": "半程马拉松",
           "distanceKm": 21.0975,
-          "plannedParticipants": "12000人",
+          "plannedParticipants": 12000,
           "fee": "",
           "sourceIds": [
             "hz-report-2024"
@@ -431,7 +673,7 @@
         {
           "project": "欢乐跑",
           "distanceKm": "",
-          "plannedParticipants": "4000人",
+          "plannedParticipants": 4000,
           "fee": "",
           "sourceIds": [
             "hz-report-2024"
@@ -441,12 +683,13 @@
       "route": {
         "summary": "黄龙体育中心出发，沿西湖景观与钱塘江城市空间展开；全马终点重回杭州奥体中心大莲花。",
         "start": "浙江黄龙体育中心",
-        "finish": "全马：杭州奥体中心体育场（大莲花）",
+        "finish": "全马：杭州奥体中心；半马：杭州市民广场；欢乐跑：平湖秋月",
         "mapUrl": "",
         "changes": "2024年全马终点设在杭州奥体中心；不据此补写半马终点或完整道路序列。",
         "analysis": [],
         "sourceIds": [
-          "hz-report-2024"
+          "hz-report-2024",
+          "hz-recap-2024"
         ]
       },
       "registration": {
@@ -478,7 +721,44 @@
           "hz-report-2024"
         ]
       },
-      "results": [],
+      "results": [
+        {
+          "group": "马拉松男子冠军",
+          "athlete": "Moses Kibet",
+          "time": "02:07:47",
+          "timing": "",
+          "sourceIds": [
+            "hz-recap-2024"
+          ]
+        },
+        {
+          "group": "马拉松女子冠军",
+          "athlete": "Helah Jelagat Kiprop",
+          "time": "02:22:57",
+          "timing": "",
+          "sourceIds": [
+            "hz-recap-2024"
+          ]
+        },
+        {
+          "group": "半程马拉松男子冠军",
+          "athlete": "陈中平",
+          "time": "01:06:23",
+          "timing": "",
+          "sourceIds": [
+            "hz-recap-2024"
+          ]
+        },
+        {
+          "group": "半程马拉松女子冠军",
+          "athlete": "陈林明",
+          "time": "01:14:28",
+          "timing": "",
+          "sourceIds": [
+            "hz-recap-2024"
+          ]
+        }
+      ],
       "gear": [],
       "notes": [],
       "logistics": {
@@ -500,14 +780,31 @@
           "bagDrop": "",
           "aidStations": "",
           "toilets": "",
-          "medical": "",
-          "sourceIds": []
+          "medical": "赛后报道确认设24个医疗点，并配医护、医疗志愿者和急救跑者。",
+          "sourceIds": [
+            "hz-recap-2024"
+          ]
         },
         "tips": []
       }
     }
   ],
-  "stories": [],
+  "stories": [
+    {
+      "title": "从北山雅集到岳庙诗词",
+      "body": "2025年的“杭马十景”把太极、古筝和诗词朗诵带到路线旁。北山雅集、岳庙《满江红》等节目随城市地点布置，让西湖路段的文化看点有了明确位置。",
+      "sourceIds": [
+        "hz-recap-2025"
+      ]
+    },
+    {
+      "title": "机器人跟跑曾出现在西湖边",
+      "body": "2024年杭马首次设置四足机器人配速展示，较大的在半马担任“关门兔”，较小的在欢乐跑担任“陪跑兔”。这是该届赛事的服务尝试，后续届次是否保留以当届公告为准。",
+      "sourceIds": [
+        "hz-recap-2024"
+      ]
+    }
+  ],
   "sources": [
     {
       "id": "hz-report-2024",
@@ -543,7 +840,7 @@
       "publisher": "杭州市人民政府／杭州日报",
       "publishedAt": "2025-10-29",
       "accessedAt": "2026-11-18",
-      "verifiedAt": "2026-11-18",
+      "verifiedAt": "2026-11-20",
       "applicableYears": [
         "2025"
       ]
@@ -569,7 +866,7 @@
       "publisher": "浙江省体育局",
       "publishedAt": "2026-11-04",
       "accessedAt": "2026-11-18",
-      "verifiedAt": "2026-11-18",
+      "verifiedAt": "2026-11-20",
       "applicableYears": [
         "2026"
       ]
@@ -630,38 +927,172 @@
         "category": "Gold",
         "calendarDate": "2026-11-01"
       }
+    },
+    {
+      "id": "hz-recap-2025",
+      "title": "2025杭州马拉松昨日鸣枪起跑 2小时12分54秒打破中国籍选手纪录",
+      "url": "https://hznews.hangzhou.com.cn/chengshi/content/2025-11/03/content_9115539.htm",
+      "publisher": "杭州网／每日商报",
+      "publishedAt": "2025-11-03",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2025"
+      ]
+    },
+    {
+      "id": "hz-notice-2026",
+      "title": "2026吉利汽车杭州马拉松报名须知",
+      "url": "https://hm.zhetiyu.cn/rich-text?id=2061313044049530882",
+      "publisher": "杭州马拉松组委会",
+      "publishedAt": "2026-06-23",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ]
+    },
+    {
+      "id": "hz-map-2026",
+      "title": "2026吉利汽车杭州马拉松比赛路线图",
+      "url": "https://hm.zhetiyu.cn/rich-text?id=2061724559532855297",
+      "publisher": "杭州马拉松组委会",
+      "publishedAt": "",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ]
+    },
+    {
+      "id": "hz-results-2026",
+      "title": "2026吉利汽车杭州马拉松成绩公示",
+      "url": "https://hm.zhetiyu.cn/newsDetail/2117521167551229954",
+      "publisher": "杭州马拉松组委会",
+      "publishedAt": "2026-11-03",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ]
+    },
+    {
+      "id": "hz-handbook-2026",
+      "title": "2026吉利汽车杭州马拉松官方手册",
+      "url": "https://hm.zhetiyu.cn/newsDetail/2115641267453485058",
+      "publisher": "杭州马拉松组委会",
+      "publishedAt": "2026-10-31",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ]
+    },
+    {
+      "id": "hz-kit-details-2026",
+      "title": "2026杭州马拉松领物指南",
+      "url": "http://hz.bendibao.com/xiuxian/20261022/173518.shtm",
+      "publisher": "杭州本地宝",
+      "publishedAt": "2026-10-22",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ]
+    },
+    {
+      "id": "hz-recap-2024",
+      "title": "2024杭州马拉松鸣枪开跑 男女组赛会纪录被刷新",
+      "url": "https://www.chinanews.com.cn/ty/2024/11-03/10312759.shtml",
+      "publisher": "中国新闻网",
+      "publishedAt": "2024-11-03",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2024"
+      ]
+    },
+    {
+      "id": "hz25-results",
+      "title": "吉利汽车·2025 杭州马拉松前八名成绩公示",
+      "url": "https://hm.zhetiyu.cn/newsDetail/2061738347523706881",
+      "publisher": "杭州马拉松组委会",
+      "publishedAt": "2025-11-06",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2025"
+      ]
+    },
+    {
+      "id": "hz25-kit",
+      "title": "2025杭州马拉松领物须知",
+      "url": "https://hm.zhetiyu.cn/newsDetail/2061738774130823170",
+      "publisher": "杭州马拉松组委会",
+      "publishedAt": "2025-10-24",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2025"
+      ]
+    },
+    {
+      "id": "hz25-route",
+      "title": "关于吉利汽车·2025杭州马拉松 比赛路线调整的公告",
+      "url": "https://hm.zhetiyu.cn/newsDetail/2061738364427276289",
+      "publisher": "杭州马拉松组委会",
+      "publishedAt": "2025-10-22",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2025"
+      ]
+    },
+    {
+      "id": "hz25-cancel",
+      "title": "关于取消吉利汽车·2025杭州马拉松 欢乐跑项目的公告",
+      "url": "https://hm.zhetiyu.cn/newsDetail/2061738186461908993",
+      "publisher": "杭州马拉松组委会",
+      "publishedAt": "2025-10-17",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2025"
+      ]
+    },
+    {
+      "id": "hz26-additional",
+      "title": "2026吉利汽车杭州马拉松 竞赛规程补充通知",
+      "url": "https://hm.zhetiyu.cn/newsDetail/2111331295508746242",
+      "publisher": "杭州马拉松组委会",
+      "publishedAt": "2026-10-16",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ]
     }
   ],
   "gaps": [
     {
       "fields": [
-        "records",
-        "editions.2024.results",
-        "editions.2025.results"
+        "editions.2025.participation.starters",
+        "editions.2026.participation.finishers"
       ],
-      "reason": "2024报道称多人打破赛会纪录，但未给出完整运动员和成绩；缺少2025及完整历届纪录表，当前纪录与缺失成绩留空。"
+      "reason": "2025官方项目调整与历届冠军已核对；尚未取得可区分计划、起跑和完赛的同口径人数。"
     },
     {
       "fields": [
-        "editions.2025.events.欢乐跑",
-        "editions.2025.participation.finalPlan"
+        "editions.2026.registration.抽签统计",
+        "editions.2024.logistics.collection"
       ],
-      "reason": "8月公告含欢乐跑，2026政府回顾称2025规模3.2万人；最终项目调整公告未核得原文，保留早期计划与回顾口径，待补正式通知。"
+      "reason": "2025和2026领物指南已补；2024领物以及2026同口径报名、中签统计待核实。"
     },
     {
       "fields": [
-        "editions.2026.registration.fee",
-        "editions.2026.registration.closes",
-        "editions.logistics.collection"
+        "images"
       ],
-      "reason": "2026收费、最终报名截止和各届领物指南尚待完整公告。"
-    },
-    {
-      "fields": [
-        "images",
-        "editions.route.mapUrl"
-      ],
-      "reason": "未取得官方图片、路线图的明确转载许可，暂不展示图片；可通过资料来源查看官方原图。"
+      "reason": "官方图表通过原文链接查看；未核实网站转载许可。"
     }
   ],
   "conflicts": [
@@ -671,10 +1102,12 @@
         "editions.2025.events"
       ],
       "description": "2025年8月报名计划为全马20000、半马12000、欢乐跑4000共36000人；2026年政府报道回顾去年赛事规模32000人。",
-      "resolution": "两者分别标注为早期计划和后续回顾口径；不将32000人改写为实际起跑人数，不以早期欢乐跑计划确认最终开赛项目。",
+      "resolution": "2025赛后报道确认实际举行全程与半程两项，3.6万是含欢乐跑的早期计划；3.2万按政府回顾口径呈现，不使用为实际起跑人数。",
       "sourceIds": [
         "hz-registration-2025",
-        "hz-registration-2026"
+        "hz-registration-2026",
+        "hz-recap-2025",
+        "hz25-cancel"
       ]
     }
   ]

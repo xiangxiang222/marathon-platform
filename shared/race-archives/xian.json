@@ -1,6 +1,6 @@
 {
   "raceId": "xian",
-  "updatedAt": "2026-11-18",
+  "updatedAt": "2026-11-20",
   "intro": "西安马拉松赛于2017年创办，以永宁门起跑的古都形象形成辨识度。近届从城墙、钟楼等历史地标向会展中心与奥体中心延伸，将长安古韵和现代城市空间连成一条路；本档案指城市马拉松，并非西安城墙上的独立跑步赛事。",
   "introSourceIds": [
     "xa-history",
@@ -12,18 +12,17 @@
     "foundingYearSourceIds": [
       "xa-history"
     ],
-    "positioning": "以古都历史地标与现代西安连接为主线的城市马拉松。",
+    "positioning": "以古都历史地标与现代西安连接为主线的城市马拉松。 世界田联2026年日历将该届列为路跑标牌（Label）。",
     "positioningSourceIds": [
       "xa-history",
       "xa-reg-2026",
       "xa-race-2026",
-      "xian-caa-2026"
+      "xian-caa-2026",
+      "xian-wa-2026"
     ],
-    "entryNotes": "2026仅设全马和半马，较2025取消欢乐跑；全马与半马的终点不同，应分别规划返程。历年抽签、候补和领物政策须按当届阅读，2018旧官网仅用于历史资料。",
+    "entryNotes": "2026届先报名、抽签，再在限期内缴费，并为2023—2025连续报名全马或半马且未获资格的跑者设单独抽签池。历届规则不能相互替代。",
     "entrySourceIds": [
-      "xa-race-2026",
-      "xa-race-2025",
-      "xa-reg-2018"
+      "xa-entry-2026"
     ]
   },
   "highlights": [
@@ -84,7 +83,42 @@
       ]
     }
   ],
-  "records": [],
+  "records": [
+    {
+      "category": "男子全马赛会纪录",
+      "project": "马拉松",
+      "group": "男子",
+      "athlete": "武明瑶",
+      "time": "02:10:16",
+      "timing": "枪声成绩",
+      "editionId": "xian-2026",
+      "achievedAt": "2026-10-18",
+      "verifiedThroughEditionId": "xian-2026",
+      "verifiedAt": "2026-11-20",
+      "sourceIds": [
+        "xa-results-2026",
+        "xa-wa-results-2026",
+        "xa-race-2026"
+      ]
+    },
+    {
+      "category": "女子全马赛会纪录",
+      "project": "马拉松",
+      "group": "女子",
+      "athlete": "张水华",
+      "time": "02:29:07",
+      "timing": "枪声成绩",
+      "editionId": "xian-2026",
+      "achievedAt": "2026-10-18",
+      "verifiedThroughEditionId": "xian-2026",
+      "verifiedAt": "2026-11-20",
+      "sourceIds": [
+        "xa-results-2026",
+        "xa-wa-results-2026",
+        "xa-race-2026"
+      ]
+    }
+  ],
   "editions": [
     {
       "year": "2026",
@@ -100,7 +134,7 @@
         {
           "project": "马拉松",
           "distanceKm": 42.195,
-          "plannedParticipants": "24000人",
+          "plannedParticipants": 24000,
           "fee": "",
           "sourceIds": [
             "xa-race-2026"
@@ -109,7 +143,7 @@
         {
           "project": "半程马拉松",
           "distanceKm": 21.0975,
-          "plannedParticipants": "12000人",
+          "plannedParticipants": 12000,
           "fee": "",
           "sourceIds": [
             "xa-race-2026"
@@ -126,25 +160,29 @@
         "analysis": [],
         "sourceIds": [
           "xa-race-2026",
-          "xa-reg-2026"
+          "xa-reg-2026",
+          "xa-map-2026"
         ]
       },
       "registration": {
-        "method": "",
-        "opens": "",
-        "closes": "",
-        "drawDate": "",
-        "fee": "",
-        "qualification": "",
-        "applicants": "",
+        "method": "报名人数超出限额后抽签并设候补；中签或接受候补的报名者须在规定时限缴费。",
+        "opens": "2026-08-04 11:00",
+        "closes": "2026-08-20 17:00",
+        "drawDate": "2026-08-31",
+        "fee": "马拉松200元/人；半程马拉松200元/人。",
+        "qualification": "全马当年年满20周岁，报名截止前24个月内须有1次全马或2次半马成绩；半马当年年满18周岁，须有2次10公里及以上比赛成绩。65周岁及以上选手按须知另交共同签署的参赛承诺书。",
+        "applicants": "预报名242283人；全马99534人、半马142749人。",
         "eligibleApplicants": "",
         "lotteryPool": "",
         "drawQuota": "",
         "directQuota": "",
         "lotteryRate": "",
-        "lotteryNote": "未取得同口径抽签池与实际抽签名额，不计算中签率。",
-        "note": "",
-        "sourceIds": []
+        "lotteryNote": "连续报名2023—2025西马全马或半马且未获资格者另设抽签池，抽取全马1000人、半马500人；其余符合条件者进入常规抽签。预报名总量不等于有效抽签池。",
+        "note": "中签及选择候补者缴费截止为9月2日17:00；9月3日10:00后开始向候补递补。",
+        "sourceIds": [
+          "xa-entry-2026",
+          "xa-applicants-2026"
+        ]
       },
       "participation": {
         "planned": "36000人（赛事总规模）",
@@ -156,8 +194,66 @@
           "xa-race-2026"
         ]
       },
-      "results": [],
-      "gear": [],
+      "results": [
+        {
+          "group": "全程马拉松男子冠军",
+          "athlete": "武明瑶",
+          "time": "02:10:16",
+          "timing": "枪声成绩",
+          "sourceIds": [
+            "xa-results-2026",
+            "xa-wa-results-2026"
+          ]
+        },
+        {
+          "group": "全程马拉松女子冠军",
+          "athlete": "张水华",
+          "time": "02:29:07",
+          "timing": "枪声成绩",
+          "sourceIds": [
+            "xa-results-2026",
+            "xa-wa-results-2026"
+          ]
+        },
+        {
+          "group": "半程马拉松男子冠军",
+          "athlete": "张校瑞",
+          "time": "01:03:09",
+          "timing": "净计时",
+          "sourceIds": [
+            "xa-results-2026"
+          ]
+        },
+        {
+          "group": "半程马拉松女子冠军",
+          "athlete": "丁常琴",
+          "time": "01:11:59",
+          "timing": "净计时",
+          "sourceIds": [
+            "xa-results-2026"
+          ]
+        }
+      ],
+      "gear": [
+        {
+          "category": "参赛服",
+          "name": "2026西马蓝参赛服",
+          "description": "官网发布了蓝色主题的男女款参赛背心，男款图案取材自徐延昭脸谱。",
+          "imageUrl": "",
+          "sourceIds": [
+            "xa-kit-2026"
+          ]
+        },
+        {
+          "category": "奖牌",
+          "name": "2026全马与半马完赛奖牌",
+          "description": "两种赛事奖牌采用圆形主体，以几何构图表现飞檐、瓦当的轮廓。",
+          "imageUrl": "",
+          "sourceIds": [
+            "xa-kit-2026"
+          ]
+        }
+      ],
       "logistics": {
         "collection": {
           "time": "",
@@ -194,6 +290,32 @@
       },
       "notes": [
         "人民网报道男女全马冠军均打破赛会纪录，但成绩表为图片，未核实具体时间，因此不抄录数值。"
+      ],
+      "officialResources": [
+        {
+          "category": "route-map",
+          "title": "2026全马与半马官方线路图",
+          "url": "https://xi-ma.com/page/6LN7OlWmEZ8AD2dKbJB3.html",
+          "sourceIds": [
+            "xa-map-2026"
+          ]
+        },
+        {
+          "category": "shirt",
+          "title": "2026官方参赛服发布",
+          "url": "https://xi-ma.com/post/9Vbyv6BjrN1Lj1nYg48Z.html",
+          "sourceIds": [
+            "xa-kit-2026"
+          ]
+        },
+        {
+          "category": "medal",
+          "title": "2026全马与半马奖牌发布",
+          "url": "https://xi-ma.com/post/9Vbyv6BjrN1Lj1nYg48Z.html",
+          "sourceIds": [
+            "xa-kit-2026"
+          ]
+        }
       ]
     },
     {
@@ -227,7 +349,7 @@
         },
         {
           "project": "欢乐跑",
-          "distanceKm": 7.0,
+          "distanceKm": 7,
           "plannedParticipants": "",
           "fee": "",
           "sourceIds": [
@@ -326,7 +448,7 @@
         {
           "project": "马拉松",
           "distanceKm": 42.195,
-          "plannedParticipants": "20000人",
+          "plannedParticipants": 20000,
           "fee": "",
           "sourceIds": [
             "xa-race-2024"
@@ -335,7 +457,7 @@
         {
           "project": "半程马拉松",
           "distanceKm": 21.0975,
-          "plannedParticipants": "10000人",
+          "plannedParticipants": 10000,
           "fee": "",
           "sourceIds": [
             "xa-race-2024"
@@ -344,7 +466,7 @@
         {
           "project": "欢乐跑",
           "distanceKm": "",
-          "plannedParticipants": "5000人",
+          "plannedParticipants": 5000,
           "fee": "",
           "sourceIds": [
             "xa-race-2024"
@@ -429,7 +551,30 @@
       "notes": []
     }
   ],
-  "stories": [],
+  "stories": [
+    {
+      "id": "xa-story-year-five",
+      "editionYear": "2021",
+      "tag": "赛事故事",
+      "title": "第五届春天里的终身号码布",
+      "summary": "2021年的春季西马，为一群连续参赛者留下了永久号码布。",
+      "body": "西马第五届移到4月举行。按照组委会当年的安排，连续参与前四届、又中签第五届的跑者获得定制的终身号码布；当届全体参赛者则领到五周年徽章。永久号码和纪念徽章条件不同，也不等同于以后各届的优先抽签政策。",
+      "sourceIds": [
+        "xa-history"
+      ]
+    },
+    {
+      "id": "xa-story-kit-2026",
+      "editionYear": "2026",
+      "tag": "赛事故事",
+      "title": "城墙意象与秦腔脸谱走进赛服",
+      "summary": "2026西马用蓝色参赛服和几何奖牌表达同一座古城。",
+      "body": "官方发布图中色彩取名西马蓝，男款参赛背心用徐延昭的脸谱作主图案。全马和半马奖牌则从飞檐、瓦当提取轮廓，换成简洁的几何线条。在图鉴可以打开当届原发页面看奖牌和服装细节。",
+      "sourceIds": [
+        "xa-kit-2026"
+      ]
+    }
+  ],
   "sources": [
     {
       "id": "xa-history",
@@ -517,30 +662,121 @@
         "2026"
       ],
       "evidence": "已读取中国马拉松官网公开查询接口 searchById（POST，id=1000453008，type=SS）；返回赛事名称、日期、举办城市、主办单位和 officialRaceGrade=A。仅适用于2026届，不由徽标推定世界田联等级。"
+    },
+    {
+      "id": "xa-map-2026",
+      "title": "2026度小满西安马拉松赛线路图",
+      "url": "https://xi-ma.com/page/6LN7OlWmEZ8AD2dKbJB3.html",
+      "publisher": "西安马拉松赛组委会",
+      "publishedAt": "",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ],
+      "evidence": "人工核读网页所附原图，原图标题和图例明确对应2026全马及半马，标示公里数、补给点和医疗点。"
+    },
+    {
+      "id": "xa-kit-2026",
+      "title": "「2026度小满西安马拉松赛」奖牌、参赛服公布！",
+      "url": "https://xi-ma.com/post/9Vbyv6BjrN1Lj1nYg48Z.html",
+      "publisher": "西安马拉松赛组委会",
+      "publishedAt": "2026-10-01",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ],
+      "evidence": "官网新闻列表标示发布日期，人工核读发布长图中的全马和半马奖牌、参赛服设计。"
+    },
+    {
+      "id": "xa-entry-2026",
+      "title": "2026度小满西安马拉松赛报名须知",
+      "url": "https://xi-ma.com/page/kwvqQxBj12rz0GM9Aya4.html",
+      "publisher": "西安马拉松赛组委会",
+      "publishedAt": "",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ],
+      "evidence": "人工核读官网报名须知长图的报名资格、费用、抽签、付费和候补章节。"
+    },
+    {
+      "id": "xa-applicants-2026",
+      "title": "2026度小满西安马拉松赛，报名数据出炉",
+      "url": "https://xi-ma.com/post/L51XZa20wA1zDAM6vG98.html",
+      "publisher": "西安马拉松赛组委会",
+      "publishedAt": "2026-08-21",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ],
+      "evidence": "官方图示预报名总人数242283人，其中全马99534人、半马142749人。百分比对应预报名项目占比，不是中签率。"
+    },
+    {
+      "id": "xa-results-2026",
+      "title": "成绩查询 / 成绩公示 | 2026度小满西安马拉松赛",
+      "url": "https://xi-ma.com/post/JlrPG3eDQNAxjYWbQMv8.html",
+      "publisher": "西安马拉松赛组委会",
+      "publishedAt": "2026-10-19",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ],
+      "evidence": "人工读取官方公示长图的男女全马、半马前八名首行。全马为枪声成绩，半马为净计时。"
+    },
+    {
+      "id": "xian-wa-2026",
+      "title": "World Athletics Label Road Races 2026 Calendar",
+      "url": "https://worldathletics.org/competitions/world-athletics-label-road-races/calendar-results",
+      "publisher": "世界田联",
+      "publishedAt": "",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ],
+      "evidence": {
+        "eventId": "7236089",
+        "competitionName": "Xi'an Marathon",
+        "category": "Label",
+        "calendarDate": "2026-10-18"
+      }
+    },
+    {
+      "id": "xa-wa-results-2026",
+      "title": "Xi'an Marathon | Results",
+      "url": "https://worldathletics.org/competition/calendar-results/results/7236089",
+      "publisher": "世界田联",
+      "publishedAt": "",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ],
+      "evidence": "与官网公示交叉核对全马男子2:10:16、女子2:29:07及选手身份。"
     }
   ],
   "gaps": [
     {
       "fields": [
-        "records",
-        "editions[].results",
-        "editions[].registration",
-        "editions[2025].events[].planned"
+        "editions[2024,2025].results",
+        "editions[2024,2025].registration",
+        "editions[2025].events[].planned",
+        "editions[2026].logistics.collection",
+        "editions[2026].registration.lotteryRate"
       ],
-      "reason": "2026规程、报名须知与成绩部分为长图，尚未逐页核完费用、抽签、领物及完整成绩；2025项目人数拆分未取得原文。保留可核实项目和总规模，不以总量反推缺项。"
+      "reason": "已补2026官方报名与成绩资料；2024、2025原始规程与成绩资料、2025项目人数拆分、2026领物与分池抽签分母仍待核实。"
     },
     {
       "fields": [
         "editions[].route.mapUrl",
         "editions[].gear[].imageUrl"
       ],
-      "reason": "未取得可公开再分发的图片许可；仅保留来源链接，不接入赛道图或物资实物图片。"
-    },
-    {
-      "fields": [
-        "worldAthletics"
-      ],
-      "reason": "尚未取得可逐年核实的世界田联标牌依据，不沿用旧目录的认证快照。"
+      "reason": "2026线路、参赛服与奖牌提供组委会原页；未取得图片公开再分发许可，未嵌入原图。"
     }
   ],
   "conflicts": []

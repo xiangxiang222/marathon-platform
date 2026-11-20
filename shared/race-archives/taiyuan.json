@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "raceId": "taiyuan",
-  "updatedAt": "2026-11-18",
+  "updatedAt": "2026-11-20",
   "intro": "太原马拉松创办于2010年。迎泽大街的城市记忆、汾河沿岸的开阔视野和晋阳湖终点，共同形成太马近年的赛道辨识度。档案保留从太原火车站西侧起跑到五一广场起跑的年度变化，也单独记录女子赛会纪录与中国籍女子纪录。",
   "introSourceIds": [
     "ty-preview-2025",
@@ -192,7 +192,8 @@
           "time": "02:10:11",
           "timing": "",
           "sourceIds": [
-            "ty-report-2026"
+            "ty-report-2026",
+            "ty-wa-results-2026"
           ]
         },
         {
@@ -201,7 +202,8 @@
           "time": "02:24:11",
           "timing": "",
           "sourceIds": [
-            "ty-report-2026"
+            "ty-report-2026",
+            "ty-wa-results-2026"
           ]
         },
         {
@@ -210,7 +212,8 @@
           "time": "02:11:55",
           "timing": "",
           "sourceIds": [
-            "ty-report-2026"
+            "ty-report-2026",
+            "ty-wa-results-2026"
           ]
         },
         {
@@ -219,7 +222,8 @@
           "time": "02:29:45",
           "timing": "",
           "sourceIds": [
-            "ty-report-2026"
+            "ty-report-2026",
+            "ty-wa-results-2026"
           ]
         }
       ],
@@ -275,7 +279,7 @@
         {
           "project": "马拉松",
           "distanceKm": 42.195,
-          "plannedParticipants": "15000人",
+          "plannedParticipants": 15000,
           "fee": "",
           "sourceIds": [
             "ty-preview-2025",
@@ -285,7 +289,7 @@
         {
           "project": "半程马拉松",
           "distanceKm": 21.0975,
-          "plannedParticipants": "18000人",
+          "plannedParticipants": 18000,
           "fee": "",
           "sourceIds": [
             "ty-preview-2025",
@@ -294,8 +298,8 @@
         },
         {
           "project": "健康跑",
-          "distanceKm": 5.0,
-          "plannedParticipants": "3000人",
+          "distanceKm": 5,
+          "plannedParticipants": 3000,
           "fee": "",
           "sourceIds": [
             "ty-preview-2025",
@@ -304,8 +308,8 @@
         },
         {
           "project": "欢乐跑",
-          "distanceKm": 5.0,
-          "plannedParticipants": "4000人",
+          "distanceKm": 5,
+          "plannedParticipants": 4000,
           "fee": "",
           "sourceIds": [
             "ty-preview-2025",
@@ -442,7 +446,7 @@
         {
           "project": "马拉松",
           "distanceKm": 42.195,
-          "plannedParticipants": "13000人",
+          "plannedParticipants": 13000,
           "fee": "",
           "sourceIds": [
             "ty-report-2024"
@@ -451,7 +455,7 @@
         {
           "project": "半程马拉松",
           "distanceKm": 21.0975,
-          "plannedParticipants": "16000人",
+          "plannedParticipants": 16000,
           "fee": "",
           "sourceIds": [
             "ty-report-2024"
@@ -460,7 +464,7 @@
         {
           "project": "迷你跑",
           "distanceKm": "",
-          "plannedParticipants": "5000人",
+          "plannedParticipants": 5000,
           "fee": "",
           "sourceIds": [
             "ty-report-2024"
@@ -469,7 +473,7 @@
         {
           "project": "家庭亲子跑",
           "distanceKm": "",
-          "plannedParticipants": "6000人",
+          "plannedParticipants": 6000,
           "fee": "",
           "sourceIds": [
             "ty-report-2024"
@@ -490,12 +494,12 @@
       },
       "registration": {
         "method": "",
-        "opens": "",
+        "opens": "2024-07-29 10:00",
         "closes": "",
         "drawDate": "",
         "fee": "",
         "qualification": "",
-        "applicants": "",
+        "applicants": "官方报道：报名峰值人数超过12万；未公布同口径有效报名总数。",
         "eligibleApplicants": "",
         "lotteryPool": "",
         "drawQuota": "",
@@ -503,7 +507,10 @@
         "lotteryRate": "",
         "lotteryNote": "",
         "note": "",
-        "sourceIds": []
+        "sourceIds": [
+          "ty-route-2024",
+          "ty-report-2024"
+        ]
       },
       "participation": {
         "planned": "40000人：全马13000、半马16000、迷你跑5000、家庭亲子跑6000",
@@ -529,6 +536,24 @@
           "group": "马拉松女子冠军",
           "athlete": "查尔图·奇姆德萨·库姆萨",
           "time": "02:26:43",
+          "timing": "",
+          "sourceIds": [
+            "ty-report-2024"
+          ]
+        },
+        {
+          "group": "半程马拉松男子冠军",
+          "athlete": "王荣松",
+          "time": "01:08:24",
+          "timing": "",
+          "sourceIds": [
+            "ty-report-2024"
+          ]
+        },
+        {
+          "group": "半程马拉松女子冠军",
+          "athlete": "郭利亚",
+          "time": "01:15:21",
           "timing": "",
           "sourceIds": [
             "ty-report-2024"
@@ -565,7 +590,33 @@
       }
     }
   ],
-  "stories": [],
+  "stories": [
+    {
+      "id": "ty-story-new-start-2024",
+      "editionYear": "2024",
+      "tag": "赛事故事",
+      "title": "迎泽大街第一次成为起跑线",
+      "summary": "2024太马把起点设在改造后的迎泽大街，从太原站西侧出发。",
+      "body": "选手沿迎泽大街经过五一广场、迎泽公园和迎泽大桥，再进入汾河两岸的滨河路。下一届出发点改到五一广场；同一条城市轴线的不同起点，让前几公里看到的街景及参赛集合地点都发生了变化。",
+      "sourceIds": [
+        "ty-route-2024",
+        "ty-report-2024",
+        "ty-report-2025"
+      ]
+    },
+    {
+      "id": "ty-story-women-2026",
+      "editionYear": "2026",
+      "tag": "赛事故事",
+      "title": "三位中国选手一同跑进旧纪录",
+      "summary": "2026太马女子比赛，三名中国选手都快于2024年的中国籍旧纪录。",
+      "body": "2024年白丽的中国籍纪录是2:31:16。2026年，路颖、刘敏和徐冰洁分别跑出2:29:45、2:30:40和2:31:10；路颖取得新的中国籍赛会纪录。巴林选手蒂吉斯特·加肖·贝莱在同场比赛跑出2:24:11，刷新的是女子公开组纪录。两项纪录同日升级，组别仍分别记录。",
+      "sourceIds": [
+        "ty-report-2026",
+        "ty-wa-results-2026"
+      ]
+    }
+  ],
   "sources": [
     {
       "id": "ty-preview-2025",
@@ -687,6 +738,19 @@
         "category": "Gold",
         "calendarDate": "2026-09-27"
       }
+    },
+    {
+      "id": "ty-wa-results-2026",
+      "title": "Taiyuan Marathon | Results",
+      "url": "https://worldathletics.org/competition/calendar-results/results/7235590",
+      "publisher": "世界田联",
+      "publishedAt": "",
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ],
+      "evidence": "核对公开组与中国籍男女冠军成绩；英文运动员名按世界田联采用 Ablelom MARYO 和 Tigist GASHAW，与山西体育局中文报名名对应。未标枪时或净时。"
     }
   ],
   "gaps": [
@@ -703,7 +767,7 @@
         "editions.2026.registration",
         "editions.logistics.collection"
       ],
-      "reason": "2024、2026报名规程和领物指南尚未取得可核验原文；2025费用亦未由本轮来源确认。"
+      "reason": "2024已核实开放时间和官方所述报名峰值，费用、抽签与领物细则仍待核实；2026须知和2025费用暂未确认。"
     },
     {
       "fields": [

@@ -99,6 +99,26 @@ test('uploaded gallery images require confirmation, preserve ordered captions an
   await request(app).put(editor + '/shanghai').set(auth).send({ ...other, mediaConfirmed: true }).expect(400);
 });
 
+test('edition source links survive editor saves without granting permission to publish photos', async () => {
+  const value = (await request(app).get(editor + '/beijing').set(auth).expect(200)).body;
+  const edition = value.archive.editions[0];
+  const source = { id: 'official-link-test', title: '当届组委会原图发布页', url: 'https://organizer.example/course', publisher: '测试组委会', applicableYears: [edition.year], verifiedAt: '2026-11-20' };
+  const resource = { category: 'route-map', title: '查看当届官方赛道图', url: source.url, sourceIds: [source.id] };
+  value.archive.sources.push(source);
+  edition.officialResources = [{ ...resource, url: 'javascript:alert(1)' }];
+  await request(app).put(editor + '/beijing').set(auth).send(value).expect(400);
+  edition.officialResources = [{ ...resource, sourceIds: ['unknown'] }];
+  await request(app).put(editor + '/beijing').set(auth).send(value).expect(400);
+  edition.officialResources = [resource];
+  await request(app).put(editor + '/beijing').set(auth).send(value).expect(200);
+  delete edition.officialResources;
+  await request(app).put(editor + '/beijing').set(auth).send(value).expect(200);
+  const result = (await request(app).get(API + '/race-catalog/beijing').expect(200)).body.archive.editions[0];
+  assert.deepEqual(result.officialResources, [resource]);
+  assert.equal(result.route.mapUrl, '');
+  assert.ok(!result.coverage.missing.includes('官方路线图'));
+});
+
 test('editor rejects unsupported files, malformed data and arbitrary image addresses without saving partial facts', async () => {
   await request(app).post(editor + '/beijing/images').set(auth).attach('file', Buffer.from('<svg xmlns="http://www.w3.org/2000/svg"></svg>'), 'not-image.png').expect(400);
   await request(app).post(editor + '/beijing/images').set(auth).attach('file', Buffer.from([255, 216, 255, 217]), 'bad.jpg').expect(400);

@@ -11,6 +11,8 @@ const ROOT = path.resolve(__dirname, '..');
 const temporary = fs.mkdtempSync(path.join(os.tmpdir(), 'marathon-archives-runtime-'));
 const OUT = process.env.RACE_ARCHIVE_OUT ? path.resolve(process.env.RACE_ARCHIVE_OUT) : path.join(ROOT, 'design/previews/race-archive-expansion-20261118');
 const screenshots = process.env.RACE_ARCHIVE_SCREENSHOTS === '1';
+const widths = process.argv.length > 2 ? process.argv.slice(2).map(Number) : [320, 390, 1440];
+assert.ok(widths.every(width => Number.isInteger(width) && width > 0), 'Expected browser viewport widths');
 Object.assign(process.env, { NODE_ENV: 'test', BASE_PATH: '/marathon', PORT: '0', MARATHON_DB: path.join(temporary, 'app.sqlite'), MARATHON_MEDIA: path.join(temporary, 'media'), CONTENT_DATA_DIR: path.join(temporary, 'content'), ADMIN_TOKEN: 'disposable-race-archive-client' });
 const exists = fs.existsSync;
 fs.existsSync = file => path.resolve(String(file)) === path.join(ROOT, '.env') ? false : exists(file);
@@ -78,7 +80,7 @@ async function main() {
   const origin = 'http://127.0.0.1:' + vite.httpServer.address().port;
   const executablePath = process.env.CHROME_PATH || process.env.CHROME_BIN || [path.join(process.env.PROGRAMFILES||'C:/Program Files','Google/Chrome/Application/chrome.exe'),path.join(process.env.LOCALAPPDATA||'','Google/Chrome/Application/chrome.exe'),'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', '/usr/bin/google-chrome', '/usr/bin/chromium', '/usr/bin/chromium-browser'].find(file => fs.existsSync(file));
   browser = await chromium.launch({ ...(executablePath ? { executablePath } : { channel: 'chrome' }), headless: true });
-  for (const width of [320, 390, 1440]) {
+  for (const width of widths) {
     const context = await browser.newContext({ viewport: { width, height: 900 }, reducedMotion: 'reduce' });
     const page = await context.newPage();
     page.setDefaultTimeout(10000);
@@ -118,6 +120,9 @@ async function main() {
       await page.getByRole('link', { name: '全部档案 ›', exact: true }).click();
       await page.locator('.archive-directory-card').first().waitFor();
       assert.equal(await page.locator('.archive-directory-card').count(), catalog.races.length);
+      const landmarks = page.locator('.archive-directory-card img');
+      assert.equal(await landmarks.count(), catalog.races.length);
+      await landmarks.evaluateAll(images => Promise.all(images.map(image => image.decode())));
       await snapshot(page, 'directory-all', width);
     });
     await check('independent certification filters and search at ' + width, async () => {
@@ -172,7 +177,7 @@ async function main() {
           await page.getByRole('heading', { name: year + ' 报名安排', exact:true }).waitFor();
           const registrationText = await page.locator('.page-content').innerText();
           for(const note of [].concat(data.archive.profile?.entryNotes||[]))assert.ok(registrationText.includes(note),race.id+' long-term entry notes');
-          for(const project of edition.events||[]){assert.ok(registrationText.includes(project.project));if(project.plannedParticipants)assert.ok(registrationText.includes(String(project.plannedParticipants)));}
+          for(const project of edition.events||[]){assert.ok(registrationText.includes(project.project),race.id+' '+year+' project: '+project.project);if(project.plannedParticipants)assert.ok(registrationText.includes(String(project.plannedParticipants)),race.id+' '+year+' project scale: '+project.project);}
           for (const key of ['opens','closes','drawDate','fee','qualification','applicants','eligibleApplicants','lotteryPool','drawQuota','directQuota','lotteryRate']) {
             if (edition.registration[key]) assert.ok(registrationText.includes(String(edition.registration[key])), race.id + ' ' + key + ' in ' + year);
           }
@@ -200,6 +205,9 @@ async function main() {
           if(await page.getByLabel('选择版本内年份').count())await page.getByLabel('选择版本内年份').selectOption(String(year));
           const routeText=await page.locator('.road-order').innerText();
           for(const stage of String(edition.route.summary||'').split('→').map(value=>value.trim()).filter(Boolean))assert.ok(routeText.includes(stage),race.id+' '+year+' correct route');
+          for(const item of (edition.officialResources||[]).filter(item=>item.category==='route-map')) {
+            assert.equal(await page.getByRole('link',{name:item.title+' ↗',exact:true}).getAttribute('href'),item.url);
+          }
         }
         await page.getByRole('button', { name: '成绩', exact: true }).click();
         const selectedYear = String(data.years.at(-1));
@@ -213,10 +221,14 @@ async function main() {
         assert.equal(await page.locator('.page-content select').count(), 0, 'Gallery presents annual groups directly');
         for (const category of ['参赛服','奖牌','参赛包','完赛包']) {
           await page.getByRole('button', { name: category, exact:true }).click();
-          const groups = data.archive.editions.flatMap(edition => (edition.gear||[]).filter(item=>item.category===category));
+          const resourceCategory = {'参赛服':'shirt','奖牌':'medal'}[category];
+          const groups = data.archive.editions.map(edition => ({items:(edition.gear||[]).filter(item=>item.category===category), resources:(edition.officialResources||[]).filter(item=>item.category===resourceCategory)})).filter(group=>group.items.length || group.resources.length);
           assert.equal(await page.locator('.collection-year').count(), groups.length);
           const text = await page.locator('.page-content').innerText();
-          for (const item of groups) if(item.description) assert.ok(text.includes(item.description), category + ': preserved description');
+          for (const group of groups) {
+            for (const item of group.items) if(item.description) assert.ok(text.includes(item.description), category + ': preserved description');
+            for (const item of group.resources) assert.ok(text.includes(item.title), category + ': preserved official source link');
+          }
         }
         await page.getByRole('button', { name: '官方图集', exact:true }).click();
         assert.equal(await page.locator('.album-card').count(), data.archive.photoAlbums?.length || 0);
@@ -247,7 +259,7 @@ async function main() {
     });
     await check('explicit presentation fixture for long history, missing art, record evidence and HTTP sources at ' + width,async()=>{
       const edition={year:'2025',date:'2025-03-23',editionName:'2025本地展示夹具',status:'completed',route:{summary:'测试起点 → 测试地标 → 测试终点'},registration:{method:'仅用于测试的2025规则'},participation:{},results:[],gear:[],logistics:{tips:[{title:'测试建议',body:'2025届指南的本地展示测试',kind:'editorial-advice'}]},events:[{project:'马拉松',plannedParticipants:12345,sourceIds:['fixture-source']}]};
-      const fixture={race:{id:'wuxi',name:'本地展示夹具赛事',city:'测试城市'},archive:{intro:'仅用于浏览器验收的本地夹具，不写入档案数据。',profile:{foundingYear:'2014',entryNotes:['2025届测试报名特点']},history:Array.from({length:7},(_,i)=>({date:String(2014+i),title:'测试历史节点'+i,body:'较长的历史说明用于窄屏排版验证。'})),records:[{group:'男子赛会纪录',athlete:'Test Runner',time:'02:08:01',editionId:'fixture-2025',verifiedThroughEditionId:'fixture-2025',verifiedAt:'2026-11-18'}],editions:[edition],sources:[{id:'fixture-source',title:'本地HTTP来源夹具',publisher:'测试发布者',url:'http://official.example/notice',applicableYears:['2025'],verifiedAt:'2026-11-18'}],gaps:[{reason:'仅用于测试的待补充说明'}]},years:['2025'],defaultYear:'2025'};
+      const fixture={race:{id:'fixture-city',name:'本地展示夹具赛事',city:'测试城市'},archive:{intro:'仅用于浏览器验收的本地夹具，不写入档案数据。',profile:{foundingYear:'2014',entryNotes:['2025届测试报名特点']},history:Array.from({length:7},(_,i)=>({date:String(2014+i),title:'测试历史节点'+i,body:'较长的历史说明用于窄屏排版验证。'})),records:[{group:'男子赛会纪录',athlete:'Test Runner',time:'02:08:01',editionId:'fixture-2025',verifiedThroughEditionId:'fixture-2025',verifiedAt:'2026-11-18'}],editions:[edition],sources:[{id:'fixture-source',title:'本地HTTP来源夹具',publisher:'测试发布者',url:'http://official.example/notice',applicableYears:['2025'],verifiedAt:'2026-11-18'}],gaps:[{reason:'仅用于测试的待补充说明'}]},years:['2025'],defaultYear:'2025'};
       const fixtureRoute=route=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(fixture)});
       await page.route('**/marathon/api/race-catalog/wuxi',fixtureRoute);
       await page.goto(origin+'/marathon/race-catalog/wuxi',{waitUntil:'networkidle'});await page.locator('.main-tabs').waitFor();
