@@ -550,6 +550,42 @@
           "sourceIds": [
             "dl-report-2025"
           ]
+        },
+        {
+          "group": "半程马拉松男子冠军",
+          "athlete": "MUEKE MUSKOKA",
+          "time": "01:05:16",
+          "timing": "",
+          "sourceIds": [
+            "dl25-results-stdaily"
+          ]
+        },
+        {
+          "group": "半程马拉松女子冠军",
+          "athlete": "KURIA MARY WANGARI",
+          "time": "01:17:09",
+          "timing": "",
+          "sourceIds": [
+            "dl25-results-stdaily"
+          ]
+        },
+        {
+          "group": "马拉松中国籍男子冠军",
+          "athlete": "吴向东",
+          "time": "02:12:20",
+          "timing": "",
+          "sourceIds": [
+            "dl25-results-stdaily"
+          ]
+        },
+        {
+          "group": "马拉松中国籍女子冠军",
+          "athlete": "沈妮",
+          "time": "02:33:33",
+          "timing": "",
+          "sourceIds": [
+            "dl25-results-stdaily"
+          ]
         }
       ],
       "gear": [],
@@ -583,7 +619,25 @@
           ]
         },
         "tips": []
-      }
+      },
+      "officialResources": [
+        {
+          "category": "route-map",
+          "title": "2025第35届大连马拉松赛道图（转载赛事图）",
+          "url": "https://dl.bendibao.com/xiuxian/2025310/85991.shtm",
+          "sourceIds": [
+            "dl25-course-reprint"
+          ]
+        },
+        {
+          "category": "results",
+          "title": "2025大连马拉松全马、半马及中国籍组冠军赛报（科技日报）",
+          "url": "https://www.stdaily.com/web/gdxw/2025-05/11/content_337941.html",
+          "sourceIds": [
+            "dl25-results-stdaily"
+          ]
+        }
+      ]
     },
     {
       "year": "2024",
@@ -662,7 +716,33 @@
           "sourceIds": []
         },
         "tips": []
-      }
+      },
+      "officialResources": [
+        {
+          "category": "route-map",
+          "title": "2024第34届大连马拉松赛道图（媒体转引）",
+          "url": "https://news.sohu.com/a/815888926_100048098",
+          "sourceIds": [
+            "dl24-course-and-kit-press"
+          ]
+        },
+        {
+          "category": "medal",
+          "title": "2024第34届大连马拉松完赛奖牌图（媒体转引）",
+          "url": "https://news.sohu.com/a/815888926_100048098",
+          "sourceIds": [
+            "dl24-course-and-kit-press"
+          ]
+        },
+        {
+          "category": "shirt",
+          "title": "2024第34届大连马拉松全马及半马参赛服（媒体转引）",
+          "url": "https://news.sohu.com/a/815888926_100048098",
+          "sourceIds": [
+            "dl24-course-and-kit-press"
+          ]
+        }
+      ]
     }
   ],
   "stories": [
@@ -890,6 +970,45 @@
       "applicableYears": [
         "2026"
       ]
+    },
+    {
+      "id": "dl25-course-reprint",
+      "title": "2025大连马拉松路线图最新",
+      "publisher": "大连本地宝（转载当届赛事路线图）",
+      "url": "https://dl.bendibao.com/xiuxian/2025310/85991.shtm",
+      "publishedAt": "2025-03-10",
+      "applicableYears": [
+        "2025"
+      ],
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "note": "正文第一幅蓝底路线图带2025、第35届标记和赛道图例。"
+    },
+    {
+      "id": "dl24-course-and-kit-press",
+      "title": "2024大连马拉松跑者福利、参赛服、奖牌揭晓",
+      "publisher": "跑步之声／搜狐（图载第34届大连马拉松赛标）",
+      "url": "https://news.sohu.com/a/815888926_100048098",
+      "publishedAt": "2024-10-12",
+      "applicableYears": [
+        "2024"
+      ],
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "note": "正文可见三款完赛奖牌和正背面结构图、全马背心和半马及欢乐跑短袖设计图、带第34届标识的赛道原图。"
+    },
+    {
+      "id": "dl25-results-stdaily",
+      "title": "2025第35届大连马拉松赛鸣枪起跑",
+      "publisher": "科技日报",
+      "url": "https://www.stdaily.com/web/gdxw/2025-05/11/content_337941.html",
+      "publishedAt": "2025-05-11",
+      "applicableYears": [
+        "2025"
+      ],
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "note": "赛后原报道明确全马和半马、全马中国籍组男女冠军与完赛用时，未注明枪时或净时。"
     }
   ],
   "gaps": [

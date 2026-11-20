@@ -518,6 +518,14 @@
           "sourceIds": [
             "hz-handbook-2026"
           ]
+        },
+        {
+          "category": "shirt",
+          "title": "2026杭马粉色背心与短袖发布照片（跑步之声）",
+          "url": "https://m.sohu.com/a/1093336798_100048098",
+          "sourceIds": [
+            "hz-shirt-sohu-2026"
+          ]
         }
       ]
     },
@@ -1020,7 +1028,25 @@
           ]
         },
         "tips": []
-      }
+      },
+      "officialResources": [
+        {
+          "category": "shirt",
+          "title": "2024杭马参赛服发布会试穿照片（搜狐跑步）",
+          "url": "https://m.sohu.com/a/813227849_314192",
+          "sourceIds": [
+            "hz-kit-sohu-2024"
+          ]
+        },
+        {
+          "category": "medal",
+          "title": "2024杭马完赛奖牌正面、背面和侧面（搜狐跑步）",
+          "url": "https://m.sohu.com/a/813227849_314192",
+          "sourceIds": [
+            "hz-kit-sohu-2024"
+          ]
+        }
+      ]
     }
   ],
   "stories": [
@@ -1307,6 +1333,30 @@
       "applicableYears": [
         "2026"
       ]
+    },
+    {
+      "id": "hz-kit-sohu-2024",
+      "title": "完赛奖牌及完赛服亮相！2024杭州马拉松发布会召开",
+      "url": "https://m.sohu.com/a/813227849_314192",
+      "publisher": "搜狐跑步",
+      "publishedAt": "2024-10-01",
+      "accessedAt": "2026-11-20",
+      "applicableYears": [
+        "2024"
+      ],
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "hz-shirt-sohu-2026",
+      "title": "2026杭州马拉松奖牌、参赛服曝光！杭马印回归，粉色参赛服！",
+      "url": "https://m.sohu.com/a/1093336798_100048098",
+      "publisher": "跑步之声（搜狐号）",
+      "publishedAt": "2026-10-27",
+      "accessedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ],
+      "verifiedAt": "2026-11-20"
     }
   ],
   "gaps": [
@@ -1328,7 +1378,7 @@
       "fields": [
         "images"
       ],
-      "reason": "官方图表通过原文链接查看；未核实网站转载许可。"
+      "reason": "官方图表和媒体刊载的图件可通过来源页面查看；图片转载许可待核。"
     }
   ],
   "conflicts": [

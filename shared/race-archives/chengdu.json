@@ -707,6 +707,14 @@
           "sourceIds": [
             "cd-pickup-2025"
           ]
+        },
+        {
+          "category": "medal",
+          "title": "2025成马“共蓉”完赛奖牌（万达体育发布）",
+          "url": "https://www.wanda.cn/2025/2025latest_0519/47498.html",
+          "sourceIds": [
+            "cd-medal-wanda-2025"
+          ]
         }
       ]
     },
@@ -1126,6 +1134,18 @@
       "accessedAt": "2026-11-20",
       "verifiedAt": "2026-11-20",
       "note": "三个原表分别列全马名次的枪声成绩、全马中国籍特别奖的净成绩、半马名次的净成绩。"
+    },
+    {
+      "id": "cd-medal-wanda-2025",
+      "title": "万达体育发布2025成都马拉松完赛奖牌",
+      "url": "https://www.wanda.cn/2025/2025latest_0519/47498.html",
+      "publisher": "万达集团（赛事运营方万达体育发布）",
+      "publishedAt": "2025-05-19",
+      "accessedAt": "2026-11-20",
+      "applicableYears": [
+        "2025"
+      ],
+      "verifiedAt": "2026-11-20"
     }
   ],
   "gaps": [

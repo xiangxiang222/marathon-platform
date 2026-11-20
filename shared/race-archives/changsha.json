@@ -115,13 +115,14 @@
       "group": "中国籍男子",
       "athlete": "武明瑶",
       "time": "02:13:11",
-      "timing": "",
+      "timing": "净计时",
       "editionId": "changsha-2026",
       "achievedAt": "2026-11-15",
       "verifiedThroughEditionId": "changsha-2026",
       "verifiedAt": "2026-11-20",
       "sourceIds": [
-        "cs-race-official-2026"
+        "cs-race-official-2026",
+        "cs-icswb-results-2026"
       ]
     },
     {
@@ -130,13 +131,14 @@
       "group": "中国籍女子",
       "athlete": "通拉嘎",
       "time": "02:34:51",
-      "timing": "",
+      "timing": "净计时",
       "editionId": "changsha-2026",
       "achievedAt": "2026-11-15",
       "verifiedThroughEditionId": "changsha-2026",
       "verifiedAt": "2026-11-20",
       "sourceIds": [
-        "cs-race-official-2026"
+        "cs-race-official-2026",
+        "cs-icswb-results-2026"
       ]
     },
     {
@@ -310,18 +312,20 @@
           "group": "全程马拉松男子冠军",
           "athlete": "武明瑶",
           "time": "02:13:11",
-          "timing": "",
+          "timing": "净计时",
           "sourceIds": [
-            "cs-race-official-2026"
+            "cs-race-official-2026",
+            "cs-icswb-results-2026"
           ]
         },
         {
           "group": "全程马拉松女子冠军",
           "athlete": "通拉嘎",
           "time": "02:34:51",
-          "timing": "",
+          "timing": "净计时",
           "sourceIds": [
-            "cs-race-official-2026"
+            "cs-race-official-2026",
+            "cs-icswb-results-2026"
           ]
         },
         {
@@ -460,6 +464,14 @@
           "url": "https://www.marathonchangsha.com/score",
           "sourceIds": [
             "cs-score"
+          ]
+        },
+        {
+          "category": "results",
+          "title": "2026长马全马冠军和中国籍纪录（湘江早报）",
+          "url": "https://www.icswb.com/h/100046/20261115/1004282.html",
+          "sourceIds": [
+            "cs-icswb-results-2026"
           ]
         }
       ]
@@ -908,6 +920,30 @@
           "sourceIds": [
             "cs-score"
           ]
+        },
+        {
+          "category": "shirt",
+          "title": "2024长马全马、半马参赛背心及欢乐跑短袖（马拉松资讯）",
+          "url": "https://www.malasong5.com/news/202408535/535.html",
+          "sourceIds": [
+            "cs-kit-media-2024"
+          ]
+        },
+        {
+          "category": "medal",
+          "title": "2024长马十周年完赛奖牌正反面（马拉松资讯）",
+          "url": "https://www.malasong5.com/news/202408535/535.html",
+          "sourceIds": [
+            "cs-kit-media-2024"
+          ]
+        },
+        {
+          "category": "route-map",
+          "title": "2024长马赛道图（搜狐号报道所附赛事路线图）",
+          "url": "https://news.sohu.com/a/818093103_121117465",
+          "sourceIds": [
+            "cs-map-media-2024"
+          ]
         }
       ]
     }
@@ -1340,6 +1376,42 @@
         "2026"
       ],
       "evidence": "查询视图有2024、2025和2026届选项，个人成绩按页提示查询。"
+    },
+    {
+      "id": "cs-kit-media-2024",
+      "title": "2024长沙马拉松奖牌和参赛服样式",
+      "url": "https://www.malasong5.com/news/202408535/535.html",
+      "publisher": "马拉松资讯",
+      "publishedAt": "2024-08-22",
+      "accessedAt": "2026-11-20",
+      "applicableYears": [
+        "2024"
+      ],
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "cs-icswb-results-2026",
+      "title": "男女全马中国籍赛会纪录双双刷新！2026长沙马拉松落幕",
+      "url": "https://www.icswb.com/h/100046/20261115/1004282.html",
+      "publisher": "湘江早报（长沙晚报网）",
+      "publishedAt": "2026-11-15",
+      "accessedAt": "2026-11-20",
+      "applicableYears": [
+        "2026"
+      ],
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "cs-map-media-2024",
+      "title": "2024长沙马拉松「新区赛道解析」来了！",
+      "url": "https://news.sohu.com/a/818093103_121117465",
+      "publisher": "247天当地事儿（搜狐号）",
+      "publishedAt": "2024-10-19",
+      "accessedAt": "2026-11-20",
+      "applicableYears": [
+        "2024"
+      ],
+      "verifiedAt": "2026-11-20"
     }
   ],
   "gaps": [
@@ -1349,7 +1421,7 @@
         "editions[2024].results",
         "editions[2026].results[].timing"
       ],
-      "reason": "已补2025和2026男女全马、半马冠军，以及2026官方确认的国内选手与半马纪录；全马公开组历届纪录、2024完整成绩及2026各组计时类型仍待原始表核验。"
+      "reason": "已补2025和2026男女全马、半马冠军，以及2026国内选手与半马纪录。2026全马男女冠军及中国籍纪录为净计时，其余名次的计时口径、全马公开组历届纪录及2024完整成绩仍待核验。"
     },
     {
       "fields": [
@@ -1364,8 +1436,18 @@
         "editions[].route.mapUrl",
         "editions[].gear[].imageUrl"
       ],
-      "reason": "2024已补报名日期、抽签及缴费，仍缺报名费和完整资格；2025、2026未核得同口径中签率及完整抽签池。2026有官方路线、装备原页，2025有最终路线和实物原页；图片转载许可未确认。"
+      "reason": "2024已补报名日期、抽签及缴费，仍缺报名费和完整资格；2025、2026未核得同口径中签率及完整抽签池。2026有官方路线、装备原页，2025有最终路线和实物原页；图片转载许可未确认。 2024 的参赛服和奖牌可查看媒体刊载的发布图片。"
     }
   ],
-  "conflicts": []
+  "conflicts": [
+    {
+      "field": "2026 半程马拉松男子冠军成绩",
+      "reason": "组委会赛报列赵长虹 1:05:03，湘江早报报道为 1:05:53。",
+      "resolution": "沿用组委会赛报成绩，计时口径待正式成绩表核对。",
+      "sourceIds": [
+        "cs-race-official-2026",
+        "cs-icswb-results-2026"
+      ]
+    }
+  ]
 }

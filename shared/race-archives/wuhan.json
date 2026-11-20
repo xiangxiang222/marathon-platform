@@ -536,7 +536,7 @@
         },
         {
           "project": "13公里跑",
-          "distanceKm": 13.0,
+          "distanceKm": 13,
           "plannedParticipants": 15000,
           "fee": "中国籍100元人民币/人",
           "sourceIds": [
@@ -811,6 +811,30 @@
           "sourceIds": [
             "wh-pickup-2025"
           ]
+        },
+        {
+          "category": "route-map",
+          "title": "2025武汉马拉松赛道图（湖北广电发布会报道）",
+          "url": "https://news.hbtv.com.cn/p/4505373.html",
+          "sourceIds": [
+            "wh25-press-course-kit"
+          ]
+        },
+        {
+          "category": "medal",
+          "title": "2025武汉马拉松三款完赛奖牌图（湖北广电）",
+          "url": "https://news.hbtv.com.cn/p/4505373.html",
+          "sourceIds": [
+            "wh25-press-course-kit"
+          ]
+        },
+        {
+          "category": "shirt",
+          "title": "2025武汉马拉松黄色参赛T设计图（湖北广电）",
+          "url": "https://news.hbtv.com.cn/p/4505373.html",
+          "sourceIds": [
+            "wh25-press-course-kit"
+          ]
         }
       ]
     },
@@ -847,7 +871,7 @@
         },
         {
           "project": "13公里跑",
-          "distanceKm": 13.0,
+          "distanceKm": 13,
           "plannedParticipants": 8000,
           "fee": "中国籍80元人民币/人",
           "sourceIds": [
@@ -999,6 +1023,30 @@
           "url": "https://www.wuhanmarathon.org/subject.html?detailId=7709282183242311&topicId=5337790892243788",
           "sourceIds": [
             "wh-pickup-2024"
+          ]
+        },
+        {
+          "category": "route-map",
+          "title": "2024武汉马拉松赛道图（九派武汉转引）",
+          "url": "https://news.qq.com/rain/a/20240228A0262L00",
+          "sourceIds": [
+            "wh24-press-course"
+          ]
+        },
+        {
+          "category": "shirt",
+          "title": "2024武汉马拉松参赛T发布会图（极目新闻）",
+          "url": "https://www.ctdsb.net/c1476_202402/2061788.html",
+          "sourceIds": [
+            "wh24-press-shirt"
+          ]
+        },
+        {
+          "category": "medal",
+          "title": "2024武汉马拉松完赛奖牌实拍（极目新闻）",
+          "url": "http://news.cnhubei.com/content/2024-03/19/content_17584793.html",
+          "sourceIds": [
+            "wh24-press-medal"
           ]
         }
       ]
@@ -1368,6 +1416,58 @@
         "2026"
       ],
       "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "wh25-press-course-kit",
+      "title": "路线调整 奖牌揭晓 2025武汉马拉松有最新变化",
+      "publisher": "湖北广播电视台长江云新闻",
+      "url": "https://news.hbtv.com.cn/p/4505373.html",
+      "publishedAt": "2025-02-21",
+      "applicableYears": [
+        "2025"
+      ],
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "note": "发布会报道正文依次可见带届次赛道图、三款完赛奖牌及黄色参赛T正背面。"
+    },
+    {
+      "id": "wh24-press-course",
+      "title": "2024武汉马拉松的比赛线路有变化吗？附最新路线图",
+      "publisher": "九派武汉／腾讯新闻（图据武汉马拉松、长江日报）",
+      "url": "https://news.qq.com/rain/a/20240228A0262L00",
+      "publishedAt": "2024-02-28",
+      "applicableYears": [
+        "2024"
+      ],
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "note": "正文末尾的当届路线配图附起终点及主赛、半马和13公里跑线路。"
+    },
+    {
+      "id": "wh24-press-shirt",
+      "title": "回归经典，2024武汉马拉松奖牌、参赛T亮相",
+      "publisher": "极目新闻（组委会供图）",
+      "url": "https://www.ctdsb.net/c1476_202402/2061788.html",
+      "publishedAt": "2024-02-27",
+      "applicableYears": [
+        "2024"
+      ],
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "note": "第二幅发布会照片展示黄色参赛T的正背面与模特实穿。"
+    },
+    {
+      "id": "wh24-press-medal",
+      "title": "以和氏璧为轮廓和底纹！2024武汉马拉松完赛奖牌亮相",
+      "publisher": "极目新闻／荆楚网",
+      "url": "http://news.cnhubei.com/content/2024-03/19/content_17584793.html",
+      "publishedAt": "2024-03-19",
+      "applicableYears": [
+        "2024"
+      ],
+      "accessedAt": "2026-11-20",
+      "verifiedAt": "2026-11-20",
+      "note": "文中实拍呈现金、银色及不同项目的三款完赛奖牌。"
     }
   ],
   "gaps": [
@@ -1390,11 +1490,9 @@
     },
     {
       "fields": [
-        "editions.2024.officialResources.赛道图参赛服奖牌",
-        "editions.2025.officialResources.赛道图参赛服奖牌",
         "editions.2027"
       ],
-      "reason": "2024、2025已取领物原公告，路线规程及领物示意不作赛道图；对应路线、服装、奖牌实物官方原页及2027安排未核实。"
+      "reason": "2024、2025赛道图、参赛服和奖牌已用发布会报道及媒体所载图件补齐，2027安排尚待核实。"
     }
   ],
   "conflicts": []

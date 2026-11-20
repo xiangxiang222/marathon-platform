@@ -1,6 +1,6 @@
 {
   "raceId": "beijing",
-  "updatedAt": "2026-11-20",
+  "updatedAt": "2026-11-21",
   "intro": "北京马拉松创办于1981年。以天安门起跑、奥林匹克区域冲线为城市记忆，档案按届保存资格、路线、竞赛成绩与赛事物品，帮助跑者分辨每年变化。",
   "highlights": [
     {
@@ -189,7 +189,7 @@
         {
           "category": "参赛服",
           "name": "2026参赛服",
-          "description": "图案把“马”字写成奔马，也勾勒出2026，右侧加上“丙午”印章。",
+          "description": "红色参赛服，男款为背心，女款为短袖。胸前图案以“北马”二字为主，“马”字化作奔马并勾出数字“2026”，右侧点缀“丙午”印章。",
           "items": [],
           "imageUrl": "",
           "sourceUrl": "https://mp.weixin.qq.com/s/mWbR8RYU0pSlZ7IOd4Y0pQ",
@@ -280,6 +280,14 @@
           "category": "route-map",
           "title": "2026北京马拉松官方比赛路线图",
           "url": "https://www.beijing-marathon.com/subject.html?detailId=7992140408205034&topicId=7793644601957146",
+          "sourceIds": [
+            "bj-map-2026"
+          ]
+        },
+        {
+          "category": "route-map",
+          "title": "2026北马高清赛道图（组委会原图）",
+          "url": "https://pub.mararun.com/cms/pic/BJCN/28c34fc407162d6aafa06ce2a015384c.jpg",
           "sourceIds": [
             "bj-map-2026"
           ]
@@ -383,9 +391,10 @@
         "starters": "",
         "finishers": "",
         "finishRate": "",
-        "note": "这里的规模为赛前计划，不是实际起跑或完赛人数。规程列明07:30起跑、13:45终点关门；成绩证书可列枪时、净计时及分段成绩。实际起跑和完赛统计尚未取得可核验来源。",
+        "note": "人民日报报道约3.2万名跑者参与，超过4700名选手在3小时内完赛。实际起跑人数和全部完赛人数未见同口径统计。",
         "sourceIds": [
-          "bj-reg-2025"
+          "bj-reg-2025",
+          "bj-peoples-daily-review-2025"
         ]
       },
       "results": [
@@ -497,23 +506,25 @@
         {
           "category": "参赛服",
           "name": "2025参赛服",
-          "description": "当年规程明确提供参赛服，版型、配色及品牌实物细节待取得当届发布材料后补充。",
+          "description": "男款为背心，女款为短袖。服装以宝石红为主色，正面融入北京传统建筑的庑殿顶与冲刺带，背面印有“乙巳”书法和蛇形数字“2025”。",
           "items": [],
           "imageUrl": "",
-          "sourceUrl": "https://www.beijing-marathon.com/subject.html?detailId=8486678159362470&topicId=7793646850104219",
+          "sourceUrl": "https://item.btime.com/425tibc5stg848b2vpld7485nm0",
           "sourceIds": [
-            "bj-reg-2025"
+            "bj-reg-2025",
+            "bj-btime-release-2025"
           ]
         },
         {
           "category": "奖牌",
           "name": "2025完赛奖牌",
-          "description": "关门内按规定完赛可凭号码布领取；当届设计细节及实物图待收录。",
+          "description": "奖牌以鸟巢为灵感，采用金色浮雕与红色点缀，刻有“1981–2025”及全程距离。按规定在关门时间内完赛后可凭号码布领取。",
           "items": [],
           "imageUrl": "",
-          "sourceUrl": "https://www.beijing-marathon.com/subject.html?detailId=8486678159362470&topicId=7793646850104219",
+          "sourceUrl": "https://item.btime.com/425tibc5stg848b2vpld7485nm0",
           "sourceIds": [
-            "bj-reg-2025"
+            "bj-reg-2025",
+            "bj-btime-release-2025"
           ]
         }
       ],
@@ -612,6 +623,38 @@
           "url": "https://www.beijing-marathon.com/subject.html?detailId=8559756960753579&topicId=7793646850104219",
           "sourceIds": [
             "bj-collection-2025"
+          ]
+        },
+        {
+          "category": "route-map",
+          "title": "2025北马全程赛道图（北京时间发布会报道）",
+          "url": "https://item.btime.com/425tibc5stg848b2vpld7485nm0",
+          "sourceIds": [
+            "bj-btime-release-2025"
+          ]
+        },
+        {
+          "category": "shirt",
+          "title": "2025北马男女款参赛服（北京时间发布会报道）",
+          "url": "https://item.btime.com/425tibc5stg848b2vpld7485nm0",
+          "sourceIds": [
+            "bj-btime-release-2025"
+          ]
+        },
+        {
+          "category": "shirt",
+          "title": "2025北马背心和短袖正反面（北京时间原图）",
+          "url": "https://p2.ssl.cdn.btime.com/t11a477708fab7b6b88ca04932c.jpg?size=1080x606",
+          "sourceIds": [
+            "bj-btime-release-2025"
+          ]
+        },
+        {
+          "category": "medal",
+          "title": "2025北马完赛奖牌正反面（北京时间发布会报道）",
+          "url": "https://item.btime.com/425tibc5stg848b2vpld7485nm0",
+          "sourceIds": [
+            "bj-btime-release-2025"
           ]
         }
       ]
@@ -878,6 +921,22 @@
           "sourceIds": [
             "bj-result-women-2024"
           ]
+        },
+        {
+          "category": "route-map",
+          "title": "2024北马全程赛道图（马拉松网刊载）",
+          "url": "https://m.163.com/dy/article/JFN3NM1J05299P18.html",
+          "sourceIds": [
+            "bj-map-media-2024"
+          ]
+        },
+        {
+          "category": "shirt",
+          "title": "2024北马背心与短袖发布图片（跑步之声）",
+          "url": "https://news.sohu.com/a/819871386_100048098",
+          "sourceIds": [
+            "bj-shirt-media-2024"
+          ]
         }
       ]
     },
@@ -1008,12 +1067,13 @@
         {
           "category": "参赛服",
           "name": "2023参赛服",
-          "description": "当年规程明确提供参赛服，版型、配色及品牌实物细节待取得当届发布材料后补充。",
+          "description": "发布会展示了北马传统红色的参赛服，包括背心和短袖两种款式。",
           "items": [],
           "imageUrl": "",
           "sourceUrl": "https://www.beijing-marathon.com/subject.html?detailId=7838141151201938&topicId=7793646850104219",
           "sourceIds": [
-            "bj-reg-2023"
+            "bj-reg-2023",
+            "bj-shirt-media-2023"
           ]
         },
         {
@@ -1115,6 +1175,14 @@
           "url": "https://www.beijing-marathon.com/subject.html?detailId=7992149618547726&topicId=7793646850104219",
           "sourceIds": [
             "bj-result-women-2023"
+          ]
+        },
+        {
+          "category": "shirt",
+          "title": "2023北马参赛服发布会照片",
+          "url": "https://p6.itc.cn/q_70/images03/20231012/f00473bcaddb42f68911fbd6483e7759.jpeg",
+          "sourceIds": [
+            "bj-shirt-media-2023"
           ]
         }
       ]
@@ -1567,6 +1635,66 @@
         "2026"
       ],
       "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "bj-btime-release-2025",
+      "title": "2025北京马拉松启幕在即，参赛服、完赛奖牌亮相",
+      "url": "https://item.btime.com/425tibc5stg848b2vpld7485nm0",
+      "publisher": "北京时间",
+      "publishedAt": "2025-10-24",
+      "accessedAt": "2026-11-20",
+      "applicableYears": [
+        "2025"
+      ],
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "bj-peoples-daily-review-2025",
+      "title": "北京马拉松完赛 “破三”人数创新高",
+      "url": "https://news.dahe.cn/2025/11-04/2015476.html",
+      "publisher": "人民日报（大河网转载）",
+      "publishedAt": "2025-11-04",
+      "accessedAt": "2026-11-20",
+      "applicableYears": [
+        "2025"
+      ],
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "bj-map-media-2024",
+      "title": "2024北京马拉松：《高清比赛路线图》出炉！",
+      "url": "https://m.163.com/dy/article/JFN3NM1J05299P18.html",
+      "publisher": "马拉松网（网易号）",
+      "publishedAt": "2024-10-29",
+      "accessedAt": "2026-11-20",
+      "applicableYears": [
+        "2024"
+      ],
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "bj-shirt-media-2024",
+      "title": "超18万人报名！2024北京马拉松完赛奖牌、参赛服揭晓",
+      "url": "https://news.sohu.com/a/819871386_100048098",
+      "publisher": "跑步之声（搜狐号）",
+      "publishedAt": "2024-10-24",
+      "accessedAt": "2026-11-20",
+      "applicableYears": [
+        "2024"
+      ],
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "bj-shirt-media-2023",
+      "title": "久等了！2023北京马拉松参赛服、数据来了！",
+      "url": "https://m.sohu.com/a/727605058_121124690",
+      "publisher": "隔壁老王看体育（搜狐号）",
+      "publishedAt": "2023-10-12",
+      "accessedAt": "2026-11-21",
+      "applicableYears": [
+        "2023"
+      ],
+      "verifiedAt": "2026-11-21"
     }
   ],
   "schemaVersion": 2,
@@ -1685,11 +1813,9 @@
     },
     {
       "fields": [
-        "editions.2025.officialResources.赛道图参赛服",
-        "editions.2024.officialResources.赛道图参赛服",
         "editions.2027"
       ],
-      "reason": "2025体育局公布赛道变化，领物原文附场馆图，均不能作为全程路线原图；2024、2025清楚地显示参赛服的原页及2027安排未核验。"
+      "reason": "2027 年比赛安排待核验。"
     }
   ]
 }

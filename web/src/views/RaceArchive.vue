@@ -28,38 +28,177 @@
           <section class="section"><div class="section-head"><div><p class="eyebrow">THE COLLECTION</p><h2>留下的，不止成绩</h2></div><button class="tiny-link" @click="setTab('gallery')">进入图鉴 →</button></div><div class="category-tiles"><button v-for="g in galleryTypes.slice(0,3)" :key="g.id" class="category-tile" type="button" @click="gallery=g.id;setTab('gallery')"><span class="tile-mark">{{ g.mark }}</span><h3>{{ g.label }}</h3><p>按年份浏览 →</p></button></div></section>
         </template>
         <template v-if="tab==='entry'">
-          <div class="section-head"><div><p class="eyebrow">RACE DAY</p><h2>参赛与报名</h2></div><select v-model="entryYear" class="select-year" aria-label="选择参赛年份"><option v-for="y in years" :key="y" :value="y">{{ y }} 年</option></select></div>
-          <div v-if="entryNotes.length" class="entry-notes"><p v-for="(note,index) in entryNotes" :key="index" class="archive-prose">{{ note }}</p></div>
-          <p v-if="currentEntry" class="edition-caption">{{ currentEntry.editionName || entryYear+' 年资料' }}<span v-if="currentEntry.status"> · {{ statusLabel(currentEntry.status) }}</span> · 历史安排请按适用年份查阅</p>
-          <div v-if="currentEntry?.events?.length" class="event-projects"><h3 class="minor-heading">{{ entryYear }} 项目与计划规模</h3><div v-for="(project,index) in currentEntry.events" :key="index" class="fact"><span>{{ project.project || project.name || '项目待补充' }}<template v-if="project.distanceKm || project.distance"> · {{ project.distanceKm || project.distance }}<template v-if="project.distanceKm"> km</template></template></span><span><template v-if="project.plannedParticipants || project.planned">{{ project.plannedParticipants || project.planned }}<template v-if="project.plannedParticipants"> 人（计划）</template></template><template v-if="project.fee"> · {{ project.fee }}</template></span></div></div>
-          <div class="subnav"><button v-for="i in entryTypes" :key="i.id" type="button" :aria-pressed="entryType===i.id" @click="entryType=i.id">{{ i.label }}</button></div>
-          <template v-if="currentEntry && entryType==='registration'"><h3 class="minor-heading">{{ entryYear }} 报名安排</h3><p class="muted" style="margin-top:14px">{{ currentEntry.registration?.method }}</p><div class="timeline"><div><small>报名开始</small><strong>{{ currentEntry.registration?.opens || '未录入' }}</strong></div><div><small>报名截止</small><strong>{{ currentEntry.registration?.closes || '未录入' }}</strong></div><div><small>抽签公布</small><strong>{{ currentEntry.registration?.drawDate || '未录入' }}</strong></div></div><div class="facts"><div v-for="f in facts(currentEntry.registration,registrationFields)" :key="f.label" class="fact"><span>{{ f.label }}</span><span>{{ f.value }}</span></div></div><p v-if="currentEntry.registration?.note" class="muted" style="margin-top:18px">{{ currentEntry.registration.note }}</p><ArchiveLottery :editions="editions" /><p v-if="currentEntry.registration?.lotteryNote" class="callout">{{ currentEntry.registration.lotteryNote }}</p><details v-if="currentEntry.registration?.sourceIds?.length" class="fact-evidence"><summary>{{ entryYear }} 年报名与抽签来源</summary><a v-for="source in factSources(currentEntry.registration)" :key="source.id" :href="source.safeUrl" class="official-resource" target="_blank" rel="noopener noreferrer">{{ source.title }} ↗</a></details></template>
-          <template v-else-if="currentEntry"><p class="edition-caption">{{ entryYear }} 年领物、交通与比赛日安排，时间为北京时间。</p><div v-for="group in guideGroups" :key="group.title" class="section"><h3 class="minor-heading">{{ group.title }}</h3><div class="facts"><div v-for="f in group.fields" :key="f.label" class="fact"><span>{{ f.label }}</span><span>{{ f.value }}</span></div></div></div><div v-for="(tip,index) in currentEntry.logistics?.tips || []" :key="index" class="editorial-tip"><p class="edition-caption">{{ entryYear }} · {{ tip.kind==='official' ? '官方要求' : '编辑建议' }}</p><h3 class="minor-heading">{{ tip.title }}</h3><p class="archive-prose">{{ tip.body }}</p></div><div v-if="guideLinks.length" class="section"><h3 class="minor-heading">{{ entryYear }} 年指南来源</h3><a v-for="link in guideLinks" :key="link.url" :href="link.url" class="official-resource" target="_blank" rel="noopener noreferrer">{{ link.title }} ↗</a></div><div v-if="!guideGroups.length && !currentEntry.logistics?.tips?.length && !guideLinks.length" class="empty"><h3>参赛指南暂未录入</h3></div></template>
+          <div class="section-head annual-heading">
+            <h2>参赛</h2>
+            <select v-model="entryYear" class="select-year" aria-label="选择参赛年份">
+              <option v-for="year in years" :key="year" :value="year">{{ year }} 年</option>
+            </select>
+          </div>
+          <nav class="entry-switch" aria-label="参赛资料">
+            <button v-for="item in entryTypes" :key="item.id" type="button" :aria-pressed="entryType===item.id" @click="entryType=item.id">{{ item.label }}</button>
+          </nav>
+          <p v-if="currentEntry" class="edition-caption current-edition">{{ currentEntry.editionName || entryYear+' 年资料' }}<span v-if="currentEntry.status"> · {{ statusLabel(currentEntry.status) }}</span></p>
+          <template v-if="currentEntry && entryType==='registration'">
+            <section class="annual-section">
+              <h3 class="minor-heading">{{ entryYear }} 报名安排</h3>
+              <p v-if="currentEntry.registration?.method" class="archive-prose">{{ currentEntry.registration.method }}</p>
+              <div class="timeline entry-timeline">
+                <div><small>报名开始</small><strong>{{ currentEntry.registration?.opens || '未录入' }}</strong></div>
+                <div><small>报名截止</small><strong>{{ currentEntry.registration?.closes || '未录入' }}</strong></div>
+                <div><small>抽签公布</small><strong>{{ currentEntry.registration?.drawDate || '未录入' }}</strong></div>
+              </div>
+              <div class="facts">
+                <div v-for="fact in facts(currentEntry.registration,registrationFields)" :key="fact.label" class="fact"><span>{{ fact.label }}</span><span>{{ fact.value }}</span></div>
+              </div>
+              <p v-if="currentEntry.registration?.note" class="archive-prose">{{ currentEntry.registration.note }}</p>
+              <details v-if="currentEntry.registration?.sourceIds?.length" class="fact-evidence">
+                <summary>{{ entryYear }} 年报名与抽签来源</summary>
+                <a v-for="source in factSources(currentEntry.registration)" :key="source.id" :href="source.safeUrl" class="official-resource" target="_blank" rel="noopener noreferrer">{{ source.title }} ↗</a>
+              </details>
+            </section>
+            <section v-if="currentEntry.events?.length" class="annual-section event-projects">
+              <h3 class="minor-heading">{{ entryYear }} 项目与计划规模</h3>
+              <div class="fact" v-for="(project,index) in currentEntry.events" :key="index">
+                <span>{{ project.project || project.name || '项目待补充' }}<template v-if="project.distanceKm || project.distance"> · {{ project.distanceKm || project.distance }}<template v-if="project.distanceKm"> km</template></template></span>
+                <span><template v-if="project.plannedParticipants || project.planned">{{ project.plannedParticipants || project.planned }}<template v-if="project.plannedParticipants"> 人（计划）</template></template><template v-if="project.fee"> · {{ project.fee }}</template></span>
+              </div>
+            </section>
+            <section class="annual-section">
+              <ArchiveLottery :editions="editions" />
+              <p v-if="currentEntry.registration?.lotteryNote" class="callout">{{ currentEntry.registration.lotteryNote }}</p>
+              <div v-if="entryNotes.length" class="entry-notes"><p v-for="(note,index) in entryNotes" :key="index" class="archive-prose">{{ note }}</p></div>
+            </section>
+          </template>
+          <template v-else-if="currentEntry">
+            <div v-if="guideLinks.length" class="section source-panel">
+              <h3 class="minor-heading">{{ entryYear }} 年指南来源</h3>
+              <a v-for="link in guideLinks" :key="link.url" :href="link.url" class="official-resource source-card" target="_blank" rel="noopener noreferrer"><span>{{ link.title }}</span><span>↗</span></a>
+            </div>
+            <p v-if="guideGroups.length" class="edition-caption">以下时间为北京时间。</p>
+            <section v-for="group in guideGroups" :key="group.title" class="annual-section">
+              <h3 class="minor-heading">{{ group.title }}</h3>
+              <div class="facts">
+                <div v-for="fact in group.fields" :key="fact.label" class="fact"><span>{{ fact.label }}</span><span>{{ fact.value }}</span></div>
+              </div>
+            </section>
+            <div v-for="(tip,index) in currentEntry.logistics?.tips || []" :key="index" class="editorial-tip"><p class="edition-caption">{{ entryYear }} · {{ tip.kind==='official' ? '官方要求' : '编辑建议' }}</p><h3 class="minor-heading">{{ tip.title }}</h3><p class="archive-prose">{{ tip.body }}</p></div>
+            <div v-if="!guideGroups.length && !currentEntry.logistics?.tips?.length && !guideLinks.length" class="empty"><h3>参赛指南暂未录入</h3></div>
+          </template>
           <div v-else class="empty"><h3>参赛资料暂未录入</h3></div>
         </template>
-        <template v-if="tab==='route'"><div class="section-head"><div><p class="eyebrow">THE COURSE</p><h2>赛道与变化</h2></div></div><div v-if="routeEdition" class="route-layout"><div class="route-visual"><div><p class="eyebrow">{{ routeEdition.year }} · 赛道</p><ol class="road-order"><li v-for="(stage,index) in routeStages" :key="index"><span class="dot"></span>{{ stage }}</li></ol></div><span class="route-watermark" aria-hidden="true">42.195</span><small>道路顺序示意，不代表精确轨迹。</small></div><div><p class="eyebrow">赛道版本</p><div class="versions"><button v-for="e in routeVersions" :key="e.id" class="version-card" type="button" :aria-pressed="e.years.includes(routeYear)" @click="routeYear=e.years[0]"><b>{{ e.title }}</b><span>{{ e.note || e.route?.changes }}</span><em v-for="y in e.years" :key="y">{{ y }}</em></button></div><p class="version-caption">{{ activeRouteGroup?.match==='similar'?'道路序列相近，细部轨迹分别保留。':'按后台维护的路线版本归档。' }}</p><select v-if="activeRouteGroup?.years.length>1" v-model="routeYear" class="select-year" aria-label="选择版本内年份"><option v-for="y in activeRouteGroup.years" :key="y" :value="y">{{ y }} 年</option></select></div></div><p v-if="routeEdition?.route?.summaryNote" class="edition-caption">{{ routeEdition.route.summaryNote }}</p><div v-if="routeEdition" class="route-insights"><div><h3>路线变化</h3><p>{{ routeEdition.route?.changes || '暂未录入路线变化。' }}</p></div><div><h3>跑法参考</h3><p v-for="(line,i) in routeEdition.route?.analysis || []" :key="i">{{ line }}</p></div></div><section v-if="routeEdition" class="section">
-          <h3 class="minor-heading">{{ routeYear }} 年赛道图</h3>
-          <div v-if="routeImages.length" class="photo-group route-photo-group">
-            <button v-for="(img,i) in routeImages" :key="img.url" class="gallery-picture" type="button" @click="openImage(img,routeYear+' 年赛道图',routeImages,i)">
-              <img class="course-image" :src="img.url" :alt="img.caption || routeYear+' 年赛道图'" loading="lazy" />
-              <span v-if="img.caption || img.mediaRights?.attribution">{{ img.caption }} {{ img.mediaRights?.attribution }}</span>
-            </button>
+        <template v-if="tab==='route'">
+          <div class="section-head annual-heading">
+            <h2>赛道</h2>
+            <select v-model="routeYear" class="select-year" aria-label="选择赛道年份">
+              <option v-for="year in years" :key="year" :value="year">{{ year }} 年</option>
+            </select>
           </div>
-          <a v-for="resource in routeResources" :key="resource.url" class="official-resource" :href="resource.url" target="_blank" rel="noopener noreferrer">{{ resource.title }} ↗</a>
-          <p v-if="!routeImages.length && !routeResources.length" class="muted">本届官方赛道图入口待补充。</p>
-        </section><div v-if="!routeEdition" class="empty"><h3>赛道资料暂未录入</h3></div></template>
-        <section v-if="tab==='results'" class="section archive-records"><h3 class="minor-heading">赛会纪录</h3><p class="edition-caption">纪录与单届冠军分别记录，适用范围及核验截止届次见各项说明。</p><article v-for="(record,index) in archive.records || []" :key="index" class="archive-record"><div><h4>{{ record.group || record.category }}<span v-if="record.project"> · {{ record.project }}</span></h4><p>{{ record.athlete }}</p></div><strong>{{ record.time }}</strong><p class="edition-caption">{{ record.achievedAt || record.editionId }} · {{ record.timing || '计时口径待核实' }}<br v-if="record.verifiedThroughEditionId || record.verifiedAt"/><template v-if="record.verifiedThroughEditionId">核验截至 {{ record.verifiedThroughEditionId }}</template><template v-if="record.verifiedAt"> · 核验 {{ record.verifiedAt }}</template><a v-for="source in factSources(record)" :key="source.id" :href="source.safeUrl" class="official-resource" target="_blank" rel="noopener noreferrer">{{ source.title }} ↗</a></p></article><p v-if="!archive.records?.length" class="muted">赛会纪录尚待权威资料核实，已收录的单届成绩不作为历史纪录。</p></section>
-        <template v-if="tab==='results'"><div class="section-head"><div><p class="eyebrow">THE RESULTS</p><h2>成绩与完赛</h2></div><select v-model="resultsYear" class="select-year" aria-label="选择成绩年份"><option v-for="y in years" :key="y" :value="y">{{ y }} 年</option></select></div><div v-if="resultEdition"><div class="champion-grid"><article v-for="(result,i) in featuredResults" :key="i" class="champion"><small>{{ result.group }}</small><div class="time">{{ result.time }}</div><div class="name">{{ result.athlete }}</div><div class="timing">{{ result.timing || '计时口径待录入' }}</div></article></div><div v-if="!resultEdition.results?.length" class="empty"><h3>{{ resultEdition.coverage?.upcoming ? '本届尚未开赛' : '本届成绩暂未录入' }}</h3></div><div v-for="(result,i) in remainingResults" :key="i" class="result-row"><div><h3>{{ result.group }}</h3><span>{{ result.athlete }} · {{ result.timing || '计时口径待核实' }}</span></div><b>{{ result.time }}</b></div><section v-if="resultLinks.length" class="section"><h3 class="minor-heading">{{ resultsYear }} 年官方公示与成绩来源</h3><a v-for="link in resultLinks" :key="link.url" :href="link.url" class="official-resource" target="_blank" rel="noopener noreferrer">{{ link.title }} ↗</a></section><section class="section"><h3 class="minor-heading">参赛与完赛</h3><div class="facts"><div v-for="f in facts(resultEdition.participation,participationFields)" :key="f.label" class="fact"><span>{{ f.label }}</span><span>{{ f.value }}</span></div></div><p v-if="resultEdition.participation?.note" class="callout">{{ resultEdition.participation.note }}</p></section></div><div v-else class="empty"><h3>成绩暂未录入</h3></div></template>
-        <template v-if="tab==='gallery'"><div class="section-head"><div><p class="eyebrow">THE COLLECTION</p><h2>赛事图鉴</h2></div><select v-model="galleryYear" class="select-year" aria-label="选择图鉴年份"><option value="">全部年份</option><option v-for="y in years" :key="y" :value="y">{{ y }} 年</option></select></div><div class="subnav"><button v-for="g in galleryTypes" :key="g.id" type="button" :aria-pressed="gallery===g.id" @click="gallery=g.id">{{ g.label }}</button></div><div class="gallery-intro"><p>一件件收藏，留下每一年的记忆。</p></div><template v-if="gallery!=='albums'"><article v-for="group in galleryEntries" :key="group.year" class="collection-year">
-          <div class="collection-head"><b>{{ group.year }}</b><span>{{ gallery }}</span></div>
-          <div v-for="(item,j) in group.items" :key="j" class="collection-copy">
-            <h3 v-if="item.gear.name">{{ item.gear.name }}</h3>
-            <div v-if="item.images.length" class="photo-group"><button v-for="(img,i) in item.images" :key="img.url" class="gallery-picture" type="button" @click="openImage(img,item.gear.name,item.images,i)"><img :src="img.url" :alt="img.caption || item.gear.name" loading="lazy"/><span v-if="img.caption || img.mediaRights?.attribution">{{ img.caption }} {{ img.mediaRights?.attribution }}</span></button></div>
-            <p v-if="item.gear.description">{{ item.gear.description }}</p>
-            <div v-if="item.gear.items?.length" class="pills"><span v-for="p in item.gear.items" :key="p">{{ p }}</span></div>
+          <template v-if="routeEdition">
+            <section class="section source-panel">
+              <h3 class="minor-heading">{{ routeYear }} 年赛道图</h3>
+              <a v-for="resource in routeResources" :key="resource.url" class="official-resource source-card" :href="resource.url" target="_blank" rel="noopener noreferrer"><span>{{ resource.title }}</span><span>↗</span></a>
+              <div v-if="routeImages.length" class="photo-group route-photo-group">
+                <button v-for="(img,index) in routeImages" :key="img.url" class="gallery-picture" type="button" @click="openImage(img,routeYear+' 年赛道图',routeImages,index)">
+                  <img class="course-image" :src="img.url" :alt="img.caption || routeYear+' 年赛道图'" loading="lazy" />
+                  <span v-if="img.caption || img.mediaRights?.attribution">{{ img.caption }} {{ img.mediaRights?.attribution }}</span>
+                </button>
+              </div>
+              <template v-if="!routeImages.length && !routeResources.length">
+                <p class="archive-prose">本届赛道图入口待补充。</p>
+                <div v-if="otherMapYears.length" class="alternate-years">
+                  <span>其他届赛道图</span>
+                  <button v-for="year in otherMapYears" :key="year" type="button" @click="routeYear=year">{{ year }} 年</button>
+                </div>
+              </template>
+            </section>
+            <div v-if="routeStages.length" class="route-visual">
+              <div><h3 class="minor-heading">沿途道路</h3><ol class="road-order"><li v-for="(stage,index) in routeStages" :key="index"><span class="dot"></span>{{ stage }}</li></ol></div>
+              <span class="route-watermark" aria-hidden="true">42.195</span>
+              <small>道路顺序示意</small>
+            </div>
+            <p v-if="routeEdition.route?.summaryNote" class="edition-caption">{{ routeEdition.route.summaryNote }}</p>
+            <div v-if="routeEdition.route?.changes || routeEdition.route?.analysis?.length" class="route-insights">
+              <div v-if="routeEdition.route.changes"><h3>路线变化</h3><p>{{ routeEdition.route.changes }}</p></div>
+              <div v-if="routeEdition.route.analysis?.length"><h3>跑法参考</h3><p v-for="(line,index) in routeEdition.route.analysis" :key="index">{{ line }}</p></div>
+            </div>
+            <section v-if="routeVersions.length>1 || routeVersions[0]?.note" class="annual-section">
+              <h3 class="minor-heading">赛道版本</h3>
+              <div class="versions route-versions">
+                <button v-for="version in routeVersions" :key="version.id" class="version-card" type="button" :aria-pressed="version.years.includes(routeYear)" @click="routeYear=version.years[0]">
+                  <b>{{ version.title }}</b><span v-if="version.note || version.route?.changes">{{ version.note || version.route.changes }}</span><em v-for="year in version.years" :key="year">{{ year }}</em>
+                </button>
+              </div>
+            </section>
+          </template>
+          <div v-else class="empty"><h3>赛道资料暂未录入</h3></div>
+        </template>
+        <template v-if="tab==='results'">
+          <div class="section-head annual-heading">
+            <h2>成绩与完赛</h2>
+            <select v-model="resultsYear" class="select-year" aria-label="选择成绩年份">
+              <option v-for="year in years" :key="year" :value="year">{{ year }} 年</option>
+            </select>
           </div>
-          <a v-for="resource in group.resources" :key="resource.url" class="official-resource" :href="resource.url" target="_blank" rel="noopener noreferrer">{{ resource.title }} ↗</a>
-        </article><div v-if="!galleryEntries.length" class="empty"><h3>{{ galleryYear ? galleryYear+' 年' : '' }}{{ gallery }}资料待补充</h3></div></template><template v-else><div v-if="albums.length" class="album-layout"><button v-for="album in albums" :key="album.id" class="album-card" type="button" @click="openAlbum(album)"><img v-if="album.media?.[0]?.url" :src="album.media[0].url" :alt="album.title" /><div><strong>{{ album.year }} · {{ album.title }}</strong><span>{{ album.media?.length || 0 }} 张照片</span></div></button></div><div v-else class="empty"><h3>年度相册暂未录入</h3><p>有照片后，这里会按年份呈现。</p></div></template></template>
+          <template v-if="resultEdition">
+            <div v-if="!resultEdition.results?.length" class="empty result-status"><h3>{{ resultEdition.coverage?.upcoming ? '本届尚未开赛' : resultLinks.length ? '可通过下方链接查询本届成绩' : '本届成绩暂未录入' }}</h3></div>
+            <section v-if="resultLinks.length" class="section source-panel">
+              <h3 class="minor-heading">{{ resultsYear }} 年成绩公示与来源</h3>
+              <a v-for="link in resultLinks" :key="link.url" :href="link.url" class="official-resource source-card" target="_blank" rel="noopener noreferrer"><span>{{ link.title }}</span><span>↗</span></a>
+            </section>
+            <div v-if="featuredResults.length" class="champion-grid">
+              <article v-for="(result,index) in featuredResults" :key="index" class="champion"><small>{{ result.group }}</small><div class="time">{{ result.time }}</div><div class="name">{{ result.athlete }}</div><div class="timing">{{ result.timing || '计时口径待核实' }}</div></article>
+            </div>
+            <div v-for="(result,index) in remainingResults" :key="index" class="result-row"><div><h3>{{ result.group }}</h3><span>{{ result.athlete }} · {{ result.timing || '计时口径待核实' }}</span></div><b>{{ result.time }}</b></div>
+            <section class="annual-section"><h3 class="minor-heading">参赛与完赛</h3><div class="facts"><div v-for="fact in facts(resultEdition.participation,participationFields)" :key="fact.label" class="fact"><span>{{ fact.label }}</span><span>{{ fact.value }}</span></div></div><p v-if="resultEdition.participation?.note" class="callout">{{ resultEdition.participation.note }}</p></section>
+          </template>
+          <div v-else class="empty"><h3>成绩暂未录入</h3></div>
+          <section class="section archive-records">
+            <h3 class="minor-heading">赛会纪录</h3>
+            <article v-for="(record,index) in archive.records || []" :key="index" class="archive-record">
+              <div><h4>{{ record.group || record.category }}<span v-if="record.project"> · {{ record.project }}</span></h4><p>{{ record.athlete }}</p></div>
+              <strong>{{ record.time }}</strong>
+              <p class="edition-caption">
+                {{ record.achievedAt || record.editionId }} · {{ record.timing || '计时口径待核实' }}<br v-if="record.verifiedThroughEditionId || record.verifiedAt" />
+                <template v-if="record.verifiedThroughEditionId">核验截至 {{ record.verifiedThroughEditionId }}</template>
+                <template v-if="record.verifiedAt"> · 核验 {{ record.verifiedAt }}</template>
+                <a v-for="source in factSources(record)" :key="source.id" :href="source.safeUrl" class="official-resource" target="_blank" rel="noopener noreferrer">{{ source.title }} ↗</a>
+              </p>
+            </article>
+            <p v-if="!archive.records?.length" class="archive-prose">赛会纪录待核实。</p>
+          </section>
+        </template>
+        <template v-if="tab==='gallery'">
+          <div class="section-head annual-heading">
+            <h2>赛事图鉴</h2>
+            <select v-model="galleryYear" class="select-year" aria-label="选择图鉴年份">
+              <option value="">全部年份</option>
+              <option v-for="year in years" :key="year" :value="year">{{ year }} 年</option>
+            </select>
+          </div>
+          <div class="subnav gallery-filters" role="group" aria-label="图鉴分类">
+            <button v-for="item in galleryTypes" :key="item.id" type="button" :aria-pressed="gallery===item.id" @click="gallery=item.id">{{ item.label }}</button>
+          </div>
+          <template v-if="gallery!=='albums'">
+            <article v-for="group in galleryEntries" :key="group.year" class="collection-year">
+              <div class="collection-head"><b>{{ group.year }}</b><span>{{ gallery }}</span></div>
+              <a v-for="resource in group.resources" :key="resource.url" class="official-resource source-card" :href="resource.url" target="_blank" rel="noopener noreferrer"><span>{{ resource.title }}</span><span>↗</span></a>
+              <p v-if="!group.resources.length && !group.items.some(item=>item.images.length) && (gallery==='参赛服' || gallery==='奖牌')" class="edition-caption">本届暂未收录图片。</p>
+              <div v-for="(item,index) in group.items" :key="index" class="collection-copy">
+                <h3 v-if="item.gear.name">{{ item.gear.name }}</h3>
+                <div v-if="item.images.length" class="photo-group">
+                  <button v-for="(img,imageIndex) in item.images" :key="img.url" class="gallery-picture" type="button" @click="openImage(img,item.gear.name,item.images,imageIndex)"><img :src="img.url" :alt="img.caption || item.gear.name" loading="lazy" /><span v-if="img.caption || img.mediaRights?.attribution">{{ img.caption }} {{ img.mediaRights?.attribution }}</span></button>
+                </div>
+                <p v-if="item.gear.description">{{ item.gear.description }}</p>
+                <div v-if="item.gear.items?.length" class="pills"><span v-for="piece in item.gear.items" :key="piece">{{ piece }}</span></div>
+              </div>
+            </article>
+            <div v-if="!galleryEntries.length" class="empty"><h3>{{ galleryYear ? galleryYear+' 年' : '' }}{{ gallery }}资料待补充</h3></div>
+          </template>
+          <template v-else>
+            <div v-if="albums.length" class="album-layout"><button v-for="album in albums" :key="album.id" class="album-card" type="button" @click="openAlbum(album)"><img v-if="album.media?.[0]?.url" :src="album.media[0].url" :alt="album.title" /><div><strong>{{ album.year }} · {{ album.title }}</strong><span>{{ album.media?.length || 0 }} 张照片</span></div></button></div>
+            <div v-else class="empty"><h3>年度相册暂未录入</h3></div>
+          </template>
+        </template>
         <template v-if="tab==='updates'"><div class="section-head"><div><p class="eyebrow">STORIES & NEWS</p><h2>{{ race.shortName || race.name }}动态</h2></div><select v-if="updatesType==='stories'" v-model="storyYear" class="select-year" aria-label="选择故事年份"><option value="">全部年份</option><option v-for="y in years" :key="y" :value="y">{{ y }} 年</option></select></div><div class="subnav"><button type="button" :aria-pressed="updatesType==='stories'" @click="updatesType='stories'">赛事故事</button><button type="button" :aria-pressed="updatesType==='news'" @click="updatesType='news'">相关新闻</button></div><div v-if="updatesType==='stories'" class="story-grid"><button v-for="(item,i) in stories" :key="i" class="story-card" type="button" @click="openReader(item)"><div class="story-art" :class="{red:i%2}"><img v-if="item.images?.[0]?.url" :src="item.images[0].url" :alt="item.title"/><span v-else>{{ item.editionYear || String(i+1).padStart(2,'0') }}</span><small>{{ item.tag || '赛事记忆' }}</small></div><div class="text"><small>{{ item.tag || '赛事故事' }} <template v-if="item.editionYear">· {{ item.editionYear }}</template></small><h3>{{ item.title }}</h3><p>{{ item.summary || item.body }}</p></div></button></div><template v-else><button v-for="(item,i) in news" :key="i" class="news-row" type="button" @click="openReader(item)"><span class="news-date"><b>{{ (item.publishedAt||'').slice(5) || '—' }}</b>{{ (item.publishedAt||'').slice(0,4) }}</span><span><span class="news-tag">{{ item.tag || '赛事新闻' }}</span><h3>{{ item.title }}</h3><p>{{ item.summary }}</p></span><span class="arrow">↗</span></button></template><div v-if="(updatesType==='stories'&&!stories.length)||(updatesType==='news'&&!news.length)" class="empty"><h3>内容暂未录入</h3></div></template>
 
         <details class="archive-sources"><summary>资料来源与核验 <span>{{ sources.length }} 条</span></summary><p class="edition-caption">事实按对应年份收录，核验日期不代表所有缺失资料均已取得。</p><ol><li v-for="source in sources" :key="source.id"><a v-if="source.safeUrl" :href="source.safeUrl" target="_blank" rel="noopener noreferrer">{{ source.title }}</a><strong v-else>{{ source.title }}</strong><p>{{ source.publisher }}<template v-if="source.publishedAt"> · 发布 {{ source.publishedAt }}</template></p><p>适用 {{ source.yearsLabel }} · 核验 {{ source.verifiedAt || source.accessedAt || '待补充' }}</p></li></ol></details>
@@ -89,7 +228,6 @@ const history=computed(()=>archive.value?.history || []),visibleHistory=computed
 const entryNotes=computed(()=>{const notes=archive.value?.profile?.entryNotes;return Array.isArray(notes)?notes:notes?[notes]:[];});
 const sources=computed(()=>(archive.value?.sources||[]).map(source=>({...source,safeUrl:safeSourceUrl(source.url),yearsLabel:(source.applicableYears||[]).join('、')||'见对应事实'})));
 const routeVersions=computed(()=>{const groups=archive.value?.routeGroups?.length?archive.value.routeGroups:(race.value?.id==='beijing'?[{id:'near-2025-2026',title:'2025—2026 · 奥体方向',years:['2026','2025'],match:'similar',note:'公开道路序列相近，各年细部线位分别记录。'}]:[]);const used=new Set();const result=groups.map(g=>({...g,years:(g.years||[]).map(String).filter(y=>years.value.includes(y))})).filter(g=>g.years.length).map(g=>{g.years.forEach(y=>used.add(y));return {...g,route:editions.value.find(e=>String(e.year)===g.years[0])?.route};});return [...result,...editions.value.filter(e=>!used.has(String(e.year))).map(e=>({id:String(e.year),title:e.route?.versionTitle||e.year+' 年路线',years:[String(e.year)],route:e.route}))];});
-const activeRouteGroup=computed(()=>routeVersions.value.find(g=>g.years.includes(routeYear.value)));
 const selected=y=>editions.value.find(e=>String(e.year)===y),currentEntry=computed(()=>selected(entryYear.value)),routeEdition=computed(()=>selected(routeYear.value)),resultEdition=computed(()=>selected(resultsYear.value));
 const featuredResults=computed(()=>{
   const rows=resultEdition.value?.results||[];
@@ -125,6 +263,10 @@ const guideLinks=computed(()=>evidenceLinks(currentEntry.value,'guide',Object.va
 const resultLinks=computed(()=>evidenceLinks(resultEdition.value,'results',resultEdition.value?.results||[]));
 const routeResources=computed(()=>officialResources(routeEdition.value,'route-map'));
 const routeImages=computed(()=>{const r=routeEdition.value?.route;return imageList(r?.images,r?.mapUrl,r?.mediaRights);});
+const otherMapYears=computed(()=>editions.value.filter(edition=>{
+  const year=String(edition.year), route=edition.route;
+  return year!==routeYear.value && (officialResources(edition,'route-map').length || imageList(route?.images,route?.mapUrl,route?.mediaRights).length);
+}).map(edition=>String(edition.year)));
 const galleryEntries=computed(()=>editions.value.filter(e=>!galleryYear.value||String(e.year)===galleryYear.value).map(e=>({
   year:e.year,
   items:(e.gear||[]).filter(g=>g.category===gallery.value).map(g=>({gear:g,images:imageList(g.images,g.imageUrl,g.mediaRights)})),
@@ -172,4 +314,153 @@ watch(()=>route.params.id,load,{immediate:true});watch(()=>route.query,()=>{if(!
 .hero.has-landmark{background:linear-gradient(125deg,#49313b,#262730)}
 .hero .hero-landmark{position:absolute;top:38px;right:5%;width:min(42%,430px);height:74%;object-fit:contain;object-position:center;opacity:.86}
 @media(max-width:700px){.hero .hero-landmark{top:34px;right:7%;width:min(56%,245px);height:66%}}
+
+.annual-heading {
+  align-items: center;
+  margin-bottom: 14px;
+}
+.annual-heading h2 {
+  margin: 0;
+}
+.annual-heading .select-year {
+  flex: none;
+  min-width: 104px;
+  font-variant-numeric: tabular-nums;
+}
+.entry-switch {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px;
+  max-width: 420px;
+  padding: 4px;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  background: #f5f5f5;
+}
+.entry-switch button {
+  min-height: 44px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  color: #555;
+  background: transparent;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+.entry-switch button[aria-pressed="true"] {
+  color: #a81733;
+  background: #fff;
+  box-shadow: 0 1px 3px #1a1a1a1f;
+}
+.entry-switch button:focus-visible,
+.source-card:focus-visible,
+.alternate-years button:focus-visible {
+  outline: 2px solid #a81733;
+  outline-offset: 2px;
+}
+.current-edition {
+  margin: 12px 0 20px;
+}
+.annual-section {
+  min-width: 0;
+  margin-top: 25px;
+  padding-top: 18px;
+  border-top: 1px solid #e8e4e5;
+}
+.annual-section > :deep(.lottery-comparison) {
+  margin-top: 0;
+}
+.entry-timeline {
+  margin: 16px 0;
+  padding: 12px;
+  gap: 12px;
+  border-radius: 10px;
+  background: #faf8f9;
+}
+.entry-timeline > div {
+  border: 0;
+  padding: 0;
+}
+.entry-timeline > div::before {
+  display: none;
+}
+.entry-timeline small {
+  margin-bottom: 4px;
+  color: #666;
+}
+.source-panel {
+  min-width: 0;
+  margin: 0 0 20px;
+  padding: 16px;
+  border: 1px solid #eadfe2;
+  border-radius: 12px;
+  background: #fdf9fa;
+}
+.source-panel .minor-heading {
+  margin: 0 0 7px;
+}
+.official-resource.source-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 44px;
+  margin: 8px 0 0;
+  padding: 8px 12px;
+  border: 1px solid #e6d9dd;
+  border-radius: 8px;
+  background: #fff;
+  color: #a81733;
+  font-size: 14px;
+  text-decoration: none;
+}
+.collection-copy {
+  margin-top: 12px;
+}
+.source-card:hover span:first-child {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.alternate-years {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  color: #666;
+  font-size: 13px;
+}
+.alternate-years button {
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1px solid #e6d9dd;
+  border-radius: 8px;
+  background: #fff;
+  color: #a81733;
+  font-size: 13px;
+}
+.route-versions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  max-width: 100%;
+  margin: 10px 0 0;
+}
+.route-versions .version-card {
+  min-width: 0;
+}
+.result-status {
+  margin-bottom: 12px;
+  padding: 12px 0;
+}
+.subnav.gallery-filters {
+  flex-wrap: wrap;
+  overflow: visible;
+  margin-right: 0;
+  padding-right: 0;
+}
+@media (max-width: 480px) {
+  .route-versions {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
 </style>

@@ -349,12 +349,58 @@
       },
       "results": [
         {
-          "group": "全国马拉松锦标赛女子冠军",
+          "group": "全马暨全国锦标赛男子冠军",
+          "athlete": "解云策",
+          "time": "02:12:58",
+          "timing": "",
+          "sourceIds": [
+            "hs-podium-2025"
+          ]
+        },
+        {
+          "group": "全马暨全国锦标赛女子冠军",
           "athlete": "徐冰洁",
           "time": "02:28:10",
           "timing": "",
           "sourceIds": [
+            "hs-podium-2025",
             "hs-race-2025"
+          ]
+        },
+        {
+          "group": "全马暨全国锦标赛男子亚军",
+          "athlete": "扎西次仁",
+          "time": "02:13:17",
+          "timing": "",
+          "sourceIds": [
+            "hs-podium-2025"
+          ]
+        },
+        {
+          "group": "全马暨全国锦标赛男子季军",
+          "athlete": "马瑞",
+          "time": "02:13:32",
+          "timing": "",
+          "sourceIds": [
+            "hs-podium-2025"
+          ]
+        },
+        {
+          "group": "全马暨全国锦标赛女子亚军",
+          "athlete": "沈妮",
+          "time": "02:31:26",
+          "timing": "",
+          "sourceIds": [
+            "hs-podium-2025"
+          ]
+        },
+        {
+          "group": "全马暨全国锦标赛女子季军",
+          "athlete": "王佳莉",
+          "time": "02:32:44",
+          "timing": "",
+          "sourceIds": [
+            "hs-podium-2025"
           ]
         }
       ],
@@ -397,6 +443,14 @@
           "url": "http://hengshuilakemarathon.com/news/detailNews.html?id=4375",
           "sourceIds": [
             "hs-course-guide-2025"
+          ]
+        },
+        {
+          "category": "results",
+          "title": "2025全马和全国锦标赛男女前三（河北广播电视台）",
+          "url": "https://www.hebtv.com/19/19js/zx/tt/12019489.shtml",
+          "sourceIds": [
+            "hs-podium-2025"
           ]
         }
       ]
@@ -475,7 +529,8 @@
           "time": "02:09:57",
           "timing": "",
           "sourceIds": [
-            "hs-race-2024"
+            "hs-race-2024",
+            "hs-podium-2024"
           ]
         },
         {
@@ -484,7 +539,8 @@
           "time": "02:23:39",
           "timing": "",
           "sourceIds": [
-            "hs-race-2024"
+            "hs-race-2024",
+            "hs-podium-2024"
           ]
         },
         {
@@ -493,7 +549,8 @@
           "time": "02:10:13",
           "timing": "",
           "sourceIds": [
-            "hs-race-2024"
+            "hs-race-2024",
+            "hs-podium-2024"
           ]
         },
         {
@@ -502,7 +559,80 @@
           "time": "02:26:47",
           "timing": "",
           "sourceIds": [
-            "hs-race-2024"
+            "hs-race-2024",
+            "hs-podium-2024"
+          ]
+        },
+        {
+          "group": "马拉松男子总排名第二",
+          "athlete": "梅昆特·阿耶纽·格布雷",
+          "time": "02:10:06",
+          "timing": "",
+          "sourceIds": [
+            "hs-podium-2024"
+          ]
+        },
+        {
+          "group": "马拉松男子总排名第三",
+          "athlete": "贝哈内·特塞盖·特克勒",
+          "time": "02:10:10",
+          "timing": "",
+          "sourceIds": [
+            "hs-podium-2024"
+          ]
+        },
+        {
+          "group": "马拉松女子总排名第二",
+          "athlete": "沃尔哈·马祖罗纳克",
+          "time": "02:25:09",
+          "timing": "",
+          "sourceIds": [
+            "hs-podium-2024"
+          ]
+        },
+        {
+          "group": "马拉松女子总排名第三",
+          "athlete": "德拉克图·海洛·格列法",
+          "time": "02:25:57",
+          "timing": "",
+          "sourceIds": [
+            "hs-podium-2024"
+          ]
+        },
+        {
+          "group": "锦标赛男子亚军",
+          "athlete": "郭中瑞",
+          "time": "02:10:25",
+          "timing": "",
+          "sourceIds": [
+            "hs-podium-2024"
+          ]
+        },
+        {
+          "group": "锦标赛男子季军",
+          "athlete": "陈天宇",
+          "time": "02:10:26",
+          "timing": "",
+          "sourceIds": [
+            "hs-podium-2024"
+          ]
+        },
+        {
+          "group": "锦标赛女子亚军",
+          "athlete": "周霞",
+          "time": "02:29:59",
+          "timing": "",
+          "sourceIds": [
+            "hs-podium-2024"
+          ]
+        },
+        {
+          "group": "锦标赛女子季军",
+          "athlete": "李丹",
+          "time": "02:32:10",
+          "timing": "",
+          "sourceIds": [
+            "hs-podium-2024"
           ]
         }
       ],
@@ -557,6 +687,14 @@
           "url": "http://hengshuilakemarathon.com/news/detailNews.html?id=3106",
           "sourceIds": [
             "hs-medal-2024"
+          ]
+        },
+        {
+          "category": "results",
+          "title": "2024全马和全国锦标赛男女前三（长城网）",
+          "url": "http://hs.hebccw.cn/system/2024/09/22/101381495.shtml",
+          "sourceIds": [
+            "hs-podium-2024"
           ]
         }
       ]
@@ -783,16 +921,42 @@
       "applicableYears": [
         "2025"
       ]
+    },
+    {
+      "id": "hs-podium-2024",
+      "title": "2024衡水湖马拉松赛暨全国马拉松锦标赛（第二站）成绩出炉",
+      "url": "http://hs.hebccw.cn/system/2024/09/22/101381495.shtml",
+      "publisher": "长城网·冀云客户端",
+      "publishedAt": "2024-09-22",
+      "accessedAt": "2026-11-20",
+      "applicableYears": [
+        "2024"
+      ],
+      "verifiedAt": "2026-11-20",
+      "note": "赛后发布会现场报道，分别列出公开组和全国锦标赛的男子、女子前三。正文未注明计时口径。"
+    },
+    {
+      "id": "hs-podium-2025",
+      "title": "2025衡水湖马拉松赛暨全国马拉松锦标赛（第2站）冠军出炉",
+      "url": "https://www.hebtv.com/19/19js/zx/tt/12019489.shtml",
+      "publisher": "河北广播电视台",
+      "publishedAt": "2025-09-21",
+      "accessedAt": "2026-11-20",
+      "applicableYears": [
+        "2025"
+      ],
+      "verifiedAt": "2026-11-20",
+      "note": "正文列出赛会全马和同期全国马拉松锦标赛男、女前三，两个排名的前三名相同。正文未注明计时口径。"
     }
   ],
   "gaps": [
     {
       "fields": [
         "records（截至2026的当前纪录）",
-        "editions.2025.results",
+        "editions.2025.results.timing",
         "editions.2026.registration.lotteryRate"
       ],
-      "reason": "2026已按组委会公示录入全马男女冠军的枪声成绩，并补报名、抽签与领物安排；2025锦标赛男子用时和赛事总排名仍缺。2024纪录仅确认至该届，没有用公示的名次替代完整历史纪录。"
+      "reason": "2026已按组委会公示录入全马男女冠军的枪声成绩；2025与2024补收全马和锦标赛男女前三，报道未注明枪声或净计时。2024纪录的核验范围见相应纪录。"
     },
     {
       "fields": [
