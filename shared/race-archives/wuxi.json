@@ -1,6 +1,6 @@
 {
   "raceId": "wuxi",
-  "updatedAt": "2026-11-20",
+  "updatedAt": "2026-11-23",
   "intro": "无锡马拉松于2014年起跑，以蠡湖、太湖沿岸和江南大学等城市景观串起江南赛道。候补退出、身份核验与参赛助手是其服务演进的重要线索；路线和报名分组按届次保存，避免把某年的规则写成固定承诺。",
   "introSourceIds": [
     "wx-history-2024",
@@ -151,10 +151,18 @@
         "summaryNote": "依据2026年规程节选的关键地标顺序，不是完整道路清单或导航轨迹；半马路线须另列。",
         "changes": "",
         "analysis": [],
-        "mapUrl": "",
+        "mapUrl": "/marathon/images/race-archives/wuxi-2026-course.png",
         "sourceIds": [
-          "wx-regulations-2026"
-        ]
+          "wx-regulations-2026",
+          "wx-map-2026"
+        ],
+        "mapSourceUrl": "https://www.wuximarathon.com/page/L1ozbl9Dxre308Y2BZEn.html",
+        "mediaRights": {
+          "status": "original",
+          "title": "2026 无锡马拉松全程赛道示意图",
+          "holder": "跑圈编辑部",
+          "attribution": "依据无锡马拉松组委会全程马拉松路线图绘制"
+        }
       },
       "registration": {
         "method": "2026届各项目超额后采用抽签加候补；全马分段抽签，具体资格按当届报名须知。",
@@ -451,10 +459,11 @@
         "raceDay": {
           "timeLimit": "按分枪计：第一、第二、第三枪起点分别07:15、07:35、07:55关门；全马终点分别13:00、13:20、13:40。半马第二、第三枪终点分别10:20、10:40。",
           "sourceIds": [
-            "wx-preparation-2026"
+            "wx-preparation-2026",
+            "wx-regulations-2026"
           ],
-          "startTime": "07:00????S?A+?A?B???07:20????C?E???07:40????F?H???各分区前设置检录计时地毯，按本人分区出发并依次通过前方地毯和起点地毯。",
-          "bagDrop": "05:30???????????????15????????????????11:25???14:25???????"
+          "startTime": "按规程分三枪：07:00、07:20、07:40。各分区按本人所属分区检录，并通过分区与起点计时地毯。",
+          "bagDrop": "各枪发枪前15分钟停止存衣。凭本人参赛号码在终点对应区域取衣，半马11:25前、全马14:25前。"
         },
         "tips": [
           {
@@ -569,16 +578,24 @@
         "summary": "",
         "start": "",
         "finish": "",
-        "mapUrl": "",
-        "mapSourceUrl": "",
+        "mapUrl": "/marathon/images/race-archives/wuxi-2025-course.png",
+        "mapSourceUrl": "https://www.sohu.com/a/842346954_100048098",
         "changes": "",
         "analysis": [],
-        "sourceIds": []
+        "sourceIds": [
+          "wx25-route-press"
+        ],
+        "mediaRights": {
+          "status": "original",
+          "title": "2025 无锡马拉松全程赛道示意图",
+          "holder": "跑圈编辑部",
+          "attribution": "依据2025无锡马拉松发布图与报名发布消息绘制"
+        }
       },
       "registration": {
         "method": "大众按项目抽签；另设挚爱、公益、年龄组和成绩四类直通（各自适用项目按当届规则）。",
-        "opens": "",
-        "closes": "",
+        "opens": "2024-12-27 10:00",
+        "closes": "2025-01-03 17:00",
         "drawDate": "2025-01-10上午",
         "fee": "",
         "qualification": "",
@@ -591,7 +608,8 @@
         "lotteryNote": "报名、参与抽签、抽签名额及直通资格数据来自扬子晚报抽签当日报道；未取得组委会原版中签率，未填中签率字段。",
         "note": "",
         "sourceIds": [
-          "wx-draw-2025-report"
+          "wx-draw-2025-report",
+          "wx25-route-press"
         ]
       },
       "participation": {
@@ -732,7 +750,28 @@
           ]
         }
       ],
-      "gear": [],
+      "gear": [
+        {
+          "category": "参赛服",
+          "name": "锡马粉色背心",
+          "description": "报名发布报道列入当届参赛物资。",
+          "items": [],
+          "imageUrl": "",
+          "sourceIds": [
+            "wx25-route-press"
+          ]
+        },
+        {
+          "category": "奖牌",
+          "name": "锡马完赛奖牌",
+          "description": "延续首届梅花元素，侧面以釉色呈现层次。",
+          "items": [],
+          "imageUrl": "",
+          "sourceIds": [
+            "wx25-medal-city"
+          ]
+        }
+      ],
       "logistics": {
         "collection": {
           "time": "",
@@ -800,7 +839,7 @@
       "events": [
         {
           "project": "马拉松",
-          "distanceKm": "",
+          "distanceKm": 42.195,
           "plannedParticipants": "",
           "fee": "",
           "sourceIds": [
@@ -818,16 +857,23 @@
         }
       ],
       "route": {
-        "summary": "代表性景观包括蠡湖之光、鼋头渚、十里芳径、长广溪湿地、江南大学、贡湖湾与太湖国际博览中心；此为景观概览，非完整道路导航。",
-        "start": "",
-        "finish": "",
-        "mapUrl": "",
-        "mapSourceUrl": "",
+        "summary": "太湖大道隐秀路路口出发，沿环湖路、十里芳堤、鼋渚路和山水东路，经江南大学、吴都路、贡湖湾湿地公园，再由丰润道、清源路和清舒道抵达无锡太湖国际博览中心。",
+        "start": "太湖大道隐秀路路口",
+        "finish": "无锡太湖国际博览中心",
+        "mapUrl": "/marathon/images/race-archives/wuxi-2024-course.png",
+        "mapSourceUrl": "https://www.wxrb.com/doc/2024/03/20/338632.shtml",
         "changes": "",
         "analysis": [],
         "sourceIds": [
-          "wx-history-2024"
-        ]
+          "wx-history-2024",
+          "wx-map-2024-traffic"
+        ],
+        "mediaRights": {
+          "status": "original",
+          "title": "2024 无锡马拉松全程赛道示意图",
+          "holder": "跑圈编辑部",
+          "attribution": "依据无锡日报刊载的当届路线图和交通通告绘制"
+        }
       },
       "registration": {
         "method": "",
@@ -932,7 +978,18 @@
           ]
         }
       ],
-      "gear": [],
+      "gear": [
+        {
+          "category": "奖牌",
+          "name": "「步步高」完赛奖牌",
+          "description": "当届完赛奖牌于赛前公布。",
+          "items": [],
+          "imageUrl": "",
+          "sourceIds": [
+            "wx24-medal-press"
+          ]
+        }
+      ],
       "logistics": {
         "collection": {
           "time": "",
@@ -974,6 +1031,14 @@
           "sourceIds": [
             "wx24-medal-press"
           ]
+        },
+        {
+          "category": "route-map",
+          "title": "2024无锡马拉松赛道图及全程道路（当届交通通告）",
+          "url": "https://www.wxrb.com/doc/2024/03/20/338632.shtml",
+          "sourceIds": [
+            "wx-map-2024-traffic"
+          ]
         }
       ]
     }
@@ -1003,9 +1068,59 @@
       "sourceIds": [
         "wx-recap-2026"
       ]
+    },
+    {
+      "id": "wuxi-2026-draw",
+      "editionYear": "2026",
+      "tag": "中签",
+      "title": "50余万人提交预报名后，锡马怎样抽签",
+      "summary": "2026锡马公布了有效报名、分段抽签人数与名额，全马不同成绩段中签率有别。",
+      "body": "组委会收到520,317份预报名，去除重复和无效信息后剩495,635名有效报名者。半马报名另计，全马还要先划出成绩直通和精英、特邀席位。\n\n全马大众按成绩分为四段。A段8,164人进入抽签，分到4,836席。D段有60,866人，分到1,209席。这也是同一届全马各段公布中签率相差较大的原因。\n\n半马有251,832人参与抽签，提供7,272席。组委会公布全马合计中签率9.9%，半马2.9%。对照时要看自己报名的项目和成绩分段。",
+      "sourceIds": [
+        "wx-pre-2026-count",
+        "wx-draw-2026",
+        "wx-registration-2026"
+      ]
+    },
+    {
+      "id": "wuxi-2025-split",
+      "editionYear": "2025",
+      "tag": "中签与成绩",
+      "title": "2025锡马三个项目各有一张抽签表",
+      "summary": "全马、半马和欢乐跑分别分配名额，赛后的女子冠军成绩刷新了赛会纪录。",
+      "body": "2025锡马共有429,447人报名。参赛规模按全马25,000人、半马8,000人和欢乐跑2,000人设置，其中一部分席位给了直通资格。扣除对应名额后，三个项目分别开展抽签。\n\n全马实际参与抽签213,297人，名额12,802个。半马为174,726人抽5,704个名额，欢乐跑为32,734人抽1,504个名额。中签缴费之后还有按规则退出和候补的环节。\n\n3月23日比赛结束，萨姆索姆·阿玛雷以2小时07分00秒赢得男子全马，库夫图·塔希尔以2小时23分42秒赢得女子全马，并刷新该届赛事的女子赛会纪录。",
+      "sourceIds": [
+        "wx-draw-2025-report",
+        "wx25-route-press",
+        "wx-recap-2025",
+        "wx-wa-2025"
+      ]
+    },
+    {
+      "id": "wuxi-2024-runners",
+      "editionYear": "2024",
+      "tag": "赛事沿革",
+      "title": "2024锡马开跑前，有人沿狮城海滨备赛",
+      "summary": "同一场比赛把外地跑团与回到家乡的跑者带到蠡湖边。",
+      "body": "无锡市体育局赛前报道记录了两组备赛。一支新加坡跑团在当地海滨做了32公里长距离训练。另一位从洛杉矶回到无锡的跑者，则和老朋友绕蠡湖训练。\n\n两段训练各有熟悉的水岸，最后都指向无锡3月的同一场比赛。蠡湖也是这项赛事在城市里可辨认的一段风景。\n\n世界田联保存了当年正式的马拉松成绩，可按全场名次和用时核对。市体育局报道为同届赛事提供了报名与跑团故事。",
+      "sourceIds": [
+        "wx-history-2024",
+        "wx-wa-2024"
+      ]
     }
   ],
   "sources": [
+    {
+      "id": "wx-map-2024-traffic",
+      "title": "关于在2024无锡马拉松期间对太湖大道等道路实施临时交通限制措施的通告",
+      "publisher": "无锡日报",
+      "url": "https://www.wxrb.com/doc/2024/03/20/338632.shtml",
+      "publishedAt": "2024-03-20",
+      "verifiedAt": "2026-11-23",
+      "applicableYears": [
+        "2024"
+      ]
+    },
     {
       "id": "wx-regulations-2026",
       "title": "2026海澜之家无锡马拉松竞赛规程",
@@ -1290,27 +1405,33 @@
   "gaps": [
     {
       "fields": [
-        "records.男子赛会纪录",
-        "editions.2025.registration.开始截止费用资格缴费",
-        "editions.2025.officialResources.shirt",
-        "editions.2024.officialResources.赛道图参赛服",
+        "records.男子",
+        "editions.2024.registration",
+        "editions.2025.registration.fee",
+        "editions.2025.registration.qualification",
         "editions.2024.results.半程",
         "editions.2025.results.半程"
       ],
-      "reason": "2025赛道图和2024、2025完赛奖牌图已收录；2025组委会完整报名须知、参赛服当届发布图、2024路线图和参赛服、两届半马成绩及男子赛会纪录仍待核验。"
+      "reason": "2025 已补报名起止及抽签人数、名额。2024 报名费与抽签细则、2025 收费和资格须知、两届半马完整成绩、男子赛会纪录仍待查。"
     },
     {
       "fields": [
-        "editions[].route.mapUrl",
+        "editions[].participation.starters",
+        "editions[].participation.finishers"
+      ],
+      "reason": "所录规模为报名前计划。实际起跑、完赛和完赛率仍缺同口径计时统计。"
+    },
+    {
+      "fields": [
         "editions[].gear[].imageUrl"
       ],
-      "reason": "未取得可公开再分发的图片许可；仅保留来源链接，不接入赛道图或物资实物图片。"
+      "reason": "已保留历届发布图出处。2024 参赛服专门发布原图仍待核实，已有装备原图待取得展示许可。"
     },
     {
       "fields": [
         "editions.2027"
       ],
-      "reason": "截至核验日未找到可确认的2027无锡马拉松主办方规程、路线或报名公告。"
+      "reason": "截至核验日未找到可确认的 2027 无锡马拉松组委会规程、路线或报名公告。"
     }
   ],
   "conflicts": []

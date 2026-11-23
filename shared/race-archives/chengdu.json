@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "raceId": "chengdu",
-  "updatedAt": "2026-11-20",
+  "updatedAt": "2026-11-23",
   "intro": "成都马拉松创办于2017年。近年从金沙遗址博物馆出发，穿过老城街区，再向城南的新城地标延伸。2025年减少下穿隧道与公园内部路段，2026年加入杜甫草堂、四川博物院、青羊宫和琴台路，让这条线路的古蜀、诗意街巷与现代城市层次更加清晰。",
   "introSourceIds": [
     "cd-founding",
@@ -163,7 +163,7 @@
         "summary": "金沙遗址博物馆 → 杜甫草堂、四川博物院与青羊宫一带 → 天府广场 → 春熙路 → 天府熊猫塔周边 → 望江楼公园周边 → 世纪城新国际会展中心",
         "start": "金沙遗址博物馆",
         "finish": "全马：世纪城新国际会展中心；半马：四川大学望江校区",
-        "mapUrl": "",
+        "mapUrl": "/marathon/images/race-archives/chengdu-2026-course.png",
         "changes": "前6公里新串联杜甫草堂、四川博物院、青羊宫及琴台路一带；成华区折返缩至双林北横路，城南部分改走环球中心前下穿隧道。",
         "analysis": [
           "全马和半马共用金沙起点，望江方向后分流；看清路牌和号码布项目。",
@@ -176,7 +176,15 @@
           "cd-gear-release-2026"
         ],
         "summaryNote": "按官方图整理的全马沿线地标；半马终点为四川大学望江校区。",
-        "mapSourceUrl": "https://chengdumarathon.cn/column/articleDetail/130?column_id=68&lang=cn"
+        "mapSourceUrl": "https://chengdumarathon.cn/column/articleDetail/130?column_id=68&lang=cn",
+        "mediaRights": {
+          "status": "original",
+          "holder": "跑团小助理",
+          "title": "2026成都马拉松全程赛道示意图",
+          "sourceUrl": "https://chengdumarathon.cn/column/articleDetail/130?column_id=68&lang=cn",
+          "attribution": "依据成都马拉松组委会比赛路线图绘制",
+          "usageTerms": "依据当届路线事实原创绘制，供赛事回顾。"
+        }
       },
       "registration": {
         "method": "通过赛事官网或官方合作应用报名，超额抽签，中签后缴费。第二轮仅从首轮未中签且报名时选择补录的选手中抽取。",
@@ -200,7 +208,8 @@
         ],
         "payment": "首轮至2026年8月5日18:00；二次至9月13日18:00。",
         "waitlist": "第二轮从首轮未中签且报名时选择补录的选手中抽取。",
-        "direct": "全马成绩直通按年龄组入围比例分配，最多5000人。"
+        "direct": "全马成绩直通按年龄组入围比例分配，最多5000人。",
+        "plannedQuota": "35000人（全马25000人、半马10000人）"
       },
       "participation": {
         "planned": "35000人：全马25000、半马10000",
@@ -490,35 +499,46 @@
         "summary": "从金沙遗址博物馆东门起跑，经过中心城区与城南新城；沿线景观包括宽窄巷子、春熙路、天府熊猫塔与望江楼公园。",
         "start": "金沙遗址博物馆东门",
         "finish": "全马：世纪城新国际会展中心；半马：四川大学望江校区",
-        "mapUrl": "",
+        "mapUrl": "/marathon/images/race-archives/chengdu-2025-course.png",
         "changes": "2025年减少两处下穿隧道，取消桂溪生态公园内部路段。",
         "analysis": [],
         "sourceIds": [
           "cd-report-2025",
           "cd-map-2025"
         ],
-        "mapSourceUrl": "https://chengdumarathon.cn/column/articleDetail/44?column_id=69&lang=cn"
+        "mapSourceUrl": "https://chengdumarathon.cn/column/articleDetail/44?column_id=69&lang=cn",
+        "mediaRights": {
+          "status": "original",
+          "holder": "跑团小助理",
+          "title": "2025成都马拉松全程赛道示意图",
+          "sourceUrl": "https://chengdumarathon.cn/column/articleDetail/44?column_id=69&lang=cn",
+          "attribution": "依据成都马拉松组委会赛事路线发布绘制",
+          "usageTerms": "依据当届路线事实原创绘制，供赛事回顾。"
+        }
       },
       "registration": {
         "method": "官网或官方合作应用报名，先缴费后抽签；选择参与候补的未中签者按签位进入候补。",
         "opens": "2025-04-15 10:00",
         "closes": "2025-05-15 22:00",
-        "drawDate": "2025-06-15（报名须知所列公布日期）",
+        "drawDate": "2025-06-15",
         "fee": "全马、半马均为200元/人；公益捐赠费1500元。",
         "qualification": "大众抽签按A、B、C类递减；A、B类分别对应指定有效期内全马6小时或半马3小时内完赛。",
-        "applicants": "",
+        "applicants": "287584人（全马131375人，半马156209人）",
         "eligibleApplicants": "",
         "lotteryPool": "",
         "drawQuota": "",
-        "directQuota": "",
-        "lotteryRate": "",
-        "lotteryNote": "未核实官方同口径中签率和各档抽签池，不按总规模推算。",
+        "directQuota": "另有公益报名500席（先到先得）",
+        "lotteryRate": "综合12.17%，全马19.02%，半马约6.4%（四川在线转述组委会）",
+        "lotteryNote": "按四川在线公布口径展示；未披露分资格抽签池和各池实际名额。",
         "note": "未中签且不参与候补者7个工作日内全额退费；未候补成功者在9月14日后退费。",
         "sourceIds": [
-          "cd-signup-2025"
+          "cd-signup-2025",
+          "cd25-draw-scol",
+          "cd25-draw-publish"
         ],
         "payment": "预报名时缴费；未中签按当届须知退款。",
-        "waitlist": "未中签且不参与候补者7个工作日内退款；未候补成功者在9月14日后退款。"
+        "waitlist": "未中签且不参与候补者7个工作日内退款；未候补成功者在9月14日后退款。",
+        "plannedQuota": "35000人（全马25000人、半马10000人）"
       },
       "participation": {
         "planned": "35000人（报道赛事规模）",
@@ -641,7 +661,20 @@
           ]
         }
       ],
-      "gear": [],
+      "gear": [
+        {
+          "category": "奖牌",
+          "name": "“共蓉”完赛奖牌",
+          "description": "",
+          "items": [
+            "双段式伸缩"
+          ],
+          "imageUrl": "",
+          "sourceIds": [
+            "cd-medal-wanda-2025"
+          ]
+        }
+      ],
       "notes": [
         "全马名次以枪声成绩呈现；半马按组委会名次奖公布的净成绩呈现。"
       ],
@@ -715,6 +748,14 @@
           "sourceIds": [
             "cd-medal-wanda-2025"
           ]
+        },
+        {
+          "category": "medal",
+          "title": "2025成马“共蓉”奖牌原图",
+          "url": "https://image.wanda.cn/uploadfile/2025/0518/20250518095101124.png",
+          "sourceIds": [
+            "cd-medal-wanda-2025"
+          ]
         }
       ]
     },
@@ -730,22 +771,23 @@
       "distance": "马拉松、半程马拉松",
       "events": [],
       "route": {
-        "summary": "从金沙遗址出发；赛后报道未给出完整道路序列及各项目终点。",
-        "start": "金沙遗址",
-        "finish": "",
+        "summary": "全马、半马均从金沙遗址博物馆起跑。全马终点在世纪城新国际会展中心，半马终点在四川大学望江校区。",
+        "start": "金沙遗址博物馆",
+        "finish": "全马：世纪城新国际会展中心；半马：四川大学望江校区",
         "mapUrl": "",
         "changes": "",
         "analysis": [],
         "sourceIds": [
-          "cd-report-2024"
+          "cd-report-2024",
+          "cd24-entry-reprint"
         ]
       },
       "registration": {
-        "method": "",
-        "opens": "",
-        "closes": "",
-        "drawDate": "",
-        "fee": "",
+        "method": "官网或赛事合作应用预报名，先缴费再抽签；未中签可按报名意愿候补。",
+        "opens": "2024-04-15 09:00",
+        "closes": "2024-05-15 21:00",
+        "drawDate": "2024-06-15（须知公布日）",
+        "fee": "全马、半马各200元；公益捐赠费1500元。",
         "qualification": "",
         "applicants": "",
         "eligibleApplicants": "",
@@ -755,7 +797,10 @@
         "lotteryRate": "",
         "lotteryNote": "",
         "note": "",
-        "sourceIds": []
+        "sourceIds": [
+          "cd24-entry-reprint"
+        ],
+        "payment": "未中签且不参加候补者，7个工作日内退还报名费。"
       },
       "participation": {
         "planned": "35000人（报道赛事规模）",
@@ -819,12 +864,27 @@
   ],
   "stories": [
     {
-      "id": "cd-tenth-kit-2026",
-      "title": "十年成马，熊猫跑进了奖牌和参赛服",
-      "tag": "装备故事",
+      "id": "cd-story-draw-2026",
       "editionYear": "2026",
-      "summary": "一对金银色奖牌、一件橙色参赛服，都留下了蓉城的熊猫印记。",
-      "body": "2017年，成都举办了首届成马。十年后的发布会上，组委会用黑白分明的熊猫形态做设计：在奖牌上刻进芙蓉花与太阳神鸟，在橙色参赛服上让熊猫跑动回头。组委会还把虚拟赛道做进终点体验，扫码识别完赛奖牌后可回看沿路的动画。",
+      "tag": "报名",
+      "title": "从付款等签，到中签再缴费",
+      "summary": "成马改了报名付款的顺序。两轮缴费有各自的期限。",
+      "body": "2025年报名成马时，选手先付报名费，再等抽签。如果落签且不参加候补，组委会按须知退款。2026年把付款挪到了抽签之后，选手提交资料后等结果，抽中才需要付款。\n\n组委会首轮公告记载共收到239282份报名。7月30日公布首轮结果，缴费至8月5日18时。第二轮于9月7日公布，缴费至9月13日18时。\n\n第二轮从首轮未中签、且报名时选择补录的人中抽取。落签后还能否等到名额，取决于预报名时填写的补录意愿。",
+      "sourceIds": [
+        "cd-preview-2026",
+        "cd-signup-2026",
+        "cd-draw-1-2026",
+        "cd-draw-2-2026",
+        "cd-signup-2025"
+      ]
+    },
+    {
+      "id": "cd-tenth-kit-2026",
+      "editionYear": "2026",
+      "tag": "奖牌与参赛服",
+      "title": "熊猫在奖牌和参赛服上留下两种身影",
+      "summary": "全马用金色奖牌，半马用银色奖牌，橙色赛服上的熊猫还在奔跑。",
+      "body": "从2017年首届成马到2026年，组委会在十年节点选择熊猫作为装备设计的共同线索。一件发给选手穿上赛道，一件留给跑到终点的人。\n\n奖牌把熊猫、芙蓉花和太阳神鸟金箔纹样排进同一件作品。全程与半程采用同一主题，以金、银色分辨项目。\n\n参赛服采用明亮的橙色，回头奔跑的熊猫把成都的首字母“CD”带进图案。赛后还可用完赛奖牌的互动功能回看线路动画。",
       "sourceIds": [
         "cd-history-2017",
         "cd-gear-release-2026"
@@ -833,24 +893,26 @@
     {
       "id": "cd-story-underpass-2025",
       "editionYear": "2025",
-      "tag": "赛事故事",
-      "title": "路面少了两段下穿",
-      "summary": "2025成马保留金沙到世纪城的城市路线，同时让跑者少进两处下穿隧道。",
-      "body": "四川省体育局赛后回顾记载，2025路线取消了两处下穿和桂溪生态公园内部路段。第二年发布会又公布杜甫草堂、四川博物院、青羊宫和琴台路等新增点位。路线改善和城市景观不是同一个指标，读图时值得一起看，也要按自己的参赛年份分开。",
+      "tag": "赛道",
+      "title": "2025成马少跑两处下穿路段",
+      "summary": "从金沙到世纪城的主轴保留，变化发生在隧道和桂溪生态公园路段。",
+      "body": "2025成都马拉松延续从金沙遗址出发的格局。全马以城南的世纪城新国际会展中心为终点，跑半马的人在四川大学望江校区结束比赛。\n\n当届调整取消了两段下穿隧道和桂溪生态公园的内部路段。调整发生在局部路段，宽窄巷子、春熙路、天府熊猫塔等城市景观仍是赛道的主要识别点。\n\n2026又把杜甫草堂、四川博物院、青羊宫、琴台路一带纳入线路。赛道两年都从金沙跑起，看当届路线时仍需区分中段所经街区。",
       "sourceIds": [
         "cd-report-2025",
+        "cd-map-2025",
         "cd-preview-2026"
       ]
     },
     {
-      "id": "cd-story-draw-2026",
-      "editionYear": "2026",
-      "tag": "赛事故事",
-      "title": "先抽签，再决定是否缴费",
-      "summary": "2026成都马拉松调整报名流程，中签后才进入缴费阶段。",
-      "body": "在以前报名时缴费、落签再退款的流程下，跑者先付钱再等结果。2026发布会公布改为报名后抽签，中签者限期缴费，另设退赛窗口。对隔年参赛的人来说，这项变化比沿用上一次保存的报名攻略更值得关注。",
+      "id": "cd-results-feature-2024",
+      "editionYear": "2024",
+      "tag": "成绩",
+      "title": "2024成马男子冠军跑进2小时09分",
+      "summary": "男子冠军阿达内跑出2:08:55，女子冠军切利莫用时2:27:12。",
+      "body": "10月27日，2024成马从金沙遗址博物馆起跑。全马跑往世纪城新国际会展中心，半马在四川大学望江校区完赛，两个项目共享起点。\n\n据四川地方志转发的当届报道，阿达内以2:08:55夺得男子全马冠军，并刷新当时的赛会纪录。女子全马的第一名是切利莫，成绩为2:27:12。\n\n当届报道给出了两位全马冠军的完赛用时和名次。其他名次及两组详细计时口径还需当届成绩表补充。",
       "sourceIds": [
-        "cd-preview-2026"
+        "cd-report-2024",
+        "cd24-entry-reprint"
       ]
     }
   ],
@@ -1146,23 +1208,71 @@
         "2025"
       ],
       "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "cd24-entry-reprint",
+      "title": "2024成都马拉松参赛攻略",
+      "url": "https://m.cd.bendibao.com/xiuxian/182069.shtm",
+      "publisher": "成都本地宝（赛事须知转录）",
+      "publishedAt": "",
+      "accessedAt": "2026-11-23",
+      "verifiedAt": "2026-11-23",
+      "applicableYears": [
+        "2024"
+      ]
+    },
+    {
+      "id": "cd25-draw-scol",
+      "title": "综合中签率12.17% 2025成都马拉松 你中签了么",
+      "url": "https://ent.scol.com.cn/ty/202506/83065348.html",
+      "publisher": "四川在线",
+      "publishedAt": "2025-06-16",
+      "accessedAt": "2026-11-23",
+      "verifiedAt": "2026-11-23",
+      "applicableYears": [
+        "2025"
+      ]
+    },
+    {
+      "id": "cd25-draw-publish",
+      "title": "287584人报名！2025成都马拉松抽签结果即将公布",
+      "url": "https://news.qq.com/rain/a/20250610A08X6Q00",
+      "publisher": "腾讯新闻刊载",
+      "publishedAt": "2025-06-10",
+      "accessedAt": "2026-11-23",
+      "verifiedAt": "2026-11-23",
+      "applicableYears": [
+        "2025"
+      ]
     }
   ],
   "gaps": [
     {
       "fields": [
         "records.现行纪录",
-        "editions.2024.registration"
+        "editions.2024.results"
       ],
-      "reason": "2024男子纪录按当届确认；现行历届公开组纪录与2024报名规程仍待补。2025/2026已经接入组委会名次公示。"
+      "reason": "2024冠军可核，现行历届公开组纪录与该年完整成绩公告待找。"
     },
     {
       "fields": [
-        "registration.lotteryRate",
-        "participation.finishers",
+        "editions.2024.registration.applicants",
+        "editions.2026.registration.lotteryRate",
+        "participation.finishers"
+      ],
+      "reason": "2024报名总数、2026两轮同口径抽签池和实际抽出名额、逐年起跑完赛明细待补。2025中签率按四川在线发布口径收录。"
+    },
+    {
+      "fields": [
         "images"
       ],
-      "reason": "尚未核实2026两轮同口径抽签名额、各组实际完赛人数；2025/2026官方图件按届提供原页，未确认转载授权。"
+      "reason": "2025“共蓉”奖牌、2026赛服与奖牌已有发布资料，需小程序展示许可或经授权实拍。2024实物及2025参赛服尚缺可用原图。"
+    },
+    {
+      "fields": [
+        "editions.2024.route.mapUrl"
+      ],
+      "reason": "2024当届赛道图入口返回拼图验证，能核到起终点和赛道大致经过区域，缺可读全程线路图。2025、2026已据当届发布图绘制示意。"
     }
   ],
   "conflicts": []

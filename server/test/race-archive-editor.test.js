@@ -102,6 +102,7 @@ test('uploaded gallery images require confirmation, preserve ordered captions an
 test('edition source links survive editor saves without granting permission to publish photos', async () => {
   const value = (await request(app).get(editor + '/beijing').set(auth).expect(200)).body;
   const edition = value.archive.editions[0];
+  edition.route.mapUrl = '';
   const source = { id: 'official-link-test', title: '当届组委会原图发布页', url: 'https://organizer.example/course', publisher: '测试组委会', applicableYears: [edition.year], verifiedAt: '2026-11-20' };
   const resource = { category: 'route-map', title: '查看当届官方赛道图', url: source.url, sourceIds: [source.id] };
   value.archive.sources.push(source);

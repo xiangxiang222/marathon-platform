@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "raceId": "dalian",
-  "updatedAt": "2026-11-20",
+  "updatedAt": "2026-11-23",
   "intro": "大连马拉松创办于1987年。东港的海港景观与中山广场、人民广场等城市广场建筑群，是大马鲜明的辨识点。路线强调山海相连、穿城而行；赛期近年从2024年10月转到2025年5月、2026年4月，不能把某一年的季节写成赛事永久安排。",
   "introSourceIds": [
     "dl-report-2025",
@@ -158,14 +158,23 @@
         "summary": "全程与半程共用东港起点，沿人民路、中山路至星海湾；半马就近完赛，全马经南山、港湾和华乐街折返，再回到东港。",
         "start": "东港商务区港浦路／珠荷街交汇处",
         "finish": "全马：东港商务区港浦路／珠荷街交汇处；半马：星海湾会展路／会展东路交汇处",
-        "mapUrl": "",
+        "mapUrl": "/marathon/images/race-archives/dalian-2026-course.png",
         "changes": "2026年发布会称延续经典路线，未公布本轮可读取的全程坡度和累计爬升数据。",
         "analysis": [],
         "sourceIds": [
           "dl-preview-2026",
           "dl-course-roads-2026",
           "dl-route-map-2026"
-        ]
+        ],
+        "mapSourceUrl": "https://news.qq.com/rain/a/20260418A06HFM00",
+        "mediaRights": {
+          "status": "original",
+          "holder": "跑团小助理",
+          "title": "2026大连马拉松全程赛道示意图",
+          "sourceUrl": "https://news.qq.com/rain/a/20260418A06HFM00",
+          "attribution": "依据大连马拉松组委会赛道图 · 大连本地宝刊载绘制",
+          "usageTerms": "依据当届路线事实原创绘制，供赛事回顾。"
+        }
       },
       "registration": {
         "method": "大众选手预报名后抽签，中签缴费；精英选手由组委会定向邀请。",
@@ -476,6 +485,22 @@
           "sourceIds": [
             "dl-collection-2026"
           ]
+        },
+        {
+          "category": "medal",
+          "title": "2026大连马拉松完赛奖牌发布图",
+          "url": "https://media.bjnews.com.cn/xn/2026/04/16/69e042ac80e4a10001269e042ac80e49.png",
+          "sourceIds": [
+            "dl-gear-release-2026"
+          ]
+        },
+        {
+          "category": "shirt",
+          "title": "2026大连马拉松两款参赛服发布图",
+          "url": "https://media.bjnews.com.cn/xn/2026/04/16/69e042ae53ed210001469e042ae53ecf.png",
+          "sourceIds": [
+            "dl-gear-release-2026"
+          ]
         }
       ]
     },
@@ -491,15 +516,25 @@
       "distance": "马拉松、半程马拉松",
       "events": [],
       "route": {
-        "summary": "东港商务区起跑；本轮赛后报道未给出可逐路段核对的完整路线。",
-        "start": "东港商务区",
-        "finish": "",
-        "mapUrl": "",
+        "summary": "全马、半马从东港出发经人民路和中山路至星海湾。半马到会展路完赛，全马经五惠路、解放路、鲁迅路返回东港，经华乐街折返后回起点。",
+        "start": "东港商务区港浦路与珠荷街交汇处",
+        "finish": "全马：港浦路与珠荷街交汇处；半马：会展路与会展东路交汇处；欢乐跑：港东五街",
+        "mapUrl": "/marathon/images/race-archives/dalian-2025-course.png",
         "changes": "",
         "analysis": [],
         "sourceIds": [
-          "dl-report-2025"
-        ]
+          "dl-report-2025",
+          "dl25-course-reprint"
+        ],
+        "mapSourceUrl": "https://dl.bendibao.com/xiuxian/2025310/85991.shtm",
+        "mediaRights": {
+          "status": "original",
+          "holder": "跑团小助理",
+          "title": "2025大连马拉松全程赛道示意图",
+          "sourceUrl": "https://dl.bendibao.com/xiuxian/2025310/85991.shtm",
+          "attribution": "依据大连马拉松组委会赛道图 · 大连本地宝刊载绘制",
+          "usageTerms": "依据当届路线事实原创绘制，供赛事回顾。"
+        }
       },
       "registration": {
         "method": "大众报名后抽签，符合年龄组成绩标准者可直通。",
@@ -520,7 +555,8 @@
           "dl-signup-qa-2025",
           "dl-report-2025"
         ],
-        "direct": "成绩直通按年龄与性别分组，取指定区间中国田协A类赛事同项目个人最好净成绩；全马、半马另合计200个公益名额。"
+        "direct": "成绩直通按年龄与性别分组，取指定区间中国田协A类赛事同项目个人最好净成绩；全马、半马另合计200个公益名额。",
+        "plannedQuota": "赛事报道规模33000人。"
       },
       "participation": {
         "planned": "33000人（赛事报道规模）",
@@ -649,22 +685,58 @@
         "dl-preview-2024"
       ],
       "distance": "马拉松、半程马拉松、欢乐跑",
-      "events": [],
+      "events": [
+        {
+          "project": "马拉松",
+          "distanceKm": 42.195,
+          "plannedParticipants": 12000,
+          "sourceIds": [
+            "dl24-entry-nen"
+          ]
+        },
+        {
+          "project": "半程马拉松",
+          "distanceKm": 21.0975,
+          "plannedParticipants": 16000,
+          "sourceIds": [
+            "dl24-entry-nen"
+          ]
+        },
+        {
+          "project": "欢乐跑",
+          "distanceKm": 7,
+          "plannedParticipants": 2000,
+          "sourceIds": [
+            "dl24-entry-nen"
+          ]
+        }
+      ],
       "route": {
         "summary": "赛前介绍从东港出发，将中山广场、人民路、中山路等城市建筑与街道纳入赛事景观；完整道路顺序未核实。",
-        "start": "东港商务区",
-        "finish": "",
-        "mapUrl": "",
+        "start": "东港商务区港浦路与珠荷街交汇处",
+        "finish": "全马：港浦路与珠荷街交汇处；半马：会展路期货大厦；欢乐跑：港东五街",
+        "mapUrl": "/marathon/images/race-archives/dalian-2024-course.png",
         "changes": "",
         "analysis": [],
         "sourceIds": [
-          "dl-preview-2024"
-        ]
+          "dl-preview-2024",
+          "dl24-entry-nen",
+          "dl24-course-and-kit-press"
+        ],
+        "mapSourceUrl": "https://news.sohu.com/a/815888926_100048098",
+        "mediaRights": {
+          "status": "original",
+          "holder": "跑团小助理",
+          "title": "2024大连马拉松全程赛道示意图",
+          "sourceUrl": "https://news.sohu.com/a/815888926_100048098",
+          "attribution": "依据第34届大连马拉松赛赛道图 · 跑步之声刊载绘制",
+          "usageTerms": "依据当届路线事实原创绘制，供赛事回顾。"
+        }
       },
       "registration": {
-        "method": "",
-        "opens": "",
-        "closes": "",
+        "method": "官方报名渠道预报名，全马、半马和欢乐跑均抽签。",
+        "opens": "2024-08-23 10:00",
+        "closes": "2024-08-30 15:00",
         "drawDate": "",
         "fee": "",
         "qualification": "",
@@ -676,7 +748,10 @@
         "lotteryRate": "",
         "lotteryNote": "",
         "note": "",
-        "sourceIds": []
+        "sourceIds": [
+          "dl24-entry-nen"
+        ],
+        "plannedQuota": "30000人：全马12000人、半马16000人、欢乐跑2000人。"
       },
       "participation": {
         "planned": "计划30000人",
@@ -688,10 +763,73 @@
           "dl-preview-2024"
         ]
       },
-      "results": [],
-      "gear": [],
+      "results": [
+        {
+          "group": "马拉松男子冠军",
+          "athlete": "何杰",
+          "time": "02:14:41",
+          "timing": "",
+          "sourceIds": [
+            "dl24-chinanews-results"
+          ]
+        },
+        {
+          "group": "马拉松男子亚军",
+          "athlete": "DAVID KIMUTAI KOECH",
+          "time": "02:14:51",
+          "timing": "",
+          "sourceIds": [
+            "dl24-chinanews-results"
+          ]
+        },
+        {
+          "group": "马拉松男子季军",
+          "athlete": "GADISA WORKU NEGASH",
+          "time": "02:15:00",
+          "timing": "",
+          "sourceIds": [
+            "dl24-chinanews-results"
+          ]
+        },
+        {
+          "group": "马拉松女子冠军",
+          "athlete": "丁常琴",
+          "time": "02:34:10",
+          "timing": "",
+          "sourceIds": [
+            "dl24-chinanews-results"
+          ]
+        }
+      ],
+      "gear": [
+        {
+          "category": "奖牌",
+          "name": "完赛奖牌",
+          "description": "",
+          "items": [
+            "发布会展品"
+          ],
+          "imageUrl": "",
+          "sourceIds": [
+            "dl24-course-and-kit-press"
+          ]
+        },
+        {
+          "category": "参赛服",
+          "name": "参赛服",
+          "description": "",
+          "items": [
+            "马拉松",
+            "半程马拉松"
+          ],
+          "imageUrl": "",
+          "sourceIds": [
+            "dl24-course-and-kit-press"
+          ]
+        }
+      ],
       "notes": [
-        "本届资料来自赛前官方媒体介绍；没有据此补写实际完赛人数或成绩。"
+        "现有男子前三名、女子冠军成绩来自中国新闻网记者赛后报道；同组完整榜单、计时口径及芯片统计待补。"
       ],
       "logistics": {
         "collection": {
@@ -741,29 +879,67 @@
           "sourceIds": [
             "dl24-course-and-kit-press"
           ]
+        },
+        {
+          "category": "results",
+          "title": "2024大连马拉松赛后全马男子前三与女子冠军成绩",
+          "url": "https://www.chinanews.com.cn/ty/2024/10-20/10304668.shtml",
+          "sourceIds": [
+            "dl24-chinanews-results"
+          ]
         }
       ]
     }
   ],
   "stories": [
     {
-      "title": "一场比赛，32个加油站",
-      "body": "2026年大马把32处文化加油站多设在城市地标附近。对跑者而言，赛前可把中山广场、人民广场等景观作为路线记忆点；这份报道并未给出逐站公里数。",
+      "id": "dl-gear-2026",
+      "editionYear": "2026",
+      "tag": "奖牌与参赛服",
+      "title": "灯塔上了奖牌，大桥穿在身上",
+      "summary": "全马背心与半马短袖共用星海湾大桥主题，奖牌正中是一座灯塔。",
+      "body": "2026大连马拉松从东港出发，沿城市街路引向星海湾。围绕水边地标，发布会分别给完赛奖牌和参赛服选了不同的设计线索。\n\n奖牌以海浪围住灯塔。正面做成立体浮雕，边缘呈哑光，深蓝绶带上还有大连常见的槐花图案。组委会继续提供完赛奖牌刻字服务。\n\n参赛服则取星海湾大桥的线条，使用深蓝和粉色。全马发背心，半马发短袖。发布会另展示了全马跑进3小时者的纪念风衣。",
       "sourceIds": [
-        "dl-preview-2026",
-        "dl-results-2026"
-      ],
-      "editionYear": "2026"
+        "dl-gear-release-2026",
+        "dl-preview-2026"
+      ]
+    },
+    {
+      "id": "dl-results-2026",
+      "editionYear": "2026",
+      "tag": "成绩",
+      "title": "朗加特跑出2:09:29，朱卿赢下女子全马",
+      "summary": "2026大连马拉松男子赛会纪录被改写，中国选手夺得女子公开组冠军。",
+      "body": "4月26日，2026大连马拉松在东港起跑。全马去过星海湾后回到东港，半马在会展路与会展东路交汇处完赛。\n\n男子全马第一名是肯尼亚选手Francis Kipkorir LANGAT。世界田联成绩页记录的2:09:29也是科技日报报道的当届男子赛会新纪录。\n\n朱卿以2:29:02获得女子全马冠军。男子中国籍选手中，张晓鸿跑出2:11:17获得第一。两人的分组名次在成绩页按对应口径收录。",
+      "sourceIds": [
+        "dl-wa-results-2026",
+        "dl-results-2026",
+        "dl-preview-2026"
+      ]
     },
     {
       "id": "dl-club-race-2025",
       "editionYear": "2025",
-      "tag": "赛事故事",
-      "title": "跑团把大连的全马和半马变成团体赛",
-      "summary": "2025届分别在全马、半马开设跑团赛中赛。",
-      "body": "报名成功的跑者可以创建或加入跑团，跑团名次依据成员净计时。凭个人冲线顺序不能判断跑团成绩；赛道沿途另布置了34处文化加油站，跑者经过时能听到京剧、看到武术展演。",
+      "tag": "赛事变化",
+      "title": "团体赛把个人冲线拆成两份成绩",
+      "summary": "第35届大马在全马和半马设置跑团赛中赛，跑团按成员净计时排名。",
+      "body": "2025大连马拉松把全马和半马的跑团比赛放在同一天、同一条赛道上。报名成功的跑者可以创建或加入跑团，组团后仍然参加自己的个人项目。\n\n个人冲线时看到的先后顺序，只能说明当时谁先到达。团体赛以成员的净计时成绩为依据，净时从个人越过起跑计时点计算。\n\n观赛时可以同时留意沿途的34处文化加油站。主办方把京剧、武术等表演安排在赛道附近，让跑团比赛也成为城市观赛的一部分。",
       "sourceIds": [
-        "dl-report-2025"
+        "dl-report-2025",
+        "dl25-results-stdaily"
+      ]
+    },
+    {
+      "id": "dl-entry-2024",
+      "editionYear": "2024",
+      "tag": "报名",
+      "title": "第34届大马的三种距离都要抽签",
+      "summary": "全马、半马和约7公里欢乐跑共规划3万人，其中半马名额最多。",
+      "body": "大连发布在2024年8月23日公布报名开启时间。第34届比赛预报名从当天10时开始，到8月30日15时截止。三种距离都采用抽签确认参赛资格。\n\n3万人的计划里，全马、半马、欢乐跑依次是12000、16000和2000人。选项目时还会决定完赛去向，三种距离同从东港出发，全马回到起点，半马到会展路，欢乐跑到港东五街。\n\n当届还推出百团竞赛，设立全马破3荣誉，并设置中国籍选手名次奖。具体名次和实际参赛人数仍需当届成绩与统计资料补齐。\n\n赛后，中国新闻网记录了两位中国冠军。何杰以2小时14分41秒夺得全马男子冠军，丁常琴以2小时34分10秒赢得女子冠军。",
+      "sourceIds": [
+        "dl24-entry-nen",
+        "dl-preview-2024",
+        "dl24-chinanews-results"
       ]
     }
   ],
@@ -1009,6 +1185,30 @@
       "accessedAt": "2026-11-20",
       "verifiedAt": "2026-11-20",
       "note": "赛后原报道明确全马和半马、全马中国籍组男女冠军与完赛用时，未注明枪时或净时。"
+    },
+    {
+      "id": "dl24-entry-nen",
+      "title": "第34届大连马拉松赛报名通道正式开启",
+      "url": "https://liaoning.nen.com.cn/network/liaoningnews/sylistnews/2024/08/23/681559063951052903.shtml",
+      "publisher": "大连发布（东北新闻网转载）",
+      "publishedAt": "2024-08-23",
+      "accessedAt": "2026-11-23",
+      "verifiedAt": "2026-11-23",
+      "applicableYears": [
+        "2024"
+      ]
+    },
+    {
+      "id": "dl24-chinanews-results",
+      "title": "第34届大连马拉松赛鸣枪起跑 中国选手包揽男女组全程冠军",
+      "publisher": "中国新闻网",
+      "url": "https://www.chinanews.com.cn/ty/2024/10-20/10304668.shtml",
+      "publishedAt": "2024-10-20",
+      "accessedAt": "2026-11-23",
+      "verifiedAt": "2026-11-23",
+      "applicableYears": [
+        "2024"
+      ]
     }
   ],
   "gaps": [
@@ -1017,23 +1217,22 @@
         "records.女子",
         "editions.2024.results"
       ],
-      "reason": "2026男子赛会纪录已用科技日报和世界田联交叉核对；女子现行纪录与2024成绩原表仍未找到。"
+      "reason": "2024已补全马男子前三与女子冠军。完整成绩表、计时口径及女子现行赛会纪录仍待主办方资料。"
     },
     {
       "fields": [
-        "editions.2026.registration.fee",
-        "editions.2026.registration.qualification",
+        "registration.lotteryRate",
+        "editions.2024.registration.drawDate",
         "editions.2025.registration.drawDate",
-        "editions.2024.registration"
+        "editions.2026.registration.qualification"
       ],
-      "reason": "2026报名与抽签日程、全半马终点和领物身份要求已补；报名原始规程、同口径中签数据及部分旧届详细日程待补。"
+      "reason": "已补2024官方转载报名时段与项目规模；2025/2024原抽签公告和2026原始成绩门槛待找；逐届同口径抽签数据未核实。"
     },
     {
       "fields": [
-        "images",
-        "editions.route.mapUrl"
+        "images"
       ],
-      "reason": "未取得官方图片、路线图的明确转载许可，暂不展示图片；可通过资料来源查看官方原图。"
+      "reason": "已有2024与2026实物发布图出处，2025参赛服和奖牌原图及其余届可公开展示的实拍或许可待补。"
     }
   ],
   "conflicts": []

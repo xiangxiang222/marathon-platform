@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "raceId": "hangzhou",
-  "updatedAt": "2026-11-20",
+  "updatedAt": "2026-11-23",
   "intro": "杭州马拉松始于1987年，其历史与西湖桂花国际马拉松、国际友好西湖马拉松赛相连。西湖、秋日桂花和钱塘江是杭马长期的城市记忆；2026年线路再连接京杭大运河，跨江改走彭埠大桥。档案按年保留项目计划、终点与报名机制变化，让经典景观与实际参赛安排分开阅读。",
   "introSourceIds": [
     "hz-report-2024",
@@ -224,20 +224,29 @@
         "summary": "黄龙路起跑，经北山街、杨公堤、虎跑路转向之江路。全马经彭埠大桥至钱塘江南岸，终点为杭州奥体中心体育场；半马由之江路转新业路，终点为市民广场。",
         "start": "黄龙路（黄龙体育中心）",
         "finish": "全马：杭州奥体中心体育场；半马：市民广场",
-        "mapUrl": "",
+        "mapUrl": "/marathon/images/race-archives/hangzhou-2026-course.png",
         "changes": "跨江路段由复兴大桥调整为彭埠大桥，延长之江路路段并加入江河汇、大运河，减少折返。",
         "analysis": [],
         "sourceIds": [
           "hz-map-2026",
           "hz-route-2026",
           "hz26-additional"
-        ]
+        ],
+        "mapSourceUrl": "https://hm.zhetiyu.cn/rich-text?id=2061724559532855297",
+        "mediaRights": {
+          "status": "original",
+          "holder": "跑团小助理",
+          "title": "2026杭州马拉松全程赛道示意图",
+          "sourceUrl": "https://hm.zhetiyu.cn/rich-text?id=2061724559532855297",
+          "attribution": "依据杭州马拉松组委会比赛路线图绘制",
+          "usageTerms": "依据当届路线事实原创绘制，供赛事回顾。"
+        }
       },
       "registration": {
         "method": "官方网站、微信公众号、浙体育小程序等报名，新增二次抽签与境外选手专属通道。",
         "opens": "2026-06-23 10:00",
         "closes": "2026-07-15 17:00",
-        "drawDate": "2026年7月下旬（公告计划）",
+        "drawDate": "2026-07-31 10:00（首轮）",
         "fee": "全马人民币200元，半马人民币150元。",
         "qualification": "全马年满20周岁，报名截止前24个月至少1次全马或2次半马线下成绩；半马年满18周岁，同期至少2次10公里及以上线下比赛成绩。中签后须提交2025年11月1日（含）以后的血压和心电图体检证明。",
         "applicants": "",
@@ -250,7 +259,8 @@
         "note": "全马成绩达标可按须知走直通，男2:45:00（含）以内、女3:00:00（含）以内；另设永久号和部分赛事名次直通。",
         "sourceIds": [
           "hz-notice-2026",
-          "hz-registration-2026"
+          "hz-registration-2026",
+          "hz26-first-draw-bdb"
         ],
         "direct": "全马男子2:45:00、女子3:00:00以内可申请成绩直通，另有永久号和部分赛事名次直通。",
         "waitlist": "组委会按首轮情况从未中签者中组织二次抽签。",
@@ -441,6 +451,19 @@
           "sourceIds": [
             "hz-report-2026"
           ]
+        },
+        {
+          "category": "参赛服",
+          "name": "粉色主题参赛服",
+          "description": "",
+          "items": [
+            "背心",
+            "短袖"
+          ],
+          "imageUrl": "",
+          "sourceIds": [
+            "hz-shirt-sohu-2026"
+          ]
         }
       ],
       "notes": [
@@ -569,14 +592,23 @@
         "summary": "从黄龙体育中心出发，经西湖、杨公堤与钱塘江沿岸；全马通过复兴大桥跨江，至杭州奥体中心体育场完赛。",
         "start": "浙江黄龙体育中心",
         "finish": "全马：杭州奥体中心体育场（大莲花）",
-        "mapUrl": "",
+        "mapUrl": "/marathon/images/race-archives/hangzhou-2025-course.png",
         "changes": "组委会赛前公告将全马两个折返点分别改到之江路与解放东路交汇处、飞虹路；半马路线不变。",
         "analysis": [],
         "sourceIds": [
           "hz-preview-2025",
           "hz-recap-2025",
           "hz25-route"
-        ]
+        ],
+        "mapSourceUrl": "https://hm.zhetiyu.cn/newsDetail/2061738364427276289",
+        "mediaRights": {
+          "status": "original",
+          "holder": "跑团小助理",
+          "title": "2025杭州马拉松全程赛道示意图",
+          "sourceUrl": "https://hm.zhetiyu.cn/newsDetail/2061738364427276289",
+          "attribution": "依据杭州马拉松组委会比赛路线调整公告绘制",
+          "usageTerms": "依据当届路线事实原创绘制，供赛事回顾。"
+        }
       },
       "registration": {
         "method": "先预报名、再抽签，中签后缴费并上传体检报告；设置候补序号。",
@@ -1001,14 +1033,37 @@
           ]
         }
       ],
-      "gear": [],
+      "gear": [
+        {
+          "category": "奖牌",
+          "name": "杭马完赛奖牌",
+          "description": "",
+          "items": [],
+          "imageUrl": "",
+          "sourceIds": [
+            "hz-kit-sohu-2024"
+          ]
+        },
+        {
+          "category": "参赛服",
+          "name": "杭马参赛服",
+          "description": "",
+          "items": [],
+          "imageUrl": "",
+          "sourceIds": [
+            "hz-kit-sohu-2024"
+          ]
+        }
+      ],
       "notes": [],
       "logistics": {
         "collection": {
-          "time": "",
-          "place": "",
-          "requirements": "",
-          "sourceIds": []
+          "time": "10月31日13:00—19:00，11月1日9:30—19:00，11月2日9:30—21:00。",
+          "place": "黄龙体育中心黄龙体育场南塔A1入口",
+          "requirements": "凭报名所用有效证件原件本人领取；未成年人由监护人或法定代理人陪同。",
+          "sourceIds": [
+            "hz24-collection-df"
+          ]
         },
         "transport": {
           "start": "",
@@ -1045,26 +1100,72 @@
           "sourceIds": [
             "hz-kit-sohu-2024"
           ]
+        },
+        {
+          "category": "guide",
+          "title": "2024杭州马拉松领物须知",
+          "url": "https://www.sohu.com/a/820550077_121656886",
+          "sourceIds": [
+            "hz24-collection-df"
+          ]
         }
       ]
     }
   ],
   "stories": [
     {
-      "title": "从北山雅集到岳庙诗词",
-      "body": "2025年的“杭马十景”把太极、古筝和诗词朗诵带到路线旁。北山雅集、岳庙《满江红》等节目随城市地点布置，让西湖路段的文化看点有了明确位置。",
+      "id": "hz26-cross-river",
+      "editionYear": "2026",
+      "tag": "赛道",
+      "title": "全马从彭埠大桥跨江，半马留在北岸",
+      "summary": "2026杭马串联西湖与京杭大运河，终点分别设在大莲花和市民广场。",
+      "body": "2026杭州马拉松从黄龙体育中心起跑，经过北山街、杨公堤、虎跑路和之江路。西湖与京杭大运河两处世界文化遗产进入当届同一条赛事线路。\n\n半马从之江路转新业路，抵达杭州市民广场。全马继续向东，经彭埠大桥跨过钱塘江，再到杭州奥体中心体育场。跨江点与2025年的复兴大桥不同。\n\n过去记住西湖段的跑者，还需要重新确认向江边进路和跨江的位置。两项目共用的路段之外，能否在北岸结束取决于报名距离。",
       "sourceIds": [
-        "hz-recap-2025"
-      ],
-      "editionYear": "2025"
+        "hz-route-2026",
+        "hz-report-2026",
+        "hz-map-2026"
+      ]
     },
     {
-      "title": "机器人跟跑曾出现在西湖边",
-      "body": "2024年杭马首次设置四足机器人配速展示，较大的在半马担任“关门兔”，较小的在欢乐跑担任“陪跑兔”。这是该届赛事的服务尝试，后续届次是否保留以当届公告为准。",
+      "id": "hz26-medal-feature",
+      "editionYear": "2026",
+      "tag": "奖牌与参赛服",
+      "title": "桂花赛道迎来首枚NFC奖牌",
+      "summary": "2026杭马把桂花主题带进终点，当届完赛奖牌首次加入NFC。",
+      "body": "11月1日的杭马从黄龙出发，沿途保留“杭马十景”和音乐加油站。终点区域继续用桂花香氛呼应秋季杭州的气味。\n\n浙江省体育局赛后报道确认，杭马此次首次启用NFC智能奖牌。奖牌作为完赛纪念物发放，并在传统奖牌的形态上增加了可感应读取的功能。\n\n领物阶段拿到的是报名时选定尺码的参赛服，当届发布的款式是粉色背心与短袖。冲线后，奖牌和浴巾、拖鞋等物品随完赛环节领取。",
       "sourceIds": [
-        "hz-recap-2024"
-      ],
-      "editionYear": "2024"
+        "hz-report-2026",
+        "hz-shirt-sohu-2026",
+        "hz-handbook-2026"
+      ]
+    },
+    {
+      "id": "hz25-lottery-and-course",
+      "editionYear": "2025",
+      "tag": "报名",
+      "title": "报名总数含欢乐跑，比赛当天只有全马和半马",
+      "summary": "2025早期报名共200778人，欢乐跑随后取消，跨江段也发布了调整公告。",
+      "body": "2025杭州马拉松8月启动报名时，设全马、半马和欢乐跑。200778人的报名统计包含25947名欢乐跑报名者，半马报名108521人、全马报名66310人。\n\n随后，组委会发布公告取消欢乐跑。早期报名规模仍能反映当时的参与意向，实际赛事安排需要按后来发布的公告理解。\n\n当届全马最终从黄龙汲取西湖的城市景观，经复兴大桥跨江，在大莲花完赛。阅读参赛资料时需要同时确认项目和线路版本。",
+      "sourceIds": [
+        "hz-registration-2025",
+        "hz-registration-2026",
+        "hz25-cancel",
+        "hz25-route",
+        "hz-recap-2025"
+      ]
+    },
+    {
+      "id": "hz24-records-feature",
+      "editionYear": "2024",
+      "tag": "成绩",
+      "title": "2024杭马男女赛会纪录在同一天刷新",
+      "summary": "男子冠军Moses Kibet跑出2:07:47，女子冠军Kiprop跑出2:22:57。",
+      "body": "2024年11月3日，杭州马拉松从黄龙体育中心发枪。三种跑程的完赛地分布在奥体中心、市民广场和平湖秋月。\n\n中国新闻网刊载的当届成绩中，Moses Kibet以2:07:47赢下男子全马，Helah Jelagat Kiprop以2:22:57赢下女子全马，两组均刷新当时的赛会纪录。\n\n这一届还有四足机器人进入跑者视线。较大的机器人在半马承担关门配速展示，体型较小的加入欢乐跑陪跑。成绩公示仍按选手的竞赛项目分别计算。",
+      "sourceIds": [
+        "hz-recap-2024",
+        "hz-report-2024",
+        "hz24-collection-df"
+      ]
     }
   ],
   "sources": [
@@ -1357,6 +1458,30 @@
         "2026"
       ],
       "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "hz24-collection-df",
+      "title": "卡萨帝·2024杭州马拉松领物须知",
+      "url": "https://www.sohu.com/a/820550077_121656886",
+      "publisher": "大丰体育文化",
+      "publishedAt": "2024-10-26",
+      "accessedAt": "2026-11-23",
+      "verifiedAt": "2026-11-23",
+      "applicableYears": [
+        "2024"
+      ]
+    },
+    {
+      "id": "hz26-first-draw-bdb",
+      "title": "即将公布！2026杭州马拉松抽签结果查询",
+      "url": "https://news.qq.com/rain/a/20260730A04LWN00",
+      "publisher": "杭州本地宝（腾讯新闻刊载）",
+      "publishedAt": "2026-07-30",
+      "accessedAt": "2026-11-23",
+      "verifiedAt": "2026-11-23",
+      "applicableYears": [
+        "2026"
+      ]
     }
   ],
   "gaps": [
@@ -1369,16 +1494,23 @@
     },
     {
       "fields": [
-        "editions.2026.registration.抽签统计",
-        "editions.2024.logistics.collection"
+        "editions.2026.registration.lotteryRate",
+        "editions.2026.registration.drawQuota",
+        "editions.2024.registration.opens"
       ],
-      "reason": "2025和2026领物指南已补；2024领物以及2026同口径报名、中签统计待核实。"
+      "reason": "2024领物与2026首轮抽签日期已补。2024原报名公告、2026分项目有效抽签人数、实际签位及二次抽签统计待核实。"
     },
     {
       "fields": [
         "images"
       ],
-      "reason": "官方图表和媒体刊载的图件可通过来源页面查看；图片转载许可待核。"
+      "reason": "2024–2026装备图已有发布线索，待补有小程序展示许可的原图或经授权实拍。"
+    },
+    {
+      "fields": [
+        "editions.2024.route.mapUrl"
+      ],
+      "reason": "2024赛后报道和领物公告可核起终点，未取得当届可读的全程路线图。2025、2026跨江通道不同，已分别据当届发布图绘制示意。"
     }
   ],
   "conflicts": [
