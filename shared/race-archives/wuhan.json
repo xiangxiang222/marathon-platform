@@ -1,6 +1,6 @@
 {
   "raceId": "wuhan",
-  "updatedAt": "2026-11-20",
+  "updatedAt": "2026-11-23",
   "intro": "武汉马拉松首届于2016年4月10日举行。赛事以跨江越湖的城市穿行呈现武汉三镇，春季樱花与江湖景观构成鲜明体验；2026届终点移至青山江滩，说明汉马路线也在持续更新。",
   "introSourceIds": [
     "wh-history",
@@ -197,13 +197,20 @@
         "summary": "全马经武汉中心城区抵达青山江滩；半程终点为书卷路。",
         "start": "沿江大道三阳路口",
         "finish": "青山江滩",
-        "mapUrl": "",
-        "mapSourceUrl": "",
+        "mapUrl": "/marathon/images/race-archives/wuhan-2026-course.png",
+        "mapSourceUrl": "https://www.wuhanmarathon.org/subject.html?detailId=5337550021732395&topicId=5337790338595614",
         "changes": "2026相较2025取消13公里跑，全马与半马终点调整。",
         "analysis": [],
         "sourceIds": [
-          "wh-reg-2026"
-        ]
+          "wh-reg-2026",
+          "wh-map-2026"
+        ],
+        "mediaRights": {
+          "status": "original",
+          "title": "2026 武汉马拉松全程赛道示意图",
+          "holder": "跑圈编辑部",
+          "attribution": "依据武汉马拉松组委会当届路线图与规程绘制"
+        }
       },
       "registration": {
         "method": "官方渠道个人报名，超过限定名额以抽签确定；直通条件以本届须知为准。",
@@ -211,7 +218,7 @@
         "closes": "2025-12-19 14:00（北京时间）",
         "drawDate": "2026-01-04（抽签公告）",
         "fee": "中国籍全马、半马均200元人民币；外国籍50美元或360元人民币",
-        "qualification": "",
+        "qualification": "全马限2006年及以前出生，半马限2010年及以前出生。未成年人及适用的年长选手按规程由相应的监护人、代理人或亲属代签声明。",
         "applicants": "451431人（提交报名总数）",
         "eligibleApplicants": "",
         "lotteryPool": "",
@@ -412,7 +419,28 @@
           ]
         }
       ],
-      "gear": [],
+      "gear": [
+        {
+          "category": "奖牌",
+          "name": "汉马完赛奖牌",
+          "description": "参考馆藏明金锭和花瓣形漆盘；内圈可转动。",
+          "items": [],
+          "imageUrl": "",
+          "sourceIds": [
+            "wh-kit-2026"
+          ]
+        },
+        {
+          "category": "参赛服",
+          "name": "金黄色参赛服",
+          "description": "正面的立体字母由赛道线连接。",
+          "items": [],
+          "imageUrl": "",
+          "sourceIds": [
+            "wh-kit-2026"
+          ]
+        }
+      ],
       "logistics": {
         "collection": {
           "time": "2026年3月19—20日10:30—19:00，3月21日10:00—21:30",
@@ -433,10 +461,10 @@
         "raceDay": {
           "startTime": "07:30马拉松S、A—E区；07:45半马F—H区。",
           "timeLimit": "全马13:30、半马10:45关门，起点07:55关门；全马25、30、35和40公里点分别11:05、11:45、12:30、13:10关门。以组委会变更通知为准。",
-          "bagDrop": "",
-          "aidStations": "",
-          "toilets": "",
-          "medical": "",
+          "bagDrop": "首枪前15分钟截止存衣。全马14:15前、半马11:30前在各自终点指定区取衣。",
+          "aidStations": "约每5公里设饮料／饮水站，两站间设饮水／用水站。",
+          "toilets": "起点、各项目终点及赛道沿线设置移动卫生间。",
+          "medical": "沿途设固定医疗点，并有移动医疗救援和医疗服务志愿者。",
           "sourceIds": [
             "wh-reg-amend-2026",
             "wh-pickup-2026",
@@ -548,13 +576,20 @@
         "summary": "全马经武汉中心城区抵达武汉欢乐谷；半程终点为松竹路。",
         "start": "沿江大道三阳路口",
         "finish": "武汉欢乐谷",
-        "mapUrl": "",
-        "mapSourceUrl": "",
+        "mapUrl": "/marathon/images/race-archives/wuhan-2025-course.png",
+        "mapSourceUrl": "https://news.hbtv.com.cn/p/4505373.html",
         "changes": "",
         "analysis": [],
         "sourceIds": [
-          "wh-reg-2025"
-        ]
+          "wh-reg-2025",
+          "wh25-press-course-kit"
+        ],
+        "mediaRights": {
+          "status": "original",
+          "title": "2025 武汉马拉松全程赛道示意图",
+          "holder": "跑圈编辑部",
+          "attribution": "依据湖北广电刊载的组委会发布图与当届规程绘制"
+        }
       },
       "registration": {
         "method": "官方渠道个人报名，超过限定名额以抽签确定；直通条件以本届须知为准。",
@@ -763,7 +798,28 @@
           ]
         }
       ],
-      "gear": [],
+      "gear": [
+        {
+          "category": "奖牌",
+          "name": "汉马完赛奖牌",
+          "description": "取材于湖北省博物馆藏玉器和漆器。",
+          "items": [],
+          "imageUrl": "",
+          "sourceIds": [
+            "wh25-press-course-kit"
+          ]
+        },
+        {
+          "category": "参赛服",
+          "name": "汉马黄参赛 T 恤",
+          "description": "黄色底色，胸前为武汉拼音和白色赛道曲线。",
+          "items": [],
+          "imageUrl": "",
+          "sourceIds": [
+            "wh25-press-course-kit"
+          ]
+        }
+      ],
       "logistics": {
         "collection": {
           "time": "2025年3月20—21日09:30—17:00，3月22日09:00—21:30",
@@ -881,16 +937,23 @@
         }
       ],
       "route": {
-        "summary": "组委会赛后回顾记录汉口江滩、武汉大学、磨山樱园等沿线景观。",
-        "start": "",
-        "finish": "",
-        "mapUrl": "",
-        "mapSourceUrl": "",
-        "changes": "",
+        "summary": "由沿江大道三阳路口起跑，经中山大道、武汉长江大桥、沙湖大桥、洪山广场和八一路，进入东湖绿道后抵达武汉欢乐谷。",
+        "start": "沿江大道三阳路口",
+        "finish": "武汉欢乐谷",
+        "mapUrl": "/marathon/images/race-archives/wuhan-2024-course.png",
+        "mapSourceUrl": "https://news.qq.com/rain/a/20240228A0262L00",
+        "changes": "因城市大阳台和东湖绿道三期工程调整起点、后半程路线及梨园广场南通道折返点。",
         "analysis": [],
         "sourceIds": [
-          "wh-result-2024"
-        ]
+          "wh-result-2024",
+          "wh24-press-course"
+        ],
+        "mediaRights": {
+          "status": "original",
+          "title": "2024 武汉马拉松全程赛道示意图",
+          "holder": "跑圈编辑部",
+          "attribution": "依据九派武汉刊载的组委会路线图与当届竞赛规程绘制"
+        }
       },
       "registration": {
         "method": "官方渠道个人报名，超过限定名额以抽签确定；直通条件以本届须知为准。",
@@ -898,7 +961,7 @@
         "closes": "2024-01-13 10:00（北京时间）",
         "drawDate": "2024-01-31 11:00（抽签公告）",
         "fee": "中国籍全马150元、半马100元、13公里跑80元人民币/人",
-        "qualification": "",
+        "qualification": "全马限2004年及以前出生，半马与13公里跑限2008年及以前出生。",
         "applicants": "262785人（组委会公布报名总数）",
         "eligibleApplicants": "",
         "lotteryPool": "",
@@ -978,7 +1041,28 @@
           ]
         }
       ],
-      "gear": [],
+      "gear": [
+        {
+          "category": "奖牌",
+          "name": "「和氏璧」完赛奖牌",
+          "description": "全马、半马与13公里跑三种款式。",
+          "items": [],
+          "imageUrl": "",
+          "sourceIds": [
+            "wh24-press-medal"
+          ]
+        },
+        {
+          "category": "参赛服",
+          "name": "汉马黄参赛 T 恤",
+          "description": "正式发布的设计在正面使用「武汉」汉字。",
+          "items": [],
+          "imageUrl": "",
+          "sourceIds": [
+            "wh24-press-shirt"
+          ]
+        }
+      ],
       "logistics": {
         "collection": {
           "time": "2024年3月21—22日10:00—17:00，3月23日09:00—21:30。",
@@ -997,13 +1081,15 @@
           ]
         },
         "raceDay": {
-          "startTime": "",
-          "timeLimit": "",
-          "bagDrop": "",
-          "aidStations": "",
-          "toilets": "",
-          "medical": "",
-          "sourceIds": []
+          "startTime": "全马07:30，半马和13公里跑07:40，两枪间隔10分钟。",
+          "timeLimit": "起点07:50关门，13公里跑09:50关门，全马13:45关门。",
+          "bagDrop": "全马、半马在起点存衣，首枪前15分钟截止。全马14:30前、半马12:00前在各自终点取衣。13公里跑无存衣。",
+          "aidStations": "约每5公里设饮料／饮水站，两站间设饮水／用水站。",
+          "toilets": "起点、各项目终点及赛道沿线设置移动卫生间。",
+          "medical": "赛道配备固定医疗点、移动救援及医疗志愿者。",
+          "sourceIds": [
+            "wh-reg-2024"
+          ]
         },
         "tips": []
       },
@@ -1076,6 +1162,48 @@
         "wh-kit-2026"
       ],
       "editionYear": "2026"
+    },
+    {
+      "id": "wuhan-2026-two-formats",
+      "editionYear": "2026",
+      "tag": "赛道与装备",
+      "title": "取消13公里跑后，2026汉马如何安排终点",
+      "summary": "2026汉马保留全马和半马，更新终点。完赛奖牌沿用荆楚文物元素。",
+      "body": "2026汉马取消13公里跑，保留全马和半马。新的两个终点分别对应不同的比赛项目，查看领物和比赛日安排时也需要按项目区分。武汉市政府报道，这一届仍收到451,431份报名。\n\n组委会把湖北省博物馆的明金锭和花瓣形漆盘融入完赛奖牌。外圈取金锭的轮廓，内圈用红黑两色，并可转动。金黄色参赛服则用赛道线连接正面的字母。\n\n完赛榜上，约翰·姆布鲁·姆伊鲁利以2小时10分16秒赢得男子全马，维罗妮卡·恩杰里·迈纳以2小时24分14秒赢得女子全马。",
+      "sourceIds": [
+        "wh-history",
+        "wh-reg-2026",
+        "wh-map-2026",
+        "wh-kit-2026",
+        "wh-wa-2026"
+      ]
+    },
+    {
+      "id": "wuhan-2025-landmarks",
+      "editionYear": "2025",
+      "tag": "赛道变化",
+      "title": "江汉关与凌波门重回2025汉马",
+      "summary": "沿江与东湖的两段线路恢复，半马终点移到松竹路。",
+      "body": "2025汉马前半程重新经过江汉关一带。赛前发布会介绍，江汉关广场改造后重新开放，线路从南京路接入中山大道，经过武汉科技馆与江汉关大楼。\n\n后半程从东湖南路进入东湖绿道，凌波门回到路线中。半马受沙湖公园施工影响，将终点迁至松竹路。赛事首次让全马、半马和13公里三个项目分别发枪。\n\n组委会总共收到450,744份报名。除了首轮抽签，当届还公布了二次抽签与公益报名安排。各项目人数和抽签批次按同一届公告分别记录。",
+      "sourceIds": [
+        "wh25-press-course-kit",
+        "wh-reg-2025",
+        "wh-draw-2025-official",
+        "wh-wa-2025"
+      ]
+    },
+    {
+      "id": "wuhan-2024-music",
+      "editionYear": "2024",
+      "tag": "赛事回顾",
+      "title": "2024汉马把编钟和楚剧搬上赛道",
+      "summary": "沿线四十多个音乐加油站把比赛拆成一段段可辨认的城市声音。",
+      "body": "2024年3月24日，汉马途经老城区和东湖。沿线安排了四十多个音乐加油点，有编钟、楚剧，也有本地乐队。声音随路线变化，成了当天观赛的一部分。\n\n男子冠军约翰·姆布鲁·姆伊鲁利以2小时09分13秒跑完。他在赛后谈到沿途的音乐、舞蹈和助威。女子全马冠军马尔·迪巴巴·胡萨用时2小时25分12秒。\n\n当届设全马、半马和13公里项目。组委会公布报名总数262,785人，比赛规程为每个项目分别规定参赛规模与收费。",
+      "sourceIds": [
+        "wh-result-2024",
+        "wh-draw-2024",
+        "wh-wa-2024"
+      ]
     }
   ],
   "sources": [
@@ -1479,20 +1607,19 @@
         "editions[].registration.drawQuota",
         "editions[].registration.lotteryRate"
       ],
-      "reason": "2024、2025全马为枪时、半马为净时，2026两项均为枪时。分项目实际起跑和完赛人数、各抽签池实际名额及参与人数仍待核验。"
+      "reason": "三届均已有公开的报名总数。公开报名和资格查询公告未提供同口径的抽签池与实际签位。分项目起跑和完赛仍待正式计时统计。"
     },
     {
       "fields": [
-        "editions[].route.mapUrl",
         "editions[].gear[].imageUrl"
       ],
-      "reason": "未取得可公开再分发的图片许可；仅保留来源链接，不接入赛道图或物资实物图片。"
+      "reason": "2024–2026 参赛服和奖牌均有发布出处，待取得允许在小程序展示的实物图片。"
     },
     {
       "fields": [
         "editions.2027"
       ],
-      "reason": "2024、2025赛道图、参赛服和奖牌已用发布会报道及媒体所载图件补齐，2027安排尚待核实。"
+      "reason": "2027 竞赛与报名安排尚待核实。"
     }
   ],
   "conflicts": []

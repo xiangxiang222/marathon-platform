@@ -1,6 +1,6 @@
 {
   "raceId": "guangzhou",
-  "updatedAt": "2026-11-20",
+  "updatedAt": "2026-11-23",
   "intro": "广州马拉松赛创办于2012年，以珠江“一江两岸”为代表性城市路线。赛道将天河体育中心、珠江桥梁与滨江城市景观连接起来；2023的全半马设置与近届全马赛事不同，项目和终点需逐年阅读。",
   "introSourceIds": [
     "gz-intro",
@@ -154,13 +154,20 @@
         "summary": "天河体育中心出发，沿珠江一江两岸抵达海心沙星光大道。",
         "start": "天河体育中心南广场",
         "finish": "海心沙星光大道",
-        "mapUrl": "",
-        "mapSourceUrl": "",
-        "changes": "",
+        "mapUrl": "/marathon/images/race-archives/guangzhou-2026-course.png",
+        "mapSourceUrl": "https://www.nfnews.com/content/n614Jj5G3P.html",
+        "changes": "组委会取消约3公里处原临江大道折返，改经冼村路进入临江大道；阅江中路东行的琶洲大桥下折返改为直径5米，约41公里处改由艺术公园、海心沙5号桥直行，终点回归海心沙星光大道。",
         "analysis": [],
         "sourceIds": [
-          "gz-reg-2026"
-        ]
+          "gz-reg-2026",
+          "gz-map-2026-publish"
+        ],
+        "mediaRights": {
+          "status": "original",
+          "title": "2026 广州马拉松赛全程赛道示意图",
+          "holder": "跑圈编辑部",
+          "attribution": "依据广州马拉松组委会当届路线图与丈量说明绘制"
+        }
       },
       "registration": {
         "method": "官方个人报名；超额抽签，未中签者按须知进入后续补录安排。",
@@ -224,6 +231,16 @@
       },
       "notes": [
         "截至2026-11-18尚未举办；赛道、领物及发枪如有补充公告，以最新官方安排为准。"
+      ],
+      "officialResources": [
+        {
+          "category": "route-map",
+          "title": "广州马拉松组委会发布2026赛道图及丈量说明",
+          "url": "https://www.nfnews.com/content/n614Jj5G3P.html",
+          "sourceIds": [
+            "gz-map-2026-publish"
+          ]
+        }
       ]
     },
     {
@@ -251,15 +268,21 @@
         "summary": "天河体育中心出发，沿珠江两岸抵达海心沙环岛路。",
         "start": "天河体育中心南广场",
         "finish": "海心沙环岛路",
-        "mapUrl": "",
-        "mapSourceUrl": "",
+        "mapUrl": "/marathon/images/race-archives/guangzhou-2025-course.png",
+        "mapSourceUrl": "https://www.guangzhou-marathon.com/subject.html?detailId=7951518221333696&topicId=7810378834711341",
         "changes": "延长阅江中路折返距离，取消人民桥下折返，终点移至海心沙环岛路。",
         "analysis": [],
         "sourceIds": [
           "gz-course-story-2025",
           "gz-map-2025",
           "gz-reg-2025"
-        ]
+        ],
+        "mediaRights": {
+          "status": "original",
+          "title": "2025 广州马拉松赛全程赛道示意图",
+          "holder": "跑圈编辑部",
+          "attribution": "依据广州马拉松组委会当届路线图绘制"
+        }
       },
       "registration": {
         "method": "官方网站或官方合作通道报名，超额后抽签。",
@@ -367,7 +390,29 @@
           ]
         }
       ],
-      "gear": [],
+      "gear": [
+        {
+          "category": "奖牌",
+          "name": "「珠江水韵」完赛奖牌",
+          "description": "正面为广州建筑群及流沙水纹，背面为广州塔造型。",
+          "items": [],
+          "imageUrl": "",
+          "sourceIds": [
+            "gz-kit-2025"
+          ]
+        },
+        {
+          "category": "参赛服",
+          "name": "广马参赛服",
+          "description": "在当届广州马拉松新闻发布会上公布。",
+          "items": [],
+          "imageUrl": "",
+          "sourceIds": [
+            "gz-kit-2025",
+            "gz-official-kit-2025"
+          ]
+        }
+      ],
       "logistics": {
         "collection": {
           "time": "2025年12月18日10:00—17:00、19日10:00—19:00、20日10:00—21:00。",
@@ -386,14 +431,15 @@
           ]
         },
         "raceDay": {
-          "startTime": "精英及A/B/C区07:30；D/E/F区07:50。",
-          "timeLimit": "",
+          "startTime": "按赛前发布会最新安排，精英及A/B/C区07:00，D/E/F区07:20。",
+          "timeLimit": "赛前发布会调整为各枪发枪后6小时15分钟。",
           "bagDrop": "",
-          "aidStations": "",
+          "aidStations": "赛前发布会公布8个补给站、7个饮水／用水站，增设喷淋、降温海绵和冰块。",
           "toilets": "",
           "medical": "",
           "sourceIds": [
-            "gz-reg-2025"
+            "gz-reg-2025",
+            "gz-kit-2025"
           ]
         },
         "tips": []
@@ -478,13 +524,20 @@
         "summary": "天河体育中心出发，沿珠江一江两岸抵达海心沙。",
         "start": "天河体育中心南广场",
         "finish": "海心沙",
-        "mapUrl": "",
-        "mapSourceUrl": "",
+        "mapUrl": "/marathon/images/race-archives/guangzhou-2024-course.png",
+        "mapSourceUrl": "https://m.gmw.cn/2024-11/28/content_1303908732.htm",
         "changes": "",
         "analysis": [],
         "sourceIds": [
-          "gz-race-2024"
-        ]
+          "gz-race-2024",
+          "gz24-gzdaily-course"
+        ],
+        "mediaRights": {
+          "status": "original",
+          "title": "2024 广州马拉松赛全程赛道示意图",
+          "holder": "跑圈编辑部",
+          "attribution": "依据广州日报刊载的当届赛道图与广州市体育局赛后回顾绘制"
+        }
       },
       "registration": {
         "method": "官方网站或官方合作APP个人报名，超额抽签。首轮缴费后若有缺额，安排二轮抽签。",
@@ -597,7 +650,18 @@
           ]
         }
       ],
-      "gear": [],
+      "gear": [
+        {
+          "category": "完赛包",
+          "name": "广马完赛物资",
+          "description": "含奖牌、毛巾、拖鞋、饮用水、牛奶、运动饮料及清洁湿巾。",
+          "items": [],
+          "imageUrl": "",
+          "sourceIds": [
+            "gz-city-review-2024"
+          ]
+        }
+      ],
       "logistics": {
         "collection": {
           "time": "2024年12月5日10:00—16:00、6日10:00—18:00、7日10:00—20:00。",
@@ -616,13 +680,15 @@
           ]
         },
         "raceDay": {
-          "startTime": "",
+          "startTime": "12月8日07:30鸣枪。",
           "timeLimit": "",
           "bagDrop": "",
           "aidStations": "",
           "toilets": "",
           "medical": "",
-          "sourceIds": []
+          "sourceIds": [
+            "gz-city-review-2024"
+          ]
         },
         "tips": []
       },
@@ -705,9 +771,60 @@
       "sourceIds": [
         "gz-course-story-2025"
       ]
+    },
+    {
+      "id": "guangzhou-2026-draw",
+      "editionYear": "2026",
+      "tag": "报名与赛程",
+      "title": "2026广马首轮抽签后怎样安排补录",
+      "summary": "预计12月20日开跑，秋季先完成报名与首轮抽签，补录走原报名渠道。",
+      "body": "2026广州马拉松拟于12月20日举行，全程计划3万人。大众报名在9月2日开始，9月11日截止，组委会为参赛者设置了年龄、既往成绩和健康要求。\n\n首轮抽签结果于9月22日公布。工作人员按报名订单通知资格，运动员在当届规定的期限缴费。报名时可以选择是否存包，选择本身不改变中签机会。\n\n退赛以及首轮未缴费产生的空余席位进入补录。参赛者沿原报名渠道查询对应的资格与付款状态。到今年11月，赛事仍处于赛前。",
+      "sourceIds": [
+        "gz-entry-2026",
+        "gz-reg-2026",
+        "gz-draw-2026"
+      ]
+    },
+    {
+      "id": "guangzhou-2025-heat",
+      "editionYear": "2025",
+      "tag": "赛道与装备",
+      "title": "2025广马把发枪提前，为珠江赛道加降温补给",
+      "summary": "全马分两枪出发，赛道增配喷淋、冰块和海绵。珠江也成为奖牌主题。",
+      "body": "2025广马从天河体育中心出发，横跨珠江两岸，跑向海心沙环岛路。赛前发布会因预判比赛日较热，将两枪分别安排在7时和7时20分，增加了喷淋、冰块和降温海绵。\n\n阅江中路折返段在这一届有所延长，人民桥下的折返取消。奖牌保留了同一条城市线索，正面以流沙表现珠江水，背面勾勒广州塔。\n\n全场男子冠军阿费沃克·梅斯芬·沃德腾塞跑出2小时12分23秒，领先菲利克斯·基尔瓦2秒。扎西次仁以2小时14分06秒获得全场第三，也是中国籍男子第一。",
+      "sourceIds": [
+        "gz-kit-2025",
+        "gz-map-2025",
+        "gz-results-2025",
+        "gz-wa-2025"
+      ]
+    },
+    {
+      "id": "guangzhou-2024-record",
+      "editionYear": "2024",
+      "tag": "成绩与赛道",
+      "title": "海心沙见证2024广马男子纪录改写",
+      "summary": "2024广马改在海心沙收尾，男子前五名均快于此前的赛会纪录。",
+      "body": "2024年12月8日，广马由天河体育中心起跑，线路沿珠江两岸推进，比赛终点设在海心沙。届时全程马拉松计划规模为2.6万人。\n\n格比塞·德贝莱以2小时06分28秒获得男子冠军。广州市政府转载的赛事回顾确认，男子前五名都跑进了此前的男子赛会纪录。\n\n女子冠军是安奇亚莱姆·海马诺特，成绩2小时25分13秒。男子与女子成绩分别来源于赛事公示和世界田联正式结果，可以按当届比赛日期查阅。",
+      "sourceIds": [
+        "gz-city-review-2024",
+        "gz-wa-2024",
+        "gz24-gzdaily-course"
+      ]
     }
   ],
   "sources": [
+    {
+      "id": "gz-map-2026-publish",
+      "title": "2026广州马拉松赛路线图发布，多处优化助您畅享比赛",
+      "publisher": "广州马拉松赛组委会（南方+刊载）",
+      "url": "https://www.nfnews.com/content/n614Jj5G3P.html",
+      "publishedAt": "2026-10-09",
+      "verifiedAt": "2026-11-23",
+      "applicableYears": [
+        "2026"
+      ]
+    },
     {
       "id": "gz-intro",
       "title": "广马介绍",
@@ -1033,25 +1150,26 @@
   "gaps": [
     {
       "fields": [
-        "editions[2024].registration.抽签实发",
-        "editions[2026].logistics.collection",
-        "editions[2026].registration.二次抽签",
+        "editions.2024.registration.drawDate",
+        "editions.2026.registration.二次抽签",
         "editions[].registration.lotteryRate"
       ],
-      "reason": "男子、女子纪录有组委会枪时公示和世界田联成绩支持。2024实际抽签日、2026领物与二次抽签原文、各届同口径中签率待补；2026尚未开赛。"
+      "reason": "2024 公告仅给出计划抽签时间。2026 找到首轮和补录的地方资讯整理，补录组委会原文待补。各届报名总数和同口径中签数据暂未核实。"
     },
     {
       "fields": [
-        "editions[].route.mapUrl",
+        "editions.2026.logistics.collection",
+        "editions.2026.gear"
+      ],
+      "reason": "2026 已按组委会发布的当届路线图绘制示意图。官方原图待确认展示许可，正式领物及装备发布仍待核实。"
+    },
+    {
+      "fields": [
+        "editions[].participation.starters",
+        "editions[].participation.finishers",
         "editions[].gear[].imageUrl"
       ],
-      "reason": "未取得可公开再分发的图片许可；仅保留来源链接，不接入赛道图或物资实物图片。"
-    },
-    {
-      "fields": [
-        "editions.2026.officialResources.赛道图参赛服奖牌"
-      ],
-      "reason": "2024新版赛道图已由广州日报报道补齐。2026已公布文字规程，同名旧路线页实际是2023原图，2026对应地图及实物图待核验。"
+      "reason": "历史赛后报道多沿用赛事规模，实际起跑和完赛待正式数据。2024、2025 装备已有发布线索，原图展示许可待确认。"
     }
   ],
   "conflicts": [

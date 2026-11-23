@@ -13,7 +13,7 @@ const settle = async () => { await Promise.resolve(); await new Promise(resolve 
 const event = (dataset, value) => ({ currentTarget: { dataset: dataset || {} }, detail: { value } });
 function fixture(pageName = 'race-archive') {
   let definition, reply;
-  const requests = [], previews = [], patches = [], clipboard = [];
+  const requests = [], previews = [], patches = [];
   reply = async url => {
     if (url.startsWith('/race-catalog?')) return { races: copy(catalog.races), filterOptions: { worldAthletics: ['白金标','金标'], caa: ['A类'] } };
     const id = decodeURIComponent(url.split('/').at(-1)), race = catalog.races.find(item => item.id === id);
@@ -24,10 +24,10 @@ function fixture(pageName = 'race-archive') {
   vm.runInNewContext(fs.readFileSync(path.join(ROOT,'miniprogram/pages',pageName,pageName+'.js'),'utf8'),{
     Page(value){definition=value;},getApp:()=>({globalData:{baseUrl:'https://runner.example'}}),
     require(name){if(name==='../../utils/race-landmarks')return require('../miniprogram/utils/race-landmarks');assert.equal(name,'../../utils/request');return {request(url){requests.push(url);return Promise.resolve().then(()=>reply(url));}};},
-    wx:{setNavigationBarTitle(){},previewImage(value){previews.push(value);},setClipboardData(value){clipboard.push(value.data);}}
+    wx:{setNavigationBarTitle(){},previewImage(value){previews.push(value);}}
   },{filename:pageName+'.js'});
   const page={...definition,data:copy(definition.data),setData(patch){patches.push(copy(patch));for(const [key,value] of Object.entries(patch))this.data[key]=value;}};
-  return {page,requests,previews,patches,clipboard,setReply(fn){reply=fn;}};
+  return {page,requests,previews,patches,setReply(fn){reply=fn;}};
 }
 
 test('all published event topics expose six categories with independent local year selections', async () => {
@@ -53,44 +53,122 @@ test('all published event topics expose six categories with independent local ye
     page.pickGallery(event({id:'奖牌'}));assert.ok(page.data.galleryGroups.every(group=>group.items.every(g=>g.category==='奖牌')));
     assert.equal(page.data.entryYear,old);assert.equal(page.data.resultsYear,otherYear);
     const archive=archives[race.id];
-    page.pickTab(event({id:'updates'}));assert.equal(page.data.stories.length,new Set([...(archive.updates||[]),...(archive.stories||[])].map(item=>item.title)).size);
+    page.pickTab(event({id:'updates'}));assert.equal(page.data.stories.length,new Set([...(archive.updates||[]),...(archive.stories||[]),...(archive.news||[])].filter(item=>item.body?.trim()).map(item=>item.title)).size);
   }
 });
 
-test('every edition can open its own evidence and copy official links', async () => {
+test('annual shortcuts select the right edition and keep documentary links in content data', async () => {
   for (const race of catalog.races) {
-    const { page, clipboard } = fixture();
+    const { page } = fixture();
     page.onLoad({ id: race.id }); await settle();
     for (const edition of archives[race.id].editions) {
-      const resources = edition.officialResources || [];
-      for (const [id, selected, category, links] of [['route','routeYear','route-map','routeResources'],['participation','resultsYear','results','resultLinks'],['logistics','entryYear','guide','guideLinks']]) {
+      for (const [id, key] of [['route','routeYear'],['participation','resultsYear'],['logistics','entryYear']]) {
         page.openEdition(event({ id, year: edition.year }));
-        assert.equal(page.data[selected], edition.year);
-        for (const resource of resources.filter(item => item.category === category)) {
-          assert.ok(page.data[links].some(item => new URL(item.url).href === new URL(resource.url).href), race.id + ' ' + edition.year + ' ' + category);
-          const link = page.data[links].find(item => new URL(item.url).href === new URL(resource.url).href);
-          page.copyResource(event({ url: link.url }));
-          assert.equal(clipboard.at(-1), link.url);
-        }
+        assert.equal(page.data[key], edition.year);
       }
       page.openEdition(event({ id:'shirt', year:edition.year }));
-      for (const [label, category] of [['参赛服','shirt'],['奖牌','medal']]) {
-        page.pickGallery(event({ id:label }));
-        assert.ok(page.data.galleryGroups.every(group => group.year === edition.year));
-        for (const resource of resources.filter(item => item.category === category)) assert.ok(page.data.galleryGroups.flatMap(group => group.resources).some(item => new URL(item.url).href === new URL(resource.url).href));
-      }
+      assert.ok(page.data.galleryGroups.every(group => group.year === edition.year));
       page.openEdition(event({ id:'stories', year:edition.year }));
-      assert.ok(page.data.stories.every(item => String(item.editionYear) === edition.year));
+      assert.ok(page.data.stories.every(item => item.editionYear === edition.year));
     }
+    assert.ok((archives[race.id].sources || []).every(source => source.url));
+    assert.ok(page.data.sources.every(source => !source.url && source.publisher && source.title));
   }
 });
 
-test('results default to latest completed results, routes group only explicitly known near versions, legacy links remain usable',async()=>{
+test('Beijing exposes four distinct maps, readable articles, and a gallery missing-image state', async () => {
+  const { page, previews } = fixture();
+  page.onLoad({ id: 'beijing', tab: 'route' }); await settle();
+  for (const [index, year] of page.data.years.entries()) {
+    page.pickYear(event({ scope: 'route' }, String(index)));
+    const images = page.data.routeImages;
+    assert.match(images[0].url, new RegExp('beijing-' + year + '-course[.]png$'));
+    page.previewImage(event({ url: images[0].url, images }));
+    assert.equal(previews.at(-1).current, images[0].url);
+  }
+  page.imageError(event({ url: page.data.routeImages[0].url }));
+  assert.equal(page.data.routeImages.length, 0);
+  page.pickTab(event({ id: 'updates' }));
+  assert.equal(page.data.stories.length, 11);
+  page.openArticle(event({ key: page.data.stories[0].key }));
+  assert.ok(page.data.activeArticle.paragraphs.length >= 3);
+  assert.ok(page.data.activeArticle.sources.every(source => !source.url));
+  page.closeArticle();
+  assert.equal(page.data.activeArticle, null);
+  page.openEdition(event({ id: 'shirt', year: '2023' }));
+  assert.equal(page.data.galleryGroups[0].year, '2023');
+  assert.equal(page.data.galleryGroups[0].items[0].images.length, 0);
+});
+
+test('registration surfaces confirmed schedule, quota and fee even without a published lottery breakdown', async () => {
+  const race = catalog.races.find(item => item.id === 'shanghai');
+  const { page, setReply } = fixture();
+  setReply(() => ({
+    race,
+    archive: { editions: [{
+      year: '2026', date: '2026-11-29', status: 'scheduled',
+      registration: { opens: '2026-04-27', plannedQuota: '23,000 人', fee: '200 元', applicants: '' }
+    }] }
+  }));
+  await page.onLoad({ id: race.id, tab: 'entry' });
+  assert.deepEqual(copy(page.data.entrySummary), [
+    { label: '比赛日期', value: '2026-11-29' },
+    { label: '报名开始', value: '2026-04-27' },
+    { label: '计划名额', value: '23,000 人' },
+    { label: '报名费用', value: '200 元' }
+  ]);
+  assert.equal(page.data.entryMetrics.length, 0);
+});
+
+test('edition filters show a sourced full article for each archived edition', async () => {
+  const missing = [];
+  for (const race of catalog.races) {
+    if (race.id === 'beijing') continue;
+    const archive = archives[race.id];
+    const { page } = fixture();
+    await page.onLoad({ id: race.id, tab: 'updates' });
+    for (const edition of archive.editions) {
+      const article = (archive.stories || []).find(item =>
+        String(item.editionYear) === String(edition.year) && item.summary?.trim() &&
+        item.body?.split(/\n\s*\n/).filter(Boolean).length >= 2 && item.sourceIds?.length
+      );
+      if (!article) {
+        missing.push(race.id + ' ' + edition.year);
+        continue;
+      }
+      const yearIndex = page.data.storyYearFilters.indexOf(String(edition.year));
+      page.pickFilterYear(event({ scope: 'story' }, String(yearIndex)));
+      const row = page.data.stories.find(item => item.title === article.title);
+      assert.ok(row, race.id + ' ' + edition.year);
+      page.openArticle(event({ key: row.key }));
+      assert.ok(page.data.activeArticle.paragraphs.length >= 2);
+      assert.ok(page.data.activeArticle.sources.length > 0);
+      page.closeArticle();
+    }
+  }
+  assert.deepEqual(missing, []);
+});
+
+test('Chongqing draw data keeps the full marathon and mini race pools distinct', async () => {
+  const { page } = fixture();
+  await page.onLoad({ id: 'chongqing', tab: 'entry', year: '2025' });
+  const metrics = Object.fromEntries(page.data.entryMetrics.map(item => [item.label, item.value]));
+  assert.match(metrics['抽签人数'] || '', /215116.*17133/);
+  assert.match(metrics['抽签名额'] || '', /15680.*8000/);
+  assert.match(metrics['公布中签率'] || '', /7\.29%.*46\.69%/);
+});
+
+test('an early edition with only an announced direct-entry arrangement shows that arrangement', async () => {
+  const { page } = fixture();
+  await page.onLoad({ id: 'changsha', tab: 'entry', year: '2027' });
+  assert.match(page.data.entrySummary.find(item => item.label === '已公布安排')?.value || '', /10人/);
+});
+
+test('results default to the most recent edition with results and legacy links remain usable',async()=>{
   const f=fixture();f.page.onLoad({id:'shanghai'});await settle();
   assert.equal(f.page.data.entryYear,'2026');assert.equal(f.page.data.resultsYear,'2025');
   const bj=fixture();bj.page.onLoad({id:'beijing',tab:'logistics',year:'2024',fromRaceId:'full-beijing'});await settle();
   assert.equal(bj.page.data.tab,'entry');assert.equal(bj.page.data.entrySection,'guide');assert.equal(bj.page.data.entryYear,'2024');assert.equal(bj.page.data.routeYear,'2026');assert.equal(bj.page.data.fromRace.id,'full-beijing');
-  const near=bj.page.data.routeVersions.find(v=>v.years.length===2);assert.equal(near.match,'similar');assert.deepEqual(copy(near.years),['2026','2025']);assert.match(near.note,/相近/);
   const share=bj.page.onShareAppMessage();assert.ok(share.path.includes('tab=entry'));assert.ok(share.path.includes('year=2024'));assert.ok(share.path.includes('section=guide'));
   const invalid=fixture();invalid.page.onLoad({id:'beijing',tab:'unknown',year:'1900',fromRaceId:'unrelated'});await settle();assert.equal(invalid.page.data.tab,'overview');assert.equal(invalid.page.data.fromRace,null);
 });
@@ -103,11 +181,11 @@ test('uploaded cover, annual multi-image groups, albums and stories use actual p
   const group=f.page.data.galleryGroups[0].items[0];assert.deepEqual(copy(group.images.map(i=>i.caption)),['正面','背面']);
   f.page.previewImage(event({url:group.images[1].url,images:group.images}));assert.equal(f.previews[0].current,'https://runner.example'+second);assert.equal(f.previews[0].urls.length,2);
   f.page.pickGallery(event({id:'官方图集'}));f.page.previewAlbum(event({id:'photos-2026'}));assert.equal(f.previews[1].urls.length,2);
-  assert.ok(f.page.data.stories.some(story=>story.id==='new-story'));
+  assert.ok(f.page.data.stories.some(story=>story.key==='stories:new-story'));
   for(const story of raw.stories)assert.ok(f.page.data.stories.some(item=>item.title===story.title),'Admin updates and researched stories stay visible');
-  f.page.openArticle(event({id:'new-story',type:'stories'}));assert.equal(f.page.data.activeArticle.body,'真实内容');f.page.closeArticle();assert.equal(f.page.data.activeArticle,null);
-  f.page.pickUpdateType(event({id:'news'}));f.page.openArticle(event({id:'new-news',type:'news'}));assert.equal(f.page.data.activeArticle.body,'正文');
-  const count=f.previews.length;for(const url of ['javascript:alert(1)','data:text/html,no','//evil.example/image','http://evil.example/image','/marathon/api/race-archive-media/beijing/../../secret.png'])f.page.previewImage(event({url}));assert.equal(f.previews.length,count);
+  f.page.openArticle(event({key:'stories:new-story'}));assert.deepEqual(copy(f.page.data.activeArticle.paragraphs),['真实内容']);f.page.closeArticle();assert.equal(f.page.data.activeArticle,null);
+  f.page.openArticle(event({key:'news:new-news'}));assert.deepEqual(copy(f.page.data.activeArticle.paragraphs),['正文']);
+  const count=f.previews.length;for(const url of ['javascript:alert(1)','data:text/html,no','//evil.example/image','http://evil.example/image','/marathon/api/race-archive-media/beijing/../../secret.png'])f.page.previewImage(event({url,images:[{url}]}));assert.equal(f.previews.length,count);
   f.page.heroError();assert.equal(f.page.data.heroFailed,true);
 });
 
@@ -120,11 +198,11 @@ test('topic load failures can retry, unloaded pages ignore late responses, empty
 test('template presents local years, collapsible evidence and no synthetic items',()=>{
   const template=fs.readFileSync(path.join(ROOT,'miniprogram/pages/race-archive/race-archive.wxml'),'utf8');
   assert.doesNotMatch(template,/本栏资料来源|activeSources|mapSourceUrl|archive-edition-bar/);
-  assert.match(template,/toggleSources/);assert.match(template,/copySource/);assert.match(template,/toggleHistory/);assert.match(template,/toggleCoverage/);assert.match(template,/archive-records/);
+  assert.match(template,/toggleSources/);assert.doesNotMatch(template,/copyResource|copySource|复制链接|查看原文|↗/);assert.match(template,/toggleHistory/);assert.match(template,/toggleCoverage/);assert.match(template,/archive-records/);
   for(const id of ['overview','entry','route','results','gallery','updates'])assert.ok(template.includes("tab === '"+id+"'"));
-  assert.match(template,/piece.images/);assert.match(template,/data-images/);assert.match(template,/previewAlbum/);assert.match(template,/非导航地图/);assert.match(template,/archive-image-credit/);
-  assert.match(template,/resultLinks\.length \? '可通过下方链接查询本届成绩'/);
-  const css=fs.readFileSync(path.join(ROOT,'miniprogram/pages/race-archive/race-archive.wxss'),'utf8');assert.doesNotMatch(css,/font-size:(?:[0-9]|1[01])px/);assert.match(css,/#ff1838/);
+  assert.match(template,/piece.images/);assert.match(template,/data-images/);assert.match(template,/previewAlbum/);assert.match(template,/暂无该届赛道图/);assert.match(template,/图片待补充/);
+  assert.doesNotMatch(template,/道路顺序|跑法参考|这一版的变化/);
+  const css=fs.readFileSync(path.join(ROOT,'miniprogram/pages/race-archive/race-archive.wxss'),'utf8');assert.doesNotMatch(css,/font-size:(?:[0-9]|1[01])px/);assert.match(css,/archive-accent/);
 });
 
 test('directory still intersects independent filters and handles failure, retry and empty lists',async()=>{
@@ -146,12 +224,10 @@ test('new city archive preserves history, records, year-specific advice and safe
   f.page.toggleHistory();assert.equal(f.page.data.visibleHistory.length,7);f.page.toggleHistory();assert.equal(f.page.data.visibleHistory.length,5);
   assert.equal(f.page.data.records[0].time,'02:08:01');assert.deepEqual(copy(f.page.data.entryNotes),['2025报名设候补']);assert.equal(f.page.data.entryTips.length,1);assert.equal(f.page.data.entryEvents[0].plannedParticipants,20000);assert.equal(f.page.data.entryStatus,'已举办');
   assert.ok(f.page.data.directoryUrl.includes(encodeURIComponent('锡马')));assert.equal(f.page.data.sources[0].yearsLabel,'2025');f.page.toggleSources();assert.equal(f.page.data.sourcesExpanded,true);
-  f.page.copySource(event({id:'official'}));f.page.copySource(event({id:'unsafe'}));assert.deepEqual(f.clipboard,[source.url]);
-  assert.deepEqual(copy(f.page.data.routeResources),[mapLink]);
-  f.page.copyResource(event({url:mapLink.url}));f.page.copyResource(event({url:'javascript:alert(1)'}));assert.deepEqual(f.clipboard,[source.url,mapLink.url]);
+  assert.ok(f.page.data.sources.every(item => !item.url));
+  assert.equal(f.page.data.routeImages.length, 0);
   f.page.toggleCoverage();assert.equal(f.page.data.coverageExpanded,true);assert.equal(f.page.data.gaps[0].reason,'历史费用待核实');
-  const media='/marathon/api/race-archive-media/wuxi/'+('a'.repeat(64))+'.png';f.page.previewImage(event({url:media}));assert.equal(f.previews.at(-1).current,'https://runner.example'+media);
-  const before=f.previews.length;f.page.previewImage(event({url:media.replace('/wuxi/','/unknown/')}));assert.equal(f.previews.length,before);
+
 });
 
 test('directory consumes full certification options and preserves non-default certification links',async()=>{

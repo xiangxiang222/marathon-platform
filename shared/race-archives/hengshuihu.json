@@ -1,6 +1,6 @@
 {
   "raceId": "hengshuihu",
-  "updatedAt": "2026-11-20",
+  "updatedAt": "2026-11-23",
   "intro": "衡水湖马拉松于2012年首次举办，环湖生态景观与竞技路跑共同构成赛事特色。赛事多次与全国马拉松锦标赛同场，近届着重记录大众PB体验、分枪组织和环保实践，不能把宣传中的“快”当作个人成绩保证。",
   "introSourceIds": [
     "hs-history",
@@ -147,13 +147,19 @@
         "summary": "衡水湖马拉松广场→东湖大道→鹏程路→九州大道折返→鹏程路→东湖大道→湖滨大道→中湖大道→衡水湖北岸→东湖大道→衡水湖马拉松广场。为已读规程的概括，具体转向以原文为准。",
         "start": "衡水湖马拉松广场",
         "finish": "衡水湖马拉松广场",
-        "mapUrl": "",
-        "mapSourceUrl": "",
+        "mapUrl": "/marathon/images/race-archives/hengshuihu-2026-course.png",
+        "mapSourceUrl": "http://hengshuilakemarathon.com/news/detailNews.html?id=2989",
         "changes": "",
         "analysis": [],
         "sourceIds": [
           "hs-reg-2026"
-        ]
+        ],
+        "mediaRights": {
+          "status": "original",
+          "holder": "赛历与跑团赛历",
+          "title": "2026全程马拉松赛道示意图",
+          "attribution": "据当届资料自绘，未按比例绘制。"
+        }
       },
       "registration": {
         "method": "官网或官方公众号预报名，超额后抽签，中签缴费方为报名成功；未中签者按须知等待二次抽签。",
@@ -274,6 +280,14 @@
           "sourceIds": [
             "hs-collection-2026"
           ]
+        },
+        {
+          "category": "route-map",
+          "title": "2026六个核桃植物奶衡水湖马拉松竞赛规程",
+          "url": "http://hengshuilakemarathon.com/news/detailNews.html?id=2989",
+          "sourceIds": [
+            "hs-reg-2026"
+          ]
         }
       ]
     },
@@ -292,18 +306,20 @@
           "project": "马拉松",
           "distanceKm": 42.195,
           "plannedParticipants": 12000,
-          "fee": "",
+          "fee": "150元人民币",
           "sourceIds": [
-            "hs-race-2025"
+            "hs-entry-report-2025",
+            "hs-fee-2025"
           ]
         },
         {
           "project": "健康跑",
           "distanceKm": 5,
           "plannedParticipants": 8000,
-          "fee": "",
+          "fee": "50元人民币",
           "sourceIds": [
-            "hs-race-2025"
+            "hs-entry-report-2025",
+            "hs-fee-2025"
           ]
         }
       ],
@@ -321,11 +337,11 @@
         ]
       },
       "registration": {
-        "method": "",
-        "opens": "",
-        "closes": "",
+        "method": "预报名，超额抽签，中签后缴费。",
+        "opens": "2025-07-27 10:00",
+        "closes": "全马2025-07-31 17:00；健康跑2025-08-10 17:00",
         "drawDate": "",
-        "fee": "",
+        "fee": "全马150元人民币/人，健康跑50元人民币/人。",
         "qualification": "",
         "applicants": "",
         "eligibleApplicants": "",
@@ -334,17 +350,23 @@
         "directQuota": "",
         "lotteryRate": "",
         "lotteryNote": "未取得同口径抽签池与实际抽签名额，不计算中签率。",
-        "note": "",
-        "sourceIds": []
+        "note": "赛前公告称8月公布抽签结果，具体日期待核实。",
+        "sourceIds": [
+          "hs-entry-report-2025",
+          "hs-fee-2025"
+        ],
+        "plannedQuota": "全马12000人；健康跑8000人。",
+        "direct": "连续五届按规定完成全马且符合报名条件可获终身号及直通，2020、2022年不计。"
       },
       "participation": {
-        "planned": "20000人（赛事总规模）",
+        "planned": "总规模20000人（全马12000、健康跑8000）。",
         "starters": "",
         "finishers": "",
         "finishRate": "",
         "note": "规模不代表实际起跑或完赛人数；2024 PB统计另见当届特色，不作完赛率。",
         "sourceIds": [
-          "hs-race-2025"
+          "hs-race-2025",
+          "hs-entry-report-2025"
         ]
       },
       "results": [
@@ -404,7 +426,17 @@
           ]
         }
       ],
-      "gear": [],
+      "gear": [
+        {
+          "category": "奖牌",
+          "name": "2025衡水湖马拉松完赛奖牌",
+          "description": "蓝金配色的旋转花瓣可以开合，内置可取出的成绩纪念装置。",
+          "imageUrl": "",
+          "sourceIds": [
+            "hs-entry-report-2025"
+          ]
+        }
+      ],
       "logistics": {
         "collection": {
           "time": "",
@@ -452,6 +484,14 @@
           "sourceIds": [
             "hs-podium-2025"
           ]
+        },
+        {
+          "category": "medal",
+          "title": "2025衡水湖马拉松完赛奖牌发布",
+          "url": "https://m.163.com/dy/article/K5GGCF1B0513EF9U.html",
+          "sourceIds": [
+            "hs-entry-report-2025"
+          ]
         }
       ]
     },
@@ -486,14 +526,16 @@
         }
       ],
       "route": {
-        "summary": "",
-        "start": "",
-        "finish": "",
+        "summary": "起终点均为衡水湖马拉松广场，新华社报道赛道平均海拔22米、设10处拐弯。",
+        "start": "衡水湖马拉松广场",
+        "finish": "衡水湖马拉松广场",
         "mapUrl": "",
         "mapSourceUrl": "",
         "changes": "",
         "analysis": [],
-        "sourceIds": []
+        "sourceIds": [
+          "hs-xinhua-recap-2024"
+        ]
       },
       "registration": {
         "method": "",
@@ -734,6 +776,43 @@
       "sourceIds": [
         "hs-signup-2026"
       ]
+    },
+    {
+      "id": "hs-2025-entry-guide",
+      "editionYear": "2025",
+      "tag": "报名与装备",
+      "title": "衡马2025两类跑者的报名截止日不同",
+      "summary": "全马7月31日截止，健康跑报名延续到8月10日。",
+      "body": "衡水湖马拉松在7月27日上午同时开放全马和健康跑报名。全马报名窗口到7月31日17时，健康跑持续到8月10日同一时刻。组委会采用预报名、抽签、缴费的步骤。\n\n赛事给全马安排12000人、健康跑8000人。全马150元、健康跑50元。连续五届按规定完成全马的跑者符合规则时可走终身号通道，2020年和2022年从连续届次中跳过。\n\n完赛奖牌的中心是一组可旋转的花瓣，花瓣里面藏着可取出的成绩纪念装置。赛后人民日报报道，全国锦标赛第二站男子冠军为解云策，女子冠军为跑出2小时28分10秒的徐冰洁。",
+      "sourceIds": [
+        "hs-entry-report-2025",
+        "hs-fee-2025",
+        "hs-race-2025"
+      ]
+    },
+    {
+      "id": "hs-2024-two-standings",
+      "editionYear": "2024",
+      "tag": "成绩",
+      "title": "1554名跑者在衡水湖跑进三小时",
+      "summary": "新华社赛后统计同时记录了148名跑进2小时30分的选手。",
+      "body": "2024年9月22日，衡水湖马拉松在湖畔开跑。跑者从马拉松广场出发，绕湖后回到同一广场。新华社报道，赛道平均海拔22米，共有10处拐弯。\n\n公开组男女冠军分别是肯尼亚选手基普科里尔和埃塞俄比亚选手安姆特，后者以2小时23分39秒改写女子赛会纪录。同期全国锦标赛第二站另有排名，中国选手丰配友、次仁措姆分获男女冠军。\n\n赛后统计中，1554名选手跑进三小时，其中148人跑进2小时30分。这个统计针对达到成绩门槛的选手，无法从中读出赛事的全部完赛人数。",
+      "sourceIds": [
+        "hs-xinhua-recap-2024"
+      ]
+    },
+    {
+      "id": "hs-2026-five-editions",
+      "editionYear": "2026",
+      "tag": "报名",
+      "title": "衡马终身号按连续五届全马核定",
+      "summary": "2026报名须知列明跳过2020年和2022年。",
+      "body": "2026年衡水湖马拉松的终身号延续了逐届累计规则。符合条件的跑者需要连续五届完成全马，核算时跳过2020年和2022年，仍需在报名窗口内提交预报名。\n\n普通全马选手从7月24日10时开始预报名，至7月30日18时结束。报名达到上限后抽签，中签运动员按规定缴费，首轮未中签的选手等待后续抽签安排。\n\n当届全马的起终点都在衡水湖马拉松广场。最终全马男子冠军为李子成，女子冠军为冯丹，成绩分别是2小时15分08秒、2小时34分07秒。",
+      "sourceIds": [
+        "hs-signup-2026",
+        "hs-reg-2026",
+        "hs-result-2026"
+      ]
     }
   ],
   "sources": [
@@ -947,31 +1026,73 @@
       ],
       "verifiedAt": "2026-11-20",
       "note": "正文列出赛会全马和同期全国马拉松锦标赛男、女前三，两个排名的前三名相同。正文未注明计时口径。"
+    },
+    {
+      "id": "hs-entry-report-2025",
+      "title": "2025衡水湖马拉松报名开启与装备发布",
+      "url": "https://m.163.com/dy/article/K5GGCF1B0513EF9U.html",
+      "publisher": "赛事活动报道（网易转载）",
+      "publishedAt": "2025-07-27",
+      "applicableYears": [
+        "2025"
+      ],
+      "accessedAt": "2026-11-23",
+      "verifiedAt": "2026-11-23"
+    },
+    {
+      "id": "hs-fee-2025",
+      "title": "2025衡水湖马拉松项目与报名费用",
+      "url": "https://zuicool.com/event/3587780",
+      "publisher": "最酷赛事日历（整理赛事须知）",
+      "publishedAt": "",
+      "applicableYears": [
+        "2025"
+      ],
+      "accessedAt": "2026-11-23",
+      "verifiedAt": "2026-11-23"
+    },
+    {
+      "id": "hs-xinhua-recap-2024",
+      "title": "2024衡水湖马拉松赛1554人破三",
+      "url": "http://www.news.cn/sports/20240923/b6a201b8ead34bf88b6d8b5c0da89114/c.html",
+      "publisher": "新华社",
+      "publishedAt": "2024-09-23",
+      "applicableYears": [
+        "2024"
+      ],
+      "accessedAt": "2026-11-23",
+      "verifiedAt": "2026-11-23"
     }
   ],
   "gaps": [
     {
       "fields": [
-        "records（截至2026的当前纪录）",
-        "editions.2025.results.timing",
-        "editions.2026.registration.lotteryRate"
+        "records.当前纪录",
+        "editions[2024,2025].results.timing",
+        "editions[].participation.finishers"
       ],
-      "reason": "2026已按组委会公示录入全马男女冠军的枪声成绩；2025与2024补收全马和锦标赛男女前三，报道未注明枪声或净计时。2024纪录的核验范围见相应纪录。"
+      "reason": "2024、2025报道有代表性成绩，部分未表明枪时或净时；2026组委会公示明确男女冠军枪时。赛后报道未取得可核对的总完赛表及截至2026的完整历届纪录表。"
     },
     {
       "fields": [
-        "editions[].route.mapUrl",
-        "editions[].gear[].imageUrl",
-        "editions.2026.officialResources.route-map",
-        "editions.2026.officialResources.shirt"
+        "editions[2024].registration",
+        "editions[2025].registration.drawDate",
+        "editions[].registration.lotteryRate"
       ],
-      "reason": "2024官方赛道地图和2024、2026奖牌发布可从档案打开；2026未核得完整赛道图或专门发布的参赛服原页。图片转载许可尚未确认，档案不复制图片。"
+      "reason": "2024旧报名入口未返回有效正文。2025赛前稿说8月公布结果，未找到公布当天原文；2026首轮日期已核清。三届均缺同口径抽签池、名额和中签率。"
+    },
+    {
+      "fields": [
+        "editions[2024,2025].route.mapUrl",
+        "editions[].gear[].imageUrl"
+      ],
+      "reason": "2024组委会赛道入口只返回空页，2025报道确认环湖范围，未取得完整路线。2026已按竞赛规程自绘。奖牌已有发布图来源，2026参赛服专页及各届实物图展示许可仍缺。"
     },
     {
       "fields": [
         "worldAthletics"
       ],
-      "reason": "未取得世界田联官方逐届目录或认证页面；历史金标叙述来自赛事/政府/媒体来源，未作为2026认证结论。"
+      "reason": "未取得世界田联逐届认证页面；赛事、政府与媒体回顾仅能核实历史金标叙述。"
     }
   ],
   "conflicts": [

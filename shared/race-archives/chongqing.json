@@ -1,6 +1,6 @@
 {
   "raceId": "chongqing",
-  "updatedAt": "2026-11-20",
+  "updatedAt": "2026-11-23",
   "intro": "重庆马拉松首届于2011年3月19日在南滨路开赛，代表性赛道沿长江南岸的南滨路、巴滨路往返。路线串起海棠烟雨公园与沿江桥梁景观，历届档案重点记录项目增减、发枪时间和直通资格的变化。",
   "introSourceIds": [
     "cq-first",
@@ -154,13 +154,19 @@
         "summary": "南滨路、巴滨路沿江往返，经朝天门大桥、李家沱大桥，设朝天门大桥下和融汇江山路口两处折返。",
         "start": "海棠烟雨公园",
         "finish": "海棠烟雨公园",
-        "mapUrl": "",
-        "mapSourceUrl": "",
+        "mapUrl": "/marathon/images/race-archives/chongqing-2027-course.png",
+        "mapSourceUrl": "https://www.cqmarathon.com/News/Detail/21070C87897D1015",
         "changes": "",
         "analysis": [],
         "sourceIds": [
           "cq-reg-2027"
-        ]
+        ],
+        "mediaRights": {
+          "status": "original",
+          "title": "2027 重庆马拉松全程赛道示意图",
+          "holder": "跑圈编辑部",
+          "attribution": "依据重庆马拉松组委会当届竞赛规程绘制"
+        }
       },
       "registration": {
         "sourceIds": [
@@ -237,13 +243,19 @@
         "summary": "南滨路、巴滨路沿江往返；从海棠烟雨公园经朝天门大桥下折返，再往李家沱大桥、融汇江山方向折返。",
         "start": "海棠烟雨公园",
         "finish": "海棠烟雨公园",
-        "mapUrl": "",
-        "mapSourceUrl": "",
+        "mapUrl": "/marathon/images/race-archives/chongqing-2026-course.png",
+        "mapSourceUrl": "https://www.cqmarathon.com/News/Detail/DE6BD823E7851A88",
         "changes": "",
         "analysis": [],
         "sourceIds": [
           "cq-reg-2026"
-        ]
+        ],
+        "mediaRights": {
+          "status": "original",
+          "title": "2026 重庆马拉松全程赛道示意图",
+          "holder": "跑圈编辑部",
+          "attribution": "依据重庆马拉松组委会当届竞赛规程绘制"
+        }
       },
       "registration": {
         "method": "官方渠道预报名，超额抽签；预缴报名费，未中签按须知原路退回。",
@@ -452,13 +464,20 @@
         "summary": "南滨路、巴滨路沿江往返；从海棠烟雨公园经朝天门大桥下折返，再往李家沱大桥、融汇江山方向折返。",
         "start": "海棠烟雨公园",
         "finish": "海棠烟雨公园",
-        "mapUrl": "",
-        "mapSourceUrl": "",
+        "mapUrl": "/marathon/images/race-archives/chongqing-2025-course.png",
+        "mapSourceUrl": "https://cq.cnr.cn/xwsd/20241205/t20241205_527000163.shtml",
         "changes": "",
         "analysis": [],
         "sourceIds": [
-          "cq-reg-2025"
-        ]
+          "cq-reg-2025",
+          "cq-route-cnr-2025"
+        ],
+        "mediaRights": {
+          "status": "original",
+          "title": "2025 重庆马拉松全程赛道示意图",
+          "holder": "跑圈编辑部",
+          "attribution": "依据重庆马拉松组委会发布图与当届规程绘制"
+        }
       },
       "registration": {
         "method": "官方渠道预报名，超额抽签；预缴报名费，未中签按须知原路退回。",
@@ -467,16 +486,17 @@
         "drawDate": "2024-12-05",
         "fee": "全马中国籍200元人民币；外籍350元人民币；迷你跑如当届设置则另按须知。",
         "qualification": "全马年满20周岁；须在2022年1月1日至2024年10月31日完成过中国田协认证赛事的全马或半马，线上马拉松不计。迷你跑不限年龄，未成年人按须知签声明及陪跑。",
-        "applicants": "",
+        "applicants": "超过230000人（全马及迷你跑预报名）",
         "eligibleApplicants": "",
-        "lotteryPool": "",
-        "drawQuota": "",
+        "lotteryPool": "全马215116人，迷你跑17133人",
+        "drawQuota": "全马15680席，迷你跑8000席",
         "directQuota": "2020、2021历史保留名额预留6000个；2024长嘉汇半马男女净成绩各前500名按须知可直接报名。",
-        "lotteryRate": "",
-        "lotteryNote": "未取得同口径抽签池与实际抽签名额，不计算中签率。",
+        "lotteryRate": "全马7.29%，迷你跑46.69%（赛事发布会）",
+        "lotteryNote": "抽签池、抽签配额和中签率均由当届赛事发布会按项目披露。历史保留资格及系列赛席位另外记录。",
         "note": "本届不设成绩直通；2020、2021保留名额预留6000人，具体超额规则见须知。",
         "sourceIds": [
-          "cq-entry-2025"
+          "cq-entry-2025",
+          "cq-route-cnr-2025"
         ],
         "payment": "预报名全额缴费；未中签于抽签后5个工作日内原路退回。",
         "direct": "未设成绩直通；历史保留资格报名逾6000人时抽签。长嘉汇半马男女各前500名须于11月15日24:00前报名、缴费。"
@@ -677,13 +697,19 @@
         "summary": "南滨路、巴滨路沿江往返；从海棠烟雨公园经朝天门大桥下折返，再往李家沱大桥、融汇江山方向折返。",
         "start": "海棠烟雨公园",
         "finish": "海棠烟雨公园",
-        "mapUrl": "",
-        "mapSourceUrl": "",
+        "mapUrl": "/marathon/images/race-archives/chongqing-2024-course.png",
+        "mapSourceUrl": "https://www.cqmarathon.com/News/Detail/27CF81F85B774BC3",
         "changes": "",
         "analysis": [],
         "sourceIds": [
           "cq-reg-2024"
-        ]
+        ],
+        "mediaRights": {
+          "status": "original",
+          "title": "2024 重庆马拉松全程赛道示意图",
+          "holder": "跑圈编辑部",
+          "attribution": "依据重庆马拉松组委会当届竞赛规程绘制"
+        }
       },
       "registration": {
         "method": "官方渠道预报名，超额抽签；预缴报名费，未中签按须知原路退回。",
@@ -696,7 +722,7 @@
         "eligibleApplicants": "",
         "lotteryPool": "",
         "drawQuota": "",
-        "directQuota": "",
+        "directQuota": "历史保留名额预留8000人；不设成绩直通。",
         "lotteryRate": "3.98%（新华社报道的当届全马中签率）",
         "lotteryNote": "人民网报道的全马预报名数与新华社公布的中签率均按原文记录；两个来源均未披露实际抽签池和抽签配额，不能据此复算。",
         "note": "本届不设成绩直通；为历史保留名额预留8000人，系列赛直通另行规定。 保留名额及实际抽签池不等同于全马计划参赛规模。",
@@ -810,6 +836,59 @@
         "cq-results-2026"
       ],
       "editionYear": "2026"
+    },
+    {
+      "id": "chongqing-2027-entry",
+      "editionYear": "2027",
+      "tag": "报名",
+      "title": "2027重马的26,000席怎样分配",
+      "summary": "组委会计划安排12,500个大众抽签席位及10,000个成绩直通席位。",
+      "body": "2027重庆马拉松定于1月10日。组委会赛前给全马安排26,000席，其中大众抽签计划12,500席，成绩直通10,000席。\n\n其余名额按报名须知留给长嘉汇半马系列赛及赞助合作渠道。成绩直通入围后按年龄分组分配，超额时再按规程规定的成绩与名额排序。\n\n大众报名采用预缴方式，组委会安排在参赛资格公布后5个工作日内向未中签者原路退款。以上是赛前规则，参赛名单与赛后统计有各自的口径。",
+      "sourceIds": [
+        "cq-entry-2027",
+        "cq-reg-2027"
+      ]
+    },
+    {
+      "id": "chongqing-2026-record",
+      "editionYear": "2026",
+      "tag": "成绩与赛事变化",
+      "title": "丰配友在2026重马跑到全场第二",
+      "summary": "丰配友以2:10:22刷新中国籍男子赛会纪录。该届取消了原计划的迷你跑。",
+      "body": "2026年1月18日，重庆马拉松在南滨路与巴滨路一带举行。组委会取消了原计划中的迷你跑，比赛日保留全程项目。\n\n阿迪苏·塔法雷以2小时08分28秒率先冲线。丰配友以2小时10分22秒位列公开组第二，贵州省体育局确认他刷新重庆马拉松中国籍男子赛会纪录。\n\n女子比赛由凯贝布什·泽沃尔德马里亚姆夺冠，用时2小时24分48秒。朱卿全场排名第三，为当届中国籍女子第一。",
+      "sourceIds": [
+        "cq-reg-2026",
+        "cq-home",
+        "cq-domestic-record-2026",
+        "cq-results-2026",
+        "cq-wa-2026"
+      ]
+    },
+    {
+      "id": "chongqing-2025-draw",
+      "editionYear": "2025",
+      "tag": "中签",
+      "title": "2025重马同时公布两张抽签表",
+      "summary": "全马215,116人抽15,680席，迷你跑17,133人抽8,000席。",
+      "body": "赛事发布会披露，2025重马预报名超过23万人，来自26个国家和地区。全马和迷你跑分开设置参赛规模，也各自计算抽签数据。\n\n全马计划25,000人，其中15,680席可用于抽签，215,116人参与该项目抽签，公布中签率7.29%。迷你跑计划10,000人，17,133人参与抽签，抽签名额为8,000席，公布中签率46.69%。\n\n这届另有往届保留资格及系列赛安排。把赛前总规模当作抽签席位，会高估当时实际投放的大众名额。",
+      "sourceIds": [
+        "cq-route-cnr-2025",
+        "cq-entry-2025",
+        "cq-reg-2025"
+      ]
+    },
+    {
+      "id": "chongqing-2024-records",
+      "editionYear": "2024",
+      "tag": "成绩",
+      "title": "2024重马的男女赛会纪录在同一天刷新",
+      "summary": "男子冠军乔斯法特·博伊特跑出2:07:53，女子冠军杰克琳·萨基卢跑出2:21:27。",
+      "body": "2024年3月24日，重马从南滨路海棠烟雨公园出发，沿江途经龙门浩老街等地。全马与迷你跑各设置约1.5万人的比赛规模。\n\n世界田联记录，男子冠军乔斯法特·博伊特完赛2小时07分53秒。女子冠军杰克琳·萨基卢用时2小时21分27秒。新华社赛后报道确认，两项都是当时新的赛会纪录。\n\n这两项纪录对应男女全场成绩。赛事还设迷你跑，报名或参赛人数按不同项目分别统计。",
+      "sourceIds": [
+        "cq-xinhua-2024",
+        "cq-wa-2024",
+        "cq-people-2024"
+      ]
     }
   ],
   "sources": [
@@ -1105,16 +1184,23 @@
       "fields": [
         "records.男子公开组历届沿革",
         "editions[].participation.finishers",
-        "editions[].officialResources"
+        "editions[].participation.starters"
       ],
-      "reason": "2024至2026全马已有世界田联结果；2025、2026参赛服见组委会领物公告，赛道图可通过媒体刊载的赛事图查阅。公开组男子纪录沿革、实际完赛人数和最近两届大众完赛奖牌原页仍待核。"
+      "reason": "2024 至 2026 已有世界田联赛果。公开组男子纪录沿革、历届实际起跑与完赛人数仍待核。"
     },
     {
       "fields": [
-        "editions[].route.mapUrl",
+        "editions.2024.registration.drawQuota",
+        "editions.2026.registration.lotteryRate",
+        "editions.2027.registration.lotteryRate"
+      ],
+      "reason": "2025 发布会已核对分项目抽签池、签位和中签率。2024 仅取得全马报名总数及公布中签率。2026 和 2027 报名须知公布计划大众配额，实际抽签人数和中签率待补。"
+    },
+    {
+      "fields": [
         "editions[].gear[].imageUrl"
       ],
-      "reason": "赛道图与装备原图通过来源页面查阅，图片转载许可待核。"
+      "reason": "2025、2026 参赛服在领物公告中出现，对应实物图片展示许可待核。大众完赛奖牌的独立原图待补。"
     }
   ],
   "conflicts": [

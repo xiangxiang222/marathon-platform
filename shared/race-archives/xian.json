@@ -1,6 +1,6 @@
 {
   "raceId": "xian",
-  "updatedAt": "2026-11-20",
+  "updatedAt": "2026-11-23",
   "intro": "西安马拉松赛于2017年创办，以永宁门起跑的古都形象形成辨识度。近届从城墙、钟楼等历史地标向会展中心与奥体中心延伸，将长安古韵和现代城市空间连成一条路；本档案指城市马拉松，并非西安城墙上的独立跑步赛事。",
   "introSourceIds": [
     "xa-history",
@@ -154,15 +154,22 @@
         "summary": "永宁门出发，全马到西安奥体中心；半马终点为西安国际会展中心。",
         "start": "永宁门广场东侧盘道",
         "finish": "西安奥体中心体育场",
-        "mapUrl": "",
-        "mapSourceUrl": "",
+        "mapUrl": "/marathon/images/race-archives/xian-2026-course.png",
+        "mapSourceUrl": "http://xi-ma.com/page/6LN7OlWmEZ8AD2dKbJB3.html",
         "changes": "2026沿用2025规划线路，取消欢乐跑，新增三枪发令。",
         "analysis": [],
         "sourceIds": [
           "xa-race-2026",
           "xa-reg-2026",
-          "xa-map-2026"
-        ]
+          "xa-map-2026",
+          "xa-map-official-2026"
+        ],
+        "mediaRights": {
+          "status": "original",
+          "holder": "赛历与跑团赛历",
+          "title": "2026全程马拉松赛道示意图",
+          "attribution": "据当届资料自绘，未按比例绘制。"
+        }
       },
       "registration": {
         "method": "报名人数超出限额后抽签并设候补；中签或接受候补的报名者须在规定时限缴费。",
@@ -182,7 +189,9 @@
         "sourceIds": [
           "xa-entry-2026",
           "xa-applicants-2026"
-        ]
+        ],
+        "payment": "中签及选择候补者在9月2日17:00前缴费。",
+        "waitlist": "9月3日10:00开始候补递补；连续报名2023至2025三届未获资格的选手可按公告进入专项抽签。"
       },
       "participation": {
         "planned": "36000人（赛事总规模）",
@@ -491,7 +500,8 @@
           "time": "02:13:25",
           "timing": "枪声成绩",
           "sourceIds": [
-            "xa-podium-2025"
+            "xa-podium-2025",
+            "xa-city-sports-results-2025"
           ]
         },
         {
@@ -502,7 +512,8 @@
           "sourceIds": [
             "xa-podium-2025",
             "xa-huang-wa-2025",
-            "xa-huang-cctv-2025"
+            "xa-huang-cctv-2025",
+            "xa-city-sports-results-2025"
           ]
         }
       ],
@@ -867,6 +878,44 @@
       "sourceIds": [
         "xa-kit-2026"
       ]
+    },
+    {
+      "id": "xa-2025-three-finishes",
+      "editionYear": "2025",
+      "tag": "赛道与成绩",
+      "title": "从同一座城门起跑，2025西马有三个终点",
+      "summary": "永宁门发枪后，全程、半程和欢乐跑各有终点。",
+      "body": "2025年10月19日，西安马拉松在永宁门7时30分鸣枪。西部网报道，当届规模从上一届的35000人扩至38000人。\n\n对观赛者来说，最容易混淆的是终点。全程选手到西安奥体中心体育场，半马到西安国际会展中心，约7公里欢乐跑则在大明宫御道广场结束。\n\n西安市体育局以枪声成绩确认，王红伟用2小时13分25秒获男子全马冠军，黄菲用2小时31分02秒获女子全马冠军。",
+      "sourceIds": [
+        "xa-race-2025",
+        "xa-city-sports-results-2025"
+      ]
+    },
+    {
+      "id": "xa-2024-one-second",
+      "editionYear": "2024",
+      "tag": "成绩",
+      "title": "2024西马男子全马前两名只差一秒",
+      "summary": "贾俄仁加先到终点，两人的成绩都在2小时13分以内。",
+      "body": "2024年11月3日，西安马拉松从永宁门起跑。全马与半马继续使用不同终点，分别前往西安奥体中心和西安国际会展中心。\n\n男子全马成绩中，贾俄仁加以2小时12分13秒夺冠，阿迪斯·特斯法洪·塔费雷紧随其后，成绩为2小时12分14秒。\n\n女子全马冠军是德拉尔图·海卢·格雷法，成绩为2小时29分37秒。当届档案依据成绩表收录公开组名次，其他组别排名由各自成绩口径决定。",
+      "sourceIds": [
+        "xa-race-2024",
+        "xa-lookup-2024"
+      ]
+    },
+    {
+      "id": "xa-2026-lottery",
+      "editionYear": "2026",
+      "tag": "报名与装备",
+      "title": "西马2026年给连续落签者单设抽签",
+      "summary": "超过24万人预报名，专项抽签另设全马1000席和半马500席。",
+      "body": "2026西马预报名共收到242283份报名，包含全马99534人、半马142749人。中签后要在9月2日17时前缴费，次日上午开始候补递补。\n\n在常规抽签外，组委会面向连续报名2023至2025年西马全程或半程但未获资格的跑者设置专项抽签。这一渠道分配全马1000席，半马500席。\n\n当届发布的参赛服和奖牌延续古都主题，服装融入城墙及秦腔脸谱元素。比赛仍在永宁门起跑，半程和全程跑者分别前往国际会展中心和奥体中心。",
+      "sourceIds": [
+        "xa-entry-2026",
+        "xa-applicants-2026",
+        "xa-kit-2026",
+        "xa-race-2026"
+      ]
     }
   ],
   "sources": [
@@ -1104,25 +1153,55 @@
       ],
       "verifiedAt": "2026-11-20",
       "note": "西安市体育局赛后公告明确运动员姓名和冠军枪声成绩。"
+    },
+    {
+      "id": "xa-city-sports-results-2025",
+      "title": "2025西安马拉松赛从永宁门鸣枪开跑",
+      "url": "https://xatyj.xa.gov.cn/xwzx/tpxw/1980111308111515649.html",
+      "publisher": "西安市体育局",
+      "publishedAt": "",
+      "applicableYears": [
+        "2025"
+      ],
+      "accessedAt": "2026-11-23",
+      "verifiedAt": "2026-11-23"
+    },
+    {
+      "id": "xa-map-official-2026",
+      "title": "2026西安马拉松组委会全程和半程线路图",
+      "url": "http://xi-ma.com/page/6LN7OlWmEZ8AD2dKbJB3.html",
+      "publisher": "西安马拉松组委会",
+      "applicableYears": [
+        "2026"
+      ],
+      "accessedAt": "2026-11-23",
+      "verifiedAt": "2026-11-23"
     }
   ],
   "gaps": [
     {
       "fields": [
-        "editions[2024,2025].results",
         "editions[2024,2025].registration",
-        "editions[2025].events[].planned",
-        "editions[2026].logistics.collection",
-        "editions[2026].registration.lotteryRate"
+        "editions[2026].registration.lotteryRate",
+        "editions[2026].registration.lotteryPool"
       ],
-      "reason": "2024公示长图已补全马公开组、半马公开组和全马中国籍组的代表性名次；2025已收录全马男女冠军枪声成绩。2025其余组别完整原表、2024和2025原始规程、2026领物及分池抽签人数仍待核实。"
+      "reason": "2024、2025赛后新闻可核规模和成绩，仍缺可确认的当届完整报名须知、费用及抽签公告。2026公布预报名与专项名额，未取得常规抽签池、名额和中签率。"
     },
     {
       "fields": [
-        "editions[].route.mapUrl",
+        "editions[2025].results.半马",
+        "editions[2025].events[].planned",
+        "editions[2026].logistics.collection",
+        "editions[].participation.finishers"
+      ],
+      "reason": "2025体育局只列全马男女冠军枪时，赛后新闻只列合计规模。半马原表、分项规模、2026领取安排和可核验的实际完赛表仍缺。"
+    },
+    {
+      "fields": [
+        "editions[2024,2025].route.mapUrl",
         "editions[].gear[].imageUrl"
       ],
-      "reason": "2026线路、参赛服与奖牌提供组委会原页；未取得图片公开再分发许可，未嵌入原图。"
+      "reason": "2024、2025体育局与西部网确认起终点和途经区域，仍缺同届全程路线图。2026已按组委会原图自绘；2026装备图有出处，适用小程序的实物图展示许可未确认。"
     }
   ],
   "conflicts": []

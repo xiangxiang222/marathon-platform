@@ -131,8 +131,11 @@ test('public registration pages and permanent archives link only to the matching
 test('cached images belong to an edition and point to existing deployable public assets', async () => {
   const fs = require('node:fs');
   const path = require('node:path');
-  for (const id of ['beijing', 'shanghai', 'xiamen']) {
+  const { body: catalog } = await request(app).get(base + '/race-catalog').expect(200);
+  for (const { id } of catalog.races) {
     const { body } = await request(app).get(base + '/race-catalog/' + id).expect(200);
+    assert.ok(body.archive.editions.some(edition => edition.route.mapUrl || edition.route.images.length),
+      id + ' has no public route image');
     for (const edition of body.archive.editions) {
       const images = [edition.route.mapUrl, ...edition.gear.map(item => item.imageUrl)].filter(Boolean);
       for (const image of images) {
@@ -141,7 +144,7 @@ test('cached images belong to an edition and point to existing deployable public
           assert.ok(image.includes(id + '-' + edition.year + '-'), 'cached image must retain its race and edition');
         } else assert.match(image, /^https:\/\//);
       }
-      if (edition.date > '2026-11-14') {
+      if (edition.coverage.upcoming) {
         assert.equal(edition.results.length, 0, 'an upcoming edition has no race results');
         assert.equal(edition.participation.starters, '');
         assert.equal(edition.participation.finishers, '');

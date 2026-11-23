@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "raceId": "taiyuan",
-  "updatedAt": "2026-11-20",
+  "updatedAt": "2026-11-23",
   "intro": "太原马拉松创办于2010年。迎泽大街的城市记忆、汾河沿岸的开阔视野和晋阳湖终点，共同形成太马近年的赛道辨识度。档案保留从太原火车站西侧起跑到五一广场起跑的年度变化，也单独记录女子赛会纪录与中国籍女子纪录。",
   "introSourceIds": [
     "ty-preview-2025",
@@ -148,25 +148,53 @@
         "ty-report-2026"
       ],
       "distance": "马拉松、半程马拉松",
-      "events": [],
+      "events": [
+        {
+          "project": "马拉松",
+          "distanceKm": 42.195,
+          "plannedParticipants": 18000,
+          "fee": "200元人民币",
+          "sourceIds": [
+            "ty-rules-2026"
+          ]
+        },
+        {
+          "project": "半程马拉松",
+          "distanceKm": 21.0975,
+          "plannedParticipants": 22000,
+          "fee": "180元人民币",
+          "sourceIds": [
+            "ty-rules-2026"
+          ]
+        }
+      ],
       "route": {
-        "summary": "五一广场出发，全马和半马终点设在晋阳湖国际会展中心；本档案未补写未核实的完整道路序列。",
+        "summary": "五一广场 → 迎泽大街 → 迎泽大桥 → 滨河西路 → 柴村桥 → 滨河东路折返 → 祥云桥 → 滨河西路 → 长兴北街（晋阳湖国际会展中心南门外）。",
         "start": "五一广场",
-        "finish": "马拉松、半程马拉松：晋阳湖国际会展中心",
-        "mapUrl": "",
+        "finish": "长兴北街（晋阳湖国际会展中心南门外）",
+        "mapUrl": "/marathon/images/race-archives/taiyuan-2026-course.png",
         "changes": "",
         "analysis": [],
         "sourceIds": [
-          "ty-report-2026"
-        ]
+          "ty-report-2026",
+          "ty-rules-2026",
+          "ty-handbook-2026"
+        ],
+        "mapSourceUrl": "https://www.tymarathon.cn/upload/1/2026cssc/3d6e/a46b/914d6319c443ef503f586ab.pdf",
+        "mediaRights": {
+          "status": "original",
+          "holder": "赛历与跑团赛历",
+          "title": "2026全程马拉松赛道示意图",
+          "attribution": "据当届资料自绘，未按比例绘制。"
+        }
       },
       "registration": {
-        "method": "",
-        "opens": "",
-        "closes": "",
-        "drawDate": "",
-        "fee": "",
-        "qualification": "",
+        "method": "报名期内先缴费，超额后抽签。",
+        "opens": "2026-07-15 15:00",
+        "closes": "2026-07-29 23:59",
+        "drawDate": "2026-08-05 14:00（竞赛规程公布日程）",
+        "fee": "境内（含港澳台）、外籍运动员均为全马200元、半马180元人民币/人。",
+        "qualification": "全马报名截止前24个月内须有1次全马或2次半马成绩。各项目年龄及其他报名条件以规程为准。",
         "applicants": "",
         "eligibleApplicants": "",
         "lotteryPool": "",
@@ -175,15 +203,21 @@
         "lotteryRate": "",
         "lotteryNote": "",
         "note": "",
-        "sourceIds": []
+        "sourceIds": [
+          "ty-rules-2026"
+        ],
+        "plannedQuota": "全马18000人（含特邀），半马22000人。",
+        "payment": "报名截止前完成缴费；未中签者在结果公布后7个工作日内原路退费。"
       },
       "participation": {
-        "planned": "",
+        "planned": "总规模40000人（全马18000、半马22000）。",
         "starters": "",
         "finishers": "",
         "finishRate": "",
         "note": "",
-        "sourceIds": []
+        "sourceIds": [
+          "ty-rules-2026"
+        ]
       },
       "results": [
         {
@@ -290,7 +324,34 @@
           ]
         }
       ],
-      "gear": [],
+      "gear": [
+        {
+          "category": "奖牌",
+          "name": "生肖系列收官奖牌",
+          "description": "以土堂神柏为设计线索，背面呈现净因寺、古柏与马年剪纸纹样。",
+          "items": [
+            "全马鎏金色",
+            "半马雾银色"
+          ],
+          "imageUrl": "",
+          "sourceIds": [
+            "ty-medal-xinhua-2026"
+          ]
+        },
+        {
+          "category": "参赛服",
+          "name": "太马参赛短袖与背心",
+          "description": "赛事官方微博发布了当届参赛短袖及背心。",
+          "items": [
+            "短袖",
+            "背心"
+          ],
+          "imageUrl": "",
+          "sourceIds": [
+            "ty-shirt-weibo-2026"
+          ]
+        }
+      ],
       "notes": [
         "本届采用9个分区、4枪出发，并设置人脸识别核验。"
       ],
@@ -310,14 +371,15 @@
           "sourceIds": []
         },
         "raceDay": {
-          "startTime": "07:30、07:38、07:46、07:54四枪",
+          "startTime": "2026-09-27 07:30起分枪发令。",
           "timeLimit": "按第四枪计时：半马10:54、全马13:54关门。",
-          "bagDrop": "06:00–07:20存衣，14:40前到终点指定区域取衣。",
+          "bagDrop": "起点存衣服务7:20截止。",
           "aidStations": "",
           "toilets": "",
           "medical": "",
           "sourceIds": [
-            "ty-handbook-2026"
+            "ty-handbook-2026",
+            "ty-rules-2026"
           ]
         },
         "tips": [
@@ -394,6 +456,14 @@
           "sourceIds": [
             "ty-shirt-weibo-2026"
           ]
+        },
+        {
+          "category": "route-map",
+          "title": "2026太原马拉松参赛手册",
+          "url": "https://www.tymarathon.cn/upload/1/2026cssc/3d6e/a46b/914d6319c443ef503f586ab.pdf",
+          "sourceIds": [
+            "ty-handbook-2026"
+          ]
         }
       ]
     },
@@ -468,16 +538,17 @@
         "drawDate": "2025-07-22 14:00",
         "fee": "",
         "qualification": "",
-        "applicants": "",
+        "applicants": "超过16万人（山西省体育局赛后口径）。",
         "eligibleApplicants": "",
         "lotteryPool": "",
         "drawQuota": "",
         "directQuota": "",
-        "lotteryRate": "",
-        "lotteryNote": "",
+        "lotteryRate": "25%（山西省体育局赛后报道的赛事总体口径）。",
+        "lotteryNote": "报道未披露各项目的抽签池及实际抽签名额，总体比例不能作为单一项目中签率。",
         "note": "提交报名后须在15分钟内缴费；未中签者按公告办理退款。",
         "sourceIds": [
-          "ty-preview-2025"
+          "ty-preview-2025",
+          "ty-provincial-sport-recap-2025"
         ],
         "payment": "提交报名后15分钟内缴费；未中签按公告退费。"
       },
@@ -527,9 +598,54 @@
           "sourceIds": [
             "ty-report-2025"
           ]
+        },
+        {
+          "group": "半程马拉松男子冠军",
+          "athlete": "班赛赛",
+          "time": "01:08:58",
+          "timing": "赛后报道成绩，计时口径未注明",
+          "sourceIds": [
+            "ty-provincial-sport-recap-2025"
+          ]
+        },
+        {
+          "group": "半程马拉松女子冠军",
+          "athlete": "刘敏",
+          "time": "01:12:29",
+          "timing": "赛后报道成绩，计时口径未注明",
+          "sourceIds": [
+            "ty-provincial-sport-recap-2025"
+          ]
         }
       ],
-      "gear": [],
+      "gear": [
+        {
+          "category": "奖牌",
+          "name": "双塔凌霄完赛奖牌",
+          "description": "沿用生肖系列，以古晋阳八景中的双塔凌霄为设计线索。",
+          "items": [
+            "全马",
+            "半马"
+          ],
+          "imageUrl": "",
+          "sourceIds": [
+            "ty-kit-huipao-2025"
+          ]
+        },
+        {
+          "category": "参赛服",
+          "name": "全马背心与其他组别参赛短袖",
+          "description": "赛事发布资料介绍全马参赛服改用背心，其他项目沿用短袖。",
+          "items": [
+            "全马背心",
+            "其他项目短袖"
+          ],
+          "imageUrl": "",
+          "sourceIds": [
+            "ty-kit-huipao-2025"
+          ]
+        }
+      ],
       "notes": [],
       "logistics": {
         "collection": {
@@ -861,6 +977,43 @@
         "ty-report-2026",
         "ty-wa-results-2026"
       ]
+    },
+    {
+      "id": "ty-2026-two-distances",
+      "editionYear": "2026",
+      "tag": "报名与赛道",
+      "title": "2026太马的四万名额分给全马和半马",
+      "summary": "半马计划22000人，全马计划18000人。",
+      "body": "2026太马组委会在竞赛规程中设置两个项目。全马18000人包含特邀选手，半马22000人。预报名从7月15日下午3时开始，7月29日23时59分截止。\n\n两项报名均先缴费，费用分别为200元和180元。未中签的选手在组委会公布抽签结果后按规程退费。\n\n两个距离同在五一广场起跑、长兴北街结束。全马过迎泽大桥后还有柴村桥、滨河东路折返以及祥云桥等路段。全马与半马各自的折返点以当届参赛手册标示为准。",
+      "sourceIds": [
+        "ty-rules-2026",
+        "ty-handbook-2026"
+      ]
+    },
+    {
+      "id": "ty-2025-breakthrough",
+      "editionYear": "2025",
+      "tag": "报名与成绩",
+      "title": "2025太马报名突破16万，半马女子改写赛会纪录",
+      "summary": "山西省体育局赛后披露总中签率25%，刘敏以1小时12分29秒获半马女子冠军。",
+      "body": "太原马拉松在2025年从五一广场发枪，赛事设置全马、半马、健康跑和欢乐跑，总规模4万人。山西省体育局赛后报道，报名人数超过16万，赛事总体中签率为25%。\n\n全程男女公开组冠军分别由肯尼亚选手道格拉斯·基普鲁古特和埃塞俄比亚选手科贝布什·兹沃德玛丽获得。\n\n半程女子组有两位选手快于此前1小时15分21秒的赛会最佳成绩。刘敏率先到达终点，成绩1小时12分29秒，郑小倩以1小时13分17秒获得第二。",
+      "sourceIds": [
+        "ty-provincial-sport-recap-2025",
+        "ty-preview-2025"
+      ]
+    },
+    {
+      "id": "ty-2024-start-station",
+      "editionYear": "2024",
+      "tag": "赛道变化",
+      "title": "2024太马把起跑区搬到太原站旁",
+      "summary": "从迎泽大街进城，过迎泽大桥后再接入汾河两岸。",
+      "body": "太原站旁的迎泽大街成为2024太原马拉松起点。组委会调整赛道后，五一广场和迎泽公园在起跑后的市中心路段相继出现。\n\n全马与半马越过迎泽大桥，沿滨河东西路奔向晋阳湖国际会展中心。迷你跑和家庭亲子跑则到望景路结束，附近分布着山西博物院等公共文化场馆。\n\n次年起点又从太原站移到五一广场。查看历史赛事时，起跑位置要随着年份对应，当届终点名称相近也不足以说明途中走法完全相同。",
+      "sourceIds": [
+        "ty-route-2024",
+        "ty-report-2024",
+        "ty-report-2025"
+      ]
     }
   ],
   "sources": [
@@ -1114,30 +1267,44 @@
         "2026"
       ],
       "evidence": "赛事官方微博以实际参赛者照片展示橙色短袖和橙黄背心；正文明确为2026太原马拉松参赛服。"
+    },
+    {
+      "id": "ty-provincial-sport-recap-2025",
+      "title": "2025太原马拉松赛举行",
+      "url": "https://tyj.shanxi.gov.cn/syxw/jrtt/sjtt/202509/t20250922_9962932.shtml",
+      "publisher": "山西省体育局",
+      "publishedAt": "2025-09-21",
+      "applicableYears": [
+        "2025"
+      ],
+      "accessedAt": "2026-11-23",
+      "verifiedAt": "2026-11-23"
     }
   ],
   "gaps": [
     {
       "fields": [
         "records.男子",
-        "editions.results.timing"
+        "editions[].results.timing",
+        "editions[].participation.finishers"
       ],
-      "reason": "未取得完整历届纪录表及成绩计时类型；2024男子破纪录作为历史节点，不补写为截至2026年的现行纪录。"
+      "reason": "已取得代表性排名。部分来源未区分枪时与净时，完整历届赛会纪录及芯片完赛统计仍待核。"
     },
     {
       "fields": [
-        "editions.2024.registration",
-        "editions.2026.registration",
-        "editions.logistics.collection"
+        "editions[2024].registration",
+        "editions[2025].registration.fee",
+        "editions[2026].registration.lotteryRate",
+        "editions[2024,2025].logistics.collection"
       ],
-      "reason": "2024已核实开放时间和报道所述报名峰值，费用、抽签与领物细则仍待核实；2026参赛手册已补领物、分枪和关门，2025费用仍待核实。"
+      "reason": "2024仅确认开放时间及报道所述报名峰值。2025省体育局公布总体报名超16万与25%中签率，未披露分项目抽签池，也尚未取得两届完整领物与费用公告。2026已从规程和手册补报名、费用、领物与关门，仍缺实际抽签池、名额和比率。"
     },
     {
       "fields": [
-        "images",
-        "editions.route.mapUrl"
+        "editions[2024,2025].route.mapUrl",
+        "editions[].gear[].imageUrl"
       ],
-      "reason": "2026组委会参赛手册和2025山西农民报均有完整线路图。2025、2026参赛服及完赛奖牌图已找到；2024赛道图与装备图待补。"
+      "reason": "2024报道只载重点路段，2025发布会报道确认起点和改线路段，原线路图片加载后未取得可辨认的完整版本。2026已按手册自绘。2025、2026装备有发布出处，实物图再使用许可未确认。"
     }
   ],
   "conflicts": []

@@ -1,6 +1,6 @@
 {
   "raceId": "dongying",
-  "updatedAt": "2026-11-20",
+  "updatedAt": "2026-11-23",
   "intro": "黄河口（东营）马拉松自2008年首次举办，与黄河入海口所在的生态城市共同成长。代表性体验是城市公园、广利河湿地及平原道路的组合；“黄河口”是赛事品牌与城市身份，不应把市区比赛写成直接跑到黄河入海口。",
   "introSourceIds": [
     "dy-history",
@@ -147,13 +147,20 @@
         "summary": "新世纪广场出发，2026全马经府前大街、福州路、黄河路、天目山路、广利河沿岸相关道路回到新世纪广场。",
         "start": "新世纪广场",
         "finish": "新世纪广场",
-        "mapUrl": "",
-        "mapSourceUrl": "",
+        "mapUrl": "/marathon/images/race-archives/dongying-2026-course.png",
+        "mapSourceUrl": "https://www.hhkmls.com/document/7470",
         "changes": "",
         "analysis": [],
         "sourceIds": [
-          "dy-reg-2026"
-        ]
+          "dy-reg-2026",
+          "dy-map-2026"
+        ],
+        "mediaRights": {
+          "status": "original",
+          "holder": "赛历与跑团赛历",
+          "title": "2026全程马拉松赛道示意图",
+          "attribution": "据当届资料自绘，未按比例绘制。"
+        }
       },
       "registration": {
         "method": "第一赛道APP、官网及官方微信预报名，超额首轮抽签及二次抽签，中签后缴费。",
@@ -516,16 +523,23 @@
         }
       ],
       "route": {
-        "summary": "该届城市湿地与公园路线概览见赛事特色，完整道路顺序待补。",
+        "summary": "新世纪广场 → 府前大街 → 福州路 → 黄河路 → 东一路 → 北一路 → 庐山路 → 宁阳路 → 天目山路 → 黄河路折返 → 天目山路 → 滨河北路 → 潍河路 → 东三路 → 府前大街 → 新世纪广场。",
         "start": "新世纪广场",
-        "finish": "",
-        "mapUrl": "",
-        "mapSourceUrl": "",
+        "finish": "新世纪广场",
+        "mapUrl": "/marathon/images/race-archives/dongying-2025-course.png",
+        "mapSourceUrl": "https://www.sohu.com/a/935974280_120632845",
         "changes": "",
         "analysis": [],
         "sourceIds": [
-          "dy-race-2025"
-        ]
+          "dy-race-2025",
+          "dy-route-kit-kuaixun-2025"
+        ],
+        "mediaRights": {
+          "status": "original",
+          "holder": "赛历与跑团赛历",
+          "title": "2025全程马拉松赛道示意图",
+          "attribution": "据当届资料自绘，未按比例绘制。"
+        }
       },
       "registration": {
         "method": "全马、半马超额抽签，设报名、抽签、缴费（含候补缴费）及候补中签；健康跑另开报名，先到先得。",
@@ -622,7 +636,21 @@
           ]
         }
       ],
-      "gear": [],
+      "gear": [
+        {
+          "category": "奖牌",
+          "name": "东马全马与半马完赛奖牌",
+          "description": "赛事预告刊载当届全马、半马奖牌的正反面。",
+          "items": [
+            "全马",
+            "半马"
+          ],
+          "imageUrl": "",
+          "sourceIds": [
+            "dy-route-kit-kuaixun-2025"
+          ]
+        }
+      ],
       "logistics": {
         "collection": {
           "time": "",
@@ -689,68 +717,81 @@
         {
           "project": "马拉松",
           "distanceKm": 42.195,
-          "plannedParticipants": "",
-          "fee": "",
+          "plannedParticipants": 6000,
+          "fee": "150元人民币",
           "sourceIds": [
-            "dy-race-2024"
+            "dy-entry-notice-2024"
           ]
         },
         {
           "project": "半程马拉松",
           "distanceKm": 21.0975,
-          "plannedParticipants": "",
-          "fee": "",
+          "plannedParticipants": 9000,
+          "fee": "120元人民币",
           "sourceIds": [
-            "dy-race-2024"
+            "dy-entry-notice-2024"
           ]
         },
         {
           "project": "健康跑",
-          "distanceKm": "",
-          "plannedParticipants": "",
-          "fee": "",
+          "distanceKm": 5,
+          "plannedParticipants": 20000,
+          "fee": "个人80元；10人以上团队每人60元。",
           "sourceIds": [
-            "dy-race-2024"
+            "dy-entry-notice-2024",
+            "dy-healthy-entry-2024"
           ]
         }
       ],
       "route": {
-        "summary": "该届城市湿地与公园路线概览见赛事特色，完整道路顺序待补。",
+        "summary": "新世纪广场 → 府前大街 → 福州路 → 黄河路 → 东一路 → 北一路 → 庐山路 → 宁阳路 → 天目山路 → 黄河路折返 → 天目山路 → 滨河北路 → 潍河路 → 东三路 → 府前大街 → 新世纪广场。",
         "start": "新世纪广场",
-        "finish": "",
-        "mapUrl": "",
-        "mapSourceUrl": "",
+        "finish": "新世纪广场",
+        "mapUrl": "/marathon/images/race-archives/dongying-2024-course.png",
+        "mapSourceUrl": "https://dongying.iqilu.com/dyminsheng/2024/1014/5728315.shtml",
         "changes": "",
         "analysis": [],
         "sourceIds": [
-          "dy-race-2024"
-        ]
+          "dy-race-2024",
+          "dy-traffic-2024"
+        ],
+        "mediaRights": {
+          "status": "original",
+          "holder": "赛历与跑团赛历",
+          "title": "2024全程马拉松赛道示意图",
+          "attribution": "据当届资料自绘，未按比例绘制。"
+        }
       },
       "registration": {
-        "method": "",
-        "opens": "",
-        "closes": "",
+        "method": "全马、半马报名先到先得，额满即止。",
+        "opens": "2024-07-15 10:00",
+        "closes": "2024-07-30 17:00（额满提前截止）",
         "drawDate": "",
-        "fee": "",
-        "qualification": "",
+        "fee": "全马150元；半马120元人民币/人。",
+        "qualification": "全马20周岁及以上，半马16周岁及以上；全马和半马按公告提交体检报告或赛前体检表。",
         "applicants": "",
         "eligibleApplicants": "",
         "lotteryPool": "",
         "drawQuota": "",
         "directQuota": "",
         "lotteryRate": "",
-        "lotteryNote": "未取得同口径抽签池与实际抽签名额，不计算中签率。",
-        "note": "",
-        "sourceIds": []
+        "lotteryNote": "本届先到先得，没有大众抽签池和中签率。",
+        "note": "健康跑单独报名，8月9日17:00截止；个人80元，10人以上团队每人60元。",
+        "sourceIds": [
+          "dy-entry-notice-2024",
+          "dy-healthy-entry-2024"
+        ],
+        "plannedQuota": "全马6000人、半马9000人、健康跑20000人。"
       },
       "participation": {
-        "planned": "",
+        "planned": "总规模35000人（全马6000、半马9000、健康跑20000）。",
         "starters": "",
         "finishers": "",
         "finishRate": "",
         "note": "赛后报道提及35095名参赛选手，不将媒体参赛规模直接记为芯片起跑数或完赛数。",
         "sourceIds": [
-          "dy-race-2024"
+          "dy-race-2024",
+          "dy-entry-notice-2024"
         ]
       },
       "results": [
@@ -809,13 +850,15 @@
           "sourceIds": []
         },
         "raceDay": {
-          "startTime": "",
+          "startTime": "2024-10-20 07:30（新世纪广场）",
           "timeLimit": "",
           "bagDrop": "",
           "aidStations": "",
           "toilets": "",
           "medical": "",
-          "sourceIds": []
+          "sourceIds": [
+            "dy-entry-notice-2024"
+          ]
         },
         "tips": []
       },
@@ -827,6 +870,14 @@
           "url": "https://worldathletics.org/competition/calendar-results/results/7208921",
           "sourceIds": [
             "dy-wa-2024"
+          ]
+        },
+        {
+          "category": "route-map",
+          "title": "关于2024黄河口（东营）马拉松赛期间对部分道路实施临时交通管制的通告",
+          "url": "https://dongying.iqilu.com/dyminsheng/2024/1014/5728315.shtml",
+          "sourceIds": [
+            "dy-traffic-2024"
           ]
         }
       ]
@@ -867,6 +918,44 @@
         "dy-wa-2025"
       ],
       "editionYear": "2025"
+    },
+    {
+      "id": "dy-2024-entry-history",
+      "editionYear": "2024",
+      "tag": "报名",
+      "title": "东马2024年全马和半马按报名先后确认名额",
+      "summary": "7月15日10时开放报名，两个距离的名额分开。",
+      "body": "2024年东马把全程和半程的开放时间安排在7月15日上午10时。组委会给全程安排6000个名额、半程9000个，报名额满即止。两个项目的报名费分别为150元和120元。\n\n健康跑另行发布报名通知，赛事给约5公里项目安排了20000人规模。把三个项目合看，可以得到35000人的计划规模。全马报名者面对的是其中6000个名额。\n\n正式比赛10月20日从新世纪广场出发。公安交警的分项目路线显示，健康跑从府前大街转至东四路南首。全马则继续向西，经宁阳路、天目山路和广利河一带绕回广场。",
+      "sourceIds": [
+        "dy-entry-notice-2024",
+        "dy-traffic-2024"
+      ]
+    },
+    {
+      "id": "dy-2025-split",
+      "editionYear": "2025",
+      "tag": "报名与成绩",
+      "title": "2025东马的两个报名节奏",
+      "summary": "全马和半马先走抽签流程，健康跑另开窗口。",
+      "body": "2025年黄河口马拉松把全马和半马报名安排在5月底、6月初。普通名额在超额时抽签，中签后缴费，随后还安排了候补结果公布。\n\n健康跑的报名时间更晚，按先到先得处理。这一调整让三个距离的参赛资格有了两套节奏，查询历史报名窗口时需要先确定项目。\n\n10月19日，全马男子冠军埃兹拉·基普凯特·塔努伊用时2小时08分12秒。女子前两名在世界田联结果表上同为2小时26分36秒，名次仍按官方结果顺序读取。",
+      "sourceIds": [
+        "dy-entry-2025",
+        "dy-wa-2025",
+        "dy-race-2025"
+      ]
+    },
+    {
+      "id": "dy-2026-waves",
+      "editionYear": "2026",
+      "tag": "赛事服务与装备",
+      "title": "全马先发之后，东马把半马分为两批",
+      "summary": "2026年的三个发枪时刻相隔20分钟和15分钟。",
+      "body": "2026年10月18日，东马全程选手在7时30分出发，半程选手按分区在7时50分以及8时05分出发。分组时间也对应了不同的集结和关门安排。\n\n发布会披露，当届合计66571人报名，其中还有单列的直通报名。报名总数不能用来推算仅面向普通选手的抽签池。\n\n组委会同时展示了两种距离的服装和奖牌。全马服装以蓝色为主，奖牌为金色调；半马服装以玫红色为主，奖牌为银色调。",
+      "sourceIds": [
+        "dy-kit-2026",
+        "dy-guide-2026",
+        "dy-review-2026"
+      ]
     }
   ],
   "sources": [
@@ -1148,23 +1237,73 @@
         "2025"
       ],
       "evidence": "报道转刊2025当届组委会发布的高清赛道图、主会场图及全马、半马奖牌正反面。"
+    },
+    {
+      "id": "dy-entry-notice-2024",
+      "title": "2024黄河口（东营）马拉松报名须知",
+      "url": "https://dongying.iqilu.com/dyminsheng/2024/0715/5685584.shtml",
+      "publisher": "齐鲁网·闪电新闻（刊载赛事报名须知）",
+      "publishedAt": "2024-07-15",
+      "applicableYears": [
+        "2024"
+      ],
+      "accessedAt": "2026-11-23",
+      "verifiedAt": "2026-11-23"
+    },
+    {
+      "id": "dy-traffic-2024",
+      "title": "关于2024黄河口（东营）马拉松赛期间对部分道路实施临时交通管制的通告",
+      "url": "https://dongying.iqilu.com/dyminsheng/2024/1014/5728315.shtml",
+      "publisher": "东营市公安局交通警察支队（齐鲁网刊载）",
+      "publishedAt": "2024-10-14",
+      "applicableYears": [
+        "2024"
+      ],
+      "accessedAt": "2026-11-23",
+      "verifiedAt": "2026-11-23"
+    },
+    {
+      "id": "dy-healthy-entry-2024",
+      "title": "2024黄河口（东营）马拉松赛5公里健康跑报名已开始",
+      "publisher": "齐鲁壹点（闪电新闻转载）",
+      "url": "https://sdxw.iqilu.com/share/YS0yMS0xNTc4NDkwOA.html",
+      "publishedAt": "2024-07-30",
+      "applicableYears": [
+        "2024"
+      ],
+      "verifiedAt": "2026-11-23",
+      "accessedAt": "2026-11-23"
     }
   ],
   "gaps": [
     {
       "fields": [
         "records.女子",
-        "editions[2024].registration",
+        "editions[2025].results.半马",
+        "editions[].participation.starters",
         "editions[].participation.finishers"
       ],
-      "reason": "2026四组公开前三和全马中国籍前三已有公示，2025全马公开组前三已有世界田联结果。2025已补赛道图及奖牌正反面；2025半马、2024报名、女子赛会纪录、各届实际完赛人数及2025、2026参赛服原图仍待核。"
+      "reason": "2025世界田联结果覆盖全马公开组，尚无可复核的半马成绩公示及完整女子纪录。赛后报道采用参赛规模口径，缺计时系统的实际起跑与完赛统计。"
     },
     {
       "fields": [
-        "editions[].route.mapUrl",
-        "editions[].gear[].imageUrl"
+        "editions[2025,2026].registration.lotteryRate",
+        "editions[2025,2026].registration.lotteryPool"
       ],
-      "reason": "未取得可公开再分发的图片许可；仅保留来源链接，不接入赛道图或物资实物图片。"
+      "reason": "2024全马和半马先到先得。2025、2026报名公告给了抽签流程；发布会的2026总报名数和直通报名数未区分有效抽签池与名额，无法复算中签率。"
+    },
+    {
+      "fields": [
+        "editions[2024,2025].logistics.collection"
+      ],
+      "reason": "历史报名须知与交通通告已核，仍未找到两届本人领取的完整公告。"
+    },
+    {
+      "fields": [
+        "editions[].gear[].imageUrl",
+        "editions[].route.mapSourceUrl"
+      ],
+      "reason": "2024至2026全程路线已按当届交通通告和发布图自绘；原版图未确认转载权。2025奖牌图及2026装备发布已取得出处，可在小程序展示的授权装备图未取得。"
     }
   ],
   "conflicts": []

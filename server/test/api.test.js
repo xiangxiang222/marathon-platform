@@ -2083,7 +2083,8 @@ test("dues are recorded by the club and can block an activity signup", async (t)
   assert.equal((await request(app).post("/marathon/api/clubs/" + clubId + "/fees/" + periodId + "/claim").set(mateAuth)).status, 404);
 });
 
-test("a result call shows PB and writes a catalog result", async () => {
+test("a result call shows PB and writes a catalog result", async (t) => {
+  t.mock.timers.enable({ apis: ["Date"], now: new Date("2026-11-21T12:00:00+08:00") });
   const leader = await session("成绩团长");
   const mate = await session("成绩成员");
   const created = await createClub(leader, "成绩跑团");

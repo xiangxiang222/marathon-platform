@@ -1,6 +1,6 @@
 {
   "raceId": "shanghai",
-  "updatedAt": "2026-11-20",
+  "updatedAt": "2026-11-23",
   "intro": "上马始于1996年的上海国际市民马拉松赛。它把外滩、中心城区与海派文化串在一场42.195公里的奔跑中：2020年获得世界田联白金标，2024年进入雅培世界马拉松大满贯候选评估。年度档案分别记录规则、装备与成绩，避免把某一届的体验当成永久承诺。",
   "highlights": [
     {
@@ -40,14 +40,20 @@
         "summary": "由外滩金牛广场出发，经南京路步行街、静安寺、淮海路、新天地、中共一大会址、黄浦滨江、龙腾大道、龙华寺及龙华烈士陵园，至徐家汇体育公园。",
         "start": "中山东一路（外滩金牛广场）",
         "finish": "中山南二路（徐家汇体育公园）",
-        "mapUrl": "",
-        "mapSourceUrl": "",
+        "mapUrl": "/marathon/images/race-archives/shanghai-2026-course.png",
+        "mapSourceUrl": "https://static.shang-ma.com/web/matchDetail/index.html?eventTtype=5&eventId=232",
         "changes": "全马规模由23000人增至30000人；迷你跑改为12月5日单独举行。",
         "analysis": [],
         "sourceIds": [
           "sh-reg-2026-cn",
           "sh-map-2026-cn"
-        ]
+        ],
+        "mediaRights": {
+          "status": "original",
+          "title": "2026 上海马拉松全程赛道示意图",
+          "holder": "跑圈编辑部",
+          "attribution": "依据上海马拉松组委会当届路线图绘制"
+        }
       },
       "registration": {
         "method": "普通跑者抽签；符合组委会条件的直通跑者按规定报名、缴费。",
@@ -63,10 +69,13 @@
         "directQuota": "",
         "lotteryRate": "",
         "lotteryNote": "普通中签者须在7月20日12:00前付款，超时视为放弃。",
-        "note": "中签者须在7月20日12:00前缴费。迷你跑单独于12月5日举行、计划15000人，7月另开报名；此处人数统计只含全马。报名费及本届中签人数、中签率待核实。",
+        "note": "迷你跑于12月5日独立举办，计划15000人，另开报名。全马报名总数、实际抽签人数、抽签名额和中签率待补。",
         "sourceIds": [
-          "sh-reg-2026-cn"
-        ]
+          "sh-reg-2026-cn",
+          "sh-2026-reg-en"
+        ],
+        "payment": "普通中签者在2026-07-20 12:00前缴费确认。",
+        "direct": "2026上海女子半马前200名、苏州河半马男子前150名及女子前100名、上海半马男子前200名及女子前100名按规程直通。"
       },
       "participation": {
         "planned": "全马30000人；竞速轮椅马拉松20人（组委会公布规模）",
@@ -79,7 +88,18 @@
         ]
       },
       "results": [],
-      "gear": [],
+      "gear": [
+        {
+          "category": "参赛服",
+          "name": "全马参赛纪念 T 恤",
+          "description": "领物须知确认参赛纪念 T 恤在领物现场选尺码。",
+          "items": [],
+          "imageUrl": "",
+          "sourceIds": [
+            "sh-kit-2026-cn"
+          ]
+        }
+      ],
       "notes": [
         "2026为第30届上马，赛事尚未举行。本页使用组委会截至11月20日公布的日程、路线和领物信息。"
       ],
@@ -173,7 +193,7 @@
         "summary": "从外滩金牛广场出发，经南京路、静安寺、淮海中路和新天地，进入黄浦滨江、徐汇滨江，沿龙腾大道往返后经龙华区域抵达上海体育场。",
         "start": "外滩金牛广场",
         "finish": "上海体育场（由12号门进入终点区域）",
-        "mapUrl": "https://english.shanghai.gov.cn/cmsres/5a/5a5fb96be0964cc0bbda5399a8b81537/f3eba255cfbbcb11b8ea087c999d3b1d.jpg",
+        "mapUrl": "/marathon/images/race-archives/shanghai-2025-course.png",
         "mapSourceUrl": "https://english.shanghai.gov.cn/en-SportsEvents/20251125/1426d8969f3b4e609ef63ad318cf9d5b.html",
         "changes": "首次分三枪起跑，整体关门时间较原安排延后15分钟至13:30。",
         "analysis": [
@@ -186,7 +206,14 @@
           "sh-2025-preview",
           "sh-2025-guide-en",
           "sh-2025-traffic-en"
-        ]
+        ],
+        "mediaRights": {
+          "status": "original",
+          "title": "2025 上海马拉松全程赛道示意图",
+          "holder": "跑圈编辑部",
+          "attribution": "依据上海市政府发布的跑者指南与交通管制公告绘制",
+          "sourceUrl": "https://english.shanghai.gov.cn/cmsres/5a/5a5fb96be0964cc0bbda5399a8b81537/f3eba255cfbbcb11b8ea087c999d3b1d.jpg"
+        }
       },
       "registration": {
         "method": "上马官网或上马APP预报名，普通参赛资格通过抽签确定。官方称本届首次提前半年预报名、预报名期延长至一个月。",
@@ -304,6 +331,16 @@
           "sourceIds": [
             "sh-2025-preview"
           ]
+        },
+        {
+          "category": "参赛服",
+          "name": "上马参赛 T 恤",
+          "description": "赛事发布会确认参赛 T 恤随参赛物资发放。",
+          "items": [],
+          "imageUrl": "",
+          "sourceIds": [
+            "sh-2025-preview"
+          ]
         }
       ],
       "notes": [
@@ -383,7 +420,26 @@
       },
       "editionId": "shanghai-2025",
       "editionName": "2025上海马拉松",
-      "events": [],
+      "events": [
+        {
+          "project": "马拉松",
+          "distanceKm": 42.195,
+          "plannedParticipants": 23000,
+          "fee": "",
+          "sourceIds": [
+            "sh-2025-reg-en"
+          ]
+        },
+        {
+          "project": "迷你跑",
+          "distanceKm": "",
+          "plannedParticipants": 15000,
+          "fee": "",
+          "sourceIds": [
+            "sh-2025-reg-en"
+          ]
+        }
+      ],
       "status": "completed",
       "officialResources": [
         {
@@ -439,7 +495,7 @@
         "summary": "从外滩金牛广场出发，穿行中心城区，终点位于徐家汇体育公园庆典广场。官方介绍提及南京路步行街、静安寺、新天地等沿途城市地标。",
         "start": "外滩金牛广场",
         "finish": "徐家汇体育公园庆典广场",
-        "mapUrl": "/marathon/images/race-archives/shanghai-2024-route-ca3e5936ca.jpg",
+        "mapUrl": "/marathon/images/race-archives/shanghai-2024-course.png",
         "mapSourceUrl": "https://tyj.sh.gov.cn/tpxw1/20241129/7cb432efd6ea40a8b1eb84f712a445a8.html",
         "changes": "为首次加入的竞速轮椅项目优化路线：原徐汇滨江段改走较平整的瑞宁路与龙腾大道；全马与健身跑分别设置终点。",
         "analysis": [
@@ -451,7 +507,13 @@
           "sh-2024-preview",
           "sh-2024-preview-gallery",
           "sh-2024-city-preview"
-        ]
+        ],
+        "mediaRights": {
+          "status": "original",
+          "title": "2024 上海马拉松全程赛道示意图",
+          "holder": "跑圈编辑部",
+          "attribution": "依据上海市体育局发布会路线图与赛前说明绘制"
+        }
       },
       "registration": {
         "method": "上马官网或上马APP预报名，抽签确定普通参赛资格；中签后付费。符合系列赛直通条件者及慈善名额另设通道。",
@@ -645,7 +707,28 @@
       },
       "editionId": "shanghai-2024",
       "editionName": "2024上海马拉松",
-      "events": [],
+      "events": [
+        {
+          "project": "马拉松",
+          "distanceKm": 42.195,
+          "plannedParticipants": 23000,
+          "fee": "",
+          "sourceIds": [
+            "sh-2024-launch",
+            "sh-2024-reg-en"
+          ]
+        },
+        {
+          "project": "健身跑",
+          "distanceKm": "",
+          "plannedParticipants": 15000,
+          "fee": "",
+          "sourceIds": [
+            "sh-2024-launch",
+            "sh-2024-reg-en"
+          ]
+        }
+      ],
       "status": "completed",
       "officialResources": [
         {
@@ -717,6 +800,44 @@
         "sh-reg-2026-cn"
       ],
       "editionYear": "2026"
+    },
+    {
+      "id": "shanghai-2026-race-weekend",
+      "editionYear": "2026",
+      "tag": "报名与赛程",
+      "title": "上马三十周年，全马和迷你跑分两天举行",
+      "summary": "全马计划增至3万人。12月5日办迷你跑，6日从外滩开跑。",
+      "body": "上海马拉松三十周年把周末的两个项目拆开安排。12月5日举行独立的迷你跑，计划1.5万人。12月6日的全程马拉松计划3万人，另有竞速轮椅马拉松。两天的人数分别对应各自的项目。\n\n全马从外滩金牛广场出发。按竞赛规程，轮椅项目拟在6时45分先起跑，全马随后从7时起分枪出发。沿线补给、医疗点及志愿服务会提供多语种支持。\n\n大众全马预报名在4月29日下午开始，5月29日中午截止。系列赛规定名次另有直通资格，报名窗口相同。竞赛日程有明确出处，实际起跑、完赛和最终名次要等12月比赛结束。",
+      "sourceIds": [
+        "sh-2026-reg-en",
+        "sh-reg-2026-cn",
+        "sh-brand-2026"
+      ]
+    },
+    {
+      "id": "shanghai-2025-record",
+      "editionYear": "2025",
+      "tag": "成绩",
+      "title": "科斯盖在上海把女子赛会纪录推进到2:16:36",
+      "summary": "2025上马女子夺冠成绩刷新赛会纪录，丰配友与张德顺拿下中国籍组别第一。",
+      "body": "2025年11月30日，布里吉德·科斯盖以2小时16分36秒完成上马，改写女子赛会纪录。男子全场冠军是米尔克萨·门格沙，成绩2小时06分25秒。\n\n同一张成绩单还记录了中国籍组别。丰配友跑出2小时08分36秒，张德顺以2小时25分13秒完成比赛，分别排名中国籍男子、女子第一。\n\n这届比赛首次为全马安排三枪出发。分枪为不同出发区留出间隔，赛会排名仍要看各组规定的计时口径。",
+      "sourceIds": [
+        "sh-2025-recap",
+        "sh-2025-recap-en"
+      ]
+    },
+    {
+      "id": "shanghai-2024-wheelchair",
+      "editionYear": "2024",
+      "tag": "赛道与装备",
+      "title": "2024上马因一项新比赛改走部分滨江路",
+      "summary": "首设竞速轮椅项目后，上马改走瑞宁路和龙腾大道，全马和健身跑各有终点。",
+      "body": "2024年上马加入竞速轮椅马拉松。赛前介绍把一处变化放在徐汇滨江段，线路改走较平整的瑞宁路和龙腾大道，让轮椅与全马选手通过这一段。健身跑使用单独终点。\n\n赛后全马男子冠军萨姆索姆·阿玛雷跑出2小时06分26秒，女子冠军贝克莱赫·古德塔·博雷查用时2小时25分21秒。吴向东、张德顺分获中国籍男女第一。\n\n大众选手的完赛奖牌以石库门和放射状线条为主要元素。面向精英领奖台的纪念奖项有独立的授予范围，当届大众完赛牌可以按项目单独识别。",
+      "sourceIds": [
+        "sh-2024-preview",
+        "sh-2024-city-preview",
+        "sh-2024-city-results"
+      ]
     }
   ],
   "sources": [
@@ -1072,10 +1193,11 @@
   "gaps": [
     {
       "fields": [
-        "editions.2026.gear",
-        "editions.2026.registration.lotteryRate"
+        "editions.2026.registration.applicants",
+        "editions.2026.registration.lotteryRate",
+        "editions.2026.gear"
       ],
-      "reason": "2026中文规程、地图和领物时间已核对；实物发布页和同口径中签统计待补。"
+      "reason": "2026 中文规程确认比赛日、报名费用和计划规模，领物须知确认纪念 T 恤。实际抽签分母、名额、中签率及装备实物原图仍待核实。"
     },
     {
       "fields": [
@@ -1083,28 +1205,26 @@
         "participation.finishers",
         "registration.fee"
       ],
-      "reason": "部分年度精确起跑完赛及费用口径尚未取得充分依据。"
+      "reason": "已赛届次仍缺可区分计划规模、实际起跑与完赛的计时统计。2024、2025 大陆籍普通全马报名费待核实。"
     },
     {
       "fields": [
         "records"
       ],
-      "reason": "男子纪录由2024发布会和2025赛后成绩交叉核对，2025男子冠军2:06:25慢于现纪录；女子赛会纪录在2025刷新。两条均核至2025已赛届次。"
+      "reason": "男子纪录由 2024 发布会和 2025 赛果交叉核对。女子赛会纪录于 2025 刷新。两条均核至 2025 已赛届次。"
     },
     {
       "fields": [
-        "editions.2024.officialResources.完赛奖牌"
+        "editions.2024.results",
+        "editions.2025.results"
       ],
-      "reason": "体育局图集为发布会现场照片，奖牌仅出现在屏幕背景；未核实单独展示当届大众完赛奖牌的官方原页。"
+      "reason": "已有主要冠军，公开组部分名次、轮椅组完整赛果和历史个人成绩查询原页待补。"
     },
     {
       "fields": [
-        "editions.2024.results.公开组二三名与轮椅",
-        "editions.2025.results.公开组二三名与轮椅",
-        "editions.2024.results.官方个人查询",
-        "editions.2025.results.官方个人查询"
+        "editions[].gear[].imageUrl"
       ],
-      "reason": "体育局和市政府赛后报道确认主要冠军，未在赛事官网定位仍有效的对应届次公开成绩总表和个人查询页；轮椅不能套用全马公开组。"
+      "reason": "2024 发布会现场图包含奖牌设计背景。2025 服装和奖牌有公开发布资料。两个已赛届次的实物图均待取得小程序展示许可。"
     }
   ]
 }

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "raceId": "shenzhen",
-  "updatedAt": "2026-11-20",
+  "updatedAt": "2026-11-23",
   "intro": "深圳马拉松创办于2013年。近年线路从市民中心沿深南大道展开，再进入深圳湾与前海，将现代城市大道、滨海休闲带和宝安终点连接起来。2024年为两万人全马，2025年规程计划扩至三万人；2026年比赛仍在筹备日期内，档案明确区分已发生的成绩与尚待确认的安排。",
   "introSourceIds": [
     "sz-history-2024",
@@ -140,13 +140,22 @@
         "summary": "深圳市民中心出发，沿深南大道向西，经望海路、深圳湾运动公园、金铜沙河西立交附近、前海石公园等折返路段，终点在宝安区海滨广场。",
         "start": "深圳市民中心",
         "finish": "宝安区海滨广场",
-        "mapUrl": "",
+        "mapUrl": "/marathon/images/race-archives/shenzhen-2026-course.png",
         "changes": "",
         "analysis": [],
         "sourceIds": [
           "sz-regulations-2026",
           "sz-map-2026"
-        ]
+        ],
+        "mapSourceUrl": "https://shenzhenmarathon.org.cn/subject.html?detailId=6991596822309459&topicId=6990421074973494",
+        "mediaRights": {
+          "status": "original",
+          "holder": "跑团小助理",
+          "title": "2026深圳马拉松全程赛道示意图",
+          "sourceUrl": "https://shenzhenmarathon.org.cn/subject.html?detailId=6991596822309459&topicId=6990421074973494",
+          "attribution": "依据深圳马拉松组委会官方路线图绘制",
+          "usageTerms": "依据当届路线事实原创绘制，供赛事回顾。"
+        }
       },
       "registration": {
         "method": "官网或马拉马拉APP预报名；超额抽签；另设大众精英和历届完赛选手通道。",
@@ -276,12 +285,22 @@
         "summary": "市民中心—深南大道—沙河西路—望海路（深圳湾运动公园折返）—沙河西路折返—深南大道—宝安大道—湖滨西路—梦海大道—前海大道（前海石公园折返）—梦海大道—湖滨西路—海秀路—海滨广场。",
         "start": "深圳市民中心",
         "finish": "宝安区海滨广场",
-        "mapUrl": "",
+        "mapUrl": "/marathon/images/race-archives/shenzhen-2025-course.png",
         "changes": "",
         "analysis": [],
         "sourceIds": [
-          "sz-regulations-2025"
-        ]
+          "sz-regulations-2025",
+          "sz-route-bendibao-2025"
+        ],
+        "mapSourceUrl": "https://sz.bendibao.com/xiuxian/20251030/993942.htm",
+        "mediaRights": {
+          "status": "original",
+          "holder": "跑团小助理",
+          "title": "2025深圳马拉松全程赛道示意图",
+          "sourceUrl": "https://sz.bendibao.com/xiuxian/20251030/993942.htm",
+          "attribution": "依据深圳马拉松组委会赛道图 · 深圳本地宝刊载绘制",
+          "usageTerms": "依据当届路线事实原创绘制，供赛事回顾。"
+        }
       },
       "registration": {
         "method": "个人预报名后抽签，中签后缴费；按空缺安排候补。",
@@ -393,14 +412,27 @@
         {
           "category": "奖牌",
           "name": "2025深马完赛奖牌",
-          "description": "官方展示图为圆形金色奖牌，中心为赛事标识，外圈呈放射状。",
+          "description": "奖牌有可滑动的外盖，内部藏一枚金属纪念徽章。",
           "items": [
             "奖牌"
           ],
           "imageUrl": "",
           "sourceUrl": "https://pub.mararun.com/cms/pic/shenzhenMarathon/1c72ee70d96972d0a0f079c467df8d58.png",
           "sourceIds": [
-            "sz-medal-2025"
+            "sz-medal-2025",
+            "sz-shirt-sznews-2025"
+          ]
+        },
+        {
+          "category": "参赛服",
+          "name": "深圳湾日出主题参赛服",
+          "description": "",
+          "items": [
+            "短袖"
+          ],
+          "imageUrl": "",
+          "sourceIds": [
+            "sz-shirt-sznews-2025"
           ]
         }
       ],
@@ -679,21 +711,55 @@
   ],
   "stories": [
     {
-      "title": "同一条赛道上的两次发令",
-      "body": "2025年深圳马拉松与全国残特奥会马拉松共用赛道：残特奥会选手06:30起跑，深马选手07:30起跑。赛道服务共用，两个赛事的成绩、分组和纪录仍各自记录。",
+      "id": "sz-entry-longtime-2026",
+      "editionYear": "2026",
+      "tag": "报名",
+      "title": "八届完赛如何变成深马免抽签资格",
+      "summary": "历届完赛通道读取八届线下成绩。精英通道限额3000人。",
+      "body": "2026深圳马拉松的报名须知为老跑者保留了免抽签机会。跑过至少八届线下深马，并有相应计时项目完赛成绩，才符合这条资格要求。\n\n资格审核依照历届赛事数据以及中国马拉松平台成绩。同城举办的其他全程或半程马拉松，不能代替深圳马拉松的届次。\n\n成绩精英是另一条报名通道，限额3000人，达标者超过限额也需抽签。普通抽签首轮10月16日公布结果，第二轮10月29日公布。",
       "sourceIds": [
-        "sz-recap-2025",
-        "sz-government-report-2025"
-      ],
-      "editionYear": "2025"
+        "sz-entry-2026",
+        "sz-draw2-2026"
+      ]
     },
     {
-      "title": "八届完赛如何变成深马免抽签资格",
-      "body": "2026年报名须知为累计参加至少八届线下深圳马拉松、保有计时项目完赛成绩的跑者设置免抽签资格。资格按赛事官方历史数据和中国马拉松平台成绩核对；同在深圳举行的其他马拉松不能替代深马记录。",
+      "id": "sz-shared-route-2025",
+      "editionYear": "2025",
+      "tag": "赛事变化",
+      "title": "同一条赛道上的两次发令",
+      "summary": "残特奥会马拉松选手6时30分出发，深马于7时30分起跑。",
+      "body": "2025年12月7日，深圳市民中心的马拉松赛道上午发令两次。全国残特奥会马拉松6时30分开跑，深圳马拉松7时30分发枪，两场均跑向宝安区海滨广场。\n\n赛事之间共享赛道路面和保障资源。沿途经过深南大道、深圳湾和前海，有多处折返段。双赛事同日运行时，发令和分组也决定了如何读懂计时成绩。\n\n深马全马男子公开组由Kemal HUSEN GEBI以2:09:12获胜，高鹏以2:13:59拿到第三名。本场成绩与残特奥会另行编排。",
       "sourceIds": [
-        "sz-entry-2026"
-      ],
-      "editionYear": "2026"
+        "sz-recap-2025",
+        "sz-government-report-2025",
+        "sz-regulations-2025"
+      ]
+    },
+    {
+      "id": "sz-kit-2025-feature",
+      "editionYear": "2025",
+      "tag": "奖牌与参赛服",
+      "title": "滑开奖牌，里面还有一枚徽章",
+      "summary": "2025深马发布会展示滑盖奖牌，赛服以深圳湾日出的蓝色和金色配色。",
+      "body": "2025年深马发布装备时，让人形机器人“夏起”上台揭晓。跑完全马才能领取的奖牌新增了一个动作，让奖牌的外形和内层可以单独看到。\n\n奖牌的外盖可以推开，里面藏有金属纪念徽章。参赛服使用蓝色底与偏金色的纹样，把深圳湾的晨光和水波放进同一件短袖。\n\n当届领物须知另外列有号码布和芯片。参赛服随参赛物品发放，奖牌则在完成赛事后随完赛物品领取。",
+      "sourceIds": [
+        "sz-shirt-sznews-2025",
+        "sz-medal-2025",
+        "sz-kit-2025"
+      ]
+    },
+    {
+      "id": "sz-results-2024-feature",
+      "editionYear": "2024",
+      "tag": "成绩",
+      "title": "同到宝安海滨广场，个人赛与团体赛各有名额",
+      "summary": "2024深马男子冠军用时2:09:13，陈华威获中国籍男子冠军。",
+      "body": "2024深圳马拉松从市民中心跑到宝安区海滨广场。组委会给全马的计划规模为20000人，其中含200支团体队。\n\n肯尼亚选手Sammy Kirop KITWARA以2:09:13获男子全马冠军，女子冠军肖里用时2:29:30。中国籍男子方面，陈华威以2:17:33拿到第一。\n\n当届参赛服为浅蓝色短袖，参赛包里另有十周年挂件。完赛奖牌是另一件物品，和赛前领取的挂件分开记录。",
+      "sourceIds": [
+        "sz-report-2024",
+        "sz-entry-2024",
+        "sz-gear-2024"
+      ]
     }
   ],
   "sources": [
@@ -1027,10 +1093,22 @@
     },
     {
       "fields": [
-        "editions.2024.registration.lotteryRate",
-        "editions.2024.officialResources.route-map"
+        "editions.2024.registration.lotteryRate"
       ],
-      "reason": "2025赛道图与参赛服已有媒体图文；2024赛道图及同口径中签统计仍待核验。"
+      "reason": "2024–2026的抽签公告能核对查询、缴费和递补安排，尚未取得各届有效报名、抽签池、实际签位与公布中签率。"
+    },
+    {
+      "fields": [
+        "editions.2024.gear.imageUrl",
+        "editions.2025.gear.imageUrl"
+      ],
+      "reason": "已找到2024双包发布及2025发布会实物图；待补允许在小程序展示的清晰原图。"
+    },
+    {
+      "fields": [
+        "editions.2024.route.mapUrl"
+      ],
+      "reason": "2024交管通知与地铁报道可核比赛日期和部分路段，已找到比赛路线图报道线索，未获得可读原图。2025、2026已据当届发布图绘制示意。"
     }
   ],
   "conflicts": [
