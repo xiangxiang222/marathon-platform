@@ -67,7 +67,7 @@ const report = { kind: process.env.RACE_RICH_API ? 'Current Vue page with saved 
   const png = await qr.toBuffer('https://reg.zuicool.com/verified-fixture-entry', { margin: 4, width: 288 });
   await ctx.route('**/marathon/api/**', async route => {
     const url = new URL(route.request().url());
-    if (!url.pathname.endsWith('/race-service-fixture/signup-qr') && (localApi || process.env.RACE_RICH_API) && (url.pathname.includes('/race-sheets/') || url.pathname.endsWith('/signup-qr'))) {
+    if (current.race.id !== 'race-service-fixture' && (localApi || process.env.RACE_RICH_API) && (url.pathname.includes('/race-sheets/') || url.pathname.endsWith('/signup-qr'))) {
       const remote = new URL(url.pathname + url.search, localApi || new URL(process.env.RACE_RICH_API).origin);
       const response = await fetch(remote); return route.fulfill({ status: response.status, contentType: response.headers.get('content-type') || 'image/png', body: Buffer.from(await response.arrayBuffer()) });
     }
@@ -107,9 +107,9 @@ const report = { kind: process.env.RACE_RICH_API ? 'Current Vue page with saved 
     assert.equal(await page.locator('#race-title').textContent(), serviceRace.name, 'the race fixture must render before checking new behavior');
   }
   const serviceFailures = [];
-  async function serviceCheck(name, check) {
+  async function serviceCheck(name, check, failures = serviceFailures) {
     try { await check(); report.checks.push(name); }
-    catch (error) { serviceFailures.push(name + '\n' + error.message); }
+    catch (error) { failures.push(name + '\n' + error.message); }
   }
   await page.clock.setFixedTime(new Date('2035-10-16T02:00:00Z'));
   await serviceCheck('Open registration shows one official signup action, facts and the next deadline', async () => {
@@ -192,6 +192,87 @@ const report = { kind: process.env.RACE_RICH_API ? 'Current Vue page with saved 
     } finally { await page.evaluate(() => localStorage.removeItem('marathon_token')); }
   });
   assert.deepEqual(serviceFailures, [], 'race service browser scenarios');
+  const bodyFailures = [];
+  const bodyCheck = (name, check) => serviceCheck(name, check, bodyFailures);
+  await bodyCheck('The timeline keeps independently labeled early-bird history and shares the next dated node with the service card', async () => {
+    const nodes = [
+      { key: 'race', label: '比赛日', at: '2035-11-04', past: false },
+      { key: 'deadline', label: '早鸟截止', at: '2035-10-15 23:59', past: true },
+      { key: 'draw', label: '出签', at: '2035-10-16T04:00:00Z', today: true, past: false },
+      { key: 'pickup', label: '参赛包领取', at: '' }
+    ];
+    await openService({ registrationStatus: 'open', open: true, details: { registration: { verified: true, closesAt: '2035-10-16T10:00:00Z' } }, nodes });
+    const timeline = page.locator('.race-timeline-card');
+    assert.deepEqual(await timeline.locator('time').allTextContents(), ['2035-10-15 23:59', '2035-10-16 12:00', '2035-10-16 18:00', '2035-11-04']);
+    assert.match(await timeline.locator('.is-past').innerText(), /早鸟截止/);
+    assert.equal(await timeline.locator('.is-next').count(), 1);
+    assert.match(await timeline.locator('.is-next').innerText(), /出签[\s\S]*下一节点/);
+    assert.match(await service.locator('.race-service-next').innerText(), /出签[\s\S]*2035-10-16 12:00/);
+    assert.doesNotMatch(await timeline.innerText(), /参赛包领取/);
+  });
+  await bodyCheck('The information body groups date, fee data and safe official resources ahead of optional entries', async () => {
+    await openService({
+      details: { groups: sample.details.groups }, nodes: [deadline], archiveId: 'beijing',
+      organizer: '测试组委会', phone: '010-12345678', links: [result, { key: 'bib', url: 'http://example.test/bib' }]
+    });
+    const order = await page.locator('.race-timeline-card,.race-project-card,.race-resources-card,.race-archive-entry').evaluateAll(rows => rows.map(row => row.className.split(' ').at(-1)));
+    assert.deepEqual(order, ['race-timeline-card', 'race-project-card', 'race-resources-card', 'race-archive-entry']);
+    const group = page.locator('.race-project-card .race-group').last();
+    assert.match(await group.innerText(), /亲子[\s\S]*196元\/组/);
+    const resources = page.locator('.race-resources-card');
+    assert.equal(await resources.getByRole('link', { name: /官方成绩/ }).getAttribute('href'), result.url);
+    assert.equal(await resources.getByRole('link', { name: /参赛号码/ }).count(), 0);
+    await resources.locator('summary').click();
+    assert.match(await resources.locator('.race-source').innerText(), /测试组委会/);
+    assert.equal(await resources.getByRole('link', { name: '赛事网站', exact: true }).getAttribute('href'), serviceRace.eventUrl);
+  });
+  await bodyCheck('Guide practical links lead to existing pickup, route and pacing content, with a separate nonduplicated chapter directory', async () => {
+    const pickup = '携带有效证件到北门领取参赛包。';
+    const guideText = '## 参赛资格与运动员装备核对说明\n凡报名选手请查看现有竞赛规程。\n\n## 日程领物\n' + pickup + '\n\n## 官方领跑员\n设置半程配速组。';
+    await openService({ registrationStatus: 'closed', pickup, guideText, route: '从北门出发，沿湖闭环。' }, '?tab=guide');
+    const tasks = page.getByRole('navigation', { name: '比赛日资料', exact: true });
+    const chapters = page.getByRole('navigation', { name: '规程章节目录', exact: true });
+    assert.equal(await tasks.count(), 1);
+    assert.equal(await chapters.count(), 1);
+    assert.deepEqual(await chapters.getByRole('button').allTextContents().then(rows => rows.map(row => row.replace(/[↓›]/g, '').trim())), ['参赛资格与运动员装备核对说明']);
+    for (const [label, heading] of [['领物与比赛日', '日程领物'], ['赛道与路线', '赛道与路线'], ['配速资料', '官方领跑员']]) {
+      const action = tasks.getByRole('button', { name: label, exact: true });
+      const id = await action.getAttribute('aria-controls');
+      assert.ok(id);
+      await action.click();
+      const target = page.locator('#' + id);
+      assert.match(await target.innerText(), new RegExp(heading));
+      await target.evaluate(element => { if (document.activeElement !== element) throw new Error('guide jump did not move focus to the destination'); });
+    }
+    assert.equal(await page.getByText(pickup, { exact: true }).count(), 1);
+    for (const width of [320, 390]) {
+      await page.setViewportSize({ width, height: 844 });
+      assert.ok((await tasks.getByRole('button').evaluateAll(rows => rows.map(row => row.getBoundingClientRect().height))).every(height => height >= 44));
+      await shot('guide-actions-' + width);
+    }
+  });
+  await bodyCheck('Unpublished guide placeholders provide a truthful empty state and original-only guides stay open', async () => {
+    await openService({ registrationStatus: 'closed', pickup: '领物安排待公布', route: '待公布', pacers: '另行通知' }, '?tab=guide');
+    assert.equal(await page.getByRole('navigation', { name: '比赛日资料', exact: true }).count(), 0);
+    assert.equal(await page.getByText(/参赛指南尚未录入/).count(), 1);
+    await openService({ guide: [{ id: 920, caption: '报名竞赛规程原页' }] }, '?tab=guide');
+    assert.equal(await page.locator('#guide-original-images img').count(), 1);
+    assert.ok(await page.locator('#guide-original-images').isVisible());
+    assert.equal(await page.locator('.guide-originals-toggle').count(), 0);
+  });
+  await bodyCheck('An inline official route image has one practical shortcut and one preview', async () => {
+    await openService({ routeSheets: [{ id: 921 }], guideText: '## 竞赛规程原文\n请查看组委会资料。\n\n![报名规程插图](/marathon/api/race-sheets/921)' }, '?tab=guide');
+    const routeGuide = page.getByRole('navigation', { name: '比赛日资料', exact: true }).getByRole('button', { name: '赛道与路线', exact: true });
+    assert.equal(await routeGuide.count(), 1);
+    await routeGuide.click();
+    const target = page.locator('#' + await routeGuide.getAttribute('aria-controls'));
+    assert.ok(await target.locator('img').isVisible());
+    assert.equal(await page.locator('img[alt="报名规程插图"]').count(), 1);
+    await target.getByRole('button', { name: /放大查看/ }).click();
+    assert.ok(await page.locator('dialog[open] img').isVisible());
+    await page.getByRole('button', { name: '关闭图片预览', exact: true }).click();
+  });
+  assert.deepEqual(bodyFailures, [], 'race detail body browser scenarios');
   await page.clock.setFixedTime(new Date());
   current = richPayload;
   for (const width of [390, 320]) {

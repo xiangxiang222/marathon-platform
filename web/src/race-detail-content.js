@@ -19,6 +19,38 @@ function localMoment(value, withZone = true) {
   if (/^\d{4}-\d{2}-\d{2}T/.test(text) && Number.isFinite(Date.parse(text))) return new Date(Date.parse(text) + 8 * 3600000).toISOString().slice(0, 16).replace("T", " ") + (withZone ? "（北京时间）" : "");
   return text;
 }
+function timelineDate(value) {
+  const text = localMoment(value, false);
+  const date = /^\d{4}-\d{2}-\d{2}(?: (?:[01]\d|2[0-3]):[0-5]\d)?$/.test(text) && text.slice(0, 10);
+  const day = date && Date.parse(date);
+  return date && Number.isFinite(day) && new Date(day).toISOString().slice(0, 10) === date ? text : "";
+}
+function raceTimeline(race, now = Date.now()) {
+  if (!race) return { rows: [], next: null };
+  const source = race.nodes || [];
+  const rows = (race.nextNode && !source.some(node => node.key === race.nextNode.key) ? [...source, race.nextNode] : source)
+    .map(node => ({ ...node, at: timelineDate(node.at) })).filter(node => node.at);
+  const registration = race.details?.registration;
+  const deadline = registration?.verified === true && timelineDate(registration.closesAt);
+  const day = new Date(Number(now) + 8 * 3600000).toISOString().slice(0, 10);
+  if (deadline) {
+    const index = rows.findIndex(node => node.key === "deadline");
+    const original = rows[index];
+    const special = original && /早鸟|精英|优惠/.test(original.label);
+    if (special) original.key = "special-deadline";
+    else if (original) rows.splice(index, 1);
+    const at = registration.closesAt.includes("T") ? Date.parse(registration.closesAt) : Date.parse(deadline.includes(" ") ? deadline.replace(" ", "T") + ":00+08:00" : deadline + "T23:59:59.999+08:00");
+    let past = at <= Number(now);
+    if (["closed", "sold_out"].includes(race.registrationStatus)) past = true;
+    else if (!special && original?.at === deadline && typeof original.past === "boolean") past = original.past;
+    else if (race.registrationStatus === "open" || race.regStatus === "报名中") past = false;
+    rows.push({ key: "deadline", label: "报名截止", at: deadline, past, today: deadline.startsWith(day) });
+  }
+  rows.sort((a, b) => a.at.localeCompare(b.at));
+  const inactive = ["cancelled", "invalid"].includes(race.registrationStatus) || /取消|入口.*失效/.test(race.registrationLabel || race.regStatus || "");
+  const end = race.raceEndDate || race.raceDate;
+  return { rows, next: inactive || end && end < day ? null : rows.find(node => node.past === false && node.at >= day) || null };
+}
 function quantity(value, unit) {
   const text = readable(value);
   return text && /^\d+(?:\.\d+)?$/.test(text) ? text + unit : text;
@@ -69,17 +101,52 @@ function sheetCaption(race, sheet, fallback) {
   const saved = Array.isArray(media) && media.find(item => String(item.sheetId) === String(sheet.id));
   return String(sheet.caption || saved && saved.caption || fallback || "赛事资料").trim();
 }
+const guideTopics = [
+  ["pickup", "领物与比赛日", /领物|领包|领取参赛|参赛包领取/],
+  ["route", "赛道与路线", /赛道|路线|线路/],
+  ["pacers", "配速资料", /配速|领跑员|官兔/]
+];
+const textKey = value => String(value || "").replace(/\*\*|\s|[，。；：、,.!！?？:;（）()\-—]/g, "");
+function guideRecorded(value) {
+  const text = textKey(value);
+  return !!text && !/^(?:领物(?:安排|信息)?|赛道与路线|赛道(?:信息|路线)?|路线(?:图|信息)?|配速(?:安排|资料|信息)?)?(?:待公布|暂未公布|尚未公布|另行通知|待定|尚未录入)$/.test(text);
+}
 function guideLayout(race, blocks) {
-  const textKey = value => String(value || "").replace(/\*\*|\s|[，。；：、,.!！?？:;（）()\-—]/g, "");
-  const prose = textKey(blocks.filter(block => block.kind !== "image").map(block => (block.runs || []).map(run => run.text).join("")).join("\n"));
-  const extra = value => !textKey(value) || prose.includes(textKey(value)) ? "" : value;
-  const chapters = blocks.filter(block => /^h[12]$/.test(block.kind)).map(block => ({ id: "chapter-" + block.i, label: block.runs.map(run => run.text).join("") }));
-  return {
-    chapters,
-    route: extra(race && race.route),
-    pickup: extra(race && race.pickup),
-    pacers: extra(race && race.pacers)
-  };
+  const parts = [{ id: "rules", text: "", media: false }];
+  for (const block of blocks) {
+    const text = (block.runs || []).map(run => run.text).join("");
+    if (/^h[12]$/.test(block.kind)) parts.push({ id: "chapter-" + block.i, label: text, text: "", media: false });
+    else {
+      const part = parts[parts.length - 1];
+      part.text += textKey(text);
+      if (block.kind === "image" || block.kind === "table") part.media = true;
+    }
+  }
+  const chapters = parts.slice(1).map(({ id, label }) => ({ id, label }));
+  const prose = parts.map(part => textKey(part.label) + part.text).join("");
+  const targets = {};
+  const layout = { chapters, targets };
+  for (const [kind,, title] of guideTopics) {
+    const value = race?.[kind];
+    const key = guideRecorded(value) ? textKey(value) : "";
+    const duplicate = key && parts.find(part => (textKey(part.label) + part.text).includes(key));
+    const labeled = parts.find(part => title.test(part.label || "") && (guideRecorded(part.text) || part.media));
+    const inProse = key && prose.includes(key);
+    const sheets = kind === "route" ? race?.routeSheets : kind === "pacers" ? race?.pacerSheets : [];
+    const inline = sheets?.length && blocks.find(block => block.kind === "image" && sheets.some(sheet => block.src.split("?")[0].endsWith("/race-sheets/" + sheet.id)));
+    targets[kind] = duplicate?.id || labeled?.id || (inProse ? "rules" : inline ? "media-" + inline.i : "");
+    layout[kind] = key && !inProse ? value : "";
+  }
+  return layout;
+}
+function guideNavigation(layout, { route, pacers, originals, hasBody } = {}) {
+  const tasks = guideTopics.flatMap(([id, label]) => {
+    const target = layout[id] || (id === "route" ? route : id === "pacers" && pacers) ? id : layout.targets[id];
+    return target ? [{ kind: id, id: target, label }] : [];
+  });
+  const chapters = layout.chapters.length ? layout.chapters.slice() : hasBody ? [{ id: "rules", label: "参赛指南" }] : [];
+  if (originals) chapters.push({ id: "originals", label: "规程原图参考" });
+  return { tasks, chapters: chapters.filter(chapter => !tasks.some(task => task.id === chapter.id)) };
 }
 function registrationLabel(race) {
   const state = race && race.registrationStatus;
@@ -96,4 +163,4 @@ function qrHint(race) {
   return (channel ? channel + " · " : "") + (closed ? "报名已关闭，二维码可查看本届报名信息。" : "点击预览，长按或扫码打开本届报名页。");
 }
 
-export { groupCards, guideSource, sheetCaption, guideLayout, localMoment, registrationLabel, qrAvailable, qrHint };
+export { groupCards, guideSource, sheetCaption, guideLayout, guideNavigation, localMoment, raceTimeline, registrationLabel, qrAvailable, qrHint };

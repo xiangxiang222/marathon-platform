@@ -40,6 +40,10 @@
       },
       {
         "type": "file",
+        "value": "images/race-actions/filter.png"
+      },
+      {
+        "type": "file",
         "value": "images/runner/add.png"
       },
       {
